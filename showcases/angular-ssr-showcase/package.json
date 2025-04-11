@@ -12,7 +12,6 @@
     "watch": "ng build --watch --configuration development"
   },
   "dependencies": {
-    "@db-ux/db-theme": "1.0.2",
     "express": "^5.1.0"
   },
   "devDependencies": {

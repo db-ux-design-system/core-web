@@ -24,9 +24,7 @@ import { DBCheckbox, DBInput, DBSelect } from "../../../../../output/vue/src";
 				:invalidMessage="exampleProps?.invalidMessage"
 				:validMessage="exampleProps?.validMessage"
 				:validation="exampleProps?.validation"
-			>
-				{{ exampleName }}
-			</DBSelect>
+			/>
 		</template>
 	</DefaultComponent>
 </template>

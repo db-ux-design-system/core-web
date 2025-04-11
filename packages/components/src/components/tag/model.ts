@@ -7,7 +7,7 @@ import {
 	OverflowProps,
 	SemanticProps,
 	ShowIconProps,
-	TagEmphasisProps
+	EmphasisProps
 } from '../../shared/model';
 
 export const TagBehaviorList = ['static', 'removable'] as const;
@@ -34,6 +34,10 @@ export type DBTagDefaultProps = {
 	 */
 	onRemove?: () => void;
 	/**
+	 * If "removeButton" attribute is set this function will be called when user clicks cancel button inside the tag.
+	 */
+	remove?: () => void;
+	/**
 	 * The removeButton attribute shows the cancel button.
 	 */
 	removeButton?: string;
@@ -57,7 +61,7 @@ export type DBTagProps = DBTagDefaultProps &
 	IconProps &
 	SemanticProps &
 	OverflowProps &
-	TagEmphasisProps &
+	EmphasisProps &
 	ShowIconProps &
 	ContentSlotProps;
 

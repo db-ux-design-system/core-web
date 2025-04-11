@@ -175,6 +175,8 @@
 }
 
 .db-sub-navigation {
+	@extend %component-border;
+
 	margin: 0;
 	display: flex;
 	flex-direction: column;

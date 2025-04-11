@@ -3,9 +3,9 @@
   - link "Density arrow_up_right\" / \""
   - text: Functional (Default) Regular Expressive
   - link "Emphasis arrow_up_right\" / \""
-  - text: (Default) Weak Origin Strong
+  - text: (Default) Weak Strong
   - link "Semantic arrow_up_right\" / \""
-  - text: (Default) Adaptive Critical Informational Neutral Successful Warning Adaptive Origin Critical Origin Informational Origin Neutral Origin Successful Origin Warning Origin Adaptive Strong Critical Strong Informational Strong Neutral Strong Successful Strong Warning Strong
+  - text: (Default) Adaptive Critical Informational Neutral Successful Warning Adaptive Strong Critical Strong Informational Strong Neutral Strong Successful Strong Warning Strong
   - link "Behavior arrow_up_right\" / \""
   - group "Behavior":
     - text: (Default) Static Removable
@@ -53,13 +53,3 @@
     - text: Interactive Strong Radio 1 with Icon circle" / "
     - radio "Interactive Strong Radio 2 with Icon circle\" / \""
     - text: Interactive Strong Radio 2 with Icon circle" / "
-  - link "Example Origin arrow_up_right\" / \""
-  - group "Example Origin":
-    - button "Interactive Origin Button with Icon"
-    - link "Interactive Origin Link with Icon"
-    - checkbox "Interactive Origin Checkbox with Icon circle\" / \""
-    - text: Interactive Origin Checkbox with Icon circle" / "
-    - radio "Interactive Origin Radio 1 with Icon circle\" / \""
-    - text: Interactive Origin Radio 1 with Icon circle" / "
-    - radio "Interactive Origin Radio 2 with Icon circle\" / \""
-    - text: Interactive Origin Radio 2 with Icon circle" / "

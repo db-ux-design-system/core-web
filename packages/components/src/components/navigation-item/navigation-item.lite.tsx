@@ -49,7 +49,7 @@ export default function DBNavigationItem(props: DBNavigationItemProps) {
 				}, 300);
 			}
 		},
-		handleClick: (event: ClickEvent<HTMLButtonElement>) => {
+		handleClick: (event: ClickEvent<HTMLButtonElement> | any) => {
 			if (props.onClick) {
 				props.onClick(event);
 			}
@@ -58,32 +58,9 @@ export default function DBNavigationItem(props: DBNavigationItemProps) {
 				state.isSubNavigationExpanded = true;
 			}
 		},
-		handleBackClick: (event: ClickEvent<HTMLButtonElement>) => {
+		handleBackClick: (event: ClickEvent<HTMLButtonElement> | any) => {
 			event.stopPropagation();
 			state.isSubNavigationExpanded = false;
-		},
-		updateSubNavigationState: () => {
-			if (state.initialized && document && state.subNavigationId) {
-				const subNavigationSlot = document?.getElementById(
-					state.subNavigationId
-				) as HTMLMenuElement;
-
-				if (subNavigationSlot) {
-					if (subNavigationSlot.children?.length > 0) {
-						state.hasAreaPopup = true;
-
-						if (!state.navigationItemSafeTriangle) {
-							state.navigationItemSafeTriangle =
-								new NavigationItemSafeTriangle(
-									_ref,
-									subNavigationSlot
-								);
-						}
-					} else {
-						state.hasSubNavigation = false;
-					}
-				}
-			}
 		}
 	});
 
@@ -101,8 +78,26 @@ export default function DBNavigationItem(props: DBNavigationItemProps) {
 	}, [props.subNavigationExpanded]);
 
 	onUpdate(() => {
-		state.updateSubNavigationState();
-	}, [state.initialized]);
+		if (state.initialized && _ref) {
+			const subNavigationSlot = _ref.querySelector('menu');
+
+			if (subNavigationSlot) {
+				if (subNavigationSlot.children?.length > 0) {
+					state.hasAreaPopup = true;
+
+					if (!state.navigationItemSafeTriangle) {
+						state.navigationItemSafeTriangle =
+							new NavigationItemSafeTriangle(
+								_ref,
+								subNavigationSlot
+							);
+					}
+				} else {
+					state.hasSubNavigation = false;
+				}
+			}
+		}
+	}, [state.initialized, _ref]);
 	// jscpd:ignore-end
 
 	return (

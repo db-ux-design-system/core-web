@@ -41,9 +41,8 @@ const getSelect = ({
 			showMessage={showMessage}
 			invalidMessage={invalidMessage}
 			validMessage={validMessage}
-			validation={validation}>
-			{children}
-		</DBSelect>
+			validation={validation}
+		/>
 	);
 };
 

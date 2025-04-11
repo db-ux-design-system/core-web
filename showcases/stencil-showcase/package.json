@@ -16,7 +16,6 @@
     "watch": "ng build --watch --configuration development"
   },
   "dependencies": {
-    "@db-ux/db-theme": "1.0.2",
     "@stencil/core": "4.29.2"
   },
   "devDependencies": {

@@ -1,34 +1,22 @@
 @use "sass:string";
 @use "variables";
 @use "../screen-sizes";
+@use "../helpers";
 
-@function get-typography(
-	$density,
-	$device,
-	$size,
-	$type,
-	$attribute: "font-size"
-) {
+@function get-typography($density, $device, $size, $type) {
 	@return var(
 		string.unquote(
-			"--db-typography-#{$density}-#{$device}-#{$type}-#{$size}-#{$attribute}"
+			"--db-typography-#{$density}-#{$device}-#{$type}-#{$size}"
 		)
 	);
 }
 
 @mixin get-font($density, $device, $size, $type: "body") {
-	--db-type-#{$type}-font-size-#{$size}: #{get-typography(
+	--db-type-#{$type}-#{$size}: #{get-typography(
 			$density,
 			$device,
 			$size,
 			$type
-		)};
-	--db-type-#{$type}-line-height-#{$size}: #{get-typography(
-			$density,
-			$device,
-			$size,
-			$type,
-			"line-height"
 		)};
 }
 
@@ -43,43 +31,79 @@
 
 @each $density in variables.$densities {
 	%db-typography-headline-#{$density} {
-		@each $size in variables.$sizings {
-			@include get-font($density, "mobile", $size, "headline");
-			@include get-icons($density, "mobile", $size, "headline");
-		}
-
-		@include screen-sizes.screen() {
-			@each $size in variables.$sizings {
-				@include get-font($density, "tablet", $size, "headline");
-				@include get-icons($density, "tablet", $size, "headline");
+		/* stylelint-disable-next-line at-rule-prelude-no-invalid,layer-name-pattern */
+		@layer #{helpers.$layer-variables} {
+			@include screen-sizes.screen-min-max(
+				(
+					max: "sm"
+				)
+			) {
+				@each $size in variables.$sizings {
+					@include get-font($density, "mobile", $size, "headline");
+					@include get-icons($density, "mobile", $size, "headline");
+				}
 			}
-		}
 
-		@include screen-sizes.screen("md") {
-			@each $size in variables.$sizings {
-				@include get-font($density, "desktop", $size, "headline");
-				@include get-icons($density, "desktop", $size, "headline");
+			@include screen-sizes.screen-min-max(
+				(
+					min: "sm",
+					max: "md"
+				)
+			) {
+				@each $size in variables.$sizings {
+					@include get-font($density, "tablet", $size, "headline");
+					@include get-icons($density, "tablet", $size, "headline");
+				}
+			}
+
+			@include screen-sizes.screen-min-max(
+				(
+					min: "md"
+				)
+			) {
+				@each $size in variables.$sizings {
+					@include get-font($density, "desktop", $size, "headline");
+					@include get-icons($density, "desktop", $size, "headline");
+				}
 			}
 		}
 	}
 
 	%db-typography-body-#{$density} {
-		@each $size in variables.$sizings {
-			@include get-font($density, "mobile", $size);
-			@include get-icons($density, "mobile", $size);
-		}
-
-		@include screen-sizes.screen() {
-			@each $size in variables.$sizings {
-				@include get-font($density, "tablet", $size);
-				@include get-icons($density, "mobile", $size);
+		/* stylelint-disable-next-line at-rule-prelude-no-invalid,layer-name-pattern */
+		@layer #{helpers.$layer-variables} {
+			@include screen-sizes.screen-min-max(
+				(
+					max: "sm"
+				)
+			) {
+				@each $size in variables.$sizings {
+					@include get-font($density, "mobile", $size);
+					@include get-icons($density, "mobile", $size);
+				}
 			}
-		}
 
-		@include screen-sizes.screen("md") {
-			@each $size in variables.$sizings {
-				@include get-font($density, "desktop", $size);
-				@include get-icons($density, "mobile", $size);
+			@include screen-sizes.screen-min-max(
+				(
+					min: "sm",
+					max: "md"
+				)
+			) {
+				@each $size in variables.$sizings {
+					@include get-font($density, "tablet", $size);
+					@include get-icons($density, "tablet", $size);
+				}
+			}
+
+			@include screen-sizes.screen-min-max(
+				(
+					min: "md"
+				)
+			) {
+				@each $size in variables.$sizings {
+					@include get-font($density, "desktop", $size);
+					@include get-icons($density, "desktop", $size);
+				}
 			}
 		}
 	}

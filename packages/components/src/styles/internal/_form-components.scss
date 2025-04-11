@@ -27,7 +27,12 @@ $input-types:
 	"hidden", "image", "month", "number", "password", "radio", "range", "reset",
 	"search", "submit", "tel", "text", "time", "url", "week";
 
-$check-border-size: min(#{variables.$db-border-height-2xs}, 2px);
+$check-border-size: min(#{variables.$db-border-width-2xs}, 2px);
+
+$db-min-inline-size: var(
+	--db-form-component-min-inline-size,
+	#{variables.$db-sizing-lg}
+);
 
 %dropdown-icon {
 	@include icons.set-icon("chevron_down", "after");
@@ -104,11 +109,8 @@ $check-border-size: min(#{variables.$db-border-height-2xs}, 2px);
 				padding-block-start: $floating-label-size-calc;
 				/* stylelint-disable-next-line at-rule-empty-line-before */
 			} @else {
-				// font-size label which is 2xs + smallest spacing
-				padding-block-start: calc(
-					var(--db-type-body-font-size-2xs) +
-						#{variables.$db-spacing-fixed-3xs}
-				);
+				/* stylelint-disable-next-line db-ux/use-spacings */
+				padding-block-start: var(--db-base-body-icon-font-size-2xs);
 			}
 		}
 
@@ -127,6 +129,8 @@ $check-border-size: min(#{variables.$db-border-height-2xs}, 2px);
 			#{$selector} {
 				@include placeholder-content() {
 					opacity: component.$placeholder-disabled;
+					font-family: var(--db-font-family-sans);
+					font-style: italic;
 
 					@media screen and (prefers-reduced-motion: no-preference) {
 						transition: opacity
@@ -280,6 +284,9 @@ $input-valid-types:
 	display: flex;
 	flex-direction: column;
 
+	// base inline size for inputs without icons
+	min-inline-size: $db-min-inline-size;
+
 	@include set-floating-label-overwrites($selector);
 	@include set-required-label($selector);
 
@@ -303,6 +310,7 @@ $input-valid-types:
 		appearance: none;
 		max-inline-size: 100%;
 		inline-size: 100%;
+		min-inline-size: $db-min-inline-size;
 
 		/* stylelint-disable-next-line db-ux/use-spacings */
 		padding-inline: var(
@@ -316,6 +324,8 @@ $input-valid-types:
 
 		@include placeholder-content() {
 			opacity: component.$placeholder-disabled;
+			font-family: var(--db-font-family-sans);
+			font-style: italic;
 		}
 
 		@include helpers.hover {
@@ -481,7 +491,7 @@ $input-valid-types:
 		place-content: center center;
 		appearance: none;
 		aspect-ratio: 1;
-		/* stylelint-disable-next-line db-ux/use-border-height */
+		/* stylelint-disable-next-line db-ux/use-border-width */
 		border: #{$check-border-size} solid
 			var(
 				--db-check-element-border-color,

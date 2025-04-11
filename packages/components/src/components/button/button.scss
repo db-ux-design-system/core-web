@@ -44,6 +44,7 @@
 	&[data-size="small"] {
 		@extend %db-overwrite-font-size-sm;
 
+		font-weight: 700;
 		block-size: variables.$db-sizing-sm;
 
 		&:not([data-no-text="true"]) {
@@ -72,12 +73,12 @@
 
 		@include helpers.hover {
 			background-color: colors.$db-brand-origin-hovered;
-			border-color: colors.$db-brand-on-bg-basic-emphasis-70-hovered;
+			border-color: colors.$db-brand-on-bg-basic-emphasis-70-default;
 		}
 
 		@include helpers.active {
 			background-color: colors.$db-brand-origin-pressed;
-			border-color: colors.$db-brand-on-bg-basic-emphasis-70-pressed;
+			border-color: colors.$db-brand-on-bg-basic-emphasis-70-default;
 		}
 	}
 
