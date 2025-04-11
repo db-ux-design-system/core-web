@@ -84,7 +84,7 @@ const getCustomSelect = ({
 			loadingText={loadingText}
 			noResultsText={noResultsText ?? 'No matching filter'}
 			values={mValue}
-			onSelect={(val) => {
+			onOptionSelected={(val) => {
 				setValue(val);
 			}}
 		/>

@@ -62,6 +62,11 @@ export const getComponents = (): Component[] => [
 				controlValueAccessor: 'values'
 			},
 			react: {
+				propsPassingFilter: [
+					'onOptionSelected',
+					'onAmountChange',
+					'onDropdownToggle'
+				],
 				containsFragmentMap: true
 			}
 		},

@@ -58,15 +58,15 @@ export type DBCustomSelectEvents = {
 	 */
 	amountChange?: (amount: number) => void;
 	/**
-	 * Triggers after some checkbox was clicked in dropdown
+	 * Triggers after some option was clicked in dropdown
 	 * @param values the changed values
 	 */
-	onSelect?: (values: string[]) => void;
+	onOptionSelected?: (values: string[]) => void;
 	/**
-	 * Triggers after some checkbox was clicked in dropdown
+	 * Triggers after some option was clicked in dropdown
 	 * @param values the changed values
 	 */
-	select?: (values: string[]) => void;
+	optionSelected?: (values: string[]) => void;
 
 	/**
 	 * Informs the user when dropdown was toggled.
@@ -220,7 +220,6 @@ export type DBCustomSelectDefaultState = {
 	_selectedLabels?: string;
 	_selectedLabelsId?: string;
 	_infoTextId?: string;
-	_externalChangeTimestamp: number;
 	_internalChangeTimestamp: number;
 	_name?: string;
 	_documentClickListenerCallbackId?: string;
@@ -245,6 +244,7 @@ export type DBCustomSelectDefaultState = {
 	handleKeyboardPress: (event: any) => void;
 	handleArrowDownUp: (event: any) => void;
 	handleSearch: (event: any) => void;
+	handleOptionSelected: (_values: string[]) => void;
 	getSelectAllLabel: () => string;
 	selectAllChecked: boolean;
 	selectAllIndeterminate: boolean;

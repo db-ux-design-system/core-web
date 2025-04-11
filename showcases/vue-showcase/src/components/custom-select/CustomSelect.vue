@@ -2,6 +2,11 @@
 import DefaultComponent from "../DefaultComponent.vue";
 import defaultComponentVariants from "../../../../shared/custom-select.json";
 import { DBCustomSelect, DBInfotext } from "../../../../../output/vue/src";
+
+const log = (values: string[]) => {
+	// eslint-disable-next-line no-alert
+	console.log(values);
+};
 </script>
 
 <template>
@@ -52,7 +57,7 @@ import { DBCustomSelect, DBInfotext } from "../../../../../output/vue/src";
 				:selectedType="exampleProps?.selectedType"
 				:formFieldWidth="exampleProps?.formFieldWidth"
 				:values="exampleProps?.mValue"
-				:on-select="(event) => console.log(event)"
+				:on-option-selected="(values) => log(values)"
 			/>
 		</template>
 	</DefaultComponent>

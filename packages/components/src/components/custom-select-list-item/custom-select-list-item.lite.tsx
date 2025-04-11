@@ -44,6 +44,7 @@ export default function DBCustomSelectListItem(
 			_id: undefined,
 			hasDivider: false,
 			handleChange: (event: ChangeEvent<HTMLInputElement>) => {
+				event.stopPropagation();
 				if (props.onChange) {
 					props.onChange(event);
 				}

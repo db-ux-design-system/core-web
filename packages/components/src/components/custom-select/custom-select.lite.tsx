@@ -77,6 +77,7 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 	const detailsRef = useRef<HTMLDetailsElement | any>(null);
 	const selectRef = useRef<HTMLSelectElement | any>(null);
 	const selectAllRef = useRef<HTMLInputElement | any>(null);
+	const searchInputRef = useRef<HTMLInputElement | any>(null);
 	// jscpd:ignore-start
 	const state: DBCustomSelectState = useStore<DBCustomSelectState>({
 		_name: undefined,
@@ -103,9 +104,8 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 		_values: [],
 		_options: [],
 		_hasNoOptions: false,
-		_internalChangeTimestamp: -1,
-		_externalChangeTimestamp: -1,
 		_documentClickListenerCallbackId: undefined,
+		_internalChangeTimestamp: 0,
 		hasValidState: () => {
 			return !!(props.validMessage ?? props.validation === 'valid');
 		},
@@ -361,39 +361,76 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 				detailsRef.open = false;
 			}
 		},
-		handleSelect: (value?: string) => {
-			// Angular and Stencil triggers handleSelect
-			// twice which will select and deselect a multiple value
-			const skip: boolean =
+		handleOptionSelected: (values: string[]) => {
+			const skip =
 				new Date().getTime() - state._internalChangeTimestamp < 200;
+			if (skip) return;
 
-			if (!skip && value) {
+			if (props.onOptionSelected) {
+				state._values = values;
+				props.onOptionSelected(values ?? []);
+			}
+
+			useTarget({
+				angular: () =>
+					handleFrameworkEventAngular(
+						state,
+						{
+							target: { values }
+						},
+						'values'
+					),
+				vue: () =>
+					handleFrameworkEventVue(
+						() => {},
+						{
+							target: { values }
+						},
+						'values'
+					)
+			});
+			state._internalChangeTimestamp = new Date().getTime();
+		},
+		handleSelect: (value?: string) => {
+			if (value) {
 				if (props.multiple) {
 					if (state._values?.includes(value)) {
-						state._values = state._values?.filter(
-							(v: string) => v !== value
+						state.handleOptionSelected(
+							state._values!.filter((v: string) => v !== value)
 						);
 					} else {
-						state._values = [...(state._values || []), value];
+						state.handleOptionSelected([
+							...(state._values || []),
+							value
+						]);
 					}
 				} else {
-					state._values = [value];
+					state.handleOptionSelected([value]);
 					state.handleClose('close');
 				}
-				state._internalChangeTimestamp = new Date().getTime();
 			}
 		},
 		handleSelectAll: () => {
 			if (state._values?.length === state.amountOptions) {
-				state._values = [];
+				state.handleOptionSelected([]);
 			} else {
-				state._values = props.options
-					? props
-							.options!.filter((option) => !option.isGroupTitle)
-							.map((option) => option.value ?? '')
-					: [];
+				state.handleOptionSelected(
+					props.options
+						? props
+								.options!.filter(
+									(option) => !option.isGroupTitle /*&&
+										!(
+											state.searchEnabled &&
+											searchInputRef &&
+											option.value?.includes(
+												searchInputRef.value
+											)
+										)*/
+								)
+								.map((option) => option.value ?? '')
+						: []
+				);
 			}
-			state._internalChangeTimestamp = new Date().getTime();
 		},
 		handleFocusFirstDropdownCheckbox: (activeElement?: Element) => {
 			if (detailsRef) {
@@ -433,7 +470,10 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 				}
 			}
 		},
+		// Don't trigger onOptionSelected event
 		handleSearch: (event: any) => {
+			event.stopPropagation();
+
 			const filterText = (event.target as HTMLInputElement).value;
 
 			state._options =
@@ -547,42 +587,14 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 		state.searchEnabled = props.showSearch || state.amountOptions > 9;
 	}, [props.showSearch, state.amountOptions]);
 
+	// If we inform the consumer we don't want to trigger the onOptionSelected event again
 	onUpdate(() => {
-		if (props.onSelect) {
-			const externalChange = Boolean(state._externalChangeTimestamp);
-			const internalChange = Boolean(state._internalChangeTimestamp);
-
-			const onlyInternalChange = internalChange && !externalChange;
-
-			const bothChangeButInternalNew =
-				internalChange &&
-				externalChange &&
-				state._internalChangeTimestamp > state._externalChangeTimestamp;
-
-			if (onlyInternalChange || bothChangeButInternalNew) {
-				props.onSelect(state._values ?? []);
-
-				const fakeEvent = {
-					target: { values: state._values }
-				};
-				useTarget({
-					angular: () =>
-						handleFrameworkEventAngular(state, fakeEvent, 'values'),
-					vue: () =>
-						handleFrameworkEventVue(() => {}, fakeEvent, 'values')
-				});
-			}
-		}
-	}, [
-		state._externalChangeTimestamp,
-		state._internalChangeTimestamp,
-		props.onSelect
-	]);
-
-	onUpdate(() => {
-		if (props.values && Array.isArray(props.values)) {
+		if (
+			props.values &&
+			Array.isArray(props.values) &&
+			props.values !== state._values
+		) {
 			state._values = props.values ?? [];
-			state._externalChangeTimestamp = new Date().getTime();
 		}
 	}, [props.values]);
 
@@ -786,6 +798,7 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 						<Show when={state.searchEnabled}>
 							<div>
 								<DBInput
+									ref={searchInputRef}
 									type="search"
 									showLabel={false}
 									label={props.searchLabel ?? DEFAULT_LABEL}
