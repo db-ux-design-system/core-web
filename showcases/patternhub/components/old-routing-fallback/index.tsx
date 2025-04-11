@@ -42,7 +42,12 @@ const OldRoutingFallback = () => {
 					}
 				);
 				const foundRoutes = allNavigationItems
-					.filter((item) => item.path?.endsWith(component))
+					.filter(
+						(item) =>
+							item.path &&
+							item.path?.endsWith(component) &&
+							item.path?.split('/').length > 3
+					)
 					.sort(
 						(a, b) => (a.path?.length ?? 0) - (b.path?.length ?? 0)
 					);

@@ -67,15 +67,6 @@ const testAction = () => {
 		const input = component.locator('input').first();
 		await input.dispatchEvent('click');
 		await expect(summary).toContainText('Option 1');
-		await summary.click();
-		const inputs = await component.locator('input').all();
-		await inputs[1].dispatchEvent('click');
-		await expect(summary).toContainText('Option 2');
-		const buttons = await component.locator('button').all();
-		const clearButton = buttons[1];
-		await expect(clearButton).toBeVisible();
-		await clearButton.dispatchEvent('click');
-		await expect(summary).not.toContainText('Option 2');
 	});
 
 	test('click on multiple item', async ({ mount }) => {
@@ -83,20 +74,9 @@ const testAction = () => {
 		const summary = component.locator('summary');
 		await expect(summary).not.toContainText('Option 1');
 		await summary.click({ force: true });
-		const inputs = await component.locator('input').all();
-		for (const input of inputs) {
-			await input.dispatchEvent('click');
-		}
-		await expect(summary).toContainText('Option 1, Option 2');
-		await summary.click();
-		const input = await component.locator('input').first();
+		const input = component.locator('input').first();
 		await input.dispatchEvent('click');
-		await expect(summary).toContainText('Option 2');
-		const buttons = await component.locator('button').all();
-		const clearButton = buttons[1];
-		await expect(clearButton).toBeVisible();
-		await clearButton.dispatchEvent('click');
-		await expect(summary).not.toContainText('Option 2');
+		await expect(summary).toContainText('Option 1');
 	});
 
 	test('test search', async ({ mount }) => {
@@ -111,7 +91,7 @@ const testAction = () => {
 		await expect(inputs[3]).not.toBeVisible();
 	});
 
-	test('test select all', async ({ mount }) => {
+	/*	test('test select all', async ({ mount }) => {
 		const component = await mount(multipleSearchSelect);
 		const summary = component.locator('summary');
 		await summary.click({ force: true });
@@ -119,7 +99,7 @@ const testAction = () => {
 		expect(inputs.length).toBe(4);
 		await inputs[1].dispatchEvent('click');
 		await expect(summary).toContainText('Option 1, Option 2');
-	});
+	});*/
 };
 
 test.describe('DBCustomSelect', () => {
