@@ -2,7 +2,7 @@
 
 If you have custom icons and want to use them for [foundations](https://www.npmjs.com/package/@db-ux/core-foundations) and/or in [components](https://www.npmjs.com/package/@db-ux/core-components), you need to generate a **woff2** file.
 
-Check out the `icon-font-tools` [documentation](https://github.com/db-ux/icon-font-tools/blob/main/docs/GenerateIconFonts.md) to generate a **woff2** file.
+Check out the `icon-font-tools` [documentation](https://github.com/db-ux-design-system/icon-font-tools/blob/main/docs/GenerateIconFonts.md) to generate a **woff2** file.
 
 ## Foundation Developer
 
