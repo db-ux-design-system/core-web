@@ -221,7 +221,6 @@ export type DBCustomSelectDefaultState = {
 	_selectedLabelsId?: string;
 	_infoTextId?: string;
 	_internalChangeTimestamp: number;
-	_name?: string;
 	_documentClickListenerCallbackId?: string;
 	getNativeSelectValue: () => string;
 	getOptionLabel: (option: CustomSelectOptionType) => string;

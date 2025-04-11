@@ -461,7 +461,12 @@ const FormComponent = () => {
 					</DBTooltip>
 				</DBButton>
 
-				<form>
+				<form
+					onSubmit={(event) => {
+						event.preventDefault();
+						/* eslint-disable-next-line no-console */
+						console.log(event);
+					}}>
 					<DBCustomSelect
 						name="input-multi"
 						label="Test"
@@ -478,7 +483,7 @@ const FormComponent = () => {
 						searchLabel="Search"
 						noResultsText="No matching filter"
 						values={multiSelectValue}
-						onSelect={(val) => {
+						onOptionSelected={(val) => {
 							setMultiSelectValue(val);
 						}}
 					/>

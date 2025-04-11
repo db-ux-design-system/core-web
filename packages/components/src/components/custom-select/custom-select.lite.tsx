@@ -80,7 +80,6 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 	const searchInputRef = useRef<HTMLInputElement | any>(null);
 	// jscpd:ignore-start
 	const state: DBCustomSelectState = useStore<DBCustomSelectState>({
-		_name: undefined,
 		_id: undefined,
 		_messageId: undefined,
 		_validMessageId: undefined,
@@ -242,7 +241,7 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 							) {
 								if (listElement?.nextElementSibling) {
 									listElement?.nextElementSibling
-										.querySelector('input')
+										?.querySelector('input')
 										?.focus();
 								} else {
 									// We are on the last checkbox we move to the top checkbox
@@ -253,7 +252,7 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 							} else {
 								if (listElement?.previousElementSibling) {
 									listElement?.previousElementSibling
-										.querySelector('input')
+										?.querySelector('input')
 										?.focus();
 								} else if (
 									detailsRef.querySelector(
@@ -414,18 +413,23 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 			if (state._values?.length === state.amountOptions) {
 				state.handleOptionSelected([]);
 			} else {
+				const searchValue: string | undefined =
+					state.searchEnabled && searchInputRef
+						? searchInputRef.value
+						: undefined;
+
 				state.handleOptionSelected(
 					props.options
 						? props
 								.options!.filter(
-									(option) => !option.isGroupTitle /*&&
-										!(
-											state.searchEnabled &&
-											searchInputRef &&
-											option.value?.includes(
-												searchInputRef.value
-											)
-										)*/
+									(option) =>
+										!option.isGroupTitle &&
+										(!searchValue ||
+											option.value
+												?.toLowerCase()
+												.includes(
+													searchValue.toLowerCase()
+												))
 								)
 								.map((option) => option.value ?? '')
 						: []
@@ -534,10 +538,6 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 			);
 		}
 	}, [detailsRef]);
-
-	onUpdate(() => {
-		state._name = props.name ?? state._id;
-	}, [props.name, state._id]);
 
 	onUpdate(() => {
 		if (state._id) {
@@ -712,6 +712,7 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 					tabIndex={-1}
 					ref={selectRef}
 					form={props.form}
+					name={props.name}
 					multiple={getBoolean(props.multiple, 'multiple')}
 					disabled={getBoolean(props.disabled, 'disabled')}
 					required={getBoolean(props.required, 'required')}
@@ -799,6 +800,8 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 							<div>
 								<DBInput
 									ref={searchInputRef}
+									name={state._id}
+									form={state._id}
 									type="search"
 									showLabel={false}
 									label={props.searchLabel ?? DEFAULT_LABEL}
@@ -883,7 +886,7 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 													groupTitle={state.getOptionLabel(
 														option
 													)}
-													name={state._name}
+													name={state._id}
 													checked={state.getOptionChecked(
 														option.value
 													)}
@@ -928,6 +931,8 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 								width="full"
 								icon="cross"
 								size="small"
+								name={state._id}
+								form={state._id}
 								onClick={() => state.handleClose('close')}>
 								{props.mobileCloseButtonText ??
 									DEFAULT_CLOSE_BUTTON}
@@ -946,6 +951,8 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 					variant="ghost"
 					noText
 					size="small"
+					name={state._id}
+					form={state._id}
 					onClick={() => state.handleClearAll()}>
 					{props.clearSelectionText}
 					<DBTooltip placement="top">

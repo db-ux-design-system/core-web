@@ -46,6 +46,7 @@ export default function DBButton(props: DBButtonProps) {
 			data-variant={props.variant}
 			data-no-text={getBooleanAsString(props.noText)}
 			name={props.name}
+			form={props.form}
 			value={props.value}
 			aria-describedby={props.describedbyid}
 			aria-expanded={props.ariaexpanded}

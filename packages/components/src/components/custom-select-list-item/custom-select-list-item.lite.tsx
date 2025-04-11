@@ -101,6 +101,7 @@ export default function DBCustomSelectListItem(
 						class="db-custom-select-list-item-checkbox"
 						type={props.type}
 						name={props.name}
+						form={props.name}
 						checked={getBoolean(props.checked, 'checked')}
 						disabled={getBoolean(props.disabled, 'disabled')}
 						value={props.value}
