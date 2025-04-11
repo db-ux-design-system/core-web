@@ -75,7 +75,7 @@
     "commander": "^13.1.0",
     "cpr": "3.0.1",
     "cross-env": "^7.0.3",
-    "dotenv": "^16.4.7",
+    "dotenv": "^16.5.0",
     "eslint": "8.57.1",
     "eslint-plugin-prettier": "^5.2.6",
     "find-versions": "^6.0.0",
