@@ -54,18 +54,6 @@ $interactive-selectors: "label, button:not(.db-tab-remove-button), a";
 	}
 }
 
-%set-interactive-strong {
-	@extend %set-adaptive-strong-tag;
-
-	@include helpers.hover {
-		background-color: colors.$db-adaptive-bg-inverted-contrast-high-hovered;
-	}
-
-	@include helpers.active {
-		background-color: colors.$db-adaptive-bg-inverted-contrast-high-pressed;
-	}
-}
-
 %set-interactive-origin {
 	@extend %set-adaptive-origin-tag;
 
@@ -127,17 +115,17 @@ $interactive-selectors: "label, button:not(.db-tab-remove-button), a";
 	@extend %set-adaptive-strong-tag;
 
 	@include helpers.hover {
-		background-color: colors.$db-adaptive-bg-inverted-contrast-high-hovered;
+		background-color: colors.$db-adaptive-bg-vibrant-hovered;
 		// TODO: will be changed in the future tag refactoring
 		/* stylelint-disable-next-line db-ux/use-border-color */
-		border-color: colors.$db-adaptive-bg-inverted-contrast-high-hovered;
+		border-color: colors.$db-adaptive-bg-vibrant-hovered;
 	}
 
 	@include helpers.active {
-		background-color: colors.$db-adaptive-bg-inverted-contrast-high-pressed;
+		background-color: colors.$db-adaptive-bg-vibrant-pressed;
 		// TODO: will be changed in the future tag refactoring
 		/* stylelint-disable-next-line db-ux/use-border-color */
-		border-color: colors.$db-adaptive-bg-inverted-contrast-high-pressed;
+		border-color: colors.$db-adaptive-bg-vibrant-pressed;
 	}
 }
 
