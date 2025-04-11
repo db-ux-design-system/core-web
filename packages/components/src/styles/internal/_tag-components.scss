@@ -25,11 +25,11 @@ $interactive-selectors: "label, button:not(.db-tab-remove-button), a";
 }
 
 %set-adaptive-strong-tag {
-	border-color: colors.$db-adaptive-on-bg-basic-emphasis-80-default;
+	border-color: colors.$db-adaptive-on-bg-basic-emphasis-70-default;
 
 	@include colors.set-current-colors(
-		colors.$db-adaptive-bg-inverted-contrast-high-default,
-		colors.$db-adaptive-on-bg-inverted-default
+		colors.$db-adaptive-bg-vibrant-default,
+		colors.$db-adaptive-on-bg-vibrant-default
 	);
 }
 
@@ -51,18 +51,6 @@ $interactive-selectors: "label, button:not(.db-tab-remove-button), a";
 
 	@include helpers.active {
 		background-color: colors.$db-adaptive-bg-basic-level-1-pressed;
-	}
-}
-
-%set-interactive-strong {
-	@extend %set-adaptive-strong-tag;
-
-	@include helpers.hover {
-		background-color: colors.$db-adaptive-bg-inverted-contrast-high-hovered;
-	}
-
-	@include helpers.active {
-		background-color: colors.$db-adaptive-bg-inverted-contrast-high-pressed;
 	}
 }
 
@@ -94,10 +82,6 @@ $interactive-selectors: "label, button:not(.db-tab-remove-button), a";
 		}
 	}
 
-	&[data-emphasis="origin"] {
-		@extend %set-adaptive-origin-tag;
-	}
-
 	@each $name in colors.$variant-colors {
 		&[data-semantic="#{$name}"] {
 			border-color: var(--db-#{$name}-on-bg-basic-emphasis-60-default);
@@ -109,23 +93,12 @@ $interactive-selectors: "label, button:not(.db-tab-remove-button), a";
 
 			&[data-emphasis="strong"] {
 				border-color: var(
-					--db-#{$name}-on-bg-basic-emphasis-80-default
-				);
-
-				@include colors.set-current-colors(
-					var(--db-#{$name}-bg-inverted-contrast-high-default),
-					var(--db-#{$name}-on-bg-inverted-default)
-				);
-			}
-
-			&[data-emphasis="origin"] {
-				border-color: var(
 					--db-#{$name}-on-bg-basic-emphasis-70-default
 				);
 
 				@include colors.set-current-colors(
-					var(--db-#{$name}-origin-default),
-					var(--db-#{$name}-on-origin-default)
+					var(--db-#{$name}-bg-vibrant-default),
+					var(--db-#{$name}-on-bg-vibrant-default)
 				);
 			}
 		}
@@ -146,17 +119,17 @@ $interactive-selectors: "label, button:not(.db-tab-remove-button), a";
 	@extend %set-adaptive-strong-tag;
 
 	@include helpers.hover {
-		background-color: colors.$db-adaptive-bg-inverted-contrast-high-hovered;
+		background-color: colors.$db-adaptive-bg-vibrant-hovered;
 		// TODO: will be changed in the future tag refactoring
 		/* stylelint-disable-next-line db-ux/use-border-color */
-		border-color: colors.$db-adaptive-bg-inverted-contrast-high-hovered;
+		border-color: colors.$db-adaptive-bg-vibrant-hovered;
 	}
 
 	@include helpers.active {
-		background-color: colors.$db-adaptive-bg-inverted-contrast-high-pressed;
+		background-color: colors.$db-adaptive-bg-vibrant-pressed;
 		// TODO: will be changed in the future tag refactoring
 		/* stylelint-disable-next-line db-ux/use-border-color */
-		border-color: colors.$db-adaptive-bg-inverted-contrast-high-pressed;
+		border-color: colors.$db-adaptive-bg-vibrant-pressed;
 	}
 }
 
@@ -222,27 +195,6 @@ $interactive-selectors: "label, button:not(.db-tab-remove-button), a";
 
 		label:has(input[type="radio"]:checked) {
 			@extend %set-adaptive-strong-tag;
-		}
-
-		&:has(input):not(:has(input:checked)) {
-			@extend %set-interactive-weak;
-		}
-	}
-
-	&[data-emphasis="origin"] {
-		@extend %set-interactive-origin;
-
-		// buttons and links
-		@include get-interactive-selectors() {
-			@extend %set-interactive-origin;
-		}
-
-		label:has(input[type="checkbox"]:checked) {
-			@extend %set-interactive-origin;
-		}
-
-		label:has(input[type="radio"]:checked) {
-			@extend %set-adaptive-origin-tag;
 		}
 
 		&:has(input):not(:has(input:checked)) {

@@ -242,15 +242,6 @@ export type EmphasisProps = {
 	emphasis?: EmphasisType;
 };
 
-export const TagEmphasisList = [...EmphasisList, 'origin'] as const;
-export type TagEmphasisType = (typeof TagEmphasisList)[number];
-export type TagEmphasisProps = {
-	/**
-	 * The emphasis attribute divides in between a weak, strong or origin appearance.
-	 */
-	emphasis?: TagEmphasisType;
-};
-
 export const ValidationList = ['invalid', 'valid', 'no-validation'] as const;
 export type ValidationType = (typeof ValidationList)[number];
 
