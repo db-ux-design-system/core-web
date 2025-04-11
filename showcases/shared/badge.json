@@ -70,47 +70,6 @@
 				}
 			},
 			{
-				"name": "Adaptive Origin",
-				"props": {
-					"emphasis": "origin"
-				}
-			},
-			{
-				"name": "Critical Origin",
-				"props": {
-					"semantic": "critical",
-					"emphasis": "origin"
-				}
-			},
-			{
-				"name": "Informational Origin",
-				"props": {
-					"semantic": "informational",
-					"emphasis": "origin"
-				}
-			},
-			{
-				"name": "Neutral Origin",
-				"props": {
-					"semantic": "neutral",
-					"emphasis": "origin"
-				}
-			},
-			{
-				"name": "Successful Origin",
-				"props": {
-					"semantic": "successful",
-					"emphasis": "origin"
-				}
-			},
-			{
-				"name": "Warning Origin",
-				"props": {
-					"semantic": "warning",
-					"emphasis": "origin"
-				}
-			},
-			{
 				"name": "Adaptive Strong",
 				"props": {
 					"emphasis": "strong"
