@@ -4,7 +4,7 @@ import {
 	InitializedState,
 	SemanticProps,
 	SizeProps,
-	TagEmphasisProps,
+	EmphasisProps,
 	TextProps
 } from '../../shared/model';
 
@@ -35,7 +35,7 @@ export type DBBadgeProps = DBBadgeDefaultProps &
 	GlobalProps &
 	SemanticProps &
 	SizeProps &
-	TagEmphasisProps &
+	EmphasisProps &
 	TextProps;
 
 export type DBBadgeDefaultState = {};

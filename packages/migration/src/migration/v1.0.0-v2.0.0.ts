@@ -3,6 +3,11 @@ import type { ReplaceInFileConfig } from 'replace-in-file';
 export const v100_v200: ReplaceInFileConfig[] = [
 	{
 		files: '',
+		from: /emphasis="origin"/g,
+		to: 'emphasis="strong"'
+	},
+	{
+		files: '',
 		from: /border-height/g,
 		to: 'border-width'
 	},
