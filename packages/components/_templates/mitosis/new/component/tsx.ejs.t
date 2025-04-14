@@ -15,7 +15,7 @@ useDefaultProps< DB<%= h.changeCase.pascal(name) %>Props>({});
 
 export default function DB<%= h.changeCase.pascal(name) %>(props: DB<%= h.changeCase.pascal(name) %>Props) {
   // This is used as forwardRef
-  const _ref = useRef<HTMLDivElement | undefined>(undefined);
+  const _ref = useRef<HTMLDivElement | any>(undefined);
   // jscpd:ignore-start
   const state = useStore<DB<%= h.changeCase.pascal(name) %>State>({
       <% if(formValue!=="no"){   -%>
