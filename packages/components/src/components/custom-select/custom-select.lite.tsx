@@ -493,7 +493,7 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 						);
 		},
 		handleClearAll: () => {
-			state._values = [];
+			state.handleOptionSelected([]);
 			state.handleSummaryFocus();
 		},
 		handleSummaryFocus: () => {
