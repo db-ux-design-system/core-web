@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { Outlet } from 'react-router-dom';
 import { DBBrand, DBButton, DBHeader, DBPage } from '../../../output/react/src';
 import useQuery from './hooks/use-query';
