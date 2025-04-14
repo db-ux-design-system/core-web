@@ -76,6 +76,10 @@ $interactive-selectors: "label, button:not(.db-tab-remove-button), a";
 
 	&[data-emphasis="strong"] {
 		@extend %set-adaptive-strong-tag;
+
+		.db-tab-remove-button {
+			@extend %set-interactive-strong;
+		}
 	}
 
 	@each $name in colors.$variant-colors {

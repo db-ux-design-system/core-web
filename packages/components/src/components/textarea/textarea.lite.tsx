@@ -44,7 +44,7 @@ useMetadata({
 useDefaultProps<DBTextareaProps>({});
 
 export default function DBTextarea(props: DBTextareaProps) {
-	const _ref = useRef<HTMLTextAreaElement | null>(null);
+	const _ref = useRef<HTMLTextAreaElement | any>(null);
 	// jscpd:ignore-start
 	const state = useStore<DBTextareaState>({
 		_id: undefined,
@@ -105,7 +105,7 @@ export default function DBTextarea(props: DBTextareaProps) {
 				}
 			});
 			useTarget({
-				angular: () => handleFrameworkEventAngular(this, event),
+				angular: () => handleFrameworkEventAngular(state, event),
 				vue: () => handleFrameworkEventVue(() => {}, event)
 			});
 			state.handleValidation();
@@ -115,7 +115,7 @@ export default function DBTextarea(props: DBTextareaProps) {
 				props.onChange(event);
 			}
 			useTarget({
-				angular: () => handleFrameworkEventAngular(this, event),
+				angular: () => handleFrameworkEventAngular(state, event),
 				vue: () => handleFrameworkEventVue(() => {}, event)
 			});
 			state.handleValidation();

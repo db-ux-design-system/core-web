@@ -33,6 +33,67 @@ export const getComponents = (): Component[] => [
 		name: 'stack'
 	},
 	{
+		name: 'custom-select-list-item',
+		config: {
+			vue: {
+				vModel: [{ modelValue: 'checked', binding: ':checked' }]
+			},
+			angular: {
+				controlValueAccessor: 'checked'
+			}
+		}
+	},
+	{
+		name: 'custom-select-list'
+	},
+	{
+		name: 'custom-select-form-field'
+	},
+	{
+		name: 'custom-select-dropdown'
+	},
+	{
+		name: 'custom-select',
+		config: {
+			vue: {
+				vModel: [{ modelValue: 'values', binding: ':values' }]
+			},
+			angular: {
+				controlValueAccessor: 'values'
+			},
+			react: {
+				propsPassingFilter: [
+					'onOptionSelected',
+					'onAmountChange',
+					'onDropdownToggle'
+				],
+				containsFragmentMap: true
+			}
+		},
+		overwrites: {
+			angular: [
+				{
+					from: 'attr.checked',
+					to: 'checked'
+				},
+				// To remove whitespaces from label...
+				{
+					from: `      <label [attr.id]="_labelId()">
+        {{label() ?? DEFAULT_LABEL}}
+        <select`,
+					to: `<label [attr.id]="_labelId()">{{label() ?? DEFAULT_LABEL}}<select`
+				},
+				// TODO: Move this to mitosis
+				{ from: 'trackByOption0', to: 'trackByOption0(i,option)' },
+				{ from: 'trackByOption1', to: 'trackByOption1(index,option)' },
+				{ from: 'trackByOption2', to: 'trackByOption2(i,option)' }
+			],
+			react: [
+				{ from: 'key={uuid()}', to: 'key={getOptionLabel(option)}' }
+			]
+		}
+	},
+	{
 		name: 'switch',
 		overwrites: {
 			angular: [{ from: '<HTMLElement>', to: '<HTMLInputElement>' }],
@@ -203,6 +264,9 @@ export const getComponents = (): Component[] => [
 
 	{
 		name: 'tag',
+		overwrites: {
+			stencil: [{ from: /onRemove/g, to: 'remove' }]
+		},
 		config: {
 			react: {
 				propsPassingFilter: ['onRemove']

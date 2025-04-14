@@ -1,5 +1,6 @@
 import type { RouteRecordRaw } from 'vue-router';
 import { markRaw } from 'vue';
+import CustomSelect from '../components/custom-select/CustomSelect.vue';
 import Stack from '../components/stack/Stack.vue';
 import Switch from '../components/switch/Switch.vue';
 import Tabs from '../components/tabs/Tabs.vue';
@@ -121,6 +122,11 @@ export const navigationItems: NavItem[] = [
 		path: '/03',
 		label: '03 Data-Input',
 		subNavigation: getSortedNavigationItems([
+			{
+				path: '/03/custom-select',
+				label: 'CustomSelect',
+				component: markRaw(CustomSelect)
+			},
 			{ path: '/03/input', label: 'Input', component: markRaw(Input) },
 			{
 				path: '/03/textarea',
