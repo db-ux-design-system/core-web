@@ -11,6 +11,27 @@ export const v100_v200: ReplaceInFileConfig[] = [
 		from: /border-height/g,
 		to: 'border-width'
 	},
+	/* Font changes */
+	{
+		files: '',
+		from: /db-type-body-line-height-(3xs|2xs|xs|sm|md|lg|xl|2xl|3xl)/g,
+		to: '/* TODO: Use `font: db-type-body-xx` for font-size and line-height instead */'
+	},
+	{
+		files: '',
+		from: /db-type-body-font-size-(3xs|2xs|xs|sm|md|lg|xl|2xl|3xl)/g,
+		to: '/* TODO: Use `font: db-type-body-xx` for font-size and line-height instead */'
+	},
+	{
+		files: '',
+		from: /db-type-headline-line-height-(3xs|2xs|xs|sm|md|lg|xl|2xl|3xl)/g,
+		to: '/* TODO: Use `font: db-type-headline-xx` for font-size and line-height instead */'
+	},
+	{
+		files: '',
+		from: /db-type-headline-font-size-(3xs|2xs|xs|sm|md|lg|xl|2xl|3xl)/g,
+		to: '/* TODO: Use `font: db-type-headline-xx` for font-size and line-height instead */'
+	},
 	/* Angular changes */
 	{
 		files: '',

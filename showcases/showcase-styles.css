@@ -168,9 +168,8 @@ main .db-header {
 	padding: var(--db-spacing-fixed-3xs) var(--db-spacing-fixed-xs);
 	justify-content: center;
 	align-items: center;
-	font-size: var(--db-type-body-font-size-2xs);
+	font: var(--db-type-body-2xs);
 	font-weight: 700;
-	line-height: var(--db-type-body-line-height-2xs);
 
 	a {
 		text-decoration: none;
