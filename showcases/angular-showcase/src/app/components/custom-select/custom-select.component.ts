@@ -18,4 +18,8 @@ import {
 export class CustomSelectComponent {
 	variants = defaultComponentVariants;
 	protected readonly console = console;
+
+	getAriaLabel(exampleProps: any, exampleName: string): string {
+		return `${exampleProps.id}-${exampleName}`;
+	}
 }

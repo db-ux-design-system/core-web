@@ -18,6 +18,7 @@
 			<i class="line-break"></i>
 		} @else {
 			<db-custom-select
+				[ariaListLabel]="getAriaLabel(exampleProps, exampleName)"
 				[disabled]="exampleProps?.disabled"
 				[showMessage]="exampleProps?.showMessage"
 				[icon]="exampleProps?.icon"

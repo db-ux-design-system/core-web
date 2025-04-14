@@ -7,6 +7,10 @@ const log = (values: string[]) => {
 	// eslint-disable-next-line no-alert
 	console.log(values);
 };
+
+const getAriaLabel = (exampleProps, exampleName): string => {
+	return `${exampleProps.id}-${exampleName}`;
+};
 </script>
 
 <template>
@@ -29,6 +33,7 @@ const log = (values: string[]) => {
 
 			<DBCustomSelect
 				v-if="!exampleProps?.lineBreak && !exampleProps?.info"
+				:ariaListLabel="getAriaLabel(exampleProps, exampleName)"
 				:disabled="exampleProps?.disabled"
 				:icon="exampleProps?.icon"
 				:showMessage="exampleProps?.showMessage"

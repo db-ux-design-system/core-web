@@ -4,9 +4,6 @@ import { getDefaultScreenshotTest, runAriaSnapshotTest } from '../default.ts';
 
 const path = '03/custom-select';
 
-// TODO: Don't skip for angular when signals are implemented
-const skip = { angular: true };
-
 const preScreenShot = async (page: Page) => {
 	const components = await page
 		.locator('main')
@@ -20,6 +17,6 @@ const preScreenShot = async (page: Page) => {
 };
 
 test.describe('DBCustomSelect', () => {
-	getDefaultScreenshotTest({ path, skip, preScreenShot });
-	runAriaSnapshotTest({ path, skip, preScreenShot });
+	getDefaultScreenshotTest({ path, preScreenShot });
+	runAriaSnapshotTest({ path, preScreenShot });
 });
