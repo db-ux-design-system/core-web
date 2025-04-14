@@ -4,7 +4,7 @@
   - text: Functional
   - group:
     - article:
-      - radiogroup "87db5f27-e0f9-4851-bff5-dd84c775659c":
+      - radiogroup "id-10206-Functional":
         - list:
           - listitem:
             - radio "Option 1 none\" / \""
@@ -16,7 +16,7 @@
   - text: chevron_down" / " (Default) Regular
   - group:
     - article:
-      - radiogroup "5a36fb68-7889-405c-8e03-a767daafcbde":
+      - radiogroup "id-10207-(Default) Regular":
         - list:
           - listitem:
             - radio "Option 1 none\" / \""
@@ -28,7 +28,7 @@
   - text: chevron_down" / " Expressive
   - group:
     - article:
-      - radiogroup "34bf08fd-d336-48dd-963b-0095f03947a4":
+      - radiogroup "id-10208-Expressive":
         - list:
           - listitem:
             - radio "Option 1 none\" / \""
@@ -42,7 +42,7 @@
   - text: (Default) False
   - group:
     - article:
-      - radiogroup "5950d98b-fc3e-45e9-a547-fcf43f6f3d96":
+      - radiogroup "id-10209-(Default) False":
         - list:
           - listitem:
             - radio "Option 1 none\" / \""
@@ -54,7 +54,7 @@
   - text: chevron_down" / " True
   - group:
     - article:
-      - group "21927caa-e9b5-4e6f-9a66-e04f56a8a517":
+      - group "id-10210-True":
         - list:
           - listitem:
             - checkbox "Option 1"
@@ -68,7 +68,7 @@
   - text: (Default) Label Above
   - group:
     - article:
-      - radiogroup "3dfb9526-4560-4e41-8d49-5758a57f5159":
+      - radiogroup "id-10211-(Default) Label Above":
         - list:
           - listitem:
             - radio "Option 1 none\" / \""
@@ -80,7 +80,7 @@
   - text: chevron_down" / " Floating Label
   - group:
     - article:
-      - radiogroup "9d026f28-5a8f-43f8-b898-3670a5adcfe6":
+      - radiogroup "id-10212-Floating Label":
         - list:
           - listitem:
             - radio "Floating Label none\" / \""
@@ -94,7 +94,7 @@
   - text: (Default) True
   - group:
     - article:
-      - radiogroup "e1d876f6-4773-4e1c-993d-02a432a6dc53":
+      - radiogroup "id-10213-(Default) True":
         - list:
           - listitem:
             - radio "Option 1 none\" / \""
@@ -106,7 +106,7 @@
   - text: chevron_down" / " False
   - group:
     - article:
-      - radiogroup "39251d2e-6d96-4d43-9f5a-8d65b11c6cf4":
+      - radiogroup "id-10214-False":
         - list:
           - listitem:
             - radio "Option 1 none\" / \""
@@ -120,7 +120,7 @@
   - text: (Default) False
   - group:
     - article:
-      - radiogroup "115a6057-a5a1-43d5-96bd-bcfebb47c74d":
+      - radiogroup "id-10215-(Default) False":
         - list:
           - listitem:
             - radio "Option 1 none\" / \""
@@ -132,7 +132,7 @@
   - text: chevron_down" / " True
   - group:
     - article:
-      - radiogroup "b21e9d32-fb7f-4a7c-94be-10e17820a2f3":
+      - radiogroup "id-10216-True":
         - list:
           - listitem:
             - radio "Option 1 none\" / \""
@@ -147,7 +147,7 @@
   - text: (Default) False
   - group:
     - article:
-      - radiogroup "91990c32-8931-4bd4-83c1-a008129949f1":
+      - radiogroup "id-10217-(Default) False":
         - list:
           - listitem:
             - radio "Option 1 none\" / \""
@@ -159,7 +159,7 @@
   - text: chevron_down" / " x_placeholder" / " True
   - group:
     - article:
-      - radiogroup "41f2d85d-a8c0-458b-a029-181becc8412f":
+      - radiogroup "id-10218-True":
         - list:
           - listitem:
             - radio "Option 1 none\" / \""
@@ -173,7 +173,7 @@
   - text: (Default) False
   - group:
     - article:
-      - group "c9d7cbc6-d45b-4c36-9422-71ded51b7616":
+      - group "id-10219-(Default) False":
         - list:
           - listitem:
             - checkbox "Option 1"
@@ -185,7 +185,7 @@
   - text: chevron_down" / " True*" / "
   - group:
     - article:
-      - group "4f96008b-23c0-43a6-8010-9986eca11d23":
+      - group "id-10220-True":
         - list:
           - listitem:
             - checkbox "Option 1"
@@ -199,7 +199,7 @@
   - text: (Default) False
   - group:
     - article:
-      - group "a5cc3593-8db2-426b-ac51-36e7bafc3e60":
+      - group "id-10221-(Default) False":
         - list:
           - listitem:
             - checkbox "Option 1"
@@ -211,7 +211,7 @@
   - text: chevron_down" / " True
   - group:
     - article:
-      - group "c8c7b64d-0f57-4b9b-862b-f7160c6b2c20":
+      - group "id-10222-True":
         - list:
           - listitem:
             - checkbox "Option 1"
@@ -225,7 +225,7 @@
   - text: (Default) Full
   - group:
     - article:
-      - radiogroup "c3b4ed27-6b0e-400e-a351-9dfb2017ce47":
+      - radiogroup "id-10223-(Default) Full":
         - list:
           - listitem:
             - radio "Option 1 none\" / \""
@@ -237,7 +237,7 @@
   - text: chevron_down" / " Auto
   - group:
     - article:
-      - radiogroup "e70ee156-700f-4d34-b7d3-46b7381fd3f6":
+      - radiogroup "id-10224-Auto":
         - list:
           - listitem:
             - radio "Option 1 none\" / \""
@@ -251,7 +251,7 @@
   - text: "information_circle\" / \" Form Field Width: Full (Default) Fixed"
   - group:
     - article:
-      - radiogroup "499a61dc-2f32-4540-a888-3b5d88d0fa77":
+      - radiogroup "id-10227-(Default) Fixed":
         - list:
           - listitem:
             - radio "Option 1 none\" / \""
@@ -263,7 +263,7 @@
   - text: chevron_down" / " Auto
   - group:
     - article:
-      - radiogroup "a5b3b3d5-4c44-4bd1-b54b-c44ca24f441e":
+      - radiogroup "id-10228-Auto":
         - list:
           - listitem:
             - radio "1 none\" / \""
@@ -275,7 +275,7 @@
   - text: chevron_down" / " Full
   - group:
     - article:
-      - radiogroup "f325bb3e-d78b-4bff-9ee5-7bdab9b95670":
+      - radiogroup "id-10229-Full":
         - list:
           - listitem:
             - radio "1 none\" / \""
@@ -287,7 +287,7 @@
   - text: "chevron_down\" / \" information_circle\" / \" Form Field Width: Auto (Default) Fixed"
   - group:
     - article:
-      - radiogroup "25192ba0-0b49-43a7-b9da-f805a2555056":
+      - radiogroup "id-10233-(Default) Fixed":
         - list:
           - listitem:
             - radio "Option 1 none\" / \""
@@ -299,7 +299,7 @@
   - text: chevron_down" / " Auto
   - group:
     - article:
-      - radiogroup "5848b1cf-8ebc-407a-a8f5-41bef09d376a":
+      - radiogroup "id-10234-Auto":
         - list:
           - listitem:
             - radio "1 none\" / \""
@@ -311,7 +311,7 @@
   - text: chevron_down" / " Full
   - group:
     - article:
-      - radiogroup "15c90813-afaf-4a6e-bedf-d3c6f96c0d7c":
+      - radiogroup "id-10235-Full":
         - list:
           - listitem:
             - radio "1 none\" / \""
@@ -325,7 +325,7 @@
   - text: "information_circle\" / \" Form Field Width: Full (Default) Bottom"
   - group:
     - article:
-      - radiogroup "b71f5a00-5ca4-4bec-bff5-bc6f0a8c0592":
+      - radiogroup "id-10238-(Default) Bottom":
         - list:
           - listitem:
             - radio "Option 1 none\" / \""
@@ -337,7 +337,7 @@
   - text: chevron_down" / " Top
   - group:
     - article:
-      - radiogroup "ade5c7de-7317-468d-9bdb-f3e0ed776e6b":
+      - radiogroup "id-10239-Top":
         - list:
           - listitem:
             - radio "Option 1 none\" / \""
@@ -349,7 +349,7 @@
   - text: "chevron_down\" / \" information_circle\" / \" Form Field Width: Auto (Default) Bottom-Start"
   - group:
     - article:
-      - radiogroup "43f93ed7-3862-4b88-bca6-deaaf910c97d":
+      - radiogroup "id-10243-(Default) Bottom-Start":
         - list:
           - listitem:
             - radio "Option 1 none\" / \""
@@ -361,7 +361,7 @@
   - text: chevron_down" / " Bottom-End
   - group:
     - article:
-      - radiogroup "c3f1c2f3-4eca-4fd8-aeb6-4e620f2fe626":
+      - radiogroup "id-10244-Bottom-End":
         - list:
           - listitem:
             - radio "Option 1 none\" / \""
@@ -373,7 +373,7 @@
   - text: chevron_down" / " Top-Start
   - group:
     - article:
-      - radiogroup "72474377-9746-4617-b607-54f28e797169":
+      - radiogroup "id-10245-Top-Start":
         - list:
           - listitem:
             - radio "Option 1 none\" / \""
@@ -385,7 +385,7 @@
   - text: chevron_down" / " Top-End
   - group:
     - article:
-      - radiogroup "8b1f02f3-4002-42a8-b99f-6fbf61c002f1":
+      - radiogroup "id-10246-Top-End":
         - list:
           - listitem:
             - radio "Option 1 none\" / \""
@@ -399,7 +399,7 @@
   - text: (Default) Text
   - group:
     - article:
-      - group "43eae3ba-1571-4c46-8467-39b1dd49d211":
+      - group "id-10247-(Default) Text":
         - list:
           - listitem:
             - checkbox "Option 1"
@@ -417,7 +417,7 @@
   - text: chevron_down" / " Amount
   - group:
     - article:
-      - group "90619365-9fc7-4df2-85bd-e06d4ea818f3":
+      - group "id-10248-Amount":
         - list:
           - listitem:
             - checkbox "Option 1"
@@ -435,7 +435,7 @@
   - text: chevron_down" / " Tag
   - group:
     - article:
-      - group "abe7faff-485c-4267-9c60-3ad5a9d7542c":
+      - group "id-10249-Tag":
         - list:
           - listitem:
             - checkbox "Option 1"
@@ -455,7 +455,7 @@
   - text: (Default) False
   - group:
     - article:
-      - group "1b25bcdd-6ffc-4f07-9a28-8138f2b1f802":
+      - group "id-10250-(Default) False":
         - list:
           - listitem:
             - checkbox "Option 1"
@@ -473,7 +473,7 @@
   - text: (Default) False
   - group:
     - article:
-      - group "ff86a6ca-6066-45cb-a45d-830c080a8f34":
+      - group "id-10252-(Default) False":
         - list:
           - listitem:
             - checkbox "Option 1"
@@ -491,7 +491,7 @@
   - text: (Default) False
   - group:
     - article:
-      - group "c2f330be-9904-42e4-90d6-d260bedc0628":
+      - group "id-10254-(Default) False":
         - list:
           - listitem:
             - checkbox "Option 1"
@@ -507,7 +507,7 @@
       - searchbox "Search"
       - status
       - text: cross" / "
-      - group "491fd786-6fa8-497b-a087-3e0ae3cfd158":
+      - group "id-10255-True":
         - list:
           - listitem:
             - checkbox "Option 1"
@@ -521,7 +521,7 @@
   - text: (Default) False
   - group:
     - article:
-      - group "8bab8471-24c4-4432-9a90-cae18e36471a":
+      - group "id-10256-(Default) False":
         - list:
           - listitem:
             - checkbox "Option 1"
@@ -535,7 +535,7 @@
     - article:
       - checkbox "Select all"
       - text: Select all
-      - group "86fdf3e9-9498-404f-8d00-12087f27b531":
+      - group "id-10257-True":
         - list:
           - listitem:
             - checkbox "Option 1"
@@ -549,7 +549,7 @@
   - text: (Default) True
   - group:
     - article:
-      - group "df6f079e-e828-4fd3-8b9f-812641086ba6":
+      - group "id-10258-(Default) True":
         - list:
           - listitem:
             - checkbox "Option 1"
@@ -561,7 +561,7 @@
   - text: chevron_down" / " False
   - group:
     - article:
-      - group "2659f1c2-7bd7-4e6b-bf8a-b42add201ea5":
+      - group "id-10259-False":
         - list:
           - listitem:
             - checkbox "Option 1"
@@ -575,7 +575,7 @@
   - text: Icons
   - group:
     - article:
-      - radiogroup "b65319d8-e216-4533-a975-db5219ce75c2":
+      - radiogroup "id-10260-Icons":
         - list:
           - listitem:
             - text: x_placeholder" / "
@@ -589,7 +589,7 @@
   - text: chevron_down" / " Less than 6
   - group:
     - article:
-      - radiogroup "c1e7a918-8c4c-4ccf-b72d-e2a726d79d8e":
+      - radiogroup "id-10261-Less than 6":
         - list:
           - listitem:
             - radio "Option 1 none\" / \""
@@ -610,7 +610,7 @@
   - text: chevron_down" / " Option Group Title
   - group:
     - article:
-      - radiogroup "b5311aba-474a-465e-87b9-431f43ba34bd":
+      - radiogroup "id-10262-Option Group Title":
         - list:
           - listitem: Option group 1
           - listitem:
@@ -630,7 +630,7 @@
   - text: chevron_down" / " Option Groups
   - group:
     - article:
-      - radiogroup "01737b4d-dc3b-4c68-b52d-5fc34b530c7d":
+      - radiogroup "id-10263-Option Groups":
         - list:
           - listitem:
             - radio "G1:Option 1 none\" / \""
@@ -648,7 +648,7 @@
   - text: chevron_down" / " More than 6
   - group:
     - article:
-      - radiogroup "cd50ed64-a73a-49bc-bc7b-33091c6a0468":
+      - radiogroup "id-10264-More than 6":
         - list:
           - listitem:
             - radio "Option 1 none\" / \""
@@ -679,7 +679,7 @@
       - searchbox "Search"
       - status
       - text: cross" / "
-      - radiogroup "8c5937af-83bf-4e4f-8a5b-abdfee88d293":
+      - radiogroup "id-10265-More than 10":
         - list:
           - listitem:
             - radio "Option 1 none\" / \""
@@ -717,7 +717,7 @@
   - text: Less than 6
   - group:
     - article:
-      - group "5c6bb6d7-f3d1-45b3-8404-a774f1209980":
+      - group "id-10266-Less than 6":
         - list:
           - listitem:
             - checkbox "Option 1"
@@ -738,7 +738,7 @@
   - text: chevron_down" / " Option Group Title
   - group:
     - article:
-      - group "93af4e37-7837-48d5-9762-61ffba537b8a":
+      - group "id-10267-Option Group Title":
         - list:
           - listitem: Option group 1
           - listitem:
@@ -758,7 +758,7 @@
   - text: chevron_down" / " Option Groups
   - group:
     - article:
-      - group "cb07870a-bc81-4ae3-9fce-8137dedca815":
+      - group "id-10268-Option Groups":
         - list:
           - listitem:
             - checkbox "G1:Option 1"
@@ -778,7 +778,7 @@
     - article:
       - checkbox "Select all"
       - text: Select all
-      - group "a6bc9bc6-5bca-4413-899a-193494a372ea":
+      - group "id-10269-More than 6":
         - list:
           - listitem:
             - checkbox "Option 1"
@@ -811,7 +811,7 @@
       - text: cross" / "
       - checkbox "Select all"
       - text: Select all
-      - group "a125bbda-9e66-4005-b0fd-9865f8831db2":
+      - group "id-10270-More than 10":
         - list:
           - listitem:
             - checkbox "Option 1"
@@ -849,7 +849,7 @@
   - text: Tag grow
   - group:
     - article:
-      - group "81d21d9f-703e-476f-ba68-255affd9126e":
+      - group "id-10271-Tag grow":
         - list:
           - listitem:
             - checkbox "Option 1"
@@ -867,7 +867,7 @@
   - text: chevron_down" / " Tag grow + auto
   - group:
     - article:
-      - group "6530b02b-9f54-401a-ae6a-9e8900f236bf":
+      - group "id-10272-Tag grow + auto":
         - list:
           - listitem:
             - checkbox "Option 1"
