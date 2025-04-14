@@ -33,15 +33,6 @@ $interactive-selectors: "label, button:not(.db-tab-remove-button), a";
 	);
 }
 
-%set-adaptive-origin-tag {
-	border-color: colors.$db-adaptive-on-bg-basic-emphasis-70-default;
-
-	@include colors.set-current-colors(
-		colors.$db-adaptive-origin-default,
-		colors.$db-adaptive-on-origin-default
-	);
-}
-
 %set-interactive-weak {
 	@extend %set-adaptive-weak-tag;
 
@@ -51,18 +42,6 @@ $interactive-selectors: "label, button:not(.db-tab-remove-button), a";
 
 	@include helpers.active {
 		background-color: colors.$db-adaptive-bg-basic-level-1-pressed;
-	}
-}
-
-%set-interactive-origin {
-	@extend %set-adaptive-origin-tag;
-
-	@include helpers.hover {
-		background-color: colors.$db-adaptive-origin-hovered;
-	}
-
-	@include helpers.active {
-		background-color: colors.$db-adaptive-origin-pressed;
 	}
 }
 
@@ -120,16 +99,10 @@ $interactive-selectors: "label, button:not(.db-tab-remove-button), a";
 
 	@include helpers.hover {
 		background-color: colors.$db-adaptive-bg-vibrant-hovered;
-		// TODO: will be changed in the future tag refactoring
-		/* stylelint-disable-next-line db-ux/use-border-color */
-		border-color: colors.$db-adaptive-bg-vibrant-hovered;
 	}
 
 	@include helpers.active {
 		background-color: colors.$db-adaptive-bg-vibrant-pressed;
-		// TODO: will be changed in the future tag refactoring
-		/* stylelint-disable-next-line db-ux/use-border-color */
-		border-color: colors.$db-adaptive-bg-vibrant-pressed;
 	}
 }
 
