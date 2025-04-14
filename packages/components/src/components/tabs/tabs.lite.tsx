@@ -50,7 +50,7 @@ export default function DBTabs(props: DBTabsProps) {
 				tList.scrollLeft < tList.scrollWidth - tList.clientWidth;
 		},
 		scroll(left?: boolean) {
-			let step = props.arrowScrollDistance || 100;
+			let step = Number(props.arrowScrollDistance) || 100;
 			if (left) {
 				step *= -1;
 			}
@@ -113,7 +113,7 @@ export default function DBTabs(props: DBTabsProps) {
 							const shouldAutoSelect =
 								(props.initialSelectedIndex == null &&
 									index === 0) ||
-								props.initialSelectedIndex === index;
+								Number(props.initialSelectedIndex) === index;
 							if (autoSelect && shouldAutoSelect) {
 								input.click();
 							}

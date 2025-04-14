@@ -9,7 +9,7 @@ import {
 	useTarget
 } from '@builder.io/mitosis';
 import type { DBTabItemProps, DBTabItemState } from './model';
-import { cls, getBooleanAsString, getHideProp } from '../../utils';
+import { cls, getBoolean, getBooleanAsString, getHideProp } from '../../utils';
 import {
 	handleFrameworkEventAngular,
 	handleFrameworkEventVue
@@ -26,8 +26,20 @@ export default function DBTabItem(props: DBTabItemProps) {
 	const _ref = useRef<HTMLInputElement | null>(null);
 	// jscpd:ignore-start
 	const state = useStore<DBTabItemState>({
-		initialized: false,
 		_selected: false,
+		_name: undefined,
+		initialized: false,
+		handleNameAttribute: () => {
+			if (_ref) {
+				const setAttribute = _ref.setAttribute;
+				_ref.setAttribute = (attribute: string, value: string) => {
+					setAttribute.call(_ref, attribute, value);
+					if (attribute === 'name') {
+						state._name = value;
+					}
+				};
+			}
+		},
 		handleChange: (event: any) => {
 			if (props.onChange) {
 				props.onChange(event);
@@ -63,11 +75,21 @@ export default function DBTabItem(props: DBTabItemProps) {
 	// jscpd:ignore-end
 
 	onUpdate(() => {
-		if (props.active && state.initialized && _ref) {
-			_ref.click();
+		if (state.initialized && _ref) {
+			if (props.active) {
+				_ref.click();
+			}
+
+			useTarget({ react: () => state.handleNameAttribute() });
 			state.initialized = false;
 		}
 	}, [_ref, state.initialized]);
+
+	onUpdate(() => {
+		if (props.name) {
+			state._name = props.name;
+		}
+	}, [props.name]);
 
 	return (
 		<li class={cls('db-tab-item', props.className)} role="none">
@@ -77,15 +99,16 @@ export default function DBTabItem(props: DBTabItemProps) {
 				data-icon-after={props.iconAfter}
 				data-hide-icon={getHideProp(props.showIcon)}
 				data-hide-icon-after={getHideProp(props.showIcon)}
-				data-no-text={props.noText}>
+				data-no-text={getBooleanAsString(props.noText)}>
 				<input
-					disabled={props.disabled}
+					disabled={getBoolean(props.disabled, 'disabled')}
 					aria-selected={state._selected}
 					aria-controls={props.controls}
-					checked={props.checked}
+					checked={getBoolean(props.checked, 'checked')}
 					ref={_ref}
 					type="radio"
 					role="tab"
+					name={state._name}
 					id={props.id}
 					onInput={(event: any) => state.handleChange(event)}
 				/>

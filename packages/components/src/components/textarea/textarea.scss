@@ -43,7 +43,6 @@
 		@extend %resize-textarea;
 		@extend %scrollbar;
 
-		cursor: auto;
 		overflow-y: scroll;
 
 		// we don't have icons in textarea so we can overwrite it here
