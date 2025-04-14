@@ -33,10 +33,9 @@ export default function DBTabItem(props: DBTabItemProps) {
 			if (_ref) {
 				const setAttribute = _ref.setAttribute;
 				_ref.setAttribute = (attribute: string, value: string) => {
+					setAttribute.call(_ref, attribute, value);
 					if (attribute === 'name') {
 						state._name = value;
-					} else {
-						setAttribute.call(_ref, attribute, value);
 					}
 				};
 			}
@@ -86,6 +85,12 @@ export default function DBTabItem(props: DBTabItemProps) {
 		}
 	}, [_ref, state.initialized]);
 
+	onUpdate(() => {
+		if (props.name) {
+			state._name = props.name;
+		}
+	}, [props.name]);
+
 	return (
 		<li class={cls('db-tab-item', props.className)} role="none">
 			<label
@@ -103,7 +108,7 @@ export default function DBTabItem(props: DBTabItemProps) {
 					ref={_ref}
 					type="radio"
 					role="tab"
-					name={props.name ?? state._name}
+					name={state._name}
 					id={props.id}
 					onInput={(event: any) => state.handleChange(event)}
 				/>

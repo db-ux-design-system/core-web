@@ -30,10 +30,9 @@ export default function DBAccordionItem(props: DBAccordionItemProps) {
 			if (_ref) {
 				const setAttribute = _ref.setAttribute;
 				_ref.setAttribute = (attribute: string, value: string) => {
+					setAttribute.call(_ref, attribute, value);
 					if (attribute === 'name') {
 						state._name = value;
-					} else {
-						setAttribute.call(_ref, attribute, value);
 					}
 				};
 			}
@@ -64,6 +63,12 @@ export default function DBAccordionItem(props: DBAccordionItemProps) {
 		}
 	}, [_ref, state.initialized]);
 
+	onUpdate(() => {
+		if (props.name) {
+			state._name = props.name;
+		}
+	}, [props.name]);
+
 	// jscpd:ignore-end
 
 	return (
@@ -71,8 +76,8 @@ export default function DBAccordionItem(props: DBAccordionItemProps) {
 			<details
 				aria-disabled={getBooleanAsString(props.disabled)}
 				ref={_ref}
-				/* @ts-ignore */
-				name={props.name ?? state._name}
+				/* @ts-expect-error This is a new api for details */
+				name={state._name}
 				open={state._open}>
 				<summary onClick={(event) => state.toggle(event)}>
 					<Show when={props.headlinePlain}>
