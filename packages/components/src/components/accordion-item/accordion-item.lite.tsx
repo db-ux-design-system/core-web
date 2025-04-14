@@ -1,11 +1,13 @@
 import {
 	onMount,
+	onUpdate,
 	Show,
 	Slot,
 	useDefaultProps,
 	useMetadata,
 	useRef,
-	useStore
+	useStore,
+	useTarget
 } from '@builder.io/mitosis';
 import { DBAccordionItemProps, DBAccordionItemState } from './model';
 import { cls, getBooleanAsString, uuid } from '../../utils';
@@ -22,6 +24,19 @@ export default function DBAccordionItem(props: DBAccordionItemProps) {
 	const state = useStore<DBAccordionItemState>({
 		_id: DEFAULT_ID,
 		_open: false,
+		_name: undefined,
+		initialized: false,
+		handleNameAttribute: () => {
+			if (_ref) {
+				const setAttribute = _ref.setAttribute;
+				_ref.setAttribute = (attribute: string, value: string) => {
+					setAttribute.call(_ref, attribute, value);
+					if (attribute === 'name') {
+						state._name = value;
+					}
+				};
+			}
+		},
 		toggle: (event: ClickEvent<HTMLElement>) => {
 			// We need this for react https://github.com/facebook/react/issues/15486#issuecomment-488028431
 			event?.preventDefault();
@@ -38,7 +53,22 @@ export default function DBAccordionItem(props: DBAccordionItemProps) {
 		if (props.defaultOpen) {
 			state._open = props.defaultOpen;
 		}
+
+		state.initialized = true;
 	});
+
+	onUpdate(() => {
+		if (_ref && state.initialized) {
+			useTarget({ react: () => state.handleNameAttribute() });
+		}
+	}, [_ref, state.initialized]);
+
+	onUpdate(() => {
+		if (props.name) {
+			state._name = props.name;
+		}
+	}, [props.name]);
+
 	// jscpd:ignore-end
 
 	return (
@@ -46,6 +76,8 @@ export default function DBAccordionItem(props: DBAccordionItemProps) {
 			<details
 				aria-disabled={getBooleanAsString(props.disabled)}
 				ref={_ref}
+				/* @ts-expect-error This is a new api for details */
+				name={state._name}
 				open={state._open}>
 				<summary onClick={(event) => state.toggle(event)}>
 					<Show when={props.headlinePlain}>
