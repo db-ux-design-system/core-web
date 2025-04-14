@@ -26,12 +26,6 @@
 				"name": "(Default) Weak"
 			},
 			{
-				"name": "Origin",
-				"props": {
-					"emphasis": "origin"
-				}
-			},
-			{
 				"name": "Strong",
 				"props": {
 					"emphasis": "strong"
@@ -73,47 +67,6 @@
 				"name": "Warning",
 				"props": {
 					"semantic": "warning"
-				}
-			},
-			{
-				"name": "Adaptive Origin",
-				"props": {
-					"emphasis": "origin"
-				}
-			},
-			{
-				"name": "Critical Origin",
-				"props": {
-					"semantic": "critical",
-					"emphasis": "origin"
-				}
-			},
-			{
-				"name": "Informational Origin",
-				"props": {
-					"semantic": "informational",
-					"emphasis": "origin"
-				}
-			},
-			{
-				"name": "Neutral Origin",
-				"props": {
-					"semantic": "neutral",
-					"emphasis": "origin"
-				}
-			},
-			{
-				"name": "Successful Origin",
-				"props": {
-					"semantic": "successful",
-					"emphasis": "origin"
-				}
-			},
-			{
-				"name": "Warning Origin",
-				"props": {
-					"semantic": "warning",
-					"emphasis": "origin"
 				}
 			},
 			{

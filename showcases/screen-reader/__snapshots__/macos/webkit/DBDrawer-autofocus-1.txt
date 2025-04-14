@@ -1,1 +1,1 @@
-["web dialog Close Button button article","Functional clickable"]
+["web dialog Close button article","Functional clickable"]

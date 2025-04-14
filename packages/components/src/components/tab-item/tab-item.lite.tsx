@@ -23,7 +23,7 @@ useMetadata({
 useDefaultProps<DBTabItemProps>({});
 
 export default function DBTabItem(props: DBTabItemProps) {
-	const _ref = useRef<HTMLInputElement | null>(null);
+	const _ref = useRef<HTMLInputElement | any>(null);
 	// jscpd:ignore-start
 	const state = useStore<DBTabItemState>({
 		_selected: false,
@@ -45,10 +45,6 @@ export default function DBTabItem(props: DBTabItemProps) {
 				props.onChange(event);
 			}
 
-			if (props.change) {
-				props.change(event);
-			}
-
 			// We have different ts types in different frameworks, so we need to use any here
 
 			useTarget({
@@ -63,7 +59,7 @@ export default function DBTabItem(props: DBTabItemProps) {
 
 			useTarget({
 				angular: () =>
-					handleFrameworkEventAngular(this, event, 'checked'),
+					handleFrameworkEventAngular(state, event, 'checked'),
 				vue: () => handleFrameworkEventVue(() => {}, event, 'checked')
 			});
 		}

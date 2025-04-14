@@ -8,25 +8,24 @@ $min-mobile-header-height: calc(
 );
 
 $default-disabled: 0.4;
-// 0.68 would be fine as well for a11y, but we are big Bryan Adams fans :)
-$placeholder-disabled: 0.69;
+$placeholder-disabled: 0.75;
 
 %default-adaptive-border {
-	border: variables.$db-border-height-3xs solid
+	border: variables.$db-border-width-3xs solid
 		colors.$db-adaptive-on-bg-basic-emphasis-100-default;
 }
 
 %transparent-border {
-	border: variables.$db-border-height-3xs solid transparent;
+	border: variables.$db-border-width-3xs solid transparent;
 }
 
 %component-border {
-	border: variables.$db-border-height-3xs solid
+	border: variables.$db-border-width-3xs solid
 		colors.$db-adaptive-on-bg-basic-emphasis-60-default;
 }
 
 %form-component-border {
-	border: variables.$db-border-height-3xs solid
+	border: variables.$db-border-width-3xs solid
 		colors.$db-adaptive-on-bg-basic-emphasis-70-default;
 }
 

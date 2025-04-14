@@ -23,6 +23,7 @@
     "regenerate:screenshots": "playwright test -c playwright.config.ts --update-snapshots",
     "test:components": "playwright test -c playwright.config.ts",
     "test:windows": "playwright test -c playwright.screen-reader.win.ts",
+    "test:components:ui": "playwright test -c playwright.config.ts --ui",
     "tsc": "tsc -p . --sourceMap false"
   },
   "devDependencies": {

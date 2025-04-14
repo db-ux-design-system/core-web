@@ -9,10 +9,10 @@
     "preview": "npx http-server ../../build-showcases",
     "start": "ng serve --serve-path angular-showcase",
     "test:e2e": "cross-env showcase=angular-showcase npx playwright test --config=../playwright.config.ts",
+    "test:ui": "npm run test:e2e -- --ui",
     "watch": "ng build --watch --configuration development"
   },
   "dependencies": {
-    "@db-ux/db-theme": "1.0.2",
     "sa11y": "4.1.6"
   },
   "devDependencies": {

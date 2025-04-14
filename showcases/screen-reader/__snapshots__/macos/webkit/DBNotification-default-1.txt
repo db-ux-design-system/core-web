@@ -1,1 +1,1 @@
-["Headline","functional","Close Button button","end of article"]
+["Headline","functional","Close button","end of article"]

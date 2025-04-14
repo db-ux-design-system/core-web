@@ -22,12 +22,27 @@ $floating-label-size-calc: calc(
 		#{$label-size-height-2xs}
 );
 
+// font-size label which is 2xs + smallest spacing
+$floating-label-padding-block-start: calc(
+	var(--db-type-body-font-size-2xs) + #{variables.$db-spacing-fixed-3xs}
+);
+
+$icon-inline-block-start: calc(
+	(#{variables.$db-spacing-fixed-xs} + #{$label-size-height-xs}) *
+		var(--db-label-visible-above, 1) + #{variables.$db-sizing-md} / 2
+);
+
 $input-types:
 	"button", "checkbox", "color", "date", "datetime-local", "email", "file",
 	"hidden", "image", "month", "number", "password", "radio", "range", "reset",
 	"search", "submit", "tel", "text", "time", "url", "week";
 
-$check-border-size: min(#{variables.$db-border-height-2xs}, 2px);
+$check-border-size: min(#{variables.$db-border-width-2xs}, 2px);
+
+$db-min-inline-size: var(
+	--db-form-component-min-inline-size,
+	#{variables.$db-sizing-lg}
+);
 
 %dropdown-icon {
 	@include icons.set-icon("chevron_down", "after");
@@ -45,22 +60,22 @@ $check-border-size: min(#{variables.$db-border-height-2xs}, 2px);
 	.db-infotext {
 		margin-block-start: variables.$db-spacing-fixed-2xs;
 
-		&[data-semantic] {
+		&:is([data-semantic="successful"], [data-semantic="critical"]) {
 			display: none;
 		}
 	}
 }
 
-@mixin placeholder-content() {
-	&::placeholder,
-	+ [id$="-placeholder"] {
+@mixin placeholder-content($selector) {
+	#{$selector}::placeholder,
+	[id$="-placeholder"] {
 		@content;
 	}
 }
 
 @mixin set-floating-label-overwrites($selector) {
 	&[data-variant="floating"] {
-		label {
+		> label {
 			@extend %db-overwrite-font-size-md;
 
 			opacity: component.$placeholder-disabled;
@@ -70,18 +85,15 @@ $check-border-size: min(#{variables.$db-border-height-2xs}, 2px);
 				(#{variables.$db-sizing-md} - #{$font-size-height}) / 2
 			);
 			inset-inline: var(
-				--db-form-component-padding-inline-start,
-				#{variables.$db-spacing-fixed-sm}
-			);
+					--db-form-component-padding-inline-start,
+					#{variables.$db-spacing-fixed-sm}
+				)
+				var(
+					--db-form-component-padding-inline-end,
+					#{variables.$db-spacing-fixed-sm}
+				);
 			pointer-events: none;
-		}
-
-		// icons
-		&::after,
-		&::before {
-			inset-block-start: calc(
-				#{variables.$db-sizing-md} / 2 - #{$font-size-height} / 2
-			);
+			font-style: italic;
 		}
 
 		[id$="-placeholder"] {
@@ -92,46 +104,51 @@ $check-border-size: min(#{variables.$db-border-height-2xs}, 2px);
 			);
 		}
 
+		@include placeholder-content($selector) {
+			transition: none;
+			opacity: 0;
+		}
+
 		#{$selector} {
 			@extend %db-overwrite-font-size-sm;
-
-			@include placeholder-content() {
-				transition: none;
-				opacity: 0;
-			}
 
 			@if ($selector == textarea) {
 				padding-block-start: $floating-label-size-calc;
 				/* stylelint-disable-next-line at-rule-empty-line-before */
 			} @else {
-				// font-size label which is 2xs + smallest spacing
-				padding-block-start: calc(
-					var(--db-type-body-font-size-2xs) +
-						#{variables.$db-spacing-fixed-3xs}
-				);
+				/* stylelint-disable-next-line db-ux/use-spacings */
+				padding-block-start: var(--db-base-body-icon-font-size-2xs);
 			}
 		}
 
 		&:has(
 				#{$selector}:focus-within,
 				#{$selector}:is(input, textarea):not(:placeholder-shown),
-				> select option:checked:not([hidden])
+				> select option:checked:not([hidden]),
+				input[type="checkbox"]:checked,
+				input[type="radio"]:checked
 			) {
-			label {
+			> label {
 				@extend %db-overwrite-font-size-2xs;
 
 				inset-block-start: variables.$db-spacing-fixed-2xs;
 				opacity: 1;
+				font-style: normal;
 			}
 
-			#{$selector} {
-				@include placeholder-content() {
-					opacity: component.$placeholder-disabled;
+			@include placeholder-content($selector) {
+				opacity: component.$placeholder-disabled;
+				font-family: var(--db-font-family-sans);
+				font-style: italic;
 
-					@media screen and (prefers-reduced-motion: no-preference) {
-						transition: opacity
-							#{variables.$db-transition-straight-emotional};
-					}
+				@if ($selector == select or $selector == summary) {
+					/* stylelint-disable-next-line db-ux/use-spacings */
+					padding-block-start: var(--db-base-body-icon-font-size-2xs);
+				}
+
+				@media screen and (prefers-reduced-motion: no-preference) {
+					transition: opacity
+						#{variables.$db-transition-straight-emotional};
 				}
 			}
 		}
@@ -164,14 +181,6 @@ $check-border-size: min(#{variables.$db-border-height-2xs}, 2px);
 		$variant: "critical";
 	}
 
-	@include get-validity-message($key);
-
-	#{$selector},
-	[id$="-placeholder"] {
-		color: var(--db-#{$variant}-on-bg-basic-emphasis-100-default);
-		caret-color: var(--db-#{$variant}-on-bg-basic-emphasis-100-default);
-	}
-
 	@if ($selector != textarea) {
 		@extend %db-#{$variant}-variables;
 		/* stylelint-disable-next-line at-rule-empty-line-before */
@@ -190,13 +199,21 @@ $check-border-size: min(#{variables.$db-border-height-2xs}, 2px);
 		--db-adaptive-bg-basic-transparent-pressed: var(
 			--db-#{$variant}-bg-basic-transparent-pressed
 		);
-		--db-adaptive-default: var(
+		--db-adaptive-on-bg-basic-emphasis-100-default: var(
 			--db-#{$variant}-on-bg-basic-emphasis-100-default
 		);
 		--db-adaptive-on-bg-basic-emphasis-60-default: var(
 			--db-#{$variant}-on-bg-basic-emphasis-60-default
 		);
 	}
+
+	#{$selector},
+	[id$="-placeholder"] {
+		color: var(--db-#{$variant}-on-bg-basic-emphasis-100-default);
+		caret-color: var(--db-#{$variant}-on-bg-basic-emphasis-100-default);
+	}
+
+	@include get-validity-message($key);
 }
 
 // This doesn't contain text, search and password, because they don't have an auto-validation
@@ -243,21 +260,27 @@ $input-valid-types:
 		}
 		/* stylelint-disable-next-line at-rule-empty-line-before */
 	} @else {
+		@if ($selector == summary) {
+			$selector: select;
+		}
+
 		#{get-validations($selector,$key)} {
 			@content;
 		}
 	}
 
 	// If data-custom-validity is set we overwrite the selectors above
-	&:has(#{$selector}[data-custom-validity="#{$key}"]) {
+	&:has(#{$selector}[data-custom-validity="#{$key}"]),
+	&[data-custom-validity="#{$key}"] {
 		@content;
 	}
 }
 
 @mixin set-required-label($selector) {
-	&:has(#{$selector}:required) {
+	&:has(#{$selector}:required),
+	&[data-required="true"] {
 		&:is(label),
-		label {
+		> label {
 			&::after {
 				@include icons.icon-content("*");
 
@@ -270,15 +293,25 @@ $input-valid-types:
 }
 
 @mixin set-default-form-component($selector) {
-	--db-form-has-before: 0;
-
 	@extend %db-overwrite-font-size-sm;
 	@extend %helper-message;
 
-	// we use absolute icons
-	position: relative;
-	display: flex;
-	flex-direction: column;
+	// base inline size for inputs without icons
+	min-inline-size: $db-min-inline-size;
+
+	/* stylelint-disable-next-line scss/selector-no-redundant-nesting-selector */
+	& {
+		--db-form-has-before: 0;
+		// we use absolute icons
+		position: relative;
+		display: flex;
+		flex-direction: column;
+	}
+
+	&[data-variant="floating"],
+	&[data-hide-label="true"] {
+		--db-label-visible-above: 0;
+	}
 
 	@include set-floating-label-overwrites($selector);
 	@include set-required-label($selector);
@@ -293,6 +326,12 @@ $input-valid-types:
 		@include get-validity-color($selector, "invalid");
 	}
 
+	@include placeholder-content($selector) {
+		opacity: component.$placeholder-disabled;
+		font-family: var(--db-font-family-sans);
+		font-style: italic;
+	}
+
 	#{$selector} {
 		@extend %db-overwrite-font-size-md;
 		@extend %default-interactive-component;
@@ -303,6 +342,7 @@ $input-valid-types:
 		appearance: none;
 		max-inline-size: 100%;
 		inline-size: 100%;
+		min-inline-size: $db-min-inline-size;
 
 		/* stylelint-disable-next-line db-ux/use-spacings */
 		padding-inline: var(
@@ -313,10 +353,6 @@ $input-valid-types:
 				--db-form-component-padding-inline-end,
 				#{variables.$db-spacing-fixed-sm}
 			);
-
-		@include placeholder-content() {
-			opacity: component.$placeholder-disabled;
-		}
 
 		@include helpers.hover {
 			background-color: colors.$db-adaptive-bg-basic-transparent-hovered;
@@ -331,7 +367,7 @@ $input-valid-types:
 	}
 
 	// label
-	label {
+	> label {
 		@extend %db-overwrite-font-size-xs;
 
 		padding-block-end: variables.$db-spacing-fixed-xs;
@@ -346,7 +382,7 @@ $input-valid-types:
 	}
 
 	&[data-hide-label="true"] {
-		label {
+		> label {
 			@extend %a11y-visually-hidden;
 
 			padding: 0;
@@ -354,7 +390,11 @@ $input-valid-types:
 	}
 
 	// disabled
-	&:has(#{$selector}:disabled) {
+	&:has(
+			#{$selector}:disabled,
+			#{$selector}[data-disabled="true"],
+			#{$selector}[aria-disabled="true"]
+		) {
 		// Decided against cursor: not-allowed, compare to e.g. https://phabricator.wikimedia.org/T121960
 		opacity: component.$default-disabled;
 		pointer-events: none;
@@ -365,13 +405,9 @@ $input-valid-types:
 	&::before {
 		position: absolute;
 		pointer-events: none;
-		// 1px for border
-		inset-block-start: calc(
-			#{variables.$db-sizing-md} / 2 - #{variables.$db-spacing-fixed-xs} *
-				var(--db-label-visible-spacing, 0) + #{$label-size-height-xs} *
-				var(--db-label-visible-height, 1) - 1px
-		);
+		inset-block-start: $icon-inline-block-start;
 		color: colors.$db-adaptive-on-bg-basic-emphasis-100-default;
+		transform: translateY(-50%);
 	}
 
 	&::before {
@@ -384,7 +420,7 @@ $input-valid-types:
 		inset-inline-end: variables.$db-spacing-fixed-sm;
 	}
 
-	@if ($selector == input or $selector == select) {
+	@if ($selector == input or $selector == select or $selector == summary) {
 		#{$selector} {
 			block-size: variables.$db-sizing-md;
 			text-overflow: ellipsis;
@@ -433,7 +469,7 @@ $input-valid-types:
 
 	&:has(input:not([role="switch"])) {
 		&:is(label),
-		label {
+		> label {
 			color: var(--db-#{$variant}-on-bg-basic-emphasis-80-default);
 		}
 	}
@@ -464,7 +500,7 @@ $input-valid-types:
 	}
 
 	&:is(label),
-	label {
+	> label {
 		display: flex;
 		align-items: flex-start;
 		position: relative;
@@ -481,7 +517,7 @@ $input-valid-types:
 		place-content: center center;
 		appearance: none;
 		aspect-ratio: 1;
-		/* stylelint-disable-next-line db-ux/use-border-height */
+		/* stylelint-disable-next-line db-ux/use-border-width */
 		border: #{$check-border-size} solid
 			var(
 				--db-check-element-border-color,

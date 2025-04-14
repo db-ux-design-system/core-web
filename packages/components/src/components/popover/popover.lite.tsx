@@ -14,7 +14,7 @@ useMetadata({});
 useDefaultProps<DBPopoverProps>({});
 
 export default function DBPopover(props: DBPopoverProps) {
-	const _ref = useRef<HTMLDivElement | null>(null);
+	const _ref = useRef<HTMLDivElement | any>(null);
 	// jscpd:ignore-start
 	const state = useStore<DBPopoverState>({
 		initialized: false,

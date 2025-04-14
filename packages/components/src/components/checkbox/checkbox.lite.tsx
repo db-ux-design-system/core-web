@@ -26,7 +26,6 @@ import {
 	cls,
 	delay,
 	getBoolean,
-	getBooleanAsString,
 	getHideProp,
 	hasVoiceOver,
 	stringPropVisible,
@@ -42,7 +41,7 @@ useMetadata({
 useDefaultProps<DBCheckboxProps>({});
 
 export default function DBCheckbox(props: DBCheckboxProps) {
-	const _ref = useRef<HTMLInputElement | null>(null);
+	const _ref = useRef<HTMLInputElement | any>(null);
 	// jscpd:ignore-start
 	const state = useStore<DBCheckboxState>({
 		initialized: false,
@@ -90,33 +89,21 @@ export default function DBCheckbox(props: DBCheckboxProps) {
 				props.onChange(event);
 			}
 
-			if (props.change) {
-				props.change(event);
-			}
-
 			useTarget({
 				angular: () =>
-					handleFrameworkEventAngular(this, event, 'checked'),
+					handleFrameworkEventAngular(state, event, 'checked'),
 				vue: () => handleFrameworkEventVue(() => {}, event, 'checked')
 			});
 			state.handleValidation();
 		},
-		handleBlur: (event: InteractionEvent<HTMLInputElement>) => {
+		handleBlur: (event: InteractionEvent<HTMLInputElement> | any) => {
 			if (props.onBlur) {
 				props.onBlur(event);
 			}
-
-			if (props.blur) {
-				props.blur(event);
-			}
 		},
-		handleFocus: (event: InteractionEvent<HTMLInputElement>) => {
+		handleFocus: (event: InteractionEvent<HTMLInputElement> | any) => {
 			if (props.onFocus) {
 				props.onFocus(event);
-			}
-
-			if (props.focus) {
-				props.focus(event);
 			}
 		}
 	});

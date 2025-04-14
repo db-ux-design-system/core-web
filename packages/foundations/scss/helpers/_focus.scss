@@ -2,22 +2,24 @@
 @use "../colors";
 
 %focus-placeholder {
-	outline: #{variables.$db-border-height-2xs} solid
-		var(
-			--db-focus-outline-color,
-			#{colors.$db-informational-on-bg-basic-emphasis-80-default}
-		);
-	outline-offset: variables.$db-border-height-xs;
-	box-shadow: 0 0 0 #{variables.$db-border-height-xs}
-		var(--db-focus-box-shadow-bg-color, transparent);
+	&:not([data-disable-focus="true"]) {
+		outline: #{variables.$db-border-width-2xs} solid
+			var(
+				--db-focus-outline-color,
+				#{colors.$db-informational-on-bg-basic-emphasis-80-default}
+			);
+		outline-offset: variables.$db-border-width-xs;
+		box-shadow: 0 0 0 #{variables.$db-border-width-xs}
+			var(--db-focus-box-shadow-bg-color, transparent);
 
-	&:not([type="radio"], [role="switch"]) {
-		border-radius: variables.$db-border-radius-xs;
-	}
+		&:not([type="radio"], [role="switch"]) {
+			border-radius: variables.$db-border-radius-xs;
+		}
 
-	@media screen and (prefers-reduced-motion: no-preference) {
-		transition:
-			outline #{variables.$db-transition-duration-extra-fast},
-			box-shadow #{variables.$db-transition-duration-extra-fast};
+		@media screen and (prefers-reduced-motion: no-preference) {
+			transition:
+				outline #{variables.$db-transition-duration-extra-fast},
+				box-shadow #{variables.$db-transition-duration-extra-fast};
+		}
 	}
 }
