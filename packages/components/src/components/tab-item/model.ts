@@ -8,6 +8,8 @@ import {
 	IconAfterProps,
 	IconProps,
 	InitializedState,
+	NameProps,
+	NameState,
 	ShowIconProps
 } from '../../shared/model';
 
@@ -38,7 +40,8 @@ export type DBTabItemProps = GlobalProps &
 	ActiveProps &
 	AriaControlsProps &
 	ChangeEventProps<HTMLInputElement> &
-	ShowIconProps;
+	ShowIconProps &
+	NameProps;
 
 export type DBTabItemDefaultState = {
 	_selected: boolean;
@@ -47,4 +50,5 @@ export type DBTabItemDefaultState = {
 export type DBTabItemState = DBTabItemDefaultState &
 	GlobalState &
 	ChangeEventState<HTMLInputElement> &
-	InitializedState;
+	InitializedState &
+	NameState;

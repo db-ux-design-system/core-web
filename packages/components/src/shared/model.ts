@@ -217,6 +217,18 @@ export type PopoverState = {
 	handleAutoPlacement: () => void;
 };
 
+export type NameProps = {
+	/**
+	 * The name attribute gives the name of the element to group it.
+	 */
+	name?: string;
+};
+
+export type NameState = {
+	_name?: string;
+	handleNameAttribute: () => void;
+};
+
 export type ContentSlotProps = {
 	/**
 	 * Default slot which is used to pass in additional content.
