@@ -99,6 +99,7 @@ Check our migration docs for breaking changes:
 5. [v0.5 ➡ v0.6](https://github.com/db-ux-design-system/core-web/tree/main/docs/migration/v0.5.x-to-v0.6.x.md)
 6. [v0.6 ➡ v0.7](https://github.com/db-ux-design-system/core-web/tree/main/docs/migration/v0.6.x-to-v0.7.x.md)
 7. [v0.7 ➡ v1.0](https://github.com/db-ux-design-system/core-web/blob/main/docs/migration/v0.7.x-to-v1.0.0.md)
+8. [v1.x ➡ v2.0](https://github.com/db-ux-design-system/core-web/blob/main/docs/migration/v1.x.x-to-v2.0.0.md)
 
 ## FAQ
 
