@@ -87,6 +87,15 @@
 	position: relative;
 	inline-size: auto;
 
+	&[data-wrap="true"] {
+		.db-navigation-item-expand-button {
+			&:is(button) {
+				white-space: normal;
+				text-align: start;
+			}
+		}
+	}
+
 	@include screen-sizes.screen("md", "max") {
 		&:not([data-width="full"]) {
 			.db-navigation-item-expand-button {

@@ -25,6 +25,7 @@ const log = (exampleName?: string) => {
 					:disabled="exampleProps?.disabled"
 					:active="exampleProps?.active"
 					:areaPopup="exampleProps?.areaPopup"
+					:wrap="exampleProps?.wrap"
 					@click="log(exampleName)"
 				>
 					<template v-if="exampleProps?.areaPopup" #sub-navigation>

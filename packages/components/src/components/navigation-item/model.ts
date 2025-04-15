@@ -35,6 +35,11 @@ export type DBNavigationItemDefaultProps = {
 	 * This is for mobile navigation only, if it is set the sub-navigation is a static overlay
 	 */
 	subNavigationExpanded?: boolean | string;
+
+	/**
+	 * Determines whether the text should wrap when its parent container is too small, preventing overflow.
+	 */
+	wrap?: boolean | string;
 };
 
 export type DBNavigationItemProps = DBNavigationItemDefaultProps &
