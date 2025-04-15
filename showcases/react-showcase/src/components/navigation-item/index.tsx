@@ -30,10 +30,10 @@ const getNavigationItem = ({
 			subNavigation={
 				areaPopup && (
 					<ul>
-						<DBNavigationItem>
+						<DBNavigationItem icon={icon} showIcon={showIcon}>
 							<a href="#">Test1</a>
 						</DBNavigationItem>
-						<DBNavigationItem>
+						<DBNavigationItem icon={icon} showIcon={showIcon}>
 							<a href="#">Test2</a>
 						</DBNavigationItem>
 					</ul>

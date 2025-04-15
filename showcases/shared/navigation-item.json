@@ -270,7 +270,9 @@
 						"name": "a",
 						"native": true,
 						"props": {
-							"href": "#"
+							"href": "#",
+							"icon": "x_placeholder",
+							"showIcon": true
 						},
 						"content": "True"
 					}
