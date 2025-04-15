@@ -29,14 +29,14 @@ const getNavigationItem = ({
 			wrap={wrap}
 			subNavigation={
 				areaPopup && (
-					<ul>
+					<>
 						<DBNavigationItem icon={icon} showIcon={showIcon}>
 							<a href="#">Test1</a>
 						</DBNavigationItem>
 						<DBNavigationItem icon={icon} showIcon={showIcon}>
 							<a href="#">Test2</a>
 						</DBNavigationItem>
-					</ul>
+					</>
 				)
 			}>
 			{areaPopup ? children : <a href="#">{children}</a>}

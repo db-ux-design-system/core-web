@@ -29,23 +29,21 @@ const log = (exampleName?: string) => {
 					@click="log(exampleName)"
 				>
 					<template v-if="exampleProps?.areaPopup" #sub-navigation>
-						<ul>
-							<DBNavigationItem
-								:icon="exampleProps?.icon"
-								:showIcon="exampleProps?.showIcon"
-								><a href="#">Test1</a></DBNavigationItem
-							>
-							<DBNavigationItem
-								:icon="exampleProps?.icon"
-								:showIcon="exampleProps?.showIcon"
-								><a href="#">Test2</a></DBNavigationItem
-							>
-							<DBNavigationItem
-								:icon="exampleProps?.icon"
-								:showIcon="exampleProps?.showIcon"
-								><a href="#">Test3</a></DBNavigationItem
-							>
-						</ul>
+						<DBNavigationItem
+							:icon="exampleProps?.icon"
+							:showIcon="exampleProps?.showIcon"
+							><a href="#">Test1</a></DBNavigationItem
+						>
+						<DBNavigationItem
+							:icon="exampleProps?.icon"
+							:showIcon="exampleProps?.showIcon"
+							><a href="#">Test2</a></DBNavigationItem
+						>
+						<DBNavigationItem
+							:icon="exampleProps?.icon"
+							:showIcon="exampleProps?.showIcon"
+							><a href="#">Test3</a></DBNavigationItem
+						>
 					</template>
 					<template v-if="exampleProps?.areaPopup">
 						{{ exampleName }}
