@@ -2992,7 +2992,7 @@
 @property --db-typography-regular-desktop-headline-3xl {
 	syntax: "*";
 	initial-value:
-		5rem/1.2 "OpenSans Head",
+		bolder 5rem/1.2 "OpenSans Head",
 		helvetica,
 		arial,
 		sans-serif;
@@ -3002,7 +3002,7 @@
 @property --db-typography-regular-desktop-headline-2xl {
 	syntax: "*";
 	initial-value:
-		4rem/1.25 "OpenSans Head",
+		bolder 4rem/1.25 "OpenSans Head",
 		helvetica,
 		arial,
 		sans-serif;
@@ -3012,7 +3012,7 @@
 @property --db-typography-regular-desktop-headline-xl {
 	syntax: "*";
 	initial-value:
-		3rem/1.3333333333333333 "OpenSans Head",
+		bolder 3rem/1.3333333333333333 "OpenSans Head",
 		helvetica,
 		arial,
 		sans-serif;
@@ -3022,7 +3022,7 @@
 @property --db-typography-regular-desktop-headline-lg {
 	syntax: "*";
 	initial-value:
-		2.5rem/1.2 "OpenSans Head",
+		bolder 2.5rem/1.2 "OpenSans Head",
 		helvetica,
 		arial,
 		sans-serif;
@@ -3032,7 +3032,7 @@
 @property --db-typography-regular-desktop-headline-md {
 	syntax: "*";
 	initial-value:
-		2rem/1.25 "OpenSans Head",
+		bolder 2rem/1.25 "OpenSans Head",
 		helvetica,
 		arial,
 		sans-serif;
@@ -3042,7 +3042,7 @@
 @property --db-typography-regular-desktop-headline-sm {
 	syntax: "*";
 	initial-value:
-		1.75rem/1.1428571428571428 "OpenSans Head",
+		bolder 1.75rem/1.1428571428571428 "OpenSans Head",
 		helvetica,
 		arial,
 		sans-serif;
@@ -3052,7 +3052,7 @@
 @property --db-typography-regular-desktop-headline-2xs {
 	syntax: "*";
 	initial-value:
-		1.25rem/1.2 "OpenSans Head",
+		bolder 1.25rem/1.2 "OpenSans Head",
 		helvetica,
 		arial,
 		sans-serif;
@@ -3062,7 +3062,7 @@
 @property --db-typography-regular-desktop-headline-3xs {
 	syntax: "*";
 	initial-value:
-		1rem/1.25 "OpenSans Head",
+		bolder 1rem/1.25 "OpenSans Head",
 		helvetica,
 		arial,
 		sans-serif;
@@ -3072,7 +3072,7 @@
 @property --db-typography-regular-desktop-headline-xs {
 	syntax: "*";
 	initial-value:
-		1.5rem/1.1666666666666667 "OpenSans Head",
+		bolder 1.5rem/1.1666666666666667 "OpenSans Head",
 		helvetica,
 		arial,
 		sans-serif;
@@ -3082,7 +3082,7 @@
 @property --db-typography-regular-desktop-body-lg {
 	syntax: "*";
 	initial-value:
-		1.25rem/1.4 "OpenSans",
+		normal 1.25rem/1.4 "OpenSans",
 		helvetica,
 		arial,
 		sans-serif;
@@ -3092,7 +3092,7 @@
 @property --db-typography-regular-desktop-body-xl {
 	syntax: "*";
 	initial-value:
-		1.5rem/1.3333333333333333 "OpenSans",
+		normal 1.5rem/1.3333333333333333 "OpenSans",
 		helvetica,
 		arial,
 		sans-serif;
@@ -3102,7 +3102,7 @@
 @property --db-typography-regular-desktop-body-2xl {
 	syntax: "*";
 	initial-value:
-		1.75rem/1.4285714285714286 "OpenSans",
+		normal 1.75rem/1.4285714285714286 "OpenSans",
 		helvetica,
 		arial,
 		sans-serif;
@@ -3112,7 +3112,7 @@
 @property --db-typography-regular-desktop-body-3xl {
 	syntax: "*";
 	initial-value:
-		2rem/1.5 "OpenSans",
+		normal 2rem/1.5 "OpenSans",
 		helvetica,
 		arial,
 		sans-serif;
@@ -3122,7 +3122,7 @@
 @property --db-typography-regular-desktop-body-md {
 	syntax: "*";
 	initial-value:
-		1rem/1.5 "OpenSans",
+		normal 1rem/1.5 "OpenSans",
 		helvetica,
 		arial,
 		sans-serif;
@@ -3132,7 +3132,7 @@
 @property --db-typography-regular-desktop-body-sm {
 	syntax: "*";
 	initial-value:
-		0.875rem/1.4285714285714286 "OpenSans",
+		normal 0.875rem/1.4285714285714286 "OpenSans",
 		helvetica,
 		arial,
 		sans-serif;
@@ -3142,7 +3142,7 @@
 @property --db-typography-regular-desktop-body-2xs {
 	syntax: "*";
 	initial-value:
-		0.625rem/1.4 "OpenSans",
+		normal 0.625rem/1.4 "OpenSans",
 		helvetica,
 		arial,
 		sans-serif;
@@ -3152,7 +3152,7 @@
 @property --db-typography-regular-desktop-body-3xs {
 	syntax: "*";
 	initial-value:
-		0.625rem/1.4 "OpenSans",
+		normal 0.625rem/1.4 "OpenSans",
 		helvetica,
 		arial,
 		sans-serif;
@@ -3162,7 +3162,7 @@
 @property --db-typography-regular-desktop-body-xs {
 	syntax: "*";
 	initial-value:
-		0.75rem/1.3333333333333333 "OpenSans",
+		normal 0.75rem/1.3333333333333333 "OpenSans",
 		helvetica,
 		arial,
 		sans-serif;
@@ -3172,7 +3172,7 @@
 @property --db-typography-regular-mobile-body-lg {
 	syntax: "*";
 	initial-value:
-		1.25rem/1.4 "OpenSans",
+		normal 1.25rem/1.4 "OpenSans",
 		helvetica,
 		arial,
 		sans-serif;
@@ -3182,7 +3182,7 @@
 @property --db-typography-regular-mobile-body-md {
 	syntax: "*";
 	initial-value:
-		1rem/1.5 "OpenSans",
+		normal 1rem/1.5 "OpenSans",
 		helvetica,
 		arial,
 		sans-serif;
@@ -3192,7 +3192,7 @@
 @property --db-typography-regular-mobile-body-sm {
 	syntax: "*";
 	initial-value:
-		0.875rem/1.4285714285714286 "OpenSans",
+		normal 0.875rem/1.4285714285714286 "OpenSans",
 		helvetica,
 		arial,
 		sans-serif;
@@ -3202,7 +3202,7 @@
 @property --db-typography-regular-mobile-body-xl {
 	syntax: "*";
 	initial-value:
-		1.25rem/1.4 "OpenSans",
+		normal 1.25rem/1.4 "OpenSans",
 		helvetica,
 		arial,
 		sans-serif;
@@ -3212,7 +3212,7 @@
 @property --db-typography-regular-mobile-body-xs {
 	syntax: "*";
 	initial-value:
-		0.75rem/1.3333333333333333 "OpenSans",
+		normal 0.75rem/1.3333333333333333 "OpenSans",
 		helvetica,
 		arial,
 		sans-serif;
@@ -3222,7 +3222,7 @@
 @property --db-typography-regular-mobile-body-2xl {
 	syntax: "*";
 	initial-value:
-		1.25rem/1.4 "OpenSans",
+		normal 1.25rem/1.4 "OpenSans",
 		helvetica,
 		arial,
 		sans-serif;
@@ -3232,7 +3232,7 @@
 @property --db-typography-regular-mobile-body-3xl {
 	syntax: "*";
 	initial-value:
-		1.25rem/1.4 "OpenSans",
+		normal 1.25rem/1.4 "OpenSans",
 		helvetica,
 		arial,
 		sans-serif;
@@ -3242,7 +3242,7 @@
 @property --db-typography-regular-mobile-body-2xs {
 	syntax: "*";
 	initial-value:
-		0.625rem/1.4 "OpenSans",
+		normal 0.625rem/1.4 "OpenSans",
 		helvetica,
 		arial,
 		sans-serif;
@@ -3252,7 +3252,7 @@
 @property --db-typography-regular-mobile-body-3xs {
 	syntax: "*";
 	initial-value:
-		0.625rem/1.4 "OpenSans",
+		normal 0.625rem/1.4 "OpenSans",
 		helvetica,
 		arial,
 		sans-serif;
@@ -3262,7 +3262,7 @@
 @property --db-typography-regular-mobile-headline-lg {
 	syntax: "*";
 	initial-value:
-		1.75rem/1.1428571428571428 "OpenSans Head",
+		bolder 1.75rem/1.1428571428571428 "OpenSans Head",
 		helvetica,
 		arial,
 		sans-serif;
@@ -3272,7 +3272,7 @@
 @property --db-typography-regular-mobile-headline-md {
 	syntax: "*";
 	initial-value:
-		1.5rem/1.1666666666666667 "OpenSans Head",
+		bolder 1.5rem/1.1666666666666667 "OpenSans Head",
 		helvetica,
 		arial,
 		sans-serif;
@@ -3282,7 +3282,7 @@
 @property --db-typography-regular-mobile-headline-sm {
 	syntax: "*";
 	initial-value:
-		1.25rem/1.2 "OpenSans Head",
+		bolder 1.25rem/1.2 "OpenSans Head",
 		helvetica,
 		arial,
 		sans-serif;
@@ -3292,7 +3292,7 @@
 @property --db-typography-regular-mobile-headline-xl {
 	syntax: "*";
 	initial-value:
-		2rem/1.25 "OpenSans Head",
+		bolder 2rem/1.25 "OpenSans Head",
 		helvetica,
 		arial,
 		sans-serif;
@@ -3302,7 +3302,7 @@
 @property --db-typography-regular-mobile-headline-xs {
 	syntax: "*";
 	initial-value:
-		1rem/1.25 "OpenSans Head",
+		bolder 1rem/1.25 "OpenSans Head",
 		helvetica,
 		arial,
 		sans-serif;
@@ -3312,7 +3312,7 @@
 @property --db-typography-regular-mobile-headline-2xl {
 	syntax: "*";
 	initial-value:
-		2rem/1.25 "OpenSans Head",
+		bolder 2rem/1.25 "OpenSans Head",
 		helvetica,
 		arial,
 		sans-serif;
@@ -3322,7 +3322,7 @@
 @property --db-typography-regular-mobile-headline-2xs {
 	syntax: "*";
 	initial-value:
-		0.875rem/1.1428571428571428 "OpenSans Head",
+		bolder 0.875rem/1.1428571428571428 "OpenSans Head",
 		helvetica,
 		arial,
 		sans-serif;
@@ -3332,7 +3332,7 @@
 @property --db-typography-regular-mobile-headline-3xl {
 	syntax: "*";
 	initial-value:
-		2rem/1.25 "OpenSans Head",
+		bolder 2rem/1.25 "OpenSans Head",
 		helvetica,
 		arial,
 		sans-serif;
@@ -3342,7 +3342,7 @@
 @property --db-typography-regular-mobile-headline-3xs {
 	syntax: "*";
 	initial-value:
-		0.875rem/1.1428571428571428 "OpenSans Head",
+		bolder 0.875rem/1.1428571428571428 "OpenSans Head",
 		helvetica,
 		arial,
 		sans-serif;
@@ -3352,7 +3352,7 @@
 @property --db-typography-regular-tablet-body-lg {
 	syntax: "*";
 	initial-value:
-		1.25rem/1.4 "OpenSans",
+		normal 1.25rem/1.4 "OpenSans",
 		helvetica,
 		arial,
 		sans-serif;
@@ -3362,7 +3362,7 @@
 @property --db-typography-regular-tablet-body-md {
 	syntax: "*";
 	initial-value:
-		1rem/1.5 "OpenSans",
+		normal 1rem/1.5 "OpenSans",
 		helvetica,
 		arial,
 		sans-serif;
@@ -3372,7 +3372,7 @@
 @property --db-typography-regular-tablet-body-sm {
 	syntax: "*";
 	initial-value:
-		0.875rem/1.4285714285714286 "OpenSans",
+		normal 0.875rem/1.4285714285714286 "OpenSans",
 		helvetica,
 		arial,
 		sans-serif;
@@ -3382,7 +3382,7 @@
 @property --db-typography-regular-tablet-body-xl {
 	syntax: "*";
 	initial-value:
-		1.5rem/1.3333333333333333 "OpenSans",
+		normal 1.5rem/1.3333333333333333 "OpenSans",
 		helvetica,
 		arial,
 		sans-serif;
@@ -3392,7 +3392,7 @@
 @property --db-typography-regular-tablet-body-xs {
 	syntax: "*";
 	initial-value:
-		0.75rem/1.3333333333333333 "OpenSans",
+		normal 0.75rem/1.3333333333333333 "OpenSans",
 		helvetica,
 		arial,
 		sans-serif;
@@ -3402,7 +3402,7 @@
 @property --db-typography-regular-tablet-body-2xl {
 	syntax: "*";
 	initial-value:
-		1.75rem/1.4285714285714286 "OpenSans",
+		normal 1.75rem/1.4285714285714286 "OpenSans",
 		helvetica,
 		arial,
 		sans-serif;
@@ -3412,7 +3412,7 @@
 @property --db-typography-regular-tablet-body-3xl {
 	syntax: "*";
 	initial-value:
-		2rem/1.5 "OpenSans",
+		normal 2rem/1.5 "OpenSans",
 		helvetica,
 		arial,
 		sans-serif;
@@ -3422,7 +3422,7 @@
 @property --db-typography-regular-tablet-body-2xs {
 	syntax: "*";
 	initial-value:
-		0.625rem/1.4 "OpenSans",
+		normal 0.625rem/1.4 "OpenSans",
 		helvetica,
 		arial,
 		sans-serif;
@@ -3432,7 +3432,7 @@
 @property --db-typography-regular-tablet-body-3xs {
 	syntax: "*";
 	initial-value:
-		0.625rem/1.4 "OpenSans",
+		normal 0.625rem/1.4 "OpenSans",
 		helvetica,
 		arial,
 		sans-serif;
@@ -3442,7 +3442,7 @@
 @property --db-typography-regular-tablet-headline-lg {
 	syntax: "*";
 	initial-value:
-		2rem/1.25 "OpenSans Head",
+		bolder 2rem/1.25 "OpenSans Head",
 		helvetica,
 		arial,
 		sans-serif;
@@ -3452,7 +3452,7 @@
 @property --db-typography-regular-tablet-headline-md {
 	syntax: "*";
 	initial-value:
-		1.75rem/1.1428571428571428 "OpenSans Head",
+		bolder 1.75rem/1.1428571428571428 "OpenSans Head",
 		helvetica,
 		arial,
 		sans-serif;
@@ -3462,7 +3462,7 @@
 @property --db-typography-regular-tablet-headline-sm {
 	syntax: "*";
 	initial-value:
-		1.5rem/1.1666666666666667 "OpenSans Head",
+		bolder 1.5rem/1.1666666666666667 "OpenSans Head",
 		helvetica,
 		arial,
 		sans-serif;
@@ -3472,7 +3472,7 @@
 @property --db-typography-regular-tablet-headline-xl {
 	syntax: "*";
 	initial-value:
-		2.5rem/1.2 "OpenSans Head",
+		bolder 2.5rem/1.2 "OpenSans Head",
 		helvetica,
 		arial,
 		sans-serif;
@@ -3482,7 +3482,7 @@
 @property --db-typography-regular-tablet-headline-xs {
 	syntax: "*";
 	initial-value:
-		1.25rem/1.2 "OpenSans Head",
+		bolder 1.25rem/1.2 "OpenSans Head",
 		helvetica,
 		arial,
 		sans-serif;
@@ -3492,7 +3492,7 @@
 @property --db-typography-regular-tablet-headline-2xl {
 	syntax: "*";
 	initial-value:
-		3rem/1.3333333333333333 "OpenSans Head",
+		bolder 3rem/1.3333333333333333 "OpenSans Head",
 		helvetica,
 		arial,
 		sans-serif;
@@ -3502,7 +3502,7 @@
 @property --db-typography-regular-tablet-headline-2xs {
 	syntax: "*";
 	initial-value:
-		1rem/1.25 "OpenSans Head",
+		bolder 1rem/1.25 "OpenSans Head",
 		helvetica,
 		arial,
 		sans-serif;
@@ -3512,7 +3512,7 @@
 @property --db-typography-regular-tablet-headline-3xl {
 	syntax: "*";
 	initial-value:
-		3rem/1.3333333333333333 "OpenSans Head",
+		bolder 3rem/1.3333333333333333 "OpenSans Head",
 		helvetica,
 		arial,
 		sans-serif;
@@ -3522,7 +3522,7 @@
 @property --db-typography-regular-tablet-headline-3xs {
 	syntax: "*";
 	initial-value:
-		1rem/1.25 "OpenSans Head",
+		bolder 1rem/1.25 "OpenSans Head",
 		helvetica,
 		arial,
 		sans-serif;
@@ -3532,7 +3532,7 @@
 @property --db-typography-expressive-desktop-body-lg {
 	syntax: "*";
 	initial-value:
-		1.5rem/1.3333333333333333 "OpenSans",
+		normal 1.5rem/1.3333333333333333 "OpenSans",
 		helvetica,
 		arial,
 		sans-serif;
@@ -3542,7 +3542,7 @@
 @property --db-typography-expressive-desktop-body-md {
 	syntax: "*";
 	initial-value:
-		1.25rem/1.4 "OpenSans",
+		normal 1.25rem/1.4 "OpenSans",
 		helvetica,
 		arial,
 		sans-serif;
@@ -3552,7 +3552,7 @@
 @property --db-typography-expressive-desktop-body-sm {
 	syntax: "*";
 	initial-value:
-		1rem/1.5 "OpenSans",
+		normal 1rem/1.5 "OpenSans",
 		helvetica,
 		arial,
 		sans-serif;
@@ -3562,7 +3562,7 @@
 @property --db-typography-expressive-desktop-body-xl {
 	syntax: "*";
 	initial-value:
-		1.75rem/1.4285714285714286 "OpenSans",
+		normal 1.75rem/1.4285714285714286 "OpenSans",
 		helvetica,
 		arial,
 		sans-serif;
@@ -3572,7 +3572,7 @@
 @property --db-typography-expressive-desktop-body-xs {
 	syntax: "*";
 	initial-value:
-		0.875rem/1.4285714285714286 "OpenSans",
+		normal 0.875rem/1.4285714285714286 "OpenSans",
 		helvetica,
 		arial,
 		sans-serif;
@@ -3582,7 +3582,7 @@
 @property --db-typography-expressive-desktop-body-2xl {
 	syntax: "*";
 	initial-value:
-		2rem/1.5 "OpenSans",
+		normal 2rem/1.5 "OpenSans",
 		helvetica,
 		arial,
 		sans-serif;
@@ -3592,7 +3592,7 @@
 @property --db-typography-expressive-desktop-body-3xl {
 	syntax: "*";
 	initial-value:
-		2.5rem/1.6 "OpenSans",
+		normal 2.5rem/1.6 "OpenSans",
 		helvetica,
 		arial,
 		sans-serif;
@@ -3602,7 +3602,7 @@
 @property --db-typography-expressive-desktop-body-2xs {
 	syntax: "*";
 	initial-value:
-		0.75rem/1.3333333333333333 "OpenSans",
+		normal 0.75rem/1.3333333333333333 "OpenSans",
 		helvetica,
 		arial,
 		sans-serif;
@@ -3612,7 +3612,7 @@
 @property --db-typography-expressive-desktop-body-3xs {
 	syntax: "*";
 	initial-value:
-		0.625rem/1.4 "OpenSans",
+		normal 0.625rem/1.4 "OpenSans",
 		helvetica,
 		arial,
 		sans-serif;
@@ -3622,7 +3622,7 @@
 @property --db-typography-expressive-desktop-headline-lg {
 	syntax: "*";
 	initial-value:
-		3rem/1.3333333333333333 "OpenSans Head",
+		bolder 3rem/1.3333333333333333 "OpenSans Head",
 		helvetica,
 		arial,
 		sans-serif;
@@ -3632,7 +3632,7 @@
 @property --db-typography-expressive-desktop-headline-md {
 	syntax: "*";
 	initial-value:
-		2.5rem/1.2 "OpenSans Head",
+		bolder 2.5rem/1.2 "OpenSans Head",
 		helvetica,
 		arial,
 		sans-serif;
@@ -3642,7 +3642,7 @@
 @property --db-typography-expressive-desktop-headline-sm {
 	syntax: "*";
 	initial-value:
-		2rem/1.25 "OpenSans Head",
+		bolder 2rem/1.25 "OpenSans Head",
 		helvetica,
 		arial,
 		sans-serif;
@@ -3652,7 +3652,7 @@
 @property --db-typography-expressive-desktop-headline-xl {
 	syntax: "*";
 	initial-value:
-		4rem/1.25 "OpenSans Head",
+		bolder 4rem/1.25 "OpenSans Head",
 		helvetica,
 		arial,
 		sans-serif;
@@ -3662,7 +3662,7 @@
 @property --db-typography-expressive-desktop-headline-xs {
 	syntax: "*";
 	initial-value:
-		1.75rem/1.1428571428571428 "OpenSans Head",
+		bolder 1.75rem/1.1428571428571428 "OpenSans Head",
 		helvetica,
 		arial,
 		sans-serif;
@@ -3672,7 +3672,7 @@
 @property --db-typography-expressive-desktop-headline-2xl {
 	syntax: "*";
 	initial-value:
-		5rem/1.2 "OpenSans Head",
+		bolder 5rem/1.2 "OpenSans Head",
 		helvetica,
 		arial,
 		sans-serif;
@@ -3682,7 +3682,7 @@
 @property --db-typography-expressive-desktop-headline-2xs {
 	syntax: "*";
 	initial-value:
-		1.5rem/1.1666666666666667 "OpenSans Head",
+		bolder 1.5rem/1.1666666666666667 "OpenSans Head",
 		helvetica,
 		arial,
 		sans-serif;
@@ -3692,7 +3692,7 @@
 @property --db-typography-expressive-desktop-headline-3xl {
 	syntax: "*";
 	initial-value:
-		6rem/1.25 "OpenSans Head",
+		bolder 6rem/1.25 "OpenSans Head",
 		helvetica,
 		arial,
 		sans-serif;
@@ -3702,7 +3702,7 @@
 @property --db-typography-expressive-desktop-headline-3xs {
 	syntax: "*";
 	initial-value:
-		1.25rem/1.2 "OpenSans Head",
+		bolder 1.25rem/1.2 "OpenSans Head",
 		helvetica,
 		arial,
 		sans-serif;
@@ -3712,7 +3712,7 @@
 @property --db-typography-expressive-tablet-body-lg {
 	syntax: "*";
 	initial-value:
-		1.5rem/1.3333333333333333 "OpenSans",
+		normal 1.5rem/1.3333333333333333 "OpenSans",
 		helvetica,
 		arial,
 		sans-serif;
@@ -3722,7 +3722,7 @@
 @property --db-typography-expressive-tablet-body-md {
 	syntax: "*";
 	initial-value:
-		1.25rem/1.4 "OpenSans",
+		normal 1.25rem/1.4 "OpenSans",
 		helvetica,
 		arial,
 		sans-serif;
@@ -3732,7 +3732,7 @@
 @property --db-typography-expressive-tablet-body-sm {
 	syntax: "*";
 	initial-value:
-		1rem/1.5 "OpenSans",
+		normal 1rem/1.5 "OpenSans",
 		helvetica,
 		arial,
 		sans-serif;
@@ -3742,7 +3742,7 @@
 @property --db-typography-expressive-tablet-body-xl {
 	syntax: "*";
 	initial-value:
-		1.75rem/1.4285714285714286 "OpenSans",
+		normal 1.75rem/1.4285714285714286 "OpenSans",
 		helvetica,
 		arial,
 		sans-serif;
@@ -3752,7 +3752,7 @@
 @property --db-typography-expressive-tablet-body-xs {
 	syntax: "*";
 	initial-value:
-		0.875rem/1.4285714285714286 "OpenSans",
+		normal 0.875rem/1.4285714285714286 "OpenSans",
 		helvetica,
 		arial,
 		sans-serif;
@@ -3762,7 +3762,7 @@
 @property --db-typography-expressive-tablet-body-2xl {
 	syntax: "*";
 	initial-value:
-		2rem/1.5 "OpenSans",
+		normal 2rem/1.5 "OpenSans",
 		helvetica,
 		arial,
 		sans-serif;
@@ -3772,7 +3772,7 @@
 @property --db-typography-expressive-tablet-body-3xl {
 	syntax: "*";
 	initial-value:
-		2.5rem/1.6 "OpenSans",
+		normal 2.5rem/1.6 "OpenSans",
 		helvetica,
 		arial,
 		sans-serif;
@@ -3782,7 +3782,7 @@
 @property --db-typography-expressive-tablet-body-2xs {
 	syntax: "*";
 	initial-value:
-		0.75rem/1.3333333333333333 "OpenSans",
+		normal 0.75rem/1.3333333333333333 "OpenSans",
 		helvetica,
 		arial,
 		sans-serif;
@@ -3792,7 +3792,7 @@
 @property --db-typography-expressive-tablet-body-3xs {
 	syntax: "*";
 	initial-value:
-		0.625rem/1.4 "OpenSans",
+		normal 0.625rem/1.4 "OpenSans",
 		helvetica,
 		arial,
 		sans-serif;
@@ -3802,7 +3802,7 @@
 @property --db-typography-expressive-tablet-headline-lg {
 	syntax: "*";
 	initial-value:
-		2.5rem/1.2 "OpenSans Head",
+		bolder 2.5rem/1.2 "OpenSans Head",
 		helvetica,
 		arial,
 		sans-serif;
@@ -3812,7 +3812,7 @@
 @property --db-typography-expressive-tablet-headline-md {
 	syntax: "*";
 	initial-value:
-		2rem/1.25 "OpenSans Head",
+		bolder 2rem/1.25 "OpenSans Head",
 		helvetica,
 		arial,
 		sans-serif;
@@ -3822,7 +3822,7 @@
 @property --db-typography-expressive-tablet-headline-sm {
 	syntax: "*";
 	initial-value:
-		1.75rem/1.1428571428571428 "OpenSans Head",
+		bolder 1.75rem/1.1428571428571428 "OpenSans Head",
 		helvetica,
 		arial,
 		sans-serif;
@@ -3832,7 +3832,7 @@
 @property --db-typography-expressive-tablet-headline-xl {
 	syntax: "*";
 	initial-value:
-		3rem/1.3333333333333333 "OpenSans Head",
+		bolder 3rem/1.3333333333333333 "OpenSans Head",
 		helvetica,
 		arial,
 		sans-serif;
@@ -3842,7 +3842,7 @@
 @property --db-typography-expressive-tablet-headline-xs {
 	syntax: "*";
 	initial-value:
-		1.5rem/1.1666666666666667 "OpenSans Head",
+		bolder 1.5rem/1.1666666666666667 "OpenSans Head",
 		helvetica,
 		arial,
 		sans-serif;
@@ -3852,7 +3852,7 @@
 @property --db-typography-expressive-tablet-headline-2xl {
 	syntax: "*";
 	initial-value:
-		4rem/1.25 "OpenSans Head",
+		bolder 4rem/1.25 "OpenSans Head",
 		helvetica,
 		arial,
 		sans-serif;
@@ -3862,7 +3862,7 @@
 @property --db-typography-expressive-tablet-headline-2xs {
 	syntax: "*";
 	initial-value:
-		1.25rem/1.2 "OpenSans Head",
+		bolder 1.25rem/1.2 "OpenSans Head",
 		helvetica,
 		arial,
 		sans-serif;
@@ -3872,7 +3872,7 @@
 @property --db-typography-expressive-tablet-headline-3xl {
 	syntax: "*";
 	initial-value:
-		5rem/1.2 "OpenSans Head",
+		bolder 5rem/1.2 "OpenSans Head",
 		helvetica,
 		arial,
 		sans-serif;
@@ -3882,7 +3882,7 @@
 @property --db-typography-expressive-tablet-headline-3xs {
 	syntax: "*";
 	initial-value:
-		1.25rem/1.2 "OpenSans Head",
+		bolder 1.25rem/1.2 "OpenSans Head",
 		helvetica,
 		arial,
 		sans-serif;
@@ -3892,7 +3892,7 @@
 @property --db-typography-expressive-mobile-body-lg {
 	syntax: "*";
 	initial-value:
-		1.5rem/1.3333333333333333 "OpenSans",
+		normal 1.5rem/1.3333333333333333 "OpenSans",
 		helvetica,
 		arial,
 		sans-serif;
@@ -3902,7 +3902,7 @@
 @property --db-typography-expressive-mobile-body-md {
 	syntax: "*";
 	initial-value:
-		1.25rem/1.4 "OpenSans",
+		normal 1.25rem/1.4 "OpenSans",
 		helvetica,
 		arial,
 		sans-serif;
@@ -3912,7 +3912,7 @@
 @property --db-typography-expressive-mobile-body-sm {
 	syntax: "*";
 	initial-value:
-		1rem/1.5 "OpenSans",
+		normal 1rem/1.5 "OpenSans",
 		helvetica,
 		arial,
 		sans-serif;
@@ -3922,7 +3922,7 @@
 @property --db-typography-expressive-mobile-body-xl {
 	syntax: "*";
 	initial-value:
-		1.5rem/1.3333333333333333 "OpenSans",
+		normal 1.5rem/1.3333333333333333 "OpenSans",
 		helvetica,
 		arial,
 		sans-serif;
@@ -3932,7 +3932,7 @@
 @property --db-typography-expressive-mobile-body-xs {
 	syntax: "*";
 	initial-value:
-		0.875rem/1.4285714285714286 "OpenSans",
+		normal 0.875rem/1.4285714285714286 "OpenSans",
 		helvetica,
 		arial,
 		sans-serif;
@@ -3942,7 +3942,7 @@
 @property --db-typography-expressive-mobile-body-2xl {
 	syntax: "*";
 	initial-value:
-		1.5rem/1.3333333333333333 "OpenSans",
+		normal 1.5rem/1.3333333333333333 "OpenSans",
 		helvetica,
 		arial,
 		sans-serif;
@@ -3952,7 +3952,7 @@
 @property --db-typography-expressive-mobile-body-3xl {
 	syntax: "*";
 	initial-value:
-		1.5rem/1.3333333333333333 "OpenSans",
+		normal 1.5rem/1.3333333333333333 "OpenSans",
 		helvetica,
 		arial,
 		sans-serif;
@@ -3962,7 +3962,7 @@
 @property --db-typography-expressive-mobile-body-2xs {
 	syntax: "*";
 	initial-value:
-		0.75rem/1.3333333333333333 "OpenSans",
+		normal 0.75rem/1.3333333333333333 "OpenSans",
 		helvetica,
 		arial,
 		sans-serif;
@@ -3972,7 +3972,7 @@
 @property --db-typography-expressive-mobile-body-3xs {
 	syntax: "*";
 	initial-value:
-		0.625rem/1.4 "OpenSans",
+		normal 0.625rem/1.4 "OpenSans",
 		helvetica,
 		arial,
 		sans-serif;
@@ -3982,7 +3982,7 @@
 @property --db-typography-expressive-mobile-headline-lg {
 	syntax: "*";
 	initial-value:
-		2rem/1.25 "OpenSans Head",
+		bolder 2rem/1.25 "OpenSans Head",
 		helvetica,
 		arial,
 		sans-serif;
@@ -3992,7 +3992,7 @@
 @property --db-typography-expressive-mobile-headline-md {
 	syntax: "*";
 	initial-value:
-		1.75rem/1.1428571428571428 "OpenSans Head",
+		bolder 1.75rem/1.1428571428571428 "OpenSans Head",
 		helvetica,
 		arial,
 		sans-serif;
@@ -4002,7 +4002,7 @@
 @property --db-typography-expressive-mobile-headline-sm {
 	syntax: "*";
 	initial-value:
-		1.5rem/1.1666666666666667 "OpenSans Head",
+		bolder 1.5rem/1.1666666666666667 "OpenSans Head",
 		helvetica,
 		arial,
 		sans-serif;
@@ -4012,7 +4012,7 @@
 @property --db-typography-expressive-mobile-headline-xl {
 	syntax: "*";
 	initial-value:
-		2.5rem/1.2 "OpenSans Head",
+		bolder 2.5rem/1.2 "OpenSans Head",
 		helvetica,
 		arial,
 		sans-serif;
@@ -4022,7 +4022,7 @@
 @property --db-typography-expressive-mobile-headline-xs {
 	syntax: "*";
 	initial-value:
-		1.25rem/1.2 "OpenSans Head",
+		bolder 1.25rem/1.2 "OpenSans Head",
 		helvetica,
 		arial,
 		sans-serif;
@@ -4032,7 +4032,7 @@
 @property --db-typography-expressive-mobile-headline-2xl {
 	syntax: "*";
 	initial-value:
-		2.5rem/1.2 "OpenSans Head",
+		bolder 2.5rem/1.2 "OpenSans Head",
 		helvetica,
 		arial,
 		sans-serif;
@@ -4042,7 +4042,7 @@
 @property --db-typography-expressive-mobile-headline-2xs {
 	syntax: "*";
 	initial-value:
-		1rem/1.25 "OpenSans Head",
+		bolder 1rem/1.25 "OpenSans Head",
 		helvetica,
 		arial,
 		sans-serif;
@@ -4052,7 +4052,7 @@
 @property --db-typography-expressive-mobile-headline-3xl {
 	syntax: "*";
 	initial-value:
-		2.5rem/1.2 "OpenSans Head",
+		bolder 2.5rem/1.2 "OpenSans Head",
 		helvetica,
 		arial,
 		sans-serif;
@@ -4062,7 +4062,7 @@
 @property --db-typography-expressive-mobile-headline-3xs {
 	syntax: "*";
 	initial-value:
-		1rem/1.25 "OpenSans Head",
+		bolder 1rem/1.25 "OpenSans Head",
 		helvetica,
 		arial,
 		sans-serif;
@@ -4072,7 +4072,7 @@
 @property --db-typography-functional-desktop-body-lg {
 	syntax: "*";
 	initial-value:
-		1rem/1.5 "OpenSans",
+		normal 1rem/1.5 "OpenSans",
 		helvetica,
 		arial,
 		sans-serif;
@@ -4082,7 +4082,7 @@
 @property --db-typography-functional-desktop-body-md {
 	syntax: "*";
 	initial-value:
-		0.875rem/1.4285714285714286 "OpenSans",
+		normal 0.875rem/1.4285714285714286 "OpenSans",
 		helvetica,
 		arial,
 		sans-serif;
@@ -4092,7 +4092,7 @@
 @property --db-typography-functional-desktop-body-sm {
 	syntax: "*";
 	initial-value:
-		0.75rem/1.3333333333333333 "OpenSans",
+		normal 0.75rem/1.3333333333333333 "OpenSans",
 		helvetica,
 		arial,
 		sans-serif;
@@ -4102,7 +4102,7 @@
 @property --db-typography-functional-desktop-body-xl {
 	syntax: "*";
 	initial-value:
-		1.25rem/1.4 "OpenSans",
+		normal 1.25rem/1.4 "OpenSans",
 		helvetica,
 		arial,
 		sans-serif;
@@ -4112,7 +4112,7 @@
 @property --db-typography-functional-desktop-body-xs {
 	syntax: "*";
 	initial-value:
-		0.625rem/1.4 "OpenSans",
+		normal 0.625rem/1.4 "OpenSans",
 		helvetica,
 		arial,
 		sans-serif;
@@ -4122,7 +4122,7 @@
 @property --db-typography-functional-desktop-body-2xl {
 	syntax: "*";
 	initial-value:
-		1.5rem/1.3333333333333333 "OpenSans",
+		normal 1.5rem/1.3333333333333333 "OpenSans",
 		helvetica,
 		arial,
 		sans-serif;
@@ -4132,7 +4132,7 @@
 @property --db-typography-functional-desktop-body-3xl {
 	syntax: "*";
 	initial-value:
-		1.75rem/1.4285714285714286 "OpenSans",
+		normal 1.75rem/1.4285714285714286 "OpenSans",
 		helvetica,
 		arial,
 		sans-serif;
@@ -4142,7 +4142,7 @@
 @property --db-typography-functional-desktop-body-2xs {
 	syntax: "*";
 	initial-value:
-		0.625rem/1.4 "OpenSans",
+		normal 0.625rem/1.4 "OpenSans",
 		helvetica,
 		arial,
 		sans-serif;
@@ -4152,7 +4152,7 @@
 @property --db-typography-functional-desktop-body-3xs {
 	syntax: "*";
 	initial-value:
-		0.625rem/1.4 "OpenSans",
+		normal 0.625rem/1.4 "OpenSans",
 		helvetica,
 		arial,
 		sans-serif;
@@ -4162,7 +4162,7 @@
 @property --db-typography-functional-desktop-headline-lg {
 	syntax: "*";
 	initial-value:
-		1.75rem/1.1428571428571428 "OpenSans Head",
+		bolder 1.75rem/1.1428571428571428 "OpenSans Head",
 		helvetica,
 		arial,
 		sans-serif;
@@ -4172,7 +4172,7 @@
 @property --db-typography-functional-desktop-headline-md {
 	syntax: "*";
 	initial-value:
-		1.5rem/1.1666666666666667 "OpenSans Head",
+		bolder 1.5rem/1.1666666666666667 "OpenSans Head",
 		helvetica,
 		arial,
 		sans-serif;
@@ -4182,7 +4182,7 @@
 @property --db-typography-functional-desktop-headline-sm {
 	syntax: "*";
 	initial-value:
-		1.25rem/1.2 "OpenSans Head",
+		bolder 1.25rem/1.2 "OpenSans Head",
 		helvetica,
 		arial,
 		sans-serif;
@@ -4192,7 +4192,7 @@
 @property --db-typography-functional-desktop-headline-xl {
 	syntax: "*";
 	initial-value:
-		2rem/1.25 "OpenSans Head",
+		bolder 2rem/1.25 "OpenSans Head",
 		helvetica,
 		arial,
 		sans-serif;
@@ -4202,7 +4202,7 @@
 @property --db-typography-functional-desktop-headline-xs {
 	syntax: "*";
 	initial-value:
-		1rem/1.25 "OpenSans Head",
+		bolder 1rem/1.25 "OpenSans Head",
 		helvetica,
 		arial,
 		sans-serif;
@@ -4212,7 +4212,7 @@
 @property --db-typography-functional-desktop-headline-2xl {
 	syntax: "*";
 	initial-value:
-		2.5rem/1.2 "OpenSans Head",
+		bolder 2.5rem/1.2 "OpenSans Head",
 		helvetica,
 		arial,
 		sans-serif;
@@ -4222,7 +4222,7 @@
 @property --db-typography-functional-desktop-headline-2xs {
 	syntax: "*";
 	initial-value:
-		0.875rem/1.1428571428571428 "OpenSans Head",
+		bolder 0.875rem/1.1428571428571428 "OpenSans Head",
 		helvetica,
 		arial,
 		sans-serif;
@@ -4232,7 +4232,7 @@
 @property --db-typography-functional-desktop-headline-3xl {
 	syntax: "*";
 	initial-value:
-		2.5rem/1.2 "OpenSans Head",
+		bolder 2.5rem/1.2 "OpenSans Head",
 		helvetica,
 		arial,
 		sans-serif;
@@ -4242,7 +4242,7 @@
 @property --db-typography-functional-desktop-headline-3xs {
 	syntax: "*";
 	initial-value:
-		0.875rem/1.1428571428571428 "OpenSans Head",
+		bolder 0.875rem/1.1428571428571428 "OpenSans Head",
 		helvetica,
 		arial,
 		sans-serif;
@@ -4252,7 +4252,7 @@
 @property --db-typography-functional-tablet-body-lg {
 	syntax: "*";
 	initial-value:
-		1rem/1.5 "OpenSans",
+		normal 1rem/1.5 "OpenSans",
 		helvetica,
 		arial,
 		sans-serif;
@@ -4262,7 +4262,7 @@
 @property --db-typography-functional-tablet-body-md {
 	syntax: "*";
 	initial-value:
-		0.875rem/1.4285714285714286 "OpenSans",
+		normal 0.875rem/1.4285714285714286 "OpenSans",
 		helvetica,
 		arial,
 		sans-serif;
@@ -4272,7 +4272,7 @@
 @property --db-typography-functional-tablet-body-sm {
 	syntax: "*";
 	initial-value:
-		0.75rem/1.3333333333333333 "OpenSans",
+		normal 0.75rem/1.3333333333333333 "OpenSans",
 		helvetica,
 		arial,
 		sans-serif;
@@ -4282,7 +4282,7 @@
 @property --db-typography-functional-tablet-body-xl {
 	syntax: "*";
 	initial-value:
-		1.25rem/1.4 "OpenSans",
+		normal 1.25rem/1.4 "OpenSans",
 		helvetica,
 		arial,
 		sans-serif;
@@ -4292,7 +4292,7 @@
 @property --db-typography-functional-tablet-body-xs {
 	syntax: "*";
 	initial-value:
-		0.625rem/1.4 "OpenSans",
+		normal 0.625rem/1.4 "OpenSans",
 		helvetica,
 		arial,
 		sans-serif;
@@ -4302,7 +4302,7 @@
 @property --db-typography-functional-tablet-body-2xl {
 	syntax: "*";
 	initial-value:
-		1.5rem/1.3333333333333333 "OpenSans",
+		normal 1.5rem/1.3333333333333333 "OpenSans",
 		helvetica,
 		arial,
 		sans-serif;
@@ -4312,7 +4312,7 @@
 @property --db-typography-functional-tablet-body-3xl {
 	syntax: "*";
 	initial-value:
-		1.75rem/1.4285714285714286 "OpenSans",
+		normal 1.75rem/1.4285714285714286 "OpenSans",
 		helvetica,
 		arial,
 		sans-serif;
@@ -4322,7 +4322,7 @@
 @property --db-typography-functional-tablet-body-2xs {
 	syntax: "*";
 	initial-value:
-		0.625rem/1.4 "OpenSans",
+		normal 0.625rem/1.4 "OpenSans",
 		helvetica,
 		arial,
 		sans-serif;
@@ -4332,7 +4332,7 @@
 @property --db-typography-functional-tablet-body-3xs {
 	syntax: "*";
 	initial-value:
-		0.625rem/1.4 "OpenSans",
+		normal 0.625rem/1.4 "OpenSans",
 		helvetica,
 		arial,
 		sans-serif;
@@ -4342,7 +4342,7 @@
 @property --db-typography-functional-tablet-headline-lg {
 	syntax: "*";
 	initial-value:
-		1.75rem/1.1428571428571428 "OpenSans Head",
+		bolder 1.75rem/1.1428571428571428 "OpenSans Head",
 		helvetica,
 		arial,
 		sans-serif;
@@ -4352,7 +4352,7 @@
 @property --db-typography-functional-tablet-headline-md {
 	syntax: "*";
 	initial-value:
-		1.5rem/1.1666666666666667 "OpenSans Head",
+		bolder 1.5rem/1.1666666666666667 "OpenSans Head",
 		helvetica,
 		arial,
 		sans-serif;
@@ -4362,7 +4362,7 @@
 @property --db-typography-functional-tablet-headline-sm {
 	syntax: "*";
 	initial-value:
-		1.25rem/1.2 "OpenSans Head",
+		bolder 1.25rem/1.2 "OpenSans Head",
 		helvetica,
 		arial,
 		sans-serif;
@@ -4372,7 +4372,7 @@
 @property --db-typography-functional-tablet-headline-xl {
 	syntax: "*";
 	initial-value:
-		2rem/1.25 "OpenSans Head",
+		bolder 2rem/1.25 "OpenSans Head",
 		helvetica,
 		arial,
 		sans-serif;
@@ -4382,7 +4382,7 @@
 @property --db-typography-functional-tablet-headline-xs {
 	syntax: "*";
 	initial-value:
-		1rem/1.25 "OpenSans Head",
+		bolder 1rem/1.25 "OpenSans Head",
 		helvetica,
 		arial,
 		sans-serif;
@@ -4392,7 +4392,7 @@
 @property --db-typography-functional-tablet-headline-2xl {
 	syntax: "*";
 	initial-value:
-		2.5rem/1.2 "OpenSans Head",
+		bolder 2.5rem/1.2 "OpenSans Head",
 		helvetica,
 		arial,
 		sans-serif;
@@ -4402,7 +4402,7 @@
 @property --db-typography-functional-tablet-headline-2xs {
 	syntax: "*";
 	initial-value:
-		0.875rem/1.1428571428571428 "OpenSans Head",
+		bolder 0.875rem/1.1428571428571428 "OpenSans Head",
 		helvetica,
 		arial,
 		sans-serif;
@@ -4412,7 +4412,7 @@
 @property --db-typography-functional-tablet-headline-3xl {
 	syntax: "*";
 	initial-value:
-		2.5rem/1.2 "OpenSans Head",
+		bolder 2.5rem/1.2 "OpenSans Head",
 		helvetica,
 		arial,
 		sans-serif;
@@ -4422,7 +4422,7 @@
 @property --db-typography-functional-tablet-headline-3xs {
 	syntax: "*";
 	initial-value:
-		0.875rem/1.1428571428571428 "OpenSans Head",
+		bolder 0.875rem/1.1428571428571428 "OpenSans Head",
 		helvetica,
 		arial,
 		sans-serif;
@@ -4432,7 +4432,7 @@
 @property --db-typography-functional-mobile-body-lg {
 	syntax: "*";
 	initial-value:
-		1rem/1.5 "OpenSans",
+		normal 1rem/1.5 "OpenSans",
 		helvetica,
 		arial,
 		sans-serif;
@@ -4442,7 +4442,7 @@
 @property --db-typography-functional-mobile-body-md {
 	syntax: "*";
 	initial-value:
-		0.875rem/1.4285714285714286 "OpenSans",
+		normal 0.875rem/1.4285714285714286 "OpenSans",
 		helvetica,
 		arial,
 		sans-serif;
@@ -4452,7 +4452,7 @@
 @property --db-typography-functional-mobile-body-sm {
 	syntax: "*";
 	initial-value:
-		0.75rem/1.3333333333333333 "OpenSans",
+		normal 0.75rem/1.3333333333333333 "OpenSans",
 		helvetica,
 		arial,
 		sans-serif;
@@ -4462,7 +4462,7 @@
 @property --db-typography-functional-mobile-body-xl {
 	syntax: "*";
 	initial-value:
-		1rem/1.5 "OpenSans",
+		normal 1rem/1.5 "OpenSans",
 		helvetica,
 		arial,
 		sans-serif;
@@ -4472,7 +4472,7 @@
 @property --db-typography-functional-mobile-body-xs {
 	syntax: "*";
 	initial-value:
-		0.625rem/1.4 "OpenSans",
+		normal 0.625rem/1.4 "OpenSans",
 		helvetica,
 		arial,
 		sans-serif;
@@ -4482,7 +4482,7 @@
 @property --db-typography-functional-mobile-body-2xl {
 	syntax: "*";
 	initial-value:
-		1rem/1.5 "OpenSans",
+		normal 1rem/1.5 "OpenSans",
 		helvetica,
 		arial,
 		sans-serif;
@@ -4492,7 +4492,7 @@
 @property --db-typography-functional-mobile-body-3xl {
 	syntax: "*";
 	initial-value:
-		1rem/1.5 "OpenSans",
+		normal 1rem/1.5 "OpenSans",
 		helvetica,
 		arial,
 		sans-serif;
@@ -4502,7 +4502,7 @@
 @property --db-typography-functional-mobile-body-2xs {
 	syntax: "*";
 	initial-value:
-		0.625rem/1.4 "OpenSans",
+		normal 0.625rem/1.4 "OpenSans",
 		helvetica,
 		arial,
 		sans-serif;
@@ -4512,7 +4512,7 @@
 @property --db-typography-functional-mobile-body-3xs {
 	syntax: "*";
 	initial-value:
-		0.625rem/1.4 "OpenSans",
+		normal 0.625rem/1.4 "OpenSans",
 		helvetica,
 		arial,
 		sans-serif;
@@ -4522,7 +4522,7 @@
 @property --db-typography-functional-mobile-headline-lg {
 	syntax: "*";
 	initial-value:
-		1.5rem/1.1666666666666667 "OpenSans Head",
+		bolder 1.5rem/1.1666666666666667 "OpenSans Head",
 		helvetica,
 		arial,
 		sans-serif;
@@ -4532,7 +4532,7 @@
 @property --db-typography-functional-mobile-headline-md {
 	syntax: "*";
 	initial-value:
-		1.25rem/1.2 "OpenSans Head",
+		bolder 1.25rem/1.2 "OpenSans Head",
 		helvetica,
 		arial,
 		sans-serif;
@@ -4542,7 +4542,7 @@
 @property --db-typography-functional-mobile-headline-sm {
 	syntax: "*";
 	initial-value:
-		1rem/1.25 "OpenSans Head",
+		bolder 1rem/1.25 "OpenSans Head",
 		helvetica,
 		arial,
 		sans-serif;
@@ -4552,7 +4552,7 @@
 @property --db-typography-functional-mobile-headline-xl {
 	syntax: "*";
 	initial-value:
-		1.75rem/1.1428571428571428 "OpenSans Head",
+		bolder 1.75rem/1.1428571428571428 "OpenSans Head",
 		helvetica,
 		arial,
 		sans-serif;
@@ -4562,7 +4562,7 @@
 @property --db-typography-functional-mobile-headline-xs {
 	syntax: "*";
 	initial-value:
-		0.875rem/1.1428571428571428 "OpenSans Head",
+		bolder 0.875rem/1.1428571428571428 "OpenSans Head",
 		helvetica,
 		arial,
 		sans-serif;
@@ -4572,7 +4572,7 @@
 @property --db-typography-functional-mobile-headline-2xl {
 	syntax: "*";
 	initial-value:
-		1.75rem/1.1428571428571428 "OpenSans Head",
+		bolder 1.75rem/1.1428571428571428 "OpenSans Head",
 		helvetica,
 		arial,
 		sans-serif;
@@ -4582,7 +4582,7 @@
 @property --db-typography-functional-mobile-headline-2xs {
 	syntax: "*";
 	initial-value:
-		0.875rem/1.1428571428571428 "OpenSans Head",
+		bolder 0.875rem/1.1428571428571428 "OpenSans Head",
 		helvetica,
 		arial,
 		sans-serif;
@@ -4592,7 +4592,7 @@
 @property --db-typography-functional-mobile-headline-3xl {
 	syntax: "*";
 	initial-value:
-		1.75rem/1.1428571428571428 "OpenSans Head",
+		bolder 1.75rem/1.1428571428571428 "OpenSans Head",
 		helvetica,
 		arial,
 		sans-serif;
@@ -4602,7 +4602,7 @@
 @property --db-typography-functional-mobile-headline-3xs {
 	syntax: "*";
 	initial-value:
-		0.875rem/1.1428571428571428 "OpenSans Head",
+		bolder 0.875rem/1.1428571428571428 "OpenSans Head",
 		helvetica,
 		arial,
 		sans-serif;
