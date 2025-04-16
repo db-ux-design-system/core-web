@@ -66,12 +66,6 @@ html {
 
 // global
 * {
-	/*
-		we overwrite this for all elements to pass the correct sizes even for elements
-		which have a default font-size/line-height set
-	*/
-	font: inherit;
-
 	/* Use this to get similar fonts in all browser */
 	-webkit-font-smoothing: antialiased;
 	font-synthesis: none;
