@@ -3,48 +3,72 @@
   - link "Density arrow_up_right\" / \""
   - list:
     - listitem:
-      - button "Functional chevron_right\" / \""
+      - button "Functional chevron_right\" / \"":
+        - link "Functional"
+        - text: chevron_right" / "
   - list:
     - listitem:
-      - button "(Default) Regular chevron_right\" / \""
+      - button "(Default) Regular chevron_right\" / \"":
+        - link "(Default) Regular"
+        - text: chevron_right" / "
   - list:
     - listitem:
-      - button "Expressive chevron_right\" / \""
+      - button "Expressive chevron_right\" / \"":
+        - link "Expressive"
+        - text: chevron_right" / "
   - link "Disabled arrow_up_right\" / \""
   - list:
     - listitem:
-      - button "(Default) False chevron_right\" / \""
+      - button "(Default) False chevron_right\" / \"":
+        - link "(Default) False"
+        - text: chevron_right" / "
   - list:
     - listitem:
-      - button "True chevron_right\" / \"" [disabled]
+      - button "True chevron_right\" / \"" [disabled]:
+        - link "True"
+        - text: chevron_right" / "
   - link "Active arrow_up_right\" / \""
   - list:
     - listitem:
-      - button "(Default) False chevron_right\" / \""
+      - button "(Default) False chevron_right\" / \"":
+        - link "(Default) False"
+        - text: chevron_right" / "
   - list:
     - listitem:
-      - button "True chevron_right\" / \""
+      - button "True chevron_right\" / \"":
+        - link "True"
+        - text: chevron_right" / "
   - link "Expanded arrow_up_right\" / \""
   - list:
     - listitem:
-      - button "(Default) False chevron_right\" / \""
+      - button "(Default) False chevron_right\" / \"":
+        - link "(Default) False"
+        - text: chevron_right" / "
   - list:
     - listitem:
       - button "True chevron_right\" / \""
   - link "Show Icon arrow_up_right\" / \""
   - list:
     - listitem:
-      - button "(Default) False chevron_right\" / \""
+      - button "(Default) False chevron_right\" / \"":
+        - link "(Default) False"
+        - text: chevron_right" / "
   - list:
     - listitem:
-      - button "True chevron_right\" / \""
+      - button "True chevron_right\" / \"":
+        - link "True"
+        - text: chevron_right" / "
   - link "Width arrow_up_right\" / \""
   - list:
     - listitem:
-      - button "(Default) Auto chevron_right\" / \""
+      - button "(Default) Auto chevron_right\" / \"":
+        - link "(Default) Auto"
+        - text: chevron_right" / "
   - list:
     - listitem:
-      - button "Full chevron_right\" / \""
+      - button "Full chevron_right\" / \"":
+        - link "Full"
+        - text: chevron_right" / "
   - link "Wrap arrow_up_right\" / \""
   - list:
     - listitem:
