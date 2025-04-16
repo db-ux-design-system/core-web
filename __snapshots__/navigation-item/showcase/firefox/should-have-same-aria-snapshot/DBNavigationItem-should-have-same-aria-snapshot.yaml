@@ -3,48 +3,48 @@
   - link "Density arrow_up_right\" / \""
   - list:
     - listitem:
-      - link "Functional"
+      - button "Functional chevron_right\" / \""
   - list:
     - listitem:
-      - link "(Default) Regular"
+      - button "(Default) Regular chevron_right\" / \""
   - list:
     - listitem:
-      - link "Expressive"
+      - button "Expressive chevron_right\" / \""
   - link "Disabled arrow_up_right\" / \""
   - list:
     - listitem:
-      - link "(Default) False"
+      - button "(Default) False chevron_right\" / \""
   - list:
     - listitem:
-      - link "True"
+      - button "True chevron_right\" / \"" [disabled]
   - link "Active arrow_up_right\" / \""
   - list:
     - listitem:
-      - link "(Default) False"
+      - button "(Default) False chevron_right\" / \""
   - list:
     - listitem:
-      - link "True"
+      - button "True chevron_right\" / \""
   - link "Expanded arrow_up_right\" / \""
   - list:
     - listitem:
-      - link "(Default) False"
+      - button "(Default) False chevron_right\" / \""
   - list:
     - listitem:
       - button "True chevron_right\" / \""
   - link "Show Icon arrow_up_right\" / \""
   - list:
     - listitem:
-      - link "(Default) False"
+      - button "(Default) False chevron_right\" / \""
   - list:
     - listitem:
-      - link "True"
+      - button "True chevron_right\" / \""
   - link "Width arrow_up_right\" / \""
   - list:
     - listitem:
-      - link "(Default) Auto"
+      - button "(Default) Auto chevron_right\" / \""
   - list:
     - listitem:
-      - link "Full"
+      - button "Full chevron_right\" / \""
   - link "Wrap arrow_up_right\" / \""
   - list:
     - listitem:
