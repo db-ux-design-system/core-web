@@ -12,7 +12,8 @@ const getNavigationItem = ({
 	active,
 	width,
 	areaPopup,
-	showIcon
+	showIcon,
+	wrap
 }: DBNavigationItemProps & { areaPopup: boolean }) => (
 	<ul className="nav-item-list">
 		<DBNavigationItem
@@ -25,16 +26,17 @@ const getNavigationItem = ({
 				alert(children.toString());
 			}}
 			showIcon={showIcon}
+			wrap={wrap}
 			subNavigation={
 				areaPopup && (
-					<ul>
-						<DBNavigationItem>
+					<>
+						<DBNavigationItem icon={icon} showIcon={showIcon}>
 							<a href="#">Test1</a>
 						</DBNavigationItem>
-						<DBNavigationItem>
+						<DBNavigationItem icon={icon} showIcon={showIcon}>
 							<a href="#">Test2</a>
 						</DBNavigationItem>
-					</ul>
+					</>
 				)
 			}>
 			{areaPopup ? children : <a href="#">{children}</a>}
