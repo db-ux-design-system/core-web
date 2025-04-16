@@ -64,7 +64,7 @@
     "@axe-core/playwright": "^4.10.1",
     "@commitlint/cli": "19.8.0",
     "@commitlint/config-conventional": "19.8.0",
-    "@db-ux/db-theme": "2.0.0-fix-font-weight-ae3wyzfo",
+    "@db-ux/db-theme": "2.0.1",
     "@double-great/stylelint-a11y": "3.0.4",
     "@guidepup/guidepup": "0.24.0",
     "@guidepup/playwright": "^0.14.2",
