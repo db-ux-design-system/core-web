@@ -48,7 +48,7 @@ const getNavigationItem = ({
 					</DBNavigationItem>
 				</>
 			}>
-			{children}
+			{areaPopup ? children : <a href="#">{children}</a>}
 		</DBNavigationItem>
 	</ul>
 );
