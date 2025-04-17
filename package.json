@@ -110,6 +110,7 @@
     "zone.js": "~0.15.0"
   },
   "overrides": {
+    "@db-ux/db-theme-fonts": "2.0.1",
     "cross-spawn": "~7.0.5",
     "vite": "$vite"
   },
