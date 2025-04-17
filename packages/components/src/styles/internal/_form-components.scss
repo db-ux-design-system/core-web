@@ -428,6 +428,21 @@ $input-valid-types:
 	}
 }
 
+@mixin get-validity-color-check-label-color($state, $key: "valid") {
+	$variant: successful;
+
+	@if ($key != "valid") {
+		$variant: critical;
+	}
+
+	&:has(input:not([role="switch"])) {
+		&:is(label),
+		> label {
+			color: var(--db-#{$variant}-on-bg-basic-emphasis-100-#{$state});
+		}
+	}
+}
+
 // CHECKBOX & RADIO
 
 @mixin get-validity-color-check($key: "valid") {
@@ -493,6 +508,42 @@ $input-valid-types:
 
 	@include get-validity($selector, "invalid") {
 		@include get-validity-color-check("invalid");
+	}
+
+	@include helpers.hover {
+		color: colors.$db-adaptive-on-bg-basic-emphasis-100-hovered;
+
+		@include get-validity($selector, "valid") {
+			@include get-validity-color-check-label-color(hovered, "valid");
+		}
+
+		@include get-validity($selector, "invalid") {
+			@include get-validity-color-check-label-color(hovered, "invalid");
+		}
+
+		@if ($selector == radio) {
+			input {
+				/* stylelint-disable-next-line db-ux/use-border-width */
+				border: #{$check-border-size}
+					solid
+					var(
+						--db-check-element-border-color,
+						#{colors.$db-adaptive-on-bg-basic-emphasis-100-default}
+					);
+			}
+		}
+	}
+
+	@include helpers.active {
+		color: colors.$db-adaptive-on-bg-basic-emphasis-100-pressed;
+
+		@include get-validity($selector, "valid") {
+			@include get-validity-color-check-label-color(pressed, "valid");
+		}
+
+		@include get-validity($selector, "invalid") {
+			@include get-validity-color-check-label-color(pressed, "invalid");
+		}
 	}
 
 	&:has(input:disabled) {
