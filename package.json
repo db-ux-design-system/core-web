@@ -64,7 +64,7 @@
     "@axe-core/playwright": "^4.10.1",
     "@commitlint/cli": "19.8.0",
     "@commitlint/config-conventional": "19.8.0",
-    "@db-ux/db-theme": "2.0.1",
+    "@db-ux/db-theme": "2.0.2",
     "@double-great/stylelint-a11y": "3.0.4",
     "@guidepup/guidepup": "0.24.0",
     "@guidepup/playwright": "^0.14.2",
@@ -110,7 +110,6 @@
     "zone.js": "~0.15.0"
   },
   "overrides": {
-    "@db-ux/db-theme-fonts": "2.0.1",
     "cross-spawn": "~7.0.5",
     "vite": "$vite"
   },
