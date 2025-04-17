@@ -11,7 +11,7 @@
 }
 
 @mixin cursor-pointer() {
-	cursor: pointer;
+	cursor: var(--db-overwrite-cursor, pointer);
 	@content;
 
 	&:is(textarea),

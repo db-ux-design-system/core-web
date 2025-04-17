@@ -1,6 +1,9 @@
 import {
 	GlobalProps,
 	GlobalState,
+	InitializedState,
+	NameProps,
+	NameState,
 	TextProps,
 	ToggleEventProps,
 	ToggleEventState
@@ -27,12 +30,15 @@ export type DBAccordionItemDefaultProps = {
 
 export type DBAccordionItemProps = DBAccordionItemDefaultProps &
 	GlobalProps &
-	ToggleEventProps;
+	ToggleEventProps &
+	NameProps;
 
 export type DBAccordionItemDefaultState = {
-	_open: boolean;
+	_open?: boolean;
 };
 
 export type DBAccordionItemState = DBAccordionItemDefaultState &
 	GlobalState &
-	ToggleEventState<HTMLElement>;
+	ToggleEventState<HTMLElement> &
+	InitializedState &
+	NameState;

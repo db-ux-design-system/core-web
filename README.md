@@ -92,13 +92,14 @@ We're providing a detailed migration for each component next to the documentatio
 
 Check our migration docs for breaking changes:
 
-1. [Alpha ➡ Beta](https://github.com/db-ux-design-system/core-web/tree/main/docs/migration/alpha-beta.md) (0.0.x➡0.x.x)
-2. [v0.2 ➡ v0.3](https://github.com/db-ux-design-system/core-web/tree/main/docs/migration/v0.2.x-to-v0.3.x.md)
-3. [v0.3 ➡ v0.4](https://github.com/db-ux-design-system/core-web/tree/main/docs/migration/v0.3.x-to-v0.4.x.md)
+1. [Alpha ➡ Beta](https://github.com/db-ux-design-system/core-web/blob/main/docs/migration/alpha-beta.md) (0.0.x➡0.x.x)
+2. [v0.2 ➡ v0.3](https://github.com/db-ux-design-system/core-web/blob/main/docs/migration/v0.2.x-to-v0.3.x.md)
+3. [v0.3 ➡ v0.4](https://github.com/db-ux-design-system/core-web/blob/main/docs/migration/v0.3.x-to-v0.4.x.md)
 4. v0.4 ➡ v0.5: no migration needed, no breaking changes
-5. [v0.5 ➡ v0.6](https://github.com/db-ux-design-system/core-web/tree/main/docs/migration/v0.5.x-to-v0.6.x.md)
-6. [v0.6 ➡ v0.7](https://github.com/db-ux-design-system/core-web/tree/main/docs/migration/v0.6.x-to-v0.7.x.md)
+5. [v0.5 ➡ v0.6](https://github.com/db-ux-design-system/core-web/blob/main/docs/migration/v0.5.x-to-v0.6.x.md)
+6. [v0.6 ➡ v0.7](https://github.com/db-ux-design-system/core-web/blob/main/docs/migration/v0.6.x-to-v0.7.x.md)
 7. [v0.7 ➡ v1.0](https://github.com/db-ux-design-system/core-web/blob/main/docs/migration/v0.7.x-to-v1.0.0.md)
+8. [v1.x ➡ v2.0](https://github.com/db-ux-design-system/core-web/blob/main/docs/migration/v1.x.x-to-v2.0.0.md)
 
 ## FAQ
 

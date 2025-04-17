@@ -17,8 +17,8 @@ useMetadata({});
 useDefaultProps<DBDrawerProps>({});
 
 export default function DBDrawer(props: DBDrawerProps) {
-	const _ref = useRef<HTMLDialogElement | null>(null);
-	const dialogContainerRef = useRef<HTMLDivElement | null>(null);
+	const _ref = useRef<HTMLDialogElement | any>(null);
+	const dialogContainerRef = useRef<HTMLDivElement | any>(null);
 	const state = useStore<DBDrawerState>({
 		// eslint-disable-next-line @typescript-eslint/no-explicit-any
 		handleClose: (event: any) => {
@@ -82,9 +82,7 @@ export default function DBDrawer(props: DBDrawerProps) {
 			id={props.id}
 			ref={_ref}
 			class="db-drawer"
-			onClick={(event) => {
-				state.handleClose(event);
-			}}
+			onClick={(event) => state.handleClose(event)}
 			onKeyDown={(event) => state.handleClose(event)}
 			data-backdrop={props.backdrop}
 			data-variant={props.variant}>

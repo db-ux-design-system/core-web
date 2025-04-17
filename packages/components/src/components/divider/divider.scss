@@ -19,7 +19,7 @@
 	}
 
 	&:not([data-variant="vertical"]) {
-		block-size: variables.$db-border-height-3xs;
+		block-size: variables.$db-border-width-3xs;
 
 		@include helpers.divider();
 
@@ -29,7 +29,7 @@
 	}
 
 	&[data-variant="vertical"] {
-		inline-size: variables.$db-border-height-3xs;
+		inline-size: variables.$db-border-width-3xs;
 
 		@include helpers.divider("left");
 

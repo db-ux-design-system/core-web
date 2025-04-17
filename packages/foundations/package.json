@@ -9,8 +9,8 @@
   },
   "license": "DB Design License",
   "main": "./build/index.js",
-  "module": "./build/index.js",
   "types": "./build/index.d.ts",
+  "module": "./build/index.js",
   "files": [
     "assets",
     "build"
@@ -48,14 +48,14 @@
     "@db-ux/icon-font-tools": "0.3.2",
     "cpr": "3.0.1",
     "cssnano": "^7.0.6",
-    "dotenv": "^16.4.7",
+    "dotenv": "^16.5.0",
     "glob": "11.0.1",
     "nodemon": "3.1.9",
     "prettier": "^3.5.3",
     "sass": "1.85.0",
     "tsx": "^4.19.3",
     "typescript": "^5.4.5",
-    "vite": "^6.2.5"
+    "vite": "^6.3.0"
   },
   "publishConfig": {
     "registry": "https://registry.npmjs.org/",

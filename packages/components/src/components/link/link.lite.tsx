@@ -14,7 +14,7 @@ useMetadata({});
 useDefaultProps<DBLinkProps>({});
 
 export default function DBLink(props: DBLinkProps) {
-	const _ref = useRef<HTMLAnchorElement | null>(null);
+	const _ref = useRef<HTMLAnchorElement | any>(null);
 	// jscpd:ignore-start
 	const state = useStore<DBLinkState>({
 		handleClick: (event: ClickEvent<HTMLAnchorElement>) => {

@@ -6,7 +6,6 @@
     - option [selected]
     - option "Option 1"
     - option "Option 2"
-    - text: Functional
   - text: Functional
   - status
   - text: chevron_down" / " Label
@@ -14,7 +13,6 @@
     - option [selected]
     - option "Option 1"
     - option "Option 2"
-    - text: (Default) Regular
   - text: (Default) Regular
   - status
   - text: chevron_down" / " Label
@@ -22,7 +20,6 @@
     - option [selected]
     - option "Option 1"
     - option "Option 2"
-    - text: Expressive
   - text: Expressive
   - status
   - text: chevron_down" / "
@@ -32,7 +29,6 @@
     - option [selected]
     - option "Option 1"
     - option "Option 2"
-    - text: (Default) Label Above
   - text: (Default) Label Above
   - status
   - text: chevron_down" / " Label
@@ -40,7 +36,6 @@
     - option
     - option "Floating Label" [selected]
     - option "Option 2"
-    - text: Floating Label
   - status
   - text: chevron_down" / "
   - link "Show Label arrow_up_right\" / \""
@@ -49,7 +44,6 @@
     - option [selected]
     - option "Option 1"
     - option "Option 2"
-    - text: (Default) True
   - text: (Default) True
   - status
   - text: chevron_down" / " Label
@@ -57,7 +51,6 @@
     - option [selected]
     - option "Option 1"
     - option "Option 2"
-    - text: "False"
   - text: "False"
   - status
   - text: chevron_down" / "
@@ -67,7 +60,6 @@
     - option [selected]
     - option "Option 1"
     - option "Option 2"
-    - text: (Default) False
   - text: (Default) False
   - status
   - text: chevron_down" / " Label
@@ -75,7 +67,6 @@
     - option [selected]
     - option "Option 1"
     - option "Option 2"
-    - text: "True"
   - text: True information_circle" / " Message
   - status
   - text: chevron_down" / "
@@ -85,7 +76,6 @@
     - option [selected]
     - option "Option 1"
     - option "Option 2"
-    - text: (Default) Empty
   - text: (Default) Empty
   - status
   - text: chevron_down" / " Label
@@ -93,7 +83,6 @@
     - option
     - option "Filled" [selected]
     - option "Option 2"
-    - text: Filled
   - status
   - text: chevron_down" / "
   - link "Validation arrow_up_right\" / \""
@@ -102,7 +91,6 @@
     - option [selected]
     - option "Option 1"
     - option "Option 2"
-    - text: (Default) No validation
   - text: (Default) No validation
   - status
   - text: chevron_down" / " Label
@@ -110,7 +98,6 @@
     - option [selected]
     - option "Option 1"
     - option "Option 2"
-    - text: Invalid
   - text: Invalid exclamation_mark_circle" / " Invalid Message
   - status
   - text: chevron_down" / " Label
@@ -118,7 +105,6 @@
     - option
     - option "Valid" [selected]
     - option "Option 2"
-    - text: Valid
   - text: check_circle" / " Valid message
   - status
   - text: chevron_down" / "
@@ -128,7 +114,6 @@
     - option [selected]
     - option "Option 1"
     - option "Option 2"
-    - text: (Default) False
   - text: (Default) False
   - status
   - text: chevron_down" / " Label
@@ -136,7 +121,6 @@
     - option [selected]
     - option "Option 1"
     - option "Option 2"
-    - text: "True"
   - text: "True"
   - status
   - text: chevron_down" / "
@@ -146,7 +130,6 @@
     - option [selected]
     - option "Option 1"
     - option "Option 2"
-    - text: (Default) Text
   - text: (Default) Text
   - status
   - text: chevron_down" / " Label
@@ -154,7 +137,6 @@
     - option [selected]
     - option "Option 1"
     - option "Option 2"
-    - text: Text - Leading Icon
   - text: Text - Leading Icon
   - status
   - text: chevron_down" / "
@@ -164,7 +146,6 @@
     - option [selected]
     - option "Option 1"
     - option "Option 2"
-    - text: (Default) False
   - text: (Default) False
   - status
   - text: chevron_down" / " Label*" / "
@@ -172,7 +153,6 @@
     - option [selected]
     - option "Option 1"
     - option "Option 2"
-    - text: "True"
   - text: "True"
   - status
   - text: chevron_down" / "
@@ -182,7 +162,6 @@
     - option [selected]
     - option "Option 1"
     - option "Option 2"
-    - text: (Default) Empty
   - text: (Default) Empty
   - status
   - text: chevron_down" / " Label
@@ -190,13 +169,11 @@
     - option
     - option "Filled" [selected]
     - option "Option 2"
-    - text: Filled
   - status
   - text: chevron_down" / " Label
   - combobox "Label" [disabled]:
     - option
     - option "Disabled" [selected]
     - option "Option 2"
-    - text: Disabled
   - status
   - text: chevron_down" / "

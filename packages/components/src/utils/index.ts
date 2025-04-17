@@ -202,3 +202,6 @@ export const stringPropVisible = (
 		return Boolean(showString) && Boolean(givenString);
 	}
 };
+
+export const getSearchInput = (element: HTMLElement): HTMLInputElement | null =>
+	element.querySelector<HTMLInputElement>(`input[type="search"]`);

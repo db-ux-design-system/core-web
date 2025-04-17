@@ -44,8 +44,11 @@ export const generateIconTypes = ({
 			writeFileSync(`${outDir}/${name}.ts`, content);
 		}
 
-		const indexContent = filesToWrite
-			.map(({ name }) => `export * from "./${name}.js";`)
+		const indexContent = [
+			...filesToWrite.map(({ name }) => name),
+			'icon-types'
+		]
+			.map((name) => `export * from "./${name}.js";`)
 			.join('\n');
 
 		writeFileSync(`${outDir}/index.ts`, indexContent);

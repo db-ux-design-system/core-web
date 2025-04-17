@@ -33,15 +33,16 @@
     "mv:package.json": "cpr package.json ../../build-outputs/vue/package.json -o",
     "mv:readme": "cpr README.md ../../build-outputs/vue/README.md -o",
     "postbuild": "npm-run-all -p mv:*",
-    "test:components": "playwright test -c playwright.config.ts"
+    "test:components": "playwright test -c playwright.config.ts",
+    "test:components:ui": "playwright test -c playwright.config.ts --ui"
   },
   "devDependencies": {
-    "@playwright/experimental-ct-vue": "1.50.1",
+    "@playwright/experimental-ct-vue": "1.51.1",
     "@vitejs/plugin-vue": "^5.2.3",
     "replace-in-file": "^8.3.0",
     "tsx": "^4.19.3",
     "typescript": "^5.4.5",
-    "vite": "^6.2.5",
+    "vite": "^6.3.0",
     "vue": "^3.5.13",
     "vue-tsc": "^2.2.8"
   },
