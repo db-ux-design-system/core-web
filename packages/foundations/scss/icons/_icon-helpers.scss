@@ -45,7 +45,10 @@ $default-icon-font-size: var(--db-icon-font-size, #{$default-icon-size-rem});
 @mixin icon-content($icon) {
 	content: $icon;
 	// Hiding icon from screenreaders, https://www.w3.org/TR/css-content-3/#alt
-	content: $icon / "";
+	// TODO: remove the @support wrapper as soon as we drop our part-support for Firefox < version 128
+	@supports (content: ""/"") {
+		content: $icon / "";
+	}
 }
 
 @mixin to-filled-icon() {
