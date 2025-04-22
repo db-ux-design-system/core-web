@@ -37,7 +37,7 @@ export type DBNotificationDefaultProps = {
 	/**
 	 * The closeable attribute shows/hides the close button on the top right.
 	 */
-	closeable?: boolean;
+	closeable?: boolean | string;
 
 	/**
 	 * The headline attribute changes the text of the bold headline.
@@ -62,7 +62,7 @@ export type DBNotificationDefaultProps = {
 	/**
 	 * Enables or disables the visibility of the headline.
 	 */
-	showHeadline?: boolean;
+	showHeadline?: boolean | string;
 
 	/**
 	 * The timestamp attribute can be set for overlay notifications
@@ -72,7 +72,7 @@ export type DBNotificationDefaultProps = {
 	/**
 	 * Enables or disables the visibility of the timestamp.
 	 */
-	showTimestamp?: boolean;
+	showTimestamp?: boolean | string;
 
 	/**
 	 * The variant attribute changes the styling of the notification.

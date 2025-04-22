@@ -12,31 +12,23 @@ import { SelectsComponent } from '../form/selects/selects.component';
 import { CheckboxesComponent } from '../form/checkboxes/checkboxes.component';
 import { environment } from '../../../environments/environment';
 import { DefaultComponent } from '../default.component';
+import { RadiosComponent } from '../form/radios/radios.component';
 
 @Component({
 	selector: 'app-home',
 	templateUrl: './home.component.html',
-	imports: environment.webComponents
-		? [
-				DefaultComponent,
-				InputsComponent,
-				FormComponent,
-				TextareasComponent,
-				SelectsComponent,
-				CheckboxesComponent
-			]
-		: [
-				DBTabs,
-				DBTabItem,
-				DBTabList,
-				DBTabPanel,
-				InputsComponent,
-				FormComponent,
-				TextareasComponent,
-				SelectsComponent,
-				CheckboxesComponent
-			],
 	standalone: true,
-	schemas: [CUSTOM_ELEMENTS_SCHEMA]
+	imports: [
+		InputsComponent,
+		FormComponent,
+		TextareasComponent,
+		SelectsComponent,
+		CheckboxesComponent,
+		RadiosComponent,
+		...(environment.webComponents
+			? []
+			: [DBTabs, DBTabItem, DBTabList, DBTabPanel])
+	],
+	schemas: environment.webComponents ? [CUSTOM_ELEMENTS_SCHEMA] : []
 })
 export class HomeComponent {}

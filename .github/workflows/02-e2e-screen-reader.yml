@@ -41,14 +41,15 @@ jobs:
       - name: ⏬ Download react-showcase
         uses: actions/download-artifact@v4
         with:
-          name: db-ui-react-showcase
+          name: db-ux-react-showcase
           path: build-showcases/react-showcase
 
       - name: 👩‍🔬 Test showcase with Playwright 🎭
+        shell: bash
         env:
           showcase: react-showcase
         run: |
-          npm run test:screen-reader:${{ env.OS }} --workspace=react-showcase -- --shard=${{ matrix.shardIndex }}/${{ matrix.shardTotal }}
+          npm run test-sr:${{ env.OS }} --workspace=react-showcase -- --shard=${{ matrix.shardIndex }}/${{ matrix.shardTotal }}
 
       - name: 🆙 Upload test results
         if: failure()

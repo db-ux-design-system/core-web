@@ -1,10 +1,10 @@
-@use "@db-ui/foundations/build/scss/variables";
-@use "@db-ui/foundations/build/scss/icons";
-@use "@db-ui/foundations/build/scss/fonts";
-@use "@db-ui/foundations/build/scss/colors";
-@use "@db-ui/foundations/build/scss/helpers";
-@use "../../styles/component";
-@use "../../styles/form-components";
+@use "@db-ux/core-foundations/build/styles/variables";
+@use "@db-ux/core-foundations/build/styles/icons";
+@use "@db-ux/core-foundations/build/styles/fonts";
+@use "@db-ux/core-foundations/build/styles/colors";
+@use "@db-ux/core-foundations/build/styles/helpers";
+@use "../../styles/internal/component";
+@use "../../styles/internal/form-components";
 
 %center-icon {
 	&::before {
@@ -15,11 +15,11 @@
 		justify-content: center;
 		block-size: calc(
 			#{form-components.$font-size-height} - 2 *
-				#{variables.$db-border-height-3xs}
+				#{variables.$db-border-width-3xs}
 		);
 		inline-size: calc(
 			#{form-components.$font-size-height} - 2 *
-				#{variables.$db-border-height-3xs}
+				#{variables.$db-border-width-3xs}
 		);
 	}
 }

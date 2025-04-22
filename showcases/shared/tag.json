@@ -40,12 +40,6 @@
 				"name": "(Default) Adaptive"
 			},
 			{
-				"name": "Neutral",
-				"props": {
-					"semantic": "neutral"
-				}
-			},
-			{
 				"name": "Critical",
 				"props": {
 					"semantic": "critical"
@@ -55,6 +49,12 @@
 				"name": "Informational",
 				"props": {
 					"semantic": "informational"
+				}
+			},
+			{
+				"name": "Neutral",
+				"props": {
+					"semantic": "neutral"
 				}
 			},
 			{
@@ -70,15 +70,20 @@
 				}
 			},
 			{
-				"name": "Adaptive Strong",
+				"name": "Line Break",
 				"props": {
-					"emphasis": "strong"
+					"lineBreak": true
 				}
 			},
 			{
-				"name": "Neutral Strong",
+				"name": "Line Break",
 				"props": {
-					"semantic": "neutral",
+					"lineBreak": true
+				}
+			},
+			{
+				"name": "Adaptive Strong",
+				"props": {
 					"emphasis": "strong"
 				}
 			},
@@ -93,6 +98,13 @@
 				"name": "Informational Strong",
 				"props": {
 					"semantic": "informational",
+					"emphasis": "strong"
+				}
+			},
+			{
+				"name": "Neutral Strong",
+				"props": {
+					"semantic": "neutral",
 					"emphasis": "strong"
 				}
 			},
@@ -113,14 +125,26 @@
 		]
 	},
 	{
-		"name": "Behaviour",
+		"name": "Behavior",
 		"role": "group",
 		"examples": [
 			{
 				"name": "(Default) Static"
 			},
 			{
-				"name": "Interactive Button",
+				"name": "Removable",
+				"props": {
+					"behavior": "removable"
+				}
+			},
+			{
+				"name": "Line Break",
+				"props": {
+					"lineBreak": true
+				}
+			},
+			{
+				"name": "Interactive (Button)",
 				"props": {
 					"component": "button"
 				},
@@ -133,7 +157,7 @@
 				]
 			},
 			{
-				"name": "Interactive Link",
+				"name": "Interactive (Link)",
 				"props": {
 					"component": "link"
 				},
@@ -149,7 +173,13 @@
 				]
 			},
 			{
-				"name": "Interactive Checkbox",
+				"name": "Line Break",
+				"props": {
+					"lineBreak": true
+				}
+			},
+			{
+				"name": "Interactive (Checkbox)",
 				"props": {
 					"component": "checkbox"
 				},
@@ -175,7 +205,7 @@
 				]
 			},
 			{
-				"name": "Interactive Radio 1",
+				"name": "Interactive (Radio)",
 				"props": {
 					"component": "radio",
 					"identifier": "radio01"
@@ -229,21 +259,15 @@
 						]
 					}
 				]
-			},
-			{
-				"name": "Removeable",
-				"props": {
-					"behaviour": "removable"
-				}
 			}
 		]
 	},
 	{
-		"name": "State",
+		"name": "Checked",
 		"role": "group",
 		"examples": [
 			{
-				"name": "(Default) Unchecked",
+				"name": "(Default) False",
 				"props": {
 					"component": "checkbox"
 				},
@@ -269,7 +293,7 @@
 				]
 			},
 			{
-				"name": "Checked",
+				"name": "True",
 				"props": {
 					"component": "checkbox",
 					"checked": true
@@ -295,12 +319,43 @@
 						]
 					}
 				]
+			}
+		]
+	},
+	{
+		"name": "Disabled",
+		"role": "group",
+		"examples": [
+			{
+				"name": "(Default) False",
+				"props": {
+					"component": "checkbox"
+				},
+				"children": [
+					{
+						"name": "label",
+						"native": true,
+						"content": "Interactive Checkbox",
+						"props": {
+							"for": "checkbox02"
+						},
+						"children": [
+							{
+								"name": "input",
+								"native": true,
+								"props": {
+									"id": "checkbox02",
+									"type": "checkbox"
+								}
+							}
+						]
+					}
+				]
 			},
 			{
-				"name": "Disabled",
+				"name": "True",
 				"props": {
 					"component": "checkbox",
-					"checked": true,
 					"disabled": true
 				},
 				"children": [
@@ -329,23 +384,109 @@
 		]
 	},
 	{
-		"name": "Content",
+		"name": "Show Icon",
 		"examples": [
 			{
-				"name": "(Default) Text"
+				"name": "(Default) False",
+				"props": {
+					"icon": "x_placeholder",
+					"showIcon": false
+				}
 			},
 			{
-				"name": "Icon",
+				"name": "True",
 				"props": {
-					"icon": "person",
+					"icon": "x_placeholder",
+					"showIcon": true
+				}
+			}
+		]
+	},
+	{
+		"name": "No Text",
+		"examples": [
+			{
+				"name": "(Default) False",
+				"props": {
+					"icon": "x_placeholder"
+				}
+			},
+			{
+				"name": "True",
+				"props": {
+					"icon": "x_placeholder",
 					"noText": true
 				}
+			}
+		]
+	},
+	{
+		"name": "Show Slot",
+		"examples": [
+			{
+				"name": "(Default) False"
 			},
 			{
-				"name": "Icon & Text",
+				"name": "True",
 				"props": {
-					"icon": "person"
+					"icon": "x_placeholder",
+					"content": true
 				}
+			}
+		]
+	},
+	{
+		"name": "Show Check State",
+		"examples": [
+			{
+				"name": "(Default) True",
+				"props": {
+					"component": "checkbox",
+					"showCheckState": true
+				},
+				"children": [
+					{
+						"name": "label",
+						"native": true,
+						"content": "Interactive Checkbox",
+						"props": {
+							"for": "checkbox099"
+						},
+						"children": [
+							{
+								"name": "input",
+								"native": true,
+								"id": "checkbox099",
+								"type": "checkbox"
+							}
+						]
+					}
+				]
+			},
+			{
+				"name": "False",
+				"props": {
+					"component": "checkbox",
+					"showCheckState": false
+				},
+				"children": [
+					{
+						"name": "label",
+						"native": true,
+						"content": "Interactive Checkbox",
+						"props": {
+							"for": "checkbox099"
+						},
+						"children": [
+							{
+								"name": "input",
+								"native": true,
+								"id": "checkbox099",
+								"type": "checkbox"
+							}
+						]
+					}
+				]
 			}
 		]
 	},
@@ -353,10 +494,10 @@
 		"name": "Overflow",
 		"examples": [
 			{
-				"name": "(Default) No Overflow"
+				"name": "(Default) False"
 			},
 			{
-				"name": "With Overflow (max-width)",
+				"name": "True - lorem ipsum dolor",
 				"props": {
 					"overflow": true
 				}
@@ -364,7 +505,7 @@
 		]
 	},
 	{
-		"name": "Example",
+		"name": "Example Strong",
 		"role": "group",
 		"examples": [
 			{
@@ -372,8 +513,8 @@
 				"props": {
 					"component": "button",
 					"emphasis": "strong",
-					"icon": "person",
-					"behaviour": "removable"
+					"icon": "x_placeholder",
+					"behavior": "removable"
 				},
 				"children": [
 					{
@@ -388,7 +529,7 @@
 				"props": {
 					"component": "link",
 					"emphasis": "strong",
-					"icon": "person"
+					"icon": "x_placeholder"
 				},
 				"children": [
 					{
@@ -406,7 +547,7 @@
 				"props": {
 					"component": "checkbox",
 					"emphasis": "strong",
-					"icon": "person"
+					"icon": "x_placeholder"
 				},
 				"children": [
 					{
@@ -432,7 +573,7 @@
 				"props": {
 					"component": "radio",
 					"emphasis": "strong",
-					"icon": "person",
+					"icon": "x_placeholder",
 					"identifier": "radio03"
 				},
 				"children": [
@@ -462,8 +603,8 @@
 				"props": {
 					"component": "radio",
 					"emphasis": "strong",
-					"icon": "person",
-					"identifier": "radio02"
+					"icon": "x_placeholder",
+					"identifier": "radio03"
 				},
 				"children": [
 					{
@@ -478,7 +619,7 @@
 								"name": "input",
 								"native": true,
 								"props": {
-									"name": "radio04",
+									"name": "radio03",
 									"id": "radio04",
 									"type": "radio"
 								}

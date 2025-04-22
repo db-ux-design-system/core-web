@@ -9,16 +9,16 @@ Most use cases of the Design System might work in other IDEs as well.
 
 ## Autocomplete for CSS classes and CSS Custom Properties (Variables)
 
-You can enable auto-complete of CSS classes (like e.g. `db-container-color-cyan`) for `HTML` or `JSX` and CSS Custom Properties (like e.g. `var(--db-bg-basic-level-1-default)`) in `.css` or `.scss` files by including `@db-ui/foundations/build/ide`.
+You can enable auto-complete of CSS classes (like e.g. `db-color-cyan`) for `HTML` or `JSX` and CSS Custom Properties (like e.g. `var(--db-bg-basic-level-1-default)`) in `.css` or `.scss` files by including `@db-ux/core-foundations/build/ide`.
 
 > **Note:** The contents of this directory shouldn't be included/referenced inside your app. It's only serving as a file containing declarations for autocompletion inside your IDE. All values for classes and properties don't reflect the real values, and neither does the CSS selector. The correct values my differ based on multiple circumstances like light-/dark-mode or screen-size etc. Therefore, there isn't a 1:1 mapping.
 
 ### JetBrain IDEs (like. IntelliJ IDEA, WebStorm, etc.)
 
 1. Goto `File/Settings/Languages & Frameworks/Javascript/Libraries`
-2. Press the `Add` button and write `db-ui` into the "name" input. This name will be shown in the auto-complete popup during coding. You can change the name if you want to. Keep the rest of the settings as default: `Framework type: <Custom>` and `Visibility: Project`.
+2. Press the `Add` button and write `db-ux` into the "name" input. This name will be shown in the auto-complete popup during coding. You can change the name if you want to. Keep the rest of the settings as default: `Framework type: <Custom>` and `Visibility: Project`.
 3. Next press the ➕ button below `Visibility` and select `Attach Directories...`
-4. This will open a file manager. Navigate to your current projects `node_modules/@db-ui/foundations/build/ide` and select the `ide` folder. Press `OK`.
+4. This will open a file manager. Navigate to your current projects `node_modules/@db-ux/core-foundations/build/ide` and select the `ide` folder. Press `OK`.
 5. The folder should be included in the list below the ➕ button. Press `Apply` on the bottom.
 6. Everything should work now. Close the settings and move to a `html` or `jsx/tsx` file and write `class="db-` as attribute to an element. You should see all `db-*` classes for auto-completion. Furthermore, you can go to a `.css` file and write inside a selector `color: db-`. You should see the autocomplete for CSS Custom Properties. By pressing `ENTER` this will automatically add `var(--db-xxx)`.
 
@@ -35,7 +35,7 @@ You can enable auto-complete of CSS classes (like e.g. `db-container-color-cyan`
 		"**/*.scss",
 		"**/*.sass",
 		"**/*.less",
-		"node_modules/@db-ui/foundations/build/ide/db.ide.css"
+		"node_modules/@db-ux/core-foundations/build/ide/db.ide.css"
 	]
 }
 ```

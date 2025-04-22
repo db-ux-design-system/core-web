@@ -1,14 +1,14 @@
 @use "sass:map";
-@use "@db-ui/foundations/build/scss/animation";
-@use "@db-ui/foundations/build/scss/variables";
-@use "@db-ui/foundations/build/scss/fonts";
-@use "@db-ui/foundations/build/scss/icons";
-@use "@db-ui/foundations/build/scss/helpers";
-@use "@db-ui/foundations/build/scss/colors";
-@use "../../styles/button-components";
-@use "../../styles/tag-components";
-@use "../../styles/icon-passing";
-@use "../../styles/component";
+@use "@db-ux/core-foundations/build/styles/animation";
+@use "@db-ux/core-foundations/build/styles/variables";
+@use "@db-ux/core-foundations/build/styles/fonts";
+@use "@db-ux/core-foundations/build/styles/icons";
+@use "@db-ux/core-foundations/build/styles/helpers";
+@use "@db-ux/core-foundations/build/styles/colors";
+@use "../../styles/internal/button-components";
+@use "../../styles/internal/tag-components";
+@use "../../styles/internal/icon-passing";
+@use "../../styles/internal/component";
 
 %no-text {
 	&[data-no-text="true"] {
@@ -17,6 +17,7 @@
 		@include icons.is-icon-text-replace();
 
 		padding: 0;
+		gap: 0;
 
 		label {
 			@include icons.is-icon-text-replace();
@@ -26,6 +27,7 @@
 	&:not([data-no-text="true"]) {
 		--db-padding-inline-start: #{variables.$db-spacing-fixed-2xs};
 
+		/* stylelint-disable-next-line db-ux/use-spacings */
 		padding-inline: var(--db-padding-inline-start)
 			#{variables.$db-spacing-fixed-2xs};
 
@@ -44,7 +46,7 @@
 }
 
 %db-tag {
-	--db-icon-margin-end: #{variables.$db-spacing-fixed-2xs};
+	--db-icon-margin-end: 0;
 
 	@extend %default-interactive-component;
 	@extend %db-overwrite-font-size-sm;
@@ -56,6 +58,7 @@
 	min-inline-size: variables.$db-sizing-sm;
 	inline-size: fit-content;
 	position: relative;
+	gap: variables.$db-spacing-fixed-2xs;
 
 	&:not(:has(#{tag-components.$interactive-selectors})),
 	&:has(.db-tab-remove-button) {
@@ -65,6 +68,8 @@
 	}
 
 	&:has(#{tag-components.$interactive-selectors}) {
+		--db-icon-margin-end: #{variables.$db-spacing-fixed-2xs};
+
 		@include icon-passing.icon-passing(variables.$db-spacing-fixed-2xs);
 		@include tag-components.get-tag-colors-interactive();
 	}
@@ -88,7 +93,18 @@
 .db-tag {
 	@extend %db-tag;
 
-	position: relative;
+	&[data-show-check-state="true"] {
+		label {
+			--db-icon-margin-start: #{variables.$db-spacing-fixed-2xs};
+
+			@include icons.set-icon("circle", "after");
+
+			/* TODO: maybe we could get rid of an expensive :has selector by defining this icon on the input itself */
+			&:has(input:checked) {
+				@include icons.set-icon("check_circle", "after");
+			}
+		}
+	}
 
 	label {
 		@extend %default-transition;
@@ -104,8 +120,12 @@
 			}
 		}
 
+		&::after {
+			@include fonts.set-component-variables("xs");
+		}
+
 		&:has(input:checked) {
-			border-width: variables.$db-border-height-3xs;
+			border-width: variables.$db-border-width-3xs;
 
 			&::before {
 				content: none;
@@ -126,11 +146,6 @@
 			aspect-ratio: unset;
 
 			&:checked {
-				&,
-				&:not(:disabled):is(:hover, :focus, :active) {
-					background-color: colors.$db-brand-bg-basic-transparent-full-default;
-				}
-
 				&:not([data-hide-icon-before="true"]) {
 					&::before {
 						content: none;
@@ -213,7 +228,7 @@
 		button {
 			// overwrite to transparent
 			background-color: colors.$db-adaptive-bg-basic-transparent-full-default;
-			margin-inline-start: variables.$db-spacing-fixed-2xs;
+			color: currentcolor;
 			border: 0;
 			aspect-ratio: 1 / 1;
 		}

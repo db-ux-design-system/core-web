@@ -1,6 +1,10 @@
 module.exports = {
 	prettier: true,
-	ignores: ['./showcases/nuxt-showcase/**', './packages/migration/**'],
+	ignores: [
+		'./showcases/nuxt-showcase/**',
+		'./packages/migration/**',
+		'./packages/foundations/**'
+	],
 	overrides: [
 		{
 			files: ['./showcases/angular-showcase/**'],
@@ -49,7 +53,11 @@ module.exports = {
 		{
 			files: ['./showcases/e2e/**'],
 			rules: {
-				'@typescript-eslint/no-loop-func': 0 // this is fine for playwright testing
+				'@typescript-eslint/no-loop-func': 0, // this is fine for playwright testing
+				'@typescript-eslint/prefer-nullish-coalescing': [
+					'error',
+					{ ignorePrimitives: { boolean: true } }
+				]
 			}
 		},
 		{
@@ -57,6 +65,18 @@ module.exports = {
 			rules: {
 				// Playwright tests are async we shall use loops there
 				'no-await-in-loop': 0
+			}
+		},
+		{
+			files: ['./scripts/**'],
+			rules: {
+				// We could set the correct path to package.json for the following folder, as we're only using the scripts package as an abtraction, but list those dependencies in roots package.json file
+				'import/no-extraneous-dependencies': [
+					'error',
+					{ packageDir: './' }
+				],
+				// Node.js environment
+				'no-console': 'off'
 			}
 		}
 	],

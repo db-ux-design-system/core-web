@@ -1,12 +1,12 @@
 @charset "utf-8";
 
-@use "@db-ui/foundations/build/scss/fonts";
-@use "@db-ui/foundations/build/scss/variables";
-@use "@db-ui/foundations/build/scss/animation";
-@use "@db-ui/foundations/build/scss/helpers";
-@use "@db-ui/foundations/build/scss/icons";
-@use "@db-ui/foundations/build/scss/colors";
-@use "../../styles/link-components";
+@use "@db-ux/core-foundations/build/styles/fonts";
+@use "@db-ux/core-foundations/build/styles/variables";
+@use "@db-ux/core-foundations/build/styles/animation";
+@use "@db-ux/core-foundations/build/styles/helpers";
+@use "@db-ux/core-foundations/build/styles/icons";
+@use "@db-ux/core-foundations/build/styles/colors";
+@use "../../styles/internal/link-components";
 
 .db-link {
 	@extend %db-default-link;
@@ -34,20 +34,21 @@
 		--db-icon-margin-start: #{variables.$db-spacing-fixed-2xs};
 
 		&::after {
+			/* stylelint-disable-next-line db-ux/use-spacings */
 			margin-inline-start: var(--db-icon-margin-start);
 		}
 	}
 
 	// We couldn't extend any existing SCSS placeholders, as this is a special construct
 	&[data-variant="brand"] {
-		color: colors.$db-brand-bg-inverted-contrast-high-default;
+		color: colors.$db-brand-on-bg-basic-emphasis-80-default;
 
 		@include helpers.hover {
-			color: #{colors.$db-brand-bg-inverted-contrast-high-hovered};
+			color: #{colors.$db-brand-on-bg-basic-emphasis-80-hovered};
 		}
 
 		@include helpers.active {
-			color: #{colors.$db-brand-bg-inverted-contrast-high-pressed};
+			color: #{colors.$db-brand-on-bg-basic-emphasis-80-pressed};
 		}
 	}
 

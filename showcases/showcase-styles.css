@@ -11,6 +11,11 @@
 	padding: var(--db-spacing-fixed-md);
 }
 
+/* Linebreak for variant cards */
+.line-break {
+	inline-size: 100vw;
+}
+
 .variants-card,
 .variants-card > .db-card {
 	min-block-size: var(--db-sizing-3xl);
@@ -18,7 +23,6 @@
 	justify-content: center;
 	padding: var(--db-spacing-fixed-xl);
 	padding-block-end: calc(var(--db-spacing-fixed-xl) + var(--db-sizing-sm));
-	position: relative;
 }
 
 db-card:is(.variants-card) > .db-card {
@@ -150,13 +154,13 @@ main .db-header {
 }
 
 .stack-show-alignment {
-	border: var(--db-border-height-3xs) dashed
+	border: var(--db-border-width-3xs) dashed
 		var(--db-adaptive-on-bg-basic-emphasis-60-default);
 }
 
 .dummy-component {
 	border-radius: var(--db-border-radius-md);
-	border: var(--db-border-height-3xs) solid
+	border: var(--db-border-width-3xs) solid
 		var(--db-adaptive-on-bg-basic-emphasis-60-default);
 	background-color: var(--db-adaptive-bg-basic-level-3-default);
 	color: var(--db-adaptive-on-bg-basic-emphasis-80-default);
@@ -164,9 +168,8 @@ main .db-header {
 	padding: var(--db-spacing-fixed-3xs) var(--db-spacing-fixed-xs);
 	justify-content: center;
 	align-items: center;
-	font-size: var(--db-type-body-font-size-2xs);
+	font: var(--db-type-body-2xs);
 	font-weight: 700;
-	line-height: var(--db-type-body-line-height-2xs);
 
 	a {
 		text-decoration: none;
@@ -187,4 +190,15 @@ main .db-header {
 	.db-card {
 		inline-size: 100%;
 	}
+}
+
+.nav-item-list {
+	inline-size: 100%;
+	padding: 0;
+}
+
+.default-content-slot {
+	background-color: var(--db-successful-bg-basic-level-1-default);
+	color: var(--db-successful-on-bg-basic-emphasis-100-default);
+	padding-inline: var(--db-spacing-fixed-xs);
 }

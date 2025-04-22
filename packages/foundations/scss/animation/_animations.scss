@@ -78,18 +78,6 @@
 	}
 }
 
-@keyframes accordion-open {
-	0% {
-		opacity: 0;
-		transform: translateY(-10%);
-	}
-
-	100% {
-		opacity: 1;
-		transform: translateY(0%);
-	}
-}
-
 @keyframes popover-animation {
 	0% {
 		opacity: 0;
@@ -105,5 +93,11 @@
 			var(--db-popover-center-x, 0%),
 			var(--db-popover-center-y, 0%)
 		);
+	}
+}
+
+@keyframes rotate {
+	100% {
+		transform: rotate(1turn);
 	}
 }

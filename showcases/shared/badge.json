@@ -40,12 +40,6 @@
 				"name": "(Default) Adaptive"
 			},
 			{
-				"name": "Neutral",
-				"props": {
-					"semantic": "neutral"
-				}
-			},
-			{
 				"name": "Critical",
 				"props": {
 					"semantic": "critical"
@@ -55,6 +49,12 @@
 				"name": "Informational",
 				"props": {
 					"semantic": "informational"
+				}
+			},
+			{
+				"name": "Neutral",
+				"props": {
+					"semantic": "neutral"
 				}
 			},
 			{
@@ -76,13 +76,6 @@
 				}
 			},
 			{
-				"name": "Neutral Strong",
-				"props": {
-					"semantic": "neutral",
-					"emphasis": "strong"
-				}
-			},
-			{
 				"name": "Critical Strong",
 				"props": {
 					"semantic": "critical",
@@ -93,6 +86,13 @@
 				"name": "Informational Strong",
 				"props": {
 					"semantic": "informational",
+					"emphasis": "strong"
+				}
+			},
+			{
+				"name": "Neutral Strong",
+				"props": {
+					"semantic": "neutral",
 					"emphasis": "strong"
 				}
 			},

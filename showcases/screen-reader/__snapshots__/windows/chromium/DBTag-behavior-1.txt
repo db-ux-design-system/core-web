@@ -1,0 +1,1 @@
+["(Default) Static","Removable","button, Remove","","button, Interactive (Button)","link, Interactive (Link)","check box, not checked, Interactive (Checkbox)","checked","Interactive (Checkbox)",""]

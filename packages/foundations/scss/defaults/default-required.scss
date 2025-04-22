@@ -1,0 +1,157 @@
+/* Required styles to normalize default css */
+
+@use "../variables";
+@use "../colors";
+@use "../helpers";
+@use "../fonts";
+@use "../screen-sizes";
+@use "../colors/default-color-icons";
+
+@forward "../colors/default-color-mappings";
+@forward "../normalize";
+
+@include screen-sizes.get-breakpoint-properties();
+
+/* stylelint-disable-next-line at-rule-prelude-no-invalid,layer-name-pattern */
+@layer #{helpers.$layer-variables} {
+	:root {
+		@extend %db-font-size-md;
+
+		/* COLORS */
+		@include default-color-icons.get-color-icons-light;
+
+		@media (prefers-color-scheme: dark) {
+			@include default-color-icons.get-color-icons-dark;
+		}
+	}
+}
+
+// We'll set the color scheme (https://developer.mozilla.org/en-US/docs/Web/CSS/color-scheme) to light and dark if it's not already set as a meta tag in the head, which would be the recommended way.
+html:not(:has(> head > meta[name="color-scheme"])) {
+	color-scheme: light dark;
+}
+
+/* TODO: Switch to attr() as soon as this one is fully supported */
+[data-mode="light"] {
+	color-scheme: light;
+}
+
+[data-mode="dark"] {
+	color-scheme: dark;
+}
+
+// *! this is an opionionated (especially based on "enhancing" normalize.css) version of minireset.css v0.0.4 | MIT License | github.com/jgthms/minireset.css
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+
+/* stylelint-disable selector-max-id */
+body,
+#root,
+#app {
+	block-size: inherit;
+}
+/* stylelint-enable selector-max-id */
+
+body {
+	font-family: var(--db-font-family-sans);
+}
+
+// Box sizing
+html {
+	box-sizing: var(--db-box-sizing, border-box);
+}
+
+// global
+* {
+	/* Use this to get similar fonts in all browser */
+	-webkit-font-smoothing: antialiased;
+	font-synthesis: none;
+	text-rendering: optimizelegibility;
+}
+
+*,
+::before,
+::after {
+	box-sizing: inherit;
+}
+
+// Make sure every elements has the current color from container above
+body,
+button,
+input,
+textarea,
+summary,
+select,
+a {
+	color: inherit;
+}
+
+// Media
+img,
+embed,
+iframe,
+object,
+video {
+	block-size: auto;
+	max-inline-size: 100%;
+}
+
+// Iframe
+iframe {
+	border: 0;
+}
+
+// Focus styles
+:is(
+	a,
+	button,
+	input,
+	textarea,
+	summary,
+	select,
+	[tabindex]:not([tabindex="-1"])
+) {
+	&:focus-visible {
+		@extend %focus-placeholder;
+	}
+}
+
+// List style / https://marketingportal.extranet.deutschebahn.com/marketingportal/Marke-und-Design/Basiselemente/Typografie#Aufzaehlungszeichen-9693110
+:where(ul) {
+	padding-inline-start: variables.$db-spacing-fixed-md;
+	/* stylelint-disable-next-line declaration-property-value-no-unknown, no-irregular-whitespace */
+	list-style-type: "\2022"+ " ";
+
+	li::marker {
+		color: #{colors.$db-brand-origin-default};
+	}
+}
+
+// * Individual styles
+// Navigation lists
+nav,
+[role="navigation"] {
+	ol,
+	ul {
+		list-style-type: "";
+		margin: 0;
+		padding: 0;
+	}
+}
+
+// Block
+fieldset {
+	border: 0;
+}
+
+// details/summary box-sizing / https://kittygiraudel.com/2021/08/23/shadow-roots-and-inheritance/
+details {
+	> *,
+	> ::before,
+	> ::after {
+		box-sizing: var(--db-box-sizing, border-box);
+	}
+}

@@ -36,7 +36,7 @@ next-env.d.ts
 public/*-showcase
 public/docs
 
-styles/db-ui-components.scss
+styles/db-ux-components.scss
 scripts/generated
 pages/components/
 components/src

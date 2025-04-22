@@ -9,27 +9,13 @@
     "preview": "npx http-server ../../build-showcases",
     "start": "ng serve --serve-path angular-showcase",
     "test:e2e": "cross-env showcase=angular-showcase npx playwright test --config=../playwright.config.ts",
+    "test:ui": "npm run test:e2e -- --ui",
     "watch": "ng build --watch --configuration development"
   },
   "dependencies": {
-    "@angular/animations": "17.3.12",
-    "@angular/common": "17.3.12",
-    "@angular/compiler": "17.3.12",
-    "@angular/core": "17.3.12",
-    "@angular/forms": "17.3.12",
-    "@angular/platform-browser": "17.3.12",
-    "@angular/platform-browser-dynamic": "17.3.12",
-    "@angular/router": "17.3.12",
-    "rxjs": "~7.8.1",
-    "sa11y": "3.2.3",
-    "tslib": "^2.8.1",
-    "zone.js": "~0.14.10"
+    "sa11y": "4.1.8"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "17.3.11",
-    "@angular/cli": "17.3.11",
-    "@angular/compiler-cli": "17.3.12",
-    "ng-packagr": "17.3.0",
     "typescript": "^5.4.5"
   }
 }

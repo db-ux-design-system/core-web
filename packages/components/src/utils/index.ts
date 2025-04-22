@@ -47,74 +47,6 @@ export const cls = (...args: ClassNameArg[]) => {
 	return result.trim();
 };
 
-const reactHtmlAttributes = [
-	'suppressHydrationWarning',
-	'suppressContentEditableWarning',
-	'translate',
-	'title',
-	'tabIndex',
-	'style',
-	'spellCheck',
-	'nonce',
-	'lang',
-	'hidden',
-	'draggable',
-	'dir',
-	'contextMenu',
-	'contentEditable',
-	'autoFocus',
-	'accessKey',
-	'is',
-	'inputMode',
-	'unselectable',
-	'security',
-	'results',
-	'vocab',
-	'typeof',
-	'rev',
-	'resource',
-	'rel',
-	'property',
-	'inlist',
-	'datatype',
-	'content',
-	'about',
-	'role',
-	'radioGroup',
-	'color'
-];
-
-export const filterPassingProps = (
-	props: Record<string, unknown>,
-	propsPassingFilter: string[]
-): Record<string, unknown> =>
-	Object.keys(props)
-		.filter(
-			(key) =>
-				(key.startsWith('data-') ||
-					key.startsWith('aria-') ||
-					key.startsWith('default') ||
-					key.startsWith('auto') ||
-					key.startsWith('item') ||
-					key.startsWith('on') ||
-					reactHtmlAttributes.includes(key)) &&
-				!propsPassingFilter.includes(key)
-		)
-		.reduce((obj: Record<string, unknown>, key: string) => {
-			return { ...obj, [key]: props[key] };
-		}, {});
-
-export const getRootProps = (
-	props: Record<string, unknown>,
-	rooProps: string[]
-): Record<string, unknown> => {
-	return Object.keys(props)
-		.filter((key) => rooProps.includes(key))
-		.reduce((obj: Record<string, unknown>, key: string) => {
-			return { ...obj, [key]: props[key] };
-		}, {});
-};
-
 export const visibleInVX = (el: Element) => {
 	const { left, right } = el.getBoundingClientRect();
 	const { innerWidth } = window;
@@ -209,95 +141,67 @@ export const delay = (fn: () => void, ms: number) =>
 	new Promise(() => setTimeout(fn, ms));
 
 /**
- * Passes `aria-*` and `data-*` attributes to correct child. Used in angular and stencil
- * @param element the ref for the component
- * @param customElementSelector the custom element in our case `db-*`
- */
-export const enableCustomElementAttributePassing = (
-	element: HTMLElement | null,
-	customElementSelector: string
-) => {
-	const parent = element?.closest(customElementSelector);
-	if (element && parent) {
-		const attributes = parent.attributes;
-		// TODO: evaluate whether we could simplify this
-		for (let i = 0; i < attributes.length; i++) {
-			const attr = attributes.item(i);
-			if (
-				attr &&
-				(attr.name.startsWith('data-') || attr.name.startsWith('aria-'))
-			) {
-				element.setAttribute(attr.name, attr.value);
-				parent.removeAttribute(attr.name);
-			}
-			if (attr && attr.name === 'class') {
-				const isWebComponent = attr.value.includes('hydrated');
-				const value = attr.value.replace('hydrated', '').trim();
-				const currentClass = element.getAttribute('class');
-				element.setAttribute(
-					attr.name,
-					`${currentClass ? `${currentClass} ` : ''}${value}`
-				);
-				if (isWebComponent) {
-					// Stencil is using this class for lazy loading component
-					parent.setAttribute('class', 'hydrated');
-				} else {
-					parent.removeAttribute(attr.name);
-				}
-			}
-		}
-	}
-};
-
-/**
  * Some frameworks like stencil would not add "true" as value for a prop
  * if it is used in a framework like angular e.g.: [disabled]="myDisabledProp"
  * @param originBool Some boolean to convert to string
  */
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-export const getBooleanAsString = (originBool?: boolean): any => {
-	if (originBool) {
-		return String(originBool);
+export const getBooleanAsString = (originBool?: boolean | string): any => {
+	if (originBool === undefined || originBool === null) return;
+
+	if (typeof originBool === 'string') {
+		return String(Boolean(originBool));
 	}
 
-	return originBool;
+	return String(originBool);
+};
+
+export const getBoolean = (
+	originBool?: boolean | string,
+	propertyName?: string
+): boolean | undefined => {
+	if (originBool === undefined || originBool === null) return;
+
+	if (typeof originBool === 'string' && propertyName) {
+		return Boolean(propertyName === originBool || originBool);
+	}
+
+	return Boolean(originBool);
+};
+
+export const getNumber = (
+	originNumber?: number | string,
+	alternativeNumber?: number | string
+): number | undefined => {
+	if (
+		(originNumber === undefined || originNumber === null) &&
+		(alternativeNumber === undefined || alternativeNumber === null)
+	) {
+		return;
+	}
+
+	return Number(originNumber ?? alternativeNumber);
 };
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-export const getHideProp = (show?: boolean): any => {
+export const getHideProp = (show?: boolean | string): any => {
 	if (show === undefined || show === null) {
 		return undefined;
 	}
 
-	return getBooleanAsString(!show);
+	return getBooleanAsString(!Boolean(show));
 };
 
 export const stringPropVisible = (
 	givenString?: string,
-	showString?: boolean
+	showString?: boolean | string
 ) => {
 	if (showString === undefined) {
 		return !!givenString;
 	} else {
-		return showString && givenString;
+		return Boolean(showString) && Boolean(givenString);
 	}
 };
 
-export default {
-	getRootProps,
-	filterPassingProps,
-	cls,
-	addAttributeToChildren,
-	uuid,
-	visibleInVX,
-	visibleInVY,
-	isInView,
-	handleDataOutside,
-	isArrayOfStrings,
-	hasVoiceOver,
-	delay,
-	enableCustomElementAttributePassing,
-	getBooleanAsString,
-	getHideProp,
-	stringPropVisible
-};
+export const getSearchInput = (element: HTMLElement): HTMLInputElement | null =>
+	element.querySelector<HTMLInputElement>(`input[type="search"]`);

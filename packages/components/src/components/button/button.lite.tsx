@@ -1,6 +1,12 @@
-import { Show, useMetadata, useRef, useStore } from '@builder.io/mitosis';
+import {
+	Show,
+	useDefaultProps,
+	useMetadata,
+	useRef,
+	useStore
+} from '@builder.io/mitosis';
 import type { DBButtonProps, DBButtonState } from './model';
-import { cls, getBooleanAsString, getHideProp } from '../../utils';
+import { cls, getBoolean, getBooleanAsString, getHideProp } from '../../utils';
 import { ClickEvent } from '../../shared/model';
 
 useMetadata({
@@ -9,8 +15,10 @@ useMetadata({
 	}
 });
 
+useDefaultProps<DBButtonProps>({});
+
 export default function DBButton(props: DBButtonProps) {
-	const ref = useRef<HTMLButtonElement>(null);
+	const _ref = useRef<HTMLButtonElement | any>(null);
 	// jscpd:ignore-start
 	const state = useStore<DBButtonState>({
 		handleClick: (event: ClickEvent<HTMLButtonElement>) => {
@@ -24,11 +32,11 @@ export default function DBButton(props: DBButtonProps) {
 
 	return (
 		<button
-			ref={ref}
+			ref={_ref}
 			id={props.id}
 			class={cls('db-button', props.className)}
 			type={props.type || 'button'}
-			disabled={props.disabled}
+			disabled={getBoolean(props.disabled, 'disabled')}
 			aria-label={props.label}
 			data-icon={props.icon}
 			data-hide-icon={getHideProp(props.showIcon)}
@@ -38,6 +46,7 @@ export default function DBButton(props: DBButtonProps) {
 			data-variant={props.variant}
 			data-no-text={getBooleanAsString(props.noText)}
 			name={props.name}
+			form={props.form}
 			value={props.value}
 			aria-describedby={props.describedbyid}
 			aria-expanded={props.ariaexpanded}

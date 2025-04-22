@@ -11,7 +11,8 @@
 }
 
 @mixin cursor-pointer() {
-	cursor: pointer;
+	cursor: var(--db-overwrite-cursor, pointer);
+	@content;
 
 	&:is(textarea),
 	&:is(input) {
@@ -22,8 +23,6 @@
 	&:is(input[type="radio"]:not(:checked)) {
 		cursor: pointer;
 	}
-
-	@content;
 }
 
 @mixin hover() {

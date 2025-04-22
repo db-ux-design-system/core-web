@@ -2,35 +2,47 @@ import {
 	onMount,
 	onUpdate,
 	Show,
+	useDefaultProps,
 	useMetadata,
 	useRef,
 	useStore,
 	useTarget
 } from '@builder.io/mitosis';
 import type { DBTabItemProps, DBTabItemState } from './model';
-import { cls, getBooleanAsString, getHideProp } from '../../utils';
-import { ChangeEvent } from '../../shared/model';
-import { handleFrameworkEvent } from '../../utils/form-components';
+import { cls, getBoolean, getBooleanAsString, getHideProp } from '../../utils';
+import {
+	handleFrameworkEventAngular,
+	handleFrameworkEventVue
+} from '../../utils/form-components';
 
 useMetadata({
 	angular: {
 		nativeAttributes: ['disabled']
 	}
 });
+useDefaultProps<DBTabItemProps>({});
 
 export default function DBTabItem(props: DBTabItemProps) {
-	const ref = useRef<HTMLInputElement>(null);
+	const _ref = useRef<HTMLInputElement | any>(null);
 	// jscpd:ignore-start
 	const state = useStore<DBTabItemState>({
-		initialized: false,
 		_selected: false,
-		handleChange: (event: ChangeEvent<HTMLInputElement>) => {
+		_name: undefined,
+		initialized: false,
+		handleNameAttribute: () => {
+			if (_ref) {
+				const setAttribute = _ref.setAttribute;
+				_ref.setAttribute = (attribute: string, value: string) => {
+					setAttribute.call(_ref, attribute, value);
+					if (attribute === 'name') {
+						state._name = value;
+					}
+				};
+			}
+		},
+		handleChange: (event: any) => {
 			if (props.onChange) {
 				props.onChange(event);
-			}
-
-			if (props.change) {
-				props.change(event);
 			}
 
 			// We have different ts types in different frameworks, so we need to use any here
@@ -46,8 +58,9 @@ export default function DBTabItem(props: DBTabItemProps) {
 			});
 
 			useTarget({
-				angular: () => handleFrameworkEvent(this, event, 'checked'),
-				vue: () => handleFrameworkEvent(this, event, 'checked')
+				angular: () =>
+					handleFrameworkEventAngular(state, event, 'checked'),
+				vue: () => handleFrameworkEventVue(() => {}, event, 'checked')
 			});
 		}
 	});
@@ -58,11 +71,21 @@ export default function DBTabItem(props: DBTabItemProps) {
 	// jscpd:ignore-end
 
 	onUpdate(() => {
-		if (props.active && state.initialized && ref) {
-			ref.click();
+		if (state.initialized && _ref) {
+			if (props.active) {
+				_ref.click();
+			}
+
+			useTarget({ react: () => state.handleNameAttribute() });
 			state.initialized = false;
 		}
-	}, [ref, state.initialized]);
+	}, [_ref, state.initialized]);
+
+	onUpdate(() => {
+		if (props.name) {
+			state._name = props.name;
+		}
+	}, [props.name]);
 
 	return (
 		<li class={cls('db-tab-item', props.className)} role="none">
@@ -72,19 +95,18 @@ export default function DBTabItem(props: DBTabItemProps) {
 				data-icon-after={props.iconAfter}
 				data-hide-icon={getHideProp(props.showIcon)}
 				data-hide-icon-after={getHideProp(props.showIcon)}
-				data-no-text={props.noText}>
+				data-no-text={getBooleanAsString(props.noText)}>
 				<input
-					disabled={props.disabled}
+					disabled={getBoolean(props.disabled, 'disabled')}
 					aria-selected={state._selected}
 					aria-controls={props.controls}
-					checked={props.checked}
-					ref={ref}
+					checked={getBoolean(props.checked, 'checked')}
+					ref={_ref}
 					type="radio"
 					role="tab"
+					name={state._name}
 					id={props.id}
-					onChange={(event: ChangeEvent<HTMLInputElement>) =>
-						state.handleChange(event)
-					}
+					onInput={(event: any) => state.handleChange(event)}
 				/>
 
 				<Show when={props.label}>{props.label}</Show>

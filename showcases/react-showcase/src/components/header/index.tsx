@@ -20,7 +20,6 @@ const getHeader = ({
 	className,
 	describedbyid,
 	id,
-	key,
 	onToggle,
 	width,
 	example,
@@ -56,16 +55,13 @@ const getHeader = ({
 		secondaryAction={
 			!example && (
 				<>
-					<DBButton icon="person" variant="ghost" noText>
+					<DBButton icon="x_placeholder" variant="ghost" noText>
 						Profile
 					</DBButton>
-					<DBButton icon="bell" variant="ghost" noText>
+					<DBButton icon="x_placeholder" variant="ghost" noText>
 						Notification
 					</DBButton>
-					<DBButton
-						icon="question_mark_circle"
-						variant="ghost"
-						noText>
+					<DBButton icon="x_placeholder" variant="ghost" noText>
 						Help
 					</DBButton>
 				</>
@@ -77,11 +73,10 @@ const getHeader = ({
 		className={className}
 		describedbyid={describedbyid}
 		id={id}
-		key={key}
 		onToggle={onToggle}>
 		{(!example || withNavigation) && (
 			<DBNavigation aria-label={children}>
-				<DBNavigationItem icon="person">
+				<DBNavigationItem icon="x_placeholder">
 					<a href="#">{children}</a>
 				</DBNavigationItem>
 				<DBNavigationItem disabled>

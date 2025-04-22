@@ -30,7 +30,7 @@ const ColorsGrid = ({
 	return (
 		<div
 			className="color-overview-container db-font-size-sm"
-			data-color-scheme={enableDarkMode ? 'dark' : 'light'}>
+			data-mode={enableDarkMode ? 'dark' : 'light'}>
 			<span
 				style={{
 					backgroundImage: showCheckerboard

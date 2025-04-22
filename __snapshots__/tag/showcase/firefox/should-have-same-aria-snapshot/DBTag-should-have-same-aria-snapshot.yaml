@@ -5,38 +5,51 @@
   - link "Emphasis arrow_up_right\" / \""
   - text: (Default) Weak Strong
   - link "Semantic arrow_up_right\" / \""
-  - text: (Default) Adaptive Neutral Critical Informational Successful Warning Adaptive Strong Neutral Strong Critical Strong Informational Strong Successful Strong Warning Strong
-  - link "Behaviour arrow_up_right\" / \""
-  - group "Behaviour":
-    - text: (Default) Static
-    - button "Interactive Button"
-    - link "Interactive Link"
-    - checkbox "Interactive Checkbox": "on"
-    - text: Interactive Checkbox
-    - radio "Interactive Radio 1": "on"
-    - text: Interactive Radio 1
-    - radio "Interactive Radio 2": "on"
-    - text: Interactive Radio 2 Removeable
-    - button "Remove tag"
-  - link "State arrow_up_right\" / \""
-  - group "State":
-    - checkbox "(Default) Unchecked": "on"
-    - text: (Default) Unchecked
-    - checkbox "Checked" [checked]: "on"
-    - text: Checked
-    - checkbox "Disabled" [checked] [disabled]: "on"
-    - text: Disabled
-  - link "Content arrow_up_right\" / \""
-  - text: (Default) Text Icon Icon & Text
+  - text: (Default) Adaptive Critical Informational Neutral Successful Warning Adaptive Strong Critical Strong Informational Strong Neutral Strong Successful Strong Warning Strong
+  - link "Behavior arrow_up_right\" / \""
+  - group "Behavior":
+    - text: (Default) Static Removable
+    - button "Remove"
+    - button "Interactive (Button)"
+    - link "Interactive (Link)"
+    - checkbox "Interactive (Checkbox) circle\" / \""
+    - text: Interactive (Checkbox) circle" / "
+    - radio "Interactive (Radio) circle\" / \""
+    - text: Interactive (Radio) circle" / "
+    - radio "Interactive Radio 2 circle\" / \""
+    - text: Interactive Radio 2 circle" / "
+  - link "Checked arrow_up_right\" / \""
+  - group "Checked":
+    - checkbox "(Default) False circle\" / \""
+    - text: (Default) False circle" / "
+    - checkbox "True check_circle\" / \"" [checked]
+    - text: True check_circle" / "
+  - link "Disabled arrow_up_right\" / \""
+  - group "Disabled":
+    - checkbox "(Default) False circle\" / \""
+    - text: (Default) False circle" / "
+    - checkbox "True circle\" / \"" [disabled]
+    - text: True circle" / "
+  - link "Show Icon arrow_up_right\" / \""
+  - text: (Default) False True
+  - link "No Text arrow_up_right\" / \""
+  - text: (Default) False True
+  - link "Show Slot arrow_up_right\" / \""
+  - text: (Default) False Swap Slot True
+  - link "Show Check State arrow_up_right\" / \""
+  - checkbox "(Default) True circle\" / \""
+  - text: (Default) True circle" / "
+  - checkbox "False"
+  - text: "False"
   - link "Overflow arrow_up_right\" / \""
-  - text: (Default) No Overflow With Overflow (max-width)
-  - link "Example arrow_up_right\" / \""
-  - group "Example":
+  - text: (Default) False True - lorem ipsum dolor
+  - link "Example Strong arrow_up_right\" / \""
+  - group "Example Strong":
     - button "Interactive Strong Button with Icon"
     - link "Interactive Strong Link with Icon"
-    - checkbox "Interactive Strong Checkbox with Icon": "on"
-    - text: Interactive Strong Checkbox with Icon
-    - radio "Interactive Strong Radio 1 with Icon": "on"
-    - text: Interactive Strong Radio 1 with Icon
-    - radio "Interactive Strong Radio 2 with Icon": "on"
-    - text: Interactive Strong Radio 2 with Icon
+    - checkbox "Interactive Strong Checkbox with Icon circle\" / \""
+    - text: Interactive Strong Checkbox with Icon circle" / "
+    - radio "Interactive Strong Radio 1 with Icon circle\" / \""
+    - text: Interactive Strong Radio 1 with Icon circle" / "
+    - radio "Interactive Strong Radio 2 with Icon circle\" / \""
+    - text: Interactive Strong Radio 2 with Icon circle" / "

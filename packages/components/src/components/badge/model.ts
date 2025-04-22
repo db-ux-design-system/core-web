@@ -1,10 +1,10 @@
 import {
-	EmphasisProps,
 	GlobalProps,
 	GlobalState,
 	InitializedState,
 	SemanticProps,
 	SizeProps,
+	EmphasisProps,
 	TextProps
 } from '../../shared/model';
 
