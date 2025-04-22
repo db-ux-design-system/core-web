@@ -13,7 +13,7 @@
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
 [![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-2.0-4baaaa.svg)](CODE-OF-CONDUCT.md)
 
-DB UX Design System Version 3 provides robust HTML UI components, reusable visual styles, and powerful tooling to help developers,
+DB UX Design System v3 provides robust HTML UI components, reusable visual styles, and powerful tooling to help developers,
 designers, and content authors build, maintain, and scale best of class digital experiences.
 
 <figure>
