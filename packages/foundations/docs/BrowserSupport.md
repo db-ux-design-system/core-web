@@ -8,4 +8,3 @@ This may leave some older browser versions behind. If you need to take care of t
 | ------------------------------------------------------------------------------------------------------------------------------- | ---------------- | ---------------- | ----------------- |
 | [`@property` / typed CSS Custom Properties](https://developer.mozilla.org/en-US/docs/Web/CSS/@property)                         | 85 (25.08.2022)  | 128 (09.07.2024) | 16.4 (27.03.2023) |
 | [`light-dark()`](https://developer.mozilla.org/en-US/docs/Web/CSS/color_value/light-dark)                                       | 123 (19.03.2024) | 120 (21.11.2023) | 17.5 (13.05.2024) |
-| [`content`: Alternative text after /](https://developer.mozilla.org/en-US/docs/Web/CSS/content#alternative_text_string_counter) | 77 (10.09.2019)  | 128 (09.07.2024) | 17.4 (05.03.2024) |
