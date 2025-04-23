@@ -88,11 +88,9 @@
 	inline-size: auto;
 
 	&[data-wrap="true"] {
-		.db-navigation-item-expand-button {
-			&:is(button) {
-				white-space: normal;
-				text-align: start;
-			}
+		:is(a, .db-navigation-item-expand-button):first-of-type {
+			white-space: normal;
+			text-align: start;
 		}
 	}
 

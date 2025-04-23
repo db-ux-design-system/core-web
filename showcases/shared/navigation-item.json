@@ -269,12 +269,10 @@
 					{
 						"name": "a",
 						"native": true,
+						"content": "Sub-Sub-Navi-Item 1",
 						"props": {
-							"href": "#",
-							"icon": "x_placeholder",
-							"showIcon": true
-						},
-						"content": "True"
+							"href": "#"
+						}
 					}
 				]
 			},
