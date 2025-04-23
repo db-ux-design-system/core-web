@@ -36,7 +36,17 @@
 							[showIcon]="exampleProps?.showIcon"
 						>
 							<ng-container *dbNavigationContent>
-								<a href="#">Test1</a>
+								Also a navigation item with longer label
+							</ng-container>
+							<ng-container sub-navigation>
+								<db-navigation-item
+									[icon]="exampleProps?.icon"
+									[showIcon]="exampleProps?.showIcon"
+								>
+									<ng-container *dbNavigationContent>
+										<a href="#">Navigation-Item 2</a>
+									</ng-container>
+								</db-navigation-item>
 							</ng-container>
 						</db-navigation-item>
 						<db-navigation-item
@@ -44,15 +54,7 @@
 							[showIcon]="exampleProps?.showIcon"
 						>
 							<ng-container *dbNavigationContent>
-								<a href="#">Test2</a>
-							</ng-container>
-						</db-navigation-item>
-						<db-navigation-item
-							[icon]="exampleProps?.icon"
-							[showIcon]="exampleProps?.showIcon"
-						>
-							<ng-container *dbNavigationContent>
-								<a href="#">Test3</a>
+								<a href="#">Navigation-Item 1</a>
 							</ng-container>
 						</db-navigation-item>
 					</ng-container>
