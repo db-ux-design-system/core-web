@@ -1,8 +1,8 @@
 # Browser Support
 
-We're [testing our components with playwright](../../foundations/test-table) on the latest browser versions of Google Chrome, Mozilla Firefox and Apple Safari. As all of those browsers are supposed to be evergreen, we're partly using newer browser features that have been added especially pushed by the [interop initiative](https://web.dev/blog/interop-2025), mostly as progressive enhancement, but some might not even provide a graceful degradation.
+We're [testing our components with playwright](../../foundations/test-table) on the latest browser versions of Google Chrome, Mozilla Firefox and Apple Safari. Since all of these browsers are supposed to be evergreen, we're using some newer browser features that have been added specifically as part of the [interop initiative](https://web.dev/blog/interop-2025), mostly as progressive enhancements, but some may not even offer graceful degradation.
 
-This may leave some older browser versions behind. If you need to take care of those older browsers, you might not want to migrate to DB UX Design System v3 right now, but stay on DB UI Core or Elements a little longer. Especially the following features we're using might be related to an evaluation of your browser strategy:
+This may leave some older browser versions behind. If you need to take care of these older browsers, you may not want to migrate to DB UX Design System v3 right now, but stay with DB UI Core or Elements for a little longer. In particular, the following features we use may be related to an evaluation of your browser strategy:
 
 | Web Feature                                                                                                                     | Google Chrome    | Mozilla Firefox  | Apple Safari      |
 | ------------------------------------------------------------------------------------------------------------------------------- | ---------------- | ---------------- | ----------------- |
