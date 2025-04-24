@@ -32,17 +32,21 @@ const log = (exampleName?: string) => {
 						<DBNavigationItem
 							:icon="exampleProps?.icon"
 							:showIcon="exampleProps?.showIcon"
-							><a href="#">Test1</a></DBNavigationItem
 						>
+							Also a navigation item with longer label
+							<template v-slot:sub-navigation>
+								<DBNavigationItem
+									:icon="exampleProps?.icon"
+									:showIcon="exampleProps?.showIcon"
+								>
+									<a href="#">Navigation Item 2</a>
+								</DBNavigationItem>
+							</template>
+						</DBNavigationItem>
 						<DBNavigationItem
 							:icon="exampleProps?.icon"
 							:showIcon="exampleProps?.showIcon"
-							><a href="#">Test2</a></DBNavigationItem
-						>
-						<DBNavigationItem
-							:icon="exampleProps?.icon"
-							:showIcon="exampleProps?.showIcon"
-							><a href="#">Test3</a></DBNavigationItem
+							><a href="#">Navigation Item 1</a></DBNavigationItem
 						>
 					</template>
 					<template v-if="exampleProps?.areaPopup">
