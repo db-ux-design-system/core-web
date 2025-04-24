@@ -6,6 +6,10 @@ export const config: Config = {
 	outputTargets: [
 		{
 			type: 'dist'
-		}
+		},
+		{
+			type: 'dist-hydrate-script',
+			dir: 'hydrate',
+		},
 	]
 };

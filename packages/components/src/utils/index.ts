@@ -47,17 +47,6 @@ export const cls = (...args: ClassNameArg[]) => {
 	return result.trim();
 };
 
-export const visibleInVX = (el: Element) => {
-	const { left, right } = el.getBoundingClientRect();
-	const { innerWidth } = window;
-	return left >= 0 && right <= innerWidth;
-};
-export const visibleInVY = (el: Element) => {
-	const { top, bottom } = el.getBoundingClientRect();
-	const { innerHeight } = window;
-	return top >= 0 && bottom <= innerHeight;
-};
-
 export const isInView = (el: Element) => {
 	const { top, bottom, left, right } = el.getBoundingClientRect();
 	const { innerHeight, innerWidth } = window;
@@ -189,7 +178,12 @@ export const getHideProp = (show?: boolean | string): any => {
 		return undefined;
 	}
 
-	return getBooleanAsString(!Boolean(show));
+	return getBooleanAsString(!show);
+};
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export const getDefaultProp = (defaultValue: any, prop?: any): any => {
+	return prop || defaultValue;
 };
 
 export const stringPropVisible = (

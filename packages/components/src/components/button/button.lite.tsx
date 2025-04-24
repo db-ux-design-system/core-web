@@ -6,7 +6,13 @@ import {
 	useStore
 } from '@builder.io/mitosis';
 import type { DBButtonProps, DBButtonState } from './model';
-import { cls, getBoolean, getBooleanAsString, getHideProp } from '../../utils';
+import {
+	cls,
+	getBoolean,
+	getBooleanAsString,
+	getDefaultProp,
+	getHideProp
+} from '../../utils';
 import { ClickEvent } from '../../shared/model';
 
 useMetadata({
@@ -35,7 +41,7 @@ export default function DBButton(props: DBButtonProps) {
 			ref={_ref}
 			id={props.id}
 			class={cls('db-button', props.className)}
-			type={props.type || 'button'}
+			type={getDefaultProp('button', props.type)}
 			disabled={getBoolean(props.disabled, 'disabled')}
 			aria-label={props.label}
 			data-icon={props.icon}

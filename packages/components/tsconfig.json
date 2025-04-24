@@ -4,6 +4,7 @@
 		"jsxImportSource": "@builder.io/mitosis",
 		"esModuleInterop": true,
 		"moduleResolution": "node",
-		"strict": true
+		"strict": true,
+		"lib": ["es2021", "DOM"]
 	}
 }

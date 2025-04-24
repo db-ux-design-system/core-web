@@ -11,13 +11,20 @@
   "main": "./dist/index.js",
   "module": "./dist/index.js",
   "exports": {
+    "./hydrate": {
+    "types": "./hydrate/index.d.ts",
+    "import": "./hydrate/index.js",
+    "require": "./hydrate/index.cjs.js",
+    "default": "./hydrate/index.js"
+  },
     ".": {
       "types": "./dist/loader/types/index.d.ts",
       "import": "./dist/loader/index.js"
     }
   },
   "files": [
-    "dist/"
+    "dist/",
+    "hydrate/"
   ],
   "scripts": {
     "build": "stencil build",
