@@ -55,7 +55,7 @@
     "sass": "1.85.0",
     "tsx": "^4.19.3",
     "typescript": "^5.4.5",
-    "vite": "^6.3.2"
+    "vite": "^6.3.3"
   },
   "publishConfig": {
     "registry": "https://registry.npmjs.org/",
