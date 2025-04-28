@@ -7,6 +7,13 @@ export const transformToUpperComponentName = (componentName: string) =>
 		.map((part) => `${part[0].toUpperCase()}${part.slice(1)}`)
 		.join('');
 
+export const toDashedLowerCase = (input: string): string => {
+	return input
+		.replace(/([a-z])([A-Z])/g, '$1-$2')
+		.replace(/\s+/g, '-')
+		.toLowerCase();
+};
+
 export const runReplacements = (
 	replacements: Overwrite[],
 	component: Component,

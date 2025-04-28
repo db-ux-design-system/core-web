@@ -4,8 +4,8 @@
 
 @mixin accordion-subsequent-item-selector() {
 	// angular workaround
-	db-accordion-item + db-accordion-item .db-accordion-item,
-	.db-accordion-item + .db-accordion-item {
+	db-accordion-item:not(:first-of-type) > .db-accordion-item,
+	.db-accordion-item:not(:first-of-type) {
 		@content;
 	}
 }

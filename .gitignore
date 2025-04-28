@@ -67,3 +67,4 @@ showcases/patternhub/public/iframe-resizer/*
 /scripts/gh-pages.tar.gz
 !/scripts/tests/fixtures/out
 /output/stencil/hydrate/
+/output/freemarker/components/

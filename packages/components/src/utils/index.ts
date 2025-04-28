@@ -1,3 +1,5 @@
+import { DBAccordionItemDefaultProps } from '../components/accordion-item/model';
+
 export const uuid = () => {
 	if (typeof window !== 'undefined') {
 		if (window.crypto?.randomUUID) {
@@ -134,7 +136,7 @@ export const delay = (fn: () => void, ms: number) =>
  * if it is used in a framework like angular e.g.: [disabled]="myDisabledProp"
  * @param originBool Some boolean to convert to string
  */
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
+
 export const getBooleanAsString = (originBool?: boolean | string): any => {
 	if (originBool === undefined || originBool === null) return;
 
@@ -172,7 +174,6 @@ export const getNumber = (
 	return Number(originNumber ?? alternativeNumber);
 };
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const getHideProp = (show?: boolean | string): any => {
 	if (show === undefined || show === null) {
 		return undefined;
@@ -181,9 +182,46 @@ export const getHideProp = (show?: boolean | string): any => {
 	return getBooleanAsString(!show);
 };
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const getDefaultProp = (defaultValue: any, prop?: any): any => {
 	return prop || defaultValue;
+};
+
+export const getPropIf = (
+	ifValue: any,
+	conditionValue: any,
+	prop?: any
+): any => {
+	return prop === ifValue ? conditionValue : undefined;
+};
+
+export const getPropStartsWith = (
+	startWithValue: any,
+	conditionValue: any,
+	prop?: any
+): any => {
+	return prop?.startsWith(startWithValue) ? conditionValue : undefined;
+};
+
+export const getPropIfDefined = (
+	trueValue: any,
+	falseValue: any,
+	prop?: any
+): any => {
+	return prop ? trueValue : falseValue;
+};
+
+export const getItems = (items: any): any[] => {
+	try {
+		if (typeof items === 'string') {
+			return JSON.parse(items as string);
+		}
+
+		return items as any[];
+	} catch (error) {
+		console.error(error);
+	}
+
+	return [];
 };
 
 export const stringPropVisible = (

@@ -45,7 +45,6 @@ export type DBAccordionProps = DBAccordionDefaultProps & GlobalProps;
 export type DBAccordionDefaultState = {
 	_initOpenIndexDone: boolean;
 	_name?: string;
-	convertItems: () => DBAccordionItemDefaultProps[];
 };
 
 export type DBAccordionState = DBAccordionDefaultState &

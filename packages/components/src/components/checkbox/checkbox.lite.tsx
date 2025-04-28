@@ -1,4 +1,5 @@
 import {
+	onInit,
 	onMount,
 	onUpdate,
 	Show,
@@ -26,6 +27,7 @@ import {
 	cls,
 	delay,
 	getBoolean,
+	getDefaultProp,
 	getHideProp,
 	hasVoiceOver,
 	stringPropVisible,
@@ -108,14 +110,12 @@ export default function DBCheckbox(props: DBCheckboxProps) {
 		}
 	});
 
+	onInit(() => {
+		state._id = props.id ?? `checkbox-${uuid()}`;
+	});
+
 	onMount(() => {
 		state.initialized = true;
-		const mId = props.id ?? `checkbox-${uuid()}`;
-		state._id = mId;
-		state._messageId = mId + DEFAULT_MESSAGE_ID_SUFFIX;
-		state._validMessageId = mId + DEFAULT_VALID_MESSAGE_ID_SUFFIX;
-		state._invalidMessageId = mId + DEFAULT_INVALID_MESSAGE_ID_SUFFIX;
-		state._invalidMessage = props.invalidMessage || DEFAULT_INVALID_MESSAGE;
 	});
 
 	onUpdate(() => {
@@ -221,7 +221,7 @@ export default function DBCheckbox(props: DBCheckboxProps) {
 					id={state._validMessageId}
 					size="small"
 					semantic="successful">
-					{props.validMessage || DEFAULT_VALID_MESSAGE}
+					{getDefaultProp(DEFAULT_VALID_MESSAGE, props.validMessage)}
 				</DBInfotext>
 			</Show>
 

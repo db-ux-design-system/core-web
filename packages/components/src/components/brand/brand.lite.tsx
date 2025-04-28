@@ -5,9 +5,14 @@ import {
 	useRef,
 	useStore
 } from '@builder.io/mitosis';
-import { cls, getHideProp } from '../../utils';
+import {
+	cls,
+	getDefaultProp,
+	getHideProp,
+	getPropIfDefined
+} from '../../utils';
 import { DBBrandProps, DBBrandState } from './model';
-import { DEFAULT_ICON } from '../../shared/constants';
+import { DEFAULT_ICON, DEFAULT_LABEL } from '../../shared/constants';
 
 useMetadata({});
 
@@ -22,7 +27,11 @@ export default function DBBrand(props: DBBrandProps) {
 	return (
 		<div
 			ref={_ref}
-			data-icon={props.hideLogo ? 'none' : (props.icon ?? DEFAULT_ICON)}
+			data-icon={getPropIfDefined(
+				'none',
+				getDefaultProp(DEFAULT_ICON, props.icon),
+				props.hideLogo
+			)}
 			data-hide-icon={getHideProp(props.showIcon)}
 			id={props.id}
 			class={cls('db-brand', props.className)}>
