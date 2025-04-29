@@ -46,13 +46,13 @@
   },
   "devDependencies": {
     "@builder.io/eslint-plugin-mitosis": "0.0.17",
-    "@builder.io/mitosis": "0.9.3",
-    "@builder.io/mitosis-cli": "0.9.3",
-    "@typescript-eslint/eslint-plugin": "8.31.0",
+    "@builder.io/mitosis": "0.9.4",
+    "@builder.io/mitosis-cli": "0.9.4",
+    "@typescript-eslint/eslint-plugin": "8.31.1",
     "cpr": "3.0.1",
     "cssnano": "^7.0.6",
     "hygen": "^6.2.11",
-    "nodemon": "3.1.9",
+    "nodemon": "3.1.10",
     "sass": "1.85.0",
     "tsx": "^4.19.3"
   },
