@@ -123,9 +123,6 @@ $default-icon-font-size: var(--db-icon-font-size, #{$default-icon-size-rem});
 
 %icon {
 	@include icon-content($default-icon-content); // TODO: ONLY FOR data-icon
-	// Hiding icon from screenreaders
-	-webkit-alt: "";
-	alt: "";
 	color: var(--db-icon-color, inherit);
 	display: inline-block;
 
