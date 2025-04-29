@@ -1,0 +1,21 @@
+server:
+  port: 8088
+spring:
+  freemarker:
+    enabled: true
+    cache: false
+    content-type: text/html
+    charset: utf-8
+    suffix: .ftl
+    request-context-attribute: request
+    expose-request-attributes: false
+    expose-session-attributes: false
+    allow-request-override: true
+    allow-session-override: true
+    expose-spring-macro-helpers: true
+    check-template-location: true
+    prefer-file-system-access: true
+    settings:
+      datetime_format: yyyy-MM-dd HH:mm:ss
+      template_update_delay: 30m
+      default_encoding: utf-8

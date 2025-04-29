@@ -9,7 +9,13 @@ import {
 import { DBNotificationProps, DBNotificationState } from './model';
 import DBButton from '../button/button.lite';
 import { DEFAULT_CLOSE_BUTTON } from '../../shared/constants';
-import { cls, getBoolean, getHideProp, stringPropVisible } from '../../utils';
+import {
+	cls,
+	getBoolean,
+	getDefaultProp,
+	getHideProp,
+	stringPropVisible
+} from '../../utils';
 import { ClickEvent } from '../../shared/model';
 
 useMetadata({});
@@ -65,7 +71,10 @@ export default function DBNotification(props: DBNotificationProps) {
 					onClick={(event: ClickEvent<HTMLButtonElement>) =>
 						state.handleClose(event)
 					}>
-					{props.closeButtonText ?? DEFAULT_CLOSE_BUTTON}
+					{getDefaultProp(
+						DEFAULT_CLOSE_BUTTON,
+						props.closeButtonText
+					)}
 				</DBButton>
 			</Show>
 		</article>

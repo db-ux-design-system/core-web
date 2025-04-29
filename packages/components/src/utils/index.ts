@@ -1,5 +1,3 @@
-import { DBAccordionItemDefaultProps } from '../components/accordion-item/model';
-
 export const uuid = () => {
 	if (typeof window !== 'undefined') {
 		if (window.crypto?.randomUUID) {
