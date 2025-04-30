@@ -251,7 +251,7 @@
 		]
 	},
 	{
-		"name": "Example - Types",
+		"name": "Example - Types with min and max",
 		"codeFileName": "ExampleTypes",
 		"examples": [
 			{
@@ -299,35 +299,45 @@
 				"name": "Date",
 				"props": {
 					"label": "Label",
-					"type": "date"
+					"type": "date",
+					"min": "2023-01-01",
+					"max": "2030-12-31"
 				}
 			},
 			{
 				"name": "Datetime Local",
 				"props": {
 					"label": "Label",
-					"type": "datetime-local"
+					"type": "datetime-local",
+					"min": "2023-01-01T00:00",
+					"max": "2030-12-31T23:59"
 				}
 			},
 			{
 				"name": "Month",
 				"props": {
 					"label": "Label",
-					"type": "month"
+					"type": "month",
+					"min": "2023-01",
+					"max": "2030-12"
 				}
 			},
 			{
 				"name": "Time",
 				"props": {
 					"label": "Label",
-					"type": "time"
+					"type": "time",
+					"min": "00:00",
+					"max": "23:59"
 				}
 			},
 			{
 				"name": "Week",
 				"props": {
 					"label": "Label",
-					"type": "week"
+					"type": "week",
+					"min": "2023-W01",
+					"max": "2030-W52"
 				}
 			}
 		]
