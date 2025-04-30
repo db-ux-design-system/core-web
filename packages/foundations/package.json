@@ -7,7 +7,7 @@
     "type": "git",
     "url": "git+https://github.com/db-ux-design-system/core-web.git"
   },
-  "license": "DB Design License",
+  "license": "Apache-2.0",
   "main": "./build/index.js",
   "types": "./build/index.d.ts",
   "module": "./build/index.js",
