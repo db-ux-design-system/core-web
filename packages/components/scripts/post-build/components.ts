@@ -227,7 +227,7 @@ export const getComponents = (): Component[] => [
 		overwrites: {
 			angular: [
 				{ from: '<HTMLElement>', to: '<HTMLSelectElement>' },
-				// We can move this to onMount with useTarget after https://github.com/BuilderIO/mitosis/pull/1750 is merged
+				// TODO: We can move this to onMount with useTarget after https://github.com/BuilderIO/mitosis/pull/1750 is merged
 				{
 					from: 'ngAfterViewInit() {',
 					to:
