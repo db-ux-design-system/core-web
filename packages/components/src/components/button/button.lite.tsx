@@ -22,6 +22,7 @@ export default function DBButton(props: DBButtonProps) {
 	// jscpd:ignore-start
 	const state = useStore<DBButtonState>({
 		handleClick: (event: ClickEvent<HTMLButtonElement>) => {
+			event.stopPropagation();
 			if (props.onClick) {
 				props.onClick(event);
 			}
