@@ -222,12 +222,12 @@ export default function DBInput(props: DBInputProps) {
 				maxLength={getNumber(props.maxLength, props.maxlength)}
 				minLength={getNumber(props.minLength, props.minlength)}
 				max={
-					props.type === 'number' || props.type === 'range'
+					props.type && ['number', 'range'].includes(props.type)
 						? getNumber(props.max)
 						: props.max
 				}
 				min={
-					props.type === 'number' || props.type === 'range'
+					props.type && ['number', 'range'].includes(props.type)
 						? getNumber(props.min)
 						: props.min
 				}
