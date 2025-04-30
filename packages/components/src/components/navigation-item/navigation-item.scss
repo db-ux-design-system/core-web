@@ -62,6 +62,7 @@
 	white-space: nowrap; // we don't want to break
 	text-align: center;
 	align-items: center; // Centering the content vertically and horizontally
+	justify-content: space-between;
 
 	@include helpers.hover {
 		background-color: colors.$db-adaptive-bg-basic-transparent-hovered;
@@ -88,11 +89,9 @@
 	inline-size: auto;
 
 	&[data-wrap="true"] {
-		.db-navigation-item-expand-button {
-			&:is(button) {
-				white-space: normal;
-				text-align: start;
-			}
+		:is(a, .db-navigation-item-expand-button):first-of-type {
+			white-space: normal;
+			text-align: start;
 		}
 	}
 

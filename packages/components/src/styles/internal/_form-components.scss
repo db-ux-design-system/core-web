@@ -282,11 +282,11 @@ $input-valid-types:
 		&:is(label),
 		> label {
 			&::after {
-				@include icons.icon-content("*");
-
 				// We're using 1px instead of a token here on purpose, as this is an edge case
 				/* stylelint-disable-next-line db-ux/use-spacings */
 				padding-inline-start: 1px;
+
+				@include icons.icon-content("*");
 			}
 		}
 	}

@@ -19,7 +19,7 @@
     "build": "npm-run-all build:*",
     "build:01_normalize": "npm-run-all copy-prepare:*",
     "build:02_copy": "npm run copy:scss",
-    "build:03_css": "sass --no-source-map --load-path=node_modules/ --load-path=../../node_modules/ build/styles",
+    "build:03_css": "sass --no-source-map --load-path=node_modules/ --load-path=../../node_modules/ build/styles  --fatal-deprecation=mixed-decls",
     "build:04_tailwind": "cpr tailwind build/tailwind -o",
     "build:05_postcss": "postcss build/styles/**/*.css --replace",
     "build:06_ide": "cpr ide build/ide -o",
@@ -49,13 +49,13 @@
     "cpr": "3.0.1",
     "cssnano": "^7.0.6",
     "dotenv": "^16.5.0",
-    "glob": "11.0.1",
-    "nodemon": "3.1.9",
+    "glob": "11.0.2",
+    "nodemon": "3.1.10",
     "prettier": "^3.5.3",
     "sass": "1.85.0",
-    "tsx": "^4.19.3",
+    "tsx": "^4.19.4",
     "typescript": "^5.4.5",
-    "vite": "^6.3.2"
+    "vite": "^6.3.3"
   },
   "publishConfig": {
     "registry": "https://registry.npmjs.org/",
