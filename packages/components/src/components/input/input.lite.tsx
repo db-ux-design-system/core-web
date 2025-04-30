@@ -221,8 +221,16 @@ export default function DBInput(props: DBInputProps) {
 				value={props.value ?? state._value}
 				maxLength={getNumber(props.maxLength, props.maxlength)}
 				minLength={getNumber(props.minLength, props.minlength)}
-				max={getNumber(props.max)}
-				min={getNumber(props.min)}
+				max={
+					props.type === 'number' || props.type === 'range'
+						? getNumber(props.max)
+						: props.max
+				}
+				min={
+					props.type === 'number' || props.type === 'range'
+						? getNumber(props.min)
+						: props.min
+				}
 				readOnly={
 					getBoolean(props.readOnly, 'readOnly') ||
 					getBoolean(props.readonly, 'readonly')
