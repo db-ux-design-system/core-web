@@ -18,7 +18,8 @@ import {
 	hasVoiceOver,
 	isArrayOfStrings,
 	stringPropVisible,
-	uuid
+	uuid,
+	getInputValue
 } from '../../utils';
 import { DBInputProps, DBInputState } from './model';
 import {
@@ -221,16 +222,8 @@ export default function DBInput(props: DBInputProps) {
 				value={props.value ?? state._value}
 				maxLength={getNumber(props.maxLength, props.maxlength)}
 				minLength={getNumber(props.minLength, props.minlength)}
-				max={
-					props.type && ['number', 'range'].includes(props.type)
-						? getNumber(props.max)
-						: props.max
-				}
-				min={
-					props.type && ['number', 'range'].includes(props.type)
-						? getNumber(props.min)
-						: props.min
-				}
+				max={getInputValue(props.max, props.type)}
+				min={getInputValue(props.min, props.type)}
 				readOnly={
 					getBoolean(props.readOnly, 'readOnly') ||
 					getBoolean(props.readonly, 'readonly')
