@@ -28,25 +28,27 @@ const getNavigationItem = ({
 			showIcon={showIcon}
 			wrap={wrap}
 			subNavigation={
-				<>
-					<DBNavigationItem
-						icon={icon}
-						showIcon={showIcon}
-						subNavigation={
-							<>
-								<DBNavigationItem
-									icon={icon}
-									showIcon={showIcon}>
-									<a href="#">Navigation-Item 2</a>
-								</DBNavigationItem>
-							</>
-						}>
-						Also a navigation item with longer label
-					</DBNavigationItem>
-					<DBNavigationItem icon={icon} showIcon={showIcon}>
-						<a href="#">Navigation-Item 1</a>
-					</DBNavigationItem>
-				</>
+				areaPopup && (
+					<>
+						<DBNavigationItem
+							icon={icon}
+							showIcon={showIcon}
+							subNavigation={
+								<>
+									<DBNavigationItem
+										icon={icon}
+										showIcon={showIcon}>
+										<a href="#">Navigation-Item 2</a>
+									</DBNavigationItem>
+								</>
+							}>
+							Also a navigation item with longer label
+						</DBNavigationItem>
+						<DBNavigationItem icon={icon} showIcon={showIcon}>
+							<a href="#">Navigation-Item 1</a>
+						</DBNavigationItem>
+					</>
+				)
 			}>
 			{areaPopup ? children : <a href="#">{children}</a>}
 		</DBNavigationItem>

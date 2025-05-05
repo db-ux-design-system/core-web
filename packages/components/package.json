@@ -18,7 +18,7 @@
     "build-components": "npm-run-all build:mitosis build-components:post build-components:docs",
     "build-components:docs": "npm run build:cem -w @db-ux/wc-core-components",
     "build-components:post": "tsx scripts/post-build/index.ts",
-    "build-style:01_sass": "sass src:build --no-source-map --load-path=node_modules/ --load-path=../../node_modules/",
+    "build-style:01_sass": "sass src:build --no-source-map --load-path=node_modules/ --load-path=../../node_modules/ --fatal-deprecation=mixed-decls",
     "build-style:02_postcss": "postcss build/**/*.css --replace",
     "build:mitosis": "mitosis build -c configs/mitosis.config.cjs",
     "compile:angular": "mitosis build -c configs/angular/mitosis.config.cjs && tsx scripts/exec/angular.ts && cpr ../../output/tmp/angular/src ../../output/angular/src -o",
@@ -46,15 +46,15 @@
   },
   "devDependencies": {
     "@builder.io/eslint-plugin-mitosis": "0.0.17",
-    "@builder.io/mitosis": "0.9.3",
-    "@builder.io/mitosis-cli": "0.9.3",
-    "@typescript-eslint/eslint-plugin": "8.30.1",
+    "@builder.io/mitosis": "0.9.5",
+    "@builder.io/mitosis-cli": "0.9.5",
+    "@typescript-eslint/eslint-plugin": "8.31.1",
     "cpr": "3.0.1",
     "cssnano": "^7.0.6",
     "hygen": "^6.2.11",
-    "nodemon": "3.1.9",
+    "nodemon": "3.1.10",
     "sass": "1.85.0",
-    "tsx": "^4.19.3"
+    "tsx": "^4.19.4"
   },
   "publishConfig": {
     "registry": "https://registry.npmjs.org/",

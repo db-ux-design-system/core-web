@@ -29,6 +29,8 @@ const getDataList = (
 		>
 			<DBInput
 				:maxLength="exampleProps?.maxLength"
+				:max="exampleProps?.max"
+				:min="exampleProps?.min"
 				:variant="exampleProps?.variant"
 				:show-label="exampleProps?.showLabel"
 				:label="exampleProps?.label"
