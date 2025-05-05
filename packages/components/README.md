@@ -40,7 +40,7 @@ They are bundling all dependencies from [foundations](https://www.npmjs.com/pack
 **SCSS**
 
 ```scss
-// index.scss
+// index.css
 @forward "@db-ux/core-components/build/styles/rollup";
 ```
 

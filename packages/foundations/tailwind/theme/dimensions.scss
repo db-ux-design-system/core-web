@@ -1,0 +1,12 @@
+@use "variables";
+
+@theme {
+	@include variables.get_variables();
+}
+
+@each $density in ("expressive", "regular", "functional") {
+	.db-density-#{$density},
+	[data-density="#{$density}"] {
+		@extend %tw-dimensions;
+	}
+}
