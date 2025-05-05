@@ -41,7 +41,9 @@ const getInput = ({
 	validMessage,
 	validation,
 	invalidMessage,
-	maxLength
+	maxLength,
+	max,
+	min
 }: DBInputProps & { dataList: boolean }) => {
 	return (
 		<DBInput
@@ -58,6 +60,8 @@ const getInput = ({
 			readOnly={readOnly}
 			iconAfter={iconAfter}
 			maxLength={maxLength}
+			max={max}
+			min={min}
 			icon={icon}
 			showMessage={showMessage}
 			invalidMessage={invalidMessage}
