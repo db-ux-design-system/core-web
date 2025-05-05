@@ -27,7 +27,7 @@ Import the styles in scss or css. Based on your technology the file names could 
   <summary><strong>SCSS</strong></summary>
 
 ```scss
-// index.css
+// index.scss
 @forward "@db-ux/core-components/build/styles/rollup";
 ```
 

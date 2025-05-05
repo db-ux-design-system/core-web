@@ -26,7 +26,6 @@
 	--spacing-siz-xl: var(--db-sizing-xl);
 	--spacing-siz-2xl: var(--db-sizing-2xl);
 	--spacing-siz-3xl: var(--db-sizing-3xl);
-
 	--gap-3xs: var(--db-spacing-fixed-3xs);
 	--gap-2xs: var(--db-spacing-fixed-2xs);
 	--gap-xs: var(--db-spacing-fixed-xs);
@@ -36,7 +35,6 @@
 	--gap-xl: var(--db-spacing-fixed-xl);
 	--gap-2xl: var(--db-spacing-fixed-2xl);
 	--gap-3xl: var(--db-spacing-fixed-3xl);
-
 	--border: var(--db-border-width-3xs);
 	--border-3xs: var(--db-border-width-3xs);
 	--border-2xs: var(--db-border-width-2xs);
@@ -47,7 +45,6 @@
 	--border-xl: var(--db-border-width-xl);
 	--border-2xl: var(--db-border-width-2xl);
 	--border-3xl: var(--db-border-width-3xl);
-
 	--radius: var(--db-border-radius-xs);
 	--radius-3xs: var(--db-border-radius-3xs);
 	--radius-2xs: var(--db-border-radius-2xs);
@@ -59,13 +56,8 @@
 	--radius-2xl: var(--db-border-radius-2xl);
 	--radius-3xl: var(--db-border-radius-3xl);
 	--radius-full: var(--db-border-radius-full);
-
 	--shadow: var(--db-elevation-md);
 	--shadow-sm: var(--db-elevation-sm);
 	--shadow-md: var(--db-elevation-md);
 	--shadow-lg: var(--db-elevation-lg);
-}
-
-%tw-dimensions {
-	@include get_variables();
 }
