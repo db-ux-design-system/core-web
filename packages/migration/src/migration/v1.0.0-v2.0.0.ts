@@ -36,56 +36,56 @@ export const v100_v200: ReplaceInFileConfig[] = [
 	{
 		files: '',
 		from: /\(onClick\)/g,
-		to: 'click'
+		to: '(click)'
 	},
 	{
 		files: '',
 		from: /\(onChange\)/g,
-		to: 'change'
+		to: '(change)'
 	},
 	{
 		files: '',
 		from: /\(onFocus\)/g,
-		to: 'focus'
+		to: '(focus)'
 	},
 	{
 		files: '',
 		from: /\(onBlur\)/g,
-		to: 'blur'
+		to: '(blur)'
 	},
 	{
 		files: '',
 		from: /\(onInput\)/g,
-		to: 'input'
+		to: '(input)'
 	},
 	{
 		files: '',
 		from: /\(onRemove\)/g,
-		to: 'remove'
+		to: '(remove)'
 	},
 	{
 		files: '',
 		from: /\(onSelect\)/g,
-		to: 'select'
+		to: '(select)'
 	},
 	{
 		files: '',
 		from: /\(onToggle\)/g,
-		to: 'toggle'
+		to: '(toggle)'
 	},
 	{
 		files: '',
 		from: /\(onClose\)/g,
-		to: 'close'
+		to: '(close)'
 	},
 	{
 		files: '',
 		from: /\(onTabSelect\)/g,
-		to: 'tabSelect'
+		to: '(tabSelect)'
 	},
 	{
 		files: '',
 		from: /\(onIndexChange\)/g,
-		to: 'indexChange'
+		to: '(indexChange)'
 	}
 ];

@@ -30,6 +30,7 @@ export default function DBRadio(props: DBRadioProps) {
 		initialized: false,
 		_id: undefined,
 		handleChange: (event: ChangeEvent<HTMLInputElement> | any) => {
+			event.stopPropagation();
 			if (props.onChange) {
 				props.onChange(event);
 			}
@@ -40,11 +41,13 @@ export default function DBRadio(props: DBRadioProps) {
 			});
 		},
 		handleBlur: (event: InteractionEvent<HTMLInputElement> | any) => {
+			event.stopPropagation();
 			if (props.onBlur) {
 				props.onBlur(event);
 			}
 		},
 		handleFocus: (event: InteractionEvent<HTMLInputElement> | any) => {
+			event.stopPropagation();
 			if (props.onFocus) {
 				props.onFocus(event);
 			}

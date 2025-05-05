@@ -237,7 +237,8 @@ export const ROUTES: NavigationItem[] = [
 				path: '/foundations/test-table'
 			},
 			{ label: 'IDE Support', path: '/foundations/ide' },
-			{ label: 'Performance', path: '/foundations/performance' }
+			{ label: 'Performance', path: '/foundations/performance' },
+			{ label: 'Browser Support', path: '/foundations/browser-support' }
 		]
 	},
 	{

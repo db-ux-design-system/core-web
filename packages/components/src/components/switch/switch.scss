@@ -36,9 +36,9 @@ $checked-active-transition-size: calc(
 }
 
 .db-switch {
-	@include form-components.set-default-check-element(switch);
-
 	user-select: none;
+
+	@include form-components.set-default-check-element(switch);
 
 	// This is needed when clicking on the label instead of the input
 	@include helpers.active {
@@ -53,8 +53,6 @@ $checked-active-transition-size: calc(
 
 		@extend %db-overwrite-font-size-sm;
 
-		@include icons.set-icon("cross", "after");
-
 		appearance: none;
 		inline-size: calc(
 			#{form-components.$font-size-height} * 2 + #{$switch-fixed-padding}
@@ -67,6 +65,8 @@ $checked-active-transition-size: calc(
 		gap: $switch-fixed-padding;
 		background-color: colors.$db-adaptive-bg-basic-transparent-full-default;
 		border-radius: variables.$db-border-radius-full;
+
+		@include icons.set-icon("cross", "after");
 
 		&::after {
 			visibility: hidden;
