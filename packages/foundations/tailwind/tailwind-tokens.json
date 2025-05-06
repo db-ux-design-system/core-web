@@ -100,7 +100,7 @@
 		"sans": "var(--db-font-family-sans)",
 		"head": "var(--db-font-family-head)"
 	},
-	"fontSize": {
+	"font": {
 		"base": "var(--db-type-body-md)",
 		"body-3xs": "var(--db-type-body-3xs)",
 		"body-2xs": "var(--db-type-body-2xs)",
