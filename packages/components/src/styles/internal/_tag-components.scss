@@ -6,35 +6,28 @@
 
 $interactive-selectors: "label, button:not(.db-tab-remove-button), a";
 
-%set-adaptive-weak-tag {
-	border-color: colors.$db-adaptive-on-bg-basic-emphasis-60-default;
-
+@mixin get-weak($name: "adaptive", $border-color: 60, $background-color: 1) {
+	// stylelint-disable-next-line db-ux/use-border-color
+	border-color: var(
+		--db-#{$name}-on-bg-basic-emphasis-#{$border-color}-default
+	);
 	@include colors.set-current-colors(
-		colors.$db-adaptive-bg-basic-level-1-default,
-		colors.$db-adaptive-on-bg-basic-emphasis-80-default
+		var(--db-#{$name}-bg-basic-level-#{$background-color}-default),
+		var(--db-#{$name}-on-bg-basic-emphasis-80-default)
 	);
 }
 
-%set-adaptive-weak-badge {
-	border-color: colors.$db-adaptive-on-bg-basic-emphasis-70-default;
+@mixin get-strong($name: "adaptive") {
+	border-color: var(--db-#{$name}-on-bg-basic-emphasis-70-default);
 
 	@include colors.set-current-colors(
-		colors.$db-adaptive-bg-basic-level-3-default,
-		colors.$db-adaptive-on-bg-basic-emphasis-80-default
-	);
-}
-
-%set-adaptive-strong-tag {
-	border-color: colors.$db-adaptive-on-bg-basic-emphasis-70-default;
-
-	@include colors.set-current-colors(
-		colors.$db-adaptive-bg-vibrant-default,
-		colors.$db-adaptive-on-bg-vibrant-default
+		var(--db-#{$name}-bg-vibrant-default),
+		var(--db-#{$name}-on-bg-vibrant-default)
 	);
 }
 
 %set-interactive-weak {
-	@extend %set-adaptive-weak-tag;
+	@include get-weak();
 
 	@include helpers.hover {
 		background-color: colors.$db-adaptive-bg-basic-level-1-hovered;
@@ -46,39 +39,41 @@ $interactive-selectors: "label, button:not(.db-tab-remove-button), a";
 }
 
 @mixin get-tag-colors($htmlTag: "tag") {
-	@if ($htmlTag == "badge") {
-		@extend %set-adaptive-weak-badge;
-		// stylelint-disable-next-line at-rule-empty-line-before
-	} @else {
-		@extend %set-adaptive-weak-tag;
-	}
+	$border-color: 60;
+	$background-color: 1;
 
-	&[data-emphasis="strong"] {
-		@extend %set-adaptive-strong-tag;
+	&:not([data-semantic]),
+	&[data-semantic="adaptive"] {
+		&:not([data-emphasis]),
+		&[data-emphasis="weak"] {
+			@if ($htmlTag == "badge") {
+				$border-color: 70;
+				$background-color: 3;
+				@include get-weak("adaptive", $border-color, $background-color);
+				// stylelint-disable-next-line at-rule-empty-line-before
+			} @else {
+				@include get-weak();
+			}
+		}
 
-		.db-tab-remove-button {
-			@extend %set-interactive-strong;
+		&[data-emphasis="strong"] {
+			@include get-strong();
+
+			.db-tab-remove-button {
+				@extend %set-interactive-strong;
+			}
 		}
 	}
 
 	@each $name in colors.$variant-colors {
 		&[data-semantic="#{$name}"] {
-			border-color: var(--db-#{$name}-on-bg-basic-emphasis-60-default);
-
-			@include colors.set-current-colors(
-				var(--db-#{$name}-bg-basic-level-1-default),
-				var(--db-#{$name}-on-bg-basic-emphasis-80-default)
-			);
+			&:not([data-emphasis]),
+			&[data-emphasis="weak"] {
+				@include get-weak($name, $border-color, $background-color);
+			}
 
 			&[data-emphasis="strong"] {
-				border-color: var(
-					--db-#{$name}-on-bg-basic-emphasis-70-default
-				);
-
-				@include colors.set-current-colors(
-					var(--db-#{$name}-bg-vibrant-default),
-					var(--db-#{$name}-on-bg-vibrant-default)
-				);
+				@include get-strong($name);
 			}
 		}
 	}
@@ -95,7 +90,7 @@ $interactive-selectors: "label, button:not(.db-tab-remove-button), a";
 }
 
 %set-interactive-strong {
-	@extend %set-adaptive-strong-tag;
+	@include get-strong();
 
 	@include helpers.hover {
 		background-color: colors.$db-adaptive-bg-vibrant-hovered;
@@ -149,7 +144,7 @@ $interactive-selectors: "label, button:not(.db-tab-remove-button), a";
 		label:has(input[type="radio"]:checked) {
 			&,
 			&:is(:hover, :focus, :active) {
-				@extend %set-adaptive-strong-tag;
+				@include get-strong();
 			}
 		}
 	}
@@ -167,7 +162,7 @@ $interactive-selectors: "label, button:not(.db-tab-remove-button), a";
 		}
 
 		label:has(input[type="radio"]:checked) {
-			@extend %set-adaptive-strong-tag;
+			@include get-strong();
 		}
 
 		&:has(input):not(:has(input:checked)) {
