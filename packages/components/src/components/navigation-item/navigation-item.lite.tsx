@@ -50,6 +50,7 @@ export default function DBNavigationItem(props: DBNavigationItemProps) {
 			}
 		},
 		handleClick: (event: ClickEvent<HTMLButtonElement> | any) => {
+			event.stopPropagation();
 			if (props.onClick) {
 				props.onClick(event);
 			}
