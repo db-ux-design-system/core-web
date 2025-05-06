@@ -203,6 +203,14 @@ $checked-active-transition-size: calc(
 					background-color: colors.$db-adaptive-on-bg-inverted-default;
 					color: colors.$db-adaptive-on-bg-inverted-default;
 				}
+
+				&::after {
+					--db-icon-color: #{colors.$db-adaptive-on-bg-inverted-default};
+				}
+			}
+
+			&::after {
+				--db-icon-color: #{colors.$db-adaptive-on-bg-inverted-default};
 			}
 
 			&::before {
