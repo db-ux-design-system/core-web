@@ -52,6 +52,19 @@
 			display: none;
 		}
 	}
+
+	// Hide the burger menu if there is no navigation
+	&:has(.db-header-navigation:empty) {
+		.db-header-burger-menu-container {
+			display: none;
+		}
+
+		&:has(.db-header-secondary-action:empty) {
+			.db-header-action-container::before {
+				display: none;
+			}
+		}
+	}
 }
 
 .db-header-navigation-bar {
