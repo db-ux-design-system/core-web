@@ -36,13 +36,14 @@ $checked-active-transition-size: calc(
 }
 
 .db-switch {
-	@include form-components.set-default-check-element(switch);
+	@include form-components.set-default-check-element();
 
 	user-select: none;
 
-	// This is needed when clicking on the label instead of the input
-	@include helpers.active {
-		> input {
+	&:not(:has(input:disabled)) {
+		@include form-components.get-state();
+
+		@include form-components.get-state("active") {
 			@extend %active-transition;
 		}
 	}
@@ -65,10 +66,11 @@ $checked-active-transition-size: calc(
 		align-items: center;
 		/* stylelint-disable-next-line db-ux/use-spacings */
 		gap: $switch-fixed-padding;
-		background-color: colors.$db-adaptive-bg-basic-transparent-full-default;
 		border-radius: variables.$db-border-radius-full;
 
 		&::after {
+			--db-icon-color: #{colors.$db-adaptive-on-bg-basic-emphasis-100-default};
+
 			visibility: hidden;
 			align-self: center;
 			aspect-ratio: 1;
@@ -81,8 +83,8 @@ $checked-active-transition-size: calc(
 			align-content: center;
 			aspect-ratio: 1;
 			block-size: $switch-inactive-thumb-size;
-			background-color: colors.$db-adaptive-bg-inverted-contrast-max-default;
-			color: colors.$db-adaptive-bg-inverted-contrast-max-default;
+			background-color: colors.$db-adaptive-on-bg-basic-emphasis-100-default;
+			color: colors.$db-adaptive-on-bg-basic-emphasis-100-default;
 			border-radius: variables.$db-border-radius-full;
 			transform: translateX(var(--thumb-offset-x));
 			margin-inline-end: calc(
@@ -121,6 +123,10 @@ $checked-active-transition-size: calc(
 
 			@include helpers.active {
 				border-color: colors.$db-adaptive-on-bg-basic-emphasis-100-pressed;
+			}
+
+			&::after {
+				--db-icon-color: #{colors.$db-adaptive-on-bg-inverted-default};
 			}
 
 			&::before {
