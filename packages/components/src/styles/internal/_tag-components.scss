@@ -52,7 +52,7 @@ $interactive-selectors: "label, button:not(.db-tab-remove-button), a";
 				$background-color: 3;
 
 				@include get-weak("adaptive", $border-color, $background-color);
-				// stylelint-disable-next-line at-rule-empty-line-before
+				/* stylelint-disable-next-line at-rule-empty-line-before */
 			} @else {
 				@include get-weak();
 			}
