@@ -408,6 +408,7 @@ $input-valid-types:
 		inset-block-start: $icon-inline-block-start;
 		color: colors.$db-adaptive-on-bg-basic-emphasis-100-default;
 		transform: translateY(-50%);
+		z-index: 1;
 	}
 
 	&::before {
