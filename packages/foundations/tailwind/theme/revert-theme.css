@@ -1,9 +1,11 @@
+/* The prefix for variables are predefined by Tailwind, stylelint would throw an error */
+/* stylelint-disable scss/at-rule-no-unknown, custom-property-pattern */
 @theme {
 	--font-*: initial; /* Font family utilities like font-sans */
 	--font-sans: var(--db-font-family-sans);
 	--font-head: var(--db-font-family-head);
-
 	--text-*: initial; /* Font size utilities like text-body-xl */
+
 	/* We overwrite those with custom utilities, those are just for auto complete */
 	--text-base: var(--db-type-body-md);
 	--text-body-3xs: var(--db-type-body-3xs);
@@ -24,7 +26,6 @@
 	--text-head-xl: var(--db-type-headline-xl);
 	--text-head-2xl: var(--db-type-headline-2xl);
 	--text-head-3xl: var(--db-type-headline-3xl);
-
 	--spacing-*: initial; /* Spacing and sizing utilities like px-fix-md, max-h-siz-xl, and many more */
 	--spacing-none: 0;
 	--spacing-0: 0;
@@ -38,7 +39,6 @@
 	--radius-none: 0;
 	--radius-0: 0;
 	--shadow-*: initial; /* Box shadow utilities like shadow-md */
-
 	--breakpoint-*: initial; /* Responsive breakpoint variants like sm:* */
 	--breakpoint-xs: 360px;
 	--breakpoint-sm: 720px;
