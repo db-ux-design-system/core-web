@@ -1,6 +1,6 @@
 # DEV Research `table`
 
-## Overview
+## Overview 🔍
 
 | Design System                                                                           |                                                     Component                                                      | Comment                                                                                                                                                                                                                                                                                                          |
 | --------------------------------------------------------------------------------------- | :----------------------------------------------------------------------------------------------------------------: | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -20,7 +20,7 @@
 | [Telekom Scale](https://github.com/telekom/scale)                                       |                  [table](https://telekom.github.io/scale/?path=/docs/components-table--standard)                   | Simple native table with a wrapper. Supports sorting for columns and striped rows.                                                                                                                                                                                                                               |
 | [Washington Post Design System](https://build.washingtonpost.com/)                      |                   [table (coming soon)](https://build.washingtonpost.com/components/table) / ❌                    | --                                                                                                                                                                                                                                                                                                               |
 
-## Conclusion
+## Conclusion 🏁
 
 The design systems we reviewed tend to follow two approaches based on their technological foundations: framework-oriented systems (e.g. React/Angular) often encapsulate table logic in sophisticated components, whereas technology-agnostic solutions (Web Components or pure HTML/CSS libraries) primarily supply styles and structure and leave the interactive logic to implementers.
 
@@ -48,9 +48,9 @@ Across the surveyed design systems, there is a kind of pattern for tables:
 
     A common requirement is horizontal scrolling on narrow viewports, mostly achieved via wrappers, CSS overflow, or built-in scroll buttons. Systems also offer scoped styling variables or props to adjust row density, header stickiness, and column widths.
 
-## Possible roadmap based on implementation complexity
+## Possible roadmap based on implementation complexity 📍
 
-### V1 - Simple and basic features
+### 🟢 V1 - Simple and basic features
 
 Version 1 delivers a fully functional static table component that renders data in rows and columns using semantic HTML markup, basic styling, lightweight responsive enhancements and optional CSS sticky headers, but excludes any dynamic interactions.
 This provides an immediately usable, accessible foundation consistent with the initial table offerings of many design systems.
@@ -93,7 +93,7 @@ This provides an immediately usable, accessible foundation consistent with the i
 
     The table should handle the case that no dat is available and show an appropriate message (e.g. "No data available") and use an `aria-live` region to announce the empty state.
 
-### v2 - Intermediate features
+### 🔵 v2 - Intermediate features
 
 Version 2 introduces the essential interactive capabilities expected in modern data tables.
 These enhancements align the component with the intermediate offerings of established design systems, transforming it from a static display into a dynamic data grid for common data exploration tasks.
@@ -159,7 +159,7 @@ These enhancements align the component with the intermediate offerings of establ
 
     Support an optional footer row for totals, averages, or summary data, enabling built-in aggregation without extra markup.
 
-### V3 - Advanced features
+### 🔴 V3 - Advanced features
 
 Version 3 adds advanced, power-user functionality. These sophisticated features elevate the component into a comprehensive data grid suitable for complex, enterprise-grade applications.
 
