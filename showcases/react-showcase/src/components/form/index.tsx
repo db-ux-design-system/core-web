@@ -498,16 +498,22 @@ const FormComponent = () => {
 
 				<div>
 					<DBTag>
-						<DBButton>Test</DBButton>
+						<button type="button">Test</button>
 					</DBTag>
 					<DBTag>
-						<DBLink>Test</DBLink>
+						<a href="#">Test</a>
 					</DBTag>
 					<DBTag>
-						<DBRadio>Test</DBRadio>
+						<label htmlFor="radio01">
+							<input name="radio01" id="radio01" type="radio" />
+							Test
+						</label>
 					</DBTag>
 					<DBTag>
-						<DBCheckbox>Test</DBCheckbox>
+						<label htmlFor="checkbox01">
+							<input id="checkbox01" type="checkbox" />
+							Test
+						</label>
 					</DBTag>
 				</div>
 			</div>
