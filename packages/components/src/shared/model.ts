@@ -96,19 +96,29 @@ export type MarginProps = {
 	margin?: MarginType;
 };
 
-export const PlacementList = [
+export const PlacementHorizontalList = [
 	'left',
 	'right',
-	'top',
-	'bottom',
 	'left-start',
 	'left-end',
 	'right-start',
-	'right-end',
+	'right-end'
+] as const;
+export type PlacementHorizontalType = (typeof PlacementHorizontalList)[number];
+
+export const PlacementVerticalList = [
+	'top',
+	'bottom',
 	'top-start',
 	'top-end',
 	'bottom-start',
 	'bottom-end'
+] as const;
+export type PlacementVerticalType = (typeof PlacementVerticalList)[number];
+
+export const PlacementList = [
+	...PlacementHorizontalList,
+	...PlacementVerticalList
 ] as const;
 export type PlacementType = (typeof PlacementList)[number];
 export type PlacementProps = {
@@ -244,31 +254,34 @@ export type EmphasisProps = {
 	emphasis?: EmphasisType;
 };
 
-export const TagEmphasisList = [...EmphasisList, 'origin'] as const;
-export type TagEmphasisType = (typeof TagEmphasisList)[number];
-export type TagEmphasisProps = {
-	/**
-	 * The emphasis attribute divides in between a weak, strong or origin appearance.
-	 */
-	emphasis?: TagEmphasisType;
-};
-
 export const ValidationList = ['invalid', 'valid', 'no-validation'] as const;
 export type ValidationType = (typeof ValidationList)[number];
-export type FormProps = {
+
+export type RequiredProps = {
 	/**
-	 * Marks an input element as invalid (red) / valid (green) / no-validation (grey). Overwrites the :user-valid selector.
+	 * When the required attribute specified, the user will be required to fill the form element before submitting the form.
 	 */
-	validation?: ValidationType;
+	required?: boolean | string;
+};
+export type ShowLabelProps = {
+	/**
+	 * Enables/disables the visibility of the label
+	 */
+	showLabel?: boolean | string;
+};
+
+export type ValueProps = {
+	/**
+	 * The value property is to receive results from the native form element.
+	 */
+	value?: any;
+};
+
+export type BaseFormProps = {
 	/**
 	 * The disabled attribute can be set to keep a user from clicking on the form element.
 	 */
 	disabled?: boolean | string;
-	/**
-	 * 	Associates the control with a form element
-	 */
-	form?: string;
-
 	/**
 	 * The label attribute specifies the caption of the form element.
 	 */
@@ -278,20 +291,29 @@ export type FormProps = {
 	 * The name attribute gives the name of the form control, as used in form submission and in the form element's elements object.
 	 */
 	name?: string;
+};
+
+export type CustomFormProps = {
+	/**
+	 * Overwrites auto handling for aria-describedby.
+	 */
+	ariaDescribedBy?: string;
+	/**
+	 * 	Associates the control with a form element
+	 */
+	form?: string;
 
 	/**
-	 * When the required attribute specified, the user will be required to fill the form element before submitting the form.
+	 * Marks an input element as invalid (red) / valid (green) / no-validation (grey). Overwrites the :user-valid selector.
 	 */
-	required?: boolean | string;
-	/**
-	 * Enables/disables the visibility of the label
-	 */
-	showLabel?: boolean | string;
-	/**
-	 * The value property is to receive results from the native form element.
-	 */
-	value?: any;
+	validation?: ValidationType;
 };
+
+export type FormProps = CustomFormProps &
+	BaseFormProps &
+	RequiredProps &
+	ShowLabelProps &
+	ValueProps;
 
 export type FormTextProps = {
 	/**
@@ -544,15 +566,16 @@ export type ClickEventProps<T> = {
 };
 
 export type ClickEventState<T> = {
-	handleClick: (event: ClickEvent<T>) => void;
+	handleClick: (event: ClickEvent<T> | any) => void;
 };
 
 export type ToggleEventProps = {
-	onToggle?: (open: boolean) => void;
+	toggle?: (open: boolean | any) => void;
+	onToggle?: (open: boolean | any) => void;
 };
 
 export type ToggleEventState<T> = {
-	toggle: (event?: ClickEvent<T>) => void;
+	handleToggle: (event?: ClickEvent<T> | any) => void;
 };
 
 export type CloseEventProps = {
@@ -560,6 +583,10 @@ export type CloseEventProps = {
 	 * Function to handle button click (close).
 	 */
 	onClose?: (event?: any) => void;
+	/**
+	 * Function to handle button click (close).
+	 */
+	close?: (event?: any) => void;
 };
 
 export type CloseEventState = {
@@ -589,7 +616,7 @@ export type InputEventProps<T> = {
 };
 
 export type InputEventState<T> = {
-	handleInput: (event: InputEvent<T>) => void;
+	handleInput: (event: InputEvent<T> | any) => void;
 };
 
 export type ChangeEvent<T> = Event;
@@ -599,7 +626,7 @@ export type ChangeEventProps<T> = {
 };
 
 export type ChangeEventState<T> = {
-	handleChange: (event: ChangeEvent<T>) => void;
+	handleChange: (event: ChangeEvent<T> | any) => void;
 };
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -613,8 +640,8 @@ export type FocusEventProps<T> = {
 };
 
 export type FocusEventState<T> = {
-	handleBlur: (event: InteractionEvent<T>) => void;
-	handleFocus: (event: InteractionEvent<T>) => void;
+	handleBlur: (event: InteractionEvent<T> | any) => void;
+	handleFocus: (event: InteractionEvent<T> | any) => void;
 };
 
 export type InnerCloseButtonProps = {

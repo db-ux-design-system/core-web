@@ -12,15 +12,14 @@
     "start": "next start"
   },
   "dependencies": {
-    "@db-ux/db-theme": "1.0.2",
     "next": "latest",
     "react": "18.3.1",
     "react-dom": "18.3.1"
   },
   "devDependencies": {
-    "@types/node": "^22.14.1",
+    "@types/node": "^22.15.17",
     "@types/react": "^18.3.13",
-    "npm-run-all2": "7.0.2",
+    "npm-run-all2": "8.0.1",
     "open-cli": "^8.0.0",
     "typescript": "^5.4.5"
   },

@@ -12,12 +12,11 @@
     "watch": "ng build --watch --configuration development"
   },
   "dependencies": {
-    "@db-ux/db-theme": "1.0.2",
     "express": "^5.1.0"
   },
   "devDependencies": {
     "@types/express": "^5.0.1",
-    "@types/node": "^22.14.1",
+    "@types/node": "^22.15.17",
     "cpr": "3.0.1",
     "typescript": "^5.4.5"
   }

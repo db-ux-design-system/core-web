@@ -4,7 +4,7 @@
 module.exports = {
 	overrides: [
 		{
-			files: ['**/*.lite.tsx'],
+			files: ['**/*.lite.tsx', '**/model.ts'],
 			rules: {
 				/**
 				 * We need "any" for events because of different behavior between frameworks

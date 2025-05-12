@@ -14,7 +14,6 @@ import {
 	cls,
 	delay,
 	getBoolean,
-	getBooleanAsString,
 	getHideProp,
 	hasVoiceOver,
 	stringPropVisible,
@@ -49,7 +48,7 @@ useMetadata({
 useDefaultProps<DBSelectProps>({});
 
 export default function DBSelect(props: DBSelectProps) {
-	const _ref = useRef<HTMLSelectElement | null>(null);
+	const _ref = useRef<HTMLSelectElement | any>(null);
 	// jscpd:ignore-start
 	const state = useStore<DBSelectState>({
 		_id: undefined,
@@ -95,61 +94,62 @@ export default function DBSelect(props: DBSelectProps) {
 				state._descByIds = state._placeholderId;
 			}
 		},
-		handleClick: (event: ClickEvent<HTMLSelectElement>) => {
+		handleClick: (event: ClickEvent<HTMLSelectElement> | any) => {
+			event.stopPropagation();
 			if (props.onClick) {
 				props.onClick(event);
 			}
 		},
-		handleInput: (event: InputEvent<HTMLSelectElement>) => {
-			if (props.onInput) {
-				props.onInput(event);
-			}
-
-			if (props.input) {
-				props.input(event);
-			}
+		handleInput: (event: InputEvent<HTMLSelectElement> | any) => {
+			event.stopPropagation();
+			useTarget({
+				vue: () => {
+					if (props.input) {
+						props.input(event);
+					}
+					if (props.onInput) {
+						props.onInput(event);
+					}
+				},
+				default: () => {
+					if (props.onInput) {
+						props.onInput(event);
+					}
+				}
+			});
 
 			useTarget({
-				angular: () => handleFrameworkEventAngular(this, event),
+				angular: () => handleFrameworkEventAngular(state, event),
 				vue: () => handleFrameworkEventVue(() => {}, event)
 			});
 			state.handleValidation();
 		},
-		handleChange: (event: ChangeEvent<HTMLSelectElement>) => {
+		handleChange: (event: ChangeEvent<HTMLSelectElement> | any) => {
+			event.stopPropagation();
 			if (props.onChange) {
 				props.onChange(event);
 			}
 
-			if (props.change) {
-				props.change(event);
-			}
-
 			useTarget({
-				angular: () => handleFrameworkEventAngular(this, event),
+				angular: () => handleFrameworkEventAngular(state, event),
 				vue: () => handleFrameworkEventVue(() => {}, event)
 			});
 			state.handleValidation();
 		},
-		handleBlur: (event: InteractionEvent<HTMLSelectElement>) => {
+		handleBlur: (event: InteractionEvent<HTMLSelectElement> | any) => {
+			event.stopPropagation();
 			if (props.onBlur) {
 				props.onBlur(event);
 			}
-
-			if (props.blur) {
-				props.blur(event);
-			}
 		},
-		handleFocus: (event: InteractionEvent<HTMLSelectElement>) => {
+		handleFocus: (event: InteractionEvent<HTMLSelectElement> | any) => {
+			event.stopPropagation();
 			if (props.onFocus) {
 				props.onFocus(event);
 			}
-
-			if (props.focus) {
-				props.focus(event);
-			}
 		},
 		getOptionLabel: (option: DBSelectOptionType) => {
-			return option.label ?? option.value.toString();
+			return option.label ?? option.value?.toString();
 		}
 	});
 
@@ -214,6 +214,7 @@ export default function DBSelect(props: DBSelectProps) {
 				size={props.size}
 				value={props.value ?? state._value}
 				autocomplete={props.autocomplete}
+				multiple={props.multiple}
 				onInput={(event: ChangeEvent<HTMLSelectElement>) =>
 					state.handleInput(event)
 				}
@@ -232,7 +233,7 @@ export default function DBSelect(props: DBSelectProps) {
 				aria-describedby={state._descByIds}>
 				{/* Empty option for floating label */}
 				<option hidden></option>
-				<Show when={props.options}>
+				<Show when={props.options} else={props.children}>
 					<For each={props.options}>
 						{(option: DBSelectOptionType) => (
 							<>
@@ -272,7 +273,6 @@ export default function DBSelect(props: DBSelectProps) {
 						)}
 					</For>
 				</Show>
-				{props.children}
 			</select>
 			<span id={state._placeholderId}>
 				{props.placeholder ?? props.label}

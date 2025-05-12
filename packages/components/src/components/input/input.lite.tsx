@@ -13,13 +13,13 @@ import {
 	cls,
 	delay,
 	getBoolean,
-	getBooleanAsString,
 	getHideProp,
 	getNumber,
 	hasVoiceOver,
 	isArrayOfStrings,
 	stringPropVisible,
-	uuid
+	uuid,
+	getInputValue
 } from '../../utils';
 import { DBInputProps, DBInputState } from './model';
 import {
@@ -40,8 +40,8 @@ import {
 } from '../../shared/model';
 import DBInfotext from '../infotext/infotext.lite';
 import {
-	handleFrameworkEventVue,
-	handleFrameworkEventAngular
+	handleFrameworkEventAngular,
+	handleFrameworkEventVue
 } from '../../utils/form-components';
 
 useMetadata({
@@ -53,7 +53,7 @@ useMetadata({
 useDefaultProps<DBInputProps>({});
 
 export default function DBInput(props: DBInputProps) {
-	const _ref = useRef<HTMLInputElement | null>(null);
+	const _ref = useRef<HTMLInputElement | any>(null);
 	// jscpd:ignore-start
 	const state = useStore<DBInputState>({
 		_id: undefined,
@@ -101,59 +101,58 @@ export default function DBInput(props: DBInputProps) {
 			}
 		},
 		handleInput: (event: InputEvent<HTMLInputElement>) => {
-			if (props.onInput) {
-				props.onInput(event);
-			}
-
-			if (props.input) {
-				props.input(event);
-			}
+			event.stopPropagation();
+			useTarget({
+				vue: () => {
+					if (props.input) {
+						props.input(event);
+					}
+					if (props.onInput) {
+						props.onInput(event);
+					}
+				},
+				default: () => {
+					if (props.onInput) {
+						props.onInput(event);
+					}
+				}
+			});
 
 			useTarget({
-				angular: () => handleFrameworkEventAngular(this, event),
+				angular: () => handleFrameworkEventAngular(state, event),
 				vue: () => handleFrameworkEventVue(() => {}, event)
 			});
 			state.handleValidation();
 		},
 		handleChange: (event: ChangeEvent<HTMLInputElement>) => {
+			event.stopPropagation();
 			if (props.onChange) {
 				props.onChange(event);
 			}
 
-			if (props.change) {
-				props.change(event);
-			}
-
 			useTarget({
-				angular: () => handleFrameworkEventAngular(this, event),
+				angular: () => handleFrameworkEventAngular(state, event),
 				vue: () => handleFrameworkEventVue(() => {}, event)
 			});
 			state.handleValidation();
 		},
-		handleBlur: (event: InteractionEvent<HTMLInputElement>) => {
+		handleBlur: (event: InteractionEvent<HTMLInputElement> | any) => {
+			event.stopPropagation();
 			if (props.onBlur) {
 				props.onBlur(event);
 			}
-
-			if (props.blur) {
-				props.blur(event);
-			}
 		},
-		handleFocus: (event: InteractionEvent<HTMLInputElement>) => {
+		handleFocus: (event: InteractionEvent<HTMLInputElement> | any) => {
+			event.stopPropagation();
 			if (props.onFocus) {
 				props.onFocus(event);
 			}
-
-			if (props.focus) {
-				props.focus(event);
-			}
 		},
-		getDataList: (
-			_list?: string[] | ValueLabelType[]
-		): ValueLabelType[] => {
+		getDataList: (): ValueLabelType[] => {
+			const _list = props.dataList;
 			return Array.from(
 				(isArrayOfStrings(_list)
-					? _list.map((val: string) => ({
+					? _list?.map((val: string) => ({
 							value: val,
 							label: undefined
 						}))
@@ -223,8 +222,8 @@ export default function DBInput(props: DBInputProps) {
 				value={props.value ?? state._value}
 				maxLength={getNumber(props.maxLength, props.maxlength)}
 				minLength={getNumber(props.minLength, props.minlength)}
-				max={getNumber(props.max)}
-				min={getNumber(props.min)}
+				max={getInputValue(props.max, props.type)}
+				min={getInputValue(props.min, props.type)}
 				readOnly={
 					getBoolean(props.readOnly, 'readOnly') ||
 					getBoolean(props.readonly, 'readonly')
@@ -232,9 +231,8 @@ export default function DBInput(props: DBInputProps) {
 				form={props.form}
 				pattern={props.pattern}
 				size={props.size}
-				// @ts-ignore
+				// @ts-expect-error inout has a property autoComplete
 				autoComplete={props.autocomplete}
-				// @ts-ignore
 				autoFocus={getBoolean(props.autofocus, 'autofocus')}
 				onInput={(event: ChangeEvent<HTMLInputElement>) =>
 					state.handleInput(event)
@@ -249,11 +247,11 @@ export default function DBInput(props: DBInputProps) {
 					state.handleFocus(event)
 				}
 				list={props.dataList && state._dataListId}
-				aria-describedby={state._descByIds}
+				aria-describedby={props.ariaDescribedBy ?? state._descByIds}
 			/>
 			<Show when={props.dataList}>
 				<datalist id={state._dataListId}>
-					<For each={state.getDataList(props.dataList)}>
+					<For each={state.getDataList()}>
 						{(option: ValueLabelType) => (
 							<option
 								key={

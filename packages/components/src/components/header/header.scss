@@ -11,7 +11,7 @@
 	flex-direction: column;
 	position: relative;
 	min-block-size: component.$min-mobile-header-height;
-	border-block-end: variables.$db-border-height-3xs solid
+	border-block-end: variables.$db-border-width-3xs solid
 		colors.$db-adaptive-on-bg-basic-emphasis-60-default;
 
 	@include screen-sizes.screen("md") {
@@ -50,6 +50,19 @@
 	&:has(.db-brand:empty) {
 		.db-header-navigation-container::before {
 			display: none;
+		}
+	}
+
+	// Hide the burger menu if there is no navigation
+	&:has(.db-header-navigation:empty) {
+		.db-header-burger-menu-container {
+			display: none;
+		}
+
+		&:has(.db-header-secondary-action:empty) {
+			.db-header-action-container::before {
+				display: none;
+			}
 		}
 	}
 }

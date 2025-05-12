@@ -53,6 +53,16 @@ export type DBTabsDefaultProps = {
 	onTabSelect?: (event?: Event) => void;
 
 	/**
+	 * Informs the user if the current tab index has changed.
+	 */
+	indexChange?: (index?: number) => void;
+
+	/**
+	 * Informs the user if another tab has been selected.
+	 */
+	tabSelect?: (event?: Event) => void;
+
+	/**
 	 * Provide simple tabs with label + text as content
 	 */
 	tabs?: DBSimpleTabProps[] | string;
@@ -71,7 +81,7 @@ export type DBTabsDefaultState = {
 	showScrollLeft?: boolean;
 	showScrollRight?: boolean;
 	evaluateScrollButtons: (tabList: Element) => void;
-	convertTabs: (tabs?: unknown[] | string | undefined) => DBSimpleTabProps[];
+	convertTabs: () => DBSimpleTabProps[];
 	initTabList: () => void;
 	initTabs: (init?: boolean) => void;
 	handleChange: (event: any) => void;

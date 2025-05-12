@@ -59,12 +59,22 @@ $scrollbar-width: helpers.px-to-rem(8);
 	/* Up */
 	&::-webkit-scrollbar-button:single-button:vertical:decrement {
 		border-start-end-radius: variables.$db-border-radius-xs;
-		background-image: var(--db-textarea-scrollbar-button-decrement);
+		background-image: var(--db-scrollbar-button-vertical-decrement);
 	}
 
 	/* Down */
 	&::-webkit-scrollbar-button:single-button:vertical:increment {
-		background-image: var(--db-textarea-scrollbar-button-increment);
+		background-image: var(--db-scrollbar-button-vertical-increment);
+	}
+
+	/* Left */
+	&::-webkit-scrollbar-button:single-button:horizontal:decrement {
+		background-image: var(--db-scrollbar-button-horizontal-decrement);
+	}
+
+	/* Right */
+	&::-webkit-scrollbar-button:single-button:horizontal:increment {
+		background-image: var(--db-scrollbar-button-horizontal-increment);
 	}
 
 	&[data-variant="floating"] {

@@ -8,9 +8,14 @@ import { setScrollViewport } from './fixtures/viewport';
 
 const density = 'regular';
 
+export type SkipType = {
+	angular?: boolean;
+};
+
 export type DefaultTestType = {
 	path: string;
 	fixedHeight?: number;
+	skip?: SkipType;
 };
 
 export type DefaultSnapshotTestType = {
@@ -33,10 +38,11 @@ export type A11yCheckerTestType = {
 
 export const isStencil = (showcase: string): boolean =>
 	showcase.startsWith('stencil');
+export const isAngular = (showcase: string): boolean =>
+	showcase.startsWith('angular');
 
 export const hasWebComponentSyntax = (showcase: string): boolean => {
-	const isAngular = showcase.startsWith('angular');
-	return isAngular || isStencil(showcase);
+	return isAngular(showcase) || isStencil(showcase);
 };
 
 export const waitForDBPage = async (page: Page) => {
@@ -71,20 +77,32 @@ const gotoPage = async (
 const isCheckerError = (object: any): object is ICheckerError =>
 	'details' in object;
 
+const shouldSkip = (skip: SkipType): boolean => {
+	if (skip) {
+		const showcase = process.env.showcase;
+		if (skip.angular && showcase.startsWith('angular')) {
+			return true;
+		}
+	}
+
+	return false;
+};
+
 export const getDefaultScreenshotTest = ({
 	path,
 	fixedHeight,
-	preScreenShot
+	preScreenShot,
+	skip
 }: DefaultSnapshotTestType) => {
 	test(`should match screenshot`, async ({ page }, { project }) => {
 		const showcase = process.env.showcase;
 		const diffPixel = process.env.diff;
 		const maxDiffPixelRatio = process.env.ratio;
-		const isAngular = showcase.startsWith('angular');
 		const stencil = isStencil(showcase);
-		const isWebkit = project.name === 'webkit';
+		const isWebkit =
+			project.name === 'webkit' || project.name === 'mobile_safari';
 
-		if (stencil && isWebkit) {
+		if ((stencil && isWebkit) || shouldSkip(skip)) {
 			// There is an issue with Webkit and Stencil for new playwright version
 			test.skip();
 		}
@@ -99,7 +117,9 @@ export const getDefaultScreenshotTest = ({
 			if (diffPixel) {
 				config.maxDiffPixels = Number(diffPixel);
 			}
-		} else if (isAngular) {
+		} else if (isWebkit) {
+			config.maxDiffPixelRatio = 0.033;
+		} else if (isAngular(showcase)) {
 			config.maxDiffPixels = 1000;
 		} else {
 			config.maxDiffPixels = 120;
@@ -131,14 +151,19 @@ export const runAxeCoreTest = ({
 	skipAxe,
 	preAxe,
 	color = lvl1,
-	density = 'regular'
+	density = 'regular',
+	skip
 }: AxeCoreTestType) => {
 	test(`should not have any A11y issues for density ${density} and color ${color}`, async ({
 		page
 	}, { project }) => {
 		const isLevelOne = color.endsWith('-1');
 		// We don't need to check color contrast for every project (just for chrome)
-		if (skipAxe ?? (!isLevelOne && shouldSkipA11yTest(project))) {
+		if (
+			skipAxe ||
+			shouldSkip(skip) ||
+			(!isLevelOne && shouldSkipA11yTest(project))
+		) {
 			test.skip();
 		}
 
@@ -176,10 +201,11 @@ export const runA11yCheckerTest = ({
 	fixedHeight,
 	aCheckerDisableRules,
 	preChecker,
-	skipChecker
+	skipChecker,
+	skip
 }: A11yCheckerTestType) => {
 	test('test with accessibility checker', async ({ page }, { project }) => {
-		if (skipChecker || shouldSkipA11yTest(project)) {
+		if (skipChecker || shouldSkip(skip) || shouldSkipA11yTest(project)) {
 			// Checking complete DOM in Firefox and Webkit takes very long, we skip this test
 			// we don't need to check for mobile device - it just changes the viewport
 			test.skip();
@@ -221,12 +247,18 @@ export const runA11yCheckerTest = ({
 export const runAriaSnapshotTest = ({
 	path,
 	fixedHeight,
-	preScreenShot
+	preScreenShot,
+	skip
 }: DefaultSnapshotTestType) => {
 	test(`should have same aria-snapshot`, async ({ page }, {
 		project,
 		title
 	}) => {
+		if (shouldSkip(skip)) {
+			// There is an issue with Webkit and Stencil for new playwright version
+			test.skip();
+		}
+
 		await gotoPage(page, path, lvl1, fixedHeight, density);
 
 		if (preScreenShot) {

@@ -7,6 +7,7 @@ export type ComponentType = {
 	type?: /* Template hygen type */
 	| 'stack'
 		| 'switch'
+		| 'custom-select'
 		| 'tab-panel'
 		| 'tabs'
 		| 'tab-list'

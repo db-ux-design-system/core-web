@@ -16,11 +16,10 @@
     "watch": "ng build --watch --configuration development"
   },
   "dependencies": {
-    "@db-ux/db-theme": "1.0.2",
-    "@stencil/core": "4.29.2"
+    "@stencil/core": "4.31.0"
   },
   "devDependencies": {
-    "npm-run-all2": "7.0.2",
+    "npm-run-all2": "8.0.1",
     "typescript": "^5.4.5"
   },
   "overrides": {

@@ -183,6 +183,25 @@ export const getNumber = (
 	return Number(originNumber ?? alternativeNumber);
 };
 
+/**
+ * Retrieves the input value based on the provided value and input type.
+ *
+ * If the input type is "number" or "range", the value is processed as a number.
+ * Otherwise, the value is returned as-is.
+ *
+ * @param value - The input value, which can be a number, string, or undefined.
+ * @param inputType - The type of the input, such as "number", "range", or other string types.
+ * @returns The processed input value as a string, number, or undefined.
+ */
+export const getInputValue = (
+	value?: number | string,
+	inputType?: string
+): string | number | undefined => {
+	return inputType && ['number', 'range'].includes(inputType)
+		? getNumber(value)
+		: value;
+};
+
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const getHideProp = (show?: boolean | string): any => {
 	if (show === undefined || show === null) {
@@ -202,3 +221,6 @@ export const stringPropVisible = (
 		return Boolean(showString) && Boolean(givenString);
 	}
 };
+
+export const getSearchInput = (element: HTMLElement): HTMLInputElement | null =>
+	element.querySelector<HTMLInputElement>(`input[type="search"]`);
