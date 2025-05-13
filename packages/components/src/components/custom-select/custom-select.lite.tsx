@@ -197,16 +197,18 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 			return (option.id ?? option.value ?? uuid()).toString();
 		},
 		getTagRemoveLabel: (index: number) => {
-			return props.removeTagsTexts &&
+			if (
+				props.removeTagsTexts &&
 				props.removeTagsTexts!.length > index
-				? props.removeTagsTexts!.at(index)!
-				: `${DEFAULT_REMOVE} ${
-						state._selectedOptions
-							? state.getOptionLabel(
-									state._selectedOptions![index]
-								)
-							: ''
-					}`;
+			) {
+				return props.removeTagsTexts!.at(index)!;
+			} else {
+				return `${DEFAULT_REMOVE} ${
+					state._selectedOptions
+						? state.getOptionLabel(state._selectedOptions![index])
+						: ''
+				}`;
+			}
 		},
 		handleTagRemove: (option: CustomSelectOptionType, event: any) => {
 			event.stopPropagation();
@@ -365,8 +367,8 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 				new Date().getTime() - state._internalChangeTimestamp < 200;
 			if (skip) return;
 
+			state._values = values;
 			if (props.onOptionSelected) {
-				state._values = values;
 				props.onOptionSelected(values ?? []);
 			}
 
@@ -480,17 +482,18 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 
 			const filterText = (event.target as HTMLInputElement).value;
 
-			state._options =
-				!props.options || !filterText || filterText.length === 0
-					? props.options
-					: props.options!.filter(
-							(option) =>
-								!option.isGroupTitle &&
-								state
-									.getOptionLabel(option)
-									.toLowerCase()
-									.includes(filterText.toLowerCase())
-						);
+			if (!props.options || !filterText || filterText.length === 0) {
+				state._options = props.options;
+			} else {
+				state._options = props.options!.filter(
+					(option) =>
+						!option.isGroupTitle &&
+						state
+							.getOptionLabel(option)
+							.toLowerCase()
+							.includes(filterText.toLowerCase())
+				);
+			}
 		},
 		handleClearAll: () => {
 			state.handleOptionSelected([]);
@@ -625,8 +628,8 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 	}, [props.options]);
 
 	onUpdate(() => {
-		if (state._options?.length) {
-			state._selectedOptions = state._options?.filter(
+		if (props.options?.length) {
+			state._selectedOptions = props.options?.filter(
 				(option: CustomSelectOptionType) => {
 					if (!option.value || !state._values?.['includes']) {
 						return false;
@@ -639,7 +642,7 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 				}
 			);
 		}
-	}, [state._options, state._values]);
+	}, [props.options, state._values]);
 
 	onUpdate(() => {
 		if (state._selectedOptions?.length) {
@@ -717,8 +720,8 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 					disabled={getBoolean(props.disabled, 'disabled')}
 					required={getBoolean(props.required, 'required')}
 					onChange={() => satisfyReact()}>
-					<Show when={state._options?.length}>
-						<For each={state._options}>
+					<Show when={props.options?.length}>
+						<For each={props.options}>
 							{(option: CustomSelectOptionType) => (
 								<option
 									key={useTarget({
