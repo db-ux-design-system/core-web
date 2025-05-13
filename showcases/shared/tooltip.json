@@ -34,7 +34,7 @@
 		]
 	},
 	{
-		"name": "Variant",
+		"name": "Show Arrow",
 		"children": [
 			{
 				"name": "button"
@@ -42,17 +42,18 @@
 		],
 		"examples": [
 			{
-				"name": "(Default) With arrow",
+				"name": "(Default) True",
 				"props": {
 					"content": "Tooltip",
-					"id": "tooltip-04"
+					"id": "tooltip-04",
+					"showArrow": true
 				}
 			},
 			{
-				"name": "Basic",
+				"name": "False",
 				"props": {
 					"content": "Tooltip",
-					"variant": "basic",
+					"showArrow": false,
 					"id": "tooltip-05"
 				}
 			}
@@ -215,7 +216,7 @@
 		]
 	},
 	{
-		"name": "Animations",
+		"name": "Animation",
 		"children": [
 			{
 				"name": "button"
@@ -223,14 +224,41 @@
 		],
 		"examples": [
 			{
-				"name": "(Default) Animation no delay",
+				"name": "(Default) True",
 				"props": {
 					"content": "Tooltip",
-					"id": "tooltip-14"
+					"id": "tooltip-14",
+					"animation": true
 				}
 			},
 			{
-				"name": "Delay slow",
+				"name": "False",
+				"props": {
+					"content": "Tooltip",
+					"animation": false,
+					"id": "tooltip-17"
+				}
+			}
+		]
+	},
+	{
+		"name": "Delay",
+		"children": [
+			{
+				"name": "button"
+			}
+		],
+		"examples": [
+			{
+				"name": "(Default) None",
+				"props": {
+					"content": "Tooltip",
+					"id": "tooltip-144",
+					"delay": "none"
+				}
+			},
+			{
+				"name": "Slow",
 				"props": {
 					"content": "Tooltip",
 					"delay": "slow",
@@ -238,19 +266,11 @@
 				}
 			},
 			{
-				"name": "Delay fast",
+				"name": "Fast",
 				"props": {
 					"content": "Tooltip",
 					"delay": "fast",
 					"id": "tooltip-16"
-				}
-			},
-			{
-				"name": "No animation",
-				"props": {
-					"content": "Tooltip",
-					"animation": "disabled",
-					"id": "tooltip-17"
 				}
 			}
 		]

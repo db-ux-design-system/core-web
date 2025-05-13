@@ -11,6 +11,9 @@
 		let-variantIndex="variantIndex"
 	>
 		<db-input
+			[maxLength]="exampleProps?.maxLength"
+			[max]="exampleProps?.max"
+			[min]="exampleProps?.min"
 			[variant]="exampleProps?.variant"
 			[label]="exampleProps?.label"
 			[message]="exampleProps?.message"

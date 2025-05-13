@@ -24,8 +24,6 @@ const getCodeExampleBodyFontSize = (size: string) => `.db-font-size-${size} {
 	/* custom properties only for components */
 	--db-icon-font-weight: var(--db-base-body-icon-weight-${size});
 	--db-icon-font-size: var(--db-base-body-icon-font-size-${size});
-	--db-base-line-height: var(--db-type-body-line-height-${size});
-	--db-base-font-size: var(--db-type-body-font-size-${size});
 }
 `;
 const getCodeExampleHeadlineTag = (tag: string, size: string) => `${tag} {

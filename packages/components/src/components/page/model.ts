@@ -15,7 +15,7 @@ export type DBPageDefaultProps = {
 	/**
 	 * Set this to have a transition with opacity to avoid layout-shifts https://simonhearne.com/2021/layout-shifts-webfonts/
 	 */
-	fadeIn?: boolean;
+	fadeIn?: boolean | string;
 
 	/**
 	 * The slot can be used for React to set a footer.
@@ -25,6 +25,11 @@ export type DBPageDefaultProps = {
 	 * The slot can be used for React to set a header.
 	 */
 	header?: any;
+
+	/**
+	 * Adds `class` to `<main>` element
+	 */
+	mainClass?: string;
 
 	/**
 	 * The variant=fixed uses flex-box to make header and footer static

@@ -10,29 +10,34 @@
   - list:
     - listitem:
       - link "Expressive"
-  - link "Interaction-States arrow_up_right\" / \""
+  - link "Disabled arrow_up_right\" / \""
   - list:
     - listitem:
-      - link "Enabled (Default)/Hover/Pressed"
+      - link "(Default) False"
   - list:
     - listitem:
-      - link "Active"
+      - link "True"
+  - link "Active arrow_up_right\" / \""
   - list:
     - listitem:
-      - link "Disabled"
-  - link "Content arrow_up_right\" / \""
+      - link "(Default) False"
   - list:
     - listitem:
-      - link "(Default) Text"
+      - link "True"
+  - link "Expanded arrow_up_right\" / \""
   - list:
     - listitem:
-      - link "Text - Icon (Leading)"
+      - link "(Default) False"
   - list:
     - listitem:
-      - button "Text - Icons (Leading, Chevron) chevron_right\" / \""
+      - button "True chevron_right\" / \""
+  - link "Show Icon arrow_up_right\" / \""
   - list:
     - listitem:
-      - button "Text - Icon (Chevron) chevron_right\" / \""
+      - link "(Default) False"
+  - list:
+    - listitem:
+      - link "True"
   - link "Width arrow_up_right\" / \""
   - list:
     - listitem:
@@ -40,3 +45,13 @@
   - list:
     - listitem:
       - link "Full"
+  - link "Wrap arrow_up_right\" / \""
+  - list:
+    - listitem:
+      - button "No Wrap (Default) chevron_right\" / \""
+  - list:
+    - listitem:
+      - button "This is a very long text that is broken into multiple lines. chevron_right\" / \""
+  - list:
+    - listitem:
+      - button "This is a very long text that is broken into multiple lines. chevron_right\" / \""

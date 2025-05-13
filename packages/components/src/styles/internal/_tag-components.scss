@@ -1,40 +1,81 @@
 @use "sass:map";
 @use "component";
-@use "@db-ui/foundations/build/styles/variables";
-@use "@db-ui/foundations/build/styles/colors";
-@use "@db-ui/foundations/build/styles/helpers";
+@use "@db-ux/core-foundations/build/styles/variables";
+@use "@db-ux/core-foundations/build/styles/colors";
+@use "@db-ux/core-foundations/build/styles/helpers";
 
 $interactive-selectors: "label, button:not(.db-tab-remove-button), a";
 
-%set-adaptive-strong-tag {
-	--db-adaptive-on-bg-basic-emphasis-60-default: #{colors.$db-adaptive-bg-inverted-contrast-high-default};
+@mixin get-weak($name: "adaptive", $border-color: 60, $background-color: 1) {
+	// stylelint-disable-next-line db-ux/use-border-color
+	border-color: var(
+		--db-#{$name}-on-bg-basic-emphasis-#{$border-color}-default
+	);
 
 	@include colors.set-current-colors(
-		colors.$db-adaptive-bg-inverted-contrast-high-default,
-		colors.$db-adaptive-on-bg-inverted-default
+		var(--db-#{$name}-bg-basic-level-#{$background-color}-default),
+		var(--db-#{$name}-on-bg-basic-emphasis-80-default)
 	);
 }
 
-@mixin get-tag-colors() {
-	background-color: colors.$db-adaptive-bg-basic-level-3-default;
+@mixin get-strong($name: "adaptive") {
+	border-color: var(--db-#{$name}-on-bg-basic-emphasis-70-default);
 
-	&[data-emphasis="strong"] {
-		@extend %set-adaptive-strong-tag;
+	@include colors.set-current-colors(
+		var(--db-#{$name}-bg-vibrant-default),
+		var(--db-#{$name}-on-bg-vibrant-default)
+	);
+}
+
+%set-interactive-weak {
+	@include get-weak();
+
+	@include helpers.hover {
+		background-color: colors.$db-adaptive-bg-basic-level-1-hovered;
+	}
+
+	@include helpers.active {
+		background-color: colors.$db-adaptive-bg-basic-level-1-pressed;
+	}
+}
+
+@mixin get-tag-colors($htmlTag: "tag") {
+	$border-color: 60;
+	$background-color: 1;
+
+	&:not([data-semantic]),
+	&[data-semantic="adaptive"] {
+		&:not([data-emphasis]),
+		&[data-emphasis="weak"] {
+			@if ($htmlTag == "badge") {
+				$border-color: 70;
+				$background-color: 3;
+
+				@include get-weak("adaptive", $border-color, $background-color);
+				/* stylelint-disable-next-line at-rule-empty-line-before */
+			} @else {
+				@include get-weak();
+			}
+		}
+
+		&[data-emphasis="strong"] {
+			@include get-strong();
+
+			.db-tab-remove-button {
+				@extend %set-interactive-strong;
+			}
+		}
 	}
 
 	@each $name in colors.$variant-colors {
 		&[data-semantic="#{$name}"] {
-			@extend %db-#{$name}-bg-basic-level-3;
+			&:not([data-emphasis]),
+			&[data-emphasis="weak"] {
+				@include get-weak($name, $border-color, $background-color);
+			}
 
 			&[data-emphasis="strong"] {
-				--db-adaptive-on-bg-basic-emphasis-60-default: var(
-					--db-#{$name}-bg-inverted-contrast-high-default
-				);
-
-				@include colors.set-current-colors(
-					var(--db-#{$name}-bg-inverted-contrast-high-default),
-					var(--db-#{$name}-on-bg-inverted-default)
-				);
+				@include get-strong($name);
 			}
 		}
 	}
@@ -51,16 +92,14 @@ $interactive-selectors: "label, button:not(.db-tab-remove-button), a";
 }
 
 %set-interactive-strong {
-	@extend %set-adaptive-strong-tag;
+	@include get-strong();
 
 	@include helpers.hover {
-		background-color: colors.$db-adaptive-bg-inverted-contrast-high-hovered;
-		border-color: colors.$db-adaptive-bg-inverted-contrast-high-hovered;
+		background-color: colors.$db-adaptive-bg-vibrant-hovered;
 	}
 
 	@include helpers.active {
-		background-color: colors.$db-adaptive-bg-inverted-contrast-high-pressed;
-		border-color: colors.$db-adaptive-bg-inverted-contrast-high-pressed;
+		background-color: colors.$db-adaptive-bg-vibrant-pressed;
 	}
 }
 
@@ -76,18 +115,6 @@ $interactive-selectors: "label, button:not(.db-tab-remove-button), a";
 			background-color: transparent;
 		}
 	}
-
-	a {
-		color: currentcolor;
-
-		@include helpers.hover {
-			color: currentcolor;
-		}
-
-		@include helpers.active {
-			color: currentcolor;
-		}
-	}
 }
 
 @mixin get-tag-colors-interactive() {
@@ -100,81 +127,48 @@ $interactive-selectors: "label, button:not(.db-tab-remove-button), a";
 		}
 	}
 
-	label:has(input) {
-		background-color: colors.$db-adaptive-bg-basic-level-1-default;
-
-		@include helpers.hover {
-			background-color: colors.$db-adaptive-bg-basic-level-1-hovered;
-		}
-
-		@include helpers.active {
-			background-color: colors.$db-adaptive-bg-basic-level-1-pressed;
-		}
-	}
-
 	&:not([data-emphasis]),
 	&[data-emphasis="weak"] {
-		// buttons and links should have bg-basic-level-2
+		// buttons and links
 		@include get-interactive-selectors() {
-			background-color: colors.$db-adaptive-bg-basic-level-3-default;
-
-			@include helpers.hover {
-				background-color: colors.$db-adaptive-bg-basic-level-3-hovered;
-			}
-
-			@include helpers.active {
-				background-color: colors.$db-adaptive-bg-basic-level-3-pressed;
-			}
+			@extend %set-interactive-weak;
 		}
 
-		// checkbox should have bg-basic-level-3 (checked)
+		label:has(input) {
+			@extend %set-interactive-weak;
+		}
+
 		label:has(input[type="checkbox"]:checked) {
-			background-color: colors.$db-adaptive-bg-basic-level-3-default;
-
-			@include helpers.hover {
-				background-color: colors.$db-adaptive-bg-basic-level-3-hovered;
-			}
-
-			@include helpers.active {
-				background-color: colors.$db-adaptive-bg-basic-level-3-pressed;
-			}
+			@extend %set-interactive-strong;
 		}
 
-		// radio should have bg-basic-level-3 (checked) without hover/pressed
+		// radio (checked) without hover/pressed
 		label:has(input[type="radio"]:checked) {
 			&,
 			&:is(:hover, :focus, :active) {
-				background-color: colors.$db-adaptive-bg-basic-level-3-default;
+				@include get-strong();
 			}
 		}
 	}
 
 	&[data-emphasis="strong"] {
+		@extend %set-interactive-strong;
+
+		// buttons and links
 		@include get-interactive-selectors() {
 			@extend %set-interactive-strong;
-		}
-
-		label:has(input[type="radio"]:checked) {
-			@extend %set-adaptive-strong-tag;
-
-			/* Revert this for checked radio button (it's not clickable again) */
-			@include helpers.hover {
-				background-color: colors.$db-adaptive-bg-inverted-contrast-high-default;
-			}
-
-			@include helpers.active {
-				cursor: default;
-				background-color: colors.$db-adaptive-bg-inverted-contrast-high-default;
-			}
 		}
 
 		label:has(input[type="checkbox"]:checked) {
 			@extend %set-interactive-strong;
 		}
 
-		&:has(a),
-		&:has(input:checked) {
-			@extend %set-adaptive-strong-tag;
+		label:has(input[type="radio"]:checked) {
+			@include get-strong();
+		}
+
+		&:has(input):not(:has(input:checked)) {
+			@extend %set-interactive-weak;
 		}
 	}
 }

@@ -12,7 +12,7 @@ import { environment } from '../../../environments/environment';
 			? [DefaultComponent]
 			: [DefaultComponent, DBTextarea]
 	],
-	schemas: [CUSTOM_ELEMENTS_SCHEMA],
+	schemas: environment.webComponents ? [CUSTOM_ELEMENTS_SCHEMA] : [],
 	standalone: true
 })
 export class TextareaComponent {

@@ -60,6 +60,18 @@
 		"origin": "clock"
 	},
 	{
+		"name": "check-circle.svg",
+		"type": "lucide",
+		"licence": "https://lucide.dev/license#lucide-license",
+		"origin": "circle-check"
+	},
+	{
+		"name": "circle.svg",
+		"type": "lucide",
+		"licence": "https://lucide.dev/license#lucide-license",
+		"origin": "circle"
+	},
+	{
 		"name": "calendar.svg",
 		"type": "lucide",
 		"licence": "https://lucide.dev/license#lucide-license",
@@ -82,6 +94,12 @@
 		"type": "lucide",
 		"licence": "https://lucide.dev/license#lucide-license",
 		"origin": "x"
+	},
+	{
+		"name": "circular_arrows.svg",
+		"type": "lucide",
+		"licence": "https://lucide.dev/license#lucide-license",
+		"origin": "refresh-cw"
 	},
 	{
 		"name": "check.svg",

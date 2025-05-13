@@ -50,25 +50,12 @@
 		]
 	},
 	{
-		"name": "Interaction-States",
+		"name": "Disabled",
 		"examples": [
 			{
-				"name": "Enabled (Default)/Hover/Pressed",
-				"children": [
-					{
-						"name": "a",
-						"native": true,
-						"props": {
-							"href": "#"
-						},
-						"content": "Enabled (Default)/Hover/Pressed"
-					}
-				]
-			},
-			{
-				"name": "Active",
+				"name": "(Default) False",
 				"props": {
-					"active": true
+					"disabled": false
 				},
 				"children": [
 					{
@@ -77,12 +64,12 @@
 						"props": {
 							"href": "#"
 						},
-						"content": "Active"
+						"content": "(Default) False"
 					}
 				]
 			},
 			{
-				"name": "Disabled",
+				"name": "True",
 				"props": {
 					"disabled": true
 				},
@@ -93,17 +80,54 @@
 						"props": {
 							"href": "#"
 						},
-						"content": "Disabled"
+						"content": "True"
 					}
 				]
 			}
 		]
 	},
 	{
-		"name": "Content",
+		"name": "Active",
 		"examples": [
 			{
-				"name": "(Default) Text",
+				"name": "(Default) False",
+				"props": {
+					"active": false
+				},
+				"children": [
+					{
+						"name": "a",
+						"native": true,
+						"props": {
+							"href": "#"
+						},
+						"content": "(Default) False"
+					}
+				]
+			},
+			{
+				"name": "True",
+				"props": {
+					"active": true
+				},
+				"children": [
+					{
+						"name": "a",
+						"native": true,
+						"props": {
+							"href": "#"
+						},
+						"content": "True"
+					}
+				]
+			}
+		]
+	},
+	{
+		"name": "Expanded",
+		"examples": [
+			{
+				"name": "(Default) False",
 				"props": {
 					"areaPopup": false
 				},
@@ -114,14 +138,14 @@
 						"props": {
 							"href": "#"
 						},
-						"content": "(Default) Text"
+						"content": "(Default) False"
 					}
 				]
 			},
 			{
-				"name": "Text - Icon (Leading)",
+				"name": "True",
 				"props": {
-					"icon": "x_placeholder"
+					"areaPopup": true
 				},
 				"children": [
 					{
@@ -130,15 +154,20 @@
 						"props": {
 							"href": "#"
 						},
-						"content": "Text - Icon (Leading)"
+						"content": "True"
 					}
 				]
-			},
+			}
+		]
+	},
+	{
+		"name": "Show Icon",
+		"examples": [
 			{
-				"name": "Text - Icons (Leading, Chevron)",
+				"name": "(Default) False",
 				"props": {
 					"icon": "x_placeholder",
-					"areaPopup": true
+					"showIcon": false
 				},
 				"children": [
 					{
@@ -147,14 +176,15 @@
 						"props": {
 							"href": "#"
 						},
-						"content": "Text - Icons (Leading, Chevron)"
+						"content": "(Default) False"
 					}
 				]
 			},
 			{
-				"name": "Text - Icon (Chevron)",
+				"name": "True",
 				"props": {
-					"areaPopup": true
+					"icon": "x_placeholder",
+					"showIcon": true
 				},
 				"children": [
 					{
@@ -163,7 +193,7 @@
 						"props": {
 							"href": "#"
 						},
-						"content": "Text - Icon (Chevron)"
+						"content": "True"
 					}
 				]
 			}
@@ -200,6 +230,70 @@
 							"href": "#"
 						},
 						"content": "Full"
+					}
+				]
+			}
+		]
+	},
+	{
+		"name": "Wrap",
+		"examples": [
+			{
+				"name": "No Wrap (Default)",
+				"props": {
+					"areaPopup": true
+				},
+				"children": [
+					{
+						"name": "a",
+						"native": true,
+						"props": {
+							"href": "#"
+						},
+						"content": "True"
+					}
+				]
+			},
+			{
+				"name": "This is a very long text that is broken into multiple lines.",
+				"props": {
+					"areaPopup": true,
+					"icon": "x_placeholder",
+					"showIcon": true,
+					"wrap": true
+				},
+				"style": {
+					"width": "200px"
+				},
+				"children": [
+					{
+						"name": "a",
+						"native": true,
+						"content": "Sub-Sub-Navi-Item 1",
+						"props": {
+							"href": "#"
+						}
+					}
+				]
+			},
+			{
+				"name": "This is a very long text that is broken into multiple lines.",
+				"props": {
+					"areaPopup": true,
+					"wrap": true
+				},
+				"style": {
+					"width": "200px"
+				},
+				"slot": "sub-navigation",
+				"children": [
+					{
+						"name": "a",
+						"native": true,
+						"props": {
+							"href": "#"
+						},
+						"content": "True"
 					}
 				]
 			}

@@ -1,8 +1,8 @@
-@use "@db-ui/foundations/build/styles/variables";
-@use "@db-ui/foundations/build/styles/icons";
-@use "@db-ui/foundations/build/styles/fonts";
-@use "@db-ui/foundations/build/styles/colors";
-@use "@db-ui/foundations/build/styles/helpers";
+@use "@db-ux/core-foundations/build/styles/variables";
+@use "@db-ux/core-foundations/build/styles/icons";
+@use "@db-ux/core-foundations/build/styles/fonts";
+@use "@db-ux/core-foundations/build/styles/colors";
+@use "@db-ux/core-foundations/build/styles/helpers";
 @use "../../styles/internal/component";
 @use "../../styles/internal/form-components";
 @use "../../styles/internal/button-components";
@@ -14,6 +14,24 @@ $icon-padding: calc(
 
 .db-input {
 	@include form-components.set-default-form-component(input);
+
+	// increased inline size for elements with icons or specific input types that have icons
+	&:is([data-icon], [data-icon-after]):not([data-hide-icon="true"]),
+	&:has(
+			input[type="search"],
+			input[type="date"],
+			input[type="month"],
+			input[type="week"],
+			input[type="datetime-local"],
+			input[type="time"]
+		) {
+		--db-form-component-min-inline-size: #{variables.$db-sizing-xl};
+	}
+
+	// even larger size when both - leading and trailing icons - are present
+	&[data-icon][data-icon-after] {
+		--db-form-component-min-inline-size: #{variables.$db-sizing-2xl};
+	}
 
 	// padding-inline-end according to current amount of icons
 	&[data-icon],
@@ -27,14 +45,9 @@ $icon-padding: calc(
 		--db-form-component-padding-inline-end: #{$icon-padding};
 	}
 
-	&[data-hide-label="true"] {
-		--db-label-visible-height: 0;
-		--db-label-visible-spacing: 1;
-	}
-
 	&:has(input[type="search"]) {
 		@include icons.set-icon("magnifying_glass");
-		@include icons.set-icon("cross_circle", "after");
+		@include icons.set-icon("cross", "after");
 
 		&::after {
 			opacity: 0;
@@ -109,7 +122,7 @@ $icon-padding: calc(
 			position: absolute;
 			inset-inline-end: calc(
 				#{variables.$db-spacing-fixed-sm} +
-					#{variables.$db-border-height-3xs}
+					#{variables.$db-border-width-3xs}
 			);
 		}
 

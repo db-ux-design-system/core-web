@@ -21,26 +21,32 @@ jobs:
       - name: ⏫ Upload foundations build
         uses: actions/upload-artifact@v4
         with:
-          name: db-ui-foundations-build
+          name: db-ux-foundations-build
           path: packages/foundations/build
 
       - name: ⏫ Upload output
         uses: actions/upload-artifact@v4
         with:
-          name: db-ui-output
+          name: db-ux-output
           path: output
 
       - name: ⏫ Upload components build
         uses: actions/upload-artifact@v4
         with:
-          name: db-ui-components-build
+          name: db-ux-components-build
           path: packages/components/build
 
       - name: ⏫ Upload migration build
         uses: actions/upload-artifact@v4
         with:
-          name: db-ui-migration-build
+          name: db-ux-migration-build
           path: packages/migration/build
+
+      - name: ⏫ Upload stylelint build
+        uses: actions/upload-artifact@v4
+        with:
+          name: db-ux-stylelint-build
+          path: packages/stylelint/build
 
       - name: 💀 Killing me softly
         uses: ./.github/actions/cancel-workflow

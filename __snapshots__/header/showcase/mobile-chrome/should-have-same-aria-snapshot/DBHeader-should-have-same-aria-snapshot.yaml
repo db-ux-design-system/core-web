@@ -20,7 +20,7 @@
   - text: brand" / " DBHeader
   - button "magnifying_glass\" / \" Search"
   - button "menu\" / \" BurgerMenu"
-  - link "Behaviour arrow_up_right\" / \""
+  - link "Behavior arrow_up_right\" / \""
   - text: brand" / " DBHeader
   - button "magnifying_glass\" / \" Search"
   - button "menu\" / \" BurgerMenu"
@@ -30,9 +30,6 @@
   - link "Examples arrow_up_right\" / \""
   - text: brand" / " DBHeader
   - button "menu\" / \" BurgerMenu"
-  - text: brand" / " DBHeader
+  - text: brand" / " DBHeader brand" / "
   - button "menu\" / \" BurgerMenu"
   - text: brand" / "
-  - button "menu\" / \" BurgerMenu"
-  - text: brand" / "
-  - button "menu\" / \" BurgerMenu"

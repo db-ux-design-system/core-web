@@ -1,8 +1,8 @@
 @use "sass:map";
-@use "@db-ui/foundations/build/styles/variables";
-@use "@db-ui/foundations/build/styles/fonts";
-@use "@db-ui/foundations/build/styles/colors";
-@use "@db-ui/foundations/build/styles/icons";
+@use "@db-ux/core-foundations/build/styles/variables";
+@use "@db-ux/core-foundations/build/styles/fonts";
+@use "@db-ux/core-foundations/build/styles/colors";
+@use "@db-ux/core-foundations/build/styles/icons";
 @use "../../styles/internal/component";
 @use "../../styles/internal/form-components";
 @use "../../styles/internal/scrollbar";
@@ -30,10 +30,11 @@
 	position: absolute;
 	content: "";
 	inset-block-start: 0;
-	block-size: form-components.$floating-label-size;
+	block-size: form-components.$floating-label-size-calc;
 	margin-inline: 0;
 	inline-size: calc(100% - #{scrollbar.$scrollbar-width} - 1px);
 	inset-inline: 0;
+	transform: none;
 }
 
 .db-textarea {
@@ -43,7 +44,6 @@
 		@extend %resize-textarea;
 		@extend %scrollbar;
 
-		cursor: auto;
 		overflow-y: scroll;
 
 		// we don't have icons in textarea so we can overwrite it here

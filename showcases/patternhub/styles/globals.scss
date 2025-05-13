@@ -1,9 +1,10 @@
-@use "@db-ui/foundations/build/styles/variables";
-@use "@db-ui/foundations/build/styles/colors";
-@use "@db-ui/foundations/build/styles/screen-sizes";
-@use "@db-ui/foundations/build/styles/density";
+@use "@db-ux/core-foundations/build/styles/variables";
+@use "@db-ux/core-foundations/build/styles/colors";
+@use "@db-ux/core-foundations/build/styles/screen-sizes";
+@use "@db-ux/core-foundations/build/styles/density";
+@use "@db-ux/core-components/build/components/section/section";
 
-@forward "@db-ui/components/build/styles/webpack";
+@forward "@db-ux/core-components/build/styles/webpack";
 @forward "@db-ux/db-theme/build/styles/webpack";
 
 :root:not(:has(.db-page)) {
@@ -119,7 +120,7 @@ table th {
 	max-inline-size: variables.$db-sizing-3xl;
 }
 
-/* Workaround for current db-page from db-ui-elements */
+/* Workaround for current db-page from db-ux-elements */
 div[class^="ch-"] {
 	div,
 	span {
@@ -198,7 +199,7 @@ div[class^="ch-"] {
 		inline-size: 100%;
 	}
 
-	&[data-color-scheme="dark"] > span {
+	&[data-mode="dark"] > span {
 		filter: invert(1) brightness(1.2);
 	}
 
@@ -305,9 +306,7 @@ div[class^="ch-"] {
 				inline-size: variables.$db-spacing-fixed-xl;
 			}
 
-			$icon-width: calc(
-				var(--db-base-line-height) * var(--db-base-font-size)
-			);
+			$icon-width: var(--db-icon-font-size);
 
 			.gap1 {
 				inset-inline-start: $icon-width;
@@ -363,7 +362,7 @@ div[class^="ch-"] {
 	}
 }
 
-.color-schemes-container {
+.color-modes-container {
 	padding: variables.$db-spacing-fixed-md;
 	border: 1px dashed colors.$db-adaptive-on-bg-basic-emphasis-100-default;
 	display: grid;
@@ -512,9 +511,15 @@ h6 {
 
 .link-containers {
 	display: grid;
-	grid-template-areas: "previous next";
+	grid-template-areas:
+		"previous previous"
+		"next next";
 	gap: variables.$db-spacing-fixed-md;
 	justify-content: space-between;
+
+	@include screen-sizes.screen("md") {
+		grid-template-areas: "previous next";
+	}
 
 	a {
 		text-decoration: none;
@@ -527,6 +532,7 @@ h6 {
 
 		small {
 			color: colors.$db-informational-bg-inverted-contrast-high-default;
+			overflow-wrap: anywhere;
 		}
 	}
 
@@ -546,6 +552,7 @@ h6 {
 
 .breadcrumb-container {
 	display: flex;
+	overflow-x: auto;
 	align-content: center;
 	align-items: center;
 	padding-block: variables.$db-spacing-fixed-sm;
@@ -593,6 +600,36 @@ h6 {
 			grid-area: icon;
 			margin-block: auto;
 			margin-inline-start: auto;
+		}
+	}
+}
+
+.db-section {
+	/* section workaround:
+	We show the sections inside a card which is wrapped with a section.
+	This leads to issues because in general you should use the section on your root layout
+	*/
+
+	.db-section {
+		&[data-width="small"] {
+			padding-inline: calc(
+				#{section.$small-section-padding-inline} -
+					#{section.$large-section-padding-inline}
+			);
+		}
+
+		&[data-width="medium"] {
+			padding-inline: calc(
+				#{section.$medium-section-padding-inline} -
+					#{section.$large-section-padding-inline}
+			);
+		}
+
+		&[data-width="large"] {
+			padding-inline: calc(
+				#{variables.$db-spacing-fixed-sm} +
+					#{variables.$db-spacing-fixed-md}
+			);
 		}
 	}
 }

@@ -32,9 +32,17 @@ const generateDocsMdx = async () => {
 		for (const element of elements) {
 			const componentName = getComponentName(element.name);
 			const componentGroup = getComponentGroup(components, componentName);
-			const displayName = componentGroup?.subNavigation?.find(
+			const foundComponent = componentGroup?.subNavigation?.find(
 				(component) => component.name === componentName
-			).label;
+			);
+			if (!foundComponent) {
+				console.error(
+					`Component ${componentName} not found in the components.json file`
+				);
+				continue;
+			}
+
+			const displayName = foundComponent.label;
 
 			if (componentGroup) {
 				const componentOldPath = `${componentsPath}/${componentName}`;

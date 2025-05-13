@@ -1,0 +1,108 @@
+/* stylelint-disable custom-property-pattern, custom-property-empty-line-before, scss/at-rule-no-unknown */
+
+/* The prefix for variables are predefined by Tailwind, stylelint would throw an error */
+@import url("colors.css");
+@import url("revert-theme.css");
+@import url("dimensions.css");
+
+@utility text-body-3xs {
+	font: var(--db-type-body-3xs);
+}
+
+@utility text-body-2xs {
+	font: var(--db-type-body-2xs);
+}
+
+@utility text-body-xs {
+	font: var(--db-type-body-xs);
+}
+
+@utility text-body-sm {
+	font: var(--db-type-body-sm);
+}
+
+@utility text-body-md {
+	font: var(--db-type-body-md);
+}
+
+@utility text-body-lg {
+	font: var(--db-type-body-lg);
+}
+
+@utility text-body-xl {
+	font: var(--db-type-body-xl);
+}
+
+@utility text-body-2xl {
+	font: var(--db-type-body-2xl);
+}
+
+@utility text-body-3xl {
+	font: var(--db-type-body-3xl);
+}
+
+@utility text-head-3xs {
+	font: var(--db-type-headline-3xs);
+}
+
+@utility text-head-2xs {
+	font: var(--db-type-headline-2xs);
+}
+
+@utility text-head-xs {
+	font: var(--db-type-headline-xs);
+}
+
+@utility text-head-sm {
+	font: var(--db-type-headline-sm);
+}
+
+@utility text-head-md {
+	font: var(--db-type-headline-md);
+}
+
+@utility text-head-lg {
+	font: var(--db-type-headline-lg);
+}
+
+@utility text-head-xl {
+	font: var(--db-type-headline-xl);
+}
+
+@utility text-head-2xl {
+	font: var(--db-type-headline-2xl);
+}
+
+@utility text-head-3xl {
+	font: var(--db-type-headline-3xl);
+}
+
+@layer base {
+	p {
+		font: var(--db-type-body-md);
+	}
+
+	h1 {
+		font: var(--db-type-headline-xl);
+	}
+
+	h2 {
+		font: var(--db-type-headline-lg);
+	}
+
+	h3 {
+		font: var(--db-type-headline-md);
+	}
+
+	h4 {
+		font: var(--db-type-headline-sm);
+	}
+
+	h5 {
+		font: var(--db-type-headline-xs);
+	}
+
+	h6 {
+		font: var(--db-type-headline-2xs);
+	}
+}
