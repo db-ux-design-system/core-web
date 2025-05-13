@@ -86,7 +86,17 @@
   - textbox "Label"
   - status
   - text: x_placeholder" / "
-  - link "Example - Types arrow_up_right\" / \""
+  - link "Example - Length arrow_up_right\" / \""
+  - text: Label
+  - textbox "Label"
+  - status
+  - text: Label
+  - textbox "Label"
+  - status
+  - text: Label
+  - textbox "Label"
+  - status
+  - link "Example - Types with min and max arrow_up_right\" / \""
   - text: Label
   - textbox "Label"
   - status
@@ -96,7 +106,7 @@
   - text: magnifying_glass" / " Label
   - searchbox "Label"
   - status
-  - text: cross_circle" / " Label
+  - text: cross" / " Label
   - textbox "Label"
   - status
   - text: Label
@@ -144,11 +154,8 @@
   - text: magnifying_glass" / " Label
   - searchbox "Label"
   - status
-  - text: cross_circle" / " Label
+  - text: cross" / " Label
   - textbox "Label"
-  - status
-  - text: Label
-  - spinbutton "Label"
   - status
   - text: Label
   - textbox "Label"

@@ -9,7 +9,7 @@ import {
 import { DBNotificationProps, DBNotificationState } from './model';
 import DBButton from '../button/button.lite';
 import { DEFAULT_CLOSE_BUTTON } from '../../shared/constants';
-import { cls, getHideProp, stringPropVisible } from '../../utils';
+import { cls, getBoolean, getHideProp, stringPropVisible } from '../../utils';
 import { ClickEvent } from '../../shared/model';
 
 useMetadata({});
@@ -17,12 +17,13 @@ useMetadata({});
 useDefaultProps<DBNotificationProps>({});
 
 export default function DBNotification(props: DBNotificationProps) {
-	const _ref = useRef<HTMLDivElement | null>(null);
+	const _ref = useRef<HTMLDivElement | any>(null);
 	// jscpd:ignore-start
 	const state = useStore<DBNotificationState>({
-		handleClose: (event: ClickEvent<HTMLButtonElement>) => {
+		handleClose: (event: ClickEvent<HTMLButtonElement> | any) => {
+			event.stopPropagation();
 			if (props.onClose) {
-				props.onClose();
+				props.onClose(event);
 			}
 		}
 	});
@@ -55,7 +56,7 @@ export default function DBNotification(props: DBNotificationProps) {
 
 			<Slot name="link" />
 
-			<Show when={props.closeable}>
+			<Show when={getBoolean(props.closeable, 'closeable')}>
 				<DBButton
 					id={props.closeButtonId}
 					icon="cross"

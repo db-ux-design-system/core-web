@@ -21,7 +21,7 @@ export type DBTabsDefaultProps = {
 	/**
 	 * Change amount of distance if you click on an arrow, only available with behavior="arrows"
 	 */
-	arrowScrollDistance?: number;
+	arrowScrollDistance?: number | string;
 	/**
 	 * Show a scrollbar or buttons with arrows to navigate for horizontal tabs with overflow visible
 	 */
@@ -30,7 +30,7 @@ export type DBTabsDefaultProps = {
 	/**
 	 * Default behavior is auto selecting the first tab, change selected tab by index
 	 */
-	initialSelectedIndex?: number;
+	initialSelectedIndex?: number | string;
 
 	/**
 	 * Default behavior is auto selecting the first tab, disable it with 'manually'
@@ -53,6 +53,16 @@ export type DBTabsDefaultProps = {
 	onTabSelect?: (event?: Event) => void;
 
 	/**
+	 * Informs the user if the current tab index has changed.
+	 */
+	indexChange?: (index?: number) => void;
+
+	/**
+	 * Informs the user if another tab has been selected.
+	 */
+	tabSelect?: (event?: Event) => void;
+
+	/**
 	 * Provide simple tabs with label + text as content
 	 */
 	tabs?: DBSimpleTabProps[] | string;
@@ -71,7 +81,7 @@ export type DBTabsDefaultState = {
 	showScrollLeft?: boolean;
 	showScrollRight?: boolean;
 	evaluateScrollButtons: (tabList: Element) => void;
-	convertTabs: (tabs?: unknown[] | string | undefined) => DBSimpleTabProps[];
+	convertTabs: () => DBSimpleTabProps[];
 	initTabList: () => void;
 	initTabs: (init?: boolean) => void;
 	handleChange: (event: any) => void;

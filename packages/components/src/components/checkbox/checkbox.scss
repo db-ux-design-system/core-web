@@ -15,19 +15,84 @@
 		justify-content: center;
 		block-size: calc(
 			#{form-components.$font-size-height} - 2 *
-				#{variables.$db-border-height-3xs}
+				#{variables.$db-border-width-3xs}
 		);
 		inline-size: calc(
 			#{form-components.$font-size-height} - 2 *
-				#{variables.$db-border-height-3xs}
+				#{variables.$db-border-width-3xs}
 		);
+	}
+}
+
+@mixin get-validity-color-check($key: "valid") {
+	$variant: successful;
+
+	@if ($key != "valid") {
+		$variant: critical;
+	}
+
+	--db-check-element-border-color: var(
+		--db-#{$variant}-on-bg-basic-emphasis-70-default
+	);
+	--db-adaptive-on-bg-basic-emphasis-100-default: var(
+		--db-#{$variant}-on-bg-basic-emphasis-80-default
+	);
+	--db-adaptive-on-bg-basic-emphasis-100-hovered: var(
+		--db-#{$variant}-on-bg-basic-emphasis-80-hovered
+	);
+	--db-adaptive-on-bg-basic-emphasis-100-pressed: var(
+		--db-#{$variant}-on-bg-basic-emphasis-80-pressed
+	);
+
+	@include form-components.get-validity-message($key);
+
+	input {
+		&:not(:checked) {
+			--db-adaptive-bg-basic-transparent-default: var(
+				--db-#{$variant}-bg-basic-transparent-default
+			);
+			--db-adaptive-bg-basic-transparent-hovered: var(
+				--db-#{$variant}-bg-basic-transparent-hovered
+			);
+			--db-adaptive-bg-basic-transparent-pressed: var(
+				--db-#{$variant}-bg-basic-transparent-pressed
+			);
+		}
+
+		&:checked {
+			--db-icon-color: var(--db-#{$variant}-on-bg-inverted-default);
+			--db-adaptive-bg-basic-transparent-full-default: var(
+				--db-#{$variant}-bg-inverted-contrast-high-default
+			);
+			--db-adaptive-bg-basic-transparent-hovered: var(
+				--db-#{$variant}-bg-inverted-contrast-high-hovered
+			);
+			--db-adaptive-bg-basic-transparent-pressed: var(
+				--db-#{$variant}-bg-inverted-contrast-high-pressed
+			);
+		}
 	}
 }
 
 .db-checkbox {
 	@extend %helper-message;
 
-	@include form-components.set-default-check-element(check);
+	@include form-components.set-default-check-element();
+
+	&:not(:has(input:disabled)) {
+		@include form-components.get-state();
+		@include form-components.get-state("active");
+	}
+
+	@include form-components.get-validity(check) {
+		&:has(.db-infotext[data-semantic="successful"]) {
+			@include get-validity-color-check("valid");
+		}
+	}
+
+	@include form-components.get-validity(check, "invalid") {
+		@include get-validity-color-check("invalid");
+	}
 
 	input {
 		display: flex;
@@ -37,17 +102,21 @@
 
 		&:checked {
 			--db-check-element-border-color: #{colors.$db-adaptive-on-bg-basic-emphasis-70-default};
+			--db-icon-color: var(--db-adaptive-on-bg-inverted-default);
+			--db-adaptive-bg-basic-transparent-full-default: var(
+				--db-adaptive-bg-inverted-contrast-max-default
+			);
+			--db-adaptive-bg-basic-transparent-hovered: var(
+				--db-adaptive-bg-inverted-contrast-max-hovered
+			);
+			--db-adaptive-bg-basic-transparent-pressed: var(
+				--db-adaptive-bg-inverted-contrast-max-pressed
+			);
 
 			@extend %center-icon;
 
 			// Check icon
 			@include icons.set-icon("check");
-			@include colors.set-current-colors(
-				colors.$db-adaptive-bg-inverted-contrast-max-default,
-				colors.$db-adaptive-on-bg-inverted-default,
-				colors.$db-adaptive-bg-inverted-contrast-max-hovered,
-				colors.$db-adaptive-bg-inverted-contrast-max-pressed
-			);
 
 			// The icon within the checkbox has the same dimensions as the checkbox itself and that for there can't be any border
 			border-width: 0;

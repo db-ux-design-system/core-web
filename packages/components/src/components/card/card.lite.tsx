@@ -13,10 +13,11 @@ useMetadata({});
 useDefaultProps<DBCardProps>({});
 
 export default function DBCard(props: DBCardProps) {
-	const _ref = useRef<HTMLDivElement | null>(null);
+	const _ref = useRef<HTMLDivElement | any>(null);
 	// jscpd:ignore-start
 	const state = useStore<DBCardState>({
 		handleClick: (event: ClickEvent<HTMLElement>) => {
+			event.stopPropagation();
 			if (props.onClick) {
 				props.onClick(event);
 			}

@@ -24,7 +24,7 @@
 				}
 			}
 		],
-		"db-ux/use-border-height": [true],
+		"db-ux/use-border-width": [true],
 		"db-ux/use-border-radius": [true],
 		"db-ux/use-border-color": [true],
 		"a11y/media-prefers-reduced-motion": true,

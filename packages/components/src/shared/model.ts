@@ -32,7 +32,7 @@ export type GlobalProps = {
 	/**
 	 * Before using please check for the [accessibility concerns](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/autofocus#accessibility_concerns)
 	 */
-	autofocus?: boolean;
+	autofocus?: boolean | string;
 };
 
 export type GlobalState = {
@@ -57,7 +57,7 @@ export type SemanticProps = {
 
 export type IconProps = {
 	/**
-	 * Define an icon by its identifier (like e.g. _user_, compare to [Icons](https://db-ux-design-system.github.io/core-web/review/main/foundations/icons/overview)) to get displayed in front of the elements content.
+	 * Define an icon by its identifier (like e.g. _user_, compare to [Icons](https://design-system.deutschebahn.com/core-web/review/main/foundations/icons/overview)) to get displayed in front of the elements content.
 	 */
 	icon?: IconTypes;
 };
@@ -67,12 +67,12 @@ export type ShowIconProps = {
 	 * Enables or disables the visibility of the icon. The default value depends on the component.
 	 * For many components this property is optional to reflect Figma properties.
 	 */
-	showIcon?: boolean;
+	showIcon?: boolean | string;
 };
 
 export type IconAfterProps = {
 	/**
-	 * Define an icon by its identifier (like e.g. _user_, compare to [Icons](https://db-ux-design-system.github.io/core-web/review/main/foundations/icons/overview)) to get displayed in front of the elements content.
+	 * Define an icon by its identifier (like e.g. _user_, compare to [Icons](https://design-system.deutschebahn.com/core-web/review/main/foundations/icons/overview)) to get displayed in front of the elements content.
 	 */
 	iconAfter?: IconTypes;
 };
@@ -96,19 +96,29 @@ export type MarginProps = {
 	margin?: MarginType;
 };
 
-export const PlacementList = [
+export const PlacementHorizontalList = [
 	'left',
 	'right',
-	'top',
-	'bottom',
 	'left-start',
 	'left-end',
 	'right-start',
-	'right-end',
+	'right-end'
+] as const;
+export type PlacementHorizontalType = (typeof PlacementHorizontalList)[number];
+
+export const PlacementVerticalList = [
+	'top',
+	'bottom',
 	'top-start',
 	'top-end',
 	'bottom-start',
 	'bottom-end'
+] as const;
+export type PlacementVerticalType = (typeof PlacementVerticalList)[number];
+
+export const PlacementList = [
+	...PlacementHorizontalList,
+	...PlacementVerticalList
 ] as const;
 export type PlacementType = (typeof PlacementList)[number];
 export type PlacementProps = {
@@ -126,7 +136,7 @@ export type GapProps = {
 	/**
 	 * If the absolute element should have a gap between the parent element.
 	 */
-	gap?: boolean;
+	gap?: boolean | string;
 };
 
 export const GapSpacingList = [
@@ -153,7 +163,7 @@ export type OverflowProps = {
 	/**
 	 * The overflow attribute sets a max-width and longer text will be dotted.
 	 */
-	overflow?: boolean;
+	overflow?: boolean | string;
 };
 
 export const OrientationList = ['horizontal', 'vertical'] as const;
@@ -196,7 +206,7 @@ export type PopoverProps = {
 	/**
 	 * Disable animation
 	 */
-	animation?: boolean;
+	animation?: boolean | string;
 	/**
 	 * Use fixed with for default max-width
 	 */
@@ -205,6 +215,18 @@ export type PopoverProps = {
 
 export type PopoverState = {
 	handleAutoPlacement: () => void;
+};
+
+export type NameProps = {
+	/**
+	 * The name attribute gives the name of the element to group it.
+	 */
+	name?: string;
+};
+
+export type NameState = {
+	_name?: string;
+	handleNameAttribute: () => void;
 };
 
 export type ContentSlotProps = {
@@ -232,31 +254,34 @@ export type EmphasisProps = {
 	emphasis?: EmphasisType;
 };
 
-export const TagEmphasisList = [...EmphasisList, 'origin'] as const;
-export type TagEmphasisType = (typeof TagEmphasisList)[number];
-export type TagEmphasisProps = {
-	/**
-	 * The emphasis attribute divides in between a weak, strong or origin appearance.
-	 */
-	emphasis?: TagEmphasisType;
-};
-
 export const ValidationList = ['invalid', 'valid', 'no-validation'] as const;
 export type ValidationType = (typeof ValidationList)[number];
-export type FormProps = {
+
+export type RequiredProps = {
 	/**
-	 * Marks an input element as invalid (red) / valid (green) / no-validation (grey). Overwrites the :user-valid selector.
+	 * When the required attribute specified, the user will be required to fill the form element before submitting the form.
 	 */
-	validation?: ValidationType;
+	required?: boolean | string;
+};
+export type ShowLabelProps = {
+	/**
+	 * Enables/disables the visibility of the label
+	 */
+	showLabel?: boolean | string;
+};
+
+export type ValueProps = {
+	/**
+	 * The value property is to receive results from the native form element.
+	 */
+	value?: any;
+};
+
+export type BaseFormProps = {
 	/**
 	 * The disabled attribute can be set to keep a user from clicking on the form element.
 	 */
-	disabled?: boolean;
-	/**
-	 * 	Associates the control with a form element
-	 */
-	form?: string;
-
+	disabled?: boolean | string;
 	/**
 	 * The label attribute specifies the caption of the form element.
 	 */
@@ -266,34 +291,55 @@ export type FormProps = {
 	 * The name attribute gives the name of the form control, as used in form submission and in the form element's elements object.
 	 */
 	name?: string;
+};
+
+export type CustomFormProps = {
+	/**
+	 * Overwrites auto handling for aria-describedby.
+	 */
+	ariaDescribedBy?: string;
+	/**
+	 * 	Associates the control with a form element
+	 */
+	form?: string;
 
 	/**
-	 * When the required attribute specified, the user will be required to fill the form element before submitting the form.
+	 * Marks an input element as invalid (red) / valid (green) / no-validation (grey). Overwrites the :user-valid selector.
 	 */
-	required?: boolean;
-	/**
-	 * Enables/disables the visibility of the label
-	 */
-	showLabel?: boolean;
-	/**
-	 * The value property is to receive results from the native form element.
-	 */
-	value?: any;
+	validation?: ValidationType;
 };
+
+export type FormProps = CustomFormProps &
+	BaseFormProps &
+	RequiredProps &
+	ShowLabelProps &
+	ValueProps;
 
 export type FormTextProps = {
 	/**
 	 * Maximum length (number of characters) of value
 	 */
-	maxLength?: number;
+	maxLength?: number | string;
 	/**
 	 * Minimum length (number of characters) of value
 	 */
-	minLength?: number;
+	minLength?: number | string;
+	/**
+	 * Maximum length (number of characters) of value
+	 */
+	maxlength?: number | string;
+	/**
+	 * Minimum length (number of characters) of value
+	 */
+	minlength?: number | string;
 	/**
 	 * The disabled attribute can be set to keep a user from edit on the form element
 	 */
-	readOnly?: boolean;
+	readOnly?: boolean | string;
+	/**
+	 * The disabled attribute can be set to keep a user from edit on the form element
+	 */
+	readonly?: boolean | string;
 };
 
 export type FormSizeProps = {
@@ -307,7 +353,7 @@ export type FormCheckProps = {
 	/**
 	 * Define the radio or checkbox elements checked state
 	 */
-	checked?: boolean;
+	checked?: boolean | string;
 };
 
 export const LabelVariantList = ['above', 'floating'] as const;
@@ -409,7 +455,13 @@ export type FormMessageProps = {
 	/**
 	 * Enables or disables the visibility of the message.
 	 */
-	showMessage?: boolean;
+	showMessage?: boolean | string;
+};
+
+export type FromValidState = {
+	hasValidState: () => boolean;
+	handleValidation: () => void;
+	_invalidMessage?: string;
 };
 
 export type FormState = {
@@ -418,7 +470,7 @@ export type FormState = {
 	_invalidMessageId?: string;
 	_descByIds?: string;
 	_value?: string;
-
+	_invalidMessage?: string;
 	/**
 	 * https://www.davidmacd.com/blog/test-aria-describedby-errormessage-aria-live.html
 	 * Currently VoiceOver isn't supporting changes from aria-describedby.
@@ -462,7 +514,7 @@ export type LinkProps = {
 	/**
 	 * Disables the link.
 	 */
-	disabled?: boolean;
+	disabled?: boolean | string;
 	/**
 	 * The [URL that the hyperlink points to](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a#href).
 	 */
@@ -494,7 +546,7 @@ export type LinkProps = {
 	/**
 	 * Sets aria role based on [`aria-selected`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-selected).
 	 */
-	selected?: boolean;
+	selected?: boolean | string;
 };
 
 export type TextProps = {
@@ -514,15 +566,16 @@ export type ClickEventProps<T> = {
 };
 
 export type ClickEventState<T> = {
-	handleClick: (event: ClickEvent<T>) => void;
+	handleClick: (event: ClickEvent<T> | any) => void;
 };
 
 export type ToggleEventProps = {
-	onToggle?: (open: boolean) => void;
+	toggle?: (open: boolean | any) => void;
+	onToggle?: (open: boolean | any) => void;
 };
 
 export type ToggleEventState<T> = {
-	toggle: (event?: ClickEvent<T>) => void;
+	handleToggle: (event?: ClickEvent<T> | any) => void;
 };
 
 export type CloseEventProps = {
@@ -530,6 +583,10 @@ export type CloseEventProps = {
 	 * Function to handle button click (close).
 	 */
 	onClose?: (event?: any) => void;
+	/**
+	 * Function to handle button click (close).
+	 */
+	close?: (event?: any) => void;
 };
 
 export type CloseEventState = {
@@ -549,7 +606,7 @@ export type ActiveProps = {
 	/**
 	 * If the tab is checked/active.
 	 */
-	active?: boolean;
+	active?: boolean | string;
 };
 
 export type InputEvent<T> = Event;
@@ -559,7 +616,7 @@ export type InputEventProps<T> = {
 };
 
 export type InputEventState<T> = {
-	handleInput: (event: InputEvent<T>) => void;
+	handleInput: (event: InputEvent<T> | any) => void;
 };
 
 export type ChangeEvent<T> = Event;
@@ -569,7 +626,7 @@ export type ChangeEventProps<T> = {
 };
 
 export type ChangeEventState<T> = {
-	handleChange: (event: ChangeEvent<T>) => void;
+	handleChange: (event: ChangeEvent<T> | any) => void;
 };
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -583,8 +640,8 @@ export type FocusEventProps<T> = {
 };
 
 export type FocusEventState<T> = {
-	handleBlur: (event: InteractionEvent<T>) => void;
-	handleFocus: (event: InteractionEvent<T>) => void;
+	handleBlur: (event: InteractionEvent<T> | any) => void;
+	handleFocus: (event: InteractionEvent<T> | any) => void;
 };
 
 export type InnerCloseButtonProps = {

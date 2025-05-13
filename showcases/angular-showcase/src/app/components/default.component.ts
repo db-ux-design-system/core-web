@@ -6,8 +6,8 @@ import {
 	type OnInit,
 	type TemplateRef
 } from '@angular/core';
-import { NgTemplateOutlet } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
+import { NgTemplateOutlet } from '@angular/common';
 import {
 	COLOR,
 	COLOR_CONST,

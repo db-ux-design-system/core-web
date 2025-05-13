@@ -1,0 +1,257 @@
+import {
+	BaseFormProps,
+	CloseEventState,
+	CustomFormProps,
+	FormMessageProps,
+	FormState,
+	FromValidState,
+	GlobalProps,
+	GlobalState,
+	IconProps,
+	PlacementVerticalType,
+	PopoverState,
+	RequiredProps,
+	ShowIconProps,
+	ShowLabelProps,
+	ValidationType,
+	WidthType
+} from '../../shared/model';
+import { DBCustomSelectFormFieldDefaultProps } from '../custom-select-form-field/model';
+import { CustomSelectDropdownWidthType } from '../custom-select-dropdown/model';
+import { DBCustomSelectListItemExtraProps } from '../custom-select-list-item/model';
+
+export type CustomSelectOptionType = {
+	/**
+	 * Disables this option
+	 */
+	disabled?: boolean;
+
+	/**
+	 * Identifier for option
+	 */
+	id?: string;
+
+	/**
+	 * If the value is different from the label you want to show to the user.
+	 */
+	label?: string;
+
+	/**
+	 * The value for the option
+	 */
+	value?: string;
+} & DBCustomSelectListItemExtraProps;
+
+export const SelectedTypeList = ['amount', 'text', 'tag'] as const;
+export type SelectedTypeType = (typeof SelectedTypeList)[number];
+
+export type DBCustomSelectEvents = {
+	/**
+	 * Optional: if select-type="amount" when amount changes
+	 * @param amount The amount of selected checkboxes
+	 */
+	onAmountChange?: (amount: number) => void;
+
+	/**
+	 * Optional: if select-type="amount" when amount changes
+	 * @param amount The amount of selected checkboxes
+	 */
+	amountChange?: (amount: number) => void;
+	/**
+	 * Triggers after some option was clicked in dropdown
+	 * @param values the changed values
+	 */
+	onOptionSelected?: (values: string[]) => void;
+	/**
+	 * Triggers after some option was clicked in dropdown
+	 * @param values the changed values
+	 */
+	optionSelected?: (values: string[]) => void;
+
+	/**
+	 * Informs the user when dropdown was toggled.
+	 */
+	onDropdownToggle?: (event: any) => void;
+	/**
+	 * Informs the user when dropdown was toggled.
+	 */
+	dropdownToggle?: (event: any) => void;
+};
+
+export type DBCustomSelectDefaultProps = {
+	/**
+	 * Overwrite the default aria-label (props.label) for the custom-select-list
+	 */
+	ariaListLabel?: string;
+	/**
+	 * Optional: if select-type="amount" change the shown text
+	 */
+	amountText?: string;
+
+	/**
+	 * Label for the clear selection button
+	 */
+	clearSelectionText?: string;
+
+	/**
+	 * Changes the behavior of the dropdown with.
+	 * Default: fixed 328px
+	 * Auto: Based on the size of the form-field
+	 */
+	dropdownWidth?: CustomSelectDropdownWidthType | string;
+
+	/**
+	 * Width of the component. Auto width based on children size, full width based on parent elements width.
+	 */
+	formFieldWidth?: WidthType | string;
+
+	/**
+	 * Dropdown - hint if data has to be loaded
+	 */
+	loadingText?: string;
+
+	/**
+	 * Change the button text for mobile close
+	 */
+	mobileCloseButtonText?: string;
+
+	/**
+	 * Enables CustomSelect
+	 */
+
+	multiple?: boolean | string;
+	/**
+	 * Dropdown - hint if there are no options
+	 */
+	noResultsText?: string;
+	/**
+	 * Programmatically open the dropdown. May differ if you don't use onDropdownToggle.
+	 */
+	open?: boolean;
+
+	/**
+	 * You should pass in the options as an array.
+	 */
+	options?: CustomSelectOptionType[];
+
+	/**
+	 * The `placement` attributes values change the position to absolute and adds a transform based on the placement.
+	 */
+	placement?: PlacementVerticalType;
+
+	/**
+	 * Optional: if you use selectedType=tag and options, you need to set the removeTagsTexts for screen reader users
+	 */
+	removeTagsTexts?: string[];
+
+	/**
+	 * Search label
+	 */
+	searchLabel?: string;
+
+	/**
+	 * Search placeholder
+	 */
+	searchPlaceholder?: string;
+
+	/**
+	 * Select all checkbox label
+	 */
+	selectAllLabel?: string;
+
+	/**
+	 * Change the selected type for values shown in multi select
+	 */
+	selectedType?: SelectedTypeType;
+
+	/**
+	 * Show clear selection button (default:true). Hide it if you have very small inputs e.g. in tables.
+	 */
+	showClearSelection?: boolean;
+
+	/**
+	 * Dropdown - enable loading infotext and spinner
+	 */
+	showLoading?: boolean;
+
+	/**
+	 * Dropdown - enable no options infotext
+	 */
+	showNoResults?: boolean;
+
+	/**
+	 * Forces search in header.
+	 */
+	showSearch?: boolean;
+
+	/**
+	 * Forces select all checkbox (only for multiple).
+	 */
+	showSelectAll?: boolean;
+
+	/**
+	 * Initial value for multi select
+	 */
+	values?: string[];
+};
+
+export type DBCustomSelectProps = GlobalProps &
+	CustomFormProps &
+	BaseFormProps &
+	RequiredProps &
+	FormMessageProps &
+	DBCustomSelectDefaultProps &
+	DBCustomSelectEvents &
+	DBCustomSelectFormFieldDefaultProps &
+	IconProps &
+	ShowIconProps &
+	ShowLabelProps;
+
+export type DBCustomSelectDefaultState = {
+	_validity?: ValidationType;
+	_values?: string[];
+	_options?: CustomSelectOptionType[];
+	_selectedOptions?: CustomSelectOptionType[];
+	_hasNoOptions: boolean;
+	_selectId?: string;
+	_labelId?: string;
+	_summaryId?: string;
+	_placeholderId?: string;
+	_selectedLabels?: string;
+	_selectedLabelsId?: string;
+	_infoTextId?: string;
+	_internalChangeTimestamp: number;
+	_documentClickListenerCallbackId?: string;
+	getNativeSelectValue: () => string;
+	getOptionLabel: (option: CustomSelectOptionType) => string;
+	getOptionChecked: (value?: string) => boolean;
+	getOptionKey: (option: CustomSelectOptionType) => string;
+	getTagRemoveLabel: (index: number) => string;
+	selectAllEnabled: boolean;
+	searchEnabled: boolean;
+	amountOptions: number;
+	setDescById: (descId?: string) => void;
+	handleTagRemove: (option: CustomSelectOptionType, event?: any) => void;
+	handleSummaryFocus: () => void;
+	handleSelect: (value?: string) => void;
+	handleSelectAll: () => void;
+	handleClearAll: () => void;
+	handleDropdownToggle: (event: any) => void;
+	handleDocumentClose: (event: any) => void;
+	handleOpenByKeyboardFocus: (onlySearch?: boolean) => void;
+	handleFocusFirstDropdownCheckbox: (activeElement?: Element) => void;
+	handleKeyboardPress: (event: any) => void;
+	handleArrowDownUp: (event: any) => void;
+	handleSearch: (event: any) => void;
+	handleOptionSelected: (_values: string[]) => void;
+	getSelectAllLabel: () => string;
+	selectAllChecked: boolean;
+	selectAllIndeterminate: boolean;
+};
+
+export type DBCustomSelectState = DBCustomSelectDefaultState &
+	GlobalState &
+	FormState &
+	FromValidState &
+	CloseEventState &
+	PopoverState;
