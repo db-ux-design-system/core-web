@@ -537,18 +537,24 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 
 	onUpdate(() => {
 		if (detailsRef) {
-			const summary = detailsRef.querySelector('summary');
-			if (summary) {
-				summary.addEventListener('click', () => {
-					state.handleAutoPlacement();
-					state.handleOpenByKeyboardFocus(true);
-				});
-				summary.addEventListener('keydown', (event: KeyboardEvent) => {
-					if (event.code === 'Space' && !detailsRef?.open) {
-						state.handleOpenByKeyboardFocus();
-					}
-				});
-			}
+			delay(() => {
+				// delay for angular otherwise summary is null
+				const summary = detailsRef.querySelector('summary');
+				if (summary) {
+					summary.addEventListener('click', () => {
+						state.handleAutoPlacement();
+						state.handleOpenByKeyboardFocus(true);
+					});
+					summary.addEventListener(
+						'keydown',
+						(event: KeyboardEvent) => {
+							if (event.code === 'Space' && !detailsRef?.open) {
+								state.handleOpenByKeyboardFocus();
+							}
+						}
+					);
+				}
+			}, 1);
 			detailsRef.addEventListener('focusout', (event: any) =>
 				state.handleClose(event)
 			);
