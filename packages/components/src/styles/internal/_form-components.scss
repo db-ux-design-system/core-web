@@ -408,6 +408,7 @@ $input-valid-types:
 		inset-block-start: $icon-inline-block-start;
 		color: colors.$db-adaptive-on-bg-basic-emphasis-100-default;
 		transform: translateY(-50%);
+		z-index: 1;
 	}
 
 	&::before {
@@ -428,72 +429,54 @@ $input-valid-types:
 	}
 }
 
-// CHECKBOX & RADIO
-
-@mixin get-validity-color-check($key: "valid") {
+@mixin get-validity-color-check-label-color($state, $key: "valid") {
 	$variant: successful;
 
 	@if ($key != "valid") {
 		$variant: critical;
 	}
 
-	@include get-validity-message($key);
-
-	input:not([role="switch"]) {
-		--db-adaptive-bg-basic-transparent-semi: var(
-			--db-#{$variant}-bg-basic-transparent-semi-default
-		);
-		--db-adaptive-bg-basic-transparent-hovered: var(
-			--db-#{$variant}-bg-basic-transparent-hovered
-		);
-		--db-adaptive-bg-basic-transparent-pressed: var(
-			--db-#{$variant}-bg-basic-transparent-pressed
-		);
-
-		&:not(:checked),
-		&:is([type="radio"]) {
-			--db-check-element-border-color: var(
-				--db-#{$variant}-on-bg-basic-emphasis-70-default
-			);
-		}
-
-		&:not([type="radio"]):checked {
-			@include colors.set-current-colors(
-				colors.$db-successful-bg-inverted-contrast-high-default,
-				colors.$db-successful-on-bg-inverted-default,
-				colors.$db-successful-bg-inverted-contrast-high-hovered,
-				colors.$db-successful-bg-inverted-contrast-high-pressed
-			);
-		}
-	}
-
 	&:has(input:not([role="switch"])) {
 		&:is(label),
 		> label {
-			color: var(--db-#{$variant}-on-bg-basic-emphasis-80-default);
+			color: var(--db-#{$variant}-on-bg-basic-emphasis-100-#{$state});
 		}
 	}
 }
 
-@mixin set-default-check-element($selector) {
+// CHECKBOX & RADIO
+
+@mixin get-state($state: "hover") {
+	$variant: "hovered";
+
+	@if ($state != "hover") {
+		$variant: "pressed";
+	}
+
+	&:has(input:#{$state}, > label:#{$state}, :is(label):#{$state}) {
+		--db-check-element-label-color: var(
+			--db-adaptive-on-bg-basic-emphasis-100-#{$variant}
+		);
+
+		&:is(label),
+		> label {
+			cursor: helpers.$cursor-pointer;
+		}
+
+		input {
+			cursor: helpers.$cursor-pointer;
+			background-color: var(
+				--db-adaptive-bg-basic-transparent-#{$variant}
+			);
+			@content;
+		}
+	}
+}
+
+@mixin set-default-check-element() {
 	@extend %db-overwrite-font-size-md;
 
 	@include set-required-label(input);
-
-	@include get-validity($selector) {
-		@if ($selector == check) {
-			&:has(.db-infotext[data-semantic="successful"]) {
-				@include get-validity-color-check("valid");
-			}
-			/* stylelint-disable-next-line at-rule-empty-line-before */
-		} @else {
-			@include get-validity-color-check("valid");
-		}
-	}
-
-	@include get-validity($selector, "invalid") {
-		@include get-validity-color-check("invalid");
-	}
 
 	&:has(input:disabled) {
 		opacity: component.$default-disabled;
@@ -505,11 +488,10 @@ $input-valid-types:
 		align-items: flex-start;
 		position: relative;
 		gap: variables.$db-spacing-fixed-xs;
-
-		&:not(:has(input:disabled)) {
-			@include helpers.hover;
-			@include helpers.active;
-		}
+		color: var(
+			--db-check-element-label-color,
+			#{colors.$db-adaptive-on-bg-basic-emphasis-100-default}
+		);
 	}
 
 	input {
@@ -526,14 +508,6 @@ $input-valid-types:
 		block-size: $font-size-height;
 		inline-size: $font-size-height;
 		padding: 0;
-
-		@include helpers.hover {
-			background-color: colors.$db-adaptive-bg-basic-transparent-hovered;
-		}
-
-		@include helpers.active {
-			background-color: colors.$db-adaptive-bg-basic-transparent-pressed;
-		}
 	}
 
 	&[data-size="small"] {

@@ -7,7 +7,7 @@
     "type": "git",
     "url": "git+https://github.com/db-ux-design-system/core-web.git"
   },
-  "license": "DB Design License",
+  "license": "Apache-2.0",
   "main": "./build/index.js",
   "types": "./build/index.d.ts",
   "module": "./build/index.js",
@@ -22,6 +22,7 @@
     "build:03_css": "sass --no-source-map --load-path=node_modules/ --load-path=../../node_modules/ build/styles  --fatal-deprecation=mixed-decls",
     "build:04_tailwind": "cpr tailwind build/tailwind -o",
     "build:05_postcss": "postcss build/styles/**/*.css --replace",
+    "build:05_tailwind_scss": "sass --no-source-map build/tailwind/theme --fatal-deprecation=mixed-decls",
     "build:06_ide": "cpr ide build/ide -o",
     "build:06_ts": "tsc",
     "clean": "rm -rf build",
@@ -47,7 +48,7 @@
     "@csstools/normalize.css": "12.1.1",
     "@db-ux/icon-font-tools": "0.3.2",
     "cpr": "3.0.1",
-    "cssnano": "^7.0.6",
+    "cssnano": "^7.0.7",
     "dotenv": "^16.5.0",
     "glob": "11.0.2",
     "nodemon": "3.1.10",
@@ -55,7 +56,7 @@
     "sass": "1.85.0",
     "tsx": "^4.19.4",
     "typescript": "^5.4.5",
-    "vite": "^6.3.3"
+    "vite": "^6.3.5"
   },
   "publishConfig": {
     "registry": "https://registry.npmjs.org/",

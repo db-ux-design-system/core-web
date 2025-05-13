@@ -95,7 +95,7 @@
   - text: Label
   - textbox "Label"
   - status
-  - link "Example - Types arrow_up_right\" / \""
+  - link "Example - Types with min and max arrow_up_right\" / \""
   - text: Label
   - textbox "Label"
   - status
