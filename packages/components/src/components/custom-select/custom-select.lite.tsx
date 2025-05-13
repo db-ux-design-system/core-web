@@ -105,6 +105,7 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 		_hasNoOptions: false,
 		_documentClickListenerCallbackId: undefined,
 		_internalChangeTimestamp: 0,
+		_searchValue: undefined,
 		hasValidState: () => {
 			return !!(props.validMessage ?? props.validation === 'valid');
 		},
@@ -476,21 +477,37 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 		},
 		// Don't trigger onOptionSelected event
 		handleSearch: (event: any) => {
-			event.stopPropagation();
+			let filterText;
 
-			const filterText = (event.target as HTMLInputElement).value;
+			if (typeof event === 'string') {
+				filterText = event;
+			} else {
+				event.stopPropagation();
 
-			state._options =
-				!props.options || !filterText || filterText.length === 0
-					? props.options
-					: props.options!.filter(
-							(option) =>
-								!option.isGroupTitle &&
-								state
-									.getOptionLabel(option)
-									.toLowerCase()
-									.includes(filterText.toLowerCase())
-						);
+				if (props.onSearch) {
+					props.onSearch(event);
+				}
+
+				filterText = (event.target as HTMLInputElement).value;
+				state._searchValue = filterText;
+			}
+
+			if (!props.options || !filterText || filterText.length === 0) {
+				state._options = props.options;
+			} else if (props.searchFilter) {
+				state._options = props.options!.filter((option) =>
+					props.searchFilter!(option, filterText)
+				);
+			} else {
+				state._options = props.options!.filter(
+					(option) =>
+						!option.isGroupTitle &&
+						state
+							.getOptionLabel(option)
+							.toLowerCase()
+							.includes(filterText.toLowerCase())
+				);
+			}
 		},
 		handleClearAll: () => {
 			state.handleOptionSelected([]);
@@ -521,18 +538,24 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 
 	onUpdate(() => {
 		if (detailsRef) {
-			const summary = detailsRef.querySelector('summary');
-			if (summary) {
-				summary.addEventListener('click', () => {
-					state.handleAutoPlacement();
-					state.handleOpenByKeyboardFocus(true);
-				});
-				summary.addEventListener('keydown', (event: KeyboardEvent) => {
-					if (event.code === 'Space' && !detailsRef?.open) {
-						state.handleOpenByKeyboardFocus();
-					}
-				});
-			}
+			delay(() => {
+				// delay for angular otherwise summary is null
+				const summary = detailsRef.querySelector('summary');
+				if (summary) {
+					summary.addEventListener('click', () => {
+						state.handleAutoPlacement();
+						state.handleOpenByKeyboardFocus(true);
+					});
+					summary.addEventListener(
+						'keydown',
+						(event: KeyboardEvent) => {
+							if (event.code === 'Space' && !detailsRef?.open) {
+								state.handleOpenByKeyboardFocus();
+							}
+						}
+					);
+				}
+			}, 1);
 			detailsRef.addEventListener('focusout', (event: any) =>
 				state.handleClose(event)
 			);
@@ -625,6 +648,14 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 	}, [props.options]);
 
 	onUpdate(() => {
+		state._searchValue = props.searchValue;
+		if (props.searchValue) {
+			const sValue = props.searchValue!; // <- workaround for angular
+			state.handleSearch(sValue);
+		}
+	}, [props.searchValue]);
+
+	onUpdate(() => {
 		if (state._options?.length) {
 			state._selectedOptions = state._options?.filter(
 				(option: CustomSelectOptionType) => {
@@ -642,7 +673,20 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 	}, [state._options, state._values]);
 
 	onUpdate(() => {
+		if (props.selectedLabels) {
+			state._selectedLabels = props.selectedLabels;
+			return;
+		}
+
 		if (state._selectedOptions?.length) {
+			if (props.transformSelectedLabels) {
+				// We need to add this to another ``const`` for angular generated output to work
+				const selectedOptions = state._selectedOptions;
+				const transformFn = props.transformSelectedLabels!;
+				state._selectedLabels = transformFn!(selectedOptions);
+				return;
+			}
+
 			if (props.selectedType === 'amount') {
 				state._selectedLabels = props.amountText
 					? props.amountText
@@ -657,7 +701,13 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 		} else {
 			state._selectedLabels = '';
 		}
-	}, [state._selectedOptions, props.selectedType, props.amountText]);
+	}, [
+		state._selectedOptions,
+		props.selectedType,
+		props.amountText,
+		props.selectedLabels,
+		props.transformSelectedLabels
+	]);
 
 	onUpdate(() => {
 		if (props.onAmountChange) {
@@ -804,6 +854,7 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 									form={state._id}
 									type="search"
 									showLabel={false}
+									value={state._searchValue}
 									label={props.searchLabel ?? DEFAULT_LABEL}
 									placeholder={
 										props.searchPlaceholder ??
