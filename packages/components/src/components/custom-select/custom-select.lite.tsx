@@ -145,8 +145,8 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 			}
 		},
 		handleDropdownToggle: (event: any) => {
-			event.stopPropagation();
 			if (props.onDropdownToggle) {
+				event.stopPropagation();
 				props.onDropdownToggle(event);
 			}
 			if (event.target.open) {
@@ -222,14 +222,14 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 				if (dropdown) {
 					delay(() => {
 						handleDataOutside(dropdown);
-					}, 100);
+					}, 1);
 				}
 			}
 		},
 		handleArrowDownUp: (event: any) => {
-			if (detailsRef?.open) {
-				if (document) {
-					const activeElement = document.activeElement;
+			if (detailsRef && detailsRef.open) {
+				if (self.document) {
+					const activeElement = self.document.activeElement;
 					if (activeElement) {
 						// 1. we check if we are currently focusing a checkbox in the dropdown
 						const isCheckbox =
@@ -306,9 +306,6 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 						}
 					}
 				}
-
-				event.stopPropagation();
-				event.preventDefault();
 			} else if (
 				event.key === 'ArrowDown' ||
 				event.key === 'ArrowRight'
@@ -319,13 +316,14 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 					detailsRef.open = true;
 				}
 				state.handleOpenByKeyboardFocus();
-				event.stopPropagation();
-				event.preventDefault();
 			}
+
+			event.stopPropagation();
+			event.preventDefault();
 		},
 		handleKeyboardPress: (event: any) => {
 			event.stopPropagation();
-			if (event.key === 'Escape' && detailsRef && detailsRef?.open) {
+			if (event.key === 'Escape' && detailsRef && detailsRef.open) {
 				state.handleClose('close');
 				state.handleSummaryFocus();
 			} else if (
@@ -342,7 +340,7 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 				if (event === 'close') {
 					detailsRef.open = false;
 					state.handleSummaryFocus();
-				} else if (detailsRef.open && event?.relatedTarget) {
+				} else if (detailsRef.open && event && event.relatedTarget) {
 					const relatedTarget = event.relatedTarget as HTMLElement;
 					if (!detailsRef.contains(relatedTarget)) {
 						detailsRef.open = false;
@@ -351,17 +349,23 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 			}
 		},
 		handleDocumentClose: (event: any) => {
-			// stencil is sending a custom event which wraps the pointer event into details
-			const target = useTarget({
-				stencil:
-					typeof event.detail === 'number'
-						? event.target
-						: event.detail.target,
-				default: event.target
-			});
+			if (event) {
+				// stencil is sending a custom event which wraps the pointer event into details
+				const target = useTarget({
+					stencil:
+						typeof event.detail === 'number'
+							? event.target
+							: event.detail?.target,
+					default: event.target
+				});
 
-			if (detailsRef?.open && !detailsRef.contains(target)) {
-				detailsRef.open = false;
+				if (
+					detailsRef &&
+					detailsRef.open &&
+					!detailsRef.contains(target)
+				) {
+					detailsRef.open = false;
+				}
 			}
 		},
 		handleOptionSelected: (values: string[]) => {
@@ -443,7 +447,7 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 		},
 		handleFocusFirstDropdownCheckbox: (activeElement?: Element) => {
 			if (detailsRef) {
-				const checkboxes = Array.from(
+				const checkboxes: HTMLInputElement[] = Array.from(
 					detailsRef.querySelectorAll(
 						`input[type="checkbox"],input[type="radio"]`
 					)
@@ -459,7 +463,7 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 						delay(() => {
 							// Takes some time until element can be focused
 							(checkbox as HTMLInputElement).focus();
-						}, 100);
+						}, 1);
 					}
 				}
 			}
@@ -505,7 +509,11 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 			state.handleSummaryFocus();
 		},
 		handleSummaryFocus: () => {
-			detailsRef?.querySelector('summary')?.focus();
+			if (detailsRef) {
+				(detailsRef as HTMLDetailsElement)
+					.querySelector('summary')
+					?.focus();
+			}
 		},
 		selectAllChecked: false,
 		selectAllIndeterminate: false
