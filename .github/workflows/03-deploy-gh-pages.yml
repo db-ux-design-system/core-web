@@ -27,7 +27,7 @@ jobs:
       - name: ⏬ Download patternhub
         uses: actions/download-artifact@v4
         with:
-          name: db-ui-patternhub
+          name: db-ux-patternhub
           path: build-showcases/patternhub
 
       - name: 🦵🦿 I like to move it move it
@@ -69,8 +69,7 @@ jobs:
           REPO_NAME: ${{ steps.repo-name.outputs.result }}
           OWNER_NAME: ${{ github.repository_owner }}
         run: |
-          chmod +rx ./.github/scripts/build-gh-page.sh
-          ./.github/scripts/build-gh-page.sh
+          npx --no tsx scripts/github/build-gh-page.ts
 
       - name: 🥅 Deploy to GH-Pages
         uses: peaceiris/actions-gh-pages@v4

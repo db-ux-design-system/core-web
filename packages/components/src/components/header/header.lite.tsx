@@ -2,12 +2,13 @@ import {
 	onMount,
 	onUpdate,
 	Slot,
+	useDefaultProps,
 	useMetadata,
 	useRef,
 	useStore
 } from '@builder.io/mitosis';
 import { DBHeaderProps, DBHeaderState } from './model';
-import { addAttributeToChildren, cls, uuid } from '../../utils';
+import { addAttributeToChildren, cls, getBoolean, uuid } from '../../utils';
 import DBButton from '../button/button.lite';
 import DBDrawer from '../drawer/drawer.lite';
 import { DEFAULT_BURGER_MENU, DEFAULT_ID } from '../../shared/constants';
@@ -15,21 +16,25 @@ import { isEventTargetNavigationItem } from '../../utils/navigation';
 
 useMetadata({});
 
+useDefaultProps<DBHeaderProps>({});
+
 export default function DBHeader(props: DBHeaderProps) {
-	const ref = useRef<HTMLDivElement>(null);
+	const _ref = useRef<HTMLDivElement | any>(null);
 	// jscpd:ignore-start
 	const state = useStore<DBHeaderState>({
 		_id: DEFAULT_ID,
 		initialized: false,
 		forcedToMobile: false,
-		toggle: () => {
+		handleToggle: () => {
+			const open = !getBoolean(props.drawerOpen, 'drawerOpen');
+
 			if (props.onToggle) {
-				props.onToggle(!props.drawerOpen);
+				props.onToggle(open);
 			}
 		},
 		handleNavigationItemClick: (event: unknown) => {
 			if (isEventTargetNavigationItem(event)) {
-				state.toggle();
+				state.handleToggle();
 			}
 		}
 	});
@@ -42,7 +47,7 @@ export default function DBHeader(props: DBHeaderProps) {
 	onUpdate(() => {
 		if (state.initialized && document && state._id && props.forceMobile) {
 			const headerElement = document.getElementById(
-				state._id
+				state._id ?? ''
 			) as HTMLElement;
 			if (headerElement) {
 				// Adds this attribute to the header to enable all styling which would have
@@ -60,7 +65,7 @@ export default function DBHeader(props: DBHeaderProps) {
 
 	return (
 		<header
-			ref={ref}
+			ref={_ref}
 			class={cls('db-header', props.className)}
 			id={state._id}
 			data-width={props.width}
@@ -69,8 +74,8 @@ export default function DBHeader(props: DBHeaderProps) {
 				class="db-header-drawer"
 				rounded
 				spacing="small"
-				open={props.drawerOpen}
-				onClose={() => state.toggle()}>
+				open={getBoolean(props.drawerOpen)}
+				onClose={() => state.handleToggle()}>
 				<div class="db-header-drawer-navigation">
 					<div
 						class="db-header-navigation"
@@ -108,7 +113,7 @@ export default function DBHeader(props: DBHeaderProps) {
 							icon="menu"
 							noText
 							variant="ghost"
-							onClick={() => state.toggle()}>
+							onClick={() => state.handleToggle()}>
 							{props.burgerMenuLabel ?? DEFAULT_BURGER_MENU}
 						</DBButton>
 					</div>

@@ -56,7 +56,9 @@ import * as navigationCode from '../components/code-docs/navigation';
 import * as navigationItemCode from '../components/code-docs/navigation-item';
 import * as popoverCode from '../components/code-docs/popover';
 import * as StackCode from '../components/code-docs/stack';
+import * as CustomSelectCode from '../components/code-docs/custom-select';
 import StackComponent from '../../react-showcase/src/components/stack';
+import MutliSelectComponent from '../../react-showcase/src/components/custom-select';
 import Components from './components.json';
 
 export type NavigationItem = {
@@ -69,6 +71,7 @@ export type NavigationItem = {
 };
 
 const nameComponentMap = {
+	'custom-select': <MutliSelectComponent slotCode={CustomSelectCode} />,
 	stack: <StackComponent slotCode={StackCode} />,
 	button: <ButtonComponent slotCode={buttonCode} />,
 	link: <LinkComponent slotCode={linkCode} />,
@@ -171,12 +174,12 @@ export const ROUTES: NavigationItem[] = [
 				subNavigation: [
 					{ label: 'Readme', path: '/foundations/colors/readme' },
 					{
-						label: 'Color Classes',
-						path: '/foundations/colors/color-classes'
-					},
-					{
 						label: 'Color Schemes',
 						path: '/foundations/colors/color-schemes'
+					},
+					{
+						label: 'Color Modes',
+						path: '/foundations/colors/color-modes'
 					},
 					{
 						label: 'Color Usage Guide',
@@ -233,7 +236,9 @@ export const ROUTES: NavigationItem[] = [
 				label: 'Testing Overview Table',
 				path: '/foundations/test-table'
 			},
-			{ label: 'IDE Support', path: '/foundations/ide' }
+			{ label: 'IDE Support', path: '/foundations/ide' },
+			{ label: 'Performance', path: '/foundations/performance' },
+			{ label: 'Browser Support', path: '/foundations/browser-support' }
 		]
 	},
 	{
@@ -325,7 +330,9 @@ export const getNavigationList = (path: string) => {
 
 export const getBreadcrumb = (path: string) => {
 	const tree: NavigationItem[] = getAllNavigationItems(true);
-	return tree.filter((navItem) => path.includes(navItem.path ?? ''));
+	return tree
+		.filter((navItem) => path.includes(navItem.path ?? ''))
+		.sort((a, b) => (a.path?.length ?? 0) - (b.path?.length ?? 0));
 };
 
 export const getAllComponentGroupNames = (): string[] => {

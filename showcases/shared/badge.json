@@ -40,12 +40,6 @@
 				"name": "(Default) Adaptive"
 			},
 			{
-				"name": "Neutral",
-				"props": {
-					"semantic": "neutral"
-				}
-			},
-			{
 				"name": "Critical",
 				"props": {
 					"semantic": "critical"
@@ -55,6 +49,12 @@
 				"name": "Informational",
 				"props": {
 					"semantic": "informational"
+				}
+			},
+			{
+				"name": "Neutral",
+				"props": {
+					"semantic": "neutral"
 				}
 			},
 			{
@@ -70,15 +70,14 @@
 				}
 			},
 			{
-				"name": "Adaptive Strong",
+				"name": "Line Break",
 				"props": {
-					"emphasis": "strong"
+					"lineBreak": true
 				}
 			},
 			{
-				"name": "Neutral Strong",
+				"name": "Adaptive Strong",
 				"props": {
-					"semantic": "neutral",
 					"emphasis": "strong"
 				}
 			},
@@ -93,6 +92,13 @@
 				"name": "Informational Strong",
 				"props": {
 					"semantic": "informational",
+					"emphasis": "strong"
+				}
+			},
+			{
+				"name": "Neutral Strong",
+				"props": {
+					"semantic": "neutral",
 					"emphasis": "strong"
 				}
 			},
@@ -207,6 +213,12 @@
 				"name": "Numbers",
 				"props": {
 					"example": "number"
+				}
+			},
+			{
+				"name": "Line Break",
+				"props": {
+					"lineBreak": true
 				}
 			},
 			{

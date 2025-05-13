@@ -1,11 +1,19 @@
-import { Show, useMetadata, useRef, useStore } from '@builder.io/mitosis';
+import {
+	Show,
+	useDefaultProps,
+	useMetadata,
+	useRef,
+	useStore
+} from '@builder.io/mitosis';
 import type { DBIconProps, DBIconState } from './model';
 import { cls } from '../../utils';
 
 useMetadata({});
 
+useDefaultProps<DBIconProps>({});
+
 export default function DBIcon(props: DBIconProps) {
-	const ref = useRef<HTMLSpanElement>(null);
+	const _ref = useRef<HTMLSpanElement | any>(null);
 	// jscpd:ignore-start
 	const state = useStore<DBIconState>({});
 
@@ -13,7 +21,7 @@ export default function DBIcon(props: DBIconProps) {
 
 	return (
 		<span
-			ref={ref}
+			ref={_ref}
 			id={props.id}
 			class={cls('db-icon', props.className)}
 			data-icon={props.icon}

@@ -86,7 +86,7 @@
 		]
 	},
 	{
-		"name": "Behaviour",
+		"name": "Behavior",
 		"examples": [
 			{
 				"name": "(Default) Auto Width",

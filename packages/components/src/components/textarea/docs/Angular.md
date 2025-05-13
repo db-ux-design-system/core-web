@@ -1,12 +1,12 @@
 ## Angular
 
-For general installation and configuration look at the [ngx-components](https://www.npmjs.com/package/@db-ui/ngx-components) package.
+For general installation and configuration look at the [ngx-core-components](https://www.npmjs.com/package/@db-ux/ngx-core-components) package.
 
 ### Load component
 
 ```ts app.component.ts
 // app.component.ts
-import { DBTextarea } from '@db-ui/ngx-components';
+import { DBTextarea } from '@db-ux/ngx-core-components';
 
 @Component({
   // ...
@@ -38,7 +38,7 @@ export class AppComponent {
 	label="Textarea Controlled"
 	placeholder="Placeholder"
 	message="Message"
-	icon="person"
+	icon="x_placeholder"
 	[value]="textarea"
 	(change)="textarea = $event.target.value"
 ></db-textarea>

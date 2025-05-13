@@ -1,10 +1,12 @@
-@use "@db-ui/foundations/build/scss/variables";
-@use "@db-ui/foundations/build/scss/colors";
-@use "@db-ui/foundations/build/scss/fonts";
-@use "@db-ui/foundations/build/scss/helpers";
-@use "@db-ui/foundations/build/scss/icons";
-@use "../../styles/form-components";
+@use "@db-ux/core-foundations/build/styles/variables";
+@use "@db-ux/core-foundations/build/styles/colors";
+@use "@db-ux/core-foundations/build/styles/fonts";
+@use "@db-ux/core-foundations/build/styles/helpers";
+@use "@db-ux/core-foundations/build/styles/icons";
+@use "../../styles/internal/form-components";
 
+// We need some fixed padding here to avoid layout shifts
+/* stylelint-disable-next-line db-ux/use-spacings */
 $switch-fixed-padding: helpers.px-to-rem(2);
 
 $switch-inactive-thumb-size: calc(
@@ -34,13 +36,14 @@ $checked-active-transition-size: calc(
 }
 
 .db-switch {
-	@include form-components.set-default-check-element(check);
-
 	user-select: none;
 
-	// This is needed when clicking on the label instead of the input
-	@include helpers.active {
-		> input {
+	@include form-components.set-default-check-element();
+
+	&:not(:has(input:disabled)) {
+		@include form-components.get-state();
+
+		@include form-components.get-state("active") {
 			@extend %active-transition;
 		}
 	}
@@ -51,8 +54,6 @@ $checked-active-transition-size: calc(
 
 		@extend %db-overwrite-font-size-sm;
 
-		@include icons.set-icon("cross", "after");
-
 		appearance: none;
 		inline-size: calc(
 			#{form-components.$font-size-height} * 2 + #{$switch-fixed-padding}
@@ -61,11 +62,15 @@ $checked-active-transition-size: calc(
 		box-sizing: content-box;
 		display: flex;
 		align-items: center;
+		/* stylelint-disable-next-line db-ux/use-spacings */
 		gap: $switch-fixed-padding;
-		background-color: colors.$db-adaptive-bg-basic-transparent-full-default;
 		border-radius: variables.$db-border-radius-full;
 
+		@include icons.set-icon("cross", "after");
+
 		&::after {
+			--db-icon-color: #{colors.$db-adaptive-on-bg-basic-emphasis-100-default};
+
 			visibility: hidden;
 			align-self: center;
 			aspect-ratio: 1;
@@ -73,13 +78,13 @@ $checked-active-transition-size: calc(
 
 		// thumb
 		&::before {
-			content: "O";
+			content: "°" / ""; // This is a workaround for forced-colors mode from browser
 			text-align: center;
 			align-content: center;
 			aspect-ratio: 1;
 			block-size: $switch-inactive-thumb-size;
-			background-color: colors.$db-adaptive-bg-inverted-contrast-max-default;
-			color: colors.$db-adaptive-bg-inverted-contrast-max-default;
+			background-color: colors.$db-adaptive-on-bg-basic-emphasis-100-default;
+			color: colors.$db-adaptive-on-bg-basic-emphasis-100-default;
 			border-radius: variables.$db-border-radius-full;
 			transform: translateX(var(--thumb-offset-x));
 			margin-inline-end: calc(
@@ -118,6 +123,10 @@ $checked-active-transition-size: calc(
 
 			@include helpers.active {
 				border-color: colors.$db-adaptive-on-bg-basic-emphasis-100-pressed;
+			}
+
+			&::after {
+				--db-icon-color: #{colors.$db-adaptive-on-bg-inverted-default};
 			}
 
 			&::before {
@@ -194,6 +203,14 @@ $checked-active-transition-size: calc(
 					background-color: colors.$db-adaptive-on-bg-inverted-default;
 					color: colors.$db-adaptive-on-bg-inverted-default;
 				}
+
+				&::after {
+					--db-icon-color: #{colors.$db-adaptive-on-bg-inverted-default};
+				}
+			}
+
+			&::after {
+				--db-icon-color: #{colors.$db-adaptive-on-bg-inverted-default};
 			}
 
 			&::before {
@@ -214,7 +231,9 @@ $checked-active-transition-size: calc(
 			}
 
 			&:checked {
-				@include icons.set-icon("check", "after");
+				&:not([data-aid-icon]) {
+					@include icons.set-icon("check", "after");
+				}
 
 				&::after {
 					transform: translateX(

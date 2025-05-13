@@ -23,6 +23,8 @@ const tags = ref<string[]>([]);
 
 const array = ["X", "Y", "Z"];
 
+const isActive = ref(true);
+
 const dataList = [{ key: "test", value: "Test" }, { key: "test2" }];
 
 const changeTags = (tag: string) => {
@@ -69,7 +71,7 @@ const reset = () => {
 						label="Textinput"
 						placeholder="Placeholder"
 						message="Description"
-						icon="person"
+						icon="x_placeholder"
 						name="input-name"
 						:dataList="dataList"
 						v-model:value="firstInput"
@@ -86,7 +88,7 @@ const reset = () => {
 						label="Textarea v-model"
 						placeholder="Placeholder"
 						message="Description"
-						icon="person"
+						icon="x_placeholder"
 						name="textarea-name"
 						v-model:value="textareavModel"
 					/>
@@ -94,7 +96,7 @@ const reset = () => {
 						label="Textarea value"
 						placeholder="Placeholder"
 						message="Description"
-						icon="person"
+						icon="x_placeholder"
 						name="textarevalue-name"
 						:value="textarea"
 						@change="textarea = $event.target.value"
@@ -178,6 +180,11 @@ const reset = () => {
 				</fieldset>
 			</form>
 		</div>
+		<DBButton
+			:class="isActive ? 'blubber' : 'dada'"
+			@click="isActive = !isActive"
+			>Test</DBButton
+		>
 		<div>
 			<h1>Output</h1>
 			<dl>

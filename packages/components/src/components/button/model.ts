@@ -38,12 +38,12 @@ export type DBButtonDefaultProps = {
 	/**
 	 * The disabled attribute can be set to [keep a user from clicking on the button](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button#disabled).
 	 */
-	disabled?: boolean;
+	disabled?: boolean | string;
 
 	/**
-	 * Define the text next to the icon specified via the icon Property to get hidden.
+	 * 	Associates the control with a form element
 	 */
-	noText?: boolean; // We had to rename this to noText because web-components uses a regex and always finds "icon" instead of "onlyIcon"
+	form?: string;
 
 	/**
 	 * The label represents the [aria-label attributes](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-label) value of the button
@@ -56,6 +56,16 @@ export type DBButtonDefaultProps = {
 	name?: string;
 
 	/**
+	 * Define the text next to the icon specified via the icon Property to get hidden.
+	 */
+	noText?: boolean | string;
+
+	/**
+	 * Show loading progress inside button.
+	 */
+	state?: ButtonStateType;
+
+	/**
 	 * The type attribute specifies the [type of button](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button#type).
 	 */
 	type?: ButtonTypeType;
@@ -64,11 +74,6 @@ export type DBButtonDefaultProps = {
 	 * The value attribute specifies an initial [value for the button](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button#value).
 	 */
 	value?: string;
-
-	/**
-	 * Show loading progress inside button.
-	 */
-	state?: ButtonStateType;
 
 	/**
 	 * Variant of the button. Use only 1 primary button on a page as CTA otherwise use one of the adaptive buttons.

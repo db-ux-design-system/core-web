@@ -4,60 +4,60 @@
   - article:
     - text: Headline
     - paragraph: functional
-    - button "Close Button"
+    - button "Close"
   - article:
     - text: Headline
     - paragraph: regular (Default)
-    - button "Close Button"
+    - button "Close"
   - article:
     - text: Headline
     - paragraph: expressive
-    - button "Close Button"
+    - button "Close"
   - link "Variant arrow_up_right\" / \""
   - article:
     - text: Headline
     - paragraph: (Default) Docked
-    - button "Close Button"
+    - button "Close"
   - article:
     - text: Headline
     - paragraph: Standalone
-    - button "Close Button"
+    - button "Close"
   - article:
     - text: Headline
     - paragraph: Overlay
     - text: 10 min ago
-    - button "Close Button"
+    - button "Close"
   - link "Semantic arrow_up_right\" / \""
   - article:
     - text: Headline
     - paragraph: (Default) Adaptive
-    - button "Close Button"
+    - button "Close"
   - article:
     - text: information_circle" / " Headline
     - paragraph: Neutral
-    - button "Close Button"
+    - button "Close"
   - article:
     - text: exclamation_mark_circle" / " Headline
     - paragraph: Critical
-    - button "Close Button"
+    - button "Close"
   - article:
     - text: information_circle" / " Headline
     - paragraph: Informational
-    - button "Close Button"
+    - button "Close"
   - article:
     - text: check_circle" / " Headline
     - paragraph: Successful
-    - button "Close Button"
+    - button "Close"
   - article:
     - text: exclamation_mark_triangle" / " Headline
     - paragraph: Warning
-    - button "Close Button"
+    - button "Close"
   - link "Closeable arrow_up_right\" / \""
   - article:
     - paragraph: (Default) False
   - article:
     - paragraph: "True"
-    - button "Close Button"
+    - button "Close"
   - link "Visual arrow_up_right\" / \""
   - article:
     - paragraph: (Default) Icon

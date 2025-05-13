@@ -30,7 +30,7 @@ import {
 @Component({
 	selector: 'app-root',
 	standalone: true,
-	schemas: [CUSTOM_ELEMENTS_SCHEMA],
+	schemas: environment.webComponents ? [CUSTOM_ELEMENTS_SCHEMA] : [],
 	imports: environment.webComponents
 		? [
 				FormsModule,
@@ -41,8 +41,7 @@ import {
 				DBNavigation,
 				SecondaryActionDirective,
 				NavigationDirective,
-				MetaNavigationDirective,
-				NavigationContentDirective
+				MetaNavigationDirective
 			]
 		: [
 				FormsModule,
@@ -56,8 +55,7 @@ import {
 				DBButton,
 				SecondaryActionDirective,
 				NavigationDirective,
-				MetaNavigationDirective,
-				NavigationContentDirective
+				MetaNavigationDirective
 			],
 	templateUrl: './app.component.html'
 })

@@ -1,12 +1,12 @@
 ## React
 
-For general installation and configuration look at the [react-components](https://www.npmjs.com/package/@db-ui/react-components) package.
+For general installation and configuration look at the [react-core-components](https://www.npmjs.com/package/@db-ux/react-core-components) package.
 
 ### Use component
 
 ```tsx App.tsx
 // App.tsx
-import { DBNavigation, DBNavigationItem } from "@db-ui/react-components";
+import { DBNavigation, DBNavigationItem } from "@db-ux/react-core-components";
 
 const App = () => (
 	<DBNavigation>
@@ -37,7 +37,7 @@ const App = () => (
 		>
 			Navi-Item 1
 		</DBNavigationItem>
-		<DBNavigationItem icon="person">
+		<DBNavigationItem icon="x_placeholder">
 			<a href="#">Navi-Item 2</a>
 		</DBNavigationItem>
 		<DBNavigationItem disabled>

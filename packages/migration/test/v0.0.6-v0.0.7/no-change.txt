@@ -1,0 +1,5 @@
+import "@db-ux/core-components/build/styles/rollup.css";
+
+@use "@db-ux/core-foundations/build/styles/variables";
+@use "@db-ux/core-foundations/build/styles/colors";
+@use "@db-ux/core-foundations/build/styles/screen-sizes";

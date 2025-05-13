@@ -1,0 +1,14 @@
+# compare to https://symbl.cc/de/unicode-table/
+U+0000-024F # Latin (all)
+U+0020,U+0009,U+000A,U+000D # white space characters
+U+00E4,U+00F6,U+00FC,U+00DF # German characters
+U+00E9, U+00E8, U+00EA, U+00E0, U+00E7, U+0153 # French characters
+U+00E0, U+00E8, U+00E9, U+00F2, U+00F9, U+00EC, U+00C0, U+00C8, U+00C9, U+00D2, U+00D9, U+00CC # Italian characters
+U+FB00, U+FB01, U+FB02, U+FB03, U+FB04, U+FB05, U+FB06 # ligatures
+U+00E1, U+00E9, U+00ED, U+00F3, U+00FA, U+00F1, U+00BF, U+00A1 # Spanish characters
+U+00E5, U+00F8, U+00E6, U+00C5, U+00D8, U+00C6 # Scandinavian characters
+U+0104, U+0105, U+0106, U+0107, U+0118, U+0119, U+0141, U+0142, U+0143, U+0144, U+015A, U+015B, U+0179, U+017A, U+017B, U+017C # Polish characters
+U+010C, U+010D, U+010E, U+010F, U+011A, U+011B, U+0147, U+0148, U+0158, U+0159, U+0160, U+0161, U+0164, U+0165, U+016E, U+016F, U+017D, U+017E # Czech characters
+U+00E9, U+00E8, U+00EB, U+00E4, U+00FC, U+00F6, U+00EF, U+00C9, U+00C8, U+00CB, U+00C4, U+00DC, U+00D6, U+00CF # Netherlands characters
+U+0391-03A9, U+03B1-03C9 # Greek characters
+U+0410-042F, U+0430-044F # Cyrillic characters

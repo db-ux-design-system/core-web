@@ -9,8 +9,8 @@ import {
 import { DBTabItemProps } from '../tab-item/model';
 import { DBTabPanelProps } from '../tab-panel/model';
 
-export const TabsBehaviourList = ['scrollbar', 'arrows'] as const;
-export type TabsBehaviourType = (typeof TabsBehaviourList)[number];
+export const TabsBehaviorList = ['scrollbar', 'arrows'] as const;
+export type TabsBehaviorType = (typeof TabsBehaviorList)[number];
 
 export const TabsInitialSelectedModeList = ['auto', 'manually'] as const;
 export type TabsInitialSelectedModeType =
@@ -19,22 +19,21 @@ export type TabsInitialSelectedModeType =
 export type DBSimpleTabProps = DBTabItemProps & DBTabPanelProps;
 export type DBTabsDefaultProps = {
 	/**
-	 * Change amount of distance if you click on an arrow, only available with behaviour="arrows"
+	 * Change amount of distance if you click on an arrow, only available with behavior="arrows"
 	 */
-	arrowScrollDistance?: number;
-
+	arrowScrollDistance?: number | string;
 	/**
 	 * Show a scrollbar or buttons with arrows to navigate for horizontal tabs with overflow visible
 	 */
-	behaviour?: TabsBehaviourType;
+	behavior?: TabsBehaviorType;
 
 	/**
-	 * Default behaviour is auto selecting the first tab, change selected tab by index
+	 * Default behavior is auto selecting the first tab, change selected tab by index
 	 */
-	initialSelectedIndex?: number;
+	initialSelectedIndex?: number | string;
 
 	/**
-	 * Default behaviour is auto selecting the first tab, disable it with 'manually'
+	 * Default behavior is auto selecting the first tab, disable it with 'manually'
 	 */
 	initialSelectedMode?: TabsInitialSelectedModeType;
 
@@ -42,6 +41,26 @@ export type DBTabsDefaultProps = {
 	 * The name of the tab bar, is required for grouping multiple tabs together. Will overwrite names from children.
 	 */
 	name?: string;
+
+	/**
+	 * Informs the user if the current tab index has changed.
+	 */
+	onIndexChange?: (index?: number) => void;
+
+	/**
+	 * Informs the user if another tab has been selected.
+	 */
+	onTabSelect?: (event?: Event) => void;
+
+	/**
+	 * Informs the user if the current tab index has changed.
+	 */
+	indexChange?: (index?: number) => void;
+
+	/**
+	 * Informs the user if another tab has been selected.
+	 */
+	tabSelect?: (event?: Event) => void;
 
 	/**
 	 * Provide simple tabs with label + text as content
@@ -62,9 +81,10 @@ export type DBTabsDefaultState = {
 	showScrollLeft?: boolean;
 	showScrollRight?: boolean;
 	evaluateScrollButtons: (tabList: Element) => void;
-	convertTabs: (tabs?: unknown[] | string | undefined) => DBSimpleTabProps[];
+	convertTabs: () => DBSimpleTabProps[];
 	initTabList: () => void;
 	initTabs: (init?: boolean) => void;
+	handleChange: (event: any) => void;
 };
 
 export type DBTabsState = DBTabsDefaultState & GlobalState & InitializedState;

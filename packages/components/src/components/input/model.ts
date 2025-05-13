@@ -5,8 +5,10 @@ import {
 	FocusEventState,
 	FormMessageProps,
 	FormProps,
+	FormSizeProps,
 	FormState,
 	FormTextProps,
+	FromValidState,
 	GlobalProps,
 	GlobalState,
 	IconAfterProps,
@@ -79,11 +81,12 @@ export type DBInputProps = DBInputDefaultProps &
 	IconProps &
 	IconAfterProps &
 	FormMessageProps &
-	ShowIconProps;
+	ShowIconProps &
+	FormSizeProps;
 
 export type DBInputDefaultState = {
 	_dataListId?: string;
-	getDataList: (_list?: string[] | ValueLabelType[]) => ValueLabelType[];
+	getDataList: () => ValueLabelType[];
 };
 
 export type DBInputState = DBInputDefaultState &
@@ -91,4 +94,5 @@ export type DBInputState = DBInputDefaultState &
 	InputEventState<HTMLInputElement> &
 	ChangeEventState<HTMLInputElement> &
 	FocusEventState<HTMLInputElement> &
-	FormState;
+	FormState &
+	FromValidState;

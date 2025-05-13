@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { ALL_ICONS } from '@db-ux/core-icons';
+import { ALL_ICONS } from '@db-ux/db-theme-icons';
 import DefaultPage from '../../../components/default-page';
 import {
 	DBCard,
@@ -55,14 +55,14 @@ const IconOverview = () => {
 				className="icons-overview-container"
 				style={
 					{
-						'--db-icon-font-family': `db-ux-${family}`,
+						'--db-icon-font-family': `db-${family}`,
 						'--db-icon-font-weight': weight,
 						'--db-icon-font-size': `${weight}px`
 					} as any
 				}>
 				{ALL_ICONS.filter((icon) => icon.includes(search)).map(
 					(icon) => (
-						<DBCard spacing="small">
+						<DBCard key={icon} spacing="small">
 							{/* TODO: Make this interactive to copy the icon name */}
 							<DBIcon icon={icon}>{icon}</DBIcon>
 							<DBInfotext semantic="informational" icon="none">

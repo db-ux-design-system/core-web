@@ -1,6 +1,6 @@
 ## Vue
 
-For general installation and configuration look at the [v-components](https://www.npmjs.com/package/@db-ui/v-components) package.
+For general installation and configuration look at the [v-core-components](https://www.npmjs.com/package/@db-ux/v-core-components) package.
 
 ### Use component
 
@@ -9,7 +9,7 @@ For general installation and configuration look at the [v-components](https://ww
 ```vue App.vue
 <!-- App.vue -->
 <script>
-import { DBAccordionItem } from "@db-ui/v-components";
+import { DBAccordionItem } from "@db-ux/v-core-components";
 </script>
 
 <template>
@@ -25,7 +25,7 @@ import { DBAccordionItem } from "@db-ui/v-components";
 ```vue App.vue
 <!-- App.vue -->
 <script>
-import { DBAccordionItem } from "@db-ui/v-components";
+import { DBAccordionItem } from "@db-ux/v-core-components";
 </script>
 
 <template>

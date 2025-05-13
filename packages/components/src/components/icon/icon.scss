@@ -1,4 +1,4 @@
-@use "@db-ui/foundations/build/scss/icons";
+@use "@db-ux/core-foundations/build/styles/icons";
 
 .db-icon {
 	@include icons.is-icon-text-replace();

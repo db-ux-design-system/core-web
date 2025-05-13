@@ -1,63 +1,69 @@
 import {
 	onMount,
+	onUpdate,
 	Show,
+	useDefaultProps,
 	useMetadata,
 	useRef,
 	useStore,
 	useTarget
 } from '@builder.io/mitosis';
 import { DBSwitchProps, DBSwitchState } from './model';
-import { cls, getBooleanAsString, getHideProp, uuid } from '../../utils';
+import {
+	cls,
+	getBoolean,
+	getBooleanAsString,
+	getHideProp,
+	uuid
+} from '../../utils';
 import { ChangeEvent, InteractionEvent } from '../../shared/model';
-import { handleFrameworkEvent } from '../../utils/form-components';
+import {
+	handleFrameworkEventAngular,
+	handleFrameworkEventVue
+} from '../../utils/form-components';
 
 useMetadata({
 	angular: {
 		nativeAttributes: ['disabled', 'required', 'checked', 'indeterminate']
 	}
 });
+useDefaultProps<DBSwitchProps>({});
 
 export default function DBSwitch(props: DBSwitchProps) {
 	// This is used as forwardRef
-	const ref = useRef<HTMLInputElement>(null);
+	const _ref = useRef<HTMLInputElement | any>(null);
 	// jscpd:ignore-start
 	const state = useStore<DBSwitchState>({
 		_id: undefined,
-		_checked: false,
-		initialized: false,
+		_checked: useTarget({
+			react: (props as any)['defaultChecked'] ?? false,
+			default: false
+		}),
 		handleChange: (event: ChangeEvent<HTMLInputElement>) => {
+			event.stopPropagation();
 			if (props.onChange) {
 				props.onChange(event);
-			}
-
-			if (props.change) {
-				props.change(event);
 			}
 
 			// We have different ts types in different frameworks, so we need to use any here
 			state._checked = (event.target as any)?.['checked'];
 
 			useTarget({
-				angular: () => handleFrameworkEvent(this, event, 'checked'),
-				vue: () => handleFrameworkEvent(this, event, 'checked')
+				angular: () =>
+					handleFrameworkEventAngular(state, event, 'checked'),
+				vue: () => handleFrameworkEventVue(() => {}, event, 'checked')
 			});
 		},
 		handleBlur: (event: InteractionEvent<HTMLInputElement>) => {
+			event.stopPropagation();
 			if (props.onBlur) {
 				props.onBlur(event);
 			}
-
-			if (props.blur) {
-				props.blur(event);
-			}
 		},
 		handleFocus: (event: InteractionEvent<HTMLInputElement>) => {
+			event.stopPropagation();
 			if (props.onFocus) {
 				props.onFocus(event);
-			}
-
-			if (props.focus) {
-				props.focus(event);
 			}
 		}
 	});
@@ -65,11 +71,18 @@ export default function DBSwitch(props: DBSwitchProps) {
 	onMount(() => {
 		state._id = props.id ?? `switch-${uuid()}`;
 	});
+
+	onUpdate(() => {
+		if (props.checked !== undefined && props.checked !== null) {
+			state._checked = getBoolean(props.checked);
+		}
+	}, [props.checked]);
+
 	// jscpd:ignore-end
 
 	return (
 		<label
-			data-visual-aid={props.visualAid}
+			data-visual-aid={getBooleanAsString(props.visualAid)}
 			data-size={props.size}
 			data-hide-label={getHideProp(props.showLabel)}
 			data-emphasis={props.emphasis}
@@ -79,15 +92,16 @@ export default function DBSwitch(props: DBSwitchProps) {
 				id={state._id}
 				type="checkbox"
 				role="switch"
-				aria-checked={state._checked}
-				ref={ref}
-				checked={props.checked}
-				disabled={props.disabled}
+				aria-checked={getBooleanAsString(state._checked)}
+				ref={_ref}
+				checked={getBoolean(props.checked, 'checked')}
+				value={props.value}
+				disabled={getBoolean(props.disabled, 'disabled')}
 				aria-describedby={props.describedbyid}
 				aria-invalid={props.validation === 'invalid'}
 				data-custom-validity={props.validation}
 				name={props.name}
-				required={props.required}
+				required={getBoolean(props.required, 'required')}
 				data-aid-icon={props.icon}
 				data-aid-icon-after={props.iconAfter}
 				onChange={(event: ChangeEvent<HTMLInputElement>) =>
