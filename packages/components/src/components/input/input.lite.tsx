@@ -18,7 +18,8 @@ import {
 	hasVoiceOver,
 	isArrayOfStrings,
 	stringPropVisible,
-	uuid
+	uuid,
+	getInputValue
 } from '../../utils';
 import { DBInputProps, DBInputState } from './model';
 import {
@@ -100,6 +101,7 @@ export default function DBInput(props: DBInputProps) {
 			}
 		},
 		handleInput: (event: InputEvent<HTMLInputElement>) => {
+			event.stopPropagation();
 			useTarget({
 				vue: () => {
 					if (props.input) {
@@ -123,6 +125,7 @@ export default function DBInput(props: DBInputProps) {
 			state.handleValidation();
 		},
 		handleChange: (event: ChangeEvent<HTMLInputElement>) => {
+			event.stopPropagation();
 			if (props.onChange) {
 				props.onChange(event);
 			}
@@ -134,11 +137,13 @@ export default function DBInput(props: DBInputProps) {
 			state.handleValidation();
 		},
 		handleBlur: (event: InteractionEvent<HTMLInputElement> | any) => {
+			event.stopPropagation();
 			if (props.onBlur) {
 				props.onBlur(event);
 			}
 		},
 		handleFocus: (event: InteractionEvent<HTMLInputElement> | any) => {
+			event.stopPropagation();
 			if (props.onFocus) {
 				props.onFocus(event);
 			}
@@ -217,8 +222,8 @@ export default function DBInput(props: DBInputProps) {
 				value={props.value ?? state._value}
 				maxLength={getNumber(props.maxLength, props.maxlength)}
 				minLength={getNumber(props.minLength, props.minlength)}
-				max={getNumber(props.max)}
-				min={getNumber(props.min)}
+				max={getInputValue(props.max, props.type)}
+				min={getInputValue(props.min, props.type)}
 				readOnly={
 					getBoolean(props.readOnly, 'readOnly') ||
 					getBoolean(props.readonly, 'readonly')

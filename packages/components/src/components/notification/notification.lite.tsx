@@ -21,6 +21,7 @@ export default function DBNotification(props: DBNotificationProps) {
 	// jscpd:ignore-start
 	const state = useStore<DBNotificationState>({
 		handleClose: (event: ClickEvent<HTMLButtonElement> | any) => {
+			event.stopPropagation();
 			if (props.onClose) {
 				props.onClose(event);
 			}

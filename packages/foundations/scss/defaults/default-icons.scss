@@ -31,9 +31,9 @@
 	&::after {
 		@extend %icon !optional;
 
-		@include icons.icon-content(icons.$default-icon-content-after);
-
 		margin-inline-start: icons.$default-icon-margin-start;
+
+		@include icons.icon-content(icons.$default-icon-content-after);
 	}
 }
 
