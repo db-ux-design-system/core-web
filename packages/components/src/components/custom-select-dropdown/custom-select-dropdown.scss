@@ -41,8 +41,7 @@
 		min-inline-size: variables.$db-sizing-2xl;
 
 		/* We don't need messages for search input */
-		.db-infotext[data-semantic="successful"],
-		.db-infotext[data-semantic="critical"] {
+		.db-infotext:is([data-semantic="successful"], [data-semantic="critical"]) {
 			display: none;
 		}
 	}
