@@ -39,6 +39,12 @@
 
 	.db-input {
 		min-inline-size: variables.$db-sizing-2xl;
+
+		/* We don't need messages for search input */
+		.db-infotext[data-semantic="successful"],
+		.db-infotext[data-semantic="critical"] {
+			display: none;
+		}
 	}
 
 	> db-custom-select-list > div:not([class~="db-custom-select-list"]),

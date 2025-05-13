@@ -472,7 +472,7 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 					delay(() => {
 						// Takes some time until element can be focused
 						search.focus();
-					}, 100);
+					}, 1);
 				} else if (!onlySearch) {
 					// Focus first checkbox otherwise
 					state.handleFocusFirstDropdownCheckbox();
