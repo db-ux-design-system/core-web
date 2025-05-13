@@ -343,7 +343,7 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 				} else if (detailsRef.open && event && event.relatedTarget) {
 					const relatedTarget = event.relatedTarget as HTMLElement;
 					if (!detailsRef.contains(relatedTarget)) {
-						detailsRef.open = false;
+						delay(() => (detailsRef.open = false), 1);
 					}
 				}
 			}

@@ -5,7 +5,7 @@ import { hasWebComponentSyntax, isStencil, waitForDBPage } from '../default';
 const testFormComponents = async (
 	page: Page,
 	testId: string,
-	role: 'textbox' | 'combobox' | 'checkbox' | 'radio'
+	role: 'textbox' | 'combobox' | 'checkbox' | 'radio' | 'group'
 ) => {
 	await page.goto('./');
 	const tab = page.getByTestId(testId);
@@ -39,6 +39,12 @@ const testFormComponents = async (
 
 				break;
 			}
+
+			case 'group': {
+				await component.click({ force: true });
+
+				break;
+			}
 			// No default
 		}
 	}
@@ -51,6 +57,8 @@ const testFormComponents = async (
 		const text = await def.textContent();
 		if (role === 'checkbox') {
 			expect(text).toEqual('false');
+		} else if (role === 'group') {
+			expect(text).toEqual(`combobox-${index}`);
 		} else {
 			expect(text).toEqual(`${role}-${index}`);
 		}
@@ -124,5 +132,13 @@ test.describe('Home', () => {
 		}
 
 		await testFormComponents(page, 'tab-radios', 'radio');
+	});
+
+	test('test custom-selects', async ({ page }) => {
+		if (stencil) {
+			test.skip();
+		}
+
+		await testFormComponents(page, 'tab-custom-selects', 'group');
 	});
 });
