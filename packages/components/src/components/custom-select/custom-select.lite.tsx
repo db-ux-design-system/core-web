@@ -587,12 +587,12 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 
 	onUpdate(() => {
 		state.selectAllEnabled = Boolean(
-			props.multiple && (props.showSelectAll || state.amountOptions > 5)
+			props.multiple && (props.showSelectAll ?? state.amountOptions > 5)
 		);
 	}, [props.showSelectAll, state.amountOptions, props.multiple]);
 
 	onUpdate(() => {
-		state.searchEnabled = props.showSearch || state.amountOptions > 9;
+		state.searchEnabled = props.showSearch ?? state.amountOptions > 9;
 	}, [props.showSearch, state.amountOptions]);
 
 	// If we inform the consumer we don't want to trigger the onOptionSelected event again
