@@ -45,7 +45,10 @@ $default-icon-font-size: var(--db-icon-font-size, #{$default-icon-size-rem});
 @mixin icon-content($icon) {
 	content: $icon;
 	// Hiding icon from screenreaders, https://www.w3.org/TR/css-content-3/#alt
-	content: $icon / "";
+	// TODO: remove the @support wrapper as soon as we drop our partly-support for Firefox < version 128 (Enterprise ESR / Extended Support Release; expected to end in 2025, September / https://whattrainisitnow.com/calendar/)
+	@supports (content: ""/"") {
+		content: $icon / "";
+	}
 }
 
 @mixin to-filled-icon() {
@@ -68,9 +71,9 @@ $default-icon-font-size: var(--db-icon-font-size, #{$default-icon-size-rem});
 				@if $position == "after" {
 					--db-icon-after: "#{$icon}";
 
-					@include icon-content($default-icon-content-after);
-
 					margin-inline-start: $default-icon-margin-start;
+
+					@include icon-content($default-icon-content-after);
 				}
 			}
 		}
@@ -119,10 +122,6 @@ $default-icon-font-size: var(--db-icon-font-size, #{$default-icon-size-rem});
 }
 
 %icon {
-	@include icon-content($default-icon-content); // TODO: ONLY FOR data-icon
-	// Hiding icon from screenreaders
-	-webkit-alt: "";
-	alt: "";
 	color: var(--db-icon-color, inherit);
 	display: inline-block;
 
@@ -149,6 +148,8 @@ $default-icon-font-size: var(--db-icon-font-size, #{$default-icon-size-rem});
 	vertical-align: middle;
 	block-size: $default-icon-font-size;
 	inline-size: $default-icon-font-size;
+
+	@include icon-content($default-icon-content); // TODO: ONLY FOR data-icon
 
 	// Hiding icon from screenreaders
 	@media aural {

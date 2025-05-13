@@ -41,6 +41,7 @@ export default function DBTabItem(props: DBTabItemProps) {
 			}
 		},
 		handleChange: (event: any) => {
+			event.stopPropagation();
 			if (props.onChange) {
 				props.onChange(event);
 			}

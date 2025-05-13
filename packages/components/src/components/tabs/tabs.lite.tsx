@@ -138,6 +138,7 @@ export default function DBTabs(props: DBTabsProps) {
 			}
 		},
 		handleChange: (event: any) => {
+			event.stopPropagation();
 			const list = event.target?.closest('ul');
 			const listItem =
 				// db-tab-item for angular and stencil wrapping elements
