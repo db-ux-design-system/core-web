@@ -14,7 +14,7 @@ useMetadata({});
 useDefaultProps<DBPopoverProps>({});
 
 export default function DBPopover(props: DBPopoverProps) {
-	const _ref = useRef<HTMLDivElement | null>(null);
+	const _ref = useRef<HTMLDivElement | any>(null);
 	// jscpd:ignore-start
 	const state = useStore<DBPopoverState>({
 		initialized: false,
@@ -100,7 +100,7 @@ export default function DBPopover(props: DBPopoverProps) {
 				data-spacing={props.spacing}
 				data-gap={getBooleanAsString(props.gap)}
 				data-animation={getBooleanAsString(props.animation ?? true)}
-				data-open={props.open}
+				data-open={getBooleanAsString(props.open)}
 				data-delay={props.delay}
 				data-width={props.width}
 				data-placement={props.placement}>

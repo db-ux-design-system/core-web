@@ -1,7 +1,7 @@
 <!-- markdownlint-configure-file { "MD013": false, "MD041":false } -->
 <!-- markdownlint-disable MD033 MD010 -->
 
-<picture><source srcset="https://db-ux-design-system.github.io/images/db-ux-design-system-v3-header.avif" type="image/avif"><source srcset="https://db-ux-design-system.github.io/images/db-ux-design-system-v3-header.webp" type="image/webp"><img src="https://db-ux-design-system.github.io/images/db-ux-design-system-v3-header.jpg" alt=""></picture>
+<picture><source srcset="https://design-system.deutschebahn.com/images/db-ux-design-system-v3-header.avif" type="image/avif"><source srcset="https://design-system.deutschebahn.com/images/db-ux-design-system-v3-header.webp" type="image/webp"><img src="https://design-system.deutschebahn.com/images/db-ux-design-system-v3-header.jpg" alt=""></picture>
 
 # DB UX Design System v3 🚂💖
 
@@ -13,7 +13,7 @@
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
 [![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-2.0-4baaaa.svg)](CODE-OF-CONDUCT.md)
 
-DB UX Design System Version 3 provides robust HTML UI components, reusable visual styles, and powerful tooling to help developers,
+DB UX Design System v3 provides robust HTML UI components, reusable visual styles, and powerful tooling to help developers,
 designers, and content authors build, maintain, and scale best of class digital experiences.
 
 <figure>
@@ -39,9 +39,13 @@ Install your preferred package via npm or yarn e.g. `npm i @db-ux/react-core-com
 Afterwards you need to add the specific CSS or SCSS files to provide the styles of DB UX Design System (Version 3), as described in the "Styling Dependencies" of each packages `README`.
 We even also provide some [examples of integrations](https://github.com/db-ux-design-system/examples).
 
+### DB Theme
+
+In case that you're building a website or application for Deutsche Bahn, you'll additionally have to install the DB Theme via the [`@db-ux/db-theme`](https://www.npmjs.com/package/@db-ux/db-theme) node package (even also available as an inner source node package, as described within that packages README).
+
 ## Components
 
-We maintain a [status overview](https://github.com/orgs/db-ui/projects/4/views/3) for all components.
+We maintain a [status overview](https://github.com/orgs/db-ux-design-system/projects/4/views/1) for all components.
 
 ## Core principals
 
@@ -77,6 +81,34 @@ As [DB UX Design System](https://marketingportal.extranet.deutschebahn.com/marke
 
 </details>
 
+## Migration
+
+### From DB UI Core or DB UI Elements to DB UX Design System Core
+
+We're providing a detailed migration for each component next to the documentation of each component, like e.g.
+<https://design-system.deutschebahn.com/core-web/review/main/components/action/button/migration>
+
+### In between DB UX Design System Core versions
+
+Check our migration docs for breaking changes:
+
+1. [Alpha ➡ Beta](https://github.com/db-ux-design-system/core-web/blob/main/docs/migration/alpha-beta.md) (0.0.x➡0.x.x)
+2. [v0.2 ➡ v0.3](https://github.com/db-ux-design-system/core-web/blob/main/docs/migration/v0.2.x-to-v0.3.x.md)
+3. [v0.3 ➡ v0.4](https://github.com/db-ux-design-system/core-web/blob/main/docs/migration/v0.3.x-to-v0.4.x.md)
+4. v0.4 ➡ v0.5: no migration needed, no breaking changes
+5. [v0.5 ➡ v0.6](https://github.com/db-ux-design-system/core-web/blob/main/docs/migration/v0.5.x-to-v0.6.x.md)
+6. [v0.6 ➡ v0.7](https://github.com/db-ux-design-system/core-web/blob/main/docs/migration/v0.6.x-to-v0.7.x.md)
+7. [v0.7 ➡ v1.0](https://github.com/db-ux-design-system/core-web/blob/main/docs/migration/v0.7.x-to-v1.0.0.md)
+8. [v1.x ➡ v2.0](https://github.com/db-ux-design-system/core-web/blob/main/docs/migration/v1.x.x-to-v2.0.0.md)
+
+## FAQ
+
+### Unexpected "new" colors
+
+> We've updated to the stable version of DB UX Design System (v3) version >= 1.x, and now the colors that were supposed to be red, are colored in blue (`514ec7`).
+
+Please have a look at the [migration guide from version 0.6.x to version 0.7.x](https://github.com/db-ux-design-system/core-web/blob/main/docs/migration/v0.6.x-to-v0.7.x.md#removed-brand-assets), you need to install and reference the DB Theme, if you're building a website or web application for Deutsche Bahn.
+
 ## Things to keep in mind
 
 ### Developed for and driven by the community
@@ -85,38 +117,9 @@ This is mainly a platform providing the space and technology for a common basis 
 is mainly driven by the community and adapted out of the work done in projects and through the huge amount of feedback
 that we're gaining out of the community. So please support us in any way possible, this is greatly appreciated!
 
-## Migration
-
-### From DB UI Core or DB UI Elements to DB UX Design System Core
-
-We're providing a detailed migration for each component next to the documentation of each component:
-<https://db-ux-design-system.github.io/core-web/review/main/components/action/button/migration>
-
-### In between DB UX Design System Core versions
-
-Check our migration docs for breaking changes:
-
-1. [Alpha ➡ Beta](https://github.com/db-ux-design-system/core-web/tree/main/docs/migration/alpha-beta.md) (0.0.x➡0.x.x)
-2. [v0.2 ➡ v0.3](https://github.com/db-ux-design-system/core-web/tree/main/docs/migration/v0.2.x-to-v0.3.x.md)
-3. [v0.3 ➡ v0.4](https://github.com/db-ux-design-system/core-web/tree/main/docs/migration/v0.3.x-to-v0.4.x.md)
-4. v0.4 ➡ v0.5: no migration needed, no breaking changes
-5. [v0.5 ➡ v0.6](https://github.com/db-ux-design-system/core-web/tree/main/docs/migration/v0.5.x-to-v0.6.x.md)
-6. [v0.6 ➡ v0.7](https://github.com/db-ux-design-system/core-web/tree/main/docs/migration/v0.6.x-to-v0.7.x.md)
-7. [v0.7 ➡ v1.0](https://github.com/db-ux-design-system/core-web/blob/main/docs/migration/v0.7.x-to-v1.0.0.md)
-
 ## How to start develop / contribute
 
-```shell
-npm install
-npm run build
-npm run start
-```
-
-Please mind the [conventions for git commits](/docs/conventions.adoc#user-content-git-commits-conventions).
-
-### Versions
-
-All versions in all `package.json` files are set to `0.0.0`, we change those during release process in CI/CD.
+If you're working as a developer on the DB UX Design System or would like to contribute, please have a look at the relevant [development documentation](docs/development.md).
 
 <!-- markdownlint-disable MD026 -->
 
@@ -146,10 +149,6 @@ in case of using them.
 
 For any usage outside of Deutsche Bahn websites and applications you aren't allowed to use any Deutsche Bahn brand and
 design assets as well as protected characteristics and trademarks, that for not including the DB Theme.
-
-## Development
-
-If you're working as a developer on the DB UX Design System, please have a look at the relevant [documentation](docs/development.md).
 
 ## Contributions
 

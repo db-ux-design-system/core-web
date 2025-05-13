@@ -12,11 +12,14 @@ import {
 import {
 	cls,
 	delay,
+	getBoolean,
 	getHideProp,
+	getNumber,
 	hasVoiceOver,
 	isArrayOfStrings,
 	stringPropVisible,
-	uuid
+	uuid,
+	getInputValue
 } from '../../utils';
 import { DBInputProps, DBInputState } from './model';
 import {
@@ -37,8 +40,8 @@ import {
 } from '../../shared/model';
 import DBInfotext from '../infotext/infotext.lite';
 import {
-	handleFrameworkEventVue,
-	handleFrameworkEventAngular
+	handleFrameworkEventAngular,
+	handleFrameworkEventVue
 } from '../../utils/form-components';
 
 useMetadata({
@@ -50,57 +53,40 @@ useMetadata({
 useDefaultProps<DBInputProps>({});
 
 export default function DBInput(props: DBInputProps) {
-	const _ref = useRef<HTMLInputElement | null>(null);
+	const _ref = useRef<HTMLInputElement | any>(null);
 	// jscpd:ignore-start
 	const state = useStore<DBInputState>({
 		_id: undefined,
 		_messageId: undefined,
 		_validMessageId: undefined,
 		_invalidMessageId: undefined,
+		_invalidMessage: undefined,
 		_dataListId: undefined,
 		_descByIds: '',
 		_value: '',
 		_voiceOverFallback: '',
-		handleInput: (event: InputEvent<HTMLInputElement>) => {
-			if (props.onInput) {
-				props.onInput(event);
-			}
-
-			if (props.input) {
-				props.input(event);
-			}
+		hasValidState: () => {
+			return !!(props.validMessage ?? props.validation === 'valid');
 		},
-		handleChange: (event: ChangeEvent<HTMLInputElement>) => {
-			if (props.onChange) {
-				props.onChange(event);
-			}
-
-			if (props.change) {
-				props.change(event);
-			}
-
-			useTarget({
-				angular: () => handleFrameworkEventAngular(this, event),
-				vue: () => handleFrameworkEventVue(() => {}, event)
-			});
-
+		handleValidation: () => {
 			/* For a11y reasons we need to map the correct message with the input */
 			if (!_ref?.validity.valid || props.validation === 'invalid') {
 				state._descByIds = state._invalidMessageId;
+				state._invalidMessage =
+					props.invalidMessage ||
+					_ref?.validationMessage ||
+					DEFAULT_INVALID_MESSAGE;
 				if (hasVoiceOver()) {
-					state._voiceOverFallback =
-						props.invalidMessage ??
-						_ref?.validationMessage ??
-						DEFAULT_INVALID_MESSAGE;
+					state._voiceOverFallback = state._invalidMessage;
 					delay(() => (state._voiceOverFallback = ''), 1000);
 				}
 			} else if (
-				props.validation === 'valid' ||
-				(_ref?.validity.valid &&
-					(props.required ||
-						props.minLength ||
-						props.maxLength ||
-						props.pattern))
+				state.hasValidState() &&
+				_ref?.validity.valid &&
+				(props.required ||
+					props.minLength ||
+					props.maxLength ||
+					props.pattern)
 			) {
 				state._descByIds = state._validMessageId;
 				if (hasVoiceOver()) {
@@ -114,30 +100,59 @@ export default function DBInput(props: DBInputProps) {
 				state._descByIds = '';
 			}
 		},
-		handleBlur: (event: InteractionEvent<HTMLInputElement>) => {
+		handleInput: (event: InputEvent<HTMLInputElement>) => {
+			event.stopPropagation();
+			useTarget({
+				vue: () => {
+					if (props.input) {
+						props.input(event);
+					}
+					if (props.onInput) {
+						props.onInput(event);
+					}
+				},
+				default: () => {
+					if (props.onInput) {
+						props.onInput(event);
+					}
+				}
+			});
+
+			useTarget({
+				angular: () => handleFrameworkEventAngular(state, event),
+				vue: () => handleFrameworkEventVue(() => {}, event)
+			});
+			state.handleValidation();
+		},
+		handleChange: (event: ChangeEvent<HTMLInputElement>) => {
+			event.stopPropagation();
+			if (props.onChange) {
+				props.onChange(event);
+			}
+
+			useTarget({
+				angular: () => handleFrameworkEventAngular(state, event),
+				vue: () => handleFrameworkEventVue(() => {}, event)
+			});
+			state.handleValidation();
+		},
+		handleBlur: (event: InteractionEvent<HTMLInputElement> | any) => {
+			event.stopPropagation();
 			if (props.onBlur) {
 				props.onBlur(event);
 			}
-
-			if (props.blur) {
-				props.blur(event);
-			}
 		},
-		handleFocus: (event: InteractionEvent<HTMLInputElement>) => {
+		handleFocus: (event: InteractionEvent<HTMLInputElement> | any) => {
+			event.stopPropagation();
 			if (props.onFocus) {
 				props.onFocus(event);
 			}
-
-			if (props.focus) {
-				props.focus(event);
-			}
 		},
-		getDataList: (
-			_list?: string[] | ValueLabelType[]
-		): ValueLabelType[] => {
+		getDataList: (): ValueLabelType[] => {
+			const _list = props.dataList;
 			return Array.from(
 				(isArrayOfStrings(_list)
-					? _list.map((val: string) => ({
+					? _list?.map((val: string) => ({
 							value: val,
 							label: undefined
 						}))
@@ -153,7 +168,15 @@ export default function DBInput(props: DBInputProps) {
 		state._validMessageId = mId + DEFAULT_VALID_MESSAGE_ID_SUFFIX;
 		state._invalidMessageId = mId + DEFAULT_INVALID_MESSAGE_ID_SUFFIX;
 		state._dataListId = mId + DEFAULT_DATALIST_ID_SUFFIX;
+		state._invalidMessage = props.invalidMessage || DEFAULT_INVALID_MESSAGE;
 	});
+
+	onUpdate(() => {
+		state._invalidMessage =
+			props.invalidMessage ||
+			_ref?.validationMessage ||
+			DEFAULT_INVALID_MESSAGE;
+	}, [_ref, props.invalidMessage]);
 
 	onUpdate(() => {
 		if (state._id) {
@@ -193,22 +216,24 @@ export default function DBInput(props: DBInputProps) {
 				name={props.name}
 				type={props.type || 'text'}
 				placeholder={props.placeholder ?? DEFAULT_PLACEHOLDER}
-				disabled={props.disabled}
-				required={props.required}
-				step={props.step}
+				disabled={getBoolean(props.disabled, 'disabled')}
+				required={getBoolean(props.required, 'required')}
+				step={getNumber(props.step)}
 				value={props.value ?? state._value}
-				maxLength={props.maxLength}
-				minLength={props.minLength}
-				max={props.max}
-				min={props.min}
-				readOnly={props.readOnly}
+				maxLength={getNumber(props.maxLength, props.maxlength)}
+				minLength={getNumber(props.minLength, props.minlength)}
+				max={getInputValue(props.max, props.type)}
+				min={getInputValue(props.min, props.type)}
+				readOnly={
+					getBoolean(props.readOnly, 'readOnly') ||
+					getBoolean(props.readonly, 'readonly')
+				}
 				form={props.form}
 				pattern={props.pattern}
 				size={props.size}
-				// @ts-ignore
+				// @ts-expect-error inout has a property autoComplete
 				autoComplete={props.autocomplete}
-				// @ts-ignore
-				autoFocus={props.autofocus}
+				autoFocus={getBoolean(props.autofocus, 'autofocus')}
 				onInput={(event: ChangeEvent<HTMLInputElement>) =>
 					state.handleInput(event)
 				}
@@ -222,11 +247,11 @@ export default function DBInput(props: DBInputProps) {
 					state.handleFocus(event)
 				}
 				list={props.dataList && state._dataListId}
-				aria-describedby={state._descByIds}
+				aria-describedby={props.ariaDescribedBy ?? state._descByIds}
 			/>
 			<Show when={props.dataList}>
 				<datalist id={state._dataListId}>
-					<For each={state.getDataList(props.dataList)}>
+					<For each={state.getDataList()}>
 						{(option: ValueLabelType) => (
 							<option
 								key={
@@ -251,20 +276,20 @@ export default function DBInput(props: DBInputProps) {
 				</DBInfotext>
 			</Show>
 
-			<DBInfotext
-				id={state._validMessageId}
-				size="small"
-				semantic="successful">
-				{props.validMessage ?? DEFAULT_VALID_MESSAGE}
-			</DBInfotext>
+			<Show when={state.hasValidState()}>
+				<DBInfotext
+					id={state._validMessageId}
+					size="small"
+					semantic="successful">
+					{props.validMessage || DEFAULT_VALID_MESSAGE}
+				</DBInfotext>
+			</Show>
 
 			<DBInfotext
 				id={state._invalidMessageId}
 				size="small"
 				semantic="critical">
-				{props.invalidMessage ??
-					_ref?.validationMessage ??
-					DEFAULT_INVALID_MESSAGE}
+				{state._invalidMessage}
 			</DBInfotext>
 
 			{/* * https://www.davidmacd.com/blog/test-aria-describedby-errormessage-aria-live.html

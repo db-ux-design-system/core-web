@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import {
 	DBDivider,
+	DBCustomSelect,
 	DBTabList,
 	DBTabPanel,
 	DBTabs
@@ -37,6 +38,10 @@ const FormComponent = () => {
 	const [accordionItems, setAccordionItems] = useState<ValueLabelType[]>();
 	const [tabsTest, setTabsTest] = useState<boolean>(false);
 
+	const [multiSelectValue, setMultiSelectValue] = useState<
+		string[] | undefined
+	>(['o2']);
+
 	useEffect(() => {
 		setTimeout(() => {
 			setAccordionItems([
@@ -68,6 +73,10 @@ const FormComponent = () => {
 		<div className="form-container">
 			<div>
 				<form>
+					<DBCustomSelect
+						options={[{ value: 'Option 1' }, { value: 'Option 2' }]}
+						label="Test"
+						placeholder="Placeholder"></DBCustomSelect>
 					<fieldset>
 						<p>Input:</p>
 						<DBInput
@@ -451,6 +460,41 @@ const FormComponent = () => {
 						Beschreibungstext
 					</DBTooltip>
 				</DBButton>
+
+				<form
+					onSubmit={(event) => {
+						event.preventDefault();
+						/* eslint-disable-next-line no-console */
+						console.log(event);
+					}}>
+					<DBCustomSelect
+						name="input-multi"
+						label="Test"
+						options={[
+							{ label: 'O1', value: 'o1' },
+							{ label: 'O2', value: 'o2' },
+							{ label: 'O3', value: 'o3' },
+							{ label: 'O4', value: 'o4' },
+							{ label: 'O5', value: 'o5' },
+							{ label: 'O6', value: 'o6' }
+						]}
+						placeholder="Test"
+						selectAllLabel="Select all"
+						searchLabel="Search"
+						noResultsText="No matching filter"
+						values={multiSelectValue}
+						onOptionSelected={(val) => {
+							setMultiSelectValue(val);
+						}}
+					/>
+					<DBButton
+						onClick={() => {
+							setMultiSelectValue([]);
+						}}>
+						Reset Multiselect
+					</DBButton>
+					<DBButton type="submit">Submit</DBButton>
+				</form>
 
 				<div>
 					<DBTag>

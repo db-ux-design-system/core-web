@@ -4,7 +4,7 @@
   "description": "React components for @db-ux/core-components",
   "repository": {
     "type": "git",
-    "url": "https://github.com/db-ux-design-system/core-web.git"
+    "url": "git+https://github.com/db-ux-design-system/core-web.git"
   },
   "license": "Apache-2.0",
   "main": "./dist/index.js",
@@ -23,10 +23,11 @@
     "regenerate:screenshots": "playwright test -c playwright.config.ts --update-snapshots",
     "test:components": "playwright test -c playwright.config.ts",
     "test:windows": "playwright test -c playwright.screen-reader.win.ts",
+    "test:components:ui": "playwright test -c playwright.config.ts --ui",
     "tsc": "tsc -p . --sourceMap false"
   },
   "devDependencies": {
-    "@playwright/experimental-ct-react": "1.50.1",
+    "@playwright/experimental-ct-react": "1.51.1",
     "@types/react": "^18.3.13",
     "react": "^18.3.1",
     "react-dom": "^18.3.1"

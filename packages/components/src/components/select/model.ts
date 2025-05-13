@@ -9,6 +9,7 @@ import {
 	FormProps,
 	FormSizeProps,
 	FormState,
+	FromValidState,
 	GlobalProps,
 	GlobalState,
 	IconProps,
@@ -20,9 +21,9 @@ import {
 
 export type DBSelectDefaultProps = {
 	/**
-	 * The description attribute will add a paragraph below the select.
+	 * Enable multiple select -> use DBCustomSelect/db-custom-select for a better look
 	 */
-	description?: string;
+	multiple?: boolean;
 
 	/**
 	 * If you don't/can't use children/slots you can pass in the options as an array.
@@ -62,8 +63,7 @@ export type DBSelectOptionType = {
 	value: string | string[] | number;
 };
 
-export type DBSelectProps = DBSelectDefaultProps &
-	GlobalProps &
+export type DBSelectProps = GlobalProps &
 	ClickEventProps<HTMLSelectElement> &
 	ChangeEventProps<HTMLSelectElement> &
 	FocusEventProps<HTMLSelectElement> &
@@ -71,6 +71,7 @@ export type DBSelectProps = DBSelectDefaultProps &
 	FormProps &
 	IconProps &
 	FormMessageProps &
+	DBSelectDefaultProps &
 	ShowIconProps &
 	FormSizeProps;
 
@@ -86,4 +87,5 @@ export type DBSelectState = DBSelectDefaultState &
 	FocusEventState<HTMLSelectElement> &
 	InputEventState<HTMLSelectElement> &
 	FormState &
-	InitializedState;
+	InitializedState &
+	FromValidState;

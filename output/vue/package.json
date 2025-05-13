@@ -5,7 +5,7 @@
   "description": "Vue components for @db-ux/core-components",
   "repository": {
     "type": "git",
-    "url": "https://github.com/db-ux-design-system/core-web.git"
+    "url": "git+https://github.com/db-ux-design-system/core-web.git"
   },
   "license": "Apache-2.0",
   "main": "./dist/db-ux.umd.js",
@@ -33,17 +33,18 @@
     "mv:package.json": "cpr package.json ../../build-outputs/vue/package.json -o",
     "mv:readme": "cpr README.md ../../build-outputs/vue/README.md -o",
     "postbuild": "npm-run-all -p mv:*",
-    "test:components": "playwright test -c playwright.config.ts"
+    "test:components": "playwright test -c playwright.config.ts",
+    "test:components:ui": "playwright test -c playwright.config.ts --ui"
   },
   "devDependencies": {
-    "@playwright/experimental-ct-vue": "1.50.1",
-    "@vitejs/plugin-vue": "^5.2.0",
+    "@playwright/experimental-ct-vue": "1.51.1",
+    "@vitejs/plugin-vue": "^5.2.4",
     "replace-in-file": "^8.3.0",
-    "tsx": "^4.19.3",
+    "tsx": "^4.19.4",
     "typescript": "^5.4.5",
-    "vite": "^6.2.0",
+    "vite": "^6.3.5",
     "vue": "^3.5.13",
-    "vue-tsc": "^2.2.4"
+    "vue-tsc": "^2.2.10"
   },
   "publishConfig": {
     "registry": "https://registry.npmjs.org/",

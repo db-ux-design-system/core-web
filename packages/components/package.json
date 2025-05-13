@@ -5,7 +5,7 @@
   "description": "",
   "repository": {
     "type": "git",
-    "url": "https://github.com/db-ux-design-system/core-web.git"
+    "url": "git+https://github.com/db-ux-design-system/core-web.git"
   },
   "author": "General technical components out of DB UX Design System (Version 3)",
   "license": "Apache-2.0",
@@ -18,7 +18,7 @@
     "build-components": "npm-run-all build:mitosis build-components:post build-components:docs",
     "build-components:docs": "npm run build:cem -w @db-ux/wc-core-components",
     "build-components:post": "tsx scripts/post-build/index.ts",
-    "build-style:01_sass": "sass src:build --no-source-map --load-path=node_modules/ --load-path=../../node_modules/",
+    "build-style:01_sass": "sass src:build --no-source-map --load-path=node_modules/ --load-path=../../node_modules/ --fatal-deprecation=mixed-decls",
     "build-style:02_postcss": "postcss build/**/*.css --replace",
     "build:mitosis": "mitosis build -c configs/mitosis.config.cjs",
     "compile:angular": "mitosis build -c configs/angular/mitosis.config.cjs && tsx scripts/exec/angular.ts && cpr ../../output/tmp/angular/src ../../output/angular/src -o",
@@ -30,30 +30,31 @@
     "copy:outputs": "cpr build ../../build-outputs/components/build -o",
     "copy:package.json": "cpr package.json ../../build-outputs/components/package.json -o",
     "copy:readme": "cpr README.md ../../build-outputs/components/README.md -o",
-    "dev:angular": "nodemon --watch src --watch overrides -e tsx,ts -x \"npm run compile:angular\"",
+    "dev:angular": "nodemon --watch src --watch scripts -e tsx,ts -x \"npm run compile:angular\"",
     "dev:html": "npm run copy-assets && npm run build-assets && npm run build-style:01_sass && vite --open",
-    "dev:react": "nodemon --watch src --watch overrides -e tsx,ts -x \"npm run compile:react\"",
+    "dev:react": "nodemon --watch src --watch scripts -e tsx,ts -x \"npm run compile:react\"",
     "dev:scss": "npm run build-style:01_sass -- --watch",
-    "dev:stencil": "nodemon --watch src --watch overrides -e tsx,ts -x \"npm run compile:stencil\"",
-    "dev:vue": "nodemon --watch src --watch overrides -e tsx,ts -x \"npm run compile:vue\"",
+    "dev:stencil": "nodemon --watch src --watch scripts -e tsx,ts -x \"npm run compile:stencil\"",
+    "dev:vue": "nodemon --watch src --watch scripts -e tsx,ts -x \"npm run compile:vue\"",
     "generate:component": "hygen mitosis new",
     "generate:docs": "hygen update-docs new",
     "prepack": "npm run copy-assets",
-    "start": "nodemon --watch src --watch scripts --watch overrides -e js,tsx,ts,scss,json -x \"npm run build\""
+    "start": "nodemon --watch src --watch scripts --watch scripts -e js,tsx,ts,scss,json -x \"npm run build\""
   },
   "dependencies": {
     "@db-ux/core-foundations": "*"
   },
   "devDependencies": {
-    "@builder.io/eslint-plugin-mitosis": "0.0.16",
-    "@builder.io/mitosis": "0.6.4",
-    "@builder.io/mitosis-cli": "0.6.4",
+    "@builder.io/eslint-plugin-mitosis": "0.0.17",
+    "@builder.io/mitosis": "0.10.0",
+    "@builder.io/mitosis-cli": "0.10.0",
+    "@typescript-eslint/eslint-plugin": "8.32.1",
     "cpr": "3.0.1",
-    "cssnano": "^7.0.6",
+    "cssnano": "^7.0.7",
     "hygen": "^6.2.11",
-    "nodemon": "3.1.9",
+    "nodemon": "3.1.10",
     "sass": "1.85.0",
-    "tsx": "^4.19.3"
+    "tsx": "^4.19.4"
   },
   "publishConfig": {
     "registry": "https://registry.npmjs.org/",

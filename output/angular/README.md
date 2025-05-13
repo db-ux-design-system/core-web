@@ -7,7 +7,7 @@
 
 An Angular library containing all styles & components of [DB UX Design System (technical components)](https://github.com/db-ux-design-system/core-web).
 
-> **Note:** Find more information about specific components [here](https://db-ux-design-system.github.io/core-web/review/main)
+> **Note:** Find more information about specific components [here](https://design-system.deutschebahn.com/core-web/review/main)
 
 ## Install
 
@@ -115,7 +115,7 @@ There are 3 ways to use Events in Angular:
 
 ## Deutsche Bahn brand
 
-As we'd like to perfectly support our users and customers on their digital journey, the usage of Deutsche Bahn brand and trademarks are bound of clear guidelines and restrictions even when being used with the code that we're provide with this product; Deutsche Bahn fully reserves all rights regarding the Deutsche Bahn brand, even though that we're providing the code of DB UX Design System products free to use and release it under the Apache 2.0 license.
+As we'd like to perfectly support our users and customers on their digital journey, the usage of Deutsche Bahn brand and trademarks are bound of clear guidelines and restrictions even if being used with the code that we're providing with this product; Deutsche Bahn fully reserves all rights regarding the Deutsche Bahn brand, even though that we're providing the code of DB UX Design System products free to use and release it under the Apache 2.0 license.
 Please have a look at our brand portal at <https://marketingportal.extranet.deutschebahn.com/> for any further questions and whom to contact on any brand issues.
 
 For any usage outside of Deutsche Bahn websites and applications you aren't allowed to use any Deutsche Bahn brand and

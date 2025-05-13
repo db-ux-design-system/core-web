@@ -11,7 +11,7 @@
 			message="Description"
 			name="textarea-name"
 			[value]="plain"
-			(change)="plain = $event.target.value"
+			(change)="handlePlainChange($event)"
 		/>
 		<db-textarea
 			label="ngModel"

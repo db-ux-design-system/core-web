@@ -9,7 +9,13 @@ import {
 	useTarget
 } from '@builder.io/mitosis';
 import { DBSwitchProps, DBSwitchState } from './model';
-import { cls, getBooleanAsString, getHideProp, uuid } from '../../utils';
+import {
+	cls,
+	getBoolean,
+	getBooleanAsString,
+	getHideProp,
+	uuid
+} from '../../utils';
 import { ChangeEvent, InteractionEvent } from '../../shared/model';
 import {
 	handleFrameworkEventAngular,
@@ -25,21 +31,18 @@ useDefaultProps<DBSwitchProps>({});
 
 export default function DBSwitch(props: DBSwitchProps) {
 	// This is used as forwardRef
-	const _ref = useRef<HTMLInputElement | null>(null);
+	const _ref = useRef<HTMLInputElement | any>(null);
 	// jscpd:ignore-start
 	const state = useStore<DBSwitchState>({
 		_id: undefined,
 		_checked: useTarget({
-			react: props['defaultChecked'] ?? false,
+			react: (props as any)['defaultChecked'] ?? false,
 			default: false
 		}),
 		handleChange: (event: ChangeEvent<HTMLInputElement>) => {
+			event.stopPropagation();
 			if (props.onChange) {
 				props.onChange(event);
-			}
-
-			if (props.change) {
-				props.change(event);
 			}
 
 			// We have different ts types in different frameworks, so we need to use any here
@@ -47,26 +50,20 @@ export default function DBSwitch(props: DBSwitchProps) {
 
 			useTarget({
 				angular: () =>
-					handleFrameworkEventAngular(this, event, 'checked'),
+					handleFrameworkEventAngular(state, event, 'checked'),
 				vue: () => handleFrameworkEventVue(() => {}, event, 'checked')
 			});
 		},
 		handleBlur: (event: InteractionEvent<HTMLInputElement>) => {
+			event.stopPropagation();
 			if (props.onBlur) {
 				props.onBlur(event);
 			}
-
-			if (props.blur) {
-				props.blur(event);
-			}
 		},
 		handleFocus: (event: InteractionEvent<HTMLInputElement>) => {
+			event.stopPropagation();
 			if (props.onFocus) {
 				props.onFocus(event);
-			}
-
-			if (props.focus) {
-				props.focus(event);
 			}
 		}
 	});
@@ -77,7 +74,7 @@ export default function DBSwitch(props: DBSwitchProps) {
 
 	onUpdate(() => {
 		if (props.checked !== undefined && props.checked !== null) {
-			state._checked = !!props.checked;
+			state._checked = getBoolean(props.checked);
 		}
 	}, [props.checked]);
 
@@ -97,14 +94,14 @@ export default function DBSwitch(props: DBSwitchProps) {
 				role="switch"
 				aria-checked={getBooleanAsString(state._checked)}
 				ref={_ref}
-				checked={props.checked}
+				checked={getBoolean(props.checked, 'checked')}
 				value={props.value}
-				disabled={props.disabled}
+				disabled={getBoolean(props.disabled, 'disabled')}
 				aria-describedby={props.describedbyid}
 				aria-invalid={props.validation === 'invalid'}
 				data-custom-validity={props.validation}
 				name={props.name}
-				required={props.required}
+				required={getBoolean(props.required, 'required')}
 				data-aid-icon={props.icon}
 				data-aid-icon-after={props.iconAfter}
 				onChange={(event: ChangeEvent<HTMLInputElement>) =>

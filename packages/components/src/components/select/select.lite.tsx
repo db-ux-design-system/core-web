@@ -13,6 +13,7 @@ import { DBSelectOptionType, DBSelectProps, DBSelectState } from './model';
 import {
 	cls,
 	delay,
+	getBoolean,
 	getHideProp,
 	hasVoiceOver,
 	stringPropVisible,
@@ -47,60 +48,39 @@ useMetadata({
 useDefaultProps<DBSelectProps>({});
 
 export default function DBSelect(props: DBSelectProps) {
-	const _ref = useRef<HTMLSelectElement | null>(null);
+	const _ref = useRef<HTMLSelectElement | any>(null);
 	// jscpd:ignore-start
 	const state = useStore<DBSelectState>({
 		_id: undefined,
 		_messageId: undefined,
 		_validMessageId: undefined,
 		_invalidMessageId: undefined,
+		_invalidMessage: undefined,
 		_placeholderId: '',
 		// Workaround for Vue output: TS for Vue would think that it could be a function, and by this we clarify that it's a string
 		_descByIds: '',
 		_value: '',
 		initialized: false,
 		_voiceOverFallback: '',
-		handleClick: (event: ClickEvent<HTMLSelectElement>) => {
-			if (props.onClick) {
-				props.onClick(event);
-			}
+		hasValidState: () => {
+			return !!(props.validMessage ?? props.validation === 'valid');
 		},
-		handleInput: (event: InputEvent<HTMLSelectElement>) => {
-			if (props.onInput) {
-				props.onInput(event);
-			}
-
-			if (props.input) {
-				props.input(event);
-			}
-		},
-		handleChange: (event: ChangeEvent<HTMLSelectElement>) => {
-			if (props.onChange) {
-				props.onChange(event);
-			}
-
-			if (props.change) {
-				props.change(event);
-			}
-
-			useTarget({
-				angular: () => handleFrameworkEventAngular(this, event),
-				vue: () => handleFrameworkEventVue(() => {}, event)
-			});
-
+		handleValidation: () => {
 			/* For a11y reasons we need to map the correct message with the select */
 			if (!_ref?.validity.valid || props.validation === 'invalid') {
 				state._descByIds = state._invalidMessageId;
+				state._invalidMessage =
+					props.invalidMessage ||
+					_ref?.validationMessage ||
+					DEFAULT_INVALID_MESSAGE;
 				if (hasVoiceOver()) {
-					state._voiceOverFallback =
-						props.invalidMessage ??
-						_ref?.validationMessage ??
-						DEFAULT_INVALID_MESSAGE;
+					state._voiceOverFallback = state._invalidMessage;
 					delay(() => (state._voiceOverFallback = ''), 1000);
 				}
 			} else if (
-				props.validation === 'valid' ||
-				(_ref?.validity.valid && props.required)
+				state.hasValidState() &&
+				_ref?.validity.valid &&
+				props.required
 			) {
 				state._descByIds = state._validMessageId;
 				if (hasVoiceOver()) {
@@ -114,26 +94,62 @@ export default function DBSelect(props: DBSelectProps) {
 				state._descByIds = state._placeholderId;
 			}
 		},
-		handleBlur: (event: InteractionEvent<HTMLSelectElement>) => {
+		handleClick: (event: ClickEvent<HTMLSelectElement> | any) => {
+			event.stopPropagation();
+			if (props.onClick) {
+				props.onClick(event);
+			}
+		},
+		handleInput: (event: InputEvent<HTMLSelectElement> | any) => {
+			event.stopPropagation();
+			useTarget({
+				vue: () => {
+					if (props.input) {
+						props.input(event);
+					}
+					if (props.onInput) {
+						props.onInput(event);
+					}
+				},
+				default: () => {
+					if (props.onInput) {
+						props.onInput(event);
+					}
+				}
+			});
+
+			useTarget({
+				angular: () => handleFrameworkEventAngular(state, event),
+				vue: () => handleFrameworkEventVue(() => {}, event)
+			});
+			state.handleValidation();
+		},
+		handleChange: (event: ChangeEvent<HTMLSelectElement> | any) => {
+			event.stopPropagation();
+			if (props.onChange) {
+				props.onChange(event);
+			}
+
+			useTarget({
+				angular: () => handleFrameworkEventAngular(state, event),
+				vue: () => handleFrameworkEventVue(() => {}, event)
+			});
+			state.handleValidation();
+		},
+		handleBlur: (event: InteractionEvent<HTMLSelectElement> | any) => {
+			event.stopPropagation();
 			if (props.onBlur) {
 				props.onBlur(event);
 			}
-
-			if (props.blur) {
-				props.blur(event);
-			}
 		},
-		handleFocus: (event: InteractionEvent<HTMLSelectElement>) => {
+		handleFocus: (event: InteractionEvent<HTMLSelectElement> | any) => {
+			event.stopPropagation();
 			if (props.onFocus) {
 				props.onFocus(event);
 			}
-
-			if (props.focus) {
-				props.focus(event);
-			}
 		},
 		getOptionLabel: (option: DBSelectOptionType) => {
-			return option.label ?? option.value.toString();
+			return option.label ?? option.value?.toString();
 		}
 	});
 
@@ -145,7 +161,15 @@ export default function DBSelect(props: DBSelectProps) {
 		state._validMessageId = mId + DEFAULT_VALID_MESSAGE_ID_SUFFIX;
 		state._invalidMessageId = mId + DEFAULT_INVALID_MESSAGE_ID_SUFFIX;
 		state._placeholderId = mId + DEFAULT_PLACEHOLDER_ID_SUFFIX;
+		state._invalidMessage = props.invalidMessage || DEFAULT_INVALID_MESSAGE;
 	});
+
+	onUpdate(() => {
+		state._invalidMessage =
+			props.invalidMessage ||
+			_ref?.validationMessage ||
+			DEFAULT_INVALID_MESSAGE;
+	}, [_ref, props.invalidMessage]);
 
 	onUpdate(() => {
 		if (state._id && state.initialized) {
@@ -183,13 +207,14 @@ export default function DBSelect(props: DBSelectProps) {
 				aria-invalid={props.validation === 'invalid'}
 				data-custom-validity={props.validation}
 				ref={_ref}
-				required={props.required}
-				disabled={props.disabled}
+				required={getBoolean(props.required, 'required')}
+				disabled={getBoolean(props.disabled, 'disabled')}
 				id={state._id}
 				name={props.name}
 				size={props.size}
 				value={props.value ?? state._value}
 				autocomplete={props.autocomplete}
+				multiple={props.multiple}
 				onInput={(event: ChangeEvent<HTMLSelectElement>) =>
 					state.handleInput(event)
 				}
@@ -208,7 +233,7 @@ export default function DBSelect(props: DBSelectProps) {
 				aria-describedby={state._descByIds}>
 				{/* Empty option for floating label */}
 				<option hidden></option>
-				<Show when={props.options}>
+				<Show when={props.options} else={props.children}>
 					<For each={props.options}>
 						{(option: DBSelectOptionType) => (
 							<>
@@ -248,7 +273,6 @@ export default function DBSelect(props: DBSelectProps) {
 						)}
 					</For>
 				</Show>
-				{props.children}
 			</select>
 			<span id={state._placeholderId}>
 				{props.placeholder ?? props.label}
@@ -262,20 +286,20 @@ export default function DBSelect(props: DBSelectProps) {
 				</DBInfotext>
 			</Show>
 
-			<DBInfotext
-				id={state._validMessageId}
-				size="small"
-				semantic="successful">
-				{props.validMessage ?? DEFAULT_VALID_MESSAGE}
-			</DBInfotext>
+			<Show when={state.hasValidState()}>
+				<DBInfotext
+					id={state._validMessageId}
+					size="small"
+					semantic="successful">
+					{props.validMessage || DEFAULT_VALID_MESSAGE}
+				</DBInfotext>
+			</Show>
 
 			<DBInfotext
 				id={state._invalidMessageId}
 				size="small"
 				semantic="critical">
-				{props.invalidMessage ??
-					_ref?.validationMessage ??
-					DEFAULT_INVALID_MESSAGE}
+				{state._invalidMessage}
 			</DBInfotext>
 
 			{/* * https://www.davidmacd.com/blog/test-aria-describedby-errormessage-aria-live.html

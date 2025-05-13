@@ -56,7 +56,11 @@ module.exports = {
 		{
 			files: ['./showcases/e2e/**'],
 			rules: {
-				'@typescript-eslint/no-loop-func': 0 // this is fine for playwright testing
+				'@typescript-eslint/no-loop-func': 0, // this is fine for playwright testing
+				'@typescript-eslint/prefer-nullish-coalescing': [
+					'error',
+					{ ignorePrimitives: { boolean: true } }
+				]
 			}
 		},
 		{

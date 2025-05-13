@@ -45,3 +45,13 @@
   - list:
     - listitem:
       - link "Full"
+  - link "Wrap arrow_up_right\" / \""
+  - list:
+    - listitem:
+      - button "No Wrap (Default) chevron_right\" / \""
+  - list:
+    - listitem:
+      - button "This is a very long text that is broken into multiple lines. chevron_right\" / \""
+  - list:
+    - listitem:
+      - button "This is a very long text that is broken into multiple lines. chevron_right\" / \""

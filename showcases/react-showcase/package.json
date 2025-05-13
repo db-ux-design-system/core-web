@@ -13,21 +13,21 @@
     "start": "vite",
     "test-sr:macos": "cross-env showcase=react-showcase npx playwright test --config=../playwright.screen-reader.macos.ts",
     "test-sr:windows": "cross-env showcase=react-showcase npx playwright test --config=../playwright.screen-reader.windows.ts",
-    "test:e2e": "cross-env showcase=react-showcase npx playwright test --config=../playwright.config.ts"
+    "test:e2e": "cross-env showcase=react-showcase npx playwright test --config=../playwright.config.ts",
+    "test:ui": "cross-env showcase=react-showcase npx playwright test --config=../playwright.config.ts --ui"
   },
   "dependencies": {
-    "@db-ux/db-theme": "1.0.2",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
-    "react-router-dom": "7.2.0",
-    "sa11y": "4.1.1"
+    "react-router-dom": "7.6.0",
+    "sa11y": "4.1.8"
   },
   "devDependencies": {
     "@types/react": "^18.3.13",
     "@types/react-dom": "^18.3.1",
-    "@vitejs/plugin-react": "^4.3.4",
+    "@vitejs/plugin-react": "^4.4.1",
     "cross-env": "^7.0.3",
     "typescript": "^5.4.5",
-    "vite": "^6.2.0"
+    "vite": "^6.3.5"
   }
 }

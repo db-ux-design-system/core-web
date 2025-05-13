@@ -10,7 +10,14 @@ import {
 } from '@builder.io/mitosis';
 import { DBNavigationItemProps, DBNavigationItemState } from './model';
 import DBButton from '../button/button.lite';
-import { cls, delay, getBooleanAsString, getHideProp, uuid } from '../../utils';
+import {
+	cls,
+	delay,
+	getBoolean,
+	getBooleanAsString,
+	getHideProp,
+	uuid
+} from '../../utils';
 import {
 	isEventTargetNavigationItem,
 	NavigationItemSafeTriangle
@@ -23,7 +30,7 @@ useMetadata({});
 useDefaultProps<DBNavigationItemProps>({});
 
 export default function DBNavigationItem(props: DBNavigationItemProps) {
-	const _ref = useRef<HTMLLIElement | null>(null);
+	const _ref = useRef<HTMLLIElement | any>(null);
 
 	// jscpd:ignore-start
 	const state = useStore<DBNavigationItemState>({
@@ -42,7 +49,8 @@ export default function DBNavigationItem(props: DBNavigationItemProps) {
 				}, 300);
 			}
 		},
-		handleClick: (event: ClickEvent<HTMLButtonElement>) => {
+		handleClick: (event: ClickEvent<HTMLButtonElement> | any) => {
+			event.stopPropagation();
 			if (props.onClick) {
 				props.onClick(event);
 			}
@@ -51,32 +59,9 @@ export default function DBNavigationItem(props: DBNavigationItemProps) {
 				state.isSubNavigationExpanded = true;
 			}
 		},
-		handleBackClick: (event: ClickEvent<HTMLButtonElement>) => {
+		handleBackClick: (event: ClickEvent<HTMLButtonElement> | any) => {
 			event.stopPropagation();
 			state.isSubNavigationExpanded = false;
-		},
-		updateSubNavigationState: () => {
-			if (state.initialized && document && state.subNavigationId) {
-				const subNavigationSlot = document?.getElementById(
-					state.subNavigationId
-				) as HTMLMenuElement;
-
-				if (subNavigationSlot) {
-					if (subNavigationSlot.children?.length > 0) {
-						state.hasAreaPopup = true;
-
-						if (!state.navigationItemSafeTriangle) {
-							state.navigationItemSafeTriangle =
-								new NavigationItemSafeTriangle(
-									_ref,
-									subNavigationSlot
-								);
-						}
-					} else {
-						state.hasSubNavigation = false;
-					}
-				}
-			}
 		}
 	});
 
@@ -86,13 +71,34 @@ export default function DBNavigationItem(props: DBNavigationItemProps) {
 
 	onUpdate(() => {
 		if (props.subNavigationExpanded !== undefined) {
-			state.isSubNavigationExpanded = !!props.subNavigationExpanded;
+			state.isSubNavigationExpanded = !!getBoolean(
+				props.subNavigationExpanded,
+				'subNavigationExpanded'
+			);
 		}
 	}, [props.subNavigationExpanded]);
 
 	onUpdate(() => {
-		state.updateSubNavigationState();
-	}, [state.initialized]);
+		if (state.initialized && _ref) {
+			const subNavigationSlot = _ref.querySelector('menu');
+
+			if (subNavigationSlot) {
+				if (subNavigationSlot.children?.length > 0) {
+					state.hasAreaPopup = true;
+
+					if (!state.navigationItemSafeTriangle) {
+						state.navigationItemSafeTriangle =
+							new NavigationItemSafeTriangle(
+								_ref,
+								subNavigationSlot
+							);
+					}
+				} else {
+					state.hasSubNavigation = false;
+				}
+			}
+		}
+	}, [state.initialized, _ref]);
 	// jscpd:ignore-end
 
 	return (
@@ -111,6 +117,7 @@ export default function DBNavigationItem(props: DBNavigationItemProps) {
 			data-icon={props.icon}
 			data-hide-icon={getHideProp(props.showIcon)}
 			data-active={props.active}
+			data-wrap={getBooleanAsString(props.wrap)}
 			aria-disabled={getBooleanAsString(props.disabled)}>
 			<Show when={!state.hasSubNavigation}>
 				<Show when={props.text} else={props.children}>
@@ -123,7 +130,7 @@ export default function DBNavigationItem(props: DBNavigationItemProps) {
 					aria-haspopup={state.hasAreaPopup}
 					aria-expanded={state.isSubNavigationExpanded}
 					class="db-navigation-item-expand-button"
-					disabled={props.disabled}
+					disabled={getBoolean(props.disabled, 'disabled')}
 					onClick={(event: ClickEvent<HTMLButtonElement>) =>
 						state.handleClick(event)
 					}>

@@ -28,6 +28,9 @@ const getDataList = (
 			#example="{ exampleIndex, variantIndex, exampleName, exampleProps }"
 		>
 			<DBInput
+				:maxLength="exampleProps?.maxLength"
+				:max="exampleProps?.max"
+				:min="exampleProps?.min"
 				:variant="exampleProps?.variant"
 				:show-label="exampleProps?.showLabel"
 				:label="exampleProps?.label"

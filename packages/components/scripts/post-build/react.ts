@@ -1,10 +1,11 @@
 import components, { Overwrite } from './components';
 
 import { readFileSync, writeFileSync } from 'node:fs';
+import { replaceInFileSync } from 'replace-in-file';
 
 import { runReplacements, transformToUpperComponentName } from '../utils';
 
-const overwriteEvents = (tmp: boolean) => {
+const overwriteEvents = (tmp?: boolean) => {
 	const modelFilePath = `../../${
 		tmp ? 'output/tmp' : 'output'
 	}/react/src/shared/model.ts`;
@@ -51,6 +52,36 @@ const rootProps = [
 	'data-font'
 ];
 
+/**
+ * We want to make sure that the items inside a map containing a key
+ * @param input the file as string
+ */
+const overwriteFragmentMap = (input: string) => {
+	const splitInput = input.split('\n');
+	const fragmentsBelowMap: boolean[] = [];
+
+	return splitInput
+		.map((line: string, index: number) => {
+			if (line.includes('<>')) {
+				if (index !== 0 && splitInput[index - 1].includes('.map(')) {
+					fragmentsBelowMap.push(true);
+					return line.replace('<>', '<React.Fragment key={uuid()}>');
+				} else {
+					fragmentsBelowMap.push(false);
+				}
+			}
+			if (line.includes('</>')) {
+				const isFragment = fragmentsBelowMap.pop();
+				if (isFragment) {
+					return line.replace('</>', '</React.Fragment>');
+				}
+			}
+
+			return line;
+		})
+		.join('\n');
+};
+
 export default (tmp?: boolean) => {
 	try {
 		overwriteEvents(tmp);
@@ -67,7 +98,7 @@ export default (tmp?: boolean) => {
 			const tsxFileContent = readFileSync(tsxFile).toString('utf-8');
 			const htmlElements = tsxFileContent.match('(?<=useRef<)(.*?)(?=>)');
 			let htmlElement = 'HTMLDivElement';
-			if (htmlElements.length > 0) {
+			if (htmlElements && htmlElements.length > 0) {
 				htmlElement = htmlElements[0];
 			}
 
@@ -81,8 +112,12 @@ export default (tmp?: boolean) => {
 					to: `function DB${upperComponentName}Fn(props: Omit<HTMLAttributes<${htmlElement}>, keyof DB${upperComponentName}Props> & DB${upperComponentName}Props, component: any) {`
 				},
 				{
-					from: `DB${upperComponentName}.defaultProps`,
-					to: `const DB${upperComponentName} = forwardRef<${htmlElement}, Omit<HTMLAttributes<${htmlElement}>, keyof DB${upperComponentName}Props> & DB${upperComponentName}Props>(DB${upperComponentName}Fn);\nDB${upperComponentName}.defaultProps`
+					from: `export default DB${upperComponentName};`,
+					to: `const DB${upperComponentName} = forwardRef<
+${htmlElement}, Omit<HTMLAttributes<${htmlElement}>,
+keyof DB${upperComponentName}Props> & DB${upperComponentName}Props
+>(DB${upperComponentName}Fn);
+export default DB${upperComponentName};`
 				},
 				{
 					from: '>(null);',
@@ -135,16 +170,10 @@ export default (tmp?: boolean) => {
 					});
 				}
 
-				replacements.push(
-					{
-						from: /<>/g,
-						to: '<React.Fragment key={uuid()}>'
-					},
-					{
-						from: /<\/>/g,
-						to: '</React.Fragment>'
-					}
-				);
+				replaceInFileSync({
+					files: tsxFile,
+					processor: (input: string) => overwriteFragmentMap(input)
+				});
 			}
 
 			runReplacements(replacements, component, 'react', tsxFile);
