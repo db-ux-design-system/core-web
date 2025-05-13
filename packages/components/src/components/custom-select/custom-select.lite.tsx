@@ -11,9 +11,9 @@ import {
 	useTarget
 } from '@builder.io/mitosis';
 import {
+	CustomSelectOptionType,
 	DBCustomSelectProps,
-	DBCustomSelectState,
-	CustomSelectOptionType
+	DBCustomSelectState
 } from './model';
 import {
 	cls,
@@ -145,6 +145,7 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 			}
 		},
 		handleDropdownToggle: (event: any) => {
+			event.stopPropagation();
 			if (props.onDropdownToggle) {
 				props.onDropdownToggle(event);
 			}
@@ -323,6 +324,7 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 			}
 		},
 		handleKeyboardPress: (event: any) => {
+			event.stopPropagation();
 			if (event.key === 'Escape' && detailsRef && detailsRef?.open) {
 				state.handleClose('close');
 				state.handleSummaryFocus();
@@ -411,7 +413,8 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 				}
 			}
 		},
-		handleSelectAll: () => {
+		handleSelectAll: (event: any) => {
+			event.stopPropagation();
 			if (state._values?.length === state.amountOptions) {
 				state.handleOptionSelected([]);
 			} else {
@@ -495,7 +498,9 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 				);
 			}
 		},
-		handleClearAll: () => {
+		handleClearAll: (event: any) => {
+			event.stopPropagation();
+
 			state.handleOptionSelected([]);
 			state.handleSummaryFocus();
 		},
@@ -681,8 +686,9 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 			DEFAULT_INVALID_MESSAGE;
 	}, [selectRef, props.invalidMessage]);
 
-	function satisfyReact() {
+	function satisfyReact(event: any) {
 		// This is an empty function to satisfy React
+		event.stopPropagation();
 	}
 
 	return (
@@ -719,7 +725,7 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 					multiple={getBoolean(props.multiple, 'multiple')}
 					disabled={getBoolean(props.disabled, 'disabled')}
 					required={getBoolean(props.required, 'required')}
-					onChange={() => satisfyReact()}>
+					onChange={(event) => satisfyReact(event)}>
 					<Show when={props.options?.length}>
 						<For each={props.options}>
 							{(option: CustomSelectOptionType) => (
@@ -841,8 +847,10 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 														checked={
 															state.selectAllChecked
 														}
-														onChange={() =>
-															state.handleSelectAll()
+														onChange={(event) =>
+															state.handleSelectAll(
+																event
+															)
 														}
 													/>
 													{state.getSelectAllLabel()}
@@ -956,7 +964,7 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 					size="small"
 					name={state._id}
 					form={state._id}
-					onClick={() => state.handleClearAll()}>
+					onClick={(event) => state.handleClearAll(event)}>
 					{props.clearSelectionText}
 					<DBTooltip placement="top">
 						{props.clearSelectionText}
