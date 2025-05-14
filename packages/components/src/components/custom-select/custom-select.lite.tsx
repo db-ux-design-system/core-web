@@ -349,7 +349,7 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 				} else if (detailsRef.open && event && event.relatedTarget) {
 					const relatedTarget = event.relatedTarget as HTMLElement;
 					if (!detailsRef.contains(relatedTarget)) {
-						// We need to use delay here because the combintation of `contains`
+						// We need to use delay here because the combination of `contains`
 						// and changing the DOM element causes a race condition inside browser
 						delay(() => (detailsRef.open = false), 1);
 					}
