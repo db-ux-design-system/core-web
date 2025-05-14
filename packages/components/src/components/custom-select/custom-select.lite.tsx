@@ -154,6 +154,9 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 					new DocumentClickListener().addCallback((event) =>
 						state.handleDocumentClose(event)
 					);
+
+				state.handleAutoPlacement();
+				state.handleOpenByKeyboardFocus();
 			} else {
 				if (state._documentClickListenerCallbackId) {
 					new DocumentClickListener().removeCallback(
@@ -227,7 +230,7 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 			}
 		},
 		handleArrowDownUp: (event: any) => {
-			if (detailsRef && detailsRef.open) {
+			if (detailsRef?.open) {
 				if (self.document) {
 					const activeElement = self.document.activeElement;
 					if (activeElement) {
@@ -343,6 +346,8 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 				} else if (detailsRef.open && event && event.relatedTarget) {
 					const relatedTarget = event.relatedTarget as HTMLElement;
 					if (!detailsRef.contains(relatedTarget)) {
+						// We need to use delay here because the combintation of `contains`
+						// and changing the DOM element causes a race condition inside browser
 						delay(() => (detailsRef.open = false), 1);
 					}
 				}
@@ -537,24 +542,6 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 
 	onUpdate(() => {
 		if (detailsRef) {
-			delay(() => {
-				// delay for angular otherwise summary is null
-				const summary = detailsRef.querySelector('summary');
-				if (summary) {
-					summary.addEventListener('click', () => {
-						state.handleAutoPlacement();
-						state.handleOpenByKeyboardFocus(true);
-					});
-					summary.addEventListener(
-						'keydown',
-						(event: KeyboardEvent) => {
-							if (event.code === 'Space' && !detailsRef?.open) {
-								state.handleOpenByKeyboardFocus();
-							}
-						}
-					);
-				}
-			}, 1);
 			detailsRef.addEventListener('focusout', (event: any) =>
 				state.handleClose(event)
 			);
