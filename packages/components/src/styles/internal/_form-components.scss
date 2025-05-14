@@ -57,6 +57,7 @@ $db-min-inline-size: var(
 }
 
 %helper-message {
+	> db-infotext > .db-infotext,
 	> .db-infotext {
 		margin-block-start: variables.$db-spacing-fixed-2xs;
 
@@ -156,6 +157,7 @@ $db-min-inline-size: var(
 }
 
 @mixin get-validity-message($key: "valid") {
+	> db-infotext > .db-infotext,
 	> .db-infotext {
 		@if ($key == "valid") {
 			&[data-semantic="successful"] {
@@ -317,7 +319,10 @@ $input-valid-types:
 	@include set-required-label($selector);
 
 	@include get-validity($selector) {
-		&:has(> .db-infotext[data-semantic="successful"]) {
+		&:has(
+				> .db-infotext[data-semantic="successful"],
+				> db-infotext > .db-infotext[data-semantic="successful"]
+			) {
 			@include get-validity-color($selector, "valid");
 		}
 	}
