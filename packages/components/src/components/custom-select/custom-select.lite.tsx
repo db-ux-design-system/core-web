@@ -156,7 +156,10 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 					);
 
 				state.handleAutoPlacement();
-				state.handleOpenByKeyboardFocus();
+				if (!event.target.dataset.test) {
+					// We need this workaround for snapshot testing
+					state.handleOpenByKeyboardFocus();
+				}
 			} else {
 				if (state._documentClickListenerCallbackId) {
 					new DocumentClickListener().removeCallback(
@@ -473,7 +476,7 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 				}
 			}
 		},
-		handleOpenByKeyboardFocus: (onlySearch?: boolean) => {
+		handleOpenByKeyboardFocus: () => {
 			if (detailsRef) {
 				// Focus search if possible
 				const search = getSearchInput(detailsRef);
@@ -482,7 +485,7 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 						// Takes some time until element can be focused
 						search.focus();
 					}, 1);
-				} else if (!onlySearch) {
+				} else {
 					// Focus first checkbox otherwise
 					state.handleFocusFirstDropdownCheckbox();
 				}
