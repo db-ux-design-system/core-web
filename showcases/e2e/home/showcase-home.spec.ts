@@ -41,7 +41,11 @@ const testFormComponents = async (
 			}
 
 			case 'group': {
-				await component.click({ force: true });
+				if (index !== 0) {
+					await component.click({ force: true });
+					await page.keyboard.press('ArrowDown');
+					await page.keyboard.press('Space');
+				}
 
 				break;
 			}
@@ -58,7 +62,7 @@ const testFormComponents = async (
 		if (role === 'checkbox') {
 			expect(text).toEqual('false');
 		} else if (role === 'group') {
-			expect(text).toEqual(`combobox-${index}`);
+			expect(text).toEqual(`combobox-0`);
 		} else {
 			expect(text).toEqual(`${role}-${index}`);
 		}

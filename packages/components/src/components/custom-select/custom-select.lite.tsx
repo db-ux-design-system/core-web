@@ -701,7 +701,7 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 	}, [selectRef, props.invalidMessage]);
 
 	function satisfyReact(event: any) {
-		// This is an empty function to satisfy React
+		// This is a function to satisfy React
 		event.stopPropagation();
 	}
 
