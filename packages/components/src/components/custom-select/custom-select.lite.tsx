@@ -11,9 +11,9 @@ import {
 	useTarget
 } from '@builder.io/mitosis';
 import {
+	CustomSelectOptionType,
 	DBCustomSelectProps,
-	DBCustomSelectState,
-	CustomSelectOptionType
+	DBCustomSelectState
 } from './model';
 import {
 	cls,
