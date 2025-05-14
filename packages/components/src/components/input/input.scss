@@ -105,16 +105,34 @@ $icon-padding: calc(
 		}
 	}
 
+	&[data-variant="floating"] {
+		input {
+			&::-webkit-calendar-picker-indicator,
+			&::-webkit-search-cancel-button {
+				/* stylelint-disable-next-line db-ux/use-spacings */
+				margin-block-end: var(--db-base-body-icon-font-size-2xs);
+			}
+		}
+	}
+
 	input {
 		position: relative;
 
 		&::-webkit-calendar-picker-indicator,
 		&::-webkit-search-cancel-button {
+			@extend %db-overwrite-font-size-sm;
+
 			background-image: none;
 			inline-size: icons.$default-icon-font-size;
 			block-size: icons.$default-icon-font-size;
 			padding: 0;
 			cursor: pointer;
+			/* stylelint-disable-next-line db-ux/use-spacings */
+			margin-block-start: variables.$db-border-width-3xs;
+
+			&:focus-visible {
+				@extend %focus-placeholder;
+			}
 		}
 
 		&::-webkit-search-cancel-button {
