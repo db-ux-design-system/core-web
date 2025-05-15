@@ -367,11 +367,7 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 					default: event.target
 				});
 
-				if (
-					detailsRef &&
-					detailsRef.open &&
-					!detailsRef.contains(target)
-				) {
+				if (detailsRef?.open && !detailsRef.contains(target)) {
 					detailsRef.open = false;
 				}
 			}
