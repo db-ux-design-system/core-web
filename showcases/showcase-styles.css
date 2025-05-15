@@ -48,6 +48,26 @@ db-card:is(.variants-card) > .db-card {
 	inline-size: 100%;
 }
 
+.variants-list:has(.db-shell) {
+	flex-direction: column;
+	align-items: center;
+
+	> div {
+		justify-content: center;
+		inline-size: 100%;
+	}
+}
+.variants-list {
+	.db-shell {
+		&:is(:not([data-control-panel-desktop-position]),[data-control-panel-desktop-position="top"]) {
+			block-size: 200px;
+		}
+	}
+}
+.variants-list .db-shell[data-control-panel-desktop-position="left"] {
+	block-size: 500px;
+}
+
 .variants-list .db-select,
 .variants-list .db-input,
 .variants-list .db-textarea {

@@ -1,5 +1,6 @@
 @use "@db-ux/core-foundations/build/styles/variables";
 @use "@db-ux/core-foundations/build/styles/screen-sizes";
+@use "../../styles/internal/control-panel-desktop";
 
 %fade-in-loading-fonts {
 	&[data-fade-in="true"] {
@@ -26,7 +27,22 @@ body {
 	block-size: 100vh;
 	inline-size: 100vw;
 	display: grid;
-	grid-template-rows: [content-panel] min-content [main] 1fr;
+
+	&[data-control-panel-desktop-position="left"] {
+		grid-template-columns: [control-panel] min-content [main] 1fr;
+
+		> .db-control-panel-desktop {
+			@extend %control-panel-desktop-vertical-orientation;
+		}
+	}
+
+	&[data-control-panel-desktop-position="top"] {
+		grid-template-rows: [control-panel] min-content [main] 1fr;
+
+		> .db-control-panel-desktop {
+			@extend %control-panel-desktop-horizontal-orientation;
+		}
+	}
 
 	> main {
 		overflow-y: auto;

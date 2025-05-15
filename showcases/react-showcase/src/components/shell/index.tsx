@@ -17,8 +17,8 @@ import { type BaseComponentProps } from '../base-component-data';
 import { DBShellProps } from '../../../../../output/tmp/react/src/components/shell/model';
 
 const getShell = ({
-	contentPanelDesktopPosition,
-	contentPanelMobilePosition,
+	controlPanelDesktopPosition,
+	controlPanelMobilePosition,
 	fadeIn,
 	children,
 	className,
@@ -26,13 +26,13 @@ const getShell = ({
 	id
 }: DBShellProps) => (
 	<DBShell
-		contentPanelDesktopPosition={contentPanelDesktopPosition}
-		contentPanelMobilePosition={contentPanelMobilePosition}
+		controlPanelDesktopPosition={controlPanelDesktopPosition}
+		controlPanelMobilePosition={controlPanelMobilePosition}
 		fadeIn={fadeIn}
 		className={className}
 		describedbyid={describedbyid}
 		id={id}
-		contentPanelDesktop={
+		controlPanelDesktop={
 			<DBControlPanelDesktop
 				brand={
 					<DBControlPanelBrand title="DBHeader">
@@ -46,17 +46,17 @@ const getShell = ({
 					</DBControlPanelMetaNavigation>
 				}
 				primaryActions={
-					<DBControlPanelSecondaryActions>
+					<DBControlPanelPrimaryActions>
 						<DBButton
 							icon="magnifying_glass"
 							variant="ghost"
 							noText>
 							Search
 						</DBButton>
-					</DBControlPanelSecondaryActions>
+					</DBControlPanelPrimaryActions>
 				}
 				secondaryActions={
-					<DBControlPanelPrimaryActions>
+					<DBControlPanelSecondaryActions>
 						<DBButton icon="x_placeholder" variant="ghost" noText>
 							Profile
 						</DBButton>
@@ -66,7 +66,7 @@ const getShell = ({
 						<DBButton icon="x_placeholder" variant="ghost" noText>
 							Help
 						</DBButton>
-					</DBControlPanelPrimaryActions>
+					</DBControlPanelSecondaryActions>
 				}>
 				<DBNavigation>
 					<DBNavigationItem icon="x_placeholder">

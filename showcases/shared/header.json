@@ -13,7 +13,8 @@
 				"angularDirective": true,
 				"content": "Imprint",
 				"props": {
-					"href": "#"
+					"href": "#",
+					"orientation": "horizontal"
 				}
 			},
 			{
@@ -23,7 +24,8 @@
 				"props": {
 					"icon": "magnifying_glass",
 					"variant": "ghost",
-					"noText": true
+					"noText": true,
+					"orientation": "horizontal"
 				}
 			},
 			{

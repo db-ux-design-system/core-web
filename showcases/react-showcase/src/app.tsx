@@ -29,10 +29,8 @@ const App = () => {
 
 	return (
 		<DBShell
-			variant="fixed"
-			documentOverflow="auto"
 			fadeIn
-			contentPanelDesktop={
+			controlPanelDesktop={
 				<DBControlPanelDesktop
 					brand={<DBControlPanelBrand>Showcase</DBControlPanelBrand>}
 					metaNavigation={

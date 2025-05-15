@@ -18,5 +18,22 @@
 				"props": {}
 			}
 		]
+	},
+	{
+		"name": "Control Panel Desktop Position",
+		"examples": [
+			{
+				"name": "Top (Default)",
+				"props": {
+					"controlPanelDesktopPosition": "top"
+				}
+			},
+			{
+				"name": "Left",
+				"props": {
+					"controlPanelDesktopPosition": "left"
+				}
+			}
+		]
 	}
 ]

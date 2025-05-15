@@ -38,11 +38,16 @@ export default function DBShell(props: DBShellProps) {
 			ref={_ref}
 			id={props.id}
 			class={cls('db-shell', props.className)}
-			data-variant={props.variant}
+			data-control-panel-desktop-position={
+				props.controlPanelDesktopPosition ?? 'top'
+			}
+			data-control-panel-mobile-position={
+				props.controlPanelMobilePosition
+			}
 			data-fade-in={getBooleanAsString(props.fadeIn)}
 			data-fonts-loaded={getBooleanAsString(state.fontsLoaded)}>
-			<Slot name="contentPanelDesktop" />
-			<Slot name="contentPanelMobile" />
+			<Slot name="controlPanelDesktop" />
+			<Slot name="controlPanelMobile" />
 			<main class={cls('db-main', props.mainClass)}>
 				{props.children}
 			</main>

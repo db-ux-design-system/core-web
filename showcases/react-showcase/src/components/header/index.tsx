@@ -19,7 +19,7 @@ const getHeader = ({
 	children,
 	className,
 	describedbyid,
-	orientation,
+	orientation = 'horizontal',
 	id,
 	width,
 	withNavigation = true,
