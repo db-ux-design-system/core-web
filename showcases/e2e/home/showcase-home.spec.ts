@@ -43,7 +43,9 @@ const testFormComponents = async (
 			case 'group': {
 				if (index !== 0) {
 					await component.click({ force: true });
+					await page.waitForTimeout(500);
 					await page.keyboard.press('Space');
+					await page.waitForTimeout(500);
 					await page.keyboard.press('Escape');
 					await page.waitForTimeout(500);
 				}

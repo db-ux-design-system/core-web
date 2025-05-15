@@ -329,7 +329,7 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 		},
 		handleKeyboardPress: (event: any) => {
 			event.stopPropagation();
-			if (event.key === 'Escape' && detailsRef && detailsRef.open) {
+			if (event.key === 'Escape' && detailsRef?.open) {
 				state.handleClose('close');
 				state.handleSummaryFocus();
 			} else if (
