@@ -1,60 +1,66 @@
 import {
-	DBBrand,
 	DBButton,
-	DBHeader,
+	DBControlPanelBrand,
+	DBControlPanelDesktop,
+	DBControlPanelMetaNavigation,
+	DBControlPanelPrimaryActions,
+	DBControlPanelSecondaryActions,
 	DBLink,
 	DBNavigation,
 	DBNavigationItem
 } from '../../../../../output/react/src';
-import { type DBHeaderProps } from '../../../../../output/react/src/components/header/model';
 import defaultComponentVariants from '../../../../shared/header.json';
 import { getVariants } from '../data';
 import DefaultComponent from '../default-component';
 import { type BaseComponentProps } from '../base-component-data';
+import { DBControlPanelDesktopProps } from '../../../../../output/react/src/components/control-panel-desktop/model';
 
 const getHeader = ({
-	drawerOpen,
-	forceMobile,
-	burgerMenuLabel,
 	children,
 	className,
 	describedbyid,
+	orientation,
 	id,
-	onToggle,
 	width,
-	example,
-	withNavigation,
-	withName
-}: DBHeaderProps & {
-	example: boolean;
+	withNavigation = true,
+	withName = true,
+	withPrimary = true,
+	withSecondary = true,
+	withMeta = true
+}: DBControlPanelDesktopProps & {
 	withName: boolean;
+	withPrimary: boolean;
+	withSecondary: boolean;
+	withMeta: boolean;
 	withNavigation: boolean;
 }) => (
-	<DBHeader
+	<DBControlPanelDesktop
 		width={width}
 		brand={
-			<DBBrand title="DBHeader">
-				{(!example || withName) && 'DBHeader'}
-			</DBBrand>
+			<DBControlPanelBrand title="DBHeader">
+				{withName && 'DBHeader'}
+			</DBControlPanelBrand>
 		}
 		metaNavigation={
-			!example && (
-				<>
+			withMeta && (
+				<DBControlPanelMetaNavigation>
 					<DBLink href="#">Imprint</DBLink>
 					<DBLink href="#">Help</DBLink>
-				</>
+				</DBControlPanelMetaNavigation>
 			)
 		}
-		primaryAction={
-			!example && (
-				<DBButton icon="magnifying_glass" variant="ghost" noText>
-					Search
-				</DBButton>
+		primaryActions={
+			withPrimary && (
+				<DBControlPanelPrimaryActions>
+					<DBButton icon="magnifying_glass" variant="ghost" noText>
+						Search
+					</DBButton>
+				</DBControlPanelPrimaryActions>
 			)
 		}
-		secondaryAction={
-			!example && (
-				<>
+		secondaryActions={
+			withSecondary && (
+				<DBControlPanelSecondaryActions>
 					<DBButton icon="x_placeholder" variant="ghost" noText>
 						Profile
 					</DBButton>
@@ -64,17 +70,14 @@ const getHeader = ({
 					<DBButton icon="x_placeholder" variant="ghost" noText>
 						Help
 					</DBButton>
-				</>
+				</DBControlPanelSecondaryActions>
 			)
 		}
-		drawerOpen={drawerOpen}
-		forceMobile={forceMobile}
-		burgerMenuLabel={burgerMenuLabel}
 		className={className}
 		describedbyid={describedbyid}
 		id={id}
-		onToggle={onToggle}>
-		{(!example || withNavigation) && (
+		orientation={orientation}>
+		{withNavigation && (
 			<DBNavigation aria-label={children}>
 				<DBNavigationItem icon="x_placeholder">
 					<a href="#">{children}</a>
@@ -84,13 +87,13 @@ const getHeader = ({
 				</DBNavigationItem>
 			</DBNavigation>
 		)}
-	</DBHeader>
+	</DBControlPanelDesktop>
 );
 
 const HeaderComponent = (props: BaseComponentProps) => {
 	return (
 		<DefaultComponent
-			title="DBHeader"
+			title="DBControlPanelDesktop"
 			variants={getVariants(
 				defaultComponentVariants,
 				getHeader,

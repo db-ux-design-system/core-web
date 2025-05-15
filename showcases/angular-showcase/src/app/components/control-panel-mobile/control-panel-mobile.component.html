@@ -1,0 +1,18 @@
+<app-default-component
+	title="DBControlPanelMobile"
+	[variants]="variants"
+	[exampleTemplate]="exampleTemplate"
+>
+	<ng-template
+		#exampleTemplate
+		let-exampleProps="exampleProps"
+		let-exampleName="exampleName"
+		let-exampleIndex="exampleIndex"
+		let-variantIndex="variantIndex"
+	>
+		<db-control-panel-mobile>{{exampleName}}</db-control-panel-mobile>
+	</ng-template>
+</app-default-component>
+
+
+

@@ -1,12 +1,12 @@
 export * from './components/notification';
 export * from './components/badge';
-export * from './components/brand';
+export * from './components/control-panel-brand';
 export * from './components/button';
 export * from './components/card';
 export * from './components/checkbox';
 export * from './components/divider';
 export * from './components/drawer';
-export * from './components/header';
+export * from './components/control-panel-desktop';
 export * from './components/icon';
 export * from './components/infotext';
 export * from './components/input';
@@ -39,3 +39,11 @@ export * from './components/custom-select-form-field';
 export * from './components/custom-select-dropdown';
 export * from './components/custom-select-list';
 export * from './components/custom-select-list-item';
+export * from "./components/control-panel-mobile";
+
+export * from "./components/control-panel-meta-navigation";
+
+export * from "./components/control-panel-primary-actions";
+
+export * from "./components/control-panel-secondary-actions";
+

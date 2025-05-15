@@ -1,3 +1,5 @@
+import { DBControlPanelMobile } from '../../../../output/react/src/index';
+
 import { useEffect, useState } from 'react';
 import {
 	DBCustomSelect,
@@ -345,6 +347,14 @@ const ComponentSwitch = ({
 			<DBCustomSelect className={className} {...props}>
 				{resolvedContent}
 			</DBCustomSelect>
+		);
+	}
+
+	if (type === 'control-panel-mobile') {
+		return (
+			<DBControlPanelMobile className={className} {...props}>
+				{resolvedContent}
+			</DBControlPanelMobile>
 		);
 	}
 

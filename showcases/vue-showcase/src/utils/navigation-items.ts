@@ -1,3 +1,5 @@
+import ControlPanelMobile from '../components/control-panel-mobile/ControlPanelMobile.vue';
+
 import type { RouteRecordRaw } from 'vue-router';
 import { markRaw } from 'vue';
 import CustomSelect from '../components/custom-select/CustomSelect.vue';
@@ -39,6 +41,8 @@ export type NavItem = {
 };
 
 export const getSortedNavigationItems = (navigationItems: NavItem[]): any[] =>
+{ path: '/control-panel-mobile', label: 'ControlPanelMobile', component: ControlPanelMobile },
+
 	navigationItems.sort((a: NavItem, b: NavItem) =>
 		a.path.localeCompare(b.path)
 	);

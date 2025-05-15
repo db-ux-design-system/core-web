@@ -226,7 +226,7 @@
 		]
 	},
 	{
-		"name": "Behavior",
+		"name": "Orientation",
 		"children": [
 			{
 				"name": "brand",
@@ -310,20 +310,21 @@
 		],
 		"examples": [
 			{
-				"name": "Desktop (full width)",
+				"name": "Horizontal (Default)",
 				"style": {
 					"width": "100%",
 					"display": "block"
 				}
 			},
 			{
-				"name": "Mobile",
+				"name": "Vertical",
 				"style": {
-					"width": "100%",
+					"width": "300px",
+					"height": "500px",
 					"display": "block"
 				},
 				"props": {
-					"forceMobile": "true"
+					"orientation": "vertical"
 				}
 			}
 		]
@@ -419,9 +420,11 @@
 					"display": "block"
 				},
 				"props": {
-					"example": true,
 					"withName": true,
-					"withNavigation": true
+					"withNavigation": true,
+					"withMeta": false,
+					"withPrimary": false,
+					"withSecondary": false
 				}
 			},
 			{
@@ -431,9 +434,53 @@
 					"display": "block"
 				},
 				"props": {
-					"example": true,
 					"withName": true,
-					"withNavigation": false
+					"withNavigation": false,
+					"withMeta": false,
+					"withPrimary": false,
+					"withSecondary": false
+				}
+			},
+			{
+				"name": "Without Navigation + Primary + Secondary",
+				"style": {
+					"width": "100%",
+					"display": "block"
+				},
+				"props": {
+					"withName": true,
+					"withNavigation": false,
+					"withMeta": false,
+					"withPrimary": true,
+					"withSecondary": true
+				}
+			},
+			{
+				"name": "Without Navigation + Primary",
+				"style": {
+					"width": "100%",
+					"display": "block"
+				},
+				"props": {
+					"withName": true,
+					"withNavigation": false,
+					"withMeta": false,
+					"withPrimary": true,
+					"withSecondary": false
+				}
+			},
+			{
+				"name": "Without Navigation + Secondary",
+				"style": {
+					"width": "100%",
+					"display": "block"
+				},
+				"props": {
+					"withName": true,
+					"withNavigation": false,
+					"withMeta": false,
+					"withPrimary": false,
+					"withSecondary": true
 				}
 			},
 			{
@@ -443,9 +490,11 @@
 					"display": "block"
 				},
 				"props": {
-					"example": true,
 					"withName": false,
-					"withNavigation": true
+					"withNavigation": true,
+					"withMeta": false,
+					"withPrimary": false,
+					"withSecondary": false
 				}
 			},
 			{
@@ -455,9 +504,11 @@
 					"display": "block"
 				},
 				"props": {
-					"example": true,
 					"withName": false,
-					"withNavigation": false
+					"withNavigation": false,
+					"withMeta": false,
+					"withPrimary": false,
+					"withSecondary": false
 				}
 			}
 		]

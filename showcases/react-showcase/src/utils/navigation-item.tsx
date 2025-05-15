@@ -1,3 +1,5 @@
+import ControlPanelMobileComponent from '../components/control-panel-mobile';
+
 import StackComponent from '../components/stack';
 import CustomSelectComponent from '../components/custom-select';
 import SwitchComponent from '../components/switch';
@@ -28,6 +30,7 @@ import IconComponent from '../components/icon';
 import BrandComponent from '../components/brand';
 import HeaderComponent from '../components/header';
 import Home from '../components/home';
+import ShellComponent from '../components/shell';
 
 export type NavigationItem = {
 	path: string;
@@ -153,6 +156,7 @@ export const NAVIGATION_ITEMS: NavigationItem[] = [
 		path: '01',
 		label: '01 Layout',
 		subNavigation: getSortedNavigationItems([
+			{ path: 'shell', label: 'Shell', component: <ShellComponent /> },
 			{ path: 'stack', label: 'Stack', component: <StackComponent /> },
 			{ path: 'card', label: 'Card', component: <CardComponent /> },
 			{ path: 'drawer', label: 'Drawer', component: <DrawerComponent /> },
@@ -175,6 +179,11 @@ export const NAVIGATION_ITEMS: NavigationItem[] = [
 				path: 'header',
 				label: 'Header',
 				component: <HeaderComponent />
+			},
+			{
+				path: 'control-panel-mobile',
+				label: 'ControlPanelMobile',
+				component: <ControlPanelMobileComponent />
 			}
 		])
 	},

@@ -59,6 +59,9 @@ import * as StackCode from '../components/code-docs/stack';
 import * as CustomSelectCode from '../components/code-docs/custom-select';
 import StackComponent from '../../react-showcase/src/components/stack';
 import MutliSelectComponent from '../../react-showcase/src/components/custom-select';
+import * as ControlPanelMobileCode from '../components/code-docs/control-panel-mobile';
+import ControlPanelMobileComponent from '../../react-showcase/src/components/control-panel-mobile';
+
 import Components from './components.json';
 
 export type NavigationItem = {
@@ -71,6 +74,8 @@ export type NavigationItem = {
 };
 
 const nameComponentMap = {
+	'control-panel-mobile': <ControlPanelMobileComponent slotCode={ControlPanelMobileCode} />,
+
 	'custom-select': <MutliSelectComponent slotCode={CustomSelectCode} />,
 	stack: <StackComponent slotCode={StackCode} />,
 	button: <ButtonComponent slotCode={buttonCode} />,

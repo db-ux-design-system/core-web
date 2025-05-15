@@ -6,10 +6,10 @@ For general installation and configuration take a look at the [react-core-compon
 
 ```tsx App.tsx
 // App.tsx
-import { DBShell, DBHeader } from "@db-ux/react-core-components";
+import { DBShell, DBControlPanelDesktop } from "@db-ux/react-core-components";
 
 const App = () => (
-	<DBShell slotHeader={<DBHeader>...</DBHeader>}>
+	<DBShell slotControlPanelDesktop={<DBControlPanelDesktop>...</DBControlPanelDesktop>}>
 		<main class="db-main">Main Shell</main>
 	</DBShell>
 );

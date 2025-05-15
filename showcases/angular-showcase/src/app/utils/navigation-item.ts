@@ -1,3 +1,5 @@
+import { ControlPanelMobileComponent } from '../components/control-panel-mobile/control-panel-mobile.component';
+
 import { Routes } from '@angular/router';
 import { StackComponent } from '../components/stack/stack.component';
 import { SwitchComponent } from '../components/switch/switch.component';
@@ -43,6 +45,8 @@ export const getSortedNavigationItems = (navigationItems: NavItem[]): any[] =>
 	);
 
 export const NAVIGATION_ITEMS: NavItem[] = [
+{ path: 'control-panel-mobile', label: 'ControlPanelMobile', component: ControlPanelMobileComponent },
+
 	{
 		path: '06',
 		label: '06 Feedback',

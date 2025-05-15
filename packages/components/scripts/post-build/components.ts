@@ -1,5 +1,5 @@
 export type Overwrite = {
-	from: string | RegExp;
+	from: string | string[] | RegExp;
 	to: string;
 };
 
@@ -29,6 +29,22 @@ export type Component = {
 };
 
 export const getComponents = (): Component[] => [
+	{
+		name: 'control-panel-secondary-actions'
+	},
+
+	{
+		name: 'control-panel-primary-actions'
+	},
+
+	{
+		name: 'control-panel-meta-navigation'
+	},
+
+	{
+		name: 'control-panel-mobile'
+	},
+
 	{
 		name: 'stack'
 	},
@@ -344,7 +360,7 @@ export const getComponents = (): Component[] => [
 		name: 'shell'
 	},
 	{
-		name: 'header',
+		name: 'control-panel-desktop',
 		config: {
 			angular: {
 				directives: [
@@ -367,7 +383,7 @@ export const getComponents = (): Component[] => [
 		}
 	},
 	{
-		name: 'brand'
+		name: 'control-panel-brand'
 	},
 	{
 		name: 'input',

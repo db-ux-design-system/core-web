@@ -63,6 +63,7 @@ const filesAndDirectories = glob.sync('**/*', {
 		'__snapshots__/**',
 		'.git/**',
 		'node_modules/**',
+		'**/assets/**',
 		'scripts/**',
 		'docs/**',
 		'build-*/**',

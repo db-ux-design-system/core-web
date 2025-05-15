@@ -9,7 +9,7 @@ For general installation and configuration take a look at the [components](https
 ...
 <body>
 	<div class="db-shell">
-		<header class="db-header">...</header>
+		<control-panel-desktop class="db-control-panel-desktop">...</control-panel-desktop>
 		<main class="db-main">Main Shell</main>
 	</div>
 </body>

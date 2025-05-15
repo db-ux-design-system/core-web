@@ -1,16 +1,15 @@
-import { DBBrand } from '../../../../../output/react/src';
+import { DBControlPanelBrand } from '../../../../../output/react/src';
 import DefaultComponent from '../default-component';
 import defaultComponentVariants from '../../../../shared/brand.json';
-import { type DBBrandProps } from '../../../../../output/react/src/components/brand/model';
+import { type DBControlPanelBrandProps } from '../../../../../output/react/src/components/control-panel-brand/model';
 import { getVariants } from '../data';
 import { type BaseComponentProps } from '../base-component-data';
 
 const getBrand = ({
 	children,
-	hideLogo,
 	customLogo
-}: DBBrandProps & { customLogo: boolean }) => (
-	<DBBrand hideLogo={hideLogo}>
+}: DBControlPanelBrandProps & { customLogo: boolean }) => (
+	<DBControlPanelBrand>
 		{customLogo && (
 			<img
 				src={`${
@@ -20,13 +19,13 @@ const getBrand = ({
 			/>
 		)}
 		{children}
-	</DBBrand>
+	</DBControlPanelBrand>
 );
 
 const BrandComponent = (props: BaseComponentProps) => {
 	return (
 		<DefaultComponent
-			title="DBBrand"
+			title="DBControlPanelBrand"
 			variants={getVariants(
 				defaultComponentVariants,
 				getBrand,

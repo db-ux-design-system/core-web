@@ -41,8 +41,8 @@ export default function DBShell(props: DBShellProps) {
 			data-variant={props.variant}
 			data-fade-in={getBooleanAsString(props.fadeIn)}
 			data-fonts-loaded={getBooleanAsString(state.fontsLoaded)}>
-			<Slot name="desktopContentPanel" />
-			<Slot name="mobileContentPanel" />
+			<Slot name="contentPanelDesktop" />
+			<Slot name="contentPanelMobile" />
 			<main class={cls('db-main', props.mainClass)}>
 				{props.children}
 			</main>

@@ -1,4 +1,5 @@
 @use "@db-ux/core-foundations/build/styles/variables";
+@use "@db-ux/core-foundations/build/styles/screen-sizes";
 
 %fade-in-loading-fonts {
 	&[data-fade-in="true"] {
@@ -28,6 +29,31 @@ body {
 	grid-template-rows: [content-panel] min-content [main] 1fr;
 
 	> main {
-		overflow: auto;
+		overflow-y: auto;
+	}
+
+	> main,
+	> header {
+		max-inline-size: 100vw;
+	}
+
+	@include screen-sizes.screen-min-max(
+		(
+			min: "sm"
+		)
+	) {
+		.db-control-panel-mobile {
+			display: none;
+		}
+	}
+
+	@include screen-sizes.screen-min-max(
+		(
+			max: "sm"
+		)
+	) {
+		.db-control-panel-desktop {
+			display: none;
+		}
 	}
 }

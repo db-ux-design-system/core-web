@@ -680,6 +680,31 @@ export type AriaControlsProps = {
 	controls?: string;
 };
 
+export type ContentPanelProps = {
+	/**
+	 * Slot to pass in the DBControlPanelBrand component
+	 */
+	brand?: any;
+	/**
+	 * Slot to pass in a meta navigation.
+	 * Desktop: Above the regular control-panel-desktop
+	 * Mobile: Inside the drawer
+	 */
+	metaNavigation?: any;
+	/**
+	 * Slot to pass one or more elements like DBButton (e.g. search) as primary action.
+	 * Desktop: Shown next to the main-navigation
+	 * Mobile: Shown next to the control-panel-brand
+	 */
+	primaryActions?: any;
+	/**
+	 * Slot to pass one or more elements like DBButton (e.g. profile, language, etc.) as secondary action.
+	 * Desktop: Shown seperated by divider at the end of the control-panel-desktop
+	 * Mobile: Shown inside the drawer at the bottom.
+	 */
+	secondaryActions?: any;
+};
+
 export type ValueLabelType = {
 	value: string;
 	label?: string;

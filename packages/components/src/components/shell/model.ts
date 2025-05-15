@@ -1,21 +1,32 @@
 import { GlobalProps, GlobalState } from '../../shared/model';
 
-export const ShellVariantList = ['auto', 'fixed'] as const;
-export type ShellVariantType = (typeof ShellVariantList)[number];
+export const ShellContentPanelDesktopPosition = ['top', 'left'] as const;
+export type ShellContentPanelDesktopPositionType =
+	(typeof ShellContentPanelDesktopPosition)[number];
 
-export const ShellDocumentOverflowList = ['hidden', 'auto'] as const;
-export type ShellDocumentOverflowType =
-	(typeof ShellDocumentOverflowList)[number];
+export const ShellContentPanelMobilePosition = ['top', 'bottom'] as const;
+export type ShellContentPanelMobilePositionType =
+	(typeof ShellContentPanelMobilePosition)[number];
 
 export type DBShellDefaultProps = {
 	/**
+	 * The slot can be used for React to set a desktopContentPanel.
+	 */
+	contentPanelDesktop?: any;
+	/**
+	 * Change the position of the desktop content panel
+	 */
+	contentPanelDesktopPosition?: ShellContentPanelDesktopPositionType;
+	/**
 	 * The slot can be used for React to set a mobileContentPanel.
 	 */
-	desktopContentPanel?: any;
+	contentPanelMobile?: any;
+
 	/**
-	 * The documentOverflow sets the overflow:hidden/auto to the root document
+	 * Change the position of the mobile content panel
 	 */
-	documentOverflow?: ShellDocumentOverflowType;
+	contentPanelMobilePosition?: ShellContentPanelMobilePositionType;
+
 	/**
 	 * Set this to have a transition with opacity to avoid layout-shifts https://simonhearne.com/2021/layout-shifts-webfonts/
 	 */
@@ -24,16 +35,6 @@ export type DBShellDefaultProps = {
 	 * Adds `class` to `<main>` element
 	 */
 	mainClass?: string;
-
-	/**
-	 * The slot can be used for React to set a mobileContentPanel.
-	 */
-	mobileContentPanel?: any;
-
-	/**
-	 * The variant=fixed uses flex-box to make header and footer static
-	 */
-	variant?: ShellVariantType;
 };
 
 export type DBShellProps = DBShellDefaultProps & GlobalProps;

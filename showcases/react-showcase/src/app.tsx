@@ -1,9 +1,12 @@
 import { useState } from 'react';
 import { Outlet } from 'react-router-dom';
 import {
-	DBBrand,
+	DBControlPanelBrand,
+	DBControlPanelDesktop,
+	DBControlPanelMetaNavigation,
+	DBControlPanelPrimaryActions,
+	DBControlPanelSecondaryActions,
 	DBButton,
-	DBHeader,
 	DBShell
 } from '../../../output/react/src';
 import useQuery from './hooks/use-query';
@@ -29,28 +32,29 @@ const App = () => {
 			variant="fixed"
 			documentOverflow="auto"
 			fadeIn
-			desktopContentPanel={
-				<DBHeader
-					drawerOpen={drawerOpen}
-					onToggle={setDrawerOpen}
-					brand={<DBBrand>Showcase</DBBrand>}
+			contentPanelDesktop={
+				<DBControlPanelDesktop
+					brand={<DBControlPanelBrand>Showcase</DBControlPanelBrand>}
 					metaNavigation={
-						<MetaNavigation
-							onColorChange={setColor}
-							onDensityChange={setDensity}
-						/>
+						<DBControlPanelMetaNavigation>
+							<MetaNavigation
+								onColorChange={setColor}
+								onDensityChange={setDensity}
+							/>
+						</DBControlPanelMetaNavigation>
 					}
-					primaryAction={
-						/* TODO: Use DBSearchBar in future */
-						<DBButton
-							icon="magnifying_glass"
-							variant="ghost"
-							noText>
-							Search
-						</DBButton>
+					primaryActions={
+						<DBControlPanelPrimaryActions>
+							<DBButton
+								icon="magnifying_glass"
+								variant="ghost"
+								noText>
+								Search
+							</DBButton>
+						</DBControlPanelPrimaryActions>
 					}
-					secondaryAction={
-						<>
+					secondaryActions={
+						<DBControlPanelSecondaryActions>
 							<DBButton
 								icon="x_placeholder"
 								variant="ghost"
@@ -69,10 +73,10 @@ const App = () => {
 								noText>
 								Help
 							</DBButton>
-						</>
+						</DBControlPanelSecondaryActions>
 					}>
 					<Navigation />
-				</DBHeader>
+				</DBControlPanelDesktop>
 			}>
 			<div data-density={density} className={`db-${color}`}>
 				<Outlet />

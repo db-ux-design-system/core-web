@@ -1,0 +1,138 @@
+@use "@db-ux/core-foundations/build/styles/variables";
+@use "@db-ux/core-foundations/build/styles/screen-sizes";
+@use "@db-ux/core-foundations/build/styles/helpers";
+@use "@db-ux/core-foundations/build/styles/density";
+@use "@db-ux/core-foundations/build/styles/colors";
+@use "../../styles/internal/component";
+
+%horizontal-orientation {
+	&:is(:not([data-orientation]), [data-orientation="horizontal"]) {
+		border-block-end: variables.$db-border-width-3xs solid
+			colors.$db-adaptive-on-bg-basic-emphasis-60-default;
+		grid-template-areas:
+			"meta meta meta meta meta meta"
+			". . . . . ."
+			". brand navigation primary secondary ."
+			". . . . . .";
+		grid-template-rows: min-content #{variables.$db-spacing-fixed-md} min-content #{variables.$db-spacing-fixed-md};
+		grid-template-columns: #{variables.$db-spacing-fixed-lg} max-content 1fr max-content max-content #{variables.$db-spacing-fixed-lg};
+
+		> .db-control-panel-brand {
+			margin-inline-end: variables.$db-spacing-fixed-lg;
+		}
+
+		> .db-control-panel-primary-actions {
+			margin-inline-start: variables.$db-spacing-fixed-sm;
+		}
+
+		&:has(.db-control-panel-primary-actions, .db-navigation) {
+			> .db-control-panel-secondary-actions {
+				padding-inline-start: variables.$db-spacing-fixed-sm;
+				@include helpers.divider("left");
+			}
+		}
+
+		&:has(.db-control-panel-brand) {
+			> .db-navigation {
+				padding-inline-start: variables.$db-spacing-fixed-lg;
+
+				@include helpers.divider("left");
+			}
+		}
+
+		&:has(.db-control-panel-secondary-actions) {
+			> .db-control-panel-primary-actions {
+				margin-inline-end: variables.$db-spacing-fixed-sm;
+			}
+		}
+	}
+}
+
+%vertical-orientation {
+	&[data-orientation="vertical"] {
+		border-inline-end: variables.$db-border-width-3xs solid
+			colors.$db-adaptive-on-bg-basic-emphasis-60-default;
+		block-size: 100%;
+		grid-template-areas:
+			". . ."
+			". brand ."
+			". navigation ."
+			". primary ."
+			". secondary ."
+			". . ."
+			"meta meta meta";
+		grid-template-rows: #{variables.$db-spacing-fixed-md} min-content 1fr min-content min-content #{variables.$db-spacing-fixed-md} min-content;
+		grid-template-columns: #{variables.$db-spacing-fixed-lg} 1fr #{variables.$db-spacing-fixed-lg};
+
+		> .db-navigation {
+			> menu {
+				display: flex;
+				flex-direction: column;
+			}
+		}
+
+		> .db-control-panel-brand {
+			margin-block-end: variables.$db-spacing-fixed-md;
+		}
+
+		> .db-control-panel-primary-actions {
+			margin-block-start: variables.$db-spacing-fixed-sm;
+		}
+
+		&:has(.db-control-panel-primary-actions, .db-navigation) {
+			> .db-control-panel-secondary-actions {
+				padding-block-start: variables.$db-spacing-fixed-sm;
+				@include helpers.divider("top");
+			}
+		}
+
+		&:has(.db-control-panel-brand) {
+			> .db-navigation {
+				padding-block-start: variables.$db-spacing-fixed-md;
+
+				@include helpers.divider("top");
+			}
+		}
+
+		&:has(.db-control-panel-secondary-actions) {
+			> .db-control-panel-primary-actions {
+				margin-block-end: variables.$db-spacing-fixed-sm;
+			}
+		}
+	}
+}
+
+%width-handler {
+	&[data-width="small"] {
+		margin-inline: auto;
+		max-inline-size: screen-sizes.$db-breakpoint-sm;
+	}
+
+	&[data-width="medium"] {
+		margin-inline: auto;
+		max-inline-size: screen-sizes.$db-breakpoint-md;
+	}
+
+	&[data-width="large"] {
+		margin-inline: auto;
+		max-inline-size: screen-sizes.$db-breakpoint-lg;
+	}
+}
+
+.db-control-panel-desktop {
+	@extend %horizontal-orientation;
+	@extend %vertical-orientation;
+	@extend %width-handler;
+	background-color: colors.$db-adaptive-bg-basic-level-1-default;
+	display: grid;
+	position: relative;
+	min-block-size: component.$min-mobile-header-height;
+
+	.db-link {
+		display: inline-block;
+	}
+
+	> .db-navigation {
+		grid-area: navigation;
+	}
+}
