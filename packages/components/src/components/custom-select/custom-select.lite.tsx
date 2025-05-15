@@ -346,7 +346,7 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 				if (event === 'close') {
 					detailsRef.open = false;
 					state.handleSummaryFocus();
-				} else if (detailsRef.open && event && event.relatedTarget) {
+				} else if (detailsRef.open && event?.relatedTarget) {
 					const relatedTarget = event.relatedTarget as HTMLElement;
 					if (!detailsRef.contains(relatedTarget)) {
 						// We need to use delay here because the combination of `contains`
