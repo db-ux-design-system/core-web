@@ -6,7 +6,7 @@ import { defineCustomElements } from '../../../output/stencil/dist/loader';
 
 defineCustomElements(undefined, {
 	// TODO: Fix issues with double slots to solve this issue
-	exclude: ['db-header', 'db-navigation', 'db-navigation-item', 'db-page']
+	exclude: ['db-header', 'db-navigation', 'db-navigation-item', 'db-shell']
 });
 
 // eslint-disable-next-line @typescript-eslint/no-floating-promises

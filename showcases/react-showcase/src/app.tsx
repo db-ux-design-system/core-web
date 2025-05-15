@@ -1,6 +1,11 @@
 import { useState } from 'react';
 import { Outlet } from 'react-router-dom';
-import { DBBrand, DBButton, DBHeader, DBPage } from '../../../output/react/src';
+import {
+	DBBrand,
+	DBButton,
+	DBHeader,
+	DBShell
+} from '../../../output/react/src';
 import useQuery from './hooks/use-query';
 import MetaNavigation from './meta-navigation';
 import Navigation from './navigation';
@@ -20,11 +25,11 @@ const App = () => {
 	}
 
 	return (
-		<DBPage
+		<DBShell
 			variant="fixed"
 			documentOverflow="auto"
 			fadeIn
-			header={
+			desktopContentPanel={
 				<DBHeader
 					drawerOpen={drawerOpen}
 					onToggle={setDrawerOpen}
@@ -72,7 +77,7 @@ const App = () => {
 			<div data-density={density} className={`db-${color}`}>
 				<Outlet />
 			</div>
-		</DBPage>
+		</DBShell>
 	);
 };
 

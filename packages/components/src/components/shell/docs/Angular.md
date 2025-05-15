@@ -6,13 +6,13 @@ For general installation and configuration take a look at the [ngx-core-componen
 
 ```ts app.component.ts
 //app.component.ts
-import { DBPage, DBHeader } from '@db-ux/ngx-core-components';
+import { DBShell, DBHeader } from '@db-ux/ngx-core-components';
 
 @Component({
 	// ...
 	imports: [
 		// ...,
-		DBPage, DBHeader
+		DBShell, DBHeader
     ],
 	// ...
 })
@@ -22,8 +22,8 @@ import { DBPage, DBHeader } from '@db-ux/ngx-core-components';
 
 ```html app.component.html
 <!-- app.component.html -->
-<db-page>
+<db-shell>
 	<db-header header>...</db-header>
-	<main class="db-main">Main Page</main>
-</db-page>
+	<main class="db-main">Main Shell</main>
+</db-shell>
 ```

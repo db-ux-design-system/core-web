@@ -6,12 +6,12 @@ For general installation and configuration take a look at the [react-core-compon
 
 ```tsx App.tsx
 // App.tsx
-import { DBPage, DBHeader } from "@db-ux/react-core-components";
+import { DBShell, DBHeader } from "@db-ux/react-core-components";
 
 const App = () => (
-	<DBPage slotHeader={<DBHeader>...</DBHeader>}>
-		<main class="db-main">Main Page</main>
-	</DBPage>
+	<DBShell slotHeader={<DBHeader>...</DBHeader>}>
+		<main class="db-main">Main Shell</main>
+	</DBShell>
 );
 
 export default App;

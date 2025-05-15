@@ -295,9 +295,7 @@ const FormComponent = () => {
 					ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur
 					sadipscing elitr, sed diam nonumy eirmod tempor{' '}
 					<DBLink showIcon={false} href="#">
-						labore et dolore magna aliquyam erat, sed diam voluptua.
-						At vero eos et accusam et justo duo dolores et ea rebum.
-						Stet
+						labore et dolore magna
 					</DBLink>{' '}
 					ut labore et dolore magna aliquyam erat, sed diam voluptua.
 					At vero eos et accusam et justo duo dolores et ea rebum.

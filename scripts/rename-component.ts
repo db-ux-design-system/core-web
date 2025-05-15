@@ -59,6 +59,7 @@ const filesAndDirectories = glob.sync('**/*', {
 	nodir: false,
 	dot: true,
 	ignore: [
+		'showcases/**',
 		'__snapshots__/**',
 		'.git/**',
 		'node_modules/**',

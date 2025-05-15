@@ -7,6 +7,6 @@
 
 ### class
 
-| Before     | Status | After     | Description |
-| ---------- | :----: | --------- | ----------- |
-| `rea-page` |   🔁   | `db-page` |             |
+| Before      | Status | After      | Description |
+| ----------- | :----: | ---------- | ----------- |
+| `rea-shell` |   🔁   | `db-shell` |             |

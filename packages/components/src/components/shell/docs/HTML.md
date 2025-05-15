@@ -8,9 +8,9 @@ For general installation and configuration take a look at the [components](https
 <!-- index.html -->
 ...
 <body>
-	<div class="db-page">
+	<div class="db-shell">
 		<header class="db-header">...</header>
-		<main class="db-main">Main Page</main>
+		<main class="db-main">Main Shell</main>
 	</div>
 </body>
 ```

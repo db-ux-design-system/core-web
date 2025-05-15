@@ -7,7 +7,7 @@ import {
 	DBBrand,
 	DBButton,
 	DBHeader,
-	DBPage,
+	DBShell,
 	DBSection,
 	DBCard,
 	DBIcon
@@ -105,7 +105,7 @@ const DefaultPage = ({
 				</div>
 			)}
 			{router.isReady && !fullscreen && (
-				<DBPage
+				<DBShell
 					fadeIn
 					variant="fixed"
 					header={
@@ -194,7 +194,7 @@ const DefaultPage = ({
 								)}
 							</DBSection>
 						)}
-				</DBPage>
+				</DBShell>
 			)}
 		</>
 	);

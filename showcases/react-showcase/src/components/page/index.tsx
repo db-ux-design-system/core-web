@@ -1,5 +1,5 @@
 import {
-	DBPage,
+	DBShell,
 	DBBrand,
 	DBButton,
 	DBHeader,
@@ -7,7 +7,7 @@ import {
 	DBNavigation,
 	DBNavigationItem
 } from '../../../../../output/react/src';
-import { type DBPageProps } from '../../../../../output/react/src/components/page/model';
+import { type DBShellProps } from '../../../../../output/react/src/components/page/model';
 import defaultComponentVariants from '../../../../shared/page.json';
 import { getVariants } from '../data';
 import DefaultComponent from '../default-component';
@@ -20,8 +20,8 @@ const getPage = ({
 	className,
 	describedbyid,
 	id
-}: DBPageProps) => (
-	<DBPage
+}: DBShellProps) => (
+	<DBShell
 		variant={variant}
 		fadeIn={fadeIn}
 		className={className}
@@ -66,13 +66,13 @@ const getPage = ({
 		}
 		footer={<>Footer Content</>}>
 		My Page Content
-	</DBPage>
+	</DBShell>
 );
 
 const PageComponent = (props: BaseComponentProps) => {
 	return (
 		<DefaultComponent
-			title="DBPage"
+			title="DBShell"
 			variants={getVariants(
 				defaultComponentVariants,
 				getPage,

@@ -341,7 +341,7 @@ export const getComponents = (): Component[] => [
 	},
 
 	{
-		name: 'page'
+		name: 'shell'
 	},
 	{
 		name: 'header',

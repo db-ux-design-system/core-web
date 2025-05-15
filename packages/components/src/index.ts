@@ -11,7 +11,7 @@ export * from './components/icon';
 export * from './components/infotext';
 export * from './components/input';
 export * from './components/link';
-export * from './components/page';
+export * from './components/shell';
 export * from './components/radio';
 export * from './components/section';
 export * from './components/select';

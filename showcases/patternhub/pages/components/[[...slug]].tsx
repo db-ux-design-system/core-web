@@ -9,7 +9,7 @@ import DefaultPage from '../../components/default-page';
 import CardNavigation from '../../components/card-navigation/card-navigation';
 import OldRoutingFallback from '../../components/old-routing-fallback';
 
-export interface DBPagePath {
+export interface DBShellPath {
 	params: {
 		slug: string[];
 	};
@@ -18,7 +18,7 @@ export interface DBPagePath {
 export const getStaticPaths = (async () => {
 	// eslint-disable-next-line unicorn/no-array-reduce
 	const paths = componentChildren.reduce(
-		(accumulator: DBPagePath[], { subNavigation, name }) => {
+		(accumulator: DBShellPath[], { subNavigation, name }) => {
 			if (subNavigation) {
 				for (const subNavItem of subNavigation) {
 					if (!subNavItem.component || !subNavItem.name) {

@@ -128,25 +128,12 @@ db-card:is(.variants-card) > .db-card {
 	margin-block: auto;
 }
 
-.fixed-header-footer {
-	overflow: hidden;
-}
-
 .tab-hide-article article {
 	display: none !important;
 }
 
-.db-page.fixed-header-footer main {
+.db-main {
 	overflow-x: hidden;
-}
-
-:root:has(.db-page) {
-	block-size: 100%;
-	overflow: hidden;
-}
-
-main .db-header {
-	block-size: 100%;
 }
 
 .stack-container {

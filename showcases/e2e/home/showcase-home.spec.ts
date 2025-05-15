@@ -1,6 +1,6 @@
 import { expect, test, type Page } from '@playwright/test';
 import { AxeBuilder } from '@axe-core/playwright';
-import { hasWebComponentSyntax, isStencil, waitForDBPage } from '../default';
+import { hasWebComponentSyntax, isStencil, waitForDBShell } from '../default';
 
 const testFormComponents = async (
 	page: Page,
@@ -73,7 +73,7 @@ test.describe('Home', () => {
 			waitUntil: 'domcontentloaded'
 		});
 
-		await waitForDBPage(page);
+		await waitForDBShell(page);
 		const accessibilityScanResults = await new AxeBuilder({
 			page
 		})

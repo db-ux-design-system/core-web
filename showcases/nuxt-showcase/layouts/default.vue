@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import {
-	DBPage,
+	DBShell,
 	DBHeader,
 	DBBrand,
 	DBSelect,
@@ -32,7 +32,7 @@ const {
 		<div v-if="page || fullscreen" :class="classNames">
 			<slot />
 		</div>
-		<DBPage v-if="!page && !fullscreen" variant="fixed" :fadeIn="true">
+		<DBShell v-if="!page && !fullscreen" variant="fixed" :fadeIn="true">
 			<template v-slot:header>
 				<DBHeader :drawerOpen="drawerOpen" :onToggle="toggleDrawer">
 					<template v-slot:brand>
@@ -105,6 +105,6 @@ const {
 			<div :class="classNames">
 				<slot />
 			</div>
-		</DBPage>
+		</DBShell>
 	</div>
 </template>

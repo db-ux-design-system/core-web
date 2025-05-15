@@ -4,7 +4,7 @@
 	</div>
 }
 @if (!page) {
-	<db-page variant="fixed" documentOverflow="auto" [fadeIn]="true">
+	<db-shell variant="fixed" documentOverflow="auto" [fadeIn]="true">
 		<db-header
 			header
 			[drawerOpen]="drawerOpen"
@@ -71,5 +71,5 @@
 		<div [class]="getChangeableClasses()">
 			<router-outlet></router-outlet>
 		</div>
-	</db-page>
+	</db-shell>
 }

@@ -7,12 +7,12 @@ import {
 	type NavigationItem
 } from '../../react-showcase/src/utils/navigation-item';
 
-export type DBPage = {
+export type DBShell = {
 	path: string;
 	component: any;
 };
 
-export type DBPagePath = {
+export type DBShellPath = {
 	params: {
 		slug: string[];
 	};
@@ -58,7 +58,7 @@ export const getStaticPaths = (async () => {
 		NAVIGATION_ITEMS
 	) as NavigationItem[];
 
-	const paths = getCustomElementsFromNavigationItems<DBPagePath>(
+	const paths = getCustomElementsFromNavigationItems<DBShellPath>(
 		sortedNavigationItems,
 		(accumulator, pathSegments) => {
 			return [...accumulator, { params: { slug: pathSegments } }];
@@ -82,7 +82,7 @@ export default function Home() {
 		NAVIGATION_ITEMS
 	) as NavigationItem[];
 
-	const routes = getCustomElementsFromNavigationItems<DBPage>(
+	const routes = getCustomElementsFromNavigationItems<DBShell>(
 		sortedNavigationItems,
 		(accumulator, pathSegments, component) => {
 			return [

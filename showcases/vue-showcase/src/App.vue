@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import {
-	DBPage,
+	DBShell,
 	DBHeader,
 	DBBrand,
 	DBSelect,
@@ -32,7 +32,7 @@ const {
 	<div v-if="page || fullscreen" :class="classNames">
 		<router-view></router-view>
 	</div>
-	<DBPage
+	<DBShell
 		v-if="!page && !fullscreen"
 		variant="fixed"
 		documentOverflow="auto"
@@ -107,5 +107,5 @@ const {
 		<div :class="classNames">
 			<router-view></router-view>
 		</div>
-	</DBPage>
+	</DBShell>
 </template>

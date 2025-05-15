@@ -1,6 +1,11 @@
 import { useState } from 'react';
 import type { AppProps } from 'next/app';
-import { DBBrand, DBButton, DBHeader, DBPage } from '../../../output/react/src';
+import {
+	DBBrand,
+	DBButton,
+	DBHeader,
+	DBShell
+} from '../../../output/react/src';
 import useQuery from '../../react-showcase/src/hooks/use-query';
 import MetaNavigation from '../../react-showcase/src/meta-navigation';
 import Navigation from '../../react-showcase/src/navigation';
@@ -22,7 +27,7 @@ const App = ({ Component, pageProps }: AppProps) => {
 	}
 
 	return (
-		<DBPage
+		<DBShell
 			variant="fixed"
 			documentOverflow="auto"
 			fadeIn
@@ -73,7 +78,7 @@ const App = ({ Component, pageProps }: AppProps) => {
 			<div data-density={density} className={`db-${color}`}>
 				<Component {...pageProps} />
 			</div>
-		</DBPage>
+		</DBShell>
 	);
 };
 
