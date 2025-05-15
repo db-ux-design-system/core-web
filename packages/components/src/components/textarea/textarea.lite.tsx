@@ -209,7 +209,7 @@ export default function DBTextarea(props: DBTextareaProps) {
 					state.handleFocus(event)
 				}
 				value={props.value ?? state._value}
-				aria-describedby={state._descByIds}
+				aria-describedby={props.ariaDescribedBy ?? state._descByIds}
 				placeholder={props.placeholder ?? DEFAULT_PLACEHOLDER}
 				rows={getNumber(props.rows, DEFAULT_ROWS)}
 				cols={getNumber(props.cols)}
