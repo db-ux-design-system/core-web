@@ -563,7 +563,7 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 			if (summary) {
 				summary.setAttribute(
 					'aria-describedby',
-					state._descByIds || ''
+					props.ariaDescribedBy ?? (state._descByIds || '')
 				);
 			}
 		}

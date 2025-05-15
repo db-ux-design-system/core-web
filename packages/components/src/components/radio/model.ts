@@ -12,9 +12,7 @@ import {
 	SizeProps
 } from '../../shared/model';
 
-export type DBRadioDefaultProps = {
-	describedbyid?: string;
-};
+export type DBRadioDefaultProps = {};
 
 export type DBRadioProps = DBRadioDefaultProps &
 	GlobalProps &
