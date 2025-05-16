@@ -55,7 +55,9 @@ const testInterActions = () => {
 		let test = '';
 		const buttonTag: any = (
 			<DBTag>
-				<DBButton onClick={() => (test = 'test')}>Test</DBButton>
+				<button onClick={() => (test = 'test')} type="button">
+					Test
+				</button>
 			</DBTag>
 		);
 		const component = await mount(buttonTag);
@@ -66,7 +68,7 @@ const testInterActions = () => {
 	test('should be a button', async ({ mount }) => {
 		const buttonTag: any = (
 			<DBTag>
-				<DBButton>Test</DBButton>
+				<button type="button">Test</button>
 			</DBTag>
 		);
 		const component = await mount(buttonTag);
@@ -76,7 +78,7 @@ const testInterActions = () => {
 	test('should be a link', async ({ mount }) => {
 		const tag: any = (
 			<DBTag>
-				<DBLink>Test</DBLink>
+				<a href="#">Test</a>
 			</DBTag>
 		);
 		const component = await mount(tag);
@@ -86,7 +88,10 @@ const testInterActions = () => {
 	test('should be a radio', async ({ mount }) => {
 		const tag: any = (
 			<DBTag>
-				<DBRadio>Test</DBRadio>
+				<label for="radio01">
+					<input name="radio01" id="radio01" type="radio" />
+					Test
+				</label>
 			</DBTag>
 		);
 		const component = await mount(tag);
@@ -96,7 +101,15 @@ const testInterActions = () => {
 	test('should be a radio checked', async ({ mount }) => {
 		const tag: any = (
 			<DBTag>
-				<DBRadio data-testid="radio">Test</DBRadio>
+				<label for="radio01">
+					<input
+						name="radio01"
+						id="radio01"
+						type="radio"
+						data-testid="radio"
+					/>
+					Test
+				</label>
 			</DBTag>
 		);
 		const component = await mount(tag);
@@ -107,7 +120,10 @@ const testInterActions = () => {
 	test('should be a checkbox', async ({ mount }) => {
 		const tag: any = (
 			<DBTag>
-				<DBCheckbox>Test</DBCheckbox>
+				<label for="checkbox01">
+					<input id="checkbox01" type="checkbox" />
+					Test
+				</label>
 			</DBTag>
 		);
 		const component = await mount(tag);
@@ -117,7 +133,14 @@ const testInterActions = () => {
 	test('should be a checkbox checked', async ({ mount }) => {
 		const tag: any = (
 			<DBTag>
-				<DBCheckbox data-testid="checkbox">Test</DBCheckbox>
+				<label for="checkbox01">
+					<input
+						id="checkbox01"
+						type="checkbox"
+						data-testid="checkbox"
+					/>
+					Test
+				</label>
 			</DBTag>
 		);
 		const component = await mount(tag);
