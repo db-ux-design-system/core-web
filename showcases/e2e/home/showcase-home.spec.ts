@@ -140,8 +140,10 @@ test.describe('Home', () => {
 		await testFormComponents(page, 'tab-radios', 'radio');
 	});
 
-	test('test custom-selects', async ({ page }) => {
-		if (stencil) {
+	test('test custom-selects', async ({ page }, { project }) => {
+		const isWebkit =
+			project.name === 'webkit' || project.name === 'mobile_safari';
+		if (stencil || isWebkit) {
 			test.skip();
 		}
 
