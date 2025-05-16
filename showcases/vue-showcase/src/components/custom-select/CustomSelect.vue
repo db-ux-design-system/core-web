@@ -61,7 +61,6 @@ const getAriaLabel = (exampleProps, exampleName): string => {
 				searchLabel="Search"
 				:selectedType="exampleProps?.selectedType"
 				:formFieldWidth="exampleProps?.formFieldWidth"
-				:values="exampleProps?.mValue"
 				:on-option-selected="(values) => log(values)"
 			/>
 		</template>
