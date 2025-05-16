@@ -11,6 +11,7 @@ import Selects from "../form/Selects.vue";
 import Checkboxes from "../form/Checkboxes.vue";
 import Inputs from "../form/Inputs.vue";
 import Radios from "../form/Radios.vue";
+import CustomSelects from "../form/Custom-Selects.vue";
 </script>
 
 <template>
@@ -22,6 +23,9 @@ import Radios from "../form/Radios.vue";
 			<DBTabItem data-testid="tab-selects">Select</DBTabItem>
 			<DBTabItem data-testid="tab-checkboxes">Checkbox</DBTabItem>
 			<DBTabItem data-testid="tab-radios">Radios</DBTabItem>
+			<DBTabItem data-testid="tab-custom-selects"
+				>Custom Selects</DBTabItem
+			>
 		</DBTabList>
 		<DBTabPanel>
 			<Form />
@@ -40,6 +44,9 @@ import Radios from "../form/Radios.vue";
 		</DBTabPanel>
 		<DBTabPanel>
 			<Radios />
+		</DBTabPanel>
+		<DBTabPanel>
+			<CustomSelects />
 		</DBTabPanel>
 	</DBTabs>
 </template>
