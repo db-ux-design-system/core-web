@@ -95,8 +95,8 @@ export default function DBSelect(props: DBSelectProps) {
 			}
 		},
 		handleClick: (event: ClickEvent<HTMLSelectElement> | any) => {
-			event.stopPropagation();
 			if (props.onClick) {
+				event.stopPropagation();
 				props.onClick(event);
 			}
 		},

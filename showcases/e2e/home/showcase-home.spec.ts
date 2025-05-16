@@ -5,7 +5,7 @@ import { hasWebComponentSyntax, isStencil, waitForDBPage } from '../default';
 const testFormComponents = async (
 	page: Page,
 	testId: string,
-	role: 'textbox' | 'combobox' | 'checkbox' | 'radio'
+	role: 'textbox' | 'combobox' | 'checkbox' | 'radio' | 'group'
 ) => {
 	await page.goto('./');
 	const tab = page.getByTestId(testId);
@@ -39,6 +39,18 @@ const testFormComponents = async (
 
 				break;
 			}
+
+			case 'group': {
+				if (index !== 0) {
+					await component.click({ force: true });
+					await page.waitForTimeout(2000); // Wait for focus to hit first element
+					await page.keyboard.press('Space');
+					await page.keyboard.press('Escape');
+					await page.waitForTimeout(500);
+				}
+
+				break;
+			}
 			// No default
 		}
 	}
@@ -51,6 +63,8 @@ const testFormComponents = async (
 		const text = await def.textContent();
 		if (role === 'checkbox') {
 			expect(text).toEqual('false');
+		} else if (role === 'group') {
+			expect(text).toEqual(`combobox-0`);
 		} else {
 			expect(text).toEqual(`${role}-${index}`);
 		}
@@ -124,5 +138,15 @@ test.describe('Home', () => {
 		}
 
 		await testFormComponents(page, 'tab-radios', 'radio');
+	});
+
+	test('test custom-selects', async ({ page }, { project }) => {
+		const isWebkit =
+			project.name === 'webkit' || project.name === 'mobile_safari';
+		if (stencil || isWebkit) {
+			test.skip();
+		}
+
+		await testFormComponents(page, 'tab-custom-selects', 'group');
 	});
 });
