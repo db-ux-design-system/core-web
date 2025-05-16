@@ -141,6 +141,7 @@ test.describe('Home', () => {
 	});
 
 	test('test custom-selects', async ({ page }, { project }) => {
+		// TODO: We need to investigate on this one how to enable it for WebKit again
 		const isWebkit =
 			project.name === 'webkit' || project.name === 'mobile_safari';
 		if (stencil || isWebkit) {
