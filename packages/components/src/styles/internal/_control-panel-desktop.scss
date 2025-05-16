@@ -1,6 +1,9 @@
 @use "@db-ux/core-foundations/build/styles/variables";
 @use "@db-ux/core-foundations/build/styles/helpers";
 @use "@db-ux/core-foundations/build/styles/colors";
+@use "@db-ux/core-foundations/build/styles/screen-sizes";
+@use "../../styles/internal/form-components";
+@use "../../styles/internal/component";
 
 %control-panel-desktop-horizontal-orientation {
 	border-block-end: variables.$db-border-width-3xs solid
@@ -10,7 +13,7 @@
 		". . . . . ."
 		". brand navigation primary secondary ."
 		". . . . . .";
-	grid-template-rows: min-content #{variables.$db-spacing-fixed-md} min-content #{variables.$db-spacing-fixed-md};
+	grid-template-rows: auto #{variables.$db-spacing-fixed-md} auto #{variables.$db-spacing-fixed-md};
 	grid-template-columns: #{variables.$db-spacing-fixed-lg} max-content 1fr max-content max-content #{variables.$db-spacing-fixed-lg};
 
 	> .db-control-panel-brand {
@@ -19,6 +22,10 @@
 
 	> .db-control-panel-primary-actions {
 		margin-inline-start: variables.$db-spacing-fixed-sm;
+	}
+
+	> .db-control-panel-desktop-button {
+		display: none;
 	}
 
 	&:has(.db-control-panel-primary-actions, .db-navigation) {
@@ -41,6 +48,38 @@
 			margin-inline-end: variables.$db-spacing-fixed-sm;
 		}
 	}
+
+	&[data-width="small"] {
+		margin-inline: auto;
+		max-inline-size: screen-sizes.$db-breakpoint-sm;
+	}
+
+	&[data-width="medium"] {
+		margin-inline: auto;
+		max-inline-size: screen-sizes.$db-breakpoint-md;
+	}
+
+	&[data-width="large"] {
+		margin-inline: auto;
+		max-inline-size: screen-sizes.$db-breakpoint-lg;
+	}
+}
+
+%lea-fancy-idea {
+	background-color: transparent;
+	border-inline-end: 0;
+
+	> .db-control-panel-desktop-button {
+		&::before {
+			display: none;
+		}
+
+		> .db-button {
+			@extend %component-border;
+			border-radius: variables.$db-border-radius-full;
+			box-shadow: variables.$db-elevation-md;
+		}
+	}
 }
 
 %control-panel-desktop-vertical-orientation {
@@ -54,11 +93,114 @@
 		". primary ."
 		". secondary ."
 		". . ."
-		"meta meta meta";
-	grid-template-rows: #{variables.$db-spacing-fixed-md} min-content 1fr min-content min-content #{variables.$db-spacing-fixed-md} min-content;
-	grid-template-columns: #{variables.$db-spacing-fixed-lg} 1fr #{variables.$db-spacing-fixed-lg};
+		"meta meta meta"
+		"button button button";
+	grid-template-rows: #{variables.$db-spacing-fixed-md} auto 1fr auto auto #{variables.$db-spacing-fixed-md} auto auto;
+
+	@media screen and (prefers-reduced-motion: no-preference) {
+		transition: inline-size #{variables.$db-transition-straight-functional};
+
+		> .db-control-panel-desktop-button {
+			.db-button {
+				&::before {
+					transition: transform
+						variables.$db-transition-straight-functional;
+				}
+			}
+		}
+	}
+
+	&[data-open="false"] {
+		grid-template-columns: #{variables.$db-spacing-fixed-lg} min-content #{variables.$db-spacing-fixed-lg};
+
+		inline-size: auto;
+		/* stylelint-disable-next-line declaration-property-value-no-unknown */
+		inline-size: calc-size(auto, size);
+
+		> .db-control-panel-primary-actions,
+		> .db-control-panel-secondary-actions,
+		> .db-control-panel-meta-navigation {
+			display: none;
+		}
+
+		> .db-navigation {
+			.db-navigation-item {
+				--db-icon-margin-end: 0;
+				inline-size: variables.$db-sizing-md;
+				aspect-ratio: 1;
+				justify-content: center;
+				align-items: center;
+
+				&::before {
+					position: initial;
+				}
+
+				a {
+					font-size: 0;
+					position: absolute;
+					inset: 0;
+				}
+			}
+		}
+
+		&:has(
+				> .db-navigation
+					> menu
+					> .db-navigation-item
+					> .db-navigation-item-expand-button
+			) {
+			@extend %lea-fancy-idea;
+
+			> .db-navigation {
+				display: none;
+			}
+
+			> .db-control-panel-brand {
+				&::after {
+					display: none;
+				}
+			}
+		}
+
+		> .db-control-panel-brand {
+			font-size: 0;
+			gap: 0;
+		}
+
+		> .db-control-panel-desktop-button {
+			.db-button {
+				&::before {
+					transform: form-components.$dropdown-icon-transform;
+				}
+			}
+		}
+	}
+
+	&[data-open="true"] {
+		grid-template-columns: #{variables.$db-spacing-fixed-lg} 1fr #{variables.$db-spacing-fixed-lg};
+		inline-size: var(
+			--db-control-panel-desktop-inline-size,
+			#{screen-sizes.$db-breakpoint-xs}
+		);
+	}
+
+	> .db-control-panel-desktop-button {
+		grid-area: button;
+		padding: variables.$db-spacing-fixed-xs variables.$db-spacing-fixed-lg;
+		display: flex;
+		justify-content: end;
+
+		@include helpers.divider("top");
+	}
+
+	> .db-control-panel-meta-navigation {
+		@include helpers.divider("top");
+	}
 
 	> .db-navigation {
+		overflow: hidden auto;
+		padding-block-start: variables.$db-spacing-fixed-md;
+
 		> menu {
 			display: flex;
 			flex-direction: column;
@@ -80,11 +222,13 @@
 		}
 	}
 
-	&:has(.db-control-panel-brand) {
-		> .db-navigation {
-			padding-block-start: variables.$db-spacing-fixed-md;
+	&:has(.db-navigation) {
+		> .db-control-panel-brand {
+			@include helpers.divider("bottom", "after");
 
-			@include helpers.divider("top");
+			&::after {
+				inset-block-end: calc(-1 * #{variables.$db-spacing-fixed-md});
+			}
 		}
 	}
 

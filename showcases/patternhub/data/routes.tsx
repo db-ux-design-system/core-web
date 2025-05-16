@@ -21,7 +21,7 @@ import BadgeComponent from '../../react-showcase/src/components/badge';
 import CardComponent from '../../react-showcase/src/components/card';
 import DividerComponent from '../../react-showcase/src/components/divider';
 import DrawerComponent from '../../react-showcase/src/components/drawer';
-import HeaderComponent from '../../react-showcase/src/components/header';
+import HeaderComponent from '../../react-showcase/src/components/control-panel-desktop';
 // Import PageComponent from '../../react-showcase/src/components/page';
 import SectionComponent from '../../react-showcase/src/components/section';
 import NavigationComponent from '../../react-showcase/src/components/navigation';

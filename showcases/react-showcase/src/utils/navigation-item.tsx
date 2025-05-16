@@ -28,9 +28,9 @@ import SectionComponent from '../components/section';
 import TextareaComponent from '../components/textarea';
 import IconComponent from '../components/icon';
 import BrandComponent from '../components/brand';
-import HeaderComponent from '../components/header';
-import Home from '../components/home';
 import ShellComponent from '../components/shell';
+import ControlPanelDesktopComponent from '../components/control-panel-desktop';
+import Home from '../components/home';
 
 export type NavigationItem = {
 	path: string;
@@ -176,9 +176,9 @@ export const NAVIGATION_ITEMS: NavigationItem[] = [
 				component: <PopoverComponent />
 			},
 			{
-				path: 'header',
-				label: 'Header',
-				component: <HeaderComponent />
+				path: 'control-panel-desktop',
+				label: 'ControlPanelDesktop',
+				component: <ControlPanelDesktopComponent />
 			},
 			{
 				path: 'control-panel-mobile',

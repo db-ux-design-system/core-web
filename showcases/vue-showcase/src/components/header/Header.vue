@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import DefaultComponent from "../DefaultComponent.vue";
-import defaultComponentVariants from "../../../../shared/header.json";
+import defaultComponentVariants from "../../../../shared/control-panel-desktop.json";
 import {
 	DBBrand,
 	DBButton,

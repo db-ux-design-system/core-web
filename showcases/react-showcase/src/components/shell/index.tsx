@@ -72,7 +72,7 @@ const getShell = ({
 					<DBNavigationItem icon="x_placeholder">
 						<a href="#">{children}</a>
 					</DBNavigationItem>
-					<DBNavigationItem disabled>
+					<DBNavigationItem disabled icon="x_placeholder">
 						<a href="#">{children} disabled</a>
 					</DBNavigationItem>
 				</DBNavigation>

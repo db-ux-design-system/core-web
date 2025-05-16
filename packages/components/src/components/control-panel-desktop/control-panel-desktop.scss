@@ -1,30 +1,12 @@
 @use "@db-ux/core-foundations/build/styles/variables";
-@use "@db-ux/core-foundations/build/styles/screen-sizes";
 @use "@db-ux/core-foundations/build/styles/helpers";
 @use "@db-ux/core-foundations/build/styles/density";
 @use "@db-ux/core-foundations/build/styles/colors";
 @use "../../styles/internal/component";
 @use "../../styles/internal/control-panel-desktop";
 
-%width-handler {
-	&[data-width="small"] {
-		margin-inline: auto;
-		max-inline-size: screen-sizes.$db-breakpoint-sm;
-	}
-
-	&[data-width="medium"] {
-		margin-inline: auto;
-		max-inline-size: screen-sizes.$db-breakpoint-md;
-	}
-
-	&[data-width="large"] {
-		margin-inline: auto;
-		max-inline-size: screen-sizes.$db-breakpoint-lg;
-	}
-}
 
 .db-control-panel-desktop {
-	@extend %width-handler;
 	background-color: colors.$db-adaptive-bg-basic-level-1-default;
 	display: grid;
 	position: relative;

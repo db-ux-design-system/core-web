@@ -9,13 +9,13 @@ import {
 	DBNavigation,
 	DBNavigationItem
 } from '../../../../../output/react/src';
-import defaultComponentVariants from '../../../../shared/header.json';
+import defaultComponentVariants from '../../../../shared/control-panel-desktop.json';
 import { getVariants } from '../data';
 import DefaultComponent from '../default-component';
 import { type BaseComponentProps } from '../base-component-data';
 import { DBControlPanelDesktopProps } from '../../../../../output/react/src/components/control-panel-desktop/model';
 
-const getHeader = ({
+const getControlPanelDesktop = ({
 	children,
 	className,
 	describedbyid,
@@ -90,16 +90,16 @@ const getHeader = ({
 	</DBControlPanelDesktop>
 );
 
-const HeaderComponent = (props: BaseComponentProps) => {
+const ControlPanelDesktopComponent = (props: BaseComponentProps) => {
 	return (
 		<DefaultComponent
 			title="DBControlPanelDesktop"
 			variants={getVariants(
 				defaultComponentVariants,
-				getHeader,
+				getControlPanelDesktop,
 				props.slotCode
 			)}></DefaultComponent>
 	);
 };
 
-export default HeaderComponent;
+export default ControlPanelDesktopComponent;

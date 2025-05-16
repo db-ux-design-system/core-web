@@ -1,5 +1,5 @@
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import defaultComponentVariants from '../../../../../shared/header.json';
+import defaultComponentVariants from '../../../../../shared/control-panel-desktop.json';
 import { DefaultComponent } from '../default.component';
 import {
 	DBBrand,

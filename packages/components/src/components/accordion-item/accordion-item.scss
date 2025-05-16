@@ -30,20 +30,15 @@
 		}
 	}
 
-	@media screen and (prefers-reduced-motion: reduce) {
+	@media screen and (prefers-reduced-motion: no-preference) {
 		summary + div {
-			block-size: 0;
-			overflow: hidden;
-			transition: none;
-			padding: variables.$db-spacing-fixed-md;
-			padding-block-end: variables.$db-spacing-fixed-lg;
+			transition: block-size #{variables.$db-transition-straight-emotional};
 		}
 	}
 
 	summary + div {
 		block-size: 0;
 		overflow: hidden;
-		transition: block-size #{variables.$db-transition-straight-emotional};
 		padding: variables.$db-spacing-fixed-md;
 		padding-block-end: variables.$db-spacing-fixed-lg;
 	}

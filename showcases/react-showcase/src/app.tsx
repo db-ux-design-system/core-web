@@ -30,6 +30,7 @@ const App = () => {
 	return (
 		<DBShell
 			fadeIn
+			controlPanelDesktopPosition="left"
 			controlPanelDesktop={
 				<DBControlPanelDesktop
 					brand={<DBControlPanelBrand>Showcase</DBControlPanelBrand>}

@@ -3,10 +3,20 @@ import {
 	ContentPanelProps,
 	GlobalProps,
 	GlobalState,
-	OrientationProps
+	OrientationProps,
+	ToggleEventState
 } from '../../shared/model';
 
-export type DBControlPanelDesktopDefaultProps = {};
+export type DBControlPanelDesktopDefaultProps = {
+	/**
+	 * Change the default text of the toggle button for collapse.
+	 */
+	leftPositionToggleButtonCollapse?: string;
+	/**
+	 * Change the default text of the toggle button for expand.
+	 */
+	leftPositionToggleButtonExpand?: string;
+};
 
 export type DBControlPanelDesktopProps = DBControlPanelDesktopDefaultProps &
 	GlobalProps &
@@ -14,7 +24,11 @@ export type DBControlPanelDesktopProps = DBControlPanelDesktopDefaultProps &
 	ContentPanelProps &
 	OrientationProps;
 
-export type DBControlPanelDesktopDefaultState = {};
+export type DBControlPanelDesktopDefaultState = {
+	_open: boolean;
+	getToggleButtonText: () => string;
+};
 
 export type DBControlPanelDesktopState = DBControlPanelDesktopDefaultState &
-	GlobalState;
+	GlobalState &
+	ToggleEventState<HTMLButtonElement>;

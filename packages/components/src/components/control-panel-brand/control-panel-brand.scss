@@ -11,6 +11,7 @@
 	font-weight: 700;
 	grid-area: brand;
 	block-size: variables.$db-sizing-md;
+	min-block-size: variables.$db-sizing-md;
 
 	&::before {
 		--db-icon-font-size: #{variables.$db-sizing-md};

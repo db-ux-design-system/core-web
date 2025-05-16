@@ -1,6 +1,4 @@
 import {
-	onMount,
-	onUpdate,
 	Slot,
 	useDefaultProps,
 	useMetadata,
@@ -11,11 +9,9 @@ import {
 	DBControlPanelDesktopProps,
 	DBControlPanelDesktopState
 } from './model';
-import { addAttributeToChildren, cls, getBoolean, uuid } from '../../utils';
+import { cls, uuid } from '../../utils';
 import DBButton from '../button/button.lite';
-import DBDrawer from '../drawer/drawer.lite';
-import { DEFAULT_BURGER_MENU, DEFAULT_ID } from '../../shared/constants';
-import { isEventTargetNavigationItem } from '../../utils/navigation';
+import { DBTooltip } from '../tooltip';
 
 useMetadata({});
 
@@ -26,7 +22,18 @@ export default function DBControlPanelDesktop(
 ) {
 	const _ref = useRef<HTMLDivElement | any>(null);
 	// jscpd:ignore-start
-	const state = useStore<DBControlPanelDesktopState>({});
+	const state = useStore<DBControlPanelDesktopState>({
+		_id: `db-control-panel-desktop-${uuid()}`,
+		_open: true,
+		handleToggle: () => {
+			state._open = !state._open;
+		},
+		getToggleButtonText: (): string => {
+			return state._open
+				? props.leftPositionToggleButtonCollapse ?? 'Collapse'
+				: props.leftPositionToggleButtonExpand ?? 'Expand';
+		}
+	});
 
 	// jscpd:ignore-end
 
@@ -34,14 +41,29 @@ export default function DBControlPanelDesktop(
 		<header
 			ref={_ref}
 			class={cls('db-control-panel-desktop', props.className)}
-			id={props.id}
+			id={props.id ?? state._id}
 			data-width={props.width}
-			data-orientation={props.orientation}>
+			data-orientation={props.orientation}
+			data-open={state._open}>
 			<Slot name="metaNavigation" />
 			<Slot name="brand" />
 			{props.children}
 			<Slot name="primaryActions" />
 			<Slot name="secondaryActions" />
+			<div className="db-control-panel-desktop-button">
+				<DBButton
+					onClick={(event) => state.handleToggle(event)}
+					variant="ghost"
+					aria-controls={props.id ?? state._id}
+					aria-expanded={state._open}
+					noText
+					icon="chevron_left">
+					{state.getToggleButtonText()}
+					<DBTooltip placement="top">
+						{state.getToggleButtonText()}
+					</DBTooltip>
+				</DBButton>
+			</div>
 		</header>
 	);
 }
