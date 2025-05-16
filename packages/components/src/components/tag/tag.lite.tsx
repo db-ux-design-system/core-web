@@ -12,7 +12,7 @@ import { DBTagProps, DBTagState } from './model';
 import { cls, getBooleanAsString, getHideProp } from '../../utils';
 import { DEFAULT_REMOVE } from '../../shared/constants';
 import { ClickEvent } from '../../shared/model';
-import { DBTooltip } from '../tooltip';
+import DBTooltip from '../tooltip/tooltip.lite';
 
 useMetadata({});
 useDefaultProps<DBTagProps>({});
