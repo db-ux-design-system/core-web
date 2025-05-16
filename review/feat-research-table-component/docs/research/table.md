@@ -143,7 +143,7 @@ These enhancements align the component with the intermediate offerings of establ
 
 - **Loading States**
 
-    Show a loading indicator or skeleton rows when data is being fetched asynchronously, ensuring users receive visual feedback during pagination or lazy-loading.
+    Show a loading indicator or skeleton rows when data is being fetched asynchronously, ensuring users receive visual feedback during pagination or lazy-loading. Needs a label and (optionally) a live region announcing the loading state.
 
 - **Customization APIs**
 
