@@ -12,6 +12,7 @@ import { DBTagProps, DBTagState } from './model';
 import { cls, getBooleanAsString, getHideProp } from '../../utils';
 import { DEFAULT_REMOVE } from '../../shared/constants';
 import { ClickEvent } from '../../shared/model';
+import { DBTooltip } from '../tooltip';
 
 useMetadata({});
 useDefaultProps<DBTagProps>({});
@@ -83,8 +84,8 @@ export default function DBTag(props: DBTagProps) {
 					data-icon="cross"
 					data-size="small"
 					data-no-text="true"
-					data-variant="ghost"
-					title={state.getRemoveButtonText()}>
+					data-variant="ghost">
+					<DBTooltip>{state.getRemoveButtonText()}</DBTooltip>
 					{state.getRemoveButtonText()}
 				</button>
 			</Show>
