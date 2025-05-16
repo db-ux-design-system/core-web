@@ -5,7 +5,7 @@
 | Design System                                                                           |                                                     Component                                                      | Comment                                                                                                                                                                                                                                                                                                          |
 | --------------------------------------------------------------------------------------- | :----------------------------------------------------------------------------------------------------------------: | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | [Atlassian Design System](https://bitbucket.org/atlassian/atlaskit/src/master/)         | [table](https://atlassian.design/components/table) / [table-tree](https://atlassian.design/components/table-tree/) | _Table_: interactive data table with built-in pagination, sorting, and column reordering.<br />_Table Tree_: hierarchical table with expandable, nested rows.                                                                                                                                                    |
-| [Bootstrap](https://github.com/twbs/bootstrap)                                          |                             [table](https://getbootstrap.com/docs/4.3/content/tables/)                             | Static tables styled via CSS classes (striped rows, borders). Responsive behavior via .table-responsive wrapper for horizontal scrolling. No built-in interactivity (sorting, etc. requires custom scripts).                                                                                                     |
+| [Bootstrap](https://github.com/twbs/bootstrap)                                          |                             [table](https://getbootstrap.com/docs/4.3/content/tables/)                             | Static tables styled via CSS classes (striped rows, borders). Responsive behavior via `.table-responsive wrapper` for horizontal scrolling. No built-in interactivity (sorting, etc. requires custom scripts).                                                                                                     |
 | [GitHub Primer](https://github.com/primer/css)                                          |                         [data-table](https://primer.style/product/components/data-table/)                          | React component with column definitions and custom cells. Advanced features like sorting, selectable rows, sticky headers, etc. Currently no built-in pagination.                                                                                                                                                |
 | [GitLab Pajamas](https://gitlab.com/gitlab-org/gitlab-services/design.gitlab.com)       |                                [table](https://design.gitlab.com/components/table)                                 | Table with Basic, Striped, Condensed variants, sortable columns, pagination, responsive scroll. Underlying implementation in Vue/Rails (`<gl-table-lite>`) using Bootstrap-Vue.                                                                                                                                  |
 | [HP Enterprise Grommet](https://github.com/grommet/grommet)                             |                                        [table](https://v2.grommet.io/table)                                        | Offers table for dynamic data: sorting, multi-select (onSelect, allowSelectAll), pagination/infinite scroll (onMore), grouping (groupBy), icons/buttons in cells, styling options.                                                                                                                               |
@@ -33,7 +33,7 @@ Across the surveyed design systems, there is a kind of pattern for tables:
 
 2. **Progressive Enhancement of Interactivity**
 
-    - **Static by Default**: Some systems stick to purely static tables with CSS-based styling (striped rows, borders) and responsive wrappers for horizontal scrolling. Those haave no built-in interactivity (sorting, pagination, etc.).
+    - **Static by Default**: Some systems stick to purely static tables with CSS-based styling (striped rows, borders) and responsive wrappers for horizontal scrolling. Those have no built-in interactivity (sorting, pagination, etc.).
     - **Developer-Driven Features**: Several systems provide core table markup plus optional wrappers or slots for sorting, sticky headers, and scroll controls, leaving the actual user-driven logic to the implementer.
     - **Built-in Data Tables**: Other systems offer rich, pre-wired data table components with pagination, sorting, row selection, expandable rows, and more. These components manage state, callbacks, and ARIA attributes internally.
 
@@ -93,14 +93,14 @@ This provides an immediately usable, accessible foundation consistent with the i
 
     The table should handle the case that no dat is available and show an appropriate message (e.g. "No data available") and use an `aria-live` region to announce the empty state.
 
-### 🔵 v2 - Intermediate features
+### 🔵 V2 - Intermediate features
 
 Version 2 introduces the essential interactive capabilities expected in modern data tables.
 These enhancements align the component with the intermediate offerings of established design systems, transforming it from a static display into a dynamic data grid for common data exploration tasks.
 
 - **Sortable columns**
 
-    Let users sort by any column. Requires header buttons, sorting logic in code, and `aria-sort="ascending"` / `"descending"` on the active header.
+    Let users sort by any column. Requires header buttons, sorting logic in code, `aria-sort="ascending"` / `"descending"` on the active header and [a description within caption, that any header is sortable](https://www.w3.org/WAI/ARIA/apg/patterns/table/examples/sortable-table/).
 
 - **Pagination**
 
