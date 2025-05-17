@@ -118,19 +118,19 @@
   - text: Label
   - textbox "Label"
   - status
-  - text: calendar" / " Label
+  - text: "\" / \" Label"
   - textbox "Label"
   - status
-  - text: calendar" / " Label
+  - text: "\" / \" Label"
   - textbox "Label"
   - status
-  - text: calendar" / " Label
+  - text: "\" / \" Label"
   - textbox "Label"
   - status
-  - text: clock" / " Label
+  - text: "\" / \" Label"
   - textbox "Label"
   - status
-  - text: calendar" / "
+  - text: "\" / \""
   - link "Example Floating Label arrow_up_right\" / \""
   - text: Label
   - textbox "Label"
@@ -166,19 +166,19 @@
   - text: Label
   - textbox "Label"
   - status
-  - text: calendar" / " Label
+  - text: "\" / \" Label"
   - textbox "Label"
   - status
-  - text: calendar" / " Label
+  - text: "\" / \" Label"
   - textbox "Label"
   - status
-  - text: calendar" / " Label
+  - text: "\" / \" Label"
   - textbox "Label"
   - status
-  - text: clock" / " Label
+  - text: "\" / \" Label"
   - textbox "Label"
   - status
-  - text: calendar" / " Label
+  - text: "\" / \" Label"
   - combobox "Label"
   - status
   - text: chevron_down" / " Label
