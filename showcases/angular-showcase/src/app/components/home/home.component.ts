@@ -13,6 +13,7 @@ import { CheckboxesComponent } from '../form/checkboxes/checkboxes.component';
 import { environment } from '../../../environments/environment';
 import { DefaultComponent } from '../default.component';
 import { RadiosComponent } from '../form/radios/radios.component';
+import { CustomSelectsComponent } from '../form/custom-selects/custom-selects.component';
 
 @Component({
 	selector: 'app-home',
@@ -27,7 +28,8 @@ import { RadiosComponent } from '../form/radios/radios.component';
 		RadiosComponent,
 		...(environment.webComponents
 			? []
-			: [DBTabs, DBTabItem, DBTabList, DBTabPanel])
+			: [DBTabs, DBTabItem, DBTabList, DBTabPanel]),
+		CustomSelectsComponent
 	],
 	schemas: environment.webComponents ? [CUSTOM_ELEMENTS_SCHEMA] : []
 })

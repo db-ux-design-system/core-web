@@ -1,10 +1,7 @@
 @use "@db-ux/core-foundations/build/styles/variables";
 @use "../../styles/internal/form-components";
-@use "../../styles/internal/scrollbar";
 
 .db-custom-select-list {
-	@extend %scrollbar;
-
 	all: unset;
 	padding: variables.$db-spacing-fixed-sm;
 	overflow-y: auto;

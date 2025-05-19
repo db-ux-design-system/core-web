@@ -76,6 +76,9 @@ const FormComponent = () => {
 					<DBCustomSelect
 						options={[{ value: 'Option 1' }, { value: 'Option 2' }]}
 						label="Test"
+						required
+						showSearch
+						multiple
 						placeholder="Placeholder"></DBCustomSelect>
 					<fieldset>
 						<p>Input:</p>
