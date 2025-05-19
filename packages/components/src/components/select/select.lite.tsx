@@ -95,8 +95,8 @@ export default function DBSelect(props: DBSelectProps) {
 			}
 		},
 		handleClick: (event: ClickEvent<HTMLSelectElement> | any) => {
-			event.stopPropagation();
 			if (props.onClick) {
+				event.stopPropagation();
 				props.onClick(event);
 			}
 		},
@@ -230,7 +230,7 @@ export default function DBSelect(props: DBSelectProps) {
 				onFocus={(event: InteractionEvent<HTMLSelectElement>) =>
 					state.handleFocus(event)
 				}
-				aria-describedby={state._descByIds}>
+				aria-describedby={props.ariaDescribedBy ?? state._descByIds}>
 				{/* Empty option for floating label */}
 				<option hidden></option>
 				<Show when={props.options} else={props.children}>

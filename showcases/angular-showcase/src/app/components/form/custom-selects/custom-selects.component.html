@@ -1,0 +1,28 @@
+<app-form-wrapper
+	[plain]="plain"
+	[model]="ngModel"
+	[control]="formControl.value"
+>
+	<fieldset>
+		<legend>Different form approaches</legend>
+		<db-custom-select
+			[options]="options"
+			label="Plain"
+			[values]="plain"
+			(optionSelected)="handlePlainChange($event)"
+		>
+		</db-custom-select>
+		<db-custom-select
+			[options]="options"
+			label="ngModel"
+			[(ngModel)]="ngModel"
+		>
+		</db-custom-select>
+		<db-custom-select
+			[options]="options"
+			label="formControl"
+			[formControl]="formControl"
+		>
+		</db-custom-select>
+	</fieldset>
+</app-form-wrapper>
