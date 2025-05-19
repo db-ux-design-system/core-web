@@ -67,6 +67,7 @@ $icon-padding: calc(
 		}
 	}
 
+	// This @supports should exclude Mozilla Firefox
 	@supports selector(::-webkit-calendar-picker-indicator) {
 		&:has(input[type="date"]),
 		&:has(input[type="week"]),
