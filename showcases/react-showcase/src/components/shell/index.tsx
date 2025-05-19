@@ -69,10 +69,15 @@ const getShell = ({
 					</DBControlPanelSecondaryActions>
 				}>
 				<DBNavigation>
-					<DBNavigationItem icon="x_placeholder">
+					<DBNavigationItem
+						icon="x_placeholder"
+						tooltip={`${children}`}>
 						<a href="#">{children}</a>
 					</DBNavigationItem>
-					<DBNavigationItem disabled icon="x_placeholder">
+					<DBNavigationItem
+						disabled
+						icon="x_placeholder"
+						tooltip={`${children} disabled`}>
 						<a href="#">{children} disabled</a>
 					</DBNavigationItem>
 				</DBNavigation>

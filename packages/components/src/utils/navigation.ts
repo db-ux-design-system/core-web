@@ -9,14 +9,6 @@ export type TriangleData = {
 	outsideVY: 'top' | 'bottom' | undefined;
 };
 
-export const isEventTargetNavigationItem = (event: unknown): boolean => {
-	const { target } = event as { target: HTMLElement };
-	return Boolean(
-		!target?.classList?.contains('db-navigation-item-expand-button') &&
-			target?.parentElement?.classList.contains('db-navigation-item')
-	);
-};
-
 export class NavigationItemSafeTriangle {
 	private readonly element: HTMLElement | null;
 	private readonly subNavigation: Element | null;
@@ -33,14 +25,15 @@ export class NavigationItemSafeTriangle {
 			return;
 		}
 
-		this.parentSubNavigation = this.element?.closest('.db-sub-navigation');
+		this.parentSubNavigation =
+			this.element?.closest('.db-navigation-item-group-menu') ??
+			this.element;
 
 		/*
 		 * only initiate if:
-		 * 1. item is not at root navigation level
 		 * 2. item is not in the mobile navigation / within db-drawer
 		 */
-		if (this.parentSubNavigation && !this.element.closest('.db-drawer')) {
+		if (!this.element.closest('.db-drawer')) {
 			this.init();
 		}
 	}
@@ -163,9 +156,14 @@ export class NavigationItemSafeTriangle {
 			return;
 		}
 
-		if (variant === 'fill-gap') {
-			const itemHeight = `${this.triangleData.itemRect.height + 2 * this.triangleData.padding}px`;
-			const xStart = `${this.triangleData.parentElementWidth - this.triangleData.padding}px`;
+		/*	if (variant === 'fill-gap') {
+			const itemHeight = `${
+				this.triangleData.itemRect.height +
+				2 * this.triangleData.padding
+			}px`;
+			const xStart = `${
+				this.triangleData.parentElementWidth - this.triangleData.padding
+			}px`;
 
 			return {
 				lb: `${xStart} ${itemHeight}`,
@@ -173,7 +171,7 @@ export class NavigationItemSafeTriangle {
 				rt: '100% 0',
 				rb: `100% ${itemHeight}`
 			};
-		}
+		}*/
 
 		const tipX = this.getTriangleTipX();
 		const tipY = this.getTriangleTipY();
@@ -223,7 +221,39 @@ export class NavigationItemSafeTriangle {
 	}
 }
 
-export default {
-	isEventTargetNavigationItem,
-	NavigationItemSafeTriangle
+export const handleSubNavigationPosition = (
+	element: HTMLElement,
+	level: number = 0
+) => {
+	// TODO: Add the same logic for tooltips inside db-navigation-item
+	for (const navItem of Array.from(
+		element.querySelectorAll('.db-navigation-item-group')
+	)) {
+		const { top, left } = navItem.getBoundingClientRect();
+		const subNavigation: HTMLElement | null = navItem.querySelector(
+			'.db-navigation-item-group-menu'
+		);
+		if (subNavigation) {
+			const subRect = subNavigation.getBoundingClientRect();
+			subNavigation.style.position = 'fixed';
+
+			if (
+				level > 0 ||
+				subNavigation.dataset.open === 'horizontal' ||
+				subRect.top === top
+			) {
+				// Sub-Navigation should be opened horizontal
+				subNavigation.style.left = `${subRect.left}px`;
+				subNavigation.style.top = `${top}px`;
+				subNavigation.dataset.open = 'horizontal';
+			} else {
+				// Sub-Navigation should be opened vertical
+				subNavigation.style.top = `${subRect.top}px`;
+				subNavigation.style.left = `${left}px`;
+				subNavigation.dataset.open = 'vertical';
+			}
+
+			handleSubNavigationPosition(subNavigation, level + 1);
+		}
+	}
 };

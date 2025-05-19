@@ -29,6 +29,10 @@ export type Component = {
 };
 
 export const getComponents = (): Component[] => [
+  {
+    name: "navigation-item-group"
+  },
+
 	{
 		name: 'control-panel-secondary-actions'
 	},

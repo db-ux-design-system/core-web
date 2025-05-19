@@ -29,9 +29,9 @@ export default function DBControlPanelMobile(props: DBControlPanelMobileProps) {
 			}
 		},
 		handleNavigationItemClick: (event: unknown) => {
-			if (isEventTargetNavigationItem(event)) {
+			/*if (isEventTargetNavigationItem(event)) {
 				state.handleToggle();
-			}
+			}*/
 		}
 	});
 	// jscpd:ignore-end

@@ -4,6 +4,8 @@
 @use "@db-ux/core-foundations/build/styles/screen-sizes";
 @use "../../styles/internal/form-components";
 @use "../../styles/internal/component";
+@use "../../styles/internal/navigation-item";
+@use "../../styles/internal/db-puls";
 
 %control-panel-desktop-horizontal-orientation {
 	border-block-end: variables.$db-border-width-3xs solid
@@ -26,6 +28,14 @@
 
 	> .db-control-panel-desktop-button {
 		display: none;
+	}
+
+	> .db-navigation {
+		// overflow: auto hidden;
+
+		> menu {
+			flex-direction: row;
+		}
 	}
 
 	&:has(.db-control-panel-primary-actions, .db-navigation) {
@@ -63,21 +73,47 @@
 		margin-inline: auto;
 		max-inline-size: screen-sizes.$db-breakpoint-lg;
 	}
-}
 
-%lea-fancy-idea {
-	background-color: transparent;
-	border-inline-end: 0;
+	> .db-navigation {
+		> menu {
+			> .db-navigation-item,
+			> .db-navigation-item-group {
+				@extend %db-puls;
+				@include db-puls.set-db-puls-horizontal();
 
-	> .db-control-panel-desktop-button {
-		&::before {
-			display: none;
-		}
+				@include navigation-item.active-navigation-item {
+					@include db-puls.show-db-puls-horizontal();
+				}
+			}
 
-		> .db-button {
-			@extend %component-border;
-			border-radius: variables.$db-border-radius-full;
-			box-shadow: variables.$db-elevation-md;
+			> .db-navigation-item-group {
+				&:is(button),
+				> button {
+					&::after {
+						--db-icon-after: "chevron_down";
+					}
+				}
+
+				> .db-navigation-item-group-menu {
+					inset-block-start: calc(
+						100% + #{variables.$db-spacing-fixed-md}
+					);
+
+					&::before {
+						content: "";
+						position: absolute;
+						inset-inline-start: 0;
+						inline-size: 100%;
+						// #{$db-spacing-fixed--3xs} for shadows
+						block-size: calc(
+							#{variables.$db-spacing-fixed-3xs} + #{variables.$db-spacing-fixed-md}
+						);
+						inset-block-start: calc(
+							-1 * #{variables.$db-spacing-fixed-md} - #{variables.$db-spacing-fixed-3xs}
+						);
+					}
+				}
+			}
 		}
 	}
 }
@@ -124,7 +160,8 @@
 		}
 
 		> .db-navigation {
-			.db-navigation-item {
+			.db-navigation-item,
+			.db-navigation-item-group {
 				--db-icon-margin-end: 0;
 				inline-size: variables.$db-sizing-md;
 				aspect-ratio: 1;
@@ -141,16 +178,16 @@
 					inset: 0;
 				}
 			}
+
+			.db-navigation-item {
+				.db-tooltip {
+					// We show tooltip for collapsed state
+					--db-show-popover-display: reverted;
+				}
+			}
 		}
 
-		&:has(
-				> .db-navigation
-					> menu
-					> .db-navigation-item
-					> .db-navigation-item-expand-button
-			) {
-			@extend %lea-fancy-idea;
-
+		&:has(> .db-navigation > menu > .db-navigation-item-group) {
 			> .db-navigation {
 				display: none;
 			}
@@ -165,9 +202,12 @@
 		> .db-control-panel-brand {
 			font-size: 0;
 			gap: 0;
+			place-self: center;
 		}
 
 		> .db-control-panel-desktop-button {
+			justify-content: center;
+
 			.db-button {
 				&::before {
 					transform: form-components.$dropdown-icon-transform;
@@ -202,7 +242,6 @@
 		padding-block-start: variables.$db-spacing-fixed-md;
 
 		> menu {
-			display: flex;
 			flex-direction: column;
 		}
 	}
@@ -235,6 +274,32 @@
 	&:has(.db-control-panel-secondary-actions) {
 		> .db-control-panel-primary-actions {
 			margin-block-end: variables.$db-spacing-fixed-sm;
+		}
+	}
+
+	> .db-navigation {
+		> menu {
+			padding-inline: variables.$db-spacing-fixed-xs; // we need this for puls to show up
+
+			> .db-navigation-item,
+			> .db-navigation-item-group {
+				@extend %db-puls;
+				@include db-puls.set-db-puls-vertical();
+
+				@include navigation-item.active-navigation-item {
+					@include db-puls.show-db-puls-vertical();
+				}
+			}
+
+			> .db-navigation-item-group {
+				> .db-navigation-item-group-menu {
+					inset-inline-start: calc(
+						100% + #{variables.$db-spacing-fixed-md}
+					);
+
+					@include navigation-item.navigation-item-group-menu-triangle-vertical;
+				}
+			}
 		}
 	}
 }

@@ -23,7 +23,8 @@ export default function DBTooltip(props: DBTooltipProps) {
 		handleClick: (event: ClickEvent<HTMLElement>) => {
 			event.stopPropagation();
 		},
-		handleAutoPlacement: () => {
+		handleAutoPlacement: (parent?: HTMLElement) => {
+			if (!parent) return;
 			if (_ref) handleDataOutside(_ref);
 		}
 	});
@@ -45,7 +46,7 @@ export default function DBTooltip(props: DBTooltipProps) {
 			if (parent) {
 				['mouseenter', 'focus'].forEach((event) => {
 					parent.addEventListener(event, () =>
-						state.handleAutoPlacement()
+						state.handleAutoPlacement(parent)
 					);
 				});
 				parent.setAttribute('data-has-tooltip', 'true');

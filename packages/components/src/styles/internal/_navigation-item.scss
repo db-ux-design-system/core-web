@@ -1,0 +1,104 @@
+@use "@db-ux/core-foundations/build/styles/variables";
+@use "@db-ux/core-foundations/build/styles/colors";
+@use "@db-ux/core-foundations/build/styles/fonts";
+@use "@db-ux/core-foundations/build/styles/helpers";
+@use "@db-ux/core-foundations/build/styles/icons";
+@use "../../styles/internal/icon-passing";
+@use "../../styles/internal/component";
+
+@mixin active-navigation-item() {
+	&:has([aria-current="page"]),
+	&:has([data-active="true"]),
+	&[aria-current="page"],
+	&[data-active="true"] {
+		@content;
+	}
+}
+
+@mixin navigation-item-group-menu-triangle-vertical() {
+	&::before {
+		content: "";
+		position: absolute;
+		inset-block-start: 0;
+		inset-inline-start: 0;
+		block-size: 100%;
+		inline-size: var(--db-navigation-item-inline-size, 100%);
+		background: transparent;
+		transform: translateX(-100%);
+		clip-path: var(
+			--db-navigation-item-clip-path,
+			polygon(10% 30px, 100% 0, 100% 100%)
+		);
+	}
+
+	&::after {
+		content: "";
+		position: absolute;
+		padding: variables.$db-spacing-fixed-xs;
+		// #{$db-spacing-fixed-3xs} for box shadow
+		inset-block-start: #{variables.$db-spacing-fixed-3xs};
+		inset-inline-end: calc(-1 * #{variables.$db-spacing-fixed-xs});
+		block-size: 100%;
+		inline-size: variables.$db-spacing-fixed-xs;
+	}
+}
+
+%navigation-item-interactive-element {
+	@extend %default-interactive-component;
+	@extend %transparent-border;
+	@extend %db-overwrite-font-size-md;
+
+	background-color: colors.$db-adaptive-bg-basic-transparent-full-default;
+	cursor: pointer;
+	inline-size: 100%;
+	display: inline-flex;
+	border-radius: variables.$db-border-radius-sm;
+	padding: variables.$db-spacing-fixed-xs variables.$db-spacing-fixed-sm;
+	white-space: nowrap; // we don't want to break
+	text-align: center;
+	align-items: center; // Centering the content vertically and horizontally
+	justify-content: space-between;
+
+	@include helpers.hover {
+		background-color: colors.$db-adaptive-bg-basic-transparent-hovered;
+	}
+
+	@include helpers.active {
+		background-color: colors.$db-adaptive-bg-basic-transparent-pressed;
+	}
+}
+
+%navigation-item {
+	@extend %db-overwrite-font-size-md;
+
+	@include icon-passing.icon-passing();
+
+	display: inline-flex;
+	position: relative;
+	inline-size: auto;
+
+	&[data-wrap="true"] {
+		:is(a, .db-navigation-item-expand-button):first-of-type {
+			white-space: normal;
+			text-align: start;
+		}
+	}
+
+	&:has([aria-current="page"]),
+	&:has([data-active="true"]),
+	&[aria-current="page"],
+	&[data-active="true"] {
+		> :is(a, button) {
+			font-weight: 700;
+		}
+	}
+
+	&[data-width="full"] {
+		inline-size: 100%;
+	}
+
+	&[aria-disabled="true"] {
+		opacity: component.$default-disabled;
+		pointer-events: none;
+	}
+}

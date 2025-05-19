@@ -130,7 +130,7 @@ export type PlacementProps = {
 };
 
 export type NavigationBehaviorState = {
-	handleNavigationItemClick: (event: unknown) => void;
+	handleNavigationItemClick: (event: any) => void;
 };
 
 export type GapProps = {
@@ -215,7 +215,7 @@ export type PopoverProps = {
 };
 
 export type PopoverState = {
-	handleAutoPlacement: () => void;
+	handleAutoPlacement: (parent?: HTMLElement) => void;
 };
 
 export type NameProps = {
@@ -278,11 +278,14 @@ export type ValueProps = {
 	value?: any;
 };
 
-export type BaseFormProps = {
+export type DisabledProps = {
 	/**
-	 * The disabled attribute can be set to keep a user from clicking on the form element.
+	 * The disabled attribute can be set to keep a user from clicking on the item.
 	 */
 	disabled?: boolean | string;
+};
+
+export type BaseFormProps = {
 	/**
 	 * The label attribute specifies the caption of the form element.
 	 */
@@ -292,7 +295,7 @@ export type BaseFormProps = {
 	 * The name attribute gives the name of the form control, as used in form submission and in the form element's elements object.
 	 */
 	name?: string;
-};
+} & DisabledProps;
 
 export type CustomFormProps = {
 	/**
@@ -704,6 +707,11 @@ export type ContentPanelProps = {
 	 * Mobile: Shown inside the drawer at the bottom.
 	 */
 	secondaryActions?: any;
+
+	/**
+	 * Adds ``aria-labelledby`` to the <nav> element.
+	 */
+	navigationLabeledBy?: string;
 };
 
 export type ValueLabelType = {

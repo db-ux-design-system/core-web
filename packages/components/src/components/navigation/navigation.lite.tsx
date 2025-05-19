@@ -1,13 +1,14 @@
 import {
 	onMount,
+	onUpdate,
 	useDefaultProps,
 	useMetadata,
 	useRef,
 	useStore
 } from '@builder.io/mitosis';
 import { DBNavigationProps, DBNavigationState } from './model';
-import { cls, uuid } from '../../utils';
-import { DEFAULT_ID } from '../../shared/constants';
+import { cls } from '../../utils';
+import { handleSubNavigationPosition } from '../../utils/navigation';
 
 useMetadata({});
 
@@ -15,21 +16,28 @@ useDefaultProps<DBNavigationProps>({});
 
 export default function DBNavigation(props: DBNavigationProps) {
 	const _ref = useRef<HTMLDivElement | any>(null);
-	// jscpd:ignore-start
+
 	const state = useStore<DBNavigationState>({
-		_id: DEFAULT_ID
+		initialized: false
 	});
 
 	onMount(() => {
-		state._id = props.id || 'navigation-' + uuid();
+		state.initialized = true;
 	});
 
-	// jscpd:ignore-end
+	onUpdate(() => {
+		if (_ref && state.initialized) {
+			handleSubNavigationPosition(_ref);
+		}
+	}, [_ref, state.initialized]);
 
 	return (
 		<nav
 			ref={_ref}
-			id={state._id}
+			onScroll={() => {
+				handleSubNavigationPosition(_ref);
+			}}
+			id={props.id}
 			aria-labelledby={props.labelledBy}
 			class={cls('db-navigation', props.className)}>
 			<menu>{props.children}</menu>
