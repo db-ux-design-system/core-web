@@ -204,7 +204,7 @@ export default function DBCheckbox(props: DBCheckboxProps) {
 					onFocus={(event: InteractionEvent<HTMLInputElement>) =>
 						state.handleFocus(event)
 					}
-					aria-describedby={state._descByIds}
+					aria-describedby={props.ariaDescribedBy ?? state._descByIds}
 				/>
 				<Show when={props.label} else={props.children}>
 					{props.label}

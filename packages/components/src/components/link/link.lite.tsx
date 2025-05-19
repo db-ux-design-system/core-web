@@ -18,8 +18,8 @@ export default function DBLink(props: DBLinkProps) {
 	// jscpd:ignore-start
 	const state = useStore<DBLinkState>({
 		handleClick: (event: ClickEvent<HTMLAnchorElement>) => {
-			event.stopPropagation();
 			if (props.onClick) {
+				event.stopPropagation();
 				props.onClick(event);
 			}
 		}
