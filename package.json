@@ -72,7 +72,7 @@
     "@playwright/test": "1.51.1",
     "accessibility-checker": "^4.0.4",
     "adm-zip": "0.5.16",
-    "commander": "^13.1.0",
+    "commander": "^14.0.0",
     "cpr": "3.0.1",
     "cross-env": "^7.0.3",
     "dotenv": "^16.5.0",
