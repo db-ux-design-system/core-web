@@ -22,7 +22,6 @@ import {
 	getBooleanAsString,
 	getHideProp,
 	getSearchInput,
-	handleDataOutside,
 	hasVoiceOver,
 	stringPropVisible,
 	uuid
@@ -56,6 +55,8 @@ import {
 } from '../../utils/form-components';
 import DBInput from '../input/input.lite';
 import { DocumentClickListener } from '../../utils/document-click-listener';
+import { DocumentScrollListener } from '../../utils/document-scroll-listener';
+import { handleFixedDropdown } from '../../utils/floating-components';
 
 useMetadata({
 	angular: {
@@ -105,6 +106,15 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 		_hasNoOptions: false,
 		_documentClickListenerCallbackId: undefined,
 		_internalChangeTimestamp: 0,
+		_documentScrollListenerCallbackId: undefined,
+		handleDocumentScroll: (event: any) => {
+			if (
+				event?.target?.contains &&
+				event?.target?.contains(detailsRef)
+			) {
+				state.handleAutoPlacement();
+			}
+		},
 		hasValidState: () => {
 			return !!(props.validMessage ?? props.validation === 'valid');
 		},
@@ -155,7 +165,13 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 						state.handleDocumentClose(event)
 					);
 
+				state._documentScrollListenerCallbackId =
+					new DocumentScrollListener().addCallback((event) =>
+						state.handleDocumentScroll(event)
+					);
+
 				state.handleAutoPlacement();
+				state._observer?.observe(detailsRef);
 				if (!event.target.dataset.test) {
 					// We need this workaround for snapshot testing
 					state.handleOpenByKeyboardFocus();
@@ -166,6 +182,12 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 						state._documentClickListenerCallbackId!
 					);
 				}
+				if (state._documentScrollListenerCallbackId) {
+					new DocumentScrollListener().removeCallback(
+						state._documentScrollListenerCallbackId!
+					);
+				}
+				state._observer?.unobserve(detailsRef);
 			}
 		},
 		getNativeSelectValue: () => {
@@ -227,7 +249,11 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 				const dropdown = detailsRef.querySelector('article');
 				if (dropdown) {
 					delay(() => {
-						handleDataOutside(dropdown);
+						handleFixedDropdown(
+							dropdown,
+							detailsRef,
+							(props.placement as unknown as string) ?? 'bottom'
+						);
 					}, 1);
 				}
 			}
@@ -537,6 +563,17 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 		state._selectedLabelsId = mId + '-selected-labels';
 		state._infoTextId = mId + '-info';
 		state._invalidMessage = props.invalidMessage || DEFAULT_INVALID_MESSAGE;
+
+		state._observer = new IntersectionObserver((payload) => {
+			if (detailsRef) {
+				const entry = payload.find(
+					({ target }) => target === detailsRef
+				);
+				if (entry && !entry.isIntersecting && detailsRef.open) {
+					detailsRef.open = false;
+				}
+			}
+		});
 	});
 
 	onUpdate(() => {

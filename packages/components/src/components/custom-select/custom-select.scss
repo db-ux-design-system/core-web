@@ -7,53 +7,6 @@
 @use "../../styles/internal/select-components";
 @use "../../styles/dialog-init";
 
-%custom-select-placement-top {
-	@include screen-sizes.screen("sm") {
-		inset-block-end: 100%;
-		margin-block-start: variables.$db-spacing-fixed-md;
-	}
-}
-
-%custom-select-placement-vertical {
-	@include screen-sizes.screen("sm") {
-		&[data-placement$="end"] {
-			.db-custom-select-dropdown:not([data-outside-vx="right"]) {
-				inset-inline-end: 0;
-			}
-		}
-
-		.db-custom-select-dropdown[data-outside-vx="right"] {
-			inset-inline-end: 0;
-		}
-	}
-}
-
-%custom-select-placement {
-	&:not([data-placement]),
-	&[data-placement^="bottom"] {
-		@extend %custom-select-placement-vertical;
-
-		.db-custom-select-dropdown:not([data-outside-vy="bottom"]) {
-			@include screen-sizes.screen("sm") {
-				inset-block-start: 100%;
-				margin-block-end: variables.$db-spacing-fixed-md;
-			}
-		}
-
-		.db-custom-select-dropdown[data-outside-vy="bottom"] {
-			@extend %custom-select-placement-top;
-		}
-	}
-
-	&[data-placement^="top"] {
-		@extend %custom-select-placement-vertical;
-
-		.db-custom-select-dropdown:not([data-outside-vy="top"]) {
-			@extend %custom-select-placement-top;
-		}
-	}
-}
-
 .db-custom-select {
 	--db-form-component-padding-inline-end: calc(
 		#{select-components.$select-icon-padding} + #{variables.$db-sizing-sm} +
@@ -67,7 +20,6 @@
 
 	@extend %select-icon;
 	@extend %select-placeholder;
-	@extend %custom-select-placement;
 
 	position: relative;
 

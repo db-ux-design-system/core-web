@@ -214,10 +214,6 @@ export type PopoverProps = {
 	width?: PopoverWidthType;
 };
 
-export type PopoverState = {
-	handleAutoPlacement: () => void;
-};
-
 export type NameProps = {
 	/**
 	 * The name attribute gives the name of the element to group it.
@@ -685,3 +681,15 @@ export type ValueLabelType = {
 	value: string;
 	label?: string;
 };
+
+export type DocumentScrollState = {
+	_documentScrollListenerCallbackId?: string;
+	handleDocumentScroll: (event: any, parent?: HTMLElement) => void;
+};
+
+export type PopoverState = {
+	handleEscape: (event: any) => void;
+	handleAutoPlacement: (parent?: HTMLElement) => void;
+	handleEnter: (parent?: HTMLElement) => void;
+	handleLeave: (event?: any) => void;
+} & DocumentScrollState;

@@ -1,4 +1,4 @@
-import { handleDataOutside } from './index';
+import { handleDataOutside } from './floating-components';
 
 export type TriangleData = {
 	itemRect: DOMRect;

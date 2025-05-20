@@ -24,6 +24,8 @@ $tooltip-arrow-shadow-size: variables.$db-sizing-2xs;
 	// surrounding tags styling reset
 	font-weight: initial;
 	padding: variables.$db-spacing-fixed-2xs variables.$db-spacing-fixed-xs;
+	block-size: fit-content;
+	inline-size: fit-content;
 
 	&::after {
 		background-color: colors.$db-adaptive-bg-basic-level-1-default;

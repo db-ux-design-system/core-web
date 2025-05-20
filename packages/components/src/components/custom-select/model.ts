@@ -2,6 +2,7 @@ import {
 	BaseFormProps,
 	CloseEventState,
 	CustomFormProps,
+	DocumentScrollState,
 	FormMessageProps,
 	FormState,
 	FromValidState,
@@ -222,6 +223,7 @@ export type DBCustomSelectDefaultState = {
 	_infoTextId?: string;
 	_internalChangeTimestamp: number;
 	_documentClickListenerCallbackId?: string;
+	_observer?: IntersectionObserver;
 	getNativeSelectValue: () => string;
 	getOptionLabel: (option: CustomSelectOptionType) => string;
 	getOptionChecked: (value?: string) => boolean;
@@ -247,6 +249,7 @@ export type DBCustomSelectDefaultState = {
 	getSelectAllLabel: () => string;
 	selectAllChecked: boolean;
 	selectAllIndeterminate: boolean;
+	handleAutoPlacement: () => void;
 };
 
 export type DBCustomSelectState = DBCustomSelectDefaultState &
@@ -254,4 +257,4 @@ export type DBCustomSelectState = DBCustomSelectDefaultState &
 	FormState &
 	FromValidState &
 	CloseEventState &
-	PopoverState;
+	DocumentScrollState;

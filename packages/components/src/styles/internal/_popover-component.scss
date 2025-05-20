@@ -54,81 +54,6 @@ $popover-gap-inset: calc(-1 * #{$popover-gap-size});
 	&:is(.db-tooltip) {
 		--db-popover-distance: #{variables.$db-spacing-fixed-sm};
 	}
-
-	&[data-placement^="bottom"]:not([data-outside-vy]),
-	&[data-placement^="top"]:not([data-outside-vy]),
-	&[data-outside-vy="bottom"]:not([data-outside-vx]),
-	&[data-outside-vy="top"]:not([data-outside-vx]) {
-		&[data-placement$="end"] {
-			inset-inline-end: 0;
-		}
-
-		&[data-placement$="start"] {
-			inset-inline-start: 0;
-		}
-	}
-
-	&[data-placement^="left"]:not([data-outside-vx]),
-	&[data-placement^="right"]:not([data-outside-vx]),
-	&[data-outside-vx="left"],
-	&[data-outside-vx="right"] {
-		&[data-placement$="end"] {
-			inset-block-end: 0;
-		}
-
-		&[data-placement$="start"] {
-			inset-block-start: 0;
-		}
-	}
-
-	&:not([data-placement], [data-outside-vy]),
-	&[data-placement^="bottom"]:not([data-outside-vy]),
-	&[data-outside-vy="top"]:not([data-outside-vx]) {
-		inset-block-start: $popover-inset;
-
-		&::before {
-			inset-inline-start: 0;
-			inline-size: 100%;
-			block-size: $popover-gap-size;
-			inset-block-start: $popover-gap-inset;
-		}
-	}
-
-	&[data-placement^="top"]:not([data-outside-vy]),
-	&[data-outside-vy="bottom"]:not([data-outside-vx]) {
-		inset-block-end: $popover-inset;
-
-		&::before {
-			inset-inline-end: 0;
-			inline-size: 100%;
-			block-size: $popover-gap-size;
-			inset-block-end: $popover-gap-inset;
-		}
-	}
-
-	&[data-placement^="left"]:not([data-outside-vx]),
-	&[data-outside-vx="right"] {
-		inset-inline-end: $popover-inset;
-
-		&::before {
-			inset-block-end: 0;
-			block-size: 100%;
-			inline-size: $popover-gap-size;
-			inset-inline-end: $popover-gap-inset;
-		}
-	}
-
-	&[data-placement^="right"]:not([data-outside-vx]),
-	&[data-outside-vx="left"] {
-		inset-inline-start: $popover-inset;
-
-		&::before {
-			inset-block-start: 0;
-			block-size: 100%;
-			inline-size: $popover-gap-size;
-			inset-inline-start: $popover-gap-inset;
-		}
-	}
 }
 
 @mixin get-popover-show() {
@@ -160,7 +85,7 @@ $popover-gap-inset: calc(-1 * #{$popover-gap-size});
 }
 
 %show-popover {
-	display: revert;
+	visibility: var(--db-show-popover-visibility, visible);
 
 	&:not([data-placement], [data-outside-vy]),
 	&[data-placement^="bottom"]:not([data-outside-vy]),
@@ -199,7 +124,7 @@ $popover-gap-inset: calc(-1 * #{$popover-gap-size});
 	position: absolute;
 	background-color: colors.$db-adaptive-bg-basic-level-1-default;
 	box-shadow: variables.$db-elevation-md;
-	display: none;
+	visibility: hidden;
 	z-index: 1337;
 	white-space: nowrap;
 

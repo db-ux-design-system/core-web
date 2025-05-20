@@ -8,7 +8,9 @@ import {
 	useStore
 } from '@builder.io/mitosis';
 import { DBPopoverProps, DBPopoverState } from './model';
-import { cls, getBooleanAsString, handleDataOutside } from '../../utils';
+import { cls, getBooleanAsString } from '../../utils';
+import { handleFixedPopover } from '../../utils/floating-components';
+import { DocumentScrollListener } from '../../utils/document-scroll-listener';
 
 useMetadata({});
 useDefaultProps<DBPopoverProps>({});
@@ -19,17 +21,43 @@ export default function DBPopover(props: DBPopoverProps) {
 	const state = useStore<DBPopoverState>({
 		initialized: false,
 		isExpanded: false,
+		_documentScrollListenerCallbackId: undefined,
+		handleEscape: (event: any) => {
+			if (event.key === 'Escape' && state.isExpanded) {
+				// TODO: Recursive for any child
+				for (const child of Array.from(_ref.children)) {
+					(child as HTMLElement).blur();
+				}
+			}
+		},
 		handleAutoPlacement: () => {
-			state.isExpanded = true;
 			if (!_ref) return;
 			const article = _ref.querySelector('article');
-			if (!article) return;
-			handleDataOutside(article);
+			if (article) {
+				handleFixedPopover(
+					article,
+					_ref,
+					(props.placement as unknown as string) ?? 'bottom'
+				);
+			}
+		},
+		handleDocumentScroll: (event: any) => {
+			if (event?.target?.contains && event?.target?.contains(_ref)) {
+				state.handleAutoPlacement();
+			}
+		},
+		handleEnter(): void {
+			state.isExpanded = true;
+			state._documentScrollListenerCallbackId =
+				new DocumentScrollListener().addCallback((event) =>
+					state.handleDocumentScroll(event)
+				);
+			state.handleAutoPlacement();
 		},
 		// eslint-disable-next-line @typescript-eslint/no-explicit-any
-		handleLeave: (event: any) => {
-			const element = event.target as HTMLElement;
-			const parent = element.parentNode;
+		handleLeave: (event?: any) => {
+			const element = event?.target as HTMLElement;
+			const parent = element?.parentNode;
 			if (
 				!parent ||
 				(element.parentNode.querySelector(':focus') !== element &&
@@ -38,6 +66,12 @@ export default function DBPopover(props: DBPopoverProps) {
 					element.parentNode.querySelector(':hover') !== element)
 			) {
 				state.isExpanded = false;
+
+				if (state._documentScrollListenerCallbackId) {
+					new DocumentScrollListener().removeCallback(
+						state._documentScrollListenerCallbackId!
+					);
+				}
 			}
 		},
 		getTrigger: (): Element | null => {
@@ -70,6 +104,7 @@ export default function DBPopover(props: DBPopoverProps) {
 			if (child) {
 				child.ariaHasPopup = 'true';
 			}
+			state.handleAutoPlacement();
 			state.initialized = false;
 		}
 	}, [_ref, state.initialized]);
@@ -90,9 +125,10 @@ export default function DBPopover(props: DBPopoverProps) {
 			ref={_ref}
 			id={props.id}
 			class={cls('db-popover', props.className)}
-			onFocus={() => state.handleAutoPlacement()}
+			onKeyDown={(event) => state.handleEscape(event)}
+			onFocus={() => state.handleEnter()}
 			onBlur={(event: FocusEvent) => state.handleLeave(event)}
-			onMouseEnter={() => state.handleAutoPlacement()}
+			onMouseEnter={() => state.handleEnter()}
 			onMouseLeave={(event: MouseEvent) => state.handleLeave(event)}>
 			<Slot name="trigger" />
 			<article
