@@ -7,9 +7,10 @@ import {
 	useStore
 } from '@builder.io/mitosis';
 import { DBTooltipProps, DBTooltipState } from './model';
-import { cls, getBooleanAsString, handleDataOutside, uuid } from '../../utils';
+import { cls, getBooleanAsString, uuid } from '../../utils';
 import { ClickEvent } from '../../shared/model';
 import { DEFAULT_ID } from '../../shared/constants';
+import { handleFixedPopover } from '../../utils/floating-components';
 
 useMetadata({});
 useDefaultProps<DBTooltipProps>({});
@@ -25,7 +26,13 @@ export default function DBTooltip(props: DBTooltipProps) {
 		},
 		handleAutoPlacement: (parent?: HTMLElement) => {
 			if (!parent) return;
-			if (_ref) handleDataOutside(_ref);
+			if (_ref) {
+				handleFixedPopover(
+					_ref,
+					parent,
+					(props.placement as unknown as string) ?? 'bottom'
+				);
+			}
 		}
 	});
 

@@ -17,6 +17,7 @@ $tooltip-arrow-shadow-size: variables.$db-sizing-2xs;
 
 	background-color: colors.$db-adaptive-bg-basic-level-1-default;
 	color: colors.$db-adaptive-on-bg-basic-emphasis-100-default;
+	visibility: hidden;
 
 	// i HTML tags browsers default styling reset
 	font-style: normal;
@@ -24,6 +25,8 @@ $tooltip-arrow-shadow-size: variables.$db-sizing-2xs;
 	// surrounding tags styling reset
 	font-weight: initial;
 	padding: variables.$db-spacing-fixed-2xs variables.$db-spacing-fixed-xs;
+	block-size: fit-content;
+	inline-size: fit-content;
 
 	&::after {
 		background-color: colors.$db-adaptive-bg-basic-level-1-default;
@@ -31,7 +34,7 @@ $tooltip-arrow-shadow-size: variables.$db-sizing-2xs;
 
 	// Only for testing
 	&[data-e2e-hover="true"] {
-		@extend %show-popover;
+		@include popover-component.show-popover(false);
 	}
 
 	// Arrow
@@ -120,7 +123,7 @@ $tooltip-arrow-shadow-size: variables.$db-sizing-2xs;
 	[data-has-tooltip="true"] {
 		&:#{$state} {
 			.db-tooltip:first-of-type {
-				@extend %show-popover;
+				@include popover-component.show-popover(false);
 			}
 		}
 	}

@@ -17,6 +17,6 @@
 	.db-tooltip {
 		// We don't show the tooltip unless user uses DBShell with controlPanelDesktopPosition="left"
 		// and collapsed navigation
-		--db-show-popover-display: none;
+		--db-show-popover-visibility: hidden;
 	}
 }

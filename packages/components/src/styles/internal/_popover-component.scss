@@ -159,8 +159,12 @@ $popover-gap-inset: calc(-1 * #{$popover-gap-size});
 	}
 }
 
-%show-popover {
-	display: var(--db-show-popover-display, revert);
+@mixin show-popover($display: true) {
+	@if ($display) {
+		display: var(--db-show-popover-display, revert);
+	} @else {
+		visibility: var(--db-show-popover-visibility, visible);
+	}
 
 	&:not([data-placement], [data-outside-vy]),
 	&[data-placement^="bottom"]:not([data-outside-vy]),
@@ -199,7 +203,6 @@ $popover-gap-inset: calc(-1 * #{$popover-gap-size});
 	position: absolute;
 	background-color: colors.$db-adaptive-bg-basic-level-1-default;
 	box-shadow: variables.$db-elevation-md;
-	display: none;
 	z-index: 1337;
 	white-space: nowrap;
 

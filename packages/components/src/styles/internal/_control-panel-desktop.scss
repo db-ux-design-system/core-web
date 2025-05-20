@@ -12,9 +12,9 @@
 		colors.$db-adaptive-on-bg-basic-emphasis-60-default;
 	grid-template-areas:
 		"meta meta meta meta meta meta"
-		". . . . . ."
+		". . navigation . . ."
 		". brand navigation primary secondary ."
-		". . . . . .";
+		". . navigation . . .";
 	grid-template-rows: auto #{variables.$db-spacing-fixed-md} auto #{variables.$db-spacing-fixed-md};
 	grid-template-columns: #{variables.$db-spacing-fixed-lg} max-content 1fr max-content max-content #{variables.$db-spacing-fixed-lg};
 
@@ -28,14 +28,6 @@
 
 	> .db-control-panel-desktop-button {
 		display: none;
-	}
-
-	> .db-navigation {
-		// overflow: auto hidden;
-
-		> menu {
-			flex-direction: row;
-		}
 	}
 
 	&:has(.db-control-panel-primary-actions, .db-navigation) {
@@ -75,7 +67,11 @@
 	}
 
 	> .db-navigation {
+		overflow: auto hidden;
 		> menu {
+			flex-direction: row;
+			padding-block: variables.$db-spacing-fixed-md;
+
 			> .db-navigation-item,
 			> .db-navigation-item-group {
 				@extend %db-puls;
@@ -125,7 +121,7 @@
 	grid-template-areas:
 		". . ."
 		". brand ."
-		". navigation ."
+		"navigation navigation navigation"
 		". primary ."
 		". secondary ."
 		". . ."
@@ -149,9 +145,9 @@
 	&[data-open="false"] {
 		grid-template-columns: #{variables.$db-spacing-fixed-lg} min-content #{variables.$db-spacing-fixed-lg};
 
-		inline-size: auto;
+		inline-size: fit-content;
 		/* stylelint-disable-next-line declaration-property-value-no-unknown */
-		inline-size: calc-size(auto, size);
+		inline-size: calc-size(fit-content, size);
 
 		> .db-control-panel-primary-actions,
 		> .db-control-panel-secondary-actions,
@@ -182,7 +178,7 @@
 			.db-navigation-item {
 				.db-tooltip {
 					// We show tooltip for collapsed state
-					--db-show-popover-display: reverted;
+					--db-show-popover-visibility: visible;
 				}
 			}
 		}
@@ -237,15 +233,6 @@
 		@include helpers.divider("top");
 	}
 
-	> .db-navigation {
-		overflow: hidden auto;
-		padding-block-start: variables.$db-spacing-fixed-md;
-
-		> menu {
-			flex-direction: column;
-		}
-	}
-
 	> .db-control-panel-brand {
 		margin-block-end: variables.$db-spacing-fixed-md;
 	}
@@ -278,8 +265,11 @@
 	}
 
 	> .db-navigation {
+		overflow: hidden auto;
+		padding-block-start: variables.$db-spacing-fixed-md;
 		> menu {
-			padding-inline: variables.$db-spacing-fixed-xs; // we need this for puls to show up
+			flex-direction: column;
+			padding-inline: variables.$db-spacing-fixed-lg;
 
 			> .db-navigation-item,
 			> .db-navigation-item-group {

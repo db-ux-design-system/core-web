@@ -222,6 +222,9 @@ export type DBCustomSelectDefaultState = {
 	_infoTextId?: string;
 	_internalChangeTimestamp: number;
 	_documentClickListenerCallbackId?: string;
+	_documentScrollListenerCallbackId?: string;
+	handleDocumentScroll: (event: any) => void;
+	_observer?: IntersectionObserver;
 	getNativeSelectValue: () => string;
 	getOptionLabel: (option: CustomSelectOptionType) => string;
 	getOptionChecked: (value?: string) => boolean;

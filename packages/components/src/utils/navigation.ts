@@ -1,4 +1,4 @@
-import { handleDataOutside } from './index';
+import { handleDataOutside } from './floating-components';
 
 export type TriangleData = {
 	itemRect: DOMRect;
@@ -144,7 +144,7 @@ export class NavigationItemSafeTriangle {
 		return false;
 	}
 
-	private getTriangleCoordinates(variant: 'safe-triangle' | 'fill-gap'):
+	private getTriangleCoordinates():
 		| undefined
 		| {
 				lb: string;
@@ -155,23 +155,6 @@ export class NavigationItemSafeTriangle {
 		if (!this.triangleData) {
 			return;
 		}
-
-		/*	if (variant === 'fill-gap') {
-			const itemHeight = `${
-				this.triangleData.itemRect.height +
-				2 * this.triangleData.padding
-			}px`;
-			const xStart = `${
-				this.triangleData.parentElementWidth - this.triangleData.padding
-			}px`;
-
-			return {
-				lb: `${xStart} ${itemHeight}`,
-				lt: `${xStart} 0`,
-				rt: '100% 0',
-				rb: `100% ${itemHeight}`
-			};
-		}*/
 
 		const tipX = this.getTriangleTipX();
 		const tipY = this.getTriangleTipY();
@@ -202,9 +185,7 @@ export class NavigationItemSafeTriangle {
 
 		const isOverSubNavigation = this.hasMouseEnteredSubNavigation();
 
-		const coordinates = this.getTriangleCoordinates(
-			isOverSubNavigation ? 'fill-gap' : 'safe-triangle'
-		);
+		const coordinates = this.getTriangleCoordinates();
 
 		if (!coordinates) {
 			return;
@@ -225,7 +206,6 @@ export const handleSubNavigationPosition = (
 	element: HTMLElement,
 	level: number = 0
 ) => {
-	// TODO: Add the same logic for tooltips inside db-navigation-item
 	for (const navItem of Array.from(
 		element.querySelectorAll('.db-navigation-item-group')
 	)) {

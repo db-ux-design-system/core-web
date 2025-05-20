@@ -8,7 +8,8 @@ import {
 	useStore
 } from '@builder.io/mitosis';
 import { DBPopoverProps, DBPopoverState } from './model';
-import { cls, getBooleanAsString, handleDataOutside } from '../../utils';
+import { cls, getBooleanAsString } from '../../utils';
+import { handleDataOutside } from '../../utils/floating-components';
 
 useMetadata({});
 useDefaultProps<DBPopoverProps>({});

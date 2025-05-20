@@ -9,7 +9,7 @@
 
 	&:is([data-e2e-hover="true"], :hover, :focus-within) {
 		> article:not([data-open="false"]) {
-			@extend %show-popover;
+			@include popover-component.show-popover;
 		}
 	}
 
@@ -17,10 +17,12 @@
 		@extend %popover-center;
 		@extend %default-popover;
 
+		display: none;
+
 		@include component.get-data-spacing();
 
 		&[data-open="true"] {
-			@extend %show-popover;
+			@include popover-component.show-popover;
 		}
 	}
 }
