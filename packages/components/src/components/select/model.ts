@@ -21,7 +21,8 @@ import {
 
 export type DBSelectDefaultProps = {
 	/**
-	 * Enable multiple select -> use DBCustomSelect/db-custom-select for a better look
+	 * @deprecated
+	 * Enables multiple select, but it isn't styles please use DBCustomSelect/db-custom-select instead
 	 */
 	multiple?: boolean;
 
