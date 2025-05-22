@@ -5,7 +5,6 @@
 .db-popover {
 	position: relative;
 	display: flex;
-	inline-size: fit-content;
 
 	&:is([data-e2e-hover="true"], :hover, :focus-within) {
 		> article:not([data-open="false"]) {

@@ -24,8 +24,6 @@ $tooltip-arrow-shadow-size: variables.$db-sizing-2xs;
 	// surrounding tags styling reset
 	font-weight: initial;
 	padding: variables.$db-spacing-fixed-2xs variables.$db-spacing-fixed-xs;
-	block-size: fit-content;
-	inline-size: fit-content;
 
 	&::after {
 		background-color: colors.$db-adaptive-bg-basic-level-1-default;
@@ -61,41 +59,41 @@ $tooltip-arrow-shadow-size: variables.$db-sizing-2xs;
 		}
 	}
 
-	&:not([data-placement], [data-outside-vy]),
-	&[data-placement^="bottom"]:not([data-outside-vy]),
-	&[data-outside-vy="top"]:not([data-outside-vx]) {
+	&:not([data-placement], [data-corrected-placement]),
+	&[data-placement^="bottom"]:not([data-corrected-placement]),
+	&[data-corrected-placement^="bottom"] {
 		&::after {
-			inset-inline-start: 50%;
+			inset-inline-start: var(--db-tooltip-arrow-inline-start, 50%);
 			inset-block-start: 0;
 			translate: -50% -50%;
 			rotate: 315deg;
 		}
 	}
 
-	&[data-placement^="top"]:not([data-outside-vy]),
-	&[data-outside-vy="bottom"]:not([data-outside-vx]) {
+	&[data-placement^="top"]:not([data-corrected-placement]),
+	&[data-corrected-placement^="top"] {
 		&::after {
-			inset-inline-start: 50%;
+			inset-inline-start: var(--db-tooltip-arrow-inline-start, 50%);
 			inset-block-end: 0;
 			translate: -50% 50%;
 			rotate: 135deg;
 		}
 	}
 
-	&[data-placement^="right"]:not([data-outside-vx]),
-	&[data-outside-vx="left"] {
+	&[data-placement^="right"]:not([data-corrected-placement]),
+	&[data-corrected-placement^="right"] {
 		&::after {
-			inset-block-start: 50%;
+			inset-block-start: var(--db-tooltip-arrow-block-start, 50%);
 			inset-inline-start: 0;
 			translate: -50% -50%;
 			rotate: 225deg;
 		}
 	}
 
-	&[data-placement^="left"]:not([data-outside-vx]),
-	&[data-outside-vx="right"] {
+	&[data-placement^="left"]:not([data-corrected-placement]),
+	&[data-corrected-placement^="left"] {
 		&::after {
-			inset-block-start: 50%;
+			inset-block-start: var(--db-tooltip-arrow-block-start, 50%);
 			inset-inline-end: 0;
 			translate: 50% -50%;
 			rotate: 45deg;

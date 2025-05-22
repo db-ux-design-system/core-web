@@ -107,6 +107,7 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 		_documentClickListenerCallbackId: undefined,
 		_internalChangeTimestamp: 0,
 		_documentScrollListenerCallbackId: undefined,
+		_observer: undefined,
 		handleDocumentScroll: (event: any) => {
 			if (
 				event?.target?.contains &&
@@ -248,6 +249,7 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 			if (detailsRef) {
 				const dropdown = detailsRef.querySelector('article');
 				if (dropdown) {
+					// This is a workaround for the angular
 					delay(() => {
 						handleFixedDropdown(
 							dropdown,

@@ -685,6 +685,7 @@ export type ValueLabelType = {
 export type DocumentScrollState = {
 	_documentScrollListenerCallbackId?: string;
 	handleDocumentScroll: (event: any, parent?: HTMLElement) => void;
+	_observer?: IntersectionObserver;
 };
 
 export type PopoverState = {

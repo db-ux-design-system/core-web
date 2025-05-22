@@ -7,7 +7,12 @@ import {
 	useStore
 } from '@builder.io/mitosis';
 import { DBTooltipProps, DBTooltipState } from './model';
-import { cls, getBooleanAsString, uuid } from '../../utils';
+import {
+	cls,
+	delay as utilsDelay,
+	getBooleanAsString,
+	uuid
+} from '../../utils';
 import { ClickEvent } from '../../shared/model';
 import { DEFAULT_ID } from '../../shared/constants';
 import { handleFixedPopover } from '../../utils/floating-components';
@@ -23,12 +28,20 @@ export default function DBTooltip(props: DBTooltipProps) {
 		_id: DEFAULT_ID,
 		initialized: false,
 		_documentScrollListenerCallbackId: undefined,
+		_observer: new IntersectionObserver((payload) => {
+			const entry = payload.find(
+				({ target }) => target === state.getParent()
+			);
+			if (entry && !entry.isIntersecting) {
+				state.handleEscape(false);
+			}
+		}),
 		handleClick: (event: ClickEvent<HTMLElement>) => {
 			event.stopPropagation();
 		},
 		handleEscape: (event: any) => {
 			if (
-				event.key === 'Escape' &&
+				(!event || event.key === 'Escape') &&
 				_ref &&
 				getComputedStyle(_ref).visibility === 'visible'
 			) {
@@ -48,11 +61,14 @@ export default function DBTooltip(props: DBTooltipProps) {
 		handleAutoPlacement: (parent?: HTMLElement) => {
 			if (!parent) return;
 			if (_ref) {
-				handleFixedPopover(
-					_ref,
-					parent,
-					(props.placement as unknown as string) ?? 'bottom'
-				);
+				// This is a workaround for angular
+				utilsDelay(() => {
+					handleFixedPopover(
+						_ref,
+						parent,
+						(props.placement as unknown as string) ?? 'bottom'
+					);
+				}, 1);
 			}
 		},
 		handleDocumentScroll: (event: any, parent?: HTMLElement) => {
@@ -66,6 +82,8 @@ export default function DBTooltip(props: DBTooltipProps) {
 					state._documentScrollListenerCallbackId!
 				);
 			}
+
+			state._observer?.unobserve(state.getParent());
 		},
 		handleEnter(parent?: HTMLElement): void {
 			state._documentScrollListenerCallbackId =
@@ -73,6 +91,7 @@ export default function DBTooltip(props: DBTooltipProps) {
 					state.handleDocumentScroll(event, parent)
 				);
 			state.handleAutoPlacement(parent);
+			state._observer?.observe(state.getParent());
 		}
 	});
 

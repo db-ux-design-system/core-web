@@ -223,7 +223,6 @@ export type DBCustomSelectDefaultState = {
 	_infoTextId?: string;
 	_internalChangeTimestamp: number;
 	_documentClickListenerCallbackId?: string;
-	_observer?: IntersectionObserver;
 	getNativeSelectValue: () => string;
 	getOptionLabel: (option: CustomSelectOptionType) => string;
 	getOptionChecked: (value?: string) => boolean;

@@ -69,55 +69,178 @@ export const handleDataOutside = (el: Element): DBDataOutsidePair => {
 	return dataOutsidePair;
 };
 
-const overwriteYPlacement = (
-	placement: string,
-	vy?: 'top' | 'bottom'
-): string => {
-	if (vy === 'top' && placement?.startsWith('top')) {
-		return placement?.replace('top', 'bottom');
-	} else if (vy === 'bottom' && placement?.startsWith('bottom')) {
-		return placement?.replace('bottom', 'top');
-	}
-	return placement;
-};
-
 export const handleFixedDropdown = (
 	element: HTMLElement,
 	parent: HTMLElement,
 	placement: string
 ) => {
-	const { vy } = handleDataOutside(element);
-	const dropdownRect = element.getBoundingClientRect();
-	const { top, height, left, width } = parent.getBoundingClientRect();
+	// We skip this if we are in mobile it's already fixed
+	if (getComputedStyle(element).zIndex === '9999') return;
 
-	placement = overwriteYPlacement(placement, vy);
+	const {
+		top,
+		bottom,
+		childHeight,
+		childWidth,
+		width,
+		right,
+		left,
+		correctedPlacement
+	} = getFloatingProps(element, parent, placement);
 
-	const fullWidth = element.dataset.width === 'full';
+	const fullWidth = element.dataset['width'] === 'full';
 
 	if (fullWidth) {
 		element.style.inlineSize = `${width}px`;
 	}
 
 	if (
-		placement === 'top' ||
-		placement === 'bottom' ||
-		placement === 'top-start' ||
-		placement === 'bottom-start'
+		correctedPlacement === 'top' ||
+		correctedPlacement === 'bottom' ||
+		correctedPlacement === 'top-start' ||
+		correctedPlacement === 'bottom-start'
 	) {
 		element.style.insetInlineStart = `${left}px`;
-	} else if (placement === 'top-end' || placement === 'bottom-end') {
-		element.style.insetInlineStart = `${
-			left + width - dropdownRect.width
-		}px`;
+	} else if (
+		correctedPlacement === 'top-end' ||
+		correctedPlacement === 'bottom-end'
+	) {
+		element.style.insetInlineStart = `${right - childWidth}px`;
 	}
 
-	if (placement?.startsWith('top')) {
-		element.style.insetBlockStart = `${top - dropdownRect.height}px`;
-	} else if (placement?.startsWith('bottom')) {
-		element.style.insetBlockStart = `${top + height}px`;
+	if (correctedPlacement?.startsWith('top')) {
+		element.style.insetBlockStart = `${top - childHeight}px`;
+	} else if (correctedPlacement?.startsWith('bottom')) {
+		element.style.insetBlockStart = `${bottom}px`;
 	}
 
 	element.style.position = 'fixed';
+};
+
+const getFloatingProps = (
+	element: HTMLElement,
+	parent: HTMLElement,
+	placement: string
+) => {
+	const childRect = element.getBoundingClientRect();
+	const { top, height, bottom, right, left, width } =
+		parent.getBoundingClientRect();
+
+	const { innerHeight, innerWidth } = window;
+
+	let childHeight = childRect.height;
+	let childWidth = childRect.width;
+
+	if (placement === 'bottom' || placement === 'top') {
+		childWidth = childWidth / 2;
+	}
+
+	if (placement === 'left' || placement === 'right') {
+		childHeight = childHeight / 2;
+	}
+
+	const outsideBottom = bottom + childHeight > innerHeight;
+	const outsideTop = top - childHeight < 0;
+	const outsideLeft = left - childWidth < 0;
+	const outsideRight = right + childWidth > innerWidth;
+
+	let correctedPlacement = placement;
+
+	if (placement.startsWith('bottom')) {
+		if (outsideBottom) {
+			correctedPlacement = placement?.replace('bottom', 'top');
+
+			if (outsideLeft && outsideRight) {
+				correctedPlacement = 'top';
+			} else if (outsideLeft) {
+				correctedPlacement = 'top-start';
+			} else if (outsideRight) {
+				correctedPlacement = 'top-end';
+			}
+		} else {
+			if (outsideLeft && outsideRight) {
+				correctedPlacement = 'bottom';
+			} else if (outsideLeft) {
+				correctedPlacement = 'bottom-start';
+			} else if (outsideRight) {
+				correctedPlacement = 'bottom-end';
+			}
+		}
+	} else if (placement.startsWith('top')) {
+		if (outsideTop) {
+			correctedPlacement = placement?.replace('top', 'bottom');
+
+			if (outsideLeft && outsideRight) {
+				correctedPlacement = 'bottom';
+			} else if (outsideLeft) {
+				correctedPlacement = 'bottom-start';
+			} else if (outsideRight) {
+				correctedPlacement = 'bottom-end';
+			}
+		} else {
+			if (outsideLeft && outsideRight) {
+				correctedPlacement = 'top';
+			} else if (outsideLeft) {
+				correctedPlacement = 'top-start';
+			} else if (outsideRight) {
+				correctedPlacement = 'top-end';
+			}
+		}
+	} else if (placement.startsWith('left')) {
+		if (outsideLeft) {
+			correctedPlacement = placement?.replace('left', 'right');
+
+			if (outsideBottom && outsideTop) {
+				correctedPlacement = 'right';
+			} else if (outsideBottom) {
+				correctedPlacement = 'right-end';
+			} else if (outsideTop) {
+				correctedPlacement = 'right-start';
+			}
+		} else {
+			if (outsideBottom && outsideTop) {
+				correctedPlacement = 'left';
+			} else if (outsideBottom) {
+				correctedPlacement = 'left-end';
+			} else if (outsideTop) {
+				correctedPlacement = 'left-start';
+			}
+		}
+	} else if (correctedPlacement.startsWith('right')) {
+		if (outsideRight) {
+			correctedPlacement = placement?.replace('right', 'left');
+
+			if (outsideBottom && outsideTop) {
+				correctedPlacement = 'left';
+			} else if (outsideBottom) {
+				correctedPlacement = 'left-end';
+			} else if (outsideTop) {
+				correctedPlacement = 'left-start';
+			}
+		} else {
+			if (outsideBottom && outsideTop) {
+				correctedPlacement = 'right';
+			} else if (outsideBottom) {
+				correctedPlacement = 'right-end';
+			} else if (outsideTop) {
+				correctedPlacement = 'right-start';
+			}
+		}
+	}
+
+	return {
+		top,
+		bottom,
+		right,
+		height,
+		width,
+		left,
+		childHeight: childRect.height,
+		childWidth: childRect.width,
+		correctedPlacement,
+		innerWidth,
+		innerHeight
+	};
 };
 
 export const handleFixedPopover = (
@@ -125,54 +248,124 @@ export const handleFixedPopover = (
 	parent: HTMLElement,
 	placement: string
 ) => {
-	const { vy, vx } = handleDataOutside(element);
-	const popoverRect = element.getBoundingClientRect();
-	const { top, height, right, left, width } = parent.getBoundingClientRect();
 	const distance =
 		getComputedStyle(element).getPropertyValue('--db-popover-distance') ??
 		'0px';
 
-	placement = overwriteYPlacement(placement, vy);
+	const {
+		top,
+		height,
+		width,
+		childHeight,
+		childWidth,
+		right,
+		left,
+		bottom,
+		correctedPlacement,
+		innerWidth,
+		innerHeight
+	} = getFloatingProps(element, parent, placement);
 
-	if (vx === 'right' && placement?.startsWith('right')) {
-		placement = placement?.replace('right', 'left');
-	} else if (vx === 'left' && placement?.startsWith('left')) {
-		placement = placement?.replace('left', 'right');
+	// Tooltip arrow position
+
+	if (
+		childWidth > width &&
+		(correctedPlacement.startsWith('bottom') ||
+			correctedPlacement.startsWith('top'))
+	) {
+		const diff = (width / 2 / childWidth) * 100;
+		if (correctedPlacement.endsWith('start')) {
+			element.style.setProperty(
+				'--db-tooltip-arrow-inline-start',
+				`${diff}%`
+			);
+		} else if (correctedPlacement.endsWith('end')) {
+			element.style.setProperty(
+				'--db-tooltip-arrow-inline-start',
+				`${100 - diff}%`
+			);
+		}
+	}
+	if (
+		childHeight > height &&
+		(correctedPlacement.startsWith('left') ||
+			correctedPlacement.startsWith('bottom'))
+	) {
+		const diff = (height / 2 / childHeight) * 100;
+		if (correctedPlacement.endsWith('start')) {
+			element.style.setProperty(
+				'--db-tooltip-arrow-block-start',
+				`${diff}%`
+			);
+		} else if (correctedPlacement.endsWith('end')) {
+			element.style.setProperty(
+				'--db-tooltip-arrow-block-start',
+				`${100 - diff}%`
+			);
+		}
 	}
 
-	if (placement === 'right' || placement === 'left') {
+	// Popover position
+
+	if (correctedPlacement === 'right' || correctedPlacement === 'left') {
 		// center horizontally
 		element.style.insetBlockStart = `${top + height / 2}px`;
-	} else if (placement === 'right-start' || placement === 'left-start') {
+	} else if (
+		correctedPlacement === 'right-start' ||
+		correctedPlacement === 'left-start'
+	) {
+		const end = top + childHeight;
 		element.style.insetBlockStart = `${top}px`;
-	} else if (placement === 'right-end' || placement === 'left-end') {
-		element.style.insetBlockStart = `${
-			top + height - popoverRect.height
-		}px`;
-	} else if (placement === 'top' || placement === 'bottom') {
+		element.style.insetBlockEnd = `${end > innerHeight ? innerHeight : end}px`;
+	} else if (
+		correctedPlacement === 'right-end' ||
+		correctedPlacement === 'left-end'
+	) {
+		const start = bottom - childHeight;
+		element.style.insetBlockStart = `${start < 0 ? 0 : start}px`;
+		element.style.insetBlockEnd = `${bottom}px`;
+	} else if (
+		correctedPlacement === 'top' ||
+		correctedPlacement === 'bottom'
+	) {
 		// center vertically
 		element.style.insetInlineStart = `${left + width / 2}px`;
-	} else if (placement === 'top-start' || placement === 'bottom-start') {
+	} else if (
+		correctedPlacement === 'top-start' ||
+		correctedPlacement === 'bottom-start'
+	) {
+		const end = left + childWidth;
 		element.style.insetInlineStart = `${left}px`;
-	} else if (placement === 'top-end' || placement === 'bottom-end') {
-		element.style.insetInlineStart = `${
-			left + width - popoverRect.width
-		}px`;
+		element.style.insetInlineEnd = `${end > innerWidth ? innerWidth : end}px`;
+	} else if (
+		correctedPlacement === 'top-end' ||
+		correctedPlacement === 'bottom-end'
+	) {
+		const start = left - childWidth;
+		element.style.insetInlineStart = `${right - childWidth}px`;
+		element.style.insetInlineEnd = `${start < 0 ? 0 : start}px`;
 	}
 
-	if (placement?.startsWith('right')) {
+	if (correctedPlacement?.startsWith('right')) {
+		const end = right + childWidth;
 		element.style.insetInlineStart = `calc(${right}px + ${distance})`;
-	} else if (placement?.startsWith('left')) {
-		element.style.insetInlineStart = `calc(${
-			left - popoverRect.width
-		}px - ${distance})`;
-	} else if (placement?.startsWith('top')) {
+		element.style.insetInlineEnd = `calc(${end > innerWidth ? innerWidth : end}px + ${distance})`;
+	} else if (correctedPlacement?.startsWith('left')) {
+		const start = left - childWidth;
+		element.style.insetInlineStart = `calc(${start < 0 ? 0 : start}px - ${distance})`;
+		element.style.insetInlineEnd = `calc(${right}px - ${distance})`;
+	} else if (correctedPlacement?.startsWith('top')) {
+		const start = top - childHeight;
 		element.style.insetBlockStart = `calc(${
-			top - popoverRect.height
+			start < 0 ? 0 : start
 		}px - ${distance})`;
-	} else if (placement?.startsWith('bottom')) {
-		element.style.insetBlockStart = `calc(${top + height}px + ${distance})`;
+		element.style.insetBlockEnd = `calc(${bottom}px - ${distance})`;
+	} else if (correctedPlacement?.startsWith('bottom')) {
+		const end = bottom + childHeight;
+		element.style.insetBlockStart = `calc(${bottom}px + ${distance})`;
+		element.style.insetBlockEnd = `calc(${end > innerHeight ? innerHeight : end}px + ${distance})`;
 	}
 
 	element.style.position = 'fixed';
+	element.setAttribute('data-corrected-placement', correctedPlacement);
 };
