@@ -22,14 +22,7 @@ export default function DBPopover(props: DBPopoverProps) {
 		initialized: false,
 		isExpanded: false,
 		_documentScrollListenerCallbackId: undefined,
-		_observer: new IntersectionObserver((payload) => {
-			const entry = payload.find(
-				({ target }) => target === state.getTrigger()
-			);
-			if (entry && !entry.isIntersecting) {
-				state.handleEscape(false);
-			}
-		}),
+		_observer: undefined,
 		handleEscape: (event: any) => {
 			if (!event || event.key === 'Escape') {
 				// TODO: Recursive for any child
@@ -135,6 +128,15 @@ export default function DBPopover(props: DBPopoverProps) {
 			});
 			['mouseleave', 'focusout'].forEach((event) => {
 				_ref.addEventListener(event, () => state.handleLeave());
+			});
+
+			state._observer = new IntersectionObserver((payload) => {
+				const entry = payload.find(
+					({ target }) => target === state.getTrigger()
+				);
+				if (entry && !entry.isIntersecting) {
+					state.handleEscape(false);
+				}
 			});
 		}
 	}, [_ref, state.initialized]);

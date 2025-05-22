@@ -28,14 +28,7 @@ export default function DBTooltip(props: DBTooltipProps) {
 		_id: DEFAULT_ID,
 		initialized: false,
 		_documentScrollListenerCallbackId: undefined,
-		_observer: new IntersectionObserver((payload) => {
-			const entry = payload.find(
-				({ target }) => target === state.getParent()
-			);
-			if (entry && !entry.isIntersecting) {
-				state.handleEscape(false);
-			}
-		}),
+		_observer: undefined,
 		handleClick: (event: ClickEvent<HTMLElement>) => {
 			event.stopPropagation();
 		},
@@ -118,6 +111,15 @@ export default function DBTooltip(props: DBTooltipProps) {
 				parent.setAttribute('data-has-tooltip', 'true');
 				parent.setAttribute('aria-describedby', state._id);
 			}
+
+			state._observer = new IntersectionObserver((payload) => {
+				const entry = payload.find(
+					({ target }) => target === state.getParent()
+				);
+				if (entry && !entry.isIntersecting) {
+					state.handleEscape(false);
+				}
+			});
 
 			state.initialized = false;
 		}
