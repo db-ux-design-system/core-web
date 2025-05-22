@@ -316,6 +316,9 @@ export type FormProps = CustomFormProps &
 	ShowLabelProps &
 	ValueProps;
 
+export const FieldSizingList = ['fixed', 'content'] as const;
+export type FieldSizingType = (typeof FieldSizingList)[number];
+
 export type FormTextProps = {
 	/**
 	 * Maximum length (number of characters) of value
@@ -341,6 +344,12 @@ export type FormTextProps = {
 	 * The disabled attribute can be set to keep a user from edit on the form element
 	 */
 	readonly?: boolean | string;
+
+	/**
+	 * Adds shrinkwrap for input and textarea: https://developer.mozilla.org/en-US/docs/Web/CSS/field-sizing
+	 * Note: Only supported in Chromium browsers
+	 */
+	fieldSizing?: FieldSizingType;
 };
 
 export type FormSizeProps = {
