@@ -347,7 +347,7 @@ export type FormTextProps = {
 
 	/**
 	 * Adds shrinkwrap for input and textarea: https://developer.mozilla.org/en-US/docs/Web/CSS/field-sizing
-	 * Note: Only supported in Chromium browsers
+	 * Note: Only supported in Chromium browsers so far
 	 */
 	fieldSizing?: FieldSizingType;
 };
