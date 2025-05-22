@@ -22,7 +22,7 @@ import {
 export type DBSelectDefaultProps = {
 	/**
 	 * @deprecated
-	 * Enables multiple select, but it isn't styles please use DBCustomSelect/db-custom-select instead
+	 * Enables multiple select, but it isn't styled, please use DBCustomSelect/db-custom-select instead
 	 */
 	multiple?: boolean;
 
