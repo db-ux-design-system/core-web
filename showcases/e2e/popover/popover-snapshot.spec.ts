@@ -14,8 +14,8 @@ test.describe('DBPopover', () => {
 	getDefaultScreenshotTest({
 		path,
 		preScreenShot: async (page) => hoverPre(page, selector),
-		// There is a stencil issue for playwright which aligns the popover wrong
-		ratio: isStencil(process.env.showcase) ? '0.05' : undefined
+		// The fixed popover may differ slightly in different browsers
+		ratio: isStencil(process.env.showcase) ? '0.05' : '0.01'
 	});
 	runAriaSnapshotTest({
 		path,
