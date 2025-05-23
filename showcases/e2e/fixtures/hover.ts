@@ -15,5 +15,5 @@ export const hoverPre = async (page: Page, selector: string) => {
 	}
 
 	// Wait for animations
-	await page.waitForTimeout(1000);
+	await page.waitForTimeout(2000);
 };
