@@ -4,9 +4,7 @@ import {
 	DBCustomSelect,
 	DBTabList,
 	DBTabPanel,
-	DBTabs
-} from '@db-ux/react-core-components/src';
-import {
+	DBTabs,
 	DBAccordion,
 	DBAccordionItem,
 	DBButton,
@@ -18,7 +16,8 @@ import {
 	DBTag,
 	DBTextarea,
 	DBTooltip,
-	DBLink
+	DBLink,
+	DBPopover
 } from '../../../../../output/react/src';
 import type {
 	ChangeEvent,
@@ -79,7 +78,8 @@ const FormComponent = () => {
 						required
 						showSearch
 						multiple
-						placeholder="Placeholder"></DBCustomSelect>
+						placeholder="Placeholder"
+					/>
 					<fieldset>
 						<p>Input:</p>
 						<DBInput
@@ -382,11 +382,40 @@ const FormComponent = () => {
 				<DBDivider />
 
 				<DBAccordion>
-					{accordionItems?.map((item) => (
+					{accordionItems?.map((item, index) => (
 						<DBAccordionItem
 							key={item.value}
 							headlinePlain={item.value}>
-							{item.value}
+							<p>{item.value}</p>
+							{index === 0 && (
+								<DBCustomSelect
+									options={[
+										{ value: 'Option 1' },
+										{ value: 'Option 2' }
+									]}
+									label="Test"
+									required
+									showSearch
+									multiple
+									placeholder="Placeholder"
+								/>
+							)}
+							{index === 1 && (
+								<DBPopover
+									trigger={<DBButton>Popover</DBButton>}>
+									<ul>
+										<li>Content 1</li>
+										<li>Content 2</li>
+										<li>Content 3</li>
+									</ul>
+								</DBPopover>
+							)}
+							{index === 2 && (
+								<DBButton>
+									Tooltip
+									<DBTooltip>Tooltip</DBTooltip>
+								</DBButton>
+							)}
 						</DBAccordionItem>
 					))}
 				</DBAccordion>

@@ -1,5 +1,6 @@
 import {
 	ClickEventState,
+	DocumentScrollState,
 	EmphasisProps,
 	GlobalProps,
 	GlobalState,
@@ -19,10 +20,13 @@ export type DBTooltipProps = DBTooltipDefaultProps &
 	PlacementProps &
 	PopoverProps;
 
-export type DBTooltipDefaultState = {};
+export type DBTooltipDefaultState = {
+	getParent: () => HTMLElement;
+};
 
 export type DBTooltipState = DBTooltipDefaultState &
 	GlobalState &
 	ClickEventState<HTMLElement> &
 	PopoverState &
-	InitializedState;
+	InitializedState &
+	DocumentScrollState;
