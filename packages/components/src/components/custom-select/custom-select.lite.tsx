@@ -249,7 +249,7 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 			if (detailsRef) {
 				const dropdown = detailsRef.querySelector('article');
 				if (dropdown) {
-					// This is a workaround for the angular
+					// This is a workaround for Angular
 					delay(() => {
 						handleFixedDropdown(
 							dropdown,
