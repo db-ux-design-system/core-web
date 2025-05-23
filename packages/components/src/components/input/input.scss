@@ -67,15 +67,19 @@ $icon-padding: calc(
 		}
 	}
 
-	&:has(input[type="date"]),
-	&:has(input[type="week"]),
-	&:has(input[type="datetime-local"]),
-	&:has(input[type="month"]) {
-		@include icons.set-icon("calendar", "after");
-	}
+	// This @supports should exclude Mozilla Firefox
+	// TODO: Reevaluate after Mozilla is supporting week and month input types
+	@supports selector(::-webkit-calendar-picker-indicator) {
+		&:has(input[type="date"]),
+		&:has(input[type="week"]),
+		&:has(input[type="datetime-local"]),
+		&:has(input[type="month"]) {
+			@include icons.set-icon("calendar", "after");
+		}
 
-	&:has(input[type="time"]) {
-		@include icons.set-icon("clock", "after");
+		&:has(input[type="time"]) {
+			@include icons.set-icon("clock", "after");
+		}
 	}
 
 	&:has(input[type="file"]) {
@@ -105,16 +109,35 @@ $icon-padding: calc(
 		}
 	}
 
+	&[data-variant="floating"] {
+		input {
+			&::-webkit-calendar-picker-indicator,
+			&::-webkit-search-cancel-button {
+				/* stylelint-disable-next-line db-ux/use-spacings */
+				margin-block-end: var(--db-base-body-icon-font-size-2xs);
+			}
+		}
+	}
+
 	input {
 		position: relative;
 
 		&::-webkit-calendar-picker-indicator,
 		&::-webkit-search-cancel-button {
+			@extend %db-overwrite-font-size-sm;
+
 			background-image: none;
 			inline-size: icons.$default-icon-font-size;
 			block-size: icons.$default-icon-font-size;
 			padding: 0;
 			cursor: pointer;
+			/* stylelint-disable-next-line db-ux/use-spacings */
+			margin-block-start: variables.$db-border-width-3xs;
+			border-radius: variables.$db-border-radius-xs;
+
+			&:focus-visible {
+				@include helpers.get-focus-placeholder;
+			}
 		}
 
 		&::-webkit-search-cancel-button {
