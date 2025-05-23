@@ -1,5 +1,5 @@
 // TODO: We should reevaluate this as soon as CSS Anchor Positioning is supported in all relevant browsers
-const isInView = (el: Element) => {
+const isInView = (el: HTMLElement) => {
 	const { top, bottom, left, right } = el.getBoundingClientRect();
 	const { innerHeight, innerWidth } = window;
 
@@ -9,13 +9,13 @@ const isInView = (el: Element) => {
 	let outRight = right > innerWidth;
 
 	// We need to check if it was already outside
-	const outsideY = el.hasAttribute('data-outside-vy');
-	const outsideX = el.hasAttribute('data-outside-vx');
+	const outsideY = el.dataset['outsideVy'];
+	const outsideX = el.dataset['outsideVx'];
 	const parentRect = el?.parentElement?.getBoundingClientRect();
 
 	if (parentRect) {
 		if (outsideY) {
-			const position = el.getAttribute('data-outside-vy');
+			const position = el.dataset['outsideVy'];
 			if (position === 'top') {
 				outTop = parentRect.top - (bottom - parentRect.bottom) < 0;
 			} else {
@@ -25,7 +25,7 @@ const isInView = (el: Element) => {
 		}
 
 		if (outsideX) {
-			const position = el.getAttribute('data-outside-vx');
+			const position = el.dataset['outsideVx'];
 			if (position === 'left') {
 				outLeft = parentRect.left - (right - parentRect.right) < 0;
 			} else {
@@ -47,24 +47,24 @@ export interface DBDataOutsidePair {
 	vx?: 'left' | 'right';
 	vy?: 'top' | 'bottom';
 }
-export const handleDataOutside = (el: Element): DBDataOutsidePair => {
+export const handleDataOutside = (el: HTMLElement): DBDataOutsidePair => {
 	const { outTop, outBottom, outLeft, outRight } = isInView(el);
 	let dataOutsidePair: DBDataOutsidePair = {};
 
 	if (outTop || outBottom) {
 		dataOutsidePair = { vy: outTop ? 'top' : 'bottom' };
-		el.setAttribute('data-outside-vy', dataOutsidePair.vy!);
+		el.dataset['outsideVy'] = dataOutsidePair.vy!;
 	} else {
-		el.removeAttribute('data-outside-vy');
+		delete el.dataset['outsideVy'];
 	}
 	if (outLeft || outRight) {
 		dataOutsidePair = {
 			...dataOutsidePair,
 			vx: outRight ? 'right' : 'left'
 		};
-		el.setAttribute('data-outside-vx', dataOutsidePair.vx!);
+		el.dataset['outsideVx'] = dataOutsidePair.vx!;
 	} else {
-		el.removeAttribute('data-outside-vx');
+		delete el.dataset['outsideVx'];
 	}
 
 	return dataOutsidePair;
