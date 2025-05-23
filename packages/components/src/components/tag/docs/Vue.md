@@ -11,12 +11,21 @@ import { DBTag } from "@db-ux/v-core-components";
 </script>
 
 <template>
-	<DBTag><DBButton>Tag as Button</DBButton></DBTag>
+	<DBTag><button type="button">Tag as Button</button></DBTag>
 	<DBTag>
-		<DBLink> Tag as Link </DBLink>
+		<a href="#"> Tag as Link </a>
 	</DBTag>
-	<DBTag><DBCheckbox>Tag as Checkbox</DBCheckbox></DBTag>
-	<DBTag><DBRadio>Tag as Radio</DBRadio></DBTag>
+	<DBTag
+		><label for="checkbox01"
+			><input id="checkbox01" type="checkbox" />Tag as Checkbox</label
+		></DBTag
+	>
+	<DBTag
+		><label for="radio01"
+			><input name="radio01" id="radio01" type="radio" />Tag as
+			Radio</label
+		></DBTag
+	>
 	<DBTag>Static Tag</DBTag>
 	<DBTag :overflow="true">
 		<span>Static Tag with overflow</span>
