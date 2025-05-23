@@ -133,33 +133,39 @@ $spacings: (
 				--db-drawer-max-width,
 				calc(100% - #{variables.$db-spacing-fixed-xl})
 			);
+
+			&:not([data-direction]),
+			&[data-direction="right"] {
+				border-inline-start: component.$component-border;
+			}
+
+			&[data-direction="left"] {
+				border-inline-end: component.$component-border;
+			}
+
+			&[data-direction="up"] {
+				border-block-start: component.$component-border;
+			}
+
+			&[data-direction="down"] {
+				border-block-end: component.$component-border;
+			}
 		}
 
 		&[data-rounded="true"] {
 			box-shadow: variables.$db-elevation-md;
 		}
 
-		&:not([data-direction]),
-		&[data-direction="left"] {
-			border-inline-start: component.$component-border;
-		}
-
 		&[data-direction="left"] {
 			@extend %direction-left;
-
-			border-inline-end: component.$component-border;
 		}
 
 		&[data-direction="up"] {
 			@extend %direction-up;
-
-			border-block-start: component.$component-border;
 		}
 
 		&[data-direction="down"] {
 			@extend %direction-down;
-
-			border-block-end: component.$component-border;
 		}
 
 		.db-drawer-header {
