@@ -10,3 +10,7 @@ To do this, we
 - set their status in the [UX Engineering Team Backlog board](https://github.com/orgs/db-ux-design-system/projects/6/views/1) to "ready for release" after reviewing them, so that we have a clear overview of the candidates for the next releases.
 
 Both the release scope, ensuring that all issues are ready for release, and even also other issues candidates might get pushed to that state, and the merging of Pull Requests on release day are managed by a Release Manager.
+
+## Repositories
+
+You would still need to check all repositories for release candidates, that might not be listed within [UX Engineering Team Backlog board](https://github.com/orgs/db-ux-design-system/projects/6/views/1) to "ready for release" column: <https://github.com/db-ux-design-system/.github-private/blob/main/profile/README.md#repositories-mit-ggf-weiteren-release-relevanten-prs>
