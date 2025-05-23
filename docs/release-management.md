@@ -5,7 +5,8 @@ We aim to provide reliable and consistent releases. Due to dependencies on other
 In order to support this process, and to gain some insight into the current state of issues, we need to both "tag" and track issues in a standardised and normative wording.
 
 To do this, we
-- use semantic versioning wording in our pull request titles ([`fix: `](https://github.com/db-ux-design-system/core-web/blob/main/docs/conventions.md?plain=1#L11) for bugfixes that would be published in a patch release, and [`refactor: `](https://github.com/db-ux-design-system/core-web/blob/main/docs/conventions.md?plain=1#L11) or [`feat: `](https://github.com/db-ux-design-system/core-web/blob/main/docs/conventions.md?plain=1#L11) for targeting minor releases).
+
+- use semantic versioning wording in our pull request titles ([`fix:`](https://github.com/db-ux-design-system/core-web/blob/main/docs/conventions.md?plain=1#L11) for bugfixes that would be published in a patch release, and [`refactor:`](https://github.com/db-ux-design-system/core-web/blob/main/docs/conventions.md?plain=1#L11) or [`feat:`](https://github.com/db-ux-design-system/core-web/blob/main/docs/conventions.md?plain=1#L11) for targeting minor releases).
 - still leave them in draft state even when setting it to "in review" state in the [UX Engineering Team Backlog board](https://github.com/orgs/db-ux-design-system/projects/6/views/1)
 - set their status in the [UX Engineering Team Backlog board](https://github.com/orgs/db-ux-design-system/projects/6/views/1) to "ready for release" after reviewing them, so that we have a clear overview of the candidates for the next releases.
 
