@@ -84,6 +84,7 @@ export default function DBTag(props: DBTagProps) {
 					data-size="small"
 					data-no-text="true"
 					data-variant="ghost"
+					type="button"
 					title={state.getRemoveButtonText()}>
 					{state.getRemoveButtonText()}
 				</button>
