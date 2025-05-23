@@ -651,7 +651,7 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 	onUpdate(() => {
 		state._searchValue = props.searchValue;
 		if (props.searchValue) {
-			const sValue = props.searchValue!; // <- workaround for angular
+			const sValue = props.searchValue!; // <- workaround for Angular
 			state.handleSearch(sValue);
 		}
 	}, [props.searchValue]);
