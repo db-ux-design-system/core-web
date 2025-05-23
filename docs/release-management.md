@@ -9,4 +9,4 @@ To do this, we
 - still leave them in draft state even when setting it to "in review" state in the [UX Engineering Team Backlog board](https://github.com/orgs/db-ux-design-system/projects/6/views/1)
 - set their status in the [UX Engineering Team Backlog board](https://github.com/orgs/db-ux-design-system/projects/6/views/1) to "ready for release" after reviewing them, so that we have a clear overview of the candidates for the next releases.
 
-tbd: Both the release scope and the merging of Pull Requests on release day are managed by a Release Manager.
+Both the release scope, ensuring that all issues are ready for release, and even also other issues candidates might get pushed to that state, and the merging of Pull Requests on release day are managed by a Release Manager.
