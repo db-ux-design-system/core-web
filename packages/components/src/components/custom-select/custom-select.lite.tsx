@@ -681,7 +681,7 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 
 		if (state._selectedOptions?.length) {
 			if (props.transformSelectedLabels) {
-				// We need to add this to another ``const`` for angular generated output to work
+				// We need to add this to another ``const`` for Angular generated output to work
 				const selectedOptions = state._selectedOptions;
 				const transformFn = props.transformSelectedLabels!;
 				state._selectedLabels = transformFn!(selectedOptions);
@@ -797,7 +797,7 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 				onKeyDown={(event) => state.handleKeyboardPress(event)}>
 				{props.children}
 				<Show when={props.options}>
-					{/* We use this because we cannot wrap summary for angular... */}
+					{/* We use this because we cannot wrap summary for Angular... */}
 					<summary
 						id={state._summaryId}
 						class="db-custom-select-form-field"
