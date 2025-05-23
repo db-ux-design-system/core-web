@@ -1,3 +1,4 @@
+// TODO: We should reevaluate this as soon as CSS Anchor Positioning is supported in all relevant browsers
 const isInView = (el: Element) => {
 	const { top, bottom, left, right } = el.getBoundingClientRect();
 	const { innerHeight, innerWidth } = window;
