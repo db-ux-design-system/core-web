@@ -20,6 +20,7 @@ export type DefaultTestType = {
 
 export type DefaultSnapshotTestType = {
 	preScreenShot?: (page: Page, project: FullProject) => Promise<void>;
+	ratio?: string;
 } & DefaultTestType;
 
 export type AxeCoreTestType = {
@@ -92,12 +93,13 @@ export const getDefaultScreenshotTest = ({
 	path,
 	fixedHeight,
 	preScreenShot,
-	skip
+	skip,
+	ratio
 }: DefaultSnapshotTestType) => {
 	test(`should match screenshot`, async ({ page }, { project }) => {
 		const showcase = process.env.showcase;
 		const diffPixel = process.env.diff;
-		const maxDiffPixelRatio = process.env.ratio;
+		const maxDiffPixelRatio = process.env.ratio ?? ratio;
 		const stencil = isStencil(showcase);
 		const isWebkit =
 			project.name === 'webkit' || project.name === 'mobile_safari';
