@@ -1,12 +1,12 @@
 # Release Management
 
-We'd like to provide a reliable and consistent releases. Due to dependencies to other crafts as well as our roadmap we need to actively manage releases and decide on their scope. This is handled through frequent alignments.
+We aim to provide reliable and consistent releases. Due to dependencies on other projects, as well as our roadmap, we need to actively manage releases and decide on their scope. This is done through frequent alignments.
 
-To support this process and gain some insight on the current status of issues, we need to both "tag" and proceed with the issues in a standarized way and with normative wording.
+In order to support this process, and to gain some insight into the current state of issues, we need to both "tag" and track issues in a standardised and normative wording.
 
-That for, we
-- use semantic versioning wordings within our Pull Request titles (`fix: ` for bugfixes that would get published in a patch release, and `refactor: ` or `feat: ` for targeting minor releases).
-- won't set Pull Requests for minor releases to `auto-merge` (they would get merged to `main` branch on release day)
-- set their status within ["UX Engineering Team Backlog" board](https://github.com/orgs/db-ux-design-system/projects/6/views/1) to "ready for release" after reviewing it, so that we have a clear overview regarding candidates for the next releases.
+To do this, we
+- use semantic versioning wording in our pull request titles (`fix: ` for bugfixes that would be published in a patch release, and `refactor: ` or `feat: ` for targeting minor releases).
+- won't set Pull Requests for minor releases to `auto-merge' (they would be merged into the `main' branch on release day)
+- set their status in the [UX Engineering Team Backlog board](https://github.com/orgs/db-ux-design-system/projects/6/views/1) to "ready for release" after reviewing them, so that we have a clear overview of the candidates for the next releases.
 
-tbd: Both the release scope as well as merging the Pull Requests on release day is managed by a Release Manager.
+tbd: Both the release scope and the merging of Pull Requests on release day are managed by a Release Manager.
