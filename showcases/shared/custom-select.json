@@ -1704,7 +1704,6 @@
 					],
 					"label": "Label",
 					"selectedType": "tag",
-					"tagWrapping": "grow",
 					"multiple": true,
 					"id": "id-10271"
 				},
@@ -1736,7 +1735,6 @@
 					],
 					"label": "Label",
 					"selectedType": "tag",
-					"tagWrapping": "grow",
 					"formFieldWidth": "auto",
 					"multiple": true,
 					"id": "id-10272"
