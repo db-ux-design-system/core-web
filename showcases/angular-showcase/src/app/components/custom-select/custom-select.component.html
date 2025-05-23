@@ -44,9 +44,18 @@
 				[placement]="exampleProps?.placement"
 				[selectAllLabel]="'Select all'"
 				[searchLabel]="'Search'"
+				[searchValue]="exampleProps?.searchValue"
+				[selectedLabels]="exampleProps?.selectedLabels"
+				[transformSelectedLabels]="
+					exampleProps?.transformSelectedLabels
+						? getTransformSelectedLabels
+						: undefined
+				"
+				[searchFilter]="
+					exampleProps?.searchFilter ? getSearchFilter : undefined
+				"
 				[selectedType]="exampleProps?.selectedType"
 				[formFieldWidth]="exampleProps?.formFieldWidth"
-				[values]="exampleProps?.mValue"
 				(optionSelected)="console.log($event)"
 			></db-custom-select>
 		}
