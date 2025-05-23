@@ -7,10 +7,11 @@
 $interactive-selectors: "label, button:not(.db-tab-remove-button), a";
 
 @mixin get-weak($name: "adaptive", $border-color: 60, $background-color: 1) {
-	// stylelint-disable-next-line db-ux/use-border-color
-	border-color: var(
+	--db-tag-border-color: var(
 		--db-#{$name}-on-bg-basic-emphasis-#{$border-color}-default
 	);
+	// stylelint-disable-next-line db-ux/use-border-color
+	border-color: var(--db-tag-border-color);
 
 	@include colors.set-current-colors(
 		var(--db-#{$name}-bg-basic-level-#{$background-color}-default),
@@ -19,7 +20,9 @@ $interactive-selectors: "label, button:not(.db-tab-remove-button), a";
 }
 
 @mixin get-strong($name: "adaptive") {
-	border-color: var(--db-#{$name}-on-bg-basic-emphasis-70-default);
+	--db-tag-border-color: var(--db-#{$name}-on-bg-basic-emphasis-70-default);
+	// stylelint-disable-next-line db-ux/use-border-color
+	border-color: var(--db-tag-border-color);
 
 	@include colors.set-current-colors(
 		var(--db-#{$name}-bg-vibrant-default),
