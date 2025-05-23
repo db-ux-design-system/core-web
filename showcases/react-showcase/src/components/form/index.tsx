@@ -73,6 +73,12 @@ const FormComponent = () => {
 		<div className="form-container">
 			<div>
 				<form>
+					<DBTextarea
+						label="test"
+						placeholder="fieldsizing"
+						resize="none"
+						fieldSizing="content"></DBTextarea>
+
 					<DBCustomSelect
 						options={[{ value: 'Option 1' }, { value: 'Option 2' }]}
 						label="Test"

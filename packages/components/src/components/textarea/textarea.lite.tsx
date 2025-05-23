@@ -180,6 +180,7 @@ export default function DBTextarea(props: DBTextareaProps) {
 			<textarea
 				aria-invalid={props.validation === 'invalid'}
 				data-custom-validity={props.validation}
+				data-field-sizing={props.fieldSizing}
 				ref={_ref}
 				id={state._id}
 				data-resize={props.resize}

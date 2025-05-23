@@ -7,6 +7,12 @@
 $scrollbar-width: helpers.px-to-rem(8);
 
 %scrollbar {
+	&[data-field-sizing="content"] {
+		@supports (field-sizing: content) {
+			scrollbar-width: none;
+		}
+	}
+
 	&::-webkit-scrollbar {
 		@extend %default-transition;
 
