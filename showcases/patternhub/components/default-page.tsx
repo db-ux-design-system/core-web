@@ -1,8 +1,15 @@
 import { useRouter } from 'next/router';
 import dynamic from 'next/dynamic';
-import { Fragment, type PropsWithChildren, useEffect, useState } from 'react';
+import {
+	Fragment,
+	type PropsWithChildren,
+	useCallback,
+	useEffect,
+	useState
+} from 'react';
 import hljs from 'highlight.js';
 import Link from 'next/link';
+import { DBSwitch, DBTooltip } from '@db-ux/react-core-components';
 import {
 	DBBrand,
 	DBButton,
@@ -19,6 +26,9 @@ import {
 } from '../data/routes';
 import Navigation from './navigation';
 import VersionSwitcher from './version-switcher';
+
+const preferDark = '(prefers-color-scheme: dark)';
+const colorModeKey = 'db-ux-mode';
 
 const DefaultPage = ({
 	children,
@@ -37,6 +47,25 @@ const DefaultPage = ({
 	>();
 	const [breadcrumb, setBreadcrumb] = useState<NavigationItem[]>();
 	const router = useRouter();
+
+	const [mode, setMode] = useState<boolean>(
+		localStorage.getItem(colorModeKey) === null
+			? globalThis.matchMedia?.(preferDark).matches
+			: localStorage.getItem(colorModeKey) === 'dark'
+	);
+
+	const setColorMode = useCallback((dark: boolean) => {
+		localStorage.setItem(colorModeKey, dark ? 'dark' : 'light');
+		setMode(dark);
+	}, []);
+
+	useEffect(() => {
+		globalThis
+			.matchMedia(preferDark)
+			.addEventListener('change', (event) => {
+				setColorMode(event.matches);
+			});
+	}, []);
 
 	useEffect(() => {
 		hljs.configure({
@@ -106,6 +135,7 @@ const DefaultPage = ({
 			)}
 			{router.isReady && !fullscreen && (
 				<DBPage
+					data-mode={mode ? 'dark' : 'light'}
 					fadeIn
 					variant="fixed"
 					header={
@@ -118,12 +148,20 @@ const DefaultPage = ({
 								</DBBrand>
 							}
 							primaryAction={
-								<DBButton
-									icon="magnifying_glass"
-									variant="ghost"
-									noText>
-									Search
-								</DBButton>
+								<DBSwitch
+									checked={mode}
+									visualAid
+									icon="sun"
+									iconAfter="moon"
+									showLabel={false}
+									onChange={() => {
+										setColorMode(!mode);
+									}}>
+									<DBTooltip>
+										Switch color scheme (light/dark)
+									</DBTooltip>
+									Switch color scheme (light/dark)
+								</DBSwitch>
 							}
 							secondaryAction={<VersionSwitcher />}>
 							<Navigation />
