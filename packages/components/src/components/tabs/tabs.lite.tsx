@@ -104,7 +104,7 @@ export default function DBTabs(props: DBTabsProps) {
 							label.setAttribute('for', tabId);
 							input.id = tabId;
 							input.setAttribute('name', state._name);
-							if (tabPanels.length > 0) {
+							if (tabPanels.length > index) {
 								input.setAttribute(
 									'aria-controls',
 									`${state._name}-tab-panel-${index}`
