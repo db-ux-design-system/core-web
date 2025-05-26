@@ -163,7 +163,7 @@
 					content: "";
 					cursor: default;
 					background-color: dialog-init.$backdrop-color;
-					opacity: dialog-init.$backdrop-opacity-strong;
+					opacity: variables.$db-opacity-lg;
 				}
 			}
 		}

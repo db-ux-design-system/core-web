@@ -2989,6 +2989,66 @@
 	inherits: true;
 }
 
+@property --db-opacity-3xs {
+	syntax: "<number>";
+	initial-value: 0.08;
+	inherits: true;
+}
+
+@property --db-opacity-2xs {
+	syntax: "<number>";
+	initial-value: 0.16;
+	inherits: true;
+}
+
+@property --db-opacity-xs {
+	syntax: "<number>";
+	initial-value: 0.24;
+	inherits: true;
+}
+
+@property --db-opacity-sm {
+	syntax: "<number>";
+	initial-value: 0.32;
+	inherits: true;
+}
+
+@property --db-opacity-md {
+	syntax: "<number>";
+	initial-value: 0.4;
+	inherits: true;
+}
+
+@property --db-opacity-lg {
+	syntax: "<number>";
+	initial-value: 0.68;
+	inherits: true;
+}
+
+@property --db-opacity-xl {
+	syntax: "<number>";
+	initial-value: 0.76;
+	inherits: true;
+}
+
+@property --db-opacity-2xl {
+	syntax: "<number>";
+	initial-value: 0.84;
+	inherits: true;
+}
+
+@property --db-opacity-3xl {
+	syntax: "<number>";
+	initial-value: 0.92;
+	inherits: true;
+}
+
+@property --db-opacity-full {
+	syntax: "<number>";
+	initial-value: 1;
+	inherits: true;
+}
+
 @property --db-typography-regular-desktop-headline-3xl {
 	syntax: "*";
 	initial-value:

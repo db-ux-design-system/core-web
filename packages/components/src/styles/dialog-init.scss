@@ -1,9 +1,7 @@
 @use "@db-ux/core-foundations/build/styles/colors";
+@use "@db-ux/core-foundations/build/styles/variables";
 
 $backdrop-color: #{colors.$db-adaptive-on-bg-basic-emphasis-100-default};
-
-$backdrop-opacity-strong: 0.64;
-$backdrop-opacity-weak: 0.32;
 
 %dialog-container {
 	position: fixed;
@@ -37,7 +35,7 @@ dialog {
 		&::backdrop,
 		&::before {
 			background-color: $backdrop-color;
-			opacity: $backdrop-opacity-strong;
+			opacity: variables.$db-opacity-lg;
 		}
 
 		&[data-backdrop="invisible"] {
@@ -50,7 +48,7 @@ dialog {
 		&[data-backdrop="weak"] {
 			&::backdrop,
 			&::before {
-				opacity: $backdrop-opacity-weak;
+				opacity: variables.$db-opacity-sm;
 			}
 		}
 	}
