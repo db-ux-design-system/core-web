@@ -49,7 +49,6 @@ export default function DBTooltip(props: DBTooltipProps) {
 					);
 				});
 				parent.setAttribute('data-has-tooltip', 'true');
-				parent.setAttribute('aria-describedby', state._id);
 			}
 
 			state.initialized = false;
