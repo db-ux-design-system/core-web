@@ -86,7 +86,9 @@ export default function DBTag(props: DBTagProps) {
 					data-no-text="true"
 					data-variant="ghost"
 					type="button">
-					<DBTooltip>{state.getRemoveButtonText()}</DBTooltip>
+					<DBTooltip variant="label">
+						{state.getRemoveButtonText()}
+					</DBTooltip>
 				</button>
 			</Show>
 		</div>
