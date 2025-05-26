@@ -9,10 +9,10 @@ import {
 } from 'react';
 import hljs from 'highlight.js';
 import Link from 'next/link';
-import { DBSwitch, DBTooltip } from '@db-ux/react-core-components';
 import {
 	DBBrand,
-	DBButton,
+	DBSwitch,
+	DBTooltip,
 	DBHeader,
 	DBPage,
 	DBSection,
