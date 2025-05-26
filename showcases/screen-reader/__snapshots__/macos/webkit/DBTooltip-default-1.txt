@@ -1,1 +1,1 @@
-["Functional Tooltip button","(Default) Regular Tooltip button"]
+["(Default) Regular, button","Expressive, button"]
