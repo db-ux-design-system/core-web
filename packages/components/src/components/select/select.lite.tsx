@@ -111,6 +111,14 @@ export default function DBSelect(props: DBSelectProps) {
 						props.onInput(event);
 					}
 				},
+				react: () => {
+					if (props.onInput) {
+						props.onInput(event);
+					}
+					if (props.onChange) {
+						props.onChange(event);
+					}
+				},
 				default: () => {
 					if (props.onInput) {
 						props.onInput(event);
