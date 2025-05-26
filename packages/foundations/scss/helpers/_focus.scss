@@ -6,7 +6,7 @@
 		outline: #{variables.$db-border-width-2xs} solid
 			var(
 				--db-focus-outline-color,
-				#{colors.$db-informational-on-bg-basic-emphasis-80-default}
+				#{colors.$db-informational-on-bg-basic-emphasis-70-default}
 			);
 		outline-offset: variables.$db-border-width-xs;
 		box-shadow: 0 0 0 #{variables.$db-border-width-xs}

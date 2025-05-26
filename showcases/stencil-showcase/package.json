@@ -19,7 +19,7 @@
     "@stencil/core": "4.31.0"
   },
   "devDependencies": {
-    "npm-run-all2": "8.0.1",
+    "npm-run-all2": "8.0.3",
     "typescript": "^5.4.5"
   },
   "overrides": {
