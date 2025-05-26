@@ -33,6 +33,7 @@
 
 		&:has(.db-tab-remove-button) {
 			padding-inline-end: 0;
+			border-inline-end: 0;
 		}
 
 		&:has(dbbutton):has(dbbutton:not(.db-tab-remove-button)),
@@ -229,8 +230,12 @@
 			// overwrite to transparent
 			background-color: colors.$db-adaptive-bg-basic-transparent-full-default;
 			color: currentcolor;
-			border: 0;
 			aspect-ratio: 1 / 1;
+			border-inline-start: 0;
+			border-start-start-radius: 0;
+			border-end-start-radius: 0;
+			// stylelint-disable-next-line db-ux/use-border-color
+			border-color: var(--db-tag-border-color);
 		}
 	}
 }
