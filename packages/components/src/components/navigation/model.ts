@@ -2,17 +2,23 @@ import {
 	AriaLabelledByProps,
 	GlobalProps,
 	GlobalState,
-	InitializedState
+	InitializedState,
+	OverflowScrollButtonProps,
+	OverflowScrollButtonState
 } from '../../shared/model';
 
 export type DBNavigationDefaultProps = {};
 
 export type DBNavigationProps = DBNavigationDefaultProps &
 	GlobalProps &
-	AriaLabelledByProps;
+	AriaLabelledByProps &
+	OverflowScrollButtonProps;
 
-export type DBNavigationDefaultState = {};
+export type DBNavigationDefaultState = {
+	onScroll: () => void;
+};
 
 export type DBNavigationState = DBNavigationDefaultState &
 	GlobalState &
-	InitializedState;
+	InitializedState &
+	OverflowScrollButtonState;

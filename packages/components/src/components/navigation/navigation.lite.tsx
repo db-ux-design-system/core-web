@@ -1,6 +1,7 @@
 import {
 	onMount,
 	onUpdate,
+	Show,
 	useDefaultProps,
 	useMetadata,
 	useRef,
@@ -9,6 +10,7 @@ import {
 import { DBNavigationProps, DBNavigationState } from './model';
 import { cls } from '../../utils';
 import { handleSubNavigationPosition } from '../../utils/navigation';
+import DBButton from '../button/button.lite';
 
 useMetadata({});
 
@@ -16,9 +18,35 @@ useDefaultProps<DBNavigationProps>({});
 
 export default function DBNavigation(props: DBNavigationProps) {
 	const _ref = useRef<HTMLDivElement | any>(null);
+	const menuRef = useRef<HTMLMenuElement | any>(null);
 
 	const state = useStore<DBNavigationState>({
-		initialized: false
+		initialized: false,
+		showScrollLeft: false,
+		showScrollRight: false,
+		evaluateScrollButtons(tList: Element) {
+			const needsScroll = tList.scrollWidth > tList.clientWidth;
+
+			state.showScrollLeft = needsScroll && tList.scrollLeft > 1;
+			state.showScrollRight =
+				needsScroll &&
+				tList.scrollLeft < tList.scrollWidth - tList.clientWidth;
+		},
+		scroll(left?: boolean) {
+			let step = Number(props.arrowScrollDistance) || 100;
+			if (left) {
+				step *= -1;
+			}
+			menuRef?.scrollBy({
+				top: 0,
+				left: step,
+				behavior: 'smooth'
+			});
+		},
+		onScroll() {
+			handleSubNavigationPosition(menuRef);
+			state.evaluateScrollButtons(menuRef);
+		}
 	});
 
 	onMount(() => {
@@ -26,21 +54,47 @@ export default function DBNavigation(props: DBNavigationProps) {
 	});
 
 	onUpdate(() => {
-		if (_ref && state.initialized) {
-			handleSubNavigationPosition(_ref);
+		if (menuRef && state.initialized) {
+			handleSubNavigationPosition(menuRef);
+			state.evaluateScrollButtons(menuRef);
 		}
-	}, [_ref, state.initialized]);
+	}, [menuRef, state.initialized]);
 
 	return (
 		<nav
 			ref={_ref}
-			onScroll={() => {
-				handleSubNavigationPosition(_ref);
-			}}
 			id={props.id}
 			aria-labelledby={props.labelledBy}
 			class={cls('db-navigation', props.className)}>
-			<menu>{props.children}</menu>
+			<Show when={state.showScrollLeft}>
+				<DBButton
+					class="overflow-scroll-left-button"
+					variant="ghost"
+					icon="chevron_left"
+					type="button"
+					noText
+					onClick={() => state.scroll(true)}>
+					Scroll left
+				</DBButton>
+			</Show>
+			<menu
+				ref={menuRef}
+				onScroll={() => {
+					state.onScroll();
+				}}>
+				{props.children}
+			</menu>
+			<Show when={state.showScrollRight}>
+				<DBButton
+					class="overflow-scroll-right-button"
+					variant="ghost"
+					icon="chevron_right"
+					type="button"
+					noText
+					onClick={() => state.scroll()}>
+					Scroll right
+				</DBButton>
+			</Show>
 		</nav>
 	);
 }

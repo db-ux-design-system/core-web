@@ -207,7 +207,7 @@ export default function DBTabs(props: DBTabsProps) {
 			onInput={(event: any) => state.handleChange(event)}>
 			<Show when={state.showScrollLeft}>
 				<DBButton
-					class="tabs-scroll-left"
+					class="overflow-scroll-left-button"
 					variant="ghost"
 					icon="chevron_left"
 					type="button"
@@ -243,7 +243,7 @@ export default function DBTabs(props: DBTabsProps) {
 			</Show>
 			<Show when={state.showScrollRight}>
 				<DBButton
-					class="tabs-scroll-right"
+					class="overflow-scroll-right-button"
 					variant="ghost"
 					icon="chevron_right"
 					type="button"

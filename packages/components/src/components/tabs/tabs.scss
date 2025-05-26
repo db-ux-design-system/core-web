@@ -2,6 +2,7 @@
 @use "@db-ux/core-foundations/build/styles/colors";
 @use "../../styles/internal/form-components";
 @use "../../styles/internal/db-puls";
+@use "../../styles/internal/scrollbar";
 
 $max-tabs: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
@@ -28,11 +29,7 @@ $max-tabs: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
 			&::after {
 				inset-block-end: calc(
-					-1 *
-						(
-							#{variables.$db-spacing-fixed-2xs} +
-								#{variables.$db-border-width-xs}
-						)
+					-1 * (#{variables.$db-spacing-fixed-2xs} + #{variables.$db-border-width-xs})
 				);
 			}
 		}
@@ -61,17 +58,8 @@ $max-tabs: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 	position: absolute;
 }
 
-@mixin angular-button-workaround() {
-	> .db-button,
-	&:is(.db-button) {
-		@content;
-	}
-}
-
 .db-tabs {
 	$db-tabs-z-index-tab-list: 20;
-	$db-tabs-z-index-button-background: 21;
-	$db-tabs-z-index-button: 22;
 
 	@extend %angular-workaround;
 
@@ -119,8 +107,7 @@ $max-tabs: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
 				/* top position equals sum of: margin xs + padding xs + line-height + padding xs + margin 2xs */
 				inset-block-start: calc(
-					3 * #{variables.$db-spacing-fixed-xs} +
-						#{variables.$db-spacing-fixed-2xs} +
+					3 * #{variables.$db-spacing-fixed-xs} + #{variables.$db-spacing-fixed-2xs} +
 						#{form-components.$font-size-height}
 				);
 			}
@@ -134,8 +121,7 @@ $max-tabs: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 				.db-tab-item {
 					margin-block: variables.$db-spacing-fixed-xs
 						calc(
-							2 * #{variables.$db-spacing-fixed-2xs} +
-								#{variables.$db-border-width-xs}
+							2 * #{variables.$db-spacing-fixed-2xs} + #{variables.$db-border-width-xs}
 						);
 				}
 
@@ -245,8 +231,7 @@ $max-tabs: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
 		.db-tab-item {
 			$padding-start-calc: calc(
-				#{variables.$db-border-width-xs} +
-					#{variables.$db-spacing-fixed-2xs}
+				#{variables.$db-border-width-xs} + #{variables.$db-spacing-fixed-2xs}
 			);
 
 			padding-inline-start: $padding-start-calc;
@@ -291,71 +276,34 @@ $max-tabs: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 	}
 
 	&[data-scroll-behavior="arrows"] {
+		@extend %overflow-scroll-buttons;
+
 		.db-tab-list {
 			> ul {
+				@supports (scrollbar-width: none) {
+					scrollbar-width: none;
+				}
+
 				&::-webkit-scrollbar {
 					display: none;
 				}
 			}
 		}
 
-		&:has(.tabs-scroll-left) {
+		&:has(.overflow-scroll-left-button) {
 			&::before {
 				content: "";
 			}
 		}
 
-		&:has(.tabs-scroll-right) {
+		&:has(.overflow-scroll-right-button) {
 			&::after {
 				content: "";
 			}
 		}
 
 		&:has(.db-button) {
-			&::before,
-			&::after {
-				position: absolute;
-				z-index: $db-tabs-z-index-button-background;
-				background-color: colors.$db-adaptive-bg-basic-level-1-default;
-				inline-size: variables.$db-sizing-md;
-				block-size: calc(
-					#{variables.$db-spacing-fixed-sm} +
-						#{variables.$db-sizing-md}
-				);
-				flex: 0 0 auto;
-			}
-
-			&::before {
-				inset-inline-start: 0;
-			}
-
-			&::after {
-				inset-inline-end: 0;
-			}
-		}
-
-		/*
-		 * Scroll left / right buttons
-		 */
-		.tabs-scroll-left {
-			@include angular-button-workaround() {
-				inset-inline-start: 0;
-			}
-		}
-
-		.tabs-scroll-right {
-			@include angular-button-workaround() {
-				inset-inline-end: 0;
-			}
-		}
-
-		.tabs-scroll-left,
-		.tabs-scroll-right {
-			@include angular-button-workaround() {
-				position: absolute;
-				z-index: $db-tabs-z-index-button;
-				inset-block: variables.$db-spacing-fixed-xs;
-			}
+			@extend %overflow-scroll-button-backgrounds;
 		}
 	}
 }

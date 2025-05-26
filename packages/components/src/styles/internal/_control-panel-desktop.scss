@@ -6,6 +6,7 @@
 @use "../../styles/internal/component";
 @use "../../styles/internal/navigation-item";
 @use "../../styles/internal/db-puls";
+@use "../../styles/internal/scrollbar";
 
 %control-panel-desktop-horizontal-orientation {
 	border-block-end: variables.$db-border-width-3xs solid
@@ -39,9 +40,11 @@
 
 	&:has(.db-control-panel-brand) {
 		> .db-navigation {
-			padding-inline-start: variables.$db-spacing-fixed-lg;
-
 			@include helpers.divider("left");
+
+			> menu {
+				margin-inline-start: variables.$db-spacing-fixed-lg;
+			}
 		}
 	}
 
@@ -67,10 +70,48 @@
 	}
 
 	> .db-navigation {
-		overflow: auto hidden;
+		--db-overflow-scroll-button-inset-block: #{variables.$db-spacing-fixed-md};
+		--db-overflow-scroll-button-inset-inline-start: #{variables.$db-spacing-fixed-md};
+
+		@extend %overflow-scroll-buttons;
+		display: grid;
+
+		&:has(.overflow-scroll-left-button) {
+			> menu {
+				&::before {
+					content: "";
+				}
+			}
+		}
+
+		&:has(.overflow-scroll-right-button) {
+			> menu {
+				&::after {
+					content: "";
+				}
+			}
+		}
+
+		&:has(.db-button) {
+			> menu {
+				@extend %overflow-scroll-button-backgrounds;
+			}
+		}
+
 		> menu {
+			overflow: auto hidden;
+			scrollbar-gutter: stable both-edges;
+			scroll-snap-type: x mandatory;
 			flex-direction: row;
 			padding-block: variables.$db-spacing-fixed-md;
+
+			@supports (scrollbar-width: none) {
+				scrollbar-width: none;
+			}
+
+			&::-webkit-scrollbar {
+				display: none;
+			}
 
 			> .db-navigation-item,
 			> .db-navigation-item-group {
@@ -266,7 +307,14 @@
 
 	> .db-navigation {
 		overflow: hidden auto;
+		scrollbar-gutter: stable both-edges;
 		padding-block-start: variables.$db-spacing-fixed-md;
+
+		> .overflow-scroll-left-button,
+		> .overflow-scroll-right-button {
+			display: none;
+		}
+
 		> menu {
 			flex-direction: column;
 			padding-inline: variables.$db-spacing-fixed-lg;

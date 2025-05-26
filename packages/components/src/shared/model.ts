@@ -718,3 +718,17 @@ export type ValueLabelType = {
 	value: string;
 	label?: string;
 };
+
+export type OverflowScrollButtonProps = {
+	/**
+	 * Change amount of distance if you click on an arrow, only available with behavior="arrows"
+	 */
+	arrowScrollDistance?: number | string;
+};
+
+export type OverflowScrollButtonState = {
+	scroll: (left?: boolean) => void;
+	showScrollLeft?: boolean;
+	showScrollRight?: boolean;
+	evaluateScrollButtons: (tabList: Element) => void;
+};
