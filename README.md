@@ -119,7 +119,7 @@ that we're gaining out of the community. So please support us in any way possibl
 
 ## How to start develop / contribute
 
-If you're working as a developer on the DB UX Design System or would like to contribute, please have a look at the relevant [development documentation](docs/development.md).
+If you're working as a developer on the DB UX Design System or would like to contribute (many kudos for that !), please have a look at the relevant [development documentation](docs/development.md). We even also tag issues that might be a good starter for code contributions by the [tag "good first issue"](https://github.com/db-ux-design-system/core-web/issues?q=is%3Aissue%20state%3Aopen%20label%3A%22good%20first%20issue%22).
 
 <!-- markdownlint-disable MD026 -->
 
