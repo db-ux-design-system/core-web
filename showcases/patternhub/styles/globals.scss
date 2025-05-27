@@ -633,3 +633,9 @@ h6 {
 		}
 	}
 }
+
+.db-switch {
+	> .db-tooltip {
+		min-inline-size: variables.$db-sizing-2xl;
+	}
+}
