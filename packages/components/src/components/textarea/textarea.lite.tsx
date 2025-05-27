@@ -89,7 +89,6 @@ export default function DBTextarea(props: DBTextareaProps) {
 			}
 		},
 		handleInput: (event: InputEvent<HTMLTextAreaElement>) => {
-			event.stopPropagation();
 			useTarget({
 				vue: () => {
 					if (props.input) {
@@ -112,7 +111,6 @@ export default function DBTextarea(props: DBTextareaProps) {
 			state.handleValidation();
 		},
 		handleChange: (event: ChangeEvent<HTMLTextAreaElement>) => {
-			event.stopPropagation();
 			if (props.onChange) {
 				props.onChange(event);
 			}
@@ -123,13 +121,11 @@ export default function DBTextarea(props: DBTextareaProps) {
 			state.handleValidation();
 		},
 		handleBlur: (event: InteractionEvent<HTMLTextAreaElement> | any) => {
-			event.stopPropagation();
 			if (props.onBlur) {
 				props.onBlur(event);
 			}
 		},
 		handleFocus: (event: InteractionEvent<HTMLTextAreaElement> | any) => {
-			event.stopPropagation();
 			if (props.onFocus) {
 				props.onFocus(event);
 			}
