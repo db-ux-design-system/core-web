@@ -97,6 +97,14 @@ export type MarginProps = {
 	margin?: MarginType;
 };
 
+export const ShellControlPanelDesktopPosition = ['top', 'left'] as const;
+export type ShellControlPanelDesktopPositionType =
+	(typeof ShellControlPanelDesktopPosition)[number];
+
+export const ShellControlPanelMobilePosition = ['top', 'bottom'] as const;
+export type ShellControlPanelMobilePositionType =
+	(typeof ShellControlPanelMobilePosition)[number];
+
 export const PlacementHorizontalList = [
 	'left',
 	'right',

@@ -1,12 +1,9 @@
-import { GlobalProps, GlobalState } from '../../shared/model';
-
-export const ShellControlPanelDesktopPosition = ['top', 'left'] as const;
-export type ShellControlPanelDesktopPositionType =
-	(typeof ShellControlPanelDesktopPosition)[number];
-
-export const ShellControlPanelMobilePosition = ['top', 'bottom'] as const;
-export type ShellControlPanelMobilePositionType =
-	(typeof ShellControlPanelMobilePosition)[number];
+import {
+	GlobalProps,
+	GlobalState,
+	ShellControlPanelDesktopPositionType,
+	ShellControlPanelMobilePositionType
+} from '../../shared/model';
 
 export type DBShellDefaultProps = {
 	/**

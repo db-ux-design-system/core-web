@@ -4,6 +4,7 @@ import {
 	GlobalProps,
 	GlobalState,
 	NavigationBehaviorState,
+	ShellControlPanelMobilePositionType,
 	ToggleEventProps,
 	ToggleEventState
 } from '../../shared/model';
@@ -13,15 +14,13 @@ export type DBControlPanelMobileDefaultProps = {
 	 * Slot to pass in the DBControlPanelBrand component
 	 */
 	brandDrawer?: any;
-	/**
-	 * Open/closes the drawer for mobile control-panel-desktop or if `forceMobile` is true.
-	 */
-	drawerOpen?: boolean | string;
 
 	/**
 	 * This attribute sets the label for the burger menu button for mobile control-panel-desktops.
 	 */
 	burgerMenuLabel?: string;
+
+	positon?: ShellControlPanelMobilePositionType;
 };
 
 export type DBControlPanelMobileProps = DBControlPanelMobileDefaultProps &
@@ -30,7 +29,9 @@ export type DBControlPanelMobileProps = DBControlPanelMobileDefaultProps &
 	ContainerWidthProps &
 	ContentPanelProps;
 
-export type DBControlPanelMobileDefaultState = {};
+export type DBControlPanelMobileDefaultState = {
+	open: boolean;
+};
 
 export type DBControlPanelMobileState = DBControlPanelMobileDefaultState &
 	GlobalState &

@@ -1,0 +1,89 @@
+@use "@db-ux/core-foundations/build/styles/variables";
+@use "@db-ux/core-foundations/build/styles/helpers";
+@use "@db-ux/core-foundations/build/styles/colors";
+@use "./component";
+@use "../../components/drawer/drawer";
+
+%control-panel-mobile-position-top {
+	border-block-end: variables.$db-border-width-3xs solid
+		colors.$db-adaptive-on-bg-basic-emphasis-60-default;
+	grid-template-areas: "brand primary drawer-button";
+	grid-template-columns: 1fr min-content min-content;
+	justify-items: center;
+
+	> .db-control-panel-primary-actions {
+		// fake divider margin
+		padding-inline-end: variables.$db-spacing-fixed-xs;
+
+		@include helpers.divider("right");
+
+		&::before {
+			margin-inline-start: variables.$db-spacing-fixed-xs;
+		}
+	}
+
+	> .db-drawer {
+		> .db-drawer-container {
+			border-inline-start: component.$component-border;
+			border-block-start: component.$component-border;
+		}
+
+		&[open] {
+			.db-drawer-container {
+				@media screen and (prefers-reduced-motion: no-preference) {
+					animation: show-right-to-left
+						#{variables.$db-transition-straight-show};
+				}
+
+				&[hidden] {
+					@media screen and (prefers-reduced-motion: no-preference) {
+						animation: hide-right-to-left
+							#{variables.$db-transition-straight-hide};
+					}
+				}
+			}
+		}
+	}
+}
+
+%control-panel-mobile-position-bottom {
+	border-block-start: variables.$db-border-width-3xs solid
+		colors.$db-adaptive-on-bg-basic-emphasis-60-default;
+	grid-template-areas: "brand drawer-button primary";
+	grid-template-columns: min-content 1fr min-content;
+	justify-content: space-evenly;
+
+	> .db-control-panel-brand {
+		font-size: 0;
+		gap: 0;
+		place-self: center;
+	}
+
+	> .db-control-panel-mobile-button {
+		place-self: center;
+	}
+
+	> .db-drawer {
+		> .db-drawer-container {
+			@extend %direction-up;
+
+			border-block-start: component.$component-border;
+		}
+
+		&[open] {
+			.db-drawer-container {
+				@media screen and (prefers-reduced-motion: no-preference) {
+					animation: show-bottom-to-top
+						#{variables.$db-transition-straight-show};
+				}
+
+				&[hidden] {
+					@media screen and (prefers-reduced-motion: no-preference) {
+						animation: hide-bottom-to-top
+							#{variables.$db-transition-straight-hide};
+					}
+				}
+			}
+		}
+	}
+}

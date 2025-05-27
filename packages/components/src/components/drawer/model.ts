@@ -16,7 +16,13 @@ export const DrawerBackdropList = [
 ] as const;
 export type DrawerBackdropType = (typeof DrawerBackdropList)[number];
 
-export const DrawerDirectionList = ['left', 'right', 'up', 'down'] as const;
+export const DrawerDirectionList = [
+	'custom',
+	'left',
+	'right',
+	'up',
+	'down'
+] as const;
 export type DrawerDirectionType = (typeof DrawerDirectionList)[number];
 
 export const DrawerVariantList = ['modal', 'inside'] as const;

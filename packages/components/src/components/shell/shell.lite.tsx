@@ -42,7 +42,7 @@ export default function DBShell(props: DBShellProps) {
 				props.controlPanelDesktopPosition ?? 'top'
 			}
 			data-control-panel-mobile-position={
-				props.controlPanelMobilePosition
+				props.controlPanelMobilePosition ?? 'top'
 			}
 			data-fade-in={getBooleanAsString(props.fadeIn)}
 			data-fonts-loaded={getBooleanAsString(state.fontsLoaded)}>

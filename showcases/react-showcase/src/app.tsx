@@ -3,15 +3,14 @@ import { Outlet } from 'react-router-dom';
 import {
 	DBControlPanelBrand,
 	DBControlPanelDesktop,
-	DBControlPanelMetaNavigation,
-	DBControlPanelPrimaryActions,
-	DBControlPanelSecondaryActions,
-	DBButton,
+	DBControlPanelMobile,
 	DBShell
 } from '../../../output/react/src';
 import useQuery from './hooks/use-query';
-import MetaNavigation from './meta-navigation';
+import MetaNavigation from './control-panel/meta-navigation';
 import Navigation from './navigation';
+import PrimaryActions from './control-panel/primary-actions';
+import SecondaryActions from './control-panel/secondary-actions';
 
 const App = () => {
 	const [density, setDensity, color, setColor, pageName, fullscreen] =
@@ -29,51 +28,34 @@ const App = () => {
 
 	return (
 		<DBShell
-			fadeIn/*
-			controlPanelDesktopPosition="left"*/
+			fadeIn
+			controlPanelDesktopPosition="left"
+			controlPanelMobilePosition="bottom"
+			controlPanelMobile={
+				<DBControlPanelMobile
+					brand={<DBControlPanelBrand>Showcase</DBControlPanelBrand>}
+					primaryActions={<PrimaryActions />}
+					secondaryActions={<SecondaryActions />}
+					metaNavigation={
+						<MetaNavigation
+							onColorChange={setColor}
+							onDensityChange={setDensity}
+						/>
+					}>
+					<Navigation />
+				</DBControlPanelMobile>
+			}
 			controlPanelDesktop={
 				<DBControlPanelDesktop
 					brand={<DBControlPanelBrand>Showcase</DBControlPanelBrand>}
 					metaNavigation={
-						<DBControlPanelMetaNavigation>
-							<MetaNavigation
-								onColorChange={setColor}
-								onDensityChange={setDensity}
-							/>
-						</DBControlPanelMetaNavigation>
+						<MetaNavigation
+							onColorChange={setColor}
+							onDensityChange={setDensity}
+						/>
 					}
-					primaryActions={
-						<DBControlPanelPrimaryActions>
-							<DBButton
-								icon="magnifying_glass"
-								variant="ghost"
-								noText>
-								Search
-							</DBButton>
-						</DBControlPanelPrimaryActions>
-					}
-					secondaryActions={
-						<DBControlPanelSecondaryActions>
-							<DBButton
-								icon="x_placeholder"
-								variant="ghost"
-								noText>
-								Profile
-							</DBButton>
-							<DBButton
-								icon="x_placeholder"
-								variant="ghost"
-								noText>
-								Notification
-							</DBButton>
-							<DBButton
-								icon="x_placeholder"
-								variant="ghost"
-								noText>
-								Help
-							</DBButton>
-						</DBControlPanelSecondaryActions>
-					}>
+					primaryActions={<PrimaryActions />}
+					secondaryActions={<SecondaryActions />}>
 					<Navigation />
 				</DBControlPanelDesktop>
 			}>

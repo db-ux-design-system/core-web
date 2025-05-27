@@ -95,7 +95,7 @@ Maybe you need to change the navigation to see the component: `showcases/angular
 
 ### React
 
-Go to `showcases/react-showcase/src/components/my-awesome-component/index.tsx` and update the properties inside the `getMyAwsomeComponent` function and inside the `tsx` component. Again check out some existing component to get a feeling for this.
+Go to `showcases/react-showcase/src/components/my-awesome-component/meta-navigation.tsx` and update the properties inside the `getMyAwsomeComponent` function and inside the `tsx` component. Again check out some existing component to get a feeling for this.
 
 Maybe you need to change the navigation to see the component: `showcases/react-showcase/src/utils/navigation-item.tsx`
 

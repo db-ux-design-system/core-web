@@ -1,12 +1,12 @@
 import {
-	Show,
+	Slot,
+	useDefaultProps,
 	useMetadata,
-	useStore,
 	useRef,
-	useDefaultProps, Slot
+	useStore
 } from '@builder.io/mitosis';
-import { DBControlPanelMobileState, DBControlPanelMobileProps } from './model';
-import { cls, getBoolean } from '../../utils';
+import { DBControlPanelMobileProps, DBControlPanelMobileState } from './model';
+import { cls } from '../../utils';
 import { isEventTargetNavigationItem } from '../../utils/navigation';
 import { DBDrawer } from '../drawer';
 import DBButton from '../button/button.lite';
@@ -21,17 +21,19 @@ export default function DBControlPanelMobile(props: DBControlPanelMobileProps) {
 	const _ref = useRef<HTMLDivElement | any>(undefined);
 	// jscpd:ignore-start
 	const state = useStore<DBControlPanelMobileState>({
+		open: false,
 		handleToggle: () => {
-			const open = !getBoolean(props.drawerOpen, 'drawerOpen');
+			const reverseOpen = !state.open;
+			state.open = reverseOpen;
 
 			if (props.onToggle) {
-				props.onToggle(open);
+				props.onToggle(reverseOpen);
 			}
 		},
-		handleNavigationItemClick: (event: unknown) => {
-			/*if (isEventTargetNavigationItem(event)) {
+		handleNavigationItemClick: (event: any) => {
+			if (isEventTargetNavigationItem(event)) {
 				state.handleToggle();
-			}*/
+			}
 		}
 	});
 	// jscpd:ignore-end
@@ -41,52 +43,36 @@ export default function DBControlPanelMobile(props: DBControlPanelMobileProps) {
 			ref={_ref}
 			id={props.id}
 			data-width={props.width}
+			data-position={props.positon}
 			class={cls('db-control-panel-mobile', props.className)}>
 			<DBDrawer
-				class="db-control-panel-mobile-drawer"
+				direction="custom"
 				rounded
 				spacing="small"
-				open={getBoolean(props.drawerOpen)}
+				open={state.open}
 				onClose={() => state.handleToggle()}>
-				<div className="db-control-panel-mobile-drawer-navigation">
-					<div
-						className="db-control-panel-mobile-navigation"
-						onClick={(event) =>
-							state.handleNavigationItemClick(event)
-						}>
-						{props.children}
-					</div>
-					<div className="db-control-panel-mobile-meta-navigation">
-						<Slot name="metaNavigation" />
-					</div>
+				<div
+					onClick={(event) => {
+						state.handleNavigationItemClick(event);
+					}}
+					class="db-control-panel-mobile-drawer-scroll-container">
+					{props.children}
+					<Slot name="metaNavigation" />
 				</div>
-				<div className="db-control-panel-mobile-secondary-action">
-					<Slot name="secondaryAction" />
-				</div>
+				<Slot name="secondaryActions" />
 			</DBDrawer>
 
-			<div className="db-control-panel-mobile-navigation-bar">
-				<div className="db-control-panel-mobile-control-panel-brand-container">
-					<Slot name="control-panel-brand" />
-				</div>
-				<div className="db-control-panel-mobile-navigation-container">
-					<div className="db-control-panel-mobile-primary-action">
-						<Slot name="primaryAction" />
-					</div>
-				</div>
-				<div className="db-control-panel-mobile-action-container">
-					<div className="db-control-panel-mobile-burger-menu-container">
-						<DBButton
-							id={state._id + '-burger-menu'}
-							icon="menu"
-							noText
-							variant="ghost"
-							onClick={() => state.handleToggle()}>
-							{props.burgerMenuLabel ?? DEFAULT_BURGER_MENU}
-						</DBButton>
-					</div>
-				</div>
-			</div>
+			<Slot name="brand" />
+			<Slot name="primaryActions" />
+			<DBButton
+				className="db-control-panel-mobile-button"
+				id={state._id + '-burger-menu'}
+				icon="menu"
+				noText
+				variant="ghost"
+				onClick={() => state.handleToggle()}>
+				{props.burgerMenuLabel ?? DEFAULT_BURGER_MENU}
+			</DBButton>
 		</header>
 	);
 }

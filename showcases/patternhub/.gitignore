@@ -48,7 +48,7 @@ components/code-docs/
 !components/src/tsconfig.json
 !components/component-parser
 !components/default-page.tsx
-!components/index.tsx
+!components/meta-navigation.tsx
 !components/data.ts
 !components/iframe.tsx
 !components/static-content.tsx

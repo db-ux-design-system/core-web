@@ -9,6 +9,13 @@ export type TriangleData = {
 	outsideVY: 'top' | 'bottom' | undefined;
 };
 
+export const isEventTargetNavigationItem = (event: unknown): boolean => {
+	const { target } = event as { target: HTMLElement };
+	return Boolean(
+		target?.parentElement?.classList.contains('db-navigation-item')
+	);
+};
+
 export class NavigationItemSafeTriangle {
 	private readonly element: HTMLElement | null;
 	private readonly subNavigation: Element | null;
@@ -206,6 +213,9 @@ export const handleSubNavigationPosition = (
 	element: HTMLElement,
 	level: number = 0
 ) => {
+	if (element.closest('.db-control-panel-mobile-drawer-scroll-container'))
+		return;
+
 	for (const navItem of Array.from(
 		element.querySelectorAll('.db-navigation-item-group')
 	)) {

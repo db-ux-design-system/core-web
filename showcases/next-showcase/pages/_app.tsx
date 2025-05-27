@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import type { AppProps } from 'next/app';
+import MetaNavigation from 'react-showcase/src/control-panel/meta-navigation';
 import {
 	DBBrand,
 	DBButton,
@@ -7,7 +8,6 @@ import {
 	DBShell
 } from '../../../output/react/src';
 import useQuery from '../../react-showcase/src/hooks/use-query';
-import MetaNavigation from '../../react-showcase/src/meta-navigation';
 import Navigation from '../../react-showcase/src/navigation';
 import '../styles/global.scss';
 import '../../showcase-styles.css';

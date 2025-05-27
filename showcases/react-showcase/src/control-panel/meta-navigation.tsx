@@ -7,7 +7,10 @@ import {
 	COLOR_CONST,
 	DENSITY_CONST
 } from '../../../../packages/components/src/shared/constants';
-import { DBSelect } from '../../../../output/react/src';
+import {
+	DBSelect,
+	DBControlPanelMetaNavigation
+} from '../../../../output/react/src';
 import useUniversalSearchParameters from '../hooks/use-universal-search-parameters';
 
 export type MetaNavigationProps = {
@@ -49,7 +52,7 @@ const MetaNavigation = ({
 	}, [color, density]);
 
 	return (
-		<>
+		<DBControlPanelMetaNavigation>
 			<DBSelect
 				label="Density"
 				variant="floating"
@@ -76,7 +79,7 @@ const MetaNavigation = ({
 					</option>
 				))}
 			</DBSelect>
-		</>
+		</DBControlPanelMetaNavigation>
 	);
 };
 

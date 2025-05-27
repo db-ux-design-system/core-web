@@ -1,6 +1,7 @@
 @use "@db-ux/core-foundations/build/styles/variables";
 @use "@db-ux/core-foundations/build/styles/screen-sizes";
 @use "../../styles/internal/control-panel-desktop";
+@use "../../styles/internal/control-panel-mobile";
 
 %fade-in-loading-fonts {
 	&[data-fade-in="true"] {
@@ -28,23 +29,8 @@ body {
 	inline-size: 100vw;
 	display: grid;
 
-	&[data-control-panel-desktop-position="left"] {
-		grid-template-columns: [control-panel] min-content [main] 1fr;
-
-		> .db-control-panel-desktop {
-			@extend %control-panel-desktop-vertical-orientation;
-		}
-	}
-
-	&[data-control-panel-desktop-position="top"] {
-		grid-template-rows: [control-panel] min-content [main] 1fr;
-
-		> .db-control-panel-desktop {
-			@extend %control-panel-desktop-horizontal-orientation;
-		}
-	}
-
 	> main {
+		grid-area: main;
 		overflow-y: auto;
 	}
 
@@ -53,12 +39,49 @@ body {
 		max-inline-size: 100vw;
 	}
 
+	> .db-control-panel-desktop,
+	> .db-control-panel-mobile {
+		grid-area: control-panel;
+	}
+
+	&[data-control-panel-desktop-position="left"] {
+		> .db-control-panel-desktop {
+			@extend %control-panel-desktop-vertical-orientation;
+		}
+	}
+
+	&[data-control-panel-desktop-position="top"] {
+		> .db-control-panel-desktop {
+			@extend %control-panel-desktop-horizontal-orientation;
+		}
+	}
+
+	&[data-control-panel-mobile-position="top"] {
+		> .db-control-panel-mobile {
+			@extend %control-panel-mobile-position-top;
+		}
+	}
+
+	&[data-control-panel-mobile-position="bottom"] {
+		> .db-control-panel-mobile {
+			@extend %control-panel-mobile-position-bottom;
+		}
+	}
+
 	@include screen-sizes.screen-min-max(
 		(
 			min: "sm"
 		)
 	) {
-		.db-control-panel-mobile {
+		&[data-control-panel-desktop-position="left"] {
+			grid-template-columns: [control-panel] min-content [main] 1fr;
+		}
+
+		&[data-control-panel-desktop-position="top"] {
+			grid-template-rows: [control-panel] min-content [main] 1fr;
+		}
+
+		> .db-control-panel-mobile {
 			display: none;
 		}
 	}
@@ -68,7 +91,17 @@ body {
 			max: "sm"
 		)
 	) {
-		.db-control-panel-desktop {
+		&[data-control-panel-mobile-position="top"] {
+			grid-template-areas: "control-panel" "main";
+			grid-template-rows: [control-panel] min-content [main] 1fr;
+		}
+
+		&[data-control-panel-mobile-position="bottom"] {
+			grid-template-areas: "main" "control-panel";
+			grid-template-rows: [main] 1fr [control-panel] min-content;
+		}
+
+		> .db-control-panel-desktop {
 			display: none;
 		}
 	}

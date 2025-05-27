@@ -11,7 +11,7 @@ import {
 } from './model';
 import { cls, uuid } from '../../utils';
 import DBButton from '../button/button.lite';
-import { DBTooltip } from '../tooltip';
+import DBTooltip from '../tooltip/tooltip.lite';
 
 useMetadata({});
 
@@ -30,8 +30,8 @@ export default function DBControlPanelDesktop(
 		},
 		getToggleButtonText: (): string => {
 			return state._open
-				? props.leftPositionToggleButtonCollapse ?? 'Collapse'
-				: props.leftPositionToggleButtonExpand ?? 'Expand';
+				? (props.leftPositionToggleButtonCollapse ?? 'Collapse')
+				: (props.leftPositionToggleButtonExpand ?? 'Expand');
 		}
 	});
 
@@ -58,8 +58,7 @@ export default function DBControlPanelDesktop(
 					aria-expanded={state._open}
 					noText
 					icon="chevron_left">
-					{state.getToggleButtonText()}
-					<DBTooltip placement="top">
+					<DBTooltip variant="label" placement="top">
 						{state.getToggleButtonText()}
 					</DBTooltip>
 				</DBButton>

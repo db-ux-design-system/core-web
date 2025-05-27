@@ -117,7 +117,6 @@ $spacings: (
 
 .db-drawer {
 	.db-drawer-container {
-		@extend %direction-right;
 		@extend %spacing-drawer;
 
 		display: flex;
@@ -154,6 +153,11 @@ $spacings: (
 
 		&[data-rounded="true"] {
 			box-shadow: variables.$db-elevation-md;
+		}
+
+		&:not([data-direction]),
+		&[data-direction="right"] {
+			@extend %direction-right;
 		}
 
 		&[data-direction="left"] {

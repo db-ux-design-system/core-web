@@ -17,12 +17,12 @@ window['env'] = {
 	BASE_URL: import.meta.env.BASE_URL
 };
 
-if (import.meta.env.DEV) {
+/* If (import.meta.env.DEV) {
 	Lang.addI18n(Sa11yLangEn.strings);
 	const sa11y = new Sa11y({
 		checkRoot: 'body'
 	});
-}
+} */
 
 ReactDOM.createRoot(document.querySelector('#root')!).render(
 	<React.StrictMode>

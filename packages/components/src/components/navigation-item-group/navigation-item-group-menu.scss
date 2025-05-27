@@ -37,13 +37,10 @@ $outside-position: calc(-200% + #{variables.$db-spacing-fixed-xs});
 		inline-size: 100%;
 		position: fixed;
 		overflow: hidden auto;
-		// additional #{$db-spacing-fixed-3xs} for border
-		inset-block: calc(
-				#{component.$min-mobile-header-height} + #{variables.$db-spacing-fixed-3xs}
-			)
+		inset-block: calc(#{component.$min-mobile-header-height})
 			calc(
 				#{variables.$db-sizing-md} + #{variables.$db-spacing-fixed-xs} *
-					2 + #{variables.$db-spacing-fixed-3xs}
+					2
 			);
 	}
 
