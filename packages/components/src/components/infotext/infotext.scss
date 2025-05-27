@@ -10,6 +10,7 @@
 	@extend %db-overwrite-font-size-sm;
 
 	display: flex;
+	white-space: pre;
 
 	@include icons.has-no-icon() {
 		@include icons.to-filled-icon();
