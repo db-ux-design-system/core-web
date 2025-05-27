@@ -211,6 +211,46 @@
 		]
 	},
 	{
+		"name": "Show Resizer",
+		"examples": [
+			{
+				"name": "(Default) True",
+				"props": {
+					"label": "Label",
+					"showResizer": true
+				}
+			},
+			{
+				"name": "False",
+				"props": {
+					"label": "Label",
+					"showResizer": false
+				}
+			}
+		]
+	},
+	{
+		"name": "Field Sizing",
+		"examples": [
+			{
+				"name": "(Default) Fixed",
+				"style": { "width": "300px" },
+				"props": {
+					"label": "Label",
+					"fieldSizing": "fixed"
+				}
+			},
+			{
+				"name": "Content",
+				"style": { "width": "300px" },
+				"props": {
+					"label": "Label",
+					"fieldSizing": "content"
+				}
+			}
+		]
+	},
+	{
 		"name": "Examples Floating Label",
 		"examples": [
 			{

@@ -22,7 +22,9 @@ const getTextarea = ({
 	showMessage,
 	validMessage,
 	validation,
-	invalidMessage
+	invalidMessage,
+	fieldSizing,
+	showResizer
 }: DBTextareaProps) => {
 	const [dynamicValue, setDynamicValue] = useState<string>(value);
 	return (
@@ -45,6 +47,8 @@ const getTextarea = ({
 			invalidMessage={invalidMessage}
 			validMessage={validMessage}
 			validation={validation}
+			showResizer={showResizer}
+			fieldSizing={fieldSizing}
 		/>
 	);
 };

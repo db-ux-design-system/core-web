@@ -184,6 +184,7 @@ export default function DBTextarea(props: DBTextareaProps) {
 				ref={_ref}
 				id={state._id}
 				data-resize={props.resize}
+				data-hide-resizer={getHideProp(props.showResizer ?? true)}
 				disabled={getBoolean(props.disabled, 'disabled')}
 				required={getBoolean(props.required, 'required')}
 				readOnly={
