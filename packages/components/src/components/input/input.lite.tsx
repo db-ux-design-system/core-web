@@ -101,7 +101,6 @@ export default function DBInput(props: DBInputProps) {
 			}
 		},
 		handleInput: (event: InputEvent<HTMLInputElement>) => {
-			event.stopPropagation();
 			useTarget({
 				vue: () => {
 					if (props.input) {
@@ -125,7 +124,6 @@ export default function DBInput(props: DBInputProps) {
 			state.handleValidation();
 		},
 		handleChange: (event: ChangeEvent<HTMLInputElement>) => {
-			event.stopPropagation();
 			if (props.onChange) {
 				props.onChange(event);
 			}
@@ -137,13 +135,11 @@ export default function DBInput(props: DBInputProps) {
 			state.handleValidation();
 		},
 		handleBlur: (event: InteractionEvent<HTMLInputElement> | any) => {
-			event.stopPropagation();
 			if (props.onBlur) {
 				props.onBlur(event);
 			}
 		},
 		handleFocus: (event: InteractionEvent<HTMLInputElement> | any) => {
-			event.stopPropagation();
 			if (props.onFocus) {
 				props.onFocus(event);
 			}

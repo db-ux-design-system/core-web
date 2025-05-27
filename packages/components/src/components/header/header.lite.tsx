@@ -25,7 +25,11 @@ export default function DBHeader(props: DBHeaderProps) {
 		_id: DEFAULT_ID,
 		initialized: false,
 		forcedToMobile: false,
-		handleToggle: () => {
+		handleToggle: (event?: any) => {
+			if (event && event.stopPropagation) {
+				event.stopPropagation();
+			}
+
 			const open = !getBoolean(props.drawerOpen, 'drawerOpen');
 
 			if (props.onToggle) {
