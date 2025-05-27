@@ -96,12 +96,10 @@ export default function DBSelect(props: DBSelectProps) {
 		},
 		handleClick: (event: ClickEvent<HTMLSelectElement> | any) => {
 			if (props.onClick) {
-				event.stopPropagation();
 				props.onClick(event);
 			}
 		},
 		handleInput: (event: InputEvent<HTMLSelectElement> | any) => {
-			event.stopPropagation();
 			useTarget({
 				vue: () => {
 					if (props.input) {
@@ -125,7 +123,6 @@ export default function DBSelect(props: DBSelectProps) {
 			state.handleValidation();
 		},
 		handleChange: (event: ChangeEvent<HTMLSelectElement> | any) => {
-			event.stopPropagation();
 			if (props.onChange) {
 				props.onChange(event);
 			}
@@ -137,13 +134,11 @@ export default function DBSelect(props: DBSelectProps) {
 			state.handleValidation();
 		},
 		handleBlur: (event: InteractionEvent<HTMLSelectElement> | any) => {
-			event.stopPropagation();
 			if (props.onBlur) {
 				props.onBlur(event);
 			}
 		},
 		handleFocus: (event: InteractionEvent<HTMLSelectElement> | any) => {
-			event.stopPropagation();
 			if (props.onFocus) {
 				props.onFocus(event);
 			}
