@@ -23,7 +23,7 @@
     "test:e2e": "npx playwright test --config=../playwright.patternhub-config.ts"
   },
   "dependencies": {
-    "dompurify": "3.2.5",
+    "dompurify": "3.2.6",
     "highlight.js": "^11.11.1",
     "next": "15.3.2",
     "react": "18.3.1",
@@ -37,7 +37,7 @@
     "@mdx-js/react": "^3.1.0",
     "@next/mdx": "^15.3.2",
     "@types/dompurify": "3.2.0",
-    "@types/node": "22.15.18",
+    "@types/node": "22.15.21",
     "@types/react": "18.3.13",
     "@types/react-dom": "18.3.1",
     "esbuild": "0.25.4",

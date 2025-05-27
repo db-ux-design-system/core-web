@@ -10,6 +10,9 @@ $min-mobile-header-height: calc(
 $default-disabled: 0.4;
 $placeholder-disabled: 0.75;
 
+$component-border: variables.$db-border-width-3xs solid
+	colors.$db-adaptive-on-bg-basic-emphasis-60-default;
+
 %default-adaptive-border {
 	border: variables.$db-border-width-3xs solid
 		colors.$db-adaptive-on-bg-basic-emphasis-100-default;
@@ -20,8 +23,8 @@ $placeholder-disabled: 0.75;
 }
 
 %component-border {
-	border: variables.$db-border-width-3xs solid
-		colors.$db-adaptive-on-bg-basic-emphasis-60-default;
+	// stylelint-disable-next-line db-ux/use-border-width, db-ux/use-border-color
+	border: $component-border;
 }
 
 %form-component-border {
