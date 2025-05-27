@@ -88,6 +88,11 @@ export default function DBTabs(props: DBTabsProps) {
 				const tabItems = Array.from<Element>(
 					_ref.getElementsByClassName('db-tab-item')
 				);
+				const tabPanels = Array.from<Element>(
+					_ref.querySelectorAll(
+						':is(:scope > .db-tab-panel, :scope > db-tab-panel > .db-tab-panel)'
+					)
+				);
 				for (const tabItem of tabItems) {
 					const index: number = tabItems.indexOf(tabItem);
 					const label = tabItem.querySelector('label');
@@ -97,12 +102,14 @@ export default function DBTabs(props: DBTabsProps) {
 						if (!input.id) {
 							const tabId = `${state._name}-tab-${index}`;
 							label.setAttribute('for', tabId);
-							input.setAttribute(
-								'aria-controls',
-								`${state._name}-tab-panel-${index}`
-							);
 							input.id = tabId;
 							input.setAttribute('name', state._name);
+							if (tabPanels.length > index) {
+								input.setAttribute(
+									'aria-controls',
+									`${state._name}-tab-panel-${index}`
+								);
+							}
 						}
 
 						if (init) {
@@ -121,11 +128,6 @@ export default function DBTabs(props: DBTabsProps) {
 					}
 				}
 
-				const tabPanels = Array.from<Element>(
-					_ref.querySelectorAll(
-						':is(:scope > .db-tab-panel, :scope > db-tab-panel > .db-tab-panel)'
-					)
-				);
 				for (const panel of tabPanels) {
 					if (panel.id) continue;
 					const index: number = tabPanels.indexOf(panel);

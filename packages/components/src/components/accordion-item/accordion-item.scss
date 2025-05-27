@@ -13,13 +13,13 @@
 
 	> details {
 		&[open] {
-			summary + div {
+			> summary + div {
 				block-size: auto;
 				/* stylelint-disable-next-line declaration-property-value-no-unknown */
 				block-size: calc-size(auto, size);
 			}
 
-			summary::after {
+			> summary::after {
 				transform: form-components.$dropdown-icon-transform;
 			}
 		}
@@ -28,51 +28,52 @@
 			pointer-events: none;
 			opacity: component.$default-disabled;
 		}
-	}
 
-	@media screen and (prefers-reduced-motion: no-preference) {
-		summary + div {
-			transition: block-size #{variables.$db-transition-straight-emotional};
-		}
-	}
-
-	summary + div {
-		block-size: 0;
-		overflow: hidden;
-		padding: variables.$db-spacing-fixed-md;
-		padding-block-end: variables.$db-spacing-fixed-lg;
-	}
-
-	summary {
-		@extend %dropdown-icon;
-		@extend %db-overwrite-font-size-md;
-
-		background-color: colors.$db-adaptive-bg-basic-level-1-default;
-		list-style: none;
-		display: flex;
-		justify-content: space-between;
-		padding: variables.$db-spacing-fixed-md;
-		gap: variables.$db-spacing-fixed-md;
-		border-radius: variables.$db-border-radius-sm;
-
-		@include helpers.hover {
-			background-color: colors.$db-adaptive-bg-basic-level-1-hovered;
+		@media screen and (prefers-reduced-motion: no-preference) {
+			> summary + div {
+				transition: block-size
+					#{variables.$db-transition-straight-emotional};
+			}
 		}
 
-		@include helpers.active {
-			background-color: colors.$db-adaptive-bg-basic-level-1-pressed;
+		> summary + div {
+			block-size: 0;
+			overflow: hidden;
+			padding: variables.$db-spacing-fixed-md;
+			padding-block-end: variables.$db-spacing-fixed-lg;
 		}
 
-		&::-webkit-details-marker {
-			display: none;
-		}
+		> summary {
+			@extend %dropdown-icon;
+			@extend %db-overwrite-font-size-md;
 
-		&::after {
-			inset-inline-end: variables.$db-spacing-fixed-sm;
-		}
+			background-color: colors.$db-adaptive-bg-basic-level-1-default;
+			list-style: none;
+			display: flex;
+			justify-content: space-between;
+			padding: variables.$db-spacing-fixed-md;
+			gap: variables.$db-spacing-fixed-md;
+			border-radius: variables.$db-border-radius-sm;
 
-		&:focus-visible {
-			border-radius: variables.$db-border-radius-xs;
+			@include helpers.hover {
+				background-color: colors.$db-adaptive-bg-basic-level-1-hovered;
+			}
+
+			@include helpers.active {
+				background-color: colors.$db-adaptive-bg-basic-level-1-pressed;
+			}
+
+			&::-webkit-details-marker {
+				display: none;
+			}
+
+			&::after {
+				inset-inline-end: variables.$db-spacing-fixed-sm;
+			}
+
+			&:focus-visible {
+				border-radius: variables.$db-border-radius-xs;
+			}
 		}
 	}
 }

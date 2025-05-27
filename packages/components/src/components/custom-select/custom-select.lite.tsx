@@ -115,6 +115,7 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 				state.handleAutoPlacement();
 			}
 		},
+		_searchValue: undefined,
 		hasValidState: () => {
 			return !!(props.validMessage ?? props.validation === 'valid');
 		},
@@ -514,12 +515,27 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 		},
 		// Don't trigger onOptionSelected event
 		handleSearch: (event: any) => {
-			event.stopPropagation();
+			let filterText;
 
-			const filterText = (event.target as HTMLInputElement).value;
+			if (typeof event === 'string') {
+				filterText = event;
+			} else {
+				event.stopPropagation();
+
+				if (props.onSearch) {
+					props.onSearch(event);
+				}
+
+				filterText = (event.target as HTMLInputElement).value;
+				state._searchValue = filterText;
+			}
 
 			if (!props.options || !filterText || filterText.length === 0) {
 				state._options = props.options;
+			} else if (props.searchFilter) {
+				state._options = props.options!.filter((option) =>
+					props.searchFilter!(option, filterText)
+				);
 			} else {
 				state._options = props.options!.filter(
 					(option) =>
@@ -669,6 +685,14 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 	}, [props.options]);
 
 	onUpdate(() => {
+		state._searchValue = props.searchValue;
+		if (props.searchValue) {
+			const sValue = props.searchValue!; // <- workaround for Angular
+			state.handleSearch(sValue);
+		}
+	}, [props.searchValue]);
+
+	onUpdate(() => {
 		if (props.options?.length) {
 			state._selectedOptions = props.options?.filter(
 				(option: CustomSelectOptionType) => {
@@ -686,7 +710,20 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 	}, [props.options, state._values]);
 
 	onUpdate(() => {
+		if (props.selectedLabels) {
+			state._selectedLabels = props.selectedLabels;
+			return;
+		}
+
 		if (state._selectedOptions?.length) {
+			if (props.transformSelectedLabels) {
+				// We need to add this to another ``const`` for Angular generated output to work
+				const selectedOptions = state._selectedOptions;
+				const transformFn = props.transformSelectedLabels!;
+				state._selectedLabels = transformFn!(selectedOptions);
+				return;
+			}
+
 			if (props.selectedType === 'amount') {
 				state._selectedLabels = props.amountText
 					? props.amountText
@@ -701,7 +738,13 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 		} else {
 			state._selectedLabels = '';
 		}
-	}, [state._selectedOptions, props.selectedType, props.amountText]);
+	}, [
+		state._selectedOptions,
+		props.selectedType,
+		props.amountText,
+		props.selectedLabels,
+		props.transformSelectedLabels
+	]);
 
 	onUpdate(() => {
 		if (props.onAmountChange) {
@@ -790,7 +833,7 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 				onKeyDown={(event) => state.handleKeyboardPress(event)}>
 				{props.children}
 				<Show when={props.options}>
-					{/* We use this because we cannot wrap summary for angular... */}
+					{/* We use this because we cannot wrap summary for Angular... */}
 					<summary
 						id={state._summaryId}
 						class="db-custom-select-form-field"
@@ -849,6 +892,7 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 									form={state._id}
 									type="search"
 									showLabel={false}
+									value={state._searchValue}
 									label={props.searchLabel ?? DEFAULT_LABEL}
 									placeholder={
 										props.searchPlaceholder ??

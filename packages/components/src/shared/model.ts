@@ -594,7 +594,7 @@ export type CloseEventProps = {
 };
 
 export type CloseEventState = {
-	handleClose: (event: any) => void;
+	handleClose: (event: any, forceClose?: boolean) => void;
 };
 
 export const AlignmentList = ['start', 'center'] as const;

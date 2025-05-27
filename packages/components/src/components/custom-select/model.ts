@@ -76,17 +76,26 @@ export type DBCustomSelectEvents = {
 	 * Informs the user when dropdown was toggled.
 	 */
 	dropdownToggle?: (event: any) => void;
+
+	/**
+	 * Informs the user when a search was performed.
+	 */
+	onSearch?: (event: any) => void;
+	/**
+	 * Informs the user when a search was performed.
+	 */
+	search?: (event: any) => void;
 };
 
 export type DBCustomSelectDefaultProps = {
 	/**
-	 * Overwrite the default aria-label (props.label) for the custom-select-list
-	 */
-	ariaListLabel?: string;
-	/**
 	 * Optional: if select-type="amount" change the shown text
 	 */
 	amountText?: string;
+	/**
+	 * Overwrite the default aria-label (props.label) for the custom-select-list
+	 */
+	ariaListLabel?: string;
 
 	/**
 	 * Label for the clear selection button
@@ -145,6 +154,14 @@ export type DBCustomSelectDefaultProps = {
 	removeTagsTexts?: string[];
 
 	/**
+	 * Optional: Change the filter function for the search input
+	 */
+	searchFilter?: (
+		option: CustomSelectOptionType,
+		filterText: string
+	) => boolean;
+
+	/**
 	 * Search label
 	 */
 	searchLabel?: string;
@@ -155,9 +172,20 @@ export type DBCustomSelectDefaultProps = {
 	searchPlaceholder?: string;
 
 	/**
+	 * Optional: Prefill the value of the search input
+	 */
+	searchValue?: string;
+
+	/**
 	 * Select all checkbox label
 	 */
 	selectAllLabel?: string;
+
+	/**
+	 * Optional: If you want to show a custom label for the selected values.
+	 * You need to define the empty state as well based on selected options.
+	 */
+	selectedLabels?: string;
 
 	/**
 	 * Change the selected type for values shown in multi select
@@ -183,11 +211,17 @@ export type DBCustomSelectDefaultProps = {
 	 * Forces search in header.
 	 */
 	showSearch?: boolean;
-
 	/**
 	 * Forces select all checkbox (only for multiple).
 	 */
 	showSelectAll?: boolean;
+
+	/**
+	 * Optional: If you want to show a custom label based on the selected options.
+	 */
+	transformSelectedLabels?: (
+		selectedOptions?: CustomSelectOptionType[]
+	) => string;
 
 	/**
 	 * Initial value for multi select
@@ -225,6 +259,7 @@ export type DBCustomSelectDefaultState = {
 	_documentScrollListenerCallbackId?: string;
 	handleDocumentScroll: (event: any) => void;
 	_observer?: IntersectionObserver;
+	_searchValue?: string;
 	getNativeSelectValue: () => string;
 	getOptionLabel: (option: CustomSelectOptionType) => string;
 	getOptionChecked: (value?: string) => boolean;

@@ -2940,5 +2940,397 @@
 			var(--db-green-10),
 			var(--db-green-10)
 		);
+		--db-light-green-origin-default: light-dark(
+			var(--db-light-green-origin-light-default),
+			var(--db-light-green-origin-dark-default)
+		);
+		--db-light-green-origin-hovered: light-dark(
+			var(--db-light-green-origin-light-hovered),
+			var(--db-light-green-origin-dark-hovered)
+		);
+		--db-light-green-origin-pressed: light-dark(
+			var(--db-light-green-origin-light-pressed),
+			var(--db-light-green-origin-dark-pressed)
+		);
+		--db-light-green-on-origin-default: light-dark(
+			var(--db-light-green-on-origin-light-default),
+			var(--db-light-green-on-origin-dark-default)
+		);
+		--db-light-green-on-bg-basic-emphasis-50-default: light-dark(
+			var(--db-light-green-9),
+			var(--db-light-green-5)
+		);
+		--db-light-green-on-bg-basic-emphasis-60-default: light-dark(
+			var(--db-light-green-10),
+			var(--db-light-green-6)
+		);
+		--db-light-green-on-bg-basic-emphasis-70-default: light-dark(
+			var(--db-light-green-7),
+			var(--db-light-green-8)
+		);
+		--db-light-green-on-bg-basic-emphasis-70-hovered: light-dark(
+			var(--db-light-green-4),
+			var(--db-light-green-10)
+		);
+		--db-light-green-on-bg-basic-emphasis-70-pressed: light-dark(
+			var(--db-light-green-6),
+			var(--db-light-green-9)
+		);
+		--db-light-green-on-bg-basic-emphasis-80-default: light-dark(
+			var(--db-light-green-6),
+			var(--db-light-green-9)
+		);
+		--db-light-green-on-bg-basic-emphasis-80-hovered: light-dark(
+			var(--db-light-green-3),
+			var(--db-light-green-12)
+		);
+		--db-light-green-on-bg-basic-emphasis-80-pressed: light-dark(
+			var(--db-light-green-5),
+			var(--db-light-green-10)
+		);
+		--db-light-green-on-bg-basic-emphasis-90-default: light-dark(
+			var(--db-light-green-4),
+			var(--db-light-green-10)
+		);
+		--db-light-green-on-bg-basic-emphasis-90-hovered: light-dark(
+			var(--db-light-green-0),
+			var(--db-light-green-14)
+		);
+		--db-light-green-on-bg-basic-emphasis-90-pressed: light-dark(
+			var(--db-light-green-3),
+			var(--db-light-green-11)
+		);
+		--db-light-green-on-bg-basic-emphasis-100-default: light-dark(
+			var(--db-light-green-1),
+			var(--db-light-green-12)
+		);
+		--db-light-green-on-bg-basic-emphasis-100-hovered: light-dark(
+			var(--db-light-green-5),
+			var(--db-light-green-9)
+		);
+		--db-light-green-on-bg-basic-emphasis-100-pressed: light-dark(
+			var(--db-light-green-2),
+			var(--db-light-green-11)
+		);
+		--db-light-green-on-bg-inverted-default: light-dark(
+			var(--db-light-green-14),
+			var(--db-light-green-3)
+		);
+		--db-light-green-on-bg-inverted-hovered: light-dark(
+			var(--db-light-green-11),
+			var(--db-light-green-0)
+		);
+		--db-light-green-on-bg-inverted-pressed: light-dark(
+			var(--db-light-green-13),
+			var(--db-light-green-2)
+		);
+		--db-light-green-on-bg-vibrant-default: light-dark(
+			var(--db-light-green-1),
+			var(--db-light-green-1)
+		);
+		--db-light-green-on-bg-vibrant-hovered: light-dark(
+			var(--db-light-green-4),
+			var(--db-light-green-4)
+		);
+		--db-light-green-on-bg-vibrant-pressed: light-dark(
+			var(--db-light-green-2),
+			var(--db-light-green-2)
+		);
+		--db-light-green-bg-basic-level-1-default: light-dark(
+			var(--db-light-green-14),
+			var(--db-light-green-1)
+		);
+		--db-light-green-bg-basic-level-1-hovered: light-dark(
+			var(--db-light-green-13),
+			var(--db-light-green-3)
+		);
+		--db-light-green-bg-basic-level-1-pressed: light-dark(
+			var(--db-light-green-12),
+			var(--db-light-green-4)
+		);
+		--db-light-green-bg-basic-level-2-default: light-dark(
+			var(--db-light-green-13),
+			var(--db-light-green-2)
+		);
+		--db-light-green-bg-basic-level-2-hovered: light-dark(
+			var(--db-light-green-12),
+			var(--db-light-green-4)
+		);
+		--db-light-green-bg-basic-level-2-pressed: light-dark(
+			var(--db-light-green-11),
+			var(--db-light-green-5)
+		);
+		--db-light-green-bg-basic-level-3-default: light-dark(
+			var(--db-light-green-12),
+			var(--db-light-green-3)
+		);
+		--db-light-green-bg-basic-level-3-hovered: light-dark(
+			var(--db-light-green-11),
+			var(--db-light-green-1)
+		);
+		--db-light-green-bg-basic-level-3-pressed: light-dark(
+			var(--db-light-green-10),
+			var(--db-light-green-0)
+		);
+		--db-light-green-bg-basic-transparent-full-default: light-dark(
+			color-mix(in srgb, transparent 100%, var(--db-light-green-6)),
+			color-mix(in srgb, transparent 100%, var(--db-light-green-9))
+		);
+		--db-light-green-bg-basic-transparent-semi-default: light-dark(
+			color-mix(in srgb, transparent 92%, var(--db-light-green-6)),
+			color-mix(in srgb, transparent 84%, var(--db-light-green-9))
+		);
+		--db-light-green-bg-basic-transparent-hovered: light-dark(
+			color-mix(in srgb, transparent 76%, var(--db-light-green-6)),
+			color-mix(in srgb, transparent 76%, var(--db-light-green-9))
+		);
+		--db-light-green-bg-basic-transparent-pressed: light-dark(
+			color-mix(in srgb, transparent 68%, var(--db-light-green-6)),
+			color-mix(in srgb, transparent 68%, var(--db-light-green-9))
+		);
+		--db-light-green-bg-inverted-contrast-max-default: light-dark(
+			var(--db-light-green-1),
+			var(--db-light-green-12)
+		);
+		--db-light-green-bg-inverted-contrast-max-hovered: light-dark(
+			var(--db-light-green-5),
+			var(--db-light-green-9)
+		);
+		--db-light-green-bg-inverted-contrast-max-pressed: light-dark(
+			var(--db-light-green-2),
+			var(--db-light-green-11)
+		);
+		--db-light-green-bg-inverted-contrast-high-default: light-dark(
+			var(--db-light-green-6),
+			var(--db-light-green-9)
+		);
+		--db-light-green-bg-inverted-contrast-high-hovered: light-dark(
+			var(--db-light-green-2),
+			var(--db-light-green-12)
+		);
+		--db-light-green-bg-inverted-contrast-high-pressed: light-dark(
+			var(--db-light-green-5),
+			var(--db-light-green-10)
+		);
+		--db-light-green-bg-inverted-contrast-low-default: light-dark(
+			var(--db-light-green-7),
+			var(--db-light-green-8)
+		);
+		--db-light-green-bg-inverted-contrast-low-hovered: light-dark(
+			var(--db-light-green-3),
+			var(--db-light-green-12)
+		);
+		--db-light-green-bg-inverted-contrast-low-pressed: light-dark(
+			var(--db-light-green-6),
+			var(--db-light-green-9)
+		);
+		--db-light-green-bg-vibrant-default: light-dark(
+			var(--db-light-green-9),
+			var(--db-light-green-9)
+		);
+		--db-light-green-bg-vibrant-hovered: light-dark(
+			var(--db-light-green-12),
+			var(--db-light-green-12)
+		);
+		--db-light-green-bg-vibrant-pressed: light-dark(
+			var(--db-light-green-10),
+			var(--db-light-green-10)
+		);
+		--db-burgundy-origin-default: light-dark(
+			var(--db-burgundy-origin-light-default),
+			var(--db-burgundy-origin-dark-default)
+		);
+		--db-burgundy-origin-hovered: light-dark(
+			var(--db-burgundy-origin-light-hovered),
+			var(--db-burgundy-origin-dark-hovered)
+		);
+		--db-burgundy-origin-pressed: light-dark(
+			var(--db-burgundy-origin-light-pressed),
+			var(--db-burgundy-origin-dark-pressed)
+		);
+		--db-burgundy-on-origin-default: light-dark(
+			var(--db-burgundy-on-origin-light-default),
+			var(--db-burgundy-on-origin-dark-default)
+		);
+		--db-burgundy-on-bg-basic-emphasis-50-default: light-dark(
+			var(--db-burgundy-9),
+			var(--db-burgundy-5)
+		);
+		--db-burgundy-on-bg-basic-emphasis-60-default: light-dark(
+			var(--db-burgundy-10),
+			var(--db-burgundy-6)
+		);
+		--db-burgundy-on-bg-basic-emphasis-70-default: light-dark(
+			var(--db-burgundy-7),
+			var(--db-burgundy-8)
+		);
+		--db-burgundy-on-bg-basic-emphasis-70-hovered: light-dark(
+			var(--db-burgundy-4),
+			var(--db-burgundy-10)
+		);
+		--db-burgundy-on-bg-basic-emphasis-70-pressed: light-dark(
+			var(--db-burgundy-6),
+			var(--db-burgundy-9)
+		);
+		--db-burgundy-on-bg-basic-emphasis-80-default: light-dark(
+			var(--db-burgundy-6),
+			var(--db-burgundy-9)
+		);
+		--db-burgundy-on-bg-basic-emphasis-80-hovered: light-dark(
+			var(--db-burgundy-3),
+			var(--db-burgundy-12)
+		);
+		--db-burgundy-on-bg-basic-emphasis-80-pressed: light-dark(
+			var(--db-burgundy-5),
+			var(--db-burgundy-10)
+		);
+		--db-burgundy-on-bg-basic-emphasis-90-default: light-dark(
+			var(--db-burgundy-4),
+			var(--db-burgundy-10)
+		);
+		--db-burgundy-on-bg-basic-emphasis-90-hovered: light-dark(
+			var(--db-burgundy-0),
+			var(--db-burgundy-14)
+		);
+		--db-burgundy-on-bg-basic-emphasis-90-pressed: light-dark(
+			var(--db-burgundy-3),
+			var(--db-burgundy-11)
+		);
+		--db-burgundy-on-bg-basic-emphasis-100-default: light-dark(
+			var(--db-burgundy-1),
+			var(--db-burgundy-12)
+		);
+		--db-burgundy-on-bg-basic-emphasis-100-hovered: light-dark(
+			var(--db-burgundy-5),
+			var(--db-burgundy-9)
+		);
+		--db-burgundy-on-bg-basic-emphasis-100-pressed: light-dark(
+			var(--db-burgundy-2),
+			var(--db-burgundy-11)
+		);
+		--db-burgundy-on-bg-inverted-default: light-dark(
+			var(--db-burgundy-14),
+			var(--db-burgundy-3)
+		);
+		--db-burgundy-on-bg-inverted-hovered: light-dark(
+			var(--db-burgundy-11),
+			var(--db-burgundy-0)
+		);
+		--db-burgundy-on-bg-inverted-pressed: light-dark(
+			var(--db-burgundy-13),
+			var(--db-burgundy-2)
+		);
+		--db-burgundy-on-bg-vibrant-default: light-dark(
+			var(--db-burgundy-1),
+			var(--db-burgundy-1)
+		);
+		--db-burgundy-on-bg-vibrant-hovered: light-dark(
+			var(--db-burgundy-4),
+			var(--db-burgundy-4)
+		);
+		--db-burgundy-on-bg-vibrant-pressed: light-dark(
+			var(--db-burgundy-2),
+			var(--db-burgundy-2)
+		);
+		--db-burgundy-bg-basic-level-1-default: light-dark(
+			var(--db-burgundy-14),
+			var(--db-burgundy-1)
+		);
+		--db-burgundy-bg-basic-level-1-hovered: light-dark(
+			var(--db-burgundy-13),
+			var(--db-burgundy-3)
+		);
+		--db-burgundy-bg-basic-level-1-pressed: light-dark(
+			var(--db-burgundy-12),
+			var(--db-burgundy-4)
+		);
+		--db-burgundy-bg-basic-level-2-default: light-dark(
+			var(--db-burgundy-13),
+			var(--db-burgundy-2)
+		);
+		--db-burgundy-bg-basic-level-2-hovered: light-dark(
+			var(--db-burgundy-12),
+			var(--db-burgundy-4)
+		);
+		--db-burgundy-bg-basic-level-2-pressed: light-dark(
+			var(--db-burgundy-11),
+			var(--db-burgundy-5)
+		);
+		--db-burgundy-bg-basic-level-3-default: light-dark(
+			var(--db-burgundy-12),
+			var(--db-burgundy-3)
+		);
+		--db-burgundy-bg-basic-level-3-hovered: light-dark(
+			var(--db-burgundy-11),
+			var(--db-burgundy-1)
+		);
+		--db-burgundy-bg-basic-level-3-pressed: light-dark(
+			var(--db-burgundy-10),
+			var(--db-burgundy-0)
+		);
+		--db-burgundy-bg-basic-transparent-full-default: light-dark(
+			color-mix(in srgb, transparent 100%, var(--db-burgundy-6)),
+			color-mix(in srgb, transparent 100%, var(--db-burgundy-9))
+		);
+		--db-burgundy-bg-basic-transparent-semi-default: light-dark(
+			color-mix(in srgb, transparent 92%, var(--db-burgundy-6)),
+			color-mix(in srgb, transparent 84%, var(--db-burgundy-9))
+		);
+		--db-burgundy-bg-basic-transparent-hovered: light-dark(
+			color-mix(in srgb, transparent 76%, var(--db-burgundy-6)),
+			color-mix(in srgb, transparent 76%, var(--db-burgundy-9))
+		);
+		--db-burgundy-bg-basic-transparent-pressed: light-dark(
+			color-mix(in srgb, transparent 68%, var(--db-burgundy-6)),
+			color-mix(in srgb, transparent 68%, var(--db-burgundy-9))
+		);
+		--db-burgundy-bg-inverted-contrast-max-default: light-dark(
+			var(--db-burgundy-1),
+			var(--db-burgundy-12)
+		);
+		--db-burgundy-bg-inverted-contrast-max-hovered: light-dark(
+			var(--db-burgundy-5),
+			var(--db-burgundy-9)
+		);
+		--db-burgundy-bg-inverted-contrast-max-pressed: light-dark(
+			var(--db-burgundy-2),
+			var(--db-burgundy-11)
+		);
+		--db-burgundy-bg-inverted-contrast-high-default: light-dark(
+			var(--db-burgundy-6),
+			var(--db-burgundy-9)
+		);
+		--db-burgundy-bg-inverted-contrast-high-hovered: light-dark(
+			var(--db-burgundy-2),
+			var(--db-burgundy-12)
+		);
+		--db-burgundy-bg-inverted-contrast-high-pressed: light-dark(
+			var(--db-burgundy-5),
+			var(--db-burgundy-10)
+		);
+		--db-burgundy-bg-inverted-contrast-low-default: light-dark(
+			var(--db-burgundy-7),
+			var(--db-burgundy-8)
+		);
+		--db-burgundy-bg-inverted-contrast-low-hovered: light-dark(
+			var(--db-burgundy-3),
+			var(--db-burgundy-12)
+		);
+		--db-burgundy-bg-inverted-contrast-low-pressed: light-dark(
+			var(--db-burgundy-6),
+			var(--db-burgundy-9)
+		);
+		--db-burgundy-bg-vibrant-default: light-dark(
+			var(--db-burgundy-9),
+			var(--db-burgundy-9)
+		);
+		--db-burgundy-bg-vibrant-hovered: light-dark(
+			var(--db-burgundy-12),
+			var(--db-burgundy-12)
+		);
+		--db-burgundy-bg-vibrant-pressed: light-dark(
+			var(--db-burgundy-10),
+			var(--db-burgundy-10)
+		);
 	}
 }
