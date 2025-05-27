@@ -43,7 +43,13 @@
 			@include helpers.divider("left");
 
 			> menu {
-				margin-inline-start: variables.$db-spacing-fixed-lg;
+				/* workaround for showing correct scrolling and focus */
+				padding-inline-start: calc(
+					#{variables.$db-spacing-fixed-lg} / 2
+				);
+				margin-inline-start: calc(
+					#{variables.$db-spacing-fixed-lg} / 2
+				);
 			}
 		}
 	}
@@ -71,7 +77,9 @@
 
 	> .db-navigation {
 		--db-overflow-scroll-button-inset-block: #{variables.$db-spacing-fixed-md};
-		--db-overflow-scroll-button-inset-inline-start: #{variables.$db-spacing-fixed-md};
+		--db-overflow-scroll-button-inset-inline-start: calc(
+			#{variables.$db-spacing-fixed-lg} / 2
+		);
 
 		@extend %overflow-scroll-buttons;
 		display: grid;
@@ -95,6 +103,13 @@
 		&:has(.db-button) {
 			> menu {
 				@extend %overflow-scroll-button-backgrounds;
+
+				&::before,
+				&::after {
+					block-size: 100%;
+					inset-block: 0;
+					flex: none;
+				}
 			}
 		}
 
