@@ -40,7 +40,7 @@
     "@types/node": "22.15.21",
     "@types/react": "18.3.13",
     "@types/react-dom": "18.3.1",
-    "esbuild": "0.25.4",
+    "esbuild": "0.25.5",
     "eslint": "8.57.1",
     "eslint-config-next": "15.3.2",
     "iframe-resizer": "^5.4.6",
