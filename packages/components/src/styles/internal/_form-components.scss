@@ -284,9 +284,8 @@ $input-valid-types:
 		&:is(label),
 		> label {
 			&::after {
-				// We're using 1px instead of a token here on purpose, as this is an edge case
-				/* stylelint-disable-next-line db-ux/use-spacings */
-				padding-inline-start: 1px;
+				/* pull the asterisk to the label text by negating the flex gap */
+				margin-inline-start: calc(-1 * var(--db-spacing-fixed-xs));
 
 				@include icons.icon-content("*");
 			}
