@@ -232,7 +232,16 @@ export default function DBSelect(props: DBSelectProps) {
 					<For each={props.options}>
 						{(option: DBSelectOptionType) => (
 							<>
-								<Show when={option.options}>
+								<Show
+									when={option.options}
+									else={
+										<option
+											value={option.value}
+											disabled={option.disabled}
+											selected={option.selected}>
+											{state.getOptionLabel(option)}
+										</option>
+									}>
 									<optgroup
 										label={state.getOptionLabel(option)}>
 										<For each={option.options}>
@@ -255,14 +264,6 @@ export default function DBSelect(props: DBSelectProps) {
 											)}
 										</For>
 									</optgroup>
-								</Show>
-								<Show when={!option.options}>
-									<option
-										value={option.value}
-										disabled={option.disabled}
-										selected={option.selected}>
-										{state.getOptionLabel(option)}
-									</option>
 								</Show>
 							</>
 						)}
