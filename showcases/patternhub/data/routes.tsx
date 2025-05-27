@@ -246,9 +246,6 @@ export const ROUTES: NavigationItem[] = [
 		path: '/components',
 		subNavigation: [
 			{ label: 'Readme', path: '/components/readme' },
-			{ label: 'Router usage', path: '/components/router-usage' },
-			{ label: 'Validation', path: '/components/validation' },
-			{ label: 'Backdrop', path: '/components/backdrop' },
 			...componentChildren.map((category) => ({
 				...category,
 				subNavigation: category?.subNavigation?.map(
@@ -277,7 +274,22 @@ export const ROUTES: NavigationItem[] = [
 						]
 					})
 				)
-			}))
+			})),
+			{
+				label: 'Misc',
+				path: '/components/misc',
+				subNavigation: [
+					{
+						label: 'Router usage',
+						path: '/components/misc/router-usage'
+					},
+					{
+						label: 'Validation',
+						path: '/components/misc/validation'
+					},
+					{ label: 'Backdrop', path: '/components/misc/backdrop' }
+				]
+			}
 		]
 	}
 ];
