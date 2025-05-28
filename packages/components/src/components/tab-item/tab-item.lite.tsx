@@ -17,7 +17,10 @@ import {
 
 useMetadata({
 	angular: {
-		nativeAttributes: ['disabled']
+		nativeAttributes: ['disabled'],
+		signals: {
+			writeable: ['disabled', 'checked']
+		}
 	}
 });
 useDefaultProps<DBTabItemProps>({});

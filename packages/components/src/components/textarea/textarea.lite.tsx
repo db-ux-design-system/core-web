@@ -38,7 +38,10 @@ import {
 
 useMetadata({
 	angular: {
-		nativeAttributes: ['disabled', 'required']
+		nativeAttributes: ['disabled', 'required'],
+		signals: {
+			writeable: ['disabled', 'value']
+		}
 	}
 });
 useDefaultProps<DBTextareaProps>({});

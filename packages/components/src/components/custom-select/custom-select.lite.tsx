@@ -59,7 +59,10 @@ import { DocumentClickListener } from '../../utils/document-click-listener';
 
 useMetadata({
 	angular: {
-		nativeAttributes: ['disabled']
+		nativeAttributes: ['disabled'],
+		signals: {
+			writeable: ['disabled', 'values']
+		}
 	}
 });
 

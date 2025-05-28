@@ -82,11 +82,7 @@ export const getComponents = (): Component[] => [
         {{label() ?? DEFAULT_LABEL}}
         <select`,
 					to: `<label [attr.id]="_labelId()">{{label() ?? DEFAULT_LABEL}}<select`
-				},
-				// TODO: Move this to mitosis
-				{ from: 'trackByOption0', to: 'trackByOption0(i,option)' },
-				{ from: 'trackByOption1', to: 'trackByOption1(index,option)' },
-				{ from: 'trackByOption2', to: 'trackByOption2(i,option)' }
+				}
 			],
 			react: [
 				{ from: 'key={uuid()}', to: 'key={getOptionLabel(option)}' }

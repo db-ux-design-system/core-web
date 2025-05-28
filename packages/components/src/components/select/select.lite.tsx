@@ -42,7 +42,10 @@ import {
 
 useMetadata({
 	angular: {
-		nativeAttributes: ['disabled', 'required', 'value']
+		nativeAttributes: ['disabled', 'required', 'value'],
+		signals: {
+			writeable: ['disabled', 'value']
+		}
 	}
 });
 useDefaultProps<DBSelectProps>({});
