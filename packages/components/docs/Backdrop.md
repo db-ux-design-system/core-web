@@ -7,8 +7,19 @@ If you need a backdrop like the one in `DBDrawer` you sould apply those styles:
 
 ```css
 .my-backdrop {
-	background-color: var(--db-adaptive-on-bg-basic-emphasis-100-default);
-	opacity: var(--db-opacity-lg);
+	background-color: color(
+		from var(--db-adaptive-on-bg-basic-emphasis-100-default) srgb r g b /
+			var(--db-opacity-lg)
+	);
+}
+
+/* OR */
+
+dialog::backdrop {
+	background-color: color(
+		from var(--db-adaptive-on-bg-basic-emphasis-100-default) srgb r g b /
+			var(--db-opacity-lg)
+	);
 }
 ```
 
@@ -19,8 +30,19 @@ If you need a backdrop like the one in `DBDrawer` you sould apply those styles:
 @use "@db-ux/core-foundations/build/styles/variables";
 
 .my-backdrop {
-	background-color: colors.$db-adaptive-on-bg-basic-emphasis-100-default;
-	opacity: variables.$db-opacity-lg;
+	background-color: color(
+		from #{colors.$db-adaptive-on-bg-basic-emphasis-100-default} srgb r g
+			b / #{variables.$db-opacity-lg}
+	);
+}
+
+/* OR */
+
+dialog::backdrop {
+	background-color: color(
+		from #{colors.$db-adaptive-on-bg-basic-emphasis-100-default} srgb r g
+			b / #{variables.$db-opacity-lg}
+	);
 }
 ```
 
