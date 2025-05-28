@@ -18,7 +18,7 @@ $with-icon-padding-calc: calc(
 	border-radius: variables.$db-border-radius-sm;
 
 	&:has(input:disabled) {
-		opacity: component.$default-disabled;
+		opacity: variables.$db-opacity-md;
 	}
 
 	label {
