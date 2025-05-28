@@ -1,0 +1,60 @@
+name: Auto-Format with Stylelint and Prettier on PR for "self-healing" PRs
+
+on:
+  workflow_call:
+
+jobs:
+  format:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          ref: ${{github.event.pull_request.head.ref}}
+          fetch-depth: 0
+
+      - name: Check if Stylelint or Prettier update PR
+        id: check_pr
+        run: |
+          echo "PR title: ${{ github.event.pull_request.title }}"
+          if [[ "${{ github.event.pull_request.title }}" =~ "bump stylelint from" ]]; then
+            echo "Stylelint update detected."
+            echo "stylelint_update=true" >> $GITHUB_ENV
+          elif [[ "${{ github.event.pull_request.title }}" =~ "bump prettier from" ]]; then
+            echo "Prettier update detected."
+            echo "prettier_update=true" >> $GITHUB_ENV
+          else
+            echo "No Stylelint or prettier updates detected."
+          fi
+
+      - name: Set up Node.js
+        if: env.stylelint_update == 'true' || env.prettier_update == 'true'
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: ".nvmrc"
+
+      - name: Install dependencies
+        if: env.stylelint_update == 'true' || env.prettier_update == 'true'
+        run: |
+          npm ci
+
+      - name: Run Stylelint to format the code
+        if: env.stylelint_update == 'true'
+        run: |
+          npx --no stylelint "**/*.*css" --fix
+
+      - name: Run Prettier to format the code
+        if: env.prettier_update == 'true'
+        run: |
+          npx --no prettier . --write
+
+      - name: Commit changes if formatting is done
+        if: env.stylelint_update == 'true' || env.prettier_update == 'true'
+        run: |
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+          echo 'COMMIT_MAIL=github-actions[bot]@users.noreply.github.com' >> .env
+
+          git add .
+          git commit --all -m "refactor(test): auto-format codebase" || echo "No changes to commit"
+          git push origin HEAD:${{ github.head_ref }}  # Push back to the same PR branch
