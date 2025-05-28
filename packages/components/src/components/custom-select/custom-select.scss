@@ -162,8 +162,8 @@
 					inset: 0;
 					content: "";
 					cursor: default;
-					background-color: dialog-init.$backdrop-color;
-					opacity: dialog-init.$backdrop-opacity-strong;
+					background-color: dialog-init.$backdrop-color-strong;
+					opacity: variables.$db-opacity-lg;
 				}
 			}
 		}
