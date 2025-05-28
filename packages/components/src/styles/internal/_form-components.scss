@@ -284,8 +284,9 @@ $input-valid-types:
 		&:is(label),
 		> label {
 			&::after {
-				/* pull the asterisk to the label text by negating the flex gap */
-				margin-inline-start: calc(-1 * var(--db-spacing-fixed-xs));
+				// We're using 1px instead of a token here on purpose, as this is an edge case
+				/* stylelint-disable-next-line db-ux/use-spacings */
+				padding-inline-start: 1px;
 
 				@include icons.icon-content("*");
 			}
@@ -491,7 +492,6 @@ $input-valid-types:
 		display: flex;
 		align-items: flex-start;
 		position: relative;
-		gap: variables.$db-spacing-fixed-xs;
 		color: var(
 			--db-check-element-label-color,
 			#{colors.$db-adaptive-on-bg-basic-emphasis-100-default}
@@ -512,6 +512,7 @@ $input-valid-types:
 		block-size: $font-size-height;
 		inline-size: $font-size-height;
 		padding: 0;
+		margin-inline-end: var(--db-spacing-fixed-xs);
 	}
 
 	&[data-size="small"] {
