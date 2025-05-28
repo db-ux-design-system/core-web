@@ -189,7 +189,7 @@
 						"native": true,
 						"content": "Interactive Checkbox",
 						"props": {
-							"for": "checkbox01"
+							"htmlFor": "checkbox01"
 						},
 						"children": [
 							{
@@ -216,7 +216,7 @@
 						"native": true,
 						"content": "Interactive Radio 1",
 						"props": {
-							"for": "radio01"
+							"htmlFor": "radio01"
 						},
 						"children": [
 							{
@@ -244,7 +244,7 @@
 						"native": true,
 						"content": "Interactive Radio 2",
 						"props": {
-							"for": "radio02"
+							"htmlFor": "radio02"
 						},
 						"children": [
 							{
@@ -277,7 +277,7 @@
 						"native": true,
 						"content": "Interactive Checkbox",
 						"props": {
-							"for": "checkbox02"
+							"htmlFor": "checkbox02"
 						},
 						"children": [
 							{
@@ -296,7 +296,7 @@
 				"name": "True",
 				"props": {
 					"component": "checkbox",
-					"checked": true
+					"defaultChecked": true
 				},
 				"children": [
 					{
@@ -304,14 +304,14 @@
 						"native": true,
 						"content": "Interactive Checkbox",
 						"props": {
-							"for": "checkbox03"
+							"htmlFor": "checkbox03"
 						},
 						"children": [
 							{
 								"name": "input",
 								"native": true,
 								"props": {
-									"checked": true,
+									"defaultChecked": true,
 									"id": "checkbox03",
 									"type": "checkbox"
 								}
@@ -337,7 +337,7 @@
 						"native": true,
 						"content": "Interactive Checkbox",
 						"props": {
-							"for": "checkbox02"
+							"htmlFor": "checkbox02"
 						},
 						"children": [
 							{
@@ -364,14 +364,14 @@
 						"native": true,
 						"content": "Interactive Checkbox",
 						"props": {
-							"for": "checkbox04"
+							"htmlFor": "checkbox04"
 						},
 						"children": [
 							{
 								"name": "input",
 								"native": true,
 								"props": {
-									"checked": true,
+									"defaultChecked": true,
 									"disabled": true,
 									"id": "checkbox04",
 									"type": "checkbox"
@@ -430,7 +430,7 @@
 				"name": "True",
 				"props": {
 					"icon": "x_placeholder",
-					"content": true
+					"content": "true"
 				}
 			}
 		]
@@ -450,7 +450,7 @@
 						"native": true,
 						"content": "Interactive Checkbox",
 						"props": {
-							"for": "checkbox099"
+							"htmlFor": "checkbox099"
 						},
 						"children": [
 							{
@@ -475,7 +475,7 @@
 						"native": true,
 						"content": "Interactive Checkbox",
 						"props": {
-							"for": "checkbox099"
+							"htmlFor": "checkbox099"
 						},
 						"children": [
 							{
@@ -555,7 +555,7 @@
 						"native": true,
 						"content": "Interactive Checkbox",
 						"props": {
-							"for": "checkbox05"
+							"htmlFor": "checkbox05"
 						},
 						"children": [
 							{
@@ -582,7 +582,7 @@
 						"native": true,
 						"content": "Interactive Radio 3",
 						"props": {
-							"for": "radio03"
+							"htmlFor": "radio03"
 						},
 						"children": [
 							{
@@ -612,7 +612,7 @@
 						"native": true,
 						"content": "Interactive Radio 4",
 						"props": {
-							"for": "radio04"
+							"htmlFor": "radio04"
 						},
 						"children": [
 							{
