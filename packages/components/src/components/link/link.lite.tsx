@@ -48,9 +48,8 @@ export default function DBLink(props: DBLinkProps) {
 			onClick={(event: ClickEvent<HTMLAnchorElement>) =>
 				state.handleClick(event)
 			}>
-			<Show when={props.text} else={props.children}>
-				{props.text}
-			</Show>
+			{/* prettier-ignore */}
+			<Show when={props.text} else={props.children}>{props.text}</Show>
 		</a>
 	);
 }
