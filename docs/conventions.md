@@ -13,7 +13,7 @@ footer?
 - build
 - chore
 - ci
-  – docs
+– docs
 - feat
 - fix
 - perf
