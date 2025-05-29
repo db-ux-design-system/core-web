@@ -62,14 +62,12 @@ updates:
           - "ng-packagr"
         update-types:
           - "minor"
-          - "patch"
       react:
         patterns:
           - "react"
           - "react-dom"
         update-types:
           - "minor"
-          - "patch"
       next:
         patterns:
           - "@next*"
