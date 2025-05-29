@@ -38,8 +38,7 @@ Both the [`.editorconfig`](https://editorconfig.org/) and [`.gitattributes`](htt
 
 ### prettier
 
-The [prettier](https://github.com/db-ui/core/blob/main/docs/adr/code_style_formatter-prettier.adoc) tool provides a general code prettfying.
-
+The [prettier](https://github.com/db-ui/core/blob/main/docs/adr/code_style_formatter-prettier.adoc) tool provides a general code prettifying.
 ## Linting
 
 ### xo
