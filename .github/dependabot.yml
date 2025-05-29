@@ -48,7 +48,7 @@ updates:
     groups:
       patch-dependencies:
         update-types:
-          - "version-update:semver-patch"
+          - "patch"
       commitlint:
         patterns:
           - "@commitlint*"
