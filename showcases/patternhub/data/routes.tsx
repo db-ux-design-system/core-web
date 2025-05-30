@@ -61,7 +61,6 @@ import StackComponent from '../../react-showcase/src/components/stack';
 import MutliSelectComponent from '../../react-showcase/src/components/custom-select';
 import * as ControlPanelMobileCode from '../components/code-docs/control-panel-mobile';
 import ControlPanelMobileComponent from '../../react-showcase/src/components/control-panel-mobile';
-
 import Components from './components.json';
 
 export type NavigationItem = {
@@ -74,7 +73,9 @@ export type NavigationItem = {
 };
 
 const nameComponentMap = {
-	'control-panel-mobile': <ControlPanelMobileComponent slotCode={ControlPanelMobileCode} />,
+	'control-panel-mobile': (
+		<ControlPanelMobileComponent slotCode={ControlPanelMobileCode} />
+	),
 
 	'custom-select': <MutliSelectComponent slotCode={CustomSelectCode} />,
 	stack: <StackComponent slotCode={StackCode} />,
@@ -251,8 +252,6 @@ export const ROUTES: NavigationItem[] = [
 		path: '/components',
 		subNavigation: [
 			{ label: 'Readme', path: '/components/readme' },
-			{ label: 'Router usage', path: '/components/router-usage' },
-			{ label: 'Validation', path: '/components/validation' },
 			...componentChildren.map((category) => ({
 				...category,
 				subNavigation: category?.subNavigation?.map(
@@ -281,7 +280,22 @@ export const ROUTES: NavigationItem[] = [
 						]
 					})
 				)
-			}))
+			})),
+			{
+				label: 'Misc',
+				path: '/components/misc',
+				subNavigation: [
+					{
+						label: 'Router usage',
+						path: '/components/misc/router-usage'
+					},
+					{
+						label: 'Validation',
+						path: '/components/misc/validation'
+					},
+					{ label: 'Backdrop', path: '/components/misc/backdrop' }
+				]
+			}
 		]
 	}
 ];
