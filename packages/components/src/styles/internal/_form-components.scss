@@ -153,6 +153,24 @@ $db-min-inline-size: var(
 				}
 			}
 		}
+
+		@each $state, $variant in (valid: successful, invalid: critical) {
+			&[data-custom-validity="#{$state}"] > label,
+			&:has(> #{$selector}[data-custom-validity="#{$state}"]) > label {
+				color: var(--db-#{$variant}-on-bg-basic-emphasis-70-default);
+			}
+
+			@if ($selector == textarea) {
+				&:has(> #{$selector}[data-custom-validity="#{$state}"]) {
+					&::before,
+					&::after {
+						// necessary to force this override over the placeholder-content mixin's ::before rule
+						// to avoid the label to influence the border of the textarea
+						content: none !important;
+					}
+				}
+			}
+		}
 	}
 }
 
@@ -368,6 +386,16 @@ $input-valid-types:
 				--db-textarea-read-only,
 				#{colors.$db-adaptive-bg-basic-level-1-default}
 			) !important;
+		}
+
+		&:is(textarea) {
+			@each $state, $variant in (valid: successful, invalid: critical) {
+				&[data-custom-validity="#{$state}"] {
+					border: var(--db-border-width-3xs)
+						solid
+						var(--db-#{$variant}-on-bg-basic-emphasis-70-default);
+				}
+			}
 		}
 	}
 
