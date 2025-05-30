@@ -34,7 +34,7 @@
     "lint": "npm-run-all -p lint:*",
     "lint:jscpd": "jscpd . --exitCode 1 --config .config/.jscpd.json",
     "lint:markdownlint": "markdownlint -c .config/.markdown-lint.yml **/*.md",
-    "lint:stylelint": "stylelint **/*.scss",
+    "lint:stylelint": "stylelint **/*.{css,scss}",
     "lint:xo": "cross-env TIMING=1 NODE_OPTIONS=\"--max-old-space-size=4096\" xo",
     "prepare": "husky",
     "regenerate:screenshots": "npm run build && npm run build --workspace=react-showcase && docker-compose -f ./e2e/docker-compose.regenerate.yml up",
