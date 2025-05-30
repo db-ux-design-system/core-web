@@ -236,6 +236,7 @@ export default function DBSelect(props: DBSelectProps) {
 									when={option.options}
 									else={
 										<option
+											key={option.value.toString()}
 											value={option.value}
 											disabled={option.disabled}
 											selected={option.selected}>
