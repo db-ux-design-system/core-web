@@ -11,16 +11,22 @@ import { DBTag } from "@db-ux/react-core-components";
 const App = () => (
 	<>
 		<DBTag>
-			<DBButton>Tag as Button</DBButton>
+			<button type="button">Tag as Button</button>
 		</DBTag>
 		<DBTag>
-			<DBLink>Tag as Link</DBLink>
+			<a href="#">Tag as Link</a>
 		</DBTag>
 		<DBTag>
-			<DBCheckbox>Tag as Checkbox</DBCheckbox>
+			<label for="checkbox01">
+				<input id="checkbox01" type="checkbox" />
+				Tag as Checkbox
+			</label>
 		</DBTag>
 		<DBTag>
-			<DBRadio>Tag as Radio</DBRadio>
+			<label for="radio01">
+				<input name="radio01" id="radio01" type="radio" />
+				Tag as Radio
+			</label>
 		</DBTag>
 		<DBTag>Static Tag</DBTag>
 		<DBTag overflow={true}>
