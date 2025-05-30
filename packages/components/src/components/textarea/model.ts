@@ -34,6 +34,12 @@ export type DBTextareaDefaultProps = {
 	 * In most browsers, textareas are resizable — you'll notice the drag handle in the right-hand corner, you can control it with this
 	 */
 	resize?: TextareaResizeType;
+
+	/**
+	 * Show/Hides drag handle in the right-hand corner - default: true
+	 */
+	showResizer?: boolean | string;
+
 	/**
 	 * The number of visible text lines for the control. If it is specified, it must be a positive integer
 	 */

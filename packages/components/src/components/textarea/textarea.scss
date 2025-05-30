@@ -8,20 +8,26 @@
 @use "../../styles/internal/scrollbar";
 
 %resize-textarea {
-	&[data-resize="none"] {
+	&[data-hide-resizer="true"] {
 		resize: none;
 	}
 
-	&[data-resize="both"] {
-		resize: both;
-	}
+	&:not([data-hide-resizer="true"]) {
+		&[data-resize="none"] {
+			resize: none;
+		}
 
-	&[data-resize="horizontal"] {
-		resize: horizontal;
-	}
+		&[data-resize="both"] {
+			resize: both;
+		}
 
-	&[data-resize="vertical"] {
-		resize: vertical;
+		&[data-resize="horizontal"] {
+			resize: horizontal;
+		}
+
+		&[data-resize="vertical"] {
+			resize: vertical;
+		}
 	}
 }
 
