@@ -94,5 +94,5 @@ jobs:
           echo 'COMMIT_MAIL=github-actions[bot]@users.noreply.github.com' >> .env
 
           git add ./__snapshots__/*
-          git commit --all -m "refactor(test): updated snapshots" || echo "No changes to commit"
+          git commit --all -m "refactor(test): updated snapshots" -c safe.directory='/__w/core-web/core-web/__snapshots__' || echo "No changes to commit"
           git push origin HEAD:${{ github.head_ref }}  # Push back to the same PR branch
