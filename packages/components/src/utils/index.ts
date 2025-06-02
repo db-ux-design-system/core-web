@@ -1,5 +1,3 @@
-import { useTarget } from '@builder.io/mitosis';
-
 export const uuid = () => {
 	if (typeof window !== 'undefined') {
 		if (window.crypto?.randomUUID) {
@@ -227,31 +225,10 @@ export const stringPropVisible = (
 export const getSearchInput = (element: HTMLElement): HTMLInputElement | null =>
 	element.querySelector<HTMLInputElement>(`input[type="search"]`);
 
-/**
- * Generates a unique key for an option based on the provided state and prefix.
- *
- * @template T - The type of the option object, which must include optional `id` and `value` properties.
- * @param {T} option - The option object for which the key is generated.
- * @param {{ getOptionKey: (option: T) => string }} state - The state object containing a method to generate a key for the option.
- * @param {string} prefix - A string prefix to prepend to the generated key.
- * @returns {string} - The generated unique key for the option.
- */
-export const getOptionKey = <
-	T extends { id?: string; value?: string | number | string[] | undefined }
->(
-	option: T,
-	state: { getOptionKey: (option: T) => string },
+export const getOptionKey = (
+	option: { id?: string; value?: string | number | string[] | undefined },
 	prefix: string
-): string =>
-	useTarget({
-		vue: undefined,
-		stencil: undefined,
-		default:
-			prefix +
-			state.getOptionKey({
-				...option,
-				value: Array.isArray(option.value)
-					? option.value.join(',')
-					: option.value
-			})
-	});
+) => {
+	const key = option.id ?? option.value ?? uuid();
+	return `${prefix}${key}`;
+};

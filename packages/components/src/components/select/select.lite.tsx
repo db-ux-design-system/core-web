@@ -232,7 +232,7 @@ export default function DBSelect(props: DBSelectProps) {
 				aria-describedby={props.ariaDescribedBy ?? state._descByIds}>
 				{/* Empty option for floating label */}
 				<option hidden></option>
-				<Show when={props.options} else={props.children}>
+				<Show when={props.options?.length} else={props.children}>
 					<For each={props.options}>
 						{(option: DBSelectOptionType) => (
 							<>
@@ -240,11 +240,14 @@ export default function DBSelect(props: DBSelectProps) {
 									when={option.options}
 									else={
 										<option
-											key={getOptionKey<DBSelectOptionType>(
-												option,
-												state,
-												'select-option'
-											)}
+											key={useTarget({
+												vue: undefined,
+												stencil: undefined,
+												default: getOptionKey(
+													option,
+													'select-option'
+												)
+											})}
 											value={option.value}
 											disabled={option.disabled}
 											selected={option.selected}>

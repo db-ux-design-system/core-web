@@ -775,14 +775,14 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 						<For each={props.options}>
 							{(option: CustomSelectOptionType) => (
 								<option
-									key={getOptionKey<DBSelectOptionType>(
-										{
-											...option,
-											value: option.value ?? ''
-										},
-										state,
-										'native-select-option'
-									)}
+									key={useTarget({
+										vue: undefined,
+										stencil: undefined,
+										default: getOptionKey(
+											option,
+											'native-select-option'
+										)
+									})}
 									disabled={option.disabled}
 									value={option.value}>
 									{state.getOptionLabel(option)}
