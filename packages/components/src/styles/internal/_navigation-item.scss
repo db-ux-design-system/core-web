@@ -76,6 +76,7 @@
 	display: inline-flex;
 	position: relative;
 	inline-size: auto;
+	block-size: variables.$db-sizing-md;
 
 	&[data-wrap="true"] {
 		:is(a, .db-navigation-item-expand-button):first-of-type {

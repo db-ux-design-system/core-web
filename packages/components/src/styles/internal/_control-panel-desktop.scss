@@ -273,9 +273,9 @@ $meta-child-selector: "> .db-control-panel-desktop-scroll-container > .db-contro
 	}
 
 	&[data-open="false"] {
-		inline-size: fit-content;
+		inline-size: auto;
 		/* stylelint-disable-next-line declaration-property-value-no-unknown */
-		inline-size: calc-size(fit-content, size);
+		inline-size: calc-size(auto, size);
 
 		> .db-control-panel-primary-actions,
 		> .db-control-panel-secondary-actions,

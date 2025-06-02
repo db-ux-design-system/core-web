@@ -31,9 +31,9 @@ const App = () => {
 
 	return (
 		<DBShell
-			fadeIn /*
+			fadeIn
 			controlPanelDesktopPosition="left"
-			controlPanelMobilePosition="bottom"*/
+			controlPanelMobilePosition="bottom"
 			subNavigationDesktopPosition="left"
 			subNavigationMobilePosition="top"
 			subNavigation={<Navigation />}
