@@ -24,8 +24,8 @@
 
 	> .db-drawer {
 		> .db-drawer-container {
+			@extend %direction-right;
 			border-inline-start: component.$component-border;
-			border-block-start: component.$component-border;
 		}
 
 		&[open] {

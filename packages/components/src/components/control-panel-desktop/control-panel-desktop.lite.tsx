@@ -30,8 +30,8 @@ export default function DBControlPanelDesktop(
 		},
 		getToggleButtonText: (): string => {
 			return state._open
-				? (props.leftPositionToggleButtonCollapse ?? 'Collapse')
-				: (props.leftPositionToggleButtonExpand ?? 'Expand');
+				? props.leftPositionToggleButtonCollapse ?? 'Collapse'
+				: props.leftPositionToggleButtonExpand ?? 'Expand';
 		}
 	});
 
@@ -45,9 +45,11 @@ export default function DBControlPanelDesktop(
 			data-width={props.width}
 			data-orientation={props.orientation}
 			data-open={state._open}>
-			<Slot name="metaNavigation" />
 			<Slot name="brand" />
-			{props.children}
+			<div class="db-control-panel-desktop-scroll-container">
+				{props.children}
+				<Slot name="metaNavigation" />
+			</div>
 			<Slot name="primaryActions" />
 			<Slot name="secondaryActions" />
 			<div className="db-control-panel-desktop-button">
