@@ -95,5 +95,5 @@ jobs:
           git config --system --add safe.directory $GITHUB_WORKSPACE
 
           git add __snapshots__/*
-          git commit __snapshots__/* --all -m "refactor(test): updated snapshots" || echo "No changes to commit"
+          git commit __snapshots__/ --all -m "refactor(test): updated snapshots" || echo "No changes to commit"
           git push origin HEAD:${{ github.head_ref }} # Push back to the same PR branch
