@@ -92,10 +92,8 @@ jobs:
           git config --system user.email "41898282+github-actions[bot]@users.noreply.github.com"
           echo 'COMMIT_MAIL=41898282+github-actions[bot]@users.noreply.github.com' >> .env
 
-          # git config --system --add safe.directory '*'
           git config --system --add safe.directory $GITHUB_WORKSPACE
-          # git config --system --add safe.directory ${{ github.workspace }}
 
           git add __snapshots__/*
-          git commit --all -m "refactor(test): updated snapshots" || echo "No changes to commit"
+          git commit __snapshots__/* --all -m "refactor(test): updated snapshots" || echo "No changes to commit"
           git push origin HEAD:${{ github.head_ref }} # Push back to the same PR branch
