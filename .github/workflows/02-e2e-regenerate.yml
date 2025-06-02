@@ -94,7 +94,7 @@ jobs:
 
           # git config --system --add safe.directory '*'
           git config --system --add safe.directory $GITHUB_WORKSPACE
-          # git config --system --add safe.directory ${{ GITHUB_WORKSPACE }}
+          # git config --system --add safe.directory ${{ github.workspace }}
 
           git add __snapshots__/*
           git commit --all -m "refactor(test): updated snapshots" || echo "No changes to commit"
