@@ -146,9 +146,6 @@ export default function DBSelect(props: DBSelectProps) {
 		},
 		getOptionLabel: (option: DBSelectOptionType) => {
 			return option.label ?? option.value?.toString();
-		},
-		getOptionKey: (option: DBSelectOptionType) => {
-			return (option.id ?? option.value ?? uuid()).toString();
 		}
 	});
 
@@ -245,7 +242,7 @@ export default function DBSelect(props: DBSelectProps) {
 												stencil: undefined,
 												default: getOptionKey(
 													option,
-													'select-option'
+													'select-option-'
 												)
 											})}
 											value={option.value}

@@ -57,7 +57,6 @@ import {
 } from '../../utils/form-components';
 import DBInput from '../input/input.lite';
 import { DocumentClickListener } from '../../utils/document-click-listener';
-import { DBSelectOptionType } from '../select/model';
 
 useMetadata({
 	angular: {
@@ -202,9 +201,6 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 			}
 
 			return false;
-		},
-		getOptionKey: (option: CustomSelectOptionType) => {
-			return (option.id ?? option.value ?? uuid()).toString();
 		},
 		getTagRemoveLabel: (index: number) => {
 			if (
@@ -780,7 +776,7 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 										stencil: undefined,
 										default: getOptionKey(
 											option,
-											'native-select-option'
+											'native-select-option-'
 										)
 									})}
 									disabled={option.disabled}
@@ -826,9 +822,10 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 											key={useTarget({
 												vue: undefined,
 												stencil: undefined,
-												default:
-													'tag-' +
-													state.getOptionKey(option)
+												default: getOptionKey(
+													option,
+													'tag-'
+												)
 											})}
 											removeButton={state.getTagRemoveLabel(
 												index
@@ -923,11 +920,10 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 													key={useTarget({
 														vue: undefined,
 														stencil: undefined,
-														default:
-															'custom-select-list-item-' +
-															state.getOptionKey(
-																option
-															)
+														default: getOptionKey(
+															option,
+															'custom-select-list-item-'
+														)
 													})}
 													type={
 														props.multiple
