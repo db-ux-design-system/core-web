@@ -15,6 +15,7 @@ import {
 	delay,
 	getBoolean,
 	getHideProp,
+	getOptionKey,
 	hasVoiceOver,
 	stringPropVisible,
 	uuid
@@ -145,6 +146,9 @@ export default function DBSelect(props: DBSelectProps) {
 		},
 		getOptionLabel: (option: DBSelectOptionType) => {
 			return option.label ?? option.value?.toString();
+		},
+		getOptionKey: (option: DBSelectOptionType) => {
+			return (option.id ?? option.value ?? uuid()).toString();
 		}
 	});
 
@@ -236,7 +240,11 @@ export default function DBSelect(props: DBSelectProps) {
 									when={option.options}
 									else={
 										<option
-											key={option.value.toString()}
+											key={getOptionKey<DBSelectOptionType>(
+												option,
+												state,
+												'select-option'
+											)}
 											value={option.value}
 											disabled={option.disabled}
 											selected={option.selected}>

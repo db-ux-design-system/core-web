@@ -21,6 +21,7 @@ import {
 	getBoolean,
 	getBooleanAsString,
 	getHideProp,
+	getOptionKey,
 	getSearchInput,
 	handleDataOutside,
 	hasVoiceOver,
@@ -56,6 +57,7 @@ import {
 } from '../../utils/form-components';
 import DBInput from '../input/input.lite';
 import { DocumentClickListener } from '../../utils/document-click-listener';
+import { DBSelectOptionType } from '../select/model';
 
 useMetadata({
 	angular: {
@@ -773,13 +775,14 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 						<For each={props.options}>
 							{(option: CustomSelectOptionType) => (
 								<option
-									key={useTarget({
-										vue: undefined,
-										stencil: undefined,
-										default:
-											'native-select-option-' +
-											state.getOptionKey(option)
-									})}
+									key={getOptionKey<DBSelectOptionType>(
+										{
+											...option,
+											value: option.value ?? ''
+										},
+										state,
+										'native-select-option'
+									)}
 									disabled={option.disabled}
 									value={option.value}>
 									{state.getOptionLabel(option)}

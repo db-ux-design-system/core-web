@@ -79,6 +79,7 @@ export type DBSelectProps = GlobalProps &
 export type DBSelectDefaultState = {
 	_placeholderId: string;
 	getOptionLabel: (option: DBSelectOptionType) => string;
+	getOptionKey: (option: DBSelectOptionType) => string;
 };
 
 export type DBSelectState = DBSelectDefaultState &
