@@ -27,8 +27,7 @@ jobs:
       - name: ⏬ Checkout repo
         uses: actions/checkout@v4
         with:
-          ref: ${{github.event.pull_request.head.ref}}
-          fetch-depth: 0
+          ref: ${{ github.head_ref }}
 
       - name: 🔄 Init Cache
         uses: ./.github/actions/npm-cache
@@ -89,11 +88,13 @@ jobs:
 
       - name: 🆙 Commit newly generated snapshots
         run: |
-          git config --global user.name "github-actions[bot]"
-          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config --system user.name "github-actions[bot]"
+          git config --system user.email "41898282+github-actions[bot]@users.noreply.github.com"
           echo 'COMMIT_MAIL=41898282+github-actions[bot]@users.noreply.github.com' >> .env
 
-          git config --global --add safe.directory '*'
+          # git config --system --add safe.directory '*'
+          git config --system --add safe.directory $GITHUB_WORKSPACE
+          # git config --system --add safe.directory ${{ GITHUB_WORKSPACE }}
 
           git add .
           git commit --all -m "refactor(test): updated snapshots" || echo "No changes to commit"
