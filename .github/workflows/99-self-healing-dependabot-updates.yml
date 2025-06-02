@@ -11,8 +11,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
         with:
-          ref: ${{github.event.pull_request.head.ref}}
-          fetch-depth: 0
+          ref: ${{ github.head_ref }}
 
       - name: Check if Stylelint or Prettier update PR
         id: check_pr
@@ -52,9 +51,9 @@ jobs:
       - name: Commit changes if formatting is done
         if: env.stylelint_update == 'true' || env.prettier_update == 'true'
         run: |
-          git config --global user.name 'github-actions[bot]'
-          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
-          echo 'COMMIT_MAIL=github-actions[bot]@users.noreply.github.com' >> .env
+          git config --system user.name "github-actions[bot]"
+          git config --system user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          echo 'COMMIT_MAIL=41898282+github-actions[bot]@users.noreply.github.com' >> .env
 
           git add .
           git commit --all -m "refactor(test): auto-format codebase" || echo "No changes to commit"
