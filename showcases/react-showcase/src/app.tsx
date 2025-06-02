@@ -28,9 +28,9 @@ const App = () => {
 
 	return (
 		<DBShell
-			fadeIn
-			controlPanelDesktopPosition="left"
-			controlPanelMobilePosition="bottom"
+			fadeIn /*
+			ControlPanelDesktopPosition="left"
+			controlPanelMobilePosition="bottom" */
 			controlPanelMobile={
 				<DBControlPanelMobile
 					brand={<DBControlPanelBrand>Showcase</DBControlPanelBrand>}
