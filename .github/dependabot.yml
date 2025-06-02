@@ -46,6 +46,9 @@ updates:
     # https://github.com/dependabot/dependabot-core/issues/5226#issuecomment-1179434437
     versioning-strategy: increase
     groups:
+      patch-dependencies:
+        update-types:
+          - "patch"
       commitlint:
         patterns:
           - "@commitlint*"
@@ -59,14 +62,12 @@ updates:
           - "ng-packagr"
         update-types:
           - "minor"
-          - "patch"
       react:
         patterns:
           - "react"
           - "react-dom"
         update-types:
           - "minor"
-          - "patch"
       next:
         patterns:
           - "@next*"

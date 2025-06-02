@@ -79,7 +79,7 @@ $db-min-inline-size: var(
 		> label {
 			@extend %db-overwrite-font-size-md;
 
-			opacity: component.$placeholder-disabled;
+			opacity: variables.$db-opacity-xl;
 			position: absolute;
 			z-index: 2;
 			inset-block-start: calc(
@@ -138,7 +138,7 @@ $db-min-inline-size: var(
 			}
 
 			@include placeholder-content($selector) {
-				opacity: component.$placeholder-disabled;
+				opacity: variables.$db-opacity-xl;
 				font-family: var(--db-font-family-sans);
 				font-style: italic;
 
@@ -332,7 +332,7 @@ $input-valid-types:
 	}
 
 	@include placeholder-content($selector) {
-		opacity: component.$placeholder-disabled;
+		opacity: variables.$db-opacity-xl;
 		font-family: var(--db-font-family-sans);
 		font-style: italic;
 	}
@@ -401,7 +401,7 @@ $input-valid-types:
 			#{$selector}[aria-disabled="true"]
 		) {
 		// Decided against cursor: not-allowed, compare to e.g. https://phabricator.wikimedia.org/T121960
-		opacity: component.$default-disabled;
+		opacity: variables.$db-opacity-md;
 		pointer-events: none;
 	}
 
@@ -484,7 +484,7 @@ $input-valid-types:
 	@include set-required-label(input);
 
 	&:has(input:disabled) {
-		opacity: component.$default-disabled;
+		opacity: variables.$db-opacity-md;
 	}
 
 	&:is(label),
