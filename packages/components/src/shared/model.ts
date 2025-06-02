@@ -740,3 +740,8 @@ export type OverflowScrollButtonState = {
 	showScrollRight?: boolean;
 	evaluateScrollButtons: (tabList: Element) => void;
 };
+
+export type SidebarState = {
+	_open: boolean;
+	getToggleButtonText: () => string;
+};

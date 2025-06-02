@@ -4,6 +4,7 @@ import {
 	GlobalProps,
 	GlobalState,
 	OrientationProps,
+	SidebarState,
 	ToggleEventState
 } from '../../shared/model';
 
@@ -24,11 +25,9 @@ export type DBControlPanelDesktopProps = DBControlPanelDesktopDefaultProps &
 	ContentPanelProps &
 	OrientationProps;
 
-export type DBControlPanelDesktopDefaultState = {
-	_open: boolean;
-	getToggleButtonText: () => string;
-};
+export type DBControlPanelDesktopDefaultState = object;
 
 export type DBControlPanelDesktopState = DBControlPanelDesktopDefaultState &
 	GlobalState &
-	ToggleEventState<HTMLButtonElement>;
+	ToggleEventState<HTMLButtonElement> &
+	SidebarState;

@@ -276,7 +276,7 @@ $max-tabs: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 	}
 
 	&[data-scroll-behavior="arrows"] {
-		@extend %overflow-scroll-buttons;
+		@include scrollbar.set-overflow-scroll-buttons;
 
 		.db-tab-list {
 			> ul {
@@ -303,7 +303,7 @@ $max-tabs: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 		}
 
 		&:has(.db-button) {
-			@extend %overflow-scroll-button-backgrounds;
+			@include scrollbar.set-overflow-scroll-button-backgrounds;
 		}
 	}
 }

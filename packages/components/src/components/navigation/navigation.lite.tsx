@@ -69,7 +69,7 @@ export default function DBNavigation(props: DBNavigationProps) {
 			<Show when={state.showScrollLeft}>
 				<DBButton
 					class="overflow-scroll-left-button"
-					variant="ghost"
+					variant="filled"
 					icon="chevron_left"
 					type="button"
 					noText
@@ -87,7 +87,7 @@ export default function DBNavigation(props: DBNavigationProps) {
 			<Show when={state.showScrollRight}>
 				<DBButton
 					class="overflow-scroll-right-button"
-					variant="ghost"
+					variant="filled"
 					icon="chevron_right"
 					type="button"
 					noText

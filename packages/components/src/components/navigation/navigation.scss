@@ -4,6 +4,7 @@
 .db-navigation {
 	-webkit-tap-highlight-color: transparent; /* for removing the highlight */
 	inline-size: 100%;
+	position: relative;
 
 	@include screen-sizes.screen("md") {
 		-webkit-tap-highlight-color: inherit;

@@ -1,7 +1,10 @@
 @use "@db-ux/core-foundations/build/styles/variables";
 @use "@db-ux/core-foundations/build/styles/screen-sizes";
+@use "@db-ux/core-foundations/build/styles/colors";
+@use "@db-ux/core-foundations/build/styles/helpers";
 @use "../../styles/internal/control-panel-desktop";
 @use "../../styles/internal/control-panel-mobile";
+@use "../../styles/internal/form-components";
 
 %fade-in-loading-fonts {
 	&[data-fade-in="true"] {
@@ -44,6 +47,20 @@ body {
 		grid-area: control-panel;
 	}
 
+	> .db-sub-navigation-container {
+		grid-area: sub-navigation;
+		overflow: hidden;
+
+		> .db-shell-sub-navigation-button {
+			grid-area: button;
+			display: flex;
+		}
+
+		> .db-navigation {
+			grid-area: navigation;
+		}
+	}
+
 	&[data-control-panel-desktop-position="left"] {
 		> .db-control-panel-desktop {
 			@extend %control-panel-desktop-vertical-orientation;
@@ -74,11 +91,146 @@ body {
 		)
 	) {
 		&[data-control-panel-desktop-position="left"] {
-			grid-template-columns: [control-panel] min-content [main] 1fr;
+			grid-template-areas:
+				"control-panel sub-navigation"
+				"control-panel main";
+			grid-template-columns:
+				[control-panel] auto
+				[main] 1fr;
 		}
 
 		&[data-control-panel-desktop-position="top"] {
-			grid-template-rows: [control-panel] min-content [main] 1fr;
+			&:not([data-sub-navigation-desktop-position]),
+			&[data-sub-navigation-desktop-position="top"] {
+				grid-template-areas:
+					"control-panel"
+					"sub-navigation"
+					"main";
+				grid-template-rows:
+					[control-panel] max-content
+					[sub-navigation] max-content
+					[main] 1fr;
+
+				> .db-sub-navigation-container {
+					@include helpers.divider("bottom");
+				}
+
+				> .db-sub-navigation-container > .db-navigation {
+					--db-overflow-scroll-button-inset-block: #{variables.$db-spacing-fixed-xs};
+					--db-overflow-scroll-button-inset-inline-start: calc(
+						#{variables.$db-spacing-fixed-sm} / 2
+					);
+					display: grid;
+
+					@include control-panel-desktop.horizontal-navigation;
+
+					> menu {
+						--db-navigation-item-group-menu-inset-block-start: #{variables.$db-spacing-fixed-xs};
+						padding-block: variables.$db-spacing-fixed-xs;
+
+						/* workaround for showing correct scrolling and focus */
+						padding-inline-start: calc(
+							#{variables.$db-spacing-fixed-sm} / 2
+						);
+						margin-inline-start: calc(
+							#{variables.$db-spacing-fixed-sm} / 2
+						);
+					}
+				}
+
+				> .db-sub-navigation-container
+					> .db-shell-sub-navigation-button {
+					display: none;
+				}
+			}
+
+			&[data-sub-navigation-desktop-position="left"] {
+				grid-template-areas:
+					"control-panel control-panel"
+					"sub-navigation main";
+				grid-template-rows:
+					[control-panel] max-content
+					[main] 1fr;
+				grid-template-columns:
+					[control-panel] auto
+					[main] 1fr;
+
+				> .db-sub-navigation-container {
+					display: grid;
+
+					@include helpers.divider("right");
+
+					> .db-navigation {
+						max-inline-size: screen-sizes.$db-breakpoint-xs;
+					}
+				}
+
+				@media screen and (prefers-reduced-motion: no-preference) {
+					> .db-sub-navigation-container
+						> .db-shell-sub-navigation-button {
+						.db-button {
+							&::before {
+								transition: transform
+									variables.$db-transition-straight-functional;
+							}
+						}
+					}
+				}
+
+				&[data-open="false"] {
+					> .db-sub-navigation-container {
+						inline-size: fit-content;
+						/* stylelint-disable-next-line declaration-property-value-no-unknown */
+						inline-size: calc-size(fit-content, size);
+
+						grid-template-areas: "button";
+						grid-template-rows: [button] 1fr;
+
+						> .db-navigation {
+							display: none;
+						}
+
+						> .db-shell-sub-navigation-button {
+							justify-content: center;
+
+							.db-button {
+								block-size: 100%;
+								border-radius: 0;
+
+								&::before {
+									transform: form-components.$dropdown-icon-transform;
+								}
+							}
+						}
+					}
+				}
+
+				&[data-open="true"] {
+					> .db-sub-navigation-container {
+						grid-template-areas:
+							"navigation"
+							"button";
+						grid-template-rows:
+							[navigation] 1fr
+							[button] auto;
+
+						> .db-navigation {
+							overflow: hidden auto;
+
+							@include control-panel-desktop.vertical-navigation;
+						}
+
+						> .db-shell-sub-navigation-button {
+							padding-block: variables.$db-spacing-fixed-xs;
+							padding-inline: variables.$db-spacing-fixed-lg;
+							justify-content: end;
+							margin-block-start: auto;
+
+							@include helpers.divider("top");
+						}
+					}
+				}
+			}
 		}
 
 		> .db-control-panel-mobile {
@@ -92,13 +244,68 @@ body {
 		)
 	) {
 		&[data-control-panel-mobile-position="top"] {
-			grid-template-areas: "control-panel" "main";
-			grid-template-rows: [control-panel] min-content [main] 1fr;
+			grid-template-areas:
+				"control-panel"
+				"sub-navigation"
+				"main";
+			grid-template-rows:
+				[control-panel] auto
+				[control-panel] auto
+				[main] 1fr;
 		}
 
 		&[data-control-panel-mobile-position="bottom"] {
-			grid-template-areas: "main" "control-panel";
-			grid-template-rows: [main] 1fr [control-panel] min-content;
+			grid-template-areas:
+				"sub-navigation"
+				"main"
+				"control-panel";
+			grid-template-rows:
+				[control-panel] auto
+				[main] 1fr
+				[control-panel] auto;
+		}
+
+		&[data-sub-navigation-mobile-position="hidden"] {
+			> .db-sub-navigation-container > .db-navigation {
+				display: none;
+			}
+		}
+
+		&:not([data-sub-navigation-mobile-position]),
+		&[data-sub-navigation-mobile-position="top"] {
+			> .db-sub-navigation-container {
+				@include helpers.divider("bottom");
+			}
+
+			> .db-sub-navigation-container > .db-navigation {
+				--db-overflow-scroll-button-inset-block: #{variables.$db-spacing-fixed-xs};
+				--db-overflow-scroll-button-inset-inline-start: 0;
+				display: grid;
+
+				@include control-panel-desktop.horizontal-navigation(false);
+
+				> .overflow-scroll-left-button,
+				> .overflow-scroll-right-button {
+					display: none;
+				}
+
+				> menu {
+					--db-navigation-item-group-menu-inset-block-start: #{variables.$db-spacing-fixed-xs};
+					padding-block: variables.$db-spacing-fixed-xs;
+
+					/* workaround for showing correct scrolling and focus */
+					padding-inline-start: calc(
+						#{variables.$db-spacing-fixed-sm} / 2
+					);
+					margin-inline-start: calc(
+						#{variables.$db-spacing-fixed-sm} / 2
+					);
+				}
+			}
+		}
+
+		> .db-sub-navigation-container > .db-shell-sub-navigation-button {
+			display: none;
 		}
 
 		> .db-control-panel-desktop {

@@ -4,6 +4,8 @@ import {
 	DBControlPanelBrand,
 	DBControlPanelDesktop,
 	DBControlPanelMobile,
+	DBNavigation,
+	DBNavigationItem,
 	DBShell
 } from '../../../output/react/src';
 import useQuery from './hooks/use-query';
@@ -11,6 +13,7 @@ import MetaNavigation from './control-panel/meta-navigation';
 import Navigation from './navigation';
 import PrimaryActions from './control-panel/primary-actions';
 import SecondaryActions from './control-panel/secondary-actions';
+import NavItem from './navigation/nav-item';
 
 const App = () => {
 	const [density, setDensity, color, setColor, pageName, fullscreen] =
@@ -28,9 +31,12 @@ const App = () => {
 
 	return (
 		<DBShell
-			fadeIn/*
+			fadeIn /*
 			controlPanelDesktopPosition="left"
 			controlPanelMobilePosition="bottom"*/
+			subNavigationDesktopPosition="left"
+			subNavigationMobilePosition="top"
+			subNavigation={<Navigation />}
 			controlPanelMobile={
 				<DBControlPanelMobile
 					brand={<DBControlPanelBrand>Showcase</DBControlPanelBrand>}

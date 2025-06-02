@@ -113,7 +113,7 @@ $scrollbar-width: helpers.px-to-rem(8);
 $db-overflow-scroll-buttons-background: 21;
 $db-overflow-scroll-buttons-button: 22;
 
-%overflow-scroll-button-backgrounds {
+@mixin set-overflow-scroll-button-backgrounds {
 	&::before,
 	&::after {
 		position: absolute;
@@ -141,7 +141,7 @@ $db-overflow-scroll-buttons-button: 22;
 	}
 }
 
-%overflow-scroll-buttons {
+@mixin set-overflow-scroll-buttons {
 	/*
 	 * Scroll left / right buttons
 	 */
