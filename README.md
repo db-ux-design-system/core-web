@@ -142,7 +142,7 @@ trademarks are bound to clear guidelines and restrictions even when being used w
 this product; Deutsche Bahn fully reserves all rights and ownership regarding the Deutsche Bahn brand, even though that
 we're providing the code of DB UX Design System products free to use and release it under the Apache 2.0 license.
 Please have a look at our brand portal at <https://marketingportal.extranet.deutschebahn.com/> for any further questions
-and whom to contact on any brand issues. As these assets and visual guidelines are retrieved from our Deutsche Bahn
+and who to contact on any brand issues. As these assets and visual guidelines are retrieved from our Deutsche Bahn
 Marketingportal, you'll agree with
 the ["Allgemeine Nutzungsbedingungen für das DB-Marketingportal" (german)](https://marketingportal.extranet.deutschebahn.com/marketingportal/Nutzungsbedingungen-9702684#)
 in case of using them.
