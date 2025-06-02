@@ -90,7 +90,6 @@ jobs:
 
       - name: 🆙 Commit newly generated snapshots
         run: |
-          date > generated.txt
           git config --global user.name "github-actions[bot]"
           git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
           echo 'COMMIT_MAIL=41898282+github-actions[bot]@users.noreply.github.com' >> .env
