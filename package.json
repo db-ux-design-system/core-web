@@ -76,7 +76,6 @@
     "cpr": "3.0.1",
     "cross-env": "^7.0.3",
     "dotenv": "^16.5.0",
-    "esbuild-linux-64": "^0.15.18",
     "eslint": "8.57.1",
     "eslint-plugin-prettier": "^5.4.1",
     "find-versions": "^6.0.0",
