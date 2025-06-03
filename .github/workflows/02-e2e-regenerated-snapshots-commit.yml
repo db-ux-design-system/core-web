@@ -53,7 +53,7 @@ jobs:
         run: |
           # Use PAT_COMMIT secret to commit the changes
           git config --global user.name "github-actions[bot]"
-          git config --system user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
           echo 'COMMIT_MAIL=41898282+github-actions[bot]@users.noreply.github.com' >> .env
 
           # "Stricter repository ownership checks" by GitHub: https://github.blog/open-source/git/highlights-from-git-2-36/#stricter-repository-ownership-checks
