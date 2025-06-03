@@ -252,7 +252,15 @@ export default function DBSelect(props: DBSelectProps) {
 										</option>
 									}>
 									<optgroup
-										label={state.getOptionLabel(option)}>
+										label={state.getOptionLabel(option)}
+										key={useTarget({
+											vue: undefined,
+											stencil: undefined,
+											default: getOptionKey(
+												option,
+												'select-optgroup-'
+											)
+										})}>
 										<For each={option.options}>
 											{(
 												optgroupOption: DBSelectOptionType
