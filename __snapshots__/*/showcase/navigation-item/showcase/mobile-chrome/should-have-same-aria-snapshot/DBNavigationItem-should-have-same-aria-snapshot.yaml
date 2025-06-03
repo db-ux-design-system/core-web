@@ -1,0 +1,59 @@
+- main:
+  - heading "DBNavigationItem" [level=1]
+  - link "Density arrow_up_right\" / \""
+  - list:
+    - listitem:
+      - link "Functional"
+  - list:
+    - listitem:
+      - link "(Default) Regular"
+  - list:
+    - listitem:
+      - link "Expressive"
+  - link "Disabled arrow_up_right\" / \""
+  - list:
+    - listitem:
+      - link "(Default) False"
+  - list:
+    - listitem:
+      - link "True"
+  - link "Active arrow_up_right\" / \""
+  - list:
+    - listitem:
+      - link "(Default) False"
+  - list:
+    - listitem:
+      - link "True"
+  - link "Expanded arrow_up_right\" / \""
+  - list:
+    - listitem:
+      - link "(Default) False"
+  - list:
+    - listitem:
+      - button "True chevron_right\" / \""
+  - link "Show Icon arrow_up_right\" / \""
+  - list:
+    - listitem:
+      - link "(Default) False"
+  - list:
+    - listitem:
+      - text: x_placeholder" / "
+      - link "True"
+  - link "Width arrow_up_right\" / \""
+  - list:
+    - listitem:
+      - link "(Default) Auto"
+  - list:
+    - listitem:
+      - link "Full"
+  - link "Wrap arrow_up_right\" / \""
+  - list:
+    - listitem:
+      - button "No Wrap (Default) chevron_right\" / \""
+  - list:
+    - listitem:
+      - text: x_placeholder" / "
+      - button "This is a very long text that is broken into multiple lines. chevron_right\" / \""
+  - list:
+    - listitem:
+      - button "This is a very long text that is broken into multiple lines. chevron_right\" / \""
