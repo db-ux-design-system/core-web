@@ -1,5 +1,6 @@
 import {
 	BaseFormProps,
+	ChangeEvent,
 	CloseEventState,
 	CustomFormProps,
 	FormMessageProps,
@@ -71,20 +72,20 @@ export type DBCustomSelectEvents = {
 	/**
 	 * Informs the user when dropdown was toggled.
 	 */
-	onDropdownToggle?: (event: any) => void;
+	onDropdownToggle?: (event: Event) => void;
 	/**
 	 * Informs the user when dropdown was toggled.
 	 */
-	dropdownToggle?: (event: any) => void;
+	dropdownToggle?: (event: Event) => void;
 
 	/**
 	 * Informs the user when a search was performed.
 	 */
-	onSearch?: (event: any) => void;
+	onSearch?: (event: ChangeEvent<HTMLInputElement>) => void;
 	/**
 	 * Informs the user when a search was performed.
 	 */
-	search?: (event: any) => void;
+	search?: (event: ChangeEvent<HTMLInputElement>) => void;
 };
 
 export type DBCustomSelectDefaultProps = {

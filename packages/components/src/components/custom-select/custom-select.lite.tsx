@@ -145,19 +145,22 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 				state._validity = props.validation ?? 'no-validation';
 			}
 		},
-		handleDropdownToggle: (event: any) => {
+		handleDropdownToggle: (event: Event) => {
 			if (props.onDropdownToggle) {
 				event.stopPropagation();
 				props.onDropdownToggle(event);
 			}
-			if (event.target.open) {
+			if (
+				event.target instanceof HTMLDetailsElement &&
+				event.target.open
+			) {
 				state._documentClickListenerCallbackId =
 					new DocumentClickListener().addCallback((event) =>
 						state.handleDocumentClose(event)
 					);
 
 				state.handleAutoPlacement();
-				if (!event.target.dataset.test) {
+				if (!event.target.dataset['test']) {
 					// We need this workaround for snapshot testing
 					state.handleOpenByKeyboardFocus();
 				}
@@ -489,12 +492,17 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 			}
 		},
 		// Don't trigger onOptionSelected event
-		handleSearch: (event: any) => {
+		handleSearch: (valueOrEvent?: Event | string | void) => {
+			if (valueOrEvent === undefined) {
+				return;
+			}
+
 			let filterText;
 
-			if (typeof event === 'string') {
-				filterText = event;
+			if (typeof valueOrEvent === 'string') {
+				filterText = valueOrEvent;
 			} else {
+				const event = valueOrEvent as Event;
 				event.stopPropagation();
 
 				if (props.onSearch) {
