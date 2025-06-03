@@ -35,7 +35,7 @@ export default function DBLink(props: DBLinkProps) {
 			target={props.target}
 			rel={props.rel}
 			role={props.role}
-			hreflang={props.hreflang}
+			hrefLang={props.hreflang ?? props.hrefLang}
 			aria-disabled={getBooleanAsString(props.disabled)}
 			tabIndex={props.disabled ? -1 : 0}
 			aria-selected={getBooleanAsString(props.selected)}
