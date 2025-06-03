@@ -20,6 +20,15 @@
 				[control-panel] auto
 				[main] 1fr;
 
+			&:has(
+					> .db-sub-navigation-container
+						> .db-shell-sub-navigation-button:first-child
+				) {
+				grid-template-areas:
+					"control-panel main"
+					"control-panel main";
+			}
+
 			> .db-sub-navigation-container {
 				> .db-navigation {
 					--db-overflow-scroll-button-inset-block: #{variables.$db-spacing-fixed-md};
@@ -62,7 +71,8 @@
 				[data-control-panel-desktop-position="top"][data-sub-navigation-desktop-position="left"]
 			) {
 			> .db-sub-navigation-container {
-				@include helpers.divider("bottom");
+				border-block-end: variables.$db-border-width-3xs solid
+					colors.$db-adaptive-on-bg-basic-emphasis-60-default;
 
 				> .db-navigation {
 					--db-overflow-scroll-button-inset-inline-start: calc(
@@ -112,8 +122,7 @@
 
 				@media screen and (prefers-reduced-motion: no-preference) {
 					.db-button::before {
-						transition: transform
-							#{variables.$db-transition-straight-functional};
+						transition: transform #{variables.$db-transition-straight-functional};
 					}
 				}
 			}

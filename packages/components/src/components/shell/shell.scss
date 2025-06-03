@@ -61,6 +61,10 @@ body {
 		> .db-navigation {
 			grid-area: navigation;
 		}
+
+		&:has(> .db-shell-sub-navigation-button:first-child) {
+			display: none;
+		}
 	}
 
 	&[data-control-panel-desktop-position="left"] {

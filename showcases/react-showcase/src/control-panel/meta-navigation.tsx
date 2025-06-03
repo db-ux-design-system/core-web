@@ -5,20 +5,29 @@ import {
 	DENSITIES,
 	DENSITY,
 	COLOR_CONST,
-	DENSITY_CONST
+	DENSITY_CONST,
+	SEMANTIC,
+	SEMANTICS
 } from '../../../../packages/components/src/shared/constants';
 import {
 	DBSelect,
 	DBControlPanelMetaNavigation
 } from '../../../../output/react/src';
 import useUniversalSearchParameters from '../hooks/use-universal-search-parameters';
+import {
+	defaultSettings,
+	DefaultSettings,
+	defaultSettingsMapping
+} from '../../../shared/default-component-data';
 
 export type MetaNavigationProps = {
 	onDensityChange: (density: string) => void;
 	onColorChange: (color: string) => void;
+	onSettingsChange: (settings: DefaultSettings) => void;
 };
 
 const MetaNavigation = ({
+	onSettingsChange,
 	onDensityChange,
 	onColorChange
 }: MetaNavigationProps) => {
@@ -28,8 +37,11 @@ const MetaNavigation = ({
 		searchParameters.get(DENSITY_CONST) ?? DENSITY.REGULAR
 	);
 	const [color, setColor] = useState<string>(
-		searchParameters.get(COLOR_CONST) ?? COLOR.NEUTRAL_BG_LEVEL_1
+		searchParameters.get(COLOR_CONST) ?? SEMANTIC.NEUTRAL
 	);
+
+	// TODO: Add this to query as well
+	const [settings, setSettings] = useState<DefaultSettings>(defaultSettings);
 
 	useEffect(() => {
 		for (const [key, value] of Array.from(searchParameters.entries())) {
@@ -50,6 +62,10 @@ const MetaNavigation = ({
 	useEffect(() => {
 		setSearchParameters({ density, color });
 	}, [color, density]);
+
+	useEffect(() => {
+		onSettingsChange({ ...settings });
+	}, [settings]);
 
 	return (
 		<DBControlPanelMetaNavigation>
@@ -73,12 +89,36 @@ const MetaNavigation = ({
 				onChange={(event) => {
 					setColor(event?.target?.value);
 				}}>
-				{COLORS.map((col) => (
+				{SEMANTICS.map((col) => (
 					<option key={`color-option-${col}`} value={col}>
 						{col}
 					</option>
 				))}
 			</DBSelect>
+
+			{Object.entries(defaultSettingsMapping).map(([key, value]) => (
+				<DBSelect
+					key={key}
+					label={key
+						.replace('Position', 'Pos')
+						.replace('controlPanel', 'CP')
+						.replace('subNavigation', 'SN')
+						.replace('navigation', 'Nav')}
+					variant="floating"
+					value={settings[key]}
+					onChange={(event) => {
+						setSettings({
+							...settings,
+							[key]: event.target.value
+						});
+					}}>
+					{value.map((option) => (
+						<option key={`${key}-option-${option}`} value={option}>
+							{option}
+						</option>
+					))}
+				</DBSelect>
+			))}
 		</DBControlPanelMetaNavigation>
 	);
 };

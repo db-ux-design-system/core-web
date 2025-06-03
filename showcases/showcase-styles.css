@@ -59,7 +59,10 @@ db-card:is(.variants-card) > .db-card {
 }
 .variants-list {
 	.db-shell {
-		&:is(:not([data-control-panel-desktop-position]),[data-control-panel-desktop-position="top"]) {
+		&:is(
+				:not([data-control-panel-desktop-position]),
+				[data-control-panel-desktop-position="top"]
+			) {
 			block-size: 200px;
 		}
 	}
@@ -208,4 +211,10 @@ db-card:is(.variants-card) > .db-card {
 	background-color: var(--db-successful-bg-basic-level-1-default);
 	color: var(--db-successful-on-bg-basic-emphasis-100-default);
 	padding-inline: var(--db-spacing-fixed-xs);
+}
+
+.db-control-panel-meta-navigation {
+	.db-select {
+		min-inline-size: var(--db-sizing-2xl);
+	}
 }

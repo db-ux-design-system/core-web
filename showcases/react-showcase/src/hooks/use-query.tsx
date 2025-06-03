@@ -3,7 +3,7 @@ import {
 	COLOR,
 	COLOR_CONST,
 	DENSITY,
-	DENSITY_CONST
+	DENSITY_CONST, SEMANTIC
 } from '../../../../packages/components/src/shared/constants';
 import useUniversalSearchParameters from './use-universal-search-parameters';
 
@@ -15,7 +15,7 @@ const useQuery = (redirectURLSearchParams = true): any => {
 		searchParameters.get(DENSITY_CONST) ?? DENSITY.REGULAR
 	);
 	const [color, setColor] = useState<string>(
-		searchParameters.get(COLOR_CONST) ?? COLOR.NEUTRAL_BG_LEVEL_1
+		searchParameters.get(COLOR_CONST) ?? SEMANTIC.NEUTRAL
 	);
 	const [page, setPage] = useState<string | undefined>(undefined);
 	const [fullscreen, setFullscreen] = useState<boolean>(false);
@@ -62,7 +62,7 @@ const useQuery = (redirectURLSearchParams = true): any => {
 		}
 	}, [color, density, page, fullscreen, searchRead]);
 
-	return [density, setDensity, color, setColor, page, fullscreen];
+	return { density, setDensity, color, setColor, page, fullscreen };
 };
 
 export default useQuery;
