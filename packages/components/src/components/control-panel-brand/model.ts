@@ -1,4 +1,5 @@
 import {
+	AdditionalInformationSlotProps,
 	GlobalProps,
 	GlobalState,
 	IconProps,
@@ -6,15 +7,16 @@ import {
 	TextProps
 } from '../../shared/model';
 
-export type DBControlPanelBrandDefaultProps = {
-};
+export type DBControlPanelBrandDefaultProps = {};
 
 export type DBControlPanelBrandProps = DBControlPanelBrandDefaultProps &
 	GlobalProps &
 	IconProps &
 	ShowIconProps &
-	TextProps;
+	TextProps &
+	AdditionalInformationSlotProps;
 
 export type DBControlPanelBrandDefaultState = {};
 
-export type DBControlPanelBrandState = DBControlPanelBrandDefaultState & GlobalState;
+export type DBControlPanelBrandState = DBControlPanelBrandDefaultState &
+	GlobalState;

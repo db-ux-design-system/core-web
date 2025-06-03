@@ -1,5 +1,6 @@
 import {
 	Show,
+	Slot,
 	useDefaultProps,
 	useMetadata,
 	useRef
@@ -25,6 +26,7 @@ export default function DBControlPanelBrand(props: DBControlPanelBrandProps) {
 			<Show when={props.text} else={props.children}>
 				{props.text}
 			</Show>
+			<Slot name="additionalInforamtion"></Slot>
 		</div>
 	);
 }

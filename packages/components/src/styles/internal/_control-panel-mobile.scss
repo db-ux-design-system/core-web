@@ -25,6 +25,7 @@
 	> .db-drawer {
 		> .db-drawer-container {
 			@extend %direction-right;
+
 			border-inline-start: component.$component-border;
 		}
 

@@ -48,6 +48,7 @@
 			> .db-sub-navigation-container > .db-navigation {
 				--db-overflow-scroll-button-inset-block: #{variables.$db-spacing-fixed-xs};
 				--db-overflow-scroll-button-inset-inline-start: 0;
+
 				display: grid;
 
 				@include control-panel-desktop.horizontal-navigation(false);
@@ -59,6 +60,7 @@
 
 				> menu {
 					--db-navigation-item-group-menu-inset-block-start: #{variables.$db-spacing-fixed-xs};
+
 					padding-block: variables.$db-spacing-fixed-xs;
 
 					/* workaround for showing correct scrolling and focus */

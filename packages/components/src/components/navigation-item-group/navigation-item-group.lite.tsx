@@ -1,5 +1,6 @@
 import {
 	onUpdate,
+	Slot,
 	useDefaultProps,
 	useMetadata,
 	useRef,
@@ -125,6 +126,7 @@ export default function DBNavigationItemGroup(
 					state.handleClick(event)
 				}>
 				{props.groupTitle}
+				<Slot name="additionalInforamtion"></Slot>
 			</button>
 
 			<menu

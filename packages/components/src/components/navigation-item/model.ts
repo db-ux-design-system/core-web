@@ -1,4 +1,5 @@
 import {
+	AdditionalInformationSlotProps,
 	DisabledProps,
 	GlobalProps,
 	GlobalState,
@@ -30,7 +31,8 @@ export type DBNavigationItemProps = DBNavigationItemDefaultProps &
 	IconProps &
 	WidthProps &
 	ShowIconProps &
-	DisabledProps;
+	DisabledProps &
+	AdditionalInformationSlotProps;
 
 export type DBNavigationItemDefaultState = {};
 

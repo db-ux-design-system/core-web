@@ -1,4 +1,5 @@
 import {
+	AdditionalInformationSlotProps,
 	ClickEvent,
 	ClickEventProps,
 	ClickEventState,
@@ -33,7 +34,8 @@ export type DBNavigationItemGroupProps = DBNavigationItemGroupDefaultProps &
 	ShowIconProps &
 	DBNavigationItemDefaultProps &
 	DisabledProps &
-	NavigationItemGroupVariant;
+	NavigationItemGroupVariant &
+	AdditionalInformationSlotProps;
 
 export type DBNavigationItemGroupDefaultState = {
 	handleBackClick: (event: ClickEvent<HTMLButtonElement>) => void;

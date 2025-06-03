@@ -78,6 +78,7 @@
 						> menu {
 							@include navigation-item.direct-navigation-items {
 								@extend %db-puls;
+
 								@include db-puls.set-db-puls-vertical();
 
 								@include navigation-item.active-navigation-item {

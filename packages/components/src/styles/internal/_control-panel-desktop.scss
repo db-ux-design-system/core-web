@@ -91,10 +91,12 @@ $meta-child-selector: "> .db-control-panel-desktop-scroll-container > .db-contro
 					inline-size: 100%;
 					// #{$db-spacing-fixed--3xs} for shadows
 					block-size: calc(
-						#{variables.$db-spacing-fixed-3xs} + #{variables.$db-spacing-fixed-md}
+						#{variables.$db-spacing-fixed-3xs} +
+							#{variables.$db-spacing-fixed-md}
 					);
 					inset-block-start: calc(
-						-1 * #{variables.$db-spacing-fixed-md} - #{variables.$db-spacing-fixed-3xs}
+						-1 * #{variables.$db-spacing-fixed-md} -
+							#{variables.$db-spacing-fixed-3xs}
 					);
 				}
 			}
@@ -134,17 +136,15 @@ $meta-child-selector: "> .db-control-panel-desktop-scroll-container > .db-contro
 %control-panel-desktop-horizontal-orientation {
 	border-block-end: variables.$db-border-width-3xs solid
 		colors.$db-adaptive-on-bg-basic-emphasis-60-default;
-	grid-template-areas:
-		"meta meta meta meta meta meta"
-		". . navigation . . ."
-		". brand navigation primary secondary ."
-		". . navigation . . .";
-	grid-template-rows:
-		[meta] auto
-		[padding-top] #{variables.$db-spacing-fixed-md}
-		[others] auto
-		[padding-bottom] #{variables.$db-spacing-fixed-md};
-	grid-template-columns:
+	grid-template:
+		[meta]
+		"meta meta meta meta meta meta" auto
+		[padding-top]
+		". . navigation . . ." #{variables.$db-spacing-fixed-md}
+		[others]
+		". brand navigation primary secondary ." auto
+		[padding-bottom]
+		". . navigation . . ." #{variables.$db-spacing-fixed-md} /
 		[padding-left] #{variables.$db-spacing-fixed-lg}
 		[brand] max-content
 		[navigation] 1fr
@@ -179,6 +179,7 @@ $meta-child-selector: "> .db-control-panel-desktop-scroll-container > .db-contro
 		) {
 		> .db-control-panel-secondary-actions {
 			padding-inline-start: variables.$db-spacing-fixed-sm;
+
 			@include helpers.divider("left");
 		}
 	}
@@ -215,6 +216,7 @@ $meta-child-selector: "> .db-control-panel-desktop-scroll-container > .db-contro
 		--db-overflow-scroll-button-inset-inline-start: calc(
 			#{variables.$db-spacing-fixed-lg} / 2
 		);
+
 		display: grid;
 
 		@include horizontal-navigation;
@@ -228,6 +230,7 @@ $meta-child-selector: "> .db-control-panel-desktop-scroll-container > .db-contro
 
 			@include navigation-item.direct-navigation-items {
 				@extend %db-puls;
+
 				@include db-puls.set-db-puls-horizontal();
 
 				@include navigation-item.active-navigation-item {
@@ -242,29 +245,28 @@ $meta-child-selector: "> .db-control-panel-desktop-scroll-container > .db-contro
 	border-inline-end: variables.$db-border-width-3xs solid
 		colors.$db-adaptive-on-bg-basic-emphasis-60-default;
 	block-size: 100%;
-	grid-template-areas:
-		"."
-		"brand"
-		"scroll"
-		"primary"
-		"secondary"
-		"button";
-	grid-template-rows:
-		[padding-top] #{variables.$db-spacing-fixed-md}
-		[brand] auto
-		[scroll] 1fr
-		[primary] auto
-		[secondary] auto
-		[button] auto;
+	grid-template:
+		[padding-top] "." #{variables.$db-spacing-fixed-md}
+		[brand] "brand" auto
+		[scroll] "scroll" 1fr
+		[primary] "primary" auto
+		[secondary] "secondary" auto
+		[button] "button" auto;
 
 	@media screen and (prefers-reduced-motion: no-preference) {
 		transition: inline-size #{variables.$db-transition-straight-functional};
 
 		> .db-control-panel-desktop-button {
 			.db-button {
+				@media screen and (prefers-reduced-motion: reduce) {
+					&::before {
+						transition: none;
+					}
+				}
+
 				&::before {
 					transition: transform
-						variables.$db-transition-straight-functional;
+						#{variables.$db-transition-straight-functional};
 				}
 			}
 		}
@@ -285,6 +287,7 @@ $meta-child-selector: "> .db-control-panel-desktop-scroll-container > .db-contro
 			> menu {
 				@include navigation-item.direct-navigation-items {
 					--db-icon-margin-end: 0;
+
 					inline-size: variables.$db-sizing-md;
 					aspect-ratio: 1;
 					justify-content: center;
@@ -380,6 +383,7 @@ $meta-child-selector: "> .db-control-panel-desktop-scroll-container > .db-contro
 
 		> .db-control-panel-meta-navigation {
 			margin-block-start: auto;
+
 			@include helpers.divider("top");
 		}
 	}
@@ -392,6 +396,7 @@ $meta-child-selector: "> .db-control-panel-desktop-scroll-container > .db-contro
 		) {
 		> .db-control-panel-secondary-actions {
 			padding-block-start: variables.$db-spacing-fixed-sm;
+
 			@include helpers.divider("top");
 		}
 	}
@@ -413,6 +418,7 @@ $meta-child-selector: "> .db-control-panel-desktop-scroll-container > .db-contro
 		) {
 		> .db-control-panel-primary-actions {
 			padding-block-start: variables.$db-spacing-fixed-sm;
+
 			@include helpers.divider("top");
 		}
 	}
@@ -423,6 +429,7 @@ $meta-child-selector: "> .db-control-panel-desktop-scroll-container > .db-contro
 		> menu {
 			@include navigation-item.direct-navigation-items {
 				@extend %db-puls;
+
 				@include db-puls.set-db-puls-vertical();
 
 				@include navigation-item.active-navigation-item {

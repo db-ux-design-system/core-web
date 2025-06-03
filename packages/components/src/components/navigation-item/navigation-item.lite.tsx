@@ -1,5 +1,6 @@
 import {
 	Show,
+	Slot,
 	useDefaultProps,
 	useMetadata,
 	useRef
@@ -28,6 +29,7 @@ export default function DBNavigationItem(props: DBNavigationItemProps) {
 			data-wrap={getBooleanAsString(props.wrap)}
 			aria-disabled={getBooleanAsString(props.disabled)}>
 			{props.children}
+			<Slot name="additionalInforamtion"></Slot>
 			<DBTooltip placement="right">
 				{props.tooltip ?? DEFAULT_LABEL}
 			</DBTooltip>

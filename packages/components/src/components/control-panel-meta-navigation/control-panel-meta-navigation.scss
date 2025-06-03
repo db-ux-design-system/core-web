@@ -6,8 +6,7 @@
 	@extend %db-density-functional;
 
 	display: flex;
-	flex-direction: row;
-	flex-wrap: wrap;
+	flex-flow: row wrap;
 	justify-content: flex-end;
 	background-color: colors.$db-adaptive-bg-basic-level-2-default;
 	padding: variables.$db-spacing-fixed-xs variables.$db-spacing-fixed-lg;

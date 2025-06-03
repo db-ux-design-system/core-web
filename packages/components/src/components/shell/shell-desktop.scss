@@ -23,8 +23,10 @@
 			> .db-sub-navigation-container {
 				> .db-navigation {
 					--db-overflow-scroll-button-inset-block: #{variables.$db-spacing-fixed-md};
+
 					> menu {
 						--db-navigation-item-group-menu-inset-block-start: #{variables.$db-spacing-fixed-md};
+
 						padding-block: variables.$db-spacing-fixed-md;
 					}
 				}
@@ -45,18 +47,13 @@
 				> .db-sub-navigation-container {
 					> .db-navigation {
 						--db-overflow-scroll-button-inset-block: #{variables.$db-spacing-fixed-xs};
+
 						> menu {
 							--db-navigation-item-group-menu-inset-block-start: #{variables.$db-spacing-fixed-xs};
+
 							padding-block: variables.$db-spacing-fixed-xs;
 						}
 					}
-				}
-			}
-
-			&[data-sub-navigation-desktop-position="left"] {
-				> .db-sub-navigation-container
-					> .db-shell-sub-navigation-button {
-					display: flex;
 				}
 			}
 		}
@@ -71,6 +68,7 @@
 					--db-overflow-scroll-button-inset-inline-start: calc(
 						#{variables.$db-spacing-fixed-sm} / 2
 					);
+
 					display: grid;
 
 					@include control-panel-desktop.horizontal-navigation;
@@ -93,13 +91,9 @@
 		}
 
 		&[data-control-panel-desktop-position="top"][data-sub-navigation-desktop-position="left"] {
-			grid-template-areas:
-				"control-panel control-panel"
-				"sub-navigation main";
-			grid-template-rows:
-				[control-panel] max-content
-				[main] 1fr;
-			grid-template-columns:
+			grid-template:
+				[control-panel] "control-panel control-panel" max-content
+				[main] "sub-navigation main" 1fr /
 				[control-panel] auto
 				[main] 1fr;
 
@@ -113,14 +107,13 @@
 				}
 			}
 
-			@media screen and (prefers-reduced-motion: no-preference) {
-				> .db-sub-navigation-container
-					> .db-shell-sub-navigation-button {
-					.db-button {
-						&::before {
-							transition: transform
-								variables.$db-transition-straight-functional;
-						}
+			> .db-sub-navigation-container > .db-shell-sub-navigation-button {
+				display: flex;
+
+				@media screen and (prefers-reduced-motion: no-preference) {
+					.db-button::before {
+						transition: transform
+							#{variables.$db-transition-straight-functional};
 					}
 				}
 			}
@@ -130,7 +123,6 @@
 					inline-size: auto;
 					/* stylelint-disable-next-line declaration-property-value-no-unknown */
 					inline-size: calc-size(auto, size);
-
 					grid-template-areas: "button";
 					grid-template-rows: [button] 1fr;
 
