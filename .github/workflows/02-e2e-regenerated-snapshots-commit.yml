@@ -52,7 +52,7 @@ jobs:
       - name: 🆙 Commit newly generated snapshots
         run: |
           # Use PAT_COMMIT secret to commit the changes
-          git config --system user.name "github-actions[bot]"
+          git config --global user.name "github-actions[bot]"
           git config --system user.email "41898282+github-actions[bot]@users.noreply.github.com"
           echo 'COMMIT_MAIL=41898282+github-actions[bot]@users.noreply.github.com' >> .env
 
