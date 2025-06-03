@@ -92,6 +92,9 @@ jobs:
           git config --system user.email "41898282+github-actions[bot]@users.noreply.github.com"
           echo 'COMMIT_MAIL=41898282+github-actions[bot]@users.noreply.github.com' >> .env
 
+          # Hack to retrigger the pipeline by a team member
+          echo 'delete this file to retrigger the pipeline; GitHub Actions does not do this itself' >> .delete_me_to_retrigger_the_github_pipeline
+
           git config --system --add safe.directory $GITHUB_WORKSPACE
 
           git add __snapshots__/*
