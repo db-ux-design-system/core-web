@@ -1,0 +1,83 @@
+@use "@db-ux/core-foundations/build/styles/variables";
+@use "@db-ux/core-foundations/build/styles/screen-sizes";
+@use "@db-ux/core-foundations/build/styles/helpers";
+@use "../../styles/internal/control-panel-desktop";
+@use "../../styles/internal/control-panel-mobile";
+
+.db-shell {
+	// MOBILE
+	@include screen-sizes.screen-min-max(
+		(
+			max: "sm"
+		)
+	) {
+		&[data-control-panel-mobile-position="top"] {
+			grid-template-areas:
+				"control-panel"
+				"sub-navigation"
+				"main";
+			grid-template-rows:
+				[control-panel] auto
+				[control-panel] auto
+				[main] 1fr;
+		}
+
+		&[data-control-panel-mobile-position="bottom"] {
+			grid-template-areas:
+				"sub-navigation"
+				"main"
+				"control-panel";
+			grid-template-rows:
+				[control-panel] auto
+				[main] 1fr
+				[control-panel] auto;
+		}
+
+		&[data-sub-navigation-mobile-position="hidden"] {
+			> .db-sub-navigation-container > .db-navigation {
+				display: none;
+			}
+		}
+
+		&:not([data-sub-navigation-mobile-position]),
+		&[data-sub-navigation-mobile-position="top"] {
+			> .db-sub-navigation-container {
+				@include helpers.divider("bottom");
+			}
+
+			> .db-sub-navigation-container > .db-navigation {
+				--db-overflow-scroll-button-inset-block: #{variables.$db-spacing-fixed-xs};
+				--db-overflow-scroll-button-inset-inline-start: 0;
+				display: grid;
+
+				@include control-panel-desktop.horizontal-navigation(false);
+
+				> .overflow-scroll-left-button,
+				> .overflow-scroll-right-button {
+					display: none;
+				}
+
+				> menu {
+					--db-navigation-item-group-menu-inset-block-start: #{variables.$db-spacing-fixed-xs};
+					padding-block: variables.$db-spacing-fixed-xs;
+
+					/* workaround for showing correct scrolling and focus */
+					padding-inline-start: calc(
+						#{variables.$db-spacing-fixed-sm} / 2
+					);
+					margin-inline-start: calc(
+						#{variables.$db-spacing-fixed-sm} / 2
+					);
+				}
+			}
+		}
+
+		> .db-sub-navigation-container > .db-shell-sub-navigation-button {
+			display: none;
+		}
+
+		> .db-control-panel-desktop {
+			display: none;
+		}
+	}
+}

@@ -1,5 +1,10 @@
 @use "@db-ux/core-foundations/build/styles/variables";
 @use "@db-ux/core-foundations/build/styles/screen-sizes";
+@use "@db-ux/core-foundations/build/styles/icons";
+@use "@db-ux/core-foundations/build/styles/animation";
+@use "../../styles/internal/form-components";
+@use "../navigation-item-group/navigation-item-group-menu-popover";
+@use "../navigation-item-group/navigation-item-group-menu-tree";
 
 .db-navigation {
 	-webkit-tap-highlight-color: transparent; /* for removing the highlight */
@@ -17,5 +22,123 @@
 		padding: 0;
 		margin: 0;
 		gap: variables.$db-spacing-fixed-sm;
+	}
+
+	&:not([data-variant]),
+	&[data-variant="popover"],
+	&[data-variant="slide"] {
+		.db-navigation-item-group {
+			// MOBILE Sliding
+			@include screen-sizes.screen-min-max(
+				(
+					max: "sm"
+				)
+			) {
+				.db-navigation-item-group-expand-button {
+					// show/hide sub-navigation by click
+					&[aria-expanded="true"] {
+						~ .db-navigation-item-group-menu {
+							visibility: visible;
+
+							@media screen and (prefers-reduced-motion: no-preference) {
+								transition: visibility 0ms linear 0ms;
+								animation: show-right-to-left #{variables.$db-transition-straight-show};
+							}
+
+							.db-navigation-item-group-menu {
+								inset-block: 0;
+							}
+						}
+					}
+
+					&:not(&[aria-expanded="true"]) {
+						@media screen and (prefers-reduced-motion: no-preference) {
+							~ .db-navigation-item-group-menu {
+								transition: visibility 0ms linear 410ms; // hide animation is 0.4s
+								animation: hide-right-to-left #{variables.$db-transition-straight-hide};
+							}
+						}
+					}
+				}
+			}
+
+			// DESKTOP: show sub-navigation on hover
+			@include screen-sizes.screen-min-max(
+				(
+					min: "sm"
+				)
+			) {
+				.db-navigation-item-group-expand-button {
+					&:is(button),
+					> button {
+						&::after {
+							@media screen and (prefers-reduced-motion: no-preference) {
+								transition: form-components.$dropdown-icon-transition;
+							}
+						}
+
+						&:is(:hover, :focus-visible):not(
+								:has(
+										~ .db-navigation-item-group-menu[data-force-close="true"]
+									)
+							) {
+							~ .db-navigation-item-group-menu {
+								visibility: visible;
+							}
+
+							&::after {
+								transform: form-components.$dropdown-icon-transform;
+							}
+						}
+					}
+				}
+			}
+
+			.db-navigation-item-group-expand-button {
+				&:is(button),
+				> button {
+					// default icon for navigation
+					@include icons.set-icon("chevron_right", "after");
+				}
+			}
+
+			.db-navigation-item-group-menu {
+				@extend %db-navigation-item-group-menu-popover;
+			}
+		}
+	}
+
+	&[data-variant="tree"] {
+		.db-navigation-item-group {
+			display: flex;
+			flex-direction: column;
+
+			.db-navigation-item-group-expand-button {
+				&[aria-expanded="true"] {
+					&:is(button),
+					> button {
+						&::after {
+							transform: form-components.$dropdown-icon-transform;
+						}
+					}
+
+					~ .db-navigation-item-group-menu {
+						visibility: visible;
+						block-size: auto;
+						/* stylelint-disable-next-line declaration-property-value-no-unknown */
+						block-size: calc-size(auto, size);
+					}
+				}
+
+				&:is(button),
+				> button {
+					@extend %dropdown-icon;
+				}
+			}
+
+			.db-navigation-item-group-menu {
+				@extend %db-navigation-item-group-menu-tree;
+			}
+		}
 	}
 }

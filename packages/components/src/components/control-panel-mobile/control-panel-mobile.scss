@@ -4,6 +4,8 @@
 @use "@db-ux/core-foundations/build/styles/colors";
 @use "../../styles/internal/component";
 @use "../../styles/internal/control-panel-mobile";
+@use "../../styles/internal/navigation-item";
+@use "../../styles/internal/db-puls";
 
 .db-control-panel-mobile {
 	background-color: colors.$db-adaptive-bg-basic-level-1-default;
@@ -71,6 +73,26 @@
 						> .overflow-scroll-left-button,
 						> .overflow-scroll-right-button {
 							display: none;
+						}
+
+						> menu {
+							@include navigation-item.direct-navigation-items {
+								@extend %db-puls;
+								@include db-puls.set-db-puls-vertical();
+
+								@include navigation-item.active-navigation-item {
+									@include db-puls.show-db-puls-vertical();
+
+									&::after {
+										// Mobile navigation item is always sizing-md
+										// We add this fixed block-size to avoid issues with tree navigation
+										block-size: variables.$db-sizing-md;
+										inset-block-start: calc(
+											#{variables.$db-sizing-md} / 2
+										);
+									}
+								}
+							}
 						}
 					}
 				}

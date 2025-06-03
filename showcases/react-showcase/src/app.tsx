@@ -31,12 +31,12 @@ const App = () => {
 
 	return (
 		<DBShell
-			fadeIn
+			fadeIn /*
 			controlPanelDesktopPosition="left"
-			controlPanelMobilePosition="bottom"
+			controlPanelMobilePosition="bottom"*/
 			subNavigationDesktopPosition="left"
 			subNavigationMobilePosition="top"
-			subNavigation={<Navigation />}
+			subNavigation={<Navigation /*variant="tree"*/ />}
 			controlPanelMobile={
 				<DBControlPanelMobile
 					brand={<DBControlPanelBrand>Showcase</DBControlPanelBrand>}
@@ -48,7 +48,7 @@ const App = () => {
 							onDensityChange={setDensity}
 						/>
 					}>
-					<Navigation />
+					<Navigation variant="tree" />
 				</DBControlPanelMobile>
 			}
 			controlPanelDesktop={

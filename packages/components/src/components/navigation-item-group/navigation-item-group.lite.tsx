@@ -39,6 +39,7 @@ export default function DBNavigationItemGroup(
 		hasSubNavigation: true,
 		isSubNavigationExpanded: false,
 		autoClose: false,
+		hasPopup: false,
 		subNavigationId: 'db-navigation-item-group-menu-' + uuid(),
 		navigationItemSafeTriangle: undefined,
 		handleNavigationItemClick: (event: any) => {
@@ -55,7 +56,7 @@ export default function DBNavigationItemGroup(
 				props.onClick(event);
 			}
 
-			state.isSubNavigationExpanded = true;
+			state.isSubNavigationExpanded = !state.isSubNavigationExpanded;
 		},
 		handleBackClick: (event: ClickEvent<HTMLButtonElement> | any) => {
 			event.stopPropagation();
@@ -75,9 +76,19 @@ export default function DBNavigationItemGroup(
 
 	onUpdate(() => {
 		if (_ref) {
-			const subNavigationSlot = _ref.querySelector('menu');
+			const element = _ref as HTMLLIElement;
+			const subNavigationSlot = element.querySelector('menu');
 
-			if (subNavigationSlot) {
+			const nav = element.closest<HTMLElement>('.db-navigation');
+
+			const popover =
+				!nav ||
+				!nav.dataset.variant ||
+				nav.dataset.variant === 'popover' ||
+				nav.dataset.variant === 'slide';
+
+			if (subNavigationSlot && popover) {
+				state.hasPopup = true;
 				if (!state.navigationItemSafeTriangle) {
 					state.navigationItemSafeTriangle =
 						new NavigationItemSafeTriangle(_ref, subNavigationSlot);
@@ -105,7 +116,8 @@ export default function DBNavigationItemGroup(
 			data-wrap={getBooleanAsString(props.wrap)}
 			aria-disabled={getBooleanAsString(props.disabled)}>
 			<button
-				aria-haspopup="true"
+				aria-haspopup={state.hasPopup ? true : undefined}
+				aria-owns={state.hasPopup ? undefined : state.subNavigationId}
 				aria-expanded={state.isSubNavigationExpanded}
 				class="db-navigation-item-group-expand-button"
 				disabled={getBoolean(props.disabled, 'disabled')}
@@ -117,6 +129,7 @@ export default function DBNavigationItemGroup(
 
 			<menu
 				class="db-navigation-item-group-menu"
+				role="group"
 				data-force-close={state.autoClose}
 				id={state.subNavigationId}
 				onScroll={() => {

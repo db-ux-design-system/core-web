@@ -745,3 +745,11 @@ export type SidebarState = {
 	_open: boolean;
 	getToggleButtonText: () => string;
 };
+
+export const NavigationItemGroupVariantList = ['popover', 'slide', 'tree'] as const;
+export type NavigationItemGroupVariantType = (typeof NavigationItemGroupVariantList)[number];
+
+export type NavigationItemGroupVariant = {
+
+	variant?: NavigationItemGroupVariantType;
+}

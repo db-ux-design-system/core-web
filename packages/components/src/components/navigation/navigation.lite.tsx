@@ -44,7 +44,9 @@ export default function DBNavigation(props: DBNavigationProps) {
 			});
 		},
 		onScroll() {
-			handleSubNavigationPosition(menuRef);
+			if (!props.variant || props.variant === 'popover') {
+				handleSubNavigationPosition(menuRef);
+			}
 			state.evaluateScrollButtons(menuRef);
 		}
 	});
@@ -55,16 +57,32 @@ export default function DBNavigation(props: DBNavigationProps) {
 
 	onUpdate(() => {
 		if (menuRef && state.initialized) {
-			handleSubNavigationPosition(menuRef);
+			if (!props.variant || props.variant === 'popover') {
+				handleSubNavigationPosition(menuRef);
+			} else if (props.variant === 'tree') {
+				for (const navItem of Array.from(
+					(menuRef as HTMLElement).querySelectorAll(
+						'.db-navigation-item, .db-navigation-item-group'
+					)
+				)) {
+					// TODO: Add keyboard navigation support
+					navItem.setAttribute('role', 'none');
+					navItem
+						.querySelector('a, button')
+						?.setAttribute('role', 'treeitem');
+				}
+			}
+
 			state.evaluateScrollButtons(menuRef);
 		}
-	}, [menuRef, state.initialized]);
+	}, [menuRef, state.initialized, props.variant]);
 
 	return (
 		<nav
 			ref={_ref}
 			id={props.id}
 			aria-labelledby={props.labelledBy}
+			data-variant={props.variant}
 			class={cls('db-navigation', props.className)}>
 			<Show when={state.showScrollLeft}>
 				<DBButton
@@ -78,6 +96,7 @@ export default function DBNavigation(props: DBNavigationProps) {
 				</DBButton>
 			</Show>
 			<menu
+				role={props.variant === 'tree' ? 'tree' : undefined}
 				ref={menuRef}
 				onScroll={() => {
 					state.onScroll();

@@ -6,6 +6,15 @@
 @use "../../styles/internal/icon-passing";
 @use "../../styles/internal/component";
 
+$navigation-max-inline-size: 328px; // We should get this value from UX
+
+@mixin direct-navigation-items {
+	> .db-navigation-item,
+	> .db-navigation-item-group {
+		@content;
+	}
+}
+
 @mixin active-navigation-item() {
 	&:has([aria-current="page"]),
 	&:has([data-active="true"]),
@@ -51,6 +60,7 @@
 	background-color: colors.$db-adaptive-bg-basic-transparent-full-default;
 	cursor: pointer;
 	inline-size: 100%;
+	block-size: variables.$db-sizing-md;
 	display: inline-flex;
 	border-radius: variables.$db-border-radius-sm;
 	padding: variables.$db-spacing-fixed-xs variables.$db-spacing-fixed-sm;
@@ -76,7 +86,6 @@
 	display: inline-flex;
 	position: relative;
 	inline-size: auto;
-	block-size: variables.$db-sizing-md;
 
 	&[data-wrap="true"] {
 		:is(a, .db-navigation-item-expand-button):first-of-type {

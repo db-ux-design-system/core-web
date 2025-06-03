@@ -18,13 +18,6 @@ $meta-child-selector: "> .db-control-panel-desktop-scroll-container > .db-contro
 	}
 }
 
-@mixin navigation-items {
-	> .db-navigation-item,
-	> .db-navigation-item-group {
-		@content;
-	}
-}
-
 @mixin horizontal-navigation($scroll-buttons: true) {
 	@if ($scroll-buttons) {
 		@include scrollbar.set-overflow-scroll-buttons;
@@ -117,19 +110,24 @@ $meta-child-selector: "> .db-control-panel-desktop-scroll-container > .db-contro
 		display: none;
 	}
 
+	&:not([data-variant]),
+	&[data-variant="popover"] {
+		> menu {
+			.db-navigation-item-group {
+				.db-navigation-item-group-menu {
+					inset-inline-start: calc(
+						100% + #{variables.$db-spacing-fixed-md}
+					);
+
+					@include navigation-item.navigation-item-group-menu-triangle-vertical;
+				}
+			}
+		}
+	}
+
 	> menu {
 		flex-direction: column;
 		padding-inline: variables.$db-spacing-fixed-lg;
-
-		> .db-navigation-item-group {
-			> .db-navigation-item-group-menu {
-				inset-inline-start: calc(
-					100% + #{variables.$db-spacing-fixed-md}
-				);
-
-				@include navigation-item.navigation-item-group-menu-triangle-vertical;
-			}
-		}
 	}
 }
 
@@ -228,7 +226,7 @@ $meta-child-selector: "> .db-control-panel-desktop-scroll-container > .db-contro
 			padding-inline-start: calc(#{variables.$db-spacing-fixed-lg} / 2);
 			margin-inline-start: calc(#{variables.$db-spacing-fixed-lg} / 2);
 
-			@include navigation-items {
+			@include navigation-item.direct-navigation-items {
 				@extend %db-puls;
 				@include db-puls.set-db-puls-horizontal();
 
@@ -285,7 +283,7 @@ $meta-child-selector: "> .db-control-panel-desktop-scroll-container > .db-contro
 
 		@include navigation-child {
 			> menu {
-				@include navigation-items {
+				@include navigation-item.direct-navigation-items {
 					--db-icon-margin-end: 0;
 					inline-size: variables.$db-sizing-md;
 					aspect-ratio: 1;
@@ -423,7 +421,7 @@ $meta-child-selector: "> .db-control-panel-desktop-scroll-container > .db-contro
 		@include vertical-navigation;
 
 		> menu {
-			@include navigation-items {
+			@include navigation-item.direct-navigation-items {
 				@extend %db-puls;
 				@include db-puls.set-db-puls-vertical();
 

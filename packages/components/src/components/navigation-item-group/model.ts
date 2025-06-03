@@ -8,6 +8,7 @@ import {
 	IconProps,
 	NavigationBackButtonProps,
 	NavigationBehaviorState,
+	NavigationItemGroupVariant,
 	ShowIconProps,
 	WidthProps
 } from '../../shared/model';
@@ -31,7 +32,8 @@ export type DBNavigationItemGroupProps = DBNavigationItemGroupDefaultProps &
 	WidthProps &
 	ShowIconProps &
 	DBNavigationItemDefaultProps &
-	DisabledProps;
+	DisabledProps &
+	NavigationItemGroupVariant;
 
 export type DBNavigationItemGroupDefaultState = {
 	handleBackClick: (event: ClickEvent<HTMLButtonElement>) => void;
@@ -42,6 +44,7 @@ export type DBNavigationItemGroupDefaultState = {
 	 * Internal state property to show/hide sub-navigation button
 	 */
 	hasSubNavigation?: boolean;
+	hasPopup?: boolean;
 	navigationItemSafeTriangle?: NavigationItemSafeTriangle;
 	autoClose?: boolean;
 };
