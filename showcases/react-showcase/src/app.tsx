@@ -36,7 +36,7 @@ const App = () => {
 			controlPanelMobilePosition="bottom" */
 			subNavigationDesktopPosition="left"
 			subNavigationMobilePosition="top"
-			subNavigation={<Navigation /* variant="tree" */ />}
+			subNavigation={<Navigation variant="tree" />}
 			controlPanelMobile={
 				<DBControlPanelMobile
 					brand={<DBControlPanelBrand>Showcase</DBControlPanelBrand>}
@@ -62,7 +62,7 @@ const App = () => {
 					}
 					primaryActions={<PrimaryActions />}
 					secondaryActions={<SecondaryActions />}>
-					<Navigation />
+					<Navigation variant="tree" />
 				</DBControlPanelDesktop>
 			}>
 			<div data-density={density} className={`db-${color}`}>

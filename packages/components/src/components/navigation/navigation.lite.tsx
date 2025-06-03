@@ -21,16 +21,17 @@ export default function DBNavigation(props: DBNavigationProps) {
 	const menuRef = useRef<HTMLMenuElement | any>(null);
 
 	const state = useStore<DBNavigationState>({
-		initialized: false,
 		showScrollLeft: false,
 		showScrollRight: false,
+		_variant: undefined,
 		evaluateScrollButtons(tList: Element) {
 			const needsScroll = tList.scrollWidth > tList.clientWidth;
+			const scrollLeft = Math.ceil(tList.scrollLeft);
 
-			state.showScrollLeft = needsScroll && tList.scrollLeft > 1;
+			state.showScrollLeft = needsScroll && scrollLeft > 1;
 			state.showScrollRight =
 				needsScroll &&
-				tList.scrollLeft < tList.scrollWidth - tList.clientWidth;
+				scrollLeft < tList.scrollWidth - tList.clientWidth;
 		},
 		scroll(left?: boolean) {
 			let step = Number(props.arrowScrollDistance) || 100;
@@ -51,15 +52,40 @@ export default function DBNavigation(props: DBNavigationProps) {
 		}
 	});
 
-	onMount(() => {
-		state.initialized = true;
-	});
+	onUpdate(() => {
+		if (_ref) {
+			const element = _ref as HTMLElement;
+			let endVariant = props.variant ?? 'popover';
+
+			const parentClassList = element.parentElement?.classList;
+			const shell = element.closest('.db-shell');
+			const shellDesktopPosition = shell?.getAttribute(
+				'data-control-panel-desktop-position'
+			);
+			const shellSubNaviDesktopPosition = shell?.getAttribute(
+				'data-sub-navigation-desktop-position'
+			);
+			const requiresPopover =
+				(shellDesktopPosition === 'top' &&
+					parentClassList?.contains(
+						'db-control-panel-desktop-scroll-container'
+					)) ||
+				(shellSubNaviDesktopPosition === 'top' &&
+					parentClassList?.contains('db-sub-navigation-container'));
+
+			if (requiresPopover) {
+				endVariant = 'popover';
+			}
+
+			state._variant = endVariant;
+		}
+	}, [_ref, props.variant]);
 
 	onUpdate(() => {
-		if (menuRef && state.initialized) {
-			if (!props.variant || props.variant === 'popover') {
+		if (menuRef && state._variant) {
+			if (!state._variant || state._variant === 'popover') {
 				handleSubNavigationPosition(menuRef);
-			} else if (props.variant === 'tree') {
+			} else if (state._variant === 'tree') {
 				for (const navItem of Array.from(
 					(menuRef as HTMLElement).querySelectorAll(
 						'.db-navigation-item, .db-navigation-item-group'
@@ -75,14 +101,14 @@ export default function DBNavigation(props: DBNavigationProps) {
 
 			state.evaluateScrollButtons(menuRef);
 		}
-	}, [menuRef, state.initialized, props.variant]);
+	}, [menuRef, state._variant]);
 
 	return (
 		<nav
 			ref={_ref}
 			id={props.id}
 			aria-labelledby={props.labelledBy}
-			data-variant={props.variant}
+			data-variant={state._variant}
 			class={cls('db-navigation', props.className)}>
 			<Show when={state.showScrollLeft}>
 				<DBButton
@@ -96,7 +122,7 @@ export default function DBNavigation(props: DBNavigationProps) {
 				</DBButton>
 			</Show>
 			<menu
-				role={props.variant === 'tree' ? 'tree' : undefined}
+				role={state._variant === 'tree' ? 'tree' : undefined}
 				ref={menuRef}
 				onScroll={() => {
 					state.onScroll();

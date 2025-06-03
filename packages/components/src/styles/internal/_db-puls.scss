@@ -18,7 +18,7 @@
 		block-size: 0;
 		inline-size: variables.$db-border-width-xs;
 		transform: translate(0, -50%);
-		inset-block: 50% auto;
+		inset-block: var(--db-puls-vertical-inset-block-start, 50%) auto;
 		background-color: colors.$db-brand-on-bg-basic-emphasis-70-default;
 		inset-inline-start: calc(-1 * #{variables.$db-spacing-fixed-xs});
 	}
@@ -64,7 +64,7 @@
 
 @mixin show-db-puls-vertical() {
 	&::after {
-		block-size: 100%;
+		block-size: var(--db-puls-vertical-block-size, 100%);
 		inline-size: variables.$db-border-width-xs;
 
 		@media (forced-colors: active) {

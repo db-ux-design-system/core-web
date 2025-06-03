@@ -74,8 +74,17 @@
 			}
 		}
 
-		> .db-sub-navigation-container > .db-shell-sub-navigation-button {
-			display: none;
+		> .db-sub-navigation-container {
+			> .db-shell-sub-navigation-button {
+				display: none;
+			}
+
+			.db-navigation-item-group {
+				// We don't allow complex sub-navigation in mobile
+				// Users should add a custom implementation for this scenario or
+				// They should use another mobile navigation
+				display: none !important;
+			}
 		}
 
 		> .db-control-panel-desktop {

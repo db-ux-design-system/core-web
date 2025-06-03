@@ -83,15 +83,6 @@
 
 								@include navigation-item.active-navigation-item {
 									@include db-puls.show-db-puls-vertical();
-
-									&::after {
-										// Mobile navigation item is always sizing-md
-										// We add this fixed block-size to avoid issues with tree navigation
-										block-size: variables.$db-sizing-md;
-										inset-block-start: calc(
-											#{variables.$db-sizing-md} / 2
-										);
-									}
 								}
 							}
 						}
