@@ -57,7 +57,7 @@ jobs:
           echo 'COMMIT_MAIL=41898282+github-actions[bot]@users.noreply.github.com' >> .env
 
           # "Stricter repository ownership checks" by GitHub: https://github.blog/open-source/git/highlights-from-git-2-36/#stricter-repository-ownership-checks
-          git config --system --add safe.directory $GITHUB_WORKSPACE
+          git config --global --add safe.directory $GITHUB_WORKSPACE
 
           git add __snapshots__/*
           git commit -m "refactor(test): updated snapshots" || echo "No changes to commit"
