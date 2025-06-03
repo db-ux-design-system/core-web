@@ -35,16 +35,12 @@ jobs:
 
       - name: Download patternhub
         uses: actions/download-artifact@v4
-        # Only download artifact if the artifact exists
-        if: always() && contains(needs.regenerate-snapshots-patternhub.outputs.artifacts, 'snapshots-patternhub')
         with:
           name: snapshots-patternhub
           path: ./__snapshots__/*/patternhub
 
       - name: Download showcase
         uses: actions/download-artifact@v4
-        # Only download artifact if the artifact exists
-        if: always() && contains(needs.regenerate-snapshots.outputs.artifacts, 'snapshots-showcase')
         with:
           name: snapshots-showcase
           path: ./__snapshots__/*/showcase
