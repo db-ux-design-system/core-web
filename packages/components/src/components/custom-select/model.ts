@@ -81,11 +81,11 @@ export type DBCustomSelectEvents = {
 	/**
 	 * Informs the user when a search was performed.
 	 */
-	onSearch?: (event: ChangeEvent<HTMLInputElement>) => void;
+	onSearch?: (event: Event) => void;
 	/**
 	 * Informs the user when a search was performed.
 	 */
-	search?: (event: ChangeEvent<HTMLInputElement>) => void;
+	search?: (event: Event) => void;
 };
 
 export type DBCustomSelectDefaultProps = {
