@@ -23,7 +23,7 @@ jobs:
         if: always() && contains(needs.regenerate-snapshots-components.outputs.artifacts, 'snapshots-components')
         with:
           name: snapshots-components
-          path: ./__snapshots__/*/component
+          path: ./__snapshots__/
 
       - name: Download foundations
         uses: actions/download-artifact@v4
@@ -31,19 +31,19 @@ jobs:
         if: always() && contains(needs.regenerate-snapshots-foundations.outputs.artifacts, 'snapshots-foundations')
         with:
           name: snapshots-foundations
-          path: ./__snapshots__/foundations
+          path: ./__snapshots__/
 
       - name: Download patternhub
         uses: actions/download-artifact@v4
         with:
           name: snapshots-patternhub
-          path: ./__snapshots__/*/patternhub
+          path: ./__snapshots__/
 
       - name: Download showcase
         uses: actions/download-artifact@v4
         with:
           name: snapshots-showcases
-          path: ./__snapshots__/*/showcase
+          path: ./__snapshots__/
 
       - name: 🆙 Commit newly generated snapshots
         run: |
