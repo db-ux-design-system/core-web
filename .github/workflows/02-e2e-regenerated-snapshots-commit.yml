@@ -8,8 +8,8 @@ permissions:
   contents: write
 
 jobs:
-  regenerate-snapshots:
-    name: 🧪🎭 - Regenerate snapshots ${{ inputs.type }}
+  commit-regenerate-snapshots:
+    name: 🆙 Commit regenerated snapshots
     runs-on: ubuntu-24.04 # Use Ubuntu 24.04 explicitly
     steps:
       - name: ⏬ Checkout repo
