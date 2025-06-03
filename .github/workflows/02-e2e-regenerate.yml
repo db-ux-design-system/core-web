@@ -26,8 +26,6 @@ jobs:
     steps:
       - name: ⏬ Checkout repo
         uses: actions/checkout@v4
-        with:
-          ref: ${{ github.head_ref }}
 
       - name: 🔄 Init Cache
         uses: ./.github/actions/npm-cache
@@ -86,18 +84,34 @@ jobs:
             npm run regenerate:screenshots --workspace=react-showcase
           fi
 
-      - name: 🆙 Commit newly generated snapshots
-        run: |
-          git config --system user.name "github-actions[bot]"
-          git config --system user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          echo 'COMMIT_MAIL=41898282+github-actions[bot]@users.noreply.github.com' >> .env
+      - name: 🆙 Upload components
+        if: always() && inputs.type == 'components'
+        uses: actions/upload-artifact@v4
+        with:
+          name: snapshots-${{ inputs.type }}
+          path: ./__snapshots__/*/component
+          retention-days: 7
 
-          # Hack to enable retriggering the pipeline by a team member
-          echo 'delete this file to retrigger the pipeline; GitHub Actions does not do this itself' >> .delete_me_to_retrigger_the_github_pipeline
-          git add .delete_me_to_retrigger_the_github_pipeline
+      - name: 🆙 Upload foundations
+        if: always() && inputs.type == 'foundations'
+        uses: actions/upload-artifact@v4
+        with:
+          name: snapshots-${{ inputs.type }}
+          path: ./__snapshots__/foundations
+          retention-days: 7
 
-          # "Stricter repository ownership checks" by GitHub: https://github.blog/open-source/git/highlights-from-git-2-36/#stricter-repository-ownership-checks          git config --system --add safe.directory $GITHUB_WORKSPACE
+      - name: 🆙 Upload patternhub
+        if: always() && inputs.type == 'patternhub'
+        uses: actions/upload-artifact@v4
+        with:
+          name: snapshots-${{ inputs.type }}
+          path: ./__snapshots__/*/patternhub
+          retention-days: 7
 
-          git add __snapshots__/*
-          git commit -m "refactor(test): updated snapshots" || echo "No changes to commit"
-          git push origin HEAD:${{ github.head_ref }} # Push back to the same PR branch
+      - name: 🆙 Upload showcase
+        if: always() && inputs.type == 'showcases'
+        uses: actions/upload-artifact@v4
+        with:
+          name: snapshots-${{ inputs.type }}
+          path: ./__snapshots__/*/showcase
+          retention-days: 7

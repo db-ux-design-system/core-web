@@ -1,0 +1,62 @@
+name: Commit Regenerated Snapshots
+
+on:
+  workflow_call:
+
+permissions:
+  actions: write
+  contents: write
+
+jobs:
+  regenerate-snapshots:
+    name: 🧪🎭 - Regenerate snapshots ${{ inputs.type }}
+    runs-on: ubuntu-24.04 # Use Ubuntu 24.04 explicitly
+    steps:
+      - name: ⏬ Checkout repo
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.head_ref }}
+
+      - name: Download components
+        uses: actions/download-artifact@v4
+        with:
+          name: snapshots-components
+          path: ./__snapshots__/*/component
+
+      - name: Download foundations
+        uses: actions/download-artifact@v4
+        with:
+          name: snapshots-foundations
+          path: ./__snapshots__/foundations
+
+      - name: Download patternhub
+        uses: actions/download-artifact@v4
+        with:
+          name: snapshots-patternhub
+          path: ./__snapshots__/*/patternhub
+
+      - name: Download showcase
+        uses: actions/download-artifact@v4
+        with:
+          name: snapshots-showcase
+          path: ./__snapshots__/*/showcase
+
+      - name: 🆙 Commit newly generated snapshots
+        run: |
+          # Use PAT_COMMIT secret to commit the changes
+          git config --system user.name "github-actions[bot]"
+          git config --system user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          echo 'COMMIT_MAIL=41898282+github-actions[bot]@users.noreply.github.com' >> .env
+
+          # "Stricter repository ownership checks" by GitHub: https://github.blog/open-source/git/highlights-from-git-2-36/#stricter-repository-ownership-checks
+          git config --system --add safe.directory $GITHUB_WORKSPACE
+
+          git add __snapshots__/*
+          git commit -m "refactor(test): updated snapshots" || echo "No changes to commit"
+
+      - name: Push changes using PAT
+        env:
+          PAT_COMMIT: ${{ secrets.PAT_COMMIT }}
+        run: |
+          git remote set-url origin https://x-access-token:${PAT_COMMIT}@github.com/${{ github.repository }}.git
+          git push origin HEAD:${{ github.head_ref }} # Push back to the same PR branch

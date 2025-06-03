@@ -190,6 +190,17 @@ jobs:
         get-playwright-version
       ]
 
+  commit-regenerated-snapshots:
+    if: always() && (needs.regenerate-snapshots-components.result == 'success' || needs.regenerate-snapshots-foundations.result == 'success' || needs.regenerate-snapshots-patternhub.result == 'success' || needs.regenerate-snapshots.result == 'success')
+    uses: ./.github/workflows/02-e2e-regenerated-snapshots-commit.yml
+    needs:
+      [
+        regenerate-snapshots-components,
+        regenerate-snapshots-foundations,
+        regenerate-snapshots-patternhub,
+        regenerate-snapshots
+      ]
+
   checks-done:
     if: ${{ always() }}
     runs-on: ubuntu-24.04 # Use Ubuntu 24.04 explicitly
