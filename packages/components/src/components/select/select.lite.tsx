@@ -266,7 +266,14 @@ export default function DBSelect(props: DBSelectProps) {
 												optgroupOption: DBSelectOptionType
 											) => (
 												<option
-													key={optgroupOption.value.toString()}
+													key={useTarget({
+														vue: undefined,
+														stencil: undefined,
+														default: getOptionKey(
+															optgroupOption,
+															'select-optgroup-option-'
+														)
+													})}
 													value={optgroupOption.value}
 													selected={
 														optgroupOption.selected
