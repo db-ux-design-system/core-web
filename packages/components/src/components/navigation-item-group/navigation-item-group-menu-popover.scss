@@ -7,7 +7,7 @@
 
 $outside-position: calc(-200% + #{variables.$db-spacing-fixed-xs});
 
-.db-navigation-item-group-menu {
+%db-navigation-item-group-menu-popover {
 	@extend %component-border;
 
 	margin: 0;
@@ -50,7 +50,7 @@ $outside-position: calc(-200% + #{variables.$db-spacing-fixed-xs});
 		box-shadow: variables.$db-elevation-md;
 		padding: variables.$db-spacing-fixed-sm;
 		position: absolute;
-		min-inline-size: 328px; // We should get this value from UX
+		min-inline-size: navigation-item.$navigation-max-inline-size;
 		transition: visibility 1ms linear; // workaround to enable focus with keyboard
 
 		.db-navigation-item-group-back-button {
