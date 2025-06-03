@@ -19,24 +19,32 @@ jobs:
 
       - name: Download components
         uses: actions/download-artifact@v4
+        # Only download artifact if the artifact exists
+        if: contains(needs.regenerate-snapshots-components.outputs.artifacts, 'snapshots-components')
         with:
           name: snapshots-components
           path: ./__snapshots__/*/component
 
       - name: Download foundations
         uses: actions/download-artifact@v4
+        # Only download artifact if the artifact exists
+        if: contains(needs.regenerate-snapshots-components.outputs.artifacts, 'snapshots-foundations')
         with:
           name: snapshots-foundations
           path: ./__snapshots__/foundations
 
       - name: Download patternhub
         uses: actions/download-artifact@v4
+        # Only download artifact if the artifact exists
+        if: contains(needs.regenerate-snapshots-components.outputs.artifacts, 'snapshots-patternhub')
         with:
           name: snapshots-patternhub
           path: ./__snapshots__/*/patternhub
 
       - name: Download showcase
         uses: actions/download-artifact@v4
+        # Only download artifact if the artifact exists
+        if: contains(needs.regenerate-snapshots-components.outputs.artifacts, 'snapshots-showcase')
         with:
           name: snapshots-showcase
           path: ./__snapshots__/*/showcase
