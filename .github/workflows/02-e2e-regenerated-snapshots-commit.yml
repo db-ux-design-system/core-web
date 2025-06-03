@@ -42,7 +42,7 @@ jobs:
       - name: Download showcase
         uses: actions/download-artifact@v4
         with:
-          name: snapshots-showcase
+          name: snapshots-showcases
           path: ./__snapshots__/*/showcase
 
       - name: 🆙 Commit newly generated snapshots
