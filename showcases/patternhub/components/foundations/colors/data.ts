@@ -16,7 +16,9 @@ export const additionalColors = [
 	'blue',
 	'cyan',
 	'turquoise',
-	'green'
+	'green',
+	'light-green',
+	'burgundy'
 ];
 
 export const backgroundColors = [

@@ -17,7 +17,6 @@ export default function DBCard(props: DBCardProps) {
 	// jscpd:ignore-start
 	const state = useStore<DBCardState>({
 		handleClick: (event: ClickEvent<HTMLElement>) => {
-			event.stopPropagation();
 			if (props.onClick) {
 				props.onClick(event);
 			}
