@@ -63,7 +63,7 @@ export default function DBControlPanelMobile(props: DBControlPanelMobileProps) {
 			<Slot name="brand" />
 			<Slot name="primaryActions" />
 			<DBButton
-				className="db-control-panel-mobile-button"
+				class="db-control-panel-mobile-button"
 				icon="menu"
 				noText
 				type="button"

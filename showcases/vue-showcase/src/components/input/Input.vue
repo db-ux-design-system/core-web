@@ -6,7 +6,7 @@ import {
 	DBInput,
 	LabelVariantType,
 	ValueLabelType
-} from "../../../../../output/vue/src";
+} from "@components";
 
 const getDataList = (
 	variant?: LabelVariantType

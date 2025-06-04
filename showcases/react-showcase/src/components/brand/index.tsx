@@ -1,7 +1,7 @@
-import { DBControlPanelBrand } from '../../../../../output/react/src';
+import { DBControlPanelBrand } from '@components';
 import DefaultComponent from '../default-component';
 import defaultComponentVariants from '../../../../shared/brand.json';
-import { type DBControlPanelBrandProps } from '../../../../../output/react/src/components/control-panel-brand/model';
+import { type DBControlPanelBrandProps } from '@components/src/components/control-panel-brand/model';
 import { getVariants } from '../data';
 import { type BaseComponentProps } from '../base-component-data';
 

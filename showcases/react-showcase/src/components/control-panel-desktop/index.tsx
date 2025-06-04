@@ -8,12 +8,12 @@ import {
 	DBLink,
 	DBNavigation,
 	DBNavigationItem
-} from '../../../../../output/react/src';
+} from '@components';
 import defaultComponentVariants from '../../../../shared/control-panel-desktop.json';
 import { getVariants } from '../data';
 import DefaultComponent from '../default-component';
 import { type BaseComponentProps } from '../base-component-data';
-import { DBControlPanelDesktopProps } from '../../../../../output/react/src/components/control-panel-desktop/model';
+import { DBControlPanelDesktopProps } from '@components/src/components/control-panel-desktop/model';
 
 const getControlPanelDesktop = ({
 	children,

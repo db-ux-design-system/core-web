@@ -1,7 +1,7 @@
-import { DBNotification, DBLink } from '../../../../../output/react/src';
+import { DBNotification, DBLink } from '@components';
 import DefaultComponent from '../default-component';
 import defaultComponentVariants from '../../../../shared/notification.json';
-import { type DBNotificationProps } from '../../../../../output/react/src/components/notification/model';
+import { type DBNotificationProps } from '@components/src/components/notification/model';
 import { getVariants } from '../data';
 import { getBasePath } from '../../utils/base-path';
 import { type BaseComponentProps } from '../base-component-data';

@@ -1,7 +1,7 @@
-import { DBControlPanelMobile } from '../../../../../output/react/src';
+import { DBControlPanelMobile } from '@components';
 import DefaultComponent from '../default-component';
 import defaultComponentVariants from '../../../../shared/control-panel-mobile.json';
-import type { DBControlPanelMobileProps } from '../../../../../output/react/src/components/control-panel-mobile/model';
+import type { DBControlPanelMobileProps } from '@components/src/components/control-panel-mobile/model';
 import { getVariants } from '../data';
 import type { BaseComponentProps } from "../base-component-data";
 

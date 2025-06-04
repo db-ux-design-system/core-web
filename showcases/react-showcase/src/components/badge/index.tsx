@@ -3,10 +3,10 @@ import {
 	DBInfotext,
 	DBIcon,
 	DBButton
-} from '../../../../../output/react/src';
+} from '@components';
 import DefaultComponent from '../default-component';
 import defaultComponentVariants from '../../../../shared/badge.json';
-import type { DBBadgeProps } from '../../../../../output/react/src/components/badge/model';
+import type { DBBadgeProps } from '@components/src/components/badge/model';
 import { getVariants } from '../data';
 import { type BaseComponentProps } from '../base-component-data';
 

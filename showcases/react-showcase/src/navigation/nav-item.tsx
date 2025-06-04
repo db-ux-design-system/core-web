@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react';
 import {
 	DBNavigationItem,
 	DBNavigationItemGroup
-} from '../../../../output/react/src';
+} from '@components';
 import type { NavigationItem } from '../utils/navigation-item';
 
 const NavItem = ({ navItem }: { navItem: NavigationItem }) => {

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import DefaultComponent from "../DefaultComponent.vue";
 import defaultComponentVariants from "../../../../shared/tab-item.json";
-import { DBTabItem, DBTabList } from "../../../../../output/vue/src";
+import { DBTabItem, DBTabList } from "@components";
 </script>
 
 <template>

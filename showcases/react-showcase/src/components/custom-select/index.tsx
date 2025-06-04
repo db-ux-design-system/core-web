@@ -1,9 +1,9 @@
 import { useState } from 'react';
 import { type CustomSelectOptionType } from '@db-ux/core-components/src/components/custom-select/model';
-import { DBCustomSelect, DBInfotext } from '../../../../../output/react/src';
+import { DBCustomSelect, DBInfotext } from '@components';
 import DefaultComponent from '../default-component';
 import defaultComponentVariants from '../../../../shared/custom-select.json';
-import type { DBCustomSelectProps } from '../../../../../output/react/src/components/custom-select/model';
+import type { DBCustomSelectProps } from '@components/src/components/custom-select/model';
 import { getVariants } from '../data';
 import type { BaseComponentProps } from '../base-component-data';
 

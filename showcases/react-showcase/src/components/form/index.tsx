@@ -19,11 +19,8 @@ import {
 	DBTextarea,
 	DBTooltip,
 	DBLink
-} from '../../../../../output/react/src';
-import type {
-	ChangeEvent,
-	ValueLabelType
-} from '../../../../../output/react/src/shared/model';
+} from '@components';
+import type { ChangeEvent, ValueLabelType } from '@components';
 
 const FormComponent = () => {
 	const [input, setInput] = useState('');

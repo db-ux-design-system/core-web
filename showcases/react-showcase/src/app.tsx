@@ -4,7 +4,7 @@ import {
 	DBControlPanelDesktop,
 	DBControlPanelMobile,
 	DBShell
-} from '../../../output/react/src';
+} from '@components';
 import useQuery from './hooks/use-query';
 import MetaNavigation from './control-panel/meta-navigation';
 import Navigation from './navigation';

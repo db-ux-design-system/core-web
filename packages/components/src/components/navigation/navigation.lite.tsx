@@ -69,7 +69,8 @@ export default function DBNavigation(props: DBNavigationProps) {
 					parentClassList?.contains(
 						'db-control-panel-desktop-scroll-container'
 					)) ||
-				(shellSubNaviDesktopPosition === 'top' &&
+				((shellSubNaviDesktopPosition === 'top' ||
+					shellDesktopPosition === 'left') &&
 					parentClassList?.contains('db-sub-navigation-container'));
 
 			if (requiresPopover) {
@@ -85,6 +86,14 @@ export default function DBNavigation(props: DBNavigationProps) {
 			if (!state._variant || state._variant === 'popover') {
 				handleSubNavigationPosition(menuRef);
 			} else if (state._variant === 'tree') {
+				for (const menu of Array.from(
+					(menuRef as HTMLElement).querySelectorAll(
+						'.db-navigation-item-group-menu'
+					)
+				)) {
+					(menu as HTMLElement).style.position = '';
+				}
+
 				for (const navItem of Array.from(
 					(menuRef as HTMLElement).querySelectorAll(
 						'.db-navigation-item, .db-navigation-item-group'

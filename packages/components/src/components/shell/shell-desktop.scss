@@ -17,7 +17,7 @@
 				"control-panel sub-navigation"
 				"control-panel main";
 			grid-template-columns:
-				[control-panel] auto
+				[control-panel] min-content
 				[main] 1fr;
 
 			&:has(

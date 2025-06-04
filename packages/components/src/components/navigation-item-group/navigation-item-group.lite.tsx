@@ -85,8 +85,7 @@ export default function DBNavigationItemGroup(
 			const popover =
 				!nav ||
 				!nav.dataset.variant ||
-				nav.dataset.variant === 'popover' ||
-				nav.dataset.variant === 'slide';
+				nav.dataset.variant === 'popover';
 
 			if (subNavigationSlot && popover) {
 				state.hasPopup = true;

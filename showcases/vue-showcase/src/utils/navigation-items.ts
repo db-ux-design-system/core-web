@@ -29,7 +29,7 @@ import Section from '../components/section/Section.vue';
 import Textarea from '../components/textarea/Textarea.vue';
 import Brand from '../components/brand/Brand.vue';
 import Icon from '../components/icon/Icon.vue';
-import Header from '../components/header/Header.vue';
+import ControlPanelDesktop from '../components/control-panel-desktop/ControlPanelDesktop.vue';
 import Home from '../components/home/Home.vue';
 
 export type NavItem = {
@@ -176,8 +176,8 @@ export const navigationItems: NavItem[] = [
 			},
 			{
 				path: '/01/header',
-				label: 'Header',
-				component: markRaw(Header)
+				label: 'ControlPanelDesktop',
+				component: markRaw(ControlPanelDesktop)
 			},
 			{
 				path: '/01/control-panel-mobile',

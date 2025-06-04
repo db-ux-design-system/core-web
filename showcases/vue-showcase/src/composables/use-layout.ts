@@ -1,31 +1,23 @@
 import { useRoute, useRouter } from 'vue-router';
 import { computed, ref, watch } from 'vue';
-import {
-	COLOR,
-	COLOR_CONST,
-	DENSITY,
-	DENSITY_CONST
-} from '../../../../packages/components/src/shared/constants';
+import { COLOR_CONST, DENSITY, DENSITY_CONST, SEMANTIC } from '@components';
 import {
 	getSortedNavigationItems,
 	navigationItems
 } from '../utils/navigation-items';
+import { defaultSettings } from '../../../shared/default-component-data';
 
 export const useLayout = () => {
 	const router = useRouter();
 	const route = useRoute();
 	const density = ref(DENSITY.REGULAR);
-	const color = ref(COLOR.NEUTRAL_BG_LEVEL_1);
+	const color = ref(SEMANTIC.NEUTRAL);
+	const settings = ref(defaultSettings);
 	const page = ref();
 	const fullscreen = ref();
-	const drawerOpen = ref(false);
-
-	const toggleDrawer = (open: boolean) => {
-		drawerOpen.value = open;
-	};
 
 	const classNames = computed(
-		() => `db-density-${density.value} db-${color.value}`
+		() => `db-density-${density.value} db-color-${color.value}`
 	);
 
 	const onChange = async (event: any, target?: string) => {
@@ -33,6 +25,8 @@ export const useLayout = () => {
 			density.value = event.target.value;
 		} else if (target === 'color') {
 			color.value = event.target.value;
+		} else if (target === 'settings') {
+			settings.value = event;
 		}
 
 		await router.push({
@@ -40,7 +34,8 @@ export const useLayout = () => {
 			query: {
 				...route.query,
 				[DENSITY_CONST]: density.value,
-				[COLOR_CONST]: color.value
+				[COLOR_CONST]: color.value,
+				settings: JSON.stringify(settings.value)
 			}
 		});
 	};
@@ -66,6 +61,10 @@ export const useLayout = () => {
 			if (query.fullscreen) {
 				page.value = query.fullscreen;
 			}
+
+			if (query.settings && JSON.stringify(settings.value) !== query.settings) {
+				settings.value = JSON.parse(query.settings);
+			}
 		},
 		{ immediate: true }
 	);
@@ -77,10 +76,9 @@ export const useLayout = () => {
 		fullscreen,
 		density,
 		color,
-		drawerOpen,
 		classNames,
 		onChange,
-		toggleDrawer,
-		sortedNavigation
+		sortedNavigation,
+		settings
 	};
 };

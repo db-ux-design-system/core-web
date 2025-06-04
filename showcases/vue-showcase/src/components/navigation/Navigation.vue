@@ -5,7 +5,7 @@ import {
 	DBInfotext,
 	DBNavigation,
 	DBNavigationItem
-} from "../../../../../output/vue/src";
+} from "@components";
 
 const getId = (name?: string): string =>
 	`${name?.replaceAll(/\W/g, "_").toLowerCase()}`;

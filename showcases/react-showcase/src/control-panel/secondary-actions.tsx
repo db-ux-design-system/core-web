@@ -1,7 +1,7 @@
 import {
 	DBButton,
 	DBControlPanelSecondaryActions
-} from '@db-ux/react-core-components/src';
+} from '@components';
 
 const SecondaryActions = () => {
 	return (

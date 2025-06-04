@@ -1,7 +1,7 @@
-import { DBButton } from '../../../../../output/react/src';
+import { DBButton } from '@components';
 import DefaultComponent from '../default-component';
 import defaultComponentVariants from '../../../../shared/button.json';
-import { type DBButtonProps } from '../../../../../output/react/src/components/button/model';
+import { type DBButtonProps } from '@components/src/components/button/model';
 import { getVariants } from '../data';
 import { type BaseComponentProps } from '../base-component-data';
 

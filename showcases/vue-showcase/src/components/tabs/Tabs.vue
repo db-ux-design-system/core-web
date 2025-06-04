@@ -7,7 +7,7 @@ import {
 	DBTabList,
 	DBTabItem,
 	DBTabPanel
-} from "../../../../../output/vue/src";
+} from "@components";
 </script>
 
 <template>

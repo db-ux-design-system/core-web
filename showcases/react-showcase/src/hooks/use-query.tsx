@@ -1,14 +1,6 @@
 import { useEffect, useState } from 'react';
-import {
-	COLOR_CONST,
-	DENSITY,
-	DENSITY_CONST,
-	SEMANTIC
-} from '../../../../packages/components/src/shared/constants';
-import {
-	defaultSettings,
-	defaultSettingsMapping
-} from '../../../shared/default-component-data';
+import { COLOR_CONST, DENSITY, DENSITY_CONST, SEMANTIC } from '@components';
+import { defaultSettings } from '../../../shared/default-component-data';
 import useUniversalSearchParameters from './use-universal-search-parameters';
 
 const useQuery = (redirectURLSearchParams = true) => {

@@ -1,8 +1,8 @@
 import { useState } from 'react';
-import { DBSelect } from '../../../../../output/react/src';
+import { DBSelect } from '@components';
 import DefaultComponent from '../default-component';
 import defaultComponentVariants from '../../../../shared/select.json';
-import type { DBSelectProps } from '../../../../../output/react/src/components/select/model';
+import type { DBSelectProps } from '@components/src/components/select/model';
 import { getVariants } from '../data';
 import { type BaseComponentProps } from '../base-component-data';
 

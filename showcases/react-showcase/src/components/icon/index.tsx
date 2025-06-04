@@ -1,7 +1,7 @@
-import { DBIcon, DBInfotext } from '../../../../../output/react/src';
+import { DBIcon, DBInfotext } from '@components';
 import DefaultComponent from '../default-component';
 import defaultComponentVariants from '../../../../shared/icon.json';
-import { type DBIconProps } from '../../../../../output/react/src/components/icon/model';
+import { type DBIconProps } from '@components/src/components/icon/model';
 import { getVariants } from '../data';
 import { type BaseComponentProps } from '../base-component-data';
 

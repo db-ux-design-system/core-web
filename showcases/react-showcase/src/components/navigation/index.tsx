@@ -3,10 +3,10 @@ import {
 	DBNavigationItem,
 	DBInfotext,
 	DBNavigationItemGroup
-} from '../../../../../output/react/src';
+} from '@components';
 import DefaultComponent from '../default-component';
 import defaultComponentVariants from '../../../../shared/navigation.json';
-import type { DBNavigationProps } from '../../../../../output/react/src/components/navigation/model';
+import type { DBNavigationProps } from '@components/src/components/navigation/model';
 import { getVariants } from '../data';
 import { type BaseComponentProps } from '../base-component-data';
 

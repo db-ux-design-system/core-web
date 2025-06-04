@@ -6,7 +6,7 @@ import {
 	DBInfotext,
 	DBCheckbox,
 	DBInput
-} from "../../../../../output/vue/src";
+} from "@components";
 </script>
 
 <template>

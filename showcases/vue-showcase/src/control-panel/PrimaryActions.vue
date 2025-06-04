@@ -2,7 +2,7 @@
 import {
 	DBButton,
 	DBControlPanelPrimaryActions
-} from "../../../../packages/components/src";
+} from "@components";
 </script>
 
 <template>

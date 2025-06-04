@@ -2,10 +2,10 @@ import {
 	DBSwitch,
 	DBInfotext,
 	getBoolean
-} from '../../../../../output/react/src';
+} from '@components';
 import DefaultComponent from '../default-component';
 import defaultComponentVariants from '../../../../shared/switch.json';
-import type { DBSwitchProps } from '../../../../../output/react/src/components/switch/model';
+import type { DBSwitchProps } from '@components/src/components/switch/model';
 import { getVariants } from '../data';
 import { type BaseComponentProps } from '../base-component-data';
 

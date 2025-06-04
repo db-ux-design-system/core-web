@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import FormWrapper from "./FormWrapper.vue";
-import { DBCheckbox } from "../../../../../output/vue/src";
+import { DBCheckbox } from "@components";
 import { ref } from "vue";
 
 const plain = ref(true);

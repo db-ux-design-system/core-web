@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import DefaultComponent from "../DefaultComponent.vue";
 import defaultComponentVariants from "../../../../shared/checkbox.json";
-import { DBCheckbox, DBInfotext } from "../../../../../output/vue/src";
+import { DBCheckbox, DBInfotext } from "@components";
 </script>
 
 <template>

@@ -4,10 +4,10 @@ import {
 	DBTabItem,
 	DBTabPanel,
 	DBInfotext
-} from '../../../../../output/react/src';
+} from '@components';
 import DefaultComponent from '../default-component';
 import defaultComponentVariants from '../../../../shared/tabs.json';
-import type { DBTabsProps } from '../../../../../output/react/src/components/tabs/model';
+import type { DBTabsProps } from '@components/src/components/tabs/model';
 import { getVariants } from '../data';
 import { type BaseComponentProps } from '../base-component-data';
 

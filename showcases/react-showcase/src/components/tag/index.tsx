@@ -1,8 +1,8 @@
 import { useState } from 'react';
-import { DBTag, getBoolean } from '../../../../../output/react/src';
+import { DBTag, getBoolean } from '@components';
 import DefaultComponent from '../default-component';
 import defaultComponentVariants from '../../../../shared/tag.json';
-import { type DBTagProps } from '../../../../../output/react/src/components/tag/model';
+import { type DBTagProps } from '@components/src/components/tag/model';
 import { getVariants } from '../data';
 import { type BaseComponentProps } from '../base-component-data';
 

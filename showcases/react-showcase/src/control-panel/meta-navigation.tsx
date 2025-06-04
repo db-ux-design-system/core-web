@@ -1,11 +1,11 @@
 import {
 	DENSITIES,
 	SEMANTICS
-} from '../../../../packages/components/src/shared/constants';
+} from '@components';
 import {
 	DBControlPanelMetaNavigation,
 	DBSelect
-} from '../../../../output/react/src';
+} from '@components';
 import {
 	type DefaultSettings,
 	defaultSettingsMapping

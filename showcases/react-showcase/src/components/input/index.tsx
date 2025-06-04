@@ -2,10 +2,10 @@ import {
 	DBInput,
 	type LabelVariantType,
 	type ValueLabelType
-} from '../../../../../output/react/src';
+} from '@components';
 import DefaultComponent from '../default-component';
 import defaultComponentVariants from '../../../../shared/input.json';
-import { type DBInputProps } from '../../../../../output/react/src/components/input/model';
+import { type DBInputProps } from '@components/src/components/input/model';
 import { getVariants } from '../data';
 import { type BaseComponentProps } from '../base-component-data';
 

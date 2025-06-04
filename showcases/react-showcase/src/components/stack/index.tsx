@@ -2,9 +2,9 @@ import {
 	DBStack,
 	DBInfotext,
 	DBDivider
-} from '../../../../../output/react/src';
+} from '@components';
 import defaultComponentVariants from '../../../../shared/stack.json';
-import type { DBStackProps } from '../../../../../output/react/src/components/stack/model';
+import type { DBStackProps } from '@components/src/components/stack/model';
 import { getVariants } from '../data';
 import DefaultComponent from '../default-component';
 import type { BaseComponentProps } from '../base-component-data';

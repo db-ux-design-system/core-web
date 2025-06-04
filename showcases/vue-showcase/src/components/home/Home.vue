@@ -4,7 +4,7 @@ import {
 	DBTabList,
 	DBTabPanel,
 	DBTabs
-} from "../../../../../output/vue/src";
+} from "@components";
 import Form from "../form/Form.vue";
 import Textareas from "../form/Textareas.vue";
 import Selects from "../form/Selects.vue";

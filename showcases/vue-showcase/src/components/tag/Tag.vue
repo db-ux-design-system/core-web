@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import DefaultComponent from "../DefaultComponent.vue";
 import defaultComponentVariants from "../../../../shared/tag.json";
-import { DBTag } from "../../../../../output/vue/src";
+import { DBTag } from "@components";
 
 const showAlert = (exampleName?: string) => {
 	// eslint-disable-next-line no-alert

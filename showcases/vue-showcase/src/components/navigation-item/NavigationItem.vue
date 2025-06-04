@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import DefaultComponent from "../DefaultComponent.vue";
 import defaultComponentVariants from "../../../../shared/navigation-item.json";
-import { DBNavigationItem } from "../../../../../output/vue/src";
+import { DBNavigationItem } from "@components";
 
 const log = (exampleName?: string) => {
 	// eslint-disable-next-line no-alert

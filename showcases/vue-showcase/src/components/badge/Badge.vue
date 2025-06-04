@@ -6,7 +6,7 @@ import {
 	DBIcon,
 	DBButton,
 	DBInfotext
-} from "../../../../../output/vue/src";
+} from "@components";
 </script>
 
 <template>

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import DefaultComponent from "../DefaultComponent.vue";
 import defaultComponentVariants from "../../../../shared/custom-select.json";
-import { DBCustomSelect, DBInfotext } from "../../../../../output/vue/src";
+import { DBCustomSelect, DBInfotext } from "@components";
 import { CustomSelectOptionType } from "@db-ux/core-components/src/components/custom-select/model";
 
 const log = (values: string[]) => {

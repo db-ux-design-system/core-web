@@ -2,13 +2,15 @@
 import DefaultComponent from "../DefaultComponent.vue";
 import defaultComponentVariants from "../../../../shared/control-panel-desktop.json";
 import {
-	DBBrand,
-	DBButton,
-	DBHeader,
+	DBControlPanelDesktop,
+	DBControlPanelBrand,
 	DBLink,
 	DBNavigation,
-	DBNavigationItem
-} from "../../../../../output/vue/src";
+	DBNavigationItem,
+	DBControlPanelMetaNavigation
+} from "@components";
+import PrimaryActions from "../../control-panel/PrimaryActions.vue";
+import SecondaryActions from "../../control-panel/SecondaryActions.vue";
 </script>
 
 <template>
@@ -16,12 +18,12 @@ import {
 		<template
 			#example="{ exampleIndex, variantIndex, exampleName, exampleProps }"
 		>
-			<DBHeader
+			<DBControlPanelDesktop
 				:width="exampleProps?.width"
 				:force-mobile="exampleProps?.forceMobile"
 			>
 				<template v-slot:brand>
-					<DBBrand>
+					<DBControlPanelBrand>
 						<template
 							v-if="
 								!exampleProps?.example || exampleProps?.withName
@@ -29,7 +31,7 @@ import {
 						>
 							DBHeader
 						</template>
-					</DBBrand>
+					</DBControlPanelBrand>
 				</template>
 				<template
 					v-if="
@@ -45,49 +47,25 @@ import {
 						</DBNavigationItem>
 					</DBNavigation>
 				</template>
-				<template v-slot:primary-action>
+				<template v-slot:primary-actions>
 					<template v-if="!exampleProps?.example">
-						<DBButton
-							icon="magnifying_glass"
-							variant="ghost"
-							:no-text="true"
-						>
-							Search
-						</DBButton></template
-					>
+						<PrimaryActions />
+					</template>
 				</template>
-				<template v-slot:secondary-action>
+				<template v-slot:secondary-actions>
 					<template v-if="!exampleProps?.example">
-						<DBButton
-							icon="x_placeholder"
-							variant="ghost"
-							:no-text="true"
-						>
-							Profile
-						</DBButton>
-						<DBButton
-							icon="x_placeholder"
-							variant="ghost"
-							:no-text="true"
-						>
-							Notification
-						</DBButton>
-						<DBButton
-							icon="x_placeholder"
-							variant="ghost"
-							:no-text="true"
-						>
-							Help
-						</DBButton></template
-					>
+						<SecondaryActions />
+					</template>
 				</template>
 				<template v-slot:meta-navigation>
 					<template v-if="!exampleProps?.example">
-						<DBLink href="#">Imprint</DBLink>
-						<DBLink href="#">Help</DBLink></template
-					>
+						<DBControlPanelMetaNavigation>
+							<DBLink href="#">Imprint</DBLink>
+							<DBLink href="#">Help</DBLink>
+						</DBControlPanelMetaNavigation>
+					</template>
 				</template>
-			</DBHeader>
+			</DBControlPanelDesktop>
 		</template>
 	</DefaultComponent>
 </template>

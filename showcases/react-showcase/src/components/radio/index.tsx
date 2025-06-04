@@ -2,11 +2,11 @@ import {
 	DBInfotext,
 	DBRadio,
 	getBoolean
-} from '../../../../../output/react/src';
+} from '@components';
 import DefaultComponent from '../default-component';
 import { getVariants } from '../data';
 import defaultComponentVariants from '../../../../shared/radio.json';
-import { type DBRadioProps } from '../../../../../output/react/src/components/radio/model';
+import { type DBRadioProps } from '@components/src/components/radio/model';
 import { type BaseComponentProps } from '../base-component-data';
 
 const getRadio = ({

@@ -1,7 +1,7 @@
-import { DBLink } from '../../../../../output/react/src';
+import { DBLink } from '@components';
 import DefaultComponent from '../default-component';
 import defaultComponentVariants from '../../../../shared/link.json';
-import { type DBLinkProps } from '../../../../../output/react/src/components/link/model';
+import { type DBLinkProps } from '@components/src/components/link/model';
 import { getVariants } from '../data';
 import { type BaseComponentProps } from '../base-component-data';
 

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import DefaultComponent from "../DefaultComponent.vue";
 import defaultComponentVariants from "../../../../shared/section.json";
-import { DBSection, DBCard } from "../../../../../output/vue/src";
+import { DBSection, DBCard } from "@components";
 </script>
 
 <template>
