@@ -26,7 +26,7 @@ export default function DBControlPanelBrand(props: DBControlPanelBrandProps) {
 			<Show when={props.text} else={props.children}>
 				{props.text}
 			</Show>
-			<Slot name="additionalInforamtion"></Slot>
+			<Slot name="additionalInformation"></Slot>
 		</div>
 	);
 }

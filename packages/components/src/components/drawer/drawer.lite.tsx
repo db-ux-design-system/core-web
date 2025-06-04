@@ -106,6 +106,7 @@ export default function DBDrawer(props: DBDrawerProps) {
 						id={props.closeButtonId}
 						icon="cross"
 						variant="ghost"
+						type="button"
 						noText
 						onClick={(event) => state.handleClose(event, true)}>
 						{props.closeButtonText ?? DEFAULT_CLOSE_BUTTON}

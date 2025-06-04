@@ -3,7 +3,6 @@ import {
 	GlobalState,
 	ShellControlPanelDesktopPositionType,
 	ShellControlPanelMobilePositionType,
-	SidebarProps,
 	SidebarState,
 	ToggleEventState
 } from '../../shared/model';
@@ -63,7 +62,7 @@ export type DBShellDefaultProps = {
 	subNavigationToggleButtonExpand?: string;
 };
 
-export type DBShellProps = DBShellDefaultProps & GlobalProps & SidebarProps;
+export type DBShellProps = DBShellDefaultProps & GlobalProps;
 
 export type DBShellDefaultState = {
 	fontsLoaded?: boolean;

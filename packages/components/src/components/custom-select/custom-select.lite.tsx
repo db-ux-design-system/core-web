@@ -107,6 +107,7 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 		_documentClickListenerCallbackId: undefined,
 		_internalChangeTimestamp: 0,
 		_documentScrollListenerCallbackId: undefined,
+		_observer: undefined,
 		handleDocumentScroll: (event: any) => {
 			if (
 				event?.target?.contains &&
@@ -1022,6 +1023,7 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 								width="full"
 								icon="cross"
 								size="small"
+								type="button"
 								name={state._id}
 								form={state._id}
 								onClick={() => state.handleClose('close')}>

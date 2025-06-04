@@ -8,7 +8,7 @@ import {
 import { DBControlPanelMobileProps, DBControlPanelMobileState } from './model';
 import { cls } from '../../utils';
 import { isEventTargetNavigationItem } from '../../utils/navigation';
-import { DBDrawer } from '../drawer';
+import DBDrawer from '../drawer/drawer.lite';
 import DBButton from '../button/button.lite';
 import { DEFAULT_BURGER_MENU } from '../../shared/constants';
 
@@ -52,9 +52,7 @@ export default function DBControlPanelMobile(props: DBControlPanelMobileProps) {
 				open={state.open}
 				onClose={() => state.handleToggle()}>
 				<div
-					onClick={(event) => {
-						state.handleNavigationItemClick(event);
-					}}
+					onClick={(event) => state.handleNavigationItemClick(event)}
 					class="db-control-panel-mobile-drawer-scroll-container">
 					{props.children}
 					<Slot name="metaNavigation" />
@@ -66,9 +64,9 @@ export default function DBControlPanelMobile(props: DBControlPanelMobileProps) {
 			<Slot name="primaryActions" />
 			<DBButton
 				className="db-control-panel-mobile-button"
-				id={state._id + '-burger-menu'}
 				icon="menu"
 				noText
+				type="button"
 				variant="ghost"
 				onClick={() => state.handleToggle()}>
 				{props.burgerMenuLabel ?? DEFAULT_BURGER_MENU}

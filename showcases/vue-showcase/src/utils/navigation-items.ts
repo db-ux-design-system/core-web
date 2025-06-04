@@ -1,7 +1,6 @@
-import ControlPanelMobile from '../components/control-panel-mobile/ControlPanelMobile.vue';
-
 import type { RouteRecordRaw } from 'vue-router';
 import { markRaw } from 'vue';
+import ControlPanelMobile from '../components/control-panel-mobile/ControlPanelMobile.vue';
 import CustomSelect from '../components/custom-select/CustomSelect.vue';
 import Stack from '../components/stack/Stack.vue';
 import Switch from '../components/switch/Switch.vue';
@@ -41,8 +40,6 @@ export type NavItem = {
 };
 
 export const getSortedNavigationItems = (navigationItems: NavItem[]): any[] =>
-{ path: '/control-panel-mobile', label: 'ControlPanelMobile', component: ControlPanelMobile },
-
 	navigationItems.sort((a: NavItem, b: NavItem) =>
 		a.path.localeCompare(b.path)
 	);
@@ -181,6 +178,11 @@ export const navigationItems: NavItem[] = [
 				path: '/01/header',
 				label: 'Header',
 				component: markRaw(Header)
+			},
+			{
+				path: '/01/control-panel-mobile',
+				label: 'ControlPanelMobile',
+				component: markRaw(ControlPanelMobile)
 			}
 		])
 	},

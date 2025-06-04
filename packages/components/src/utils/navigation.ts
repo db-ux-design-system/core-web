@@ -177,7 +177,7 @@ export class NavigationItemSafeTriangle {
 		};
 	}
 
-	public followByMouseEvent(event: MouseEvent) {
+	public followByMouseEvent(event: any) {
 		if (
 			!this.initialized ||
 			!this.triangleData ||

@@ -1,5 +1,4 @@
 import {
-	onMount,
 	onUpdate,
 	Show,
 	useDefaultProps,
@@ -124,9 +123,7 @@ export default function DBNavigation(props: DBNavigationProps) {
 			<menu
 				role={state._variant === 'tree' ? 'tree' : undefined}
 				ref={menuRef}
-				onScroll={() => {
-					state.onScroll();
-				}}>
+				onScroll={() => state.onScroll()}>
 				{props.children}
 			</menu>
 			<Show when={state.showScrollRight}>

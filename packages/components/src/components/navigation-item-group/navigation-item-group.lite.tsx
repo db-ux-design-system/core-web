@@ -106,7 +106,7 @@ export default function DBNavigationItemGroup(
 			onMouseLeave={() =>
 				state.navigationItemSafeTriangle?.disableFollow()
 			}
-			onMouseMove={(event: MouseEvent) =>
+			onMouseMove={(event: any) =>
 				state.navigationItemSafeTriangle?.followByMouseEvent(event)
 			}
 			class={cls('db-navigation-item-group', props.className)}
@@ -126,7 +126,7 @@ export default function DBNavigationItemGroup(
 					state.handleClick(event)
 				}>
 				{props.groupTitle}
-				<Slot name="additionalInforamtion"></Slot>
+				<Slot name="additionalInformation"></Slot>
 			</button>
 
 			<menu
@@ -134,9 +134,7 @@ export default function DBNavigationItemGroup(
 				role="group"
 				data-force-close={state.autoClose}
 				id={state.subNavigationId}
-				onScroll={() => {
-					handleSubNavigationPosition(_ref);
-				}}
+				onScroll={() => handleSubNavigationPosition(_ref)}
 				onClick={(event) => state.handleNavigationItemClick(event)}>
 				<div class="db-navigation-item-group-back-button">
 					<DBButton

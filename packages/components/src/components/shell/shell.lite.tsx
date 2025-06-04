@@ -21,7 +21,8 @@ export default function DBShell(props: DBShellProps) {
 		_id: `db-shell-${uuid()}`,
 		fontsLoaded: false,
 		_open: true,
-		handleToggle: () => {
+		// eslint-disable-next-line @typescript-eslint/no-unused-vars
+		handleToggle: (_: any) => {
 			state._open = !state._open;
 		},
 		getToggleButtonText: (): string => {

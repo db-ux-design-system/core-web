@@ -3,11 +3,17 @@ import {
 	NAVIGATION_ITEMS,
 	type NavigationItem
 } from '../utils/navigation-item';
-import { DBNavigation } from '../../../../output/react/src';
+import {
+	DBNavigation,
+	NavigationItemGroupVariantType
+} from '../../../../output/react/src';
 import NavItem from './nav-item';
-import { NavigationVariantType } from '../../../../output/react/src/components/navigation/model';
 
-const Navigation = ({ variant }: { variant?: NavigationVariantType }) => (
+const Navigation = ({
+	variant
+}: {
+	variant?: NavigationItemGroupVariantType;
+}) => (
 	<DBNavigation variant={variant} aria-label="main navigation">
 		{getSortedNavigationItems(NAVIGATION_ITEMS).map(
 			(navItem: NavigationItem) => (

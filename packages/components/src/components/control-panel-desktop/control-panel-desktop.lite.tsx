@@ -25,7 +25,8 @@ export default function DBControlPanelDesktop(
 	const state = useStore<DBControlPanelDesktopState>({
 		_id: `db-control-panel-desktop-${uuid()}`,
 		_open: true,
-		handleToggle: () => {
+		// eslint-disable-next-line @typescript-eslint/no-unused-vars
+		handleToggle: (_: any) => {
 			state._open = !state._open;
 		},
 		getToggleButtonText: (): string => {
@@ -59,6 +60,7 @@ export default function DBControlPanelDesktop(
 					aria-controls={props.id ?? state._id}
 					aria-expanded={state._open}
 					noText
+					type="button"
 					icon="chevron_left">
 					<DBTooltip variant="label" placement="top">
 						{state.getToggleButtonText()}

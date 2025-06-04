@@ -1,4 +1,7 @@
-import { DBNavigationItem, DBButton } from '../../../../../output/react/src';
+import {
+	DBNavigationItem,
+	DBNavigationItemGroup
+} from '../../../../../output/react/src';
 import DefaultComponent from '../default-component';
 import defaultComponentVariants from '../../../../shared/navigation-item.json';
 import type { DBNavigationItemProps } from '../../../../../output/react/src/components/navigation-item/model';
@@ -16,42 +19,33 @@ const getNavigationItem = ({
 	wrap
 }: DBNavigationItemProps & { areaPopup: boolean }) => (
 	<ul className="nav-item-list">
-		<DBNavigationItem
-			icon={icon}
-			disabled={disabled}
-			active={active}
-			width={width}
-			onClick={() => {
-				// eslint-disable-next-line no-alert
-				alert(children.toString());
-			}}
-			showIcon={showIcon}
-			wrap={wrap}
-			subNavigation={
-				areaPopup && (
-					<>
-						<DBNavigationItem
-							icon={icon}
-							showIcon={showIcon}
-							subNavigation={
-								<>
-									<DBNavigationItem
-										icon={icon}
-										showIcon={showIcon}>
-										<a href="#">Navigation-Item 2</a>
-									</DBNavigationItem>
-								</>
-							}>
-							Also a navigation item with longer label
-						</DBNavigationItem>
-						<DBNavigationItem icon={icon} showIcon={showIcon}>
-							<a href="#">Navigation-Item 1</a>
-						</DBNavigationItem>
-					</>
-				)
-			}>
-			{areaPopup ? children : <a href="#">{children}</a>}
-		</DBNavigationItem>
+		{areaPopup ? (
+			<DBNavigationItemGroup
+				icon={icon}
+				showIcon={showIcon}
+				groupTitle="Also a navigation item with longer label">
+				<DBNavigationItem icon={icon} showIcon={showIcon}>
+					<a href="#">Navigation-Item 1</a>
+				</DBNavigationItem>
+				<DBNavigationItem icon={icon} showIcon={showIcon}>
+					<a href="#">Navigation-Item 2</a>
+				</DBNavigationItem>
+			</DBNavigationItemGroup>
+		) : (
+			<DBNavigationItem
+				icon={icon}
+				disabled={disabled}
+				active={active}
+				width={width}
+				onClick={() => {
+					// eslint-disable-next-line no-alert
+					alert(children.toString());
+				}}
+				showIcon={showIcon}
+				wrap={wrap}>
+				{areaPopup ? children : <a href="#">{children}</a>}
+			</DBNavigationItem>
+		)}
 	</ul>
 );
 
