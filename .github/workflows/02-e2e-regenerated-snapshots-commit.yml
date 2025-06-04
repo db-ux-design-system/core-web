@@ -48,9 +48,9 @@ jobs:
       - name: 🆙 Commit newly generated snapshots
         run: |
           # Use PAT_COMMIT secret to commit the changes
-          git config --global user.name "github-actions[bot]"
-          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          echo 'COMMIT_MAIL=41898282+github-actions[bot]@users.noreply.github.com' >> .env
+          git config --global user.name "Maximilian Franzke"
+          git config --global user.email "maximilian.franzke@deutschebahn.com"
+          echo 'COMMIT_MAIL=maximilian.franzke@deutschebahn.com' >> .env
 
           # "Stricter repository ownership checks" by GitHub: https://github.blog/open-source/git/highlights-from-git-2-36/#stricter-repository-ownership-checks
           git config --global --add safe.directory $GITHUB_WORKSPACE
