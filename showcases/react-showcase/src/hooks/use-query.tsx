@@ -1,13 +1,17 @@
 import { useEffect, useState } from 'react';
 import {
-	COLOR,
 	COLOR_CONST,
 	DENSITY,
-	DENSITY_CONST, SEMANTIC
+	DENSITY_CONST,
+	SEMANTIC
 } from '../../../../packages/components/src/shared/constants';
+import {
+	defaultSettings,
+	defaultSettingsMapping
+} from '../../../shared/default-component-data';
 import useUniversalSearchParameters from './use-universal-search-parameters';
 
-const useQuery = (redirectURLSearchParams = true): any => {
+const useQuery = (redirectURLSearchParams = true) => {
 	const [searchParameters, setSearchParameters] =
 		useUniversalSearchParameters();
 
@@ -20,6 +24,12 @@ const useQuery = (redirectURLSearchParams = true): any => {
 	const [page, setPage] = useState<string | undefined>(undefined);
 	const [fullscreen, setFullscreen] = useState<boolean>(false);
 	const [searchRead, setSearchRead] = useState<boolean>(false);
+
+	const [settings, setSettings] = useState(
+		searchParameters.has('settings')
+			? JSON.parse(searchParameters.get('settings')!)
+			: defaultSettings
+	);
 
 	useEffect(() => {
 		for (const [key, value] of Array.from(searchParameters.entries())) {
@@ -39,6 +49,10 @@ const useQuery = (redirectURLSearchParams = true): any => {
 				if (key === 'fullscreen' && fullscreen !== Boolean(value)) {
 					setFullscreen(Boolean(value));
 				}
+
+				if (key === 'settings' && JSON.stringify(settings) !== value) {
+					setSettings(JSON.parse(value));
+				}
 			}
 		}
 
@@ -47,7 +61,11 @@ const useQuery = (redirectURLSearchParams = true): any => {
 
 	useEffect(() => {
 		if (searchRead) {
-			const nextQuery: any = { density, color };
+			const nextQuery: any = {
+				density,
+				color,
+				settings: JSON.stringify(settings)
+			};
 			if (page) {
 				nextQuery.page = page;
 			}
@@ -60,9 +78,18 @@ const useQuery = (redirectURLSearchParams = true): any => {
 				setSearchParameters(nextQuery);
 			}
 		}
-	}, [color, density, page, fullscreen, searchRead]);
+	}, [color, density, page, fullscreen, searchRead, settings]);
 
-	return { density, setDensity, color, setColor, page, fullscreen };
+	return {
+		density,
+		setDensity,
+		color,
+		setColor,
+		page,
+		fullscreen,
+		settings,
+		setSettings
+	};
 };
 
 export default useQuery;

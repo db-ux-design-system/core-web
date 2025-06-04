@@ -1,26 +1,20 @@
-import { useEffect, useState } from 'react';
 import {
-	COLOR,
-	COLORS,
 	DENSITIES,
-	DENSITY,
-	COLOR_CONST,
-	DENSITY_CONST,
-	SEMANTIC,
 	SEMANTICS
 } from '../../../../packages/components/src/shared/constants';
 import {
-	DBSelect,
-	DBControlPanelMetaNavigation
+	DBControlPanelMetaNavigation,
+	DBSelect
 } from '../../../../output/react/src';
-import useUniversalSearchParameters from '../hooks/use-universal-search-parameters';
 import {
-	defaultSettings,
-	DefaultSettings,
+	type DefaultSettings,
 	defaultSettingsMapping
 } from '../../../shared/default-component-data';
 
 export type MetaNavigationProps = {
+	color: string;
+	density: string;
+	settings: DefaultSettings;
 	onDensityChange: (density: string) => void;
 	onColorChange: (color: string) => void;
 	onSettingsChange: (settings: DefaultSettings) => void;
@@ -29,44 +23,11 @@ export type MetaNavigationProps = {
 const MetaNavigation = ({
 	onSettingsChange,
 	onDensityChange,
-	onColorChange
+	onColorChange,
+	color,
+	density,
+	settings
 }: MetaNavigationProps) => {
-	const [searchParameters, setSearchParameters] =
-		useUniversalSearchParameters();
-	const [density, setDensity] = useState<string>(
-		searchParameters.get(DENSITY_CONST) ?? DENSITY.REGULAR
-	);
-	const [color, setColor] = useState<string>(
-		searchParameters.get(COLOR_CONST) ?? SEMANTIC.NEUTRAL
-	);
-
-	// TODO: Add this to query as well
-	const [settings, setSettings] = useState<DefaultSettings>(defaultSettings);
-
-	useEffect(() => {
-		for (const [key, value] of Array.from(searchParameters.entries())) {
-			if (value) {
-				if (key === DENSITY_CONST && density !== value) {
-					setDensity(value);
-					onDensityChange(value);
-				}
-
-				if (key === COLOR_CONST && color !== value) {
-					setColor(value);
-					onColorChange(value);
-				}
-			}
-		}
-	}, [searchParameters]);
-
-	useEffect(() => {
-		setSearchParameters({ density, color });
-	}, [color, density]);
-
-	useEffect(() => {
-		onSettingsChange({ ...settings });
-	}, [settings]);
-
 	return (
 		<DBControlPanelMetaNavigation>
 			<DBSelect
@@ -74,7 +35,7 @@ const MetaNavigation = ({
 				variant="floating"
 				value={density}
 				onChange={(event) => {
-					setDensity(event?.target?.value);
+					onDensityChange(event?.target?.value);
 				}}>
 				{DENSITIES.map((ton) => (
 					<option key={`density-option-${ton}`} value={ton}>
@@ -87,7 +48,7 @@ const MetaNavigation = ({
 				variant="floating"
 				value={color}
 				onChange={(event) => {
-					setColor(event?.target?.value);
+					onColorChange(event?.target?.value);
 				}}>
 				{SEMANTICS.map((col) => (
 					<option key={`color-option-${col}`} value={col}>
@@ -107,7 +68,7 @@ const MetaNavigation = ({
 					variant="floating"
 					value={settings[key]}
 					onChange={(event) => {
-						setSettings({
+						onSettingsChange({
 							...settings,
 							[key]: event.target.value
 						});
