@@ -41,6 +41,7 @@ jobs:
 
       - name: Download showcase
         uses: actions/download-artifact@v4
+        if: always() && contains(needs.regenerate-snapshots.outputs.artifacts, 'snapshots-showcases')
         with:
           name: snapshots-showcases
           path: ./__snapshots__/
@@ -64,3 +65,13 @@ jobs:
         run: |
           git remote set-url origin https://x-access-token:${PAT_COMMIT}@github.com/${{ github.repository }}.git
           git push origin HEAD:${{ github.head_ref }} # Push back to the same PR branch
+
+      - name: Trigger a new workflow (ci.yml)
+        env:
+          PAT_COMMIT: ${{ secrets.PAT_COMMIT }}
+        run: |
+          # gh workflow run pull-request --ref ${{ github.ref_name }}
+          curl -X POST https://api.github.com/repos/${{ github.repository }}/actions/workflows/pull-request.yml/dispatches \
+            -H "Authorization: token $PAT_COMMIT" \
+            -H "Accept: application/vnd.github+json" \
+            -d '{"ref":"${{ github.ref_name }}"}'
