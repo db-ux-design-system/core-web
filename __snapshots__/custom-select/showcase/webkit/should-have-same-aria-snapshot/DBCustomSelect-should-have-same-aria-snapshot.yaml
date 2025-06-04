@@ -491,6 +491,8 @@
   - text: (Default) False
   - group:
     - article:
+      - checkbox "Select all"
+      - text: Select all
       - group "id-10254-(Default) False":
         - list:
           - listitem:
@@ -499,6 +501,30 @@
           - listitem:
             - checkbox "Option 2"
             - text: Option 2
+          - listitem:
+            - checkbox "Option 3"
+            - text: Option 3
+          - listitem:
+            - checkbox "Option 4"
+            - text: Option 4
+          - listitem:
+            - checkbox "Option 5"
+            - text: Option 5
+          - listitem:
+            - checkbox "Option 6"
+            - text: Option 6
+          - listitem:
+            - checkbox "Option 7"
+            - text: Option 7
+          - listitem:
+            - checkbox "Option 8"
+            - text: Option 8
+          - listitem:
+            - checkbox "Option 9"
+            - text: Option 9
+          - listitem:
+            - checkbox "Option 10"
+            - text: Option 10
   - status
   - text: chevron_down" / " True
   - group:
@@ -529,6 +555,18 @@
           - listitem:
             - checkbox "Option 2"
             - text: Option 2
+          - listitem:
+            - checkbox "Option 3"
+            - text: Option 3
+          - listitem:
+            - checkbox "Option 4"
+            - text: Option 4
+          - listitem:
+            - checkbox "Option 5"
+            - text: Option 5
+          - listitem:
+            - checkbox "Option 6"
+            - text: Option 6
   - status
   - text: chevron_down" / " True
   - group:
@@ -841,8 +879,8 @@
             - checkbox "Option 9"
             - text: Option 9
           - listitem:
-            - checkbox "Option 10"
-            - text: Option 10
+            - checkbox "Option 10 very long item with may break into a new line"
+            - text: Option 10 very long item with may break into a new line
   - status
   - text: chevron_down" / "
   - link "Example tags arrow_up_right\" / \""
@@ -881,5 +919,61 @@
           - listitem:
             - checkbox "Option 4"
             - text: Option 4
+  - status
+  - text: chevron_down" / "
+  - 'link "Example: Other configuration arrow_up_right\" / \""'
+  - text: Search Value
+  - group:
+    - article:
+      - text: magnifying_glass" / " Search
+      - searchbox "Search": "1"
+      - status
+      - text: cross" / "
+      - group "id-10as4-Search Value":
+        - list:
+          - listitem:
+            - checkbox "Option 1"
+            - text: Option 1
+  - status
+  - text: chevron_down" / " Custom Selected Label
+  - group:
+    - text: Label controlled
+    - article:
+      - radiogroup "id-10aasds4-Custom Selected Label":
+        - list:
+          - listitem:
+            - radio "Option 1 none\" / \""
+            - text: Option 1 none" / "
+          - listitem:
+            - radio "Option 2 none\" / \""
+            - text: Option 2 none" / "
+  - status
+  - text: chevron_down" / " Transform Selected Label
+  - group:
+    - article:
+      - radiogroup "id-10aasds4-Transform Selected Label":
+        - list:
+          - listitem:
+            - radio "Option 1 none\" / \""
+            - text: Option 1 none" / "
+          - listitem:
+            - radio "Option 2 none\" / \""
+            - text: Option 2 none" / "
+  - status
+  - text: chevron_down" / " Custom Search Filter
+  - group:
+    - article:
+      - text: magnifying_glass" / " Search
+      - searchbox "Search"
+      - status
+      - text: cross" / "
+      - radiogroup "id-10aasds4-Custom Search Filter":
+        - list:
+          - listitem:
+            - radio "Option 1 none\" / \""
+            - text: Option 1 none" / "
+          - listitem:
+            - radio "Option 2 none\" / \""
+            - text: Option 2 none" / "
   - status
   - text: chevron_down" / "

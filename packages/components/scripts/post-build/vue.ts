@@ -68,7 +68,7 @@ export default (tmp?: boolean) => {
 					)})\n\nconst props =`
 				});
 				replacements.push({
-					from: 'handleFrameworkEventVue(() => {}',
+					from: /handleFrameworkEventVue\(\s*\(\)\s*=>\s*\{}\s*?/g,
 					to: 'handleFrameworkEventVue(emit'
 				});
 			}

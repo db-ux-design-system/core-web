@@ -20,6 +20,7 @@ export type GlobalProps = {
 	class?: string | any;
 
 	/**
+	 * @deprecated
 	 * [`aria-describedby`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-describedby) is used to link to the elements that describe the element with the set attribute.
 	 */
 	describedbyid?: string;
@@ -590,7 +591,7 @@ export type CloseEventProps = {
 };
 
 export type CloseEventState = {
-	handleClose: (event: any) => void;
+	handleClose: (event: any, forceClose?: boolean) => void;
 };
 
 export const AlignmentList = ['start', 'center'] as const;

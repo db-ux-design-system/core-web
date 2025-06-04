@@ -1059,6 +1059,38 @@
 						{
 							"value": "Option 2",
 							"id": "74n91hp14"
+						},
+						{
+							"value": "Option 3",
+							"id": "74n91hp15"
+						},
+						{
+							"value": "Option 4",
+							"id": "74n91hp16"
+						},
+						{
+							"value": "Option 5",
+							"id": "74n91hp17"
+						},
+						{
+							"value": "Option 6",
+							"id": "74n91hp18"
+						},
+						{
+							"value": "Option 7",
+							"id": "74n91hp19"
+						},
+						{
+							"value": "Option 8",
+							"id": "74n91hp24"
+						},
+						{
+							"value": "Option 9",
+							"id": "74n91hp34"
+						},
+						{
+							"value": "Option 10",
+							"id": "74n91hp44"
 						}
 					],
 					"label": "Label",
@@ -1110,6 +1142,22 @@
 						{
 							"value": "Option 2",
 							"id": "jh7pczno4"
+						},
+						{
+							"value": "Option 3",
+							"id": "jh7pczno5"
+						},
+						{
+							"value": "Option 4",
+							"id": "jh7pczno6"
+						},
+						{
+							"value": "Option 5",
+							"id": "jh7pczno7"
+						},
+						{
+							"value": "Option 6",
+							"id": "jh7pczno8"
 						}
 					],
 					"label": "Label",
@@ -1615,7 +1663,7 @@
 							"id": "j8squjd5i"
 						},
 						{
-							"value": "Option 10",
+							"value": "Option 10 very long item with may break into a new line",
 							"id": "b84ie8otk"
 						}
 					],
@@ -1656,7 +1704,6 @@
 					],
 					"label": "Label",
 					"selectedType": "tag",
-					"tagWrapping": "grow",
 					"multiple": true,
 					"id": "id-10271"
 				},
@@ -1688,10 +1735,105 @@
 					],
 					"label": "Label",
 					"selectedType": "tag",
-					"tagWrapping": "grow",
 					"formFieldWidth": "auto",
 					"multiple": true,
 					"id": "id-10272"
+				},
+				"children": []
+			}
+		]
+	},
+	{
+		"name": "Example: Other configuration",
+		"examples": [
+			{
+				"name": "Search Value",
+				"style": {
+					"width": "200px"
+				},
+				"props": {
+					"options": [
+						{
+							"value": "Option 1",
+							"id": "09nursdao"
+						},
+						{
+							"value": "Option 2",
+							"id": "74n9csdc14"
+						}
+					],
+					"label": "Label",
+					"searchValue": "1",
+					"showSearch": true,
+					"multiple": true,
+					"id": "id-10as4"
+				},
+				"children": []
+			},
+			{
+				"name": "Custom Selected Label",
+				"style": {
+					"width": "200px"
+				},
+				"props": {
+					"options": [
+						{
+							"value": "Option 1",
+							"id": "09nurdscsdao"
+						},
+						{
+							"value": "Option 2",
+							"id": "74n9ccsddc14"
+						}
+					],
+					"label": "Label",
+					"selectedLabels": "Label controlled",
+					"id": "id-10aasds4"
+				},
+				"children": []
+			},
+			{
+				"name": "Transform Selected Label",
+				"style": {
+					"width": "200px"
+				},
+				"props": {
+					"options": [
+						{
+							"value": "Option 1",
+							"id": "09nurdscsdao"
+						},
+						{
+							"value": "Option 2",
+							"id": "74n9ccsddc14"
+						}
+					],
+					"label": "Label",
+					"transformSelectedLabels": true,
+					"id": "id-10aasds4"
+				},
+				"children": []
+			},
+			{
+				"name": "Custom Search Filter",
+				"style": {
+					"width": "200px"
+				},
+				"props": {
+					"options": [
+						{
+							"value": "Option 1",
+							"id": "09nurdscsdao"
+						},
+						{
+							"value": "Option 2",
+							"id": "74n9ccsddc14"
+						}
+					],
+					"label": "Label",
+					"searchFilter": true,
+					"showSearch": true,
+					"id": "id-10aasds4"
 				},
 				"children": []
 			}

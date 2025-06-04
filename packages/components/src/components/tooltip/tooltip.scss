@@ -130,7 +130,7 @@ $tooltip-arrow-shadow-size: variables.$db-sizing-2xs;
 	position: var(--db-tooltip-parent-position, relative);
 }
 
-$popover-states: "hover", "focus";
+$popover-states: "hover", "focus-visible";
 
 @each $state in $popover-states {
 	@include show-popover($state);
