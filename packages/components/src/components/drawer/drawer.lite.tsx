@@ -21,13 +21,17 @@ export default function DBDrawer(props: DBDrawerProps) {
 	const dialogContainerRef = useRef<HTMLDivElement | any>(null);
 	const state = useStore<DBDrawerState>({
 		// eslint-disable-next-line @typescript-eslint/no-explicit-any
-		handleClose: (event: any) => {
+		handleClose: (event: any, forceClose?: boolean) => {
 			if (event.key === 'Escape') {
 				event.preventDefault();
 			}
 
+			if (forceClose) {
+				event.stopPropagation();
+			}
+
 			if (
-				event === 'close' ||
+				forceClose ||
 				event.key === 'Escape' ||
 				(event.target.nodeName === 'DIALOG' &&
 					event.type === 'click' &&
@@ -103,7 +107,7 @@ export default function DBDrawer(props: DBDrawerProps) {
 						icon="cross"
 						variant="ghost"
 						noText
-						onClick={() => state.handleClose('close')}>
+						onClick={(event) => state.handleClose(event, true)}>
 						{props.closeButtonText ?? DEFAULT_CLOSE_BUTTON}
 					</DBButton>
 				</header>

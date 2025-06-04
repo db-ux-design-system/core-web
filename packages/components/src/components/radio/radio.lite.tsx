@@ -30,7 +30,6 @@ export default function DBRadio(props: DBRadioProps) {
 		initialized: false,
 		_id: undefined,
 		handleChange: (event: ChangeEvent<HTMLInputElement> | any) => {
-			event.stopPropagation();
 			if (props.onChange) {
 				props.onChange(event);
 			}
@@ -41,13 +40,11 @@ export default function DBRadio(props: DBRadioProps) {
 			});
 		},
 		handleBlur: (event: InteractionEvent<HTMLInputElement> | any) => {
-			event.stopPropagation();
 			if (props.onBlur) {
 				props.onBlur(event);
 			}
 		},
 		handleFocus: (event: InteractionEvent<HTMLInputElement> | any) => {
-			event.stopPropagation();
 			if (props.onFocus) {
 				props.onFocus(event);
 			}
@@ -81,7 +78,7 @@ export default function DBRadio(props: DBRadioProps) {
 				name={props.name}
 				checked={getBoolean(props.checked, 'checked')}
 				disabled={getBoolean(props.disabled, 'disabled')}
-				aria-describedby={props.describedbyid}
+				aria-describedby={props.describedbyid ?? props.ariaDescribedBy}
 				value={props.value}
 				required={getBoolean(props.required, 'required')}
 				onChange={(event: ChangeEvent<HTMLInputElement>) =>
