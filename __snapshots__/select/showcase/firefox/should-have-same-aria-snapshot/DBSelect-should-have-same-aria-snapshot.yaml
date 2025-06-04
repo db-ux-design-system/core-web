@@ -1,6 +1,7 @@
 - main:
   - heading "DBSelect" [level=1]
-  - link "Density arrow_up_right\" / \""
+  - link "Density arrow_up_right\" / \"":
+    - /url: http://localhost:8080/react-showcase/#/03/select?density=regular&color=neutral-bg-basic-level-1&page=density
   - text: Label
   - combobox "Label":
     - option "Option 1"
@@ -20,7 +21,8 @@
   - text: Expressive
   - status
   - text: chevron_down" / "
-  - link "Variant arrow_up_right\" / \""
+  - link "Variant arrow_up_right\" / \"":
+    - /url: http://localhost:8080/react-showcase/#/03/select?density=regular&color=neutral-bg-basic-level-1&page=variant
   - text: Label
   - combobox "Label":
     - option "Option 1"
@@ -33,7 +35,8 @@
     - option "Option 2"
   - status
   - text: chevron_down" / "
-  - link "Show Label arrow_up_right\" / \""
+  - link "Show Label arrow_up_right\" / \"":
+    - /url: http://localhost:8080/react-showcase/#/03/select?density=regular&color=neutral-bg-basic-level-1&page=show+label
   - text: Label
   - combobox "Label":
     - option "Option 1"
@@ -47,7 +50,8 @@
   - text: "False"
   - status
   - text: chevron_down" / "
-  - link "Show Message arrow_up_right\" / \""
+  - link "Show Message arrow_up_right\" / \"":
+    - /url: http://localhost:8080/react-showcase/#/03/select?density=regular&color=neutral-bg-basic-level-1&page=show+message
   - text: Label
   - combobox "Label":
     - option "Option 1"
@@ -61,7 +65,8 @@
   - text: True information_circle" / " Message
   - status
   - text: chevron_down" / "
-  - link "State arrow_up_right\" / \""
+  - link "State arrow_up_right\" / \"":
+    - /url: http://localhost:8080/react-showcase/#/03/select?density=regular&color=neutral-bg-basic-level-1&page=state
   - text: Label
   - combobox "Label":
     - option "Option 1"
@@ -74,7 +79,8 @@
     - option "Option 2"
   - status
   - text: chevron_down" / "
-  - link "Validation arrow_up_right\" / \""
+  - link "Validation arrow_up_right\" / \"":
+    - /url: http://localhost:8080/react-showcase/#/03/select?density=regular&color=neutral-bg-basic-level-1&page=validation
   - text: Label
   - combobox "Label":
     - option "Option 1"
@@ -94,7 +100,8 @@
   - text: check_circle" / " Valid message
   - status
   - text: chevron_down" / "
-  - link "Disabled arrow_up_right\" / \""
+  - link "Disabled arrow_up_right\" / \"":
+    - /url: http://localhost:8080/react-showcase/#/03/select?density=regular&color=neutral-bg-basic-level-1&page=disabled
   - text: Label
   - combobox "Label":
     - option "Option 1"
@@ -108,7 +115,8 @@
   - text: "True"
   - status
   - text: chevron_down" / "
-  - link "Content arrow_up_right\" / \""
+  - link "Content arrow_up_right\" / \"":
+    - /url: http://localhost:8080/react-showcase/#/03/select?density=regular&color=neutral-bg-basic-level-1&page=content
   - text: Label
   - combobox "Label":
     - option "Option 1"
@@ -122,7 +130,8 @@
   - text: Text - Leading Icon
   - status
   - text: chevron_down" / "
-  - link "Required arrow_up_right\" / \""
+  - link "Required arrow_up_right\" / \"":
+    - /url: http://localhost:8080/react-showcase/#/03/select?density=regular&color=neutral-bg-basic-level-1&page=required
   - text: Label
   - combobox "Label":
     - option "Option 1"
@@ -136,7 +145,8 @@
   - text: "True"
   - status
   - text: chevron_down" / "
-  - link "Examples Floating Label arrow_up_right\" / \""
+  - link "Examples Floating Label arrow_up_right\" / \"":
+    - /url: http://localhost:8080/react-showcase/#/03/select?density=regular&color=neutral-bg-basic-level-1&page=examples+floating+label
   - text: Label
   - combobox "Label":
     - option "Option 1"

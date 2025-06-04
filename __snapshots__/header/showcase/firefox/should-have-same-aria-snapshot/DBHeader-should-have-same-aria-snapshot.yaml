@@ -1,95 +1,126 @@
 - main:
   - heading "DBHeader" [level=1]
-  - link "Density arrow_up_right\" / \""
-  - link "Imprint arrow_right\" / \""
-  - link "Help arrow_right\" / \""
+  - link "Density arrow_up_right\" / \"":
+    - /url: http://localhost:8080/react-showcase/#/01/header?density=regular&color=neutral-bg-basic-level-1&page=density
+  - link "Imprint arrow_right\" / \"":
+    - /url: "#"
+  - link "Help arrow_right\" / \"":
+    - /url: "#"
   - text: DBHeader
   - navigation "Functional":
     - list:
       - listitem:
-        - link "Functional"
+        - link "Functional":
+          - /url: "#"
       - listitem:
-        - link "Functional disabled"
+        - link "Functional disabled" [disabled]:
+          - /url: "#"
   - button "Search"
   - button "Profile"
   - button "Notification"
   - button "Help"
-  - link "Imprint arrow_right\" / \""
-  - link "Help arrow_right\" / \""
+  - link "Imprint arrow_right\" / \"":
+    - /url: "#"
+  - link "Help arrow_right\" / \"":
+    - /url: "#"
   - text: DBHeader
   - navigation "(Default) Regular":
     - list:
       - listitem:
-        - link "(Default) Regular"
+        - link "(Default) Regular":
+          - /url: "#"
       - listitem:
-        - link "(Default) Regular disabled"
+        - link "(Default) Regular disabled" [disabled]:
+          - /url: "#"
   - button "Search"
   - button "Profile"
   - button "Notification"
   - button "Help"
-  - link "Imprint arrow_right\" / \""
-  - link "Help arrow_right\" / \""
+  - link "Imprint arrow_right\" / \"":
+    - /url: "#"
+  - link "Help arrow_right\" / \"":
+    - /url: "#"
   - text: DBHeader
   - navigation "Expressive":
     - list:
       - listitem:
-        - link "Expressive"
+        - link "Expressive":
+          - /url: "#"
       - listitem:
-        - link "Expressive disabled"
+        - link "Expressive disabled" [disabled]:
+          - /url: "#"
   - button "Search"
   - button "Profile"
   - button "Notification"
   - button "Help"
-  - link "Width arrow_up_right\" / \""
-  - link "Imprint arrow_right\" / \""
-  - link "Help arrow_right\" / \""
+  - link "Width arrow_up_right\" / \"":
+    - /url: http://localhost:8080/react-showcase/#/01/header?density=regular&color=neutral-bg-basic-level-1&page=width
+  - link "Imprint arrow_right\" / \"":
+    - /url: "#"
+  - link "Help arrow_right\" / \"":
+    - /url: "#"
   - text: DBHeader
   - navigation "Full":
     - list:
       - listitem:
-        - link "Full"
+        - link "Full":
+          - /url: "#"
       - listitem:
-        - link "Full disabled"
+        - link "Full disabled" [disabled]:
+          - /url: "#"
   - button "Search"
   - button "Profile"
   - button "Notification"
   - button "Help"
-  - link "Imprint arrow_right\" / \""
-  - link "Help arrow_right\" / \""
+  - link "Imprint arrow_right\" / \"":
+    - /url: "#"
+  - link "Help arrow_right\" / \"":
+    - /url: "#"
   - text: DBHeader
   - navigation "Medium":
     - list:
       - listitem:
-        - link "Medium"
+        - link "Medium":
+          - /url: "#"
       - listitem:
-        - link "Medium disabled"
+        - link "Medium disabled" [disabled]:
+          - /url: "#"
   - button "Search"
   - button "Profile"
   - button "Notification"
   - button "Help"
-  - link "Imprint arrow_right\" / \""
-  - link "Help arrow_right\" / \""
+  - link "Imprint arrow_right\" / \"":
+    - /url: "#"
+  - link "Help arrow_right\" / \"":
+    - /url: "#"
   - text: DBHeader
   - navigation "Large":
     - list:
       - listitem:
-        - link "Large"
+        - link "Large":
+          - /url: "#"
       - listitem:
-        - link "Large disabled"
+        - link "Large disabled" [disabled]:
+          - /url: "#"
   - button "Search"
   - button "Profile"
   - button "Notification"
   - button "Help"
-  - link "Behavior arrow_up_right\" / \""
-  - link "Imprint arrow_right\" / \""
-  - link "Help arrow_right\" / \""
+  - link "Behavior arrow_up_right\" / \"":
+    - /url: http://localhost:8080/react-showcase/#/01/header?density=regular&color=neutral-bg-basic-level-1&page=behavior
+  - link "Imprint arrow_right\" / \"":
+    - /url: "#"
+  - link "Help arrow_right\" / \"":
+    - /url: "#"
   - text: DBHeader
   - navigation "Desktop (full width)":
     - list:
       - listitem:
-        - link "Desktop (full width)"
+        - link "Desktop (full width)":
+          - /url: "#"
       - listitem:
-        - link "Desktop (full width) disabled"
+        - link "Desktop (full width) disabled" [disabled]:
+          - /url: "#"
   - button "Search"
   - button "Profile"
   - button "Notification"
@@ -97,18 +128,23 @@
   - text: DBHeader
   - button "Search"
   - button "BurgerMenu"
-  - link "Examples arrow_up_right\" / \""
+  - link "Examples arrow_up_right\" / \"":
+    - /url: http://localhost:8080/react-showcase/#/01/header?density=regular&color=neutral-bg-basic-level-1&page=examples
   - text: DBHeader
   - navigation "With Application Name + Navigation":
     - list:
       - listitem:
-        - link "With Application Name + Navigation"
+        - link "With Application Name + Navigation":
+          - /url: "#"
       - listitem:
-        - link "With Application Name + Navigation disabled"
+        - link "With Application Name + Navigation disabled" [disabled]:
+          - /url: "#"
   - text: DBHeader
   - navigation "Without Application Name":
     - list:
       - listitem:
-        - link "Without Application Name"
+        - link "Without Application Name":
+          - /url: "#"
       - listitem:
-        - link "Without Application Name disabled"
+        - link "Without Application Name disabled" [disabled]:
+          - /url: "#"

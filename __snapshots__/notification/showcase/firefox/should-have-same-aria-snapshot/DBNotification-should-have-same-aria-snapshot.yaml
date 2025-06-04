@@ -1,6 +1,7 @@
 - main:
   - heading "DBNotification" [level=1]
-  - link "Density arrow_up_right\" / \""
+  - link "Density arrow_up_right\" / \"":
+    - /url: http://localhost:8080/react-showcase/#/06/notification?density=regular&color=neutral-bg-basic-level-1&page=density
   - article:
     - text: Headline
     - paragraph: functional
@@ -13,7 +14,8 @@
     - text: Headline
     - paragraph: expressive
     - button "Close"
-  - link "Variant arrow_up_right\" / \""
+  - link "Variant arrow_up_right\" / \"":
+    - /url: http://localhost:8080/react-showcase/#/06/notification?density=regular&color=neutral-bg-basic-level-1&page=variant
   - article:
     - text: Headline
     - paragraph: (Default) Docked
@@ -27,7 +29,8 @@
     - paragraph: Overlay
     - text: 10 min ago
     - button "Close"
-  - link "Semantic arrow_up_right\" / \""
+  - link "Semantic arrow_up_right\" / \"":
+    - /url: http://localhost:8080/react-showcase/#/06/notification?density=regular&color=neutral-bg-basic-level-1&page=semantic
   - article:
     - text: Headline
     - paragraph: (Default) Adaptive
@@ -52,43 +55,52 @@
     - text: exclamation_mark_triangle" / " Headline
     - paragraph: Warning
     - button "Close"
-  - link "Closeable arrow_up_right\" / \""
+  - link "Closeable arrow_up_right\" / \"":
+    - /url: http://localhost:8080/react-showcase/#/06/notification?density=regular&color=neutral-bg-basic-level-1&page=closeable
   - article:
     - paragraph: (Default) False
   - article:
     - paragraph: "True"
     - button "Close"
-  - link "Visual arrow_up_right\" / \""
+  - link "Visual arrow_up_right\" / \"":
+    - /url: http://localhost:8080/react-showcase/#/06/notification?density=regular&color=neutral-bg-basic-level-1&page=visual
   - article:
     - paragraph: (Default) Icon
   - article:
     - img "this is a fancy placeholder"
     - paragraph: Image
-  - link "Show Icon arrow_up_right\" / \""
+  - link "Show Icon arrow_up_right\" / \"":
+    - /url: http://localhost:8080/react-showcase/#/06/notification?density=regular&color=neutral-bg-basic-level-1&page=show+icon
   - article:
     - paragraph: (Default) True
   - article:
     - paragraph: "False"
-  - link "Link Variant arrow_up_right\" / \""
+  - link "Link Variant arrow_up_right\" / \"":
+    - /url: http://localhost:8080/react-showcase/#/06/notification?density=regular&color=neutral-bg-basic-level-1&page=link+variant
   - article:
     - paragraph: (Default) Block
-    - link "Textlink"
+    - link "Textlink":
+      - /url: "#"
   - article:
     - paragraph: Inline
-    - link "Textlink"
-  - link "Show Headline arrow_up_right\" / \""
+    - link "Textlink":
+      - /url: "#"
+  - link "Show Headline arrow_up_right\" / \"":
+    - /url: http://localhost:8080/react-showcase/#/06/notification?density=regular&color=neutral-bg-basic-level-1&page=show+headline
   - article:
     - text: Headline
     - paragraph: (Default) True
   - article:
     - paragraph: "False"
-  - link "Show Timestamp arrow_up_right\" / \""
+  - link "Show Timestamp arrow_up_right\" / \"":
+    - /url: http://localhost:8080/react-showcase/#/06/notification?density=regular&color=neutral-bg-basic-level-1&page=show+timestamp
   - article:
     - paragraph: (Default) False
   - article:
     - paragraph: "True"
     - text: 10 min ago
-  - link "Examples - Variant:Docked arrow_up_right\" / \""
+  - link "Examples - Variant:Docked arrow_up_right\" / \"":
+    - /url: http://localhost:8080/react-showcase/#/06/notification?density=regular&color=neutral-bg-basic-level-1&page=examples+-+variant%3Adocked
   - article:
     - paragraph: Text
   - article:
@@ -101,19 +113,24 @@
     - paragraph: Text & Headline
   - article:
     - paragraph: Text & Textlink Block
-    - link "Textlink"
+    - link "Textlink":
+      - /url: "#"
   - article:
     - paragraph: Text & Textlink Inline
-    - link "Textlink"
+    - link "Textlink":
+      - /url: "#"
   - article:
     - text: Headline
     - paragraph: Text & Headline & Textlink Inline & Cloaseable
-    - link "Textlink"
+    - link "Textlink":
+      - /url: "#"
   - article:
     - text: Headline
     - paragraph: Text & Icon & Headline & Textlink Inline & Cloaseable
-    - link "Textlink"
-  - link "Examples - Variant:Standalone arrow_up_right\" / \""
+    - link "Textlink":
+      - /url: "#"
+  - link "Examples - Variant:Standalone arrow_up_right\" / \"":
+    - /url: http://localhost:8080/react-showcase/#/06/notification?density=regular&color=neutral-bg-basic-level-1&page=examples+-+variant%3Astandalone
   - article:
     - paragraph: Text
   - article:
@@ -126,19 +143,24 @@
     - paragraph: Text & Headline
   - article:
     - paragraph: Text & Textlink Block
-    - link "Textlink"
+    - link "Textlink":
+      - /url: "#"
   - article:
     - paragraph: Text & Textlink Inline
-    - link "Textlink"
+    - link "Textlink":
+      - /url: "#"
   - article:
     - text: Headline
     - paragraph: Text & Headline & Textlink Inline & Cloaseable
-    - link "Textlink"
+    - link "Textlink":
+      - /url: "#"
   - article:
     - text: Headline
     - paragraph: Text & Icon & Headline & Textlink Inline & Cloaseable
-    - link "Textlink"
-  - link "Examples - Variant:Overlay arrow_up_right\" / \""
+    - link "Textlink":
+      - /url: "#"
+  - link "Examples - Variant:Overlay arrow_up_right\" / \"":
+    - /url: http://localhost:8080/react-showcase/#/06/notification?density=regular&color=neutral-bg-basic-level-1&page=examples+-+variant%3Aoverlay
   - article:
     - paragraph: Text
   - article:
@@ -151,15 +173,18 @@
     - paragraph: Text & Headline
   - article:
     - paragraph: Text & Textlink Inline
-    - link "Textlink"
+    - link "Textlink":
+      - /url: "#"
   - article:
     - text: Headline
     - paragraph: Text & Headline & Textlink Inline & Cloaseable
-    - link "Textlink"
+    - link "Textlink":
+      - /url: "#"
   - article:
     - text: Headline
     - paragraph: Text & Icon & Headline & Textlink Inline & Cloaseable
-    - link "Textlink"
+    - link "Textlink":
+      - /url: "#"
   - article:
     - paragraph: Text & Timed
     - text: 10 min ago

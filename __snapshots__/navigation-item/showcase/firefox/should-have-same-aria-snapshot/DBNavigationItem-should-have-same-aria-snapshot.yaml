@@ -1,51 +1,70 @@
 - main:
   - heading "DBNavigationItem" [level=1]
-  - link "Density arrow_up_right\" / \""
+  - link "Density arrow_up_right\" / \"":
+    - /url: http://localhost:8080/react-showcase/#/05/navigation-item?density=regular&color=neutral-bg-basic-level-1&page=density
   - list:
     - listitem:
-      - link "Functional"
+      - link "Functional":
+        - /url: "#"
   - list:
     - listitem:
-      - link "(Default) Regular"
+      - link "(Default) Regular":
+        - /url: "#"
   - list:
     - listitem:
-      - link "Expressive"
-  - link "Disabled arrow_up_right\" / \""
+      - link "Expressive":
+        - /url: "#"
+  - link "Disabled arrow_up_right\" / \"":
+    - /url: http://localhost:8080/react-showcase/#/05/navigation-item?density=regular&color=neutral-bg-basic-level-1&page=disabled
   - list:
     - listitem:
-      - link "(Default) False"
+      - link "(Default) False":
+        - /url: "#"
   - list:
     - listitem:
-      - link "True"
-  - link "Active arrow_up_right\" / \""
+      - link "True" [disabled]:
+        - /url: "#"
+  - link "Active arrow_up_right\" / \"":
+    - /url: http://localhost:8080/react-showcase/#/05/navigation-item?density=regular&color=neutral-bg-basic-level-1&page=active
   - list:
     - listitem:
-      - link "(Default) False"
+      - link "(Default) False":
+        - /url: "#"
   - list:
     - listitem:
-      - link "True"
-  - link "Expanded arrow_up_right\" / \""
+      - link "True":
+        - /url: "#"
+  - link "Expanded arrow_up_right\" / \"":
+    - /url: http://localhost:8080/react-showcase/#/05/navigation-item?density=regular&color=neutral-bg-basic-level-1&page=expanded
   - list:
     - listitem:
-      - link "(Default) False"
+      - link "(Default) False":
+        - /url: "#"
   - list:
     - listitem:
       - button "True chevron_right\" / \""
-  - link "Show Icon arrow_up_right\" / \""
+  - link "Show Icon arrow_up_right\" / \"":
+    - /url: http://localhost:8080/react-showcase/#/05/navigation-item?density=regular&color=neutral-bg-basic-level-1&page=show+icon
   - list:
     - listitem:
-      - link "(Default) False"
+      - link "(Default) False":
+        - /url: "#"
   - list:
     - listitem:
-      - link "True"
-  - link "Width arrow_up_right\" / \""
+      - link "True":
+        - /url: "#"
+  - link "Width arrow_up_right\" / \"":
+    - /url: http://localhost:8080/react-showcase/#/05/navigation-item?density=regular&color=neutral-bg-basic-level-1&page=width
   - list:
     - listitem:
-      - link "(Default) Auto"
+      - link "(Default) Auto":
+        - /url: "#"
   - list:
     - listitem:
-      - link "Full"
-  - link "Wrap arrow_up_right\" / \""
+      - link "Full":
+        - /url: "#"
+  - link "Wrap arrow_up_right\" / \"":
+    - /url: http://localhost:8080/react-showcase/#/05/navigation-item?density=regular&color=neutral-bg-basic-level-1&page=wrap
   - list:
     - listitem:
       - button "No Wrap (Default) chevron_right\" / \""

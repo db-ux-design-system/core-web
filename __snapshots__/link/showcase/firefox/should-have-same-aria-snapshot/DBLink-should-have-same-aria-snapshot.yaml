@@ -1,21 +1,40 @@
 - main:
   - heading "DBLink" [level=1]
-  - link "Density arrow_up_right\" / \""
-  - link "Functional arrow_right\" / \""
-  - link "(Default) Regular arrow_right\" / \""
-  - link "Expressive arrow_right\" / \""
-  - link "Variant arrow_up_right\" / \""
-  - link "(Default) Adaptive arrow_right\" / \""
-  - link "Brand arrow_right\" / \""
-  - link "Disabled arrow_up_right\" / \""
-  - link "(Default) False arrow_right\" / \""
-  - link "True arrow_right\" / \"" [disabled]
-  - link "Size arrow_up_right\" / \""
-  - link "(Default) Medium arrow_right\" / \""
-  - link "Small arrow_right\" / \""
-  - link "Content arrow_up_right\" / \""
-  - link "(Default) Internal arrow_right\" / \""
-  - link "External arrow_up_right\" / \""
-  - link "Show Icon arrow_up_right\" / \""
-  - link "(Default) True arrow_right\" / \""
-  - link "False"
+  - link "Density arrow_up_right\" / \"":
+    - /url: http://localhost:8080/react-showcase/#/02/link?density=regular&color=neutral-bg-basic-level-1&page=density
+  - link "Functional arrow_right\" / \"":
+    - /url: "#"
+  - link "(Default) Regular arrow_right\" / \"":
+    - /url: "#"
+  - link "Expressive arrow_right\" / \"":
+    - /url: "#"
+  - link "Variant arrow_up_right\" / \"":
+    - /url: http://localhost:8080/react-showcase/#/02/link?density=regular&color=neutral-bg-basic-level-1&page=variant
+  - link "(Default) Adaptive arrow_right\" / \"":
+    - /url: "#"
+  - link "Brand arrow_right\" / \"":
+    - /url: "#"
+  - link "Disabled arrow_up_right\" / \"":
+    - /url: http://localhost:8080/react-showcase/#/02/link?density=regular&color=neutral-bg-basic-level-1&page=disabled
+  - link "(Default) False arrow_right\" / \"":
+    - /url: "#"
+  - link "True arrow_right\" / \"" [disabled]:
+    - /url: "#"
+  - link "Size arrow_up_right\" / \"":
+    - /url: http://localhost:8080/react-showcase/#/02/link?density=regular&color=neutral-bg-basic-level-1&page=size
+  - link "(Default) Medium arrow_right\" / \"":
+    - /url: "#"
+  - link "Small arrow_right\" / \"":
+    - /url: "#"
+  - link "Content arrow_up_right\" / \"":
+    - /url: http://localhost:8080/react-showcase/#/02/link?density=regular&color=neutral-bg-basic-level-1&page=content
+  - link "(Default) Internal arrow_right\" / \"":
+    - /url: "#"
+  - link "External arrow_up_right\" / \"":
+    - /url: "#"
+  - link "Show Icon arrow_up_right\" / \"":
+    - /url: http://localhost:8080/react-showcase/#/02/link?density=regular&color=neutral-bg-basic-level-1&page=show+icon
+  - link "(Default) True arrow_right\" / \"":
+    - /url: "#"
+  - link "False":
+    - /url: "#"

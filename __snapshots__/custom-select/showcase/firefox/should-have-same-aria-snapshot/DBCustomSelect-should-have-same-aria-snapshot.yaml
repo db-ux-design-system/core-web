@@ -1,6 +1,7 @@
 - main:
   - heading "DBCustomSelect" [level=1]
-  - link "Density arrow_up_right\" / \""
+  - link "Density arrow_up_right\" / \"":
+    - /url: http://localhost:8080/react-showcase/#/03/custom-select?density=regular&color=neutral-bg-basic-level-1&page=density
   - text: Functional
   - group:
     - article:
@@ -38,7 +39,8 @@
             - text: Option 2 none" / "
   - status
   - text: chevron_down" / "
-  - link "Multiple arrow_up_right\" / \""
+  - link "Multiple arrow_up_right\" / \"":
+    - /url: http://localhost:8080/react-showcase/#/03/custom-select?density=regular&color=neutral-bg-basic-level-1&page=multiple
   - text: (Default) False
   - group:
     - article:
@@ -64,7 +66,8 @@
             - text: Option 2
   - status
   - text: chevron_down" / "
-  - link "Variant arrow_up_right\" / \""
+  - link "Variant arrow_up_right\" / \"":
+    - /url: http://localhost:8080/react-showcase/#/03/custom-select?density=regular&color=neutral-bg-basic-level-1&page=variant
   - text: (Default) Label Above
   - group:
     - article:
@@ -90,7 +93,8 @@
             - text: Option 2 none" / "
   - status
   - text: chevron_down" / "
-  - link "Show Label arrow_up_right\" / \""
+  - link "Show Label arrow_up_right\" / \"":
+    - /url: http://localhost:8080/react-showcase/#/03/custom-select?density=regular&color=neutral-bg-basic-level-1&page=show+label
   - text: (Default) True
   - group:
     - article:
@@ -116,7 +120,8 @@
             - text: Option 2 none" / "
   - status
   - text: chevron_down" / "
-  - link "Show Message arrow_up_right\" / \""
+  - link "Show Message arrow_up_right\" / \"":
+    - /url: http://localhost:8080/react-showcase/#/03/custom-select?density=regular&color=neutral-bg-basic-level-1&page=show+message
   - text: (Default) False
   - group:
     - article:
@@ -143,7 +148,8 @@
   - text: information_circle" / " Helper Message
   - status
   - text: chevron_down" / "
-  - link "Show Icon arrow_up_right\" / \""
+  - link "Show Icon arrow_up_right\" / \"":
+    - /url: http://localhost:8080/react-showcase/#/03/custom-select?density=regular&color=neutral-bg-basic-level-1&page=show+icon
   - text: (Default) False
   - group:
     - article:
@@ -169,7 +175,8 @@
             - text: Option 2 none" / "
   - status
   - text: chevron_down" / "
-  - link "Required arrow_up_right\" / \""
+  - link "Required arrow_up_right\" / \"":
+    - /url: http://localhost:8080/react-showcase/#/03/custom-select?density=regular&color=neutral-bg-basic-level-1&page=required
   - text: (Default) False
   - group:
     - article:
@@ -195,7 +202,8 @@
             - text: Option 2
   - status
   - text: chevron_down" / "
-  - link "Disabled arrow_up_right\" / \""
+  - link "Disabled arrow_up_right\" / \"":
+    - /url: http://localhost:8080/react-showcase/#/03/custom-select?density=regular&color=neutral-bg-basic-level-1&page=disabled
   - text: (Default) False
   - group:
     - article:
@@ -221,7 +229,8 @@
             - text: Option 2
   - status
   - text: chevron_down" / "
-  - link "Form Field Width arrow_up_right\" / \""
+  - link "Form Field Width arrow_up_right\" / \"":
+    - /url: http://localhost:8080/react-showcase/#/03/custom-select?density=regular&color=neutral-bg-basic-level-1&page=form+field+width
   - text: (Default) Full
   - group:
     - article:
@@ -247,7 +256,8 @@
             - text: Option 2 none" / "
   - status
   - text: chevron_down" / "
-  - link "Dropdown Width arrow_up_right\" / \""
+  - link "Dropdown Width arrow_up_right\" / \"":
+    - /url: http://localhost:8080/react-showcase/#/03/custom-select?density=regular&color=neutral-bg-basic-level-1&page=dropdown+width
   - text: "information_circle\" / \" Form Field Width: Full (Default) Fixed"
   - group:
     - article:
@@ -321,7 +331,8 @@
             - text: 2 none" / "
   - status
   - text: chevron_down" / "
-  - link "Placement arrow_up_right\" / \""
+  - link "Placement arrow_up_right\" / \"":
+    - /url: http://localhost:8080/react-showcase/#/03/custom-select?density=regular&color=neutral-bg-basic-level-1&page=placement
   - text: "information_circle\" / \" Form Field Width: Full (Default) Bottom"
   - group:
     - article:
@@ -395,7 +406,8 @@
             - text: Option 2 none" / "
   - status
   - text: chevron_down" / "
-  - link "Selected type arrow_up_right\" / \""
+  - link "Selected type arrow_up_right\" / \"":
+    - /url: http://localhost:8080/react-showcase/#/03/custom-select?density=regular&color=neutral-bg-basic-level-1&page=selected+type
   - text: (Default) Text
   - group:
     - article:
@@ -451,7 +463,8 @@
             - text: Option 4
   - status
   - text: chevron_down" / "
-  - link "Show No Result arrow_up_right\" / \""
+  - link "Show No Result arrow_up_right\" / \"":
+    - /url: http://localhost:8080/react-showcase/#/03/custom-select?density=regular&color=neutral-bg-basic-level-1&page=show+no+result
   - text: (Default) False
   - group:
     - article:
@@ -469,7 +482,8 @@
     - article: exclamation_mark_triangle" / " Nothing found
   - status
   - text: chevron_down" / "
-  - link "Show Loading arrow_up_right\" / \""
+  - link "Show Loading arrow_up_right\" / \"":
+    - /url: http://localhost:8080/react-showcase/#/03/custom-select?density=regular&color=neutral-bg-basic-level-1&page=show+loading
   - text: (Default) False
   - group:
     - article:
@@ -487,7 +501,8 @@
     - article: Loading
   - status
   - text: chevron_down" / "
-  - link "Show Search arrow_up_right\" / \""
+  - link "Show Search arrow_up_right\" / \"":
+    - /url: http://localhost:8080/react-showcase/#/03/custom-select?density=regular&color=neutral-bg-basic-level-1&page=show+search
   - text: (Default) False
   - group:
     - article:
@@ -543,7 +558,8 @@
             - text: Option 2
   - status
   - text: chevron_down" / "
-  - link "Show Select All arrow_up_right\" / \""
+  - link "Show Select All arrow_up_right\" / \"":
+    - /url: http://localhost:8080/react-showcase/#/03/custom-select?density=regular&color=neutral-bg-basic-level-1&page=show+select+all
   - text: (Default) False
   - group:
     - article:
@@ -583,7 +599,8 @@
             - text: Option 2
   - status
   - text: chevron_down" / "
-  - link "Show Clear Selection arrow_up_right\" / \""
+  - link "Show Clear Selection arrow_up_right\" / \"":
+    - /url: http://localhost:8080/react-showcase/#/03/custom-select?density=regular&color=neutral-bg-basic-level-1&page=show+clear+selection
   - text: (Default) True
   - group:
     - article:
@@ -609,7 +626,8 @@
             - text: Option 2
   - status
   - text: chevron_down" / "
-  - link "Examples Single arrow_up_right\" / \""
+  - link "Examples Single arrow_up_right\" / \"":
+    - /url: http://localhost:8080/react-showcase/#/03/custom-select?density=regular&color=neutral-bg-basic-level-1&page=examples+single
   - text: Icons
   - group:
     - article:
@@ -749,7 +767,8 @@
             - text: Option 10 none" / "
   - status
   - text: chevron_down" / "
-  - link "Examples Multiple arrow_up_right\" / \""
+  - link "Examples Multiple arrow_up_right\" / \"":
+    - /url: http://localhost:8080/react-showcase/#/03/custom-select?density=regular&color=neutral-bg-basic-level-1&page=examples+multiple
   - text: Less than 6
   - group:
     - article:
@@ -881,7 +900,8 @@
             - text: Option 10 very long item with may break into a new line
   - status
   - text: chevron_down" / "
-  - link "Example tags arrow_up_right\" / \""
+  - link "Example tags arrow_up_right\" / \"":
+    - /url: http://localhost:8080/react-showcase/#/03/custom-select?density=regular&color=neutral-bg-basic-level-1&page=example+tags
   - text: Tag grow
   - group:
     - article:
@@ -919,7 +939,8 @@
             - text: Option 4
   - status
   - text: chevron_down" / "
-  - 'link "Example: Other configuration arrow_up_right\" / \""'
+  - 'link "Example: Other configuration arrow_up_right\" / \""':
+    - /url: http://localhost:8080/react-showcase/#/03/custom-select?density=regular&color=neutral-bg-basic-level-1&page=example%3A+other+configuration
   - text: Search Value
   - group:
     - article:

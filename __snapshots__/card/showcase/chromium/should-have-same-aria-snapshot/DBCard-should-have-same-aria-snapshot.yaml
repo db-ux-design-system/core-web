@@ -1,23 +1,28 @@
 - main:
   - heading "DBCard" [level=1]
-  - link "Density arrow_up_right\" / \""
+  - link "Density arrow_up_right\" / \"":
+    - /url: http://localhost:8080/react-showcase/#/01/card?density=regular&color=neutral-bg-basic-level-1&page=density
   - strong: Functional
   - strong: (Default) Regular
   - strong: Expressive
-  - link "Elevation Level arrow_up_right\" / \""
+  - link "Elevation Level arrow_up_right\" / \"":
+    - /url: http://localhost:8080/react-showcase/#/01/card?density=regular&color=neutral-bg-basic-level-1&page=elevation+level
   - strong: (Default) 1
   - strong: "2"
   - strong: "3"
-  - link "Spacing arrow_up_right\" / \""
+  - link "Spacing arrow_up_right\" / \"":
+    - /url: http://localhost:8080/react-showcase/#/01/card?density=regular&color=neutral-bg-basic-level-1&page=spacing
   - strong: (Default) Small
   - strong: Medium
   - strong: Large
   - strong: None
-  - link "Behavior arrow_up_right\" / \""
+  - link "Behavior arrow_up_right\" / \"":
+    - /url: http://localhost:8080/react-showcase/#/01/card?density=regular&color=neutral-bg-basic-level-1&page=behavior
   - strong: (Default) Static
   - button "Interactive":
     - strong: Interactive
-  - link "Example arrow_up_right\" / \""
+  - link "Example arrow_up_right\" / \"":
+    - /url: http://localhost:8080/react-showcase/#/01/card?density=regular&color=neutral-bg-basic-level-1&page=example
   - button "Level 1 - Interactive":
     - strong: Level 1 - Interactive
   - button "Level 2 - Interactive":
