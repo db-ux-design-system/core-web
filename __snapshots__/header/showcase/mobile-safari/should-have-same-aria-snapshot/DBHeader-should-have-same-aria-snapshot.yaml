@@ -1,7 +1,6 @@
 - main:
   - heading "DBHeader" [level=1]
   - link "Density arrow_up_right\" / \"":
-    - /url: http://localhost:8080/react-showcase/#/01/header?density=regular&color=neutral-bg-basic-level-1&page=density
   - text: brand" / " DBHeader
   - button "magnifying_glass\" / \" Search"
   - button "menu\" / \" BurgerMenu"
@@ -12,7 +11,6 @@
   - button "magnifying_glass\" / \" Search"
   - button "menu\" / \" BurgerMenu"
   - link "Width arrow_up_right\" / \"":
-    - /url: http://localhost:8080/react-showcase/#/01/header?density=regular&color=neutral-bg-basic-level-1&page=width
   - text: brand" / " DBHeader
   - button "magnifying_glass\" / \" Search"
   - button "menu\" / \" BurgerMenu"
@@ -23,7 +21,6 @@
   - button "magnifying_glass\" / \" Search"
   - button "menu\" / \" BurgerMenu"
   - link "Behavior arrow_up_right\" / \"":
-    - /url: http://localhost:8080/react-showcase/#/01/header?density=regular&color=neutral-bg-basic-level-1&page=behavior
   - text: brand" / " DBHeader
   - button "magnifying_glass\" / \" Search"
   - button "menu\" / \" BurgerMenu"
@@ -31,7 +28,6 @@
   - button "magnifying_glass\" / \" Search"
   - button "menu\" / \" BurgerMenu"
   - link "Examples arrow_up_right\" / \"":
-    - /url: http://localhost:8080/react-showcase/#/01/header?density=regular&color=neutral-bg-basic-level-1&page=examples
   - text: brand" / " DBHeader
   - button "menu\" / \" BurgerMenu"
   - text: brand" / " DBHeader brand" / "

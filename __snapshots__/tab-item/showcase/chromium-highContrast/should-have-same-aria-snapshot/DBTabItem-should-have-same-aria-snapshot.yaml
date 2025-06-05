@@ -1,7 +1,6 @@
 - main:
   - heading "DBTabItem" [level=1]
   - link "Density arrow_up_right\" / \"":
-    - /url: http://localhost:8080/react-showcase/#/04/tab-item?density=regular&color=neutral-bg-basic-level-1&page=density
   - tablist:
     - tab "Functional"
     - text: Functional
@@ -12,7 +11,6 @@
     - tab "Expressive"
     - text: Expressive
   - link "States arrow_up_right\" / \"":
-    - /url: http://localhost:8080/react-showcase/#/04/tab-item?density=regular&color=neutral-bg-basic-level-1&page=states
   - tablist:
     - tab "(Default) Enabled"
     - text: (Default) Enabled
@@ -23,7 +21,6 @@
     - tab "disabled" [disabled]
     - text: disabled
   - link "Content arrow_up_right\" / \"":
-    - /url: http://localhost:8080/react-showcase/#/04/tab-item?density=regular&color=neutral-bg-basic-level-1&page=content
   - tablist:
     - tab "(Default) Text"
     - text: (Default) Text
@@ -39,7 +36,6 @@
     - tab "x_placeholder\" / \" Icon"
     - text: Icon
   - link "Behavior arrow_up_right\" / \"":
-    - /url: http://localhost:8080/react-showcase/#/04/tab-item?density=regular&color=neutral-bg-basic-level-1&page=behavior
   - tablist:
     - tab "(Default) Auto Width"
     - text: (Default) Auto Width
@@ -47,7 +43,6 @@
     - tab "Width full"
     - text: Width full
   - link "Content Alignment Full Width arrow_up_right\" / \"":
-    - /url: http://localhost:8080/react-showcase/#/04/tab-item?density=regular&color=neutral-bg-basic-level-1&page=content+alignment+full+width
   - tablist:
     - tab "Left"
     - text: Left

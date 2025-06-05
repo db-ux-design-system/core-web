@@ -1,7 +1,6 @@
 - main:
   - heading "DBNavigation" [level=1]
   - link "Density arrow_up_right\" / \"":
-    - /url: http://localhost:8080/react-showcase/#/05/navigation?density=regular&color=neutral-bg-basic-level-1&page=density
   - text: Functional
   - navigation "Functional":
     - list:
@@ -9,10 +8,8 @@
         - button "Navi-Item 1 chevron_down\" / \""
       - listitem:
         - link "Navi-Item 2":
-          - /url: "#"
       - listitem:
         - link "Navi-Item 3" [disabled]:
-          - /url: "#"
   - text: (Default) Regular
   - navigation "(Default) Regular":
     - list:
@@ -20,10 +17,8 @@
         - button "Navi-Item 1 chevron_down\" / \""
       - listitem:
         - link "Navi-Item 2":
-          - /url: "#"
       - listitem:
         - link "Navi-Item 3" [disabled]:
-          - /url: "#"
   - text: Expressive
   - navigation "Expressive":
     - list:
@@ -31,7 +26,5 @@
         - button "Navi-Item 1 chevron_down\" / \""
       - listitem:
         - link "Navi-Item 2":
-          - /url: "#"
       - listitem:
         - link "Navi-Item 3" [disabled]:
-          - /url: "#"

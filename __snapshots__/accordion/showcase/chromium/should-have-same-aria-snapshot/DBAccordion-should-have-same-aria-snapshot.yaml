@@ -1,7 +1,6 @@
 - main:
   - heading "DBAccordion" [level=1]
   - link "Density arrow_up_right\" / \"":
-    - /url: http://localhost:8080/react-showcase/#/04/accordion?density=regular&color=neutral-bg-basic-level-1&page=density
   - text: Functional
   - list:
     - listitem:
@@ -27,7 +26,6 @@
     - listitem:
       - group: Item 3 chevron_down" / "
   - link "Variant arrow_up_right\" / \"":
-    - /url: http://localhost:8080/react-showcase/#/04/accordion?density=regular&color=neutral-bg-basic-level-1&page=variant
   - text: (Default) Divider
   - list:
     - listitem:
@@ -45,7 +43,6 @@
     - listitem:
       - group: Item 3 chevron_down" / "
   - link "Behavior arrow_up_right\" / \"":
-    - /url: http://localhost:8080/react-showcase/#/04/accordion?density=regular&color=neutral-bg-basic-level-1&page=behavior
   - text: (Default) Multiple
   - list:
     - listitem:

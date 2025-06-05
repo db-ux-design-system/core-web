@@ -1,7 +1,6 @@
 - main:
   - heading "DBInput" [level=1]
   - link "Density arrow_up_right\" / \"":
-    - /url: http://localhost:8080/react-showcase/#/03/input?density=regular&color=neutral-bg-basic-level-1&page=density
   - text: Label
   - textbox "Label"
   - status
@@ -12,7 +11,6 @@
   - textbox "Label"
   - status
   - link "Variant arrow_up_right\" / \"":
-    - /url: http://localhost:8080/react-showcase/#/03/input?density=regular&color=neutral-bg-basic-level-1&page=variant
   - text: Label
   - textbox "Label"
   - status
@@ -20,7 +18,6 @@
   - textbox "Label": Floating Label
   - status
   - link "Show Label arrow_up_right\" / \"":
-    - /url: http://localhost:8080/react-showcase/#/03/input?density=regular&color=neutral-bg-basic-level-1&page=show+label
   - text: Label
   - textbox "Label"
   - status
@@ -28,7 +25,6 @@
   - textbox "Label"
   - status
   - link "Show Message arrow_up_right\" / \"":
-    - /url: http://localhost:8080/react-showcase/#/03/input?density=regular&color=neutral-bg-basic-level-1&page=show+message
   - text: Label
   - textbox "Label"
   - status
@@ -37,7 +33,6 @@
   - text: information_circle" / " Message
   - status
   - link "State arrow_up_right\" / \"":
-    - /url: http://localhost:8080/react-showcase/#/03/input?density=regular&color=neutral-bg-basic-level-1&page=state
   - text: Label
   - textbox "Label"
   - status
@@ -45,7 +40,6 @@
   - textbox "Label": Filled
   - status
   - link "Disabled arrow_up_right\" / \"":
-    - /url: http://localhost:8080/react-showcase/#/03/input?density=regular&color=neutral-bg-basic-level-1&page=disabled
   - text: Label
   - textbox "Label"
   - status
@@ -53,7 +47,6 @@
   - textbox "Label" [disabled]
   - status
   - link "Readonly arrow_up_right\" / \"":
-    - /url: http://localhost:8080/react-showcase/#/03/input?density=regular&color=neutral-bg-basic-level-1&page=readonly
   - text: Label
   - textbox "Label": (Default) False
   - status
@@ -61,7 +54,6 @@
   - textbox "Label": "True"
   - status
   - link "Validation arrow_up_right\" / \"":
-    - /url: http://localhost:8080/react-showcase/#/03/input?density=regular&color=neutral-bg-basic-level-1&page=validation
   - text: Label
   - textbox "Label"
   - status
@@ -74,7 +66,6 @@
   - text: check_circle" / " Valid message
   - status
   - link "Required arrow_up_right\" / \"":
-    - /url: http://localhost:8080/react-showcase/#/03/input?density=regular&color=neutral-bg-basic-level-1&page=required
   - text: Label
   - textbox "Label"
   - status
@@ -82,7 +73,6 @@
   - textbox "Label*\" / \""
   - status
   - link "Content arrow_up_right\" / \"":
-    - /url: http://localhost:8080/react-showcase/#/03/input?density=regular&color=neutral-bg-basic-level-1&page=content
   - text: Label
   - textbox "Label": (Default) Text
   - status
@@ -96,7 +86,6 @@
   - textbox "Label"
   - status
   - link "Example - Length arrow_up_right\" / \"":
-    - /url: http://localhost:8080/react-showcase/#/03/input?density=regular&color=neutral-bg-basic-level-1&page=example+-+length
   - text: Label
   - textbox "Label"
   - status
@@ -107,7 +96,6 @@
   - textbox "Label"
   - status
   - link "Example - Types with min and max arrow_up_right\" / \"":
-    - /url: http://localhost:8080/react-showcase/#/03/input?density=regular&color=neutral-bg-basic-level-1&page=example+-+types+with+min+and+max
   - text: Label
   - textbox "Label"
   - status
@@ -142,7 +130,6 @@
   - textbox "Label"
   - status
   - link "Example Floating Label arrow_up_right\" / \"":
-    - /url: http://localhost:8080/react-showcase/#/03/input?density=regular&color=neutral-bg-basic-level-1&page=example+floating+label
   - text: Label
   - textbox "Label"
   - status
@@ -156,7 +143,6 @@
   - textbox "Label": Readonly - Filled
   - status
   - link "Example - Types - Floating Label arrow_up_right\" / \"":
-    - /url: http://localhost:8080/react-showcase/#/03/input?density=regular&color=neutral-bg-basic-level-1&page=example+-+types+-+floating+label
   - text: Label
   - textbox "Label"
   - status

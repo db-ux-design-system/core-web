@@ -1,7 +1,6 @@
 - main:
   - heading "DBTabs" [level=1]
   - link "Density arrow_up_right\" / \"":
-    - /url: http://localhost:8080/react-showcase/#/04/tabs?density=regular&color=neutral-bg-basic-level-1&page=density
   - text: "Functional:"
   - tablist:
     - tab "Test 1" [selected]
@@ -30,7 +29,6 @@
     - text: Test 3
   - tabpanel "Test 1": Tab Panel 1
   - link "Orientation arrow_up_right\" / \"":
-    - /url: http://localhost:8080/react-showcase/#/04/tabs?density=regular&color=neutral-bg-basic-level-1&page=orientation
   - text: "horizontal:"
   - tablist:
     - tab "Test 1" [selected]
@@ -50,7 +48,6 @@
     - text: Test 3
   - tabpanel "Test 1": Tab Panel 1
   - link "Width arrow_up_right\" / \"":
-    - /url: http://localhost:8080/react-showcase/#/04/tabs?density=regular&color=neutral-bg-basic-level-1&page=width
   - text: "auto:"
   - tablist:
     - tab "Test 1" [selected]
@@ -79,7 +76,6 @@
     - text: Test 3
   - tabpanel "Test 1": Tab Panel 1
   - link "Overflow arrow_up_right\" / \"":
-    - /url: http://localhost:8080/react-showcase/#/04/tabs?density=regular&color=neutral-bg-basic-level-1&page=overflow
   - text: "no overflow:"
   - tablist:
     - tab "Test 1" [selected]
@@ -117,7 +113,6 @@
     - text: Test 5
   - tabpanel "Test 1": Tab Panel 1
   - link "Examples arrow_up_right\" / \"":
-    - /url: http://localhost:8080/react-showcase/#/04/tabs?density=regular&color=neutral-bg-basic-level-1&page=examples
   - text: "2 tab selected:"
   - tablist:
     - tab "Test 1"
