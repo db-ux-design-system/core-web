@@ -43,8 +43,8 @@ const testComponent = () => {
 		const component = await mount(comp);
 		await component.getByTestId('button').evaluate((comp: HTMLElement) => {
 			comp.dispatchEvent(new Event('mouseenter'));
-			comp.parentElement.dispatchEvent(new Event('mouseenter'));
-			comp.parentElement.parentElement.dispatchEvent(
+			comp.parentElement?.dispatchEvent(new Event('mouseenter'));
+			comp.parentElement?.parentElement?.dispatchEvent(
 				new Event('mouseenter')
 			);
 		});
