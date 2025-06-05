@@ -15,6 +15,7 @@ import {
 	delay,
 	getBoolean,
 	getHideProp,
+	getOptionKey,
 	hasVoiceOver,
 	stringPropVisible,
 	uuid
@@ -228,7 +229,7 @@ export default function DBSelect(props: DBSelectProps) {
 				aria-describedby={props.ariaDescribedBy ?? state._descByIds}>
 				{/* Empty option for floating label */}
 				<option hidden></option>
-				<Show when={props.options} else={props.children}>
+				<Show when={props.options?.length} else={props.children}>
 					<For each={props.options}>
 						{(option: DBSelectOptionType) => (
 							<>
@@ -236,6 +237,14 @@ export default function DBSelect(props: DBSelectProps) {
 									when={option.options}
 									else={
 										<option
+											key={useTarget({
+												vue: undefined,
+												stencil: undefined,
+												default: getOptionKey(
+													option,
+													'select-option-'
+												)
+											})}
 											value={option.value}
 											disabled={option.disabled}
 											selected={option.selected}>
@@ -243,13 +252,28 @@ export default function DBSelect(props: DBSelectProps) {
 										</option>
 									}>
 									<optgroup
-										label={state.getOptionLabel(option)}>
+										label={state.getOptionLabel(option)}
+										key={useTarget({
+											vue: undefined,
+											stencil: undefined,
+											default: getOptionKey(
+												option,
+												'select-optgroup-'
+											)
+										})}>
 										<For each={option.options}>
 											{(
 												optgroupOption: DBSelectOptionType
 											) => (
 												<option
-													key={optgroupOption.value.toString()}
+													key={useTarget({
+														vue: undefined,
+														stencil: undefined,
+														default: getOptionKey(
+															optgroupOption,
+															'select-optgroup-option-'
+														)
+													})}
 													value={optgroupOption.value}
 													selected={
 														optgroupOption.selected

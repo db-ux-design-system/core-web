@@ -21,6 +21,7 @@ import {
 	getBoolean,
 	getBooleanAsString,
 	getHideProp,
+	getOptionKey,
 	getSearchInput,
 	handleDataOutside,
 	hasVoiceOver,
@@ -200,9 +201,6 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 			}
 
 			return false;
-		},
-		getOptionKey: (option: CustomSelectOptionType) => {
-			return (option.id ?? option.value ?? uuid()).toString();
 		},
 		getTagRemoveLabel: (index: number) => {
 			if (
@@ -776,9 +774,10 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 									key={useTarget({
 										vue: undefined,
 										stencil: undefined,
-										default:
-											'native-select-option-' +
-											state.getOptionKey(option)
+										default: getOptionKey(
+											option,
+											'native-select-option-'
+										)
 									})}
 									disabled={option.disabled}
 									value={option.value}>
@@ -823,9 +822,10 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 											key={useTarget({
 												vue: undefined,
 												stencil: undefined,
-												default:
-													'tag-' +
-													state.getOptionKey(option)
+												default: getOptionKey(
+													option,
+													'tag-'
+												)
 											})}
 											removeButton={state.getTagRemoveLabel(
 												index
@@ -920,11 +920,10 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 													key={useTarget({
 														vue: undefined,
 														stencil: undefined,
-														default:
-															'custom-select-list-item-' +
-															state.getOptionKey(
-																option
-															)
+														default: getOptionKey(
+															option,
+															'custom-select-list-item-'
+														)
 													})}
 													type={
 														props.multiple
