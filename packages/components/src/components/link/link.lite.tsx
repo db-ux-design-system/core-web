@@ -19,7 +19,6 @@ export default function DBLink(props: DBLinkProps) {
 	const state = useStore<DBLinkState>({
 		handleClick: (event: ClickEvent<HTMLAnchorElement>) => {
 			if (props.onClick) {
-				event.stopPropagation();
 				props.onClick(event);
 			}
 		}

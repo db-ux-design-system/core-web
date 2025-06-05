@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { CustomSelectOptionType } from '@db-ux/core-components/src/components/custom-select/model';
 import { DefaultComponent } from '../default.component';
 import defaultComponentVariants from '../../../../../shared/custom-select.json';
 import { environment } from '../../../environments/environment';
@@ -21,5 +22,15 @@ export class CustomSelectComponent {
 
 	getAriaLabel(exampleProps: any, exampleName: string): string {
 		return `${exampleProps.id}-${exampleName}`;
+	}
+
+	getTransformSelectedLabels(selectedOptions?: any): string {
+		return selectedOptions
+			.map((option: any) => option.value.at(-1))
+			.join(', ');
+	}
+
+	getSearchFilter(option: CustomSelectOptionType, _: string): boolean {
+		return option.value === 'Option 1';
 	}
 }

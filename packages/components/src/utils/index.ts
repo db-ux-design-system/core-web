@@ -142,3 +142,11 @@ export const stringPropVisible = (
 
 export const getSearchInput = (element: HTMLElement): HTMLInputElement | null =>
 	element.querySelector<HTMLInputElement>(`input[type="search"]`);
+
+export const getOptionKey = (
+	option: { id?: string; value?: string | number | string[] | undefined },
+	prefix: string
+) => {
+	const key = option.id ?? option.value ?? uuid();
+	return `${prefix}${key}`;
+};

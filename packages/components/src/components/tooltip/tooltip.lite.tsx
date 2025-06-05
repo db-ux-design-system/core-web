@@ -109,7 +109,12 @@ export default function DBTooltip(props: DBTooltipProps) {
 					parent.addEventListener(event, () => state.handleLeave());
 				});
 				parent.setAttribute('data-has-tooltip', 'true');
-				parent.setAttribute('aria-describedby', state._id);
+
+				if (props.variant === 'label') {
+					parent.setAttribute('aria-labelledby', state._id);
+				} else {
+					parent.setAttribute('aria-describedby', state._id);
+				}
 			}
 
 			state._observer = new IntersectionObserver((payload) => {

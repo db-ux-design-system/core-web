@@ -980,3 +980,63 @@
       - button "cross\" / \" Close"
   - status
   - text: chevron_down" / "
+  - 'link "Example: Other configuration arrow_up_right\" / \""'
+  - text: Search Value
+  - group:
+    - article:
+      - text: magnifying_glass" / " Search
+      - searchbox "Search": "1"
+      - status
+      - text: cross" / "
+      - group "id-10as4-Search Value":
+        - list:
+          - listitem:
+            - checkbox "Option 1"
+            - text: Option 1
+      - button "cross\" / \" Close"
+  - status
+  - text: chevron_down" / " Custom Selected Label
+  - group:
+    - text: Label controlled
+    - article:
+      - radiogroup "id-10aasds4-Custom Selected Label":
+        - list:
+          - listitem:
+            - radio "Option 1 none\" / \""
+            - text: Option 1 none" / "
+          - listitem:
+            - radio "Option 2 none\" / \""
+            - text: Option 2 none" / "
+      - button "cross\" / \" Close"
+  - status
+  - text: chevron_down" / " Transform Selected Label
+  - group:
+    - article:
+      - radiogroup "id-10aasds4-Transform Selected Label":
+        - list:
+          - listitem:
+            - radio "Option 1 none\" / \""
+            - text: Option 1 none" / "
+          - listitem:
+            - radio "Option 2 none\" / \""
+            - text: Option 2 none" / "
+      - button "cross\" / \" Close"
+  - status
+  - text: chevron_down" / " Custom Search Filter
+  - group:
+    - article:
+      - text: magnifying_glass" / " Search
+      - searchbox "Search"
+      - status
+      - text: cross" / "
+      - radiogroup "id-10aasds4-Custom Search Filter":
+        - list:
+          - listitem:
+            - radio "Option 1 none\" / \""
+            - text: Option 1 none" / "
+          - listitem:
+            - radio "Option 2 none\" / \""
+            - text: Option 2 none" / "
+      - button "cross\" / \" Close"
+  - status
+  - text: chevron_down" / "
