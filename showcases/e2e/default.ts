@@ -270,15 +270,18 @@ export const runAriaSnapshotTest = ({
 
 		let snapshot = await page.locator('main').ariaSnapshot();
 
-		const showcase = process.env.showcase;
+		// Remove `/url` in snapshot because they differ in every showcase
+		snapshot = snapshot
+			.split('\n')
+			.map((line) => {
+				if (line.includes('/url:')) {
+					return undefined;
+				}
 
-		if (isAngular(showcase)) {
-			snapshot = snapshot.replaceAll('angular', 'react');
-		} else if (isStencil(showcase)) {
-			snapshot = snapshot.replaceAll('stencil', 'react');
-		} else if (isVue(showcase)) {
-			snapshot = snapshot.replaceAll('vue', 'react');
-		}
+				return line;
+			})
+			.filter(Boolean)
+			.join('\n');
 
 		expect(snapshot).toMatchSnapshot(`${title}.yaml`);
 	});
