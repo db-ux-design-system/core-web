@@ -72,7 +72,7 @@ jobs:
           PAT_COMMIT: ${{ secrets.PAT_COMMIT }}
           GH_TOKEN: ${{ github.token }}
         run: |
-          gh workflow run "Default Pipeline" --ref ${{ github.ref_name }}
+          gh workflow run "Default Pipeline" --ref ${{ github.head_ref }}
           # curl -X POST https://api.github.com/repos/${{ github.repository }}/actions/workflows/default.yml/dispatches \
           #   -H "Authorization: token $PAT_COMMIT" \
           #   -H "Accept: application/vnd.github+json" \
