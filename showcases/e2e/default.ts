@@ -268,15 +268,16 @@ export const runAriaSnapshotTest = ({
 
 		await page.waitForTimeout(1000); // We wait a little bit until everything loaded
 
-		const snapshot = await page.locator('main').ariaSnapshot();
+		let snapshot = await page.locator('main').ariaSnapshot();
 
 		const showcase = process.env.showcase;
+
 		if (isAngular(showcase)) {
-			snapshot.replaceAll('react', 'angular');
+			snapshot = snapshot.replaceAll('angular', 'react');
 		} else if (isStencil(showcase)) {
-			snapshot.replaceAll('react', 'stencil');
+			snapshot = snapshot.replaceAll('stencil', 'react');
 		} else if (isVue(showcase)) {
-			snapshot.replaceAll('react', 'vue');
+			snapshot = snapshot.replaceAll('vue', 'react');
 		}
 
 		expect(snapshot).toMatchSnapshot(`${title}.yaml`);
