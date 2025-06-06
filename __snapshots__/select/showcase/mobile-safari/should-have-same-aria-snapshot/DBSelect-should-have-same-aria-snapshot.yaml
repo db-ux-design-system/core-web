@@ -1,0 +1,156 @@
+- main:
+  - heading "DBSelect" [level=1]
+  - link "Density arrow_up_right\" / \""
+  - text: Label
+  - combobox "Label":
+    - option "Option 1"
+    - option "Option 2"
+  - text: Functional
+  - status
+  - text: chevron_down" / " Label
+  - combobox "Label":
+    - option "Option 1"
+    - option "Option 2"
+  - text: (Default) Regular
+  - status
+  - text: chevron_down" / " Label
+  - combobox "Label":
+    - option "Option 1"
+    - option "Option 2"
+  - text: Expressive
+  - status
+  - text: chevron_down" / "
+  - link "Variant arrow_up_right\" / \""
+  - text: Label
+  - combobox "Label":
+    - option "Option 1"
+    - option "Option 2"
+  - text: (Default) Label Above
+  - status
+  - text: chevron_down" / " Label
+  - combobox "Label":
+    - option "Floating Label" [selected]
+    - option "Option 2"
+  - status
+  - text: chevron_down" / "
+  - link "Show Label arrow_up_right\" / \""
+  - text: Label
+  - combobox "Label":
+    - option "Option 1"
+    - option "Option 2"
+  - text: (Default) True
+  - status
+  - text: chevron_down" / " Label
+  - combobox "Label":
+    - option "Option 1"
+    - option "Option 2"
+  - text: "False"
+  - status
+  - text: chevron_down" / "
+  - link "Show Message arrow_up_right\" / \""
+  - text: Label
+  - combobox "Label":
+    - option "Option 1"
+    - option "Option 2"
+  - text: (Default) False
+  - status
+  - text: chevron_down" / " Label
+  - combobox "Label":
+    - option "Option 1"
+    - option "Option 2"
+  - text: True information_circle" / " Message
+  - status
+  - text: chevron_down" / "
+  - link "State arrow_up_right\" / \""
+  - text: Label
+  - combobox "Label":
+    - option "Option 1"
+    - option "Option 2"
+  - text: (Default) Empty
+  - status
+  - text: chevron_down" / " Label
+  - combobox "Label":
+    - option "Filled" [selected]
+    - option "Option 2"
+  - status
+  - text: chevron_down" / "
+  - link "Validation arrow_up_right\" / \""
+  - text: Label
+  - combobox "Label":
+    - option "Option 1"
+    - option "Option 2"
+  - text: (Default) No validation
+  - status
+  - text: chevron_down" / " Label
+  - combobox "Label":
+    - option "Option 1"
+    - option "Option 2"
+  - text: Invalid exclamation_mark_circle" / " Invalid Message
+  - status
+  - text: chevron_down" / " Label
+  - combobox "Label":
+    - option "Valid" [selected]
+    - option "Option 2"
+  - text: check_circle" / " Valid message
+  - status
+  - text: chevron_down" / "
+  - link "Disabled arrow_up_right\" / \""
+  - text: Label
+  - combobox "Label":
+    - option "Option 1"
+    - option "Option 2"
+  - text: (Default) False
+  - status
+  - text: chevron_down" / " Label
+  - combobox "Label" [disabled]:
+    - option "Option 1"
+    - option "Option 2"
+  - text: "True"
+  - status
+  - text: chevron_down" / "
+  - link "Content arrow_up_right\" / \""
+  - text: Label
+  - combobox "Label":
+    - option "Option 1"
+    - option "Option 2"
+  - text: (Default) Text
+  - status
+  - text: chevron_down" / " x_placeholder" / " Label
+  - combobox "Label":
+    - option "Option 1"
+    - option "Option 2"
+  - text: Text - Leading Icon
+  - status
+  - text: chevron_down" / "
+  - link "Required arrow_up_right\" / \""
+  - text: Label
+  - combobox "Label":
+    - option "Option 1"
+    - option "Option 2"
+  - text: (Default) False
+  - status
+  - text: chevron_down" / " Label*" / "
+  - combobox "Label*\" / \"":
+    - option "Option 1"
+    - option "Option 2"
+  - text: "True"
+  - status
+  - text: chevron_down" / "
+  - link "Examples Floating Label arrow_up_right\" / \""
+  - text: Label
+  - combobox "Label":
+    - option "Option 1"
+    - option "Option 2"
+  - text: (Default) Empty
+  - status
+  - text: chevron_down" / " Label
+  - combobox "Label":
+    - option "Filled" [selected]
+    - option "Option 2"
+  - status
+  - text: chevron_down" / " Label
+  - combobox "Label" [disabled]:
+    - option "Disabled" [selected]
+    - option "Option 2"
+  - status
+  - text: chevron_down" / "
