@@ -1,1 +1,1 @@
-["check box, not checked, required, True","checked","True","True","check box, checked, required, True","check box, not checked, (Default) False","checked","check box, checked, required, True","True","True"]
+["check box, not checked, (Default) False","checked","check box, checked, True","not checked. not checked","check box, not checked, True"]
