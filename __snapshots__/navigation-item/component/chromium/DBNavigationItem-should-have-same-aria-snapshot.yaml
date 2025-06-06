@@ -1,7 +1,10 @@
 - list:
   - listitem:
-    - link "Test1"
+    - link "Test1":
+      - /url: "#"
   - listitem:
-    - link "Test2"
+    - link "Test2":
+      - /url: "#"
   - listitem:
-    - link "Test3"
+    - link "Test3":
+      - /url: "#"
