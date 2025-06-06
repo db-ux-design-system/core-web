@@ -525,6 +525,10 @@ export type LinkProps = {
 	 */
 	hreflang?: string;
 	/**
+	 * Hints for the human [language of the linked page or document](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a#hreflang).
+	 */
+	hrefLang?: string;
+	/**
 	 * Sets aria attribute based on [`aria-label`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-label).
 	 */
 	label?: string;
