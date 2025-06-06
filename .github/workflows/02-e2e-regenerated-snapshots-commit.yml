@@ -1,0 +1,79 @@
+name: Commit Regenerated Snapshots
+
+on:
+  workflow_call:
+
+permissions:
+  actions: write
+  contents: write
+
+jobs:
+  commit-regenerate-snapshots:
+    name: 🆙 Commit regenerated snapshots
+    runs-on: ubuntu-24.04 # Use Ubuntu 24.04 explicitly
+    steps:
+      - name: ⏬ Checkout repo
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.head_ref }}
+
+      - name: Download components
+        uses: actions/download-artifact@v4
+        # Only download artifact if the artifact exists
+        if: always() && contains(needs.regenerate-snapshots-components.outputs.artifacts, 'snapshots-components')
+        with:
+          name: snapshots-components
+          path: ./__snapshots__/
+
+      - name: Download foundations
+        uses: actions/download-artifact@v4
+        # Only download artifact if the artifact exists
+        if: always() && contains(needs.regenerate-snapshots-foundations.outputs.artifacts, 'snapshots-foundations')
+        with:
+          name: snapshots-foundations
+          path: ./__snapshots__/
+
+      - name: Download patternhub
+        uses: actions/download-artifact@v4
+        if: always() && contains(needs.regenerate-snapshots-patternhub.outputs.artifacts, 'snapshots-patternhub')
+        with:
+          name: snapshots-patternhub
+          path: ./__snapshots__/
+
+      - name: Download showcase
+        uses: actions/download-artifact@v4
+        if: always() && contains(needs.regenerate-snapshots.outputs.artifacts, 'snapshots-showcases')
+        with:
+          name: snapshots-showcases
+          path: ./__snapshots__/
+
+      - name: 🆙 Commit newly generated snapshots
+        run: |
+          # Use PAT_COMMIT secret to commit the changes
+          git config --global user.name "Maximilian Franzke"
+          git config --global user.email "maximilian.franzke@deutschebahn.com"
+          echo 'COMMIT_MAIL=maximilian.franzke@deutschebahn.com' >> .env
+
+          # "Stricter repository ownership checks" by GitHub: https://github.blog/open-source/git/highlights-from-git-2-36/#stricter-repository-ownership-checks
+          git config --global --add safe.directory $GITHUB_WORKSPACE
+
+          git add __snapshots__/*
+          git commit -m "refactor(test): updated snapshots" || echo "No changes to commit"
+
+      - name: Push changes using PAT
+        env:
+          PAT_COMMIT: ${{ secrets.PAT_COMMIT }}
+        run: |
+          git remote set-url origin https://x-access-token:${PAT_COMMIT}@github.com/${{ github.repository }}.git
+          git push origin HEAD:${{ github.head_ref }} # Push back to the same PR branch
+
+      - name: Trigger a new workflow (default.yml)
+        env:
+          PAT_COMMIT: ${{ secrets.PAT_COMMIT }}
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh workflow run "Default Pipeline" --ref ${{ github.head_ref }}
+          # curl -X POST https://api.github.com/repos/${{ github.repository }}/actions/workflows/default.yml/dispatches \
+          #   -H "Authorization: token $PAT_COMMIT" \
+          #   -H "Accept: application/vnd.github+json" \
+          #   -d '{"ref":"${{ github.ref_name }}"}'
