@@ -32,6 +32,8 @@ export class NavigationItemSafeTriangle {
 			return;
 		}
 
+		console.log(element, subNavigation);
+
 		this.parentSubNavigation =
 			this.element?.closest('.db-navigation-item-group-menu') ??
 			this.element;
@@ -229,18 +231,18 @@ export const handleSubNavigationPosition = (
 
 			if (
 				level > 0 ||
-				subNavigation.dataset.open === 'horizontal' ||
+				subNavigation.dataset['open'] === 'horizontal' ||
 				subRect.top === top
 			) {
 				// Sub-Navigation should be opened horizontal
 				subNavigation.style.left = `${subRect.left}px`;
 				subNavigation.style.top = `${top}px`;
-				subNavigation.dataset.open = 'horizontal';
+				subNavigation.dataset['open'] = 'horizontal';
 			} else {
 				// Sub-Navigation should be opened vertical
 				subNavigation.style.top = `${subRect.top}px`;
 				subNavigation.style.left = `${left}px`;
-				subNavigation.dataset.open = 'vertical';
+				subNavigation.dataset['open'] = 'vertical';
 			}
 
 			handleSubNavigationPosition(subNavigation, level + 1);

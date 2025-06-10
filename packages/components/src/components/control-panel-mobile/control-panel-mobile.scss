@@ -1,8 +1,10 @@
+@use "sass:string";
 @use "@db-ux/core-foundations/build/styles/variables";
 @use "@db-ux/core-foundations/build/styles/screen-sizes";
 @use "@db-ux/core-foundations/build/styles/helpers";
 @use "@db-ux/core-foundations/build/styles/colors";
 @use "../../styles/internal/component";
+@use "../../styles/internal/custom-elements";
 @use "../../styles/internal/control-panel-mobile";
 @use "../../styles/internal/navigation-item";
 @use "../../styles/internal/db-puls";
@@ -23,7 +25,7 @@
 		@extend %control-panel-mobile-position-bottom;
 	}
 
-	> .db-control-panel-brand {
+	#{string.unquote(custom-elements.$control-panel-brand)} {
 		justify-self: self-start;
 		inline-size: 100%;
 		white-space: nowrap;
@@ -31,11 +33,12 @@
 		text-overflow: ellipsis;
 	}
 
+	> db-button > .db-control-panel-mobile-button,
 	> .db-control-panel-mobile-button {
 		grid-area: drawer-button;
 	}
 
-	> .db-drawer {
+	#{string.unquote(custom-elements.$drawer)} {
 		--db-drawer-content-padding-inline: 0;
 		--db-drawer-max-width: #{screen-sizes.$db-breakpoint-xs};
 		--db-drawer-max-height: 63vh;
@@ -83,6 +86,13 @@
 
 								@include navigation-item.active-navigation-item {
 									@include db-puls.show-db-puls-vertical();
+								}
+
+								@include navigation-item.direct-navigation-items {
+									/* Workaround for custom-elements */
+									&::after {
+										content: none;
+									}
 								}
 							}
 						}

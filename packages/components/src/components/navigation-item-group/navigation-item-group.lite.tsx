@@ -48,7 +48,7 @@ export default function DBNavigationItemGroup(
 				state.autoClose = true;
 				delay(() => {
 					state.autoClose = false;
-				}, 100);
+				}, 300);
 			}
 		},
 		handleClick: (event: ClickEvent<HTMLButtonElement> | any) => {
@@ -84,14 +84,19 @@ export default function DBNavigationItemGroup(
 
 			const popover =
 				!nav ||
-				!nav.dataset.variant ||
-				nav.dataset.variant === 'popover';
+				!nav.dataset['variant'] ||
+				nav.dataset['variant'] === 'popover';
 
 			if (subNavigationSlot && popover) {
 				state.hasPopup = true;
 				if (!state.navigationItemSafeTriangle) {
-					state.navigationItemSafeTriangle =
-						new NavigationItemSafeTriangle(_ref, subNavigationSlot);
+					delay(() => {
+						state.navigationItemSafeTriangle =
+							new NavigationItemSafeTriangle(
+								_ref,
+								subNavigationSlot
+							);
+					}, 1);
 				}
 			}
 		}
@@ -131,7 +136,7 @@ export default function DBNavigationItemGroup(
 			<menu
 				class="db-navigation-item-group-menu"
 				role="group"
-				data-force-close={state.autoClose}
+				data-force-close={getBooleanAsString(state.autoClose)}
 				id={state.subNavigationId}
 				onScroll={() => handleSubNavigationPosition(_ref)}
 				onClick={(event) => state.handleNavigationItemClick(event)}>

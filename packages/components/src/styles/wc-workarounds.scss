@@ -10,3 +10,13 @@
 db-notification {
 	inline-size: inherit;
 }
+
+db-navigation-item-group {
+	button {
+		// workaround for angular flash of unstyled content
+		appearance: none;
+		border: none;
+		padding: 0;
+		background-color: transparent;
+	}
+}

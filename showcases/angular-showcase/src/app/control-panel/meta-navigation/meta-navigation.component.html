@@ -1,0 +1,49 @@
+<db-control-panel-meta-navigation #metaRef>
+	<db-select
+		#densityRef
+		variant="floating"
+		label="Density"
+		[value]="density()"
+		(change)="onChange('density', $event)"
+	>
+		@for (t of densities; track t) {
+			<option>
+				{{ t }}
+			</option>
+		}
+	</db-select>
+	<db-select
+		#colorRef
+		variant="floating"
+		label="Color"
+		[value]="color()"
+		(change)="onChange('color', $event)"
+	>
+		@for (c of colors; track c) {
+			<option>
+				{{ c }}
+			</option>
+		}
+	</db-select>
+
+	@for (array of defaultSettingsMapping; track array[0]) {
+		<db-select
+			variant="floating"
+			[label]="
+				array[0]
+					.replace('Position', 'Pos')
+					.replace('controlPanel', 'CP')
+					.replace('subNavigation', 'SN')
+					.replace('navigation', 'Nav')
+			"
+			[value]="settings()[array[0]]"
+			(change)="changeSettings($event, array[0])"
+		>
+			@for (v of array[1]; track v) {
+				<option>
+					{{ v }}
+				</option>
+			}
+		</db-select>
+	}
+</db-control-panel-meta-navigation>

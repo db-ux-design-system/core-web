@@ -16,10 +16,7 @@
 	@extend %navigation-item;
 
 	.db-navigation-item-group-expand-button {
-		&:is(button),
-		> button {
-			@extend %navigation-item-interactive-element;
-		}
+		@extend %navigation-item-interactive-element;
 	}
 
 	&:not([data-width="full"]) {

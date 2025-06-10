@@ -4,10 +4,11 @@ import {
 	useDefaultProps,
 	useMetadata,
 	useRef,
-	useStore
+	useStore,
+	useTarget
 } from '@builder.io/mitosis';
 import { DBNavigationProps, DBNavigationState } from './model';
-import { cls } from '../../utils';
+import { cls, delay } from '../../utils';
 import { handleSubNavigationPosition } from '../../utils/navigation';
 import DBButton from '../button/button.lite';
 
@@ -56,7 +57,12 @@ export default function DBNavigation(props: DBNavigationProps) {
 			const element = _ref as HTMLElement;
 			let endVariant = props.variant ?? 'popover';
 
-			const parentClassList = element.parentElement?.classList;
+			const parentClassList = element.parentElement?.nodeName.startsWith(
+				'DB'
+			)
+				? element.parentElement?.parentElement?.classList
+				: element.parentElement?.classList;
+
 			const shell = element.closest('.db-shell');
 			const shellDesktopPosition = shell?.getAttribute(
 				'data-control-panel-desktop-position'
@@ -84,7 +90,21 @@ export default function DBNavigation(props: DBNavigationProps) {
 	onUpdate(() => {
 		if (menuRef && state._variant) {
 			if (!state._variant || state._variant === 'popover') {
-				handleSubNavigationPosition(menuRef);
+				useTarget({
+					angular: () => {
+						delay(() => {
+							handleSubNavigationPosition(menuRef);
+						}, 300);
+					},
+					stencil: () => {
+						delay(() => {
+							handleSubNavigationPosition(menuRef);
+						}, 300);
+					},
+					default: () => {
+						handleSubNavigationPosition(menuRef);
+					}
+				});
 			} else if (state._variant === 'tree') {
 				for (const menu of Array.from(
 					(menuRef as HTMLElement).querySelectorAll(
@@ -107,7 +127,10 @@ export default function DBNavigation(props: DBNavigationProps) {
 				}
 			}
 
-			state.evaluateScrollButtons(menuRef);
+
+			delay(() => {
+				state.evaluateScrollButtons(menuRef);
+			}, 300);
 		}
 	}, [menuRef, state._variant]);
 

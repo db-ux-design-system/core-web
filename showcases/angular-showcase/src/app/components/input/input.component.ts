@@ -5,7 +5,7 @@ import {
 	DBInput,
 	LabelVariantType,
 	ValueLabelType
-} from '../../../../../../output/angular/src';
+} from '@components';
 import { environment } from '../../../environments/environment';
 
 @Component({

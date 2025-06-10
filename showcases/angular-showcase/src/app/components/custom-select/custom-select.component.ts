@@ -6,7 +6,7 @@ import { environment } from '../../../environments/environment';
 import {
 	DBInfotext,
 	DBCustomSelect
-} from '../../../../../../output/angular/src';
+} from '@components';
 
 @Component({
 	selector: 'app-custom-select',

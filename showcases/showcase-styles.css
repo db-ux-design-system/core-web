@@ -218,3 +218,10 @@ db-card:is(.variants-card) > .db-card {
 		min-inline-size: var(--db-sizing-2xl);
 	}
 }
+
+app-meta-navigation,
+app-primary-actions,
+app-secondary-actions,
+app-nav-item {
+	display: contents;
+}

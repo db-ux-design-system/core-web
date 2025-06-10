@@ -7,7 +7,7 @@ import {
 	DBTabList,
 	DBTabPanel,
 	DBTabs
-} from '../../../../../../output/angular/src';
+} from '@components';
 import { environment } from '../../../environments/environment';
 
 @Component({

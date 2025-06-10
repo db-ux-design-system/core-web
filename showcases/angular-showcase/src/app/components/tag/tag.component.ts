@@ -1,7 +1,7 @@
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import defaultComponentVariants from '../../../../../shared/tag.json';
 import { DefaultComponent } from '../default.component';
-import { DBTag } from '../../../../../../output/angular/src';
+import { DBTag } from '@components';
 import { environment } from '../../../environments/environment';
 
 @Component({

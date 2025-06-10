@@ -1,8 +1,10 @@
+@use "sass:string";
 @use "@db-ux/core-foundations/build/styles/variables";
 @use "@db-ux/core-foundations/build/styles/screen-sizes";
 @use "@db-ux/core-foundations/build/styles/colors";
 @use "@db-ux/core-foundations/build/styles/helpers";
 @use "../../styles/internal/control-panel-desktop";
+@use "../../styles/internal/custom-elements";
 @use "../../styles/internal/form-components";
 
 .db-shell {
@@ -30,7 +32,7 @@
 			}
 
 			> .db-sub-navigation-container {
-				> .db-navigation {
+				#{string.unquote(custom-elements.$navigation)} {
 					--db-overflow-scroll-button-inset-block: #{variables.$db-spacing-fixed-md};
 
 					> menu {
@@ -54,7 +56,7 @@
 					[main] 1fr;
 
 				> .db-sub-navigation-container {
-					> .db-navigation {
+					#{string.unquote(custom-elements.$navigation)} {
 						--db-overflow-scroll-button-inset-block: #{variables.$db-spacing-fixed-xs};
 
 						> menu {
@@ -74,7 +76,7 @@
 				border-block-end: variables.$db-border-width-3xs solid
 					colors.$db-adaptive-on-bg-basic-emphasis-60-default;
 
-				> .db-navigation {
+				#{string.unquote(custom-elements.$navigation)} {
 					--db-overflow-scroll-button-inset-inline-start: calc(
 						#{variables.$db-spacing-fixed-sm} / 2
 					);
@@ -112,7 +114,7 @@
 				border-inline-end: variables.$db-border-width-3xs solid
 					colors.$db-adaptive-on-bg-basic-emphasis-60-default;
 
-				> .db-navigation {
+				#{string.unquote(custom-elements.$navigation)} {
 					max-inline-size: screen-sizes.$db-breakpoint-xs;
 				}
 			}
@@ -135,7 +137,7 @@
 					grid-template-areas: "button";
 					grid-template-rows: [button] 1fr;
 
-					> .db-navigation {
+					#{string.unquote(custom-elements.$navigation)} {
 						display: none;
 					}
 
@@ -163,7 +165,7 @@
 						[navigation] 1fr
 						[button] auto;
 
-					> .db-navigation {
+					#{string.unquote(custom-elements.$navigation)} {
 						overflow: hidden auto;
 						scrollbar-gutter: stable both-edges;
 
@@ -186,7 +188,7 @@
 			}
 		}
 
-		> .db-control-panel-mobile {
+		#{string.unquote(custom-elements.$control-panel-mobile)} {
 			display: none;
 		}
 	}

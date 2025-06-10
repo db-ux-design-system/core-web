@@ -3,7 +3,7 @@ import {
 	DBAccordion,
 	DBAccordionItem,
 	DBInfotext
-} from '../../../../../../output/angular/src';
+} from "@components";
 import defaultComponentVariants from '../../../../../shared/accordion.json';
 import { DefaultComponent } from '../default.component';
 import { environment } from '../../../environments/environment';

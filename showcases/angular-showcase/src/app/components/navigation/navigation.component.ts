@@ -5,27 +5,24 @@ import {
 	DBNavigation,
 	DBInfotext,
 	DBNavigationItem,
-	NavigationContentDirective
-} from '../../../../../../output/angular/src';
+	DBNavigationItemGroup
+} from '@components';
 import { environment } from '../../../environments/environment';
 
 @Component({
 	selector: 'app-navigation',
 	templateUrl: './navigation.component.html',
-	imports: environment.webComponents
-		? [
-				DefaultComponent,
-				DBNavigation,
-				DBNavigationItem,
-				NavigationContentDirective
-			] // TODO: Remove DBNavigation,DBNavigationItem,NavigationContentDirective after stencil component works
-		: [
-				DefaultComponent,
-				DBNavigation,
-				DBNavigationItem,
-				NavigationContentDirective,
-				DBInfotext
-			],
+	imports: [
+		environment.webComponents
+			? [DefaultComponent]
+			: [
+					DefaultComponent,
+					DBNavigation,
+					DBNavigationItem,
+					DBNavigationItemGroup,
+					DBInfotext
+				]
+	],
 	schemas: environment.webComponents ? [CUSTOM_ELEMENTS_SCHEMA] : [],
 	standalone: true
 })

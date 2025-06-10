@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 
 import { DefaultComponent } from '../default.component';
 import defaultComponentVariants from '../../../../../shared/control-panel-mobile.json';
-import { DBControlPanelMobile } from '../../../../../../output/angular/src/components/control-panel-mobile';
+import { DBControlPanelMobile } from '@components';
 
 @Component({
 	selector: 'app-control-panel-mobile',

@@ -1,7 +1,7 @@
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import defaultComponentVariants from '../../../../../shared/section.json';
 import { DefaultComponent } from '../default.component';
-import { DBSection, DBCard } from '../../../../../../output/angular/src';
+import { DBSection, DBCard } from '@components';
 import { environment } from '../../../environments/environment';
 
 @Component({

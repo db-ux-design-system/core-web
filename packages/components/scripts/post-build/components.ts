@@ -19,7 +19,6 @@ export type Component = {
 		angular?: {
 			controlValueAccessor?: string;
 			controlValueAccessorRequired?: boolean;
-			directives?: { name: string; ngContentName?: string }[];
 		};
 		react?: {
 			propsPassingFilter?: string[];
@@ -235,11 +234,6 @@ export const getComponents = (): Component[] => [
 					to: 'onMouseMove={(event: any)'
 				}
 			]
-		},
-		config: {
-			angular: {
-				directives: [{ name: 'NavigationContent' }]
-			}
 		}
 	},
 	{
@@ -366,21 +360,6 @@ export const getComponents = (): Component[] => [
 	{
 		name: 'control-panel-desktop',
 		config: {
-			angular: {
-				directives: [
-					{
-						name: 'SecondaryAction',
-						ngContentName: 'secondary-action'
-					},
-					{
-						name: 'MetaNavigation',
-						ngContentName: 'meta-navigation'
-					},
-					{
-						name: 'Navigation'
-					}
-				]
-			},
 			react: {
 				propsPassingFilter: ['onToggle']
 			}

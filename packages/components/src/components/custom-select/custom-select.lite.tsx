@@ -173,7 +173,7 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 
 				state.handleAutoPlacement();
 				state._observer?.observe(detailsRef);
-				if (!event.target.dataset.test) {
+				if (!event.target.dataset['test']) {
 					// We need this workaround for snapshot testing
 					state.handleOpenByKeyboardFocus();
 				}

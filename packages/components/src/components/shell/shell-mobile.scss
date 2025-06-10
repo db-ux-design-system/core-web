@@ -1,8 +1,10 @@
+@use "sass:string";
 @use "@db-ux/core-foundations/build/styles/variables";
 @use "@db-ux/core-foundations/build/styles/screen-sizes";
 @use "@db-ux/core-foundations/build/styles/helpers";
 @use "../../styles/internal/control-panel-desktop";
 @use "../../styles/internal/control-panel-mobile";
+@use "../../styles/internal/custom-elements";
 
 .db-shell {
 	// MOBILE
@@ -34,8 +36,10 @@
 		}
 
 		&[data-sub-navigation-mobile-position="hidden"] {
-			> .db-sub-navigation-container > .db-navigation {
-				display: none;
+			> .db-sub-navigation-container {
+				#{string.unquote(custom-elements.$navigation)} {
+					display: none;
+				}
 			}
 		}
 
@@ -45,31 +49,33 @@
 				@include helpers.divider("bottom");
 			}
 
-			> .db-sub-navigation-container > .db-navigation {
-				--db-overflow-scroll-button-inset-block: #{variables.$db-spacing-fixed-xs};
-				--db-overflow-scroll-button-inset-inline-start: 0;
+			> .db-sub-navigation-container {
+				#{string.unquote(custom-elements.$navigation)} {
+					--db-overflow-scroll-button-inset-block: #{variables.$db-spacing-fixed-xs};
+					--db-overflow-scroll-button-inset-inline-start: 0;
 
-				display: grid;
+					display: grid;
 
-				@include control-panel-desktop.horizontal-navigation(false);
+					@include control-panel-desktop.horizontal-navigation(false);
 
-				> .overflow-scroll-left-button,
-				> .overflow-scroll-right-button {
-					display: none;
-				}
+					> .overflow-scroll-left-button,
+					> .overflow-scroll-right-button {
+						display: none;
+					}
 
-				> menu {
-					--db-navigation-item-group-menu-inset-block-start: #{variables.$db-spacing-fixed-xs};
+					> menu {
+						--db-navigation-item-group-menu-inset-block-start: #{variables.$db-spacing-fixed-xs};
 
-					padding-block: variables.$db-spacing-fixed-xs;
+						padding-block: variables.$db-spacing-fixed-xs;
 
-					/* workaround for showing correct scrolling and focus */
-					padding-inline-start: calc(
-						#{variables.$db-spacing-fixed-sm} / 2
-					);
-					margin-inline-start: calc(
-						#{variables.$db-spacing-fixed-sm} / 2
-					);
+						/* workaround for showing correct scrolling and focus */
+						padding-inline-start: calc(
+							#{variables.$db-spacing-fixed-sm} / 2
+						);
+						margin-inline-start: calc(
+							#{variables.$db-spacing-fixed-sm} / 2
+						);
+					}
 				}
 			}
 		}
@@ -87,7 +93,7 @@
 			}
 		}
 
-		> .db-control-panel-desktop {
+		#{string.unquote(custom-elements.$control-panel-desktop)} {
 			display: none;
 		}
 	}

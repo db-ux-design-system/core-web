@@ -1,7 +1,9 @@
+@use "sass:string";
 @use "@db-ux/core-foundations/build/styles/variables";
 @use "@db-ux/core-foundations/build/styles/helpers";
 @use "@db-ux/core-foundations/build/styles/colors";
 @use "./component";
+@use "./custom-elements";
 @use "../../components/drawer/drawer";
 
 %control-panel-mobile-position-top {
@@ -11,7 +13,7 @@
 	grid-template-columns: 1fr min-content min-content;
 	justify-items: center;
 
-	> .db-control-panel-primary-actions {
+	#{string.unquote(custom-elements.$control-primary-actions)} {
 		// fake divider margin
 		padding-inline-end: variables.$db-spacing-fixed-xs;
 
@@ -22,7 +24,7 @@
 		}
 	}
 
-	> .db-drawer {
+	#{string.unquote(custom-elements.$drawer)} {
 		> .db-drawer-container {
 			@extend %direction-right;
 
@@ -54,17 +56,18 @@
 	grid-template-columns: min-content 1fr min-content;
 	justify-content: space-evenly;
 
-	> .db-control-panel-brand {
+	#{string.unquote(custom-elements.$control-panel-brand)} {
 		font-size: 0;
 		gap: 0;
 		place-self: center;
 	}
 
+	> db-button > .db-control-panel-mobile-button,
 	> .db-control-panel-mobile-button {
 		place-self: center;
 	}
 
-	> .db-drawer {
+	#{string.unquote(custom-elements.$drawer)} {
 		> .db-drawer-container {
 			@extend %direction-up;
 

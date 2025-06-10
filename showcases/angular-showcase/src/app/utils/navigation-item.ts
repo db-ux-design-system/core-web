@@ -28,7 +28,7 @@ import { DividerComponent } from '../components/divider/divider.component';
 import { DrawerComponent } from '../components/drawer/drawer.component';
 import { IconComponent } from '../components/icon/icon.component';
 import { BrandComponent } from '../components/brand/brand.component';
-import { HeaderComponent } from '../components/header/header.component';
+import { ControlPanelDesktopComponent } from '../components/control-panel-desktop/control-panel-desktop.component';
 import { HomeComponent } from '../components/home/home.component';
 import { CustomSelectComponent } from '../components/custom-select/custom-select.component';
 
@@ -45,8 +45,6 @@ export const getSortedNavigationItems = (navigationItems: NavItem[]): any[] =>
 	);
 
 export const NAVIGATION_ITEMS: NavItem[] = [
-{ path: 'control-panel-mobile', label: 'ControlPanelMobile', component: ControlPanelMobileComponent },
-
 	{
 		path: '06',
 		label: '06 Feedback',
@@ -175,7 +173,12 @@ export const NAVIGATION_ITEMS: NavItem[] = [
 			{
 				path: '01/header',
 				label: 'Header',
-				component: HeaderComponent
+				component: ControlPanelDesktopComponent
+			},
+			{
+				path: '01/control-panel-mobile',
+				label: 'ControlPanelMobile',
+				component: ControlPanelMobileComponent
 			}
 		])
 	},

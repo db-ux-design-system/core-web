@@ -22,7 +22,11 @@ export default function DBControlPanelMobile(props: DBControlPanelMobileProps) {
 	// jscpd:ignore-start
 	const state = useStore<DBControlPanelMobileState>({
 		open: false,
-		handleToggle: () => {
+		handleToggle: (event: any) => {
+			if (event.stopPropagation) {
+				event.stopPropagation();
+			}
+
 			const reverseOpen = !state.open;
 			state.open = reverseOpen;
 
@@ -32,7 +36,7 @@ export default function DBControlPanelMobile(props: DBControlPanelMobileProps) {
 		},
 		handleNavigationItemClick: (event: any) => {
 			if (isEventTargetNavigationItem(event)) {
-				state.handleToggle();
+				state.handleToggle(event);
 			}
 		}
 	});
@@ -50,7 +54,7 @@ export default function DBControlPanelMobile(props: DBControlPanelMobileProps) {
 				rounded
 				spacing="small"
 				open={state.open}
-				onClose={() => state.handleToggle()}>
+				onClose={(event) => state.handleToggle(event)}>
 				<div
 					onClick={(event) => state.handleNavigationItemClick(event)}
 					class="db-control-panel-mobile-drawer-scroll-container">
@@ -68,7 +72,7 @@ export default function DBControlPanelMobile(props: DBControlPanelMobileProps) {
 				noText
 				type="button"
 				variant="ghost"
-				onClick={() => state.handleToggle()}>
+				onClick={(event) => state.handleToggle(event)}>
 				{props.burgerMenuLabel ?? DEFAULT_BURGER_MENU}
 			</DBButton>
 		</header>

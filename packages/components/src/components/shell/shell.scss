@@ -1,9 +1,11 @@
+@use "sass:string";
 @use "@db-ux/core-foundations/build/styles/variables";
 @use "@db-ux/core-foundations/build/styles/screen-sizes";
 @use "@db-ux/core-foundations/build/styles/colors";
 @use "@db-ux/core-foundations/build/styles/helpers";
 @use "../../styles/internal/control-panel-desktop";
 @use "../../styles/internal/control-panel-mobile";
+@use "../../styles/internal/custom-elements";
 @use "../../styles/internal/form-components";
 
 @forward "shell-desktop";
@@ -45,8 +47,8 @@ body {
 		max-inline-size: 100vw;
 	}
 
-	> .db-control-panel-desktop,
-	> .db-control-panel-mobile {
+	#{string.unquote(custom-elements.$control-panel-desktop)},
+	#{string.unquote(custom-elements.$control-panel-mobile)} {
 		grid-area: control-panel;
 	}
 
@@ -58,7 +60,7 @@ body {
 			grid-area: button;
 		}
 
-		> .db-navigation {
+		#{string.unquote(custom-elements.$navigation)} {
 			grid-area: navigation;
 		}
 
@@ -68,25 +70,25 @@ body {
 	}
 
 	&[data-control-panel-desktop-position="left"] {
-		> .db-control-panel-desktop {
+		#{string.unquote(custom-elements.$control-panel-desktop)} {
 			@extend %control-panel-desktop-vertical-orientation;
 		}
 	}
 
 	&[data-control-panel-desktop-position="top"] {
-		> .db-control-panel-desktop {
+		#{string.unquote(custom-elements.$control-panel-desktop)} {
 			@extend %control-panel-desktop-horizontal-orientation;
 		}
 	}
 
 	&[data-control-panel-mobile-position="top"] {
-		> .db-control-panel-mobile {
+		#{string.unquote(custom-elements.$control-panel-mobile)} {
 			@extend %control-panel-mobile-position-top;
 		}
 	}
 
 	&[data-control-panel-mobile-position="bottom"] {
-		> .db-control-panel-mobile {
+		#{string.unquote(custom-elements.$control-panel-mobile)} {
 			@extend %control-panel-mobile-position-bottom;
 		}
 	}

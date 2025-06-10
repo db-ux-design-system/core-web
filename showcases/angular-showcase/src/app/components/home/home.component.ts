@@ -4,7 +4,7 @@ import {
 	DBTabList,
 	DBTabPanel,
 	DBTabs
-} from '../../../../../../output/angular/src';
+} from '@components';
 import { InputsComponent } from '../form/inputs/inputs.component';
 import { FormComponent } from '../form/form.component';
 import { TextareasComponent } from '../form/textareas/textareas.component';

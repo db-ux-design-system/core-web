@@ -26,7 +26,9 @@ export default function DBControlPanelDesktop(
 		_id: `db-control-panel-desktop-${uuid()}`,
 		_open: true,
 		// eslint-disable-next-line @typescript-eslint/no-unused-vars
-		handleToggle: (_: any) => {
+		handleToggle: (event: any) => {
+			event.stopPropagation();
+
 			state._open = !state._open;
 		},
 		getToggleButtonText: (): string => {

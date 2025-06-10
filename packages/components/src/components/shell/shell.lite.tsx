@@ -21,14 +21,15 @@ export default function DBShell(props: DBShellProps) {
 		_id: `db-shell-${uuid()}`,
 		fontsLoaded: false,
 		_open: true,
-		// eslint-disable-next-line @typescript-eslint/no-unused-vars
-		handleToggle: (_: any) => {
+		handleToggle: (event: any) => {
+			event.stopPropagation();
+
 			state._open = !state._open;
 		},
 		getToggleButtonText: (): string => {
 			return state._open
-				? props.subNavigationToggleButtonCollapse ?? 'Collapse'
-				: props.subNavigationToggleButtonExpand ?? 'Expand';
+				? (props.subNavigationToggleButtonCollapse ?? 'Collapse')
+				: (props.subNavigationToggleButtonExpand ?? 'Expand');
 		}
 	});
 

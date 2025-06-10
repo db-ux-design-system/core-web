@@ -3,14 +3,15 @@
 @use "@db-ux/core-foundations/build/styles/helpers";
 @use "@db-ux/core-foundations/build/styles/colors";
 @use "@db-ux/core-foundations/build/styles/screen-sizes";
-@use "../../styles/internal/form-components";
-@use "../../styles/internal/component";
-@use "../../styles/internal/navigation-item";
-@use "../../styles/internal/db-puls";
-@use "../../styles/internal/scrollbar";
+@use "./form-components";
+@use "./custom-elements";
+@use "./component";
+@use "./navigation-item";
+@use "./db-puls";
+@use "./scrollbar";
 
-$navigation-child-selector: "> .db-control-panel-desktop-scroll-container > .db-navigation";
-$meta-child-selector: "> .db-control-panel-desktop-scroll-container > .db-control-panel-meta-navigation";
+$navigation-child-selector: "> .db-control-panel-desktop-scroll-container > .db-navigation, > .db-control-panel-desktop-scroll-container > db-navigation > .db-navigation";
+$meta-child-selector: "> .db-control-panel-desktop-scroll-container  .db-control-panel-meta-navigation";
 
 @mixin navigation-child {
 	#{string.unquote($navigation-child-selector)} {
@@ -67,7 +68,7 @@ $meta-child-selector: "> .db-control-panel-desktop-scroll-container > .db-contro
 		scrollbar-gutter: stable both-edges;
 		flex-direction: row;
 
-		> .db-navigation-item-group {
+		#{string.unquote(custom-elements.$navigation-item-group)} {
 			&:is(button),
 			> button {
 				&::after {
@@ -156,16 +157,16 @@ $meta-child-selector: "> .db-control-panel-desktop-scroll-container > .db-contro
 		display: contents;
 	}
 
-	> .db-control-panel-brand {
+	#{string.unquote(custom-elements.$control-panel-brand)} {
 		padding-inline-end: variables.$db-spacing-fixed-lg;
 	}
 
-	> .db-control-panel-primary-actions,
-	> .db-control-panel-secondary-actions {
+	#{string.unquote(custom-elements.$control-primary-actions)},
+	#{string.unquote(custom-elements.$control-secondary-actions)} {
 		block-size: variables.$db-sizing-md;
 	}
 
-	> .db-control-panel-primary-actions {
+	#{string.unquote(custom-elements.$control-primary-actions)} {
 		margin-inline-start: variables.$db-spacing-fixed-sm;
 	}
 
@@ -174,10 +175,10 @@ $meta-child-selector: "> .db-control-panel-desktop-scroll-container > .db-contro
 	}
 
 	&:has(
-			> .db-control-panel-primary-actions,
+			#{string.unquote(custom-elements.$control-primary-actions)},
 			#{string.unquote($navigation-child-selector)}
 		) {
-		> .db-control-panel-secondary-actions {
+		#{string.unquote(custom-elements.$control-secondary-actions)} {
 			padding-inline-start: variables.$db-spacing-fixed-sm;
 
 			@include helpers.divider("left");
@@ -185,13 +186,13 @@ $meta-child-selector: "> .db-control-panel-desktop-scroll-container > .db-contro
 	}
 
 	&:has(#{string.unquote($navigation-child-selector)}) {
-		> .db-control-panel-brand {
+		#{string.unquote(custom-elements.$control-panel-brand)} {
 			@include helpers.divider("right", "after");
 		}
 	}
 
-	&:has(.db-control-panel-secondary-actions) {
-		> .db-control-panel-primary-actions {
+	&:has(#{string.unquote(custom-elements.$control-secondary-actions)}) {
+		#{string.unquote(custom-elements.$control-primary-actions)} {
 			margin-inline-end: variables.$db-spacing-fixed-sm;
 		}
 	}
@@ -236,6 +237,13 @@ $meta-child-selector: "> .db-control-panel-desktop-scroll-container > .db-contro
 				@include navigation-item.active-navigation-item {
 					@include db-puls.show-db-puls-horizontal();
 				}
+
+				@include navigation-item.direct-navigation-items {
+					/* Workaround for custom-elements */
+					&::after {
+						content: none;
+					}
+				}
 			}
 		}
 	}
@@ -277,8 +285,8 @@ $meta-child-selector: "> .db-control-panel-desktop-scroll-container > .db-contro
 		/* stylelint-disable-next-line declaration-property-value-no-unknown */
 		inline-size: calc-size(auto, size);
 
-		> .db-control-panel-primary-actions,
-		> .db-control-panel-secondary-actions,
+		#{string.unquote(custom-elements.$control-primary-actions)},
+		#{string.unquote(custom-elements.$control-secondary-actions)},
 		#{string.unquote($meta-child-selector)} {
 			display: none;
 		}
@@ -304,7 +312,7 @@ $meta-child-selector: "> .db-control-panel-desktop-scroll-container > .db-contro
 					}
 				}
 
-				> .db-navigation-item {
+				#{string.unquote(custom-elements.$navigation-item)} {
 					.db-tooltip {
 						// We show tooltip for collapsed state
 						--db-show-popover-visibility: visible;
@@ -316,20 +324,20 @@ $meta-child-selector: "> .db-control-panel-desktop-scroll-container > .db-contro
 		&:has(
 				#{string.unquote($navigation-child-selector)}
 					> menu
-					> .db-navigation-item-group
+					#{string.unquote(custom-elements.$navigation-item-group)}
 			) {
 			#{string.unquote($navigation-child-selector)} {
 				display: none;
 			}
 
-			> .db-control-panel-brand {
+			#{string.unquote(custom-elements.$control-panel-brand)} {
 				&::after {
 					display: none;
 				}
 			}
 		}
 
-		> .db-control-panel-brand {
+		#{string.unquote(custom-elements.$control-panel-brand)} {
 			font-size: 0;
 			gap: 0;
 			place-self: center;
@@ -362,16 +370,16 @@ $meta-child-selector: "> .db-control-panel-desktop-scroll-container > .db-contro
 		@include helpers.divider("top");
 	}
 
-	> .db-control-panel-brand,
-	> .db-control-panel-primary-actions,
-	> .db-control-panel-secondary-actions,
+	#{string.unquote(custom-elements.$control-panel-brand)},
+	#{string.unquote(custom-elements.$control-primary-actions)},
+	#{string.unquote(custom-elements.$control-secondary-actions)},
 	> .db-control-panel-desktop-button {
 		padding-inline: variables.$db-spacing-fixed-lg;
 	}
 
-	> .db-control-panel-brand,
-	> .db-control-panel-primary-actions,
-	> .db-control-panel-secondary-actions {
+	#{string.unquote(custom-elements.$control-panel-brand)},
+	#{string.unquote(custom-elements.$control-primary-actions)},
+	#{string.unquote(custom-elements.$control-secondary-actions)} {
 		margin-block-end: variables.$db-spacing-fixed-md;
 	}
 
@@ -381,7 +389,7 @@ $meta-child-selector: "> .db-control-panel-desktop-scroll-container > .db-contro
 		grid-area: scroll;
 		grid-template-areas: "navigation" "meta";
 
-		> .db-control-panel-meta-navigation {
+		#{string.unquote(custom-elements.$control-meta-navigation)} {
 			margin-block-start: auto;
 
 			@include helpers.divider("top");
@@ -389,12 +397,12 @@ $meta-child-selector: "> .db-control-panel-desktop-scroll-container > .db-contro
 	}
 
 	&:has(
-			.db-control-panel-brand,
-			.db-control-panel-primary-actions,
+			#{string.unquote(custom-elements.$control-panel-brand)},
+			#{string.unquote(custom-elements.$control-primary-actions)},
 			#{string.unquote($navigation-child-selector)},
 			#{string.unquote($meta-child-selector)}
 		) {
-		> .db-control-panel-secondary-actions {
+		#{string.unquote(custom-elements.$control-secondary-actions)} {
 			padding-block-start: variables.$db-spacing-fixed-sm;
 
 			@include helpers.divider("top");
@@ -402,7 +410,7 @@ $meta-child-selector: "> .db-control-panel-desktop-scroll-container > .db-contro
 	}
 
 	&:has(#{string.unquote($navigation-child-selector)}) {
-		> .db-control-panel-brand {
+		#{string.unquote(custom-elements.$control-panel-brand)} {
 			@include helpers.divider("bottom", "after");
 
 			&::after {
@@ -412,11 +420,11 @@ $meta-child-selector: "> .db-control-panel-desktop-scroll-container > .db-contro
 	}
 
 	&:has(
-			.db-control-panel-brand,
+			#{string.unquote(custom-elements.$control-panel-brand)},
 			#{string.unquote($navigation-child-selector)},
 			#{string.unquote($meta-child-selector)}
 		) {
-		> .db-control-panel-primary-actions {
+		#{string.unquote(custom-elements.$control-primary-actions)} {
 			padding-block-start: variables.$db-spacing-fixed-sm;
 
 			@include helpers.divider("top");
@@ -434,6 +442,13 @@ $meta-child-selector: "> .db-control-panel-desktop-scroll-container > .db-contro
 
 				@include navigation-item.active-navigation-item {
 					@include db-puls.show-db-puls-vertical();
+				}
+
+				@include navigation-item.direct-navigation-items {
+					/* Workaround for custom-elements */
+					&::after {
+						content: none;
+					}
 				}
 			}
 		}

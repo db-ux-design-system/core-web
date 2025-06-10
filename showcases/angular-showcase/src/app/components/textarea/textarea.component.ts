@@ -1,7 +1,7 @@
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import defaultComponentVariants from '../../../../../shared/textarea.json';
 import { DefaultComponent } from '../default.component';
-import { DBTextarea } from '../../../../../../output/angular/src';
+import { DBTextarea } from '@components';
 import { environment } from '../../../environments/environment';
 
 @Component({

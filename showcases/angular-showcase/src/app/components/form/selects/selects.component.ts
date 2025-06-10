@@ -1,7 +1,7 @@
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { WrapperComponent } from '../wrapper/wrapper.component';
-import { DBSelect, DBTextarea } from '../../../../../../../output/angular/src';
+import { DBSelect, DBTextarea } from '@components';
 import { environment } from '../../../../environments/environment';
 
 @Component({

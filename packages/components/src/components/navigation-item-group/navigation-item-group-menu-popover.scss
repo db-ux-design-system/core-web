@@ -51,6 +51,7 @@ $outside-position: calc(-200% + #{variables.$db-spacing-fixed-xs});
 		padding: variables.$db-spacing-fixed-sm;
 		position: absolute;
 		min-inline-size: navigation-item.$navigation-max-inline-size;
+		// TODO: This causes some flash for angular navigation item group
 		transition: visibility 1ms linear; // workaround to enable focus with keyboard
 
 		.db-navigation-item-group-back-button {

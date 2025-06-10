@@ -86,7 +86,9 @@ export default function DBTabs(props: DBTabsProps) {
 		initTabs(init?: boolean) {
 			if (_ref) {
 				const tabItems = Array.from<Element>(
-					_ref.getElementsByClassName('db-tab-item')
+					_ref.querySelectorAll(
+						':is(:scope > db-tab-list .db-tab-item, :scope > .db-tab-list .db-tab-item)'
+					)
 				);
 				const tabPanels = Array.from<Element>(
 					_ref.querySelectorAll(
