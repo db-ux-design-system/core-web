@@ -12,6 +12,7 @@
 		resize: none;
 	}
 
+	// TODO: Consolidate data-hide-resizer and data-resize attributes in the future
 	&:not([data-hide-resizer="true"]) {
 		&[data-resize="none"] {
 			resize: none;
