@@ -10,6 +10,7 @@ $scrollbar-width: helpers.px-to-rem(8);
 	&[data-field-sizing="content"] {
 		&:is([data-hide-resizer="true"], [data-resize="none"]) {
 			@supports (field-sizing: content) {
+				/* We don't show a scrollbar if we use field-sizing: content and no resizer is available*/
 				scrollbar-width: none;
 			}
 		}
