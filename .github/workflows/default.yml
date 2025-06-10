@@ -192,7 +192,7 @@ jobs:
       ]
 
   commit-regenerated-snapshots:
-    if: always() && (needs.regenerate-snapshots-components.result == 'success' || needs.regenerate-snapshots-foundations.result == 'success' || needs.regenerate-snapshots-patternhub.result == 'success' || needs.regenerate-snapshots.result == 'success')
+    if: always() && !contains(github.event.head_commit.message,'auto update snapshots') && (needs.regenerate-snapshots-components.result == 'success' || needs.regenerate-snapshots-foundations.result == 'success' || needs.regenerate-snapshots-patternhub.result == 'success' || needs.regenerate-snapshots.result == 'success')
     uses: ./.github/workflows/02-e2e-regenerated-snapshots-commit.yml
     needs:
       [

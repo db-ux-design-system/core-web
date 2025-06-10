@@ -3,21 +3,19 @@ name: Commit Regenerated Snapshots
 on:
   workflow_call:
 
-permissions:
-  actions: write
-  contents: write
-
 jobs:
   commit-regenerate-snapshots:
     name: 🆙 Commit regenerated snapshots
     runs-on: ubuntu-24.04 # Use Ubuntu 24.04 explicitly
+    env:
+      NEW_PR_BRANCH: "${{ github.ref_name }}-auto"
     steps:
       - name: ⏬ Checkout repo
         uses: actions/checkout@v4
         with:
           ref: ${{ github.head_ref }}
 
-      - name: Download components
+      - name: ⏬ Download components
         uses: actions/download-artifact@v4
         # Only download artifact if the artifact exists
         if: always() && contains(needs.regenerate-snapshots-components.outputs.artifacts, 'snapshots-components')
@@ -25,7 +23,7 @@ jobs:
           name: snapshots-components
           path: ./__snapshots__/
 
-      - name: Download foundations
+      - name: ⏬ Download foundations
         uses: actions/download-artifact@v4
         # Only download artifact if the artifact exists
         if: always() && contains(needs.regenerate-snapshots-foundations.outputs.artifacts, 'snapshots-foundations')
@@ -33,47 +31,54 @@ jobs:
           name: snapshots-foundations
           path: ./__snapshots__/
 
-      - name: Download patternhub
+      - name: ⏬ Download patternhub
         uses: actions/download-artifact@v4
         if: always() && contains(needs.regenerate-snapshots-patternhub.outputs.artifacts, 'snapshots-patternhub')
         with:
           name: snapshots-patternhub
           path: ./__snapshots__/
 
-      - name: Download showcase
+      - name: ⏬ Download showcase
         uses: actions/download-artifact@v4
         if: always() && contains(needs.regenerate-snapshots.outputs.artifacts, 'snapshots-showcases')
         with:
           name: snapshots-showcases
           path: ./__snapshots__/
 
-      - name: 🆙 Commit newly generated snapshots
+      #https://docs.github.com/en/apps/creating-github-apps/authenticating-with-a-github-app/making-authenticated-api-requests-with-a-github-app-in-a-github-actions-workflow
+      - name: 🧬 Generate a token
+        id: generate-token
+        uses: actions/create-github-app-token@v2
+        with:
+          app-id: ${{ vars.AUTO_MERGE_APP_ID }}
+          private-key: ${{ secrets.AUTO_MERGE_PRIVATE_KEY }}
+
+      - name: 🏗️ Create new branch and commit changes
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          # Use PAT_COMMIT secret to commit the changes
-          git config --global user.name "Maximilian Franzke"
-          git config --global user.email "maximilian.franzke@deutschebahn.com"
-          echo 'COMMIT_MAIL=maximilian.franzke@deutschebahn.com' >> .env
+          git config --global user.name "Auto Snap Committer"
+          git config --global user.email "auto.snap@committer.com"
 
-          # "Stricter repository ownership checks" by GitHub: https://github.blog/open-source/git/highlights-from-git-2-36/#stricter-repository-ownership-checks
-          git config --global --add safe.directory $GITHUB_WORKSPACE
-
+          git checkout -b "$NEW_PR_BRANCH"
           git add __snapshots__/*
-          git commit -m "refactor(test): updated snapshots" || echo "No changes to commit"
 
-      - name: Push changes using PAT
-        env:
-          PAT_COMMIT: ${{ secrets.PAT_COMMIT }}
-        run: |
-          git remote set-url origin https://x-access-token:${PAT_COMMIT}@github.com/${{ github.repository }}.git
-          git push origin HEAD:${{ github.head_ref }} # Push back to the same PR branch
+          # We can't use semantic commits here because of the if statement in the workflow"
+          git commit --no-verify -m "auto update snapshots"
+          git push -f origin "$NEW_PR_BRANCH"
 
-      - name: Trigger a new workflow (default.yml)
+      - name: 🪗 Create Pull Request
         env:
-          PAT_COMMIT: ${{ secrets.PAT_COMMIT }}
-          GH_TOKEN: ${{ github.token }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          gh workflow run "Default Pipeline" --ref ${{ github.head_ref }}
-          # curl -X POST https://api.github.com/repos/${{ github.repository }}/actions/workflows/default.yml/dispatches \
-          #   -H "Authorization: token $PAT_COMMIT" \
-          #   -H "Accept: application/vnd.github+json" \
-          #   -d '{"ref":"${{ github.ref_name }}"}'
+          gh pr create --base ${{ github.ref }} --head "$NEW_PR_BRANCH" --title "Automated PR: Auto update snapshots" --body "This PR was created automatically by a GitHub Action."
+
+      - name: ✔ Approve the PR
+        run: gh pr review --approve "$NEW_PR_BRANCH"
+        env:
+          GITHUB_TOKEN: ${{ steps.generate-token.outputs.token }}
+
+      - name: 🤖 Enable auto-merge
+        run: gh pr merge --squash "$NEW_PR_BRANCH"
+        env:
+          GITHUB_TOKEN: ${{ steps.generate-token.outputs.token }}
