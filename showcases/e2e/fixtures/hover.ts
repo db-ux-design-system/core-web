@@ -13,7 +13,4 @@ export const hoverPre = async (page: Page, selector: string) => {
 			comp.setAttribute('data-e2e-hover', 'true');
 		});
 	}
-
-	// Wait for animations
-	await page.waitForTimeout(2000);
 };
