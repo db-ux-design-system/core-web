@@ -71,7 +71,7 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          gh pr create --base ${{ github.ref }} --head "$NEW_PR_BRANCH" --title "Automated PR: Auto update snapshots" --body "This PR was created automatically by a GitHub Action."
+          gh pr create --base ${{ github.ref }} --title "Automated PR: Auto update snapshots" --body "This PR was created automatically by a GitHub Action."
 
       - name: 🤖 Enable auto-merge
         run: gh pr merge --squash "$NEW_PR_BRANCH"
