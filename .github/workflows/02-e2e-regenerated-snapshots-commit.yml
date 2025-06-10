@@ -45,14 +45,6 @@ jobs:
           name: snapshots-showcases
           path: ./__snapshots__/
 
-      #https://docs.github.com/en/apps/creating-github-apps/authenticating-with-a-github-app/making-authenticated-api-requests-with-a-github-app-in-a-github-actions-workflow
-      - name: 🧬 Generate a token
-        id: generate-token
-        uses: actions/create-github-app-token@v2
-        with:
-          app-id: ${{ vars.AUTO_MERGE_APP_ID }}
-          private-key: ${{ secrets.AUTO_MERGE_PRIVATE_KEY }}
-
       - name: 🏗️ Create new branch and commit changes
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -74,6 +66,6 @@ jobs:
           gh pr create --base ${{ github.ref }} --title "Automated PR: Auto update snapshots" --body "This PR was created automatically by a GitHub Action."
 
       - name: 🤖 Enable auto-merge
-        run: gh pr merge --squash "$NEW_PR_BRANCH"
+        run: gh pr merge --merge --auto "1"
         env:
-          GITHUB_TOKEN: ${{ steps.generate-token.outputs.token }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
