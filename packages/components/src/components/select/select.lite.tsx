@@ -15,6 +15,7 @@ import {
 	delay,
 	getBoolean,
 	getHideProp,
+	getOptionKey,
 	hasVoiceOver,
 	stringPropVisible,
 	uuid
@@ -96,12 +97,10 @@ export default function DBSelect(props: DBSelectProps) {
 		},
 		handleClick: (event: ClickEvent<HTMLSelectElement> | any) => {
 			if (props.onClick) {
-				event.stopPropagation();
 				props.onClick(event);
 			}
 		},
 		handleInput: (event: InputEvent<HTMLSelectElement> | any) => {
-			event.stopPropagation();
 			useTarget({
 				vue: () => {
 					if (props.input) {
@@ -125,7 +124,6 @@ export default function DBSelect(props: DBSelectProps) {
 			state.handleValidation();
 		},
 		handleChange: (event: ChangeEvent<HTMLSelectElement> | any) => {
-			event.stopPropagation();
 			if (props.onChange) {
 				props.onChange(event);
 			}
@@ -137,13 +135,11 @@ export default function DBSelect(props: DBSelectProps) {
 			state.handleValidation();
 		},
 		handleBlur: (event: InteractionEvent<HTMLSelectElement> | any) => {
-			event.stopPropagation();
 			if (props.onBlur) {
 				props.onBlur(event);
 			}
 		},
 		handleFocus: (event: InteractionEvent<HTMLSelectElement> | any) => {
-			event.stopPropagation();
 			if (props.onFocus) {
 				props.onFocus(event);
 			}
@@ -233,7 +229,7 @@ export default function DBSelect(props: DBSelectProps) {
 				aria-describedby={props.ariaDescribedBy ?? state._descByIds}>
 				{/* Empty option for floating label */}
 				<option hidden></option>
-				<Show when={props.options} else={props.children}>
+				<Show when={props.options?.length} else={props.children}>
 					<For each={props.options}>
 						{(option: DBSelectOptionType) => (
 							<>
@@ -241,6 +237,14 @@ export default function DBSelect(props: DBSelectProps) {
 									when={option.options}
 									else={
 										<option
+											key={useTarget({
+												vue: undefined,
+												stencil: undefined,
+												default: getOptionKey(
+													option,
+													'select-option-'
+												)
+											})}
 											value={option.value}
 											disabled={option.disabled}
 											selected={option.selected}>
@@ -248,13 +252,28 @@ export default function DBSelect(props: DBSelectProps) {
 										</option>
 									}>
 									<optgroup
-										label={state.getOptionLabel(option)}>
+										label={state.getOptionLabel(option)}
+										key={useTarget({
+											vue: undefined,
+											stencil: undefined,
+											default: getOptionKey(
+												option,
+												'select-optgroup-'
+											)
+										})}>
 										<For each={option.options}>
 											{(
 												optgroupOption: DBSelectOptionType
 											) => (
 												<option
-													key={optgroupOption.value.toString()}
+													key={useTarget({
+														vue: undefined,
+														stencil: undefined,
+														default: getOptionKey(
+															optgroupOption,
+															'select-optgroup-option-'
+														)
+													})}
 													value={optgroupOption.value}
 													selected={
 														optgroupOption.selected

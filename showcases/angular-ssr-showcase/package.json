@@ -15,8 +15,8 @@
     "express": "^5.1.0"
   },
   "devDependencies": {
-    "@types/express": "^5.0.2",
-    "@types/node": "^22.15.21",
+    "@types/express": "^5.0.3",
+    "@types/node": "^22.15.30",
     "cpr": "3.0.1",
     "typescript": "^5.4.5"
   }

@@ -430,7 +430,7 @@
 				"name": "True",
 				"props": {
 					"icon": "x_placeholder",
-					"content": true
+					"content": "true"
 				}
 			}
 		]

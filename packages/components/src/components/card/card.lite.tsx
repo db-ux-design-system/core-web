@@ -18,7 +18,6 @@ export default function DBCard(props: DBCardProps) {
 	const state = useStore<DBCardState>({
 		handleClick: (event: ClickEvent<HTMLElement>) => {
 			if (props.onClick) {
-				event.stopPropagation();
 				props.onClick(event);
 			}
 		}

@@ -260,7 +260,6 @@ export type DBCustomSelectDefaultState = {
 	getNativeSelectValue: () => string;
 	getOptionLabel: (option: CustomSelectOptionType) => string;
 	getOptionChecked: (value?: string) => boolean;
-	getOptionKey: (option: CustomSelectOptionType) => string;
 	getTagRemoveLabel: (index: number) => string;
 	selectAllEnabled: boolean;
 	searchEnabled: boolean;
