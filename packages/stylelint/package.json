@@ -39,7 +39,7 @@
     "stylelint-config-standard-scss": "^15.0.1",
     "stylelint-config-standard-vue": "^1.0.0",
     "typescript": "^5.4.5",
-    "vitest": "^3.1.4"
+    "vitest": "^3.2.3"
   },
   "publishConfig": {
     "registry": "https://registry.npmjs.org/",
