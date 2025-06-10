@@ -57,8 +57,8 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          git config --global user.name "Auto Snap Committer"
-          git config --global user.email "auto.snap@committer.com"
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
           git checkout -b "$NEW_PR_BRANCH"
           git add __snapshots__/*
