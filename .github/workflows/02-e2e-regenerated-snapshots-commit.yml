@@ -73,11 +73,6 @@ jobs:
         run: |
           gh pr create --base ${{ github.ref }} --head "$NEW_PR_BRANCH" --title "Automated PR: Auto update snapshots" --body "This PR was created automatically by a GitHub Action."
 
-      - name: ✔ Approve the PR
-        run: gh pr review --approve "$NEW_PR_BRANCH"
-        env:
-          GITHUB_TOKEN: ${{ steps.generate-token.outputs.token }}
-
       - name: 🤖 Enable auto-merge
         run: gh pr merge --squash "$NEW_PR_BRANCH"
         env:
