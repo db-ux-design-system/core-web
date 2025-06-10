@@ -41,6 +41,13 @@ const testComponent = () => {
 
 	test('after open should match screenshot', async ({ mount }) => {
 		const component = await mount(comp);
+		await component.getByTestId('button').evaluate((comp: HTMLElement) => {
+			comp.dispatchEvent(new Event('mouseenter'));
+			comp.parentElement?.dispatchEvent(new Event('mouseenter'));
+			comp.parentElement?.parentElement?.dispatchEvent(
+				new Event('mouseenter')
+			);
+		});
 		await component.getByTestId('button').focus();
 		await expect(component).toHaveScreenshot();
 	});
