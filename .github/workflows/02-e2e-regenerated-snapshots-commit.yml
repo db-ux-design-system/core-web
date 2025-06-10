@@ -55,7 +55,7 @@ jobs:
           git checkout -b "$NEW_PR_BRANCH"
           git add __snapshots__/*
 
-          # We can't use semantic commits here because of the if statement in the workflow"
+          # We can't use semantic commits here because of the if statement in the workflow
           git commit --no-verify -m "auto update snapshots"
           git push -f origin "$NEW_PR_BRANCH"
 
