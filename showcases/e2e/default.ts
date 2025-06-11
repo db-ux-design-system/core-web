@@ -276,7 +276,7 @@ export const runAriaSnapshotTest = ({
 		const lines = snapshot.split('\n');
 		const includesUrl = '/url:';
 		snapshot = lines
-			.map((line, index) => {
+			.map((line) => {
 				if (line.includes(includesUrl)) {
 					return undefined;
 				}
