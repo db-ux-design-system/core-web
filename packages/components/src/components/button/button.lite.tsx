@@ -23,6 +23,7 @@ export default function DBButton(props: DBButtonProps) {
 	const state = useStore<DBButtonState>({
 		handleClick: (event: ClickEvent<HTMLButtonElement>) => {
 			if (props.onClick) {
+				event.stopPropagation();
 				props.onClick(event);
 			}
 		}
