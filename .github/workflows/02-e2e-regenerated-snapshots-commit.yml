@@ -23,7 +23,7 @@ on:
 jobs:
   commit-regenerate-snapshots:
     name: 🆙 Commit regenerated snapshots
-    if: !contains(github.event.head_commit.message ,'auto update snapshots') && (inputs.regenerate-snapshots || inputs.regenerate-snapshots-components || inputs.regenerate-snapshots-foundations || inputs.regenerate-snapshots-patternhub)
+    if: (inputs.regenerate-snapshots || inputs.regenerate-snapshots-components || inputs.regenerate-snapshots-foundations || inputs.regenerate-snapshots-patternhub) && !contains(github.event.head_commit.message, 'auto update snapshots')
     runs-on: ubuntu-24.04 # Use Ubuntu 24.04 explicitly
     permissions:
       contents: write
