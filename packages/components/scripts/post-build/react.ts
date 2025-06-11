@@ -4,7 +4,6 @@ import { readFileSync, writeFileSync } from 'node:fs';
 import { replaceInFileSync } from 'replace-in-file';
 
 import { runReplacements, transformToUpperComponentName } from '../utils';
-import { KeyboardEvent } from 'react';
 
 const overwriteEvents = (tmp?: boolean) => {
 	const modelFilePath = `../../${
