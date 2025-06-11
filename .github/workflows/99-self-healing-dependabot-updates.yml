@@ -46,7 +46,7 @@ jobs:
       - name: Run Stylelint to format the code
         if: env.stylelint_update == 'true'
         run: |
-          npx --no stylelint "**/*.{css,scss}" --fix
+          npm run lint:stylelint --fix
 
       - name: Run Prettier to format the code
         if: env.prettier_update == 'true'
