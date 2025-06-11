@@ -271,11 +271,16 @@ export const runAriaSnapshotTest = ({
 		let snapshot = await page.locator('main').ariaSnapshot();
 
 		// Remove `/url` in snapshot because they differ in every showcase
-		snapshot = snapshot
-			.split('\n')
-			.map((line) => {
-				if (line.includes('/url:')) {
+		const lines = snapshot.split('\n');
+		const includesUrl = '/url:';
+		snapshot = lines
+			.map((line, index) => {
+				if (line.includes(includesUrl)) {
 					return undefined;
+				}
+
+				if (line.includes('- link')) {
+					line = line.replace(':', '');
 				}
 
 				return line;
