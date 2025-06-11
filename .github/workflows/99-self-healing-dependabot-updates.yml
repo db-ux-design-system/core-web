@@ -6,7 +6,12 @@ on:
 jobs:
   format:
     if: ${{ github.actor == 'dependabot[bot]' }}
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04 # Use Ubuntu 24.04 explicitly
+    permissions:
+      contents: write
+      pull-requests: write
+    env:
+      NEW_PR_BRANCH: "${{ github.head_ref }}-auto"
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -48,13 +53,39 @@ jobs:
         run: |
           npx --no prettier . --write
 
-      - name: Commit changes if formatting is done
+      # https://docs.github.com/en/apps/creating-github-apps/authenticating-with-a-github-app/making-authenticated-api-requests-with-a-github-app-in-a-github-actions-workflow
+      - name: 🧬 Generate a token
         if: env.stylelint_update == 'true' || env.prettier_update == 'true'
-        run: |
-          git config --system user.name "github-actions[bot]"
-          git config --system user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          echo 'COMMIT_MAIL=41898282+github-actions[bot]@users.noreply.github.com' >> .env
+        id: generate-token
+        uses: actions/create-github-app-token@v2
+        with:
+          app-id: ${{ vars.AUTO_MERGE_APP_ID }}
+          private-key: ${{ secrets.AUTO_MERGE_PRIVATE_KEY }}
 
+      - name: 🏗️ Create new branch and commit changes
+        if: env.stylelint_update == 'true' || env.prettier_update == 'true'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          
+          git checkout -b "$NEW_PR_BRANCH"
           git add .
-          git commit --all -m "refactor(test): auto-format codebase" || echo "No changes to commit"
-          git push origin HEAD:${{ github.head_ref }}  # Push back to the same PR branch
+          
+          # We can't use semantic commits here because of the if statement in the workflow
+          git commit --no-verify --all -m "auto format code" || echo "No changes to commit"
+          git push -f origin "$NEW_PR_BRANCH"
+      
+      - name: 🪗 Create Pull Request
+        if: env.stylelint_update == 'true' || env.prettier_update == 'true'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh pr create --base ${{ github.head_ref }} --head "$NEW_PR_BRANCH" --title "Automated PR: Auto update snapshots" --body "This PR was created automatically by a GitHub Action."
+          
+      - name: 🤖 Squash the PR
+        if: env.stylelint_update == 'true' || env.prettier_update == 'true'
+        run: gh pr merge --squash "$NEW_PR_BRANCH"
+        env:
+          GITHUB_TOKEN: ${{ steps.generate-token.outputs.token }}
