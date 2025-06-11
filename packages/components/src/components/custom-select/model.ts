@@ -1,14 +1,17 @@
 import {
 	BaseFormProps,
-	ChangeEvent,
+	ClickEvent,
 	CloseEventState,
 	CustomFormProps,
 	FormMessageProps,
 	FormState,
 	FromValidState,
+	GeneralEvent,
 	GlobalProps,
 	GlobalState,
 	IconProps,
+	InputEvent,
+	InteractionEvent,
 	PlacementVerticalType,
 	PopoverState,
 	RequiredProps,
@@ -72,20 +75,20 @@ export type DBCustomSelectEvents = {
 	/**
 	 * Informs the user when dropdown was toggled.
 	 */
-	onDropdownToggle?: (event: Event) => void;
+	onDropdownToggle?: (event: GeneralEvent<HTMLDetailsElement>) => void;
 	/**
 	 * Informs the user when dropdown was toggled.
 	 */
-	dropdownToggle?: (event: Event) => void;
+	dropdownToggle?: (event: GeneralEvent<HTMLDetailsElement>) => void;
 
 	/**
 	 * Informs the user when a search was performed.
 	 */
-	onSearch?: (event: Event) => void;
+	onSearch?: (event: InputEvent<HTMLInputElement>) => void;
 	/**
 	 * Informs the user when a search was performed.
 	 */
-	search?: (event: Event) => void;
+	search?: (event: InputEvent<HTMLInputElement>) => void;
 };
 
 export type DBCustomSelectDefaultProps = {
@@ -289,5 +292,5 @@ export type DBCustomSelectState = DBCustomSelectDefaultState &
 	GlobalState &
 	FormState &
 	FromValidState &
-	CloseEventState &
+	CloseEventState<InteractionEvent<HTMLDetailsElement>> &
 	PopoverState;

@@ -4,6 +4,7 @@ import { readFileSync, writeFileSync } from 'node:fs';
 import { replaceInFileSync } from 'replace-in-file';
 
 import { runReplacements, transformToUpperComponentName } from '../utils';
+import { KeyboardEvent } from 'react';
 
 const overwriteEvents = (tmp?: boolean) => {
 	const modelFilePath = `../../${
@@ -26,6 +27,14 @@ const overwriteEvents = (tmp?: boolean) => {
 	modelFileContent = modelFileContent.replace(
 		'export type InteractionEvent<T> = FocusEvent;',
 		'export type InteractionEvent<T> = React.FocusEvent<T>;'
+	);
+	modelFileContent = modelFileContent.replace(
+		'export type GeneralEvent<T> = Event;',
+		'export type GeneralEvent<T> = React.SyntheticEvent<T>;'
+	);
+	modelFileContent = modelFileContent.replace(
+		'export type GeneralKeyboardEvent<T> = KeyboardEvent;',
+		'export type GeneralKeyboardEvent<T> = React.KeyboardEvent<T>;'
 	);
 	writeFileSync(modelFilePath, modelFileContent);
 };

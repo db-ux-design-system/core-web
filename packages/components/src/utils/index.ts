@@ -1,3 +1,5 @@
+import { ClickEvent, GeneralKeyboardEvent } from '../shared/model';
+
 export const uuid = () => {
 	if (typeof window !== 'undefined') {
 		if (window.crypto?.randomUUID) {
@@ -224,3 +226,8 @@ export const stringPropVisible = (
 
 export const getSearchInput = (element: HTMLElement): HTMLInputElement | null =>
 	element.querySelector<HTMLInputElement>(`input[type="search"]`);
+
+export const isKeyboardEvent = <T>(
+	event?: ClickEvent<T> | GeneralKeyboardEvent<T>
+): event is GeneralKeyboardEvent<T> =>
+	(event as GeneralKeyboardEvent<T>).key !== undefined;
