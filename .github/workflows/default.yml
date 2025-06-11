@@ -201,10 +201,10 @@ jobs:
         regenerate-snapshots
       ]
     with:
-      regenerate-snapshots: ${{ needs.regenerate-snapshots-components.result == 'success' }}
-      regenerate-snapshots-components: ${{ needs.regenerate-snapshots-components.result == 'success' }}
-      regenerate-snapshots-foundations: ${{ needs.regenerate-snapshots-foundations.result == 'success' }}
-      regenerate-snapshots-patternhub: ${{ needs.regenerate-snapshots-patternhub.result == 'success' }}
+      showcases: ${{ needs.regenerate-snapshots.result == 'success' }}
+      components: ${{ needs.regenerate-snapshots-components.result == 'success' }}
+      foundations: ${{ needs.regenerate-snapshots-foundations.result == 'success' }}
+      patternhub: ${{ needs.regenerate-snapshots-patternhub.result == 'success' }}
 
   checks-done:
     if: ${{ always() }}

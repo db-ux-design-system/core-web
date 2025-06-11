@@ -3,27 +3,27 @@ name: Commit Regenerated Snapshots
 on:
   workflow_call:
     inputs:
-      regenerate-snapshots-components:
+      components:
         description: "Regenerate snapshots for components"
         required: true
         type: boolean
-      regenerate-snapshots-foundations:
+      foundations:
         description: "Regenerate snapshots for foundations"
         required: true
         type: boolean
-      regenerate-snapshots-patternhub:
+      patternhub:
         description: "Regenerate snapshots for patternhub"
         required: true
         type: boolean
-      regenerate-snapshots:
+      showcases:
         description: "Regenerate snapshots for showcases"
         required: true
         type: boolean
 
 jobs:
-  commit-regenerate-snapshots:
+  commit-showcases:
     name: 🆙 Commit regenerated snapshots
-    if: (inputs.regenerate-snapshots || inputs.regenerate-snapshots-components || inputs.regenerate-snapshots-foundations || inputs.regenerate-snapshots-patternhub) && !contains(github.event.head_commit.message, 'auto update snapshots')
+    if: (inputs.showcases || inputs.components || inputs.foundations || inputs.patternhub) && !contains(github.actor,'[bot]')
     runs-on: ubuntu-24.04 # Use Ubuntu 24.04 explicitly
     permissions:
       contents: write
@@ -39,7 +39,7 @@ jobs:
       - name: ⏬ Download components
         uses: actions/download-artifact@v4
         # Only download artifact if the artifact exists
-        if: inputs.regenerate-snapshots-components
+        if: inputs.components
         with:
           name: snapshots-components
           path: ./__snapshots__/
@@ -47,21 +47,21 @@ jobs:
       - name: ⏬ Download foundations
         uses: actions/download-artifact@v4
         # Only download artifact if the artifact exists
-        if: inputs.regenerate-snapshots-foundations
+        if: inputs.foundations
         with:
           name: snapshots-foundations
           path: ./__snapshots__/
 
       - name: ⏬ Download patternhub
         uses: actions/download-artifact@v4
-        if: inputs.regenerate-snapshots-patternhub
+        if: inputs.patternhub
         with:
           name: snapshots-patternhub
           path: ./__snapshots__/
 
       - name: ⏬ Download showcase
         uses: actions/download-artifact@v4
-        if: inputs.regenerate-snapshots
+        if: inputs.showcases
         with:
           name: snapshots-showcases
           path: ./__snapshots__/
