@@ -1,7 +1,12 @@
-# adapted out of https://github.com/h5bp/html5-boilerplate/blob/main/.gitattributes
+# adapted out of https://github.com/h5bp/html5-boilerplate/blob/main/.gitattributes and https://rehansaeed.com/gitattributes-best-practices/
 # Automatically normalize line endings for all text-based files
 # https://git-scm.com/docs/gitattributes#_end_of_line_conversion
 
+###############################
+# Git Line Endings            #
+###############################
+
+# Set default behaviour to automatically normalize line endings.
 * text=auto
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
