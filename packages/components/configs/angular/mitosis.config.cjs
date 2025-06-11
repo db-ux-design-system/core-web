@@ -1,4 +1,3 @@
-const angular = require('./index.cjs');
 /**
  * @type {import('@builder.io/mitosis').MitosisConfig}
  */
@@ -7,6 +6,12 @@ module.exports = {
 	targets: ['angular'],
 	dest: '../../output/tmp',
 	options: {
-		angular
+		angular: {
+			experimental: {
+				outputs: (_json, propName) => {
+					return propName === 'click' ? 'click' : undefined;
+				}
+			}
+		}
 	}
 };
