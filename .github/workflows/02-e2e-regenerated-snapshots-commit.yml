@@ -2,13 +2,34 @@ name: Commit Regenerated Snapshots
 
 on:
   workflow_call:
+    inputs:
+      regenerate-snapshots-components:
+        description: "Regenerate snapshots for components"
+        required: true
+        type: boolean
+      regenerate-snapshots-foundations:
+        description: "Regenerate snapshots for foundations"
+        required: true
+        type: boolean
+      regenerate-snapshots-patternhub:
+        description: "Regenerate snapshots for patternhub"
+        required: true
+        type: boolean
+      regenerate-snapshots:
+        description: "Regenerate snapshots for showcases"
+        required: true
+        type: boolean
 
 jobs:
   commit-regenerate-snapshots:
     name: 🆙 Commit regenerated snapshots
+    if: !contains(github.event.head_commit.message ,'auto update snapshots') && (inputs.regenerate-snapshots || inputs.regenerate-snapshots-components || inputs.regenerate-snapshots-foundations || inputs.regenerate-snapshots-patternhub)
     runs-on: ubuntu-24.04 # Use Ubuntu 24.04 explicitly
+    permissions:
+      contents: write
+      pull-requests: write
     env:
-      NEW_PR_BRANCH: "${{ github.ref_name }}-auto"
+      NEW_PR_BRANCH: "${{ github.head_ref }}-auto"
     steps:
       - name: ⏬ Checkout repo
         uses: actions/checkout@v4
@@ -18,7 +39,7 @@ jobs:
       - name: ⏬ Download components
         uses: actions/download-artifact@v4
         # Only download artifact if the artifact exists
-        if: always() && contains(needs.regenerate-snapshots-components.outputs.artifacts, 'snapshots-components')
+        if: inputs.regenerate-snapshots-components
         with:
           name: snapshots-components
           path: ./__snapshots__/
@@ -26,21 +47,21 @@ jobs:
       - name: ⏬ Download foundations
         uses: actions/download-artifact@v4
         # Only download artifact if the artifact exists
-        if: always() && contains(needs.regenerate-snapshots-foundations.outputs.artifacts, 'snapshots-foundations')
+        if: inputs.regenerate-snapshots-foundations
         with:
           name: snapshots-foundations
           path: ./__snapshots__/
 
       - name: ⏬ Download patternhub
         uses: actions/download-artifact@v4
-        if: always() # && contains(needs.regenerate-snapshots-patternhub.outputs.artifacts, 'snapshots-patternhub')
+        if: inputs.regenerate-snapshots-patternhub
         with:
           name: snapshots-patternhub
           path: ./__snapshots__/
 
       - name: ⏬ Download showcase
         uses: actions/download-artifact@v4
-        if: always() && contains(needs.regenerate-snapshots.outputs.artifacts, 'snapshots-showcases')
+        if: inputs.regenerate-snapshots
         with:
           name: snapshots-showcases
           path: ./__snapshots__/

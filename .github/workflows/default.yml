@@ -191,8 +191,8 @@ jobs:
       ]
 
   commit-regenerated-snapshots:
-    if: always() && !contains(github.event.head_commit.message,'auto update snapshots') && (needs.regenerate-snapshots-components.result == 'success' || needs.regenerate-snapshots-foundations.result == 'success' || needs.regenerate-snapshots-patternhub.result == 'success' || needs.regenerate-snapshots.result == 'success')
     uses: ./.github/workflows/02-e2e-regenerated-snapshots-commit.yml
+    secrets: inherit
     needs:
       [
         regenerate-snapshots-components,
@@ -200,6 +200,11 @@ jobs:
         regenerate-snapshots-patternhub,
         regenerate-snapshots
       ]
+    with:
+      regenerate-snapshots: ${{ needs.regenerate-snapshots-components.result == 'success' }}
+      regenerate-snapshots-components: ${{ needs.regenerate-snapshots-components.result == 'success' }}
+      regenerate-snapshots-foundations: ${{ needs.regenerate-snapshots-foundations.result == 'success' }}
+      regenerate-snapshots-patternhub: ${{ needs.regenerate-snapshots-patternhub.result == 'success' }}
 
   checks-done:
     if: ${{ always() }}
