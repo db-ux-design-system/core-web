@@ -17,10 +17,10 @@ jobs:
           ASSET_INIT_VECTOR: ${{ secrets.ASSET_INIT_VECTOR }}
           ASSET_PASSWORD: ${{ secrets.ASSET_PASSWORD }}
 
-      - name: 🚮 Dump GitHub context for debugging
-        env:
-          GITHUB_CONTEXT: ${{ toJson(github) }}
-        run: echo "$GITHUB_CONTEXT"
+#      - name: 🚮 Dump GitHub context for debugging
+#        env:
+#          GITHUB_CONTEXT: ${{ toJson(github) }}
+#        run: echo "$GITHUB_CONTEXT"
 
       - name: 💀 Killing me softly
         uses: ./.github/actions/cancel-workflow
