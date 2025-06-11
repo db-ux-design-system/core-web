@@ -8,13 +8,20 @@ import {
 	useStore,
 	useTarget
 } from '@builder.io/mitosis';
-import { DBRadioProps, DBRadioState } from './model';
-import { cls, getBoolean, getHideProp, uuid } from '../../utils';
+
 import { ChangeEvent, InteractionEvent } from '../../shared/model';
+import {
+	cls,
+	getBoolean,
+	getBooleanAsString,
+	getHideProp,
+	uuid
+} from '../../utils';
 import {
 	handleFrameworkEventAngular,
 	handleFrameworkEventVue
 } from '../../utils/form-components';
+import { DBRadioProps, DBRadioState } from './model';
 
 useMetadata({
 	angular: {
@@ -81,6 +88,9 @@ export default function DBRadio(props: DBRadioProps) {
 				aria-describedby={props.describedbyid ?? props.ariaDescribedBy}
 				value={props.value}
 				required={getBoolean(props.required, 'required')}
+				{...(getBooleanAsString(props.requiredAnnotation) === 'false'
+					? { 'data-required-icon': 'false' }
+					: {})}
 				onChange={(event: ChangeEvent<HTMLInputElement>) =>
 					state.handleChange(event)
 				}

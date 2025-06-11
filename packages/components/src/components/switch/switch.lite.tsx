@@ -8,7 +8,8 @@ import {
 	useStore,
 	useTarget
 } from '@builder.io/mitosis';
-import { DBSwitchProps, DBSwitchState } from './model';
+
+import { ChangeEvent, InteractionEvent } from '../../shared/model';
 import {
 	cls,
 	getBoolean,
@@ -16,11 +17,11 @@ import {
 	getHideProp,
 	uuid
 } from '../../utils';
-import { ChangeEvent, InteractionEvent } from '../../shared/model';
 import {
 	handleFrameworkEventAngular,
 	handleFrameworkEventVue
 } from '../../utils/form-components';
+import { DBSwitchProps, DBSwitchState } from './model';
 
 useMetadata({
 	angular: {
@@ -99,6 +100,9 @@ export default function DBSwitch(props: DBSwitchProps) {
 				data-custom-validity={props.validation}
 				name={props.name}
 				required={getBoolean(props.required, 'required')}
+				{...(getBooleanAsString(props.requiredAnnotation) === 'false'
+					? { 'data-required-icon': 'false' }
+					: {})}
 				data-aid-icon={props.icon}
 				data-aid-icon-after={props.iconAfter}
 				onChange={(event: ChangeEvent<HTMLInputElement>) =>
