@@ -1,4 +1,4 @@
-/* eslint-disable no-await-in-loop */
+/* eslint-disable no-await-in-loop,unicorn/prefer-dom-node-dataset */
 import { type Page } from '@playwright/test';
 
 export const hoverPre = async (page: Page, selector: string) => {
@@ -10,7 +10,7 @@ export const hoverPre = async (page: Page, selector: string) => {
 				new Event('mouseenter')
 			);
 
-			comp.dataset.e2eHover = 'true';
+			comp.setAttribute('data-e2e-hover', 'true');
 		});
 	}
 
