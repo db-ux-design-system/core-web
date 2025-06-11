@@ -66,7 +66,7 @@ jobs:
           name: snapshots-showcases
           path: ./__snapshots__/
 
-      #https://docs.github.com/en/apps/creating-github-apps/authenticating-with-a-github-app/making-authenticated-api-requests-with-a-github-app-in-a-github-actions-workflow
+      # https://docs.github.com/en/apps/creating-github-apps/authenticating-with-a-github-app/making-authenticated-api-requests-with-a-github-app-in-a-github-actions-workflow
       - name: 🧬 Generate a token
         id: generate-token
         uses: actions/create-github-app-token@v2
