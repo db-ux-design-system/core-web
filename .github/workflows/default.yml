@@ -193,6 +193,7 @@ jobs:
   commit-regenerated-snapshots:
     uses: ./.github/workflows/02-e2e-regenerated-snapshots-commit.yml
     secrets: inherit
+    if: always()
     needs:
       [
         regenerate-snapshots-components,

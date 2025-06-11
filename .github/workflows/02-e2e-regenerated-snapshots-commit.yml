@@ -21,27 +21,10 @@ on:
         type: boolean
 
 jobs:
-  should-run:
-    name: ✅ Check if job should run
-    runs-on: ubuntu-24.04 # Use Ubuntu 24.04 explicitly
-    outputs:
-      should-run: ${{ steps.check.outputs.should-run }}
-    steps:
-      - name: ✅ Check if any input is true
-        id: check
-        run: |
-          if [[ "${{ inputs.components }}" == "true" || "${{ inputs.foundations }}" == "true" || "${{ inputs.patternhub }}" == "true" || "${{ inputs.showcases }}" == "true" ]]; then
-            echo "should-run=true" >> $GITHUB_OUTPUT
-          else
-            echo "should-run=false" >> $GITHUB_OUTPUT
-          fi
-
   commit-showcases:
     name: 🆙 Commit regenerated snapshots
-    if: (needs.should-run.outputs.should-run) && !contains(github.actor,'[bot]')
+    if: (inputs.showcases || inputs.components || inputs.foundations || inputs.patternhub) && !contains(github.actor,'[bot]')
     runs-on: ubuntu-24.04 # Use Ubuntu 24.04 explicitly
-    needs:
-      - should-run
     permissions:
       contents: write
       pull-requests: write
