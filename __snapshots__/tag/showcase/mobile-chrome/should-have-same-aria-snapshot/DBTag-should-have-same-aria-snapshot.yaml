@@ -1,54 +1,54 @@
 - main:
   - heading "DBTag" [level=1]
-  - link "Density arrow_up_right\" / \"":
+  - link "Density arrow_up_right\" / \""
   - text: Functional (Default) Regular Expressive
-  - link "Emphasis arrow_up_right\" / \"":
+  - link "Emphasis arrow_up_right\" / \""
   - text: (Default) Weak Strong
-  - link "Semantic arrow_up_right\" / \"":
+  - link "Semantic arrow_up_right\" / \""
   - text: (Default) Adaptive Critical Informational Neutral Successful Warning Adaptive Strong Critical Strong Informational Strong Neutral Strong Successful Strong Warning Strong
-  - link "Behavior arrow_up_right\" / \"":
+  - link "Behavior arrow_up_right\" / \""
   - group "Behavior":
     - text: (Default) Static Removable
     - button "Remove": cross" / "
     - button "Interactive (Button)"
-    - link "Interactive (Link)":
+    - link "Interactive (Link)"
     - checkbox "Interactive (Checkbox) circle\" / \""
     - text: Interactive (Checkbox) circle" / "
     - radio "Interactive (Radio) circle\" / \""
     - text: Interactive (Radio) circle" / "
     - radio "Interactive Radio 2 circle\" / \""
     - text: Interactive Radio 2 circle" / "
-  - link "Checked arrow_up_right\" / \"":
+  - link "Checked arrow_up_right\" / \""
   - group "Checked":
     - checkbox "(Default) False circle\" / \""
     - text: (Default) False circle" / "
     - checkbox "True check_circle\" / \"" [checked]
     - text: True check_circle" / "
-  - link "Disabled arrow_up_right\" / \"":
+  - link "Disabled arrow_up_right\" / \""
   - group "Disabled":
     - checkbox "(Default) False circle\" / \""
     - text: (Default) False circle" / "
     - checkbox "True circle\" / \"" [disabled]
     - text: True circle" / "
-  - link "Show Icon arrow_up_right\" / \"":
+  - link "Show Icon arrow_up_right\" / \""
   - text: (Default) False x_placeholder" / " True
-  - link "No Text arrow_up_right\" / \"":
+  - link "No Text arrow_up_right\" / \""
   - text: x_placeholder" / " (Default) False x_placeholder" / " True
-  - link "Show Slot arrow_up_right\" / \"":
+  - link "Show Slot arrow_up_right\" / \""
   - text: (Default) False x_placeholder" / " Swap Slot True
-  - link "Show Check State arrow_up_right\" / \"":
+  - link "Show Check State arrow_up_right\" / \""
   - checkbox "(Default) True circle\" / \""
   - text: (Default) True circle" / "
   - checkbox "False"
   - text: "False"
-  - link "Overflow arrow_up_right\" / \"":
+  - link "Overflow arrow_up_right\" / \""
   - text: (Default) False True - lorem ipsum dolor
-  - link "Example Strong arrow_up_right\" / \"":
+  - link "Example Strong arrow_up_right\" / \""
   - group "Example Strong":
     - text: x_placeholder" / "
     - button "Interactive Strong Button with Icon"
     - text: x_placeholder" / "
-    - link "Interactive Strong Link with Icon":
+    - link "Interactive Strong Link with Icon"
     - text: x_placeholder" / "
     - checkbox "Interactive Strong Checkbox with Icon circle\" / \""
     - text: Interactive Strong Checkbox with Icon circle" / " x_placeholder" / "
