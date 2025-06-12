@@ -30,6 +30,7 @@
     "clean": "git clean -dfx --exclude=.env",
     "commit:updated-snapshots": "git diff --name-only --diff-filter=M | xargs git add && git commit -m 'test: updated snapshots'",
     "dev": "npm run dev --workspace=scripts",
+    "fmt": "prettier . --write",
     "generate:component": "npm run generate:component --workspace=@db-ux/core-components",
     "lint": "npm-run-all -p lint:*",
     "lint:jscpd": "jscpd . --exitCode 1 --config .config/.jscpd.json",
