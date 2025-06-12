@@ -1,0 +1,5 @@
+# llms.txt – Table of contents for LLM context
+
+components/
+├─ Button.md   ← ../packages/components/src/components/button/Button.md
+├─ Checkbox.md ← ../packages/components/src/components/checkbox/Checkbox.md
