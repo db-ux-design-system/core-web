@@ -47,6 +47,7 @@
 		"showcases/**/results/**",
 		"showcases/angular-showcase/.angular/cache",
 		"showcases/angular-showcase/.angular/cache/**",
+		"showcases/angular-showcase/src/app/app.component.html",
 		"showcases/angular-ssr-showcase/.angular/cache/**",
 		"showcases/next-showcase/pages/_app.tsx",
 		"showcases/nuxt-showcase/**",
@@ -57,7 +58,8 @@
 		"showcases/react-showcase/src/components/radio/index.tsx",
 		"showcases/react-showcase/src/components/radio/index.tsx",
 		"showcases/shared/*.json",
-		"showcases/vue-showcase/src/components/form/Form.vue"
+		"showcases/vue-showcase/src/components/form/Form.vue",
+		"showcases/vue-showcase/src/App.vue"
 	],
 	"absolute": true
 }

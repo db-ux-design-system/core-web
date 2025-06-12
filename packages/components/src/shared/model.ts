@@ -222,10 +222,6 @@ export type PopoverProps = {
 	width?: PopoverWidthType;
 };
 
-export type PopoverState = {
-	handleAutoPlacement: (parent?: HTMLElement) => void;
-};
-
 export type NameProps = {
 	/**
 	 * The name attribute gives the name of the element to group it.
@@ -327,6 +323,9 @@ export type FormProps = CustomFormProps &
 	ShowLabelProps &
 	ValueProps;
 
+export const FieldSizingList = ['fixed', 'content'] as const;
+export type FieldSizingType = (typeof FieldSizingList)[number];
+
 export type FormTextProps = {
 	/**
 	 * Maximum length (number of characters) of value
@@ -352,6 +351,12 @@ export type FormTextProps = {
 	 * The disabled attribute can be set to keep a user from edit on the form element
 	 */
 	readonly?: boolean | string;
+
+	/**
+	 * Adds shrinkwrap for input and textarea: https://developer.mozilla.org/en-US/docs/Web/CSS/field-sizing
+	 * Note: Only supported in Chromium browsers so far
+	 */
+	fieldSizing?: FieldSizingType;
 };
 
 export type FormSizeProps = {
@@ -760,3 +765,16 @@ export type AdditionalInformationSlotProps = {
 	 */
 	additionalInformation?: any;
 };
+
+export type DocumentScrollState = {
+	_documentScrollListenerCallbackId?: string;
+	handleDocumentScroll: (event: any, parent?: HTMLElement) => void;
+	_observer?: IntersectionObserver;
+};
+
+export type PopoverState = {
+	handleEscape: (event: any) => void;
+	handleAutoPlacement: (parent?: HTMLElement) => void;
+	handleEnter: (parent?: HTMLElement) => void;
+	handleLeave: (event?: any) => void;
+} & DocumentScrollState;

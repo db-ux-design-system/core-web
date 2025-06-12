@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import { DBTextarea } from '@components';
+import type { DBTextareaProps } from '@components/src/components/textarea/model';
 import DefaultComponent from '../default-component';
 import defaultComponentVariants from '../../../../shared/textarea.json';
-import type { DBTextareaProps } from '@components/src/components/textarea/model';
 import { getVariants } from '../data';
 import { type BaseComponentProps } from '../base-component-data';
 
@@ -22,7 +22,9 @@ const getTextarea = ({
 	showMessage,
 	validMessage,
 	validation,
-	invalidMessage
+	invalidMessage,
+	fieldSizing,
+	showResizer
 }: DBTextareaProps) => {
 	const [dynamicValue, setDynamicValue] = useState<string>(value);
 	return (
@@ -45,6 +47,8 @@ const getTextarea = ({
 			invalidMessage={invalidMessage}
 			validMessage={validMessage}
 			validation={validation}
+			showResizer={showResizer}
+			fieldSizing={fieldSizing}
 		/>
 	);
 };

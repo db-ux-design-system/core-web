@@ -21,6 +21,7 @@ import {
 	getBoolean,
 	getBooleanAsString,
 	getHideProp,
+	getOptionKey,
 	getSearchInput,
 	hasVoiceOver,
 	stringPropVisible,
@@ -55,8 +56,8 @@ import {
 } from '../../utils/form-components';
 import DBInput from '../input/input.lite';
 import { DocumentClickListener } from '../../utils/document-click-listener';
-import { handleFixedDropdown } from '../../utils/floating-components';
 import { DocumentScrollListener } from '../../utils/document-scroll-listener';
+import { handleFixedDropdown } from '../../utils/floating-components';
 
 useMetadata({
 	angular: {
@@ -166,6 +167,7 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 					new DocumentClickListener().addCallback((event) =>
 						state.handleDocumentClose(event)
 					);
+
 				state._documentScrollListenerCallbackId =
 					new DocumentScrollListener().addCallback((event) =>
 						state.handleDocumentScroll(event)
@@ -173,7 +175,7 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 
 				state.handleAutoPlacement();
 				state._observer?.observe(detailsRef);
-				if (!event.target.dataset['test']) {
+				if (!event.target.dataset.test) {
 					// We need this workaround for snapshot testing
 					state.handleOpenByKeyboardFocus();
 				}
@@ -223,9 +225,6 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 
 			return false;
 		},
-		getOptionKey: (option: CustomSelectOptionType) => {
-			return (option.id ?? option.value ?? uuid()).toString();
-		},
 		getTagRemoveLabel: (index: number) => {
 			if (
 				props.removeTagsTexts &&
@@ -249,6 +248,7 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 			if (detailsRef) {
 				const dropdown = detailsRef.querySelector('article');
 				if (dropdown) {
+					// This is a workaround for Angular
 					delay(() => {
 						handleFixedDropdown(
 							dropdown,
@@ -813,9 +813,10 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 									key={useTarget({
 										vue: undefined,
 										stencil: undefined,
-										default:
-											'native-select-option-' +
-											state.getOptionKey(option)
+										default: getOptionKey(
+											option,
+											'native-select-option-'
+										)
 									})}
 									disabled={option.disabled}
 									value={option.value}>
@@ -860,9 +861,10 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 											key={useTarget({
 												vue: undefined,
 												stencil: undefined,
-												default:
-													'tag-' +
-													state.getOptionKey(option)
+												default: getOptionKey(
+													option,
+													'tag-'
+												)
 											})}
 											removeButton={state.getTagRemoveLabel(
 												index
@@ -957,11 +959,10 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 													key={useTarget({
 														vue: undefined,
 														stencil: undefined,
-														default:
-															'custom-select-list-item-' +
-															state.getOptionKey(
-																option
-															)
+														default: getOptionKey(
+															option,
+															'custom-select-list-item-'
+														)
 													})}
 													type={
 														props.multiple
@@ -1023,7 +1024,6 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 								width="full"
 								icon="cross"
 								size="small"
-								type="button"
 								name={state._id}
 								form={state._id}
 								onClick={() => state.handleClose('close')}>

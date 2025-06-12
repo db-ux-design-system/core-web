@@ -363,6 +363,17 @@ $input-valid-types:
 			background-color: colors.$db-adaptive-bg-basic-transparent-hovered;
 		}
 
+		&:is(input, textarea) {
+			/* see https://developer.mozilla.org/en-US/docs/Web/CSS/field-sizing */
+			&[data-field-sizing="content"] {
+				field-sizing: content;
+			}
+
+			&[data-field-sizing="fixed"] {
+				field-sizing: fixed;
+			}
+		}
+
 		&:is(input, textarea):not(:disabled):read-only {
 			background-color: var(
 				--db-textarea-read-only,
@@ -492,7 +503,6 @@ $input-valid-types:
 		display: flex;
 		align-items: flex-start;
 		position: relative;
-		gap: variables.$db-spacing-fixed-xs;
 		color: var(
 			--db-check-element-label-color,
 			#{colors.$db-adaptive-on-bg-basic-emphasis-100-default}
@@ -513,6 +523,7 @@ $input-valid-types:
 		block-size: $font-size-height;
 		inline-size: $font-size-height;
 		padding: 0;
+		margin-inline-end: var(--db-spacing-fixed-xs);
 	}
 
 	&[data-size="small"] {

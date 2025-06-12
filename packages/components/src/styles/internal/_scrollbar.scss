@@ -7,6 +7,15 @@
 $scrollbar-width: helpers.px-to-rem(8);
 
 %scrollbar {
+	&[data-field-sizing="content"] {
+		&:is([data-hide-resizer="true"], [data-resize="none"]) {
+			@supports (field-sizing: content) {
+				/* We don't show a scrollbar if we use field-sizing: content and no resizer is available */
+				scrollbar-width: none;
+			}
+		}
+	}
+
 	&::-webkit-scrollbar {
 		@extend %default-transition;
 
@@ -124,7 +133,8 @@ $db-overflow-scroll-buttons-button: 22;
 			var(
 					--db-overflow-scroll-button-background-block-size,
 					#{variables.$db-spacing-fixed-sm}
-				) + #{variables.$db-sizing-md}
+				) +
+				#{variables.$db-sizing-md}
 		);
 		flex: 0 0 auto;
 	}
