@@ -1,0 +1,100 @@
+name: Commit Regenerated Snapshots
+
+on:
+  workflow_call:
+    inputs:
+      components:
+        description: "Regenerate snapshots for components"
+        required: true
+        type: boolean
+      foundations:
+        description: "Regenerate snapshots for foundations"
+        required: true
+        type: boolean
+      patternhub:
+        description: "Regenerate snapshots for patternhub"
+        required: true
+        type: boolean
+      showcases:
+        description: "Regenerate snapshots for showcases"
+        required: true
+        type: boolean
+
+jobs:
+  commit-showcases:
+    name: 🆙 Commit regenerated snapshots
+    if: (inputs.showcases || inputs.components || inputs.foundations || inputs.patternhub) && !contains(github.actor,'[bot]')
+    runs-on: ubuntu-24.04 # Use Ubuntu 24.04 explicitly
+    permissions:
+      contents: write
+      pull-requests: write
+    env:
+      NEW_PR_BRANCH: "${{ github.head_ref }}-auto"
+    steps:
+      - name: ⏬ Checkout repo
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.head_ref }}
+
+      - name: ⏬ Download components
+        uses: actions/download-artifact@v4
+        # Only download artifact if the artifact exists
+        if: inputs.components
+        with:
+          name: snapshots-components
+          path: ./__snapshots__/
+
+      - name: ⏬ Download foundations
+        uses: actions/download-artifact@v4
+        # Only download artifact if the artifact exists
+        if: inputs.foundations
+        with:
+          name: snapshots-foundations
+          path: ./__snapshots__/
+
+      - name: ⏬ Download patternhub
+        uses: actions/download-artifact@v4
+        if: inputs.patternhub
+        with:
+          name: snapshots-patternhub
+          path: ./__snapshots__/
+
+      - name: ⏬ Download showcase
+        uses: actions/download-artifact@v4
+        if: inputs.showcases
+        with:
+          name: snapshots-showcases
+          path: ./__snapshots__/
+
+      # https://docs.github.com/en/apps/creating-github-apps/authenticating-with-a-github-app/making-authenticated-api-requests-with-a-github-app-in-a-github-actions-workflow
+      - name: 🧬 Generate a token
+        id: generate-token
+        uses: actions/create-github-app-token@v2
+        with:
+          app-id: ${{ vars.AUTO_MERGE_APP_ID }}
+          private-key: ${{ secrets.AUTO_MERGE_PRIVATE_KEY }}
+
+      - name: 🏗️ Create new branch and commit changes
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          git checkout -b "$NEW_PR_BRANCH"
+          git add __snapshots__/*
+
+          # We can't use semantic commits here because of the if statement in the workflow
+          git commit --no-verify -m "auto update snapshots"
+          git push -f origin "$NEW_PR_BRANCH"
+
+      - name: 🪗 Create Pull Request
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh pr create --base ${{ github.head_ref }} --head "$NEW_PR_BRANCH" --title "Automated PR: Auto update snapshots" --body "This PR was created automatically by a GitHub Action."
+
+      - name: 🤖 Squash the PR
+        run: gh pr merge --squash "$NEW_PR_BRANCH"
+        env:
+          GITHUB_TOKEN: ${{ steps.generate-token.outputs.token }}
