@@ -1,6 +1,6 @@
 - main:
   - heading "DBNavigation" [level=1]
-  - link "Density arrow_up_right\" / \"":
+  - link "Density arrow_up_right\" / \""
   - text: Functional
   - navigation "Functional":
     - list:
@@ -8,9 +8,9 @@
         - button "Navi-Item 1 chevron_right\" / \""
       - listitem:
         - text: x_placeholder" / "
-        - link "Navi-Item 2":
+        - link "Navi-Item 2"
       - listitem:
-        - link "Navi-Item 3" [disabled]:
+        - link "Navi-Item 3" [disabled]
   - text: (Default) Regular
   - navigation "(Default) Regular":
     - list:
@@ -18,9 +18,9 @@
         - button "Navi-Item 1 chevron_right\" / \""
       - listitem:
         - text: x_placeholder" / "
-        - link "Navi-Item 2":
+        - link "Navi-Item 2"
       - listitem:
-        - link "Navi-Item 3" [disabled]:
+        - link "Navi-Item 3" [disabled]
   - text: Expressive
   - navigation "Expressive":
     - list:
@@ -28,6 +28,6 @@
         - button "Navi-Item 1 chevron_right\" / \""
       - listitem:
         - text: x_placeholder" / "
-        - link "Navi-Item 2":
+        - link "Navi-Item 2"
       - listitem:
-        - link "Navi-Item 3" [disabled]:
+        - link "Navi-Item 3" [disabled]
