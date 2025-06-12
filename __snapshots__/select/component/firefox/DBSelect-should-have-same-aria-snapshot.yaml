@@ -1,0 +1,7 @@
+- text: Label
+- combobox "Label":
+  - option "Test1"
+  - option "Test2"
+- text: Label information_circle" / " Description
+- status
+- text: chevron_down" / "
