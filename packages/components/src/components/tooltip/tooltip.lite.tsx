@@ -117,14 +117,19 @@ export default function DBTooltip(props: DBTooltipProps) {
 				}
 			}
 
-			state._observer = new IntersectionObserver((payload) => {
-				const entry = payload.find(
-					({ target }) => target === state.getParent()
-				);
-				if (entry && !entry.isIntersecting) {
-					state.handleEscape(false);
-				}
-			});
+			if (
+				typeof window !== 'undefined' &&
+				'IntersectionObserver' in window
+			) {
+				state._observer = new IntersectionObserver((payload) => {
+					const entry = payload.find(
+						({ target }) => target === state.getParent()
+					);
+					if (entry && !entry.isIntersecting) {
+						state.handleEscape(false);
+					}
+				});
+			}
 
 			state.initialized = false;
 		}
