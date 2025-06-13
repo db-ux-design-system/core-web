@@ -13,35 +13,19 @@ test.describe('DBCheckbox', () => {
 			if (nvda) {
 				await nvda?.next(); // Focus checkbox 2
 				await nvda?.act(); // Tick checkbox 2
-				await nvda?.next(); // Focus checkbox 2 label
-				await nvda?.next(); // Focus checkbox 2 message
-				await nvda?.previous(); // Focus checkbox 2 label
-				await nvda?.previous(); // Focus checkbox 2
 				await nvda?.act(); // Tick checkbox 2
 				await nvda?.next(); // Focus checkbox 2 label
 				await nvda?.next(); // Focus checkbox 2 message
-				await nvda?.next(); // Focus checkbox 3
 			} else if (voiceOver) {
 				await voiceOver?.next(); // Focus checkbox 1
 				await voiceOver?.next(); // Focus checkbox 1 label
 				await voiceOver?.clearSpokenPhraseLog();
 
 				await voiceOver?.next(); // Focus checkbox 2
-				await voiceOver?.next(); // Focus checkbox 2 label
-				await voiceOver?.next(); // Focus checkbox 3
-				await voiceOver?.previous(); // Focus checkbox 2 label
-				await voiceOver?.previous(); // Focus checkbox 2
+				await voiceOver?.act(); // Tick checkbox 2
 				await voiceOver?.act(); // Tick checkbox 2
 				await voiceOver?.next(); // Focus checkbox 2 label
 				await voiceOver?.next(); // Focus checkbox 2 message
-				await voiceOver?.next(); // Focus checkbox 3
-				await voiceOver?.previous(); // Focus checkbox 2 message
-				await voiceOver?.previous(); // Focus checkbox 2 label
-				await voiceOver?.previous(); // Focus checkbox 2
-				await voiceOver?.act(); // Tick checkbox 2
-				await voiceOver?.next(); // Focus checkbox 2 label
-				await voiceOver?.next(); // Focus checkbox 2 message
-				await voiceOver?.next(); // Focus checkbox 3
 			}
 		}
 	});

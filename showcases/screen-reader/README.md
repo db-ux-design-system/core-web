@@ -16,13 +16,13 @@ Start a test with these commands (ensure a build or start a watcher previous to 
 ### MacOS
 
 ```shell
-npm run test:screen-reader:macos --workspace=react-showcase -- --ui
+npm run test-sr:macos --workspace=react-showcase -- --ui
 ```
 
 ### Windows
 
 ```shell
-npm run test:screen-reader:windows --workspace=react-showcase -- --ui
+npm run test-sr:windows --workspace=react-showcase -- --ui
 ```
 
 ## Gotchas
