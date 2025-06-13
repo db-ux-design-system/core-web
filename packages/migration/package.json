@@ -26,13 +26,13 @@
   },
   "dependencies": {
     "commander": "^14.0.0",
-    "glob": "^11.0.2",
+    "glob": "^11.0.3",
     "replace-in-file": "^8.3.0"
   },
   "devDependencies": {
     "cpr": "3.0.1",
     "esbuild": "0.25.5",
-    "tsx": "^4.20.1",
+    "tsx": "^4.20.2",
     "vitest": "^3.2.3"
   },
   "publishConfig": {
