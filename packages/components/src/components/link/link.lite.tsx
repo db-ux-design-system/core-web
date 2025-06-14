@@ -35,7 +35,7 @@ export default function DBLink(props: DBLinkProps) {
 			target={props.target}
 			rel={props.rel}
 			role={props.role}
-			hrefLang={props.hreflang}
+			hrefLang={props.hreflang ?? props.hrefLang}
 			aria-disabled={getBooleanAsString(props.disabled)}
 			tabIndex={props.disabled ? -1 : 0}
 			aria-selected={getBooleanAsString(props.selected)}
@@ -48,9 +48,8 @@ export default function DBLink(props: DBLinkProps) {
 			onClick={(event: ClickEvent<HTMLAnchorElement>) =>
 				state.handleClick(event)
 			}>
-			<Show when={props.text} else={props.children}>
-				{props.text}
-			</Show>
+			{/* prettier-ignore */}
+			<Show when={props.text} else={props.children}>{props.text}</Show>
 		</a>
 	);
 }
