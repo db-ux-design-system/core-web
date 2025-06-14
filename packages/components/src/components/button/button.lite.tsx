@@ -3,7 +3,8 @@ import {
 	useDefaultProps,
 	useMetadata,
 	useRef,
-	useStore
+	useStore,
+	useTarget
 } from '@builder.io/mitosis';
 import type { DBButtonProps, DBButtonState } from './model';
 import { cls, getBoolean, getBooleanAsString, getHideProp } from '../../utils';
@@ -51,9 +52,13 @@ export default function DBButton(props: DBButtonProps) {
 			aria-describedby={props.describedbyid}
 			aria-expanded={props.ariaexpanded}
 			aria-pressed={props.ariapressed}
-			onClick={(event: ClickEvent<HTMLButtonElement>) =>
-				state.handleClick(event)
-			}>
+			{...useTarget({
+				vue: {
+					onClick: (event: ClickEvent<HTMLButtonElement>) =>
+						state.handleClick(event)
+				},
+				default: {}
+			})}>
 			<Show when={props.text} else={props.children}>
 				{props.text}
 			</Show>
