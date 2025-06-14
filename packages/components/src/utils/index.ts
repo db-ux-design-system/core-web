@@ -1,3 +1,5 @@
+import { ClickEvent, GeneralKeyboardEvent } from '../shared/model';
+
 export const uuid = () => {
 	if (typeof window !== 'undefined') {
 		if (window.crypto?.randomUUID) {
@@ -150,3 +152,8 @@ export const getOptionKey = (
 	const key = option.id ?? option.value ?? uuid();
 	return `${prefix}${key}`;
 };
+
+export const isKeyboardEvent = <T>(
+	event?: ClickEvent<T> | GeneralKeyboardEvent<T>
+): event is GeneralKeyboardEvent<T> =>
+	(event as GeneralKeyboardEvent<T>).key !== undefined;

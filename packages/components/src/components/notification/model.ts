@@ -1,4 +1,5 @@
 import {
+	ClickEvent,
 	CloseEventProps,
 	CloseEventState,
 	GlobalProps,
@@ -85,7 +86,7 @@ export type DBNotificationDefaultProps = {
 
 export type DBNotificationProps = DBNotificationDefaultProps &
 	GlobalProps &
-	CloseEventProps &
+	CloseEventProps<ClickEvent<HTMLButtonElement>> &
 	IconProps &
 	SemanticProps &
 	InnerCloseButtonProps &
@@ -97,4 +98,4 @@ export type DBNotificationDefaultState = {};
 
 export type DBNotificationState = DBNotificationDefaultState &
 	GlobalState &
-	CloseEventState;
+	CloseEventState<ClickEvent<HTMLButtonElement>>;

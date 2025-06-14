@@ -10,7 +10,8 @@ import {
 import { DBDrawerProps, DBDrawerState } from './model';
 import DBButton from '../button/button.lite';
 import { DEFAULT_CLOSE_BUTTON } from '../../shared/constants';
-import { cls, delay, getBooleanAsString } from '../../utils';
+import { cls, delay, getBooleanAsString, isKeyboardEvent } from '../../utils';
+import { ClickEvent, GeneralKeyboardEvent } from '../../shared/model';
 
 useMetadata({});
 
@@ -21,24 +22,40 @@ export default function DBDrawer(props: DBDrawerProps) {
 	const dialogContainerRef = useRef<HTMLDivElement | any>(null);
 	const state = useStore<DBDrawerState>({
 		// eslint-disable-next-line @typescript-eslint/no-explicit-any
-		handleClose: (event: any, forceClose?: boolean) => {
-			if (event.key === 'Escape') {
-				event.preventDefault();
-			}
+		handleClose: (
+			event?:
+				| ClickEvent<HTMLButtonElement | HTMLDialogElement>
+				| GeneralKeyboardEvent<HTMLDialogElement>
+				| void,
+			forceClose?: boolean
+		) => {
+			if (!event) return;
 
-			if (forceClose) {
-				event.stopPropagation();
-			}
+			if (isKeyboardEvent<HTMLButtonElement | HTMLDialogElement>(event)) {
+				if (event.key === 'Escape') {
+					event.preventDefault();
 
-			if (
-				forceClose ||
-				event.key === 'Escape' ||
-				(event.target.nodeName === 'DIALOG' &&
+					if (props.onClose) {
+						props.onClose(event);
+					}
+				}
+			} else {
+				if (forceClose) {
+					event.stopPropagation();
+
+					if (props.onClose) {
+						props.onClose(event);
+					}
+				}
+
+				if (
+					(event.target as any)?.nodeName === 'DIALOG' &&
 					event.type === 'click' &&
-					props.backdrop !== 'none')
-			) {
-				if (props.onClose) {
-					props.onClose(event);
+					props.backdrop !== 'none'
+				) {
+					if (props.onClose) {
+						props.onClose(event);
+					}
 				}
 			}
 		},

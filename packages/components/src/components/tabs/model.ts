@@ -1,5 +1,6 @@
 import {
 	AlignmentProps,
+	InputEvent,
 	GlobalProps,
 	GlobalState,
 	InitializedState,
@@ -43,36 +44,38 @@ export type DBTabsDefaultProps = {
 	name?: string;
 
 	/**
-	 * Informs the user if the current tab index has changed.
+	 * Provide simple tabs with label + text as content
 	 */
-	onIndexChange?: (index?: number) => void;
+	tabs?: DBSimpleTabProps[] | string;
+};
 
-	/**
-	 * Informs the user if another tab has been selected.
-	 */
-	onTabSelect?: (event?: Event) => void;
-
+export type DBTabsEventProps = {
 	/**
 	 * Informs the user if the current tab index has changed.
 	 */
 	indexChange?: (index?: number) => void;
 
 	/**
+	 * Informs the user if the current tab index has changed.
+	 */
+	onIndexChange?: (index?: number) => void;
+	/**
 	 * Informs the user if another tab has been selected.
 	 */
-	tabSelect?: (event?: Event) => void;
+	onTabSelect?: (event?: InputEvent<HTMLElement>) => void;
 
 	/**
-	 * Provide simple tabs with label + text as content
+	 * Informs the user if another tab has been selected.
 	 */
-	tabs?: DBSimpleTabProps[] | string;
+	tabSelect?: (event?: InputEvent<HTMLElement>) => void;
 };
 
 export type DBTabsProps = DBTabsDefaultProps &
 	GlobalProps &
 	OrientationProps &
 	WidthProps &
-	AlignmentProps;
+	AlignmentProps &
+	DBTabsEventProps;
 
 export type DBTabsDefaultState = {
 	_name: string;
@@ -84,7 +87,7 @@ export type DBTabsDefaultState = {
 	convertTabs: () => DBSimpleTabProps[];
 	initTabList: () => void;
 	initTabs: (init?: boolean) => void;
-	handleChange: (event: any) => void;
+	handleChange: (event: InputEvent<HTMLElement>) => void;
 };
 
 export type DBTabsState = DBTabsDefaultState & GlobalState & InitializedState;

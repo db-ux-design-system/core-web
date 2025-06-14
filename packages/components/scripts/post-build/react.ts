@@ -27,6 +27,14 @@ const overwriteEvents = (tmp?: boolean) => {
 		'export type InteractionEvent<T> = FocusEvent;',
 		'export type InteractionEvent<T> = React.FocusEvent<T>;'
 	);
+	modelFileContent = modelFileContent.replace(
+		'export type GeneralEvent<T> = Event;',
+		'export type GeneralEvent<T> = React.SyntheticEvent<T>;'
+	);
+	modelFileContent = modelFileContent.replace(
+		'export type GeneralKeyboardEvent<T> = KeyboardEvent;',
+		'export type GeneralKeyboardEvent<T> = React.KeyboardEvent<T>;'
+	);
 	writeFileSync(modelFilePath, modelFileContent);
 };
 
