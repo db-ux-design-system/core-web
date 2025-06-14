@@ -9,19 +9,7 @@ import {
 	useStore,
 	useTarget
 } from '@builder.io/mitosis';
-import {
-	cls,
-	delay,
-	getBoolean,
-	getHideProp,
-	getNumber,
-	hasVoiceOver,
-	isArrayOfStrings,
-	stringPropVisible,
-	uuid,
-	getInputValue
-} from '../../utils';
-import { DBInputProps, DBInputState } from './model';
+
 import {
 	DEFAULT_DATALIST_ID_SUFFIX,
 	DEFAULT_INVALID_MESSAGE,
@@ -38,11 +26,25 @@ import {
 	InteractionEvent,
 	ValueLabelType
 } from '../../shared/model';
-import DBInfotext from '../infotext/infotext.lite';
+import {
+	cls,
+	delay,
+	getBoolean,
+	getBooleanAsString,
+	getHideProp,
+	getInputValue,
+	getNumber,
+	hasVoiceOver,
+	isArrayOfStrings,
+	stringPropVisible,
+	uuid
+} from '../../utils';
 import {
 	handleFrameworkEventAngular,
 	handleFrameworkEventVue
 } from '../../utils/form-components';
+import DBInfotext from '../infotext/infotext.lite';
+import { DBInputProps, DBInputState } from './model';
 
 useMetadata({
 	angular: {
@@ -215,6 +217,9 @@ export default function DBInput(props: DBInputProps) {
 				placeholder={props.placeholder ?? DEFAULT_PLACEHOLDER}
 				disabled={getBoolean(props.disabled, 'disabled')}
 				required={getBoolean(props.required, 'required')}
+				{...(getBooleanAsString(props.requiredAnnotation) === 'false'
+					? { 'data-required-icon': 'false' }
+					: {})}
 				step={getNumber(props.step)}
 				value={props.value ?? state._value}
 				maxLength={getNumber(props.maxLength, props.maxlength)}
