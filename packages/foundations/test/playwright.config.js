@@ -36,7 +36,11 @@ const config = {
 		baseURL: `http://localhost:5173/`,
 
 		/* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
-		trace: process.env.CI ? 'on-first-retry' : 'on'
+		trace: process.env.CI ? 'on-first-retry' : 'on',
+		/* We only need to test our static screenshots without the animations */
+		emulateMedia: {
+			reducedMotion: 'reduce'
+		}
 	},
 	webServer: {
 		command: `npm run dev`,
