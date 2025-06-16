@@ -118,7 +118,7 @@ export const handleFixedDropdown = (
 	element.style.position = 'fixed';
 };
 
-const getFloatingProps = (
+export const getFloatingProps = (
 	element: HTMLElement,
 	parent: HTMLElement,
 	placement: string
