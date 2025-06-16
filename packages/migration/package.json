@@ -32,7 +32,7 @@
   "devDependencies": {
     "cpr": "3.0.1",
     "esbuild": "0.25.5",
-    "tsx": "^4.20.2",
+    "tsx": "^4.20.3",
     "vitest": "^3.2.3"
   },
   "publishConfig": {
