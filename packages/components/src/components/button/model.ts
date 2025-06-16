@@ -10,20 +10,48 @@ import {
 	WidthProps
 } from '../../shared/model';
 
+/**
+ * Represents the list of possible button variants.
+ * These variants define the visual style of the button.
+ */
 export const ButtonVariantList = [
 	'outlined',
 	'brand',
 	'filled',
 	'ghost'
 ] as const;
+/**
+ * Type representing a single button variant.
+ * It is derived from the `ButtonVariantList` array.
+ */
 export type ButtonVariantType = (typeof ButtonVariantList)[number];
 
+/**
+ * Represents the list of possible button types.
+ * These types define the behavior of the button.
+ */
 export const ButtonTypeList = ['button', 'reset', 'submit'] as const;
+/**
+ * Type representing a single button type.
+ * It is derived from the `ButtonTypeList` array.
+ */
 export type ButtonTypeType = (typeof ButtonTypeList)[number];
 
+/**
+ * Represents the list of possible button states.
+ * These states define the current status of the button.
+ */
 export const ButtonStateList = ['loading'] as const;
+/**
+ * Type representing a single button state.
+ * It is derived from the `ButtonStateList` array.
+ */
 export type ButtonStateType = (typeof ButtonStateList)[number];
 
+/**
+ * Represents the default properties for the DBButton component.
+ * These properties define the behavior and accessibility attributes of the button.
+ */
 export type DBButtonDefaultProps = {
 	/**
 	 * If the button controls a grouping of other elements, the ariaexpanded state [indicates whether the controlled grouping is currently expanded or collapsed](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-expanded).
@@ -81,6 +109,10 @@ export type DBButtonDefaultProps = {
 	variant?: ButtonVariantType | string;
 };
 
+/**
+ * Represents the properties for the `DBButton` component.
+ * Combines default button properties (`DBButtonDefaultProps`) with global, click event, icon, width, size, show icon, and text-related properties.
+ */
 export type DBButtonProps = DBButtonDefaultProps &
 	GlobalProps &
 	ClickEventProps<HTMLButtonElement> &
@@ -90,8 +122,16 @@ export type DBButtonProps = DBButtonDefaultProps &
 	ShowIconProps &
 	TextProps;
 
+/**
+ * Represents the default state of the `DBButton` component.
+ * Currently, it is an empty object.
+ */
 export type DBButtonDefaultState = {};
 
+/**
+ * Represents the state for the `DBButton` component.
+ * Combines the default state (`DBButtonDefaultState`) with global state and click event state properties.
+ */
 export type DBButtonState = DBButtonDefaultState &
 	GlobalState &
 	ClickEventState<HTMLButtonElement>;
