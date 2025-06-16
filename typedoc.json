@@ -1,0 +1,19 @@
+{
+	"entryPoints": [
+		"packages/components/src/components/button/model.ts",
+		"packages/components/src/components/button/Button.lite.tsx"
+	],
+	"entryPointStrategy": "expand",
+	"out": "packages/components/docs/api/button",
+	"plugin": ["typedoc-plugin-markdown"],
+	"readme": "none",
+
+	"entryFileName": "Button.md",
+	"outputFileStrategy": "modules",
+
+	"hideBreadcrumbs": true,
+	"hidePageTitle": true,
+	"disableSources": true,
+	"excludePrivate": true,
+	"excludeProtected": true
+}
