@@ -9,7 +9,7 @@ This may leave some older browser versions behind. If you need to take care of t
 | Web Feature                                                                                         | Google Chrome    | Mozilla Firefox | Apple Safari             |
 | --------------------------------------------------------------------------------------------------- | ---------------- | --------------- | ------------------------ |
 | [CSS `field-sizing: content` property](https://caniuse.com/mdn-css_properties_field-sizing_content) | 123 (19.03.2024) | tbd             | Technology Preview (220) |
-| [Customizable select elements](https://caniuse.com/selectlist)                                      | 134 (19.03.2024) | tbd             | tbd                      |
+| [Customizable select elements](https://caniuse.com/selectlist) (planned)                            | 134 (19.03.2024) | tbd             | tbd                      |
 
 ## Without graceful degradation
 
