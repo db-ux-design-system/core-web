@@ -4,7 +4,6 @@
 .db-custom-select-list {
 	all: unset;
 	padding: variables.$db-spacing-fixed-sm;
-	overflow-y: auto;
 	overflow-block: auto;
 
 	&::-webkit-scrollbar-button:single-button:vertical:decrement {

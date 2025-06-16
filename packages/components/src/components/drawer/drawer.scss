@@ -99,7 +99,6 @@ $spacings: (
 			#{map.get($spacing, "inline")}
 		);
 		// TODO: Evaluate whether we need overflow: hidden and that for only specifically set y here.
-		overflow-y: auto;
 		overflow-block: auto;
 	}
 }
