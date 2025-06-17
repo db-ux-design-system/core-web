@@ -24,7 +24,7 @@ runs:
       with:
         node-version: ${{ inputs.nodeVersion }}
 
-    - name: Display node and npm version
+    - name: 🖼️ Display node and npm version
       shell: bash
       run: |
         node --version
