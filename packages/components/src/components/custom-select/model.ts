@@ -1,6 +1,5 @@
 import {
 	BaseFormProps,
-	ClickEvent,
 	CloseEventState,
 	CustomFormProps,
 	DocumentScrollState,
