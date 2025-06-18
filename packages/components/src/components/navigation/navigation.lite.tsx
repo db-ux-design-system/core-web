@@ -1,4 +1,5 @@
 import {
+	onMount,
 	onUpdate,
 	Show,
 	useDefaultProps,
@@ -23,7 +24,9 @@ export default function DBNavigation(props: DBNavigationProps) {
 	const state = useStore<DBNavigationState>({
 		showScrollLeft: false,
 		showScrollRight: false,
+		_shellDesktopPosition: undefined,
 		_variant: undefined,
+		initialized: false,
 		evaluateScrollButtons(tList: Element) {
 			const needsScroll = tList.scrollWidth > tList.clientWidth;
 			const scrollLeft = Math.ceil(tList.scrollLeft);
@@ -45,66 +48,60 @@ export default function DBNavigation(props: DBNavigationProps) {
 			});
 		},
 		onScroll() {
-			if (!props.variant || props.variant === 'popover') {
-				handleSubNavigationPosition(menuRef);
-			}
 			state.evaluateScrollButtons(menuRef);
 		}
 	});
 
+	onMount(() => {
+		state.initialized = true;
+	});
+
 	onUpdate(() => {
-		if (_ref) {
-			const element = _ref as HTMLElement;
-			let endVariant = props.variant ?? 'popover';
+		if (_ref && state.initialized) {
+			delay(() => {
+				const element = _ref as HTMLElement;
+				let endVariant = props.variant ?? 'popover';
 
-			const parentClassList = element.parentElement?.nodeName.startsWith(
-				'DB'
-			)
-				? element.parentElement?.parentElement?.classList
-				: element.parentElement?.classList;
+				const parentClassList =
+					element.parentElement?.nodeName.startsWith('DB')
+						? element.parentElement?.parentElement?.classList
+						: element.parentElement?.classList;
 
-			const shell = element.closest('.db-shell');
-			const shellDesktopPosition = shell?.getAttribute(
-				'data-control-panel-desktop-position'
-			);
-			const shellSubNaviDesktopPosition = shell?.getAttribute(
-				'data-sub-navigation-desktop-position'
-			);
-			const requiresPopover =
-				(shellDesktopPosition === 'top' &&
-					parentClassList?.contains(
-						'db-control-panel-desktop-scroll-container'
-					)) ||
-				((shellSubNaviDesktopPosition === 'top' ||
-					shellDesktopPosition === 'left') &&
-					parentClassList?.contains('db-sub-navigation-container'));
+				const shell = element.closest('.db-shell');
+				const shellDesktopPosition = shell?.getAttribute(
+					'data-control-panel-desktop-position'
+				);
+				const shellSubNaviDesktopPosition = shell?.getAttribute(
+					'data-sub-navigation-desktop-position'
+				);
+				state._shellDesktopPosition = shellDesktopPosition;
+				const requiresPopover =
+					(shellDesktopPosition === 'top' &&
+						parentClassList?.contains(
+							'db-control-panel-desktop-scroll-container'
+						)) ||
+					((shellSubNaviDesktopPosition === 'top' ||
+						shellDesktopPosition === 'left') &&
+						parentClassList?.contains(
+							'db-sub-navigation-container'
+						));
 
-			if (requiresPopover) {
-				endVariant = 'popover';
-			}
+				if (requiresPopover) {
+					endVariant = 'popover';
+				}
 
-			state._variant = endVariant;
+				state._variant = endVariant;
+			}, 1);
 		}
-	}, [_ref, props.variant]);
+	}, [_ref, props.variant, state.initialized]);
 
 	onUpdate(() => {
 		if (menuRef && state._variant) {
 			if (!state._variant || state._variant === 'popover') {
-				useTarget({
-					angular: () => {
-						delay(() => {
-							handleSubNavigationPosition(menuRef);
-						}, 300);
-					},
-					stencil: () => {
-						delay(() => {
-							handleSubNavigationPosition(menuRef);
-						}, 300);
-					},
-					default: () => {
-						handleSubNavigationPosition(menuRef);
-					}
-				});
+				handleSubNavigationPosition(
+					menuRef,
+					state._shellDesktopPosition === 'left' ? 1 : 0
+				);
 			} else if (state._variant === 'tree') {
 				for (const menu of Array.from(
 					(menuRef as HTMLElement).querySelectorAll(
@@ -127,12 +124,9 @@ export default function DBNavigation(props: DBNavigationProps) {
 				}
 			}
 
-
-			delay(() => {
-				state.evaluateScrollButtons(menuRef);
-			}, 300);
+			state.evaluateScrollButtons(menuRef);
 		}
-	}, [menuRef, state._variant]);
+	}, [menuRef, state._variant, state._shellDesktopPosition]);
 
 	return (
 		<nav

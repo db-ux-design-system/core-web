@@ -225,3 +225,9 @@ app-secondary-actions,
 app-nav-item {
 	display: contents;
 }
+
+.hide-sub-navigation {
+	.db-sub-navigation-container {
+		display: none;
+	}
+}

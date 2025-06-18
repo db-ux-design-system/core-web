@@ -249,9 +249,13 @@ export const handleFixedPopover = (
 	parent: HTMLElement,
 	placement: string
 ) => {
-	const distance =
-		getComputedStyle(element).getPropertyValue('--db-popover-distance') ??
-		'0px';
+	let distance = getComputedStyle(element).getPropertyValue(
+		'--db-popover-distance'
+	);
+
+	if (!distance.length) {
+		distance = '0px';
+	}
 
 	const {
 		top,

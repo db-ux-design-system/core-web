@@ -23,15 +23,17 @@ export default function DBControlPanelMobile(props: DBControlPanelMobileProps) {
 	const state = useStore<DBControlPanelMobileState>({
 		open: false,
 		handleToggle: (event: any) => {
-			if (event.stopPropagation) {
-				event.stopPropagation();
-			}
+			if (typeof event.detail !== 'object') {
+				if (event.stopPropagation) {
+					event.stopPropagation();
+				}
 
-			const reverseOpen = !state.open;
-			state.open = reverseOpen;
+				const reverseOpen = !state.open;
+				state.open = reverseOpen;
 
-			if (props.onToggle) {
-				props.onToggle(reverseOpen);
+				if (props.onToggle) {
+					props.onToggle(reverseOpen);
+				}
 			}
 		},
 		handleNavigationItemClick: (event: any) => {

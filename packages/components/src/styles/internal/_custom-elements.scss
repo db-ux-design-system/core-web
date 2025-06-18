@@ -11,6 +11,7 @@ $custom-elements: //hygen-insert
 	db-card, db-checkbox, db-divider, db-drawer, db-control-panel-desktop,
 	db-icon, db-infotext, db-input, db-link, db-shell, db-section, db-tab;
 
+/* Components */
 $control-panel-desktop: "> .db-control-panel-desktop, db-control-panel-desktop > .db-control-panel-desktop";
 $control-panel-mobile: "> .db-control-panel-mobile, db-control-panel-mobile > .db-control-panel-mobile";
 $control-panel-brand: "> .db-control-panel-brand, db-control-panel-brand > .db-control-panel-brand";
@@ -21,3 +22,7 @@ $navigation: "db-navigation > .db-navigation, > .db-navigation";
 $navigation-item: "db-navigation-item > .db-navigation-item, > .db-navigation-item";
 $navigation-item-group: "db-navigation-item-group > .db-navigation-item-group, > .db-navigation-item-group";
 $drawer: "db-drawer > .db-drawer, > .db-drawer";
+
+/* Sub components */
+$overflow-scroll-right-button: "> .overflow-scroll-right-button, > db-button > .overflow-scroll-right-button";
+$overflow-scroll-left-button: "> .overflow-scroll-left-button, > db-button > .overflow-scroll-left-button";

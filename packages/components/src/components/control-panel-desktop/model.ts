@@ -25,7 +25,9 @@ export type DBControlPanelDesktopProps = DBControlPanelDesktopDefaultProps &
 	ContentPanelProps &
 	OrientationProps;
 
-export type DBControlPanelDesktopDefaultState = object;
+export type DBControlPanelDesktopDefaultState = {
+	onScroll: () => void;
+};
 
 export type DBControlPanelDesktopState = DBControlPanelDesktopDefaultState &
 	GlobalState &

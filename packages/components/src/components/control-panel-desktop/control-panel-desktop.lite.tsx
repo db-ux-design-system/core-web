@@ -9,9 +9,10 @@ import {
 	DBControlPanelDesktopProps,
 	DBControlPanelDesktopState
 } from './model';
-import { cls, uuid } from '../../utils';
+import { cls, getBooleanAsString, uuid } from '../../utils';
 import DBButton from '../button/button.lite';
 import DBTooltip from '../tooltip/tooltip.lite';
+import { handleSubNavigationPosition } from '../../utils/navigation';
 
 useMetadata({});
 
@@ -21,20 +22,37 @@ export default function DBControlPanelDesktop(
 	props: DBControlPanelDesktopProps
 ) {
 	const _ref = useRef<HTMLDivElement | any>(null);
+	const _scrollContainerRef = useRef<HTMLDivElement | any>(null);
 	// jscpd:ignore-start
 	const state = useStore<DBControlPanelDesktopState>({
 		_id: `db-control-panel-desktop-${uuid()}`,
 		_open: true,
 		// eslint-disable-next-line @typescript-eslint/no-unused-vars
 		handleToggle: (event: any) => {
-			event.stopPropagation();
+			if (typeof event.detail !== 'object') {
+				event.stopPropagation();
 
-			state._open = !state._open;
+				state._open = !state._open;
+			}
 		},
 		getToggleButtonText: (): string => {
 			return state._open
-				? props.leftPositionToggleButtonCollapse ?? 'Collapse'
-				: props.leftPositionToggleButtonExpand ?? 'Expand';
+				? (props.leftPositionToggleButtonCollapse ?? 'Collapse')
+				: (props.leftPositionToggleButtonExpand ?? 'Expand');
+		},
+		onScroll() {
+			if (!_scrollContainerRef) return;
+			const popoverNavigation: HTMLElement | null = (
+				_scrollContainerRef as HTMLDivElement
+			).querySelector('.db-navigation[data-variant="popover"]');
+
+			if (!popoverNavigation) return;
+
+			const navigationMenu = popoverNavigation.querySelector('menu');
+
+			if (navigationMenu) {
+				handleSubNavigationPosition(navigationMenu);
+			}
 		}
 	});
 
@@ -47,9 +65,12 @@ export default function DBControlPanelDesktop(
 			id={props.id ?? state._id}
 			data-width={props.width}
 			data-orientation={props.orientation}
-			data-open={state._open}>
+			data-open={getBooleanAsString(state._open)}>
 			<Slot name="brand" />
-			<div class="db-control-panel-desktop-scroll-container">
+			<div
+				ref={_scrollContainerRef}
+				class="db-control-panel-desktop-scroll-container"
+				onScroll={() => state.onScroll()}>
 				{props.children}
 				<Slot name="metaNavigation" />
 			</div>

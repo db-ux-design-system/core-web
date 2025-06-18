@@ -7,6 +7,7 @@ import {
 	GlobalProps,
 	GlobalState,
 	IconProps,
+	InitializedState,
 	NavigationBackButtonProps,
 	NavigationBehaviorState,
 	NavigationItemGroupVariant,
@@ -49,9 +50,13 @@ export type DBNavigationItemGroupDefaultState = {
 	hasPopup?: boolean;
 	navigationItemSafeTriangle?: NavigationItemSafeTriangle;
 	autoClose?: boolean;
+	onScroll: () => void;
+	handleEscape: (event: any) => void;
+	forceClose: () => void;
 };
 
 export type DBNavigationItemGroupState = DBNavigationItemGroupDefaultState &
 	ClickEventState<HTMLButtonElement> &
 	GlobalState &
-	NavigationBehaviorState;
+	NavigationBehaviorState &
+	InitializedState;

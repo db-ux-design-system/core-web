@@ -1,4 +1,5 @@
 import {
+	onMount,
 	onUpdate,
 	Slot,
 	useDefaultProps,
@@ -35,21 +36,32 @@ export default function DBNavigationItemGroup(
 ) {
 	// This is used as forwardRef
 	const _ref = useRef<HTMLLIElement | any>(undefined);
+	const _menuRef = useRef<HTMLElement | any>(undefined);
+	const _buttonRef = useRef<HTMLButtonElement | any>(undefined);
 	// jscpd:ignore-start
 	const state = useStore<DBNavigationItemGroupState>({
 		hasSubNavigation: true,
 		isSubNavigationExpanded: false,
 		autoClose: false,
 		hasPopup: false,
+		initialized: false,
 		subNavigationId: 'db-navigation-item-group-menu-' + uuid(),
 		navigationItemSafeTriangle: undefined,
+		onScroll: () => {
+			if (state.hasPopup) {
+				handleSubNavigationPosition(_ref);
+			}
+		},
 		handleNavigationItemClick: (event: any) => {
 			if (event?.target?.nodeName === 'A') {
-				state.autoClose = true;
-				delay(() => {
-					state.autoClose = false;
-				}, 300);
+				state.forceClose();
 			}
+		},
+		forceClose: () => {
+			state.autoClose = true;
+			delay(() => {
+				state.autoClose = false;
+			}, 300);
 		},
 		handleClick: (event: ClickEvent<HTMLButtonElement> | any) => {
 			if (props.onClick) {
@@ -62,9 +74,19 @@ export default function DBNavigationItemGroup(
 		handleBackClick: (event: ClickEvent<HTMLButtonElement> | any) => {
 			event.stopPropagation();
 			state.isSubNavigationExpanded = false;
+		},
+		handleEscape: (event: any) => {
+			if (!event || event.key === 'Escape') {
+				state.forceClose();
+				_buttonRef.blur();
+			}
 		}
 	});
 	// jscpd:ignore-end
+
+	onMount(() => {
+		state.initialized = true;
+	});
 
 	onUpdate(() => {
 		if (props.subNavigationExpanded !== undefined) {
@@ -76,31 +98,38 @@ export default function DBNavigationItemGroup(
 	}, [props.subNavigationExpanded]);
 
 	onUpdate(() => {
-		if (_ref) {
+		if (_ref && state.initialized) {
+			state.initialized = false;
 			const element = _ref as HTMLLIElement;
-			const subNavigationSlot = element.querySelector('menu');
-
 			const nav = element.closest<HTMLElement>('.db-navigation');
 
-			const popover =
+			state.hasPopup =
 				!nav ||
 				!nav.dataset['variant'] ||
 				nav.dataset['variant'] === 'popover';
-
-			if (subNavigationSlot && popover) {
-				state.hasPopup = true;
-				if (!state.navigationItemSafeTriangle) {
-					delay(() => {
-						state.navigationItemSafeTriangle =
-							new NavigationItemSafeTriangle(
-								_ref,
-								subNavigationSlot
-							);
-					}, 1);
-				}
-			}
 		}
-	}, [_ref]);
+	}, [_ref, state.initialized]);
+
+	onUpdate(() => {
+		if (
+			_ref &&
+			_buttonRef &&
+			_menuRef &&
+			state.hasPopup &&
+			!state.navigationItemSafeTriangle
+		) {
+			delay(() => {
+				state.navigationItemSafeTriangle =
+					new NavigationItemSafeTriangle(_ref, _menuRef);
+			}, 1);
+
+			['mouseenter', 'focusin'].forEach((event) => {
+				_ref.addEventListener(event, () =>
+					handleSubNavigationPosition(_menuRef)
+				);
+			});
+		}
+	}, [_ref, _menuRef, _buttonRef, state.hasPopup]);
 
 	return (
 		<li
@@ -113,17 +142,25 @@ export default function DBNavigationItemGroup(
 			onMouseMove={(event: any) =>
 				state.navigationItemSafeTriangle?.followByMouseEvent(event)
 			}
+			onKeyDown={(event) => state.handleEscape(event)}
 			class={cls('db-navigation-item-group', props.className)}
 			data-width={props.width}
 			data-icon={props.icon}
+			data-pride={getBooleanAsString(props.pride)}
 			data-hide-icon={getHideProp(props.showIcon)}
 			data-active={props.active}
 			data-wrap={getBooleanAsString(props.wrap)}
 			aria-disabled={getBooleanAsString(props.disabled)}>
 			<button
-				aria-haspopup={state.hasPopup ? true : undefined}
+				ref={_buttonRef}
+				type="button"
+				aria-haspopup={getBooleanAsString(
+					state.hasPopup ? true : undefined
+				)}
 				aria-owns={state.hasPopup ? undefined : state.subNavigationId}
-				aria-expanded={state.isSubNavigationExpanded}
+				aria-expanded={getBooleanAsString(
+					state.isSubNavigationExpanded
+				)}
 				class="db-navigation-item-group-expand-button"
 				disabled={getBoolean(props.disabled, 'disabled')}
 				onClick={(event: ClickEvent<HTMLButtonElement>) =>
@@ -134,11 +171,12 @@ export default function DBNavigationItemGroup(
 			</button>
 
 			<menu
+				ref={_menuRef}
 				class="db-navigation-item-group-menu"
 				role="group"
 				data-force-close={getBooleanAsString(state.autoClose)}
 				id={state.subNavigationId}
-				onScroll={() => handleSubNavigationPosition(_ref)}
+				onScroll={() => state.onScroll()}
 				onClick={(event) => state.handleNavigationItemClick(event)}>
 				<div class="db-navigation-item-group-back-button">
 					<DBButton

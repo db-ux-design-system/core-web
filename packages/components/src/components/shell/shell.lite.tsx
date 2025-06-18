@@ -52,7 +52,6 @@ export default function DBShell(props: DBShellProps) {
 			ref={_ref}
 			id={props.id ?? state._id}
 			class={cls('db-shell', props.className)}
-			data-open={state._open}
 			data-control-panel-desktop-position={
 				props.controlPanelDesktopPosition ?? 'top'
 			}
@@ -65,6 +64,7 @@ export default function DBShell(props: DBShellProps) {
 			data-sub-navigation-mobile-position={
 				props.subNavigationMobilePosition ?? 'top'
 			}
+			data-open={getBooleanAsString(state._open)}
 			data-fade-in={getBooleanAsString(props.fadeIn)}
 			data-fonts-loaded={getBooleanAsString(state.fontsLoaded)}>
 			<Slot name="controlPanelDesktop" />
@@ -76,7 +76,7 @@ export default function DBShell(props: DBShellProps) {
 						onClick={(event) => state.handleToggle(event)}
 						variant="ghost"
 						aria-controls={props.id ?? state._id}
-						aria-expanded={state._open}
+						aria-expanded={getBooleanAsString(state._open)}
 						noText
 						icon="chevron_left">
 						<DBTooltip variant="label" placement="right">

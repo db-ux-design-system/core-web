@@ -24,6 +24,11 @@ export type DBNavigationItemDefaultProps = {
 	 * to add a tooltip for collapsed navigation
 	 */
 	tooltip?: string;
+
+	/**
+	 * Activate pride mode for main navigation
+	 */
+	pride?: boolean;
 };
 
 export type DBNavigationItemProps = DBNavigationItemDefaultProps &

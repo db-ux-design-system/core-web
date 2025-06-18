@@ -58,14 +58,12 @@
 
 					@include control-panel-desktop.horizontal-navigation(false);
 
-					> .overflow-scroll-left-button,
-					> .overflow-scroll-right-button {
+					#{string.unquote(custom-elements.$overflow-scroll-left-button)},
+					#{string.unquote(custom-elements.$overflow-scroll-right-button)} {
 						display: none;
 					}
 
 					> menu {
-						--db-navigation-item-group-menu-inset-block-start: #{variables.$db-spacing-fixed-xs};
-
 						padding-block: variables.$db-spacing-fixed-xs;
 
 						/* workaround for showing correct scrolling and focus */

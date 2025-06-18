@@ -73,8 +73,8 @@
 					.db-navigation {
 						padding: variables.$db-spacing-fixed-md;
 
-						> .overflow-scroll-left-button,
-						> .overflow-scroll-right-button {
+						#{string.unquote(custom-elements.$overflow-scroll-left-button)},
+						#{string.unquote(custom-elements.$overflow-scroll-right-button)} {
 							display: none;
 						}
 

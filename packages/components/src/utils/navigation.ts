@@ -1,4 +1,4 @@
-import { handleDataOutside } from './floating-components';
+import { handleDataOutside, handleFixedPopover } from './floating-components';
 
 export type TriangleData = {
 	itemRect: DOMRect;
@@ -34,8 +34,6 @@ export class NavigationItemSafeTriangle {
 		if (!this.element || !this.subNavigation) {
 			return;
 		}
-
-		console.log(element, subNavigation);
 
 		this.parentSubNavigation =
 			this.element?.closest('.db-navigation-item-group-menu') ??
@@ -218,36 +216,30 @@ export const handleSubNavigationPosition = (
 	element: HTMLElement,
 	level: number = 0
 ) => {
-	if (element.closest('.db-control-panel-mobile-drawer-scroll-container'))
-		return;
-
 	for (const navItem of Array.from(
 		element.querySelectorAll('.db-navigation-item-group')
 	)) {
-		const { top, left } = navItem.getBoundingClientRect();
 		const subNavigation: HTMLElement | null = navItem.querySelector(
 			'.db-navigation-item-group-menu'
 		);
-		if (subNavigation) {
-			const subRect = subNavigation.getBoundingClientRect();
-			subNavigation.style.position = 'fixed';
+		const button: HTMLElement | null = navItem.querySelector(
+			'.db-navigation-item-group-expand-button'
+		);
+		if (subNavigation && button) {
+			const isMobile = getComputedStyle(subNavigation).getPropertyValue(
+				'--db-navigation-item-group-menu-mobile'
+			);
+			if (isMobile) return;
 
-			if (
-				level > 0 ||
-				subNavigation.dataset['open'] === 'horizontal' ||
-				subRect.top === top
-			) {
+			if (level > 0 || subNavigation.dataset['open'] === 'horizontal') {
 				// Sub-Navigation should be opened horizontal
-				subNavigation.style.left = `${subRect.left}px`;
-				subNavigation.style.top = `${top}px`;
+				handleFixedPopover(subNavigation, button, 'right-start');
 				subNavigation.dataset['open'] = 'horizontal';
 			} else {
 				// Sub-Navigation should be opened vertical
-				subNavigation.style.top = `${subRect.top}px`;
-				subNavigation.style.left = `${left}px`;
+				handleFixedPopover(subNavigation, button, 'bottom-start');
 				subNavigation.dataset['open'] = 'vertical';
 			}
-
 			handleSubNavigationPosition(subNavigation, level + 1);
 		}
 	}
