@@ -36,7 +36,7 @@ export default function DBBadge(props: DBBadgeProps) {
 				}
 
 				if (parent) {
-					parent.setAttribute('data-has-badge', 'true');
+					parent.dataset.hasBadge = 'true';
 				}
 			}
 		}
