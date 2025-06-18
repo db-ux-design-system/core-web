@@ -48,7 +48,8 @@ runs:
         COMMIT_MESSAGE: ${{ inputs.commit-message }}
         NEW_PR_BRANCH: ${{ inputs.branch-name }}
       run: |
-        gh pr create --base ${{ github.head_ref }} --head "$NEW_PR_BRANCH" --title "Automated PR: $COMMIT_MESSAGE" --body "This PR was created automatically by a GitHub Action."
+        BASE_BRANCH="${{ github.head_ref }}"
+        gh pr create --base "$BASE_BRANCH" --head "$NEW_PR_BRANCH" --title "Automated PR: $COMMIT_MESSAGE" --body "This PR was created automatically by a GitHub Action."
 
     - name: 🤖 Squash the PR
       shell: bash
