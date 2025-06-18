@@ -36,8 +36,17 @@ Key requirements:
     - For deeper or ad-hoc queries, use the "Attach Context" feature in Copilot Chat to load component Markdown files during the session.
 
 5. Static Site & Developer Docs
+
     - Integrate component docs via Astro as a package in the monorepo, referencing Markdown sources in packages/components/... .
     - Render pages dynamically under /components/[slug] and /api/[slug] for manual browsing.
+
+6. Automated Propagation of Copilot Instructions
+
+    We add a `postinstall` hook to our component package that:
+
+    - copies or appends the package-specific file `.github/copilot-instructions.md` to the target project,
+    - uses unique markers to automatically replace outdated blocks during future installations,
+    - handles missing or already existing files as well as idempotent updates cleanly, ensuring that every installation immediately provides the latest Copilot context for our package.
 
 ## Alternatives Considered
 
@@ -53,7 +62,9 @@ Key requirements:
     - Maintains single source (docs in packages/components/docs).
     - Enables Copilot to provide accurate, component-specific suggestions without manual file opening.
     - Developer site generation remains straightforward via Astro.
+    - Consumers always receive the latest Copilot context without manual steps.
 
 - Cons:
     - Requires maintaining excerpts in copilot-instructions.md when docs change.
     - Copilot cannot truly auto-load all linked docs; manual attachment or excerpt embedding needed for deep context.
+    - Postinstall hooks may be disabled for security reasons, making it impossible to automate the copying of the copilot instructions.
