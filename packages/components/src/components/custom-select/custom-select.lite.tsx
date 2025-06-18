@@ -607,16 +607,18 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 		state._infoTextId = mId + '-info';
 		state._invalidMessage = props.invalidMessage || DEFAULT_INVALID_MESSAGE;
 
-		state._observer = new IntersectionObserver((payload) => {
-			if (detailsRef) {
-				const entry = payload.find(
-					({ target }) => target === detailsRef
-				);
-				if (entry && !entry.isIntersecting && detailsRef.open) {
-					detailsRef.open = false;
+		if (typeof window !== 'undefined' && 'IntersectionObserver' in window) {
+			state._observer = new IntersectionObserver((payload) => {
+				if (detailsRef) {
+					const entry = payload.find(
+						({ target }) => target === detailsRef
+					);
+					if (entry && !entry.isIntersecting && detailsRef.open) {
+						detailsRef.open = false;
+					}
 				}
-			}
-		});
+			});
+		}
 	});
 
 	onUpdate(() => {
