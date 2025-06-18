@@ -48,6 +48,11 @@ Key requirements:
     - uses unique markers to automatically replace outdated blocks during future installations,
     - handles missing or already existing files as well as idempotent updates cleanly, ensuring that every installation immediately provides the latest Copilot context for our package.
 
+7. Automate generation and propagation of Copilot instructions on package build.
+
+    - Define `generate:copilot-instructions` in `package.json` and hook into `prepare`.
+    - Only include `*.md` files whose filename matches the parent directory converted to PascalCase (e.g. `custom-select` → `CustomSelect.md`), ensuring no unrelated MDs are merged.
+
 ## Alternatives Considered
 
 - Rely solely on Code Search: Let Copilot use workspace search to locate docs dynamically. Rejected due to inconsistency and limited to agent mode.
@@ -63,8 +68,10 @@ Key requirements:
     - Enables Copilot to provide accurate, component-specific suggestions without manual file opening.
     - Developer site generation remains straightforward via Astro.
     - Consumers always receive the latest Copilot context without manual steps.
+    - Guarantees that only the intended component documentation is merged into Copilot instructions.
 
 - Cons:
     - Requires maintaining excerpts in copilot-instructions.md when docs change.
     - Copilot cannot truly auto-load all linked docs; manual attachment or excerpt embedding needed for deep context.
     - Postinstall hooks may be disabled for security reasons, making it impossible to automate the copying of the copilot instructions.
+    - Relies on strict naming conventions; any divergence between folder and file names will cause a component’s docs to be skipped.
