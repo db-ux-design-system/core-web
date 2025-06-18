@@ -42,7 +42,12 @@ import {
 	DEFAULT_VALID_MESSAGE,
 	DEFAULT_VALID_MESSAGE_ID_SUFFIX
 } from '../../shared/constants';
-import { GeneralEvent, InputEvent, InteractionEvent } from '../../shared/model';
+import {
+	ClickEvent,
+	GeneralEvent,
+	InputEvent,
+	InteractionEvent
+} from '../../shared/model';
 import DBCustomSelectList from '../custom-select-list/custom-select-list.lite';
 import DBCustomSelectListItem from '../custom-select-list-item/custom-select-list-item.lite';
 import DBCustomSelectDropdown from '../custom-select-dropdown/custom-select-dropdown.lite';
@@ -242,8 +247,13 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 				}`;
 			}
 		},
-		handleTagRemove: (option: CustomSelectOptionType, event?: any) => {
-			event?.stopPropagation();
+		handleTagRemove: (
+			option: CustomSelectOptionType,
+			event?: ClickEvent<HTMLButtonElement> | void
+		) => {
+			if (event) {
+				event.stopPropagation();
+			}
 
 			state.handleSelect(option.value);
 			state.handleSummaryFocus();
@@ -888,7 +898,9 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 											removeButton={state.getTagRemoveLabel(
 												index
 											)}
-											onRemove={(event?: any) =>
+											onRemove={(
+												event?: ClickEvent<HTMLButtonElement> | void
+											) =>
 												state.handleTagRemove(
 													option,
 													event
