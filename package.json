@@ -47,6 +47,9 @@
     "test:vue-components": "playwright test -c output/vue/playwright.config.ts --ui",
     "update:dependency:playwright": "node scripts/github/update-playwright.js"
   },
+  "dependencies": {
+    "fast-glob": "^3.3.3"
+  },
   "devDependencies": {
     "@angular-devkit/build-angular": "19.2.14",
     "@angular/animations": "19.2.14",

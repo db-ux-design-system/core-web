@@ -38,9 +38,11 @@
     "dev:stencil": "nodemon --watch src --watch scripts -e tsx,ts -x \"npm run compile:stencil\"",
     "dev:vue": "nodemon --watch src --watch scripts -e tsx,ts -x \"npm run compile:vue\"",
     "generate:component": "hygen mitosis new",
+    "generate:copilot-instructions": "node ../../scripts/generate-copilot-instructions.js",
     "generate:docs": "hygen update-docs new",
     "postinstall": "node ../../scripts/copy-copilot-instructions.js",
     "prepack": "npm run copy-assets",
+    "prepare": "npm run generate:copilot-instructions",
     "start": "nodemon --watch src --watch scripts --watch scripts -e js,tsx,ts,scss,json -x \"npm run build\""
   },
   "dependencies": {
