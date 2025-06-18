@@ -13,7 +13,6 @@ import {
 	InputEvent,
 	InteractionEvent,
 	PlacementVerticalType,
-	PopoverState,
 	RequiredProps,
 	ShowIconProps,
 	ShowLabelProps,
