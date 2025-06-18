@@ -110,7 +110,7 @@ export class AppComponent implements OnInit {
 		});
 	};
 
-	toggleDrawer = (open: boolean) => {
-		this.drawerOpen = open;
+	toggleDrawer = (open: boolean | void) => {
+		this.drawerOpen = Boolean(open);
 	};
 }
