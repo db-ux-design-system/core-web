@@ -4,7 +4,8 @@
 @use "../variables";
 @use "../helpers";
 
-pre:not([class]):has(code) {
+pre:not([class]):has(code),
+pre:not([class]) code {
 	background-color: colors.$db-adaptive-bg-inverted-contrast-max-default;
 	color: colors.$db-adaptive-on-bg-inverted-default;
 	padding: variables.$db-spacing-fixed-xs;
