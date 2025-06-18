@@ -3,7 +3,8 @@ import {
 	useDefaultProps,
 	useMetadata,
 	useRef,
-	useStore
+	useStore,
+	useTarget
 } from '@builder.io/mitosis';
 import type { DBButtonProps, DBButtonState } from './model';
 import { cls, getBoolean, getBooleanAsString, getHideProp } from '../../utils';
@@ -19,16 +20,6 @@ useDefaultProps<DBButtonProps>({});
 
 export default function DBButton(props: DBButtonProps) {
 	const _ref = useRef<HTMLButtonElement | any>(null);
-	// jscpd:ignore-start
-	const state = useStore<DBButtonState>({
-		handleClick: (event: ClickEvent<HTMLButtonElement>) => {
-			if (props.onClick) {
-				props.onClick(event);
-			}
-		}
-	});
-
-	// jscpd:ignore-end
 
 	return (
 		<button
@@ -50,10 +41,7 @@ export default function DBButton(props: DBButtonProps) {
 			value={props.value}
 			aria-describedby={props.describedbyid}
 			aria-expanded={props.ariaexpanded}
-			aria-pressed={props.ariapressed}
-			onClick={(event: ClickEvent<HTMLButtonElement>) =>
-				state.handleClick(event)
-			}>
+			aria-pressed={props.ariapressed}>
 			<Show when={props.text} else={props.children}>
 				{props.text}
 			</Show>

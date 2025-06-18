@@ -1,7 +1,12 @@
+const onClickPlugin = require('../plugins/on-click.cjs');
+
+/**
+ * @type {import('@builder.io/mitosis').ToAngularOptions}
+ */
 module.exports = {
-	typescript: true,
 	attributePassing: {
 		customRef: '_ref'
 	},
-	api: 'signals'
+	api: 'signals',
+	plugins: [onClickPlugin]
 };
