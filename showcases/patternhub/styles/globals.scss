@@ -552,6 +552,7 @@ h6 {
 
 .breadcrumb-container {
 	display: flex;
+	overflow-x: auto;
 	overflow-inline: auto;
 	align-content: center;
 	align-items: center;

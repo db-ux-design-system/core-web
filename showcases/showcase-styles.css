@@ -137,6 +137,7 @@ db-card:is(.variants-card) > .db-card {
 }
 
 .db-page.fixed-header-footer main {
+	overflow-x: hidden;
 	overflow-inline: hidden;
 }
 
