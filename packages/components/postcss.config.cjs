@@ -7,7 +7,6 @@ module.exports = {
 					svgo: false
 				}
 			]
-		}),
-		require('@csstools/postcss-logical-overflow')
+		})
 	]
 };
