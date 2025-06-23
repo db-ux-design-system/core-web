@@ -11,8 +11,13 @@ import {
 } from '../../shared/model';
 
 /**
+ * @module Button
+ */
+
+/**
  * Represents the list of possible button variants.
  * These variants define the visual style of the button.
+ * @public
  */
 export const ButtonVariantList = [
 	'outlined',
@@ -23,28 +28,33 @@ export const ButtonVariantList = [
 /**
  * Type representing a single button variant.
  * It is derived from the `ButtonVariantList` array.
+ * @public
  */
 export type ButtonVariantType = (typeof ButtonVariantList)[number];
 
 /**
  * Represents the list of possible button types.
  * These types define the behavior of the button.
+ * @public
  */
 export const ButtonTypeList = ['button', 'reset', 'submit'] as const;
 /**
  * Type representing a single button type.
  * It is derived from the `ButtonTypeList` array.
+ * @public
  */
 export type ButtonTypeType = (typeof ButtonTypeList)[number];
 
 /**
  * Represents the list of possible button states.
  * These states define the current status of the button.
+ * @public
  */
 export const ButtonStateList = ['loading'] as const;
 /**
  * Type representing a single button state.
  * It is derived from the `ButtonStateList` array.
+ * @public
  */
 export type ButtonStateType = (typeof ButtonStateList)[number];
 
@@ -55,16 +65,19 @@ export type ButtonStateType = (typeof ButtonStateList)[number];
 export type DBButtonDefaultProps = {
 	/**
 	 * If the button controls a grouping of other elements, the ariaexpanded state [indicates whether the controlled grouping is currently expanded or collapsed](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-expanded).
+	 * @see https://developer.mozilla.org/docs/Web/Accessibility/ARIA/Attributes/aria-expanded
 	 */
 	ariaexpanded?: boolean;
 
 	/**
 	 * Defines the button as a toggle button. The value of [ariapressed describes the state of the button](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-pressed).
+	 * @see https://developer.mozilla.org/docs/Web/Accessibility/ARIA/Attributes/aria-pressed
 	 */
 	ariapressed?: boolean;
 
 	/**
 	 * The disabled attribute can be set to [keep a user from clicking on the button](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button#disabled).
+	 * @see https://developer.mozilla.org/docs/Web/HTML/Element/button#disabled
 	 */
 	disabled?: boolean | string;
 
@@ -75,16 +88,18 @@ export type DBButtonDefaultProps = {
 
 	/**
 	 * The label represents the [aria-label attributes](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-label) value of the button
+	 * @see https://developer.mozilla.org/docs/Web/Accessibility/ARIA/Attributes/aria-label
 	 */
 	label?: string;
 
 	/**
 	 * The name attribute specifies a [name attributes value](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button#name) for the button.
+	 * @see https://developer.mozilla.org/docs/Web/HTML/Element/button#name
 	 */
 	name?: string;
 
 	/**
-	 * Define the text next to the icon specified via the icon Property to get hidden.
+	 * If `true`, hides the text and shows only the icon.
 	 */
 	noText?: boolean | string;
 
@@ -94,7 +109,8 @@ export type DBButtonDefaultProps = {
 	state?: ButtonStateType;
 
 	/**
-	 * The type attribute specifies the [type of button](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button#type).
+	 * The type attribute specifies the type of button.
+	 * @see https://developer.mozilla.org/docs/Web/HTML/Element/button#type
 	 */
 	type?: ButtonTypeType;
 
@@ -112,6 +128,7 @@ export type DBButtonDefaultProps = {
 /**
  * Represents the properties for the `DBButton` component.
  * Combines default button properties (`DBButtonDefaultProps`) with global, click event, icon, width, size, show icon, and text-related properties.
+ * @public
  */
 export type DBButtonProps = DBButtonDefaultProps &
 	GlobalProps &
@@ -125,12 +142,14 @@ export type DBButtonProps = DBButtonDefaultProps &
 /**
  * Represents the default state of the `DBButton` component.
  * Currently, it is an empty object.
+ * @internal
  */
 export type DBButtonDefaultState = {};
 
 /**
  * Represents the state for the `DBButton` component.
  * Combines the default state (`DBButtonDefaultState`) with global state and click event state properties.
+ * @internal
  */
 export type DBButtonState = DBButtonDefaultState &
 	GlobalState &
