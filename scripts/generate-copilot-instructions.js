@@ -57,8 +57,18 @@ function sortFilesByName(files) {
  */
 async function prepareDestination(destDir, destFile) {
 	await fs.mkdir(destDir, { recursive: true });
-	await fs.writeFile(destFile, '', 'utf8');
-	console.log(`✅  Cleared ${path.relative(destDir, destFile)}`);
+	// Await fs.writeFile(destFile, '', 'utf8');
+	// console.log(`✅  Cleared ${path.relative(destDir, destFile)}`);
+
+	try {
+		await fs.access(destFile);
+		console.info(
+			`ℹ️  ${path.relative(destDir, destFile)} exists, skipping clear.`
+		);
+	} catch {
+		await fs.writeFile(destFile, '', 'utf8');
+		console.log(`✅  Created ${path.relative(destDir, destFile)}`);
+	}
 }
 
 /**
