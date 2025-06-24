@@ -256,7 +256,8 @@ export default function DBInput(props: DBInputProps) {
 									'-option-' +
 									option.value
 								}
-								value={option.value}>
+								value={option.value}
+								data-value={option.hiddenValue}>
 								{option.label}
 							</option>
 						)}

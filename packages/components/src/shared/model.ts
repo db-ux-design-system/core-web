@@ -694,6 +694,7 @@ export type AriaControlsProps = {
 export type ValueLabelType = {
 	value: string;
 	label?: string;
+	hiddenValue?: string;
 };
 
 export type DocumentScrollState = {
