@@ -51,6 +51,8 @@ export default function DBButton(props: DBButtonProps) {
 			aria-describedby={props.describedbyid}
 			aria-expanded={props.ariaexpanded}
 			aria-pressed={props.ariapressed}
+			commandfor={props.commandfor}
+			command={props.command}
 			onClick={(event: ClickEvent<HTMLButtonElement>) =>
 				state.handleClick(event)
 			}>

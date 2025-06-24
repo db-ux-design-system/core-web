@@ -79,6 +79,16 @@ export type DBButtonDefaultProps = {
 	 * Variant of the button. Use only 1 primary button on a page as CTA otherwise use one of the adaptive buttons.
 	 */
 	variant?: ButtonVariantType | string;
+
+	/**
+	 * Either standardized or custom actions to be performed on an element that is being controlled by a control <button>, specified via the commandfor attribute. (https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/button#commandfor)
+	 */
+	commandfor?: string;
+
+	/**
+	 * Turns a <button> HTML element into a command button, controlling the given interactive element; takes the ID of the element to control as its value. (https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/button#command)
+	 */
+	command?: string;
 };
 
 export type DBButtonProps = DBButtonDefaultProps &
