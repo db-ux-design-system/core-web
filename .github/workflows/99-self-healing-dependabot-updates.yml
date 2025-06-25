@@ -59,3 +59,6 @@ jobs:
           branch-name: "${{ github.head_ref }}-auto"
           commit-message: "auto format code"
           commit-files: "."
+          auto-merge-app-id: ${{ vars.AUTO_MERGE_APP_ID }}
+          auto-merge-private-key: ${{ secrets.AUTO_MERGE_PRIVATE_KEY }}
+          gh-token: ${{ secrets.GITHUB_TOKEN }}
