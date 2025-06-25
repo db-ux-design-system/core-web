@@ -57,8 +57,6 @@ function sortFilesByName(files) {
  */
 async function prepareDestination(destDir, destFile) {
 	await fs.mkdir(destDir, { recursive: true });
-	// Await fs.writeFile(destFile, '', 'utf8');
-	// console.log(`✅  Cleared ${path.relative(destDir, destFile)}`);
 
 	try {
 		await fs.access(destFile);
