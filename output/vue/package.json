@@ -40,10 +40,10 @@
     "@playwright/experimental-ct-vue": "1.51.1",
     "@vitejs/plugin-vue": "^5.2.4",
     "replace-in-file": "^8.3.0",
-    "tsx": "^4.19.4",
+    "tsx": "^4.20.3",
     "typescript": "^5.4.5",
     "vite": "^6.3.5",
-    "vue": "^3.5.16",
+    "vue": "^3.5.17",
     "vue-tsc": "^2.2.10"
   },
   "publishConfig": {
