@@ -1,19 +1,25 @@
 {
-	"entryPoints": [
-		"packages/components/src/components/button/model.ts",
-		"packages/components/src/components/button/Button.lite.tsx"
-	],
+	"tsconfig": "packages/components/tsconfig.typedoc.json",
+	"entryPoints": ["packages/components/src/components"],
 	"entryPointStrategy": "expand",
-	"out": "packages/components/docs/api/button",
-	"plugin": ["typedoc-plugin-markdown"],
+	"out": "packages/components/docs/api",
+	"plugin": ["typedoc-plugin-markdown", "typedoc-plugin-merge-modules"],
 	"readme": "none",
 
-	"entryFileName": "Button.md",
+	"mergeModulesMergeMode": "module",
 	"outputFileStrategy": "modules",
 
 	"hideBreadcrumbs": true,
 	"hidePageTitle": true,
 	"disableSources": true,
 	"excludePrivate": true,
-	"excludeProtected": true
+	"excludeProtected": true,
+	"skipErrorChecking": true,
+
+	"exclude": [
+		"src/components/**/*.spec.ts",
+		"src/components/**/*.spec.tsx",
+		"src/components/**/*.md",
+		"src/components/**/__snapshots__/**"
+	]
 }

@@ -37,6 +37,7 @@
     "dev:scss": "npm run build-style:01_sass -- --watch",
     "dev:stencil": "nodemon --watch src --watch scripts -e tsx,ts -x \"npm run compile:stencil\"",
     "dev:vue": "nodemon --watch src --watch scripts -e tsx,ts -x \"npm run compile:vue\"",
+    "docs:components": "typedoc --options ../../typedoc.json --tsconfig tsconfig.typedoc.json && node ../../scripts/merge-component-docs.js && rimraf docs/api/README.md",
     "generate:component": "hygen mitosis new",
     "generate:copilot-instructions": "node ../../scripts/generate-copilot-instructions.js",
     "generate:docs": "hygen update-docs new",
