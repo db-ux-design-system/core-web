@@ -108,7 +108,7 @@ export default function DBTooltip(props: DBTooltipProps) {
 				['mouseleave', 'focusout'].forEach((event) => {
 					parent.addEventListener(event, () => state.handleLeave());
 				});
-				parent.dataset.hasTooltip = 'true';
+				parent.dataset['hasTooltip'] = 'true';
 
 				if (props.variant === 'label') {
 					parent.setAttribute('aria-labelledby', state._id);
