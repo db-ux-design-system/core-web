@@ -15,7 +15,7 @@ inputs:
     description: "The id for github app to allow auto-merge"
     required: true
   auto-merge-private-key:
-    description: "The private key  for github app to allow auto-merge"
+    description: "The private key for github app to allow auto-merge"
     required: true
   gh-token:
     description: "The default github token"
