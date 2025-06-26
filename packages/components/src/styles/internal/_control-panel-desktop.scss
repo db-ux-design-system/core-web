@@ -321,15 +321,14 @@ $meta-child-selector: "> .db-control-panel-desktop-scroll-container  .db-control
 			}
 		}
 
-		&:has(
-				#{string.unquote($navigation-child-selector)}
-					> menu
-					#{string.unquote(custom-elements.$navigation-item-group)}
-			) {
-			#{string.unquote($navigation-child-selector)} {
-				display: none;
-			}
+		/* Hide navigation only if we have navigation-item-group */
 
+		.db-navigation-item-group,
+		.db-navigation-item:not([data-icon]) {
+			display: none;
+		}
+
+		&:not(:has(.db-navigation-item[data-icon])) {
 			#{string.unquote(custom-elements.$control-panel-brand)} {
 				&::after {
 					display: none;

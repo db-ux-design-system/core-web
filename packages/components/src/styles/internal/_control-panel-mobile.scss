@@ -6,11 +6,25 @@
 @use "./custom-elements";
 @use "../../components/drawer/drawer";
 
+@mixin has-empty-drawer {
+	&:has(.db-control-panel-mobile-drawer-scroll-container:empty):not(
+			:has(.db-control-panel-secondary-actions)
+		) {
+		@content;
+	}
+}
+
 %control-panel-mobile-position-top {
 	border-block-end: variables.$db-border-width-3xs solid
 		colors.$db-adaptive-on-bg-basic-emphasis-60-default;
-	grid-template-areas: "brand primary drawer-button";
-	grid-template-columns: 1fr min-content min-content;
+	grid-template-areas: var(
+		--db-control-panel-mobile-position-top-grid-areas,
+		"brand primary drawer-button"
+	);
+	grid-template-columns: var(
+		--db-control-panel-mobile-position-top-grid-columns,
+		[brand] 1fr [primary] min-content [drawer-button] min-content
+	);
 	justify-items: center;
 
 	#{string.unquote(custom-elements.$control-primary-actions)} {
@@ -53,7 +67,10 @@
 	border-block-start: variables.$db-border-width-3xs solid
 		colors.$db-adaptive-on-bg-basic-emphasis-60-default;
 	grid-template-areas: "brand drawer-button primary";
-	grid-template-columns: min-content 1fr min-content;
+	grid-template-columns: min-content 1fr minmax(
+			#{variables.$db-sizing-md},
+			min-content
+		);
 	justify-content: space-evenly;
 
 	#{string.unquote(custom-elements.$control-panel-brand)} {

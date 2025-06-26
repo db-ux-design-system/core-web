@@ -321,7 +321,8 @@
 			{
 				"name": "Vertical",
 				"style": {
-					"width": "300px",
+					"maxInlineSize": "300px",
+					"width": "auto",
 					"height": "500px",
 					"display": "block"
 				},

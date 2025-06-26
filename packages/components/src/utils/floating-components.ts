@@ -149,14 +149,16 @@ const getFloatingProps = (
 
 	if (placement.startsWith('bottom')) {
 		if (outsideBottom) {
-			correctedPlacement = placement?.replace('bottom', 'top');
+			if (!outsideTop) {
+				correctedPlacement = placement?.replace('bottom', 'top');
 
-			if (outsideLeft && outsideRight) {
-				correctedPlacement = 'top';
-			} else if (outsideLeft) {
-				correctedPlacement = 'top-start';
-			} else if (outsideRight) {
-				correctedPlacement = 'top-end';
+				if (outsideLeft && outsideRight) {
+					correctedPlacement = 'top';
+				} else if (outsideLeft) {
+					correctedPlacement = 'top-start';
+				} else if (outsideRight) {
+					correctedPlacement = 'top-end';
+				}
 			}
 		} else {
 			if (outsideLeft && outsideRight) {
@@ -169,14 +171,16 @@ const getFloatingProps = (
 		}
 	} else if (placement.startsWith('top')) {
 		if (outsideTop) {
-			correctedPlacement = placement?.replace('top', 'bottom');
+			if (!outsideBottom) {
+				correctedPlacement = placement?.replace('top', 'bottom');
 
-			if (outsideLeft && outsideRight) {
-				correctedPlacement = 'bottom';
-			} else if (outsideLeft) {
-				correctedPlacement = 'bottom-start';
-			} else if (outsideRight) {
-				correctedPlacement = 'bottom-end';
+				if (outsideLeft && outsideRight) {
+					correctedPlacement = 'bottom';
+				} else if (outsideLeft) {
+					correctedPlacement = 'bottom-start';
+				} else if (outsideRight) {
+					correctedPlacement = 'bottom-end';
+				}
 			}
 		} else {
 			if (outsideLeft && outsideRight) {
@@ -189,14 +193,16 @@ const getFloatingProps = (
 		}
 	} else if (placement.startsWith('left')) {
 		if (outsideLeft) {
-			correctedPlacement = placement?.replace('left', 'right');
+			if (outsideRight) {
+				correctedPlacement = placement?.replace('left', 'right');
 
-			if (outsideBottom && outsideTop) {
-				correctedPlacement = 'right';
-			} else if (outsideBottom) {
-				correctedPlacement = 'right-end';
-			} else if (outsideTop) {
-				correctedPlacement = 'right-start';
+				if (outsideBottom && outsideTop) {
+					correctedPlacement = 'right';
+				} else if (outsideBottom) {
+					correctedPlacement = 'right-end';
+				} else if (outsideTop) {
+					correctedPlacement = 'right-start';
+				}
 			}
 		} else {
 			if (outsideBottom && outsideTop) {
@@ -209,14 +215,16 @@ const getFloatingProps = (
 		}
 	} else if (correctedPlacement.startsWith('right')) {
 		if (outsideRight) {
-			correctedPlacement = placement?.replace('right', 'left');
+			if (!outsideLeft) {
+				correctedPlacement = placement?.replace('right', 'left');
 
-			if (outsideBottom && outsideTop) {
-				correctedPlacement = 'left';
-			} else if (outsideBottom) {
-				correctedPlacement = 'left-end';
-			} else if (outsideTop) {
-				correctedPlacement = 'left-start';
+				if (outsideBottom && outsideTop) {
+					correctedPlacement = 'left';
+				} else if (outsideBottom) {
+					correctedPlacement = 'left-end';
+				} else if (outsideTop) {
+					correctedPlacement = 'left-start';
+				}
 			}
 		} else {
 			if (outsideBottom && outsideTop) {
@@ -240,7 +248,9 @@ const getFloatingProps = (
 		childWidth: childRect.width,
 		correctedPlacement,
 		innerWidth,
-		innerHeight
+		innerHeight,
+		outsideYBoth: outsideTop && outsideBottom,
+		outsideXBoth: outsideRight && outsideLeft
 	};
 };
 
@@ -268,7 +278,8 @@ export const handleFixedPopover = (
 		bottom,
 		correctedPlacement,
 		innerWidth,
-		innerHeight
+		innerHeight,
+		outsideYBoth
 	} = getFloatingProps(element, parent, placement);
 
 	// Tooltip arrow position
@@ -369,6 +380,14 @@ export const handleFixedPopover = (
 		const end = bottom + childHeight;
 		element.style.insetBlockStart = `calc(${bottom}px + ${distance})`;
 		element.style.insetBlockEnd = `calc(${end > innerHeight ? innerHeight : end}px + ${distance})`;
+	}
+
+	// In this case we are outside of top and bottom so we need to scroll
+	// We use the full height in this case
+	if (outsideYBoth) {
+		element.style.overflow = 'hidden auto';
+		element.style.insetBlock = distance;
+		element.style.maxBlockSize = `calc(${innerHeight}px - 2 * ${distance})`;
 	}
 
 	element.style.position = 'fixed';

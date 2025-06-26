@@ -42,7 +42,7 @@ import SecondaryActions from "../../control-panel/SecondaryActions.vue";
 						<DBNavigationItem icon="x_placeholder">
 							<a href="#">{{ exampleName }}</a>
 						</DBNavigationItem>
-						<DBNavigationItem :disabled="true">
+						<DBNavigationItem icon="x_placeholder" :disabled="true">
 							<a href="#">{{ exampleName }} disabled</a>
 						</DBNavigationItem>
 					</DBNavigation>

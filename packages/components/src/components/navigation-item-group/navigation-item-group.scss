@@ -19,6 +19,13 @@
 		@extend %navigation-item-interactive-element;
 	}
 
+	.db-navigation-item {
+		/* Hide tooltips for nested navigation items */
+		.db-tooltip {
+			display: none;
+		}
+	}
+
 	&:not([data-width="full"]) {
 		@include screen-sizes.screen("md", "max") {
 			.db-navigation-item-group-expand-button {

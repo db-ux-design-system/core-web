@@ -194,6 +194,7 @@ $spacings: (
 			&:has(.button-close-drawer),
 			&:has(:not(.db-drawer-header-text:empty)) {
 				display: flex;
+				gap: variables.$db-spacing-fixed-md;
 			}
 		}
 	}

@@ -33,9 +33,28 @@
 		text-overflow: ellipsis;
 	}
 
-	> db-button > .db-control-panel-mobile-button,
-	> .db-control-panel-mobile-button {
+	#{string.unquote(custom-elements.$control-panel-mobile-button)} {
 		grid-area: drawer-button;
+	}
+
+	@include control-panel-mobile.has-empty-drawer {
+		--db-control-panel-mobile-position-top-grid-areas: "brand primary";
+		--db-control-panel-mobile-position-top-grid-columns: [brand] 1fr
+			[primary] min-content;
+
+		// If drawer is empty we hide burger button
+		#{string.unquote(custom-elements.$control-panel-mobile-button)} {
+			display: none;
+		}
+
+		// We don't show primary border in this case
+		#{string.unquote(custom-elements.$control-primary-actions)} {
+			padding-inline-end: 0;
+
+			&::before {
+				display: none;
+			}
+		}
 	}
 
 	#{string.unquote(custom-elements.$drawer)} {

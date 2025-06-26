@@ -100,13 +100,16 @@ export default function DBNavigationItemGroup(
 	onUpdate(() => {
 		if (_ref && state.initialized) {
 			state.initialized = false;
-			const element = _ref as HTMLLIElement;
-			const nav = element.closest<HTMLElement>('.db-navigation');
+			// We delay this because the navigation variant check is delayed as well
+			delay(() => {
+				const element = _ref as HTMLLIElement;
+				const nav = element.closest<HTMLElement>('.db-navigation');
 
-			state.hasPopup =
-				!nav ||
-				!nav.dataset['variant'] ||
-				nav.dataset['variant'] === 'popover';
+				state.hasPopup =
+					!nav ||
+					!nav.dataset['variant'] ||
+					nav.dataset['variant'] === 'popover';
+			}, 200);
 		}
 	}, [_ref, state.initialized]);
 

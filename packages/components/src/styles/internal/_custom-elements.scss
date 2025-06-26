@@ -24,5 +24,6 @@ $navigation-item-group: "db-navigation-item-group > .db-navigation-item-group, >
 $drawer: "db-drawer > .db-drawer, > .db-drawer";
 
 /* Sub components */
+$control-panel-mobile-button: "> db-button > .db-control-panel-mobile-button,> .db-control-panel-mobile-button";
 $overflow-scroll-right-button: "> .overflow-scroll-right-button, > db-button > .overflow-scroll-right-button";
 $overflow-scroll-left-button: "> .overflow-scroll-left-button, > db-button > .overflow-scroll-left-button";

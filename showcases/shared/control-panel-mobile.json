@@ -5,17 +5,433 @@
 			{
 				"name": "Functional",
 				"density": "functional",
-				"props": {}
+				"props": {},
+				"style": {
+					"width": "100%",
+					"display": "block"
+				}
 			},
 			{
 				"name": "(Default) Regular",
 				"density": "regular",
-				"props": {}
+				"props": {},
+				"style": {
+					"width": "100%",
+					"display": "block"
+				}
 			},
 			{
 				"name": "Expressive",
 				"density": "expressive",
-				"props": {}
+				"props": {},
+				"style": {
+					"width": "100%",
+					"display": "block"
+				}
+			}
+		]
+	},
+	{
+		"name": "Examples",
+		"children": [
+			{
+				"name": "brand",
+				"slot": "brand",
+				"content": "DBHeader"
+			},
+			{
+				"name": "link",
+				"slot": "meta-navigation",
+				"angularDirective": true,
+				"content": "Imprint",
+				"props": {
+					"href": "#"
+				}
+			},
+			{
+				"name": "button",
+				"slot": "primary-action",
+				"content": "Search",
+				"props": {
+					"icon": "magnifying_glass",
+					"variant": "ghost",
+					"noText": true
+				}
+			},
+			{
+				"name": "button",
+				"slot": "secondary-action",
+				"angularDirective": true,
+				"content": "Profile",
+				"props": {
+					"icon": "x_placeholder",
+					"variant": "ghost",
+					"noText": true
+				}
+			},
+			{
+				"name": "navigation",
+				"slot": "Navigation",
+				"angularDirective": true,
+				"children": [
+					{
+						"name": "navigation-item",
+						"props": {
+							"icon": "x_placeholder"
+						},
+						"children": [
+							{
+								"name": "a",
+								"native": true,
+								"slot": "NavigationContent",
+								"angularDirective": true,
+								"content": "Link",
+								"props": {
+									"href": "#"
+								}
+							}
+						]
+					},
+					{
+						"name": "navigation-item",
+						"props": {
+							"icon": "x_placeholder",
+							"disabled": true
+						},
+						"children": [
+							{
+								"name": "a",
+								"native": true,
+								"slot": "NavigationContent",
+								"angularDirective": true,
+								"content": "Link disabled",
+								"props": {
+									"href": "#"
+								}
+							}
+						]
+					}
+				]
+			}
+		],
+		"examples": [
+			{
+				"name": "With Application Name + Navigation",
+				"style": {
+					"width": "100%",
+					"display": "block"
+				},
+				"props": {
+					"withName": true,
+					"withNavigation": true,
+					"withMeta": false,
+					"withPrimary": false,
+					"withSecondary": false
+				}
+			},
+			{
+				"name": "Without Navigation",
+				"style": {
+					"width": "100%",
+					"display": "block"
+				},
+				"props": {
+					"withName": true,
+					"withNavigation": false,
+					"withMeta": false,
+					"withPrimary": false,
+					"withSecondary": false
+				}
+			},
+			{
+				"name": "Without Navigation + Primary + Secondary",
+				"style": {
+					"width": "100%",
+					"display": "block"
+				},
+				"props": {
+					"withName": true,
+					"withNavigation": false,
+					"withMeta": false,
+					"withPrimary": true,
+					"withSecondary": true
+				}
+			},
+			{
+				"name": "Without Navigation + Primary",
+				"style": {
+					"width": "100%",
+					"display": "block"
+				},
+				"props": {
+					"withName": true,
+					"withNavigation": false,
+					"withMeta": false,
+					"withPrimary": true,
+					"withSecondary": false
+				}
+			},
+			{
+				"name": "Without Navigation + Secondary",
+				"style": {
+					"width": "100%",
+					"display": "block"
+				},
+				"props": {
+					"withName": true,
+					"withNavigation": false,
+					"withMeta": false,
+					"withPrimary": false,
+					"withSecondary": true
+				}
+			},
+			{
+				"name": "Without Navigation + Meta",
+				"style": {
+					"width": "100%",
+					"display": "block"
+				},
+				"props": {
+					"withName": true,
+					"withNavigation": false,
+					"withMeta": true,
+					"withPrimary": false,
+					"withSecondary": false
+				}
+			},
+			{
+				"name": "Without Application Name",
+				"style": {
+					"width": "100%",
+					"display": "block"
+				},
+				"props": {
+					"withName": false,
+					"withNavigation": true,
+					"withMeta": false,
+					"withPrimary": false,
+					"withSecondary": false
+				}
+			},
+			{
+				"name": "Without Application Name + Navigation",
+				"style": {
+					"width": "100%",
+					"display": "block"
+				},
+				"props": {
+					"withName": false,
+					"withNavigation": false,
+					"withMeta": false,
+					"withPrimary": false,
+					"withSecondary": false
+				}
+			}
+		]
+	},
+	{
+		"name": "Examples Bottom",
+		"children": [
+			{
+				"name": "brand",
+				"slot": "brand",
+				"content": "DBHeader"
+			},
+			{
+				"name": "link",
+				"slot": "meta-navigation",
+				"angularDirective": true,
+				"content": "Imprint",
+				"props": {
+					"href": "#"
+				}
+			},
+			{
+				"name": "button",
+				"slot": "primary-action",
+				"content": "Search",
+				"props": {
+					"icon": "magnifying_glass",
+					"variant": "ghost",
+					"noText": true
+				}
+			},
+			{
+				"name": "button",
+				"slot": "secondary-action",
+				"angularDirective": true,
+				"content": "Profile",
+				"props": {
+					"icon": "x_placeholder",
+					"variant": "ghost",
+					"noText": true
+				}
+			},
+			{
+				"name": "navigation",
+				"slot": "Navigation",
+				"angularDirective": true,
+				"children": [
+					{
+						"name": "navigation-item",
+						"props": {
+							"icon": "x_placeholder"
+						},
+						"children": [
+							{
+								"name": "a",
+								"native": true,
+								"slot": "NavigationContent",
+								"angularDirective": true,
+								"content": "Link",
+								"props": {
+									"href": "#"
+								}
+							}
+						]
+					},
+					{
+						"name": "navigation-item",
+						"props": {
+							"icon": "x_placeholder",
+							"disabled": true
+						},
+						"children": [
+							{
+								"name": "a",
+								"native": true,
+								"slot": "NavigationContent",
+								"angularDirective": true,
+								"content": "Link disabled",
+								"props": {
+									"href": "#"
+								}
+							}
+						]
+					}
+				]
+			}
+		],
+		"examples": [
+			{
+				"name": "With Application Name + Navigation",
+				"style": {
+					"width": "100%",
+					"display": "block"
+				},
+				"props": {
+					"position": "bottom",
+					"withName": true,
+					"withNavigation": true,
+					"withMeta": false,
+					"withPrimary": false,
+					"withSecondary": false
+				}
+			},
+			{
+				"name": "Without Navigation",
+				"style": {
+					"width": "100%",
+					"display": "block"
+				},
+				"props": {
+					"position": "bottom",
+					"withName": true,
+					"withNavigation": false,
+					"withMeta": false,
+					"withPrimary": false,
+					"withSecondary": false
+				}
+			},
+			{
+				"name": "Without Navigation + Primary + Secondary",
+				"style": {
+					"width": "100%",
+					"display": "block"
+				},
+				"props": {
+					"position": "bottom",
+					"withName": true,
+					"withNavigation": false,
+					"withMeta": false,
+					"withPrimary": true,
+					"withSecondary": true
+				}
+			},
+			{
+				"name": "Without Navigation + Primary",
+				"style": {
+					"width": "100%",
+					"display": "block"
+				},
+				"props": {
+					"position": "bottom",
+					"withName": true,
+					"withNavigation": false,
+					"withMeta": false,
+					"withPrimary": true,
+					"withSecondary": false
+				}
+			},
+			{
+				"name": "Without Navigation + Secondary",
+				"style": {
+					"width": "100%",
+					"display": "block"
+				},
+				"props": {
+					"position": "bottom",
+					"withName": true,
+					"withNavigation": false,
+					"withMeta": false,
+					"withPrimary": false,
+					"withSecondary": true
+				}
+			},
+			{
+				"name": "Without Navigation + Meta",
+				"style": {
+					"width": "100%",
+					"display": "block"
+				},
+				"props": {
+					"position": "bottom",
+					"withName": true,
+					"withNavigation": false,
+					"withMeta": true,
+					"withPrimary": false,
+					"withSecondary": false
+				}
+			},
+			{
+				"name": "Without Application Name",
+				"style": {
+					"width": "100%",
+					"display": "block"
+				},
+				"props": {
+					"position": "bottom",
+					"withName": false,
+					"withNavigation": true,
+					"withMeta": false,
+					"withPrimary": false,
+					"withSecondary": false
+				}
+			},
+			{
+				"name": "Without Application Name + Navigation",
+				"style": {
+					"width": "100%",
+					"display": "block"
+				},
+				"props": {
+					"position": "bottom",
+					"withName": false,
+					"withNavigation": false,
+					"withMeta": false,
+					"withPrimary": false,
+					"withSecondary": false
+				}
 			}
 		]
 	}

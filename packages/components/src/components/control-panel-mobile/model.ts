@@ -20,7 +20,7 @@ export type DBControlPanelMobileDefaultProps = {
 	 */
 	burgerMenuLabel?: string;
 
-	positon?: ShellControlPanelMobilePositionType;
+	position?: ShellControlPanelMobilePositionType;
 };
 
 export type DBControlPanelMobileProps = DBControlPanelMobileDefaultProps &

@@ -45,6 +45,9 @@ const App = () => {
 			}
 			controlPanelMobile={
 				<DBControlPanelMobile
+					brandDrawer={
+						<DBControlPanelBrand>Showcase</DBControlPanelBrand>
+					}
 					brand={<DBControlPanelBrand>Showcase</DBControlPanelBrand>}
 					primaryActions={<PrimaryActions />}
 					secondaryActions={<SecondaryActions />}

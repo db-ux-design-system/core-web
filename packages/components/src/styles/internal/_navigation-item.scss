@@ -49,7 +49,7 @@ $navigation-max-inline-size: 328px; // We should get this value from UX
 		// #{$db-spacing-fixed-3xs} for box shadow
 		inset-block-start: #{variables.$db-spacing-fixed-3xs};
 		inset-inline-end: calc(-1 * #{variables.$db-spacing-fixed-xs});
-		block-size: 100%;
+		block-size: calc(100% - 2 * #{variables.$db-spacing-fixed-3xs});
 		inline-size: variables.$db-spacing-fixed-xs;
 	}
 }

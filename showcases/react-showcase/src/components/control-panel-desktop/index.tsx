@@ -9,11 +9,11 @@ import {
 	DBNavigation,
 	DBNavigationItem
 } from '@components';
+import { type DBControlPanelDesktopProps } from '@components/src/components/control-panel-desktop/model';
 import defaultComponentVariants from '../../../../shared/control-panel-desktop.json';
 import { getVariants } from '../data';
 import DefaultComponent from '../default-component';
 import { type BaseComponentProps } from '../base-component-data';
-import { DBControlPanelDesktopProps } from '@components/src/components/control-panel-desktop/model';
 
 const getControlPanelDesktop = ({
 	children,
@@ -82,7 +82,7 @@ const getControlPanelDesktop = ({
 				<DBNavigationItem icon="x_placeholder">
 					<a href="#">{children}</a>
 				</DBNavigationItem>
-				<DBNavigationItem disabled>
+				<DBNavigationItem icon="x_placeholder" disabled>
 					<a href="#">{children} disabled</a>
 				</DBNavigationItem>
 			</DBNavigation>

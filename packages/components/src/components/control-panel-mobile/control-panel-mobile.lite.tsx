@@ -49,9 +49,10 @@ export default function DBControlPanelMobile(props: DBControlPanelMobileProps) {
 			ref={_ref}
 			id={props.id}
 			data-width={props.width}
-			data-position={props.positon}
+			data-position={props.position}
 			class={cls('db-control-panel-mobile', props.className)}>
 			<DBDrawer
+				drawerHeader={<Slot name="brandDrawer" />}
 				direction="custom"
 				rounded
 				spacing="small"
