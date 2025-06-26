@@ -4,7 +4,6 @@
 module.exports = () => ({
 	json: {
 		pre: (json) => {
-			console.log(json.name);
 			if (['DBButton', 'DBLink'].includes(json.name)) {
 				if (json.pluginData.target === 'vue') {
 					console.log(json.state);
