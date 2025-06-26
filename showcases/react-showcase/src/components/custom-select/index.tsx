@@ -38,7 +38,10 @@ const getCustomSelect = ({
 	searchValue,
 	selectedLabels,
 	transformSelectedLabels,
-	searchFilter
+	searchFilter,
+	validMessage,
+	validation,
+	invalidMessage
 }: DBCustomSelectProps & {
 	lineBreak?: boolean;
 	info?: boolean;
@@ -99,6 +102,9 @@ const getCustomSelect = ({
 			values={mValue}
 			searchValue={searchValue}
 			selectedLabels={selectedLabels}
+			invalidMessage={invalidMessage}
+			validMessage={validMessage}
+			validation={validation}
 			transformSelectedLabels={
 				transformSelectedLabels ? getTransformSelectedLabels : undefined
 			}
