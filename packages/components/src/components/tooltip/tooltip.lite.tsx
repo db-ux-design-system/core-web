@@ -108,7 +108,7 @@ export default function DBTooltip(props: DBTooltipProps) {
 				['mouseleave', 'focusout'].forEach((event) => {
 					parent.addEventListener(event, () => state.handleLeave());
 				});
-				parent.setAttribute('data-has-tooltip', 'true');
+				parent.dataset['hasTooltip'] = 'true';
 
 				if (props.variant === 'label') {
 					parent.setAttribute('aria-labelledby', state._id);
@@ -117,14 +117,19 @@ export default function DBTooltip(props: DBTooltipProps) {
 				}
 			}
 
-			state._observer = new IntersectionObserver((payload) => {
-				const entry = payload.find(
-					({ target }) => target === state.getParent()
-				);
-				if (entry && !entry.isIntersecting) {
-					state.handleEscape(false);
-				}
-			});
+			if (
+				typeof window !== 'undefined' &&
+				'IntersectionObserver' in window
+			) {
+				state._observer = new IntersectionObserver((payload) => {
+					const entry = payload.find(
+						({ target }) => target === state.getParent()
+					);
+					if (entry && !entry.isIntersecting) {
+						state.handleEscape(false);
+					}
+				});
+			}
 
 			state.initialized = false;
 		}
