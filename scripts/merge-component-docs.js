@@ -1,6 +1,7 @@
-import fs from 'node:fs';
+import { promises as fs } from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+import fg from 'fast-glob';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const docsDir = path.join(__dirname, '../packages/components/docs/api');
@@ -8,41 +9,6 @@ const componentsDir = path.join(
 	__dirname,
 	'../packages/components/src/components'
 );
-
-try {
-	await fs.promises.stat(docsDir);
-} catch (error) {
-	throw new Error(
-		`❌  Error checking directory ${docsDir}: ${error.message}`
-	);
-}
-
-/**
- * Recursively retrieves all files from a directory.
- * @param {string} dir - The directory path to read files from.
- * @returns {Promise<string[]>} - A promise that resolves to an array of file paths.
- */
-async function getAllFiles(dir) {
-	try {
-		const entries = await fs.promises.readdir(dir, {
-			withFileTypes: true
-		});
-		const files = entries
-			.filter((file) => !file.isDirectory())
-			.map((file) => path.join(dir, file.name));
-		const folders = entries.filter((folder) => folder.isDirectory());
-
-		const folderPromises = folders.map((folder) =>
-			getAllFiles(path.join(dir, folder.name))
-		);
-		const folderFiles = await Promise.all(folderPromises);
-		for (const fileGroup of folderFiles) files.push(...fileGroup);
-		return files;
-	} catch (error) {
-		console.error(`❌  Error reading directory ${dir}:`, error);
-		return [];
-	}
-}
 
 /**
  * Converts a string to PascalCase.
@@ -60,11 +26,8 @@ function toPascalCase(str) {
 		.replace(/^\w/, (char) => char.toUpperCase());
 }
 
-const allFiles = await getAllFiles(docsDir);
-const files = allFiles.map((file) => path.relative(docsDir, file));
-
 /**
- * Groups files by their directory name, filtering for specific file types.
+ * Groups files by their directory names.
  * @param {string[]} files - An array of file paths to group.
  * @returns {Object} - An object where keys are directory names and values are arrays of file paths.
  */
@@ -72,55 +35,47 @@ function getGroupedFiles(files) {
 	const groupedFiles = {};
 	for (const file of files) {
 		const dirName = path.dirname(file).split(path.sep).pop();
-		if (file.endsWith('.lite.md') || file.endsWith('model.md')) {
-			groupedFiles[dirName] ||= [];
-			groupedFiles[dirName].push(file);
-		}
+		groupedFiles[dirName] ||= [];
+		groupedFiles[dirName].push(file);
 	}
 
 	return groupedFiles;
 }
 
-const groupedFiles = getGroupedFiles(files);
-
-/**
- * Recursively removes empty directories.
- * @param {string} dir - The directory path to process.
- * @returns {Promise<void>} - Resolves when all empty directories are removed.
- */
-async function removeEmptyDirs(dir) {
-	try {
-		const files = await fs.promises.readdir(dir);
-		const dirPromises = files.map(async (file) => {
-			const fullPath = path.join(dir, file);
-			const stats = await fs.promises.lstat(fullPath);
-			if (stats.isDirectory()) {
-				await removeEmptyDirs(fullPath);
-			}
-		});
-
-		await Promise.all(dirPromises);
-
-		const remainingFiles = await fs.promises.readdir(dir);
-		if (remainingFiles.length === 0) {
-			await fs.promises.rmdir(dir);
-		}
-	} catch (error) {
-		console.error(`❌  Error deleting directory ${dir}:`, error);
-	}
+try {
+	// Check if the documentation directory exists
+	await fs.stat(docsDir);
+} catch (error) {
+	throw new Error(
+		`❌  Error checking directory ${docsDir}: ${error.message}`
+	);
 }
 
+const patterns = [
+	path.posix.join(docsDir, '**', '*.lite.md'),
+	path.posix.join(docsDir, '**', 'model.md')
+];
+
+// Find all matching files and group them by directory
+const allFiles = await fg(patterns, { absolute: true });
+const files = allFiles.map((file) => path.relative(docsDir, file));
+const groupedFiles = getGroupedFiles(files);
+
+// Process each group of files
 const operations = Object.entries(groupedFiles).map(
 	async ([prefix, fileGroup]) => {
 		if (!prefix) return;
 
 		let mergedContent = '';
 		try {
+			// Read and merge the content of all files in the group
 			const fileContents = await Promise.all(
-				fileGroup.map(async (file) => {
-					const filePath = path.join(docsDir, file);
-					return fs.promises.readFile(filePath, 'utf8');
-				})
+				fileGroup
+					.sort((a, b) => a.localeCompare(b))
+					.map(async (file) => {
+						const filePath = path.join(docsDir, file);
+						return fs.readFile(filePath, 'utf8');
+					})
 			);
 			mergedContent = fileContents.join('\n\n');
 		} catch (error) {
@@ -128,6 +83,7 @@ const operations = Object.entries(groupedFiles).map(
 			return;
 		}
 
+		// Define the output directory and file path
 		const componentDir = path.join(componentsDir, prefix);
 		const outputFile = path.join(
 			componentDir,
@@ -135,16 +91,18 @@ const operations = Object.entries(groupedFiles).map(
 		);
 
 		try {
-			await fs.promises.mkdir(componentDir, { recursive: true });
-			await fs.promises.writeFile(outputFile, mergedContent, 'utf8');
+			// Create the output directory and write the merged content
+			await fs.mkdir(componentDir, { recursive: true });
+			await fs.writeFile(outputFile, mergedContent, 'utf8');
 		} catch (error) {
 			console.error(`❌  Error writing file ${outputFile}:`, error);
 			return;
 		}
 
+		// Delete the original files after processing
 		const deletePromises = fileGroup.map((file) => {
 			const filePath = path.join(docsDir, file);
-			return fs.promises.unlink(filePath).catch((error) => {
+			return fs.unlink(filePath).catch((error) => {
 				console.error(`❌  Error deleting file ${filePath}:`, error);
 			});
 		});
@@ -155,6 +113,7 @@ const operations = Object.entries(groupedFiles).map(
 
 await Promise.all(operations);
 
-await removeEmptyDirs(docsDir);
+// Remove the original documentation directory
+await fs.rm(docsDir, { recursive: true, force: true });
 
 console.log('✅  All operations successfully completed.');
