@@ -169,6 +169,46 @@
             - text: Option 2 none" / "
   - status
   - text: chevron_down" / "
+  - link "Validation arrow_up_right\" / \""
+  - text: (Default) No Validation
+  - group:
+    - article:
+      - radiogroup "id-102061-(Default) No Validation":
+        - list:
+          - listitem:
+            - radio "Option 1 none\" / \""
+            - text: Option 1 none" / "
+          - listitem:
+            - radio "Option 2 none\" / \""
+            - text: Option 2 none" / "
+  - status
+  - text: chevron_down" / " Invalid
+  - group:
+    - article:
+      - radiogroup "id-102062-Invalid":
+        - list:
+          - listitem:
+            - radio "Option 1 none\" / \""
+            - text: Option 1 none" / "
+          - listitem:
+            - radio "Option 2 none\" / \""
+            - text: Option 2 none" / "
+  - text: exclamation_mark_circle" / " Invalid Message
+  - status
+  - text: chevron_down" / " Valid
+  - group:
+    - article:
+      - radiogroup "id-102063-Valid":
+        - list:
+          - listitem:
+            - radio "Option 1 none\" / \""
+            - text: Option 1 none" / "
+          - listitem:
+            - radio "Option 2 none\" / \""
+            - text: Option 2 none" / "
+  - text: "check_circle\" / \" TODO: Add a validMessage"
+  - status
+  - text: chevron_down" / "
   - link "Required arrow_up_right\" / \""
   - text: (Default) False
   - group:

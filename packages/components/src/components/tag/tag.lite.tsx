@@ -21,8 +21,10 @@ export default function DBTag(props: DBTagProps) {
 	const _ref = useRef<HTMLDivElement | any>(null);
 	const state = useStore<DBTagState>({
 		initialized: false,
-		handleRemove: (event?: ClickEvent<HTMLButtonElement>) => {
-			event?.stopPropagation();
+		handleRemove: (event?: ClickEvent<HTMLButtonElement> | void) => {
+			if (!event) return;
+
+			event.stopPropagation();
 			if (props.onRemove) {
 				props.onRemove(event);
 			}

@@ -130,14 +130,19 @@ export default function DBPopover(props: DBPopoverProps) {
 				_ref.addEventListener(event, () => state.handleLeave());
 			});
 
-			state._observer = new IntersectionObserver((payload) => {
-				const entry = payload.find(
-					({ target }) => target === state.getTrigger()
-				);
-				if (entry && !entry.isIntersecting) {
-					state.handleEscape(false);
-				}
-			});
+			if (
+				typeof window !== 'undefined' &&
+				'IntersectionObserver' in window
+			) {
+				state._observer = new IntersectionObserver((payload) => {
+					const entry = payload.find(
+						({ target }) => target === state.getTrigger()
+					);
+					if (entry && !entry.isIntersecting) {
+						state.handleEscape(false);
+					}
+				});
+			}
 		}
 	}, [_ref, state.initialized]);
 
