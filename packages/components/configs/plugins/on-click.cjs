@@ -6,7 +6,6 @@ module.exports = () => ({
 		pre: (json) => {
 			if (['DBButton', 'DBLink'].includes(json.name)) {
 				if (json.pluginData.target === 'vue') {
-					console.log(json.state);
 					json.children[0].bindings.onClick = {
 						code: 'state.handleClick(event)',
 						bindingType: 'expression',
