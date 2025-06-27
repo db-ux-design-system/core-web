@@ -8,13 +8,13 @@ import {
 	useRef,
 	useStore
 } from '@builder.io/mitosis';
-import { DBSimpleTabProps, DBTabsProps, DBTabsState } from './model';
+import { InputEvent } from '../../shared/model';
 import { cls, uuid } from '../../utils';
 import DBButton from '../button/button.lite';
-import DBTabList from '../tab-list/tab-list.lite';
 import DBTabItem from '../tab-item/tab-item.lite';
+import DBTabList from '../tab-list/tab-list.lite';
 import DBTabPanel from '../tab-panel/tab-panel.lite';
-import { InputEvent } from '../../shared/model';
+import { DBSimpleTabProps, DBTabsProps, DBTabsState } from './model';
 
 useMetadata({});
 useDefaultProps<DBTabsProps>({});

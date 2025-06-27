@@ -1,13 +1,7 @@
-import { ArcherContainer, ArcherElement } from 'react-archer';
 import Link from 'next/link';
+import { ArcherContainer, ArcherElement } from 'react-archer';
+import { DBCard, DBLink, DBSection } from '../../../../../output/react/src';
 import DefaultPage from '../../../components/default-page';
-import {
-	DBLink,
-	DBIcon,
-	DBCard,
-	DBSection
-} from '../../../../../output/react/src';
-import { SEMANTICS } from '../../../../../packages/components/src/shared/constants';
 
 const ColorUsageGuide = () => {
 	return (

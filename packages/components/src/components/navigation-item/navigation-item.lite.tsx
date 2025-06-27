@@ -8,8 +8,8 @@ import {
 	useRef,
 	useStore
 } from '@builder.io/mitosis';
-import { DBNavigationItemProps, DBNavigationItemState } from './model';
-import DBButton from '../button/button.lite';
+import { DEFAULT_BACK } from '../../shared/constants';
+import { ClickEvent } from '../../shared/model';
 import {
 	cls,
 	delay,
@@ -22,8 +22,8 @@ import {
 	isEventTargetNavigationItem,
 	NavigationItemSafeTriangle
 } from '../../utils/navigation';
-import { DEFAULT_BACK } from '../../shared/constants';
-import { ClickEvent } from '../../shared/model';
+import DBButton from '../button/button.lite';
+import { DBNavigationItemProps, DBNavigationItemState } from './model';
 
 useMetadata({});
 

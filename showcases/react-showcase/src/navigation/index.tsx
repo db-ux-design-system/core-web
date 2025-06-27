@@ -1,9 +1,9 @@
+import { DBNavigation } from '../../../../output/react/src';
 import {
 	getSortedNavigationItems,
 	NAVIGATION_ITEMS,
 	type NavigationItem
 } from '../utils/navigation-item';
-import { DBNavigation } from '../../../../output/react/src';
 import NavItem from './nav-item';
 
 const Navigation = () => (

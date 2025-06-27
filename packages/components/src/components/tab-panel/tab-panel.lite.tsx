@@ -6,8 +6,8 @@ import {
 	useRef,
 	useStore
 } from '@builder.io/mitosis';
-import { DBTabPanelProps, DBTabPanelState } from './model';
 import { cls } from '../../utils';
+import { DBTabPanelProps, DBTabPanelState } from './model';
 
 useMetadata({});
 useDefaultProps<DBTabPanelProps>({});

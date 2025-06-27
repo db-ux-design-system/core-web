@@ -1,6 +1,6 @@
-import remarkGfm from 'remark-gfm';
 import generated from '@next/mdx';
 import rehypeSlug from 'rehype-slug';
+import remarkGfm from 'remark-gfm';
 import remarkTransformLinks from './scripts/remark-transform-links.js';
 
 const withMDX = generated({

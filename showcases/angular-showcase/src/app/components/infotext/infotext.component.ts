@@ -1,8 +1,8 @@
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import defaultComponentVariants from '../../../../../shared/infotext.json';
-import { DefaultComponent } from '../default.component';
 import { DBInfotext } from '../../../../../../output/angular/src';
+import defaultComponentVariants from '../../../../../shared/infotext.json';
 import { environment } from '../../../environments/environment';
+import { DefaultComponent } from '../default.component';
 
 @Component({
 	selector: 'app-infotext',

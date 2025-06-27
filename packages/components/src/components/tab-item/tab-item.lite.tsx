@@ -8,12 +8,12 @@ import {
 	useStore,
 	useTarget
 } from '@builder.io/mitosis';
-import type { DBTabItemProps, DBTabItemState } from './model';
 import { cls, getBoolean, getBooleanAsString, getHideProp } from '../../utils';
 import {
 	handleFrameworkEventAngular,
 	handleFrameworkEventVue
 } from '../../utils/form-components';
+import type { DBTabItemProps, DBTabItemState } from './model';
 
 useMetadata({
 	angular: {

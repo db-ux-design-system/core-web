@@ -1,14 +1,14 @@
 import {
 	DBBadge,
-	DBInfotext,
+	DBButton,
 	DBIcon,
-	DBButton
+	DBInfotext
 } from '../../../../../output/react/src';
-import DefaultComponent from '../default-component';
-import defaultComponentVariants from '../../../../shared/badge.json';
 import type { DBBadgeProps } from '../../../../../output/react/src/components/badge/model';
-import { getVariants } from '../data';
+import defaultComponentVariants from '../../../../shared/badge.json';
 import { type BaseComponentProps } from '../base-component-data';
+import { getVariants } from '../data';
+import DefaultComponent from '../default-component';
 
 const getBadge = ({
 	children,

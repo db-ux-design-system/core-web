@@ -1,12 +1,12 @@
-import { describe, test } from 'vitest';
 import { type Config } from 'stylelint';
+import { describe, test } from 'vitest';
+import useBorderRadius from '../../src/rules/use-border-radius.js';
 import {
 	defaultConfig,
 	getDefaultTest,
 	getScssAllowTest,
 	getVueTest
 } from '../defaults.js';
-import useBorderRadius from '../../src/rules/use-border-radius.js';
 
 const ruleName = 'db-ux/use-border-radius';
 

@@ -8,11 +8,11 @@ import {
 	useRef,
 	useStore
 } from '@builder.io/mitosis';
-import { DBTagProps, DBTagState } from './model';
-import { cls, getBooleanAsString, getHideProp } from '../../utils';
 import { DEFAULT_REMOVE } from '../../shared/constants';
 import { ClickEvent } from '../../shared/model';
+import { cls, getBooleanAsString, getHideProp } from '../../utils';
 import DBTooltip from '../tooltip/tooltip.lite';
+import { DBTagProps, DBTagState } from './model';
 
 useMetadata({});
 useDefaultProps<DBTagProps>({});

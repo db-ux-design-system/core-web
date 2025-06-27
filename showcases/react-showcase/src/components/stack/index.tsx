@@ -1,13 +1,13 @@
 import {
-	DBStack,
+	DBDivider,
 	DBInfotext,
-	DBDivider
+	DBStack
 } from '../../../../../output/react/src';
-import defaultComponentVariants from '../../../../shared/stack.json';
 import type { DBStackProps } from '../../../../../output/react/src/components/stack/model';
+import defaultComponentVariants from '../../../../shared/stack.json';
+import type { BaseComponentProps } from '../base-component-data';
 import { getVariants } from '../data';
 import DefaultComponent from '../default-component';
-import type { BaseComponentProps } from '../base-component-data';
 
 const getStack = ({
 	children,

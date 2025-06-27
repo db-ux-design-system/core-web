@@ -2,7 +2,6 @@ import {
 	ClickEvent,
 	CloseEventProps,
 	CloseEventState,
-	GeneralEvent,
 	GeneralKeyboardEvent,
 	GlobalProps,
 	GlobalState,

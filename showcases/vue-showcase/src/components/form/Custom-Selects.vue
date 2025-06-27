@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import FormWrapper from "./FormWrapper.vue";
-import { DBCustomSelect } from "../../../../../output/vue/src";
 import { ref } from "vue";
+import { DBCustomSelect } from "../../../../../output/vue/src";
+import FormWrapper from "./FormWrapper.vue";
 
 const plain = ref(["combobox-1"]);
 const vModel = ref(["combobox-1"]);

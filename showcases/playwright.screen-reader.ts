@@ -1,5 +1,5 @@
 import { screenReaderConfig } from '@guidepup/playwright';
-import { devices, type PlaywrightTestConfig } from '@playwright/test';
+import { type PlaywrightTestConfig } from '@playwright/test';
 import showcaseConfig from './playwright.showcase';
 
 const defaultScreenReaderConfig: PlaywrightTestConfig = {

@@ -7,10 +7,10 @@ import {
 	useRef,
 	useStore
 } from '@builder.io/mitosis';
-import { DBPopoverProps, DBPopoverState } from './model';
-import { cls, delay as utilsDelay, getBooleanAsString } from '../../utils';
-import { handleFixedPopover } from '../../utils/floating-components';
+import { cls, getBooleanAsString, delay as utilsDelay } from '../../utils';
 import { DocumentScrollListener } from '../../utils/document-scroll-listener';
+import { handleFixedPopover } from '../../utils/floating-components';
+import { DBPopoverProps, DBPopoverState } from './model';
 
 useMetadata({});
 useDefaultProps<DBPopoverProps>({});

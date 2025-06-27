@@ -9,10 +9,10 @@ import {
 	useStore,
 	useTarget
 } from '@builder.io/mitosis';
-import { DBAccordionItemProps, DBAccordionItemState } from './model';
-import { cls, getBooleanAsString, uuid } from '../../utils';
-import { ClickEvent } from '../../shared/model';
 import { DEFAULT_ID } from '../../shared/constants';
+import { ClickEvent } from '../../shared/model';
+import { cls, getBooleanAsString, uuid } from '../../utils';
+import { DBAccordionItemProps, DBAccordionItemState } from './model';
 
 useMetadata({
 	angular: {

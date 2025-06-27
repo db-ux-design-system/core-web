@@ -1,12 +1,12 @@
 import { MDXProvider } from '@mdx-js/react';
-import Script from 'next/script';
 import type { AppProps } from 'next/app';
 import Head from 'next/head';
-import '../styles/globals.scss';
-import '../styles/highlight.scss';
-import '../styles/decision-tree.scss';
+import Script from 'next/script';
 import '../../showcase-styles.css';
 import LinkHeader from '../components/link-header';
+import '../styles/decision-tree.scss';
+import '../styles/globals.scss';
+import '../styles/highlight.scss';
 
 const App = ({ Component, pageProps }: AppProps) => (
 	<MDXProvider

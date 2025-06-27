@@ -1,8 +1,8 @@
 import { bootstrapApplication } from '@angular/platform-browser';
 import { provideRouter, withHashLocation } from '@angular/router';
+import { defineCustomElements } from '../../../output/stencil/dist/loader';
 import { AppComponent } from '../../angular-showcase/src/app/app.component';
 import { getRoutes } from '../../angular-showcase/src/app/utils/navigation-item';
-import { defineCustomElements } from '../../../output/stencil/dist/loader';
 
 defineCustomElements(undefined, {
 	// TODO: Fix issues with double slots to solve this issue

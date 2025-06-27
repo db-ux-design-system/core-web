@@ -8,7 +8,7 @@ import {
 	useStore,
 	useTarget
 } from '@builder.io/mitosis';
-import { DBSwitchProps, DBSwitchState } from './model';
+import { ChangeEvent, InteractionEvent } from '../../shared/model';
 import {
 	cls,
 	getBoolean,
@@ -16,11 +16,11 @@ import {
 	getHideProp,
 	uuid
 } from '../../utils';
-import { ChangeEvent, InteractionEvent } from '../../shared/model';
 import {
 	handleFrameworkEventAngular,
 	handleFrameworkEventVue
 } from '../../utils/form-components';
+import { DBSwitchProps, DBSwitchState } from './model';
 
 useMetadata({
 	angular: {

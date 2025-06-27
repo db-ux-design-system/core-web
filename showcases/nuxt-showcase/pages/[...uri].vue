@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { type RouteRecordRaw, useRoute } from "vue-router";
 // import { getRoutes } from "~/src/utils/navigation-items";
-import { getRoutes } from "../../vue-showcase/src/utils/navigation-items";
 import { ref } from "vue";
+import { getRoutes } from "../../vue-showcase/src/utils/navigation-items";
 
 const currentRoute = useRoute();
 const currentRouteData = ref<null | RouteRecordRaw>(null);

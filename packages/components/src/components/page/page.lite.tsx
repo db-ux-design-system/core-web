@@ -8,8 +8,8 @@ import {
 	useRef,
 	useStore
 } from '@builder.io/mitosis';
-import { DBPageProps, DBPageState } from './model';
 import { cls, getBooleanAsString } from '../../utils';
+import { DBPageProps, DBPageState } from './model';
 
 useMetadata({});
 useDefaultProps<DBPageProps>({});

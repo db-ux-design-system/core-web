@@ -1,4 +1,3 @@
-import { NVDAKeyCodeCommands } from '@guidepup/guidepup';
 import { generateSnapshot, getTest, testDefault } from '../default';
 
 const test = getTest();

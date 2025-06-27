@@ -4,9 +4,9 @@ import {
 	useRef,
 	useStore
 } from '@builder.io/mitosis';
-import type { DBCardProps, DBCardState } from './model';
-import { cls } from '../../utils';
 import { ClickEvent } from '../../shared/model';
+import { cls } from '../../utils';
+import type { DBCardProps, DBCardState } from './model';
 
 useMetadata({});
 

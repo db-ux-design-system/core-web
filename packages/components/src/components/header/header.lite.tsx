@@ -7,12 +7,12 @@ import {
 	useRef,
 	useStore
 } from '@builder.io/mitosis';
-import { DBHeaderProps, DBHeaderState } from './model';
+import { DEFAULT_BURGER_MENU, DEFAULT_ID } from '../../shared/constants';
 import { addAttributeToChildren, cls, getBoolean, uuid } from '../../utils';
+import { isEventTargetNavigationItem } from '../../utils/navigation';
 import DBButton from '../button/button.lite';
 import DBDrawer from '../drawer/drawer.lite';
-import { DEFAULT_BURGER_MENU, DEFAULT_ID } from '../../shared/constants';
-import { isEventTargetNavigationItem } from '../../utils/navigation';
+import { DBHeaderProps, DBHeaderState } from './model';
 
 useMetadata({});
 

@@ -1,14 +1,14 @@
 import {
 	ClickEvent,
 	ContentSlotProps,
+	EmphasisProps,
 	GlobalProps,
 	GlobalState,
 	IconProps,
 	InitializedState,
 	OverflowProps,
 	SemanticProps,
-	ShowIconProps,
-	EmphasisProps
+	ShowIconProps
 } from '../../shared/model';
 
 export const TagBehaviorList = ['static', 'removable'] as const;

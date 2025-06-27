@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import {
 	DBButton,
+	DBCheckbox,
 	DBInput,
 	DBRadio,
-	DBCheckbox,
 	DBSelect,
 	DBTag,
 	DBTextarea

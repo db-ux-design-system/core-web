@@ -1,9 +1,9 @@
 import {
 	AlignmentProps,
-	InputEvent,
 	GlobalProps,
 	GlobalState,
 	InitializedState,
+	InputEvent,
 	OrientationProps,
 	WidthProps
 } from '../../shared/model';

@@ -1,12 +1,12 @@
 import { Component } from '@angular/core';
 import { CustomSelectOptionType } from '@db-ux/core-components/src/components/custom-select/model';
-import { DefaultComponent } from '../default.component';
+import {
+	DBCustomSelect,
+	DBInfotext
+} from '../../../../../../output/angular/src';
 import defaultComponentVariants from '../../../../../shared/custom-select.json';
 import { environment } from '../../../environments/environment';
-import {
-	DBInfotext,
-	DBCustomSelect
-} from '../../../../../../output/angular/src';
+import { DefaultComponent } from '../default.component';
 
 @Component({
 	selector: 'app-custom-select',

@@ -1,11 +1,11 @@
-import { expect, test } from '@playwright/experimental-ct-react';
 import AxeBuilder from '@axe-core/playwright';
+import { expect, test } from '@playwright/experimental-ct-react';
 
 import { DBTabs } from './index';
 // @ts-ignore - vue can only find it with .ts as file ending
 import { DEFAULT_VIEWPORT } from '../../shared/constants.ts';
-import { DBTabList } from '../tab-list';
 import { DBTabItem } from '../tab-item';
+import { DBTabList } from '../tab-list';
 import { DBTabPanel } from '../tab-panel';
 
 const comp: any = (

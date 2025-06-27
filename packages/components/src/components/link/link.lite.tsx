@@ -4,8 +4,8 @@ import {
 	useMetadata,
 	useRef
 } from '@builder.io/mitosis';
-import { DBLinkProps } from './model';
 import { cls, getBooleanAsString, getHideProp } from '../../utils';
+import { DBLinkProps } from './model';
 
 useMetadata({});
 

@@ -1,11 +1,11 @@
 <script setup lang="ts">
 import {
-	DBPage,
-	DBHeader,
 	DBBrand,
-	DBSelect,
+	DBButton,
+	DBHeader,
 	DBNavigation,
-	DBButton
+	DBPage,
+	DBSelect
 } from "../../../output/vue/src";
 import {
 	COLORS,

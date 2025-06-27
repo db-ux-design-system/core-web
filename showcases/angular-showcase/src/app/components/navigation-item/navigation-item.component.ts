@@ -1,11 +1,11 @@
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import defaultComponentVariants from '../../../../../shared/navigation-item.json';
-import { DefaultComponent } from '../default.component';
 import {
 	DBNavigationItem,
 	NavigationContentDirective
 } from '../../../../../../output/angular/src';
+import defaultComponentVariants from '../../../../../shared/navigation-item.json';
 import { environment } from '../../../environments/environment';
+import { DefaultComponent } from '../default.component';
 
 @Component({
 	selector: 'app-navigation-item',

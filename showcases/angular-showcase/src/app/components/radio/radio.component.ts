@@ -1,12 +1,8 @@
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { DBInfotext, DBRadio } from '../../../../../../output/angular/src';
 import defaultComponentVariants from '../../../../../shared/radio.json';
-import { DefaultComponent } from '../default.component';
-import {
-	DBCheckbox,
-	DBInfotext,
-	DBRadio
-} from '../../../../../../output/angular/src';
 import { environment } from '../../../environments/environment';
+import { DefaultComponent } from '../default.component';
 
 @Component({
 	selector: 'app-radio',

@@ -2,7 +2,7 @@
  * This script can be used to update the icon type for all components using icons.
  */
 
-import { writeFileSync, readFileSync } from 'node:fs';
+import { readFileSync, writeFileSync } from 'node:fs';
 
 export type GenerateIconTypesProps = {
 	fontJsonPath: string;

@@ -3,7 +3,6 @@ import {
 	ChangeEventProps,
 	ChangeEventState,
 	FormCheckProps,
-	FormProps,
 	GlobalProps,
 	GlobalState,
 	IconProps,
