@@ -1,6 +1,9 @@
 import {
+	ClickEvent,
 	CloseEventProps,
 	CloseEventState,
+	GeneralEvent,
+	GeneralKeyboardEvent,
 	GlobalProps,
 	GlobalState,
 	InnerCloseButtonProps,
@@ -56,7 +59,10 @@ export type DBDrawerDefaultProps = {
 
 export type DBDrawerProps = DBDrawerDefaultProps &
 	GlobalProps &
-	CloseEventProps &
+	CloseEventProps<
+		| ClickEvent<HTMLButtonElement | HTMLDialogElement>
+		| GeneralKeyboardEvent<HTMLDialogElement>
+	> &
 	InnerCloseButtonProps &
 	WidthProps &
 	SpacingProps;
@@ -67,4 +73,7 @@ export type DBDrawerDefaultState = {
 
 export type DBDrawerState = DBDrawerDefaultState &
 	GlobalState &
-	CloseEventState;
+	CloseEventState<
+		| ClickEvent<HTMLButtonElement | HTMLDialogElement>
+		| GeneralKeyboardEvent<HTMLDialogElement>
+	>;

@@ -573,6 +573,11 @@ export type TextProps = {
 };
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
+export type GeneralEvent<T> = Event;
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+export type GeneralKeyboardEvent<T> = KeyboardEvent;
+
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 export type ClickEvent<T> = MouseEvent;
 export type ClickEventProps<T> = {
 	/**
@@ -586,27 +591,27 @@ export type ClickEventState<T> = {
 };
 
 export type ToggleEventProps = {
-	toggle?: (open: boolean | any) => void;
-	onToggle?: (open: boolean | any) => void;
+	toggle?: (open: boolean) => void;
+	onToggle?: (open: boolean) => void;
 };
 
 export type ToggleEventState<T> = {
 	handleToggle: (event?: ClickEvent<T> | any) => void;
 };
 
-export type CloseEventProps = {
+export type CloseEventProps<T> = {
 	/**
 	 * Function to handle button click (close).
 	 */
-	onClose?: (event?: any) => void;
+	onClose?: (event?: T) => void;
 	/**
 	 * Function to handle button click (close).
 	 */
-	close?: (event?: any) => void;
+	close?: (event?: T) => void;
 };
 
-export type CloseEventState = {
-	handleClose: (event: any, forceClose?: boolean) => void;
+export type CloseEventState<T> = {
+	handleClose: (event?: T | void, forceClose?: boolean) => void;
 };
 
 export const AlignmentList = ['start', 'center'] as const;

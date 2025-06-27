@@ -10,7 +10,7 @@
         - text: x_placeholder" / "
         - link "Functional"
       - listitem:
-        - link "Functional disabled"
+        - link "Functional disabled" [disabled]
   - button "magnifying_glass\" / \" Search"
   - button "x_placeholder\" / \" Profile"
   - button "x_placeholder\" / \" Notification"
@@ -24,7 +24,7 @@
         - text: x_placeholder" / "
         - link "(Default) Regular"
       - listitem:
-        - link "(Default) Regular disabled"
+        - link "(Default) Regular disabled" [disabled]
   - button "magnifying_glass\" / \" Search"
   - button "x_placeholder\" / \" Profile"
   - button "x_placeholder\" / \" Notification"
@@ -38,7 +38,7 @@
         - text: x_placeholder" / "
         - link "Expressive"
       - listitem:
-        - link "Expressive disabled"
+        - link "Expressive disabled" [disabled]
   - button "magnifying_glass\" / \" Search"
   - button "x_placeholder\" / \" Profile"
   - button "x_placeholder\" / \" Notification"
@@ -53,7 +53,7 @@
         - text: x_placeholder" / "
         - link "Full"
       - listitem:
-        - link "Full disabled"
+        - link "Full disabled" [disabled]
   - button "magnifying_glass\" / \" Search"
   - button "x_placeholder\" / \" Profile"
   - button "x_placeholder\" / \" Notification"
@@ -67,7 +67,7 @@
         - text: x_placeholder" / "
         - link "Medium"
       - listitem:
-        - link "Medium disabled"
+        - link "Medium disabled" [disabled]
   - button "magnifying_glass\" / \" Search"
   - button "x_placeholder\" / \" Profile"
   - button "x_placeholder\" / \" Notification"
@@ -81,7 +81,7 @@
         - text: x_placeholder" / "
         - link "Large"
       - listitem:
-        - link "Large disabled"
+        - link "Large disabled" [disabled]
   - button "magnifying_glass\" / \" Search"
   - button "x_placeholder\" / \" Profile"
   - button "x_placeholder\" / \" Notification"
@@ -96,7 +96,7 @@
         - text: x_placeholder" / "
         - link "Desktop (full width)"
       - listitem:
-        - link "Desktop (full width) disabled"
+        - link "Desktop (full width) disabled" [disabled]
   - button "magnifying_glass\" / \" Search"
   - button "x_placeholder\" / \" Profile"
   - button "x_placeholder\" / \" Notification"
@@ -112,7 +112,7 @@
         - text: x_placeholder" / "
         - link "With Application Name + Navigation"
       - listitem:
-        - link "With Application Name + Navigation disabled"
+        - link "With Application Name + Navigation disabled" [disabled]
   - text: brand" / " DBHeader brand" / "
   - navigation "Without Application Name":
     - list:
@@ -120,5 +120,5 @@
         - text: x_placeholder" / "
         - link "Without Application Name"
       - listitem:
-        - link "Without Application Name disabled"
+        - link "Without Application Name disabled" [disabled]
   - text: brand" / "
