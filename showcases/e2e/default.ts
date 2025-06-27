@@ -42,6 +42,7 @@ export const isStencil = (showcase?: string): boolean =>
 	Boolean(showcase?.startsWith('stencil'));
 export const isAngular = (showcase?: string): boolean =>
 	Boolean(showcase?.startsWith('angular'));
+export const isVue = (showcase: string): boolean => showcase.startsWith('vue');
 
 export const hasWebComponentSyntax = (showcase?: string): boolean => {
 	return isAngular(showcase) || isStencil(showcase);
@@ -270,7 +271,26 @@ export const runAriaSnapshotTest = ({
 
 		await page.waitForTimeout(1000); // We wait a little bit until everything loaded
 
-		const snapshot = await page.locator('main').ariaSnapshot();
+		let snapshot = await page.locator('main').ariaSnapshot();
+
+		// Remove `/url` in snapshot because they differ in every showcase
+		const lines = snapshot.split('\n');
+		const includesUrl = '/url:';
+		snapshot = lines
+			.map((line) => {
+				if (line.includes(includesUrl)) {
+					return undefined;
+				}
+
+				if (line.includes('- link')) {
+					line = line.replace(':', '');
+				}
+
+				return line;
+			})
+			.filter(Boolean)
+			.join('\n');
+
 		expect(snapshot).toMatchSnapshot(`${title}.yaml`);
 	});
 };

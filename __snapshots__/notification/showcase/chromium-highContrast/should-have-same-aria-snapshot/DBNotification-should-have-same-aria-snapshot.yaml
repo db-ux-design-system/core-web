@@ -90,7 +90,7 @@
   - article:
     - paragraph: "True"
     - text: 10 min ago
-  - link "Examples - Variant:Docked arrow_up_right\" / \""
+  - link "Examples - VariantDocked arrow_up_right\" / \"":
   - article:
     - paragraph: Text
   - article:
@@ -116,7 +116,7 @@
     - text: information_circle" / " Headline
     - paragraph: Text & Icon & Headline & Textlink Inline & Cloaseable
     - link "Textlink"
-  - link "Examples - Variant:Standalone arrow_up_right\" / \""
+  - link "Examples - VariantStandalone arrow_up_right\" / \"":
   - article:
     - paragraph: Text
   - article:
@@ -142,7 +142,7 @@
     - text: information_circle" / " Headline
     - paragraph: Text & Icon & Headline & Textlink Inline & Cloaseable
     - link "Textlink"
-  - link "Examples - Variant:Overlay arrow_up_right\" / \""
+  - link "Examples - VariantOverlay arrow_up_right\" / \"":
   - article:
     - paragraph: Text
   - article:

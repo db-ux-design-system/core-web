@@ -9,7 +9,7 @@
       - listitem:
         - link "Functional"
       - listitem:
-        - link "Functional disabled"
+        - link "Functional disabled" [disabled]
   - button "Search"
   - button "Profile"
   - button "Notification"
@@ -22,7 +22,7 @@
       - listitem:
         - link "(Default) Regular"
       - listitem:
-        - link "(Default) Regular disabled"
+        - link "(Default) Regular disabled" [disabled]
   - button "Search"
   - button "Profile"
   - button "Notification"
@@ -35,7 +35,7 @@
       - listitem:
         - link "Expressive"
       - listitem:
-        - link "Expressive disabled"
+        - link "Expressive disabled" [disabled]
   - button "Search"
   - button "Profile"
   - button "Notification"
@@ -49,7 +49,7 @@
       - listitem:
         - link "Full"
       - listitem:
-        - link "Full disabled"
+        - link "Full disabled" [disabled]
   - button "Search"
   - button "Profile"
   - button "Notification"
@@ -62,7 +62,7 @@
       - listitem:
         - link "Medium"
       - listitem:
-        - link "Medium disabled"
+        - link "Medium disabled" [disabled]
   - button "Search"
   - button "Profile"
   - button "Notification"
@@ -75,7 +75,7 @@
       - listitem:
         - link "Large"
       - listitem:
-        - link "Large disabled"
+        - link "Large disabled" [disabled]
   - button "Search"
   - button "Profile"
   - button "Notification"
@@ -89,7 +89,7 @@
       - listitem:
         - link "Desktop (full width)"
       - listitem:
-        - link "Desktop (full width) disabled"
+        - link "Desktop (full width) disabled" [disabled]
   - button "Search"
   - button "Profile"
   - button "Notification"
@@ -104,11 +104,11 @@
       - listitem:
         - link "With Application Name + Navigation"
       - listitem:
-        - link "With Application Name + Navigation disabled"
+        - link "With Application Name + Navigation disabled" [disabled]
   - text: DBHeader
   - navigation "Without Application Name":
     - list:
       - listitem:
         - link "Without Application Name"
       - listitem:
-        - link "Without Application Name disabled"
+        - link "Without Application Name disabled" [disabled]
