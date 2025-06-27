@@ -1,9 +1,6 @@
 import { useState } from 'react';
-import {
-	DBCustomSelect,
-	DBInfotext,
-	uuid
-} from '../../../../../output/react/src';
+import { type CustomSelectOptionType } from '@db-ux/core-components/src/components/custom-select/model';
+import { DBCustomSelect, DBInfotext } from '../../../../../output/react/src';
 import DefaultComponent from '../default-component';
 import defaultComponentVariants from '../../../../shared/custom-select.json';
 import type { DBCustomSelectProps } from '../../../../../output/react/src/components/custom-select/model';
@@ -37,12 +34,30 @@ const getCustomSelect = ({
 	showIcon,
 	showMessage,
 	disabled,
-	id
+	id,
+	searchValue,
+	selectedLabels,
+	transformSelectedLabels,
+	searchFilter,
+	validMessage,
+	validation,
+	invalidMessage
 }: DBCustomSelectProps & {
 	lineBreak?: boolean;
 	info?: boolean;
 }) => {
 	const [mValue, setValue] = useState<string[] | undefined>(values);
+
+	const getTransformSelectedLabels = (selectedOptions?: any): string => {
+		return selectedOptions
+			.map((option: any) => option.value.at(-1))
+			.join(', ');
+	};
+
+	const getSearchFilter = (
+		option: CustomSelectOptionType,
+		_: string
+	): boolean => option.value === 'Option 1';
 
 	if (info) {
 		return (
@@ -85,6 +100,15 @@ const getCustomSelect = ({
 			loadingText={loadingText}
 			noResultsText={noResultsText ?? 'No matching filter'}
 			values={mValue}
+			searchValue={searchValue}
+			selectedLabels={selectedLabels}
+			invalidMessage={invalidMessage}
+			validMessage={validMessage}
+			validation={validation}
+			transformSelectedLabels={
+				transformSelectedLabels ? getTransformSelectedLabels : undefined
+			}
+			searchFilter={searchFilter ? getSearchFilter : undefined}
 			onOptionSelected={(val) => {
 				setValue(val);
 			}}

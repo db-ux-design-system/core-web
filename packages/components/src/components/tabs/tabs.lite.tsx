@@ -14,6 +14,7 @@ import DBButton from '../button/button.lite';
 import DBTabList from '../tab-list/tab-list.lite';
 import DBTabItem from '../tab-item/tab-item.lite';
 import DBTabPanel from '../tab-panel/tab-panel.lite';
+import { InputEvent } from '../../shared/model';
 
 useMetadata({});
 useDefaultProps<DBTabsProps>({});
@@ -88,6 +89,11 @@ export default function DBTabs(props: DBTabsProps) {
 				const tabItems = Array.from<Element>(
 					_ref.getElementsByClassName('db-tab-item')
 				);
+				const tabPanels = Array.from<Element>(
+					_ref.querySelectorAll(
+						':is(:scope > .db-tab-panel, :scope > db-tab-panel > .db-tab-panel)'
+					)
+				);
 				for (const tabItem of tabItems) {
 					const index: number = tabItems.indexOf(tabItem);
 					const label = tabItem.querySelector('label');
@@ -97,12 +103,14 @@ export default function DBTabs(props: DBTabsProps) {
 						if (!input.id) {
 							const tabId = `${state._name}-tab-${index}`;
 							label.setAttribute('for', tabId);
-							input.setAttribute(
-								'aria-controls',
-								`${state._name}-tab-panel-${index}`
-							);
 							input.id = tabId;
 							input.setAttribute('name', state._name);
+							if (tabPanels.length > index) {
+								input.setAttribute(
+									'aria-controls',
+									`${state._name}-tab-panel-${index}`
+								);
+							}
 						}
 
 						if (init) {
@@ -121,11 +129,6 @@ export default function DBTabs(props: DBTabsProps) {
 					}
 				}
 
-				const tabPanels = Array.from<Element>(
-					_ref.querySelectorAll(
-						':is(:scope > .db-tab-panel, :scope > db-tab-panel > .db-tab-panel)'
-					)
-				);
 				for (const panel of tabPanels) {
 					if (panel.id) continue;
 					const index: number = tabPanels.indexOf(panel);
@@ -137,13 +140,18 @@ export default function DBTabs(props: DBTabsProps) {
 				}
 			}
 		},
-		handleChange: (event: any) => {
+		handleChange: (event: InputEvent<HTMLElement>) => {
 			event.stopPropagation();
-			const list = event.target?.closest('ul');
+			const closest:
+				| ((element: string) => HTMLElement | null)
+				| undefined = (event.target as any)?.closest;
+
+			if (!closest) return;
+
+			const list = closest('ul');
 			const listItem =
 				// db-tab-item for angular and stencil wrapping elements
-				event.target.closest('db-tab-item') ??
-				event.target.closest('li');
+				closest('db-tab-item') ?? closest('li');
 			if (list !== null && listItem !== null) {
 				const indices = Array.from(list.childNodes).indexOf(listItem);
 				if (props.onIndexChange) {
@@ -204,7 +212,7 @@ export default function DBTabs(props: DBTabsProps) {
 			data-scroll-behavior={props.behavior}
 			data-alignment={props.alignment ?? 'start'}
 			data-width={props.width ?? 'auto'}
-			onInput={(event: any) => state.handleChange(event)}>
+			onInput={(event) => state.handleChange(event)}>
 			<Show when={state.showScrollLeft}>
 				<DBButton
 					class="tabs-scroll-left"

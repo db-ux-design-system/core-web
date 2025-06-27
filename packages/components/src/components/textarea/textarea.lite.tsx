@@ -89,7 +89,6 @@ export default function DBTextarea(props: DBTextareaProps) {
 			}
 		},
 		handleInput: (event: InputEvent<HTMLTextAreaElement>) => {
-			event.stopPropagation();
 			useTarget({
 				vue: () => {
 					if (props.input) {
@@ -112,7 +111,6 @@ export default function DBTextarea(props: DBTextareaProps) {
 			state.handleValidation();
 		},
 		handleChange: (event: ChangeEvent<HTMLTextAreaElement>) => {
-			event.stopPropagation();
 			if (props.onChange) {
 				props.onChange(event);
 			}
@@ -123,13 +121,11 @@ export default function DBTextarea(props: DBTextareaProps) {
 			state.handleValidation();
 		},
 		handleBlur: (event: InteractionEvent<HTMLTextAreaElement> | any) => {
-			event.stopPropagation();
 			if (props.onBlur) {
 				props.onBlur(event);
 			}
 		},
 		handleFocus: (event: InteractionEvent<HTMLTextAreaElement> | any) => {
-			event.stopPropagation();
 			if (props.onFocus) {
 				props.onFocus(event);
 			}
@@ -180,9 +176,11 @@ export default function DBTextarea(props: DBTextareaProps) {
 			<textarea
 				aria-invalid={props.validation === 'invalid'}
 				data-custom-validity={props.validation}
+				data-field-sizing={props.fieldSizing}
 				ref={_ref}
 				id={state._id}
 				data-resize={props.resize}
+				data-hide-resizer={getHideProp(props.showResizer ?? true)}
 				disabled={getBoolean(props.disabled, 'disabled')}
 				required={getBoolean(props.required, 'required')}
 				readOnly={
@@ -209,7 +207,7 @@ export default function DBTextarea(props: DBTextareaProps) {
 					state.handleFocus(event)
 				}
 				value={props.value ?? state._value}
-				aria-describedby={state._descByIds}
+				aria-describedby={props.ariaDescribedBy ?? state._descByIds}
 				placeholder={props.placeholder ?? DEFAULT_PLACEHOLDER}
 				rows={getNumber(props.rows, DEFAULT_ROWS)}
 				cols={getNumber(props.cols)}

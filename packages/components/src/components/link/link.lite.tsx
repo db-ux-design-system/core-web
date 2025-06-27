@@ -2,12 +2,10 @@ import {
 	Show,
 	useDefaultProps,
 	useMetadata,
-	useRef,
-	useStore
+	useRef
 } from '@builder.io/mitosis';
-import { DBLinkProps, DBLinkState } from './model';
+import { DBLinkProps } from './model';
 import { cls, getBooleanAsString, getHideProp } from '../../utils';
-import { ClickEvent } from '../../shared/model';
 
 useMetadata({});
 
@@ -15,17 +13,6 @@ useDefaultProps<DBLinkProps>({});
 
 export default function DBLink(props: DBLinkProps) {
 	const _ref = useRef<HTMLAnchorElement | any>(null);
-	// jscpd:ignore-start
-	const state = useStore<DBLinkState>({
-		handleClick: (event: ClickEvent<HTMLAnchorElement>) => {
-			event.stopPropagation();
-			if (props.onClick) {
-				props.onClick(event);
-			}
-		}
-	});
-
-	// jscpd:ignore-end
 
 	return (
 		<a
@@ -45,10 +32,7 @@ export default function DBLink(props: DBLinkProps) {
 			data-size={props.size}
 			data-hide-icon-after={getHideProp(props.showIcon ?? true)}
 			data-variant={props.variant}
-			data-content={props.content || 'internal'}
-			onClick={(event: ClickEvent<HTMLAnchorElement>) =>
-				state.handleClick(event)
-			}>
+			data-content={props.content || 'internal'}>
 			<Show when={props.text} else={props.children}>
 				{props.text}
 			</Show>

@@ -5,11 +5,11 @@ export class DocumentClickListener {
 	private static _instance: DocumentClickListener | null = null;
 
 	private static runCallbacks(event: any) {
-		Object.values(DocumentClickListener.callbacks).forEach((callback) => {
+		for (const callback of Object.values(DocumentClickListener.callbacks)) {
 			if (typeof callback === 'function') {
 				callback(event);
 			}
-		});
+		}
 	}
 
 	constructor() {
@@ -17,8 +17,8 @@ export class DocumentClickListener {
 			return DocumentClickListener._instance;
 		}
 		DocumentClickListener._instance = this;
-		if (document) {
-			document.addEventListener('click', (event) =>
+		if (self.document) {
+			self.document.addEventListener('click', (event) =>
 				DocumentClickListener.runCallbacks(event)
 			);
 		}
