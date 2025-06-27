@@ -180,5 +180,5 @@
   - combobox "Label"
   - status
   - text: chevron_down" / " Label
-  - textbox "Label"
+  - button "Label"
   - status
