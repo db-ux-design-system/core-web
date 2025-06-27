@@ -268,7 +268,7 @@ export type RequiredProps = {
 	 * It allows to prevent adding the visual indicator but still keep the field semantically required by setting its value to `false`.
 	 * By default, its value is `true`, so the asterisk is shown when `required` is set.
 	 */
-	requiredAnnotation?: boolean | string;
+	showRequiredAsterisk?: boolean | string;
 };
 export type ShowLabelProps = {
 	/**

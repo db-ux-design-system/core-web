@@ -185,9 +185,7 @@ export default function DBTextarea(props: DBTextareaProps) {
 				data-hide-resizer={getHideProp(props.showResizer ?? true)}
 				disabled={getBoolean(props.disabled, 'disabled')}
 				required={getBoolean(props.required, 'required')}
-				{...(getBooleanAsString(props.requiredAnnotation) === 'false'
-					? { 'data-required-icon': 'false' }
-					: {})}
+				data-hide-asterisk={getHideProp(props.showRequiredAsterisk)}
 				readOnly={
 					getBoolean(props.readOnly, 'readOnly') ||
 					getBoolean(props.readonly, 'readonly')

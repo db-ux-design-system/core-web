@@ -194,10 +194,7 @@ export default function DBCheckbox(props: DBCheckboxProps) {
 					disabled={getBoolean(props.disabled, 'disabled')}
 					value={props.value}
 					required={getBoolean(props.required, 'required')}
-					{...(getBooleanAsString(props.requiredAnnotation) ===
-					'false'
-						? { 'data-required-icon': 'false' }
-						: {})}
+					data-hide-asterisk={getHideProp(props.showRequiredAsterisk)}
 					onChange={(event: ChangeEvent<HTMLInputElement>) =>
 						state.handleChange(event)
 					}

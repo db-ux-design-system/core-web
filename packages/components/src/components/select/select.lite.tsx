@@ -206,9 +206,7 @@ export default function DBSelect(props: DBSelectProps) {
 				data-custom-validity={props.validation}
 				ref={_ref}
 				required={getBoolean(props.required, 'required')}
-				{...(getBooleanAsString(props.requiredAnnotation) === 'false'
-					? { 'data-required-icon': 'false' }
-					: {})}
+				data-hide-asterisk={getHideProp(props.showRequiredAsterisk)}
 				disabled={getBoolean(props.disabled, 'disabled')}
 				id={state._id}
 				name={props.name}

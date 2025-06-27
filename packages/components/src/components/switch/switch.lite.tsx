@@ -100,9 +100,7 @@ export default function DBSwitch(props: DBSwitchProps) {
 				data-custom-validity={props.validation}
 				name={props.name}
 				required={getBoolean(props.required, 'required')}
-				{...(getBooleanAsString(props.requiredAnnotation) === 'false'
-					? { 'data-required-icon': 'false' }
-					: {})}
+				data-hide-asterisk={getHideProp(props.showRequiredAsterisk)}
 				data-aid-icon={props.icon}
 				data-aid-icon-after={props.iconAfter}
 				onChange={(event: ChangeEvent<HTMLInputElement>) =>

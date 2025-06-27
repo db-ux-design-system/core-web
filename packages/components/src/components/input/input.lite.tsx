@@ -217,9 +217,7 @@ export default function DBInput(props: DBInputProps) {
 				placeholder={props.placeholder ?? DEFAULT_PLACEHOLDER}
 				disabled={getBoolean(props.disabled, 'disabled')}
 				required={getBoolean(props.required, 'required')}
-				{...(getBooleanAsString(props.requiredAnnotation) === 'false'
-					? { 'data-required-icon': 'false' }
-					: {})}
+				data-hide-asterisk={getHideProp(props.showRequiredAsterisk)}
 				step={getNumber(props.step)}
 				value={props.value ?? state._value}
 				maxLength={getNumber(props.maxLength, props.maxlength)}
