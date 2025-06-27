@@ -38,7 +38,8 @@ const generateExampleJSX = () => {
 					examples.push(
 						`"${componentName}${variant.name}${
 							example.name
-						}":renderToString(${[...code]})`
+							// eslint-disable-next-line unicorn/no-unnecessary-slice-end
+						}":renderToString(${code.slice(0, code.length)})`
 					);
 				}
 			}
