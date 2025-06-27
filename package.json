@@ -11,7 +11,7 @@
   "bugs": {
     "url": "https://github.com/db-ux-design-system/core-web/issues"
   },
-  "author": "Deutsche Bahn AG",
+  "author": "DB Systel GmbH",
   "license": "Apache-2.0",
   "private": true,
   "workspaces": [
