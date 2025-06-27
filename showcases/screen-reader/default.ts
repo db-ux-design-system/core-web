@@ -1,4 +1,3 @@
-/* eslint-disable import/no-anonymous-default-export */
 import { platform } from 'node:os';
 import {
 	type NVDAPlaywright,
@@ -189,5 +188,3 @@ const isWin = (): boolean => platform() === 'win32';
 
 export const getTest = (): ScreenReaderTestType =>
 	isWin() ? nvdaTest : voiceOverTest;
-
-export default { testDefault, generateSnapshot, getTest };

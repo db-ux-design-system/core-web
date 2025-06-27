@@ -3,7 +3,6 @@ import {
 	hasWebComponentSyntax,
 	runAxeCoreTest,
 	runA11yCheckerTest
-	// @ts-expect-error - required for playwright
 } from '../default.ts';
 import { lvl3 } from '../fixtures/variants';
 

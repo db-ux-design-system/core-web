@@ -6,7 +6,7 @@ import { replaceInFileSync } from 'replace-in-file';
 import { glob } from 'glob';
 
 // eslint-disable-next-line prefer-regex-literals
-const shieldRegex = new RegExp('https://img\\.shields\\.io/[^)|\\s]*');
+const shieldRegex = new RegExp(String.raw`https://img\.shields\.io/[^)|\s]*`);
 const docsPath = 'docs/images/download';
 
 type Replacement = {

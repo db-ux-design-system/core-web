@@ -1,5 +1,4 @@
 import { type Page, test } from '@playwright/test';
-// @ts-expect-error - required for playwright
 import { getDefaultScreenshotTest, runAriaSnapshotTest } from '../default.ts';
 
 const path = '03/custom-select';

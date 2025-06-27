@@ -109,8 +109,8 @@ const getCustomSelect = ({
 				transformSelectedLabels ? getTransformSelectedLabels : undefined
 			}
 			searchFilter={searchFilter ? getSearchFilter : undefined}
-			onOptionSelected={(val) => {
-				setValue(val);
+			onOptionSelected={(value) => {
+				setValue(value);
 			}}
 		/>
 	);

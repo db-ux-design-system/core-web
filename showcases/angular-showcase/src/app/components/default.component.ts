@@ -78,11 +78,11 @@ export class DefaultComponent implements OnInit {
 		}
 
 		if (!currentUrl.includes('color=')) {
-			currentUrl += `&color=${this.color || COLOR.NEUTRAL_BG_LEVEL_1}`;
+			currentUrl += `&color=${this.color ?? COLOR.NEUTRAL_BG_LEVEL_1}`;
 		}
 
 		if (!currentUrl.includes('density=')) {
-			currentUrl += `&density=${this.density || DENSITY.REGULAR}`;
+			currentUrl += `&density=${this.density ?? DENSITY.REGULAR}`;
 		}
 
 		return `${currentUrl}&page=${variantName.toLowerCase()}`;

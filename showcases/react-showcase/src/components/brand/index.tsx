@@ -7,10 +7,9 @@ import { type BaseComponentProps } from '../base-component-data';
 
 const getBrand = ({
 	children,
-	hideLogo,
 	customLogo
 }: DBBrandProps & { customLogo: boolean }) => (
-	<DBBrand hideLogo={hideLogo}>
+	<DBBrand>
 		{customLogo && (
 			<img
 				src={`${

@@ -6,6 +6,7 @@ import {
 	DBIcon,
 	DBSection
 } from '../../../../../output/react/src';
+import IntrinsicElements = React.JSX.IntrinsicElements;
 
 const overwriteHeadlineMarkdown = `/* Select a headline tag to be overwritten */
 h1 {
@@ -153,7 +154,7 @@ const ColorOverview = () => {
 						{ Tag: 'h5', size: 'xs' },
 						{ Tag: 'h6', size: '2xs' }
 					] as Array<{
-						Tag: keyof JSX.IntrinsicElements;
+						Tag: keyof IntrinsicElements;
 						size: string;
 					}>
 				).map(({ Tag, size }) => (

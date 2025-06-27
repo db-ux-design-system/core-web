@@ -1,7 +1,6 @@
-/* eslint-disable import/no-anonymous-default-export */
 import tokens from './tailwind-tokens.json';
 
-export default {
+const tailwindConfig = {
 	content: ['./index.html', './src/**/*.{js,jsx,ts,tsx}'],
 	plugins: [],
 	theme: {
@@ -14,3 +13,5 @@ export default {
 		})
 	}
 };
+
+export default tailwindConfig;

@@ -1,5 +1,3 @@
-/* eslint-disable import/no-anonymous-default-export */
-
 /**
  * @param props {object}
  * @param framework {'angular'|'react'|'vue'}
@@ -238,12 +236,4 @@ export const getComponentGroup = (components, componentName) => {
 				componentName.replace('tab-item', 'tabs').includes(sub.name)
 		)
 	);
-};
-
-export default {
-	getCodeByFramework,
-	getColorVariants,
-	getComponentName,
-	getComponentGroup,
-	transformToUpperComponentName
 };

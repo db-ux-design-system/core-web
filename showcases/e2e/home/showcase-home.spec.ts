@@ -51,7 +51,6 @@ const testFormComponents = async (
 
 				break;
 			}
-			// No default
 		}
 	}
 
