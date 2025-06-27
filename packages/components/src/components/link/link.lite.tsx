@@ -2,12 +2,10 @@ import {
 	Show,
 	useDefaultProps,
 	useMetadata,
-	useRef,
-	useStore
+	useRef
 } from '@builder.io/mitosis';
-import { DBLinkProps, DBLinkState } from './model';
+import { DBLinkProps } from './model';
 import { cls, getBooleanAsString, getHideProp } from '../../utils';
-import { ClickEvent } from '../../shared/model';
 
 useMetadata({});
 

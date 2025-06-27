@@ -2,13 +2,10 @@ import {
 	Show,
 	useDefaultProps,
 	useMetadata,
-	useRef,
-	useStore,
-	useTarget
+	useRef
 } from '@builder.io/mitosis';
-import type { DBButtonProps, DBButtonState } from './model';
+import type { DBButtonProps } from './model';
 import { cls, getBoolean, getBooleanAsString, getHideProp } from '../../utils';
-import { ClickEvent } from '../../shared/model';
 
 useMetadata({
 	angular: {
