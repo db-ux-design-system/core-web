@@ -384,5 +384,5 @@ export const handleFixedPopover = (
 	}
 
 	element.style.position = 'fixed';
-	element.setAttribute('data-corrected-placement', correctedPlacement);
+	element.dataset['correctedPlacement'] = correctedPlacement;
 };
