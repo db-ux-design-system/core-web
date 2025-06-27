@@ -4,7 +4,6 @@ import { close, getCompliance } from 'accessibility-checker';
 import { type ICheckerError } from 'accessibility-checker/lib/api/IChecker';
 import { type FullProject } from 'playwright/types/test';
 import { type IBaselineResult } from 'accessibility-checker/lib/common/engine/IReport';
-import { eRuleLevel } from 'accessibility-checker/lib/common/config/IConfig';
 import { lvl1 } from './fixtures/variants';
 import { setScrollViewport } from './fixtures/viewport';
 
@@ -233,7 +232,7 @@ export const runA11yCheckerTest = ({
 			} else {
 				failures = report.results.filter(
 					({ level, ruleId }: IBaselineResult) =>
-						level === eRuleLevel.violation &&
+						level.toString() === 'violation' &&
 						!aCheckerDisableRules?.includes(ruleId)
 				);
 			}
