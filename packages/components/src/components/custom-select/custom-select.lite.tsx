@@ -819,9 +819,7 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 					: props.variant
 			}
 			data-required={getBooleanAsString(props.required)}
-			{...(getBooleanAsString(props.requiredAnnotation) === 'false'
-				? { 'data-required-icon': 'false' }
-				: {})}
+			data-hide-asterisk={getHideProp(props.showRequiredAsterisk)}
 			data-placement={props.placement}
 			data-selected-type={props.multiple ? props.selectedType : 'text'}
 			data-hide-label={getHideProp(props.showLabel)}

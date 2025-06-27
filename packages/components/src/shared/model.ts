@@ -260,7 +260,7 @@ export type ValidationType = (typeof ValidationList)[number];
 export type RequiredProps = {
 	/**
 	 * When the required attribute specified, the user will be required to fill the form element before submitting the form.
-	 * The form element will be marked semantically as required and by default also visually with an asterisk '*' next to the label (unless the property `requiredAnnotation` is also set with the value `false`).
+	 * The form element will be marked semantically as required and by default also visually with an asterisk '*' next to the label (unless the property `showRequiredAsterisk` is also set with the value `false`).
 	 */
 	required?: boolean | string;
 	/**
