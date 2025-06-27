@@ -20,7 +20,7 @@ permissions:
 jobs:
   regenerate-snapshots:
     name: 🧪🎭 - Regenerate snapshots ${{ inputs.type }}
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04 # Use Ubuntu 24.04 explicitly
     container:
       image: mcr.microsoft.com/playwright:v${{ inputs.version }}
     steps:
@@ -36,33 +36,33 @@ jobs:
       - name: ⏬ Download foundations build
         uses: actions/download-artifact@v4
         with:
-          name: db-ui-foundations-build
+          name: db-ux-foundations-build
           path: packages/foundations/build
 
       - name: ⏬ Download output
         uses: actions/download-artifact@v4
         with:
-          name: db-ui-output
+          name: db-ux-output
           path: output
 
       - name: ⏬ Download components styles build
         uses: actions/download-artifact@v4
         with:
-          name: db-ui-components-build
+          name: db-ux-components-build
           path: packages/components/build
 
       - name: ⏬ Download showcases
         if: inputs.type == 'showcases'
         uses: actions/download-artifact@v4
         with:
-          name: db-ui-react-showcase
+          name: db-ux-react-showcase
           path: build-showcases/react-showcase
 
       - name: ⏬ Download patternhub
         if: inputs.type == 'patternhub'
         uses: actions/download-artifact@v4
         with:
-          name: db-ui-patternhub
+          name: db-ux-patternhub
           path: build-showcases/patternhub
 
       - name: 👩‍🔬 Generate snapshots 🎭
@@ -73,9 +73,9 @@ jobs:
           NEXT_PUBLIC_BASE_PATH: ${{ inputs.path }}
         run: |
           if [[ $TYPE == "components" ]]; then
-            npm run regenerate:screenshots --workspace=@db-ui/react-components
+            npm run regenerate:screenshots --workspace=@db-ux/react-core-components
           elif [[ $TYPE == "foundations" ]]; then
-            npm run regenerate:screenshots --workspace=@db-ui/foundations
+            npm run regenerate:screenshots --workspace=@db-ux/core-foundations
           elif [[ $TYPE == "patternhub" ]]; then
             mkdir -p ./build-showcases${{ inputs.path }}
             cp -RT ./build-showcases/${{ inputs.type }} ./build-showcases${{ inputs.path }}
@@ -90,7 +90,7 @@ jobs:
         with:
           name: snapshots-${{ inputs.type }}
           path: ./__snapshots__/*/component
-          retention-days: 30
+          retention-days: 7
 
       - name: 🆙 Upload foundations
         if: always() && inputs.type == 'foundations'
@@ -98,7 +98,7 @@ jobs:
         with:
           name: snapshots-${{ inputs.type }}
           path: ./__snapshots__/foundations
-          retention-days: 30
+          retention-days: 7
 
       - name: 🆙 Upload patternhub
         if: always() && inputs.type == 'patternhub'
@@ -106,7 +106,7 @@ jobs:
         with:
           name: snapshots-${{ inputs.type }}
           path: ./__snapshots__/*/patternhub
-          retention-days: 30
+          retention-days: 7
 
       - name: 🆙 Upload showcase
         if: always() && inputs.type == 'showcases'
@@ -114,4 +114,4 @@ jobs:
         with:
           name: snapshots-${{ inputs.type }}
           path: ./__snapshots__/*/showcase
-          retention-days: 30
+          retention-days: 7

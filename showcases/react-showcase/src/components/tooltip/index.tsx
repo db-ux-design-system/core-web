@@ -1,9 +1,9 @@
-import { DBTooltip, DBButton } from '../../../../../output/react/src';
-import DefaultComponent from '../default-component';
-import defaultComponentVariants from '../../../../shared/tooltip.json';
+import { DBButton, DBTooltip } from '../../../../../output/react/src';
 import type { DBTooltipProps } from '../../../../../output/react/src/components/tooltip/model';
-import { getVariants } from '../data';
+import defaultComponentVariants from '../../../../shared/tooltip.json';
 import { type BaseComponentProps } from '../base-component-data';
+import { getVariants } from '../data';
+import DefaultComponent from '../default-component';
 
 const getTooltip = ({
 	children,
@@ -13,7 +13,7 @@ const getTooltip = ({
 	delay,
 	content,
 	animation,
-	variant
+	showArrow
 }: DBTooltipProps & { content: string }) => (
 	<DBButton>
 		{children}
@@ -23,7 +23,7 @@ const getTooltip = ({
 			placement={placement}
 			animation={animation}
 			delay={delay}
-			variant={variant}>
+			showArrow={showArrow}>
 			{content}
 		</DBTooltip>
 	</DBButton>

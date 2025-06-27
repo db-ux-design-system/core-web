@@ -1,6 +1,6 @@
 ## HTML
 
-For general installation and configuration look at the [components](https://www.npmjs.com/package/@db-ui/components) package.
+For general installation and configuration look at the [components](https://www.npmjs.com/package/@db-ux/core-components) package.
 
 ### Use component
 
@@ -44,7 +44,7 @@ For general installation and configuration look at the [components](https://www.
 				</menu>
 			</li>
 
-			<li class="db-navigation-item" data-icon="person">
+			<li class="db-navigation-item" data-icon="x_placeholder">
 				<a href="#">Navi-Item 2</a>
 			</li>
 

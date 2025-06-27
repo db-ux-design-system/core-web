@@ -2,13 +2,12 @@ import {
 	onMount,
 	onUpdate,
 	Show,
+	useDefaultProps,
 	useMetadata,
 	useRef,
 	useStore,
 	useTarget
 } from '@builder.io/mitosis';
-import { DBCheckboxProps, DBCheckboxState } from './model';
-import { cls, delay, hasVoiceOver, uuid } from '../../utils';
 import {
 	DEFAULT_INVALID_MESSAGE,
 	DEFAULT_INVALID_MESSAGE_ID_SUFFIX,
@@ -17,13 +16,32 @@ import {
 	DEFAULT_VALID_MESSAGE_ID_SUFFIX
 } from '../../shared/constants';
 import { ChangeEvent, InteractionEvent } from '../../shared/model';
-import { handleFrameworkEvent } from '../../utils/form-components';
+import {
+	cls,
+	delay,
+	getBoolean,
+	getHideProp,
+	hasVoiceOver,
+	stringPropVisible,
+	uuid
+} from '../../utils';
+import {
+	handleFrameworkEventAngular,
+	handleFrameworkEventVue
+} from '../../utils/form-components';
 import DBInfotext from '../infotext/infotext.lite';
+import { DBCheckboxProps, DBCheckboxState } from './model';
 
-useMetadata({});
+useMetadata({
+	angular: {
+		nativeAttributes: ['disabled', 'required', 'checked', 'indeterminate']
+	}
+});
+
+useDefaultProps<DBCheckboxProps>({});
 
 export default function DBCheckbox(props: DBCheckboxProps) {
-	const ref = useRef<HTMLInputElement>(null);
+	const _ref = useRef<HTMLInputElement | any>(null);
 	// jscpd:ignore-start
 	const state = useStore<DBCheckboxState>({
 		initialized: false,
@@ -31,35 +49,28 @@ export default function DBCheckbox(props: DBCheckboxProps) {
 		_messageId: undefined,
 		_validMessageId: undefined,
 		_invalidMessageId: undefined,
+		_invalidMessage: undefined,
 		_descByIds: '',
 		_voiceOverFallback: '',
-		handleChange: (event: ChangeEvent<HTMLInputElement>) => {
-			if (props.onChange) {
-				props.onChange(event);
-			}
-
-			if (props.change) {
-				props.change(event);
-			}
-
-			useTarget({
-				angular: () => handleFrameworkEvent(this, event, 'checked'),
-				vue: () => handleFrameworkEvent(this, event, 'checked')
-			});
-
+		hasValidState: () => {
+			return !!(props.validMessage ?? props.validation === 'valid');
+		},
+		handleValidation: () => {
 			/* For a11y reasons we need to map the correct message with the checkbox */
-			if (!ref?.validity.valid || props.customValidity === 'invalid') {
+			if (!_ref?.validity.valid || props.validation === 'invalid') {
 				state._descByIds = state._invalidMessageId;
+				state._invalidMessage =
+					props.invalidMessage ||
+					_ref?.validationMessage ||
+					DEFAULT_INVALID_MESSAGE;
 				if (hasVoiceOver()) {
-					state._voiceOverFallback =
-						props.invalidMessage ??
-						ref?.validationMessage ??
-						DEFAULT_INVALID_MESSAGE;
+					state._voiceOverFallback = state._invalidMessage;
 					delay(() => (state._voiceOverFallback = ''), 1000);
 				}
 			} else if (
-				props.customValidity === 'valid' ||
-				(ref?.validity.valid && props.required)
+				state.hasValidState() &&
+				_ref?.validity.valid &&
+				props.required
 			) {
 				state._descByIds = state._validMessageId;
 				if (hasVoiceOver()) {
@@ -67,28 +78,32 @@ export default function DBCheckbox(props: DBCheckboxProps) {
 						props.validMessage ?? DEFAULT_VALID_MESSAGE;
 					delay(() => (state._voiceOverFallback = ''), 1000);
 				}
-			} else if (props.message) {
+			} else if (stringPropVisible(props.message, props.showMessage)) {
 				state._descByIds = state._messageId;
 			} else {
 				state._descByIds = '';
 			}
 		},
-		handleBlur: (event: InteractionEvent<HTMLInputElement>) => {
+		handleChange: (event: ChangeEvent<HTMLInputElement>) => {
+			if (props.onChange) {
+				props.onChange(event);
+			}
+
+			useTarget({
+				angular: () =>
+					handleFrameworkEventAngular(state, event, 'checked'),
+				vue: () => handleFrameworkEventVue(() => {}, event, 'checked')
+			});
+			state.handleValidation();
+		},
+		handleBlur: (event: InteractionEvent<HTMLInputElement> | any) => {
 			if (props.onBlur) {
 				props.onBlur(event);
 			}
-
-			if (props.blur) {
-				props.blur(event);
-			}
 		},
-		handleFocus: (event: InteractionEvent<HTMLInputElement>) => {
+		handleFocus: (event: InteractionEvent<HTMLInputElement> | any) => {
 			if (props.onFocus) {
 				props.onFocus(event);
-			}
-
-			if (props.focus) {
-				props.focus(event);
 			}
 		}
 	});
@@ -100,7 +115,15 @@ export default function DBCheckbox(props: DBCheckboxProps) {
 		state._messageId = mId + DEFAULT_MESSAGE_ID_SUFFIX;
 		state._validMessageId = mId + DEFAULT_VALID_MESSAGE_ID_SUFFIX;
 		state._invalidMessageId = mId + DEFAULT_INVALID_MESSAGE_ID_SUFFIX;
+		state._invalidMessage = props.invalidMessage || DEFAULT_INVALID_MESSAGE;
 	});
+
+	onUpdate(() => {
+		state._invalidMessage =
+			props.invalidMessage ||
+			_ref?.validationMessage ||
+			DEFAULT_INVALID_MESSAGE;
+	}, [_ref, props.invalidMessage]);
 
 	onUpdate(() => {
 		if (state._id) {
@@ -110,52 +133,65 @@ export default function DBCheckbox(props: DBCheckboxProps) {
 			state._invalidMessageId =
 				state._id + DEFAULT_INVALID_MESSAGE_ID_SUFFIX;
 
-			if (props.message) {
+			if (stringPropVisible(props.message, props.showMessage)) {
 				state._descByIds = messageId;
 			}
 		}
 	}, [state._id]);
 
 	onUpdate(() => {
-		if (state.initialized && document && state._id) {
-			const checkboxElement = document?.getElementById(
-				state._id
-			) as HTMLInputElement;
-			if (checkboxElement) {
-				// in angular this must be set via native element
-				if (props.checked != undefined) {
-					checkboxElement.checked = props.checked;
+		if (_ref) {
+			useTarget({
+				angular: () => {
+					if (
+						state.initialized &&
+						props.indeterminate !== undefined
+					) {
+						// When indeterminate is set, the value of the checked prop only impacts the form submitted values.
+						// It has no accessibility or UX implications. (https://mui.com/material-ui/react-checkbox/)
+						_ref.indeterminate = !!getBoolean(props.indeterminate);
+					}
+				},
+				default: () => {
+					if (props.indeterminate !== undefined) {
+						// When indeterminate is set, the value of the checked prop only impacts the form submitted values.
+						// It has no accessibility or UX implications. (https://mui.com/material-ui/react-checkbox/)
+						_ref.indeterminate = !!getBoolean(props.indeterminate);
+					}
 				}
-
-				if (props.indeterminate !== undefined) {
-					// When indeterminate is set, the value of the checked prop only impacts the form submitted values.
-					// It has no accessibility or UX implications. (https://mui.com/material-ui/react-checkbox/)
-					checkboxElement.indeterminate = props.indeterminate;
-				}
-
-				state.initialized = false;
-			}
+			});
 		}
-	}, [state.initialized, props.indeterminate, props.checked]);
+	}, [state.initialized, _ref, props.indeterminate]);
+
+	onUpdate(() => {
+		if (state.initialized && _ref) {
+			// in angular this must be set via native element
+			if (props.checked != undefined) {
+				_ref.checked = !!getBoolean(props.checked);
+			}
+
+			state.initialized = false;
+		}
+	}, [state.initialized, _ref, props.checked]);
 	// jscpd:ignore-end
 
 	return (
 		<div
 			class={cls('db-checkbox', props.className)}
 			data-size={props.size}
-			data-variant={props.variant}>
+			data-hide-label={getHideProp(props.showLabel)}>
 			<label htmlFor={state._id}>
 				<input
-					aria-invalid={props.customValidity === 'invalid'}
-					data-custom-validity={props.customValidity}
-					ref={ref}
+					aria-invalid={props.validation === 'invalid'}
+					data-custom-validity={props.validation}
+					ref={_ref}
 					type="checkbox"
 					id={state._id}
 					name={props.name}
-					checked={props.checked}
-					disabled={props.disabled}
+					checked={getBoolean(props.checked, 'checked')}
+					disabled={getBoolean(props.disabled, 'disabled')}
 					value={props.value}
-					required={props.required}
+					required={getBoolean(props.required, 'required')}
 					onChange={(event: ChangeEvent<HTMLInputElement>) =>
 						state.handleChange(event)
 					}
@@ -165,15 +201,14 @@ export default function DBCheckbox(props: DBCheckboxProps) {
 					onFocus={(event: InteractionEvent<HTMLInputElement>) =>
 						state.handleFocus(event)
 					}
-					aria-describedby={state._descByIds}
+					aria-describedby={props.ariaDescribedBy ?? state._descByIds}
 				/>
-				<Show when={props.label}>
-					<span>{props.label}</span>
+				<Show when={props.label} else={props.children}>
+					{props.label}
 				</Show>
-				{props.children}
 			</label>
 
-			<Show when={props.message}>
+			<Show when={stringPropVisible(props.message, props.showMessage)}>
 				<DBInfotext
 					size="small"
 					icon={props.messageIcon}
@@ -181,21 +216,20 @@ export default function DBCheckbox(props: DBCheckboxProps) {
 					{props.message}
 				</DBInfotext>
 			</Show>
-
-			<DBInfotext
-				id={state._validMessageId}
-				size="small"
-				semantic="successful">
-				{props.validMessage ?? DEFAULT_VALID_MESSAGE}
-			</DBInfotext>
+			<Show when={state.hasValidState()}>
+				<DBInfotext
+					id={state._validMessageId}
+					size="small"
+					semantic="successful">
+					{props.validMessage || DEFAULT_VALID_MESSAGE}
+				</DBInfotext>
+			</Show>
 
 			<DBInfotext
 				id={state._invalidMessageId}
 				size="small"
 				semantic="critical">
-				{props.invalidMessage ??
-					ref?.validationMessage ??
-					DEFAULT_INVALID_MESSAGE}
+				{state._invalidMessage}
 			</DBInfotext>
 
 			{/* * https://www.davidmacd.com/blog/test-aria-describedby-errormessage-aria-live.html

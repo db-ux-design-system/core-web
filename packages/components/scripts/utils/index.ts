@@ -21,6 +21,11 @@ export const runReplacements = (
 		replacements = [...replacements, ...component.overwrites.global];
 	}
 
+	replacements.push({
+		from: ',\n' + ',',
+		to: ','
+	});
+
 	for (const replacement of replacements) {
 		const option = {
 			files: file,

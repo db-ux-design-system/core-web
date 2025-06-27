@@ -1,18 +1,37 @@
-@use "@db-ui/foundations/build/scss/variables";
-@use "@db-ui/foundations/build/scss/icons";
-@use "@db-ui/foundations/build/scss/fonts";
-@use "@db-ui/foundations/build/scss/colors";
-@use "@db-ui/foundations/build/scss/helpers";
-@use "../../styles/component";
-@use "../../styles/form-components";
-@use "../../styles/button-components";
+@use "@db-ux/core-foundations/build/styles/variables";
+@use "@db-ux/core-foundations/build/styles/icons";
+@use "@db-ux/core-foundations/build/styles/fonts";
+@use "@db-ux/core-foundations/build/styles/colors";
+@use "@db-ux/core-foundations/build/styles/helpers";
+@use "../../styles/internal/component";
+@use "../../styles/internal/form-components";
+@use "../../styles/internal/button-components";
 
 $icon-padding: calc(
-	#{form-components.$font-size-height} + #{variables.$db-spacing-fixed-sm} + #{variables.$db-spacing-fixed-xs}
+	#{form-components.$font-size-height} + #{variables.$db-spacing-fixed-sm} +
+		#{variables.$db-spacing-fixed-xs}
 );
 
 .db-input {
 	@include form-components.set-default-form-component(input);
+
+	// increased inline size for elements with icons or specific input types that have icons
+	&:is([data-icon], [data-icon-after]):not([data-hide-icon="true"]),
+	&:has(
+		input[type="search"],
+		input[type="date"],
+		input[type="month"],
+		input[type="week"],
+		input[type="datetime-local"],
+		input[type="time"]
+	) {
+		--db-form-component-min-inline-size: #{variables.$db-sizing-xl};
+	}
+
+	// even larger size when both - leading and trailing icons - are present
+	&[data-icon][data-icon-after] {
+		--db-form-component-min-inline-size: #{variables.$db-sizing-2xl};
+	}
 
 	// padding-inline-end according to current amount of icons
 	&[data-icon],
@@ -26,14 +45,9 @@ $icon-padding: calc(
 		--db-form-component-padding-inline-end: #{$icon-padding};
 	}
 
-	&[data-variant="hidden"] {
-		--db-label-visible-height: 0;
-		--db-label-visible-spacing: 1;
-	}
-
 	&:has(input[type="search"]) {
 		@include icons.set-icon("magnifying_glass");
-		@include icons.set-icon("cross_circle", "after");
+		@include icons.set-icon("cross", "after");
 
 		&::after {
 			opacity: 0;
@@ -53,15 +67,19 @@ $icon-padding: calc(
 		}
 	}
 
-	&:has(input[type="date"]),
-	&:has(input[type="week"]),
-	&:has(input[type="datetime-local"]),
-	&:has(input[type="month"]) {
-		@include icons.set-icon("calendar", "after");
-	}
+	// This @supports should exclude Mozilla Firefox
+	// TODO: Reevaluate after Mozilla is supporting week and month input types
+	@supports selector(::-webkit-calendar-picker-indicator) {
+		&:has(input[type="date"]),
+		&:has(input[type="week"]),
+		&:has(input[type="datetime-local"]),
+		&:has(input[type="month"]) {
+			@include icons.set-icon("calendar", "after");
+		}
 
-	&:has(input[type="time"]) {
-		@include icons.set-icon("clock", "after");
+		&:has(input[type="time"]) {
+			@include icons.set-icon("clock", "after");
+		}
 	}
 
 	&:has(input[type="file"]) {
@@ -76,7 +94,8 @@ $icon-padding: calc(
 				@extend %db-overwrite-font-size-xs;
 
 				padding-block-start: calc(
-					#{variables.$db-spacing-fixed-md} + #{variables.$db-spacing-fixed-3xs}
+					#{variables.$db-spacing-fixed-md} +
+						#{variables.$db-spacing-fixed-3xs}
 				);
 
 				&::file-selector-button {
@@ -90,23 +109,43 @@ $icon-padding: calc(
 		}
 	}
 
+	&[data-variant="floating"] {
+		input {
+			&::-webkit-calendar-picker-indicator,
+			&::-webkit-search-cancel-button {
+				/* stylelint-disable-next-line db-ux/use-spacings */
+				margin-block-end: var(--db-base-body-icon-font-size-2xs);
+			}
+		}
+	}
+
 	input {
 		position: relative;
 
 		&::-webkit-calendar-picker-indicator,
 		&::-webkit-search-cancel-button {
+			@extend %db-overwrite-font-size-sm;
+
 			background-image: none;
 			inline-size: icons.$default-icon-font-size;
 			block-size: icons.$default-icon-font-size;
 			padding: 0;
 			cursor: pointer;
+			/* stylelint-disable-next-line db-ux/use-spacings */
+			margin-block-start: variables.$db-border-width-3xs;
+			border-radius: variables.$db-border-radius-xs;
+
+			&:focus-visible {
+				@include helpers.get-focus-placeholder;
+			}
 		}
 
 		&::-webkit-search-cancel-button {
 			appearance: none;
 			position: absolute;
 			inset-inline-end: calc(
-				#{variables.$db-spacing-fixed-sm} + #{variables.$db-border-height-3xs}
+				#{variables.$db-spacing-fixed-sm} +
+					#{variables.$db-border-width-3xs}
 			);
 		}
 

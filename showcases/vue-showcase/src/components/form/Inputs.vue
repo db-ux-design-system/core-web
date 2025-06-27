@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import FormWrapper from "./FormWrapper.vue";
-import { DBInput } from "../../../../../output/vue/src";
 import { ref } from "vue";
+import { DBInput } from "../../../../../output/vue/src";
+import FormWrapper from "./FormWrapper.vue";
 
 const plain = ref("test1");
 const vModel = ref("test2");
@@ -13,7 +13,7 @@ const vModel = ref("test2");
 			label="Plain"
 			placeholder="Placeholder"
 			message="Description"
-			icon="person"
+			icon="x_placeholder"
 			name="input-name"
 			:value="plain"
 			@change="plain = $event.target.value"
@@ -22,7 +22,7 @@ const vModel = ref("test2");
 			label="VModel"
 			placeholder="Placeholder"
 			message="Description"
-			icon="person"
+			icon="x_placeholder"
 			name="input-name"
 			v-model:value="vModel"
 		/>

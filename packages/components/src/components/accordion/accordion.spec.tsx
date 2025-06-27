@@ -1,5 +1,5 @@
-import { expect, test } from '@playwright/experimental-ct-react';
 import AxeBuilder from '@axe-core/playwright';
+import { expect, test } from '@playwright/experimental-ct-react';
 
 import { DBAccordion } from './index';
 // @ts-ignore - vue can only find it with .ts as file ending
@@ -29,7 +29,7 @@ const openAccordion: any = (
 );
 
 const actionAccordion: any = (
-	<DBAccordion behaviour="single">
+	<DBAccordion behavior="single">
 		<DBAccordionItem data-testid="item1" headlinePlain="Test">
 			<DBButton data-testid="button">Click me</DBButton>
 		</DBAccordionItem>
@@ -71,7 +71,7 @@ const testOpen = () => {
 };
 
 const testAction = () => {
-	test('single behaviour should work', async ({ mount }) => {
+	test('single behavior should work', async ({ mount }) => {
 		const component = await mount(actionAccordion);
 		await component.getByTestId('item1').click();
 		await expect(component.getByTestId('button')).toBeVisible();
@@ -104,6 +104,11 @@ const testAction = () => {
 };
 
 const testA11y = () => {
+	test('should have same aria-snapshot', async ({ mount }, testInfo) => {
+		const component = await mount(comp);
+		const snapshot = await component.ariaSnapshot();
+		expect(snapshot).toMatchSnapshot(`${testInfo.testId}.yaml`);
+	});
 	test('should not have any A11y issues', async ({ page, mount }) => {
 		await mount(comp);
 		const accessibilityScanResults = await new AxeBuilder({ page })

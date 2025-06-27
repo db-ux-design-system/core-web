@@ -10,7 +10,7 @@
 
 ### Decision criteria
 
--   ...
+- ...
 
 ## Alternatives
 

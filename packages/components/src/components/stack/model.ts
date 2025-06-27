@@ -34,7 +34,7 @@ export type DBStackDefaultProps = {
 	/**
 	 * If the stack should wrap if parent is too small otherwise you get an overflow
 	 */
-	wrap?: boolean;
+	wrap?: boolean | string;
 	/**
 	 * Represents css align-items
 	 */

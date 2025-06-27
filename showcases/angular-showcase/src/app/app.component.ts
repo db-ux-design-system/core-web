@@ -2,22 +2,21 @@ import { Component, CUSTOM_ELEMENTS_SCHEMA, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ActivatedRoute, Router, RouterOutlet } from '@angular/router';
 import {
-	SecondaryActionDirective,
-	NavigationDirective,
-	MetaNavigationDirective,
-	NavigationContentDirective,
+	COLOR,
+	COLOR_CONST,
+	COLORS,
 	DBBrand,
 	DBButton,
 	DBHeader,
 	DBNavigation,
 	DBPage,
 	DBSelect,
-	COLOR,
-	COLOR_CONST,
-	COLORS,
 	DENSITIES,
 	DENSITY,
-	DENSITY_CONST
+	DENSITY_CONST,
+	MetaNavigationDirective,
+	NavigationDirective,
+	SecondaryActionDirective
 } from '../../../../output/angular/src';
 import { environment } from '../environments/environment';
 import { NavItemComponent } from './nav-item/nav-item.component';
@@ -30,7 +29,7 @@ import {
 @Component({
 	selector: 'app-root',
 	standalone: true,
-	schemas: [CUSTOM_ELEMENTS_SCHEMA],
+	schemas: environment.webComponents ? [CUSTOM_ELEMENTS_SCHEMA] : [],
 	imports: environment.webComponents
 		? [
 				FormsModule,
@@ -41,8 +40,7 @@ import {
 				DBNavigation,
 				SecondaryActionDirective,
 				NavigationDirective,
-				MetaNavigationDirective,
-				NavigationContentDirective
+				MetaNavigationDirective
 			]
 		: [
 				FormsModule,
@@ -56,8 +54,7 @@ import {
 				DBButton,
 				SecondaryActionDirective,
 				NavigationDirective,
-				MetaNavigationDirective,
-				NavigationContentDirective
+				MetaNavigationDirective
 			],
 	templateUrl: './app.component.html'
 })
@@ -112,7 +109,7 @@ export class AppComponent implements OnInit {
 		});
 	};
 
-	toggleDrawer = (open: boolean) => {
-		this.drawerOpen = open;
+	toggleDrawer = (open: boolean | void) => {
+		this.drawerOpen = Boolean(open);
 	};
 }

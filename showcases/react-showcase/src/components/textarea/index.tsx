@@ -1,10 +1,10 @@
 import { useState } from 'react';
 import { DBTextarea } from '../../../../../output/react/src';
-import DefaultComponent from '../default-component';
-import defaultComponentVariants from '../../../../shared/textarea.json';
 import type { DBTextareaProps } from '../../../../../output/react/src/components/textarea/model';
-import { getVariants } from '../data';
+import defaultComponentVariants from '../../../../shared/textarea.json';
 import { type BaseComponentProps } from '../base-component-data';
+import { getVariants } from '../data';
+import DefaultComponent from '../default-component';
 
 const getTextarea = ({
 	cols,
@@ -17,13 +17,21 @@ const getTextarea = ({
 	readOnly,
 	required,
 	children,
-	variant
+	variant,
+	showLabel,
+	showMessage,
+	validMessage,
+	validation,
+	invalidMessage,
+	fieldSizing,
+	showResizer
 }: DBTextareaProps) => {
 	const [dynamicValue, setDynamicValue] = useState<string>(value);
 	return (
 		<DBTextarea
 			cols={cols}
 			disabled={disabled}
+			showLabel={showLabel}
 			message={message}
 			label={label}
 			variant={variant}
@@ -35,6 +43,12 @@ const getTextarea = ({
 			placeholder={placeholder ?? children}
 			rows={rows}
 			value={dynamicValue}
+			showMessage={showMessage}
+			invalidMessage={invalidMessage}
+			validMessage={validMessage}
+			validation={validation}
+			showResizer={showResizer}
+			fieldSizing={fieldSizing}
 		/>
 	);
 };

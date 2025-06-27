@@ -3,7 +3,9 @@ import {
 	GlobalState,
 	IconProps,
 	SemanticProps,
-	SizeProps
+	ShowIconProps,
+	SizeProps,
+	TextProps
 } from '../../shared/model';
 
 export type DBInfotextDefaultProps = {};
@@ -12,7 +14,9 @@ export type DBInfotextProps = DBInfotextDefaultProps &
 	GlobalProps &
 	SemanticProps &
 	IconProps &
-	SizeProps;
+	SizeProps &
+	ShowIconProps &
+	TextProps;
 
 export type DBInfotextDefaultState = {};
 

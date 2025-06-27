@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import DefaultComponent from "../DefaultComponent.vue";
+import { DBDivider, DBInfotext, DBStack } from "../../../../../output/vue/src";
 import defaultComponentVariants from "../../../../shared/stack.json";
-import { DBStack, DBInfotext, DBDivider } from "../../../../../output/vue/src";
+import DefaultComponent from "../DefaultComponent.vue";
 </script>
 
 <template>
@@ -14,7 +14,7 @@ import { DBStack, DBInfotext, DBDivider } from "../../../../../output/vue/src";
 					{{ exampleName }}
 				</DBInfotext>
 				<DBStack
-					:className="
+					:class="
 						(exampleProps.justifyContent ?? exampleProps.alignment)
 							? 'stack-container stack-show-alignment'
 							: 'stack-container'
@@ -26,17 +26,17 @@ import { DBStack, DBInfotext, DBDivider } from "../../../../../output/vue/src";
 					:direction="exampleProps.direction"
 					:justifyContent="exampleProps.justifyContent"
 				>
-					<span className="dummy-component">
+					<span class="dummy-component">
 						<a href="#">Content 1</a>
 					</span>
 					<template v-if="exampleProps.variant === 'divider'"
 						><DBDivider />
 					</template>
-					<span className="dummy-component"> Content 2 </span>
+					<span class="dummy-component"> Content 2 </span>
 					<template v-if="exampleProps.variant === 'divider'"
 						><DBDivider />
 					</template>
-					<span className="dummy-component"> Content 3 </span>
+					<span class="dummy-component"> Content 3 </span>
 				</DBStack>
 			</DBStack>
 		</template>

@@ -1,10 +1,10 @@
 import { useState } from 'react';
 import { DBSelect } from '../../../../../output/react/src';
-import DefaultComponent from '../default-component';
-import defaultComponentVariants from '../../../../shared/select.json';
 import type { DBSelectProps } from '../../../../../output/react/src/components/select/model';
-import { getVariants } from '../data';
+import defaultComponentVariants from '../../../../shared/select.json';
 import { type BaseComponentProps } from '../base-component-data';
+import { getVariants } from '../data';
+import DefaultComponent from '../default-component';
 
 const getSelect = ({
 	children,
@@ -15,7 +15,12 @@ const getSelect = ({
 	disabled,
 	value,
 	required,
-	variant
+	variant,
+	showLabel,
+	showMessage,
+	invalidMessage,
+	validMessage,
+	validation
 }: DBSelectProps) => {
 	const [mValue, setValue] = useState<string>(value);
 	return (
@@ -25,15 +30,19 @@ const getSelect = ({
 			options={options}
 			disabled={disabled}
 			variant={variant}
+			showLabel={showLabel}
 			icon={icon}
 			value={mValue}
 			onChange={(event) => {
 				setValue(event.target.value);
 			}}
 			message={message}
-			required={required}>
-			{children}
-		</DBSelect>
+			required={required}
+			showMessage={showMessage}
+			invalidMessage={invalidMessage}
+			validMessage={validMessage}
+			validation={validation}
+		/>
 	);
 };
 

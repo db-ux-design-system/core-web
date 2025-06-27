@@ -1,0 +1,27 @@
+<app-form-wrapper
+	[plain]="plain"
+	[model]="ngModel"
+	[control]="formControl.value"
+>
+	<fieldset>
+		<legend>Different form approaches</legend>
+		<db-radio
+			(change)="handlePlainChange($event)"
+			value="radio-0"
+			name="radio-0"
+			label="Plain"
+		></db-radio>
+		<db-radio
+			[(ngModel)]="ngModel"
+			value="radio-1"
+			name="radio-1"
+			label="ngModel"
+		></db-radio>
+		<db-radio
+			[formControl]="formControl"
+			value="radio-2"
+			name="radio-2"
+			label="formControl"
+		></db-radio>
+	</fieldset>
+</app-form-wrapper>

@@ -1,11 +1,11 @@
 <script setup lang="ts">
-import DefaultComponent from "../DefaultComponent.vue";
-import defaultComponentVariants from "../../../../shared/input.json";
 import {
 	DBInput,
 	LabelVariantType,
 	ValueLabelType
 } from "../../../../../output/vue/src";
+import defaultComponentVariants from "../../../../shared/input.json";
+import DefaultComponent from "../DefaultComponent.vue";
 
 const getDataList = (
 	variant?: LabelVariantType
@@ -27,7 +27,11 @@ const getDataList = (
 			#example="{ exampleIndex, variantIndex, exampleName, exampleProps }"
 		>
 			<DBInput
+				:maxLength="exampleProps?.maxLength"
+				:max="exampleProps?.max"
+				:min="exampleProps?.min"
 				:variant="exampleProps?.variant"
+				:show-label="exampleProps?.showLabel"
 				:label="exampleProps?.label"
 				:message="exampleProps?.message"
 				:placeholder="exampleName"
@@ -39,6 +43,10 @@ const getDataList = (
 				:value="exampleProps?.value"
 				:icon="exampleProps?.icon"
 				:iconAfter="exampleProps?.iconAfter"
+				:showMessage="exampleProps?.showMessage"
+				:invalidMessage="exampleProps?.invalidMessage"
+				:validMessage="exampleProps?.validMessage"
+				:validation="exampleProps?.validation"
 				:dataList="
 					exampleProps?.dataList
 						? getDataList(exampleProps?.variant)

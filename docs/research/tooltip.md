@@ -33,19 +33,19 @@ We should use a wrapping tag similar to IBM and a [title fallback](https://stack
 
 Advantages wrapping tag:
 
--   We can use `::before` or `::after` for the arrow
--   We can use `string` and `slot` for the content
--   We have a position for the wrapping div which can be used by JS
+- We can use `::before` or `::after` for the arrow
+- We can use `string` and `slot` for the content
+- We have a position for the wrapping div which can be used by JS
 
 Disadvantages wrapping tag:
 
--   Not using default `title`
--   Could be hard to use default `:hover` or `:focus`
+- Not using default `title`
+- Could be hard to use default `:hover` or `:focus`
 
 Findings:
 
--   By providing and `open` state we could let the user handle if the tooltip should be shown
--   We could use `behaviour` to enable different states like `hover` or `clicked` etc.
+- By providing and `open` state we could let the user handle if the tooltip should be shown
+- We could use `behaviour` to enable different states like `hover` or `clicked` etc.
 
 ---
 

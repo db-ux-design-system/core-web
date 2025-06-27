@@ -1,6 +1,4 @@
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import defaultComponentVariants from '../../../../../shared/tabs.json';
-import { DefaultComponent } from '../default.component';
 import {
 	DBInfotext,
 	DBTabItem,
@@ -8,7 +6,9 @@ import {
 	DBTabPanel,
 	DBTabs
 } from '../../../../../../output/angular/src';
+import defaultComponentVariants from '../../../../../shared/tabs.json';
 import { environment } from '../../../environments/environment';
+import { DefaultComponent } from '../default.component';
 
 @Component({
 	selector: 'app-tabs',
@@ -23,7 +23,7 @@ import { environment } from '../../../environments/environment';
 				DBTabPanel,
 				DBInfotext
 			],
-	schemas: [CUSTOM_ELEMENTS_SCHEMA],
+	schemas: environment.webComponents ? [CUSTOM_ELEMENTS_SCHEMA] : [],
 	standalone: true
 })
 export class TabsComponent {

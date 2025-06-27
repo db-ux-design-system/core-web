@@ -1,13 +1,13 @@
 /* eslint-disable import/no-anonymous-default-export */
-import { platform } from 'node:os';
 import {
 	type NVDAPlaywright,
 	nvdaTest,
 	type VoiceOverPlaywright,
 	voiceOverTest
 } from '@guidepup/playwright';
-import { macOSRecord, windowsRecord } from '@guidepup/guidepup';
+import { macOSRecord, windowsRecord } from '@guidepup/record';
 import { expect } from '@playwright/test';
+import { platform } from 'node:os';
 import {
 	type DefaultTestType,
 	type RunTestType,

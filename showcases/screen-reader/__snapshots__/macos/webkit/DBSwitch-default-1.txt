@@ -1,1 +1,1 @@
-["(Def) Enabled off switch","on (Def) Enabled switch","(Def) Enabled","Checked on switch","off Checked switch","Checked","Disabled dimmed off switch. This item is dimmed","dimmed","Disabled"]
+["(Default) False off switch","on (Default) False switch","(Default) False","True on switch","off True switch","True","True","on True switch","True"]

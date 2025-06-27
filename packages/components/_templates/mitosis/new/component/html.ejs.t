@@ -6,7 +6,7 @@ to: src/components/<%= name %>/index.html
 	<head>
 		<meta charset="UTF-8" />
 		<title>DB<%= h.changeCase.pascal(name) %></title>
-		<link rel="stylesheet" href="/styles/db-ui-42.css" />
+		<link rel="stylesheet" href="/styles/relative.css" />
 	</head>
 	<body style="padding: var(--db-spacing-fixed-md)">
 		<div class="db-<%= name %>">Test</div>

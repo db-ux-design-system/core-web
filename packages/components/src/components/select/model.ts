@@ -7,20 +7,24 @@ import {
 	FocusEventState,
 	FormMessageProps,
 	FormProps,
+	FormSizeProps,
 	FormState,
+	FromValidState,
 	GlobalProps,
 	GlobalState,
 	IconProps,
 	InitializedState,
 	InputEventProps,
-	InputEventState
+	InputEventState,
+	ShowIconProps
 } from '../../shared/model';
 
 export type DBSelectDefaultProps = {
 	/**
-	 * The description attribute will add a paragraph below the select.
+	 * @deprecated
+	 * Enables multiple select, but it isn't styled, please use DBCustomSelect/db-custom-select instead
 	 */
-	description?: string;
+	multiple?: boolean;
 
 	/**
 	 * If you don't/can't use children/slots you can pass in the options as an array.
@@ -60,15 +64,17 @@ export type DBSelectOptionType = {
 	value: string | string[] | number;
 };
 
-export type DBSelectProps = DBSelectDefaultProps &
-	GlobalProps &
+export type DBSelectProps = GlobalProps &
 	ClickEventProps<HTMLSelectElement> &
 	ChangeEventProps<HTMLSelectElement> &
 	FocusEventProps<HTMLSelectElement> &
 	InputEventProps<HTMLSelectElement> &
 	FormProps &
 	IconProps &
-	FormMessageProps;
+	FormMessageProps &
+	DBSelectDefaultProps &
+	ShowIconProps &
+	FormSizeProps;
 
 export type DBSelectDefaultState = {
 	_placeholderId: string;
@@ -82,4 +88,5 @@ export type DBSelectState = DBSelectDefaultState &
 	FocusEventState<HTMLSelectElement> &
 	InputEventState<HTMLSelectElement> &
 	FormState &
-	InitializedState;
+	InitializedState &
+	FromValidState;

@@ -1,0 +1,8 @@
+@use "../../index";
+
+$font-size: "xl";
+
+.db-headline-size-#{$font-size},
+[data-headline-size="#{$font-size}"] {
+	@extend %db-overwrite-headline-size-#{$font-size};
+}

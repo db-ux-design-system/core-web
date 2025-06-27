@@ -1,9 +1,13 @@
-import { DBRadio } from '../../../../../output/react/src';
-import DefaultComponent from '../default-component';
-import { getVariants } from '../data';
-import defaultComponentVariants from '../../../../shared/radio.json';
+import {
+	DBInfotext,
+	DBRadio,
+	getBoolean
+} from '../../../../../output/react/src';
 import { type DBRadioProps } from '../../../../../output/react/src/components/radio/model';
+import defaultComponentVariants from '../../../../shared/radio.json';
 import { type BaseComponentProps } from '../base-component-data';
+import { getVariants } from '../data';
+import DefaultComponent from '../default-component';
 
 const getRadio = ({
 	label,
@@ -14,19 +18,28 @@ const getRadio = ({
 	children,
 	disabled,
 	value,
-	variant
+	showLabel,
+	validation
 }: DBRadioProps) => (
-	<DBRadio
-		label={label}
-		size={size}
-		name={name}
-		defaultChecked={checked}
-		required={required}
-		disabled={disabled}
-		variant={variant}
-		value={value}>
-		{children}
-	</DBRadio>
+	<>
+		<DBRadio
+			label={label}
+			size={size}
+			name={name}
+			defaultChecked={getBoolean(checked)}
+			required={required}
+			disabled={disabled}
+			showLabel={showLabel}
+			value={value}
+			validation={validation}>
+			{children}
+		</DBRadio>
+		{showLabel !== undefined && !showLabel && (
+			<DBInfotext size="small" semantic="informational" showIcon={false}>
+				{children}
+			</DBInfotext>
+		)}
+	</>
 );
 
 const RadioComponent = (props: BaseComponentProps) => {

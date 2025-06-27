@@ -8,7 +8,7 @@
 		<db-header
 			header
 			[drawerOpen]="drawerOpen"
-			(onToggle)="toggleDrawer($event)"
+			(toggle)="toggleDrawer($event)"
 		>
 			<db-brand brand>Showcase</db-brand>
 			<db-navigation *dbNavigation aria-label="main-navigation">
@@ -57,17 +57,13 @@
 				>
 			</ng-container>
 			<ng-container *dbSecondaryAction>
-				<db-button icon="person" variant="ghost" [noText]="true">
+				<db-button icon="x_placeholder" variant="ghost" [noText]="true">
 					Profile
 				</db-button>
-				<db-button icon="bell" variant="ghost" [noText]="true">
+				<db-button icon="x_placeholder" variant="ghost" [noText]="true">
 					Notification
 				</db-button>
-				<db-button
-					icon="question_mark_circle"
-					variant="ghost"
-					[noText]="true"
-				>
+				<db-button icon="x_placeholder" variant="ghost" [noText]="true">
 					Help
 				</db-button>
 			</ng-container>

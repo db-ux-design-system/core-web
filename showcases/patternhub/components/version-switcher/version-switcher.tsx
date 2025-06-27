@@ -1,6 +1,6 @@
-import { useEffect, useState } from 'react';
-import { useRouter } from 'next/router';
 import DOMPurify from 'dompurify';
+import { useRouter } from 'next/router';
+import { useEffect, useState } from 'react';
 import { DBSelect } from '../../../../output/react/src';
 import { type BranchGroup, type GithubResponse } from './data';
 
@@ -15,8 +15,8 @@ const fetchFromGitHubApi = async (url: string): Promise<GithubResponse[]> => {
 	return [];
 };
 
-const owner = 'db-ui';
-const repo = 'mono';
+const owner = 'db-ux-design-system';
+const repo = 'core-web';
 
 const VersionSwitcher = () => {
 	const router = useRouter();
@@ -107,7 +107,7 @@ const VersionSwitcher = () => {
 		const isTag =
 			(branch.split('.').length === 3 && branch.startsWith('v')) ||
 			branch === 'latest';
-		window.location.replace(
+		globalThis.location.replace(
 			DOMPurify.sanitize(
 				`https://${owner}.github.io/${repo}${
 					isTag ? '/version' : '/review'

@@ -1,13 +1,13 @@
 ## Vue
 
-For general installation and configuration look at the [v-components](https://www.npmjs.com/package/@db-ui/v-components) package.
+For general installation and configuration look at the [v-core-components](https://www.npmjs.com/package/@db-ux/v-core-components) package.
 
 ### Use component
 
 ```vue App.vue
 <!-- App.vue -->
 <script>
-import { DBNavigation, DBNavigationItem } from "@db-ui/v-components";
+import { DBNavigation, DBNavigationItem } from "@db-ux/v-core-components";
 </script>
 
 <template>
@@ -34,7 +34,7 @@ import { DBNavigation, DBNavigationItem } from "@db-ui/v-components";
 				</DBNavigationItem>
 			</template>
 		</DBNavigationItem>
-		<DBNavigationItem icon="person">
+		<DBNavigationItem icon="x_placeholder">
 			<a href="#">Navi-Item 2</a>
 		</DBNavigationItem>
 		<DBNavigationItem :disabled="true">
@@ -56,7 +56,7 @@ For other purposes, `NavigationItems` themselves can also be set to active with 
 ```vue App.vue
 <!-- App.vue -->
 <script>
-import { DBMainNavigation, DBNavigationItem } from "@db-ui/v-components";
+import { DBMainNavigation, DBNavigationItem } from "@db-ux/v-core-components";
 </script>
 
 <template>

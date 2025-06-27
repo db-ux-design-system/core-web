@@ -1,8 +1,8 @@
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import defaultComponentVariants from '../../../../../shared/drawer.json';
-import { DefaultComponent } from '../default.component';
 import { DBButton, DBDrawer } from '../../../../../../output/angular/src';
+import defaultComponentVariants from '../../../../../shared/drawer.json';
 import { environment } from '../../../environments/environment';
+import { DefaultComponent } from '../default.component';
 
 @Component({
 	selector: 'app-drawer',
@@ -11,7 +11,7 @@ import { environment } from '../../../environments/environment';
 		? [DefaultComponent]
 		: [DefaultComponent, DBDrawer, DBButton],
 	standalone: true,
-	schemas: [CUSTOM_ELEMENTS_SCHEMA]
+	schemas: environment.webComponents ? [CUSTOM_ELEMENTS_SCHEMA] : []
 })
 export class DrawerComponent {
 	variants = defaultComponentVariants;

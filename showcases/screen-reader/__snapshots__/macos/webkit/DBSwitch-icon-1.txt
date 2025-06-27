@@ -1,1 +1,1 @@
-["(Def) No Visual Aid + unchecked off switch","(Def) No Visual Aid + unchecked","Visual Aid + unchecked off switch","on Visual Aid + unchecked switch","Visual Aid + unchecked"]
+["(Default) False + Unchecked off switch","(Default) False + Unchecked","(Default) False + Checked on switch","off (Default) False + Checked switch","(Default) False + Checked"]

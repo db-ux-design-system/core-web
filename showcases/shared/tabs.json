@@ -198,15 +198,15 @@
 				}
 			},
 			{
-				"name": "with overflow - behaviour: arrows",
+				"name": "with overflow - behavior: arrows",
 				"style": { "width": "300px" },
 				"props": {
 					"overflow": true,
-					"behaviour": "arrows"
+					"behavior": "arrows"
 				}
 			},
 			{
-				"name": "with overflow - behaviour: scrollbar",
+				"name": "with overflow - behavior: scrollbar",
 				"style": { "width": "300px" },
 				"props": {
 					"overflow": true

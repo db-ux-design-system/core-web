@@ -1,3 +1,4 @@
+import { NgTemplateOutlet } from '@angular/common';
 import {
 	Component,
 	CUSTOM_ELEMENTS_SCHEMA,
@@ -6,7 +7,6 @@ import {
 	type OnInit,
 	type TemplateRef
 } from '@angular/core';
-import { NgTemplateOutlet } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
 import {
 	COLOR,
@@ -72,7 +72,7 @@ export class DefaultComponent implements OnInit {
 	}
 
 	getLink = (variantName: string) => {
-		let currentUrl = window.location.href;
+		let currentUrl = globalThis.location.href;
 		if (!currentUrl.includes('?')) {
 			currentUrl += '?';
 		}

@@ -70,5 +70,22 @@
 				}
 			}
 		]
+	},
+	{
+		"name": "Show Icon",
+		"examples": [
+			{
+				"name": "(Default) True",
+				"props": {
+					"showIcon": true
+				}
+			},
+			{
+				"name": "False",
+				"props": {
+					"showIcon": false
+				}
+			}
+		]
 	}
 ]

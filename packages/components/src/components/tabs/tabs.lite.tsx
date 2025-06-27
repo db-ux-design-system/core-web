@@ -3,21 +3,24 @@ import {
 	onMount,
 	onUpdate,
 	Show,
+	useDefaultProps,
 	useMetadata,
 	useRef,
 	useStore
 } from '@builder.io/mitosis';
-import { DBSimpleTabProps, DBTabsProps, DBTabsState } from './model';
+import { InputEvent } from '../../shared/model';
 import { cls, uuid } from '../../utils';
 import DBButton from '../button/button.lite';
-import DBTabList from '../tab-list/tab-list.lite';
 import DBTabItem from '../tab-item/tab-item.lite';
+import DBTabList from '../tab-list/tab-list.lite';
 import DBTabPanel from '../tab-panel/tab-panel.lite';
+import { DBSimpleTabProps, DBTabsProps, DBTabsState } from './model';
 
 useMetadata({});
+useDefaultProps<DBTabsProps>({});
 
 export default function DBTabs(props: DBTabsProps) {
-	const ref = useRef<HTMLDivElement>(null);
+	const _ref = useRef<HTMLDivElement | any>(null);
 	// jscpd:ignore-start
 	const state = useStore<DBTabsState>({
 		_id: 'tabs-' + uuid(),
@@ -26,13 +29,13 @@ export default function DBTabs(props: DBTabsProps) {
 		showScrollLeft: false,
 		showScrollRight: false,
 		scrollContainer: null,
-		convertTabs(tabs: unknown[] | string | undefined): DBSimpleTabProps[] {
+		convertTabs(): DBSimpleTabProps[] {
 			try {
-				if (typeof tabs === 'string') {
-					return JSON.parse(tabs);
+				if (typeof props.tabs === 'string') {
+					return JSON.parse(props.tabs as string);
 				}
 
-				return tabs as DBSimpleTabProps[];
+				return props.tabs as DBSimpleTabProps[];
 			} catch (error) {
 				console.error(error);
 			}
@@ -48,7 +51,7 @@ export default function DBTabs(props: DBTabsProps) {
 				tList.scrollLeft < tList.scrollWidth - tList.clientWidth;
 		},
 		scroll(left?: boolean) {
-			let step = props.arrowScrollDistance || 100;
+			let step = Number(props.arrowScrollDistance) || 100;
 			if (left) {
 				step *= -1;
 			}
@@ -59,30 +62,37 @@ export default function DBTabs(props: DBTabsProps) {
 			});
 		},
 		initTabList() {
-			if (ref) {
-				const tabList = ref.querySelector('.db-tab-list');
+			if (_ref) {
+				const tabList = _ref.querySelector('.db-tab-list');
 				if (tabList) {
-					const container = tabList.querySelector('[role="tablist"]');
+					const container: HTMLElement | null =
+						tabList.querySelector('[role="tablist"]');
+					if (container) {
+						container.setAttribute(
+							'aria-orientation',
+							props.orientation || 'horizontal'
+						);
 
-					container.setAttribute(
-						'aria-orientation',
-						props.orientation || 'horizontal'
-					);
-
-					if (props.behaviour === 'arrows') {
-						state.scrollContainer = container;
-						state.evaluateScrollButtons(container);
-						container.addEventListener('scroll', () => {
+						if (props.behavior === 'arrows') {
+							state.scrollContainer = container;
 							state.evaluateScrollButtons(container);
-						});
+							container.addEventListener('scroll', () => {
+								state.evaluateScrollButtons(container);
+							});
+						}
 					}
 				}
 			}
 		},
 		initTabs(init?: boolean) {
-			if (ref) {
+			if (_ref) {
 				const tabItems = Array.from<Element>(
-					ref.getElementsByClassName('db-tab-item')
+					_ref.getElementsByClassName('db-tab-item')
+				);
+				const tabPanels = Array.from<Element>(
+					_ref.querySelectorAll(
+						':is(:scope > .db-tab-panel, :scope > db-tab-panel > .db-tab-panel)'
+					)
 				);
 				for (const tabItem of tabItems) {
 					const index: number = tabItems.indexOf(tabItem);
@@ -93,12 +103,14 @@ export default function DBTabs(props: DBTabsProps) {
 						if (!input.id) {
 							const tabId = `${state._name}-tab-${index}`;
 							label.setAttribute('for', tabId);
-							input.setAttribute(
-								'aria-controls',
-								`${state._name}-tab-panel-${index}`
-							);
 							input.id = tabId;
 							input.setAttribute('name', state._name);
+							if (tabPanels.length > index) {
+								input.setAttribute(
+									'aria-controls',
+									`${state._name}-tab-panel-${index}`
+								);
+							}
 						}
 
 						if (init) {
@@ -109,7 +121,7 @@ export default function DBTabs(props: DBTabsProps) {
 							const shouldAutoSelect =
 								(props.initialSelectedIndex == null &&
 									index === 0) ||
-								props.initialSelectedIndex === index;
+								Number(props.initialSelectedIndex) === index;
 							if (autoSelect && shouldAutoSelect) {
 								input.click();
 							}
@@ -117,11 +129,6 @@ export default function DBTabs(props: DBTabsProps) {
 					}
 				}
 
-				const tabPanels = Array.from<Element>(
-					ref.querySelectorAll(
-						':is(& > .db-tab-panel, & > db-tab-panel > .db-tab-panel)'
-					)
-				);
 				for (const panel of tabPanels) {
 					if (panel.id) continue;
 					const index: number = tabPanels.indexOf(panel);
@@ -132,24 +139,47 @@ export default function DBTabs(props: DBTabsProps) {
 					);
 				}
 			}
+		},
+		handleChange: (event: InputEvent<HTMLElement>) => {
+			event.stopPropagation();
+			const closest:
+				| ((element: string) => HTMLElement | null)
+				| undefined = (event.target as any)?.closest;
+
+			if (!closest) return;
+
+			const list = closest('ul');
+			const listItem =
+				// db-tab-item for angular and stencil wrapping elements
+				closest('db-tab-item') ?? closest('li');
+			if (list !== null && listItem !== null) {
+				const indices = Array.from(list.childNodes).indexOf(listItem);
+				if (props.onIndexChange) {
+					props.onIndexChange(indices);
+				}
+			}
+
+			if (props.onTabSelect) {
+				props.onTabSelect(event);
+			}
 		}
 	});
 
 	onMount(() => {
 		state._id = props.id || state._id;
 
-		state._name = props.name || uuid();
+		state._name = `tabs-${props.name || uuid()}`;
 
 		state.initialized = true;
 	});
 	// jscpd:ignore-end
 
 	onUpdate(() => {
-		if (ref && state.initialized) {
+		if (_ref && state.initialized) {
 			state.initTabList();
 			state.initTabs(true);
 
-			const tabList = ref.querySelector('.db-tab-list');
+			const tabList = _ref.querySelector('.db-tab-list');
 			if (tabList) {
 				const observer = new MutationObserver((mutations) => {
 					mutations.forEach((mutation) => {
@@ -171,22 +201,24 @@ export default function DBTabs(props: DBTabsProps) {
 
 			state.initialized = false;
 		}
-	}, [ref, state.initialized]);
+	}, [_ref, state.initialized]);
 
 	return (
 		<div
-			ref={ref}
+			ref={_ref}
 			id={state._id}
 			class={cls('db-tabs', props.className)}
 			data-orientation={props.orientation}
-			data-scroll-behaviour={props.behaviour}
+			data-scroll-behavior={props.behavior}
 			data-alignment={props.alignment ?? 'start'}
-			data-width={props.width ?? 'auto'}>
+			data-width={props.width ?? 'auto'}
+			onInput={(event) => state.handleChange(event)}>
 			<Show when={state.showScrollLeft}>
 				<DBButton
 					class="tabs-scroll-left"
 					variant="ghost"
 					icon="chevron_left"
+					type="button"
 					noText
 					onClick={() => state.scroll(true)}>
 					Scroll left
@@ -194,7 +226,7 @@ export default function DBTabs(props: DBTabsProps) {
 			</Show>
 			<Show when={props.tabs}>
 				<DBTabList>
-					<For each={state.convertTabs(props.tabs)}>
+					<For each={state.convertTabs()}>
 						{(tab: DBSimpleTabProps, index: number) => (
 							<DBTabItem
 								key={props.name + 'tab-item' + index}
@@ -207,7 +239,7 @@ export default function DBTabs(props: DBTabsProps) {
 						)}
 					</For>
 				</DBTabList>
-				<For each={state.convertTabs(props.tabs)}>
+				<For each={state.convertTabs()}>
 					{(tab: DBSimpleTabProps, index: number) => (
 						<DBTabPanel
 							key={props.name + 'tab-panel' + index}
@@ -222,6 +254,7 @@ export default function DBTabs(props: DBTabsProps) {
 					class="tabs-scroll-right"
 					variant="ghost"
 					icon="chevron_right"
+					type="button"
 					noText
 					onClick={() => state.scroll()}>
 					Scroll right

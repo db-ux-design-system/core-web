@@ -1,0 +1,26 @@
+@use "@db-ux/core-foundations/build/styles/variables";
+@use "@db-ux/core-foundations/build/styles/icons";
+
+@mixin icon-passing($inline-start: variables.$db-spacing-fixed-sm) {
+	&[data-icon]:not([data-hide-icon="true"]) {
+		&::before {
+			position: absolute;
+			inset-block-start: calc(50% - 0.5em);
+			inset-inline-start: $inline-start;
+			pointer-events: none;
+			z-index: 1;
+		}
+
+		a,
+		button,
+		label {
+			--db-padding-inline-start: calc(
+				#{$inline-start} + #{icons.$default-icon-margin-end} +
+					var(--db-icon-font-size)
+			);
+
+			/* stylelint-disable-next-line db-ux/use-spacings */
+			padding-inline-start: var(--db-padding-inline-start);
+		}
+	}
+}

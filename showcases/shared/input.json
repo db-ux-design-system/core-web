@@ -26,7 +26,7 @@
 		]
 	},
 	{
-		"name": "Variant Label",
+		"name": "Variant",
 		"examples": [
 			{
 				"name": "(Default) Label Above",
@@ -41,36 +41,51 @@
 					"variant": "floating",
 					"value": "Floating Label"
 				}
-			},
-			{
-				"name": "Hidden Label",
-				"props": {
-					"label": "Label",
-					"variant": "hidden"
-				}
 			}
 		]
 	},
 	{
-		"name": "Variant Helper Message",
+		"name": "Show Label",
 		"examples": [
 			{
-				"name": "(Default) Basic",
+				"name": "(Default) True",
 				"props": {
-					"label": "Label"
+					"label": "Label",
+					"showLabel": true
 				}
 			},
 			{
-				"name": "Helper Message",
+				"name": "False",
 				"props": {
 					"label": "Label",
-					"message": "Helper Message"
+					"showLabel": false
 				}
 			}
 		]
 	},
 	{
-		"name": "States Label Above",
+		"name": "Show Message",
+		"examples": [
+			{
+				"name": "(Default) False",
+				"props": {
+					"label": "Label",
+					"message": "Message",
+					"showMessage": false
+				}
+			},
+			{
+				"name": "True",
+				"props": {
+					"label": "Label",
+					"message": "Message",
+					"showMessage": true
+				}
+			}
+		]
+	},
+	{
+		"name": "State",
 		"examples": [
 			{
 				"name": "(Default) Empty",
@@ -84,26 +99,251 @@
 					"label": "Label",
 					"value": "Filled"
 				}
+			}
+		]
+	},
+	{
+		"name": "Disabled",
+		"examples": [
+			{
+				"name": "(Default) False",
+				"props": {
+					"label": "Label",
+					"disabled": false
+				}
 			},
 			{
-				"name": "Disabled",
+				"name": "True",
 				"props": {
 					"label": "Label",
 					"disabled": true
 				}
-			},
+			}
+		]
+	},
+	{
+		"name": "Readonly",
+		"examples": [
 			{
-				"name": "Readonly - Filled",
+				"name": "(Default) False",
 				"props": {
 					"label": "Label",
-					"value": "Readonly - Filled",
+					"value": "(Default) False",
+					"readOnly": false
+				}
+			},
+			{
+				"name": "True",
+				"props": {
+					"label": "Label",
+					"value": "True",
 					"readOnly": true
 				}
 			}
 		]
 	},
 	{
-		"name": "States Floating Label",
+		"name": "Validation",
+		"examples": [
+			{
+				"name": "(Default) No validation",
+				"props": {
+					"label": "Label",
+					"validation": "no-validation"
+				}
+			},
+			{
+				"name": "Invalid",
+				"props": {
+					"label": "Label",
+					"validation": "invalid",
+					"invalidMessage": "Invalid Message"
+				}
+			},
+			{
+				"name": "Valid",
+				"props": {
+					"label": "Label",
+					"validation": "valid",
+					"validMessage": "Valid message"
+				}
+			}
+		]
+	},
+	{
+		"name": "Required",
+		"examples": [
+			{
+				"name": "(Default) False",
+				"props": {
+					"label": "Label",
+					"required": false
+				}
+			},
+			{
+				"name": "True",
+				"props": {
+					"label": "Label",
+					"required": true
+				}
+			}
+		]
+	},
+	{
+		"name": "Content",
+		"examples": [
+			{
+				"name": "(Default) Text",
+				"props": {
+					"label": "Label",
+					"value": "(Default) Text"
+				}
+			},
+			{
+				"name": "Text - Leading Icon",
+				"props": {
+					"label": "Label",
+					"icon": "x_placeholder"
+				}
+			},
+			{
+				"name": "Text - Leading Icon - Trailing Icon",
+				"props": {
+					"label": "Label",
+					"icon": "x_placeholder",
+					"iconAfter": "x_placeholder"
+				}
+			},
+			{
+				"name": "Text - Trailing Icon",
+				"props": {
+					"label": "Label",
+					"iconAfter": "x_placeholder"
+				}
+			}
+		]
+	},
+	{
+		"name": "Example - Length",
+		"examples": [
+			{
+				"name": "MinLength",
+				"props": {
+					"label": "Label",
+					"minLength": 3
+				}
+			},
+			{
+				"name": "MaxLength",
+				"props": {
+					"label": "Label",
+					"maxLength": 5
+				}
+			},
+			{
+				"name": "MinMaxLength",
+				"props": {
+					"label": "Label",
+					"minLength": 3,
+					"maxLength": 5
+				}
+			}
+		]
+	},
+	{
+		"name": "Example - Types with min and max",
+		"codeFileName": "ExampleTypes",
+		"examples": [
+			{
+				"name": "(Default) Text",
+				"props": {
+					"label": "Label"
+				}
+			},
+			{
+				"name": "Password",
+				"props": {
+					"label": "Label",
+					"type": "password"
+				}
+			},
+			{
+				"name": "Search",
+				"props": {
+					"label": "Label",
+					"type": "search"
+				}
+			},
+			{
+				"name": "E-Mail",
+				"props": {
+					"label": "Label",
+					"type": "email"
+				}
+			},
+			{
+				"name": "Tel",
+				"props": {
+					"label": "Label",
+					"type": "tel"
+				}
+			},
+			{
+				"name": "URL",
+				"props": {
+					"label": "Label",
+					"type": "url"
+				}
+			},
+			{
+				"name": "Date",
+				"props": {
+					"label": "Label",
+					"type": "date",
+					"min": "2023-01-01",
+					"max": "2030-12-31"
+				}
+			},
+			{
+				"name": "Datetime Local",
+				"props": {
+					"label": "Label",
+					"type": "datetime-local",
+					"min": "2023-01-01T00:00",
+					"max": "2030-12-31T23:59"
+				}
+			},
+			{
+				"name": "Month",
+				"props": {
+					"label": "Label",
+					"type": "month",
+					"min": "2023-01",
+					"max": "2030-12"
+				}
+			},
+			{
+				"name": "Time",
+				"props": {
+					"label": "Label",
+					"type": "time",
+					"min": "00:00",
+					"max": "23:59"
+				}
+			},
+			{
+				"name": "Week",
+				"props": {
+					"label": "Label",
+					"type": "week",
+					"min": "2023-W01",
+					"max": "2030-W52"
+				}
+			}
+		]
+	},
+	{
+		"name": "Example Floating Label",
 		"examples": [
 			{
 				"name": "(Default) Empty",
@@ -140,169 +380,8 @@
 		]
 	},
 	{
-		"name": "Content",
-		"examples": [
-			{
-				"name": "(Default) Text",
-				"props": {
-					"label": "Label",
-					"value": "(Default) Text"
-				}
-			},
-			{
-				"name": "Filled Number",
-				"props": {
-					"label": "Number",
-					"value": "123456",
-					"type": "number"
-				}
-			},
-			{
-				"name": "Text - Leading Icon",
-				"props": {
-					"label": "Label",
-					"icon": "db"
-				}
-			},
-			{
-				"name": "Text - Leading Icon - Trailing Icon",
-				"props": {
-					"label": "Label",
-					"icon": "db",
-					"iconAfter": "db"
-				}
-			},
-			{
-				"name": "Text - Trailing Icon",
-				"props": {
-					"label": "Label",
-					"iconAfter": "db"
-				}
-			}
-		]
-	},
-	{
-		"name": "Requirement",
-		"examples": [
-			{
-				"name": "(Default) Optional",
-				"props": {
-					"label": "Label"
-				}
-			},
-			{
-				"name": "Required",
-				"props": {
-					"label": "Label",
-					"required": true
-				}
-			}
-		]
-	},
-	{
-		"name": "Example - Types",
-		"examples": [
-			{
-				"name": "(Default) Text",
-				"props": {
-					"label": "Label"
-				}
-			},
-			{
-				"name": "Password",
-				"props": {
-					"label": "Label",
-					"type": "password"
-				}
-			},
-			{
-				"name": "Search",
-				"props": {
-					"label": "Label",
-					"type": "search"
-				}
-			},
-			{
-				"name": "E-Mail",
-				"props": {
-					"label": "Label",
-					"type": "email"
-				}
-			},
-			{
-				"name": "Number",
-				"props": {
-					"label": "Label",
-					"type": "number"
-				}
-			},
-			{
-				"name": "Tel",
-				"props": {
-					"label": "Label",
-					"type": "tel"
-				}
-			},
-			{
-				"name": "URL",
-				"props": {
-					"label": "Label",
-					"type": "url"
-				}
-			},
-			{
-				"name": "Date",
-				"props": {
-					"label": "Label",
-					"type": "date"
-				}
-			},
-			{
-				"name": "Datetime Local",
-				"props": {
-					"label": "Label",
-					"type": "datetime-local"
-				}
-			},
-			{
-				"name": "Month",
-				"props": {
-					"label": "Label",
-					"type": "month"
-				}
-			},
-			{
-				"name": "Time",
-				"props": {
-					"label": "Label",
-					"type": "time"
-				}
-			},
-			{
-				"name": "Week",
-				"props": {
-					"label": "Label",
-					"type": "week"
-				}
-			},
-			{
-				"name": "Datalist",
-				"props": {
-					"label": "Label",
-					"dataList": true
-				}
-			},
-			{
-				"name": "File",
-				"props": {
-					"label": "Label",
-					"type": "file"
-				}
-			}
-		]
-	},
-	{
 		"name": "Example - Types - Floating Label",
+		"codeFileName": "ExampleTypesFloatingLabel",
 		"examples": [
 			{
 				"name": "(Default) Text",
@@ -332,14 +411,6 @@
 				"props": {
 					"label": "Label",
 					"type": "email",
-					"variant": "floating"
-				}
-			},
-			{
-				"name": "Number",
-				"props": {
-					"label": "Label",
-					"type": "number",
 					"variant": "floating"
 				}
 			},
@@ -401,6 +472,7 @@
 			},
 			{
 				"name": "Datalist",
+				"experimental": true,
 				"props": {
 					"label": "Label",
 					"variant": "floating",
@@ -409,6 +481,7 @@
 			},
 			{
 				"name": "File",
+				"experimental": true,
 				"props": {
 					"label": "Label",
 					"type": "file",

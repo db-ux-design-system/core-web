@@ -1,0 +1,35 @@
+- main:
+  - heading "DBHeader" [level=1]
+  - link "Density arrow_up_right\" / \""
+  - text: brand" / " DBHeader
+  - button "magnifying_glass\" / \" Search"
+  - button "menu\" / \" BurgerMenu"
+  - text: brand" / " DBHeader
+  - button "magnifying_glass\" / \" Search"
+  - button "menu\" / \" BurgerMenu"
+  - text: brand" / " DBHeader
+  - button "magnifying_glass\" / \" Search"
+  - button "menu\" / \" BurgerMenu"
+  - link "Width arrow_up_right\" / \""
+  - text: brand" / " DBHeader
+  - button "magnifying_glass\" / \" Search"
+  - button "menu\" / \" BurgerMenu"
+  - text: brand" / " DBHeader
+  - button "magnifying_glass\" / \" Search"
+  - button "menu\" / \" BurgerMenu"
+  - text: brand" / " DBHeader
+  - button "magnifying_glass\" / \" Search"
+  - button "menu\" / \" BurgerMenu"
+  - link "Behavior arrow_up_right\" / \""
+  - text: brand" / " DBHeader
+  - button "magnifying_glass\" / \" Search"
+  - button "menu\" / \" BurgerMenu"
+  - text: brand" / " DBHeader
+  - button "magnifying_glass\" / \" Search"
+  - button "menu\" / \" BurgerMenu"
+  - link "Examples arrow_up_right\" / \""
+  - text: brand" / " DBHeader
+  - button "menu\" / \" BurgerMenu"
+  - text: brand" / " DBHeader brand" / "
+  - button "menu\" / \" BurgerMenu"
+  - text: brand" / "

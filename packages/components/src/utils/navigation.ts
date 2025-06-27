@@ -1,4 +1,4 @@
-import { handleDataOutside } from './index';
+import { handleDataOutside } from './floating-components';
 
 export type TriangleData = {
 	itemRect: DOMRect;
@@ -18,17 +18,25 @@ export const isEventTargetNavigationItem = (event: unknown): boolean => {
 };
 
 export class NavigationItemSafeTriangle {
-	private readonly element: HTMLElement;
-	private readonly subNavigation: Element;
-	private readonly parentSubNavigation: Element | null;
+	private readonly element: HTMLElement | null;
+	private readonly subNavigation: HTMLElement | null;
+	private readonly parentSubNavigation: HTMLElement | null = null;
 	private triangleData?: TriangleData;
 	private initialized: boolean = false;
 	private mouseX: number = 0;
 	private mouseY: number = 0;
-	constructor(element: HTMLElement, subNavigation: Element) {
+	constructor(
+		element: HTMLElement | null,
+		subNavigation: HTMLElement | null
+	) {
 		this.element = element;
 		this.subNavigation = subNavigation;
-		this.parentSubNavigation = this.element.closest('.db-sub-navigation');
+
+		if (!this.element || !this.subNavigation) {
+			return;
+		}
+
+		this.parentSubNavigation = this.element?.closest('.db-sub-navigation');
 
 		/*
 		 * only initiate if:
@@ -46,7 +54,7 @@ export class NavigationItemSafeTriangle {
 
 		// the triangle has the width of the sub-navigation, current nav-item can be wider.
 		// so the width of the triangle must be adapted to a possibly wider nav-item.
-		this.element.style.setProperty(
+		this.element?.style.setProperty(
 			'--db-navigation-item-inline-size',
 			`${parentElementWidth}px`
 		);
@@ -55,7 +63,12 @@ export class NavigationItemSafeTriangle {
 	}
 
 	public enableFollow() {
-		if (!this.initialized || this.triangleData) {
+		if (
+			!this.initialized ||
+			this.triangleData ||
+			!this.element ||
+			!this.subNavigation
+		) {
 			return;
 		}
 
@@ -180,7 +193,12 @@ export class NavigationItemSafeTriangle {
 	}
 
 	public followByMouseEvent(event: MouseEvent) {
-		if (!this.initialized || !this.triangleData) {
+		if (
+			!this.initialized ||
+			!this.triangleData ||
+			!this.element ||
+			!this.subNavigation
+		) {
 			return;
 		}
 

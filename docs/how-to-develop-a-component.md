@@ -8,24 +8,24 @@
 
 3. The generation process will generate files mainly in these directories:
 
--   `packages/components`
--   `showcases`
+- `packages/components`
+- `showcases`
 
 ## Start developing
 
--   Your main work for the component will be inside `packages/components/src/components/my-awesome-component`.
+- Your main work for the component will be inside `packages/components/src/components/my-awesome-component`.
 
--   To develop on your component you can start a development server by running `npm run dev`, this will give you some options to choose from. When you begin "scribbling" (html+scss) with a component you can select `plain-html`. For _advanced users_ you can skip this and develop directly for one framework (html+scss+ts), see [Test Frameworks with Showcases](#test-frameworks-with-showcases).
+- To develop on your component you can start a development server by running `npm run dev`, this will give you some options to choose from. When you begin "scribbling" (html+scss) with a component you can select `plain-html`. For _advanced users_ you can skip this and develop directly for one framework (html+scss+ts), see [Test Frameworks with Showcases](#test-frameworks-with-showcases).
 
 ### Styling with SCSS
 
 Starting with `packages/components/src/components/my-awesome-component/my-awesome-component.scss` there are something you should know:
 
-1. The most important dependency are the `variables` included via `@use "@db-ui/foundations/build/scss/variables";`. They enable you to use e.g. `$db-spacing-fixed-md` for paddings, margins etc.
-2. A lot of times you have to force another `font-size` / `line-height`, you can do it with `@use "@db-ui/foundations/build/scss/density/font;` and the corresponding placeholder extend: `@extend %db-overwrite-font-size-sm;`.
-3. Some components have an 'adaptive' styling. We exclude it in an own file `@use "@db-ui/components/build/scss/styles/component";` so you might use this dependency. As a reference look at another component e.g. [`packages/components/src/components/button/button.scss`](../packages/components/src/components/button/button.scss).
-4. If you have to set a specific color (informational, warning, etc.) directly you can use `@use "@db-ui/foundations/build/scss/colors";`. You can take a look at the `notification` component for an example `packages/components/src/components/notification/notification.scss` you might use the `@each` to reduce the amount of code for color-variants.
-5. To set a fixed icon you might use `@use "@db-ui/foundations/build/scss/icon/icons.helpers" as icons;` as dependency and e.g. `@include icons.icon("arrow_forward"), "after");`. For a dynamic icon you could prefer integrating it in HTML code with the `data-icon` attribute.
+1. The most important dependency are the `variables` included via `@use "@db-ux/core-foundations/build/styles/variables";`. They enable you to use e.g. `$db-spacing-fixed-md` for paddings, margins etc.
+2. A lot of times you have to force another `font-size` / `line-height`, you can do it with `@use "@db-ux/core-foundations/build/styles/density/font;` and the corresponding placeholder extend: `@extend %db-overwrite-font-size-sm;`.
+3. Some components have an 'adaptive' styling. We exclude it in an own file `@use "@db-ux/core-components/build/scss/styles/component";` so you might use this dependency. As a reference look at another component e.g. [`packages/components/src/components/button/button.scss`](../packages/components/src/components/button/button.scss).
+4. If you have to set a specific color (informational, warning, etc.) directly you can use `@use "@db-ux/core-foundations/build/styles/colors";`. You can take a look at the `notification` component for an example `packages/components/src/components/notification/notification.scss` you might use the `@each` to reduce the amount of code for color-variants.
+5. To set a fixed icon you might use `@use "@db-ux/core-foundations/build/styles/icon/icons.helpers" as icons;` as dependency and e.g. `@include icons.icon("arrow_forward"), "after");`. For a dynamic icon you could prefer integrating it in HTML code with the `data-icon` attribute.
 
 ### Component structure with HTML
 
@@ -63,7 +63,6 @@ We use [Mitosis](https://github.com/BuilderIO/Mitosis/tree/main/docs) to develop
 3. Try to parameterize a lot: For example if your component includes an icon button you should give it a text for accessibility. You should provide a default text, so it can't be empty, but you should also let the user change it with a property e.g. `iconButtonText`.
 4. To enable some native functionalities for Vue and Angular (`v-model` and `[(ng-model)]`) you might need to add some extra code to your component. At the generation process you might select `formValue` anyhow, but otherwise take a look at the `input` to see what you need to add to make this work.
 5. Angular is pain... There are some issues with Angular and how this framework works:
-
     1. Angular generates custom HTML tags as wrappers, which might influence your `css` selectors. For example if we have a button inside our component and we try to change the styling with `.db-button: {xxx:abc;}` it would not add the styling to the button. As a workaround you should write `.db-button, .db-button > button: {xxx:abc;}` to cover Angular as well:
 
     ```html
@@ -78,7 +77,6 @@ We use [Mitosis](https://github.com/BuilderIO/Mitosis/tree/main/docs) to develop
     	</div>
     </db-my-awesome-component>
     ```
-
     2. You cannot use multiple slots with the same name. In other frameworks you can use the `<Slot name="bla">` multiple times like this `<div class="my-awesome-component"><Slot name="bla"><Slot name="bla"></div>` but in Angular only the last one would be shown in the DOM. As a workaround you have to create a `Directive`. We automate this via the `packages/components/scripts/post-build/components.js` as an example look at the `header` to see how it works.
 
 ## Test Frameworks with Showcases
@@ -136,6 +134,6 @@ You should change the `date` prop when the first manual test starts or when it g
 
 The `status` can be:
 
--   `REVIEW`, if the manual accessibility review should happen
--   `PROGRESS`, if there are any open issues after the test
--   `DONE`, if the component passed the accessibility review
+- `REVIEW`, if the manual accessibility review should happen
+- `PROGRESS`, if there are any open issues after the test
+- `DONE`, if the component passed the accessibility review

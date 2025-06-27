@@ -1,11 +1,11 @@
-import { expect, test, type Page } from '@playwright/test';
 import { AxeBuilder } from '@axe-core/playwright';
+import { expect, test, type Page } from '@playwright/test';
 import { hasWebComponentSyntax, isStencil, waitForDBPage } from '../default';
 
 const testFormComponents = async (
 	page: Page,
 	testId: string,
-	role: 'textbox' | 'combobox' | 'checkbox'
+	role: 'textbox' | 'combobox' | 'checkbox' | 'radio' | 'group'
 ) => {
 	await page.goto('./');
 	const tab = page.getByTestId(testId);
@@ -33,8 +33,21 @@ const testFormComponents = async (
 				break;
 			}
 
+			case 'radio':
 			case 'checkbox': {
 				await component.click({ force: true });
+
+				break;
+			}
+
+			case 'group': {
+				if (index !== 0) {
+					await component.click({ force: true });
+					await page.waitForTimeout(2000); // Wait for focus to hit first element
+					await page.keyboard.press('Space');
+					await page.keyboard.press('Escape');
+					await page.waitForTimeout(500);
+				}
 
 				break;
 			}
@@ -50,6 +63,8 @@ const testFormComponents = async (
 		const text = await def.textContent();
 		if (role === 'checkbox') {
 			expect(text).toEqual('false');
+		} else if (role === 'group') {
+			expect(text).toEqual(`combobox-0`);
 		} else {
 			expect(text).toEqual(`${role}-${index}`);
 		}
@@ -76,9 +91,8 @@ test.describe('Home', () => {
 		const accessibilityScanResults = await new AxeBuilder({
 			page
 		})
-			// TODO: Currently disable till we solved https://github.com/db-ui/mono/issues/2587
 			// TODO: There might be an issue our implementation of which elements get which roles
-			.disableRules(['color-contrast', 'aria-allowed-role'])
+			.disableRules(['aria-allowed-role'])
 			.analyze();
 
 		expect(accessibilityScanResults.violations).toEqual([]);
@@ -116,5 +130,24 @@ test.describe('Home', () => {
 		}
 
 		await testFormComponents(page, 'tab-checkboxes', 'checkbox');
+	});
+
+	test('test radios', async ({ page }) => {
+		if (stencil) {
+			test.skip();
+		}
+
+		await testFormComponents(page, 'tab-radios', 'radio');
+	});
+
+	test('test custom-selects', async ({ page }, { project }) => {
+		// TODO: We need to investigate on this one how to enable it for WebKit again
+		const isWebkit =
+			project.name === 'webkit' || project.name === 'mobile_safari';
+		if (stencil || isWebkit) {
+			test.skip();
+		}
+
+		await testFormComponents(page, 'tab-custom-selects', 'group');
 	});
 });

@@ -2,12 +2,12 @@ import { Component, Input } from '@angular/core';
 
 @Component({
 	selector: 'app-form-wrapper',
-	standalone: true,
 	imports: [],
-	templateUrl: './wrapper.component.html'
+	templateUrl: './wrapper.component.html',
+	standalone: true
 })
 export class WrapperComponent {
-	@Input('plain') plain!: string | boolean;
-	@Input('model') model!: string | boolean;
-	@Input('control') control!: string | boolean;
+	@Input('plain') plain!: string | boolean | string[];
+	@Input('model') model!: string | boolean | string[];
+	@Input('control') control!: string | boolean | string[];
 }

@@ -1,5 +1,5 @@
+import { DBButton, DBCard, DBInput } from '../../../../../output/react/src';
 import DefaultPage from '../../../components/default-page';
-import { DBButton, DBInput, DBCard } from '../../../../../output/react/src';
 
 const densities = ['functional', 'regular', 'expressive'];
 const Example = () => {
@@ -49,27 +49,27 @@ const Example = () => {
 					className="density-example-page-functional"
 					data-density="functional">
 					<DBCard
-						className="db-neutral-bg-basic-level-2"
+						className="db-color-neutral db-bg-color-bg-basic-level-2"
 						spacing="small">
 						We are functional
 					</DBCard>
 					<DBCard
-						className="db-informational-bg-basic-level-2"
+						className="db-color-informational db-bg-color-basic-level-2 "
 						spacing="small">
 						even that we have
 					</DBCard>
 					<DBCard
-						className="db-successful-bg-basic-level-2"
+						className="db-color-successful db-bg-color-bg-basic-level-2"
 						spacing="small">
 						a color
 					</DBCard>
 					<DBCard
-						className="db-warning-bg-basic-level-2"
+						className="db-color-warning db-bg-color-bg-basic-level-2"
 						spacing="small">
 						the user shouldn't
 					</DBCard>
 					<DBCard
-						className="db-critical-bg-basic-level-2"
+						className="db-color-critical db-bg-color-bg-basic-level-2"
 						spacing="small">
 						focus us
 					</DBCard>

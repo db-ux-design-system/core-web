@@ -3,35 +3,36 @@ import {
 	onMount,
 	onUpdate,
 	Show,
+	useDefaultProps,
 	useMetadata,
 	useRef,
 	useStore
 } from '@builder.io/mitosis';
-import { DBAccordionItemDefaultProps } from '../accordion-item/model';
-import { DBAccordionProps, DBAccordionState } from './model';
+import { DEFAULT_ID } from '../../shared/constants';
 import { cls, uuid } from '../../utils';
 import DBAccordionItem from '../accordion-item/accordion-item.lite';
-import { DEFAULT_ID } from '../../shared/constants';
+import { DBAccordionItemDefaultProps } from '../accordion-item/model';
+import { DBAccordionProps, DBAccordionState } from './model';
 
 useMetadata({});
 
+useDefaultProps<DBAccordionProps>({});
+
 export default function DBAccordion(props: DBAccordionProps) {
-	const ref = useRef<HTMLUListElement>(null);
+	const _ref = useRef<HTMLUListElement | any>(null);
 	// jscpd:ignore-start
 	const state = useStore<DBAccordionState>({
 		_id: DEFAULT_ID,
 		_name: '',
 		initialized: false,
 		_initOpenIndexDone: false,
-		convertItems(
-			items: unknown[] | string | undefined
-		): DBAccordionItemDefaultProps[] {
+		convertItems(): DBAccordionItemDefaultProps[] {
 			try {
-				if (typeof items === 'string') {
-					return JSON.parse(items);
+				if (typeof props.items === 'string') {
+					return JSON.parse(props.items as string);
 				}
 
-				return items as DBAccordionItemDefaultProps[];
+				return props.items as DBAccordionItemDefaultProps[];
 			} catch (error) {
 				console.error(error);
 			}
@@ -48,10 +49,10 @@ export default function DBAccordion(props: DBAccordionProps) {
 	// jscpd:ignore-end
 
 	onUpdate(() => {
-		// If we have a single behaviour we first check for
+		// If we have a single behavior we first check for
 		// props.name otherwise for state_id
 		if (state.initialized) {
-			if (props.behaviour === 'single') {
+			if (props.behavior === 'single') {
 				if (props.name) {
 					if (state._name !== props.name) {
 						state._name = props.name;
@@ -65,11 +66,11 @@ export default function DBAccordion(props: DBAccordionProps) {
 				state._name = '';
 			}
 		}
-	}, [state.initialized, props.name, props.behaviour, state._id]);
+	}, [state.initialized, props.name, props.behavior, state._id]);
 
 	onUpdate(() => {
-		if (ref) {
-			const childDetails = ref.getElementsByTagName('details');
+		if (_ref) {
+			const childDetails = _ref.getElementsByTagName('details');
 			if (childDetails) {
 				for (const details of Array.from<HTMLDetailsElement>(
 					childDetails
@@ -77,26 +78,26 @@ export default function DBAccordion(props: DBAccordionProps) {
 					if (state._name === '') {
 						details.removeAttribute('name');
 					} else {
-						details.name = state._name;
+						details.name = state._name ?? '';
 					}
 				}
 			}
 		}
-	}, [ref, state._name]);
+	}, [_ref, state._name]);
 
 	onUpdate(() => {
-		if (ref && state._initOpenIndexDone) {
-			if (props?.initOpenIndex && props.initOpenIndex?.length > 0) {
-				const childDetails = ref.getElementsByTagName('details');
+		if (_ref && state._initOpenIndexDone) {
+			if (props?.initOpenIndex && props.initOpenIndex!.length > 0) {
+				const childDetails = _ref.getElementsByTagName('details');
 				if (childDetails) {
 					const initOpenIndex =
-						props.behaviour === 'single' &&
-						props.initOpenIndex.length > 1
-							? [props.initOpenIndex[0]] // use only one index for behaviour=single
+						props.behavior === 'single' &&
+						props.initOpenIndex!.length > 1
+							? [props.initOpenIndex![0]] // use only one index for behavior=single
 							: props.initOpenIndex;
 					Array.from<HTMLDetailsElement>(childDetails).forEach(
 						(details: HTMLDetailsElement, index: number) => {
-							if (initOpenIndex.includes(index)) {
+							if (initOpenIndex?.includes(index)) {
 								details.open = true;
 							}
 						}
@@ -105,23 +106,23 @@ export default function DBAccordion(props: DBAccordionProps) {
 			}
 			state._initOpenIndexDone = false;
 		}
-	}, [ref, state._initOpenIndexDone, props.initOpenIndex]);
+	}, [_ref, state._initOpenIndexDone, props.initOpenIndex]);
 
 	return (
 		<ul
-			ref={ref}
+			ref={_ref}
 			id={state._id}
 			class={cls('db-accordion', props.className)}
 			data-variant={props.variant}>
 			<Show when={!props.items}>{props.children}</Show>
 			<Show when={props.items}>
-				<For each={state.convertItems(props.items)}>
+				<For each={state.convertItems()}>
 					{(item: DBAccordionItemDefaultProps, index: number) => (
 						<DBAccordionItem
 							key={`accordion-item-${index}`}
 							headlinePlain={item.headlinePlain}
 							disabled={item.disabled}
-							content={item.content}
+							text={item.text}
 						/>
 					)}
 				</For>

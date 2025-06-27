@@ -1,44 +1,59 @@
 import {
+	ClickEvent,
+	ContentSlotProps,
 	EmphasisProps,
 	GlobalProps,
 	GlobalState,
 	IconProps,
 	InitializedState,
 	OverflowProps,
-	SemanticProps
+	SemanticProps,
+	ShowIconProps
 } from '../../shared/model';
 
-export const TagBehaviourList = ['static', 'removable'] as const;
-export type TagBehaviourType = (typeof TagBehaviourList)[number];
+export const TagBehaviorList = ['static', 'removable'] as const;
+export type TagBehaviorType = (typeof TagBehaviorList)[number];
+
+export type DBTagEventsProps = {
+	/**
+	 * If "removeButton" attribute is set this function will be called when user clicks cancel button inside the tag.
+	 */
+	onRemove?: (event?: ClickEvent<HTMLButtonElement> | void) => void;
+	/**
+	 * If "removeButton" attribute is set this function will be called when user clicks cancel button inside the tag.
+	 */
+	remove?: (event?: ClickEvent<HTMLButtonElement> | void) => void;
+};
 
 export type DBTagDefaultProps = {
 	/**
-	 *	Defines the behaviour of the component:
-	 *	- static: default behaviour without remove button
+	 *	Defines the behavior of the component:
+	 *	- static: default behavior without remove button
 	 *  - removable: add a remove button at the end of the tag
 	 */
-	behaviour?: TagBehaviourType;
+	behavior?: TagBehaviorType | string;
 
 	/**
 	 * @deprecated Disable tag
 	 */
-	disabled?: boolean;
+	disabled?: boolean | string;
 	/**
 	 * Define the text next to the icon specified via the icon Property to get hidden.
 	 */
-	noText?: boolean;
-	/**
-	 * If "removeButton" attribute is set this function will be called when user clicks cancel button inside the tag.
-	 */
-	onRemove?: () => void;
+	noText?: boolean | string;
 	/**
 	 * The removeButton attribute shows the cancel button.
 	 */
 	removeButton?: string;
 	/**
+	 * Enable/Disable icon for checkbox/radio inside tag.
+	 */
+	showCheckState?: boolean | string;
+	/**
 	 * Alternative for children to set content as property.
 	 */
 	text?: string;
+
 	/**
 	 * If "interactive" is set to true, you can pass a value to the underlying checkbox or radio input.
 	 */
@@ -50,11 +65,14 @@ export type DBTagProps = DBTagDefaultProps &
 	IconProps &
 	SemanticProps &
 	OverflowProps &
-	EmphasisProps;
+	EmphasisProps &
+	ShowIconProps &
+	ContentSlotProps &
+	DBTagEventsProps;
 
 export type DBTagDefaultState = {
 	getRemoveButtonText: () => string;
-	handleRemove: () => void;
+	handleRemove: (event?: ClickEvent<HTMLButtonElement> | void) => void;
 };
 
 export type DBTagState = DBTagDefaultState & GlobalState & InitializedState;

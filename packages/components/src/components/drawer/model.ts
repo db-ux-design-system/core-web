@@ -1,6 +1,8 @@
 import {
+	ClickEvent,
 	CloseEventProps,
 	CloseEventState,
+	GeneralKeyboardEvent,
 	GlobalProps,
 	GlobalState,
 	InnerCloseButtonProps,
@@ -37,17 +39,17 @@ export type DBDrawerDefaultProps = {
 	/**
 	 * Slot for changing the header of the drawer.
 	 */
-	drawerHeader?: unknown;
+	drawerHeader?: any;
 
 	/**
 	 * The open attribute opens or closes the drawer based on the state.
 	 */
-	open?: boolean;
+	open?: boolean | string;
 	/**
 	 * The rounded attribute changes the border radius of the corners on the "end" of the drawer.
 	 * The "end" depends on which direction you use.
 	 */
-	rounded?: boolean;
+	rounded?: boolean | string;
 	/**
 	 * Set the variant modal|inside. Defaults to modal.
 	 */
@@ -56,7 +58,10 @@ export type DBDrawerDefaultProps = {
 
 export type DBDrawerProps = DBDrawerDefaultProps &
 	GlobalProps &
-	CloseEventProps &
+	CloseEventProps<
+		| ClickEvent<HTMLButtonElement | HTMLDialogElement>
+		| GeneralKeyboardEvent<HTMLDialogElement>
+	> &
 	InnerCloseButtonProps &
 	WidthProps &
 	SpacingProps;
@@ -67,4 +72,7 @@ export type DBDrawerDefaultState = {
 
 export type DBDrawerState = DBDrawerDefaultState &
 	GlobalState &
-	CloseEventState;
+	CloseEventState<
+		| ClickEvent<HTMLButtonElement | HTMLDialogElement>
+		| GeneralKeyboardEvent<HTMLDialogElement>
+	>;

@@ -22,9 +22,9 @@
 
 ## Conclusion
 
--   Often named [Combobox](https://component.gallery/components/combobox/) or Autocomplete or Autosuggest
--   [combobox_role](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/combobox_role)
--   [combobox example w3](https://www.w3.org/WAI/ARIA/apg/patterns/combobox/)
+- Often named [Combobox](https://component.gallery/components/combobox/) or Autocomplete or Autosuggest
+- [combobox_role](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/combobox_role)
+- [combobox example w3](https://www.w3.org/WAI/ARIA/apg/patterns/combobox/)
 
 We should work with the button + checkbox approach. Maybe we can replace `button` with `details` + `summary`. Furthermore, out filtering (search inout) will be inside the dropdown/menu (see design). We may use `DBSelectOptionType` for the checkboxes to reflect groups etc.
 Tags should be our `DBTag` with close function or a `span` based on the props we should change it like this variant="tags|overflow|amount".

@@ -1,6 +1,6 @@
 ---
 inject: true
-to: src/styles/db-ui-components.scss
-before: angular-workaround
+to: src/styles/index.scss
+append: true
 ---
 @forward "../components/<%= name %>/<%= name %>";

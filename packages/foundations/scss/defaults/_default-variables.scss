@@ -1,0 +1,1318 @@
+/**
+ * Do not edit directly, this file was auto-generated.
+ */
+
+:is(:root, :host) {
+	--db-base-icon-weight-regular-desktop-headline-3xl: 96;
+	--db-base-icon-weight-regular-desktop-headline-2xl: 80;
+	--db-base-icon-weight-regular-desktop-headline-xl: 64;
+	--db-base-icon-weight-regular-desktop-headline-lg: 48;
+	--db-base-icon-weight-regular-desktop-headline-md: 40;
+	--db-base-icon-weight-regular-desktop-headline-sm: 32;
+	--db-base-icon-weight-regular-desktop-headline-2xs: 24;
+	--db-base-icon-weight-regular-desktop-headline-3xs: 20;
+	--db-base-icon-weight-regular-desktop-headline-xs: 28;
+	--db-base-icon-weight-regular-desktop-body-lg: 28;
+	--db-base-icon-weight-regular-desktop-body-xl: 32;
+	--db-base-icon-weight-regular-desktop-body-2xl: 40;
+	--db-base-icon-weight-regular-desktop-body-3xl: 48;
+	--db-base-icon-weight-regular-desktop-body-md: 24;
+	--db-base-icon-weight-regular-desktop-body-sm: 20;
+	--db-base-icon-weight-regular-desktop-body-2xs: 14;
+	--db-base-icon-weight-regular-desktop-body-3xs: 14;
+	--db-base-icon-weight-regular-desktop-body-xs: 16;
+	--db-base-icon-weight-regular-mobile-body-lg: 28;
+	--db-base-icon-weight-regular-mobile-body-md: 24;
+	--db-base-icon-weight-regular-mobile-body-sm: 20;
+	--db-base-icon-weight-regular-mobile-body-xl: 28;
+	--db-base-icon-weight-regular-mobile-body-xs: 16;
+	--db-base-icon-weight-regular-mobile-body-2xl: 28;
+	--db-base-icon-weight-regular-mobile-body-3xl: 28;
+	--db-base-icon-weight-regular-mobile-body-2xs: 14;
+	--db-base-icon-weight-regular-mobile-body-3xs: 14;
+	--db-base-icon-weight-regular-mobile-headline-lg: 32;
+	--db-base-icon-weight-regular-mobile-headline-md: 28;
+	--db-base-icon-weight-regular-mobile-headline-sm: 24;
+	--db-base-icon-weight-regular-mobile-headline-xl: 40;
+	--db-base-icon-weight-regular-mobile-headline-xs: 20;
+	--db-base-icon-weight-regular-mobile-headline-2xl: 40;
+	--db-base-icon-weight-regular-mobile-headline-2xs: 16;
+	--db-base-icon-weight-regular-mobile-headline-3xl: 40;
+	--db-base-icon-weight-regular-mobile-headline-3xs: 16;
+	--db-base-icon-weight-regular-tablet-body-lg: 28;
+	--db-base-icon-weight-regular-tablet-body-md: 24;
+	--db-base-icon-weight-regular-tablet-body-sm: 20;
+	--db-base-icon-weight-regular-tablet-body-xl: 32;
+	--db-base-icon-weight-regular-tablet-body-xs: 16;
+	--db-base-icon-weight-regular-tablet-body-2xl: 40;
+	--db-base-icon-weight-regular-tablet-body-3xl: 48;
+	--db-base-icon-weight-regular-tablet-body-2xs: 14;
+	--db-base-icon-weight-regular-tablet-body-3xs: 14;
+	--db-base-icon-weight-regular-tablet-headline-lg: 40;
+	--db-base-icon-weight-regular-tablet-headline-md: 32;
+	--db-base-icon-weight-regular-tablet-headline-sm: 28;
+	--db-base-icon-weight-regular-tablet-headline-xl: 48;
+	--db-base-icon-weight-regular-tablet-headline-xs: 24;
+	--db-base-icon-weight-regular-tablet-headline-2xl: 64;
+	--db-base-icon-weight-regular-tablet-headline-2xs: 20;
+	--db-base-icon-weight-regular-tablet-headline-3xl: 64;
+	--db-base-icon-weight-regular-tablet-headline-3xs: 20;
+	--db-base-icon-weight-expressive-desktop-body-lg: 32;
+	--db-base-icon-weight-expressive-desktop-body-md: 28;
+	--db-base-icon-weight-expressive-desktop-body-sm: 24;
+	--db-base-icon-weight-expressive-desktop-body-xl: 40;
+	--db-base-icon-weight-expressive-desktop-body-xs: 20;
+	--db-base-icon-weight-expressive-desktop-body-2xl: 48;
+	--db-base-icon-weight-expressive-desktop-body-3xl: 64;
+	--db-base-icon-weight-expressive-desktop-body-2xs: 16;
+	--db-base-icon-weight-expressive-desktop-body-3xs: 14;
+	--db-base-icon-weight-expressive-desktop-headline-lg: 64;
+	--db-base-icon-weight-expressive-desktop-headline-md: 48;
+	--db-base-icon-weight-expressive-desktop-headline-sm: 40;
+	--db-base-icon-weight-expressive-desktop-headline-xl: 80;
+	--db-base-icon-weight-expressive-desktop-headline-xs: 32;
+	--db-base-icon-weight-expressive-desktop-headline-2xl: 96;
+	--db-base-icon-weight-expressive-desktop-headline-2xs: 28;
+	--db-base-icon-weight-expressive-desktop-headline-3xl: 120;
+	--db-base-icon-weight-expressive-desktop-headline-3xs: 24;
+	--db-base-icon-weight-expressive-tablet-body-lg: 32;
+	--db-base-icon-weight-expressive-tablet-body-md: 28;
+	--db-base-icon-weight-expressive-tablet-body-sm: 24;
+	--db-base-icon-weight-expressive-tablet-body-xl: 40;
+	--db-base-icon-weight-expressive-tablet-body-xs: 20;
+	--db-base-icon-weight-expressive-tablet-body-2xl: 48;
+	--db-base-icon-weight-expressive-tablet-body-3xl: 64;
+	--db-base-icon-weight-expressive-tablet-body-2xs: 16;
+	--db-base-icon-weight-expressive-tablet-body-3xs: 14;
+	--db-base-icon-weight-expressive-tablet-headline-lg: 48;
+	--db-base-icon-weight-expressive-tablet-headline-md: 40;
+	--db-base-icon-weight-expressive-tablet-headline-sm: 32;
+	--db-base-icon-weight-expressive-tablet-headline-xl: 64;
+	--db-base-icon-weight-expressive-tablet-headline-xs: 28;
+	--db-base-icon-weight-expressive-tablet-headline-2xl: 80;
+	--db-base-icon-weight-expressive-tablet-headline-2xs: 24;
+	--db-base-icon-weight-expressive-tablet-headline-3xl: 96;
+	--db-base-icon-weight-expressive-tablet-headline-3xs: 24;
+	--db-base-icon-weight-expressive-mobile-body-lg: 32;
+	--db-base-icon-weight-expressive-mobile-body-md: 28;
+	--db-base-icon-weight-expressive-mobile-body-sm: 24;
+	--db-base-icon-weight-expressive-mobile-body-xl: 32;
+	--db-base-icon-weight-expressive-mobile-body-xs: 20;
+	--db-base-icon-weight-expressive-mobile-body-2xl: 32;
+	--db-base-icon-weight-expressive-mobile-body-3xl: 32;
+	--db-base-icon-weight-expressive-mobile-body-2xs: 16;
+	--db-base-icon-weight-expressive-mobile-body-3xs: 14;
+	--db-base-icon-weight-expressive-mobile-headline-lg: 40;
+	--db-base-icon-weight-expressive-mobile-headline-md: 32;
+	--db-base-icon-weight-expressive-mobile-headline-sm: 28;
+	--db-base-icon-weight-expressive-mobile-headline-xl: 48;
+	--db-base-icon-weight-expressive-mobile-headline-xs: 24;
+	--db-base-icon-weight-expressive-mobile-headline-2xl: 48;
+	--db-base-icon-weight-expressive-mobile-headline-2xs: 20;
+	--db-base-icon-weight-expressive-mobile-headline-3xl: 48;
+	--db-base-icon-weight-expressive-mobile-headline-3xs: 20;
+	--db-base-icon-weight-functional-desktop-body-lg: 24;
+	--db-base-icon-weight-functional-desktop-body-md: 20;
+	--db-base-icon-weight-functional-desktop-body-sm: 16;
+	--db-base-icon-weight-functional-desktop-body-xl: 28;
+	--db-base-icon-weight-functional-desktop-body-xs: 14;
+	--db-base-icon-weight-functional-desktop-body-2xl: 32;
+	--db-base-icon-weight-functional-desktop-body-3xl: 40;
+	--db-base-icon-weight-functional-desktop-body-2xs: 14;
+	--db-base-icon-weight-functional-desktop-body-3xs: 14;
+	--db-base-icon-weight-functional-desktop-headline-lg: 32;
+	--db-base-icon-weight-functional-desktop-headline-md: 28;
+	--db-base-icon-weight-functional-desktop-headline-sm: 24;
+	--db-base-icon-weight-functional-desktop-headline-xl: 40;
+	--db-base-icon-weight-functional-desktop-headline-xs: 20;
+	--db-base-icon-weight-functional-desktop-headline-2xl: 48;
+	--db-base-icon-weight-functional-desktop-headline-2xs: 16;
+	--db-base-icon-weight-functional-desktop-headline-3xl: 48;
+	--db-base-icon-weight-functional-desktop-headline-3xs: 16;
+	--db-base-icon-weight-functional-tablet-body-lg: 24;
+	--db-base-icon-weight-functional-tablet-body-md: 20;
+	--db-base-icon-weight-functional-tablet-body-sm: 16;
+	--db-base-icon-weight-functional-tablet-body-xl: 28;
+	--db-base-icon-weight-functional-tablet-body-xs: 14;
+	--db-base-icon-weight-functional-tablet-body-2xl: 32;
+	--db-base-icon-weight-functional-tablet-body-3xl: 40;
+	--db-base-icon-weight-functional-tablet-body-2xs: 14;
+	--db-base-icon-weight-functional-tablet-body-3xs: 14;
+	--db-base-icon-weight-functional-tablet-headline-lg: 32;
+	--db-base-icon-weight-functional-tablet-headline-md: 28;
+	--db-base-icon-weight-functional-tablet-headline-sm: 24;
+	--db-base-icon-weight-functional-tablet-headline-xl: 40;
+	--db-base-icon-weight-functional-tablet-headline-xs: 20;
+	--db-base-icon-weight-functional-tablet-headline-2xl: 48;
+	--db-base-icon-weight-functional-tablet-headline-2xs: 16;
+	--db-base-icon-weight-functional-tablet-headline-3xl: 48;
+	--db-base-icon-weight-functional-tablet-headline-3xs: 16;
+	--db-base-icon-weight-functional-mobile-body-lg: 24;
+	--db-base-icon-weight-functional-mobile-body-md: 20;
+	--db-base-icon-weight-functional-mobile-body-sm: 16;
+	--db-base-icon-weight-functional-mobile-body-xl: 24;
+	--db-base-icon-weight-functional-mobile-body-xs: 14;
+	--db-base-icon-weight-functional-mobile-body-2xl: 24;
+	--db-base-icon-weight-functional-mobile-body-3xl: 24;
+	--db-base-icon-weight-functional-mobile-body-2xs: 14;
+	--db-base-icon-weight-functional-mobile-body-3xs: 14;
+	--db-base-icon-weight-functional-mobile-headline-lg: 28;
+	--db-base-icon-weight-functional-mobile-headline-md: 24;
+	--db-base-icon-weight-functional-mobile-headline-sm: 20;
+	--db-base-icon-weight-functional-mobile-headline-xl: 32;
+	--db-base-icon-weight-functional-mobile-headline-xs: 16;
+	--db-base-icon-weight-functional-mobile-headline-2xl: 32;
+	--db-base-icon-weight-functional-mobile-headline-2xs: 16;
+	--db-base-icon-weight-functional-mobile-headline-3xl: 32;
+	--db-base-icon-weight-functional-mobile-headline-3xs: 16;
+	--db-base-icon-font-size-regular-desktop-headline-3xl: 6rem;
+	--db-base-icon-font-size-regular-desktop-headline-2xl: 5rem;
+	--db-base-icon-font-size-regular-desktop-headline-xl: 4rem;
+	--db-base-icon-font-size-regular-desktop-headline-lg: 3rem;
+	--db-base-icon-font-size-regular-desktop-headline-md: 2.5rem;
+	--db-base-icon-font-size-regular-desktop-headline-sm: 2rem;
+	--db-base-icon-font-size-regular-desktop-headline-2xs: 1.5rem;
+	--db-base-icon-font-size-regular-desktop-headline-3xs: 1.25rem;
+	--db-base-icon-font-size-regular-desktop-headline-xs: 1.75rem;
+	--db-base-icon-font-size-regular-desktop-body-lg: 1.75rem;
+	--db-base-icon-font-size-regular-desktop-body-xl: 2rem;
+	--db-base-icon-font-size-regular-desktop-body-2xl: 2.5rem;
+	--db-base-icon-font-size-regular-desktop-body-3xl: 3rem;
+	--db-base-icon-font-size-regular-desktop-body-md: 1.5rem;
+	--db-base-icon-font-size-regular-desktop-body-sm: 1.25rem;
+	--db-base-icon-font-size-regular-desktop-body-2xs: 0.875rem;
+	--db-base-icon-font-size-regular-desktop-body-3xs: 0.875rem;
+	--db-base-icon-font-size-regular-desktop-body-xs: 1rem;
+	--db-base-icon-font-size-regular-mobile-body-lg: 1.75rem;
+	--db-base-icon-font-size-regular-mobile-body-md: 1.5rem;
+	--db-base-icon-font-size-regular-mobile-body-sm: 1.25rem;
+	--db-base-icon-font-size-regular-mobile-body-xl: 1.75rem;
+	--db-base-icon-font-size-regular-mobile-body-xs: 1rem;
+	--db-base-icon-font-size-regular-mobile-body-2xl: 1.75rem;
+	--db-base-icon-font-size-regular-mobile-body-3xl: 1.75rem;
+	--db-base-icon-font-size-regular-mobile-body-2xs: 0.875rem;
+	--db-base-icon-font-size-regular-mobile-body-3xs: 0.875rem;
+	--db-base-icon-font-size-regular-mobile-headline-lg: 2rem;
+	--db-base-icon-font-size-regular-mobile-headline-md: 1.75rem;
+	--db-base-icon-font-size-regular-mobile-headline-sm: 1.5rem;
+	--db-base-icon-font-size-regular-mobile-headline-xl: 2.5rem;
+	--db-base-icon-font-size-regular-mobile-headline-xs: 1.25rem;
+	--db-base-icon-font-size-regular-mobile-headline-2xl: 2.5rem;
+	--db-base-icon-font-size-regular-mobile-headline-2xs: 1rem;
+	--db-base-icon-font-size-regular-mobile-headline-3xl: 2.5rem;
+	--db-base-icon-font-size-regular-mobile-headline-3xs: 1rem;
+	--db-base-icon-font-size-regular-tablet-body-lg: 1.75rem;
+	--db-base-icon-font-size-regular-tablet-body-md: 1.5rem;
+	--db-base-icon-font-size-regular-tablet-body-sm: 1.25rem;
+	--db-base-icon-font-size-regular-tablet-body-xl: 2rem;
+	--db-base-icon-font-size-regular-tablet-body-xs: 1rem;
+	--db-base-icon-font-size-regular-tablet-body-2xl: 2.5rem;
+	--db-base-icon-font-size-regular-tablet-body-3xl: 3rem;
+	--db-base-icon-font-size-regular-tablet-body-2xs: 0.875rem;
+	--db-base-icon-font-size-regular-tablet-body-3xs: 0.875rem;
+	--db-base-icon-font-size-regular-tablet-headline-lg: 2.5rem;
+	--db-base-icon-font-size-regular-tablet-headline-md: 2rem;
+	--db-base-icon-font-size-regular-tablet-headline-sm: 1.75rem;
+	--db-base-icon-font-size-regular-tablet-headline-xl: 3rem;
+	--db-base-icon-font-size-regular-tablet-headline-xs: 1.5rem;
+	--db-base-icon-font-size-regular-tablet-headline-2xl: 4rem;
+	--db-base-icon-font-size-regular-tablet-headline-2xs: 1.25rem;
+	--db-base-icon-font-size-regular-tablet-headline-3xl: 4rem;
+	--db-base-icon-font-size-regular-tablet-headline-3xs: 1.25rem;
+	--db-base-icon-font-size-expressive-desktop-body-lg: 2rem;
+	--db-base-icon-font-size-expressive-desktop-body-md: 1.75rem;
+	--db-base-icon-font-size-expressive-desktop-body-sm: 1.5rem;
+	--db-base-icon-font-size-expressive-desktop-body-xl: 2.5rem;
+	--db-base-icon-font-size-expressive-desktop-body-xs: 1.25rem;
+	--db-base-icon-font-size-expressive-desktop-body-2xl: 3rem;
+	--db-base-icon-font-size-expressive-desktop-body-3xl: 4rem;
+	--db-base-icon-font-size-expressive-desktop-body-2xs: 1rem;
+	--db-base-icon-font-size-expressive-desktop-body-3xs: 0.875rem;
+	--db-base-icon-font-size-expressive-desktop-headline-lg: 4rem;
+	--db-base-icon-font-size-expressive-desktop-headline-md: 3rem;
+	--db-base-icon-font-size-expressive-desktop-headline-sm: 2.5rem;
+	--db-base-icon-font-size-expressive-desktop-headline-xl: 5rem;
+	--db-base-icon-font-size-expressive-desktop-headline-xs: 2rem;
+	--db-base-icon-font-size-expressive-desktop-headline-2xl: 6rem;
+	--db-base-icon-font-size-expressive-desktop-headline-2xs: 1.75rem;
+	--db-base-icon-font-size-expressive-desktop-headline-3xl: 7.5rem;
+	--db-base-icon-font-size-expressive-desktop-headline-3xs: 1.5rem;
+	--db-base-icon-font-size-expressive-tablet-body-lg: 2rem;
+	--db-base-icon-font-size-expressive-tablet-body-md: 1.75rem;
+	--db-base-icon-font-size-expressive-tablet-body-sm: 1.5rem;
+	--db-base-icon-font-size-expressive-tablet-body-xl: 2.5rem;
+	--db-base-icon-font-size-expressive-tablet-body-xs: 1.25rem;
+	--db-base-icon-font-size-expressive-tablet-body-2xl: 3rem;
+	--db-base-icon-font-size-expressive-tablet-body-3xl: 4rem;
+	--db-base-icon-font-size-expressive-tablet-body-2xs: 1rem;
+	--db-base-icon-font-size-expressive-tablet-body-3xs: 0.875rem;
+	--db-base-icon-font-size-expressive-tablet-headline-lg: 3rem;
+	--db-base-icon-font-size-expressive-tablet-headline-md: 2.5rem;
+	--db-base-icon-font-size-expressive-tablet-headline-sm: 2rem;
+	--db-base-icon-font-size-expressive-tablet-headline-xl: 4rem;
+	--db-base-icon-font-size-expressive-tablet-headline-xs: 1.75rem;
+	--db-base-icon-font-size-expressive-tablet-headline-2xl: 5rem;
+	--db-base-icon-font-size-expressive-tablet-headline-2xs: 1.5rem;
+	--db-base-icon-font-size-expressive-tablet-headline-3xl: 6rem;
+	--db-base-icon-font-size-expressive-tablet-headline-3xs: 1.5rem;
+	--db-base-icon-font-size-expressive-mobile-body-lg: 2rem;
+	--db-base-icon-font-size-expressive-mobile-body-md: 1.75rem;
+	--db-base-icon-font-size-expressive-mobile-body-sm: 1.5rem;
+	--db-base-icon-font-size-expressive-mobile-body-xl: 2rem;
+	--db-base-icon-font-size-expressive-mobile-body-xs: 1.25rem;
+	--db-base-icon-font-size-expressive-mobile-body-2xl: 2rem;
+	--db-base-icon-font-size-expressive-mobile-body-3xl: 2rem;
+	--db-base-icon-font-size-expressive-mobile-body-2xs: 1rem;
+	--db-base-icon-font-size-expressive-mobile-body-3xs: 0.875rem;
+	--db-base-icon-font-size-expressive-mobile-headline-lg: 2.5rem;
+	--db-base-icon-font-size-expressive-mobile-headline-md: 2rem;
+	--db-base-icon-font-size-expressive-mobile-headline-sm: 1.75rem;
+	--db-base-icon-font-size-expressive-mobile-headline-xl: 3rem;
+	--db-base-icon-font-size-expressive-mobile-headline-xs: 1.5rem;
+	--db-base-icon-font-size-expressive-mobile-headline-2xl: 3rem;
+	--db-base-icon-font-size-expressive-mobile-headline-2xs: 1.25rem;
+	--db-base-icon-font-size-expressive-mobile-headline-3xl: 3rem;
+	--db-base-icon-font-size-expressive-mobile-headline-3xs: 1.25rem;
+	--db-base-icon-font-size-functional-desktop-body-lg: 1.5rem;
+	--db-base-icon-font-size-functional-desktop-body-md: 1.25rem;
+	--db-base-icon-font-size-functional-desktop-body-sm: 1rem;
+	--db-base-icon-font-size-functional-desktop-body-xl: 1.75rem;
+	--db-base-icon-font-size-functional-desktop-body-xs: 0.875rem;
+	--db-base-icon-font-size-functional-desktop-body-2xl: 2rem;
+	--db-base-icon-font-size-functional-desktop-body-3xl: 2.5rem;
+	--db-base-icon-font-size-functional-desktop-body-2xs: 0.875rem;
+	--db-base-icon-font-size-functional-desktop-body-3xs: 0.875rem;
+	--db-base-icon-font-size-functional-desktop-headline-lg: 2rem;
+	--db-base-icon-font-size-functional-desktop-headline-md: 1.75rem;
+	--db-base-icon-font-size-functional-desktop-headline-sm: 1.5rem;
+	--db-base-icon-font-size-functional-desktop-headline-xl: 2.5rem;
+	--db-base-icon-font-size-functional-desktop-headline-xs: 1.25rem;
+	--db-base-icon-font-size-functional-desktop-headline-2xl: 3rem;
+	--db-base-icon-font-size-functional-desktop-headline-2xs: 1rem;
+	--db-base-icon-font-size-functional-desktop-headline-3xl: 3rem;
+	--db-base-icon-font-size-functional-desktop-headline-3xs: 1rem;
+	--db-base-icon-font-size-functional-tablet-body-lg: 1.5rem;
+	--db-base-icon-font-size-functional-tablet-body-md: 1.25rem;
+	--db-base-icon-font-size-functional-tablet-body-sm: 1rem;
+	--db-base-icon-font-size-functional-tablet-body-xl: 1.75rem;
+	--db-base-icon-font-size-functional-tablet-body-xs: 0.875rem;
+	--db-base-icon-font-size-functional-tablet-body-2xl: 2rem;
+	--db-base-icon-font-size-functional-tablet-body-3xl: 2.5rem;
+	--db-base-icon-font-size-functional-tablet-body-2xs: 0.875rem;
+	--db-base-icon-font-size-functional-tablet-body-3xs: 0.875rem;
+	--db-base-icon-font-size-functional-tablet-headline-lg: 2rem;
+	--db-base-icon-font-size-functional-tablet-headline-md: 1.75rem;
+	--db-base-icon-font-size-functional-tablet-headline-sm: 1.5rem;
+	--db-base-icon-font-size-functional-tablet-headline-xl: 2.5rem;
+	--db-base-icon-font-size-functional-tablet-headline-xs: 1.25rem;
+	--db-base-icon-font-size-functional-tablet-headline-2xl: 3rem;
+	--db-base-icon-font-size-functional-tablet-headline-2xs: 1rem;
+	--db-base-icon-font-size-functional-tablet-headline-3xl: 3rem;
+	--db-base-icon-font-size-functional-tablet-headline-3xs: 1rem;
+	--db-base-icon-font-size-functional-mobile-body-lg: 1.5rem;
+	--db-base-icon-font-size-functional-mobile-body-md: 1.25rem;
+	--db-base-icon-font-size-functional-mobile-body-sm: 1rem;
+	--db-base-icon-font-size-functional-mobile-body-xl: 1.5rem;
+	--db-base-icon-font-size-functional-mobile-body-xs: 0.875rem;
+	--db-base-icon-font-size-functional-mobile-body-2xl: 1.5rem;
+	--db-base-icon-font-size-functional-mobile-body-3xl: 1.5rem;
+	--db-base-icon-font-size-functional-mobile-body-2xs: 0.875rem;
+	--db-base-icon-font-size-functional-mobile-body-3xs: 0.875rem;
+	--db-base-icon-font-size-functional-mobile-headline-lg: 1.75rem;
+	--db-base-icon-font-size-functional-mobile-headline-md: 1.5rem;
+	--db-base-icon-font-size-functional-mobile-headline-sm: 1.25rem;
+	--db-base-icon-font-size-functional-mobile-headline-xl: 2rem;
+	--db-base-icon-font-size-functional-mobile-headline-xs: 1rem;
+	--db-base-icon-font-size-functional-mobile-headline-2xl: 2rem;
+	--db-base-icon-font-size-functional-mobile-headline-2xs: 1rem;
+	--db-base-icon-font-size-functional-mobile-headline-3xl: 2rem;
+	--db-base-icon-font-size-functional-mobile-headline-3xs: 1rem;
+	--db-border-width-3xs: 0.0625rem;
+	--db-border-width-2xs: 0.125rem;
+	--db-border-width-xs: 0.25rem;
+	--db-border-width-sm: 0.375rem;
+	--db-border-width-md: 0.5rem;
+	--db-border-width-lg: 0.625rem;
+	--db-border-width-xl: 0.75rem;
+	--db-border-width-2xl: 0.875rem;
+	--db-border-width-3xl: 1rem;
+	--db-border-radius-3xs: 0.0625rem;
+	--db-border-radius-2xs: 0.125rem;
+	--db-border-radius-xs: 0.25rem;
+	--db-border-radius-sm: 0.5rem;
+	--db-border-radius-md: 0.75rem;
+	--db-border-radius-lg: 1rem;
+	--db-border-radius-xl: 1.5rem;
+	--db-border-radius-2xl: 1.75rem;
+	--db-border-radius-3xl: 2rem;
+	--db-border-radius-full: 500rem;
+	--db-elevation-sm:
+		0 0 1px -1px #0003, 0 0 4px 1px #0000001f, 0 0 2px #00000024;
+	--db-elevation-md:
+		0 0 2px -1px #0003, 0 0 8px 1px #0000001f, 0 0 4px #00000024;
+	--db-elevation-lg:
+		0 0 4px -3px #0003, 0 0 16px 3px #0000001f, 0 0 8px 1px #00000024;
+	--db-font-family-sans: "OpenSans", helvetica, arial, sans-serif;
+	--db-font-family-head: "OpenSans Head", helvetica, arial, sans-serif;
+	--db-sizing-fixed-mobile-header: 3.5rem;
+	--db-sizing-regular-3xl: 15rem;
+	--db-sizing-regular-2xl: 10rem;
+	--db-sizing-regular-xl: 6rem;
+	--db-sizing-regular-lg: 4rem;
+	--db-sizing-regular-md: 2.5rem;
+	--db-sizing-regular-sm: 1.5rem;
+	--db-sizing-regular-xs: 1rem;
+	--db-sizing-regular-2xs: 0.75rem;
+	--db-sizing-regular-3xs: 0.5rem;
+	--db-sizing-functional-3xs: 0.375rem;
+	--db-sizing-functional-2xs: 0.625rem;
+	--db-sizing-functional-xs: 0.875rem;
+	--db-sizing-functional-sm: 1.25rem;
+	--db-sizing-functional-md: 2rem;
+	--db-sizing-functional-lg: 3rem;
+	--db-sizing-functional-xl: 5rem;
+	--db-sizing-functional-2xl: 7.5rem;
+	--db-sizing-functional-3xl: 10rem;
+	--db-sizing-expressive-3xs: 0.625rem;
+	--db-sizing-expressive-2xs: 0.875rem;
+	--db-sizing-expressive-xs: 1.25rem;
+	--db-sizing-expressive-sm: 1.75rem;
+	--db-sizing-expressive-md: 3rem;
+	--db-sizing-expressive-lg: 5rem;
+	--db-sizing-expressive-xl: 7.5rem;
+	--db-sizing-expressive-2xl: 15rem;
+	--db-sizing-expressive-3xl: 30rem;
+	--db-spacing-responsive-regular-desktop-3xl: 40rem;
+	--db-spacing-responsive-regular-desktop-2xl: 30rem;
+	--db-spacing-responsive-regular-desktop-xl: 15rem;
+	--db-spacing-responsive-regular-desktop-lg: 7.5rem;
+	--db-spacing-responsive-regular-desktop-md: 5rem;
+	--db-spacing-responsive-regular-desktop-sm: 3rem;
+	--db-spacing-responsive-regular-desktop-xs: 2rem;
+	--db-spacing-responsive-regular-desktop-2xs: 1.5rem;
+	--db-spacing-responsive-regular-desktop-3xs: 1.25rem;
+	--db-spacing-responsive-regular-tablet-3xs: 1rem;
+	--db-spacing-responsive-regular-tablet-2xs: 1.25rem;
+	--db-spacing-responsive-regular-tablet-xs: 1.75rem;
+	--db-spacing-responsive-regular-tablet-sm: 2.5rem;
+	--db-spacing-responsive-regular-tablet-md: 4rem;
+	--db-spacing-responsive-regular-tablet-lg: 6rem;
+	--db-spacing-responsive-regular-tablet-xl: 10rem;
+	--db-spacing-responsive-regular-tablet-2xl: 15rem;
+	--db-spacing-responsive-regular-tablet-3xl: 30rem;
+	--db-spacing-responsive-regular-mobile-3xs: 1rem;
+	--db-spacing-responsive-regular-mobile-2xs: 1.25rem;
+	--db-spacing-responsive-regular-mobile-xs: 1.5rem;
+	--db-spacing-responsive-regular-mobile-sm: 2rem;
+	--db-spacing-responsive-regular-mobile-md: 3rem;
+	--db-spacing-responsive-regular-mobile-lg: 5rem;
+	--db-spacing-responsive-regular-mobile-xl: 7.5rem;
+	--db-spacing-responsive-regular-mobile-2xl: 10rem;
+	--db-spacing-responsive-regular-mobile-3xl: 15rem;
+	--db-spacing-responsive-functional-desktop-3xs: 1rem;
+	--db-spacing-responsive-functional-desktop-2xs: 1.25rem;
+	--db-spacing-responsive-functional-desktop-xs: 1.75rem;
+	--db-spacing-responsive-functional-desktop-sm: 2.5rem;
+	--db-spacing-responsive-functional-desktop-md: 4rem;
+	--db-spacing-responsive-functional-desktop-lg: 6rem;
+	--db-spacing-responsive-functional-desktop-xl: 10rem;
+	--db-spacing-responsive-functional-desktop-2xl: 15rem;
+	--db-spacing-responsive-functional-desktop-3xl: 30rem;
+	--db-spacing-responsive-functional-tablet-3xs: 1rem;
+	--db-spacing-responsive-functional-tablet-2xs: 1.25rem;
+	--db-spacing-responsive-functional-tablet-xs: 1.5rem;
+	--db-spacing-responsive-functional-tablet-sm: 2rem;
+	--db-spacing-responsive-functional-tablet-md: 3rem;
+	--db-spacing-responsive-functional-tablet-lg: 5rem;
+	--db-spacing-responsive-functional-tablet-xl: 7.5rem;
+	--db-spacing-responsive-functional-tablet-2xl: 10rem;
+	--db-spacing-responsive-functional-tablet-3xl: 15rem;
+	--db-spacing-responsive-functional-mobile-3xs: 1rem;
+	--db-spacing-responsive-functional-mobile-2xs: 1.25rem;
+	--db-spacing-responsive-functional-mobile-xs: 1.25rem;
+	--db-spacing-responsive-functional-mobile-sm: 1.75rem;
+	--db-spacing-responsive-functional-mobile-md: 2.5rem;
+	--db-spacing-responsive-functional-mobile-lg: 4rem;
+	--db-spacing-responsive-functional-mobile-xl: 6rem;
+	--db-spacing-responsive-functional-mobile-2xl: 7.5rem;
+	--db-spacing-responsive-functional-mobile-3xl: 10rem;
+	--db-spacing-responsive-expressive-desktop-3xs: 1.75rem;
+	--db-spacing-responsive-expressive-desktop-2xs: 2rem;
+	--db-spacing-responsive-expressive-desktop-xs: 3rem;
+	--db-spacing-responsive-expressive-desktop-sm: 5rem;
+	--db-spacing-responsive-expressive-desktop-md: 7.5rem;
+	--db-spacing-responsive-expressive-desktop-lg: 15rem;
+	--db-spacing-responsive-expressive-desktop-xl: 30rem;
+	--db-spacing-responsive-expressive-desktop-2xl: 40rem;
+	--db-spacing-responsive-expressive-desktop-3xl: 50rem;
+	--db-spacing-responsive-expressive-tablet-3xs: 1.5rem;
+	--db-spacing-responsive-expressive-tablet-2xs: 1.75rem;
+	--db-spacing-responsive-expressive-tablet-xs: 2.5rem;
+	--db-spacing-responsive-expressive-tablet-sm: 4rem;
+	--db-spacing-responsive-expressive-tablet-md: 6rem;
+	--db-spacing-responsive-expressive-tablet-lg: 10rem;
+	--db-spacing-responsive-expressive-tablet-xl: 15rem;
+	--db-spacing-responsive-expressive-tablet-2xl: 30rem;
+	--db-spacing-responsive-expressive-tablet-3xl: 40rem;
+	--db-spacing-responsive-expressive-mobile-3xs: 1.25rem;
+	--db-spacing-responsive-expressive-mobile-2xs: 1.5rem;
+	--db-spacing-responsive-expressive-mobile-xs: 2rem;
+	--db-spacing-responsive-expressive-mobile-sm: 3rem;
+	--db-spacing-responsive-expressive-mobile-md: 5rem;
+	--db-spacing-responsive-expressive-mobile-lg: 7.5rem;
+	--db-spacing-responsive-expressive-mobile-xl: 10rem;
+	--db-spacing-responsive-expressive-mobile-2xl: 15rem;
+	--db-spacing-responsive-expressive-mobile-3xl: 30rem;
+	--db-spacing-fixed-regular-3xs: 0.125rem;
+	--db-spacing-fixed-regular-2xs: 0.25rem;
+	--db-spacing-fixed-regular-xs: 0.5rem;
+	--db-spacing-fixed-regular-sm: 0.75rem;
+	--db-spacing-fixed-regular-md: 1rem;
+	--db-spacing-fixed-regular-lg: 1.5rem;
+	--db-spacing-fixed-regular-xl: 2rem;
+	--db-spacing-fixed-regular-2xl: 3rem;
+	--db-spacing-fixed-regular-3xl: 5rem;
+	--db-spacing-fixed-functional-3xs: 0.125rem;
+	--db-spacing-fixed-functional-2xs: 0.25rem;
+	--db-spacing-fixed-functional-xs: 0.375rem;
+	--db-spacing-fixed-functional-sm: 0.5rem;
+	--db-spacing-fixed-functional-md: 0.75rem;
+	--db-spacing-fixed-functional-lg: 1rem;
+	--db-spacing-fixed-functional-xl: 1.5rem;
+	--db-spacing-fixed-functional-2xl: 2rem;
+	--db-spacing-fixed-functional-3xl: 3rem;
+	--db-spacing-fixed-expressive-3xs: 0.25rem;
+	--db-spacing-fixed-expressive-2xs: 0.5rem;
+	--db-spacing-fixed-expressive-xs: 0.75rem;
+	--db-spacing-fixed-expressive-sm: 1rem;
+	--db-spacing-fixed-expressive-md: 1.5rem;
+	--db-spacing-fixed-expressive-lg: 2rem;
+	--db-spacing-fixed-expressive-xl: 3rem;
+	--db-spacing-fixed-expressive-2xl: 5rem;
+	--db-spacing-fixed-expressive-3xl: 7.5rem;
+	--db-transition-duration-extra-slow: 0.5s;
+	--db-transition-duration-slow: 0.4s;
+	--db-transition-duration-medium: 0.3s;
+	--db-transition-duration-fast: 0.15s;
+	--db-transition-duration-extra-fast: 0.075s;
+	--db-transition-timing-show: cubic-bezier(0.49, 0.1, 0.16, 1) normal both;
+	--db-transition-timing-hide: cubic-bezier(0.49, 0.1, 0.16, 1) normal both;
+	--db-transition-timing-emotional: cubic-bezier(0.27, 0.05, 0.4, 0.95);
+	--db-transition-timing-functional: cubic-bezier(0.15, 0, 0.45, 1);
+	--db-transition-straight-show: 0.5s cubic-bezier(0.49, 0.1, 0.16, 1) normal
+		both;
+	--db-transition-straight-hide: 0.4s cubic-bezier(0.49, 0.1, 0.16, 1) normal
+		both;
+	--db-transition-straight-emotional: 0.3s cubic-bezier(0.27, 0.05, 0.4, 0.95);
+	--db-transition-straight-functional: 0.3s cubic-bezier(0.15, 0, 0.45, 1);
+	--db-opacity-3xs: 0.08;
+	--db-opacity-2xs: 0.16;
+	--db-opacity-xs: 0.24;
+	--db-opacity-sm: 0.32;
+	--db-opacity-md: 0.4;
+	--db-opacity-lg: 0.68;
+	--db-opacity-xl: 0.76;
+	--db-opacity-2xl: 0.84;
+	--db-opacity-3xl: 0.92;
+	--db-opacity-full: 1;
+	--db-typography-regular-desktop-headline-3xl:
+		bolder 5rem/1.2 "OpenSans Head", helvetica, arial, sans-serif;
+	--db-typography-regular-desktop-headline-2xl:
+		bolder 4rem/1.25 "OpenSans Head", helvetica, arial, sans-serif;
+	--db-typography-regular-desktop-headline-xl:
+		bolder 3rem/1.3333333333333333 "OpenSans Head", helvetica, arial,
+		sans-serif;
+	--db-typography-regular-desktop-headline-lg:
+		bolder 2.5rem/1.2 "OpenSans Head", helvetica, arial, sans-serif;
+	--db-typography-regular-desktop-headline-md:
+		bolder 2rem/1.25 "OpenSans Head", helvetica, arial, sans-serif;
+	--db-typography-regular-desktop-headline-sm:
+		bolder 1.75rem/1.1428571428571428 "OpenSans Head", helvetica, arial,
+		sans-serif;
+	--db-typography-regular-desktop-headline-2xs:
+		bolder 1.25rem/1.2 "OpenSans Head", helvetica, arial, sans-serif;
+	--db-typography-regular-desktop-headline-3xs:
+		bolder 1rem/1.25 "OpenSans Head", helvetica, arial, sans-serif;
+	--db-typography-regular-desktop-headline-xs:
+		bolder 1.5rem/1.1666666666666667 "OpenSans Head", helvetica, arial,
+		sans-serif;
+	--db-typography-regular-desktop-body-lg:
+		normal 1.25rem/1.4 "OpenSans", helvetica, arial, sans-serif;
+	--db-typography-regular-desktop-body-xl:
+		normal 1.5rem/1.3333333333333333 "OpenSans", helvetica, arial,
+		sans-serif;
+	--db-typography-regular-desktop-body-2xl:
+		normal 1.75rem/1.4285714285714286 "OpenSans", helvetica, arial,
+		sans-serif;
+	--db-typography-regular-desktop-body-3xl:
+		normal 2rem/1.5 "OpenSans", helvetica, arial, sans-serif;
+	--db-typography-regular-desktop-body-md:
+		normal 1rem/1.5 "OpenSans", helvetica, arial, sans-serif;
+	--db-typography-regular-desktop-body-sm:
+		normal 0.875rem/1.4285714285714286 "OpenSans", helvetica, arial,
+		sans-serif;
+	--db-typography-regular-desktop-body-2xs:
+		normal 0.625rem/1.4 "OpenSans", helvetica, arial, sans-serif;
+	--db-typography-regular-desktop-body-3xs:
+		normal 0.625rem/1.4 "OpenSans", helvetica, arial, sans-serif;
+	--db-typography-regular-desktop-body-xs:
+		normal 0.75rem/1.3333333333333333 "OpenSans", helvetica, arial,
+		sans-serif;
+	--db-typography-regular-mobile-body-lg:
+		normal 1.25rem/1.4 "OpenSans", helvetica, arial, sans-serif;
+	--db-typography-regular-mobile-body-md:
+		normal 1rem/1.5 "OpenSans", helvetica, arial, sans-serif;
+	--db-typography-regular-mobile-body-sm:
+		normal 0.875rem/1.4285714285714286 "OpenSans", helvetica, arial,
+		sans-serif;
+	--db-typography-regular-mobile-body-xl:
+		normal 1.25rem/1.4 "OpenSans", helvetica, arial, sans-serif;
+	--db-typography-regular-mobile-body-xs:
+		normal 0.75rem/1.3333333333333333 "OpenSans", helvetica, arial,
+		sans-serif;
+	--db-typography-regular-mobile-body-2xl:
+		normal 1.25rem/1.4 "OpenSans", helvetica, arial, sans-serif;
+	--db-typography-regular-mobile-body-3xl:
+		normal 1.25rem/1.4 "OpenSans", helvetica, arial, sans-serif;
+	--db-typography-regular-mobile-body-2xs:
+		normal 0.625rem/1.4 "OpenSans", helvetica, arial, sans-serif;
+	--db-typography-regular-mobile-body-3xs:
+		normal 0.625rem/1.4 "OpenSans", helvetica, arial, sans-serif;
+	--db-typography-regular-mobile-headline-lg:
+		bolder 1.75rem/1.1428571428571428 "OpenSans Head", helvetica, arial,
+		sans-serif;
+	--db-typography-regular-mobile-headline-md:
+		bolder 1.5rem/1.1666666666666667 "OpenSans Head", helvetica, arial,
+		sans-serif;
+	--db-typography-regular-mobile-headline-sm:
+		bolder 1.25rem/1.2 "OpenSans Head", helvetica, arial, sans-serif;
+	--db-typography-regular-mobile-headline-xl:
+		bolder 2rem/1.25 "OpenSans Head", helvetica, arial, sans-serif;
+	--db-typography-regular-mobile-headline-xs:
+		bolder 1rem/1.25 "OpenSans Head", helvetica, arial, sans-serif;
+	--db-typography-regular-mobile-headline-2xl:
+		bolder 2rem/1.25 "OpenSans Head", helvetica, arial, sans-serif;
+	--db-typography-regular-mobile-headline-2xs:
+		bolder 0.875rem/1.1428571428571428 "OpenSans Head", helvetica, arial,
+		sans-serif;
+	--db-typography-regular-mobile-headline-3xl:
+		bolder 2rem/1.25 "OpenSans Head", helvetica, arial, sans-serif;
+	--db-typography-regular-mobile-headline-3xs:
+		bolder 0.875rem/1.1428571428571428 "OpenSans Head", helvetica, arial,
+		sans-serif;
+	--db-typography-regular-tablet-body-lg:
+		normal 1.25rem/1.4 "OpenSans", helvetica, arial, sans-serif;
+	--db-typography-regular-tablet-body-md:
+		normal 1rem/1.5 "OpenSans", helvetica, arial, sans-serif;
+	--db-typography-regular-tablet-body-sm:
+		normal 0.875rem/1.4285714285714286 "OpenSans", helvetica, arial,
+		sans-serif;
+	--db-typography-regular-tablet-body-xl:
+		normal 1.5rem/1.3333333333333333 "OpenSans", helvetica, arial,
+		sans-serif;
+	--db-typography-regular-tablet-body-xs:
+		normal 0.75rem/1.3333333333333333 "OpenSans", helvetica, arial,
+		sans-serif;
+	--db-typography-regular-tablet-body-2xl:
+		normal 1.75rem/1.4285714285714286 "OpenSans", helvetica, arial,
+		sans-serif;
+	--db-typography-regular-tablet-body-3xl:
+		normal 2rem/1.5 "OpenSans", helvetica, arial, sans-serif;
+	--db-typography-regular-tablet-body-2xs:
+		normal 0.625rem/1.4 "OpenSans", helvetica, arial, sans-serif;
+	--db-typography-regular-tablet-body-3xs:
+		normal 0.625rem/1.4 "OpenSans", helvetica, arial, sans-serif;
+	--db-typography-regular-tablet-headline-lg:
+		bolder 2rem/1.25 "OpenSans Head", helvetica, arial, sans-serif;
+	--db-typography-regular-tablet-headline-md:
+		bolder 1.75rem/1.1428571428571428 "OpenSans Head", helvetica, arial,
+		sans-serif;
+	--db-typography-regular-tablet-headline-sm:
+		bolder 1.5rem/1.1666666666666667 "OpenSans Head", helvetica, arial,
+		sans-serif;
+	--db-typography-regular-tablet-headline-xl:
+		bolder 2.5rem/1.2 "OpenSans Head", helvetica, arial, sans-serif;
+	--db-typography-regular-tablet-headline-xs:
+		bolder 1.25rem/1.2 "OpenSans Head", helvetica, arial, sans-serif;
+	--db-typography-regular-tablet-headline-2xl:
+		bolder 3rem/1.3333333333333333 "OpenSans Head", helvetica, arial,
+		sans-serif;
+	--db-typography-regular-tablet-headline-2xs:
+		bolder 1rem/1.25 "OpenSans Head", helvetica, arial, sans-serif;
+	--db-typography-regular-tablet-headline-3xl:
+		bolder 3rem/1.3333333333333333 "OpenSans Head", helvetica, arial,
+		sans-serif;
+	--db-typography-regular-tablet-headline-3xs:
+		bolder 1rem/1.25 "OpenSans Head", helvetica, arial, sans-serif;
+	--db-typography-expressive-desktop-body-lg:
+		normal 1.5rem/1.3333333333333333 "OpenSans", helvetica, arial,
+		sans-serif;
+	--db-typography-expressive-desktop-body-md:
+		normal 1.25rem/1.4 "OpenSans", helvetica, arial, sans-serif;
+	--db-typography-expressive-desktop-body-sm:
+		normal 1rem/1.5 "OpenSans", helvetica, arial, sans-serif;
+	--db-typography-expressive-desktop-body-xl:
+		normal 1.75rem/1.4285714285714286 "OpenSans", helvetica, arial,
+		sans-serif;
+	--db-typography-expressive-desktop-body-xs:
+		normal 0.875rem/1.4285714285714286 "OpenSans", helvetica, arial,
+		sans-serif;
+	--db-typography-expressive-desktop-body-2xl:
+		normal 2rem/1.5 "OpenSans", helvetica, arial, sans-serif;
+	--db-typography-expressive-desktop-body-3xl:
+		normal 2.5rem/1.6 "OpenSans", helvetica, arial, sans-serif;
+	--db-typography-expressive-desktop-body-2xs:
+		normal 0.75rem/1.3333333333333333 "OpenSans", helvetica, arial,
+		sans-serif;
+	--db-typography-expressive-desktop-body-3xs:
+		normal 0.625rem/1.4 "OpenSans", helvetica, arial, sans-serif;
+	--db-typography-expressive-desktop-headline-lg:
+		bolder 3rem/1.3333333333333333 "OpenSans Head", helvetica, arial,
+		sans-serif;
+	--db-typography-expressive-desktop-headline-md:
+		bolder 2.5rem/1.2 "OpenSans Head", helvetica, arial, sans-serif;
+	--db-typography-expressive-desktop-headline-sm:
+		bolder 2rem/1.25 "OpenSans Head", helvetica, arial, sans-serif;
+	--db-typography-expressive-desktop-headline-xl:
+		bolder 4rem/1.25 "OpenSans Head", helvetica, arial, sans-serif;
+	--db-typography-expressive-desktop-headline-xs:
+		bolder 1.75rem/1.1428571428571428 "OpenSans Head", helvetica, arial,
+		sans-serif;
+	--db-typography-expressive-desktop-headline-2xl:
+		bolder 5rem/1.2 "OpenSans Head", helvetica, arial, sans-serif;
+	--db-typography-expressive-desktop-headline-2xs:
+		bolder 1.5rem/1.1666666666666667 "OpenSans Head", helvetica, arial,
+		sans-serif;
+	--db-typography-expressive-desktop-headline-3xl:
+		bolder 6rem/1.25 "OpenSans Head", helvetica, arial, sans-serif;
+	--db-typography-expressive-desktop-headline-3xs:
+		bolder 1.25rem/1.2 "OpenSans Head", helvetica, arial, sans-serif;
+	--db-typography-expressive-tablet-body-lg:
+		normal 1.5rem/1.3333333333333333 "OpenSans", helvetica, arial,
+		sans-serif;
+	--db-typography-expressive-tablet-body-md:
+		normal 1.25rem/1.4 "OpenSans", helvetica, arial, sans-serif;
+	--db-typography-expressive-tablet-body-sm:
+		normal 1rem/1.5 "OpenSans", helvetica, arial, sans-serif;
+	--db-typography-expressive-tablet-body-xl:
+		normal 1.75rem/1.4285714285714286 "OpenSans", helvetica, arial,
+		sans-serif;
+	--db-typography-expressive-tablet-body-xs:
+		normal 0.875rem/1.4285714285714286 "OpenSans", helvetica, arial,
+		sans-serif;
+	--db-typography-expressive-tablet-body-2xl:
+		normal 2rem/1.5 "OpenSans", helvetica, arial, sans-serif;
+	--db-typography-expressive-tablet-body-3xl:
+		normal 2.5rem/1.6 "OpenSans", helvetica, arial, sans-serif;
+	--db-typography-expressive-tablet-body-2xs:
+		normal 0.75rem/1.3333333333333333 "OpenSans", helvetica, arial,
+		sans-serif;
+	--db-typography-expressive-tablet-body-3xs:
+		normal 0.625rem/1.4 "OpenSans", helvetica, arial, sans-serif;
+	--db-typography-expressive-tablet-headline-lg:
+		bolder 2.5rem/1.2 "OpenSans Head", helvetica, arial, sans-serif;
+	--db-typography-expressive-tablet-headline-md:
+		bolder 2rem/1.25 "OpenSans Head", helvetica, arial, sans-serif;
+	--db-typography-expressive-tablet-headline-sm:
+		bolder 1.75rem/1.1428571428571428 "OpenSans Head", helvetica, arial,
+		sans-serif;
+	--db-typography-expressive-tablet-headline-xl:
+		bolder 3rem/1.3333333333333333 "OpenSans Head", helvetica, arial,
+		sans-serif;
+	--db-typography-expressive-tablet-headline-xs:
+		bolder 1.5rem/1.1666666666666667 "OpenSans Head", helvetica, arial,
+		sans-serif;
+	--db-typography-expressive-tablet-headline-2xl:
+		bolder 4rem/1.25 "OpenSans Head", helvetica, arial, sans-serif;
+	--db-typography-expressive-tablet-headline-2xs:
+		bolder 1.25rem/1.2 "OpenSans Head", helvetica, arial, sans-serif;
+	--db-typography-expressive-tablet-headline-3xl:
+		bolder 5rem/1.2 "OpenSans Head", helvetica, arial, sans-serif;
+	--db-typography-expressive-tablet-headline-3xs:
+		bolder 1.25rem/1.2 "OpenSans Head", helvetica, arial, sans-serif;
+	--db-typography-expressive-mobile-body-lg:
+		normal 1.5rem/1.3333333333333333 "OpenSans", helvetica, arial,
+		sans-serif;
+	--db-typography-expressive-mobile-body-md:
+		normal 1.25rem/1.4 "OpenSans", helvetica, arial, sans-serif;
+	--db-typography-expressive-mobile-body-sm:
+		normal 1rem/1.5 "OpenSans", helvetica, arial, sans-serif;
+	--db-typography-expressive-mobile-body-xl:
+		normal 1.5rem/1.3333333333333333 "OpenSans", helvetica, arial,
+		sans-serif;
+	--db-typography-expressive-mobile-body-xs:
+		normal 0.875rem/1.4285714285714286 "OpenSans", helvetica, arial,
+		sans-serif;
+	--db-typography-expressive-mobile-body-2xl:
+		normal 1.5rem/1.3333333333333333 "OpenSans", helvetica, arial,
+		sans-serif;
+	--db-typography-expressive-mobile-body-3xl:
+		normal 1.5rem/1.3333333333333333 "OpenSans", helvetica, arial,
+		sans-serif;
+	--db-typography-expressive-mobile-body-2xs:
+		normal 0.75rem/1.3333333333333333 "OpenSans", helvetica, arial,
+		sans-serif;
+	--db-typography-expressive-mobile-body-3xs:
+		normal 0.625rem/1.4 "OpenSans", helvetica, arial, sans-serif;
+	--db-typography-expressive-mobile-headline-lg:
+		bolder 2rem/1.25 "OpenSans Head", helvetica, arial, sans-serif;
+	--db-typography-expressive-mobile-headline-md:
+		bolder 1.75rem/1.1428571428571428 "OpenSans Head", helvetica, arial,
+		sans-serif;
+	--db-typography-expressive-mobile-headline-sm:
+		bolder 1.5rem/1.1666666666666667 "OpenSans Head", helvetica, arial,
+		sans-serif;
+	--db-typography-expressive-mobile-headline-xl:
+		bolder 2.5rem/1.2 "OpenSans Head", helvetica, arial, sans-serif;
+	--db-typography-expressive-mobile-headline-xs:
+		bolder 1.25rem/1.2 "OpenSans Head", helvetica, arial, sans-serif;
+	--db-typography-expressive-mobile-headline-2xl:
+		bolder 2.5rem/1.2 "OpenSans Head", helvetica, arial, sans-serif;
+	--db-typography-expressive-mobile-headline-2xs:
+		bolder 1rem/1.25 "OpenSans Head", helvetica, arial, sans-serif;
+	--db-typography-expressive-mobile-headline-3xl:
+		bolder 2.5rem/1.2 "OpenSans Head", helvetica, arial, sans-serif;
+	--db-typography-expressive-mobile-headline-3xs:
+		bolder 1rem/1.25 "OpenSans Head", helvetica, arial, sans-serif;
+	--db-typography-functional-desktop-body-lg:
+		normal 1rem/1.5 "OpenSans", helvetica, arial, sans-serif;
+	--db-typography-functional-desktop-body-md:
+		normal 0.875rem/1.4285714285714286 "OpenSans", helvetica, arial,
+		sans-serif;
+	--db-typography-functional-desktop-body-sm:
+		normal 0.75rem/1.3333333333333333 "OpenSans", helvetica, arial,
+		sans-serif;
+	--db-typography-functional-desktop-body-xl:
+		normal 1.25rem/1.4 "OpenSans", helvetica, arial, sans-serif;
+	--db-typography-functional-desktop-body-xs:
+		normal 0.625rem/1.4 "OpenSans", helvetica, arial, sans-serif;
+	--db-typography-functional-desktop-body-2xl:
+		normal 1.5rem/1.3333333333333333 "OpenSans", helvetica, arial,
+		sans-serif;
+	--db-typography-functional-desktop-body-3xl:
+		normal 1.75rem/1.4285714285714286 "OpenSans", helvetica, arial,
+		sans-serif;
+	--db-typography-functional-desktop-body-2xs:
+		normal 0.625rem/1.4 "OpenSans", helvetica, arial, sans-serif;
+	--db-typography-functional-desktop-body-3xs:
+		normal 0.625rem/1.4 "OpenSans", helvetica, arial, sans-serif;
+	--db-typography-functional-desktop-headline-lg:
+		bolder 1.75rem/1.1428571428571428 "OpenSans Head", helvetica, arial,
+		sans-serif;
+	--db-typography-functional-desktop-headline-md:
+		bolder 1.5rem/1.1666666666666667 "OpenSans Head", helvetica, arial,
+		sans-serif;
+	--db-typography-functional-desktop-headline-sm:
+		bolder 1.25rem/1.2 "OpenSans Head", helvetica, arial, sans-serif;
+	--db-typography-functional-desktop-headline-xl:
+		bolder 2rem/1.25 "OpenSans Head", helvetica, arial, sans-serif;
+	--db-typography-functional-desktop-headline-xs:
+		bolder 1rem/1.25 "OpenSans Head", helvetica, arial, sans-serif;
+	--db-typography-functional-desktop-headline-2xl:
+		bolder 2.5rem/1.2 "OpenSans Head", helvetica, arial, sans-serif;
+	--db-typography-functional-desktop-headline-2xs:
+		bolder 0.875rem/1.1428571428571428 "OpenSans Head", helvetica, arial,
+		sans-serif;
+	--db-typography-functional-desktop-headline-3xl:
+		bolder 2.5rem/1.2 "OpenSans Head", helvetica, arial, sans-serif;
+	--db-typography-functional-desktop-headline-3xs:
+		bolder 0.875rem/1.1428571428571428 "OpenSans Head", helvetica, arial,
+		sans-serif;
+	--db-typography-functional-tablet-body-lg:
+		normal 1rem/1.5 "OpenSans", helvetica, arial, sans-serif;
+	--db-typography-functional-tablet-body-md:
+		normal 0.875rem/1.4285714285714286 "OpenSans", helvetica, arial,
+		sans-serif;
+	--db-typography-functional-tablet-body-sm:
+		normal 0.75rem/1.3333333333333333 "OpenSans", helvetica, arial,
+		sans-serif;
+	--db-typography-functional-tablet-body-xl:
+		normal 1.25rem/1.4 "OpenSans", helvetica, arial, sans-serif;
+	--db-typography-functional-tablet-body-xs:
+		normal 0.625rem/1.4 "OpenSans", helvetica, arial, sans-serif;
+	--db-typography-functional-tablet-body-2xl:
+		normal 1.5rem/1.3333333333333333 "OpenSans", helvetica, arial,
+		sans-serif;
+	--db-typography-functional-tablet-body-3xl:
+		normal 1.75rem/1.4285714285714286 "OpenSans", helvetica, arial,
+		sans-serif;
+	--db-typography-functional-tablet-body-2xs:
+		normal 0.625rem/1.4 "OpenSans", helvetica, arial, sans-serif;
+	--db-typography-functional-tablet-body-3xs:
+		normal 0.625rem/1.4 "OpenSans", helvetica, arial, sans-serif;
+	--db-typography-functional-tablet-headline-lg:
+		bolder 1.75rem/1.1428571428571428 "OpenSans Head", helvetica, arial,
+		sans-serif;
+	--db-typography-functional-tablet-headline-md:
+		bolder 1.5rem/1.1666666666666667 "OpenSans Head", helvetica, arial,
+		sans-serif;
+	--db-typography-functional-tablet-headline-sm:
+		bolder 1.25rem/1.2 "OpenSans Head", helvetica, arial, sans-serif;
+	--db-typography-functional-tablet-headline-xl:
+		bolder 2rem/1.25 "OpenSans Head", helvetica, arial, sans-serif;
+	--db-typography-functional-tablet-headline-xs:
+		bolder 1rem/1.25 "OpenSans Head", helvetica, arial, sans-serif;
+	--db-typography-functional-tablet-headline-2xl:
+		bolder 2.5rem/1.2 "OpenSans Head", helvetica, arial, sans-serif;
+	--db-typography-functional-tablet-headline-2xs:
+		bolder 0.875rem/1.1428571428571428 "OpenSans Head", helvetica, arial,
+		sans-serif;
+	--db-typography-functional-tablet-headline-3xl:
+		bolder 2.5rem/1.2 "OpenSans Head", helvetica, arial, sans-serif;
+	--db-typography-functional-tablet-headline-3xs:
+		bolder 0.875rem/1.1428571428571428 "OpenSans Head", helvetica, arial,
+		sans-serif;
+	--db-typography-functional-mobile-body-lg:
+		normal 1rem/1.5 "OpenSans", helvetica, arial, sans-serif;
+	--db-typography-functional-mobile-body-md:
+		normal 0.875rem/1.4285714285714286 "OpenSans", helvetica, arial,
+		sans-serif;
+	--db-typography-functional-mobile-body-sm:
+		normal 0.75rem/1.3333333333333333 "OpenSans", helvetica, arial,
+		sans-serif;
+	--db-typography-functional-mobile-body-xl:
+		normal 1rem/1.5 "OpenSans", helvetica, arial, sans-serif;
+	--db-typography-functional-mobile-body-xs:
+		normal 0.625rem/1.4 "OpenSans", helvetica, arial, sans-serif;
+	--db-typography-functional-mobile-body-2xl:
+		normal 1rem/1.5 "OpenSans", helvetica, arial, sans-serif;
+	--db-typography-functional-mobile-body-3xl:
+		normal 1rem/1.5 "OpenSans", helvetica, arial, sans-serif;
+	--db-typography-functional-mobile-body-2xs:
+		normal 0.625rem/1.4 "OpenSans", helvetica, arial, sans-serif;
+	--db-typography-functional-mobile-body-3xs:
+		normal 0.625rem/1.4 "OpenSans", helvetica, arial, sans-serif;
+	--db-typography-functional-mobile-headline-lg:
+		bolder 1.5rem/1.1666666666666667 "OpenSans Head", helvetica, arial,
+		sans-serif;
+	--db-typography-functional-mobile-headline-md:
+		bolder 1.25rem/1.2 "OpenSans Head", helvetica, arial, sans-serif;
+	--db-typography-functional-mobile-headline-sm:
+		bolder 1rem/1.25 "OpenSans Head", helvetica, arial, sans-serif;
+	--db-typography-functional-mobile-headline-xl:
+		bolder 1.75rem/1.1428571428571428 "OpenSans Head", helvetica, arial,
+		sans-serif;
+	--db-typography-functional-mobile-headline-xs:
+		bolder 0.875rem/1.1428571428571428 "OpenSans Head", helvetica, arial,
+		sans-serif;
+	--db-typography-functional-mobile-headline-2xl:
+		bolder 1.75rem/1.1428571428571428 "OpenSans Head", helvetica, arial,
+		sans-serif;
+	--db-typography-functional-mobile-headline-2xs:
+		bolder 0.875rem/1.1428571428571428 "OpenSans Head", helvetica, arial,
+		sans-serif;
+	--db-typography-functional-mobile-headline-3xl:
+		bolder 1.75rem/1.1428571428571428 "OpenSans Head", helvetica, arial,
+		sans-serif;
+	--db-typography-functional-mobile-headline-3xs:
+		bolder 0.875rem/1.1428571428571428 "OpenSans Head", helvetica, arial,
+		sans-serif;
+	--db-neutral-0: #0d0e10;
+	--db-neutral-1: #16181b;
+	--db-neutral-2: #222428;
+	--db-neutral-3: #2e3035;
+	--db-neutral-4: #3b3e44;
+	--db-neutral-5: #484b52;
+	--db-neutral-6: #5a5e67;
+	--db-neutral-7: #727782;
+	--db-neutral-8: #8b919d;
+	--db-neutral-9: #a6abb5;
+	--db-neutral-10: #c3c7cd;
+	--db-neutral-11: #e1e2e6;
+	--db-neutral-12: #edeef0;
+	--db-neutral-13: #f3f3f5;
+	--db-neutral-14: #fff;
+	--db-neutral-origin-base: #232529; /* This is just to resolve the original origin color */
+	--db-neutral-origin-light-default: #232529;
+	--db-neutral-origin-light-hovered: #595e66;
+	--db-neutral-origin-light-pressed: #383b40;
+	--db-neutral-origin-dark-default: #232529;
+	--db-neutral-origin-dark-hovered: #595e66;
+	--db-neutral-origin-dark-pressed: #383b40;
+	--db-neutral-on-origin-light-default: #f9f9fa;
+	--db-neutral-on-origin-dark-default: #f9f9fa;
+	--db-brand-0: #09082f;
+	--db-brand-1: #110f44;
+	--db-brand-2: #1b195e;
+	--db-brand-3: #25237a;
+	--db-brand-4: #302d97;
+	--db-brand-5: #3b38b5;
+	--db-brand-6: #514ec7;
+	--db-brand-7: #6d6bd4;
+	--db-brand-8: #8988de;
+	--db-brand-9: #a6a5e7;
+	--db-brand-10: #c3c3ef;
+	--db-brand-11: #e1e1f7;
+	--db-brand-12: #ededfa;
+	--db-brand-13: #f3f3fc;
+	--db-brand-14: #f9f9fd;
+	--db-brand-origin-base: #514ec7; /* This is just to resolve the original origin color */
+	--db-brand-origin-light-default: #514ec7;
+	--db-brand-origin-light-hovered: #1d1b64;
+	--db-brand-origin-light-pressed: #3834ac;
+	--db-brand-origin-dark-default: #514ec7;
+	--db-brand-origin-dark-hovered: #1d1b64;
+	--db-brand-origin-dark-pressed: #3834ac;
+	--db-brand-on-origin-light-default: #cbffe7;
+	--db-brand-on-origin-dark-default: #cbffe7;
+	--db-informational-0: #00101c;
+	--db-informational-1: #00192a;
+	--db-informational-2: #00263d;
+	--db-informational-3: #003450;
+	--db-informational-4: #004164;
+	--db-informational-5: #005078;
+	--db-informational-6: #006495;
+	--db-informational-7: #007eba;
+	--db-informational-8: #0099e1;
+	--db-informational-9: #41b3ff;
+	--db-informational-10: #96cbff;
+	--db-informational-11: #cfe5ff;
+	--db-informational-12: #e3efff;
+	--db-informational-13: #ecf4ff;
+	--db-informational-14: #f6faff;
+	--db-informational-origin-base: #00aeff; /* This is just to resolve the original origin color */
+	--db-informational-origin-light-default: #00aeff;
+	--db-informational-origin-light-hovered: #c2dfff;
+	--db-informational-origin-light-pressed: #87c6ff;
+	--db-informational-origin-dark-default: #00aeff;
+	--db-informational-origin-dark-hovered: #c2dfff;
+	--db-informational-origin-dark-pressed: #87c6ff;
+	--db-informational-on-origin-light-default: #000812;
+	--db-informational-on-origin-dark-default: #000812;
+	--db-warning-0: #1a0b00;
+	--db-warning-1: #271300;
+	--db-warning-2: #381d00;
+	--db-warning-3: #4a2800;
+	--db-warning-4: #5c3400;
+	--db-warning-5: #704000;
+	--db-warning-6: #8a5100;
+	--db-warning-7: #ad6600;
+	--db-warning-8: #d17d00;
+	--db-warning-9: #f69400;
+	--db-warning-10: #ffb783;
+	--db-warning-11: #ffdbc8;
+	--db-warning-12: #ffeadf;
+	--db-warning-13: #fff1ea;
+	--db-warning-14: #fff8f5;
+	--db-warning-origin-base: #f90; /* This is just to resolve the original origin color */
+	--db-warning-origin-light-default: #f90;
+	--db-warning-origin-light-hovered: #ffe4d5;
+	--db-warning-origin-light-pressed: #ffbf95;
+	--db-warning-origin-dark-default: #f90;
+	--db-warning-origin-dark-hovered: #ffe4d5;
+	--db-warning-origin-dark-pressed: #ffbf95;
+	--db-warning-on-origin-light-default: #100500;
+	--db-warning-on-origin-dark-default: #100500;
+	--db-successful-0: #051100;
+	--db-successful-1: #091c00;
+	--db-successful-2: #112900;
+	--db-successful-3: #193800;
+	--db-successful-4: #214600;
+	--db-successful-5: #2a5600;
+	--db-successful-6: #366b00;
+	--db-successful-7: #458600;
+	--db-successful-8: #55a300;
+	--db-successful-9: #65c101;
+	--db-successful-10: #76df01;
+	--db-successful-11: #88fe01;
+	--db-successful-12: #bfffa3;
+	--db-successful-13: #d7ffc7;
+	--db-successful-14: #ecffe5;
+	--db-successful-origin-base: #85f901; /* This is just to resolve the original origin color */
+	--db-successful-origin-light-default: #85f901;
+	--db-successful-origin-light-hovered: #63bc01;
+	--db-successful-origin-light-pressed: #74da01;
+	--db-successful-origin-dark-default: #85f901;
+	--db-successful-origin-dark-hovered: #63bc01;
+	--db-successful-origin-dark-pressed: #74da01;
+	--db-successful-on-origin-light-default: #020a00;
+	--db-successful-on-origin-dark-default: #020a00;
+	--db-critical-0: #270001;
+	--db-critical-1: #390002;
+	--db-critical-2: #500003;
+	--db-critical-3: #690005;
+	--db-critical-4: #820008;
+	--db-critical-5: #9c000c;
+	--db-critical-6: #c00111;
+	--db-critical-7: #ef0119;
+	--db-critical-8: #ff5357;
+	--db-critical-9: #ff888a;
+	--db-critical-10: #ffb3b4;
+	--db-critical-11: #ffdada;
+	--db-critical-12: #ffe9e9;
+	--db-critical-13: #fff0f0;
+	--db-critical-14: #fff8f8;
+	--db-critical-origin-base: #fe011b; /* This is just to resolve the original origin color */
+	--db-critical-origin-light-default: #fe011b;
+	--db-critical-origin-light-hovered: #ff9698;
+	--db-critical-origin-light-pressed: #ff6669;
+	--db-critical-origin-dark-default: #fe011b;
+	--db-critical-origin-dark-hovered: #ff9698;
+	--db-critical-origin-dark-pressed: #ff6669;
+	--db-critical-on-origin-light-default: #1a0000;
+	--db-critical-on-origin-dark-default: #1a0000;
+	--db-yellow-0: #120e00;
+	--db-yellow-1: #1d1700;
+	--db-yellow-2: #2b2300;
+	--db-yellow-3: #3a3000;
+	--db-yellow-4: #493d00;
+	--db-yellow-5: #594a00;
+	--db-yellow-6: #6f5d00;
+	--db-yellow-7: #8b7600;
+	--db-yellow-8: #a98f00;
+	--db-yellow-9: #c8a900;
+	--db-yellow-10: #e7c400;
+	--db-yellow-11: #ffe177;
+	--db-yellow-12: #ffedbb;
+	--db-yellow-13: #fff3d4;
+	--db-yellow-14: #fff9ea;
+	--db-yellow-origin-base: #ffd900; /* This is just to resolve the original origin color */
+	--db-yellow-origin-light-default: #ffd900;
+	--db-yellow-origin-light-hovered: #c0a300;
+	--db-yellow-origin-light-pressed: #dfbd00;
+	--db-yellow-origin-dark-default: #ffd900;
+	--db-yellow-origin-dark-hovered: #c0a300;
+	--db-yellow-origin-dark-pressed: #dfbd00;
+	--db-yellow-on-origin-light-default: #0a0700;
+	--db-yellow-on-origin-dark-default: #0a0700;
+	--db-orange-0: #1a0b00;
+	--db-orange-1: #271300;
+	--db-orange-2: #381d00;
+	--db-orange-3: #4a2800;
+	--db-orange-4: #5c3400;
+	--db-orange-5: #704000;
+	--db-orange-6: #8a5100;
+	--db-orange-7: #ad6600;
+	--db-orange-8: #d17d00;
+	--db-orange-9: #f69400;
+	--db-orange-10: #ffb783;
+	--db-orange-11: #ffdbc8;
+	--db-orange-12: #ffeadf;
+	--db-orange-13: #fff1ea;
+	--db-orange-14: #fff8f5;
+	--db-orange-origin-base: #f90; /* This is just to resolve the original origin color */
+	--db-orange-origin-light-default: #f90;
+	--db-orange-origin-light-hovered: #ffe4d5;
+	--db-orange-origin-light-pressed: #ffbf95;
+	--db-orange-origin-dark-default: #f90;
+	--db-orange-origin-dark-hovered: #ffe4d5;
+	--db-orange-origin-dark-pressed: #ffbf95;
+	--db-orange-on-origin-light-default: #100500;
+	--db-orange-on-origin-dark-default: #100500;
+	--db-red-0: #280001;
+	--db-red-1: #390001;
+	--db-red-2: #500003;
+	--db-red-3: #690004;
+	--db-red-4: #820007;
+	--db-red-5: #9c000b;
+	--db-red-6: #c00010;
+	--db-red-7: #ef0017;
+	--db-red-8: #ff5357;
+	--db-red-9: #ff888a;
+	--db-red-10: #ffb3b4;
+	--db-red-11: #ffdada;
+	--db-red-12: #ffe9e9;
+	--db-red-13: #fff0f0;
+	--db-red-14: #fff8f8;
+	--db-red-origin-base: #ff0019; /* This is just to resolve the original origin color */
+	--db-red-origin-light-default: #ff0019;
+	--db-red-origin-light-hovered: #ff9798;
+	--db-red-origin-light-pressed: #ff676a;
+	--db-red-origin-dark-default: #ff0019;
+	--db-red-origin-dark-hovered: #ff9798;
+	--db-red-origin-dark-pressed: #ff676a;
+	--db-red-on-origin-light-default: #1a0000;
+	--db-red-on-origin-dark-default: #1a0000;
+	--db-pink-0: #26000c;
+	--db-pink-1: #380014;
+	--db-pink-2: #4e0020;
+	--db-pink-3: #66002b;
+	--db-pink-4: #7e0037;
+	--db-pink-5: #980044;
+	--db-pink-6: #b05;
+	--db-pink-7: #e9006c;
+	--db-pink-8: #ff4c87;
+	--db-pink-9: #ff85a5;
+	--db-pink-10: #ffb1c3;
+	--db-pink-11: #ffd9e1;
+	--db-pink-12: #ffe8ed;
+	--db-pink-13: #fff0f3;
+	--db-pink-14: #fff7f9;
+	--db-pink-origin-base: #f07; /* This is just to resolve the original origin color */
+	--db-pink-origin-light-default: #f07;
+	--db-pink-origin-light-hovered: #ff9ab3;
+	--db-pink-origin-light-pressed: #ff6995;
+	--db-pink-origin-dark-default: #f07;
+	--db-pink-origin-dark-hovered: #ff9ab3;
+	--db-pink-origin-dark-pressed: #ff6995;
+	--db-pink-on-origin-light-default: #190006;
+	--db-pink-on-origin-dark-default: #190006;
+	--db-violet-0: #1d002c;
+	--db-violet-1: #2b0040;
+	--db-violet-2: #3e0059;
+	--db-violet-3: #510173;
+	--db-violet-4: #65018e;
+	--db-violet-5: #7a01ab;
+	--db-violet-6: #9702d2;
+	--db-violet-7: #b91eff;
+	--db-violet-8: #c365ff;
+	--db-violet-9: #cf91ff;
+	--db-violet-10: #ddb7ff;
+	--db-violet-11: #eddcff;
+	--db-violet-12: #f4eaff;
+	--db-violet-13: #f8f1ff;
+	--db-violet-14: #fbf8ff;
+	--db-violet-origin-base: #b603fc; /* This is just to resolve the original origin color */
+	--db-violet-origin-light-default: #b603fc;
+	--db-violet-origin-light-hovered: #5c0182;
+	--db-violet-origin-light-pressed: #9102c9;
+	--db-violet-origin-dark-default: #b603fc;
+	--db-violet-origin-dark-hovered: #5c0182;
+	--db-violet-origin-dark-pressed: #9102c9;
+	--db-violet-on-origin-light-default: #fbf8ff;
+	--db-violet-on-origin-dark-default: #fbf8ff;
+	--db-blue-0: #000b2e;
+	--db-blue-1: #001442;
+	--db-blue-2: #001f5b;
+	--db-blue-3: #012a76;
+	--db-blue-4: #013692;
+	--db-blue-5: #0243af;
+	--db-blue-6: #0354d7;
+	--db-blue-7: #2c6cfe;
+	--db-blue-8: #6989ff;
+	--db-blue-9: #93a6ff;
+	--db-blue-10: #b9c3ff;
+	--db-blue-11: #dce1ff;
+	--db-blue-12: #eaedff;
+	--db-blue-13: #f1f3ff;
+	--db-blue-14: #f8f9ff;
+	--db-blue-origin-base: #0463fb; /* This is just to resolve the original origin color */
+	--db-blue-origin-light-default: #0463fb;
+	--db-blue-origin-light-hovered: #012e7f;
+	--db-blue-origin-light-pressed: #024dc7;
+	--db-blue-origin-dark-default: #0463fb;
+	--db-blue-origin-dark-hovered: #012e7f;
+	--db-blue-origin-dark-pressed: #024dc7;
+	--db-blue-on-origin-light-default: #f8f9ff;
+	--db-blue-on-origin-dark-default: #f8f9ff;
+	--db-cyan-0: #00101c;
+	--db-cyan-1: #001a2a;
+	--db-cyan-2: #00263c;
+	--db-cyan-3: #00344f;
+	--db-cyan-4: #014263;
+	--db-cyan-5: #015078;
+	--db-cyan-6: #016494;
+	--db-cyan-7: #027eb9;
+	--db-cyan-8: #0399df;
+	--db-cyan-9: #3db4ff;
+	--db-cyan-10: #95ccff;
+	--db-cyan-11: #cee5ff;
+	--db-cyan-12: #e2efff;
+	--db-cyan-13: #ecf4ff;
+	--db-cyan-14: #f6faff;
+	--db-cyan-origin-base: #04a9f6; /* This is just to resolve the original origin color */
+	--db-cyan-origin-light-default: #04a9f6;
+	--db-cyan-origin-light-hovered: #b8daff;
+	--db-cyan-origin-light-pressed: #78c1ff;
+	--db-cyan-origin-dark-default: #04a9f6;
+	--db-cyan-origin-dark-hovered: #b8daff;
+	--db-cyan-origin-dark-pressed: #78c1ff;
+	--db-cyan-on-origin-light-default: #000811;
+	--db-cyan-on-origin-dark-default: #000811;
+	--db-turquoise-0: #001110;
+	--db-turquoise-1: #001c1a;
+	--db-turquoise-2: #002926;
+	--db-turquoise-3: #003734;
+	--db-turquoise-4: #004642;
+	--db-turquoise-5: #005550;
+	--db-turquoise-6: #006a64;
+	--db-turquoise-7: #00857e;
+	--db-turquoise-8: #00a299;
+	--db-turquoise-9: #00bfb5;
+	--db-turquoise-10: #00ded2;
+	--db-turquoise-11: #00fdf0;
+	--db-turquoise-12: #9cfff6;
+	--db-turquoise-13: #c3fff9;
+	--db-turquoise-14: #e3fffc;
+	--db-turquoise-origin-base: #00faed; /* This is just to resolve the original origin color */
+	--db-turquoise-origin-light-default: #00faed;
+	--db-turquoise-origin-light-hovered: #00bdb3;
+	--db-turquoise-origin-light-pressed: #00dbd0;
+	--db-turquoise-origin-dark-default: #00faed;
+	--db-turquoise-origin-dark-hovered: #00bdb3;
+	--db-turquoise-origin-dark-pressed: #00dbd0;
+	--db-turquoise-on-origin-light-default: #000908;
+	--db-turquoise-on-origin-dark-default: #000908;
+	--db-green-0: #041103;
+	--db-green-1: #091c06;
+	--db-green-2: #10290b;
+	--db-green-3: #173712;
+	--db-green-4: #1f4619;
+	--db-green-5: #275520;
+	--db-green-6: #336a2a;
+	--db-green-7: #428636;
+	--db-green-8: #51a243;
+	--db-green-9: #61c051;
+	--db-green-10: #71de5f;
+	--db-green-11: #96f989;
+	--db-green-12: #c7fbc2;
+	--db-green-13: #dbfcd8;
+	--db-green-14: #eefeec;
+	--db-green-origin-base: #408335; /* This is just to resolve the original origin color */
+	--db-green-origin-light-default: #408335;
+	--db-green-origin-light-hovered: #1c4116;
+	--db-green-origin-light-pressed: #316828;
+	--db-green-origin-dark-default: #408335;
+	--db-green-origin-dark-hovered: #1c4116;
+	--db-green-origin-dark-pressed: #316828;
+	--db-green-on-origin-light-default: #f7fef6;
+	--db-green-on-origin-dark-default: #f7fef6;
+	--db-light-green-0: #061100;
+	--db-light-green-1: #0c1b01;
+	--db-light-green-2: #142901;
+	--db-light-green-3: #1d3702;
+	--db-light-green-4: #264604;
+	--db-light-green-5: #305506;
+	--db-light-green-6: #3d6a09;
+	--db-light-green-7: #4e850f;
+	--db-light-green-8: #60a114;
+	--db-light-green-9: #72bf1a;
+	--db-light-green-10: #85dd20;
+	--db-light-green-11: #99fc26;
+	--db-light-green-12: #c3ff9d;
+	--db-light-green-13: #d9ffc4;
+	--db-light-green-14: #edffe4;
+	--db-light-green-origin-base: #63a615; /* This is just to resolve the original origin color */
+	--db-light-green-origin-light-default: #63a615;
+	--db-light-green-origin-light-hovered: #88e221;
+	--db-light-green-origin-light-pressed: #75c31b;
+	--db-light-green-origin-dark-default: #63a615;
+	--db-light-green-origin-dark-hovered: #88e221;
+	--db-light-green-origin-dark-pressed: #75c31b;
+	--db-light-green-on-origin-light-default: #030900;
+	--db-light-green-on-origin-dark-default: #030900;
+	--db-burgundy-0: #1e060c;
+	--db-burgundy-1: #2d0d14;
+	--db-burgundy-2: #40151f;
+	--db-burgundy-3: #541e2b;
+	--db-burgundy-4: #682837;
+	--db-burgundy-5: #7e3144;
+	--db-burgundy-6: #9c3f55;
+	--db-burgundy-7: #c2516c;
+	--db-burgundy-8: #d77187;
+	--db-burgundy-9: #df98a5;
+	--db-burgundy-10: #e8bbc3;
+	--db-burgundy-11: #f3dde1;
+	--db-burgundy-12: #f8ebed;
+	--db-burgundy-13: #faf2f3;
+	--db-burgundy-14: #fcf8f9;
+	--db-burgundy-origin-base: #a9455d; /* This is just to resolve the original origin color */
+	--db-burgundy-origin-light-default: #a9455d;
+	--db-burgundy-origin-light-hovered: #4f1c28;
+	--db-burgundy-origin-light-pressed: #833447;
+	--db-burgundy-origin-dark-default: #a9455d;
+	--db-burgundy-origin-dark-hovered: #4f1c28;
+	--db-burgundy-origin-dark-pressed: #833447;
+	--db-burgundy-on-origin-light-default: #fcf8f9;
+	--db-burgundy-on-origin-dark-default: #fcf8f9;
+}

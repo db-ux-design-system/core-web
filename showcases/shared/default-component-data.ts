@@ -1,5 +1,6 @@
 export type DefaultComponentExample = {
 	name?: string;
+	experimental?: boolean;
 	example?: any;
 	style?: {
 		display?: string;

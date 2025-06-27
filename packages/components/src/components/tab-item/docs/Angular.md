@@ -1,6 +1,6 @@
 ## Angular
 
-For general installation and configuration take a look at the [ngx-components](https://www.npmjs.com/package/@db-ui/ngx-components) package.
+For general installation and configuration take a look at the [ngx-core-components](https://www.npmjs.com/package/@db-ux/ngx-core-components) package.
 
 ### Load component
 
@@ -8,7 +8,7 @@ You can't use the component standalone!
 
 ```ts app.module.ts
 //app.module.ts
-import { DBTabItem, DBTabList, DBTabPanel, DBTabs } from '@db-ui/ngx-components';
+import { DBTabItem, DBTabList, DBTabPanel, DBTabs } from '@db-ux/ngx-core-components';
 
 @NgModule({
   ...

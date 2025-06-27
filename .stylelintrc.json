@@ -3,13 +3,36 @@
 		"stylelint-config-standard",
 		"stylelint-config-sass-guidelines"
 	],
-	"plugins": ["stylelint-use-logical", "@double-great/stylelint-a11y"],
+	"plugins": [
+		"stylelint-use-logical",
+		"@double-great/stylelint-a11y",
+		"@db-ux/core-stylelint"
+	],
 	"rules": {
+		"db-ux/use-spacings": [
+			true,
+			{
+				"allowCalc": true,
+				"allow": {
+					"includes": [
+						"-calc",
+						"$default-icon-margin",
+						"form-components.",
+						"section-padding-inline"
+					],
+					"startsWith": ["icons.$", "map.get"]
+				}
+			}
+		],
+		"db-ux/use-border-width": [true],
+		"db-ux/use-border-radius": [true],
+		"db-ux/use-border-color": [true],
 		"a11y/media-prefers-reduced-motion": true,
 		"a11y/no-outline-none": true,
 		"a11y/selector-pseudo-class-focus": true,
 		"csstools/use-logical": ["always", { "except": ["float"] }],
 		"max-nesting-depth": null,
+		"scss/dollar-variable-colon-space-after": null,
 		"selector-type-no-unknown": [true, { "ignoreTypes": ["/^db/"] }],
 		"no-descending-specificity": null,
 		"selector-max-compound-selectors": null,

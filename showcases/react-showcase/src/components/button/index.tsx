@@ -1,9 +1,9 @@
 import { DBButton } from '../../../../../output/react/src';
-import DefaultComponent from '../default-component';
-import defaultComponentVariants from '../../../../shared/button.json';
 import { type DBButtonProps } from '../../../../../output/react/src/components/button/model';
-import { getVariants } from '../data';
+import defaultComponentVariants from '../../../../shared/button.json';
 import { type BaseComponentProps } from '../base-component-data';
+import { getVariants } from '../data';
+import DefaultComponent from '../default-component';
 
 const getButton = ({
 	variant,
@@ -14,7 +14,8 @@ const getButton = ({
 	width,
 	disabled,
 	children,
-	type
+	type,
+	showIcon
 }: DBButtonProps) => (
 	<DBButton
 		variant={variant}
@@ -24,6 +25,7 @@ const getButton = ({
 		icon={icon}
 		disabled={disabled}
 		width={width}
+		showIcon={showIcon}
 		onClick={() => {
 			// eslint-disable-next-line no-alert
 			alert(children.toString());

@@ -3,21 +3,21 @@ import {
 	DBAccordionItem,
 	DBInfotext
 } from '../../../../../output/react/src';
-import DefaultComponent from '../default-component';
-import defaultComponentVariants from '../../../../shared/accordion.json';
 import type { DBAccordionProps } from '../../../../../output/react/src/components/accordion/model';
-import { getVariants } from '../data';
+import defaultComponentVariants from '../../../../shared/accordion.json';
 import { type BaseComponentProps } from '../base-component-data';
+import { getVariants } from '../data';
+import DefaultComponent from '../default-component';
 
-const getAccordion = ({ behaviour, children, variant }: DBAccordionProps) => (
+const getAccordion = ({ behavior, children, variant }: DBAccordionProps) => (
 	<>
 		<DBInfotext size="small" semantic="informational" icon="none">
 			{children}
 		</DBInfotext>
-		<DBAccordion behaviour={behaviour} variant={variant}>
-			<DBAccordionItem headlinePlain="Item 1" content="Content 1" />
-			<DBAccordionItem headlinePlain="Item 2" content="Content 2" />
-			<DBAccordionItem headlinePlain="Item 3" content="Content 3" />
+		<DBAccordion behavior={behavior} variant={variant}>
+			<DBAccordionItem headlinePlain="Item 1" text="Content 1" />
+			<DBAccordionItem headlinePlain="Item 2" text="Content 2" />
+			<DBAccordionItem headlinePlain="Item 3" text="Content 3" />
 		</DBAccordion>
 	</>
 );

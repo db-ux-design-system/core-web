@@ -49,7 +49,7 @@
 		"name": "Variant",
 		"examples": [
 			{
-				"name": "(Def) Simple",
+				"name": "(Default) Simple",
 				"props": {},
 				"style": {
 					"width": "200px"
@@ -165,7 +165,7 @@
 				}
 			},
 			{
-				"name": "(Def) small",
+				"name": "(Default) small",
 				"props": {
 					"gap": "small"
 				},
@@ -241,7 +241,7 @@
 		],
 		"examples": [
 			{
-				"name": "(Def) Column",
+				"name": "(Default) Column",
 				"props": {},
 				"style": {
 					"width": "200px"
@@ -279,7 +279,7 @@
 		],
 		"examples": [
 			{
-				"name": "(Def) No Wrap: Column",
+				"name": "(Default) No Wrap: Column",
 				"style": {
 					"width": "160px",
 					"height": "88px"
@@ -340,7 +340,7 @@
 		],
 		"examples": [
 			{
-				"name": "(Def) Stretch",
+				"name": "(Default) Stretch",
 				"style": {
 					"width": "200px"
 				},
@@ -398,7 +398,7 @@
 		],
 		"examples": [
 			{
-				"name": "(Def) Stretch",
+				"name": "(Default) Stretch",
 				"style": {
 					"height": "100px"
 				},
@@ -460,7 +460,7 @@
 		],
 		"examples": [
 			{
-				"name": "(Def) Start",
+				"name": "(Default) Start",
 				"style": {
 					"width": "200px",
 					"height": "200px"
@@ -522,7 +522,7 @@
 		],
 		"examples": [
 			{
-				"name": "(Def) Start",
+				"name": "(Default) Start",
 				"style": {
 					"width": "300px"
 				},

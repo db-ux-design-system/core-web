@@ -14,15 +14,15 @@ If dependencies are not updated automatically, packages can outdated and provide
 
 ### General conditions
 
--   Dependencies should be updated inside a monorepo
--   Tool should be easy to maintain
--   Support should be backed up by a company
+- Dependencies should be updated inside a monorepo
+- Tool should be easy to maintain
+- Support should be backed up by a company
 
 ### Decision Criteria
 
--   Dependabot maintained by GitHub
--   Lot of community features
--   Free usage of runners for open-source projects
+- Dependabot maintained by GitHub
+- Lot of community features
+- Free usage of runners for open-source projects
 
 ## Alternatives
 
@@ -30,24 +30,24 @@ If dependencies are not updated automatically, packages can outdated and provide
 
 #### Evaluation
 
--   provided by GitHub directly
--   easier to maintain and with meaningful defaults
+- provided by GitHub directly
+- easier to maintain and with meaningful defaults
 
 ### B - Renovate
 
 #### Evaluation
 
--   Get automated Pull Requests to update your dependencies
--   Reduce noise by running Renovate on a schedule
--   Relevant package files are discovered automatically
--   Supports monorepo architectures like Lerna or Yarn workspaces with no extra configuration
--   Bot behavior is customizable via configuration files (config as code)
--   Use ESLint-like shared config presets for ease of use and simplifying configuration (JSON format only)
--   Lock files are supported and updated in the same commit, including immediately resolving conflicts whenever PRs are merged
--   Get replacement PRs to migrate from a deprecated dependency to the community suggested replacement (npm packages only)
--   Open source (installable via npm/Yarn or Docker Hub) so can be self-hosted or used via GitHub App
+- Get automated Pull Requests to update your dependencies
+- Reduce noise by running Renovate on a schedule
+- Relevant package files are discovered automatically
+- Supports monorepo architectures like Lerna or Yarn workspaces with no extra configuration
+- Bot behavior is customizable via configuration files (config as code)
+- Use ESLint-like shared config presets for ease of use and simplifying configuration (JSON format only)
+- Lock files are supported and updated in the same commit, including immediately resolving conflicts whenever PRs are merged
+- Get replacement PRs to migrate from a deprecated dependency to the community suggested replacement (npm packages only)
+- Open source (installable via npm/Yarn or Docker Hub) so can be self-hosted or used via GitHub App
 
 ## Links
 
--   [Dependabot](https://github.com/dependabot)
--   [Renovate](https://github.com/renovatebot/renovate)
+- [Dependabot](https://github.com/dependabot)
+- [Renovate](https://github.com/renovatebot/renovate)

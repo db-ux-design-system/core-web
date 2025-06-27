@@ -1,1 +1,1 @@
-["(Default) With Logo","No Logo","this is a fancy placeholder logo image","Custom Logo"]
+["(Default) With Logo clickable","No Logo clickable","this is a fancy placeholder logo image","Custom Logo clickable"]

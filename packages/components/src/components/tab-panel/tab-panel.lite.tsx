@@ -1,18 +1,20 @@
 import {
 	onMount,
 	Show,
+	useDefaultProps,
 	useMetadata,
 	useRef,
 	useStore
 } from '@builder.io/mitosis';
-import { DBTabPanelProps, DBTabPanelState } from './model';
 import { cls } from '../../utils';
+import { DBTabPanelProps, DBTabPanelState } from './model';
 
 useMetadata({});
+useDefaultProps<DBTabPanelProps>({});
 
 export default function DBTabPanel(props: DBTabPanelProps) {
 	// This is used as forwardRef
-	const ref = useRef<HTMLDivElement>(null);
+	const _ref = useRef<HTMLDivElement | any>(null);
 	// jscpd:ignore-start
 	const state = useStore<DBTabPanelState>({});
 
@@ -21,7 +23,7 @@ export default function DBTabPanel(props: DBTabPanelProps) {
 
 	return (
 		<section
-			ref={ref}
+			ref={_ref}
 			class={cls('db-tab-panel', props.className)}
 			id={props.id}
 			role="tabpanel"

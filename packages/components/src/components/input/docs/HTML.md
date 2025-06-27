@@ -3,7 +3,7 @@
 Load SCSS globally somewhere in your app:
 
 ```scss
-@forward "@db-ui/components/build/styles/db-ui-42";
+@forward "@db-ux/core-components/build/styles/relative";
 ```
 
 Use it:

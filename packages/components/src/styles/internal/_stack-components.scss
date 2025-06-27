@@ -1,0 +1,104 @@
+@use "sass:list";
+@use "@db-ux/core-foundations/build/styles/variables";
+@use "@db-ux/core-foundations/build/styles/helpers";
+@use "custom-elements";
+
+$stack-gaps: (
+	"3x-small": variables.$db-spacing-fixed-3xs,
+	"2x-small": variables.$db-spacing-fixed-2xs,
+	"x-small": variables.$db-spacing-fixed-xs,
+	"small": variables.$db-spacing-fixed-sm,
+	"medium": variables.$db-spacing-fixed-md,
+	"large": variables.$db-spacing-fixed-lg,
+	"x-large": variables.$db-spacing-fixed-xl,
+	"2x-large": variables.$db-spacing-fixed-2xl,
+	"3x-large": variables.$db-spacing-fixed-3xl,
+	"none": 0
+);
+
+@function arr-join($list, $glue: ", ") {
+	$result: null;
+
+	@for $i from 1 through list.length($list) {
+		$e: list.nth($list, $i);
+		$result: if(
+			$i != list.length($list),
+			$result#{$e}#{$glue},
+			$result#{$e}
+		);
+	}
+
+	@return $result;
+}
+
+@mixin get-stack-alignments() {
+	&[data-alignment="stretch"] {
+		align-items: stretch;
+	}
+
+	&[data-alignment="start"] {
+		align-items: flex-start;
+	}
+
+	&[data-alignment="end"] {
+		align-items: flex-end;
+	}
+
+	&[data-alignment="center"] {
+		align-items: center;
+	}
+}
+
+@mixin get-stack-justify-contents() {
+	&[data-justify-content="start"] {
+		justify-content: flex-start;
+	}
+
+	&[data-justify-content="end"] {
+		justify-content: flex-end;
+	}
+
+	&[data-justify-content="center"] {
+		justify-content: center;
+	}
+
+	&[data-justify-content="space-between"] {
+		justify-content: space-between;
+	}
+}
+
+%default-stack {
+	display: flex;
+	gap: variables.$db-spacing-fixed-sm;
+	justify-content: flex-start;
+	block-size: 100%;
+	inline-size: 100%;
+	overflow: auto;
+
+	&:is([data-direction="column"], :not([data-direction])) {
+		flex-direction: column;
+	}
+
+	> .db-divider,
+	> db-divider > .db-divider {
+		margin: 0;
+	}
+
+	&[data-direction="row"] {
+		flex-direction: row;
+	}
+
+	&[data-wrap="true"] {
+		flex-wrap: wrap;
+	}
+
+	@include get-stack-alignments();
+	@include get-stack-justify-contents();
+
+	@each $name, $gap in $stack-gaps {
+		&[data-gap="#{$name}"] {
+			/* stylelint-disable-next-line db-ux/use-spacings */
+			gap: #{$gap};
+		}
+	}
+}

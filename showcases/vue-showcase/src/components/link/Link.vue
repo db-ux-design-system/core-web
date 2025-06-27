@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import DefaultComponent from "../DefaultComponent.vue";
-import defaultComponentVariants from "../../../../shared/link.json";
 import { DBLink } from "../../../../../output/vue/src";
+import defaultComponentVariants from "../../../../shared/link.json";
+import DefaultComponent from "../DefaultComponent.vue";
 </script>
 
 <template>
@@ -15,6 +15,7 @@ import { DBLink } from "../../../../../output/vue/src";
 				:disabled="exampleProps?.disabled"
 				:size="exampleProps?.size"
 				:content="exampleProps?.content"
+				:showIcon="exampleProps?.showIcon"
 			>
 				{{ exampleName }}
 			</DBLink>

@@ -30,53 +30,69 @@
 		]
 	},
 	{
-		"name": "Interaction States",
+		"name": "Disabled",
 		"role": "radiogroup",
 		"examples": [
 			{
-				"name": "(Default) Enabled",
+				"name": "(Default) False",
 				"props": {
-					"name": "Interaction States"
+					"name": "Disabled",
+					"disabled": false
 				}
 			},
 			{
-				"name": "Disabled",
+				"name": "True",
 				"props": {
-					"name": "Interaction States",
+					"name": "Disabled",
 					"disabled": true
 				}
 			}
 		]
 	},
 	{
-		"name": "States",
+		"name": "Checked",
 		"role": "radiogroup",
 		"examples": [
 			{
-				"name": "(Default) Unselected",
+				"name": "(Default) False",
 				"props": {
-					"name": "States"
+					"name": "Checked"
 				}
 			},
 			{
-				"name": "Unselected - Invalid",
+				"name": "True",
 				"props": {
-					"name": "States Required",
-					"required": true
-				}
-			},
-			{
-				"name": "Selected",
-				"props": {
-					"name": "States",
+					"name": "Checked",
 					"checked": true
 				}
+			}
+		]
+	},
+	{
+		"name": "Validation",
+		"role": "radiogroup",
+		"examples": [
+			{
+				"name": "(Default) No validation",
+				"props": {
+					"name": "No validation",
+					"validation": "no-validation"
+				}
 			},
 			{
-				"name": "Selected - Valid",
+				"name": "Invalid",
 				"props": {
-					"name": "States Required",
-					"required": true,
+					"name": "invalid",
+					"validation": "invalid",
+					"invalidMessage": "Invalid Message"
+				}
+			},
+			{
+				"name": "Valid",
+				"props": {
+					"name": "valid",
+					"validation": "valid",
+					"validMessage": "Valid message",
 					"checked": true
 				}
 			}
@@ -102,17 +118,18 @@
 		]
 	},
 	{
-		"name": "Requirement",
+		"name": "Required",
 		"role": "radiogroup",
 		"examples": [
 			{
-				"name": "(Default) Optional",
+				"name": "(Default) False",
 				"props": {
-					"name": "Requirement"
+					"name": "Requirement",
+					"required": false
 				}
 			},
 			{
-				"name": "Required",
+				"name": "True",
 				"props": {
 					"name": "Requirement",
 					"required": true
@@ -121,20 +138,21 @@
 		]
 	},
 	{
-		"name": "Content",
+		"name": "Show Label",
 		"role": "radiogroup",
 		"examples": [
 			{
-				"name": "(Default) Label",
+				"name": "(Default) True",
 				"props": {
-					"name": "Content"
+					"name": "Content",
+					"showLabel": true
 				}
 			},
 			{
-				"name": "Hidden Label",
+				"name": "False",
 				"props": {
 					"name": "Content",
-					"variant": "hidden"
+					"showLabel": false
 				}
 			}
 		]

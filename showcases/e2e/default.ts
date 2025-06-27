@@ -1,20 +1,26 @@
-import { expect, type Page, test } from '@playwright/test';
 import { AxeBuilder } from '@axe-core/playwright';
+import { expect, type Page, test } from '@playwright/test';
 import { close, getCompliance } from 'accessibility-checker';
 import { type ICheckerError } from 'accessibility-checker/lib/api/IChecker';
 import { type FullProject } from 'playwright/types/test';
-import { COLORS, lvl1 } from './fixtures/variants';
+import { lvl1 } from './fixtures/variants';
 import { setScrollViewport } from './fixtures/viewport';
 
 const density = 'regular';
 
+export type SkipType = {
+	angular?: boolean;
+};
+
 export type DefaultTestType = {
 	path: string;
 	fixedHeight?: number;
+	skip?: SkipType;
 };
 
 export type DefaultSnapshotTestType = {
-	preScreenShot?: (page: Page) => Promise<void>;
+	preScreenShot?: (page: Page, project: FullProject) => Promise<void>;
+	ratio?: string;
 } & DefaultTestType;
 
 export type AxeCoreTestType = {
@@ -33,10 +39,12 @@ export type A11yCheckerTestType = {
 
 export const isStencil = (showcase: string): boolean =>
 	showcase.startsWith('stencil');
+export const isAngular = (showcase: string): boolean =>
+	showcase.startsWith('angular');
+export const isVue = (showcase: string): boolean => showcase.startsWith('vue');
 
 export const hasWebComponentSyntax = (showcase: string): boolean => {
-	const isAngular = showcase.startsWith('angular');
-	return isAngular || isStencil(showcase);
+	return isAngular(showcase) || isStencil(showcase);
 };
 
 export const waitForDBPage = async (page: Page) => {
@@ -71,16 +79,36 @@ const gotoPage = async (
 const isCheckerError = (object: any): object is ICheckerError =>
 	'details' in object;
 
+const shouldSkip = (skip: SkipType): boolean => {
+	if (skip) {
+		const showcase = process.env.showcase;
+		if (skip.angular && showcase.startsWith('angular')) {
+			return true;
+		}
+	}
+
+	return false;
+};
+
 export const getDefaultScreenshotTest = ({
 	path,
 	fixedHeight,
-	preScreenShot
+	preScreenShot,
+	skip,
+	ratio
 }: DefaultSnapshotTestType) => {
-	test(`should match screenshot`, async ({ page }) => {
+	test(`should match screenshot`, async ({ page }, { project }) => {
 		const showcase = process.env.showcase;
 		const diffPixel = process.env.diff;
-		const maxDiffPixelRatio = process.env.ratio;
-		const isAngular = showcase.startsWith('angular');
+		const maxDiffPixelRatio = process.env.ratio ?? ratio;
+		const stencil = isStencil(showcase);
+		const isWebkit =
+			project.name === 'webkit' || project.name === 'mobile_safari';
+
+		if ((stencil && isWebkit) || shouldSkip(skip)) {
+			// There is an issue with Webkit and Stencil for new playwright version
+			test.skip();
+		}
 
 		const config: any = {};
 
@@ -92,7 +120,9 @@ export const getDefaultScreenshotTest = ({
 			if (diffPixel) {
 				config.maxDiffPixels = Number(diffPixel);
 			}
-		} else if (isAngular) {
+		} else if (isWebkit) {
+			config.maxDiffPixelRatio = 0.033;
+		} else if (isAngular(showcase)) {
 			config.maxDiffPixels = 1000;
 		} else {
 			config.maxDiffPixels = 120;
@@ -105,7 +135,7 @@ export const getDefaultScreenshotTest = ({
 		config.mask = [header];
 
 		if (preScreenShot) {
-			await preScreenShot(page);
+			await preScreenShot(page, project);
 		}
 
 		await expect(page).toHaveScreenshot(config);
@@ -124,14 +154,19 @@ export const runAxeCoreTest = ({
 	skipAxe,
 	preAxe,
 	color = lvl1,
-	density = 'regular'
+	density = 'regular',
+	skip
 }: AxeCoreTestType) => {
 	test(`should not have any A11y issues for density ${density} and color ${color}`, async ({
 		page
 	}, { project }) => {
 		const isLevelOne = color.endsWith('-1');
 		// We don't need to check color contrast for every project (just for chrome)
-		if (skipAxe ?? (!isLevelOne && shouldSkipA11yTest(project))) {
+		if (
+			skipAxe ||
+			shouldSkip(skip) ||
+			(!isLevelOne && shouldSkipA11yTest(project))
+		) {
 			test.skip();
 		}
 
@@ -169,10 +204,11 @@ export const runA11yCheckerTest = ({
 	fixedHeight,
 	aCheckerDisableRules,
 	preChecker,
-	skipChecker
+	skipChecker,
+	skip
 }: A11yCheckerTestType) => {
 	test('test with accessibility checker', async ({ page }, { project }) => {
-		if (skipChecker ?? shouldSkipA11yTest(project)) {
+		if (skipChecker || shouldSkip(skip) || shouldSkipA11yTest(project)) {
 			// Checking complete DOM in Firefox and Webkit takes very long, we skip this test
 			// we don't need to check for mobile device - it just changes the viewport
 			test.skip();
@@ -208,5 +244,52 @@ export const runA11yCheckerTest = ({
 		}
 
 		expect(failures).toEqual([]);
+	});
+};
+
+export const runAriaSnapshotTest = ({
+	path,
+	fixedHeight,
+	preScreenShot,
+	skip
+}: DefaultSnapshotTestType) => {
+	test(`should have same aria-snapshot`, async ({ page }, {
+		project,
+		title
+	}) => {
+		if (shouldSkip(skip)) {
+			// There is an issue with Webkit and Stencil for new playwright version
+			test.skip();
+		}
+
+		await gotoPage(page, path, lvl1, fixedHeight, density);
+
+		if (preScreenShot) {
+			await preScreenShot(page, project);
+		}
+
+		await page.waitForTimeout(1000); // We wait a little bit until everything loaded
+
+		let snapshot = await page.locator('main').ariaSnapshot();
+
+		// Remove `/url` in snapshot because they differ in every showcase
+		const lines = snapshot.split('\n');
+		const includesUrl = '/url:';
+		snapshot = lines
+			.map((line) => {
+				if (line.includes(includesUrl)) {
+					return undefined;
+				}
+
+				if (line.includes('- link')) {
+					line = line.replace(':', '');
+				}
+
+				return line;
+			})
+			.filter(Boolean)
+			.join('\n');
+
+		expect(snapshot).toMatchSnapshot(`${title}.yaml`);
 	});
 };

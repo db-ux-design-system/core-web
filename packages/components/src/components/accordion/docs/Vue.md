@@ -1,13 +1,13 @@
 ## Vue
 
-For general installation and configuration look at the [v-components](https://www.npmjs.com/package/@db-ui/v-components) package.
+For general installation and configuration look at the [v-core-components](https://www.npmjs.com/package/@db-ux/v-core-components) package.
 
 ### Use component
 
 ```vue App.vue
 <!-- App.vue -->
 <script>
-import { DBAccordion, DBAccordionItem } from "@db-ui/v-components";
+import { DBAccordion, DBAccordionItem } from "@db-ux/v-core-components";
 </script>
 
 <template>

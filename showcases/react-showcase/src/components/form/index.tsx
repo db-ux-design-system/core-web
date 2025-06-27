@@ -1,23 +1,23 @@
 import { useEffect, useState } from 'react';
 import {
-	DBDivider,
-	DBTabList,
-	DBTabPanel,
-	DBTabs
-} from '@db-ui/react-components/src';
-import {
 	DBAccordion,
 	DBAccordionItem,
 	DBButton,
 	DBCheckbox,
+	DBCustomSelect,
+	DBDivider,
 	DBInput,
+	DBLink,
+	DBPopover,
 	DBRadio,
 	DBSelect,
 	DBTabItem,
+	DBTabList,
+	DBTabPanel,
+	DBTabs,
 	DBTag,
 	DBTextarea,
-	DBTooltip,
-	DBLink
+	DBTooltip
 } from '../../../../../output/react/src';
 import type {
 	ChangeEvent,
@@ -36,6 +36,10 @@ const FormComponent = () => {
 
 	const [accordionItems, setAccordionItems] = useState<ValueLabelType[]>();
 	const [tabsTest, setTabsTest] = useState<boolean>(false);
+
+	const [multiSelectValue, setMultiSelectValue] = useState<
+		string[] | undefined
+	>(['o2']);
 
 	useEffect(() => {
 		setTimeout(() => {
@@ -68,13 +72,27 @@ const FormComponent = () => {
 		<div className="form-container">
 			<div>
 				<form>
+					<DBTextarea
+						label="test"
+						placeholder="fieldsizing"
+						resize="none"
+						fieldSizing="content"></DBTextarea>
+
+					<DBCustomSelect
+						options={[{ value: 'Option 1' }, { value: 'Option 2' }]}
+						label="Test"
+						required
+						showSearch
+						multiple
+						placeholder="Placeholder"
+					/>
 					<fieldset>
 						<p>Input:</p>
 						<DBInput
 							label="Textinput"
 							placeholder="Placeholder"
 							message="Description"
-							icon="person"
+							icon="x_placeholder"
 							name="input-name"
 							value={input}
 							dataList={dataList}
@@ -277,7 +295,7 @@ const FormComponent = () => {
 				<p>
 					Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
 					diam nonumy eirmod tempor{' '}
-					<DBLink variant="inline" href="#">
+					<DBLink showIcon={false} href="#">
 						invidunt
 					</DBLink>{' '}
 					ut labore et dolore magna aliquyam erat, sed diam voluptua.
@@ -285,7 +303,7 @@ const FormComponent = () => {
 					Stet clita kasd gubergren, no sea takimata sanctus est Lorem
 					ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur
 					sadipscing elitr, sed diam nonumy eirmod tempor{' '}
-					<DBLink variant="inline" href="#">
+					<DBLink showIcon={false} href="#">
 						labore et dolore magna aliquyam erat, sed diam voluptua.
 						At vero eos et accusam et justo duo dolores et ea rebum.
 						Stet
@@ -315,15 +333,19 @@ const FormComponent = () => {
 
 				<DBTabs orientation="vertical">
 					<DBTabList>
-						<DBTabItem icon="airplane">Airplane Button</DBTabItem>
+						<DBTabItem icon="x_placeholder">
+							Airplane Button
+						</DBTabItem>
 						<DBTabItem iconAfter="cancel">Cancel Button</DBTabItem>
 						<DBTabItem iconAfter="cancel">
 							Long Button Label with a lot of text
 						</DBTabItem>
-						<DBTabItem icon="airplane" iconAfter="cancel">
+						<DBTabItem icon="x_placeholder" iconAfter="cancel">
 							Another Button Label with a lot of text
 						</DBTabItem>
-						<DBTabItem icon="airplane" noText={true}></DBTabItem>
+						<DBTabItem
+							icon="x_placeholder"
+							noText={true}></DBTabItem>
 					</DBTabList>
 					<DBTabPanel>
 						Lorem ipsum dolor sit amet, consetetur sadipscing elitr,
@@ -366,11 +388,40 @@ const FormComponent = () => {
 				<DBDivider />
 
 				<DBAccordion>
-					{accordionItems?.map((item) => (
+					{accordionItems?.map((item, index) => (
 						<DBAccordionItem
 							key={item.value}
 							headlinePlain={item.value}>
-							{item.value}
+							<p>{item.value}</p>
+							{index === 0 && (
+								<DBCustomSelect
+									options={[
+										{ value: 'Option 1' },
+										{ value: 'Option 2' }
+									]}
+									label="Test"
+									required
+									showSearch
+									multiple
+									placeholder="Placeholder"
+								/>
+							)}
+							{index === 1 && (
+								<DBPopover
+									trigger={<DBButton>Popover</DBButton>}>
+									<ul>
+										<li>Content 1</li>
+										<li>Content 2</li>
+										<li>Content 3</li>
+									</ul>
+								</DBPopover>
+							)}
+							{index === 2 && (
+								<DBButton>
+									Tooltip
+									<DBTooltip>Tooltip</DBTooltip>
+								</DBButton>
+							)}
 						</DBAccordionItem>
 					))}
 				</DBAccordion>
@@ -389,8 +440,14 @@ const FormComponent = () => {
 				/>
 
 				<h2>Validations</h2>
-
+				<DBButton>
+					Test
+					<DBTooltip placement="bottom">
+						Open above floating label
+					</DBTooltip>
+				</DBButton>
 				<DBInput
+					variant="floating"
 					label="Input minlength validation"
 					placeholder="Placeholder"
 					invalidMessage="Min. 3"
@@ -431,22 +488,66 @@ const FormComponent = () => {
 					semantic="neutral"
 					emphasis="strong">
 					KUZ
-					<DBTooltip
-						id="tooltip-01"
-						placement="right-end"
-						variant="with arrow">
+					<DBTooltip id="tooltip-01" placement="right-end">
 						Beschreibungstext
 					</DBTooltip>
 				</DBTag>
 				<DBButton describedbyid="tooltip-01">
 					KUZ
-					<DBTooltip
-						id="tooltip-01"
-						placement="right-end"
-						variant="with arrow">
+					<DBTooltip id="tooltip-01" placement="right-end">
 						Beschreibungstext
 					</DBTooltip>
 				</DBButton>
+
+				<form
+					onSubmit={(event) => {
+						event.preventDefault();
+						/* eslint-disable-next-line no-console */
+						console.log(event);
+					}}>
+					<DBCustomSelect
+						name="input-multi"
+						label="Test"
+						options={[
+							{ label: 'O1', value: 'o1' },
+							{ label: 'O2', value: 'o2' },
+							{ label: 'O3', value: 'o3' },
+							{ label: 'O4', value: 'o4' },
+							{ label: 'O5', value: 'o5' },
+							{ label: 'O6', value: 'o6' }
+						]}
+						placeholder="Test"
+						selectAllLabel="Select all"
+						searchLabel="Search"
+						noResultsText="No matching filter"
+						values={multiSelectValue}
+						onOptionSelected={(val) => {
+							setMultiSelectValue(val);
+						}}
+					/>
+					<DBButton
+						onClick={() => {
+							setMultiSelectValue([]);
+						}}>
+						Reset Multiselect
+					</DBButton>
+					<DBButton type="submit">Submit</DBButton>
+				</form>
+
+				<div>
+					<DBTag>
+						<DBButton>Test</DBButton>
+					</DBTag>
+					<DBTag>
+						<DBLink>Test</DBLink>
+					</DBTag>
+					<DBTag>
+						<DBRadio>Test</DBRadio>
+					</DBTag>
+					<DBTag>
+						<DBCheckbox>Test</DBCheckbox>
+					</DBTag>
+				</div>
 			</div>
 		</div>
 	);

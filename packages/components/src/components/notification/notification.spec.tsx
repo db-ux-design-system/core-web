@@ -1,8 +1,8 @@
-import { expect, test } from '@playwright/experimental-ct-react';
 import AxeBuilder from '@axe-core/playwright';
+import { expect, test } from '@playwright/experimental-ct-react';
 
-import { DBNotification } from './index';
 import { DEFAULT_VIEWPORT, SEMANTICS } from '../../shared/constants.ts';
+import { DBNotification } from './index';
 
 const comp: any = <DBNotification>Test</DBNotification>;
 
@@ -36,9 +36,7 @@ const testAction = () => {
 	test(`should be closeable`, async ({ mount }) => {
 		let close = '';
 		const closeable: any = (
-			<DBNotification
-				onClose={() => (close = 'test')}
-				behaviour="closable">
+			<DBNotification onClose={() => (close = 'test')} closeable>
 				Test
 			</DBNotification>
 		);
@@ -49,6 +47,11 @@ const testAction = () => {
 };
 
 const testA11y = () => {
+	test('should have same aria-snapshot', async ({ mount }, testInfo) => {
+		const component = await mount(comp);
+		const snapshot = await component.ariaSnapshot();
+		expect(snapshot).toMatchSnapshot(`${testInfo.testId}.yaml`);
+	});
 	test('should not have any accessibility issues', async ({
 		page,
 		mount

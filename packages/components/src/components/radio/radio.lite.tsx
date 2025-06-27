@@ -2,54 +2,51 @@ import {
 	onMount,
 	onUpdate,
 	Show,
+	useDefaultProps,
 	useMetadata,
 	useRef,
 	useStore,
 	useTarget
 } from '@builder.io/mitosis';
-import { DBRadioProps, DBRadioState } from './model';
-import { cls, uuid } from '../../utils';
 import { ChangeEvent, InteractionEvent } from '../../shared/model';
-import { handleFrameworkEvent } from '../../utils/form-components';
+import { cls, getBoolean, getHideProp, uuid } from '../../utils';
+import {
+	handleFrameworkEventAngular,
+	handleFrameworkEventVue
+} from '../../utils/form-components';
+import { DBRadioProps, DBRadioState } from './model';
 
-useMetadata({});
+useMetadata({
+	angular: {
+		nativeAttributes: ['disabled', 'required', 'checked', 'indeterminate']
+	}
+});
+useDefaultProps<DBRadioProps>({});
 
 export default function DBRadio(props: DBRadioProps) {
-	const ref = useRef<HTMLInputElement>(null);
+	const _ref = useRef<HTMLInputElement | any>(null);
 	// jscpd:ignore-start
 	const state = useStore<DBRadioState>({
 		initialized: false,
 		_id: undefined,
-		handleChange: (event: ChangeEvent<HTMLInputElement>) => {
+		handleChange: (event: ChangeEvent<HTMLInputElement> | any) => {
 			if (props.onChange) {
 				props.onChange(event);
 			}
 
-			if (props.change) {
-				props.change(event);
-			}
-
 			useTarget({
-				angular: () => handleFrameworkEvent(this, event, 'checked'),
-				vue: () => handleFrameworkEvent(this, event, 'checked')
+				angular: () => handleFrameworkEventAngular(state, event),
+				vue: () => handleFrameworkEventVue(() => {}, event)
 			});
 		},
-		handleBlur: (event: InteractionEvent<HTMLInputElement>) => {
+		handleBlur: (event: InteractionEvent<HTMLInputElement> | any) => {
 			if (props.onBlur) {
 				props.onBlur(event);
 			}
-
-			if (props.blur) {
-				props.blur(event);
-			}
 		},
-		handleFocus: (event: InteractionEvent<HTMLInputElement>) => {
+		handleFocus: (event: InteractionEvent<HTMLInputElement> | any) => {
 			if (props.onFocus) {
 				props.onFocus(event);
-			}
-
-			if (props.focus) {
-				props.focus(event);
 			}
 		}
 	});
@@ -61,36 +58,29 @@ export default function DBRadio(props: DBRadioProps) {
 	// jscpd:ignore-end
 
 	onUpdate(() => {
-		if (props.checked && state.initialized && document && state._id) {
-			const radioElement = document?.getElementById(
-				state._id
-			) as HTMLInputElement;
-			if (radioElement) {
-				if (props.checked != undefined) {
-					radioElement.checked = true;
-				}
-			}
+		if (props.checked && state.initialized && _ref) {
+			_ref.checked = true;
 		}
-	}, [state.initialized, props.checked]);
+	}, [state.initialized, _ref, props.checked]);
 
 	return (
 		<label
 			data-size={props.size}
-			data-variant={props.variant}
+			data-hide-label={getHideProp(props.showLabel)}
 			class={cls('db-radio', props.className)}
 			htmlFor={state._id}>
 			<input
-				aria-invalid={props.customValidity === 'invalid'}
-				data-custom-validity={props.customValidity}
-				ref={ref}
+				aria-invalid={props.validation === 'invalid'}
+				data-custom-validity={props.validation}
+				ref={_ref}
 				type="radio"
 				id={state._id}
 				name={props.name}
-				checked={props.checked}
-				disabled={props.disabled}
-				aria-describedby={props.describedbyid}
+				checked={getBoolean(props.checked, 'checked')}
+				disabled={getBoolean(props.disabled, 'disabled')}
+				aria-describedby={props.describedbyid ?? props.ariaDescribedBy}
 				value={props.value}
-				required={props.required}
+				required={getBoolean(props.required, 'required')}
 				onChange={(event: ChangeEvent<HTMLInputElement>) =>
 					state.handleChange(event)
 				}
@@ -101,10 +91,9 @@ export default function DBRadio(props: DBRadioProps) {
 					state.handleFocus(event)
 				}
 			/>
-			<Show when={props.label}>
-				<span>{props.label}</span>
+			<Show when={props.label} else={props.children}>
+				{props.label}
 			</Show>
-			{props.children}
 		</label>
 	);
 }

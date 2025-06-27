@@ -5,7 +5,7 @@ updates:
     directory: "/"
     schedule:
       interval: "daily"
-      time: "02:00"
+      time: "23:00"
       timezone: "Europe/Berlin"
     pull-request-branch-name:
       separator: "-"
@@ -16,7 +16,7 @@ updates:
     open-pull-requests-limit: 10
     schedule:
       interval: "daily"
-      time: "02:00"
+      time: "23:00"
       timezone: "Europe/Berlin"
     ignore:
       # angular: we update the major version manually
@@ -46,6 +46,9 @@ updates:
     # https://github.com/dependabot/dependabot-core/issues/5226#issuecomment-1179434437
     versioning-strategy: increase
     groups:
+      patch-dependencies:
+        update-types:
+          - "patch"
       commitlint:
         patterns:
           - "@commitlint*"
@@ -59,14 +62,12 @@ updates:
           - "ng-packagr"
         update-types:
           - "minor"
-          - "patch"
       react:
         patterns:
           - "react"
           - "react-dom"
         update-types:
           - "minor"
-          - "patch"
       next:
         patterns:
           - "@next*"
@@ -82,3 +83,6 @@ updates:
       mdx-js:
         patterns:
           - "@mdx-js/*"
+      guidepup:
+        patterns:
+          - "@guidepup/*"

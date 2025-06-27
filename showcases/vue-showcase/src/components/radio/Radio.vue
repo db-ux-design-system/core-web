@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import DefaultComponent from "../DefaultComponent.vue";
+import { DBInfotext, DBRadio } from "../../../../../output/vue/src";
 import defaultComponentVariants from "../../../../shared/radio.json";
-import { DBRadio } from "../../../../../output/vue/src";
+import DefaultComponent from "../DefaultComponent.vue";
 </script>
 
 <template>
@@ -16,11 +16,26 @@ import { DBRadio } from "../../../../../output/vue/src";
 				:checked="exampleProps?.checked"
 				:value="exampleProps?.value"
 				:required="exampleProps?.required"
-				:variant="exampleProps?.variant"
+				:show-label="exampleProps?.showLabel"
 				:disabled="exampleProps?.disabled"
+				:validation="exampleProps?.validation"
 			>
 				{{ exampleName }}
 			</DBRadio>
+			<template
+				v-if="
+					exampleProps?.showLabel !== undefined &&
+					!exampleProps?.showLabel
+				"
+			>
+				<DBInfotext
+					semantic="informational"
+					size="small"
+					:showIcon="false"
+				>
+					{{ exampleName }}
+				</DBInfotext>
+			</template>
 		</template>
 	</DefaultComponent>
 </template>

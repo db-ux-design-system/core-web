@@ -5,10 +5,10 @@
 </template>
 
 <script setup lang="ts">
-import "@db-ui/components/build/styles/db-ui-42-rollup.css";
-import "@db-ui/foundations/build/css/colors/classes/all.css";
-import "../../showcase-styles.css";
+import "@db-ux/core-components/build/styles/rollup.css";
+import "@db-ux/db-theme/build/styles/rollup.css";
 import { provide } from "vue";
+import "../../showcase-styles.css";
 
 provide("$showcaseVariant", "nuxt");
 </script>

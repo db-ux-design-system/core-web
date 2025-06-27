@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import DefaultComponent from "../DefaultComponent.vue";
-import defaultComponentVariants from "../../../../shared/icon.json";
 import { DBIcon, DBInfotext } from "../../../../../output/vue/src";
+import defaultComponentVariants from "../../../../shared/icon.json";
+import DefaultComponent from "../DefaultComponent.vue";
 </script>
 
 <template>
@@ -12,7 +12,7 @@ import { DBIcon, DBInfotext } from "../../../../../output/vue/src";
 			<DBInfotext icon="none" size="small" semantic="informational">
 				{{ exampleName }}</DBInfotext
 			>
-			<DBIcon icon="person">
+			<DBIcon icon="x_placeholder">
 				{{ exampleName }}
 			</DBIcon>
 		</template>

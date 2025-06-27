@@ -1,7 +1,7 @@
-import DefaultPage from '../../../components/default-page';
 import { DBInfotext } from '../../../../../output/react/src';
-import { testTableData } from '../../../data/testing-table'; // This file will be generated at runtime by /showcases/patternhub/scripts/generate-test-table.js
 import AccessibilityReviewInfo from '../../../components/accessibility-review-info/accessibility-review-info'; // This file will be generated at runtime
+import DefaultPage from '../../../components/default-page';
+import { testTableData } from '../../../data/testing-table'; // This file will be generated at runtime by /showcases/patternhub/scripts/generate-test-table.js
 
 const tableHeaders = [
 	{
@@ -22,6 +22,10 @@ const tableHeaders = [
 	{
 		label: 'Showcase: A11y (Axe)',
 		href: 'https://github.com/dequelabs/axe-core'
+	},
+	{
+		label: 'Showcase: A11y (Aria snapshots)',
+		href: 'https://playwright.dev/docs/aria-snapshots#aria-snapshots'
 	},
 	{
 		label: 'Showcase: A11y (Accessibility-Checker)',
@@ -69,6 +73,7 @@ const TestTable = () => {
 							singleComponentAxe,
 							showcaseVisuals,
 							showcaseAxe,
+							showcaseAria,
 							showcaseAC,
 							showcaseGP,
 							accessibilityReview
@@ -78,6 +83,7 @@ const TestTable = () => {
 								singleComponentAxe &&
 								showcaseVisuals &&
 								showcaseAxe &&
+								showcaseAria &&
 								showcaseAC &&
 								showcaseGP &&
 								accessibilityReview?.status === 'DONE';
@@ -89,6 +95,7 @@ const TestTable = () => {
 										singleComponentAxe,
 										showcaseVisuals,
 										showcaseAxe,
+										showcaseAria,
 										showcaseAC,
 										showcaseGP
 									].map((status, index) => (

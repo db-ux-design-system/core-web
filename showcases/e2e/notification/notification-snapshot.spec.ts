@@ -1,7 +1,9 @@
 import { test } from '@playwright/test';
 // @ts-expect-error - required for playwright
-import { getDefaultScreenshotTest } from '../default.ts';
+import { getDefaultScreenshotTest, runAriaSnapshotTest } from '../default.ts';
 
+const path = '06/notification';
 test.describe('DBNotification', () => {
-	getDefaultScreenshotTest({ path: '06/notification' });
+	getDefaultScreenshotTest({ path });
+	runAriaSnapshotTest({ path });
 });

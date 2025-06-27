@@ -1,9 +1,9 @@
-import { useSearchParams } from 'react-router-dom';
 import {
-	useSearchParams as useSearchParamsNext,
+	usePathname as usePathnameNext,
 	useRouter as useRouterNext,
-	usePathname as usePathnameNext
+	useSearchParams as useSearchParamsNext
 } from 'next/navigation';
+import { useSearchParams } from 'react-router-dom';
 
 const useUniversalSearchParameters = (): [
 	URLSearchParams,
@@ -24,9 +24,9 @@ const useUniversalSearchParameters = (): [
 			: useSearchParams();
 
 	const setSearchParameters = (params: Record<string, string>) => {
-		if (typeof window !== 'undefined') {
+		if (typeof globalThis !== 'undefined') {
 			const currentParams = new URLSearchParams(
-				window.location.href.split('?')[1]
+				globalThis.location.href.split('?')[1]
 			);
 			currentParams.sort();
 			const newParams = new URLSearchParams(params);

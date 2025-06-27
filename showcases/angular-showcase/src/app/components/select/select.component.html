@@ -14,13 +14,17 @@
 			[label]="exampleProps?.label"
 			[placeholder]="exampleName"
 			[variant]="exampleProps?.variant"
+			[showLabel]="exampleProps?.showLabel"
 			[options]="exampleProps?.options"
 			[disabled]="exampleProps?.disabled"
 			[icon]="exampleProps?.icon"
 			[required]="exampleProps?.required"
 			[value]="exampleProps?.value"
 			[message]="exampleProps?.message"
-			>{{ exampleName }}</db-select
-		>
+			[showMessage]="exampleProps?.showMessage"
+			[invalidMessage]="exampleProps?.invalidMessage"
+			[validMessage]="exampleProps?.validMessage"
+			[validation]="exampleProps?.validation"
+		></db-select>
 	</ng-template>
 </app-default-component>

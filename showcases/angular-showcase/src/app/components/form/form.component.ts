@@ -23,18 +23,16 @@ import {
 	DBTag,
 	DBTextarea
 } from '../../../../../../output/angular/src';
-import { DefaultComponent } from '../default.component';
 import { environment } from '../../../environments/environment';
 
 @Component({
 	selector: 'app-form',
 	templateUrl: './form.component.html',
 	imports: environment.webComponents
-		? [FormsModule, ReactiveFormsModule, DefaultComponent]
+		? [FormsModule, ReactiveFormsModule]
 		: [
 				FormsModule,
 				ReactiveFormsModule,
-				DefaultComponent,
 				DBInput,
 				DBTextarea,
 				DBSelect,
@@ -94,6 +92,10 @@ export class FormComponent {
 			? this.tags.filter((t) => t !== tag)
 			: [...this.tags, tag];
 	};
+
+	changeTextarea(key: string, event: any) {
+		this[key] = event.target.value;
+	}
 
 	resetValues(): void {
 		this.model.input = 'reset';

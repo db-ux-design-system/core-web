@@ -1,17 +1,17 @@
 import {
-	DBPage,
 	DBBrand,
 	DBButton,
 	DBHeader,
 	DBLink,
 	DBNavigation,
-	DBNavigationItem
+	DBNavigationItem,
+	DBPage
 } from '../../../../../output/react/src';
 import { type DBPageProps } from '../../../../../output/react/src/components/page/model';
 import defaultComponentVariants from '../../../../shared/page.json';
+import { type BaseComponentProps } from '../base-component-data';
 import { getVariants } from '../data';
 import DefaultComponent from '../default-component';
-import { type BaseComponentProps } from '../base-component-data';
 
 const getPage = ({
 	variant,
@@ -19,8 +19,7 @@ const getPage = ({
 	children,
 	className,
 	describedbyid,
-	id,
-	key
+	id
 }: DBPageProps) => (
 	<DBPage
 		variant={variant}
@@ -28,7 +27,6 @@ const getPage = ({
 		className={className}
 		describedbyid={describedbyid}
 		id={id}
-		key={key}
 		header={
 			<DBHeader
 				brand={<DBBrand title="DBHeader">DBHeader</DBBrand>}
@@ -45,22 +43,19 @@ const getPage = ({
 				}
 				secondaryAction={
 					<>
-						<DBButton icon="person" variant="ghost" noText>
+						<DBButton icon="x_placeholder" variant="ghost" noText>
 							Profile
 						</DBButton>
-						<DBButton icon="bell" variant="ghost" noText>
+						<DBButton icon="x_placeholder" variant="ghost" noText>
 							Notification
 						</DBButton>
-						<DBButton
-							icon="question_mark_circle"
-							variant="ghost"
-							noText>
+						<DBButton icon="x_placeholder" variant="ghost" noText>
 							Help
 						</DBButton>
 					</>
 				}>
 				<DBNavigation>
-					<DBNavigationItem icon="person">
+					<DBNavigationItem icon="x_placeholder">
 						<a href="#">{children}</a>
 					</DBNavigationItem>
 					<DBNavigationItem disabled>

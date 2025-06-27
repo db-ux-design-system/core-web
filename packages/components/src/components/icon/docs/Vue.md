@@ -1,16 +1,16 @@
 ## Vue
 
-For general installation and configuration take a look at the [v-components](https://www.npmjs.com/package/@db-ui/v-components) package.
+For general installation and configuration take a look at the [v-core-components](https://www.npmjs.com/package/@db-ux/v-core-components) package.
 
 ### Use component
 
 ```vue App.vue
 <!-- App.vue -->
 <script>
-import { DBIcon } from "@db-ui/v-components";
+import { DBIcon } from "@db-ux/v-core-components";
 </script>
 
 <template>
-	<DBIcon icon="person">Icon</DBIcon>
+	<DBIcon icon="x_placeholder">Icon</DBIcon>
 </template>
 ```

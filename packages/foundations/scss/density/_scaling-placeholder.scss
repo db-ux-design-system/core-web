@@ -1,5 +1,6 @@
 @use "variables";
 @use "../screen-sizes";
+@use "../helpers";
 
 @function get-variable($key, $density, $size, $device: "") {
 	@return var(--db-#{$key}-#{$density}-#{$device}#{$size});
@@ -7,50 +8,68 @@
 
 @each $density in variables.$densities {
 	%db-scaling-#{$density} {
-		@each $sizing in variables.$sizings {
-			--db-sizing-#{$sizing}: #{get-variable(
-					"sizing",
-					$density,
-					$sizing
-				)};
-		}
-
-		@each $fix in variables.$sizings {
-			--db-spacing-fixed-#{$fix}: #{get-variable(
-					"spacing-fixed",
-					$density,
-					$fix
-				)};
-		}
-
-		@each $res in variables.$sizings {
-			--db-spacing-responsive-#{$res}: #{get-variable(
-					"spacing-responsive",
-					$density,
-					$res,
-					"mobile-"
-				)};
-		}
-
-		@include screen-sizes.screen() {
-			@each $res in variables.$sizings {
-				--db-spacing-responsive-#{$res}: #{get-variable(
-						"spacing-responsive",
+		/* stylelint-disable-next-line at-rule-prelude-no-invalid,layer-name-pattern */
+		@layer #{helpers.$layer-variables} {
+			@each $sizing in variables.$sizings {
+				--db-sizing-#{$sizing}: #{get-variable(
+						"sizing",
 						$density,
-						$res,
-						"tablet-"
+						$sizing
 					)};
 			}
-		}
 
-		@include screen-sizes.screen("md") {
-			@each $res in variables.$sizings {
-				--db-spacing-responsive-#{$res}: #{get-variable(
-						"spacing-responsive",
+			@each $fix in variables.$sizings {
+				--db-spacing-fixed-#{$fix}: #{get-variable(
+						"spacing-fixed",
 						$density,
-						$res,
-						"desktop-"
+						$fix
 					)};
+			}
+
+			@include screen-sizes.screen-min-max(
+				(
+					max: "sm"
+				)
+			) {
+				@each $res in variables.$sizings {
+					--db-spacing-responsive-#{$res}: #{get-variable(
+							"spacing-responsive",
+							$density,
+							$res,
+							"mobile-"
+						)};
+				}
+			}
+
+			@include screen-sizes.screen-min-max(
+				(
+					min: "sm",
+					max: "md"
+				)
+			) {
+				@each $res in variables.$sizings {
+					--db-spacing-responsive-#{$res}: #{get-variable(
+							"spacing-responsive",
+							$density,
+							$res,
+							"tablet-"
+						)};
+				}
+			}
+
+			@include screen-sizes.screen-min-max(
+				(
+					min: "md"
+				)
+			) {
+				@each $res in variables.$sizings {
+					--db-spacing-responsive-#{$res}: #{get-variable(
+							"spacing-responsive",
+							$density,
+							$res,
+							"desktop-"
+						)};
+				}
 			}
 		}
 	}

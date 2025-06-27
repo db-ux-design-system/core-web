@@ -26,36 +26,38 @@
 		]
 	},
 	{
-		"name": "Interaction States",
+		"name": "Disabled",
 		"examples": [
 			{
-				"name": "Enabled (Default)/Hover/Pressed",
+				"name": "(Default) False",
 				"props": {
-					"headlinePlain": "Enabled (Default)/Hover/Pressed"
+					"headlinePlain": "(Default) False",
+					"disabled": false
 				}
 			},
 			{
-				"name": "Disabled",
+				"name": "True",
 				"props": {
-					"headlinePlain": "Disabled",
+					"headlinePlain": "True",
 					"disabled": true
 				}
 			}
 		]
 	},
 	{
-		"name": "Content States",
+		"name": "Open",
 		"examples": [
 			{
-				"name": "(Default) Collapsed",
+				"name": "(Default) False",
 				"props": {
-					"headlinePlain": "(Default) Collapsed"
+					"headlinePlain": "(Default) False",
+					"open": false
 				}
 			},
 			{
-				"name": "Open",
+				"name": "True",
 				"props": {
-					"headlinePlain": "Open",
+					"headlinePlain": "True",
 					"open": true
 				}
 			}

@@ -8,9 +8,9 @@ Unfortunately, the **DBLink** and **DBButton** components do not support router 
 
 The following standard routers have been successfully implemented in the corresponding frameworks (Angular, React, Vue). Other routers should work in the same way, but have not yet been tested.
 
--   [Angular router](https://angular.io/api/router)
--   [React router](https://reactrouter.com/en/main)
--   [Vue router](https://v3.router.vuejs.org/)
+- [Angular router](https://angular.io/api/router)
+- [React router](https://reactrouter.com/en/main)
+- [Vue router](https://v3.router.vuejs.org/)
 
 The routers are installed and used in accordance with the official docs:
 
@@ -18,7 +18,7 @@ The routers are installed and used in accordance with the official docs:
 
 To create a DB Brand styled router link, place the corresponding router link component in the default slot of **DBNavigationItem**.
 
-[How to use DBNavigationItem](https://db-ui.github.io/mono/review/main/components/navigation-item/overview)
+[How to use DBNavigationItem](https://design-system.deutschebahn.com/core-web/review/main/components/navigation-item/overview)
 
 **Angular**
 

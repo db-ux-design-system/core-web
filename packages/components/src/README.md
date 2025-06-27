@@ -9,7 +9,7 @@ There are some important files where we include `SCSS mixins` and `SCSS placehol
 Main use-case margins, paddings, height, width, ... Example:
 
 ```scss
-@use "@db-ui/foundations/build/scss/variables";
+@use "@db-ux/core-foundations/build/styles/variables";
 
 .db-xxx {
 	padding-inline-start: variables.$db-spacing-fixed-2xs;
@@ -21,7 +21,7 @@ Main use-case margins, paddings, height, width, ... Example:
 Main use-case to set/overwrite an icon inside a component. Example:
 
 ```scss
-@use "@db-ui/foundations/build/scss/icons";
+@use "@db-ux/core-foundations/build/styles/icons";
 
 .db-xxx {
 	@include icons.set-icon("chevron_down", "after");
@@ -33,7 +33,7 @@ Main use-case to set/overwrite an icon inside a component. Example:
 Main use-case to overwrite a default font-size/line-height. Example:
 
 ```scss
-@use "@db-ui/foundations/build/scss/fonts";
+@use "@db-ux/core-foundations/build/styles/fonts";
 
 .db-xxx {
 	label {
@@ -47,8 +47,8 @@ Main use-case to overwrite a default font-size/line-height. Example:
 Main use-case to overwrite a color or change colors by `data-variant`. Example:
 
 ```scss
-@use "@db-ui/foundations/build/scss/colors";
-@use "@db-ui/foundations/build/scss/helpers";
+@use "@db-ux/core-foundations/build/styles/colors";
+@use "@db-ux/core-foundations/build/styles/helpers";
 
 .db-xxx {
 	@include helpers.hover {
@@ -87,7 +87,7 @@ Main use-case for adaptive components. Example:
 Main use-case for media query. Example:
 
 ```scss
-@use "@db-ui/foundations/build/scss/screen-sizes";
+@use "@db-ux/core-foundations/build/styles/screen-sizes";
 
 .db-xxx {
 	display: grid;
@@ -104,7 +104,7 @@ Main use-case for media query. Example:
 Main use-case for converting `px` values or inserting UI styling like e.g. a divider. Example:
 
 ```scss
-@use "@db-ui/foundations/build/scss/helpers";
+@use "@db-ux/core-foundations/build/styles/helpers";
 
 .db-xxx {
 	@include helpers.divider("top");

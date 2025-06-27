@@ -1,11 +1,11 @@
 <script setup lang="ts">
-import DefaultComponent from "../DefaultComponent.vue";
-import defaultComponentVariants from "../../../../shared/navigation.json";
 import {
 	DBInfotext,
 	DBNavigation,
 	DBNavigationItem
 } from "../../../../../output/vue/src";
+import defaultComponentVariants from "../../../../shared/navigation.json";
+import DefaultComponent from "../DefaultComponent.vue";
 
 const getId = (name?: string): string =>
 	`${name?.replaceAll(/\W/g, "_").toLowerCase()}`;
@@ -48,7 +48,7 @@ const getId = (name?: string): string =>
 							</DBNavigationItem>
 						</template>
 					</DBNavigationItem>
-					<DBNavigationItem icon="person">
+					<DBNavigationItem icon="x_placeholder">
 						<a href="#">Navi-Item 2</a>
 					</DBNavigationItem>
 					<DBNavigationItem :disabled="true">

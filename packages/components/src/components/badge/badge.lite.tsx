@@ -1,18 +1,22 @@
 import {
 	onMount,
 	onUpdate,
+	Show,
+	useDefaultProps,
 	useMetadata,
 	useRef,
 	useStore
 } from '@builder.io/mitosis';
-import { DBBadgeProps, DBBadgeState } from './model';
-import { cls } from '../../utils';
 import { DEFAULT_LABEL } from '../../shared/constants';
+import { cls } from '../../utils';
+import { DBBadgeProps, DBBadgeState } from './model';
 
 useMetadata({});
 
+useDefaultProps<DBBadgeProps>({});
+
 export default function DBBadge(props: DBBadgeProps) {
-	const ref = useRef<HTMLSpanElement>(null);
+	const _ref = useRef<HTMLSpanElement | any>(null);
 	const state = useStore<DBBadgeState>({
 		initialized: false
 	});
@@ -22,9 +26,9 @@ export default function DBBadge(props: DBBadgeProps) {
 	});
 
 	onUpdate(() => {
-		if (ref && state.initialized) {
+		if (_ref && state.initialized) {
 			if (props.placement?.startsWith('corner')) {
-				let parent = ref.parentElement;
+				let parent = _ref.parentElement;
 
 				if (parent && parent.localName.includes('badge')) {
 					// Angular workaround
@@ -32,15 +36,15 @@ export default function DBBadge(props: DBBadgeProps) {
 				}
 
 				if (parent) {
-					parent.setAttribute('data-has-badge', 'true');
+					parent.dataset['hasBadge'] = 'true';
 				}
 			}
 		}
-	}, [ref, state.initialized]);
+	}, [_ref, state.initialized]);
 
 	return (
 		<span
-			ref={ref}
+			ref={_ref}
 			id={props.id}
 			class={cls('db-badge', props.className)}
 			data-semantic={props.semantic}
@@ -51,7 +55,9 @@ export default function DBBadge(props: DBBadgeProps) {
 				props.placement?.startsWith('corner') &&
 				(props.label ?? DEFAULT_LABEL)
 			}>
-			{props.children}
+			<Show when={props.text} else={props.children}>
+				{props.text}
+			</Show>
 		</span>
 	);
 }

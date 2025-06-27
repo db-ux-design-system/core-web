@@ -14,9 +14,10 @@ concurrency:
 jobs:
   init:
     uses: ./.github/workflows/00-init.yml
+    secrets: inherit
 
   scan-secrets:
-    if: github.event.pull_request == null || github.event.pull_request.head.repo.owner.login == 'db-ui'
+    if: github.event.pull_request == null || github.event.pull_request.head.repo.owner.login == 'db-ux-design-system'
     uses: ./.github/workflows/00-scan-secrets.yml
 
   get-playwright-version:
@@ -189,9 +190,26 @@ jobs:
         get-playwright-version
       ]
 
+  commit-regenerated-snapshots:
+    uses: ./.github/workflows/02-e2e-regenerated-snapshots-commit.yml
+    secrets: inherit
+    if: always()
+    needs:
+      [
+        regenerate-snapshots-components,
+        regenerate-snapshots-foundations,
+        regenerate-snapshots-patternhub,
+        regenerate-snapshots
+      ]
+    with:
+      showcases: ${{ needs.regenerate-snapshots.result == 'success' }}
+      components: ${{ needs.regenerate-snapshots-components.result == 'success' }}
+      foundations: ${{ needs.regenerate-snapshots-foundations.result == 'success' }}
+      patternhub: ${{ needs.regenerate-snapshots-patternhub.result == 'success' }}
+
   checks-done:
     if: ${{ always() }}
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04 # Use Ubuntu 24.04 explicitly
     steps:
       - name: 🎉 Checks done
         run: |
@@ -258,7 +276,7 @@ jobs:
 
   deploy:
     uses: ./.github/workflows/03-deploy-gh-pages.yml
-    if: ${{ github.actor != 'dependabot[bot]' && (github.event.pull_request == null || github.event.pull_request.head.repo.owner.login == 'db-ui') }}
+    if: ${{ github.actor != 'dependabot[bot]' && (github.event.pull_request == null || github.event.pull_request.head.repo.owner.login == 'db-ux-design-system') }}
     needs: [checks-done]
     with:
       release: false

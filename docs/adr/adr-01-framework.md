@@ -13,27 +13,27 @@ We want to ship our DB UX styles based on `css` and `scss` for common frameworks
 To achieve this we started with [Web Components](https://github.com/db-ui/elements).
 But we've encountered a number of problems with this approach:
 
--   No auto-complete in IDE: Without `.d.ts` files you aren't able to use Typescript properly
--   No specific framework solutions, for example Angulars [Reactive Forms](https://angular.io/guide/reactive-forms)
--   Wrapping Components for React: Because of the virtual DOM Events need some wrapping, even [Lit](https://lit.dev/docs/frameworks/react/) needs this
--   Composition of nested Components (Accordion & AccordionItem etc.): Writing a components with Shadow DOM and nesting is complex and time-consuming
+- No auto-complete in IDE: Without `.d.ts` files you aren't able to use Typescript properly
+- No specific framework solutions, for example Angulars [Reactive Forms](https://angular.io/guide/reactive-forms)
+- Wrapping Components for React: Because of the virtual DOM Events need some wrapping, even [Lit](https://lit.dev/docs/frameworks/react/) needs this
+- Composition of nested Components (Accordion & AccordionItem etc.): Writing a components with Shadow DOM and nesting is complex and time-consuming
 
 ## General conditions and decision criteria
 
 ### General conditions
 
--   "Native" components for every framework
--   Encapsulated from styling
--   Code once, build for many
+- "Native" components for every framework
+- Encapsulated from styling
+- Code once, build for many
 
 ### Decision Criteria
 
--   Mitosis generates `.json` files that are compiled into native components for each framework
--   Supports most frameworks and Web Components
--   New frameworks can be adopted very easily
--   Generates "real" native components for frameworks
--   Consuming Developer Experience
--   Out-of-the-box support for SSR/SSG inside popular Frameworks like [Next](https://nextjs.org/)/[Nuxt](https://nuxt.com/)
+- Mitosis generates `.json` files that are compiled into native components for each framework
+- Supports most frameworks and Web Components
+- New frameworks can be adopted very easily
+- Generates "real" native components for frameworks
+- Consuming Developer Experience
+- Out-of-the-box support for SSR/SSG inside popular Frameworks like [Next](https://nextjs.org/)/[Nuxt](https://nuxt.com/)
 
 #### Why did we switch from Stencil to Mitosis?
 
@@ -53,30 +53,30 @@ We still expect Web Components to be the perfect solution for the future, but es
 
 #### Evaluation
 
--   Generated artefacts are "native" to each framework
--   Flexible build system with plugins
--   Builder.io as maintainer
--   TypeScript (tsx)
--   No weird wrappers around Web Components
+- Generated artefacts are "native" to each framework
+- Flexible build system with plugins
+- Builder.io as maintainer
+- TypeScript (tsx)
+- No weird wrappers around Web Components
 
 ### B - Stencil
 
 #### Evaluation
 
--   Generated artefacts are only slightly larger than Vanilla JS
--   Polyfills are handled automatically
--   Flexible build system
--   With Ionic, a larger project is behind it as a maintainer
--   Supports `Sass`
--   TypeScript
+- Generated artefacts are only slightly larger than Vanilla JS
+- Polyfills are handled automatically
+- Flexible build system
+- With Ionic, a larger project is behind it as a maintainer
+- Supports `Sass`
+- TypeScript
 
 ## Consequences
 
--   Mitosis is still in alpha.
--   Changes may occur. This may lead to refactoring on our part.
--   There is no paid support.
+- Mitosis is still in alpha.
+- Changes may occur. This may lead to refactoring on our part.
+- There is no paid support.
 
 ## Links
 
--   [Mitosis](https://github.com/BuilderIO/mitosis)
--   [Stencil](https://stenciljs.com/)
+- [Mitosis](https://github.com/BuilderIO/mitosis)
+- [Stencil](https://stenciljs.com/)

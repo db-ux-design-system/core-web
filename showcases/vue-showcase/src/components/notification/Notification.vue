@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import DefaultComponent from "../DefaultComponent.vue";
+import { DBLink, DBNotification } from "../../../../../output/vue/src";
 import defaultComponentVariants from "../../../../shared/notification.json";
-import { DBNotification, DBLink } from "../../../../../output/vue/src";
+import DefaultComponent from "../DefaultComponent.vue";
 
 const log = (exampleName: string) => {
 	// eslint-disable-next-line no-notification
@@ -24,7 +24,10 @@ const log = (exampleName: string) => {
 				:link-variant="exampleProps?.linkVariant"
 				:timestamp="exampleProps?.timestamp"
 				:icon="exampleProps?.icon"
-				:behaviour="exampleProps?.behaviour"
+				:closeable="exampleProps?.closeable"
+				:showIcon="exampleProps?.showIcon"
+				:showHeadline="exampleProps?.showHeadline"
+				:showTimestamp="exampleProps?.showTimestamp"
 				@onClose="log(exampleName)"
 			>
 				<template v-if="exampleProps?.link" v-slot:link>

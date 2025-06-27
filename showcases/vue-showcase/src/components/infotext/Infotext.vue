@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import DefaultComponent from "../DefaultComponent.vue";
-import defaultComponentVariants from "../../../../shared/infotext.json";
 import { DBInfotext } from "../../../../../output/vue/src";
+import defaultComponentVariants from "../../../../shared/infotext.json";
+import DefaultComponent from "../DefaultComponent.vue";
 </script>
 
 <template>
@@ -13,6 +13,7 @@ import { DBInfotext } from "../../../../../output/vue/src";
 				:size="exampleProps?.size"
 				:semantic="exampleProps?.semantic"
 				:icon="exampleProps?.icon"
+				:showIcon="exampleProps?.showIcon"
 			>
 				{{ exampleName }}
 			</DBInfotext>

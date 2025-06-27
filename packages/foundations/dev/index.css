@@ -1,0 +1,4 @@
+@layer db-ux-core-foundations, db-ux-theme;
+
+@import url("/build/styles/absolute.css") layer(db-ux-core-foundations);
+@import url("/build/styles/defaults/default-theme.css") layer(db-ux-theme);

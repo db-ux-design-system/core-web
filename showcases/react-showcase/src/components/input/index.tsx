@@ -3,11 +3,11 @@ import {
 	type LabelVariantType,
 	type ValueLabelType
 } from '../../../../../output/react/src';
-import DefaultComponent from '../default-component';
-import defaultComponentVariants from '../../../../shared/input.json';
 import { type DBInputProps } from '../../../../../output/react/src/components/input/model';
-import { getVariants } from '../data';
+import defaultComponentVariants from '../../../../shared/input.json';
 import { type BaseComponentProps } from '../base-component-data';
+import { getVariants } from '../data';
+import DefaultComponent from '../default-component';
 
 const getDataList = (
 	variant?: LabelVariantType
@@ -35,7 +35,15 @@ const getInput = ({
 	message,
 	variant,
 	readOnly,
-	dataList
+	dataList,
+	showLabel,
+	showMessage,
+	validMessage,
+	validation,
+	invalidMessage,
+	maxLength,
+	max,
+	min
 }: DBInputProps & { dataList: boolean }) => {
 	return (
 		<DBInput
@@ -43,6 +51,7 @@ const getInput = ({
 			message={message}
 			placeholder={children}
 			variant={variant}
+			showLabel={showLabel}
 			defaultValue={value}
 			type={type}
 			minLength={minLength}
@@ -50,7 +59,14 @@ const getInput = ({
 			disabled={disabled}
 			readOnly={readOnly}
 			iconAfter={iconAfter}
+			maxLength={maxLength}
+			max={max}
+			min={min}
 			icon={icon}
+			showMessage={showMessage}
+			invalidMessage={invalidMessage}
+			validMessage={validMessage}
+			validation={validation}
 			dataList={dataList ? getDataList(variant) : undefined}
 		/>
 	);

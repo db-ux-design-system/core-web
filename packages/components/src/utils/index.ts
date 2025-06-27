@@ -1,5 +1,4 @@
-import { SemanticType } from '../shared/model';
-import { AriaRole, CSSProperties } from 'react';
+import { ClickEvent, GeneralKeyboardEvent } from '../shared/model';
 
 export const uuid = () => {
 	if (typeof window !== 'undefined') {
@@ -33,162 +32,21 @@ export type ClassNameArg =
 export const cls = (...args: ClassNameArg[]) => {
 	let result = '';
 
-	args.forEach((arg, index) => {
+	for (const arg of args) {
 		if (arg) {
 			if (typeof arg === 'string') {
 				result += `${arg} `;
 			} else {
-				for (let key in arg) {
+				for (const key in arg) {
 					if (arg[key]) {
 						result += `${key} `;
 					}
 				}
 			}
 		}
-	});
+	}
 
 	return result.trim();
-};
-
-const reactHtmlAttributes = [
-	'suppressHydrationWarning',
-	'suppressContentEditableWarning',
-	'translate',
-	'title',
-	'tabIndex',
-	'style',
-	'spellCheck',
-	'nonce',
-	'lang',
-	'hidden',
-	'draggable',
-	'dir',
-	'contextMenu',
-	'contentEditable',
-	'autoFocus',
-	'accessKey',
-	'is',
-	'inputMode',
-	'unselectable',
-	'security',
-	'results',
-	'vocab',
-	'typeof',
-	'rev',
-	'resource',
-	'rel',
-	'property',
-	'inlist',
-	'datatype',
-	'content',
-	'about',
-	'role',
-	'radioGroup',
-	'color'
-];
-
-export const filterPassingProps = (
-	props: any,
-	propsPassingFilter: string[]
-): any =>
-	Object.keys(props)
-		.filter(
-			(key) =>
-				(key.startsWith('data-') ||
-					key.startsWith('aria-') ||
-					key.startsWith('default') ||
-					key.startsWith('auto') ||
-					key.startsWith('item') ||
-					key.startsWith('on') ||
-					reactHtmlAttributes.includes(key)) &&
-				!propsPassingFilter.includes(key)
-		)
-		.reduce((obj: any, key: string) => {
-			obj[key] = props[key];
-			return obj;
-		}, {});
-
-export const visibleInVX = (el: Element) => {
-	const { left, right } = el.getBoundingClientRect();
-	const { innerWidth } = window;
-	return left >= 0 && right <= innerWidth;
-};
-export const visibleInVY = (el: Element) => {
-	const { top, bottom } = el.getBoundingClientRect();
-	const { innerHeight } = window;
-	return top >= 0 && bottom <= innerHeight;
-};
-
-export const isInView = (el: Element) => {
-	const { top, bottom, left, right, height, width } =
-		el.getBoundingClientRect();
-	const { innerHeight, innerWidth } = window;
-
-	let outTop = top < 0;
-	let outBottom = bottom > innerHeight;
-	let outLeft = left < 0;
-	let outRight = right > innerWidth;
-
-	// We need to check if it was already outside
-	const outsideY = el.hasAttribute('data-outside-vy');
-	const outsideX = el.hasAttribute('data-outside-vx');
-	const parentRect = el?.parentElement?.getBoundingClientRect();
-
-	if (parentRect) {
-		if (outsideY) {
-			const position = el.getAttribute('data-outside-vy');
-			if (position === 'top') {
-				outTop = parentRect.top - (bottom - parentRect.bottom) < 0;
-			} else {
-				outBottom =
-					parentRect.bottom + (parentRect.top - top) > innerHeight;
-			}
-		}
-
-		if (outsideX) {
-			const position = el.getAttribute('data-outside-vx');
-			if (position === 'left') {
-				outLeft = parentRect.left - (right - parentRect.right) < 0;
-			} else {
-				outRight =
-					parentRect.right + (parentRect.left - left) > innerWidth;
-			}
-		}
-	}
-
-	return {
-		outTop,
-		outBottom,
-		outLeft,
-		outRight
-	};
-};
-
-export interface DBDataOutsidePair {
-	vx?: 'left' | 'right';
-	vy?: 'top' | 'bottom';
-}
-export const handleDataOutside = (el: Element): DBDataOutsidePair => {
-	const { outTop, outBottom, outLeft, outRight } = isInView(el);
-	let dataOutsidePair: DBDataOutsidePair = {};
-
-	if (outTop || outBottom) {
-		dataOutsidePair = { vy: outTop ? 'top' : 'bottom' };
-		el.setAttribute('data-outside-vy', dataOutsidePair.vy!);
-	} else {
-		el.removeAttribute('data-outside-vy');
-	}
-	if (outLeft || outRight) {
-		dataOutsidePair = {
-			...dataOutsidePair,
-			vx: outRight ? 'right' : 'left'
-		};
-		el.setAttribute('data-outside-vx', dataOutsidePair.vx!);
-	} else {
-		el.removeAttribute('data-outside-vx');
-	}
-
-	return dataOutsidePair;
 };
 
 export const isArrayOfStrings = (value: unknown): value is string[] =>
@@ -203,71 +61,99 @@ export const delay = (fn: () => void, ms: number) =>
 	new Promise(() => setTimeout(fn, ms));
 
 /**
- * Passes `aria-*` and `data-*` attributes to correct child. Used in angular and stencil
- * @param element the ref for the component
- * @param customElementSelector the custom element in our case `db-*`
- */
-export const enableCustomElementAttributePassing = (
-	element: HTMLElement | null,
-	customElementSelector: string
-) => {
-	const parent = element?.closest(customElementSelector);
-	if (element && parent) {
-		const attributes = parent.attributes;
-		// TODO: evaluate whether we could simplify this
-		for (let i = 0; i < attributes.length; i++) {
-			const attr = attributes.item(i);
-			if (
-				attr &&
-				(attr.name.startsWith('data-') || attr.name.startsWith('aria-'))
-			) {
-				element.setAttribute(attr.name, attr.value);
-				parent.removeAttribute(attr.name);
-			}
-			if (attr && attr.name === 'class') {
-				const isWebComponent = attr.value.includes('hydrated');
-				const value = attr.value.replace('hydrated', '').trim();
-				const currentClass = element.getAttribute('class');
-				element.setAttribute(
-					attr.name,
-					`${currentClass ? `${currentClass} ` : ''}${value}`
-				);
-				if (isWebComponent) {
-					// Stencil is using this class for lazy loading component
-					parent.setAttribute('class', 'hydrated');
-				} else {
-					parent.removeAttribute(attr.name);
-				}
-			}
-		}
-	}
-};
-
-/**
  * Some frameworks like stencil would not add "true" as value for a prop
  * if it is used in a framework like angular e.g.: [disabled]="myDisabledProp"
  * @param originBool Some boolean to convert to string
  */
-export const getBooleanAsString = (originBool?: boolean): any => {
-	if (originBool) {
-		return String(originBool);
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export const getBooleanAsString = (originBool?: boolean | string): any => {
+	if (originBool === undefined || originBool === null) return;
+
+	if (typeof originBool === 'string') {
+		return String(Boolean(originBool));
 	}
 
-	return originBool;
+	return String(originBool);
 };
 
-export default {
-	filterPassingProps,
-	cls,
-	addAttributeToChildren,
-	uuid,
-	visibleInVX,
-	visibleInVY,
-	isInView,
-	handleDataOutside,
-	isArrayOfStrings,
-	hasVoiceOver,
-	delay,
-	enableCustomElementAttributePassing,
-	getBooleanAsString
+export const getBoolean = (
+	originBool?: boolean | string,
+	propertyName?: string
+): boolean | undefined => {
+	if (originBool === undefined || originBool === null) return;
+
+	if (typeof originBool === 'string' && propertyName) {
+		return Boolean(propertyName === originBool || originBool);
+	}
+
+	return Boolean(originBool);
 };
+
+export const getNumber = (
+	originNumber?: number | string,
+	alternativeNumber?: number | string
+): number | undefined => {
+	if (
+		(originNumber === undefined || originNumber === null) &&
+		(alternativeNumber === undefined || alternativeNumber === null)
+	) {
+		return;
+	}
+
+	return Number(originNumber ?? alternativeNumber);
+};
+
+/**
+ * Retrieves the input value based on the provided value and input type.
+ *
+ * If the input type is "number" or "range", the value is processed as a number.
+ * Otherwise, the value is returned as-is.
+ *
+ * @param value - The input value, which can be a number, string, or undefined.
+ * @param inputType - The type of the input, such as "number", "range", or other string types.
+ * @returns The processed input value as a string, number, or undefined.
+ */
+export const getInputValue = (
+	value?: number | string,
+	inputType?: string
+): string | number | undefined => {
+	return inputType && ['number', 'range'].includes(inputType)
+		? getNumber(value)
+		: value;
+};
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export const getHideProp = (show?: boolean | string): any => {
+	if (show === undefined || show === null) {
+		return undefined;
+	}
+
+	return getBooleanAsString(!Boolean(show));
+};
+
+export const stringPropVisible = (
+	givenString?: string,
+	showString?: boolean | string
+) => {
+	if (showString === undefined) {
+		return !!givenString;
+	} else {
+		return Boolean(showString) && Boolean(givenString);
+	}
+};
+
+export const getSearchInput = (element: HTMLElement): HTMLInputElement | null =>
+	element.querySelector<HTMLInputElement>(`input[type="search"]`);
+
+export const getOptionKey = (
+	option: { id?: string; value?: string | number | string[] | undefined },
+	prefix: string
+) => {
+	const key = option.id ?? option.value ?? uuid();
+	return `${prefix}${key}`;
+};
+
+export const isKeyboardEvent = <T>(
+	event?: ClickEvent<T> | GeneralKeyboardEvent<T>
+): event is GeneralKeyboardEvent<T> =>
+	(event as GeneralKeyboardEvent<T>).key !== undefined;

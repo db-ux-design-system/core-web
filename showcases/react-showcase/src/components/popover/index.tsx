@@ -1,9 +1,9 @@
-import { DBPopover, DBButton } from '../../../../../output/react/src';
-import DefaultComponent from '../default-component';
-import defaultComponentVariants from '../../../../shared/popover.json';
+import { DBButton, DBPopover } from '../../../../../output/react/src';
 import type { DBPopoverProps } from '../../../../../output/react/src/components/popover/model';
-import { getVariants } from '../data';
+import defaultComponentVariants from '../../../../shared/popover.json';
 import { type BaseComponentProps } from '../base-component-data';
+import { getVariants } from '../data';
+import DefaultComponent from '../default-component';
 
 const getPopover = ({
 	id,

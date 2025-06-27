@@ -9,7 +9,7 @@
 				"props": {
 					"headline": "Headline",
 					"icon": "information_circle",
-					"behaviour": "closable"
+					"closeable": true
 				}
 			},
 			{
@@ -19,7 +19,7 @@
 				"props": {
 					"headline": "Headline",
 					"icon": "information_circle",
-					"behaviour": "closable"
+					"closeable": true
 				}
 			},
 			{
@@ -29,7 +29,7 @@
 				"props": {
 					"headline": "Headline",
 					"icon": "information_circle",
-					"behaviour": "closable"
+					"closeable": true
 				}
 			}
 		]
@@ -44,7 +44,7 @@
 					"variant": "docked",
 					"headline": "Headline",
 					"icon": "information_circle",
-					"behaviour": "closable"
+					"closeable": true
 				}
 			},
 			{
@@ -54,7 +54,7 @@
 					"variant": "standalone",
 					"headline": "Headline",
 					"icon": "information_circle",
-					"behaviour": "closable"
+					"closeable": true
 				}
 			},
 			{
@@ -64,7 +64,7 @@
 					"variant": "overlay",
 					"headline": "Headline",
 					"icon": "information_circle",
-					"behaviour": "closable",
+					"closeable": true,
 					"timestamp": "10 min ago"
 				}
 			}
@@ -79,7 +79,7 @@
 				"props": {
 					"type": "alert",
 					"headline": "Headline",
-					"behaviour": "closable"
+					"closeable": true
 				}
 			},
 			{
@@ -89,7 +89,7 @@
 					"type": "alert",
 					"semantic": "neutral",
 					"headline": "Headline",
-					"behaviour": "closable"
+					"closeable": true
 				}
 			},
 			{
@@ -99,7 +99,7 @@
 					"type": "alert",
 					"semantic": "critical",
 					"headline": "Headline",
-					"behaviour": "closable"
+					"closeable": true
 				}
 			},
 			{
@@ -109,7 +109,7 @@
 					"type": "alert",
 					"semantic": "informational",
 					"headline": "Headline",
-					"behaviour": "closable"
+					"closeable": true
 				}
 			},
 			{
@@ -119,7 +119,7 @@
 					"type": "alert",
 					"semantic": "successful",
 					"headline": "Headline",
-					"behaviour": "closable"
+					"closeable": true
 				}
 			},
 			{
@@ -129,39 +129,144 @@
 					"type": "alert",
 					"semantic": "warning",
 					"headline": "Headline",
-					"behaviour": "closable"
+					"closeable": true
 				}
 			}
 		]
 	},
 	{
-		"name": "Behaviour",
+		"name": "Closeable",
 		"examples": [
 			{
-				"name": "(Default) Permanent",
+				"name": "(Default) False",
 				"style": { "width": "300px" },
 				"props": {
-					"behaviour": "permanent"
+					"closeable": false
 				}
 			},
 			{
-				"name": "Closeable",
+				"name": "True",
 				"style": { "width": "300px" },
 				"props": {
-					"behaviour": "closable"
+					"closeable": true
 				}
 			}
 		]
 	},
 	{
-		"name": "Content - Variant:Docked",
+		"name": "Visual",
+		"examples": [
+			{
+				"name": "(Default) Icon",
+				"style": { "width": "300px" },
+				"props": {
+					"icon": "information_circle"
+				}
+			},
+			{
+				"name": "Image",
+				"style": { "width": "300px" },
+				"props": {
+					"img": true
+				}
+			}
+		]
+	},
+	{
+		"name": "Show Icon",
+		"examples": [
+			{
+				"name": "(Default) True",
+				"style": { "width": "300px" },
+				"props": {
+					"icon": "information_circle",
+					"showIcon": true
+				}
+			},
+			{
+				"name": "False",
+				"style": { "width": "300px" },
+				"props": {
+					"icon": "information_circle",
+					"showIcon": false
+				}
+			}
+		]
+	},
+	{
+		"name": "Link Variant",
+		"examples": [
+			{
+				"name": "(Default) Block",
+				"style": { "width": "300px" },
+				"props": {
+					"link": true,
+					"linkVariant": "block"
+				}
+			},
+			{
+				"name": "Inline",
+				"style": { "width": "300px" },
+				"props": {
+					"link": true,
+					"linkVariant": "inline"
+				}
+			}
+		]
+	},
+	{
+		"name": "Show Headline",
+		"examples": [
+			{
+				"name": "(Default) True",
+				"style": { "width": "300px" },
+				"props": {
+					"headline": "Headline",
+					"showHeadline": true
+				}
+			},
+			{
+				"name": "False",
+				"style": { "width": "300px" },
+				"props": {
+					"headline": "Headline",
+					"showHeadline": false
+				}
+			}
+		]
+	},
+	{
+		"name": "Show Timestamp",
+		"examples": [
+			{
+				"name": "(Default) False",
+				"style": { "width": "300px" },
+				"props": {
+					"variant": "overlay",
+					"showTimestamp": false,
+					"timestamp": "10 min ago"
+				}
+			},
+			{
+				"name": "True",
+				"style": { "width": "300px" },
+				"props": {
+					"variant": "overlay",
+					"showTimestamp": true,
+					"timestamp": "10 min ago"
+				}
+			}
+		]
+	},
+	{
+		"name": "Examples - Variant:Docked",
 		"codeFileName": "ContentVariantDocked",
 		"examples": [
 			{
 				"name": "Text",
 				"style": { "width": "300px" },
 				"props": {
-					"behaviour": "permanent"
+					"behavior": "permanent"
 				}
 			},
 			{
@@ -169,7 +274,7 @@
 				"style": { "width": "300px" },
 				"props": {
 					"icon": "information_circle",
-					"behaviour": "permanent"
+					"behavior": "permanent"
 				}
 			},
 			{
@@ -177,7 +282,7 @@
 				"style": { "width": "300px" },
 				"props": {
 					"img": true,
-					"behaviour": "permanent"
+					"behavior": "permanent"
 				},
 				"children": [
 					{
@@ -197,7 +302,7 @@
 				"style": { "width": "300px" },
 				"props": {
 					"headline": "Headline",
-					"behaviour": "permanent"
+					"behavior": "permanent"
 				}
 			},
 			{
@@ -205,7 +310,7 @@
 				"style": { "width": "300px" },
 				"props": {
 					"link": true,
-					"behaviour": "permanent"
+					"behavior": "permanent"
 				},
 				"children": [
 					{
@@ -224,7 +329,7 @@
 				"props": {
 					"link": true,
 					"linkVariant": "inline",
-					"behaviour": "permanent"
+					"behavior": "permanent"
 				},
 				"children": [
 					{
@@ -279,7 +384,7 @@
 		]
 	},
 	{
-		"name": "Content - Variant:Standalone",
+		"name": "Examples - Variant:Standalone",
 		"codeFileName": "ContentVariantStandalone",
 		"examples": [
 			{
@@ -287,7 +392,7 @@
 				"style": { "width": "300px" },
 				"props": {
 					"variant": "standalone",
-					"behaviour": "permanent"
+					"behavior": "permanent"
 				}
 			},
 			{
@@ -296,7 +401,7 @@
 				"props": {
 					"icon": "information_circle",
 					"variant": "standalone",
-					"behaviour": "permanent"
+					"behavior": "permanent"
 				}
 			},
 			{
@@ -305,7 +410,7 @@
 				"props": {
 					"img": true,
 					"variant": "standalone",
-					"behaviour": "permanent"
+					"behavior": "permanent"
 				},
 				"children": [
 					{
@@ -326,7 +431,7 @@
 				"props": {
 					"headline": "Headline",
 					"variant": "standalone",
-					"behaviour": "permanent"
+					"behavior": "permanent"
 				}
 			},
 			{
@@ -335,7 +440,7 @@
 				"props": {
 					"link": true,
 					"variant": "standalone",
-					"behaviour": "permanent"
+					"behavior": "permanent"
 				},
 				"children": [
 					{
@@ -355,7 +460,7 @@
 					"link": true,
 					"linkVariant": "inline",
 					"variant": "standalone",
-					"behaviour": "permanent"
+					"behavior": "permanent"
 				},
 				"children": [
 					{
@@ -412,7 +517,7 @@
 		]
 	},
 	{
-		"name": "Content - Variant:Overlay",
+		"name": "Examples - Variant:Overlay",
 		"codeFileName": "ContentVariantOverlay",
 		"examples": [
 			{
@@ -420,7 +525,7 @@
 				"style": { "width": "300px" },
 				"props": {
 					"variant": "overlay",
-					"behaviour": "permanent"
+					"behavior": "permanent"
 				}
 			},
 			{
@@ -429,7 +534,7 @@
 				"props": {
 					"icon": "information_circle",
 					"variant": "overlay",
-					"behaviour": "permanent"
+					"behavior": "permanent"
 				}
 			},
 			{
@@ -438,7 +543,7 @@
 				"props": {
 					"img": true,
 					"variant": "overlay",
-					"behaviour": "permanent"
+					"behavior": "permanent"
 				},
 				"children": [
 					{
@@ -459,7 +564,7 @@
 				"props": {
 					"headline": "Headline",
 					"variant": "overlay",
-					"behaviour": "permanent"
+					"behavior": "permanent"
 				}
 			},
 			{
@@ -468,7 +573,7 @@
 				"props": {
 					"link": true,
 					"variant": "overlay",
-					"behaviour": "permanent"
+					"behavior": "permanent"
 				}
 			},
 			{
@@ -496,7 +601,7 @@
 				"props": {
 					"timestamp": "10 min ago",
 					"variant": "overlay",
-					"behaviour": "permanent"
+					"behavior": "permanent"
 				}
 			},
 			{

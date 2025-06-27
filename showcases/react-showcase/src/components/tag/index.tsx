@@ -1,10 +1,10 @@
 import { useState } from 'react';
-import { DBTag } from '../../../../../output/react/src';
-import DefaultComponent from '../default-component';
-import defaultComponentVariants from '../../../../shared/tag.json';
+import { DBTag, getBoolean } from '../../../../../output/react/src';
 import { type DBTagProps } from '../../../../../output/react/src/components/tag/model';
-import { getVariants } from '../data';
+import defaultComponentVariants from '../../../../shared/tag.json';
 import { type BaseComponentProps } from '../base-component-data';
+import { getVariants } from '../data';
+import DefaultComponent from '../default-component';
 
 const getTag = ({
 	semantic,
@@ -13,27 +13,44 @@ const getTag = ({
 	icon,
 	overflow,
 	noText,
-	behaviour,
+	behavior,
 	emphasis,
 	removeButton,
 	checked,
 	component,
-	identifier
+	identifier,
+	content,
+	showCheckState,
+	lineBreak,
+	showIcon
 }: DBTagProps & {
 	checked?: boolean;
 	component?: 'button' | 'link' | 'radio' | 'checkbox';
 	identifier?: string;
+	lineBreak?: boolean;
 }) => {
 	const [checkedState, setCheckedState] = useState<boolean>(checked ?? false);
+
+	if (lineBreak) {
+		return <i className="line-break" />;
+	}
+
 	return (
 		<DBTag
 			semantic={semantic}
 			icon={icon}
 			noText={noText}
-			behaviour={behaviour}
+			behavior={behavior}
 			emphasis={emphasis}
 			overflow={overflow}
 			removeButton={removeButton}
+			showCheckState={showCheckState}
+			showIcon={showIcon}
+			content={
+				content ? (
+					<div className="default-content-slot">Swap Slot</div>
+				) : undefined
+			}
 			onRemove={() => {
 				// eslint-disable-next-line no-alert
 				alert(children.toString());
@@ -45,7 +62,7 @@ const getTag = ({
 					<input
 						type="checkbox"
 						checked={checkedState}
-						disabled={disabled}
+						disabled={getBoolean(disabled)}
 						onChange={(event) => {
 							setCheckedState(event.target.checked);
 						}}

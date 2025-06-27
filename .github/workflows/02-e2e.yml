@@ -14,7 +14,7 @@ permissions:
 jobs:
   playwright-ct:
     name: 🧪🎭 - ${{ matrix.framework }}:${{ matrix.shardIndex }}/${{ matrix.shardTotal }}
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04 # Use Ubuntu 24.04 explicitly
     container:
       image: mcr.microsoft.com/playwright:v${{ inputs.version }}
     strategy:
@@ -36,19 +36,19 @@ jobs:
       - name: ⏬ Download foundations build
         uses: actions/download-artifact@v4
         with:
-          name: db-ui-foundations-build
+          name: db-ux-foundations-build
           path: packages/foundations/build
 
       - name: ⏬ Download output
         uses: actions/download-artifact@v4
         with:
-          name: db-ui-output
+          name: db-ux-output
           path: output
 
       - name: ⏬ Download components styles build
         uses: actions/download-artifact@v4
         with:
-          name: db-ui-components-build
+          name: db-ux-components-build
           path: packages/components/build
 
       - name: 🚋 Get working directory

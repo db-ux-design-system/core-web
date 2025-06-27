@@ -1,5 +1,5 @@
-@use "@db-ui/foundations/build/scss/variables";
-@use "../../styles/scrollbar";
+@use "@db-ux/core-foundations/build/styles/variables";
+@use "../../styles/internal/scrollbar";
 
 .db-tab-list {
 	@extend %db-overwrite-font-size-md;

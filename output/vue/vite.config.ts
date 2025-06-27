@@ -6,8 +6,8 @@ export default defineConfig({
 	build: {
 		lib: {
 			entry: 'src/index.ts',
-			name: 'DB-UI',
-			fileName: (format) => `db-ui.${format}.js`
+			name: 'DB-UX',
+			fileName: (format) => `db-ux.${format}.js`
 		},
 		rollupOptions: {
 			external: ['vue'],

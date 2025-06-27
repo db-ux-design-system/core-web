@@ -1,6 +1,6 @@
 ## React
 
-For general installation and configuration take a look at the [react-components](https://www.npmjs.com/package/@db-ui/react-components) package.
+For general installation and configuration take a look at the [react-core-components](https://www.npmjs.com/package/@db-ux/react-core-components) package.
 
 ### Use component
 
@@ -9,7 +9,7 @@ We try to set `areaPopup` (has/hasn't sub-navigation) inside the component, but 
 ```tsx App.tsx
 // App.tsx
 import { Link } from "react-router-dom";
-import { DBNavigationItem } from "@db-ui/react-components";
+import { DBNavigationItem } from "@db-ux/react-core-components";
 
 const App = () => (
 	<>

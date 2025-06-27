@@ -23,16 +23,16 @@
 
 ## Conclusion
 
--   we can use tab component of [db-ui/elements](https://github.com/db-ui/elements/blob/main/packages/db-ui-elements-stencil/src/components/db-tab/db-tab.tsx)
--   replace `<section>` by `<article>`
--   we use [`role=tablist`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/tablist_role), [`role=tab`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/tab_role), [`role=tabpanel`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/tabpanel_role)
--   we use [`aria-controls`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-controls), [`aria-selected`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-selected), [`aria-labelledby`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-labelledby)
--   We could still explore to use hyperlinks `a href="#tab01"` with anchors and using `:target` to display each tab
--   We could still explore to use `details` and `summary` elements especially due to their `name`-attributes enhancement lately
+- we can use tab component of [db-ui/elements](https://github.com/db-ui/elements/blob/main/packages/db-ui-elements-stencil/src/components/db-tab/db-tab.tsx)
+- replace `<section>` by `<article>`
+- we use [`role=tablist`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/tablist_role), [`role=tab`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/tab_role), [`role=tabpanel`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/tabpanel_role)
+- we use [`aria-controls`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-controls), [`aria-selected`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-selected), [`aria-labelledby`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-labelledby)
+- We could still explore to use hyperlinks `a href="#tab01"` with anchors and using `:target` to display each tab
+- We could still explore to use `details` and `summary` elements especially due to their `name`-attributes enhancement lately
 
 Findings:
 
--   Some design systems are using `activation-mode=auto/manual` - is this a vaild use-case for design? Default should be `auto` select which first tab selected
--   Prop `label` should be a slot to pass in e.g. a `<span>` and a `<DBBadge>`
--   Shall we provide a `badgeNumber` as a default property?
--   `fitted` property should be `width=auto/full`
+- Some design systems are using `activation-mode=auto/manual` - is this a vaild use-case for design? Default should be `auto` select which first tab selected
+- Prop `label` should be a slot to pass in e.g. a `<span>` and a `<DBBadge>`
+- Shall we provide a `badgeNumber` as a default property?
+- `fitted` property should be `width=auto/full`

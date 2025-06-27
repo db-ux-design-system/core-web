@@ -1,6 +1,6 @@
 ## HTML
 
-For general installation and configuration take a look at the [components](https://www.npmjs.com/package/@db-ui/components) package.
+For general installation and configuration take a look at the [components](https://www.npmjs.com/package/@db-ux/core-components) package.
 
 ### Use component
 
@@ -8,14 +8,8 @@ For general installation and configuration take a look at the [components](https
 <!-- index.html -->
 ...
 <body>
-	<label for="radio-element">
-		<input
-			type="radio"
-			class="db-radio"
-			id="radio-element"
-			name="States"
-			value="Y"
-		/>
+	<label class="db-radio" for="radio-element">
+		<input type="radio" id="radio-element" name="States" value="Y" />
 		Label
 	</label>
 </body>

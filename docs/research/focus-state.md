@@ -24,4 +24,4 @@
 
 ## Conclusion
 
--   _GitHub Primer_ has a quite interesting approach to focus states. By shifting the outline to the inside of the element (negative `outline-offset`), you get a quite universal approach if even also mixing it with having the `outline-color` defined by the `currentColor` keyword, as this needs to be accessible to the elements / components background anyhow and you wouldn't have the problem with diverse underlying contents like e.g. images behind the element / component, as you only consider the elements background itself.
+- _GitHub Primer_ has a quite interesting approach to focus states. By shifting the outline to the inside of the element (negative `outline-offset`), you get a quite universal approach if even also mixing it with having the `outline-color` defined by the `currentColor` keyword, as this needs to be accessible to the elements / components background anyhow and you wouldn't have the problem with diverse underlying contents like e.g. images behind the element / component, as you only consider the elements background itself.

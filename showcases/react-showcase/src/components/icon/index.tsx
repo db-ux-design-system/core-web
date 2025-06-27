@@ -1,16 +1,16 @@
 import { DBIcon, DBInfotext } from '../../../../../output/react/src';
-import DefaultComponent from '../default-component';
-import defaultComponentVariants from '../../../../shared/icon.json';
 import { type DBIconProps } from '../../../../../output/react/src/components/icon/model';
-import { getVariants } from '../data';
+import defaultComponentVariants from '../../../../shared/icon.json';
 import { type BaseComponentProps } from '../base-component-data';
+import { getVariants } from '../data';
+import DefaultComponent from '../default-component';
 
 const getIcon = ({ children }: DBIconProps) => (
 	<>
 		<DBInfotext icon="none" size="small" semantic="informational">
 			{children}
 		</DBInfotext>
-		<DBIcon icon="person">{children}</DBIcon>
+		<DBIcon icon="x_placeholder">{children}</DBIcon>
 	</>
 );
 

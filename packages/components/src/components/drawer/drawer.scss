@@ -1,10 +1,10 @@
 @use "sass:map";
-@use "@db-ui/foundations/build/scss/variables";
-@use "@db-ui/foundations/build/scss/helpers";
-@use "@db-ui/foundations/build/scss/animation";
-@use "@db-ui/foundations/build/scss/colors";
-@use "../../styles/component";
-@use "./../../styles/dialog-init";
+@use "@db-ux/core-foundations/build/styles/variables";
+@use "@db-ux/core-foundations/build/styles/helpers";
+@use "@db-ux/core-foundations/build/styles/animation";
+@use "@db-ux/core-foundations/build/styles/colors";
+@use "../../styles/internal/component";
+@use "../../styles/dialog-init";
 
 %direction-right {
 	inset-inline: auto 0;
@@ -76,10 +76,14 @@ $spacings: (
 );
 
 @mixin get-spacing($spacing) {
-	padding-block: map.get($spacing, "block");
+	/* stylelint-disable-next-line scss/selector-no-redundant-nesting-selector */
+	& {
+		padding-block: map.get($spacing, "block");
+	}
 
 	.db-drawer-header {
 		// We need this variable to overwrite it inside the header
+		/* stylelint-disable-next-line db-ux/use-spacings */
 		padding-block-end: var(
 			--db-drawer-header-padding-block-end,
 			#{map.get($spacing, "block")}
@@ -89,12 +93,14 @@ $spacings: (
 
 	.db-drawer-content {
 		// We need this variable to overwrite it inside the header
+		/* stylelint-disable-next-line db-ux/use-spacings */
 		padding-inline: var(
 			--db-drawer-content-padding-inline,
 			#{map.get($spacing, "inline")}
 		);
-		max-block-size: fit-content;
-		overflow: auto;
+		// TODO: Evaluate whether we need overflow: hidden and that for only specifically set y here.
+		overflow-y: auto;
+		overflow-block: auto;
 	}
 }
 
@@ -128,6 +134,23 @@ $spacings: (
 				--db-drawer-max-width,
 				calc(100% - #{variables.$db-spacing-fixed-xl})
 			);
+
+			&:not([data-direction]),
+			&[data-direction="right"] {
+				border-inline-start: component.$component-border;
+			}
+
+			&[data-direction="left"] {
+				border-inline-end: component.$component-border;
+			}
+
+			&[data-direction="up"] {
+				border-block-start: component.$component-border;
+			}
+
+			&[data-direction="down"] {
+				border-block-end: component.$component-border;
+			}
 		}
 
 		&[data-rounded="true"] {
@@ -147,9 +170,9 @@ $spacings: (
 		}
 
 		.db-drawer-header {
-			@include helpers.divider("bottom");
-
 			display: none;
+
+			@include helpers.divider("bottom");
 
 			.db-drawer-header-text {
 				margin-block: auto;
@@ -177,19 +200,23 @@ $spacings: (
 			@media screen and (prefers-reduced-motion: no-preference) {
 				&:not([data-direction]),
 				&[data-direction="right"] {
-					animation: show-right-to-left #{variables.$db-transition-straight-show};
+					animation: show-right-to-left
+						#{variables.$db-transition-straight-show};
 				}
 
 				&[data-direction="left"] {
-					animation: show-left-to-right #{variables.$db-transition-straight-show};
+					animation: show-left-to-right
+						#{variables.$db-transition-straight-show};
 				}
 
 				&[data-direction="up"] {
-					animation: show-bottom-to-top #{variables.$db-transition-straight-show};
+					animation: show-bottom-to-top
+						#{variables.$db-transition-straight-show};
 				}
 
 				&[data-direction="down"] {
-					animation: show-top-to-bottom #{variables.$db-transition-straight-show};
+					animation: show-top-to-bottom
+						#{variables.$db-transition-straight-show};
 				}
 			}
 
@@ -197,19 +224,23 @@ $spacings: (
 				@media screen and (prefers-reduced-motion: no-preference) {
 					&:not([data-direction]),
 					&[data-direction="right"] {
-						animation: hide-right-to-left #{variables.$db-transition-straight-hide};
+						animation: hide-right-to-left
+							#{variables.$db-transition-straight-hide};
 					}
 
 					&[data-direction="left"] {
-						animation: hide-left-to-right #{variables.$db-transition-straight-hide};
+						animation: hide-left-to-right
+							#{variables.$db-transition-straight-hide};
 					}
 
 					&[data-direction="up"] {
-						animation: hide-bottom-to-top #{variables.$db-transition-straight-hide};
+						animation: hide-bottom-to-top
+							#{variables.$db-transition-straight-hide};
 					}
 
 					&[data-direction="down"] {
-						animation: hide-top-to-bottom #{variables.$db-transition-straight-hide};
+						animation: hide-top-to-bottom
+							#{variables.$db-transition-straight-hide};
 					}
 				}
 			}

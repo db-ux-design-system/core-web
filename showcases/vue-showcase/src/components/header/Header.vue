@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import DefaultComponent from "../DefaultComponent.vue";
-import defaultComponentVariants from "../../../../shared/header.json";
 import {
 	DBBrand,
 	DBButton,
@@ -9,6 +7,8 @@ import {
 	DBNavigation,
 	DBNavigationItem
 } from "../../../../../output/vue/src";
+import defaultComponentVariants from "../../../../shared/header.json";
+import DefaultComponent from "../DefaultComponent.vue";
 </script>
 
 <template>
@@ -37,7 +37,7 @@ import {
 					"
 				>
 					<DBNavigation :aria-label="exampleName">
-						<DBNavigationItem icon="person">
+						<DBNavigationItem icon="x_placeholder">
 							<a href="#">{{ exampleName }}</a>
 						</DBNavigationItem>
 						<DBNavigationItem :disabled="true">
@@ -58,14 +58,22 @@ import {
 				</template>
 				<template v-slot:secondary-action>
 					<template v-if="!exampleProps?.example">
-						<DBButton icon="person" variant="ghost" :no-text="true">
+						<DBButton
+							icon="x_placeholder"
+							variant="ghost"
+							:no-text="true"
+						>
 							Profile
 						</DBButton>
-						<DBButton icon="bell" variant="ghost" :no-text="true">
+						<DBButton
+							icon="x_placeholder"
+							variant="ghost"
+							:no-text="true"
+						>
 							Notification
 						</DBButton>
 						<DBButton
-							icon="question_mark_circle"
+							icon="x_placeholder"
 							variant="ghost"
 							:no-text="true"
 						>

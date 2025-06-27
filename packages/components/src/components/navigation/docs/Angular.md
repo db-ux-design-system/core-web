@@ -1,12 +1,12 @@
 ## Angular
 
-For general installation and configuration look at the [ngx-components](https://www.npmjs.com/package/@db-ui/ngx-components) package.
+For general installation and configuration look at the [ngx-core-components](https://www.npmjs.com/package/@db-ux/ngx-core-components) package.
 
 ### Load component
 
 ```ts app.component.ts
 // app.component.ts
-import { DBNavigation } from '@db-ui/ngx-components';
+import { DBNavigation } from '@db-ux/ngx-core-components';
 
 @Component({
   // ...
@@ -51,7 +51,7 @@ import { DBNavigation } from '@db-ui/ngx-components';
 		</ng-container>
 		<ng-container *dbNavigationContent> Navi-Item 1 </ng-container>
 	</db-navigation-item>
-	<db-navigation-item icon="person">
+	<db-navigation-item icon="x_placeholder">
 		<ng-container *dbNavigationContent>
 			<a href="#">Navi-Item 2</a>
 		</ng-container>
@@ -75,7 +75,7 @@ For other purposes, `NavigationItems` themselves can also be set to active with 
 ```ts app.component.ts
 // app.component.ts
 import { RouterLink, RouterLinkActive } from '@angular/router';
-import { DBMainNavigation } from '@db-ui/ngx-components';
+import { DBMainNavigation } from '@db-ux/ngx-core-components';
 
 @Component({
   // ...
