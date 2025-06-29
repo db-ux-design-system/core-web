@@ -16,7 +16,7 @@
       - link "(Default) False"
   - list:
     - listitem:
-      - link "True"
+      - link "True" [disabled]
   - link "Active arrow_up_right\" / \""
   - list:
     - listitem:

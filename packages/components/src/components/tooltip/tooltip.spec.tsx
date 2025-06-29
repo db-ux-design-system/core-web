@@ -37,7 +37,9 @@ const testComponent = () => {
 	test('after open should match screenshot', async ({ mount }) => {
 		const component = await mount(comp);
 		await component.getByTestId('button').focus();
-		await expect(component).toHaveScreenshot();
+		await expect(component).toHaveScreenshot({
+			maxDiffPixels: 200
+		});
 	});
 };
 

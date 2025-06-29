@@ -1023,7 +1023,7 @@
       - button "cross\" / \" Close"
   - status
   - text: chevron_down" / "
-  - 'link "Example: Other configuration arrow_up_right\" / \""'
+  - 'link "Example: Other configuration arrow_up_right\" / \""':
   - text: Search Value
   - group:
     - article:
