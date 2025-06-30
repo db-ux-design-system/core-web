@@ -97,9 +97,7 @@ const VersionSwitcher = () => {
 			setGroupByTagsBranches(tags, branches);
 		};
 
-		runAsync().catch((error: unknown) => {
-			console.error(error);
-		});
+		void runAsync();
 	}, []);
 
 	const handleChange = (branch: string) => {
