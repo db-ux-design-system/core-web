@@ -100,6 +100,7 @@ $spacings: (
 		);
 		// TODO: Evaluate whether we need overflow: hidden and that for only specifically set y here.
 		overflow-y: auto;
+		overflow-block: auto;
 	}
 }
 
@@ -133,6 +134,23 @@ $spacings: (
 				--db-drawer-max-width,
 				calc(100% - #{variables.$db-spacing-fixed-xl})
 			);
+
+			&:not([data-direction]),
+			&[data-direction="right"] {
+				border-inline-start: component.$component-border;
+			}
+
+			&[data-direction="left"] {
+				border-inline-end: component.$component-border;
+			}
+
+			&[data-direction="up"] {
+				border-block-start: component.$component-border;
+			}
+
+			&[data-direction="down"] {
+				border-block-end: component.$component-border;
+			}
 		}
 
 		&[data-rounded="true"] {

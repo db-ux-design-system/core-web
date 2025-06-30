@@ -12,6 +12,7 @@ import { DBTagProps, DBTagState } from './model';
 import { cls, getBooleanAsString, getHideProp } from '../../utils';
 import { DEFAULT_REMOVE } from '../../shared/constants';
 import { ClickEvent } from '../../shared/model';
+import DBTooltip from '../tooltip/tooltip.lite';
 
 useMetadata({});
 useDefaultProps<DBTagProps>({});
@@ -20,8 +21,10 @@ export default function DBTag(props: DBTagProps) {
 	const _ref = useRef<HTMLDivElement | any>(null);
 	const state = useStore<DBTagState>({
 		initialized: false,
-		handleRemove: (event?: ClickEvent<HTMLButtonElement>) => {
-			event?.stopPropagation();
+		handleRemove: (event?: ClickEvent<HTMLButtonElement> | void) => {
+			if (!event) return;
+
+			event.stopPropagation();
 			if (props.onRemove) {
 				props.onRemove(event);
 			}
@@ -84,8 +87,10 @@ export default function DBTag(props: DBTagProps) {
 					data-size="small"
 					data-no-text="true"
 					data-variant="ghost"
-					title={state.getRemoveButtonText()}>
-					{state.getRemoveButtonText()}
+					type="button">
+					<DBTooltip variant="label">
+						{state.getRemoveButtonText()}
+					</DBTooltip>
 				</button>
 			</Show>
 		</div>

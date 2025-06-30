@@ -57,7 +57,8 @@ $db-min-inline-size: var(
 }
 
 %helper-message {
-	.db-infotext {
+	> db-infotext > .db-infotext,
+	> .db-infotext {
 		margin-block-start: variables.$db-spacing-fixed-2xs;
 
 		&:is([data-semantic="successful"], [data-semantic="critical"]) {
@@ -78,7 +79,7 @@ $db-min-inline-size: var(
 		> label {
 			@extend %db-overwrite-font-size-md;
 
-			opacity: component.$placeholder-disabled;
+			opacity: variables.$db-opacity-xl;
 			position: absolute;
 			z-index: 2;
 			inset-block-start: calc(
@@ -122,12 +123,12 @@ $db-min-inline-size: var(
 		}
 
 		&:has(
-				#{$selector}:focus-within,
-				#{$selector}:is(input, textarea):not(:placeholder-shown),
-				> select option:checked:not(.placeholder),
-				input[type="checkbox"]:checked,
-				input[type="radio"]:checked
-			) {
+			#{$selector}:focus-within,
+			#{$selector}:is(input, textarea):not(:placeholder-shown),
+			> select option:checked:not(.placeholder),
+			input[type="checkbox"]:checked,
+			input[type="radio"]:checked
+		) {
 			> label {
 				@extend %db-overwrite-font-size-2xs;
 
@@ -137,7 +138,7 @@ $db-min-inline-size: var(
 			}
 
 			@include placeholder-content($selector) {
-				opacity: component.$placeholder-disabled;
+				opacity: variables.$db-opacity-xl;
 				font-family: var(--db-font-family-sans);
 				font-style: italic;
 
@@ -156,7 +157,8 @@ $db-min-inline-size: var(
 }
 
 @mixin get-validity-message($key: "valid") {
-	.db-infotext {
+	> db-infotext > .db-infotext,
+	> .db-infotext {
 		@if ($key == "valid") {
 			&[data-semantic="successful"] {
 				display: flex;
@@ -252,10 +254,8 @@ $input-valid-types:
 		$selector: input;
 
 		&:has(
-				#{$selector}:not(
-						[data-custom-validity]
-					):required:#{$user}#{$key}
-			) {
+			#{$selector}:not([data-custom-validity]):required:#{$user}#{$key}
+		) {
 			@content;
 		}
 		/* stylelint-disable-next-line at-rule-empty-line-before */
@@ -317,7 +317,10 @@ $input-valid-types:
 	@include set-required-label($selector);
 
 	@include get-validity($selector) {
-		&:has(.db-infotext[data-semantic="successful"]) {
+		&:has(
+			> .db-infotext[data-semantic="successful"],
+			> db-infotext > .db-infotext[data-semantic="successful"]
+		) {
 			@include get-validity-color($selector, "valid");
 		}
 	}
@@ -327,7 +330,7 @@ $input-valid-types:
 	}
 
 	@include placeholder-content($selector) {
-		opacity: component.$placeholder-disabled;
+		opacity: variables.$db-opacity-xl;
 		font-family: var(--db-font-family-sans);
 		font-style: italic;
 	}
@@ -356,6 +359,17 @@ $input-valid-types:
 
 		@include helpers.hover {
 			background-color: colors.$db-adaptive-bg-basic-transparent-hovered;
+		}
+
+		&:is(input, textarea) {
+			/* see https://developer.mozilla.org/en-US/docs/Web/CSS/field-sizing */
+			&[data-field-sizing="content"] {
+				field-sizing: content;
+			}
+
+			&[data-field-sizing="fixed"] {
+				field-sizing: fixed;
+			}
 		}
 
 		&:is(input, textarea):not(:disabled):read-only {
@@ -391,12 +405,12 @@ $input-valid-types:
 
 	// disabled
 	&:has(
-			#{$selector}:disabled,
-			#{$selector}[data-disabled="true"],
-			#{$selector}[aria-disabled="true"]
-		) {
+		#{$selector}:disabled,
+		#{$selector}[data-disabled="true"],
+		#{$selector}[aria-disabled="true"]
+	) {
 		// Decided against cursor: not-allowed, compare to e.g. https://phabricator.wikimedia.org/T121960
-		opacity: component.$default-disabled;
+		opacity: variables.$db-opacity-md;
 		pointer-events: none;
 	}
 
@@ -479,7 +493,7 @@ $input-valid-types:
 	@include set-required-label(input);
 
 	&:has(input:disabled) {
-		opacity: component.$default-disabled;
+		opacity: variables.$db-opacity-md;
 	}
 
 	&:is(label),
@@ -487,7 +501,6 @@ $input-valid-types:
 		display: flex;
 		align-items: flex-start;
 		position: relative;
-		gap: variables.$db-spacing-fixed-xs;
 		color: var(
 			--db-check-element-label-color,
 			#{colors.$db-adaptive-on-bg-basic-emphasis-100-default}
@@ -508,6 +521,7 @@ $input-valid-types:
 		block-size: $font-size-height;
 		inline-size: $font-size-height;
 		padding: 0;
+		margin-inline-end: var(--db-spacing-fixed-xs);
 	}
 
 	&[data-size="small"] {

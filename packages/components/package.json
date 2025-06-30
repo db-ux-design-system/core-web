@@ -48,13 +48,13 @@
     "@builder.io/eslint-plugin-mitosis": "0.0.17",
     "@builder.io/mitosis": "0.10.0",
     "@builder.io/mitosis-cli": "0.10.0",
-    "@typescript-eslint/eslint-plugin": "8.32.1",
+    "@typescript-eslint/eslint-plugin": "8.35.0",
     "cpr": "3.0.1",
     "cssnano": "^7.0.7",
     "hygen": "^6.2.11",
     "nodemon": "3.1.10",
     "sass": "1.85.0",
-    "tsx": "^4.19.4"
+    "tsx": "^4.20.3"
   },
   "publishConfig": {
     "registry": "https://registry.npmjs.org/",

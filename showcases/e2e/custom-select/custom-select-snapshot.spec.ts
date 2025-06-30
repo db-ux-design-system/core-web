@@ -1,5 +1,4 @@
 import { type Page, test } from '@playwright/test';
-// @ts-expect-error - required for playwright
 import { getDefaultScreenshotTest, runAriaSnapshotTest } from '../default.ts';
 
 const path = '03/custom-select';
@@ -11,7 +10,9 @@ const preScreenShot = async (page: Page) => {
 		.all();
 	for (const component of components) {
 		await component.evaluate((comp: HTMLElement) => {
-			comp.querySelector('details').open = true;
+			const detailsElement = comp.querySelector('details');
+			detailsElement.dataset.test = 'true';
+			detailsElement.open = true;
 		});
 	}
 };

@@ -4,9 +4,7 @@ import {
 	DBCustomSelect,
 	DBTabList,
 	DBTabPanel,
-	DBTabs
-} from '@db-ux/react-core-components/src';
-import {
+	DBTabs,
 	DBAccordion,
 	DBAccordionItem,
 	DBButton,
@@ -18,7 +16,8 @@ import {
 	DBTag,
 	DBTextarea,
 	DBTooltip,
-	DBLink
+	DBLink,
+	DBPopover
 } from '../../../../../output/react/src';
 import type {
 	ChangeEvent,
@@ -73,10 +72,20 @@ const FormComponent = () => {
 		<div className="form-container">
 			<div>
 				<form>
+					<DBTextarea
+						label="test"
+						placeholder="fieldsizing"
+						resize="none"
+						fieldSizing="content"></DBTextarea>
+
 					<DBCustomSelect
 						options={[{ value: 'Option 1' }, { value: 'Option 2' }]}
 						label="Test"
-						placeholder="Placeholder"></DBCustomSelect>
+						required
+						showSearch
+						multiple
+						placeholder="Placeholder"
+					/>
 					<fieldset>
 						<p>Input:</p>
 						<DBInput
@@ -379,11 +388,40 @@ const FormComponent = () => {
 				<DBDivider />
 
 				<DBAccordion>
-					{accordionItems?.map((item) => (
+					{accordionItems?.map((item, index) => (
 						<DBAccordionItem
 							key={item.value}
 							headlinePlain={item.value}>
-							{item.value}
+							<p>{item.value}</p>
+							{index === 0 && (
+								<DBCustomSelect
+									options={[
+										{ value: 'Option 1' },
+										{ value: 'Option 2' }
+									]}
+									label="Test"
+									required
+									showSearch
+									multiple
+									placeholder="Placeholder"
+								/>
+							)}
+							{index === 1 && (
+								<DBPopover
+									trigger={<DBButton>Popover</DBButton>}>
+									<ul>
+										<li>Content 1</li>
+										<li>Content 2</li>
+										<li>Content 3</li>
+									</ul>
+								</DBPopover>
+							)}
+							{index === 2 && (
+								<DBButton>
+									Tooltip
+									<DBTooltip>Tooltip</DBTooltip>
+								</DBButton>
+							)}
 						</DBAccordionItem>
 					))}
 				</DBAccordion>
@@ -445,16 +483,13 @@ const FormComponent = () => {
 					minLength={10}
 				/>
 
-				<DBTag
-					describedbyid="tooltip-01"
-					semantic="neutral"
-					emphasis="strong">
+				<DBTag semantic="neutral" emphasis="strong">
 					KUZ
 					<DBTooltip id="tooltip-01" placement="right-end">
 						Beschreibungstext
 					</DBTooltip>
 				</DBTag>
-				<DBButton describedbyid="tooltip-01">
+				<DBButton>
 					KUZ
 					<DBTooltip id="tooltip-01" placement="right-end">
 						Beschreibungstext
@@ -464,7 +499,7 @@ const FormComponent = () => {
 				<form
 					onSubmit={(event) => {
 						event.preventDefault();
-						/* eslint-disable-next-line no-console */
+
 						console.log(event);
 					}}>
 					<DBCustomSelect
@@ -483,8 +518,8 @@ const FormComponent = () => {
 						searchLabel="Search"
 						noResultsText="No matching filter"
 						values={multiSelectValue}
-						onOptionSelected={(val) => {
-							setMultiSelectValue(val);
+						onOptionSelected={(value) => {
+							setMultiSelectValue(value);
 						}}
 					/>
 					<DBButton

@@ -246,8 +246,6 @@ export const ROUTES: NavigationItem[] = [
 		path: '/components',
 		subNavigation: [
 			{ label: 'Readme', path: '/components/readme' },
-			{ label: 'Router usage', path: '/components/router-usage' },
-			{ label: 'Validation', path: '/components/validation' },
 			...componentChildren.map((category) => ({
 				...category,
 				subNavigation: category?.subNavigation?.map(
@@ -276,7 +274,22 @@ export const ROUTES: NavigationItem[] = [
 						]
 					})
 				)
-			}))
+			})),
+			{
+				label: 'Misc',
+				path: '/components/misc',
+				subNavigation: [
+					{
+						label: 'Router usage',
+						path: '/components/misc/router-usage'
+					},
+					{
+						label: 'Validation',
+						path: '/components/misc/validation'
+					},
+					{ label: 'Backdrop', path: '/components/misc/backdrop' }
+				]
+			}
 		]
 	}
 ];
@@ -285,7 +298,7 @@ const fillNavigationRecursive = (
 	navigationItems: NavigationItem[],
 	tree: NavigationItem[],
 	isBreadcrumb?: boolean,
-	prevLabel?: string
+	previousLabel?: string
 ) => {
 	for (const navItem of navigationItems) {
 		tree.push(
@@ -293,8 +306,8 @@ const fillNavigationRecursive = (
 				? navItem
 				: {
 						...navItem,
-						label: prevLabel
-							? `${prevLabel}:${navItem.label}`
+						label: previousLabel
+							? `${previousLabel}:${navItem.label}`
 							: navItem.label
 					}
 		);

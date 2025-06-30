@@ -40,7 +40,6 @@ export default function DBSwitch(props: DBSwitchProps) {
 			default: false
 		}),
 		handleChange: (event: ChangeEvent<HTMLInputElement>) => {
-			event.stopPropagation();
 			if (props.onChange) {
 				props.onChange(event);
 			}
@@ -55,13 +54,11 @@ export default function DBSwitch(props: DBSwitchProps) {
 			});
 		},
 		handleBlur: (event: InteractionEvent<HTMLInputElement>) => {
-			event.stopPropagation();
 			if (props.onBlur) {
 				props.onBlur(event);
 			}
 		},
 		handleFocus: (event: InteractionEvent<HTMLInputElement>) => {
-			event.stopPropagation();
 			if (props.onFocus) {
 				props.onFocus(event);
 			}
@@ -97,7 +94,7 @@ export default function DBSwitch(props: DBSwitchProps) {
 				checked={getBoolean(props.checked, 'checked')}
 				value={props.value}
 				disabled={getBoolean(props.disabled, 'disabled')}
-				aria-describedby={props.describedbyid}
+				aria-describedby={props.describedbyid ?? props.ariaDescribedBy}
 				aria-invalid={props.validation === 'invalid'}
 				data-custom-validity={props.validation}
 				name={props.name}

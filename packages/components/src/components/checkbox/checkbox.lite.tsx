@@ -85,7 +85,6 @@ export default function DBCheckbox(props: DBCheckboxProps) {
 			}
 		},
 		handleChange: (event: ChangeEvent<HTMLInputElement>) => {
-			event.stopPropagation();
 			if (props.onChange) {
 				props.onChange(event);
 			}
@@ -98,13 +97,11 @@ export default function DBCheckbox(props: DBCheckboxProps) {
 			state.handleValidation();
 		},
 		handleBlur: (event: InteractionEvent<HTMLInputElement> | any) => {
-			event.stopPropagation();
 			if (props.onBlur) {
 				props.onBlur(event);
 			}
 		},
 		handleFocus: (event: InteractionEvent<HTMLInputElement> | any) => {
-			event.stopPropagation();
 			if (props.onFocus) {
 				props.onFocus(event);
 			}
@@ -204,7 +201,7 @@ export default function DBCheckbox(props: DBCheckboxProps) {
 					onFocus={(event: InteractionEvent<HTMLInputElement>) =>
 						state.handleFocus(event)
 					}
-					aria-describedby={state._descByIds}
+					aria-describedby={props.ariaDescribedBy ?? state._descByIds}
 				/>
 				<Show when={props.label} else={props.children}>
 					{props.label}
