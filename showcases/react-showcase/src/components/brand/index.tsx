@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-deprecated */
+
 import { DBBrand } from '../../../../../output/react/src';
 import DefaultComponent from '../default-component';
 import defaultComponentVariants from '../../../../shared/brand.json';
@@ -7,9 +9,10 @@ import { type BaseComponentProps } from '../base-component-data';
 
 const getBrand = ({
 	children,
+	hideLogo,
 	customLogo
 }: DBBrandProps & { customLogo: boolean }) => (
-	<DBBrand>
+	<DBBrand hideLogo={hideLogo}>
 		{customLogo && (
 			<img
 				src={`${
