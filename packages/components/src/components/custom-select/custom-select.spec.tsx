@@ -74,7 +74,7 @@ const testAction = () => {
 		await expect(summary).not.toContainText('Option 1');
 		await page.keyboard.press('Tab');
 		await page.keyboard.press('ArrowDown');
-		await page.waitForTimeout(1000);
+		await page.waitForTimeout(1000); // wait for focus to apply
 		await page.keyboard.press('Space');
 		await expect(summary).toContainText('Option 1');
 	});
@@ -85,7 +85,7 @@ const testAction = () => {
 		await expect(summary).not.toContainText('Option 1');
 		await page.keyboard.press('Tab');
 		await page.keyboard.press('ArrowDown');
-		await page.waitForTimeout(1000);
+		await page.waitForTimeout(1000); // wait for focus to apply
 		await page.keyboard.press('Space');
 		await page.keyboard.press('Escape');
 		await expect(summary).toContainText('Option 1');
@@ -108,7 +108,7 @@ const testAction = () => {
 		const summary = component.locator('summary');
 		await page.keyboard.press('Tab');
 		await page.keyboard.press('ArrowDown');
-		await page.waitForTimeout(1000);
+		await page.waitForTimeout(1000); // wait for focus to apply
 		await page.keyboard.press('Space');
 		await page.keyboard.press('Escape');
 		await expect(summary).toContainText('Option 1, Option 2');
