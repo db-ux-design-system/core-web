@@ -89,13 +89,13 @@ export default function DBNavigationItemGroup(
 	});
 
 	onUpdate(() => {
-		if (props.subNavigationExpanded !== undefined) {
+		if (props.expanded !== undefined) {
 			state.isSubNavigationExpanded = !!getBoolean(
-				props.subNavigationExpanded,
+				props.expanded,
 				'subNavigationExpanded'
 			);
 		}
-	}, [props.subNavigationExpanded]);
+	}, [props.expanded]);
 
 	onUpdate(() => {
 		if (_ref && state.initialized) {
@@ -149,7 +149,6 @@ export default function DBNavigationItemGroup(
 			class={cls('db-navigation-item-group', props.className)}
 			data-width={props.width}
 			data-icon={props.icon}
-			data-pride={getBooleanAsString(props.pride)}
 			data-hide-icon={getHideProp(props.showIcon)}
 			data-active={props.active}
 			data-wrap={getBooleanAsString(props.wrap)}

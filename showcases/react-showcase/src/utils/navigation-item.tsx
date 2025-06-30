@@ -203,5 +203,7 @@ export const NAVIGATION_ITEMS: NavigationItem[] = [
 			}
 		])
 	},
+	{ path: '/bla', label: 'Bla', component: <Home /> },
+	{ path: '/test', label: 'Test', component: <Home /> },
 	{ path: '', label: 'Home', component: <Home /> }
 ];

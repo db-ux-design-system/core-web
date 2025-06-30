@@ -23,7 +23,7 @@ export type DBNavigationItemGroupDefaultProps = {
 	/**
 	 * This is for mobile navigation only, if it is set the sub-navigation is a static overlay
 	 */
-	subNavigationExpanded?: boolean | string;
+	expanded?: boolean | string;
 };
 
 export type DBNavigationItemGroupProps = DBNavigationItemGroupDefaultProps &

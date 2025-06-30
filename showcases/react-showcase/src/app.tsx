@@ -2,7 +2,7 @@ import { Outlet } from 'react-router-dom';
 import {
 	DBControlPanelBrand,
 	DBControlPanelDesktop,
-	DBControlPanelMobile,
+	DBControlPanelMobile, DBNavigation, DBNavigationItem,
 	DBShell
 } from '@components';
 import useQuery from './hooks/use-query';
@@ -40,7 +40,11 @@ const App = () => {
 			subNavigationMobilePosition={settings.subNavigationMobilePosition}
 			subNavigation={
 				settings.subNavigation === 'true' ? (
-					<Navigation variant={settings.subNavigationVariant} />
+					<DBNavigation aria-label="sub navigation">
+						<DBNavigationItem><a>All</a></DBNavigationItem>
+						<DBNavigationItem><a>Input</a></DBNavigationItem>
+						<DBNavigationItem><a>Checkbox</a></DBNavigationItem>
+					</DBNavigation>
 				) : null
 			}
 			controlPanelMobile={
