@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-deprecated */
+
 import { DBBrand } from '../../../../../output/react/src';
 import DefaultComponent from '../default-component';
 import defaultComponentVariants from '../../../../shared/brand.json';

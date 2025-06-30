@@ -92,7 +92,7 @@ const ComponentSwitch = ({
 	if (type === 'a') {
 		try {
 			const url = new URL('', props.href);
-			const host = url.host;
+			const { host } = url;
 			if (validHosts.has(host)) {
 				return (
 					<a

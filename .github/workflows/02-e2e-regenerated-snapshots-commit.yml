@@ -48,14 +48,14 @@ jobs:
         if: inputs.foundations
         with:
           name: snapshots-foundations
-          path: ./__snapshots__/
+          path: ./__snapshots__/foundations
 
       - name: ⏬ Download patternhub
         uses: actions/download-artifact@v4
         if: inputs.patternhub
         with:
           name: snapshots-patternhub
-          path: ./__snapshots__/foundations
+          path: ./__snapshots__/
 
       - name: ⏬ Download showcase
         uses: actions/download-artifact@v4

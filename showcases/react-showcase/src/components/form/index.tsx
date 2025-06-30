@@ -483,16 +483,13 @@ const FormComponent = () => {
 					minLength={10}
 				/>
 
-				<DBTag
-					describedbyid="tooltip-01"
-					semantic="neutral"
-					emphasis="strong">
+				<DBTag semantic="neutral" emphasis="strong">
 					KUZ
 					<DBTooltip id="tooltip-01" placement="right-end">
 						Beschreibungstext
 					</DBTooltip>
 				</DBTag>
-				<DBButton describedbyid="tooltip-01">
+				<DBButton>
 					KUZ
 					<DBTooltip id="tooltip-01" placement="right-end">
 						Beschreibungstext
@@ -502,7 +499,7 @@ const FormComponent = () => {
 				<form
 					onSubmit={(event) => {
 						event.preventDefault();
-						/* eslint-disable-next-line no-console */
+
 						console.log(event);
 					}}>
 					<DBCustomSelect
@@ -521,8 +518,8 @@ const FormComponent = () => {
 						searchLabel="Search"
 						noResultsText="No matching filter"
 						values={multiSelectValue}
-						onOptionSelected={(val) => {
-							setMultiSelectValue(val);
+						onOptionSelected={(value) => {
+							setMultiSelectValue(value);
 						}}
 					/>
 					<DBButton
