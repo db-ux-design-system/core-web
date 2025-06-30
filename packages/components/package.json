@@ -41,6 +41,7 @@
     "generate:component": "hygen mitosis new",
     "generate:copilot-instructions": "node ../../scripts/generate-copilot-instructions.js",
     "generate:docs": "hygen update-docs new",
+    "generate:snippets": "node ../../scripts/generate-mitosis-snippets.js",
     "postinstall": "node ../../scripts/copy-copilot-instructions.js",
     "prepack": "npm run copy-assets",
     "prepare": "npm run generate:copilot-instructions",
