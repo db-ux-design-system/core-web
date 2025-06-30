@@ -2,7 +2,7 @@ import { expect, type Page, test } from '@playwright/test';
 import { AxeBuilder } from '@axe-core/playwright';
 import { close, getCompliance } from 'accessibility-checker';
 import { type ICheckerError } from 'accessibility-checker/lib/api/IChecker';
-import { type FullProject } from 'playwright/types/test';
+import { type FullProject } from 'playwright/types';
 import { type IBaselineResult } from 'accessibility-checker/lib/common/engine/IReport';
 import { lvl1 } from './fixtures/variants';
 import { setScrollViewport } from './fixtures/viewport';
