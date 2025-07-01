@@ -1,5 +1,5 @@
 import { test } from '@playwright/test';
-import { isStencil, runAxeCoreTest, runA11yCheckerTest } from '../default.ts';
+import { isStencil, runA11yCheckerTest, runAxeCoreTest } from '../default.ts';
 import { lvl3 } from '../fixtures/variants';
 
 // We need to change tabs anyway, we disable the rules for now

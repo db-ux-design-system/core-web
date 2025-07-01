@@ -1,8 +1,8 @@
-import { expect, test } from '@playwright/experimental-ct-react';
 import AxeBuilder from '@axe-core/playwright';
+import { expect, test } from '@playwright/experimental-ct-react';
 
-import { DBNotification } from './index';
 import { DEFAULT_VIEWPORT, SEMANTICS } from '../../shared/constants.ts';
+import { DBNotification } from './index';
 
 const comp: any = <DBNotification>Test</DBNotification>;
 

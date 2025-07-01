@@ -1,13 +1,13 @@
 <script setup lang="ts">
-import DefaultComponent from "../DefaultComponent.vue";
-import defaultComponentVariants from "../../../../shared/tabs.json";
 import {
-	DBTabs,
 	DBInfotext,
-	DBTabList,
 	DBTabItem,
-	DBTabPanel
+	DBTabList,
+	DBTabPanel,
+	DBTabs
 } from "../../../../../output/vue/src";
+import defaultComponentVariants from "../../../../shared/tabs.json";
+import DefaultComponent from "../DefaultComponent.vue";
 </script>
 
 <template>

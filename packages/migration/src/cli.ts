@@ -1,9 +1,9 @@
 #!/usr/bin/env node
 
-import type { OptionsType } from './types';
-import startProgram from './program';
 import { options } from './data';
 import { migrate } from './migration';
+import startProgram from './program';
+import type { OptionsType } from './types';
 
 const action = async (_: unknown, options: OptionsType) => {
 	migrate(options, true);

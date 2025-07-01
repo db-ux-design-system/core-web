@@ -5,8 +5,8 @@ import {
 	useRef,
 	useStore
 } from '@builder.io/mitosis';
-import { DBInfotextProps, DBInfotextState } from './model';
 import { cls, getHideProp } from '../../utils';
+import { DBInfotextProps, DBInfotextState } from './model';
 
 useMetadata({});
 
