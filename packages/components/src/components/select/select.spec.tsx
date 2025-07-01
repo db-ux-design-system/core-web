@@ -57,7 +57,7 @@ const testAction = () => {
 		);
 		const component = await mount(comp);
 		const select = component.getByRole('combobox');
-		const selected = await select.selectOption({ label: 'Test1' });
+		const selected = await select.selectOption({ value: 'test1' });
 		expect(selected).toContain(test);
 	});
 };
