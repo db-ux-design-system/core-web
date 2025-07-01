@@ -1,7 +1,7 @@
 - navigation:
   - list:
     - listitem:
-      - button "Test1 chevron_right\" / \""
+      - button "Test1"
     - listitem:
       - link "Test2":
         - /url: "#"
