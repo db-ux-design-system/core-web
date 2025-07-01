@@ -6,7 +6,7 @@ import * as https from 'node:https';
 import { replaceInFileSync } from 'replace-in-file';
 
 // eslint-disable-next-line prefer-regex-literals
-const shieldRegex = new RegExp('https://img\\.shields\\.io/[^)|\\s]*');
+const shieldRegex = new RegExp(String.raw`https://img\.shields\.io/[^)|\s]*`);
 const docsPath = 'docs/images/download';
 
 type Replacement = {

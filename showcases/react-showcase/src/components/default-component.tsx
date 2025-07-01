@@ -6,7 +6,7 @@ import type {
 } from '../../../shared/react-default-component-data';
 import useQuery from '../hooks/use-query';
 
-const redirectURLSearchParams = process?.env?.REDIRECT_URL_SEARCH_PARAMS
+const redirectURLSearchParameters = process?.env?.REDIRECT_URL_SEARCH_PARAMS
 	? process.env.REDIRECT_URL_SEARCH_PARAMS === 'true'
 	: true;
 
@@ -25,7 +25,7 @@ const VariantList = ({
 	const [open, setOpen] = useState<boolean>();
 
 	const validExamples = examples.filter(
-		(example) => redirectURLSearchParams || !example.experimental
+		(example) => redirectURLSearchParameters || !example.experimental
 	);
 
 	return (
@@ -78,16 +78,16 @@ const DefaultComponent = ({
 	isSubComponent,
 	componentName
 }: ReactDefaultComponentProps) => {
-	const pageName = useQuery(redirectURLSearchParams)[4];
-	const color = useQuery(redirectURLSearchParams)[2];
+	const pageName = useQuery(redirectURLSearchParameters)[4];
+	const color = useQuery(redirectURLSearchParameters)[2];
 
 	const getHref = (variantName: string): string => {
 		if (typeof globalThis !== 'undefined') {
-			const searchParams = new URLSearchParams(
+			const searchParameters = new URLSearchParams(
 				globalThis?.location?.href.split('?')[1]
 			);
-			searchParams.set('page', variantName.toLowerCase());
-			return `${globalThis?.location?.href.split('?')[0]}?${searchParams.toString()}`;
+			searchParameters.set('page', variantName.toLowerCase());
+			return `${globalThis?.location?.href.split('?')[0]}?${searchParameters.toString()}`;
 		}
 
 		return '';
@@ -107,14 +107,14 @@ const DefaultComponent = ({
 
 		const currentUrl = globalThis.location.href.split('?');
 		const rawComponentUrl = currentUrl[0];
-		const searchParams = new URLSearchParams(currentUrl[1] ?? '');
-		searchParams.set('page', variantName.toLowerCase());
+		const searchParameters = new URLSearchParams(currentUrl[1] ?? '');
+		searchParameters.set('page', variantName.toLowerCase());
 
 		const regexComponentOverviewFragment = /\/[a-z\d\-_]*\/overview/;
 
 		const openUrl = componentName
-			? `${rawComponentUrl.replace(regexComponentOverviewFragment, `/${componentName}/overview`)}?${searchParams.toString()}`
-			: `${currentUrl[0]}?${searchParams.toString()}`;
+			? `${rawComponentUrl.replace(regexComponentOverviewFragment, `/${componentName}/overview`)}?${searchParameters.toString()}`
+			: `${currentUrl[0]}?${searchParameters.toString()}`;
 
 		window.open(openUrl, '_blank');
 	};
@@ -137,7 +137,7 @@ const DefaultComponent = ({
 				{variants
 					?.filter(
 						(variant) =>
-							redirectURLSearchParams ||
+							redirectURLSearchParameters ||
 							variant.examples.find(
 								(example) => !example.experimental
 							)

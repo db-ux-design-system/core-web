@@ -2,7 +2,6 @@ import { test } from '@playwright/test';
 import {
 	hasWebComponentSyntax,
 	runA11yCheckerTest,
-	// @ts-expect-error - required for playwright
 	runAxeCoreTest
 } from '../default.ts';
 import { lvl3 } from '../fixtures/variants';

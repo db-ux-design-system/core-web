@@ -18,7 +18,6 @@ const getHeader = ({
 	burgerMenuLabel,
 	children,
 	className,
-	describedbyid,
 	id,
 	onToggle,
 	width,
@@ -71,7 +70,6 @@ const getHeader = ({
 		forceMobile={forceMobile}
 		burgerMenuLabel={burgerMenuLabel}
 		className={className}
-		describedbyid={describedbyid}
 		id={id}
 		onToggle={onToggle}>
 		{(!example || withNavigation) && (

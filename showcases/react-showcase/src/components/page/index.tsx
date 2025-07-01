@@ -13,19 +13,11 @@ import { type BaseComponentProps } from '../base-component-data';
 import { getVariants } from '../data';
 import DefaultComponent from '../default-component';
 
-const getPage = ({
-	variant,
-	fadeIn,
-	children,
-	className,
-	describedbyid,
-	id
-}: DBPageProps) => (
+const getPage = ({ variant, fadeIn, children, className, id }: DBPageProps) => (
 	<DBPage
 		variant={variant}
 		fadeIn={fadeIn}
 		className={className}
-		describedbyid={describedbyid}
 		id={id}
 		header={
 			<DBHeader

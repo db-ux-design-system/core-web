@@ -1,5 +1,4 @@
 import { test } from '@playwright/test';
-// @ts-expect-error - required for playwright
 import { isStencil, runA11yCheckerTest, runAxeCoreTest } from '../default.ts';
 import { lvl3 } from '../fixtures/variants';
 
