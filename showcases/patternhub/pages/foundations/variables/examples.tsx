@@ -45,9 +45,7 @@ const Example = () => {
 												density.slice(1)}
 										</DBInfotext>
 										<div
-											className={`example-${example
-												.toLowerCase()
-												.replaceAll(' ', '-')}`}>
+											className={`example-${example.toLowerCase().replaceAll(' ', '-')}`}>
 											{example === 'Spacing fixed' && (
 												<div>
 													<DBIcon icon="x_placeholder">

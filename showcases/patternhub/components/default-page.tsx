@@ -127,9 +127,7 @@ const DefaultPage = ({
 		<>
 			{router.isReady && fullscreen && (
 				<div
-					className={`${noH1 ? 'noh1' : ''} ${
-						properties ? 'is-properties' : ''
-					}`}>
+					className={`${noH1 ? 'noh1' : ''} ${properties ? 'is-properties' : ''}`}>
 					{children}
 				</div>
 			)}

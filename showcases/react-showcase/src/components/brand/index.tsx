@@ -15,9 +15,7 @@ const getBrand = ({
 	<DBBrand hideLogo={hideLogo}>
 		{customLogo && (
 			<img
-				src={`${
-					process?.env?.NEXT_PUBLIC_BASE_PATH ?? '/react-showcase'
-				}/assets/images/placeholder.jpg`}
+				src={`${process?.env?.NEXT_PUBLIC_BASE_PATH ?? '/react-showcase'}/assets/images/placeholder.jpg`}
 				alt="this is a fancy placeholder logo"
 			/>
 		)}

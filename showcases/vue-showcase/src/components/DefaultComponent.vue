@@ -84,9 +84,7 @@ const createLinkFromVariantAndUrl = (variantName: string) => {
 		currentUrl += `&color=${route.query[COLOR_CONST] || COLOR.NEUTRAL_BG_LEVEL_1}`;
 	}
 	if (!currentUrl.includes("density=")) {
-		currentUrl += `&density=${
-			route.query[DENSITY_CONST] || DENSITY.REGULAR
-		}`;
+		currentUrl += `&density=${route.query[DENSITY_CONST] || DENSITY.REGULAR}`;
 	}
 	return `${currentUrl}&page=${variantName.toLowerCase()}`;
 };
