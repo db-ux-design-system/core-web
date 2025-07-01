@@ -297,7 +297,7 @@ export default function DBSelect(props: DBSelectProps) {
 				</Show>
 			</select>
 			<span id={state._placeholderId}>
-				{props.placeholder ?? props.label}
+				{props.placeholder || props.label}
 			</span>
 			<Show when={stringPropVisible(props.message, props.showMessage)}>
 				<DBInfotext
