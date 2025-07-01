@@ -1,11 +1,11 @@
-import { RouterLink, RouterLinkActive } from '@angular/router';
 import { Component, CUSTOM_ELEMENTS_SCHEMA, Input } from '@angular/core';
-import { NavItem } from '../utils/navigation-item';
+import { RouterLink, RouterLinkActive } from '@angular/router';
 import {
 	DBNavigationItem,
 	NavigationContentDirective
 } from '../../../../../output/angular/src';
 import { environment } from '../../environments/environment';
+import { NavItem } from '../utils/navigation-item';
 
 @Component({
 	selector: 'app-nav-item',

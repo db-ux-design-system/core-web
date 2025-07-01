@@ -1,7 +1,7 @@
 import { useState } from 'react';
-import DefaultPage from '../../../components/default-page';
-import { DBButton, DBTag, DBCard } from '../../../../../output/react/src';
+import { DBButton, DBCard, DBTag } from '../../../../../output/react/src';
 import { SEMANTICS } from '../../../../../packages/components/src/shared/constants';
+import DefaultPage from '../../../components/default-page';
 
 const colors = ['neutral', ...SEMANTICS];
 

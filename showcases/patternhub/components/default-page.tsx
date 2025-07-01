@@ -1,5 +1,7 @@
-import { useRouter } from 'next/router';
+import hljs from 'highlight.js';
 import dynamic from 'next/dynamic';
+import Link from 'next/link';
+import { useRouter } from 'next/router';
 import {
 	Fragment,
 	type PropsWithChildren,
@@ -7,17 +9,15 @@ import {
 	useEffect,
 	useState
 } from 'react';
-import hljs from 'highlight.js';
-import Link from 'next/link';
 import {
 	DBBrand,
-	DBSwitch,
-	DBTooltip,
+	DBCard,
 	DBHeader,
+	DBIcon,
 	DBPage,
 	DBSection,
-	DBCard,
-	DBIcon
+	DBSwitch,
+	DBTooltip
 } from '../../../output/react/src';
 import {
 	getBreadcrumb,

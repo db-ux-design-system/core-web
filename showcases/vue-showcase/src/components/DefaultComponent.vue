@@ -1,18 +1,18 @@
 <script setup lang="ts">
+import { inject, type Ref, ref, watch } from "vue";
+import { useRoute } from "vue-router";
 import { DBCard, DBDivider, DBLink } from "../../../../output/vue/src";
-import type {
-	DefaultComponentExample,
-	DefaultComponentProps,
-	DefaultComponentVariants
-} from "../../../shared/default-component-data";
 import {
 	COLOR,
 	COLOR_CONST,
 	DENSITY,
 	DENSITY_CONST
 } from "../../../../packages/components/src/shared/constants";
-import { useRoute } from "vue-router";
-import { inject, type Ref, ref, watch } from "vue";
+import type {
+	DefaultComponentExample,
+	DefaultComponentProps,
+	DefaultComponentVariants
+} from "../../../shared/default-component-data";
 
 interface DefaultExample extends DefaultComponentExample {
 	name?: string;
