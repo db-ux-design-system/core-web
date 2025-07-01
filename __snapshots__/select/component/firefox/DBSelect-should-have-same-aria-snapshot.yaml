@@ -1,6 +1,6 @@
-- text: Label
-- combobox "Label":
+- text: Labell
+- combobox "Labell":
   - option "Test1" [selected]
   - option "Test2"
-- text: Description
+- text: Descriptionn
 - status
