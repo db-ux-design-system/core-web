@@ -18,9 +18,9 @@
     "next:dev": "next dev",
     "open": "open-cli http://localhost:3000/core-web/sub",
     "prebuild:app": "cpr ../../node_modules/iframe-resizer/js/ public/iframe-resizer -o",
-    "regenerate:screenshots": "npx playwright test --config=../playwright.patternhub-config.ts --update-snapshots",
+    "regenerate:screenshots": "npx playwright test --config=playwright.patternhub-config.ts --update-snapshots",
     "start": "cross-env NEXT_PUBLIC_BASE_PATH=/core-web/sub npm-run-all compile next:dev",
-    "test:e2e": "npx playwright test --config=../playwright.patternhub-config.ts"
+    "test:e2e": "npx playwright test --config=playwright.patternhub-config.ts"
   },
   "dependencies": {
     "dompurify": "3.2.6",

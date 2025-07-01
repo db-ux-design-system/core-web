@@ -133,12 +133,11 @@ jobs:
       showcase: vue-showcase
 
   test-showcase-patternhub:
-    uses: ./.github/workflows/02-e2e-showcases.yml
+    uses: ./.github/workflows/02-e2e-patternhub.yml
     needs: [build-showcase-patternhub, get-playwright-version]
     with:
       version: ${{ needs.get-playwright-version.outputs.version }}
       path: ${{ needs.build-showcase-patternhub.outputs.path }}
-      showcase: patternhub
 
   regenerate-snapshots-components:
     if: always() && needs.test-components.result == 'failure'
@@ -171,13 +170,22 @@ jobs:
       ]
 
   test-screen-reader:
+    if: |
+      needs.test-showcase-react.outputs.aria-snapshots-changed == 'true' ||
+      github.event.pull_request == null
     uses: ./.github/workflows/02-e2e-screen-reader.yml
-    needs: [build-showcase-react, init-playwright, get-playwright-version]
+    needs: [test-showcase-react, init-playwright, get-playwright-version]
     with:
       version: ${{ needs.get-playwright-version.outputs.version }}
 
   regenerate-snapshots:
-    if: always() && (needs.test-showcase-angular.result == 'failure' || needs.test-showcase-react.result == 'failure' || needs.test-showcase-vue.result == 'failure')
+    if: |
+      needs.test-showcase-angular.outputs.aria-snapshots-changed == 'true' ||
+      needs.test-showcase-angular.outputs.visual-snapshots-changed == 'true' ||
+      needs.test-showcase-react.outputs.aria-snapshots-changed == 'true' ||
+      needs.test-showcase-react.outputs.visual-snapshots-changed == 'true' ||
+      needs.test-showcase-vue.outputs.aria-snapshots-changed == 'true' ||
+      needs.test-showcase-vue.outputs.visual-snapshots-changed == 'true'
     uses: ./.github/workflows/02-e2e-regenerate.yml
     with:
       version: ${{ needs.get-playwright-version.outputs.version }}
