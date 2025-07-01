@@ -1,7 +1,19 @@
-import { onMount, onUpdate, Show, useDefaultProps, useMetadata, useRef, useStore, useTarget } from '@builder.io/mitosis';
+import {
+	onMount,
+	onUpdate,
+	Show,
+	useDefaultProps,
+	useMetadata,
+	useRef,
+	useStore,
+	useTarget
+} from '@builder.io/mitosis';
 import type { DBTabItemProps, DBTabItemState } from './model';
 import { cls, getBoolean, getBooleanAsString, getHideProp } from '../../utils';
-import { handleFrameworkEventAngular, handleFrameworkEventVue } from '../../utils/form-components';
+import {
+	handleFrameworkEventAngular,
+	handleFrameworkEventVue
+} from '../../utils/form-components';
 
 useMetadata({
 	angular: {
@@ -47,7 +59,8 @@ export default function DBTabItem(props: DBTabItemProps) {
 			});
 
 			useTarget({
-				angular: () => handleFrameworkEventAngular(state, event, 'checked'),
+				angular: () =>
+					handleFrameworkEventAngular(state, event, 'checked'),
 				vue: () => handleFrameworkEventVue(() => {}, event, 'checked')
 			});
 		}

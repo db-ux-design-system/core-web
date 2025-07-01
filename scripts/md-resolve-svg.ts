@@ -38,7 +38,9 @@ const findReplacements = (file: string, filesToReplace: Replacement[]) => {
 		const pathname = `${docsPath}/${svgName}`;
 		const pathNameSvg = `${pathname}.svg`;
 
-		const foundSvg = filesToReplace.find((downloadFile) => downloadFile.svgUrl === svgUrl);
+		const foundSvg = filesToReplace.find(
+			(downloadFile) => downloadFile.svgUrl === svgUrl
+		);
 
 		if (foundSvg) {
 			if (!foundSvg.files.includes(file)) {
@@ -67,7 +69,10 @@ const startReplacement = (filesToReplace: Replacement[]) => {
 			processor(input: string) {
 				let replacedInput: string = input;
 				while (replacedInput.includes(svgUrl)) {
-					replacedInput = replacedInput.replace(svgUrl, `/${pathNameSvg}`);
+					replacedInput = replacedInput.replace(
+						svgUrl,
+						`/${pathNameSvg}`
+					);
 				}
 
 				return replacedInput;
@@ -81,7 +86,10 @@ const startReplacement = (filesToReplace: Replacement[]) => {
 				incomingMessage.pipe(fileStream);
 				fileStream.on('finish', () => {
 					fileStream.close();
-					fs.writeFileSync(`${pathname}.licence`, `retrieved from URL: ${svgUrl}`);
+					fs.writeFileSync(
+						`${pathname}.licence`,
+						`retrieved from URL: ${svgUrl}`
+					);
 				});
 			});
 		}
@@ -105,7 +113,9 @@ const convertImages = async () => {
 	// Windows has double backslash for paths
 	filesToReplace = filesToReplace.map((file) => ({
 		...file,
-		files: file.files.map((fileName: string) => fileName.replaceAll('\\', '/'))
+		files: file.files.map((fileName: string) =>
+			fileName.replaceAll('\\', '/')
+		)
 	}));
 
 	startReplacement(filesToReplace);

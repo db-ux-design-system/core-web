@@ -26,7 +26,9 @@ const testA11y = () => {
 	});
 	test('should not have any A11y issues', async ({ page, mount }) => {
 		await mount(comp);
-		const accessibilityScanResults = await new AxeBuilder({ page }).include('.db-input').analyze();
+		const accessibilityScanResults = await new AxeBuilder({ page })
+			.include('.db-input')
+			.analyze();
 
 		expect(accessibilityScanResults.violations).toEqual([]);
 	});

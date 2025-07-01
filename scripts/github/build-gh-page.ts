@@ -27,7 +27,9 @@ const buildGHPage = async () => {
 
 	console.log('📥 Get gh-pages tar');
 
-	const result = await fetch(`https://github.com/${OWNER_NAME}/${REPO_NAME}/tarball/gh-pages`);
+	const result = await fetch(
+		`https://github.com/${OWNER_NAME}/${REPO_NAME}/tarball/gh-pages`
+	);
 
 	if (!result.ok) {
 		throw new Error(`Failed to fetch tarball: ${result.statusText}`);

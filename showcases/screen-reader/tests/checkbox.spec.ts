@@ -6,7 +6,8 @@ test.describe('DBCheckbox', () => {
 	testDefault({
 		test,
 		title: 'default',
-		description: 'should tick and untick checkbox, feedback messages must appear',
+		description:
+			'should tick and untick checkbox, feedback messages must appear',
 		url: './#/03/checkbox?page=required',
 		async testFn(voiceOver, nvda) {
 			if (nvda) {

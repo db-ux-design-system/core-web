@@ -38,7 +38,9 @@ export type NavItem = {
 };
 
 export const getSortedNavigationItems = (navigationItems: NavItem[]): any[] =>
-	navigationItems.sort((a: NavItem, b: NavItem) => a.path.localeCompare(b.path));
+	navigationItems.sort((a: NavItem, b: NavItem) =>
+		a.path.localeCompare(b.path)
+	);
 
 export const NAVIGATION_ITEMS: NavItem[] = [
 	{

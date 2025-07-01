@@ -1,4 +1,10 @@
-import { DBTabs, DBTabList, DBTabItem, DBTabPanel, DBInfotext } from '../../../../../output/react/src';
+import {
+	DBTabs,
+	DBTabList,
+	DBTabItem,
+	DBTabPanel,
+	DBInfotext
+} from '../../../../../output/react/src';
 import DefaultComponent from '../default-component';
 import defaultComponentVariants from '../../../../shared/tabs.json';
 import type { DBTabsProps } from '../../../../../output/react/src/components/tabs/model';
@@ -56,7 +62,11 @@ const TabsComponent = (props: BaseComponentProps) => {
 		<DefaultComponent
 			title="DBTabs"
 			subComponent={props.subComponent}
-			variants={getVariants(defaultComponentVariants, getTabs, props.slotCode)}></DefaultComponent>
+			variants={getVariants(
+				defaultComponentVariants,
+				getTabs,
+				props.slotCode
+			)}></DefaultComponent>
 	);
 };
 

@@ -1,7 +1,13 @@
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { WrapperComponent } from '../wrapper/wrapper.component';
-import { DBCheckbox, DBInput, DBRadio, DBSelect, DBTextarea } from '../../../../../../../output/angular/src';
+import {
+	DBCheckbox,
+	DBInput,
+	DBRadio,
+	DBSelect,
+	DBTextarea
+} from '../../../../../../../output/angular/src';
 import { environment } from '../../../../environments/environment';
 import { DefaultComponent } from '../../default.component';
 

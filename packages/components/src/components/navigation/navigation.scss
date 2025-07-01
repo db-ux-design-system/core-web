@@ -41,7 +41,13 @@
 					}
 
 					&:is(:hover, :focus-visible),
-					&:has(~ .db-sub-navigation:is(:hover, :focus-visible, :focus-within)) {
+					&:has(
+						~ .db-sub-navigation:is(
+								:hover,
+								:focus-visible,
+								:focus-within
+							)
+					) {
 						&::after {
 							transform: form-components.$dropdown-icon-transform;
 						}
@@ -60,7 +66,13 @@
 						}
 
 						&:is(:hover, :focus-visible),
-						:has(~ .db-sub-navigation:is(:hover, :focus-visible, :focus-within)) {
+						:has(
+							~ .db-sub-navigation:is(
+									:hover,
+									:focus-visible,
+									:focus-within
+								)
+						) {
 							&::after {
 								transform: none;
 							}

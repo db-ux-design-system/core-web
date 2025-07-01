@@ -6,7 +6,8 @@ test.describe('DBNavigation', () => {
 	testDefault({
 		test,
 		title: 'default',
-		description: 'should have texts inline or as data-label attributes (next())',
+		description:
+			'should have texts inline or as data-label attributes (next())',
 		url: './#/05/navigation?page=density',
 		async testFn(voiceOver, nvda) {
 			if (nvda) {

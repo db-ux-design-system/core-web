@@ -1,9 +1,16 @@
 <script setup lang="ts">
 import DefaultComponent from "../DefaultComponent.vue";
 import defaultComponentVariants from "../../../../shared/input.json";
-import { DBCheckbox, DBInput, LabelVariantType, ValueLabelType } from "../../../../../output/vue/src";
+import {
+	DBCheckbox,
+	DBInput,
+	LabelVariantType,
+	ValueLabelType
+} from "../../../../../output/vue/src";
 
-const getDataList = (variant?: LabelVariantType): string[] | ValueLabelType[] => {
+const getDataList = (
+	variant?: LabelVariantType
+): string[] | ValueLabelType[] => {
 	if (variant === "floating") {
 		return ["Test 1", "Test 2"];
 	}
@@ -17,7 +24,9 @@ const getDataList = (variant?: LabelVariantType): string[] | ValueLabelType[] =>
 
 <template>
 	<DefaultComponent title="DBInput" :variants="defaultComponentVariants">
-		<template #example="{ exampleIndex, variantIndex, exampleName, exampleProps }">
+		<template
+			#example="{ exampleIndex, variantIndex, exampleName, exampleProps }"
+		>
 			<DBInput
 				:maxLength="exampleProps?.maxLength"
 				:max="exampleProps?.max"
@@ -39,7 +48,11 @@ const getDataList = (variant?: LabelVariantType): string[] | ValueLabelType[] =>
 				:invalidMessage="exampleProps?.invalidMessage"
 				:validMessage="exampleProps?.validMessage"
 				:validation="exampleProps?.validation"
-				:dataList="exampleProps?.dataList ? getDataList(exampleProps?.variant) : undefined"
+				:dataList="
+					exampleProps?.dataList
+						? getDataList(exampleProps?.variant)
+						: undefined
+				"
 			></DBInput>
 		</template>
 	</DefaultComponent>

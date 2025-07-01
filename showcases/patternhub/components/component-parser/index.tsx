@@ -35,7 +35,13 @@ import type { ComponentParserType, ComponentType } from './data';
 
 const validHosts = new Set(['marketingportal.extranet.deutschebahn.com']);
 
-const ComponentSwitch = ({ type, content, index, props, className }: ComponentType) => {
+const ComponentSwitch = ({
+	type,
+	content,
+	index,
+	props,
+	className
+}: ComponentType) => {
 	const resolvedContent = Array.isArray(content)
 		? content.map((innerComponent: ComponentType, innerIndex: number) => (
 				<ComponentSwitch
@@ -75,7 +81,9 @@ const ComponentSwitch = ({ type, content, index, props, className }: ComponentTy
 
 	if (type === 'flex') {
 		return (
-			<div className={`flex ${className ?? ''}`} data-variant={props?.column ? 'column' : 'row'}>
+			<div
+				className={`flex ${className ?? ''}`}
+				data-variant={props?.column ? 'column' : 'row'}>
 				{resolvedContent}
 			</div>
 		);
@@ -87,7 +95,10 @@ const ComponentSwitch = ({ type, content, index, props, className }: ComponentTy
 			const { host } = url;
 			if (validHosts.has(host)) {
 				return (
-					<a className={className} href={props.href} target={props.target}>
+					<a
+						className={className}
+						href={props.href}
+						target={props.target}>
 						{resolvedContent}
 					</a>
 				);

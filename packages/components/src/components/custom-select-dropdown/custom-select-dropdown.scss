@@ -17,7 +17,10 @@
 
 	&:not([data-width]),
 	&[data-width="fixed"] {
-		inline-size: var(--db-custom-select-dropdown-fixed-inline-size, #{variables.$db-sizing-3xl});
+		inline-size: var(
+			--db-custom-select-dropdown-fixed-inline-size,
+			#{variables.$db-sizing-3xl}
+		);
 	}
 
 	&[data-width="full"] {
@@ -41,14 +44,16 @@
 	> db-custom-select-list > div:not([class~="db-custom-select-list"]),
 	> div:not([class~="db-custom-select-list"]) {
 		&:has(.db-checkbox) {
-			padding: variables.$db-spacing-fixed-xs variables.$db-spacing-fixed-sm;
+			padding: variables.$db-spacing-fixed-xs
+				variables.$db-spacing-fixed-sm;
 
 			@include helpers.divider("bottom", "after");
 		}
 
 		&:has(.db-button),
 		&:has(.db-input) {
-			padding: variables.$db-spacing-fixed-md calc(#{variables.$db-spacing-fixed-sm} * 2);
+			padding: variables.$db-spacing-fixed-md
+				calc(#{variables.$db-spacing-fixed-sm} * 2);
 		}
 
 		&:has(.db-input) {
@@ -72,7 +77,8 @@
 		&[data-icon="circular_arrows"] {
 			&::before {
 				@media screen and (prefers-reduced-motion: no-preference) {
-					animation: rotate 1.5s linear 0s infinite normal none running;
+					animation: rotate 1.5s linear 0s infinite normal none
+						running;
 				}
 			}
 		}

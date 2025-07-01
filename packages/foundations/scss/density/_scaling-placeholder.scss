@@ -11,11 +11,19 @@
 		/* stylelint-disable-next-line at-rule-prelude-no-invalid,layer-name-pattern */
 		@layer #{helpers.$layer-variables} {
 			@each $sizing in variables.$sizings {
-				--db-sizing-#{$sizing}: #{get-variable("sizing", $density, $sizing)};
+				--db-sizing-#{$sizing}: #{get-variable(
+						"sizing",
+						$density,
+						$sizing
+					)};
 			}
 
 			@each $fix in variables.$sizings {
-				--db-spacing-fixed-#{$fix}: #{get-variable("spacing-fixed", $density, $fix)};
+				--db-spacing-fixed-#{$fix}: #{get-variable(
+						"spacing-fixed",
+						$density,
+						$fix
+					)};
 			}
 
 			@include screen-sizes.screen-min-max(
@@ -24,7 +32,12 @@
 				)
 			) {
 				@each $res in variables.$sizings {
-					--db-spacing-responsive-#{$res}: #{get-variable("spacing-responsive", $density, $res, "mobile-")};
+					--db-spacing-responsive-#{$res}: #{get-variable(
+							"spacing-responsive",
+							$density,
+							$res,
+							"mobile-"
+						)};
 				}
 			}
 
@@ -35,7 +48,12 @@
 				)
 			) {
 				@each $res in variables.$sizings {
-					--db-spacing-responsive-#{$res}: #{get-variable("spacing-responsive", $density, $res, "tablet-")};
+					--db-spacing-responsive-#{$res}: #{get-variable(
+							"spacing-responsive",
+							$density,
+							$res,
+							"tablet-"
+						)};
 				}
 			}
 
@@ -45,7 +63,12 @@
 				)
 			) {
 				@each $res in variables.$sizings {
-					--db-spacing-responsive-#{$res}: #{get-variable("spacing-responsive", $density, $res, "desktop-")};
+					--db-spacing-responsive-#{$res}: #{get-variable(
+							"spacing-responsive",
+							$density,
+							$res,
+							"desktop-"
+						)};
 				}
 			}
 		}

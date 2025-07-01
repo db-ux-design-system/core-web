@@ -36,7 +36,9 @@
 			color: var(--db-#{$name}-bg-inverted-contrast-high-default);
 
 			&::before {
-				--db-icon-color: var(--db-#{$name}-on-bg-basic-emphasis-70-default);
+				--db-icon-color: var(
+					--db-#{$name}-on-bg-basic-emphasis-70-default
+				);
 			}
 		}
 	}

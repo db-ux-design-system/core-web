@@ -19,7 +19,8 @@ const isInView = (el: HTMLElement) => {
 			if (position === 'top') {
 				outTop = parentRect.top - (bottom - parentRect.bottom) < 0;
 			} else {
-				outBottom = parentRect.bottom + (parentRect.top - top) > innerHeight;
+				outBottom =
+					parentRect.bottom + (parentRect.top - top) > innerHeight;
 			}
 		}
 
@@ -28,7 +29,8 @@ const isInView = (el: HTMLElement) => {
 			if (position === 'left') {
 				outLeft = parentRect.left - (right - parentRect.right) < 0;
 			} else {
-				outRight = parentRect.right + (parentRect.left - left) > innerWidth;
+				outRight =
+					parentRect.right + (parentRect.left - left) > innerWidth;
 			}
 		}
 	}
@@ -68,11 +70,24 @@ export const handleDataOutside = (el: HTMLElement): DBDataOutsidePair => {
 	return dataOutsidePair;
 };
 
-export const handleFixedDropdown = (element: HTMLElement, parent: HTMLElement, placement: string) => {
+export const handleFixedDropdown = (
+	element: HTMLElement,
+	parent: HTMLElement,
+	placement: string
+) => {
 	// We skip this if we are in mobile it's already fixed
 	if (getComputedStyle(element).zIndex === '9999') return;
 
-	const { top, bottom, childHeight, childWidth, width, right, left, correctedPlacement } = getFloatingProps(element, parent, placement);
+	const {
+		top,
+		bottom,
+		childHeight,
+		childWidth,
+		width,
+		right,
+		left,
+		correctedPlacement
+	} = getFloatingProps(element, parent, placement);
 
 	const fullWidth = element.dataset['width'] === 'full';
 
@@ -87,7 +102,10 @@ export const handleFixedDropdown = (element: HTMLElement, parent: HTMLElement, p
 		correctedPlacement === 'bottom-start'
 	) {
 		element.style.insetInlineStart = `${left}px`;
-	} else if (correctedPlacement === 'top-end' || correctedPlacement === 'bottom-end') {
+	} else if (
+		correctedPlacement === 'top-end' ||
+		correctedPlacement === 'bottom-end'
+	) {
 		element.style.insetInlineStart = `${right - childWidth}px`;
 	}
 
@@ -100,7 +118,11 @@ export const handleFixedDropdown = (element: HTMLElement, parent: HTMLElement, p
 	element.style.position = 'fixed';
 };
 
-export const getFloatingProps = (element: HTMLElement, parent: HTMLElement, placement: string) => {
+export const getFloatingProps = (
+	element: HTMLElement,
+	parent: HTMLElement,
+	placement: string
+) => {
 	if (!element || !parent) {
 		return {
 			top: 0,
@@ -118,7 +140,8 @@ export const getFloatingProps = (element: HTMLElement, parent: HTMLElement, plac
 	}
 
 	const childRect = element.getBoundingClientRect();
-	const { top, height, bottom, right, left, width } = parent.getBoundingClientRect();
+	const { top, height, bottom, right, left, width } =
+		parent.getBoundingClientRect();
 
 	const { innerHeight, innerWidth } = window;
 
@@ -237,31 +260,65 @@ export const getFloatingProps = (element: HTMLElement, parent: HTMLElement, plac
 	};
 };
 
-export const handleFixedPopover = (element: HTMLElement, parent: HTMLElement, placement: string) => {
-	const distance = getComputedStyle(element).getPropertyValue('--db-popover-distance') ?? '0px';
+export const handleFixedPopover = (
+	element: HTMLElement,
+	parent: HTMLElement,
+	placement: string
+) => {
+	const distance =
+		getComputedStyle(element).getPropertyValue('--db-popover-distance') ??
+		'0px';
 
-	const { top, height, width, childHeight, childWidth, right, left, bottom, correctedPlacement, innerWidth, innerHeight } = getFloatingProps(
-		element,
-		parent,
-		placement
-	);
+	const {
+		top,
+		height,
+		width,
+		childHeight,
+		childWidth,
+		right,
+		left,
+		bottom,
+		correctedPlacement,
+		innerWidth,
+		innerHeight
+	} = getFloatingProps(element, parent, placement);
 
 	// Tooltip arrow position
 
-	if (childWidth > width && (correctedPlacement.startsWith('bottom') || correctedPlacement.startsWith('top'))) {
+	if (
+		childWidth > width &&
+		(correctedPlacement.startsWith('bottom') ||
+			correctedPlacement.startsWith('top'))
+	) {
 		const diff = (width / 2 / childWidth) * 100;
 		if (correctedPlacement.endsWith('start')) {
-			element.style.setProperty('--db-tooltip-arrow-inline-start', `${diff}%`);
+			element.style.setProperty(
+				'--db-tooltip-arrow-inline-start',
+				`${diff}%`
+			);
 		} else if (correctedPlacement.endsWith('end')) {
-			element.style.setProperty('--db-tooltip-arrow-inline-start', `${100 - diff}%`);
+			element.style.setProperty(
+				'--db-tooltip-arrow-inline-start',
+				`${100 - diff}%`
+			);
 		}
 	}
-	if (childHeight > height && (correctedPlacement.startsWith('left') || correctedPlacement.startsWith('bottom'))) {
+	if (
+		childHeight > height &&
+		(correctedPlacement.startsWith('left') ||
+			correctedPlacement.startsWith('bottom'))
+	) {
 		const diff = (height / 2 / childHeight) * 100;
 		if (correctedPlacement.endsWith('start')) {
-			element.style.setProperty('--db-tooltip-arrow-block-start', `${diff}%`);
+			element.style.setProperty(
+				'--db-tooltip-arrow-block-start',
+				`${diff}%`
+			);
 		} else if (correctedPlacement.endsWith('end')) {
-			element.style.setProperty('--db-tooltip-arrow-block-start', `${100 - diff}%`);
+			element.style.setProperty(
+				'--db-tooltip-arrow-block-start',
+				`${100 - diff}%`
+			);
 		}
 	}
 
@@ -270,22 +327,37 @@ export const handleFixedPopover = (element: HTMLElement, parent: HTMLElement, pl
 	if (correctedPlacement === 'right' || correctedPlacement === 'left') {
 		// center horizontally
 		element.style.insetBlockStart = `${top + height / 2}px`;
-	} else if (correctedPlacement === 'right-start' || correctedPlacement === 'left-start') {
+	} else if (
+		correctedPlacement === 'right-start' ||
+		correctedPlacement === 'left-start'
+	) {
 		const end = top + childHeight;
 		element.style.insetBlockStart = `${top}px`;
 		element.style.insetBlockEnd = `${end > innerHeight ? innerHeight : end}px`;
-	} else if (correctedPlacement === 'right-end' || correctedPlacement === 'left-end') {
+	} else if (
+		correctedPlacement === 'right-end' ||
+		correctedPlacement === 'left-end'
+	) {
 		const start = bottom - childHeight;
 		element.style.insetBlockStart = `${start < 0 ? 0 : start}px`;
 		element.style.insetBlockEnd = `${bottom}px`;
-	} else if (correctedPlacement === 'top' || correctedPlacement === 'bottom') {
+	} else if (
+		correctedPlacement === 'top' ||
+		correctedPlacement === 'bottom'
+	) {
 		// center vertically
 		element.style.insetInlineStart = `${left + width / 2}px`;
-	} else if (correctedPlacement === 'top-start' || correctedPlacement === 'bottom-start') {
+	} else if (
+		correctedPlacement === 'top-start' ||
+		correctedPlacement === 'bottom-start'
+	) {
 		const end = left + childWidth;
 		element.style.insetInlineStart = `${left}px`;
 		element.style.insetInlineEnd = `${end > innerWidth ? innerWidth : end}px`;
-	} else if (correctedPlacement === 'top-end' || correctedPlacement === 'bottom-end') {
+	} else if (
+		correctedPlacement === 'top-end' ||
+		correctedPlacement === 'bottom-end'
+	) {
 		const start = left - childWidth;
 		element.style.insetInlineStart = `${right - childWidth}px`;
 		element.style.insetInlineEnd = `${start < 0 ? 0 : start}px`;

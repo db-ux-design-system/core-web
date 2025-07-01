@@ -1,4 +1,12 @@
-import { onMount, onUpdate, Slot, useDefaultProps, useMetadata, useRef, useStore } from '@builder.io/mitosis';
+import {
+	onMount,
+	onUpdate,
+	Slot,
+	useDefaultProps,
+	useMetadata,
+	useRef,
+	useStore
+} from '@builder.io/mitosis';
 import { DBDrawerProps, DBDrawerState } from './model';
 import DBButton from '../button/button.lite';
 import { DEFAULT_CLOSE_BUTTON } from '../../shared/constants';
@@ -15,7 +23,10 @@ export default function DBDrawer(props: DBDrawerProps) {
 	const state = useStore<DBDrawerState>({
 		// eslint-disable-next-line @typescript-eslint/no-explicit-any
 		handleClose: (
-			event?: ClickEvent<HTMLButtonElement | HTMLDialogElement> | GeneralKeyboardEvent<HTMLDialogElement> | void,
+			event?:
+				| ClickEvent<HTMLButtonElement | HTMLDialogElement>
+				| GeneralKeyboardEvent<HTMLDialogElement>
+				| void,
 			forceClose?: boolean
 		) => {
 			if (!event) return;
@@ -37,7 +48,11 @@ export default function DBDrawer(props: DBDrawerProps) {
 					}
 				}
 
-				if ((event.target as any)?.nodeName === 'DIALOG' && event.type === 'click' && props.backdrop !== 'none') {
+				if (
+					(event.target as any)?.nodeName === 'DIALOG' &&
+					event.type === 'click' &&
+					props.backdrop !== 'none'
+				) {
 					if (props.onClose) {
 						props.onClose(event);
 					}
@@ -51,7 +66,10 @@ export default function DBDrawer(props: DBDrawerProps) {
 					if (dialogContainerRef) {
 						dialogContainerRef.hidden = false;
 					}
-					if (props.backdrop === 'none' || props.variant === 'inside') {
+					if (
+						props.backdrop === 'none' ||
+						props.variant === 'inside'
+					) {
 						_ref.show();
 					} else {
 						_ref.showModal();

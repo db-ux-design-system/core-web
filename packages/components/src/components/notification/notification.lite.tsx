@@ -1,4 +1,11 @@
-import { Show, Slot, useDefaultProps, useMetadata, useRef, useStore } from '@builder.io/mitosis';
+import {
+	Show,
+	Slot,
+	useDefaultProps,
+	useMetadata,
+	useRef,
+	useStore
+} from '@builder.io/mitosis';
 import { DBNotificationProps, DBNotificationState } from './model';
 import DBButton from '../button/button.lite';
 import { DEFAULT_CLOSE_BUTTON } from '../../shared/constants';
@@ -44,7 +51,8 @@ export default function DBNotification(props: DBNotificationProps) {
 					{props.text}
 				</Show>
 			</p>
-			<Show when={stringPropVisible(props.timestamp, props.showTimestamp)}>
+			<Show
+				when={stringPropVisible(props.timestamp, props.showTimestamp)}>
 				<span>{props.timestamp}</span>
 			</Show>
 
@@ -57,7 +65,9 @@ export default function DBNotification(props: DBNotificationProps) {
 					variant="ghost"
 					size="small"
 					noText
-					onClick={(event: ClickEvent<HTMLButtonElement>) => state.handleClose(event)}>
+					onClick={(event: ClickEvent<HTMLButtonElement>) =>
+						state.handleClose(event)
+					}>
 					{props.closeButtonText ?? DEFAULT_CLOSE_BUTTON}
 				</DBButton>
 			</Show>

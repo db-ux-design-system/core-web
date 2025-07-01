@@ -6,13 +6,19 @@ import { DBStack, DBInfotext, DBDivider } from "../../../../../output/vue/src";
 
 <template>
 	<DefaultComponent title="DBStack" :variants="defaultComponentVariants">
-		<template #example="{ exampleIndex, variantIndex, exampleName, exampleProps }">
+		<template
+			#example="{ exampleIndex, variantIndex, exampleName, exampleProps }"
+		>
 			<DBStack>
 				<DBInfotext size="small" icon="none" semantic="informational">
 					{{ exampleName }}
 				</DBInfotext>
 				<DBStack
-					:class="(exampleProps.justifyContent ?? exampleProps.alignment) ? 'stack-container stack-show-alignment' : 'stack-container'"
+					:class="
+						(exampleProps.justifyContent ?? exampleProps.alignment)
+							? 'stack-container stack-show-alignment'
+							: 'stack-container'
+					"
 					:gap="exampleProps.gap"
 					:alignment="exampleProps.alignment"
 					:wrap="exampleProps.wrap"
@@ -23,9 +29,13 @@ import { DBStack, DBInfotext, DBDivider } from "../../../../../output/vue/src";
 					<span class="dummy-component">
 						<a href="#">Content 1</a>
 					</span>
-					<template v-if="exampleProps.variant === 'divider'"><DBDivider /> </template>
+					<template v-if="exampleProps.variant === 'divider'"
+						><DBDivider />
+					</template>
 					<span class="dummy-component"> Content 2 </span>
-					<template v-if="exampleProps.variant === 'divider'"><DBDivider /> </template>
+					<template v-if="exampleProps.variant === 'divider'"
+						><DBDivider />
+					</template>
 					<span class="dummy-component"> Content 3 </span>
 				</DBStack>
 			</DBStack>

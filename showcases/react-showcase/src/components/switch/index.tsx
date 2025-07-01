@@ -1,11 +1,26 @@
-import { DBSwitch, DBInfotext, getBoolean } from '../../../../../output/react/src';
+import {
+	DBSwitch,
+	DBInfotext,
+	getBoolean
+} from '../../../../../output/react/src';
 import DefaultComponent from '../default-component';
 import defaultComponentVariants from '../../../../shared/switch.json';
 import type { DBSwitchProps } from '../../../../../output/react/src/components/switch/model';
 import { getVariants } from '../data';
 import { type BaseComponentProps } from '../base-component-data';
 
-const getSwitch = ({ children, checked, visualAid, disabled, showLabel, emphasis, size, icon, iconAfter, required }: DBSwitchProps) => (
+const getSwitch = ({
+	children,
+	checked,
+	visualAid,
+	disabled,
+	showLabel,
+	emphasis,
+	size,
+	icon,
+	iconAfter,
+	required
+}: DBSwitchProps) => (
 	<>
 		<DBSwitch
 			visualAid={visualAid}
@@ -28,7 +43,15 @@ const getSwitch = ({ children, checked, visualAid, disabled, showLabel, emphasis
 );
 
 const SwitchComponent = (props: BaseComponentProps) => {
-	return <DefaultComponent title="DBSwitch" variants={getVariants(defaultComponentVariants, getSwitch, props.slotCode)}></DefaultComponent>;
+	return (
+		<DefaultComponent
+			title="DBSwitch"
+			variants={getVariants(
+				defaultComponentVariants,
+				getSwitch,
+				props.slotCode
+			)}></DefaultComponent>
+	);
 };
 
 export default SwitchComponent;

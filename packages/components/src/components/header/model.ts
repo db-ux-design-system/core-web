@@ -50,10 +50,17 @@ export type DBHeaderDefaultProps = {
 	burgerMenuLabel?: string;
 };
 
-export type DBHeaderProps = DBHeaderDefaultProps & GlobalProps & ToggleEventProps & ContainerWidthProps;
+export type DBHeaderProps = DBHeaderDefaultProps &
+	GlobalProps &
+	ToggleEventProps &
+	ContainerWidthProps;
 
 export type DBHeaderDefaultState = {
 	forcedToMobile?: boolean;
 };
 
-export type DBHeaderState = DBHeaderDefaultState & GlobalState & ToggleEventState<HTMLElement> & InitializedState & NavigationBehaviorState;
+export type DBHeaderState = DBHeaderDefaultState &
+	GlobalState &
+	ToggleEventState<HTMLElement> &
+	InitializedState &
+	NavigationBehaviorState;

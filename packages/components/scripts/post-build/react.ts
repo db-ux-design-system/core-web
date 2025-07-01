@@ -13,13 +13,22 @@ const overwriteEvents = (tmp?: boolean) => {
 		'export type ClickEvent<T> = MouseEvent;',
 		'export type ClickEvent<T> = React.MouseEvent<T, MouseEvent>;'
 	);
-	modelFileContent = modelFileContent.replace('export type ChangeEvent<T> = Event;', 'export type ChangeEvent<T> = React.ChangeEvent<T>;');
-	modelFileContent = modelFileContent.replace('export type InputEvent<T> = Event;', 'export type InputEvent<T> = React.FormEvent<T>;');
+	modelFileContent = modelFileContent.replace(
+		'export type ChangeEvent<T> = Event;',
+		'export type ChangeEvent<T> = React.ChangeEvent<T>;'
+	);
+	modelFileContent = modelFileContent.replace(
+		'export type InputEvent<T> = Event;',
+		'export type InputEvent<T> = React.FormEvent<T>;'
+	);
 	modelFileContent = modelFileContent.replace(
 		'export type InteractionEvent<T> = FocusEvent;',
 		'export type InteractionEvent<T> = React.FocusEvent<T>;'
 	);
-	modelFileContent = modelFileContent.replace('export type GeneralEvent<T> = Event;', 'export type GeneralEvent<T> = React.SyntheticEvent<T>;');
+	modelFileContent = modelFileContent.replace(
+		'export type GeneralEvent<T> = Event;',
+		'export type GeneralEvent<T> = React.SyntheticEvent<T>;'
+	);
 	modelFileContent = modelFileContent.replace(
 		'export type GeneralKeyboardEvent<T> = KeyboardEvent;',
 		'export type GeneralKeyboardEvent<T> = React.KeyboardEvent<T>;'
@@ -84,7 +93,9 @@ export default (tmp?: boolean) => {
 		overwriteEvents(tmp);
 
 		for (const component of components) {
-			const upperComponentName = transformToUpperComponentName(component.name);
+			const upperComponentName = transformToUpperComponentName(
+				component.name
+			);
 
 			const tsxFile = `../../${tmp ? 'output/tmp' : 'output'}/react/src/components/${component.name}/${component.name}.tsx`;
 
@@ -123,7 +134,9 @@ export default DB${upperComponentName};`
 				},
 				{
 					from: 'import * as React from "react";',
-					to: 'import * as React from "react";\n ' + 'import { filterPassingProps, getRootProps } from "../../utils/react";\n'
+					to:
+						'import * as React from "react";\n ' +
+						'import { filterPassingProps, getRootProps } from "../../utils/react";\n'
 				},
 				{
 					from: 'ref={_ref}',
@@ -133,7 +146,9 @@ export default DB${upperComponentName};`
 				},
 				{
 					from: 'className={',
-					to: `{...getRootProps(props,${JSON.stringify(rootProps)})}` + '\nclassName={'
+					to:
+						`{...getRootProps(props,${JSON.stringify(rootProps)})}` +
+						'\nclassName={'
 				},
 				/* We need to overwrite the internal state._value property just for react to have controlled components.
 				 * It works for Angular & Vue, so we overwrite it only for React.  */

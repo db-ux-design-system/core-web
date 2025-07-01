@@ -1,4 +1,9 @@
-import { DBBadge, DBInfotext, DBIcon, DBButton } from '../../../../../output/react/src';
+import {
+	DBBadge,
+	DBInfotext,
+	DBIcon,
+	DBButton
+} from '../../../../../output/react/src';
 import DefaultComponent from '../default-component';
 import defaultComponentVariants from '../../../../shared/badge.json';
 import type { DBBadgeProps } from '../../../../../output/react/src/components/badge/model';
@@ -27,11 +32,17 @@ const getBadge = ({
 		<>
 			{!placement && !example && (
 				<>
-					<DBBadge semantic={semantic} emphasis={emphasis} size={size}>
+					<DBBadge
+						semantic={semantic}
+						emphasis={emphasis}
+						size={size}>
 						{noContent ? '' : children}
 					</DBBadge>
 					{noContent && (
-						<DBInfotext semantic="informational" size="small" icon="none">
+						<DBInfotext
+							semantic="informational"
+							size="small"
+							icon="none">
 							{children}
 						</DBInfotext>
 					)}
@@ -41,10 +52,17 @@ const getBadge = ({
 			{placement && placement !== 'inline' && !example && (
 				<>
 					<DBButton icon="x_placeholder" variant="outlined" noText>
-						<DBBadge size="small" emphasis="strong" semantic="critical" placement={placement}></DBBadge>
+						<DBBadge
+							size="small"
+							emphasis="strong"
+							semantic="critical"
+							placement={placement}></DBBadge>
 						{children}
 					</DBButton>
-					<DBInfotext semantic="informational" size="small" icon="none">
+					<DBInfotext
+						semantic="informational"
+						size="small"
+						icon="none">
 						{children}
 					</DBInfotext>
 				</>
@@ -55,7 +73,10 @@ const getBadge = ({
 					<div className="badge-inline-container">
 						<DBIcon icon="x_placeholder" />
 						<span>{children}</span>
-						<DBBadge size="small" emphasis="strong" semantic="critical">
+						<DBBadge
+							size="small"
+							emphasis="strong"
+							semantic="critical">
 							Label
 						</DBBadge>
 						<DBIcon icon="error" />
@@ -68,7 +89,10 @@ const getBadge = ({
 					<DBBadge semantic="critical" emphasis="strong" size={size}>
 						<DBIcon icon="x_placeholder">{children}</DBIcon>
 					</DBBadge>
-					<DBInfotext semantic="informational" size="small" icon="none">
+					<DBInfotext
+						semantic="informational"
+						size="small"
+						icon="none">
 						{children}
 					</DBInfotext>
 				</>
@@ -79,16 +103,25 @@ const getBadge = ({
 					<DBBadge semantic="successful">9</DBBadge>
 					<DBBadge semantic="informational">12</DBBadge>
 					<DBBadge semantic="warning">123</DBBadge>
-					<DBBadge size="small" emphasis="strong" semantic="successful">
+					<DBBadge
+						size="small"
+						emphasis="strong"
+						semantic="successful">
 						9
 					</DBBadge>
-					<DBBadge size="small" emphasis="strong" semantic="informational">
+					<DBBadge
+						size="small"
+						emphasis="strong"
+						semantic="informational">
 						12
 					</DBBadge>
 					<DBBadge size="small" emphasis="strong" semantic="warning">
 						123
 					</DBBadge>
-					<DBInfotext semantic="informational" size="small" icon="none">
+					<DBInfotext
+						semantic="informational"
+						size="small"
+						icon="none">
 						{children}
 					</DBInfotext>
 				</>
@@ -98,7 +131,15 @@ const getBadge = ({
 };
 
 const BadgeComponent = (props: BaseComponentProps) => {
-	return <DefaultComponent title="DBBadge" variants={getVariants(defaultComponentVariants, getBadge, props.slotCode)}></DefaultComponent>;
+	return (
+		<DefaultComponent
+			title="DBBadge"
+			variants={getVariants(
+				defaultComponentVariants,
+				getBadge,
+				props.slotCode
+			)}></DefaultComponent>
+	);
 };
 
 export default BadgeComponent;

@@ -12,7 +12,8 @@ import {
 } from '../../shared/model';
 
 export const CustomSelectListItemTypeList = ['checkbox', 'radio'] as const;
-export type CustomSelectListItemTypeType = (typeof CustomSelectListItemTypeList)[number];
+export type CustomSelectListItemTypeType =
+	(typeof CustomSelectListItemTypeList)[number];
 
 export type DBCustomSelectListItemExtraProps = {
 	/**
@@ -50,4 +51,6 @@ export type DBCustomSelectListItemDefaultState = {
 	hasDivider?: boolean;
 };
 
-export type DBCustomSelectListItemState = DBCustomSelectListItemDefaultState & ChangeEventState<HTMLInputElement> & GlobalState;
+export type DBCustomSelectListItemState = DBCustomSelectListItemDefaultState &
+	ChangeEventState<HTMLInputElement> &
+	GlobalState;

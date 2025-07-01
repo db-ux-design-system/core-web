@@ -1,5 +1,13 @@
-<app-default-component title="DBTag" [variants]="variants" [exampleTemplate]="exampleTemplate">
-	<ng-template #exampleTemplate let-exampleProps="exampleProps" let-exampleName="exampleName">
+<app-default-component
+	title="DBTag"
+	[variants]="variants"
+	[exampleTemplate]="exampleTemplate"
+>
+	<ng-template
+		#exampleTemplate
+		let-exampleProps="exampleProps"
+		let-exampleName="exampleName"
+	>
 		@if (exampleProps?.lineBreak) {
 			<i class="line-break"></i>
 		} @else {
@@ -16,7 +24,9 @@
 				(onRemove)="showAlert(exampleName)"
 			>
 				@if (exampleProps?.content) {
-					<div slot="content" class="default-content-slot">Swap Slot</div>
+					<div slot="content" class="default-content-slot">
+						Swap Slot
+					</div>
 				}
 				@if (exampleProps?.component === "button") {
 					<button>{{ exampleName }}</button>
@@ -28,13 +38,21 @@
 				}
 				@if (exampleProps?.component === "checkbox") {
 					<label>
-						<input type="checkbox" [checked]="exampleProps?.checked" [disabled]="exampleProps?.disabled" />
+						<input
+							type="checkbox"
+							[checked]="exampleProps?.checked"
+							[disabled]="exampleProps?.disabled"
+						/>
 						{{ exampleName }}
 					</label>
 				}
 				@if (exampleProps?.component === "radio") {
 					<label>
-						<input type="radio" [checked]="exampleProps?.checked" [name]="exampleProps?.identifier" />
+						<input
+							type="radio"
+							[checked]="exampleProps?.checked"
+							[name]="exampleProps?.identifier"
+						/>
 						{{ exampleName }}
 					</label>
 				}

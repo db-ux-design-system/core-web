@@ -53,7 +53,10 @@ const xoConfig = [
 		files: ['./showcases/e2e/**'],
 		rules: {
 			'@typescript-eslint/no-loop-func': 0, // This is fine for playwright testing
-			'@typescript-eslint/prefer-nullish-coalescing': ['error', { ignorePrimitives: { boolean: true } }]
+			'@typescript-eslint/prefer-nullish-coalescing': [
+				'error',
+				{ ignorePrimitives: { boolean: true } }
+			]
 		}
 	},
 	{

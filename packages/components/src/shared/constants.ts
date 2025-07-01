@@ -31,7 +31,9 @@ export enum DENSITY {
 	'REGULAR' = 'regular',
 	'EXPRESSIVE' = 'expressive'
 }
-export const DENSITIES: DENSITY[] = Object.entries(DENSITY).map(([, value]) => value);
+export const DENSITIES: DENSITY[] = Object.entries(DENSITY).map(
+	([, value]) => value
+);
 
 export enum COLOR_SIMPLE {
 	'PRIMARY' = 'primary'
@@ -71,7 +73,9 @@ export enum COLOR {
 }
 
 export const COLORS: COLOR[] = Object.entries(COLOR).map(([, value]) => value);
-export const COLORS_SIMPLE: COLOR_SIMPLE[] = Object.entries(COLOR_SIMPLE).map(([, value]) => value);
+export const COLORS_SIMPLE: COLOR_SIMPLE[] = Object.entries(COLOR_SIMPLE).map(
+	([, value]) => value
+);
 
 export enum SEMANTIC {
 	'CRITICAL' = 'critical',
@@ -80,7 +84,9 @@ export enum SEMANTIC {
 	'SUCCESSFUL' = 'successful'
 }
 
-export const SEMANTICS: SEMANTIC[] = Object.entries(SEMANTIC).map(([, value]) => value);
+export const SEMANTICS: SEMANTIC[] = Object.entries(SEMANTIC).map(
+	([, value]) => value
+);
 
 export const DEFAULT_VIEWPORT = { width: 390, height: 884 };
 export const DESKTOP_VIEWPORT = { width: 1920, height: 1280 };

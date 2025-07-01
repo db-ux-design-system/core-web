@@ -6,8 +6,15 @@ import { DBInfotext } from "../../../../../output/vue/src";
 
 <template>
 	<DefaultComponent title="DBInfotext" :variants="defaultComponentVariants">
-		<template #example="{ exampleIndex, variantIndex, exampleName, exampleProps }">
-			<DBInfotext :size="exampleProps?.size" :semantic="exampleProps?.semantic" :icon="exampleProps?.icon" :showIcon="exampleProps?.showIcon">
+		<template
+			#example="{ exampleIndex, variantIndex, exampleName, exampleProps }"
+		>
+			<DBInfotext
+				:size="exampleProps?.size"
+				:semantic="exampleProps?.semantic"
+				:icon="exampleProps?.icon"
+				:showIcon="exampleProps?.showIcon"
+			>
 				{{ exampleName }}
 			</DBInfotext>
 		</template>

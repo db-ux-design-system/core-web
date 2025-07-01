@@ -17,7 +17,13 @@ const radioNames = ["X", "Y", "Z"];
 <template>
 	<ul>
 		<li v-for="radioName in radioNames">
-			<DBRadio @change="radio = radioName" name="radio-group" :value="radioName"> Radio {{ radioName }} </DBRadio>
+			<DBRadio
+				@change="radio = radioName"
+				name="radio-group"
+				:value="radioName"
+			>
+				Radio {{ radioName }}
+			</DBRadio>
 		</li>
 	</ul>
 </template>

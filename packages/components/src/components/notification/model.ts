@@ -12,14 +12,20 @@ import {
 	TextProps
 } from '../../shared/model';
 
-export const NotificationVariantList = ['docked', 'standalone', 'overlay'] as const;
+export const NotificationVariantList = [
+	'docked',
+	'standalone',
+	'overlay'
+] as const;
 export type NotificationVariantType = (typeof NotificationVariantList)[number];
 
 export const NotificationLinkVariantList = ['block', 'inline'] as const;
-export type NotificationLinkVariantType = (typeof NotificationLinkVariantList)[number];
+export type NotificationLinkVariantType =
+	(typeof NotificationLinkVariantList)[number];
 
 export const NotificationAriaLiveList = ['assertive', 'polite', 'off'] as const;
-export type NotificationAriaLiveType = (typeof NotificationAriaLiveList)[number];
+export type NotificationAriaLiveType =
+	(typeof NotificationAriaLiveList)[number];
 
 export type DBNotificationDefaultProps = {
 	/**
@@ -90,4 +96,6 @@ export type DBNotificationProps = DBNotificationDefaultProps &
 
 export type DBNotificationDefaultState = {};
 
-export type DBNotificationState = DBNotificationDefaultState & GlobalState & CloseEventState<ClickEvent<HTMLButtonElement>>;
+export type DBNotificationState = DBNotificationDefaultState &
+	GlobalState &
+	CloseEventState<ClickEvent<HTMLButtonElement>>;

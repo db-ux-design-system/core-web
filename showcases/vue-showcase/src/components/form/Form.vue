@@ -1,5 +1,13 @@
 <script setup lang="ts">
-import { DBButton, DBInput, DBRadio, DBCheckbox, DBSelect, DBTag, DBTextarea } from "../../../../../output/vue/src";
+import {
+	DBButton,
+	DBInput,
+	DBRadio,
+	DBCheckbox,
+	DBSelect,
+	DBTag,
+	DBTextarea
+} from "../../../../../output/vue/src";
 
 import { ref } from "vue";
 const input = ref("");
@@ -68,7 +76,13 @@ const reset = () => {
 						:dataList="dataList"
 						v-model:value="firstInput"
 					/>
-					<DBInput label="Dateinput" message="Description" name="date-name" v-model:value="dateInput" type="date" />
+					<DBInput
+						label="Dateinput"
+						message="Description"
+						name="date-name"
+						v-model:value="dateInput"
+						type="date"
+					/>
 					<p>Textarea:</p>
 					<DBTextarea
 						label="Textarea v-model"
@@ -90,20 +104,36 @@ const reset = () => {
 					<p>Radio:</p>
 					<ul>
 						<li v-for="radioName in array">
-							<DBRadio @change="radio = radioName" name="radio-group" :value="radioName">Radio {{ radioName }}</DBRadio>
+							<DBRadio
+								@change="radio = radioName"
+								name="radio-group"
+								:value="radioName"
+								>Radio {{ radioName }}</DBRadio
+							>
 						</li>
 					</ul>
 					<p>Tags:</p>
 					<ul>
 						<li v-for="(tag, index) in array">
-							<DBTag :semantic="index === 0 ? undefined : 'successful'" :emphasis="index === 2 ? 'strong' : 'weak'"
-								><DBCheckbox @Change="changeTags(tag)">Tag {{ tag }}</DBCheckbox></DBTag
+							<DBTag
+								:semantic="
+									index === 0 ? undefined : 'successful'
+								"
+								:emphasis="index === 2 ? 'strong' : 'weak'"
+								><DBCheckbox @Change="changeTags(tag)"
+									>Tag {{ tag }}</DBCheckbox
+								></DBTag
 							>
 						</li>
 					</ul>
 					<p>Checkbox:</p>
 					<DBCheckbox
-						@change="checkbox = [$event.target.checked, $event.target.checked]"
+						@change="
+							checkbox = [
+								$event.target.checked,
+								$event.target.checked
+							]
+						"
 						:checked="checkbox[0] && checkbox[1]"
 						:indeterminate="checkbox[0] !== checkbox[1]"
 						name="checkbox"
@@ -113,7 +143,9 @@ const reset = () => {
 						<DBCheckbox
 							name="checkbox-1"
 							value="Checkbox checked"
-							@change="checkbox = [$event.target.checked, checkbox[1]]"
+							@change="
+								checkbox = [$event.target.checked, checkbox[1]]
+							"
 							:checked="checkbox[0]"
 						>
 							Checkbox
@@ -121,24 +153,38 @@ const reset = () => {
 						<DBCheckbox
 							name="checkbox-2"
 							value="Checkbox checked"
-							@change="checkbox = [checkbox[0], $event.target.checked]"
+							@change="
+								checkbox = [checkbox[0], $event.target.checked]
+							"
 							:checked="checkbox[1]"
 						>
 							Checkbox
 						</DBCheckbox>
 					</fieldset>
 					<p>DBSelect:</p>
-					<DBSelect :value="select" label="Label" @change="(event) => (select = event.target.value)">
+					<DBSelect
+						:value="select"
+						label="Label"
+						@change="(event) => (select = event.target.value)"
+					>
 						<option value="test1">Test1</option>
 						<option value="test2">Test2</option>
 					</DBSelect>
 					<p>Button:</p>
-					<DBButton type="button" @click="reset()"> Reset Form </DBButton>
-					<DBButton type="button" variant="brand" @click="logAll()"> Hi from Showcase! </DBButton>
+					<DBButton type="button" @click="reset()">
+						Reset Form
+					</DBButton>
+					<DBButton type="button" variant="brand" @click="logAll()">
+						Hi from Showcase!
+					</DBButton>
 				</fieldset>
 			</form>
 		</div>
-		<DBButton :class="isActive ? 'blubber' : 'dada'" @click="isActive = !isActive">Test</DBButton>
+		<DBButton
+			:class="isActive ? 'blubber' : 'dada'"
+			@click="isActive = !isActive"
+			>Test</DBButton
+		>
 		<div>
 			<h1>Output</h1>
 			<dl>

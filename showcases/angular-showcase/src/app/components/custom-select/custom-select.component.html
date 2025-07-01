@@ -1,4 +1,8 @@
-<app-default-component title="DBCustomSelect" [variants]="variants" [exampleTemplate]="exampleTemplate">
+<app-default-component
+	title="DBCustomSelect"
+	[variants]="variants"
+	[exampleTemplate]="exampleTemplate"
+>
 	<ng-template
 		#exampleTemplate
 		let-exampleProps="exampleProps"
@@ -27,7 +31,9 @@
 				[showNoResults]="exampleProps?.showNoResults"
 				[multiple]="exampleProps?.multiple"
 				[loadingText]="exampleProps?.loadingText"
-				[noResultsText]="exampleProps?.noResultsText ?? 'No matching filter'"
+				[noResultsText]="
+					exampleProps?.noResultsText ?? 'No matching filter'
+				"
 				[label]="exampleName"
 				[options]="exampleProps?.options"
 				[variant]="exampleProps?.variant"
@@ -40,8 +46,14 @@
 				[searchLabel]="'Search'"
 				[searchValue]="exampleProps?.searchValue"
 				[selectedLabels]="exampleProps?.selectedLabels"
-				[transformSelectedLabels]="exampleProps?.transformSelectedLabels ? getTransformSelectedLabels : undefined"
-				[searchFilter]="exampleProps?.searchFilter ? getSearchFilter : undefined"
+				[transformSelectedLabels]="
+					exampleProps?.transformSelectedLabels
+						? getTransformSelectedLabels
+						: undefined
+				"
+				[searchFilter]="
+					exampleProps?.searchFilter ? getSearchFilter : undefined
+				"
 				[selectedType]="exampleProps?.selectedType"
 				[formFieldWidth]="exampleProps?.formFieldWidth"
 				[invalidMessage]="exampleProps?.invalidMessage"

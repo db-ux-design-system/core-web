@@ -1,8 +1,27 @@
-import { onMount, onUpdate, Show, Slot, useDefaultProps, useMetadata, useRef, useStore } from '@builder.io/mitosis';
+import {
+	onMount,
+	onUpdate,
+	Show,
+	Slot,
+	useDefaultProps,
+	useMetadata,
+	useRef,
+	useStore
+} from '@builder.io/mitosis';
 import { DBNavigationItemProps, DBNavigationItemState } from './model';
 import DBButton from '../button/button.lite';
-import { cls, delay, getBoolean, getBooleanAsString, getHideProp, uuid } from '../../utils';
-import { isEventTargetNavigationItem, NavigationItemSafeTriangle } from '../../utils/navigation';
+import {
+	cls,
+	delay,
+	getBoolean,
+	getBooleanAsString,
+	getHideProp,
+	uuid
+} from '../../utils';
+import {
+	isEventTargetNavigationItem,
+	NavigationItemSafeTriangle
+} from '../../utils/navigation';
 import { DEFAULT_BACK } from '../../shared/constants';
 import { ClickEvent } from '../../shared/model';
 
@@ -52,7 +71,10 @@ export default function DBNavigationItem(props: DBNavigationItemProps) {
 
 	onUpdate(() => {
 		if (props.subNavigationExpanded !== undefined) {
-			state.isSubNavigationExpanded = !!getBoolean(props.subNavigationExpanded, 'subNavigationExpanded');
+			state.isSubNavigationExpanded = !!getBoolean(
+				props.subNavigationExpanded,
+				'subNavigationExpanded'
+			);
 		}
 	}, [props.subNavigationExpanded]);
 
@@ -65,7 +87,11 @@ export default function DBNavigationItem(props: DBNavigationItemProps) {
 					state.hasAreaPopup = true;
 
 					if (!state.navigationItemSafeTriangle) {
-						state.navigationItemSafeTriangle = new NavigationItemSafeTriangle(_ref, subNavigationSlot);
+						state.navigationItemSafeTriangle =
+							new NavigationItemSafeTriangle(
+								_ref,
+								subNavigationSlot
+							);
 					}
 				} else {
 					state.hasSubNavigation = false;
@@ -80,8 +106,12 @@ export default function DBNavigationItem(props: DBNavigationItemProps) {
 			ref={_ref}
 			id={props.id}
 			onMouseOver={() => state.navigationItemSafeTriangle?.enableFollow()}
-			onMouseLeave={() => state.navigationItemSafeTriangle?.disableFollow()}
-			onMouseMove={(event: MouseEvent) => state.navigationItemSafeTriangle?.followByMouseEvent(event)}
+			onMouseLeave={() =>
+				state.navigationItemSafeTriangle?.disableFollow()
+			}
+			onMouseMove={(event: MouseEvent) =>
+				state.navigationItemSafeTriangle?.followByMouseEvent(event)
+			}
 			class={cls('db-navigation-item', props.className)}
 			data-width={props.width}
 			data-icon={props.icon}
@@ -101,7 +131,9 @@ export default function DBNavigationItem(props: DBNavigationItemProps) {
 					aria-expanded={state.isSubNavigationExpanded}
 					class="db-navigation-item-expand-button"
 					disabled={getBoolean(props.disabled, 'disabled')}
-					onClick={(event: ClickEvent<HTMLButtonElement>) => state.handleClick(event)}>
+					onClick={(event: ClickEvent<HTMLButtonElement>) =>
+						state.handleClick(event)
+					}>
 					<Show when={props.text} else={props.children}>
 						{props.text}
 					</Show>
@@ -119,7 +151,9 @@ export default function DBNavigationItem(props: DBNavigationItemProps) {
 								id={props.backButtonId}
 								icon="arrow_left"
 								variant="ghost"
-								onClick={(event: ClickEvent<HTMLButtonElement>) => state.handleBackClick(event)}>
+								onClick={(
+									event: ClickEvent<HTMLButtonElement>
+								) => state.handleBackClick(event)}>
 								{props.backButtonText ?? DEFAULT_BACK}
 							</DBButton>
 						</div>

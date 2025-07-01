@@ -5,7 +5,18 @@ import { type DBButtonProps } from '../../../../../output/react/src/components/b
 import { getVariants } from '../data';
 import { type BaseComponentProps } from '../base-component-data';
 
-const getButton = ({ variant, state, size, noText, icon, width, disabled, children, type, showIcon }: DBButtonProps) => (
+const getButton = ({
+	variant,
+	state,
+	size,
+	noText,
+	icon,
+	width,
+	disabled,
+	children,
+	type,
+	showIcon
+}: DBButtonProps) => (
 	<DBButton
 		variant={variant}
 		state={state}
@@ -25,7 +36,15 @@ const getButton = ({ variant, state, size, noText, icon, width, disabled, childr
 );
 
 const ButtonComponent = (props: BaseComponentProps) => {
-	return <DefaultComponent title="DBButton" variants={getVariants(defaultComponentVariants, getButton, props.slotCode)}></DefaultComponent>;
+	return (
+		<DefaultComponent
+			title="DBButton"
+			variants={getVariants(
+				defaultComponentVariants,
+				getButton,
+				props.slotCode
+			)}></DefaultComponent>
+	);
 };
 
 export default ButtonComponent;

@@ -15,7 +15,15 @@ const getDivider = ({ variant, emphasis, children, width }: DBDividerProps) => (
 );
 
 const DividerComponent = (props: BaseComponentProps) => {
-	return <DefaultComponent title="DBDivider" variants={getVariants(defaultComponentVariants, getDivider, props.slotCode)}></DefaultComponent>;
+	return (
+		<DefaultComponent
+			title="DBDivider"
+			variants={getVariants(
+				defaultComponentVariants,
+				getDivider,
+				props.slotCode
+			)}></DefaultComponent>
+	);
 };
 
 export default DividerComponent;

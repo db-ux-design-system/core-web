@@ -8,7 +8,13 @@ For general installation and configuration take a look at the [react-components]
 // App.tsx
 import { DBCustomSelect } from "@db-ui/react-components";
 
-const App = () => <DBCustomSelect label="Label" placeholder="Placeholder" options={[{ value: "Option 1" }, { value: "Option 2" }]} />;
+const App = () => (
+	<DBCustomSelect
+		label="Label"
+		placeholder="Placeholder"
+		options={[{ value: "Option 1" }, { value: "Option 2" }]}
+	/>
+);
 
 export default App;
 ```

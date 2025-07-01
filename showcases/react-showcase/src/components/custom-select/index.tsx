@@ -49,10 +49,15 @@ const getCustomSelect = ({
 	const [mValue, setValue] = useState<string[] | undefined>(values);
 
 	const getTransformSelectedLabels = (selectedOptions?: any): string => {
-		return selectedOptions.map((option: any) => option.value.at(-1)).join(', ');
+		return selectedOptions
+			.map((option: any) => option.value.at(-1))
+			.join(', ');
 	};
 
-	const getSearchFilter = (option: CustomSelectOptionType, _: string): boolean => option.value === 'Option 1';
+	const getSearchFilter = (
+		option: CustomSelectOptionType,
+		_: string
+	): boolean => option.value === 'Option 1';
 
 	if (info) {
 		return (
@@ -100,7 +105,9 @@ const getCustomSelect = ({
 			invalidMessage={invalidMessage}
 			validMessage={validMessage}
 			validation={validation}
-			transformSelectedLabels={transformSelectedLabels ? getTransformSelectedLabels : undefined}
+			transformSelectedLabels={
+				transformSelectedLabels ? getTransformSelectedLabels : undefined
+			}
 			searchFilter={searchFilter ? getSearchFilter : undefined}
 			onOptionSelected={(value) => {
 				setValue(value);
@@ -111,7 +118,13 @@ const getCustomSelect = ({
 
 const CustomSelectComponent = (props: BaseComponentProps) => {
 	return (
-		<DefaultComponent title="DBCustomSelect" variants={getVariants(defaultComponentVariants, getCustomSelect, props.slotCode)}></DefaultComponent>
+		<DefaultComponent
+			title="DBCustomSelect"
+			variants={getVariants(
+				defaultComponentVariants,
+				getCustomSelect,
+				props.slotCode
+			)}></DefaultComponent>
 	);
 };
 

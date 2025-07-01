@@ -56,7 +56,13 @@ const getTextarea = ({
 const TextareaComponent = (props: BaseComponentProps) => {
 	return (
 		<>
-			<DefaultComponent title="DBTextarea" variants={getVariants(defaultComponentVariants, getTextarea, props.slotCode)}></DefaultComponent>
+			<DefaultComponent
+				title="DBTextarea"
+				variants={getVariants(
+					defaultComponentVariants,
+					getTextarea,
+					props.slotCode
+				)}></DefaultComponent>
 		</>
 	);
 };

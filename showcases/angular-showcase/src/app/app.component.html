@@ -5,7 +5,11 @@
 }
 @if (!page) {
 	<db-page variant="fixed" documentOverflow="auto" [fadeIn]="true">
-		<db-header header [drawerOpen]="drawerOpen" (toggle)="toggleDrawer($event)">
+		<db-header
+			header
+			[drawerOpen]="drawerOpen"
+			(toggle)="toggleDrawer($event)"
+		>
 			<db-brand brand>Showcase</db-brand>
 			<db-navigation *dbNavigation aria-label="main-navigation">
 				@for (item of navigationItems; track item.label) {
@@ -18,14 +22,24 @@
 						<option>Nothing here for stencil</option>
 					</db-select>
 				} @else {
-					<db-select variant="floating" label="Density" [(ngModel)]="density" (change)="onChange($event)">
+					<db-select
+						variant="floating"
+						label="Density"
+						[(ngModel)]="density"
+						(change)="onChange($event)"
+					>
 						@for (t of densities; track t) {
 							<option>
 								{{ t }}
 							</option>
 						}
 					</db-select>
-					<db-select variant="floating" label="Color" [(ngModel)]="color" (change)="onChange($event)">
+					<db-select
+						variant="floating"
+						label="Color"
+						[(ngModel)]="color"
+						(change)="onChange($event)"
+					>
 						@for (c of colors; track c) {
 							<option>
 								{{ c }}
@@ -35,12 +49,23 @@
 				}
 			</ng-container>
 			<ng-container primary-action>
-				<db-button icon="magnifying_glass" variant="ghost" [noText]="true">Search</db-button>
+				<db-button
+					icon="magnifying_glass"
+					variant="ghost"
+					[noText]="true"
+					>Search</db-button
+				>
 			</ng-container>
 			<ng-container *dbSecondaryAction>
-				<db-button icon="x_placeholder" variant="ghost" [noText]="true"> Profile </db-button>
-				<db-button icon="x_placeholder" variant="ghost" [noText]="true"> Notification </db-button>
-				<db-button icon="x_placeholder" variant="ghost" [noText]="true"> Help </db-button>
+				<db-button icon="x_placeholder" variant="ghost" [noText]="true">
+					Profile
+				</db-button>
+				<db-button icon="x_placeholder" variant="ghost" [noText]="true">
+					Notification
+				</db-button>
+				<db-button icon="x_placeholder" variant="ghost" [noText]="true">
+					Help
+				</db-button>
 			</ng-container>
 		</db-header>
 		<div [class]="getChangeableClasses()">

@@ -1,4 +1,11 @@
-import { onMount, Show, useDefaultProps, useMetadata, useRef, useStore } from '@builder.io/mitosis';
+import {
+	onMount,
+	Show,
+	useDefaultProps,
+	useMetadata,
+	useRef,
+	useStore
+} from '@builder.io/mitosis';
 import { DBTabPanelProps, DBTabPanelState } from './model';
 import { cls } from '../../utils';
 
@@ -15,7 +22,12 @@ export default function DBTabPanel(props: DBTabPanelProps) {
 	// jscpd:ignore-end
 
 	return (
-		<section ref={_ref} class={cls('db-tab-panel', props.className)} id={props.id} role="tabpanel" aria-labelledby={props.labelledBy}>
+		<section
+			ref={_ref}
+			class={cls('db-tab-panel', props.className)}
+			id={props.id}
+			role="tabpanel"
+			aria-labelledby={props.labelledBy}>
 			<Show when={props.content}> {props.content}</Show>
 			{props.children}
 		</section>

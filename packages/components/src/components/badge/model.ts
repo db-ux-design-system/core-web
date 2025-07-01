@@ -1,4 +1,12 @@
-import { GlobalProps, GlobalState, InitializedState, SemanticProps, SizeProps, EmphasisProps, TextProps } from '../../shared/model';
+import {
+	GlobalProps,
+	GlobalState,
+	InitializedState,
+	SemanticProps,
+	SizeProps,
+	EmphasisProps,
+	TextProps
+} from '../../shared/model';
 
 export const BadgePlacementList = [
 	'inline',
@@ -23,7 +31,12 @@ export type DBBadgeDefaultProps = {
 	label?: string;
 };
 
-export type DBBadgeProps = DBBadgeDefaultProps & GlobalProps & SemanticProps & SizeProps & EmphasisProps & TextProps;
+export type DBBadgeProps = DBBadgeDefaultProps &
+	GlobalProps &
+	SemanticProps &
+	SizeProps &
+	EmphasisProps &
+	TextProps;
 
 export type DBBadgeDefaultState = {};
 

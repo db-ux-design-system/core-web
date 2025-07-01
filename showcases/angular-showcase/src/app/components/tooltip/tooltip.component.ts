@@ -7,7 +7,9 @@ import { environment } from '../../../environments/environment';
 @Component({
 	selector: 'app-tooltip',
 	templateUrl: './tooltip.component.html',
-	imports: environment.webComponents ? [DefaultComponent] : [DefaultComponent, DBTooltip, DBButton],
+	imports: environment.webComponents
+		? [DefaultComponent]
+		: [DefaultComponent, DBTooltip, DBButton],
 	schemas: environment.webComponents ? [CUSTOM_ELEMENTS_SCHEMA] : [],
 	standalone: true
 })

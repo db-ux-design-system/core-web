@@ -32,7 +32,10 @@ const changeFile = (upperComponentName: string, input: string) => {
 			}
 
 			if (line.includes('<slot name=')) {
-				const firstPart = line.substring(line.indexOf('<slot name='), line.length);
+				const firstPart = line.substring(
+					line.indexOf('<slot name='),
+					line.length
+				);
 				const slotName = firstPart
 					.substring(0, firstPart.indexOf('</slot>') + 7)
 					.replace('<slot name="', '')
@@ -49,7 +52,11 @@ const changeFile = (upperComponentName: string, input: string) => {
 		.replace('@Component', getSlotDocs(foundSlots) + '@Component');
 };
 
-const replaceIndexFile = (file: string, componentName: string, upperComponentName: string) => {
+const replaceIndexFile = (
+	file: string,
+	componentName: string,
+	upperComponentName: string
+) => {
 	const replacement = `import { ${upperComponentName} } from './${componentName}';
 
 export default ${upperComponentName};`;

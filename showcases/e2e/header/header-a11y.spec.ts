@@ -1,5 +1,9 @@
 import { test } from '@playwright/test';
-import { hasWebComponentSyntax, runAxeCoreTest, runA11yCheckerTest } from '../default.ts';
+import {
+	hasWebComponentSyntax,
+	runAxeCoreTest,
+	runA11yCheckerTest
+} from '../default.ts';
 import { lvl3 } from '../fixtures/variants';
 
 test.describe('DBHeader', () => {

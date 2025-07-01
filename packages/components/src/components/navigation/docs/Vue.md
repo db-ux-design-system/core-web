@@ -20,7 +20,9 @@ import { DBNavigation, DBNavigationItem } from "@db-ux/v-core-components";
 
 					<template v-slot:sub-navigation>
 						<DBNavigationItem>
-							<a href="#" aria-current="page">Sub-Sub-Navi-Item 1</a>
+							<a href="#" aria-current="page"
+								>Sub-Sub-Navi-Item 1</a
+							>
 						</DBNavigationItem>
 						<DBNavigationItem>
 							<a href="#">Sub-Sub-Navi-Item 2</a>
@@ -66,10 +68,14 @@ import { DBMainNavigation, DBNavigationItem } from "@db-ux/v-core-components";
 			<template> Demo Pages </template>
 			<template #subnavigation>
 				<DBNavigationItem>
-					<RouterLink to="/demo/1" ariaCurrentValue="page"> Demo Page 1 </RouterLink>
+					<RouterLink to="/demo/1" ariaCurrentValue="page">
+						Demo Page 1
+					</RouterLink>
 				</DBNavigationItem>
 				<DBNavigationItem>
-					<RouterLink to="/demo/2" ariaCurrentValue="page"> Demo Page 2 </RouterLink>
+					<RouterLink to="/demo/2" ariaCurrentValue="page">
+						Demo Page 2
+					</RouterLink>
 				</DBNavigationItem>
 			</template>
 		</DBNavigationItem>

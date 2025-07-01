@@ -7,7 +7,11 @@ import { type DBBrandProps } from '../../../../../output/react/src/components/br
 import { getVariants } from '../data';
 import { type BaseComponentProps } from '../base-component-data';
 
-const getBrand = ({ children, hideLogo, customLogo }: DBBrandProps & { customLogo: boolean }) => (
+const getBrand = ({
+	children,
+	hideLogo,
+	customLogo
+}: DBBrandProps & { customLogo: boolean }) => (
 	<DBBrand hideLogo={hideLogo}>
 		{customLogo && (
 			<img
@@ -20,7 +24,15 @@ const getBrand = ({ children, hideLogo, customLogo }: DBBrandProps & { customLog
 );
 
 const BrandComponent = (props: BaseComponentProps) => {
-	return <DefaultComponent title="DBBrand" variants={getVariants(defaultComponentVariants, getBrand, props.slotCode)}></DefaultComponent>;
+	return (
+		<DefaultComponent
+			title="DBBrand"
+			variants={getVariants(
+				defaultComponentVariants,
+				getBrand,
+				props.slotCode
+			)}></DefaultComponent>
+	);
 };
 
 export default BrandComponent;

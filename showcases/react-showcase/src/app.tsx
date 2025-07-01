@@ -6,7 +6,8 @@ import MetaNavigation from './meta-navigation';
 import Navigation from './navigation';
 
 const App = () => {
-	const [density, setDensity, color, setColor, pageName, fullscreen] = useQuery();
+	const [density, setDensity, color, setColor, pageName, fullscreen] =
+		useQuery();
 
 	const [drawerOpen, setDrawerOpen] = useState<boolean>(false);
 
@@ -28,22 +29,39 @@ const App = () => {
 					drawerOpen={drawerOpen}
 					onToggle={setDrawerOpen}
 					brand={<DBBrand>Showcase</DBBrand>}
-					metaNavigation={<MetaNavigation onColorChange={setColor} onDensityChange={setDensity} />}
+					metaNavigation={
+						<MetaNavigation
+							onColorChange={setColor}
+							onDensityChange={setDensity}
+						/>
+					}
 					primaryAction={
 						/* TODO: Use DBSearchBar in future */
-						<DBButton icon="magnifying_glass" variant="ghost" noText>
+						<DBButton
+							icon="magnifying_glass"
+							variant="ghost"
+							noText>
 							Search
 						</DBButton>
 					}
 					secondaryAction={
 						<>
-							<DBButton icon="x_placeholder" variant="ghost" noText>
+							<DBButton
+								icon="x_placeholder"
+								variant="ghost"
+								noText>
 								Profile
 							</DBButton>
-							<DBButton icon="x_placeholder" variant="ghost" noText>
+							<DBButton
+								icon="x_placeholder"
+								variant="ghost"
+								noText>
 								Notification
 							</DBButton>
-							<DBButton icon="x_placeholder" variant="ghost" noText>
+							<DBButton
+								icon="x_placeholder"
+								variant="ghost"
+								noText>
 								Help
 							</DBButton>
 						</>

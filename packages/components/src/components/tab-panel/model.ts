@@ -1,4 +1,8 @@
-import { AriaLabelledByProps, GlobalProps, GlobalState } from '../../shared/model';
+import {
+	AriaLabelledByProps,
+	GlobalProps,
+	GlobalState
+} from '../../shared/model';
 
 export type DBTabPanelDefaultProps = {
 	/**
@@ -7,7 +11,9 @@ export type DBTabPanelDefaultProps = {
 	content?: string;
 };
 
-export type DBTabPanelProps = DBTabPanelDefaultProps & GlobalProps & AriaLabelledByProps;
+export type DBTabPanelProps = DBTabPanelDefaultProps &
+	GlobalProps &
+	AriaLabelledByProps;
 
 export type DBTabPanelDefaultState = {};
 

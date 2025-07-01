@@ -1,4 +1,14 @@
-import { onMount, onUpdate, Show, Slot, useDefaultProps, useMetadata, useRef, useStore, useTarget } from '@builder.io/mitosis';
+import {
+	onMount,
+	onUpdate,
+	Show,
+	Slot,
+	useDefaultProps,
+	useMetadata,
+	useRef,
+	useStore,
+	useTarget
+} from '@builder.io/mitosis';
 import { DBAccordionItemProps, DBAccordionItemState } from './model';
 import { cls, getBooleanAsString, uuid } from '../../utils';
 import { ClickEvent } from '../../shared/model';
@@ -67,9 +77,15 @@ export default function DBAccordionItem(props: DBAccordionItemProps) {
 
 	return (
 		<li id={state._id} class={cls('db-accordion-item', props.className)}>
-			<details aria-disabled={getBooleanAsString(props.disabled)} ref={_ref} name={state._name} open={state._open}>
+			<details
+				aria-disabled={getBooleanAsString(props.disabled)}
+				ref={_ref}
+				name={state._name}
+				open={state._open}>
 				<summary onClick={(event) => state.handleToggle(event)}>
-					<Show when={props.headlinePlain}>{props.headlinePlain}</Show>
+					<Show when={props.headlinePlain}>
+						{props.headlinePlain}
+					</Show>
 					<Show when={!props.headlinePlain}>
 						<Slot name="headline" />
 					</Show>

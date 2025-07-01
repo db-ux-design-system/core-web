@@ -1,4 +1,8 @@
-<app-default-component title="DBNavigation" [variants]="variants" [exampleTemplate]="exampleTemplate">
+<app-default-component
+	title="DBNavigation"
+	[variants]="variants"
+	[exampleTemplate]="exampleTemplate"
+>
 	<ng-template
 		#exampleTemplate
 		let-exampleProps="exampleProps"
@@ -7,15 +11,24 @@
 		let-variantIndex="variantIndex"
 	>
 		<div>
-			<db-infotext [id]="getId(exampleName)" size="small" semantic="informational" icon="none">
+			<db-infotext
+				[id]="getId(exampleName)"
+				size="small"
+				semantic="informational"
+				icon="none"
+			>
 				{{ exampleName }}
 			</db-infotext>
 			<db-navigation [labelledBy]="getId(exampleName)">
 				<db-navigation-item>
-					<ng-container *dbNavigationContent> Navi-Item 1 </ng-container>
+					<ng-container *dbNavigationContent>
+						Navi-Item 1
+					</ng-container>
 					<ng-container sub-navigation>
 						<db-navigation-item>
-							<ng-container *dbNavigationContent> Sub-Navi-Item 1 </ng-container>
+							<ng-container *dbNavigationContent>
+								Sub-Navi-Item 1
+							</ng-container>
 							<ng-container sub-navigation>
 								<db-navigation-item [active]="true">
 									<ng-container *dbNavigationContent>

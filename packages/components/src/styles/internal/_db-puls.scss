@@ -32,8 +32,10 @@
 
 		@media screen and (prefers-reduced-motion: no-preference) {
 			transition:
-				height variables.$db-transition-duration-fast variables.$db-transition-timing-emotional,
-				width variables.$db-transition-duration-fast variables.$db-transition-timing-emotional;
+				height variables.$db-transition-duration-fast
+					variables.$db-transition-timing-emotional,
+				width variables.$db-transition-duration-fast
+					variables.$db-transition-timing-emotional;
 		}
 	}
 }
@@ -54,7 +56,8 @@
 		inline-size: 100%;
 
 		@media (forced-colors: active) {
-			border: calc(#{variables.$db-border-width-xs} - 1px) solid colors.$db-adaptive-on-bg-basic-emphasis-100-default;
+			border: calc(#{variables.$db-border-width-xs} - 1px) solid
+				colors.$db-adaptive-on-bg-basic-emphasis-100-default;
 		}
 	}
 }
@@ -65,7 +68,8 @@
 		inline-size: variables.$db-border-width-xs;
 
 		@media (forced-colors: active) {
-			border: calc(#{variables.$db-border-width-xs} - 1px) solid colors.$db-adaptive-on-bg-basic-emphasis-100-default;
+			border: calc(#{variables.$db-border-width-xs} - 1px) solid
+				colors.$db-adaptive-on-bg-basic-emphasis-100-default;
 		}
 	}
 }

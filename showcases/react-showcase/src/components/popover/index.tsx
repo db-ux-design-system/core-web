@@ -5,7 +5,17 @@ import type { DBPopoverProps } from '../../../../../output/react/src/components/
 import { getVariants } from '../data';
 import { type BaseComponentProps } from '../base-component-data';
 
-const getPopover = ({ id, children, width, gap, spacing, placement, delay, content, animation }: DBPopoverProps & { content: string }) => (
+const getPopover = ({
+	id,
+	children,
+	width,
+	gap,
+	spacing,
+	placement,
+	delay,
+	content,
+	animation
+}: DBPopoverProps & { content: string }) => (
 	<DBPopover
 		trigger={<DBButton>{children}</DBButton>}
 		width={width}
@@ -28,7 +38,15 @@ const getPopover = ({ id, children, width, gap, spacing, placement, delay, conte
 );
 
 const PopoverComponent = (props: BaseComponentProps) => {
-	return <DefaultComponent title="DBPopover" variants={getVariants(defaultComponentVariants, getPopover, props.slotCode)}></DefaultComponent>;
+	return (
+		<DefaultComponent
+			title="DBPopover"
+			variants={getVariants(
+				defaultComponentVariants,
+				getPopover,
+				props.slotCode
+			)}></DefaultComponent>
+	);
 };
 
 export default PopoverComponent;

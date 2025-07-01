@@ -1,4 +1,10 @@
-import { onMount, useDefaultProps, useMetadata, useRef, useStore } from '@builder.io/mitosis';
+import {
+	onMount,
+	useDefaultProps,
+	useMetadata,
+	useRef,
+	useStore
+} from '@builder.io/mitosis';
 import { DBSectionProps, DBSectionState } from './model';
 import { cls, uuid } from '../../utils';
 import { DEFAULT_ID } from '../../shared/constants';

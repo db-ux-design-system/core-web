@@ -36,7 +36,10 @@ const actionAccordion: any = (
 		<DBAccordionItem data-testid="item2" headlinePlain="Test 2">
 			<DBTextarea data-testid="textarea" />
 		</DBAccordionItem>
-		<DBAccordionItem disabled={true} data-testid="item3" headlinePlain="Test 3">
+		<DBAccordionItem
+			disabled={true}
+			data-testid="item3"
+			headlinePlain="Test 3">
 			<DBButton data-testid="button2">Click me</DBButton>
 		</DBAccordionItem>
 	</DBAccordion>
@@ -108,7 +111,9 @@ const testA11y = () => {
 	});
 	test('should not have any A11y issues', async ({ page, mount }) => {
 		await mount(comp);
-		const accessibilityScanResults = await new AxeBuilder({ page }).include('.db-accordion').analyze();
+		const accessibilityScanResults = await new AxeBuilder({ page })
+			.include('.db-accordion')
+			.analyze();
 
 		expect(accessibilityScanResults.violations).toEqual([]);
 	});

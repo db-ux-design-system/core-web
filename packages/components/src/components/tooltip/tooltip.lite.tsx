@@ -1,6 +1,18 @@
-import { onMount, onUpdate, useDefaultProps, useMetadata, useRef, useStore } from '@builder.io/mitosis';
+import {
+	onMount,
+	onUpdate,
+	useDefaultProps,
+	useMetadata,
+	useRef,
+	useStore
+} from '@builder.io/mitosis';
 import { DBTooltipProps, DBTooltipState } from './model';
-import { cls, delay as utilsDelay, getBooleanAsString, uuid } from '../../utils';
+import {
+	cls,
+	delay as utilsDelay,
+	getBooleanAsString,
+	uuid
+} from '../../utils';
 import { ClickEvent } from '../../shared/model';
 import { DEFAULT_ID } from '../../shared/constants';
 import { handleFixedPopover } from '../../utils/floating-components';
@@ -21,7 +33,11 @@ export default function DBTooltip(props: DBTooltipProps) {
 			event.stopPropagation();
 		},
 		handleEscape: (event: any) => {
-			if ((!event || event.key === 'Escape') && _ref && getComputedStyle(_ref).visibility === 'visible') {
+			if (
+				(!event || event.key === 'Escape') &&
+				_ref &&
+				getComputedStyle(_ref).visibility === 'visible'
+			) {
 				state.getParent().blur();
 			}
 		},
@@ -40,7 +56,11 @@ export default function DBTooltip(props: DBTooltipProps) {
 			if (_ref) {
 				// This is a workaround for angular
 				utilsDelay(() => {
-					handleFixedPopover(_ref, parent, (props.placement as unknown as string) ?? 'bottom');
+					handleFixedPopover(
+						_ref,
+						parent,
+						(props.placement as unknown as string) ?? 'bottom'
+					);
 				}, 1);
 			}
 		},
@@ -51,13 +71,18 @@ export default function DBTooltip(props: DBTooltipProps) {
 		},
 		handleLeave(): void {
 			if (state._documentScrollListenerCallbackId) {
-				new DocumentScrollListener().removeCallback(state._documentScrollListenerCallbackId!);
+				new DocumentScrollListener().removeCallback(
+					state._documentScrollListenerCallbackId!
+				);
 			}
 
 			state._observer?.unobserve(state.getParent());
 		},
 		handleEnter(parent?: HTMLElement): void {
-			state._documentScrollListenerCallbackId = new DocumentScrollListener().addCallback((event) => state.handleDocumentScroll(event, parent));
+			state._documentScrollListenerCallbackId =
+				new DocumentScrollListener().addCallback((event) =>
+					state.handleDocumentScroll(event, parent)
+				);
 			state.handleAutoPlacement(parent);
 			state._observer?.observe(state.getParent());
 		}
@@ -73,9 +98,13 @@ export default function DBTooltip(props: DBTooltipProps) {
 			const parent = state.getParent();
 			if (parent) {
 				['mouseenter', 'focusin'].forEach((event) => {
-					parent.addEventListener(event, () => state.handleEnter(parent));
+					parent.addEventListener(event, () =>
+						state.handleEnter(parent)
+					);
 				});
-				parent.addEventListener('keydown', (event) => state.handleEscape(event));
+				parent.addEventListener('keydown', (event) =>
+					state.handleEscape(event)
+				);
 				['mouseleave', 'focusout'].forEach((event) => {
 					parent.addEventListener(event, () => state.handleLeave());
 				});
@@ -88,9 +117,14 @@ export default function DBTooltip(props: DBTooltipProps) {
 				}
 			}
 
-			if (typeof window !== 'undefined' && 'IntersectionObserver' in window) {
+			if (
+				typeof window !== 'undefined' &&
+				'IntersectionObserver' in window
+			) {
 				state._observer = new IntersectionObserver((payload) => {
-					const entry = payload.find(({ target }) => target === state.getParent());
+					const entry = payload.find(
+						({ target }) => target === state.getParent()
+					);
 					if (entry && !entry.isIntersecting) {
 						state.handleEscape(false);
 					}
@@ -119,7 +153,9 @@ export default function DBTooltip(props: DBTooltipProps) {
 			data-placement={props.placement}
 			// TODO: clarify this attribute and we need to set it statically
 			data-gap="true"
-			onClick={(event: ClickEvent<HTMLElement>) => state.handleClick(event)}>
+			onClick={(event: ClickEvent<HTMLElement>) =>
+				state.handleClick(event)
+			}>
 			{props.children}
 		</i>
 	);

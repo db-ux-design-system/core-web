@@ -25,8 +25,12 @@ $headlines: (
 
 		&::before,
 		&::after {
-			--db-icon-font-size: var(--db-base-headline-icon-font-size-#{string.unquote($size)});
-			--db-icon-font-weight: var(--db-base-headline-icon-weight-#{string.unquote($size)});
+			--db-icon-font-size: var(
+				--db-base-headline-icon-font-size-#{string.unquote($size)}
+			);
+			--db-icon-font-weight: var(
+				--db-base-headline-icon-weight-#{string.unquote($size)}
+			);
 		}
 		/* stylelint-enable custom-property-pattern */
 	}

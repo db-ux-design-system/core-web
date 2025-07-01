@@ -14,7 +14,12 @@ import {
 	InputEventState
 } from '../../shared/model';
 
-export const TextareaResizeList = ['none', 'both', 'horizontal', 'vertical'] as const;
+export const TextareaResizeList = [
+	'none',
+	'both',
+	'horizontal',
+	'vertical'
+] as const;
 export type TextareaResizeType = (typeof TextareaResizeList)[number];
 
 export const TextareaWrapList = ['hard', 'soft', 'off'] as const;

@@ -10,7 +10,12 @@ import {
 	WidthProps
 } from '../../shared/model';
 
-export const ButtonVariantList = ['outlined', 'brand', 'filled', 'ghost'] as const;
+export const ButtonVariantList = [
+	'outlined',
+	'brand',
+	'filled',
+	'ghost'
+] as const;
 export type ButtonVariantType = (typeof ButtonVariantList)[number];
 
 export const ButtonTypeList = ['button', 'reset', 'submit'] as const;
@@ -87,4 +92,6 @@ export type DBButtonProps = DBButtonDefaultProps &
 
 export type DBButtonDefaultState = {};
 
-export type DBButtonState = DBButtonDefaultState & GlobalState & ClickEventState<HTMLButtonElement>;
+export type DBButtonState = DBButtonDefaultState &
+	GlobalState &
+	ClickEventState<HTMLButtonElement>;

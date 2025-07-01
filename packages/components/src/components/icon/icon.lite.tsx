@@ -1,4 +1,10 @@
-import { Show, useDefaultProps, useMetadata, useRef, useStore } from '@builder.io/mitosis';
+import {
+	Show,
+	useDefaultProps,
+	useMetadata,
+	useRef,
+	useStore
+} from '@builder.io/mitosis';
 import type { DBIconProps, DBIconState } from './model';
 import { cls } from '../../utils';
 

@@ -28,7 +28,8 @@
 		--db-padding-inline-start: #{variables.$db-spacing-fixed-2xs};
 
 		/* stylelint-disable-next-line db-ux/use-spacings */
-		padding-inline: var(--db-padding-inline-start) #{variables.$db-spacing-fixed-2xs};
+		padding-inline: var(--db-padding-inline-start)
+			#{variables.$db-spacing-fixed-2xs};
 
 		&:has(.db-tab-remove-button) {
 			padding-inline-end: 0;
@@ -80,7 +81,12 @@
 		display: none;
 	}
 
-	> :is([class="db-checkbox"], [class="db-radio"], [class="db-link"], [class="db-button"]) {
+	> :is(
+		[class="db-checkbox"],
+		[class="db-radio"],
+		[class="db-link"],
+		[class="db-button"]
+	) {
 		block-size: 100%;
 	}
 }

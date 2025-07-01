@@ -8,7 +8,11 @@ import { environment } from '../../../environments/environment';
 	selector: 'app-checkbox',
 	templateUrl: './checkbox.component.html',
 	standalone: true,
-	imports: [environment.webComponents ? [DefaultComponent] : [DefaultComponent, DBCheckbox, DBInfotext]],
+	imports: [
+		environment.webComponents
+			? [DefaultComponent]
+			: [DefaultComponent, DBCheckbox, DBInfotext]
+	],
 	schemas: environment.webComponents ? [CUSTOM_ELEMENTS_SCHEMA] : []
 })
 export class CheckboxComponent {

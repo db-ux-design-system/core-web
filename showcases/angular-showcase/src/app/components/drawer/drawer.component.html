@@ -1,4 +1,8 @@
-<app-default-component title="DBDrawer" [variants]="variants" [exampleTemplate]="exampleTemplate">
+<app-default-component
+	title="DBDrawer"
+	[variants]="variants"
+	[exampleTemplate]="exampleTemplate"
+>
 	<ng-template
 		#exampleTemplate
 		let-exampleProps="exampleProps"
@@ -6,7 +10,9 @@
 		let-exampleIndex="exampleIndex"
 		let-variantIndex="variantIndex"
 	>
-		<db-button (click)="toggleDrawer(exampleName)"> Open: {{ exampleName }} </db-button>
+		<db-button (click)="toggleDrawer(exampleName)">
+			Open: {{ exampleName }}
+		</db-button>
 		<db-drawer
 			[backdrop]="exampleProps?.backdrop"
 			[rounded]="exampleProps?.rounded"

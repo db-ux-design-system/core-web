@@ -1,4 +1,8 @@
-<app-default-component title="DBSwitch" [variants]="variants" [exampleTemplate]="exampleTemplate">
+<app-default-component
+	title="DBSwitch"
+	[variants]="variants"
+	[exampleTemplate]="exampleTemplate"
+>
 	<ng-template
 		#exampleTemplate
 		let-exampleProps="exampleProps"
@@ -20,7 +24,11 @@
 		>
 			{{ exampleName }}
 		</db-switch>
-		@if (exampleProps?.showLabel !== undefined && exampleProps?.showLabel !== null && !exampleProps?.showLabel) {
+		@if (
+			exampleProps?.showLabel !== undefined &&
+			exampleProps?.showLabel !== null &&
+			!exampleProps?.showLabel
+		) {
 			<db-infotext semantic="informational" icon="none">
 				{{ exampleName }}
 			</db-infotext>

@@ -62,7 +62,11 @@ export const getComponents = (): Component[] => [
 				controlValueAccessor: 'values'
 			},
 			react: {
-				propsPassingFilter: ['onOptionSelected', 'onAmountChange', 'onDropdownToggle'],
+				propsPassingFilter: [
+					'onOptionSelected',
+					'onAmountChange',
+					'onDropdownToggle'
+				],
 				containsFragmentMap: true
 			}
 		},
@@ -84,7 +88,9 @@ export const getComponents = (): Component[] => [
 				{ from: 'trackByOption1', to: 'trackByOption1(index,option)' },
 				{ from: 'trackByOption2', to: 'trackByOption2(i,option)' }
 			],
-			react: [{ from: 'key={uuid()}', to: 'key={getOptionLabel(option)}' }]
+			react: [
+				{ from: 'key={uuid()}', to: 'key={getOptionLabel(option)}' }
+			]
 		}
 	},
 	{
@@ -159,7 +165,9 @@ export const getComponents = (): Component[] => [
 	{
 		name: 'accordion',
 		overwrites: {
-			angular: [{ from: 'this.initOpenIndex &&', to: 'this.initOpenIndex() &&' }]
+			angular: [
+				{ from: 'this.initOpenIndex &&', to: 'this.initOpenIndex() &&' }
+			]
 		}
 	},
 
@@ -222,7 +230,9 @@ export const getComponents = (): Component[] => [
 				// TODO: We can move this to onMount with useTarget after https://github.com/BuilderIO/mitosis/pull/1750 is merged
 				{
 					from: 'ngAfterViewInit() {',
-					to: 'ngAfterViewInit() {\n' + '\t  this.writeValue(this.value());'
+					to:
+						'ngAfterViewInit() {\n' +
+						'\t  this.writeValue(this.value());'
 				}
 			],
 			react: [

@@ -8,7 +8,12 @@ For general installation and configuration take a look at the [components](https
 <!-- index.html -->
 ...
 <body>
-	<div class="db-custom-select" aria-invalid="false" data-custom-validity="no-validation" data-selected-type="text">
+	<div
+		class="db-custom-select"
+		aria-invalid="false"
+		data-custom-validity="no-validation"
+		data-selected-type="text"
+	>
 		<select hidden>
 			<option value="Option 1">Option 1</option>
 			<option value="Option 2">Option 2</option>
@@ -19,7 +24,10 @@ For general installation and configuration take a look at the [components](https
 			<summary class="db-custom-select-form-field">
 				<!-- Add selected options here with JS-->
 			</summary>
-			<article data-spacing="none" class="db-custom-select-dropdown db-card">
+			<article
+				data-spacing="none"
+				class="db-custom-select-dropdown db-card"
+			>
 				<section class="db-custom-select-list">
 					<ul>
 						<li class="db-custom-select-list-item db-radio">
@@ -51,13 +59,32 @@ For general installation and configuration take a look at the [components](https
 					</ul>
 				</section>
 				<div>
-					<button class="db-button" type="button" data-icon="cross" data-size="small" data-width="full" data-variant="ghost">Close</button>
+					<button
+						class="db-button"
+						type="button"
+						data-icon="cross"
+						data-size="small"
+						data-width="full"
+						data-variant="ghost"
+					>
+						Close
+					</button>
 				</div>
 			</article>
 		</details>
 		<span aria-hidden="true">Placeholder</span
-		><span class="db-infotext" data-semantic="successful" data-size="small" data-hide-icon-before="false">TODO: Add a validMessage</span
-		><span class="db-infotext" data-semantic="critical" data-size="small" data-hide-icon-before="false">TODO: Add an invalidMessage</span
+		><span
+			class="db-infotext"
+			data-semantic="successful"
+			data-size="small"
+			data-hide-icon-before="false"
+			>TODO: Add a validMessage</span
+		><span
+			class="db-infotext"
+			data-semantic="critical"
+			data-size="small"
+			data-hide-icon-before="false"
+			>TODO: Add an invalidMessage</span
 		><span data-visually-hidden="true" role="status"></span>
 	</div>
 </body>

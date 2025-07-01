@@ -1,5 +1,9 @@
 import { expect, test } from '@playwright/test';
-import { hasWebComponentSyntax, runAxeCoreTest, runA11yCheckerTest } from '../default.ts';
+import {
+	hasWebComponentSyntax,
+	runAxeCoreTest,
+	runA11yCheckerTest
+} from '../default.ts';
 import { lvl3 } from '../fixtures/variants';
 
 const skipAxe = hasWebComponentSyntax(process.env.showcase);

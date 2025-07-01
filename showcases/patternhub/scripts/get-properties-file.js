@@ -30,7 +30,9 @@ const getPropertiesFile = ({ name, attributes, events, slots }) => {
 	let eventsTable = '';
 	const allSlots = [...slots];
 
-	for (const { name, description, value } of attributes.filter(({ value }) => !value?.type?.includes('function'))) {
+	for (const { name, description, value } of attributes.filter(
+		({ value }) => !value?.type?.includes('function')
+	)) {
 		const isUnion = value.type.includes('|');
 
 		propertyTable += `| ${getAllNames(name)} `;

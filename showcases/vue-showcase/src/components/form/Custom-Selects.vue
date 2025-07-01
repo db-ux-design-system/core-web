@@ -14,7 +14,16 @@ const options = [
 
 <template>
 	<FormWrapper :plain="plain" :vmodel="vModel">
-		<DBCustomSelect :options="options" :values="plain" label="Plain" @optionSelected="(values) => (plain = values)" />
-		<DBCustomSelect :options="options" label="VModel" v-model:values="vModel" />
+		<DBCustomSelect
+			:options="options"
+			:values="plain"
+			label="Plain"
+			@optionSelected="(values) => (plain = values)"
+		/>
+		<DBCustomSelect
+			:options="options"
+			label="VModel"
+			v-model:values="vModel"
+		/>
 	</FormWrapper>
 </template>

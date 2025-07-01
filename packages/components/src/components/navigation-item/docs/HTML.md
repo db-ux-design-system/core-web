@@ -17,7 +17,9 @@ If you want to use sub-navigations for mobile you need to add a `eventListner:cl
 
 	<!-- With Sub-Navigation -->
 	<li class="db-navigation-item">
-		<button class="db-navigation-item-expand-button" aria-haspopup="true">Navi-Item 1</button>
+		<button class="db-navigation-item-expand-button" aria-haspopup="true">
+			Navi-Item 1
+		</button>
 		<menu class="db-sub-navigation">
 			<a href="mypath">Sub-Navi-Item 1</a>
 			<a href="mypath">Sub-Navi-Item 2</a>

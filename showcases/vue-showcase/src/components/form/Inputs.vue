@@ -18,6 +18,13 @@ const vModel = ref("test2");
 			:value="plain"
 			@change="plain = $event.target.value"
 		/>
-		<DBInput label="VModel" placeholder="Placeholder" message="Description" icon="x_placeholder" name="input-name" v-model:value="vModel" />
+		<DBInput
+			label="VModel"
+			placeholder="Placeholder"
+			message="Description"
+			icon="x_placeholder"
+			name="input-name"
+			v-model:value="vModel"
+		/>
 	</FormWrapper>
 </template>

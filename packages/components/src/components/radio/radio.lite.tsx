@@ -1,8 +1,20 @@
-import { onMount, onUpdate, Show, useDefaultProps, useMetadata, useRef, useStore, useTarget } from '@builder.io/mitosis';
+import {
+	onMount,
+	onUpdate,
+	Show,
+	useDefaultProps,
+	useMetadata,
+	useRef,
+	useStore,
+	useTarget
+} from '@builder.io/mitosis';
 import { DBRadioProps, DBRadioState } from './model';
 import { cls, getBoolean, getHideProp, uuid } from '../../utils';
 import { ChangeEvent, InteractionEvent } from '../../shared/model';
-import { handleFrameworkEventAngular, handleFrameworkEventVue } from '../../utils/form-components';
+import {
+	handleFrameworkEventAngular,
+	handleFrameworkEventVue
+} from '../../utils/form-components';
 
 useMetadata({
 	angular: {
@@ -52,7 +64,11 @@ export default function DBRadio(props: DBRadioProps) {
 	}, [state.initialized, _ref, props.checked]);
 
 	return (
-		<label data-size={props.size} data-hide-label={getHideProp(props.showLabel)} class={cls('db-radio', props.className)} htmlFor={state._id}>
+		<label
+			data-size={props.size}
+			data-hide-label={getHideProp(props.showLabel)}
+			class={cls('db-radio', props.className)}
+			htmlFor={state._id}>
 			<input
 				aria-invalid={props.validation === 'invalid'}
 				data-custom-validity={props.validation}
@@ -65,9 +81,15 @@ export default function DBRadio(props: DBRadioProps) {
 				aria-describedby={props.describedbyid ?? props.ariaDescribedBy}
 				value={props.value}
 				required={getBoolean(props.required, 'required')}
-				onChange={(event: ChangeEvent<HTMLInputElement>) => state.handleChange(event)}
-				onBlur={(event: InteractionEvent<HTMLInputElement>) => state.handleBlur(event)}
-				onFocus={(event: InteractionEvent<HTMLInputElement>) => state.handleFocus(event)}
+				onChange={(event: ChangeEvent<HTMLInputElement>) =>
+					state.handleChange(event)
+				}
+				onBlur={(event: InteractionEvent<HTMLInputElement>) =>
+					state.handleBlur(event)
+				}
+				onFocus={(event: InteractionEvent<HTMLInputElement>) =>
+					state.handleFocus(event)
+				}
 			/>
 			<Show when={props.label} else={props.children}>
 				{props.label}

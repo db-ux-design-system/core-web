@@ -15,7 +15,9 @@ const generateFonts = async () => {
 	try {
 		await execAsync('pyftsubset --help');
 	} catch (e) {
-		console.warn('You need to install pyftsubset. Check packages/foundations/assets/fonts/README.md for more information.');
+		console.warn(
+			'You need to install pyftsubset. Check packages/foundations/assets/fonts/README.md for more information.'
+		);
 	}
 
 	try {

@@ -40,7 +40,14 @@ export type GlobalState = {
 	_id?: string;
 };
 
-export const SemanticList = ['adaptive', 'neutral', 'critical', 'informational', 'warning', 'successful'] as const;
+export const SemanticList = [
+	'adaptive',
+	'neutral',
+	'critical',
+	'informational',
+	'warning',
+	'successful'
+] as const;
 export type SemanticType = (typeof SemanticList)[number];
 export type SemanticProps = {
 	/**
@@ -90,13 +97,30 @@ export type MarginProps = {
 	margin?: MarginType;
 };
 
-export const PlacementHorizontalList = ['left', 'right', 'left-start', 'left-end', 'right-start', 'right-end'] as const;
+export const PlacementHorizontalList = [
+	'left',
+	'right',
+	'left-start',
+	'left-end',
+	'right-start',
+	'right-end'
+] as const;
 export type PlacementHorizontalType = (typeof PlacementHorizontalList)[number];
 
-export const PlacementVerticalList = ['top', 'bottom', 'top-start', 'top-end', 'bottom-start', 'bottom-end'] as const;
+export const PlacementVerticalList = [
+	'top',
+	'bottom',
+	'top-start',
+	'top-end',
+	'bottom-start',
+	'bottom-end'
+] as const;
 export type PlacementVerticalType = (typeof PlacementVerticalList)[number];
 
-export const PlacementList = [...PlacementHorizontalList, ...PlacementVerticalList] as const;
+export const PlacementList = [
+	...PlacementHorizontalList,
+	...PlacementVerticalList
+] as const;
 export type PlacementType = (typeof PlacementList)[number];
 export type PlacementProps = {
 	/**
@@ -116,7 +140,18 @@ export type GapProps = {
 	gap?: boolean | string;
 };
 
-export const GapSpacingList = ['none', '3x-large', '2x-large', 'x-large', 'large', 'medium', 'small', 'x-small', '2x-small', '3x-small'] as const;
+export const GapSpacingList = [
+	'none',
+	'3x-large',
+	'2x-large',
+	'x-large',
+	'large',
+	'medium',
+	'small',
+	'x-small',
+	'2x-small',
+	'3x-small'
+] as const;
 export type GapSpacingType = (typeof GapSpacingList)[number];
 export type GapSpacingProps = {
 	/**
@@ -271,7 +306,11 @@ export type CustomFormProps = {
 	validation?: ValidationType;
 };
 
-export type FormProps = CustomFormProps & BaseFormProps & RequiredProps & ShowLabelProps & ValueProps;
+export type FormProps = CustomFormProps &
+	BaseFormProps &
+	RequiredProps &
+	ShowLabelProps &
+	ValueProps;
 
 export const FieldSizingList = ['fixed', 'content'] as const;
 export type FieldSizingType = (typeof FieldSizingList)[number];
@@ -450,7 +489,15 @@ export type InitializedState = {
 	initialized: boolean;
 };
 
-export const LinkCurrentList = ['time', 'true', 'false', 'date', 'page', 'step', 'location'] as const;
+export const LinkCurrentList = [
+	'time',
+	'true',
+	'false',
+	'date',
+	'page',
+	'step',
+	'location'
+] as const;
 export type LinkCurrentType = (typeof LinkCurrentList)[number];
 export const LinkTargetList = ['_self', '_blank', '_parent', '_top'] as const;
 export type LinkTargetType = (typeof LinkTargetList)[number];

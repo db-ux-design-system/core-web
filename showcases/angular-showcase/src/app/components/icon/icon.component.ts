@@ -7,7 +7,9 @@ import { environment } from '../../../environments/environment';
 @Component({
 	selector: 'app-icon',
 	templateUrl: './icon.component.html',
-	imports: environment.webComponents ? [DefaultComponent] : [DefaultComponent, DBIcon, DBInfotext],
+	imports: environment.webComponents
+		? [DefaultComponent]
+		: [DefaultComponent, DBIcon, DBInfotext],
 	standalone: true,
 	schemas: environment.webComponents ? [CUSTOM_ELEMENTS_SCHEMA] : []
 })

@@ -1,4 +1,9 @@
-import { useDefaultProps, useMetadata, useRef, useStore } from '@builder.io/mitosis';
+import {
+	useDefaultProps,
+	useMetadata,
+	useRef,
+	useStore
+} from '@builder.io/mitosis';
 import { DBDividerProps, DBDividerState } from './model';
 import { cls } from '../../utils';
 

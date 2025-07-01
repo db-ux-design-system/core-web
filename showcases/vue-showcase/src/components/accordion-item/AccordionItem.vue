@@ -5,9 +5,18 @@ import { DBAccordionItem } from "../../../../../output/vue/src";
 </script>
 
 <template>
-	<DefaultComponent title="DBAccordionItem" :variants="defaultComponentVariants">
-		<template #example="{ exampleIndex, variantIndex, exampleName, exampleProps }">
-			<DBAccordionItem :headlinePlain="exampleProps?.headlinePlain" :disabled="exampleProps?.disabled" :default-open="exampleProps?.open">
+	<DefaultComponent
+		title="DBAccordionItem"
+		:variants="defaultComponentVariants"
+	>
+		<template
+			#example="{ exampleIndex, variantIndex, exampleName, exampleProps }"
+		>
+			<DBAccordionItem
+				:headlinePlain="exampleProps?.headlinePlain"
+				:disabled="exampleProps?.disabled"
+				:default-open="exampleProps?.open"
+			>
 				{{ exampleName }}
 			</DBAccordionItem>
 		</template>

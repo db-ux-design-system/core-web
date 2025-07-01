@@ -21,8 +21,12 @@ const testComponent = () => {
 
 const testVariants = () => {
 	for (const semantic of SEMANTICS) {
-		test(`should match screenshot for semantic ${semantic}`, async ({ mount }) => {
-			const variantComp: any = <DBInfotext semantic={semantic}>Test</DBInfotext>;
+		test(`should match screenshot for semantic ${semantic}`, async ({
+			mount
+		}) => {
+			const variantComp: any = (
+				<DBInfotext semantic={semantic}>Test</DBInfotext>
+			);
 			const component = await mount(variantComp);
 			await expect(component).toHaveScreenshot();
 		});
@@ -36,7 +40,9 @@ const testA11y = () => {
 	});
 	test('should not have A11y issues', async ({ page, mount }) => {
 		await mount(comp);
-		const accessibilityScanResults = await new AxeBuilder({ page }).include('.db-infotext').analyze();
+		const accessibilityScanResults = await new AxeBuilder({ page })
+			.include('.db-infotext')
+			.analyze();
 
 		expect(accessibilityScanResults.violations).toEqual([]);
 	});

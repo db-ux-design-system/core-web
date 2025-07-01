@@ -1,4 +1,8 @@
-<app-form-wrapper [plain]="plain" [model]="ngModel" [control]="formControl.value">
+<app-form-wrapper
+	[plain]="plain"
+	[model]="ngModel"
+	[control]="formControl.value"
+>
 	<fieldset>
 		<legend>Different form approaches</legend>
 		<db-input
@@ -10,7 +14,14 @@
 			[value]="plain"
 			(change)="handlePlainChange($event)"
 		/>
-		<db-input label="ngModel" placeholder="Placeholder" message="Description" icon="x_placeholder" name="input-name" [(ngModel)]="ngModel" />
+		<db-input
+			label="ngModel"
+			placeholder="Placeholder"
+			message="Description"
+			icon="x_placeholder"
+			name="input-name"
+			[(ngModel)]="ngModel"
+		/>
 		<db-input
 			label="formControl"
 			placeholder="Placeholder"

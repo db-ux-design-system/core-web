@@ -11,6 +11,10 @@ import { DBCustomSelect } from "@db-ui/v-components";
 </script>
 
 <template>
-	<DBCustomSelect label="Label" placeholder="Placeholder" :options="[{ value: 'Option 1' }, { value: 'Option 2' }]" />
+	<DBCustomSelect
+		label="Label"
+		placeholder="Placeholder"
+		:options="[{ value: 'Option 1' }, { value: 'Option 2' }]"
+	/>
 </template>
 ```

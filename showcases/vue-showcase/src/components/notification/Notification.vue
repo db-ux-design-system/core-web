@@ -10,8 +10,13 @@ const log = (exampleName: string) => {
 </script>
 
 <template>
-	<DefaultComponent title="DBNotification" :variants="defaultComponentVariants">
-		<template #example="{ exampleIndex, variantIndex, exampleName, exampleProps }">
+	<DefaultComponent
+		title="DBNotification"
+		:variants="defaultComponentVariants"
+	>
+		<template
+			#example="{ exampleIndex, variantIndex, exampleName, exampleProps }"
+		>
 			<DBNotification
 				:semantic="exampleProps?.semantic"
 				:headline="exampleProps?.headline"
@@ -29,7 +34,10 @@ const log = (exampleName: string) => {
 					<DBLink href="#">Textlink</DBLink>
 				</template>
 				<template v-if="exampleProps?.img" v-slot:image>
-					<img src="/assets/images/placeholder.jpg" alt="this is a fancy placeholder" />
+					<img
+						src="/assets/images/placeholder.jpg"
+						alt="this is a fancy placeholder"
+					/>
 				</template>
 				{{ exampleName }}
 			</DBNotification>

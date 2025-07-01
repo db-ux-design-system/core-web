@@ -4,16 +4,29 @@
 @use "../helpers";
 
 @function get-typography($density, $device, $size, $type) {
-	@return var(string.unquote("--db-typography-#{$density}-#{$device}-#{$type}-#{$size}"));
+	@return var(
+		string.unquote(
+			"--db-typography-#{$density}-#{$device}-#{$type}-#{$size}"
+		)
+	);
 }
 
 @mixin get-font($density, $device, $size, $type: "body") {
-	--db-type-#{$type}-#{$size}: #{get-typography($density, $device, $size, $type)};
+	--db-type-#{$type}-#{$size}: #{get-typography(
+			$density,
+			$device,
+			$size,
+			$type
+		)};
 }
 
 @mixin get-icons($density, $device, $size, $type: "body") {
-	--db-base-#{$type}-icon-weight-#{$size}: #{string.unquote("var(--db-base-icon-weight-#{$density}-#{$device}-#{$type}-#{$size})")};
-	--db-base-#{$type}-icon-font-size-#{$size}: #{string.unquote("var(--db-base-icon-font-size-#{$density}-#{$device}-#{$type}-#{$size})")};
+	--db-base-#{$type}-icon-weight-#{$size}: #{string.unquote(
+			"var(--db-base-icon-weight-#{$density}-#{$device}-#{$type}-#{$size})"
+		)};
+	--db-base-#{$type}-icon-font-size-#{$size}: #{string.unquote(
+			"var(--db-base-icon-font-size-#{$density}-#{$device}-#{$type}-#{$size})"
+		)};
 }
 
 @each $density in variables.$densities {

@@ -9,9 +9,13 @@
 
 .db-custom-select {
 	--db-form-component-padding-inline-end: calc(
-		#{select-components.$select-icon-padding} + #{variables.$db-sizing-sm} + #{variables.$db-spacing-fixed-sm}
+		#{select-components.$select-icon-padding} + #{variables.$db-sizing-sm} +
+			#{variables.$db-spacing-fixed-sm}
 	);
-	--db-form-component-padding-inline-start: calc(#{select-components.$has-before-padding} + #{variables.$db-spacing-fixed-xs});
+	--db-form-component-padding-inline-start: calc(
+		#{select-components.$has-before-padding} +
+			#{variables.$db-spacing-fixed-xs}
+	);
 	--db-form-component-min-inline-size: #{variables.$db-sizing-xl};
 
 	@extend %select-icon;
@@ -40,7 +44,10 @@
 
 	[id$="-placeholder"] {
 		display: none;
-		margin-inline-end: calc(#{form-components.$font-size-height} + #{variables.$db-spacing-fixed-sm});
+		margin-inline-end: calc(
+			#{form-components.$font-size-height} +
+				#{variables.$db-spacing-fixed-sm}
+		);
 	}
 
 	&:has(.db-custom-select-form-field:empty),
@@ -61,13 +68,19 @@
 		transform: translateY(-50%);
 
 		/* padding form field + gap + icon size */
-		inset-inline-end: calc(#{select-components.$select-icon-padding} + #{variables.$db-spacing-fixed-xs});
+		inset-inline-end: calc(
+			#{select-components.$select-icon-padding} +
+				#{variables.$db-spacing-fixed-xs}
+		);
 
 		@include helpers.divider("right", "after");
 
 		&::after {
 			position: absolute;
-			inset-inline-end: calc(-1 * #{variables.$db-spacing-fixed-xs} - #{variables.$db-border-width-3xs});
+			inset-inline-end: calc(
+				-1 * #{variables.$db-spacing-fixed-xs} -
+					#{variables.$db-border-width-3xs}
+			);
 		}
 	}
 

@@ -1,4 +1,8 @@
-import { DBAccordion, DBAccordionItem, DBInfotext } from '../../../../../output/react/src';
+import {
+	DBAccordion,
+	DBAccordionItem,
+	DBInfotext
+} from '../../../../../output/react/src';
 import DefaultComponent from '../default-component';
 import defaultComponentVariants from '../../../../shared/accordion.json';
 import type { DBAccordionProps } from '../../../../../output/react/src/components/accordion/model';
@@ -24,7 +28,11 @@ const AccordionComponent = (props: BaseComponentProps) => {
 			<DefaultComponent
 				title="DBAccordion"
 				subComponent={props.subComponent}
-				variants={getVariants(defaultComponentVariants, getAccordion, props.slotCode)}></DefaultComponent>
+				variants={getVariants(
+					defaultComponentVariants,
+					getAccordion,
+					props.slotCode
+				)}></DefaultComponent>
 		</div>
 	);
 };

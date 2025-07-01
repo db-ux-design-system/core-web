@@ -1,4 +1,8 @@
-import { DBNavigation, DBNavigationItem, DBInfotext } from '../../../../../output/react/src';
+import {
+	DBNavigation,
+	DBNavigationItem,
+	DBInfotext
+} from '../../../../../output/react/src';
 import DefaultComponent from '../default-component';
 import defaultComponentVariants from '../../../../shared/navigation.json';
 import type { DBNavigationProps } from '../../../../../output/react/src/components/navigation/model';
@@ -9,7 +13,11 @@ const getNavigation = ({ children }: DBNavigationProps) => {
 	const labelID = `${children.replaceAll(/\W/g, '_').toLowerCase()}`;
 	return (
 		<div>
-			<DBInfotext id={labelID} size="small" semantic="informational" icon="none">
+			<DBInfotext
+				id={labelID}
+				size="small"
+				semantic="informational"
+				icon="none">
 				{children}
 			</DBInfotext>
 			<DBNavigation labelledBy={labelID}>
@@ -54,7 +62,11 @@ const NavigationComponent = (props: BaseComponentProps) => {
 		<DefaultComponent
 			title="DBNavigation"
 			subComponent={props.subComponent}
-			variants={getVariants(defaultComponentVariants, getNavigation, props.slotCode)}></DefaultComponent>
+			variants={getVariants(
+				defaultComponentVariants,
+				getNavigation,
+				props.slotCode
+			)}></DefaultComponent>
 	);
 };
 

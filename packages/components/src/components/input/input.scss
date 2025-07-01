@@ -7,14 +7,24 @@
 @use "../../styles/internal/form-components";
 @use "../../styles/internal/button-components";
 
-$icon-padding: calc(#{form-components.$font-size-height} + #{variables.$db-spacing-fixed-sm} + #{variables.$db-spacing-fixed-xs});
+$icon-padding: calc(
+	#{form-components.$font-size-height} + #{variables.$db-spacing-fixed-sm} +
+		#{variables.$db-spacing-fixed-xs}
+);
 
 .db-input {
 	@include form-components.set-default-form-component(input);
 
 	// increased inline size for elements with icons or specific input types that have icons
 	&:is([data-icon], [data-icon-after]):not([data-hide-icon="true"]),
-	&:has(input[type="search"], input[type="date"], input[type="month"], input[type="week"], input[type="datetime-local"], input[type="time"]) {
+	&:has(
+		input[type="search"],
+		input[type="date"],
+		input[type="month"],
+		input[type="week"],
+		input[type="datetime-local"],
+		input[type="time"]
+	) {
 		--db-form-component-min-inline-size: #{variables.$db-sizing-xl};
 	}
 
@@ -47,7 +57,10 @@ $icon-padding: calc(#{form-components.$font-size-height} + #{variables.$db-spaci
 			}
 		}
 
-		&:has(input:not(:placeholder-shown)):has(input:hover, input:focus-visible) {
+		&:has(input:not(:placeholder-shown)):has(
+				input:hover,
+				input:focus-visible
+			) {
 			&::after {
 				opacity: 1;
 			}
@@ -80,7 +93,10 @@ $icon-padding: calc(#{form-components.$font-size-height} + #{variables.$db-spaci
 			input {
 				@extend %db-overwrite-font-size-xs;
 
-				padding-block-start: calc(#{variables.$db-spacing-fixed-md} + #{variables.$db-spacing-fixed-3xs});
+				padding-block-start: calc(
+					#{variables.$db-spacing-fixed-md} +
+						#{variables.$db-spacing-fixed-3xs}
+				);
 
 				&::file-selector-button {
 					@extend %db-overwrite-font-size-xs;
@@ -127,7 +143,10 @@ $icon-padding: calc(#{form-components.$font-size-height} + #{variables.$db-spaci
 		&::-webkit-search-cancel-button {
 			appearance: none;
 			position: absolute;
-			inset-inline-end: calc(#{variables.$db-spacing-fixed-sm} + #{variables.$db-border-width-3xs});
+			inset-inline-end: calc(
+				#{variables.$db-spacing-fixed-sm} +
+					#{variables.$db-border-width-3xs}
+			);
 		}
 
 		&::file-selector-button {
@@ -137,7 +156,8 @@ $icon-padding: calc(#{form-components.$font-size-height} + #{variables.$db-spaci
 
 			color: colors.$db-adaptive-on-bg-basic-emphasis-100-default;
 			block-size: variables.$db-sizing-sm;
-			padding: variables.$db-spacing-fixed-3xs variables.$db-spacing-fixed-sm;
+			padding: variables.$db-spacing-fixed-3xs
+				variables.$db-spacing-fixed-sm;
 			margin-inline-end: variables.$db-spacing-fixed-sm;
 
 			&:hover,

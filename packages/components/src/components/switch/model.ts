@@ -36,4 +36,8 @@ export type DBSwitchDefaultState = {
 	_checked?: boolean;
 };
 
-export type DBSwitchState = DBSwitchDefaultState & GlobalState & ChangeEventState<HTMLInputElement> & FocusEventState<HTMLInputElement> & FormState;
+export type DBSwitchState = DBSwitchDefaultState &
+	GlobalState &
+	ChangeEventState<HTMLInputElement> &
+	FocusEventState<HTMLInputElement> &
+	FormState;

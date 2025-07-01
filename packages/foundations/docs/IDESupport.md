@@ -30,7 +30,13 @@ You can enable auto-complete of CSS classes (like e.g. `db-color-cyan`) for `HTM
 
 ```json settings.json
 {
-	"cssVariables.lookupFiles": ["**/*.css", "**/*.scss", "**/*.sass", "**/*.less", "node_modules/@db-ux/core-foundations/build/ide/db.ide.css"]
+	"cssVariables.lookupFiles": [
+		"**/*.css",
+		"**/*.scss",
+		"**/*.sass",
+		"**/*.less",
+		"node_modules/@db-ux/core-foundations/build/ide/db.ide.css"
+	]
 }
 ```
 

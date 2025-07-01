@@ -1,5 +1,26 @@
-import { For, onMount, onUpdate, Show, useDefaultProps, useMetadata, useRef, useStore, useTarget } from '@builder.io/mitosis';
-import { cls, delay, getBoolean, getHideProp, getNumber, hasVoiceOver, isArrayOfStrings, stringPropVisible, uuid, getInputValue } from '../../utils';
+import {
+	For,
+	onMount,
+	onUpdate,
+	Show,
+	useDefaultProps,
+	useMetadata,
+	useRef,
+	useStore,
+	useTarget
+} from '@builder.io/mitosis';
+import {
+	cls,
+	delay,
+	getBoolean,
+	getHideProp,
+	getNumber,
+	hasVoiceOver,
+	isArrayOfStrings,
+	stringPropVisible,
+	uuid,
+	getInputValue
+} from '../../utils';
 import { DBInputProps, DBInputState } from './model';
 import {
 	DEFAULT_DATALIST_ID_SUFFIX,
@@ -11,9 +32,17 @@ import {
 	DEFAULT_VALID_MESSAGE,
 	DEFAULT_VALID_MESSAGE_ID_SUFFIX
 } from '../../shared/constants';
-import { ChangeEvent, InputEvent, InteractionEvent, ValueLabelType } from '../../shared/model';
+import {
+	ChangeEvent,
+	InputEvent,
+	InteractionEvent,
+	ValueLabelType
+} from '../../shared/model';
 import DBInfotext from '../infotext/infotext.lite';
-import { handleFrameworkEventAngular, handleFrameworkEventVue } from '../../utils/form-components';
+import {
+	handleFrameworkEventAngular,
+	handleFrameworkEventVue
+} from '../../utils/form-components';
 
 useMetadata({
 	angular: {
@@ -43,15 +72,26 @@ export default function DBInput(props: DBInputProps) {
 			/* For a11y reasons we need to map the correct message with the input */
 			if (!_ref?.validity.valid || props.validation === 'invalid') {
 				state._descByIds = state._invalidMessageId;
-				state._invalidMessage = props.invalidMessage || _ref?.validationMessage || DEFAULT_INVALID_MESSAGE;
+				state._invalidMessage =
+					props.invalidMessage ||
+					_ref?.validationMessage ||
+					DEFAULT_INVALID_MESSAGE;
 				if (hasVoiceOver()) {
 					state._voiceOverFallback = state._invalidMessage;
 					delay(() => (state._voiceOverFallback = ''), 1000);
 				}
-			} else if (state.hasValidState() && _ref?.validity.valid && (props.required || props.minLength || props.maxLength || props.pattern)) {
+			} else if (
+				state.hasValidState() &&
+				_ref?.validity.valid &&
+				(props.required ||
+					props.minLength ||
+					props.maxLength ||
+					props.pattern)
+			) {
 				state._descByIds = state._validMessageId;
 				if (hasVoiceOver()) {
-					state._voiceOverFallback = props.validMessage ?? DEFAULT_VALID_MESSAGE;
+					state._voiceOverFallback =
+						props.validMessage ?? DEFAULT_VALID_MESSAGE;
 					delay(() => (state._voiceOverFallback = ''), 1000);
 				}
 			} else if (stringPropVisible(props.message, props.showMessage)) {
@@ -128,7 +168,10 @@ export default function DBInput(props: DBInputProps) {
 	});
 
 	onUpdate(() => {
-		state._invalidMessage = props.invalidMessage || _ref?.validationMessage || DEFAULT_INVALID_MESSAGE;
+		state._invalidMessage =
+			props.invalidMessage ||
+			_ref?.validationMessage ||
+			DEFAULT_INVALID_MESSAGE;
 	}, [_ref, props.invalidMessage]);
 
 	onUpdate(() => {
@@ -136,8 +179,10 @@ export default function DBInput(props: DBInputProps) {
 			const messageId = state._id + DEFAULT_MESSAGE_ID_SUFFIX;
 			state._messageId = messageId;
 			state._validMessageId = state._id + DEFAULT_VALID_MESSAGE_ID_SUFFIX;
-			state._invalidMessageId = state._id + DEFAULT_INVALID_MESSAGE_ID_SUFFIX;
-			state._dataListId = props.dataListId ?? state._id + DEFAULT_DATALIST_ID_SUFFIX;
+			state._invalidMessageId =
+				state._id + DEFAULT_INVALID_MESSAGE_ID_SUFFIX;
+			state._dataListId =
+				props.dataListId ?? state._id + DEFAULT_DATALIST_ID_SUFFIX;
 
 			if (stringPropVisible(props.message, props.showMessage)) {
 				state._descByIds = messageId;
@@ -176,17 +221,28 @@ export default function DBInput(props: DBInputProps) {
 				minLength={getNumber(props.minLength, props.minlength)}
 				max={getInputValue(props.max, props.type)}
 				min={getInputValue(props.min, props.type)}
-				readOnly={getBoolean(props.readOnly, 'readOnly') || getBoolean(props.readonly, 'readonly')}
+				readOnly={
+					getBoolean(props.readOnly, 'readOnly') ||
+					getBoolean(props.readonly, 'readonly')
+				}
 				form={props.form}
 				pattern={props.pattern}
 				size={props.size}
 				// @ts-expect-error inout has a property autoComplete
 				autoComplete={props.autocomplete}
 				autoFocus={getBoolean(props.autofocus, 'autofocus')}
-				onInput={(event: ChangeEvent<HTMLInputElement>) => state.handleInput(event)}
-				onChange={(event: ChangeEvent<HTMLInputElement>) => state.handleChange(event)}
-				onBlur={(event: InteractionEvent<HTMLInputElement>) => state.handleBlur(event)}
-				onFocus={(event: InteractionEvent<HTMLInputElement>) => state.handleFocus(event)}
+				onInput={(event: ChangeEvent<HTMLInputElement>) =>
+					state.handleInput(event)
+				}
+				onChange={(event: ChangeEvent<HTMLInputElement>) =>
+					state.handleChange(event)
+				}
+				onBlur={(event: InteractionEvent<HTMLInputElement>) =>
+					state.handleBlur(event)
+				}
+				onFocus={(event: InteractionEvent<HTMLInputElement>) =>
+					state.handleFocus(event)
+				}
 				list={props.dataList && state._dataListId}
 				aria-describedby={props.ariaDescribedBy ?? state._descByIds}
 			/>
@@ -194,7 +250,13 @@ export default function DBInput(props: DBInputProps) {
 				<datalist id={state._dataListId}>
 					<For each={state.getDataList()}>
 						{(option: ValueLabelType) => (
-							<option key={state._dataListId + '-option-' + option.value} value={option.value}>
+							<option
+								key={
+									state._dataListId +
+									'-option-' +
+									option.value
+								}
+								value={option.value}>
 								{option.label}
 							</option>
 						)}
@@ -203,18 +265,27 @@ export default function DBInput(props: DBInputProps) {
 			</Show>
 			{props.children}
 			<Show when={stringPropVisible(props.message, props.showMessage)}>
-				<DBInfotext size="small" icon={props.messageIcon} id={state._messageId}>
+				<DBInfotext
+					size="small"
+					icon={props.messageIcon}
+					id={state._messageId}>
 					{props.message}
 				</DBInfotext>
 			</Show>
 
 			<Show when={state.hasValidState()}>
-				<DBInfotext id={state._validMessageId} size="small" semantic="successful">
+				<DBInfotext
+					id={state._validMessageId}
+					size="small"
+					semantic="successful">
 					{props.validMessage || DEFAULT_VALID_MESSAGE}
 				</DBInfotext>
 			</Show>
 
-			<DBInfotext id={state._invalidMessageId} size="small" semantic="critical">
+			<DBInfotext
+				id={state._invalidMessageId}
+				size="small"
+				semantic="critical">
 				{state._invalidMessage}
 			</DBInfotext>
 

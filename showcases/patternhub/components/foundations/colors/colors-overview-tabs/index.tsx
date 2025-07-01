@@ -1,9 +1,23 @@
 import { useState } from 'react';
-import { DBSwitch, DBTabItem, DBTabList, DBTabPanel, DBTabs } from '../../../../../../output/react/src';
+import {
+	DBSwitch,
+	DBTabItem,
+	DBTabList,
+	DBTabPanel,
+	DBTabs
+} from '../../../../../../output/react/src';
 import ColorsGrid from '../colors-grid';
 import { type ColorValue } from '../data';
 
-const ColorsOverviewTabs = ({ values, prefixClass, dataAttributeName }: { values: ColorValue[]; prefixClass: string; dataAttributeName: string }) => {
+const ColorsOverviewTabs = ({
+	values,
+	prefixClass,
+	dataAttributeName
+}: {
+	values: ColorValue[];
+	prefixClass: string;
+	dataAttributeName: string;
+}) => {
 	const [showCheckerboard, setShowCheckerboard] = useState<boolean>(false);
 	const [enableDarkMode, setEnableDarkMode] = useState<boolean>(false);
 

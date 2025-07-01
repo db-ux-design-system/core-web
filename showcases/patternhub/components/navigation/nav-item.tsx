@@ -3,7 +3,11 @@ import Link from 'next/link';
 import { DBNavigationItem } from '../../../../output/react/src';
 import type { NavigationItem } from '../../data/routes';
 
-const isRouteActive = (pathname: string, navItem: NavigationItem, router: NextRouter): boolean => {
+const isRouteActive = (
+	pathname: string,
+	navItem: NavigationItem,
+	router: NextRouter
+): boolean => {
 	// Route is defined by a file within subdirectory of "pages"
 	if (!router.query.slug) {
 		return navItem.path === router.pathname;
@@ -28,9 +32,13 @@ const NavItem = ({ navItem }: { navItem: NavigationItem }) => {
 				navItem.subNavigation && (
 					<>
 						{navItem?.subNavigation
-							.filter(({ isHiddenInMenu }) => isHiddenInMenu !== true)
+							.filter(
+								({ isHiddenInMenu }) => isHiddenInMenu !== true
+							)
 							.map((subItem: NavigationItem) => (
-								<NavItem key={`router-path-${subItem.path}`} navItem={subItem}></NavItem>
+								<NavItem
+									key={`router-path-${subItem.path}`}
+									navItem={subItem}></NavItem>
 							))}
 					</>
 				)
@@ -38,7 +46,10 @@ const NavItem = ({ navItem }: { navItem: NavigationItem }) => {
 			{navItem.subNavigation ? (
 				navItem.label
 			) : (
-				<Link key={`router-path-${navItem.path}`} href={navItem.path ?? ''} aria-current={isActive ? 'page' : undefined}>
+				<Link
+					key={`router-path-${navItem.path}`}
+					href={navItem.path ?? ''}
+					aria-current={isActive ? 'page' : undefined}>
 					{navItem.label}
 				</Link>
 			)}

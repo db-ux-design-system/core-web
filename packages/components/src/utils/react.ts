@@ -45,7 +45,10 @@ const reactHtmlAttributes = [
 	'ping'
 ];
 
-export const filterPassingProps = (props: any, propsPassingFilter: string[]): Record<string, unknown> =>
+export const filterPassingProps = (
+	props: any,
+	propsPassingFilter: string[]
+): Record<string, unknown> =>
 	Object.keys(props)
 		.filter(
 			(key) =>
@@ -62,7 +65,10 @@ export const filterPassingProps = (props: any, propsPassingFilter: string[]): Re
 			return { ...obj, [key]: props[key] };
 		}, {});
 
-export const getRootProps = (props: any, rooProps: string[]): Record<string, unknown> => {
+export const getRootProps = (
+	props: any,
+	rooProps: string[]
+): Record<string, unknown> => {
 	return Object.keys(props)
 		.filter((key) => rooProps.includes(key))
 		.reduce((obj: Record<string, unknown>, key: string) => {

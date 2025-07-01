@@ -6,7 +6,9 @@ import { DBCheckbox, DBInput, DBSelect } from "../../../../../output/vue/src";
 
 <template>
 	<DefaultComponent title="DBSelect" :variants="defaultComponentVariants">
-		<template #example="{ exampleIndex, variantIndex, exampleName, exampleProps }">
+		<template
+			#example="{ exampleIndex, variantIndex, exampleName, exampleProps }"
+		>
 			<DBSelect
 				:label="exampleProps?.label"
 				:placeholder="exampleName"

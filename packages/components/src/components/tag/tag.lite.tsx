@@ -1,4 +1,13 @@
-import { onInit, onUpdate, Show, Slot, useDefaultProps, useMetadata, useRef, useStore } from '@builder.io/mitosis';
+import {
+	onInit,
+	onUpdate,
+	Show,
+	Slot,
+	useDefaultProps,
+	useMetadata,
+	useRef,
+	useStore
+} from '@builder.io/mitosis';
 import { DBTagProps, DBTagState } from './model';
 import { cls, getBooleanAsString, getHideProp } from '../../utils';
 import { DEFAULT_REMOVE } from '../../shared/constants';
@@ -36,7 +45,9 @@ export default function DBTag(props: DBTagProps) {
 
 	onUpdate(() => {
 		if (state.initialized && _ref && props.disabled !== undefined) {
-			const button: HTMLButtonElement | null = _ref?.querySelector('button:not(.db-tab-remove-button)');
+			const button: HTMLButtonElement | null = _ref?.querySelector(
+				'button:not(.db-tab-remove-button)'
+			);
 			const input: HTMLInputElement | null = _ref?.querySelector('input');
 			for (const element of [button, input]) {
 				if (element) {
@@ -55,7 +66,9 @@ export default function DBTag(props: DBTagProps) {
 			data-semantic={props.semantic}
 			data-emphasis={props.emphasis}
 			data-icon={props.icon}
-			data-show-check-state={getBooleanAsString(props.showCheckState ?? true)}
+			data-show-check-state={getBooleanAsString(
+				props.showCheckState ?? true
+			)}
 			data-hide-icon={getHideProp(props.showIcon)}
 			data-no-text={getBooleanAsString(props.noText)}
 			data-overflow={getBooleanAsString(props.overflow)}>
@@ -75,7 +88,9 @@ export default function DBTag(props: DBTagProps) {
 					data-no-text="true"
 					data-variant="ghost"
 					type="button">
-					<DBTooltip variant="label">{state.getRemoveButtonText()}</DBTooltip>
+					<DBTooltip variant="label">
+						{state.getRemoveButtonText()}
+					</DBTooltip>
 				</button>
 			</Show>
 		</div>

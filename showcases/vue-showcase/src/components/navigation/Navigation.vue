@@ -1,16 +1,28 @@
 <script setup lang="ts">
 import DefaultComponent from "../DefaultComponent.vue";
 import defaultComponentVariants from "../../../../shared/navigation.json";
-import { DBInfotext, DBNavigation, DBNavigationItem } from "../../../../../output/vue/src";
+import {
+	DBInfotext,
+	DBNavigation,
+	DBNavigationItem
+} from "../../../../../output/vue/src";
 
-const getId = (name?: string): string => `${name?.replaceAll(/\W/g, "_").toLowerCase()}`;
+const getId = (name?: string): string =>
+	`${name?.replaceAll(/\W/g, "_").toLowerCase()}`;
 </script>
 
 <template>
 	<DefaultComponent title="DBNavigation" :variants="defaultComponentVariants">
-		<template #example="{ exampleIndex, variantIndex, exampleName, exampleProps }">
+		<template
+			#example="{ exampleIndex, variantIndex, exampleName, exampleProps }"
+		>
 			<div>
-				<DBInfotext :id="getId(exampleName)" size="small" semantic="informational" icon="none">
+				<DBInfotext
+					:id="getId(exampleName)"
+					size="small"
+					semantic="informational"
+					icon="none"
+				>
 					{{ exampleName }}
 				</DBInfotext>
 				<DBNavigation :labelledBy="getId(exampleName)">
@@ -22,7 +34,9 @@ const getId = (name?: string): string => `${name?.replaceAll(/\W/g, "_").toLower
 
 								<template v-slot:sub-navigation>
 									<DBNavigationItem>
-										<a href="#" aria-current="page">Sub-Sub-Navi-Item 1</a>
+										<a href="#" aria-current="page"
+											>Sub-Sub-Navi-Item 1</a
+										>
 									</DBNavigationItem>
 									<DBNavigationItem>
 										<a href="#">Sub-Sub-Navi-Item 2</a>

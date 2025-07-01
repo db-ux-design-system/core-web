@@ -1,13 +1,25 @@
 {
-	"extends": ["stylelint-config-standard", "stylelint-config-sass-guidelines"],
-	"plugins": ["stylelint-use-logical", "@double-great/stylelint-a11y", "@db-ux/core-stylelint"],
+	"extends": [
+		"stylelint-config-standard",
+		"stylelint-config-sass-guidelines"
+	],
+	"plugins": [
+		"stylelint-use-logical",
+		"@double-great/stylelint-a11y",
+		"@db-ux/core-stylelint"
+	],
 	"rules": {
 		"db-ux/use-spacings": [
 			true,
 			{
 				"allowCalc": true,
 				"allow": {
-					"includes": ["-calc", "$default-icon-margin", "form-components.", "section-padding-inline"],
+					"includes": [
+						"-calc",
+						"$default-icon-margin",
+						"form-components.",
+						"section-padding-inline"
+					],
 					"startsWith": ["icons.$", "map.get"]
 				}
 			}

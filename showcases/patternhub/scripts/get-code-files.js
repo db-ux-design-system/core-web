@@ -66,9 +66,18 @@ const getExamplesAsMDX = async (componentName, variant) => {
 			if (example.code && example.code[framework]) {
 				exampleCode = example.code[framework];
 			} else if (framework === 'html') {
-				exampleCode = allExamples[`${componentName}${variant.name}${example.name}`];
+				exampleCode =
+					allExamples[
+						`${componentName}${variant.name}${example.name}`
+					];
 			} else {
-				exampleCode = getCodeByFramework(componentName, framework, example, false, children);
+				exampleCode = getCodeByFramework(
+					componentName,
+					framework,
+					example,
+					false,
+					children
+				);
 			}
 
 			try {
@@ -142,7 +151,10 @@ const writeCodeFiles = async (componentPath, componentName) => {
 
 			indexFile += `export { default as ${variant.name} } from './${variant.name}';\n`;
 
-			FS.writeFileSync(`${codePath}/${variant.name}.tsx`, await getExamplesAsMDX(componentName, variant));
+			FS.writeFileSync(
+				`${codePath}/${variant.name}.tsx`,
+				await getExamplesAsMDX(componentName, variant)
+			);
 		}
 
 		FS.writeFileSync(`${codePath}/index.tsx`, indexFile);
@@ -153,14 +165,22 @@ const writeCodeFiles = async (componentPath, componentName) => {
 		let pre = '';
 		let tags = '';
 		if (variants) {
-			pre = variants.map((variant) => `import ${variant.name} from './code/${variant.name}'`).join('\n');
+			pre = variants
+				.map(
+					(variant) =>
+						`import ${variant.name} from './code/${variant.name}'`
+				)
+				.join('\n');
 			tags = variants.map((variant) => `<${variant.name}/>`).join(',');
 		}
 
 		const readFile = FS.readFileSync(reactComponentPath, 'utf8')
 			.replace('../index', './../../../components')
 			.replace('../data', '../../../components/data')
-			.replace(')}></DefaultComponent>', `,[${tags}])}></DefaultComponent>`)
+			.replace(
+				')}></DefaultComponent>',
+				`,[${tags}])}></DefaultComponent>`
+			)
 			.replaceAll('// Patternhub:', '');
 
 		return `${pre}\n${readFile}`;

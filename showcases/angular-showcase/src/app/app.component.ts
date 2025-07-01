@@ -21,7 +21,11 @@ import {
 } from '../../../../output/angular/src';
 import { environment } from '../environments/environment';
 import { NavItemComponent } from './nav-item/nav-item.component';
-import { getSortedNavigationItems, NAVIGATION_ITEMS, NavItem } from './utils/navigation-item';
+import {
+	getSortedNavigationItems,
+	NAVIGATION_ITEMS,
+	NavItem
+} from './utils/navigation-item';
 
 @Component({
 	selector: 'app-root',

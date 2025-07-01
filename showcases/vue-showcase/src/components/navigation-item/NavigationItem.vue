@@ -10,8 +10,13 @@ const log = (exampleName?: string) => {
 </script>
 
 <template>
-	<DefaultComponent title="DBNavigationItem" :variants="defaultComponentVariants">
-		<template #example="{ exampleIndex, variantIndex, exampleName, exampleProps }">
+	<DefaultComponent
+		title="DBNavigationItem"
+		:variants="defaultComponentVariants"
+	>
+		<template
+			#example="{ exampleIndex, variantIndex, exampleName, exampleProps }"
+		>
 			<ul class="nav-item-list">
 				<DBNavigationItem
 					:icon="exampleProps?.icon"
@@ -24,22 +29,32 @@ const log = (exampleName?: string) => {
 					@click="log(exampleName)"
 				>
 					<template v-if="exampleProps?.areaPopup" #sub-navigation>
-						<DBNavigationItem :icon="exampleProps?.icon" :showIcon="exampleProps?.showIcon">
+						<DBNavigationItem
+							:icon="exampleProps?.icon"
+							:showIcon="exampleProps?.showIcon"
+						>
 							Also a navigation item with longer label
 							<template v-slot:sub-navigation>
-								<DBNavigationItem :icon="exampleProps?.icon" :showIcon="exampleProps?.showIcon">
+								<DBNavigationItem
+									:icon="exampleProps?.icon"
+									:showIcon="exampleProps?.showIcon"
+								>
 									<a href="#">Navigation Item 2</a>
 								</DBNavigationItem>
 							</template>
 						</DBNavigationItem>
-						<DBNavigationItem :icon="exampleProps?.icon" :showIcon="exampleProps?.showIcon"
+						<DBNavigationItem
+							:icon="exampleProps?.icon"
+							:showIcon="exampleProps?.showIcon"
 							><a href="#">Navigation Item 1</a></DBNavigationItem
 						>
 					</template>
 					<template v-if="exampleProps?.areaPopup">
 						{{ exampleName }}
 					</template>
-					<a v-if="!exampleProps?.areaPopup" href="#">{{ exampleName }}</a>
+					<a v-if="!exampleProps?.areaPopup" href="#">{{
+						exampleName
+					}}</a>
 				</DBNavigationItem>
 			</ul>
 		</template>

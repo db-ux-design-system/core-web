@@ -20,8 +20,12 @@ const testComponent = () => {
 
 const testVariants = () => {
 	for (const semantic of SEMANTICS) {
-		test(`should match screenshot for semantic ${semantic}`, async ({ mount }) => {
-			const variantComp: any = <DBNotification semantic={semantic}>Test</DBNotification>;
+		test(`should match screenshot for semantic ${semantic}`, async ({
+			mount
+		}) => {
+			const variantComp: any = (
+				<DBNotification semantic={semantic}>Test</DBNotification>
+			);
 			const component = await mount(variantComp);
 			await expect(component).toHaveScreenshot();
 		});
@@ -48,9 +52,14 @@ const testA11y = () => {
 		const snapshot = await component.ariaSnapshot();
 		expect(snapshot).toMatchSnapshot(`${testInfo.testId}.yaml`);
 	});
-	test('should not have any accessibility issues', async ({ page, mount }) => {
+	test('should not have any accessibility issues', async ({
+		page,
+		mount
+	}) => {
 		await mount(comp);
-		const accessibilityScanResults = await new AxeBuilder({ page }).include('.db-notification').analyze();
+		const accessibilityScanResults = await new AxeBuilder({ page })
+			.include('.db-notification')
+			.analyze();
 
 		expect(accessibilityScanResults.violations).toEqual([]);
 	});

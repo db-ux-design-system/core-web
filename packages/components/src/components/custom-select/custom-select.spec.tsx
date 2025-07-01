@@ -5,10 +5,19 @@ import { DBCustomSelect } from './index';
 // @ts-ignore - vue can only find it with .ts as file ending
 import { DEFAULT_VIEWPORT } from '../../shared/constants.ts';
 
-const comp: any = <DBCustomSelect options={[{ value: 'Option 1' }, { value: 'Option 2' }]} label="Test" placeholder="Placeholder"></DBCustomSelect>;
+const comp: any = (
+	<DBCustomSelect
+		options={[{ value: 'Option 1' }, { value: 'Option 2' }]}
+		label="Test"
+		placeholder="Placeholder"></DBCustomSelect>
+);
 
 const multiple: any = (
-	<DBCustomSelect options={[{ value: 'Option 1' }, { value: 'Option 2' }]} label="Test" multiple={true} placeholder="Placeholder"></DBCustomSelect>
+	<DBCustomSelect
+		options={[{ value: 'Option 1' }, { value: 'Option 2' }]}
+		label="Test"
+		multiple={true}
+		placeholder="Placeholder"></DBCustomSelect>
 );
 
 const multipleSearchSelect: any = (
@@ -50,7 +59,9 @@ const testA11y = () => {
 	});
 	test('should not have any A11y issues', async ({ page, mount }) => {
 		await mount(comp);
-		const accessibilityScanResults = await new AxeBuilder({ page }).include('.db-custom-select').analyze();
+		const accessibilityScanResults = await new AxeBuilder({ page })
+			.include('.db-custom-select')
+			.analyze();
 
 		expect(accessibilityScanResults.violations).toEqual([]);
 	});

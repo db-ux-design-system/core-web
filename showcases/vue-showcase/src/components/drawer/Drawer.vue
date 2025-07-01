@@ -13,8 +13,12 @@ const toggleDrawer = (example?: string) => {
 
 <template>
 	<DefaultComponent title="DBDrawer" :variants="defaultComponentVariants">
-		<template #example="{ exampleIndex, variantIndex, exampleName, exampleProps }">
-			<DBButton @click="toggleDrawer(exampleName)"> Open: {{ exampleName }} </DBButton>
+		<template
+			#example="{ exampleIndex, variantIndex, exampleName, exampleProps }"
+		>
+			<DBButton @click="toggleDrawer(exampleName)">
+				Open: {{ exampleName }}
+			</DBButton>
 			<DBDrawer
 				:backdrop="exampleProps?.backdrop"
 				:rounded="exampleProps?.rounded"

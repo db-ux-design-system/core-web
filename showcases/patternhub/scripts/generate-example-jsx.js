@@ -1,5 +1,9 @@
 import FS from 'node:fs';
-import { getCodeByFramework, getComponentName, transformToUpperComponentName } from './utils.js';
+import {
+	getCodeByFramework,
+	getComponentName,
+	transformToUpperComponentName
+} from './utils.js';
 
 const sharedPath = '../shared';
 const webTypesPath = './../../output/stencil/dist/web-types.json';
@@ -7,7 +11,9 @@ const webTypesPath = './../../output/stencil/dist/web-types.json';
 const generateExampleJSX = () => {
 	let elements = [];
 	if (FS.existsSync(webTypesPath)) {
-		const webTypes = JSON.parse(FS.readFileSync(webTypesPath, 'utf8').toString());
+		const webTypes = JSON.parse(
+			FS.readFileSync(webTypesPath, 'utf8').toString()
+		);
 		elements = webTypes?.contributions?.html?.elements;
 	}
 
@@ -22,7 +28,13 @@ const generateExampleJSX = () => {
 
 			for (const variant of variants) {
 				for (const example of variant.examples) {
-					const code = getCodeByFramework(componentName, 'react', example, true, variant.children);
+					const code = getCodeByFramework(
+						componentName,
+						'react',
+						example,
+						true,
+						variant.children
+					);
 					examples.push(
 						`"${componentName}${variant.name}${
 							example.name

@@ -6,7 +6,9 @@ export const hoverPre = async (page: Page, selector: string) => {
 	for (const component of components) {
 		await component.evaluate((comp: HTMLElement) => {
 			comp.parentElement.dispatchEvent(new Event('mouseenter'));
-			comp.parentElement.parentElement.dispatchEvent(new Event('mouseenter'));
+			comp.parentElement.parentElement.dispatchEvent(
+				new Event('mouseenter')
+			);
 
 			comp.setAttribute('data-e2e-hover', 'true');
 		});

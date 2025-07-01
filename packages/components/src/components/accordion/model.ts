@@ -48,4 +48,6 @@ export type DBAccordionDefaultState = {
 	convertItems: () => DBAccordionItemDefaultProps[];
 };
 
-export type DBAccordionState = DBAccordionDefaultState & GlobalState & InitializedState;
+export type DBAccordionState = DBAccordionDefaultState &
+	GlobalState &
+	InitializedState;

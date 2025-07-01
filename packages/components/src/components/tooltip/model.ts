@@ -26,7 +26,11 @@ export type DBTooltipDefaultProps = {
 	variant?: TooltipVariantType;
 };
 
-export type DBTooltipProps = DBTooltipDefaultProps & GlobalProps & EmphasisProps & PlacementProps & PopoverProps;
+export type DBTooltipProps = DBTooltipDefaultProps &
+	GlobalProps &
+	EmphasisProps &
+	PlacementProps &
+	PopoverProps;
 
 export type DBTooltipDefaultState = {
 	getParent: () => HTMLElement;

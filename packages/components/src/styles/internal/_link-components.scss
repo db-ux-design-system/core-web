@@ -13,11 +13,19 @@
 	color: colors.$db-adaptive-on-bg-basic-emphasis-100-default;
 
 	@include helpers.hover {
-		color: color-mix(in srgb, transparent 25%, #{colors.$db-adaptive-on-bg-basic-emphasis-100-default});
+		color: color-mix(
+			in srgb,
+			transparent 25%,
+			#{colors.$db-adaptive-on-bg-basic-emphasis-100-default}
+		);
 	}
 
 	@include helpers.active {
-		color: color-mix(in srgb, transparent 50%, #{colors.$db-adaptive-on-bg-basic-emphasis-100-default});
+		color: color-mix(
+			in srgb,
+			transparent 50%,
+			#{colors.$db-adaptive-on-bg-basic-emphasis-100-default}
+		);
 	}
 }
 

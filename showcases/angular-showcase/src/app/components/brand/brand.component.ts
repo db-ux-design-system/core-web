@@ -7,7 +7,9 @@ import { environment } from '../../../environments/environment';
 @Component({
 	selector: 'app-button',
 	templateUrl: './brand.component.html',
-	imports: environment.webComponents ? [DefaultComponent] : [DefaultComponent, DBBrand],
+	imports: environment.webComponents
+		? [DefaultComponent]
+		: [DefaultComponent, DBBrand],
 	standalone: true,
 	schemas: environment.webComponents ? [CUSTOM_ELEMENTS_SCHEMA] : []
 })

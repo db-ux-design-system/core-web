@@ -7,7 +7,9 @@ export type AccessibilityReviewInfoType = {
 	date: string;
 };
 
-const AccessibilityReviewInfo = (accessibilityReview?: AccessibilityReviewInfoType) => {
+const AccessibilityReviewInfo = (
+	accessibilityReview?: AccessibilityReviewInfoType
+) => {
 	const [semantic, setSemantic] = useState<SemanticType>('critical');
 	const [text, setText] = useState<string>('Missing');
 
@@ -15,10 +17,16 @@ const AccessibilityReviewInfo = (accessibilityReview?: AccessibilityReviewInfoTy
 		if (accessibilityReview && accessibilityReview.status === 'DONE') {
 			setSemantic('successful');
 			setText('Done');
-		} else if (accessibilityReview && accessibilityReview.status === 'REVIEW') {
+		} else if (
+			accessibilityReview &&
+			accessibilityReview.status === 'REVIEW'
+		) {
 			setSemantic('warning');
 			setText('In review');
-		} else if (accessibilityReview && accessibilityReview.status === 'PROGRESS') {
+		} else if (
+			accessibilityReview &&
+			accessibilityReview.status === 'PROGRESS'
+		) {
 			setSemantic('warning');
 			setText('In progress');
 		} else {

@@ -23,7 +23,12 @@ import { DBRadio } from '@db-ux/ngx-core-components';
 <ul>
 	@for (radioName of radioNames; track radioName) {
 	<li>
-		<db-radio (change)="radio = radioName" [label]="'Radio ' + radioName" [value]="radioName" name="RadioGroup"></db-radio>
+		<db-radio
+			(change)="radio = radioName"
+			[label]="'Radio ' + radioName"
+			[value]="radioName"
+			name="RadioGroup"
+		></db-radio>
 	</li>
 	}
 </ul>
@@ -66,7 +71,9 @@ import { FormsModule } from '@angular/forms';
 <!-- form.component.html -->
 <form>
 	<DBRadio ngDefaultControl [(ngModel)]="radio">Label</DBRadio>
-	<DBButton type="button" variant="brand" (click)="showValues()">Get radio value</DBButton>
+	<DBButton type="button" variant="brand" (click)="showValues()"
+		>Get radio value</DBButton
+	>
 </form>
 
 <h2>Output</h2>

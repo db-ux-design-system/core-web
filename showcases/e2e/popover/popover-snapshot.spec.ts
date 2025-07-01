@@ -1,5 +1,9 @@
 import { test } from '@playwright/test';
-import { getDefaultScreenshotTest, isStencil, runAriaSnapshotTest } from '../default.ts';
+import {
+	getDefaultScreenshotTest,
+	isStencil,
+	runAriaSnapshotTest
+} from '../default.ts';
 import { hoverPre } from '../fixtures/hover';
 
 const selector = '.db-popover';

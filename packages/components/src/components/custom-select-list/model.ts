@@ -5,8 +5,10 @@ export type DBCustomSelectListDefaultProps = {
 	multiple?: boolean;
 };
 
-export type DBCustomSelectListProps = DBCustomSelectListDefaultProps & GlobalProps;
+export type DBCustomSelectListProps = DBCustomSelectListDefaultProps &
+	GlobalProps;
 
 export type DBCustomSelectListDefaultState = {};
 
-export type DBCustomSelectListState = DBCustomSelectListDefaultState & GlobalState;
+export type DBCustomSelectListState = DBCustomSelectListDefaultState &
+	GlobalState;

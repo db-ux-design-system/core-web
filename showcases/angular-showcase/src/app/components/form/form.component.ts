@@ -1,5 +1,14 @@
-import { Component, CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA } from '@angular/core';
-import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import {
+	Component,
+	CUSTOM_ELEMENTS_SCHEMA,
+	NO_ERRORS_SCHEMA
+} from '@angular/core';
+import {
+	FormControl,
+	FormGroup,
+	FormsModule,
+	ReactiveFormsModule
+} from '@angular/forms';
 import {
 	DBButton,
 	DBCheckbox,
@@ -79,7 +88,9 @@ export class FormComponent {
 	getTags = (): string => JSON.stringify(this.tags);
 
 	changeTags = (tag: string) => {
-		this.tags = this.tags.includes(tag) ? this.tags.filter((t) => t !== tag) : [...this.tags, tag];
+		this.tags = this.tags.includes(tag)
+			? this.tags.filter((t) => t !== tag)
+			: [...this.tags, tag];
 	};
 
 	changeTextarea(key: string, event: any) {
@@ -99,7 +110,12 @@ export class FormComponent {
 
 	onFormSubmit(): void {
 		// eslint-disable-next-line no-alert
-		alert('Formvalue: ' + JSON.stringify(this.form.value) + ' / Model data: ' + JSON.stringify(this.model));
+		alert(
+			'Formvalue: ' +
+				JSON.stringify(this.form.value) +
+				' / Model data: ' +
+				JSON.stringify(this.model)
+		);
 	}
 
 	// Checkbox changes

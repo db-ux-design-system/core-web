@@ -20,7 +20,9 @@ const setControlValueAccessorReplacements = (
 
 	replacements.push({
 		from: '} from "@angular/core";',
-		to: `Renderer2, model } from "@angular/core";\n` + `import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';\n`
+		to:
+			`Renderer2, model } from "@angular/core";\n` +
+			`import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';\n`
 	});
 
 	// inserting provider
@@ -115,7 +117,9 @@ const setDirectiveReplacements = (
 
 		replacements.push({
 			from: '@Component({',
-			to: `import { ${directive.name}Directive } from './${directive.name}.directive';\n\n` + '@Component({'
+			to:
+				`import { ${directive.name}Directive } from './${directive.name}.directive';\n\n` +
+				'@Component({'
 		});
 
 		writeFileSync(
@@ -137,7 +141,12 @@ export class ${directive.name}Directive {}
 		to: 'ContentChild, TemplateRef } from  "@angular/core";'
 	});
 
-	const directiveExports = directives.map((directive) => `export * from './components/${componentName}/${directive.name}.directive';`).join('\n');
+	const directiveExports = directives
+		.map(
+			(directive) =>
+				`export * from './components/${componentName}/${directive.name}.directive';`
+		)
+		.join('\n');
 	replaceInFileSync({
 		files: `../../${outputFolder}/angular/src/index.ts`,
 		from: `export * from './components/${componentName}';`,
@@ -167,7 +176,11 @@ export default (tmp?: boolean) => {
 			}
 		];
 
-		if (readFileSync(file).toString().includes('this.initialized.set(true);')) {
+		if (
+			readFileSync(file)
+				.toString()
+				.includes('this.initialized.set(true);')
+		) {
 			// TODO: Solve this in mitosis by splitting onInit and onMount into ngOnInit and ngAfterViewInit
 			replacements.push({
 				from: 'this.initialized.set(true);',
@@ -188,8 +201,17 @@ export default (tmp?: boolean) => {
 			);
 		}
 
-		if (component.config?.angular?.directives && component.config.angular.directives.length > 0) {
-			setDirectiveReplacements(replacements, outputFolder, componentName, upperComponentName, component.config.angular.directives);
+		if (
+			component.config?.angular?.directives &&
+			component.config.angular.directives.length > 0
+		) {
+			setDirectiveReplacements(
+				replacements,
+				outputFolder,
+				componentName,
+				upperComponentName,
+				component.config.angular.directives
+			);
 		}
 
 		try {

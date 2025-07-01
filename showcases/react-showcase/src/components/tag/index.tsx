@@ -47,7 +47,11 @@ const getTag = ({
 			removeButton={removeButton}
 			showCheckState={showCheckState}
 			showIcon={showIcon}
-			content={content ? <div className="default-content-slot">Swap Slot</div> : undefined}
+			content={
+				content ? (
+					<div className="default-content-slot">Swap Slot</div>
+				) : undefined
+			}
 			onRemove={() => {
 				// eslint-disable-next-line no-alert
 				alert(children.toString());
@@ -81,7 +85,15 @@ const getTag = ({
 };
 
 const TagComponent = (props: BaseComponentProps) => {
-	return <DefaultComponent title="DBTag" variants={getVariants(defaultComponentVariants, getTag, props.slotCode)}></DefaultComponent>;
+	return (
+		<DefaultComponent
+			title="DBTag"
+			variants={getVariants(
+				defaultComponentVariants,
+				getTag,
+				props.slotCode
+			)}></DefaultComponent>
+	);
 };
 
 export default TagComponent;

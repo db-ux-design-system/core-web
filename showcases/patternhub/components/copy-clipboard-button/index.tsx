@@ -7,7 +7,11 @@ export type CopyClipboardButtonProps = {
 	copyText: string;
 };
 
-const CopyClipboardButton = ({ name, children, copyText }: CopyClipboardButtonProps) => {
+const CopyClipboardButton = ({
+	name,
+	children,
+	copyText
+}: CopyClipboardButtonProps) => {
 	const [justCopied, setJustCopied] = useState<boolean>(false);
 
 	const onCopyButtonClick = async (event: MouseEvent<HTMLButtonElement>) => {
@@ -34,7 +38,12 @@ const CopyClipboardButton = ({ name, children, copyText }: CopyClipboardButtonPr
 	}, [justCopied]);
 
 	return (
-		<DBButton variant="ghost" icon="copy" noText={true} onClick={onCopyButtonClick} aria-describedby={name}>
+		<DBButton
+			variant="ghost"
+			icon="copy"
+			noText={true}
+			onClick={onCopyButtonClick}
+			aria-describedby={name}>
 			<DBTooltip
 				id={name}
 				placement="top"

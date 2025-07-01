@@ -1,4 +1,10 @@
-import { Show, useDefaultProps, useMetadata, useRef, useStore } from '@builder.io/mitosis';
+import {
+	Show,
+	useDefaultProps,
+	useMetadata,
+	useRef,
+	useStore
+} from '@builder.io/mitosis';
 import { DBInfotextProps, DBInfotextState } from './model';
 import { cls, getHideProp } from '../../utils';
 

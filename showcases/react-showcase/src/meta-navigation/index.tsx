@@ -1,5 +1,12 @@
 import { useEffect, useState } from 'react';
-import { COLOR, COLORS, DENSITIES, DENSITY, COLOR_CONST, DENSITY_CONST } from '../../../../packages/components/src/shared/constants';
+import {
+	COLOR,
+	COLORS,
+	DENSITIES,
+	DENSITY,
+	COLOR_CONST,
+	DENSITY_CONST
+} from '../../../../packages/components/src/shared/constants';
 import { DBSelect } from '../../../../output/react/src';
 import useUniversalSearchParameters from '../hooks/use-universal-search-parameters';
 
@@ -8,10 +15,18 @@ export type MetaNavigationProps = {
 	onColorChange: (color: string) => void;
 };
 
-const MetaNavigation = ({ onDensityChange, onColorChange }: MetaNavigationProps) => {
-	const [searchParameters, setSearchParameters] = useUniversalSearchParameters();
-	const [density, setDensity] = useState<string>(searchParameters.get(DENSITY_CONST) ?? DENSITY.REGULAR);
-	const [color, setColor] = useState<string>(searchParameters.get(COLOR_CONST) ?? COLOR.NEUTRAL_BG_LEVEL_1);
+const MetaNavigation = ({
+	onDensityChange,
+	onColorChange
+}: MetaNavigationProps) => {
+	const [searchParameters, setSearchParameters] =
+		useUniversalSearchParameters();
+	const [density, setDensity] = useState<string>(
+		searchParameters.get(DENSITY_CONST) ?? DENSITY.REGULAR
+	);
+	const [color, setColor] = useState<string>(
+		searchParameters.get(COLOR_CONST) ?? COLOR.NEUTRAL_BG_LEVEL_1
+	);
 
 	useEffect(() => {
 		for (const [key, value] of searchParameters.entries()) {

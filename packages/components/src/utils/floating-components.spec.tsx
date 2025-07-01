@@ -37,9 +37,27 @@ describe('getFloatingProps', () => {
 	});
 
 	it('does not throw when element or parent is missing', () => {
-		expect(() => getFloatingProps(null as unknown as HTMLElement, {} as HTMLElement, 'top')).not.toThrow();
-		expect(() => getFloatingProps({} as HTMLElement, null as unknown as HTMLElement, 'left')).not.toThrow();
-		expect(getFloatingProps(null as unknown as HTMLElement, null as unknown as HTMLElement, 'bottom')).toEqual({
+		expect(() =>
+			getFloatingProps(
+				null as unknown as HTMLElement,
+				{} as HTMLElement,
+				'top'
+			)
+		).not.toThrow();
+		expect(() =>
+			getFloatingProps(
+				{} as HTMLElement,
+				null as unknown as HTMLElement,
+				'left'
+			)
+		).not.toThrow();
+		expect(
+			getFloatingProps(
+				null as unknown as HTMLElement,
+				null as unknown as HTMLElement,
+				'bottom'
+			)
+		).toEqual({
 			bottom: 0,
 			childHeight: 0,
 			childWidth: 0,

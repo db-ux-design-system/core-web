@@ -55,7 +55,8 @@ if (!process.env.showcase?.startsWith('stencil')) {
 const config: PlaywrightTestConfig = {
 	testDir: './e2e',
 	// Example: __snapshots__/notification/showcase/chromium/functional/neutral-0/DBNotification-should-match-screenshot.png
-	snapshotPathTemplate: '{snapshotDir}/{testFileDir}/showcase/{projectName}/{arg}/{testName}{ext}',
+	snapshotPathTemplate:
+		'{snapshotDir}/{testFileDir}/showcase/{projectName}/{arg}/{testName}{ext}',
 	snapshotDir: './../__snapshots__',
 	expect: {
 		timeout: 30_000

@@ -26,7 +26,10 @@
 
 %full-horizontal {
 	&:not([data-width="full"]) {
-		max-block-size: var(--db-drawer-max-height, calc(100% - #{variables.$db-spacing-fixed-xl}));
+		max-block-size: var(
+			--db-drawer-max-height,
+			calc(100% - #{variables.$db-spacing-fixed-xl})
+		);
 		max-inline-size: none;
 	}
 }
@@ -81,14 +84,20 @@ $spacings: (
 	.db-drawer-header {
 		// We need this variable to overwrite it inside the header
 		/* stylelint-disable-next-line db-ux/use-spacings */
-		padding-block-end: var(--db-drawer-header-padding-block-end, #{map.get($spacing, "block")});
+		padding-block-end: var(
+			--db-drawer-header-padding-block-end,
+			#{map.get($spacing, "block")}
+		);
 		padding-inline: map.get($spacing, "inline");
 	}
 
 	.db-drawer-content {
 		// We need this variable to overwrite it inside the header
 		/* stylelint-disable-next-line db-ux/use-spacings */
-		padding-inline: var(--db-drawer-content-padding-inline, #{map.get($spacing, "inline")});
+		padding-inline: var(
+			--db-drawer-content-padding-inline,
+			#{map.get($spacing, "inline")}
+		);
 		// TODO: Evaluate whether we need overflow: hidden and that for only specifically set y here.
 		overflow-y: auto;
 		overflow-block: auto;
@@ -121,7 +130,10 @@ $spacings: (
 		box-shadow: variables.$db-elevation-md;
 
 		&:not([data-width="full"]) {
-			max-inline-size: var(--db-drawer-max-width, calc(100% - #{variables.$db-spacing-fixed-xl}));
+			max-inline-size: var(
+				--db-drawer-max-width,
+				calc(100% - #{variables.$db-spacing-fixed-xl})
+			);
 
 			&:not([data-direction]),
 			&[data-direction="right"] {
@@ -188,19 +200,23 @@ $spacings: (
 			@media screen and (prefers-reduced-motion: no-preference) {
 				&:not([data-direction]),
 				&[data-direction="right"] {
-					animation: show-right-to-left #{variables.$db-transition-straight-show};
+					animation: show-right-to-left
+						#{variables.$db-transition-straight-show};
 				}
 
 				&[data-direction="left"] {
-					animation: show-left-to-right #{variables.$db-transition-straight-show};
+					animation: show-left-to-right
+						#{variables.$db-transition-straight-show};
 				}
 
 				&[data-direction="up"] {
-					animation: show-bottom-to-top #{variables.$db-transition-straight-show};
+					animation: show-bottom-to-top
+						#{variables.$db-transition-straight-show};
 				}
 
 				&[data-direction="down"] {
-					animation: show-top-to-bottom #{variables.$db-transition-straight-show};
+					animation: show-top-to-bottom
+						#{variables.$db-transition-straight-show};
 				}
 			}
 
@@ -208,19 +224,23 @@ $spacings: (
 				@media screen and (prefers-reduced-motion: no-preference) {
 					&:not([data-direction]),
 					&[data-direction="right"] {
-						animation: hide-right-to-left #{variables.$db-transition-straight-hide};
+						animation: hide-right-to-left
+							#{variables.$db-transition-straight-hide};
 					}
 
 					&[data-direction="left"] {
-						animation: hide-left-to-right #{variables.$db-transition-straight-hide};
+						animation: hide-left-to-right
+							#{variables.$db-transition-straight-hide};
 					}
 
 					&[data-direction="up"] {
-						animation: hide-bottom-to-top #{variables.$db-transition-straight-hide};
+						animation: hide-bottom-to-top
+							#{variables.$db-transition-straight-hide};
 					}
 
 					&[data-direction="down"] {
-						animation: hide-top-to-bottom #{variables.$db-transition-straight-hide};
+						animation: hide-top-to-bottom
+							#{variables.$db-transition-straight-hide};
 					}
 				}
 			}

@@ -11,8 +11,14 @@ $default-icon-variants: "default", "filled";
 $default-icon-content: var(--db-icon, attr(data-icon));
 $default-icon-content-after: var(--db-icon-after, attr(data-icon-after));
 
-$default-icon-margin-end: var(--db-icon-margin-end, #{variables.$db-spacing-fixed-xs});
-$default-icon-margin-start: var(--db-icon-margin-start, #{variables.$db-spacing-fixed-xs});
+$default-icon-margin-end: var(
+	--db-icon-margin-end,
+	#{variables.$db-spacing-fixed-xs}
+);
+$default-icon-margin-start: var(
+	--db-icon-margin-start,
+	#{variables.$db-spacing-fixed-xs}
+);
 
 $default-icon-font-size: var(--db-icon-font-size, #{$default-icon-size-rem});
 
@@ -121,7 +127,10 @@ $default-icon-font-size: var(--db-icon-font-size, #{$default-icon-size-rem});
 
 	/*** icon - placeholder ***/
 	// * use !important to prevent issues with browser extensions that change fonts
-	font-family: var(--db-icon-font-family, var(--db-icon-default-font-family, "db-ux-default")) !important;
+	font-family: var(
+		--db-icon-font-family,
+		var(--db-icon-default-font-family, "db-ux-default")
+	) !important;
 	font-size: $default-icon-font-size;
 
 	// * Better Font Rendering ===========

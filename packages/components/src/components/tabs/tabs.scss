@@ -27,7 +27,13 @@ $max-tabs: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 			@include db-puls.show-db-puls-horizontal;
 
 			&::after {
-				inset-block-end: calc(-1 * (#{variables.$db-spacing-fixed-2xs} + #{variables.$db-border-width-xs}));
+				inset-block-end: calc(
+					-1 *
+						(
+							#{variables.$db-spacing-fixed-2xs} +
+								#{variables.$db-border-width-xs}
+						)
+				);
 			}
 		}
 	}
@@ -82,7 +88,8 @@ $max-tabs: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 		z-index: $db-tabs-z-index-tab-list;
 
 		@each $index in $max-tabs {
-			&:has([id$="-tab-#{$index}"]:checked) ~ [id$="-tab-panel-#{$index}"] {
+			&:has([id$="-tab-#{$index}"]:checked)
+				~ [id$="-tab-panel-#{$index}"] {
 				display: block;
 			}
 		}
@@ -112,7 +119,9 @@ $max-tabs: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
 				/* top position equals sum of: margin xs + padding xs + line-height + padding xs + margin 2xs */
 				inset-block-start: calc(
-					3 * #{variables.$db-spacing-fixed-xs} + #{variables.$db-spacing-fixed-2xs} + #{form-components.$font-size-height}
+					3 * #{variables.$db-spacing-fixed-xs} +
+						#{variables.$db-spacing-fixed-2xs} +
+						#{form-components.$font-size-height}
 				);
 			}
 
@@ -123,7 +132,11 @@ $max-tabs: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 				inline-size: 100%;
 
 				.db-tab-item {
-					margin-block: variables.$db-spacing-fixed-xs calc(2 * #{variables.$db-spacing-fixed-2xs} + #{variables.$db-border-width-xs});
+					margin-block: variables.$db-spacing-fixed-xs
+						calc(
+							2 * #{variables.$db-spacing-fixed-2xs} +
+								#{variables.$db-border-width-xs}
+						);
 				}
 
 				db-tab-item,
@@ -167,7 +180,10 @@ $max-tabs: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 		}
 
 		.db-tab-list {
-			$width: var(--db-tab-list-vertical-width, #{variables.$db-sizing-3xl});
+			$width: var(
+				--db-tab-list-vertical-width,
+				#{variables.$db-sizing-3xl}
+			);
 
 			/*
 			min and nominal size must both be set to ensure
@@ -228,7 +244,10 @@ $max-tabs: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 		}
 
 		.db-tab-item {
-			$padding-start-calc: calc(#{variables.$db-border-width-xs} + #{variables.$db-spacing-fixed-2xs});
+			$padding-start-calc: calc(
+				#{variables.$db-border-width-xs} +
+					#{variables.$db-spacing-fixed-2xs}
+			);
 
 			padding-inline-start: $padding-start-calc;
 
@@ -299,7 +318,10 @@ $max-tabs: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 				z-index: $db-tabs-z-index-button-background;
 				background-color: colors.$db-adaptive-bg-basic-level-1-default;
 				inline-size: variables.$db-sizing-md;
-				block-size: calc(#{variables.$db-spacing-fixed-sm} + #{variables.$db-sizing-md});
+				block-size: calc(
+					#{variables.$db-spacing-fixed-sm} +
+						#{variables.$db-sizing-md}
+				);
 				flex: 0 0 auto;
 			}
 

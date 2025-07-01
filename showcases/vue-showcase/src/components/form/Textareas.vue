@@ -18,6 +18,13 @@ const vModel = ref("test2");
 			:value="plain"
 			@change="plain = $event.target.value"
 		/>
-		<DBTextarea label="VModel" placeholder="Placeholder" message="Description" icon="x_placeholder" name="textarea-name" v-model:value="vModel" />
+		<DBTextarea
+			label="VModel"
+			placeholder="Placeholder"
+			message="Description"
+			icon="x_placeholder"
+			name="textarea-name"
+			v-model:value="vModel"
+		/>
 	</FormWrapper>
 </template>

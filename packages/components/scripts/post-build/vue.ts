@@ -52,7 +52,9 @@ export default (tmp?: boolean) => {
 			if (['select', 'textarea', 'input'].includes(componentName)) {
 				replacements.push({
 					from: 'if (props.onInput) {',
-					to: '_value.value = (event.target as any).value;\n' + 'if (props.onInput) {'
+					to:
+						'_value.value = (event.target as any).value;\n' +
+						'if (props.onInput) {'
 				});
 			}
 

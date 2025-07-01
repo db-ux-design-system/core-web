@@ -10,7 +10,13 @@ const getAttributes = (props, framework, noEvents) => {
 	// Some slots which shouldn't be attributes
 	const propertyKeys = props
 		? Object.keys(props).filter(
-				(key) => key !== 'children' && key !== 'component' && key !== 'identifier' && key !== 'img' && key !== 'link' && key !== 'noContent'
+				(key) =>
+					key !== 'children' &&
+					key !== 'component' &&
+					key !== 'identifier' &&
+					key !== 'img' &&
+					key !== 'link' &&
+					key !== 'noContent'
 			)
 		: [];
 
@@ -22,7 +28,12 @@ const getAttributes = (props, framework, noEvents) => {
 			continue;
 		}
 
-		if (['boolean', 'number'].includes(typeof value) || value instanceof Object || value === key || isEventListener) {
+		if (
+			['boolean', 'number'].includes(typeof value) ||
+			value instanceof Object ||
+			value === key ||
+			isEventListener
+		) {
 			if (value instanceof Object) {
 				value = JSON.stringify(value);
 			}
@@ -68,7 +79,13 @@ const getTag = (componentName) =>
  * @param [children] {{name:string, props: object,native?:boolean,slot?:string, angularDirective?:boolean, content?:string,children?:{name:string, props: object,native?:boolean}[]}[]}
  * @returns {string}
  */
-export const getCodeByFramework = (componentName, framework, example, noEvents, children) => {
+export const getCodeByFramework = (
+	componentName,
+	framework,
+	example,
+	noEvents,
+	children
+) => {
 	const { props, name, content, native } = example;
 	let className = '';
 	let tag = `DB${getTag(componentName)}`;
@@ -81,18 +98,37 @@ export const getCodeByFramework = (componentName, framework, example, noEvents, 
 	}
 
 	if (example.className) {
-		className = framework === 'react' ? ` className="${example.className}"` : ` class="${example.className}"`;
+		className =
+			framework === 'react'
+				? ` className="${example.className}"`
+				: ` class="${example.className}"`;
 	}
 
 	const attributes = getAttributes(props, framework, noEvents);
-	const nonSlots = (children ?? example.children)?.filter((child) => !child.slot || (child.slot.includes('Navigation') && framework !== 'angular'));
+	const nonSlots = (children ?? example.children)?.filter(
+		(child) =>
+			!child.slot ||
+			(child.slot.includes('Navigation') && framework !== 'angular')
+	);
 	const innerContent =
 		nonSlots?.length > 0
-			? nonSlots.map((child) => getCodeByFramework(child.name, framework, child, noEvents, child.children)).join('\n') + (content ?? '')
+			? nonSlots
+					.map((child) =>
+						getCodeByFramework(
+							child.name,
+							framework,
+							child,
+							noEvents,
+							child.children
+						)
+					)
+					.join('\n') + (content ?? '')
 			: (content ?? name);
 
 	const slots = (children ?? example.children)?.filter((child) =>
-		child.slot ? !(child.slot.includes('Navigation') && framework !== 'angular') : false
+		child.slot
+			? !(child.slot.includes('Navigation') && framework !== 'angular')
+			: false
 	);
 	let reactSlots = '';
 	let otherSlots = '';
@@ -103,7 +139,9 @@ export const getCodeByFramework = (componentName, framework, example, noEvents, 
 				slots
 					.map((child) => {
 						let slotName = getTag(child.slot);
-						slotName = slotName.charAt(0).toLowerCase() + slotName.slice(1);
+						slotName =
+							slotName.charAt(0).toLowerCase() +
+							slotName.slice(1);
 						return `${slotName}={${getCodeByFramework(child.name, framework, child, noEvents, child.children)}}`;
 					})
 					.join('\n');
@@ -112,7 +150,13 @@ export const getCodeByFramework = (componentName, framework, example, noEvents, 
 				' ' +
 				slots
 					.map((child) => {
-						const resolvedSlot = getCodeByFramework(child.name, framework, child, noEvents, child.children);
+						const resolvedSlot = getCodeByFramework(
+							child.name,
+							framework,
+							child,
+							noEvents,
+							child.children
+						);
 						if (framework === 'angular') {
 							return `<ng-container ${child.angularDirective ? `*db${getTag(child.slot)}` : child.slot}>${resolvedSlot}</ng-container>`;
 						}
@@ -178,6 +222,10 @@ export const getComponentName = (elementName) => {
 
 export const getComponentGroup = (components, componentName) => {
 	return components.find((comp) =>
-		comp.subNavigation.find((sub) => componentName.includes(sub.name) || componentName.replace('tab-item', 'tabs').includes(sub.name))
+		comp.subNavigation.find(
+			(sub) =>
+				componentName.includes(sub.name) ||
+				componentName.replace('tab-item', 'tabs').includes(sub.name)
+		)
 	);
 };

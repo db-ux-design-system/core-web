@@ -14,16 +14,28 @@ const getAriaLabel = (exampleProps, exampleName): string => {
 };
 
 const getTransformSelectedLabels = (selectedOptions?: any): string => {
-	return selectedOptions.map((option: any) => option.value.at(option.value.length - 1)).join(", ");
+	return selectedOptions
+		.map((option: any) => option.value.at(option.value.length - 1))
+		.join(", ");
 };
 
-const getSearchFilter = (option: CustomSelectOptionType, _: string): boolean => option.value === "Option 1";
+const getSearchFilter = (option: CustomSelectOptionType, _: string): boolean =>
+	option.value === "Option 1";
 </script>
 
 <template>
-	<DefaultComponent title="DBCustomSelect" :variants="defaultComponentVariants">
-		<template #example="{ exampleIndex, variantIndex, exampleName, exampleProps }">
-			<DBInfotext v-if="exampleProps?.info" size="small" semantic="informational">
+	<DefaultComponent
+		title="DBCustomSelect"
+		:variants="defaultComponentVariants"
+	>
+		<template
+			#example="{ exampleIndex, variantIndex, exampleName, exampleProps }"
+		>
+			<DBInfotext
+				v-if="exampleProps?.info"
+				size="small"
+				semantic="informational"
+			>
 				{{ exampleName }}
 			</DBInfotext>
 
@@ -44,7 +56,9 @@ const getSearchFilter = (option: CustomSelectOptionType, _: string): boolean => 
 				:showNoResults="exampleProps?.showNoResults"
 				:multiple="exampleProps?.multiple"
 				:loadingText="exampleProps?.loadingText"
-				:noResultsText="exampleProps?.noResultsText ?? 'No matching filter'"
+				:noResultsText="
+					exampleProps?.noResultsText ?? 'No matching filter'
+				"
 				:label="exampleName"
 				:options="exampleProps?.options"
 				:variant="exampleProps?.variant"
@@ -60,8 +74,14 @@ const getSearchFilter = (option: CustomSelectOptionType, _: string): boolean => 
 				searchLabel="Search"
 				:searchValue="exampleProps?.searchValue"
 				:selectedLabels="exampleProps?.selectedLabels"
-				:transformSelectedLabels="exampleProps?.transformSelectedLabels ? getTransformSelectedLabels : undefined"
-				:searchFilter="exampleProps?.searchFilter ? getSearchFilter : undefined"
+				:transformSelectedLabels="
+					exampleProps?.transformSelectedLabels
+						? getTransformSelectedLabels
+						: undefined
+				"
+				:searchFilter="
+					exampleProps?.searchFilter ? getSearchFilter : undefined
+				"
 				:selectedType="exampleProps?.selectedType"
 				:formFieldWidth="exampleProps?.formFieldWidth"
 				:on-option-selected="(values) => log(values)"

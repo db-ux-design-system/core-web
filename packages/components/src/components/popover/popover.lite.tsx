@@ -1,4 +1,12 @@
-import { onMount, onUpdate, Slot, useDefaultProps, useMetadata, useRef, useStore } from '@builder.io/mitosis';
+import {
+	onMount,
+	onUpdate,
+	Slot,
+	useDefaultProps,
+	useMetadata,
+	useRef,
+	useStore
+} from '@builder.io/mitosis';
 import { DBPopoverProps, DBPopoverState } from './model';
 import { cls, delay as utilsDelay, getBooleanAsString } from '../../utils';
 import { handleFixedPopover } from '../../utils/floating-components';
@@ -29,7 +37,11 @@ export default function DBPopover(props: DBPopoverProps) {
 			if (article) {
 				// This is a workaround for angular
 				utilsDelay(() => {
-					handleFixedPopover(article, _ref, (props.placement as unknown as string) ?? 'bottom');
+					handleFixedPopover(
+						article,
+						_ref,
+						(props.placement as unknown as string) ?? 'bottom'
+					);
 				}, 1);
 			}
 		},
@@ -40,7 +52,10 @@ export default function DBPopover(props: DBPopoverProps) {
 		},
 		handleEnter(): void {
 			state.isExpanded = true;
-			state._documentScrollListenerCallbackId = new DocumentScrollListener().addCallback((event) => state.handleDocumentScroll(event));
+			state._documentScrollListenerCallbackId =
+				new DocumentScrollListener().addCallback((event) =>
+					state.handleDocumentScroll(event)
+				);
 			state.handleAutoPlacement();
 			const child = state.getTrigger();
 			if (child) {
@@ -54,13 +69,16 @@ export default function DBPopover(props: DBPopoverProps) {
 			if (
 				!parent ||
 				(element.parentNode.querySelector(':focus') !== element &&
-					element.parentNode.querySelector(':focus-within') !== element &&
+					element.parentNode.querySelector(':focus-within') !==
+						element &&
 					element.parentNode.querySelector(':hover') !== element)
 			) {
 				state.isExpanded = false;
 
 				if (state._documentScrollListenerCallbackId) {
-					new DocumentScrollListener().removeCallback(state._documentScrollListenerCallbackId!);
+					new DocumentScrollListener().removeCallback(
+						state._documentScrollListenerCallbackId!
+					);
 				}
 
 				const child = state.getTrigger();
@@ -76,7 +94,9 @@ export default function DBPopover(props: DBPopoverProps) {
 					const firstChild = children[0];
 					if (firstChild.tagName.includes('-')) {
 						// this is a workaround for custom angular components
-						return firstChild.children?.length > 0 ? firstChild.children[0] : null;
+						return firstChild.children?.length > 0
+							? firstChild.children[0]
+							: null;
 					} else {
 						return firstChild;
 					}
@@ -100,7 +120,9 @@ export default function DBPopover(props: DBPopoverProps) {
 			}
 			state.handleAutoPlacement();
 
-			_ref.addEventListener('keydown', (event: any) => state.handleEscape(event));
+			_ref.addEventListener('keydown', (event: any) =>
+				state.handleEscape(event)
+			);
 			['mouseenter', 'focusin'].forEach((event) => {
 				_ref.addEventListener(event, () => state.handleEnter());
 			});
@@ -108,9 +130,14 @@ export default function DBPopover(props: DBPopoverProps) {
 				_ref.addEventListener(event, () => state.handleLeave());
 			});
 
-			if (typeof window !== 'undefined' && 'IntersectionObserver' in window) {
+			if (
+				typeof window !== 'undefined' &&
+				'IntersectionObserver' in window
+			) {
 				state._observer = new IntersectionObserver((payload) => {
-					const entry = payload.find(({ target }) => target === state.getTrigger());
+					const entry = payload.find(
+						({ target }) => target === state.getTrigger()
+					);
 					if (entry && !entry.isIntersecting) {
 						state.handleEscape(false);
 					}
@@ -131,7 +158,10 @@ export default function DBPopover(props: DBPopoverProps) {
 	// jscpd:ignore-end
 
 	return (
-		<div ref={_ref} id={props.id} class={cls('db-popover', props.className)}>
+		<div
+			ref={_ref}
+			id={props.id}
+			class={cls('db-popover', props.className)}>
 			<Slot name="trigger" />
 			<article
 				class="db-popover-content"

@@ -6,8 +6,14 @@ import { DBCard } from "../../../../../output/vue/src";
 
 <template>
 	<DefaultComponent title="DBCard" :variants="defaultComponentVariants">
-		<template #example="{ exampleIndex, variantIndex, exampleName, exampleProps }">
-			<DBCard :behavior="exampleProps?.behavior" :elevationLevel="exampleProps?.elevationLevel" :spacing="exampleProps?.spacing">
+		<template
+			#example="{ exampleIndex, variantIndex, exampleName, exampleProps }"
+		>
+			<DBCard
+				:behavior="exampleProps?.behavior"
+				:elevationLevel="exampleProps?.elevationLevel"
+				:spacing="exampleProps?.spacing"
+			>
 				<strong>{{ exampleName }}</strong>
 			</DBCard>
 		</template>

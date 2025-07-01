@@ -35,7 +35,9 @@ const getNavigationItem = ({
 							showIcon={showIcon}
 							subNavigation={
 								<>
-									<DBNavigationItem icon={icon} showIcon={showIcon}>
+									<DBNavigationItem
+										icon={icon}
+										showIcon={showIcon}>
 										<a href="#">Navigation-Item 2</a>
 									</DBNavigationItem>
 								</>
@@ -59,7 +61,11 @@ const NavigationItemComponent = (props: BaseComponentProps) => {
 			title="DBNavigationItem"
 			isSubComponent={props.isSubComponent}
 			componentName={props.componentName}
-			variants={getVariants(defaultComponentVariants, getNavigationItem, props.slotCode)}></DefaultComponent>
+			variants={getVariants(
+				defaultComponentVariants,
+				getNavigationItem,
+				props.slotCode
+			)}></DefaultComponent>
 	);
 };
 

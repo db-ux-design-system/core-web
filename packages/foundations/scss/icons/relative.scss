@@ -7,7 +7,8 @@
 		font-family: "db-ux-#{$variant}";
 		font-style: normal;
 		font-weight: normal;
-		src: url("#{assets-paths.$icons-path}fonts/#{$variant}/db-ux.woff2") format("woff2");
+		src: url("#{assets-paths.$icons-path}fonts/#{$variant}/db-ux.woff2")
+			format("woff2");
 	}
 
 	@each $size in (16, 20, 24, 32, 48, 64) {
@@ -16,7 +17,8 @@
 			font-family: "db-ux-#{$variant}";
 			font-style: normal;
 			font-weight: $size; /* stylelint-disable-line at-rule-descriptor-value-no-unknown */
-			src: url("#{assets-paths.$icons-path}fonts/#{$variant}_#{$size}/db-ux.woff2") format("woff2");
+			src: url("#{assets-paths.$icons-path}fonts/#{$variant}_#{$size}/db-ux.woff2")
+				format("woff2");
 		}
 
 		[data-icon-weight="#{$size}"],

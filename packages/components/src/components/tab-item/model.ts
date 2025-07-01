@@ -47,4 +47,8 @@ export type DBTabItemDefaultState = {
 	_selected: boolean;
 };
 
-export type DBTabItemState = DBTabItemDefaultState & GlobalState & ChangeEventState<HTMLInputElement> & InitializedState & NameState;
+export type DBTabItemState = DBTabItemDefaultState &
+	GlobalState &
+	ChangeEventState<HTMLInputElement> &
+	InitializedState &
+	NameState;

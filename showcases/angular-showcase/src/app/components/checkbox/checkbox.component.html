@@ -1,4 +1,8 @@
-<app-default-component title="DBCheckbox" [variants]="variants" [exampleTemplate]="exampleTemplate">
+<app-default-component
+	title="DBCheckbox"
+	[variants]="variants"
+	[exampleTemplate]="exampleTemplate"
+>
 	<ng-template
 		#exampleTemplate
 		let-exampleProps="exampleProps"
@@ -20,8 +24,16 @@
 			[size]="exampleProps?.size"
 			>{{ exampleName }}</db-checkbox
 		>
-		@if (exampleProps?.showLabel !== undefined && exampleProps?.showLabel !== null && !exampleProps?.showLabel) {
-			<db-infotext semantic="informational" size="small" [showIcon]="false">
+		@if (
+			exampleProps?.showLabel !== undefined &&
+			exampleProps?.showLabel !== null &&
+			!exampleProps?.showLabel
+		) {
+			<db-infotext
+				semantic="informational"
+				size="small"
+				[showIcon]="false"
+			>
 				{{ exampleName }}
 			</db-infotext>
 		}

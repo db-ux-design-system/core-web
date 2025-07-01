@@ -6,7 +6,9 @@ import { DBTabItem, DBTabList } from "../../../../../output/vue/src";
 
 <template>
 	<DefaultComponent title="DBTabItem" :variants="defaultComponentVariants">
-		<template #example="{ exampleIndex, variantIndex, exampleName, exampleProps }">
+		<template
+			#example="{ exampleIndex, variantIndex, exampleName, exampleProps }"
+		>
 			<DBTabList
 				><DBTabItem
 					:active="exampleProps?.active"

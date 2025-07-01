@@ -1,4 +1,13 @@
-import { GapProps, GlobalProps, GlobalState, InitializedState, PlacementProps, PopoverProps, PopoverState, SpacingProps } from '../../shared/model';
+import {
+	GapProps,
+	GlobalProps,
+	GlobalState,
+	InitializedState,
+	PlacementProps,
+	PopoverProps,
+	PopoverState,
+	SpacingProps
+} from '../../shared/model';
 
 export type DBPopoverDefaultProps = {
 	/**
@@ -12,11 +21,19 @@ export type DBPopoverDefaultProps = {
 	trigger?: any;
 };
 
-export type DBPopoverProps = DBPopoverDefaultProps & GlobalProps & SpacingProps & PlacementProps & GapProps & PopoverProps;
+export type DBPopoverProps = DBPopoverDefaultProps &
+	GlobalProps &
+	SpacingProps &
+	PlacementProps &
+	GapProps &
+	PopoverProps;
 
 export type DBPopoverDefaultState = {
 	isExpanded?: boolean;
 	getTrigger: () => Element | null;
 };
 
-export type DBPopoverState = DBPopoverDefaultState & GlobalState & PopoverState & InitializedState;
+export type DBPopoverState = DBPopoverDefaultState &
+	GlobalState &
+	PopoverState &
+	InitializedState;

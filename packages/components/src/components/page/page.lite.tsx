@@ -1,4 +1,13 @@
-import { onInit, onMount, onUnMount, Slot, useDefaultProps, useMetadata, useRef, useStore } from '@builder.io/mitosis';
+import {
+	onInit,
+	onMount,
+	onUnMount,
+	Slot,
+	useDefaultProps,
+	useMetadata,
+	useRef,
+	useStore
+} from '@builder.io/mitosis';
 import { DBPageProps, DBPageState } from './model';
 import { cls, getBooleanAsString } from '../../utils';
 
@@ -16,7 +25,9 @@ export default function DBPage(props: DBPageProps) {
 		if (
 			typeof window !== 'undefined' &&
 			document &&
-			(props.documentOverflow === 'hidden' || (props.variant === 'fixed' && props.documentOverflow !== 'auto'))
+			(props.documentOverflow === 'hidden' ||
+				(props.variant === 'fixed' &&
+					props.documentOverflow !== 'auto'))
 		) {
 			// We need to set this to `html` element that the flex-box solution works
 			// See https://stackoverflow.com/a/43710216 - Approach 1 - flexbox
@@ -37,7 +48,10 @@ export default function DBPage(props: DBPageProps) {
 	});
 
 	onUnMount(() => {
-		if (typeof window !== 'undefined' && document.documentElement.classList.contains('db-page-document')) {
+		if (
+			typeof window !== 'undefined' &&
+			document.documentElement.classList.contains('db-page-document')
+		) {
 			// remove document styles set by this
 			document.documentElement.classList.remove('db-page-document');
 		}
@@ -54,7 +68,9 @@ export default function DBPage(props: DBPageProps) {
 			data-fade-in={getBooleanAsString(props.fadeIn)}
 			data-fonts-loaded={getBooleanAsString(state.fontsLoaded)}>
 			<Slot name="header" />
-			<main class={cls('db-main', props.mainClass)}>{props.children}</main>
+			<main class={cls('db-main', props.mainClass)}>
+				{props.children}
+			</main>
 			<Slot name="footer" />
 		</div>
 	);

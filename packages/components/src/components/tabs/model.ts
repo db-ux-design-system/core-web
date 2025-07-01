@@ -1,4 +1,12 @@
-import { AlignmentProps, InputEvent, GlobalProps, GlobalState, InitializedState, OrientationProps, WidthProps } from '../../shared/model';
+import {
+	AlignmentProps,
+	InputEvent,
+	GlobalProps,
+	GlobalState,
+	InitializedState,
+	OrientationProps,
+	WidthProps
+} from '../../shared/model';
 import { DBTabItemProps } from '../tab-item/model';
 import { DBTabPanelProps } from '../tab-panel/model';
 
@@ -6,7 +14,8 @@ export const TabsBehaviorList = ['scrollbar', 'arrows'] as const;
 export type TabsBehaviorType = (typeof TabsBehaviorList)[number];
 
 export const TabsInitialSelectedModeList = ['auto', 'manually'] as const;
-export type TabsInitialSelectedModeType = (typeof TabsInitialSelectedModeList)[number];
+export type TabsInitialSelectedModeType =
+	(typeof TabsInitialSelectedModeList)[number];
 
 export type DBSimpleTabProps = DBTabItemProps & DBTabPanelProps;
 export type DBTabsDefaultProps = {
@@ -61,7 +70,12 @@ export type DBTabsEventProps = {
 	tabSelect?: (event?: InputEvent<HTMLElement>) => void;
 };
 
-export type DBTabsProps = DBTabsDefaultProps & GlobalProps & OrientationProps & WidthProps & AlignmentProps & DBTabsEventProps;
+export type DBTabsProps = DBTabsDefaultProps &
+	GlobalProps &
+	OrientationProps &
+	WidthProps &
+	AlignmentProps &
+	DBTabsEventProps;
 
 export type DBTabsDefaultState = {
 	_name: string;

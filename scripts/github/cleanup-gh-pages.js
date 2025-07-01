@@ -7,14 +7,20 @@ const TAG = 'cleanup-gh-pages:';
 
 const removeOldFromPath = (isTag, data) => {
 	const path = `public/${isTag ? 'version' : 'review'}`;
-	if (FS.existsSync(path) && data?.filter((branch) => branch.name).length > 0) {
+	if (
+		FS.existsSync(path) &&
+		data?.filter((branch) => branch.name).length > 0
+	) {
 		const dirsToDelete = FS.readdirSync(path)
 			// eslint-disable-next-line unicorn/prefer-array-some
 			.filter((file) => !data.find((branch) => branch.name === file))
 			// Let's not clean up specific folders
 			.filter((file) => !['main', 'latest'].includes(file));
 		if (dirsToDelete?.length > 0) {
-			console.log(TAG, `Start removing ${isTag ? 'tags' : 'branches'} from gh-pages`);
+			console.log(
+				TAG,
+				`Start removing ${isTag ? 'tags' : 'branches'} from gh-pages`
+			);
 			console.log(TAG, dirsToDelete);
 			for (const dir of dirsToDelete) {
 				FS.rmSync(`${path}/${dir}`, {
@@ -45,7 +51,9 @@ const cleanUpPages = async ({ github, context }) => {
 	});
 
 	return {
-		deploy: removeOldFromPath(false, branches.data) || removeOldFromPath(true, tags.data)
+		deploy:
+			removeOldFromPath(false, branches.data) ||
+			removeOldFromPath(true, tags.data)
 	};
 };
 

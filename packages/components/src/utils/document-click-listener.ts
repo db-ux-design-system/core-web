@@ -18,7 +18,9 @@ export class DocumentClickListener {
 		}
 		DocumentClickListener._instance = this;
 		if (self.document) {
-			self.document.addEventListener('click', (event) => DocumentClickListener.runCallbacks(event));
+			self.document.addEventListener('click', (event) =>
+				DocumentClickListener.runCallbacks(event)
+			);
 		}
 	}
 

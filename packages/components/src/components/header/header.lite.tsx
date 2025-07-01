@@ -1,4 +1,12 @@
-import { onMount, onUpdate, Slot, useDefaultProps, useMetadata, useRef, useStore } from '@builder.io/mitosis';
+import {
+	onMount,
+	onUpdate,
+	Slot,
+	useDefaultProps,
+	useMetadata,
+	useRef,
+	useStore
+} from '@builder.io/mitosis';
 import { DBHeaderProps, DBHeaderState } from './model';
 import { addAttributeToChildren, cls, getBoolean, uuid } from '../../utils';
 import DBButton from '../button/button.lite';
@@ -42,7 +50,9 @@ export default function DBHeader(props: DBHeaderProps) {
 
 	onUpdate(() => {
 		if (state.initialized && document && state._id && props.forceMobile) {
-			const headerElement = document.getElementById(state._id ?? '') as HTMLElement;
+			const headerElement = document.getElementById(
+				state._id ?? ''
+			) as HTMLElement;
 			if (headerElement) {
 				// Adds this attribute to the header to enable all styling which would have
 				// @media screen and (min-width: $db-screens-m) to show mobile navigation on a desktop device
@@ -64,9 +74,18 @@ export default function DBHeader(props: DBHeaderProps) {
 			id={state._id}
 			data-width={props.width}
 			data-on-forcing-mobile={props.forceMobile && !state.forcedToMobile}>
-			<DBDrawer class="db-header-drawer" rounded spacing="small" open={getBoolean(props.drawerOpen)} onClose={() => state.handleToggle()}>
+			<DBDrawer
+				class="db-header-drawer"
+				rounded
+				spacing="small"
+				open={getBoolean(props.drawerOpen)}
+				onClose={() => state.handleToggle()}>
 				<div class="db-header-drawer-navigation">
-					<div class="db-header-navigation" onClick={(event) => state.handleNavigationItemClick(event)}>
+					<div
+						class="db-header-navigation"
+						onClick={(event) =>
+							state.handleNavigationItemClick(event)
+						}>
 						{props.children}
 					</div>
 					<div class="db-header-meta-navigation">
@@ -93,7 +112,12 @@ export default function DBHeader(props: DBHeaderProps) {
 				</div>
 				<div class="db-header-action-container">
 					<div class="db-header-burger-menu-container">
-						<DBButton id={state._id + '-burger-menu'} icon="menu" noText variant="ghost" onClick={() => state.handleToggle()}>
+						<DBButton
+							id={state._id + '-burger-menu'}
+							icon="menu"
+							noText
+							variant="ghost"
+							onClick={() => state.handleToggle()}>
 							{props.burgerMenuLabel ?? DEFAULT_BURGER_MENU}
 						</DBButton>
 					</div>

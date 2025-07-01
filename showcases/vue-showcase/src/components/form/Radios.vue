@@ -9,7 +9,15 @@ const vModel = ref("");
 
 <template>
 	<FormWrapper :plain="plain" :vmodel="vModel">
-		<DBRadio name="radio-0" value="radio-0" @change="plain = $event.target.value"> Plain </DBRadio>
-		<DBRadio name="radio-1" value="radio-1" v-model:value="vModel"> VModel </DBRadio>
+		<DBRadio
+			name="radio-0"
+			value="radio-0"
+			@change="plain = $event.target.value"
+		>
+			Plain
+		</DBRadio>
+		<DBRadio name="radio-1" value="radio-1" v-model:value="vModel">
+			VModel
+		</DBRadio>
 	</FormWrapper>
 </template>

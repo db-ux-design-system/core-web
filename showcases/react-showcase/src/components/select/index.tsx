@@ -47,7 +47,15 @@ const getSelect = ({
 };
 
 const SelectComponent = (props: BaseComponentProps) => {
-	return <DefaultComponent title="DBSelect" variants={getVariants(defaultComponentVariants, getSelect, props.slotCode)}></DefaultComponent>;
+	return (
+		<DefaultComponent
+			title="DBSelect"
+			variants={getVariants(
+				defaultComponentVariants,
+				getSelect,
+				props.slotCode
+			)}></DefaultComponent>
+	);
 };
 
 export default SelectComponent;

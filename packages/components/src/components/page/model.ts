@@ -4,7 +4,8 @@ export const PageVariantList = ['auto', 'fixed'] as const;
 export type PageVariantType = (typeof PageVariantList)[number];
 
 export const PageDocumentOverflowList = ['hidden', 'auto'] as const;
-export type PageDocumentOverflowType = (typeof PageDocumentOverflowList)[number];
+export type PageDocumentOverflowType =
+	(typeof PageDocumentOverflowList)[number];
 
 export type DBPageDefaultProps = {
 	/**

@@ -7,7 +7,9 @@
 $interactive-selectors: "label, button:not(.db-tab-remove-button), a";
 
 @mixin get-weak($name: "adaptive", $border-color: 60, $background-color: 1) {
-	--db-tag-border-color: var(--db-#{$name}-on-bg-basic-emphasis-#{$border-color}-default);
+	--db-tag-border-color: var(
+		--db-#{$name}-on-bg-basic-emphasis-#{$border-color}-default
+	);
 	// stylelint-disable-next-line db-ux/use-border-color
 	border-color: var(--db-tag-border-color);
 
@@ -22,7 +24,10 @@ $interactive-selectors: "label, button:not(.db-tab-remove-button), a";
 	// stylelint-disable-next-line db-ux/use-border-color
 	border-color: var(--db-tag-border-color);
 
-	@include colors.set-current-colors(var(--db-#{$name}-bg-vibrant-default), var(--db-#{$name}-on-bg-vibrant-default));
+	@include colors.set-current-colors(
+		var(--db-#{$name}-bg-vibrant-default),
+		var(--db-#{$name}-on-bg-vibrant-default)
+	);
 }
 
 %set-interactive-weak {

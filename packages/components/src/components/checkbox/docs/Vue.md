@@ -13,6 +13,8 @@ const checkbox = _ref("");
 </script>
 
 <template>
-	<DBCheckbox @change="checkbox = $event.target.checked" name="checkbox"> Checkbox </DBCheckbox>
+	<DBCheckbox @change="checkbox = $event.target.checked" name="checkbox">
+		Checkbox
+	</DBCheckbox>
 </template>
 ```

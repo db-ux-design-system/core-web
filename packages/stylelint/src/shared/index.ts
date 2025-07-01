@@ -6,7 +6,14 @@ const {
 	utils: { report }
 } = stylelint;
 
-export const defaultExact: string[] = ['0px', '0', 'auto', 'inherit', 'initial', 'unset'];
+export const defaultExact: string[] = [
+	'0px',
+	'0',
+	'auto',
+	'inherit',
+	'initial',
+	'unset'
+];
 
 export const defaultColorsExact: string[] = ['transparent', 'currentcolor'];
 
@@ -37,19 +44,30 @@ const checkIncludes = (value: string, allowedValues: AllowedType): boolean => {
 
 			return (
 				value.includes(include.include) &&
-				(include.and ? include.and.every((a) => value.includes(a)) : include.or ? include.or.some((a) => value.includes(a)) : true)
+				(include.and
+					? include.and.every((a) => value.includes(a))
+					: include.or
+						? include.or.some((a) => value.includes(a))
+						: true)
 			);
 		})
 	);
 };
 
-export const isAllowed = (value: string | string[], allowedValues: AllowedType): boolean => {
-	const splitValue = Array.isArray(value) ? value : value.replaceAll(/\s+/g, ' ').split(' ');
+export const isAllowed = (
+	value: string | string[],
+	allowedValues: AllowedType
+): boolean => {
+	const splitValue = Array.isArray(value)
+		? value
+		: value.replaceAll(/\s+/g, ' ').split(' ');
 
 	const allowMap = splitValue.map(
 		(val) =>
 			Boolean(allowedValues.exact?.includes(val)) ||
-			Boolean(allowedValues.startsWith?.find((sw) => val.startsWith(sw))) ||
+			Boolean(
+				allowedValues.startsWith?.find((sw) => val.startsWith(sw))
+			) ||
 			checkIncludes(val, allowedValues)
 	);
 
@@ -72,16 +90,26 @@ export type DefaultRuleOptionsHitType = {
 	value: string;
 };
 
-export const isDefaultRuleOptionsHit = ({ options, result, value }: DefaultRuleOptionsHitType) => {
+export const isDefaultRuleOptionsHit = ({
+	options,
+	result,
+	value
+}: DefaultRuleOptionsHitType) => {
 	if (options?.ignore) {
 		const from = result.opts.from;
 		if (from) {
-			const isIgnored = options.ignore.some((i) => from.includes(i) || new RegExp(i).test(from));
+			const isIgnored = options.ignore.some(
+				(i) => from.includes(i) || new RegExp(i).test(from)
+			);
 			if (isIgnored) return true;
 		}
 	}
 
-	if (options?.allowCalc && isAllowed([value], { includes: [{ include: 'calc(' }] })) return true;
+	if (
+		options?.allowCalc &&
+		isAllowed([value], { includes: [{ include: 'calc(' }] })
+	)
+		return true;
 
 	return Boolean(options?.allow && isAllowed([value], options.allow));
 };
@@ -99,7 +127,12 @@ export const getDeclarationRuleFunction = ({
 		rejected: (props: string, value: string) => string;
 	};
 }) => {
-	const ruleFunction: RuleFunctionType<DefaultRuleOptions> = (root, result: PostcssResult, _, options) => {
+	const ruleFunction: RuleFunctionType<DefaultRuleOptions> = (
+		root,
+		result: PostcssResult,
+		_,
+		options
+	) => {
 		root.walkDecls((decl: Declaration) => {
 			const { prop, value } = decl;
 

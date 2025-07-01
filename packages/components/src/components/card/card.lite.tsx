@@ -1,4 +1,9 @@
-import { useDefaultProps, useMetadata, useRef, useStore } from '@builder.io/mitosis';
+import {
+	useDefaultProps,
+	useMetadata,
+	useRef,
+	useStore
+} from '@builder.io/mitosis';
 import type { DBCardProps, DBCardState } from './model';
 import { cls } from '../../utils';
 import { ClickEvent } from '../../shared/model';
@@ -30,7 +35,9 @@ export default function DBCard(props: DBCardProps) {
 			data-spacing={props.spacing}
 			role={props.behavior === 'interactive' ? 'button' : undefined}
 			tabIndex={props.behavior === 'interactive' ? 0 : undefined}
-			onClick={(event: ClickEvent<HTMLElement>) => state.handleClick(event)}>
+			onClick={(event: ClickEvent<HTMLElement>) =>
+				state.handleClick(event)
+			}>
 			{props.children}
 		</div>
 	);

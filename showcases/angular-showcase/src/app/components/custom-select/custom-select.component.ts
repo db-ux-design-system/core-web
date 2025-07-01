@@ -3,12 +3,17 @@ import { CustomSelectOptionType } from '@db-ux/core-components/src/components/cu
 import { DefaultComponent } from '../default.component';
 import defaultComponentVariants from '../../../../../shared/custom-select.json';
 import { environment } from '../../../environments/environment';
-import { DBInfotext, DBCustomSelect } from '../../../../../../output/angular/src';
+import {
+	DBInfotext,
+	DBCustomSelect
+} from '../../../../../../output/angular/src';
 
 @Component({
 	selector: 'app-custom-select',
 	templateUrl: './custom-select.component.html',
-	imports: environment.webComponents ? [DefaultComponent] : [DefaultComponent, DBInfotext, DBCustomSelect],
+	imports: environment.webComponents
+		? [DefaultComponent]
+		: [DefaultComponent, DBInfotext, DBCustomSelect],
 	standalone: true
 })
 export class CustomSelectComponent {
@@ -20,7 +25,9 @@ export class CustomSelectComponent {
 	}
 
 	getTransformSelectedLabels(selectedOptions?: any): string {
-		return selectedOptions.map((option: any) => option.value.at(-1)).join(', ');
+		return selectedOptions
+			.map((option: any) => option.value.at(-1))
+			.join(', ');
 	}
 
 	getSearchFilter(option: CustomSelectOptionType, _: string): boolean {

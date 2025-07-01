@@ -6,7 +6,11 @@ import { lvl3 } from '../fixtures/variants';
 // TODO: There might be an issue in our implementation of which elements get which roles
 // So we disabled "aria-allowed-role" for now
 const axeDisableRules = ['aria-allowed-role'];
-const aCheckerDisableRules = ['aria_child_tabbable', 'input_checkboxes_grouped', 'aria_role_valid'];
+const aCheckerDisableRules = [
+	'aria_child_tabbable',
+	'input_checkboxes_grouped',
+	'aria_role_valid'
+];
 // TODO: We skip this for now until mitosis output is correct
 const skipChecker = isStencil(process.env.showcase);
 

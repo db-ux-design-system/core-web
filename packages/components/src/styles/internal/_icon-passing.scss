@@ -14,7 +14,10 @@
 		a,
 		button,
 		label {
-			--db-padding-inline-start: calc(#{$inline-start} + #{icons.$default-icon-margin-end} + var(--db-icon-font-size));
+			--db-padding-inline-start: calc(
+				#{$inline-start} + #{icons.$default-icon-margin-end} +
+					var(--db-icon-font-size)
+			);
 
 			/* stylelint-disable-next-line db-ux/use-spacings */
 			padding-inline-start: var(--db-padding-inline-start);

@@ -1,6 +1,25 @@
-import { For, onMount, onUpdate, Show, useDefaultProps, useMetadata, useRef, useStore, useTarget } from '@builder.io/mitosis';
+import {
+	For,
+	onMount,
+	onUpdate,
+	Show,
+	useDefaultProps,
+	useMetadata,
+	useRef,
+	useStore,
+	useTarget
+} from '@builder.io/mitosis';
 import { DBSelectOptionType, DBSelectProps, DBSelectState } from './model';
-import { cls, delay, getBoolean, getHideProp, getOptionKey, hasVoiceOver, stringPropVisible, uuid } from '../../utils';
+import {
+	cls,
+	delay,
+	getBoolean,
+	getHideProp,
+	getOptionKey,
+	hasVoiceOver,
+	stringPropVisible,
+	uuid
+} from '../../utils';
 import {
 	DEFAULT_INVALID_MESSAGE,
 	DEFAULT_INVALID_MESSAGE_ID_SUFFIX,
@@ -11,8 +30,16 @@ import {
 	DEFAULT_VALID_MESSAGE_ID_SUFFIX
 } from '../../shared/constants';
 import DBInfotext from '../infotext/infotext.lite';
-import { ChangeEvent, ClickEvent, InputEvent, InteractionEvent } from '../../shared/model';
-import { handleFrameworkEventAngular, handleFrameworkEventVue } from '../../utils/form-components';
+import {
+	ChangeEvent,
+	ClickEvent,
+	InputEvent,
+	InteractionEvent
+} from '../../shared/model';
+import {
+	handleFrameworkEventAngular,
+	handleFrameworkEventVue
+} from '../../utils/form-components';
 
 useMetadata({
 	angular: {
@@ -43,15 +70,23 @@ export default function DBSelect(props: DBSelectProps) {
 			/* For a11y reasons we need to map the correct message with the select */
 			if (!_ref?.validity.valid || props.validation === 'invalid') {
 				state._descByIds = state._invalidMessageId;
-				state._invalidMessage = props.invalidMessage || _ref?.validationMessage || DEFAULT_INVALID_MESSAGE;
+				state._invalidMessage =
+					props.invalidMessage ||
+					_ref?.validationMessage ||
+					DEFAULT_INVALID_MESSAGE;
 				if (hasVoiceOver()) {
 					state._voiceOverFallback = state._invalidMessage;
 					delay(() => (state._voiceOverFallback = ''), 1000);
 				}
-			} else if (state.hasValidState() && _ref?.validity.valid && props.required) {
+			} else if (
+				state.hasValidState() &&
+				_ref?.validity.valid &&
+				props.required
+			) {
 				state._descByIds = state._validMessageId;
 				if (hasVoiceOver()) {
-					state._voiceOverFallback = props.validMessage ?? DEFAULT_VALID_MESSAGE;
+					state._voiceOverFallback =
+						props.validMessage ?? DEFAULT_VALID_MESSAGE;
 					delay(() => (state._voiceOverFallback = ''), 1000);
 				}
 			} else if (stringPropVisible(props.message, props.showMessage)) {
@@ -126,7 +161,10 @@ export default function DBSelect(props: DBSelectProps) {
 	});
 
 	onUpdate(() => {
-		state._invalidMessage = props.invalidMessage || _ref?.validationMessage || DEFAULT_INVALID_MESSAGE;
+		state._invalidMessage =
+			props.invalidMessage ||
+			_ref?.validationMessage ||
+			DEFAULT_INVALID_MESSAGE;
 	}, [_ref, props.invalidMessage]);
 
 	onUpdate(() => {
@@ -135,7 +173,8 @@ export default function DBSelect(props: DBSelectProps) {
 			const placeholderId = state._id + DEFAULT_PLACEHOLDER_ID_SUFFIX;
 			state._messageId = messageId;
 			state._validMessageId = state._id + DEFAULT_VALID_MESSAGE_ID_SUFFIX;
-			state._invalidMessageId = state._id + DEFAULT_INVALID_MESSAGE_ID_SUFFIX;
+			state._invalidMessageId =
+				state._id + DEFAULT_INVALID_MESSAGE_ID_SUFFIX;
 			state._placeholderId = placeholderId;
 
 			if (stringPropVisible(props.message, props.showMessage)) {
@@ -172,11 +211,21 @@ export default function DBSelect(props: DBSelectProps) {
 				value={props.value ?? state._value}
 				autocomplete={props.autocomplete}
 				multiple={props.multiple}
-				onInput={(event: ChangeEvent<HTMLSelectElement>) => state.handleInput(event)}
-				onClick={(event: ClickEvent<HTMLSelectElement>) => state.handleClick(event)}
-				onChange={(event: ChangeEvent<HTMLSelectElement>) => state.handleChange(event)}
-				onBlur={(event: InteractionEvent<HTMLSelectElement>) => state.handleBlur(event)}
-				onFocus={(event: InteractionEvent<HTMLSelectElement>) => state.handleFocus(event)}
+				onInput={(event: ChangeEvent<HTMLSelectElement>) =>
+					state.handleInput(event)
+				}
+				onClick={(event: ClickEvent<HTMLSelectElement>) =>
+					state.handleClick(event)
+				}
+				onChange={(event: ChangeEvent<HTMLSelectElement>) =>
+					state.handleChange(event)
+				}
+				onBlur={(event: InteractionEvent<HTMLSelectElement>) =>
+					state.handleBlur(event)
+				}
+				onFocus={(event: InteractionEvent<HTMLSelectElement>) =>
+					state.handleFocus(event)
+				}
 				aria-describedby={props.ariaDescribedBy ?? state._descByIds}>
 				{/* Empty option for floating label */}
 				<option hidden></option>
@@ -191,7 +240,10 @@ export default function DBSelect(props: DBSelectProps) {
 											key={useTarget({
 												vue: undefined,
 												stencil: undefined,
-												default: getOptionKey(option, 'select-option-')
+												default: getOptionKey(
+													option,
+													'select-option-'
+												)
 											})}
 											value={option.value}
 											disabled={option.disabled}
@@ -204,20 +256,34 @@ export default function DBSelect(props: DBSelectProps) {
 										key={useTarget({
 											vue: undefined,
 											stencil: undefined,
-											default: getOptionKey(option, 'select-optgroup-')
+											default: getOptionKey(
+												option,
+												'select-optgroup-'
+											)
 										})}>
 										<For each={option.options}>
-											{(optgroupOption: DBSelectOptionType) => (
+											{(
+												optgroupOption: DBSelectOptionType
+											) => (
 												<option
 													key={useTarget({
 														vue: undefined,
 														stencil: undefined,
-														default: getOptionKey(optgroupOption, 'select-optgroup-option-')
+														default: getOptionKey(
+															optgroupOption,
+															'select-optgroup-option-'
+														)
 													})}
 													value={optgroupOption.value}
-													selected={optgroupOption.selected}
-													disabled={optgroupOption.disabled}>
-													{state.getOptionLabel(optgroupOption)}
+													selected={
+														optgroupOption.selected
+													}
+													disabled={
+														optgroupOption.disabled
+													}>
+													{state.getOptionLabel(
+														optgroupOption
+													)}
 												</option>
 											)}
 										</For>
@@ -228,20 +294,31 @@ export default function DBSelect(props: DBSelectProps) {
 					</For>
 				</Show>
 			</select>
-			<span id={state._placeholderId}>{props.placeholder ?? props.label}</span>
+			<span id={state._placeholderId}>
+				{props.placeholder ?? props.label}
+			</span>
 			<Show when={stringPropVisible(props.message, props.showMessage)}>
-				<DBInfotext size="small" icon={props.messageIcon} id={state._messageId}>
+				<DBInfotext
+					size="small"
+					icon={props.messageIcon}
+					id={state._messageId}>
 					{props.message}
 				</DBInfotext>
 			</Show>
 
 			<Show when={state.hasValidState()}>
-				<DBInfotext id={state._validMessageId} size="small" semantic="successful">
+				<DBInfotext
+					id={state._validMessageId}
+					size="small"
+					semantic="successful">
 					{props.validMessage || DEFAULT_VALID_MESSAGE}
 				</DBInfotext>
 			</Show>
 
-			<DBInfotext id={state._invalidMessageId} size="small" semantic="critical">
+			<DBInfotext
+				id={state._invalidMessageId}
+				size="small"
+				semantic="critical">
 				{state._invalidMessage}
 			</DBInfotext>
 

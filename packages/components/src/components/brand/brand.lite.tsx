@@ -1,4 +1,10 @@
-import { Show, useDefaultProps, useMetadata, useRef, useStore } from '@builder.io/mitosis';
+import {
+	Show,
+	useDefaultProps,
+	useMetadata,
+	useRef,
+	useStore
+} from '@builder.io/mitosis';
 import { cls, getHideProp } from '../../utils';
 import { DBBrandProps, DBBrandState } from './model';
 import { DEFAULT_ICON } from '../../shared/constants';

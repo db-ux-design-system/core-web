@@ -1,7 +1,15 @@
 import { useRoute, useRouter } from 'vue-router';
 import { computed, ref, watch } from 'vue';
-import { COLOR, COLOR_CONST, DENSITY, DENSITY_CONST } from '../../../../packages/components/src/shared/constants';
-import { getSortedNavigationItems, navigationItems } from '../utils/navigation-items';
+import {
+	COLOR,
+	COLOR_CONST,
+	DENSITY,
+	DENSITY_CONST
+} from '../../../../packages/components/src/shared/constants';
+import {
+	getSortedNavigationItems,
+	navigationItems
+} from '../utils/navigation-items';
 
 export const useLayout = () => {
 	const router = useRouter();
@@ -16,7 +24,9 @@ export const useLayout = () => {
 		drawerOpen.value = open;
 	};
 
-	const classNames = computed(() => `db-density-${density.value} db-${color.value}`);
+	const classNames = computed(
+		() => `db-density-${density.value} db-${color.value}`
+	);
 
 	const onChange = async (event: any, target?: string) => {
 		if (target === 'density') {
@@ -42,7 +52,10 @@ export const useLayout = () => {
 				color.value = query[COLOR_CONST];
 			}
 
-			if (query[DENSITY_CONST] && query[DENSITY_CONST] !== density.value) {
+			if (
+				query[DENSITY_CONST] &&
+				query[DENSITY_CONST] !== density.value
+			) {
 				density.value = query[DENSITY_CONST];
 			}
 

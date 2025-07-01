@@ -11,7 +11,12 @@ import {
 	WidthProps
 } from '../../shared/model';
 
-export const DrawerBackdropList = ['none', 'strong', 'weak', 'invisible'] as const;
+export const DrawerBackdropList = [
+	'none',
+	'strong',
+	'weak',
+	'invisible'
+] as const;
 export type DrawerBackdropType = (typeof DrawerBackdropList)[number];
 
 export const DrawerDirectionList = ['left', 'right', 'up', 'down'] as const;
@@ -54,7 +59,10 @@ export type DBDrawerDefaultProps = {
 
 export type DBDrawerProps = DBDrawerDefaultProps &
 	GlobalProps &
-	CloseEventProps<ClickEvent<HTMLButtonElement | HTMLDialogElement> | GeneralKeyboardEvent<HTMLDialogElement>> &
+	CloseEventProps<
+		| ClickEvent<HTMLButtonElement | HTMLDialogElement>
+		| GeneralKeyboardEvent<HTMLDialogElement>
+	> &
 	InnerCloseButtonProps &
 	WidthProps &
 	SpacingProps;
@@ -65,4 +73,7 @@ export type DBDrawerDefaultState = {
 
 export type DBDrawerState = DBDrawerDefaultState &
 	GlobalState &
-	CloseEventState<ClickEvent<HTMLButtonElement | HTMLDialogElement> | GeneralKeyboardEvent<HTMLDialogElement>>;
+	CloseEventState<
+		| ClickEvent<HTMLButtonElement | HTMLDialogElement>
+		| GeneralKeyboardEvent<HTMLDialogElement>
+	>;

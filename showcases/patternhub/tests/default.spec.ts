@@ -1,7 +1,12 @@
 import { expect, type Page, test } from '@playwright/test';
 import Components from '../data/components.json' with { type: 'json' };
 
-const getDefaultScreenshotTest = async (name: string, type: string, path: string, fn: (page: Page) => Promise<void>) => {
+const getDefaultScreenshotTest = async (
+	name: string,
+	type: string,
+	path: string,
+	fn: (page: Page) => Promise<void>
+) => {
 	test(`${type} should match screenshot`, async ({ page }) => {
 		await page.goto(`${path}`, {
 			waitUntil: 'domcontentloaded'
@@ -14,16 +19,26 @@ const getDefaultScreenshotTest = async (name: string, type: string, path: string
 for (const group of Components) {
 	for (const component of group.subNavigation) {
 		test.describe(component.name, async () => {
-			await getDefaultScreenshotTest(component.name, `docs`, `./components/${component.name}/docs/Angular`, async (page) => {
-				const firstH2 = page.locator('h2').first();
-				await expect(firstH2).toBeVisible();
-			});
+			await getDefaultScreenshotTest(
+				component.name,
+				`docs`,
+				`./components/${component.name}/docs/Angular`,
+				async (page) => {
+					const firstH2 = page.locator('h2').first();
+					await expect(firstH2).toBeVisible();
+				}
+			);
 		});
 		test.describe(component.name, async () => {
-			await getDefaultScreenshotTest(component.name, `overview`, `./components/${component.name}/overview?fullscreen=true`, async (page) => {
-				const firstH2 = page.locator('h1').first();
-				await expect(firstH2).toBeVisible();
-			});
+			await getDefaultScreenshotTest(
+				component.name,
+				`overview`,
+				`./components/${component.name}/overview?fullscreen=true`,
+				async (page) => {
+					const firstH2 = page.locator('h1').first();
+					await expect(firstH2).toBeVisible();
+				}
+			);
 		});
 		test.describe(component.name, async () => {
 			await getDefaultScreenshotTest(

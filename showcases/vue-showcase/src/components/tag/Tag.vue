@@ -11,7 +11,9 @@ const showAlert = (exampleName?: string) => {
 
 <template>
 	<DefaultComponent title="DBTag" :variants="defaultComponentVariants">
-		<template #example="{ exampleIndex, variantIndex, exampleName, exampleProps }">
+		<template
+			#example="{ exampleIndex, variantIndex, exampleName, exampleProps }"
+		>
 			<i class="line-break" v-if="exampleProps?.lineBreak" />
 			<DBTag
 				v-if="!exampleProps?.lineBreak"
@@ -26,7 +28,13 @@ const showAlert = (exampleName?: string) => {
 				:removeButton="exampleProps?.removeButton"
 				@remove="showAlert(exampleName)"
 			>
-				<div v-if="exampleProps?.content" slot="content" class="default-content-slot">Swap Slot</div>
+				<div
+					v-if="exampleProps?.content"
+					slot="content"
+					class="default-content-slot"
+				>
+					Swap Slot
+				</div>
 
 				<button v-if="exampleProps?.component === 'button'">
 					{{ exampleName }}
@@ -35,12 +43,20 @@ const showAlert = (exampleName?: string) => {
 					{{ exampleName }}
 				</a>
 				<label v-if="exampleProps?.component === 'checkbox'">
-					<input type="checkbox" :disabled="exampleProps?.disabled" :checked="exampleProps?.checked" />
+					<input
+						type="checkbox"
+						:disabled="exampleProps?.disabled"
+						:checked="exampleProps?.checked"
+					/>
 					{{ exampleName }}
 				</label>
 
 				<label v-if="exampleProps?.component === 'radio'">
-					<input type="radio" :checked="exampleProps?.checked" :name="exampleProps?.identifier" />
+					<input
+						type="radio"
+						:checked="exampleProps?.checked"
+						:name="exampleProps?.identifier"
+					/>
 					{{ exampleName }}
 				</label>
 				<template

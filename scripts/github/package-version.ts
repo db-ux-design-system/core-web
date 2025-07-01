@@ -39,11 +39,15 @@ export const packageVersion = () => {
 			const VALID_SEMVER_VERSION = `${SEMVER_VERSION}-${GITHUB_SHA_SHORT}`;
 			console.log(VALID_SEMVER_VERSION);
 		} else {
-			console.error(`Version ${SEMVER_VERSION} doesn't contain a hyphen. A prerelease should have a hyphen!`);
+			console.error(
+				`Version ${SEMVER_VERSION} doesn't contain a hyphen. A prerelease should have a hyphen!`
+			);
 			process.exit(1);
 		}
 	} else {
-		console.error('nothing found in environment for RELEASE or PRE_RELEASE');
+		console.error(
+			'nothing found in environment for RELEASE or PRE_RELEASE'
+		);
 		process.exit(1);
 	}
 };

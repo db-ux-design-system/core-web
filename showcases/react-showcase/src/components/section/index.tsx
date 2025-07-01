@@ -6,7 +6,10 @@ import { getVariants } from '../data';
 import { type BaseComponentProps } from '../base-component-data';
 
 const getSection = ({ width, spacing, children }: DBSectionProps) => (
-	<DBSection className="db-color-informational db-bg-color-basic-level-2  section-card-container" spacing={spacing} width={width}>
+	<DBSection
+		className="db-color-informational db-bg-color-basic-level-2  section-card-container"
+		spacing={spacing}
+		width={width}>
 		<DBCard>{children}</DBCard>
 		<DBCard>{children}</DBCard>
 		<DBCard>{children}</DBCard>
@@ -15,7 +18,15 @@ const getSection = ({ width, spacing, children }: DBSectionProps) => (
 );
 
 const SectionComponent = (props: BaseComponentProps) => {
-	return <DefaultComponent title={'DBSection'} variants={getVariants(defaultComponentVariants, getSection, props.slotCode)}></DefaultComponent>;
+	return (
+		<DefaultComponent
+			title={'DBSection'}
+			variants={getVariants(
+				defaultComponentVariants,
+				getSection,
+				props.slotCode
+			)}></DefaultComponent>
+	);
 };
 
 export default SectionComponent;

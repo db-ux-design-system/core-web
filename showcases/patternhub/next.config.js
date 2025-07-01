@@ -15,7 +15,11 @@ const withMDX = generated({
 const config = {
 	output: 'export',
 	basePath: process.env.NEXT_PUBLIC_BASE_PATH || '',
-	transpilePackages: ['../../output/react/src', '../react-showcase/', '@db-ux'],
+	transpilePackages: [
+		'../../output/react/src',
+		'../react-showcase/',
+		'@db-ux'
+	],
 	...withMDX({
 		pageExtensions: ['ts', 'tsx', 'js', 'jsx', 'md', 'mdx'],
 		eslint: { ignoreDuringBuilds: true }

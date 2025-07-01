@@ -36,8 +36,12 @@ export type NavigationItem = {
 	subNavigation?: NavigationItem[];
 };
 
-export const getSortedNavigationItems = (navigationItems: NavigationItem[]): any[] =>
-	navigationItems.sort((a: NavigationItem, b: NavigationItem) => a.path.localeCompare(b.path));
+export const getSortedNavigationItems = (
+	navigationItems: NavigationItem[]
+): any[] =>
+	navigationItems.sort((a: NavigationItem, b: NavigationItem) =>
+		a.path.localeCompare(b.path)
+	);
 export const NAVIGATION_ITEMS: NavigationItem[] = [
 	{
 		path: '06',

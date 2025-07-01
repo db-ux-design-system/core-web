@@ -1,4 +1,10 @@
-import stylelint, { type PostcssResult, type Rule, type RuleContext, type RuleMessages, type RuleMeta } from 'stylelint';
+import stylelint, {
+	type PostcssResult,
+	type Rule,
+	type RuleContext,
+	type RuleMessages,
+	type RuleMeta
+} from 'stylelint';
 import { type Root } from 'postcss';
 
 const {
@@ -6,7 +12,13 @@ const {
 	utils: { validateOptions }
 } = stylelint;
 
-export type RuleFunctionType<T> = (root: Root, result: PostcssResult, primaryOptions: boolean, secondaryOptions: T, context: RuleContext) => void;
+export type RuleFunctionType<T> = (
+	root: Root,
+	result: PostcssResult,
+	primaryOptions: boolean,
+	secondaryOptions: T,
+	context: RuleContext
+) => void;
 
 export type CreateRuleProps<T> = {
 	ruleName: string;
@@ -15,19 +27,26 @@ export type CreateRuleProps<T> = {
 	fn: RuleFunctionType<T>;
 };
 
-export const createRule = <T = any>({ ruleName, meta, messages, fn }: CreateRuleProps<T>) => {
-	const ruleFunction: Rule = (primaryOptions: boolean, secondaryOptions: T, context) => (root: Root, result: PostcssResult) => {
-		const validOptions = validateOptions(result, ruleName, {
-			actual: primaryOptions,
-			possible: [true]
-		});
+export const createRule = <T = any>({
+	ruleName,
+	meta,
+	messages,
+	fn
+}: CreateRuleProps<T>) => {
+	const ruleFunction: Rule =
+		(primaryOptions: boolean, secondaryOptions: T, context) =>
+		(root: Root, result: PostcssResult) => {
+			const validOptions = validateOptions(result, ruleName, {
+				actual: primaryOptions,
+				possible: [true]
+			});
 
-		if (!validOptions) {
-			return;
-		}
+			if (!validOptions) {
+				return;
+			}
 
-		fn(root, result, primaryOptions, secondaryOptions, context);
-	};
+			fn(root, result, primaryOptions, secondaryOptions, context);
+		};
 
 	ruleFunction.ruleName = ruleName;
 	ruleFunction.messages = messages;

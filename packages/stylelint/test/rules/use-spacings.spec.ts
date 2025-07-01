@@ -1,7 +1,12 @@
 import { describe, test } from 'vitest';
 import { type Config } from 'stylelint';
 import useSpacings from '../../src/rules/use-spacings.js';
-import { defaultConfig, getDefaultTest, getScssAllowTest, getVueTest } from '../defaults.js';
+import {
+	defaultConfig,
+	getDefaultTest,
+	getScssAllowTest,
+	getVueTest
+} from '../defaults.js';
 
 const ruleName = 'db-ux/use-spacings';
 

@@ -36,9 +36,14 @@ const testA11y = () => {
 		const snapshot = await component.ariaSnapshot();
 		expect(snapshot).toMatchSnapshot(`${testInfo.testId}.yaml`);
 	});
-	test('DBNavigationItem should not have any automatically detectable accessibility issues', async ({ page, mount }) => {
+	test('DBNavigationItem should not have any automatically detectable accessibility issues', async ({
+		page,
+		mount
+	}) => {
 		await mount(comp);
-		const accessibilityScanResults = await new AxeBuilder({ page }).include('.db-navigation-item').analyze();
+		const accessibilityScanResults = await new AxeBuilder({ page })
+			.include('.db-navigation-item')
+			.analyze();
 
 		expect(accessibilityScanResults.violations).toEqual([]);
 	});

@@ -17,22 +17,32 @@ $icon-size-sm: var(--db-base-body-icon-font-size-sm);
 $label-size-height-xs: var(--db-base-body-icon-font-size-xs);
 $label-size-height-2xs: var(--db-base-body-icon-font-size-2xs);
 
-$floating-label-size-calc: calc(#{variables.$db-spacing-fixed-3xs} + #{variables.$db-spacing-fixed-2xs} + #{$label-size-height-2xs});
+$floating-label-size-calc: calc(
+	#{variables.$db-spacing-fixed-3xs} + #{variables.$db-spacing-fixed-2xs} +
+		#{$label-size-height-2xs}
+);
 
 // font-size label which is 2xs + smallest spacing
-$floating-label-padding-block-start: calc(var(--db-type-body-font-size-2xs) + #{variables.$db-spacing-fixed-3xs});
+$floating-label-padding-block-start: calc(
+	var(--db-type-body-font-size-2xs) + #{variables.$db-spacing-fixed-3xs}
+);
 
 $icon-inline-block-start: calc(
-	(#{variables.$db-spacing-fixed-xs} + #{$label-size-height-xs}) * var(--db-label-visible-above, 1) + #{variables.$db-sizing-md} / 2
+	(#{variables.$db-spacing-fixed-xs} + #{$label-size-height-xs}) *
+		var(--db-label-visible-above, 1) + #{variables.$db-sizing-md} / 2
 );
 
 $input-types:
-	"button", "checkbox", "color", "date", "datetime-local", "email", "file", "hidden", "image", "month", "number", "password", "radio", "range",
-	"reset", "search", "submit", "tel", "text", "time", "url", "week";
+	"button", "checkbox", "color", "date", "datetime-local", "email", "file",
+	"hidden", "image", "month", "number", "password", "radio", "range", "reset",
+	"search", "submit", "tel", "text", "time", "url", "week";
 
 $check-border-size: min(#{variables.$db-border-width-2xs}, 2px);
 
-$db-min-inline-size: var(--db-form-component-min-inline-size, #{variables.$db-sizing-lg});
+$db-min-inline-size: var(
+	--db-form-component-min-inline-size,
+	#{variables.$db-sizing-lg}
+);
 
 %dropdown-icon {
 	@include icons.set-icon("chevron_down", "after");
@@ -72,9 +82,17 @@ $db-min-inline-size: var(--db-form-component-min-inline-size, #{variables.$db-si
 			opacity: variables.$db-opacity-xl;
 			position: absolute;
 			z-index: 2;
-			inset-block-start: calc((#{variables.$db-sizing-md} - #{$font-size-height}) / 2);
-			inset-inline: var(--db-form-component-padding-inline-start, #{variables.$db-spacing-fixed-sm})
-				var(--db-form-component-padding-inline-end, #{variables.$db-spacing-fixed-sm});
+			inset-block-start: calc(
+				(#{variables.$db-sizing-md} - #{$font-size-height}) / 2
+			);
+			inset-inline: var(
+					--db-form-component-padding-inline-start,
+					#{variables.$db-spacing-fixed-sm}
+				)
+				var(
+					--db-form-component-padding-inline-end,
+					#{variables.$db-spacing-fixed-sm}
+				);
 			pointer-events: none;
 			font-style: italic;
 		}
@@ -82,7 +100,9 @@ $db-min-inline-size: var(--db-form-component-min-inline-size, #{variables.$db-si
 		[id$="-placeholder"] {
 			@extend %db-overwrite-font-size-sm;
 
-			inset-block-start: calc(50% - 0.5em + #{variables.$db-spacing-fixed-3xs});
+			inset-block-start: calc(
+				50% - 0.5em + #{variables.$db-spacing-fixed-3xs}
+			);
 		}
 
 		@include placeholder-content($selector) {
@@ -128,7 +148,8 @@ $db-min-inline-size: var(--db-form-component-min-inline-size, #{variables.$db-si
 				}
 
 				@media screen and (prefers-reduced-motion: no-preference) {
-					transition: opacity #{variables.$db-transition-straight-emotional};
+					transition: opacity
+						#{variables.$db-transition-straight-emotional};
 				}
 			}
 		}
@@ -168,12 +189,24 @@ $db-min-inline-size: var(--db-form-component-min-inline-size, #{variables.$db-si
 	} @else {
 		// this is a workaround for the textarea scrollbar
 		--db-textarea-read-only: var(--db-#{$variant}-bg-basic-level-1-default);
-		--db-adaptive-bg-basic-transparent-full-default: var(--db-#{$variant}-bg-basic-transparent-full-default);
-		--db-adaptive-bg-basic-transparent-semi-default: var(--db-#{$variant}-bg-basic-transparent-semi-default);
-		--db-adaptive-bg-basic-transparent-hovered: var(--db-#{$variant}-bg-basic-transparent-hovered);
-		--db-adaptive-bg-basic-transparent-pressed: var(--db-#{$variant}-bg-basic-transparent-pressed);
-		--db-adaptive-on-bg-basic-emphasis-100-default: var(--db-#{$variant}-on-bg-basic-emphasis-100-default);
-		--db-adaptive-on-bg-basic-emphasis-60-default: var(--db-#{$variant}-on-bg-basic-emphasis-60-default);
+		--db-adaptive-bg-basic-transparent-full-default: var(
+			--db-#{$variant}-bg-basic-transparent-full-default
+		);
+		--db-adaptive-bg-basic-transparent-semi-default: var(
+			--db-#{$variant}-bg-basic-transparent-semi-default
+		);
+		--db-adaptive-bg-basic-transparent-hovered: var(
+			--db-#{$variant}-bg-basic-transparent-hovered
+		);
+		--db-adaptive-bg-basic-transparent-pressed: var(
+			--db-#{$variant}-bg-basic-transparent-pressed
+		);
+		--db-adaptive-on-bg-basic-emphasis-100-default: var(
+			--db-#{$variant}-on-bg-basic-emphasis-100-default
+		);
+		--db-adaptive-on-bg-basic-emphasis-60-default: var(
+			--db-#{$variant}-on-bg-basic-emphasis-60-default
+		);
 	}
 
 	#{$selector},
@@ -186,7 +219,9 @@ $db-min-inline-size: var(--db-form-component-min-inline-size, #{variables.$db-si
 }
 
 // This doesn't contain text, search and password, because they don't have an auto-validation
-$input-valid-types: "color", "date", "datetime-local", "email", "file", "hidden", "month", "number", "range", "tel", "time", "url", "week";
+$input-valid-types:
+	"color", "date", "datetime-local", "email", "file", "hidden", "month",
+	"number", "range", "tel", "time", "url", "week";
 
 @function get-validations($selector, $key) {
 	$validations: ":required";
@@ -218,7 +253,9 @@ $input-valid-types: "color", "date", "datetime-local", "email", "file", "hidden"
 	@if ($selector == check or $selector == radio or $selector == switch) {
 		$selector: input;
 
-		&:has(#{$selector}:not([data-custom-validity]):required:#{$user}#{$key}) {
+		&:has(
+			#{$selector}:not([data-custom-validity]):required:#{$user}#{$key}
+		) {
 			@content;
 		}
 		/* stylelint-disable-next-line at-rule-empty-line-before */
@@ -280,7 +317,10 @@ $input-valid-types: "color", "date", "datetime-local", "email", "file", "hidden"
 	@include set-required-label($selector);
 
 	@include get-validity($selector) {
-		&:has(> .db-infotext[data-semantic="successful"], > db-infotext > .db-infotext[data-semantic="successful"]) {
+		&:has(
+			> .db-infotext[data-semantic="successful"],
+			> db-infotext > .db-infotext[data-semantic="successful"]
+		) {
 			@include get-validity-color($selector, "valid");
 		}
 	}
@@ -308,8 +348,14 @@ $input-valid-types: "color", "date", "datetime-local", "email", "file", "hidden"
 		min-inline-size: $db-min-inline-size;
 
 		/* stylelint-disable-next-line db-ux/use-spacings */
-		padding-inline: var(--db-form-component-padding-inline-start, #{variables.$db-spacing-fixed-sm})
-			var(--db-form-component-padding-inline-end, #{variables.$db-spacing-fixed-sm});
+		padding-inline: var(
+				--db-form-component-padding-inline-start,
+				#{variables.$db-spacing-fixed-sm}
+			)
+			var(
+				--db-form-component-padding-inline-end,
+				#{variables.$db-spacing-fixed-sm}
+			);
 
 		@include helpers.hover {
 			background-color: colors.$db-adaptive-bg-basic-transparent-hovered;
@@ -327,7 +373,10 @@ $input-valid-types: "color", "date", "datetime-local", "email", "file", "hidden"
 		}
 
 		&:is(input, textarea):not(:disabled):read-only {
-			background-color: var(--db-textarea-read-only, #{colors.$db-adaptive-bg-basic-level-1-default}) !important;
+			background-color: var(
+				--db-textarea-read-only,
+				#{colors.$db-adaptive-bg-basic-level-1-default}
+			) !important;
 		}
 	}
 
@@ -355,7 +404,11 @@ $input-valid-types: "color", "date", "datetime-local", "email", "file", "hidden"
 	}
 
 	// disabled
-	&:has(#{$selector}:disabled, #{$selector}[data-disabled="true"], #{$selector}[aria-disabled="true"]) {
+	&:has(
+		#{$selector}:disabled,
+		#{$selector}[data-disabled="true"],
+		#{$selector}[aria-disabled="true"]
+	) {
 		// Decided against cursor: not-allowed, compare to e.g. https://phabricator.wikimedia.org/T121960
 		opacity: variables.$db-opacity-md;
 		pointer-events: none;
@@ -415,7 +468,9 @@ $input-valid-types: "color", "date", "datetime-local", "email", "file", "hidden"
 	}
 
 	&:has(input:#{$state}, > label:#{$state}, :is(label):#{$state}) {
-		--db-check-element-label-color: var(--db-adaptive-on-bg-basic-emphasis-100-#{$variant});
+		--db-check-element-label-color: var(
+			--db-adaptive-on-bg-basic-emphasis-100-#{$variant}
+		);
 
 		&:is(label),
 		> label {
@@ -424,7 +479,9 @@ $input-valid-types: "color", "date", "datetime-local", "email", "file", "hidden"
 
 		input {
 			cursor: helpers.$cursor-pointer;
-			background-color: var(--db-adaptive-bg-basic-transparent-#{$variant});
+			background-color: var(
+				--db-adaptive-bg-basic-transparent-#{$variant}
+			);
 			@content;
 		}
 	}
@@ -444,7 +501,10 @@ $input-valid-types: "color", "date", "datetime-local", "email", "file", "hidden"
 		display: flex;
 		align-items: flex-start;
 		position: relative;
-		color: var(--db-check-element-label-color, #{colors.$db-adaptive-on-bg-basic-emphasis-100-default});
+		color: var(
+			--db-check-element-label-color,
+			#{colors.$db-adaptive-on-bg-basic-emphasis-100-default}
+		);
 	}
 
 	input {
@@ -453,7 +513,11 @@ $input-valid-types: "color", "date", "datetime-local", "email", "file", "hidden"
 		appearance: none;
 		aspect-ratio: 1;
 		/* stylelint-disable-next-line db-ux/use-border-width */
-		border: #{$check-border-size} solid var(--db-check-element-border-color, #{colors.$db-adaptive-on-bg-basic-emphasis-100-default});
+		border: #{$check-border-size} solid
+			var(
+				--db-check-element-border-color,
+				#{colors.$db-adaptive-on-bg-basic-emphasis-100-default}
+			);
 		block-size: $font-size-height;
 		inline-size: $font-size-height;
 		padding: 0;

@@ -1,6 +1,10 @@
 import stylelint from 'stylelint';
 import { createRule } from '../shared/create-rule.js';
-import { type AllowedType, defaultExact, getDeclarationRuleFunction } from '../shared/index.js';
+import {
+	type AllowedType,
+	defaultExact,
+	getDeclarationRuleFunction
+} from '../shared/index.js';
 
 const {
 	utils: { ruleMessages }
@@ -10,7 +14,8 @@ const ruleName = 'db-ux/use-spacings';
 
 const messages = ruleMessages(ruleName, {
 	rejected: (property: string, value: string) =>
-		`Unexpected value: ${value} within prop: ${property}.\n` + "Please use 'db-spacing-[fixed|responsive]-xx' instead of px or rem."
+		`Unexpected value: ${value} within prop: ${property}.\n` +
+		"Please use 'db-spacing-[fixed|responsive]-xx' instead of px or rem."
 });
 
 const meta = {
@@ -22,7 +27,14 @@ const allowedDeclarations: AllowedType = {
 	exact: ['gap']
 };
 const allowedValues: AllowedType = {
-	includes: ['db-spacing-fixed', 'db-spacing-responsive', 'db-sizing', '%', 'vw', 'vh'],
+	includes: [
+		'db-spacing-fixed',
+		'db-spacing-responsive',
+		'db-sizing',
+		'%',
+		'vw',
+		'vh'
+	],
 	exact: defaultExact
 };
 

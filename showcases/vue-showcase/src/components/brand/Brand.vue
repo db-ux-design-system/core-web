@@ -7,9 +7,15 @@ import imageUrl from "/assets/images/placeholder.jpg";
 
 <template>
 	<DefaultComponent title="DBBrand" :variants="defaultComponentVariants">
-		<template #example="{ exampleIndex, variantIndex, exampleName, exampleProps }">
+		<template
+			#example="{ exampleIndex, variantIndex, exampleName, exampleProps }"
+		>
 			<DBBrand :hideLogo="exampleProps?.hideLogo">
-				<img v-if="exampleProps?.customLogo" :src="imageUrl" alt="this is a fancy placeholder logo" />
+				<img
+					v-if="exampleProps?.customLogo"
+					:src="imageUrl"
+					alt="this is a fancy placeholder logo"
+				/>
 				{{ exampleName }}
 			</DBBrand>
 		</template>

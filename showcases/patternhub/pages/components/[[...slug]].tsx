@@ -1,7 +1,10 @@
 import { useRouter } from 'next/router';
 import React, { ReactElement } from 'react';
 import { GetStaticPaths, GetStaticProps } from 'next';
-import { componentChildren, getAllComponentGroupNames } from '../../data/routes';
+import {
+	componentChildren,
+	getAllComponentGroupNames
+} from '../../data/routes';
 import DefaultPage from '../../components/default-page';
 import CardNavigation from '../../components/card-navigation/card-navigation';
 import OldRoutingFallback from '../../components/old-routing-fallback';
@@ -14,43 +17,46 @@ export interface DBPagePath {
 
 export const getStaticPaths = (async () => {
 	// eslint-disable-next-line unicorn/no-array-reduce
-	const paths = componentChildren.reduce((accumulator: DBPagePath[], { subNavigation, name }) => {
-		if (subNavigation) {
-			for (const subNavItem of subNavigation) {
-				if (!subNavItem.component || !subNavItem.name) {
-					continue;
-				}
-				accumulator = [
-					...accumulator,
-					{
-						params: { slug: [subNavItem.name] }
-					},
-					{
-						params: { slug: [subNavItem.name, 'overview'] }
+	const paths = componentChildren.reduce(
+		(accumulator: DBPagePath[], { subNavigation, name }) => {
+			if (subNavigation) {
+				for (const subNavItem of subNavigation) {
+					if (!subNavItem.component || !subNavItem.name) {
+						continue;
 					}
-				];
-
-				if (name) {
 					accumulator = [
 						...accumulator,
 						{
-							params: { slug: [name] }
+							params: { slug: [subNavItem.name] }
 						},
 						{
-							params: { slug: [name, subNavItem.name] }
-						},
-						{
-							params: {
-								slug: [name, subNavItem.name, 'overview']
-							}
+							params: { slug: [subNavItem.name, 'overview'] }
 						}
 					];
+
+					if (name) {
+						accumulator = [
+							...accumulator,
+							{
+								params: { slug: [name] }
+							},
+							{
+								params: { slug: [name, subNavItem.name] }
+							},
+							{
+								params: {
+									slug: [name, subNavItem.name, 'overview']
+								}
+							}
+						];
+					}
 				}
 			}
-		}
 
-		return accumulator;
-	}, []);
+			return accumulator;
+		},
+		[]
+	);
 
 	paths.push({
 		params: { slug: [] }
@@ -67,7 +73,9 @@ export const getStaticProps = (async (context) => {
 	return { props: {} };
 }) satisfies GetStaticProps<{}>;
 
-const getComponentByName = (name: string | undefined): ReactElement | undefined => {
+const getComponentByName = (
+	name: string | undefined
+): ReactElement | undefined => {
 	let component: undefined | ReactElement = undefined;
 
 	for (const componentChild of componentChildren) {
@@ -91,11 +99,17 @@ const getComponentByName = (name: string | undefined): ReactElement | undefined 
 export default function Home() {
 	const router = useRouter();
 	const currentSlug = router.query.slug;
-	const sanitizedSlug = Array.isArray(currentSlug) ? currentSlug : currentSlug ? [currentSlug] : [];
+	const sanitizedSlug = Array.isArray(currentSlug)
+		? currentSlug
+		: currentSlug
+			? [currentSlug]
+			: [];
 
 	const isComponentsRoot = sanitizedSlug.length < 1;
 	const lastSlugItem = sanitizedSlug.at(-1);
-	const isCurrentOldRouteFallback = !getAllComponentGroupNames().includes(sanitizedSlug[0]);
+	const isCurrentOldRouteFallback = !getAllComponentGroupNames().includes(
+		sanitizedSlug[0]
+	);
 
 	if (!isComponentsRoot && isCurrentOldRouteFallback) {
 		return <OldRoutingFallback />;

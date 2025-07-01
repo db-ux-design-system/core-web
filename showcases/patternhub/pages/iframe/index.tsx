@@ -15,7 +15,9 @@ const IframeComponent = () => {
 	const components = componentsBuffer.toString('utf8');
 
 	return (
-		<div data-density={density} className={`iframe-component-container db-${color}`}>
+		<div
+			data-density={density}
+			className={`iframe-component-container db-${color}`}>
 			<ComponentParser componentsString={components} />
 		</div>
 	);

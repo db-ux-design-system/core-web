@@ -7,7 +7,9 @@ import { environment } from '../../../environments/environment';
 @Component({
 	selector: 'app-tag',
 	templateUrl: './tag.component.html',
-	imports: environment.webComponents ? [DefaultComponent] : [DefaultComponent, DBTag],
+	imports: environment.webComponents
+		? [DefaultComponent]
+		: [DefaultComponent, DBTag],
 	schemas: environment.webComponents ? [CUSTOM_ELEMENTS_SCHEMA] : [],
 	standalone: true
 })

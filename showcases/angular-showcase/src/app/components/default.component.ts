@@ -1,14 +1,34 @@
-import { Component, CUSTOM_ELEMENTS_SCHEMA, Input, NO_ERRORS_SCHEMA, type OnInit, type TemplateRef } from '@angular/core';
+import {
+	Component,
+	CUSTOM_ELEMENTS_SCHEMA,
+	Input,
+	NO_ERRORS_SCHEMA,
+	type OnInit,
+	type TemplateRef
+} from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { NgTemplateOutlet } from '@angular/common';
-import { COLOR, COLOR_CONST, DBCard, DBDivider, DBLink, DENSITY, DENSITY_CONST } from '../../../../../output/angular/src';
-import type { DefaultComponentProps, DefaultComponentVariants } from '../../../../shared/default-component-data';
+import {
+	COLOR,
+	COLOR_CONST,
+	DBCard,
+	DBDivider,
+	DBLink,
+	DENSITY,
+	DENSITY_CONST
+} from '../../../../../output/angular/src';
+import type {
+	DefaultComponentProps,
+	DefaultComponentVariants
+} from '../../../../shared/default-component-data';
 import { environment } from '../../environments/environment';
 
 @Component({
 	selector: 'app-default-component',
 	templateUrl: './default.component.html',
-	imports: environment.webComponents ? [NgTemplateOutlet] : [DBCard, DBDivider, DBLink, NgTemplateOutlet],
+	imports: environment.webComponents
+		? [NgTemplateOutlet]
+		: [DBCard, DBDivider, DBLink, NgTemplateOutlet],
 	standalone: true,
 	schemas: [NO_ERRORS_SCHEMA, CUSTOM_ELEMENTS_SCHEMA]
 })
@@ -35,7 +55,9 @@ export class DefaultComponent implements OnInit {
 			if (parameters['page']) {
 				this.page = parameters['page'];
 
-				const foundVariant = this.variants.find((variant) => variant.name.toLowerCase() === this.page);
+				const foundVariant = this.variants.find(
+					(variant) => variant.name.toLowerCase() === this.page
+				);
 
 				this.variantRef = foundVariant;
 				if (foundVariant) {
@@ -66,5 +88,6 @@ export class DefaultComponent implements OnInit {
 		return `${currentUrl}&page=${variantName.toLowerCase()}`;
 	};
 
-	getElevation = (): '1' | '2' | '3' => (this.color?.includes('3') ? '3' : this.color?.includes('2') ? '2' : '1');
+	getElevation = (): '1' | '2' | '3' =>
+		this.color?.includes('3') ? '3' : this.color?.includes('2') ? '2' : '1';
 }

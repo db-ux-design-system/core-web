@@ -1,4 +1,13 @@
-import { onMount, onUpdate, Show, useDefaultProps, useMetadata, useRef, useStore, useTarget } from '@builder.io/mitosis';
+import {
+	onMount,
+	onUpdate,
+	Show,
+	useDefaultProps,
+	useMetadata,
+	useRef,
+	useStore,
+	useTarget
+} from '@builder.io/mitosis';
 import { DBCheckboxProps, DBCheckboxState } from './model';
 import {
 	DEFAULT_INVALID_MESSAGE,
@@ -8,9 +17,20 @@ import {
 	DEFAULT_VALID_MESSAGE_ID_SUFFIX
 } from '../../shared/constants';
 import { ChangeEvent, InteractionEvent } from '../../shared/model';
-import { handleFrameworkEventAngular, handleFrameworkEventVue } from '../../utils/form-components';
+import {
+	handleFrameworkEventAngular,
+	handleFrameworkEventVue
+} from '../../utils/form-components';
 import DBInfotext from '../infotext/infotext.lite';
-import { cls, delay, getBoolean, getHideProp, hasVoiceOver, stringPropVisible, uuid } from '../../utils';
+import {
+	cls,
+	delay,
+	getBoolean,
+	getHideProp,
+	hasVoiceOver,
+	stringPropVisible,
+	uuid
+} from '../../utils';
 
 useMetadata({
 	angular: {
@@ -39,15 +59,23 @@ export default function DBCheckbox(props: DBCheckboxProps) {
 			/* For a11y reasons we need to map the correct message with the checkbox */
 			if (!_ref?.validity.valid || props.validation === 'invalid') {
 				state._descByIds = state._invalidMessageId;
-				state._invalidMessage = props.invalidMessage || _ref?.validationMessage || DEFAULT_INVALID_MESSAGE;
+				state._invalidMessage =
+					props.invalidMessage ||
+					_ref?.validationMessage ||
+					DEFAULT_INVALID_MESSAGE;
 				if (hasVoiceOver()) {
 					state._voiceOverFallback = state._invalidMessage;
 					delay(() => (state._voiceOverFallback = ''), 1000);
 				}
-			} else if (state.hasValidState() && _ref?.validity.valid && props.required) {
+			} else if (
+				state.hasValidState() &&
+				_ref?.validity.valid &&
+				props.required
+			) {
 				state._descByIds = state._validMessageId;
 				if (hasVoiceOver()) {
-					state._voiceOverFallback = props.validMessage ?? DEFAULT_VALID_MESSAGE;
+					state._voiceOverFallback =
+						props.validMessage ?? DEFAULT_VALID_MESSAGE;
 					delay(() => (state._voiceOverFallback = ''), 1000);
 				}
 			} else if (stringPropVisible(props.message, props.showMessage)) {
@@ -62,7 +90,8 @@ export default function DBCheckbox(props: DBCheckboxProps) {
 			}
 
 			useTarget({
-				angular: () => handleFrameworkEventAngular(state, event, 'checked'),
+				angular: () =>
+					handleFrameworkEventAngular(state, event, 'checked'),
 				vue: () => handleFrameworkEventVue(() => {}, event, 'checked')
 			});
 			state.handleValidation();
@@ -90,7 +119,10 @@ export default function DBCheckbox(props: DBCheckboxProps) {
 	});
 
 	onUpdate(() => {
-		state._invalidMessage = props.invalidMessage || _ref?.validationMessage || DEFAULT_INVALID_MESSAGE;
+		state._invalidMessage =
+			props.invalidMessage ||
+			_ref?.validationMessage ||
+			DEFAULT_INVALID_MESSAGE;
 	}, [_ref, props.invalidMessage]);
 
 	onUpdate(() => {
@@ -98,7 +130,8 @@ export default function DBCheckbox(props: DBCheckboxProps) {
 			const messageId = state._id + DEFAULT_MESSAGE_ID_SUFFIX;
 			state._messageId = messageId;
 			state._validMessageId = state._id + DEFAULT_VALID_MESSAGE_ID_SUFFIX;
-			state._invalidMessageId = state._id + DEFAULT_INVALID_MESSAGE_ID_SUFFIX;
+			state._invalidMessageId =
+				state._id + DEFAULT_INVALID_MESSAGE_ID_SUFFIX;
 
 			if (stringPropVisible(props.message, props.showMessage)) {
 				state._descByIds = messageId;
@@ -110,7 +143,10 @@ export default function DBCheckbox(props: DBCheckboxProps) {
 		if (_ref) {
 			useTarget({
 				angular: () => {
-					if (state.initialized && props.indeterminate !== undefined) {
+					if (
+						state.initialized &&
+						props.indeterminate !== undefined
+					) {
 						// When indeterminate is set, the value of the checked prop only impacts the form submitted values.
 						// It has no accessibility or UX implications. (https://mui.com/material-ui/react-checkbox/)
 						_ref.indeterminate = !!getBoolean(props.indeterminate);
@@ -140,7 +176,10 @@ export default function DBCheckbox(props: DBCheckboxProps) {
 	// jscpd:ignore-end
 
 	return (
-		<div class={cls('db-checkbox', props.className)} data-size={props.size} data-hide-label={getHideProp(props.showLabel)}>
+		<div
+			class={cls('db-checkbox', props.className)}
+			data-size={props.size}
+			data-hide-label={getHideProp(props.showLabel)}>
 			<label htmlFor={state._id}>
 				<input
 					aria-invalid={props.validation === 'invalid'}
@@ -153,9 +192,15 @@ export default function DBCheckbox(props: DBCheckboxProps) {
 					disabled={getBoolean(props.disabled, 'disabled')}
 					value={props.value}
 					required={getBoolean(props.required, 'required')}
-					onChange={(event: ChangeEvent<HTMLInputElement>) => state.handleChange(event)}
-					onBlur={(event: InteractionEvent<HTMLInputElement>) => state.handleBlur(event)}
-					onFocus={(event: InteractionEvent<HTMLInputElement>) => state.handleFocus(event)}
+					onChange={(event: ChangeEvent<HTMLInputElement>) =>
+						state.handleChange(event)
+					}
+					onBlur={(event: InteractionEvent<HTMLInputElement>) =>
+						state.handleBlur(event)
+					}
+					onFocus={(event: InteractionEvent<HTMLInputElement>) =>
+						state.handleFocus(event)
+					}
 					aria-describedby={props.ariaDescribedBy ?? state._descByIds}
 				/>
 				<Show when={props.label} else={props.children}>
@@ -164,17 +209,26 @@ export default function DBCheckbox(props: DBCheckboxProps) {
 			</label>
 
 			<Show when={stringPropVisible(props.message, props.showMessage)}>
-				<DBInfotext size="small" icon={props.messageIcon} id={state._messageId}>
+				<DBInfotext
+					size="small"
+					icon={props.messageIcon}
+					id={state._messageId}>
 					{props.message}
 				</DBInfotext>
 			</Show>
 			<Show when={state.hasValidState()}>
-				<DBInfotext id={state._validMessageId} size="small" semantic="successful">
+				<DBInfotext
+					id={state._validMessageId}
+					size="small"
+					semantic="successful">
 					{props.validMessage || DEFAULT_VALID_MESSAGE}
 				</DBInfotext>
 			</Show>
 
-			<DBInfotext id={state._invalidMessageId} size="small" semantic="critical">
+			<DBInfotext
+				id={state._invalidMessageId}
+				size="small"
+				semantic="critical">
 				{state._invalidMessage}
 			</DBInfotext>
 

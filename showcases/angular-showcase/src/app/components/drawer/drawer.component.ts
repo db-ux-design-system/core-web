@@ -7,7 +7,9 @@ import { environment } from '../../../environments/environment';
 @Component({
 	selector: 'app-drawer',
 	templateUrl: './drawer.component.html',
-	imports: environment.webComponents ? [DefaultComponent] : [DefaultComponent, DBDrawer, DBButton],
+	imports: environment.webComponents
+		? [DefaultComponent]
+		: [DefaultComponent, DBDrawer, DBButton],
 	standalone: true,
 	schemas: environment.webComponents ? [CUSTOM_ELEMENTS_SCHEMA] : []
 })

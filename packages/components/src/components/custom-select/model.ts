@@ -160,7 +160,10 @@ export type DBCustomSelectDefaultProps = {
 	/**
 	 * Optional: Change the filter function for the search input
 	 */
-	searchFilter?: (option: CustomSelectOptionType, filterText: string) => boolean;
+	searchFilter?: (
+		option: CustomSelectOptionType,
+		filterText: string
+	) => boolean;
 
 	/**
 	 * Search label
@@ -220,7 +223,9 @@ export type DBCustomSelectDefaultProps = {
 	/**
 	 * Optional: If you want to show a custom label based on the selected options.
 	 */
-	transformSelectedLabels?: (selectedOptions?: CustomSelectOptionType[]) => string;
+	transformSelectedLabels?: (
+		selectedOptions?: CustomSelectOptionType[]
+	) => string;
 
 	/**
 	 * Initial value for multi select
@@ -264,7 +269,10 @@ export type DBCustomSelectDefaultState = {
 	searchEnabled: boolean;
 	amountOptions: number;
 	setDescById: (descId?: string) => void;
-	handleTagRemove: (option: CustomSelectOptionType, event?: ClickEvent<HTMLButtonElement> | void) => void;
+	handleTagRemove: (
+		option: CustomSelectOptionType,
+		event?: ClickEvent<HTMLButtonElement> | void
+	) => void;
 	handleSummaryFocus: () => void;
 	handleSelect: (value?: string) => void;
 	handleSelectAll: (event: any) => void;

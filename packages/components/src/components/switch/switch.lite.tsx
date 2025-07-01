@@ -1,8 +1,26 @@
-import { onMount, onUpdate, Show, useDefaultProps, useMetadata, useRef, useStore, useTarget } from '@builder.io/mitosis';
+import {
+	onMount,
+	onUpdate,
+	Show,
+	useDefaultProps,
+	useMetadata,
+	useRef,
+	useStore,
+	useTarget
+} from '@builder.io/mitosis';
 import { DBSwitchProps, DBSwitchState } from './model';
-import { cls, getBoolean, getBooleanAsString, getHideProp, uuid } from '../../utils';
+import {
+	cls,
+	getBoolean,
+	getBooleanAsString,
+	getHideProp,
+	uuid
+} from '../../utils';
 import { ChangeEvent, InteractionEvent } from '../../shared/model';
-import { handleFrameworkEventAngular, handleFrameworkEventVue } from '../../utils/form-components';
+import {
+	handleFrameworkEventAngular,
+	handleFrameworkEventVue
+} from '../../utils/form-components';
 
 useMetadata({
 	angular: {
@@ -30,7 +48,8 @@ export default function DBSwitch(props: DBSwitchProps) {
 			state._checked = (event.target as any)?.['checked'];
 
 			useTarget({
-				angular: () => handleFrameworkEventAngular(state, event, 'checked'),
+				angular: () =>
+					handleFrameworkEventAngular(state, event, 'checked'),
 				vue: () => handleFrameworkEventVue(() => {}, event, 'checked')
 			});
 		},
@@ -82,9 +101,15 @@ export default function DBSwitch(props: DBSwitchProps) {
 				required={getBoolean(props.required, 'required')}
 				data-aid-icon={props.icon}
 				data-aid-icon-after={props.iconAfter}
-				onChange={(event: ChangeEvent<HTMLInputElement>) => state.handleChange(event)}
-				onBlur={(event: InteractionEvent<HTMLInputElement>) => state.handleBlur(event)}
-				onFocus={(event: InteractionEvent<HTMLInputElement>) => state.handleFocus(event)}
+				onChange={(event: ChangeEvent<HTMLInputElement>) =>
+					state.handleChange(event)
+				}
+				onBlur={(event: InteractionEvent<HTMLInputElement>) =>
+					state.handleBlur(event)
+				}
+				onFocus={(event: InteractionEvent<HTMLInputElement>) =>
+					state.handleFocus(event)
+				}
 			/>
 			<Show when={props.label} else={props.children}>
 				{props.label}

@@ -9,10 +9,15 @@ export type GenerateIconTypesProps = {
 	outDir: string;
 };
 
-export const generateIconTypes = ({ fontJsonPath, outDir }: GenerateIconTypesProps) => {
+export const generateIconTypes = ({
+	fontJsonPath,
+	outDir
+}: GenerateIconTypesProps) => {
 	try {
 		// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-		const allIcons: Record<string, string[]> = JSON.parse(readFileSync(fontJsonPath, 'utf8'));
+		const allIcons: Record<string, string[]> = JSON.parse(
+			readFileSync(fontJsonPath, 'utf8')
+		);
 
 		const icons = Object.keys(allIcons);
 
@@ -35,7 +40,12 @@ export const generateIconTypes = ({ fontJsonPath, outDir }: GenerateIconTypesPro
 			writeFileSync(`${outDir}/${name}.ts`, content);
 		}
 
-		const indexContent = [...filesToWrite.map(({ name }) => name), 'icon-types'].map((name) => `export * from "./${name}.js";`).join('\n');
+		const indexContent = [
+			...filesToWrite.map(({ name }) => name),
+			'icon-types'
+		]
+			.map((name) => `export * from "./${name}.js";`)
+			.join('\n');
 
 		writeFileSync(`${outDir}/index.ts`, indexContent);
 	} catch (error) {

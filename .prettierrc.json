@@ -1,7 +1,6 @@
 {
 	"trailingComma": "none",
 	"bracketSpacing": true,
-	"printWidth": 150,
 	"overrides": [
 		{
 			"files": ["*.js", "*.jsx", "*.cjs", "*.ts", "*.tsx"],

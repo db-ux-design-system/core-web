@@ -38,8 +38,10 @@ export type A11yCheckerTestType = {
 	preChecker?: (page: Page) => Promise<void>;
 } & DefaultTestType;
 
-export const isStencil = (showcase?: string): boolean => Boolean(showcase?.startsWith('stencil'));
-export const isAngular = (showcase?: string): boolean => Boolean(showcase?.startsWith('angular'));
+export const isStencil = (showcase?: string): boolean =>
+	Boolean(showcase?.startsWith('stencil'));
+export const isAngular = (showcase?: string): boolean =>
+	Boolean(showcase?.startsWith('angular'));
 export const isVue = (showcase: string): boolean => showcase.startsWith('vue');
 
 export const hasWebComponentSyntax = (showcase?: string): boolean => {
@@ -57,16 +59,26 @@ export const waitForDBPage = async (page: Page) => {
 	await expect(page.locator('html')).toHaveCSS('overflow', 'hidden');
 };
 
-const gotoPage = async (page: Page, path: string, color: string, fixedHeight?: number, otherDensity?: 'functional' | 'regular' | 'expressive') => {
-	await page.goto(`./#/${path}?density=${otherDensity ?? density}&color=${color}`, {
-		waitUntil: 'domcontentloaded'
-	});
+const gotoPage = async (
+	page: Page,
+	path: string,
+	color: string,
+	fixedHeight?: number,
+	otherDensity?: 'functional' | 'regular' | 'expressive'
+) => {
+	await page.goto(
+		`./#/${path}?density=${otherDensity ?? density}&color=${color}`,
+		{
+			waitUntil: 'domcontentloaded'
+		}
+	);
 
 	await waitForDBPage(page);
 	await setScrollViewport(page, fixedHeight)();
 };
 
-const isCheckerError = (object: any): object is ICheckerError => 'details' in object;
+const isCheckerError = (object: any): object is ICheckerError =>
+	'details' in object;
 
 const shouldSkip = (skip?: SkipType): boolean => {
 	if (skip) {
@@ -79,13 +91,20 @@ const shouldSkip = (skip?: SkipType): boolean => {
 	return false;
 };
 
-export const getDefaultScreenshotTest = ({ path, fixedHeight, preScreenShot, skip, ratio }: DefaultSnapshotTestType) => {
+export const getDefaultScreenshotTest = ({
+	path,
+	fixedHeight,
+	preScreenShot,
+	skip,
+	ratio
+}: DefaultSnapshotTestType) => {
 	test(`should match screenshot`, async ({ page }, { project }) => {
 		const { showcase } = process.env;
 		const diffPixel = process.env.diff;
 		const maxDiffPixelRatio = process.env.ratio ?? ratio;
 		const stencil = isStencil(showcase);
-		const isWebkit = project.name === 'webkit' || project.name === 'mobile_safari';
+		const isWebkit =
+			project.name === 'webkit' || project.name === 'mobile_safari';
 
 		if ((stencil && isWebkit) || shouldSkip(skip)) {
 			// There is an issue with Webkit and Stencil for new playwright version
@@ -125,13 +144,30 @@ export const getDefaultScreenshotTest = ({ path, fixedHeight, preScreenShot, ski
 };
 
 const shouldSkipA11yTest = (project: FullProject): boolean =>
-	project.name === 'firefox' || project.name === 'webkit' || project.name.startsWith('mobile');
+	project.name === 'firefox' ||
+	project.name === 'webkit' ||
+	project.name.startsWith('mobile');
 
-export const runAxeCoreTest = ({ path, fixedHeight, axeDisableRules, skipAxe, preAxe, color = lvl1, density = 'regular', skip }: AxeCoreTestType) => {
-	test(`should not have any A11y issues for density ${density} and color ${color}`, async ({ page }, { project }) => {
+export const runAxeCoreTest = ({
+	path,
+	fixedHeight,
+	axeDisableRules,
+	skipAxe,
+	preAxe,
+	color = lvl1,
+	density = 'regular',
+	skip
+}: AxeCoreTestType) => {
+	test(`should not have any A11y issues for density ${density} and color ${color}`, async ({
+		page
+	}, { project }) => {
 		const isLevelOne = color.endsWith('-1');
 		// We don't need to check color contrast for every project (just for chrome)
-		if (skipAxe || shouldSkip(skip) || (!isLevelOne && shouldSkipA11yTest(project))) {
+		if (
+			skipAxe ||
+			shouldSkip(skip) ||
+			(!isLevelOne && shouldSkipA11yTest(project))
+		) {
 			test.skip();
 		}
 
@@ -143,7 +179,8 @@ export const runAxeCoreTest = ({ path, fixedHeight, axeDisableRules, skipAxe, pr
 			if ($project.use.contextOptions?.forcedColors === 'active') {
 				const style = document.createElement('style');
 				document.head.append(style);
-				const textColor = $project.use.colorScheme === 'dark' ? '#fff' : '#000';
+				const textColor =
+					$project.use.colorScheme === 'dark' ? '#fff' : '#000';
 				style.textContent = `* {-webkit-text-stroke-color:${textColor}!important;-webkit-text-fill-color:${textColor}!important;}`;
 			}
 		}, project);
@@ -163,7 +200,14 @@ export const runAxeCoreTest = ({ path, fixedHeight, axeDisableRules, skipAxe, pr
 	});
 };
 
-export const runA11yCheckerTest = ({ path, fixedHeight, aCheckerDisableRules, preChecker, skipChecker, skip }: A11yCheckerTestType) => {
+export const runA11yCheckerTest = ({
+	path,
+	fixedHeight,
+	aCheckerDisableRules,
+	preChecker,
+	skipChecker,
+	skip
+}: A11yCheckerTestType) => {
 	test('test with accessibility checker', async ({ page }, { project }) => {
 		if (skipChecker || shouldSkip(skip) || shouldSkipA11yTest(project)) {
 			// Checking complete DOM in Firefox and Webkit takes very long, we skip this test
@@ -188,7 +232,9 @@ export const runA11yCheckerTest = ({ path, fixedHeight, aCheckerDisableRules, pr
 				failures = report.details;
 			} else {
 				failures = report.results.filter(
-					({ level, ruleId }: IBaselineResult) => level.toString() === 'violation' && !aCheckerDisableRules?.includes(ruleId)
+					({ level, ruleId }: IBaselineResult) =>
+						level.toString() === 'violation' &&
+						!aCheckerDisableRules?.includes(ruleId)
 				);
 			}
 		} catch (error) {
@@ -202,8 +248,16 @@ export const runA11yCheckerTest = ({ path, fixedHeight, aCheckerDisableRules, pr
 	});
 };
 
-export const runAriaSnapshotTest = ({ path, fixedHeight, preScreenShot, skip }: DefaultSnapshotTestType) => {
-	test(`should have same aria-snapshot`, async ({ page }, { project, title }) => {
+export const runAriaSnapshotTest = ({
+	path,
+	fixedHeight,
+	preScreenShot,
+	skip
+}: DefaultSnapshotTestType) => {
+	test(`should have same aria-snapshot`, async ({ page }, {
+		project,
+		title
+	}) => {
 		if (shouldSkip(skip)) {
 			// There is an issue with Webkit and Stencil for new playwright version
 			test.skip();

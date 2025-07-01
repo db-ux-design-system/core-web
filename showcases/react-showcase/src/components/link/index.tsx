@@ -5,14 +5,36 @@ import { type DBLinkProps } from '../../../../../output/react/src/components/lin
 import { getVariants } from '../data';
 import { type BaseComponentProps } from '../base-component-data';
 
-const getLink = ({ href, variant, disabled, size, content, children, showIcon }: DBLinkProps) => (
-	<DBLink href={href} variant={variant} disabled={disabled} size={size} content={content} showIcon={showIcon}>
+const getLink = ({
+	href,
+	variant,
+	disabled,
+	size,
+	content,
+	children,
+	showIcon
+}: DBLinkProps) => (
+	<DBLink
+		href={href}
+		variant={variant}
+		disabled={disabled}
+		size={size}
+		content={content}
+		showIcon={showIcon}>
 		{children}
 	</DBLink>
 );
 
 const LinkComponent = (props: BaseComponentProps) => {
-	return <DefaultComponent title={'DBLink'} variants={getVariants(defaultComponentVariants, getLink, props.slotCode)}></DefaultComponent>;
+	return (
+		<DefaultComponent
+			title={'DBLink'}
+			variants={getVariants(
+				defaultComponentVariants,
+				getLink,
+				props.slotCode
+			)}></DefaultComponent>
+	);
 };
 
 export default LinkComponent;

@@ -11,7 +11,17 @@ const rebuildForPlaywright = () => {
 	const packageJSON = JSON.parse(file);
 	const version = packageJSON.devDependencies['@playwright/test'];
 
-	spawnSync('docker-compose', ['-f', './e2e/docker-compose.yml', 'build', '--build-arg', `version=${version}`], { stdio: 'inherit' });
+	spawnSync(
+		'docker-compose',
+		[
+			'-f',
+			'./e2e/docker-compose.yml',
+			'build',
+			'--build-arg',
+			`version=${version}`
+		],
+		{ stdio: 'inherit' }
+	);
 };
 
 rebuildForPlaywright();

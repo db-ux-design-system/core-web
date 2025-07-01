@@ -1,5 +1,10 @@
 <script setup lang="ts">
-import { DBTabItem, DBTabList, DBTabPanel, DBTabs } from "../../../../../output/vue/src";
+import {
+	DBTabItem,
+	DBTabList,
+	DBTabPanel,
+	DBTabs
+} from "../../../../../output/vue/src";
 import Form from "../form/Form.vue";
 import Textareas from "../form/Textareas.vue";
 import Selects from "../form/Selects.vue";
@@ -18,7 +23,9 @@ import CustomSelects from "../form/Custom-Selects.vue";
 			<DBTabItem data-testid="tab-selects">Select</DBTabItem>
 			<DBTabItem data-testid="tab-checkboxes">Checkbox</DBTabItem>
 			<DBTabItem data-testid="tab-radios">Radios</DBTabItem>
-			<DBTabItem data-testid="tab-custom-selects">Custom Selects</DBTabItem>
+			<DBTabItem data-testid="tab-custom-selects"
+				>Custom Selects</DBTabItem
+			>
 		</DBTabList>
 		<DBTabPanel>
 			<Form />

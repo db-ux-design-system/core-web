@@ -83,14 +83,26 @@ const nameComponentMap = {
 	accordion: (
 		<AccordionComponent
 			slotCode={accordionCode}
-			subComponent={<AccordionItemComponent isSubComponent={true} componentName="accordion-item" slotCode={accordionItemCode} />}
+			subComponent={
+				<AccordionItemComponent
+					isSubComponent={true}
+					componentName="accordion-item"
+					slotCode={accordionItemCode}
+				/>
+			}
 		/>
 	),
 	'accordion-item': <AccordionItemComponent slotCode={accordionItemCode} />,
 	tabs: (
 		<TabsComponent
 			slotCode={tabsCode}
-			subComponent={<TabItemComponent isSubComponent={true} componentName="tab-item" slotCode={tabItemCode} />}
+			subComponent={
+				<TabItemComponent
+					isSubComponent={true}
+					componentName="tab-item"
+					slotCode={tabItemCode}
+				/>
+			}
 		/>
 	),
 	'tab-item': <TabItemComponent slotCode={tabItemCode} />,
@@ -111,28 +123,41 @@ const nameComponentMap = {
 	navigation: (
 		<NavigationComponent
 			slotCode={navigationCode}
-			subComponent={<NavigationItemComponent isSubComponent={true} componentName="navigation-item" slotCode={navigationItemCode} />}
+			subComponent={
+				<NavigationItemComponent
+					isSubComponent={true}
+					componentName="navigation-item"
+					slotCode={navigationItemCode}
+				/>
+			}
 		/>
 	),
-	'navigation-item': <NavigationItemComponent slotCode={navigationItemCode} />,
+	'navigation-item': (
+		<NavigationItemComponent slotCode={navigationItemCode} />
+	),
 	popover: <PopoverComponent slotCode={popoverCode} />
 };
 
-const addComponentsToNavigationItems = (navigationItems: NavigationItem[]): NavigationItem[] => {
+const addComponentsToNavigationItems = (
+	navigationItems: NavigationItem[]
+): NavigationItem[] => {
 	return navigationItems.map((navigationItem) => {
 		return {
 			...navigationItem,
 			subNavigation: navigationItem.subNavigation?.map((subNavItem) => {
 				return {
 					...subNavItem,
-					component: subNavItem.name ? nameComponentMap[subNavItem.name] : undefined
+					component: subNavItem.name
+						? nameComponentMap[subNavItem.name]
+						: undefined
 				};
 			})
 		};
 	});
 };
 
-export const componentChildren: NavigationItem[] = addComponentsToNavigationItems(Components);
+export const componentChildren: NavigationItem[] =
+	addComponentsToNavigationItems(Components);
 export const ROUTES: NavigationItem[] = [
 	{
 		label: 'Home',
@@ -269,19 +294,31 @@ export const ROUTES: NavigationItem[] = [
 	}
 ];
 
-const fillNavigationRecursive = (navigationItems: NavigationItem[], tree: NavigationItem[], isBreadcrumb?: boolean, previousLabel?: string) => {
+const fillNavigationRecursive = (
+	navigationItems: NavigationItem[],
+	tree: NavigationItem[],
+	isBreadcrumb?: boolean,
+	previousLabel?: string
+) => {
 	for (const navItem of navigationItems) {
 		tree.push(
 			isBreadcrumb
 				? navItem
 				: {
 						...navItem,
-						label: previousLabel ? `${previousLabel}:${navItem.label}` : navItem.label
+						label: previousLabel
+							? `${previousLabel}:${navItem.label}`
+							: navItem.label
 					}
 		);
 
 		if (navItem.subNavigation && navItem.subNavigation?.length > 0) {
-			fillNavigationRecursive(navItem.subNavigation, tree, isBreadcrumb, isBreadcrumb ? undefined : navItem.label);
+			fillNavigationRecursive(
+				navItem.subNavigation,
+				tree,
+				isBreadcrumb,
+				isBreadcrumb ? undefined : navItem.label
+			);
 		}
 	}
 };
@@ -293,7 +330,9 @@ export const getAllNavigationItems = (isBreadcrumb?: boolean) => {
 };
 
 export const getNavigationList = (path: string) => {
-	const tree: NavigationItem[] = getAllNavigationItems().filter((navItem) => !navItem.subNavigation);
+	const tree: NavigationItem[] = getAllNavigationItems().filter(
+		(navItem) => !navItem.subNavigation
+	);
 
 	const index = tree.findIndex((navItem) => navItem.path === path);
 	return {
@@ -304,9 +343,13 @@ export const getNavigationList = (path: string) => {
 
 export const getBreadcrumb = (path: string) => {
 	const tree: NavigationItem[] = getAllNavigationItems(true);
-	return tree.filter((navItem) => path.includes(navItem.path ?? '')).sort((a, b) => (a.path?.length ?? 0) - (b.path?.length ?? 0));
+	return tree
+		.filter((navItem) => path.includes(navItem.path ?? ''))
+		.sort((a, b) => (a.path?.length ?? 0) - (b.path?.length ?? 0));
 };
 
 export const getAllComponentGroupNames = (): string[] => {
-	return componentChildren.filter(({ name }) => Boolean(name)).map(({ name }) => name!);
+	return componentChildren
+		.filter(({ name }) => Boolean(name))
+		.map(({ name }) => name!);
 };

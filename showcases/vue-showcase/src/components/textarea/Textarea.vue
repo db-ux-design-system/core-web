@@ -6,7 +6,9 @@ import { DBCheckbox, DBInput, DBTextarea } from "../../../../../output/vue/src";
 
 <template>
 	<DefaultComponent title="DBTextarea" :variants="defaultComponentVariants">
-		<template #example="{ exampleIndex, variantIndex, exampleName, exampleProps }">
+		<template
+			#example="{ exampleIndex, variantIndex, exampleName, exampleProps }"
+		>
 			<DBTextarea
 				:cols="exampleProps?.cols"
 				:disabled="exampleProps?.disabled"
