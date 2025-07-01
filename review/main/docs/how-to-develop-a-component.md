@@ -77,6 +77,7 @@ We use [Mitosis](https://github.com/BuilderIO/Mitosis/tree/main/docs) to develop
     	</div>
     </db-my-awesome-component>
     ```
+
     2. You cannot use multiple slots with the same name. In other frameworks you can use the `<Slot name="bla">` multiple times like this `<div class="my-awesome-component"><Slot name="bla"><Slot name="bla"></div>` but in Angular only the last one would be shown in the DOM. As a workaround you have to create a `Directive`. We automate this via the `packages/components/scripts/post-build/components.js` as an example look at the `header` to see how it works.
 
 ## Test Frameworks with Showcases
