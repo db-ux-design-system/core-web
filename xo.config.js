@@ -7,7 +7,8 @@ const xoConfig = [
 		prettier: true,
 		rules: {
 			'n/prefer-global/process': 0,
-			'unicorn/prefer-module': 0
+			'unicorn/prefer-module': 0,
+			'import-x/order': 0 // We use a prettier plugin to organize imports
 		}
 	},
 	{

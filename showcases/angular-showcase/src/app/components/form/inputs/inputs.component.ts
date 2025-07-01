@@ -1,8 +1,8 @@
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { WrapperComponent } from '../wrapper/wrapper.component';
-import { DBInput, DBSelect } from '../../../../../../../output/angular/src';
+import { DBInput } from '../../../../../../../output/angular/src';
 import { environment } from '../../../../environments/environment';
+import { WrapperComponent } from '../wrapper/wrapper.component';
 
 @Component({
 	selector: 'app-inputs',

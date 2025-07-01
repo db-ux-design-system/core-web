@@ -3,11 +3,11 @@ import {
 	DBInfotext,
 	getBoolean
 } from '../../../../../output/react/src';
-import DefaultComponent from '../default-component';
-import { getVariants } from '../data';
-import defaultComponentVariants from '../../../../shared/checkbox.json';
 import { type DBCheckboxProps } from '../../../../../output/react/src/components/checkbox/model';
+import defaultComponentVariants from '../../../../shared/checkbox.json';
 import { type BaseComponentProps } from '../base-component-data';
+import { getVariants } from '../data';
+import DefaultComponent from '../default-component';
 
 const getCheckbox = ({
 	label,

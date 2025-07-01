@@ -1,11 +1,11 @@
 import { useState } from 'react';
-import DefaultPage from '../../../components/default-page';
 import {
-	DBInfotext,
-	DBSwitch,
 	DBIcon,
-	DBSection
+	DBInfotext,
+	DBSection,
+	DBSwitch
 } from '../../../../../output/react/src';
+import DefaultPage from '../../../components/default-page';
 import IntrinsicElements = React.JSX.IntrinsicElements;
 
 const overwriteHeadlineMarkdown = `/* Select a headline tag to be overwritten */

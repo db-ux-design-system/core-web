@@ -4,8 +4,8 @@ import {
 	useRef,
 	useStore
 } from '@builder.io/mitosis';
-import { DBDividerProps, DBDividerState } from './model';
 import { cls } from '../../utils';
+import { DBDividerProps, DBDividerState } from './model';
 
 useMetadata({});
 

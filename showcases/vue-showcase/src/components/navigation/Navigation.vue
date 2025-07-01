@@ -1,11 +1,11 @@
 <script setup lang="ts">
-import DefaultComponent from "../DefaultComponent.vue";
-import defaultComponentVariants from "../../../../shared/navigation.json";
 import {
 	DBInfotext,
 	DBNavigation,
 	DBNavigationItem
 } from "../../../../../output/vue/src";
+import defaultComponentVariants from "../../../../shared/navigation.json";
+import DefaultComponent from "../DefaultComponent.vue";
 
 const getId = (name?: string): string =>
 	`${name?.replaceAll(/\W/g, "_").toLowerCase()}`;

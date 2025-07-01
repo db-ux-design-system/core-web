@@ -1,5 +1,5 @@
-import { readFileSync } from 'node:fs';
 import { spawnSync } from 'node:child_process';
+import { readFileSync } from 'node:fs';
 
 /**
  * Simple script to run docker-compose with the correct playwright version

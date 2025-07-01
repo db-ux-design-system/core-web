@@ -10,5 +10,5 @@
 		}
 	],
 	"endOfLine": "auto",
-	"plugins": ["prettier-plugin-pkg"]
+	"plugins": ["prettier-plugin-pkg", "prettier-plugin-organize-imports"]
 }
