@@ -19,6 +19,11 @@ jobs:
       image: mcr.microsoft.com/playwright:v${{ inputs.version }}
       options: --user 1001
     steps:
+      - name: ⏬ Install Git LFS
+        run: |
+          git lfs install
+          git lfs pull
+
       - name: ⏬ Checkout repo
         uses: actions/checkout@v4
         with:

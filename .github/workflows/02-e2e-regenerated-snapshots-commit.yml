@@ -29,6 +29,11 @@ jobs:
       contents: write
       pull-requests: write
     steps:
+      - name: ⏬ Install Git LFS
+        run: |
+          git lfs install
+          git lfs pull
+
       - name: ⏬ Checkout repo
         uses: actions/checkout@v4
         with:
