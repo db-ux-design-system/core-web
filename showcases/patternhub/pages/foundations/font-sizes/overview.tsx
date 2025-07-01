@@ -56,14 +56,16 @@ const ColorOverview = () => {
 				</li>
 			</ol>
 			<DBInfotext data-font-size="md" semantic="informational">
-				<strong>Note: </strong>Some font sizes are the same for a specific device type. For example in mobile all <code>xl</code> sizes are the same.
+				<strong>Note: </strong>Some font sizes are the same for a specific device type. For example in mobile all <code>xl</code> sizes are
+				the same.
 			</DBInfotext>
 			<h2>Body Font Sizes</h2>
 			<p>
-				All <strong>9 body font sizes</strong> provided by foundations can be set via <strong>css class</strong>, <strong>data-attribute</strong>,{' '}
-				<strong>scss placeholder</strong> or <strong>Tailwind class</strong> (<a href="./readme">How to use</a>). This ensures that all custom
-				properties are defined by the class to match the font size, so that certain child components fit correctly. For example, this allows DBIcon
-				component to display its icon in the correct height and weight according to the chosen font-size.
+				All <strong>9 body font sizes</strong> provided by foundations can be set via <strong>css class</strong>,{' '}
+				<strong>data-attribute</strong>, <strong>scss placeholder</strong> or <strong>Tailwind class</strong> (
+				<a href="./readme">How to use</a>). This ensures that all custom properties are defined by the class to match the font size, so that
+				certain child components fit correctly. For example, this allows DBIcon component to display its icon in the correct height and weight
+				according to the chosen font-size.
 			</p>
 			<p>
 				Therefore, if possible, these <b>db-font-size</b> classes should be used to change the font size of certain text elements such as{' '}
@@ -146,8 +148,8 @@ const ColorOverview = () => {
 
 			<h2>Available Headline Font Sizes</h2>
 			<p>
-				This overview shows all <strong>9 headline sizes</strong> that are available in foundations. These can be used, for example, to (globally)
-				overwrite the default mapping. Instructions on how overwriting works are below.
+				This overview shows all <strong>9 headline sizes</strong> that are available in foundations. These can be used, for example, to
+				(globally) overwrite the default mapping. Instructions on how overwriting works are below.
 			</p>
 
 			<br />
@@ -184,14 +186,14 @@ const ColorOverview = () => {
 
 			<h3>How to overwrite headlines default mapping</h3>
 			<p>
-				To overwrite the default mapping of the foundations, a suitable selector (H1 - H6 or css class) is used to set <code>font-size</code> and{' '}
-				<code>line-height</code> (and <code>margin-block</code> if necessary) to the desired size using the supplied{' '}
+				To overwrite the default mapping of the foundations, a suitable selector (H1 - H6 or css class) is used to set <code>font-size</code>{' '}
+				and <code>line-height</code> (and <code>margin-block</code> if necessary) to the desired size using the supplied{' '}
 				<strong>custom properties</strong>.
 			</p>
 
 			<DBInfotext data-font-size="md" semantic="warning">
-				In order to maintain a uniform typography, custom properties for <code>font-size</code> and <code>line-height</code> <u>must</u> be selected
-				with the same size (e.g. <code>md</code>).
+				In order to maintain a uniform typography, custom properties for <code>font-size</code> and <code>line-height</code> <u>must</u> be
+				selected with the same size (e.g. <code>md</code>).
 			</DBInfotext>
 			<br />
 			<DBSection spacing="small" className="db-neutral-bg-basic-level-2">

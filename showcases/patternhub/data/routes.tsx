@@ -88,7 +88,10 @@ const nameComponentMap = {
 	),
 	'accordion-item': <AccordionItemComponent slotCode={accordionItemCode} />,
 	tabs: (
-		<TabsComponent slotCode={tabsCode} subComponent={<TabItemComponent isSubComponent={true} componentName="tab-item" slotCode={tabItemCode} />} />
+		<TabsComponent
+			slotCode={tabsCode}
+			subComponent={<TabItemComponent isSubComponent={true} componentName="tab-item" slotCode={tabItemCode} />}
+		/>
 	),
 	'tab-item': <TabItemComponent slotCode={tabItemCode} />,
 	checkbox: <CheckboxComponent slotCode={checkboxCode} />,

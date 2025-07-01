@@ -1,8 +1,4 @@
-<app-default-component
-	title="DBTabs"
-	[variants]="variants"
-	[exampleTemplate]="exampleTemplate"
->
+<app-default-component title="DBTabs" [variants]="variants" [exampleTemplate]="exampleTemplate">
 	<ng-template
 		#exampleTemplate
 		let-exampleProps="exampleProps"
@@ -11,9 +7,7 @@
 		let-variantIndex="variantIndex"
 	>
 		<div class="w-full">
-			<db-infotext icon="none" size="small" semantic="informational">
-				{{ exampleName }}:
-			</db-infotext>
+			<db-infotext icon="none" size="small" semantic="informational"> {{ exampleName }}: </db-infotext>
 			<db-tabs
 				[orientation]="exampleProps?.orientation"
 				[width]="exampleProps?.width"

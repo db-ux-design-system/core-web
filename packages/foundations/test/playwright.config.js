@@ -8,8 +8,7 @@ import { devices } from '@playwright/test';
 const config = {
 	testDir: '.',
 	// Example: __snapshots__/foundations/chromium/Color-Screenshot.png
-	snapshotPathTemplate:
-		'{snapshotDir}/foundations/{projectName}/{arg}/{testName}{ext}',
+	snapshotPathTemplate: '{snapshotDir}/foundations/{projectName}/{arg}/{testName}{ext}',
 	snapshotDir: '../../../__snapshots__',
 	expect: {
 		/**

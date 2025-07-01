@@ -15,13 +15,7 @@ If you use `width !== full` you are able to overwrite the `max-width` with `--db
 	<dialog class="db-drawer" data-backdrop="true" open>
 		<article class="db-drawer-container">
 			<header class="db-drawer-header">
-				<button
-					class="db-button button-close-drawer is-icon-text-replace"
-					data-icon="cross"
-					data-variant="ghost"
-				>
-					Close Button
-				</button>
+				<button class="db-button button-close-drawer is-icon-text-replace" data-icon="cross" data-variant="ghost">Close Button</button>
 			</header>
 			<div class="db-drawer-content">My Drawer content</div>
 		</article>

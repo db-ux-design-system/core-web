@@ -17,40 +17,27 @@ const ColorsGrid = ({
 	enableDarkMode: boolean;
 	variant: 'class' | 'dataAttribute';
 }) => {
-	const getText = (value: string) =>
-		variant === 'class'
-			? `${prefixClass}${value}`
-			: `${dataAttributeName}="${value}"`;
+	const getText = (value: string) => (variant === 'class' ? `${prefixClass}${value}` : `${dataAttributeName}="${value}"`);
 
-	const getAttributes = (value: string) =>
-		variant === 'class'
-			? { className: `${prefixClass}${value}` }
-			: { [dataAttributeName]: value };
+	const getAttributes = (value: string) => (variant === 'class' ? { className: `${prefixClass}${value}` } : { [dataAttributeName]: value });
 
 	return (
-		<div
-			className="color-overview-container db-font-size-sm"
-			data-mode={enableDarkMode ? 'dark' : 'light'}>
+		<div className="color-overview-container db-font-size-sm" data-mode={enableDarkMode ? 'dark' : 'light'}>
 			<span
 				style={{
-					backgroundImage: showCheckerboard
-						? `url(${checkerboard.src})`
-						: 'none'
+					backgroundImage: showCheckerboard ? `url(${checkerboard.src})` : 'none'
 				}}
 			/>{' '}
 			{values.map((value, index) => {
 				const v = typeof value === 'string' ? value : value.value;
-				const appendix =
-					typeof value === 'string' ? undefined : value.appendix;
+				const appendix = typeof value === 'string' ? undefined : value.appendix;
 				return (
 					<div {...getAttributes(v)}>
 						<span>
 							{getText(v)}
 							{appendix}
 						</span>
-						<CopyClipboardButton
-							name={`copy-button-${index}`}
-							copyText={getText(v)}>
+						<CopyClipboardButton name={`copy-button-${index}`} copyText={getText(v)}>
 							Copied to clipboard
 						</CopyClipboardButton>
 					</div>

@@ -32,7 +32,9 @@ const log = (exampleName?: string) => {
 								</DBNavigationItem>
 							</template>
 						</DBNavigationItem>
-						<DBNavigationItem :icon="exampleProps?.icon" :showIcon="exampleProps?.showIcon"><a href="#">Navigation Item 1</a></DBNavigationItem>
+						<DBNavigationItem :icon="exampleProps?.icon" :showIcon="exampleProps?.showIcon"
+							><a href="#">Navigation Item 1</a></DBNavigationItem
+						>
 					</template>
 					<template v-if="exampleProps?.areaPopup">
 						{{ exampleName }}

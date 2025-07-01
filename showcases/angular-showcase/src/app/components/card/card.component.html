@@ -1,8 +1,4 @@
-<app-default-component
-	title="DBCard"
-	[variants]="variants"
-	[exampleTemplate]="exampleTemplate"
->
+<app-default-component title="DBCard" [variants]="variants" [exampleTemplate]="exampleTemplate">
 	<ng-template
 		#exampleTemplate
 		let-exampleProps="exampleProps"
@@ -10,11 +6,7 @@
 		let-exampleIndex="exampleIndex"
 		let-variantIndex="variantIndex"
 	>
-		<db-card
-			[behavior]="exampleProps?.behavior"
-			[elevationLevel]="exampleProps?.elevationLevel"
-			[spacing]="exampleProps?.spacing"
-		>
+		<db-card [behavior]="exampleProps?.behavior" [elevationLevel]="exampleProps?.elevationLevel" [spacing]="exampleProps?.spacing">
 			<strong>{{ exampleName }}</strong>
 		</db-card>
 	</ng-template>

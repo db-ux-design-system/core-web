@@ -11,14 +11,12 @@ export const designSystems = [
 	{
 		name: 'SBB Lyne',
 		url: 'https://github.com/lyne-design-system/lyne-components',
-		componentUrl:
-			'https://lyne-storybook.app.sbb.ch/?path=/docs/pages-home--docs'
+		componentUrl: 'https://lyne-storybook.app.sbb.ch/?path=/docs/pages-home--docs'
 	},
 	{
 		name: 'SNCF Design System',
 		url: 'https://gitlab.com/SNCF/wcs',
-		componentUrl:
-			'https://designmetier-bootstrap.sncf.fr/docs/4.3/components/alerts/'
+		componentUrl: 'https://designmetier-bootstrap.sncf.fr/docs/4.3/components/alerts/'
 	},
 	{
 		name: 'IBM Carbon',
@@ -33,8 +31,7 @@ export const designSystems = [
 	{
 		name: 'Porsche Design System',
 		url: 'https://github.com/porsche-design-system/porsche-design-system',
-		componentUrl:
-			'https://designsystem.porsche.com/v3/components/introduction'
+		componentUrl: 'https://designsystem.porsche.com/v3/components/introduction'
 	},
 	{
 		name: 'Washington Post Design System',
@@ -74,8 +71,7 @@ export const designSystems = [
 	{
 		name: 'Telefonica Mistica',
 		url: 'https://github.com/Telefonica/mistica-web',
-		componentUrl:
-			'https://brandfactory.telefonica.com/d/iSp7b1DkYygv/n-a#/components/overview'
+		componentUrl: 'https://brandfactory.telefonica.com/d/iSp7b1DkYygv/n-a#/components/overview'
 	},
 	{
 		name: 'Bootstrap',

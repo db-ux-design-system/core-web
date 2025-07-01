@@ -26,14 +26,7 @@ const getNotification = ({
 		icon={icon}
 		headline={headline}
 		link={link ? <DBLink href="#">Textlink</DBLink> : undefined}
-		image={
-			img ? (
-				<img
-					src={`${getBasePath()}/assets/images/placeholder.jpg`}
-					alt="this is a fancy placeholder"
-				/>
-			) : undefined
-		}
+		image={img ? <img src={`${getBasePath()}/assets/images/placeholder.jpg`} alt="this is a fancy placeholder" /> : undefined}
 		variant={variant}
 		closeable={closeable}
 		linkVariant={linkVariant}
@@ -51,13 +44,7 @@ const getNotification = ({
 
 const NotificationComponent = (props: BaseComponentProps) => {
 	return (
-		<DefaultComponent
-			title="DBNotification"
-			variants={getVariants(
-				defaultComponentVariants,
-				getNotification,
-				props.slotCode
-			)}></DefaultComponent>
+		<DefaultComponent title="DBNotification" variants={getVariants(defaultComponentVariants, getNotification, props.slotCode)}></DefaultComponent>
 	);
 };
 

@@ -47,34 +47,16 @@ const App = ({ Component, pageProps }: AppProps) => (
 					<LinkHeader id={props.id} />
 				</h6>
 			),
-			a: (properties) => (
-				<a
-					target="_blank"
-					referrerPolicy="no-referrer"
-					{...properties}
-				/>
-			),
+			a: (properties) => <a target="_blank" referrerPolicy="no-referrer" {...properties} />,
 			img: (properties) => (
 				<img
 					{...properties}
-					src={
-						properties.src?.startsWith('http')
-							? properties.src
-							: `${process.env.NEXT_PUBLIC_BASE_PATH ?? ''}${
-									properties.src
-								}`
-					}
+					src={properties.src?.startsWith('http') ? properties.src : `${process.env.NEXT_PUBLIC_BASE_PATH ?? ''}${properties.src}`}
 				/>
 			)
 		}}>
 		{process.env.NEXT_PUBLIC_BASE_PATH !== '/core-web/sub/' && (
-			<Script
-				src={
-					(process.env.NEXT_PUBLIC_BASE_PATH ?? '') +
-					'/iframe-resizer/iframeResizer.contentWindow.js'
-				}
-				strategy="lazyOnload"
-			/>
+			<Script src={(process.env.NEXT_PUBLIC_BASE_PATH ?? '') + '/iframe-resizer/iframeResizer.contentWindow.js'} strategy="lazyOnload" />
 		)}
 		<Head>
 			<title>DB UX</title>

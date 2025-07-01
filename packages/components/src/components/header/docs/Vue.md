@@ -40,20 +40,12 @@ const toggleDrawer = (open: boolean) => {
 			<DBBrand> My Awesome App </DBBrand>
 		</template>
 		<template v-slot:primary-action>
-			<DBButton icon="magnifying_glass" variant="ghost" :no-text="true">
-				Search
-			</DBButton>
+			<DBButton icon="magnifying_glass" variant="ghost" :no-text="true"> Search </DBButton>
 		</template>
 		<template v-slot:secondary-action>
-			<DBButton icon="x_placeholder" variant="ghost" :no-text="true">
-				Profile
-			</DBButton>
-			<DBButton icon="alert" variant="ghost" :no-text="true">
-				Notification
-			</DBButton>
-			<DBButton icon="help" variant="ghost" :no-text="true">
-				Help
-			</DBButton>
+			<DBButton icon="x_placeholder" variant="ghost" :no-text="true"> Profile </DBButton>
+			<DBButton icon="alert" variant="ghost" :no-text="true"> Notification </DBButton>
+			<DBButton icon="help" variant="ghost" :no-text="true"> Help </DBButton>
 		</template>
 		<template v-slot:meta-navigation>
 			<DBLink href="#">Imprint</DBLink>
@@ -61,8 +53,7 @@ const toggleDrawer = (open: boolean) => {
 		</template>
 
 		<DBNavigation>
-			//
-			https://github.com/db-ux-design-system/core-web/blob/main/packages/components/src/components/navigation/docs/Vue.md
+			// https://github.com/db-ux-design-system/core-web/blob/main/packages/components/src/components/navigation/docs/Vue.md
 		</DBNavigation>
 	</DBHeader>
 </template>

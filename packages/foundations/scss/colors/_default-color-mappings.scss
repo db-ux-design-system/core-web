@@ -125,7 +125,10 @@
 		--db-informational-origin-default: light-dark(var(--db-informational-origin-light-default), var(--db-informational-origin-dark-default));
 		--db-informational-origin-hovered: light-dark(var(--db-informational-origin-light-hovered), var(--db-informational-origin-dark-hovered));
 		--db-informational-origin-pressed: light-dark(var(--db-informational-origin-light-pressed), var(--db-informational-origin-dark-pressed));
-		--db-informational-on-origin-default: light-dark(var(--db-informational-on-origin-light-default), var(--db-informational-on-origin-dark-default));
+		--db-informational-on-origin-default: light-dark(
+			var(--db-informational-on-origin-light-default),
+			var(--db-informational-on-origin-dark-default)
+		);
 		--db-informational-on-bg-basic-emphasis-50-default: light-dark(var(--db-informational-9), var(--db-informational-5));
 		--db-informational-on-bg-basic-emphasis-60-default: light-dark(var(--db-informational-10), var(--db-informational-6));
 		--db-informational-on-bg-basic-emphasis-70-default: light-dark(var(--db-informational-7), var(--db-informational-8));

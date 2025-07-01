@@ -1,22 +1,8 @@
-import {
-	GlobalProps,
-	GlobalState,
-	IconProps,
-	SemanticProps,
-	ShowIconProps,
-	SizeProps,
-	TextProps
-} from '../../shared/model';
+import { GlobalProps, GlobalState, IconProps, SemanticProps, ShowIconProps, SizeProps, TextProps } from '../../shared/model';
 
 export type DBInfotextDefaultProps = {};
 
-export type DBInfotextProps = DBInfotextDefaultProps &
-	GlobalProps &
-	SemanticProps &
-	IconProps &
-	SizeProps &
-	ShowIconProps &
-	TextProps;
+export type DBInfotextProps = DBInfotextDefaultProps & GlobalProps & SemanticProps & IconProps & SizeProps & ShowIconProps & TextProps;
 
 export type DBInfotextDefaultState = {};
 

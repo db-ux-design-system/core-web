@@ -6,15 +6,12 @@ test.describe('DBTabs', () => {
 	testDefault({
 		test,
 		title: 'default',
-		description:
-			'should select tab and announce corresponding tab panel content',
+		description: 'should select tab and announce corresponding tab panel content',
 		url: './#/04/tabs?page=density',
 		async testFn(voiceOver, nvda) {
 			if (nvda) {
 				// We want to lose focus for radio buttons otherwise we can't jump to tab panel
-				await nvda.perform(
-					nvda.keyboardCommands.toggleBetweenBrowseAndFocusMode
-				);
+				await nvda.perform(nvda.keyboardCommands.toggleBetweenBrowseAndFocusMode);
 				await nvda?.clearSpokenPhraseLog();
 				await nvda?.next(); // Focus "tab 2"
 				await nvda?.act(); // Select "tab 2"

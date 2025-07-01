@@ -6,9 +6,7 @@ import { DBCheckbox, DBInfotext, DBRadio } from "../../../../../output/vue/src";
 
 <template>
 	<DefaultComponent title="DBRadio" :variants="defaultComponentVariants">
-		<template
-			#example="{ exampleIndex, variantIndex, exampleName, exampleProps }"
-		>
+		<template #example="{ exampleIndex, variantIndex, exampleName, exampleProps }">
 			<DBRadio
 				:label="exampleProps?.label"
 				:size="exampleProps?.size"
@@ -22,17 +20,8 @@ import { DBCheckbox, DBInfotext, DBRadio } from "../../../../../output/vue/src";
 			>
 				{{ exampleName }}
 			</DBRadio>
-			<template
-				v-if="
-					exampleProps?.showLabel !== undefined &&
-					!exampleProps?.showLabel
-				"
-			>
-				<DBInfotext
-					semantic="informational"
-					size="small"
-					:showIcon="false"
-				>
+			<template v-if="exampleProps?.showLabel !== undefined && !exampleProps?.showLabel">
+				<DBInfotext semantic="informational" size="small" :showIcon="false">
 					{{ exampleName }}
 				</DBInfotext>
 			</template>

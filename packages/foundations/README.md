@@ -98,17 +98,10 @@ In HTML:
 
 ```html
 <!-- With classes-->
-<div
-	data-density="functional"
-	class="db-successful-bg-lvl-1 my-container"
-></div>
+<div data-density="functional" class="db-successful-bg-lvl-1 my-container"></div>
 
 <!-- With data attributes-->
-<div
-	class="my-container"
-	data-density="functional"
-	data-color="successful-bg-lvl-1"
-></div>
+<div class="my-container" data-density="functional" data-color="successful-bg-lvl-1"></div>
 ```
 
 > **Note:** In CSS you might to use the classes or data-attributes even more because you cannot use placeholders or mixins like we have it in **scss**. If you use a 3rd party library and cannot apply classes or data-attributes you might want to copy the content of our helper classes to apply it to the 3rd party class.
@@ -183,17 +176,10 @@ In HTML:
 
 ```html
 <!-- With classes-->
-<div
-	data-density="functional"
-	class="db-successful-bg-lvl-1 my-container"
-></div>
+<div data-density="functional" class="db-successful-bg-lvl-1 my-container"></div>
 
 <!-- With data attributes-->
-<div
-	class="my-container"
-	data-density="functional"
-	data-color="successful-bg-lvl-1"
-></div>
+<div class="my-container" data-density="functional" data-color="successful-bg-lvl-1"></div>
 ```
 
 ### Tailwind

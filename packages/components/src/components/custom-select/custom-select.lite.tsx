@@ -245,7 +245,9 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 											search.focus();
 										}, 100);
 									} else {
-										const checkboxList: HTMLInputElement[] = Array.from(detailsRef?.querySelectorAll(`input[type="checkbox"],input[type="radio"]`));
+										const checkboxList: HTMLInputElement[] = Array.from(
+											detailsRef?.querySelectorAll(`input[type="checkbox"],input[type="radio"]`)
+										);
 										if (checkboxList.length) {
 											checkboxList.at(-1)?.focus();
 										}
@@ -369,7 +371,8 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 					props.options
 						? props
 								.options!.filter(
-									(option) => !option.isGroupTitle && (!searchValue || option.value?.toLowerCase().includes(searchValue.toLowerCase()))
+									(option) =>
+										!option.isGroupTitle && (!searchValue || option.value?.toLowerCase().includes(searchValue.toLowerCase()))
 								)
 								.map((option) => option.value ?? '')
 						: []
@@ -754,7 +757,9 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 											</div>
 										</div>
 									</Show>
-									<DBCustomSelectList multiple={getBoolean(props.multiple, 'multiple')} label={props.ariaListLabel ?? props.label ?? DEFAULT_LABEL}>
+									<DBCustomSelectList
+										multiple={getBoolean(props.multiple, 'multiple')}
+										label={props.ariaListLabel ?? props.label ?? DEFAULT_LABEL}>
 										<For each={state._options}>
 											{(option: CustomSelectOptionType) => (
 												<DBCustomSelectListItem
@@ -805,7 +810,14 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 			</details>
 
 			<Show when={(props.showClearSelection ?? true) && state._values?.length}>
-				<DBButton icon="cross" variant="ghost" noText size="small" name={state._id} form={state._id} onClick={(event) => state.handleClearAll(event)}>
+				<DBButton
+					icon="cross"
+					variant="ghost"
+					noText
+					size="small"
+					name={state._id}
+					form={state._id}
+					onClick={(event) => state.handleClearAll(event)}>
 					{props.clearSelectionText}
 					<DBTooltip placement="top">{props.clearSelectionText}</DBTooltip>
 				</DBButton>

@@ -1,10 +1,4 @@
-import {
-	GlobalProps,
-	GlobalState,
-	IconProps,
-	ShowIconProps,
-	TextProps
-} from '../../shared/model';
+import { GlobalProps, GlobalState, IconProps, ShowIconProps, TextProps } from '../../shared/model';
 
 export type DBBrandDefaultProps = {
 	/**
@@ -13,11 +7,7 @@ export type DBBrandDefaultProps = {
 	hideLogo?: boolean;
 };
 
-export type DBBrandProps = DBBrandDefaultProps &
-	GlobalProps &
-	IconProps &
-	ShowIconProps &
-	TextProps;
+export type DBBrandProps = DBBrandDefaultProps & GlobalProps & IconProps & ShowIconProps & TextProps;
 
 export type DBBrandDefaultState = {};
 

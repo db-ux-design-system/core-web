@@ -6,10 +6,7 @@ import {
 	type PlaywrightWorkerOptions,
 	type TestType
 } from '@playwright/test';
-import {
-	type NVDAPlaywright,
-	type VoiceOverPlaywright
-} from '@guidepup/playwright';
+import { type NVDAPlaywright, type VoiceOverPlaywright } from '@guidepup/playwright';
 
 export type ScreenReaderTestType = TestType<
 	PlaywrightTestArgs &
@@ -28,15 +25,8 @@ export type DefaultTestType = {
 	title: string;
 	description: string;
 	url: string;
-	testFn?: (
-		voiceOver?: VoiceOverPlaywright,
-		nvda?: NVDAPlaywright
-	) => Promise<void>;
-	postTestFn?: (
-		voiceOver?: VoiceOverPlaywright,
-		nvda?: NVDAPlaywright,
-		retry?: number
-	) => Promise<void>;
+	testFn?: (voiceOver?: VoiceOverPlaywright, nvda?: NVDAPlaywright) => Promise<void>;
+	postTestFn?: (voiceOver?: VoiceOverPlaywright, nvda?: NVDAPlaywright, retry?: number) => Promise<void>;
 	additionalParams?: string;
 };
 

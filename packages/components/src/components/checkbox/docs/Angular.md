@@ -70,14 +70,8 @@ import { FormsModule } from '@angular/forms';
 ```html form.component.html
 <!-- form.component.html -->
 <form>
-	<db-checkbox
-		(change)="checkbox = $event.target.checked"
-		name="checkbox"
-		label="Checkbox"
-	></db-checkbox>
-	<db-button type="button" variant="brand" (click)="showValues()"
-		>Get checkbox value</db-button
-	>
+	<db-checkbox (change)="checkbox = $event.target.checked" name="checkbox" label="Checkbox"></db-checkbox>
+	<db-button type="button" variant="brand" (click)="showValues()">Get checkbox value</db-button>
 </form>
 
 <h2>Output</h2>

@@ -15,15 +15,7 @@ const getIcon = ({ children }: DBIconProps) => (
 );
 
 const IconComponent = (props: BaseComponentProps) => {
-	return (
-		<DefaultComponent
-			title={'DBIcon'}
-			variants={getVariants(
-				defaultComponentVariants,
-				getIcon,
-				props.slotCode
-			)}></DefaultComponent>
-	);
+	return <DefaultComponent title={'DBIcon'} variants={getVariants(defaultComponentVariants, getIcon, props.slotCode)}></DefaultComponent>;
 };
 
 export default IconComponent;

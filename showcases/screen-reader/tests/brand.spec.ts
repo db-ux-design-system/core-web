@@ -6,8 +6,7 @@ test.describe('DBBrand', () => {
 	testDefault({
 		test,
 		title: 'default',
-		description:
-			'should have inline texts, no icons, but the custom logo as image (next())',
+		description: 'should have inline texts, no icons, but the custom logo as image (next())',
 		url: './#/04/brand?page=variants',
 		async testFn(voiceOver, nvda) {
 			if (voiceOver) {

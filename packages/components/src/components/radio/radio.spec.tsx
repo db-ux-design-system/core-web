@@ -24,15 +24,11 @@ const testA11y = () => {
 		const snapshot = await component.ariaSnapshot();
 		// Some wired issue with react and playwright ariaSnapshot in this case
 		const playwrightReactIssueFix = snapshot.replace(': "on"', '');
-		expect(playwrightReactIssueFix).toMatchSnapshot(
-			`${testInfo.testId}.yaml`
-		);
+		expect(playwrightReactIssueFix).toMatchSnapshot(`${testInfo.testId}.yaml`);
 	});
 	test('should not have A11y issues', async ({ page, mount }) => {
 		await mount(comp);
-		const accessibilityScanResults = await new AxeBuilder({ page })
-			.include('.db-radio')
-			.analyze();
+		const accessibilityScanResults = await new AxeBuilder({ page }).include('.db-radio').analyze();
 
 		expect(accessibilityScanResults.violations).toEqual([]);
 	});

@@ -8,7 +8,9 @@ import { environment } from '../../../../environments/environment';
 	selector: 'app-radios',
 	standalone: true,
 	imports: [
-		environment.webComponents ? [WrapperComponent, FormsModule, ReactiveFormsModule] : [WrapperComponent, DBRadio, FormsModule, ReactiveFormsModule]
+		environment.webComponents
+			? [WrapperComponent, FormsModule, ReactiveFormsModule]
+			: [WrapperComponent, DBRadio, FormsModule, ReactiveFormsModule]
 	],
 	templateUrl: './radios.component.html',
 	schemas: environment.webComponents ? [CUSTOM_ELEMENTS_SCHEMA] : []

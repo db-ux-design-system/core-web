@@ -1,12 +1,4 @@
-import {
-	ClickEventProps,
-	ClickEventState,
-	GlobalProps,
-	GlobalState,
-	LinkProps,
-	ShowIconProps,
-	TextProps
-} from '../../shared/model';
+import { ClickEventProps, ClickEventState, GlobalProps, GlobalState, LinkProps, ShowIconProps, TextProps } from '../../shared/model';
 
 export const LinkVariantList = ['adaptive', 'brand'] as const;
 export type LinkVariantType = (typeof LinkVariantList)[number];
@@ -32,15 +24,8 @@ export type DBLinkDefaultProps = {
 	variant?: LinkVariantType;
 };
 
-export type DBLinkProps = DBLinkDefaultProps &
-	GlobalProps &
-	ClickEventProps<HTMLAnchorElement> &
-	LinkProps &
-	ShowIconProps &
-	TextProps;
+export type DBLinkProps = DBLinkDefaultProps & GlobalProps & ClickEventProps<HTMLAnchorElement> & LinkProps & ShowIconProps & TextProps;
 
 export type DBLinkDefaultState = {};
 
-export type DBLinkState = DBLinkDefaultState &
-	GlobalState &
-	ClickEventState<HTMLAnchorElement>;
+export type DBLinkState = DBLinkDefaultState & GlobalState & ClickEventState<HTMLAnchorElement>;

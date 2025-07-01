@@ -358,7 +358,13 @@ const ComponentParser = ({ componentsString }: ComponentParserType) => {
 			<>
 				{components.map((component: ComponentType, index: number) => {
 					return (
-						<ComponentSwitch key={`component-${index}`} index={index} type={component.type} content={component.content} props={component.props} />
+						<ComponentSwitch
+							key={`component-${index}`}
+							index={index}
+							type={component.type}
+							content={component.content}
+							props={component.props}
+						/>
 					);
 				})}
 			</>

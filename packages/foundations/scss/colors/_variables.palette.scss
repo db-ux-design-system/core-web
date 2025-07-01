@@ -79,42 +79,18 @@ $db-informational-12: var(--db-informational-12);
 $db-informational-13: var(--db-informational-13);
 $db-informational-14: var(--db-informational-14);
 $db-informational-origin: var(--db-informational-origin);
-$db-informational-origin-light-default: var(
-	--db-informational-origin-light-default
-);
-$db-informational-origin-light-hovered: var(
-	--db-informational-origin-light-hovered
-);
-$db-informational-origin-light-pressed: var(
-	--db-informational-origin-light-pressed
-);
-$db-informational-on-origin-light-default: var(
-	--db-informational-on-origin-light-default
-);
-$db-informational-on-origin-light-hovered: var(
-	--db-informational-on-origin-light-hovered
-);
-$db-informational-on-origin-light-pressed: var(
-	--db-informational-on-origin-light-pressed
-);
-$db-informational-origin-dark-default: var(
-	--db-informational-origin-dark-default
-);
-$db-informational-origin-dark-hovered: var(
-	--db-informational-origin-dark-hovered
-);
-$db-informational-origin-dark-pressed: var(
-	--db-informational-origin-dark-pressed
-);
-$db-informational-on-origin-dark-default: var(
-	--db-informational-on-origin-dark-default
-);
-$db-informational-on-origin-dark-hovered: var(
-	--db-informational-on-origin-dark-hovered
-);
-$db-informational-on-origin-dark-pressed: var(
-	--db-informational-on-origin-dark-pressed
-);
+$db-informational-origin-light-default: var(--db-informational-origin-light-default);
+$db-informational-origin-light-hovered: var(--db-informational-origin-light-hovered);
+$db-informational-origin-light-pressed: var(--db-informational-origin-light-pressed);
+$db-informational-on-origin-light-default: var(--db-informational-on-origin-light-default);
+$db-informational-on-origin-light-hovered: var(--db-informational-on-origin-light-hovered);
+$db-informational-on-origin-light-pressed: var(--db-informational-on-origin-light-pressed);
+$db-informational-origin-dark-default: var(--db-informational-origin-dark-default);
+$db-informational-origin-dark-hovered: var(--db-informational-origin-dark-hovered);
+$db-informational-origin-dark-pressed: var(--db-informational-origin-dark-pressed);
+$db-informational-on-origin-dark-default: var(--db-informational-on-origin-dark-default);
+$db-informational-on-origin-dark-hovered: var(--db-informational-on-origin-dark-hovered);
+$db-informational-on-origin-dark-pressed: var(--db-informational-on-origin-dark-pressed);
 
 // warning
 $db-warning-0: var(--db-warning-0);
@@ -166,27 +142,15 @@ $db-successful-origin: var(--db-successful-origin);
 $db-successful-origin-light-default: var(--db-successful-origin-light-default);
 $db-successful-origin-light-hovered: var(--db-successful-origin-light-hovered);
 $db-successful-origin-light-pressed: var(--db-successful-origin-light-pressed);
-$db-successful-on-origin-light-default: var(
-	--db-successful-on-origin-light-default
-);
-$db-successful-on-origin-light-hovered: var(
-	--db-successful-on-origin-light-hovered
-);
-$db-successful-on-origin-light-pressed: var(
-	--db-successful-on-origin-light-pressed
-);
+$db-successful-on-origin-light-default: var(--db-successful-on-origin-light-default);
+$db-successful-on-origin-light-hovered: var(--db-successful-on-origin-light-hovered);
+$db-successful-on-origin-light-pressed: var(--db-successful-on-origin-light-pressed);
 $db-successful-origin-dark-default: var(--db-successful-origin-dark-default);
 $db-successful-origin-dark-hovered: var(--db-successful-origin-dark-hovered);
 $db-successful-origin-dark-pressed: var(--db-successful-origin-dark-pressed);
-$db-successful-on-origin-dark-default: var(
-	--db-successful-on-origin-dark-default
-);
-$db-successful-on-origin-dark-hovered: var(
-	--db-successful-on-origin-dark-hovered
-);
-$db-successful-on-origin-dark-pressed: var(
-	--db-successful-on-origin-dark-pressed
-);
+$db-successful-on-origin-dark-default: var(--db-successful-on-origin-dark-default);
+$db-successful-on-origin-dark-hovered: var(--db-successful-on-origin-dark-hovered);
+$db-successful-on-origin-dark-pressed: var(--db-successful-on-origin-dark-pressed);
 
 // critical
 $db-critical-0: var(--db-critical-0);
@@ -208,15 +172,9 @@ $db-critical-origin: var(--db-critical-origin);
 $db-critical-origin-light-default: var(--db-critical-origin-light-default);
 $db-critical-origin-light-hovered: var(--db-critical-origin-light-hovered);
 $db-critical-origin-light-pressed: var(--db-critical-origin-light-pressed);
-$db-critical-on-origin-light-default: var(
-	--db-critical-on-origin-light-default
-);
-$db-critical-on-origin-light-hovered: var(
-	--db-critical-on-origin-light-hovered
-);
-$db-critical-on-origin-light-pressed: var(
-	--db-critical-on-origin-light-pressed
-);
+$db-critical-on-origin-light-default: var(--db-critical-on-origin-light-default);
+$db-critical-on-origin-light-hovered: var(--db-critical-on-origin-light-hovered);
+$db-critical-on-origin-light-pressed: var(--db-critical-on-origin-light-pressed);
 $db-critical-origin-dark-default: var(--db-critical-origin-dark-default);
 $db-critical-origin-dark-hovered: var(--db-critical-origin-dark-hovered);
 $db-critical-origin-dark-pressed: var(--db-critical-origin-dark-pressed);

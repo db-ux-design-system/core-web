@@ -92,7 +92,8 @@ export default function DBTabs(props: DBTabsProps) {
 						if (init) {
 							// Auto select
 							const autoSelect = !props.initialSelectedMode || props.initialSelectedMode === 'auto';
-							const shouldAutoSelect = (props.initialSelectedIndex == null && index === 0) || Number(props.initialSelectedIndex) === index;
+							const shouldAutoSelect =
+								(props.initialSelectedIndex == null && index === 0) || Number(props.initialSelectedIndex) === index;
 							if (autoSelect && shouldAutoSelect) {
 								input.click();
 							}

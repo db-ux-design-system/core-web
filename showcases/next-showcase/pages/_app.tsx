@@ -8,8 +8,7 @@ import '../styles/global.scss';
 import '../../showcase-styles.css';
 
 const App = ({ Component, pageProps }: AppProps) => {
-	const [density, setDensity, color, setColor, pageName, fullscreen] =
-		useQuery();
+	const [density, setDensity, color, setColor, pageName, fullscreen] = useQuery();
 
 	const [drawerOpen, setDrawerOpen] = useState<boolean>(false);
 
@@ -31,38 +30,21 @@ const App = ({ Component, pageProps }: AppProps) => {
 					drawerOpen={drawerOpen}
 					onToggle={setDrawerOpen}
 					brand={<DBBrand>Showcase</DBBrand>}
-					metaNavigation={
-						<MetaNavigation
-							onColorChange={setColor}
-							onDensityChange={setDensity}
-						/>
-					}
+					metaNavigation={<MetaNavigation onColorChange={setColor} onDensityChange={setDensity} />}
 					primaryAction={
-						<DBButton
-							icon="magnifying_glass"
-							variant="ghost"
-							noText>
+						<DBButton icon="magnifying_glass" variant="ghost" noText>
 							Search
 						</DBButton>
 					}
 					secondaryAction={
 						<>
-							<DBButton
-								icon="x_placeholder"
-								variant="ghost"
-								noText>
+							<DBButton icon="x_placeholder" variant="ghost" noText>
 								Profile
 							</DBButton>
-							<DBButton
-								icon="x_placeholder"
-								variant="ghost"
-								noText>
+							<DBButton icon="x_placeholder" variant="ghost" noText>
 								Notification
 							</DBButton>
-							<DBButton
-								icon="x_placeholder"
-								variant="ghost"
-								noText>
+							<DBButton icon="x_placeholder" variant="ghost" noText>
 								Help
 							</DBButton>
 						</>

@@ -7,12 +7,7 @@ export const transformToUpperComponentName = (componentName: string) =>
 		.map((part) => `${part[0].toUpperCase()}${part.slice(1)}`)
 		.join('');
 
-export const runReplacements = (
-	replacements: Overwrite[],
-	component: Component,
-	framework: string,
-	file: string
-) => {
+export const runReplacements = (replacements: Overwrite[], component: Component, framework: string, file: string) => {
 	if (component?.overwrites?.[framework]) {
 		replacements = [...replacements, ...component.overwrites[framework]];
 	}

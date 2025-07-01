@@ -5,10 +5,7 @@ import type { OptionsType } from '../types';
 import { migrationTypes } from '../data';
 import { AdditionalInformation } from './additional-information';
 
-export const migrate = (
-	options?: OptionsType,
-	cli?: boolean
-): ReplaceResult[] | undefined => {
+export const migrate = (options?: OptionsType, cli?: boolean): ReplaceResult[] | undefined => {
 	if (options) {
 		const { src, type, dryRun } = options;
 		const dry = Boolean(dryRun);
@@ -21,16 +18,9 @@ export const migrate = (
 			.map((path) => path.replaceAll('\\', '/'))
 			.filter((path) => path.includes('.'));
 
-		const replacements: ReplaceInFileConfig[] = Object.entries(
-			migrationTypes
-		).reduce(
-			(
-				previousReplacements: ReplaceInFileConfig[],
-				[currentKey, currentReplacements]
-			) =>
-				type.includes(currentKey)
-					? [...previousReplacements, ...currentReplacements]
-					: previousReplacements,
+		const replacements: ReplaceInFileConfig[] = Object.entries(migrationTypes).reduce(
+			(previousReplacements: ReplaceInFileConfig[], [currentKey, currentReplacements]) =>
+				type.includes(currentKey) ? [...previousReplacements, ...currentReplacements] : previousReplacements,
 			[]
 		);
 

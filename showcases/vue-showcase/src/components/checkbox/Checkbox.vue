@@ -6,9 +6,7 @@ import { DBCheckbox, DBInfotext } from "../../../../../output/vue/src";
 
 <template>
 	<DefaultComponent title="DBCheckbox" :variants="defaultComponentVariants">
-		<template
-			#example="{ exampleIndex, variantIndex, exampleName, exampleProps }"
-		>
+		<template #example="{ exampleIndex, variantIndex, exampleName, exampleProps }">
 			<DBCheckbox
 				:label="exampleProps?.label"
 				:variant="exampleProps?.variant"
@@ -26,17 +24,8 @@ import { DBCheckbox, DBInfotext } from "../../../../../output/vue/src";
 				>{{ exampleName }}</DBCheckbox
 			>
 
-			<template
-				v-if="
-					exampleProps?.showLabel !== undefined &&
-					!exampleProps?.showLabel
-				"
-			>
-				<DBInfotext
-					semantic="informational"
-					size="small"
-					:showIcon="false"
-				>
+			<template v-if="exampleProps?.showLabel !== undefined && !exampleProps?.showLabel">
+				<DBInfotext semantic="informational" size="small" :showIcon="false">
 					{{ exampleName }}
 				</DBInfotext>
 			</template>

@@ -9,35 +9,15 @@ const startProgram = (
 ) => {
 	program.name(name).description(description);
 
-	program.argument(
-		'[function]',
-		'function of this library you want to use [migration]'
-	);
+	program.argument('[function]', 'function of this library you want to use [migration]');
 
 	for (const option of options) {
-		const short =
-			(option.short &&
-				(option.short?.startsWith('-')
-					? option.short
-					: `-${option.short}`)) ??
-			`-${option.name.charAt(0)}`;
-		const long =
-			option.long ??
-			`--${option.name} ${option.array ? '[' : '<'}${option.name}${
-				option.array ? 's...]' : '>'
-			}`;
+		const short = (option.short && (option.short?.startsWith('-') ? option.short : `-${option.short}`)) ?? `-${option.name.charAt(0)}`;
+		const long = option.long ?? `--${option.name} ${option.array ? '[' : '<'}${option.name}${option.array ? 's...]' : '>'}`;
 		if (option.required) {
-			program.requiredOption(
-				`${short}, ${long}`,
-				option.description ?? '',
-				option.defaultValue
-			);
+			program.requiredOption(`${short}, ${long}`, option.description ?? '', option.defaultValue);
 		} else {
-			program.option(
-				`${short}, ${long}`,
-				option.description ?? '',
-				option.defaultValue
-			);
+			program.option(`${short}, ${long}`, option.description ?? '', option.defaultValue);
 		}
 	}
 

@@ -1,10 +1,4 @@
-import {
-	ClickEventProps,
-	ClickEventState,
-	GlobalProps,
-	GlobalState,
-	SpacingProps
-} from '../../shared/model';
+import { ClickEventProps, ClickEventState, GlobalProps, GlobalState, SpacingProps } from '../../shared/model';
 
 export const CardBehaviorList = ['static', 'interactive'] as const;
 export type CardBehaviorType = (typeof CardBehaviorList)[number];
@@ -24,13 +18,8 @@ export type DBCardDefaultProps = {
 	elevationLevel?: CardElevationLevelType;
 };
 
-export type DBCardProps = DBCardDefaultProps &
-	GlobalProps &
-	ClickEventProps<HTMLElement> &
-	SpacingProps;
+export type DBCardProps = DBCardDefaultProps & GlobalProps & ClickEventProps<HTMLElement> & SpacingProps;
 
 export type DBCardDefaultState = {};
 
-export type DBCardState = DBCardDefaultState &
-	GlobalState &
-	ClickEventState<HTMLElement>;
+export type DBCardState = DBCardDefaultState & GlobalState & ClickEventState<HTMLElement>;

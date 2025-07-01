@@ -25,12 +25,7 @@ import { DBInput } from '@db-ux/ngx-core-components';
 Use component in template:
 
 ```html
-<DBInput
-	label="Label"
-	placeholder="placeholder"
-	description="Description"
-	(change)="onInputChange()"
-></DBInput>
+<DBInput label="Label" placeholder="placeholder" description="Description" (change)="onInputChange()"></DBInput>
 ```
 
 ## How to use with Reactive Forms
@@ -57,17 +52,13 @@ import { ReactiveFormsModule } from '@angular/forms';
 ```html
 <!-- form.component.html-->
 <form [formGroup]="form" (submit)="onFormSubmit()">
-	<db-input label="Input" placeholder="Placeholder" formControlName="input">
-	</db-input>
+	<db-input label="Input" placeholder="Placeholder" formControlName="input"> </db-input>
 </form>
 
 <h2>Output</h2>
 <dl>
 	<dt>input's value</dt>
-	<dd>
-		{{ form.get("input")?.value ? form.get("input")?.value : "No Input set"
-		}}
-	</dd>
+	<dd>{{ form.get("input")?.value ? form.get("input")?.value : "No Input set" }}</dd>
 </dl>
 ```
 
@@ -106,16 +97,8 @@ import { FormsModule } from '@angular/forms';
 ```html
 <!-- form.component.html-->
 <form>
-	<DBInput
-		ngDefaultControl
-		[(ngModel)]="input"
-		label="Textinput"
-		placeholder="Placeholder"
-		description="Description"
-	></DBInput>
-	<DBButton type="button" variant="brand" (click)="showValues()"
-		>Get input value</DBButton
-	>
+	<DBInput ngDefaultControl [(ngModel)]="input" label="Textinput" placeholder="Placeholder" description="Description"></DBInput>
+	<DBButton type="button" variant="brand" (click)="showValues()">Get input value</DBButton>
 </form>
 
 <h2>Output</h2>

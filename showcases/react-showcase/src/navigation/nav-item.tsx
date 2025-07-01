@@ -6,10 +6,7 @@ import { DBNavigationItem } from '../../../../output/react/src';
 import type { NavigationItem } from '../utils/navigation-item';
 
 const NavItem = ({ navItem }: { navItem: NavigationItem }) => {
-	const pathname =
-		process.env.NEXT_SHOWCASE_VARIANT === 'next'
-			? usePathname()
-			: useLocation().pathname;
+	const pathname = process.env.NEXT_SHOWCASE_VARIANT === 'next' ? usePathname() : useLocation().pathname;
 
 	const [isActive, setIsActive] = useState(false);
 
@@ -18,9 +15,7 @@ const NavItem = ({ navItem }: { navItem: NavigationItem }) => {
 			return;
 		}
 
-		const standardizedItemPath = navItem.path.startsWith('/')
-			? navItem.path
-			: `/${navItem.path}`;
+		const standardizedItemPath = navItem.path.startsWith('/') ? navItem.path : `/${navItem.path}`;
 
 		setIsActive(standardizedItemPath === pathname);
 	}, [pathname]);
@@ -37,9 +32,7 @@ const NavItem = ({ navItem }: { navItem: NavigationItem }) => {
 								path: `${navItem.path}/${subItem.path}`
 							}))
 							.map((subItem: NavigationItem) => (
-								<NavItem
-									key={`router-path-${subItem.path}`}
-									navItem={subItem}></NavItem>
+								<NavItem key={`router-path-${subItem.path}`} navItem={subItem}></NavItem>
 							))}
 					</>
 				)
@@ -47,17 +40,11 @@ const NavItem = ({ navItem }: { navItem: NavigationItem }) => {
 			{navItem.component ? (
 				<>
 					{process.env.NEXT_SHOWCASE_VARIANT === 'next' ? (
-						<NextLink
-							key={`router-path-${navItem.path}`}
-							href={navItem.path}
-							aria-current={isActive ? 'page' : undefined}>
+						<NextLink key={`router-path-${navItem.path}`} href={navItem.path} aria-current={isActive ? 'page' : undefined}>
 							{navItem.label}
 						</NextLink>
 					) : (
-						<Link
-							key={`router-path-${navItem.path}`}
-							to={navItem.path}
-							aria-current={isActive ? 'page' : undefined}>
+						<Link key={`router-path-${navItem.path}`} to={navItem.path} aria-current={isActive ? 'page' : undefined}>
 							{navItem.label}
 						</Link>
 					)}

@@ -10,8 +10,7 @@ import { DBPopover, DBButton } from "@db-ux/react-core-components";
 
 const App = () => (
 	<DBPopover trigger={<DBButton>Hover on me to open Popover</DBButton>}>
-		Use any html code here like e.g. a <code>button</code>:
-		<button type="button">Test</button>
+		Use any html code here like e.g. a <code>button</code>:<button type="button">Test</button>
 	</DBPopover>
 );
 

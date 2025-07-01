@@ -2,12 +2,7 @@
 import { Buffer } from 'buffer';
 import { useEffect, useState } from 'react';
 import { DBLink } from '../../../../output/react/src';
-import {
-	COLOR,
-	COLORS,
-	DENSITIES,
-	DENSITY
-} from '../../../../packages/components/src/shared/constants';
+import { COLOR, COLORS, DENSITIES, DENSITY } from '../../../../packages/components/src/shared/constants';
 
 const Base64 = () => {
 	const [base64, setBase64] = useState<string>('');
@@ -17,21 +12,14 @@ const Base64 = () => {
 	const [color, setColor] = useState<string>(COLOR.NEUTRAL_BG_LEVEL_1);
 
 	useEffect(() => {
-		setUrl(
-			new URL(
-				`iframe?color=${color}&density=${density}&components=${base64}`,
-				globalThis.location?.href
-			).toString()
-		);
+		setUrl(new URL(`iframe?color=${color}&density=${density}&components=${base64}`, globalThis.location?.href).toString());
 	}, [density, color, base64]);
 
 	return (
 		<div className="base-64-container">
 			<textarea
 				onChange={(event) => {
-					setBase64(
-						Buffer.from(event.target.value).toString('base64')
-					);
+					setBase64(Buffer.from(event.target.value).toString('base64'));
 				}}></textarea>
 			<div>
 				{/* TODO: replace those by DBSelect as soon as this lands */}
@@ -58,11 +46,7 @@ const Base64 = () => {
 					))}
 				</select>
 			</div>
-			<DBLink
-				href={url}
-				target="_blank"
-				variant="brand"
-				content="external">
+			<DBLink href={url} target="_blank" variant="brand" content="external">
 				Open IFrame
 			</DBLink>
 		</div>

@@ -1,8 +1,4 @@
-<app-default-component
-	title="DBNotification"
-	[variants]="variants"
-	[exampleTemplate]="exampleTemplate"
->
+<app-default-component title="DBNotification" [variants]="variants" [exampleTemplate]="exampleTemplate">
 	<ng-template
 		#exampleTemplate
 		let-exampleProps="exampleProps"
@@ -27,12 +23,7 @@
 				<db-link link slot="link" href="#">Textlink</db-link>
 			}
 			@if (exampleProps?.img) {
-				<img
-					image
-					slot="image"
-					src="./assets/images/placeholder.jpg"
-					alt="this is a fancy placeholder"
-				/>
+				<img image slot="image" src="./assets/images/placeholder.jpg" alt="this is a fancy placeholder" />
 			}
 			{{ exampleName }}
 		</db-notification>

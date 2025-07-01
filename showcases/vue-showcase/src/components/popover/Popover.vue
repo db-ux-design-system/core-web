@@ -6,9 +6,7 @@ import { DBButton, DBPopover } from "../../../../../output/vue/src";
 
 <template>
 	<DefaultComponent title="DBPopover" :variants="defaultComponentVariants">
-		<template
-			#example="{ exampleIndex, variantIndex, exampleName, exampleProps }"
-		>
+		<template #example="{ exampleIndex, variantIndex, exampleName, exampleProps }">
 			<DBPopover
 				:width="exampleProps?.width"
 				:gap="exampleProps?.gap"
@@ -23,9 +21,7 @@ import { DBButton, DBPopover } from "../../../../../output/vue/src";
 						{{ exampleName }}
 					</DBButton>
 				</template>
-				<template v-if="exampleProps?.content">{{
-					exampleProps?.content
-				}}</template>
+				<template v-if="exampleProps?.content">{{ exampleProps?.content }}</template>
 				<template v-if="!exampleProps?.content">
 					<ul class="popover-list">
 						<li>Popover Custom Item 1</li>

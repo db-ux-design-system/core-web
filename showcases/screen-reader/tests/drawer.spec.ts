@@ -20,11 +20,7 @@ test.describe('DBDrawer', () => {
 				 * We avoid this by replacing the generated log files
 				 */
 				await generateSnapshot(nvda, retry, (phraseLog) =>
-					phraseLog.map((log) =>
-						log
-							.replace('Showcase, document. unknown', 'button')
-							.replace('unknown', 'button')
-					)
+					phraseLog.map((log) => log.replace('Showcase, document. unknown', 'button').replace('unknown', 'button'))
 				);
 			} else if (voiceOver) {
 				await generateSnapshot(voiceOver, retry);

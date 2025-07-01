@@ -21,9 +21,7 @@ const testDefaultCard = () => {
 
 const testCardVariants = () => {
 	for (const behavior of ['default', 'interactive']) {
-		test(`should match screenshot for behavior ${behavior}`, async ({
-			mount
-		}) => {
+		test(`should match screenshot for behavior ${behavior}`, async ({ mount }) => {
 			const variantComp: any = (
 				<div>
 					<DBCard behavior={behavior}>Test</DBCard>
@@ -42,9 +40,7 @@ const testA11y = () => {
 	});
 	test('should not have A11y issues', async ({ page, mount }) => {
 		await mount(defaultComp);
-		const accessibilityScanResults = await new AxeBuilder({ page })
-			.include('.db-card')
-			.analyze();
+		const accessibilityScanResults = await new AxeBuilder({ page }).include('.db-card').analyze();
 
 		expect(accessibilityScanResults.violations).toEqual([]);
 	});

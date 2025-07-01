@@ -52,10 +52,7 @@ const TestTable = () => {
 						{tableHeaders.map((header) => (
 							<th key={header.label}>
 								{header.href ? (
-									<a
-										href={header.href}
-										target="_blank"
-										referrerPolicy="no-referrer">
+									<a href={header.href} target="_blank" referrerPolicy="no-referrer">
 										{header.label}
 									</a>
 								) : (
@@ -100,30 +97,14 @@ const TestTable = () => {
 										showcaseGP
 									].map((status, index) => (
 										<td key={`${name}-${index}`}>
-											<DBInfotext
-												semantic={
-													status
-														? 'successful'
-														: 'critical'
-												}>
-												{status ? 'Done' : 'Missing'}
-											</DBInfotext>
+											<DBInfotext semantic={status ? 'successful' : 'critical'}>{status ? 'Done' : 'Missing'}</DBInfotext>
 										</td>
 									))}
 									<td>
-										<AccessibilityReviewInfo
-											{...accessibilityReview}
-										/>
+										<AccessibilityReviewInfo {...accessibilityReview} />
 									</td>
 									<td>
-										<DBInfotext
-											semantic={
-												stable
-													? 'successful'
-													: 'critical'
-											}>
-											{stable ? 'Done 🎉' : 'Missing'}
-										</DBInfotext>
+										<DBInfotext semantic={stable ? 'successful' : 'critical'}>{stable ? 'Done 🎉' : 'Missing'}</DBInfotext>
 									</td>
 								</tr>
 							);

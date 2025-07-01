@@ -8,9 +8,7 @@ For general installation and configuration take a look at the [react-core-compon
 // App.tsx
 import { DBNotification } from "@db-ux/react-core-components";
 
-const App = () => (
-	<DBNotification headline="Headline">Notification</DBNotification>
-);
+const App = () => <DBNotification headline="Headline">Notification</DBNotification>;
 
 export default App;
 ```

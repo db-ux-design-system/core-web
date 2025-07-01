@@ -3,26 +3,17 @@
 @use "../../styles/internal/component";
 
 $small-section-padding-inline: max(
-	calc(
-		#{variables.$db-spacing-fixed-md} +
-			(100vw - #{screen-sizes.$db-breakpoint-sm}) / 2
-	),
+	calc(#{variables.$db-spacing-fixed-md} + (100vw - #{screen-sizes.$db-breakpoint-sm}) / 2),
 	#{variables.$db-spacing-fixed-md}
 );
 
 $medium-section-padding-inline: max(
-	calc(
-		#{variables.$db-spacing-fixed-md} +
-			(100vw - #{screen-sizes.$db-breakpoint-md}) / 2
-	),
+	calc(#{variables.$db-spacing-fixed-md} + (100vw - #{screen-sizes.$db-breakpoint-md}) / 2),
 	#{variables.$db-spacing-fixed-md}
 );
 
 $large-section-padding-inline: max(
-	calc(
-		#{variables.$db-spacing-fixed-md} +
-			(100vw - #{screen-sizes.$db-breakpoint-lg}) / 2
-	),
+	calc(#{variables.$db-spacing-fixed-md} + (100vw - #{screen-sizes.$db-breakpoint-lg}) / 2),
 	#{variables.$db-spacing-fixed-md}
 );
 
@@ -44,8 +35,5 @@ $large-section-padding-inline: max(
 		padding-inline: $large-section-padding-inline;
 	}
 
-	@include component.get-data-spacing(
-		"padding-block",
-		component.$responsive-spacings
-	);
+	@include component.get-data-spacing("padding-block", component.$responsive-spacings);
 }

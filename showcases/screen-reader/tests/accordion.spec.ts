@@ -3,20 +3,12 @@ import { generateSnapshot, getTest, testDefault } from '../default';
 
 const test = getTest();
 
-const postTestFn = async (
-	voiceOver?: VoiceOverPlaywright,
-	nvda?: NVDAPlaywright,
-	retry?: number
-) => {
+const postTestFn = async (voiceOver?: VoiceOverPlaywright, nvda?: NVDAPlaywright, retry?: number) => {
 	if (nvda) {
 		/*
 		 * There is an issue with nvda duplicating expanded sometimes
 		 */
-		await generateSnapshot(nvda, retry, (phraseLog) =>
-			phraseLog.map((log) =>
-				log.replace('expanded. expanded', 'expanded')
-			)
-		);
+		await generateSnapshot(nvda, retry, (phraseLog) => phraseLog.map((log) => log.replace('expanded. expanded', 'expanded')));
 	} else if (voiceOver) {
 		await generateSnapshot(voiceOver, retry);
 	}

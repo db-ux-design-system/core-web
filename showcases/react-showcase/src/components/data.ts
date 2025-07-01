@@ -8,10 +8,7 @@ export const getVariants = (
 ): ReactDefaultComponentVariants[] =>
 	defaultComponentVariants.map((variant, variantIndex) => ({
 		...variant,
-		SlotCode:
-			codeSlots?.[
-				variant.codeFileName ?? variant.name.replaceAll(' ', '')
-			],
+		SlotCode: codeSlots?.[variant.codeFileName ?? variant.name.replaceAll(' ', '')],
 		examples: variant.examples.map((example, exampleIndex) => ({
 			...example,
 			example: getExample({

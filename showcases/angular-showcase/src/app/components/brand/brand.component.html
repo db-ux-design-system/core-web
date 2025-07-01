@@ -1,8 +1,4 @@
-<app-default-component
-	title="DBBrand"
-	[variants]="variants"
-	[exampleTemplate]="exampleTemplate"
->
+<app-default-component title="DBBrand" [variants]="variants" [exampleTemplate]="exampleTemplate">
 	<ng-template
 		#exampleTemplate
 		let-exampleProps="exampleProps"
@@ -12,10 +8,7 @@
 	>
 		<db-brand [hideLogo]="exampleProps?.hideLogo">
 			@if (exampleProps?.customLogo) {
-				<img
-					src="./assets/images/placeholder.jpg"
-					alt="this is a fancy placeholder logo"
-				/>
+				<img src="./assets/images/placeholder.jpg" alt="this is a fancy placeholder logo" />
 			}
 			{{ exampleName }}
 		</db-brand>

@@ -20,8 +20,8 @@ const Example = () => {
 						<DBCard spacing="small">
 							<h4>Login</h4>
 							<p>
-								Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam
-								erat, sed diam voluptua.
+								Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore
+								magna aliquyam erat, sed diam voluptua.
 							</p>
 							<DBInput label="Username" />
 							<DBInput label="Password" type="password" />

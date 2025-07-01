@@ -1,24 +1,14 @@
 <script setup lang="ts">
 import DefaultComponent from "../DefaultComponent.vue";
 import defaultComponentVariants from "../../../../shared/tabs.json";
-import {
-	DBTabs,
-	DBInfotext,
-	DBTabList,
-	DBTabItem,
-	DBTabPanel
-} from "../../../../../output/vue/src";
+import { DBTabs, DBInfotext, DBTabList, DBTabItem, DBTabPanel } from "../../../../../output/vue/src";
 </script>
 
 <template>
 	<DefaultComponent title="DBTabs" :variants="defaultComponentVariants">
-		<template
-			#example="{ exampleIndex, variantIndex, exampleName, exampleProps }"
-		>
+		<template #example="{ exampleIndex, variantIndex, exampleName, exampleProps }">
 			<div class="w-full">
-				<DBInfotext icon="none" size="small" semantic="informational">
-					{{ exampleName }}:
-				</DBInfotext>
+				<DBInfotext icon="none" size="small" semantic="informational"> {{ exampleName }}: </DBInfotext>
 				<DBTabs
 					:orientation="exampleProps?.orientation"
 					:width="exampleProps?.width"

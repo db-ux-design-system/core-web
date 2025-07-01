@@ -12,8 +12,7 @@ const ColorOverview = () => {
 		<DefaultPage>
 			<h1>Color Schemes</h1>
 			<p>
-				You can use <code>data-mode="light|dark"</code> to force a
-				container/component to enforce the mode:
+				You can use <code>data-mode="light|dark"</code> to force a container/component to enforce the mode:
 			</p>
 			<div className="color-modes-container" data-mode={colorScheme}>
 				<p>This container changes based on the state.</p>
@@ -23,12 +22,9 @@ const ColorOverview = () => {
 				<DBButton
 					icon={colorScheme === 'light' ? 'moon' : 'sun'}
 					onClick={() => {
-						setColorScheme(
-							colorScheme === 'light' ? 'dark' : 'light'
-						);
+						setColorScheme(colorScheme === 'light' ? 'dark' : 'light');
 					}}>
-					Interact with me for{' '}
-					{colorScheme === 'light' ? 'dark' : 'light'}
+					Interact with me for {colorScheme === 'light' ? 'dark' : 'light'}
 					-mode
 				</DBButton>
 
@@ -51,21 +47,14 @@ const ColorOverview = () => {
 				<DBButton
 					icon={colorScheme === 'light' ? 'moon' : 'sun'}
 					onClick={() => {
-						setColorScheme2(
-							colorScheme2 === 'light' ? 'dark' : 'light'
-						);
+						setColorScheme2(colorScheme2 === 'light' ? 'dark' : 'light');
 					}}>
-					Interact with me for{' '}
-					{colorScheme2 === 'light' ? 'dark' : 'light'}
+					Interact with me for {colorScheme2 === 'light' ? 'dark' : 'light'}
 					-mode
 				</DBButton>
 				<section className="color-cards">
 					{colors.map((color) => (
-						<DBCard
-							spacing="medium"
-							elevationLevel="3"
-							className={`db-color-${color}`}
-							key={color}>
+						<DBCard spacing="medium" elevationLevel="3" className={`db-color-${color}`} key={color}>
 							<DBCard spacing="medium" elevationLevel="2">
 								<DBCard spacing="medium">{color}</DBCard>
 							</DBCard>

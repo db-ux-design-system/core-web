@@ -1,11 +1,6 @@
 import stylelint from 'stylelint';
 import { createRule } from '../shared/create-rule.js';
-import {
-	type AllowedType,
-	defaultColorsExact,
-	defaultExact,
-	getDeclarationRuleFunction
-} from '../shared/index.js';
+import { type AllowedType, defaultColorsExact, defaultExact, getDeclarationRuleFunction } from '../shared/index.js';
 
 const {
 	utils: { ruleMessages }
@@ -15,8 +10,7 @@ const ruleName = 'db-ux/use-border-color';
 
 const messages = ruleMessages(ruleName, {
 	rejected: (property: string, value: string) =>
-		`Unexpected value: ${value} within prop: ${property}.\n` +
-		"Please use 'db-xx-on-bg-emphasis-[100|90|80|70|60|50]' instead."
+		`Unexpected value: ${value} within prop: ${property}.\n` + "Please use 'db-xx-on-bg-emphasis-[100|90|80|70|60|50]' instead."
 });
 
 const meta = {

@@ -21,11 +21,7 @@ $stack-gaps: (
 
 	@for $i from 1 through list.length($list) {
 		$e: list.nth($list, $i);
-		$result: if(
-			$i != list.length($list),
-			$result#{$e}#{$glue},
-			$result#{$e}
-		);
+		$result: if($i != list.length($list), $result#{$e}#{$glue}, $result#{$e});
 	}
 
 	@return $result;

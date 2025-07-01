@@ -15,10 +15,7 @@ export const defaultConfig: Config = {
 		},
 		{
 			files: ['*.vue', '**/*.vue'],
-			extends: [
-				'stylelint-config-standard-scss',
-				'stylelint-config-standard-vue/scss'
-			],
+			extends: ['stylelint-config-standard-scss', 'stylelint-config-standard-vue/scss'],
 			rules: {
 				'declaration-property-value-no-unknown': false
 			}
@@ -26,11 +23,7 @@ export const defaultConfig: Config = {
 	]
 };
 
-export const getDefaultTest = async (
-	ruleName: string,
-	config: Config,
-	length: number
-) => {
+export const getDefaultTest = async (ruleName: string, config: Config, length: number) => {
 	const {
 		results: [{ warnings, parseErrors }]
 	} = await lint({
@@ -47,11 +40,7 @@ export const getDefaultTest = async (
 	expect(warnings).toHaveLength(length);
 };
 
-export const getScssAllowTest = async (
-	ruleName: string,
-	config: Config,
-	length: number
-) => {
+export const getScssAllowTest = async (ruleName: string, config: Config, length: number) => {
 	const {
 		results: [{ warnings, parseErrors }]
 	} = await lint({

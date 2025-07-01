@@ -11,9 +11,7 @@ const log = (exampleName: string) => {
 
 <template>
 	<DefaultComponent title="DBButton" :variants="defaultComponentVariants">
-		<template
-			#example="{ exampleIndex, variantIndex, exampleName, exampleProps }"
-		>
+		<template #example="{ exampleIndex, variantIndex, exampleName, exampleProps }">
 			<DBButton
 				:variant="exampleProps?.variant"
 				:size="exampleProps?.size"

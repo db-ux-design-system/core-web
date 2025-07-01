@@ -17,9 +17,7 @@
 	}
 
 	img {
-		$logo-size: calc(
-			#{variables.$db-sizing-md} - #{variables.$db-sizing-3xs}
-		);
+		$logo-size: calc(#{variables.$db-sizing-md} - #{variables.$db-sizing-3xs});
 
 		inline-size: $logo-size;
 		max-block-size: $logo-size;

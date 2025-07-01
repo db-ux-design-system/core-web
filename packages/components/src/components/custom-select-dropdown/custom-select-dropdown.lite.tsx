@@ -13,7 +13,12 @@ export default function DBCustomSelectDropdown(props: DBCustomSelectDropdownProp
 	const _ref = useRef<HTMLDivElement | any>(null);
 
 	return (
-		<article ref={_ref} id={props.id} class={cls('db-custom-select-dropdown db-card', props.className)} data-spacing="none" data-width={props.width}>
+		<article
+			ref={_ref}
+			id={props.id}
+			class={cls('db-custom-select-dropdown db-card', props.className)}
+			data-spacing="none"
+			data-width={props.width}>
 			{props.children}
 		</article>
 	);

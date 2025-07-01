@@ -14,11 +14,7 @@ import { DBInput } from "@db-ux/v-core-components";
 </script>
 
 <template>
-	<DBInput
-		label="Label"
-		placeholder="Placeholder"
-		@change="onChange($event)"
-	></DBInput>
+	<DBInput label="Label" placeholder="Placeholder" @change="onChange($event)"></DBInput>
 </template>
 ```
 

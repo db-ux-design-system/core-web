@@ -1,10 +1,6 @@
 import stylelint from 'stylelint';
 import { createRule } from '../shared/create-rule.js';
-import {
-	type AllowedType,
-	defaultExact,
-	getDeclarationRuleFunction
-} from '../shared/index.js';
+import { type AllowedType, defaultExact, getDeclarationRuleFunction } from '../shared/index.js';
 
 const {
 	utils: { ruleMessages }
@@ -14,8 +10,7 @@ const ruleName = 'db-ux/use-border-radius';
 
 const messages = ruleMessages(ruleName, {
 	rejected: (property: string, value: string) =>
-		`Unexpected value: ${value} within prop: ${property}.\n` +
-		"Please use 'db-border-radius-xx' instead of px or rem."
+		`Unexpected value: ${value} within prop: ${property}.\n` + "Please use 'db-border-radius-xx' instead of px or rem."
 });
 
 const meta = {

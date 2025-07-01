@@ -6,17 +6,9 @@ import { DBDivider, DBInfotext } from "../../../../../output/vue/src";
 
 <template>
 	<DefaultComponent title="DBDivider" :variants="defaultComponentVariants">
-		<template
-			#example="{ exampleIndex, variantIndex, exampleName, exampleProps }"
-		>
-			<DBInfotext size="small" semantic="informational">
-				{{ exampleName }}</DBInfotext
-			>
-			<DBDivider
-				:variant="exampleProps?.variant"
-				:emphasis="exampleProps?.emphasis"
-				:width="exampleProps?.width"
-			/>
+		<template #example="{ exampleIndex, variantIndex, exampleName, exampleProps }">
+			<DBInfotext size="small" semantic="informational"> {{ exampleName }}</DBInfotext>
+			<DBDivider :variant="exampleProps?.variant" :emphasis="exampleProps?.emphasis" :width="exampleProps?.width" />
 		</template>
 	</DefaultComponent>
 </template>

@@ -8,21 +8,16 @@ import { TESTING_VIEWPORTS } from '../../shared/constants.ts';
 const comp: any = <DBDrawer open={true}>Test</DBDrawer>;
 
 const testComponent = (viewport) => {
-	test(`should contain text for device ${viewport.name}`, async ({
-		mount
-	}) => {
+	test(`should contain text for device ${viewport.name}`, async ({ mount }) => {
 		const component = await mount(comp);
 		await expect(component).toContainText('Test');
 	});
 
-	test.fixme(
-		`should match screenshot for device ${viewport.name}`,
-		async ({ mount }) => {
-			const component = await mount(comp);
-			// TODO: Screenshots are not captured for top-layer
-			await expect(component).toHaveScreenshot();
-		}
-	);
+	test.fixme(`should match screenshot for device ${viewport.name}`, async ({ mount }) => {
+		const component = await mount(comp);
+		// TODO: Screenshots are not captured for top-layer
+		await expect(component).toHaveScreenshot();
+	});
 };
 
 const testA11y = () => {
@@ -33,9 +28,7 @@ const testA11y = () => {
 	});
 	test('should not have A11y issues', async ({ page, mount }) => {
 		await mount(comp);
-		const accessibilityScanResults = await new AxeBuilder({ page })
-			.include('.db-drawer')
-			.analyze();
+		const accessibilityScanResults = await new AxeBuilder({ page }).include('.db-drawer').analyze();
 
 		expect(accessibilityScanResults.violations).toEqual([]);
 	});

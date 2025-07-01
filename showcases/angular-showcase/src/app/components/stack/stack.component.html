@@ -1,8 +1,4 @@
-<app-default-component
-	title="DBStack"
-	[variants]="variants"
-	[exampleTemplate]="exampleTemplate"
->
+<app-default-component title="DBStack" [variants]="variants" [exampleTemplate]="exampleTemplate">
 	<ng-template
 		#exampleTemplate
 		let-exampleProps="exampleProps"
@@ -15,11 +11,7 @@
 				{{ exampleName }}
 			</db-infotext>
 			<db-stack
-				[className]="
-					(exampleProps.justifyContent ?? exampleProps.alignment)
-						? 'stack-container stack-show-alignment'
-						: 'stack-container'
-				"
+				[className]="(exampleProps.justifyContent ?? exampleProps.alignment) ? 'stack-container stack-show-alignment' : 'stack-container'"
 				[gap]="exampleProps.gap"
 				[alignment]="exampleProps.alignment"
 				[wrap]="exampleProps.wrap"

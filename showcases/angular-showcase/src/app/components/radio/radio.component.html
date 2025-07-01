@@ -1,8 +1,4 @@
-<app-default-component
-	title="DBRadio"
-	[variants]="variants"
-	[exampleTemplate]="exampleTemplate"
->
+<app-default-component title="DBRadio" [variants]="variants" [exampleTemplate]="exampleTemplate">
 	<ng-template
 		#exampleTemplate
 		let-exampleProps="exampleProps"
@@ -23,16 +19,8 @@
 		>
 			{{ exampleName }}
 		</db-radio>
-		@if (
-			exampleProps?.showLabel !== undefined &&
-			exampleProps?.showLabel !== null &&
-			!exampleProps?.showLabel
-		) {
-			<db-infotext
-				semantic="informational"
-				size="small"
-				[showIcon]="false"
-			>
+		@if (exampleProps?.showLabel !== undefined && exampleProps?.showLabel !== null && !exampleProps?.showLabel) {
+			<db-infotext semantic="informational" size="small" [showIcon]="false">
 				{{ exampleName }}
 			</db-infotext>
 		}

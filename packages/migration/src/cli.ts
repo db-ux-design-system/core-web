@@ -9,9 +9,4 @@ const action = async (_: unknown, options: OptionsType) => {
 	migrate(options, true);
 };
 
-startProgram(
-	'@db-ux/core-foundations - migration',
-	'CLI for DB UX Design System foundations',
-	options,
-	action
-);
+startProgram('@db-ux/core-foundations - migration', 'CLI for DB UX Design System foundations', options, action);

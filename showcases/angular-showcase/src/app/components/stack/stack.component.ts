@@ -9,9 +9,7 @@ import { environment } from '../../../environments/environment';
 @Component({
 	selector: 'app-stack',
 	templateUrl: './stack.component.html',
-	imports: environment.webComponents
-		? [DefaultComponent]
-		: [DefaultComponent, DBStack, DBInfotext, DBDivider],
+	imports: environment.webComponents ? [DefaultComponent] : [DefaultComponent, DBStack, DBInfotext, DBDivider],
 	standalone: true
 })
 export class StackComponent {

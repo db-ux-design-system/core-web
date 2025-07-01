@@ -32,17 +32,12 @@ const comp: any = (
 );
 
 const testComponent = (viewport: any) => {
-	test(`should contain text for device ${viewport.name}`, async ({
-		mount
-	}) => {
+	test(`should contain text for device ${viewport.name}`, async ({ mount }) => {
 		const component = await mount(comp);
 		await expect(component).toContainText('Test1');
 	});
 
-	test(`should match screenshot for device ${viewport.name}`, async ({
-		mount,
-		page
-	}) => {
+	test(`should match screenshot for device ${viewport.name}`, async ({ mount, page }) => {
 		await page.setViewportSize({
 			width: viewport.width,
 			height: viewport.height
@@ -58,14 +53,9 @@ const testA11y = () => {
 		const snapshot = await component.ariaSnapshot();
 		expect(snapshot).toMatchSnapshot(`${testInfo.testId}.yaml`);
 	});
-	test('should not have any automatically detectable accessibility issues', async ({
-		page,
-		mount
-	}) => {
+	test('should not have any automatically detectable accessibility issues', async ({ page, mount }) => {
 		await mount(comp);
-		const accessibilityScanResults = await new AxeBuilder({ page })
-			.include('.db-navigation')
-			.analyze();
+		const accessibilityScanResults = await new AxeBuilder({ page }).include('.db-navigation').analyze();
 
 		expect(accessibilityScanResults.violations).toEqual([]);
 	});

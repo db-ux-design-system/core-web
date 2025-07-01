@@ -5,17 +5,9 @@ import type { DBAccordionItemProps } from '../../../../../output/react/src/compo
 import { getVariants } from '../data';
 import { type BaseComponentProps } from '../base-component-data';
 
-const getAccordionItem = ({
-	children,
-	disabled,
-	open,
-	headlinePlain
-}: DBAccordionItemProps & { open: boolean }) => {
+const getAccordionItem = ({ children, disabled, open, headlinePlain }: DBAccordionItemProps & { open: boolean }) => {
 	return (
-		<DBAccordionItem
-			headlinePlain={headlinePlain}
-			disabled={disabled}
-			defaultOpen={open}>
+		<DBAccordionItem headlinePlain={headlinePlain} disabled={disabled} defaultOpen={open}>
 			{children}
 		</DBAccordionItem>
 	);
@@ -27,11 +19,7 @@ const AccordionItemComponent = (props: BaseComponentProps) => {
 			title="DBAccordionItem"
 			isSubComponent={props.isSubComponent}
 			componentName={props.componentName}
-			variants={getVariants(
-				defaultComponentVariants,
-				getAccordionItem,
-				props.slotCode
-			)}></DefaultComponent>
+			variants={getVariants(defaultComponentVariants, getAccordionItem, props.slotCode)}></DefaultComponent>
 	);
 };
 

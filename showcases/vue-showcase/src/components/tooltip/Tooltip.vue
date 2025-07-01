@@ -6,9 +6,7 @@ import { DBButton, DBTooltip } from "../../../../../output/vue/src";
 
 <template>
 	<DefaultComponent title="DBTooltip" :variants="defaultComponentVariants">
-		<template
-			#example="{ exampleIndex, variantIndex, exampleName, exampleProps }"
-		>
+		<template #example="{ exampleIndex, variantIndex, exampleName, exampleProps }">
 			<DBButton>
 				{{ exampleName }}
 				<DBTooltip

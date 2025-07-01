@@ -30,17 +30,10 @@ ReactDOM.createRoot(document.querySelector('#root')!).render(
 			<Routes>
 				<Route path="/" element={<App />}>
 					{NAVIGATION_ITEMS.map((navItem) => (
-						<Route
-							key={`router-${navItem.path}`}
-							path={navItem.path}
-							element={navItem.component}>
+						<Route key={`router-${navItem.path}`} path={navItem.path} element={navItem.component}>
 							{navItem.subNavigation
 								? navItem.subNavigation.map((subItem) => (
-										<Route
-											key={`router-${subItem.path}`}
-											path={subItem.path}
-											element={subItem.component}
-										/>
+										<Route key={`router-${subItem.path}`} path={subItem.path} element={subItem.component} />
 									))
 								: null}
 						</Route>

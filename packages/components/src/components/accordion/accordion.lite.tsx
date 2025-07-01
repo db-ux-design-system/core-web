@@ -100,7 +100,12 @@ export default function DBAccordion(props: DBAccordionProps) {
 			<Show when={props.items}>
 				<For each={state.convertItems()}>
 					{(item: DBAccordionItemDefaultProps, index: number) => (
-						<DBAccordionItem key={`accordion-item-${index}`} headlinePlain={item.headlinePlain} disabled={item.disabled} text={item.text} />
+						<DBAccordionItem
+							key={`accordion-item-${index}`}
+							headlinePlain={item.headlinePlain}
+							disabled={item.disabled}
+							text={item.text}
+						/>
 					)}
 				</For>
 			</Show>

@@ -6,8 +6,7 @@ test.describe('DBHeader', () => {
 	testDefault({
 		test,
 		title: 'default',
-		description:
-			'should have links, an inline text, a navigation with a list and links, buttons (next())',
+		description: 'should have links, an inline text, a navigation with a list and links, buttons (next())',
 		url: './#/01/header?page=density',
 		async testFn(voiceOver, nvda) {
 			if (nvda) {

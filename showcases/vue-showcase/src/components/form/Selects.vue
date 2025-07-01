@@ -9,11 +9,7 @@ const vModel = ref("combobox-2");
 
 <template>
 	<FormWrapper :plain="plain" :vmodel="vModel">
-		<DBSelect
-			:value="plain"
-			label="Plain"
-			@change="plain = $event.target.value"
-		>
+		<DBSelect :value="plain" label="Plain" @change="plain = $event.target.value">
 			<option value="combobox-0">combobox-0</option>
 			<option value="combobox-1">combobox-1</option>
 			<option value="combobox-2">combobox-2</option>

@@ -13,11 +13,7 @@ npx playwright test -c output/react/playwright.config.ts --ui
 We write the tests for `react`, but also use them for `vue` with `jsx`. If there are a special cases like for example a `slot`, you can add the `vue` specific part with a comment (will be replaced during build), like this example:
 
 ```tsx
-<DBPopover
-	animation="disabled"
-	data-testid="popover"
-	slotTrigger={<DBButton data-testid="button">Button</DBButton>}
->
+<DBPopover animation="disabled" data-testid="popover" slotTrigger={<DBButton data-testid="button">Button</DBButton>}>
 	{/*<template v-slot:trigger>
 				<DBButton data-testid="button">Button</DBButton>
 			</template>*/}

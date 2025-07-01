@@ -2,7 +2,6 @@
 	"trailingComma": "none",
 	"bracketSpacing": true,
 	"printWidth": 150,
-	"tabWidth": 2,
 	"overrides": [
 		{
 			"files": ["*.js", "*.jsx", "*.cjs", "*.ts", "*.tsx"],

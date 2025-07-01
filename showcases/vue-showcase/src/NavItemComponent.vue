@@ -14,11 +14,7 @@ defineProps<{
 				<NavItemComponent :navItem="item"></NavItemComponent>
 			</template>
 		</template>
-		<router-link
-			v-if="navItem.component"
-			:to="navItem.path"
-			ariaCurrentValue="page"
-		>
+		<router-link v-if="navItem.component" :to="navItem.path" ariaCurrentValue="page">
 			{{ navItem.label }}
 		</router-link>
 		<template v-if="!navItem.component">{{ navItem.label }}</template>

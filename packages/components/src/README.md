@@ -61,9 +61,7 @@ Main use-case to overwrite a color or change colors by `data-variant`. Example:
 
 	@each $name in colors.$variant-colors {
 		&[data-variant="#{$name}"] {
-			--db-adaptive-on-bg-basic-emphasis-60-default: var(
-				--db-#{$name}-on-bg-basic-emphasis-70-default
-			);
+			--db-adaptive-on-bg-basic-emphasis-60-default: var(--db-#{$name}-on-bg-basic-emphasis-70-default);
 		}
 	}
 }

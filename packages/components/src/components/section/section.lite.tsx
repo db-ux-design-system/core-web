@@ -19,7 +19,12 @@ export default function DBSection(props: DBSectionProps) {
 	// jscpd:ignore-end
 
 	return (
-		<section ref={_ref} id={state._id} class={cls('db-section', props.className)} data-spacing={props.spacing || 'medium'} data-width={props.width}>
+		<section
+			ref={_ref}
+			id={state._id}
+			class={cls('db-section', props.className)}
+			data-spacing={props.spacing || 'medium'}
+			data-width={props.width}>
 			{props.children}
 		</section>
 	);

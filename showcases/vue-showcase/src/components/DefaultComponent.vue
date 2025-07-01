@@ -1,16 +1,7 @@
 <script setup lang="ts">
 import { DBCard, DBDivider, DBLink } from "../../../../output/vue/src";
-import type {
-	DefaultComponentExample,
-	DefaultComponentProps,
-	DefaultComponentVariants
-} from "../../../shared/default-component-data";
-import {
-	COLOR,
-	COLOR_CONST,
-	DENSITY,
-	DENSITY_CONST
-} from "../../../../packages/components/src/shared/constants";
+import type { DefaultComponentExample, DefaultComponentProps, DefaultComponentVariants } from "../../../shared/default-component-data";
+import { COLOR, COLOR_CONST, DENSITY, DENSITY_CONST } from "../../../../packages/components/src/shared/constants";
 import { useRoute } from "vue-router";
 import { inject, type Ref, ref, watch } from "vue";
 
@@ -64,9 +55,7 @@ watch(
 );
 
 if (route.query.page) {
-	const foundVariant = props.variants.find(
-		(variant) => variant.name.toLowerCase() === route.query.page
-	);
+	const foundVariant = props.variants.find((variant) => variant.name.toLowerCase() === route.query.page);
 
 	variantRef.value = foundVariant;
 	if (foundVariant) {
@@ -84,17 +73,13 @@ const createLinkFromVariantAndUrl = (variantName: string) => {
 		currentUrl += `&color=${route.query[COLOR_CONST] || COLOR.NEUTRAL_BG_LEVEL_1}`;
 	}
 	if (!currentUrl.includes("density=")) {
-		currentUrl += `&density=${
-			route.query[DENSITY_CONST] || DENSITY.REGULAR
-		}`;
+		currentUrl += `&density=${route.query[DENSITY_CONST] || DENSITY.REGULAR}`;
 	}
 	return `${currentUrl}&page=${variantName.toLowerCase()}`;
 };
 
 const getLink = (variantName: string) => {
-	return window && showcaseVariant === "vue"
-		? createLinkFromVariantAndUrl(variantName)
-		: "";
+	return window && showcaseVariant === "vue" ? createLinkFromVariantAndUrl(variantName) : "";
 };
 
 const openVariantLink = (event: MouseEvent, variantName: string) => {
@@ -104,22 +89,13 @@ const openVariantLink = (event: MouseEvent, variantName: string) => {
 	}
 };
 
-const getElevation = (): "1" | "2" | "3" =>
-	color.value.includes("3") ? "3" : color.value.includes("2") ? "2" : "1";
+const getElevation = (): "1" | "2" | "3" => (color.value.includes("3") ? "3" : color.value.includes("2") ? "2" : "1");
 </script>
 
 <template>
 	<!-- TODO: Slots not working for nested components? -> Had to copy paste variant-cards...	-->
-	<DBCard
-		v-if="variantRef"
-		class="variants-card"
-		:elevation-level="getElevation()"
-	>
-		<div
-			:role="variantRef.role"
-			:aria-label="variantRef.role ? variantRef.name : undefined"
-			class="variants-list"
-		>
+	<DBCard v-if="variantRef" class="variants-card" :elevation-level="getElevation()">
+		<div :role="variantRef.role" :aria-label="variantRef.role ? variantRef.name : undefined" class="variants-list">
 			<div
 				v-for="(example, exampleIndex) in variantRef.examples"
 				:style="example.style"
@@ -150,11 +126,7 @@ const getElevation = (): "1" | "2" | "3" =>
 				{{ variant.name }}
 			</DBLink>
 			<DBCard class="variants-card" :elevation-level="getElevation()">
-				<div
-					:role="variant.role"
-					:aria-label="variant.role ? variant?.name : undefined"
-					class="variants-list"
-				>
+				<div :role="variant.role" :aria-label="variant.role ? variant?.name : undefined" class="variants-list">
 					<div
 						v-for="(example, exampleIndex) in variant.examples"
 						:style="example.style"

@@ -6,9 +6,7 @@ import { DBLink } from "../../../../../output/vue/src";
 
 <template>
 	<DefaultComponent title="DBLink" :variants="defaultComponentVariants">
-		<template
-			#example="{ exampleIndex, variantIndex, exampleName, exampleProps }"
-		>
+		<template #example="{ exampleIndex, variantIndex, exampleName, exampleProps }">
 			<DBLink
 				:variant="exampleProps?.variant"
 				:href="exampleProps?.href"

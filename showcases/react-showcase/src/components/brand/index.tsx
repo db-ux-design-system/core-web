@@ -10,7 +10,10 @@ import { type BaseComponentProps } from '../base-component-data';
 const getBrand = ({ children, hideLogo, customLogo }: DBBrandProps & { customLogo: boolean }) => (
 	<DBBrand hideLogo={hideLogo}>
 		{customLogo && (
-			<img src={`${process?.env?.NEXT_PUBLIC_BASE_PATH ?? '/react-showcase'}/assets/images/placeholder.jpg`} alt="this is a fancy placeholder logo" />
+			<img
+				src={`${process?.env?.NEXT_PUBLIC_BASE_PATH ?? '/react-showcase'}/assets/images/placeholder.jpg`}
+				alt="this is a fancy placeholder logo"
+			/>
 		)}
 		{children}
 	</DBBrand>

@@ -11,25 +11,13 @@ For general installation and configuration look at the [components](https://www.
 	<nav class="db-navigation">
 		<menu>
 			<li class="db-navigation-item">
-				<button
-					class="db-navigation-item-expand-button"
-					aria-haspopup="true"
-				>
-					Navi-Item 1
-				</button>
+				<button class="db-navigation-item-expand-button" aria-haspopup="true">Navi-Item 1</button>
 				<menu class="db-sub-navigation">
 					<li class="db-navigation-item">
-						<button
-							class="db-navigation-item-expand-button"
-							aria-haspopup="true"
-						>
-							Sub-Navi-Item 1
-						</button>
+						<button class="db-navigation-item-expand-button" aria-haspopup="true">Sub-Navi-Item 1</button>
 						<menu class="db-sub-navigation">
 							<li class="db-navigation-item">
-								<a href="#" aria-current="page"
-									>Sub-Sub-Navi-Item 1</a
-								>
+								<a href="#" aria-current="page">Sub-Sub-Navi-Item 1</a>
 							</li>
 
 							<li class="db-navigation-item">

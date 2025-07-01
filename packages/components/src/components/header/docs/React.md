@@ -55,8 +55,7 @@ const App = () => (
 		}
 	>
 		<DBNavigation>
-			//
-			https://github.com/db-ux-design-system/core-web/blob/main/packages/components/src/components/navigation/docs/React.md
+			// https://github.com/db-ux-design-system/core-web/blob/main/packages/components/src/components/navigation/docs/React.md
 		</DBNavigation>
 	</DBHeader>
 );
