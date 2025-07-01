@@ -1,57 +1,56 @@
 - main:
   - heading "DBCustomSelect" [level=1]
-  - link "Density arrow_up_right\" / \""
+  - link "Density"
   - text: Functional
   - group:
     - article:
       - radiogroup "id-10206-Functional":
         - list:
           - listitem:
-            - radio "Option 1 none\" / \""
-            - text: Option 1 none" / "
+            - radio "Option 1"
+            - text: Option 1
           - listitem:
-            - radio "Option 2 none\" / \""
-            - text: Option 2 none" / "
+            - radio "Option 2"
+            - text: Option 2
   - status
-  - text: chevron_down" / " (Default) Regular
+  - text: (Default) Regular
   - group:
     - article:
       - radiogroup "id-10207-(Default) Regular":
         - list:
           - listitem:
-            - radio "Option 1 none\" / \""
-            - text: Option 1 none" / "
+            - radio "Option 1"
+            - text: Option 1
           - listitem:
-            - radio "Option 2 none\" / \""
-            - text: Option 2 none" / "
+            - radio "Option 2"
+            - text: Option 2
   - status
-  - text: chevron_down" / " Expressive
+  - text: Expressive
   - group:
     - article:
       - radiogroup "id-10208-Expressive":
         - list:
           - listitem:
-            - radio "Option 1 none\" / \""
-            - text: Option 1 none" / "
+            - radio "Option 1"
+            - text: Option 1
           - listitem:
-            - radio "Option 2 none\" / \""
-            - text: Option 2 none" / "
+            - radio "Option 2"
+            - text: Option 2
   - status
-  - text: chevron_down" / "
-  - link "Multiple arrow_up_right\" / \""
+  - link "Multiple"
   - text: (Default) False
   - group:
     - article:
       - radiogroup "id-10209-(Default) False":
         - list:
           - listitem:
-            - radio "Option 1 none\" / \""
-            - text: Option 1 none" / "
+            - radio "Option 1"
+            - text: Option 1
           - listitem:
-            - radio "Option 2 none\" / \""
-            - text: Option 2 none" / "
+            - radio "Option 2"
+            - text: Option 2
   - status
-  - text: chevron_down" / " True
+  - text: "True"
   - group:
     - article:
       - group "id-10210-True":
@@ -63,153 +62,147 @@
             - checkbox "Option 2"
             - text: Option 2
   - status
-  - text: chevron_down" / "
-  - link "Variant arrow_up_right\" / \""
+  - link "Variant"
   - text: (Default) Label Above
   - group:
     - article:
       - radiogroup "id-10211-(Default) Label Above":
         - list:
           - listitem:
-            - radio "Option 1 none\" / \""
-            - text: Option 1 none" / "
+            - radio "Option 1"
+            - text: Option 1
           - listitem:
-            - radio "Option 2 none\" / \""
-            - text: Option 2 none" / "
+            - radio "Option 2"
+            - text: Option 2
   - status
-  - text: chevron_down" / " Floating Label
+  - text: Floating Label
   - group:
     - article:
       - radiogroup "id-10212-Floating Label":
         - list:
           - listitem:
-            - radio "Floating Label none\" / \""
-            - text: Floating Label none" / "
+            - radio "Floating Label"
+            - text: Floating Label
           - listitem:
-            - radio "Option 2 none\" / \""
-            - text: Option 2 none" / "
+            - radio "Option 2"
+            - text: Option 2
   - status
-  - text: chevron_down" / "
-  - link "Show Label arrow_up_right\" / \""
+  - link "Show Label"
   - text: (Default) True
   - group:
     - article:
       - radiogroup "id-10213-(Default) True":
         - list:
           - listitem:
-            - radio "Option 1 none\" / \""
-            - text: Option 1 none" / "
+            - radio "Option 1"
+            - text: Option 1
           - listitem:
-            - radio "Option 2 none\" / \""
-            - text: Option 2 none" / "
+            - radio "Option 2"
+            - text: Option 2
   - status
-  - text: chevron_down" / " False
+  - text: "False"
   - group:
     - article:
       - radiogroup "id-10214-False":
         - list:
           - listitem:
-            - radio "Option 1 none\" / \""
-            - text: Option 1 none" / "
+            - radio "Option 1"
+            - text: Option 1
           - listitem:
-            - radio "Option 2 none\" / \""
-            - text: Option 2 none" / "
+            - radio "Option 2"
+            - text: Option 2
   - status
-  - text: chevron_down" / "
-  - link "Show Message arrow_up_right\" / \""
+  - link "Show Message"
   - text: (Default) False
   - group:
     - article:
       - radiogroup "id-10215-(Default) False":
         - list:
           - listitem:
-            - radio "Option 1 none\" / \""
-            - text: Option 1 none" / "
+            - radio "Option 1"
+            - text: Option 1
           - listitem:
-            - radio "Option 2 none\" / \""
-            - text: Option 2 none" / "
+            - radio "Option 2"
+            - text: Option 2
   - status
-  - text: chevron_down" / " True
+  - text: "True"
   - group:
     - article:
       - radiogroup "id-10216-True":
         - list:
           - listitem:
-            - radio "Option 1 none\" / \""
-            - text: Option 1 none" / "
+            - radio "Option 1"
+            - text: Option 1
           - listitem:
-            - radio "Option 2 none\" / \""
-            - text: Option 2 none" / "
-  - text: information_circle" / " Helper Message
+            - radio "Option 2"
+            - text: Option 2
+  - text: Helper Message
   - status
-  - text: chevron_down" / "
-  - link "Show Icon arrow_up_right\" / \""
+  - link "Show Icon"
   - text: (Default) False
   - group:
     - article:
       - radiogroup "id-10217-(Default) False":
         - list:
           - listitem:
-            - radio "Option 1 none\" / \""
-            - text: Option 1 none" / "
+            - radio "Option 1"
+            - text: Option 1
           - listitem:
-            - radio "Option 2 none\" / \""
-            - text: Option 2 none" / "
+            - radio "Option 2"
+            - text: Option 2
   - status
-  - text: chevron_down" / " True
+  - text: "True"
   - group:
     - article:
       - radiogroup "id-10218-True":
         - list:
           - listitem:
-            - radio "Option 1 none\" / \""
-            - text: Option 1 none" / "
+            - radio "Option 1"
+            - text: Option 1
           - listitem:
-            - radio "Option 2 none\" / \""
-            - text: Option 2 none" / "
+            - radio "Option 2"
+            - text: Option 2
   - status
-  - text: chevron_down" / "
-  - link "Validation arrow_up_right\" / \""
+  - link "Validation"
   - text: (Default) No Validation
   - group:
     - article:
       - radiogroup "id-102061-(Default) No Validation":
         - list:
           - listitem:
-            - radio "Option 1 none\" / \""
-            - text: Option 1 none" / "
+            - radio "Option 1"
+            - text: Option 1
           - listitem:
-            - radio "Option 2 none\" / \""
-            - text: Option 2 none" / "
+            - radio "Option 2"
+            - text: Option 2
   - status
-  - text: chevron_down" / " Invalid
+  - text: Invalid
   - group:
     - article:
       - radiogroup "id-102062-Invalid":
         - list:
           - listitem:
-            - radio "Option 1 none\" / \""
-            - text: Option 1 none" / "
+            - radio "Option 1"
+            - text: Option 1
           - listitem:
-            - radio "Option 2 none\" / \""
-            - text: Option 2 none" / "
-  - text: exclamation_mark_circle" / " Invalid Message
+            - radio "Option 2"
+            - text: Option 2
+  - text: Invalid Message
   - status
-  - text: chevron_down" / " Valid
+  - text: Valid
   - group:
     - article:
       - radiogroup "id-102063-Valid":
         - list:
           - listitem:
-            - radio "Option 1 none\" / \""
-            - text: Option 1 none" / "
+            - radio "Option 1"
+            - text: Option 1
           - listitem:
-            - radio "Option 2 none\" / \""
-            - text: Option 2 none" / "
-  - text: "check_circle\" / \" TODO: Add a validMessage"
+            - radio "Option 2"
+            - text: Option 2
+  - text: "TODO: Add a validMessage"
   - status
-  - text: chevron_down" / "
-  - link "Required arrow_up_right\" / \""
+  - link "Required"
   - text: (Default) False
   - group:
     - article:
@@ -222,7 +215,7 @@
             - checkbox "Option 2"
             - text: Option 2
   - status
-  - text: chevron_down" / " True*" / "
+  - text: "True"
   - group:
     - article:
       - group "id-10220-True":
@@ -234,8 +227,7 @@
             - checkbox "Option 2"
             - text: Option 2
   - status
-  - text: chevron_down" / "
-  - link "Disabled arrow_up_right\" / \""
+  - link "Disabled"
   - text: (Default) False
   - group:
     - article:
@@ -248,7 +240,7 @@
             - checkbox "Option 2"
             - text: Option 2
   - status
-  - text: chevron_down" / " True
+  - text: "True"
   - group:
     - article:
       - group "id-10222-True":
@@ -260,182 +252,178 @@
             - checkbox "Option 2"
             - text: Option 2
   - status
-  - text: chevron_down" / "
-  - link "Form Field Width arrow_up_right\" / \""
+  - link "Form Field Width"
   - text: (Default) Full
   - group:
     - article:
       - radiogroup "id-10223-(Default) Full":
         - list:
           - listitem:
-            - radio "Option 1 none\" / \""
-            - text: Option 1 none" / "
+            - radio "Option 1"
+            - text: Option 1
           - listitem:
-            - radio "Option 2 none\" / \""
-            - text: Option 2 none" / "
+            - radio "Option 2"
+            - text: Option 2
   - status
-  - text: chevron_down" / " Auto
+  - text: Auto
   - group:
     - article:
       - radiogroup "id-10224-Auto":
         - list:
           - listitem:
-            - radio "Option 1 none\" / \""
-            - text: Option 1 none" / "
+            - radio "Option 1"
+            - text: Option 1
           - listitem:
-            - radio "Option 2 none\" / \""
-            - text: Option 2 none" / "
+            - radio "Option 2"
+            - text: Option 2
   - status
-  - text: chevron_down" / "
-  - link "Dropdown Width arrow_up_right\" / \""
-  - text: "information_circle\" / \" Form Field Width: Full (Default) Fixed"
+  - link "Dropdown Width"
+  - text: "Form Field Width: Full (Default) Fixed"
   - group:
     - article:
       - radiogroup "id-10227-(Default) Fixed":
         - list:
           - listitem:
-            - radio "Option 1 none\" / \""
-            - text: Option 1 none" / "
+            - radio "Option 1"
+            - text: Option 1
           - listitem:
-            - radio "Option 2 none\" / \""
-            - text: Option 2 none" / "
+            - radio "Option 2"
+            - text: Option 2
   - status
-  - text: chevron_down" / " Auto
+  - text: Auto
   - group:
     - article:
       - radiogroup "id-10228-Auto":
         - list:
           - listitem:
-            - radio "1 none\" / \""
-            - text: 1 none" / "
+            - radio "1"
+            - text: "1"
           - listitem:
-            - radio "2 none\" / \""
-            - text: 2 none" / "
+            - radio "2"
+            - text: "2"
   - status
-  - text: chevron_down" / " Full
+  - text: Full
   - group:
     - article:
       - radiogroup "id-10229-Full":
         - list:
           - listitem:
-            - radio "1 none\" / \""
-            - text: 1 none" / "
+            - radio "1"
+            - text: "1"
           - listitem:
-            - radio "2 none\" / \""
-            - text: 2 none" / "
+            - radio "2"
+            - text: "2"
   - status
-  - text: "chevron_down\" / \" information_circle\" / \" Form Field Width: Auto (Default) Fixed"
+  - text: "Form Field Width: Auto (Default) Fixed"
   - group:
     - article:
       - radiogroup "id-10233-(Default) Fixed":
         - list:
           - listitem:
-            - radio "Option 1 none\" / \""
-            - text: Option 1 none" / "
+            - radio "Option 1"
+            - text: Option 1
           - listitem:
-            - radio "Option 2 none\" / \""
-            - text: Option 2 none" / "
+            - radio "Option 2"
+            - text: Option 2
   - status
-  - text: chevron_down" / " Auto
+  - text: Auto
   - group:
     - article:
       - radiogroup "id-10234-Auto":
         - list:
           - listitem:
-            - radio "1 none\" / \""
-            - text: 1 none" / "
+            - radio "1"
+            - text: "1"
           - listitem:
-            - radio "2 none\" / \""
-            - text: 2 none" / "
+            - radio "2"
+            - text: "2"
   - status
-  - text: chevron_down" / " Full
+  - text: Full
   - group:
     - article:
       - radiogroup "id-10235-Full":
         - list:
           - listitem:
-            - radio "1 none\" / \""
-            - text: 1 none" / "
+            - radio "1"
+            - text: "1"
           - listitem:
-            - radio "2 none\" / \""
-            - text: 2 none" / "
+            - radio "2"
+            - text: "2"
   - status
-  - text: chevron_down" / "
-  - link "Placement arrow_up_right\" / \""
-  - text: "information_circle\" / \" Form Field Width: Full (Default) Bottom"
+  - link "Placement"
+  - text: "Form Field Width: Full (Default) Bottom"
   - group:
     - article:
       - radiogroup "id-10238-(Default) Bottom":
         - list:
           - listitem:
-            - radio "Option 1 none\" / \""
-            - text: Option 1 none" / "
+            - radio "Option 1"
+            - text: Option 1
           - listitem:
-            - radio "Option 2 none\" / \""
-            - text: Option 2 none" / "
+            - radio "Option 2"
+            - text: Option 2
   - status
-  - text: chevron_down" / " Top
+  - text: Top
   - group:
     - article:
       - radiogroup "id-10239-Top":
         - list:
           - listitem:
-            - radio "Option 1 none\" / \""
-            - text: Option 1 none" / "
+            - radio "Option 1"
+            - text: Option 1
           - listitem:
-            - radio "Option 2 none\" / \""
-            - text: Option 2 none" / "
+            - radio "Option 2"
+            - text: Option 2
   - status
-  - text: "chevron_down\" / \" information_circle\" / \" Form Field Width: Auto (Default) Bottom-Start"
+  - text: "Form Field Width: Auto (Default) Bottom-Start"
   - group:
     - article:
       - radiogroup "id-10243-(Default) Bottom-Start":
         - list:
           - listitem:
-            - radio "Option 1 none\" / \""
-            - text: Option 1 none" / "
+            - radio "Option 1"
+            - text: Option 1
           - listitem:
-            - radio "Option 2 none\" / \""
-            - text: Option 2 none" / "
+            - radio "Option 2"
+            - text: Option 2
   - status
-  - text: chevron_down" / " Bottom-End
+  - text: Bottom-End
   - group:
     - article:
       - radiogroup "id-10244-Bottom-End":
         - list:
           - listitem:
-            - radio "Option 1 none\" / \""
-            - text: Option 1 none" / "
+            - radio "Option 1"
+            - text: Option 1
           - listitem:
-            - radio "Option 2 none\" / \""
-            - text: Option 2 none" / "
+            - radio "Option 2"
+            - text: Option 2
   - status
-  - text: chevron_down" / " Top-Start
+  - text: Top-Start
   - group:
     - article:
       - radiogroup "id-10245-Top-Start":
         - list:
           - listitem:
-            - radio "Option 1 none\" / \""
-            - text: Option 1 none" / "
+            - radio "Option 1"
+            - text: Option 1
           - listitem:
-            - radio "Option 2 none\" / \""
-            - text: Option 2 none" / "
+            - radio "Option 2"
+            - text: Option 2
   - status
-  - text: chevron_down" / " Top-End
+  - text: Top-End
   - group:
     - article:
       - radiogroup "id-10246-Top-End":
         - list:
           - listitem:
-            - radio "Option 1 none\" / \""
-            - text: Option 1 none" / "
+            - radio "Option 1"
+            - text: Option 1
           - listitem:
-            - radio "Option 2 none\" / \""
-            - text: Option 2 none" / "
+            - radio "Option 2"
+            - text: Option 2
   - status
-  - text: chevron_down" / "
-  - link "Selected type arrow_up_right\" / \""
+  - link "Selected type"
   - text: (Default) Text
   - group:
     - article:
@@ -454,7 +442,7 @@
             - checkbox "Option 4"
             - text: Option 4
   - status
-  - text: chevron_down" / " Amount
+  - text: Amount
   - group:
     - article:
       - group "id-10248-Amount":
@@ -472,7 +460,7 @@
             - checkbox "Option 4"
             - text: Option 4
   - status
-  - text: chevron_down" / " Tag
+  - text: Tag
   - group:
     - article:
       - group "id-10249-Tag":
@@ -490,8 +478,7 @@
             - checkbox "Option 4"
             - text: Option 4
   - status
-  - text: chevron_down" / "
-  - link "Show No Result arrow_up_right\" / \""
+  - link "Show No Result"
   - text: (Default) False
   - group:
     - article:
@@ -504,12 +491,11 @@
             - checkbox "Option 2"
             - text: Option 2
   - status
-  - text: chevron_down" / " True
+  - text: "True"
   - group:
-    - article: exclamation_mark_triangle" / " Nothing found
+    - article: Nothing found
   - status
-  - text: chevron_down" / "
-  - link "Show Loading arrow_up_right\" / \""
+  - link "Show Loading"
   - text: (Default) False
   - group:
     - article:
@@ -522,12 +508,11 @@
             - checkbox "Option 2"
             - text: Option 2
   - status
-  - text: chevron_down" / " True
+  - text: "True"
   - group:
     - article: Loading
   - status
-  - text: chevron_down" / "
-  - link "Show Search arrow_up_right\" / \""
+  - link "Show Search"
   - text: (Default) False
   - group:
     - article:
@@ -566,13 +551,12 @@
             - checkbox "Option 10"
             - text: Option 10
   - status
-  - text: chevron_down" / " True
+  - text: "True"
   - group:
     - article:
-      - text: magnifying_glass" / " Search
+      - text: Search
       - searchbox "Search"
       - status
-      - text: cross" / "
       - group "id-10255-True":
         - list:
           - listitem:
@@ -582,8 +566,7 @@
             - checkbox "Option 2"
             - text: Option 2
   - status
-  - text: chevron_down" / "
-  - link "Show Select All arrow_up_right\" / \""
+  - link "Show Select All"
   - text: (Default) False
   - group:
     - article:
@@ -608,7 +591,7 @@
             - checkbox "Option 6"
             - text: Option 6
   - status
-  - text: chevron_down" / " True
+  - text: "True"
   - group:
     - article:
       - checkbox "Select all"
@@ -622,8 +605,7 @@
             - checkbox "Option 2"
             - text: Option 2
   - status
-  - text: chevron_down" / "
-  - link "Show Clear Selection arrow_up_right\" / \""
+  - link "Show Clear Selection"
   - text: (Default) True
   - group:
     - article:
@@ -636,7 +618,7 @@
             - checkbox "Option 2"
             - text: Option 2
   - status
-  - text: chevron_down" / " False
+  - text: "False"
   - group:
     - article:
       - group "id-10259-False":
@@ -648,148 +630,145 @@
             - checkbox "Option 2"
             - text: Option 2
   - status
-  - text: chevron_down" / "
-  - link "Examples Single arrow_up_right\" / \""
+  - link "Examples Single"
   - text: Icons
   - group:
     - article:
       - radiogroup "id-10260-Icons":
         - list:
           - listitem:
-            - radio "Option 1 none\" / \""
-            - text: Option 1 none" / "
+            - radio "Option 1"
+            - text: Option 1
           - listitem:
-            - radio "Option 2 none\" / \""
-            - text: Option 2 none" / "
+            - radio "Option 2"
+            - text: Option 2
   - status
-  - text: chevron_down" / " Less than 6
+  - text: Less than 6
   - group:
     - article:
       - radiogroup "id-10261-Less than 6":
         - list:
           - listitem:
-            - radio "Option 1 none\" / \""
-            - text: Option 1 none" / "
+            - radio "Option 1"
+            - text: Option 1
           - listitem:
-            - radio "Option 2 none\" / \""
-            - text: Option 2 none" / "
+            - radio "Option 2"
+            - text: Option 2
           - listitem:
-            - radio "Option 3 none\" / \""
-            - text: Option 3 none" / "
+            - radio "Option 3"
+            - text: Option 3
           - listitem:
-            - radio "Option 4 none\" / \""
-            - text: Option 4 none" / "
+            - radio "Option 4"
+            - text: Option 4
           - listitem:
-            - radio "Option 5 none\" / \""
-            - text: Option 5 none" / "
+            - radio "Option 5"
+            - text: Option 5
   - status
-  - text: chevron_down" / " Option Group Title
+  - text: Option Group Title
   - group:
     - article:
       - radiogroup "id-10262-Option Group Title":
         - list:
           - listitem: Option group 1
           - listitem:
-            - radio "G1:Option 1 none\" / \""
-            - text: G1:Option 1 none" / "
+            - radio "G1:Option 1"
+            - text: G1:Option 1
           - listitem:
-            - radio "G1:Option 2 none\" / \""
-            - text: G1:Option 2 none" / "
+            - radio "G1:Option 2"
+            - text: G1:Option 2
           - listitem: Option group 2
           - listitem:
-            - radio "G2:Option 1 none\" / \""
-            - text: G2:Option 1 none" / "
+            - radio "G2:Option 1"
+            - text: G2:Option 1
           - listitem:
-            - radio "G2:Option 2 none\" / \""
-            - text: G2:Option 2 none" / "
+            - radio "G2:Option 2"
+            - text: G2:Option 2
   - status
-  - text: chevron_down" / " Option Groups
+  - text: Option Groups
   - group:
     - article:
       - radiogroup "id-10263-Option Groups":
         - list:
           - listitem:
-            - radio "G1:Option 1 none\" / \""
-            - text: G1:Option 1 none" / "
+            - radio "G1:Option 1"
+            - text: G1:Option 1
           - listitem:
-            - radio "G1:Option 2 none\" / \""
-            - text: G1:Option 2 none" / "
+            - radio "G1:Option 2"
+            - text: G1:Option 2
           - listitem:
-            - radio "G2:Option 1 none\" / \""
-            - text: G2:Option 1 none" / "
+            - radio "G2:Option 1"
+            - text: G2:Option 1
           - listitem:
-            - radio "G2:Option 2 none\" / \""
-            - text: G2:Option 2 none" / "
+            - radio "G2:Option 2"
+            - text: G2:Option 2
   - status
-  - text: chevron_down" / " More than 6
+  - text: More than 6
   - group:
     - article:
       - radiogroup "id-10264-More than 6":
         - list:
           - listitem:
-            - radio "Option 1 none\" / \""
-            - text: Option 1 none" / "
+            - radio "Option 1"
+            - text: Option 1
           - listitem:
-            - radio "Option 2 none\" / \""
-            - text: Option 2 none" / "
+            - radio "Option 2"
+            - text: Option 2
           - listitem:
-            - radio "Option 3 none\" / \""
-            - text: Option 3 none" / "
+            - radio "Option 3"
+            - text: Option 3
           - listitem:
-            - radio "Option 4 none\" / \""
-            - text: Option 4 none" / "
+            - radio "Option 4"
+            - text: Option 4
           - listitem:
-            - radio "Option 5 none\" / \""
-            - text: Option 5 none" / "
+            - radio "Option 5"
+            - text: Option 5
           - listitem:
-            - radio "Option 6 none\" / \""
-            - text: Option 6 none" / "
+            - radio "Option 6"
+            - text: Option 6
           - listitem:
-            - radio "Option 7 none\" / \""
-            - text: Option 7 none" / "
+            - radio "Option 7"
+            - text: Option 7
   - status
-  - text: chevron_down" / " More than 10
+  - text: More than 10
   - group:
     - article:
-      - text: magnifying_glass" / " Search
+      - text: Search
       - searchbox "Search"
       - status
-      - text: cross" / "
       - radiogroup "id-10265-More than 10":
         - list:
           - listitem:
-            - radio "Option 1 none\" / \""
-            - text: Option 1 none" / "
+            - radio "Option 1"
+            - text: Option 1
           - listitem:
-            - radio "Option 2 none\" / \""
-            - text: Option 2 none" / "
+            - radio "Option 2"
+            - text: Option 2
           - listitem:
-            - radio "Option 3 none\" / \""
-            - text: Option 3 none" / "
+            - radio "Option 3"
+            - text: Option 3
           - listitem:
-            - radio "Option 4 none\" / \""
-            - text: Option 4 none" / "
+            - radio "Option 4"
+            - text: Option 4
           - listitem:
-            - radio "Option 5 none\" / \""
-            - text: Option 5 none" / "
+            - radio "Option 5"
+            - text: Option 5
           - listitem:
-            - radio "Option 6 none\" / \""
-            - text: Option 6 none" / "
+            - radio "Option 6"
+            - text: Option 6
           - listitem:
-            - radio "Option 7 none\" / \""
-            - text: Option 7 none" / "
+            - radio "Option 7"
+            - text: Option 7
           - listitem:
-            - radio "Option 8 none\" / \""
-            - text: Option 8 none" / "
+            - radio "Option 8"
+            - text: Option 8
           - listitem:
-            - radio "Option 9 none\" / \""
-            - text: Option 9 none" / "
+            - radio "Option 9"
+            - text: Option 9
           - listitem:
-            - radio "Option 10 none\" / \""
-            - text: Option 10 none" / "
+            - radio "Option 10"
+            - text: Option 10
   - status
-  - text: chevron_down" / "
-  - link "Examples Multiple arrow_up_right\" / \""
+  - link "Examples Multiple"
   - text: Less than 6
   - group:
     - article:
@@ -811,7 +790,7 @@
             - checkbox "Option 5"
             - text: Option 5
   - status
-  - text: chevron_down" / " Option Group Title
+  - text: Option Group Title
   - group:
     - article:
       - group "id-10267-Option Group Title":
@@ -831,7 +810,7 @@
             - checkbox "G2:Option 2"
             - text: G2:Option 2
   - status
-  - text: chevron_down" / " Option Groups
+  - text: Option Groups
   - group:
     - article:
       - group "id-10268-Option Groups":
@@ -849,7 +828,7 @@
             - checkbox "G2:Option 2"
             - text: G2:Option 2
   - status
-  - text: chevron_down" / " More than 6
+  - text: More than 6
   - group:
     - article:
       - checkbox "Select all"
@@ -878,13 +857,12 @@
             - checkbox "Option 7"
             - text: Option 7
   - status
-  - text: chevron_down" / " More than 10
+  - text: More than 10
   - group:
     - article:
-      - text: magnifying_glass" / " Search
+      - text: Search
       - searchbox "Search"
       - status
-      - text: cross" / "
       - checkbox "Select all"
       - text: Select all
       - group "id-10270-More than 10":
@@ -920,8 +898,7 @@
             - checkbox "Option 10 very long item with may break into a new line"
             - text: Option 10 very long item with may break into a new line
   - status
-  - text: chevron_down" / "
-  - link "Example tags arrow_up_right\" / \""
+  - link "Example tags"
   - text: Tag grow
   - group:
     - article:
@@ -940,7 +917,7 @@
             - checkbox "Option 4"
             - text: Option 4
   - status
-  - text: chevron_down" / " Tag grow + auto
+  - text: Tag grow + auto
   - group:
     - article:
       - group "id-10272-Tag grow + auto":
@@ -958,60 +935,56 @@
             - checkbox "Option 4"
             - text: Option 4
   - status
-  - text: chevron_down" / "
-  - 'link "Example: Other configuration arrow_up_right\" / \""':
+  - 'link "Example: Other configuration"':
   - text: Search Value
   - group:
     - article:
-      - text: magnifying_glass" / " Search
+      - text: Search
       - searchbox "Search": "1"
       - status
-      - text: cross" / "
       - group "id-10as4-Search Value":
         - list:
           - listitem:
             - checkbox "Option 1"
             - text: Option 1
   - status
-  - text: chevron_down" / " Custom Selected Label
+  - text: Custom Selected Label
   - group:
     - text: Label controlled
     - article:
       - radiogroup "id-10aasds4-Custom Selected Label":
         - list:
           - listitem:
-            - radio "Option 1 none\" / \""
-            - text: Option 1 none" / "
+            - radio "Option 1"
+            - text: Option 1
           - listitem:
-            - radio "Option 2 none\" / \""
-            - text: Option 2 none" / "
+            - radio "Option 2"
+            - text: Option 2
   - status
-  - text: chevron_down" / " Transform Selected Label
+  - text: Transform Selected Label
   - group:
     - article:
       - radiogroup "id-10aasds4-Transform Selected Label":
         - list:
           - listitem:
-            - radio "Option 1 none\" / \""
-            - text: Option 1 none" / "
+            - radio "Option 1"
+            - text: Option 1
           - listitem:
-            - radio "Option 2 none\" / \""
-            - text: Option 2 none" / "
+            - radio "Option 2"
+            - text: Option 2
   - status
-  - text: chevron_down" / " Custom Search Filter
+  - text: Custom Search Filter
   - group:
     - article:
-      - text: magnifying_glass" / " Search
+      - text: Search
       - searchbox "Search"
       - status
-      - text: cross" / "
       - radiogroup "id-10aasds4-Custom Search Filter":
         - list:
           - listitem:
-            - radio "Option 1 none\" / \""
-            - text: Option 1 none" / "
+            - radio "Option 1"
+            - text: Option 1
           - listitem:
-            - radio "Option 2 none\" / \""
-            - text: Option 2 none" / "
+            - radio "Option 2"
+            - text: Option 2
   - status
-  - text: chevron_down" / "
