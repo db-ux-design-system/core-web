@@ -36,6 +36,10 @@ export default (tmp?: boolean) => {
 					to: 'immediate: true,\nflush: "post"'
 				},
 				{
+					from: /:key="undefined"/g,
+					to: ''
+				},
+				{
 					from: 'className',
 					to: 'props.class'
 				}
@@ -48,23 +52,17 @@ export default (tmp?: boolean) => {
 			if (['select', 'textarea', 'input'].includes(componentName)) {
 				replacements.push({
 					from: 'if (props.onInput) {',
-					to:
-						'_value.value = (event.target as any).value;\n' +
-						'if (props.onInput) {'
+					to: '_value.value = (event.target as any).value;\n' + 'if (props.onInput) {'
 				});
 			}
 
 			if (component?.config?.vue?.vModel) {
 				replacements.push({
 					from: 'const props =',
-					to: `const emit = defineEmits(${JSON.stringify(
-						component?.config?.vue?.vModel.map(
-							(bin) => `update:${bin.modelValue}`
-						)
-					)})\n\nconst props =`
+					to: `const emit = defineEmits(${JSON.stringify(component?.config?.vue?.vModel.map((bin) => `update:${bin.modelValue}`))})\n\nconst props =`
 				});
 				replacements.push({
-					from: 'handleFrameworkEventVue(() => {}',
+					from: /handleFrameworkEventVue\(\s*\(\)\s*=>\s*\{}\s*?/g,
 					to: 'handleFrameworkEventVue(emit'
 				});
 			}

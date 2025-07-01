@@ -1,11 +1,4 @@
-import {
-	AlignmentProps,
-	GlobalProps,
-	GlobalState,
-	InitializedState,
-	OrientationProps,
-	WidthProps
-} from '../../shared/model';
+import { AlignmentProps, InputEvent, GlobalProps, GlobalState, InitializedState, OrientationProps, WidthProps } from '../../shared/model';
 import { DBTabItemProps } from '../tab-item/model';
 import { DBTabPanelProps } from '../tab-panel/model';
 
@@ -13,15 +6,14 @@ export const TabsBehaviorList = ['scrollbar', 'arrows'] as const;
 export type TabsBehaviorType = (typeof TabsBehaviorList)[number];
 
 export const TabsInitialSelectedModeList = ['auto', 'manually'] as const;
-export type TabsInitialSelectedModeType =
-	(typeof TabsInitialSelectedModeList)[number];
+export type TabsInitialSelectedModeType = (typeof TabsInitialSelectedModeList)[number];
 
 export type DBSimpleTabProps = DBTabItemProps & DBTabPanelProps;
 export type DBTabsDefaultProps = {
 	/**
 	 * Change amount of distance if you click on an arrow, only available with behavior="arrows"
 	 */
-	arrowScrollDistance?: number;
+	arrowScrollDistance?: number | string;
 	/**
 	 * Show a scrollbar or buttons with arrows to navigate for horizontal tabs with overflow visible
 	 */
@@ -30,7 +22,7 @@ export type DBTabsDefaultProps = {
 	/**
 	 * Default behavior is auto selecting the first tab, change selected tab by index
 	 */
-	initialSelectedIndex?: number;
+	initialSelectedIndex?: number | string;
 
 	/**
 	 * Default behavior is auto selecting the first tab, disable it with 'manually'
@@ -43,26 +35,33 @@ export type DBTabsDefaultProps = {
 	name?: string;
 
 	/**
-	 * Informs the user if the current tab index has changed.
-	 */
-	onIndexChange?: (index?: number) => void;
-
-	/**
-	 * Informs the user if another tab has been selected.
-	 */
-	onTabSelect?: (event?: Event) => void;
-
-	/**
 	 * Provide simple tabs with label + text as content
 	 */
 	tabs?: DBSimpleTabProps[] | string;
 };
 
-export type DBTabsProps = DBTabsDefaultProps &
-	GlobalProps &
-	OrientationProps &
-	WidthProps &
-	AlignmentProps;
+export type DBTabsEventProps = {
+	/**
+	 * Informs the user if the current tab index has changed.
+	 */
+	indexChange?: (index?: number) => void;
+
+	/**
+	 * Informs the user if the current tab index has changed.
+	 */
+	onIndexChange?: (index?: number) => void;
+	/**
+	 * Informs the user if another tab has been selected.
+	 */
+	onTabSelect?: (event?: InputEvent<HTMLElement>) => void;
+
+	/**
+	 * Informs the user if another tab has been selected.
+	 */
+	tabSelect?: (event?: InputEvent<HTMLElement>) => void;
+};
+
+export type DBTabsProps = DBTabsDefaultProps & GlobalProps & OrientationProps & WidthProps & AlignmentProps & DBTabsEventProps;
 
 export type DBTabsDefaultState = {
 	_name: string;
@@ -71,10 +70,10 @@ export type DBTabsDefaultState = {
 	showScrollLeft?: boolean;
 	showScrollRight?: boolean;
 	evaluateScrollButtons: (tabList: Element) => void;
-	convertTabs: (tabs?: unknown[] | string | undefined) => DBSimpleTabProps[];
+	convertTabs: () => DBSimpleTabProps[];
 	initTabList: () => void;
 	initTabs: (init?: boolean) => void;
-	handleChange: (event: any) => void;
+	handleChange: (event: InputEvent<HTMLElement>) => void;
 };
 
 export type DBTabsState = DBTabsDefaultState & GlobalState & InitializedState;

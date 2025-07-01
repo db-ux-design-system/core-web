@@ -1,11 +1,7 @@
 @use "sass:map";
 
 .border-color-special {
-	border: variables.$db-border-height-sm solid
-		var(
-			--db-check-element-border-color,
-			#{colors.$db-adaptive-on-bg-basic-emphasis-100-default}
-		);
+	border: variables.$db-border-width-sm solid var(--db-check-element-border-color, #{colors.$db-adaptive-on-bg-basic-emphasis-100-default});
 }
 
 .wrong {
@@ -17,8 +13,7 @@
 .right {
 	margin: calc(var(--db-spacing-fixed-xl) + var(--db-sizing-sm));
 	border-radius: var(--db-border-radius-md);
-	border: var(--db-border-height-md) solid
-		var(--db-adaptive-on-bg-basic-emphasis-70);
+	border: var(--db-border-width-md) solid var(--db-adaptive-on-bg-basic-emphasis-70);
 }
 
 .no-variables {
@@ -34,7 +29,5 @@
 }
 
 .allow-calc {
-	margin: calc(
-		var(--db-type-body-font-size-2xs) + #{variables.$db-spacing-fixed-3xs}
-	);
+	margin: calc(var(--db-type-body-font-size-2xs) + #{variables.$db-spacing-fixed-3xs});
 }

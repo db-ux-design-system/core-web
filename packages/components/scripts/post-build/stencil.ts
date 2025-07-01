@@ -13,7 +13,7 @@ ${foundSlots.map((slot) => ` * @slot ${slot} - TODO: Add description for slot${t
 };
 
 const changeFile = (upperComponentName: string, input: string) => {
-	const foundSlots = [];
+	const foundSlots: string[] = [];
 
 	return input
 		.split('\n')
@@ -28,19 +28,11 @@ const changeFile = (upperComponentName: string, input: string) => {
 					option = '{attribute: "classname"}';
 				}
 
-				return line
-					.replace('@Prop()', `@Prop(${option})`)
-					.replace(
-						'any',
-						`${upperComponentName}Props["${line.replace(`@Prop() `, '').replace(': any;', '').trim()}"]`
-					);
+				return line.replace('@Prop()', `@Prop(${option})`);
 			}
 
 			if (line.includes('<slot name=')) {
-				const firstPart = line.substring(
-					line.indexOf('<slot name='),
-					line.length
-				);
+				const firstPart = line.substring(line.indexOf('<slot name='), line.length);
 				const slotName = firstPart
 					.substring(0, firstPart.indexOf('</slot>') + 7)
 					.replace('<slot name="', '')
@@ -57,11 +49,7 @@ const changeFile = (upperComponentName: string, input: string) => {
 		.replace('@Component', getSlotDocs(foundSlots) + '@Component');
 };
 
-const replaceIndexFile = (
-	file: string,
-	componentName: string,
-	upperComponentName: string
-) => {
+const replaceIndexFile = (file: string, componentName: string, upperComponentName: string) => {
 	const replacement = `import { ${upperComponentName} } from './${componentName}';
 
 export default ${upperComponentName};`;
@@ -84,14 +72,7 @@ export default (tmp?: boolean) => {
 			processor: (input: string) => changeFile(upperComponentName, input)
 		});
 
-		const replacements: Overwrite[] = [
-			{ from: /ref=\{\(el\)/g, to: 'ref={(el:any)' },
-			{ from: 'for={', to: 'htmlFor={' },
-			{
-				from: 'onInput={(event) => this.handleChange(event)}',
-				to: 'onChange={(event) => this.handleChange(event)}'
-			}
-		];
+		const replacements: Overwrite[] = [{ from: 'for={', to: 'htmlFor={' }];
 		replaceIndexFile(indexFile, componentName, upperComponentName);
 		runReplacements(replacements, component, 'stencil', file);
 	}

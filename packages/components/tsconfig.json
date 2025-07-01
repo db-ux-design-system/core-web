@@ -1,8 +1,10 @@
 {
 	"compilerOptions": {
+		"lib": ["es2022", "dom"],
 		"jsx": "preserve",
 		"jsxImportSource": "@builder.io/mitosis",
 		"esModuleInterop": true,
-		"moduleResolution": "node"
+		"moduleResolution": "node",
+		"strict": true
 	}
 }

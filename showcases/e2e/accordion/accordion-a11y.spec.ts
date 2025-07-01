@@ -1,10 +1,5 @@
 import { test } from '@playwright/test';
-import {
-	hasWebComponentSyntax,
-	runA11yCheckerTest,
-	runAxeCoreTest
-	// @ts-expect-error - required for playwright
-} from '../default.ts';
+import { hasWebComponentSyntax, runA11yCheckerTest, runAxeCoreTest } from '../default.ts';
 import { lvl3 } from '../fixtures/variants';
 
 // https://stackoverflow.com/questions/78129019/can-you-have-an-li-in-a-autonomous-custom-element-with-the-parent-ul-not

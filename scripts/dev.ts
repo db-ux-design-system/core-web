@@ -1,5 +1,4 @@
 import childProcess from 'node:child_process';
-// eslint-disable-next-line import/no-extraneous-dependencies
 import { checkbox } from '@inquirer/prompts';
 
 const answersFrameworkPairs = [
@@ -73,9 +72,7 @@ const startDev = () => {
 	let startCommand = 'npm-run-all -p start:foundations dev:sass';
 
 	for (const { framework, answers } of answersFrameworkPairs) {
-		const isAnswerSelected = currentAnswers.some((currentAnswer) =>
-			answers.includes(currentAnswer)
-		);
+		const isAnswerSelected = currentAnswers.some((currentAnswer) => answers.includes(currentAnswer));
 
 		if (isAnswerSelected) {
 			startCommand += ` dev:${framework}-components`;

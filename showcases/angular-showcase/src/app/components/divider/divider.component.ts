@@ -7,11 +7,9 @@ import { environment } from '../../../environments/environment';
 @Component({
 	selector: 'app-divider',
 	templateUrl: './divider.component.html',
-	imports: environment.webComponents
-		? [DefaultComponent]
-		: [DefaultComponent, DBDivider, DBInfotext],
+	imports: environment.webComponents ? [DefaultComponent] : [DefaultComponent, DBDivider, DBInfotext],
 	standalone: true,
-	schemas: [CUSTOM_ELEMENTS_SCHEMA]
+	schemas: environment.webComponents ? [CUSTOM_ELEMENTS_SCHEMA] : []
 })
 export class DividerComponent {
 	variants = defaultComponentVariants;

@@ -3,10 +3,10 @@ import findVersions from 'find-versions';
 
 export const packageVersion = () => {
 	/* eslint-disable @typescript-eslint/naming-convention */
-	const TAG: string | undefined = process.env.TAG;
+	const { TAG } = process.env;
 	const RELEASE: boolean = process.env.RELEASE === 'true';
 	const PRE_RELEASE: boolean = process.env.PRE_RELEASE === 'true';
-	const GITHUB_SHA: string | undefined = process.env.GITHUB_SHA;
+	const { GITHUB_SHA } = process.env;
 	/* eslint-enable @typescript-eslint/naming-convention */
 
 	if (!TAG) {
@@ -39,15 +39,11 @@ export const packageVersion = () => {
 			const VALID_SEMVER_VERSION = `${SEMVER_VERSION}-${GITHUB_SHA_SHORT}`;
 			console.log(VALID_SEMVER_VERSION);
 		} else {
-			console.error(
-				`Version ${SEMVER_VERSION} doesn't contain a hyphen. A prerelease should have a hyphen!`
-			);
+			console.error(`Version ${SEMVER_VERSION} doesn't contain a hyphen. A prerelease should have a hyphen!`);
 			process.exit(1);
 		}
 	} else {
-		console.error(
-			'nothing found in environment for RELEASE or PRE_RELEASE'
-		);
+		console.error('nothing found in environment for RELEASE or PRE_RELEASE');
 		process.exit(1);
 	}
 };

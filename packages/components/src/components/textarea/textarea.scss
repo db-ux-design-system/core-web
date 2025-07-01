@@ -8,20 +8,27 @@
 @use "../../styles/internal/scrollbar";
 
 %resize-textarea {
-	&[data-resize="none"] {
+	&[data-hide-resizer="true"] {
 		resize: none;
 	}
 
-	&[data-resize="both"] {
-		resize: both;
-	}
+	// TODO: Consolidate data-hide-resizer and data-resize attributes in the future
+	&:not([data-hide-resizer="true"]) {
+		&[data-resize="none"] {
+			resize: none;
+		}
 
-	&[data-resize="horizontal"] {
-		resize: horizontal;
-	}
+		&[data-resize="both"] {
+			resize: both;
+		}
 
-	&[data-resize="vertical"] {
-		resize: vertical;
+		&[data-resize="horizontal"] {
+			resize: horizontal;
+		}
+
+		&[data-resize="vertical"] {
+			resize: vertical;
+		}
 	}
 }
 
@@ -34,6 +41,7 @@
 	margin-inline: 0;
 	inline-size: calc(100% - #{scrollbar.$scrollbar-width} - 1px);
 	inset-inline: 0;
+	transform: none;
 }
 
 .db-textarea {
@@ -44,10 +52,10 @@
 		@extend %scrollbar;
 
 		overflow-y: scroll;
+		overflow-block: scroll;
 
 		// we don't have icons in textarea so we can overwrite it here
-		padding-block: variables.$db-spacing-fixed-xs
-			variables.$db-spacing-fixed-xs;
+		padding-block: variables.$db-spacing-fixed-xs variables.$db-spacing-fixed-xs;
 	}
 
 	&[data-variant="floating"] {

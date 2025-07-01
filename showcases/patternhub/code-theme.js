@@ -1,5 +1,3 @@
-/* eslint-disable import/no-anonymous-default-export */
-
 // TODO: Make own shiki template
 export const getTheme = () => ({
 	name: 'nord',
@@ -488,11 +486,7 @@ export const getTheme = () => ({
 		},
 		{
 			name: 'Punctuation Definition Parameters',
-			scope: [
-				'punctuation.definition.method-parameters',
-				'punctuation.definition.function-parameters',
-				'punctuation.definition.parameters'
-			],
+			scope: ['punctuation.definition.method-parameters', 'punctuation.definition.function-parameters', 'punctuation.definition.parameters'],
 			settings: {
 				foreground: '#ECEFF4'
 			}
@@ -506,11 +500,7 @@ export const getTheme = () => ({
 		},
 		{
 			name: 'Punctuation Definition Comment',
-			scope: [
-				'punctuation.definition.comment',
-				'punctuation.end.definition.comment',
-				'punctuation.start.definition.comment'
-			],
+			scope: ['punctuation.definition.comment', 'punctuation.end.definition.comment', 'punctuation.start.definition.comment'],
 			settings: {
 				foreground: '#616E88'
 			}
@@ -524,10 +514,7 @@ export const getTheme = () => ({
 		},
 		{
 			name: 'Punctuation Section Embedded',
-			scope: [
-				'punctuation.section.embedded.begin',
-				'punctuation.section.embedded.end'
-			],
+			scope: ['punctuation.section.embedded.begin', 'punctuation.section.embedded.end'],
 			settings: {
 				foreground: '#81A1C1'
 			}
@@ -667,10 +654,7 @@ export const getTheme = () => ({
 		},
 		{
 			name: '[C/CPP] Meta Preprocessor Include',
-			scope: [
-				'source.c meta.preprocessor.include',
-				'source.c string.quoted.other.lt-gt.include'
-			],
+			scope: ['source.c meta.preprocessor.include', 'source.c string.quoted.other.lt-gt.include'],
 			settings: {
 				foreground: '#8FBCBB'
 			}
@@ -704,10 +688,7 @@ export const getTheme = () => ({
 		},
 		{
 			name: '[CSS] Media Queries',
-			scope: [
-				'source.css keyword.control.at-rule.media',
-				'source.css keyword.control.at-rule.media punctuation.definition.keyword'
-			],
+			scope: ['source.css keyword.control.at-rule.media', 'source.css keyword.control.at-rule.media punctuation.definition.keyword'],
 			settings: {
 				foreground: '#D08770'
 			}
@@ -828,10 +809,7 @@ export const getTheme = () => ({
 		},
 		{
 			name: '[Java](JavaDoc) Keyword Other Documentation Directive/Custom',
-			scope: [
-				'source.java keyword.other.documentation.directive',
-				'source.java keyword.other.documentation.custom'
-			],
+			scope: ['source.java keyword.other.documentation.directive', 'source.java keyword.other.documentation.custom'],
 			settings: {
 				foreground: '#8FBCBB'
 			}
@@ -852,10 +830,7 @@ export const getTheme = () => ({
 		},
 		{
 			name: '[Java](JavaDoc) Meta Tag Template Link',
-			scope: [
-				'source.java meta.tag.template.link.javadoc',
-				'source.java string.other.link.title.javadoc'
-			],
+			scope: ['source.java meta.tag.template.link.javadoc', 'source.java string.other.link.title.javadoc'],
 			settings: {
 				foreground: '#8FBCBB'
 			}
@@ -876,10 +851,7 @@ export const getTheme = () => ({
 		},
 		{
 			name: '[Java](JavaDoc) Punctuation Definition Tag',
-			scope: [
-				'source.java punctuation.definition.tag.begin.javadoc',
-				'source.java punctuation.definition.tag.end.javadoc'
-			],
+			scope: ['source.java punctuation.definition.tag.begin.javadoc', 'source.java punctuation.definition.tag.end.javadoc'],
 			settings: {
 				foreground: '#616E88'
 			}
@@ -1057,10 +1029,7 @@ export const getTheme = () => ({
 		},
 		{
 			name: '[Markdown] Markup Fenced Code Block',
-			scope: [
-				'text.html.markdown markup.fenced_code.block',
-				'text.html.markdown markup.fenced_code.block punctuation.definition'
-			],
+			scope: ['text.html.markdown markup.fenced_code.block', 'text.html.markdown markup.fenced_code.block punctuation.definition'],
 			settings: {
 				foreground: '#8FBCBB'
 			}
@@ -1074,10 +1043,7 @@ export const getTheme = () => ({
 		},
 		{
 			name: '[Markdown] Markup Inline',
-			scope: [
-				'text.html.markdown markup.inline.raw',
-				'text.html.markdown markup.inline.raw punctuation.definition.raw'
-			],
+			scope: ['text.html.markdown markup.inline.raw', 'text.html.markdown markup.inline.raw punctuation.definition.raw'],
 			settings: {
 				foreground: '#8FBCBB'
 			}
@@ -1126,10 +1092,7 @@ export const getTheme = () => ({
 		},
 		{
 			name: '[Markdown] Markup Math Definition Marker',
-			scope: [
-				'text.html.markdown punctuation.definition.math.begin',
-				'text.html.markdown punctuation.definition.math.end'
-			],
+			scope: ['text.html.markdown punctuation.definition.math.begin', 'text.html.markdown punctuation.definition.math.end'],
 			settings: {
 				foreground: '#5E81AC'
 			}
@@ -1157,10 +1120,7 @@ export const getTheme = () => ({
 		},
 		{
 			name: '[Markdown] Punctuation Definition Constant/String',
-			scope: [
-				'text.html.markdown punctuation.definition.constant',
-				'text.html.markdown punctuation.definition.string'
-			],
+			scope: ['text.html.markdown punctuation.definition.constant', 'text.html.markdown punctuation.definition.string'],
 			settings: {
 				foreground: '#81A1C1'
 			}
@@ -1185,20 +1145,14 @@ export const getTheme = () => ({
 		},
 		{
 			name: '[PHP] Meta Function-Call Object',
-			scope: [
-				'source.php meta.function-call',
-				'source.php meta.function-call.object'
-			],
+			scope: ['source.php meta.function-call', 'source.php meta.function-call.object'],
 			settings: {
 				foreground: '#88C0D0'
 			}
 		},
 		{
 			name: '[Python] Decorator',
-			scope: [
-				'source.python entity.name.function.decorator',
-				'source.python meta.function.decorator support.type'
-			],
+			scope: ['source.python entity.name.function.decorator', 'source.python meta.function.decorator support.type'],
 			settings: {
 				foreground: '#D08770'
 			}
@@ -1226,9 +1180,7 @@ export const getTheme = () => ({
 		},
 		{
 			name: '[Python] Function Parameter Special',
-			scope: [
-				'source.python meta.function.parameters variable.parameter.function.language.special.self'
-			],
+			scope: ['source.python meta.function.parameters variable.parameter.function.language.special.self'],
 			settings: {
 				foreground: '#81A1C1'
 			}
@@ -1250,11 +1202,7 @@ export const getTheme = () => ({
 		},
 		{
 			name: '[Rust] Attributes',
-			scope: [
-				'source.rust meta.attribute',
-				'source.rust meta.attribute punctuation',
-				'source.rust meta.attribute keyword.operator'
-			],
+			scope: ['source.rust meta.attribute', 'source.rust meta.attribute punctuation', 'source.rust meta.attribute keyword.operator'],
 			settings: {
 				foreground: '#5E81AC'
 			}
@@ -1307,20 +1255,14 @@ export const getTheme = () => ({
 		},
 		{
 			name: '[TypeScript] Object-literal keys',
-			scope: [
-				'source.ts meta.object-literal.key',
-				'source.tsx meta.object-literal.key'
-			],
+			scope: ['source.ts meta.object-literal.key', 'source.tsx meta.object-literal.key'],
 			settings: {
 				foreground: '#D8DEE9'
 			}
 		},
 		{
 			name: '[TypeScript] Object-literal functions',
-			scope: [
-				'source.ts meta.object-literal.key entity.name.function',
-				'source.tsx meta.object-literal.key entity.name.function'
-			],
+			scope: ['source.ts meta.object-literal.key entity.name.function', 'source.tsx meta.object-literal.key entity.name.function'],
 			settings: {
 				foreground: '#88C0D0'
 			}
@@ -1357,10 +1299,7 @@ export const getTheme = () => ({
 		},
 		{
 			name: '[TypeScript] Variables',
-			scope: [
-				'source.ts support.variable',
-				'source.tsx support.variable'
-			],
+			scope: ['source.ts support.variable', 'source.tsx support.variable'],
 			settings: {
 				foreground: '#D8DEE9'
 			}
@@ -1400,10 +1339,7 @@ export const getTheme = () => ({
 		},
 		{
 			name: '[XML] Entity Name Tag Namespace',
-			scope: [
-				'text.xml string.unquoted.cdata',
-				'text.xml string.unquoted.cdata punctuation.definition.string'
-			],
+			scope: ['text.xml string.unquoted.cdata', 'text.xml string.unquoted.cdata punctuation.definition.string'],
 			settings: {
 				foreground: '#D08770',
 				fontStyle: 'italic'
@@ -1418,5 +1354,3 @@ export const getTheme = () => ({
 		}
 	]
 });
-
-export default { getTheme };

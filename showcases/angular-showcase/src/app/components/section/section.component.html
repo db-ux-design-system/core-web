@@ -1,8 +1,4 @@
-<app-default-component
-	title="DBSection"
-	[variants]="variants"
-	[exampleTemplate]="exampleTemplate"
->
+<app-default-component title="DBSection" [variants]="variants" [exampleTemplate]="exampleTemplate">
 	<ng-template
 		#exampleTemplate
 		let-exampleProps="exampleProps"
@@ -11,7 +7,7 @@
 		let-variantIndex="variantIndex"
 	>
 		<db-section
-			class="db-informational-bg-basic-level-2 section-card-container"
+			class="db-color-informational db-bg-color-basic-level-2 section-card-container"
 			[spacing]="exampleProps?.spacing"
 			[width]="exampleProps?.width"
 		>

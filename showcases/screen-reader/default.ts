@@ -1,18 +1,8 @@
-/* eslint-disable import/no-anonymous-default-export */
 import { platform } from 'node:os';
-import {
-	type NVDAPlaywright,
-	nvdaTest,
-	type VoiceOverPlaywright,
-	voiceOverTest
-} from '@guidepup/playwright';
+import { type NVDAPlaywright, nvdaTest, type VoiceOverPlaywright, voiceOverTest } from '@guidepup/playwright';
 import { macOSRecord, windowsRecord } from '@guidepup/record';
 import { expect } from '@playwright/test';
-import {
-	type DefaultTestType,
-	type RunTestType,
-	type ScreenReaderTestType
-} from './data';
+import { type DefaultTestType, type RunTestType, type ScreenReaderTestType } from './data';
 import { translations } from './translations';
 
 const standardPhrases = [
@@ -46,10 +36,7 @@ const cleanSpeakInstructions = (phraseLog: string[]): string[] =>
 	phraseLog.map((phrase) => {
 		const phraseParts = phrase.split('. ');
 		let result = phraseParts
-			.filter(
-				(sPhrase) =>
-					!standardPhrases.some((string) => sPhrase.includes(string))
-			)
+			.filter((sPhrase) => !standardPhrases.some((string) => sPhrase.includes(string)))
 			.map((part, index) => {
 				// There is an issue with macOS duplicating some parts, we remove the duplicates here
 				if (!isWin()) {
@@ -109,17 +96,7 @@ export const generateSnapshot = async (
 	expect(snapshot).toMatchSnapshot();
 };
 
-export const runTest = async ({
-	title,
-	url,
-	testFn,
-	postTestFn,
-	additionalParams,
-	page,
-	nvda,
-	voiceOver,
-	retry
-}: DefaultTestType & RunTestType) => {
+export const runTest = async ({ title, url, testFn, postTestFn, additionalParams, page, nvda, voiceOver, retry }: DefaultTestType & RunTestType) => {
 	await page.goto(`${url}${additionalParams}`, {
 		waitUntil: 'networkidle'
 	});
@@ -132,8 +109,7 @@ export const runTest = async ({
 		recorder = isWin() ? windowsRecord(path) : macOSRecord(path);
 	}
 
-	const screenRecorder: VoiceOverPlaywright | NVDAPlaywright | undefined =
-		nvda ?? voiceOver;
+	const screenRecorder: VoiceOverPlaywright | NVDAPlaywright | undefined = nvda ?? voiceOver;
 	if (!screenRecorder) return;
 
 	/**
@@ -159,9 +135,7 @@ export const testDefault = (defaultTestType: DefaultTestType) => {
 	const testType: DefaultTestType = {
 		...defaultTestType,
 		postTestFn: postTestFn ?? fallbackPostFn,
-		additionalParams:
-			additionalParams ??
-			'&color=neutral-bg-basic-level-1&density=regular'
+		additionalParams: additionalParams ?? '&color=neutral-bg-basic-level-1&density=regular'
 	};
 
 	if (isWin()) {
@@ -187,7 +161,4 @@ export const testDefault = (defaultTestType: DefaultTestType) => {
 
 const isWin = (): boolean => platform() === 'win32';
 
-export const getTest = (): ScreenReaderTestType =>
-	isWin() ? nvdaTest : voiceOverTest;
-
-export default { testDefault, generateSnapshot, getTest };
+export const getTest = (): ScreenReaderTestType => (isWin() ? nvdaTest : voiceOverTest);

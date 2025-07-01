@@ -1,15 +1,8 @@
-import {
-	Show,
-	Slot,
-	useDefaultProps,
-	useMetadata,
-	useRef,
-	useStore
-} from '@builder.io/mitosis';
+import { Show, Slot, useDefaultProps, useMetadata, useRef, useStore } from '@builder.io/mitosis';
 import { DBNotificationProps, DBNotificationState } from './model';
 import DBButton from '../button/button.lite';
 import { DEFAULT_CLOSE_BUTTON } from '../../shared/constants';
-import { cls, getHideProp, stringPropVisible } from '../../utils';
+import { cls, getBoolean, getHideProp, stringPropVisible } from '../../utils';
 import { ClickEvent } from '../../shared/model';
 
 useMetadata({});
@@ -17,12 +10,15 @@ useMetadata({});
 useDefaultProps<DBNotificationProps>({});
 
 export default function DBNotification(props: DBNotificationProps) {
-	const _ref = useRef<HTMLDivElement | null>(null);
+	const _ref = useRef<HTMLDivElement | any>(null);
 	// jscpd:ignore-start
 	const state = useStore<DBNotificationState>({
-		handleClose: (event: ClickEvent<HTMLButtonElement>) => {
+		handleClose: (event?: ClickEvent<HTMLButtonElement> | void) => {
+			if (!event) return;
+
+			event.stopPropagation();
 			if (props.onClose) {
-				props.onClose();
+				props.onClose(event);
 			}
 		}
 	});
@@ -48,23 +44,20 @@ export default function DBNotification(props: DBNotificationProps) {
 					{props.text}
 				</Show>
 			</p>
-			<Show
-				when={stringPropVisible(props.timestamp, props.showTimestamp)}>
+			<Show when={stringPropVisible(props.timestamp, props.showTimestamp)}>
 				<span>{props.timestamp}</span>
 			</Show>
 
 			<Slot name="link" />
 
-			<Show when={props.closeable}>
+			<Show when={getBoolean(props.closeable, 'closeable')}>
 				<DBButton
 					id={props.closeButtonId}
 					icon="cross"
 					variant="ghost"
 					size="small"
 					noText
-					onClick={(event: ClickEvent<HTMLButtonElement>) =>
-						state.handleClose(event)
-					}>
+					onClick={(event: ClickEvent<HTMLButtonElement>) => state.handleClose(event)}>
 					{props.closeButtonText ?? DEFAULT_CLOSE_BUTTON}
 				</DBButton>
 			</Show>

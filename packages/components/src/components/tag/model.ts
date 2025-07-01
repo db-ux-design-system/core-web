@@ -1,4 +1,5 @@
 import {
+	ClickEvent,
 	ContentSlotProps,
 	GlobalProps,
 	GlobalState,
@@ -7,11 +8,22 @@ import {
 	OverflowProps,
 	SemanticProps,
 	ShowIconProps,
-	TagEmphasisProps
+	EmphasisProps
 } from '../../shared/model';
 
 export const TagBehaviorList = ['static', 'removable'] as const;
 export type TagBehaviorType = (typeof TagBehaviorList)[number];
+
+export type DBTagEventsProps = {
+	/**
+	 * If "removeButton" attribute is set this function will be called when user clicks cancel button inside the tag.
+	 */
+	onRemove?: (event?: ClickEvent<HTMLButtonElement> | void) => void;
+	/**
+	 * If "removeButton" attribute is set this function will be called when user clicks cancel button inside the tag.
+	 */
+	remove?: (event?: ClickEvent<HTMLButtonElement> | void) => void;
+};
 
 export type DBTagDefaultProps = {
 	/**
@@ -24,15 +36,11 @@ export type DBTagDefaultProps = {
 	/**
 	 * @deprecated Disable tag
 	 */
-	disabled?: boolean;
+	disabled?: boolean | string;
 	/**
 	 * Define the text next to the icon specified via the icon Property to get hidden.
 	 */
-	noText?: boolean;
-	/**
-	 * If "removeButton" attribute is set this function will be called when user clicks cancel button inside the tag.
-	 */
-	onRemove?: () => void;
+	noText?: boolean | string;
 	/**
 	 * The removeButton attribute shows the cancel button.
 	 */
@@ -40,7 +48,7 @@ export type DBTagDefaultProps = {
 	/**
 	 * Enable/Disable icon for checkbox/radio inside tag.
 	 */
-	showCheckState?: boolean;
+	showCheckState?: boolean | string;
 	/**
 	 * Alternative for children to set content as property.
 	 */
@@ -57,13 +65,14 @@ export type DBTagProps = DBTagDefaultProps &
 	IconProps &
 	SemanticProps &
 	OverflowProps &
-	TagEmphasisProps &
+	EmphasisProps &
 	ShowIconProps &
-	ContentSlotProps;
+	ContentSlotProps &
+	DBTagEventsProps;
 
 export type DBTagDefaultState = {
 	getRemoveButtonText: () => string;
-	handleRemove: () => void;
+	handleRemove: (event?: ClickEvent<HTMLButtonElement> | void) => void;
 };
 
 export type DBTagState = DBTagDefaultState & GlobalState & InitializedState;

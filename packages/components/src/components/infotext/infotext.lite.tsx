@@ -1,10 +1,4 @@
-import {
-	Show,
-	useDefaultProps,
-	useMetadata,
-	useRef,
-	useStore
-} from '@builder.io/mitosis';
+import { Show, useDefaultProps, useMetadata, useRef, useStore } from '@builder.io/mitosis';
 import { DBInfotextProps, DBInfotextState } from './model';
 import { cls, getHideProp } from '../../utils';
 
@@ -13,7 +7,7 @@ useMetadata({});
 useDefaultProps<DBInfotextProps>({});
 
 export default function DBInfotext(props: DBInfotextProps) {
-	const _ref = useRef<HTMLSpanElement | null>(null);
+	const _ref = useRef<HTMLSpanElement | any>(null);
 	// jscpd:ignore-start
 	const state = useStore<DBInfotextState>({});
 	// jscpd:ignore-end

@@ -10,10 +10,7 @@ import { DBButton } from '../button';
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const comp: any = (
 	<div className="padding-box">
-		<DBPopover
-			animation="disabled"
-			data-testid="popover"
-			trigger={<DBButton data-testid="button">Button</DBButton>}>
+		<DBPopover animation="disabled" data-testid="popover" trigger={<DBButton data-testid="button">Button</DBButton>}>
 			{/*<template v-slot:trigger>
 				<DBButton data-testid="button">Button</DBButton>
 			</template>*/}
@@ -41,6 +38,11 @@ const testComponent = () => {
 
 	test('after open should match screenshot', async ({ mount }) => {
 		const component = await mount(comp);
+		await component.getByTestId('button').evaluate((comp: HTMLElement) => {
+			comp.dispatchEvent(new Event('mouseenter'));
+			comp.parentElement?.dispatchEvent(new Event('mouseenter'));
+			comp.parentElement?.parentElement?.dispatchEvent(new Event('mouseenter'));
+		});
 		await component.getByTestId('button').focus();
 		await expect(component).toHaveScreenshot();
 	});
@@ -53,9 +55,7 @@ const testA11y = () => {
 	});
 	test('should not have any A11y issues', async ({ page, mount }) => {
 		await mount(comp);
-		const accessibilityScanResults = await new AxeBuilder({ page })
-			.include('.db-popover')
-			.analyze();
+		const accessibilityScanResults = await new AxeBuilder({ page }).include('.db-popover').analyze();
 
 		expect(accessibilityScanResults.violations).toEqual([]);
 	});

@@ -1,5 +1,6 @@
 import {
 	ClickEventState,
+	DocumentScrollState,
 	EmphasisProps,
 	GlobalProps,
 	GlobalState,
@@ -9,20 +10,31 @@ import {
 	PopoverState
 } from '../../shared/model';
 
+export const TooltipVariantList = ['description', 'label'] as const;
+export type TooltipVariantType = (typeof TooltipVariantList)[number];
+
 export type DBTooltipDefaultProps = {
-	showArrow?: boolean;
+	/**
+	 * Show/Hides arrow
+	 */
+	showArrow?: boolean | string;
+	/**
+	 * Change the behavior of the tooltip:
+	 * - description: Adds `aria-describedby` to parent
+	 * - label: Adds `aria-labelledby` to parent
+	 */
+	variant?: TooltipVariantType;
 };
 
-export type DBTooltipProps = DBTooltipDefaultProps &
-	GlobalProps &
-	EmphasisProps &
-	PlacementProps &
-	PopoverProps;
+export type DBTooltipProps = DBTooltipDefaultProps & GlobalProps & EmphasisProps & PlacementProps & PopoverProps;
 
-export type DBTooltipDefaultState = {};
+export type DBTooltipDefaultState = {
+	getParent: () => HTMLElement;
+};
 
 export type DBTooltipState = DBTooltipDefaultState &
 	GlobalState &
 	ClickEventState<HTMLElement> &
 	PopoverState &
-	InitializedState;
+	InitializedState &
+	DocumentScrollState;

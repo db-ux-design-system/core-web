@@ -1,8 +1,4 @@
-<app-default-component
-	title="DBInput"
-	[variants]="variants"
-	[exampleTemplate]="exampleTemplate"
->
+<app-default-component title="DBInput" [variants]="variants" [exampleTemplate]="exampleTemplate">
 	<ng-template
 		#exampleTemplate
 		let-exampleProps="exampleProps"
@@ -11,6 +7,9 @@
 		let-variantIndex="variantIndex"
 	>
 		<db-input
+			[maxLength]="exampleProps?.maxLength"
+			[max]="exampleProps?.max"
+			[min]="exampleProps?.min"
 			[variant]="exampleProps?.variant"
 			[label]="exampleProps?.label"
 			[message]="exampleProps?.message"
@@ -28,11 +27,7 @@
 			[invalidMessage]="exampleProps?.invalidMessage"
 			[validMessage]="exampleProps?.validMessage"
 			[validation]="exampleProps?.validation"
-			[dataList]="
-				exampleProps?.dataList
-					? getDataList(exampleProps?.variant)
-					: undefined
-			"
+			[dataList]="exampleProps?.dataList ? getDataList(exampleProps?.variant) : undefined"
 		></db-input>
 	</ng-template>
 </app-default-component>

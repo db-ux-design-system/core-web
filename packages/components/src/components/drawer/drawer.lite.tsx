@@ -1,59 +1,63 @@
-import {
-	onMount,
-	onUpdate,
-	Slot,
-	useDefaultProps,
-	useMetadata,
-	useRef,
-	useStore
-} from '@builder.io/mitosis';
+import { onMount, onUpdate, Slot, useDefaultProps, useMetadata, useRef, useStore } from '@builder.io/mitosis';
 import { DBDrawerProps, DBDrawerState } from './model';
 import DBButton from '../button/button.lite';
 import { DEFAULT_CLOSE_BUTTON } from '../../shared/constants';
-import { cls, delay } from '../../utils';
+import { cls, delay, getBooleanAsString, isKeyboardEvent } from '../../utils';
+import { ClickEvent, GeneralKeyboardEvent } from '../../shared/model';
 
 useMetadata({});
 
 useDefaultProps<DBDrawerProps>({});
 
 export default function DBDrawer(props: DBDrawerProps) {
-	const _ref = useRef<HTMLDialogElement | null>(null);
-	const dialogContainerRef = useRef<HTMLDivElement | null>(null);
+	const _ref = useRef<HTMLDialogElement | any>(null);
+	const dialogContainerRef = useRef<HTMLDivElement | any>(null);
 	const state = useStore<DBDrawerState>({
 		// eslint-disable-next-line @typescript-eslint/no-explicit-any
-		handleClose: (event: any) => {
-			if (event.key === 'Escape') {
-				event.preventDefault();
-			}
+		handleClose: (
+			event?: ClickEvent<HTMLButtonElement | HTMLDialogElement> | GeneralKeyboardEvent<HTMLDialogElement> | void,
+			forceClose?: boolean
+		) => {
+			if (!event) return;
 
-			if (
-				event === 'close' ||
-				event.key === 'Escape' ||
-				(event.target.nodeName === 'DIALOG' &&
-					event.type === 'click' &&
-					props.backdrop !== 'none')
-			) {
-				if (props.onClose) {
-					props.onClose(event);
+			if (isKeyboardEvent<HTMLButtonElement | HTMLDialogElement>(event)) {
+				if (event.key === 'Escape') {
+					event.preventDefault();
+
+					if (props.onClose) {
+						props.onClose(event);
+					}
+				}
+			} else {
+				if (forceClose) {
+					event.stopPropagation();
+
+					if (props.onClose) {
+						props.onClose(event);
+					}
+				}
+
+				if ((event.target as any)?.nodeName === 'DIALOG' && event.type === 'click' && props.backdrop !== 'none') {
+					if (props.onClose) {
+						props.onClose(event);
+					}
 				}
 			}
 		},
 		handleDialogOpen: () => {
 			if (_ref) {
-				if (props.open && !_ref.open) {
+				const open = Boolean(props.open);
+				if (open && !_ref.open) {
 					if (dialogContainerRef) {
 						dialogContainerRef.hidden = false;
 					}
-					if (
-						props.backdrop === 'none' ||
-						props.variant === 'inside'
-					) {
+					if (props.backdrop === 'none' || props.variant === 'inside') {
 						_ref.show();
 					} else {
 						_ref.showModal();
 					}
 				}
-				if (!props.open && _ref.open) {
+				if (!open && _ref.open) {
 					if (dialogContainerRef) {
 						dialogContainerRef.hidden = true;
 					}
@@ -81,9 +85,7 @@ export default function DBDrawer(props: DBDrawerProps) {
 			id={props.id}
 			ref={_ref}
 			class="db-drawer"
-			onClick={(event) => {
-				state.handleClose(event);
-			}}
+			onClick={(event) => state.handleClose(event)}
 			onKeyDown={(event) => state.handleClose(event)}
 			data-backdrop={props.backdrop}
 			data-variant={props.variant}>
@@ -93,7 +95,7 @@ export default function DBDrawer(props: DBDrawerProps) {
 				data-spacing={props.spacing}
 				data-width={props.width}
 				data-direction={props.direction}
-				data-rounded={props.rounded}>
+				data-rounded={getBooleanAsString(props.rounded)}>
 				<header class="db-drawer-header">
 					<div class="db-drawer-header-text">
 						<Slot name="drawerHeader" />
@@ -104,7 +106,7 @@ export default function DBDrawer(props: DBDrawerProps) {
 						icon="cross"
 						variant="ghost"
 						noText
-						onClick={() => state.handleClose('close')}>
+						onClick={(event) => state.handleClose(event, true)}>
 						{props.closeButtonText ?? DEFAULT_CLOSE_BUTTON}
 					</DBButton>
 				</header>

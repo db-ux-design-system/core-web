@@ -1,31 +1,15 @@
-import {
-	DBPage,
-	DBBrand,
-	DBButton,
-	DBHeader,
-	DBLink,
-	DBNavigation,
-	DBNavigationItem
-} from '../../../../../output/react/src';
+import { DBPage, DBBrand, DBButton, DBHeader, DBLink, DBNavigation, DBNavigationItem } from '../../../../../output/react/src';
 import { type DBPageProps } from '../../../../../output/react/src/components/page/model';
 import defaultComponentVariants from '../../../../shared/page.json';
 import { getVariants } from '../data';
 import DefaultComponent from '../default-component';
 import { type BaseComponentProps } from '../base-component-data';
 
-const getPage = ({
-	variant,
-	fadeIn,
-	children,
-	className,
-	describedbyid,
-	id
-}: DBPageProps) => (
+const getPage = ({ variant, fadeIn, children, className, id }: DBPageProps) => (
 	<DBPage
 		variant={variant}
 		fadeIn={fadeIn}
 		className={className}
-		describedbyid={describedbyid}
 		id={id}
 		header={
 			<DBHeader
@@ -70,15 +54,7 @@ const getPage = ({
 );
 
 const PageComponent = (props: BaseComponentProps) => {
-	return (
-		<DefaultComponent
-			title="DBPage"
-			variants={getVariants(
-				defaultComponentVariants,
-				getPage,
-				props.slotCode
-			)}></DefaultComponent>
-	);
+	return <DefaultComponent title="DBPage" variants={getVariants(defaultComponentVariants, getPage, props.slotCode)}></DefaultComponent>;
 };
 
 export default PageComponent;

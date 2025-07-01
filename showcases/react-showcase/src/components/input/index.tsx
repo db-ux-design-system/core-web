@@ -1,17 +1,11 @@
-import {
-	DBInput,
-	type LabelVariantType,
-	type ValueLabelType
-} from '../../../../../output/react/src';
+import { DBInput, type LabelVariantType, type ValueLabelType } from '../../../../../output/react/src';
 import DefaultComponent from '../default-component';
 import defaultComponentVariants from '../../../../shared/input.json';
 import { type DBInputProps } from '../../../../../output/react/src/components/input/model';
 import { getVariants } from '../data';
 import { type BaseComponentProps } from '../base-component-data';
 
-const getDataList = (
-	variant?: LabelVariantType
-): string[] | ValueLabelType[] => {
+const getDataList = (variant?: LabelVariantType): string[] | ValueLabelType[] => {
 	if (variant === 'floating') {
 		return ['Test 1', 'Test 2'];
 	}
@@ -40,7 +34,10 @@ const getInput = ({
 	showMessage,
 	validMessage,
 	validation,
-	invalidMessage
+	invalidMessage,
+	maxLength,
+	max,
+	min
 }: DBInputProps & { dataList: boolean }) => {
 	return (
 		<DBInput
@@ -56,6 +53,9 @@ const getInput = ({
 			disabled={disabled}
 			readOnly={readOnly}
 			iconAfter={iconAfter}
+			maxLength={maxLength}
+			max={max}
+			min={min}
 			icon={icon}
 			showMessage={showMessage}
 			invalidMessage={invalidMessage}
@@ -67,15 +67,7 @@ const getInput = ({
 };
 
 const InputComponent = (props: BaseComponentProps) => {
-	return (
-		<DefaultComponent
-			title={'DBInput'}
-			variants={getVariants(
-				defaultComponentVariants,
-				getInput,
-				props.slotCode
-			)}></DefaultComponent>
-	);
+	return <DefaultComponent title={'DBInput'} variants={getVariants(defaultComponentVariants, getInput, props.slotCode)}></DefaultComponent>;
 };
 
 export default InputComponent;

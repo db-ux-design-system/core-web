@@ -1,4 +1,4 @@
-import { handleDataOutside } from './index';
+import { handleDataOutside } from './floating-components';
 
 export type TriangleData = {
 	itemRect: DOMRect;
@@ -11,21 +11,18 @@ export type TriangleData = {
 
 export const isEventTargetNavigationItem = (event: unknown): boolean => {
 	const { target } = event as { target: HTMLElement };
-	return Boolean(
-		!target?.classList?.contains('db-navigation-item-expand-button') &&
-			target?.parentElement?.classList.contains('db-navigation-item')
-	);
+	return Boolean(!target?.classList?.contains('db-navigation-item-expand-button') && target?.parentElement?.classList.contains('db-navigation-item'));
 };
 
 export class NavigationItemSafeTriangle {
 	private readonly element: HTMLElement | null;
-	private readonly subNavigation: Element | null;
-	private readonly parentSubNavigation: Element | null = null;
+	private readonly subNavigation: HTMLElement | null;
+	private readonly parentSubNavigation: HTMLElement | null = null;
 	private triangleData?: TriangleData;
 	private initialized: boolean = false;
 	private mouseX: number = 0;
 	private mouseY: number = 0;
-	constructor(element: HTMLElement | null, subNavigation: Element | null) {
+	constructor(element: HTMLElement | null, subNavigation: HTMLElement | null) {
 		this.element = element;
 		this.subNavigation = subNavigation;
 
@@ -46,40 +43,29 @@ export class NavigationItemSafeTriangle {
 	}
 
 	private init() {
-		const parentElementWidth =
-			this.parentSubNavigation?.getBoundingClientRect().width ?? 0;
+		const parentElementWidth = this.parentSubNavigation?.getBoundingClientRect().width ?? 0;
 
 		// the triangle has the width of the sub-navigation, current nav-item can be wider.
 		// so the width of the triangle must be adapted to a possibly wider nav-item.
-		this.element?.style.setProperty(
-			'--db-navigation-item-inline-size',
-			`${parentElementWidth}px`
-		);
+		this.element?.style.setProperty('--db-navigation-item-inline-size', `${parentElementWidth}px`);
 
 		this.initialized = true;
 	}
 
 	public enableFollow() {
-		if (
-			!this.initialized ||
-			this.triangleData ||
-			!this.element ||
-			!this.subNavigation
-		) {
+		if (!this.initialized || this.triangleData || !this.element || !this.subNavigation) {
 			return;
 		}
 
 		const dataOutsidePair = handleDataOutside(this.subNavigation);
 
 		const itemRect = this.element.getBoundingClientRect();
-		const parentElementWidth =
-			this.parentSubNavigation?.getBoundingClientRect().width ?? 0;
+		const parentElementWidth = this.parentSubNavigation?.getBoundingClientRect().width ?? 0;
 
 		this.triangleData = {
 			itemRect,
 			parentElementWidth,
-			subNavigationHeight:
-				this.subNavigation.getBoundingClientRect().height,
+			subNavigationHeight: this.subNavigation.getBoundingClientRect().height,
 			padding: (parentElementWidth - itemRect.width) / 2,
 			outsideVX: dataOutsidePair.vx,
 			outsideVY: dataOutsidePair.vy
@@ -106,20 +92,11 @@ export class NavigationItemSafeTriangle {
 		if (!this.triangleData) return 0;
 
 		// padding must be added to the y pos of the tip so that the y pos matches the cursor
-		const mouseYLimited =
-			Math.max(
-				Math.min(this.mouseY, this.triangleData.itemRect.height),
-				0
-			) + this.triangleData.padding;
+		const mouseYLimited = Math.max(Math.min(this.mouseY, this.triangleData.itemRect.height), 0) + this.triangleData.padding;
 
 		if (this.triangleData.outsideVY === 'bottom') {
 			// add offset to tip y pos to match corrected sub-navigation y pos
-			return (
-				mouseYLimited +
-				(this.triangleData.subNavigationHeight -
-					this.triangleData.padding * 2 -
-					this.triangleData.itemRect.height)
-			);
+			return mouseYLimited + (this.triangleData.subNavigationHeight - this.triangleData.padding * 2 - this.triangleData.itemRect.height);
 		}
 
 		return mouseYLimited;
@@ -130,21 +107,13 @@ export class NavigationItemSafeTriangle {
 			return false;
 		}
 
-		const isSubNavigationOnLeftSide =
-			this.triangleData.outsideVX === 'right';
+		const isSubNavigationOnLeftSide = this.triangleData.outsideVX === 'right';
 
-		if (
-			isSubNavigationOnLeftSide &&
-			this.mouseX < -1 * this.triangleData.padding
-		) {
+		if (isSubNavigationOnLeftSide && this.mouseX < -1 * this.triangleData.padding) {
 			return true;
 		}
 
-		if (
-			!isSubNavigationOnLeftSide &&
-			this.mouseX >
-				this.triangleData.parentElementWidth - this.triangleData.padding
-		) {
+		if (!isSubNavigationOnLeftSide && this.mouseX > this.triangleData.parentElementWidth - this.triangleData.padding) {
 			return true;
 		}
 
@@ -190,12 +159,7 @@ export class NavigationItemSafeTriangle {
 	}
 
 	public followByMouseEvent(event: MouseEvent) {
-		if (
-			!this.initialized ||
-			!this.triangleData ||
-			!this.element ||
-			!this.subNavigation
-		) {
+		if (!this.initialized || !this.triangleData || !this.element || !this.subNavigation) {
 			return;
 		}
 
@@ -204,9 +168,7 @@ export class NavigationItemSafeTriangle {
 
 		const isOverSubNavigation = this.hasMouseEnteredSubNavigation();
 
-		const coordinates = this.getTriangleCoordinates(
-			isOverSubNavigation ? 'fill-gap' : 'safe-triangle'
-		);
+		const coordinates = this.getTriangleCoordinates(isOverSubNavigation ? 'fill-gap' : 'safe-triangle');
 
 		if (!coordinates) {
 			return;

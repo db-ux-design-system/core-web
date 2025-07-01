@@ -1,8 +1,4 @@
-<app-default-component
-	title="DBTooltip"
-	[variants]="variants"
-	[exampleTemplate]="exampleTemplate"
->
+<app-default-component title="DBTooltip" [variants]="variants" [exampleTemplate]="exampleTemplate">
 	<ng-template
 		#exampleTemplate
 		let-exampleProps="exampleProps"
@@ -18,7 +14,6 @@
 				[placement]="exampleProps?.placement"
 				[animation]="exampleProps?.animation"
 				[delay]="exampleProps?.delay"
-				[variant]="exampleProps?.variant"
 				>{{ exampleProps?.content }}</db-tooltip
 			>
 		</db-button>

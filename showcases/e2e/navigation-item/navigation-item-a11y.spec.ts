@@ -1,10 +1,5 @@
 import { test } from '@playwright/test';
-import {
-	hasWebComponentSyntax,
-	runAxeCoreTest,
-	runA11yCheckerTest
-	// @ts-expect-error - required for playwright
-} from '../default.ts';
+import { hasWebComponentSyntax, runAxeCoreTest, runA11yCheckerTest } from '../default.ts';
 import { lvl3 } from '../fixtures/variants';
 
 const fixedHeight = 1800; // Set fixed height, because of issues with angulars `ngAfterContentInit`

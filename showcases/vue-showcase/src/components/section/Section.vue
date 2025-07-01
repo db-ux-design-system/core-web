@@ -6,11 +6,9 @@ import { DBSection, DBCard } from "../../../../../output/vue/src";
 
 <template>
 	<DefaultComponent title="DBSection" :variants="defaultComponentVariants">
-		<template
-			#example="{ exampleIndex, variantIndex, exampleName, exampleProps }"
-		>
+		<template #example="{ exampleIndex, variantIndex, exampleName, exampleProps }">
 			<DBSection
-				class="db-informational-bg-basic-level-2 section-card-container"
+				class="db-color-informational db-bg-color-basic-level-2 section-card-container"
 				:spacing="exampleProps?.spacing"
 				:width="exampleProps?.width"
 			>

@@ -7,18 +7,14 @@ import {
 	FormProps,
 	FormState,
 	FormTextProps,
+	FromValidState,
 	GlobalProps,
 	GlobalState,
 	InputEventProps,
 	InputEventState
 } from '../../shared/model';
 
-export const TextareaResizeList = [
-	'none',
-	'both',
-	'horizontal',
-	'vertical'
-] as const;
+export const TextareaResizeList = ['none', 'both', 'horizontal', 'vertical'] as const;
 export type TextareaResizeType = (typeof TextareaResizeList)[number];
 
 export const TextareaWrapList = ['hard', 'soft', 'off'] as const;
@@ -28,15 +24,21 @@ export type DBTextareaDefaultProps = {
 	/**
 	 * The visible width of the text control, in average character widths. If it is specified, it must be a positive integer
 	 */
-	cols?: number;
+	cols?: number | string;
 	/**
 	 * In most browsers, textareas are resizable — you'll notice the drag handle in the right-hand corner, you can control it with this
 	 */
 	resize?: TextareaResizeType;
+
+	/**
+	 * Show/Hides drag handle in the right-hand corner - default: true
+	 */
+	showResizer?: boolean | string;
+
 	/**
 	 * The number of visible text lines for the control. If it is specified, it must be a positive integer
 	 */
-	rows?: number;
+	rows?: number | string;
 	/**
 	 * Specifies whether the textarea is subject to spell checking by the underlying browser/OS
 	 */
@@ -64,4 +66,5 @@ export type DBTextareaState = DBTextareaDefaultState &
 	InputEventState<HTMLTextAreaElement> &
 	FocusEventState<HTMLTextAreaElement> &
 	FormState &
-	GlobalState;
+	GlobalState &
+	FromValidState;

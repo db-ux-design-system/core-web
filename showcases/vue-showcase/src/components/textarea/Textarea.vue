@@ -6,9 +6,7 @@ import { DBCheckbox, DBInput, DBTextarea } from "../../../../../output/vue/src";
 
 <template>
 	<DefaultComponent title="DBTextarea" :variants="defaultComponentVariants">
-		<template
-			#example="{ exampleIndex, variantIndex, exampleName, exampleProps }"
-		>
+		<template #example="{ exampleIndex, variantIndex, exampleName, exampleProps }">
 			<DBTextarea
 				:cols="exampleProps?.cols"
 				:disabled="exampleProps?.disabled"
@@ -25,6 +23,8 @@ import { DBCheckbox, DBInput, DBTextarea } from "../../../../../output/vue/src";
 				:invalidMessage="exampleProps?.invalidMessage"
 				:validMessage="exampleProps?.validMessage"
 				:validation="exampleProps?.validation"
+				:showResizer="exampleProps?.showResizer"
+				:fieldSizing="exampleProps?.fieldSizing"
 			></DBTextarea>
 		</template>
 	</DefaultComponent>

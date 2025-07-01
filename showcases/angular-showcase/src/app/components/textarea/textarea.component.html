@@ -1,8 +1,4 @@
-<app-default-component
-	title="DBTextarea"
-	[variants]="variants"
-	[exampleTemplate]="exampleTemplate"
->
+<app-default-component title="DBTextarea" [variants]="variants" [exampleTemplate]="exampleTemplate">
 	<ng-template
 		#exampleTemplate
 		let-exampleProps="exampleProps"
@@ -26,6 +22,8 @@
 			[invalidMessage]="exampleProps?.invalidMessage"
 			[validMessage]="exampleProps?.validMessage"
 			[validation]="exampleProps?.validation"
+			[showResizer]="exampleProps?.showResizer"
+			[fieldSizing]="exampleProps?.fieldSizing"
 		></db-textarea>
 	</ng-template>
 </app-default-component>

@@ -24,9 +24,15 @@ TODO: Elaborate on testing setup
 
 #### Component Tests
 
-**Visual regression tests**
+##### Visual regression tests
 
 Playwright is used to create and compare screenshots of each individual component.
+
+###### Pipeline generated images
+
+On every fail of the visual regression tests in the Default pipeline, we're regenerating the snapshots as a `snapshot-*`-artifact. Please download these ones from the "Summary" page and commit the updated screenshots with `npm run commit:updated-snapshots` command from project root.
+
+###### Manual update
 
 To update screenshots, simply run the following command (ensure Docker is installed and available in your shell):
 
@@ -40,10 +46,10 @@ If you want to generate the screenshots manually, do the following:
 npm run build
 
 # unix
-docker run --rm --network host -v $(pwd):/work/ -w /work/ -it mcr.microsoft.com/playwright:v1.30.0-focal /bin/bash
+docker run --rm --network host -v $(pwd):/work/ -w /work/ -it mcr.microsoft.com/playwright:v1.51.1-focal /bin/bash
 
 # windows - allow file sharing (windows pop up)
-docker run --rm --network host -v ${PWD}:/work/ -w /work/ -it mcr.microsoft.com/playwright:v1.30.0-focal /bin/bash
+docker run --rm --network host -v ${PWD}:/work/ -w /work/ -it mcr.microsoft.com/playwright:v1.51.1-focal /bin/bash
 
 npm install
 

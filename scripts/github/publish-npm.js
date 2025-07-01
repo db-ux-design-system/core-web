@@ -1,10 +1,9 @@
 #!/usr/bin/env node
 import { execSync } from 'node:child_process';
 
-const VALID_SEMVER_VERSION = process.env.VALID_SEMVER_VERSION;
+const { VALID_SEMVER_VERSION, NPM_TOKEN } = process.env;
 const RELEASE = process.env.RELEASE === 'true';
 const PRE_RELEASE = process.env.PRE_RELEASE === 'true';
-const NPM_TOKEN = process.env.NPM_TOKEN;
 
 if (!VALID_SEMVER_VERSION) {
 	console.error('Version is missing!');
@@ -12,9 +11,7 @@ if (!VALID_SEMVER_VERSION) {
 }
 
 if (!RELEASE && !PRE_RELEASE) {
-	console.error(
-		'RELEASE and PRE_RELEASE are false, there should be an error in the pipeline!'
-	);
+	console.error('RELEASE and PRE_RELEASE are false, there should be an error in the pipeline!');
 	process.exit(1);
 }
 
@@ -39,23 +36,13 @@ for (const PACKAGE of packages) {
 	console.log(`Start ${PACKAGE} bundle:`);
 
 	console.log('🆚 Update Version');
-	execSync(
-		`npm version --no-git-tag-version ${VALID_SEMVER_VERSION} --workspace=@db-ux/${PACKAGE}`
-	);
+	execSync(`npm version --no-git-tag-version ${VALID_SEMVER_VERSION} --workspace=@db-ux/${PACKAGE}`);
 
-	if (
-		PACKAGE !== 'core-foundations' &&
-		PACKAGE !== 'core-migration' &&
-		PACKAGE !== 'core-stylelint'
-	) {
+	if (PACKAGE !== 'core-foundations' && PACKAGE !== 'core-migration' && PACKAGE !== 'core-stylelint') {
 		console.log('🕵️‍ Set foundations dependency');
-		execSync(
-			`npm pkg set dependencies.@db-ux/core-foundations=${VALID_SEMVER_VERSION} --workspace=@db-ux/${PACKAGE}`
-		);
+		execSync(`npm pkg set dependencies.@db-ux/core-foundations=${VALID_SEMVER_VERSION} --workspace=@db-ux/${PACKAGE}`);
 		if (PACKAGE !== 'core-components') {
-			execSync(
-				`npm pkg set dependencies.@db-ux/core-components=${VALID_SEMVER_VERSION} --workspace=@db-ux/${PACKAGE}`
-			);
+			execSync(`npm pkg set dependencies.@db-ux/core-components=${VALID_SEMVER_VERSION} --workspace=@db-ux/${PACKAGE}`);
 		}
 	}
 
@@ -85,8 +72,6 @@ for (const REGISTRY of registries) {
 
 	for (const PACKAGE of packages) {
 		console.log(`⤴ Publish ${PACKAGE} with tag ${TAG} to ${REGISTRY}`);
-		execSync(
-			`npm publish --tag ${TAG} db-ux-${PACKAGE}-${VALID_SEMVER_VERSION}.tgz --provenance`
-		);
+		execSync(`npm publish --tag ${TAG} db-ux-${PACKAGE}-${VALID_SEMVER_VERSION}.tgz --provenance`);
 	}
 }

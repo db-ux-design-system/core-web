@@ -28,6 +28,7 @@ import { IconComponent } from '../components/icon/icon.component';
 import { BrandComponent } from '../components/brand/brand.component';
 import { HeaderComponent } from '../components/header/header.component';
 import { HomeComponent } from '../components/home/home.component';
+import { CustomSelectComponent } from '../components/custom-select/custom-select.component';
 
 export type NavItem = {
 	path: string;
@@ -37,9 +38,7 @@ export type NavItem = {
 };
 
 export const getSortedNavigationItems = (navigationItems: NavItem[]): any[] =>
-	navigationItems.sort((a: NavItem, b: NavItem) =>
-		a.path.localeCompare(b.path)
-	);
+	navigationItems.sort((a: NavItem, b: NavItem) => a.path.localeCompare(b.path));
 
 export const NAVIGATION_ITEMS: NavItem[] = [
 	{
@@ -116,6 +115,11 @@ export const NAVIGATION_ITEMS: NavItem[] = [
 		path: '03',
 		label: '03 Data-Input',
 		subNavigation: getSortedNavigationItems([
+			{
+				path: '03/custom-select',
+				label: 'CustomSelect',
+				component: CustomSelectComponent
+			},
 			{ path: '03/input', label: 'Input', component: InputComponent },
 			{
 				path: '03/textarea',

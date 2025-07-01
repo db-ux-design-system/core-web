@@ -1,14 +1,5 @@
-import {
-	Component,
-	CUSTOM_ELEMENTS_SCHEMA,
-	NO_ERRORS_SCHEMA
-} from '@angular/core';
-import {
-	FormControl,
-	FormGroup,
-	FormsModule,
-	ReactiveFormsModule
-} from '@angular/forms';
+import { Component, CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA } from '@angular/core';
+import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {
 	DBButton,
 	DBCheckbox,
@@ -23,18 +14,16 @@ import {
 	DBTag,
 	DBTextarea
 } from '../../../../../../output/angular/src';
-import { DefaultComponent } from '../default.component';
 import { environment } from '../../../environments/environment';
 
 @Component({
 	selector: 'app-form',
 	templateUrl: './form.component.html',
 	imports: environment.webComponents
-		? [FormsModule, ReactiveFormsModule, DefaultComponent]
+		? [FormsModule, ReactiveFormsModule]
 		: [
 				FormsModule,
 				ReactiveFormsModule,
-				DefaultComponent,
 				DBInput,
 				DBTextarea,
 				DBSelect,
@@ -90,10 +79,12 @@ export class FormComponent {
 	getTags = (): string => JSON.stringify(this.tags);
 
 	changeTags = (tag: string) => {
-		this.tags = this.tags.includes(tag)
-			? this.tags.filter((t) => t !== tag)
-			: [...this.tags, tag];
+		this.tags = this.tags.includes(tag) ? this.tags.filter((t) => t !== tag) : [...this.tags, tag];
 	};
+
+	changeTextarea(key: string, event: any) {
+		this[key] = event.target.value;
+	}
 
 	resetValues(): void {
 		this.model.input = 'reset';
@@ -108,12 +99,7 @@ export class FormComponent {
 
 	onFormSubmit(): void {
 		// eslint-disable-next-line no-alert
-		alert(
-			'Formvalue: ' +
-				JSON.stringify(this.form.value) +
-				' / Model data: ' +
-				JSON.stringify(this.model)
-		);
+		alert('Formvalue: ' + JSON.stringify(this.form.value) + ' / Model data: ' + JSON.stringify(this.model));
 	}
 
 	// Checkbox changes

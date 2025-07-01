@@ -1,11 +1,4 @@
-import {
-	DBBrand,
-	DBButton,
-	DBHeader,
-	DBLink,
-	DBNavigation,
-	DBNavigationItem
-} from '../../../../../output/react/src';
+import { DBBrand, DBButton, DBHeader, DBLink, DBNavigation, DBNavigationItem } from '../../../../../output/react/src';
 import { type DBHeaderProps } from '../../../../../output/react/src/components/header/model';
 import defaultComponentVariants from '../../../../shared/header.json';
 import { getVariants } from '../data';
@@ -18,7 +11,6 @@ const getHeader = ({
 	burgerMenuLabel,
 	children,
 	className,
-	describedbyid,
 	id,
 	onToggle,
 	width,
@@ -32,11 +24,7 @@ const getHeader = ({
 }) => (
 	<DBHeader
 		width={width}
-		brand={
-			<DBBrand title="DBHeader">
-				{(!example || withName) && 'DBHeader'}
-			</DBBrand>
-		}
+		brand={<DBBrand title="DBHeader">{(!example || withName) && 'DBHeader'}</DBBrand>}
 		metaNavigation={
 			!example && (
 				<>
@@ -71,7 +59,6 @@ const getHeader = ({
 		forceMobile={forceMobile}
 		burgerMenuLabel={burgerMenuLabel}
 		className={className}
-		describedbyid={describedbyid}
 		id={id}
 		onToggle={onToggle}>
 		{(!example || withNavigation) && (
@@ -88,15 +75,7 @@ const getHeader = ({
 );
 
 const HeaderComponent = (props: BaseComponentProps) => {
-	return (
-		<DefaultComponent
-			title="DBHeader"
-			variants={getVariants(
-				defaultComponentVariants,
-				getHeader,
-				props.slotCode
-			)}></DefaultComponent>
-	);
+	return <DefaultComponent title="DBHeader" variants={getVariants(defaultComponentVariants, getHeader, props.slotCode)}></DefaultComponent>;
 };
 
 export default HeaderComponent;

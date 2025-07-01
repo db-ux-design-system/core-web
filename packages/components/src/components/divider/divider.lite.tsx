@@ -1,9 +1,4 @@
-import {
-	useDefaultProps,
-	useMetadata,
-	useRef,
-	useStore
-} from '@builder.io/mitosis';
+import { useDefaultProps, useMetadata, useRef, useStore } from '@builder.io/mitosis';
 import { DBDividerProps, DBDividerState } from './model';
 import { cls } from '../../utils';
 
@@ -12,7 +7,7 @@ useMetadata({});
 useDefaultProps<DBDividerProps>({});
 
 export default function DBDivider(props: DBDividerProps) {
-	const _ref = useRef<HTMLDivElement | null>(null);
+	const _ref = useRef<HTMLDivElement | any>(null);
 	// jscpd:ignore-start
 	const state = useStore<DBDividerState>({});
 

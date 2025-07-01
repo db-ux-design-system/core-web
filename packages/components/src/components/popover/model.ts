@@ -1,19 +1,10 @@
-import {
-	GapProps,
-	GlobalProps,
-	GlobalState,
-	InitializedState,
-	PlacementProps,
-	PopoverProps,
-	PopoverState,
-	SpacingProps
-} from '../../shared/model';
+import { GapProps, GlobalProps, GlobalState, InitializedState, PlacementProps, PopoverProps, PopoverState, SpacingProps } from '../../shared/model';
 
 export type DBPopoverDefaultProps = {
 	/**
 	 * Use open to disable the default hover/focus behavior to use it on click or other trigger.
 	 */
-	open?: boolean;
+	open?: boolean | string;
 
 	/**
 	 * The trigger to open the popover e.g. a button
@@ -21,21 +12,11 @@ export type DBPopoverDefaultProps = {
 	trigger?: any;
 };
 
-export type DBPopoverProps = DBPopoverDefaultProps &
-	GlobalProps &
-	SpacingProps &
-	PlacementProps &
-	GapProps &
-	PopoverProps;
+export type DBPopoverProps = DBPopoverDefaultProps & GlobalProps & SpacingProps & PlacementProps & GapProps & PopoverProps;
 
 export type DBPopoverDefaultState = {
 	isExpanded?: boolean;
 	getTrigger: () => Element | null;
-	// eslint-disable-next-line @typescript-eslint/no-explicit-any
-	handleLeave: (event: any) => void;
 };
 
-export type DBPopoverState = DBPopoverDefaultState &
-	GlobalState &
-	PopoverState &
-	InitializedState;
+export type DBPopoverState = DBPopoverDefaultState & GlobalState & PopoverState & InitializedState;

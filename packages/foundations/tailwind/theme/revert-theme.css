@@ -1,0 +1,48 @@
+/* The prefix for variables are predefined by Tailwind, stylelint would throw an error */
+/* stylelint-disable scss/at-rule-no-unknown, custom-property-pattern */
+@theme {
+	--font-*: initial; /* Font family utilities like font-sans */
+	--font-sans: var(--db-font-family-sans);
+	--font-head: var(--db-font-family-head);
+	--text-*: initial; /* Font size utilities like text-body-xl */
+
+	/* We overwrite those with custom utilities, those are just for auto complete */
+	--text-base: var(--db-type-body-md);
+	--text-body-3xs: var(--db-type-body-3xs);
+	--text-body-2xs: var(--db-type-body-2xs);
+	--text-body-xs: var(--db-type-body-xs);
+	--text-body-sm: var(--db-type-body-sm);
+	--text-body-md: var(--db-type-body-md);
+	--text-body-lg: var(--db-type-body-lg);
+	--text-body-xl: var(--db-type-body-xl);
+	--text-body-2xl: var(--db-type-body-2xl);
+	--text-body-3xl: var(--db-type-body-3xl);
+	--text-head-3xs: var(--db-type-headline-3xs);
+	--text-head-2xs: var(--db-type-headline-2xs);
+	--text-head-xs: var(--db-type-headline-xs);
+	--text-head-sm: var(--db-type-headline-sm);
+	--text-head-md: var(--db-type-headline-md);
+	--text-head-lg: var(--db-type-headline-lg);
+	--text-head-xl: var(--db-type-headline-xl);
+	--text-head-2xl: var(--db-type-headline-2xl);
+	--text-head-3xl: var(--db-type-headline-3xl);
+	--spacing-*: initial; /* Spacing and sizing utilities like px-fix-md, max-h-siz-xl, and many more */
+	--spacing-none: 0;
+	--spacing-0: 0;
+	--gap-*: initial; /* Gap */
+	--gap-none: 0;
+	--gap-0: 0;
+	--border-*: initial; /* Border width */
+	--border-none: 0;
+	--border-0: 0;
+	--radius-*: initial; /* Border radius utilities like rounded-sm */
+	--radius-none: 0;
+	--radius-0: 0;
+	--shadow-*: initial; /* Box shadow utilities like shadow-md */
+	--breakpoint-*: initial; /* Responsive breakpoint variants like sm:* */
+	--breakpoint-xs: 360px;
+	--breakpoint-sm: 720px;
+	--breakpoint-md: 1024px;
+	--breakpoint-lg: 1440px;
+	--breakpoint-xl: 1920px;
+}

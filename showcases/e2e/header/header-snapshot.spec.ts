@@ -1,10 +1,5 @@
 import { test } from '@playwright/test';
-import {
-	getDefaultScreenshotTest,
-	isStencil,
-	runAriaSnapshotTest
-	// @ts-expect-error - required for playwright
-} from '../default.ts';
+import { getDefaultScreenshotTest, isStencil, runAriaSnapshotTest } from '../default.ts';
 
 const path = '01/header';
 test.describe('DBHeader', () => {

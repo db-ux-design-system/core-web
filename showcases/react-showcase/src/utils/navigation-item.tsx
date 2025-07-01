@@ -1,4 +1,5 @@
 import StackComponent from '../components/stack';
+import CustomSelectComponent from '../components/custom-select';
 import SwitchComponent from '../components/switch';
 import TabsComponent from '../components/tabs';
 import TabItemComponent from '../components/tab-item';
@@ -35,12 +36,8 @@ export type NavigationItem = {
 	subNavigation?: NavigationItem[];
 };
 
-export const getSortedNavigationItems = (
-	navigationItems: NavigationItem[]
-): any[] =>
-	navigationItems.sort((a: NavigationItem, b: NavigationItem) =>
-		a.path.localeCompare(b.path)
-	);
+export const getSortedNavigationItems = (navigationItems: NavigationItem[]): any[] =>
+	navigationItems.sort((a: NavigationItem, b: NavigationItem) => a.path.localeCompare(b.path));
 export const NAVIGATION_ITEMS: NavigationItem[] = [
 	{
 		path: '06',
@@ -119,6 +116,11 @@ export const NAVIGATION_ITEMS: NavigationItem[] = [
 		path: '03',
 		label: '03 Data-Input',
 		subNavigation: getSortedNavigationItems([
+			{
+				path: 'custom-select',
+				label: 'CustomSelect',
+				component: <CustomSelectComponent />
+			},
 			{ path: 'input', label: 'Input', component: <InputComponent /> },
 			{
 				path: 'textarea',

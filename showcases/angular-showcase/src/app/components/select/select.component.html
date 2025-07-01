@@ -1,8 +1,4 @@
-<app-default-component
-	title="DBSelect"
-	[variants]="variants"
-	[exampleTemplate]="exampleTemplate"
->
+<app-default-component title="DBSelect" [variants]="variants" [exampleTemplate]="exampleTemplate">
 	<ng-template
 		#exampleTemplate
 		let-exampleProps="exampleProps"
@@ -25,7 +21,6 @@
 			[invalidMessage]="exampleProps?.invalidMessage"
 			[validMessage]="exampleProps?.validMessage"
 			[validation]="exampleProps?.validation"
-			>{{ exampleName }}</db-select
-		>
+		></db-select>
 	</ng-template>
 </app-default-component>

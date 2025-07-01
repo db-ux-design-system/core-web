@@ -18,7 +18,7 @@ export type DBSwitchDefaultProps = {
 	/**
 	 * Add additional icons to indicate active/inactive state.
 	 */
-	visualAid?: boolean;
+	visualAid?: boolean | string;
 };
 
 export type DBSwitchProps = DBSwitchDefaultProps &
@@ -33,11 +33,7 @@ export type DBSwitchProps = DBSwitchDefaultProps &
 	IconAfterProps;
 
 export type DBSwitchDefaultState = {
-	_checked: boolean;
+	_checked?: boolean;
 };
 
-export type DBSwitchState = DBSwitchDefaultState &
-	GlobalState &
-	ChangeEventState<HTMLInputElement> &
-	FocusEventState<HTMLInputElement> &
-	FormState;
+export type DBSwitchState = DBSwitchDefaultState & GlobalState & ChangeEventState<HTMLInputElement> & FocusEventState<HTMLInputElement> & FormState;

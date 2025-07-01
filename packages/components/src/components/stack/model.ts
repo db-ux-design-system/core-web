@@ -6,20 +6,10 @@ export type StackVariantType = (typeof StackVariantList)[number];
 export const StackDirectionList = ['row', 'column'] as const;
 export type StackDirectionType = (typeof StackDirectionList)[number];
 
-export const StackAlignmentList = [
-	'stretch',
-	'start',
-	'end',
-	'center'
-] as const;
+export const StackAlignmentList = ['stretch', 'start', 'end', 'center'] as const;
 export type StackAlignmentType = (typeof StackAlignmentList)[number];
 
-export const StackJustifyContentList = [
-	'space-between',
-	'start',
-	'end',
-	'center'
-] as const;
+export const StackJustifyContentList = ['space-between', 'start', 'end', 'center'] as const;
 export type StackJustifyContentType = (typeof StackJustifyContentList)[number];
 
 export type DBStackDefaultProps = {
@@ -34,7 +24,7 @@ export type DBStackDefaultProps = {
 	/**
 	 * If the stack should wrap if parent is too small otherwise you get an overflow
 	 */
-	wrap?: boolean;
+	wrap?: boolean | string;
 	/**
 	 * Represents css align-items
 	 */

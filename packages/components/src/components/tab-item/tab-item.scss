@@ -6,11 +6,7 @@
 @use "../../styles/internal/db-puls";
 @use "../../styles/internal/form-components";
 
-$with-icon-padding-calc: calc(
-	#{variables.$db-spacing-fixed-xs} + #{variables.$db-spacing-fixed-sm} +
-		#{form-components.$font-size-height}
-);
-
+$with-icon-padding-calc: calc(#{variables.$db-spacing-fixed-xs} + #{variables.$db-spacing-fixed-sm} + #{form-components.$font-size-height});
 
 .db-tab-item {
 	position: relative;
@@ -19,7 +15,7 @@ $with-icon-padding-calc: calc(
 	border-radius: variables.$db-border-radius-sm;
 
 	&:has(input:disabled) {
-		opacity: component.$default-disabled;
+		opacity: variables.$db-opacity-md;
 	}
 
 	label {
@@ -64,9 +60,7 @@ $with-icon-padding-calc: calc(
 				position: absolute;
 				transform: translateY(-50%);
 				inset-block-start: 50%;
-				inset-inline-start: calc(
-					0% + #{variables.$db-spacing-fixed-xs}
-				);
+				inset-inline-start: calc(0% + #{variables.$db-spacing-fixed-xs});
 			}
 		}
 
@@ -85,13 +79,8 @@ $with-icon-padding-calc: calc(
 			@include icons.is-icon-text-replace();
 
 			padding: 0;
-			inline-size: calc(
-				#{$with-icon-padding-calc} - #{variables.$db-spacing-fixed-2xs}
-			);
-			block-size: calc(
-				#{form-components.$font-size-height} +
-					#{variables.$db-spacing-fixed-xs}
-			);
+			inline-size: calc(#{$with-icon-padding-calc} - #{variables.$db-spacing-fixed-2xs});
+			block-size: calc(#{form-components.$font-size-height} + #{variables.$db-spacing-fixed-xs});
 
 			&::before {
 				margin-inline-end: 0;

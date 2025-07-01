@@ -7,11 +7,9 @@ import { environment } from '../../../environments/environment';
 @Component({
 	selector: 'app-accordion-item',
 	templateUrl: './accordion-item.component.html',
-	imports: environment.webComponents
-		? [DefaultComponent]
-		: [DefaultComponent, DBAccordionItem],
+	imports: environment.webComponents ? [DefaultComponent] : [DefaultComponent, DBAccordionItem],
 	standalone: true,
-	schemas: [CUSTOM_ELEMENTS_SCHEMA]
+	schemas: environment.webComponents ? [CUSTOM_ELEMENTS_SCHEMA] : []
 })
 export class AccordionItemComponent {
 	variants = defaultComponentVariants;

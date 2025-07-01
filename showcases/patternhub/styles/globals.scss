@@ -288,8 +288,7 @@ div[class^="ch-"] {
 
 			> div {
 				display: flex;
-				border: 1px solid
-					colors.$db-adaptive-on-bg-basic-emphasis-60-default;
+				border: 1px solid colors.$db-adaptive-on-bg-basic-emphasis-60-default;
 				position: relative;
 			}
 		}
@@ -330,15 +329,11 @@ div[class^="ch-"] {
 			}
 
 			.margin1 {
-				inset-inline-start: calc(
-					-1 * #{variables.$db-spacing-responsive-sm}
-				);
+				inset-inline-start: calc(-1 * #{variables.$db-spacing-responsive-sm});
 			}
 
 			.margin2 {
-				inset-inline-end: calc(
-					-1 * #{variables.$db-spacing-responsive-sm}
-				);
+				inset-inline-end: calc(-1 * #{variables.$db-spacing-responsive-sm});
 			}
 		}
 
@@ -421,9 +416,7 @@ h6 {
 	align-items: center;
 	justify-content: center;
 	padding: variables.$db-spacing-fixed-xl;
-	margin-block-end: calc(
-		#{variables.$db-spacing-fixed-xl} + #{variables.$db-sizing-sm}
-	);
+	margin-block-end: calc(#{variables.$db-spacing-fixed-xl} + #{variables.$db-sizing-sm});
 	position: relative;
 
 	.code-details {
@@ -436,13 +429,7 @@ h6 {
 
 		.code-button {
 			position: absolute;
-			inset-block-end: calc(
-				-1 *
-					(
-						#{variables.$db-spacing-fixed-sm} +
-							#{variables.$db-sizing-sm}
-					)
-			);
+			inset-block-end: calc(-1 * (#{variables.$db-spacing-fixed-sm} + #{variables.$db-sizing-sm}));
 			inset-inline-end: variables.$db-spacing-fixed-sm;
 			z-index: 1;
 			cursor: pointer;
@@ -553,6 +540,7 @@ h6 {
 .breadcrumb-container {
 	display: flex;
 	overflow-x: auto;
+	overflow-inline: auto;
 	align-content: center;
 	align-items: center;
 	padding-block: variables.$db-spacing-fixed-sm;
@@ -612,24 +600,21 @@ h6 {
 
 	.db-section {
 		&[data-width="small"] {
-			padding-inline: calc(
-				#{section.$small-section-padding-inline} -
-					#{section.$large-section-padding-inline}
-			);
+			padding-inline: calc(#{section.$small-section-padding-inline} - #{section.$large-section-padding-inline});
 		}
 
 		&[data-width="medium"] {
-			padding-inline: calc(
-				#{section.$medium-section-padding-inline} -
-					#{section.$large-section-padding-inline}
-			);
+			padding-inline: calc(#{section.$medium-section-padding-inline} - #{section.$large-section-padding-inline});
 		}
 
 		&[data-width="large"] {
-			padding-inline: calc(
-				#{variables.$db-spacing-fixed-sm} +
-					#{variables.$db-spacing-fixed-md}
-			);
+			padding-inline: calc(#{variables.$db-spacing-fixed-sm} + #{variables.$db-spacing-fixed-md});
 		}
+	}
+}
+
+.db-switch {
+	> .db-tooltip {
+		min-inline-size: variables.$db-sizing-2xl;
 	}
 }

@@ -7,10 +7,8 @@ import { environment } from '../../../environments/environment';
 @Component({
 	selector: 'app-notification',
 	templateUrl: './notification.component.html',
-	imports: environment.webComponents
-		? [DefaultComponent]
-		: [DefaultComponent, DBNotification, DBLink],
-	schemas: [CUSTOM_ELEMENTS_SCHEMA],
+	imports: environment.webComponents ? [DefaultComponent] : [DefaultComponent, DBNotification, DBLink],
+	schemas: environment.webComponents ? [CUSTOM_ELEMENTS_SCHEMA] : [],
 	standalone: true
 })
 export class NotificationComponent {

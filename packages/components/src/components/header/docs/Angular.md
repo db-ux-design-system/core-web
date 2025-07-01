@@ -9,7 +9,7 @@ For general installation and configuration take a look at the [ngx-core-componen
 import {
 	DBHeader,
 	NavigationDirective,
-	ActionBarDirective,
+	SecondaryActionDirective,
 	MetaNavigationDirective
 } from '@db-ux/ngx-core-components';
 
@@ -69,17 +69,11 @@ export class AppComponent {
 		<DBLink href="#">Help</DBLink>
 	</ng-container>
 	<ng-container primary-action>
-		<DBButton icon="magnifying_glass" variant="ghost" [noText]="true">
-			Search
-		</DBButton>
+		<DBButton icon="magnifying_glass" variant="ghost" [noText]="true"> Search </DBButton>
 	</ng-container>
 	<ng-container *dbSecondaryAction>
-		<DBButton icon="x_placeholder" variant="ghost" [noText]="true">
-			Profile
-		</DBButton>
-		<DBButton icon="alert" variant="ghost" [noText]="true">
-			Notification
-		</DBButton>
+		<DBButton icon="x_placeholder" variant="ghost" [noText]="true"> Profile </DBButton>
+		<DBButton icon="alert" variant="ghost" [noText]="true"> Notification </DBButton>
 		<DBButton icon="help" variant="ghost" [noText]="true"> Help </DBButton>
 	</ng-container>
 </db-header>

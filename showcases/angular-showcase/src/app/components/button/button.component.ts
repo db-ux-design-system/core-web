@@ -7,11 +7,9 @@ import { environment } from '../../../environments/environment';
 @Component({
 	selector: 'app-button',
 	templateUrl: './button.component.html',
-	imports: environment.webComponents
-		? [DefaultComponent]
-		: [DefaultComponent, DBButton],
+	imports: environment.webComponents ? [DefaultComponent] : [DefaultComponent, DBButton],
 	standalone: true,
-	schemas: [CUSTOM_ELEMENTS_SCHEMA]
+	schemas: environment.webComponents ? [CUSTOM_ELEMENTS_SCHEMA] : []
 })
 export class ButtonComponent {
 	variants = defaultComponentVariants;

@@ -7,11 +7,9 @@ import { environment } from '../../../environments/environment';
 @Component({
 	selector: 'app-link',
 	templateUrl: './link.component.html',
-	imports: environment.webComponents
-		? [DefaultComponent]
-		: [DefaultComponent, DBLink],
+	imports: environment.webComponents ? [DefaultComponent] : [DefaultComponent, DBLink],
 	standalone: true,
-	schemas: [CUSTOM_ELEMENTS_SCHEMA]
+	schemas: environment.webComponents ? [CUSTOM_ELEMENTS_SCHEMA] : []
 })
 export class LinkComponent {
 	variants = defaultComponentVariants;

@@ -11,10 +11,13 @@ import { environment } from '../../../../environments/environment';
 		? [WrapperComponent, FormsModule, ReactiveFormsModule]
 		: [WrapperComponent, DBInput, FormsModule, ReactiveFormsModule],
 	templateUrl: './inputs.component.html',
-	schemas: [CUSTOM_ELEMENTS_SCHEMA]
+	schemas: environment.webComponents ? [CUSTOM_ELEMENTS_SCHEMA] : []
 })
 export class InputsComponent {
 	plain = 'test1';
 	ngModel = 'test2';
 	formControl: FormControl = new FormControl('test3');
+	public handlePlainChange(event: any) {
+		this.plain = event.target.value;
+	}
 }

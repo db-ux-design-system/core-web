@@ -1,4 +1,5 @@
 import {
+	ClickEvent,
 	CloseEventProps,
 	CloseEventState,
 	GlobalProps,
@@ -11,20 +12,14 @@ import {
 	TextProps
 } from '../../shared/model';
 
-export const NotificationVariantList = [
-	'docked',
-	'standalone',
-	'overlay'
-] as const;
+export const NotificationVariantList = ['docked', 'standalone', 'overlay'] as const;
 export type NotificationVariantType = (typeof NotificationVariantList)[number];
 
 export const NotificationLinkVariantList = ['block', 'inline'] as const;
-export type NotificationLinkVariantType =
-	(typeof NotificationLinkVariantList)[number];
+export type NotificationLinkVariantType = (typeof NotificationLinkVariantList)[number];
 
 export const NotificationAriaLiveList = ['assertive', 'polite', 'off'] as const;
-export type NotificationAriaLiveType =
-	(typeof NotificationAriaLiveList)[number];
+export type NotificationAriaLiveType = (typeof NotificationAriaLiveList)[number];
 
 export type DBNotificationDefaultProps = {
 	/**
@@ -37,7 +32,7 @@ export type DBNotificationDefaultProps = {
 	/**
 	 * The closeable attribute shows/hides the close button on the top right.
 	 */
-	closeable?: boolean;
+	closeable?: boolean | string;
 
 	/**
 	 * The headline attribute changes the text of the bold headline.
@@ -62,7 +57,7 @@ export type DBNotificationDefaultProps = {
 	/**
 	 * Enables or disables the visibility of the headline.
 	 */
-	showHeadline?: boolean;
+	showHeadline?: boolean | string;
 
 	/**
 	 * The timestamp attribute can be set for overlay notifications
@@ -72,20 +67,20 @@ export type DBNotificationDefaultProps = {
 	/**
 	 * Enables or disables the visibility of the timestamp.
 	 */
-	showTimestamp?: boolean;
+	showTimestamp?: boolean | string;
 
 	/**
 	 * The variant attribute changes the styling of the notification.
-	 * The docked notifications are used e.g. between header and main content to show a global alert.
-	 * The standalone notifications are used  e.g. inside a form to show an alert for a specific field.
-	 * The overlay notifications are used for absolute and floating notifications like snackbars etc.
+	 * - The docked notifications are used e.g. between header and main content to show a global alert.
+	 * - The standalone notifications are used  e.g. inside a form to show an alert for a specific field.
+	 * - The overlay notifications are used for absolute and floating notifications like snackbars etc.
 	 */
 	variant?: NotificationVariantType;
 };
 
 export type DBNotificationProps = DBNotificationDefaultProps &
 	GlobalProps &
-	CloseEventProps &
+	CloseEventProps<ClickEvent<HTMLButtonElement>> &
 	IconProps &
 	SemanticProps &
 	InnerCloseButtonProps &
@@ -95,6 +90,4 @@ export type DBNotificationProps = DBNotificationDefaultProps &
 
 export type DBNotificationDefaultState = {};
 
-export type DBNotificationState = DBNotificationDefaultState &
-	GlobalState &
-	CloseEventState;
+export type DBNotificationState = DBNotificationDefaultState & GlobalState & CloseEventState<ClickEvent<HTMLButtonElement>>;

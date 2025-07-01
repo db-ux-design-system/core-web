@@ -7,11 +7,9 @@ import { environment } from '../../../environments/environment';
 @Component({
 	selector: 'app-card',
 	templateUrl: './card.component.html',
-	imports: environment.webComponents
-		? [DefaultComponent]
-		: [DefaultComponent, DBCard],
+	imports: environment.webComponents ? [DefaultComponent] : [DefaultComponent, DBCard],
 	standalone: true,
-	schemas: [CUSTOM_ELEMENTS_SCHEMA]
+	schemas: environment.webComponents ? [CUSTOM_ELEMENTS_SCHEMA] : []
 })
 export class CardComponent {
 	variants = defaultComponentVariants;

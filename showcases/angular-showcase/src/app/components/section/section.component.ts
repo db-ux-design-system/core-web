@@ -7,10 +7,8 @@ import { environment } from '../../../environments/environment';
 @Component({
 	selector: 'app-section',
 	templateUrl: './section.component.html',
-	imports: environment.webComponents
-		? [DefaultComponent]
-		: [DefaultComponent, DBSection, DBCard],
-	schemas: [CUSTOM_ELEMENTS_SCHEMA],
+	imports: environment.webComponents ? [DefaultComponent] : [DefaultComponent, DBSection, DBCard],
+	schemas: environment.webComponents ? [CUSTOM_ELEMENTS_SCHEMA] : [],
 	standalone: true
 })
 export class SectionComponent {

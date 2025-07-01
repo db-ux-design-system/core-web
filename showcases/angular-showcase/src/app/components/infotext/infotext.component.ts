@@ -7,11 +7,9 @@ import { environment } from '../../../environments/environment';
 @Component({
 	selector: 'app-infotext',
 	templateUrl: './infotext.component.html',
-	imports: environment.webComponents
-		? [DefaultComponent]
-		: [DefaultComponent, DBInfotext],
+	imports: environment.webComponents ? [DefaultComponent] : [DefaultComponent, DBInfotext],
 	standalone: true,
-	schemas: [CUSTOM_ELEMENTS_SCHEMA]
+	schemas: environment.webComponents ? [CUSTOM_ELEMENTS_SCHEMA] : []
 })
 export class InfotextComponent {
 	variants = defaultComponentVariants;

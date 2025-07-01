@@ -1,10 +1,4 @@
-import {
-	Show,
-	useDefaultProps,
-	useMetadata,
-	useRef,
-	useStore
-} from '@builder.io/mitosis';
+import { Show, useDefaultProps, useMetadata, useRef, useStore } from '@builder.io/mitosis';
 import type { DBIconProps, DBIconState } from './model';
 import { cls } from '../../utils';
 
@@ -13,7 +7,7 @@ useMetadata({});
 useDefaultProps<DBIconProps>({});
 
 export default function DBIcon(props: DBIconProps) {
-	const _ref = useRef<HTMLSpanElement | null>(null);
+	const _ref = useRef<HTMLSpanElement | any>(null);
 	// jscpd:ignore-start
 	const state = useStore<DBIconState>({});
 

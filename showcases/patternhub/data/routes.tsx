@@ -56,7 +56,9 @@ import * as navigationCode from '../components/code-docs/navigation';
 import * as navigationItemCode from '../components/code-docs/navigation-item';
 import * as popoverCode from '../components/code-docs/popover';
 import * as StackCode from '../components/code-docs/stack';
+import * as CustomSelectCode from '../components/code-docs/custom-select';
 import StackComponent from '../../react-showcase/src/components/stack';
+import MutliSelectComponent from '../../react-showcase/src/components/custom-select';
 import Components from './components.json';
 
 export type NavigationItem = {
@@ -69,6 +71,7 @@ export type NavigationItem = {
 };
 
 const nameComponentMap = {
+	'custom-select': <MutliSelectComponent slotCode={CustomSelectCode} />,
 	stack: <StackComponent slotCode={StackCode} />,
 	button: <ButtonComponent slotCode={buttonCode} />,
 	link: <LinkComponent slotCode={linkCode} />,
@@ -80,27 +83,12 @@ const nameComponentMap = {
 	accordion: (
 		<AccordionComponent
 			slotCode={accordionCode}
-			subComponent={
-				<AccordionItemComponent
-					isSubComponent={true}
-					componentName="accordion-item"
-					slotCode={accordionItemCode}
-				/>
-			}
+			subComponent={<AccordionItemComponent isSubComponent={true} componentName="accordion-item" slotCode={accordionItemCode} />}
 		/>
 	),
 	'accordion-item': <AccordionItemComponent slotCode={accordionItemCode} />,
 	tabs: (
-		<TabsComponent
-			slotCode={tabsCode}
-			subComponent={
-				<TabItemComponent
-					isSubComponent={true}
-					componentName="tab-item"
-					slotCode={tabItemCode}
-				/>
-			}
-		/>
+		<TabsComponent slotCode={tabsCode} subComponent={<TabItemComponent isSubComponent={true} componentName="tab-item" slotCode={tabItemCode} />} />
 	),
 	'tab-item': <TabItemComponent slotCode={tabItemCode} />,
 	checkbox: <CheckboxComponent slotCode={checkboxCode} />,
@@ -120,41 +108,28 @@ const nameComponentMap = {
 	navigation: (
 		<NavigationComponent
 			slotCode={navigationCode}
-			subComponent={
-				<NavigationItemComponent
-					isSubComponent={true}
-					componentName="navigation-item"
-					slotCode={navigationItemCode}
-				/>
-			}
+			subComponent={<NavigationItemComponent isSubComponent={true} componentName="navigation-item" slotCode={navigationItemCode} />}
 		/>
 	),
-	'navigation-item': (
-		<NavigationItemComponent slotCode={navigationItemCode} />
-	),
+	'navigation-item': <NavigationItemComponent slotCode={navigationItemCode} />,
 	popover: <PopoverComponent slotCode={popoverCode} />
 };
 
-const addComponentsToNavigationItems = (
-	navigationItems: NavigationItem[]
-): NavigationItem[] => {
+const addComponentsToNavigationItems = (navigationItems: NavigationItem[]): NavigationItem[] => {
 	return navigationItems.map((navigationItem) => {
 		return {
 			...navigationItem,
 			subNavigation: navigationItem.subNavigation?.map((subNavItem) => {
 				return {
 					...subNavItem,
-					component: subNavItem.name
-						? nameComponentMap[subNavItem.name]
-						: undefined
+					component: subNavItem.name ? nameComponentMap[subNavItem.name] : undefined
 				};
 			})
 		};
 	});
 };
 
-export const componentChildren: NavigationItem[] =
-	addComponentsToNavigationItems(Components);
+export const componentChildren: NavigationItem[] = addComponentsToNavigationItems(Components);
 export const ROUTES: NavigationItem[] = [
 	{
 		label: 'Home',
@@ -234,7 +209,8 @@ export const ROUTES: NavigationItem[] = [
 				path: '/foundations/test-table'
 			},
 			{ label: 'IDE Support', path: '/foundations/ide' },
-			{ label: 'Performance', path: '/foundations/performance' }
+			{ label: 'Performance', path: '/foundations/performance' },
+			{ label: 'Browser Support', path: '/foundations/browser-support' }
 		]
 	},
 	{
@@ -242,8 +218,6 @@ export const ROUTES: NavigationItem[] = [
 		path: '/components',
 		subNavigation: [
 			{ label: 'Readme', path: '/components/readme' },
-			{ label: 'Router usage', path: '/components/router-usage' },
-			{ label: 'Validation', path: '/components/validation' },
 			...componentChildren.map((category) => ({
 				...category,
 				subNavigation: category?.subNavigation?.map(
@@ -272,36 +246,39 @@ export const ROUTES: NavigationItem[] = [
 						]
 					})
 				)
-			}))
+			})),
+			{
+				label: 'Misc',
+				path: '/components/misc',
+				subNavigation: [
+					{
+						label: 'Router usage',
+						path: '/components/misc/router-usage'
+					},
+					{
+						label: 'Validation',
+						path: '/components/misc/validation'
+					},
+					{ label: 'Backdrop', path: '/components/misc/backdrop' }
+				]
+			}
 		]
 	}
 ];
 
-const fillNavigationRecursive = (
-	navigationItems: NavigationItem[],
-	tree: NavigationItem[],
-	isBreadcrumb?: boolean,
-	prevLabel?: string
-) => {
+const fillNavigationRecursive = (navigationItems: NavigationItem[], tree: NavigationItem[], isBreadcrumb?: boolean, previousLabel?: string) => {
 	for (const navItem of navigationItems) {
 		tree.push(
 			isBreadcrumb
 				? navItem
 				: {
 						...navItem,
-						label: prevLabel
-							? `${prevLabel}:${navItem.label}`
-							: navItem.label
+						label: previousLabel ? `${previousLabel}:${navItem.label}` : navItem.label
 					}
 		);
 
 		if (navItem.subNavigation && navItem.subNavigation?.length > 0) {
-			fillNavigationRecursive(
-				navItem.subNavigation,
-				tree,
-				isBreadcrumb,
-				isBreadcrumb ? undefined : navItem.label
-			);
+			fillNavigationRecursive(navItem.subNavigation, tree, isBreadcrumb, isBreadcrumb ? undefined : navItem.label);
 		}
 	}
 };
@@ -313,9 +290,7 @@ export const getAllNavigationItems = (isBreadcrumb?: boolean) => {
 };
 
 export const getNavigationList = (path: string) => {
-	const tree: NavigationItem[] = getAllNavigationItems().filter(
-		(navItem) => !navItem.subNavigation
-	);
+	const tree: NavigationItem[] = getAllNavigationItems().filter((navItem) => !navItem.subNavigation);
 
 	const index = tree.findIndex((navItem) => navItem.path === path);
 	return {
@@ -326,13 +301,9 @@ export const getNavigationList = (path: string) => {
 
 export const getBreadcrumb = (path: string) => {
 	const tree: NavigationItem[] = getAllNavigationItems(true);
-	return tree
-		.filter((navItem) => path.includes(navItem.path ?? ''))
-		.sort((a, b) => (a.path?.length ?? 0) - (b.path?.length ?? 0));
+	return tree.filter((navItem) => path.includes(navItem.path ?? '')).sort((a, b) => (a.path?.length ?? 0) - (b.path?.length ?? 0));
 };
 
 export const getAllComponentGroupNames = (): string[] => {
-	return componentChildren
-		.filter(({ name }) => Boolean(name))
-		.map(({ name }) => name!);
+	return componentChildren.filter(({ name }) => Boolean(name)).map(({ name }) => name!);
 };

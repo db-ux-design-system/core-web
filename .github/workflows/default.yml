@@ -163,12 +163,7 @@ jobs:
       version: ${{ needs.get-playwright-version.outputs.version }}
       path: ${{ needs.build-showcase-patternhub.outputs.path }}
       type: patternhub
-    needs:
-      [
-        build-showcase-patternhub,
-        test-showcase-patternhub,
-        get-playwright-version
-      ]
+    needs: [build-showcase-patternhub, test-showcase-patternhub, get-playwright-version]
 
   test-screen-reader:
     uses: ./.github/workflows/02-e2e-screen-reader.yml
@@ -182,13 +177,18 @@ jobs:
     with:
       version: ${{ needs.get-playwright-version.outputs.version }}
       type: showcases
-    needs:
-      [
-        test-showcase-angular,
-        test-showcase-react,
-        test-showcase-vue,
-        get-playwright-version
-      ]
+    needs: [test-showcase-angular, test-showcase-react, test-showcase-vue, get-playwright-version]
+
+  commit-regenerated-snapshots:
+    uses: ./.github/workflows/02-e2e-regenerated-snapshots-commit.yml
+    secrets: inherit
+    if: always()
+    needs: [regenerate-snapshots-components, regenerate-snapshots-foundations, regenerate-snapshots-patternhub, regenerate-snapshots]
+    with:
+      showcases: ${{ needs.regenerate-snapshots.result == 'success' }}
+      components: ${{ needs.regenerate-snapshots-components.result == 'success' }}
+      foundations: ${{ needs.regenerate-snapshots-foundations.result == 'success' }}
+      patternhub: ${{ needs.regenerate-snapshots-patternhub.result == 'success' }}
 
   checks-done:
     if: ${{ always() }}

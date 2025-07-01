@@ -7,10 +7,8 @@ import { environment } from '../../../environments/environment';
 @Component({
 	selector: 'app-tab',
 	templateUrl: './tab-item.component.html',
-	imports: environment.webComponents
-		? [DefaultComponent]
-		: [DefaultComponent, DBTabItem, DBTabList],
-	schemas: [CUSTOM_ELEMENTS_SCHEMA],
+	imports: environment.webComponents ? [DefaultComponent] : [DefaultComponent, DBTabItem, DBTabList],
+	schemas: environment.webComponents ? [CUSTOM_ELEMENTS_SCHEMA] : [],
 	standalone: true
 })
 export class TabItemComponent {

@@ -23,7 +23,7 @@ export type DBNavigationItemDefaultProps = {
 	/**
 	 * The disabled attribute can be set to [keep a user from clicking on the item](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button#disabled).
 	 */
-	disabled?: boolean;
+	disabled?: boolean | string;
 
 	/**
 	 * React-specific property to pass in a slot for sub-navigation
@@ -34,7 +34,12 @@ export type DBNavigationItemDefaultProps = {
 	/**
 	 * This is for mobile navigation only, if it is set the sub-navigation is a static overlay
 	 */
-	subNavigationExpanded?: boolean;
+	subNavigationExpanded?: boolean | string;
+
+	/**
+	 * Determines whether the text should wrap when its parent container is too small, preventing overflow.
+	 */
+	wrap?: boolean | string;
 };
 
 export type DBNavigationItemProps = DBNavigationItemDefaultProps &
@@ -56,7 +61,6 @@ export type DBNavigationItemDefaultState = {
 	 * Internal state property to show/hide sub-navigation button
 	 */
 	hasSubNavigation?: boolean;
-	updateSubNavigationState: () => void;
 	navigationItemSafeTriangle?: NavigationItemSafeTriangle;
 	autoClose?: boolean;
 };

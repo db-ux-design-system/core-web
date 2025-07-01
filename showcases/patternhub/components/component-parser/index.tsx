@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import {
+	DBCustomSelect,
 	DBStack,
 	DBSwitch,
 	DBTabPanel,
@@ -34,13 +35,7 @@ import type { ComponentParserType, ComponentType } from './data';
 
 const validHosts = new Set(['marketingportal.extranet.deutschebahn.com']);
 
-const ComponentSwitch = ({
-	type,
-	content,
-	index,
-	props,
-	className
-}: ComponentType) => {
+const ComponentSwitch = ({ type, content, index, props, className }: ComponentType) => {
 	const resolvedContent = Array.isArray(content)
 		? content.map((innerComponent: ComponentType, innerIndex: number) => (
 				<ComponentSwitch
@@ -80,9 +75,7 @@ const ComponentSwitch = ({
 
 	if (type === 'flex') {
 		return (
-			<div
-				className={`flex ${className ?? ''}`}
-				data-variant={props?.column ? 'column' : 'row'}>
+			<div className={`flex ${className ?? ''}`} data-variant={props?.column ? 'column' : 'row'}>
 				{resolvedContent}
 			</div>
 		);
@@ -91,13 +84,10 @@ const ComponentSwitch = ({
 	if (type === 'a') {
 		try {
 			const url = new URL('', props.href);
-			const host = url.host;
+			const { host } = url;
 			if (validHosts.has(host)) {
 				return (
-					<a
-						className={className}
-						href={props.href}
-						target={props.target}>
+					<a className={className} href={props.href} target={props.target}>
 						{resolvedContent}
 					</a>
 				);
@@ -339,6 +329,14 @@ const ComponentSwitch = ({
 		);
 	}
 
+	if (type === 'custom-select') {
+		return (
+			<DBCustomSelect className={className} {...props}>
+				{resolvedContent}
+			</DBCustomSelect>
+		);
+	}
+
 	// Template hygen before
 
 	return <span className={className}>{resolvedContent}</span>;
@@ -360,13 +358,7 @@ const ComponentParser = ({ componentsString }: ComponentParserType) => {
 			<>
 				{components.map((component: ComponentType, index: number) => {
 					return (
-						<ComponentSwitch
-							key={`component-${index}`}
-							index={index}
-							type={component.type}
-							content={component.content}
-							props={component.props}
-						/>
+						<ComponentSwitch key={`component-${index}`} index={index} type={component.type} content={component.content} props={component.props} />
 					);
 				})}
 			</>

@@ -17,9 +17,24 @@ $headlines: (
 	"h6": "2xs"
 );
 
+@each $headline, $size in $headlines {
+	#{string.unquote($headline)} {
+		/* stylelint-disable custom-property-pattern */
+		font: var(--db-type-headline-#{string.unquote($size)});
+		margin-block: var(--db-spacing-fixed-#{string.unquote($size)});
+
+		&::before,
+		&::after {
+			--db-icon-font-size: var(--db-base-headline-icon-font-size-#{string.unquote($size)});
+			--db-icon-font-weight: var(--db-base-headline-icon-weight-#{string.unquote($size)});
+		}
+		/* stylelint-enable custom-property-pattern */
+	}
+}
+
 :is(h1, h2, h3, h4, h5, h6) {
 	font-family: var(--db-font-family-head);
-	font-weight: 700;
+	font-weight: bolder;
 	text-wrap: balance;
 
 	&[data-variant="light"] {
@@ -28,28 +43,6 @@ $headlines: (
 
 	&[data-variant="regular"] {
 		font-weight: 400;
-	}
-}
-
-@each $headline, $size in $headlines {
-	#{string.unquote($headline)} {
-		/* stylelint-disable custom-property-pattern */
-		line-height: var(
-			--db-type-headline-line-height-#{string.unquote($size)}
-		);
-		font-size: var(--db-type-headline-font-size-#{string.unquote($size)});
-		margin-block: var(--db-spacing-fixed-#{string.unquote($size)});
-
-		&::before,
-		&::after {
-			--db-icon-font-size: var(
-				--db-base-headline-icon-font-size-#{string.unquote($size)}
-			);
-			--db-icon-font-weight: var(
-				--db-base-headline-icon-weight-#{string.unquote($size)}
-			);
-		}
-		/* stylelint-enable custom-property-pattern */
 	}
 }
 

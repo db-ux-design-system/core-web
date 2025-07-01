@@ -282,8 +282,7 @@
 					],
 					"label": "Label",
 					"validation": "valid",
-					"validMessage": "Valid message",
-					"value": "Valid"
+					"validMessage": "Valid message"
 				}
 			}
 		]

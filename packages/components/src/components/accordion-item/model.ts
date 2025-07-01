@@ -1,10 +1,4 @@
-import {
-	GlobalProps,
-	GlobalState,
-	TextProps,
-	ToggleEventProps,
-	ToggleEventState
-} from '../../shared/model';
+import { GlobalProps, GlobalState, InitializedState, NameProps, NameState, TextProps, ToggleEventProps, ToggleEventState } from '../../shared/model';
 
 export type DBAccordionItemDefaultProps = {
 	/**
@@ -14,7 +8,7 @@ export type DBAccordionItemDefaultProps = {
 	/**
 	 * The disabled attribute can be set to keep a user from clicking on the element.
 	 */
-	disabled?: boolean;
+	disabled?: boolean | string;
 	/**
 	 * Title of the accordion-item as slot
 	 */
@@ -25,14 +19,10 @@ export type DBAccordionItemDefaultProps = {
 	headlinePlain?: string;
 } & TextProps;
 
-export type DBAccordionItemProps = DBAccordionItemDefaultProps &
-	GlobalProps &
-	ToggleEventProps;
+export type DBAccordionItemProps = DBAccordionItemDefaultProps & GlobalProps & ToggleEventProps & NameProps;
 
 export type DBAccordionItemDefaultState = {
-	_open: boolean;
+	_open?: boolean;
 };
 
-export type DBAccordionItemState = DBAccordionItemDefaultState &
-	GlobalState &
-	ToggleEventState<HTMLElement>;
+export type DBAccordionItemState = DBAccordionItemDefaultState & GlobalState & ToggleEventState<HTMLElement> & InitializedState & NameState;

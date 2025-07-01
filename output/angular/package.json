@@ -16,9 +16,6 @@
     "start": "ng serve"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "17.3.14",
-    "@angular/common": "17.3.12",
-    "ng-packagr": "17.3.0",
     "typescript": "^5.4.5"
   },
   "publishConfig": {

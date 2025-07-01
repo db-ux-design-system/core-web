@@ -1,11 +1,10 @@
 import { useEffect, useState } from 'react';
 import {
 	DBDivider,
+	DBCustomSelect,
 	DBTabList,
 	DBTabPanel,
-	DBTabs
-} from '@db-ux/react-core-components/src';
-import {
+	DBTabs,
 	DBAccordion,
 	DBAccordionItem,
 	DBButton,
@@ -17,12 +16,10 @@ import {
 	DBTag,
 	DBTextarea,
 	DBTooltip,
-	DBLink
+	DBLink,
+	DBPopover
 } from '../../../../../output/react/src';
-import type {
-	ChangeEvent,
-	ValueLabelType
-} from '../../../../../output/react/src/shared/model';
+import type { ChangeEvent, ValueLabelType } from '../../../../../output/react/src/shared/model';
 
 const FormComponent = () => {
 	const [input, setInput] = useState('');
@@ -37,6 +34,8 @@ const FormComponent = () => {
 	const [accordionItems, setAccordionItems] = useState<ValueLabelType[]>();
 	const [tabsTest, setTabsTest] = useState<boolean>(false);
 
+	const [multiSelectValue, setMultiSelectValue] = useState<string[] | undefined>(['o2']);
+
 	useEffect(() => {
 		setTimeout(() => {
 			setAccordionItems([
@@ -47,10 +46,7 @@ const FormComponent = () => {
 		}, 2000);
 	}, []);
 
-	const dataList: ValueLabelType[] = [
-		{ value: 'test', label: 'Test' },
-		{ value: 'test2' }
-	];
+	const dataList: ValueLabelType[] = [{ value: 'test', label: 'Test' }, { value: 'test2' }];
 
 	const handleChange1 = (event: ChangeEvent<HTMLInputElement>) => {
 		setChecked([event.target.checked, event.target.checked]);
@@ -68,6 +64,16 @@ const FormComponent = () => {
 		<div className="form-container">
 			<div>
 				<form>
+					<DBTextarea label="test" placeholder="fieldsizing" resize="none" fieldSizing="content"></DBTextarea>
+
+					<DBCustomSelect
+						options={[{ value: 'Option 1' }, { value: 'Option 2' }]}
+						label="Test"
+						required
+						showSearch
+						multiple
+						placeholder="Placeholder"
+					/>
 					<fieldset>
 						<p>Input:</p>
 						<DBInput
@@ -125,23 +131,11 @@ const FormComponent = () => {
 						<ul>
 							{['X', 'Y', 'Z'].map((tag, index) => (
 								<li key={`tag-${tag}`}>
-									<DBTag
-										semantic={
-											index === 0
-												? undefined
-												: 'successful'
-										}
-										emphasis={
-											index === 2 ? 'strong' : undefined
-										}>
+									<DBTag semantic={index === 0 ? undefined : 'successful'} emphasis={index === 2 ? 'strong' : undefined}>
 										<DBCheckbox
 											onChange={() => {
 												if (tags.includes(tag)) {
-													setTags(
-														tags.filter(
-															(t) => t !== tag
-														)
-													);
+													setTags(tags.filter((t) => t !== tag));
 												} else {
 													setTags([...tags, tag]);
 												}
@@ -153,24 +147,12 @@ const FormComponent = () => {
 							))}
 							{['A', 'B', 'C'].map((tag, index) => (
 								<li key={`tag-${tag}`}>
-									<DBTag
-										semantic={
-											index === 0
-												? undefined
-												: 'informational'
-										}
-										emphasis={
-											index === 2 ? 'strong' : undefined
-										}>
+									<DBTag semantic={index === 0 ? undefined : 'informational'} emphasis={index === 2 ? 'strong' : undefined}>
 										<label htmlFor={`checkbox-${tag}`}>
 											<input
 												onChange={() => {
 													if (tags.includes(tag)) {
-														setTags(
-															tags.filter(
-																(t) => t !== tag
-															)
-														);
+														setTags(tags.filter((t) => t !== tag));
 													} else {
 														setTags([...tags, tag]);
 													}
@@ -194,24 +176,13 @@ const FormComponent = () => {
 							Checkbox Indeterminate
 						</DBCheckbox>
 						<fieldset>
-							<DBCheckbox
-								name="checkbox-1"
-								value="Checkbox checked"
-								checked={checked[0]}
-								onChange={handleChange2}>
+							<DBCheckbox name="checkbox-1" value="Checkbox checked" checked={checked[0]} onChange={handleChange2}>
 								Checkbox
 							</DBCheckbox>
-							<DBCheckbox
-								name="checkbox-2"
-								value="Checkbox checked"
-								checked={checked[1]}
-								onChange={handleChange3}>
+							<DBCheckbox name="checkbox-2" value="Checkbox checked" checked={checked[1]} onChange={handleChange3}>
 								Checkbox
 							</DBCheckbox>
-							<DBCheckbox
-								name="checkbox-3"
-								value="Irgendwas"
-								defaultChecked={false}>
+							<DBCheckbox name="checkbox-3" value="Irgendwas" defaultChecked={false}>
 								DefaultChecked
 							</DBCheckbox>
 						</fieldset>
@@ -275,25 +246,18 @@ const FormComponent = () => {
 				<DBDivider />
 
 				<p>
-					Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
-					diam nonumy eirmod tempor{' '}
+					Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor{' '}
 					<DBLink showIcon={false} href="#">
 						invidunt
 					</DBLink>{' '}
-					ut labore et dolore magna aliquyam erat, sed diam voluptua.
-					At vero eos et accusam et justo duo dolores et ea rebum.
-					Stet clita kasd gubergren, no sea takimata sanctus est Lorem
-					ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur
-					sadipscing elitr, sed diam nonumy eirmod tempor{' '}
+					ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd
+					gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy
+					eirmod tempor{' '}
 					<DBLink showIcon={false} href="#">
-						labore et dolore magna aliquyam erat, sed diam voluptua.
-						At vero eos et accusam et justo duo dolores et ea rebum.
-						Stet
+						labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet
 					</DBLink>{' '}
-					ut labore et dolore magna aliquyam erat, sed diam voluptua.
-					At vero eos et accusam et justo duo dolores et ea rebum.
-					Stet clita kasd gubergren, no sea takimata sanctus est Lorem
-					ipsum dolor sit amet.
+					ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd
+					gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
 				</p>
 
 				<DBButton
@@ -315,54 +279,32 @@ const FormComponent = () => {
 
 				<DBTabs orientation="vertical">
 					<DBTabList>
-						<DBTabItem icon="x_placeholder">
-							Airplane Button
-						</DBTabItem>
+						<DBTabItem icon="x_placeholder">Airplane Button</DBTabItem>
 						<DBTabItem iconAfter="cancel">Cancel Button</DBTabItem>
-						<DBTabItem iconAfter="cancel">
-							Long Button Label with a lot of text
-						</DBTabItem>
+						<DBTabItem iconAfter="cancel">Long Button Label with a lot of text</DBTabItem>
 						<DBTabItem icon="x_placeholder" iconAfter="cancel">
 							Another Button Label with a lot of text
 						</DBTabItem>
-						<DBTabItem
-							icon="x_placeholder"
-							noText={true}></DBTabItem>
+						<DBTabItem icon="x_placeholder" noText={true}></DBTabItem>
 					</DBTabList>
 					<DBTabPanel>
-						Lorem ipsum dolor sit amet, consetetur sadipscing elitr,
-						sed diam nonumy eirmod tempor invidunt ut labore et
-						dolore magna aliquyam erat, sed diam voluptua. At vero
-						eos et accusam et justo duo dolores et ea rebum. Stet
-						clita kasd gubergren, no sea takimata sanctus est Lorem
-						ipsum dolor sit amet. Lorem ipsum dolor sit amet,
-						consetetur sadipscing elitr, sed diam nonumy eirmod
-						tempor invidunt ut labore et dolore magna aliquyam erat,
-						sed diam voluptua. At vero eos et accusam et justo duo
-						dolores et ea rebum. Stet clita kasd gubergren, no sea
+						Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat,
+						sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem
+						ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore
+						magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea
 						takimata sanctus est Lorem ipsum dolor sit amet.
 					</DBTabPanel>
 					<DBTabPanel>Tab Panel 2</DBTabPanel>
 					<DBTabPanel>Tab Panel 3</DBTabPanel>
 					<DBTabPanel>
-						But I must explain to you how all this mistaken idea of
-						denouncing pleasure and praising pain was born and I
-						will give you a complete account of the system, and
-						expound the actual teachings of the great explorer of
-						the truth, the master-builder of human happiness. No one
-						rejects, dislikes, or avoids pleasure itself, because it
-						is pleasure, but because those who do not know how to
-						pursue pleasure rationally encounter consequences that
-						are extremely painful. Nor again is there anyone who
-						loves or pursues or desires to obtain pain of itself,
-						because it is pain, but because occasionally
-						circumstances occur in which toil and pain can procure
-						him some great pleasure. To take a trivial example,
-						which of us ever undertakes laborious physical exercise,
-						except to obtain some advantage from it? But who has any
-						right to find fault with a man who chooses to enjoy a
-						pleasure that has no annoying consequences, or one who
-						avoids a pain that produces no resultant pleasure?
+						But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete
+						account of the system, and expound the actual teachings of the great explorer of the truth, the master-builder of human happiness. No one
+						rejects, dislikes, or avoids pleasure itself, because it is pleasure, but because those who do not know how to pursue pleasure rationally
+						encounter consequences that are extremely painful. Nor again is there anyone who loves or pursues or desires to obtain pain of itself,
+						because it is pain, but because occasionally circumstances occur in which toil and pain can procure him some great pleasure. To take a
+						trivial example, which of us ever undertakes laborious physical exercise, except to obtain some advantage from it? But who has any right
+						to find fault with a man who chooses to enjoy a pleasure that has no annoying consequences, or one who avoids a pain that produces no
+						resultant pleasure?
 					</DBTabPanel>
 					<DBTabPanel>Tab Panel 5</DBTabPanel>
 				</DBTabs>
@@ -370,11 +312,34 @@ const FormComponent = () => {
 				<DBDivider />
 
 				<DBAccordion>
-					{accordionItems?.map((item) => (
-						<DBAccordionItem
-							key={item.value}
-							headlinePlain={item.value}>
-							{item.value}
+					{accordionItems?.map((item, index) => (
+						<DBAccordionItem key={item.value} headlinePlain={item.value}>
+							<p>{item.value}</p>
+							{index === 0 && (
+								<DBCustomSelect
+									options={[{ value: 'Option 1' }, { value: 'Option 2' }]}
+									label="Test"
+									required
+									showSearch
+									multiple
+									placeholder="Placeholder"
+								/>
+							)}
+							{index === 1 && (
+								<DBPopover trigger={<DBButton>Popover</DBButton>}>
+									<ul>
+										<li>Content 1</li>
+										<li>Content 2</li>
+										<li>Content 3</li>
+									</ul>
+								</DBPopover>
+							)}
+							{index === 2 && (
+								<DBButton>
+									Tooltip
+									<DBTooltip>Tooltip</DBTooltip>
+								</DBButton>
+							)}
 						</DBAccordionItem>
 					))}
 				</DBAccordion>
@@ -395,9 +360,7 @@ const FormComponent = () => {
 				<h2>Validations</h2>
 				<DBButton>
 					Test
-					<DBTooltip placement="bottom">
-						Open above floating label
-					</DBTooltip>
+					<DBTooltip placement="bottom">Open above floating label</DBTooltip>
 				</DBButton>
 				<DBInput
 					variant="floating"
@@ -407,50 +370,58 @@ const FormComponent = () => {
 					validMessage="😎"
 					minLength={3}
 				/>
-				<DBInput
-					label="Input pattern validation"
-					placeholder="Placeholder"
-					pattern="\w{3,16}"
-					invalidMessage="Pattern \w{3,16}"
-					validMessage="😎"
-				/>
-				<DBInput
-					label="Input number"
-					placeholder="Placeholder"
-					invalidMessage="Type=number"
-					validMessage="😎"
-					type="number"
-				/>
-				<DBInput
-					label="Input number min"
-					placeholder="Placeholder"
-					invalidMessage="Type=number min 3"
-					validMessage="😎"
-					type="number"
-					min={3}
-				/>
-				<DBTextarea
-					label="Textarea min 10"
-					invalidMessage="Min 10"
-					validMessage="😎"
-					minLength={10}
-				/>
+				<DBInput label="Input pattern validation" placeholder="Placeholder" pattern="\w{3,16}" invalidMessage="Pattern \w{3,16}" validMessage="😎" />
+				<DBInput label="Input number" placeholder="Placeholder" invalidMessage="Type=number" validMessage="😎" type="number" />
+				<DBInput label="Input number min" placeholder="Placeholder" invalidMessage="Type=number min 3" validMessage="😎" type="number" min={3} />
+				<DBTextarea label="Textarea min 10" invalidMessage="Min 10" validMessage="😎" minLength={10} />
 
-				<DBTag
-					describedbyid="tooltip-01"
-					semantic="neutral"
-					emphasis="strong">
+				<DBTag semantic="neutral" emphasis="strong">
 					KUZ
 					<DBTooltip id="tooltip-01" placement="right-end">
 						Beschreibungstext
 					</DBTooltip>
 				</DBTag>
-				<DBButton describedbyid="tooltip-01">
+				<DBButton>
 					KUZ
 					<DBTooltip id="tooltip-01" placement="right-end">
 						Beschreibungstext
 					</DBTooltip>
 				</DBButton>
+
+				<form
+					onSubmit={(event) => {
+						event.preventDefault();
+
+						console.log(event);
+					}}>
+					<DBCustomSelect
+						name="input-multi"
+						label="Test"
+						options={[
+							{ label: 'O1', value: 'o1' },
+							{ label: 'O2', value: 'o2' },
+							{ label: 'O3', value: 'o3' },
+							{ label: 'O4', value: 'o4' },
+							{ label: 'O5', value: 'o5' },
+							{ label: 'O6', value: 'o6' }
+						]}
+						placeholder="Test"
+						selectAllLabel="Select all"
+						searchLabel="Search"
+						noResultsText="No matching filter"
+						values={multiSelectValue}
+						onOptionSelected={(value) => {
+							setMultiSelectValue(value);
+						}}
+					/>
+					<DBButton
+						onClick={() => {
+							setMultiSelectValue([]);
+						}}>
+						Reset Multiselect
+					</DBButton>
+					<DBButton type="submit">Submit</DBButton>
+				</form>
 
 				<div>
 					<DBTag>

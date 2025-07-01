@@ -13,19 +13,11 @@
 	color: colors.$db-adaptive-on-bg-basic-emphasis-100-default;
 
 	@include helpers.hover {
-		color: color-mix(
-			in srgb,
-			transparent 25%,
-			#{colors.$db-adaptive-on-bg-basic-emphasis-100-default}
-		);
+		color: color-mix(in srgb, transparent 25%, #{colors.$db-adaptive-on-bg-basic-emphasis-100-default});
 	}
 
 	@include helpers.active {
-		color: color-mix(
-			in srgb,
-			transparent 50%,
-			#{colors.$db-adaptive-on-bg-basic-emphasis-100-default}
-		);
+		color: color-mix(in srgb, transparent 50%, #{colors.$db-adaptive-on-bg-basic-emphasis-100-default});
 	}
 }
 
@@ -56,7 +48,7 @@
 
 	// "disabled" links
 	&[aria-disabled="true"] {
-		opacity: component.$default-disabled;
+		opacity: variables.$db-opacity-md;
 		pointer-events: none;
 	}
 }

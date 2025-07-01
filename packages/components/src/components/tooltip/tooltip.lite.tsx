@@ -1,30 +1,65 @@
-import {
-	onMount,
-	onUpdate,
-	useDefaultProps,
-	useMetadata,
-	useRef,
-	useStore
-} from '@builder.io/mitosis';
+import { onMount, onUpdate, useDefaultProps, useMetadata, useRef, useStore } from '@builder.io/mitosis';
 import { DBTooltipProps, DBTooltipState } from './model';
-import { cls, getBooleanAsString, handleDataOutside, uuid } from '../../utils';
+import { cls, delay as utilsDelay, getBooleanAsString, uuid } from '../../utils';
 import { ClickEvent } from '../../shared/model';
 import { DEFAULT_ID } from '../../shared/constants';
+import { handleFixedPopover } from '../../utils/floating-components';
+import { DocumentScrollListener } from '../../utils/document-scroll-listener';
 
 useMetadata({});
 useDefaultProps<DBTooltipProps>({});
 
 export default function DBTooltip(props: DBTooltipProps) {
-	const _ref = useRef<HTMLDivElement | null>(null);
+	const _ref = useRef<HTMLDivElement | any>(null);
 	// jscpd:ignore-start
 	const state = useStore<DBTooltipState>({
 		_id: DEFAULT_ID,
 		initialized: false,
+		_documentScrollListenerCallbackId: undefined,
+		_observer: undefined,
 		handleClick: (event: ClickEvent<HTMLElement>) => {
 			event.stopPropagation();
 		},
-		handleAutoPlacement: () => {
-			if (_ref) handleDataOutside(_ref);
+		handleEscape: (event: any) => {
+			if ((!event || event.key === 'Escape') && _ref && getComputedStyle(_ref).visibility === 'visible') {
+				state.getParent().blur();
+			}
+		},
+		getParent(): HTMLElement {
+			let parent = _ref.parentElement;
+
+			if (parent && parent.localName.includes('tooltip')) {
+				// Angular workaround
+				parent = parent.parentElement;
+			}
+
+			return parent;
+		},
+		handleAutoPlacement: (parent?: HTMLElement) => {
+			if (!parent) return;
+			if (_ref) {
+				// This is a workaround for angular
+				utilsDelay(() => {
+					handleFixedPopover(_ref, parent, (props.placement as unknown as string) ?? 'bottom');
+				}, 1);
+			}
+		},
+		handleDocumentScroll: (event: any, parent?: HTMLElement) => {
+			if (event?.target?.contains && event?.target?.contains(_ref)) {
+				state.handleAutoPlacement(parent);
+			}
+		},
+		handleLeave(): void {
+			if (state._documentScrollListenerCallbackId) {
+				new DocumentScrollListener().removeCallback(state._documentScrollListenerCallbackId!);
+			}
+
+			state._observer?.unobserve(state.getParent());
+		},
+		handleEnter(parent?: HTMLElement): void {
+			state._documentScrollListenerCallbackId = new DocumentScrollListener().addCallback((event) => state.handleDocumentScroll(event, parent));
+			state.handleAutoPlacement(parent);
+			state._observer?.observe(state.getParent());
 		}
 	});
 
@@ -35,21 +70,31 @@ export default function DBTooltip(props: DBTooltipProps) {
 
 	onUpdate(() => {
 		if (_ref && state.initialized && state._id) {
-			let parent = _ref.parentElement;
+			const parent = state.getParent();
+			if (parent) {
+				['mouseenter', 'focusin'].forEach((event) => {
+					parent.addEventListener(event, () => state.handleEnter(parent));
+				});
+				parent.addEventListener('keydown', (event) => state.handleEscape(event));
+				['mouseleave', 'focusout'].forEach((event) => {
+					parent.addEventListener(event, () => state.handleLeave());
+				});
+				parent.dataset['hasTooltip'] = 'true';
 
-			if (parent && parent.localName.includes('tooltip')) {
-				// Angular workaround
-				parent = parent.parentElement;
+				if (props.variant === 'label') {
+					parent.setAttribute('aria-labelledby', state._id);
+				} else {
+					parent.setAttribute('aria-describedby', state._id);
+				}
 			}
 
-			if (parent) {
-				['mouseenter', 'focus'].forEach((event) => {
-					parent.addEventListener(event, () =>
-						state.handleAutoPlacement()
-					);
+			if (typeof window !== 'undefined' && 'IntersectionObserver' in window) {
+				state._observer = new IntersectionObserver((payload) => {
+					const entry = payload.find(({ target }) => target === state.getParent());
+					if (entry && !entry.isIntersecting) {
+						state.handleEscape(false);
+					}
 				});
-				parent.setAttribute('data-has-tooltip', 'true');
-				parent.setAttribute('aria-describedby', state._id);
 			}
 
 			state.initialized = false;
@@ -74,9 +119,7 @@ export default function DBTooltip(props: DBTooltipProps) {
 			data-placement={props.placement}
 			// TODO: clarify this attribute and we need to set it statically
 			data-gap="true"
-			onClick={(event: ClickEvent<HTMLElement>) =>
-				state.handleClick(event)
-			}>
+			onClick={(event: ClickEvent<HTMLElement>) => state.handleClick(event)}>
 			{props.children}
 		</i>
 	);

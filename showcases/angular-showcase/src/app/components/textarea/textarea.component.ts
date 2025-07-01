@@ -7,12 +7,8 @@ import { environment } from '../../../environments/environment';
 @Component({
 	selector: 'app-textarea',
 	templateUrl: './textarea.component.html',
-	imports: [
-		environment.webComponents
-			? [DefaultComponent]
-			: [DefaultComponent, DBTextarea]
-	],
-	schemas: [CUSTOM_ELEMENTS_SCHEMA],
+	imports: [environment.webComponents ? [DefaultComponent] : [DefaultComponent, DBTextarea]],
+	schemas: environment.webComponents ? [CUSTOM_ELEMENTS_SCHEMA] : [],
 	standalone: true
 })
 export class TextareaComponent {

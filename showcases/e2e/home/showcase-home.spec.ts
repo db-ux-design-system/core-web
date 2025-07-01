@@ -2,19 +2,12 @@ import { expect, test, type Page } from '@playwright/test';
 import { AxeBuilder } from '@axe-core/playwright';
 import { hasWebComponentSyntax, isStencil, waitForDBPage } from '../default';
 
-const testFormComponents = async (
-	page: Page,
-	testId: string,
-	role: 'textbox' | 'combobox' | 'checkbox' | 'radio'
-) => {
+const testFormComponents = async (page: Page, testId: string, role: 'textbox' | 'combobox' | 'checkbox' | 'radio' | 'group') => {
 	await page.goto('./');
 	const tab = page.getByTestId(testId);
 	await expect(tab).toBeVisible();
 	await tab.click({ force: true });
-	const definition = await page
-		.getByTestId('data-list')
-		.getByRole('definition')
-		.all();
+	const definition = await page.getByTestId('data-list').getByRole('definition').all();
 
 	const components = await page.getByTestId('tabs').getByRole(role).all();
 	for (const component of components) {
@@ -39,7 +32,18 @@ const testFormComponents = async (
 
 				break;
 			}
-			// No default
+
+			case 'group': {
+				if (index !== 0) {
+					await component.click({ force: true });
+					await page.waitForTimeout(2000); // Wait for focus to hit first element
+					await page.keyboard.press('Space');
+					await page.keyboard.press('Escape');
+					await page.waitForTimeout(500);
+				}
+
+				break;
+			}
 		}
 	}
 
@@ -51,6 +55,8 @@ const testFormComponents = async (
 		const text = await def.textContent();
 		if (role === 'checkbox') {
 			expect(text).toEqual('false');
+		} else if (role === 'group') {
+			expect(text).toEqual(`combobox-0`);
 		} else {
 			expect(text).toEqual(`${role}-${index}`);
 		}
@@ -124,5 +130,15 @@ test.describe('Home', () => {
 		}
 
 		await testFormComponents(page, 'tab-radios', 'radio');
+	});
+
+	test('test custom-selects', async ({ page }, { project }) => {
+		// TODO: We need to investigate on this one how to enable it for WebKit again
+		const isWebkit = project.name === 'webkit' || project.name === 'mobile_safari';
+		if (stencil || isWebkit) {
+			test.skip();
+		}
+
+		await testFormComponents(page, 'tab-custom-selects', 'group');
 	});
 });

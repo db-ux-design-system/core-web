@@ -89,9 +89,12 @@
 
 	100% {
 		opacity: 1;
-		transform: translate(
-			var(--db-popover-center-x, 0%),
-			var(--db-popover-center-y, 0%)
-		);
+		transform: translate(var(--db-popover-center-x, 0%), var(--db-popover-center-y, 0%));
+	}
+}
+
+@keyframes rotate {
+	100% {
+		transform: rotate(1turn);
 	}
 }

@@ -12,7 +12,8 @@ const getNavigationItem = ({
 	active,
 	width,
 	areaPopup,
-	showIcon
+	showIcon,
+	wrap
 }: DBNavigationItemProps & { areaPopup: boolean }) => (
 	<ul className="nav-item-list">
 		<DBNavigationItem
@@ -25,16 +26,26 @@ const getNavigationItem = ({
 				alert(children.toString());
 			}}
 			showIcon={showIcon}
+			wrap={wrap}
 			subNavigation={
 				areaPopup && (
-					<ul>
-						<DBNavigationItem>
-							<a href="#">Test1</a>
+					<>
+						<DBNavigationItem
+							icon={icon}
+							showIcon={showIcon}
+							subNavigation={
+								<>
+									<DBNavigationItem icon={icon} showIcon={showIcon}>
+										<a href="#">Navigation-Item 2</a>
+									</DBNavigationItem>
+								</>
+							}>
+							Also a navigation item with longer label
 						</DBNavigationItem>
-						<DBNavigationItem>
-							<a href="#">Test2</a>
+						<DBNavigationItem icon={icon} showIcon={showIcon}>
+							<a href="#">Navigation-Item 1</a>
 						</DBNavigationItem>
-					</ul>
+					</>
 				)
 			}>
 			{areaPopup ? children : <a href="#">{children}</a>}
@@ -48,11 +59,7 @@ const NavigationItemComponent = (props: BaseComponentProps) => {
 			title="DBNavigationItem"
 			isSubComponent={props.isSubComponent}
 			componentName={props.componentName}
-			variants={getVariants(
-				defaultComponentVariants,
-				getNavigationItem,
-				props.slotCode
-			)}></DefaultComponent>
+			variants={getVariants(defaultComponentVariants, getNavigationItem, props.slotCode)}></DefaultComponent>
 	);
 };
 
