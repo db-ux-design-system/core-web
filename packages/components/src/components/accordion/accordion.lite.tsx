@@ -8,11 +8,11 @@ import {
 	useRef,
 	useStore
 } from '@builder.io/mitosis';
-import { DBAccordionItemDefaultProps } from '../accordion-item/model';
-import { DBAccordionProps, DBAccordionState } from './model';
+import { DEFAULT_ID } from '../../shared/constants';
 import { cls, uuid } from '../../utils';
 import DBAccordionItem from '../accordion-item/accordion-item.lite';
-import { DEFAULT_ID } from '../../shared/constants';
+import { DBAccordionItemDefaultProps } from '../accordion-item/model';
+import { DBAccordionProps, DBAccordionState } from './model';
 
 useMetadata({});
 

@@ -1,4 +1,3 @@
-import { platform } from 'node:os';
 import {
 	type NVDAPlaywright,
 	nvdaTest,
@@ -7,6 +6,7 @@ import {
 } from '@guidepup/playwright';
 import { macOSRecord, windowsRecord } from '@guidepup/record';
 import { expect } from '@playwright/test';
+import { platform } from 'node:os';
 import {
 	type DefaultTestType,
 	type RunTestType,

@@ -1,6 +1,6 @@
+import { glob } from 'glob';
 import { exec } from 'node:child_process';
 import { promisify } from 'node:util';
-import { glob } from 'glob';
 
 import { dirname } from 'path';
 import { fileURLToPath } from 'url';

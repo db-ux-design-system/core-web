@@ -1,9 +1,9 @@
-import { useSearchParams } from 'react-router-dom';
 import {
-	useSearchParams as useSearchParametersNext,
+	usePathname as usePathnameNext,
 	useRouter as useRouterNext,
-	usePathname as usePathnameNext
+	useSearchParams as useSearchParametersNext
 } from 'next/navigation';
+import { useSearchParams } from 'react-router-dom';
 
 const useUniversalSearchParameters = (): [
 	URLSearchParams,

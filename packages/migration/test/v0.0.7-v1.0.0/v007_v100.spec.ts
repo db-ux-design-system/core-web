@@ -1,5 +1,5 @@
-import { describe, expect, test } from 'vitest';
 import { type ReplaceResult } from 'replace-in-file';
+import { describe, expect, test } from 'vitest';
 import { migrate } from '../../src/migration';
 
 describe('v007_v100', () => {

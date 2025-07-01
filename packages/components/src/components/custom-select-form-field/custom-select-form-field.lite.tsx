@@ -1,6 +1,6 @@
 import { useDefaultProps, useMetadata, useRef } from '@builder.io/mitosis';
-import { DBCustomSelectFormFieldProps } from './model';
 import { cls } from '../../utils';
+import { DBCustomSelectFormFieldProps } from './model';
 
 useMetadata({});
 
