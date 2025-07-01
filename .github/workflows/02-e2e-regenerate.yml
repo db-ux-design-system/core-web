@@ -27,6 +27,8 @@ jobs:
     steps:
       - name: ⏬ Checkout repo
         uses: actions/checkout@v4
+        with:
+          lfs: "true"
 
       - name: 🔄 Init Cache
         uses: ./.github/actions/npm-cache
