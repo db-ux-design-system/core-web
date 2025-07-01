@@ -1,5 +1,5 @@
-import { expect, test } from '@playwright/experimental-ct-react';
 import AxeBuilder from '@axe-core/playwright';
+import { expect, test } from '@playwright/experimental-ct-react';
 
 import { DBSelect } from './index';
 // @ts-ignore - vue can only find it with .ts as file ending
@@ -57,7 +57,7 @@ const testAction = () => {
 		);
 		const component = await mount(comp);
 		const select = component.getByRole('combobox');
-		const selected = await select.selectOption({ label: 'Test1' });
+		const selected = await select.selectOption({ value: 'test1' });
 		expect(selected).toContain(test);
 	});
 };

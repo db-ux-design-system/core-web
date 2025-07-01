@@ -4,13 +4,13 @@ import {
 	DBTabPanel,
 	DBTabs
 } from '@db-ux/react-core-components/src';
-import FormInputs from '../form/input';
 import FormComponent from '../form';
-import FormTextareas from '../form/textarea';
-import FormSelects from '../form/select';
 import FormCheckboxes from '../form/checkbox';
-import FormRadios from '../form/radio';
 import FormCustomSelects from '../form/custom-select';
+import FormInputs from '../form/input';
+import FormRadios from '../form/radio';
+import FormSelects from '../form/select';
+import FormTextareas from '../form/textarea';
 
 const Home = () => {
 	return (

@@ -2,6 +2,5 @@
 - combobox "Label":
   - option "Test1" [selected]
   - option "Test2"
-- text: information_circle" / " Description
+- text: Description
 - status
-- text: chevron_down" / "

@@ -4,8 +4,8 @@ import {
 	useMetadata,
 	useRef
 } from '@builder.io/mitosis';
-import type { DBButtonProps } from './model';
 import { cls, getBoolean, getBooleanAsString, getHideProp } from '../../utils';
+import type { DBButtonProps } from './model';
 
 useMetadata({
 	angular: {

@@ -1,5 +1,5 @@
-import childProcess from 'node:child_process';
 import { checkbox } from '@inquirer/prompts';
+import childProcess from 'node:child_process';
 
 const answersFrameworkPairs = [
 	{

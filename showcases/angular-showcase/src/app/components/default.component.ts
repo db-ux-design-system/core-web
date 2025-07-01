@@ -1,3 +1,4 @@
+import { NgTemplateOutlet } from '@angular/common';
 import {
 	Component,
 	CUSTOM_ELEMENTS_SCHEMA,
@@ -7,7 +8,6 @@ import {
 	type TemplateRef
 } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { NgTemplateOutlet } from '@angular/common';
 import {
 	COLOR,
 	COLOR_CONST,
