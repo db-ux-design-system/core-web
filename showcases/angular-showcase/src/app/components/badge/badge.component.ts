@@ -6,8 +6,8 @@ import {
 	DBInfotext
 } from '../../../../../../output/angular/src';
 import defaultComponentVariants from '../../../../../shared/badge.json';
-import { DefaultComponent } from '../default.component';
 import { environment } from '../../../environments/environment';
+import { DefaultComponent } from '../default.component';
 
 @Component({
 	selector: 'app-badge',

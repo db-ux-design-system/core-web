@@ -5,9 +5,9 @@ import {
 	useRef,
 	useStore
 } from '@builder.io/mitosis';
-import { DBTabListProps, DBTabListState } from './model';
-import { cls, uuid } from '../../utils';
 import { DEFAULT_ID } from '../../shared/constants';
+import { cls, uuid } from '../../utils';
+import { DBTabListProps, DBTabListState } from './model';
 
 useMetadata({});
 useDefaultProps<DBTabListProps>({});

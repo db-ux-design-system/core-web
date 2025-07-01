@@ -10,19 +10,6 @@ import {
 	useTarget
 } from '@builder.io/mitosis';
 import {
-	cls,
-	delay,
-	getBoolean,
-	getHideProp,
-	getNumber,
-	hasVoiceOver,
-	isArrayOfStrings,
-	stringPropVisible,
-	uuid,
-	getInputValue
-} from '../../utils';
-import { DBInputProps, DBInputState } from './model';
-import {
 	DEFAULT_DATALIST_ID_SUFFIX,
 	DEFAULT_INVALID_MESSAGE,
 	DEFAULT_INVALID_MESSAGE_ID_SUFFIX,
@@ -38,11 +25,24 @@ import {
 	InteractionEvent,
 	ValueLabelType
 } from '../../shared/model';
-import DBInfotext from '../infotext/infotext.lite';
+import {
+	cls,
+	delay,
+	getBoolean,
+	getHideProp,
+	getInputValue,
+	getNumber,
+	hasVoiceOver,
+	isArrayOfStrings,
+	stringPropVisible,
+	uuid
+} from '../../utils';
 import {
 	handleFrameworkEventAngular,
 	handleFrameworkEventVue
 } from '../../utils/form-components';
+import DBInfotext from '../infotext/infotext.lite';
+import { DBInputProps, DBInputState } from './model';
 
 useMetadata({
 	angular: {

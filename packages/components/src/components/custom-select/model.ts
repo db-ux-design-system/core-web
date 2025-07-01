@@ -20,8 +20,8 @@ import {
 	ValidationType,
 	WidthType
 } from '../../shared/model';
-import { DBCustomSelectFormFieldDefaultProps } from '../custom-select-form-field/model';
 import { CustomSelectDropdownWidthType } from '../custom-select-dropdown/model';
+import { DBCustomSelectFormFieldDefaultProps } from '../custom-select-form-field/model';
 import { DBCustomSelectListItemExtraProps } from '../custom-select-list-item/model';
 
 export type CustomSelectOptionType = {

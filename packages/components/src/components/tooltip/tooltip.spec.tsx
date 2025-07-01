@@ -1,5 +1,4 @@
 import { expect, test } from '@playwright/experimental-ct-react';
-import AxeBuilder from '@axe-core/playwright';
 
 import { DBTooltip } from './index';
 // @ts-ignore - vue can only find it with .ts as file ending

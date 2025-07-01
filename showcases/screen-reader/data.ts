@@ -1,4 +1,8 @@
 import {
+	type NVDAPlaywright,
+	type VoiceOverPlaywright
+} from '@guidepup/playwright';
+import {
 	type Page,
 	type PlaywrightTestArgs,
 	type PlaywrightTestOptions,
@@ -6,10 +10,6 @@ import {
 	type PlaywrightWorkerOptions,
 	type TestType
 } from '@playwright/test';
-import {
-	type NVDAPlaywright,
-	type VoiceOverPlaywright
-} from '@guidepup/playwright';
 
 export type ScreenReaderTestType = TestType<
 	PlaywrightTestArgs &

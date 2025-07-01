@@ -142,13 +142,7 @@ export const getCodeByFramework = (
 						slotName =
 							slotName.charAt(0).toLowerCase() +
 							slotName.slice(1);
-						return `${slotName}={${getCodeByFramework(
-							child.name,
-							framework,
-							child,
-							noEvents,
-							child.children
-						)}}`;
+						return `${slotName}={${getCodeByFramework(child.name, framework, child, noEvents, child.children)}}`;
 					})
 					.join('\n');
 		} else {
@@ -181,9 +175,7 @@ export const getCodeByFramework = (
 	if (componentName === 'tooltip') {
 		return innerContent.replace(
 			'</',
-			`<${tag}${className} ${attributes
-				.filter((attr) => attr !== 'content')
-				.join(' ')}>${
+			`<${tag}${className} ${attributes.filter((attr) => attr !== 'content').join(' ')}>${
 				attributes.find((attr) => attr === 'content') ?? ''
 			}</${tag}></`
 		);

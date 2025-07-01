@@ -1,10 +1,10 @@
 import React, { useCallback, useState } from 'react';
 import { DBCard, DBDivider, DBLink } from '../../../../output/react/src';
-import useQuery from '../hooks/use-query';
 import type {
 	ReactDefaultComponentProps,
 	ReactDefaultComponentVariants
 } from '../../../shared/react-default-component-data';
+import useQuery from '../hooks/use-query';
 
 const redirectURLSearchParameters = process?.env?.REDIRECT_URL_SEARCH_PARAMS
 	? process.env.REDIRECT_URL_SEARCH_PARAMS === 'true'

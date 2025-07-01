@@ -1,7 +1,7 @@
 /* eslint-disable unicorn/prefer-top-level-await */
 
-import FS from 'node:fs';
 import inquirer from 'inquirer';
+import FS from 'node:fs';
 import designSystems from './design-systems.js';
 
 inquirer
