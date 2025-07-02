@@ -32,6 +32,7 @@ Across the surveyed design systems, there is a kind of pattern for tables:
     This ensures maximum accessibility out of the box, since screen readers and keyboard users already understand native table structures.
 
 2. **Progressive Enhancement of Interactivity**
+
     - **Static by Default**: Some systems stick to purely static tables with CSS-based styling (striped rows, borders) and responsive wrappers for horizontal scrolling. Those have no built-in interactivity (sorting, pagination, etc.).
     - **Developer-Driven Features**: Several systems provide core table markup plus optional wrappers or slots for sorting, sticky headers, and scroll controls, leaving the actual user-driven logic to the implementer.
     - **Built-in Data Tables**: Other systems offer rich, pre-wired data table components with pagination, sorting, row selection, expandable rows, and more. These components manage state, callbacks, and ARIA attributes internally.
