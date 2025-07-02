@@ -3,7 +3,7 @@ import config from '../playwright.config';
 
 const patternHubConfig: PlaywrightTestConfig = {
 	...config,
-	testDir: './patternhub/tests',
+	testDir: './tests',
 	// Example: __snapshots__/notification/patternhub/chromium/DBNotification-should-match-screenshot.png
 	snapshotPathTemplate: '{snapshotDir}/{arg}/{testName}{ext}',
 	// We reduce amount of tests, just testing if site is reachable and content is available
