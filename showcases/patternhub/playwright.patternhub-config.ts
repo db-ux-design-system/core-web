@@ -1,5 +1,5 @@
 import { devices, type PlaywrightTestConfig } from '@playwright/test';
-import config from './playwright.config';
+import config from '../playwright.config';
 
 const patternHubConfig: PlaywrightTestConfig = {
 	...config,

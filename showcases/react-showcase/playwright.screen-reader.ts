@@ -1,6 +1,6 @@
 import { screenReaderConfig } from '@guidepup/playwright';
 import { type PlaywrightTestConfig } from '@playwright/test';
-import showcaseConfig from './playwright.showcase';
+import showcaseConfig from '../playwright.showcase';
 
 const defaultScreenReaderConfig: PlaywrightTestConfig = {
 	...screenReaderConfig,
