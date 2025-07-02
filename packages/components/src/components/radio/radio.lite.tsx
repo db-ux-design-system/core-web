@@ -81,6 +81,7 @@ export default function DBRadio(props: DBRadioProps) {
 				aria-describedby={props.describedbyid ?? props.ariaDescribedBy}
 				value={props.value}
 				required={getBoolean(props.required, 'required')}
+				data-hide-asterisk={getHideProp(props.showRequiredAsterisk)}
 				onChange={(event: ChangeEvent<HTMLInputElement>) =>
 					state.handleChange(event)
 				}
