@@ -241,11 +241,7 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 			) {
 				return props.removeTagsTexts!.at(index)!;
 			} else {
-				return `${DEFAULT_REMOVE} ${
-					state._selectedOptions
-						? state.getOptionLabel(state._selectedOptions![index])
-						: ''
-				}`;
+				return `${DEFAULT_REMOVE} ${state._selectedOptions ? state.getOptionLabel(state._selectedOptions![index]) : ''}`;
 			}
 		},
 		handleTagRemove: (

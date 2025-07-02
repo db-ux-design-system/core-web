@@ -1,11 +1,11 @@
-import { useState } from 'react';
 import { type CustomSelectOptionType } from '@db-ux/core-components/src/components/custom-select/model';
+import { useState } from 'react';
 import { DBCustomSelect, DBInfotext } from '../../../../../output/react/src';
-import DefaultComponent from '../default-component';
-import defaultComponentVariants from '../../../../shared/custom-select.json';
 import type { DBCustomSelectProps } from '../../../../../output/react/src/components/custom-select/model';
-import { getVariants } from '../data';
+import defaultComponentVariants from '../../../../shared/custom-select.json';
 import type { BaseComponentProps } from '../base-component-data';
+import { getVariants } from '../data';
+import DefaultComponent from '../default-component';
 
 const getCustomSelect = ({
 	children,
@@ -109,8 +109,8 @@ const getCustomSelect = ({
 				transformSelectedLabels ? getTransformSelectedLabels : undefined
 			}
 			searchFilter={searchFilter ? getSearchFilter : undefined}
-			onOptionSelected={(val) => {
-				setValue(val);
+			onOptionSelected={(value) => {
+				setValue(value);
 			}}
 		/>
 	);

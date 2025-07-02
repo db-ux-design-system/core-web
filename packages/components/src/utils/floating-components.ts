@@ -373,9 +373,7 @@ export const handleFixedPopover = (
 		element.style.insetInlineEnd = `calc(${right}px - ${distance})`;
 	} else if (correctedPlacement?.startsWith('top')) {
 		const start = top - childHeight;
-		element.style.insetBlockStart = `calc(${
-			start < 0 ? 0 : start
-		}px - ${distance})`;
+		element.style.insetBlockStart = `calc(${start < 0 ? 0 : start}px - ${distance})`;
 		element.style.insetBlockEnd = `calc(${bottom}px - ${distance})`;
 	} else if (correctedPlacement?.startsWith('bottom')) {
 		const end = bottom + childHeight;

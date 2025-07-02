@@ -8,10 +8,7 @@ import {
 	useStore,
 	useTarget
 } from '@builder.io/mitosis';
-import {
-	DBCustomSelectListItemProps,
-	DBCustomSelectListItemState
-} from './model';
+import { ChangeEvent } from '../../shared/model';
 import {
 	cls,
 	getBoolean,
@@ -19,11 +16,14 @@ import {
 	getHideProp,
 	uuid
 } from '../../utils';
-import { ChangeEvent } from '../../shared/model';
 import {
 	handleFrameworkEventAngular,
 	handleFrameworkEventVue
 } from '../../utils/form-components';
+import {
+	DBCustomSelectListItemProps,
+	DBCustomSelectListItemState
+} from './model';
 
 useMetadata({
 	angular: {

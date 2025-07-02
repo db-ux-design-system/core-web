@@ -30,7 +30,6 @@ import {
 	cls,
 	delay,
 	getBoolean,
-	getBooleanAsString,
 	getHideProp,
 	getInputValue,
 	getNumber,

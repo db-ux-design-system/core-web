@@ -1,5 +1,4 @@
 import { test } from '@playwright/test';
-// @ts-expect-error - required for playwright
 import { getDefaultScreenshotTest, runAriaSnapshotTest } from '../default.ts';
 import { hoverPre } from '../fixtures/hover';
 

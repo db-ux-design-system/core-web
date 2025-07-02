@@ -1,5 +1,5 @@
-import { type NextRouter, type Router, useRouter } from 'next/router';
 import Link from 'next/link';
+import { type NextRouter, useRouter } from 'next/router';
 import { DBNavigationItem } from '../../../../output/react/src';
 import type { NavigationItem } from '../../data/routes';
 

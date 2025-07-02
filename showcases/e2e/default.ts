@@ -1,9 +1,10 @@
-import { expect, type Page, test } from '@playwright/test';
 import { AxeBuilder } from '@axe-core/playwright';
+import { expect, type Page, test } from '@playwright/test';
 import { close, getCompliance } from 'accessibility-checker';
 import { type ICheckerError } from 'accessibility-checker/lib/api/IChecker';
-import { type FullProject } from 'playwright/types/test';
-import { COLORS, lvl1 } from './fixtures/variants';
+import { type IBaselineResult } from 'accessibility-checker/lib/common/engine/IReport';
+import { type FullProject } from 'playwright/types';
+import { lvl1 } from './fixtures/variants';
 import { setScrollViewport } from './fixtures/viewport';
 
 const density = 'regular';
@@ -37,13 +38,13 @@ export type A11yCheckerTestType = {
 	preChecker?: (page: Page) => Promise<void>;
 } & DefaultTestType;
 
-export const isStencil = (showcase: string): boolean =>
-	showcase.startsWith('stencil');
-export const isAngular = (showcase: string): boolean =>
-	showcase.startsWith('angular');
+export const isStencil = (showcase?: string): boolean =>
+	Boolean(showcase?.startsWith('stencil'));
+export const isAngular = (showcase?: string): boolean =>
+	Boolean(showcase?.startsWith('angular'));
 export const isVue = (showcase: string): boolean => showcase.startsWith('vue');
 
-export const hasWebComponentSyntax = (showcase: string): boolean => {
+export const hasWebComponentSyntax = (showcase?: string): boolean => {
 	return isAngular(showcase) || isStencil(showcase);
 };
 
@@ -79,10 +80,10 @@ const gotoPage = async (
 const isCheckerError = (object: any): object is ICheckerError =>
 	'details' in object;
 
-const shouldSkip = (skip: SkipType): boolean => {
+const shouldSkip = (skip?: SkipType): boolean => {
 	if (skip) {
-		const showcase = process.env.showcase;
-		if (skip.angular && showcase.startsWith('angular')) {
+		const { showcase } = process.env;
+		if (skip.angular && showcase?.startsWith('angular')) {
 			return true;
 		}
 	}
@@ -98,7 +99,7 @@ export const getDefaultScreenshotTest = ({
 	ratio
 }: DefaultSnapshotTestType) => {
 	test(`should match screenshot`, async ({ page }, { project }) => {
-		const showcase = process.env.showcase;
+		const { showcase } = process.env;
 		const diffPixel = process.env.diff;
 		const maxDiffPixelRatio = process.env.ratio ?? ratio;
 		const stencil = isStencil(showcase);
@@ -130,7 +131,7 @@ export const getDefaultScreenshotTest = ({
 
 		await gotoPage(page, path, lvl1, fixedHeight);
 
-		const header = await page.locator('header').first();
+		const header = page.locator('header').first();
 
 		config.mask = [header];
 
@@ -230,11 +231,11 @@ export const runA11yCheckerTest = ({
 			if (isCheckerError(report)) {
 				failures = report.details;
 			} else {
-				failures = report.results
-					.filter((res) => res.level === 'violation')
-					.filter(
-						(res) => !aCheckerDisableRules?.includes(res.ruleId)
-					);
+				failures = report.results.filter(
+					({ level, ruleId }: IBaselineResult) =>
+						level.toString() === 'violation' &&
+						!aCheckerDisableRules?.includes(ruleId)
+				);
 			}
 		} catch (error) {
 			console.error(error);

@@ -7,11 +7,11 @@ import {
 	useRef,
 	useStore
 } from '@builder.io/mitosis';
-import { DBDrawerProps, DBDrawerState } from './model';
-import DBButton from '../button/button.lite';
 import { DEFAULT_CLOSE_BUTTON } from '../../shared/constants';
-import { cls, delay, getBooleanAsString, isKeyboardEvent } from '../../utils';
 import { ClickEvent, GeneralKeyboardEvent } from '../../shared/model';
+import { cls, delay, getBooleanAsString, isKeyboardEvent } from '../../utils';
+import DBButton from '../button/button.lite';
+import { DBDrawerProps, DBDrawerState } from './model';
 
 useMetadata({});
 

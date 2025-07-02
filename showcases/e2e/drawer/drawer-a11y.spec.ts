@@ -1,5 +1,4 @@
 import { type Page, test } from '@playwright/test';
-// @ts-expect-error - required for playwright
 import { runA11yCheckerTest, runAxeCoreTest } from '../default.ts';
 import { lvl3 } from '../fixtures/variants';
 

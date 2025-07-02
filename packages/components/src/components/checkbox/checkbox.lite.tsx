@@ -8,7 +8,6 @@ import {
 	useStore,
 	useTarget
 } from '@builder.io/mitosis';
-
 import {
 	DEFAULT_INVALID_MESSAGE,
 	DEFAULT_INVALID_MESSAGE_ID_SUFFIX,
@@ -21,7 +20,6 @@ import {
 	cls,
 	delay,
 	getBoolean,
-	getBooleanAsString,
 	getHideProp,
 	hasVoiceOver,
 	stringPropVisible,

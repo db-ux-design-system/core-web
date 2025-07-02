@@ -1,6 +1,5 @@
-import childProcess from 'node:child_process';
-// eslint-disable-next-line import/no-extraneous-dependencies
 import { checkbox } from '@inquirer/prompts';
+import childProcess from 'node:child_process';
 
 const answersFrameworkPairs = [
 	{

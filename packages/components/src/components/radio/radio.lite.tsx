@@ -8,15 +8,8 @@ import {
 	useStore,
 	useTarget
 } from '@builder.io/mitosis';
-
 import { ChangeEvent, InteractionEvent } from '../../shared/model';
-import {
-	cls,
-	getBoolean,
-	getBooleanAsString,
-	getHideProp,
-	uuid
-} from '../../utils';
+import { cls, getBoolean, getHideProp, uuid } from '../../utils';
 import {
 	handleFrameworkEventAngular,
 	handleFrameworkEventVue
