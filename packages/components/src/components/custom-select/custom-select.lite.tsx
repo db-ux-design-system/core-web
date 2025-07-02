@@ -10,6 +10,7 @@ import {
 	useStore,
 	useTarget
 } from '@builder.io/mitosis';
+
 import {
 	DEFAULT_CLOSE_BUTTON,
 	DEFAULT_INVALID_MESSAGE,
@@ -814,6 +815,7 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 					: props.variant
 			}
 			data-required={getBooleanAsString(props.required)}
+			data-hide-asterisk={getHideProp(props.showRequiredAsterisk)}
 			data-placement={props.placement}
 			data-selected-type={props.multiple ? props.selectedType : 'text'}
 			data-hide-label={getHideProp(props.showLabel)}
