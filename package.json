@@ -63,7 +63,7 @@
     "@angular/router": "19.2.14",
     "@angular/ssr": "19.2.15",
     "@axe-core/playwright": "^4.10.2",
-    "@babel/eslint-parser": "^7.27.0",
+    "@babel/eslint-parser": "^7.28.0",
     "@commitlint/cli": "19.8.1",
     "@commitlint/config-conventional": "19.8.1",
     "@db-ux/db-theme": "3.2.0",
