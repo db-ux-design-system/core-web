@@ -3,6 +3,7 @@ import config from '../playwright.config';
 
 const patternHubConfig: PlaywrightTestConfig = {
 	...config,
+	snapshotDir: './../../__snapshots__',
 	testDir: './tests',
 	// Example: __snapshots__/notification/patternhub/chromium/DBNotification-should-match-screenshot.png
 	snapshotPathTemplate: '{snapshotDir}/{arg}/{testName}{ext}',
