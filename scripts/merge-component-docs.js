@@ -9,6 +9,7 @@ const componentsDir = path.join(
 	__dirname,
 	'../packages/components/src/components'
 );
+const outputDir = path.join(__dirname, '../packages/components/output');
 
 /**
  * Converts a string to PascalCase.
@@ -82,6 +83,34 @@ const operations = Object.entries(groupedFiles).map(
 			console.error(`❌  Error reading files for ${prefix}:`, error);
 			return;
 		}
+
+		// Append example snippets for react, angular and vue
+		const snippetTargets = ['react', 'angular', 'vue'];
+		const snippets = await Promise.all(
+			snippetTargets.map(async (target) => {
+				const snippetPath = path.join(
+					outputDir,
+					target,
+					'src',
+					'components',
+					prefix,
+					'docs',
+					`${prefix}.docs.md`
+				);
+				try {
+					return await fs.readFile(snippetPath, 'utf8');
+				} catch {
+					console.warn(
+						`⚠️ Snippet for ${prefix} (${target}) not found: ${snippetPath}`
+					);
+					return '';
+				}
+			})
+		);
+		mergedContent += snippets
+			.filter(Boolean)
+			.map((s) => `\n\n${s}`)
+			.join('');
 
 		// Define the output directory and file path
 		const componentDir = path.join(componentsDir, prefix);
