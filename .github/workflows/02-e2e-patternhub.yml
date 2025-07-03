@@ -52,18 +52,14 @@ jobs:
           name: db-ux-patternhub
           path: build-showcases/patternhub
 
-      - name: 🧴 Copy patternhub testing app
-        shell: bash
-        run: |
-          mkdir -p ./build-showcases${{ inputs.path }}
-          cp -RT ./build-showcases/patternhub ./build-showcases${{ inputs.path }}
-
       # We test everything for patternhub and main branch
       - name: 👩‍🔬 Test showcase with Playwright 🎭
         shell: bash
         env:
           NEXT_PUBLIC_BASE_PATH: ${{ inputs.path }}
         run: |
+          mkdir -p ./build-showcases${{ inputs.path }}
+          cp -RT ./build-showcases/patternhub ./build-showcases${{ inputs.path }}
           npm run test:e2e --workspace=patternhub
 
       - name: 🔣 Print GitHub Report

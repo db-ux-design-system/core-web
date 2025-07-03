@@ -16,7 +16,7 @@ const patternHubConfig: PlaywrightTestConfig = {
 		}
 	],
 	webServer: {
-		command: `npx http-server ../build-showcases${process.env.NEXT_PUBLIC_BASE_PATH ? '' : '/patternhub'}`,
+		command: `npx http-server ../../build-showcases${process.env.NEXT_PUBLIC_BASE_PATH ? '' : '/patternhub'}`,
 		port: 8080,
 		reuseExistingServer: !process.env.CI
 	},
@@ -29,7 +29,7 @@ const patternHubConfig: PlaywrightTestConfig = {
 		/* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
 		trace: process.env.CI ? 'on-first-retry' : 'on'
 	},
-	outputDir: `./patternhub/test-results/`
+	outputDir: `./test-results/`
 };
 
 export default patternHubConfig;
