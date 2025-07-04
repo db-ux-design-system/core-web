@@ -38,6 +38,7 @@
     "dev:stencil": "nodemon --watch src --watch scripts -e tsx,ts -x \"npm run compile:stencil\"",
     "dev:vue": "nodemon --watch src --watch scripts -e tsx,ts -x \"npm run compile:vue\"",
     "docs:components": "typedoc --options ../../typedoc.json --tsconfig tsconfig.typedoc.json && node ../../scripts/merge-component-docs.js && rimraf docs/api/README.md",
+    "docs:css": "mkdir -p output/css && for file in src/components/**/*.scss; do npx sassdoc2md \"$file\" \"output/css/$(basename \"$file\" .scss).md\"; done",
     "generate:component": "hygen mitosis new",
     "generate:copilot-instructions": "node ../../scripts/generate-copilot-instructions.js",
     "generate:docs": "hygen update-docs new",
@@ -60,6 +61,7 @@
     "hygen": "^6.2.11",
     "nodemon": "3.1.10",
     "sass": "1.85.0",
+    "sassdoc": "^2.7.4",
     "tsx": "^4.19.4"
   },
   "publishConfig": {

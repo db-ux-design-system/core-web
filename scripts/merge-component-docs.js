@@ -10,6 +10,7 @@ const componentsDir = path.join(
 	'../packages/components/src/components'
 );
 const outputDir = path.join(__dirname, '../packages/components/output');
+const cssPath = path.join(outputDir, 'css');
 
 /**
  * Converts a string to PascalCase.
@@ -111,6 +112,23 @@ const operations = Object.entries(groupedFiles).map(
 			.filter(Boolean)
 			.map((s) => `\n\n${s}`)
 			.join('');
+
+		const cssFilePath = path.join(cssPath, `${prefix}.md`);
+		if (await fs.stat(cssPath).catch(() => false)) {
+			try {
+				let cssDoc = await fs.readFile(cssFilePath, 'utf8');
+				// Remove HTML anchor tags inserted by SassDoc
+				cssDoc = cssDoc
+					.toString()
+					.replaceAll(/^[ \t]*<a id="[^"]+"><\/a>[ \t]*\r?\n/gm, '');
+				mergedContent += `\n\n## CSS Variables\n\n${cssDoc}`;
+			} catch (error) {
+				console.warn(
+					`⚠️  Failed to read or clean CSS doc for ${prefix}:`,
+					error
+				);
+			}
+		}
 
 		// Define the output directory and file path
 		const componentDir = path.join(componentsDir, prefix);
