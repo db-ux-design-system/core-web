@@ -8,9 +8,9 @@ import {
 } from '../../../../../output/react/src';
 import { type DBHeaderProps } from '../../../../../output/react/src/components/header/model';
 import defaultComponentVariants from '../../../../shared/header.json';
+import { type BaseComponentProps } from '../base-component-data';
 import { getVariants } from '../data';
 import DefaultComponent from '../default-component';
-import { type BaseComponentProps } from '../base-component-data';
 
 const getHeader = ({
 	drawerOpen,
@@ -18,7 +18,6 @@ const getHeader = ({
 	burgerMenuLabel,
 	children,
 	className,
-	describedbyid,
 	id,
 	onToggle,
 	width,
@@ -71,7 +70,6 @@ const getHeader = ({
 		forceMobile={forceMobile}
 		burgerMenuLabel={burgerMenuLabel}
 		className={className}
-		describedbyid={describedbyid}
 		id={id}
 		onToggle={onToggle}>
 		{(!example || withNavigation) && (

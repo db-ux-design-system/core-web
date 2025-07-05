@@ -17,6 +17,7 @@ jobs:
     runs-on: ubuntu-24.04 # Use Ubuntu 24.04 explicitly
     container:
       image: mcr.microsoft.com/playwright:v${{ inputs.version }}
+      options: --user 1001
     strategy:
       fail-fast: false
       matrix:
@@ -29,9 +30,6 @@ jobs:
 
       - name: 🔄 Init Cache
         uses: ./.github/actions/npm-cache
-
-      - name: 📲 Install esbuild (binary workaround)
-        run: npm i -D esbuild-linux-64
 
       - name: ⏬ Download foundations build
         uses: actions/download-artifact@v4
@@ -58,8 +56,6 @@ jobs:
 
       - name: 👩‍🔬 Test with Playwright 🎭
         working-directory: ./output/${{ steps.workingDirectory.outputs.dir }}
-        env:
-          HOME: /root
         run: npx playwright test --shard=${{ matrix.shardIndex }}/${{ matrix.shardTotal }}
 
       - name: 🔣 Print GitHub Report

@@ -1,8 +1,8 @@
 # Contributing
 
-Thanks for your interest in our project. Contributions are welcome. Feel free to [open an issue](https://github.com/db-ux-design-system/core-web/issues/new) with questions or reporting ideas and bugs, or [open pull requests](https://github.com/db-ux-design-system/core-web/compare) to contribute code.
+**Thank you for your interest in our project.** Contributions are always welcome. **Feel free to [open an issue](https://github.com/db-ux-design-system/core-web/issues/new) if you have any questions, ideas, or bugs to report, or submit pull requests to contribute code.**
 
-We are committed to fostering a welcoming, respectful, and harassment-free environment. Be kind!
+We are committed to fostering a welcoming, respectful, and harassment-free environment, **so please be kind! 💖**
 
 ## Prepare
 
@@ -28,7 +28,7 @@ npm run dev
 
 ## Make changes / Before you commit
 
-Please make sure that husky is installed correctly to validate your changes.
+Please ensure that **Husky** is installed correctly to validate your changes.
 
 Please verify you are using a valid branch name as described by the pattern in your [`package.json`](./package.json) in the section `validate-branch-name`.
 
@@ -36,4 +36,4 @@ Moreover, you need to duplicate [`.env.template`](./.env.template) as [`.env`](.
 
 ### Conventions
 
-Please be aware that we have some [code and git commit (message and branch naming) conventions](docs/conventions.md), that we ensure with some linting tools.
+Please note that we have established [code and git commit (message and branch naming) conventions](docs/conventions.md), which are enforced using various linting tools.

@@ -1,3 +1,4 @@
+import { type Root } from 'postcss';
 import stylelint, {
 	type PostcssResult,
 	type Rule,
@@ -5,7 +6,6 @@ import stylelint, {
 	type RuleMessages,
 	type RuleMeta
 } from 'stylelint';
-import { type Root } from 'postcss';
 
 const {
 	createPlugin,

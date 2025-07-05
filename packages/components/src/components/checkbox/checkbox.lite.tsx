@@ -8,7 +8,6 @@ import {
 	useStore,
 	useTarget
 } from '@builder.io/mitosis';
-import { DBCheckboxProps, DBCheckboxState } from './model';
 import {
 	DEFAULT_INVALID_MESSAGE,
 	DEFAULT_INVALID_MESSAGE_ID_SUFFIX,
@@ -18,11 +17,6 @@ import {
 } from '../../shared/constants';
 import { ChangeEvent, InteractionEvent } from '../../shared/model';
 import {
-	handleFrameworkEventAngular,
-	handleFrameworkEventVue
-} from '../../utils/form-components';
-import DBInfotext from '../infotext/infotext.lite';
-import {
 	cls,
 	delay,
 	getBoolean,
@@ -31,6 +25,12 @@ import {
 	stringPropVisible,
 	uuid
 } from '../../utils';
+import {
+	handleFrameworkEventAngular,
+	handleFrameworkEventVue
+} from '../../utils/form-components';
+import DBInfotext from '../infotext/infotext.lite';
+import { DBCheckboxProps, DBCheckboxState } from './model';
 
 useMetadata({
 	angular: {
@@ -192,6 +192,7 @@ export default function DBCheckbox(props: DBCheckboxProps) {
 					disabled={getBoolean(props.disabled, 'disabled')}
 					value={props.value}
 					required={getBoolean(props.required, 'required')}
+					data-hide-asterisk={getHideProp(props.showRequiredAsterisk)}
 					onChange={(event: ChangeEvent<HTMLInputElement>) =>
 						state.handleChange(event)
 					}

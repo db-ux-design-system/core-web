@@ -5,9 +5,9 @@ import {
 	useRef,
 	useStore
 } from '@builder.io/mitosis';
-import { DBNavigationProps, DBNavigationState } from './model';
-import { cls, uuid } from '../../utils';
 import { DEFAULT_ID } from '../../shared/constants';
+import { cls, uuid } from '../../utils';
+import { DBNavigationProps, DBNavigationState } from './model';
 
 useMetadata({});
 

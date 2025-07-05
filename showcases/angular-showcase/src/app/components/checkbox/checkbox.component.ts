@@ -1,8 +1,8 @@
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { DBCheckbox, DBInfotext } from '../../../../../../output/angular/src';
 import defaultComponentVariants from '../../../../../shared/checkbox.json';
-import { DefaultComponent } from '../default.component';
 import { environment } from '../../../environments/environment';
+import { DefaultComponent } from '../default.component';
 
 @Component({
 	selector: 'app-checkbox',

@@ -9,7 +9,21 @@ import {
 	useStore,
 	useTarget
 } from '@builder.io/mitosis';
-import { DBSelectOptionType, DBSelectProps, DBSelectState } from './model';
+import {
+	DEFAULT_INVALID_MESSAGE,
+	DEFAULT_INVALID_MESSAGE_ID_SUFFIX,
+	DEFAULT_LABEL,
+	DEFAULT_MESSAGE_ID_SUFFIX,
+	DEFAULT_PLACEHOLDER_ID_SUFFIX,
+	DEFAULT_VALID_MESSAGE,
+	DEFAULT_VALID_MESSAGE_ID_SUFFIX
+} from '../../shared/constants';
+import {
+	ChangeEvent,
+	ClickEvent,
+	InputEvent,
+	InteractionEvent
+} from '../../shared/model';
 import {
 	cls,
 	delay,
@@ -21,25 +35,11 @@ import {
 	uuid
 } from '../../utils';
 import {
-	DEFAULT_INVALID_MESSAGE,
-	DEFAULT_INVALID_MESSAGE_ID_SUFFIX,
-	DEFAULT_LABEL,
-	DEFAULT_MESSAGE_ID_SUFFIX,
-	DEFAULT_PLACEHOLDER_ID_SUFFIX,
-	DEFAULT_VALID_MESSAGE,
-	DEFAULT_VALID_MESSAGE_ID_SUFFIX
-} from '../../shared/constants';
-import DBInfotext from '../infotext/infotext.lite';
-import {
-	ChangeEvent,
-	ClickEvent,
-	InputEvent,
-	InteractionEvent
-} from '../../shared/model';
-import {
 	handleFrameworkEventAngular,
 	handleFrameworkEventVue
 } from '../../utils/form-components';
+import DBInfotext from '../infotext/infotext.lite';
+import { DBSelectOptionType, DBSelectProps, DBSelectState } from './model';
 
 useMetadata({
 	angular: {
@@ -204,6 +204,7 @@ export default function DBSelect(props: DBSelectProps) {
 				data-custom-validity={props.validation}
 				ref={_ref}
 				required={getBoolean(props.required, 'required')}
+				data-hide-asterisk={getHideProp(props.showRequiredAsterisk)}
 				disabled={getBoolean(props.disabled, 'disabled')}
 				id={state._id}
 				name={props.name}

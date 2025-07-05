@@ -279,8 +279,8 @@ $input-valid-types:
 }
 
 @mixin set-required-label($selector) {
-	&:has(#{$selector}:required),
-	&[data-required="true"] {
+	&:has(#{$selector}:required):not([data-hide-asterisk="true"]),
+	&[data-required="true"]:not([data-hide-asterisk="true"]) {
 		&:is(label),
 		> label {
 			&::after {

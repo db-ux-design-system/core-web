@@ -8,7 +8,12 @@ pre:not([class]):has(code) {
 	background-color: colors.$db-adaptive-bg-inverted-contrast-max-default;
 	color: colors.$db-adaptive-on-bg-inverted-default;
 	padding: variables.$db-spacing-fixed-xs;
-	font-family: monospace;
+
+	&,
+	code,
+	span {
+		font-family: monospace;
+	}
 }
 
 a:has(code:not([class])) {
@@ -33,7 +38,11 @@ code:not([class]) {
 	color: colors.$db-adaptive-on-bg-inverted-default;
 	padding-block: variables.$db-spacing-fixed-3xs;
 	padding-inline: variables.$db-spacing-fixed-2xs;
-	font-family: monospace;
+
+	&,
+	span {
+		font-family: monospace;
+	}
 }
 
 blockquote:not([class]) {

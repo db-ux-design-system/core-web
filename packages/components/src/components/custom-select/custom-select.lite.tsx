@@ -10,23 +10,7 @@ import {
 	useStore,
 	useTarget
 } from '@builder.io/mitosis';
-import {
-	CustomSelectOptionType,
-	DBCustomSelectProps,
-	DBCustomSelectState
-} from './model';
-import {
-	cls,
-	delay,
-	getBoolean,
-	getBooleanAsString,
-	getHideProp,
-	getOptionKey,
-	getSearchInput,
-	hasVoiceOver,
-	stringPropVisible,
-	uuid
-} from '../../utils';
+
 import {
 	DEFAULT_CLOSE_BUTTON,
 	DEFAULT_INVALID_MESSAGE,
@@ -48,21 +32,38 @@ import {
 	InputEvent,
 	InteractionEvent
 } from '../../shared/model';
-import DBCustomSelectList from '../custom-select-list/custom-select-list.lite';
-import DBCustomSelectListItem from '../custom-select-list-item/custom-select-list-item.lite';
-import DBCustomSelectDropdown from '../custom-select-dropdown/custom-select-dropdown.lite';
-import DBInfotext from '../infotext/infotext.lite';
-import DBTag from '../tag/tag.lite';
-import DBButton from '../button/button.lite';
-import DBTooltip from '../tooltip/tooltip.lite';
+import {
+	cls,
+	delay,
+	getBoolean,
+	getBooleanAsString,
+	getHideProp,
+	getOptionKey,
+	getSearchInput,
+	hasVoiceOver,
+	stringPropVisible,
+	uuid
+} from '../../utils';
+import { DocumentClickListener } from '../../utils/document-click-listener';
+import { DocumentScrollListener } from '../../utils/document-scroll-listener';
+import { handleFixedDropdown } from '../../utils/floating-components';
 import {
 	handleFrameworkEventAngular,
 	handleFrameworkEventVue
 } from '../../utils/form-components';
+import DBButton from '../button/button.lite';
+import DBCustomSelectDropdown from '../custom-select-dropdown/custom-select-dropdown.lite';
+import DBCustomSelectListItem from '../custom-select-list-item/custom-select-list-item.lite';
+import DBCustomSelectList from '../custom-select-list/custom-select-list.lite';
+import DBInfotext from '../infotext/infotext.lite';
 import DBInput from '../input/input.lite';
-import { DocumentClickListener } from '../../utils/document-click-listener';
-import { DocumentScrollListener } from '../../utils/document-scroll-listener';
-import { handleFixedDropdown } from '../../utils/floating-components';
+import DBTag from '../tag/tag.lite';
+import DBTooltip from '../tooltip/tooltip.lite';
+import {
+	CustomSelectOptionType,
+	DBCustomSelectProps,
+	DBCustomSelectState
+} from './model';
 
 useMetadata({
 	angular: {
@@ -240,11 +241,7 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 			) {
 				return props.removeTagsTexts!.at(index)!;
 			} else {
-				return `${DEFAULT_REMOVE} ${
-					state._selectedOptions
-						? state.getOptionLabel(state._selectedOptions![index])
-						: ''
-				}`;
+				return `${DEFAULT_REMOVE} ${state._selectedOptions ? state.getOptionLabel(state._selectedOptions![index]) : ''}`;
 			}
 		},
 		handleTagRemove: (
@@ -818,6 +815,7 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 					: props.variant
 			}
 			data-required={getBooleanAsString(props.required)}
+			data-hide-asterisk={getHideProp(props.showRequiredAsterisk)}
 			data-placement={props.placement}
 			data-selected-type={props.multiple ? props.selectedType : 'text'}
 			data-hide-label={getHideProp(props.showLabel)}

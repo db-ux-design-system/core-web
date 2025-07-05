@@ -5,6 +5,7 @@
 	all: unset;
 	padding: variables.$db-spacing-fixed-sm;
 	overflow-y: auto;
+	overflow-block: auto;
 
 	&::-webkit-scrollbar-button:single-button:vertical:decrement {
 		border-start-end-radius: 0;
