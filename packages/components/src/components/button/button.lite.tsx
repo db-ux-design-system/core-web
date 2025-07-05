@@ -38,6 +38,8 @@ export default function DBButton(props: DBButtonProps) {
 			value={props.value}
 			aria-describedby={props.describedbyid}
 			aria-expanded={props.ariaexpanded}
+			commandfor={props.commandfor}
+			command={props.command}
 			aria-pressed={props.ariapressed}>
 			<Show when={props.text} else={props.children}>
 				{props.text}
