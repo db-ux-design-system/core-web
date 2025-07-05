@@ -21,6 +21,7 @@ export default function DBDrawer(props: DBDrawerProps) {
 	const _ref = useRef<HTMLDialogElement | any>(null);
 	const dialogContainerRef = useRef<HTMLDivElement | any>(null);
 	const state = useStore<DBDrawerState>({
+		initialized: false,
 		// eslint-disable-next-line @typescript-eslint/no-explicit-any
 		handleClose: (
 			event?:
@@ -67,6 +68,7 @@ export default function DBDrawer(props: DBDrawerProps) {
 						dialogContainerRef.hidden = false;
 					}
 					if (
+						props.position === 'absolute' ||
 						props.backdrop === 'none' ||
 						props.variant === 'inside'
 					) {
@@ -92,11 +94,22 @@ export default function DBDrawer(props: DBDrawerProps) {
 
 	onMount(() => {
 		state.handleDialogOpen();
+		state.initialized = true;
 	});
 
 	onUpdate(() => {
 		state.handleDialogOpen();
 	}, [props.open]);
+
+	onUpdate(() => {
+		if (_ref && state.initialized && props.position === 'absolute') {
+			const refElement = _ref as HTMLDialogElement;
+			const parent = refElement.parentElement;
+			if (parent) {
+				parent.style.position = 'relative';
+			}
+		}
+	}, [_ref, state.initialized, props.position]);
 
 	return (
 		<dialog
@@ -105,7 +118,9 @@ export default function DBDrawer(props: DBDrawerProps) {
 			class="db-drawer"
 			onClick={(event) => state.handleClose(event)}
 			onKeyDown={(event) => state.handleClose(event)}
+			data-position={props.position}
 			data-backdrop={props.backdrop}
+			data-direction={props.direction}
 			data-variant={props.variant}>
 			<article
 				ref={dialogContainerRef}

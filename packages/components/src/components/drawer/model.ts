@@ -5,6 +5,7 @@ import {
 	GeneralKeyboardEvent,
 	GlobalProps,
 	GlobalState,
+	InitializedState,
 	InnerCloseButtonProps,
 	SpacingProps,
 	WidthProps
@@ -23,6 +24,9 @@ export type DrawerDirectionType = (typeof DrawerDirectionList)[number];
 
 export const DrawerVariantList = ['modal', 'inside'] as const;
 export type DrawerVariantType = (typeof DrawerVariantList)[number];
+
+export const DrawerPositionList = ['fixed', 'absolute'] as const;
+export type DrawerPositionType = (typeof DrawerPositionList)[number];
 
 export type DBDrawerDefaultProps = {
 	/**
@@ -54,6 +58,11 @@ export type DBDrawerDefaultProps = {
 	 * Set the variant modal|inside. Defaults to modal.
 	 */
 	variant?: DrawerVariantType;
+
+	/**
+	 * The position attribute changes the css-position (fixed or absolute) of the drawer.
+	 */
+	position?: DrawerPositionType;
 };
 
 export type DBDrawerProps = DBDrawerDefaultProps &
@@ -75,4 +84,5 @@ export type DBDrawerState = DBDrawerDefaultState &
 	CloseEventState<
 		| ClickEvent<HTMLButtonElement | HTMLDialogElement>
 		| GeneralKeyboardEvent<HTMLDialogElement>
-	>;
+	> &
+	InitializedState;
