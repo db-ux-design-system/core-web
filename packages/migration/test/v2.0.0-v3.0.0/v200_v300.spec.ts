@@ -14,6 +14,6 @@ describe('v200_v300', () => {
 
 		expect(
 			(result as ReplaceResult[]).filter((res) => res.hasChanged)
-		).toHaveLength();
+		).toHaveLength(0);
 	});
 });
