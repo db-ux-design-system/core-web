@@ -121,6 +121,12 @@
 				"props": {
 					"behavior": "single"
 				}
+			},
+			{
+				"name": "Test",
+				"props": {
+					"behavior": "single"
+				}
 			}
 		]
 	}
