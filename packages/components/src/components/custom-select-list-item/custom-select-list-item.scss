@@ -59,14 +59,14 @@ db-custom-select-list-item:not(:last-of-type) {
 		}
 
 		&:has(input[type="radio"]) {
-			--db-icon-after: "none";
+			--db-icon-trailing: "none";
 
 			gap: 0;
 		}
 
 		&:has(input[type="radio"]:checked) {
 			--db-overwrite-cursor: default;
-			--db-icon-after: "check";
+			--db-icon-trailing: "check";
 		}
 
 		> input {

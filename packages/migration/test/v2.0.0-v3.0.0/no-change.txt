@@ -1,0 +1,4 @@
+<span data-icon-leading="xxx" data-icon-trailing="yyy">Test</span>
+<DBButton iconLeading="xxx" iconTrailing="yyy">
+  Test
+</DBButton>

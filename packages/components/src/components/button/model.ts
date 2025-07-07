@@ -3,8 +3,12 @@ import {
 	ClickEventState,
 	GlobalProps,
 	GlobalState,
+	IconLeadingProps,
 	IconProps,
+	IconTrailingProps,
+	ShowIconLeadingProps,
 	ShowIconProps,
+	ShowIconTrailingProps,
 	SizeProps,
 	TextProps,
 	WidthProps
@@ -88,7 +92,11 @@ export type DBButtonProps = DBButtonDefaultProps &
 	WidthProps &
 	SizeProps &
 	ShowIconProps &
-	TextProps;
+	TextProps &
+	ShowIconLeadingProps &
+	ShowIconTrailingProps &
+	IconLeadingProps &
+	IconTrailingProps;
 
 export type DBButtonDefaultState = {};
 

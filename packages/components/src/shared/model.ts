@@ -71,11 +71,34 @@ export type ShowIconProps = {
 	showIcon?: boolean | string;
 };
 
-export type IconAfterProps = {
+export type ShowIconLeadingProps = {
+	/**
+	 * Enables or disables the visibility of the leading icon.
+	 * For many components this property is optional to reflect Figma properties.
+	 */
+	showIconLeading?: boolean | string;
+};
+
+export type ShowIconTrailingProps = {
+	/**
+	 * Enables or disables the visibility of the trailing icon.
+	 * For many components this property is optional to reflect Figma properties.
+	 */
+	showIconTrailing?: boolean | string;
+};
+
+export type IconLeadingProps = {
 	/**
 	 * Define an icon by its identifier (like e.g. _user_, compare to [Icons](https://design-system.deutschebahn.com/core-web/review/main/foundations/icons/overview)) to get displayed in front of the elements content.
 	 */
-	iconAfter?: IconTypes;
+	iconLeading?: IconTypes;
+};
+
+export type IconTrailingProps = {
+	/**
+	 * Define an icon by its identifier (like e.g. _user_, compare to [Icons](https://design-system.deutschebahn.com/core-web/review/main/foundations/icons/overview)) to get displayed in front of the elements content.
+	 */
+	iconTrailing?: IconTypes;
 };
 
 export const SpacingList = ['medium', 'small', 'large', 'none'] as const;

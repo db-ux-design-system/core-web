@@ -26,8 +26,12 @@ export default function DBButton(props: DBButtonProps) {
 			type={props.type || 'button'}
 			disabled={getBoolean(props.disabled, 'disabled')}
 			aria-label={props.label}
-			data-icon={props.icon}
-			data-hide-icon={getHideProp(props.showIcon)}
+			data-icon={props.iconLeading ?? props.icon}
+			data-hide-icon={getHideProp(
+				props.showIconLeading ?? props.showIcon
+			)}
+			data-icon-trailing={props.iconTrailing}
+			data-hide-icon-trailing={getHideProp(props.showIconTrailing)}
 			data-size={props.size}
 			data-state={props.state}
 			data-width={props.width}

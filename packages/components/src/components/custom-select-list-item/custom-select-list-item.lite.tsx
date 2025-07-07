@@ -96,7 +96,7 @@ export default function DBCustomSelectListItem(
 							: undefined
 					}
 					data-hide-icon={getHideProp(props.showIcon)}
-					data-icon-after={state.getIconAfter()}>
+					data-icon-trailing={state.getIconAfter()}>
 					<input
 						class="db-custom-select-list-item-checkbox"
 						type={props.type}

@@ -92,10 +92,12 @@ export default function DBTabItem(props: DBTabItemProps) {
 		<li class={cls('db-tab-item', props.className)} role="none">
 			<label
 				htmlFor={props.id}
-				data-icon={props.icon}
-				data-icon-after={props.iconAfter}
-				data-hide-icon={getHideProp(props.showIcon)}
-				data-hide-icon-after={getHideProp(props.showIcon)}
+				data-icon={props.iconLeading ?? props.icon}
+				data-icon-trailing={props.iconTrailing}
+				data-hide-icon={getHideProp(
+					props.showIconLeading ?? props.showIcon
+				)}
+				data-hide-icon-trailing={getHideProp(props.showIconTrailing)}
 				data-no-text={getBooleanAsString(props.noText)}>
 				<input
 					disabled={getBoolean(props.disabled, 'disabled')}

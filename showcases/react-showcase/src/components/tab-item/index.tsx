@@ -10,7 +10,9 @@ const getTab = ({
 	active,
 	noText,
 	icon,
-	iconAfter,
+	iconTrailing,
+	showIconTrailing,
+	showIcon,
 	disabled
 }: DBTabItemProps) => (
 	<DBTabList>
@@ -18,7 +20,9 @@ const getTab = ({
 			active={active}
 			noText={noText}
 			icon={icon}
-			iconAfter={iconAfter}
+			iconTrailing={iconTrailing}
+			showIcon={showIcon}
+			showIconTrailing={showIconTrailing}
 			disabled={disabled}>
 			{children}
 		</DBTabItem>
