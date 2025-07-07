@@ -30,6 +30,10 @@
 			--db-drawer-max-height,
 			calc(100% - #{variables.$db-spacing-fixed-xl})
 		);
+		min-block-size: var(
+			--db-drawer-min-height,
+			calc(100% - #{variables.$db-spacing-fixed-xl})
+		);
 		max-inline-size: none;
 	}
 }
@@ -134,6 +138,10 @@ $spacings: (
 				--db-drawer-max-width,
 				calc(100% - #{variables.$db-spacing-fixed-xl})
 			);
+			min-inline-size: var(
+				--db-drawer-min-width,
+				calc(100% - #{variables.$db-spacing-fixed-xl})
+			);
 
 			&:not([data-direction]),
 			&[data-direction="right"] {
@@ -192,6 +200,40 @@ $spacings: (
 			&:has(:not(.db-drawer-header-text:empty)) {
 				display: flex;
 			}
+		}
+	}
+
+	&[data-position="absolute"] {
+		position: absolute;
+		z-index: 3;
+		inset: 0;
+		block-size: 100%;
+		inline-size: 100%;
+		background-color: transparent;
+
+		&[open] {
+			display: flex;
+		}
+
+		&:not([data-direction]),
+		&[data-direction="right"],
+		&[data-direction="left"] {
+			flex-direction: column;
+		}
+
+		&[data-direction="left"],
+		&[data-direction="down"] {
+			align-items: start;
+		}
+
+		&:not([data-direction]),
+		&[data-direction="right"],
+		&[data-direction="up"] {
+			align-items: end;
+		}
+
+		.db-drawer-container {
+			position: relative;
 		}
 	}
 
