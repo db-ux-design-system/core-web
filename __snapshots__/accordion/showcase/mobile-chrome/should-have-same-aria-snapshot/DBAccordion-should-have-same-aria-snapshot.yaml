@@ -59,3 +59,11 @@
       - group: Item 2
     - listitem:
       - group: Item 3
+  - text: Test
+  - list:
+    - listitem:
+      - group: Item 1
+    - listitem:
+      - group: Item 2
+    - listitem:
+      - group: Item 3
