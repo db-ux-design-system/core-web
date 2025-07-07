@@ -3,7 +3,7 @@ import { execSync } from 'node:child_process';
 export const checkSnapshotChanges = (aria = true): boolean => {
 	try {
 		// Run the Git command to check for changes compared to the main branch
-		const changedFiles = execSync('git diff main --name-only', {
+		const changedFiles = execSync('git diff origin/main --name-only', {
 			encoding: 'utf8'
 		})
 			.split('\n')
