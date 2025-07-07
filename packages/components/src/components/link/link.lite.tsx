@@ -26,9 +26,6 @@ export default function DBLink(props: DBLinkProps) {
 			hrefLang={props.hreflang}
 			aria-disabled={getBooleanAsString(props.disabled)}
 			tabIndex={props.disabled ? -1 : 0}
-			aria-selected={getBooleanAsString(props.selected)}
-			aria-label={props.label}
-			aria-current={props.current}
 			data-size={props.size}
 			data-hide-icon-after={getHideProp(props.showIcon ?? true)}
 			data-variant={props.variant}

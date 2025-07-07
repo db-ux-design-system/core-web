@@ -5,6 +5,7 @@ import { v005_v006 } from './migration/v0.0.5-v0.0.6';
 import { v006_v007 } from './migration/v0.0.6-v0.0.7';
 import { v007_v100 } from './migration/v0.0.7-v1.0.0';
 import { v100_v200 } from './migration/v1.0.0-v2.0.0';
+import { v200_v300 } from './migration/v2.0.0-v3.0.0';
 import type { ProgrammOptionsType } from './types';
 
 export const migrationTypes: Record<string, ReplaceInFileConfig[]> = {
@@ -13,7 +14,8 @@ export const migrationTypes: Record<string, ReplaceInFileConfig[]> = {
 	v005_v006,
 	v006_v007,
 	v007_v100,
-	v100_v200
+	v100_v200,
+	v200_v300
 };
 
 export const options: ProgrammOptionsType[] = [

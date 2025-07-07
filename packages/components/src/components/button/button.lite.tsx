@@ -25,7 +25,6 @@ export default function DBButton(props: DBButtonProps) {
 			class={cls('db-button', props.className)}
 			type={props.type || 'button'}
 			disabled={getBoolean(props.disabled, 'disabled')}
-			aria-label={props.label}
 			data-icon={props.icon}
 			data-hide-icon={getHideProp(props.showIcon)}
 			data-size={props.size}
@@ -35,10 +34,7 @@ export default function DBButton(props: DBButtonProps) {
 			data-no-text={getBooleanAsString(props.noText)}
 			name={props.name}
 			form={props.form}
-			value={props.value}
-			aria-describedby={props.describedbyid}
-			aria-expanded={props.ariaexpanded}
-			aria-pressed={props.ariapressed}>
+			value={props.value}>
 			<Show when={props.text} else={props.children}>
 				{props.text}
 			</Show>
