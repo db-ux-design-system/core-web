@@ -102,7 +102,6 @@ export default function DBTabItem(props: DBTabItemProps) {
 				<input
 					disabled={getBoolean(props.disabled, 'disabled')}
 					aria-selected={state._selected}
-					aria-controls={props.controls}
 					checked={getBoolean(props.checked, 'checked')}
 					ref={_ref}
 					type="radio"
