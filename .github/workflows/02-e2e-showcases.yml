@@ -39,6 +39,9 @@ jobs:
     steps:
       - name: ⏬ Checkout repo
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # fetch all history for all branches
+          fetch-tags: false
 
       - name: 🔄 Init Cache
         uses: ./.github/actions/npm-cache
