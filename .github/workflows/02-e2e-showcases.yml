@@ -11,8 +11,11 @@ on:
         type: string
     outputs:
       aria-snapshots-changed:
-        description: "If aria snapshots changed"
+        description: "If aria snapshots changed in current PR"
         value: ${{ jobs.playwright-showcases.outputs.aria-snapshots-changed }}
+      aria-snapshots-changed-to-main:
+        description: "If aria snapshots changed to main branch"
+        value: ${{ jobs.playwright-showcases.outputs.aria-snapshots-changed-to-main }}
       visual-snapshots-changed:
         description: "If visual snapshots changed"
         value: ${{ jobs.playwright-showcases.outputs.visual-snapshots-changed }}
@@ -35,6 +38,7 @@ jobs:
         shardTotal: [4]
     outputs:
       aria-snapshots-changed: ${{ steps.aria-snapshots.outputs.aria-snapshots-changed }}
+      aria-snapshots-changed-to-main: ${{ steps.aria-snapshots.outputs.aria-snapshots-changed-to-main }}
       visual-snapshots-changed: ${{ steps.visual-snapshots.outputs.visual-snapshots-changed }}
     steps:
       - name: ⏬ Checkout repo
@@ -88,6 +92,8 @@ jobs:
           npm run test:aria-snapshots --workspace=${{ inputs.showcase }} -- --shard=${{ matrix.shardIndex }}/${{ matrix.shardTotal }} --update-snapshots
           OUTPUT=$(npx --no tsx scripts/github/snapshot-changes/check-aria.ts)
           echo "aria-snapshots-changed=$OUTPUT" >> $GITHUB_OUTPUT
+          OUTPUT=$(npx --no tsx scripts/github/snapshot-changes/check-main-aria.ts)
+          echo "aria-snapshots-changed-to-main=$OUTPUT" >> $GITHUB_OUTPUT
 
       - name: 👩‍🔬 Test axe-core with Playwright 🎭
         shell: bash
@@ -108,7 +114,7 @@ jobs:
         shell: bash
         if: |
           github.event.pull_request != null &&
-          steps.aria-snapshots.outputs.aria-snapshots-changed=='true'
+          steps.aria-snapshots.outputs.aria-snapshots-changed-to-main=='true'
         run: |
           npm run test:a11y-checker --workspace=${{ inputs.showcase }} -- --shard=${{ matrix.shardIndex }}/${{ matrix.shardTotal }}
 

@@ -169,9 +169,10 @@ jobs:
         get-playwright-version
       ]
 
+  # This job runs only if aria-snapshots were changed compared to main or if it runs on main branch
   test-screen-reader:
     if: |
-      needs.test-showcase-react.outputs.aria-snapshots-changed == 'true' ||
+      needs.test-showcase-react.outputs.aria-snapshots-changed-to-main == 'true' ||
       github.event.pull_request == null
     uses: ./.github/workflows/02-e2e-screen-reader.yml
     needs: [test-showcase-react, init-playwright, get-playwright-version]
