@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "build": "ng build",
-    "dev": "npm-run-all -p dev:*",
+    "dev": "npm-run-all --parallel dev:*",
     "dev:angular": "npm run start -- --open",
     "dev:stencil": "npm run start --workspace @db-ux/wc-core-components",
     "ng": "ng",
