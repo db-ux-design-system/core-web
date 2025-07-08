@@ -2,3 +2,6 @@
 <DBButton iconLeading="xxx" iconTrailing="yyy">
   Test
 </DBButton>
+<DBButton aria-describedby="xxx" aria-expanded="true" aria-pressed="true">
+  Test
+</DBButton>

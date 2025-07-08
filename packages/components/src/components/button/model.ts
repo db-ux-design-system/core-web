@@ -30,16 +30,6 @@ export type ButtonStateType = (typeof ButtonStateList)[number];
 
 export type DBButtonDefaultProps = {
 	/**
-	 * If the button controls a grouping of other elements, the ariaexpanded state [indicates whether the controlled grouping is currently expanded or collapsed](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-expanded).
-	 */
-	ariaexpanded?: boolean;
-
-	/**
-	 * Defines the button as a toggle button. The value of [ariapressed describes the state of the button](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-pressed).
-	 */
-	ariapressed?: boolean;
-
-	/**
 	 * The disabled attribute can be set to [keep a user from clicking on the button](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button#disabled).
 	 */
 	disabled?: boolean | string;
@@ -48,11 +38,6 @@ export type DBButtonDefaultProps = {
 	 * 	Associates the control with a form element
 	 */
 	form?: string;
-
-	/**
-	 * The label represents the [aria-label attributes](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-label) value of the button
-	 */
-	label?: string;
 
 	/**
 	 * The name attribute specifies a [name attributes value](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button#name) for the button.
