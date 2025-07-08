@@ -32,7 +32,7 @@
     "dev": "npm run dev --workspace=scripts",
     "fmt": "prettier . --write",
     "generate:component": "npm run generate:component --workspace=@db-ux/core-components",
-    "lint": "npm-run-all -p lint:*",
+    "lint": "npm-run-all --parallel lint:*",
     "lint:jscpd": "jscpd . --exitCode 1 --config .config/.jscpd.json",
     "lint:markdownlint": "markdownlint -c .config/.markdown-lint.yml **/*.md",
     "lint:stylelint": "stylelint **/*.{css,scss}",

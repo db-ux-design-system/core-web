@@ -69,7 +69,7 @@ const startDev = () => {
 		return;
 	}
 
-	let startCommand = 'npm-run-all -p start:foundations dev:sass';
+	let startCommand = 'npm-run-all --parallel start:foundations dev:sass';
 
 	for (const { framework, answers } of answersFrameworkPairs) {
 		const isAnswerSelected = currentAnswers.some((currentAnswer) =>
