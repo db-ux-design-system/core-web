@@ -11,11 +11,14 @@ import {
 	FromValidState,
 	GlobalProps,
 	GlobalState,
-	IconAfterProps,
+	IconLeadingProps,
 	IconProps,
+	IconTrailingProps,
 	InputEventProps,
 	InputEventState,
+	ShowIconLeadingProps,
 	ShowIconProps,
+	ShowIconTrailingProps,
 	ValueLabelType
 } from '../../shared/model';
 
@@ -79,9 +82,12 @@ export type DBInputProps = DBInputDefaultProps &
 	FocusEventProps<HTMLInputElement> &
 	FormProps &
 	IconProps &
-	IconAfterProps &
+	IconTrailingProps &
 	FormMessageProps &
 	ShowIconProps &
+	IconLeadingProps &
+	ShowIconLeadingProps &
+	ShowIconTrailingProps &
 	FormSizeProps;
 
 export type DBInputDefaultState = {

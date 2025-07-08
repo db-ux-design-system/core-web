@@ -69,7 +69,7 @@ $with-icon-padding-calc: calc(
 			}
 		}
 
-		&[data-icon-after] {
+		&[data-icon-trailing] {
 			padding-inline-end: $with-icon-padding-calc;
 
 			&::after {

@@ -4,12 +4,15 @@ import {
 	ChangeEventState,
 	GlobalProps,
 	GlobalState,
-	IconAfterProps,
+	IconLeadingProps,
 	IconProps,
+	IconTrailingProps,
 	InitializedState,
 	NameProps,
 	NameState,
-	ShowIconProps
+	ShowIconLeadingProps,
+	ShowIconProps,
+	ShowIconTrailingProps
 } from '../../shared/model';
 
 export type DBTabItemDefaultProps = {
@@ -35,7 +38,10 @@ export type DBTabItemDefaultProps = {
 export type DBTabItemProps = GlobalProps &
 	DBTabItemDefaultProps &
 	IconProps &
-	IconAfterProps &
+	IconTrailingProps &
+	IconLeadingProps &
+	ShowIconLeadingProps &
+	ShowIconTrailingProps &
 	ActiveProps &
 	ChangeEventProps<HTMLInputElement> &
 	ShowIconProps &

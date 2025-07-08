@@ -16,20 +16,20 @@ $icon-padding: calc(
 	@include form-components.set-default-form-component(input);
 
 	// increased inline size for elements with icons or specific input types that have icons
-	&:is([data-icon], [data-icon-after]):not([data-hide-icon="true"]),
+	&:is([data-icon], [data-icon-trailing]):not([data-hide-icon="true"]),
 	&:has(
-			input[type="search"],
-			input[type="date"],
-			input[type="month"],
-			input[type="week"],
-			input[type="datetime-local"],
-			input[type="time"]
-		) {
+		input[type="search"],
+		input[type="date"],
+		input[type="month"],
+		input[type="week"],
+		input[type="datetime-local"],
+		input[type="time"]
+	) {
 		--db-form-component-min-inline-size: #{variables.$db-sizing-xl};
 	}
 
 	// even larger size when both - leading and trailing icons - are present
-	&[data-icon][data-icon-after] {
+	&[data-icon][data-icon-trailing] {
 		--db-form-component-min-inline-size: #{variables.$db-sizing-2xl};
 	}
 
@@ -39,7 +39,7 @@ $icon-padding: calc(
 		--db-form-component-padding-inline-start: #{$icon-padding};
 	}
 
-	&[data-icon-after],
+	&[data-icon-trailing],
 	&:has(input[type="search"]),
 	&:has(datalist) {
 		--db-form-component-padding-inline-end: #{$icon-padding};

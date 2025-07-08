@@ -100,8 +100,8 @@ export default function DBSwitch(props: DBSwitchProps) {
 				name={props.name}
 				required={getBoolean(props.required, 'required')}
 				data-hide-asterisk={getHideProp(props.showRequiredAsterisk)}
-				data-aid-icon={props.icon}
-				data-aid-icon-after={props.iconAfter}
+				data-aid-icon={props.iconLeading ?? props.icon}
+				data-aid-icon-trailing={props.iconTrailing}
 				onChange={(event: ChangeEvent<HTMLInputElement>) =>
 					state.handleChange(event)
 				}

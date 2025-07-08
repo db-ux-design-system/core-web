@@ -27,7 +27,7 @@ export default function DBLink(props: DBLinkProps) {
 			aria-disabled={getBooleanAsString(props.disabled)}
 			tabIndex={props.disabled ? -1 : 0}
 			data-size={props.size}
-			data-hide-icon-after={getHideProp(props.showIcon ?? true)}
+			data-hide-icon-trailing={getHideProp(props.showIcon ?? true)}
 			data-variant={props.variant}
 			data-content={props.content || 'internal'}>
 			<Show when={props.text} else={props.children}>
