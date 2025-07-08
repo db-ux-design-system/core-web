@@ -20,19 +20,20 @@
   - tablist:
     - tab "disabled" [disabled]
     - text: disabled
-  - link "Content"
+  - link "Show Icon Leading"
   - tablist:
-    - tab "(Default) Text"
-    - text: (Default) Text
+    - tab "(Default) False"
+    - text: (Default) False
   - tablist:
-    - tab "Text - Icon (Leading)"
-    - text: Text - Icon (Leading)
+    - tab "True"
+    - text: "True"
+  - link "Show Icon Trailing"
   - tablist:
-    - tab "Text - Icon (Trailing)"
-    - text: Text - Icon (Trailing)
+    - tab "(Default) False"
+    - text: (Default) False
   - tablist:
-    - tab "Icon"
-    - text: Icon
+    - tab "True"
+    - text: "True"
   - link "Behavior"
   - tablist:
     - tab "(Default) Auto Width"

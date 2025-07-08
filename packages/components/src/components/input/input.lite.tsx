@@ -200,10 +200,12 @@ export default function DBInput(props: DBInputProps) {
 			class={cls('db-input', props.className)}
 			data-variant={props.variant}
 			data-hide-label={getHideProp(props.showLabel)}
-			data-hide-icon={getHideProp(props.showIcon)}
-			data-icon={props.icon}
-			data-icon-after={props.iconAfter}
-			data-hide-icon-after={getHideProp(props.showIcon)}>
+			data-hide-icon={getHideProp(
+				props.showIconLeading ?? props.showIcon
+			)}
+			data-icon={props.iconLeading ?? props.icon}
+			data-icon-trailing={props.iconTrailing}
+			data-hide-icon-trailing={getHideProp(props.showIconTrailing)}>
 			<label htmlFor={state._id}>{props.label ?? DEFAULT_LABEL}</label>
 			<input
 				aria-invalid={props.validation === 'invalid'}

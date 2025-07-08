@@ -14,7 +14,9 @@ import DefaultComponent from "../DefaultComponent.vue";
 					:active="exampleProps?.active"
 					:noText="exampleProps?.noText"
 					:icon="exampleProps?.icon"
-					:iconAfter="exampleProps?.iconAfter"
+					:iconTrailing="exampleProps?.iconTrailing"
+					:showIcon="exampleProps?.showIcon"
+					:showIconTrailing="exampleProps?.showIconTrailing"
 					:disabled="exampleProps?.disabled"
 				>
 					{{ exampleName }}
