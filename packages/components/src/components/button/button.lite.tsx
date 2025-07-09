@@ -44,7 +44,6 @@ export default function DBButton(props: DBButtonProps) {
 			data-icon-trailing={props.iconTrailing}
 			data-hide-icon-trailing={getHideProp(props.showIconTrailing)}
 			data-size={props.size}
-			data-state={props.state}
 			data-width={props.width}
 			data-variant={props.variant}
 			data-no-text={getBooleanAsString(props.noText)}
