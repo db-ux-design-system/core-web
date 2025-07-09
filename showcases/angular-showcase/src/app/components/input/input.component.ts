@@ -1,6 +1,5 @@
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import {
-	DBCheckbox,
 	DBInput,
 	LabelVariantType,
 	ValueLabelType
@@ -16,8 +15,7 @@ import { DefaultComponent } from '../default.component';
 	imports: [
 		environment.webComponents
 			? [DefaultComponent]
-			: [DefaultComponent, DBInput],
-		DBCheckbox
+			: [DefaultComponent, DBInput]
 	],
 	schemas: environment.webComponents ? [CUSTOM_ELEMENTS_SCHEMA] : []
 })

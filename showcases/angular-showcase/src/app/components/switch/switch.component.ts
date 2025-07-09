@@ -1,5 +1,4 @@
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import { DBCheckbox } from '@db-ux/ngx-core-components/src';
 import { DBInfotext } from '../../../../../../output/angular/src/components/infotext';
 import { DBSwitch } from '../../../../../../output/angular/src/components/switch';
 import defaultComponentVariants from '../../../../../shared/switch.json';
@@ -12,8 +11,7 @@ import { DefaultComponent } from '../default.component';
 	imports: [
 		environment.webComponents
 			? [DefaultComponent]
-			: [DefaultComponent, DBSwitch, DBInfotext],
-		DBCheckbox
+			: [DefaultComponent, DBSwitch, DBInfotext]
 	],
 	schemas: environment.webComponents ? [CUSTOM_ELEMENTS_SCHEMA] : [],
 	standalone: true

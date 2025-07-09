@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { CustomSelectOptionType } from '@db-ux/core-components/src/components/custom-select/model';
 import {
-	DBCheckbox,
 	DBCustomSelect,
 	DBInfotext
 } from '../../../../../../output/angular/src';
@@ -12,12 +11,9 @@ import { DefaultComponent } from '../default.component';
 @Component({
 	selector: 'app-custom-select',
 	templateUrl: './custom-select.component.html',
-	imports: [
-		environment.webComponents
-			? [DefaultComponent]
-			: [DefaultComponent, DBInfotext, DBCustomSelect],
-		DBCheckbox
-	],
+	imports: environment.webComponents
+		? [DefaultComponent]
+		: [DefaultComponent, DBInfotext, DBCustomSelect],
 	standalone: true
 })
 export class CustomSelectComponent {
