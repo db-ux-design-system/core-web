@@ -26,6 +26,14 @@ jobs:
         uses: actions/checkout@v4
 
       - name: 🦮 Guidepup Setup
+        id: setup
+        continue-on-error: true
+        uses: guidepup/setup-action@0.17.2
+        with:
+          record: true
+
+      - name: 🦮 Guidepup Setup fallback
+        if: steps.setup.outcome == 'failure'
         uses: guidepup/setup-action@0.17.2
         with:
           record: true
