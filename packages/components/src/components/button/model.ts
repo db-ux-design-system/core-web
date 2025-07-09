@@ -1,6 +1,5 @@
 import {
 	ClickEventProps,
-	ClickEventState,
 	GlobalProps,
 	GlobalState,
 	IconLeadingProps,
@@ -83,8 +82,8 @@ export type DBButtonProps = DBButtonDefaultProps &
 	IconLeadingProps &
 	IconTrailingProps;
 
-export type DBButtonDefaultState = {};
+export type DBButtonDefaultState = {
+	getButtonType: () => ButtonTypeType;
+};
 
-export type DBButtonState = DBButtonDefaultState &
-	GlobalState &
-	ClickEventState<HTMLButtonElement>;
+export type DBButtonState = DBButtonDefaultState & GlobalState;
