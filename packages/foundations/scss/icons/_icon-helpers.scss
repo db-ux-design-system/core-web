@@ -27,15 +27,15 @@ $default-icon-font-size: var(--db-icon-font-size, #{$default-icon-size-rem});
 }
 
 @function get-icon-size($icon-font-size) {
-	@if ($icon-font-size<20) {
+	@if ($icon-font-size < 20) {
 		@return 16;
 	}
 
-	@if ($icon-font-size<24) {
+	@if ($icon-font-size < 24) {
 		@return 20;
 	}
 
-	@if ($icon-font-size<32) {
+	@if ($icon-font-size < 32) {
 		@return 24;
 	}
 
