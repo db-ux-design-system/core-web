@@ -32,7 +32,7 @@ jobs:
         with:
           record: true
 
-      - name: 🦮 Guidepup Setup fallback
+      - name: 🦮 Guidepup Setup retry
         if: steps.setup.outcome == 'failure'
         uses: guidepup/setup-action@0.17.2
         with:
