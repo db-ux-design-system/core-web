@@ -58,12 +58,12 @@ export type DBDrawerDefaultProps = {
 	 * Set the variant modal|inside. Defaults to modal.
 	 */
 	variant?: DrawerVariantType;
-/**
- * The position attribute changes the css-position (fixed or absolute) of the drawer.
- *
- * - `fixed` (default): Renders with `showModal()`, creating a true modal with a focus trap.
- * - `absolute`: Renders with `show()`, acting as a simple overlay **without** a focus trap.
- */
+	/**
+	 * The position attribute changes the css-position (fixed or absolute) of the drawer.
+	 *
+	 * - `fixed` (default): Renders with `showModal()`, creating a true modal with a focus trap.
+	 * - `absolute`: Renders with `show()`, acting as a simple overlay **without** a focus trap.
+	 */
 	position?: DrawerPositionType;
 };
 
