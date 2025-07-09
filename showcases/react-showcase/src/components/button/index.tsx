@@ -7,7 +7,6 @@ import DefaultComponent from '../default-component';
 
 const getButton = ({
 	variant,
-	state,
 	size,
 	noText,
 	icon,
@@ -21,7 +20,6 @@ const getButton = ({
 }: DBButtonProps) => (
 	<DBButton
 		variant={variant}
-		state={state}
 		size={size}
 		noText={noText}
 		icon={icon}

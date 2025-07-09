@@ -101,17 +101,6 @@
 		opacity: variables.$db-opacity-md;
 	}
 
-	// States (currently only "loading")
-	&[data-state="loading"] {
-		@include icons.is-icon-text-replace();
-
-		font-size: 0;
-
-		&::before {
-			content: "";
-		}
-	}
-
 	// Workaround for current stencil implementation for header
 	&:has(> .db-button) {
 		margin: 0;
