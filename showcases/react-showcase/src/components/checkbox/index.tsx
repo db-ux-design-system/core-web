@@ -22,7 +22,8 @@ const getCheckbox = ({
 	showLabel,
 	validation,
 	invalidMessage,
-	validMessage
+	validMessage,
+	showRequiredAsterisk
 }: DBCheckboxProps) => (
 	<>
 		<DBCheckbox
@@ -32,6 +33,7 @@ const getCheckbox = ({
 			defaultChecked={getBoolean(checked)}
 			invalidMessage={invalidMessage}
 			validMessage={validMessage}
+			showRequiredAsterisk={showRequiredAsterisk}
 			required={required}
 			disabled={disabled}
 			variant={variant}

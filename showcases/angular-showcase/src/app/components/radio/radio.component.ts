@@ -1,5 +1,9 @@
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import { DBInfotext, DBRadio } from '../../../../../../output/angular/src';
+import {
+	DBCheckbox,
+	DBInfotext,
+	DBRadio
+} from '../../../../../../output/angular/src';
 import defaultComponentVariants from '../../../../../shared/radio.json';
 import { environment } from '../../../environments/environment';
 import { DefaultComponent } from '../default.component';
@@ -11,7 +15,8 @@ import { DefaultComponent } from '../default.component';
 	imports: [
 		environment.webComponents
 			? [DefaultComponent]
-			: [DefaultComponent, DBRadio, DBInfotext]
+			: [DefaultComponent, DBRadio, DBInfotext],
+		DBCheckbox
 	],
 	schemas: environment.webComponents ? [CUSTOM_ELEMENTS_SCHEMA] : []
 })
