@@ -10,14 +10,18 @@ const getCard = ({
 	children,
 	spacing,
 	elevationLevel
-}: DBCardProps) => (
-	<DBCard
-		behavior={behavior}
-		spacing={spacing}
-		elevationLevel={elevationLevel}>
-		<strong>{children}</strong>
-	</DBCard>
-);
+}: DBCardProps) => {
+	const card = (
+		<DBCard
+			behavior={behavior}
+			spacing={spacing}
+			elevationLevel={elevationLevel}>
+			<strong>{children}</strong>
+		</DBCard>
+	);
+
+	return behavior === 'interactive' ? <button>{card}</button> : card;
+};
 
 const CardComponent = (props: BaseComponentProps) => {
 	return (
