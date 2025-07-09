@@ -23,6 +23,28 @@
     "e2e"
   ],
   "packageManager": "npm@10.9.2",
+  "keywords": [
+    "design-system",
+    "ui-library",
+    "components",
+    "angular",
+    "react",
+    "vue",
+    "web-components",
+    "tailwind",
+    "css",
+    "scss",
+    "accessibility",
+    "a11y",
+    "responsive",
+    "frontend",
+    "user-interface",
+    "deutsche-bahn",
+    "db",
+    "ux",
+    "db-ux",
+    "styleguide"
+  ],
   "scripts": {
     "build": "npm run build --workspace=scripts",
     "build-outputs": "npm run build-outputs --workspace=scripts",
