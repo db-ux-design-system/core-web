@@ -227,6 +227,7 @@ $input-valid-types:
 	$validations: ":required";
 
 	@if ($selector == input) {
+		/* We use all client side form-validation for input here */
 		// https://developer.mozilla.org/en-US/docs/Learn/Forms/Form_validation#using_built-in_form_validation
 		$validations: ":required, [minlength], [maxlength], [pattern]";
 
@@ -235,6 +236,7 @@ $input-valid-types:
 		}
 		/* stylelint-disable-next-line at-rule-empty-line-before */
 	} @else if($selector == textarea) {
+		/* We use all client side form-validation for textarea here */
 		$validations: ":required, [minlength], [maxlength]";
 	}
 
