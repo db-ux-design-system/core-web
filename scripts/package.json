@@ -68,6 +68,9 @@
     "test:scripts": "vitest run --config vitest.config.ts",
     "update:icon-fonts": "npm-run-all generate:icon-fonts generate:icon-types"
   },
+  "dependencies": {
+    "postcss-scss": "^4.0.9"
+  },
   "devDependencies": {
     "@inquirer/prompts": "7.5.3",
     "find-versions": "^6.0.0",
