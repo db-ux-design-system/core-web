@@ -36,7 +36,7 @@
 		color: colors.$db-adaptive-on-bg-basic-emphasis-100-default;
 	}
 
-	&:has(> select option:checked:not([hidden])) {
+	&:has(> select option:checked:not(.placeholder)) {
 		[id$="-placeholder"] {
 			display: none;
 		}
