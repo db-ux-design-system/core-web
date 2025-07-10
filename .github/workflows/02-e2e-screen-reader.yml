@@ -25,17 +25,6 @@ jobs:
       - name: ⏬ Checkout repo
         uses: actions/checkout@v4
 
-      - name: 🦮 Guidepup Setup Windows
-        if: matrix.os == 'windows-2022'
-        uses: guidepup/setup-action@0.17.2
-        with:
-          record: true
-
-      - name: 🦮 Guidepup Setup retry
-        if: matrix.os != 'windows-2022'
-        run: |
-          npx --no @guidepup/setup --record
-
       - name: 🔄 Init Cache
         uses: ./.github/actions/npm-cache
 
@@ -44,6 +33,17 @@ jobs:
         with:
           os: ${{ matrix.os }}
           version: ${{ inputs.version }}
+
+      - name: 🦮 Guidepup Setup Windows
+        if: matrix.os == 'windows-2022'
+        uses: guidepup/setup-action@0.17.2
+        with:
+          record: true
+
+      - name: 🦮 Guidepup Setup MacOS
+        if: matrix.os != 'windows-2022'
+        run: |
+          npx --no @guidepup/setup --record
 
       - name: ⏬ Download react-showcase
         uses: actions/download-artifact@v4
