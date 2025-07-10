@@ -70,7 +70,7 @@
   },
   "devDependencies": {
     "@inquirer/prompts": "7.6.0",
-    "dotenv": "^17.1.0",
+    "dotenv": "^17.2.0",
     "find-versions": "^6.0.0",
     "glob": "^11.0.3",
     "inquirer": "^12.7.0",
