@@ -44,6 +44,7 @@ jobs:
       - name: 🔄 Init Playwright Cache
         uses: ./.github/actions/playwright-cache
         with:
+          os: ${{ matrix.os }}
           version: ${{ inputs.version }}
 
       - name: ⏬ Download react-showcase
