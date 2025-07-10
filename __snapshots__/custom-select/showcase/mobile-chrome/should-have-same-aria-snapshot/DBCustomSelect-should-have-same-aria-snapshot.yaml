@@ -245,6 +245,33 @@
             - text: Option 2
       - button "Close"
   - status
+  - link "Show Required Asterisk"
+  - text: (Default) True
+  - group:
+    - article:
+      - group "id-1021s9-(Default) True":
+        - list:
+          - listitem:
+            - checkbox "Option 1"
+            - text: Option 1
+          - listitem:
+            - checkbox "Option 2"
+            - text: Option 2
+      - button "Close"
+  - status
+  - text: "False"
+  - group:
+    - article:
+      - group "id-10s220-False":
+        - list:
+          - listitem:
+            - checkbox "Option 1"
+            - text: Option 1
+          - listitem:
+            - checkbox "Option 2"
+            - text: Option 2
+      - button "Close"
+  - status
   - link "Disabled"
   - text: (Default) False
   - group:
