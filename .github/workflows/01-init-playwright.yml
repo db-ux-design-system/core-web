@@ -14,7 +14,8 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [macos-13, windows-2022]
+        # os: [macos-13, windows-2022]
+        os: [windows-2022] # macOS is not perfectly supported yet, we disable it for now
     steps:
       - name: ⏬ Checkout repo
         uses: actions/checkout@v4

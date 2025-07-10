@@ -18,7 +18,8 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [macos-13, windows-2022]
+        # os: [macos-13, windows-2022]
+        os: [windows-2022] # macOS is not perfectly supported yet, we disable it for now
         shardIndex: [1, 2, 3, 4]
         shardTotal: [4]
     steps:
@@ -35,15 +36,9 @@ jobs:
           version: ${{ inputs.version }}
 
       - name: 🦮 Guidepup Setup Windows
-        if: matrix.os == 'windows-2022'
         uses: guidepup/setup-action@0.17.2
         with:
           record: true
-
-      - name: 🦮 Guidepup Setup MacOS
-        if: matrix.os != 'windows-2022'
-        run: |
-          npx --no @guidepup/setup --record
 
       - name: ⏬ Download react-showcase
         uses: actions/download-artifact@v4
