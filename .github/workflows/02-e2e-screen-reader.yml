@@ -18,25 +18,23 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [macos-14, windows-2022]
+        os: [macos-13, windows-2022]
         shardIndex: [1, 2, 3, 4]
         shardTotal: [4]
     steps:
       - name: ⏬ Checkout repo
         uses: actions/checkout@v4
 
-      - name: 🦮 Guidepup Setup
-        id: setup
-        continue-on-error: true
+      - name: 🦮 Guidepup Setup Windows
+        if: matrix.os == 'windows-2022'
         uses: guidepup/setup-action@0.17.2
         with:
           record: true
 
       - name: 🦮 Guidepup Setup retry
-        if: steps.setup.outcome == 'failure'
-        uses: guidepup/setup-action@0.17.2
-        with:
-          record: true
+        if: matrix.os != 'windows-2022'
+        run: |
+          npx --no @guidepup/setup --record
 
       - name: 🔄 Init Cache
         uses: ./.github/actions/npm-cache
