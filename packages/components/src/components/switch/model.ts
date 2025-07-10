@@ -9,8 +9,9 @@ import {
 	FormState,
 	GlobalProps,
 	GlobalState,
-	IconAfterProps,
+	IconLeadingProps,
 	IconProps,
+	IconTrailingProps,
 	SizeProps
 } from '../../shared/model';
 
@@ -30,7 +31,8 @@ export type DBSwitchProps = DBSwitchDefaultProps &
 	EmphasisProps &
 	SizeProps &
 	IconProps &
-	IconAfterProps;
+	IconTrailingProps &
+	IconLeadingProps;
 
 export type DBSwitchDefaultState = {};
 

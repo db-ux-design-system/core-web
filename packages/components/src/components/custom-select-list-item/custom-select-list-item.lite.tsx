@@ -56,7 +56,7 @@ export default function DBCustomSelectListItem(
 						handleFrameworkEventVue(() => {}, event, 'checked')
 				});
 			},
-			getIconAfter: () => {
+			getIconTrailing: () => {
 				if (props.isGroupTitle || props.type === 'checkbox') {
 					return;
 				}
@@ -96,7 +96,7 @@ export default function DBCustomSelectListItem(
 							: undefined
 					}
 					data-hide-icon={getHideProp(props.showIcon)}
-					data-icon-after={state.getIconAfter()}>
+					data-icon-trailing={state.getIconTrailing()}>
 					<input
 						class="db-custom-select-list-item-checkbox"
 						type={props.type}

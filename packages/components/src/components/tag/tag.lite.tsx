@@ -1,6 +1,4 @@
 import {
-	onInit,
-	onUpdate,
 	Show,
 	Slot,
 	useDefaultProps,
@@ -20,7 +18,6 @@ useDefaultProps<DBTagProps>({});
 export default function DBTag(props: DBTagProps) {
 	const _ref = useRef<HTMLDivElement | any>(null);
 	const state = useStore<DBTagState>({
-		initialized: false,
 		handleRemove: (event?: ClickEvent<HTMLButtonElement> | void) => {
 			if (!event) return;
 
@@ -39,30 +36,11 @@ export default function DBTag(props: DBTagProps) {
 		}
 	});
 
-	onInit(() => {
-		state.initialized = true;
-	});
-
-	onUpdate(() => {
-		if (state.initialized && _ref && props.disabled !== undefined) {
-			const button: HTMLButtonElement | null = _ref?.querySelector(
-				'button:not(.db-tab-remove-button)'
-			);
-			const input: HTMLInputElement | null = _ref?.querySelector('input');
-			for (const element of [button, input]) {
-				if (element) {
-					element.disabled = Boolean(props.disabled);
-				}
-			}
-		}
-	}, [state.initialized, props.disabled, _ref]);
-
 	return (
 		<div
 			ref={_ref}
 			id={props.id}
 			class={cls('db-tag', props.className)}
-			data-disabled={getBooleanAsString(props.disabled)}
 			data-semantic={props.semantic}
 			data-emphasis={props.emphasis}
 			data-icon={props.icon}

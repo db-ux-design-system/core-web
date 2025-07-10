@@ -20,7 +20,7 @@ const getNavigation = ({ children }: DBNavigationProps) => {
 				icon="none">
 				{children}
 			</DBInfotext>
-			<DBNavigation labelledBy={labelID}>
+			<DBNavigation aria-labelledby={labelID}>
 				<DBNavigationItem
 					subNavigation={
 						<>

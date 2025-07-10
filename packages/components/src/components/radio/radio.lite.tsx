@@ -78,7 +78,6 @@ export default function DBRadio(props: DBRadioProps) {
 				name={props.name}
 				checked={getBoolean(props.checked, 'checked')}
 				disabled={getBoolean(props.disabled, 'disabled')}
-				aria-describedby={props.describedbyid ?? props.ariaDescribedBy}
 				value={props.value}
 				required={getBoolean(props.required, 'required')}
 				data-hide-asterisk={getHideProp(props.showRequiredAsterisk)}

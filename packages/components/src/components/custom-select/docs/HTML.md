@@ -77,13 +77,13 @@ For general installation and configuration take a look at the [components](https
 			class="db-infotext"
 			data-semantic="successful"
 			data-size="small"
-			data-hide-icon-before="false"
+			data-hide-icon-leading="false"
 			>TODO: Add a validMessage</span
 		><span
 			class="db-infotext"
 			data-semantic="critical"
 			data-size="small"
-			data-hide-icon-before="false"
+			data-hide-icon-leading="false"
 			>TODO: Add an invalidMessage</span
 		><span data-visually-hidden="true" role="status"></span>
 	</div>

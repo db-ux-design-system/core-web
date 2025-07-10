@@ -29,7 +29,8 @@ const getInput = ({
 	minLength,
 	required,
 	disabled,
-	iconAfter,
+	iconTrailing,
+	showIconTrailing,
 	icon,
 	children,
 	message,
@@ -58,7 +59,8 @@ const getInput = ({
 			required={required}
 			disabled={disabled}
 			readOnly={readOnly}
-			iconAfter={iconAfter}
+			iconTrailing={iconTrailing}
+			showIconTrailing={showIconTrailing}
 			maxLength={maxLength}
 			max={max}
 			min={min}

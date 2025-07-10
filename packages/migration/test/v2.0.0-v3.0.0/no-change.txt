@@ -1,0 +1,7 @@
+<span data-icon-leading="xxx" data-icon-trailing="yyy">Test</span>
+<DBButton iconLeading="xxx" iconTrailing="yyy">
+  Test
+</DBButton>
+<DBButton aria-describedby="xxx" aria-expanded="true" aria-pressed="true">
+  Test
+</DBButton>
