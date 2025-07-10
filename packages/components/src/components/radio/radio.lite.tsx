@@ -67,6 +67,7 @@ export default function DBRadio(props: DBRadioProps) {
 		<label
 			data-size={props.size}
 			data-hide-label={getHideProp(props.showLabel)}
+			data-hide-asterisk={getHideProp(props.showRequiredAsterisk)}
 			class={cls('db-radio', props.className)}
 			htmlFor={state._id}>
 			<input
@@ -80,7 +81,6 @@ export default function DBRadio(props: DBRadioProps) {
 				disabled={getBoolean(props.disabled, 'disabled')}
 				value={props.value}
 				required={getBoolean(props.required, 'required')}
-				data-hide-asterisk={getHideProp(props.showRequiredAsterisk)}
 				onChange={(event: ChangeEvent<HTMLInputElement>) =>
 					state.handleChange(event)
 				}

@@ -127,6 +127,19 @@
     - option "Option 2"
   - text: "True"
   - status
+  - link "Show Required Asterisk"
+  - text: Label
+  - combobox "Label":
+    - option "Option 1"
+    - option "Option 2"
+  - text: (Default) True
+  - status
+  - text: Label
+  - combobox "Label":
+    - option "Option 1"
+    - option "Option 2"
+  - text: "False"
+  - status
   - link "Examples Floating Label"
   - text: Label
   - combobox "Label":
