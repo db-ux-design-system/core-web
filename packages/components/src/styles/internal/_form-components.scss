@@ -123,12 +123,12 @@ $db-min-inline-size: var(
 		}
 
 		&:has(
-				#{$selector}:focus-within,
-				#{$selector}:is(input, textarea):not(:placeholder-shown),
-				> select option:checked:not(.placeholder),
-				input[type="checkbox"]:checked,
-				input[type="radio"]:checked
-			) {
+			#{$selector}:focus-within,
+			#{$selector}:is(input, textarea):not(:placeholder-shown),
+			> select option:checked:not(.placeholder),
+			input[type="checkbox"]:checked,
+			input[type="radio"]:checked
+		) {
 			> label {
 				@extend %db-overwrite-font-size-2xs;
 
@@ -227,6 +227,7 @@ $input-valid-types:
 	$validations: ":required";
 
 	@if ($selector == input) {
+		/* We use all client side form-validation for input here */
 		// https://developer.mozilla.org/en-US/docs/Learn/Forms/Form_validation#using_built-in_form_validation
 		$validations: ":required, [minlength], [maxlength], [pattern]";
 
@@ -235,6 +236,7 @@ $input-valid-types:
 		}
 		/* stylelint-disable-next-line at-rule-empty-line-before */
 	} @else if($selector == textarea) {
+		/* We use all client side form-validation for textarea here */
 		$validations: ":required, [minlength], [maxlength]";
 	}
 
@@ -254,10 +256,8 @@ $input-valid-types:
 		$selector: input;
 
 		&:has(
-				#{$selector}:not(
-						[data-custom-validity]
-					):required:#{$user}#{$key}
-			) {
+			#{$selector}:not([data-custom-validity]):required:#{$user}#{$key}
+		) {
 			@content;
 		}
 		/* stylelint-disable-next-line at-rule-empty-line-before */
@@ -320,9 +320,9 @@ $input-valid-types:
 
 	@include get-validity($selector) {
 		&:has(
-				> .db-infotext[data-semantic="successful"],
-				> db-infotext > .db-infotext[data-semantic="successful"]
-			) {
+			> .db-infotext[data-semantic="successful"],
+			> db-infotext > .db-infotext[data-semantic="successful"]
+		) {
 			@include get-validity-color($selector, "valid");
 		}
 	}
@@ -407,10 +407,10 @@ $input-valid-types:
 
 	// disabled
 	&:has(
-			#{$selector}:disabled,
-			#{$selector}[data-disabled="true"],
-			#{$selector}[aria-disabled="true"]
-		) {
+		#{$selector}:disabled,
+		#{$selector}[data-disabled="true"],
+		#{$selector}[aria-disabled="true"]
+	) {
 		// Decided against cursor: not-allowed, compare to e.g. https://phabricator.wikimedia.org/T121960
 		opacity: variables.$db-opacity-md;
 		pointer-events: none;

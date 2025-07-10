@@ -25,7 +25,7 @@
   "dependencies": {
     "dompurify": "3.2.6",
     "highlight.js": "^11.11.1",
-    "next": "15.3.4",
+    "next": "15.3.5",
     "react": "18.3.1",
     "react-archer": "^4.4.0",
     "react-dom": "18.3.1",
@@ -35,19 +35,19 @@
   "devDependencies": {
     "@mdx-js/loader": "^3.1.0",
     "@mdx-js/react": "^3.1.0",
-    "@next/mdx": "^15.3.4",
+    "@next/mdx": "^15.3.5",
     "@types/dompurify": "3.2.0",
-    "@types/node": "24.0.10",
+    "@types/node": "24.0.12",
     "@types/react": "18.3.13",
     "@types/react-dom": "18.3.1",
-    "esbuild": "0.25.5",
+    "esbuild": "0.25.6",
     "eslint": "8.57.1",
-    "eslint-config-next": "15.3.4",
-    "iframe-resizer": "^5.4.6",
+    "eslint-config-next": "15.3.5",
+    "iframe-resizer": "^5.4.7",
     "open-cli": "^8.0.0",
     "prettier": "^3.5.3",
     "sass": "1.85.0",
-    "typescript": "5.4.5",
+    "typescript": "5.8.3",
     "unist-util-visit": "^5.0.0"
   }
 }

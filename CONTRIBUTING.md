@@ -17,7 +17,8 @@ node node_modules/@db-ux/db-theme-icons/build/scripts/index.js
 node node_modules/@db-ux/db-theme-illustrative-icons/build/scripts/index.js
 ```
 
-> I you missed the step before the `npm install`, you may need to re-install your packages to ensure the postinstall scrips are executed for decrypting the fonts and other artifacts (`rm -rf node_modules/@db-ux/db-theme* && npm update @db-ux/db-theme`)
+> [!NOTE]
+> If you missed setting up the `.env`-file before running `npm install`, you may need to re-install your packages to ensure the postinstall scrips are executed for decrypting the fonts and other artifacts (`rm -rf node_modules/@db-ux/db-theme* && npm update @db-ux/db-theme`)
 
 ## Start locally
 
