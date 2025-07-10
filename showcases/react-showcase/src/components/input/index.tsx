@@ -41,6 +41,7 @@ const getInput = ({
 	validMessage,
 	validation,
 	invalidMessage,
+	showRequiredAsterisk,
 	maxLength,
 	max,
 	min
@@ -52,6 +53,7 @@ const getInput = ({
 			placeholder={children}
 			variant={variant}
 			showLabel={showLabel}
+			showRequiredAsterisk={showRequiredAsterisk}
 			defaultValue={value}
 			type={type}
 			minLength={minLength}

@@ -43,6 +43,7 @@ const getSearchFilter = (option: CustomSelectOptionType, _: string): boolean =>
 
 			<DBCustomSelect
 				v-if="!exampleProps?.lineBreak && !exampleProps?.info"
+				:showRequiredAsterisk="exampleProps?.showRequiredAsterisk"
 				:ariaListLabel="getAriaLabel(exampleProps, exampleName)"
 				:disabled="exampleProps?.disabled"
 				:icon="exampleProps?.icon"
