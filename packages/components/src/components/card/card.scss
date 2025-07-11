@@ -3,6 +3,10 @@
 @use "@db-ux/core-foundations/build/styles/helpers";
 @use "../../styles/internal/component";
 
+:is(a, button):has(.db-card) {
+	all: unset;
+}
+
 .db-card {
 	@extend %default-card;
 
