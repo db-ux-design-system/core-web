@@ -22,7 +22,7 @@
     "scripts",
     "e2e"
   ],
-  "packageManager": "npm@10.9.2",
+  "packageManager": "npm@11.4.2",
   "keywords": [
     "design-system",
     "ui-library",
