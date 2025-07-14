@@ -10,7 +10,7 @@ const defaultComp: any = <DBCard>Test</DBCard>;
 const testDefaultCard = () => {
 	test('should contain text', async ({ mount }) => {
 		const component = await mount(defaultComp);
-		await expect(component).toContainText('Test');
+		await expect(component).toContainText('1Test');
 	});
 
 	test('should match screenshot', async ({ mount }) => {

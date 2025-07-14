@@ -9,7 +9,7 @@ const comp: any = <DBBrand>Test</DBBrand>;
 const testBrand = () => {
 	test(`should contain text`, async ({ mount }) => {
 		const component = await mount(comp);
-		await expect(component).toContainText('Test');
+		await expect(component).toContainText('1Test');
 	});
 
 	test(`should match screenshot`, async ({ mount }) => {

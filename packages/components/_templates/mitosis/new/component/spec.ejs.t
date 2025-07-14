@@ -13,7 +13,7 @@ const comp: any = <DB<%= h.changeCase.pascal(name) %>>Test</DB<%= h.changeCase.p
 const testComponent = () =>{
 	test('should contain text', async ({ mount }) => {
 		const component = await mount(comp);
-		await expect(component).toContainText('Test');
+		await expect(component).toContainText('1Test');
 	});
 
 	test('should match screenshot', async ({ mount }) => {

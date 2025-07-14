@@ -26,7 +26,7 @@ const testButton = () => {
 			mount
 		}) => {
 			const component = await mount(variantButton);
-			await expect(component).toContainText('Test');
+			await expect(component).toContainText('1Test');
 		});
 
 		test(`should match screenshot for variant ${variant}`, async ({
