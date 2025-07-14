@@ -1,5 +1,5 @@
 - main:
-  - heading "DBHeader" [level=1]
+  - heading "1DBHeader" [level=1]
   - link "Density"
   - link "Imprint"
   - link "Help"

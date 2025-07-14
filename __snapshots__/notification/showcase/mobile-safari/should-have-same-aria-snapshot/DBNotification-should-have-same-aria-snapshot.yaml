@@ -1,5 +1,5 @@
 - main:
-  - heading "DBNotification" [level=1]
+  - heading "1DBNotification" [level=1]
   - link "Density"
   - article:
     - text: Headline
