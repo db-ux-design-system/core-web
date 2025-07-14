@@ -9,7 +9,7 @@ const comp: any = <DBNotification>Test</DBNotification>;
 const testComponent = () => {
 	test(`should contain text`, async ({ mount }) => {
 		const component = await mount(comp);
-		await expect(component).toContainText('1Test');
+		await expect(component).toContainText('Test');
 	});
 
 	test(`should match screenshot`, async ({ mount }) => {

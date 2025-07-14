@@ -12,7 +12,7 @@ const testComponent = (viewport) => {
 		mount
 	}) => {
 		const component = await mount(comp);
-		await expect(component).toContainText('1Test');
+		await expect(component).toContainText('Test');
 	});
 
 	test.fixme(
