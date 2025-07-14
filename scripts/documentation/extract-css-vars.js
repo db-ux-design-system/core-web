@@ -3,7 +3,7 @@ import fs from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import sassdoc from 'sassdoc';
 
-const COMPONENTS_SUBPATH = '../packages/components/src/components';
+const COMPONENTS_SUBPATH = '../../packages/components/src/components';
 
 /**
  * Escape HTML special characters in a string.

@@ -4,12 +4,12 @@ import { fileURLToPath } from 'node:url';
 import fg from 'fast-glob';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const docsDir = path.join(__dirname, '../packages/components/docs/api');
+const docsDir = path.join(__dirname, '../../packages/components/docs/api');
 const componentsDir = path.join(
 	__dirname,
-	'../packages/components/src/components'
+	'../../packages/components/src/components'
 );
-const outputDir = path.join(__dirname, '../packages/components/output');
+const outputDir = path.join(__dirname, '../../packages/components/output');
 const cssPath = path.join(outputDir, 'css');
 
 /**

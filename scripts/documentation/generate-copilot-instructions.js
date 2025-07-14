@@ -100,9 +100,9 @@ async function generateCopilotInstructions() {
 		const rootDir = path.resolve(__dirname, '..');
 		const componentsDir = path.join(
 			rootDir,
-			'packages/components/src/components'
+			'../packages/components/src/components'
 		);
-		const destDir = path.join(rootDir, '.github');
+		const destDir = path.join(rootDir, '../.github');
 		const destFile = path.join(destDir, 'copilot-instructions.md');
 
 		const componentFiles = await findComponentFiles(componentsDir);

@@ -4,6 +4,7 @@ import { fileURLToPath } from 'node:url';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
+const GITHUB_DIR = '../../../.github';
 const MARKER_START =
 	'<!-- START:: @db-ux/core-components - Copilot-Instructions -->';
 const MARKER_END =
@@ -85,8 +86,8 @@ async function writeOrReplaceBlock(destFile, block) {
  */
 async function copyCopilotInstructions() {
 	const rootDir = path.resolve(__dirname, '..');
-	const srcFile = path.join(rootDir, '.github', 'copilot-instructions.md');
-	const destDir = path.resolve(process.cwd(), '../../.github');
+	const srcFile = path.join(rootDir, '../.github', 'copilot-instructions.md');
+	const destDir = path.resolve(process.cwd(), GITHUB_DIR);
 	const destFile = path.join(destDir, 'copilot-instructions.md');
 
 	console.log(`📂  destDir: ${destDir}`);
