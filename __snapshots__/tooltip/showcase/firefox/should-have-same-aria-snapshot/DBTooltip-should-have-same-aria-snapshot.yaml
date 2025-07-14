@@ -1,5 +1,5 @@
 - main:
-  - heading "DBTooltip" [level=1]
+  - heading "1DBTooltip" [level=1]
   - link "Density"
   - button "Functional"
   - button "(Default) Regular"

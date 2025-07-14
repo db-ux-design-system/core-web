@@ -1,5 +1,5 @@
 - main:
-  - heading "DBButton" [level=1]
+  - heading "1DBButton" [level=1]
   - link "Density"
   - button "Functional"
   - button "(Default) Regular"

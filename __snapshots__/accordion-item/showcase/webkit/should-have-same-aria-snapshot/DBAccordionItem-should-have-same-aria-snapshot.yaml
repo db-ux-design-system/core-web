@@ -1,5 +1,5 @@
 - main:
-  - heading "DBAccordionItem" [level=1]
+  - heading "1DBAccordionItem" [level=1]
   - link "Density"
   - listitem:
     - group: Functional
