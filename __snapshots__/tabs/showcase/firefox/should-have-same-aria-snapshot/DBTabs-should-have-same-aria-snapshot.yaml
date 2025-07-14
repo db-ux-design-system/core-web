@@ -1,5 +1,5 @@
 - main:
-  - heading "1DBTabs" [level=1]
+  - heading "DBTabs" [level=1]
   - link "Density"
   - text: "Functional:"
   - tablist:

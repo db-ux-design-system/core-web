@@ -1,5 +1,5 @@
 - main:
-  - heading "1DBNavigation" [level=1]
+  - heading "DBNavigation" [level=1]
   - link "Density"
   - text: Functional
   - navigation "Functional":

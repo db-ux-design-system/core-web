@@ -1,5 +1,5 @@
 - main:
-  - heading "1DBSelect" [level=1]
+  - heading "DBSelect" [level=1]
   - link "Density"
   - text: Label
   - combobox "Label":

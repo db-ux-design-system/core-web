@@ -1,5 +1,5 @@
 - main:
-  - heading "1DBDrawer" [level=1]
+  - heading "DBDrawer" [level=1]
   - link "Density"
   - 'button "Open: Functional"'
   - 'button "Open: (Default) Regular"'

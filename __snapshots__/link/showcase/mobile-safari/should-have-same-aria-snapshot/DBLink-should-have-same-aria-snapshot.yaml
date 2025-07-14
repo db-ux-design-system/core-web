@@ -1,5 +1,5 @@
 - main:
-  - heading "1DBLink" [level=1]
+  - heading "DBLink" [level=1]
   - link "Density"
   - link "Functional"
   - link "(Default) Regular"

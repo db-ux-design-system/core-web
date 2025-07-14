@@ -1,5 +1,5 @@
 - main:
-  - heading "1DBDivider" [level=1]
+  - heading "DBDivider" [level=1]
   - link "Density"
   - text: Functional (Default) Regular Expressive
   - link "Variant"

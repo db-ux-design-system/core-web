@@ -1,5 +1,5 @@
 - main:
-  - heading "1DBCard" [level=1]
+  - heading "DBCard" [level=1]
   - link "Density"
   - strong: Functional
   - strong: (Default) Regular

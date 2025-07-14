@@ -1,5 +1,5 @@
 - main:
-  - heading "1DBCustomSelect" [level=1]
+  - heading "DBCustomSelect" [level=1]
   - link "Density"
   - text: Functional
   - group:

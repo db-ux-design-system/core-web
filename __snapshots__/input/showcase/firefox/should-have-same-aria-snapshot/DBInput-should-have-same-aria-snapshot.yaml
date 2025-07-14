@@ -1,5 +1,5 @@
 - main:
-  - heading "1DBInput" [level=1]
+  - heading "DBInput" [level=1]
   - link "Density"
   - text: Label
   - textbox "Label"
