@@ -133,7 +133,7 @@ const DefaultComponent = ({
 	return (
 		<>
 			<div className="default-container">
-				<HeadlineTag>{title}</HeadlineTag>
+				<HeadlineTag>1{title}</HeadlineTag>
 				{variants
 					?.filter(
 						(variant) =>
