@@ -34,9 +34,7 @@ export type DBSwitchProps = DBSwitchDefaultProps &
 	IconTrailingProps &
 	IconLeadingProps;
 
-export type DBSwitchDefaultState = {
-	_checked?: boolean;
-};
+export type DBSwitchDefaultState = {};
 
 export type DBSwitchState = DBSwitchDefaultState &
 	GlobalState &

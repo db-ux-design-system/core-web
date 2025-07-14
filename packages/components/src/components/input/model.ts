@@ -52,6 +52,10 @@ export type DBInputDefaultProps = {
 	 */
 	dataListId?: string;
 	/**
+	 * Allow selecting multiple files. https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/input/file#multiple
+	 */
+	multiple?: boolean | string;
+	/**
 	 * Maximum value
 	 */
 	max?: number | string;

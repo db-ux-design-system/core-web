@@ -89,11 +89,11 @@ $db-breakpoint-xl: helpers.px-to-em($db-screen-size-xl);
 	$min: "";
 	$max: "";
 
-	@if (map.get($data, "min") != null) {
+	@if (map.get($data, "min")) {
 		$min: "#{helpers.px-to-em(get-screen-size(map.get($data, "min")))} < ";
 	}
 
-	@if (map.get($data, "max") != null) {
+	@if (map.get($data, "max")) {
 		$max: " <= #{helpers.px-to-em(get-screen-size(map.get($data, "max")))}";
 	}
 

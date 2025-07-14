@@ -1,6 +1,5 @@
 import {
 	ClickEventProps,
-	ClickEventState,
 	GlobalProps,
 	GlobalState,
 	IconLeadingProps,
@@ -25,9 +24,6 @@ export type ButtonVariantType = (typeof ButtonVariantList)[number];
 export const ButtonTypeList = ['button', 'reset', 'submit'] as const;
 export type ButtonTypeType = (typeof ButtonTypeList)[number];
 
-export const ButtonStateList = ['loading'] as const;
-export type ButtonStateType = (typeof ButtonStateList)[number];
-
 export type DBButtonDefaultProps = {
 	/**
 	 * The disabled attribute can be set to [keep a user from clicking on the button](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button#disabled).
@@ -48,11 +44,6 @@ export type DBButtonDefaultProps = {
 	 * Define the text next to the icon specified via the icon Property to get hidden.
 	 */
 	noText?: boolean | string;
-
-	/**
-	 * Show loading progress inside button.
-	 */
-	state?: ButtonStateType;
 
 	/**
 	 * The type attribute specifies the [type of button](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button#type).
@@ -83,8 +74,8 @@ export type DBButtonProps = DBButtonDefaultProps &
 	IconLeadingProps &
 	IconTrailingProps;
 
-export type DBButtonDefaultState = {};
+export type DBButtonDefaultState = {
+	getButtonType: () => ButtonTypeType;
+};
 
-export type DBButtonState = DBButtonDefaultState &
-	GlobalState &
-	ClickEventState<HTMLButtonElement>;
+export type DBButtonState = DBButtonDefaultState & GlobalState;
