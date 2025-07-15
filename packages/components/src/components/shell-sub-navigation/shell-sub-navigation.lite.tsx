@@ -1,15 +1,15 @@
 import {
-	Show,
-	useMetadata,
-	useStore,
-	useRef,
+	onInit,
 	useDefaultProps,
-	Slot
+	useMetadata,
+	useRef,
+	useStore
 } from '@builder.io/mitosis';
-import { DBShellSubNavigationState, DBShellSubNavigationProps } from './model';
-import { cls, getBooleanAsString } from '../../utils';
+import { DBShellSubNavigationProps, DBShellSubNavigationState } from './model';
+import { cls, getBoolean, getBooleanAsString } from '../../utils';
 import DBButton from '../button/button.lite';
 import DBTooltip from '../tooltip/tooltip.lite';
+import { DEFAULT_COLLAPSE, DEFAULT_EXPAND } from '../../shared/constants';
 
 useMetadata({});
 
@@ -27,12 +27,23 @@ export default function DBShellSubNavigation(props: DBShellSubNavigationProps) {
 			state._open = !state._open;
 		},
 		getToggleButtonText: (): string => {
-			return state._open
-				? (props.subNavigationToggleButtonCollapse ?? 'Collapse')
-				: (props.subNavigationToggleButtonExpand ?? 'Expand');
+			if (props.expandButtonTooltipFn) {
+				return props.expandButtonTooltipFn(state._open);
+			}
+			if (props.expandButtonTooltip) {
+				return props.expandButtonTooltip;
+			}
+
+			return state._open ? DEFAULT_COLLAPSE : DEFAULT_EXPAND;
 		}
 	});
 	// jscpd:ignore-end
+
+	onInit(() => {
+		if (props.expanded !== undefined) {
+			state._open = getBoolean(props.expanded, 'expanded') ?? true;
+		}
+	});
 
 	return (
 		<div

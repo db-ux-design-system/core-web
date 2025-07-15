@@ -746,6 +746,23 @@ export type OverflowScrollButtonState = {
 	evaluateScrollButtons: (tabList: Element) => void;
 };
 
+export type SidebarProps = {
+	/**
+	 * Set the expanded/collapsed state initially for the left sidebar
+	 */
+	expanded?: boolean | string;
+
+	/**
+	 * Set the tooltip for the expand/collapse button
+	 */
+	expandButtonTooltip?: string;
+
+	/**
+	 * Set the tooltip for the expand/collapse button based on the state
+	 */
+	expandButtonTooltipFn?: (open: boolean) => string;
+};
+
 export type SidebarState = {
 	_open: boolean;
 	getToggleButtonText: () => string;

@@ -1,4 +1,5 @@
 import {
+	onInit,
 	Slot,
 	useDefaultProps,
 	useMetadata,
@@ -9,10 +10,11 @@ import {
 	DBControlPanelDesktopProps,
 	DBControlPanelDesktopState
 } from './model';
-import { cls, getBooleanAsString, uuid } from '../../utils';
+import { cls, getBoolean, getBooleanAsString, uuid } from '../../utils';
 import DBButton from '../button/button.lite';
 import DBTooltip from '../tooltip/tooltip.lite';
 import { handleSubNavigationPosition } from '../../utils/navigation';
+import { DEFAULT_COLLAPSE, DEFAULT_EXPAND } from '../../shared/constants';
 
 useMetadata({});
 
@@ -36,9 +38,14 @@ export default function DBControlPanelDesktop(
 			}
 		},
 		getToggleButtonText: (): string => {
-			return state._open
-				? (props.leftPositionToggleButtonCollapse ?? 'Collapse')
-				: (props.leftPositionToggleButtonExpand ?? 'Expand');
+			if (props.expandButtonTooltipFn) {
+				return props.expandButtonTooltipFn(state._open);
+			}
+			if (props.expandButtonTooltip) {
+				return props.expandButtonTooltip;
+			}
+
+			return state._open ? DEFAULT_COLLAPSE : DEFAULT_EXPAND;
 		},
 		onScroll() {
 			if (!_scrollContainerRef) return;
@@ -57,6 +64,12 @@ export default function DBControlPanelDesktop(
 	});
 
 	// jscpd:ignore-end
+
+	onInit(() => {
+		if (props.expanded !== undefined) {
+			state._open = getBoolean(props.expanded, 'expanded') ?? true;
+		}
+	});
 
 	return (
 		<header
