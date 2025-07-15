@@ -19,3 +19,8 @@
   - link "Show Icon"
   - link "(Default) True"
   - link "False"
+  - link "Wrap"
+  - link "(Default) False"
+  - link "True [Multiline]"
+  - link "Examples"
+  - link "Variant Inline"
