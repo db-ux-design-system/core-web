@@ -1,4 +1,6 @@
 validate-branch-name
 node scripts/check-commit-mail.js
+lint-staged --config .config/lint-staged.config.ts
+lint-staged --config .config/lint-staged-prettier.config.ts
 git update-index --again
 npm run lint:jscpd
