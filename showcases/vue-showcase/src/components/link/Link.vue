@@ -16,6 +16,7 @@ import DefaultComponent from "../DefaultComponent.vue";
 				:size="exampleProps?.size"
 				:content="exampleProps?.content"
 				:showIcon="exampleProps?.showIcon"
+				:wrap="exampleProps?.wrap"
 			>
 				{{ exampleName }}
 			</DBLink>

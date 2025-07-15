@@ -5,10 +5,11 @@ import {
 	GlobalState,
 	LinkProps,
 	ShowIconProps,
-	TextProps
+	TextProps,
+	WrapProps
 } from '../../shared/model';
 
-export const LinkVariantList = ['adaptive', 'brand'] as const;
+export const LinkVariantList = ['adaptive', 'brand', 'inline'] as const;
 export type LinkVariantType = (typeof LinkVariantList)[number];
 
 export const LinkSizeList = ['medium', 'small'] as const;
@@ -37,7 +38,8 @@ export type DBLinkProps = DBLinkDefaultProps &
 	ClickEventProps<HTMLAnchorElement> &
 	LinkProps &
 	ShowIconProps &
-	TextProps;
+	TextProps &
+	WrapProps;
 
 export type DBLinkDefaultState = {};
 

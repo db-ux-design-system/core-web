@@ -116,5 +116,37 @@
 				}
 			}
 		]
+	},
+	{
+		"name": "Wrap",
+		"examples": [
+			{
+				"name": "(Default) False",
+				"props": {
+					"href": "#",
+					"wrap": false
+				}
+			},
+			{
+				"name": "True [Multiline]",
+				"style": { "width": "2ch" },
+				"props": {
+					"href": "#",
+					"wrap": true
+				}
+			}
+		]
+	},
+	{
+		"name": "Examples",
+		"examples": [
+			{
+				"name": "Variant Inline",
+				"props": {
+					"href": "#",
+					"variant": "inline"
+				}
+			}
+		]
 	}
 ]

@@ -29,7 +29,8 @@ export default function DBLink(props: DBLinkProps) {
 			data-size={props.size}
 			data-hide-icon-trailing={getHideProp(props.showIcon ?? true)}
 			data-variant={props.variant}
-			data-content={props.content || 'internal'}>
+			data-content={props.content || 'internal'}
+			data-wrap={getBooleanAsString(props.wrap)}>
 			<Show when={props.text} else={props.children}>
 				{props.text}
 			</Show>

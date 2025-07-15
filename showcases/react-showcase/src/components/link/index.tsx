@@ -12,7 +12,8 @@ const getLink = ({
 	size,
 	content,
 	children,
-	showIcon
+	showIcon,
+	wrap
 }: DBLinkProps) => (
 	<DBLink
 		href={href}
@@ -20,7 +21,8 @@ const getLink = ({
 		disabled={disabled}
 		size={size}
 		content={content}
-		showIcon={showIcon}>
+		showIcon={showIcon}
+		wrap={wrap}>
 		{children}
 	</DBLink>
 );

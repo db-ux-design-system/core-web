@@ -10,7 +10,8 @@ import {
 	NavigationBehaviorState,
 	ShowIconProps,
 	TextProps,
-	WidthProps
+	WidthProps,
+	WrapProps
 } from '../../shared/model';
 import { NavigationItemSafeTriangle } from '../../utils/navigation';
 
@@ -35,11 +36,6 @@ export type DBNavigationItemDefaultProps = {
 	 * This is for mobile navigation only, if it is set the sub-navigation is a static overlay
 	 */
 	subNavigationExpanded?: boolean | string;
-
-	/**
-	 * Determines whether the text should wrap when its parent container is too small, preventing overflow.
-	 */
-	wrap?: boolean | string;
 };
 
 export type DBNavigationItemProps = DBNavigationItemDefaultProps &
@@ -47,6 +43,7 @@ export type DBNavigationItemProps = DBNavigationItemDefaultProps &
 	ClickEventProps<HTMLButtonElement> &
 	IconProps &
 	WidthProps &
+	WrapProps &
 	NavigationBackButtonProps &
 	ShowIconProps &
 	TextProps;
