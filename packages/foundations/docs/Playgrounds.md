@@ -2,7 +2,7 @@
 
 You can try out our components on StackBlitz or CodeSandbox without downloading or installing anything on your local machine.
 
-We would also appreciate it if you could provide a working example when opening an issue in our repository.
+We would also appreciate it if you could provide a working example when opening an issue in our repository. Please keep in mind not to share any internal information or data this way. This includes internal URLs. Only use sample material.
 
 ## CodeSandbox
 
