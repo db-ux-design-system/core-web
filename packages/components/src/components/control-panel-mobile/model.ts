@@ -1,6 +1,6 @@
 import {
 	ContainerWidthProps,
-	ContentPanelProps,
+	ControlPanelProps,
 	GlobalProps,
 	GlobalState,
 	NavigationBehaviorState,
@@ -27,7 +27,7 @@ export type DBControlPanelMobileProps = DBControlPanelMobileDefaultProps &
 	GlobalProps &
 	ToggleEventProps &
 	ContainerWidthProps &
-	ContentPanelProps;
+	ControlPanelProps;
 
 export type DBControlPanelMobileDefaultState = {
 	open: boolean;
