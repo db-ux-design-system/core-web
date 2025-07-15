@@ -130,7 +130,7 @@ export type PlacementProps = {
 };
 
 export type NavigationBehaviorState = {
-	handleNavigationItemClick: (event: unknown) => void;
+	handleNavigationItemClick: (event: any) => void;
 };
 
 export type GapProps = {
@@ -254,11 +254,21 @@ export type EmphasisProps = {
 export const ValidationList = ['invalid', 'valid', 'no-validation'] as const;
 export type ValidationType = (typeof ValidationList)[number];
 
+/**
+ * Properties to control the required state and its visual annotation for input components.
+ */
 export type RequiredProps = {
 	/**
 	 * When the required attribute specified, the user will be required to fill the form element before submitting the form.
+	 * The form element will be marked semantically as required and by default also visually with an asterisk '*' next to the label (unless the property `showRequiredAsterisk` is also set with the value `false`).
 	 */
 	required?: boolean | string;
+	/**
+	 * This attribute allows to specify whether a form field which is marked as required will show a visual indicator (an asterisk '*').
+	 * It allows to prevent adding the visual indicator but still keep the field semantically required by setting its value to `false`.
+	 * By default, its value is `true`, so the asterisk is shown when `required` is set.
+	 */
+	showRequiredAsterisk?: boolean | string;
 };
 export type ShowLabelProps = {
 	/**
@@ -563,6 +573,11 @@ export type TextProps = {
 };
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
+export type GeneralEvent<T> = Event;
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+export type GeneralKeyboardEvent<T> = KeyboardEvent;
+
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 export type ClickEvent<T> = MouseEvent;
 export type ClickEventProps<T> = {
 	/**
@@ -576,27 +591,27 @@ export type ClickEventState<T> = {
 };
 
 export type ToggleEventProps = {
-	toggle?: (open: boolean | any) => void;
-	onToggle?: (open: boolean | any) => void;
+	toggle?: (open: boolean) => void;
+	onToggle?: (open: boolean) => void;
 };
 
 export type ToggleEventState<T> = {
 	handleToggle: (event?: ClickEvent<T> | any) => void;
 };
 
-export type CloseEventProps = {
+export type CloseEventProps<T> = {
 	/**
 	 * Function to handle button click (close).
 	 */
-	onClose?: (event?: any) => void;
+	onClose?: (event?: T) => void;
 	/**
 	 * Function to handle button click (close).
 	 */
-	close?: (event?: any) => void;
+	close?: (event?: T) => void;
 };
 
-export type CloseEventState = {
-	handleClose: (event: any, forceClose?: boolean) => void;
+export type CloseEventState<T> = {
+	handleClose: (event?: T | void, forceClose?: boolean) => void;
 };
 
 export const AlignmentList = ['start', 'center'] as const;
@@ -674,14 +689,14 @@ export type NavigationBackButtonProps = {
 
 export type AriaLabelledByProps = {
 	/**
-	 * Pass aria-labelledby to inner element
+	 * Pass `aria-labelledby` to inner element
 	 */
 	labelledBy?: string;
 };
 
 export type AriaControlsProps = {
 	/**
-	 * Pass aria-controls to inner element
+	 * Pass `aria-controls` to inner element
 	 */
 	controls?: string;
 };

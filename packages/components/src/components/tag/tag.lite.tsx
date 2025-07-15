@@ -8,11 +8,11 @@ import {
 	useRef,
 	useStore
 } from '@builder.io/mitosis';
-import { DBTagProps, DBTagState } from './model';
-import { cls, getBooleanAsString, getHideProp } from '../../utils';
 import { DEFAULT_REMOVE } from '../../shared/constants';
 import { ClickEvent } from '../../shared/model';
+import { cls, getBooleanAsString, getHideProp } from '../../utils';
 import DBTooltip from '../tooltip/tooltip.lite';
+import { DBTagProps, DBTagState } from './model';
 
 useMetadata({});
 useDefaultProps<DBTagProps>({});
@@ -21,8 +21,10 @@ export default function DBTag(props: DBTagProps) {
 	const _ref = useRef<HTMLDivElement | any>(null);
 	const state = useStore<DBTagState>({
 		initialized: false,
-		handleRemove: (event?: ClickEvent<HTMLButtonElement>) => {
-			event?.stopPropagation();
+		handleRemove: (event?: ClickEvent<HTMLButtonElement> | void) => {
+			if (!event) return;
+
+			event.stopPropagation();
 			if (props.onRemove) {
 				props.onRemove(event);
 			}

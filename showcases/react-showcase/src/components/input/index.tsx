@@ -3,11 +3,11 @@ import {
 	type LabelVariantType,
 	type ValueLabelType
 } from '../../../../../output/react/src';
-import DefaultComponent from '../default-component';
-import defaultComponentVariants from '../../../../shared/input.json';
 import { type DBInputProps } from '../../../../../output/react/src/components/input/model';
-import { getVariants } from '../data';
+import defaultComponentVariants from '../../../../shared/input.json';
 import { type BaseComponentProps } from '../base-component-data';
+import { getVariants } from '../data';
+import DefaultComponent from '../default-component';
 
 const getDataList = (
 	variant?: LabelVariantType
@@ -41,6 +41,7 @@ const getInput = ({
 	validMessage,
 	validation,
 	invalidMessage,
+	showRequiredAsterisk,
 	maxLength,
 	max,
 	min
@@ -52,6 +53,7 @@ const getInput = ({
 			placeholder={children}
 			variant={variant}
 			showLabel={showLabel}
+			showRequiredAsterisk={showRequiredAsterisk}
 			defaultValue={value}
 			type={type}
 			minLength={minLength}

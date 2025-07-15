@@ -23,6 +23,7 @@ jobs:
     runs-on: ubuntu-24.04 # Use Ubuntu 24.04 explicitly
     container:
       image: mcr.microsoft.com/playwright:v${{ inputs.version }}
+      options: --user 1001
     strategy:
       fail-fast: false
       matrix:
@@ -34,9 +35,6 @@ jobs:
 
       - name: 🔄 Init Cache
         uses: ./.github/actions/npm-cache
-
-      - name: 📲 Install esbuild (binary workaround)
-        run: npm i -D esbuild-linux-64
 
       - name: ⏬ Download foundations build
         uses: actions/download-artifact@v4
@@ -72,7 +70,6 @@ jobs:
       - name: 👩‍🔬 Test showcase with Playwright 🎭
         shell: bash
         env:
-          HOME: /root
           NEXT_PUBLIC_BASE_PATH: ${{ inputs.path }}
         run: |
           ls ./build-showcases${{ inputs.path }}

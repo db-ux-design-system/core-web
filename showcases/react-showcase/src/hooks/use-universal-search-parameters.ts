@@ -1,13 +1,13 @@
-import { useSearchParams } from 'react-router-dom';
 import {
-	useSearchParams as useSearchParamsNext,
+	usePathname as usePathnameNext,
 	useRouter as useRouterNext,
-	usePathname as usePathnameNext
+	useSearchParams as useSearchParametersNext
 } from 'next/navigation';
+import { useSearchParams } from 'react-router-dom';
 
 const useUniversalSearchParameters = (): [
 	URLSearchParams,
-	(params: Record<string, string>) => void
+	(parameters: Record<string, string>) => void
 ] => {
 	const nextRouter =
 		process.env.NEXT_SHOWCASE_VARIANT === 'next'
@@ -20,28 +20,28 @@ const useUniversalSearchParameters = (): [
 
 	const [searchParameters, _setSearchParameters] =
 		process.env.NEXT_SHOWCASE_VARIANT === 'next'
-			? [useSearchParamsNext()]
+			? [useSearchParametersNext()]
 			: useSearchParams();
 
-	const setSearchParameters = (params: Record<string, string>) => {
+	const setSearchParameters = (parameters: Record<string, string>) => {
 		if (typeof globalThis !== 'undefined') {
-			const currentParams = new URLSearchParams(
+			const currentParameters = new URLSearchParams(
 				globalThis.location.href.split('?')[1]
 			);
-			currentParams.sort();
-			const newParams = new URLSearchParams(params);
-			newParams.sort();
+			currentParameters.sort();
+			const newParameters = new URLSearchParams(parameters);
+			newParameters.sort();
 
-			if (currentParams.toString() === newParams.toString()) {
+			if (currentParameters.toString() === newParameters.toString()) {
 				return;
 			}
 		}
 
 		if (_setSearchParameters) {
-			_setSearchParameters(params);
+			_setSearchParameters(parameters);
 		} else if (nextPathName) {
 			nextRouter?.push(
-				`${nextPathName}?${new URLSearchParams(params).toString()}`
+				`${nextPathName}?${new URLSearchParams(parameters).toString()}`
 			);
 		}
 	};

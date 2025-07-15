@@ -7,9 +7,9 @@ import {
 	useRef,
 	useStore
 } from '@builder.io/mitosis';
-import { DBBadgeProps, DBBadgeState } from './model';
-import { cls } from '../../utils';
 import { DEFAULT_LABEL } from '../../shared/constants';
+import { cls } from '../../utils';
+import { DBBadgeProps, DBBadgeState } from './model';
 
 useMetadata({});
 
@@ -36,7 +36,7 @@ export default function DBBadge(props: DBBadgeProps) {
 				}
 
 				if (parent) {
-					parent.setAttribute('data-has-badge', 'true');
+					parent.dataset['hasBadge'] = 'true';
 				}
 			}
 		}

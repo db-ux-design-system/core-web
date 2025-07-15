@@ -1,10 +1,10 @@
-import DefaultPage from '../../../components/default-page';
 import {
-	DBInfotext,
+	DBButton,
 	DBCard,
 	DBIcon,
-	DBButton
+	DBInfotext
 } from '../../../../../output/react/src';
+import DefaultPage from '../../../components/default-page';
 
 const Example = () => {
 	return (
@@ -45,9 +45,7 @@ const Example = () => {
 												density.slice(1)}
 										</DBInfotext>
 										<div
-											className={`example-${example
-												.toLowerCase()
-												.replaceAll(' ', '-')}`}>
+											className={`example-${example.toLowerCase().replaceAll(' ', '-')}`}>
 											{example === 'Spacing fixed' && (
 												<div>
 													<DBIcon icon="x_placeholder">
