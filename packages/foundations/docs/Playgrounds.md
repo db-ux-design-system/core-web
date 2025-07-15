@@ -13,7 +13,7 @@ We would also appreciate it if you could provide a working example when opening 
 
 ## StackBlitz
 
-- [React 18](https://stackblitz.com/fork/github/db-ux-design-system/examples/tree/main/react-example?file=index.html&terminal=dev)
-- [Vue 3](https://stackblitz.com/fork/github/db-ux-design-system/examples/tree/main/vue-example?file=index.html&terminal=dev)
-- [Angular 17](https://stackblitz.com/fork/github/db-ux-design-system/examples/tree/main/angular17-example?file=index.html&terminal=start)
-- [React 18 + tailwind](https://stackblitz.com/fork/github/db-ux-design-system/examples/tree/main/react-tailwind-template?file=index.html&terminal=dev)
+- [React 18](https://stackblitz.com/fork/github/db-ux-design-system/examples/tree/main/react-example?file=index.html)
+- [Vue 3](https://stackblitz.com/fork/github/db-ux-design-system/examples/tree/main/vue-example?file=index.html)
+- [Angular 17](https://stackblitz.com/fork/github/db-ux-design-system/examples/tree/main/angular17-example?file=index.html)
+- [React 18 + tailwind](https://stackblitz.com/fork/github/db-ux-design-system/examples/tree/main/react-tailwind-template?file=index.html)
