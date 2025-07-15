@@ -184,6 +184,13 @@ export type OverflowProps = {
 	overflow?: boolean | string;
 };
 
+export type WrapProps = {
+	/**
+	 * Determines whether the text should wrap when its parent container is too small, preventing overflow.
+	 */
+	wrap?: boolean | string;
+}
+
 export const OrientationList = ['horizontal', 'vertical'] as const;
 export type OrientationType = (typeof OrientationList)[number];
 export type OrientationProps = {

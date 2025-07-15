@@ -18,7 +18,9 @@
 	}
 
 	&[data-content="internal"] {
-		@include icons.set-icon("arrow_right", "after");
+		&:not([data-variant="inline"]) {
+			@include icons.set-icon("arrow_right", "after");
+		}
 
 		&:not([data-hide-icon-trailing="true"])::after {
 			vertical-align: top;
@@ -26,7 +28,9 @@
 	}
 
 	&[data-content="external"] {
-		@include icons.set-icon("arrow_up_right", "after");
+		&:not([data-variant="inline"]) {
+			@include icons.set-icon("arrow_up_right", "after");
+		}
 	}
 
 	&[data-content="internal"],
