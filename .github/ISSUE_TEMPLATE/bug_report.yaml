@@ -9,6 +9,8 @@ body:
       value: |
         Thank you for taking the time to fill out this bug report! Feedback from the community is highly valuable to us, as it helps improve our work and benefits all users. 🙂
 
+        We would be more than happy if you could share some code, or even better, a working example on StackBlitz or CodeSandbox. Please keep in mind not to share any internal information or data this way; only use sample material.
+
   - type: checkboxes
     id: component
     attributes:
