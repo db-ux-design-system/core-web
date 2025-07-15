@@ -105,8 +105,10 @@ $meta-child-selector: "> .db-control-panel-desktop-scroll-container  .db-control
 	}
 }
 
-@mixin vertical-navigation {
-	padding-block: variables.$db-spacing-fixed-md;
+@mixin vertical-navigation($main-navigation: true) {
+	@if($main-navigation) {
+		padding-block: variables.$db-spacing-fixed-md;
+	}
 
 	#{string.unquote(custom-elements.$overflow-scroll-left-button)},
 	#{string.unquote(custom-elements.$overflow-scroll-right-button)} {

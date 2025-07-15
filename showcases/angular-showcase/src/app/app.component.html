@@ -10,22 +10,18 @@
 		[controlPanelMobilePosition]="settings.controlPanelMobilePosition"
 		[subNavigationDesktopPosition]="settings.subNavigationDesktopPosition"
 		[subNavigationMobilePosition]="settings.subNavigationMobilePosition"
-		[className]="
-			settings.subNavigation === 'true'
-				? undefined
-				: 'hide-sub-navigation'
-		"
+		[showSubNavigation]="settings.subNavigation === 'true'"
 	>
-		<db-navigation
-			sub-navigation
-			slot="subNavigation"
-			aria-label="sub-navigation"
-			[variant]="settings.subNavigationVariant"
-		>
-			@for (item of navigationItems; track item.label) {
-				<app-nav-item [navItem]="item"> </app-nav-item>
-			}
-		</db-navigation>
+		<db-shell-sub-navigation sub-navigation>
+			<db-navigation
+				slot="subNavigation"
+				aria-label="sub-navigation"
+				[variant]="settings.subNavigationVariant"
+			>
+				@for (item of navigationItems; track item.label) {
+					<app-nav-item [navItem]="item"> </app-nav-item>
+				}</db-navigation
+		></db-shell-sub-navigation>
 
 		<db-control-panel-desktop
 			control-panel-desktop

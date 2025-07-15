@@ -697,6 +697,7 @@ export type AriaControlsProps = {
 	controls?: string;
 };
 
+// TODO: Rename ControlPanel
 export type ContentPanelProps = {
 	/**
 	 * Slot to pass in the DBControlPanelBrand component

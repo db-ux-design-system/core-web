@@ -4,7 +4,8 @@ import {
 	DBControlPanelDesktop,
 	DBNavigation,
 	DBShell,
-	DBControlPanelMobile
+	DBControlPanelMobile,
+	DBShellSubNavigation
 } from "@components";
 import NavItemComponent from "./NavItemComponent.vue";
 
@@ -28,19 +29,19 @@ const { page, fullscreen, classNames, sortedNavigation, settings } =
 		:controlPanelMobilePosition="settings.controlPanelMobilePosition"
 		:subNavigationDesktopPosition="settings.subNavigationDesktopPosition"
 		:subNavigationMobilePosition="settings.subNavigationMobilePosition"
+		:show-sub-navigation="settings.subNavigation === 'true'"
 	>
-		<template
-			v-slot:sub-navigation
-			v-if="settings.subNavigation === 'true'"
-		>
-			<DBNavigation
-				:variant="settings.subNavigationVariant"
-				aria-label="sub navigation"
-			>
-				<template v-for="item of sortedNavigation">
-					<NavItemComponent :navItem="item"></NavItemComponent>
-				</template>
-			</DBNavigation>
+		<template v-slot:sub-navigation>
+			<DBShellSubNavigation>
+				<DBNavigation
+					:variant="settings.subNavigationVariant"
+					aria-label="sub navigation"
+				>
+					<template v-for="item of sortedNavigation">
+						<NavItemComponent :navItem="item"></NavItemComponent>
+					</template>
+				</DBNavigation>
+			</DBShellSubNavigation>
 		</template>
 		<template v-slot:control-panel-desktop>
 			<DBControlPanelDesktop>

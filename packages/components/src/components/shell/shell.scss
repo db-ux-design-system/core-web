@@ -52,23 +52,6 @@ body {
 		grid-area: control-panel;
 	}
 
-	> .db-sub-navigation-container {
-		grid-area: sub-navigation;
-		overflow: hidden;
-
-		> .db-shell-sub-navigation-button {
-			grid-area: button;
-		}
-
-		#{string.unquote(custom-elements.$navigation)} {
-			grid-area: navigation;
-		}
-
-		&:has(> .db-shell-sub-navigation-button:first-child) {
-			display: none;
-		}
-	}
-
 	&[data-control-panel-desktop-position="left"] {
 		#{string.unquote(custom-elements.$control-panel-desktop)} {
 			@extend %control-panel-desktop-vertical-orientation;

@@ -1,5 +1,6 @@
 import {
 	onMount,
+	Show,
 	Slot,
 	useDefaultProps,
 	useMetadata,
@@ -7,9 +8,7 @@ import {
 	useStore
 } from '@builder.io/mitosis';
 import { DBShellProps, DBShellState } from './model';
-import { cls, getBooleanAsString, uuid } from '../../utils';
-import DBButton from '../button/button.lite';
-import DBTooltip from '../tooltip/tooltip.lite';
+import { cls, getBoolean, getBooleanAsString } from '../../utils';
 
 useMetadata({});
 useDefaultProps<DBShellProps>({});
@@ -18,19 +17,7 @@ export default function DBShell(props: DBShellProps) {
 	const _ref = useRef<HTMLDivElement | any>(null);
 	// jscpd:ignore-start
 	const state = useStore<DBShellState>({
-		_id: `db-shell-${uuid()}`,
-		fontsLoaded: false,
-		_open: true,
-		handleToggle: (event: any) => {
-			event.stopPropagation();
-
-			state._open = !state._open;
-		},
-		getToggleButtonText: (): string => {
-			return state._open
-				? (props.subNavigationToggleButtonCollapse ?? 'Collapse')
-				: (props.subNavigationToggleButtonExpand ?? 'Expand');
-		}
+		fontsLoaded: false
 	});
 
 	onMount(() => {
@@ -50,7 +37,7 @@ export default function DBShell(props: DBShellProps) {
 	return (
 		<div
 			ref={_ref}
-			id={props.id ?? state._id}
+			id={props.id}
 			class={cls('db-shell', props.className)}
 			data-control-panel-desktop-position={
 				props.controlPanelDesktopPosition ?? 'top'
@@ -64,27 +51,14 @@ export default function DBShell(props: DBShellProps) {
 			data-sub-navigation-mobile-position={
 				props.subNavigationMobilePosition ?? 'top'
 			}
-			data-open={getBooleanAsString(state._open)}
 			data-fade-in={getBooleanAsString(props.fadeIn)}
 			data-fonts-loaded={getBooleanAsString(state.fontsLoaded)}>
 			<Slot name="controlPanelDesktop" />
 			<Slot name="controlPanelMobile" />
-			<div class="db-sub-navigation-container">
+			<Show
+				when={getBoolean(props.showSubNavigation, 'showSubNavigation')}>
 				<Slot name="subNavigation" />
-				<div class="db-shell-sub-navigation-button">
-					<DBButton
-						onClick={(event) => state.handleToggle(event)}
-						variant="ghost"
-						aria-controls={props.id ?? state._id}
-						aria-expanded={getBooleanAsString(state._open)}
-						noText
-						icon="chevron_left">
-						<DBTooltip variant="label" placement="right">
-							{state.getToggleButtonText()}
-						</DBTooltip>
-					</DBButton>
-				</div>
-			</div>
+			</Show>
 			<main class={cls('db-main', props.mainClass)}>
 				{props.children}
 			</main>

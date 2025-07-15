@@ -7,127 +7,81 @@
 @use "../../styles/internal/custom-elements";
 @use "../../styles/internal/form-components";
 
-.db-shell {
-	// DESKTOP
-	@include screen-sizes.screen-min-max(
-		(
-			min: "sm"
-		)
-	) {
-		&[data-control-panel-desktop-position="left"] {
+@mixin sub-navigation-top {
+	#{string.unquote(custom-elements.$shell-sub-navigation)} {
+		border-block-end: variables.$db-border-width-3xs solid
+			colors.$db-adaptive-on-bg-basic-emphasis-60-default;
+
+		#{string.unquote(custom-elements.$navigation)} {
+			--db-overflow-scroll-button-inset-inline-start: calc(
+				#{variables.$db-spacing-fixed-sm} / 2
+			);
+			--db-overflow-scroll-button-inset-block: #{variables.$db-spacing-fixed-xs};
+
+			display: grid;
+
+			@include control-panel-desktop.horizontal-navigation;
+
+			> menu {
+				/* workaround for showing correct scrolling and focus */
+				padding-inline: calc(#{variables.$db-spacing-fixed-sm} / 2);
+				margin-inline: calc(#{variables.$db-spacing-fixed-sm} / 2);
+				padding-block: variables.$db-spacing-fixed-xs;
+			}
+		}
+
+		> .db-shell-sub-navigation-button {
+			display: none;
+		}
+	}
+}
+
+@mixin control-panel-top {
+	&[data-control-panel-desktop-position="top"] {
+		// Sub-navigation: top
+		&[data-sub-navigation-desktop-position="top"] {
 			grid-template-areas:
-				"control-panel sub-navigation"
-				"control-panel main";
-			grid-template-columns:
-				[control-panel] min-content
+				"control-panel"
+				"sub-navigation"
+				"main";
+			grid-template-rows:
+				[control-panel] max-content
+				[sub-navigation] max-content
 				[main] 1fr;
 
-			&:has(
-					> .db-sub-navigation-container
-						> .db-shell-sub-navigation-button:first-child
-				) {
-				grid-template-areas:
-					"control-panel main"
-					"control-panel main";
-			}
-
-			> .db-sub-navigation-container {
-				#{string.unquote(custom-elements.$navigation)} {
-					--db-overflow-scroll-button-inset-block: #{variables.$db-spacing-fixed-md};
-
-					> menu {
-						padding-block: variables.$db-spacing-fixed-md;
-					}
-				}
-			}
+			@include sub-navigation-top;
 		}
 
-		&[data-control-panel-desktop-position="top"] {
-			&:not([data-sub-navigation-desktop-position="left"]) {
-				grid-template-areas:
-					"control-panel"
-					"sub-navigation"
-					"main";
-				grid-template-rows:
-					[control-panel] max-content
-					[sub-navigation] max-content
-					[main] 1fr;
-
-				> .db-sub-navigation-container {
-					#{string.unquote(custom-elements.$navigation)} {
-						--db-overflow-scroll-button-inset-block: #{variables.$db-spacing-fixed-xs};
-
-						> menu {
-							padding-block: variables.$db-spacing-fixed-xs;
-						}
-					}
-				}
-			}
-		}
-
-		&:not(
-				[data-control-panel-desktop-position="top"][data-sub-navigation-desktop-position="left"]
-			) {
-			> .db-sub-navigation-container {
-				border-block-end: variables.$db-border-width-3xs solid
-					colors.$db-adaptive-on-bg-basic-emphasis-60-default;
-
-				#{string.unquote(custom-elements.$navigation)} {
-					--db-overflow-scroll-button-inset-inline-start: calc(
-						#{variables.$db-spacing-fixed-sm} / 2
-					);
-
-					display: grid;
-
-					@include control-panel-desktop.horizontal-navigation;
-
-					> menu {
-						/* workaround for showing correct scrolling and focus */
-						padding-inline: calc(
-							#{variables.$db-spacing-fixed-sm} / 2
-						);
-						margin-inline: calc(
-							#{variables.$db-spacing-fixed-sm} / 2
-						);
-					}
-				}
-
-				> .db-shell-sub-navigation-button {
-					display: none;
-				}
-			}
-		}
-
-		&[data-control-panel-desktop-position="top"][data-sub-navigation-desktop-position="left"] {
+		// Sub-navigation: left
+		&[data-sub-navigation-desktop-position="left"] {
 			grid-template:
 				[control-panel] "control-panel control-panel" max-content
 				[main] "sub-navigation main" 1fr /
 				[control-panel] auto
 				[main] 1fr;
 
-			> .db-sub-navigation-container {
+			#{string.unquote(custom-elements.$shell-sub-navigation)} {
 				display: grid;
 				border-inline-end: variables.$db-border-width-3xs solid
 					colors.$db-adaptive-on-bg-basic-emphasis-60-default;
 
 				#{string.unquote(custom-elements.$navigation)} {
 					max-inline-size: screen-sizes.$db-breakpoint-xs;
+					padding-block: variables.$db-spacing-fixed-md;
 				}
-			}
 
-			> .db-sub-navigation-container > .db-shell-sub-navigation-button {
-				display: flex;
+				& > .db-shell-sub-navigation-button {
+					display: flex;
 
-				@media screen and (prefers-reduced-motion: no-preference) {
-					.db-button::before {
-						transition: transform
-							#{variables.$db-transition-straight-functional};
+					@media screen and (prefers-reduced-motion: no-preference) {
+						.db-button::before {
+							transition: transform
+								#{variables.$db-transition-straight-functional};
+						}
 					}
 				}
-			}
 
-			&[data-open="false"] {
-				> .db-sub-navigation-container {
+				&[data-open="false"] {
 					inline-size: auto;
 					/* stylelint-disable-next-line declaration-property-value-no-unknown */
 					inline-size: calc-size(auto, size);
@@ -151,10 +105,8 @@
 						}
 					}
 				}
-			}
 
-			&[data-open="true"] {
-				> .db-sub-navigation-container {
+				&[data-open="true"] {
 					grid-template-areas:
 						"navigation"
 						"button";
@@ -166,7 +118,9 @@
 						overflow: hidden auto;
 						scrollbar-gutter: stable both-edges;
 
-						@include control-panel-desktop.vertical-navigation;
+						@include control-panel-desktop.vertical-navigation(
+							false
+						);
 
 						> menu {
 							padding-inline: 0;
@@ -184,7 +138,39 @@
 				}
 			}
 		}
+	}
+}
 
+@mixin control-panel-left {
+	&[data-control-panel-desktop-position="left"] {
+		grid-template-areas:
+			"control-panel main"
+			"control-panel main";
+		grid-template-columns:
+			[control-panel] min-content
+			[main] 1fr;
+
+		&:has(#{string.unquote(custom-elements.$shell-sub-navigation)}) {
+			grid-template-areas:
+				"control-panel sub-navigation"
+				"control-panel main";
+		}
+
+		@include sub-navigation-top;
+	}
+}
+
+.db-shell {
+	// DESKTOP
+	@include screen-sizes.screen-min-max(
+		(
+			min: "sm"
+		)
+	) {
+		@include control-panel-top;
+		@include control-panel-left;
+
+		// Hide mobile control panel
 		#{string.unquote(custom-elements.$control-panel-mobile)} {
 			display: none;
 		}

@@ -29,6 +29,10 @@ export type Component = {
 
 export const getComponents = (): Component[] => [
   {
+    name: "shell-sub-navigation"
+  },
+
+  {
     name: "navigation-item-group"
   },
 

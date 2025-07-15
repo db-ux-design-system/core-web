@@ -53,13 +53,9 @@ export type DBShellDefaultProps = {
 	subNavigationMobilePosition?: ShellSubNavigationMobilePositionType;
 
 	/**
-	 * Change the default text of the toggle button for collapse if you use sub-navigation with position:left.
+	 * Shows sub-navigation
 	 */
-	subNavigationToggleButtonCollapse?: string;
-	/**
-	 * Change the default text of the toggle button for expand if you use sub-navigation with position:left.
-	 */
-	subNavigationToggleButtonExpand?: string;
+	showSubNavigation?: boolean | string;
 };
 
 export type DBShellProps = DBShellDefaultProps & GlobalProps;
@@ -68,7 +64,4 @@ export type DBShellDefaultState = {
 	fontsLoaded?: boolean;
 };
 
-export type DBShellState = DBShellDefaultState &
-	GlobalState &
-	ToggleEventState<HTMLButtonElement> &
-	SidebarState;
+export type DBShellState = DBShellDefaultState & GlobalState;

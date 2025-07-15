@@ -2,8 +2,11 @@ import { Outlet } from 'react-router-dom';
 import {
 	DBControlPanelBrand,
 	DBControlPanelDesktop,
-	DBControlPanelMobile, DBNavigation, DBNavigationItem,
-	DBShell
+	DBControlPanelMobile,
+	DBNavigation,
+	DBNavigationItem,
+	DBShell,
+	DBShellSubNavigation
 } from '@components';
 import useQuery from './hooks/use-query';
 import MetaNavigation from './control-panel/meta-navigation';
@@ -38,14 +41,11 @@ const App = () => {
 			controlPanelMobilePosition={settings.controlPanelMobilePosition}
 			subNavigationDesktopPosition={settings.subNavigationDesktopPosition}
 			subNavigationMobilePosition={settings.subNavigationMobilePosition}
+			showSubNavigation={settings.subNavigation === 'true'}
 			subNavigation={
-				settings.subNavigation === 'true' ? (
-					<DBNavigation aria-label="sub navigation">
-						<DBNavigationItem><a>All</a></DBNavigationItem>
-						<DBNavigationItem><a>Input</a></DBNavigationItem>
-						<DBNavigationItem><a>Checkbox</a></DBNavigationItem>
-					</DBNavigation>
-				) : null
+				<DBShellSubNavigation>
+					<Navigation aria-label="sub navigation" />
+				</DBShellSubNavigation>
 			}
 			controlPanelMobile={
 				<DBControlPanelMobile

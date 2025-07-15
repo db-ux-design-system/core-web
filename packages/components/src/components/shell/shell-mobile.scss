@@ -36,7 +36,7 @@
 		}
 
 		&[data-sub-navigation-mobile-position="hidden"] {
-			> .db-sub-navigation-container {
+			#{string.unquote(custom-elements.$shell-sub-navigation)} {
 				#{string.unquote(custom-elements.$navigation)} {
 					display: none;
 				}
@@ -45,11 +45,11 @@
 
 		&:not([data-sub-navigation-mobile-position]),
 		&[data-sub-navigation-mobile-position="top"] {
-			> .db-sub-navigation-container {
+			#{string.unquote(custom-elements.$shell-sub-navigation)} {
 				@include helpers.divider("bottom");
 			}
 
-			> .db-sub-navigation-container {
+			#{string.unquote(custom-elements.$shell-sub-navigation)} {
 				#{string.unquote(custom-elements.$navigation)} {
 					--db-overflow-scroll-button-inset-block: #{variables.$db-spacing-fixed-xs};
 					--db-overflow-scroll-button-inset-inline-start: 0;
@@ -78,7 +78,7 @@
 			}
 		}
 
-		> .db-sub-navigation-container {
+		#{string.unquote(custom-elements.$shell-sub-navigation)} {
 			> .db-shell-sub-navigation-button {
 				display: none;
 			}

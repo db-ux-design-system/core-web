@@ -19,6 +19,12 @@
 		--db-icon-color: #{colors.$db-brand-origin-default};
 	}
 
+	&:has(img, svg) {
+		&::before {
+			content: none;
+		}
+	}
+
 	img {
 		$logo-size: calc(
 			#{variables.$db-sizing-md} - #{variables.$db-sizing-3xs}

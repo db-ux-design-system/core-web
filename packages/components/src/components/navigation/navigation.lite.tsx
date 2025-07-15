@@ -91,7 +91,7 @@ export default function DBNavigation(props: DBNavigationProps) {
 				state._subNavigationDesktopPosition =
 					shellSubNaviDesktopPosition;
 				const isSubNavigation = parentClassList?.contains(
-					'db-sub-navigation-container'
+					'db-shell-sub-navigation'
 				);
 				state._isSubNavigation = isSubNavigation;
 				const requiresPopover =

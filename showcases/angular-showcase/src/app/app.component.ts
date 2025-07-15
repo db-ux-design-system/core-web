@@ -8,6 +8,7 @@ import {
 	DBControlPanelMobile,
 	DBNavigation,
 	DBShell,
+	DBShellSubNavigation,
 	DENSITY,
 	DENSITY_CONST,
 	SEMANTIC
@@ -51,7 +52,8 @@ import {
 				DBControlPanelBrand,
 				DBControlPanelDesktop,
 				DBControlPanelMobile,
-				DBNavigation
+				DBNavigation,
+				DBShellSubNavigation
 			],
 	templateUrl: './app.component.html'
 })
@@ -66,8 +68,7 @@ export class AppComponent implements OnInit {
 	page?: string;
 	fullscreen = false;
 
-	constructor(private readonly route: ActivatedRoute) {
-	}
+	constructor(private readonly route: ActivatedRoute) {}
 
 	ngOnInit(): void {
 		this.route.queryParams.subscribe((parameters) => {

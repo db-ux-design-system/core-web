@@ -45,3 +45,5 @@ export * from "./components/control-panel-primary-actions";
 export * from "./components/control-panel-secondary-actions";
 export * from "./components/navigation-item-group";
 
+export * from "./components/shell-sub-navigation";
+
