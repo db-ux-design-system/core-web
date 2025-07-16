@@ -1,6 +1,3 @@
-/**
- * @type {import('lint-staged').Configuration}
- */
 export default {
 	'*.md': 'markdownlint -c .config/.markdown-lint.yml',
 	// In case that we're changing the stylelints configuration files content, we would need to validate it
