@@ -6,14 +6,14 @@ This document describes the order in which scripts must be run to produce the `c
 
 ### 1.1 Annotate components and generate component Markdown
 
-Annotate your components with [JSDoc](https://jsdoc.app/) (classes, properties, etc.) so TypeDoc can pick up API signatures. Then generate the component API documentation and merge the snippets:
+Annotate your components with [JSDoc](https://jsdoc.app/) (classes, properties, etc.) so TypeDoc can pick up API signatures. Then generate the component API documentation:
 
 ```jsonc
 // packages/components/package.json
-"docs:components": "typedoc --options ../../typedoc.json --tsconfig tsconfig.typedoc.json && node ../../scripts/merge-component-docs.js && rimraf docs/api/README.md"
+"docs:components": "typedoc --options ../../typedoc.json --tsconfig tsconfig.typedoc.json",
 ```
 
-- **Result:** Generates Markdown files for each component and model (`packages/components/src/components/[component]/[Component].md` and `.../model.md`), merges the `model.md` into the `[Component].md` and removes the `model.md` file and the default API README file afterwards.
+- **Result:** Generates Markdown files for each component and model (`packages/components/src/components/[component]/[Component].md` and `.../model.md`).
 
 ### 1.2 Generate code examples via Mitosis
 
@@ -28,7 +28,7 @@ Create a `*.docs.lite.tsx` file in the docs directory of the component containin
 
 ### 1.3 Annotate CSS variables and extract CSS docs
 
-Ensure, that all CSS variables of your component (starting with `--db-...` in the `[component].scss`) are annotated with  [SassDoc](http://sassdoc.com/). Then run the script. It scans `packages/components/src/components` for subfolders (each component) and loads each component's SCSS file and transforms them into Markdown.
+Ensure, that all CSS variables of your component (starting with `--db-...` in the `[component].scss`) are annotated with [SassDoc](http://sassdoc.com/). Then run the script. It scans `packages/components/src/components` for subfolders (each component) and loads each component's SCSS file and transforms them into Markdown.
 
 ```jsonc
 // package.json
@@ -39,11 +39,11 @@ Ensure, that all CSS variables of your component (starting with `--db-...` in th
 
 ## 2. Merge files into component Markdown files
 
-After generating the component documentation, code snippets, and CSS docs, merge them into the final component Markdown files. Afterwards, the `docs/api` directory (and all files within) will be removed, as it is not needed anymore.
+After generating the component documentation, code snippets, and CSS docs, merge them into the final component Markdown files. Afterwards, the `docs/api` directory (and all files within) and the default API README file are removed, as those are not needed anymore.
 
 ```jsonc
 // packages/components/package.json
-"merge:component-docs": "node scripts/documentation/merge-component-docs.js"
+"merge:component-docs": "node ../../scripts/documentation/merge-component-docs.js && rimraf docs/api/README.md"
 ```
 
 - **Result:** Each component's Markdown file now includes sections for API, code examples, and CSS variables.

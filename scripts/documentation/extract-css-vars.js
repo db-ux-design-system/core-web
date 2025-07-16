@@ -132,8 +132,6 @@ function buildMarkdown(component, docs) {
 	const EMPTY = '—';
 
 	const lines = [
-		`# ${component} — Exposed CSS Custom Properties`,
-		'',
 		`| ${HEADERS.join(' | ')} |`,
 		`| ${HEADERS.map(() => '---').join(' | ')} |`
 	];
@@ -156,7 +154,8 @@ function buildMarkdown(component, docs) {
 }
 
 /**
- * Main: for each component SCSS, parse & write its CSS prop doc.
+ * Extract CSS variables from all components and write them to Markdown files.
+ * @returns {Promise<void>}
  */
 async function extractCSSVars() {
 	const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -168,6 +167,9 @@ async function extractCSSVars() {
 	);
 }
 
+/**
+ * Main function to execute the script.
+ */
 try {
 	await extractCSSVars();
 } catch (error) {

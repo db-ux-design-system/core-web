@@ -10,7 +10,6 @@ const componentsDir = path.join(
 	'../../packages/components/src/components'
 );
 const outputDir = path.join(__dirname, '../../packages/components/output');
-const cssPath = path.join(outputDir, 'css');
 
 /**
  * Converts a string to PascalCase.
@@ -113,8 +112,12 @@ const operations = Object.entries(groupedFiles).map(
 			.map((s) => `\n\n${s}`)
 			.join('');
 
-		const cssFilePath = path.join(cssPath, `${prefix}.md`);
-		if (await fs.stat(cssPath).catch(() => false)) {
+		const cssFilePath = path.join(
+			componentsDir,
+			prefix,
+			`${prefix}.css.md`
+		);
+		if (await fs.stat(outputDir).catch(() => false)) {
 			try {
 				let cssDoc = await fs.readFile(cssFilePath, 'utf8');
 				// Remove HTML anchor tags inserted by SassDoc

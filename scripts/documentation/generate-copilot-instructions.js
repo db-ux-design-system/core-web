@@ -130,4 +130,11 @@ async function generateCopilotInstructions() {
 	}
 }
 
-await generateCopilotInstructions();
+/**
+ * Main function to execute the script.
+ */
+try {
+	await generateCopilotInstructions();
+} catch (error) {
+	console.error(`❌  Error: ${error.message}`);
+}
