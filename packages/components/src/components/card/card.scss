@@ -27,6 +27,7 @@
 	--db-card-background-color-default: #{colors.$db-adaptive-bg-basic-level-1-default};
 	--db-card-background-color-hovered: #{colors.$db-adaptive-bg-basic-level-1-hovered};
 	--db-card-background-color-pressed: #{colors.$db-adaptive-bg-basic-level-1-pressed};
+
 	@extend %default-card;
 
 	@include component.get-data-spacing();
