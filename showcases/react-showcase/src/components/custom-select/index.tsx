@@ -41,8 +41,7 @@ const getCustomSelect = ({
 	searchFilter,
 	validMessage,
 	validation,
-	invalidMessage,
-	showRequiredAsterisk
+	invalidMessage
 }: DBCustomSelectProps & {
 	lineBreak?: boolean;
 	info?: boolean;
@@ -74,7 +73,6 @@ const getCustomSelect = ({
 
 	return (
 		<DBCustomSelect
-			showRequiredAsterisk={showRequiredAsterisk}
 			disabled={disabled}
 			icon={icon}
 			showMessage={showMessage}

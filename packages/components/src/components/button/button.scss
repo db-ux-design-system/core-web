@@ -89,7 +89,6 @@
 
 	&[data-variant="outlined"],
 	&:not([data-variant]),
-	&[data-variant=""],
 	&[data-variant="ghost"] {
 		background-color: colors.$db-adaptive-bg-basic-transparent-full-default;
 	}

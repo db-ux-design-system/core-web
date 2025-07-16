@@ -10,7 +10,6 @@ import DefaultComponent from "../DefaultComponent.vue";
 			#example="{ exampleIndex, variantIndex, exampleName, exampleProps }"
 		>
 			<DBSelect
-				:showRequiredAsterisk="exampleProps?.showRequiredAsterisk"
 				:label="exampleProps?.label"
 				:placeholder="exampleName"
 				:variant="exampleProps?.variant"

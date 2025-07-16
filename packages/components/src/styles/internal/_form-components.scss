@@ -279,8 +279,8 @@ $input-valid-types:
 }
 
 @mixin set-required-label($selector) {
-	&:has(#{$selector}:required),
-	&[data-required="true"] {
+	&:has(#{$selector}:required):not([data-hide-asterisk="true"]),
+	&[data-required="true"]:not([data-hide-asterisk="true"]) {
 		&:is(label),
 		> label {
 			&::after {
@@ -315,11 +315,8 @@ $input-valid-types:
 		--db-label-visible-above: 0;
 	}
 
-	&:not([data-hide-asterisk="true"]) {
-		@include set-required-label($selector);
-	}
-
 	@include set-floating-label-overwrites($selector);
+	@include set-required-label($selector);
 
 	@include get-validity($selector) {
 		&:has(
@@ -495,9 +492,7 @@ $input-valid-types:
 @mixin set-default-check-element() {
 	@extend %db-overwrite-font-size-md;
 
-	&:not([data-hide-asterisk="true"]) {
-		@include set-required-label(input);
-	}
+	@include set-required-label(input);
 
 	&:has(input:disabled) {
 		opacity: variables.$db-opacity-md;

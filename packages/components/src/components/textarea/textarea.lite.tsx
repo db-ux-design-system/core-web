@@ -170,7 +170,6 @@ export default function DBTextarea(props: DBTextareaProps) {
 		<div
 			class={cls('db-textarea', props.className)}
 			data-variant={props.variant}
-			data-hide-asterisk={getHideProp(props.showRequiredAsterisk)}
 			data-hide-label={getHideProp(props.showLabel)}>
 			<label htmlFor={state._id}>{props.label ?? DEFAULT_LABEL}</label>
 
@@ -184,6 +183,7 @@ export default function DBTextarea(props: DBTextareaProps) {
 				data-hide-resizer={getHideProp(props.showResizer ?? true)}
 				disabled={getBoolean(props.disabled, 'disabled')}
 				required={getBoolean(props.required, 'required')}
+				data-hide-asterisk={getHideProp(props.showRequiredAsterisk)}
 				readOnly={
 					getBoolean(props.readOnly, 'readOnly') ||
 					getBoolean(props.readonly, 'readonly')

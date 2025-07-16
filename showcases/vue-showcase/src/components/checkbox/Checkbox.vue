@@ -10,7 +10,6 @@ import DefaultComponent from "../DefaultComponent.vue";
 			#example="{ exampleIndex, variantIndex, exampleName, exampleProps }"
 		>
 			<DBCheckbox
-				:showRequiredAsterisk="exampleProps?.showRequiredAsterisk"
 				:label="exampleProps?.label"
 				:variant="exampleProps?.variant"
 				:show-label="exampleProps?.showLabel"

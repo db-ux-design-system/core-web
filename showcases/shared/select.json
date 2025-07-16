@@ -410,49 +410,6 @@
 		]
 	},
 	{
-		"name": "Show Required Asterisk",
-		"examples": [
-			{
-				"name": "(Default) True",
-				"style": {
-					"width": "300px"
-				},
-				"props": {
-					"options": [
-						{
-							"value": "Option 1"
-						},
-						{
-							"value": "Option 2"
-						}
-					],
-					"label": "Label",
-					"required": true,
-					"showRequiredAsterisk": true
-				}
-			},
-			{
-				"name": "False",
-				"style": {
-					"width": "300px"
-				},
-				"props": {
-					"options": [
-						{
-							"value": "Option 1"
-						},
-						{
-							"value": "Option 2"
-						}
-					],
-					"label": "Label",
-					"required": true,
-					"showRequiredAsterisk": false
-				}
-			}
-		]
-	},
-	{
 		"name": "Examples Floating Label",
 		"examples": [
 			{

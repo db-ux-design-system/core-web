@@ -238,8 +238,7 @@ export const ROUTES: NavigationItem[] = [
 			},
 			{ label: 'IDE Support', path: '/foundations/ide' },
 			{ label: 'Performance', path: '/foundations/performance' },
-			{ label: 'Browser Support', path: '/foundations/browser-support' },
-			{ label: 'Playgrounds', path: '/foundations/playgrounds' }
+			{ label: 'Browser Support', path: '/foundations/browser-support' }
 		]
 	},
 	{

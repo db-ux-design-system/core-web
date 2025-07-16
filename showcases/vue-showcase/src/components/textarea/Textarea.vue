@@ -10,7 +10,6 @@ import DefaultComponent from "../DefaultComponent.vue";
 			#example="{ exampleIndex, variantIndex, exampleName, exampleProps }"
 		>
 			<DBTextarea
-				:showRequiredAsterisk="exampleProps?.showRequiredAsterisk"
 				:cols="exampleProps?.cols"
 				:disabled="exampleProps?.disabled"
 				:show-label="exampleProps?.showLabel"

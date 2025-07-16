@@ -20,8 +20,7 @@ const getSelect = ({
 	showMessage,
 	invalidMessage,
 	validMessage,
-	validation,
-	showRequiredAsterisk
+	validation
 }: DBSelectProps) => {
 	const [mValue, setValue] = useState<string>(value);
 	return (
@@ -34,7 +33,6 @@ const getSelect = ({
 			showLabel={showLabel}
 			icon={icon}
 			value={mValue}
-			showRequiredAsterisk={showRequiredAsterisk}
 			onChange={(event) => {
 				setValue(event.target.value);
 			}}
