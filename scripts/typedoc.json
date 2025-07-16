@@ -1,8 +1,8 @@
 {
-	"tsconfig": "packages/components/tsconfig.typedoc.json",
-	"entryPoints": ["packages/components/src/components"],
+	"tsconfig": "../packages/components/tsconfig.typedoc.json",
+	"entryPoints": ["../packages/components/src/components"],
 	"entryPointStrategy": "expand",
-	"out": "packages/components/docs/api",
+	"out": "../packages/components/docs/api",
 	"plugin": ["typedoc-plugin-markdown", "typedoc-plugin-merge-modules"],
 	"readme": "none",
 

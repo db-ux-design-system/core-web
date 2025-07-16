@@ -33,7 +33,7 @@
     "copilot:generate-instructions": "node documentation/generate-copilot-instructions.js",
     "copilot:merge-docs": "node documentation/merge-component-docs.js && rimraf docs/api/README.md",
     "copilot:mitosis-snippets": "npm run generate:mitosis-snippets --workspace=@db-ux/core-components",
-    "copilot:typedoc": "typedoc --options ../typedoc.json --tsconfig tsconfig.typedoc.json",
+    "copilot:typedoc": "typedoc --options typedoc.json --tsconfig tsconfig.typedoc.json",
     "dev": "tsx dev.js",
     "dev:angular-components": "npm run dev:angular --workspace=@db-ux/core-components",
     "dev:plain-html-components": "npm run dev:html --workspace=@db-ux/core-components",
@@ -82,6 +82,9 @@
     "find-versions": "^6.0.0",
     "glob": "^11.0.2",
     "inquirer": "^12.6.3",
-    "replace-in-file": "^8.3.0"
+    "replace-in-file": "^8.3.0",
+    "typedoc": "^0.28.5",
+    "typedoc-plugin-markdown": "^4.6.4",
+    "typedoc-plugin-merge-modules": "^7.0.0"
   }
 }
