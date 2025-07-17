@@ -75,8 +75,15 @@ export const handleFixedDropdown = (
 	parent: HTMLElement,
 	placement: string
 ) => {
-	// We skip this if we are in mobile it's already fixed
-	if (getComputedStyle(element).zIndex === '9999') return;
+	// We skip this if we are in mobile it's already fixed or if we don't have a floating dropdown
+	const computedStyle = getComputedStyle(element);
+	if (
+		computedStyle.zIndex === '9999' ||
+		(computedStyle.position !== 'fixed' &&
+			computedStyle.position !== 'absolute')
+	) {
+		return;
+	}
 
 	const {
 		top,
@@ -259,9 +266,17 @@ export const handleFixedPopover = (
 	parent: HTMLElement,
 	placement: string
 ) => {
-	let distance = getComputedStyle(element).getPropertyValue(
-		'--db-popover-distance'
-	);
+	const computedStyle = getComputedStyle(element);
+
+	// We skip if we don't have a floating popover
+	if (
+		computedStyle.position !== 'fixed' &&
+		computedStyle.position !== 'absolute'
+	) {
+		return;
+	}
+
+	let distance = computedStyle.getPropertyValue('--db-popover-distance');
 
 	if (!distance.length) {
 		distance = '0px';
