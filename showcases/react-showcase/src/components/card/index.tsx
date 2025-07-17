@@ -21,7 +21,7 @@ const getCard = ({
 	);
 
 	return behavior === 'interactive' ? (
-		<button type="button" aria-label="button copy">
+		<button type="button">
 			{card}
 		</button>
 	) : (
