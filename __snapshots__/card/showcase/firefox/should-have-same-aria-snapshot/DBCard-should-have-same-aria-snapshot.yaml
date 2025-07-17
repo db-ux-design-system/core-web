@@ -15,12 +15,12 @@
   - strong: None
   - link "Behavior"
   - strong: (Default) Static
-  - button "button copy":
+  - button "Interactive":
     - strong: Interactive
   - link "Example"
-  - button "button copy":
+  - button "Level 1 - Interactive":
     - strong: Level 1 - Interactive
-  - button "button copy":
+  - button "Level 2 - Interactive":
     - strong: Level 2 - Interactive
-  - button "button copy":
+  - button "Level 3 - Interactive":
     - strong: Level 3 - Interactive
