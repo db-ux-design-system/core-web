@@ -162,11 +162,11 @@ $icon-padding: calc(
 
 			&:hover,
 			&:focus {
-				background-color: colors.$db-adaptive-bg-basic-transparent-hovered;
+				background-color: colors.$db-adaptive-bg-basic-transparent-full-hovered;
 			}
 
 			&:active {
-				background-color: colors.$db-adaptive-bg-basic-transparent-pressed;
+				background-color: colors.$db-adaptive-bg-basic-transparent-full-pressed;
 			}
 		}
 	}

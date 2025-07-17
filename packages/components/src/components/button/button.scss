@@ -21,14 +21,6 @@
 	// disable text-decoration if someone wants to use the button for an <a> tag
 	text-decoration: none;
 
-	@include helpers.hover {
-		background-color: colors.$db-adaptive-bg-basic-transparent-hovered;
-	}
-
-	@include helpers.active {
-		background-color: colors.$db-adaptive-bg-basic-transparent-pressed;
-	}
-
 	// Square icon only buttons
 	&[data-no-text="true"] {
 		@include icons.is-icon-text-replace();
@@ -91,10 +83,26 @@
 	&:not([data-variant]),
 	&[data-variant="ghost"] {
 		background-color: colors.$db-adaptive-bg-basic-transparent-full-default;
+
+		@include helpers.hover {
+			background-color: colors.$db-adaptive-bg-basic-transparent-full-hovered;
+		}
+
+		@include helpers.active {
+			background-color: colors.$db-adaptive-bg-basic-transparent-full-pressed;
+		}
 	}
 
 	&[data-variant="filled"] {
 		background-color: colors.$db-adaptive-bg-basic-transparent-semi-default;
+
+		@include helpers.hover {
+			background-color: colors.$db-adaptive-bg-basic-transparent-semi-hovered;
+		}
+
+		@include helpers.active {
+			background-color: colors.$db-adaptive-bg-basic-transparent-semi-pressed;
+		}
 	}
 
 	&:disabled {
