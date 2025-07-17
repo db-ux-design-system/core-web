@@ -3,7 +3,7 @@
 	"reporters": ["console"],
 	"minTokens": 65,
 	"ignore": [
-		"**/*.svg",
+		"showcases/patternhub/public/assets/images/*.svg",
 		"**/.angular/**",
 		".history/**",
 		"**/__snapshots__/**",
