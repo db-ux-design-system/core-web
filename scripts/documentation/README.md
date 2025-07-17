@@ -128,3 +128,15 @@ You don’t have to run each documentation script manually. Simply execute:
 ```
 
 The copilot task will trigger the entire workflow, building component docs, code snippets, CSS-variable tables, merging everything, and updating copilot-instructions.md in one step.
+
+---
+
+**Open points**
+
+- Annotate components with JSDoc (only Button is annotated so far)
+- Add code examples to `*.docs.lite.tsx` files (only Button has examples so far)
+- Add CSS variables to components (only Drawer has commented CSS variables so far)
+- After adding comments, remove the part that only uses defined components (merge-components-docs.js, shouldProcessComponent)
+- Generation of HTML examples does not work yet
+- Foundations package is not yet documented and included into the process
+- Formatting of the generated Markdown files has to be checked
