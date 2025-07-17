@@ -211,7 +211,7 @@
 		]
 	},
 	{
-		"name": "Show Icon Trailing",
+		"name": "Show Icon Leading + Trailing",
 		"examples": [
 			{
 				"name": "(Default) False",
@@ -236,7 +236,7 @@
 		]
 	},
 	{
-		"name": "Show Icon Leading + Trailing",
+		"name": "Show Icon Trailing",
 		"examples": [
 			{
 				"name": "(Default) False",

@@ -8,7 +8,7 @@ import {
 } from '@builder.io/mitosis';
 import { DEFAULT_REMOVE } from '../../shared/constants';
 import { ClickEvent } from '../../shared/model';
-import { cls, getBooleanAsString, getHideProp } from '../../utils';
+import { cls, getBoolean, getBooleanAsString } from '../../utils';
 import DBTooltip from '../tooltip/tooltip.lite';
 import { DBTagProps, DBTagState } from './model';
 
@@ -47,7 +47,7 @@ export default function DBTag(props: DBTagProps) {
 			data-show-check-state={getBooleanAsString(
 				props.showCheckState ?? true
 			)}
-			data-hide-icon={getHideProp(props.showIcon)}
+			data-show-icon={getBoolean(props.showIcon)}
 			data-no-text={getBooleanAsString(props.noText)}
 			data-overflow={getBooleanAsString(props.overflow)}>
 			<Slot name="content" />

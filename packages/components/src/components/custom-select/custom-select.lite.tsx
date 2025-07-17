@@ -820,7 +820,7 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 			data-selected-type={props.multiple ? props.selectedType : 'text'}
 			data-hide-label={getHideProp(props.showLabel)}
 			data-icon={props.icon}
-			data-hide-icon={getHideProp(props.showIcon)}>
+			data-show-icon={getBoolean(props.showIcon)}>
 			<label id={state._labelId}>
 				{props.label ?? DEFAULT_LABEL}
 				<select

@@ -8,7 +8,7 @@ import {
 	useStore,
 	useTarget
 } from '@builder.io/mitosis';
-import { cls, getBoolean, getBooleanAsString, getHideProp } from '../../utils';
+import { cls, getBoolean, getBooleanAsString } from '../../utils';
 import {
 	handleFrameworkEventAngular,
 	handleFrameworkEventVue
@@ -94,10 +94,10 @@ export default function DBTabItem(props: DBTabItemProps) {
 				htmlFor={props.id}
 				data-icon={props.iconLeading ?? props.icon}
 				data-icon-trailing={props.iconTrailing}
-				data-hide-icon={getHideProp(
+				data-show-icon={getBoolean(
 					props.showIconLeading ?? props.showIcon
 				)}
-				data-hide-icon-trailing={getHideProp(props.showIconTrailing)}
+				data-show-icon-trailing={getBoolean(props.showIconTrailing)}
 				data-no-text={getBooleanAsString(props.noText)}>
 				<input
 					disabled={getBoolean(props.disabled, 'disabled')}

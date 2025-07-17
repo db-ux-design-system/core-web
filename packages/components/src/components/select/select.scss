@@ -17,7 +17,7 @@
 	@include form-components.set-default-form-component(select);
 
 	// increased inline size for elements with icons
-	&[data-icon]:not([data-hide-icon="true"]) {
+	&[data-icon]:not([data-show-icon="false"]) {
 		--db-form-component-min-inline-size: #{variables.$db-sizing-2xl};
 	}
 

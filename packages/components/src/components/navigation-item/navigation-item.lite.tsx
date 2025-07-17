@@ -10,14 +10,7 @@ import {
 } from '@builder.io/mitosis';
 import { DEFAULT_BACK } from '../../shared/constants';
 import { ClickEvent } from '../../shared/model';
-import {
-	cls,
-	delay,
-	getBoolean,
-	getBooleanAsString,
-	getHideProp,
-	uuid
-} from '../../utils';
+import { cls, delay, getBoolean, getBooleanAsString, uuid } from '../../utils';
 import {
 	isEventTargetNavigationItem,
 	NavigationItemSafeTriangle
@@ -115,7 +108,7 @@ export default function DBNavigationItem(props: DBNavigationItemProps) {
 			class={cls('db-navigation-item', props.className)}
 			data-width={props.width}
 			data-icon={props.icon}
-			data-hide-icon={getHideProp(props.showIcon)}
+			data-show-icon={getBoolean(props.showIcon)}
 			data-active={props.active}
 			data-wrap={getBooleanAsString(props.wrap)}
 			aria-disabled={getBooleanAsString(props.disabled)}>

@@ -42,6 +42,7 @@ const getDataList = (
 				:readOnly="exampleProps?.readOnly"
 				:value="exampleProps?.value"
 				:icon="exampleProps?.icon"
+				:showIcon="exampleProps?.showIcon"
 				:iconTrailing="exampleProps?.iconTrailing"
 				:showIconTrailing="exampleProps?.showIconTrailing"
 				:showMessage="exampleProps?.showMessage"
