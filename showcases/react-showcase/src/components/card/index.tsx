@@ -21,9 +21,7 @@ const getCard = ({
 	);
 
 	return behavior === 'interactive' ? (
-		<button type="button">
-			{card}
-		</button>
+		<button type="button">{card}</button>
 	) : (
 		card
 	);
