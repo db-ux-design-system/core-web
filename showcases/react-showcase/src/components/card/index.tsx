@@ -20,19 +20,23 @@ const getCard = ({
 		</DBCard>
 	);
 
-	return behavior === 'interactive' ? <button type="button" aria-label="button copy">{card}</button> : card;
-};
-
-const CardComponent = (props: BaseComponentProps) => {
-	return (
-		<DefaultComponent
-			title={'DBCard'}
-			variants={getVariants(
-				defaultComponentVariants,
-				getCard,
-				props.slotCode
-			)}></DefaultComponent>
+	return behavior === 'interactive' ? (
+		<button type="button" aria-label="button copy">
+			{card}
+		</button>
+	) : (
+		card
 	);
 };
+
+const CardComponent = (properties: BaseComponentProps) => (
+	<DefaultComponent
+		title={'DBCard'}
+		variants={getVariants(
+			defaultComponentVariants,
+			getCard,
+			properties.slotCode
+		)}></DefaultComponent>
+);
 
 export default CardComponent;
