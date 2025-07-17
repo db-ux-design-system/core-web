@@ -9,7 +9,7 @@ import DefaultComponent from "../DefaultComponent.vue";
 		<template
 			#example="{ exampleIndex, variantIndex, exampleName, exampleProps }"
 		>
-			<button v-if="exampleProps?.behavior === 'interactive'">
+			<button type="button" aria-label="button copy" v-if="exampleProps?.behavior === 'interactive'">
 				<DBCard
 					:behavior="exampleProps?.behavior"
 					:elevationLevel="exampleProps?.elevationLevel"

@@ -51,7 +51,7 @@ jobs:
       - name: 🏃 Run Prettier to format the code
         if: env.prettier_update == 'true'
         run: |
-          npm run fmt
+          npm run codestyle
 
       - name: 🚘 Auto commit
         if: env.stylelint_update == 'true' || env.prettier_update == 'true'

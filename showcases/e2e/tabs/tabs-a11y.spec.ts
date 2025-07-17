@@ -1,5 +1,5 @@
 import { test } from '@playwright/test';
-import { isStencil, runA11yCheckerTest, runAxeCoreTest } from '../default.ts';
+import { runA11yCheckerTest, runAxeCoreTest } from '../default.ts';
 import { lvl3 } from '../fixtures/variants';
 
 // We need to change tabs anyway, we disable the rules for now
@@ -7,8 +7,6 @@ import { lvl3 } from '../fixtures/variants';
 // So we disabled "aria-allowed-role" for now
 const axeDisableRules = ['aria-allowed-role'];
 const aCheckerDisableRules = ['input_checkboxes_grouped', 'aria_role_valid'];
-// TODO: We skip this for now until mitosis output is correct
-const skipChecker = isStencil(process.env.showcase);
 
 test.describe('DBTabs', () => {
 	runAxeCoreTest({ path: '04/tabs', axeDisableRules });
@@ -20,7 +18,6 @@ test.describe('DBTabs', () => {
 	});
 	runA11yCheckerTest({
 		path: '04/tabs',
-		aCheckerDisableRules,
-		skipChecker
+		aCheckerDisableRules
 	});
 });
