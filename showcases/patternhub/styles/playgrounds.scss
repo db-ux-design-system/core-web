@@ -1,0 +1,22 @@
+@use "@db-ux/core-foundations/build/styles/variables";
+
+section.playground {
+	display: grid;
+	grid-template-columns: repeat(2, 1fr); /* Two columns */
+	gap: 1rem; /* Optional spacing between items */
+
+	h2 {
+		grid-row: 1fr;
+	}
+
+	a {
+		strong {
+			display: block;
+		}
+
+		img {
+			width: 50px;
+			float: left;
+		}
+	}
+}

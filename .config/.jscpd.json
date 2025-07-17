@@ -3,6 +3,7 @@
 	"reporters": ["console"],
 	"minTokens": 65,
 	"ignore": [
+		"**/*.svg",
 		"**/.angular/**",
 		".history/**",
 		"**/__snapshots__/**",
