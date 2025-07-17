@@ -20,7 +20,13 @@ const getCard = ({
 		</DBCard>
 	);
 
-	return behavior === 'interactive' ? <button type="button" aria-label="button copy">{card}</button> : card;
+	return behavior === 'interactive' ? (
+		<button type="button" aria-label="button copy">
+			{card}
+		</button>
+	) : (
+		card
+	);
 };
 
 const CardComponent = (props: BaseComponentProps) => {
