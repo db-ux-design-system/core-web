@@ -11,6 +11,15 @@ const componentsDir = path.join(
 );
 const outputDir = path.join(__dirname, '../../packages/components/output');
 
+// TODO: Remove this when all components are documented correctly
+const INCLUDE_COMPONENTS = ['button', 'drawer']; // Button has JSDoc, drawer has SassDoc
+const includeSet = new Set(
+	INCLUDE_COMPONENTS.map((n) => n.trim().toLowerCase()).filter(Boolean)
+);
+function shouldProcessComponent(name) {
+	return includeSet.size === 0 || includeSet.has(name.toLowerCase());
+}
+
 /**
  * Converts a string to PascalCase.
  * @param {string} str - The string to convert.
@@ -66,6 +75,13 @@ const groupedFiles = getGroupedFiles(files);
 const operations = Object.entries(groupedFiles).map(
 	async ([prefix, fileGroup]) => {
 		if (!prefix) return;
+
+		if (!shouldProcessComponent(prefix)) {
+			console.log(
+				`⏭️  Skipping ${prefix}: not in INCLUDE_COMPONENTS filter.`
+			);
+			return;
+		}
 
 		let mergedContent = '';
 		try {
