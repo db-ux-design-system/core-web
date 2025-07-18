@@ -9,6 +9,10 @@ const componentsDir = path.join(
 	__dirname,
 	'../../packages/components/src/components'
 );
+const copilotDocsDir = path.join(
+	__dirname,
+	'../../packages/components/docs/copilot'
+);
 const outputDir = path.join(__dirname, '../../packages/components/output');
 
 // TODO: Remove this when all components are documented correctly
@@ -155,11 +159,18 @@ const operations = Object.entries(groupedFiles).map(
 			componentDir,
 			`${toPascalCase(prefix)}.md`
 		);
+		const outputDocsDir = path.join(
+			copilotDocsDir,
+			`${toPascalCase(prefix)}.md`
+		);
 
 		try {
 			// Create the output directory and write the merged content
 			await fs.mkdir(componentDir, { recursive: true });
 			await fs.writeFile(outputFile, mergedContent, 'utf8');
+			// Also write to the copilot docs directory
+			await fs.mkdir(copilotDocsDir, { recursive: true });
+			await fs.writeFile(outputDocsDir, mergedContent, 'utf8');
 		} catch (error) {
 			console.error(`❌  Error writing file ${outputFile}:`, error);
 			return;

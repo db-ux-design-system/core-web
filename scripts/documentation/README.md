@@ -96,7 +96,7 @@ After generating the component documentation, code snippets, and CSS docs, merge
 "copilot:merge-docs": "node documentation/merge-component-docs.js && rimraf docs/api/README.md",
 ```
 
-- **Result:** Each component's Markdown file now includes sections for API, code examples, and CSS variables.
+- **Result:** Each component's Markdown file now includes sections for API, code examples, and CSS variables. The file ist stored in the components folder as well as in the `package/components/docs/copilot` folder.
 
 ## 3. Generate `copilot-instructions.md`
 
