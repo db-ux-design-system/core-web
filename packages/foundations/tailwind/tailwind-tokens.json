@@ -19,10 +19,16 @@
 						"pressed": "var(--db-adaptive-bg-basic-level-3-pressed)"
 					},
 					"transparent": {
-						"full-default": "var(--db-adaptive-bg-basic-transparent-full-default)",
-						"semi-default": "var(--db-adaptive-bg-basic-transparent-semi-default)",
-						"hovered": "var(--db-adaptive-bg-basic-transparent-hovered)",
-						"pressed": "var(--db-adaptive-bg-basic-transparent-pressed)"
+						"full": {
+							"default": "var(--db-adaptive-bg-basic-transparent-full-default)",
+							"hovered": "var(--db-adaptive-bg-basic-transparent-full-hovered)",
+							"pressed": "var(--db-adaptive-bg-basic-transparent-full-pressed)"
+						},
+						"semi": {
+							"default": "var(--db-adaptive-bg-basic-transparent-semi-default)",
+							"hovered": "var(--db-adaptive-bg-basic-transparent-semi-hovered)",
+							"pressed": "var(--db-adaptive-bg-basic-transparent-semi-pressed)"
+						}
 					}
 				},
 				"inverted": {

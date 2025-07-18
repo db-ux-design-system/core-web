@@ -29,7 +29,7 @@ $scrollbar-width: helpers.px-to-rem(8);
 	&:is(:hover, :focus) {
 		&::-webkit-scrollbar-track,
 		&::-webkit-scrollbar-button:single-button {
-			background-color: colors.$db-adaptive-bg-basic-transparent-hovered;
+			background-color: colors.$db-adaptive-bg-basic-transparent-full-hovered;
 		}
 	}
 
@@ -45,7 +45,7 @@ $scrollbar-width: helpers.px-to-rem(8);
 	}
 
 	&::-webkit-scrollbar-thumb {
-		background-color: colors.$db-adaptive-bg-basic-transparent-pressed;
+		background-color: colors.$db-adaptive-bg-basic-transparent-full-pressed;
 	}
 
 	/* Buttons */
@@ -57,11 +57,11 @@ $scrollbar-width: helpers.px-to-rem(8);
 		block-size: form-components.$floating-label-size-calc;
 
 		&:is(:hover, :focus) {
-			background-color: colors.$db-adaptive-bg-basic-transparent-hovered;
+			background-color: colors.$db-adaptive-bg-basic-transparent-full-hovered;
 		}
 
 		&:active {
-			background-color: colors.$db-adaptive-bg-basic-transparent-pressed;
+			background-color: colors.$db-adaptive-bg-basic-transparent-full-pressed;
 		}
 	}
 

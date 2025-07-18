@@ -32,11 +32,17 @@ $db-critical-bg-basic-transparent-full-default: var(
 $db-critical-bg-basic-transparent-semi-default: var(
 	--db-critical-bg-basic-transparent-semi-default
 );
-$db-critical-bg-basic-transparent-hovered: var(
-	--db-critical-bg-basic-transparent-hovered
+$db-critical-bg-basic-transparent-full-hovered: var(
+	--db-critical-bg-basic-transparent-full-hovered
 );
-$db-critical-bg-basic-transparent-pressed: var(
-	--db-critical-bg-basic-transparent-pressed
+$db-critical-bg-basic-transparent-full-pressed: var(
+	--db-critical-bg-basic-transparent-full-pressed
+);
+$db-critical-bg-basic-transparent-semi-hovered: var(
+	--db-critical-bg-basic-transparent-semi-hovered
+);
+$db-critical-bg-basic-transparent-semi-pressed: var(
+	--db-critical-bg-basic-transparent-semi-pressed
 );
 $db-critical-on-bg-basic-emphasis-100-default: var(
 	--db-critical-on-bg-basic-emphasis-100-default

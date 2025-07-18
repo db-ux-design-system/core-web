@@ -34,7 +34,7 @@ $with-icon-padding-calc: calc(
 
 		@include helpers.hover {
 			&:has(:not(input:disabled)) {
-				background-color: colors.$db-adaptive-bg-basic-transparent-hovered;
+				background-color: colors.$db-adaptive-bg-basic-transparent-full-hovered;
 			}
 
 			&:has(input:disabled) {
@@ -44,7 +44,7 @@ $with-icon-padding-calc: calc(
 
 		@include helpers.hover {
 			&:has(:not(input:disabled)) {
-				background-color: colors.$db-adaptive-bg-basic-transparent-hovered;
+				background-color: colors.$db-adaptive-bg-basic-transparent-full-hovered;
 			}
 
 			&:has(input:disabled) {
