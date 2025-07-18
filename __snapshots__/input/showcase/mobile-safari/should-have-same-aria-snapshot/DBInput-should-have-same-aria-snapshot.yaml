@@ -86,14 +86,14 @@
   - text: "True"
   - textbox "True"
   - status
-  - link "Show Icon Leading + Trailing"
+  - link "Show Icon Trailing"
   - text: "False"
   - textbox "False"
   - status
   - text: "True"
   - textbox "True"
   - status
-  - link "Show Icon Trailing"
+  - link "Show Icon Leading + Trailing"
   - text: "False"
   - textbox "False"
   - status
