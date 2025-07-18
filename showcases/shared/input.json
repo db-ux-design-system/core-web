@@ -190,6 +190,27 @@
 		]
 	},
 	{
+		"name": "Show Required Asterisk",
+		"examples": [
+			{
+				"name": "(Default) True",
+				"props": {
+					"label": "Label",
+					"required": true,
+					"showRequiredAsterisk": true
+				}
+			},
+			{
+				"name": "False",
+				"props": {
+					"label": "Label",
+					"required": true,
+					"showRequiredAsterisk": false
+				}
+			}
+		]
+	},
+	{
 		"name": "Show Icon Leading",
 		"examples": [
 			{
