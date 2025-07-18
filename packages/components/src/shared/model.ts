@@ -147,7 +147,7 @@ export type PlacementProps = {
 };
 
 export type NavigationBehaviorState = {
-	handleNavigationItemClick: (event: unknown) => void;
+	handleNavigationItemClick: (event: any) => void;
 };
 
 export type GapProps = {

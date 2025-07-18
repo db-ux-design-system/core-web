@@ -19,10 +19,12 @@ const getRadio = ({
 	disabled,
 	value,
 	showLabel,
-	validation
+	validation,
+	showRequiredAsterisk
 }: DBRadioProps) => (
 	<>
 		<DBRadio
+			showRequiredAsterisk={showRequiredAsterisk}
 			label={label}
 			size={size}
 			name={name}

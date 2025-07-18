@@ -72,26 +72,25 @@
   - text: Label
   - textbox "Label"
   - status
-  - link "Show Icon Leading"
-  - text: "False"
-  - textbox "False"
+  - link "Show Required Asterisk"
+  - text: Label
+  - textbox "Label"
   - status
-  - text: "True"
-  - textbox "True"
+  - text: Label
+  - textbox "Label"
   - status
-  - link "Show Icon Trailing"
-  - text: "False"
-  - textbox "False"
+  - link "Content"
+  - text: Label
+  - textbox "Label": (Default) Text
   - status
-  - text: "True"
-  - textbox "True"
+  - text: Label
+  - textbox "Label"
   - status
-  - link "Show Icon Leading + Trailing"
-  - text: "False"
-  - textbox "False"
+  - text: Label
+  - textbox "Label"
   - status
-  - text: "True"
-  - textbox "True"
+  - text: Label
+  - textbox "Label"
   - status
   - link "Example - Length"
   - text: Label

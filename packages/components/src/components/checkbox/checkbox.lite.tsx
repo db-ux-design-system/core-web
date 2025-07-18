@@ -179,6 +179,7 @@ export default function DBCheckbox(props: DBCheckboxProps) {
 		<div
 			class={cls('db-checkbox', props.className)}
 			data-size={props.size}
+			data-hide-asterisk={getHideProp(props.showRequiredAsterisk)}
 			data-hide-label={getHideProp(props.showLabel)}>
 			<label htmlFor={state._id}>
 				<input
@@ -192,7 +193,6 @@ export default function DBCheckbox(props: DBCheckboxProps) {
 					disabled={getBoolean(props.disabled, 'disabled')}
 					value={props.value}
 					required={getBoolean(props.required, 'required')}
-					data-hide-asterisk={getHideProp(props.showRequiredAsterisk)}
 					onChange={(event: ChangeEvent<HTMLInputElement>) =>
 						state.handleChange(event)
 					}
