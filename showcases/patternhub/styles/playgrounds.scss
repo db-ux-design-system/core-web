@@ -3,7 +3,7 @@
 section.playground {
 	display: grid;
 	grid-template-columns: repeat(2, 1fr); /* Two columns */
-	gap: variables.$db-spacing-fixed-xl; /* Optional spacing between items */
+	gap: variables.$db-spacing-fixed-md; /* Optional spacing between items */
 
 	h2 {
 		grid-column: span 2;
@@ -20,10 +20,6 @@ section.playground {
 			width: 50px;
 			float: left;
 			margin-inline-end: variables.$db-spacing-fixed-sm;
-		}
-
-		.db-card {
-			height: 100%;
 		}
 	}
 }
