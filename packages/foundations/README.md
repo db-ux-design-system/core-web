@@ -32,7 +32,7 @@ First of all you need to import a theme which contains all tokens (css-propertie
 Afterward, you may import helper classes / placeholders to easily consume the tokens from your theme. There are some categories:
 
 - **init**: Global styles which apply to all or a large group of selectors. Make sure to import `inits/required.css` to normalize tags like `body` etc. Furthermore, we provide some default styles.
-- **icons**: Icons classes to load **woff2** files and adds `[data-icon]` and `[data-icon-after]` to enable icons for all tags and components.
+- **icons**: Icons classes to load **woff2** files and adds `[data-icon]` and `[data-icon-trailing]` to enable icons for all tags and components.
 - **helpers**: Use dividers or focus border
 - **fonts**: Overwrite default `font-size`, `line-height` and `icon-size`
 - **density**: Overwrite default density to scale adaptive components inside container using density

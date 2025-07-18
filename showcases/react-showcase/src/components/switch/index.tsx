@@ -18,7 +18,7 @@ const getSwitch = ({
 	emphasis,
 	size,
 	icon,
-	iconAfter,
+	iconTrailing,
 	required,
 	showRequiredAsterisk
 }: DBSwitchProps) => (
@@ -32,7 +32,7 @@ const getSwitch = ({
 			size={size}
 			emphasis={emphasis}
 			icon={icon}
-			iconAfter={iconAfter}
+			iconTrailing={iconTrailing}
 			required={required}>
 			{children}
 		</DBSwitch>

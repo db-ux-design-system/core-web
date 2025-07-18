@@ -19,7 +19,7 @@ import DefaultComponent from "../DefaultComponent.vue";
 				:size="exampleProps?.size"
 				:emphasis="exampleProps?.emphasis"
 				:icon="exampleProps?.icon"
-				:iconAfter="exampleProps?.iconAfter"
+				:iconTrailing="exampleProps?.iconTrailing"
 				:validation="exampleProps?.validation"
 			>
 				{{ exampleName }}

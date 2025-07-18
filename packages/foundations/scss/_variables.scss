@@ -91,3 +91,23 @@ $db-transition-straight-emotional: var(--db-transition-straight-emotional);
 $db-transition-straight-functional: var(--db-transition-straight-functional);
 $db-transition-straight-show: var(--db-transition-straight-show);
 $db-transition-straight-hide: var(--db-transition-straight-hide);
+
+/* Screen sizes */
+
+$db-screen-xs: var(--db-screen-xs);
+$db-screen-sm: var(--db-screen-sm);
+$db-screen-md: var(--db-screen-md);
+$db-screen-lg: var(--db-screen-lg);
+$db-screen-xl: var(--db-screen-xl);
+
+/* Container sizes */
+
+$db-container-3xs: var(--db-container-3xs);
+$db-container-2xs: var(--db-container-2xs);
+$db-container-xs: var(--db-container-xs);
+$db-container-sm: var(--db-container-sm);
+$db-container-md: var(--db-container-md);
+$db-container-lg: var(--db-container-lg);
+$db-container-xl: var(--db-container-xl);
+$db-container-2xl: var(--db-container-2xl);
+$db-container-3xl: var(--db-container-3xl);

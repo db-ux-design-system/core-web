@@ -30,7 +30,6 @@ export default function DBNavigation(props: DBNavigationProps) {
 		<nav
 			ref={_ref}
 			id={state._id}
-			aria-labelledby={props.labelledBy}
 			class={cls('db-navigation', props.className)}>
 			<menu>{props.children}</menu>
 		</nav>

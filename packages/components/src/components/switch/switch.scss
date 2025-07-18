@@ -143,11 +143,11 @@ $checked-active-transition-size: calc(
 		}
 
 		&[data-aid-icon]:not(:checked)::after {
-			--db-icon-after: attr(data-aid-icon);
+			--db-icon-trailing: attr(data-aid-icon);
 		}
 
-		&[data-aid-icon-after]:checked::after {
-			--db-icon-after: attr(data-aid-icon-after);
+		&[data-aid-icon-trailing]:checked::after {
+			--db-icon-trailing: attr(data-aid-icon-trailing);
 		}
 
 		@media screen and (prefers-reduced-motion: no-preference) {

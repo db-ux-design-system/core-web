@@ -7,7 +7,7 @@ test.describe('DBButton', () => {
 		test,
 		title: 'next()',
 		description: 'should not have icon in screen reader (next())',
-		url: './#/02/button?page=show+icon',
+		url: './#/02/button?page=show+icon+leading',
 		async testFn(voiceOver, nvda) {
 			if (nvda) {
 				await nvda?.next();
@@ -23,7 +23,7 @@ test.describe('DBButton', () => {
 		test,
 		title: 'tab',
 		description: 'should not have icon in screen reader (tab)',
-		url: './#/02/button?page=show+icon',
+		url: './#/02/button?page=show+icon+leading',
 		async testFn(voiceOver, nvda) {
 			if (voiceOver) {
 				// Voiceover isn't working with tab in pipeline

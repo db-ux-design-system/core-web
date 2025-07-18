@@ -1,8 +1,8 @@
 @use "helpers";
 @use "sass:map";
 
-$db-screen-size-xs: 360; // mobile
-$db-screen-size-sm: 720; // tablet
+$db-screen-size-xs: 320; // mobile
+$db-screen-size-sm: 768; // tablet
 $db-screen-size-md: 1024; // small desktop
 $db-screen-size-lg: 1440; // regular desktop
 $db-screen-size-xl: 1920; // large desktop
@@ -14,25 +14,25 @@ $db-breakpoint-lg: helpers.px-to-em($db-screen-size-lg);
 $db-breakpoint-xl: helpers.px-to-em($db-screen-size-xl);
 
 @mixin get-breakpoint-properties() {
-	@property --db-breakpoint-xs {
+	@property --db-screen-xs {
 		syntax: "*";
 		inherits: true;
 		initial-value: #{$db-breakpoint-xs};
 	}
 
-	@property --db-breakpoint-sm {
+	@property --db-screen-sm {
 		syntax: "*";
 		inherits: true;
 		initial-value: #{$db-breakpoint-sm};
 	}
 
-	@property --db-breakpoint-md {
+	@property --db-screen-md {
 		syntax: "*";
 		inherits: true;
 		initial-value: #{$db-breakpoint-md};
 	}
 
-	@property --db-breakpoint-xl {
+	@property --db-screen-xl {
 		syntax: "*";
 		inherits: true;
 		initial-value: #{$db-breakpoint-xl};

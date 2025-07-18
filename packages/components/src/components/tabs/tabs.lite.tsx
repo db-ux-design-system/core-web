@@ -232,7 +232,7 @@ export default function DBTabs(props: DBTabsProps) {
 								key={props.name + 'tab-item' + index}
 								active={tab.active}
 								label={tab.label}
-								iconAfter={tab.iconAfter}
+								iconTrailing={tab.iconTrailing}
 								icon={tab.icon}
 								noText={tab.noText}
 							/>

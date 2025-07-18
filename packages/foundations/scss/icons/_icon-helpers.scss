@@ -9,7 +9,7 @@ $default-icon-size-rem: #{helpers.px-to-rem($default-icon-size)};
 $default-icon-variants: "default", "filled";
 
 $default-icon-content: var(--db-icon, attr(data-icon));
-$default-icon-content-after: var(--db-icon-after, attr(data-icon-after));
+$default-icon-content-after: var(--db-icon-trailing, attr(data-icon-trailing));
 
 $default-icon-margin-end: var(
 	--db-icon-margin-end,
@@ -69,7 +69,7 @@ $default-icon-font-size: var(--db-icon-font-size, #{$default-icon-size-rem});
 				}
 
 				@if $position == "after" {
-					--db-icon-after: "#{$icon}";
+					--db-icon-trailing: "#{$icon}";
 
 					margin-inline-start: $default-icon-margin-start;
 

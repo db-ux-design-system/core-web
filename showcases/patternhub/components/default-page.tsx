@@ -150,7 +150,7 @@ const DefaultPage = ({
 									checked={mode}
 									visualAid
 									icon="sun"
-									iconAfter="moon"
+									iconTrailing="moon"
 									showLabel={false}
 									onChange={() => {
 										setColorMode(!mode);
@@ -222,7 +222,7 @@ const DefaultPage = ({
 										href={nextNavigationItem.path ?? '/'}>
 										<DBCard behavior="interactive">
 											<small>Next</small>
-											<span data-icon-after="arrow_right">
+											<span data-icon-trailing="arrow_right">
 												{nextNavigationItem.label}
 											</span>
 										</DBCard>

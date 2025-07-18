@@ -30,7 +30,7 @@
 
 ### icons
 
-| Before      | Status | After    | Description                                                       |
-| ----------- | :----: | -------- | ----------------------------------------------------------------- |
-| `iconAfter` |   ❌   | ❌       | not valid anymore, for buttons only icons before text are allowed |
-| `iconOnly`  |   🔁   | `noText` |                                                                   |
+| Before         | Status | After    | Description                                                       |
+| -------------- | :----: | -------- | ----------------------------------------------------------------- |
+| `iconTrailing` |   ❌   | ❌       | not valid anymore, for buttons only icons before text are allowed |
+| `iconOnly`     |   🔁   | `noText` |                                                                   |

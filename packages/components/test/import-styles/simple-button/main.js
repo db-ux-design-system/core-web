@@ -9,7 +9,7 @@ import '@db-ux/core-foundations/build/styles/init/default-root.css';
 
 // Optional: Add animations / transitions for components
 import '@db-ux/core-components/build/styles/component-animations.css';
-// Optional: Add data-icon/data-icon-after to global attributes to enable icons for components
+// Optional: Add data-icon/data-icon-trailing to global attributes to enable icons for components
 import '@db-ux/core-foundations/build/styles/icons/include-rollup.css';
 
 // Optional: Add components
