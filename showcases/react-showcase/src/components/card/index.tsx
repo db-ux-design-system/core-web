@@ -10,25 +10,31 @@ const getCard = ({
 	children,
 	spacing,
 	elevationLevel
-}: DBCardProps) => (
-	<DBCard
-		behavior={behavior}
-		spacing={spacing}
-		elevationLevel={elevationLevel}>
-		<strong>{children}</strong>
-	</DBCard>
-);
+}: DBCardProps) => {
+	const card = (
+		<DBCard
+			behavior={behavior}
+			spacing={spacing}
+			elevationLevel={elevationLevel}>
+			<strong>{children}</strong>
+		</DBCard>
+	);
 
-const CardComponent = (props: BaseComponentProps) => {
-	return (
-		<DefaultComponent
-			title={'DBCard'}
-			variants={getVariants(
-				defaultComponentVariants,
-				getCard,
-				props.slotCode
-			)}></DefaultComponent>
+	return behavior === 'interactive' ? (
+		<button type="button">{card}</button>
+	) : (
+		card
 	);
 };
+
+const CardComponent = (properties: BaseComponentProps) => (
+	<DefaultComponent
+		title={'DBCard'}
+		variants={getVariants(
+			defaultComponentVariants,
+			getCard,
+			properties.slotCode
+		)}></DefaultComponent>
+);
 
 export default CardComponent;
