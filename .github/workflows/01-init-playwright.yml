@@ -14,7 +14,9 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [macos-13, windows-2022]
+        # TODO: enable again after guidepup controlling Voiceover on MacOS 14 and 15 gets more stable
+        # os: [macos-13, windows-2022]
+        os: [windows-2022] # macOS is not perfectly supported yet, we disable it for now
     steps:
       - name: ⏬ Checkout repo
         uses: actions/checkout@v4
@@ -25,4 +27,5 @@ jobs:
       - name: 🔄 Init Playwright Cache
         uses: ./.github/actions/playwright-cache
         with:
+          os: ${{ matrix.os }}
           version: ${{ inputs.version }}

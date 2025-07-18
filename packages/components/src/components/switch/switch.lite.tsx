@@ -71,6 +71,7 @@ export default function DBSwitch(props: DBSwitchProps) {
 			data-hide-label={getHideProp(props.showLabel)}
 			data-emphasis={props.emphasis}
 			htmlFor={state._id}
+			data-hide-asterisk={getHideProp(props.showRequiredAsterisk)}
 			class={cls('db-switch', props.className)}>
 			<input
 				id={state._id}
@@ -84,7 +85,6 @@ export default function DBSwitch(props: DBSwitchProps) {
 				data-custom-validity={props.validation}
 				name={props.name}
 				required={getBoolean(props.required, 'required')}
-				data-hide-asterisk={getHideProp(props.showRequiredAsterisk)}
 				data-aid-icon={props.iconLeading ?? props.icon}
 				data-aid-icon-trailing={props.iconTrailing}
 				onChange={(event: ChangeEvent<HTMLInputElement>) =>
