@@ -36,6 +36,10 @@
 		color: colors.$db-adaptive-on-bg-basic-emphasis-100-default;
 	}
 
+	optgroup {
+		background-color: colors.$db-adaptive-bg-basic-level-3-default;
+	}
+
 	&:has(> select option:checked:not([hidden])) {
 		[id$="-placeholder"] {
 			display: none;
