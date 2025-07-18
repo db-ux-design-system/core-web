@@ -72,6 +72,13 @@
   - text: Label
   - textbox "Label"
   - status
+  - link "Show Required Asterisk"
+  - text: Label
+  - textbox "Label"
+  - status
+  - text: Label
+  - textbox "Label"
+  - status
   - link "Show Icon Leading"
   - text: "False"
   - textbox "False"
