@@ -1,3 +1,5 @@
+@use "@db-ux/core-foundations/build/styles/variables";
+
 section.playground {
 	display: grid;
 	grid-template-columns: repeat(2, 1fr); /* Two columns */
@@ -8,6 +10,8 @@ section.playground {
 	}
 
 	a {
+		text-decoration: none;
+
 		strong {
 			display: block;
 		}
@@ -15,6 +19,7 @@ section.playground {
 		img {
 			width: 50px;
 			float: left;
+			margin-inline-end: variables.$db-spacing-fixed-md;
 		}
 
 		.db-card {
