@@ -18,13 +18,13 @@ $icon-padding: calc(
 	// increased inline size for elements with icons or specific input types that have icons
 	&:is([data-icon], [data-icon-trailing]):not([data-hide-icon="true"]),
 	&:has(
-			input[type="search"],
-			input[type="date"],
-			input[type="month"],
-			input[type="week"],
-			input[type="datetime-local"],
-			input[type="time"]
-		) {
+		input[type="search"],
+		input[type="date"],
+		input[type="month"],
+		input[type="week"],
+		input[type="datetime-local"],
+		input[type="time"]
+	) {
 		--db-form-component-min-inline-size: #{variables.$db-sizing-xl};
 	}
 
