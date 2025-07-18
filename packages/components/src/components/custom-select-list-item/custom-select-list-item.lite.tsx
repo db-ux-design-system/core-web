@@ -89,7 +89,7 @@ export default function DBCustomSelectListItem(
 							? props.icon
 							: undefined
 					}
-					data-show-icon={getBoolean(props.showIcon)}
+					data-show-icon={getBooleanAsString(props.showIcon)}
 					data-icon-trailing={state.getIconTrailing()}>
 					<input
 						class="db-custom-select-list-item-checkbox"

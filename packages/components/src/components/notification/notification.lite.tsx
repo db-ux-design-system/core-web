@@ -8,7 +8,12 @@ import {
 } from '@builder.io/mitosis';
 import { DEFAULT_CLOSE_BUTTON } from '../../shared/constants';
 import { ClickEvent } from '../../shared/model';
-import { cls, getBoolean, stringPropVisible } from '../../utils';
+import {
+	cls,
+	getBoolean,
+	getBooleanAsString,
+	stringPropVisible
+} from '../../utils';
 import DBButton from '../button/button.lite';
 import { DBNotificationProps, DBNotificationState } from './model';
 
@@ -40,7 +45,7 @@ export default function DBNotification(props: DBNotificationProps) {
 			data-semantic={props.semantic}
 			data-variant={props.variant}
 			data-icon={props.icon}
-			data-show-icon={getBoolean(props.showIcon)}
+			data-show-icon={getBooleanAsString(props.showIcon)}
 			data-link-variant={props.linkVariant}>
 			<Slot name="image" />
 			<Show when={stringPropVisible(props.headline, props.showHeadline)}>

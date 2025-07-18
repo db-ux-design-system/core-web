@@ -94,10 +94,12 @@ export default function DBTabItem(props: DBTabItemProps) {
 				htmlFor={props.id}
 				data-icon={props.iconLeading ?? props.icon}
 				data-icon-trailing={props.iconTrailing}
-				data-show-icon={getBoolean(
+				data-show-icon={getBooleanAsString(
 					props.showIconLeading ?? props.showIcon
 				)}
-				data-show-icon-trailing={getBoolean(props.showIconTrailing)}
+				data-show-icon-trailing={getBooleanAsString(
+					props.showIconTrailing
+				)}
 				data-no-text={getBooleanAsString(props.noText)}>
 				<input
 					disabled={getBoolean(props.disabled, 'disabled')}

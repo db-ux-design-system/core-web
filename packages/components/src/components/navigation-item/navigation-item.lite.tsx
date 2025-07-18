@@ -105,7 +105,7 @@ export default function DBNavigationItem(props: DBNavigationItemProps) {
 			class={cls('db-navigation-item', props.className)}
 			data-width={props.width}
 			data-icon={props.icon}
-			data-show-icon={getBoolean(props.showIcon)}
+			data-show-icon={getBooleanAsString(props.showIcon)}
 			data-active={props.active}
 			data-wrap={getBooleanAsString(props.wrap)}
 			aria-disabled={getBooleanAsString(props.disabled)}>

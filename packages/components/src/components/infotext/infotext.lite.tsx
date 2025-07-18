@@ -5,7 +5,7 @@ import {
 	useRef,
 	useStore
 } from '@builder.io/mitosis';
-import { cls, getBoolean } from '../../utils';
+import { cls, getBooleanAsString } from '../../utils';
 import { DBInfotextProps, DBInfotextState } from './model';
 
 useMetadata({});
@@ -27,7 +27,7 @@ export default function DBInfotext(props: DBInfotextProps) {
 			data-icon={props.icon}
 			data-semantic={props.semantic}
 			data-size={props.size}
-			data-show-icon-leading={getBoolean(props.showIcon ?? true)}>
+			data-show-icon-leading={getBooleanAsString(props.showIcon ?? true)}>
 			<Show when={props.text} else={props.children}>
 				{props.text}
 			</Show>
