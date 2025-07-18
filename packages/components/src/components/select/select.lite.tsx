@@ -28,6 +28,7 @@ import {
 	cls,
 	delay,
 	getBoolean,
+	getBooleanAsString,
 	getHideProp,
 	getOptionKey,
 	hasVoiceOver,
