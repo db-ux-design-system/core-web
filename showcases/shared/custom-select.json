@@ -447,6 +447,59 @@
 		]
 	},
 	{
+		"name": "Show Required Asterisk",
+		"examples": [
+			{
+				"name": "(Default) True",
+				"style": {
+					"width": "200px"
+				},
+				"props": {
+					"options": [
+						{
+							"value": "Option 1",
+							"id": "drpxs8im88"
+						},
+						{
+							"value": "Option 2",
+							"id": "211ed6zox5"
+						}
+					],
+					"label": "Label",
+					"multiple": true,
+					"required": true,
+					"showRequiredAsterisk": true,
+					"id": "id-1021s9"
+				},
+				"children": []
+			},
+			{
+				"name": "False",
+				"style": {
+					"width": "200px"
+				},
+				"props": {
+					"options": [
+						{
+							"value": "Option 1",
+							"id": "2v0zfw8afc"
+						},
+						{
+							"value": "Option 2",
+							"id": "30830f8w5z"
+						}
+					],
+					"label": "Label",
+					"required": true,
+					"showRequiredAsterisk": false,
+					"multiple": true,
+					"id": "id-10s220"
+				},
+				"children": []
+			}
+		]
+	},
+	{
 		"name": "Disabled",
 		"examples": [
 			{

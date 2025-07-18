@@ -196,6 +196,7 @@ export default function DBSelect(props: DBSelectProps) {
 			class={cls('db-select', props.className)}
 			data-variant={props.variant}
 			data-hide-label={getHideProp(props.showLabel)}
+			data-hide-asterisk={getHideProp(props.showRequiredAsterisk)}
 			data-icon={props.icon}
 			data-show-icon={getBoolean(props.showIcon)}>
 			<label htmlFor={state._id}>{props.label ?? DEFAULT_LABEL}</label>
@@ -204,7 +205,6 @@ export default function DBSelect(props: DBSelectProps) {
 				data-custom-validity={props.validation}
 				ref={_ref}
 				required={getBoolean(props.required, 'required')}
-				data-hide-asterisk={getHideProp(props.showRequiredAsterisk)}
 				disabled={getBoolean(props.disabled, 'disabled')}
 				id={state._id}
 				name={props.name}

@@ -203,6 +203,7 @@ export default function DBInput(props: DBInputProps) {
 			data-show-icon={getBoolean(props.showIconLeading ?? props.showIcon)}
 			data-icon={props.iconLeading ?? props.icon}
 			data-icon-trailing={props.iconTrailing}
+			data-hide-asterisk={getHideProp(props.showRequiredAsterisk)}
 			data-show-icon-trailing={getBoolean(props.showIconTrailing)}>
 			<label htmlFor={state._id}>{props.label ?? DEFAULT_LABEL}</label>
 			<input
@@ -217,7 +218,6 @@ export default function DBInput(props: DBInputProps) {
 				placeholder={props.placeholder ?? DEFAULT_PLACEHOLDER}
 				disabled={getBoolean(props.disabled, 'disabled')}
 				required={getBoolean(props.required, 'required')}
-				data-hide-asterisk={getHideProp(props.showRequiredAsterisk)}
 				step={getNumber(props.step)}
 				value={props.value ?? state._value}
 				maxLength={getNumber(props.maxLength, props.maxlength)}

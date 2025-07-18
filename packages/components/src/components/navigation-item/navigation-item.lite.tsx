@@ -11,10 +11,7 @@ import {
 import { DEFAULT_BACK } from '../../shared/constants';
 import { ClickEvent } from '../../shared/model';
 import { cls, delay, getBoolean, getBooleanAsString, uuid } from '../../utils';
-import {
-	isEventTargetNavigationItem,
-	NavigationItemSafeTriangle
-} from '../../utils/navigation';
+import { NavigationItemSafeTriangle } from '../../utils/navigation';
 import DBButton from '../button/button.lite';
 import { DBNavigationItemProps, DBNavigationItemState } from './model';
 
@@ -34,12 +31,12 @@ export default function DBNavigationItem(props: DBNavigationItemProps) {
 		autoClose: false,
 		subNavigationId: 'sub-navigation-' + uuid(),
 		navigationItemSafeTriangle: undefined,
-		handleNavigationItemClick: (event: unknown) => {
-			if (isEventTargetNavigationItem(event)) {
+		handleNavigationItemClick: (event: any) => {
+			if (event?.target?.nodeName === 'A') {
 				state.autoClose = true;
-				delay(() => {
+				void delay(() => {
 					state.autoClose = false;
-				}, 300);
+				}, 1000);
 			}
 		},
 		handleClick: (event: ClickEvent<HTMLButtonElement> | any) => {
@@ -135,7 +132,7 @@ export default function DBNavigationItem(props: DBNavigationItemProps) {
 				{/* TODO: Consider using popover here */}
 				<menu
 					class="db-sub-navigation"
-					data-auto-close={state.autoClose}
+					data-force-close={state.autoClose}
 					id={state.subNavigationId}
 					onClick={(event) => state.handleNavigationItemClick(event)}>
 					<Show when={state.hasAreaPopup}>
