@@ -57,7 +57,13 @@ $default-icon-font-size: var(--db-icon-font-size, #{$default-icon-size-rem});
 
 // Icon SCSS mixin
 @mixin set-icon($icon: "", $position: "before") {
-	&:not([data-hide-icon-#{$position}="true"]) {
+	$pos: "leading";
+
+	@if ($position == "after") {
+		$pos: "trailing";
+	}
+
+	&:not([data-show-icon-#{$pos}="false"]) {
 		&::#{$position} {
 			@if $icon != "" {
 				@extend %icon;

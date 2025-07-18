@@ -5,7 +5,7 @@
 %select-icon {
 	@extend %dropdown-icon;
 
-	&[data-icon]:not([data-hide-icon="true"]) {
+	&[data-icon]:not([data-show-icon="false"]) {
 		--db-form-has-before: 1;
 	}
 }

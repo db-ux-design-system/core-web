@@ -147,7 +147,7 @@
 			aspect-ratio: unset;
 
 			&:checked {
-				&:not([data-hide-icon-leading="true"]) {
+				&:not([data-show-icon-leading="false"]) {
 					&::before {
 						content: none;
 					}

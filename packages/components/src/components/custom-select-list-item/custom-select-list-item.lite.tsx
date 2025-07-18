@@ -9,13 +9,7 @@ import {
 	useTarget
 } from '@builder.io/mitosis';
 import { ChangeEvent } from '../../shared/model';
-import {
-	cls,
-	getBoolean,
-	getBooleanAsString,
-	getHideProp,
-	uuid
-} from '../../utils';
+import { cls, getBoolean, getBooleanAsString, uuid } from '../../utils';
 import {
 	handleFrameworkEventAngular,
 	handleFrameworkEventVue
@@ -95,7 +89,7 @@ export default function DBCustomSelectListItem(
 							? props.icon
 							: undefined
 					}
-					data-hide-icon={getHideProp(props.showIcon)}
+					data-show-icon={getBooleanAsString(props.showIcon)}
 					data-icon-trailing={state.getIconTrailing()}>
 					<input
 						class="db-custom-select-list-item-checkbox"

@@ -18,8 +18,8 @@
 	}
 }
 
-[data-hide-icon="true"],
-[data-hide-icon-leading="true"],
+[data-show-icon="false"],
+[data-show-icon-leading="false"],
 [data-icon="none"],
 [data-icon-leading="none"] {
 	&::before {
@@ -37,7 +37,7 @@
 	}
 }
 
-[data-hide-icon-trailing="true"],
+[data-show-icon-trailing="false"],
 [data-icon-trailing="none"] {
 	&::after {
 		content: none;
