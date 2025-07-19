@@ -8,6 +8,7 @@
 		"samverschueren.linter-xo",
 		"esbenp.prettier-vscode",
 		"stylelint.vscode-stylelint",
-		"gruntfuggly.todo-tree"
+		"gruntfuggly.todo-tree",
+		"kravets.vscode-publint"
 	]
 }
