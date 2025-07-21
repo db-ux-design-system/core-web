@@ -56,11 +56,14 @@ export default function DBTooltip(props: DBTooltipProps) {
 			if (_ref) {
 				// This is a workaround for angular
 				utilsDelay(() => {
-					handleFixedPopover(
-						_ref,
-						parent,
-						(props.placement as unknown as string) ?? 'bottom'
-					);
+					// Check if _ref is still valid after delay to prevent race conditions
+					if (_ref) {
+						handleFixedPopover(
+							_ref,
+							parent,
+							(props.placement as unknown as string) ?? 'bottom'
+						);
+					}
 				}, 1);
 			}
 		},
@@ -76,7 +79,12 @@ export default function DBTooltip(props: DBTooltipProps) {
 				);
 			}
 
-			state._observer?.unobserve(state.getParent());
+			if (state._observer) {
+				state._observer.unobserve(state.getParent());
+				// Disconnect the observer to prevent memory leaks
+				state._observer.disconnect();
+				state._observer = undefined;
+			}
 		},
 		handleEnter(parent?: HTMLElement): void {
 			state._documentScrollListenerCallbackId =

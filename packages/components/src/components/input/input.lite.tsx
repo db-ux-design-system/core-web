@@ -146,6 +146,10 @@ export default function DBInput(props: DBInputProps) {
 				props.onFocus(event);
 			}
 		},
+		handleInvalid: (event: Event) => {
+			// Prevent the browser's default validation popup
+			event.preventDefault();
+		},
 		getDataList: (): ValueLabelType[] => {
 			const _list = props.dataList;
 			return Array.from(
@@ -251,6 +255,7 @@ export default function DBInput(props: DBInputProps) {
 				onFocus={(event: InteractionEvent<HTMLInputElement>) =>
 					state.handleFocus(event)
 				}
+				onInvalid={(event: Event) => state.handleInvalid(event)}
 				list={props.dataList && state._dataListId}
 				aria-describedby={props.ariaDescribedBy ?? state._descByIds}
 			/>

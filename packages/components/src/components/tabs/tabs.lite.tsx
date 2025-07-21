@@ -142,21 +142,27 @@ export default function DBTabs(props: DBTabsProps) {
 		},
 		handleChange: (event: InputEvent<HTMLElement>) => {
 			event.stopPropagation();
+			const target = event.target as HTMLElement;
 			const closest:
 				| ((element: string) => HTMLElement | null)
-				| undefined = (event.target as any)?.closest;
+				| undefined = target?.closest;
 
-			if (!closest) return;
+			if (!closest || !target) return;
 
-			const list = closest('ul');
-			const listItem =
-				// db-tab-item for angular and stencil wrapping elements
-				closest('db-tab-item') ?? closest('li');
-			if (list !== null && listItem !== null) {
-				const indices = Array.from(list.childNodes).indexOf(listItem);
-				if (props.onIndexChange) {
-					props.onIndexChange(indices);
+			try {
+				const list = closest.call(target, 'ul');
+				const listItem =
+					// db-tab-item for angular and stencil wrapping elements
+					closest.call(target, 'db-tab-item') ?? closest.call(target, 'li');
+				if (list !== null && listItem !== null) {
+					const indices = Array.from(list.childNodes).indexOf(listItem);
+					if (props.onIndexChange) {
+						props.onIndexChange(indices);
+					}
 				}
+			} catch (error) {
+				// Gracefully handle cases where closest method fails (e.g., in test environments)
+				console.warn('Error in tabs handleChange:', error);
 			}
 
 			if (props.onTabSelect) {

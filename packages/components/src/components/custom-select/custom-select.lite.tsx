@@ -896,7 +896,7 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 												)
 											})}
 											removeButton={state.getTagRemoveLabel(
-												index
+												props.options?.findIndex(opt => opt.value === option.value) ?? index
 											)}
 											onRemove={(
 												event?: ClickEvent<HTMLButtonElement> | void
