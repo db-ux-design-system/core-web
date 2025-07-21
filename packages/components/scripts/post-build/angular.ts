@@ -1,6 +1,6 @@
 import { replaceInFileSync } from 'replace-in-file';
 
-import { readFileSync, writeFileSync } from 'node:fs';
+import { writeFileSync } from 'node:fs';
 
 import components, { Overwrite } from './components.js';
 
@@ -65,9 +65,7 @@ const setControlValueAccessorReplacements = (
 		  this.${valueAccessor}.set(${valueAccessor === 'checked' ? '!!' : ''}value);
 
 		  if (this._ref()?.nativeElement) {
-			 this.renderer.setProperty(this._ref()?.nativeElement, '${valueAccessor}', ${
-					valueAccessor === 'checked' ? '!!' : ''
-				}value);
+			 this.renderer.setProperty(this._ref()?.nativeElement, '${valueAccessor}', ${valueAccessor === 'checked' ? '!!' : ''}value);
 		  }
 			${valueAccessorRequired ? '}' : ''}
 		}
@@ -105,11 +103,7 @@ const setDirectiveReplacements = (
 		// Add ng-content multiple times to overwrite all
 		for (let i = 0; i < 4; i++) {
 			replacements.push({
-				from: `<ng-content${
-					directive.ngContentName
-						? ` select="[${directive.ngContentName}]"`
-						: ''
-				}>`,
+				from: `<ng-content${directive.ngContentName ? ` select="[${directive.ngContentName}]"` : ''}>`,
 				to: `<ng-content *ngTemplateOutlet="db${directive.name}">`
 			});
 		}
@@ -164,9 +158,7 @@ export default (tmp?: boolean) => {
 	const outputFolder = `${tmp ? 'output/tmp' : 'output'}`;
 	for (const component of components) {
 		const componentName = component.name;
-		const upperComponentName = `DB${transformToUpperComponentName(
-			component.name
-		)}`;
+		const upperComponentName = `DB${transformToUpperComponentName(component.name)}`;
 		const file = `../../${outputFolder}/angular/src/components/${componentName}/${componentName}.ts`;
 		const indexFile = `../../${outputFolder}/angular/src/components/${componentName}/index.ts`;
 

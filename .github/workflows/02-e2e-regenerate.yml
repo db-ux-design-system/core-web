@@ -23,15 +23,13 @@ jobs:
     runs-on: ubuntu-24.04 # Use Ubuntu 24.04 explicitly
     container:
       image: mcr.microsoft.com/playwright:v${{ inputs.version }}
+      options: --user 1001
     steps:
       - name: ⏬ Checkout repo
         uses: actions/checkout@v4
 
       - name: 🔄 Init Cache
         uses: ./.github/actions/npm-cache
-
-      - name: 📲 Install esbuild (binary workaround)
-        run: npm i -D esbuild-linux-64
 
       - name: ⏬ Download foundations build
         uses: actions/download-artifact@v4
@@ -68,7 +66,6 @@ jobs:
       - name: 👩‍🔬 Generate snapshots 🎭
         shell: bash
         env:
-          HOME: /root
           TYPE: ${{ inputs.type }}
           NEXT_PUBLIC_BASE_PATH: ${{ inputs.path }}
         run: |
@@ -90,7 +87,7 @@ jobs:
         with:
           name: snapshots-${{ inputs.type }}
           path: ./__snapshots__/*/component
-          retention-days: 30
+          retention-days: 7
 
       - name: 🆙 Upload foundations
         if: always() && inputs.type == 'foundations'
@@ -98,7 +95,7 @@ jobs:
         with:
           name: snapshots-${{ inputs.type }}
           path: ./__snapshots__/foundations
-          retention-days: 30
+          retention-days: 7
 
       - name: 🆙 Upload patternhub
         if: always() && inputs.type == 'patternhub'
@@ -106,7 +103,7 @@ jobs:
         with:
           name: snapshots-${{ inputs.type }}
           path: ./__snapshots__/*/patternhub
-          retention-days: 30
+          retention-days: 7
 
       - name: 🆙 Upload showcase
         if: always() && inputs.type == 'showcases'
@@ -114,4 +111,4 @@ jobs:
         with:
           name: snapshots-${{ inputs.type }}
           path: ./__snapshots__/*/showcase
-          retention-days: 30
+          retention-days: 7

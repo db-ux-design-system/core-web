@@ -505,6 +505,16 @@
 		both;
 	--db-transition-straight-emotional: 0.3s cubic-bezier(0.27, 0.05, 0.4, 0.95);
 	--db-transition-straight-functional: 0.3s cubic-bezier(0.15, 0, 0.45, 1);
+	--db-opacity-3xs: 0.08;
+	--db-opacity-2xs: 0.16;
+	--db-opacity-xs: 0.24;
+	--db-opacity-sm: 0.32;
+	--db-opacity-md: 0.4;
+	--db-opacity-lg: 0.68;
+	--db-opacity-xl: 0.76;
+	--db-opacity-2xl: 0.84;
+	--db-opacity-3xl: 0.92;
+	--db-opacity-full: 1;
 	--db-typography-regular-desktop-headline-3xl:
 		bolder 5rem/1.2 "OpenSans Head", helvetica, arial, sans-serif;
 	--db-typography-regular-desktop-headline-2xl:

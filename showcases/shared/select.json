@@ -282,8 +282,7 @@
 					],
 					"label": "Label",
 					"validation": "valid",
-					"validMessage": "Valid message",
-					"value": "Valid"
+					"validMessage": "Valid message"
 				}
 			}
 		]
@@ -406,6 +405,49 @@
 					],
 					"label": "Label",
 					"required": true
+				}
+			}
+		]
+	},
+	{
+		"name": "Show Required Asterisk",
+		"examples": [
+			{
+				"name": "(Default) True",
+				"style": {
+					"width": "300px"
+				},
+				"props": {
+					"options": [
+						{
+							"value": "Option 1"
+						},
+						{
+							"value": "Option 2"
+						}
+					],
+					"label": "Label",
+					"required": true,
+					"showRequiredAsterisk": true
+				}
+			},
+			{
+				"name": "False",
+				"style": {
+					"width": "300px"
+				},
+				"props": {
+					"options": [
+						{
+							"value": "Option 1"
+						},
+						{
+							"value": "Option 2"
+						}
+					],
+					"label": "Label",
+					"required": true,
+					"showRequiredAsterisk": false
 				}
 			}
 		]

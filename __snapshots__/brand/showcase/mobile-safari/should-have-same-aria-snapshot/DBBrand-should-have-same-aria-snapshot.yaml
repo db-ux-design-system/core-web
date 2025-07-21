@@ -1,8 +1,8 @@
 - main:
   - heading "DBBrand" [level=1]
-  - link "Density arrow_up_right\" / \""
-  - text: brand" / " Functional brand" / " (Default) Regular brand" / " Expressive
-  - link "Variants arrow_up_right\" / \""
-  - text: brand" / " (Default) With Logo No Logo
+  - link "Density"
+  - text: Functional (Default) Regular Expressive
+  - link "Variants"
+  - text: (Default) With Logo No Logo
   - img "this is a fancy placeholder logo"
   - text: Custom Logo

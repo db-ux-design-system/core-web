@@ -82,11 +82,11 @@
 	}
 
 	> :is(
-			[class="db-checkbox"],
-			[class="db-radio"],
-			[class="db-link"],
-			[class="db-button"]
-		) {
+		[class="db-checkbox"],
+		[class="db-radio"],
+		[class="db-link"],
+		[class="db-button"]
+	) {
 		block-size: 100%;
 	}
 }
@@ -209,7 +209,7 @@
 
 	&:has(:disabled),
 	&[data-disabled="true"] {
-		opacity: component.$default-disabled;
+		opacity: variables.$db-opacity-md;
 		pointer-events: none;
 	}
 

@@ -89,6 +89,7 @@
 
 	&[data-variant="outlined"],
 	&:not([data-variant]),
+	&[data-variant=""],
 	&[data-variant="ghost"] {
 		background-color: colors.$db-adaptive-bg-basic-transparent-full-default;
 	}
@@ -98,7 +99,7 @@
 	}
 
 	&:disabled {
-		opacity: component.$default-disabled;
+		opacity: variables.$db-opacity-md;
 	}
 
 	// States (currently only "loading")

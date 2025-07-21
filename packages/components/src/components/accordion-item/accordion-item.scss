@@ -26,7 +26,7 @@
 
 		&[aria-disabled="true"] {
 			pointer-events: none;
-			opacity: component.$default-disabled;
+			opacity: variables.$db-opacity-md;
 		}
 
 		@media screen and (prefers-reduced-motion: no-preference) {
