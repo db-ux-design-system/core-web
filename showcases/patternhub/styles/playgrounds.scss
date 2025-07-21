@@ -17,7 +17,7 @@ section.playground {
 		}
 
 		img {
-			width: 50px;
+			width: variables.$db-sizing-md;
 			float: left;
 			margin-inline-end: variables.$db-spacing-fixed-sm;
 		}
