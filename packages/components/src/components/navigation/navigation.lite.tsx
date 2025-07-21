@@ -146,7 +146,6 @@ export default function DBNavigation(props: DBNavigationProps) {
 		<nav
 			ref={_ref}
 			id={props.id}
-			aria-labelledby={props.labelledBy}
 			data-variant={state._variant}
 			onScroll={() => state.onScroll()}
 			class={cls('db-navigation', props.className)}>

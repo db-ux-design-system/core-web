@@ -19,7 +19,7 @@
 			>
 				{{ exampleName }}
 			</db-infotext>
-			<db-navigation [labelledBy]="getId(exampleName)">
+			<db-navigation [attr.aria-labelledby]="getId(exampleName)">
 				<db-navigation-item-group groupTitle="Navi-Item 1">
 					<db-navigation-item-group groupTitle="Sub-Navi-Item 1">
 						<db-navigation-item [active]="true">

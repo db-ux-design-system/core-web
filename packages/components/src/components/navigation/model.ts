@@ -1,5 +1,4 @@
 import {
-	AriaLabelledByProps,
 	GlobalProps,
 	GlobalState,
 	InitializedState,

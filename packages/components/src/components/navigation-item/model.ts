@@ -5,7 +5,8 @@ import {
 	GlobalState,
 	IconProps,
 	ShowIconProps,
-	WidthProps
+	WidthProps,
+	WrapProps
 } from '../../shared/model';
 
 export type DBNavigationItemDefaultProps = {

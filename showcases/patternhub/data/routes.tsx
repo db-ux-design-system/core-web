@@ -296,7 +296,8 @@ export const ROUTES: NavigationItem[] = [
 				]
 			}
 		]
-	}
+	},
+	{ label: 'Playgrounds', path: '/foundations/playgrounds' }
 ];
 
 const fillNavigationRecursive = (

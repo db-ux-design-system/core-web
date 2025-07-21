@@ -6,7 +6,7 @@ import {
 	useRef
 } from '@builder.io/mitosis';
 import { DEFAULT_ICON } from '../../shared/constants';
-import { cls, getHideProp } from '../../utils';
+import { cls, getBooleanAsString } from '../../utils';
 import { DBControlPanelBrandProps } from './model';
 
 useMetadata({});
@@ -20,7 +20,7 @@ export default function DBControlPanelBrand(props: DBControlPanelBrandProps) {
 		<div
 			ref={_ref}
 			data-icon={props.icon ?? DEFAULT_ICON}
-			data-hide-icon={getHideProp(props.showIcon)}
+			data-show-icon={getBooleanAsString(props.showIcon)}
 			id={props.id}
 			class={cls('db-control-panel-brand', props.className)}>
 			<Show when={props.text} else={props.children}>

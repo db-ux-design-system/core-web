@@ -21,7 +21,7 @@ const getNavigation = ({ children }: DBNavigationProps) => {
 				icon="none">
 				{children}
 			</DBInfotext>
-			<DBNavigation labelledBy={labelID}>
+			<DBNavigation aria-labelledby={labelID}>
 				<DBNavigationItemGroup groupTitle="Navi-Item 1">
 					<DBNavigationItemGroup groupTitle="Sub-Navi-Item 1">
 						<DBNavigationItem>

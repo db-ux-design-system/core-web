@@ -332,11 +332,13 @@ const FormComponent = () => {
 						<DBTabItem icon="x_placeholder">
 							Airplane Button
 						</DBTabItem>
-						<DBTabItem iconAfter="cancel">Cancel Button</DBTabItem>
-						<DBTabItem iconAfter="cancel">
+						<DBTabItem iconTrailing="cancel">
+							Cancel Button
+						</DBTabItem>
+						<DBTabItem iconTrailing="cancel">
 							Long Button Label with a lot of text
 						</DBTabItem>
-						<DBTabItem icon="x_placeholder" iconAfter="cancel">
+						<DBTabItem icon="x_placeholder" iconTrailing="cancel">
 							Another Button Label with a lot of text
 						</DBTabItem>
 						<DBTabItem
