@@ -169,19 +169,9 @@ export default (tmp?: boolean) => {
 		});
 
 		const replacements: Overwrite[] = [
-			// TODO: Below Should be fixed in https://github.com/BuilderIO/mitosis/pull/1750
 			{
 				from: /allowSignalWrites: true,/g,
 				to: ''
-			},
-			{
-				from: `export class ${upperComponentName} {\n`,
-				to: `export class ${upperComponentName} implements AfterViewInit {\n`
-			},
-			{
-				from: '} from "@angular/core";',
-				to: `AfterViewInit,
-				 } from "@angular/core";`
 			}
 		];
 
