@@ -1,7 +1,4 @@
-import {
-	DBNavigation,
-	NavigationItemGroupVariantType
-} from '../../../../output/react/src';
+import { DBNavigation, NavigationItemGroupVariantType } from '@components/src';
 import {
 	getSortedNavigationItems,
 	NAVIGATION_ITEMS,

@@ -4,7 +4,7 @@ to: "<%= showcases ? `../../showcases/vue-showcase/src/components/${name}/${h.ch
 <script setup lang="ts">
 import DefaultComponent from "../DefaultComponent.vue";
 import defaultComponentVariants from "../../../../shared/<%= name %>.json";
-import { DB<%= h.changeCase.pascal(name) %> } from "../@db-ux/v-core-components";
+import { DB<%= h.changeCase.pascal(name) %> } from "../../../../../output/vue/src";
 </script>
 
 <template>
