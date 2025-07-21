@@ -5,7 +5,7 @@ import {
 	useRef,
 	useStore
 } from '@builder.io/mitosis';
-import { cls, getBoolean, getBooleanAsString, getHideProp } from '../../utils';
+import { cls, getBoolean, getBooleanAsString } from '../../utils';
 import type { DBButtonProps, DBButtonState } from './model';
 
 useMetadata({
@@ -38,11 +38,11 @@ export default function DBButton(props: DBButtonProps) {
 			type={state.getButtonType()}
 			disabled={getBoolean(props.disabled, 'disabled')}
 			data-icon={props.iconLeading ?? props.icon}
-			data-hide-icon={getHideProp(
+			data-show-icon={getBooleanAsString(
 				props.showIconLeading ?? props.showIcon
 			)}
 			data-icon-trailing={props.iconTrailing}
-			data-hide-icon-trailing={getHideProp(props.showIconTrailing)}
+			data-show-icon-trailing={getBooleanAsString(props.showIconTrailing)}
 			data-size={props.size}
 			data-width={props.width}
 			data-variant={props.variant}
