@@ -4,7 +4,10 @@ description: "Initialize Playwright Cache"
 inputs:
   version:
     description: "Playwright version"
-    required: false
+    required: true
+  os:
+    description: "OS version"
+    required: true
 runs:
   using: "composite"
   steps:
@@ -28,9 +31,9 @@ runs:
       id: playwright-cache
       with:
         path: ${{ env.CACHE_PATH }}
-        key: "${{ runner.os }}-playwright-${{ inputs.version }}"
+        key: "${{ inputs.os }}-playwright-${{ inputs.version }}"
         restore-keys: |
-          ${{ runner.os }}-playwright-
+          ${{ inputs.os }}-playwright-
 
     - name: 🎄🎸🥊 Log Cache Hit
       shell: bash

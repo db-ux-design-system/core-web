@@ -195,11 +195,17 @@ $db-min-inline-size: var(
 		--db-adaptive-bg-basic-transparent-semi-default: var(
 			--db-#{$variant}-bg-basic-transparent-semi-default
 		);
-		--db-adaptive-bg-basic-transparent-hovered: var(
-			--db-#{$variant}-bg-basic-transparent-hovered
+		--db-adaptive-bg-basic-transparent-full-hovered: var(
+			--db-#{$variant}-bg-basic-transparent-full-hovered
 		);
-		--db-adaptive-bg-basic-transparent-pressed: var(
-			--db-#{$variant}-bg-basic-transparent-pressed
+		--db-adaptive-bg-basic-transparent-full-pressed: var(
+			--db-#{$variant}-bg-basic-transparent-full-pressed
+		);
+		--db-adaptive-bg-basic-transparent-semi-hovered: var(
+			--db-#{$variant}-bg-basic-transparent-semi-hovered
+		);
+		--db-adaptive-bg-basic-transparent-semi-pressed: var(
+			--db-#{$variant}-bg-basic-transparent-semi-pressed
 		);
 		--db-adaptive-on-bg-basic-emphasis-100-default: var(
 			--db-#{$variant}-on-bg-basic-emphasis-100-default
@@ -279,8 +285,8 @@ $input-valid-types:
 }
 
 @mixin set-required-label($selector) {
-	&:has(#{$selector}:required):not([data-hide-asterisk="true"]),
-	&[data-required="true"]:not([data-hide-asterisk="true"]) {
+	&:has(#{$selector}:required),
+	&[data-required="true"] {
 		&:is(label),
 		> label {
 			&::after {
@@ -315,8 +321,11 @@ $input-valid-types:
 		--db-label-visible-above: 0;
 	}
 
+	&:not([data-hide-asterisk="true"]) {
+		@include set-required-label($selector);
+	}
+
 	@include set-floating-label-overwrites($selector);
-	@include set-required-label($selector);
 
 	@include get-validity($selector) {
 		&:has(
@@ -360,7 +369,7 @@ $input-valid-types:
 			);
 
 		@include helpers.hover {
-			background-color: colors.$db-adaptive-bg-basic-transparent-hovered;
+			background-color: colors.$db-adaptive-bg-basic-transparent-semi-hovered;
 		}
 
 		&:is(input, textarea) {
@@ -482,7 +491,7 @@ $input-valid-types:
 		input {
 			cursor: helpers.$cursor-pointer;
 			background-color: var(
-				--db-adaptive-bg-basic-transparent-#{$variant}
+				--db-adaptive-bg-basic-transparent-full-#{$variant}
 			);
 			@content;
 		}
@@ -492,7 +501,9 @@ $input-valid-types:
 @mixin set-default-check-element() {
 	@extend %db-overwrite-font-size-md;
 
-	@include set-required-label(input);
+	&:not([data-hide-asterisk="true"]) {
+		@include set-required-label(input);
+	}
 
 	&:has(input:disabled) {
 		opacity: variables.$db-opacity-md;

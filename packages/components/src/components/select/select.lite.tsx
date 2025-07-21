@@ -28,6 +28,7 @@ import {
 	cls,
 	delay,
 	getBoolean,
+	getBooleanAsString,
 	getHideProp,
 	getOptionKey,
 	hasVoiceOver,
@@ -196,15 +197,15 @@ export default function DBSelect(props: DBSelectProps) {
 			class={cls('db-select', props.className)}
 			data-variant={props.variant}
 			data-hide-label={getHideProp(props.showLabel)}
+			data-hide-asterisk={getHideProp(props.showRequiredAsterisk)}
 			data-icon={props.icon}
-			data-hide-icon={getHideProp(props.showIcon)}>
+			data-show-icon={getBooleanAsString(props.showIcon)}>
 			<label htmlFor={state._id}>{props.label ?? DEFAULT_LABEL}</label>
 			<select
 				aria-invalid={props.validation === 'invalid'}
 				data-custom-validity={props.validation}
 				ref={_ref}
 				required={getBoolean(props.required, 'required')}
-				data-hide-asterisk={getHideProp(props.showRequiredAsterisk)}
 				disabled={getBoolean(props.disabled, 'disabled')}
 				id={state._id}
 				name={props.name}

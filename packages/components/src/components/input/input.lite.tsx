@@ -30,6 +30,7 @@ import {
 	cls,
 	delay,
 	getBoolean,
+	getBooleanAsString,
 	getHideProp,
 	getInputValue,
 	getNumber,
@@ -200,12 +201,15 @@ export default function DBInput(props: DBInputProps) {
 			class={cls('db-input', props.className)}
 			data-variant={props.variant}
 			data-hide-label={getHideProp(props.showLabel)}
-			data-hide-icon={getHideProp(
+			data-show-icon={getBooleanAsString(
 				props.showIconLeading ?? props.showIcon
 			)}
 			data-icon={props.iconLeading ?? props.icon}
 			data-icon-trailing={props.iconTrailing}
-			data-hide-icon-trailing={getHideProp(props.showIconTrailing)}>
+			data-hide-asterisk={getHideProp(props.showRequiredAsterisk)}
+			data-show-icon-trailing={getBooleanAsString(
+				props.showIconTrailing
+			)}>
 			<label htmlFor={state._id}>{props.label ?? DEFAULT_LABEL}</label>
 			<input
 				aria-invalid={props.validation === 'invalid'}
@@ -219,7 +223,6 @@ export default function DBInput(props: DBInputProps) {
 				placeholder={props.placeholder ?? DEFAULT_PLACEHOLDER}
 				disabled={getBoolean(props.disabled, 'disabled')}
 				required={getBoolean(props.required, 'required')}
-				data-hide-asterisk={getHideProp(props.showRequiredAsterisk)}
 				step={getNumber(props.step)}
 				value={props.value ?? state._value}
 				maxLength={getNumber(props.maxLength, props.maxlength)}

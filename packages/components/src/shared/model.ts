@@ -147,7 +147,7 @@ export type PlacementProps = {
 };
 
 export type NavigationBehaviorState = {
-	handleNavigationItemClick: (event: unknown) => void;
+	handleNavigationItemClick: (event: any) => void;
 };
 
 export type GapProps = {
@@ -189,7 +189,7 @@ export type WrapProps = {
 	 * Determines whether the text should wrap when its parent container is too small, preventing overflow.
 	 */
 	wrap?: boolean | string;
-}
+};
 
 export const OrientationList = ['horizontal', 'vertical'] as const;
 export type OrientationType = (typeof OrientationList)[number];

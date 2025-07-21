@@ -10,6 +10,7 @@ import DefaultComponent from "../DefaultComponent.vue";
 			#example="{ exampleIndex, variantIndex, exampleName, exampleProps }"
 		>
 			<DBRadio
+				:showRequiredAsterisk="exampleProps?.showRequiredAsterisk"
 				:label="exampleProps?.label"
 				:size="exampleProps?.size"
 				:name="exampleProps?.name"
