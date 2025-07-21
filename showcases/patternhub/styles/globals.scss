@@ -91,7 +91,7 @@ iframe {
 	}
 }
 
-/* TODO: Use real table css in future */
+/* Custom table styles - consider migrating to DBTable component when available */
 table {
 	@extend %db-density-functional;
 

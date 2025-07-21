@@ -1,4 +1,4 @@
-// TODO: Make own shiki template
+// Custom DB UX theme based on Nord theme for code highlighting
 export const getTheme = () => ({
 	name: 'nord',
 	type: 'dark',

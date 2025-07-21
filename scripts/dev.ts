@@ -87,8 +87,12 @@ const startDev = () => {
 		startCommand += ` start-showcase:${currentAnswer}`;
 	}
 
-	// TODO: Handle child process better
-	childProcess.execSync(startCommand, { stdio: 'inherit' });
+	try {
+		childProcess.execSync(startCommand, { stdio: 'inherit' });
+	} catch (error) {
+		console.error('Error starting development servers:', error.message);
+		process.exit(1);
+	}
 };
 
 startDev();

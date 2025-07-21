@@ -37,7 +37,11 @@ inquirer
 
 		fileContent += `## Conclusion
 
-		TODO: Add your findings here
+Please document your findings here:
+- Key patterns observed across design systems
+- Recommended approach for implementation
+- Notable accessibility considerations
+- Compatibility requirements
 		`;
 
 		if (!FS.existsSync(path)) {
