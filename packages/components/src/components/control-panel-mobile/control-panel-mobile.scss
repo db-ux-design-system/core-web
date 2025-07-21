@@ -59,7 +59,8 @@
 
 	#{string.unquote(custom-elements.$drawer)} {
 		--db-drawer-content-padding-inline: 0;
-		--db-drawer-max-width: #{screen-sizes.$db-breakpoint-xs};
+		/* TODO: Use container query here */
+		--db-drawer-max-width: 320px;
 		--db-drawer-max-height: 63vh;
 
 		> .db-drawer-container {

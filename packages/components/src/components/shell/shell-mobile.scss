@@ -14,14 +14,36 @@
 		)
 	) {
 		&[data-control-panel-mobile-position="top"] {
-			grid-template-areas:
-				"control-panel"
-				"sub-navigation"
-				"main";
-			grid-template-rows:
-				[control-panel] auto
-				[control-panel] auto
-				[main] 1fr;
+			&:not([data-sub-navigation-mobile-position]),
+			&[data-sub-navigation-mobile-position="top"] {
+				grid-template-areas:
+					"control-panel"
+					"sub-navigation"
+					"main";
+				grid-template-rows:
+					[control-panel] auto
+					[sub-navigation] auto
+					[main] 1fr;
+
+				#{string.unquote(custom-elements.$shell-sub-navigation)} {
+					@include helpers.divider("bottom");
+				}
+			}
+
+			&[data-sub-navigation-mobile-position="bottom"] {
+				grid-template-areas:
+					"control-panel"
+					"main"
+					"sub-navigation";
+				grid-template-rows:
+					[control-panel] auto
+					[main] 1fr
+					[sub-navigation] auto;
+
+				#{string.unquote(custom-elements.$shell-sub-navigation)} {
+					@include helpers.divider("top");
+				}
+			}
 		}
 
 		&[data-control-panel-mobile-position="bottom"] {
@@ -33,48 +55,9 @@
 				[control-panel] auto
 				[main] 1fr
 				[control-panel] auto;
-		}
 
-		&[data-sub-navigation-mobile-position="hidden"] {
-			#{string.unquote(custom-elements.$shell-sub-navigation)} {
-				#{string.unquote(custom-elements.$navigation)} {
-					display: none;
-				}
-			}
-		}
-
-		&:not([data-sub-navigation-mobile-position]),
-		&[data-sub-navigation-mobile-position="top"] {
 			#{string.unquote(custom-elements.$shell-sub-navigation)} {
 				@include helpers.divider("bottom");
-			}
-
-			#{string.unquote(custom-elements.$shell-sub-navigation)} {
-				#{string.unquote(custom-elements.$navigation)} {
-					--db-overflow-scroll-button-inset-block: #{variables.$db-spacing-fixed-xs};
-					--db-overflow-scroll-button-inset-inline-start: 0;
-
-					display: grid;
-
-					@include control-panel-desktop.horizontal-navigation(false);
-
-					#{string.unquote(custom-elements.$overflow-scroll-left-button)},
-					#{string.unquote(custom-elements.$overflow-scroll-right-button)} {
-						display: none;
-					}
-
-					> menu {
-						padding-block: variables.$db-spacing-fixed-xs;
-
-						/* workaround for showing correct scrolling and focus */
-						padding-inline-start: calc(
-							#{variables.$db-spacing-fixed-sm} / 2
-						);
-						margin-inline-start: calc(
-							#{variables.$db-spacing-fixed-sm} / 2
-						);
-					}
-				}
 			}
 		}
 
@@ -88,6 +71,32 @@
 				// Users should add a custom implementation for this scenario or
 				// They should use another mobile navigation
 				display: none !important;
+			}
+
+			#{string.unquote(custom-elements.$navigation)} {
+				--db-overflow-scroll-button-inset-block: #{variables.$db-spacing-fixed-xs};
+				--db-overflow-scroll-button-inset-inline-start: 0;
+
+				display: grid;
+
+				@include control-panel-desktop.horizontal-navigation(false);
+
+				#{string.unquote(custom-elements.$overflow-scroll-left-button)},
+				#{string.unquote(custom-elements.$overflow-scroll-right-button)} {
+					display: none;
+				}
+
+				> menu {
+					padding-block: variables.$db-spacing-fixed-xs;
+
+					/* workaround for showing correct scrolling and focus */
+					padding-inline-start: calc(
+						#{variables.$db-spacing-fixed-sm} / 2
+					);
+					margin-inline-start: calc(
+						#{variables.$db-spacing-fixed-sm} / 2
+					);
+				}
 			}
 		}
 

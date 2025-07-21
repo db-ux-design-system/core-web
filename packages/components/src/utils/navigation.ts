@@ -226,6 +226,11 @@ export const handleSubNavigationPosition = (
 			'.db-navigation-item-group-expand-button'
 		);
 		if (subNavigation && button) {
+			/*
+			 * This is set via css inside:
+			 * `packages/components/src/components/navigation-item-group/navigation-item-group-menu-popover.scss`.
+			 * We don't need to calculate the position of the menu as a popover.
+			 */
 			const isMobile = getComputedStyle(subNavigation).getPropertyValue(
 				'--db-navigation-item-group-menu-mobile'
 			);

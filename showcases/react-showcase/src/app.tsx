@@ -3,8 +3,6 @@ import {
 	DBControlPanelBrand,
 	DBControlPanelDesktop,
 	DBControlPanelMobile,
-	DBNavigation,
-	DBNavigationItem,
 	DBShell,
 	DBShellSubNavigation
 } from '@components';
@@ -49,9 +47,7 @@ const App = () => {
 			}
 			controlPanelMobile={
 				<DBControlPanelMobile
-					brandDrawer={
-						<DBControlPanelBrand>Showcase</DBControlPanelBrand>
-					}
+					drawerHeadline="Showcase"
 					brand={<DBControlPanelBrand>Showcase</DBControlPanelBrand>}
 					primaryActions={<PrimaryActions />}
 					secondaryActions={<SecondaryActions />}

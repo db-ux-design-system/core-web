@@ -38,8 +38,8 @@ export type DefaultSettings = {
 	controlPanelDesktopPosition: 'top' | 'left';
 	controlPanelMobilePosition: 'bottom' | 'top';
 	subNavigationDesktopPosition: 'top' | 'left';
-	subNavigationMobilePosition: 'top' | 'hidden';
-	subNavigation: "true" | "false";
+	subNavigationMobilePosition: 'top' | 'bottom';
+	subNavigation: 'true' | 'false';
 	subNavigationVariant: 'tree' | 'popover';
 	navigationDesktopVariant: 'tree' | 'popover';
 	navigationMobileVariant: 'tree' | 'popover';
@@ -49,8 +49,8 @@ export const defaultSettingsMapping = {
 	controlPanelDesktopPosition: ['top', 'left'],
 	controlPanelMobilePosition: ['bottom', 'top'],
 	subNavigationDesktopPosition: ['top', 'left'],
-	subNavigationMobilePosition: ['top', 'hidden'],
-	subNavigation: ["true", "false"],
+	subNavigationMobilePosition: ['top', 'bottom'],
+	subNavigation: ['true', 'false'],
 	subNavigationVariant: ['tree', 'popover'],
 	navigationDesktopVariant: ['tree', 'popover'],
 	navigationMobileVariant: ['tree', 'popover']
@@ -58,9 +58,9 @@ export const defaultSettingsMapping = {
 
 export const defaultSettings: DefaultSettings = {
 	navigationMobileVariant: 'popover',
-	subNavigation: "false",
+	subNavigation: 'false',
 	subNavigationDesktopPosition: 'top',
-	subNavigationMobilePosition: 'hidden',
+	subNavigationMobilePosition: 'top',
 	subNavigationVariant: 'tree',
 	controlPanelDesktopPosition: 'top',
 	controlPanelMobilePosition: 'top',

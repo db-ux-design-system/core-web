@@ -1,4 +1,5 @@
 import {
+	Show,
 	Slot,
 	useDefaultProps,
 	useMetadata,
@@ -50,9 +51,11 @@ export default function DBControlPanelMobile(props: DBControlPanelMobileProps) {
 			id={props.id}
 			data-width={props.width}
 			data-position={props.position}
+			data-variant={props.variant}
+			data-density="regular"
 			class={cls('db-control-panel-mobile', props.className)}>
 			<DBDrawer
-				drawerHeader={<Slot name="brandDrawer" />}
+				drawerHeader={<Slot name="drawerHeadline" />}
 				direction="custom"
 				rounded
 				spacing="small"

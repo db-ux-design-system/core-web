@@ -12,7 +12,7 @@
 		[subNavigationMobilePosition]="settings.subNavigationMobilePosition"
 		[showSubNavigation]="settings.subNavigation === 'true'"
 	>
-		<db-shell-sub-navigation sub-navigation>
+		<db-shell-sub-navigation sub-navigation slot="subNavigation">
 			<db-navigation
 				slot="subNavigation"
 				aria-label="sub-navigation"
@@ -55,6 +55,9 @@
 			</db-navigation>
 		</db-control-panel-desktop>
 		<db-control-panel-mobile control-panel-mobile slot="controlPanelMobile">
+			<ng-container slot="drawerHeadline" drawer-headline>
+				Showcase
+			</ng-container>
 			<db-control-panel-brand brand slot="brand">
 				Showcase
 			</db-control-panel-brand>
