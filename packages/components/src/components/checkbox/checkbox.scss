@@ -48,14 +48,14 @@
 
 	input {
 		&:not(:checked) {
-			--db-adaptive-bg-basic-transparent-default: var(
-				--db-#{$variant}-bg-basic-transparent-default
+			--db-adaptive-bg-basic-transparent-full-default: var(
+				--db-#{$variant}-bg-basic-transparent-full-default
 			);
-			--db-adaptive-bg-basic-transparent-hovered: var(
-				--db-#{$variant}-bg-basic-transparent-hovered
+			--db-adaptive-bg-basic-transparent-full-hovered: var(
+				--db-#{$variant}-bg-basic-transparent-full-hovered
 			);
-			--db-adaptive-bg-basic-transparent-pressed: var(
-				--db-#{$variant}-bg-basic-transparent-pressed
+			--db-adaptive-bg-basic-transparent-full-pressed: var(
+				--db-#{$variant}-bg-basic-transparent-full-pressed
 			);
 		}
 
@@ -64,10 +64,10 @@
 			--db-adaptive-bg-basic-transparent-full-default: var(
 				--db-#{$variant}-bg-inverted-contrast-high-default
 			);
-			--db-adaptive-bg-basic-transparent-hovered: var(
+			--db-adaptive-bg-basic-transparent-full-hovered: var(
 				--db-#{$variant}-bg-inverted-contrast-high-hovered
 			);
-			--db-adaptive-bg-basic-transparent-pressed: var(
+			--db-adaptive-bg-basic-transparent-full-pressed: var(
 				--db-#{$variant}-bg-inverted-contrast-high-pressed
 			);
 		}
@@ -106,10 +106,10 @@
 			--db-adaptive-bg-basic-transparent-full-default: var(
 				--db-adaptive-bg-inverted-contrast-max-default
 			);
-			--db-adaptive-bg-basic-transparent-hovered: var(
+			--db-adaptive-bg-basic-transparent-full-hovered: var(
 				--db-adaptive-bg-inverted-contrast-max-hovered
 			);
-			--db-adaptive-bg-basic-transparent-pressed: var(
+			--db-adaptive-bg-basic-transparent-full-pressed: var(
 				--db-adaptive-bg-inverted-contrast-max-pressed
 			);
 

@@ -50,5 +50,15 @@ export const v200_v300: ReplaceInFileConfig[] = [
 		files: '',
 		from: /ariapressed/g,
 		to: 'aria-pressed'
+	},
+	{
+		files: '',
+		from: /transparent-hovered/g,
+		to: 'transparent-full-hovered'
+	},
+	{
+		files: '',
+		from: /transparent-pressed/g,
+		to: 'transparent-full-pressed'
 	}
 ];
