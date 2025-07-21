@@ -61,14 +61,10 @@ export default (tmp?: boolean) => {
 			if (component?.config?.vue?.vModel) {
 				replacements.push({
 					from: 'const props =',
-					to: `const emit = defineEmits(${JSON.stringify(
-						component?.config?.vue?.vModel.map(
-							(bin) => `update:${bin.modelValue}`
-						)
-					)})\n\nconst props =`
+					to: `const emit = defineEmits(${JSON.stringify(component?.config?.vue?.vModel.map((bin) => `update:${bin.modelValue}`))})\n\nconst props =`
 				});
 				replacements.push({
-					from: 'handleFrameworkEventVue(() => {}',
+					from: /handleFrameworkEventVue\(\s*\(\)\s*=>\s*\{}\s*?/g,
 					to: 'handleFrameworkEventVue(emit'
 				});
 			}

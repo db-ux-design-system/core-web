@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import DefaultComponent from "../DefaultComponent.vue";
-import defaultComponentVariants from "../../../../shared/checkbox.json";
 import { DBCheckbox, DBInfotext } from "../../../../../output/vue/src";
+import defaultComponentVariants from "../../../../shared/checkbox.json";
+import DefaultComponent from "../DefaultComponent.vue";
 </script>
 
 <template>
@@ -10,6 +10,7 @@ import { DBCheckbox, DBInfotext } from "../../../../../output/vue/src";
 			#example="{ exampleIndex, variantIndex, exampleName, exampleProps }"
 		>
 			<DBCheckbox
+				:showRequiredAsterisk="exampleProps?.showRequiredAsterisk"
 				:label="exampleProps?.label"
 				:variant="exampleProps?.variant"
 				:show-label="exampleProps?.showLabel"

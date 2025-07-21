@@ -1,10 +1,10 @@
-import DefaultPage from '../../../components/default-page';
 import {
-	DBInfotext,
+	DBButton,
 	DBCard,
 	DBIcon,
-	DBButton
+	DBInfotext
 } from '../../../../../output/react/src';
+import DefaultPage from '../../../components/default-page';
 
 const Example = () => {
 	return (
@@ -13,7 +13,7 @@ const Example = () => {
 			<blockquote>
 				<ul>
 					<li>
-						Some of the variables are "missused" to visualize the
+						Some of the variables are "misused" to visualize the
 						effect of e.g. a padding.
 					</li>
 					<li>
@@ -45,9 +45,7 @@ const Example = () => {
 												density.slice(1)}
 										</DBInfotext>
 										<div
-											className={`example-${example
-												.toLowerCase()
-												.replaceAll(' ', '-')}`}>
+											className={`example-${example.toLowerCase().replaceAll(' ', '-')}`}>
 											{example === 'Spacing fixed' && (
 												<div>
 													<DBIcon icon="x_placeholder">

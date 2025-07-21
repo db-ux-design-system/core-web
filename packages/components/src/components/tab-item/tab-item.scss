@@ -18,7 +18,7 @@ $with-icon-padding-calc: calc(
 	border-radius: variables.$db-border-radius-sm;
 
 	&:has(input:disabled) {
-		opacity: component.$default-disabled;
+		opacity: variables.$db-opacity-md;
 	}
 
 	label {
@@ -34,7 +34,7 @@ $with-icon-padding-calc: calc(
 
 		@include helpers.hover {
 			&:has(:not(input:disabled)) {
-				background-color: colors.$db-adaptive-bg-basic-transparent-hovered;
+				background-color: colors.$db-adaptive-bg-basic-transparent-full-hovered;
 			}
 
 			&:has(input:disabled) {
@@ -44,7 +44,7 @@ $with-icon-padding-calc: calc(
 
 		@include helpers.hover {
 			&:has(:not(input:disabled)) {
-				background-color: colors.$db-adaptive-bg-basic-transparent-hovered;
+				background-color: colors.$db-adaptive-bg-basic-transparent-full-hovered;
 			}
 
 			&:has(input:disabled) {
@@ -69,7 +69,7 @@ $with-icon-padding-calc: calc(
 			}
 		}
 
-		&[data-icon-after] {
+		&[data-icon-trailing] {
 			padding-inline-end: $with-icon-padding-calc;
 
 			&::after {

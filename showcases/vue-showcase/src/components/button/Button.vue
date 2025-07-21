@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import DefaultComponent from "../DefaultComponent.vue";
-import defaultComponentVariants from "../../../../shared/button.json";
 import { DBButton } from "../../../../../output/vue/src";
+import defaultComponentVariants from "../../../../shared/button.json";
+import DefaultComponent from "../DefaultComponent.vue";
 
 const log = (exampleName: string) => {
 	// eslint-disable-next-line no-alert
@@ -18,8 +18,10 @@ const log = (exampleName: string) => {
 				:variant="exampleProps?.variant"
 				:size="exampleProps?.size"
 				:icon="exampleProps?.icon"
-				:noText="exampleProps?.noText"
 				:showIcon="exampleProps?.showIcon"
+				:iconTrailing="exampleProps?.iconTrailing"
+				:showIconTrailing="exampleProps?.showIconTrailing"
+				:noText="exampleProps?.noText"
 				:disabled="exampleProps?.disabled"
 				:width="exampleProps?.width"
 				@click="log(exampleName)"

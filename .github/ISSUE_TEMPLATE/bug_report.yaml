@@ -2,16 +2,19 @@ name: 🐞 Bug Report
 description: Create a report to help us improve
 labels: [bug]
 type: Bug
+projects: "db-ux-design-system/6"
 body:
   - type: markdown
     attributes:
       value: |
-        Thanks for taking the time to fill out this bug report! Feedback by the community has a very high value for us, to improve our work and to have every other user benefit from it as well. 🙂
+        Thank you for taking the time to fill out this bug report! Feedback from the community is highly valuable to us, as it helps improve our work and benefits all users. 🙂
+
+        We would be more than happy if you could share a URL if the problem occurs in our [documentation](https://design-system.deutschebahn.com/core-web/), or at least some code. Even better would be a [working example on StackBlitz or CodeSandbox](https://design-system.deutschebahn.com/core-web/version/latest/foundations/playgrounds). Please keep in mind not to share any internal information or data this way. This includes internal URLs. Only use sample material.
 
   - type: checkboxes
     id: component
     attributes:
-      label: Which generators are impacted?
+      label: Which generators are affected?
       description: Select all the ones that apply, to the best of your knowledge.
       options:
         - label: All
@@ -50,7 +53,7 @@ body:
       required: false
     attributes:
       label: Browser version
-      description: Does this bug affect specific browser?
+      description: Does this bug affect a specific browser?
       options:
         - Chrome
         - Safari

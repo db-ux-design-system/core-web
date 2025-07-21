@@ -24,7 +24,7 @@ You can enable auto-complete of CSS classes (like e.g. `db-color-cyan`) for `HTM
 
 ### VS Code
 
-1. Install [the CSS Variable Autocomplete extesion](https://marketplace.visualstudio.com/items?itemName=vunguyentuan.vscode-css-variables).
+1. Install [the CSS Variable Autocomplete extension](https://marketplace.visualstudio.com/items?itemName=vunguyentuan.vscode-css-variables).
 2. If it doesn't exist, create a new file `.vscode/settings.json` in your project
 3. Add this to `settings.json`:
 

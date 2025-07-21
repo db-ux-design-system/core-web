@@ -8,18 +8,6 @@ import {
 	useStore,
 	useTarget
 } from '@builder.io/mitosis';
-import { DBTextareaProps, DBTextareaState } from './model';
-import DBInfotext from '../infotext/infotext.lite';
-import {
-	cls,
-	delay,
-	getBoolean,
-	getHideProp,
-	getNumber,
-	hasVoiceOver,
-	stringPropVisible,
-	uuid
-} from '../../utils';
 import {
 	DEFAULT_INVALID_MESSAGE,
 	DEFAULT_INVALID_MESSAGE_ID_SUFFIX,
@@ -32,9 +20,21 @@ import {
 } from '../../shared/constants';
 import { ChangeEvent, InputEvent, InteractionEvent } from '../../shared/model';
 import {
+	cls,
+	delay,
+	getBoolean,
+	getHideProp,
+	getNumber,
+	hasVoiceOver,
+	stringPropVisible,
+	uuid
+} from '../../utils';
+import {
 	handleFrameworkEventAngular,
 	handleFrameworkEventVue
 } from '../../utils/form-components';
+import DBInfotext from '../infotext/infotext.lite';
+import { DBTextareaProps, DBTextareaState } from './model';
 
 useMetadata({
 	angular: {
@@ -89,7 +89,6 @@ export default function DBTextarea(props: DBTextareaProps) {
 			}
 		},
 		handleInput: (event: InputEvent<HTMLTextAreaElement>) => {
-			event.stopPropagation();
 			useTarget({
 				vue: () => {
 					if (props.input) {
@@ -112,7 +111,6 @@ export default function DBTextarea(props: DBTextareaProps) {
 			state.handleValidation();
 		},
 		handleChange: (event: ChangeEvent<HTMLTextAreaElement>) => {
-			event.stopPropagation();
 			if (props.onChange) {
 				props.onChange(event);
 			}
@@ -123,13 +121,11 @@ export default function DBTextarea(props: DBTextareaProps) {
 			state.handleValidation();
 		},
 		handleBlur: (event: InteractionEvent<HTMLTextAreaElement> | any) => {
-			event.stopPropagation();
 			if (props.onBlur) {
 				props.onBlur(event);
 			}
 		},
 		handleFocus: (event: InteractionEvent<HTMLTextAreaElement> | any) => {
-			event.stopPropagation();
 			if (props.onFocus) {
 				props.onFocus(event);
 			}
@@ -174,15 +170,18 @@ export default function DBTextarea(props: DBTextareaProps) {
 		<div
 			class={cls('db-textarea', props.className)}
 			data-variant={props.variant}
+			data-hide-asterisk={getHideProp(props.showRequiredAsterisk)}
 			data-hide-label={getHideProp(props.showLabel)}>
 			<label htmlFor={state._id}>{props.label ?? DEFAULT_LABEL}</label>
 
 			<textarea
 				aria-invalid={props.validation === 'invalid'}
 				data-custom-validity={props.validation}
+				data-field-sizing={props.fieldSizing}
 				ref={_ref}
 				id={state._id}
 				data-resize={props.resize}
+				data-hide-resizer={getHideProp(props.showResizer ?? true)}
 				disabled={getBoolean(props.disabled, 'disabled')}
 				required={getBoolean(props.required, 'required')}
 				readOnly={
@@ -209,7 +208,7 @@ export default function DBTextarea(props: DBTextareaProps) {
 					state.handleFocus(event)
 				}
 				value={props.value ?? state._value}
-				aria-describedby={state._descByIds}
+				aria-describedby={props.ariaDescribedBy ?? state._descByIds}
 				placeholder={props.placeholder ?? DEFAULT_PLACEHOLDER}
 				rows={getNumber(props.rows, DEFAULT_ROWS)}
 				cols={getNumber(props.cols)}

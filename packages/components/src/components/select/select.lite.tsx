@@ -9,16 +9,6 @@ import {
 	useStore,
 	useTarget
 } from '@builder.io/mitosis';
-import { DBSelectOptionType, DBSelectProps, DBSelectState } from './model';
-import {
-	cls,
-	delay,
-	getBoolean,
-	getHideProp,
-	hasVoiceOver,
-	stringPropVisible,
-	uuid
-} from '../../utils';
 import {
 	DEFAULT_INVALID_MESSAGE,
 	DEFAULT_INVALID_MESSAGE_ID_SUFFIX,
@@ -28,7 +18,6 @@ import {
 	DEFAULT_VALID_MESSAGE,
 	DEFAULT_VALID_MESSAGE_ID_SUFFIX
 } from '../../shared/constants';
-import DBInfotext from '../infotext/infotext.lite';
 import {
 	ChangeEvent,
 	ClickEvent,
@@ -36,9 +25,22 @@ import {
 	InteractionEvent
 } from '../../shared/model';
 import {
+	cls,
+	delay,
+	getBoolean,
+	getBooleanAsString,
+	getHideProp,
+	getOptionKey,
+	hasVoiceOver,
+	stringPropVisible,
+	uuid
+} from '../../utils';
+import {
 	handleFrameworkEventAngular,
 	handleFrameworkEventVue
 } from '../../utils/form-components';
+import DBInfotext from '../infotext/infotext.lite';
+import { DBSelectOptionType, DBSelectProps, DBSelectState } from './model';
 
 useMetadata({
 	angular: {
@@ -95,13 +97,11 @@ export default function DBSelect(props: DBSelectProps) {
 			}
 		},
 		handleClick: (event: ClickEvent<HTMLSelectElement> | any) => {
-			event.stopPropagation();
 			if (props.onClick) {
 				props.onClick(event);
 			}
 		},
 		handleInput: (event: InputEvent<HTMLSelectElement> | any) => {
-			event.stopPropagation();
 			useTarget({
 				vue: () => {
 					if (props.input) {
@@ -125,7 +125,6 @@ export default function DBSelect(props: DBSelectProps) {
 			state.handleValidation();
 		},
 		handleChange: (event: ChangeEvent<HTMLSelectElement> | any) => {
-			event.stopPropagation();
 			if (props.onChange) {
 				props.onChange(event);
 			}
@@ -137,13 +136,11 @@ export default function DBSelect(props: DBSelectProps) {
 			state.handleValidation();
 		},
 		handleBlur: (event: InteractionEvent<HTMLSelectElement> | any) => {
-			event.stopPropagation();
 			if (props.onBlur) {
 				props.onBlur(event);
 			}
 		},
 		handleFocus: (event: InteractionEvent<HTMLSelectElement> | any) => {
-			event.stopPropagation();
 			if (props.onFocus) {
 				props.onFocus(event);
 			}
@@ -200,8 +197,9 @@ export default function DBSelect(props: DBSelectProps) {
 			class={cls('db-select', props.className)}
 			data-variant={props.variant}
 			data-hide-label={getHideProp(props.showLabel)}
+			data-hide-asterisk={getHideProp(props.showRequiredAsterisk)}
 			data-icon={props.icon}
-			data-hide-icon={getHideProp(props.showIcon)}>
+			data-show-icon={getBooleanAsString(props.showIcon)}>
 			<label htmlFor={state._id}>{props.label ?? DEFAULT_LABEL}</label>
 			<select
 				aria-invalid={props.validation === 'invalid'}
@@ -230,22 +228,54 @@ export default function DBSelect(props: DBSelectProps) {
 				onFocus={(event: InteractionEvent<HTMLSelectElement>) =>
 					state.handleFocus(event)
 				}
-				aria-describedby={state._descByIds}>
+				aria-describedby={props.ariaDescribedBy ?? state._descByIds}>
 				{/* Empty option for floating label */}
 				<option hidden></option>
-				<Show when={props.options} else={props.children}>
+				<Show when={props.options?.length} else={props.children}>
 					<For each={props.options}>
 						{(option: DBSelectOptionType) => (
 							<>
-								<Show when={option.options}>
+								<Show
+									when={option.options}
+									else={
+										<option
+											key={useTarget({
+												vue: undefined,
+												stencil: undefined,
+												default: getOptionKey(
+													option,
+													'select-option-'
+												)
+											})}
+											value={option.value}
+											disabled={option.disabled}
+											selected={option.selected}>
+											{state.getOptionLabel(option)}
+										</option>
+									}>
 									<optgroup
-										label={state.getOptionLabel(option)}>
+										label={state.getOptionLabel(option)}
+										key={useTarget({
+											vue: undefined,
+											stencil: undefined,
+											default: getOptionKey(
+												option,
+												'select-optgroup-'
+											)
+										})}>
 										<For each={option.options}>
 											{(
 												optgroupOption: DBSelectOptionType
 											) => (
 												<option
-													key={optgroupOption.value.toString()}
+													key={useTarget({
+														vue: undefined,
+														stencil: undefined,
+														default: getOptionKey(
+															optgroupOption,
+															'select-optgroup-option-'
+														)
+													})}
 													value={optgroupOption.value}
 													selected={
 														optgroupOption.selected
@@ -260,14 +290,6 @@ export default function DBSelect(props: DBSelectProps) {
 											)}
 										</For>
 									</optgroup>
-								</Show>
-								<Show when={!option.options}>
-									<option
-										value={option.value}
-										disabled={option.disabled}
-										selected={option.selected}>
-										{state.getOptionLabel(option)}
-									</option>
 								</Show>
 							</>
 						)}

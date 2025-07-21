@@ -33,7 +33,7 @@
 				@include screen-sizes.screen("md") {
 					&::after {
 						--db-icon-margin-start: #{variables.$db-spacing-fixed-sm};
-						--db-icon-after: "chevron_down";
+						--db-icon-trailing: "chevron_down";
 
 						@media screen and (prefers-reduced-motion: no-preference) {
 							transition: form-components.$dropdown-icon-transition;
@@ -42,12 +42,12 @@
 
 					&:is(:hover, :focus-visible),
 					&:has(
-							~ .db-sub-navigation:is(
-									:hover,
-									:focus-visible,
-									:focus-within
-								)
-						) {
+						~ .db-sub-navigation:is(
+								:hover,
+								:focus-visible,
+								:focus-within
+							)
+					) {
 						&::after {
 							transform: form-components.$dropdown-icon-transform;
 						}
@@ -61,7 +61,7 @@
 				.db-navigation-item-expand-button > button {
 					@include screen-sizes.screen("md") {
 						&::after {
-							--db-icon-after: "chevron_right";
+							--db-icon-trailing: "chevron_right";
 							--db-icon-margin-start: auto;
 						}
 
@@ -86,16 +86,6 @@
 			&[aria-current="page"],
 			&[data-active="true"] {
 				@extend %show-db-puls-auto;
-
-				menu {
-					// hide puls for non navigation items
-					:has([aria-current="page"]),
-					[aria-current="page"] {
-						&::after {
-							display: none;
-						}
-					}
-				}
 			}
 
 			// angular workaround: as no direct-child selector can be used, the pulse is hidden from the second level onwards

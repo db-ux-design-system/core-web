@@ -65,15 +65,15 @@
 	justify-content: space-between;
 
 	@include helpers.hover {
-		background-color: colors.$db-adaptive-bg-basic-transparent-hovered;
+		background-color: colors.$db-adaptive-bg-basic-transparent-full-hovered;
 	}
 
 	@include helpers.active {
-		background-color: colors.$db-adaptive-bg-basic-transparent-pressed;
+		background-color: colors.$db-adaptive-bg-basic-transparent-full-pressed;
 	}
 
 	&:has(~ .db-sub-navigation:is(:hover, :focus)) {
-		background-color: colors.$db-adaptive-bg-basic-transparent-hovered;
+		background-color: colors.$db-adaptive-bg-basic-transparent-full-hovered;
 	}
 }
 
@@ -161,7 +161,7 @@
 	}
 
 	&[aria-disabled="true"] {
-		opacity: component.$default-disabled;
+		opacity: variables.$db-opacity-md;
 		pointer-events: none;
 	}
 }

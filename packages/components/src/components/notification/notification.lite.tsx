@@ -6,11 +6,16 @@ import {
 	useRef,
 	useStore
 } from '@builder.io/mitosis';
-import { DBNotificationProps, DBNotificationState } from './model';
-import DBButton from '../button/button.lite';
 import { DEFAULT_CLOSE_BUTTON } from '../../shared/constants';
-import { cls, getBoolean, getHideProp, stringPropVisible } from '../../utils';
 import { ClickEvent } from '../../shared/model';
+import {
+	cls,
+	getBoolean,
+	getBooleanAsString,
+	stringPropVisible
+} from '../../utils';
+import DBButton from '../button/button.lite';
+import { DBNotificationProps, DBNotificationState } from './model';
 
 useMetadata({});
 
@@ -20,7 +25,9 @@ export default function DBNotification(props: DBNotificationProps) {
 	const _ref = useRef<HTMLDivElement | any>(null);
 	// jscpd:ignore-start
 	const state = useStore<DBNotificationState>({
-		handleClose: (event: ClickEvent<HTMLButtonElement> | any) => {
+		handleClose: (event?: ClickEvent<HTMLButtonElement> | void) => {
+			if (!event) return;
+
 			event.stopPropagation();
 			if (props.onClose) {
 				props.onClose(event);
@@ -38,7 +45,7 @@ export default function DBNotification(props: DBNotificationProps) {
 			data-semantic={props.semantic}
 			data-variant={props.variant}
 			data-icon={props.icon}
-			data-hide-icon={getHideProp(props.showIcon)}
+			data-show-icon={getBooleanAsString(props.showIcon)}
 			data-link-variant={props.linkVariant}>
 			<Slot name="image" />
 			<Show when={stringPropVisible(props.headline, props.showHeadline)}>

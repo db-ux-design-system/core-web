@@ -164,6 +164,25 @@
 		]
 	},
 	{
+		"name": "Show Required Asterisk",
+		"examples": [
+			{
+				"name": "(Default) True",
+				"props": {
+					"required": true,
+					"showRequiredAsterisk": true
+				}
+			},
+			{
+				"name": "False",
+				"props": {
+					"required": true,
+					"showRequiredAsterisk": false
+				}
+			}
+		]
+	},
+	{
 		"name": "Examples",
 		"examples": [
 			{
@@ -171,7 +190,7 @@
 				"props": {
 					"visualAid": true,
 					"icon": "cross_circle",
-					"iconAfter": "clock"
+					"iconTrailing": "clock"
 				}
 			},
 			{
@@ -179,7 +198,7 @@
 				"props": {
 					"visualAid": true,
 					"icon": "cross_circle",
-					"iconAfter": "clock",
+					"iconTrailing": "clock",
 					"emphasis": "strong"
 				}
 			}

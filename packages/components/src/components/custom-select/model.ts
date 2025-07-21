@@ -1,23 +1,27 @@
 import {
 	BaseFormProps,
+	ClickEvent,
 	CloseEventState,
 	CustomFormProps,
+	DocumentScrollState,
 	FormMessageProps,
 	FormState,
 	FromValidState,
+	GeneralEvent,
 	GlobalProps,
 	GlobalState,
 	IconProps,
+	InputEvent,
+	InteractionEvent,
 	PlacementVerticalType,
-	PopoverState,
 	RequiredProps,
 	ShowIconProps,
 	ShowLabelProps,
 	ValidationType,
 	WidthType
 } from '../../shared/model';
-import { DBCustomSelectFormFieldDefaultProps } from '../custom-select-form-field/model';
 import { CustomSelectDropdownWidthType } from '../custom-select-dropdown/model';
+import { DBCustomSelectFormFieldDefaultProps } from '../custom-select-form-field/model';
 import { DBCustomSelectListItemExtraProps } from '../custom-select-list-item/model';
 
 export type CustomSelectOptionType = {
@@ -71,22 +75,31 @@ export type DBCustomSelectEvents = {
 	/**
 	 * Informs the user when dropdown was toggled.
 	 */
-	onDropdownToggle?: (event: any) => void;
+	onDropdownToggle?: (event: GeneralEvent<HTMLDetailsElement>) => void;
 	/**
 	 * Informs the user when dropdown was toggled.
 	 */
-	dropdownToggle?: (event: any) => void;
+	dropdownToggle?: (event: GeneralEvent<HTMLDetailsElement>) => void;
+
+	/**
+	 * Informs the user when a search was performed.
+	 */
+	onSearch?: (event: InputEvent<HTMLInputElement>) => void;
+	/**
+	 * Informs the user when a search was performed.
+	 */
+	search?: (event: InputEvent<HTMLInputElement>) => void;
 };
 
 export type DBCustomSelectDefaultProps = {
 	/**
-	 * Overwrite the default aria-label (props.label) for the custom-select-list
-	 */
-	ariaListLabel?: string;
-	/**
 	 * Optional: if select-type="amount" change the shown text
 	 */
 	amountText?: string;
+	/**
+	 * Overwrite the default aria-label (props.label) for the custom-select-list
+	 */
+	ariaListLabel?: string;
 
 	/**
 	 * Label for the clear selection button
@@ -145,6 +158,14 @@ export type DBCustomSelectDefaultProps = {
 	removeTagsTexts?: string[];
 
 	/**
+	 * Optional: Change the filter function for the search input
+	 */
+	searchFilter?: (
+		option: CustomSelectOptionType,
+		filterText: string
+	) => boolean;
+
+	/**
 	 * Search label
 	 */
 	searchLabel?: string;
@@ -155,9 +176,20 @@ export type DBCustomSelectDefaultProps = {
 	searchPlaceholder?: string;
 
 	/**
+	 * Optional: Prefill the value of the search input
+	 */
+	searchValue?: string;
+
+	/**
 	 * Select all checkbox label
 	 */
 	selectAllLabel?: string;
+
+	/**
+	 * Optional: If you want to show a custom label for the selected values.
+	 * You need to define the empty state as well based on selected options.
+	 */
+	selectedLabels?: string;
 
 	/**
 	 * Change the selected type for values shown in multi select
@@ -183,11 +215,17 @@ export type DBCustomSelectDefaultProps = {
 	 * Forces search in header.
 	 */
 	showSearch?: boolean;
-
 	/**
 	 * Forces select all checkbox (only for multiple).
 	 */
 	showSelectAll?: boolean;
+
+	/**
+	 * Optional: If you want to show a custom label based on the selected options.
+	 */
+	transformSelectedLabels?: (
+		selectedOptions?: CustomSelectOptionType[]
+	) => string;
 
 	/**
 	 * Initial value for multi select
@@ -222,23 +260,26 @@ export type DBCustomSelectDefaultState = {
 	_infoTextId?: string;
 	_internalChangeTimestamp: number;
 	_documentClickListenerCallbackId?: string;
+	_searchValue?: string;
 	getNativeSelectValue: () => string;
 	getOptionLabel: (option: CustomSelectOptionType) => string;
 	getOptionChecked: (value?: string) => boolean;
-	getOptionKey: (option: CustomSelectOptionType) => string;
 	getTagRemoveLabel: (index: number) => string;
 	selectAllEnabled: boolean;
 	searchEnabled: boolean;
 	amountOptions: number;
 	setDescById: (descId?: string) => void;
-	handleTagRemove: (option: CustomSelectOptionType, event?: any) => void;
+	handleTagRemove: (
+		option: CustomSelectOptionType,
+		event?: ClickEvent<HTMLButtonElement> | void
+	) => void;
 	handleSummaryFocus: () => void;
 	handleSelect: (value?: string) => void;
-	handleSelectAll: () => void;
-	handleClearAll: () => void;
+	handleSelectAll: (event: any) => void;
+	handleClearAll: (event: any) => void;
 	handleDropdownToggle: (event: any) => void;
 	handleDocumentClose: (event: any) => void;
-	handleOpenByKeyboardFocus: (onlySearch?: boolean) => void;
+	handleOpenByKeyboardFocus: () => void;
 	handleFocusFirstDropdownCheckbox: (activeElement?: Element) => void;
 	handleKeyboardPress: (event: any) => void;
 	handleArrowDownUp: (event: any) => void;
@@ -247,11 +288,12 @@ export type DBCustomSelectDefaultState = {
 	getSelectAllLabel: () => string;
 	selectAllChecked: boolean;
 	selectAllIndeterminate: boolean;
+	handleAutoPlacement: () => void;
 };
 
 export type DBCustomSelectState = DBCustomSelectDefaultState &
 	GlobalState &
 	FormState &
 	FromValidState &
-	CloseEventState &
-	PopoverState;
+	CloseEventState<InteractionEvent<HTMLDetailsElement>> &
+	DocumentScrollState;

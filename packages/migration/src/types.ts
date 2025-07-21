@@ -1,5 +1,3 @@
-import { v005_v006 } from './migration/v0.0.5-v0.0.6';
-
 export type ProgrammOptionsType = {
 	name: string;
 	short?: string;

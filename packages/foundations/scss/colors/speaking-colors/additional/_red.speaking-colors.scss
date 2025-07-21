@@ -14,11 +14,17 @@ $db-red-bg-basic-transparent-full-default: var(
 $db-red-bg-basic-transparent-semi-default: var(
 	--db-red-bg-basic-transparent-semi-default
 );
-$db-red-bg-basic-transparent-hovered: var(
-	--db-red-bg-basic-transparent-hovered
+$db-red-bg-basic-transparent-full-hovered: var(
+	--db-red-bg-basic-transparent-full-hovered
 );
-$db-red-bg-basic-transparent-pressed: var(
-	--db-red-bg-basic-transparent-pressed
+$db-red-bg-basic-transparent-full-pressed: var(
+	--db-red-bg-basic-transparent-full-pressed
+);
+$db-red-bg-basic-transparent-semi-hovered: var(
+	--db-red-bg-basic-transparent-semi-hovered
+);
+$db-red-bg-basic-transparent-semi-pressed: var(
+	--db-red-bg-basic-transparent-semi-pressed
 );
 $db-red-on-bg-basic-emphasis-100-default: var(
 	--db-red-on-bg-basic-emphasis-100-default

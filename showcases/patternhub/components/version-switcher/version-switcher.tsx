@@ -1,6 +1,6 @@
-import { useEffect, useState } from 'react';
-import { useRouter } from 'next/router';
 import DOMPurify from 'dompurify';
+import { useRouter } from 'next/router';
+import { useEffect, useState } from 'react';
 import { DBSelect } from '../../../../output/react/src';
 import { type BranchGroup, type GithubResponse } from './data';
 
@@ -97,9 +97,7 @@ const VersionSwitcher = () => {
 			setGroupByTagsBranches(tags, branches);
 		};
 
-		runAsync().catch((error: unknown) => {
-			console.error(error);
-		});
+		void runAsync();
 	}, []);
 
 	const handleChange = (branch: string) => {
@@ -109,9 +107,7 @@ const VersionSwitcher = () => {
 			branch === 'latest';
 		globalThis.location.replace(
 			DOMPurify.sanitize(
-				`https://${owner}.github.io/${repo}${
-					isTag ? '/version' : '/review'
-				}/${branch}${lastPath}`
+				`https://${owner}.github.io/${repo}${isTag ? '/version' : '/review'}/${branch}${lastPath}`
 			)
 		);
 	};

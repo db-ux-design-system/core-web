@@ -1,5 +1,5 @@
-import { test, expect } from '@playwright/experimental-ct-react';
 import AxeBuilder from '@axe-core/playwright';
+import { expect, test } from '@playwright/experimental-ct-react';
 
 import { DBCustomSelect } from './index';
 // @ts-ignore - vue can only find it with .ts as file ending
@@ -26,6 +26,15 @@ const multipleSearchSelect: any = (
 		label="Test"
 		multiple={true}
 		showSearch={true}
+		showSelectAll={true}
+		placeholder="Placeholder"></DBCustomSelect>
+);
+
+const selectAllSelect: any = (
+	<DBCustomSelect
+		options={[{ value: 'Option 1' }, { value: 'Option 2' }]}
+		label="Test"
+		multiple={true}
 		showSelectAll={true}
 		placeholder="Placeholder"></DBCustomSelect>
 );
@@ -59,26 +68,28 @@ const testA11y = () => {
 };
 
 const testAction = () => {
-	// TODO: Playwright does not support details summery...
-	/*	test('click on single item', async ({ mount }) => {
+	test('click on single item', async ({ page, mount }) => {
 		const component = await mount(comp);
 		const summary = component.locator('summary');
 		await expect(summary).not.toContainText('Option 1');
-		await summary.click({ force: true });
-		const input = component.locator('input').first();
-		await input.dispatchEvent('click');
+		await page.keyboard.press('Tab');
+		await page.keyboard.press('ArrowDown');
+		await page.waitForTimeout(1000); // wait for focus to apply
+		await page.keyboard.press('Space');
 		await expect(summary).toContainText('Option 1');
 	});
 
-	test('click on multiple item', async ({ mount }) => {
+	test('click on multiple item', async ({ page, mount }) => {
 		const component = await mount(multiple);
 		const summary = component.locator('summary');
 		await expect(summary).not.toContainText('Option 1');
-		await summary.click({ force: true });
-		const input = component.locator('input').first();
-		await input.dispatchEvent('click');
+		await page.keyboard.press('Tab');
+		await page.keyboard.press('ArrowDown');
+		await page.waitForTimeout(1000); // wait for focus to apply
+		await page.keyboard.press('Space');
+		await page.keyboard.press('Escape');
 		await expect(summary).toContainText('Option 1');
-	});*/
+	});
 
 	test('test search', async ({ mount }) => {
 		const component = await mount(multipleSearchSelect);
@@ -92,15 +103,16 @@ const testAction = () => {
 		await expect(inputs[3]).not.toBeVisible();
 	});
 
-	/*	test('test select all', async ({ mount }) => {
-		const component = await mount(multipleSearchSelect);
+	test('test select all', async ({ page, mount }) => {
+		const component = await mount(selectAllSelect);
 		const summary = component.locator('summary');
-		await summary.click({ force: true });
-		const inputs = await component.locator('input').all();
-		expect(inputs.length).toBe(4);
-		await inputs[1].dispatchEvent('click');
+		await page.keyboard.press('Tab');
+		await page.keyboard.press('ArrowDown');
+		await page.waitForTimeout(1000); // wait for focus to apply
+		await page.keyboard.press('Space');
+		await page.keyboard.press('Escape');
 		await expect(summary).toContainText('Option 1, Option 2');
-	});*/
+	});
 };
 
 test.describe('DBCustomSelect', () => {

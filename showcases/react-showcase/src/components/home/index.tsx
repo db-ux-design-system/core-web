@@ -4,12 +4,13 @@ import {
 	DBTabPanel,
 	DBTabs
 } from '@db-ux/react-core-components/src';
-import FormInputs from '../form/input';
 import FormComponent from '../form';
-import FormTextareas from '../form/textarea';
-import FormSelects from '../form/select';
 import FormCheckboxes from '../form/checkbox';
+import FormCustomSelects from '../form/custom-select';
+import FormInputs from '../form/input';
 import FormRadios from '../form/radio';
+import FormSelects from '../form/select';
+import FormTextareas from '../form/textarea';
 
 const Home = () => {
 	return (
@@ -21,6 +22,9 @@ const Home = () => {
 				<DBTabItem data-testid="tab-selects">Select</DBTabItem>
 				<DBTabItem data-testid="tab-checkboxes">Checkbox</DBTabItem>
 				<DBTabItem data-testid="tab-radios">Radios</DBTabItem>
+				<DBTabItem data-testid="tab-custom-selects">
+					Custom Selects
+				</DBTabItem>
 			</DBTabList>
 			<DBTabPanel>
 				<FormComponent />
@@ -39,6 +43,9 @@ const Home = () => {
 			</DBTabPanel>
 			<DBTabPanel>
 				<FormRadios />
+			</DBTabPanel>
+			<DBTabPanel>
+				<FormCustomSelects />
 			</DBTabPanel>
 		</DBTabs>
 	);

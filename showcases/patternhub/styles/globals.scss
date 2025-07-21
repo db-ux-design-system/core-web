@@ -553,6 +553,7 @@ h6 {
 .breadcrumb-container {
 	display: flex;
 	overflow-x: auto;
+	overflow-inline: auto;
 	align-content: center;
 	align-items: center;
 	padding-block: variables.$db-spacing-fixed-sm;
@@ -631,5 +632,11 @@ h6 {
 					#{variables.$db-spacing-fixed-md}
 			);
 		}
+	}
+}
+
+.db-switch {
+	> .db-tooltip {
+		min-inline-size: variables.$db-sizing-2xl;
 	}
 }
