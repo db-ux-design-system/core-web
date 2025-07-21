@@ -52,6 +52,11 @@ export type DBDrawerDefaultProps = {
 	drawerHeader?: any;
 
 	/**
+	 * Text for changing the header of the drawer.
+	 */
+	drawerHeaderPlain?: string;
+
+	/**
 	 * The open attribute opens or closes the drawer based on the state.
 	 */
 	open?: boolean | string;

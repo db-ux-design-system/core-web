@@ -68,11 +68,10 @@ const { page, fullscreen, classNames, sortedNavigation, settings } =
 			</DBControlPanelDesktop>
 		</template>
 		<template v-slot:control-panel-mobile>
-			<DBControlPanelMobile>
+			<DBControlPanelMobile drawerHeadlinePlain="Showcase">
 				<template v-slot:brand>
 					<DBControlPanelBrand>Showcase</DBControlPanelBrand>
 				</template>
-				<template v-slot:drawerHeadline>Showcase</template>
 				<DBNavigation
 					:variant="settings.navigationMobileVariant"
 					aria-label="main navigation mobile"

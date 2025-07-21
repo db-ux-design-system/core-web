@@ -75,4 +75,10 @@ body {
 			@extend %control-panel-mobile-position-bottom;
 		}
 	}
+
+	&[data-show-sub-navigation="false"] {
+		#{string.unquote(custom-elements.$shell-sub-navigation)} {
+			display: none;
+		}
+	}
 }

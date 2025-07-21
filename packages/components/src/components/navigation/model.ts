@@ -12,7 +12,6 @@ export type DBNavigationDefaultProps = {};
 
 export type DBNavigationProps = DBNavigationDefaultProps &
 	GlobalProps &
-	AriaLabelledByProps &
 	OverflowScrollButtonProps &
 	NavigationItemGroupVariant;
 

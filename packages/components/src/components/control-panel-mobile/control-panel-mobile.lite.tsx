@@ -54,7 +54,7 @@ export default function DBControlPanelMobile(props: DBControlPanelMobileProps) {
 			data-density="regular"
 			class={cls('db-control-panel-mobile', props.className)}>
 			<DBDrawer
-				drawerHeader={<Slot name="drawerHeadline" />}
+				drawerHeaderPlain={props.drawerHeadlinePlain}
 				direction="custom"
 				rounded
 				spacing="small"

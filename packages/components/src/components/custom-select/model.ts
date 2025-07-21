@@ -274,7 +274,7 @@ export type DBCustomSelectDefaultState = {
 	setDescById: (descId?: string) => void;
 	handleTagRemove: (
 		option: CustomSelectOptionType,
-		event?: ClickEvent<HTMLButtonElement> | void
+		event?: ClickEvent<HTMLButtonElement> | void | any
 	) => void;
 	handleSummaryFocus: () => void;
 	handleSelect: (value?: string) => void;

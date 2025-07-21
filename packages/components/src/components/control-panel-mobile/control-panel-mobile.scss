@@ -59,8 +59,7 @@
 
 	#{string.unquote(custom-elements.$drawer)} {
 		--db-drawer-content-padding-inline: 0;
-		/* TODO: Use container query here */
-		--db-drawer-max-width: 320px;
+		--db-drawer-max-width: variables.$db-container-xs;
 		--db-drawer-max-height: 63vh;
 
 		> .db-drawer-container {

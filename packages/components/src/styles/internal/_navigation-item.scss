@@ -71,11 +71,11 @@ $navigation-max-inline-size: 328px; // We should get this value from UX
 	justify-content: space-between;
 
 	@include helpers.hover {
-		background-color: colors.$db-adaptive-bg-basic-transparent-hovered;
+		background-color: colors.$db-adaptive-bg-basic-transparent-full-hovered;
 	}
 
 	@include helpers.active {
-		background-color: colors.$db-adaptive-bg-basic-transparent-pressed;
+		background-color: colors.$db-adaptive-bg-basic-transparent-full-pressed;
 	}
 }
 

@@ -1,6 +1,7 @@
 import {
 	onMount,
 	onUpdate,
+	Show,
 	Slot,
 	useDefaultProps,
 	useMetadata,
@@ -131,7 +132,11 @@ export default function DBDrawer(props: DBDrawerProps) {
 				data-rounded={getBooleanAsString(props.rounded)}>
 				<header class="db-drawer-header">
 					<div class="db-drawer-header-text">
-						<Slot name="drawerHeader" />
+						<Show
+							when={props.drawerHeaderPlain}
+							else={<Slot name="drawerHeader" />}>
+							{props.drawerHeaderPlain}
+						</Show>
 					</div>
 					<DBButton
 						class="button-close-drawer"

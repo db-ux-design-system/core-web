@@ -1,13 +1,12 @@
 import {
 	onMount,
-	Show,
 	Slot,
 	useDefaultProps,
 	useMetadata,
 	useRef,
 	useStore
 } from '@builder.io/mitosis';
-import { cls, getBoolean, getBooleanAsString } from '../../utils';
+import { cls, getBooleanAsString } from '../../utils';
 import { DBShellProps, DBShellState } from './model';
 
 useMetadata({});
@@ -51,14 +50,14 @@ export default function DBShell(props: DBShellProps) {
 			data-sub-navigation-mobile-position={
 				props.subNavigationMobilePosition ?? 'top'
 			}
+			data-show-sub-navigation={getBooleanAsString(
+				props.showSubNavigation
+			)}
 			data-fade-in={getBooleanAsString(props.fadeIn)}
 			data-fonts-loaded={getBooleanAsString(state.fontsLoaded)}>
 			<Slot name="controlPanelDesktop" />
 			<Slot name="controlPanelMobile" />
-			<Show
-				when={getBoolean(props.showSubNavigation, 'showSubNavigation')}>
-				<Slot name="subNavigation" />
-			</Show>
+			<Slot name="subNavigation" />
 			<main class={cls('db-main', props.mainClass)}>
 				{props.children}
 			</main>

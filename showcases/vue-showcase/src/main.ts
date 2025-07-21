@@ -1,5 +1,7 @@
 import '@db-ux/core-components/build/styles/rollup.css';
 import '@db-ux/db-theme/build/styles/rollup.css';
+import { createApp } from 'vue';
+import { createRouter, createWebHashHistory } from 'vue-router';
 import '../../showcase-styles.css';
 import App from './App.vue';
 import { getRoutes } from './utils/navigation-items';

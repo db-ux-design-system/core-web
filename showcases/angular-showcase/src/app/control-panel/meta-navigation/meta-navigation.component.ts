@@ -96,7 +96,7 @@ export class MetaNavigationComponent implements AfterViewInit {
 	};
 
 	onChange = async (key: string, value: any) => {
-		const queryParameters = {};
+		const queryParameters: any = {};
 
 		switch (key) {
 			case 'density': {

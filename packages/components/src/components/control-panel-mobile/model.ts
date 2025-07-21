@@ -15,9 +15,9 @@ export type ShellControlPanelMobileVariantType =
 
 export type DBControlPanelMobileDefaultProps = {
 	/**
-	 * Slot to pass in a headline for the drawer header.
+	 * Text to pass in a headline for the drawer header.
 	 */
-	drawerHeadline?: any;
+	drawerHeadlinePlain?: string;
 
 	/**
 	 * This attribute sets the label for the burger menu button for mobile control-panel-desktops.

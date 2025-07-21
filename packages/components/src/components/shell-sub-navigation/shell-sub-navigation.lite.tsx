@@ -6,7 +6,7 @@ import {
 	useStore
 } from '@builder.io/mitosis';
 import { DEFAULT_COLLAPSE, DEFAULT_EXPAND } from '../../shared/constants';
-import { cls, getBoolean, getBooleanAsString } from '../../utils';
+import { cls, getBoolean, getBooleanAsString, uuid } from '../../utils';
 import DBButton from '../button/button.lite';
 import DBTooltip from '../tooltip/tooltip.lite';
 import { DBShellSubNavigationProps, DBShellSubNavigationState } from './model';
@@ -20,6 +20,7 @@ export default function DBShellSubNavigation(props: DBShellSubNavigationProps) {
 	const _ref = useRef<HTMLDivElement | any>(undefined);
 	// jscpd:ignore-start
 	const state = useStore<DBShellSubNavigationState>({
+		_id: `db-shell-sub-navigation-${uuid()}`,
 		_open: true,
 		handleToggle: (event: any) => {
 			event.stopPropagation();
@@ -27,8 +28,9 @@ export default function DBShellSubNavigation(props: DBShellSubNavigationProps) {
 			state._open = !state._open;
 		},
 		getToggleButtonText: (): string => {
-			if (props.expandButtonTooltipFn) {
-				return props.expandButtonTooltipFn(state._open);
+			if (props.onExpandButtonTooltipFn) {
+				const open = state._open;
+				return props.onExpandButtonTooltipFn(open);
 			}
 			if (props.expandButtonTooltip) {
 				return props.expandButtonTooltip;
@@ -48,7 +50,7 @@ export default function DBShellSubNavigation(props: DBShellSubNavigationProps) {
 	return (
 		<div
 			ref={_ref}
-			id={props.id}
+			id={props.id ?? state._id}
 			data-open={getBooleanAsString(state._open)}
 			class={cls('db-shell-sub-navigation', props.className)}>
 			{props.children}

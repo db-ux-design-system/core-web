@@ -771,6 +771,11 @@ export type SidebarProps = {
 	 * Set the tooltip for the expand/collapse button based on the state
 	 */
 	expandButtonTooltipFn?: (open: boolean) => string;
+
+	/**
+	 * Set the tooltip for the expand/collapse button based on the state
+	 */
+	onExpandButtonTooltipFn?: (open: boolean) => string;
 };
 
 export type SidebarState = {

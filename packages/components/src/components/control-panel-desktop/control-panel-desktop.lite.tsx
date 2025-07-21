@@ -38,8 +38,9 @@ export default function DBControlPanelDesktop(
 			}
 		},
 		getToggleButtonText: (): string => {
-			if (props.expandButtonTooltipFn) {
-				return props.expandButtonTooltipFn(state._open);
+			if (props.onExpandButtonTooltipFn) {
+				const open = state._open;
+				return props.onExpandButtonTooltipFn(open);
 			}
 			if (props.expandButtonTooltip) {
 				return props.expandButtonTooltip;
