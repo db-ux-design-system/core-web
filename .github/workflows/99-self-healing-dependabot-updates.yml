@@ -46,7 +46,7 @@ jobs:
         if: env.stylelint_update == 'true'
         run: |
           npm run build --workspace=@db-ux/core-stylelint
-          npm run lint:stylelint --fix
+          npm run lint:stylelint -- --fix
 
       - name: 🏃 Run Prettier to format the code
         if: env.prettier_update == 'true'
