@@ -135,7 +135,7 @@
 
 				border-width: form-components.$check-border-size;
 
-				&:not([data-hide-icon-leading="true"])::before {
+				&:not([data-show-icon-leading="false"])::before {
 					align-content: center;
 					font-size: calc(
 						var(--db-icon-font-size) - 2 *
