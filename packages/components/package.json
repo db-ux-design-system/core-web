@@ -13,7 +13,7 @@
     "build"
   ],
   "scripts": {
-    "build": "npm-run-all --parallel build-components build-assets --serial build-style:*",
+    "build": "npm-run-all --parallel build-components build-assets --sequential build-style:*",
     "build-assets": "cpr src build --overwrite --filter \"(.ts|.tsx|.md|.html)$\"",
     "build-components": "npm-run-all build:mitosis build-components:post build-components:docs",
     "build-components:docs": "npm run build:cem --workspace @db-ux/wc-core-components",
