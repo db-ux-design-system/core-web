@@ -53,8 +53,8 @@
 	&::after {
 		// Mobile navigation item is always sizing-md
 		// We add this fixed block-size to avoid issues with tree navigation
-		--db-puls-vertical-block-size: #{variables.$db-sizing-md};
-		--db-puls-vertical-inset-block-start: calc(
+		--indicator-vertical-block-size: #{variables.$db-sizing-md};
+		--indicator-vertical-inset-block-start: calc(
 			#{variables.$db-sizing-md} / 2
 		);
 	}

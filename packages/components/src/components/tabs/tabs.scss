@@ -1,7 +1,7 @@
 @use "@db-ux/core-foundations/build/styles/variables";
 @use "@db-ux/core-foundations/build/styles/colors";
 @use "../../styles/internal/form-components";
-@use "../../styles/internal/db-puls";
+@use "../../styles/internal/indicator";
 @use "../../styles/internal/scrollbar";
 
 $max-tabs: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
@@ -20,12 +20,12 @@ $max-tabs: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 	}
 }
 
-%horizontal-pulse {
+%horizontal-indicator {
 	.db-tab-item {
-		@include db-puls.set-db-puls-horizontal;
+		@include indicator.set-indicator-horizontal;
 
 		&:has(input:checked) {
-			@include db-puls.show-db-puls-horizontal;
+			@include indicator.show-indicator-horizontal;
 
 			&::after {
 				inset-block-end: calc(
@@ -36,9 +36,9 @@ $max-tabs: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 	}
 }
 
-%vertical-pulse {
+%vertical-indicator {
 	.db-tab-item {
-		@include db-puls.set-db-puls-vertical;
+		@include indicator.set-indicator-vertical;
 
 		&::after {
 			inset-inline-start: 0;
@@ -46,12 +46,12 @@ $max-tabs: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 		}
 
 		&:has(input:checked) {
-			@include db-puls.show-db-puls-vertical;
+			@include indicator.show-indicator-vertical;
 		}
 	}
 }
 
-%pulse-track {
+%indicator-track {
 	background-color: colors.$db-adaptive-bg-basic-transparent-semi-default;
 	content: "";
 	border-radius: variables.$db-border-radius-xs;
@@ -84,7 +84,7 @@ $max-tabs: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 	}
 
 	.db-tab-item {
-		@extend %db-puls;
+		@extend %indicator;
 	}
 
 	/*
@@ -98,9 +98,9 @@ $max-tabs: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 		}
 
 		.db-tab-list {
-			/* horizontal track for pulse */
+			/* horizontal track for indicator */
 			&::before {
-				@extend %pulse-track;
+				@extend %indicator-track;
 
 				block-size: variables.$db-border-width-xs;
 				inset-inline: variables.$db-spacing-fixed-xs;
@@ -113,7 +113,7 @@ $max-tabs: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 			}
 
 			> ul {
-				@extend %horizontal-pulse;
+				@extend %horizontal-indicator;
 
 				overflow: auto hidden;
 				inline-size: 100%;
@@ -200,9 +200,9 @@ $max-tabs: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 				}
 			}
 
-			/* vertical track for pulse */
+			/* vertical track for indicator */
 			&::before {
-				@extend %pulse-track;
+				@extend %indicator-track;
 
 				inline-size: variables.$db-border-width-xs;
 				inset-block: variables.$db-spacing-fixed-xs;
@@ -210,7 +210,7 @@ $max-tabs: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 			}
 
 			> ul {
-				@extend %vertical-pulse;
+				@extend %vertical-indicator;
 
 				flex-direction: column;
 				block-size: 100%;

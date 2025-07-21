@@ -7,7 +7,7 @@
 @use "./custom-elements";
 @use "./component";
 @use "./navigation-item";
-@use "./db-puls";
+@use "./indicator";
 @use "./scrollbar";
 
 $navigation-child-selector: "> .db-control-panel-desktop-scroll-container > .db-navigation, > .db-control-panel-desktop-scroll-container > db-navigation > .db-navigation";
@@ -232,12 +232,12 @@ $meta-child-selector: "> .db-control-panel-desktop-scroll-container  .db-control
 			margin-inline-start: calc(#{variables.$db-spacing-fixed-lg} / 2);
 
 			@include navigation-item.direct-navigation-items {
-				@extend %db-puls;
+				@extend %indicator;
 
-				@include db-puls.set-db-puls-horizontal();
+				@include indicator.set-indicator-horizontal();
 
 				@include navigation-item.active-navigation-item {
-					@include db-puls.show-db-puls-horizontal();
+					@include indicator.show-indicator-horizontal();
 				}
 
 				@include navigation-item.direct-navigation-items {
@@ -437,12 +437,12 @@ $meta-child-selector: "> .db-control-panel-desktop-scroll-container  .db-control
 
 		> menu {
 			@include navigation-item.direct-navigation-items {
-				@extend %db-puls;
+				@extend %indicator;
 
-				@include db-puls.set-db-puls-vertical();
+				@include indicator.set-indicator-vertical();
 
 				@include navigation-item.active-navigation-item {
-					@include db-puls.show-db-puls-vertical();
+					@include indicator.show-indicator-vertical();
 				}
 
 				@include navigation-item.direct-navigation-items {

@@ -7,7 +7,7 @@
 @use "../../styles/internal/custom-elements";
 @use "../../styles/internal/control-panel-mobile";
 @use "../../styles/internal/navigation-item";
-@use "../../styles/internal/db-puls";
+@use "../../styles/internal/indicator";
 
 .db-control-panel-mobile {
 	background-color: colors.$db-adaptive-bg-basic-level-1-default;
@@ -100,12 +100,12 @@
 
 						> menu {
 							@include navigation-item.direct-navigation-items {
-								@extend %db-puls;
+								@extend %indicator;
 
-								@include db-puls.set-db-puls-vertical();
+								@include indicator.set-indicator-vertical();
 
 								@include navigation-item.active-navigation-item {
-									@include db-puls.show-db-puls-vertical();
+									@include indicator.show-indicator-vertical();
 								}
 
 								@include navigation-item.direct-navigation-items {
