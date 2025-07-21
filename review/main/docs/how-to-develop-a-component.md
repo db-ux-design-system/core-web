@@ -33,7 +33,7 @@ In addition to the `SCSS`, you need to modify the HTML code for your component. 
 
 There are some things you have to know:
 
-1. There are some reserved `data-*` attributes. For example `data-icon="xxx"` or `data-icon-after="xxx"` which will set an icon as `::before` / `::after` contents.
+1. There are some reserved `data-*` attributes. For example `data-icon="xxx"` or `data-icon-trailing="xxx"` which will set an icon as `::before` / `::after` contents.
 2. Moreover, there are some `data-*` attributes with the same meaning which we try to align across all components. For example `data-width` should be always `auto` or `full-width` to have the same possible options. We've additionally summarized those by providing models / types for these. For a closer look on this ask the Design Team for the glossary.
 3. Try to use native HTML tags. For example if you have something like an Accordion use `<details><summary>`, so you would reduce the amount of custom JS/TS code for the components.
 
