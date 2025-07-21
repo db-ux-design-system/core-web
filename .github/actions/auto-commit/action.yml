@@ -43,7 +43,7 @@ runs:
         git config --global user.name "github-actions[bot]"
         git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
-        git checkout --branch "$NEW_PR_BRANCH"
+        git checkout -b "$NEW_PR_BRANCH"
         git add $COMMIT_FILES
 
         # We can't use semantic commits here because of the if statement in the workflow
