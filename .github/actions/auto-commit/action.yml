@@ -43,12 +43,12 @@ runs:
         git config --global user.name "github-actions[bot]"
         git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
-        git checkout -b "$NEW_PR_BRANCH"
+        git checkout --branch "$NEW_PR_BRANCH"
         git add $COMMIT_FILES
 
         # We can't use semantic commits here because of the if statement in the workflow
-        git commit --no-verify -m "$COMMIT_MESSAGE"
-        git push -f origin "$NEW_PR_BRANCH"
+        git commit --no-verify --message "$COMMIT_MESSAGE"
+        git push --force origin "$NEW_PR_BRANCH"
 
     - name: 🪗 Create Pull Request
       shell: bash

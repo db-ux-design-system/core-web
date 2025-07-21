@@ -64,8 +64,8 @@ jobs:
         if: inputs.path
         shell: bash
         run: |
-          mkdir -p ./build-showcases${{ inputs.path }}
-          cp -RT ./build-showcases/${{ inputs.showcase }} ./build-showcases${{ inputs.path }}
+          mkdir --parents ./build-showcases${{ inputs.path }}
+          cp --recursive --no-target-directory ./build-showcases/${{ inputs.showcase }} ./build-showcases${{ inputs.path }}
 
       - name: 👩‍🔬 Test showcase with Playwright 🎭
         shell: bash
