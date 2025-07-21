@@ -45,7 +45,7 @@
 	text-decoration-thickness: helpers.px-to-rem($pxValue: 1);
 	text-decoration-line: underline;
 
-	&:not(:is([data-wrap="true"], [data-variant="inline"])) {
+	&:not([data-wrap="true"], [data-variant="inline"]) {
 		white-space: nowrap;
 	}
 
