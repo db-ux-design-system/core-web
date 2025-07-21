@@ -20,12 +20,6 @@ export type GlobalProps = {
 	class?: string | any;
 
 	/**
-	 * @deprecated
-	 * [`aria-describedby`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-describedby) is used to link to the elements that describe the element with the set attribute.
-	 */
-	describedbyid?: string;
-
-	/**
 	 * [ID](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/id) of the component, generated automatically for some components as a fallback if unset.
 	 */
 	id?: string;
@@ -71,11 +65,34 @@ export type ShowIconProps = {
 	showIcon?: boolean | string;
 };
 
-export type IconAfterProps = {
+export type ShowIconLeadingProps = {
+	/**
+	 * Enables or disables the visibility of the leading icon.
+	 * For many components this property is optional to reflect Figma properties.
+	 */
+	showIconLeading?: boolean | string;
+};
+
+export type ShowIconTrailingProps = {
+	/**
+	 * Enables or disables the visibility of the trailing icon.
+	 * For many components this property is optional to reflect Figma properties.
+	 */
+	showIconTrailing?: boolean | string;
+};
+
+export type IconLeadingProps = {
 	/**
 	 * Define an icon by its identifier (like e.g. _user_, compare to [Icons](https://design-system.deutschebahn.com/core-web/review/main/foundations/icons/overview)) to get displayed in front of the elements content.
 	 */
-	iconAfter?: IconTypes;
+	iconLeading?: IconTypes;
+};
+
+export type IconTrailingProps = {
+	/**
+	 * Define an icon by its identifier (like e.g. _user_, compare to [Icons](https://design-system.deutschebahn.com/core-web/review/main/foundations/icons/overview)) to get displayed in front of the elements content.
+	 */
+	iconTrailing?: IconTypes;
 };
 
 export const SpacingList = ['medium', 'small', 'large', 'none'] as const;
@@ -165,6 +182,13 @@ export type OverflowProps = {
 	 * The overflow attribute sets a max-width and longer text will be dotted.
 	 */
 	overflow?: boolean | string;
+};
+
+export type WrapProps = {
+	/**
+	 * Determines whether the text should wrap when its parent container is too small, preventing overflow.
+	 */
+	wrap?: boolean | string;
 };
 
 export const OrientationList = ['horizontal', 'vertical'] as const;
@@ -499,16 +523,6 @@ export type InitializedState = {
 	initialized: boolean;
 };
 
-export const LinkCurrentList = [
-	'time',
-	'true',
-	'false',
-	'date',
-	'page',
-	'step',
-	'location'
-] as const;
-export type LinkCurrentType = (typeof LinkCurrentList)[number];
 export const LinkTargetList = ['_self', '_blank', '_parent', '_top'] as const;
 export type LinkTargetType = (typeof LinkTargetList)[number];
 export const LinkReferrerPolicyList = [
@@ -524,10 +538,6 @@ export const LinkReferrerPolicyList = [
 export type LinkReferrerPolicyType = (typeof LinkReferrerPolicyList)[number];
 export type LinkProps = {
 	/**
-	 * Sets aria attribute based on [`aria-current`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-current).
-	 */
-	current?: boolean | LinkCurrentType;
-	/**
 	 * Disables the link.
 	 */
 	disabled?: boolean | string;
@@ -539,10 +549,6 @@ export type LinkProps = {
 	 * Hints for the human [language of the linked page or document](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a#hreflang).
 	 */
 	hreflang?: string;
-	/**
-	 * Sets aria attribute based on [`aria-label`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-label).
-	 */
-	label?: string;
 	/**
 	 * Where to open the linked URL, as the name for a [browsing context](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a#target).
 	 */
@@ -559,10 +565,6 @@ export type LinkProps = {
 	 * How much of the referrer to send when following the link.
 	 */
 	referrerpolicy?: LinkReferrerPolicyType;
-	/**
-	 * Sets aria role based on [`aria-selected`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-selected).
-	 */
-	selected?: boolean | string;
 };
 
 export type TextProps = {
@@ -685,13 +687,6 @@ export type NavigationBackButtonProps = {
 	 * The backButtonText attribute changes the text inside the back button.
 	 */
 	backButtonText?: string;
-};
-
-export type AriaLabelledByProps = {
-	/**
-	 * Pass `aria-labelledby` to inner element
-	 */
-	labelledBy?: string;
 };
 
 export type AriaControlsProps = {

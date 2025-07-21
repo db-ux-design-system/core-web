@@ -4,7 +4,7 @@ import {
 	useMetadata,
 	useRef
 } from '@builder.io/mitosis';
-import { cls, getBooleanAsString, getHideProp } from '../../utils';
+import { cls, getBooleanAsString } from '../../utils';
 import { DBLinkProps } from './model';
 
 useMetadata({});
@@ -26,13 +26,11 @@ export default function DBLink(props: DBLinkProps) {
 			hrefLang={props.hreflang}
 			aria-disabled={getBooleanAsString(props.disabled)}
 			tabIndex={props.disabled ? -1 : 0}
-			aria-selected={getBooleanAsString(props.selected)}
-			aria-label={props.label}
-			aria-current={props.current}
 			data-size={props.size}
-			data-hide-icon-after={getHideProp(props.showIcon ?? true)}
+			data-show-icon-trailing={getBooleanAsString(props.showIcon ?? true)}
 			data-variant={props.variant}
-			data-content={props.content || 'internal'}>
+			data-content={props.content || 'internal'}
+			data-wrap={getBooleanAsString(props.wrap)}>
 			<Show when={props.text} else={props.children}>
 				{props.text}
 			</Show>

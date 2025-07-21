@@ -11,11 +11,14 @@ import {
 	FromValidState,
 	GlobalProps,
 	GlobalState,
-	IconAfterProps,
+	IconLeadingProps,
 	IconProps,
+	IconTrailingProps,
 	InputEventProps,
 	InputEventState,
+	ShowIconLeadingProps,
 	ShowIconProps,
+	ShowIconTrailingProps,
 	ValueLabelType
 } from '../../shared/model';
 
@@ -49,6 +52,10 @@ export type DBInputDefaultProps = {
 	 */
 	dataListId?: string;
 	/**
+	 * Allow selecting multiple files. https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/input/file#multiple
+	 */
+	multiple?: boolean | string;
+	/**
 	 * Maximum value
 	 */
 	max?: number | string;
@@ -79,9 +86,12 @@ export type DBInputProps = DBInputDefaultProps &
 	FocusEventProps<HTMLInputElement> &
 	FormProps &
 	IconProps &
-	IconAfterProps &
+	IconTrailingProps &
 	FormMessageProps &
 	ShowIconProps &
+	IconLeadingProps &
+	ShowIconLeadingProps &
+	ShowIconTrailingProps &
 	FormSizeProps;
 
 export type DBInputDefaultState = {
