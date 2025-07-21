@@ -11,8 +11,8 @@ import { DBControlPanelMetaNavigation } from "@db-ux/v-core-components";
 </script>
 
 <template>
-	<DBControlPanelMetaNavigation>ControlPanelMetaNavigation</DBControlPanelMetaNavigation>
+	<DBControlPanelMetaNavigation
+		>ControlPanelMetaNavigation</DBControlPanelMetaNavigation
+	>
 </template>
 ```
-
-

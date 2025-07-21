@@ -25,12 +25,12 @@
     "mv:dist": "cpr dist ../../build-outputs/wc-core-components/dist -o",
     "mv:package.json": "cpr package.json ../../build-outputs/wc-core-components/package.json -o",
     "mv:readme": "cpr README.md ../../build-outputs/wc-core-components/README.md -o",
-    "postbuild": "npm-run-all -p build:* -p mv:*",
+    "postbuild": "npm-run-all --parallel build:* --parallel mv:*",
     "start": "stencil build --watch"
   },
   "devDependencies": {
     "@custom-elements-manifest/analyzer": "^0.10.4",
-    "@stencil/core": "4.33.1",
+    "@stencil/core": "4.36.1",
     "cem-plugin-expanded-types": "^1.4.0",
     "custom-element-jet-brains-integration": "^1.7.0",
     "custom-element-vs-code-integration": "^1.5.0",

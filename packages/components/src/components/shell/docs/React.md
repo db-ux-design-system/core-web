@@ -9,7 +9,11 @@ For general installation and configuration take a look at the [react-core-compon
 import { DBShell, DBControlPanelDesktop } from "@db-ux/react-core-components";
 
 const App = () => (
-	<DBShell slotControlPanelDesktop={<DBControlPanelDesktop>...</DBControlPanelDesktop>}>
+	<DBShell
+		slotControlPanelDesktop={
+			<DBControlPanelDesktop>...</DBControlPanelDesktop>
+		}
+	>
 		<main class="db-main">Main Shell</main>
 	</DBShell>
 );

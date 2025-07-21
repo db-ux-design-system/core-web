@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import DefaultComponent from "../DefaultComponent.vue";
-import defaultComponentVariants from "../../../../shared/link.json";
 import { DBLink } from "@components";
+import defaultComponentVariants from "../../../../shared/link.json";
+import DefaultComponent from "../DefaultComponent.vue";
 </script>
 
 <template>

@@ -1,9 +1,9 @@
 import { DBLink } from '@components';
-import DefaultComponent from '../default-component';
-import defaultComponentVariants from '../../../../shared/link.json';
 import { type DBLinkProps } from '@components/src/components/link/model';
-import { getVariants } from '../data';
+import defaultComponentVariants from '../../../../shared/link.json';
 import { type BaseComponentProps } from '../base-component-data';
+import { getVariants } from '../data';
+import DefaultComponent from '../default-component';
 
 const getLink = ({
 	href,

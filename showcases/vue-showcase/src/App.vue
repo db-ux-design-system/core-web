@@ -2,17 +2,17 @@
 import {
 	DBControlPanelBrand,
 	DBControlPanelDesktop,
+	DBControlPanelMobile,
 	DBNavigation,
 	DBShell,
-	DBControlPanelMobile,
 	DBShellSubNavigation
 } from "@components";
 import NavItemComponent from "./NavItemComponent.vue";
 
 import { useLayout } from "./composables/use-layout";
 import MetaNavigation from "./control-panel/MetaNavigation.vue";
-import SecondaryActions from "./control-panel/SecondaryActions.vue";
 import PrimaryActions from "./control-panel/PrimaryActions.vue";
+import SecondaryActions from "./control-panel/SecondaryActions.vue";
 
 const { page, fullscreen, classNames, sortedNavigation, settings } =
 	useLayout();

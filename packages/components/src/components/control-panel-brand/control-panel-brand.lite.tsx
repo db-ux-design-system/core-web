@@ -5,9 +5,9 @@ import {
 	useMetadata,
 	useRef
 } from '@builder.io/mitosis';
+import { DEFAULT_ICON } from '../../shared/constants';
 import { cls, getHideProp } from '../../utils';
 import { DBControlPanelBrandProps } from './model';
-import { DEFAULT_ICON } from '../../shared/constants';
 
 useMetadata({});
 

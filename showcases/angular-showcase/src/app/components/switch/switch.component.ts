@@ -1,8 +1,8 @@
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import { DefaultComponent } from '../default.component';
+import { DBInfotext, DBSwitch } from '@components';
 import defaultComponentVariants from '../../../../../shared/switch.json';
-import { DBSwitch, DBInfotext } from '@components';
 import { environment } from '../../../environments/environment';
+import { DefaultComponent } from '../default.component';
 
 @Component({
 	selector: 'app-switch',

@@ -1,5 +1,5 @@
-import { useState } from 'react';
 import type { AppProps } from 'next/app';
+import { useState } from 'react';
 import MetaNavigation from 'react-showcase/src/control-panel/meta-navigation';
 import {
 	DBBrand,
@@ -9,8 +9,8 @@ import {
 } from '../../../output/react/src';
 import useQuery from '../../react-showcase/src/hooks/use-query';
 import Navigation from '../../react-showcase/src/navigation';
-import '../styles/global.scss';
 import '../../showcase-styles.css';
+import '../styles/global.scss';
 
 const App = ({ Component, pageProps }: AppProps) => {
 	const [density, setDensity, color, setColor, pageName, fullscreen] =

@@ -11,9 +11,9 @@ import {
 } from '@components';
 import { type DBControlPanelDesktopProps } from '@components/src/components/control-panel-desktop/model';
 import defaultComponentVariants from '../../../../shared/control-panel-desktop.json';
+import { type BaseComponentProps } from '../base-component-data';
 import { getVariants } from '../data';
 import DefaultComponent from '../default-component';
-import { type BaseComponentProps } from '../base-component-data';
 
 const getControlPanelDesktop = ({
 	children,

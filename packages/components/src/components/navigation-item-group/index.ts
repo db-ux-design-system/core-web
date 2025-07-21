@@ -1,1 +1,1 @@
-export { default as DBNavigationItemGroup } from "./navigation-item-group";
+export { default as DBNavigationItemGroup } from './navigation-item-group';

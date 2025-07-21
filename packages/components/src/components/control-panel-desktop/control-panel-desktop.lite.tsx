@@ -6,15 +6,15 @@ import {
 	useRef,
 	useStore
 } from '@builder.io/mitosis';
+import { DEFAULT_COLLAPSE, DEFAULT_EXPAND } from '../../shared/constants';
+import { cls, getBoolean, getBooleanAsString, uuid } from '../../utils';
+import { handleSubNavigationPosition } from '../../utils/navigation';
+import DBButton from '../button/button.lite';
+import DBTooltip from '../tooltip/tooltip.lite';
 import {
 	DBControlPanelDesktopProps,
 	DBControlPanelDesktopState
 } from './model';
-import { cls, getBoolean, getBooleanAsString, uuid } from '../../utils';
-import DBButton from '../button/button.lite';
-import DBTooltip from '../tooltip/tooltip.lite';
-import { handleSubNavigationPosition } from '../../utils/navigation';
-import { DEFAULT_COLLAPSE, DEFAULT_EXPAND } from '../../shared/constants';
 
 useMetadata({});
 

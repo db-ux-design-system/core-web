@@ -13,4 +13,3 @@ For general installation and configuration take a look at the [components](https
 	</div>
 </body>
 ```
-

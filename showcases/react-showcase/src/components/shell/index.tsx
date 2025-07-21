@@ -10,11 +10,11 @@ import {
 	DBNavigationItem,
 	DBShell
 } from '@db-ux/react-core-components/src';
+import { DBShellProps } from '../../../../../output/tmp/react/src/components/shell/model';
 import defaultComponentVariants from '../../../../shared/shell.json';
+import { type BaseComponentProps } from '../base-component-data';
 import { getVariants } from '../data';
 import DefaultComponent from '../default-component';
-import { type BaseComponentProps } from '../base-component-data';
-import { DBShellProps } from '../../../../../output/tmp/react/src/components/shell/model';
 
 const getShell = ({
 	controlPanelDesktopPosition,

@@ -1,10 +1,10 @@
-import { useState } from 'react';
 import { DBTag, getBoolean } from '@components';
-import DefaultComponent from '../default-component';
-import defaultComponentVariants from '../../../../shared/tag.json';
 import { type DBTagProps } from '@components/src/components/tag/model';
-import { getVariants } from '../data';
+import { useState } from 'react';
+import defaultComponentVariants from '../../../../shared/tag.json';
 import { type BaseComponentProps } from '../base-component-data';
+import { getVariants } from '../data';
+import DefaultComponent from '../default-component';
 
 const getTag = ({
 	semantic,

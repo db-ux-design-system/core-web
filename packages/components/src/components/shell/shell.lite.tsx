@@ -7,8 +7,8 @@ import {
 	useRef,
 	useStore
 } from '@builder.io/mitosis';
-import { DBShellProps, DBShellState } from './model';
 import { cls, getBoolean, getBooleanAsString } from '../../utils';
+import { DBShellProps, DBShellState } from './model';
 
 useMetadata({});
 useDefaultProps<DBShellProps>({});

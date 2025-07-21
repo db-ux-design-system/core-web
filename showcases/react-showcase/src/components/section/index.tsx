@@ -1,9 +1,9 @@
-import { DBSection, DBCard } from '@components';
-import DefaultComponent from '../default-component';
-import defaultComponentVariants from '../../../../shared/section.json';
+import { DBCard, DBSection } from '@components';
 import { type DBSectionProps } from '@components/src/components/section/model';
-import { getVariants } from '../data';
+import defaultComponentVariants from '../../../../shared/section.json';
 import { type BaseComponentProps } from '../base-component-data';
+import { getVariants } from '../data';
+import DefaultComponent from '../default-component';
 
 const getSection = ({ width, spacing, children }: DBSectionProps) => (
 	<DBSection

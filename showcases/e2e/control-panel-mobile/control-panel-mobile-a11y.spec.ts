@@ -5,4 +5,3 @@ import { getA11yTest } from '../default.ts';
 test.describe('DBControlPanelMobile', () => {
 	getA11yTest({ path: 'control-panel-mobile' });
 });
-

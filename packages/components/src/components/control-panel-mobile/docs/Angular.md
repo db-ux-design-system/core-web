@@ -22,5 +22,3 @@ import { DBControlPanelMobile } from '@db-ux/ngx-core-components';
 <!-- app.component.html -->
 <db-control-panel-mobile>ControlPanelMobile</db-control-panel-mobile>
 ```
-
-

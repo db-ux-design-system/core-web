@@ -1,9 +1,9 @@
 import { DBTabItem, DBTabList } from '@components';
-import DefaultComponent from '../default-component';
-import defaultComponentVariants from '../../../../shared/tab-item.json';
 import type { DBTabItemProps } from '@components/src/components/tab-item/model';
-import { getVariants } from '../data';
+import defaultComponentVariants from '../../../../shared/tab-item.json';
 import { type BaseComponentProps } from '../base-component-data';
+import { getVariants } from '../data';
+import DefaultComponent from '../default-component';
 
 const getTab = ({
 	children,

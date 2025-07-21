@@ -1,10 +1,10 @@
-import { useState } from 'react';
 import { DBTextarea } from '@components';
 import type { DBTextareaProps } from '@components/src/components/textarea/model';
-import DefaultComponent from '../default-component';
+import { useState } from 'react';
 import defaultComponentVariants from '../../../../shared/textarea.json';
-import { getVariants } from '../data';
 import { type BaseComponentProps } from '../base-component-data';
+import { getVariants } from '../data';
+import DefaultComponent from '../default-component';
 
 const getTextarea = ({
 	cols,

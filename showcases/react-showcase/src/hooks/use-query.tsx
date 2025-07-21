@@ -1,9 +1,9 @@
-import { useEffect, useState } from 'react';
 import { COLOR_CONST, DENSITY, DENSITY_CONST, SEMANTIC } from '@components';
+import { useEffect, useState } from 'react';
 import { defaultSettings } from '../../../shared/default-component-data';
 import useUniversalSearchParameters from './use-universal-search-parameters';
 
-const useQuery = (redirectURLSearchParams = true) => {
+const useQuery = (redirectURLSearchParameters = true) => {
 	const [searchParameters, setSearchParameters] =
 		useUniversalSearchParameters();
 
@@ -24,7 +24,7 @@ const useQuery = (redirectURLSearchParams = true) => {
 	);
 
 	useEffect(() => {
-		for (const [key, value] of Array.from(searchParameters.entries())) {
+		for (const [key, value] of searchParameters.entries()) {
 			if (value) {
 				if (key === DENSITY_CONST && density !== value) {
 					setDensity(value);
@@ -66,7 +66,7 @@ const useQuery = (redirectURLSearchParams = true) => {
 				nextQuery.fullscreen = true;
 			}
 
-			if (redirectURLSearchParams) {
+			if (redirectURLSearchParameters) {
 				setSearchParameters(nextQuery);
 			}
 		}

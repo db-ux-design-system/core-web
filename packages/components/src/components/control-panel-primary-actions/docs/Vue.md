@@ -11,8 +11,8 @@ import { DBControlPanelPrimaryActions } from "@db-ux/v-core-components";
 </script>
 
 <template>
-	<DBControlPanelPrimaryActions>ControlPanelPrimaryActions</DBControlPanelPrimaryActions>
+	<DBControlPanelPrimaryActions
+		>ControlPanelPrimaryActions</DBControlPanelPrimaryActions
+	>
 </template>
 ```
-
-

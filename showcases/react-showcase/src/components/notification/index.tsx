@@ -1,10 +1,10 @@
-import { DBNotification, DBLink } from '@components';
-import DefaultComponent from '../default-component';
-import defaultComponentVariants from '../../../../shared/notification.json';
+import { DBLink, DBNotification } from '@components';
 import { type DBNotificationProps } from '@components/src/components/notification/model';
-import { getVariants } from '../data';
+import defaultComponentVariants from '../../../../shared/notification.json';
 import { getBasePath } from '../../utils/base-path';
 import { type BaseComponentProps } from '../base-component-data';
+import { getVariants } from '../data';
+import DefaultComponent from '../default-component';
 
 const getNotification = ({
 	semantic,

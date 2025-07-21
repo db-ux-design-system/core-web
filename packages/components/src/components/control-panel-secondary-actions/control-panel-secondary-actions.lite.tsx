@@ -1,6 +1,6 @@
 import { useDefaultProps, useMetadata, useRef } from '@builder.io/mitosis';
-import { DBControlPanelSecondaryActionsProps } from './model';
 import { cls } from '../../utils';
+import { DBControlPanelSecondaryActionsProps } from './model';
 
 useMetadata({});
 

@@ -1,11 +1,8 @@
-import { Link, useLocation } from 'react-router-dom';
+import { DBNavigationItem, DBNavigationItemGroup } from '@components';
 import NextLink from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useEffect, useState } from 'react';
-import {
-	DBNavigationItem,
-	DBNavigationItemGroup
-} from '@components';
+import { Link, useLocation } from 'react-router-dom';
 import type { NavigationItem } from '../utils/navigation-item';
 
 const NavItem = ({ navItem }: { navItem: NavigationItem }) => {

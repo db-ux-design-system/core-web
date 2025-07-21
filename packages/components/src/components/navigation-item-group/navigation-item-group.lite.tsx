@@ -7,10 +7,8 @@ import {
 	useRef,
 	useStore
 } from '@builder.io/mitosis';
-import {
-	DBNavigationItemGroupProps,
-	DBNavigationItemGroupState
-} from './model';
+import { DEFAULT_BACK } from '../../shared/constants';
+import { ClickEvent } from '../../shared/model';
 import {
 	cls,
 	delay,
@@ -19,13 +17,15 @@ import {
 	getHideProp,
 	uuid
 } from '../../utils';
-import { ClickEvent } from '../../shared/model';
-import DBButton from '../button/button.lite';
-import { DEFAULT_BACK } from '../../shared/constants';
 import {
 	handleSubNavigationPosition,
 	NavigationItemSafeTriangle
 } from '../../utils/navigation';
+import DBButton from '../button/button.lite';
+import {
+	DBNavigationItemGroupProps,
+	DBNavigationItemGroupState
+} from './model';
 
 useMetadata({});
 

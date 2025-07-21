@@ -1,13 +1,9 @@
-import {
-	DBSwitch,
-	DBInfotext,
-	getBoolean
-} from '@components';
-import DefaultComponent from '../default-component';
-import defaultComponentVariants from '../../../../shared/switch.json';
+import { DBInfotext, DBSwitch, getBoolean } from '@components';
 import type { DBSwitchProps } from '@components/src/components/switch/model';
-import { getVariants } from '../data';
+import defaultComponentVariants from '../../../../shared/switch.json';
 import { type BaseComponentProps } from '../base-component-data';
+import { getVariants } from '../data';
+import DefaultComponent from '../default-component';
 
 const getSwitch = ({
 	children,

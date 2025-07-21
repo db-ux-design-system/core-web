@@ -1,12 +1,8 @@
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import {
-	DBAccordion,
-	DBAccordionItem,
-	DBInfotext
-} from "@components";
+import { DBAccordion, DBAccordionItem, DBInfotext } from '@components';
 import defaultComponentVariants from '../../../../../shared/accordion.json';
-import { DefaultComponent } from '../default.component';
 import { environment } from '../../../environments/environment';
+import { DefaultComponent } from '../default.component';
 
 @Component({
 	selector: 'app-accordion',

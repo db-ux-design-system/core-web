@@ -7,4 +7,3 @@ test.describe('DBControlPanelMobile', () => {
 	getDefaultScreenshotTest({ path });
 	runAriaSnapshotTest({ path });
 });
-

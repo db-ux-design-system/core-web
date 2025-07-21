@@ -7,10 +7,10 @@ import {
 	useRef,
 	useStore
 } from '@builder.io/mitosis';
-import { DBNavigationProps, DBNavigationState } from './model';
 import { cls, delay } from '../../utils';
 import { handleSubNavigationPosition } from '../../utils/navigation';
 import DBButton from '../button/button.lite';
+import { DBNavigationProps, DBNavigationState } from './model';
 
 useMetadata({});
 

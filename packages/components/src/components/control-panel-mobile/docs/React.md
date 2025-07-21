@@ -9,11 +9,8 @@ For general installation and configuration take a look at the [react-core-compon
 import { DBControlPanelMobile } from "@db-ux/react-core-components";
 
 const App = () => (
-	<DBControlPanelMobile>
-		ControlPanelMobile
-	</DBControlPanelMobile>
+	<DBControlPanelMobile>ControlPanelMobile</DBControlPanelMobile>
 );
 
 export default App;
 ```
-

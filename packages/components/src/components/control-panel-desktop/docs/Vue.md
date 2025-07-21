@@ -9,12 +9,17 @@ For general installation and configuration take a look at the [v-core-components
 ```vue App.vue
 <!-- App.vue -->
 <script>
-import { DBControlPanelDesktop, DBControlPanelBrand } from "@db-ux/v-core-components";
+import {
+	DBControlPanelDesktop,
+	DBControlPanelBrand
+} from "@db-ux/v-core-components";
 </script>
 
 <template>
 	<DBControlPanelDesktop>
-		<DBControlPanelBrand slot="control-panel-brand">ControlPanelDesktop</DBControlPanelBrand>
+		<DBControlPanelBrand slot="control-panel-brand"
+			>ControlPanelDesktop</DBControlPanelBrand
+		>
 	</DBControlPanelDesktop>
 </template>
 ```

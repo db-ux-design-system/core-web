@@ -1,5 +1,7 @@
-import { useRouter } from 'next/router';
+import hljs from 'highlight.js';
 import dynamic from 'next/dynamic';
+import Link from 'next/link';
+import { useRouter } from 'next/router';
 import {
 	Fragment,
 	type PropsWithChildren,
@@ -7,17 +9,14 @@ import {
 	useEffect,
 	useState
 } from 'react';
-import hljs from 'highlight.js';
-import Link from 'next/link';
 import {
 	DBBrand,
-	DBSwitch,
-	DBTooltip,
-	DBHeader,
-	DBShell,
-	DBSection,
 	DBCard,
-	DBIcon
+	DBHeader,
+	DBSection,
+	DBShell,
+	DBSwitch,
+	DBTooltip
 } from '../../../output/react/src';
 import {
 	getBreadcrumb,
@@ -127,9 +126,7 @@ const DefaultPage = ({
 		<>
 			{router.isReady && fullscreen && (
 				<div
-					className={`${noH1 ? 'noh1' : ''} ${
-						properties ? 'is-properties' : ''
-					}`}>
+					className={`${noH1 ? 'noh1' : ''} ${properties ? 'is-properties' : ''}`}>
 					{children}
 				</div>
 			)}

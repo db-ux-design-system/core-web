@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import DefaultComponent from "../DefaultComponent.vue";
+import { DBInfotext, DBRadio } from "@components";
 import defaultComponentVariants from "../../../../shared/radio.json";
-import { DBCheckbox, DBInfotext, DBRadio } from "@components";
+import DefaultComponent from "../DefaultComponent.vue";
 </script>
 
 <template>

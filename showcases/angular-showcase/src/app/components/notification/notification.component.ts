@@ -1,8 +1,8 @@
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { DBLink, DBNotification } from '@components';
 import defaultComponentVariants from '../../../../../shared/notification.json';
-import { DefaultComponent } from '../default.component';
 import { environment } from '../../../environments/environment';
+import { DefaultComponent } from '../default.component';
 
 @Component({
 	selector: 'app-notification',

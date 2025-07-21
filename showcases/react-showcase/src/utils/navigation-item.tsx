@@ -1,36 +1,36 @@
 import ControlPanelMobileComponent from '../components/control-panel-mobile';
 
-import StackComponent from '../components/stack';
-import CustomSelectComponent from '../components/custom-select';
-import SwitchComponent from '../components/switch';
-import TabsComponent from '../components/tabs';
-import TabItemComponent from '../components/tab-item';
-import TooltipComponent from '../components/tooltip';
-import PopoverComponent from '../components/popover';
-import AccordionItemComponent from '../components/accordion-item';
 import AccordionComponent from '../components/accordion';
-import NavigationComponent from '../components/navigation';
+import AccordionItemComponent from '../components/accordion-item';
 import BadgeComponent from '../components/badge';
-import NavigationItemComponent from '../components/navigation-item';
-import CheckboxComponent from '../components/checkbox';
-import TagComponent from '../components/tag';
-import DrawerComponent from '../components/drawer';
-import SelectComponent from '../components/select';
-import RadioComponent from '../components/radio';
-import NotificationComponent from '../components/notification';
+import BrandComponent from '../components/brand';
 import ButtonComponent from '../components/button';
 import CardComponent from '../components/card';
+import CheckboxComponent from '../components/checkbox';
+import ControlPanelDesktopComponent from '../components/control-panel-desktop';
+import CustomSelectComponent from '../components/custom-select';
 import DividerComponent from '../components/divider';
+import DrawerComponent from '../components/drawer';
+import Home from '../components/home';
+import IconComponent from '../components/icon';
 import InfotextComponent from '../components/infotext';
 import InputComponent from '../components/input';
 import LinkComponent from '../components/link';
+import NavigationComponent from '../components/navigation';
+import NavigationItemComponent from '../components/navigation-item';
+import NotificationComponent from '../components/notification';
+import PopoverComponent from '../components/popover';
+import RadioComponent from '../components/radio';
 import SectionComponent from '../components/section';
-import TextareaComponent from '../components/textarea';
-import IconComponent from '../components/icon';
-import BrandComponent from '../components/brand';
+import SelectComponent from '../components/select';
 import ShellComponent from '../components/shell';
-import ControlPanelDesktopComponent from '../components/control-panel-desktop';
-import Home from '../components/home';
+import StackComponent from '../components/stack';
+import SwitchComponent from '../components/switch';
+import TabItemComponent from '../components/tab-item';
+import TabsComponent from '../components/tabs';
+import TagComponent from '../components/tag';
+import TextareaComponent from '../components/textarea';
+import TooltipComponent from '../components/tooltip';
 
 export type NavigationItem = {
 	path: string;
@@ -55,20 +55,56 @@ export const NAVIGATION_ITEMS: NavigationItem[] = [
 				label: 'Notification',
 				component: <NotificationComponent />,
 				subNavigation: getSortedNavigationItems([
-					{ path: 'link', label: 'Link', component: <LinkComponent /> ,
+					{
+						path: 'link',
+						label: 'Link',
+						component: <LinkComponent />,
 						subNavigation: getSortedNavigationItems([
-							{ path: 'link', label: 'Link', component: <LinkComponent /> ,
+							{
+								path: 'link',
+								label: 'Link',
+								component: <LinkComponent />,
 								subNavigation: getSortedNavigationItems([
-									{ path: 'link', label: 'Link', component: <LinkComponent /> ,
-										subNavigation: getSortedNavigationItems([
-											{ path: 'link', label: 'Link', component: <LinkComponent /> },
-											{ path: 'button', label: 'Button', component: <ButtonComponent /> }
-										])},
-									{ path: 'button', label: 'Button', component: <ButtonComponent /> }
-								])},
-							{ path: 'button', label: 'Button', component: <ButtonComponent /> }
-						])},
-					{ path: 'button', label: 'Button', component: <ButtonComponent /> }
+									{
+										path: 'link',
+										label: 'Link',
+										component: <LinkComponent />,
+										subNavigation: getSortedNavigationItems(
+											[
+												{
+													path: 'link',
+													label: 'Link',
+													component: <LinkComponent />
+												},
+												{
+													path: 'button',
+													label: 'Button',
+													component: (
+														<ButtonComponent />
+													)
+												}
+											]
+										)
+									},
+									{
+										path: 'button',
+										label: 'Button',
+										component: <ButtonComponent />
+									}
+								])
+							},
+							{
+								path: 'button',
+								label: 'Button',
+								component: <ButtonComponent />
+							}
+						])
+					},
+					{
+						path: 'button',
+						label: 'Button',
+						component: <ButtonComponent />
+					}
 				])
 			},
 			{ path: 'badge', label: 'Badge', component: <BadgeComponent /> }

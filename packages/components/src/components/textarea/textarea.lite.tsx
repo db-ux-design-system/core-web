@@ -8,18 +8,6 @@ import {
 	useStore,
 	useTarget
 } from '@builder.io/mitosis';
-import { DBTextareaProps, DBTextareaState } from './model';
-import DBInfotext from '../infotext/infotext.lite';
-import {
-	cls,
-	delay,
-	getBoolean,
-	getHideProp,
-	getNumber,
-	hasVoiceOver,
-	stringPropVisible,
-	uuid
-} from '../../utils';
 import {
 	DEFAULT_INVALID_MESSAGE,
 	DEFAULT_INVALID_MESSAGE_ID_SUFFIX,
@@ -32,9 +20,21 @@ import {
 } from '../../shared/constants';
 import { ChangeEvent, InputEvent, InteractionEvent } from '../../shared/model';
 import {
+	cls,
+	delay,
+	getBoolean,
+	getHideProp,
+	getNumber,
+	hasVoiceOver,
+	stringPropVisible,
+	uuid
+} from '../../utils';
+import {
 	handleFrameworkEventAngular,
 	handleFrameworkEventVue
 } from '../../utils/form-components';
+import DBInfotext from '../infotext/infotext.lite';
+import { DBTextareaProps, DBTextareaState } from './model';
 
 useMetadata({
 	angular: {
@@ -170,6 +170,7 @@ export default function DBTextarea(props: DBTextareaProps) {
 		<div
 			class={cls('db-textarea', props.className)}
 			data-variant={props.variant}
+			data-hide-asterisk={getHideProp(props.showRequiredAsterisk)}
 			data-hide-label={getHideProp(props.showLabel)}>
 			<label htmlFor={state._id}>{props.label ?? DEFAULT_LABEL}</label>
 

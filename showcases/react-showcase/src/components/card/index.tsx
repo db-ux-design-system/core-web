@@ -1,9 +1,9 @@
 import { DBCard } from '@components';
-import DefaultComponent from '../default-component';
-import defaultComponentVariants from '../../../../shared/card.json';
-import { getVariants } from '../data';
 import type { DBCardProps } from '@components/src/components/card/model';
+import defaultComponentVariants from '../../../../shared/card.json';
 import { type BaseComponentProps } from '../base-component-data';
+import { getVariants } from '../data';
+import DefaultComponent from '../default-component';
 
 const getCard = ({
 	behavior,

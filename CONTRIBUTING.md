@@ -1,8 +1,8 @@
 # Contributing
 
-Thanks for your interest in our project. Contributions are welcome. Feel free to [open an issue](https://github.com/db-ux-design-system/core-web/issues/new) with questions or reporting ideas and bugs, or [open pull requests](https://github.com/db-ux-design-system/core-web/compare) to contribute code.
+**Thank you for your interest in our project.** Contributions are always welcome. **Feel free to [open an issue](https://github.com/db-ux-design-system/core-web/issues/new) if you have any questions, ideas, or bugs to report, or submit pull requests to contribute code.**
 
-We are committed to fostering a welcoming, respectful, and harassment-free environment. Be kind!
+We are committed to fostering a welcoming, respectful, and harassment-free environment, **so please be kind! 💖**
 
 ## Prepare
 
@@ -17,7 +17,8 @@ node node_modules/@db-ux/db-theme-icons/build/scripts/index.js
 node node_modules/@db-ux/db-theme-illustrative-icons/build/scripts/index.js
 ```
 
-> I you missed the step before the `npm install`, you may need to re-install your packages to ensure the postinstall scrips are executed for decrypting the fonts and other artifacts (`rm -rf node_modules/@db-ux/db-theme* && npm update @db-ux/db-theme`)
+> [!NOTE]
+> If you missed setting up the `.env`-file before running `npm install`, you may need to re-install your packages to ensure the postinstall scrips are executed for decrypting the fonts and other artifacts (`rm -rf node_modules/@db-ux/db-theme* && npm update @db-ux/db-theme`)
 
 ## Start locally
 
@@ -28,7 +29,7 @@ npm run dev
 
 ## Make changes / Before you commit
 
-Please make sure that husky is installed correctly to validate your changes.
+Please ensure that **Husky** is installed correctly to validate your changes.
 
 Please verify you are using a valid branch name as described by the pattern in your [`package.json`](./package.json) in the section `validate-branch-name`.
 
@@ -36,4 +37,4 @@ Moreover, you need to duplicate [`.env.template`](./.env.template) as [`.env`](.
 
 ### Conventions
 
-Please be aware that we have some [code and git commit (message and branch naming) conventions](docs/conventions.md), that we ensure with some linting tools.
+Please note that we have established [code and git commit (message and branch naming) conventions](docs/conventions.md), which are enforced using various linting tools.

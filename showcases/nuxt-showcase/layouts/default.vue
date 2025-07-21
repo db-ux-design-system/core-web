@@ -1,11 +1,11 @@
 <script setup lang="ts">
 import {
-	DBShell,
-	DBHeader,
 	DBBrand,
-	DBSelect,
+	DBButton,
+	DBHeader,
 	DBNavigation,
-	DBButton
+	DBSelect,
+	DBShell
 } from "../../../output/vue/src";
 import {
 	COLORS,

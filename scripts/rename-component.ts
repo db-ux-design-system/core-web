@@ -1,9 +1,9 @@
-import { dirname, join, relative } from 'node:path';
-import { existsSync, lstatSync, readFileSync, writeFileSync } from 'node:fs';
-import { execSync } from 'node:child_process';
+import { move } from 'fs-extra';
 import { glob } from 'glob';
 import ignore from 'ignore';
-import { move } from 'fs-extra';
+import { execSync } from 'node:child_process';
+import { existsSync, lstatSync, readFileSync, writeFileSync } from 'node:fs';
+import { dirname, join } from 'node:path';
 
 const from = 'page';
 const to = 'shell';

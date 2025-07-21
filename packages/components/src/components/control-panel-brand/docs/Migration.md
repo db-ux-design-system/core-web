@@ -7,8 +7,8 @@
 
 ### class
 
-| Before      | Status | After      | Description |
-| ----------- | :----: | ---------- | ----------- |
+| Before                    | Status | After                    | Description |
+| ------------------------- | :----: | ------------------------ | ----------- |
 | `cmp-control-panel-brand` |   🔁   | `db-control-panel-brand` |             |
 
 ### properties

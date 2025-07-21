@@ -22,5 +22,3 @@ import { DBNavigationItemGroup } from '@db-ux/ngx-core-components';
 <!-- app.component.html -->
 <db-navigation-item-group>NavigationItemGroup</db-navigation-item-group>
 ```
-
-

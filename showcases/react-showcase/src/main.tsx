@@ -1,8 +1,8 @@
+import '@db-ux/core-components/build/styles/rollup.css';
+import '@db-ux/db-theme/build/styles/rollup.css';
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { HashRouter, Navigate, Route, Routes } from 'react-router-dom';
-import '@db-ux/core-components/build/styles/rollup.css';
-import '@db-ux/db-theme/build/styles/rollup.css';
 import '../../showcase-styles.css';
 import App from './app';
 import { NAVIGATION_ITEMS } from './utils/navigation-item';
@@ -13,7 +13,6 @@ import { NAVIGATION_ITEMS } from './utils/navigation-item';
 window['env'] = {
 	BASE_URL: import.meta.env.BASE_URL
 };
-
 
 ReactDOM.createRoot(document.querySelector('#root')!).render(
 	<React.StrictMode>

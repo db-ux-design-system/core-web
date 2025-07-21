@@ -1,18 +1,11 @@
-import {
-GlobalProps,
-GlobalState } from '../../shared/model';
+import { GlobalProps, GlobalState } from '../../shared/model';
 
-export type DBControlPanelPrimaryActionsDefaultProps = {
-}
+export type DBControlPanelPrimaryActionsDefaultProps = {};
 
 export type DBControlPanelPrimaryActionsProps =
-	DBControlPanelPrimaryActionsDefaultProps  &
-	GlobalProps
-	;
+	DBControlPanelPrimaryActionsDefaultProps & GlobalProps;
 
-export type DBControlPanelPrimaryActionsDefaultState = {}
+export type DBControlPanelPrimaryActionsDefaultState = {};
 
 export type DBControlPanelPrimaryActionsState =
-	DBControlPanelPrimaryActionsDefaultState &
-	GlobalState
-	;
+	DBControlPanelPrimaryActionsDefaultState & GlobalState;

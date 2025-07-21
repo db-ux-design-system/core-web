@@ -1,1 +1,1 @@
-export { default as DBControlPanelSecondaryActions } from "./control-panel-secondary-actions";
+export { default as DBControlPanelSecondaryActions } from './control-panel-secondary-actions';

@@ -1,16 +1,16 @@
 <script setup lang="ts">
-import DefaultComponent from "../DefaultComponent.vue";
-import defaultComponentVariants from "../../../../shared/control-panel-desktop.json";
 import {
-	DBControlPanelDesktop,
 	DBControlPanelBrand,
+	DBControlPanelDesktop,
+	DBControlPanelMetaNavigation,
 	DBLink,
 	DBNavigation,
-	DBNavigationItem,
-	DBControlPanelMetaNavigation
+	DBNavigationItem
 } from "@components";
+import defaultComponentVariants from "../../../../shared/control-panel-desktop.json";
 import PrimaryActions from "../../control-panel/PrimaryActions.vue";
 import SecondaryActions from "../../control-panel/SecondaryActions.vue";
+import DefaultComponent from "../DefaultComponent.vue";
 </script>
 
 <template>

@@ -13,20 +13,20 @@ import {
 	DENSITY_CONST,
 	SEMANTIC
 } from '@components';
+import {
+	defaultSettings,
+	DefaultSettings
+} from '../../../shared/default-component-data';
 import { environment } from '../environments/environment';
+import { MetaNavigationComponent } from './control-panel/meta-navigation/meta-navigation.component';
+import { PrimaryActionsComponent } from './control-panel/primary-actions/primary-actions.component';
+import { SecondaryActionsComponent } from './control-panel/secondary-actions/secondary-actions.component';
 import { NavItemComponent } from './nav-item/nav-item.component';
 import {
 	getSortedNavigationItems,
 	NAVIGATION_ITEMS,
 	NavItem
 } from './utils/navigation-item';
-import { MetaNavigationComponent } from './control-panel/meta-navigation/meta-navigation.component';
-import { PrimaryActionsComponent } from './control-panel/primary-actions/primary-actions.component';
-import { SecondaryActionsComponent } from './control-panel/secondary-actions/secondary-actions.component';
-import {
-	defaultSettings,
-	DefaultSettings
-} from '../../../shared/default-component-data';
 
 @Component({
 	selector: 'app-root',

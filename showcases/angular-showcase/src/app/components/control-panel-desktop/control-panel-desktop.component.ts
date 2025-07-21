@@ -1,6 +1,4 @@
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import defaultComponentVariants from '../../../../../shared/control-panel-desktop.json';
-import { DefaultComponent } from '../default.component';
 import {
 	DBControlPanelBrand,
 	DBControlPanelDesktop,
@@ -9,9 +7,11 @@ import {
 	DBNavigation,
 	DBNavigationItem
 } from '@components';
+import defaultComponentVariants from '../../../../../shared/control-panel-desktop.json';
 import { environment } from '../../../environments/environment';
 import { PrimaryActionsComponent } from '../../control-panel/primary-actions/primary-actions.component';
 import { SecondaryActionsComponent } from '../../control-panel/secondary-actions/secondary-actions.component';
+import { DefaultComponent } from '../default.component';
 
 @Component({
 	selector: 'app-control-panel-desktop',

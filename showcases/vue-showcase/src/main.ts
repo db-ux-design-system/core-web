@@ -1,5 +1,3 @@
-import { createApp } from 'vue';
-import { createRouter, createWebHashHistory } from 'vue-router';
 import '@db-ux/core-components/build/styles/rollup.css';
 import '@db-ux/db-theme/build/styles/rollup.css';
 import '../../showcase-styles.css';

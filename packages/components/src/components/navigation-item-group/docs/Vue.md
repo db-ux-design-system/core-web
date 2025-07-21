@@ -14,5 +14,3 @@ import { DBNavigationItemGroup } from "@db-ux/v-core-components";
 	<DBNavigationItemGroup>NavigationItemGroup</DBNavigationItemGroup>
 </template>
 ```
-
-

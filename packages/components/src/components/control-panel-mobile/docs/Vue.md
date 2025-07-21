@@ -14,5 +14,3 @@ import { DBControlPanelMobile } from "@db-ux/v-core-components";
 	<DBControlPanelMobile>ControlPanelMobile</DBControlPanelMobile>
 </template>
 ```
-
-

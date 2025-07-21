@@ -106,7 +106,7 @@ $meta-child-selector: "> .db-control-panel-desktop-scroll-container  .db-control
 }
 
 @mixin vertical-navigation($main-navigation: true) {
-	@if($main-navigation) {
+	@if ($main-navigation) {
 		padding-block: variables.$db-spacing-fixed-md;
 	}
 
@@ -177,9 +177,9 @@ $meta-child-selector: "> .db-control-panel-desktop-scroll-container  .db-control
 	}
 
 	&:has(
-			#{string.unquote(custom-elements.$control-primary-actions)},
-			#{string.unquote($navigation-child-selector)}
-		) {
+		#{string.unquote(custom-elements.$control-primary-actions)},
+		#{string.unquote($navigation-child-selector)}
+	) {
 		#{string.unquote(custom-elements.$control-secondary-actions)} {
 			padding-inline-start: variables.$db-spacing-fixed-sm;
 
@@ -398,11 +398,11 @@ $meta-child-selector: "> .db-control-panel-desktop-scroll-container  .db-control
 	}
 
 	&:has(
-			#{string.unquote(custom-elements.$control-panel-brand)},
-			#{string.unquote(custom-elements.$control-primary-actions)},
-			#{string.unquote($navigation-child-selector)},
-			#{string.unquote($meta-child-selector)}
-		) {
+		#{string.unquote(custom-elements.$control-panel-brand)},
+		#{string.unquote(custom-elements.$control-primary-actions)},
+		#{string.unquote($navigation-child-selector)},
+		#{string.unquote($meta-child-selector)}
+	) {
 		#{string.unquote(custom-elements.$control-secondary-actions)} {
 			padding-block-start: variables.$db-spacing-fixed-sm;
 
@@ -421,10 +421,10 @@ $meta-child-selector: "> .db-control-panel-desktop-scroll-container  .db-control
 	}
 
 	&:has(
-			#{string.unquote(custom-elements.$control-panel-brand)},
-			#{string.unquote($navigation-child-selector)},
-			#{string.unquote($meta-child-selector)}
-		) {
+		#{string.unquote(custom-elements.$control-panel-brand)},
+		#{string.unquote($navigation-child-selector)},
+		#{string.unquote($meta-child-selector)}
+	) {
 		#{string.unquote(custom-elements.$control-primary-actions)} {
 			padding-block-start: variables.$db-spacing-fixed-sm;
 

@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import DefaultComponent from "../DefaultComponent.vue";
+import { DBSelect } from "@components";
 import defaultComponentVariants from "../../../../shared/select.json";
-import { DBCheckbox, DBInput, DBSelect } from "@components";
+import DefaultComponent from "../DefaultComponent.vue";
 </script>
 
 <template>

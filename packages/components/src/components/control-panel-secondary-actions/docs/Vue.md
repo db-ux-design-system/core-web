@@ -11,8 +11,8 @@ import { DBControlPanelSecondaryActions } from "@db-ux/v-core-components";
 </script>
 
 <template>
-	<DBControlPanelSecondaryActions>ControlPanelSecondaryActions</DBControlPanelSecondaryActions>
+	<DBControlPanelSecondaryActions
+		>ControlPanelSecondaryActions</DBControlPanelSecondaryActions
+	>
 </template>
 ```
-
-

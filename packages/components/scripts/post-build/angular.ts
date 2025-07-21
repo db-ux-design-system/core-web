@@ -65,9 +65,7 @@ const setControlValueAccessorReplacements = (
 		  this.${valueAccessor}.set(${valueAccessor === 'checked' ? '!!' : ''}value);
 
 		  if (this._ref()?.nativeElement) {
-			 this.renderer.setProperty(this._ref()?.nativeElement, '${valueAccessor}', ${
-					valueAccessor === 'checked' ? '!!' : ''
-				}value);
+			 this.renderer.setProperty(this._ref()?.nativeElement, '${valueAccessor}', ${valueAccessor === 'checked' ? '!!' : ''}value);
 		  }
 			${valueAccessorRequired ? '}' : ''}
 		}
@@ -93,9 +91,7 @@ export default (tmp?: boolean) => {
 	const outputFolder = `${tmp ? 'output/tmp' : 'output'}`;
 	for (const component of components) {
 		const componentName = component.name;
-		const upperComponentName = `DB${transformToUpperComponentName(
-			component.name
-		)}`;
+		const upperComponentName = `DB${transformToUpperComponentName(component.name)}`;
 		const file = `../../${outputFolder}/angular/src/components/${componentName}/${componentName}.ts`;
 		const indexFile = `../../${outputFolder}/angular/src/components/${componentName}/index.ts`;
 

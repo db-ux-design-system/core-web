@@ -1,12 +1,9 @@
-import {
-	DBNavigationItem,
-	DBNavigationItemGroup
-} from '@components';
-import DefaultComponent from '../default-component';
-import defaultComponentVariants from '../../../../shared/navigation-item.json';
+import { DBNavigationItem, DBNavigationItemGroup } from '@components';
 import type { DBNavigationItemProps } from '@components/src/components/navigation-item/model';
-import { getVariants } from '../data';
+import defaultComponentVariants from '../../../../shared/navigation-item.json';
 import { type BaseComponentProps } from '../base-component-data';
+import { getVariants } from '../data';
+import DefaultComponent from '../default-component';
 
 const getNavigationItem = ({
 	children,

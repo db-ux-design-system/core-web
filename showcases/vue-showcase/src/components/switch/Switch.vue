@@ -1,12 +1,7 @@
 <script setup lang="ts">
-import DefaultComponent from "../DefaultComponent.vue";
+import { DBInfotext, DBSwitch } from "@components";
 import defaultComponentVariants from "../../../../shared/switch.json";
-import {
-	DBSwitch,
-	DBInfotext,
-	DBCheckbox,
-	DBInput
-} from "@components";
+import DefaultComponent from "../DefaultComponent.vue";
 </script>
 
 <template>

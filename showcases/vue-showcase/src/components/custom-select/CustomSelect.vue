@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import DefaultComponent from "../DefaultComponent.vue";
-import defaultComponentVariants from "../../../../shared/custom-select.json";
 import { DBCustomSelect, DBInfotext } from "@components";
 import { CustomSelectOptionType } from "@db-ux/core-components/src/components/custom-select/model";
+import defaultComponentVariants from "../../../../shared/custom-select.json";
+import DefaultComponent from "../DefaultComponent.vue";
 
 const log = (values: string[]) => {
 	// eslint-disable-next-line no-alert

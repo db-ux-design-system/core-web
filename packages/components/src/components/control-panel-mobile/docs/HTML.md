@@ -8,9 +8,6 @@ For general installation and configuration take a look at the [components](https
 <!-- index.html -->
 ...
 <body>
-	<div class="db-control-panel-mobile">
-		ControlPanelMobile
-	</div>
+	<div class="db-control-panel-mobile">ControlPanelMobile</div>
 </body>
 ```
-

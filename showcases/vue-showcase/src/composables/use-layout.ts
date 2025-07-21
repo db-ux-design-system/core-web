@@ -1,11 +1,11 @@
-import { useRoute, useRouter } from 'vue-router';
-import { computed, ref, watch } from 'vue';
 import { COLOR_CONST, DENSITY, DENSITY_CONST, SEMANTIC } from '@components';
+import { computed, ref, watch } from 'vue';
+import { useRoute, useRouter } from 'vue-router';
+import { defaultSettings } from '../../../shared/default-component-data';
 import {
 	getSortedNavigationItems,
 	navigationItems
 } from '../utils/navigation-items';
-import { defaultSettings } from '../../../shared/default-component-data';
 
 export const useLayout = () => {
 	const router = useRouter();
@@ -21,12 +21,27 @@ export const useLayout = () => {
 	);
 
 	const onChange = async (event: any, target?: string) => {
-		if (target === 'density') {
-			density.value = event.target.value;
-		} else if (target === 'color') {
-			color.value = event.target.value;
-		} else if (target === 'settings') {
-			settings.value = event;
+		if (target) {
+			switch (target) {
+				case 'density': {
+					density.value = event.target.value;
+
+					break;
+				}
+
+				case 'color': {
+					color.value = event.target.value;
+
+					break;
+				}
+
+				case 'settings': {
+					settings.value = event;
+
+					break;
+				}
+				// No default
+			}
 		}
 
 		await router.push({
@@ -62,7 +77,10 @@ export const useLayout = () => {
 				page.value = query.fullscreen;
 			}
 
-			if (query.settings && JSON.stringify(settings.value) !== query.settings) {
+			if (
+				query.settings &&
+				JSON.stringify(settings.value) !== query.settings
+			) {
 				settings.value = JSON.parse(query.settings);
 			}
 		},

@@ -36,23 +36,12 @@ const getPropertiesFile = ({ name, attributes, events, slots }) => {
 		const isUnion = value.type.includes('|');
 
 		propertyTable += `| ${getAllNames(name)} `;
-		propertyTable += `| ${
-			description?.replaceAll(/\r\n|\r|\n/g, '<br/>') || 'No description'
-		} `;
+		propertyTable += `| ${description?.replaceAll(/\r\n|\r|\n/g, '<br/>') || 'No description'} `;
 		propertyTable += `| ${isUnion ? 'union' : value.type} `;
 
-		if (['icon', 'icon-after', 'message-icon'].includes(name)) {
-			propertyTable += `| [IconTypes](https://design-system.deutschebahn.com/core-web/review/main/foundations/icons/overview) |\n`;
-		} else {
-			propertyTable += `| ${
-				isUnion
-					? `<pre><code className="code-pre-wrap">${value.type.replaceAll(
-							'|',
-							'&#124;'
-						)}</code></pre>`
-					: ''
-			} |\n`;
-		}
+		propertyTable += ['icon', 'icon-after', 'message-icon'].includes(name)
+			? `| [IconTypes](https://design-system.deutschebahn.com/core-web/review/main/foundations/icons/overview) |\n`
+			: `| ${isUnion ? `<pre><code className="code-pre-wrap">${value.type.replaceAll('|', '&#124;')}</code></pre>` : ''} |\n`;
 	}
 
 	for (const { name, description } of allSlots) {

@@ -8,9 +8,18 @@ For general installation and configuration take a look at the [react-core-compon
 
 ```tsx App.tsx
 // App.tsx
-import { DBControlPanelDesktop, DBControlPanelBrand } from "@db-ux/react-core-components";
+import {
+	DBControlPanelDesktop,
+	DBControlPanelBrand
+} from "@db-ux/react-core-components";
 
-const App = () => <DBControlPanelDesktop control-panel-brand={<DBControlPanelBrand>ControlPanelDesktop</DBControlPanelBrand>} />;
+const App = () => (
+	<DBControlPanelDesktop
+		control-panel-brand={
+			<DBControlPanelBrand>ControlPanelDesktop</DBControlPanelBrand>
+		}
+	/>
+);
 
 export default App;
 ```
@@ -20,7 +29,11 @@ export default App;
 ```tsx App.tsx
 // App.tsx
 import { useState } from "react";
-import { DBControlPanelDesktop, DBControlPanelBrand, DBLink } from "@db-ux/react-core-components";
+import {
+	DBControlPanelDesktop,
+	DBControlPanelBrand,
+	DBLink
+} from "@db-ux/react-core-components";
 
 const [drawerOpen, setDrawerOpen] = useState<boolean>(false);
 
@@ -28,7 +41,9 @@ const App = () => (
 	<DBControlPanelDesktop
 		drawerOpen={drawerOpen}
 		onToggle={setDrawerOpen}
-		control-panel-brand={<DBControlPanelBrand>My Awesome App</DBControlPanelBrand>}
+		control-panel-brand={
+			<DBControlPanelBrand>My Awesome App</DBControlPanelBrand>
+		}
 		metaNavigation={
 			<>
 				<DBLink href="#">Imprint</DBLink>

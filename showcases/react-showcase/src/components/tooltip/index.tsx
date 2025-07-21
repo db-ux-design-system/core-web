@@ -1,9 +1,9 @@
-import { DBTooltip, DBButton } from '@components';
-import DefaultComponent from '../default-component';
-import defaultComponentVariants from '../../../../shared/tooltip.json';
+import { DBButton, DBTooltip } from '@components';
 import type { DBTooltipProps } from '@components/src/components/tooltip/model';
-import { getVariants } from '../data';
+import defaultComponentVariants from '../../../../shared/tooltip.json';
 import { type BaseComponentProps } from '../base-component-data';
+import { getVariants } from '../data';
+import DefaultComponent from '../default-component';
 
 const getTooltip = ({
 	children,

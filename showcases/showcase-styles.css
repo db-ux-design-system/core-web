@@ -60,9 +60,9 @@ db-card:is(.variants-card) > .db-card {
 .variants-list {
 	.db-shell {
 		&:is(
-				:not([data-control-panel-desktop-position]),
-				[data-control-panel-desktop-position="top"]
-			) {
+			:not([data-control-panel-desktop-position]),
+			[data-control-panel-desktop-position="top"]
+		) {
 			block-size: 200px;
 		}
 	}
@@ -157,6 +157,7 @@ db-card:is(.variants-card) > .db-card {
 
 .db-main {
 	overflow-x: hidden;
+	overflow-inline: hidden;
 }
 
 .stack-container {

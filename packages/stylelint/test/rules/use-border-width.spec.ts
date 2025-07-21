@@ -1,12 +1,12 @@
-import { describe, test } from 'vitest';
 import { type Config } from 'stylelint';
+import { describe, test } from 'vitest';
+import useBorderWidth from '../../src/rules/use-border-width.js';
 import {
 	defaultConfig,
 	getDefaultTest,
 	getScssAllowTest,
 	getVueTest
 } from '../defaults.js';
-import useBorderWidth from '../../src/rules/use-border-width.js';
 
 const ruleName = 'db-ux/use-border-width';
 

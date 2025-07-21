@@ -6,6 +6,8 @@ import {
 	input,
 	viewChild
 } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
 import {
 	DBControlPanelMetaNavigation,
 	DBSelect,
@@ -15,14 +17,12 @@ import {
 	SEMANTIC,
 	SEMANTICS
 } from '@components';
-import { FormsModule } from '@angular/forms';
-import { environment } from '../../../environments/environment';
-import { ActivatedRoute, Router } from '@angular/router';
 import {
 	defaultSettings,
 	DefaultSettings,
 	defaultSettingsMapping
 } from '../../../../../shared/default-component-data';
+import { environment } from '../../../environments/environment';
 
 @Component({
 	selector: 'app-meta-navigation',
@@ -52,7 +52,7 @@ export class MetaNavigationComponent implements AfterViewInit {
 
 	ngAfterViewInit() {
 		if (this.isWebComponent) {
-			delay(() => {
+			void delay(() => {
 				const {
 					controlPanelDesktopPosition,
 					controlPanelMobilePosition,
@@ -78,11 +78,10 @@ export class MetaNavigationComponent implements AfterViewInit {
 				const selects =
 					this.metaRef()?.nativeElement.querySelectorAll('select');
 				if (selects) {
-					Array.from(selects).forEach(
-						(select: any, index: number) => {
-							select.value = data[index];
-						}
-					);
+					for (const select of selects) {
+						const index: number = [...selects].indexOf(select);
+						select.value = data[index];
+					}
 				}
 			}, 1000);
 		}
@@ -93,23 +92,36 @@ export class MetaNavigationComponent implements AfterViewInit {
 			...this.settings(),
 			[key]: event.target.value
 		};
-		this.onChange('settings', changedSettings);
+		void this.onChange('settings', changedSettings);
 	};
 
 	onChange = async (key: string, value: any) => {
-		const queryParams = {};
+		const queryParameters = {};
 
-		if (key === 'density') {
-			queryParams[key] = value.target.value;
-		} else if (key === 'color') {
-			queryParams[key] = value.target.value;
-		} else if (key === 'settings') {
-			queryParams['settings'] = JSON.stringify(value);
+		switch (key) {
+			case 'density': {
+				queryParameters[key] = value.target.value;
+
+				break;
+			}
+
+			case 'color': {
+				queryParameters[key] = value.target.value;
+
+				break;
+			}
+
+			case 'settings': {
+				queryParameters.settings = JSON.stringify(value);
+
+				break;
+			}
+			// No default
 		}
 
 		await this.router.navigate([], {
 			relativeTo: this.route,
-			queryParams,
+			queryParams: queryParameters,
 			queryParamsHandling: 'merge'
 		});
 	};

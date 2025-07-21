@@ -1,12 +1,7 @@
 <script setup lang="ts">
-import DefaultComponent from "../DefaultComponent.vue";
+import { DBBadge, DBButton, DBIcon, DBInfotext } from "@components";
 import defaultComponentVariants from "../../../../shared/badge.json";
-import {
-	DBBadge,
-	DBIcon,
-	DBButton,
-	DBInfotext
-} from "@components";
+import DefaultComponent from "../DefaultComponent.vue";
 </script>
 
 <template>

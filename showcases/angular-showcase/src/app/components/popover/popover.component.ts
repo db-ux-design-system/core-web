@@ -1,12 +1,8 @@
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { DBButton, DBPopover } from '@components';
 import defaultComponentVariants from '../../../../../shared/popover.json';
-import { DefaultComponent } from '../default.component';
-import {
-	DBButton,
-	DBPopover,
-	DBSwitch
-} from '@components';
 import { environment } from '../../../environments/environment';
+import { DefaultComponent } from '../default.component';
 
 @Component({
 	selector: 'app-popover',

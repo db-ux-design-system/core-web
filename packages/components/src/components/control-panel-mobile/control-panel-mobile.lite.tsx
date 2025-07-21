@@ -1,17 +1,16 @@
 import {
-	Show,
 	Slot,
 	useDefaultProps,
 	useMetadata,
 	useRef,
 	useStore
 } from '@builder.io/mitosis';
-import { DBControlPanelMobileProps, DBControlPanelMobileState } from './model';
+import { DEFAULT_BURGER_MENU } from '../../shared/constants';
 import { cls } from '../../utils';
 import { isEventTargetNavigationItem } from '../../utils/navigation';
-import DBDrawer from '../drawer/drawer.lite';
 import DBButton from '../button/button.lite';
-import { DEFAULT_BURGER_MENU } from '../../shared/constants';
+import DBDrawer from '../drawer/drawer.lite';
+import { DBControlPanelMobileProps, DBControlPanelMobileState } from './model';
 
 useMetadata({});
 

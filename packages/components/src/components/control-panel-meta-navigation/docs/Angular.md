@@ -20,7 +20,7 @@ import { DBControlPanelMetaNavigation } from '@db-ux/ngx-core-components';
 
 ```html app.component.html
 <!-- app.component.html -->
-<db-control-panel-meta-navigation>ControlPanelMetaNavigation</db-control-panel-meta-navigation>
+<db-control-panel-meta-navigation
+	>ControlPanelMetaNavigation</db-control-panel-meta-navigation
+>
 ```
-
-

@@ -20,7 +20,7 @@ import { DBControlPanelPrimaryActions } from '@db-ux/ngx-core-components';
 
 ```html app.component.html
 <!-- app.component.html -->
-<db-control-panel-primary-actions>ControlPanelPrimaryActions</db-control-panel-primary-actions>
+<db-control-panel-primary-actions
+	>ControlPanelPrimaryActions</db-control-panel-primary-actions
+>
 ```
-
-

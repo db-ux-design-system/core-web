@@ -132,7 +132,7 @@ iframe {
 :where(ul) {
 	padding-inline-start: variables.$db-spacing-fixed-md;
 	/* stylelint-disable-next-line declaration-property-value-no-unknown, no-irregular-whitespace */
-	list-style-type: "\2022"+ " ";
+	list-style-type: "\2022" + " ";
 
 	li::marker {
 		color: #{colors.$db-brand-origin-default};

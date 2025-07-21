@@ -2,9 +2,7 @@ import {
 	GlobalProps,
 	GlobalState,
 	ShellControlPanelDesktopPositionType,
-	ShellControlPanelMobilePositionType,
-	SidebarState,
-	ToggleEventState
+	ShellControlPanelMobilePositionType
 } from '../../shared/model';
 
 export const ShellSubNavigationMobilePosition = ['top', 'hidden'] as const;

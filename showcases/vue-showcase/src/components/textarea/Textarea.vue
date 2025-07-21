@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import DefaultComponent from "../DefaultComponent.vue";
+import { DBTextarea } from "@components";
 import defaultComponentVariants from "../../../../shared/textarea.json";
-import { DBCheckbox, DBInput, DBTextarea } from "@components";
+import DefaultComponent from "../DefaultComponent.vue";
 </script>
 
 <template>

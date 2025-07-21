@@ -52,6 +52,7 @@
 		@extend %scrollbar;
 
 		overflow-y: scroll;
+		overflow-block: scroll;
 
 		// we don't have icons in textarea so we can overwrite it here
 		padding-block: variables.$db-spacing-fixed-xs

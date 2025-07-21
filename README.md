@@ -14,7 +14,7 @@
 [![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-2.0-4baaaa.svg)](CODE-OF-CONDUCT.md)
 
 DB UX Design System v3 provides robust HTML UI components, reusable visual styles, and powerful tooling to help developers,
-designers, and content authors build, maintain, and scale best of class digital experiences.
+designers, and content authors build, maintain, and scale best-of-class digital experiences.
 
 <figure>
 	<cite>We’re not designing pages anymore. We’re designing systems of components.</cite>
@@ -36,8 +36,8 @@ designers, and content authors build, maintain, and scale best of class digital 
 
 Install your preferred package via npm or yarn e.g. `npm i @db-ux/react-core-components`.
 
-Afterwards you need to add the specific CSS or SCSS files to provide the styles of DB UX Design System (Version 3), as described in the "Styling Dependencies" of each packages `README`.
-We even also provide some [examples of integrations](https://github.com/db-ux-design-system/examples).
+Afterwards, you need to include the specific CSS or SCSS files to apply the styles of DB UX Design System (Version 3), as described in the "Styling Dependencies" section of each package's `README`.
+We even provide some [examples of integrations](https://github.com/db-ux-design-system/examples).
 
 ### DB Theme
 
@@ -47,7 +47,7 @@ In case that you're building a website or application for Deutsche Bahn, you'll 
 
 We maintain a [status overview](https://github.com/orgs/db-ux-design-system/projects/4/views/1) for all components.
 
-## Core principals
+## Core principles
 
 <details>
   <summary><strong>
@@ -117,7 +117,7 @@ This is mainly a platform providing the space and technology for a common basis 
 is mainly driven by the community and adapted out of the work done in projects and through the huge amount of feedback
 that we're gaining out of the community. So please support us in any way possible, this is greatly appreciated!
 
-## How to start develop / contribute
+## How to start developing / contributing
 
 If you're working as a developer on the DB UX Design System or would like to contribute (many kudos for that !), please have a look at the relevant [development documentation](docs/development.md). We even also tag issues that might be a good starter for code contributions by the [tag "good first issue"](https://github.com/db-ux-design-system/core-web/issues?q=is%3Aissue%20state%3Aopen%20label%3A%22good%20first%20issue%22).
 
@@ -137,12 +137,12 @@ We're particularly keen to add as many examples to the behaviours as possible, t
 
 ## Deutsche Bahn control-panel-brand
 
-As we'd like to perfectly support our users and customers on their digital journey, the usage of Deutsche Bahn control-panel-brand and
-trademarks are bound to clear guidelines and restrictions even when being used with the code that we're providing with
-this product; Deutsche Bahn fully reserves all rights and ownership regarding the Deutsche Bahn control-panel-brand, even though that
-we're providing the code of DB UX Design System products free to use and release it under the Apache 2.0 license.
-Please have a look at our control-panel-brand portal at <https://marketingportal.extranet.deutschebahn.com/> for any further questions
-and whom to contact on any control-panel-brand issues. As these assets and visual guidelines are retrieved from our Deutsche Bahn
+To perfectly support our users and customers on their digital journey, the use of the Deutsche Bahn brand and trademarks is subject
+to clear guidelines and restrictions even when used with the code provided by this product. Deutsche Bahn fully reserves all
+rights and ownership regarding the Deutsche Bahn brand, even though we provide the code for DB UX Design System products free of
+charge under the Apache 2.0 license.
+Please refer to our brand portal at <https://marketingportal.extranet.deutschebahn.com/> for further questions
+contact details regarding brand issues. As these assets and visual guidelines are retrieved from our Deutsche Bahn
 Marketingportal, you'll agree with
 the ["Allgemeine Nutzungsbedingungen für das DB-Marketingportal" (german)](https://marketingportal.extranet.deutschebahn.com/marketingportal/Nutzungsbedingungen-9702684#)
 in case of using them.
@@ -162,4 +162,4 @@ our [Contributor Covenant Code of Conduct](https://github.com/db-ux-design-syste
 
 ## License
 
-This project is licensed under [Apache-2.0](LICENSE), Copyright 2024 by DB Systel GmbH.
+This project is licensed under the [Apache-2.0](LICENSE) license. © 2024 DB Systel GmbH.

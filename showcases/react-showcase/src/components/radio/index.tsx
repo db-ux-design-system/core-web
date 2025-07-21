@@ -1,13 +1,9 @@
-import {
-	DBInfotext,
-	DBRadio,
-	getBoolean
-} from '@components';
-import DefaultComponent from '../default-component';
-import { getVariants } from '../data';
-import defaultComponentVariants from '../../../../shared/radio.json';
+import { DBInfotext, DBRadio, getBoolean } from '@components';
 import { type DBRadioProps } from '@components/src/components/radio/model';
+import defaultComponentVariants from '../../../../shared/radio.json';
 import { type BaseComponentProps } from '../base-component-data';
+import { getVariants } from '../data';
+import DefaultComponent from '../default-component';
 
 const getRadio = ({
 	label,

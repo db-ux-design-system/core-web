@@ -1,14 +1,14 @@
 import {
+	DBInfotext,
 	DBNavigation,
 	DBNavigationItem,
-	DBInfotext,
 	DBNavigationItemGroup
 } from '@components';
-import DefaultComponent from '../default-component';
-import defaultComponentVariants from '../../../../shared/navigation.json';
 import type { DBNavigationProps } from '@components/src/components/navigation/model';
-import { getVariants } from '../data';
+import defaultComponentVariants from '../../../../shared/navigation.json';
 import { type BaseComponentProps } from '../base-component-data';
+import { getVariants } from '../data';
+import DefaultComponent from '../default-component';
 
 const getNavigation = ({ children }: DBNavigationProps) => {
 	const labelID = `${children.replaceAll(/\W/g, '_').toLowerCase()}`;

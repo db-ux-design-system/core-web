@@ -1,8 +1,8 @@
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import defaultComponentVariants from '../../../../../shared/select.json';
-import { DefaultComponent } from '../default.component';
 import { DBSelect } from '@components';
+import defaultComponentVariants from '../../../../../shared/select.json';
 import { environment } from '../../../environments/environment';
+import { DefaultComponent } from '../default.component';
 
 @Component({
 	selector: 'app-select',

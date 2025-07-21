@@ -5,11 +5,11 @@ import {
 	useRef,
 	useStore
 } from '@builder.io/mitosis';
-import { DBShellSubNavigationProps, DBShellSubNavigationState } from './model';
+import { DEFAULT_COLLAPSE, DEFAULT_EXPAND } from '../../shared/constants';
 import { cls, getBoolean, getBooleanAsString } from '../../utils';
 import DBButton from '../button/button.lite';
 import DBTooltip from '../tooltip/tooltip.lite';
-import { DEFAULT_COLLAPSE, DEFAULT_EXPAND } from '../../shared/constants';
+import { DBShellSubNavigationProps, DBShellSubNavigationState } from './model';
 
 useMetadata({});
 

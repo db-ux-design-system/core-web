@@ -3,10 +3,10 @@ import findVersions from 'find-versions';
 
 export const packageVersion = () => {
 	/* eslint-disable @typescript-eslint/naming-convention */
-	const TAG: string | undefined = process.env.TAG;
+	const { TAG } = process.env;
 	const RELEASE: boolean = process.env.RELEASE === 'true';
 	const PRE_RELEASE: boolean = process.env.PRE_RELEASE === 'true';
-	const GITHUB_SHA: string | undefined = process.env.GITHUB_SHA;
+	const { GITHUB_SHA } = process.env;
 	/* eslint-enable @typescript-eslint/naming-convention */
 
 	if (!TAG) {

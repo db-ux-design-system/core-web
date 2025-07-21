@@ -1,12 +1,8 @@
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { WrapperComponent } from '../wrapper/wrapper.component';
-import {
-	DBCheckbox,
-	DBInput,
-	DBRadio
-} from '@components';
+import { DBRadio } from '@components';
 import { environment } from '../../../../environments/environment';
+import { WrapperComponent } from '../wrapper/wrapper.component';
 
 @Component({
 	selector: 'app-radios',

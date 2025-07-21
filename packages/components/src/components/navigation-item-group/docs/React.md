@@ -9,11 +9,8 @@ For general installation and configuration take a look at the [react-core-compon
 import { DBNavigationItemGroup } from "@db-ux/react-core-components";
 
 const App = () => (
-	<DBNavigationItemGroup>
-		NavigationItemGroup
-	</DBNavigationItemGroup>
+	<DBNavigationItemGroup>NavigationItemGroup</DBNavigationItemGroup>
 );
 
 export default App;
 ```
-

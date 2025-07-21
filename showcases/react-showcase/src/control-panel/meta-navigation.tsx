@@ -1,10 +1,8 @@
 import {
+	DBControlPanelMetaNavigation,
+	DBSelect,
 	DENSITIES,
 	SEMANTICS
-} from '@components';
-import {
-	DBControlPanelMetaNavigation,
-	DBSelect
 } from '@components';
 import {
 	type DefaultSettings,

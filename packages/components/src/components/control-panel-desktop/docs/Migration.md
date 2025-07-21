@@ -7,8 +7,8 @@
 
 ### class
 
-| Before       | Status | After       | Description |
-| ------------ | :----: | ----------- | ----------- |
+| Before                      | Status | After                      | Description |
+| --------------------------- | :----: | -------------------------- | ----------- |
 | `rea-control-panel-desktop` |   🔁   | `db-control-panel-desktop` |             |
 
 ### mobile

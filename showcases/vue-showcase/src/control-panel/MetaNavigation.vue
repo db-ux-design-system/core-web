@@ -5,13 +5,14 @@ import {
 	DENSITIES,
 	SEMANTICS
 } from "@components";
-import { useLayout } from "../composables/use-layout";
 import { defaultSettingsMapping } from "../../../shared/default-component-data";
+import { useLayout } from "../composables/use-layout";
 
 const { density, color, onChange, settings } = useLayout();
 
 const sendSettings = (event: any, key: string) => {
-	onChange({
+	onChange(
+		{
 			...settings.value,
 			[key]: event?.target?.value
 		},

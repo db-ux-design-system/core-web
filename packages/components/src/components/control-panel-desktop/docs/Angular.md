@@ -9,7 +9,7 @@ For general installation and configuration take a look at the [ngx-core-componen
 import {
 	DBControlPanelDesktop,
 	NavigationDirective,
-	ActionBarDirective,
+	SecondaryActionDirective,
 	MetaNavigationDirective
 } from '@db-ux/ngx-core-components';
 
@@ -33,7 +33,9 @@ import {
 ```html app.component.html
 <!-- app.component.html -->
 <db-control-panel-desktop>
-	<db-control-panel-brand control-panel-brand>ControlPanelDesktop</db-control-panel-brand>
+	<db-control-panel-brand control-panel-brand
+		>ControlPanelDesktop</db-control-panel-brand
+	>
 </db-control-panel-desktop>
 ```
 
@@ -59,8 +61,13 @@ export class AppComponent {
 
 ```html app.component.html
 <!-- app.component.html -->
-<db-control-panel-desktop [drawerOpen]="drawerOpen" (onToggle)="toggleDrawer($event)">
-	<db-control-panel-brand control-panel-brand>My Awesome App</db-control-panel-brand>
+<db-control-panel-desktop
+	[drawerOpen]="drawerOpen"
+	(onToggle)="toggleDrawer($event)"
+>
+	<db-control-panel-brand control-panel-brand
+		>My Awesome App</db-control-panel-brand
+	>
 	<db-navigation *dbNavigation>
 		<!-- https://github.com/db-ux-design-system/core-web/blob/main/packages/components/src/components/navigation/docs/Angular.md -->
 	</db-navigation>

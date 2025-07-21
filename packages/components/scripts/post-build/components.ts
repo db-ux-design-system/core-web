@@ -28,13 +28,13 @@ export type Component = {
 };
 
 export const getComponents = (): Component[] => [
-  {
-    name: "shell-sub-navigation"
-  },
+	{
+		name: 'shell-sub-navigation'
+	},
 
-  {
-    name: "navigation-item-group"
-  },
+	{
+		name: 'navigation-item-group'
+	},
 
 	{
 		name: 'control-panel-secondary-actions'

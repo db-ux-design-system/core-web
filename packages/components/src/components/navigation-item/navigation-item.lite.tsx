@@ -4,10 +4,10 @@ import {
 	useMetadata,
 	useRef
 } from '@builder.io/mitosis';
-import { DBNavigationItemProps } from './model';
+import { DEFAULT_LABEL } from '../../shared/constants';
 import { cls, getBooleanAsString, getHideProp } from '../../utils';
 import DBTooltip from '../tooltip/tooltip.lite';
-import { DEFAULT_LABEL } from '../../shared/constants';
+import { DBNavigationItemProps } from './model';
 
 useMetadata({});
 

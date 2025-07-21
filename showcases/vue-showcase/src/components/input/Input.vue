@@ -1,12 +1,7 @@
 <script setup lang="ts">
-import DefaultComponent from "../DefaultComponent.vue";
+import { DBInput, LabelVariantType, ValueLabelType } from "@components";
 import defaultComponentVariants from "../../../../shared/input.json";
-import {
-	DBCheckbox,
-	DBInput,
-	LabelVariantType,
-	ValueLabelType
-} from "@components";
+import DefaultComponent from "../DefaultComponent.vue";
 
 const getDataList = (
 	variant?: LabelVariantType

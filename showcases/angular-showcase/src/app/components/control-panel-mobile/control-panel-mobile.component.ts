@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 
-import { DefaultComponent } from '../default.component';
-import defaultComponentVariants from '../../../../../shared/control-panel-mobile.json';
 import { DBControlPanelMobile } from '@components';
+import defaultComponentVariants from '../../../../../shared/control-panel-mobile.json';
+import { DefaultComponent } from '../default.component';
 
 @Component({
 	selector: 'app-control-panel-mobile',
@@ -13,5 +13,3 @@ import { DBControlPanelMobile } from '@components';
 export class ControlPanelMobileComponent {
 	variants = defaultComponentVariants;
 }
-
-

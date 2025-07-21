@@ -1,18 +1,11 @@
-import {
-GlobalProps,
-GlobalState } from '../../shared/model';
+import { GlobalProps, GlobalState } from '../../shared/model';
 
-export type DBControlPanelMetaNavigationDefaultProps = {
-}
+export type DBControlPanelMetaNavigationDefaultProps = {};
 
 export type DBControlPanelMetaNavigationProps =
-	DBControlPanelMetaNavigationDefaultProps  &
-	GlobalProps
-	;
+	DBControlPanelMetaNavigationDefaultProps & GlobalProps;
 
-export type DBControlPanelMetaNavigationDefaultState = {}
+export type DBControlPanelMetaNavigationDefaultState = {};
 
 export type DBControlPanelMetaNavigationState =
-	DBControlPanelMetaNavigationDefaultState &
-	GlobalState
-	;
+	DBControlPanelMetaNavigationDefaultState & GlobalState;

@@ -1,1 +1,1 @@
-export { default as DBControlPanelMobile } from "./control-panel-mobile";
+export { default as DBControlPanelMobile } from './control-panel-mobile';

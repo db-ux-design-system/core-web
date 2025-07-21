@@ -1,7 +1,4 @@
-import {
-	DBButton,
-	DBControlPanelSecondaryActions
-} from '@components';
+import { DBButton, DBControlPanelSecondaryActions } from '@components';
 
 const SecondaryActions = () => {
 	return (

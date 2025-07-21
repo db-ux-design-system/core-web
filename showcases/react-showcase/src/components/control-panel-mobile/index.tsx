@@ -10,10 +10,10 @@ import {
 	DBNavigationItem
 } from '@components';
 import type { DBControlPanelMobileProps } from '@components/src/components/control-panel-mobile/model';
-import DefaultComponent from '../default-component';
 import defaultComponentVariants from '../../../../shared/control-panel-mobile.json';
-import { getVariants } from '../data';
 import type { BaseComponentProps } from '../base-component-data';
+import { getVariants } from '../data';
+import DefaultComponent from '../default-component';
 
 const getControlPanelMobile = ({
 	children,

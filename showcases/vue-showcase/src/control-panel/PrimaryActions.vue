@@ -1,8 +1,5 @@
 <script setup lang="ts">
-import {
-	DBButton,
-	DBControlPanelPrimaryActions
-} from "@components";
+import { DBButton, DBControlPanelPrimaryActions } from "@components";
 </script>
 
 <template>

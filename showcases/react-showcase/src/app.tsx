@@ -1,4 +1,3 @@
-import { Outlet } from 'react-router-dom';
 import {
 	DBControlPanelBrand,
 	DBControlPanelDesktop,
@@ -6,11 +5,12 @@ import {
 	DBShell,
 	DBShellSubNavigation
 } from '@components';
-import useQuery from './hooks/use-query';
+import { Outlet } from 'react-router-dom';
 import MetaNavigation from './control-panel/meta-navigation';
-import Navigation from './navigation';
 import PrimaryActions from './control-panel/primary-actions';
 import SecondaryActions from './control-panel/secondary-actions';
+import useQuery from './hooks/use-query';
+import Navigation from './navigation';
 
 const App = () => {
 	const {

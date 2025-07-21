@@ -1,26 +1,26 @@
-import { useEffect, useState } from 'react';
 import {
-	DBDivider,
-	DBCustomSelect,
-	DBTabList,
-	DBTabPanel,
-	DBTabs,
 	DBAccordion,
 	DBAccordionItem,
 	DBButton,
 	DBCheckbox,
+	DBCustomSelect,
+	DBDivider,
 	DBInput,
+	DBLink,
+	DBPopover,
 	DBRadio,
 	DBSelect,
 	DBTabItem,
+	DBTabList,
+	DBTabPanel,
+	DBTabs,
 	DBTag,
 	DBTextarea,
 	DBTooltip,
-	DBLink,
-	DBPopover,
 	type ChangeEvent,
 	type ValueLabelType
 } from '@components';
+import { useEffect, useState } from 'react';
 
 const FormComponent = () => {
 	const [input, setInput] = useState('');

@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import DefaultComponent from "../DefaultComponent.vue";
-import defaultComponentVariants from "../../../../shared/brand.json";
 import { DBControlPanelBrand } from "@components";
+import defaultComponentVariants from "../../../../shared/brand.json";
+import DefaultComponent from "../DefaultComponent.vue";
 import imageUrl from "/assets/images/placeholder.jpg";
 </script>
 

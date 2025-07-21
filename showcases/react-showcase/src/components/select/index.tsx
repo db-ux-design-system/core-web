@@ -1,10 +1,10 @@
-import { useState } from 'react';
 import { DBSelect } from '@components';
-import DefaultComponent from '../default-component';
-import defaultComponentVariants from '../../../../shared/select.json';
 import type { DBSelectProps } from '@components/src/components/select/model';
-import { getVariants } from '../data';
+import { useState } from 'react';
+import defaultComponentVariants from '../../../../shared/select.json';
 import { type BaseComponentProps } from '../base-component-data';
+import { getVariants } from '../data';
+import DefaultComponent from '../default-component';
 
 const getSelect = ({
 	children,

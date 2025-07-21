@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
-import { DefaultComponent } from '../default.component';
+import { DBDivider, DBInfotext, DBStack } from '@components';
 import defaultComponentVariants from '../../../../../shared/stack.json';
-import { DBStack, DBInfotext, DBDivider } from '@components';
 import { environment } from '../../../environments/environment';
+import { DefaultComponent } from '../default.component';
 
 @Component({
 	selector: 'app-stack',
