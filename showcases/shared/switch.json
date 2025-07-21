@@ -190,7 +190,7 @@
 				"props": {
 					"visualAid": true,
 					"icon": "cross_circle",
-					"iconAfter": "clock"
+					"iconTrailing": "clock"
 				}
 			},
 			{
@@ -198,7 +198,7 @@
 				"props": {
 					"visualAid": true,
 					"icon": "cross_circle",
-					"iconAfter": "clock",
+					"iconTrailing": "clock",
 					"emphasis": "strong"
 				}
 			}
