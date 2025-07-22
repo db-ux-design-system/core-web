@@ -1,14 +1,14 @@
-/* eslint-disable @typescript-eslint/no-unsafe-assignment,@typescript-eslint/no-unsafe-call,import/no-extraneous-dependencies */
+/* eslint-disable @typescript-eslint/no-unsafe-assignment,@typescript-eslint/no-unsafe-call */
 
-import path from 'node:path';
-import fs from 'node:fs';
+import { existsSync, readdirSync, writeFileSync } from 'node:fs';
+import { dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import sassdoc from 'sassdoc';
 
 const componentSubPath = '../../packages/components/src/components';
 const outputSubPath = '../../output/documents';
 
-const __dirname = path.dirname(fileURLToPath(import.meta.url));
+const __dirname = dirname(fileURLToPath(import.meta.url));
 
 /**
  * Escape HTML special characters in a string.
@@ -28,8 +28,7 @@ function escapeHtml(string_: string): string {
  * @returns Array of subdirectory names.
  */
 function getComponentDirectories(basePath: string): string[] {
-	return fs
-		.readdirSync(basePath, { withFileTypes: true })
+	return readdirSync(basePath, { withFileTypes: true })
 		.filter((d) => d.isDirectory())
 		.map((d) => d.name);
 }
@@ -44,8 +43,8 @@ async function processComponent(
 	component: string,
 	basePath: string
 ): Promise<void> {
-	const scssFile = path.join(basePath, component, `${component}.scss`);
-	if (!fs.existsSync(scssFile)) {
+	const scssFile = join(basePath, component, `${component}.scss`);
+	if (!existsSync(scssFile)) {
 		console.warn(`⚠️  Skipping ${component}: SCSS not found`);
 		return;
 	}
@@ -58,12 +57,12 @@ async function processComponent(
 			/^[ \t]*<a id="[^"]+"><\/a>[ \t]*\r?\n/gm,
 			''
 		);
-		const outFile: string = path.join(
-			path.resolve(__dirname, outputSubPath),
+		const outFile: string = join(
+			resolve(__dirname, outputSubPath),
 			component,
 			`${component}.css.md`
 		);
-		fs.writeFileSync(outFile, md, 'utf8');
+		writeFileSync(outFile, md, 'utf8');
 		console.log(`✅ ${component}: wrote ${component}.css.md`);
 	}
 }
@@ -190,7 +189,7 @@ function buildMarkdown(documents: any[]) {
  * @returns {Promise<void>}
  */
 async function extractCssVariables(): Promise<void> {
-	const basePath = path.resolve(__dirname, componentSubPath);
+	const basePath = resolve(__dirname, componentSubPath);
 	const components = getComponentDirectories(basePath);
 
 	await Promise.all(

@@ -15,6 +15,8 @@ export const copyDocs = (rootPath: string) => {
 
 	if (!fs.existsSync(outputFolder)) {
 		fs.mkdirSync(outputFolder);
+	} else {
+		fs.rm(outputFolder);
 	}
 
 	const dbUxPath = path.join(nodeModulesPath, '@db-ux');
