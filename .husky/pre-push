@@ -1,1 +1,24 @@
-lint-staged --config .config/.lintstagedrc.pre-push.js
+# Get the upstream branch
+UPSTREAM=$(git rev-parse --abbrev-ref --symbolic-full-name @{u} 2>/dev/null)
+if [ -z "$UPSTREAM" ]; then
+  echo "No upstream configured, skipping pre-push checks."
+  exit 0
+fi
+
+# Get the list of files changed between upstream and HEAD
+FILES=$(git diff --name-only $UPSTREAM..HEAD)
+
+# Check if package.json or package-lock.json is in the list
+if echo "$FILES" | grep -qE '^(package\.json|package-lock\.json)$'; then
+  echo "Detected changes in package.json or package-lock.json"
+
+  # Run your npm script (replace with your actual script)
+  npx --no package-lock-utd
+
+  if [ $? -ne 0 ]; then
+    echo "npm script failed. Aborting push."
+    exit 1
+  fi
+else
+  echo "No package.json or package-lock.json changes detected. Skipping npm script."
+fi
