@@ -29,12 +29,12 @@
     "build": "npm-run-all build:*",
     "build:01_vite": "vite build",
     "build:02_types": "vue-tsc --declaration --emitDeclarationOnly",
-    "mv:dist": "cpr dist ../../build-outputs/vue/dist -o",
-    "mv:package.json": "cpr package.json ../../build-outputs/vue/package.json -o",
-    "mv:readme": "cpr README.md ../../build-outputs/vue/README.md -o",
+    "mv:dist": "cpr dist ../../build-outputs/vue/dist --overwrite",
+    "mv:package.json": "cpr package.json ../../build-outputs/vue/package.json --overwrite",
+    "mv:readme": "cpr README.md ../../build-outputs/vue/README.md --overwrite",
     "postbuild": "npm-run-all --parallel mv:*",
-    "test:components": "playwright test -c playwright.config.ts",
-    "test:components:ui": "playwright test -c playwright.config.ts --ui"
+    "test:components": "playwright test --config playwright.config.ts",
+    "test:components:ui": "playwright test --config playwright.config.ts --ui"
   },
   "devDependencies": {
     "@playwright/experimental-ct-vue": "1.54.1",
