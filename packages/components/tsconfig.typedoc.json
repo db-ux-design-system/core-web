@@ -16,6 +16,7 @@
 		"**/index.ts",
 		"**/*.spec.ts",
 		"**/*.spec.tsx",
+		"**/*.docs.lite.tsx",
 		"**/__snapshots__/**"
 	]
 }

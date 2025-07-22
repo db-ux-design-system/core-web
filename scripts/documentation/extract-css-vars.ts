@@ -6,7 +6,7 @@ import { fileURLToPath } from 'node:url';
 import sassdoc from 'sassdoc';
 
 const componentSubPath = '../../packages/components/src/components';
-const outputSubPath = '../../output/documents';
+const outputSubPath = '../../output/docs';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 

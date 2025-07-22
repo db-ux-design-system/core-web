@@ -53,13 +53,6 @@ export type ButtonTypeType = (typeof ButtonTypeList)[number];
  * These states define the current status of the button.
  * @public
  */
-export const ButtonStateList = ['loading'] as const;
-/**
- * Type representing a single button state.
- * It is derived from the `ButtonStateList` array.
- * @public
- */
-export type ButtonStateType = (typeof ButtonStateList)[number];
 
 /**
  * Represents the default properties for the DBButton component.
@@ -129,18 +122,8 @@ export type DBButtonProps = DBButtonDefaultProps &
 	IconLeadingProps &
 	IconTrailingProps;
 
-/**
- * Represents the default state of the `DBButton` component.
- * Currently, it is an empty object.
- * @internal
- */
 export type DBButtonDefaultState = {
 	getButtonType: () => ButtonTypeType;
 };
 
-/**
- * Represents the state for the `DBButton` component.
- * Combines the default state (`DBButtonDefaultState`) with global state and click event state properties.
- * @internal
- */
 export type DBButtonState = DBButtonDefaultState & GlobalState;

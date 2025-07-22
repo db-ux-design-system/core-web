@@ -166,7 +166,7 @@ const resolveAllUnions = (resolvedData, resolvedProps, resolvedUnions) => {
 };
 
 const resolveManifestTypes = (resolvedUnions, manifestValues) =>
-	manifestValues.map((manifestValue) => {
+	manifestValues?.map((manifestValue) => {
 		if (!manifestValue.type) {
 			// those are methods
 			return manifestValue;
