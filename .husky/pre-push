@@ -1,18 +1,19 @@
-# Get the upstream branch
+# Check for changes in package.json or package-lock.json before pushing and inconsistencies in between them
+## Get the upstream branch
 UPSTREAM=$(git rev-parse --abbrev-ref --symbolic-full-name @{u} 2>/dev/null)
 if [ -z "$UPSTREAM" ]; then
   echo "No upstream configured, skipping pre-push checks."
   exit 0
 fi
 
-# Get the list of files changed between upstream and HEAD
+## Get the list of files changed between upstream and HEAD
 FILES=$(git diff --name-only $UPSTREAM..HEAD)
 
-# Check if package.json or package-lock.json is in the list
+## Check if package.json or package-lock.json is in the list
 if echo "$FILES" | grep -qE '^(package\.json|package-lock\.json)$'; then
   echo "Detected changes in package.json or package-lock.json"
 
-  # Run your npm script (replace with your actual script)
+  ## Run your npx command
   npx --no package-lock-utd
 
   if [ $? -ne 0 ]; then
