@@ -73,17 +73,9 @@ For general installation and configuration take a look at the [components](https
 			</article>
 		</details>
 		<span aria-hidden="true">Placeholder</span
-		><span
-			class="db-infotext"
-			data-semantic="successful"
-			data-size="small"
-			data-hide-icon-before="false"
+		><span class="db-infotext" data-semantic="successful" data-size="small"
 			>TODO: Add a validMessage</span
-		><span
-			class="db-infotext"
-			data-semantic="critical"
-			data-size="small"
-			data-hide-icon-before="false"
+		><span class="db-infotext" data-semantic="critical" data-size="small"
 			>TODO: Add an invalidMessage</span
 		><span data-visually-hidden="true" role="status"></span>
 	</div>

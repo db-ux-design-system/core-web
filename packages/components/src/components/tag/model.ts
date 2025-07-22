@@ -5,7 +5,6 @@ import {
 	GlobalProps,
 	GlobalState,
 	IconProps,
-	InitializedState,
 	OverflowProps,
 	SemanticProps,
 	ShowIconProps
@@ -33,10 +32,6 @@ export type DBTagDefaultProps = {
 	 */
 	behavior?: TagBehaviorType | string;
 
-	/**
-	 * @deprecated Disable tag
-	 */
-	disabled?: boolean | string;
 	/**
 	 * Define the text next to the icon specified via the icon Property to get hidden.
 	 */
@@ -75,4 +70,4 @@ export type DBTagDefaultState = {
 	handleRemove: (event?: ClickEvent<HTMLButtonElement> | void) => void;
 };
 
-export type DBTagState = DBTagDefaultState & GlobalState & InitializedState;
+export type DBTagState = DBTagDefaultState & GlobalState;

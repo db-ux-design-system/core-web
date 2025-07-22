@@ -7,6 +7,7 @@ import LinkHeader from '../components/link-header';
 import '../styles/decision-tree.scss';
 import '../styles/globals.scss';
 import '../styles/highlight.scss';
+import '../styles/playgrounds.scss';
 
 const App = ({ Component, pageProps }: AppProps) => (
 	<MDXProvider

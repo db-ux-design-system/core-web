@@ -6,7 +6,10 @@
 
 %db-link-height {
 	display: inline-block;
-	block-size: variables.$db-sizing-sm;
+
+	&:not([data-wrap="true"]) {
+		block-size: variables.$db-sizing-sm;
+	}
 }
 
 %db-link-default-color {
@@ -42,7 +45,7 @@
 	text-decoration-thickness: helpers.px-to-rem($pxValue: 1);
 	text-decoration-line: underline;
 
-	&:not([data-variant="inline"]) {
+	&:not([data-wrap="true"], [data-variant="inline"]) {
 		white-space: nowrap;
 	}
 

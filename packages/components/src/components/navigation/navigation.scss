@@ -33,7 +33,7 @@
 				@include screen-sizes.screen("md") {
 					&::after {
 						--db-icon-margin-start: #{variables.$db-spacing-fixed-sm};
-						--db-icon-after: "chevron_down";
+						--db-icon-trailing: "chevron_down";
 
 						@media screen and (prefers-reduced-motion: no-preference) {
 							transition: form-components.$dropdown-icon-transition;
@@ -61,7 +61,7 @@
 				.db-navigation-item-expand-button > button {
 					@include screen-sizes.screen("md") {
 						&::after {
-							--db-icon-after: "chevron_right";
+							--db-icon-trailing: "chevron_right";
 							--db-icon-margin-start: auto;
 						}
 

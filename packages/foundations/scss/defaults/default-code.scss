@@ -16,7 +16,7 @@ pre:not([class]):has(code) {
 	}
 }
 
-a:has(code:not([class])) {
+a:has(code:not([class]):only-child) {
 	background-color: colors.$db-adaptive-bg-inverted-contrast-max-default;
 	color: colors.$db-adaptive-on-bg-inverted-default;
 
