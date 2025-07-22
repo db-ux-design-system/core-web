@@ -12,18 +12,18 @@
     "start": "next start"
   },
   "dependencies": {
-    "next": "latest",
+    "next": "15.4.2",
     "react": "18.3.1",
     "react-dom": "18.3.1"
   },
   "devDependencies": {
-    "@types/node": "^24.0.15",
-    "@types/react": "^18.3.13",
+    "@types/node": "24.0.15",
+    "@types/react": "18.3.13",
     "npm-run-all2": "8.0.4",
-    "open-cli": "^8.0.0",
-    "typescript": "^5.8.3"
+    "open-cli": "8.0.0",
+    "typescript": "5.8.3"
   },
   "overrides": {
-    "cross-spawn": "~7.0.5"
+    "cross-spawn": "7.0.6"
   }
 }
