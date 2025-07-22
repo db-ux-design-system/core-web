@@ -7,8 +7,10 @@ import {
 	useRef,
 	useStore
 } from '@builder.io/mitosis';
+import { cls, getBooleanAsString, delay as utilsDelay } from '../../utils';
+import { DocumentScrollListener } from '../../utils/document-scroll-listener';
+import { handleFixedPopover } from '../../utils/floating-components';
 import { DBPopoverProps, DBPopoverState } from './model';
-import { cls, getBooleanAsString, handleDataOutside } from '../../utils';
 
 useMetadata({});
 useDefaultProps<DBPopoverProps>({});
@@ -19,17 +21,51 @@ export default function DBPopover(props: DBPopoverProps) {
 	const state = useStore<DBPopoverState>({
 		initialized: false,
 		isExpanded: false,
+		_documentScrollListenerCallbackId: undefined,
+		_observer: undefined,
+		handleEscape: (event: any) => {
+			if (!event || event.key === 'Escape') {
+				// TODO: Recursive for any child
+				for (const child of Array.from(_ref.children)) {
+					(child as HTMLElement).blur();
+				}
+			}
+		},
 		handleAutoPlacement: () => {
-			state.isExpanded = true;
 			if (!_ref) return;
 			const article = _ref.querySelector('article');
-			if (!article) return;
-			handleDataOutside(article);
+			if (article) {
+				// This is a workaround for angular
+				utilsDelay(() => {
+					handleFixedPopover(
+						article,
+						_ref,
+						(props.placement as unknown as string) ?? 'bottom'
+					);
+				}, 1);
+			}
+		},
+		handleDocumentScroll: (event: any) => {
+			if (event?.target?.contains && event?.target?.contains(_ref)) {
+				state.handleAutoPlacement();
+			}
+		},
+		handleEnter(): void {
+			state.isExpanded = true;
+			state._documentScrollListenerCallbackId =
+				new DocumentScrollListener().addCallback((event) =>
+					state.handleDocumentScroll(event)
+				);
+			state.handleAutoPlacement();
+			const child = state.getTrigger();
+			if (child) {
+				state._observer?.observe(child);
+			}
 		},
 		// eslint-disable-next-line @typescript-eslint/no-explicit-any
-		handleLeave: (event: any) => {
-			const element = event.target as HTMLElement;
-			const parent = element.parentNode;
+		handleLeave: (event?: any) => {
+			const element = event?.target as HTMLElement;
+			const parent = element?.parentNode;
 			if (
 				!parent ||
 				(element.parentNode.querySelector(':focus') !== element &&
@@ -38,6 +74,17 @@ export default function DBPopover(props: DBPopoverProps) {
 					element.parentNode.querySelector(':hover') !== element)
 			) {
 				state.isExpanded = false;
+
+				if (state._documentScrollListenerCallbackId) {
+					new DocumentScrollListener().removeCallback(
+						state._documentScrollListenerCallbackId!
+					);
+				}
+
+				const child = state.getTrigger();
+				if (child) {
+					state._observer?.unobserve(child);
+				}
 			}
 		},
 		getTrigger: (): Element | null => {
@@ -66,11 +113,36 @@ export default function DBPopover(props: DBPopoverProps) {
 
 	onUpdate(() => {
 		if (_ref && state.initialized) {
+			state.initialized = false;
 			const child = state.getTrigger();
 			if (child) {
 				child.ariaHasPopup = 'true';
 			}
-			state.initialized = false;
+			state.handleAutoPlacement();
+
+			_ref.addEventListener('keydown', (event: any) =>
+				state.handleEscape(event)
+			);
+			['mouseenter', 'focusin'].forEach((event) => {
+				_ref.addEventListener(event, () => state.handleEnter());
+			});
+			['mouseleave', 'focusout'].forEach((event) => {
+				_ref.addEventListener(event, () => state.handleLeave());
+			});
+
+			if (
+				typeof window !== 'undefined' &&
+				'IntersectionObserver' in window
+			) {
+				state._observer = new IntersectionObserver((payload) => {
+					const entry = payload.find(
+						({ target }) => target === state.getTrigger()
+					);
+					if (entry && !entry.isIntersecting) {
+						state.handleEscape(false);
+					}
+				});
+			}
 		}
 	}, [_ref, state.initialized]);
 
@@ -89,11 +161,7 @@ export default function DBPopover(props: DBPopoverProps) {
 		<div
 			ref={_ref}
 			id={props.id}
-			class={cls('db-popover', props.className)}
-			onFocus={() => state.handleAutoPlacement()}
-			onBlur={(event: FocusEvent) => state.handleLeave(event)}
-			onMouseEnter={() => state.handleAutoPlacement()}
-			onMouseLeave={(event: MouseEvent) => state.handleLeave(event)}>
+			class={cls('db-popover', props.className)}>
 			<Slot name="trigger" />
 			<article
 				class="db-popover-content"

@@ -1,10 +1,13 @@
 import {
 	ClickEventProps,
-	ClickEventState,
 	GlobalProps,
 	GlobalState,
+	IconLeadingProps,
 	IconProps,
+	IconTrailingProps,
+	ShowIconLeadingProps,
 	ShowIconProps,
+	ShowIconTrailingProps,
 	SizeProps,
 	TextProps,
 	WidthProps
@@ -64,18 +67,6 @@ export type ButtonStateType = (typeof ButtonStateList)[number];
  */
 export type DBButtonDefaultProps = {
 	/**
-	 * If the button controls a grouping of other elements, the ariaexpanded state [indicates whether the controlled grouping is currently expanded or collapsed](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-expanded).
-	 * @see https://developer.mozilla.org/docs/Web/Accessibility/ARIA/Attributes/aria-expanded
-	 */
-	ariaexpanded?: boolean;
-
-	/**
-	 * Defines the button as a toggle button. The value of [ariapressed describes the state of the button](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-pressed).
-	 * @see https://developer.mozilla.org/docs/Web/Accessibility/ARIA/Attributes/aria-pressed
-	 */
-	ariapressed?: boolean;
-
-	/**
 	 * The disabled attribute can be set to [keep a user from clicking on the button](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button#disabled).
 	 * @see https://developer.mozilla.org/docs/Web/HTML/Element/button#disabled
 	 */
@@ -102,11 +93,6 @@ export type DBButtonDefaultProps = {
 	 * If `true`, hides the text and shows only the icon.
 	 */
 	noText?: boolean | string;
-
-	/**
-	 * Show loading progress inside button.
-	 */
-	state?: ButtonStateType;
 
 	/**
 	 * The type attribute specifies the type of button.
@@ -137,20 +123,24 @@ export type DBButtonProps = DBButtonDefaultProps &
 	WidthProps &
 	SizeProps &
 	ShowIconProps &
-	TextProps;
+	TextProps &
+	ShowIconLeadingProps &
+	ShowIconTrailingProps &
+	IconLeadingProps &
+	IconTrailingProps;
 
 /**
  * Represents the default state of the `DBButton` component.
  * Currently, it is an empty object.
  * @internal
  */
-export type DBButtonDefaultState = {};
+export type DBButtonDefaultState = {
+	getButtonType: () => ButtonTypeType;
+};
 
 /**
  * Represents the state for the `DBButton` component.
  * Combines the default state (`DBButtonDefaultState`) with global state and click event state properties.
  * @internal
  */
-export type DBButtonState = DBButtonDefaultState &
-	GlobalState &
-	ClickEventState<HTMLButtonElement>;
+export type DBButtonState = DBButtonDefaultState & GlobalState;

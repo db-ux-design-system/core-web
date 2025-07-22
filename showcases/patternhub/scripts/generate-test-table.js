@@ -22,6 +22,11 @@ const generateTestTable = () => {
 	for (const { name } of elements) {
 		const componentName = getComponentName(name);
 		if (
+			[
+				'page',
+				'custom-select-form-field',
+				'custom-select-dropdown'
+			].includes(componentName) ||
 			componentName.endsWith('-list') ||
 			componentName.endsWith('-panel') ||
 			componentName.endsWith('-item')

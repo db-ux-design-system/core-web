@@ -11,7 +11,7 @@ runs:
     - run: |
         gh api \
           --method POST \
-          -H "Accept: application/vnd.github+json" \
+          --header "Accept: application/vnd.github+json" \
           /repos/db-ux-design-system/core-web/actions/runs/${{ github.run_id }}/cancel
       shell: bash
       env:

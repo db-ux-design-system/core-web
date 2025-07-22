@@ -43,7 +43,7 @@ const CopyClipboardButton = ({
 			icon="copy"
 			noText={true}
 			onClick={onCopyButtonClick}
-			describedbyid={name}>
+			aria-describedby={name}>
 			<DBTooltip
 				id={name}
 				placement="top"

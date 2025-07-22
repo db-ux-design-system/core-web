@@ -1,124 +1,114 @@
 - main:
   - heading "DBHeader" [level=1]
-  - link "Density arrow_up_right\" / \""
-  - link "Imprint arrow_right\" / \""
-  - link "Help arrow_right\" / \""
-  - text: brand" / " DBHeader
+  - link "Density"
+  - link "Imprint"
+  - link "Help"
+  - text: DBHeader
   - navigation "Functional":
     - list:
       - listitem:
-        - text: x_placeholder" / "
         - link "Functional"
       - listitem:
-        - link "Functional disabled"
-  - button "magnifying_glass\" / \" Search"
-  - button "x_placeholder\" / \" Profile"
-  - button "x_placeholder\" / \" Notification"
-  - button "x_placeholder\" / \" Help"
-  - link "Imprint arrow_right\" / \""
-  - link "Help arrow_right\" / \""
-  - text: brand" / " DBHeader
+        - link "Functional disabled" [disabled]
+  - button "Search"
+  - button "Profile"
+  - button "Notification"
+  - button "Help"
+  - link "Imprint"
+  - link "Help"
+  - text: DBHeader
   - navigation "(Default) Regular":
     - list:
       - listitem:
-        - text: x_placeholder" / "
         - link "(Default) Regular"
       - listitem:
-        - link "(Default) Regular disabled"
-  - button "magnifying_glass\" / \" Search"
-  - button "x_placeholder\" / \" Profile"
-  - button "x_placeholder\" / \" Notification"
-  - button "x_placeholder\" / \" Help"
-  - link "Imprint arrow_right\" / \""
-  - link "Help arrow_right\" / \""
-  - text: brand" / " DBHeader
+        - link "(Default) Regular disabled" [disabled]
+  - button "Search"
+  - button "Profile"
+  - button "Notification"
+  - button "Help"
+  - link "Imprint"
+  - link "Help"
+  - text: DBHeader
   - navigation "Expressive":
     - list:
       - listitem:
-        - text: x_placeholder" / "
         - link "Expressive"
       - listitem:
-        - link "Expressive disabled"
-  - button "magnifying_glass\" / \" Search"
-  - button "x_placeholder\" / \" Profile"
-  - button "x_placeholder\" / \" Notification"
-  - button "x_placeholder\" / \" Help"
-  - link "Width arrow_up_right\" / \""
-  - link "Imprint arrow_right\" / \""
-  - link "Help arrow_right\" / \""
-  - text: brand" / " DBHeader
+        - link "Expressive disabled" [disabled]
+  - button "Search"
+  - button "Profile"
+  - button "Notification"
+  - button "Help"
+  - link "Width"
+  - link "Imprint"
+  - link "Help"
+  - text: DBHeader
   - navigation "Full":
     - list:
       - listitem:
-        - text: x_placeholder" / "
         - link "Full"
       - listitem:
-        - link "Full disabled"
-  - button "magnifying_glass\" / \" Search"
-  - button "x_placeholder\" / \" Profile"
-  - button "x_placeholder\" / \" Notification"
-  - button "x_placeholder\" / \" Help"
-  - link "Imprint arrow_right\" / \""
-  - link "Help arrow_right\" / \""
-  - text: brand" / " DBHeader
+        - link "Full disabled" [disabled]
+  - button "Search"
+  - button "Profile"
+  - button "Notification"
+  - button "Help"
+  - link "Imprint"
+  - link "Help"
+  - text: DBHeader
   - navigation "Medium":
     - list:
       - listitem:
-        - text: x_placeholder" / "
         - link "Medium"
       - listitem:
-        - link "Medium disabled"
-  - button "magnifying_glass\" / \" Search"
-  - button "x_placeholder\" / \" Profile"
-  - button "x_placeholder\" / \" Notification"
-  - button "x_placeholder\" / \" Help"
-  - link "Imprint arrow_right\" / \""
-  - link "Help arrow_right\" / \""
-  - text: brand" / " DBHeader
+        - link "Medium disabled" [disabled]
+  - button "Search"
+  - button "Profile"
+  - button "Notification"
+  - button "Help"
+  - link "Imprint"
+  - link "Help"
+  - text: DBHeader
   - navigation "Large":
     - list:
       - listitem:
-        - text: x_placeholder" / "
         - link "Large"
       - listitem:
-        - link "Large disabled"
-  - button "magnifying_glass\" / \" Search"
-  - button "x_placeholder\" / \" Profile"
-  - button "x_placeholder\" / \" Notification"
-  - button "x_placeholder\" / \" Help"
-  - link "Behavior arrow_up_right\" / \""
-  - link "Imprint arrow_right\" / \""
-  - link "Help arrow_right\" / \""
-  - text: brand" / " DBHeader
+        - link "Large disabled" [disabled]
+  - button "Search"
+  - button "Profile"
+  - button "Notification"
+  - button "Help"
+  - link "Behavior"
+  - link "Imprint"
+  - link "Help"
+  - text: DBHeader
   - navigation "Desktop (full width)":
     - list:
       - listitem:
-        - text: x_placeholder" / "
         - link "Desktop (full width)"
       - listitem:
-        - link "Desktop (full width) disabled"
-  - button "magnifying_glass\" / \" Search"
-  - button "x_placeholder\" / \" Profile"
-  - button "x_placeholder\" / \" Notification"
-  - button "x_placeholder\" / \" Help"
-  - text: brand" / " DBHeader
-  - button "magnifying_glass\" / \" Search"
-  - button "menu\" / \" BurgerMenu"
-  - link "Examples arrow_up_right\" / \""
-  - text: brand" / " DBHeader
+        - link "Desktop (full width) disabled" [disabled]
+  - button "Search"
+  - button "Profile"
+  - button "Notification"
+  - button "Help"
+  - text: DBHeader
+  - button "Search"
+  - button "BurgerMenu"
+  - link "Examples"
+  - text: DBHeader
   - navigation "With Application Name + Navigation":
     - list:
       - listitem:
-        - text: x_placeholder" / "
         - link "With Application Name + Navigation"
       - listitem:
-        - link "With Application Name + Navigation disabled"
-  - text: brand" / " DBHeader brand" / "
+        - link "With Application Name + Navigation disabled" [disabled]
+  - text: DBHeader
   - navigation "Without Application Name":
     - list:
       - listitem:
-        - text: x_placeholder" / "
         - link "Without Application Name"
       - listitem:
-        - link "Without Application Name disabled"
-  - text: brand" / "
+        - link "Without Application Name disabled" [disabled]

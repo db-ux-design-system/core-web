@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "build": "ng build",
-    "dev": "npm-run-all -p dev:*",
+    "dev": "npm-run-all --parallel dev:*",
     "dev:angular": "npm run start -- --open",
     "dev:stencil": "npm run start --workspace @db-ux/wc-core-components",
     "ng": "ng",
@@ -16,13 +16,13 @@
     "watch": "ng build --watch --configuration development"
   },
   "dependencies": {
-    "@stencil/core": "4.33.1"
+    "@stencil/core": "4.36.1"
   },
   "devDependencies": {
     "npm-run-all2": "8.0.4",
-    "typescript": "^5.4.5"
+    "typescript": "5.8.3"
   },
   "overrides": {
-    "cross-spawn": "~7.0.5"
+    "cross-spawn": "7.0.6"
   }
 }

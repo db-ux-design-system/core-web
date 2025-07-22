@@ -10,24 +10,7 @@ import {
 	useStore,
 	useTarget
 } from '@builder.io/mitosis';
-import {
-	CustomSelectOptionType,
-	DBCustomSelectProps,
-	DBCustomSelectState
-} from './model';
-import {
-	cls,
-	delay,
-	getBoolean,
-	getBooleanAsString,
-	getHideProp,
-	getOptionKey,
-	getSearchInput,
-	handleDataOutside,
-	hasVoiceOver,
-	stringPropVisible,
-	uuid
-} from '../../utils';
+
 import {
 	DEFAULT_CLOSE_BUTTON,
 	DEFAULT_INVALID_MESSAGE,
@@ -43,20 +26,44 @@ import {
 	DEFAULT_VALID_MESSAGE,
 	DEFAULT_VALID_MESSAGE_ID_SUFFIX
 } from '../../shared/constants';
-import { ChangeEvent, ClickEvent } from '../../shared/model';
-import DBCustomSelectList from '../custom-select-list/custom-select-list.lite';
-import DBCustomSelectListItem from '../custom-select-list-item/custom-select-list-item.lite';
-import DBCustomSelectDropdown from '../custom-select-dropdown/custom-select-dropdown.lite';
-import DBInfotext from '../infotext/infotext.lite';
-import DBTag from '../tag/tag.lite';
-import DBButton from '../button/button.lite';
-import DBTooltip from '../tooltip/tooltip.lite';
+import {
+	ClickEvent,
+	GeneralEvent,
+	InputEvent,
+	InteractionEvent
+} from '../../shared/model';
+import {
+	cls,
+	delay,
+	getBoolean,
+	getBooleanAsString,
+	getHideProp,
+	getOptionKey,
+	getSearchInput,
+	hasVoiceOver,
+	stringPropVisible,
+	uuid
+} from '../../utils';
+import { DocumentClickListener } from '../../utils/document-click-listener';
+import { DocumentScrollListener } from '../../utils/document-scroll-listener';
+import { handleFixedDropdown } from '../../utils/floating-components';
 import {
 	handleFrameworkEventAngular,
 	handleFrameworkEventVue
 } from '../../utils/form-components';
+import DBButton from '../button/button.lite';
+import DBCustomSelectDropdown from '../custom-select-dropdown/custom-select-dropdown.lite';
+import DBCustomSelectListItem from '../custom-select-list-item/custom-select-list-item.lite';
+import DBCustomSelectList from '../custom-select-list/custom-select-list.lite';
+import DBInfotext from '../infotext/infotext.lite';
 import DBInput from '../input/input.lite';
-import { DocumentClickListener } from '../../utils/document-click-listener';
+import DBTag from '../tag/tag.lite';
+import DBTooltip from '../tooltip/tooltip.lite';
+import {
+	CustomSelectOptionType,
+	DBCustomSelectProps,
+	DBCustomSelectState
+} from './model';
 
 useMetadata({
 	angular: {
@@ -106,6 +113,16 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 		_hasNoOptions: false,
 		_documentClickListenerCallbackId: undefined,
 		_internalChangeTimestamp: 0,
+		_documentScrollListenerCallbackId: undefined,
+		_observer: undefined,
+		handleDocumentScroll: (event: any) => {
+			if (
+				event?.target?.contains &&
+				event?.target?.contains(detailsRef)
+			) {
+				state.handleAutoPlacement();
+			}
+		},
 		_searchValue: undefined,
 		hasValidState: () => {
 			return !!(props.validMessage ?? props.validation === 'valid');
@@ -146,19 +163,28 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 				state._validity = props.validation ?? 'no-validation';
 			}
 		},
-		handleDropdownToggle: (event: any) => {
+		handleDropdownToggle: (event: GeneralEvent<HTMLDetailsElement>) => {
 			if (props.onDropdownToggle) {
 				event.stopPropagation();
 				props.onDropdownToggle(event);
 			}
-			if (event.target.open) {
+			if (
+				event.target instanceof HTMLDetailsElement &&
+				event.target.open
+			) {
 				state._documentClickListenerCallbackId =
 					new DocumentClickListener().addCallback((event) =>
 						state.handleDocumentClose(event)
 					);
 
+				state._documentScrollListenerCallbackId =
+					new DocumentScrollListener().addCallback((event) =>
+						state.handleDocumentScroll(event)
+					);
+
 				state.handleAutoPlacement();
-				if (!event.target.dataset.test) {
+				state._observer?.observe(detailsRef);
+				if (!event.target.dataset['test']) {
 					// We need this workaround for snapshot testing
 					state.handleOpenByKeyboardFocus();
 				}
@@ -168,6 +194,12 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 						state._documentClickListenerCallbackId!
 					);
 				}
+				if (state._documentScrollListenerCallbackId) {
+					new DocumentScrollListener().removeCallback(
+						state._documentScrollListenerCallbackId!
+					);
+				}
+				state._observer?.unobserve(detailsRef);
 			}
 		},
 		getNativeSelectValue: () => {
@@ -209,15 +241,17 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 			) {
 				return props.removeTagsTexts!.at(index)!;
 			} else {
-				return `${DEFAULT_REMOVE} ${
-					state._selectedOptions
-						? state.getOptionLabel(state._selectedOptions![index])
-						: ''
-				}`;
+				return `${DEFAULT_REMOVE} ${state._selectedOptions ? state.getOptionLabel(state._selectedOptions![index]) : ''}`;
 			}
 		},
-		handleTagRemove: (option: CustomSelectOptionType, event: any) => {
-			event.stopPropagation();
+		handleTagRemove: (
+			option: CustomSelectOptionType,
+			event?: ClickEvent<HTMLButtonElement> | void
+		) => {
+			if (event) {
+				event.stopPropagation();
+			}
+
 			state.handleSelect(option.value);
 			state.handleSummaryFocus();
 		},
@@ -225,8 +259,13 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 			if (detailsRef) {
 				const dropdown = detailsRef.querySelector('article');
 				if (dropdown) {
+					// This is a workaround for Angular
 					delay(() => {
-						handleDataOutside(dropdown);
+						handleFixedDropdown(
+							dropdown,
+							detailsRef,
+							(props.placement as unknown as string) ?? 'bottom'
+						);
 					}, 1);
 				}
 			}
@@ -300,7 +339,7 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 								(event.key === 'ArrowUp' ||
 									event.key === 'ArrowLeft')
 							) {
-								state.handleClose('close');
+								state.handleClose(undefined, true);
 								state.handleSummaryFocus();
 							} else {
 								// 3. Otherwise, we need to move to the first checkbox
@@ -329,7 +368,7 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 		handleKeyboardPress: (event: any) => {
 			event.stopPropagation();
 			if (event.key === 'Escape' && detailsRef?.open) {
-				state.handleClose('close');
+				state.handleClose(undefined, true);
 				state.handleSummaryFocus();
 			} else if (
 				event.key === 'ArrowDown' ||
@@ -340,17 +379,23 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 				state.handleArrowDownUp(event);
 			}
 		},
-		handleClose: (event: any) => {
+		handleClose: (
+			event?: InteractionEvent<HTMLDetailsElement> | void,
+			forceClose?: boolean
+		) => {
 			if (detailsRef) {
-				if (event === 'close') {
+				if (forceClose) {
 					detailsRef.open = false;
 					state.handleSummaryFocus();
-				} else if (detailsRef.open && event?.relatedTarget) {
-					const relatedTarget = event.relatedTarget as HTMLElement;
-					if (!detailsRef.contains(relatedTarget)) {
-						// We need to use delay here because the combination of `contains`
-						// and changing the DOM element causes a race condition inside browser
-						delay(() => (detailsRef.open = false), 1);
+				} else if (detailsRef.open && event) {
+					if (event.relatedTarget) {
+						const relatedTarget =
+							event.relatedTarget as HTMLElement;
+						if (!detailsRef.contains(relatedTarget)) {
+							// We need to use delay here because the combination of `contains`
+							// and changing the DOM element causes a race condition inside browser
+							delay(() => (detailsRef.open = false), 1);
+						}
 					}
 				}
 			}
@@ -416,7 +461,7 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 					}
 				} else {
 					state.handleOptionSelected([value]);
-					state.handleClose('close');
+					state.handleClose(undefined, true);
 				}
 			}
 		},
@@ -487,12 +532,19 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 			}
 		},
 		// Don't trigger onOptionSelected event
-		handleSearch: (event: any) => {
+		handleSearch: (
+			valueOrEvent?: InputEvent<HTMLInputElement> | string | void
+		) => {
+			if (valueOrEvent === undefined) {
+				return;
+			}
+
 			let filterText;
 
-			if (typeof event === 'string') {
-				filterText = event;
+			if (typeof valueOrEvent === 'string') {
+				filterText = valueOrEvent;
 			} else {
+				const event = valueOrEvent as InputEvent<HTMLInputElement>;
 				event.stopPropagation();
 
 				if (props.onSearch) {
@@ -551,12 +603,27 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 		state._selectedLabelsId = mId + '-selected-labels';
 		state._infoTextId = mId + '-info';
 		state._invalidMessage = props.invalidMessage || DEFAULT_INVALID_MESSAGE;
+
+		if (typeof window !== 'undefined' && 'IntersectionObserver' in window) {
+			state._observer = new IntersectionObserver((payload) => {
+				if (detailsRef) {
+					const entry = payload.find(
+						({ target }) => target === detailsRef
+					);
+					if (entry && !entry.isIntersecting && detailsRef.open) {
+						detailsRef.open = false;
+					}
+				}
+			});
+		}
 	});
 
 	onUpdate(() => {
 		if (detailsRef) {
-			detailsRef.addEventListener('focusout', (event: any) =>
-				state.handleClose(event)
+			detailsRef.addEventListener(
+				'focusout',
+				(event: InteractionEvent<HTMLDetailsElement>) =>
+					state.handleClose(event)
 			);
 		}
 	}, [detailsRef]);
@@ -748,11 +815,12 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 					: props.variant
 			}
 			data-required={getBooleanAsString(props.required)}
+			data-hide-asterisk={getHideProp(props.showRequiredAsterisk)}
 			data-placement={props.placement}
 			data-selected-type={props.multiple ? props.selectedType : 'text'}
 			data-hide-label={getHideProp(props.showLabel)}
 			data-icon={props.icon}
-			data-hide-icon={getHideProp(props.showIcon)}>
+			data-show-icon={getBooleanAsString(props.showIcon)}>
 			<label id={state._labelId}>
 				{props.label ?? DEFAULT_LABEL}
 				<select
@@ -792,7 +860,7 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 				ref={detailsRef}
 				open={props.open}
 				/* @ts-expect-error details as an event named onToggle */
-				onToggle={(event: any) => state.handleDropdownToggle(event)}
+				onToggle={(event) => state.handleDropdownToggle(event)}
 				onKeyDown={(event) => state.handleKeyboardPress(event)}>
 				{props.children}
 				<Show when={props.options}>
@@ -831,7 +899,7 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 												index
 											)}
 											onRemove={(
-												event: ClickEvent<HTMLButtonElement>
+												event?: ClickEvent<HTMLButtonElement> | void
 											) =>
 												state.handleTagRemove(
 													option,
@@ -868,7 +936,7 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 											: undefined
 									}
 									onInput={(
-										event: ChangeEvent<HTMLInputElement>
+										event: InputEvent<HTMLInputElement>
 									) => state.handleSearch(event)}
 								/>
 							</div>
@@ -987,7 +1055,9 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 								size="small"
 								name={state._id}
 								form={state._id}
-								onClick={() => state.handleClose('close')}>
+								onClick={() =>
+									state.handleClose(undefined, true)
+								}>
 								{props.mobileCloseButtonText ??
 									DEFAULT_CLOSE_BUTTON}
 							</DBButton>

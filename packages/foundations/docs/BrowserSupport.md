@@ -1,8 +1,18 @@
 # Browser Support
 
-We're [testing our components with playwright](../../foundations/test-table) on the latest browser versions of Google Chrome, Mozilla Firefox and Apple Safari. Since all of these browsers are supposed to be evergreen, we're using some newer browser features that have been added specifically as part of the [interop initiative](https://web.dev/blog/interop-2025), mostly as progressive enhancements, but some may not even offer graceful degradation.
+We're [testing our components with playwright](../../foundations/test-table) on the latest browser versions of Google Chrome, Mozilla Firefox and Apple Safari. Since all of these browsers are supposed to be evergreen, we're using some newer browser features that have been added specifically as part of the [interop initiative](https://web.dev/blog/interop-2025), partly as progressive enhancements, but some may not even offer graceful degradation.
 
 This may leave some older browser versions behind. If you need to take care of these older browsers, you may not want to migrate to DB UX Design System v3 right now, but stay with DB UI Core or Elements for a little longer. In particular, the following features we use may be related to an evaluation of your browser strategy:
+
+## Progressive enhancement
+
+| Web Feature                                                                                         | Google Chrome    | Mozilla Firefox | Apple Safari                                                                                                         |
+| --------------------------------------------------------------------------------------------------- | ---------------- | --------------- | -------------------------------------------------------------------------------------------------------------------- |
+| [CSS `field-sizing: content` property](https://caniuse.com/mdn-css_properties_field-sizing_content) | 123 (19.03.2024) | tbd             | Technology Preview (220)                                                                                             |
+| [Customizable select elements](https://caniuse.com/selectlist) (planned)                            | 134 (19.03.2024) | tbd             | tbd                                                                                                                  |
+| [Anchor Positioning](https://caniuse.com/css-anchor-positioning) (planned)                          | 125 (14.05.2024) | tbd             | ["this fall"](https://webkit.org/blog/16993/news-from-wwdc25-web-technology-coming-this-fall-in-safari-26-beta/#css) |
+
+## Without graceful degradation
 
 | Web Feature                                                                                             | Google Chrome    | Mozilla Firefox  | Apple Safari      |
 | ------------------------------------------------------------------------------------------------------- | ---------------- | ---------------- | ----------------- |

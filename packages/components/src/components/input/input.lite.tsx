@@ -9,19 +9,7 @@ import {
 	useStore,
 	useTarget
 } from '@builder.io/mitosis';
-import {
-	cls,
-	delay,
-	getBoolean,
-	getHideProp,
-	getNumber,
-	hasVoiceOver,
-	isArrayOfStrings,
-	stringPropVisible,
-	uuid,
-	getInputValue
-} from '../../utils';
-import { DBInputProps, DBInputState } from './model';
+
 import {
 	DEFAULT_DATALIST_ID_SUFFIX,
 	DEFAULT_INVALID_MESSAGE,
@@ -38,11 +26,25 @@ import {
 	InteractionEvent,
 	ValueLabelType
 } from '../../shared/model';
-import DBInfotext from '../infotext/infotext.lite';
+import {
+	cls,
+	delay,
+	getBoolean,
+	getBooleanAsString,
+	getHideProp,
+	getInputValue,
+	getNumber,
+	hasVoiceOver,
+	isArrayOfStrings,
+	stringPropVisible,
+	uuid
+} from '../../utils';
 import {
 	handleFrameworkEventAngular,
 	handleFrameworkEventVue
 } from '../../utils/form-components';
+import DBInfotext from '../infotext/infotext.lite';
+import { DBInputProps, DBInputState } from './model';
 
 useMetadata({
 	angular: {
@@ -199,18 +201,25 @@ export default function DBInput(props: DBInputProps) {
 			class={cls('db-input', props.className)}
 			data-variant={props.variant}
 			data-hide-label={getHideProp(props.showLabel)}
-			data-hide-icon={getHideProp(props.showIcon)}
-			data-icon={props.icon}
-			data-icon-after={props.iconAfter}
-			data-hide-icon-after={getHideProp(props.showIcon)}>
+			data-show-icon={getBooleanAsString(
+				props.showIconLeading ?? props.showIcon
+			)}
+			data-icon={props.iconLeading ?? props.icon}
+			data-icon-trailing={props.iconTrailing}
+			data-hide-asterisk={getHideProp(props.showRequiredAsterisk)}
+			data-show-icon-trailing={getBooleanAsString(
+				props.showIconTrailing
+			)}>
 			<label htmlFor={state._id}>{props.label ?? DEFAULT_LABEL}</label>
 			<input
 				aria-invalid={props.validation === 'invalid'}
 				data-custom-validity={props.validation}
+				data-field-sizing={props.fieldSizing}
 				ref={_ref}
 				id={state._id}
 				name={props.name}
 				type={props.type || 'text'}
+				multiple={getBoolean(props.multiple, 'multiple')}
 				placeholder={props.placeholder ?? DEFAULT_PLACEHOLDER}
 				disabled={getBoolean(props.disabled, 'disabled')}
 				required={getBoolean(props.required, 'required')}

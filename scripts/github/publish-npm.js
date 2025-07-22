@@ -1,10 +1,9 @@
 #!/usr/bin/env node
 import { execSync } from 'node:child_process';
 
-const VALID_SEMVER_VERSION = process.env.VALID_SEMVER_VERSION;
+const { VALID_SEMVER_VERSION, NPM_TOKEN } = process.env;
 const RELEASE = process.env.RELEASE === 'true';
 const PRE_RELEASE = process.env.PRE_RELEASE === 'true';
-const NPM_TOKEN = process.env.NPM_TOKEN;
 
 if (!VALID_SEMVER_VERSION) {
 	console.error('Version is missing!');

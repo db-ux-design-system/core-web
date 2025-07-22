@@ -9,10 +9,10 @@ import {
 	useStore,
 	useTarget
 } from '@builder.io/mitosis';
-import { DBAccordionItemProps, DBAccordionItemState } from './model';
-import { cls, getBooleanAsString, uuid } from '../../utils';
-import { ClickEvent } from '../../shared/model';
 import { DEFAULT_ID } from '../../shared/constants';
+import { ClickEvent } from '../../shared/model';
+import { cls, getBooleanAsString, uuid } from '../../utils';
+import { DBAccordionItemProps, DBAccordionItemState } from './model';
 
 useMetadata({
 	angular: {
@@ -80,7 +80,6 @@ export default function DBAccordionItem(props: DBAccordionItemProps) {
 			<details
 				aria-disabled={getBooleanAsString(props.disabled)}
 				ref={_ref}
-				/* @ts-expect-error This is a new api for details */
 				name={state._name}
 				open={state._open}>
 				<summary onClick={(event) => state.handleToggle(event)}>

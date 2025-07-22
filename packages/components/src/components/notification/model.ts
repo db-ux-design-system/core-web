@@ -1,4 +1,5 @@
 import {
+	ClickEvent,
 	CloseEventProps,
 	CloseEventState,
 	GlobalProps,
@@ -76,16 +77,16 @@ export type DBNotificationDefaultProps = {
 
 	/**
 	 * The variant attribute changes the styling of the notification.
-	 * The docked notifications are used e.g. between header and main content to show a global alert.
-	 * The standalone notifications are used  e.g. inside a form to show an alert for a specific field.
-	 * The overlay notifications are used for absolute and floating notifications like snackbars etc.
+	 * - The docked notifications are used e.g. between header and main content to show a global alert.
+	 * - The standalone notifications are used  e.g. inside a form to show an alert for a specific field.
+	 * - The overlay notifications are used for absolute and floating notifications like snackbars etc.
 	 */
 	variant?: NotificationVariantType;
 };
 
 export type DBNotificationProps = DBNotificationDefaultProps &
 	GlobalProps &
-	CloseEventProps &
+	CloseEventProps<ClickEvent<HTMLButtonElement>> &
 	IconProps &
 	SemanticProps &
 	InnerCloseButtonProps &
@@ -97,4 +98,4 @@ export type DBNotificationDefaultState = {};
 
 export type DBNotificationState = DBNotificationDefaultState &
 	GlobalState &
-	CloseEventState;
+	CloseEventState<ClickEvent<HTMLButtonElement>>;

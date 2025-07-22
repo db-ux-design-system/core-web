@@ -10,6 +10,9 @@ module.exports = {
 	files: 'src/**/*.{lite.tsx,ts}',
 	targets: ['angular', 'vue', 'react', 'stencil'],
 	dest: '../../output',
+	commonOptions: {
+		typescript: true
+	},
 	options: {
 		react,
 		angular,

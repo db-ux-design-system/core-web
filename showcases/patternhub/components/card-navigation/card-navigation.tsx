@@ -1,8 +1,8 @@
-import { useRouter } from 'next/router';
 import Link from 'next/link';
-import DefaultPage from '../default-page';
-import { getAllNavigationItems, getBreadcrumb } from '../../data/routes';
+import { useRouter } from 'next/router';
 import { DBCard, DBIcon } from '../../../../output/react/src';
+import { getAllNavigationItems } from '../../data/routes';
+import DefaultPage from '../default-page';
 
 const CardNavigation = () => {
 	const router = useRouter();
