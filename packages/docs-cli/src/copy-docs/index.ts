@@ -6,7 +6,7 @@ import path from 'path';
  */
 export const copyDocs = (rootPath: string) => {
 	const nodeModulesPath = path.resolve(rootPath, 'node_modules');
-	const outputFolder = path.resolve(rootPath, '__db-ux-docs__');
+	const outputFolder = path.resolve(rootPath, '_db-ux-docs');
 
 	if (!fs.existsSync(nodeModulesPath)) {
 		console.error('node_modules folder not found.');

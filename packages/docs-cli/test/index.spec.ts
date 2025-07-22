@@ -5,7 +5,7 @@ import { copyDocs } from '../src/copy-docs';
 
 describe('default', () => {
 	test('check if docs are created', async () => {
-		const outputPath = path.resolve('test/__db-ux-docs__');
+		const outputPath = path.resolve('test/_db-ux-docs');
 		copyDocs('test');
 
 		const folders = fs

@@ -1,7 +1,7 @@
+import { globSync } from 'glob';
+import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { readFileSync, writeFileSync, mkdirSync, existsSync } from 'node:fs';
-import { globSync } from 'glob';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const outputDirectory = path
@@ -93,12 +93,17 @@ for (const [prefix, fileGroup] of Object.entries(groupedFiles)) {
 		continue;
 	}
 
-	const targets = ['react', 'angular', 'vue', 'stencil'];
+	const targets = [
+		{ name: 'react', lib: 'react' },
+		{ name: 'vue', lib: 'v' },
+		{ name: 'angular', lib: 'ngx' },
+		{ name: 'stencil', lib: 'wc' }
+	];
 
-	for (const target of targets) {
+	for (const { name, lib } of targets) {
 		const snippetPath = path.join(
 			outputDirectory,
-			target,
+			name,
 			'src',
 			'components',
 			prefix,
@@ -113,16 +118,20 @@ for (const [prefix, fileGroup] of Object.entries(groupedFiles)) {
 
 			const targetDocumentationDirectory = path.join(
 				outputDirectory,
-				target,
+				name,
 				'docs'
 			);
 			mkdirSync(targetDocumentationDirectory, { recursive: true });
+			const finalContent = `${mergedContent}\n\n${snippet}`.replaceAll(
+				'core-components',
+				`${lib}-core-components`
+			);
 			writeFileSync(
 				path.join(
 					targetDocumentationDirectory,
 					`${toPascalCase(prefix)}.md`
 				),
-				mergedContent + '\n\n' + snippet,
+				finalContent,
 				'utf8'
 			);
 		} catch (error: any) {

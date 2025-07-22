@@ -68,4 +68,4 @@ showcases/patternhub/public/iframe-resizer/*
 /scripts/gh-pages.tar.gz
 !/scripts/tests/fixtures/out
 /output/**/docs/
-/packages/docs-cli/test/__db-ux-docs__/
+/packages/docs-cli/test/_db-ux-docs/
