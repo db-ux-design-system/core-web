@@ -67,7 +67,7 @@ import {
 
 useMetadata({
 	angular: {
-		nativeAttributes: ['disabled', 'required', 'multiple', 'form', 'name'],
+		nativeAttributes: ['disabled', 'required', 'multiple'],
 		signals: {
 			writeable: ['disabled', 'values']
 		}
