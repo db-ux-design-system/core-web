@@ -13,7 +13,8 @@
   "module": "./build/index.js",
   "files": [
     "assets",
-    "build"
+    "build",
+    "docs"
   ],
   "scripts": {
     "build": "npm-run-all build:*",
@@ -28,6 +29,7 @@
     "clean": "rm -rf build",
     "copy-build": "npm-run-all copy-build:*",
     "copy-build:assets": "cpr assets ../../build-outputs/foundations/assets -o",
+    "copy-build:docs": "cpr docs ../../build-outputs/foundations/docs -o",
     "copy-build:package.json": "cpr package.json ../../build-outputs/foundations/package.json -o",
     "copy-build:readme": "cpr README.md ../../build-outputs/foundations/README.md -o",
     "copy-build:web": "cpr build ../../build-outputs/foundations/build -o",

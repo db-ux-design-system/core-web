@@ -13,17 +13,9 @@
 	@extend %default-button;
 	@extend %db-overwrite-font-size-md;
 
-	/// Text color on adaptive, neutral background (Default)
-	/// @variable colors.$db-adaptive-on-bg-basic-emphasis-100-default
 	color: colors.$db-adaptive-on-bg-basic-emphasis-100-default;
-	/// Button height (Default: medium)
-	/// @variable variables.$db-sizing-md
 	block-size: variables.$db-sizing-md;
 	inline-size: fit-content;
-	/// Vertical padding (Default: xs)
-	/// @variable variables.$db-spacing-fixed-xs
-	/// Horizontal padding (Default: md)
-	/// @variable variables.$db-spacing-fixed-md
 	padding: variables.$db-spacing-fixed-xs variables.$db-spacing-fixed-md;
 
 	// disable text-decoration if someone wants to use the button for an <a> tag
@@ -53,18 +45,12 @@
 		@extend %db-overwrite-font-size-sm;
 
 		font-weight: 700;
-		/// Button height for small size
-		/// @variable variables.$db-sizing-sm
 		block-size: variables.$db-sizing-sm;
 
 		&:not([data-no-text="true"]) {
-			/// Padding small: vertical 3xs, horizontal sm
-			/// @variable variables.$db-spacing-fixed-3xs
-			/// @variable variables.$db-spacing-fixed-sm
 			padding: variables.$db-spacing-fixed-3xs
 				variables.$db-spacing-fixed-sm;
-			/// Spacing between icon and text (small)
-			/// @variable variables.$db-spacing-fixed-2xs
+
 			&::before {
 				margin-inline-end: variables.$db-spacing-fixed-2xs;
 			}
@@ -81,31 +67,17 @@
 	}
 
 	&[data-variant="brand"] {
-		/// Brand background color (Default)
-		/// @variable colors.$db-brand-origin-default
 		background-color: colors.$db-brand-origin-default;
-		/// Brand text color
-		/// @variable colors.$db-brand-on-origin-default
 		color: colors.$db-brand-on-origin-default;
-		/// Brand border color
-		/// @variable colors.$db-brand-on-bg-basic-emphasis-70-default
 		border-color: colors.$db-brand-on-bg-basic-emphasis-70-default;
 
 		@include helpers.hover {
-			/// Brand background on hover
-			/// @variable colors.$db-brand-origin-hovered
 			background-color: colors.$db-brand-origin-hovered;
-			/// Brand border color on hover
-			/// @variable colors.$db-brand-on-bg-basic-emphasis-70-default
 			border-color: colors.$db-brand-on-bg-basic-emphasis-70-default;
 		}
 
 		@include helpers.active {
-			/// Brand background on active
-			/// @variable colors.$db-brand-origin-pressed
 			background-color: colors.$db-brand-origin-pressed;
-			/// Brand border color on active
-			/// @variable colors.$db-brand-on-bg-basic-emphasis-70-default
 			border-color: colors.$db-brand-on-bg-basic-emphasis-70-default;
 		}
 	}
@@ -118,20 +90,14 @@
 	&[data-variant="outlined"],
 	&:not([data-variant]),
 	&[data-variant="ghost"] {
-		/// Full transparent background (Outlined/Ghost)
-		/// @variable colors.$db-adaptive-bg-basic-transparent-full-default
 		background-color: colors.$db-adaptive-bg-basic-transparent-full-default;
 	}
 
 	&[data-variant="filled"] {
-		/// Semi-transparent background (Filled)
-		/// @variable colors.$db-adaptive-bg-basic-transparent-semi-default
 		background-color: colors.$db-adaptive-bg-basic-transparent-semi-default;
 	}
 
 	&:disabled {
-		/// Opacity for disabled state
-		/// @variable variables.$db-opacity-md
 		opacity: variables.$db-opacity-md;
 	}
 

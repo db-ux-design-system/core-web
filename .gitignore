@@ -1,5 +1,6 @@
 .DS_Store
 node_modules
+!packages/docs-cli/test/node_modules
 npm-debug.log
 .history
 .idea
@@ -66,3 +67,5 @@ showcases/patternhub/public/iframe-resizer/*
 /scripts/public/
 /scripts/gh-pages.tar.gz
 !/scripts/tests/fixtures/out
+/output/**/docs/
+/packages/docs-cli/test/__db-ux-docs__/

@@ -1,6 +1,18 @@
+/**
+ * @type {import('@builder.io/mitosis').MitosisConfig}
+ */
 module.exports = {
 	files: 'src/components/**/docs/*.docs.lite.tsx',
-	targets: ['react', 'angular', 'vue', 'html'],
+	targets: ['react', 'angular', 'vue', 'stencil'],
+	dest: '../../output',
+	options: {
+		angular: {
+			api: 'signals'
+		},
+		vue: {
+			api: 'composition'
+		}
+	},
 	commonOptions: {
 		typescript: true,
 		explicitBuildFileExtensions: {
@@ -15,7 +27,7 @@ module.exports = {
 						const displayName = json.name.replace(/Docs$/, '');
 
 						return [
-							`# ${displayName} (${target})`,
+							`# ${displayName} Examples (${target})`,
 							'',
 							'```' + target,
 							code.trim(),

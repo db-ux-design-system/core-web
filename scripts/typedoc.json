@@ -2,7 +2,7 @@
 	"tsconfig": "../packages/components/tsconfig.typedoc.json",
 	"entryPoints": ["../packages/components/src/components"],
 	"entryPointStrategy": "expand",
-	"out": "../packages/components/docs/api",
+	"out": "../output/docs",
 	"plugin": ["typedoc-plugin-markdown", "typedoc-plugin-merge-modules"],
 	"readme": "none",
 
@@ -19,6 +19,7 @@
 	"exclude": [
 		"src/components/**/*.spec.ts",
 		"src/components/**/*.spec.tsx",
+		"src/components/**/*.docs.lite.tsx",
 		"src/components/**/*.md",
 		"src/components/**/__snapshots__/**"
 	]

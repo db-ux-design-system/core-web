@@ -1,16 +1,21 @@
+/* eslint-disable @typescript-eslint/no-unsafe-assignment,@typescript-eslint/no-unsafe-call,import/no-extraneous-dependencies */
+
 import path from 'node:path';
 import fs from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import sassdoc from 'sassdoc';
 
-const COMPONENTS_SUBPATH = '../../packages/components/src/components';
+const componentSubPath = '../../packages/components/src/components';
+const outputSubPath = '../../output/documents';
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 /**
  * Escape HTML special characters in a string.
- * @param {string} str - The string to escape.
+ * @param string_
  */
-function escapeHtml(str) {
-	return str
+function escapeHtml(string_: string): string {
+	return string_
 		.replaceAll('&', '&amp;')
 		.replaceAll('<', '&lt;')
 		.replaceAll('>', '&gt;')
@@ -19,10 +24,10 @@ function escapeHtml(str) {
 
 /**
  * Get the names of all subdirectories under the given directory.
- * @param {string} basePath - The directory to search.
- * @returns {string[]} - Array of subdirectory names.
+ * @param basePath - The directory to search.
+ * @returns Array of subdirectory names.
  */
-function getComponentDirs(basePath) {
+function getComponentDirectories(basePath: string): string[] {
 	return fs
 		.readdirSync(basePath, { withFileTypes: true })
 		.filter((d) => d.isDirectory())
@@ -32,21 +37,35 @@ function getComponentDirs(basePath) {
 /**
  * Process a single component SCSS file to extract CSS custom properties
  * @param component {string} - The name of the component.
- * @param basePath {string} - The base path to the components directory.
+ * @param basePath {string} - The base path to the components' directory.
  * @returns {Promise<void>}
  */
-async function processComponent(component, basePath) {
+async function processComponent(
+	component: string,
+	basePath: string
+): Promise<void> {
 	const scssFile = path.join(basePath, component, `${component}.scss`);
 	if (!fs.existsSync(scssFile)) {
 		console.warn(`⚠️  Skipping ${component}: SCSS not found`);
 		return;
 	}
 
-	const docs = await sassdoc.parse([scssFile]);
-	const md = buildMarkdown(component, docs);
-	const outFile = path.join(basePath, component, `${component}.css.md`);
-	fs.writeFileSync(outFile, md, 'utf8');
-	console.log(`✅ ${component}: wrote ${component}.css.md`);
+	const documents: any[] = await sassdoc.parse([scssFile]);
+
+	if (documents.length > 0) {
+		// Remove HTML anchor tags inserted by SassDoc
+		const md = buildMarkdown(documents).replaceAll(
+			/^[ \t]*<a id="[^"]+"><\/a>[ \t]*\r?\n/gm,
+			''
+		);
+		const outFile: string = path.join(
+			path.resolve(__dirname, outputSubPath),
+			component,
+			`${component}.css.md`
+		);
+		fs.writeFileSync(outFile, md, 'utf8');
+		console.log(`✅ ${component}: wrote ${component}.css.md`);
+	}
 }
 
 /**
@@ -54,21 +73,27 @@ async function processComponent(component, basePath) {
  * the raw SassDoc description block.
  * @param {string} description
  */
-function extractTags(description) {
+function extractTags(description: string) {
 	const lines = description.split(/\r?\n/).map((l) => l.trim());
-	const result = {
-		name: null,
-		propertyName: null,
-		defaultValue: null,
+	const result: {
+		name?: string;
+		propertyName?: string;
+		defaultValue?: string;
+		description?: string;
+		example?: string;
+	} = {
+		name: undefined,
+		propertyName: undefined,
+		defaultValue: undefined,
 		description: '',
-		example: null
+		example: undefined
 	};
-	const descLines = [];
-	const exampleLines = [];
+	const descLines: string[] = [];
+	const exampleLines: string[] = [];
 	let inExample = false;
 
 	for (const line of lines) {
-		const tagMatch = line.match(/^@(\w+)\s*:?\s*(.*)$/);
+		const tagMatch = /^@(\w+)\s*:?\s*(.*)$/.exec(line);
 		if (tagMatch) {
 			const [, tag, rest] = tagMatch;
 			switch (tag) {
@@ -101,7 +126,10 @@ function extractTags(description) {
 				}
 			}
 		} else if (inExample) {
-			if (line.startsWith('@')) break;
+			if (line.startsWith('@')) {
+				break;
+			}
+
 			exampleLines.push(line);
 		} else if (line && !line.startsWith('@')) {
 			descLines.push(line);
@@ -118,36 +146,40 @@ function extractTags(description) {
 
 /**
  * Build Markdown table for a component.
- * @param {string} component - The component name.
- * @param {Array} docs - The SassDoc documentation array for the component.
+ * @param {Array} documents - The SassDoc documentation array for the component.
  */
-function buildMarkdown(component, docs) {
-	const HEADERS = [
+function buildMarkdown(documents: any[]) {
+	const headers = [
 		'CSS Variable',
 		'Default',
 		'CSS Property',
 		'Description',
 		'Example'
 	];
-	const EMPTY = '—';
+	const empty = '—';
 
 	const lines = [
-		`| ${HEADERS.join(' | ')} |`,
-		`| ${HEADERS.map(() => '---').join(' | ')} |`
+		`| ${headers.join(' | ')} |`,
+		`| ${headers.map(() => '---').join(' | ')} |`
 	];
 
 	let md = lines.join('\n') + '\n';
 
-	for (const item of docs) {
-		if (!item.description.includes('@cssprop')) continue;
+	for (const item of documents) {
+		if (!item.description.includes('@cssprop')) {
+			continue;
+		}
+
 		const { name, propertyName, defaultValue, description, example } =
-			extractTags(item.description);
-		if (!name) continue;
+			extractTags(item.description as string);
+		if (!name) {
+			continue;
+		}
 
 		const ex = example
 			? `<pre>${escapeHtml(example).replaceAll(/\r?\n/g, '<br>')}</pre>`
-			: EMPTY;
-		md += `| \`${name}\` | ${defaultValue ? `\`${defaultValue}\`` : EMPTY} | ${propertyName} | ${description || EMPTY} | ${ex} |\n`;
+			: empty;
+		md += `| \`${name}\` | ${defaultValue ? `\`${defaultValue}\`` : empty} | ${propertyName} | ${description ?? empty} | ${ex} |\n`;
 	}
 
 	return md;
@@ -157,13 +189,14 @@ function buildMarkdown(component, docs) {
  * Extract CSS variables from all components and write them to Markdown files.
  * @returns {Promise<void>}
  */
-async function extractCSSVars() {
-	const __dirname = path.dirname(fileURLToPath(import.meta.url));
-	const basePath = path.resolve(__dirname, COMPONENTS_SUBPATH);
-	const components = getComponentDirs(basePath);
+async function extractCssVariables(): Promise<void> {
+	const basePath = path.resolve(__dirname, componentSubPath);
+	const components = getComponentDirectories(basePath);
 
 	await Promise.all(
-		components.map((component) => processComponent(component, basePath))
+		components.map(async (component) =>
+			processComponent(component, basePath)
+		)
 	);
 }
 
@@ -171,7 +204,7 @@ async function extractCSSVars() {
  * Main function to execute the script.
  */
 try {
-	await extractCSSVars();
+	await extractCssVariables();
 } catch (error) {
 	console.error(`❌  Error: ${error.message}`);
 }

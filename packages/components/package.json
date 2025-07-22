@@ -10,7 +10,8 @@
   "author": "General technical components out of DB UX Design System (Version 3)",
   "license": "Apache-2.0",
   "files": [
-    "build"
+    "build",
+    "docs"
   ],
   "scripts": {
     "build": "npm-run-all -p build-components build-assets -s build-style:*",
@@ -27,6 +28,7 @@
     "compile:vue": "mitosis build -c configs/vue/mitosis.config.cjs && tsx scripts/exec/vue.ts && cpr ../../output/tmp/vue/src ../../output/vue/src -o",
     "copy-assets": "cpr ../foundations/assets build/assets -o",
     "copy-output": "npm-run-all copy:*",
+    "copy:docs": "cpr docs ../../build-outputs/components/docs -o",
     "copy:outputs": "cpr build ../../build-outputs/components/build -o",
     "copy:package.json": "cpr package.json ../../build-outputs/components/package.json -o",
     "copy:readme": "cpr README.md ../../build-outputs/components/README.md -o",
@@ -39,7 +41,6 @@
     "generate:component": "hygen mitosis new",
     "generate:docs": "hygen update-docs new",
     "generate:mitosis-snippets": "mitosis build -c configs/mitosis.snippet.config.cjs",
-    "postinstall": "node ../../scripts/documentation/copy-copilot-instructions.js",
     "prepack": "npm run copy-assets",
     "start": "nodemon --watch src --watch scripts --watch scripts -e js,tsx,ts,scss,json -x \"npm run build\""
   },

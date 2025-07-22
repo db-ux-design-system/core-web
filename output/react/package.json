@@ -11,11 +11,13 @@
   "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "files": [
-    "dist/"
+    "dist/",
+    "docs/"
   ],
   "scripts": {
     "build": "npm-run-all tsc",
     "mv:dist": "cpr dist ../../build-outputs/react/dist -o",
+    "mv:docs": "cpr docs ../../build-outputs/react/docs -o",
     "mv:package.json": "cpr package.json ../../build-outputs/react/package.json -o",
     "mv:readme": "cpr README.md ../../build-outputs/react/README.md -o",
     "open:report": "npx playwright show-report",

@@ -39,6 +39,12 @@ jobs:
           name: db-ux-stylelint-build
           path: packages/stylelint/build
 
+      - name: ⏬ Download docs-cli build
+        uses: actions/download-artifact@v4
+        with:
+          name: db-ux-docs-cli-build
+          path: packages/docs-cli/build
+
       - name: ⏬ Download output
         uses: actions/download-artifact@v4
         with:
@@ -51,7 +57,9 @@ jobs:
           install-command: npm i
 
       - name: 🔨 Build outputs
-        run: npm run build-outputs
+        run: |
+          npm run copilot --workspace=scripts
+          npm run build-outputs
 
       - name: ⏫ Upload outputs
         uses: actions/upload-artifact@v4
