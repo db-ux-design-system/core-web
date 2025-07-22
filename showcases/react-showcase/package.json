@@ -17,17 +17,17 @@
     "test:ui": "cross-env showcase=react-showcase npx playwright test --config=../playwright.config.ts --ui"
   },
   "dependencies": {
-    "react": "^18.3.1",
-    "react-dom": "^18.3.1",
+    "react": "18.3.1",
+    "react-dom": "18.3.1",
     "react-router-dom": "7.6.3",
     "sa11y": "4.1.9"
   },
   "devDependencies": {
-    "@types/react": "^18.3.13",
-    "@types/react-dom": "^18.3.1",
-    "@vitejs/plugin-react": "^4.7.0",
-    "cross-env": "^7.0.3",
-    "typescript": "^5.8.3",
-    "vite": "^6.3.5"
+    "@types/react": "18.3.13",
+    "@types/react-dom": "18.3.1",
+    "@vitejs/plugin-react": "4.7.0",
+    "cross-env": "7.0.3",
+    "typescript": "5.8.3",
+    "vite": "6.3.5"
   }
 }
