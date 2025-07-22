@@ -14,13 +14,13 @@ jobs:
         uses: actions/checkout@v4
 
       - name: 📥 Get gh-pages tar
-        run: wget -q https://github.com/db-ux-design-system/core-web/tarball/gh-pages
+        run: wget --quiet https://github.com/db-ux-design-system/core-web/tarball/gh-pages
 
       - name: ➕ Create public dir
         run: mkdir public
 
       - name: 📦 Unpack Tar
-        run: tar -zxf gh-pages -C public --strip-components 1
+        run: tar --gzip --extract --file gh-pages --directory public --strip-components 1
 
       - name: 🗑️ Clean all preview pages
         id: cleanup
