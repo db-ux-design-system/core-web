@@ -75,13 +75,6 @@ export const getComponents = (): Component[] => [
 				{
 					from: 'attr.checked',
 					to: 'checked'
-				},
-				// To remove whitespaces from label...
-				{
-					from: `      <label [attr.id]="_labelId()">
-        {{label() ?? DEFAULT_LABEL}}
-        <select`,
-					to: `<label [attr.id]="_labelId()">{{label() ?? DEFAULT_LABEL}}<select`
 				}
 			],
 			react: [
