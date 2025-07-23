@@ -671,7 +671,7 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 		} else if (state._options) {
 			state._hasNoOptions = state._options!.length === 0;
 		}
-	}, [props.showNoResults, state._options]);
+	}, [props.showNoResults, props.showLoading, state._options]);
 
 	onUpdate(() => {
 		state.selectAllEnabled = Boolean(
@@ -1041,18 +1041,18 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 							<DBInfotext
 								id={state._infoTextId}
 								icon={
-									state._hasNoOptions
-										? undefined
-										: 'circular_arrows'
+									props.showLoading
+										? 'circular_arrows'
+										: undefined
 								}
 								semantic={
-									state._hasNoOptions
-										? 'warning'
-										: 'informational'
+									props.showLoading
+										? 'informational'
+										: 'warning'
 								}>
-								{(state._hasNoOptions
-									? props.noResultsText
-									: props.loadingText) ?? DEFAULT_MESSAGE}
+								{(props.showLoading
+									? props.loadingText
+									: props.noResultsText) ?? DEFAULT_MESSAGE}
 							</DBInfotext>
 						</Show>
 
