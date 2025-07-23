@@ -130,6 +130,7 @@ $default-icon-font-size: var(--db-icon-font-size, #{$default-icon-size-rem});
 %icon {
 	color: var(--db-icon-color, inherit);
 	display: inline-block;
+	line-height: 0.5em; // Adjust line-height to align icon vertically
 	transform: translateY(0.25em);
 
 	/*** icon - placeholder ***/
@@ -146,7 +147,6 @@ $default-icon-font-size: var(--db-icon-font-size, #{$default-icon-size-rem});
 	font-style: normal;
 	font-variant: normal;
 	font-weight: var(--db-icon-font-weight, normal);
-	line-height: 1;
 	/* stylelint-disable-next-line declaration-property-value-no-unknown */
 	speak: none; // Hiding icon from screenreaders, fallback by older notation
 	/* stylelint-disable-next-line declaration-property-value-no-unknown */
