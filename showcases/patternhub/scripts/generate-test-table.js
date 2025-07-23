@@ -31,7 +31,7 @@ const generateTestTable = () => {
 		const componentName = getComponentName(name);
 		if (
 			unlistedComponents.has(componentName) ||
-			unlistedSubComponentsPrefixes.has(componentName.split('-').at(-1))
+			unlistedSuffixes.some(suffix => componentName.endsWith(suffix))
 		) {
 			// We don't want to add something like accordion-item
 			continue;
