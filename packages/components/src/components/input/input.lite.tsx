@@ -48,7 +48,10 @@ import { DBInputProps, DBInputState } from './model';
 
 useMetadata({
 	angular: {
-		nativeAttributes: ['disabled', 'required']
+		nativeAttributes: ['disabled', 'required'],
+		signals: {
+			writeable: ['disabled', 'value']
+		}
 	}
 });
 
