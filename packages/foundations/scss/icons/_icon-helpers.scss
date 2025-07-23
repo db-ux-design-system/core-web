@@ -130,6 +130,7 @@ $default-icon-font-size: var(--db-icon-font-size, #{$default-icon-size-rem});
 %icon {
 	color: var(--db-icon-color, inherit);
 	display: inline-block;
+	transform: translateY(0.25em);
 
 	/*** icon - placeholder ***/
 	// * use !important to prevent issues with browser extensions that change fonts
