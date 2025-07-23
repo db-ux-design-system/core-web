@@ -74,8 +74,8 @@ jobs:
           elif [[ $TYPE == "foundations" ]]; then
             npm run regenerate:screenshots --workspace=@db-ux/core-foundations
           elif [[ $TYPE == "patternhub" ]]; then
-            mkdir -p ./build-showcases${{ inputs.path }}
-            cp -RT ./build-showcases/${{ inputs.type }} ./build-showcases${{ inputs.path }}
+            mkdir --parents ./build-showcases${{ inputs.path }}
+            cp --recursive --no-target-directory ./build-showcases/${{ inputs.type }} ./build-showcases${{ inputs.path }}
             npm run regenerate:screenshots --workspace=patternhub
           else
             npm run regenerate:screenshots --workspace=react-showcase
