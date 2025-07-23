@@ -1,7 +1,7 @@
 # Configuration: Each entry is an array with [pattern, command, description]
 CHECKS=(
   # Format: "pattern" "command" "pattern description"
-  '^(package\.json|package-lock\.json)$' 'npx --no package-lock-utd' 'package.json or package-lock.json'
+  '^(package\.json|package-lock\.json)$' 'npm install --package-lock-only --ignore-scripts' 'package.json or package-lock.json'
 )
 
 # Check for changes in specified files before pushing and run corresponding commands
