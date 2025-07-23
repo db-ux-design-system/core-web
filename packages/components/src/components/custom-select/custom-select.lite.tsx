@@ -666,12 +666,14 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 	}, [detailsRef, state._descByIds]);
 
 	onUpdate(() => {
-		if (props.showNoResults !== undefined) {
+		if (props.showLoading) {
+			state._hasNoOptions = false;
+		} else if (props.showNoResults !== undefined) {
 			state._hasNoOptions = props.showNoResults!;
 		} else if (state._options) {
 			state._hasNoOptions = state._options!.length === 0;
 		}
-	}, [props.showNoResults, state._options]);
+	}, [props.showNoResults, props.showLoading, state._options]);
 
 	onUpdate(() => {
 		state.selectAllEnabled = Boolean(
@@ -952,7 +954,10 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 						</Show>
 
 						<Show
-							when={state._hasNoOptions || props.showLoading}
+							when={
+								state._hasNoOptions ||
+								getBoolean(props.showLoading)
+							}
 							else={
 								<>
 									<Show when={state.selectAllEnabled}>
