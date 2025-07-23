@@ -1,6 +1,13 @@
 import FS from 'node:fs';
 import { getComponentName } from './utils.js';
 
+// If you want to hide components from the test table, add it to the unlistedComponents array.
+const unlistedComponents = new Set([
+	'page',
+	'custom-select-form-field',
+	'custom-select-dropdown'
+]);
+
 const webTypesPath = './../../output/stencil/dist/web-types.json';
 
 const generateTestTable = () => {
@@ -22,11 +29,7 @@ const generateTestTable = () => {
 	for (const { name } of elements) {
 		const componentName = getComponentName(name);
 		if (
-			[
-				'page',
-				'custom-select-form-field',
-				'custom-select-dropdown'
-			].includes(componentName) ||
+			unlistedComponents.has(componentName) ||
 			componentName.endsWith('-list') ||
 			componentName.endsWith('-panel') ||
 			componentName.endsWith('-item')
