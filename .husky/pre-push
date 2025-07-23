@@ -1,4 +1,10 @@
-# Check for changes in package.json or package-lock.json before pushing and inconsistencies in between them
+# Configuration: Each entry is an array with [pattern, command, description]
+CHECKS=(
+  # Format: "pattern" "command" "pattern description"
+  '^(package\.json|package-lock\.json)$' 'npx --no package-lock-utd' 'package.json or package-lock.json'
+)
+
+# Check for changes in specified files before pushing and run corresponding commands
 ## Get the upstream branch
 UPSTREAM=$(git rev-parse --abbrev-ref --symbolic-full-name @{u} 2>/dev/null)
 if [ -z "$UPSTREAM" ]; then
@@ -9,17 +15,26 @@ fi
 ## Get the list of files changed between upstream and HEAD
 FILES=$(git diff --name-only $UPSTREAM..HEAD)
 
-## Check if package.json or package-lock.json is in the list
-if echo "$FILES" | grep -qE '^(package\.json|package-lock\.json)$'; then
-  echo "Detected changes in package.json or package-lock.json"
+## Check each pattern and run corresponding command
+for ((i=0; i<${#CHECKS[@]}; i+=3)); do
+  pattern="${CHECKS[i]}"
+  command="${CHECKS[i+1]}"
+  description="${CHECKS[i+2]}"
 
-  ## Run your npx command
-  npx --no package-lock-utd
+  if echo "$FILES" | grep -qE "$pattern"; then
+    echo "Detected changes in $description"
 
-  if [ $? -ne 0 ]; then
-    echo "npm script failed. Aborting push."
-    exit 1
+    ## Run the corresponding command
+    eval "$command"
+
+    if [ $? -ne 0 ]; then
+      echo "Command failed: $command. Aborting push."
+      exit 1
+    fi
+
+    # Exit after first match to avoid running multiple commands
+    exit 0
   fi
-else
-  echo "No package.json or package-lock.json changes detected. Skipping npm script."
-fi
+done
+
+echo "No monitored file changes detected. Skipping checks."
