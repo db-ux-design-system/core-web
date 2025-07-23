@@ -7,6 +7,7 @@ const unlistedComponents = new Set([
 	'custom-select-form-field',
 	'custom-select-dropdown'
 ]);
+const unlistedSubComponentsPrefixes = new Set(['list', 'panel', 'item']);
 
 const webTypesPath = './../../output/stencil/dist/web-types.json';
 
@@ -30,9 +31,7 @@ const generateTestTable = () => {
 		const componentName = getComponentName(name);
 		if (
 			unlistedComponents.has(componentName) ||
-			componentName.endsWith('-list') ||
-			componentName.endsWith('-panel') ||
-			componentName.endsWith('-item')
+			unlistedSubComponentsPrefixes.has(componentName.split('-').at(-1))
 		) {
 			// We don't want to add something like accordion-item
 			continue;
