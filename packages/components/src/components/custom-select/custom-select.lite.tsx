@@ -104,7 +104,7 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 		_validity: 'no-validation',
 		_userInteraction: false,
 		// Workaround for Vue output: TS for Vue would think that it could be a function, and by this we clarify that it's a string
-		_descByIds: '',
+		_descByIds: undefined,
 		_selectedLabels: '',
 		_selectedLabelsId: undefined,
 		_voiceOverFallback: '',

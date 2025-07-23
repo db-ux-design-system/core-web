@@ -56,7 +56,7 @@ export default function DBTextarea(props: DBTextareaProps) {
 		_invalidMessageId: undefined,
 		_invalidMessage: undefined,
 		// Workaround for Vue output: TS for Vue would think that it could be a function, and by this we clarify that it's a string
-		_descByIds: '',
+		_descByIds: undefined,
 		_value: '',
 		_voiceOverFallback: '',
 		hasValidState: () => {
@@ -88,7 +88,7 @@ export default function DBTextarea(props: DBTextareaProps) {
 			} else if (stringPropVisible(props.message, props.showMessage)) {
 				state._descByIds = state._messageId;
 			} else {
-				state._descByIds = '';
+				state._descByIds = undefined;
 			}
 		},
 		handleInput: (event: InputEvent<HTMLTextAreaElement>) => {
@@ -162,6 +162,7 @@ export default function DBTextarea(props: DBTextareaProps) {
 			if (stringPropVisible(props.message, props.showMessage)) {
 				state._descByIds = messageId;
 			}
+			state.handleValidation();
 		}
 	}, [state._id]);
 
