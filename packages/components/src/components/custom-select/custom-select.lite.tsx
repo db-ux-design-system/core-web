@@ -67,7 +67,10 @@ import {
 
 useMetadata({
 	angular: {
-		nativeAttributes: ['disabled']
+		nativeAttributes: ['disabled', 'required', 'multiple'],
+		signals: {
+			writeable: ['disabled', 'values']
+		}
 	}
 });
 
@@ -99,6 +102,7 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 		_placeholderId: undefined,
 		_infoTextId: undefined,
 		_validity: 'no-validation',
+		_userInteraction: false,
 		// Workaround for Vue output: TS for Vue would think that it could be a function, and by this we clarify that it's a string
 		_descByIds: '',
 		_selectedLabels: '',
@@ -142,7 +146,9 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 					state._voiceOverFallback = state._invalidMessage;
 					delay(() => (state._voiceOverFallback = ''), 1000);
 				}
-				state._validity = props.validation ?? 'invalid';
+				if (state._userInteraction) {
+					state._validity = props.validation ?? 'invalid';
+				}
 			} else if (
 				state.hasValidState() &&
 				selectRef?.validity.valid &&
@@ -422,6 +428,7 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 			if (skip) return;
 
 			state._values = values;
+			state._userInteraction = true;
 			if (props.onOptionSelected) {
 				props.onOptionSelected(values ?? []);
 			}
@@ -688,8 +695,10 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 	}, [props.values]);
 
 	onUpdate(() => {
-		state.handleValidation();
-	}, [state._values]);
+		if (selectRef) {
+			state.handleValidation();
+		}
+	}, [state._values, selectRef]);
 
 	onUpdate(() => {
 		state._validity = props.validation;

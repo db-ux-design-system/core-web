@@ -21,7 +21,10 @@ import {
 
 useMetadata({
 	angular: {
-		nativeAttributes: ['disabled', 'checked', 'value', 'name']
+		nativeAttributes: ['disabled', 'checked', 'value', 'name'],
+		signals: {
+			writeable: ['disabled', 'checked']
+		}
 	}
 });
 

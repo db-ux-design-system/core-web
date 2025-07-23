@@ -34,7 +34,10 @@ import { DBCheckboxProps, DBCheckboxState } from './model';
 
 useMetadata({
 	angular: {
-		nativeAttributes: ['disabled', 'required', 'checked', 'indeterminate']
+		nativeAttributes: ['disabled', 'required', 'checked', 'indeterminate'],
+		signals: {
+			writeable: ['disabled', 'checked']
+		}
 	}
 });
 
