@@ -43,19 +43,17 @@
 	@include form-components.set-default-form-component(summary);
 
 	[id$="-placeholder"] {
-		display: none;
+		--db-form-component-padding-inline-end: #{select-components.$select-icon-padding};
+
 		margin-inline-end: calc(
 			#{form-components.$font-size-height} +
 				#{variables.$db-spacing-fixed-sm}
 		);
 	}
 
-	&:has(.db-custom-select-form-field:empty),
-	&:has(.db-custom-select-form-field > :empty) {
-		--db-form-component-padding-inline-end: #{select-components.$select-icon-padding};
-
+	&:has(summary span) {
 		[id$="-placeholder"] {
-			display: block;
+			display: none;
 		}
 	}
 
