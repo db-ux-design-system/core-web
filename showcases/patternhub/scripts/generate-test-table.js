@@ -7,7 +7,7 @@ const unlistedComponents = new Set([
 	'custom-select-form-field',
 	'custom-select-dropdown'
 ]);
-const unlistedSubComponentsPrefixes = new Set(['list', 'panel', 'item']);
+const unlistedSubComponentsPrefixes = new Set(['-list', '-panel', '-item']);
 
 const webTypesPath = './../../output/stencil/dist/web-types.json';
 
