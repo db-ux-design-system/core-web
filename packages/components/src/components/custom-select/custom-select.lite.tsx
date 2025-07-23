@@ -666,9 +666,7 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 	}, [detailsRef, state._descByIds]);
 
 	onUpdate(() => {
-		if (props.showLoading) {
-			state._hasNoOptions = false;
-		} else if (props.showNoResults !== undefined) {
+		if (props.showNoResults !== undefined) {
 			state._hasNoOptions = props.showNoResults!;
 		} else if (state._options) {
 			state._hasNoOptions = state._options!.length === 0;
@@ -954,10 +952,7 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 						</Show>
 
 						<Show
-							when={
-								state._hasNoOptions ||
-								getBoolean(props.showLoading)
-							}
+							when={state._hasNoOptions || props.showLoading}
 							else={
 								<>
 									<Show when={state.selectAllEnabled}>
@@ -1046,18 +1041,18 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 							<DBInfotext
 								id={state._infoTextId}
 								icon={
-									state._hasNoOptions
-										? undefined
-										: 'circular_arrows'
+									props.showLoading
+										? 'circular_arrows'
+										: undefined
 								}
 								semantic={
-									state._hasNoOptions
-										? 'warning'
-										: 'informational'
+									props.showLoading
+										? 'informational'
+										: 'warning'
 								}>
-								{(state._hasNoOptions
-									? props.noResultsText
-									: props.loadingText) ?? DEFAULT_MESSAGE}
+								{(props.showLoading
+									? props.loadingText
+									: props.noResultsText) ?? DEFAULT_MESSAGE}
 							</DBInfotext>
 						</Show>
 
