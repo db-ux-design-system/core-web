@@ -67,8 +67,8 @@ export default function DBInput(props: DBInputProps) {
 		_invalidMessageId: undefined,
 		_invalidMessage: undefined,
 		_dataListId: undefined,
-		_descByIds: '',
-		_value: '',
+		_descByIds: undefined,
+		_value: undefined,
 		_voiceOverFallback: '',
 		hasValidState: () => {
 			return !!(props.validMessage ?? props.validation === 'valid');
@@ -102,7 +102,7 @@ export default function DBInput(props: DBInputProps) {
 			} else if (stringPropVisible(props.message, props.showMessage)) {
 				state._descByIds = state._messageId;
 			} else {
-				state._descByIds = '';
+				state._descByIds = undefined;
 			}
 		},
 		handleInput: (event: InputEvent<HTMLInputElement>) => {
@@ -192,6 +192,8 @@ export default function DBInput(props: DBInputProps) {
 			if (stringPropVisible(props.message, props.showMessage)) {
 				state._descByIds = messageId;
 			}
+
+			state.handleValidation();
 		}
 	}, [state._id]);
 
