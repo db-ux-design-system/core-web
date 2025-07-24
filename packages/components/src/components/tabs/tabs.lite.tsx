@@ -6,7 +6,8 @@ import {
 	useDefaultProps,
 	useMetadata,
 	useRef,
-	useStore
+	useStore,
+	useTarget
 } from '@builder.io/mitosis';
 import { InputEvent } from '../../shared/model';
 import { cls, uuid } from '../../utils';
@@ -142,25 +143,36 @@ export default function DBTabs(props: DBTabsProps) {
 		},
 		handleChange: (event: InputEvent<HTMLElement>) => {
 			event.stopPropagation();
-			const closest:
-				| ((element: string) => HTMLElement | null)
-				| undefined = (event.target as any)?.closest;
 
-			if (!closest) return;
+			if (event.target) {
+				const target = event.target as HTMLElement;
+				const parent = target.parentElement;
+				if (
+					parent &&
+					parent.parentElement &&
+					parent.parentElement?.nodeName === 'LI'
+				) {
+					const tabItem = useTarget({
+						angular: parent.parentElement.parentElement,
+						stencil: parent.parentElement.parentElement,
+						default: parent.parentElement
+					});
+					if (tabItem) {
+						const list = tabItem.parentElement;
+						if (list) {
+							const indices = Array.from(list.childNodes).indexOf(
+								tabItem
+							);
+							if (props.onIndexChange) {
+								props.onIndexChange(indices);
+							}
 
-			const list = closest('ul');
-			const listItem =
-				// db-tab-item for angular and stencil wrapping elements
-				closest('db-tab-item') ?? closest('li');
-			if (list !== null && listItem !== null) {
-				const indices = Array.from(list.childNodes).indexOf(listItem);
-				if (props.onIndexChange) {
-					props.onIndexChange(indices);
+							if (props.onTabSelect) {
+								props.onTabSelect(event);
+							}
+						}
+					}
 				}
-			}
-
-			if (props.onTabSelect) {
-				props.onTabSelect(event);
 			}
 		}
 	});
@@ -212,7 +224,8 @@ export default function DBTabs(props: DBTabsProps) {
 			data-scroll-behavior={props.behavior}
 			data-alignment={props.alignment ?? 'start'}
 			data-width={props.width ?? 'auto'}
-			onInput={(event) => state.handleChange(event)}>
+			onInput={(event) => state.handleChange(event)}
+			onChange={(event) => state.handleChange(event)}>
 			<Show when={state.showScrollLeft}>
 				<DBButton
 					class="tabs-scroll-left"
