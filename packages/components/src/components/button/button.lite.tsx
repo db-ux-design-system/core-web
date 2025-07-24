@@ -8,10 +8,6 @@ import {
 import { cls, getBoolean, getBooleanAsString } from '../../utils';
 import type { DBButtonProps, DBButtonState } from './model';
 
-/**
- * @module Button
- */
-
 useMetadata({
 	angular: {
 		nativeAttributes: ['disabled']
@@ -20,28 +16,6 @@ useMetadata({
 
 useDefaultProps<DBButtonProps>({});
 
-/**
- * Renders a configurable button element that works across multiple frameworks.
- *
- * @remarks
- * This component supports different variants, sizes, icons, and ARIA attributes.
- * Use it for primary, secondary, or icon-only actions.
- *
- * @param props - {@link DBButtonProps} defining the button’s behavior and appearance.
- * @returns A `<button>` element with the given props bound.
- *
- * @example
- * ```tsx
- * <DBButton
- *   variant="brand"
- *   size="large"
- *   icon="check"
- *   onClick={(e) => console.log('clicked')}
- * >
- *   Save
- * </DBButton>
- * ```
- */
 export default function DBButton(props: DBButtonProps) {
 	const _ref = useRef<HTMLButtonElement | any>(null);
 

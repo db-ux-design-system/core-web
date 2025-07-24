@@ -13,55 +13,20 @@ import {
 	WidthProps
 } from '../../shared/model';
 
-/**
- * @module Button
- */
-
-/**
- * Represents the list of possible button variants.
- * These variants define the visual style of the button.
- * @public
- */
 export const ButtonVariantList = [
 	'outlined',
 	'brand',
 	'filled',
 	'ghost'
 ] as const;
-/**
- * Type representing a single button variant.
- * It is derived from the `ButtonVariantList` array.
- * @public
- */
 export type ButtonVariantType = (typeof ButtonVariantList)[number];
 
-/**
- * Represents the list of possible button types.
- * These types define the behavior of the button.
- * @public
- */
 export const ButtonTypeList = ['button', 'reset', 'submit'] as const;
-/**
- * Type representing a single button type.
- * It is derived from the `ButtonTypeList` array.
- * @public
- */
 export type ButtonTypeType = (typeof ButtonTypeList)[number];
 
-/**
- * Represents the list of possible button states.
- * These states define the current status of the button.
- * @public
- */
-
-/**
- * Represents the default properties for the DBButton component.
- * These properties define the behavior and accessibility attributes of the button.
- */
 export type DBButtonDefaultProps = {
 	/**
 	 * The disabled attribute can be set to [keep a user from clicking on the button](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button#disabled).
-	 * @see https://developer.mozilla.org/docs/Web/HTML/Element/button#disabled
 	 */
 	disabled?: boolean | string;
 
@@ -71,25 +36,17 @@ export type DBButtonDefaultProps = {
 	form?: string;
 
 	/**
-	 * The label represents the [aria-label attributes](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-label) value of the button
-	 * @see https://developer.mozilla.org/docs/Web/Accessibility/ARIA/Attributes/aria-label
-	 */
-	label?: string;
-
-	/**
 	 * The name attribute specifies a [name attributes value](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button#name) for the button.
-	 * @see https://developer.mozilla.org/docs/Web/HTML/Element/button#name
 	 */
 	name?: string;
 
 	/**
-	 * If `true`, hides the text and shows only the icon.
+	 * Define the text next to the icon specified via the icon Property to get hidden.
 	 */
 	noText?: boolean | string;
 
 	/**
-	 * The type attribute specifies the type of button.
-	 * @see https://developer.mozilla.org/docs/Web/HTML/Element/button#type
+	 * The type attribute specifies the [type of button](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button#type).
 	 */
 	type?: ButtonTypeType;
 
@@ -104,11 +61,6 @@ export type DBButtonDefaultProps = {
 	variant?: ButtonVariantType | string;
 };
 
-/**
- * Represents the properties for the `DBButton` component.
- * Combines default button properties (`DBButtonDefaultProps`) with global, click event, icon, width, size, show icon, and text-related properties.
- * @public
- */
 export type DBButtonProps = DBButtonDefaultProps &
 	GlobalProps &
 	ClickEventProps<HTMLButtonElement> &
