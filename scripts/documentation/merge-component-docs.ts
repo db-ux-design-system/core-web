@@ -11,20 +11,19 @@ const documentsDirectory = path
 	.join(outputDirectory, 'docs')
 	.replaceAll('\\', '/');
 
-// TODO: Remove this when all components are documented correctly
-const includeComponents = [
-	'button',
-	'drawer',
-	'link',
-	'infotext',
-	'input',
-	'notification',
-	'card',
-	'section',
-	'stack'
-]; // Button has JSDoc, drawer has SassDoc
+// Replace the hardcoded includeComponents array with a dynamic glob search
+const componentsDirectory = path
+	.join(__dirname, '../../packages/components/src/components')
+	.replaceAll('\\', '/');
+
+const includeComponents = globSync(
+	path.join(componentsDirectory, '*/agent/*').replaceAll('\\', '/')
+).map(
+	(file) => path.dirname(file).replaceAll('\\', '/').split('/').at(-2) ?? ''
+);
+
 const includeSet = new Set(
-	includeComponents.map((n) => n.trim().toLowerCase()).filter(Boolean)
+	includeComponents.map((n) => n?.trim().toLowerCase()).filter(Boolean)
 );
 
 /**

@@ -2,7 +2,7 @@ const targetMapping = [
 	{ name: 'react', lib: 'react', mdExtension: 'tsx' },
 	{ name: 'vue', lib: 'v', mdExtension: 'vue' },
 	{ name: 'angular', lib: 'ngx', mdExtension: 'ts' },
-	{ name: 'stencil', lib: 'wc', mdExtension: 'tsx' }
+	{ name: 'stencil', lib: 'wc', mdExtension: 'html' }
 ];
 
 /**
@@ -44,12 +44,57 @@ module.exports = () => ({
 			);
 			const displayName = json.name.replace(/Docs$/, '');
 
+			let changedCode = code.trim();
+
+			if (json?.meta?.useMetadata?.slots) {
+				let replacement = '';
+				for (const [key, value] of Object.entries(
+					json.meta.useMetadata.slots
+				)) {
+					const component = value[target];
+					if (target === 'react') {
+						replacement = replacement + `${key}={${component}}\n `;
+					} else if (target === 'vue') {
+						replacement =
+							replacement +
+							`<template v-slot:${key}>${component}</template>\n`;
+					} else {
+						replacement = replacement + `${component}\n`;
+					}
+				}
+
+				if (target === 'react') {
+					changedCode = changedCode.replaceAll(
+						`>__slots__ `,
+						` ${replacement}>`
+					);
+					changedCode = changedCode.replaceAll(
+						'>\n' + '        __slots__',
+						` ${replacement}>`
+					);
+				} else {
+					changedCode = changedCode.replaceAll(
+						`__slots__`,
+						`${replacement}`
+					);
+				}
+			}
+
+			if (target === 'stencil') {
+				// Remove everything before the first `<Fragment>` and after the last `</Fragment>`
+				const match = /<Fragment>([\s\S]*?)<\/Fragment>/g.exec(
+					changedCode
+				);
+				if (match) {
+					changedCode = match[1].trim();
+				}
+			}
+
 			return [
 				`# ${displayName} Examples (${target})`,
-				`Use those examples for \`DB${displayName}\` or \`${displayName}\` components in a ${target} environment.`,
 				'',
 				'```' + tagetMapItem.mdExtension,
-				code.trim(),
+				changedCode,
 				'```'
 			].join('\n');
 		}

@@ -163,7 +163,7 @@ function buildMarkdown(documents: any[]) {
 		`| ${headers.map(() => '---').join(' | ')} |`
 	];
 
-	let md = lines.join('\n') + '\n';
+	let md = `## CSS Properties\n\n` + lines.join('\n') + '\n';
 
 	for (const item of documents) {
 		if (!item.description.includes('@cssprop')) {
