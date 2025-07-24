@@ -1,6 +1,6 @@
-/* eslint-disable @typescript-eslint/no-unsafe-assignment,@typescript-eslint/no-unsafe-call */
+/* eslint-disable @typescript-eslint/no-unsafe-assignment,@typescript-eslint/no-unsafe-call, no-await-in-loop, unicorn/prefer-top-level-await */
 
-import { existsSync, readdirSync, writeFileSync } from 'node:fs';
+import { existsSync, mkdirSync, readdirSync, writeFileSync } from 'node:fs';
 import { dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import sassdoc from 'sassdoc';
@@ -57,11 +57,12 @@ async function processComponent(
 			/^[ \t]*<a id="[^"]+"><\/a>[ \t]*\r?\n/gm,
 			''
 		);
-		const outFile: string = join(
-			resolve(__dirname, outputSubPath),
-			component,
-			`${component}.css.md`
-		);
+		const outPath = join(resolve(__dirname, outputSubPath), component);
+		if (!existsSync(outPath)) {
+			mkdirSync(outPath, { recursive: true });
+		}
+
+		const outFile: string = join(outPath, `${component}.css.md`);
 		writeFileSync(outFile, md, 'utf8');
 		console.log(`✅ ${component}: wrote ${component}.css.md`);
 	}
@@ -192,18 +193,16 @@ async function extractCssVariables(): Promise<void> {
 	const basePath = resolve(__dirname, componentSubPath);
 	const components = getComponentDirectories(basePath);
 
-	await Promise.all(
-		components.map(async (component) =>
-			processComponent(component, basePath)
-		)
-	);
+	for (const component of components) {
+		await processComponent(component, basePath);
+	}
 }
 
 /**
  * Main function to execute the script.
  */
 try {
-	await extractCssVariables();
+	void extractCssVariables();
 } catch (error) {
 	console.error(`❌  Error: ${error.message}`);
 }

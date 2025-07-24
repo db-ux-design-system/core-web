@@ -4,6 +4,7 @@ const vue = require('./index.cjs');
  */
 module.exports = {
 	files: 'src/**/*.{lite.tsx,ts}',
+	exclude: ['src/**/*.agent.lite.tsx'],
 	targets: ['vue'],
 	dest: '../../output/tmp',
 	options: {

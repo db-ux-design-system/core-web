@@ -1,10 +1,10 @@
 #!/usr/bin/env node
 
-import { copyDocs } from './copy-docs';
 import { program } from 'commander';
+import { generateCopilot } from './copilot';
 
 const action = async (rootPath: string = '.') => {
-	copyDocs(rootPath);
+	generateCopilot(rootPath);
 };
 
 const startProgram = (
@@ -13,14 +13,17 @@ const startProgram = (
 	action: (root: string) => void
 ) => {
 	program.name(name).description(description);
-	program.argument('[root]', 'root path to copy docs from');
+	program.argument(
+		'[root]',
+		'Root path to generate AI agent instructions. Default: `.`'
+	);
 	program.action(action);
 
 	program.parse();
 };
 
 startProgram(
-	'@db-ux/docs-cli',
-	'CLI for DB UX Design System copy docs for AI agents',
+	'@db-ux/agent-cli',
+	'CLI for DB UX Design System generate AI agent instructions',
 	action
 );

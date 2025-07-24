@@ -48,11 +48,11 @@ jobs:
           name: db-ux-stylelint-build
           path: packages/stylelint/build
 
-      - name: ⏫ Upload docs-cli build
+      - name: ⏫ Upload agent-cli build
         uses: actions/upload-artifact@v4
         with:
-          name: db-ux-docs-cli-build
-          path: packages/docs-cli/build
+          name: db-ux-agent-cli-build
+          path: packages/agent-cli/build
 
       - name: 💀 Killing me softly
         uses: ./.github/actions/cancel-workflow

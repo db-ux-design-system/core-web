@@ -121,7 +121,7 @@ To consume those documentation for AI Agents the best way is to copy the `docs` 
 We provide a CLI tool to do this automatically, which you can run with:
 
 ```shell
-npx @db-ux/docs-cli
+npx @db-ux/agent-cli
 ```
 
 ## Deutsche Bahn brand

@@ -12,11 +12,11 @@
   "types": "dist/core.d.ts",
   "files": [
     "dist/",
-    "docs/"
+    "agent"
   ],
   "scripts": {
     "build": "ng build",
-    "mv:docs": "cpr docs ../../build-outputs/angular/docs -o",
+    "mv:agent": "cpr agent ../../build-outputs/angular/agent -o",
     "ng": "ng",
     "postbuild": "npm-run-all -p mv:*",
     "start": "ng serve"

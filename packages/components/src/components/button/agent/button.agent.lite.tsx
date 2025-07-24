@@ -1,6 +1,6 @@
-import DBButton from '../button.lite';
+import { DBButton } from '../index';
 
-export default function ButtonExamples() {
+export default function Button() {
 	return (
 		<>
 			<h1>DBButton Documentation Examples</h1>

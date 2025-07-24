@@ -12,14 +12,20 @@ const documentsDirectory = path
 	.replaceAll('\\', '/');
 
 // TODO: Remove this when all components are documented correctly
-const includeComponents = ['button', 'drawer']; // Button has JSDoc, drawer has SassDoc
+const includeComponents = [
+	'button',
+	'drawer',
+	'link',
+	'infotext',
+	'input',
+	'notification',
+	'card',
+	'section',
+	'stack'
+]; // Button has JSDoc, drawer has SassDoc
 const includeSet = new Set(
 	includeComponents.map((n) => n.trim().toLowerCase()).filter(Boolean)
 );
-
-function shouldProcessComponent(name: string) {
-	return includeSet.size === 0 || includeSet.has(name.toLowerCase());
-}
 
 /**
  * Converts a string to PascalCase.
@@ -58,6 +64,11 @@ function getGroupedFiles(files: string[]): Record<string, string[]> {
 		groupedFiles[directoryName].push(file);
 	}
 
+	// Add components from includeSet if they don't have a file
+	for (const component of includeSet) {
+		groupedFiles[component] ||= [];
+	}
+
 	return groupedFiles;
 }
 
@@ -71,16 +82,15 @@ const files: string[] = globSync(
 ).map((path: string) => path.replaceAll('\\', '/'));
 const groupedFiles = getGroupedFiles(files);
 
+const targets = [
+	{ name: 'react', lib: 'react' },
+	{ name: 'vue', lib: 'v' },
+	{ name: 'angular', lib: 'ngx' },
+	{ name: 'stencil', lib: 'wc' }
+];
+
 // Process each group of files
 for (const [prefix, fileGroup] of Object.entries(groupedFiles)) {
-	if (!prefix) {
-		continue;
-	}
-
-	if (!shouldProcessComponent(prefix)) {
-		continue;
-	}
-
 	let mergedContent = '';
 	try {
 		// Read and merge the content of all files in the group
@@ -93,13 +103,6 @@ for (const [prefix, fileGroup] of Object.entries(groupedFiles)) {
 		continue;
 	}
 
-	const targets = [
-		{ name: 'react', lib: 'react' },
-		{ name: 'vue', lib: 'v' },
-		{ name: 'angular', lib: 'ngx' },
-		{ name: 'stencil', lib: 'wc' }
-	];
-
 	for (const { name, lib } of targets) {
 		const snippetPath = path.join(
 			outputDirectory,
@@ -107,8 +110,8 @@ for (const [prefix, fileGroup] of Object.entries(groupedFiles)) {
 			'src',
 			'components',
 			prefix,
-			'docs',
-			`${prefix}.docs.md`
+			'agent',
+			`${prefix}.agent.md`
 		);
 		try {
 			let snippet = '';
@@ -119,7 +122,7 @@ for (const [prefix, fileGroup] of Object.entries(groupedFiles)) {
 			const targetDocumentationDirectory = path.join(
 				outputDirectory,
 				name,
-				'docs'
+				'agent'
 			);
 			mkdirSync(targetDocumentationDirectory, { recursive: true });
 			const finalContent = `${mergedContent}\n\n${snippet}`.replaceAll(
@@ -140,4 +143,20 @@ for (const [prefix, fileGroup] of Object.entries(groupedFiles)) {
 	}
 }
 
-console.log('✅  All operations successfully completed.');
+for (const { name, lib } of targets) {
+	const instructionsFilePath = path.join(
+		outputDirectory,
+		name,
+		'agent',
+		'_instructions.md'
+	);
+
+	let instructionsContent = `- Use "@db-ux/${lib}-core-components" as import for components:`;
+	for (const key of Object.keys(groupedFiles)) {
+		const componentName = toPascalCase(key);
+		instructionsContent += `
+  - use for \`DB${componentName}\` or \`${componentName}\` the file __agent-path__/${componentName}.md`;
+	}
+
+	writeFileSync(instructionsFilePath, instructionsContent, 'utf8');
+}

@@ -1,6 +1,6 @@
 .DS_Store
 node_modules
-!packages/docs-cli/test/node_modules
+!packages/agent-cli/test/**/node_modules
 npm-debug.log
 .history
 .idea
@@ -68,4 +68,5 @@ showcases/patternhub/public/iframe-resizer/*
 /scripts/gh-pages.tar.gz
 !/scripts/tests/fixtures/out
 /output/**/docs/
-/packages/docs-cli/test/_db-ux-docs/
+/output/**/agent/
+/packages/agent-cli/test/.github/copilot-instructions.md

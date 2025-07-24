@@ -12,12 +12,12 @@
   "types": "./dist/index.d.ts",
   "files": [
     "dist/",
-    "docs/"
+    "agent"
   ],
   "scripts": {
     "build": "npm-run-all tsc",
     "mv:dist": "cpr dist ../../build-outputs/react/dist --overwrite",
-    "mv:docs": "cpr docs ../../build-outputs/react/docs -o",
+    "mv:agent": "cpr agent ../../build-outputs/react/agent -o",
     "mv:package.json": "cpr package.json ../../build-outputs/react/package.json --overwrite",
     "mv:readme": "cpr README.md ../../build-outputs/react/README.md --overwrite",
     "open:report": "npx playwright show-report",

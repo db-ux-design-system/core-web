@@ -39,11 +39,11 @@ jobs:
           name: db-ux-stylelint-build
           path: packages/stylelint/build
 
-      - name: ⏬ Download docs-cli build
+      - name: ⏬ Download agent-cli build
         uses: actions/download-artifact@v4
         with:
-          name: db-ux-docs-cli-build
-          path: packages/docs-cli/build
+          name: db-ux-agent-cli-build
+          path: packages/agent-cli/build
 
       - name: ⏬ Download output
         uses: actions/download-artifact@v4
@@ -58,7 +58,7 @@ jobs:
 
       - name: 🔨 Build outputs
         run: |
-          npm run copilot --workspace=scripts
+          npm run generate:agent
           npm run build-outputs
 
       - name: ⏫ Upload outputs

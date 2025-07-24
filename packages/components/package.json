@@ -10,8 +10,8 @@
   "author": "General technical components out of DB UX Design System (Version 3)",
   "license": "Apache-2.0",
   "files": [
-    "build",
-    "docs"
+    "agent",
+    "build"
   ],
   "scripts": {
     "build": "npm-run-all --parallel build-components build-assets --sequential build-style:*",
@@ -28,7 +28,7 @@
     "compile:vue": "mitosis build --config configs/vue/mitosis.config.cjs && tsx scripts/exec/vue.ts && cpr ../../output/tmp/vue/src ../../output/vue/src --overwrite",
     "copy-assets": "cpr ../foundations/assets build/assets -o",
     "copy-output": "npm-run-all copy:*",
-    "copy:docs": "cpr docs ../../build-outputs/components/docs -o",
+    "copy:agent": "cpr agent ../../build-outputs/components/agent -o",
     "copy:outputs": "cpr build ../../build-outputs/components/build --overwrite",
     "copy:package.json": "cpr package.json ../../build-outputs/components/package.json --overwrite",
     "copy:readme": "cpr README.md ../../build-outputs/components/README.md --overwrite",
@@ -38,9 +38,9 @@
     "dev:scss": "npm run build-style:01_sass -- --watch",
     "dev:stencil": "nodemon --watch src --watch scripts --ext tsx,ts --exec \"npm run compile:stencil\"",
     "dev:vue": "nodemon --watch src --watch scripts --ext tsx,ts --exec \"npm run compile:vue\"",
+    "generate:agent": "mitosis build -c configs/mitosis.agent.config.cjs",
     "generate:component": "hygen mitosis new",
     "generate:docs": "hygen update-docs new",
-    "generate:mitosis-snippets": "mitosis build -c configs/mitosis.snippet.config.cjs",
     "prepack": "npm run copy-assets",
     "start": "nodemon --watch src --watch scripts --watch scripts --ext js,tsx,ts,scss,json --exec \"npm run build\""
   },

@@ -18,13 +18,13 @@
   },
   "files": [
     "dist/",
-    "docs/"
+    "agent"
   ],
   "scripts": {
     "build": "stencil build",
     "build:cem": "cem analyze",
     "mv:dist": "cpr dist ../../build-outputs/wc-core-components/dist -o",
-    "mv:docs": "cpr docs ../../build-outputs/wc-core-components/docs -o",
+    "mv:agent": "cpr agent ../../build-outputs/wc-core-components/agent -o",
     "mv:package.json": "cpr package.json ../../build-outputs/wc-core-components/package.json -o",
     "mv:readme": "cpr README.md ../../build-outputs/wc-core-components/README.md -o",
     "postbuild": "npm-run-all --parallel build:* --parallel mv:*",

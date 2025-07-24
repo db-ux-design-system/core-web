@@ -1,4 +1,4 @@
-# @db-ux/docs-cli
+# @db-ux/agent-cli
 
 ![Apache 2.0 license badge](https://img.shields.io/badge/License-Apache_2.0-blue.svg)
 [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
@@ -11,7 +11,7 @@ We provide a cli tool to copy `@db-ux` docs to your repository to provide it for
 Use this command in your repository:
 
 ```shell
-npx @db-ux/docs-cli
+npx @db-ux/agent-cli
 ```
 
 This will search for all `@db-ux` packages inside your `node_modules` and copy the documentation to your repository.
@@ -22,7 +22,7 @@ You might want to add this folder to your `.gitignore` file.
 You can also change the root path where the tool should check for `node_modules`:
 
 ```shell
-npx @db-ux/docs-cli packages/frontend
+npx @db-ux/agent-cli packages/frontend
 ```
 
 ## Deutsche Bahn brand

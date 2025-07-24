@@ -24,7 +24,7 @@ console.log('goto build-outputs');
 process.chdir('build-outputs');
 
 const packages = [
-	'docs-cli',
+	'agent-cli',
 	'core-foundations',
 	'core-migration',
 	'core-stylelint',
@@ -45,7 +45,7 @@ for (const PACKAGE of packages) {
 
 	if (
 		PACKAGE !== 'core-foundations' &&
-		PACKAGE !== 'docs-cli' &&
+		PACKAGE !== 'agent-cli' &&
 		PACKAGE !== 'core-migration' &&
 		PACKAGE !== 'core-stylelint'
 	) {
