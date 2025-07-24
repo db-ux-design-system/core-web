@@ -44,7 +44,10 @@ import { DBSelectOptionType, DBSelectProps, DBSelectState } from './model';
 
 useMetadata({
 	angular: {
-		nativeAttributes: ['disabled', 'required', 'value']
+		nativeAttributes: ['disabled', 'required', 'value'],
+		signals: {
+			writeable: ['disabled', 'value']
+		}
 	}
 });
 useDefaultProps<DBSelectProps>({});
@@ -60,7 +63,7 @@ export default function DBSelect(props: DBSelectProps) {
 		_invalidMessage: undefined,
 		_placeholderId: '',
 		// Workaround for Vue output: TS for Vue would think that it could be a function, and by this we clarify that it's a string
-		_descByIds: '',
+		_descByIds: undefined,
 		_value: '',
 		initialized: false,
 		_voiceOverFallback: '',
@@ -184,6 +187,7 @@ export default function DBSelect(props: DBSelectProps) {
 				state._descByIds = placeholderId;
 			}
 
+			state.handleValidation();
 			state.initialized = false;
 		}
 	}, [state._id, state.initialized]);
