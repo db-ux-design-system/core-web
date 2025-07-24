@@ -261,6 +261,7 @@ export type DBCustomSelectDefaultState = {
 	_internalChangeTimestamp: number;
 	_documentClickListenerCallbackId?: string;
 	_searchValue?: string;
+	_userInteraction?: boolean;
 	getNativeSelectValue: () => string;
 	getOptionLabel: (option: CustomSelectOptionType) => string;
 	getOptionChecked: (value?: string) => boolean;
