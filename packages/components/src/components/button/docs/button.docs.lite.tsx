@@ -1,6 +1,6 @@
-import { DBButton } from '../index';
+import DBButton from '../button.lite';
 
-export default function ButtonDocs() {
+export default function ButtonExamples() {
 	return (
 		<>
 			<h1>DBButton Documentation Examples</h1>
@@ -42,23 +42,19 @@ export default function ButtonDocs() {
 				Name/Value
 			</DBButton>
 
-			<h2>9. ARIA Attributes</h2>
-			<DBButton aria-expanded="true">Expanded</DBButton>
-			<DBButton aria-pressed="true">Pressed</DBButton>
-
-			<h2>10. Width</h2>
+			<h2>9. Width</h2>
 			<DBButton width="full">Full width</DBButton>
 			<DBButton width="auto">Auto width</DBButton>
 
-			<h2>11. Icon Visibility</h2>
+			<h2>10. Icon Visibility</h2>
 			<DBButton icon="check" showIcon={false}>
 				Icon Hidden
 			</DBButton>
 
-			<h2>12. Custom Class</h2>
+			<h2>11. Custom Class</h2>
 			<DBButton className="my-custom-class">Custom Class</DBButton>
 
-			<h2>13. Click Event</h2>
+			<h2>12. Click Event</h2>
 			<DBButton onClick={() => alert('Button clicked!')}>
 				Click Me
 			</DBButton>

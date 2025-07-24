@@ -32,7 +32,7 @@
     "copilot": "npm-run-all -p copilot:00_*",
     "copilot:00_extract-css": "tsx documentation/extract-css-vars.ts",
     "copilot:00_mitosis-snippets": "npm run generate:mitosis-snippets --workspace=@db-ux/core-components",
-    "copilot:00_typedoc": "typedoc --options typedoc.json --tsconfig tsconfig.typedoc.json",
+    "copilot:x00_typedoc": "typedoc --options typedoc.json --tsconfig tsconfig.typedoc.json",
     "dev": "tsx dev.js",
     "dev:angular-components": "npm run dev:angular --workspace=@db-ux/core-components",
     "dev:plain-html-components": "npm run dev:html --workspace=@db-ux/core-components",

@@ -1,9 +1,16 @@
+const targetMapping = [
+	{ name: 'react', lib: 'react', mdExtension: 'tsx' },
+	{ name: 'vue', lib: 'v', mdExtension: 'vue' },
+	{ name: 'angular', lib: 'ngx', mdExtension: 'ts' },
+	{ name: 'stencil', lib: 'wc', mdExtension: 'tsx' }
+];
+
 /**
  * @type {import('@builder.io/mitosis').MitosisConfig}
  */
 module.exports = {
 	files: 'src/components/**/docs/*.docs.lite.tsx',
-	targets: ['react', 'angular', 'vue', 'stencil'],
+	targets: targetMapping.map(({ name }) => name),
 	dest: '../../output',
 	options: {
 		angular: {
@@ -24,12 +31,16 @@ module.exports = {
 				code: {
 					post: (code, json) => {
 						const target = json.pluginData.target;
+						const tagetMapItem = targetMapping.find(
+							({ name }) => name === target
+						);
 						const displayName = json.name.replace(/Docs$/, '');
 
 						return [
 							`# ${displayName} Examples (${target})`,
+							`Use those examples for \`DB${displayName}\` or \`${displayName}\` components in a ${target} environment.`,
 							'',
-							'```' + target,
+							'```' + tagetMapItem.mdExtension,
 							code.trim(),
 							'```'
 						].join('\n');
