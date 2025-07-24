@@ -16,7 +16,6 @@ const comp: any = (
 		onIndexChange={(index: number) =>
 			writeFileSync(filePath, index.toString())
 		}
-		// VUE: @index-change={index=> writeFileSync(filePath, index.toString())}
 	>
 		<DBTabList>
 			<DBTabItem data-testid="test">Test 1</DBTabItem>
