@@ -53,6 +53,7 @@ const logAll = () => {
 };
 
 const reset = () => {
+	// codespell:ignore resetted
 	firstInput.value = "resetted";
 	textarea.value = "resetted";
 	textareavModel.value = "resetted";

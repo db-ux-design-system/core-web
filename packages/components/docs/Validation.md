@@ -15,4 +15,4 @@ If you use some framework you can pass the props `invalidMessage` and `validMess
 
 You can use `data-validation|validation="'invalid' | 'valid' | 'no-validation'"` to disable [`:user-valid`](https://developer.mozilla.org/en-US/docs/Web/CSS/:user-valid).
 
-> **Note:** This may lead to problems and inconsistency, only use it if you know what you do, and have specific validation conditions that aren't possible to get defined by the huge range of already existing [validation conditions and patterns through attributs](https://developer.mozilla.org/en-US/docs/Learn/Forms/Form_validation#using_built-in_form_validation).
+> **Note:** This may lead to problems and inconsistency, only use it if you know what you do, and have specific validation conditions that aren't possible to get defined by the huge range of already existing [validation conditions and patterns through attributes](https://developer.mozilla.org/en-US/docs/Learn/Forms/Form_validation#using_built-in_form_validation).

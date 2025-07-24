@@ -1,3 +1,4 @@
+// Codespell:ignore Feld
 export const translations: Record<string, string[]> = {
 	star: ['Stern'],
 	button: ['Schalter'],

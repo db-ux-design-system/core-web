@@ -1,3 +1,4 @@
+# codespell:ignore symbl
 # compare to https://symbl.cc/de/unicode-table/
 U+0000-024F # Latin (all)
 U+0020,U+0009,U+000A,U+000D # white space characters
