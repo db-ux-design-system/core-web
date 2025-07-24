@@ -1,4 +1,3 @@
-// Codespell:ignore Feld
 export const translations: Record<string, string[]> = {
 	star: ['Stern'],
 	button: ['Schalter'],
@@ -12,7 +11,7 @@ export const translations: Record<string, string[]> = {
 	clickable: ['anklickbar'],
 	'has auto complete': ['mit Auto Vervollständigung'],
 	required: ['erforderlich'],
-	'Please fill out this field..': ['Fülle dieses Feld aus..'],
+	'Please fill out this field..': ['Fülle dieses Feld aus..'], // Codespell:ignore Feld
 	unselected: ['nicht ausgewählt'],
 	selected: ['ausgewählt'],
 	'': ['. Nummernblock eingeschaltet'],
