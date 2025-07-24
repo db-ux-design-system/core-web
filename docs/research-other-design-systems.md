@@ -2,6 +2,9 @@
 
 We'd like to maintain a list of other design systems that might be interesting for research and inspiration, and even include meta information especially regarding technical aspects.
 
+<!-- codespell:ignore Puls -->
+<!-- codespell:ignore Bund -->
+
 - [Telekom Scale](https://github.com/telekom/scale), Tech Stack:
     - Web Components / StencilJS
     - Storybook
@@ -23,7 +26,6 @@ We'd like to maintain a list of other design systems that might be interesting f
 - [Liquid Oxygen, UI component library for the Liquid Design System of Merck KGaA](https://liquid.merck.design/liquid/)
     - Web Components / StencilJS
 - [Porsche Design System](https://designsystem.porsche.com/v3/) - Web Components / StencilJS
-      <!-- codespell:ignore Puls -->
 - [Barmer Puls Design System](https://barmer-puls.entw.bconnect.barmer.de/)
     - React Native
     - [Storybook](https://barmer-puls-react.entw.bconnect.barmer.de/?path=/story/surfaces-accordion--base)
@@ -37,7 +39,6 @@ We'd like to maintain a list of other design systems that might be interesting f
     - Web Components / StencilJS
     - Storybook
 - [wien.gv.at](https://handbuch.wien.gv.at/pattern-library/patterns/) - HTML & CSS first - JavaScript only as an addition, mainly because of that the target are content pages even only - Web Components (upcoming)
-    <!-- codespell:ignore Bund -->
 - ["Informationstechnikzentrum Bund" Germany / KoliBri steht für "Komponentenbibliothek für die Barrierefreiheit"](https://public-ui.github.io/)
     - Web Components / StencilJS
 - [Washington Post Design System (WPDS)](https://build.washingtonpost.com/)
