@@ -156,5 +156,27 @@
 				}
 			}
 		]
+	},
+	{
+		"name": "Show Required Asterisk",
+		"role": "radiogroup",
+		"examples": [
+			{
+				"name": "(Default) True",
+				"props": {
+					"name": "Asterisk",
+					"required": true,
+					"showRequiredAsterisk": true
+				}
+			},
+			{
+				"name": "False",
+				"props": {
+					"name": "Asterisk",
+					"required": true,
+					"showRequiredAsterisk": false
+				}
+			}
+		]
 	}
 ]

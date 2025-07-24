@@ -1,6 +1,7 @@
 @use "../colors/placeholder";
 
 @forward "default-properties";
+@forward "default-container-properties";
 
 @property --db-font-family-sans {
 	syntax: "*";

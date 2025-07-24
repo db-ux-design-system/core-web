@@ -28,6 +28,7 @@ import {
 	cls,
 	delay,
 	getBoolean,
+	getBooleanAsString,
 	getHideProp,
 	getOptionKey,
 	hasVoiceOver,
@@ -43,7 +44,10 @@ import { DBSelectOptionType, DBSelectProps, DBSelectState } from './model';
 
 useMetadata({
 	angular: {
-		nativeAttributes: ['disabled', 'required', 'value']
+		nativeAttributes: ['disabled', 'required', 'value'],
+		signals: {
+			writeable: ['disabled', 'value']
+		}
 	}
 });
 useDefaultProps<DBSelectProps>({});
@@ -59,7 +63,7 @@ export default function DBSelect(props: DBSelectProps) {
 		_invalidMessage: undefined,
 		_placeholderId: '',
 		// Workaround for Vue output: TS for Vue would think that it could be a function, and by this we clarify that it's a string
-		_descByIds: '',
+		_descByIds: undefined,
 		_value: '',
 		initialized: false,
 		_voiceOverFallback: '',
@@ -183,6 +187,7 @@ export default function DBSelect(props: DBSelectProps) {
 				state._descByIds = placeholderId;
 			}
 
+			state.handleValidation();
 			state.initialized = false;
 		}
 	}, [state._id, state.initialized]);
@@ -196,15 +201,15 @@ export default function DBSelect(props: DBSelectProps) {
 			class={cls('db-select', props.className)}
 			data-variant={props.variant}
 			data-hide-label={getHideProp(props.showLabel)}
+			data-hide-asterisk={getHideProp(props.showRequiredAsterisk)}
 			data-icon={props.icon}
-			data-hide-icon={getHideProp(props.showIcon)}>
+			data-show-icon={getBooleanAsString(props.showIcon)}>
 			<label htmlFor={state._id}>{props.label ?? DEFAULT_LABEL}</label>
 			<select
 				aria-invalid={props.validation === 'invalid'}
 				data-custom-validity={props.validation}
 				ref={_ref}
 				required={getBoolean(props.required, 'required')}
-				data-hide-asterisk={getHideProp(props.showRequiredAsterisk)}
 				disabled={getBoolean(props.disabled, 'disabled')}
 				id={state._id}
 				name={props.name}

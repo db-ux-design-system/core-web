@@ -13,7 +13,7 @@ const Example = () => {
 			<blockquote>
 				<ul>
 					<li>
-						Some of the variables are "missused" to visualize the
+						Some of the variables are "misused" to visualize the
 						effect of e.g. a padding.
 					</li>
 					<li>

@@ -17,14 +17,14 @@
   },
   "dependencies": {
     "sa11y": "4.1.9",
-    "vue": "^3.5.17",
+    "vue": "3.5.18",
     "vue-router": "4.5.1"
   },
   "devDependencies": {
-    "@vitejs/plugin-vue": "^6.0.0",
-    "cross-env": "^7.0.3",
-    "typescript": "^5.4.5",
-    "vite": "^6.3.5",
-    "vue-tsc": "^3.0.1"
+    "@vitejs/plugin-vue": "6.0.0",
+    "cross-env": "7.0.3",
+    "typescript": "5.8.3",
+    "vite": "6.3.5",
+    "vue-tsc": "3.0.3"
   }
 }

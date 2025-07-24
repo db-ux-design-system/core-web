@@ -25,7 +25,7 @@ const getId = (name?: string): string =>
 				>
 					{{ exampleName }}
 				</DBInfotext>
-				<DBNavigation :labelledBy="getId(exampleName)">
+				<DBNavigation :aria-labelledby="getId(exampleName)">
 					<DBNavigationItem>
 						Navi-Item 1
 						<template v-slot:sub-navigation>

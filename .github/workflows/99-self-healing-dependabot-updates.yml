@@ -46,12 +46,12 @@ jobs:
         if: env.stylelint_update == 'true'
         run: |
           npm run build --workspace=@db-ux/core-stylelint
-          npm run lint:stylelint --fix
+          npm run lint:stylelint -- --fix
 
       - name: 🏃 Run Prettier to format the code
         if: env.prettier_update == 'true'
         run: |
-          npm run fmt
+          npm run codestyle
 
       - name: 🚘 Auto commit
         if: env.stylelint_update == 'true' || env.prettier_update == 'true'
