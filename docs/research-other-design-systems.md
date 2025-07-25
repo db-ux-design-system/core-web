@@ -2,8 +2,6 @@
 
 We'd like to maintain a list of other design systems that might be interesting for research and inspiration, and even include meta information especially regarding technical aspects.
 
-<!-- codespell:ignore-start -->
-
 - [Telekom Scale](https://github.com/telekom/scale), Tech Stack:
     - Web Components / StencilJS
     - Storybook
@@ -25,7 +23,7 @@ We'd like to maintain a list of other design systems that might be interesting f
 - [Liquid Oxygen, UI component library for the Liquid Design System of Merck KGaA](https://liquid.merck.design/liquid/)
     - Web Components / StencilJS
 - [Porsche Design System](https://designsystem.porsche.com/v3/) - Web Components / StencilJS
-- [Barmer Puls Design System](https://barmer-puls.entw.bconnect.barmer.de/)
+- [Barmer Puls Design System](https://barmer-puls.entw.bconnect.barmer.de/) <!-- codespell:ignore=Puls -->
     - React Native
     - [Storybook](https://barmer-puls-react.entw.bconnect.barmer.de/?path=/story/surfaces-accordion--base)
 - [SAP UI5 Web Components](https://sap.github.io/ui5-webcomponents/)
@@ -38,7 +36,7 @@ We'd like to maintain a list of other design systems that might be interesting f
     - Web Components / StencilJS
     - Storybook
 - [wien.gv.at](https://handbuch.wien.gv.at/pattern-library/patterns/) - HTML & CSS first - JavaScript only as an addition, mainly because of that the target are content pages even only - Web Components (upcoming)
-- ["Informationstechnikzentrum Bund" Germany / KoliBri steht für "Komponentenbibliothek für die Barrierefreiheit"](https://public-ui.github.io/)
+- ["Informationstechnikzentrum Bund" Germany / KoliBri steht für "Komponentenbibliothek für die Barrierefreiheit"](https://public-ui.github.io/) <!-- codespell:ignore=Bund -->
     - Web Components / StencilJS
 - [Washington Post Design System (WPDS)](https://build.washingtonpost.com/)
     - React
@@ -48,8 +46,6 @@ We'd like to maintain a list of other design systems that might be interesting f
     - Web Components / StencilJS
 - [Solid Design](https://github.com/solid-design-system/solid):
     - Web Components
-
-<!-- codespell:ignore-end -->
 
 ## Design System "registries" / overviews
 
