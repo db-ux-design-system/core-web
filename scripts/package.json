@@ -10,7 +10,7 @@
     "agent:x00_typedoc": "typedoc --options typedoc.json --tsconfig tsconfig.typedoc.json",
     "build": "npm-run-all build:foundations build:components -p build:migration build:stylelint build:agent-cli",
     "build-outputs": "npm-run-all --parallel build-outputs:*",
-    "build-outputs:agent-cli": "npm run copy-output --workspace=@db-ux/agent-cli",
+    "build-outputs:agent-cli": "npm run copy-build --workspace=@db-ux/agent-cli",
     "build-outputs:components": "npm run copy-output --workspace=@db-ux/core-components",
     "build-outputs:foundations": "npm run copy-build --workspace=@db-ux/core-foundations",
     "build-outputs:migration": "npm run copy-build --workspace=@db-ux/core-migration",
