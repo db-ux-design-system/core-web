@@ -256,9 +256,21 @@
 			<dd>{{ getTags() }}</dd>
 
 			<br />
-			<db-tag><db-checkbox>Checkbox</db-checkbox></db-tag>
-			<db-tag><db-radio>Checkbox</db-radio></db-tag>
-			<db-tag><db-button>Checkbox</db-button></db-tag>
+			<db-tag
+				><label for="checkbox01">
+					<input id="checkbox01" type="checkbox" />Checkbox</label
+				></db-tag
+			>
+			<db-tag
+				><label for="radio01">
+					<input
+						name="radio01"
+						id="radio01"
+						type="radio"
+					/>Checkbox</label
+				></db-tag
+			>
+			<db-tag><button type="button">Checkbox</button></db-tag>
 			<br />
 
 			<db-tabs orientation="vertical">
