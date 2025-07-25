@@ -17,7 +17,10 @@ import type { DBTabItemProps, DBTabItemState } from './model';
 
 useMetadata({
 	angular: {
-		nativeAttributes: ['disabled']
+		nativeAttributes: ['disabled'],
+		signals: {
+			writeable: ['disabled', 'checked']
+		}
 	}
 });
 useDefaultProps<DBTabItemProps>({});

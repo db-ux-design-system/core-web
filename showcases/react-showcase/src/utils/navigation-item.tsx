@@ -53,59 +53,7 @@ export const NAVIGATION_ITEMS: NavigationItem[] = [
 			{
 				path: 'notification',
 				label: 'Notification',
-				component: <NotificationComponent />,
-				subNavigation: getSortedNavigationItems([
-					{
-						path: 'link',
-						label: 'Link',
-						component: <LinkComponent />,
-						subNavigation: getSortedNavigationItems([
-							{
-								path: 'link',
-								label: 'Link',
-								component: <LinkComponent />,
-								subNavigation: getSortedNavigationItems([
-									{
-										path: 'link',
-										label: 'Link',
-										component: <LinkComponent />,
-										subNavigation: getSortedNavigationItems(
-											[
-												{
-													path: 'link',
-													label: 'Link',
-													component: <LinkComponent />
-												},
-												{
-													path: 'button',
-													label: 'Button',
-													component: (
-														<ButtonComponent />
-													)
-												}
-											]
-										)
-									},
-									{
-										path: 'button',
-										label: 'Button',
-										component: <ButtonComponent />
-									}
-								])
-							},
-							{
-								path: 'button',
-								label: 'Button',
-								component: <ButtonComponent />
-							}
-						])
-					},
-					{
-						path: 'button',
-						label: 'Button',
-						component: <ButtonComponent />
-					}
-				])
+				component: <NotificationComponent />
 			},
 			{ path: 'badge', label: 'Badge', component: <BadgeComponent /> }
 		])

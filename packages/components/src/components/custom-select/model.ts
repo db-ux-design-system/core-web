@@ -264,6 +264,7 @@ export type DBCustomSelectDefaultState = {
 	handleDocumentScroll: (event: any) => void;
 	_observer?: IntersectionObserver;
 	_searchValue?: string;
+	_userInteraction?: boolean;
 	getNativeSelectValue: () => string;
 	getOptionLabel: (option: CustomSelectOptionType) => string;
 	getOptionChecked: (value?: string) => boolean;
