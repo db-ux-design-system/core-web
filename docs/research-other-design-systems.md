@@ -2,7 +2,7 @@
 
 We'd like to maintain a list of other design systems that might be interesting for research and inspiration, and even include meta information especially regarding technical aspects.
 
-<!-- codespell:ignore -->
+<!-- codespell:ignore-start -->
 
 - [Telekom Scale](https://github.com/telekom/scale), Tech Stack:
     - Web Components / StencilJS
@@ -48,6 +48,8 @@ We'd like to maintain a list of other design systems that might be interesting f
     - Web Components / StencilJS
 - [Solid Design](https://github.com/solid-design-system/solid):
     - Web Components
+
+<!-- codespell:ignore-end -->
 
 ## Design System "registries" / overviews
 
