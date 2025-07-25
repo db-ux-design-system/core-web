@@ -78,7 +78,8 @@ jobs:
             cp --recursive --no-target-directory ./build-showcases/${{ inputs.type }} ./build-showcases${{ inputs.path }}
             npm run regenerate:screenshots --workspace=patternhub
           else
-            npm run regenerate:screenshots --workspace=react-showcase
+            npm run regenerate:visual-snapshots --workspace=react-showcase
+            npm run regenerate:aria-snapshots --workspace=react-showcase
           fi
 
       - name: 🆙 Upload components
