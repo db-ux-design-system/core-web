@@ -98,8 +98,8 @@ export default function DBControlPanelDesktop(
 					aria-expanded={state._open}
 					noText
 					type="button"
-					icon="chevron_left">
-					<DBTooltip variant="label" placement="top">
+					icon="double_chevron_left">
+					<DBTooltip variant="label" placement="right">
 						{state.getToggleButtonText()}
 					</DBTooltip>
 				</DBButton>

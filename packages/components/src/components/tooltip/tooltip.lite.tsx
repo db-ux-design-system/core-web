@@ -55,7 +55,7 @@ export default function DBTooltip(props: DBTooltipProps) {
 			if (!parent) return;
 			if (_ref) {
 				// This is a workaround for angular
-				utilsDelay(() => {
+				void utilsDelay(() => {
 					handleFixedPopover(
 						_ref,
 						parent,

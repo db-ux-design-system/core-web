@@ -8,7 +8,6 @@
 @use "../../styles/internal/icon-passing";
 @use "../../styles/internal/component";
 
-$navigation-max-inline-size: 328px; // We should get this value from UX
 
 @mixin direct-navigation-items {
 	#{string.unquote(custom-elements.$navigation-item)},

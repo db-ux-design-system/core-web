@@ -768,12 +768,12 @@ export type SidebarProps = {
 	expandButtonTooltip?: string;
 
 	/**
-	 * Set the tooltip for the expand/collapse button based on the state
+	 * Set the tooltip for the expand/collapse button based on the state. (only react|vue)
 	 */
 	expandButtonTooltipFn?: (open: boolean) => string;
 
 	/**
-	 * Set the tooltip for the expand/collapse button based on the state
+	 * Set the tooltip for the expand/collapse button based on the state. (only react|vue)
 	 */
 	onExpandButtonTooltipFn?: (open: boolean) => string;
 };

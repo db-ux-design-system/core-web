@@ -10,15 +10,6 @@
 @use "./indicator";
 @use "./scrollbar";
 
-$navigation-child-selector: "> .db-control-panel-desktop-scroll-container > .db-navigation, > .db-control-panel-desktop-scroll-container > db-navigation > .db-navigation";
-$meta-child-selector: "> .db-control-panel-desktop-scroll-container  .db-control-panel-meta-navigation";
-
-@mixin navigation-child {
-	#{string.unquote($navigation-child-selector)} {
-		@content;
-	}
-}
-
 @mixin horizontal-navigation($scroll-buttons: true) {
 	@if ($scroll-buttons) {
 		@include scrollbar.set-overflow-scroll-buttons;
@@ -72,7 +63,7 @@ $meta-child-selector: "> .db-control-panel-desktop-scroll-container  .db-control
 			&:is(button),
 			> button {
 				&::after {
-					--db-icon-after: "chevron_down";
+					--db-icon-trailing: "chevron_down";
 				}
 			}
 
@@ -159,16 +150,16 @@ $meta-child-selector: "> .db-control-panel-desktop-scroll-container  .db-control
 		display: contents;
 	}
 
-	#{string.unquote(custom-elements.$control-panel-brand)} {
+	.db-control-panel-brand {
 		padding-inline-end: variables.$db-spacing-fixed-lg;
 	}
 
-	#{string.unquote(custom-elements.$control-primary-actions)},
-	#{string.unquote(custom-elements.$control-secondary-actions)} {
+	.db-control-panel-primary-actions,
+	.db-control-panel-secondary-actions {
 		block-size: variables.$db-sizing-md;
 	}
 
-	#{string.unquote(custom-elements.$control-primary-actions)} {
+	.db-control-panel-primary-actions {
 		margin-inline-start: variables.$db-spacing-fixed-sm;
 	}
 
@@ -177,24 +168,24 @@ $meta-child-selector: "> .db-control-panel-desktop-scroll-container  .db-control
 	}
 
 	&:has(
-		#{string.unquote(custom-elements.$control-primary-actions)},
-		#{string.unquote($navigation-child-selector)}
+		.db-control-panel-primary-actions,
+		.db-navigation
 	) {
-		#{string.unquote(custom-elements.$control-secondary-actions)} {
+		.db-control-panel-secondary-actions {
 			padding-inline-start: variables.$db-spacing-fixed-sm;
 
 			@include helpers.divider("left");
 		}
 	}
 
-	&:has(#{string.unquote($navigation-child-selector)}) {
-		#{string.unquote(custom-elements.$control-panel-brand)} {
+	&:has(.db-navigation) {
+		.db-control-panel-brand {
 			@include helpers.divider("right", "after");
 		}
 	}
 
-	&:has(#{string.unquote(custom-elements.$control-secondary-actions)}) {
-		#{string.unquote(custom-elements.$control-primary-actions)} {
+	&:has(.db-control-panel-secondary-actions) {
+		.db-control-panel-primary-actions {
 			margin-inline-end: variables.$db-spacing-fixed-sm;
 		}
 	}
@@ -214,7 +205,7 @@ $meta-child-selector: "> .db-control-panel-desktop-scroll-container  .db-control
 		max-inline-size: screen-sizes.$db-breakpoint-lg;
 	}
 
-	@include navigation-child {
+	.db-navigation {
 		--db-overflow-scroll-button-inset-block: #{variables.$db-spacing-fixed-md};
 		--db-overflow-scroll-button-inset-inline-start: calc(
 			#{variables.$db-spacing-fixed-lg} / 2
@@ -287,13 +278,13 @@ $meta-child-selector: "> .db-control-panel-desktop-scroll-container  .db-control
 		/* stylelint-disable-next-line declaration-property-value-no-unknown */
 		inline-size: calc-size(auto, size);
 
-		#{string.unquote(custom-elements.$control-primary-actions)},
-		#{string.unquote(custom-elements.$control-secondary-actions)},
-		#{string.unquote($meta-child-selector)} {
+		.db-control-panel-primary-actions,
+		.db-control-panel-secondary-actions,
+		.db-control-panel-meta-navigation {
 			display: none;
 		}
 
-		@include navigation-child {
+		.db-navigation {
 			> menu {
 				@include navigation-item.direct-navigation-items {
 					--db-icon-margin-end: 0;
@@ -331,14 +322,14 @@ $meta-child-selector: "> .db-control-panel-desktop-scroll-container  .db-control
 		}
 
 		&:not(:has(.db-navigation-item[data-icon])) {
-			#{string.unquote(custom-elements.$control-panel-brand)} {
+			.db-control-panel-brand {
 				&::after {
 					display: none;
 				}
 			}
 		}
 
-		#{string.unquote(custom-elements.$control-panel-brand)} {
+		.db-control-panel-brand {
 			font-size: 0;
 			gap: 0;
 			place-self: center;
@@ -356,9 +347,13 @@ $meta-child-selector: "> .db-control-panel-desktop-scroll-container  .db-control
 	}
 
 	&[data-open="true"] {
+		/// Sets the inline-size (width) of the control-panel-desktop
+		/// @propertyname inline-size
+		/// @cssprop --db-control-panel-desktop-inline-size
+		/// @default var(--db-container-xs)
 		inline-size: var(
 			--db-control-panel-desktop-inline-size,
-			#{screen-sizes.$db-breakpoint-xs}
+			#{variables.$db-container-xs}
 		);
 	}
 
@@ -371,16 +366,16 @@ $meta-child-selector: "> .db-control-panel-desktop-scroll-container  .db-control
 		@include helpers.divider("top");
 	}
 
-	#{string.unquote(custom-elements.$control-panel-brand)},
-	#{string.unquote(custom-elements.$control-primary-actions)},
-	#{string.unquote(custom-elements.$control-secondary-actions)},
+	.db-control-panel-brand,
+	.db-control-panel-primary-actions,
+	.db-control-panel-secondary-actions,
 	> .db-control-panel-desktop-button {
 		padding-inline: variables.$db-spacing-fixed-lg;
 	}
 
-	#{string.unquote(custom-elements.$control-panel-brand)},
-	#{string.unquote(custom-elements.$control-primary-actions)},
-	#{string.unquote(custom-elements.$control-secondary-actions)} {
+	.db-control-panel-brand,
+	.db-control-panel-primary-actions,
+	.db-control-panel-secondary-actions {
 		margin-block-end: variables.$db-spacing-fixed-md;
 	}
 
@@ -390,7 +385,7 @@ $meta-child-selector: "> .db-control-panel-desktop-scroll-container  .db-control
 		grid-area: scroll;
 		grid-template-areas: "navigation" "meta";
 
-		#{string.unquote(custom-elements.$control-meta-navigation)} {
+		.db-control-panel-meta-navigation {
 			margin-block-start: auto;
 
 			@include helpers.divider("top");
@@ -398,20 +393,20 @@ $meta-child-selector: "> .db-control-panel-desktop-scroll-container  .db-control
 	}
 
 	&:has(
-		#{string.unquote(custom-elements.$control-panel-brand)},
-		#{string.unquote(custom-elements.$control-primary-actions)},
-		#{string.unquote($navigation-child-selector)},
-		#{string.unquote($meta-child-selector)}
+		.db-control-panel-brand,
+		.db-control-panel-primary-actions,
+		.db-navigation,
+		.db-control-panel-meta-navigation
 	) {
-		#{string.unquote(custom-elements.$control-secondary-actions)} {
+		.db-control-panel-secondary-actions {
 			padding-block-start: variables.$db-spacing-fixed-sm;
 
 			@include helpers.divider("top");
 		}
 	}
 
-	&:has(#{string.unquote($navigation-child-selector)}) {
-		#{string.unquote(custom-elements.$control-panel-brand)} {
+	&:has(.db-navigation) {
+		.db-control-panel-brand {
 			@include helpers.divider("bottom", "after");
 
 			&::after {
@@ -421,18 +416,18 @@ $meta-child-selector: "> .db-control-panel-desktop-scroll-container  .db-control
 	}
 
 	&:has(
-		#{string.unquote(custom-elements.$control-panel-brand)},
-		#{string.unquote($navigation-child-selector)},
-		#{string.unquote($meta-child-selector)}
+		.db-control-panel-brand,
+		.db-navigation,
+		.db-control-panel-meta-navigation
 	) {
-		#{string.unquote(custom-elements.$control-primary-actions)} {
+		.db-control-panel-primary-actions {
 			padding-block-start: variables.$db-spacing-fixed-sm;
 
 			@include helpers.divider("top");
 		}
 	}
 
-	@include navigation-child {
+	.db-navigation {
 		@include vertical-navigation;
 
 		> menu {

@@ -214,9 +214,23 @@ db-card:is(.variants-card) > .db-card {
 	padding-inline: var(--db-spacing-fixed-xs);
 }
 
-.db-control-panel-meta-navigation {
-	.db-select {
-		min-inline-size: var(--db-sizing-2xl);
+.db-control-panel-primary-actions {
+	.db-drawer {
+		@media screen and (width < 768px) {
+			--db-drawer-max-width: 100%;
+			--db-drawer-min-width: 100%;
+		}
+		@media screen and (width >= 768px) {
+			--db-drawer-max-width: var(--db-container-xs);
+			--db-drawer-min-width: var(--db-container-xs);
+		}
+
+		.db-drawer-content {
+			display: flex;
+			flex-direction: column;
+			padding: var(--db-spacing-fixed-xs);
+			gap: var(--db-spacing-fixed-xs);
+		}
 	}
 }
 

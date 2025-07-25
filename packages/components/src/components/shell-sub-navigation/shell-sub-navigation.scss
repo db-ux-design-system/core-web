@@ -9,7 +9,7 @@
 		grid-area: button;
 	}
 
-	#{string.unquote(custom-elements.$navigation)} {
+	.db-navigation {
 		grid-area: navigation;
 	}
 }

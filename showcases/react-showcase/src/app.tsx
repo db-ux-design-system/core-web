@@ -49,26 +49,8 @@ const App = () => {
 				<DBControlPanelMobile
 					drawerHeadlinePlain="Showcase"
 					brand={<DBControlPanelBrand>Showcase</DBControlPanelBrand>}
-					primaryActions={<PrimaryActions />}
-					secondaryActions={<SecondaryActions />}
-					metaNavigation={
-						<MetaNavigation
-							color={color}
-							settings={settings}
-							density={density}
-							onSettingsChange={setSettings}
-							onColorChange={setColor}
-							onDensityChange={setDensity}
-						/>
-					}>
-					<Navigation variant={settings.navigationMobileVariant} />
-				</DBControlPanelMobile>
-			}
-			controlPanelDesktop={
-				<DBControlPanelDesktop
-					brand={<DBControlPanelBrand>Showcase</DBControlPanelBrand>}
-					metaNavigation={
-						<MetaNavigation
+					primaryActions={
+						<PrimaryActions
 							color={color}
 							settings={settings}
 							density={density}
@@ -77,7 +59,25 @@ const App = () => {
 							onDensityChange={setDensity}
 						/>
 					}
-					primaryActions={<PrimaryActions />}
+					secondaryActions={<SecondaryActions />}
+					metaNavigation={<MetaNavigation />}>
+					<Navigation variant={settings.navigationMobileVariant} />
+				</DBControlPanelMobile>
+			}
+			controlPanelDesktop={
+				<DBControlPanelDesktop
+					brand={<DBControlPanelBrand>Showcase</DBControlPanelBrand>}
+					metaNavigation={<MetaNavigation />}
+					primaryActions={
+						<PrimaryActions
+							color={color}
+							settings={settings}
+							density={density}
+							onSettingsChange={setSettings}
+							onColorChange={setColor}
+							onDensityChange={setDensity}
+						/>
+					}
 					secondaryActions={<SecondaryActions />}>
 					<Navigation variant={settings.navigationDesktopVariant} />
 				</DBControlPanelDesktop>

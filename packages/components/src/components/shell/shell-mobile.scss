@@ -73,7 +73,7 @@
 				display: none !important;
 			}
 
-			#{string.unquote(custom-elements.$navigation)} {
+			.db-navigation{
 				--db-overflow-scroll-button-inset-block: #{variables.$db-spacing-fixed-xs};
 				--db-overflow-scroll-button-inset-inline-start: 0;
 

@@ -23,7 +23,7 @@
 		display: inline-block;
 	}
 
-	@include control-panel-desktop.navigation-child {
+	.db-navigation {
 		grid-area: navigation;
 	}
 }

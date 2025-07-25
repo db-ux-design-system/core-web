@@ -54,6 +54,18 @@
 		"origin": "chevron-up"
 	},
 	{
+		"name": "double_chevron_left.svg",
+		"type": "lucide",
+		"licence": "https://lucide.dev/license#lucide-license",
+		"origin": "chevrons_left"
+	},
+	{
+		"name": "double_chevron_right.svg",
+		"type": "lucide",
+		"licence": "https://lucide.dev/license#lucide-license",
+		"origin": "chevrons-right"
+	},
+	{
 		"name": "clock.svg",
 		"type": "lucide",
 		"licence": "https://lucide.dev/license#lucide-license",

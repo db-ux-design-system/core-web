@@ -27,7 +27,7 @@
 	);
 	justify-items: center;
 
-	#{string.unquote(custom-elements.$control-primary-actions)} {
+	.db-control-panel-primary-actions {
 		// fake divider margin
 		padding-inline-end: variables.$db-spacing-fixed-xs;
 
@@ -38,7 +38,7 @@
 		}
 	}
 
-	#{string.unquote(custom-elements.$drawer)} {
+	.db-drawer {
 		> .db-drawer-container {
 			@extend %direction-right;
 
@@ -73,7 +73,7 @@
 		);
 	justify-content: space-evenly;
 
-	#{string.unquote(custom-elements.$control-panel-brand)} {
+	.db-control-panel-brand {
 		font-size: 0;
 		gap: 0;
 		place-self: center;
@@ -84,7 +84,7 @@
 		place-self: center;
 	}
 
-	#{string.unquote(custom-elements.$drawer)} {
+	.db-drawer {
 		> .db-drawer-container {
 			@extend %direction-up;
 

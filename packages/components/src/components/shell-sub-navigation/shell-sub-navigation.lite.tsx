@@ -3,7 +3,8 @@ import {
 	useDefaultProps,
 	useMetadata,
 	useRef,
-	useStore
+	useStore,
+	useTarget
 } from '@builder.io/mitosis';
 import { DEFAULT_COLLAPSE, DEFAULT_EXPAND } from '../../shared/constants';
 import { cls, getBoolean, getBooleanAsString, uuid } from '../../utils';
@@ -28,15 +29,23 @@ export default function DBShellSubNavigation(props: DBShellSubNavigationProps) {
 			state._open = !state._open;
 		},
 		getToggleButtonText: (): string => {
-			if (props.onExpandButtonTooltipFn) {
-				const open = state._open;
-				return props.onExpandButtonTooltipFn(open);
-			}
 			if (props.expandButtonTooltip) {
 				return props.expandButtonTooltip;
 			}
+			const fnOutput = useTarget({
+				angular: () => undefined,
+				stencil: () => undefined,
+				default: () => {
+					if (props.onExpandButtonTooltipFn) {
+						const open = state._open;
+						return props.onExpandButtonTooltipFn(open);
+					}
+				}
+			});
 
-			return state._open ? DEFAULT_COLLAPSE : DEFAULT_EXPAND;
+			return (
+				fnOutput() ?? (state._open ? DEFAULT_COLLAPSE : DEFAULT_EXPAND)
+			);
 		}
 	});
 	// jscpd:ignore-end
@@ -61,7 +70,7 @@ export default function DBShellSubNavigation(props: DBShellSubNavigationProps) {
 					aria-controls={props.id ?? state._id}
 					aria-expanded={getBooleanAsString(state._open)}
 					noText
-					icon="chevron_left">
+					icon="double_chevron_left">
 					<DBTooltip variant="label" placement="right">
 						{state.getToggleButtonText()}
 					</DBTooltip>

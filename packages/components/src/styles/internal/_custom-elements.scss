@@ -12,20 +12,11 @@ $custom-elements: //hygen-insert
 	db-card, db-checkbox, db-divider, db-drawer, db-control-panel-desktop,
 	db-icon, db-infotext, db-input, db-link, db-shell, db-section, db-tab;
 
-/* Components */
+/* Sub components for shell */
 $control-panel-desktop: "> .db-control-panel-desktop, db-control-panel-desktop > .db-control-panel-desktop";
 $control-panel-mobile: "> .db-control-panel-mobile, db-control-panel-mobile > .db-control-panel-mobile";
-$control-panel-brand: "> .db-control-panel-brand, db-control-panel-brand > .db-control-panel-brand";
-$control-primary-actions: "> .db-control-panel-primary-actions, db-control-panel-primary-actions > .db-control-panel-primary-actions";
-$control-secondary-actions: "> .db-control-panel-secondary-actions, db-control-panel-secondary-actions > .db-control-panel-secondary-actions";
-$control-meta-navigation: "> .db-control-panel-meta-navigation, db-control-panel-meta-navigation > .db-control-panel-meta-navigation";
-$navigation: "db-navigation > .db-navigation, > .db-navigation";
 $navigation-item: "db-navigation-item > .db-navigation-item, > .db-navigation-item";
 $navigation-item-group: "db-navigation-item-group > .db-navigation-item-group, > .db-navigation-item-group";
-$drawer: "db-drawer > .db-drawer, > .db-drawer";
-
-/* Sub components */
-$control-panel-mobile-button: "> db-button > .db-control-panel-mobile-button,> .db-control-panel-mobile-button";
+$shell-sub-navigation: "> db-shell-sub-navigation > .db-shell-sub-navigation, > .db-shell-sub-navigation";
 $overflow-scroll-right-button: "> .overflow-scroll-right-button, > db-button > .overflow-scroll-right-button";
 $overflow-scroll-left-button: "> .overflow-scroll-left-button, > db-button > .overflow-scroll-left-button";
-$shell-sub-navigation: "> db-shell-sub-navigation > .db-shell-sub-navigation, > .db-shell-sub-navigation";

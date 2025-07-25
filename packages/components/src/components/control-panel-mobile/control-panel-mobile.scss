@@ -25,7 +25,7 @@
 		@extend %control-panel-mobile-position-bottom;
 	}
 
-	#{string.unquote(custom-elements.$control-panel-brand)} {
+	.db-control-panel-brand {
 		justify-self: self-start;
 		inline-size: 100%;
 		white-space: nowrap;
@@ -33,7 +33,7 @@
 		text-overflow: ellipsis;
 	}
 
-	#{string.unquote(custom-elements.$control-panel-mobile-button)} {
+	.db-control-panel-mobile-button {
 		grid-area: drawer-button;
 	}
 
@@ -43,12 +43,12 @@
 			[primary] min-content;
 
 		// If drawer is empty we hide burger button
-		#{string.unquote(custom-elements.$control-panel-mobile-button)} {
+		.db-control-panel-mobile-button {
 			display: none;
 		}
 
 		// We don't show primary border in this case
-		#{string.unquote(custom-elements.$control-primary-actions)} {
+		.db-control-panel-primary-actions {
 			padding-inline-end: 0;
 
 			&::before {
@@ -57,7 +57,7 @@
 		}
 	}
 
-	#{string.unquote(custom-elements.$drawer)} {
+	.db-drawer {
 		--db-drawer-content-padding-inline: 0;
 		--db-drawer-max-width: variables.$db-container-xs;
 		--db-drawer-max-height: 63vh;

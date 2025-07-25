@@ -47,13 +47,13 @@ export type DefaultSettings = {
 
 export const defaultSettingsMapping = {
 	controlPanelDesktopPosition: ['top', 'left'],
+	navigationDesktopVariant: ['tree', 'popover'],
 	controlPanelMobilePosition: ['bottom', 'top'],
+	navigationMobileVariant: ['tree', 'popover'],
+	subNavigation: ['true', 'false'],
 	subNavigationDesktopPosition: ['top', 'left'],
 	subNavigationMobilePosition: ['top', 'bottom'],
-	subNavigation: ['true', 'false'],
-	subNavigationVariant: ['tree', 'popover'],
-	navigationDesktopVariant: ['tree', 'popover'],
-	navigationMobileVariant: ['tree', 'popover']
+	subNavigationVariant: ['tree', 'popover']
 };
 
 export const defaultSettings: DefaultSettings = {

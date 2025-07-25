@@ -12,7 +12,7 @@
 		border-block-end: variables.$db-border-width-3xs solid
 			colors.$db-adaptive-on-bg-basic-emphasis-60-default;
 
-		#{string.unquote(custom-elements.$navigation)} {
+		.db-navigation {
 			--db-overflow-scroll-button-inset-inline-start: calc(
 				#{variables.$db-spacing-fixed-sm} / 2
 			);
@@ -65,7 +65,7 @@
 				border-inline-end: variables.$db-border-width-3xs solid
 					colors.$db-adaptive-on-bg-basic-emphasis-60-default;
 
-				#{string.unquote(custom-elements.$navigation)} {
+				.db-navigation {
 					max-inline-size: screen-sizes.$db-breakpoint-xs;
 					padding-block: variables.$db-spacing-fixed-md;
 				}
@@ -88,7 +88,7 @@
 					grid-template-areas: "button";
 					grid-template-rows: [button] 1fr;
 
-					#{string.unquote(custom-elements.$navigation)} {
+					.db-navigation {
 						display: none;
 					}
 
@@ -114,7 +114,16 @@
 						[navigation] 1fr
 						[button] auto;
 
-					#{string.unquote(custom-elements.$navigation)} {
+					/// Sets the inline-size (width) of the sub-navigation
+					/// @propertyname inline-size
+					/// @cssprop --db-shell-sub-navigation-inline-size
+					/// @default var(--db-container-xs)
+					inline-size: var(
+						--db-shell-sub-navigation-inline-size,
+						#{variables.$db-container-xs}
+					);
+
+					.db-navigation {
 						overflow: hidden auto;
 						scrollbar-gutter: stable both-edges;
 

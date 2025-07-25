@@ -1,10 +1,7 @@
 @use "@db-ux/core-foundations/build/styles/variables";
-@use "@db-ux/core-foundations/build/styles/density";
 @use "@db-ux/core-foundations/build/styles/colors";
 
 .db-control-panel-meta-navigation {
-	@extend %db-density-functional;
-
 	display: flex;
 	flex-flow: row wrap;
 	justify-content: flex-end;

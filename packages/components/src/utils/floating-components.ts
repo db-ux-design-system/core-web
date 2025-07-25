@@ -156,17 +156,16 @@ export const getFloatingProps = (
 	let childWidth = childRect.width;
 
 	if (placement === 'bottom' || placement === 'top') {
-		childWidth = childWidth / 2;
+		childWidth = width > childWidth ? 0 : childWidth / 2;
 	}
-
 	if (placement === 'left' || placement === 'right') {
-		childHeight = childHeight / 2;
+		childHeight = height > childHeight ? 0 : childHeight / 2;
 	}
 
-	const outsideBottom = bottom + childHeight > innerHeight;
-	const outsideTop = top - childHeight < 0;
-	const outsideLeft = left - childWidth < 0;
-	const outsideRight = right + childWidth > innerWidth;
+	const outsideBottom = Math.floor(bottom + childHeight) > innerHeight;
+	const outsideTop = Math.ceil(top - childHeight) < 0;
+	const outsideLeft = Math.ceil(left - childWidth) < 0;
+	const outsideRight = Math.floor(right + childWidth) > innerWidth;
 
 	let correctedPlacement = placement;
 

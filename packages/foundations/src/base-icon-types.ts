@@ -1,30 +1,31 @@
 /* This file was generated */
-export type BaseIconTypes =
-	| 'arrow_down'
-	| 'arrow_left'
-	| 'arrow_right'
-	| 'arrow_up'
-	| 'arrow_up_right'
-	| 'brand'
-	| 'calendar'
-	| 'check-circle'
-	| 'check'
-	| 'check_circle'
-	| 'chevron_down'
-	| 'chevron_left'
-	| 'chevron_right'
-	| 'chevron_up'
-	| 'circle'
-	| 'circular_arrows'
-	| 'clock'
-	| 'cross'
-	| 'cross_circle'
-	| 'exclamation_mark_circle'
-	| 'exclamation_mark_triangle'
-	| 'information_circle'
-	| 'magnifying_glass'
-	| 'menu'
-	| 'minus'
-	| 'plus'
-	| 'resize_handle_corner'
-	| 'x_placeholder';
+export type BaseIconTypes = "arrow_down"|
+"arrow_left"|
+"arrow_right"|
+"arrow_up"|
+"arrow_up_right"|
+"brand"|
+"calendar"|
+"check-circle"|
+"check"|
+"check_circle"|
+"chevron_down"|
+"chevron_left"|
+"chevron_right"|
+"chevron_up"|
+"circle"|
+"circular_arrows"|
+"clock"|
+"cross"|
+"cross_circle"|
+"double_chevron_left"|
+"double_chevron_right"|
+"exclamation_mark_circle"|
+"exclamation_mark_triangle"|
+"information_circle"|
+"magnifying_glass"|
+"menu"|
+"minus"|
+"plus"|
+"resize_handle_corner"|
+"x_placeholder";
