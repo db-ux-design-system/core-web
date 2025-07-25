@@ -1,4 +1,5 @@
 @use "sass:string";
+@use "@db-ux/core-foundations/build/styles/screen-sizes";
 @use "@db-ux/core-foundations/build/styles/variables";
 @use "@db-ux/core-foundations/build/styles/colors";
 @use "@db-ux/core-foundations/build/styles/fonts";
@@ -7,7 +8,6 @@
 @use "../../styles/internal/custom-elements";
 @use "../../styles/internal/icon-passing";
 @use "../../styles/internal/component";
-
 
 @mixin direct-navigation-items {
 	#{string.unquote(custom-elements.$navigation-item)},
@@ -83,15 +83,30 @@
 
 	@include icon-passing.icon-passing();
 
-	display: inline-flex;
 	position: relative;
-	inline-size: auto;
+	display: flex;
+	block-size: fit-content;
 
-	&[data-wrap="true"] {
-		:is(a, .db-navigation-item-expand-button):first-of-type {
-			white-space: normal;
-			text-align: start;
-		}
+	// Mobile
+	@include screen-sizes.screen-min-max(
+		(
+			max: "sm"
+		)
+	) {
+		inline-size: 100%;
+	}
+	// Desktop
+	@include screen-sizes.screen-min-max(
+		(
+			min: "sm"
+		)
+	) {
+		inline-size: fit-content;
+	}
+
+	:is(a, .db-navigation-item-expand-button):first-of-type {
+		white-space: normal;
+		text-align: start;
 	}
 
 	&:has([aria-current="page"]),
@@ -101,10 +116,6 @@
 		> :is(a, button) {
 			font-weight: 700;
 		}
-	}
-
-	&[data-width="full"] {
-		inline-size: 100%;
 	}
 
 	&[aria-disabled="true"] {

@@ -147,11 +147,9 @@ export default function DBNavigationItemGroup(
 			}
 			onKeyDown={(event) => state.handleEscape(event)}
 			class={cls('db-navigation-item-group', props.className)}
-			data-width={props.width}
 			data-icon={props.icon}
 			data-hide-icon={getHideProp(props.showIcon)}
 			data-active={props.active}
-			data-wrap={getBooleanAsString(props.wrap)}
 			aria-disabled={getBooleanAsString(props.disabled)}>
 			<button
 				ref={_buttonRef}

@@ -17,36 +17,33 @@
 
 	.db-navigation-item-group-expand-button {
 		@extend %navigation-item-interactive-element;
-	}
 
-	.db-navigation-item {
-		/* Hide tooltips for nested navigation items */
-		.db-tooltip {
-			display: none;
-		}
-	}
-
-	&:not([data-width="full"]) {
-		@include screen-sizes.screen("md", "max") {
-			.db-navigation-item-group-expand-button {
-				&::after {
-					--db-icon-margin-start: auto;
-				}
+		// Mobile
+		@include screen-sizes.screen-min-max(
+			(
+				max: "sm"
+			)
+		) {
+			&::after {
+				--db-icon-margin-start: auto;
 			}
 		}
-
-		.db-navigation-item-group-expand-button {
+		// Desktop
+		@include screen-sizes.screen-min-max(
+			(
+				min: "sm"
+			)
+		) {
 			&::after {
 				--db-icon-margin-start: #{variables.$db-spacing-fixed-sm};
 			}
 		}
 	}
 
-	&[data-width="full"] {
-		.db-navigation-item-group-expand-button {
-			&::after {
-				--db-icon-margin-start: auto;
-			}
+	.db-navigation-item {
+		/* Hide tooltips for nested navigation items */
+		.db-tooltip {
+			display: none;
 		}
 	}
 

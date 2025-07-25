@@ -124,6 +124,11 @@
 	> menu {
 		flex-direction: column;
 		padding-inline: variables.$db-spacing-fixed-lg;
+
+		#{string.unquote(custom-elements.$navigation-item-group)},
+		#{string.unquote(custom-elements.$navigation-item)} {
+			inline-size: 100%;
+		}
 	}
 }
 
@@ -167,10 +172,7 @@
 		display: none;
 	}
 
-	&:has(
-		.db-control-panel-primary-actions,
-		.db-navigation
-	) {
+	&:has(.db-control-panel-primary-actions, .db-navigation) {
 		.db-control-panel-secondary-actions {
 			padding-inline-start: variables.$db-spacing-fixed-sm;
 

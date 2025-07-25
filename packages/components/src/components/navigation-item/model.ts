@@ -4,9 +4,7 @@ import {
 	GlobalProps,
 	GlobalState,
 	IconProps,
-	ShowIconProps,
-	WidthProps,
-	WrapProps
+	ShowIconProps
 } from '../../shared/model';
 
 export type DBNavigationItemDefaultProps = {
@@ -14,11 +12,6 @@ export type DBNavigationItemDefaultProps = {
 	 * Alternative indicator for active navigation item (bold font). In contrast to the use of aria-current="page" on the contained anchor, this does not guarantee correct a11y.
 	 */
 	active?: boolean;
-
-	/**
-	 * Determines whether the text should wrap when its parent container is too small, preventing overflow.
-	 */
-	wrap?: boolean | string;
 
 	/**
 	 * If you use DBShell with controlPanelDesktopPosition="left" you need
@@ -30,7 +23,6 @@ export type DBNavigationItemDefaultProps = {
 export type DBNavigationItemProps = DBNavigationItemDefaultProps &
 	GlobalProps &
 	IconProps &
-	WidthProps &
 	ShowIconProps &
 	DisabledProps &
 	AdditionalInformationSlotProps;
