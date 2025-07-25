@@ -12,6 +12,7 @@
 		"**/.next/**",
 		"**/.nuxt/**",
 		"**/.output/**",
+		"**/agent/**",
 		"**/.vscode/**",
 		"**/*-example/index.html",
 		"**/*-showcase/index.html",
