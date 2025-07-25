@@ -27,7 +27,7 @@
     "@playwright/test": "1.54.1",
     "cpr": "3.0.1",
     "cross-env": "7.0.3",
-    "dotenv": "17.2.0",
+    "dotenv": "17.2.1",
     "http-server": "14.1.1",
     "npm-run-all2": "8.0.4",
     "tslib": "2.8.1",
