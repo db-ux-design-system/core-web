@@ -1,57 +1,81 @@
-import fs from 'fs';
-import path from 'path';
+import fs from 'node:fs';
+import path from 'node:path';
 
-function findAllNodeModulesDirs(dir: string, found: string[] = []): string[] {
-	if (!fs.existsSync(dir)) return found;
-	const entries = fs.readdirSync(dir, { withFileTypes: true });
+function findAllNodeModulesDirectories(
+	directory: string,
+	found: string[] = []
+): string[] {
+	if (!fs.existsSync(directory)) {
+		return found;
+	}
+
+	const entries = fs.readdirSync(directory, { withFileTypes: true });
 	for (const entry of entries) {
 		if (entry.isDirectory()) {
 			if (entry.name === 'node_modules') {
-				found.push(path.join(dir, entry.name));
+				found.push(path.join(directory, entry.name));
 			} else if (!entry.name.startsWith('.')) {
-				findAllNodeModulesDirs(path.join(dir, entry.name), found);
+				findAllNodeModulesDirectories(
+					path.join(directory, entry.name),
+					found
+				);
 			}
 		}
 	}
+
 	return found;
 }
 
 export const generateCopilot = (rootPath: string) => {
 	const outputFolder = path.resolve(rootPath, '.github');
 
-	const nodeModulesDirs = findAllNodeModulesDirs(rootPath);
-	if (nodeModulesDirs.length === 0) {
+	const nodeModulesDirectories = findAllNodeModulesDirectories(rootPath);
+	if (nodeModulesDirectories.length === 0) {
 		console.error('No node_modules folders found.');
 		return;
 	}
 
 	let copilotInstructionsContent = '';
 
-	for (const nodeModulesPath of nodeModulesDirs) {
-		const dbUxPath = path.join(nodeModulesPath, '@db-ux');
-		if (!fs.existsSync(dbUxPath)) {
-			continue;
-		}
-		const packages = fs.readdirSync(dbUxPath, { withFileTypes: true });
-		for (const pkg of packages) {
-			if (pkg.isDirectory()) {
-				const instructionsPath = path.join(
-					dbUxPath,
-					pkg.name,
-					'agent',
-					'_instructions.md'
-				);
-				if (fs.existsSync(instructionsPath)) {
-					let content = fs.readFileSync(instructionsPath, 'utf-8');
-					const relPath = path.relative(
-						rootPath,
-						path.join(dbUxPath, pkg.name)
+	for (const nodeModulesPath of nodeModulesDirectories) {
+		const databaseUxPaths = [
+			path.join(nodeModulesPath, '@db-ux'),
+			path.join(nodeModulesPath, '@db-ux-inner-source')
+		];
+
+		for (const databaseUxPath of databaseUxPaths) {
+			if (!fs.existsSync(databaseUxPath)) {
+				continue;
+			}
+
+			const packages = fs.readdirSync(databaseUxPath, {
+				withFileTypes: true
+			});
+			for (const package_ of packages) {
+				if (package_.isDirectory()) {
+					const instructionsPath = path.join(
+						databaseUxPath,
+						package_.name,
+						'agent',
+						'_instructions.md'
 					);
-					content = content.replace(
-						/__agent-path__/g,
-						relPath.replace(/\\/g, '/')
-					);
-					copilotInstructionsContent += `\n# @db-ux/${pkg.name}\n${content}\n`;
+					if (fs.existsSync(instructionsPath)) {
+						let content = fs.readFileSync(instructionsPath, 'utf8');
+						const relativePath = path.relative(
+							rootPath,
+							path.join(databaseUxPath, package_.name)
+						);
+						content = content
+							.replaceAll(
+								'__agent-path__',
+								relativePath.replaceAll('\\', '/')
+							)
+							.replaceAll(
+								'**agent-path**',
+								relativePath.replaceAll('\\', '/')
+							);
+						copilotInstructionsContent += `\n# ${path.basename(databaseUxPath)}/${package_.name}\n${content}\n`;
+					}
 				}
 			}
 		}
@@ -72,16 +96,16 @@ export const generateCopilot = (rootPath: string) => {
 	if (copilotInstructionsContent.trim()) {
 		let copilotFileContent = fs.readFileSync(
 			copilotInstructionsPath,
-			'utf-8'
+			'utf8'
 		);
 		const startMarker = '--- START: DB UX Copilot Instructions ---';
 		const endMarker = '--- END: DB UX Copilot Instructions ---';
-		const startIdx = copilotFileContent.indexOf(startMarker);
-		const endIdx = copilotFileContent.indexOf(endMarker);
-		if (startIdx !== -1 && endIdx !== -1 && endIdx > startIdx) {
+		const startIndex = copilotFileContent.indexOf(startMarker);
+		const endIndex = copilotFileContent.indexOf(endMarker);
+		if (startIndex !== -1 && endIndex !== -1 && endIndex > startIndex) {
 			copilotFileContent = (
-				copilotFileContent.slice(0, startIdx) +
-				copilotFileContent.slice(endIdx + endMarker.length)
+				copilotFileContent.slice(0, startIndex) +
+				copilotFileContent.slice(endIndex + endMarker.length)
 			).trim();
 		}
 
