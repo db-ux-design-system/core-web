@@ -1,11 +1,11 @@
-import { useState } from 'react';
 import { type CustomSelectOptionType } from '@db-ux/core-components/src/components/custom-select/model';
+import { useState } from 'react';
 import { DBCustomSelect, DBInfotext } from '../../../../../output/react/src';
-import DefaultComponent from '../default-component';
-import defaultComponentVariants from '../../../../shared/custom-select.json';
 import type { DBCustomSelectProps } from '../../../../../output/react/src/components/custom-select/model';
-import { getVariants } from '../data';
+import defaultComponentVariants from '../../../../shared/custom-select.json';
 import type { BaseComponentProps } from '../base-component-data';
+import { getVariants } from '../data';
+import DefaultComponent from '../default-component';
 
 const getCustomSelect = ({
 	children,
@@ -38,7 +38,11 @@ const getCustomSelect = ({
 	searchValue,
 	selectedLabels,
 	transformSelectedLabels,
-	searchFilter
+	searchFilter,
+	validMessage,
+	validation,
+	invalidMessage,
+	showRequiredAsterisk
 }: DBCustomSelectProps & {
 	lineBreak?: boolean;
 	info?: boolean;
@@ -70,6 +74,7 @@ const getCustomSelect = ({
 
 	return (
 		<DBCustomSelect
+			showRequiredAsterisk={showRequiredAsterisk}
 			disabled={disabled}
 			icon={icon}
 			showMessage={showMessage}
@@ -99,12 +104,15 @@ const getCustomSelect = ({
 			values={mValue}
 			searchValue={searchValue}
 			selectedLabels={selectedLabels}
+			invalidMessage={invalidMessage}
+			validMessage={validMessage}
+			validation={validation}
 			transformSelectedLabels={
 				transformSelectedLabels ? getTransformSelectedLabels : undefined
 			}
 			searchFilter={searchFilter ? getSearchFilter : undefined}
-			onOptionSelected={(val) => {
-				setValue(val);
+			onOptionSelected={(value) => {
+				setValue(value);
 			}}
 		/>
 	);

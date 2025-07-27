@@ -50,6 +50,8 @@ The [xo](https://github.com/db-ui/core/blob/main/docs/adr/linting-xo.adoc) tool 
 
 - [yamllint.readthedocs.io](https://yamllint.readthedocs.io/)
 
+The [prettier](https://github.com/db-ui/core/blob/main/docs/adr/code_style_formatter-prettier.adoc) tool provides a general code prettifying.
+
 ### markdown files via markdownlint
 
 - [github.com/markdownlint/markdownlint](https://github.com/markdownlint/markdownlint/)

@@ -1,7 +1,7 @@
-import components, { Overwrite } from './components';
-import { runReplacements, transformToUpperComponentName } from '../utils';
+import { existsSync, writeFileSync } from 'node:fs';
 import { replaceInFileSync } from 'replace-in-file';
-import { writeFileSync, existsSync } from 'node:fs';
+import { runReplacements, transformToUpperComponentName } from '../utils';
+import components, { Overwrite } from './components';
 
 const getSlotDocs = (foundSlots: string[]): string => {
 	return `

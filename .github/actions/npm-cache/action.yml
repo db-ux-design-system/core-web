@@ -13,7 +13,7 @@ inputs:
   nodeVersion:
     description: "Node version"
     required: false
-    default: "22"
+    default: "24"
 runs:
   using: "composite"
   steps:
@@ -24,7 +24,7 @@ runs:
       with:
         node-version: ${{ inputs.nodeVersion }}
 
-    - name: Display node and npm version
+    - name: 🖼️ Display node and npm version
       shell: bash
       run: |
         node --version

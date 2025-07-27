@@ -1,6 +1,6 @@
 import { useDefaultProps, useMetadata, useRef } from '@builder.io/mitosis';
-import { DBCustomSelectDropdownProps } from './model';
 import { cls } from '../../utils';
+import { DBCustomSelectDropdownProps } from './model';
 
 useMetadata({});
 

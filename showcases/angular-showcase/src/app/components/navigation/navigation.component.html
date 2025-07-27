@@ -19,7 +19,7 @@
 			>
 				{{ exampleName }}
 			</db-infotext>
-			<db-navigation [labelledBy]="getId(exampleName)">
+			<db-navigation [attr.aria-labelledby]="getId(exampleName)">
 				<db-navigation-item>
 					<ng-container *dbNavigationContent>
 						Navi-Item 1

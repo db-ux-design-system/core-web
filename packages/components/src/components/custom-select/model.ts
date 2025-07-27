@@ -1,24 +1,27 @@
 import {
 	BaseFormProps,
+	ClickEvent,
 	CloseEventState,
 	CustomFormProps,
 	DocumentScrollState,
 	FormMessageProps,
 	FormState,
 	FromValidState,
+	GeneralEvent,
 	GlobalProps,
 	GlobalState,
 	IconProps,
+	InputEvent,
+	InteractionEvent,
 	PlacementVerticalType,
-	PopoverState,
 	RequiredProps,
 	ShowIconProps,
 	ShowLabelProps,
 	ValidationType,
 	WidthType
 } from '../../shared/model';
-import { DBCustomSelectFormFieldDefaultProps } from '../custom-select-form-field/model';
 import { CustomSelectDropdownWidthType } from '../custom-select-dropdown/model';
+import { DBCustomSelectFormFieldDefaultProps } from '../custom-select-form-field/model';
 import { DBCustomSelectListItemExtraProps } from '../custom-select-list-item/model';
 
 export type CustomSelectOptionType = {
@@ -72,20 +75,20 @@ export type DBCustomSelectEvents = {
 	/**
 	 * Informs the user when dropdown was toggled.
 	 */
-	onDropdownToggle?: (event: any) => void;
+	onDropdownToggle?: (event: GeneralEvent<HTMLDetailsElement>) => void;
 	/**
 	 * Informs the user when dropdown was toggled.
 	 */
-	dropdownToggle?: (event: any) => void;
+	dropdownToggle?: (event: GeneralEvent<HTMLDetailsElement>) => void;
 
 	/**
 	 * Informs the user when a search was performed.
 	 */
-	onSearch?: (event: any) => void;
+	onSearch?: (event: InputEvent<HTMLInputElement>) => void;
 	/**
 	 * Informs the user when a search was performed.
 	 */
-	search?: (event: any) => void;
+	search?: (event: InputEvent<HTMLInputElement>) => void;
 };
 
 export type DBCustomSelectDefaultProps = {
@@ -258,6 +261,7 @@ export type DBCustomSelectDefaultState = {
 	_internalChangeTimestamp: number;
 	_documentClickListenerCallbackId?: string;
 	_searchValue?: string;
+	_userInteraction?: boolean;
 	getNativeSelectValue: () => string;
 	getOptionLabel: (option: CustomSelectOptionType) => string;
 	getOptionChecked: (value?: string) => boolean;
@@ -266,7 +270,10 @@ export type DBCustomSelectDefaultState = {
 	searchEnabled: boolean;
 	amountOptions: number;
 	setDescById: (descId?: string) => void;
-	handleTagRemove: (option: CustomSelectOptionType, event?: any) => void;
+	handleTagRemove: (
+		option: CustomSelectOptionType,
+		event?: ClickEvent<HTMLButtonElement> | void
+	) => void;
 	handleSummaryFocus: () => void;
 	handleSelect: (value?: string) => void;
 	handleSelectAll: (event: any) => void;
@@ -289,5 +296,5 @@ export type DBCustomSelectState = DBCustomSelectDefaultState &
 	GlobalState &
 	FormState &
 	FromValidState &
-	CloseEventState &
+	CloseEventState<InteractionEvent<HTMLDetailsElement>> &
 	DocumentScrollState;

@@ -1,12 +1,13 @@
 import { MDXProvider } from '@mdx-js/react';
-import Script from 'next/script';
 import type { AppProps } from 'next/app';
 import Head from 'next/head';
-import '../styles/globals.scss';
-import '../styles/highlight.scss';
-import '../styles/decision-tree.scss';
+import Script from 'next/script';
 import '../../showcase-styles.css';
 import LinkHeader from '../components/link-header';
+import '../styles/decision-tree.scss';
+import '../styles/globals.scss';
+import '../styles/highlight.scss';
+import '../styles/playgrounds.scss';
 
 const App = ({ Component, pageProps }: AppProps) => (
 	<MDXProvider
@@ -60,9 +61,7 @@ const App = ({ Component, pageProps }: AppProps) => (
 					src={
 						properties.src?.startsWith('http')
 							? properties.src
-							: `${process.env.NEXT_PUBLIC_BASE_PATH ?? ''}${
-									properties.src
-								}`
+							: `${process.env.NEXT_PUBLIC_BASE_PATH ?? ''}${properties.src}`
 					}
 				/>
 			)

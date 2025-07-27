@@ -1,35 +1,35 @@
 import { useEffect, useState } from 'react';
 import {
-	DBCustomSelect,
-	DBStack,
-	DBSwitch,
-	DBTabPanel,
-	DBTabs,
-	DBTabList,
-	DBTabItem,
-	DBTooltip,
-	DBPopover,
-	DBNotification,
+	DBAccordion,
+	DBAccordionItem,
+	DBBadge,
 	DBBrand,
 	DBButton,
 	DBCard,
 	DBCheckbox,
+	DBCustomSelect,
 	DBDivider,
 	DBHeader,
 	DBIcon,
 	DBInfotext,
 	DBInput,
 	DBLink,
-	DBBadge,
 	DBNavigation,
 	DBNavigationItem,
+	DBNotification,
+	DBPopover,
 	DBRadio,
 	DBSection,
 	DBSelect,
+	DBStack,
+	DBSwitch,
+	DBTabItem,
+	DBTabList,
+	DBTabPanel,
+	DBTabs,
 	DBTag,
-	DBAccordion,
-	DBAccordionItem,
-	DBTextarea
+	DBTextarea,
+	DBTooltip
 } from '../../../../output/react/src/index';
 import type { ComponentParserType, ComponentType } from './data';
 
@@ -92,7 +92,7 @@ const ComponentSwitch = ({
 	if (type === 'a') {
 		try {
 			const url = new URL('', props.href);
-			const host = url.host;
+			const { host } = url;
 			if (validHosts.has(host)) {
 				return (
 					<a

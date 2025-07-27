@@ -3,7 +3,6 @@ import {
 	ChangeEventProps,
 	ChangeEventState,
 	FormCheckProps,
-	FormProps,
 	GlobalProps,
 	GlobalState,
 	IconProps,
@@ -47,7 +46,7 @@ export type DBCustomSelectListItemProps = DBCustomSelectListItemDefaultProps &
 	DBCustomSelectListItemExtraProps;
 
 export type DBCustomSelectListItemDefaultState = {
-	getIconAfter: () => string | undefined;
+	getIconTrailing: () => string | undefined;
 	hasDivider?: boolean;
 };
 

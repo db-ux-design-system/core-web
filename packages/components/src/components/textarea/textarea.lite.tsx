@@ -8,18 +8,6 @@ import {
 	useStore,
 	useTarget
 } from '@builder.io/mitosis';
-import { DBTextareaProps, DBTextareaState } from './model';
-import DBInfotext from '../infotext/infotext.lite';
-import {
-	cls,
-	delay,
-	getBoolean,
-	getHideProp,
-	getNumber,
-	hasVoiceOver,
-	stringPropVisible,
-	uuid
-} from '../../utils';
 import {
 	DEFAULT_INVALID_MESSAGE,
 	DEFAULT_INVALID_MESSAGE_ID_SUFFIX,
@@ -32,13 +20,28 @@ import {
 } from '../../shared/constants';
 import { ChangeEvent, InputEvent, InteractionEvent } from '../../shared/model';
 import {
+	cls,
+	delay,
+	getBoolean,
+	getHideProp,
+	getNumber,
+	hasVoiceOver,
+	stringPropVisible,
+	uuid
+} from '../../utils';
+import {
 	handleFrameworkEventAngular,
 	handleFrameworkEventVue
 } from '../../utils/form-components';
+import DBInfotext from '../infotext/infotext.lite';
+import { DBTextareaProps, DBTextareaState } from './model';
 
 useMetadata({
 	angular: {
-		nativeAttributes: ['disabled', 'required']
+		nativeAttributes: ['disabled', 'required'],
+		signals: {
+			writeable: ['disabled', 'value']
+		}
 	}
 });
 useDefaultProps<DBTextareaProps>({});
@@ -53,7 +56,7 @@ export default function DBTextarea(props: DBTextareaProps) {
 		_invalidMessageId: undefined,
 		_invalidMessage: undefined,
 		// Workaround for Vue output: TS for Vue would think that it could be a function, and by this we clarify that it's a string
-		_descByIds: '',
+		_descByIds: undefined,
 		_value: '',
 		_voiceOverFallback: '',
 		hasValidState: () => {
@@ -85,7 +88,7 @@ export default function DBTextarea(props: DBTextareaProps) {
 			} else if (stringPropVisible(props.message, props.showMessage)) {
 				state._descByIds = state._messageId;
 			} else {
-				state._descByIds = '';
+				state._descByIds = undefined;
 			}
 		},
 		handleInput: (event: InputEvent<HTMLTextAreaElement>) => {
@@ -159,6 +162,7 @@ export default function DBTextarea(props: DBTextareaProps) {
 			if (stringPropVisible(props.message, props.showMessage)) {
 				state._descByIds = messageId;
 			}
+			state.handleValidation();
 		}
 	}, [state._id]);
 
@@ -170,6 +174,7 @@ export default function DBTextarea(props: DBTextareaProps) {
 		<div
 			class={cls('db-textarea', props.className)}
 			data-variant={props.variant}
+			data-hide-asterisk={getHideProp(props.showRequiredAsterisk)}
 			data-hide-label={getHideProp(props.showLabel)}>
 			<label htmlFor={state._id}>{props.label ?? DEFAULT_LABEL}</label>
 

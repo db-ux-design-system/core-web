@@ -28,8 +28,6 @@ jobs:
     permissions:
       contents: write
       pull-requests: write
-    env:
-      NEW_PR_BRANCH: "${{ github.head_ref }}-auto"
     steps:
       - name: ⏬ Checkout repo
         uses: actions/checkout@v4
@@ -50,7 +48,7 @@ jobs:
         if: inputs.foundations
         with:
           name: snapshots-foundations
-          path: ./__snapshots__/
+          path: ./__snapshots__/foundations
 
       - name: ⏬ Download patternhub
         uses: actions/download-artifact@v4
@@ -66,35 +64,12 @@ jobs:
           name: snapshots-showcases
           path: ./__snapshots__/
 
-      # https://docs.github.com/en/apps/creating-github-apps/authenticating-with-a-github-app/making-authenticated-api-requests-with-a-github-app-in-a-github-actions-workflow
-      - name: 🧬 Generate a token
-        id: generate-token
-        uses: actions/create-github-app-token@v2
+      - name: 🚘 Auto commit
+        uses: ./.github/actions/auto-commit
         with:
-          app-id: ${{ vars.AUTO_MERGE_APP_ID }}
-          private-key: ${{ secrets.AUTO_MERGE_PRIVATE_KEY }}
-
-      - name: 🏗️ Create new branch and commit changes
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          git config --global user.name "github-actions[bot]"
-          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
-
-          git checkout -b "$NEW_PR_BRANCH"
-          git add __snapshots__/*
-
-          # We can't use semantic commits here because of the if statement in the workflow
-          git commit --no-verify -m "auto update snapshots"
-          git push -f origin "$NEW_PR_BRANCH"
-
-      - name: 🪗 Create Pull Request
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          gh pr create --base ${{ github.head_ref }} --head "$NEW_PR_BRANCH" --title "Automated PR: Auto update snapshots" --body "This PR was created automatically by a GitHub Action."
-
-      - name: 🤖 Squash the PR
-        run: gh pr merge --squash "$NEW_PR_BRANCH"
-        env:
-          GITHUB_TOKEN: ${{ steps.generate-token.outputs.token }}
+          branch-name: "${{ github.head_ref }}-auto"
+          commit-message: "auto update snapshots"
+          commit-files: "__snapshots__/*"
+          auto-merge-app-id: ${{ vars.AUTO_MERGE_APP_ID }}
+          auto-merge-private-key: ${{ secrets.AUTO_MERGE_PRIVATE_KEY }}
+          gh-token: ${{ secrets.GITHUB_TOKEN }}

@@ -1,6 +1,6 @@
 - main:
   - heading "DBInput" [level=1]
-  - link "Density arrow_up_right\" / \""
+  - link "Density"
   - text: Label
   - textbox "Label"
   - status
@@ -10,103 +10,123 @@
   - text: Label
   - textbox "Label"
   - status
-  - link "Variant arrow_up_right\" / \""
+  - link "Variant"
   - text: Label
   - textbox "Label"
   - status
   - text: Label
   - textbox "Label": Floating Label
   - status
-  - link "Show Label arrow_up_right\" / \""
+  - link "Show Label"
   - text: Label
   - textbox "Label"
   - status
   - text: Label
   - textbox "Label"
   - status
-  - link "Show Message arrow_up_right\" / \""
+  - link "Show Message"
   - text: Label
   - textbox "Label"
   - status
   - text: Label
   - textbox "Label"
-  - text: information_circle" / " Message
+  - text: Message
   - status
-  - link "State arrow_up_right\" / \""
+  - link "State"
   - text: Label
   - textbox "Label"
   - status
   - text: Label
   - textbox "Label": Filled
   - status
-  - link "Disabled arrow_up_right\" / \""
+  - link "Disabled"
   - text: Label
   - textbox "Label"
   - status
   - text: Label
   - textbox "Label" [disabled]
   - status
-  - link "Readonly arrow_up_right\" / \""
+  - link "Readonly"
   - text: Label
   - textbox "Label": (Default) False
   - status
   - text: Label
   - textbox "Label": "True"
   - status
-  - link "Validation arrow_up_right\" / \""
+  - link "Validation"
   - text: Label
   - textbox "Label"
   - status
   - text: Label
   - textbox "Label"
-  - text: exclamation_mark_circle" / " Invalid Message
+  - text: Invalid Message
   - status
   - text: Label
   - textbox "Label"
-  - text: check_circle" / " Valid message
+  - text: Valid message
   - status
-  - link "Required arrow_up_right\" / \""
-  - text: Label
-  - textbox "Label"
-  - status
-  - text: Label*" / "
-  - textbox "Label*\" / \""
-  - status
-  - link "Content arrow_up_right\" / \""
-  - text: Label
-  - textbox "Label": (Default) Text
-  - status
-  - text: x_placeholder" / " Label
-  - textbox "Label"
-  - status
-  - text: x_placeholder" / " Label
-  - textbox "Label"
-  - status
-  - text: x_placeholder" / " Label
-  - textbox "Label"
-  - status
-  - text: x_placeholder" / "
-  - link "Example - Length arrow_up_right\" / \""
+  - link "Required"
   - text: Label
   - textbox "Label"
   - status
   - text: Label
   - textbox "Label"
   - status
+  - link "Show Required Asterisk"
   - text: Label
   - textbox "Label"
   - status
-  - link "Example - Types with min and max arrow_up_right\" / \""
+  - text: Label
+  - textbox "Label"
+  - status
+  - link "Show Icon Leading"
+  - text: "False"
+  - textbox "False"
+  - status
+  - text: "True"
+  - textbox "True"
+  - status
+  - link "Show Icon Leading + Trailing"
+  - text: "False"
+  - textbox "False"
+  - status
+  - text: "True"
+  - textbox "True"
+  - status
+  - link "Show Icon Trailing"
+  - text: "False"
+  - textbox "False"
+  - status
+  - text: "True"
+  - textbox "True"
+  - status
+  - link "Example - Length"
   - text: Label
   - textbox "Label"
   - status
   - text: Label
   - textbox "Label"
   - status
-  - text: magnifying_glass" / " Label
+  - text: Label
+  - textbox "Label"
+  - status
+  - link "Example - Types with min and max"
+  - text: Label
+  - textbox "Label"
+  - status
+  - text: Label
+  - textbox "Label"
+  - status
+  - text: Label
   - searchbox "Label"
   - status
-  - text: cross" / " Label
+  - text: Label
+  - textbox "Label"
+  - status
+  - text: Label
+  - textbox "Label"
+  - status
+  - text: Label
   - textbox "Label"
   - status
   - text: Label
@@ -118,20 +138,13 @@
   - text: Label
   - textbox "Label"
   - status
-  - text: "\" / \" Label"
+  - text: Label
   - textbox "Label"
   - status
-  - text: "\" / \" Label"
+  - text: Label
   - textbox "Label"
   - status
-  - text: "\" / \" Label"
-  - textbox "Label"
-  - status
-  - text: "\" / \" Label"
-  - textbox "Label"
-  - status
-  - text: "\" / \""
-  - link "Example Floating Label arrow_up_right\" / \""
+  - link "Example Floating Label"
   - text: Label
   - textbox "Label"
   - status
@@ -144,17 +157,23 @@
   - text: Label
   - textbox "Label": Readonly - Filled
   - status
-  - link "Example - Types - Floating Label arrow_up_right\" / \""
+  - link "Example - Types - Floating Label"
   - text: Label
   - textbox "Label"
   - status
   - text: Label
   - textbox "Label"
   - status
-  - text: magnifying_glass" / " Label
+  - text: Label
   - searchbox "Label"
   - status
-  - text: cross" / " Label
+  - text: Label
+  - textbox "Label"
+  - status
+  - text: Label
+  - textbox "Label"
+  - status
+  - text: Label
   - textbox "Label"
   - status
   - text: Label
@@ -166,21 +185,15 @@
   - text: Label
   - textbox "Label"
   - status
-  - text: "\" / \" Label"
+  - text: Label
   - textbox "Label"
   - status
-  - text: "\" / \" Label"
+  - text: Label
   - textbox "Label"
   - status
-  - text: "\" / \" Label"
-  - textbox "Label"
-  - status
-  - text: "\" / \" Label"
-  - textbox "Label"
-  - status
-  - text: "\" / \" Label"
+  - text: Label
   - combobox "Label"
   - status
-  - text: chevron_down" / " Label
-  - textbox "Label"
+  - text: Label
+  - button "Label"
   - status

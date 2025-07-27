@@ -17,7 +17,7 @@
 	@include form-components.set-default-form-component(select);
 
 	// increased inline size for elements with icons
-	&[data-icon]:not([data-hide-icon="true"]) {
+	&[data-icon]:not([data-show-icon="false"]) {
 		--db-form-component-min-inline-size: #{variables.$db-sizing-2xl};
 	}
 
@@ -34,6 +34,10 @@
 	option {
 		background-color: colors.$db-adaptive-bg-basic-level-1-default;
 		color: colors.$db-adaptive-on-bg-basic-emphasis-100-default;
+	}
+
+	optgroup {
+		background-color: colors.$db-adaptive-bg-basic-level-3-default;
 	}
 
 	&:has(> select option:checked:not([hidden])) {

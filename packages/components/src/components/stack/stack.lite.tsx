@@ -4,8 +4,8 @@ import {
 	useRef,
 	useStore
 } from '@builder.io/mitosis';
-import { DBStackProps, DBStackState } from './model';
 import { cls, getBooleanAsString } from '../../utils';
+import { DBStackProps, DBStackState } from './model';
 
 useMetadata({});
 useDefaultProps<DBStackProps>({});

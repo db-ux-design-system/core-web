@@ -52,6 +52,7 @@
 		@extend %scrollbar;
 
 		overflow-y: scroll;
+		overflow-block: scroll;
 
 		// we don't have icons in textarea so we can overwrite it here
 		padding-block: variables.$db-spacing-fixed-xs
@@ -85,7 +86,7 @@
 
 			&:has(textarea:not(:disabled):is(:hover, :focus)) {
 				&::after {
-					background-color: colors.$db-adaptive-bg-basic-transparent-hovered;
+					background-color: colors.$db-adaptive-bg-basic-transparent-semi-hovered;
 				}
 			}
 		}
