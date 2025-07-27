@@ -61,7 +61,7 @@
 		}
 
 		/* stylelint-disable-next-line selector-pseudo-element-no-unknown */
-		::picker(select) {
+		:is(::picker(select)) {
 			@extend %default-card;
 		}
 
