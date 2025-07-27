@@ -25,9 +25,6 @@ jobs:
       # required for all workflows
       security-events: write
 
-      # required to fetch internal or private CodeQL packs
-      packages: read
-
     steps:
       - name: ⏬ Checkout repo
         uses: actions/checkout@v4
