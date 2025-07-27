@@ -75,7 +75,7 @@
 			}
 
 			/* stylelint-disable-next-line selector-pseudo-element-no-unknown */
-			&::checkmark {
+			:is(&::checkmark) {
 				@extend %icon;
 
 				@include icons.icon-content("check");
