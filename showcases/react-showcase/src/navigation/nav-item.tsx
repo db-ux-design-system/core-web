@@ -28,7 +28,7 @@ const NavItem = ({ navItem }: { navItem: NavigationItem }) => {
 	if (navItem.subNavigation) {
 		return (
 			<DBNavigationItemGroup
-				groupTitle={navItem.label}
+				text={navItem.label}
 				backButtonText={`Back to ${navItem.label}`}>
 				{navItem.subNavigation
 					.map((subItem: NavigationItem) => ({

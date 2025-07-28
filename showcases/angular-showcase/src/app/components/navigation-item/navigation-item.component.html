@@ -15,16 +15,14 @@
 				<db-navigation-item-group
 					[icon]="exampleProps?.icon"
 					[showIcon]="exampleProps?.showIcon"
-					[width]="exampleProps?.width"
 					[disabled]="exampleProps?.disabled"
 					[active]="exampleProps?.active"
-					[wrap]="exampleProps?.wrap"
 					(click)="showAlert(exampleName)"
 				>
 					{{ exampleName }}
 
 					<db-navigation-item-group
-						groupTitle="Also a navigation item with longer label"
+						text="Also a navigation item with longer label"
 						[icon]="exampleProps?.icon"
 						[showIcon]="exampleProps?.showIcon"
 					>
@@ -46,10 +44,8 @@
 				<db-navigation-item
 					[icon]="exampleProps?.icon"
 					[showIcon]="exampleProps?.showIcon"
-					[width]="exampleProps?.width"
 					[disabled]="exampleProps?.disabled"
 					[active]="exampleProps?.active"
-					[wrap]="exampleProps?.wrap"
 				>
 					<a href="#">{{ exampleName }}</a>
 				</db-navigation-item>

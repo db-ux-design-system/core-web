@@ -10,17 +10,15 @@ const getNavigationItem = ({
 	icon,
 	disabled,
 	active,
-	width,
 	areaPopup,
-	showIcon,
-	wrap
+	showIcon
 }: DBNavigationItemProps & { areaPopup: boolean }) => (
 	<ul className="nav-item-list">
 		{areaPopup ? (
 			<DBNavigationItemGroup
 				icon={icon}
 				showIcon={showIcon}
-				groupTitle="Also a navigation item with longer label">
+				text="Also a navigation item with longer label">
 				<DBNavigationItem icon={icon} showIcon={showIcon}>
 					<a href="#">Navigation-Item 1</a>
 				</DBNavigationItem>
@@ -33,13 +31,11 @@ const getNavigationItem = ({
 				icon={icon}
 				disabled={disabled}
 				active={active}
-				width={width}
 				onClick={() => {
 					// eslint-disable-next-line no-alert
 					alert(children.toString());
 				}}
-				showIcon={showIcon}
-				wrap={wrap}>
+				showIcon={showIcon}>
 				{areaPopup ? children : <a href="#">{children}</a>}
 			</DBNavigationItem>
 		)}

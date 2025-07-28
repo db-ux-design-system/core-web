@@ -18,6 +18,11 @@ export type DBNavigationItemDefaultProps = {
 	 * to add a tooltip for collapsed navigation
 	 */
 	tooltip?: string;
+
+	/**
+	 * Set the text for the navigation-item
+	 */
+	text?: string;
 };
 
 export type DBNavigationItemProps = DBNavigationItemDefaultProps &

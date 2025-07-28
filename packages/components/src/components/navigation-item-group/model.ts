@@ -17,8 +17,6 @@ import { NavigationItemSafeTriangle } from '../../utils/navigation';
 import { DBNavigationItemDefaultProps } from '../navigation-item/model';
 
 export type DBNavigationItemGroupDefaultProps = {
-	groupTitle?: string;
-
 	/**
 	 * This is for mobile navigation only, if it is set the sub-navigation is a static overlay
 	 */

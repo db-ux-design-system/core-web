@@ -1,5 +1,5 @@
 @if (navItem.subNavigation) {
-	<db-navigation-item-group [groupTitle]="navItem.label">
+	<db-navigation-item-group [text]="navItem.label">
 		@for (item of navItem.subNavigation; track item.label) {
 			<app-nav-item [navItem]="item" />
 		}

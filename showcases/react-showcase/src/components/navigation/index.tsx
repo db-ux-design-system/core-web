@@ -22,8 +22,8 @@ const getNavigation = ({ children }: DBNavigationProps) => {
 				{children}
 			</DBInfotext>
 			<DBNavigation aria-labelledby={labelID}>
-				<DBNavigationItemGroup groupTitle="Navi-Item 1">
-					<DBNavigationItemGroup groupTitle="Sub-Navi-Item 1">
+				<DBNavigationItemGroup text="Navi-Item 1">
+					<DBNavigationItemGroup text="Sub-Navi-Item 1">
 						<DBNavigationItem>
 							<a href="#" aria-current="page">
 								Sub-Sub-Navi-Item 1
