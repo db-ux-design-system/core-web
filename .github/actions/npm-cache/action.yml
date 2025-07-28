@@ -7,9 +7,9 @@ inputs:
     required: false
     default: "**/node_modules"
   packageLockPath:
-    description: "Path for package-lock.json"
+    description: "Path for pnpm-lock.yaml"
     required: false
-    default: "**/package-lock.json"
+    default: "**/pnpm-lock.yaml"
   nodeVersion:
     description: "Node version"
     required: false
@@ -17,18 +17,24 @@ inputs:
 runs:
   using: "composite"
   steps:
+    - name: Install pnpm
+      uses: pnpm/action-setup@v4
+      with:
+        run_install: false
+
     - name: 🆙 Setup node
       # pick the Node version to use and install it
       # https://github.com/actions/setup-node
       uses: actions/setup-node@v4
       with:
         node-version: ${{ inputs.nodeVersion }}
+        cache: "pnpm"
 
     - name: 🖼️ Display node and npm version
       shell: bash
       run: |
         node --version
-        npm --version
+        pnpm --version
 
     - name: 🆒 Init Cache
       uses: actions/cache@v4
@@ -45,8 +51,8 @@ runs:
         HIT: ${{ steps.cache.outputs.cache-hit }}
       run: echo $HIT
 
-    - name: ⏬ NPM ci
+    - name: ⏬ PNPM install
       shell: bash
       if: steps.cache.outputs.cache-hit != 'true'
       run: |
-        npm ci
+        pnpm install --frozen-lockfile
