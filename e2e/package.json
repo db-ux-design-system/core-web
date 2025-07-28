@@ -10,12 +10,12 @@
     "output/*"
   ],
   "scripts": {
-    "regenerate": "npm-run-all --parallel regenerate:*",
+    "regenerate": "pnpm --parallel run '/^regenerate:[^:]*$/'",
     "regenerate:components": "npm run regenerate:screenshots --workspace=@db-ux/react-core-components",
     "regenerate:foundations": "npm run regenerate:screenshots --workspace=@db-ux/core-foundations",
     "regenerate:showcases": "npm run regenerate:screenshots --workspace=react-showcase",
     "start": "npx http-server build-showcases",
-    "test": "npm-run-all --parallel test:*",
+    "test": "pnpm --parallel run '/^test:[^:]*$/'",
     "test:angular-showcase": "npm run test:e2e --workspace=angular-showcase",
     "test:foundations": "npm run test:e2e --workspace=@db-ux/core-foundations",
     "test:react": "npm run test:components --workspace=@db-ux/react-core-components",

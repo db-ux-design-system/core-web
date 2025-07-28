@@ -4,7 +4,7 @@
   "type": "module",
   "private": true,
   "scripts": {
-    "build": "npm-run-all build:*",
+    "build": "pnpm run '/^build:[^:]*$/'",
     "build:01_vite": "vite build",
     "dev": "vite --open",
     "preview": "npx http-server ../../build-showcases",
