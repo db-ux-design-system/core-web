@@ -7,7 +7,7 @@ import {
 	useRef,
 	useStore
 } from '@builder.io/mitosis';
-import { cls, delay } from '../../utils';
+import { cls, delay, getBooleanAsString } from '../../utils';
 import { handleSubNavigationPosition } from '../../utils/navigation';
 import DBButton from '../button/button.lite';
 import { DBNavigationProps, DBNavigationState } from './model';
@@ -147,6 +147,9 @@ export default function DBNavigation(props: DBNavigationProps) {
 			ref={_ref}
 			id={props.id}
 			data-variant={state._variant}
+			data-show-tree-line={getBooleanAsString(
+				props.showTreeLine ?? 'true'
+			)}
 			onScroll={() => state.onScroll()}
 			class={cls('db-navigation', props.className)}>
 			<Show when={state.showScrollLeft}>

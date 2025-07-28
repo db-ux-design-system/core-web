@@ -8,7 +8,9 @@ import {
 	OverflowScrollButtonState
 } from '../../shared/model';
 
-export type DBNavigationDefaultProps = {};
+export type DBNavigationDefaultProps = {
+	showTreeLine?: boolean | string;
+};
 
 export type DBNavigationProps = DBNavigationDefaultProps &
 	GlobalProps &

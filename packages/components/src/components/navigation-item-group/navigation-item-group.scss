@@ -5,6 +5,7 @@
 @use "@db-ux/core-foundations/build/styles/helpers";
 @use "../../styles/internal/navigation-item";
 @use "navigation-item-group-menu-popover";
+@use "../../styles/internal/icon-passing";
 
 .db-navigation-item-group-menu {
 	&[data-variant="popover"] {

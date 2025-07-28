@@ -1,11 +1,14 @@
 @use "@db-ux/core-foundations/build/styles/variables";
 @use "@db-ux/core-foundations/build/styles/icons";
 
-@mixin icon-passing($inline-start: variables.$db-spacing-fixed-sm) {
+@mixin icon-passing(
+	$inline-start: variables.$db-spacing-fixed-sm,
+	$block-start: calc(50% - 0.5em)
+) {
 	&[data-icon]:not([data-show-icon="false"]) {
 		&::before {
 			position: absolute;
-			inset-block-start: calc(50% - 0.5em);
+			inset-block-start: $block-start;
 			inset-inline-start: $inline-start;
 			pointer-events: none;
 			z-index: 1;

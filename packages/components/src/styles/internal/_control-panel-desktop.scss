@@ -125,8 +125,8 @@
 		flex-direction: column;
 		padding-inline: variables.$db-spacing-fixed-lg;
 
-		#{string.unquote(custom-elements.$navigation-item-group)},
-		#{string.unquote(custom-elements.$navigation-item)} {
+		.db-navigation-item-group,
+		.db-navigation-item {
 			inline-size: 100%;
 		}
 	}

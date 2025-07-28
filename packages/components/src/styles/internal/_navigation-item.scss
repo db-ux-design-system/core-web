@@ -60,7 +60,6 @@
 	background-color: colors.$db-adaptive-bg-basic-transparent-full-default;
 	cursor: pointer;
 	inline-size: 100%;
-	block-size: variables.$db-sizing-md;
 	display: inline-flex;
 	border-radius: variables.$db-border-radius-sm;
 	padding: variables.$db-spacing-fixed-xs variables.$db-spacing-fixed-sm;
@@ -80,8 +79,6 @@
 
 %navigation-item {
 	@extend %db-overwrite-font-size-md;
-
-	@include icon-passing.icon-passing();
 
 	position: relative;
 	display: flex;

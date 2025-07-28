@@ -8,12 +8,15 @@
 
 %db-navigation-item-group-menu-tree {
 	margin: 0;
+	padding: 0;
 	display: flex;
 	flex-direction: column;
 	block-size: 0;
 	visibility: hidden;
 	overflow: hidden;
-	padding-inline-start: calc(#{form-components.$font-size-height});
+	margin-inline-start: calc(#{form-components.$font-size-height});
+	gap: variables.$db-spacing-fixed-xs;
+	margin-block-start: variables.$db-spacing-fixed-xs;
 
 	@media screen and (prefers-reduced-motion: no-preference) {
 		& {

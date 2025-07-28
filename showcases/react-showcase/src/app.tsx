@@ -42,7 +42,10 @@ const App = () => {
 			showSubNavigation={settings.subNavigation === 'true'}
 			subNavigation={
 				<DBShellSubNavigation>
-					<Navigation aria-label="sub navigation" />
+					<Navigation
+						variant={settings.subNavigationVariant}
+						aria-label="sub navigation"
+					/>
 				</DBShellSubNavigation>
 			}
 			controlPanelMobile={
