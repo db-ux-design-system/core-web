@@ -94,7 +94,7 @@
     "adm-zip": "0.5.16",
     "commander": "14.0.0",
     "cpr": "3.0.1",
-    "cross-env": "7.0.3",
+    "cross-env": "10.0.0",
     "dotenv": "17.2.1",
     "eslint": "9.29.0",
     "eslint-config-prettier": "10.1.8",
