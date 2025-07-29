@@ -1,2 +1,2 @@
 [codespell]
-skip = showcases/screen-reader/translations.ts,*.lock,*.json,node_modules,.git,__snapshots__
+skip = *.lock,*.json,node_modules,.git,__snapshots__,./showcases/screen-reader/translations.ts
