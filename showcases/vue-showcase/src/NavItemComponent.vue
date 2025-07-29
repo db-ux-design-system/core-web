@@ -9,7 +9,7 @@ defineProps<{
 
 <template>
 	<template v-if="navItem.subNavigation">
-		<DBNavigationItemGroup :group-title="navItem.label">
+		<DBNavigationItemGroup :text="navItem.label">
 			<template v-for="item of navItem.subNavigation">
 				<NavItemComponent :navItem="item"></NavItemComponent>
 			</template>

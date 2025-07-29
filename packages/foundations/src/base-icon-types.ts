@@ -22,6 +22,7 @@ export type BaseIconTypes = "arrow_down"|
 "double_chevron_right"|
 "exclamation_mark_circle"|
 "exclamation_mark_triangle"|
+"house"|
 "information_circle"|
 "magnifying_glass"|
 "menu"|

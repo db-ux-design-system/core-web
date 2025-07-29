@@ -1,6 +1,7 @@
 import {
 	DBButton,
 	DBControlPanelBrand,
+	DBControlPanelFlatIconNavigation,
 	DBControlPanelMetaNavigation,
 	DBControlPanelMobile,
 	DBControlPanelPrimaryActions,
@@ -22,21 +23,21 @@ const getControlPanelMobile = ({
 	withPrimary = true,
 	withSecondary = true,
 	withMeta = true,
-	position = 'top'
+	noText = false,
+	position = 'top',
+	variant
 }: DBControlPanelMobileProps & {
 	withName: boolean;
 	withPrimary: boolean;
 	withSecondary: boolean;
 	withMeta: boolean;
 	withNavigation: boolean;
+	noText: boolean;
 }) => (
 	<DBControlPanelMobile
 		position={position}
-		brandDrawer={
-			<DBControlPanelBrand title="DBHeader">
-				{withName && 'DBHeader'}
-			</DBControlPanelBrand>
-		}
+		drawerHeadlinePlain="DBHeader"
+		variant={variant}
 		brand={
 			<DBControlPanelBrand title="DBHeader">
 				{withName && 'DBHeader'}
@@ -73,6 +74,21 @@ const getControlPanelMobile = ({
 					</DBButton>
 				</DBControlPanelSecondaryActions>
 			)
+		}
+		flatIconNavigation={
+			<DBControlPanelFlatIconNavigation noText={noText}>
+				<DBNavigation aria-label={children}>
+					<DBNavigationItem icon="x_placeholder">
+						<a href="#">{children}</a>
+					</DBNavigationItem>
+					<DBNavigationItem icon="x_placeholder" disabled>
+						<a href="#">{children} disabled</a>
+					</DBNavigationItem>
+					<DBNavigationItem icon="x_placeholder">
+						<a href="#">{children} long</a>
+					</DBNavigationItem>
+				</DBNavigation>
+			</DBControlPanelFlatIconNavigation>
 		}>
 		{withNavigation && (
 			<DBNavigation aria-label={children}>

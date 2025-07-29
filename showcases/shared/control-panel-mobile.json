@@ -32,6 +32,70 @@
 		]
 	},
 	{
+		"name": "Position",
+		"examples": [
+			{
+				"name": "(Default) top",
+				"props": {
+					"position": "top"
+				},
+				"style": {
+					"width": "100%",
+					"display": "block"
+				}
+			},
+			{
+				"name": "Bottom",
+				"props": {
+					"position": "bottom"
+				},
+				"style": {
+					"width": "100%",
+					"display": "block"
+				}
+			}
+		]
+	},
+	{
+		"name": "Examples Bottom + Variant",
+		"examples": [
+			{
+				"name": "(Default) Drawer",
+				"props": {
+					"position": "top",
+					"variant": "drawer"
+				},
+				"style": {
+					"width": "100%",
+					"display": "block"
+				}
+			},
+			{
+				"name": "Flat Icon",
+				"props": {
+					"position": "bottom",
+					"variant": "flat-icon"
+				},
+				"style": {
+					"width": "100%",
+					"display": "block"
+				}
+			},
+			{
+				"name": "Flat Icon + No Text",
+				"props": {
+					"position": "bottom",
+					"variant": "flat-icon",
+					"noText": true
+				},
+				"style": {
+					"width": "100%",
+					"display": "block"
+				}
+			}
+		]
+	},
+	{
 		"name": "Examples",
 		"children": [
 			{

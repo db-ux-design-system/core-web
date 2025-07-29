@@ -27,7 +27,7 @@ export default function DBNavigationItem(props: DBNavigationItemProps) {
 			aria-disabled={getBooleanAsString(props.disabled)}>
 			{props.children}
 			<Slot name="additionalInformation"></Slot>
-			<DBTooltip placement="right">
+			<DBTooltip placement="right" delay="slow">
 				{props.tooltip ?? DEFAULT_LABEL}
 			</DBTooltip>
 		</li>

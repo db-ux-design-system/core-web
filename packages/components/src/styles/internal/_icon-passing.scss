@@ -8,8 +8,14 @@
 	&[data-icon]:not([data-show-icon="false"]) {
 		&::before {
 			position: absolute;
-			inset-block-start: $block-start;
-			inset-inline-start: $inline-start;
+			inset-block-start: var(
+				--db-icon-passing-inset-block-start,
+				#{$block-start}
+			);
+			inset-inline-start: var(
+				--db-icon-passing-inset-inline-start,
+				#{$inline-start}
+			);
 			pointer-events: none;
 			z-index: 1;
 		}
@@ -17,13 +23,14 @@
 		a,
 		button,
 		label {
-			--db-padding-inline-start: calc(
-				#{$inline-start} + #{icons.$default-icon-margin-end} +
-					var(--db-icon-font-size)
-			);
-
 			/* stylelint-disable-next-line db-ux/use-spacings */
-			padding-inline-start: var(--db-padding-inline-start);
+			padding-inline-start: var(
+				--db-icon-passing-padding-inline-start,
+				calc(
+					#{$inline-start} + #{icons.$default-icon-margin-end} +
+						var(--db-icon-font-size)
+				)
+			);
 		}
 	}
 }

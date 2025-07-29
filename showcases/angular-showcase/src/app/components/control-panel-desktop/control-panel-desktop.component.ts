@@ -1,16 +1,17 @@
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import {
+	DBButton,
 	DBControlPanelBrand,
 	DBControlPanelDesktop,
 	DBControlPanelMetaNavigation,
+	DBControlPanelPrimaryActions,
+	DBControlPanelSecondaryActions,
 	DBLink,
 	DBNavigation,
 	DBNavigationItem
 } from '@components';
 import defaultComponentVariants from '../../../../../shared/control-panel-desktop.json';
 import { environment } from '../../../environments/environment';
-import { PrimaryActionsComponent } from '../../control-panel/primary-actions/primary-actions.component';
-import { SecondaryActionsComponent } from '../../control-panel/secondary-actions/secondary-actions.component';
 import { DefaultComponent } from '../default.component';
 
 @Component({
@@ -26,8 +27,9 @@ import { DefaultComponent } from '../default.component';
 					DBControlPanelMetaNavigation,
 					DBNavigation,
 					DBNavigationItem,
-					PrimaryActionsComponent,
-					SecondaryActionsComponent,
+					DBControlPanelPrimaryActions,
+					DBControlPanelSecondaryActions,
+					DBButton,
 					DBLink
 				]
 	],

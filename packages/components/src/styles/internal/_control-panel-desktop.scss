@@ -288,6 +288,7 @@
 
 		.db-navigation {
 			> menu {
+				// Don't show navigation items for collapsed state (only icons)
 				@include navigation-item.direct-navigation-items {
 					--db-icon-margin-end: 0;
 

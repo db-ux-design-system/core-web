@@ -68,7 +68,7 @@ export default function DBControlPanelMobile(props: DBControlPanelMobileProps) {
 				</div>
 				<Slot name="secondaryActions" />
 			</DBDrawer>
-
+			<Slot name="flatIconNavigation" />
 			<Slot name="brand" />
 			<Slot name="primaryActions" />
 			<DBButton

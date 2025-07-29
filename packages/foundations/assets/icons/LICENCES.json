@@ -18,6 +18,12 @@
 		"origin": "arrow-right"
 	},
 	{
+		"name": "house.svg",
+		"type": "lucide",
+		"licence": "https://lucide.dev/license#lucide-license",
+		"origin": "house"
+	},
+	{
 		"name": "arrow_up.svg",
 		"type": "lucide",
 		"licence": "https://lucide.dev/license#lucide-license",

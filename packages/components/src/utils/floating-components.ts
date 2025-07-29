@@ -279,7 +279,7 @@ export const getFloatingProps = (
 export const handleFixedPopover = (
 	element: HTMLElement,
 	parent: HTMLElement,
-	placement: string
+	placement?: string
 ) => {
 	const computedStyle = getComputedStyle(element);
 
@@ -297,6 +297,9 @@ export const handleFixedPopover = (
 		distance = '0px';
 	}
 
+	const elementPlacement =
+		element?.dataset?.['placement'] ?? placement ?? 'bottom';
+
 	const {
 		top,
 		height,
@@ -310,7 +313,7 @@ export const handleFixedPopover = (
 		innerWidth,
 		innerHeight,
 		outsideYBoth
-	} = getFloatingProps(element, parent, placement);
+	} = getFloatingProps(element, parent, elementPlacement);
 
 	// Tooltip arrow position
 

@@ -28,6 +28,10 @@ export type Component = {
 };
 
 export const getComponents = (): Component[] => [
+  {
+    name: "control-panel-flat-icon-navigation"
+  },
+
 	{
 		name: 'shell-sub-navigation'
 	},

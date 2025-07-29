@@ -9,7 +9,7 @@ import {
 	ToggleEventState
 } from '../../shared/model';
 
-export const ShellControlPanelMobileVariant = ['drawer'] as const;
+export const ShellControlPanelMobileVariant = ['drawer', 'flat-icon'] as const;
 export type ShellControlPanelMobileVariantType =
 	(typeof ShellControlPanelMobileVariant)[number];
 
@@ -32,6 +32,11 @@ export type DBControlPanelMobileDefaultProps = {
 	 * Change the variant of the mobile content panel
 	 */
 	variant?: ShellControlPanelMobileVariantType;
+
+	/**
+	 * Optional flat icon navigation for a mobile app look. Only visible by using variant="flat-icon" as well.
+	 */
+	flatIconNavigation?: any;
 };
 
 export type DBControlPanelMobileProps = DBControlPanelMobileDefaultProps &

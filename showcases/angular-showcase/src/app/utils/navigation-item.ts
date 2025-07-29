@@ -171,8 +171,8 @@ export const NAVIGATION_ITEMS: NavItem[] = [
 				component: SectionComponent
 			},
 			{
-				path: '01/header',
-				label: 'Header',
+				path: '01/control-panel-desktop',
+				label: 'ControlPanelDesktop',
 				component: ControlPanelDesktopComponent
 			},
 			{

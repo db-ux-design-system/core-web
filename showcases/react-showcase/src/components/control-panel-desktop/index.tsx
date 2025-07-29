@@ -18,7 +18,6 @@ import DefaultComponent from '../default-component';
 const getControlPanelDesktop = ({
 	children,
 	className,
-	describedbyid,
 	orientation = 'horizontal',
 	id,
 	width,
@@ -74,7 +73,6 @@ const getControlPanelDesktop = ({
 			)
 		}
 		className={className}
-		describedbyid={describedbyid}
 		id={id}
 		orientation={orientation}>
 		{withNavigation && (

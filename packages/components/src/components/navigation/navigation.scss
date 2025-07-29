@@ -80,10 +80,6 @@
 					~ .db-navigation-item-group-menu {
 						visibility: visible;
 					}
-
-					&::after {
-						transform: form-components.$dropdown-icon-transform;
-					}
 				}
 			}
 		}
