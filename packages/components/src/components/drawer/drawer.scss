@@ -34,7 +34,7 @@
 			--db-drawer-min-height,
 			calc(100% - #{variables.$db-spacing-fixed-xl})
 		);
-		max-inline-size: none;
+		max-inline-size: 100vw;
 	}
 }
 

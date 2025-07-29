@@ -2,6 +2,8 @@
 @use "@db-ux/core-foundations/build/styles/variables";
 @use "@db-ux/core-foundations/build/styles/fonts";
 @use "../../styles/internal/form-components";
+@use "../../styles/internal/navigation-item";
+@use "../../styles/internal/indicator";
 
 .db-control-panel-flat-icon-navigation {
 	display: none;
@@ -24,8 +26,16 @@
 				align-items: center;
 
 				a {
+					@extend %indicator;
+
 					min-block-size: variables.$db-sizing-md;
 					min-inline-size: variables.$db-sizing-md;
+
+					@include indicator.set-indicator-horizontal();
+
+					@include navigation-item.active-navigation-item {
+						@include indicator.show-indicator-horizontal();
+					}
 				}
 			}
 		}
@@ -77,6 +87,7 @@
 					padding-block: var(--nav-icon-size) 0;
 					padding-inline-end: variables.$db-spacing-fixed-3xs;
 					inline-size: fit-content;
+					justify-content: center;
 				}
 			}
 		}
