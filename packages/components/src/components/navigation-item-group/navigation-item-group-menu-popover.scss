@@ -36,6 +36,7 @@ $outside-position: calc(-200% + #{variables.$db-spacing-fixed-xs});
 	// Mobile
 	@include screen-sizes.screen("md", "max") {
 		--db-navigation-item-group-menu-mobile: 1;
+
 		padding: variables.$db-spacing-fixed-md;
 		border: 0;
 		inline-size: 100%;

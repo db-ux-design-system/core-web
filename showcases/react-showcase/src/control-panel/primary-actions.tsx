@@ -10,7 +10,7 @@ import {
 } from '@components';
 import { useState } from 'react';
 import {
-	DefaultSettings,
+	type DefaultSettings,
 	defaultSettingsMapping
 } from '../../../shared/default-component-data';
 
@@ -38,7 +38,9 @@ const PrimaryActions = ({
 			<DBDrawer
 				drawerHeaderPlain="Settings"
 				open={open}
-				onClose={() => setOpen(false)}>
+				onClose={() => {
+					setOpen(false);
+				}}>
 				<DBSelect
 					label="Density"
 					variant="floating"
@@ -98,7 +100,9 @@ const PrimaryActions = ({
 				icon="gear_wheel"
 				variant="ghost"
 				noText
-				onClick={() => setOpen(true)}>
+				onClick={() => {
+					setOpen(true);
+				}}>
 				Settings
 				<DBTooltip>Settings</DBTooltip>
 			</DBButton>

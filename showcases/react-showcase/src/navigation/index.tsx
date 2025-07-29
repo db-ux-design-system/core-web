@@ -1,4 +1,4 @@
-import { DBNavigation, NavigationItemGroupVariantType } from '@components';
+import { DBNavigation, type NavigationItemGroupVariantType } from '@components';
 import {
 	getSortedNavigationItems,
 	NAVIGATION_ITEMS,

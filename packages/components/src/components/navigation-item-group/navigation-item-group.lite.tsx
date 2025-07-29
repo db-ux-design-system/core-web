@@ -59,7 +59,7 @@ export default function DBNavigationItemGroup(
 		},
 		forceClose: () => {
 			state.autoClose = true;
-			delay(() => {
+			void delay(() => {
 				state.autoClose = false;
 			}, 300);
 		},
@@ -101,7 +101,7 @@ export default function DBNavigationItemGroup(
 		if (_ref && state.initialized) {
 			state.initialized = false;
 			// We delay this because the navigation variant check is delayed as well
-			delay(() => {
+			void delay(() => {
 				const element = _ref as HTMLLIElement;
 				const nav = element.closest<HTMLElement>('.db-navigation');
 
@@ -121,7 +121,7 @@ export default function DBNavigationItemGroup(
 			state.hasPopup &&
 			!state.navigationItemSafeTriangle
 		) {
-			delay(() => {
+			void delay(() => {
 				state.navigationItemSafeTriangle =
 					new NavigationItemSafeTriangle(_ref, _menuRef);
 			}, 1);

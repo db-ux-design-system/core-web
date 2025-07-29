@@ -1,17 +1,14 @@
-import { DBControlPanelMobile } from '../../../../output/react/src/index';
-
 import { useEffect, useState } from 'react';
 import {
 	DBAccordion,
 	DBAccordionItem,
 	DBBadge,
-	DBBrand,
 	DBButton,
 	DBCard,
 	DBCheckbox,
+	DBControlPanelMobile,
 	DBCustomSelect,
 	DBDivider,
-	DBHeader,
 	DBIcon,
 	DBInfotext,
 	DBInput,
@@ -118,14 +115,6 @@ const ComponentSwitch = ({
 		);
 	}
 
-	if (type === 'brand') {
-		return (
-			<DBBrand className={className} {...props}>
-				{resolvedContent}
-			</DBBrand>
-		);
-	}
-
 	if (type === 'button') {
 		return (
 			<DBButton className={className} {...props}>
@@ -147,14 +136,6 @@ const ComponentSwitch = ({
 			<DBDivider className={className} {...props}>
 				{resolvedContent}
 			</DBDivider>
-		);
-	}
-
-	if (type === 'header') {
-		return (
-			<DBHeader className={className} {...props}>
-				{resolvedContent}
-			</DBHeader>
 		);
 	}
 

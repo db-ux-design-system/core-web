@@ -151,44 +151,7 @@ export const NAVIGATION_ITEMS: NavigationItem[] = [
 			{
 				path: 'link',
 				label: 'Link',
-				component: <LinkComponent />,
-				subNavigation: getSortedNavigationItems([
-					{
-						path: 'custom-select',
-						label: 'CustomSelect',
-						component: <CustomSelectComponent />
-					},
-					{
-						path: 'input',
-						label: 'Input',
-						component: <InputComponent />
-					},
-					{
-						path: 'textarea',
-						label: 'Textarea',
-						component: <TextareaComponent />
-					},
-					{
-						path: 'radio',
-						label: 'Radio',
-						component: <RadioComponent />
-					},
-					{
-						path: 'checkbox',
-						label: 'Checkbox',
-						component: <CheckboxComponent />
-					},
-					{
-						path: 'switch',
-						label: 'Switch',
-						component: <SwitchComponent />
-					},
-					{
-						path: 'select',
-						label: 'Select',
-						component: <SelectComponent />
-					}
-				])
+				component: <LinkComponent />
 			},
 			{ path: 'button', label: 'Button', component: <ButtonComponent /> }
 		])

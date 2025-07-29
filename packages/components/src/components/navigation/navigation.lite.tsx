@@ -71,8 +71,11 @@ export default function DBNavigation(props: DBNavigationProps) {
 
 	onUpdate(() => {
 		if (_ref && state.initialized) {
-			delay(() => {
+			void delay(() => {
 				const element = _ref as HTMLElement;
+
+				if (!element) return;
+
 				let endVariant = props.variant ?? 'popover';
 
 				const parentClassList =

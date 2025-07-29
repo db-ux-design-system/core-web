@@ -41,6 +41,7 @@
 		.db-navigation {
 			.db-navigation-item {
 				--db-icon-passing-padding-inline-start: 0;
+
 				&::before {
 					--db-icon-passing-inset-inline-start: calc(50% - 0.5em);
 				}
@@ -72,6 +73,7 @@
 				a {
 					@extend %db-overwrite-font-size-3xs;
 
+					// stylelint-disable-next-line db-ux/use-spacings
 					padding-block: var(--nav-icon-size) 0;
 					padding-inline-end: variables.$db-spacing-fixed-3xs;
 					inline-size: fit-content;

@@ -29,35 +29,24 @@ db-card:is(.variants-card) > .db-card {
 	padding: var(--db-spacing-fixed-sm);
 }
 
+.variants-list .db-select,
+.w-full {
+	inline-size: 100%;
+}
+
 .variants-list {
 	display: flex;
 	flex-wrap: wrap;
 	inline-size: 100%;
 	justify-content: center;
 	gap: var(--db-spacing-fixed-md);
-}
-
-.variants-list > div {
-	align-items: center;
-	display: flex;
-	gap: var(--db-spacing-fixed-md);
-}
-
-.variants-list .db-select,
-.w-full {
-	inline-size: 100%;
-}
-
-.variants-list:has(.db-shell) {
-	flex-direction: column;
-	align-items: center;
 
 	> div {
-		justify-content: center;
-		inline-size: 100%;
+		align-items: center;
+		display: flex;
+		gap: var(--db-spacing-fixed-md);
 	}
-}
-.variants-list {
+
 	.db-shell {
 		&:is(
 			:not([data-control-panel-desktop-position]),
@@ -65,22 +54,31 @@ db-card:is(.variants-card) > .db-card {
 		) {
 			block-size: 200px;
 		}
+
+		&[data-control-panel-desktop-position="left"] {
+			block-size: 500px;
+		}
 	}
-}
-.variants-list .db-shell[data-control-panel-desktop-position="left"] {
-	block-size: 500px;
-}
 
-.variants-list .db-select,
-.variants-list .db-input,
-.variants-list .db-textarea {
-	margin-block-start: auto;
-}
+	.db-select,
+	.db-input,
+	.db-textarea {
+		margin-block-start: auto;
 
-.variants-list .db-select:has([placeholder="(Default) Basic"]),
-.variants-list .db-input:has([placeholder="(Default) Basic"]),
-.variants-list .db-textarea:has([placeholder="(Default) Basic"]) {
-	margin-block: 0 auto;
+		&:has([placeholder="(Default) Basic"]) {
+			margin-block: 0 auto;
+		}
+	}
+
+	&:has(.db-shell) {
+		flex-direction: column;
+		align-items: center;
+
+		> div {
+			justify-content: center;
+			inline-size: 100%;
+		}
+	}
 }
 
 .html-code-container {
@@ -220,6 +218,7 @@ db-card:is(.variants-card) > .db-card {
 			--db-drawer-max-width: 100%;
 			--db-drawer-min-width: 100%;
 		}
+
 		@media screen and (width >= 768px) {
 			--db-drawer-max-width: var(--db-container-xs);
 			--db-drawer-min-width: var(--db-container-xs);
@@ -234,6 +233,7 @@ db-card:is(.variants-card) > .db-card {
 	}
 }
 
+/* stylelint-disable  selector-type-no-unknown */
 app-meta-navigation,
 app-primary-actions,
 app-secondary-actions,

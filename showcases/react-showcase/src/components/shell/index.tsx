@@ -8,9 +8,9 @@ import {
 	DBLink,
 	DBNavigation,
 	DBNavigationItem,
-	DBShell
-} from '@db-ux/react-core-components/src';
-import { DBShellProps } from '../../../../../output/tmp/react/src/components/shell/model';
+	DBShell,
+	type DBShellProps
+} from '@components';
 import defaultComponentVariants from '../../../../shared/shell.json';
 import { type BaseComponentProps } from '../base-component-data';
 import { getVariants } from '../data';
@@ -22,7 +22,6 @@ const getShell = ({
 	fadeIn,
 	children,
 	className,
-	describedbyid,
 	id
 }: DBShellProps) => (
 	<DBShell
@@ -30,7 +29,6 @@ const getShell = ({
 		controlPanelMobilePosition={controlPanelMobilePosition}
 		fadeIn={fadeIn}
 		className={className}
-		describedbyid={describedbyid}
 		id={id}
 		controlPanelDesktop={
 			<DBControlPanelDesktop

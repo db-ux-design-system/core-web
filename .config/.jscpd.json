@@ -60,7 +60,8 @@
 		"showcases/react-showcase/src/components/control-panel-desktop/index.tsx",
 		"showcases/shared/*.json",
 		"showcases/vue-showcase/src/components/form/Form.vue",
-		"showcases/vue-showcase/src/App.vue"
+		"showcases/vue-showcase/src/App.vue",
+		"showcases/**/control-panel-desktop/**"
 	],
 	"absolute": true
 }

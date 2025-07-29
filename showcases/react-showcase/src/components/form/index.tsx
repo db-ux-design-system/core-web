@@ -500,7 +500,7 @@ const FormComponent = () => {
 				<form
 					onSubmit={(event) => {
 						event.preventDefault();
-						/* eslint-disable-next-line no-console */
+
 						console.log(event);
 					}}>
 					<DBCustomSelect
@@ -519,8 +519,8 @@ const FormComponent = () => {
 						searchLabel="Search"
 						noResultsText="No matching filter"
 						values={multiSelectValue}
-						onOptionSelected={(val) => {
-							setMultiSelectValue(val);
+						onOptionSelected={(value) => {
+							setMultiSelectValue(value);
 						}}
 					/>
 					<DBButton

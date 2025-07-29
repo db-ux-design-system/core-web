@@ -20,5 +20,8 @@ export default defineConfig({
 		alias: {
 			'@components': path.resolve(__dirname, '../../output/react/src')
 		}
+	},
+	css: {
+		devSourcemap: true // Enables source maps in dev mode for CSS
 	}
 });
