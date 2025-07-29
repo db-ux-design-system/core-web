@@ -17,7 +17,6 @@ jobs:
       - name: 📖 Check spelling
         uses: codespell-project/actions-codespell@v2
         with:
-          skip: "*.lock,*.json,node_modules,.git,__snapshots__"
           ignore_words_file: .config/.codespellignorewords
           check_filenames: true
 
