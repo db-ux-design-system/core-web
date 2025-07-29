@@ -11,7 +11,7 @@ export const translations: Record<string, string[]> = {
 	clickable: ['anklickbar'],
 	'has auto complete': ['mit Auto Vervollständigung'],
 	required: ['erforderlich'],
-	'Please fill out this field..': ['Fülle dieses Feld aus..'], // Codespell:ignore
+	'Please fill out this field..': ['Fülle dieses Feld aus..'],
 	unselected: ['nicht ausgewählt'],
 	selected: ['ausgewählt'],
 	'': ['. Nummernblock eingeschaltet'],
