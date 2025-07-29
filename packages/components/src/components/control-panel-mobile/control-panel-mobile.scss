@@ -59,8 +59,10 @@
 
 	.db-drawer {
 		--db-drawer-content-padding-inline: 0;
-		--db-drawer-max-width: variables.$db-container-xs;
+		--db-drawer-max-width: #{variables.$db-container-xs};
 		--db-drawer-max-height: 63vh;
+		--db-drawer-min-width: #{variables.$db-container-xs};
+		--db-drawer-min-height: 63vh;
 
 		> .db-drawer-container {
 			> .db-drawer-content {

@@ -15,6 +15,19 @@
 	) {
 		&[data-control-panel-mobile-position="top"] {
 			&:not([data-sub-navigation-mobile-position]),
+			&[data-sub-navigation-mobile-position="none"] {
+				grid-template-areas:
+					"control-panel"
+					"main";
+				grid-template-rows:
+					[control-panel] auto
+					[main] 1fr;
+
+				#{string.unquote(custom-elements.$shell-sub-navigation)} {
+					display: none;
+				}
+			}
+
 			&[data-sub-navigation-mobile-position="top"] {
 				grid-template-areas:
 					"control-panel"
@@ -47,17 +60,34 @@
 		}
 
 		&[data-control-panel-mobile-position="bottom"] {
-			grid-template-areas:
-				"sub-navigation"
-				"main"
-				"control-panel";
-			grid-template-rows:
-				[control-panel] auto
-				[main] 1fr
-				[control-panel] auto;
+			&:not([data-sub-navigation-mobile-position]),
+			&[data-sub-navigation-mobile-position="bottom"],
+			&[data-sub-navigation-mobile-position="none"] {
+				grid-template-areas:
+					"main"
+					"control-panel";
+				grid-template-rows:
+					[main] 1fr
+					[control-panel] auto;
 
-			#{string.unquote(custom-elements.$shell-sub-navigation)} {
-				@include helpers.divider("bottom");
+				#{string.unquote(custom-elements.$shell-sub-navigation)} {
+					display: none;
+				}
+			}
+
+			&[data-sub-navigation-mobile-position="top"] {
+				grid-template-areas:
+					"sub-navigation"
+					"main"
+					"control-panel";
+				grid-template-rows:
+					[sub-navigation] auto
+					[main] 1fr
+					[control-panel] auto;
+
+				#{string.unquote(custom-elements.$shell-sub-navigation)} {
+					@include helpers.divider("bottom");
+				}
 			}
 		}
 
@@ -73,7 +103,7 @@
 				display: none !important;
 			}
 
-			.db-navigation{
+			.db-navigation {
 				--db-overflow-scroll-button-inset-block: #{variables.$db-spacing-fixed-xs};
 				--db-overflow-scroll-button-inset-inline-start: 0;
 

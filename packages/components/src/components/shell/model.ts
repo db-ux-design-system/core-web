@@ -5,7 +5,11 @@ import {
 	ShellControlPanelMobilePositionType
 } from '../../shared/model';
 
-export const ShellSubNavigationMobilePosition = ['top', 'bottom'] as const;
+export const ShellSubNavigationMobilePosition = [
+	'top',
+	'bottom',
+	'none'
+] as const;
 export type ShellSubNavigationMobilePositionType =
 	(typeof ShellSubNavigationMobilePosition)[number];
 
