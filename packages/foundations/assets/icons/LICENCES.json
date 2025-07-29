@@ -24,6 +24,12 @@
 		"origin": "house"
 	},
 	{
+		"name": "intermediary_stop.svg",
+		"type": "lucide",
+		"licence": "https://lucide.dev/license#lucide-license",
+		"origin": "circle-small"
+	},
+	{
 		"name": "arrow_up.svg",
 		"type": "lucide",
 		"licence": "https://lucide.dev/license#lucide-license",
