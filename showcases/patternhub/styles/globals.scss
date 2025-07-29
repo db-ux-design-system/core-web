@@ -19,14 +19,6 @@ body:not(:has(.db-shell)) {
 	scroll-behavior: smooth;
 }
 
-#__next {
-	block-size: inherit;
-}
-
-#__next > div {
-	block-size: inherit;
-}
-
 db-mainnavigation {
 	margin: auto;
 }

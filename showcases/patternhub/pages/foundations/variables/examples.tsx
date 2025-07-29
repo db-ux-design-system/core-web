@@ -1,9 +1,4 @@
-import {
-	DBButton,
-	DBCard,
-	DBIcon,
-	DBInfotext
-} from '../../../../../output/react/src';
+import { DBButton, DBCard, DBIcon, DBInfotext } from '@components';
 import DefaultPage from '../../../components/default-page';
 
 const Example = () => {

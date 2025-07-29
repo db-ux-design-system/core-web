@@ -1,6 +1,6 @@
+import { DBCard, DBLink, DBSection } from '@components';
 import Link from 'next/link';
 import { ArcherContainer, ArcherElement } from 'react-archer';
-import { DBCard, DBLink, DBSection } from '../../../../../output/react/src';
 import DefaultPage from '../../../components/default-page';
 
 const ColorUsageGuide = () => {

@@ -1,24 +1,18 @@
-import type { AppProps } from 'next/app';
-import { useState } from 'react';
-import MetaNavigation from 'react-showcase/src/control-panel/meta-navigation';
 import {
-	DBBrand,
-	DBButton,
-	DBHeader,
+	DBControlPanelBrand,
+	DBControlPanelDesktop,
 	DBShell
-} from '../../../output/react/src';
+} from '@components';
+import type { AppProps } from 'next/app';
 import useQuery from '../../react-showcase/src/hooks/use-query';
 import Navigation from '../../react-showcase/src/navigation';
 import '../../showcase-styles.css';
 import '../styles/global.scss';
 
 const App = ({ Component, pageProps }: AppProps) => {
-	const [density, setDensity, color, setColor, pageName, fullscreen] =
-		useQuery();
+	const { density, color, fullscreen } = useQuery();
 
-	const [drawerOpen, setDrawerOpen] = useState<boolean>(false);
-
-	if (pageName ?? fullscreen) {
+	if (fullscreen) {
 		return (
 			<div data-density={density} className={`db-${color}`}>
 				<Component {...pageProps} />
@@ -28,52 +22,12 @@ const App = ({ Component, pageProps }: AppProps) => {
 
 	return (
 		<DBShell
-			variant="fixed"
-			documentOverflow="auto"
 			fadeIn
-			header={
-				<DBHeader
-					drawerOpen={drawerOpen}
-					onToggle={setDrawerOpen}
-					brand={<DBBrand>Showcase</DBBrand>}
-					metaNavigation={
-						<MetaNavigation
-							onColorChange={setColor}
-							onDensityChange={setDensity}
-						/>
-					}
-					primaryAction={
-						<DBButton
-							icon="magnifying_glass"
-							variant="ghost"
-							noText>
-							Search
-						</DBButton>
-					}
-					secondaryAction={
-						<>
-							<DBButton
-								icon="x_placeholder"
-								variant="ghost"
-								noText>
-								Profile
-							</DBButton>
-							<DBButton
-								icon="x_placeholder"
-								variant="ghost"
-								noText>
-								Notification
-							</DBButton>
-							<DBButton
-								icon="x_placeholder"
-								variant="ghost"
-								noText>
-								Help
-							</DBButton>
-						</>
-					}>
+			controlPanelDesktop={
+				<DBControlPanelDesktop
+					brand={<DBControlPanelBrand>Showcase</DBControlPanelBrand>}>
 					<Navigation />
-				</DBHeader>
+				</DBControlPanelDesktop>
 			}>
 			<div data-density={density} className={`db-${color}`}>
 				<Component {...pageProps} />

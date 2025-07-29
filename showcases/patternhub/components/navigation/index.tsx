@@ -1,4 +1,4 @@
-import { DBNavigation } from '../../../../output/react/src';
+import { DBNavigation } from '@components';
 import { ROUTES, type NavigationItem } from '../../data/routes';
 import NavItem from './nav-item';
 

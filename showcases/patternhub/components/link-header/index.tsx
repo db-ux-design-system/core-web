@@ -1,5 +1,5 @@
+import { DBIcon } from '@components';
 import Link from 'next/link';
-import { DBIcon } from '../../../../output/react/src';
 
 const LinkHeader = ({ id }) => {
 	if (id) {

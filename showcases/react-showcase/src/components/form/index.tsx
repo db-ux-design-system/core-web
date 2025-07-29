@@ -481,16 +481,13 @@ const FormComponent = () => {
 					minLength={10}
 				/>
 
-				<DBTag
-					describedbyid="tooltip-01"
-					semantic="neutral"
-					emphasis="strong">
+				<DBTag semantic="neutral" emphasis="strong">
 					KUZ
 					<DBTooltip id="tooltip-01" placement="right-end">
 						Beschreibungstext
 					</DBTooltip>
 				</DBTag>
-				<DBButton describedbyid="tooltip-01">
+				<DBButton>
 					KUZ
 					<DBTooltip id="tooltip-01" placement="right-end">
 						Beschreibungstext

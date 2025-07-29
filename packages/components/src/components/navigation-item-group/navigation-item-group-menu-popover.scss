@@ -25,7 +25,8 @@ $outside-position: calc(-200% + #{variables.$db-spacing-fixed-xs});
 		display: none;
 	}
 
-	.db-navigation-item {
+	.db-navigation-item,
+	.db-navigation-item-group {
 		inline-size: 100%;
 
 		&::after {

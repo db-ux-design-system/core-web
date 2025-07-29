@@ -24,6 +24,7 @@ const getTag = ({
 	lineBreak,
 	showIcon
 }: DBTagProps & {
+	disabled?: boolean;
 	checked?: boolean;
 	component?: 'button' | 'link' | 'radio' | 'checkbox';
 	identifier?: string;

@@ -1,4 +1,3 @@
-import { useEffect, useState } from 'react';
 import {
 	DBAccordion,
 	DBAccordionItem,
@@ -29,7 +28,8 @@ import {
 	DBTag,
 	DBTextarea,
 	DBTooltip
-} from '../../../../output/react/src/index';
+} from '@components';
+import { useEffect, useState } from 'react';
 import type { ComponentParserType, ComponentType } from './data';
 
 const validHosts = new Set(['marketingportal.extranet.deutschebahn.com']);
