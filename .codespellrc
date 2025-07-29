@@ -1,2 +1,2 @@
 [codespell]
-skip = showcases/screen-reader/translations.ts
+skip = ./showcases/screen-reader/translations.ts
