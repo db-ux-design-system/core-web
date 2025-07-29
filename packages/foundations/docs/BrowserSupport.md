@@ -12,6 +12,8 @@ This may leave some older browser versions behind. If you need to take care of t
 | [Customizable select elements](https://caniuse.com/selectlist) (planned)                            | 134 (19.03.2024) | tbd             | tbd                                                                                                                  |
 | [Anchor Positioning](https://caniuse.com/css-anchor-positioning) (planned)                          | 125 (14.05.2024) | tbd             | ["this fall"](https://webkit.org/blog/16993/news-from-wwdc25-web-technology-coming-this-fall-in-safari-26-beta/#css) |
 
+| [CSS Custom Functions](https://www.bram.us/2025/02/09/css-custom-functions-teaser/) (planned) | 139 (30.07.2025) | tbd | tbd |
+
 ## Without graceful degradation
 
 | Web Feature                                                                                             | Google Chrome    | Mozilla Firefox  | Apple Safari      |
