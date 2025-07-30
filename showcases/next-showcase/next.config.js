@@ -5,7 +5,7 @@ const nextConfig = {
 	distDir: '../../build-showcases/next-showcase',
 	transpilePackages: ['../react-showcase/', '@db-ux'],
 	env: {
-		NEXT_SHOWCASE_VARIANT: 'next',
+		NEXT_SHOWCASE_VARIANT: 'next-ssr',
 		BASE_PATH: '/next-showcase'
 	}
 };

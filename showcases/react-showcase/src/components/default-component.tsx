@@ -82,7 +82,10 @@ const DefaultComponent = ({
 	const color = useQuery(redirectURLSearchParameters)[2];
 
 	const getHref = (variantName: string): string => {
-		if (typeof globalThis !== 'undefined') {
+		if (
+			typeof globalThis !== 'undefined' &&
+			process.env.NEXT_SHOWCASE_VARIANT !== 'next-ssr'
+		) {
 			const urlPaths = globalThis?.location?.href.split('?');
 			if (urlPaths?.length > 1) {
 				const searchParameters = new URLSearchParams(urlPaths[1]);
@@ -91,7 +94,7 @@ const DefaultComponent = ({
 			}
 		}
 
-		return '';
+		return '/';
 	};
 
 	const openVariantInNewWindow = (
@@ -153,7 +156,6 @@ const DefaultComponent = ({
 								onClick={(event) => {
 									openVariantInNewWindow(event, variant.name);
 								}}
-								/* TODO: Fix this for nextJS */
 								href={getHref(variant.name)}>
 								{variant.name}
 							</DBLink>

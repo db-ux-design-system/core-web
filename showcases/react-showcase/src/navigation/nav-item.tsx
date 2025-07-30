@@ -7,10 +7,9 @@ import type { NavigationItem } from '../utils/navigation-item';
 
 const NavItem = ({ navItem }: { navItem: NavigationItem }) => {
 	const menuId = useId();
-	const pathname =
-		process.env.NEXT_SHOWCASE_VARIANT === 'next'
-			? usePathname()
-			: useLocation().pathname;
+	const pathname = process.env.NEXT_SHOWCASE_VARIANT?.startsWith('next')
+		? usePathname()
+		: useLocation().pathname;
 
 	const [isActive, setIsActive] = useState(false);
 
@@ -29,6 +28,7 @@ const NavItem = ({ navItem }: { navItem: NavigationItem }) => {
 	if (navItem.subNavigation) {
 		return (
 			<DBNavigationItemGroup
+				tooltip={navItem.label}
 				text={navItem.label}
 				backButtonText={`Back to ${navItem.label}`}
 				menuId={menuId}>
@@ -47,9 +47,9 @@ const NavItem = ({ navItem }: { navItem: NavigationItem }) => {
 	}
 
 	return (
-		<DBNavigationItem>
+		<DBNavigationItem tooltip={navItem.label}>
 			<>
-				{process.env.NEXT_SHOWCASE_VARIANT === 'next' ? (
+				{process.env.NEXT_SHOWCASE_VARIANT?.startsWith('next') ? (
 					<NextLink
 						key={`router-path-${navItem.path}`}
 						href={navItem.path}
