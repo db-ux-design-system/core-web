@@ -14,10 +14,7 @@ Use this command in your repository:
 npx @db-ux/agent-cli
 ```
 
-This will search for all `@db-ux` packages inside your `node_modules` and copy the documentation to your repository.
-A new folder called `_db-ux-docs` will be created.
-
-You might want to add this folder to your `.gitignore` file.
+The DB UX Design System docs will get appended (or replaced in subsequent runs, e.g. after a DB UX Design System update) within the file `.github/copilot-instructions.md` (if the file doesn't exist in your codebase so far, it gets created).
 
 You can also change the root path where the tool should check for `node_modules`:
 
