@@ -16,7 +16,7 @@
     "watch": "ng build --watch --configuration development"
   },
   "dependencies": {
-    "@stencil/core": "4.36.1"
+    "@stencil/core": "4.36.2"
   },
   "devDependencies": {
     "npm-run-all2": "8.0.4",

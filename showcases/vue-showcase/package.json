@@ -12,15 +12,15 @@
     "test:e2e": "cross-env showcase=vue-showcase npx playwright test --config=../playwright.config.ts"
   },
   "dependencies": {
-    "sa11y": "4.1.9",
+    "sa11y": "4.1.10",
     "vue": "3.5.18",
     "vue-router": "4.5.1"
   },
   "devDependencies": {
-    "@vitejs/plugin-vue": "6.0.0",
-    "cross-env": "7.0.3",
+    "@vitejs/plugin-vue": "6.0.1",
+    "cross-env": "10.0.0",
     "typescript": "5.8.3",
     "vite": "6.3.5",
-    "vue-tsc": "3.0.3"
+    "vue-tsc": "3.0.4"
   }
 }

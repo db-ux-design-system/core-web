@@ -98,12 +98,12 @@
     "@playwright/experimental-ct-react": "1.54.1",
     "@playwright/experimental-ct-vue": "1.54.1",
     "@playwright/test": "1.54.1",
-    "accessibility-checker": "4.0.6",
+    "accessibility-checker": "4.0.7",
     "adm-zip": "0.5.16",
     "commander": "14.0.0",
     "cpr": "3.0.1",
-    "cross-env": "7.0.3",
-    "dotenv": "17.2.0",
+    "cross-env": "10.0.0",
+    "dotenv": "17.2.1",
     "eslint": "9.29.0",
     "eslint-config-prettier": "10.1.8",
     "eslint-config-xo": "0.48.0",
@@ -146,7 +146,7 @@
     "vite": "6.3.5"
   },
   "validate-branch-name": {
-    "pattern": "((dbux-3)|(dependabot-)|^((test|feat|fix|chore|docs|refactor|style|ci|perf|[0-9]+)\\-[a-zA-Z0-9\\-]+)$)",
+    "pattern": "((dbux-3)|(dependabot-)|^((test|feat|fix|chore|docs|refactor|style|ci|perf|alert|[0-9]+)\\-[a-zA-Z0-9\\-]+)$)",
     "errorMsg": "There is something wrong with your branch name. You should rename your branch to a valid name and try again. See the Pattern below."
   }
 }
