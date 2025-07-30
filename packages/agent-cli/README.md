@@ -15,10 +15,10 @@ Before using this CLI tool, make sure you have the appropriate DB UX Design Syst
 
 #### Installing DB UX Packages
 
-For pre-release versions:
+For pre-release versions, e.g. for React:
 
 ```shell
-npm install @db-ux/core-components@next @db-ux/core-foundations@next
+npm install @db-ux/react-core-components@next
 ```
 
 ### Running the CLI Tool
