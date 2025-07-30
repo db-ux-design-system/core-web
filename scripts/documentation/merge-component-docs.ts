@@ -154,7 +154,7 @@ for (const { name, lib } of targets) {
 	for (const key of Object.keys(groupedFiles)) {
 		const componentName = toPascalCase(key);
 		instructionsContent += `
-  - use for \`DB${componentName}\` or \`${componentName}\` the file __agent-path__/${componentName}.md`;
+  - use for \`DB${componentName}\` or \`${componentName}\` the file __agent-path__/agent/${componentName}.md`;
 	}
 
 	writeFileSync(instructionsFilePath, instructionsContent, 'utf8');
