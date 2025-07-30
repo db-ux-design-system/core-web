@@ -39,6 +39,7 @@ runs:
         NEW_PR_BRANCH: ${{ inputs.branch-name }}
         COMMIT_MESSAGE: ${{ inputs.commit-message }}
         COMMIT_FILES: ${{ inputs.commit-files }}
+        HUSKY: 0 # Disable Husky hooks in CI
       run: |
         git config --global user.name "github-actions[bot]"
         git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
@@ -47,7 +48,7 @@ runs:
         git add $COMMIT_FILES
 
         # We can't use semantic commits here because of the if statement in the workflow
-        git commit --no-verify --message "$COMMIT_MESSAGE"
+        git commit --message "$COMMIT_MESSAGE"
         git push --force origin "$NEW_PR_BRANCH"
 
     - name: 🪗 Create Pull Request
