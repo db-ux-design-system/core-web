@@ -7,7 +7,7 @@
 
 ## Usage
 
-We provide a CLI tool to copy `@db-ux` docs to your repository to provide it for AI Agents.
+We provide a command-line interface (CLI) tool that copies the `@db-ux` documentation to your repository, making it available to AI agents.
 
 ### Prerequisites
 
