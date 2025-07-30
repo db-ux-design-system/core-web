@@ -6,7 +6,7 @@
 ## SCSS
 
 - If you use SCSS follow these rules:
-    - use for `variables` like, sizing, spacing, elevation, border, container-size the file **agent-path**/scss/Variables.md
+    - use for `variables` like, sizing, spacing, elevation, border, container-size the file **agent-path**/agent/scss/Variables.md
 
 ## Tailwind
 
