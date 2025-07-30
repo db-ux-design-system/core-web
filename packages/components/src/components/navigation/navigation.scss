@@ -11,10 +11,6 @@
 %popover-navigation {
 	.db-navigation-item {
 		@include icon-passing.icon-passing();
-
-		/* a {
-			block-size: variables.$db-sizing-md;
-		} */
 	}
 
 	.db-navigation-item-group {
@@ -30,6 +26,9 @@
 			)
 		) {
 			.db-navigation-item-group-expand-button {
+				/* Remove the highlight here because we have an overlay for sub-navigations */
+				-webkit-tap-highlight-color: transparent;
+
 				// show/hide sub-navigation by click
 				&[aria-expanded="true"] {
 					~ .db-navigation-item-group-menu {
@@ -162,12 +161,10 @@
 }
 
 .db-navigation {
-	-webkit-tap-highlight-color: transparent; /* for removing the highlight */
 	inline-size: 100%;
 	position: relative;
 
 	@include screen-sizes.screen("md") {
-		-webkit-tap-highlight-color: inherit;
 		inline-size: auto;
 	}
 

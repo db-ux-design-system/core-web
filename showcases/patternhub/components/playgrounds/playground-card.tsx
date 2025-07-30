@@ -1,5 +1,4 @@
 import { DBCard, DBDivider, DBStack } from '@components';
-import Image from 'next/image';
 import { type PlaygroundCardProps } from './data';
 
 const PlaygroundCard = ({
@@ -27,7 +26,7 @@ const PlaygroundCard = ({
 		<a href={href} target="_blank" rel="noopener noreferrer">
 			<DBCard behavior="interactive">
 				<DBStack direction="row">
-					<Image
+					<img
 						width="40"
 						height="40"
 						alt={headline}

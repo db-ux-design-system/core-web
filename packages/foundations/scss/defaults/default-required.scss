@@ -56,20 +56,13 @@ body {
 	padding: 0;
 }
 
-/* stylelint-disable selector-max-id */
-body,
-#root,
-#app {
-	block-size: inherit;
-}
-/* stylelint-enable selector-max-id */
-
 body {
 	font-family: var(--db-font-family-sans);
 }
 
 // Box sizing
 html {
+	-webkit-tap-highlight-color: #{colors.$db-informational-bg-basic-transparent-semi-default};
 	box-sizing: var(--db-box-sizing, border-box);
 }
 
