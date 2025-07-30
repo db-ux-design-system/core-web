@@ -35,7 +35,7 @@
     "dev:angular": "nodemon --watch src --watch scripts --ext tsx,ts --exec \"npm run compile:angular\"",
     "dev:html": "npm run copy-assets && npm run build-assets && npm run build-style:01_sass && vite --open",
     "dev:react": "nodemon --watch src --watch scripts --ext tsx,ts --exec \"npm run compile:react\"",
-    "dev:scss": "npm run build-style:01_sass -- --watch",
+    "dev:scss": "npm run build-style:01_sass -- --watch --source-map",
     "dev:stencil": "nodemon --watch src --watch scripts --ext tsx,ts --exec \"npm run compile:stencil\"",
     "dev:vue": "nodemon --watch src --watch scripts --ext tsx,ts --exec \"npm run compile:vue\"",
     "generate:agent": "mitosis build -c configs/mitosis.agent.config.cjs",
