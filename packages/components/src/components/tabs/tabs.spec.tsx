@@ -15,8 +15,7 @@ const comp: any = (
 	<DBTabs
 		onIndexChange={(index: number) =>
 			writeFileSync(filePath, index.toString())
-		}
-	>
+		}>
 		<DBTabList>
 			<DBTabItem data-testid="test">Test 1</DBTabItem>
 			<DBTabItem data-testid="test2">Test 2</DBTabItem>
