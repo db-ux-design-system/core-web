@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { DBTextarea } from "../../../../../output/vue/src";
+import { DBTextarea } from "@components";
 import defaultComponentVariants from "../../../../shared/textarea.json";
 import DefaultComponent from "../DefaultComponent.vue";
 </script>
@@ -10,7 +10,6 @@ import DefaultComponent from "../DefaultComponent.vue";
 			#example="{ exampleIndex, variantIndex, exampleName, exampleProps }"
 		>
 			<DBTextarea
-				:showRequiredAsterisk="exampleProps?.showRequiredAsterisk"
 				:cols="exampleProps?.cols"
 				:disabled="exampleProps?.disabled"
 				:show-label="exampleProps?.showLabel"

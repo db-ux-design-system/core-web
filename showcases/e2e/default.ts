@@ -48,14 +48,14 @@ export const hasWebComponentSyntax = (showcase?: string): boolean => {
 	return isAngular(showcase) || isStencil(showcase);
 };
 
-export const waitForDBPage = async (page: Page) => {
-	const dbPage = page.locator('.db-page');
-	// We wait till db-page fully loaded
-	await dbPage.evaluate((element) => {
+export const waitForDBShell = async (page: Page) => {
+	const dbShell = page.locator('.db-shell');
+	// We wait till db-shell fully loaded
+	await dbShell.evaluate((element) => {
 		element.style.transition = 'none';
 	});
-	await expect(dbPage).not.toHaveAttribute('data-fonts-loaded', 'false');
-	await expect(dbPage).toHaveCSS('opacity', '1');
+	await expect(dbShell).not.toHaveAttribute('data-fonts-loaded', 'false');
+	await expect(dbShell).toHaveCSS('opacity', '1');
 	await expect(page.locator('html')).toHaveCSS('overflow', 'hidden');
 };
 
@@ -73,7 +73,7 @@ const gotoPage = async (
 		}
 	);
 
-	await waitForDBPage(page);
+	await waitForDBShell(page);
 	await setScrollViewport(page, fixedHeight)();
 };
 

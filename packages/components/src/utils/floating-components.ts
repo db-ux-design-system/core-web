@@ -75,8 +75,15 @@ export const handleFixedDropdown = (
 	parent: HTMLElement,
 	placement: string
 ) => {
-	// We skip this if we are in mobile it's already fixed
-	if (getComputedStyle(element).zIndex === '9999') return;
+	// We skip this if we are in mobile it's already fixed or if we don't have a floating dropdown
+	const computedStyle = getComputedStyle(element);
+	if (
+		computedStyle.zIndex === '9999' ||
+		(computedStyle.position !== 'fixed' &&
+			computedStyle.position !== 'absolute')
+	) {
+		return;
+	}
 
 	const {
 		top,
@@ -149,30 +156,31 @@ export const getFloatingProps = (
 	let childWidth = childRect.width;
 
 	if (placement === 'bottom' || placement === 'top') {
-		childWidth = childWidth / 2;
+		childWidth = width > childWidth ? 0 : childWidth / 2;
 	}
-
 	if (placement === 'left' || placement === 'right') {
-		childHeight = childHeight / 2;
+		childHeight = height > childHeight ? 0 : childHeight / 2;
 	}
 
-	const outsideBottom = bottom + childHeight > innerHeight;
-	const outsideTop = top - childHeight < 0;
-	const outsideLeft = left - childWidth < 0;
-	const outsideRight = right + childWidth > innerWidth;
+	const outsideBottom = Math.floor(bottom + childHeight) > innerHeight;
+	const outsideTop = Math.ceil(top - childHeight) < 0;
+	const outsideLeft = Math.ceil(left - childWidth) < 0;
+	const outsideRight = Math.floor(right + childWidth) > innerWidth;
 
 	let correctedPlacement = placement;
 
 	if (placement.startsWith('bottom')) {
 		if (outsideBottom) {
-			correctedPlacement = placement?.replace('bottom', 'top');
+			if (!outsideTop) {
+				correctedPlacement = placement?.replace('bottom', 'top');
 
-			if (outsideLeft && outsideRight) {
-				correctedPlacement = 'top';
-			} else if (outsideLeft) {
-				correctedPlacement = 'top-start';
-			} else if (outsideRight) {
-				correctedPlacement = 'top-end';
+				if (outsideLeft && outsideRight) {
+					correctedPlacement = 'top';
+				} else if (outsideLeft) {
+					correctedPlacement = 'top-start';
+				} else if (outsideRight) {
+					correctedPlacement = 'top-end';
+				}
 			}
 		} else {
 			if (outsideLeft && outsideRight) {
@@ -185,14 +193,16 @@ export const getFloatingProps = (
 		}
 	} else if (placement.startsWith('top')) {
 		if (outsideTop) {
-			correctedPlacement = placement?.replace('top', 'bottom');
+			if (!outsideBottom) {
+				correctedPlacement = placement?.replace('top', 'bottom');
 
-			if (outsideLeft && outsideRight) {
-				correctedPlacement = 'bottom';
-			} else if (outsideLeft) {
-				correctedPlacement = 'bottom-start';
-			} else if (outsideRight) {
-				correctedPlacement = 'bottom-end';
+				if (outsideLeft && outsideRight) {
+					correctedPlacement = 'bottom';
+				} else if (outsideLeft) {
+					correctedPlacement = 'bottom-start';
+				} else if (outsideRight) {
+					correctedPlacement = 'bottom-end';
+				}
 			}
 		} else {
 			if (outsideLeft && outsideRight) {
@@ -205,14 +215,16 @@ export const getFloatingProps = (
 		}
 	} else if (placement.startsWith('left')) {
 		if (outsideLeft) {
-			correctedPlacement = placement?.replace('left', 'right');
+			if (outsideRight) {
+				correctedPlacement = placement?.replace('left', 'right');
 
-			if (outsideBottom && outsideTop) {
-				correctedPlacement = 'right';
-			} else if (outsideBottom) {
-				correctedPlacement = 'right-end';
-			} else if (outsideTop) {
-				correctedPlacement = 'right-start';
+				if (outsideBottom && outsideTop) {
+					correctedPlacement = 'right';
+				} else if (outsideBottom) {
+					correctedPlacement = 'right-end';
+				} else if (outsideTop) {
+					correctedPlacement = 'right-start';
+				}
 			}
 		} else {
 			if (outsideBottom && outsideTop) {
@@ -225,14 +237,16 @@ export const getFloatingProps = (
 		}
 	} else if (correctedPlacement.startsWith('right')) {
 		if (outsideRight) {
-			correctedPlacement = placement?.replace('right', 'left');
+			if (!outsideLeft) {
+				correctedPlacement = placement?.replace('right', 'left');
 
-			if (outsideBottom && outsideTop) {
-				correctedPlacement = 'left';
-			} else if (outsideBottom) {
-				correctedPlacement = 'left-end';
-			} else if (outsideTop) {
-				correctedPlacement = 'left-start';
+				if (outsideBottom && outsideTop) {
+					correctedPlacement = 'left';
+				} else if (outsideBottom) {
+					correctedPlacement = 'left-end';
+				} else if (outsideTop) {
+					correctedPlacement = 'left-start';
+				}
 			}
 		} else {
 			if (outsideBottom && outsideTop) {
@@ -256,18 +270,35 @@ export const getFloatingProps = (
 		childWidth: childRect.width,
 		correctedPlacement,
 		innerWidth,
-		innerHeight
+		innerHeight,
+		outsideYBoth: outsideTop && outsideBottom,
+		outsideXBoth: outsideRight && outsideLeft
 	};
 };
 
 export const handleFixedPopover = (
 	element: HTMLElement,
 	parent: HTMLElement,
-	placement: string
+	placement?: string
 ) => {
-	const distance =
-		getComputedStyle(element).getPropertyValue('--db-popover-distance') ??
-		'0px';
+	const computedStyle = getComputedStyle(element);
+
+	// We skip if we don't have a floating popover
+	if (
+		computedStyle.position !== 'fixed' &&
+		computedStyle.position !== 'absolute'
+	) {
+		return;
+	}
+
+	let distance = computedStyle.getPropertyValue('--db-popover-distance');
+
+	if (!distance.length) {
+		distance = '0px';
+	}
+
+	const elementPlacement =
+		element?.dataset?.['placement'] ?? placement ?? 'bottom';
 
 	const {
 		top,
@@ -280,8 +311,9 @@ export const handleFixedPopover = (
 		bottom,
 		correctedPlacement,
 		innerWidth,
-		innerHeight
-	} = getFloatingProps(element, parent, placement);
+		innerHeight,
+		outsideYBoth
+	} = getFloatingProps(element, parent, elementPlacement);
 
 	// Tooltip arrow position
 
@@ -379,6 +411,14 @@ export const handleFixedPopover = (
 		const end = bottom + childHeight;
 		element.style.insetBlockStart = `calc(${bottom}px + ${distance})`;
 		element.style.insetBlockEnd = `calc(${end > innerHeight ? innerHeight : end}px + ${distance})`;
+	}
+
+	// In this case we are outside of top and bottom so we need to scroll
+	// We use the full height in this case
+	if (outsideYBoth) {
+		element.style.overflow = 'hidden auto';
+		element.style.insetBlock = distance;
+		element.style.maxBlockSize = `calc(${innerHeight}px - 2 * ${distance})`;
 	}
 
 	element.style.position = 'fixed';

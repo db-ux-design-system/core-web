@@ -1,5 +1,10 @@
 import react from '@vitejs/plugin-react';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
 import { defineConfig } from 'vite';
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+
 // https://vitejs.dev/config/
 export default defineConfig({
 	base: `/react-showcase/`,
@@ -10,6 +15,11 @@ export default defineConfig({
 	},
 	define: {
 		process
+	},
+	resolve: {
+		alias: {
+			'@components': path.resolve(__dirname, '../../output/react/src')
+		}
 	},
 	css: {
 		devSourcemap: true // Enables source maps in dev mode for CSS

@@ -88,7 +88,9 @@ export default function DBTabs(props: DBTabsProps) {
 		initTabs(init?: boolean) {
 			if (_ref) {
 				const tabItems = Array.from<Element>(
-					_ref.getElementsByClassName('db-tab-item')
+					_ref.querySelectorAll(
+						':is(:scope > db-tab-list .db-tab-item, :scope > .db-tab-list .db-tab-item)'
+					)
 				);
 				const tabPanels = Array.from<Element>(
 					_ref.querySelectorAll(
@@ -178,8 +180,6 @@ export default function DBTabs(props: DBTabsProps) {
 	});
 
 	onMount(() => {
-		state._id = props.id || state._id;
-
 		state._name = `tabs-${props.name || uuid()}`;
 
 		state.initialized = true;
@@ -218,7 +218,7 @@ export default function DBTabs(props: DBTabsProps) {
 	return (
 		<div
 			ref={_ref}
-			id={state._id}
+			id={props.id ?? state._id}
 			class={cls('db-tabs', props.className)}
 			data-orientation={props.orientation}
 			data-scroll-behavior={props.behavior}
@@ -228,7 +228,7 @@ export default function DBTabs(props: DBTabsProps) {
 			onChange={(event) => state.handleChange(event)}>
 			<Show when={state.showScrollLeft}>
 				<DBButton
-					class="tabs-scroll-left"
+					class="overflow-scroll-left-button"
 					variant="ghost"
 					icon="chevron_left"
 					type="button"
@@ -264,7 +264,7 @@ export default function DBTabs(props: DBTabsProps) {
 			</Show>
 			<Show when={state.showScrollRight}>
 				<DBButton
-					class="tabs-scroll-right"
+					class="overflow-scroll-right-button"
 					variant="ghost"
 					icon="chevron_right"
 					type="button"

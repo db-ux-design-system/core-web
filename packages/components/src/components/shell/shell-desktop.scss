@@ -1,0 +1,187 @@
+@use "sass:string";
+@use "@db-ux/core-foundations/build/styles/variables";
+@use "@db-ux/core-foundations/build/styles/screen-sizes";
+@use "@db-ux/core-foundations/build/styles/colors";
+@use "@db-ux/core-foundations/build/styles/helpers";
+@use "../../styles/internal/control-panel-desktop";
+@use "../../styles/internal/custom-elements";
+@use "../../styles/internal/form-components";
+
+@mixin sub-navigation-top {
+	#{string.unquote(custom-elements.$shell-sub-navigation)} {
+		border-block-end: variables.$db-border-width-3xs solid
+			colors.$db-adaptive-on-bg-basic-emphasis-60-default;
+
+		.db-navigation {
+			--db-overflow-scroll-button-inset-inline-start: calc(
+				#{variables.$db-spacing-fixed-sm} / 2
+			);
+			--db-overflow-scroll-button-inset-block: #{variables.$db-spacing-fixed-xs};
+
+			display: grid;
+
+			@include control-panel-desktop.horizontal-navigation;
+
+			> menu {
+				/* workaround for showing correct scrolling and focus */
+				padding-inline: calc(#{variables.$db-spacing-fixed-sm} / 2);
+				margin-inline: calc(#{variables.$db-spacing-fixed-sm} / 2);
+				padding-block: variables.$db-spacing-fixed-xs;
+			}
+		}
+
+		> .db-shell-sub-navigation-button {
+			display: none;
+		}
+	}
+}
+
+@mixin control-panel-top {
+	&[data-control-panel-desktop-position="top"] {
+		// Sub-navigation: top
+		&[data-sub-navigation-desktop-position="top"] {
+			grid-template-areas:
+				"control-panel"
+				"sub-navigation"
+				"main";
+			grid-template-rows:
+				[control-panel] max-content
+				[sub-navigation] max-content
+				[main] 1fr;
+
+			@include sub-navigation-top;
+		}
+
+		// Sub-navigation: left
+		&[data-sub-navigation-desktop-position="left"] {
+			grid-template:
+				[control-panel] "control-panel control-panel" max-content
+				[main] "sub-navigation main" 1fr /
+				[control-panel] auto
+				[main] 1fr;
+
+			#{string.unquote(custom-elements.$shell-sub-navigation)} {
+				display: grid;
+				border-inline-end: variables.$db-border-width-3xs solid
+					colors.$db-adaptive-on-bg-basic-emphasis-60-default;
+
+				.db-navigation {
+					max-inline-size: screen-sizes.$db-breakpoint-xs;
+					padding-block: variables.$db-spacing-fixed-md;
+				}
+
+				& > .db-shell-sub-navigation-button {
+					display: flex;
+
+					@media screen and (prefers-reduced-motion: no-preference) {
+						.db-button::before {
+							transition: transform
+								#{variables.$db-transition-straight-functional};
+						}
+					}
+				}
+
+				&[data-open="false"] {
+					inline-size: auto;
+					/* stylelint-disable-next-line declaration-property-value-no-unknown */
+					inline-size: calc-size(auto, size);
+					grid-template-areas: "button";
+					grid-template-rows: [button] 1fr;
+
+					.db-navigation {
+						display: none;
+					}
+
+					> .db-shell-sub-navigation-button {
+						justify-content: center;
+
+						.db-button {
+							block-size: 100%;
+							border-radius: 0;
+
+							&::before {
+								transform: form-components.$dropdown-icon-transform;
+							}
+						}
+					}
+				}
+
+				&[data-open="true"] {
+					grid-template-areas:
+						"navigation"
+						"button";
+					grid-template-rows:
+						[navigation] 1fr
+						[button] auto;
+
+					/// Sets the inline-size (width) of the sub-navigation
+					/// @propertyname inline-size
+					/// @cssprop --db-shell-sub-navigation-inline-size
+					/// @default var(--db-container-xs)
+					inline-size: var(
+						--db-shell-sub-navigation-inline-size,
+						#{variables.$db-container-xs}
+					);
+
+					.db-navigation {
+						overflow: hidden auto;
+						scrollbar-gutter: stable both-edges;
+
+						@include control-panel-desktop.vertical-navigation(
+							false
+						);
+
+						> menu {
+							padding-inline: 0;
+						}
+					}
+
+					> .db-shell-sub-navigation-button {
+						padding-block: variables.$db-spacing-fixed-xs;
+						padding-inline: variables.$db-spacing-fixed-lg;
+						justify-content: flex-end;
+						margin-block-start: auto;
+
+						@include helpers.divider("top");
+					}
+				}
+			}
+		}
+	}
+}
+
+@mixin control-panel-left {
+	&[data-control-panel-desktop-position="left"] {
+		grid-template-areas:
+			"control-panel main"
+			"control-panel main";
+		grid-template-columns:
+			[control-panel] min-content
+			[main] 1fr;
+
+		&:has(#{string.unquote(custom-elements.$shell-sub-navigation)}) {
+			grid-template-areas:
+				"control-panel sub-navigation"
+				"control-panel main";
+		}
+
+		@include sub-navigation-top;
+	}
+}
+
+.db-shell {
+	// DESKTOP
+	@include screen-sizes.screen-min-max(
+		(
+			min: "sm"
+		)
+	) {
+		@include control-panel-top;
+		@include control-panel-left;
+
+		// Hide mobile control panel
+		#{string.unquote(custom-elements.$control-panel-mobile)} {
+			display: none;
+		}
+	}
+}

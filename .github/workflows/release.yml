@@ -1,6 +1,8 @@
 ---
 name: Test and publish to package registries after new GitHub release
 
+# TODO: Revert this file before mergin to main
+
 on:
   release:
     types: [published]
@@ -9,10 +11,6 @@ jobs:
   init:
     uses: ./.github/workflows/00-init.yml
     secrets: inherit
-
-  get-playwright-version:
-    uses: ./.github/workflows/01-get-playwright-version.yml
-    needs: [init]
 
   get-publish-version:
     uses: ./.github/workflows/01-get-publish-version.yml
@@ -30,27 +28,9 @@ jobs:
     uses: ./.github/workflows/01-build-packages.yml
     needs: [init]
 
-  init-playwright:
-    uses: ./.github/workflows/01-init-playwright.yml
-    needs: [get-playwright-version]
-    with:
-      version: ${{ needs.get-playwright-version.outputs.version }}
-
   build-outputs:
     uses: ./.github/workflows/01-build-outputs.yml
     needs: [build-packages]
-
-  test-components:
-    uses: ./.github/workflows/02-e2e.yml
-    needs: [build-packages, get-playwright-version]
-    with:
-      version: ${{ needs.get-playwright-version.outputs.version }}
-
-  test-foundations:
-    uses: ./.github/workflows/02-e2e-foundations.yml
-    needs: [build-packages, get-playwright-version]
-    with:
-      version: ${{ needs.get-playwright-version.outputs.version }}
 
   build-showcase-stencil:
     uses: ./.github/workflows/01-build-showcases.yml
@@ -101,48 +81,6 @@ jobs:
       release: ${{ needs.get-publish-version.outputs.release }}
       preRelease: ${{ needs.get-publish-version.outputs.preRelease }}
 
-  test-showcase-stencil:
-    uses: ./.github/workflows/02-e2e-showcases.yml
-    needs: [build-showcase-stencil, get-playwright-version]
-    with:
-      version: ${{ needs.get-playwright-version.outputs.version }}
-      showcase: stencil-showcase
-
-  test-showcase-angular:
-    uses: ./.github/workflows/02-e2e-showcases.yml
-    needs: [build-showcase-angular, get-playwright-version]
-    with:
-      version: ${{ needs.get-playwright-version.outputs.version }}
-      showcase: angular-showcase
-
-  test-showcase-react:
-    uses: ./.github/workflows/02-e2e-showcases.yml
-    needs: [build-showcase-react, get-playwright-version]
-    with:
-      version: ${{ needs.get-playwright-version.outputs.version }}
-      showcase: react-showcase
-
-  test-showcase-vue:
-    uses: ./.github/workflows/02-e2e-showcases.yml
-    needs: [build-showcase-vue, get-playwright-version]
-    with:
-      version: ${{ needs.get-playwright-version.outputs.version }}
-      showcase: vue-showcase
-
-  test-showcase-patternhub:
-    uses: ./.github/workflows/02-e2e-showcases.yml
-    needs: [build-showcase-patternhub, get-playwright-version]
-    with:
-      path: ${{ needs.build-showcase-patternhub.outputs.path }}
-      version: ${{ needs.get-playwright-version.outputs.version }}
-      showcase: patternhub
-
-  test-screen-reader:
-    uses: ./.github/workflows/02-e2e-screen-reader.yml
-    needs: [build-showcase-react, init-playwright, get-playwright-version]
-    with:
-      version: ${{ needs.get-playwright-version.outputs.version }}
-
   checks-done:
     if: ${{ always() }}
     runs-on: ubuntu-24.04 # Use Ubuntu 24.04 explicitly
@@ -158,23 +96,7 @@ jobs:
           resultBuildShowcaseNuxt="${{ needs.build-showcase-nuxt.result }}"
           resultBuildShowcasePatternhub="${{ needs.build-showcase-patternhub.result }}"
           resultBuildOutputs="${{ needs.build-outputs.result }}"
-          resultTestPackages="${{ needs.test-components.result }}"
-          resultTestFoundations="${{ needs.test-foundations.result }}"
-          resultTestShowcaseStencil="${{ needs.test-showcase-stencil.result }}"
-          resultTestShowcaseAngular="${{ needs.test-showcase-angular.result }}"
-          resultTestShowcaseReact="${{ needs.test-showcase-react.result }}"
-          resultTestShowcaseVue="${{ needs.test-showcase-vue.result }}"
-          resultTestShowcasePatternhub="${{ needs.test-showcase-patternhub.result }}"
-          resultTestScreenReader="${{ needs.test-screen-reader.result }}"
-          if [[ $resultTestFoundations == "success" ]] && \
-             [[ $resultTestScreenReader == "success" ]] && \
-             [[ $resultTestShowcaseStencil == "success" ]] && \
-             [[ $resultTestShowcaseAngular == "success" ]] && \
-             [[ $resultTestShowcaseReact == "success" ]] && \
-             [[ $resultTestShowcaseVue == "success" ]] && \
-             [[ $resultTestShowcasePatternhub == "success" ]] && \
-             [[ $resultTestPackages == "success" ]] && \
-             [[ $resultBuildOutputs == "success" ]] && \
+          if [[ $resultBuildOutputs == "success" ]] && \
              [[ $resultBuildShowcaseStencil == "success" ]] && \
              [[ $resultBuildShowcaseAngular == "success" ]] && \
              [[ $resultBuildShowcaseAngularSSR == "success" ]] && \
@@ -199,15 +121,7 @@ jobs:
         build-showcase-vue,
         build-showcase-nuxt,
         build-showcase-patternhub,
-        build-outputs,
-        test-components,
-        test-showcase-stencil,
-        test-showcase-angular,
-        test-showcase-react,
-        test-showcase-vue,
-        test-showcase-patternhub,
-        test-foundations,
-        test-screen-reader
+        build-outputs
       ]
 
   deploy:

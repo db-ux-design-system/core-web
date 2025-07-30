@@ -1,0 +1,29 @@
+@use "@db-ux/core-foundations/build/styles/variables";
+@use "@db-ux/core-foundations/build/styles/helpers";
+@use "@db-ux/core-foundations/build/styles/density";
+@use "@db-ux/core-foundations/build/styles/colors";
+@use "../../styles/internal/component";
+@use "../../styles/internal/control-panel-desktop";
+
+.db-control-panel-desktop {
+	background-color: colors.$db-adaptive-bg-basic-level-1-default;
+	display: grid;
+	position: relative;
+	min-block-size: component.$min-mobile-header-height;
+
+	&[data-orientation="vertical"] {
+		@extend %control-panel-desktop-vertical-orientation;
+	}
+
+	&[data-orientation="horizontal"] {
+		@extend %control-panel-desktop-horizontal-orientation;
+	}
+
+	.db-link {
+		display: inline-block;
+	}
+
+	.db-navigation {
+		grid-area: navigation;
+	}
+}

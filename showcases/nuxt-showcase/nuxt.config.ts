@@ -1,3 +1,8 @@
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+
 export default defineNuxtConfig({
 	telemetry: false,
 	devtools: { enabled: true },
@@ -25,5 +30,8 @@ export default defineNuxtConfig({
 			dir: '../../build-showcases/nuxt-showcase',
 			publicDir: '../../build-showcases/nuxt-showcase'
 		}
+	},
+	alias: {
+		'@components': path.resolve(__dirname, '../../output/vue/src')
 	}
 });

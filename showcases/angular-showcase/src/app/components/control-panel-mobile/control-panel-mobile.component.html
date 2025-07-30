@@ -1,0 +1,104 @@
+<app-default-component
+	title="DBControlPanelMobile"
+	[variants]="variants"
+	[exampleTemplate]="exampleTemplate"
+>
+	<ng-template
+		#exampleTemplate
+		let-exampleProps="exampleProps"
+		let-exampleName="exampleName"
+		let-exampleIndex="exampleIndex"
+		let-variantIndex="variantIndex"
+	>
+		<db-control-panel-mobile
+			[position]="exampleProps?.position ?? 'top'"
+			drawerHeadlinePlain="DBHeader"
+			[variant]="exampleProps?.variant ?? 'drawer'"
+		>
+			<db-control-panel-brand brand slot="brand">
+				@if (exampleProps?.withName ?? true) {
+					DBHeader
+				}
+			</db-control-panel-brand>
+			@if (exampleProps?.withNavigation ?? true) {
+				<db-navigation [attr.aria-label]="exampleName">
+					<db-navigation-item icon="x_placeholder">
+						<a href="#">{{ exampleName }} </a>
+					</db-navigation-item>
+					<db-navigation-item icon="x_placeholder" [disabled]="true">
+						<a href="#">{{ exampleName }} disabled </a>
+					</db-navigation-item>
+				</db-navigation>
+			}
+			<ng-container flat-icon-navigation>
+				<db-control-panel-flat-icon-navigation
+					slot="flatIconNavigation"
+					[noText]="exampleProps?.noText"
+				>
+					<db-navigation [attr.aria-label]="exampleName">
+						<db-navigation-item icon="x_placeholder">
+							<a href="#">{{ exampleName }} </a>
+						</db-navigation-item>
+						<db-navigation-item
+							icon="x_placeholder"
+							[disabled]="true"
+						>
+							<a href="#">{{ exampleName }} disabled </a>
+						</db-navigation-item>
+						<db-navigation-item icon="x_placeholder">
+							<a href="#">{{ exampleName }} long</a>
+						</db-navigation-item>
+					</db-navigation>
+				</db-control-panel-flat-icon-navigation>
+			</ng-container>
+			<ng-container meta-navigation>
+				@if (exampleProps?.withMeta ?? true) {
+					<db-control-panel-meta-navigation slot="metaNavigation">
+						<db-link href="#">Imprint</db-link>
+						<db-link href="#">Help</db-link>
+					</db-control-panel-meta-navigation>
+				}
+			</ng-container>
+			<ng-container primary-actions>
+				@if (exampleProps?.withPrimary ?? true) {
+					<db-control-panel-primary-actions slot="primaryActions">
+						<db-button
+							icon="magnifying_glass"
+							variant="ghost"
+							[noText]="true"
+						>
+							Search
+						</db-button>
+					</db-control-panel-primary-actions>
+				}
+			</ng-container>
+			<ng-container secondary-actions>
+				@if (exampleProps?.withSecondary ?? true) {
+					<db-control-panel-secondary-actions slot="secondaryActions">
+						<db-button
+							icon="x_placeholder"
+							variant="ghost"
+							[noText]="true"
+						>
+							Profile
+						</db-button>
+						<db-button
+							icon="x_placeholder"
+							variant="ghost"
+							[noText]="true"
+						>
+							Notification
+						</db-button>
+						<db-button
+							icon="x_placeholder"
+							variant="ghost"
+							[noText]="true"
+						>
+							Help
+						</db-button>
+					</db-control-panel-secondary-actions>
+				}
+			</ng-container>
+		</db-control-panel-mobile>
+	</ng-template>
+</app-default-component>

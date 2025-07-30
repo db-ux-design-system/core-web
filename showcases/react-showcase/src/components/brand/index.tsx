@@ -1,7 +1,5 @@
-/* eslint-disable @typescript-eslint/no-deprecated */
-
-import { DBBrand } from '../../../../../output/react/src';
-import { type DBBrandProps } from '../../../../../output/react/src/components/brand/model';
+import { DBControlPanelBrand } from '@components';
+import { type DBControlPanelBrandProps } from '@components/src/components/control-panel-brand/model';
 import defaultComponentVariants from '../../../../shared/brand.json';
 import { type BaseComponentProps } from '../base-component-data';
 import { getVariants } from '../data';
@@ -9,24 +7,25 @@ import DefaultComponent from '../default-component';
 
 const getBrand = ({
 	children,
-	hideLogo,
 	customLogo
-}: DBBrandProps & { customLogo: boolean }) => (
-	<DBBrand hideLogo={hideLogo}>
+}: DBControlPanelBrandProps & { customLogo: boolean }) => (
+	<DBControlPanelBrand>
 		{customLogo && (
 			<img
-				src={`${process?.env?.NEXT_PUBLIC_BASE_PATH ?? '/react-showcase'}/assets/images/placeholder.jpg`}
+				src={`${
+					process?.env?.NEXT_PUBLIC_BASE_PATH ?? '/react-showcase'
+				}/assets/images/placeholder.jpg`}
 				alt="this is a fancy placeholder logo"
 			/>
 		)}
 		{children}
-	</DBBrand>
+	</DBControlPanelBrand>
 );
 
 const BrandComponent = (props: BaseComponentProps) => {
 	return (
 		<DefaultComponent
-			title="DBBrand"
+			title="DBControlPanelBrand"
 			variants={getVariants(
 				defaultComponentVariants,
 				getBrand,

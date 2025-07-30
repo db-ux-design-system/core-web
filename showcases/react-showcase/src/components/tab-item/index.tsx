@@ -1,5 +1,5 @@
-import { DBTabItem, DBTabList } from '../../../../../output/react/src';
-import type { DBTabItemProps } from '../../../../../output/react/src/components/tab-item/model';
+import { DBTabItem, DBTabList } from '@components';
+import type { DBTabItemProps } from '@components/src/components/tab-item/model';
 import defaultComponentVariants from '../../../../shared/tab-item.json';
 import { type BaseComponentProps } from '../base-component-data';
 import { getVariants } from '../data';

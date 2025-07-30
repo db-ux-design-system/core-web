@@ -112,7 +112,12 @@ export default (tmp?: boolean) => {
 					to: `, forwardRef, HTMLAttributes } from "react"`
 				},
 				{
-					from: `function DB${upperComponentName}(props: DB${upperComponentName}Props) {`,
+					from: [
+						`function DB${upperComponentName}(props: DB${upperComponentName}Props) {`,
+						`function DB${upperComponentName}(
+  props: DB${upperComponentName}Props
+) {`
+					],
 					to: `function DB${upperComponentName}Fn(props: Omit<HTMLAttributes<${htmlElement}>, keyof DB${upperComponentName}Props> & DB${upperComponentName}Props, component: any) {`
 				},
 				{
@@ -147,8 +152,9 @@ export default DB${upperComponentName};`
 				{
 					from: 'className={',
 					to:
-						`{...getRootProps(props,${JSON.stringify(rootProps)})}` +
-						'\nclassName={'
+						`{...getRootProps(props,${JSON.stringify(
+							rootProps
+						)})}` + '\nclassName={'
 				},
 				/* We need to overwrite the internal state._value property just for react to have controlled components.
 				 * It works for Angular & Vue, so we overwrite it only for React.  */

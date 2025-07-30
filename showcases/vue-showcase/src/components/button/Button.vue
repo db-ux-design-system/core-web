@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { DBButton } from "../../../../../output/vue/src";
+import { DBButton } from "@components";
 import defaultComponentVariants from "../../../../shared/button.json";
 import DefaultComponent from "../DefaultComponent.vue";
 

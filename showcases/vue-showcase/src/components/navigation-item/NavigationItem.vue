@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { DBNavigationItem } from "../../../../../output/vue/src";
+import { DBNavigationItem } from "@components";
 import defaultComponentVariants from "../../../../shared/navigation-item.json";
 import DefaultComponent from "../DefaultComponent.vue";
 
@@ -21,11 +21,9 @@ const log = (exampleName?: string) => {
 				<DBNavigationItem
 					:icon="exampleProps?.icon"
 					:showIcon="exampleProps?.showIcon"
-					:width="exampleProps?.width"
 					:disabled="exampleProps?.disabled"
 					:active="exampleProps?.active"
 					:areaPopup="exampleProps?.areaPopup"
-					:wrap="exampleProps?.wrap"
 					@click="log(exampleName)"
 				>
 					<template v-if="exampleProps?.areaPopup" #sub-navigation>

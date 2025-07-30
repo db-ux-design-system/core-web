@@ -1,3 +1,5 @@
+import { ControlPanelMobileComponent } from '../components/control-panel-mobile/control-panel-mobile.component';
+
 import { Routes } from '@angular/router';
 import { AccordionItemComponent } from '../components/accordion-item/accordion-item.component';
 import { AccordionComponent } from '../components/accordion/accordion.component';
@@ -6,10 +8,10 @@ import { BrandComponent } from '../components/brand/brand.component';
 import { ButtonComponent } from '../components/button/button.component';
 import { CardComponent } from '../components/card/card.component';
 import { CheckboxComponent } from '../components/checkbox/checkbox.component';
+import { ControlPanelDesktopComponent } from '../components/control-panel-desktop/control-panel-desktop.component';
 import { CustomSelectComponent } from '../components/custom-select/custom-select.component';
 import { DividerComponent } from '../components/divider/divider.component';
 import { DrawerComponent } from '../components/drawer/drawer.component';
-import { HeaderComponent } from '../components/header/header.component';
 import { HomeComponent } from '../components/home/home.component';
 import { IconComponent } from '../components/icon/icon.component';
 import { InfotextComponent } from '../components/infotext/infotext.component';
@@ -169,9 +171,14 @@ export const NAVIGATION_ITEMS: NavItem[] = [
 				component: SectionComponent
 			},
 			{
-				path: '01/header',
-				label: 'Header',
-				component: HeaderComponent
+				path: '01/control-panel-desktop',
+				label: 'ControlPanelDesktop',
+				component: ControlPanelDesktopComponent
+			},
+			{
+				path: '01/control-panel-mobile',
+				label: 'ControlPanelMobile',
+				component: ControlPanelMobileComponent
 			}
 		])
 	},

@@ -1,5 +1,5 @@
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import { DBBrand } from '../../../../../../output/angular/src/components/brand';
+import { DBControlPanelBrand } from '@components';
 import defaultComponentVariants from '../../../../../shared/brand.json';
 import { environment } from '../../../environments/environment';
 import { DefaultComponent } from '../default.component';
@@ -9,7 +9,7 @@ import { DefaultComponent } from '../default.component';
 	templateUrl: './brand.component.html',
 	imports: environment.webComponents
 		? [DefaultComponent]
-		: [DefaultComponent, DBBrand],
+		: [DefaultComponent, DBControlPanelBrand],
 	standalone: true,
 	schemas: environment.webComponents ? [CUSTOM_ELEMENTS_SCHEMA] : []
 })

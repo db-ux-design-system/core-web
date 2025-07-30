@@ -1,9 +1,10 @@
 import {
 	DBInfotext,
 	DBNavigation,
-	DBNavigationItem
-} from '../../../../../output/react/src';
-import type { DBNavigationProps } from '../../../../../output/react/src/components/navigation/model';
+	DBNavigationItem,
+	DBNavigationItemGroup
+} from '@components';
+import type { DBNavigationProps } from '@components/src/components/navigation/model';
 import defaultComponentVariants from '../../../../shared/navigation.json';
 import { type BaseComponentProps } from '../base-component-data';
 import { getVariants } from '../data';
@@ -21,31 +22,21 @@ const getNavigation = ({ children }: DBNavigationProps) => {
 				{children}
 			</DBInfotext>
 			<DBNavigation aria-labelledby={labelID}>
-				<DBNavigationItem
-					subNavigation={
-						<>
-							<DBNavigationItem
-								subNavigation={
-									<>
-										<DBNavigationItem>
-											<a href="#" aria-current="page">
-												Sub-Sub-Navi-Item 1
-											</a>
-										</DBNavigationItem>
-										<DBNavigationItem>
-											<a href="#">Sub-Sub-Navi-Item 2</a>
-										</DBNavigationItem>
-									</>
-								}>
-								Sub-Navi-Item 1
-							</DBNavigationItem>
-							<DBNavigationItem>
-								<a href="#">Sub-Navi-Item 2</a>
-							</DBNavigationItem>
-						</>
-					}>
-					Navi-Item 1
-				</DBNavigationItem>
+				<DBNavigationItemGroup text="Navi-Item 1">
+					<DBNavigationItemGroup text="Sub-Navi-Item 1">
+						<DBNavigationItem>
+							<a href="#" aria-current="page">
+								Sub-Sub-Navi-Item 1
+							</a>
+						</DBNavigationItem>
+						<DBNavigationItem>
+							<a href="#">Sub-Sub-Navi-Item 2</a>
+						</DBNavigationItem>
+					</DBNavigationItemGroup>
+					<DBNavigationItem>
+						<a href="#">Sub-Navi-Item 2</a>
+					</DBNavigationItem>
+				</DBNavigationItemGroup>
 				<DBNavigationItem icon="x_placeholder">
 					<a href="#">Navi-Item 2</a>
 				</DBNavigationItem>

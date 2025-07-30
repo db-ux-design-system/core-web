@@ -13,7 +13,7 @@
 
 ### children
 
-| Before     | Status | After | Description                                                                   |
-| ---------- | :----: | ----- | ----------------------------------------------------------------------------- |
-| `data`     |   ❌   | ❌    | pass data via `children` / `slot`, moved a lot of the features to `db-header` |
-| `siteName` |   ❌   | ❌    |                                                                               |
+| Before     | Status | After | Description                                                                                  |
+| ---------- | :----: | ----- | -------------------------------------------------------------------------------------------- |
+| `data`     |   ❌   | ❌    | pass data via `children` / `slot`, moved a lot of the features to `db-control-panel-desktop` |
+| `siteName` |   ❌   | ❌    |                                                                                              |

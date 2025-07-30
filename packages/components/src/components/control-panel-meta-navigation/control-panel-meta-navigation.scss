@@ -1,0 +1,12 @@
+@use "@db-ux/core-foundations/build/styles/variables";
+@use "@db-ux/core-foundations/build/styles/colors";
+
+.db-control-panel-meta-navigation {
+	display: flex;
+	flex-flow: row wrap;
+	justify-content: flex-end;
+	background-color: colors.$db-adaptive-bg-basic-level-2-default;
+	padding: variables.$db-spacing-fixed-xs variables.$db-spacing-fixed-lg;
+	gap: variables.$db-spacing-fixed-md;
+	grid-area: meta;
+}

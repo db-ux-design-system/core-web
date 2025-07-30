@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { DBBrand } from "../../../../../output/vue/src";
+import { DBControlPanelBrand } from "@components";
 import defaultComponentVariants from "../../../../shared/brand.json";
 import DefaultComponent from "../DefaultComponent.vue";
 import imageUrl from "/assets/images/placeholder.jpg";
@@ -10,14 +10,14 @@ import imageUrl from "/assets/images/placeholder.jpg";
 		<template
 			#example="{ exampleIndex, variantIndex, exampleName, exampleProps }"
 		>
-			<DBBrand :hideLogo="exampleProps?.hideLogo">
+			<DBControlPanelBrand :hideLogo="exampleProps?.hideLogo">
 				<img
 					v-if="exampleProps?.customLogo"
 					:src="imageUrl"
 					alt="this is a fancy placeholder logo"
 				/>
 				{{ exampleName }}
-			</DBBrand>
+			</DBControlPanelBrand>
 		</template>
 	</DefaultComponent>
 </template>

@@ -1,10 +1,5 @@
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import {
-	DBTabItem,
-	DBTabList,
-	DBTabPanel,
-	DBTabs
-} from '../../../../../../output/angular/src';
+import { DBTabItem, DBTabList, DBTabPanel, DBTabs } from '@components';
 import { environment } from '../../../environments/environment';
 import { CheckboxesComponent } from '../form/checkboxes/checkboxes.component';
 import { CustomSelectsComponent } from '../form/custom-selects/custom-selects.component';

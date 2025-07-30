@@ -4,6 +4,7 @@ import {
 	DBTabPanel,
 	DBTabs
 } from '@db-ux/react-core-components/src';
+import { useId } from 'react';
 import FormComponent from '../form';
 import FormCheckboxes from '../form/checkbox';
 import FormCustomSelects from '../form/custom-select';
@@ -13,8 +14,9 @@ import FormSelects from '../form/select';
 import FormTextareas from '../form/textarea';
 
 const Home = () => {
+	const id = useId();
 	return (
-		<DBTabs data-testid="tabs">
+		<DBTabs id={id} name={id} data-testid="tabs">
 			<DBTabList>
 				<DBTabItem>All</DBTabItem>
 				<DBTabItem data-testid="tab-inputs">Input</DBTabItem>

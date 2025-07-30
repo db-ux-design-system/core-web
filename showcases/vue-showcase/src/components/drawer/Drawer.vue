@@ -1,6 +1,6 @@
 <script setup lang="ts">
+import { DBButton, DBDrawer } from "@components";
 import { ref } from "vue";
-import { DBButton, DBDrawer } from "../../../../../output/vue/src";
 import defaultComponentVariants from "../../../../shared/drawer.json";
 import DefaultComponent from "../DefaultComponent.vue";
 

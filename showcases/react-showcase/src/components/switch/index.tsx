@@ -1,9 +1,5 @@
-import {
-	DBInfotext,
-	DBSwitch,
-	getBoolean
-} from '../../../../../output/react/src';
-import type { DBSwitchProps } from '../../../../../output/react/src/components/switch/model';
+import { DBInfotext, DBSwitch, getBoolean } from '@components';
+import type { DBSwitchProps } from '@components/src/components/switch/model';
 import defaultComponentVariants from '../../../../shared/switch.json';
 import { type BaseComponentProps } from '../base-component-data';
 import { getVariants } from '../data';
@@ -19,15 +15,13 @@ const getSwitch = ({
 	size,
 	icon,
 	iconTrailing,
-	required,
-	showRequiredAsterisk
+	required
 }: DBSwitchProps) => (
 	<>
 		<DBSwitch
 			visualAid={visualAid}
 			defaultChecked={getBoolean(checked)}
 			disabled={disabled}
-			showRequiredAsterisk={showRequiredAsterisk}
 			showLabel={showLabel}
 			size={size}
 			emphasis={emphasis}

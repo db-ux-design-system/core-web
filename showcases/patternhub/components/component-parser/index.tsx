@@ -1,15 +1,13 @@
-import { useEffect, useState } from 'react';
 import {
 	DBAccordion,
 	DBAccordionItem,
 	DBBadge,
-	DBBrand,
 	DBButton,
 	DBCard,
 	DBCheckbox,
+	DBControlPanelMobile,
 	DBCustomSelect,
 	DBDivider,
-	DBHeader,
 	DBIcon,
 	DBInfotext,
 	DBInput,
@@ -30,7 +28,8 @@ import {
 	DBTag,
 	DBTextarea,
 	DBTooltip
-} from '../../../../output/react/src/index';
+} from '@components';
+import { useEffect, useState } from 'react';
 import type { ComponentParserType, ComponentType } from './data';
 
 const validHosts = new Set(['marketingportal.extranet.deutschebahn.com']);
@@ -116,14 +115,6 @@ const ComponentSwitch = ({
 		);
 	}
 
-	if (type === 'brand') {
-		return (
-			<DBBrand className={className} {...props}>
-				{resolvedContent}
-			</DBBrand>
-		);
-	}
-
 	if (type === 'button') {
 		return (
 			<DBButton className={className} {...props}>
@@ -145,14 +136,6 @@ const ComponentSwitch = ({
 			<DBDivider className={className} {...props}>
 				{resolvedContent}
 			</DBDivider>
-		);
-	}
-
-	if (type === 'header') {
-		return (
-			<DBHeader className={className} {...props}>
-				{resolvedContent}
-			</DBHeader>
 		);
 	}
 
@@ -345,6 +328,14 @@ const ComponentSwitch = ({
 			<DBCustomSelect className={className} {...props}>
 				{resolvedContent}
 			</DBCustomSelect>
+		);
+	}
+
+	if (type === 'control-panel-mobile') {
+		return (
+			<DBControlPanelMobile className={className} {...props}>
+				{resolvedContent}
+			</DBControlPanelMobile>
 		);
 	}
 

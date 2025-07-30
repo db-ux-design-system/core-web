@@ -1,9 +1,5 @@
 <script setup lang="ts">
-import {
-	DBInfotext,
-	DBNavigation,
-	DBNavigationItem
-} from "../../../../../output/vue/src";
+import { DBInfotext, DBNavigation, DBNavigationItem } from "@components";
 import defaultComponentVariants from "../../../../shared/navigation.json";
 import DefaultComponent from "../DefaultComponent.vue";
 

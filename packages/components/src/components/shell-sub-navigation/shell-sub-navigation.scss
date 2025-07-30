@@ -1,0 +1,15 @@
+@use "sass:string";
+@use "../../styles/internal/custom-elements";
+
+.db-shell-sub-navigation {
+	grid-area: sub-navigation;
+	overflow: hidden;
+
+	> .db-shell-sub-navigation-button {
+		grid-area: button;
+	}
+
+	.db-navigation {
+		grid-area: navigation;
+	}
+}
