@@ -31,8 +31,8 @@
   "devDependencies": {
     "cpr": "3.0.1",
     "esbuild": "0.25.5",
-    "tsx": "^4.19.4",
-    "vitest": "^3.2.1"
+    "tsx": "4.19.4",
+    "vitest": "3.2.4"
   },
   "publishConfig": {
     "registry": "https://registry.npmjs.org/",
