@@ -1,5 +1,5 @@
 import { test } from '@playwright/test';
-import { isStencil, runAxeCoreTest } from '../default.ts';
+import { runAxeCoreTest } from '../default.ts';
 import { lvl3 } from '../fixtures/variants';
 
 test.describe('DBLink', () => {
