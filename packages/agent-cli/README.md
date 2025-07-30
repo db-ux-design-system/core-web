@@ -15,7 +15,7 @@ npx @db-ux/agent-cli
 ```
 
 This will search for all `@db-ux` packages inside your `node_modules` and copy the documentation to your repository.
-A new folder will be created named `_db-ux-docs`.
+A new folder called `_db-ux-docs` will be created.
 
 You might want to add this folder to your `.gitignore` file.
 
