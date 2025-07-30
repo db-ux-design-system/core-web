@@ -17,5 +17,4 @@ test.describe('DBHeader', () => {
 		density: 'functional',
 		skipAxe: hasWebComponentSyntax(process.env.showcase)
 	});
-	// TODO: We skip this for now until mitosis output is correct
 });
