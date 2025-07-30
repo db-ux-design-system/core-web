@@ -11,7 +11,7 @@ We provide a command-line interface (CLI) tool that copies the `@db-ux` document
 
 ### Prerequisites
 
-Before using this CLI tool, make sure you have the appropriate DB UX Design System packages installed in your project. Currently we've released the documentation for GitHub Copilot with pre-releases within the `next` npmjs tag, that include "-copilot*-*", like e.g. "3.0.2-copilot3-1616965".
+Before using this CLI tool, make sure you have the appropriate DB UX Design System packages installed in your project. Currently, we've released the documentation for GitHub Copilot with pre-releases within the `next` npmjs tag, that include "-copilot*-*", like e.g. "3.0.2-copilot3-1616965".
 
 #### Installing DB UX Packages
 
