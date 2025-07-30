@@ -18,7 +18,7 @@ Before using this CLI tool, make sure you have the appropriate DB UX Design Syst
 For pre-release versions, e.g. for React:
 
 ```shell
-npm install @db-ux/react-core-components@next
+npm install @db-ux/react-core-components@@3.0.2-copilot3-1616965
 ```
 
 ### Running the CLI Tool
