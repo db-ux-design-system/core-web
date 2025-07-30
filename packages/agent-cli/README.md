@@ -7,7 +7,22 @@
 
 ## Usage
 
-We provide a cli tool to copy `@db-ux` docs to your repository to provide it for AI Agents.
+We provide a CLI tool to copy `@db-ux` docs to your repository to provide it for AI Agents.
+
+### Prerequisites
+
+Before using this CLI tool, make sure you have the appropriate DB UX Design System packages installed in your project. Currently we've released the documentation for GitHub copilot with pre-releases with the `next` npmjs tag, that include "-copilot*-*", like e.g. "3.0.2-copilot3-1616965".
+
+#### Installing DB UX Packages
+
+For pre-release versions:
+
+```shell
+npm install @db-ux/core-components@next @db-ux/core-foundations@next
+```
+
+### Running the CLI Tool
+
 Use this command in your repository:
 
 ```shell
@@ -16,11 +31,22 @@ npx @db-ux/agent-cli
 
 The DB UX Design System docs will get appended (or replaced in subsequent runs, e.g. after a DB UX Design System update) within the file `.github/copilot-instructions.md` (if the file doesn't exist in your codebase so far, it gets created).
 
+### Advanced Usage
+
 You can also change the root path where the tool should check for `node_modules`:
 
 ```shell
 npx @db-ux/agent-cli packages/frontend
 ```
+
+This is useful in monorepo setups where your DB UX packages are installed in a specific workspace directory.
+
+### What the tool Does
+
+1. **Scans your project** for installed `@db-ux` packages
+2. **Extracts relevant documentation** based on your installed versions
+3. **Creates or updates** `.github/copilot-instructions.md` with component documentation
+4. **Provides AI agents** with context about available components and their usage patterns
 
 ## Deutsche Bahn brand
 
