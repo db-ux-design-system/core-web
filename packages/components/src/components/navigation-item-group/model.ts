@@ -21,6 +21,11 @@ export type DBNavigationItemGroupDefaultProps = {
 	 * This is for mobile navigation only, if it is set the sub-navigation is a static overlay
 	 */
 	expanded?: boolean | string;
+
+	/**
+	 * Change id for db-navigation-item-group-menu
+	 */
+	menuId?: string;
 };
 
 export type DBNavigationItemGroupProps = DBNavigationItemGroupDefaultProps &
@@ -37,7 +42,7 @@ export type DBNavigationItemGroupProps = DBNavigationItemGroupDefaultProps &
 export type DBNavigationItemGroupDefaultState = {
 	handleBackClick: (event: ClickEvent<HTMLButtonElement>) => void;
 	isSubNavigationExpanded: boolean;
-	subNavigationId: string;
+	_itemGroupMenuId: string;
 
 	/**
 	 * Internal state property to show/hide sub-navigation button

@@ -45,7 +45,7 @@ export default function DBNavigationItemGroup(
 		autoClose: false,
 		hasPopup: false,
 		initialized: false,
-		subNavigationId: 'db-navigation-item-group-menu-' + uuid(),
+		_itemGroupMenuId: 'db-navigation-item-group-menu-' + uuid(),
 		navigationItemSafeTriangle: undefined,
 		onScroll: () => {
 			if (state.hasPopup) {
@@ -157,7 +157,11 @@ export default function DBNavigationItemGroup(
 				aria-haspopup={getBooleanAsString(
 					state.hasPopup ? true : undefined
 				)}
-				aria-owns={state.hasPopup ? undefined : state.subNavigationId}
+				aria-owns={
+					state.hasPopup
+						? undefined
+						: (props.menuId ?? state._itemGroupMenuId)
+				}
 				aria-expanded={getBooleanAsString(
 					state.isSubNavigationExpanded
 				)}
@@ -175,7 +179,7 @@ export default function DBNavigationItemGroup(
 				class="db-navigation-item-group-menu"
 				role="group"
 				data-force-close={getBooleanAsString(state.autoClose)}
-				id={state.subNavigationId}
+				id={props.menuId ?? state._itemGroupMenuId}
 				onScroll={() => state.onScroll()}
 				onClick={(event) => state.handleNavigationItemClick(event)}>
 				<div class="db-navigation-item-group-back-button">

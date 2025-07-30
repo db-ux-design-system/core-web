@@ -228,13 +228,13 @@ $spacings: (
 
 		&[data-direction="left"],
 		&[data-direction="down"] {
-			align-items: start;
+			align-items: flex-start;
 		}
 
 		&:not([data-direction]),
 		&[data-direction="right"],
 		&[data-direction="up"] {
-			align-items: end;
+			align-items: flex-end;
 		}
 
 		.db-drawer-container {

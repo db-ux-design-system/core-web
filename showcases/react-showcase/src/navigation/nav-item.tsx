@@ -1,11 +1,12 @@
 import { DBNavigationItem, DBNavigationItemGroup } from '@components';
 import NextLink from 'next/link';
 import { usePathname } from 'next/navigation';
-import { useEffect, useState } from 'react';
+import { useEffect, useId, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import type { NavigationItem } from '../utils/navigation-item';
 
 const NavItem = ({ navItem }: { navItem: NavigationItem }) => {
+	const menuId = useId();
 	const pathname =
 		process.env.NEXT_SHOWCASE_VARIANT === 'next'
 			? usePathname()
@@ -29,7 +30,8 @@ const NavItem = ({ navItem }: { navItem: NavigationItem }) => {
 		return (
 			<DBNavigationItemGroup
 				text={navItem.label}
-				backButtonText={`Back to ${navItem.label}`}>
+				backButtonText={`Back to ${navItem.label}`}
+				menuId={menuId}>
 				{navItem.subNavigation
 					.map((subItem: NavigationItem) => ({
 						...subItem,

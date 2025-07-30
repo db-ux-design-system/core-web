@@ -85,7 +85,7 @@ const App = () => {
 					<Navigation variant={settings.navigationDesktopVariant} />
 				</DBControlPanelDesktop>
 			}>
-			<div data-density={density} className={`db-color-${color}`}>
+			<div data-density={density} className={`db-${color}`}>
 				<Outlet />
 			</div>
 		</DBShell>

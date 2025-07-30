@@ -20,9 +20,11 @@ import {
 	type ChangeEvent,
 	type ValueLabelType
 } from '@components';
-import { useEffect, useState } from 'react';
+import { useEffect, useId, useState } from 'react';
 
 const FormComponent = () => {
+	const tabsId = useId();
+	const tabsVerticalId = useId();
 	const [input, setInput] = useState('');
 	const [dateinput, setDateinput] = useState('');
 	const [textarea, setTextarea] = useState('default textarea');
@@ -316,7 +318,7 @@ const FormComponent = () => {
 					}}>
 					TabsTest
 				</DBButton>
-				<DBTabs>
+				<DBTabs id={tabsId} name={tabsId}>
 					<DBTabList>
 						<DBTabItem>Test 1</DBTabItem>
 						<DBTabItem>Test 2</DBTabItem>
@@ -327,7 +329,10 @@ const FormComponent = () => {
 					{tabsTest && <DBTabPanel>Tab Panel 3</DBTabPanel>}
 				</DBTabs>
 
-				<DBTabs orientation="vertical">
+				<DBTabs
+					id={tabsVerticalId}
+					name={tabsVerticalId}
+					orientation="vertical">
 					<DBTabList>
 						<DBTabItem icon="x_placeholder">
 							Airplane Button

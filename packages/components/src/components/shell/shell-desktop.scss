@@ -139,7 +139,7 @@
 					> .db-shell-sub-navigation-button {
 						padding-block: variables.$db-spacing-fixed-xs;
 						padding-inline: variables.$db-spacing-fixed-lg;
-						justify-content: end;
+						justify-content: flex-end;
 						margin-block-start: auto;
 
 						@include helpers.divider("top");

@@ -8,7 +8,7 @@ import {
 	DENSITIES,
 	SEMANTICS
 } from '@components';
-import { useState } from 'react';
+import { Fragment, useState } from 'react';
 import {
 	type DefaultSettings,
 	defaultSettingsMapping
@@ -71,9 +71,8 @@ const PrimaryActions = ({
 
 				{Object.entries(defaultSettingsMapping).map(
 					([key, value], index) => (
-						<>
+						<Fragment key={key}>
 							<DBSelect
-								key={key}
 								label={key}
 								variant="floating"
 								value={settings[key]}
@@ -92,7 +91,7 @@ const PrimaryActions = ({
 								))}
 							</DBSelect>
 							{(index === 1 || index === 3) && <DBDivider />}
-						</>
+						</Fragment>
 					)
 				)}
 			</DBDrawer>

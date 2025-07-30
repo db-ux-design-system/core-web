@@ -83,11 +83,12 @@ const DefaultComponent = ({
 
 	const getHref = (variantName: string): string => {
 		if (typeof globalThis !== 'undefined') {
-			const searchParameters = new URLSearchParams(
-				globalThis?.location?.href.split('?')[1]
-			);
-			searchParameters.set('page', variantName.toLowerCase());
-			return `${globalThis?.location?.href.split('?')[0]}?${searchParameters.toString()}`;
+			const urlPaths = globalThis?.location?.href.split('?');
+			if (urlPaths?.length > 1) {
+				const searchParameters = new URLSearchParams(urlPaths[1]);
+				searchParameters.set('page', variantName.toLowerCase());
+				return `${urlPaths[0]}?${searchParameters.toString()}`;
+			}
 		}
 
 		return '';
@@ -152,6 +153,7 @@ const DefaultComponent = ({
 								onClick={(event) => {
 									openVariantInNewWindow(event, variant.name);
 								}}
+								/* TODO: Fix this for nextJS */
 								href={getHref(variant.name)}>
 								{variant.name}
 							</DBLink>

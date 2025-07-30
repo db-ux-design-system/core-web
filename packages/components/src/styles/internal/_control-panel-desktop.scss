@@ -364,7 +364,7 @@
 		grid-area: button;
 		padding-block: variables.$db-spacing-fixed-xs;
 		display: flex;
-		justify-content: end;
+		justify-content: flex-end;
 
 		@include helpers.divider("top");
 	}
