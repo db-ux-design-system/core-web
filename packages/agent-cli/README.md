@@ -41,9 +41,9 @@ npx @db-ux/agent-cli packages/frontend
 
 This is useful in monorepo setups where your DB UX packages are installed in a specific workspace directory.
 
-### What the tool Does
+### What the tool does
 
-1. **Scans your project** for installed `@db-ux` packages
+1. **Scans your projects node_modules** for installed `@db-ux` packages
 2. **Extracts relevant documentation** based on your installed versions
 3. **Creates or updates** `.github/copilot-instructions.md` with component documentation
 4. **Provides AI agents** with context about available components and their usage patterns
