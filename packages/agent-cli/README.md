@@ -54,6 +54,7 @@ We've had the best experience with GitHub Copilot when using the following setti
 
 - Agent mode works best for code generation and may also offer the best developer experience.
 - Regarding the provided models, GPT-4o seemed to strike the best balance between "used tokens" and performance, although "Claude Sonnet 4" is still better. However, you run out of tokens quite quickly with this model.
+- If you're primarily interested in testing this functionality at the moment, we have quite a bit of experience using a prompt that is both equal and non-trivial, but rather complex, such as "Can you create a new page with a dashboard? It should contain selections for KPIs. Each KPI is a card containing information and buttons."
 
 ## Deutsche Bahn brand
 
