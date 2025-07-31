@@ -24,13 +24,6 @@ inputs:
 runs:
   using: "composite"
   steps:
-    # https://docs.github.com/en/apps/creating-github-apps/authenticating-with-a-github-app/making-authenticated-api-requests-with-a-github-app-in-a-github-actions-workflow
-    - name: 🧬 Generate a token
-      id: generate-token
-      uses: actions/create-github-app-token@v2
-      with:
-        app-id: ${{ inputs.auto-merge-app-id }}
-        private-key: ${{ inputs.auto-merge-private-key }}
 
     - name: 🏗️ Create new branch and commit changes
       shell: bash
@@ -60,6 +53,14 @@ runs:
         BASE_BRANCH: ${{ github.head_ref }}
       run: |
         gh pr create --base "$BASE_BRANCH" --head "$NEW_PR_BRANCH" --title "Automated PR: $COMMIT_MESSAGE" --body "This PR was created automatically by a GitHub Action."
+
+    # https://docs.github.com/en/apps/creating-github-apps/authenticating-with-a-github-app/making-authenticated-api-requests-with-a-github-app-in-a-github-actions-workflow
+    - name: 🧬 Generate a token
+      id: generate-token
+      uses: actions/create-github-app-token@v2
+      with:
+        app-id: ${{ inputs.auto-merge-app-id }}
+        private-key: ${{ inputs.auto-merge-private-key }}
 
     - name: 🤖 Squash the PR
       shell: bash
