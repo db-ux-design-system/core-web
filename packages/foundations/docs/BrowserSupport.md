@@ -20,3 +20,13 @@ This may leave some older browser versions behind. If you need to take care of t
 | [`@property` / typed CSS Custom Properties](https://developer.mozilla.org/en-US/docs/Web/CSS/@property) | 85 (25.08.2022)  | 128 (09.07.2024) | 16.4 (27.03.2023) |
 | [`light-dark()`](https://developer.mozilla.org/en-US/docs/Web/CSS/color_value/light-dark)               | 123 (19.03.2024) | 120 (21.11.2023) | 17.5 (13.05.2024) |
 | [`attr()` CSS Values 5 extensions](https://developer.mozilla.org/en-US/docs/Web/CSS/attr)               | 133 (04.02.2025) | tbd              | tbd               |
+
+## Stable in evergreen browsers
+
+These are the features that we use or plan to integrate, which are stable in the Stable channel, including the ESR versions of Evergreen browsers.
+
+| Web Feature                                                          | Google Chrome    | Mozilla Firefox  | Apple Safari    |
+| -------------------------------------------------------------------- | ---------------- | ---------------- | --------------- |
+| [Popover](https://caniuse.com/mdn-api_htmlelement_popover) (planned) | 114 (30.05.2023) | 125 (16.04.2024) | 17 (26.09.2023) |
+
+Popover is loosely depending on Anchor Positioning.
