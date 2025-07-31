@@ -53,8 +53,18 @@ jobs:
         run: |
           npm run codestyle
 
+      - name: 🚦 Check for changes before committing
+        id: check_changes
+        run: |
+          if [[ -z "$(git status --porcelain)" ]]; then
+            echo "No changes to commit. Skipping auto-commit step."
+            echo "changes_detected=false" >> $GITHUB_ENV
+          else
+            echo "Changes detected. Proceeding to auto-commit step."
+            echo "changes_detected=true" >> $GITHUB_ENV
+
       - name: 🚘 Auto commit
-        if: env.stylelint_update == 'true' || env.prettier_update == 'true'
+        if: steps.check_changes.outputs.changes_detected == 'true' && (env.stylelint_update == 'true' || env.prettier_update == 'true')
         uses: ./.github/actions/auto-commit
         with:
           branch-name: "${{ github.head_ref }}-auto"
