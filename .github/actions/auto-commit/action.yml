@@ -24,7 +24,6 @@ inputs:
 runs:
   using: "composite"
   steps:
-
     - name: 🏗️ Create new branch and commit changes
       shell: bash
       env:
