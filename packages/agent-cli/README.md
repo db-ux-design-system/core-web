@@ -13,7 +13,7 @@ We provide a command-line interface (CLI) tool that copies the `@db-ux` document
 
 Before using this CLI tool, make sure you have the appropriate DB UX Design System packages installed in your project. Currently, we've released the documentation for GitHub Copilot with pre-releases within the `next` npmjs tag, that include "-copilot*-*", like e.g. "3.0.2-copilot3-1616965".
 
-#### Installing DB UX Packages
+#### Installing DB UX Design System node packages
 
 For pre-release versions, e.g. for React:
 
@@ -29,7 +29,7 @@ Use this command in your repository:
 npx @db-ux/agent-cli
 ```
 
-The DB UX Design System docs will get appended (or replaced in subsequent runs, e.g. after a DB UX Design System update) within the file `.github/copilot-instructions.md` (if the file doesn't exist in your codebase so far, it gets created).
+The DB UX Design System documentation will be added to (or replaced in subsequent runs, e.g. after a DB UX Design System update) in the file `.github/copilot-instructions.md` (if this file does not yet exist in your codebase, it will be created).
 
 ### Advanced Usage
 
@@ -39,7 +39,7 @@ You can also change the root path where the tool should check for `node_modules`
 npx @db-ux/agent-cli packages/frontend
 ```
 
-This is useful in monorepo setups where your DB UX packages are installed in a specific workspace directory.
+This is useful in monorepo setups where your DB UX packages might be installed in a specific workspace directory.
 
 ### What the tool does
 
@@ -47,6 +47,13 @@ This is useful in monorepo setups where your DB UX packages are installed in a s
 2. **Extracts relevant documentation** based on your installed versions
 3. **Creates or updates** `.github/copilot-instructions.md` with component documentation
 4. **Provides AI agents** with context about available components and their usage patterns
+
+### Best practices
+
+We've had the best experience with GitHub Copilot when using the following settings:
+
+- Agent mode works best for code generation and may also offer the best developer experience.
+- Regarding the provided models, GPT-4o seemed to strike the best balance between "used tokens" and performance, although "Claude Sonnet 4" is still better. However, you run out of tokens quite quickly with this model.
 
 ## Deutsche Bahn brand
 
