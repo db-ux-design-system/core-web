@@ -24,7 +24,20 @@ inputs:
 runs:
   using: "composite"
   steps:
+    - name: 🚦 Check for changes before committing
+      id: check_changes
+      shell: bash
+      run: |
+        if [[ -z "$(git status --porcelain)" ]]; then
+          echo "No changes to commit. Skipping auto-commit step."
+          echo "changes_detected=false" >> $GITHUB_ENV
+        else
+          echo "Changes detected. Proceeding with creating a new branch and commit changes."
+          echo "changes_detected=true" >> $GITHUB_ENV
+        fi
+
     - name: 🏗️ Create new branch and commit changes
+      if: env.changes_detected == 'true'
       shell: bash
       env:
         GH_TOKEN: ${{ inputs.gh-token }}
@@ -44,6 +57,7 @@ runs:
         git push --force origin "$NEW_PR_BRANCH"
 
     - name: 🪗 Create Pull Request
+      if: env.changes_detected == 'true'
       shell: bash
       env:
         GH_TOKEN: ${{ inputs.gh-token }}
@@ -62,6 +76,7 @@ runs:
         private-key: ${{ inputs.auto-merge-private-key }}
 
     - name: 🤖 Squash the PR
+      if: env.changes_detected == 'true'
       shell: bash
       run: gh pr merge --squash "$NEW_PR_BRANCH"
       env:
