@@ -48,7 +48,7 @@
   "devDependencies": {
     "@csstools/normalize.css": "12.1.1",
     "@db-ux/icon-font-tools": "0.3.4",
-    "@playwright/test": "1.54.1",
+    "@playwright/test": "1.54.2",
     "cpr": "3.0.1",
     "cssnano": "7.1.0",
     "dotenv": "17.2.1",
