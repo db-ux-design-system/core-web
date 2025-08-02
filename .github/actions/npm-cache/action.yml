@@ -13,7 +13,6 @@ inputs:
   nodeVersion:
     description: "Node version"
     required: false
-    default: "24"
 runs:
   using: "composite"
   steps:
@@ -23,6 +22,7 @@ runs:
       uses: actions/setup-node@v4
       with:
         node-version: ${{ inputs.nodeVersion }}
+        node-version-file: ".nvmrc"
 
     - name: 🖼️ Display node and npm version
       shell: bash
