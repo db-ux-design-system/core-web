@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "build": "ng build",
-    "dev": "pnpm --parallel run '/^dev:[^:]*$/'",
+    "dev": "pnpm --parallel run '/^dev:[^:]+$/'",
     "dev:angular": "pnpm run start --open",
     "dev:stencil": "pnpm --filter=@db-ux/wc-core-components run start",
     "ng": "ng",
