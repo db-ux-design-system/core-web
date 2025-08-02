@@ -20,7 +20,7 @@ check_pnpm_files() {
 # Detect the lock file to determine the package manager
 if [ -f "pnpm-lock.yaml" ]; then
   CHECK_FUNCTIONS=(
-	"check_pnpm_files"
+  "check_pnpm_files"
 )
 elif [ -f "package-lock.json" ]; then
   CHECK_FUNCTIONS=(
