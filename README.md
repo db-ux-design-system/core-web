@@ -34,7 +34,7 @@ designers, and content authors build, maintain, and scale best-of-class digital 
 
 ## How to use
 
-Install your preferred package via npm or yarn e.g. `npm i @db-ux/react-core-components`.
+Install your preferred package via npm, pnpm or yarn e.g. `npm i @db-ux/react-core-components`.
 
 Afterwards, you need to include the specific CSS or SCSS files to apply the styles of DB UX Design System (Version 3), as described in the "Styling Dependencies" section of each package's `README`.
 We even provide some [examples of integrations](https://github.com/db-ux-design-system/examples).
