@@ -45,7 +45,7 @@ jobs:
       - name: 🏃 Run Stylelint to format the code
         if: env.stylelint_update == 'true'
         run: |
-          pnpm run build --filter=@db-ux/core-stylelint
+          pnpm --filter=@db-ux/core-stylelint run build
           pnpm run lint:stylelint --fix
 
       - name: 🏃 Run Prettier to format the code

@@ -2,7 +2,7 @@
 
 This directory provides `docker-compose.yml` to test or regenerate screenshots.
 
-- run `pnpm run build && npm run build --filter=react-showcase` from your root directory
+- run `pnpm run build && pnpm --filter=react-showcase run build` from your root directory
 
 - run `docker-compose --file ./e2e/docker-compose.yml build --build-arg version=$(pnpm pkg get devDependencies.@playwright/test)` (you may need to run this again after playwright version changed in `package.json`)
 

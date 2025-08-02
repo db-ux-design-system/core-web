@@ -81,7 +81,7 @@ jobs:
         env:
           NEXT_PUBLIC_BASE_PATH: ${{ inputs.path }}
         run: |
-          pnpm run test:e2e --filter=${{ inputs.showcase }} --shard=${{ matrix.shardIndex }}/${{ matrix.shardTotal }}
+          pnpm --filter=${{ inputs.showcase }} run test:e2e --shard=${{ matrix.shardIndex }}/${{ matrix.shardTotal }}
 
       # We check if aria-snapshots were changed
       - name: 👩‍🔬 Test aria-snapshots with Playwright 🎭
@@ -89,7 +89,7 @@ jobs:
         shell: bash
         if: github.event.pull_request != null
         run: |
-          pnpm run test:aria-snapshots --filter=${{ inputs.showcase }} --shard=${{ matrix.shardIndex }}/${{ matrix.shardTotal }} --update-snapshots
+          pnpm --filter=${{ inputs.showcase }} run test:aria-snapshots --shard=${{ matrix.shardIndex }}/${{ matrix.shardTotal }} --update-snapshots
           OUTPUT=$(npx --no tsx scripts/github/snapshot-changes/check-aria.ts)
           echo "aria-snapshots-changed=$OUTPUT" >> $GITHUB_OUTPUT
           OUTPUT=$(npx --no tsx scripts/github/snapshot-changes/check-main-aria.ts)
@@ -99,14 +99,14 @@ jobs:
         shell: bash
         if: github.event.pull_request != null
         run: |
-          pnpm run test:axe-core --filter=${{ inputs.showcase }} --shard=${{ matrix.shardIndex }}/${{ matrix.shardTotal }}
+          pnpm --filter=${{ inputs.showcase }} run test:axe-core --shard=${{ matrix.shardIndex }}/${{ matrix.shardTotal }}
 
       - name: 👩‍🔬 Test visual-snapshots with Playwright 🎭
         id: visual-snapshots
         shell: bash
         if: github.event.pull_request != null
         run: |
-          pnpm run test:visual-snapshots --filter=${{ inputs.showcase }} --shard=${{ matrix.shardIndex }}/${{ matrix.shardTotal }} --update-snapshots
+          pnpm --filter=${{ inputs.showcase }} run test:visual-snapshots --shard=${{ matrix.shardIndex }}/${{ matrix.shardTotal }} --update-snapshots
           OUTPUT=$(npx --no tsx scripts/github/snapshot-changes/check-visual.ts)
           echo "visual-snapshots-changed=$OUTPUT" >> $GITHUB_OUTPUT
 
@@ -116,7 +116,7 @@ jobs:
           github.event.pull_request != null &&
           steps.aria-snapshots.outputs.aria-snapshots-changed-to-main=='true'
         run: |
-          pnpm run test:a11y-checker --filter=${{ inputs.showcase }} --shard=${{ matrix.shardIndex }}/${{ matrix.shardTotal }}
+          pnpm --filter=${{ inputs.showcase }} run test:a11y-checker --shard=${{ matrix.shardIndex }}/${{ matrix.shardTotal }}
 
       - name: 🔣 Print GitHub Report
         if: failure()
