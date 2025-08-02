@@ -7,7 +7,7 @@
     "build": "npm-run-all compile build:*",
     "build:app": "next build",
     "build:copy": "cpr out ../../build-showcases/patternhub -o",
-    "compile": "pnpm run '/^compile:[^:]+$/'",
+    "compile": "pnpm run '/^compile:[^:]*$/'",
     "compile:01_jsx": "node scripts/generate-example-jsx.js",
     "compile:02_copy-docs": "cpr ../../docs ./public/docs -o",
     "compile:03_components": "node scripts/esbuild-generate.mjs",

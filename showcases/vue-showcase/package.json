@@ -4,7 +4,7 @@
   "type": "module",
   "private": true,
   "scripts": {
-    "build": "pnpm run '/^build:[^:]+$/'",
+    "build": "pnpm run '/^build:[^:]*$/'",
     "build:01_vite": "vite build",
     "dev": "vite --open",
     "preview": "pnpm exec http-server ../../build-showcases",
