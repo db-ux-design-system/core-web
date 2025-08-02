@@ -60,7 +60,7 @@ jobs:
         run: |
           mkdir -p ./build-showcases${{ inputs.path }}
           cp -RT ./build-showcases/patternhub ./build-showcases${{ inputs.path }}
-          npm run test:e2e --workspace=patternhub
+          pnpm run test:e2e --filter=patternhub
 
       - name: 🔣 Print GitHub Report
         if: failure()

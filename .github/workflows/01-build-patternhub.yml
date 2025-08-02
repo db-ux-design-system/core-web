@@ -91,7 +91,7 @@ jobs:
           NEXT_PUBLIC_BASE_PATH: ${{ steps.base-path.outputs.result }}
         run: |
           npx --no tsx scripts/md-resolve-svg.ts
-          npm run build --workspace=patternhub
+          pnpm run build --filter=patternhub
           echo "path=${NEXT_PUBLIC_BASE_PATH}" >> $GITHUB_OUTPUT
 
       - name: ⏫ Upload Patternhub

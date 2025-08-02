@@ -16,9 +16,9 @@ jobs:
 
       - name: ⚡ Run Lint
         run: |
-          npm run postinstall --workspace=nuxt-showcase
-          npm run build --workspace=@db-ux/core-stylelint
-          npm run lint
+          pnpm run postinstall --filter=nuxt-showcase
+          pnpm run build --filter=@db-ux/core-stylelint
+          pnpm run lint
 
       - name: 💀 Killing me softly
         uses: ./.github/actions/cancel-workflow

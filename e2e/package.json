@@ -11,17 +11,17 @@
   ],
   "scripts": {
     "regenerate": "pnpm --parallel run '/^regenerate:[^:]*$/'",
-    "regenerate:components": "npm run regenerate:screenshots --workspace=@db-ux/react-core-components",
-    "regenerate:foundations": "npm run regenerate:screenshots --workspace=@db-ux/core-foundations",
-    "regenerate:showcases": "npm run regenerate:screenshots --workspace=react-showcase",
-    "start": "npx http-server build-showcases",
+    "regenerate:components": "pnpm run regenerate:screenshots --filter=@db-ux/react-core-components",
+    "regenerate:foundations": "pnpm run regenerate:screenshots --filter=@db-ux/core-foundations",
+    "regenerate:showcases": "pnpm run regenerate:screenshots --filter=react-showcase",
+    "start": "pnpm exec http-server build-showcases",
     "test": "pnpm --parallel run '/^test:[^:]*$/'",
-    "test:angular-showcase": "npm run test:e2e --workspace=angular-showcase",
-    "test:foundations": "npm run test:e2e --workspace=@db-ux/core-foundations",
-    "test:react": "npm run test:components --workspace=@db-ux/react-core-components",
-    "test:react-showcase": "npm run test:e2e --workspace=react-showcase",
-    "test:vue": "npm run test:components --workspace=@db-ux/v-core-components",
-    "test:vue-showcase": "npm run test:e2e --workspace=vue-showcase"
+    "test:angular-showcase": "pnpm run test:e2e --filter=angular-showcase",
+    "test:foundations": "pnpm run test:e2e --filter=@db-ux/core-foundations",
+    "test:react": "pnpm run test:components --filter=@db-ux/react-core-components",
+    "test:react-showcase": "pnpm run test:e2e --filter=react-showcase",
+    "test:vue": "pnpm run test:components --filter=@db-ux/v-core-components",
+    "test:vue-showcase": "pnpm run test:e2e --filter=vue-showcase"
   },
   "devDependencies": {
     "@playwright/test": "1.54.2",
