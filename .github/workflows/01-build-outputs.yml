@@ -46,9 +46,7 @@ jobs:
           path: output
 
       - name: 📥 Install output dependencies
-        uses: bahmutov/npm-install@v1
-        with:
-          install-command: pnpm install
+        run: pnpm install
 
       - name: 🔨 Build outputs
         run: pnpm run build-outputs
