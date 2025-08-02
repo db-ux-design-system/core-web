@@ -59,7 +59,7 @@ for (const PACKAGE of packages) {
 	}
 
 	console.log('📦 Create npm package');
-	execSync(`pnpm pack --quiet --filter=@db-ux/${PACKAGE}`);
+	execSync(`pnpm --filter=@db-ux/${PACKAGE} pack --quiet`);
 }
 
 let TAG = 'latest';

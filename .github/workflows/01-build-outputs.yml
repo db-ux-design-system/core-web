@@ -48,10 +48,10 @@ jobs:
       - name: 📥 Install output dependencies
         uses: bahmutov/npm-install@v1
         with:
-          install-command: npm i
+          install-command: pnpm install
 
       - name: 🔨 Build outputs
-        run: npm run build-outputs
+        run: pnpm run build-outputs
 
       - name: ⏫ Upload outputs
         uses: actions/upload-artifact@v4

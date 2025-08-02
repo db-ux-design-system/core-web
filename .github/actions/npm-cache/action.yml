@@ -1,6 +1,6 @@
 ---
-name: "NPM Cache Action"
-description: "Initialize NPM Cache"
+name: "PNPM Cache Action"
+description: "Initialize PNPM Cache"
 inputs:
   nodeModulesPath:
     description: "Path for node_modules"
@@ -31,7 +31,7 @@ runs:
         node-version-file: ".nvmrc"
         cache: "pnpm"
 
-    - name: 🖼️ Display node and npm version
+    - name: 🖼️ Display node and pnpm version
       shell: bash
       run: |
         node --version
@@ -56,4 +56,4 @@ runs:
       shell: bash
       if: steps.cache.outputs.cache-hit != 'true'
       run: |
-        pnpm install --frozen-lockfile
+        pnpm install
