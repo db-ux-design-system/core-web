@@ -26,24 +26,24 @@ pnpm install
 
 in your CI pipelines **without `--frozen-lockfile`**, and here's why:
 
-#### 💡 Why `pnpm install` is enough (and preferred):
+#### 💡 Why `pnpm install` is enough (and preferred)
 
 1. **Smart CI Detection**: `pnpm` checks for the `CI=true` environment variable (commonly set by CI platforms like GitHub Actions, GitLab CI, etc.).
 2. **Lockfile Integrity Enforcement**: In CI mode, `pnpm install` **automatically fails** if:
+    - The lockfile is out of sync with `package.json`.
+    - Integrity hashes don’t match.
 
-   * The lockfile is out of sync with `package.json`.
-   * Integrity hashes don’t match.
 3. **Better Performance**: `pnpm` can skip non-essential postinstall scripts and other dev-friendly features when running in CI.
 4. **Simpler Caching**: Some CI/CD systems (e.g., GitHub Actions) have better cache hits when using `pnpm install` alone.
 
 ---
 
-### 🧪 So when *would* you use `--frozen-lockfile`?
+### 🧪 So when _would_ you use `--frozen-lockfile`?
 
 Use `--frozen-lockfile` **only** when:
 
-* You want to strictly enforce "no changes allowed" behavior *outside* CI (e.g., local testing before commit).
-* You're in a non-standard CI environment where `CI=true` isn't automatically set.
+- You want to strictly enforce "no changes allowed" behavior _outside_ CI (e.g., local testing before commit).
+- You're in a non-standard CI environment where `CI=true` isn't automatically set.
 
 ---
 
