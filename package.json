@@ -132,13 +132,20 @@
     "xo": "1.2.1",
     "zone.js": "0.15.1"
   },
-  "overrides": {
-    "brace-expansion": "2.0.2",
-    "cross-spawn": "7.0.6",
-    "vite": "6.3.5"
-  },
   "validate-branch-name": {
     "pattern": "((dbux-3)|(dependabot-)|^((test|feat|fix|chore|docs|refactor|style|ci|perf|alert|[0-9]+)\\-[a-zA-Z0-9\\-]+)$)",
     "errorMsg": "There is something wrong with your branch name. You should rename your branch to a valid name and try again. See the Pattern below."
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "@db-ux/db-theme-fonts",
+      "@db-ux/db-theme-icons",
+      "@db-ux/db-theme-illustrative-icons"
+    ],
+    "overrides": {
+      "brace-expansion": "2.0.2",
+      "cross-spawn": "7.0.6",
+      "vite": "6.3.5"
+    }
   }
 }
