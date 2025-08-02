@@ -90,9 +90,9 @@ jobs:
         if: github.event.pull_request != null
         run: |
           pnpm --filter=${{ inputs.showcase }} run test:aria-snapshots --shard=${{ matrix.shardIndex }}/${{ matrix.shardTotal }} --update-snapshots
-          OUTPUT=$(npx --no tsx scripts/github/snapshot-changes/check-aria.ts)
+          OUTPUT=$(pnpm exec tsx scripts/github/snapshot-changes/check-aria.ts)
           echo "aria-snapshots-changed=$OUTPUT" >> $GITHUB_OUTPUT
-          OUTPUT=$(npx --no tsx scripts/github/snapshot-changes/check-main-aria.ts)
+          OUTPUT=$(pnpm exec tsx scripts/github/snapshot-changes/check-main-aria.ts)
           echo "aria-snapshots-changed-to-main=$OUTPUT" >> $GITHUB_OUTPUT
 
       - name: 👩‍🔬 Test axe-core with Playwright 🎭
@@ -107,7 +107,7 @@ jobs:
         if: github.event.pull_request != null
         run: |
           pnpm --filter=${{ inputs.showcase }} run test:visual-snapshots --shard=${{ matrix.shardIndex }}/${{ matrix.shardTotal }} --update-snapshots
-          OUTPUT=$(npx --no tsx scripts/github/snapshot-changes/check-visual.ts)
+          OUTPUT=$(pnpm exec tsx scripts/github/snapshot-changes/check-visual.ts)
           echo "visual-snapshots-changed=$OUTPUT" >> $GITHUB_OUTPUT
 
       - name: 👩‍🔬 Test a11y-checker with Playwright 🎭
