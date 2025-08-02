@@ -21,6 +21,7 @@ runs:
       # https://github.com/actions/setup-node
       uses: actions/setup-node@v4
       with:
+        # If node-version and node-version-file are both provided the action will use version from node-version.
         node-version: ${{ inputs.nodeVersion }}
         node-version-file: ".nvmrc"
 
