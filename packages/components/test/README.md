@@ -5,7 +5,7 @@
 3. Run the playwright test with your IDE or via [console](https://playwright.dev/docs/running-tests) or with the ui:
 
 ```shell
-npx playwright test --config output/react/playwright.config.ts --ui
+pnpm exec playwright test --config output/react/playwright.config.ts --ui
 ```
 
 ## React vs. Vue

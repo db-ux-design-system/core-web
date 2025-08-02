@@ -55,7 +55,7 @@ pnpm install
 
 cd output/${frameworkFolder}  (replace ${frameworkFolder} with the appropriate folder name)
 
-npx playwright test --update-snapshots
+pnpm exec playwright test --update-snapshots
 ```
 
 You can also use `docker-compose` to test or regenerate screenshots.

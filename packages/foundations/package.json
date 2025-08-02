@@ -41,9 +41,9 @@
     "prebuild": "pnpm run '/^copy-prepare:[^:]*$/'",
     "predev": "pnpm run '/^copy-prepare:[^:]*$/'",
     "prestart": "pnpm run '/^copy-prepare:[^:]*$/'",
-    "regenerate:screenshots": "npx playwright test --config ./test/playwright.config.js --update-snapshots",
+    "regenerate:screenshots": "pnpm exec playwright test --config ./test/playwright.config.js --update-snapshots",
     "start": "nodemon --config nodemon.json",
-    "test:e2e": "npx playwright test --config=./test/playwright.config.js"
+    "test:e2e": "pnpm exec playwright test --config=./test/playwright.config.js"
   },
   "devDependencies": {
     "@csstools/normalize.css": "12.1.1",

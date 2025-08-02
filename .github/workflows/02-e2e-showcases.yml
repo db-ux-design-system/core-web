@@ -122,7 +122,7 @@ jobs:
         if: failure()
         shell: bash
         run: |
-          npx playwright merge-reports --reporter github ./blob-report
+          pnpm exec playwright merge-reports --reporter github ./blob-report
 
       - name: 🆙 Upload test results
         if: failure()
