@@ -3,8 +3,8 @@
 ## Install
 
 ```shell
-npx playwright install
-npx @guidepup/setup
+pnpm exec playwright install
+pnpm exec @guidepup/setup
 ```
 
 If errors occur after the automatic setup of Guidepup (e.g. no connection to Voiceover), the setup must be executed manually. See [instructions](https://www.guidepup.dev/docs/guides/manual-voiceover-setup).
@@ -16,13 +16,13 @@ Start a test with these commands (ensure a build or start a watcher previous to 
 ### MacOS
 
 ```shell
-npm run test-sr:macos --workspace=react-showcase -- --ui
+pnpm --filter=react-showcase run test-sr:macos --ui
 ```
 
 ### Windows
 
 ```shell
-npm run test-sr:windows --workspace=react-showcase -- --ui
+pnpm --filter=react-showcase run test-sr:windows --ui
 ```
 
 ## Gotchas

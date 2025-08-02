@@ -2,5 +2,5 @@
 	"ignore": ["scss/_normalize.scss"],
 	"ext": "json,scss,js",
 	"watch": ["scss", "scripts"],
-	"exec": "npm run build"
+	"exec": "pnpm run build"
 }

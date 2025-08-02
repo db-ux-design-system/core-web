@@ -56,14 +56,14 @@ jobs:
 
       - name: 👩‍🔬 Test with Playwright 🎭
         working-directory: ./output/${{ steps.workingDirectory.outputs.dir }}
-        run: npx playwright test --shard=${{ matrix.shardIndex }}/${{ matrix.shardTotal }}
+        run: pnpm exec playwright test --shard=${{ matrix.shardIndex }}/${{ matrix.shardTotal }}
 
       - name: 🔣 Print GitHub Report
         if: failure()
         working-directory: ./output/${{ steps.workingDirectory.outputs.dir }}
         shell: bash
         run: |
-          npx playwright merge-reports --reporter github ./blob-report
+          pnpm exec playwright merge-reports --reporter github ./blob-report
 
       - name: 🆙 Upload test results
         if: failure()

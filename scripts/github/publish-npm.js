@@ -39,7 +39,7 @@ for (const PACKAGE of packages) {
 
 	console.log('🆚 Update Version');
 	execSync(
-		`npm version --no-git-tag-version ${VALID_SEMVER_VERSION} --workspace=@db-ux/${PACKAGE}`
+		`pnpm --filter=@db-ux/${PACKAGE} version --no-git-tag-version ${VALID_SEMVER_VERSION}`
 	);
 
 	if (
@@ -49,17 +49,17 @@ for (const PACKAGE of packages) {
 	) {
 		console.log('🕵️‍ Set foundations dependency');
 		execSync(
-			`npm pkg set dependencies.@db-ux/core-foundations=${VALID_SEMVER_VERSION} --workspace=@db-ux/${PACKAGE}`
+			`pnpm --filter=@db-ux/${PACKAGE} pkg set dependencies.@db-ux/core-foundations=${VALID_SEMVER_VERSION}`
 		);
 		if (PACKAGE !== 'core-components') {
 			execSync(
-				`npm pkg set dependencies.@db-ux/core-components=${VALID_SEMVER_VERSION} --workspace=@db-ux/${PACKAGE}`
+				`pnpm --filter=@db-ux/${PACKAGE} pkg set dependencies.@db-ux/core-components=${VALID_SEMVER_VERSION}`
 			);
 		}
 	}
 
 	console.log('📦 Create npm package');
-	execSync(`npm pack --quiet --workspace=@db-ux/${PACKAGE}`);
+	execSync(`pnpm --filter=@db-ux/${PACKAGE} pack --quiet`);
 }
 
 let TAG = 'latest';
@@ -74,8 +74,8 @@ for (const REGISTRY of registries) {
 	console.log(`🔒 Authenticate ${REGISTRY} NPM Registry`);
 
 	if (REGISTRY === 'NPM') {
-		execSync('npm config set @db-ux:registry https://registry.npmjs.org/');
-		execSync(`npm set //registry.npmjs.org/:_authToken ${NPM_TOKEN}`);
+		execSync('pnpm config set @db-ux:registry https://registry.npmjs.org/');
+		execSync(`pnpm set //registry.npmjs.org/:_authToken ${NPM_TOKEN}`);
 		console.log('🔑 Authenticated with NPM');
 	} else {
 		console.error(`Could not authenticate with ${REGISTRY}`);
@@ -85,7 +85,7 @@ for (const REGISTRY of registries) {
 	for (const PACKAGE of packages) {
 		console.log(`⤴ Publish ${PACKAGE} with tag ${TAG} to ${REGISTRY}`);
 		execSync(
-			`npm publish --tag ${TAG} db-ux-${PACKAGE}-${VALID_SEMVER_VERSION}.tgz --provenance`
+			`pnpm publish --tag ${TAG} db-ux-${PACKAGE}-${VALID_SEMVER_VERSION}.tgz --provenance`
 		);
 	}
 }
