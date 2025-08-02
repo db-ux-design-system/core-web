@@ -22,9 +22,8 @@ jobs:
   codeql:
     uses: ./.github/workflows/99-codeql-analysis.yml
 
-  # TODO: use again after https://github.com/actions/dependency-review-action/pull/918 got merged
-  # dependency-review:
-  #   uses: ./.github/workflows/99-dependency-review.yml
+  dependency-review:
+    uses: ./.github/workflows/99-dependency-review.yml
 
   labeler:
     if: github.event.pull_request.head.repo.owner.login == 'db-ux-design-system'
