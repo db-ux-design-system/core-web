@@ -57,7 +57,7 @@ for check_function in "${CHECK_FUNCTIONS[@]}"; do
     echo "Detected changes in $DESCRIPTION"
 
     ## Run the corresponding command
-    eval "$COMMAND"
+    $COMMAND
 
     if [ $? -ne 0 ]; then
       echo "Command failed: $COMMAND. Aborting push."
