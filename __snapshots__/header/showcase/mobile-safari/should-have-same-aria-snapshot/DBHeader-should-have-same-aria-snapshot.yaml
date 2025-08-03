@@ -1,4 +1,5 @@
 - main:
+  - text: test
   - heading "DBHeader" [level=1]
   - link "Density"
   - text: DBHeader
