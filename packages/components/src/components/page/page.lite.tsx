@@ -69,7 +69,7 @@ export default function DBPage(props: DBPageProps) {
 			data-fonts-loaded={getBooleanAsString(state.fontsLoaded)}>
 			<Slot name="header" />
 			<main class={cls('db-main', props.mainClass)}>
-				{props.children}
+				test{props.children}
 			</main>
 			<Slot name="footer" />
 		</div>
