@@ -1,5 +1,4 @@
 - main:
-  - text: test
   - heading "DBDrawer" [level=1]
   - link "Density"
   - 'button "Open: Functional"'
