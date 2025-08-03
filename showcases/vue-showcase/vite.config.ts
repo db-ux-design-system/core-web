@@ -8,5 +8,8 @@ export default defineConfig({
 	build: {
 		outDir: '../../build-showcases/vue-showcase',
 		emptyOutDir: true
+	},
+	css: {
+		devSourcemap: true // Enables source maps in dev mode for CSS
 	}
 });
