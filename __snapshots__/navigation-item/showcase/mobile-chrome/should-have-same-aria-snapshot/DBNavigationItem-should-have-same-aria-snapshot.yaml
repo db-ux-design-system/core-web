@@ -1,5 +1,4 @@
 - main:
-  - text: test
   - heading "DBNavigationItem" [level=1]
   - link "Density"
   - list:

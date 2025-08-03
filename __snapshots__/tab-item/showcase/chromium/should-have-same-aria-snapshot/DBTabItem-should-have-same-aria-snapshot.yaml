@@ -1,5 +1,4 @@
 - main:
-  - text: test
   - heading "DBTabItem" [level=1]
   - link "Density"
   - tablist:

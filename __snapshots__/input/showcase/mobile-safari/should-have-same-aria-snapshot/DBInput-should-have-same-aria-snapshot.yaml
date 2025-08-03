@@ -1,5 +1,4 @@
 - main:
-  - text: test
   - heading "DBInput" [level=1]
   - link "Density"
   - text: Label

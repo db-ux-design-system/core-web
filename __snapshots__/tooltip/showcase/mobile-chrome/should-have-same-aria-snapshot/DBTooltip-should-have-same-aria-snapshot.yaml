@@ -1,5 +1,4 @@
 - main:
-  - text: test
   - heading "DBTooltip" [level=1]
   - link "Density"
   - button "Functional"
