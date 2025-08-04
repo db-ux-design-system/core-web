@@ -15,7 +15,7 @@ This may leave some older browser versions behind. If you need to take care of t
 | [`hidden="until-found"`-HTML-attribute (planned)](https://caniuse.com/mdn-html_global_attributes_hidden_until-found)                    | 102 (24.05.2022) | 139 (27.05.2025) | tbd                                                                                                                  |
 | [Anchor Positioning](https://caniuse.com/css-anchor-positioning) (planned)                                                              | 125 (14.05.2024) | tbd              | ["this fall"](https://webkit.org/blog/16993/news-from-wwdc25-web-technology-coming-this-fall-in-safari-26-beta/#css) |
 | [CSS Custom Functions](https://www.bram.us/2025/02/09/css-custom-functions-teaser/) (planned)                                           | 139 (30.07.2025) | tbd              | tbd                                                                                                                  |
-| [Invoker Commands](https://caniuse.com/mdn-html_elements_button_commandfor) (planned)                                           | 135 (01.04.2025) | Nightly              | Technology Preview (211)                                                                                                                  |
+| [Invoker Commands](https://caniuse.com/mdn-html_elements_button_commandfor) (planned)                                                   | 135 (01.04.2025) | Nightly          | Technology Preview (211)                                                                                             |
 
 ## Without graceful degradation
 
