@@ -11,7 +11,7 @@ const defaultScreenReaderConfig: PlaywrightTestConfig = {
 	snapshotDir: '../screen-reader/__snapshots__',
 	timeout: 3 * 60 * 1000,
 	webServer: {
-		command: `npm run preview`,
+		command: `pnpm run preview`,
 		port: 8080,
 		reuseExistingServer: !process.env.CI
 	}

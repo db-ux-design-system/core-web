@@ -1,6 +1,6 @@
 services:
   playwright:
-    command: "npm run regenerate:showcases"
+    command: "pnpm run regenerate:showcases"
     extends:
       file: docker-compose.yml
       service: playwright

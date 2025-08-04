@@ -5,7 +5,7 @@
   "scripts": {
     "build": "ng build && cpr ./dist/angular-ssr-showcase/ ../../build-showcases/angular-ssr-showcase/ -d",
     "build:debug": "ng build --optimization=false",
-    "dev": "npm run start -- --open",
+    "dev": "pnpm run start --open",
     "ng": "ng",
     "serve:ssr:angular-ssr-showcase": "node dist/angular-ssr-showcase/server/server.mjs",
     "start": "ng serve --serve-path angular-ssr-showcase --port 4401",

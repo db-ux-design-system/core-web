@@ -38,25 +38,25 @@
     "styleguide"
   ],
   "scripts": {
-    "build": "pnpm run build --filter='./packages/scripts'",
-    "build-outputs": "pnpm run build-outputs --filter='./packages/scripts'",
-    "build-showcases": "pnpm run build-showcases --filter='./packages/scripts'",
+    "build": "pnpm --filter='./scripts' run build",
+    "build-outputs": "pnpm --filter='./scripts' run build-outputs",
+    "build-showcases": "pnpm --filter='./scripts' run build-showcases",
     "clean": "git clean -dfx --exclude=.env",
     "codestyle": "prettier . --write",
     "commit:updated-snapshots": "git diff --name-only --diff-filter=M | xargs git add && git commit --message 'test: updated snapshots'",
-    "dev": "pnpm run dev --filter='./packages/scripts'",
-    "generate:component": "pnpm run generate:component --filter=@db-ux/core-components",
+    "dev": "pnpm --filter='./scripts' run dev",
+    "generate:component": "pnpm --filter=@db-ux/core-components run generate:component",
     "lint": "pnpm --parallel run '/^lint:[^:]*$/'",
     "lint:jscpd": "jscpd . --exitCode 1 --config .config/.jscpd.json",
     "lint:markdownlint": "markdownlint --config .config/.markdown-lint.yml **/*.md",
     "lint:stylelint": "stylelint **/*.{css,scss}",
     "lint:xo": "xo",
     "prepare": "husky",
-    "regenerate:screenshots": "pnpm run build && pnpm run build --filter=react-showcase && docker-compose --file ./e2e/docker-compose.regenerate.yml up",
+    "regenerate:screenshots": "pnpm run build && pnpm --filter=react-showcase run build && docker-compose --file ./e2e/docker-compose.regenerate.yml up",
     "regenerate:screenshots:rebuild": "pnpm run rm:builds && node scripts/rebuild-e2e.js",
-    "rm:builds": "pnpm run rm:builds --filter='./packages/scripts'",
-    "start": "pnpm run start --filter=patternhub",
-    "test": "pnpm run test --filter='./packages/scripts'",
+    "rm:builds": "pnpm --filter='./scripts' run rm:builds",
+    "start": "pnpm --filter=patternhub run start",
+    "test": "pnpm --filter='./scripts' run test",
     "test:react-core-components": "playwright test --config output/react/playwright.config.ts --ui",
     "test:vue-components": "playwright test --config output/vue/playwright.config.ts --ui",
     "update:dependency:playwright": "node scripts/github/update-playwright.js"
@@ -132,10 +132,6 @@
     "xo": "1.2.1",
     "zone.js": "0.15.1"
   },
-  "validate-branch-name": {
-    "pattern": "((dbux-3)|(dependabot-)|^((test|feat|fix|chore|docs|refactor|style|ci|perf|alert|[0-9]+)\\-[a-zA-Z0-9\\-]+)$)",
-    "errorMsg": "There is something wrong with your branch name. You should rename your branch to a valid name and try again. See the Pattern below."
-  },
   "pnpm": {
     "onlyBuiltDependencies": [
       "@db-ux/db-theme-fonts",
@@ -147,5 +143,9 @@
       "cross-spawn": "7.0.6",
       "vite": "6.3.5"
     }
+  },
+  "validate-branch-name": {
+    "pattern": "((dbux-3)|(dependabot-)|^((test|feat|fix|chore|docs|refactor|style|ci|perf|alert|[0-9]+)\\-[a-zA-Z0-9\\-]+)$)",
+    "errorMsg": "There is something wrong with your branch name. You should rename your branch to a valid name and try again. See the Pattern below."
   }
 }

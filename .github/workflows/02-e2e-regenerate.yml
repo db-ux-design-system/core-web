@@ -70,16 +70,16 @@ jobs:
           NEXT_PUBLIC_BASE_PATH: ${{ inputs.path }}
         run: |
           if [[ $TYPE == "components" ]]; then
-            pnpm run regenerate:screenshots --filter=@db-ux/react-core-components
+            pnpm --filter=@db-ux/react-core-components run regenerate:screenshots
           elif [[ $TYPE == "foundations" ]]; then
-            pnpm run regenerate:screenshots --filter=@db-ux/core-foundations
+            pnpm --filter=@db-ux/core-foundations run regenerate:screenshots
           elif [[ $TYPE == "patternhub" ]]; then
             mkdir --parents ./build-showcases${{ inputs.path }}
             cp --recursive --no-target-directory ./build-showcases/${{ inputs.type }} ./build-showcases${{ inputs.path }}
-            pnpm run regenerate:screenshots --filter=patternhub
+            pnpm --filter=patternhub run regenerate:screenshots
           else
-            pnpm run regenerate:visual-snapshots --filter=react-showcase
-            pnpm run regenerate:aria-snapshots --filter=react-showcase
+            pnpm --filter=react-showcase run regenerate:visual-snapshots
+            pnpm --filter=react-showcase run regenerate:aria-snapshots
           fi
 
       - name: 🆙 Upload components

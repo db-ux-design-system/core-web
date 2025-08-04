@@ -1,7 +1,7 @@
 import { execSync } from 'node:child_process';
 import { describe, expect, test } from 'vitest';
 
-const command = 'npx --no tsx github/get-release.ts';
+const command = 'pnpm exec tsx github/get-release.ts';
 
 describe('build-gh-page', () => {
 	process.env.GITHUB_REF = 'refs/tags/v1.2.3';
@@ -32,7 +32,7 @@ describe('build-gh-page', () => {
 		}
 
 		expect(result.toString().trim()).toEqual(
-			"Command failed: npx --no tsx github/get-release.ts\nYour tag has to start with 'v'"
+			"Command failed: pnpm exec tsx github/get-release.ts\nYour tag has to start with 'v'"
 		);
 	});
 });

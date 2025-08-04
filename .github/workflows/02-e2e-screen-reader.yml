@@ -52,7 +52,7 @@ jobs:
         env:
           showcase: react-showcase
         run: |
-          pnpm run test-sr:${{ env.OS }} --filter=react-showcase --shard=${{ matrix.shardIndex }}/${{ matrix.shardTotal }}
+          pnpm --filter=react-showcase run test-sr:${{ env.OS }} --shard=${{ matrix.shardIndex }}/${{ matrix.shardTotal }}
 
       - name: 🆙 Upload test results
         if: failure()

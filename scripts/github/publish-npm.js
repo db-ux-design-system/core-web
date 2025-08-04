@@ -39,7 +39,7 @@ for (const PACKAGE of packages) {
 
 	console.log('🆚 Update Version');
 	execSync(
-		`pnpm version --no-git-tag-version ${VALID_SEMVER_VERSION} --filter=@db-ux/${PACKAGE}`
+		`pnpm --filter=@db-ux/${PACKAGE} version --no-git-tag-version ${VALID_SEMVER_VERSION}`
 	);
 
 	if (
@@ -49,17 +49,17 @@ for (const PACKAGE of packages) {
 	) {
 		console.log('🕵️‍ Set foundations dependency');
 		execSync(
-			`pnpm pkg set dependencies.@db-ux/core-foundations=${VALID_SEMVER_VERSION} --filter=@db-ux/${PACKAGE}`
+			`pnpm --filter=@db-ux/${PACKAGE} pkg set dependencies.@db-ux/core-foundations=${VALID_SEMVER_VERSION}`
 		);
 		if (PACKAGE !== 'core-components') {
 			execSync(
-				`pnpm pkg set dependencies.@db-ux/core-components=${VALID_SEMVER_VERSION} --filter=@db-ux/${PACKAGE}`
+				`pnpm --filter=@db-ux/${PACKAGE} pkg set dependencies.@db-ux/core-components=${VALID_SEMVER_VERSION}`
 			);
 		}
 	}
 
 	console.log('📦 Create npm package');
-	execSync(`pnpm pack --quiet --filter=@db-ux/${PACKAGE}`);
+	execSync(`pnpm --filter=@db-ux/${PACKAGE} pack --quiet`);
 }
 
 let TAG = 'latest';
