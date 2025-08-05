@@ -19,11 +19,12 @@ This may leave some older browser versions behind. If you need to take care of t
 
 ## Without graceful degradation
 
-| Web Feature                                                                                             | Google Chrome    | Mozilla Firefox  | Apple Safari      |
-| ------------------------------------------------------------------------------------------------------- | ---------------- | ---------------- | ----------------- |
-| [`@property` / typed CSS Custom Properties](https://developer.mozilla.org/en-US/docs/Web/CSS/@property) | 85 (25.08.2022)  | 128 (09.07.2024) | 16.4 (27.03.2023) |
-| [`light-dark()` CSS function](https://developer.mozilla.org/en-US/docs/Web/CSS/color_value/light-dark)  | 123 (19.03.2024) | 120 (21.11.2023) | 17.5 (13.05.2024) |
-| [`attr()` CSS Values 5 extensions](https://developer.mozilla.org/en-US/docs/Web/CSS/attr)               | 133 (04.02.2025) | tbd              | tbd               |
+| Web Feature                                                                                                                                                                    | Google Chrome    | Mozilla Firefox  | Apple Safari      |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ---------------- | ---------------- | ----------------- |
+| [`@property` / typed CSS Custom Properties](https://developer.mozilla.org/en-US/docs/Web/CSS/@property)                                                                        | 85 (25.08.2022)  | 128 (09.07.2024) | 16.4 (27.03.2023) |
+| [`light-dark()` CSS function](https://developer.mozilla.org/en-US/docs/Web/CSS/color_value/light-dark)                                                                         | 123 (19.03.2024) | 120 (21.11.2023) | 17.5 (13.05.2024) |
+| [`attr()` CSS Values 5 extensions](https://developer.mozilla.org/en-US/docs/Web/CSS/attr)                                                                                      | 133 (04.02.2025) | tbd              | tbd               |
+| [`style()` container queries for custom properties](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_containment/Container_size_and_style_queries#container_style_queries) | 111 (07.03.2023) | tbd              | 18 (16.09.2024)   |
 
 ## Stable in evergreen browsers
 
