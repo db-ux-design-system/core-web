@@ -15,7 +15,7 @@ This may leave some older browser versions behind. If you need to take care of t
 
 ## Without graceful degradation
 
-The following functionality relies on JavaScript to support it in non-supporting browsers, PostCSS preprocessing (planned) or simply declaring the CSS declarations twice for some time, both in the new and the old way (like e.g. semantic overflow).
+The following functionality relies on JavaScript for support in browsers that do not support it yet. This includes PostCSS preprocessing (planned) and declaring CSS declarations twice, both in the new and old ways (e.g., semantic overflow).
 
 | Web Feature                                                                                                                                                                              | Google Chrome    | Mozilla Firefox  | Apple Safari                                                                                                         |
 | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------- | ---------------- | -------------------------------------------------------------------------------------------------------------------- |
