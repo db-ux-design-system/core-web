@@ -1,7 +1,7 @@
 import { execSync } from 'node:child_process';
 import { describe, expect, test } from 'vitest';
 
-const command = 'npx tsx github/package-version.ts';
+const command = 'pnpm exec tsx github/package-version.ts';
 
 describe('package-version', () => {
 	process.env.GITHUB_SHA = 'abcdefg';
