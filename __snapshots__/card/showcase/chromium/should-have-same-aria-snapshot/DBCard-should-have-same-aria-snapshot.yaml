@@ -1,5 +1,4 @@
 - main:
-  - text: test
   - heading "DBCard" [level=1]
   - link "Density"
   - strong: Functional

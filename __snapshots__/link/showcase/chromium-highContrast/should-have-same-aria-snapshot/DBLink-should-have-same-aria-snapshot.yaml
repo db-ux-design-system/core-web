@@ -1,5 +1,4 @@
 - main:
-  - text: test
   - heading "DBLink" [level=1]
   - link "Density"
   - link "Functional"
