@@ -26,6 +26,7 @@ export default function DBBrand(props: DBBrandProps) {
 			data-show-icon={getBooleanAsString(props.showIcon)}
 			id={props.id}
 			class={cls('db-brand', props.className)}>
+			test
 			<Show when={props.text} else={props.children}>
 				{props.text}
 			</Show>
