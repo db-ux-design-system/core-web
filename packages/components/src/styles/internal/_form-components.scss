@@ -1,5 +1,6 @@
 @use "sass:map";
 @use "sass:string";
+@use "sass:list";
 @use "@db-ux/core-foundations/build/styles/icons";
 @use "@db-ux/core-foundations/build/styles/fonts";
 @use "@db-ux/core-foundations/build/styles/variables";
@@ -8,6 +9,9 @@
 @use "component";
 
 @forward "../visually-hidden";
+
+$valid-read-only-form-fields: input, textarea;
+$valid-field-sizing-form-fields: input, textarea;
 
 $dropdown-icon-transition: transform variables.$db-transition-straight-emotional;
 $dropdown-icon-transform: rotate(-180deg);
@@ -372,7 +376,7 @@ $input-valid-types:
 			background-color: colors.$db-adaptive-bg-basic-transparent-semi-hovered;
 		}
 
-		@if ($selector == input or $selector == textarea) {
+		@if list.index($valid-field-sizing-form-fields, $selector) {
 			/* see https://developer.mozilla.org/en-US/docs/Web/CSS/field-sizing */
 			&[data-field-sizing="content"] {
 				field-sizing: content;
@@ -381,7 +385,9 @@ $input-valid-types:
 			&[data-field-sizing="fixed"] {
 				field-sizing: fixed;
 			}
+		}
 
+		@if list.index($valid-read-only-form-fields, $selector) {
 			&:not(:disabled):read-only {
 				background-color: var(
 					--db-#{$selector}-read-only,
