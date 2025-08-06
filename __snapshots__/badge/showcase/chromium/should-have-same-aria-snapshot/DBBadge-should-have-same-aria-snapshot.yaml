@@ -1,5 +1,4 @@
 - main:
-  - text: test
   - heading "DBBadge" [level=1]
   - link "Density"
   - text: Functional (Default) Regular Expressive

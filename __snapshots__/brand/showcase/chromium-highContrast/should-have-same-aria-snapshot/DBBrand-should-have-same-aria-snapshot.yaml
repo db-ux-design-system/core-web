@@ -1,5 +1,4 @@
 - main:
-  - text: test
   - heading "DBBrand" [level=1]
   - link "Density"
   - text: Functional (Default) Regular Expressive

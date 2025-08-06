@@ -1,5 +1,4 @@
 - main:
-  - text: test
   - heading "DBButton" [level=1]
   - link "Density"
   - button "Functional"
