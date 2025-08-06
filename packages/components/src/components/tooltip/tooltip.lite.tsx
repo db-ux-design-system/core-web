@@ -52,8 +52,16 @@ export default function DBTooltip(props: DBTooltipProps) {
 			return parent;
 		},
 		handleAutoPlacement: (parent?: HTMLElement) => {
-			if (!parent) return;
-			if (_ref) {
+			if (!parent || !_ref) return;
+
+			// Check if CSS Anchor Positioning API is supported
+			const supportsAnchorPositioning =
+				typeof window !== 'undefined' &&
+				CSS.supports('anchor-name', '--anchor') &&
+				CSS.supports('position-anchor', '--anchor');
+
+			// Fallback to existing JavaScript implementation
+			if (!supportsAnchorPositioning) {
 				// This is a workaround for angular
 				utilsDelay(() => {
 					handleFixedPopover(
