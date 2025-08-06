@@ -1,35 +1,35 @@
 - main:
+  - text: test
   - heading "DBHeader" [level=1]
   - link "Density"
-  - text: testDBHeader
+  - text: DBHeader
   - button "Search"
   - button "BurgerMenu"
-  - text: testDBHeader
+  - text: DBHeader
   - button "Search"
   - button "BurgerMenu"
-  - text: testDBHeader
+  - text: DBHeader
   - button "Search"
   - button "BurgerMenu"
   - link "Width"
-  - text: testDBHeader
+  - text: DBHeader
   - button "Search"
   - button "BurgerMenu"
-  - text: testDBHeader
+  - text: DBHeader
   - button "Search"
   - button "BurgerMenu"
-  - text: testDBHeader
+  - text: DBHeader
   - button "Search"
   - button "BurgerMenu"
   - link "Behavior"
-  - text: testDBHeader
+  - text: DBHeader
   - button "Search"
   - button "BurgerMenu"
-  - text: testDBHeader
+  - text: DBHeader
   - button "Search"
   - button "BurgerMenu"
   - link "Examples"
-  - text: testDBHeader
+  - text: DBHeader
   - button "BurgerMenu"
-  - text: testDBHeader test
+  - text: DBHeader
   - button "BurgerMenu"
-  - text: test

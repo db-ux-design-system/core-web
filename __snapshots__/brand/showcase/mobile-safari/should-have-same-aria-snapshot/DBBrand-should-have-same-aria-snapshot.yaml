@@ -1,8 +1,9 @@
 - main:
+  - text: test
   - heading "DBBrand" [level=1]
   - link "Density"
-  - text: testFunctional test(Default) Regular testExpressive
+  - text: Functional (Default) Regular Expressive
   - link "Variants"
-  - text: test(Default) With Logo testNo Logo test
+  - text: (Default) With Logo No Logo
   - img "this is a fancy placeholder logo"
   - text: Custom Logo
