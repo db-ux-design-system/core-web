@@ -10,7 +10,9 @@
 
 @forward "../visually-hidden";
 
+// https://developer.mozilla.org/en-US/docs/Web/CSS/:read-only
 $valid-read-only-form-fields: input, textarea;
+// https://developer.mozilla.org/en-US/docs/Web/CSS/field-sizing
 $valid-field-sizing-form-fields: input, textarea;
 
 $dropdown-icon-transition: transform variables.$db-transition-straight-emotional;
