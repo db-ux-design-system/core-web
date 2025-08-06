@@ -1,4 +1,5 @@
 - main:
+  - text: test
   - heading "DBPopover" [level=1]
   - link "Density"
   - button "Functional"

@@ -1,4 +1,5 @@
 - main:
+  - text: test
   - heading "DBNotification" [level=1]
   - link "Density"
   - article:
