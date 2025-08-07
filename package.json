@@ -65,7 +65,6 @@
     "rm:builds": "npm run rm:builds --workspace=scripts",
     "start": "npm run start --workspace=patternhub",
     "test": "npm run test --workspace=scripts",
-    "test:docs-file-references": "node scripts/check-docs.js",
     "test:react-core-components": "playwright test --config output/react/playwright.config.ts --ui",
     "test:vue-components": "playwright test --config output/vue/playwright.config.ts --ui",
     "update:dependency:playwright": "node scripts/github/update-playwright.js"
