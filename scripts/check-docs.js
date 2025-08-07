@@ -36,23 +36,20 @@ const findMarkdownFiles = () => {
 		console.log(`📁 Root directory: ${config.rootDir}`);
 	}
 
-	let allFiles = [];
-	patterns.forEach((pattern) => {
+	let allFiles = new Set();
+	for (const pattern of patterns) {
 		const files = glob.sync(pattern, {
 			cwd: config.rootDir,
 			ignore: config.ignorePatterns,
 			dot: false,
 			absolute: false
 		});
-		allFiles = allFiles.concat(files);
-	});
-
-	// Remove duplicates
-	allFiles = [...new Set(allFiles)];
+		allFiles = [...allFiles, ...files];
+	}
 
 	if (config.debug) {
 		console.log(`📄 Found ${allFiles.length} markdown files:`);
-		allFiles.forEach((file) => console.log(`  - ${file}`));
+		for (const file of allFiles) console.log(`  - ${file}`);
 		console.log('');
 	}
 
@@ -81,8 +78,8 @@ const extractFileReferences = (content) => {
 	];
 
 	// Track line numbers for each reference
-	lines.forEach((line, lineIndex) => {
-		patterns.forEach((pattern) => {
+	for (const [lineIndex, line] of lines.entries()) {
+		for (const pattern of patterns) {
 			let match;
 			// Reset regex lastIndex for each line
 			pattern.lastIndex = 0;
@@ -104,8 +101,8 @@ const extractFileReferences = (content) => {
 					}
 				}
 			}
-		});
-	});
+		}
+	}
 
 	// Remove duplicates based on reference string
 	const unique = references.filter(
@@ -122,33 +119,93 @@ const extractFileReferences = (content) => {
  */
 const resolvePackageReference = (reference) => {
 	// Extract package name and file path
-	const match = reference.match(/^(@db-ux\/[^\/]+)\/(.+)$/);
+	const match = reference.match(/^(@db-ux\/[^/]+)\/(.+)$/);
 	if (!match) return null;
 
 	const [, packageName, filePath] = match;
 	const packageDirName = packageName.replace('@db-ux/', '');
 
-	// Try different possible locations
-	const possiblePaths = [
-		// Direct workspace package
-		path.join(config.rootDir, config.packagesDir, packageDirName, filePath),
-		// node_modules (for published packages)
-		path.join(config.rootDir, 'node_modules', packageName, filePath),
-		// Workspace node_modules
-		path.join(
-			config.rootDir,
-			config.packagesDir,
-			packageDirName,
-			'node_modules',
-			packageName,
-			filePath
-		)
-	];
+	// SCSS file resolution: try different variations for SCSS partials and extensions
+	const generateScssVariations = (originalPath) => {
+		const variations = [originalPath];
+		const dir = path.dirname(originalPath);
+		const basename = path.basename(originalPath);
+		const ext = path.extname(basename);
+		const nameWithoutExt = path.basename(basename, ext);
+
+		// Add variations with SCSS extensions if no extension provided
+		if (!ext) {
+			variations.push(`${originalPath}.scss`, `${originalPath}.css`);
+		}
+
+		// Add variations with underscore prefix (SCSS partials)
+		if (!nameWithoutExt.startsWith('_')) {
+			const withUnderscore = path.join(dir, `_${nameWithoutExt}`);
+			variations.push(withUnderscore);
+
+			if (ext) {
+				variations.push(`${withUnderscore}${ext}`);
+			} else {
+				variations.push(
+					`${withUnderscore}.scss`,
+					`${withUnderscore}.css`
+				);
+			}
+		}
+
+		// Add directory-based imports (SCSS index resolution)
+		// For "variables", try "variables/index.scss", "variables/_index.scss"
+		if (!ext) {
+			const indexVariations = [
+				path.join(originalPath, 'index.scss'),
+				path.join(originalPath, 'index.css'),
+				path.join(originalPath, '_index.scss'),
+				path.join(originalPath, '_index.css')
+			];
+			variations.push(...indexVariations);
+		}
+
+		return variations;
+	};
+
+	const fileVariations = generateScssVariations(filePath);
+
+	// Try different possible locations for each file variation
+	const possiblePaths = [];
+
+	for (const variation of fileVariations) {
+		possiblePaths.push(
+			// Direct workspace package
+			path.join(
+				config.rootDir,
+				config.packagesDir,
+				packageDirName,
+				variation
+			),
+			// Node_modules (for published packages)
+			path.join(config.rootDir, 'node_modules', packageName, variation),
+			// Workspace node_modules
+			path.join(
+				config.rootDir,
+				config.packagesDir,
+				packageDirName,
+				'node_modules',
+				packageName,
+				variation
+			)
+		);
+	}
 
 	const resolvedPath = possiblePaths.find((p) => fs.existsSync(p));
 
-	if (config.debug && resolvedPath) {
-		console.log(`    🔍 Resolved to: ${resolvedPath}`);
+	if (config.debug) {
+		if (resolvedPath) {
+			console.log(`    🔍 Resolved to: ${resolvedPath}`);
+		} else {
+			console.log(
+				`    ❌ Tried paths: ${possiblePaths.slice(0, 3).join(', ')}...`
+			);
+		}
 	}
 
 	return resolvedPath;
@@ -157,13 +214,13 @@ const resolvePackageReference = (reference) => {
 /**
  * Check if a file reference exists
  */
-const checkFileReference = (referenceObj, markdownFile) => {
-	const resolvedPath = resolvePackageReference(referenceObj.reference);
+const checkFileReference = (referenceObject, markdownFile) => {
+	const resolvedPath = resolvePackageReference(referenceObject.reference);
 
 	return {
-		reference: referenceObj.reference,
-		lineNumber: referenceObj.lineNumber,
-		lineContent: referenceObj.lineContent,
+		reference: referenceObject.reference,
+		lineNumber: referenceObject.lineNumber,
+		lineContent: referenceObject.lineContent,
 		exists: Boolean(resolvedPath),
 		resolvedPath,
 		markdownFile
@@ -185,7 +242,7 @@ const checkDocs = () => {
 	const allReferences = [];
 	let totalReferences = 0;
 
-	markdownFiles.forEach((file) => {
+	for (const file of markdownFiles) {
 		const fullPath = path.join(config.rootDir, file);
 		const content = fs.readFileSync(fullPath, 'utf8');
 		const references = extractFileReferences(content);
@@ -195,9 +252,9 @@ const checkDocs = () => {
 				console.log(`📄 Checking ${file}...`);
 			}
 
-			references.forEach((referenceObj) => {
+			for (const referenceObject of references) {
 				totalReferences++;
-				const result = checkFileReference(referenceObj, file);
+				const result = checkFileReference(referenceObject, file);
 				allReferences.push(result);
 
 				if (!result.exists) {
@@ -215,18 +272,18 @@ const checkDocs = () => {
 						`❌ ${result.reference} in ${file}:${result.lineNumber}`
 					);
 				}
-			});
+			}
 
 			if (config.debug) {
 				console.log('');
 			}
 		}
-	});
+	}
 
 	// Debug output - show all references found
 	if (config.debug && allReferences.length > 0) {
 		console.log('🐛 Debug: All references found:');
-		allReferences.forEach((ref) => {
+		for (const ref of allReferences) {
 			const status = ref.exists ? '✅' : '❌';
 			console.log(
 				`  ${status} ${ref.reference} (in ${ref.markdownFile}:${ref.lineNumber})`
@@ -235,7 +292,8 @@ const checkDocs = () => {
 			if (ref.resolvedPath) {
 				console.log(`    📁 Resolved to: ${ref.resolvedPath}`);
 			}
-		});
+		}
+
 		console.log('');
 	}
 
@@ -247,12 +305,12 @@ const checkDocs = () => {
 
 	if (allIssues.length > 0) {
 		console.log('\n❌ Broken references found:');
-		allIssues.forEach((issue) => {
+		for (const issue of allIssues) {
 			console.log(`  File: ${issue.markdownFile}:${issue.lineNumber}`);
 			console.log(`  Reference: ${issue.reference}`);
 			console.log(`  Line content: ${issue.lineContent}`);
 			console.log('');
-		});
+		}
 
 		process.exit(1);
 	} else {
