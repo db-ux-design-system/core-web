@@ -21,7 +21,8 @@ const config = {
 		'node_modules/**',
 		'**/node_modules/**',
 		'.git/**',
-		'docs/migration/**'
+		'docs/migration/**',
+		'showcases/patternhub/public/docs/migration/**'
 	]
 };
 
