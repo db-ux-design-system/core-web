@@ -10,8 +10,8 @@ const config = {
 	markdownExtensions: ['md', 'mdx'],
 	// NPM organization prefix to look for
 	orgPrefix: '@db-ux/',
-	// Root directory to search from
-	rootDir: process.cwd(),
+	// Root directory to search from – as this script is run from the scripts directory, we set it to one level up
+	rootDir: process.cwd() + '/../',
 	// Workspace packages directory (adjust if different)
 	packagesDir: 'packages',
 	// Debug mode - set to true to see all references found
@@ -21,7 +21,8 @@ const config = {
 		'node_modules/**',
 		'**/node_modules/**',
 		'.git/**',
-		'docs/migration/**'
+		'docs/migration/**',
+		'showcases/patternhub/public/docs/migration/**'
 	]
 };
 
