@@ -128,7 +128,6 @@
 				"name": "(Default) False",
 				"props": {
 					"label": "Label",
-					"value": "(Default) False",
 					"readOnly": false
 				}
 			},
@@ -136,7 +135,6 @@
 				"name": "True",
 				"props": {
 					"label": "Label",
-					"value": "True",
 					"readOnly": true
 				}
 			}
