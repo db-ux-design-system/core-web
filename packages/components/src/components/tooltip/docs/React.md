@@ -9,7 +9,7 @@ For general installation and configuration take a look at the [react-core-compon
 import { DBTooltip, DBButton } from "@db-ux/react-core-components";
 
 const App = () => (
-	<DBButton describedbyid="tooltip-01">
+	<DBButton aria-describedby="tooltip-01">
 		Hover on me to open Tooltip
 		<DBTooltip id="tooltip-01">Tooltip</DBTooltip>
 	</DBButton>
