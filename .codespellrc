@@ -1,0 +1,2 @@
+[codespell]
+skip = *.lock,*.json,node_modules,.git,__snapshots__,./showcases/screen-reader/translations.ts
