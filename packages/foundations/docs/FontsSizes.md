@@ -79,7 +79,6 @@ In some cases it may make sense to set the `font-size` and `line-height` manuall
 
 ```css
 .text-element {
-	font-size: var(--db-type-body-font-size-XX);
-	line-height: var(--db-type-body-line-height-XX);
+	font: var(--db-type-body-XX);
 }
 ```
