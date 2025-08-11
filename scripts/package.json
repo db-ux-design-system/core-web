@@ -35,6 +35,7 @@
     "dev:sass": "npm run dev:scss --workspace=@db-ux/core-components",
     "dev:stencil-components": "npm run dev:stencil --workspace=@db-ux/core-components",
     "dev:vue-components": "npm run dev:vue --workspace=@db-ux/core-components",
+    "pretest:docs-file-references": "npm run build",
     "rm-builds:components-build": "rimraf ../packages/components/build",
     "rm-builds:dist": "rimraf --glob showcases/**/dist",
     "rm-builds:foundations-build": "rimraf ../packages/foundations/build",
