@@ -65,7 +65,7 @@
 		padding: variables.$db-spacing-fixed-3xs;
 	}
 
-	>*,
+	> *,
 	.db-icon {
 		@extend %db-overwrite-font-size-2xs;
 	}
@@ -82,14 +82,14 @@
 			padding: variables.$db-spacing-fixed-2xs;
 		}
 
-		>*,
+		> *,
 		.db-icon {
 			@extend %db-overwrite-font-size-sm;
 		}
 	}
 
 	&:empty,
-	>span:empty {
+	> span:empty {
 		block-size: var(--badge-size);
 		inline-size: var(--badge-size);
 		padding: 0;
