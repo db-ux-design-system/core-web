@@ -11,7 +11,7 @@ import { DBTooltip, DBButton } from "@db-ux/v-core-components";
 </script>
 
 <template>
-	<DBButton describedbyid="tooltip-01">
+	<DBButton aria-describedby="tooltip-01">
 		Hover on me to open Tooltip
 		<DBTooltip id="tooltip-01">Tooltip</DBTooltip>
 	</DBButton>

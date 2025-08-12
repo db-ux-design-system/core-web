@@ -7,7 +7,7 @@ import { DBButton } from '../button';
 
 const comp: any = (
 	<div className="padding-box">
-		<DBButton describedbyid="tooltip" data-testid="button">
+		<DBButton aria-describedby="tooltip" data-testid="button">
 			Button
 			<DBTooltip animation="disabled" id="tooltip" data-testid="tooltip">
 				Test
