@@ -28,7 +28,7 @@ const getPopover = ({
 		{content ?? (
 			<>
 				<ul className="popover-list">
-					<li>Popover Custom Item 1b</li>
+					<li>Popover Custom Item 1</li>
 					<li>Popover Custom Item 2</li>
 				</ul>
 				<DBButton>Popover Custom Item 3</DBButton>
