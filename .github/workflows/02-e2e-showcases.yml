@@ -42,7 +42,7 @@ jobs:
       visual-snapshots-changed: ${{ steps.visual-snapshots.outputs.visual-snapshots-changed }}
     steps:
       - name: ⏬ Checkout repo
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           fetch-depth: 0 # fetch all history for all branches
           fetch-tags: false
@@ -51,25 +51,25 @@ jobs:
         uses: ./.github/actions/npm-cache
 
       - name: ⏬ Download foundations build
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v5
         with:
           name: db-ux-foundations-build
           path: packages/foundations/build
 
       - name: ⏬ Download output
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v5
         with:
           name: db-ux-output
           path: output
 
       - name: ⏬ Download components styles build
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v5
         with:
           name: db-ux-components-build
           path: packages/components/build
 
       - name: ⏬ Download ${{ inputs.showcase }}
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v5
         with:
           name: db-ux-${{ inputs.showcase }}
           path: build-showcases/${{ inputs.showcase }}
