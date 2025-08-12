@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-24.04 # Use Ubuntu 24.04 explicitly
     steps:
       - name: ⏬ Checkout repo
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: 📥 Get gh-pages tar
         run: wget --quiet https://github.com/db-ux-design-system/core-web/tarball/gh-pages
