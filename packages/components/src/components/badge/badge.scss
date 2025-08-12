@@ -54,14 +54,18 @@
 	block-size: fit-content;
 	inline-size: fit-content;
 	font-weight: 700;
-	min-inline-size: calc(1.4em - 2 * #{variables.$db-spacing-fixed-2xs});
-	box-sizing: content-box;
+
+	// Added a min-inline-size especially for single character contents, to ensure that it won't get any narrower than a circle.
+	&:not(:empty) {
+		min-inline-size: calc(1.4em - 2 * #{variables.$db-spacing-fixed-2xs});
+		box-sizing: content-box;
+	}
 
 	&:has(.db-icon) {
 		padding: variables.$db-spacing-fixed-3xs;
 	}
 
-	> *,
+	>*,
 	.db-icon {
 		@extend %db-overwrite-font-size-2xs;
 	}
@@ -78,14 +82,14 @@
 			padding: variables.$db-spacing-fixed-2xs;
 		}
 
-		> *,
+		>*,
 		.db-icon {
 			@extend %db-overwrite-font-size-sm;
 		}
 	}
 
 	&:empty,
-	> span:empty {
+	>span:empty {
 		block-size: var(--badge-size);
 		inline-size: var(--badge-size);
 		padding: 0;
