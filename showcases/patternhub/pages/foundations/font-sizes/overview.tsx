@@ -235,7 +235,9 @@ const ColorOverview = () => {
 				<p>
 					<b>These custom properties must be used for overwrites:</b>
 				</p>
-				<code>--db-type-headline-XX</code> (This shorthand custom property sets both <code>font-size</code> and <code>line-height</code>)
+				<code>--db-type-headline-XX</code> (This shorthand custom
+				property sets both <code>font-size</code> and{' '}
+				<code>line-height</code>)
 				<br />
 				<code>--db-spacing-fixed-XX</code> (optional e.g. for margin)
 				<p>
