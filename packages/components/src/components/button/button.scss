@@ -106,7 +106,7 @@
 		}
 	}
 
-	&:disabled {
+	&:is(:disabled, [aria-disabled="true"]) {
 		opacity: variables.$db-opacity-md;
 	}
 
