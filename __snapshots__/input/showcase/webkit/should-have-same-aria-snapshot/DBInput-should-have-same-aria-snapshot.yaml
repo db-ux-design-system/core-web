@@ -48,10 +48,10 @@
   - status
   - link "Readonly"
   - text: Label
-  - textbox "Label": (Default) False
+  - textbox "Label"
   - status
   - text: Label
-  - textbox "Label": "True"
+  - textbox "Label"
   - status
   - link "Validation"
   - text: Label
