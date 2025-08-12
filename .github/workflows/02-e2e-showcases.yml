@@ -42,7 +42,7 @@ jobs:
       visual-snapshots-changed: ${{ steps.visual-snapshots.outputs.visual-snapshots-changed }}
     steps:
       - name: ⏬ Checkout repo
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           fetch-depth: 0 # fetch all history for all branches
           fetch-tags: false
