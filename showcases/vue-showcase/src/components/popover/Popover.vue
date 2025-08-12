@@ -28,7 +28,7 @@ import DefaultComponent from "../DefaultComponent.vue";
 				}}</template>
 				<template v-if="!exampleProps?.content">
 					<ul class="popover-list">
-						<li>Popover Custom Item 1</li>
+						<li>Popover Custom Item 1b</li>
 						<li>Popover Custom Item 2</li>
 					</ul>
 					<DBButton>Popover Custom Item 3</DBButton>
