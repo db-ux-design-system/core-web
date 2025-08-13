@@ -55,6 +55,14 @@
 	inline-size: fit-content;
 	font-weight: 700;
 
+	// Added a minimum inline size, especially for single-character content, to ensure that it won't be any narrower than a circle.
+	box-sizing: content-box;
+	
+	&:not(:empty) {
+		min-inline-size: calc(1.4em - 2 * #{variables.$db-spacing-fixed-2xs});
+	}
+
+	// Icon specific settings
 	&:has(.db-icon) {
 		padding: variables.$db-spacing-fixed-3xs;
 	}
