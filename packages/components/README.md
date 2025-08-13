@@ -70,7 +70,7 @@ If you only need some of the components or some features from [`@db-ux/core-foun
 In the case you want to include only some components, and you could do it like this:
 
 ```css
-/* The theme contains all prop required for components like spacings, colors, ... */
+/* The theme contains all props required for components like spacings, colors, ... */
 @import "@db-ux/core-foundations/build/styles/defaults/default-theme.css";
 /* The font include uses default font families based on your bundling paths (relative, absolute, webpack, rollup) */
 @import "@db-ux/core-foundations/build/styles/fonts/rollup.css";
