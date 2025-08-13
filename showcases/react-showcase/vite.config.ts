@@ -10,5 +10,8 @@ export default defineConfig({
 	},
 	define: {
 		process
+	},
+	css: {
+		devSourcemap: true // Enables source maps in dev mode for CSS
 	}
 });

@@ -1,5 +1,6 @@
 @use "sass:map";
 @use "sass:string";
+@use "sass:list";
 @use "@db-ux/core-foundations/build/styles/icons";
 @use "@db-ux/core-foundations/build/styles/fonts";
 @use "@db-ux/core-foundations/build/styles/variables";
@@ -8,6 +9,11 @@
 @use "component";
 
 @forward "../visually-hidden";
+
+// https://developer.mozilla.org/en-US/docs/Web/CSS/:read-only
+$valid-read-only-form-fields: input, textarea;
+// https://developer.mozilla.org/en-US/docs/Web/CSS/field-sizing
+$valid-field-sizing-form-fields: input, textarea;
 
 $dropdown-icon-transition: transform variables.$db-transition-straight-emotional;
 $dropdown-icon-transform: rotate(-180deg);
@@ -372,7 +378,7 @@ $input-valid-types:
 			background-color: colors.$db-adaptive-bg-basic-transparent-semi-hovered;
 		}
 
-		&:is(input, textarea) {
+		@if list.index($valid-field-sizing-form-fields, $selector) {
 			/* see https://developer.mozilla.org/en-US/docs/Web/CSS/field-sizing */
 			&[data-field-sizing="content"] {
 				field-sizing: content;
@@ -383,11 +389,13 @@ $input-valid-types:
 			}
 		}
 
-		&:is(input, textarea):not(:disabled):read-only {
-			background-color: var(
-				--db-textarea-read-only,
-				#{colors.$db-adaptive-bg-basic-level-1-default}
-			) !important;
+		@if list.index($valid-read-only-form-fields, $selector) {
+			&:not(:disabled):read-only {
+				background-color: var(
+					--db-#{$selector}-read-only,
+          #{colors.$db-adaptive-bg-basic-transparent-full-default}
+				) !important;
+			}
 		}
 	}
 

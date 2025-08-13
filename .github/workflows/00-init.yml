@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-24.04 # Use Ubuntu 24.04 explicitly
     steps:
       - name: ⏬ Checkout repo
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: 🔄 Init Cache Default
         uses: ./.github/actions/npm-cache

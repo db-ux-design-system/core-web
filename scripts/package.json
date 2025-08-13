@@ -35,6 +35,7 @@
     "dev:sass": "npm run dev:scss --workspace=@db-ux/core-components",
     "dev:stencil-components": "npm run dev:stencil --workspace=@db-ux/core-components",
     "dev:vue-components": "npm run dev:vue --workspace=@db-ux/core-components",
+    "pretest:docs-file-references": "npm run build",
     "rm-builds:components-build": "rimraf ../packages/components/build",
     "rm-builds:dist": "rimraf --glob showcases/**/dist",
     "rm-builds:foundations-build": "rimraf ../packages/foundations/build",
@@ -64,16 +65,17 @@
     "start-showcase:vue": "npm run dev --workspace=vue-showcase",
     "start:foundations": "npm run start --workspace=@db-ux/core-foundations",
     "test": "npm-run-all --parallel test:*",
+    "test:docs-file-references": "node check-docs.js",
     "test:migration": "npm run test --workspace=@db-ux/core-migration",
     "test:scripts": "vitest run --config vitest.config.ts",
     "update:icon-fonts": "npm-run-all generate:icon-fonts generate:icon-types"
   },
   "devDependencies": {
-    "@inquirer/prompts": "7.7.1",
-    "dotenv": "17.2.0",
+    "@inquirer/prompts": "7.8.1",
+    "dotenv": "17.2.1",
     "find-versions": "6.0.0",
     "glob": "11.0.3",
-    "inquirer": "12.8.2",
+    "inquirer": "12.9.1",
     "replace-in-file": "8.3.0",
     "tar": "7.4.3",
     "vitest": "3.2.4"

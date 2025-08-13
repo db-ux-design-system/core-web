@@ -3,4 +3,3 @@ node scripts/check-commit-mail.js
 lint-staged --config .config/.lintstagedrc.js
 lint-staged --config .config/.lintstagedrc-prettier.js
 git update-index --again
-npm run lint:jscpd
