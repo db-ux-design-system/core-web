@@ -53,7 +53,7 @@ for check_function in "${CHECK_FUNCTIONS[@]}"; do
   # Call the check function to set variables
   $check_function
 
-  if echo "$FILES" | grep -qE "$PATTERN"; then
+  if echo "$FILES" | grep --quiet --extended-regexp --recursive "$PATTERN"; then
     echo "Detected changes in $DESCRIPTION"
 
     ## Run the corresponding command
