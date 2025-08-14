@@ -393,7 +393,7 @@ $input-valid-types:
 			&:not(:disabled):read-only {
 				background-color: var(
 					--db-#{$selector}-read-only,
-          #{colors.$db-adaptive-bg-basic-transparent-full-default}
+					#{colors.$db-adaptive-bg-basic-transparent-full-default}
 				) !important;
 			}
 		}
