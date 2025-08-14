@@ -69,7 +69,7 @@ const reset = () => {
 					<p>Input:</p>
 					<DBInput
 						label="Textinput"
-						placeholder="Placeholder"
+						placeholder="Placeholder1"
 						message="Description"
 						icon="x_placeholder"
 						name="input-name"
@@ -86,7 +86,7 @@ const reset = () => {
 					<p>Textarea:</p>
 					<DBTextarea
 						label="Textarea v-model"
-						placeholder="Placeholder"
+						placeholder="Placeholder1"
 						message="Description"
 						icon="x_placeholder"
 						name="textarea-name"
@@ -94,7 +94,7 @@ const reset = () => {
 					/>
 					<DBTextarea
 						label="Textarea value"
-						placeholder="Placeholder"
+						placeholder="Placeholder1"
 						message="Description"
 						icon="x_placeholder"
 						name="textarevalue-name"

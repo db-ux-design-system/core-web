@@ -11,7 +11,7 @@ const vModel = ref("test2");
 	<FormWrapper :plain="plain" :vmodel="vModel">
 		<DBTextarea
 			label="Plain"
-			placeholder="Placeholder"
+			placeholder="Placeholder1"
 			message="Description"
 			icon="x_placeholder"
 			name="textarevalue-name"
@@ -20,7 +20,7 @@ const vModel = ref("test2");
 		/>
 		<DBTextarea
 			label="VModel"
-			placeholder="Placeholder"
+			placeholder="Placeholder1"
 			message="Description"
 			icon="x_placeholder"
 			name="textarea-name"
