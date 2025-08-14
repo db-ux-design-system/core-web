@@ -98,7 +98,7 @@
     "@playwright/experimental-ct-react": "1.54.2",
     "@playwright/experimental-ct-vue": "1.54.2",
     "@playwright/test": "1.54.2",
-    "accessibility-checker": "4.0.7",
+    "accessibility-checker": "4.0.8",
     "adm-zip": "0.5.16",
     "commander": "14.0.0",
     "cpr": "3.0.1",
