@@ -11,7 +11,7 @@ const vModel = ref("test2");
 	<FormWrapper :plain="plain" :vmodel="vModel">
 		<DBInput
 			label="Plain"
-			placeholder="Placeholder1"
+			placeholder="Placeholder"
 			message="Description"
 			icon="x_placeholder"
 			name="input-name"
@@ -20,7 +20,7 @@ const vModel = ref("test2");
 		/>
 		<DBInput
 			label="VModel"
-			placeholder="Placeholder1"
+			placeholder="Placeholder"
 			message="Description"
 			icon="x_placeholder"
 			name="input-name"

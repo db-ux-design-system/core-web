@@ -9,7 +9,7 @@ const comp: any = (
 	<DBCustomSelect
 		options={[{ value: 'Option 1' }, { value: 'Option 2' }]}
 		label="Test"
-		placeholder="Placeholder1"></DBCustomSelect>
+		placeholder="Placeholder"></DBCustomSelect>
 );
 
 const multiple: any = (
@@ -17,7 +17,7 @@ const multiple: any = (
 		options={[{ value: 'Option 1' }, { value: 'Option 2' }]}
 		label="Test"
 		multiple={true}
-		placeholder="Placeholder1"></DBCustomSelect>
+		placeholder="Placeholder"></DBCustomSelect>
 );
 
 const multipleSearchSelect: any = (
@@ -27,7 +27,7 @@ const multipleSearchSelect: any = (
 		multiple={true}
 		showSearch={true}
 		showSelectAll={true}
-		placeholder="Placeholder1"></DBCustomSelect>
+		placeholder="Placeholder"></DBCustomSelect>
 );
 
 const selectAllSelect: any = (
@@ -36,7 +36,7 @@ const selectAllSelect: any = (
 		label="Test"
 		multiple={true}
 		showSelectAll={true}
-		placeholder="Placeholder1"></DBCustomSelect>
+		placeholder="Placeholder"></DBCustomSelect>
 );
 
 const testComponent = () => {

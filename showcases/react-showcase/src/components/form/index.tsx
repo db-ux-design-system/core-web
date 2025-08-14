@@ -84,13 +84,13 @@ const FormComponent = () => {
 						required
 						showSearch
 						multiple
-						placeholder="Placeholder1"
+						placeholder="Placeholder"
 					/>
 					<fieldset>
 						<p>Input:</p>
 						<DBInput
 							label="Textinput"
-							placeholder="Placeholder1"
+							placeholder="Placeholder"
 							message="Description"
 							icon="x_placeholder"
 							name="input-name"
@@ -405,7 +405,7 @@ const FormComponent = () => {
 									required
 									showSearch
 									multiple
-									placeholder="Placeholder1"
+									placeholder="Placeholder"
 								/>
 							)}
 							{index === 1 && (
@@ -451,28 +451,28 @@ const FormComponent = () => {
 				<DBInput
 					variant="floating"
 					label="Input minlength validation"
-					placeholder="Placeholder1"
+					placeholder="Placeholder"
 					invalidMessage="Min. 3"
 					validMessage="😎"
 					minLength={3}
 				/>
 				<DBInput
 					label="Input pattern validation"
-					placeholder="Placeholder1"
+					placeholder="Placeholder"
 					pattern="\w{3,16}"
 					invalidMessage="Pattern \w{3,16}"
 					validMessage="😎"
 				/>
 				<DBInput
 					label="Input number"
-					placeholder="Placeholder1"
+					placeholder="Placeholder"
 					invalidMessage="Type=number"
 					validMessage="😎"
 					type="number"
 				/>
 				<DBInput
 					label="Input number min"
-					placeholder="Placeholder1"
+					placeholder="Placeholder"
 					invalidMessage="Type=number min 3"
 					validMessage="😎"
 					type="number"

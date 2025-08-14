@@ -10,7 +10,7 @@ const FormInputs = () => {
 		<FormWrapper controlled={controlled} uncontrolled={uncontrolled}>
 			<DBInput
 				label="Controlled"
-				placeholder="Placeholder1"
+				placeholder="Placeholder"
 				message="Description"
 				icon="x_placeholder"
 				name="input-name"
@@ -21,7 +21,7 @@ const FormInputs = () => {
 			/>
 			<DBInput
 				label="Uncontrolled"
-				placeholder="Placeholder1"
+				placeholder="Placeholder"
 				message="Description"
 				icon="x_placeholder"
 				name="input-name"
