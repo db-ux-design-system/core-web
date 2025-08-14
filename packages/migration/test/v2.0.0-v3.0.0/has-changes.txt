@@ -1,0 +1,4 @@
+<span data-icon-before="xxx" data-icon-after="yyy">Test</span>
+<DBButton iconBefore="xxx" iconAfter="yyy" describedbyid="xxx" ariaexpanded="true" ariapressed="true">
+  Test
+</DBButton>

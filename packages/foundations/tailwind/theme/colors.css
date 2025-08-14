@@ -40,11 +40,17 @@
 	--color-adaptive-bg-basic-transparent-semi-default: var(
 		--db-adaptive-bg-basic-transparent-semi-default
 	);
-	--color-adaptive-bg-basic-transparent-hovered: var(
-		--db-adaptive-bg-basic-transparent-hovered
+	--color-adaptive-bg-basic-transparent-full-hovered: var(
+		--db-adaptive-bg-basic-transparent-full-hovered
 	);
-	--color-adaptive-bg-basic-transparent-pressed: var(
-		--db-adaptive-bg-basic-transparent-pressed
+	--color-adaptive-bg-basic-transparent-full-pressed: var(
+		--db-adaptive-bg-basic-transparent-full-pressed
+	);
+	--color-adaptive-bg-basic-transparent-semi-hovered: var(
+		--db-adaptive-bg-basic-transparent-semi-hovered
+	);
+	--color-adaptive-bg-basic-transparent-semi-pressed: var(
+		--db-adaptive-bg-basic-transparent-semi-pressed
 	);
 
 	/* Inverted */

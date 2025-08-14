@@ -54,33 +54,47 @@
 		]
 	},
 	{
-		"name": "Content",
+		"name": "Show Icon Leading",
 		"examples": [
 			{
-				"name": "(Default) Text",
+				"name": "(Default) False",
 				"props": {
-					"label": "(Default) Text"
-				}
-			},
-			{
-				"name": "Text - Icon (Leading)",
-				"props": {
-					"label": "Text - Icon (Leading)",
-					"icon": "x_placeholder"
-				}
-			},
-			{
-				"name": "Text - Icon (Trailing)",
-				"props": {
-					"label": "Text - Icon (Trailing)",
-					"iconAfter": "x_placeholder"
-				}
-			},
-			{
-				"name": "Icon",
-				"props": {
+					"label": "False",
 					"icon": "x_placeholder",
-					"noText": true
+					"showIcon": false
+				}
+			},
+			{
+				"name": "True",
+				"props": {
+					"label": "True",
+					"icon": "x_placeholder",
+					"showIcon": true
+				}
+			}
+		]
+	},
+	{
+		"name": "Show Icon Trailing",
+		"examples": [
+			{
+				"name": "(Default) False",
+				"props": {
+					"label": "False",
+					"icon": "x_placeholder",
+					"showIcon": false,
+					"iconTrailing": "x_placeholder",
+					"showIconTrailing": false
+				}
+			},
+			{
+				"name": "True",
+				"props": {
+					"label": "True",
+					"icon": "x_placeholder",
+					"showIcon": true,
+					"iconTrailing": "x_placeholder",
+					"showIconTrailing": true
 				}
 			}
 		]

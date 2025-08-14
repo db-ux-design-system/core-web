@@ -29,7 +29,9 @@ const getInput = ({
 	minLength,
 	required,
 	disabled,
-	iconAfter,
+	iconTrailing,
+	showIcon,
+	showIconTrailing,
 	icon,
 	children,
 	message,
@@ -41,6 +43,7 @@ const getInput = ({
 	validMessage,
 	validation,
 	invalidMessage,
+	showRequiredAsterisk,
 	maxLength,
 	max,
 	min
@@ -52,17 +55,20 @@ const getInput = ({
 			placeholder={children}
 			variant={variant}
 			showLabel={showLabel}
+			showRequiredAsterisk={showRequiredAsterisk}
 			defaultValue={value}
 			type={type}
 			minLength={minLength}
 			required={required}
 			disabled={disabled}
 			readOnly={readOnly}
-			iconAfter={iconAfter}
+			iconTrailing={iconTrailing}
+			showIconTrailing={showIconTrailing}
 			maxLength={maxLength}
 			max={max}
 			min={min}
 			icon={icon}
+			showIcon={showIcon}
 			showMessage={showMessage}
 			invalidMessage={invalidMessage}
 			validMessage={validMessage}

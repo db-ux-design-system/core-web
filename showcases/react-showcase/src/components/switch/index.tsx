@@ -18,19 +18,21 @@ const getSwitch = ({
 	emphasis,
 	size,
 	icon,
-	iconAfter,
-	required
+	iconTrailing,
+	required,
+	showRequiredAsterisk
 }: DBSwitchProps) => (
 	<>
 		<DBSwitch
 			visualAid={visualAid}
 			defaultChecked={getBoolean(checked)}
 			disabled={disabled}
+			showRequiredAsterisk={showRequiredAsterisk}
 			showLabel={showLabel}
 			size={size}
 			emphasis={emphasis}
 			icon={icon}
-			iconAfter={iconAfter}
+			iconTrailing={iconTrailing}
 			required={required}>
 			{children}
 		</DBSwitch>

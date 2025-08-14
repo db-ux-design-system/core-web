@@ -24,7 +24,10 @@ import { DBSwitchProps, DBSwitchState } from './model';
 
 useMetadata({
 	angular: {
-		nativeAttributes: ['disabled', 'required', 'checked', 'indeterminate']
+		nativeAttributes: ['disabled', 'required', 'checked', 'indeterminate'],
+		signals: {
+			writeable: ['disabled', 'checked']
+		}
 	}
 });
 useDefaultProps<DBSwitchProps>({});
@@ -71,6 +74,7 @@ export default function DBSwitch(props: DBSwitchProps) {
 			data-hide-label={getHideProp(props.showLabel)}
 			data-emphasis={props.emphasis}
 			htmlFor={state._id}
+			data-hide-asterisk={getHideProp(props.showRequiredAsterisk)}
 			class={cls('db-switch', props.className)}>
 			<input
 				id={state._id}
@@ -80,14 +84,12 @@ export default function DBSwitch(props: DBSwitchProps) {
 				checked={getBoolean(props.checked, 'checked')}
 				value={props.value}
 				disabled={getBoolean(props.disabled, 'disabled')}
-				aria-describedby={props.describedbyid ?? props.ariaDescribedBy}
 				aria-invalid={props.validation === 'invalid'}
 				data-custom-validity={props.validation}
 				name={props.name}
 				required={getBoolean(props.required, 'required')}
-				data-hide-asterisk={getHideProp(props.showRequiredAsterisk)}
-				data-aid-icon={props.icon}
-				data-aid-icon-after={props.iconAfter}
+				data-aid-icon={props.iconLeading ?? props.icon}
+				data-aid-icon-trailing={props.iconTrailing}
 				onChange={(event: ChangeEvent<HTMLInputElement>) =>
 					state.handleChange(event)
 				}

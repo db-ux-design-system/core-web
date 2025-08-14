@@ -46,10 +46,10 @@ If you want to generate the screenshots manually, do the following:
 npm run build
 
 # unix
-docker run --rm --network host -v $(pwd):/work/ -w /work/ -it mcr.microsoft.com/playwright:v1.51.1-focal /bin/bash
+docker run --rm --network host --volume $(pwd):/work/ --workdir /work/ --interactive --tty mcr.microsoft.com/playwright:v1.51.1-focal /bin/bash
 
 # windows - allow file sharing (windows pop up)
-docker run --rm --network host -v ${PWD}:/work/ -w /work/ -it mcr.microsoft.com/playwright:v1.51.1-focal /bin/bash
+docker run --rm --network host --volume ${PWD}:/work/ --workdir /work/ --interactive --tty mcr.microsoft.com/playwright:v1.51.1-focal /bin/bash
 
 npm install
 
@@ -60,5 +60,5 @@ npx playwright test --update-snapshots
 
 You can also use `docker-compose` to test or regenerate screenshots.
 
-- testing: `docker-compose -f ./e2e/docker-compose.yml up`
-- update screenshots: `docker-compose -f ./e2e/docker-compose.regenerate.yml up`
+- testing: `docker-compose --file ./e2e/docker-compose.yml up`
+- update screenshots: `docker-compose --file ./e2e/docker-compose.regenerate.yml up`

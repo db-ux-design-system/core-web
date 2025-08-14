@@ -225,8 +225,6 @@ $popover-gap-inset: calc(-1 * #{$popover-gap-size});
 	}
 }
 
-$max-mobile-size: calc(100vw - 2 * #{variables.$db-spacing-fixed-md});
-
 %default-popover {
 	@extend %default-card;
 	@extend %popover-placement;
@@ -238,13 +236,15 @@ $max-mobile-size: calc(100vw - 2 * #{variables.$db-spacing-fixed-md});
 	z-index: 1337;
 	// revert this if popover is included in button
 	white-space: normal;
-	max-inline-size: $max-mobile-size;
+	max-inline-size: min(
+		#{variables.$db-container-xs},
+		calc(100vw - 2 * #{variables.$db-spacing-fixed-md})
+	);
 	block-size: fit-content;
 	inline-size: fit-content;
 
 	&[data-width="fixed"] {
 		inline-size: max-content;
-		max-inline-size: min(#{variables.$db-sizing-3xl}, #{$max-mobile-size});
 		text-align: initial;
 	}
 }

@@ -10,6 +10,7 @@ import DefaultComponent from "../DefaultComponent.vue";
 			#example="{ exampleIndex, variantIndex, exampleName, exampleProps }"
 		>
 			<DBSwitch
+				:showRequiredAsterisk="exampleProps?.showRequiredAsterisk"
 				:visualAid="exampleProps?.visualAid"
 				:checked="exampleProps?.checked"
 				:disabled="exampleProps?.disabled"
@@ -18,7 +19,7 @@ import DefaultComponent from "../DefaultComponent.vue";
 				:size="exampleProps?.size"
 				:emphasis="exampleProps?.emphasis"
 				:icon="exampleProps?.icon"
-				:iconAfter="exampleProps?.iconAfter"
+				:iconTrailing="exampleProps?.iconTrailing"
 				:validation="exampleProps?.validation"
 			>
 				{{ exampleName }}

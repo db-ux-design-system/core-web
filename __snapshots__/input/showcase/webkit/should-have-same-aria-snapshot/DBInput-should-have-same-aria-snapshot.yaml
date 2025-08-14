@@ -48,10 +48,10 @@
   - status
   - link "Readonly"
   - text: Label
-  - textbox "Label": (Default) False
+  - textbox "Label"
   - status
   - text: Label
-  - textbox "Label": "True"
+  - textbox "Label"
   - status
   - link "Validation"
   - text: Label
@@ -72,18 +72,33 @@
   - text: Label
   - textbox "Label"
   - status
-  - link "Content"
-  - text: Label
-  - textbox "Label": (Default) Text
-  - status
+  - link "Show Required Asterisk"
   - text: Label
   - textbox "Label"
   - status
   - text: Label
   - textbox "Label"
   - status
-  - text: Label
-  - textbox "Label"
+  - link "Show Icon Leading"
+  - text: "False"
+  - textbox "False"
+  - status
+  - text: "True"
+  - textbox "True"
+  - status
+  - link "Show Icon Leading + Trailing"
+  - text: "False"
+  - textbox "False"
+  - status
+  - text: "True"
+  - textbox "True"
+  - status
+  - link "Show Icon Trailing"
+  - text: "False"
+  - textbox "False"
+  - status
+  - text: "True"
+  - textbox "True"
   - status
   - link "Example - Length"
   - text: Label

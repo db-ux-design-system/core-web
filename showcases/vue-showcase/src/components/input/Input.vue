@@ -27,6 +27,7 @@ const getDataList = (
 			#example="{ exampleIndex, variantIndex, exampleName, exampleProps }"
 		>
 			<DBInput
+				:showRequiredAsterisk="exampleProps?.showRequiredAsterisk"
 				:maxLength="exampleProps?.maxLength"
 				:max="exampleProps?.max"
 				:min="exampleProps?.min"
@@ -42,7 +43,9 @@ const getDataList = (
 				:readOnly="exampleProps?.readOnly"
 				:value="exampleProps?.value"
 				:icon="exampleProps?.icon"
-				:iconAfter="exampleProps?.iconAfter"
+				:showIcon="exampleProps?.showIcon"
+				:iconTrailing="exampleProps?.iconTrailing"
+				:showIconTrailing="exampleProps?.showIconTrailing"
 				:showMessage="exampleProps?.showMessage"
 				:invalidMessage="exampleProps?.invalidMessage"
 				:validMessage="exampleProps?.validMessage"
