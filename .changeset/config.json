@@ -1,0 +1,21 @@
+{
+	"$schema": "https://unpkg.com/@changesets/config/schema.json",
+	"changelog": "@changesets/changelog-git",
+	"commit": true,
+	"fixed": [],
+	"linked": [
+		[
+			"@db-ux/core-foundations",
+			"@db-ux/core-components",
+			"@db-ux/react-core-components",
+			"@db-ux/ngx-core-components",
+			"@db-ux/v-core-components",
+			"@db-ux/wc-core-components",
+			"@db-ux/core-stylelint",
+			"@db-ux/core-migration"
+		]
+	],
+	"access": "public",
+	"baseBranch": "main",
+	"updateInternalDependencies": "patch"
+}
