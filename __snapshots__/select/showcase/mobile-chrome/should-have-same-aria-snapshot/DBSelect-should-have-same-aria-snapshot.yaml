@@ -150,12 +150,14 @@
   - link "Show Required Asterisk"
   - text: Label
   - combobox "Label":
+    - option [selected]
     - option "Option 1"
     - option "Option 2"
   - text: (Default) True
   - status
   - text: Label
   - combobox "Label":
+    - option [selected]
     - option "Option 1"
     - option "Option 2"
   - text: "False"
