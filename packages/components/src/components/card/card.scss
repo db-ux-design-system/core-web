@@ -29,8 +29,7 @@
 	--db-card-background-color-pressed: #{colors.$db-adaptive-bg-basic-level-1-pressed};
 
 	@extend %default-card;
-
-	@include component.get-data-spacing();
+	@include component.get-data-spacing;
 
 	display: flex;
 	flex-direction: column;

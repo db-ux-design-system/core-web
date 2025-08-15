@@ -56,4 +56,4 @@ $font-sizes: "3xl", "2xl", "xl", "lg", "md", "sm", "xs", "2xs", "3xs";
 	}
 }
 
-@include generate-font-sizes();
+@include generate-font-sizes;

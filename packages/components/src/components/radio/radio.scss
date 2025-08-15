@@ -28,15 +28,15 @@
 }
 
 .db-radio {
-	@include form-components.set-default-check-element();
+	@include form-components.set-default-check-element;
 
 	&:not(:has(input:checked, input:disabled)) {
-		@include form-components.get-state();
+		@include form-components.get-state;
 		@include form-components.get-state("active");
 	}
 
 	@include form-components.get-validity(radio) {
-		@include get-radio-validity-colors();
+		@include get-radio-validity-colors;
 	}
 
 	@include form-components.get-validity(radio, "invalid") {

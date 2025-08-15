@@ -46,7 +46,6 @@
 	@extend %component-border;
 	@extend %db-overwrite-font-size-2xs;
 	@extend %default-button;
-
 	@include tag-components.get-tag-colors("badge");
 
 	border-radius: variables.$db-border-radius-full;
@@ -55,6 +54,13 @@
 	inline-size: fit-content;
 	font-weight: 700;
 
+	// Added a minimum inline size, especially for single-character content, to ensure that it won't be any narrower than a circle.
+	&:not(:empty) {
+		min-inline-size: calc(1.4em - 2 * #{variables.$db-spacing-fixed-2xs});
+		box-sizing: content-box;
+	}
+
+	// Icon specific settings
 	&:has(.db-icon) {
 		padding: variables.$db-spacing-fixed-3xs;
 	}

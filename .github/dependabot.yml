@@ -87,3 +87,6 @@ updates:
       guidepup:
         patterns:
           - "@guidepup/*"
+      stylelint:
+        patterns:
+          - "stylelint*"
