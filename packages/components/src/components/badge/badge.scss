@@ -46,7 +46,6 @@
 	@extend %component-border;
 	@extend %db-overwrite-font-size-2xs;
 	@extend %default-button;
-
 	@include tag-components.get-tag-colors("badge");
 
 	border-radius: variables.$db-border-radius-full;

@@ -220,6 +220,7 @@
 
 .db-header-drawer {
 	--db-drawer-content-padding-inline: 0;
+
 	// 1px for box shadow of header
 	--db-drawer-header-padding-block-end: calc(
 		1px + #{variables.$db-spacing-fixed-xs}

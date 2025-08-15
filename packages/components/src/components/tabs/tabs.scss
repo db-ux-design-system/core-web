@@ -338,20 +338,20 @@ $max-tabs: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 		 * Scroll left / right buttons
 		 */
 		.tabs-scroll-left {
-			@include angular-button-workaround() {
+			@include angular-button-workaround {
 				inset-inline-start: 0;
 			}
 		}
 
 		.tabs-scroll-right {
-			@include angular-button-workaround() {
+			@include angular-button-workaround {
 				inset-inline-end: 0;
 			}
 		}
 
 		.tabs-scroll-left,
 		.tabs-scroll-right {
-			@include angular-button-workaround() {
+			@include angular-button-workaround {
 				position: absolute;
 				z-index: $db-tabs-z-index-button;
 				inset-block: variables.$db-spacing-fixed-xs;

@@ -27,7 +27,7 @@
 @mixin get-validity-color-check($key: "valid") {
 	$variant: successful;
 
-	@if ($key != "valid") {
+	@if $key != "valid" {
 		$variant: critical;
 	}
 
@@ -76,11 +76,10 @@
 
 .db-checkbox {
 	@extend %helper-message;
-
-	@include form-components.set-default-check-element();
+	@include form-components.set-default-check-element;
 
 	&:not(:has(input:disabled)) {
-		@include form-components.get-state();
+		@include form-components.get-state;
 		@include form-components.get-state("active");
 	}
 
@@ -124,7 +123,6 @@
 
 		&:indeterminate {
 			@extend %center-icon;
-
 			@include icons.set-icon("minus");
 		}
 

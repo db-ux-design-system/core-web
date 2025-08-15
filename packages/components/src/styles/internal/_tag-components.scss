@@ -31,7 +31,7 @@ $interactive-selectors: "label, button:not(.db-tab-remove-button), a";
 }
 
 %set-interactive-weak {
-	@include get-weak();
+	@include get-weak;
 
 	@include helpers.hover {
 		background-color: colors.$db-adaptive-bg-basic-level-1-hovered;
@@ -50,19 +50,19 @@ $interactive-selectors: "label, button:not(.db-tab-remove-button), a";
 	&[data-semantic="adaptive"] {
 		&:not([data-emphasis]),
 		&[data-emphasis="weak"] {
-			@if ($htmlTag == "badge") {
+			@if $htmlTag == "badge" {
 				$border-color: 70;
 				$background-color: 3;
 
 				@include get-weak("adaptive", $border-color, $background-color);
 				/* stylelint-disable-next-line at-rule-empty-line-before */
 			} @else {
-				@include get-weak();
+				@include get-weak;
 			}
 		}
 
 		&[data-emphasis="strong"] {
-			@include get-strong();
+			@include get-strong;
 
 			.db-tab-remove-button {
 				@extend %set-interactive-strong;
@@ -95,7 +95,7 @@ $interactive-selectors: "label, button:not(.db-tab-remove-button), a";
 }
 
 %set-interactive-strong {
-	@include get-strong();
+	@include get-strong;
 
 	@include helpers.hover {
 		background-color: colors.$db-adaptive-bg-vibrant-hovered;
@@ -133,7 +133,7 @@ $interactive-selectors: "label, button:not(.db-tab-remove-button), a";
 	&:not([data-emphasis]),
 	&[data-emphasis="weak"] {
 		// buttons and links
-		@include get-interactive-selectors() {
+		@include get-interactive-selectors {
 			@extend %set-interactive-weak;
 		}
 
@@ -149,7 +149,7 @@ $interactive-selectors: "label, button:not(.db-tab-remove-button), a";
 		label:has(input[type="radio"]:checked) {
 			&,
 			&:is(:hover, :focus, :active) {
-				@include get-strong();
+				@include get-strong;
 			}
 		}
 	}
@@ -158,7 +158,7 @@ $interactive-selectors: "label, button:not(.db-tab-remove-button), a";
 		@extend %set-interactive-strong;
 
 		// buttons and links
-		@include get-interactive-selectors() {
+		@include get-interactive-selectors {
 			@extend %set-interactive-strong;
 		}
 
@@ -167,7 +167,7 @@ $interactive-selectors: "label, button:not(.db-tab-remove-button), a";
 		}
 
 		label:has(input[type="radio"]:checked) {
-			@include get-strong();
+			@include get-strong;
 		}
 
 		&:has(input):not(:has(input:checked)) {

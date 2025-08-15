@@ -6,7 +6,6 @@
 $min-mobile-header-height: calc(
 	#{variables.$db-sizing-md} + 2 * #{variables.$db-spacing-fixed-xs}
 );
-
 $component-border: variables.$db-border-width-3xs solid
 	colors.$db-adaptive-on-bg-basic-emphasis-60-default;
 
@@ -52,7 +51,6 @@ $responsive-spacings: (
 	"small": variables.$db-spacing-responsive-sm,
 	"none": 0
 );
-
 $default-spacings: (
 	"default": variables.$db-spacing-fixed-sm,
 	"large": variables.$db-spacing-fixed-lg,
@@ -63,7 +61,7 @@ $default-spacings: (
 
 @mixin get-data-spacing($type: padding, $spacings: $default-spacings) {
 	@each $name, $spacing in $spacings {
-		@if ($name == "default") {
+		@if $name == "default" {
 			&:not([data-spacing]) {
 				#{$type}: $spacing;
 			}

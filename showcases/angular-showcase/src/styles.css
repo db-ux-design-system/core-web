@@ -1,4 +1,4 @@
-@import url("@db-ux/core-components/build/styles/rollup.css");
-@import url("../../showcase-styles.css");
-@import url("sa11y/dist/css/sa11y.min.css");
-@import url("@db-ux/db-theme/build/styles/rollup.css");
+@import "@db-ux/core-components/build/styles/rollup.css";
+@import "../../showcase-styles.css";
+@import "sa11y/dist/css/sa11y.min.css";
+@import "@db-ux/db-theme/build/styles/rollup.css";
