@@ -1,7 +1,7 @@
 @use "@db-ux/core-foundations/build/styles/icons";
 
 .db-icon {
-	@include icons.is-icon-text-replace();
+	@include icons.is-icon-text-replace;
 
 	/* Safari hack */
 	@supports (-webkit-hyphens: none) {
