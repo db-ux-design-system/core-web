@@ -1,6 +1,6 @@
 services:
   playwright:
-    command: "npm run start"
+    command: "pnpm run start"
     extends:
       file: docker-compose.yml
       service: playwright
