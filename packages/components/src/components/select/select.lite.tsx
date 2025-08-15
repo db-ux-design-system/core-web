@@ -95,7 +95,7 @@ export default function DBSelect(props: DBSelectProps) {
 				}
 			} else if (stringPropVisible(props.message, props.showMessage)) {
 				state._descByIds = state._messageId;
-			} else {
+			} else if (props.placeholder ?? props.variant === 'floating') {
 				state._descByIds = state._placeholderId;
 			}
 		},
@@ -234,7 +234,7 @@ export default function DBSelect(props: DBSelectProps) {
 				}
 				aria-describedby={props.ariaDescribedBy ?? state._descByIds}>
 				{/* Empty option for floating label */}
-				<Show when={props.variant === 'floating' || props.placeholder}>
+				<Show when={props.variant === 'floating' || props.placeholder}>
 					<option class="placeholder" value=""></option>
 				</Show>
 				<Show when={props.options?.length} else={props.children}>
@@ -302,7 +302,7 @@ export default function DBSelect(props: DBSelectProps) {
 					</For>
 				</Show>
 			</select>
-			<Show when={props.placeholder}>
+			<Show when={props.placeholder !== ''}>
 				<span id={state._placeholderId}>{props.placeholder}</span>
 			</Show>
 			<Show when={stringPropVisible(props.message, props.showMessage)}>
