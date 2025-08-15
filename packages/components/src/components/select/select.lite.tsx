@@ -62,7 +62,6 @@ export default function DBSelect(props: DBSelectProps) {
 		_invalidMessageId: undefined,
 		_invalidMessage: undefined,
 		_placeholderId: '',
-		// Workaround for Vue output: TS for Vue would think that it could be a function, and by this we clarify that it's a string
 		_descByIds: undefined,
 		_value: '',
 		initialized: false,
