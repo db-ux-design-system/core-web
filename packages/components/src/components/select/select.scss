@@ -40,7 +40,7 @@
 		background-color: colors.$db-adaptive-bg-basic-level-3-default;
 	}
 
-	&:has(> select option:checked:not([hidden])) {
+	&:has(> select option:checked:not(.placeholder)) {
 		[id$="-placeholder"] {
 			display: none;
 		}
