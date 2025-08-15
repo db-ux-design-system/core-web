@@ -95,7 +95,7 @@ export default function DBSelect(props: DBSelectProps) {
 				}
 			} else if (stringPropVisible(props.message, props.showMessage)) {
 				state._descByIds = state._messageId;
-			} else if (props.placeholder ?? props.variant === 'floating') {
+			} else if (props.placeholder) {
 				state._descByIds = state._placeholderId;
 			}
 		},
