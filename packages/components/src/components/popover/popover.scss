@@ -17,8 +17,7 @@
 	> article {
 		@extend %popover-center;
 		@extend %default-popover;
-
-		@include component.get-data-spacing();
+		@include component.get-data-spacing;
 
 		&[data-open="true"] {
 			@extend %show-popover;

@@ -48,7 +48,7 @@
 .is-icon-text-replace {
 	&[data-icon],
 	&[data-icon-leading] {
-		@include icons.is-icon-text-replace();
+		@include icons.is-icon-text-replace;
 	}
 
 	&[data-icon-trailing] {
