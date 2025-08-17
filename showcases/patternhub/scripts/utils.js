@@ -169,10 +169,7 @@ export const getCodeByFramework = (
 	}
 
 	// Not displaying further slot or innerContent within native and/or composition components
-	if (
-		(native && ['input', 'select'].includes(name)) ||
-		name === 'custom-select'
-	) {
+	if ((native && name === 'input') || name === 'custom-select') {
 		return `<${tag}${className} ${attributes.join(' ')}${reactSlots}/>`;
 	}
 
