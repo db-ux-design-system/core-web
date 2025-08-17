@@ -79,7 +79,6 @@ const getTag = (componentName) =>
  * @param [children] {{name:string, props: object,native?:boolean,slot?:string, angularDirective?:boolean, content?:string,children?:{name:string, props: object,native?:boolean}[]}[]}
  * @returns {string}
  */
-
 export const getCodeByFramework = (
 	componentName,
 	framework,
@@ -168,8 +167,7 @@ export const getCodeByFramework = (
 		}
 	}
 
-	// Not displaying further slot or innerContent within native and/or composition components
-	if ((native && name === 'input') || name === 'custom-select') {
+	if (native && name === 'input') {
 		return `<${tag}${className} ${attributes.join(' ')}${reactSlots}/>`;
 	}
 
