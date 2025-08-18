@@ -79,6 +79,7 @@ const getTag = (componentName) =>
  * @param [children] {{name:string, props: object,native?:boolean,slot?:string, angularDirective?:boolean, content?:string,children?:{name:string, props: object,native?:boolean}[]}[]}
  * @returns {string}
  */
+
 export const getCodeByFramework = (
 	componentName,
 	framework,
@@ -89,6 +90,13 @@ export const getCodeByFramework = (
 	const { props, name, content, native } = example;
 	let className = '';
 	let tag = `DB${getTag(componentName)}`;
+	// Self-contained or composition components
+	const nonInnerContentComponents = [
+		'input',
+		'select',
+		'textarea',
+		'custom-select'
+	];
 	if (framework === 'angular') {
 		tag = `db-${componentName}`;
 	}
@@ -123,7 +131,10 @@ export const getCodeByFramework = (
 						)
 					)
 					.join('\n') + (content ?? '')
-			: (content ?? name);
+			: (content ??
+				(nonInnerContentComponents.includes(componentName)
+					? ''
+					: name));
 
 	const slots = (children ?? example.children)?.filter((child) =>
 		child.slot

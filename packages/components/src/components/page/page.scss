@@ -29,7 +29,7 @@
 	}
 
 	&[data-variant="fixed"] {
-		@include header-footer-style();
+		@include header-footer-style;
 
 		block-size: 100%;
 		min-block-size: 100%;
@@ -38,7 +38,7 @@
 
 		/* workaround for angular */
 		> :is(db-header, dbheader, dbfooter, db-footer) {
-			@include header-footer-style();
+			@include header-footer-style;
 		}
 
 		> .db-main {

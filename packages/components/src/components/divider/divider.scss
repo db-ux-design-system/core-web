@@ -21,7 +21,7 @@
 	&:not([data-variant="vertical"]) {
 		block-size: variables.$db-border-width-3xs;
 
-		@include helpers.divider();
+		@include helpers.divider;
 
 		&[data-width="full"] {
 			inline-size: 100%;
