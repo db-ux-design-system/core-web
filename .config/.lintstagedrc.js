@@ -10,5 +10,7 @@ export default {
 	'*.{css,scss}': 'stylelint --fix --allow-empty-input --no-validate',
 	'*.{js,ts,tsx,jsx,mjs,cjs}': 'xo --fix',
 	// ensure that security vulnerabilities are fixed before committing
-	'package-lock.json': 'npm audit fix --omit=dev'
+	'package-lock.json': 'npm audit fix --omit=dev',
+	// ensure that lock file is up to date
+	'package.json': 'npm install --package-lock-only'
 };
