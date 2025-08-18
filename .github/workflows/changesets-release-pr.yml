@@ -1,0 +1,119 @@
+---
+name: Changesets – Create/Update Release PR and Cut Tags
+
+on:
+  pull_request:
+    branches: ["main"]
+    types: [opened, synchronize, reopened, ready_for_review]
+  push:
+    branches: ["main"]
+  workflow_dispatch: {}
+
+permissions:
+  contents: write # needed to push version commit + create releases
+  pull-requests: write # needed to open/update the Release PR
+
+concurrency:
+  group: changesets-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  # PR PATH: Preview only (no PR creation)
+  preview:
+    if: github.event_name == 'pull_request'
+    name: 🔎 Changesets Preview (PR)
+    runs-on: ubuntu-24.04
+    steps:
+      - name: ⏬ Checkout PR head (not merge ref)
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          ref: ${{ github.event.pull_request.head.sha }}
+
+      - name: 🔄 Init Node & NPM cache
+        uses: ./.github/actions/npm-cache
+
+      - name: 🔁 Ensure full history & fetch base (main)
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [ -f .git/shallow ]; then
+            git fetch --unshallow --no-tags --prune
+          fi
+          git fetch --no-tags --prune origin +refs/heads/main:refs/remotes/origin/main
+          git branch -a
+          git rev-parse HEAD
+          git rev-parse remotes/origin/main
+
+      - name: 📋 Show changeset status (since origin/main)
+        id: status
+        shell: bash
+        run: |
+          set -euo pipefail
+          npx changeset status --since=origin/main --verbose > .changeset-status.txt || {
+            echo "⚠️ changeset status failed; falling back to listing existing changesets"
+            ls -1 .changeset/*.md 2>/dev/null || true
+            : > .changeset-status.txt
+          }
+          {
+            printf 'STATUS<<EOF\n'
+            cat .changeset-status.txt
+            printf '\nEOF\n'
+          } >> "$GITHUB_OUTPUT"
+
+      - name: 💬 Upsert PR comment with preview
+        uses: actions/github-script@v7
+        env:
+          BODY: ${{ steps.status.outputs.STATUS }}
+        with:
+          script: |
+            const { owner, repo, number } = context.issue;
+            const marker = '<!-- changesets-preview-marker -->';
+            const header = '### Changesets Preview (since origin/main)\n\n';
+            const raw = process.env.BODY || '_No status available._';
+            const body = `${header}\n\`\`\`\n${raw}\n\`\`\`\n\n${marker}`;
+            const { data: comments } = await github.rest.issues.listComments({ owner, repo, issue_number: number, per_page: 100 });
+            const existing = comments.find(c => c.user?.type === 'Bot' && c.body?.includes(marker));
+            if (existing) {
+              await github.rest.issues.updateComment({ owner, repo, comment_id: existing.id, body });
+            } else {
+              await github.rest.issues.createComment({ owner, repo, issue_number: number, body });
+            }
+
+  # MAIN PATH: Create/Update Release PR & cut tags/releases
+  release_pr:
+    if: github.event_name == 'push' && startsWith(github.ref, 'refs/heads/main')
+    name: 🧩 Create/Update Release PR (and cut tags/releases)
+    runs-on: ubuntu-24.04
+
+    steps:
+      - name: ⏬ Checkout main
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: 🔄 Init Node & NPM cache
+        uses: ./.github/actions/npm-cache
+
+      - name: 🧩 Changesets Action
+        id: changesets
+        uses: changesets/action@v1
+        with:
+          commit: "chore(release): version packages"
+          title: "chore(release): version packages"
+          createGithubReleases: true
+          publish: "echo 'Publishing handled by release.yml'"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          HUSKY: "0" # disable Husky hooks in CI
+          CI: "true"
+
+      - name: 🖨️ Summary
+        if: always()
+        run: |
+          if [ "${{ steps.changesets.outputs.hasChangesets }}" = "true" ]; then
+            echo "### Changesets\n- Release PR was created or updated." >> $GITHUB_STEP_SUMMARY
+          fi
+          if [ "${{ steps.changesets.outputs.published }}" = "true" ]; then
+            echo "### Tags & Releases\n- New tags and GitHub Releases were created by Changesets.\n- Your **release.yml** will now build and publish." >> $GITHUB_STEP_SUMMARY
+          fi
