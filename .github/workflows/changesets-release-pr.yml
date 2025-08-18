@@ -23,7 +23,6 @@ jobs:
     if: github.event_name == 'pull_request'
     name: 🔎 Changesets Preview (PR)
     runs-on: ubuntu-24.04
-
     steps:
       - name: ⏬ Checkout PR head (not merge ref)
         uses: actions/checkout@v4
@@ -34,13 +33,30 @@ jobs:
       - name: 🔄 Init Node & NPM cache
         uses: ./.github/actions/npm-cache
 
-      - name: 📋 Show changeset status
-        id: status
+      - name: 🔁 Fetch base branch (main)
         run: |
-          npx changeset status --verbose > .changeset-status.txt || true
-          echo "STATUS<<EOF" >> $GITHUB_OUTPUT
-          cat .changeset-status.txt >> $GITHUB_OUTPUT
-          echo "EOF" >> $GITHUB_OUTPUT
+          git remote set-url origin "https://github.com/${{ github.repository }}.git"
+          git fetch --no-tags --prune --depth=0 origin +refs/heads/main:refs/remotes/origin/main
+          git branch -a
+          git rev-parse HEAD
+          git rev-parse remotes/origin/main
+
+      - name: 📋 Show changeset status (since origin/main)
+        id: status
+        shell: bash
+        run: |
+          set -euo pipefail
+          # explizit gegen die Remote-Base vergleichen:
+          npx changeset status --since=origin/main --verbose > .changeset-status.txt || {
+            echo "⚠️ changeset status failed; falling back to listing existing changesets"
+            ls -1 .changeset/*.md 2>/dev/null || true
+            exit 0
+          }
+          {
+            echo "STATUS<<'EOF'"
+            cat .changeset-status.txt
+            echo "EOF"
+          } >> "$GITHUB_OUTPUT"
 
       - name: 💬 Upsert PR comment with preview
         uses: actions/github-script@v7
@@ -50,9 +66,9 @@ jobs:
           script: |
             const { owner, repo, number } = context.issue;
             const marker = '<!-- changesets-preview-marker -->';
-            const header = '### Changesets Preview\n\n';
-            const bodyRaw = process.env.BODY || '';
-            const body = `${header}\n\`\`\`\n${bodyRaw}\n\`\`\`\n\n${marker}`;
+            const header = '### Changesets Preview (since origin/main)\n\n';
+            const raw = process.env.BODY || '_No status available._';
+            const body = `${header}\n\`\`\`\n${raw}\n\`\`\`\n\n${marker}`;
             const { data: comments } = await github.rest.issues.listComments({ owner, repo, issue_number: number, per_page: 100 });
             const existing = comments.find(c => c.user?.type === 'Bot' && c.body?.includes(marker));
             if (existing) {
@@ -88,10 +104,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           HUSKY: "0" # disable Husky hooks in CI
           CI: "true"
-          GIT_AUTHOR_NAME: "github-actions[bot]"
-          GIT_AUTHOR_EMAIL: "41898282+github-actions[bot]@users.noreply.github.com"
-          GIT_COMMITTER_NAME: "github-actions[bot]"
-          GIT_COMMITTER_EMAIL: "41898282+github-actions[bot]@users.noreply.github.com"
 
       - name: 🖨️ Summary
         if: always()
