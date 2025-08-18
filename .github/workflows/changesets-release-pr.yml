@@ -2,13 +2,8 @@
 name: Changesets – Create/Update Release PR and Cut Tags
 
 on:
-  # Keeps the Release PR up to date whenever PRs auf main zielen
-  pull_request:
-    branches: ["main"]
-  # After the Release PR is merged, this push on main will trigger
   push:
     branches: ["main"]
-  # Manual trigger
   workflow_dispatch: {}
 
 permissions:
