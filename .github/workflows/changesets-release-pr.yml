@@ -37,11 +37,11 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          # Falls Repo shallow ist, erst „unshallow“
-          if git rev-parse --is-shallow-repository >/dev/null 2>&1 && git rev-parse --is-shallow-repository; then
+          # Nur unshallow, wenn wirklich shallow:
+          if [ -f .git/shallow ]; then
             git fetch --unshallow --no-tags --prune
           fi
-          # Base-Ref explizit holen (ohne --depth=0!)
+          # Base-Ref explizit holen (ohne --depth!)
           git fetch --no-tags --prune origin +refs/heads/main:refs/remotes/origin/main
           git branch -a
           git rev-parse HEAD
