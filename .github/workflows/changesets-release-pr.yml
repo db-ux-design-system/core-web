@@ -37,11 +37,9 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          # Nur unshallow, wenn wirklich shallow:
           if [ -f .git/shallow ]; then
             git fetch --unshallow --no-tags --prune
           fi
-          # Base-Ref explizit holen (ohne --depth!)
           git fetch --no-tags --prune origin +refs/heads/main:refs/remotes/origin/main
           git branch -a
           git rev-parse HEAD
@@ -55,12 +53,12 @@ jobs:
           npx changeset status --since=origin/main --verbose > .changeset-status.txt || {
             echo "⚠️ changeset status failed; falling back to listing existing changesets"
             ls -1 .changeset/*.md 2>/dev/null || true
-            exit 0
+            : > .changeset-status.txt
           }
           {
-            echo "STATUS<<'EOF'"
+            printf 'STATUS<<EOF\n'
             cat .changeset-status.txt
-            echo "EOF"
+            printf '\nEOF\n'
           } >> "$GITHUB_OUTPUT"
 
       - name: 💬 Upsert PR comment with preview
