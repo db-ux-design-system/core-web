@@ -40,5 +40,6 @@
     "registry": "https://registry.npmjs.org/",
     "access": "public"
   },
-  "web-types": "./dist/web-types.json"
+  "web-types": "./dist/web-types.json",
+  "customElements": "dist/custom-elements.json"
 }
