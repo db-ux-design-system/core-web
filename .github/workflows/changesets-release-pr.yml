@@ -33,10 +33,16 @@ jobs:
       - name: 🔄 Init Node & NPM cache
         uses: ./.github/actions/npm-cache
 
-      - name: 🔁 Fetch base branch (main)
+      - name: 🔁 Ensure full history & fetch base (main)
+        shell: bash
         run: |
-          git remote set-url origin "https://github.com/${{ github.repository }}.git"
-          git fetch --no-tags --prune --depth=0 origin +refs/heads/main:refs/remotes/origin/main
+          set -euo pipefail
+          # Falls Repo shallow ist, erst „unshallow“
+          if git rev-parse --is-shallow-repository >/dev/null 2>&1 && git rev-parse --is-shallow-repository; then
+            git fetch --unshallow --no-tags --prune
+          fi
+          # Base-Ref explizit holen (ohne --depth=0!)
+          git fetch --no-tags --prune origin +refs/heads/main:refs/remotes/origin/main
           git branch -a
           git rev-parse HEAD
           git rev-parse remotes/origin/main
@@ -46,7 +52,6 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          # explizit gegen die Remote-Base vergleichen:
           npx changeset status --since=origin/main --verbose > .changeset-status.txt || {
             echo "⚠️ changeset status failed; falling back to listing existing changesets"
             ls -1 .changeset/*.md 2>/dev/null || true
