@@ -67,7 +67,7 @@ jobs:
               echo "| Status | File |"
               echo "|-------:|:-----|"
               while read -r LINE; do
-                [ -z "$LINE" ] && continue
+                [ -z "${LINE:-}" ] && continue
                 STATUS=$(echo "$LINE" | awk '{print $1}')
                 FILE=$(echo "$LINE" | awk '{print $2}')
                 if echo "$STATUS" | grep -qE '^R'; then
@@ -84,11 +84,8 @@ jobs:
             echo "<!-- html-snapshot-summary-marker -->"
           } > snapshot-summary.md
 
-          {
-            printf 'SUMMARY_MD<<EOF\n'
-            cat snapshot-summary.md
-            printf '\nEOF\n'
-          } >> "$GITHUB_OUTPUT"
+          B64=$(base64 -w0 snapshot-summary.md 2>/dev/null || base64 snapshot-summary.md)
+          echo "summary_md_b64=${B64}" >> "$GITHUB_OUTPUT"
 
       - name: 📎 Upload unified diff (artifact)
         if: steps.diff.outputs.total != '0'
