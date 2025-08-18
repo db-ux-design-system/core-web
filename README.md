@@ -85,7 +85,7 @@ As [DB UX Design System](https://marketingportal.extranet.deutschebahn.com/marke
 
 ### From DB UI Core or DB UI Elements to DB UX Design System Core
 
-We're providing a detailed migration for each component next to the documentation of each component, like e.g.
+We are providing a detailed migration for each component next to the documentation of each component, like e.g.
 <https://design-system.deutschebahn.com/core-web/review/main/components/action/button/migration>
 
 ### In between DB UX Design System Core versions
