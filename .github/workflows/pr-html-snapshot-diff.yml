@@ -122,7 +122,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          npx changeset status --since=origin/main --verbose > .changeset-status.txt || true
+          npx -y @changesets/cli@^2 status --since=origin/main --verbose > .changeset-status.txt || true
           HAS_MINOR=$(grep -n "Packages to be bumped at minor" .changeset-status.txt >/dev/null 2>&1 && echo 1 || echo 0)
           HAS_MAJOR=$(grep -n "Packages to be bumped at major" .changeset-status.txt >/dev/null 2>&1 && echo 1 || echo 0)
           {
