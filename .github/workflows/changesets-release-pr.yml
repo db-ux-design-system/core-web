@@ -1,0 +1,61 @@
+---
+name: Changesets – Create/Update Release PR and Cut Tags
+
+on:
+  # Keeps the Release PR up to date whenever PRs auf main zielen
+  pull_request:
+    branches: ["main"]
+  # After the Release PR is merged, this push on main will trigger
+  push:
+    branches: ["main"]
+  # Manual trigger
+  workflow_dispatch: {}
+
+permissions:
+  contents: write # needed to push version commit + create releases
+  pull-requests: write # needed to open/update the Release PR
+
+concurrency:
+  group: changesets-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  changesets:
+    name: Create/Update Release PR (and create tags/releases after merge)
+    runs-on: ubuntu-24.04
+
+    steps:
+      - name: ⏬ Checkout repo
+        uses: actions/checkout@v4
+
+      - name: 🔄 Init Node & NPM cache
+        uses: ./.github/actions/npm-cache
+
+      # This step will:
+      # - On PRs to main: open or update the "Version Packages" release PR
+      # - On push to main (after that PR is merged): run changeset publish flow
+      #   AND create Git tags + GitHub Releases (we let your existing release.yml do the actual build & npm publish)
+      - name: 🧩 Changesets Action
+        id: changesets
+        uses: changesets/action@v1
+        with:
+          # Commit message + PR Title
+          commit: "chore(release): version packages"
+          title: "chore(release): version packages"
+          # Very important: let the action create GitHub Releases for new tags.
+          # That will trigger the existing .github/workflows/release.yml (on: release: published)
+          createGithubReleases: true
+          # We DO NOT publish here. Build+Publish are already in  release.yml
+          publish: 'node -e "console.log(`Publishing handled by release.yml`)"; exit 0'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: 🖨️ Summary
+        if: always()
+        run: |
+          if [ "${{ steps.changesets.outputs.hasChangesets }}" = "true" ]; then
+            echo "### Changesets\n- Release PR was created or updated." >> $GITHUB_STEP_SUMMARY
+          fi
+          if [ "${{ steps.changesets.outputs.published }}" = "true" ]; then
+            echo "### Tags & Releases\n- New tags and GitHub Releases were created by Changesets.\n- Your **release.yml** will now build and publish." >> $GITHUB_STEP_SUMMARY
+          fi
