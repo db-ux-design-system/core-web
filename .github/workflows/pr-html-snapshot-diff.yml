@@ -42,18 +42,11 @@ jobs:
           set -euo pipefail
           git diff --unified=3 --no-color origin/main...HEAD -- "__snapshots__/**/*.html" > html-snapshots.diff || true
           git diff --name-status origin/main...HEAD -- "__snapshots__/**/*.html" > html-snapshots.list || true
-
-          TOTAL=$(wc -l < html-snapshots.list 2>/dev/null | tr -d ' ' || echo "0")
-          ADDED=$(grep -E '^[A]\s' html-snapshots.list 2>/dev/null | wc -l | tr -d ' ' || echo "0")
-          MOD=$(grep -E '^[M]\s' html-snapshots.list 2>/dev/null | wc -l | tr -d ' ' || echo "0")
-          DEL=$(grep -E '^[D]\s' html-snapshots.list 2>/dev/null | wc -l | tr -d ' ' || echo "0")
-          REN=$(grep -E '^[R]\d*\s' html-snapshots.list 2>/dev/null | wc -l | tr -d ' ' || echo "0")
-
-          echo "total=${TOTAL}" >> "$GITHUB_OUTPUT"
-          echo "added=${ADDED}" >> "$GITHUB_OUTPUT"
-          echo "modified=${MOD}" >> "$GITHUB_OUTPUT"
-          echo "deleted=${DEL}" >> "$GITHUB_OUTPUT"
-          echo "renamed=${REN}" >> "$GITHUB_OUTPUT"
+          TOTAL=$(wc -l < html-snapshots.list 2>/dev/null | tr -d '[:space:]' || echo 0)
+          ADDED=$(grep -E '^[A]\s' html-snapshots.list 2>/dev/null | wc -l | tr -d '[:space:]' || echo 0)
+          MOD=$(grep -E '^[M]\s' html-snapshots.list 2>/dev/null | wc -l | tr -d '[:space:]' || echo 0)
+          DEL=$(grep -E '^[D]\s' html-snapshots.list 2>/dev/null | wc -l | tr -d '[:space:]' || echo 0)
+          REN=$(grep -E '^[R]\d*\s' html-snapshots.list 2>/dev/null | wc -l | tr -d '[:space:]' || echo 0)
 
           head -n 200 html-snapshots.list > html-snapshots.short || true
           {
@@ -84,10 +77,17 @@ jobs:
             echo "<!-- html-snapshot-summary-marker -->"
           } > snapshot-summary.md
 
-          echo "SUMMARY_MD_PATH=$(pwd)/snapshot-summary.md" >> "$GITHUB_ENV"
+          {
+            echo "SNAP_TOTAL=${TOTAL}"
+            echo "SNAP_ADDED=${ADDED}"
+            echo "SNAP_MODIFIED=${MOD}"
+            echo "SNAP_DELETED=${DEL}"
+            echo "SNAP_RENAMED=${REN}"
+            echo "SUMMARY_MD_PATH=$(pwd)/snapshot-summary.md"
+          } >> "$GITHUB_ENV"
 
       - name: 📎 Upload unified diff (artifact)
-        if: steps.diff.outputs.total != '0'
+        if: env.SNAP_TOTAL != '0'
         uses: actions/upload-artifact@v4
         with:
           name: html-snapshots-diff
@@ -122,21 +122,20 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          # Wir brauchen nur grob: gibt es minor/major?
           npx changeset status --since=origin/main --verbose > .changeset-status.txt || true
-          HAS_MINOR=$(grep -A50 -n "Packages to be bumped at minor" .changeset-status.txt | grep -Ev '^\s*$' | wc -l | tr -d ' ' || echo "0")
-          HAS_MAJOR=$(grep -A50 -n "Packages to be bumped at major" .changeset-status.txt | grep -Ev '^\s*$' | wc -l | tr -d ' ' || echo "0")
-          echo "has_minor=${HAS_MINOR}" >> "$GITHUB_OUTPUT"
-          echo "has_major=${HAS_MAJOR}" >> "$GITHUB_OUTPUT"
+          HAS_MINOR=$(grep -n "Packages to be bumped at minor" .changeset-status.txt >/dev/null 2>&1 && echo 1 || echo 0)
+          HAS_MAJOR=$(grep -n "Packages to be bumped at major" .changeset-status.txt >/dev/null 2>&1 && echo 1 || echo 0)
+          {
+            echo "HAS_MINOR=${HAS_MINOR}"
+            echo "HAS_MAJOR=${HAS_MAJOR}"
+          } >> "$GITHUB_ENV"
 
       - name: 🚦 Enforce HTML changes require >= minor
-        if: steps.diff.outputs.total != '0'
+        if: env.SNAP_TOTAL != '0'
         shell: bash
         run: |
           set -euo pipefail
-          MINOR="${{ steps.plan.outputs.has_minor }}"
-          MAJOR="${{ steps.plan.outputs.has_major }}"
-          if [ "$MINOR" = "0" ] && [ "$MAJOR" = "0" ]; then
+          if [ "${HAS_MINOR}" = "0" ] && [ "${HAS_MAJOR}" = "0" ]; then
             echo "::error title=HTML changed but only patch detected::HTML snapshots changed. Please bump at least MINOR in your changeset."
             exit 1
           else
