@@ -4,7 +4,7 @@ name: Changesets – Create/Update Release PR and Cut Tags
 on:
   pull_request:
     branches: ["main"]
-    types: [opened, synchronize, reopened, ready_for_review]
+    types: [opened, synchronize, reopened, ready_for_review] # Only run if one of the following events occurs
   push:
     branches: ["main"]
   workflow_dispatch: {}
@@ -18,17 +18,17 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  # PR PATH: Preview only (no PR creation)
+  # PR PATH: Preview only
   preview:
     if: github.event_name == 'pull_request'
     name: 🔎 Changesets Preview (PR)
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-latest
     steps:
       - name: ⏬ Checkout PR head (not merge ref)
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
-          ref: ${{ github.event.pull_request.head.sha }}
+          ref: ${{ github.event.pull_request.head.sha }} # Force checkout to the PR head ref, not the merge ref
 
       - name: 🔄 Init Node & NPM cache
         uses: ./.github/actions/npm-cache
@@ -84,7 +84,7 @@ jobs:
   release_pr:
     if: github.event_name == 'push' && startsWith(github.ref, 'refs/heads/main')
     name: 🧩 Create/Update Release PR (and cut tags/releases)
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-latest
 
     steps:
       - name: ⏬ Checkout main
