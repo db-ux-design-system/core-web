@@ -1,3 +1,22 @@
+# Self-Healing Lint Workflow
+#
+# This workflow runs linting and automatically fixes code style issues when possible.
+# Behavior:
+# - For pull requests (non-dependabot): Attempts to auto-fix style issues and commits changes
+# - For dependabot PRs: Only attempts fixes but doesn't commit (dedicated workflow handles this)
+# - For main branch pushes: Only attempts fixes but doesn't commit (manual intervention required)
+# - For unfixable issues: Fails the workflow as before
+#
+# Auto-fixable issues include:
+# - prettier/xo formatting issues
+# - stylelint CSS/SCSS formatting issues  
+# - markdownlint markdown formatting issues
+#
+# Non-fixable issues include:
+# - jscpd code duplication
+# - structural code issues (unused variables, etc.)
+# - custom lint rule violations
+
 name: Self-Healing Lint
 
 on:
@@ -47,6 +66,10 @@ jobs:
         run: |
           echo "🔧 Attempting to auto-fix lint issues..."
 
+          # Check for changes before fixing
+          echo "📋 Files before fixing:"
+          git status --porcelain
+
           # Run formatters with --fix flags
           echo "🎨 Running prettier/xo fix..."
           npm run lint:xo -- --fix || true
@@ -56,6 +79,20 @@ jobs:
 
           echo "📝 Running markdownlint fix..."
           npm run lint:markdownlint -- --fix || true
+
+          # Check if any changes were made
+          if [[ -n "$(git status --porcelain)" ]]; then
+            echo "✅ Auto-fix made changes to files"
+            echo "changes_made=true" >> $GITHUB_ENV
+          else
+            echo "ℹ️ No changes made by auto-fix"
+            echo "changes_made=false" >> $GITHUB_ENV
+          fi
+
+          # For dependabot PRs, we don't auto-commit here as they have their own workflow
+          if [[ "${{ github.actor }}" == "dependabot[bot]" ]]; then
+            echo "ℹ️ Dependabot PR detected - skipping auto-commit (handled by dedicated workflow)"
+          fi
 
       - name: 🔍 Check lint status after fixes (attempt 2)
         if: env.needs_fixing == 'true'
@@ -76,7 +113,7 @@ jobs:
           fi
 
       - name: 🚘 Auto commit style fixes
-        if: env.needs_fixing == 'true' && env.fixes_successful == 'true'
+        if: env.needs_fixing == 'true' && env.fixes_successful == 'true' && env.changes_made == 'true' && github.event.pull_request != null && github.actor != 'dependabot[bot]'
         uses: ./.github/actions/auto-commit
         with:
           branch-name: "${{ github.head_ref }}-codestyle-fixes"
@@ -93,6 +130,22 @@ jobs:
           echo "These may be structural issues that require manual intervention."
           echo "Please review the lint output and fix remaining issues manually."
           exit 1
+
+      - name: ℹ️ Report self-healing results
+        if: env.needs_fixing == 'true'
+        run: |
+          if [[ "${{ env.fixes_successful }}" == "true" ]]; then
+            if [[ "${{ env.changes_made }}" == "true" ]]; then
+              if [[ "${{ github.event.pull_request }}" != "null" && "${{ github.actor }}" != "dependabot[bot]" ]]; then
+                echo "🎉 Self-healing successful! Codestyle issues have been auto-fixed and committed."
+              else
+                echo "✅ Codestyle issues were auto-fixed but not committed (main branch or dependabot)."
+                echo "Please commit the changes manually."
+              fi
+            else
+              echo "✅ Lint passed after running formatters, but no file changes were needed."
+            fi
+          fi
 
       - name: 💀 Killing me softly
         uses: ./.github/actions/cancel-workflow
