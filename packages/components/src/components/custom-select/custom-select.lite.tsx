@@ -691,6 +691,16 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 			props.values !== state._values
 		) {
 			state._values = props.values ?? [];
+		} else if (
+			((Array.isArray(props.values) && props.values.length === 0) || 
+			 props.values === null || 
+			 props.values === undefined) &&
+			state._values.length > 0
+		) {
+			// Handle the case where props.values is empty/null/undefined 
+			// but state._values still contains items that need to be cleared
+			// This fixes issues with form validation libraries that reset values
+			state._values = [];
 		}
 	}, [props.values]);
 
