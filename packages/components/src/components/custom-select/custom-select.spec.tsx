@@ -115,9 +115,62 @@ const testAction = () => {
 	});
 };
 
+const testPlaceholderVisibility = () => {
+	test('should show placeholder when no options selected', async ({ mount, page }) => {
+		const component = await mount(comp);
+		const placeholder = component.locator('[id$="-placeholder"]');
+		
+		// Placeholder should be visible when no options are selected
+		await expect(placeholder).toBeVisible();
+	});
+
+	test('should hide placeholder when options are selected', async ({ mount, page }) => {
+		const component = await mount(comp);
+		const placeholder = component.locator('[id$="-placeholder"]');
+		const summary = component.locator('summary');
+		
+		// Initially placeholder should be visible
+		await expect(placeholder).toBeVisible();
+		
+		// Open dropdown and select an option
+		await summary.click();
+		await page.waitForTimeout(500);
+		const firstOption = component.locator('input[type="radio"]').first();
+		await firstOption.click();
+		
+		// Wait for the selection to be processed
+		await page.waitForTimeout(500);
+		
+		// Placeholder should now be hidden since we have a selection
+		await expect(placeholder).toBeHidden();
+	});
+
+	test('should handle multiple selection placeholder visibility', async ({ mount, page }) => {
+		const component = await mount(multiple);
+		const placeholder = component.locator('[id$="-placeholder"]');
+		const summary = component.locator('summary');
+		
+		// Initially placeholder should be visible
+		await expect(placeholder).toBeVisible();
+		
+		// Open dropdown and select multiple options
+		await summary.click();
+		await page.waitForTimeout(500);
+		const firstOption = component.locator('input[type="checkbox"]').first();
+		await firstOption.click();
+		
+		// Wait for the selection to be processed
+		await page.waitForTimeout(500);
+		
+		// Placeholder should now be hidden since we have selections
+		await expect(placeholder).toBeHidden();
+	});
+};
+
 test.describe('DBCustomSelect', () => {
 	test.use({ viewport: DEFAULT_VIEWPORT });
 	testComponent();
 	testAction();
 	testA11y();
+	testPlaceholderVisibility();
 });
