@@ -1,0 +1,101 @@
+name: Self-Healing Lint
+
+on:
+  workflow_call:
+
+jobs:
+  lint:
+    name: Self-Healing Lint
+    runs-on: ubuntu-24.04 # Use Ubuntu 24.04 explicitly
+    permissions:
+      contents: write
+      pull-requests: write
+    steps:
+      - name: ⏬️ Checkout repo
+        uses: actions/checkout@v5
+        with:
+          ref: ${{ github.head_ref }}
+
+      - name: 🔄 Init Cache
+        uses: ./.github/actions/npm-cache
+
+      - name: 🔍 Check lint status (attempt 1)
+        id: lint_check
+        run: |
+          # Pre-build stylelint package if needed
+          npm run postinstall --workspace=nuxt-showcase
+          npm run build --workspace=@db-ux/core-stylelint
+
+          # Run lint and capture exit code
+          set +e
+          npm run lint
+          LINT_EXIT_CODE=$?
+          set -e
+
+          if [ $LINT_EXIT_CODE -eq 0 ]; then
+            echo "✅ Lint passed on first attempt"
+            echo "lint_passed=true" >> $GITHUB_ENV
+            echo "needs_fixing=false" >> $GITHUB_ENV
+          else
+            echo "❌ Lint failed on first attempt"
+            echo "lint_passed=false" >> $GITHUB_ENV
+            echo "needs_fixing=true" >> $GITHUB_ENV
+          fi
+
+      - name: 🔧 Attempt auto-fix for style issues
+        if: env.needs_fixing == 'true'
+        run: |
+          echo "🔧 Attempting to auto-fix lint issues..."
+
+          # Run formatters with --fix flags
+          echo "🎨 Running prettier/xo fix..."
+          npm run lint:xo -- --fix || true
+
+          echo "🎨 Running stylelint fix..."
+          npm run lint:stylelint -- --fix || true
+
+          echo "📝 Running markdownlint fix..."
+          npm run lint:markdownlint -- --fix || true
+
+      - name: 🔍 Check lint status after fixes (attempt 2)
+        if: env.needs_fixing == 'true'
+        id: lint_recheck
+        run: |
+          # Run lint again and capture exit code
+          set +e
+          npm run lint
+          LINT_EXIT_CODE=$?
+          set -e
+
+          if [ $LINT_EXIT_CODE -eq 0 ]; then
+            echo "✅ Lint passed after auto-fix"
+            echo "fixes_successful=true" >> $GITHUB_ENV
+          else
+            echo "❌ Lint still failing after auto-fix"
+            echo "fixes_successful=false" >> $GITHUB_ENV
+          fi
+
+      - name: 🚘 Auto commit style fixes
+        if: env.needs_fixing == 'true' && env.fixes_successful == 'true'
+        uses: ./.github/actions/auto-commit
+        with:
+          branch-name: "${{ github.head_ref }}-codestyle-fixes"
+          commit-message: "style: auto-fix codestyle issues"
+          commit-files: "."
+          auto-merge-app-id: ${{ vars.AUTO_MERGE_APP_ID }}
+          auto-merge-private-key: ${{ secrets.AUTO_MERGE_PRIVATE_KEY }}
+          gh-token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: ❌ Fail if lint issues remain unfixable
+        if: env.needs_fixing == 'true' && env.fixes_successful == 'false'
+        run: |
+          echo "❌ Lint issues remain after auto-fix attempt."
+          echo "These may be structural issues that require manual intervention."
+          echo "Please review the lint output and fix remaining issues manually."
+          exit 1
+
+      - name: 💀 Killing me softly
+        uses: ./.github/actions/cancel-workflow
+        if: failure()
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
