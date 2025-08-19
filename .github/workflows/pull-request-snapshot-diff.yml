@@ -129,18 +129,17 @@ jobs:
       - name: 📦 Install deps (root)
         run: npm ci
 
-      - name: 🔎 Determine bump plan (Changesets JSON)
+      - name: 🔎 Determine bump plan (JSON + Fallback)
         id: plan
         shell: bash
         run: |
           set -euo pipefail
           npx -y @changesets/cli@^2 status --since=origin/main --output=json > .changeset-status.json || true
-
           node > .changeset-env <<'NODE'
           const fs = require('fs');
           let hasMinor = 0, hasMajor = 0;
           try {
-            const txt = fs.readFileSync('.changeset-status.json', 'utf8').trim();
+            const txt = fs.readFileSync('.changeset-status.json','utf8').trim();
             if (txt) {
               const j = JSON.parse(txt);
               for (const r of (j.releases || [])) {
@@ -151,7 +150,29 @@ jobs:
           } catch (_) {}
           process.stdout.write(`HAS_MINOR=${hasMinor}\nHAS_MAJOR=${hasMajor}\n`);
           NODE
+
+          source .changeset-env || true
+          if [ "${HAS_MINOR}" = "0" ] && [ "${HAS_MAJOR}" = "0" ]; then
+            git diff --name-only origin/main...HEAD -- ".changeset/*.md" > .cs-files || true
+            if [ -s .cs-files ]; then
+              while read -r f; do
+                [ -z "${f:-}" ] && continue
+                if grep -E ':\s*minor\b' "$f" >/dev/null 2>&1; then HAS_MINOR=1; fi
+                if grep -E ':\s*major\b' "$f" >/dev/null 2>&1; then HAS_MAJOR=1; fi
+              done < .cs-files
+            fi
+            {
+              echo "HAS_MINOR=${HAS_MINOR}"
+              echo "HAS_MAJOR=${HAS_MAJOR}"
+            } > .changeset-env
+          fi
           cat .changeset-env >> "$GITHUB_ENV"
+          {
+            echo "### Bump Plan Detection"
+            echo
+            echo "- HAS_MINOR: ${HAS_MINOR}"
+            echo "- HAS_MAJOR: ${HAS_MAJOR}"
+          } >> "$GITHUB_STEP_SUMMARY"
 
       - name: 🚦 Enforce Snapshot changes require >= minor
         if: env.SNAP_TOTAL != '0'
