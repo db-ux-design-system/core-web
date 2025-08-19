@@ -21,7 +21,7 @@ The spacings are not part of the styling of the accordion items themselves.
 
 	&[data-variant="divider"],
 	&:not([data-variant]) {
-		@include accordion-subsequent-item-selector() {
+		@include accordion-subsequent-item-selector {
 			// One space each before and after the divider results in a double spacing
 			margin-block-start: calc(2 * #{variables.$db-spacing-fixed-sm});
 
@@ -35,7 +35,7 @@ The spacings are not part of the styling of the accordion items themselves.
 	}
 
 	&[data-variant="card"] {
-		@include accordion-subsequent-item-selector() {
+		@include accordion-subsequent-item-selector {
 			margin-block-start: variables.$db-spacing-fixed-sm;
 		}
 

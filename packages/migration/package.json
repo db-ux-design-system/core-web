@@ -31,7 +31,7 @@
   },
   "devDependencies": {
     "cpr": "3.0.1",
-    "esbuild": "0.25.8",
+    "esbuild": "0.25.9",
     "tsx": "4.20.4",
     "vitest": "3.2.4"
   },

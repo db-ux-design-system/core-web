@@ -8,5 +8,7 @@ export default {
 	'stylelint.config.*': 'stylelint --validate --allow-empty-input',
 	// And elsewhere we don't, compare to https://github.com/stylelint/stylelint/pull/8009
 	'*.{css,scss}': 'stylelint --fix --allow-empty-input --no-validate',
-	'*.{js,ts,tsx,jsx,mjs,cjs}': 'xo --fix'
+	'*.{js,ts,tsx,jsx,mjs,cjs}': 'xo --fix',
+	// ensure that security vulnerabilities are fixed before committing
+	'package-lock.json': 'npm audit fix --omit=dev'
 };
