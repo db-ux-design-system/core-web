@@ -129,18 +129,31 @@ jobs:
       - name: 📦 Install deps (root)
         run: npm ci
 
-      - name: 🔎 Determine bump plan (Changesets status)
+      - name: 🔎 Determine bump plan (Changesets JSON)
         id: plan
         shell: bash
         run: |
           set -euo pipefail
-          npx changeset status --since=origin/main --verbose > .changeset-status.txt || true
-          HAS_MINOR=$(grep -n "Packages to be bumped at minor" .changeset-status.txt >/dev/null 2>&1 && echo 1 || echo 0)
-          HAS_MAJOR=$(grep -n "Packages to be bumped at major" .changeset-status.txt >/dev/null 2>&1 && echo 1 || echo 0)
-          {
-            echo "HAS_MINOR=${HAS_MINOR}"
-            echo "HAS_MAJOR=${HAS_MAJOR}"
-          } >> "$GITHUB_ENV"
+          # JSON statt Text parsen (robust gegen Format-/Sprachänderungen)
+          npx -y @changesets/cli@^2 status --since=origin/main --output=json > .changeset-status.json || true
+
+          node <<'NODE'
+          const fs = require('fs');
+          let hasMinor = 0, hasMajor = 0;
+          try {
+            const j = JSON.parse(fs.readFileSync('.changeset-status.json','utf8'));
+            // j.releases ist eine Liste mit { name, type: "patch"|"minor"|"major" }
+            for (const r of j.releases || []) {
+              if (r.type === 'minor') hasMinor = 1;
+              if (r.type === 'major') hasMajor = 1;
+            }
+          } catch (e) {
+            // Wenn parsing fehlschlägt, bleiben Flags 0 -> Guard greift konservativ
+          }
+          // Werte für nachfolgende Steps bereitstellen
+          console.log(`HAS_MINOR=${hasMinor}`);
+          console.log(`HAS_MAJOR=${hasMajor}`);
+          NODE | tee -a "$GITHUB_ENV"
 
       - name: 🚦 Enforce Snapshot changes require >= minor
         if: env.SNAP_TOTAL != '0'
