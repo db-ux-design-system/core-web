@@ -1,4 +1,4 @@
-name: 🧪 PR HTML Snapshot Diff
+name: 🧪 PR Snapshot Diff (PNG/YML)
 
 on:
   pull_request:
@@ -10,13 +10,13 @@ permissions:
   pull-requests: write
 
 concurrency:
-  group: pr-html-snap-${{ github.event.pull_request.number }}
+  group: pr-snapshot-diff-${{ github.event.pull_request.number }}
   cancel-in-progress: true
 
 jobs:
-  html-snapshot-diff:
-    name: 🔎 HTML snapshot changes & bump guard
-    runs-on: ubuntu-22.04
+  snapshot-diff:
+    name: 🔎 Snapshot changes (png/yml) & bump guard
+    runs-on: ubuntu-latest
 
     steps:
       - name: ⏬ Checkout PR head (not merge ref)
@@ -35,25 +35,27 @@ jobs:
           git fetch --no-tags --prune origin +refs/heads/main:refs/remotes/origin/main
           git rev-parse remotes/origin/main >/dev/null
 
-      - name: 🧾 Collect changed HTML snapshots
+      - name: 🧾 Collect changed PNG/YML snapshots
         id: diff
         shell: bash
         run: |
           set -euo pipefail
-          git diff --unified=3 --no-color origin/main...HEAD -- "__snapshots__/**/*.html" > html-snapshots.diff || true
-          git diff --name-status origin/main...HEAD -- "__snapshots__/**/*.html" > html-snapshots.list || true
-          TOTAL=$(wc -l < html-snapshots.list 2>/dev/null | tr -d '[:space:]' || echo 0)
-          ADDED=$(grep -E '^[A]\s' html-snapshots.list 2>/dev/null | wc -l | tr -d '[:space:]' || echo 0)
-          MOD=$(grep -E '^[M]\s' html-snapshots.list 2>/dev/null | wc -l | tr -d '[:space:]' || echo 0)
-          DEL=$(grep -E '^[D]\s' html-snapshots.list 2>/dev/null | wc -l | tr -d '[:space:]' || echo 0)
-          REN=$(grep -E '^[R]\d*\s' html-snapshots.list 2>/dev/null | wc -l | tr -d '[:space:]' || echo 0)
 
-          head -n 200 html-snapshots.list > html-snapshots.short || true
+          git diff --unified=3 --no-color origin/main...HEAD -- __snapshots__/**/*.{png,yml} > snapshots.diff || true
+          git diff --name-status origin/main...HEAD -- __snapshots__/**/*.{png,yml} > snapshots.list || true
+
+          TOTAL=$(wc -l < snapshots.list 2>/dev/null | tr -d '[:space:]' || echo 0)
+          ADDED=$(grep -E '^[A]\s' snapshots.list 2>/dev/null | wc -l | tr -d '[:space:]' || echo 0)
+          MOD=$(grep -E '^[M]\s' snapshots.list 2>/dev/null | wc -l | tr -d '[:space:]' || echo 0)
+          DEL=$(grep -E '^[D]\s' snapshots.list 2>/dev/null | wc -l | tr -d '[:space:]' || echo 0)
+          REN=$(grep -E '^[R]\d*\s' snapshots.list 2>/dev/null | wc -l | tr -d '[:space:]' || echo 0)
+
+          head -n 200 snapshots.list > snapshots.short || true
           {
-            echo "### HTML Snapshot Changes"
+            echo "### Snapshot Changes (PNG/YML)"
             echo
             if [ "${TOTAL}" = "0" ]; then
-              echo "_No \`__snapshots__/**/*.html\` changes detected._"
+              echo "_No \`__snapshots__/**/*.{png,yml}\` changes detected._"
             else
               echo "- Total: **${TOTAL}** (added: ${ADDED}, modified: ${MOD}, deleted: ${DEL}, renamed: ${REN})"
               echo
@@ -67,14 +69,14 @@ jobs:
                   FILE=$(echo "$LINE" | awk '{print $3}')
                 fi
                 echo "| \`$STATUS\` | \`$FILE\` |"
-              done < html-snapshots.short
+              done < snapshots.short
               if [ "$TOTAL" -gt 200 ]; then
                 echo ""
                 echo "_…and $(($TOTAL - 200)) more_"
               fi
             fi
             echo ""
-            echo "<!-- html-snapshot-summary-marker -->"
+            echo "<!-- snapshot-summary-marker -->"
           } > snapshot-summary.md
 
           {
@@ -83,30 +85,30 @@ jobs:
             echo "SNAP_MODIFIED=${MOD}"
             echo "SNAP_DELETED=${DEL}"
             echo "SNAP_RENAMED=${REN}"
-            echo "SUMMARY_MD_PATH=$(pwd)/snapshot-summary.md"
+            echo "SNAP_SUMMARY_MD_PATH=$(pwd)/snapshot-summary.md"
           } >> "$GITHUB_ENV"
 
       - name: 📎 Upload unified diff (artifact)
         if: env.SNAP_TOTAL != '0'
         uses: actions/upload-artifact@v4
         with:
-          name: html-snapshots-diff
-          path: html-snapshots.diff
+          name: snapshots-diff
+          path: snapshots.diff
           if-no-files-found: ignore
           retention-days: 7
 
       - name: 💬 Upsert PR comment
         uses: actions/github-script@v7
         env:
-          SUMMARY_MD_PATH: ${{ env.SUMMARY_MD_PATH }}
+          SNAP_SUMMARY_MD_PATH: ${{ env.SNAP_SUMMARY_MD_PATH }}
         with:
           script: |
             const fs = require('fs');
             const { owner, repo, number } = context.issue;
-            const marker = '<!-- html-snapshot-summary-marker -->';
+            const marker = '<!-- snapshot-summary-marker -->';
             let body = '_No snapshot info._';
             try {
-              const p = process.env.SUMMARY_MD_PATH;
+              const p = process.env.SNAP_SUMMARY_MD_PATH;
               if (p && fs.existsSync(p)) body = fs.readFileSync(p, 'utf8');
             } catch {}
             const { data: comments } = await github.rest.issues.listComments({ owner, repo, issue_number: number, per_page: 100 });
@@ -117,12 +119,22 @@ jobs:
               await github.rest.issues.createComment({ owner, repo, issue_number: number, body });
             }
 
+      # If snapshots (png/yml) were changed, require at least a minor bump
+      - name: 🟦 Setup Node (for changeset status)
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: ".nvmrc"
+          cache: "npm"
+
+      - name: 📦 Install deps (root)
+        run: npm ci
+
       - name: 🔎 Determine bump plan (Changesets status)
         id: plan
         shell: bash
         run: |
           set -euo pipefail
-          npx -y @changesets/cli@^2 status --since=origin/main --verbose > .changeset-status.txt || true
+          npx changeset status --since=origin/main --verbose > .changeset-status.txt || true
           HAS_MINOR=$(grep -n "Packages to be bumped at minor" .changeset-status.txt >/dev/null 2>&1 && echo 1 || echo 0)
           HAS_MAJOR=$(grep -n "Packages to be bumped at major" .changeset-status.txt >/dev/null 2>&1 && echo 1 || echo 0)
           {
@@ -130,14 +142,14 @@ jobs:
             echo "HAS_MAJOR=${HAS_MAJOR}"
           } >> "$GITHUB_ENV"
 
-      - name: 🚦 Enforce HTML changes require >= minor
+      - name: 🚦 Enforce Snapshot changes require >= minor
         if: env.SNAP_TOTAL != '0'
         shell: bash
         run: |
           set -euo pipefail
           if [ "${HAS_MINOR}" = "0" ] && [ "${HAS_MAJOR}" = "0" ]; then
-            echo "::error title=HTML changed but only patch detected::HTML snapshots changed. Please bump at least MINOR in your changeset."
+            echo "::error title=Snapshots changed but only patch detected::PNG/YML snapshots changed. Please bump at least MINOR in your changeset."
             exit 1
           else
-            echo "HTML changed and non-patch bump present → OK."
+            echo "Snapshot changes and non-patch bump present → OK."
           fi
