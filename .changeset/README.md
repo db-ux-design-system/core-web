@@ -77,7 +77,7 @@ You don’t have to run anything manually, it’s handled by CI.
 
 - **Always add a changeset**
 
-        If your code change affects published packages, create a changeset.
+    If your code change affects published packages, create a changeset.
 
     No changeset → no version bump → no release.
 
@@ -122,6 +122,34 @@ CI will publish with tag next. Useful for testing before a stable release.
 
 ---
 
+## 📸 Snapshot Checks
+
+- CI monitors changes in snapshot files (`__snapshots__/**/*.png`, `__snapshots__/**/*.yml`).
+- If snapshots are changed, the pipeline enforces at least a minor or major bump in your changeset.
+    - Snapshot changes usually mean visual or markup changes, these should never be published as just a patch.
+- If only a patch bump is detected, the PR will be blocked with an error:
+
+    “PNG/YML snapshots changed. Please bump at least MINOR in your changeset.”
+
+## ✅ How to handle this
+
+1. If the snapshot changes are intentional (e.g. new component, markup updates, visual updates):
+
+- Run npx changeset
+- Select at least minor or major
+- Commit the changes
+
+2. If the snapshot changes are unintentional (e.g. test noise, local mismatches):
+
+- Revert or update the snapshots correctly
+- Commit the fixed snapshots, the pipeline should pass afterwards
+
+## 🔒 Approval Gate
+
+- For PRs containing any minor or major bumps (patch, minor, major), the PR requires explicit approval (as all other PRs).
+
+---
+
 ## 🔑 Cheatsheet
 
 ```bash
@@ -152,5 +180,6 @@ npx changeset pre exit # exit prerelease
 - .changeset/ → contains pending changesets (.md files)
 - package.json → versions are updated here automatically
 - CHANGELOG.md → updated by changeset version
-- .github/workflows/release.yml → automation for Release PRs & publishing
+- .github/workflows/changesets-release-pr.yml → automation for Release PRs & publishing
+- .github/workflows/pull-request-snapshot-diff.yml → validates changes in PNG/YML snapshots and enforces at least a MINOR bump
 - scripts/github/publish-npm.js → custom publish script (packs & publishes built outputs)
