@@ -1,0 +1,40 @@
+---
+name: Danger JS Checks
+
+on:
+  workflow_call:
+
+permissions:
+  contents: read
+  pull-requests: write
+  issues: write
+
+jobs:
+  danger:
+    name: Run Danger JS automated PR checks
+    runs-on: ubuntu-24.04
+    steps:
+      - name: 🚀 Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: 🟢 Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+
+      - name: 📦 Install dependencies
+        run: |
+          npm ci --omit=optional
+          # Install only Danger JS if full install fails
+          if [ $? -ne 0 ]; then
+            echo "Full install failed, installing Danger JS only"
+            npm install danger --no-save
+          fi
+
+      - name: 🤖 Run Danger JS
+        run: npm run danger:ci
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
