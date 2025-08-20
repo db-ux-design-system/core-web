@@ -33,7 +33,7 @@ npx changeset
 You’ll be prompted to:
 
 - Select affected packages
-- Choose the bump type (patch, minor, major)
+- Choose the bump/release type (patch, minor, major)
 - Provide a short summary for the changelog
 
 This creates a file like `.changeset/abcd123.md.`
@@ -43,15 +43,14 @@ This creates a file like `.changeset/abcd123.md.`
 
 - Every PR that changes published code must include a changeset file.
 - CI will check that at least one changeset exists when relevant.
-- If your PR introduces a minor or major change, you may need to add the release:approved label to satisfy the approval gate.
 
 ### 3. Release PRs
 
-When PRs are merged into main, the Release workflow will:
+When PRs are merged into `main` branch, the Release workflow will:
 
 - Collect pending changesets
 - Open (or update) a Release PR called “Version Packages”
-- Run changeset version to bump versions and update changelogs
+- Run `changeset version` to bump versions and update changelogs
 
 This PR should be reviewed like any other:
 
@@ -62,10 +61,10 @@ Once everything looks good, merge the Release PR.
 
 ### 4. Publishing
 
-After the Release PR is merged into main:
+After the Release PR is merged into `main` branch:
 
-- CI will build the packages (build-outputs)
-- Run the publish script (scripts/github/publish-npm.js)
+- CI will build the packages (`build-outputs`)
+- Run the publish script (`scripts/github/publish-npm.js`)
 - Publish new versions to npm with the tag latest (or next for pre-releases)
 - Push git tags
 
@@ -93,10 +92,6 @@ You don’t have to run anything manually, it’s handled by CI.
 - **One changeset per PR**
 
     Usually you only need one. If a PR touches multiple packages with different bump types, a single changeset can cover them all.
-
-- **Approval for larger changes**
-
-    If you mark something as minor or major, make sure the PR gets the release:approved label before merge.
 
 - **Baseline snapshots**
 
@@ -177,9 +172,9 @@ npx changeset pre exit # exit prerelease
 
 ## 📂 File Overview
 
-- .changeset/ → contains pending changesets (.md files)
-- package.json → versions are updated here automatically
-- CHANGELOG.md → updated by changeset version
-- .github/workflows/changesets-release-pr.yml → automation for Release PRs & publishing
-- .github/workflows/pull-request-snapshot-diff.yml → validates changes in PNG/YML snapshots and enforces at least a MINOR bump
-- scripts/github/publish-npm.js → custom publish script (packs & publishes built outputs)
+- `.changeset/` → contains pending changesets (`.md` files)
+- `package.json` → versions are updated automatically in this file
+- `CHANGELOG.md` → updated by changeset version
+- `.github/workflows/changesets-release-pr.yml` → automation for Release PRs & publishing
+- `.github/workflows/pull-request-snapshot-diff.yml` → validates changes in PNG/YML snapshots and enforces at least a MINOR bump
+- `scripts/github/publish-npm.js` → custom publish script (packs & publishes built outputs)
