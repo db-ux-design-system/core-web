@@ -29,7 +29,7 @@ export default function DBNavigationItem(props: DBNavigationItemProps) {
 		hasSubNavigation: true,
 		isSubNavigationExpanded: false,
 		autoClose: false,
-		subNavigationId: 'sub-navigation-' + uuid(),
+		subNavigationId: props.subNavigationId ?? (props.id ? `${props.id}-sub-navigation` : 'sub-navigation'),
 		navigationItemSafeTriangle: undefined,
 		handleNavigationItemClick: (event: any) => {
 			if (event?.target?.nodeName === 'A') {
@@ -67,6 +67,14 @@ export default function DBNavigationItem(props: DBNavigationItemProps) {
 			);
 		}
 	}, [props.subNavigationExpanded]);
+
+	onUpdate(() => {
+		// Update subNavigationId if props change
+		const newSubNavigationId = props.subNavigationId ?? (props.id ? `${props.id}-sub-navigation` : 'sub-navigation');
+		if (state.subNavigationId !== newSubNavigationId) {
+			state.subNavigationId = newSubNavigationId;
+		}
+	}, [props.subNavigationId, props.id]);
 
 	onUpdate(() => {
 		if (state.initialized && _ref) {
