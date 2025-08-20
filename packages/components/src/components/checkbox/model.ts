@@ -19,6 +19,10 @@ export type DBCheckboxDefaultProps = {
 	 * Define an [indeterminate](https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement#indeterminate) state of a checkbox
 	 */
 	indeterminate?: boolean | string;
+	/**
+	 * For Vue v-model support - same as checked prop
+	 */
+	modelValue?: boolean | string;
 };
 
 export type DBCheckboxProps = DBCheckboxDefaultProps &
@@ -30,7 +34,9 @@ export type DBCheckboxProps = DBCheckboxDefaultProps &
 	FormMessageProps &
 	SizeProps;
 
-export type DBCheckboxDefaultState = {};
+export type DBCheckboxDefaultState = {
+	getEffectiveChecked: () => boolean | string | undefined;
+};
 
 export type DBCheckboxState = DBCheckboxDefaultState &
 	GlobalState &
