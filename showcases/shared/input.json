@@ -413,22 +413,9 @@
 					"label": "Label",
 					"message": "Medium sized message",
 					"showMessage": true,
-					"messageSize": "medium",
 					"validation": "invalid",
 					"invalidMessage": "Medium sized invalid message",
 					"invalidMessageSize": "medium"
-				}
-			},
-			{
-				"name": "Mixed sizes",
-				"props": {
-					"label": "Label",
-					"message": "Medium sized message",
-					"showMessage": true,
-					"messageSize": "medium",
-					"validation": "valid",
-					"validMessage": "Small sized valid message",
-					"validMessageSize": "small"
 				}
 			}
 		]
