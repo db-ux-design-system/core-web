@@ -146,7 +146,7 @@ CI will publish with tag next. Useful for testing before a stable release.
 
 ## 🔒 Approval Gate
 
-- For PRs containing any minor or major bumps (patch, minor, major), the PR requires explicit approval (as all other PRs).
+- For PRs containing any bumps (patch, minor, major), the PR requires explicit approval (as all other PRs).
 
 ---
 

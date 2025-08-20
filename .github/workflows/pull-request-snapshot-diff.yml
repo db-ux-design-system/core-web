@@ -1,15 +1,24 @@
+# -------------------------------------------------------------
+# 🧪 PR Snapshot Diff (PNG/YML)
+# Compares the PR branch against origin/main for snapshot changes
+# under __snapshots__/ (PNG + YML). Posts a PR comment summary and
+# enforces that visual/config snapshot changes require >= MINOR bump.
+# -------------------------------------------------------------
 name: 🧪 PR Snapshot Diff (PNG/YML)
 
 on:
   pull_request:
     branches: ["main"]
+    # Run on new PRs, updates (pushes), and when PRs are reopened/un-drafted.
     types: [opened, synchronize, reopened, ready_for_review]
 
 permissions:
+  # Read repo content to compute diffs; write to PR to post/update a comment.
   contents: read
   pull-requests: write
 
 concurrency:
+  # Ensure only one snapshot job per PR runs at a time; cancel older runs.
   group: pr-snapshot-diff-${{ github.event.pull_request.number }}
   cancel-in-progress: true
 
@@ -19,12 +28,14 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      -  # Check out the PR *head* commit (not the merge ref), with full history.
       - name: ⏬ Checkout PR head (not merge ref)
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
           ref: ${{ github.event.pull_request.head.sha }}
 
+      # Make sure origin/main exists locally to diff against; unshallow if needed.
       - name: 🔁 Ensure base (origin/main) is present
         shell: bash
         run: |
@@ -35,6 +46,8 @@ jobs:
           git fetch --no-tags --prune origin +refs/heads/main:refs/remotes/origin/main
           git rev-parse remotes/origin/main >/dev/null
 
+      # Compute unified diff + name-status for PNG/YML snapshot files.
+      # Build a Markdown summary and export counters via $GITHUB_ENV.
       - name: 🧾 Collect changed PNG/YML snapshots
         id: diff
         shell: bash
@@ -44,12 +57,14 @@ jobs:
           git diff --unified=3 --no-color origin/main...HEAD -- __snapshots__/**/*.{png,yml} > snapshots.diff || true
           git diff --name-status origin/main...HEAD -- __snapshots__/**/*.{png,yml} > snapshots.list || true
 
+          # Robust counters (tolerant if file is empty/missing)
           TOTAL=$(wc -l < snapshots.list 2>/dev/null | tr -d '[:space:]' || echo 0)
           ADDED=$(grep -E '^[A]\s' snapshots.list 2>/dev/null | wc -l | tr -d '[:space:]' || echo 0)
           MOD=$(grep -E '^[M]\s' snapshots.list 2>/dev/null | wc -l | tr -d '[:space:]' || echo 0)
           DEL=$(grep -E '^[D]\s' snapshots.list 2>/dev/null | wc -l | tr -d '[:space:]' || echo 0)
           REN=$(grep -E '^[R]\d*\s' snapshots.list 2>/dev/null | wc -l | tr -d '[:space:]' || echo 0)
 
+          # Build a short table (first 200 rows) for the PR comment
           head -n 200 snapshots.list > snapshots.short || true
           {
             echo "### Snapshot Changes (PNG/YML)"
@@ -79,6 +94,7 @@ jobs:
             echo "<!-- snapshot-summary-marker -->"
           } > snapshot-summary.md
 
+          # Export counters and the summary path as job environment variables
           {
             echo "SNAP_TOTAL=${TOTAL}"
             echo "SNAP_ADDED=${ADDED}"
@@ -88,6 +104,7 @@ jobs:
             echo "SNAP_SUMMARY_MD_PATH=$(pwd)/snapshot-summary.md"
           } >> "$GITHUB_ENV"
 
+      # Attach the full unified diff as a downloadable artifact if there are changes.
       - name: 📎 Upload unified diff (artifact)
         if: env.SNAP_TOTAL != '0'
         uses: actions/upload-artifact@v4
@@ -97,6 +114,7 @@ jobs:
           if-no-files-found: ignore
           retention-days: 7
 
+      # Post (or update) a PR comment with the table summary.
       - name: 💬 Upsert PR comment
         uses: actions/github-script@v7
         env:
@@ -119,6 +137,7 @@ jobs:
               await github.rest.issues.createComment({ owner, repo, issue_number: number, body });
             }
 
+      # Set up Node + install deps so `npx changeset` can run reliably.
       - name: 🟦 Setup Node (for changeset status)
         uses: actions/setup-node@v4
         with:
@@ -128,12 +147,15 @@ jobs:
       - name: 📦 Install deps (root)
         run: npm ci
 
+      # Determine if the PR’s changesets imply a MINOR/MAJOR bump.
+      # Primary source: changesets JSON; Fallback: inspect changed .changeset/*.md.
       - name: 🔎 Determine bump plan (JSON + Fallback)
         id: plan
         shell: bash
         run: |
           set -euo pipefail
           npx -y @changesets/cli@^2 status --since=origin/main --output=json > .changeset-status.json || true
+          # Parse JSON and emit HAS_MINOR/HAS_MAJOR to a temp env file
           node > .changeset-env <<'NODE'
           const fs = require('fs');
           let hasMinor = 0, hasMajor = 0;
@@ -150,6 +172,7 @@ jobs:
           process.stdout.write(`HAS_MINOR=${hasMinor}\nHAS_MAJOR=${hasMajor}\n`);
           NODE
 
+          # Fallback: if both are still 0, scan changed .changeset/*.md for 'minor'/'major'
           source .changeset-env || true
           if [ "${HAS_MINOR}" = "0" ] && [ "${HAS_MAJOR}" = "0" ]; then
             git diff --name-only origin/main...HEAD -- ".changeset/*.md" > .cs-files || true
@@ -173,6 +196,8 @@ jobs:
             echo "- HAS_MAJOR: ${HAS_MAJOR}"
           } >> "$GITHUB_STEP_SUMMARY"
 
+      # Guardrail: if snapshots changed, require at least MINOR (or MAJOR).
+      # This prevents accidental PATCH releases for visual/markup-impacting changes.
       - name: 🚦 Enforce Snapshot changes require >= minor
         if: env.SNAP_TOTAL != '0'
         shell: bash
