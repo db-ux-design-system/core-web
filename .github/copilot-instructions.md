@@ -147,7 +147,7 @@ npm run build-showcases    # Build example applications
 
 # Testing & Quality
 npm run test               # Run test suite (~10 seconds)
-npm run lint               # Run all linters (may have known issues)
+npm run lint               # Run all linters (known issue: may fail if .nuxt/tsconfig.json is missing; see "Known Issues and Workarounds" below)
 npm run regenerate:screenshots  # Update visual regression tests
 
 # Utilities
