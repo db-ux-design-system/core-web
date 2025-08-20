@@ -395,6 +395,45 @@
 		]
 	},
 	{
+		"name": "Infotext Size Configuration",
+		"examples": [
+			{
+				"name": "(Default) Small size",
+				"props": {
+					"label": "Label",
+					"message": "Default small message",
+					"showMessage": true,
+					"validation": "invalid",
+					"invalidMessage": "Default small invalid message"
+				}
+			},
+			{
+				"name": "Medium size infotexts",
+				"props": {
+					"label": "Label",
+					"message": "Medium sized message",
+					"showMessage": true,
+					"messageSize": "medium",
+					"validation": "invalid",
+					"invalidMessage": "Medium sized invalid message",
+					"invalidMessageSize": "medium"
+				}
+			},
+			{
+				"name": "Mixed sizes",
+				"props": {
+					"label": "Label",
+					"message": "Medium sized message",
+					"showMessage": true,
+					"messageSize": "medium",
+					"validation": "valid",
+					"validMessage": "Small sized valid message",
+					"validMessageSize": "small"
+				}
+			}
+		]
+	},
+	{
 		"name": "Example Floating Label",
 		"examples": [
 			{
