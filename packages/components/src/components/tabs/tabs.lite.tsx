@@ -95,6 +95,8 @@ export default function DBTabs(props: DBTabsProps) {
 						':is(:scope > .db-tab-panel, :scope > db-tab-panel > .db-tab-panel)'
 					)
 				);
+				let hasSelectedTab = false;
+				
 				for (const tabItem of tabItems) {
 					const index: number = tabItems.indexOf(tabItem);
 					const button = tabItem.querySelector('button');
@@ -112,6 +114,17 @@ export default function DBTabs(props: DBTabsProps) {
 							}
 						}
 
+						// Check if this tab is selected
+						const isSelected = button.getAttribute('aria-selected') === 'true' || 
+										  button.getAttribute('aria-pressed') === 'true';
+						
+						if (isSelected) {
+							hasSelectedTab = true;
+							button.setAttribute('tabindex', '0');
+						} else {
+							button.setAttribute('tabindex', '-1');
+						}
+
 						if (init) {
 							// Auto select
 							const autoSelect =
@@ -123,8 +136,18 @@ export default function DBTabs(props: DBTabsProps) {
 								Number(props.initialSelectedIndex) === index;
 							if (autoSelect && shouldAutoSelect) {
 								button.click();
+								button.setAttribute('tabindex', '0');
+								hasSelectedTab = true;
 							}
 						}
+					}
+				}
+				
+				// If no tab is selected, make the first tab focusable
+				if (!hasSelectedTab && tabItems.length > 0) {
+					const firstButton = tabItems[0].querySelector('button');
+					if (firstButton) {
+						firstButton.setAttribute('tabindex', '0');
 					}
 				}
 
@@ -157,6 +180,18 @@ export default function DBTabs(props: DBTabsProps) {
 					if (tabItem) {
 						const list = tabItem.parentElement;
 						if (list) {
+							// Update tabindex for all tabs
+							const allButtons = Array.from<HTMLElement>(
+								list.querySelectorAll('button[role="tab"]')
+							);
+							allButtons.forEach(button => {
+								if (button === target) {
+									button.setAttribute('tabindex', '0');
+								} else {
+									button.setAttribute('tabindex', '-1');
+								}
+							});
+							
 							const indices = Array.from(list.childNodes).indexOf(
 								tabItem
 							);
