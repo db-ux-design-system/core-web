@@ -117,11 +117,13 @@ In HTML:
 
 Default assets path for `relative.scss` is `../assets`. Make sure to copy all used resources like icons and fonts into your `public` folder before build. **Or** you use a modern bundler which handles bundling for you. In this case use `[rollup|webpack].scss`.
 
+**New**: This package supports Sass [pkg: importers](https://sass-lang.com/blog/announcing-pkg-importers/) for simplified imports. See our [pkg: importers guide](docs/pkg-importers.md) for details.
+
 #### Import
 
 Import the styles in your main `.js | .ts` file or in your main `.scss` file.
 
-SCSS:
+SCSS (Traditional):
 
 ```scss
 /* index.css */
@@ -135,6 +137,22 @@ SCSS:
 @forward "@db-ux/core-foundations/build/styles/fonts/classes/all";
 /* Optional: Use [data-color] everywhere */
 @forward "@db-ux/core-foundations/build/styles/colors/classes/all";
+```
+
+SCSS (Pkg: importers - requires `sass --pkg-importer=node`):
+
+```scss
+/* index.css */
+@forward "pkg:@db-ux/core-foundations/build/styles/relative";
+
+/* Optional: Use [data-divider] & [data-focus] everywhere */
+@forward "pkg:@db-ux/core-foundations/build/styles/helpers/classes/all";
+/* Optional: Use [data-density] everywhere */
+@forward "pkg:@db-ux/core-foundations/build/styles/density/classes/all";
+/* Optional: Use [data-font-size] everywhere */
+@forward "pkg:@db-ux/core-foundations/build/styles/fonts/classes/all";
+/* Optional: Use [data-color] everywhere */
+@forward "pkg:@db-ux/core-foundations/build/styles/colors/classes/all";
 ```
 
 > **Note:** Besides of forwarding the classes you can use placeholders to include only some specific styles.

@@ -1,0 +1,6 @@
+// Test pkg: imports (new approach)
+@use "pkg:@db-ux/core-foundations/build/styles/variables";
+
+.test-pkg-importers {
+  padding: variables.$db-spacing-fixed-md;
+}
