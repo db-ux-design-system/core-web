@@ -7,14 +7,26 @@ import { DEFAULT_VIEWPORT } from '../../shared/constants.ts';
 
 const comp: any = (
 	<DBCustomSelect
-		options={[{ value: 'Option 1' }, { value: 'Option 2' }]}
+		options={[
+			{ value: 'Option 1' },
+			{ value: 'Option 2' },
+			{ value: 'Option 3' },
+			{ value: 'Option 4' },
+			{ value: 'Option 5' }
+		]}
 		label="Test"
 		placeholder="Placeholder"></DBCustomSelect>
 );
 
 const multiple: any = (
 	<DBCustomSelect
-		options={[{ value: 'Option 1' }, { value: 'Option 2' }]}
+		options={[
+			{ value: 'Option 1' },
+			{ value: 'Option 2' },
+			{ value: 'Option 3' },
+			{ value: 'Option 4' },
+			{ value: 'Option 5' }
+		]}
 		label="Test"
 		multiple={true}
 		placeholder="Placeholder"></DBCustomSelect>
@@ -22,7 +34,13 @@ const multiple: any = (
 
 const multipleSearchSelect: any = (
 	<DBCustomSelect
-		options={[{ value: 'Option 1' }, { value: 'Option 2' }]}
+		options={[
+			{ value: 'Option 1' },
+			{ value: 'Option 2' },
+			{ value: 'Option 3' },
+			{ value: 'Option 4' },
+			{ value: 'Option 5' }
+		]}
 		label="Test"
 		multiple={true}
 		showSearch={true}
@@ -32,7 +50,13 @@ const multipleSearchSelect: any = (
 
 const selectAllSelect: any = (
 	<DBCustomSelect
-		options={[{ value: 'Option 1' }, { value: 'Option 2' }]}
+		options={[
+			{ value: 'Option 1' },
+			{ value: 'Option 2' },
+			{ value: 'Option 3' },
+			{ value: 'Option 4' },
+			{ value: 'Option 5' }
+		]}
 		label="Test"
 		multiple={true}
 		showSelectAll={true}
@@ -97,10 +121,14 @@ const testAction = () => {
 		await summary.click({ force: true });
 		const inputs = await component.locator('input').all();
 		expect(inputs.length).toBe(4);
+		expect(inputs.length).toBe(7);
 		await inputs[0].fill('test');
 		await expect(inputs[1]).not.toBeVisible();
 		await expect(inputs[2]).not.toBeVisible();
 		await expect(inputs[3]).not.toBeVisible();
+		await expect(inputs[4]).not.toBeVisible();
+		await expect(inputs[5]).not.toBeVisible();
+		await expect(inputs[6]).not.toBeVisible();
 	});
 
 	test('test select all', async ({ page, mount }) => {
@@ -111,7 +139,9 @@ const testAction = () => {
 		await page.waitForTimeout(1000); // wait for focus to apply
 		await page.keyboard.press('Space');
 		await page.keyboard.press('Escape');
-		await expect(summary).toContainText('Option 1, Option 2');
+		await expect(summary).toContainText(
+			'Option 1, Option 2, Option 3, Option 4, Option 5'
+		);
 	});
 };
 
