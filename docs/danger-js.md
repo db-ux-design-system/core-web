@@ -128,3 +128,7 @@ Consider updating:
 ## Rationale
 
 See [ADR-05: Danger JS Evaluation](./adr/adr-05-danger-js-evaluation.md) for the full decision rationale and evaluation of alternatives.
+
+## Examples
+
+See [Danger JS Example Scenarios](./danger-js-examples.md) for detailed examples of how Danger JS responds to different types of pull requests.
