@@ -29,6 +29,10 @@ export default function DBNavigationItem(props: DBNavigationItemProps) {
 		hasSubNavigation: true,
 		isSubNavigationExpanded: false,
 		autoClose: false,
+		// Use deterministic ID generation for SSR compatibility:
+		// 1. Prefer explicit subNavigationId prop
+		// 2. Fallback to component id + suffix
+		// 3. Default to fixed string (instead of random UUID)
 		subNavigationId: props.subNavigationId ?? (props.id ? `${props.id}-sub-navigation` : 'sub-navigation'),
 		navigationItemSafeTriangle: undefined,
 		handleNavigationItemClick: (event: any) => {
