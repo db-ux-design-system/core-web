@@ -694,7 +694,7 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 		} else if (
 			props.values === null ||
 			props.values === undefined ||
-			(Array.isArray(props.values) && props.values.length === 0)
+			(Array.isArray(props.values) && props.values?.length === 0)
 		) {
 			// Handle the case where props.values is empty/null/undefined
 			// but state._values still contains items that need to be cleared
