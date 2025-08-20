@@ -38,6 +38,7 @@ packages/components/src/**/*.css.map
 
 .cache
 **/playwright-report
+**/blob-report/
 /.parcel-cache/
 /output/docs.json
 showcases/patternhub/public/iframe-resizer/*

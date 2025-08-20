@@ -116,7 +116,7 @@
     "lint-staged": "16.1.5",
     "markdownlint-cli": "0.45.0",
     "ng-packagr": "19.2.2",
-    "npm-run-all2": "^8.0.4",
+    "npm-run-all2": "8.0.4",
     "playwright": "1.54.2",
     "playwright-core": "1.54.2",
     "postcss": "8.5.6",
