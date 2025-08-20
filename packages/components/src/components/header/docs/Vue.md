@@ -2,6 +2,35 @@
 
 For general installation and configuration take a look at the [v-core-components](https://www.npmjs.com/package/@db-ux/v-core-components) package.
 
+### Density
+
+You can adjust the visual density of the header to create different volume levels. Use the `data-density` attribute on a container around the header or on the entire page:
+
+```vue App.vue
+<!-- Apply density to a specific container -->
+<template>
+	<div data-density="functional">
+		<DBHeader>
+			<DBBrand slot="brand">Header</DBBrand>
+		</DBHeader>
+		<!-- Header content will be more compact -->
+	</div>
+</template>
+
+<!-- Or apply density to the entire page via body element -->
+<!-- <body data-density="functional"> -->
+```
+
+Available density levels:
+
+| Density | Usage | Description |
+|---------|-------|-------------|
+| `functional` | Business applications | Compact density for data-heavy interfaces |
+| `regular` (default) | Consumer applications | Standard density for general use |
+| `expressive` | Marketing pages | Spacious density for promotional content |
+
+For more information about densities, see the [foundations documentation](../../../../../foundations/docs/Densities.md).
+
 ### Use component
 
 #### Simple
