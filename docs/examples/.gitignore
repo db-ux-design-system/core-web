@@ -1,0 +1,7 @@
+# Build artifacts
+*.css
+*.css.map
+
+# Dependencies
+node_modules/
+package-lock.json
