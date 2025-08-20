@@ -8,23 +8,25 @@ For general installation and configuration take a look at the [v-core-components
 <!-- App.vue -->
 <script setup lang="ts">
 import { DBRadio } from "@db-ux/v-core-components";
-import { _ref } from "vue";
-const radio = _ref("");
+import { ref } from "vue";
+const radio = ref("");
 
 const radioNames = ["X", "Y", "Z"];
 </script>
 
 <template>
-	<ul>
-		<li v-for="radioName in radioNames">
-			<DBRadio
-				@change="radio = radioName"
-				name="radio-group"
-				:value="radioName"
-			>
-				Radio {{ radioName }}
-			</DBRadio>
-		</li>
-	</ul>
+	<fieldset>
+		<legend>Radio group example</legend>
+		<DBRadio
+			v-for="radioName in radioNames"
+			:key="radioName"
+			@change="radio = radioName"
+			name="radio-group"
+			:value="radioName"
+			:checked="radio === radioName"
+		>
+			Radio {{ radioName }}
+		</DBRadio>
+	</fieldset>
 </template>
 ```
