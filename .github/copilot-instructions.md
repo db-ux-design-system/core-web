@@ -71,7 +71,7 @@ DB UX Design System v3 Core Web is a monorepo containing CSS/SCSS styles, compon
 ```bash
 npm run build         # Verify core packages build
 npm run test          # Verify all tests pass
-npm run lint          # NOTE: May fail on missing .nuxt/tsconfig.json - this is known
+npm run lint          # NOTE: May fail if Nuxt showcase hasn't been run yet - this is known
 npm run build-outputs # Verify framework outputs build
 ```
 
@@ -147,7 +147,7 @@ npm run build-showcases    # Build example applications
 
 # Testing & Quality
 npm run test               # Run test suite (~10 seconds)
-npm run lint               # Run all linters (known issue: may fail if .nuxt/tsconfig.json is missing; see "Known Issues and Workarounds" below)
+npm run lint               # Run all linters (known issue: may fail if Nuxt showcase hasn't been run yet; see "Known Issues and Workarounds" below)
 npm run regenerate:screenshots  # Update visual regression tests
 
 # Utilities
@@ -162,7 +162,7 @@ npm run generate:component # Generate new component scaffolding
 - **Font decoding fails**: Expected with placeholder credentials - does not affect basic development
 
 ### Build Issues
-- **Missing .nuxt/tsconfig.json**: Known linting issue, does not affect functionality
+- **Nuxt-related linting failures**: May fail if Nuxt showcase hasn't been run yet (requires `showcases/nuxt-showcase/.nuxt/tsconfig.json` to be generated)
 - **Stencil warnings**: Component prop name conflicts are expected and documented
 
 ### Network Restrictions
