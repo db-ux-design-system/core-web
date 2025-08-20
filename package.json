@@ -93,7 +93,7 @@
     "@commitlint/cli": "19.8.1",
     "@commitlint/config-conventional": "19.8.1",
     "@db-ux/db-theme": "4.0.0",
-    "@double-great/stylelint-a11y": "3.0.4",
+    "@double-great/stylelint-a11y": "3.4.0",
     "@guidepup/guidepup": "0.24.0",
     "@guidepup/playwright": "0.14.2",
     "@guidepup/record": "0.1.0",
