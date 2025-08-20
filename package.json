@@ -49,7 +49,6 @@
     "build": "npm run build --workspace=scripts",
     "build-outputs": "npm run build-outputs --workspace=scripts",
     "build-showcases": "npm run build-showcases --workspace=scripts",
-    "changeset": "changeset",
     "clean": "git clean -dfx --exclude=.env",
     "codestyle": "prettier . --write",
     "commit:updated-snapshots": "git diff --name-only --diff-filter=M | xargs git add && git commit --message 'test: updated snapshots'",
