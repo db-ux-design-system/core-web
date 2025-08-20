@@ -302,6 +302,11 @@ export default function DBSelect(props: DBSelectProps) {
 			<span id={state._placeholderId}>
 				{props.placeholder ?? props.label}
 			</span>
+			<Show when={props.description}>
+				<DBInfotext size="small">
+					{props.description}
+				</DBInfotext>
+			</Show>
 			<Show when={stringPropVisible(props.message, props.showMessage)}>
 				<DBInfotext
 					size="small"

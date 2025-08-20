@@ -9,10 +9,21 @@ For general installation and configuration take a look at the [react-core-compon
 import { DBSelect } from "@db-ux/react-core-components";
 
 const App = () => (
-	<DBSelect>
-		<option value="test1">Test1</option>
-		<option value="test2">Test2</option>
-	</DBSelect>
+	<>
+		{/* Using children for option elements */}
+		<DBSelect>
+			<option value="test1">Test1</option>
+			<option value="test2">Test2</option>
+		</DBSelect>
+
+		{/* Using description prop for textual content */}
+		<DBSelect 
+			label="Select with description"
+			description="This description appears outside the select element">
+			<option value="test1">Test1</option>
+			<option value="test2">Test2</option>
+		</DBSelect>
+	</>
 );
 
 export default App;

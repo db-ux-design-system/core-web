@@ -515,5 +515,45 @@
 				}
 			}
 		]
+	},
+	{
+		"name": "Description",
+		"examples": [
+			{
+				"name": "With Description",
+				"style": {
+					"width": "300px"
+				},
+				"props": {
+					"options": [
+						{
+							"value": "Option 1"
+						},
+						{
+							"value": "Option 2"
+						}
+					],
+					"label": "Label",
+					"description": "This is descriptive text that appears outside the select element"
+				}
+			},
+			{
+				"name": "Without Description",
+				"style": {
+					"width": "300px"
+				},
+				"props": {
+					"options": [
+						{
+							"value": "Option 1"
+						},
+						{
+							"value": "Option 2"
+						}
+					],
+					"label": "Label"
+				}
+			}
+		]
 	}
 ]
