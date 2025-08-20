@@ -26,6 +26,8 @@ import {
 } from '../data/routes';
 import Navigation from './navigation';
 import VersionSwitcher from './version-switcher';
+import FrameworkSwitcher from './framework-switcher';
+import { FrameworkProvider } from './framework-context';
 
 const preferDark = '(prefers-color-scheme: dark)';
 const colorModeKey = 'db-ux-mode';
@@ -124,7 +126,7 @@ const DefaultPage = ({
 	}, [router]);
 
 	return (
-		<>
+		<FrameworkProvider>
 			{router.isReady && fullscreen && (
 				<div
 					className={`${noH1 ? 'noh1' : ''} ${properties ? 'is-properties' : ''}`}>
@@ -161,7 +163,12 @@ const DefaultPage = ({
 									Switch color scheme (light/dark)
 								</DBSwitch>
 							}
-							secondaryAction={<VersionSwitcher />}>
+							secondaryAction={
+								<>
+									<FrameworkSwitcher />
+									<VersionSwitcher />
+								</>
+							}>
 							<Navigation />
 						</DBHeader>
 					}>
@@ -232,7 +239,7 @@ const DefaultPage = ({
 						)}
 				</DBPage>
 			)}
-		</>
+		</FrameworkProvider>
 	);
 };
 
