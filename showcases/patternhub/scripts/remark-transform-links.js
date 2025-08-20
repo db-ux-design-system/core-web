@@ -9,20 +9,46 @@ export default function transformLinks() {
 			}
 
 			// Transform .md links to kebab-case without extension
-			if (node.url.endsWith('.md')) {
-				// Handle relative paths with ./ prefix
-				if (node.url.startsWith('./')) {
-					node.url = './' + node.url
-						.slice(2) // Remove './'
-						.replace(/\.md$/, '') // Remove .md extension
-						.replaceAll(/([a-z])([A-Z])/g, '$1-$2') // camelCase to kebab-case
-						.toLowerCase();
-				} else {
-					// Handle simple .md files and other relative paths
-					node.url = node.url
-						.replace(/\.md$/, '') // Remove .md extension
-						.replaceAll(/([a-z])([A-Z])/g, '$1-$2') // camelCase to kebab-case
-						.toLowerCase();
+			if (node.url.includes('.md')) {
+				// Split URL into parts (path, fragment, query)
+				const hashIndex = node.url.indexOf('#');
+				const queryIndex = node.url.indexOf('?');
+				
+				let basePath = node.url;
+				let fragment = '';
+				let query = '';
+				
+				// Extract fragment if present
+				if (hashIndex !== -1) {
+					fragment = node.url.substring(hashIndex);
+					basePath = node.url.substring(0, hashIndex);
+				}
+				
+				// Extract query if present (and not after fragment)
+				if (queryIndex !== -1 && (hashIndex === -1 || queryIndex < hashIndex)) {
+					query = node.url.substring(queryIndex, hashIndex !== -1 ? hashIndex : undefined);
+					basePath = node.url.substring(0, queryIndex);
+				}
+				
+				// Only transform if basePath ends with .md
+				if (basePath.endsWith('.md')) {
+					// Handle relative paths with ./ prefix
+					if (basePath.startsWith('./')) {
+						basePath = './' + basePath
+							.slice(2) // Remove './'
+							.replace(/\.md$/, '') // Remove .md extension
+							.replaceAll(/([a-z])([A-Z])/g, '$1-$2') // camelCase to kebab-case
+							.toLowerCase();
+					} else {
+						// Handle simple .md files and other relative paths
+						basePath = basePath
+							.replace(/\.md$/, '') // Remove .md extension
+							.replaceAll(/([a-z])([A-Z])/g, '$1-$2') // camelCase to kebab-case
+							.toLowerCase();
+					}
+					
+					// Reconstruct URL with query and fragment
+					node.url = basePath + query + fragment;
 				}
 			}
 
