@@ -1,5 +1,6 @@
 import {
 	onMount,
+	onUnMount,
 	onUpdate,
 	Slot,
 	useDefaultProps,
@@ -22,6 +23,7 @@ export default function DBDrawer(props: DBDrawerProps) {
 	const dialogContainerRef = useRef<HTMLDivElement | any>(null);
 	const state = useStore<DBDrawerState>({
 		initialized: false,
+		globalKeyHandler: null as ((event: KeyboardEvent) => void) | null,
 		// eslint-disable-next-line @typescript-eslint/no-explicit-any
 		handleClose: (
 			event?:
@@ -76,8 +78,27 @@ export default function DBDrawer(props: DBDrawerProps) {
 					} else {
 						_ref.showModal();
 					}
+					
+					// Add global escape key listener when dialog opens
+					if (!state.globalKeyHandler) {
+						state.globalKeyHandler = (event: KeyboardEvent) => {
+							if (event.key === 'Escape' && _ref?.open) {
+								event.preventDefault();
+								if (props.onClose) {
+									props.onClose(event as any);
+								}
+							}
+						};
+						document.addEventListener('keydown', state.globalKeyHandler);
+					}
 				}
 				if (!open && _ref.open) {
+					// Remove global escape key listener when dialog closes
+					if (state.globalKeyHandler) {
+						document.removeEventListener('keydown', state.globalKeyHandler);
+						state.globalKeyHandler = null;
+					}
+					
 					if (dialogContainerRef) {
 						dialogContainerRef.hidden = true;
 					}
@@ -95,6 +116,14 @@ export default function DBDrawer(props: DBDrawerProps) {
 	onMount(() => {
 		state.handleDialogOpen();
 		state.initialized = true;
+	});
+
+	onUnMount(() => {
+		// Clean up global event listener on unmount
+		if (state.globalKeyHandler) {
+			document.removeEventListener('keydown', state.globalKeyHandler);
+			state.globalKeyHandler = null;
+		}
 	});
 
 	onUpdate(() => {
