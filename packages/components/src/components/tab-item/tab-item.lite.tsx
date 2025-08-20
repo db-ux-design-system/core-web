@@ -26,7 +26,7 @@ useMetadata({
 useDefaultProps<DBTabItemProps>({});
 
 export default function DBTabItem(props: DBTabItemProps) {
-	const _ref = useRef<HTMLInputElement | any>(null);
+	const _ref = useRef<HTMLButtonElement | any>(null);
 	// jscpd:ignore-start
 	const state = useStore<DBTabItemState>({
 		_selected: false,
