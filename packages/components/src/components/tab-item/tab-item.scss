@@ -17,11 +17,11 @@ $with-icon-padding-calc: calc(
 	list-style-type: "";
 	border-radius: variables.$db-border-radius-sm;
 
-	&:has(input:disabled) {
+	&:has(button:disabled) {
 		opacity: variables.$db-opacity-md;
 	}
 
-	label {
+	button {
 		background-color: colors.$db-adaptive-bg-basic-transparent-full-default;
 		padding: variables.$db-spacing-fixed-xs;
 		align-items: center;
@@ -33,26 +33,26 @@ $with-icon-padding-calc: calc(
 		text-overflow: ellipsis;
 
 		@include helpers.hover {
-			&:has(:not(input:disabled)) {
+			&:not(:disabled) {
 				background-color: colors.$db-adaptive-bg-basic-transparent-full-hovered;
 			}
 
-			&:has(input:disabled) {
+			&:disabled {
 				cursor: initial;
 			}
 		}
 
 		@include helpers.hover {
-			&:has(:not(input:disabled)) {
+			&:not(:disabled) {
 				background-color: colors.$db-adaptive-bg-basic-transparent-full-hovered;
 			}
 
-			&:has(input:disabled) {
+			&:disabled {
 				cursor: initial;
 			}
 		}
 
-		&:has(input:checked) {
+		&[aria-pressed="true"] {
 			font-weight: 700;
 		}
 
@@ -98,26 +98,22 @@ $with-icon-padding-calc: calc(
 		}
 	}
 
-	input {
-		position: absolute;
+	button {
+		position: relative;
 		appearance: none;
 		inline-size: 100%;
 		margin-inline-end: initial;
-		inset: 0;
 		background-color: colors.$db-adaptive-bg-basic-transparent-full-default;
 		border-radius: variables.$db-border-radius-sm;
-		z-index: -1;
 
 		/*
-		focus must be set on input:
-		- parent label tag may use before AND after for displaying icons
+		focus must be set on button:
+		- parent button may use before AND after for displaying icons
 		- placed on li.db-tab-item focus would get cut off partially by by overflow hidden (orientation vertical)
 		 */
 		&:focus-visible {
-			&:is(input[type="radio"]) {
-				outline: none;
-				box-shadow: none;
-			}
+			outline: none;
+			box-shadow: none;
 
 			&::before {
 				@extend %focus-placeholder;

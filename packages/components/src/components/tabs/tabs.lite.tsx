@@ -97,17 +97,15 @@ export default function DBTabs(props: DBTabsProps) {
 				);
 				for (const tabItem of tabItems) {
 					const index: number = tabItems.indexOf(tabItem);
-					const label = tabItem.querySelector('label');
-					const input = tabItem.querySelector('input');
+					const button = tabItem.querySelector('button');
 
-					if (input && label) {
-						if (!input.id) {
+					if (button) {
+						if (!button.id) {
 							const tabId = `${state._name}-tab-${index}`;
-							label.setAttribute('for', tabId);
-							input.id = tabId;
-							input.setAttribute('name', state._name);
+							button.id = tabId;
+							button.setAttribute('name', state._name);
 							if (tabPanels.length > index) {
-								input.setAttribute(
+								button.setAttribute(
 									'aria-controls',
 									`${state._name}-tab-panel-${index}`
 								);
@@ -124,7 +122,7 @@ export default function DBTabs(props: DBTabsProps) {
 									index === 0) ||
 								Number(props.initialSelectedIndex) === index;
 							if (autoSelect && shouldAutoSelect) {
-								input.click();
+								button.click();
 							}
 						}
 					}
@@ -149,13 +147,12 @@ export default function DBTabs(props: DBTabsProps) {
 				const parent = target.parentElement;
 				if (
 					parent &&
-					parent.parentElement &&
-					parent.parentElement?.nodeName === 'LI'
+					parent.nodeName === 'LI'
 				) {
 					const tabItem = useTarget({
-						angular: parent.parentElement.parentElement,
-						stencil: parent.parentElement.parentElement,
-						default: parent.parentElement
+						angular: parent,
+						stencil: parent,
+						default: parent
 					});
 					if (tabItem) {
 						const list = tabItem.parentElement;

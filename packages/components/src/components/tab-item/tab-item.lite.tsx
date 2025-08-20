@@ -53,11 +53,11 @@ export default function DBTabItem(props: DBTabItemProps) {
 
 			useTarget({
 				stencil: () => {
-					const selected = (event.target as any)?.['checked'];
-					state._selected = getBooleanAsString(selected);
+					const pressed = (event.target as any)?.['aria-pressed'];
+					state._selected = getBooleanAsString(pressed === 'true');
 				},
 				default: () => {
-					state._selected = (event.target as any)?.['checked'];
+					state._selected = (event.target as any)?.['aria-pressed'] === 'true';
 				}
 			});
 
@@ -93,8 +93,15 @@ export default function DBTabItem(props: DBTabItemProps) {
 
 	return (
 		<li class={cls('db-tab-item', props.className)} role="none">
-			<label
-				htmlFor={props.id}
+			<button
+				disabled={getBoolean(props.disabled, 'disabled')}
+				aria-selected={state._selected}
+				aria-pressed={getBoolean(props.checked, 'checked')}
+				ref={_ref}
+				type="button"
+				role="tab"
+				name={state._name}
+				id={props.id}
 				data-icon={props.iconLeading ?? props.icon}
 				data-icon-trailing={props.iconTrailing}
 				data-show-icon={getBooleanAsString(
@@ -103,22 +110,11 @@ export default function DBTabItem(props: DBTabItemProps) {
 				data-show-icon-trailing={getBooleanAsString(
 					props.showIconTrailing
 				)}
-				data-no-text={getBooleanAsString(props.noText)}>
-				<input
-					disabled={getBoolean(props.disabled, 'disabled')}
-					aria-selected={state._selected}
-					checked={getBoolean(props.checked, 'checked')}
-					ref={_ref}
-					type="radio"
-					role="tab"
-					name={state._name}
-					id={props.id}
-					onInput={(event: any) => state.handleChange(event)}
-				/>
-
+				data-no-text={getBooleanAsString(props.noText)}
+				onClick={(event: any) => state.handleChange(event)}>
 				<Show when={props.label}>{props.label}</Show>
 				{props.children}
-			</label>
+			</button>
 		</li>
 	);
 }
