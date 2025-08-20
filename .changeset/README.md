@@ -65,7 +65,7 @@ After the Release PR is merged into `main` branch:
 
 - CI will build the packages (`build-outputs`)
 - Run the publish script (`scripts/github/publish-npm.js`)
-- Publish new versions to npm with the tag latest (or next for pre-releases)
+- Publish new versions to npm with the tag `latest` (or `next` for pre-releases)
 - Push git tags
 
 You don’t have to run anything manually, it’s handled by CI.
@@ -82,12 +82,12 @@ You don’t have to run anything manually, it’s handled by CI.
 
 - **Choose the correct bump type**
     - patch: bugfix, no API or HTML changes
-    - minor: new features, changes in markup or behavior, backwards-compatible
-    - major: breaking changes (removed props, changed APIs)
+    - minor: new features, changes in inner component markup or behavior, backwards-compatible
+    - major: breaking changes (e.g. removed props, changed APIs)
 
 - **Write user-friendly summaries**
 
-    The text you provide will be copied into the CHANGELOG.md. Keep it concise and helpful.
+    The text you provide will be copied into the `CHANGELOG.md`. Keep it concise and helpful.
 
 - **One changeset per PR**
 
@@ -95,17 +95,18 @@ You don’t have to run anything manually, it’s handled by CI.
 
 - **Baseline snapshots**
 
-    HTML snapshots help detect markup changes. If they change, prefer minor instead of patch.
+    ARIA snapshots by Playwright help detect markup changes. If they change, prefer minor instead of patch.
+    And please mention those HTML changes within the `CHANGELOG`.
 
 - **Avoid manual version bumps**
 
-    Never edit package.json versions by hand. Changesets handles this automatically.
+    Never edit package.json `version` field by hand. Changesets handles this automatically.
 
 ---
 
 ## 🚧 Pre-Releases
 
-For pre-releases (tagged next):
+For [pre-releases](https://github.com/changesets/changesets/blob/main/docs/prereleases.md) (tagged `next`):
 
 ```bash
 npx changeset pre enter next
@@ -113,7 +114,7 @@ npx changeset pre enter next
 npx changeset pre exit
 ```
 
-CI will publish with tag next. Useful for testing before a stable release.
+CI will publish with tag `next`. Useful for testing before a stable release.
 
 ---
 
@@ -141,7 +142,7 @@ CI will publish with tag next. Useful for testing before a stable release.
 
 ## 🔒 Approval Gate
 
-- For PRs containing any bumps (patch, minor, major), the PR requires explicit approval (as all other PRs).
+- For PRs containing any version bumps (patch, minor or major releases), the PR requires explicit approval (as all other PRs).
 
 ---
 
