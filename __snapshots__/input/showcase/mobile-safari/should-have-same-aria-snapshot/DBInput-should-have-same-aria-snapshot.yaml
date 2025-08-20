@@ -144,6 +144,19 @@
   - text: Label
   - textbox "Label"
   - status
+  - link "Infotext Size Configuration"
+  - text: Label
+  - textbox "Label"
+  - text: Default small invalid message
+  - status
+  - text: Label
+  - textbox "Label"
+  - text: Medium sized invalid message
+  - status
+  - text: Label
+  - textbox "Label"
+  - text: Small sized valid message
+  - status
   - link "Example Floating Label"
   - text: Label
   - textbox "Label"
