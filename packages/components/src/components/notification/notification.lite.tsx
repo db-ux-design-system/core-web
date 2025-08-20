@@ -12,6 +12,7 @@ import {
 	cls,
 	getBoolean,
 	getBooleanAsString,
+	getNotificationRole,
 	stringPropVisible
 } from '../../utils';
 import DBButton from '../button/button.lite';
@@ -41,6 +42,7 @@ export default function DBNotification(props: DBNotificationProps) {
 			ref={_ref}
 			id={props.id}
 			class={cls('db-notification', props.className)}
+			role={getNotificationRole(props.semantic)}
 			aria-live={props.ariaLive}
 			data-semantic={props.semantic}
 			data-variant={props.variant}

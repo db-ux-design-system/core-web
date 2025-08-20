@@ -157,3 +157,21 @@ export const isKeyboardEvent = <T>(
 	event?: ClickEvent<T> | GeneralKeyboardEvent<T>
 ): event is GeneralKeyboardEvent<T> =>
 	(event as GeneralKeyboardEvent<T>).key !== undefined;
+
+/**
+ * Maps semantic values to appropriate ARIA roles for notifications
+ * @param semantic - The semantic type of the notification
+ * @returns The appropriate ARIA role or undefined for default behavior
+ */
+export const getNotificationRole = (semantic?: string): string | undefined => {
+	switch (semantic) {
+		case 'critical':
+		case 'warning':
+			return 'alert';
+		case 'informational':
+		case 'successful':
+			return 'status';
+		default:
+			return undefined;
+	}
+};
