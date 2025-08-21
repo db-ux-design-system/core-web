@@ -44,7 +44,7 @@
     "typescript": "5.8.3",
     "vite": "6.3.5",
     "vue": "3.5.18",
-    "vue-tsc": "3.0.5"
+    "vue-tsc": "3.0.6"
   },
   "publishConfig": {
     "registry": "https://registry.npmjs.org/",
