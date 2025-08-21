@@ -43,7 +43,7 @@
     "tsx": "4.20.4",
     "typescript": "5.8.3",
     "vite": "6.3.5",
-    "vue": "3.5.18",
+    "vue": "3.5.19",
     "vue-tsc": "3.0.6"
   },
   "publishConfig": {
