@@ -411,8 +411,6 @@
 				"name": "Medium size infotexts",
 				"props": {
 					"label": "Label",
-					"message": "Medium sized message",
-					"showMessage": true,
 					"validation": "invalid",
 					"invalidMessage": "Medium sized invalid message",
 					"invalidMessageSize": "medium"

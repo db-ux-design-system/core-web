@@ -46,7 +46,10 @@ const getInput = ({
 	showRequiredAsterisk,
 	maxLength,
 	max,
-	min
+	min,
+	messageSize,
+	validMessageSize,
+	invalidMessageSize
 }: DBInputProps & { dataList: boolean }) => {
 	return (
 		<DBInput
@@ -73,6 +76,9 @@ const getInput = ({
 			invalidMessage={invalidMessage}
 			validMessage={validMessage}
 			validation={validation}
+			messageSize={messageSize}
+			validMessageSize={validMessageSize}
+			invalidMessageSize={invalidMessageSize}
 			dataList={dataList ? getDataList(variant) : undefined}
 		/>
 	);

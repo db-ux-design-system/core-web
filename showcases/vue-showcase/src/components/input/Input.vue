@@ -50,6 +50,9 @@ const getDataList = (
 				:invalidMessage="exampleProps?.invalidMessage"
 				:validMessage="exampleProps?.validMessage"
 				:validation="exampleProps?.validation"
+				:messageSize="exampleProps?.messageSize"
+				:validMessageSize="exampleProps?.validMessageSize"
+				:invalidMessageSize="exampleProps?.invalidMessageSize"
 				:dataList="
 					exampleProps?.dataList
 						? getDataList(exampleProps?.variant)
