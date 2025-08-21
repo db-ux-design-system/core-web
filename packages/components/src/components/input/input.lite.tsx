@@ -241,9 +241,11 @@ export default function DBInput(props: DBInputProps) {
 				form={props.form}
 				pattern={props.pattern}
 				size={props.size}
-				// @ts-expect-error inout has a property autoComplete
+				// @ts-expect-error input has a property autoComplete
 				autoComplete={props.autocomplete}
 				autoFocus={getBoolean(props.autofocus, 'autofocus')}
+				enterKeyHint={props.enterkeyhint ?? (props.type === 'search' ? 'search' : undefined)}
+				inputMode={props.inputmode}
 				onInput={(event: ChangeEvent<HTMLInputElement>) =>
 					state.handleInput(event)
 				}

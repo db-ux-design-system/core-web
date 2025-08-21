@@ -49,6 +49,47 @@ const testAction = () => {
 		await component.getByRole('textbox').fill('test');
 		expect(test).toEqual('test');
 	});
+
+	test('should have enterkeyhint attribute when provided', async ({ mount }) => {
+		const component = await mount(
+			<DBInput label="Label" enterkeyhint="done" />
+		);
+		const input = component.getByRole('textbox');
+		await expect(input).toHaveAttribute('enterkeyhint', 'done');
+	});
+
+	test('should have inputmode attribute when provided', async ({ mount }) => {
+		const component = await mount(
+			<DBInput label="Label" inputmode="numeric" />
+		);
+		const input = component.getByRole('textbox');
+		await expect(input).toHaveAttribute('inputmode', 'numeric');
+	});
+
+	test('should have default enterkeyhint="search" for search type', async ({ mount }) => {
+		const component = await mount(
+			<DBInput label="Label" type="search" />
+		);
+		const input = component.getByRole('searchbox');
+		await expect(input).toHaveAttribute('enterkeyhint', 'search');
+	});
+
+	test('should allow overriding default enterkeyhint for search type', async ({ mount }) => {
+		const component = await mount(
+			<DBInput label="Label" type="search" enterkeyhint="done" />
+		);
+		const input = component.getByRole('searchbox');
+		await expect(input).toHaveAttribute('enterkeyhint', 'done');
+	});
+
+	test('should not have enterkeyhint or inputmode when not provided', async ({ mount }) => {
+		const component = await mount(
+			<DBInput label="Label" type="text" />
+		);
+		const input = component.getByRole('textbox');
+		await expect(input).not.toHaveAttribute('enterkeyhint');
+		await expect(input).not.toHaveAttribute('inputmode');
+	});
 };
 
 test.describe('DBInput', () => {

@@ -76,6 +76,14 @@ export type DBInputDefaultProps = {
 	 * Sets [step value](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/step).
 	 */
 	step?: number | string;
+	/**
+	 * Hint for the [enter key behavior](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/enterkeyhint) on virtual keyboards.
+	 */
+	enterkeyhint?: 'enter' | 'done' | 'go' | 'next' | 'previous' | 'search' | 'send' | string;
+	/**
+	 * Hint for [virtual keyboard](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/inputmode) selection.
+	 */
+	inputmode?: 'none' | 'text' | 'decimal' | 'numeric' | 'tel' | 'search' | 'email' | 'url' | string;
 };
 
 export type DBInputProps = DBInputDefaultProps &
