@@ -376,6 +376,24 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 			if (event.key === 'Escape' && detailsRef?.open) {
 				state.handleClose(undefined, true);
 				state.handleSummaryFocus();
+			} else if (event.key === 'Enter' && detailsRef?.open) {
+				// Handle Enter key to select option like Space key
+				if (self.document) {
+					const activeElement = self.document.activeElement as HTMLInputElement;
+					if (activeElement && 
+						(activeElement.getAttribute('type') === 'checkbox' || 
+						 activeElement.getAttribute('type') === 'radio')) {
+						// Trigger click to simulate Space key behavior
+						activeElement.click();
+						
+						// For single select (radio), close the dropdown after selection
+						if (!props.multiple) {
+							state.handleClose(undefined, true);
+							state.handleSummaryFocus();
+						}
+						event.preventDefault();
+					}
+				}
 			} else if (
 				event.key === 'ArrowDown' ||
 				event.key === 'ArrowUp' ||
