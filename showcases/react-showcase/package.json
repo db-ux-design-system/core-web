@@ -24,7 +24,7 @@
   "dependencies": {
     "react": "18.3.1",
     "react-dom": "18.3.1",
-    "react-router-dom": "7.6.3",
+    "react-router-dom": "7.8.2",
     "sa11y": "4.1.10"
   },
   "devDependencies": {
