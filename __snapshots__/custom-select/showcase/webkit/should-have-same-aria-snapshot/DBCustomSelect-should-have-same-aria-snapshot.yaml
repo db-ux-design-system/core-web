@@ -12,6 +12,15 @@
           - listitem:
             - radio "Option 2"
             - text: Option 2
+          - listitem:
+            - radio "Option 3"
+            - text: Option 3
+          - listitem:
+            - radio "Option 4"
+            - text: Option 4
+          - listitem:
+            - radio "Option 5"
+            - text: Option 5
   - status
   - text: (Default) Regular
   - group:
@@ -24,6 +33,15 @@
           - listitem:
             - radio "Option 2"
             - text: Option 2
+          - listitem:
+            - radio "Option 3"
+            - text: Option 3
+          - listitem:
+            - radio "Option 4"
+            - text: Option 4
+          - listitem:
+            - radio "Option 5"
+            - text: Option 5
   - status
   - text: Expressive
   - group:
@@ -36,6 +54,15 @@
           - listitem:
             - radio "Option 2"
             - text: Option 2
+          - listitem:
+            - radio "Option 3"
+            - text: Option 3
+          - listitem:
+            - radio "Option 4"
+            - text: Option 4
+          - listitem:
+            - radio "Option 5"
+            - text: Option 5
   - status
   - link "Multiple"
   - text: (Default) False
@@ -49,6 +76,15 @@
           - listitem:
             - radio "Option 2"
             - text: Option 2
+          - listitem:
+            - radio "Option 3"
+            - text: Option 3
+          - listitem:
+            - radio "Option 4"
+            - text: Option 4
+          - listitem:
+            - radio "Option 5"
+            - text: Option 5
   - status
   - text: "True"
   - group:
@@ -61,6 +97,15 @@
           - listitem:
             - checkbox "Option 2"
             - text: Option 2
+          - listitem:
+            - checkbox "Option 3"
+            - text: Option 3
+          - listitem:
+            - checkbox "Option 4"
+            - text: Option 4
+          - listitem:
+            - checkbox "Option 5"
+            - text: Option 5
   - status
   - link "Variant"
   - text: (Default) Label Above
@@ -74,6 +119,15 @@
           - listitem:
             - radio "Option 2"
             - text: Option 2
+          - listitem:
+            - radio "Option 3"
+            - text: Option 3
+          - listitem:
+            - radio "Option 4"
+            - text: Option 4
+          - listitem:
+            - radio "Option 5"
+            - text: Option 5
   - status
   - text: Floating Label
   - group:
@@ -99,6 +153,15 @@
           - listitem:
             - radio "Option 2"
             - text: Option 2
+          - listitem:
+            - radio "Option 3"
+            - text: Option 3
+          - listitem:
+            - radio "Option 4"
+            - text: Option 4
+          - listitem:
+            - radio "Option 5"
+            - text: Option 5
   - status
   - text: "False"
   - group:
@@ -111,6 +174,15 @@
           - listitem:
             - radio "Option 2"
             - text: Option 2
+          - listitem:
+            - radio "Option 3"
+            - text: Option 3
+          - listitem:
+            - radio "Option 4"
+            - text: Option 4
+          - listitem:
+            - radio "Option 5"
+            - text: Option 5
   - status
   - link "Show Message"
   - text: (Default) False
@@ -124,6 +196,15 @@
           - listitem:
             - radio "Option 2"
             - text: Option 2
+          - listitem:
+            - radio "Option 3"
+            - text: Option 3
+          - listitem:
+            - radio "Option 4"
+            - text: Option 4
+          - listitem:
+            - radio "Option 5"
+            - text: Option 5
   - status
   - text: "True"
   - group:
@@ -136,6 +217,15 @@
           - listitem:
             - radio "Option 2"
             - text: Option 2
+          - listitem:
+            - radio "Option 3"
+            - text: Option 3
+          - listitem:
+            - radio "Option 4"
+            - text: Option 4
+          - listitem:
+            - radio "Option 5"
+            - text: Option 5
   - text: Helper Message
   - status
   - link "Show Icon"
@@ -150,6 +240,15 @@
           - listitem:
             - radio "Option 2"
             - text: Option 2
+          - listitem:
+            - radio "Option 3"
+            - text: Option 3
+          - listitem:
+            - radio "Option 4"
+            - text: Option 4
+          - listitem:
+            - radio "Option 5"
+            - text: Option 5
   - status
   - text: "True"
   - group:
@@ -162,6 +261,15 @@
           - listitem:
             - radio "Option 2"
             - text: Option 2
+          - listitem:
+            - radio "Option 3"
+            - text: Option 3
+          - listitem:
+            - radio "Option 4"
+            - text: Option 4
+          - listitem:
+            - radio "Option 5"
+            - text: Option 5
   - status
   - link "Validation"
   - text: (Default) No Validation
@@ -175,6 +283,15 @@
           - listitem:
             - radio "Option 2"
             - text: Option 2
+          - listitem:
+            - radio "Option 3"
+            - text: Option 3
+          - listitem:
+            - radio "Option 4"
+            - text: Option 4
+          - listitem:
+            - radio "Option 5"
+            - text: Option 5
   - status
   - text: Invalid
   - group:
@@ -187,6 +304,15 @@
           - listitem:
             - radio "Option 2"
             - text: Option 2
+          - listitem:
+            - radio "Option 3"
+            - text: Option 3
+          - listitem:
+            - radio "Option 4"
+            - text: Option 4
+          - listitem:
+            - radio "Option 5"
+            - text: Option 5
   - text: Invalid Message
   - status
   - text: Valid
@@ -200,6 +326,15 @@
           - listitem:
             - radio "Option 2"
             - text: Option 2
+          - listitem:
+            - radio "Option 3"
+            - text: Option 3
+          - listitem:
+            - radio "Option 4"
+            - text: Option 4
+          - listitem:
+            - radio "Option 5"
+            - text: Option 5
   - text: "TODO: Add a validMessage"
   - status
   - link "Required"
@@ -214,6 +349,15 @@
           - listitem:
             - checkbox "Option 2"
             - text: Option 2
+          - listitem:
+            - checkbox "Option 3"
+            - text: Option 3
+          - listitem:
+            - checkbox "Option 4"
+            - text: Option 4
+          - listitem:
+            - checkbox "Option 5"
+            - text: Option 5
   - status
   - text: "True"
   - group:
@@ -226,6 +370,15 @@
           - listitem:
             - checkbox "Option 2"
             - text: Option 2
+          - listitem:
+            - checkbox "Option 3"
+            - text: Option 3
+          - listitem:
+            - checkbox "Option 4"
+            - text: Option 4
+          - listitem:
+            - checkbox "Option 5"
+            - text: Option 5
   - status
   - link "Show Required Asterisk"
   - text: (Default) True
@@ -239,6 +392,15 @@
           - listitem:
             - checkbox "Option 2"
             - text: Option 2
+          - listitem:
+            - checkbox "Option 3"
+            - text: Option 3
+          - listitem:
+            - checkbox "Option 4"
+            - text: Option 4
+          - listitem:
+            - checkbox "Option 5"
+            - text: Option 5
   - status
   - text: "False"
   - group:
@@ -251,6 +413,15 @@
           - listitem:
             - checkbox "Option 2"
             - text: Option 2
+          - listitem:
+            - checkbox "Option 3"
+            - text: Option 3
+          - listitem:
+            - checkbox "Option 4"
+            - text: Option 4
+          - listitem:
+            - checkbox "Option 5"
+            - text: Option 5
   - status
   - link "Disabled"
   - text: (Default) False
@@ -264,6 +435,15 @@
           - listitem:
             - checkbox "Option 2"
             - text: Option 2
+          - listitem:
+            - checkbox "Option 3"
+            - text: Option 3
+          - listitem:
+            - checkbox "Option 4"
+            - text: Option 4
+          - listitem:
+            - checkbox "Option 5"
+            - text: Option 5
   - status
   - text: "True"
   - group:
@@ -276,6 +456,15 @@
           - listitem:
             - checkbox "Option 2"
             - text: Option 2
+          - listitem:
+            - checkbox "Option 3"
+            - text: Option 3
+          - listitem:
+            - checkbox "Option 4"
+            - text: Option 4
+          - listitem:
+            - checkbox "Option 5"
+            - text: Option 5
   - status
   - link "Form Field Width"
   - text: (Default) Full
@@ -289,6 +478,15 @@
           - listitem:
             - radio "Option 2"
             - text: Option 2
+          - listitem:
+            - radio "Option 3"
+            - text: Option 3
+          - listitem:
+            - radio "Option 4"
+            - text: Option 4
+          - listitem:
+            - radio "Option 5"
+            - text: Option 5
   - status
   - text: Auto
   - group:
@@ -301,6 +499,15 @@
           - listitem:
             - radio "Option 2"
             - text: Option 2
+          - listitem:
+            - radio "Option 3"
+            - text: Option 3
+          - listitem:
+            - radio "Option 4"
+            - text: Option 4
+          - listitem:
+            - radio "Option 5"
+            - text: Option 5
   - status
   - link "Dropdown Width"
   - text: "Form Field Width: Full (Default) Fixed"
@@ -314,6 +521,15 @@
           - listitem:
             - radio "Option 2"
             - text: Option 2
+          - listitem:
+            - radio "Option 3"
+            - text: Option 3
+          - listitem:
+            - radio "Option 4"
+            - text: Option 4
+          - listitem:
+            - radio "Option 5"
+            - text: Option 5
   - status
   - text: Auto
   - group:
@@ -350,6 +566,15 @@
           - listitem:
             - radio "Option 2"
             - text: Option 2
+          - listitem:
+            - radio "Option 3"
+            - text: Option 3
+          - listitem:
+            - radio "Option 4"
+            - text: Option 4
+          - listitem:
+            - radio "Option 5"
+            - text: Option 5
   - status
   - text: Auto
   - group:
@@ -387,6 +612,15 @@
           - listitem:
             - radio "Option 2"
             - text: Option 2
+          - listitem:
+            - radio "Option 3"
+            - text: Option 3
+          - listitem:
+            - radio "Option 4"
+            - text: Option 4
+          - listitem:
+            - radio "Option 5"
+            - text: Option 5
   - status
   - text: Top
   - group:
@@ -399,6 +633,15 @@
           - listitem:
             - radio "Option 2"
             - text: Option 2
+          - listitem:
+            - radio "Option 3"
+            - text: Option 3
+          - listitem:
+            - radio "Option 4"
+            - text: Option 4
+          - listitem:
+            - radio "Option 5"
+            - text: Option 5
   - status
   - text: "Form Field Width: Auto (Default) Bottom-Start"
   - group:
@@ -411,6 +654,15 @@
           - listitem:
             - radio "Option 2"
             - text: Option 2
+          - listitem:
+            - radio "Option 3"
+            - text: Option 3
+          - listitem:
+            - radio "Option 4"
+            - text: Option 4
+          - listitem:
+            - radio "Option 5"
+            - text: Option 5
   - status
   - text: Bottom-End
   - group:
@@ -423,6 +675,15 @@
           - listitem:
             - radio "Option 2"
             - text: Option 2
+          - listitem:
+            - radio "Option 3"
+            - text: Option 3
+          - listitem:
+            - radio "Option 4"
+            - text: Option 4
+          - listitem:
+            - radio "Option 5"
+            - text: Option 5
   - status
   - text: Top-Start
   - group:
@@ -435,6 +696,15 @@
           - listitem:
             - radio "Option 2"
             - text: Option 2
+          - listitem:
+            - radio "Option 3"
+            - text: Option 3
+          - listitem:
+            - radio "Option 4"
+            - text: Option 4
+          - listitem:
+            - radio "Option 5"
+            - text: Option 5
   - status
   - text: Top-End
   - group:
@@ -447,6 +717,15 @@
           - listitem:
             - radio "Option 2"
             - text: Option 2
+          - listitem:
+            - radio "Option 3"
+            - text: Option 3
+          - listitem:
+            - radio "Option 4"
+            - text: Option 4
+          - listitem:
+            - radio "Option 5"
+            - text: Option 5
   - status
   - link "Selected type"
   - text: (Default) Text
@@ -515,6 +794,15 @@
           - listitem:
             - checkbox "Option 2"
             - text: Option 2
+          - listitem:
+            - checkbox "Option 3"
+            - text: Option 3
+          - listitem:
+            - checkbox "Option 4"
+            - text: Option 4
+          - listitem:
+            - checkbox "Option 5"
+            - text: Option 5
   - status
   - text: "True"
   - group:
@@ -532,6 +820,15 @@
           - listitem:
             - checkbox "Option 2"
             - text: Option 2
+          - listitem:
+            - checkbox "Option 3"
+            - text: Option 3
+          - listitem:
+            - checkbox "Option 4"
+            - text: Option 4
+          - listitem:
+            - checkbox "Option 5"
+            - text: Option 5
   - status
   - text: "True"
   - group:
@@ -590,6 +887,15 @@
           - listitem:
             - checkbox "Option 2"
             - text: Option 2
+          - listitem:
+            - checkbox "Option 3"
+            - text: Option 3
+          - listitem:
+            - checkbox "Option 4"
+            - text: Option 4
+          - listitem:
+            - checkbox "Option 5"
+            - text: Option 5
   - status
   - link "Show Select All"
   - text: (Default) False
@@ -629,6 +935,15 @@
           - listitem:
             - checkbox "Option 2"
             - text: Option 2
+          - listitem:
+            - checkbox "Option 3"
+            - text: Option 3
+          - listitem:
+            - checkbox "Option 4"
+            - text: Option 4
+          - listitem:
+            - checkbox "Option 5"
+            - text: Option 5
   - status
   - link "Show Clear Selection"
   - text: (Default) True
@@ -642,6 +957,15 @@
           - listitem:
             - checkbox "Option 2"
             - text: Option 2
+          - listitem:
+            - checkbox "Option 3"
+            - text: Option 3
+          - listitem:
+            - checkbox "Option 4"
+            - text: Option 4
+          - listitem:
+            - checkbox "Option 5"
+            - text: Option 5
   - status
   - text: "False"
   - group:
@@ -654,6 +978,15 @@
           - listitem:
             - checkbox "Option 2"
             - text: Option 2
+          - listitem:
+            - checkbox "Option 3"
+            - text: Option 3
+          - listitem:
+            - checkbox "Option 4"
+            - text: Option 4
+          - listitem:
+            - checkbox "Option 5"
+            - text: Option 5
   - status
   - link "Examples Single"
   - text: Icons
@@ -667,6 +1000,15 @@
           - listitem:
             - radio "Option 2"
             - text: Option 2
+          - listitem:
+            - radio "Option 3"
+            - text: Option 3
+          - listitem:
+            - radio "Option 4"
+            - text: Option 4
+          - listitem:
+            - radio "Option 5"
+            - text: Option 5
   - status
   - text: Less than 6
   - group:
@@ -941,6 +1283,9 @@
           - listitem:
             - checkbox "Option 4"
             - text: Option 4
+          - listitem:
+            - checkbox "Option 5"
+            - text: Option 5
   - status
   - text: Tag grow + auto
   - group:
@@ -959,6 +1304,9 @@
           - listitem:
             - checkbox "Option 4"
             - text: Option 4
+          - listitem:
+            - checkbox "Option 5"
+            - text: Option 5
   - status
   - 'link "Example: Other configuration"':
   - text: Search Value
@@ -985,6 +1333,15 @@
           - listitem:
             - radio "Option 2"
             - text: Option 2
+          - listitem:
+            - radio "Option 3"
+            - text: Option 3
+          - listitem:
+            - radio "Option 4"
+            - text: Option 4
+          - listitem:
+            - radio "Option 5"
+            - text: Option 5
   - status
   - text: Transform Selected Label
   - group:
@@ -997,6 +1354,15 @@
           - listitem:
             - radio "Option 2"
             - text: Option 2
+          - listitem:
+            - radio "Option 3"
+            - text: Option 3
+          - listitem:
+            - radio "Option 4"
+            - text: Option 4
+          - listitem:
+            - radio "Option 5"
+            - text: Option 5
   - status
   - text: Custom Search Filter
   - group:
@@ -1012,4 +1378,13 @@
           - listitem:
             - radio "Option 2"
             - text: Option 2
+          - listitem:
+            - radio "Option 3"
+            - text: Option 3
+          - listitem:
+            - radio "Option 4"
+            - text: Option 4
+          - listitem:
+            - radio "Option 5"
+            - text: Option 5
   - status
