@@ -215,14 +215,7 @@ export const getComponents = (): Component[] => [
 		name: 'select',
 		overwrites: {
 			angular: [
-				{ from: '<HTMLElement>', to: '<HTMLSelectElement>' },
-				// TODO: We can move this to onMount with useTarget after https://github.com/BuilderIO/mitosis/pull/1750 is merged
-				{
-					from: 'ngAfterViewInit() {',
-					to:
-						'ngAfterViewInit() {\n' +
-						'\t  this.writeValue(this.value());'
-				}
+				{ from: '<HTMLElement>', to: '<HTMLSelectElement>' }
 			],
 			react: [
 				// React not allowing selected for options
