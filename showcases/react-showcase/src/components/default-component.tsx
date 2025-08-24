@@ -1,5 +1,5 @@
 import React, { useCallback, useState } from 'react';
-import { DBCard, DBDivider, DBLink } from '../../../../output/react/src';
+import { DBButton, DBCard, DBDivider, DBLink } from '../../../../output/react/src';
 import type {
 	ReactDefaultComponentProps,
 	ReactDefaultComponentVariants
@@ -9,6 +9,31 @@ import useQuery from '../hooks/use-query';
 const redirectURLSearchParameters = process?.env?.REDIRECT_URL_SEARCH_PARAMS
 	? process.env.REDIRECT_URL_SEARCH_PARAMS === 'true'
 	: true;
+
+// Function to convert component title to source file path
+const getSourceFilePath = (title: string): string | null => {
+	// Remove 'DB' prefix and convert to kebab-case
+	const componentName = title
+		.replace(/^DB/, '')
+		.replace(/([A-Z])/g, (match, letter, index) => 
+			index > 0 ? `-${letter.toLowerCase()}` : letter.toLowerCase()
+		);
+	
+	// Verify this is a valid component name by checking common patterns
+	if (componentName && componentName.match(/^[a-z]+(-[a-z]+)*$/)) {
+		return `packages/components/src/components/${componentName}/${componentName}.lite.tsx`;
+	}
+	
+	return null;
+};
+
+// Function to get GitHub source URL
+const getGitHubSourceUrl = (title: string): string | null => {
+	const filePath = getSourceFilePath(title);
+	if (!filePath) return null;
+	
+	return `https://github.com/db-ux-design-system/core-web/blob/main/${filePath}`;
+};
 
 const VariantList = ({
 	name,
@@ -129,11 +154,24 @@ const DefaultComponent = ({
 	}
 
 	const HeadlineTag = isSubComponent ? 'h2' : 'h1';
+	const sourceUrl = getGitHubSourceUrl(title);
 
 	return (
 		<>
 			<div className="default-container">
-				<HeadlineTag>{title}</HeadlineTag>
+				<div className="component-header">
+					<HeadlineTag>{title}</HeadlineTag>
+					{sourceUrl && !isSubComponent && (
+						<DBButton
+							variant="ghost"
+							size="small"
+							icon="code"
+							onClick={() => window.open(sourceUrl, '_blank')}
+							aria-label={`View source code for ${title}`}>
+							View Source
+						</DBButton>
+					)}
+				</div>
 				{variants
 					?.filter(
 						(variant) =>
