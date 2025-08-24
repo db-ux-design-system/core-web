@@ -6,7 +6,7 @@ const onClickPlugin = require('../plugins/on-click.cjs');
 module.exports = {
 	typescript: true,
 	attributePassing: {
-		enabled: true,
+		enabled: false,
 		customRef: '_ref'
 	},
 	api: 'signals',
