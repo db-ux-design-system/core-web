@@ -53,6 +53,19 @@ jobs:
       - name: 🔨 Build outputs
         run: npm run build-outputs
 
+      - name: 📦 Validate Package Publishing
+        run: |
+          # Run publint and types validation on built packages in build-outputs
+          npx publint build-outputs/foundations || echo "⚠️ Foundations publint issues"
+          npx publint build-outputs/components || echo "⚠️ Components publint issues"
+          npx publint build-outputs/migration || echo "⚠️ Migration publint issues"
+          npx publint build-outputs/stylelint || echo "⚠️ Stylelint publint issues"
+          
+          npx @arethetypeswrong/cli --pack build-outputs/foundations || echo "⚠️ Foundations type issues"
+          npx @arethetypeswrong/cli --pack build-outputs/components || echo "⚠️ Components type issues"
+          npx @arethetypeswrong/cli --pack build-outputs/migration || echo "⚠️ Migration type issues"
+          npx @arethetypeswrong/cli --pack build-outputs/stylelint || echo "⚠️ Stylelint type issues"
+
       - name: ⏫ Upload outputs
         uses: actions/upload-artifact@v4
         with:

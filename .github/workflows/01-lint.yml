@@ -20,6 +20,12 @@ jobs:
           npm run build --workspace=@db-ux/core-stylelint
           npm run lint
 
+      - name: 📦 Lint Package Publishing
+        run: |
+          npm run build
+          npm run lint:publint
+          npm run lint:types
+
       - name: 💀 Killing me softly
         uses: ./.github/actions/cancel-workflow
         if: failure()
