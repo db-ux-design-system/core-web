@@ -95,23 +95,34 @@ export default function DBTabs(props: DBTabsProps) {
 						':is(:scope > .db-tab-panel, :scope > db-tab-panel > .db-tab-panel)'
 					)
 				);
+				let hasSelectedTab = false;
+				
 				for (const tabItem of tabItems) {
 					const index: number = tabItems.indexOf(tabItem);
-					const label = tabItem.querySelector('label');
-					const input = tabItem.querySelector('input');
+					const button = tabItem.querySelector('button');
 
-					if (input && label) {
-						if (!input.id) {
+					if (button) {
+						if (!button.id) {
 							const tabId = `${state._name}-tab-${index}`;
-							label.setAttribute('for', tabId);
-							input.id = tabId;
-							input.setAttribute('name', state._name);
+							button.id = tabId;
+							button.setAttribute('name', state._name);
 							if (tabPanels.length > index) {
-								input.setAttribute(
+								button.setAttribute(
 									'aria-controls',
 									`${state._name}-tab-panel-${index}`
 								);
 							}
+						}
+
+						// Check if this tab is selected
+						const isSelected = button.getAttribute('aria-selected') === 'true' || 
+										  button.getAttribute('aria-pressed') === 'true';
+						
+						if (isSelected) {
+							hasSelectedTab = true;
+							button.setAttribute('tabindex', '0');
+						} else {
+							button.setAttribute('tabindex', '-1');
 						}
 
 						if (init) {
@@ -124,9 +135,19 @@ export default function DBTabs(props: DBTabsProps) {
 									index === 0) ||
 								Number(props.initialSelectedIndex) === index;
 							if (autoSelect && shouldAutoSelect) {
-								input.click();
+								button.click();
+								button.setAttribute('tabindex', '0');
+								hasSelectedTab = true;
 							}
 						}
+					}
+				}
+				
+				// If no tab is selected, make the first tab focusable
+				if (!hasSelectedTab && tabItems.length > 0) {
+					const firstButton = tabItems[0].querySelector('button');
+					if (firstButton) {
+						firstButton.setAttribute('tabindex', '0');
 					}
 				}
 
@@ -149,17 +170,28 @@ export default function DBTabs(props: DBTabsProps) {
 				const parent = target.parentElement;
 				if (
 					parent &&
-					parent.parentElement &&
-					parent.parentElement?.nodeName === 'LI'
+					parent.nodeName === 'LI'
 				) {
 					const tabItem = useTarget({
-						angular: parent.parentElement.parentElement,
-						stencil: parent.parentElement.parentElement,
-						default: parent.parentElement
+						angular: parent,
+						stencil: parent,
+						default: parent
 					});
 					if (tabItem) {
 						const list = tabItem.parentElement;
 						if (list) {
+							// Update tabindex for all tabs
+							const allButtons = Array.from<HTMLElement>(
+								list.querySelectorAll('button[role="tab"]')
+							);
+							allButtons.forEach(button => {
+								if (button === target) {
+									button.setAttribute('tabindex', '0');
+								} else {
+									button.setAttribute('tabindex', '-1');
+								}
+							});
+							
 							const indices = Array.from(list.childNodes).indexOf(
 								tabItem
 							);
