@@ -157,7 +157,7 @@ jobs:
           npx changeset status --since=origin/main --output=json > .changeset-status.json || true
           # Parse JSON and emit HAS_MINOR/HAS_MAJOR to a temp env file
           node > .changeset-env <<'NODE'
-          const fs = require('fs');
+          const fs = require('node:fs');
           let hasMinor = 0, hasMajor = 0;
           try {
             const txt = fs.readFileSync('.changeset-status.json','utf8').trim();
