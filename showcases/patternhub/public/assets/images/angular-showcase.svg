@@ -33,7 +33,25 @@
      inkscape:window-maximized="1"
      inkscape:current-layer="layer1" />
   <defs
-     id="defs2" />
+     id="defs2">
+    <!-- Angular Logo Gradients -->
+    <linearGradient id="leftGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#E91E63;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#E91E63;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="rightGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#7B1FA2;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#9C27B0;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="centerGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#E91E63;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#E91E63;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="bottomGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#E91E63;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#9C27B0;stop-opacity:1" />
+    </linearGradient>
+  </defs>
   <g
      inkscape:label="Ebene 1"
      inkscape:groupmode="layer"
@@ -60,33 +78,33 @@
     <g
        id="g452"
        transform="matrix(2.2,0,0,2.2,75,112)">
-	<!-- Angular Logo - Based on Current Official Design -->
+	<!-- Angular Logo - Official Design from Angular Press Kit -->
 	<g id="angular-logo">
-		<!-- Main shield -->
+		<!-- Left triangle (pink) -->
 		<path
-		   class="st0"
-		   d="M 12,3 L 19.8,6 L 18.6,16.5 L 12,19.5 L 5.4,16.5 L 4.2,6 Z"
-		   id="angular-shield" />
+		   fill="url(#leftGradient)"
+		   d="M 12,3 L 3,15 L 9,15 Z"
+		   id="angular-left" />
 		
-		<!-- Right gradient -->
+		<!-- Right triangle (purple) -->
 		<path
-		   class="st1"
-		   d="M 12,3 L 19.8,6 L 18.6,16.5 L 12,19.5 Z"
-		   id="angular-gradient" />
+		   fill="url(#rightGradient)"
+		   d="M 12,3 L 21,15 L 15,15 Z"
+		   id="angular-right" />
 		
-		<!-- Angular "A" with traditional design -->
+		<!-- Center triangle (pink) -->
 		<path
-		   class="st2"
-		   d="M 12,6.5 L 8.5,15 L 10,15 L 10.6,13.5 L 13.4,13.5 L 14,15 L 15.5,15 Z M 12,9 L 12.8,11.2 L 11.2,11.2 Z"
-		   id="angular-a" />
+		   fill="url(#centerGradient)"
+		   d="M 12,6 L 9,12 L 15,12 Z"
+		   id="angular-center" />
+		
+		<!-- Bottom pentagon (gradient) -->
+		<path
+		   fill="url(#bottomGradient)"
+		   d="M 8,16 L 16,16 L 14,19 L 10,19 Z"
+		   id="angular-bottom" />
 	</g>
 </g>
   </g>
-  <style
-     type="text/css"
-     id="style444">
-	.st0{fill:#DD0031;}
-	.st1{fill:#C3002F;}
-	.st2{fill:#FFFFFF;}
-</style>
+
 </svg>
