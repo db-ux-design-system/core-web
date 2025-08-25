@@ -154,7 +154,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          npx -y @changesets/cli@^2 status --since=origin/main --output=json > .changeset-status.json || true
+          npx changeset status --since=origin/main --output=json > .changeset-status.json || true
           # Parse JSON and emit HAS_MINOR/HAS_MAJOR to a temp env file
           node > .changeset-env <<'NODE'
           const fs = require('fs');
