@@ -19,6 +19,7 @@ import {
 	ShowIconLeadingProps,
 	ShowIconProps,
 	ShowIconTrailingProps,
+	SizeType,
 	ValueLabelType
 } from '../../shared/model';
 
@@ -76,6 +77,18 @@ export type DBInputDefaultProps = {
 	 * Sets [step value](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/step).
 	 */
 	step?: number | string;
+	/**
+	 * The size of the message infotext. Defaults to "small".
+	 */
+	messageSize?: SizeType;
+	/**
+	 * The size of the valid message infotext. Defaults to "small".
+	 */
+	validMessageSize?: SizeType;
+	/**
+	 * The size of the invalid message infotext. Defaults to "small".
+	 */
+	invalidMessageSize?: SizeType;
 };
 
 export type DBInputProps = DBInputDefaultProps &
