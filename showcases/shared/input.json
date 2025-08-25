@@ -395,30 +395,6 @@
 		]
 	},
 	{
-		"name": "Infotext Size Configuration",
-		"examples": [
-			{
-				"name": "(Default) Small size",
-				"props": {
-					"label": "Label",
-					"message": "Default small message",
-					"showMessage": true,
-					"validation": "invalid",
-					"invalidMessage": "Default small invalid message"
-				}
-			},
-			{
-				"name": "Medium size infotexts",
-				"props": {
-					"label": "Label",
-					"validation": "invalid",
-					"invalidMessage": "Medium sized invalid message",
-					"invalidMessageSize": "medium"
-				}
-			}
-		]
-	},
-	{
 		"name": "Example Floating Label",
 		"examples": [
 			{
