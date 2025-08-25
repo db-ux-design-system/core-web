@@ -67,6 +67,7 @@ After the Release PR is merged into `main` branch:
 - Run the publish script (`scripts/github/publish-npm.js`)
 - Publish new versions to npm with the tag `latest` (or `next` for pre-releases)
 - Push git tags
+- Create a [GitHub Release](https://github.com/db-ux-design-system/core-web/releases)
 
 You don’t have to run anything manually, it’s handled by CI.
 
@@ -96,11 +97,11 @@ You don’t have to run anything manually, it’s handled by CI.
 - **Baseline snapshots**
 
     ARIA snapshots by Playwright help detect markup changes. If they change, prefer minor instead of patch.
-    And please mention those HTML changes within the `CHANGELOG`.
+    And please mention those HTML changes within the `CHANGELOG` or of necessary (like bigger changes) in a [migration guide](https://github.com/db-ux-design-system/core-web/tree/main/docs/migration).
 
 - **Avoid manual version bumps**
 
-    Never edit package.json `version` field by hand. Changesets handles this automatically.
+    Never edit `package.json` `version` field by hand. Changesets handles this automatically.
 
 ---
 
@@ -159,7 +160,7 @@ npx changeset
 npx changeset status --verbose
 
 # Apply version bumps and changelogs
-npm run release:version
+npx changeset version
 
 # Publish (if you want to do it locally, not in CI)
 npm run release:publish

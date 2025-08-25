@@ -63,8 +63,6 @@
     "regenerate:screenshots": "npm run build && npm run build --workspace=react-showcase && docker-compose --file ./e2e/docker-compose.regenerate.yml up",
     "regenerate:screenshots:rebuild": "npm run rm:builds && node scripts/rebuild-e2e.js",
     "release:publish": "node scripts/github/publish-npm.js",
-    "release:status": "changeset status --verbose",
-    "release:version": "changeset version",
     "rm:builds": "npm run rm:builds --workspace=scripts",
     "start": "npm run start --workspace=patternhub",
     "test": "npm run test --workspace=scripts",

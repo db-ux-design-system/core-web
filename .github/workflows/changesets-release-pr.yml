@@ -14,7 +14,16 @@ on:
     types: [opened, synchronize, reopened, ready_for_review]
   push:
     branches: ["main"]
-  workflow_dispatch: {}
+  workflow_dispatch:
+    inputs:
+      action:
+        description: "Choose an action"
+        required: true
+        default: "version"
+        type: choice
+        options:
+          - version
+          - release
 
 permissions:
   # Needed to push version commit + create releases
@@ -32,7 +41,7 @@ jobs:
   preview:
     if: github.event_name == 'pull_request'
     name: 🔎 Changesets Preview (PR)
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     steps:
       # Check out the PR HEAD commit (not the merge ref) to report the correct plan
       - name: ⏬ Checkout PR head (not merge ref)
@@ -99,7 +108,7 @@ jobs:
     # Only run on main pushes (merge to main done) to drive versioning + tags
     if: github.event_name == 'push' && startsWith(github.ref, 'refs/heads/main')
     name: 🧩 Create/Update Release PR (and cut tags/releases)
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
 
     steps:
       # Work on the main branch that was just pushed

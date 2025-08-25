@@ -25,7 +25,7 @@ concurrency:
 jobs:
   snapshot-diff:
     name: 🔎 Snapshot changes (png/yml) & bump guard
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
 
     steps:
       -  # Check out the PR *head* commit (not the merge ref), with full history.
@@ -121,7 +121,7 @@ jobs:
           SNAP_SUMMARY_MD_PATH: ${{ env.SNAP_SUMMARY_MD_PATH }}
         with:
           script: |
-            const fs = require('fs');
+            const fs = require('node:fs');
             const { owner, repo, number } = context.issue;
             const marker = '<!-- snapshot-summary-marker -->';
             let body = '_No snapshot info._';
