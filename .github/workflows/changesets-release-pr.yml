@@ -31,17 +31,15 @@ permissions:
   # Needed to open/update the Release PR
   pull-requests: write
 
-concurrency:
-  # Avoid overlapping runs for the same ref (e.g., repeated pushes)
-  group: changesets-${{ github.ref }}
-  cancel-in-progress: false
-
 jobs:
   # PR PATH: Preview only
   preview:
     if: github.event_name == 'pull_request'
     name: 🔎 Changesets Preview (PR)
     runs-on: ubuntu-24.04
+    concurrency:
+      group: changesets-preview-${{ github.event.pull_request.number }}
+      cancel-in-progress: true
     steps:
       # Check out the PR HEAD commit (not the merge ref) to report the correct plan
       - name: ⏬ Checkout PR head (not merge ref)
@@ -109,6 +107,9 @@ jobs:
     if: github.event_name == 'push' && startsWith(github.ref, 'refs/heads/main')
     name: 🧩 Create/Update Release PR (and cut tags/releases)
     runs-on: ubuntu-24.04
+    concurrency:
+      group: changesets-main-${{ github.ref }}
+      cancel-in-progress: true
 
     steps:
       # Work on the main branch that was just pushed
