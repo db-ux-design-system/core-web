@@ -6,3 +6,15 @@
 ## DB UI Core ➡ DB UX Design System Core components
 
 New Component 🥳
+
+## Content Usage
+
+**Important:** The tooltip content should be passed as children/slot content, **not** as a `content` prop. 
+
+```tsx
+// ✅ Correct - content as children
+<DBTooltip>Your tooltip text here</DBTooltip>
+
+// ❌ Incorrect - there is no content prop
+<DBTooltip content="Your tooltip text here" />
+```

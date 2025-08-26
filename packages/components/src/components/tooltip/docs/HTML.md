@@ -4,6 +4,8 @@ For general installation and configuration take a look at the [components](https
 
 ### Use component
 
+The tooltip content is provided as the text content of the element, **not** as a `content` attribute.
+
 ```html index.html
 <!-- index.html -->
 ...

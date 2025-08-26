@@ -4,6 +4,8 @@ For general installation and configuration take a look at the [v-core-components
 
 ### Use component
 
+The tooltip content is provided as slot content, **not** as a `content` prop.
+
 ```vue App.vue
 <!-- App.vue -->
 <script>

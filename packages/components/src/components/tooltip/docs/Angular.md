@@ -18,6 +18,8 @@ import { DBTooltip } from '@db-ux/ngx-core-components';
 
 ### Use component
 
+The tooltip content is provided as the content between the tags, **not** as a `content` property.
+
 ```html app.component.html
 <!-- app.component.html -->
 <db-button aria-describedby="tooltip-01">

@@ -4,6 +4,8 @@ For general installation and configuration take a look at the [react-core-compon
 
 ### Use component
 
+The tooltip content is provided as children, **not** as a `content` prop.
+
 ```tsx App.tsx
 // App.tsx
 import { DBTooltip, DBButton } from "@db-ux/react-core-components";
