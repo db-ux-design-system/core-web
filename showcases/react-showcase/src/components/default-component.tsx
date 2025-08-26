@@ -28,11 +28,14 @@ const getSourceFilePath = (title: string): string | null => {
 };
 
 // Function to get GitHub source URL
-const getGitHubSourceUrl = (title: string): string | null => {
+const getGitHubSourceUrl = (title: string, branch?: string): string | null => {
 	const filePath = getSourceFilePath(title);
 	if (!filePath) return null;
 	
-	return `https://github.com/db-ux-design-system/core-web/blob/main/${filePath}`;
+	// Use provided branch, or try to detect from environment, fallback to 'main'
+	const targetBranch = branch || process.env.GITHUB_BRANCH || process.env.BRANCH_NAME || 'main';
+	
+	return `https://github.com/db-ux-design-system/core-web/blob/${targetBranch}/${filePath}`;
 };
 
 const VariantList = ({
