@@ -148,7 +148,7 @@ npm run build-showcases    # Build example applications
 # Testing & Quality
 npm run test               # Run test suite (~10 seconds)
 npm run lint               # Run all linters (known issue: may fail if Nuxt showcase hasn't been run yet; see "Known Issues and Workarounds" below)
-npm run regenerate:screenshots  # Update visual regression tests
+npm run regenerate:screenshots  # Update visual regression tests material
 
 # Utilities
 npm run clean              # Clean build artifacts
