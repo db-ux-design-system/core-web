@@ -177,7 +177,6 @@ npm run generate:component # Generate new component scaffolding
 3. Build and test: `npm run build && npm run test`
 4. Generate framework outputs: `npm run build-outputs`
 5. Test in development server: `npm run dev`
-6. Update visual tests: `npm run regenerate:screenshots`
 
 ### Modifying Existing Components
 1. Make changes in `packages/components/src/components/[name]/`
