@@ -181,9 +181,10 @@ npm run generate:component # Generate new component scaffolding
 
 ### Modifying Existing Components
 1. Make changes in `packages/components/src/components/[name]/`
-2. **Always run**: `npm run build && npm run dev`
-3. **Manual validation**: Test component behavior in browser
-4. **Before committing**: `npm run test && npm run build-outputs`
+2. Adapt those changes into the `showcases/vue-showcase`, `showcases/angular-showcase` and `showcases/react-showcase` folders.
+3. **Always run**: `npm run build && npm run dev`
+4. **Manual validation**: Test component behavior in browser
+5. **Before committing**: `npm run test && npm run build-outputs`
 
 ### Debugging Build Issues
 1. **Check Node.js version**: Must be v24 (see `.nvmrc`)
