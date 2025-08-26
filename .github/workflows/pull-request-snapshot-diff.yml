@@ -174,8 +174,8 @@ jobs:
         run: npm ci
 
       # Determine if the PR’s changesets imply a MINOR/MAJOR bump.
-      # Primary source: changesets JSON; Fallback: inspect changed .changeset/*.md.
-      - name: 🔎 Determine bump plan (JSON + Fallback)
+      # Primary source: changesets JSON;
+      - name: 🔎 Determine bump plan (JSON only)
         id: plan
         shell: bash
         run: |
@@ -197,30 +197,7 @@ jobs:
           } catch (_) {}
           process.stdout.write(`HAS_MINOR=${hasMinor}\nHAS_MAJOR=${hasMajor}\n`);
           NODE
-
-          # Fallback: if both are still 0, scan changed .changeset/*.md for 'minor'/'major'
-          source .changeset-env || true
-          if [ "${HAS_MINOR}" = "0" ] && [ "${HAS_MAJOR}" = "0" ]; then
-            git diff --name-only origin/main...HEAD -- ".changeset/*.md" > .cs-files || true
-            if [ -s .cs-files ]; then
-              while read -r f; do
-                [ -z "${f:-}" ] && continue
-                if grep -E ':\s*minor\b' "$f" >/dev/null 2>&1; then HAS_MINOR=1; fi
-                if grep -E ':\s*major\b' "$f" >/dev/null 2>&1; then HAS_MAJOR=1; fi
-              done < .cs-files
-            fi
-            {
-              echo "HAS_MINOR=${HAS_MINOR}"
-              echo "HAS_MAJOR=${HAS_MAJOR}"
-            } > .changeset-env
-          fi
           cat .changeset-env >> "$GITHUB_ENV"
-          {
-            echo "### Bump Plan Detection"
-            echo
-            echo "- HAS_MINOR: ${HAS_MINOR}"
-            echo "- HAS_MAJOR: ${HAS_MAJOR}"
-          } >> "$GITHUB_STEP_SUMMARY"
 
       # Guardrail: if snapshots changed, require at least MINOR (or MAJOR).
       # This prevents accidental PATCH releases for visual/markup-impacting changes.
