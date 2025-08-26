@@ -123,7 +123,7 @@ docker-compose --file ./e2e/docker-compose.yml up
 │   ├── foundations/        # Base CSS/SCSS styles and design tokens
 │   ├── components/         # Component CSS and build definitions
 │   ├── migration/          # Migration utilities between versions
-│   └── stylelint/          # Stylelint configuration
+│   └── stylelint/          # DB UX Design System Stylelint plugin for QS
 ├── output/                 # Framework-specific generated code
 │   ├── angular/            # Angular components (@db-ux/ngx-core-components)
 │   ├── react/              # React components (@db-ux/react-core-components)
