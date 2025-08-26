@@ -73,7 +73,9 @@ runs:
         BASE_PR_URL=$(gh pr list --base "$BASE_BRANCH" --state open --json url --jq '.[0].url')
 
         # Update the PR body to include the base branch PR URL
-        gh pr edit "$PR_URL" --body "$PR_BODY\n\nBase branch PR: $BASE_PR_URL"
+        gh pr edit "$PR_URL" --body "$PR_BODY
+
+        Base branch PR: $BASE_PR_URL"
 
     # https://docs.github.com/en/apps/creating-github-apps/authenticating-with-a-github-app/making-authenticated-api-requests-with-a-github-app-in-a-github-actions-workflow
     - name: 🧬 Generate a token
