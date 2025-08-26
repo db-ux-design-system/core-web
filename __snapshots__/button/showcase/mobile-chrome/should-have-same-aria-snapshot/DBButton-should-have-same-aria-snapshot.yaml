@@ -2,7 +2,7 @@
   - heading "DBButton" [level=1]
   - link "Density"
   - button "Functional"
-  - button "(Default) Regular1"
+  - button "(Default) Regular"
   - button "Expressive"
   - link "Variant"
   - button "(Default) Outlined - Adaptive"
