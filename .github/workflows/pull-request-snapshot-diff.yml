@@ -46,10 +46,35 @@ jobs:
           git fetch --no-tags --prune origin +refs/heads/main:refs/remotes/origin/main
           git rev-parse remotes/origin/main >/dev/null
 
+      # Early scan of changed .changeset/*.md files for 'minor'/'major'.
+      - name: 🔎 Early bump plan (fallback-only for skip)
+        id: early_plan
+        shell: bash
+        run: |
+          set -euo pipefail
+          HAS_MINOR=0
+          HAS_MAJOR=0
+
+          git diff --name-only origin/main...HEAD -- ".changeset/*.md" > .cs-files || true
+
+          if [ -s .cs-files ]; then
+            while read -r f; do
+              [ -z "${f:-}" ] && continue
+              grep -qE ':\s*minor\b' "$f" && HAS_MINOR=1 || true
+              grep -qE ':\s*major\b' "$f" && HAS_MAJOR=1 || true
+            done < .cs-files
+          fi
+
+          {
+            echo "HAS_MINOR=${HAS_MINOR}"
+            echo "HAS_MAJOR=${HAS_MAJOR}"
+          } >> "$GITHUB_ENV"
+
       # Compute unified diff + name-status for PNG/YML snapshot files.
       # Build a Markdown summary and export counters via $GITHUB_ENV.
       - name: 🧾 Collect changed PNG/YML snapshots
         id: diff
+        if: env.HAS_MINOR == '0' && env.HAS_MAJOR == '0'
         shell: bash
         run: |
           set -euo pipefail
@@ -106,7 +131,7 @@ jobs:
 
       # Attach the full unified diff as a downloadable artifact if there are changes.
       - name: 📎 Upload unified diff (artifact)
-        if: env.SNAP_TOTAL != '0'
+        if: env.HAS_MINOR == '0' && env.HAS_MAJOR == '0' && env.SNAP_TOTAL && env.SNAP_TOTAL != '0'
         uses: actions/upload-artifact@v4
         with:
           name: snapshots-diff
@@ -116,6 +141,7 @@ jobs:
 
       # Post (or update) a PR comment with the table summary.
       - name: 💬 Upsert PR comment
+        if: env.HAS_MINOR == '0' && env.HAS_MAJOR == '0'
         uses: actions/github-script@v7
         env:
           SNAP_SUMMARY_MD_PATH: ${{ env.SNAP_SUMMARY_MD_PATH }}
@@ -199,7 +225,7 @@ jobs:
       # Guardrail: if snapshots changed, require at least MINOR (or MAJOR).
       # This prevents accidental PATCH releases for visual/markup-impacting changes.
       - name: 🚦 Enforce Snapshot changes require >= minor
-        if: env.SNAP_TOTAL != '0'
+        if: env.HAS_MINOR == '0' && env.HAS_MAJOR == '0' && env.SNAP_TOTAL && env.SNAP_TOTAL != '0'
         shell: bash
         run: |
           set -euo pipefail
