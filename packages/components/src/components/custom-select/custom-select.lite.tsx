@@ -697,6 +697,24 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 	onUpdate(() => {
 		if (selectRef) {
 			state.handleValidation();
+			
+			// Add form reset listener when selectRef becomes available
+			if (selectRef.form && !selectRef._dbFormResetListenerAdded) {
+				const handleFormReset = () => {
+					// Reset internal state to match form reset behavior  
+					state._values = [];
+					state._userInteraction = false;
+					
+					// Notify frameworks and callbacks
+					if (props.onOptionSelected) {
+						props.onOptionSelected([]);
+					}
+				};
+				
+				selectRef.form.addEventListener('reset', handleFormReset);
+				// Mark as added to avoid duplicate listeners
+				selectRef._dbFormResetListenerAdded = true;
+			}
 		}
 	}, [state._values, selectRef]);
 
