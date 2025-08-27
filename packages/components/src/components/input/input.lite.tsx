@@ -281,7 +281,7 @@ export default function DBInput(props: DBInputProps) {
 			{props.children}
 			<Show when={stringPropVisible(props.message, props.showMessage)}>
 				<DBInfotext
-					size="small"
+					size={props.messageSize || 'small'}
 					icon={props.messageIcon}
 					id={state._messageId}>
 					{props.message}
@@ -291,7 +291,7 @@ export default function DBInput(props: DBInputProps) {
 			<Show when={state.hasValidState()}>
 				<DBInfotext
 					id={state._validMessageId}
-					size="small"
+					size={props.validMessageSize || 'small'}
 					semantic="successful">
 					{props.validMessage || DEFAULT_VALID_MESSAGE}
 				</DBInfotext>
@@ -299,7 +299,7 @@ export default function DBInput(props: DBInputProps) {
 
 			<DBInfotext
 				id={state._invalidMessageId}
-				size="small"
+				size={props.invalidMessageSize || 'small'}
 				semantic="critical">
 				{state._invalidMessage}
 			</DBInfotext>
