@@ -20,7 +20,7 @@ DB UX Design System v3 Core Web is a monorepo containing CSS/SCSS styles, compon
 2. **Install dependencies**:
    ```bash
    npm install --ignore-scripts
-   ```
+   
    **NOTE**: Use the `--ignore-scripts` flag because the chromedriver package attempts to download binaries during installation, which fails in restricted corporate networks (e.g., behind firewalls or proxies). This workaround prevents installation errors in such environments.
 
 3. **Decode DB Theme assets** (optional for basic development):
@@ -118,7 +118,8 @@ docker-compose --file ./e2e/docker-compose.yml up
 - **Build artifacts**: `packages/foundations/build/` and `packages/components/build/`
 
 ### Key Repository Locations
-```
+
+```text
 ├── packages/
 │   ├── foundations/        # Base CSS/SCSS styles and design tokens
 │   ├── components/         # Component CSS and build definitions
