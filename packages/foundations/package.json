@@ -50,7 +50,7 @@
     "@db-ux/icon-font-tools": "0.3.4",
     "@playwright/test": "1.54.2",
     "cpr": "3.0.1",
-    "cssnano": "7.1.0",
+    "cssnano": "7.1.1",
     "dotenv": "17.2.1",
     "glob": "11.0.3",
     "nodemon": "3.1.10",
