@@ -161,6 +161,19 @@ export default function DBSelect(props: DBSelectProps) {
 		state._invalidMessageId = mId + DEFAULT_INVALID_MESSAGE_ID_SUFFIX;
 		state._placeholderId = mId + DEFAULT_PLACEHOLDER_ID_SUFFIX;
 		state._invalidMessage = props.invalidMessage || DEFAULT_INVALID_MESSAGE;
+
+		// Angular-specific initialization for form integration
+		useTarget({
+			angular: () => {
+				// This ensures the initial value is set correctly for Angular forms
+				// Previously handled by post-build override in ngAfterViewInit
+				// In Angular context, 'this' refers to the component instance
+				// @ts-ignore - Angular-specific code that will be transformed during build
+				if (typeof this?.writeValue === 'function' && typeof this?.value === 'function') {
+					this.writeValue(this.value());
+				}
+			}
+		});
 	});
 
 	onUpdate(() => {
