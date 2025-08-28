@@ -30,6 +30,12 @@ export type DBSelectDefaultProps = {
 	 * If you don't/can't use children/slots you can pass in the options as an array.
 	 */
 	options?: DBSelectOptionType[];
+
+	/**
+	 * Textual description content to be displayed outside the select element.
+	 * Use this instead of putting text content in children to avoid invalid HTML.
+	 */
+	description?: string;
 };
 
 export type DBSelectOptionType = {

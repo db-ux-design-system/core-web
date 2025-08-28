@@ -60,6 +60,22 @@ const testAction = () => {
 		const selected = await select.selectOption({ label: 'Test1' });
 		expect(selected).toContain(test);
 	});
+
+	test('should render description prop correctly', async ({ mount }) => {
+		const comp: any = (
+			<DBSelect
+				label="Label"
+				description="This is a description text">
+				<option value="test1">Test1</option>
+				<option value="test2">Test2</option>
+			</DBSelect>
+		);
+		const component = await mount(comp);
+		await expect(component).toContainText('This is a description text');
+		// Description should be outside the select element
+		const description = component.locator('text=This is a description text');
+		await expect(description).toBeVisible();
+	});
 };
 
 test.describe('DBSelect', () => {

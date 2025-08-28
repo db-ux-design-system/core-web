@@ -157,3 +157,16 @@
     - option "Disabled" [selected]
     - option "Option 2"
   - status
+  - link "Description"
+  - text: Label
+  - combobox "Label":
+    - option "Option 1"
+    - option "Option 2"
+  - text: With Description
+  - status
+  - text: Label
+  - combobox "Label":
+    - option "Option 1"
+    - option "Option 2"
+  - text: Without Description
+  - status
