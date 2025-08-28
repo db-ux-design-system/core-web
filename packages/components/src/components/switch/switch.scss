@@ -32,10 +32,47 @@ $checked-active-transition-size: calc(
 	}
 }
 
+@mixin get-validity-color-switch($key: "valid") {
+	$variant: successful;
+
+	@if $key != "valid" {
+		$variant: critical;
+	}
+
+	--db-check-element-border-color: var(
+		--db-#{$variant}-on-bg-basic-emphasis-70-default
+	);
+	--db-adaptive-on-bg-basic-emphasis-100-default: var(
+		--db-#{$variant}-on-bg-basic-emphasis-80-default
+	);
+	--db-adaptive-on-bg-basic-emphasis-100-hovered: var(
+		--db-#{$variant}-on-bg-basic-emphasis-80-hovered
+	);
+	--db-adaptive-on-bg-basic-emphasis-100-pressed: var(
+		--db-#{$variant}-on-bg-basic-emphasis-80-pressed
+	);
+
+	> input:not(:checked) {
+		--db-adaptive-bg-basic-transparent-default: var(
+			--db-#{$variant}-bg-basic-transparent-default
+		);
+		--db-adaptive-bg-basic-transparent-hovered: var(
+			--db-#{$variant}-bg-basic-transparent-hovered
+		);
+		--db-adaptive-bg-basic-transparent-pressed: var(
+			--db-#{$variant}-bg-basic-transparent-pressed
+		);
+	}
+
+	@include form-components.get-validity-message($key);
+}
+
 .db-switch {
 	user-select: none;
 
+	@extend %helper-message;
 	@include form-components.set-default-check-element;
+	@include form-components.get-validity("switch");
 
 	&:not(:has(input:disabled)) {
 		@include form-components.get-state;
@@ -43,6 +80,53 @@ $checked-active-transition-size: calc(
 		@include form-components.get-state("active") {
 			@extend %active-transition;
 		}
+	}
+
+	@include form-components.get-validity("switch") {
+		> input {
+			border-color: colors.$db-successful-on-bg-basic-emphasis-70-default;
+
+			@include helpers.hover {
+				border-color: colors.$db-successful-on-bg-basic-emphasis-70-hovered;
+			}
+
+			@include helpers.active {
+				border-color: colors.$db-successful-on-bg-basic-emphasis-70-pressed;
+			}
+		}
+
+		> input:checked::before {
+			background-color: colors.$db-successful-on-bg-inverted-default;
+			color: colors.$db-successful-on-bg-inverted-default;
+		}
+
+		@include form-components.get-validity-message("valid");
+	}
+
+	@include form-components.get-validity("switch", "invalid") {
+		> input {
+			border-color: colors.$db-critical-on-bg-basic-emphasis-70-default;
+
+			@include helpers.hover {
+				border-color: colors.$db-critical-on-bg-basic-emphasis-70-hovered;
+			}
+
+			@include helpers.active {
+				border-color: colors.$db-critical-on-bg-basic-emphasis-70-pressed;
+			}
+		}
+
+		@include form-components.get-validity-message("invalid");
+	}
+
+	@include form-components.get-validity(switch) {
+		&:has(.db-infotext[data-semantic="successful"]) {
+			@include get-validity-color-switch("valid");
+		}
+	}
+
+	@include form-components.get-validity(switch, "invalid") {
+		@include get-validity-color-switch("invalid");
 	}
 
 	> input {
