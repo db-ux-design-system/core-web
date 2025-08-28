@@ -140,6 +140,26 @@
     - option "Option 2"
   - text: "False"
   - status
+  - link "Option Groups"
+  - text: Label
+  - combobox "Label":
+    - group:
+      - option "Option 1"
+      - option "Option 2"
+    - group:
+      - option "Option 3"
+      - option "Option 4"
+  - text: Using optgroups
+  - status
+  - text: Label
+  - combobox "Label":
+    - option "Single Option"
+    - group:
+      - option "Group Option 1"
+      - option "Group Option 2"
+    - option "Another Single Option"
+  - text: Mixed options and groups
+  - status
   - link "Examples Floating Label"
   - text: Label
   - combobox "Label":
