@@ -1,0 +1,6 @@
+// Test traditional imports (current approach)
+@use "@db-ux/core-foundations/build/styles/variables";
+
+.test-traditional {
+  padding: variables.$db-spacing-fixed-md;
+}
