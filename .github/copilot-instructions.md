@@ -20,7 +20,7 @@ DB UX Design System v3 Core Web is a monorepo containing CSS/SCSS styles, compon
 2. **Install dependencies**:
    ```bash
    npm install --ignore-scripts
-   ```
+   
    **NOTE**: Use the `--ignore-scripts` flag because the chromedriver package attempts to download binaries during installation, which fails in restricted corporate networks (e.g., behind firewalls or proxies). This workaround prevents installation errors in such environments.
 
 3. **Decode DB Theme assets** (optional for basic development):
@@ -56,14 +56,14 @@ DB UX Design System v3 Core Web is a monorepo containing CSS/SCSS styles, compon
   npm run dev
   ```
   **Interactive**: Will prompt to select frameworks (plain-html, angular, react, vue, stencil, etc.). Default selection is plain-html.
-  **TIMING**: Takes ~30 seconds to start. Runs on http://localhost:5173/
+  **TIMING**: Takes ~30 seconds to start. Runs on <http://localhost:5173/>
 
 - **Start documentation site (Patternhub)**:
   ```bash
   npm run start
   ```
   **TIMING**: Takes ~2 minutes to start. NEVER CANCEL. Set timeout to 300+ seconds.
-  **ACCESS**: Runs on http://localhost:3000 - full design system documentation and examples.
+  **ACCESS**: Runs on <http://localhost:3000> - full design system documentation and examples.
 
 ## Validation
 
@@ -80,13 +80,13 @@ npm run build-outputs # Verify framework outputs build
 
 1. **Component Development Validation**:
    - Run `npm run dev` and select `plain-html`
-   - Open http://localhost:5173/ in browser
+   - Open <http://localhost:5173/> in browser
    - Navigate to components and verify visual rendering
    - Test interactive components (buttons, forms, etc.)
 
 2. **Documentation Site Validation**:
    - Run `npm run start`
-   - Open http://localhost:3000 in browser
+   - Open <http://localhost:3000> in browser
    - Navigate through component documentation
    - Verify code examples render correctly
 
@@ -118,7 +118,8 @@ docker-compose --file ./e2e/docker-compose.yml up
 - **Build artifacts**: `packages/foundations/build/` and `packages/components/build/`
 
 ### Key Repository Locations
-```
+
+```text
 ├── packages/
 │   ├── foundations/        # Base CSS/SCSS styles and design tokens
 │   ├── components/         # Component CSS and build definitions
