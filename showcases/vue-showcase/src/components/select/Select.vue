@@ -12,7 +12,7 @@ import DefaultComponent from "../DefaultComponent.vue";
 			<DBSelect
 				:showRequiredAsterisk="exampleProps?.showRequiredAsterisk"
 				:label="exampleProps?.label"
-				:placeholder="exampleName"
+				:placeholder="exampleProps?.placeholder"
 				:variant="exampleProps?.variant"
 				:show-label="exampleProps?.showLabel"
 				:options="exampleProps?.options"
