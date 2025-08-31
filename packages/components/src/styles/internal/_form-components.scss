@@ -245,7 +245,8 @@ $input-valid-types:
 		$validations: ":required, [minlength], [maxlength]";
 	}
 
-	$has-selectors: "&:has(#{$selector}:not([data-custom-validity]):is(#{$validations}):user-#{$key}),";
+	/* Performance optimization: Provide attribute-based alternatives to expensive :has selectors */
+	$has-selectors: "&:has(#{$selector}:not([data-custom-validity]):is(#{$validations}):user-#{$key}), &[data-#{$key}='true'],";
 
 	@return string.unquote(string.slice($has-selectors, 1, -2));
 }
@@ -260,9 +261,11 @@ $input-valid-types:
 	@if $selector == check or $selector == radio or $selector == switch {
 		$selector: input;
 
+		/* Performance optimization: Provide attribute-based alternatives to expensive :has selectors */
 		&:has(
 			#{$selector}:not([data-custom-validity]):required:#{$user}#{$key}
-		) {
+		),
+		&[data-#{$key}="true"] {
 			@content;
 		}
 		/* stylelint-disable-next-line at-rule-empty-line-before */
@@ -277,6 +280,7 @@ $input-valid-types:
 	}
 
 	// If data-custom-validity is set we overwrite the selectors above
+	/* Performance optimization: Keep existing data attribute approach as it's already performant */
 	&:has(#{$selector}[data-custom-validity="#{$key}"]),
 	&[data-custom-validity="#{$key}"] {
 		@content;

@@ -1,23 +1,31 @@
 %grid-layout-variant-overlay {
 	// has timestamp
-	&:has(span) {
+	/* Performance optimization: Provide attribute-based alternatives to expensive :has selectors */
+	&:has(span),
+	&[data-has-timestamp="true"] {
 		// 1. only content (min. requirement)
 		grid-template-areas: "content timestamp";
 		grid-template-columns: 1fr min-content;
 
-		&:has(.db-button) {
+		/* Performance optimization: Provide attribute-based alternatives to expensive :has selectors */
+		&:has(.db-button),
+		&[data-has-button="true"] {
 			grid-template-columns: 1fr min-content min-content;
 			grid-template-areas: "content timestamp close";
 		}
 
 		// 2. headline
-		&:has(header) {
+		/* Performance optimization: Provide attribute-based alternatives to expensive :has selectors */
+		&:has(header),
+		&[data-has-header="true"] {
 			grid-template-columns: 1fr min-content;
 			grid-template-areas:
 				"head timestamp"
 				"content content";
 
-			&:has(.db-button) {
+			/* Performance optimization: Provide attribute-based alternatives to expensive :has selectors */
+			&:has(.db-button),
+			&[data-has-button="true"] {
 				grid-template-columns: 1fr min-content min-content;
 				grid-template-areas:
 					"head timestamp close"
@@ -28,22 +36,30 @@
 		// 3. icon or img
 		&[data-icon],
 		&[data-semantic]:not([data-semantic="adaptive"]),
-		&:has(img) {
+		/* Performance optimization: Provide attribute-based alternatives to expensive :has selectors */
+		&:has(img),
+		&[data-has-image="true"] {
 			grid-template-areas: "icon content timestamp";
 			grid-template-columns: min-content 1fr min-content;
 
-			&:has(.db-button) {
+			/* Performance optimization: Provide attribute-based alternatives to expensive :has selectors */
+			&:has(.db-button),
+			&[data-has-button="true"] {
 				grid-template-columns: min-content 1fr min-content min-content;
 				grid-template-areas: "icon content timestamp close";
 			}
 
-			&:has(header) {
+			/* Performance optimization: Provide attribute-based alternatives to expensive :has selectors */
+			&:has(header),
+			&[data-has-header="true"] {
 				grid-template-columns: min-content 1fr min-content;
 				grid-template-areas:
 					"icon head timestamp"
 					"icon content content";
 
-				&:has(.db-button) {
+				/* Performance optimization: Provide attribute-based alternatives to expensive :has selectors */
+				&:has(.db-button),
+				&[data-has-button="true"] {
 					grid-template-columns: min-content 1fr min-content min-content;
 					grid-template-areas:
 						"icon head timestamp close"
