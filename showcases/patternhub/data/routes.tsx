@@ -164,6 +164,19 @@ export const ROUTES: NavigationItem[] = [
 		path: '/'
 	},
 	{
+		label: 'Getting Started',
+		path: '/getting-started',
+		subNavigation: [
+			{ label: 'Overview', path: '/getting-started/overview' },
+			{ label: 'Installation', path: '/getting-started/installation' },
+			{ label: 'Angular', path: '/getting-started/angular' },
+			{ label: 'React', path: '/getting-started/react' },
+			{ label: 'Vue', path: '/getting-started/vue' },
+			{ label: 'Web Components', path: '/getting-started/web-components' },
+			{ label: 'HTML & CSS', path: '/getting-started/html-css' }
+		]
+	},
+	{
 		label: 'Foundations',
 		path: '/foundations',
 		subNavigation: [
