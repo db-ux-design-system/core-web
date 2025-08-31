@@ -11,10 +11,13 @@
   "bin": {
     "@db-ux/core-migration": "build/index.js"
   },
-  "main": "build.js",
+  "main": "build/index.js",
   "files": [
     "build"
   ],
+  "exports": {
+    ".": "./build/index.js"
+  },
   "scripts": {
     "build": "node esbuild.js",
     "copy-build": "npm-run-all copy-build:*",

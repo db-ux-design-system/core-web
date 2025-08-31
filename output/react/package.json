@@ -1,6 +1,7 @@
 {
   "name": "@db-ux/react-core-components",
   "version": "0.0.0",
+  "type": "module",
   "description": "React components for @db-ux/core-components",
   "repository": {
     "type": "git",
@@ -13,6 +14,12 @@
   "files": [
     "dist/"
   ],
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    }
+  },
   "scripts": {
     "build": "npm-run-all tsc",
     "mv:dist": "cpr dist ../../build-outputs/react/dist --overwrite",
