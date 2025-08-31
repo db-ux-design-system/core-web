@@ -38,8 +38,6 @@ Use component in template:
 Third party controls require a ControlValueAccessor to function with angular forms.
 Our input component implements this interface so you can use it like any other native element with reactive Forms:
 
-> Currently we do not support onTouch/touched and native validation via FormControl. If your interested in contributing, you're very welcome ;)
-
 ```ts app.component.ts
 //app.component.ts
 import { ReactiveFormsModule } from '@angular/forms';
@@ -70,6 +68,52 @@ import { ReactiveFormsModule } from '@angular/forms';
 	</dd>
 </dl>
 ```
+
+## Angular Forms Validation Support
+
+The input component supports native Angular Forms validation with conditional error messages. Use `db-infotext` components with the `error` attribute to show specific validation messages:
+
+```html
+<!-- Reactive Forms with Validation -->
+<form [formGroup]="validationForm">
+	<db-input 
+		formControlName="username" 
+		label="Username"
+		placeholder="Enter username">
+		<db-infotext error="required" semantic="critical">Username is required</db-infotext>
+		<db-infotext error="minlength" semantic="critical">Username must be at least 3 characters</db-infotext>
+		<db-infotext error="maxlength" semantic="critical">Username cannot exceed 100 characters</db-infotext>
+		<db-infotext error="usernameTaken" semantic="critical">This username is already taken</db-infotext>
+	</db-input>
+</form>
+```
+
+```typescript
+// form.component.ts with validators
+validationForm = new FormGroup({
+	username: new FormControl('', [
+		Validators.required,
+		Validators.minLength(3),
+		Validators.maxLength(100),
+		this.customUsernameValidator
+	])
+});
+
+// Custom validator example
+customUsernameValidator(control: FormControl) {
+	const value = control.value || '';
+	if (value === 'admin' || value === 'test') {
+		return { usernameTaken: true };
+	}
+	return null;
+}
+```
+
+**Key Features:**
+- `db-infotext` with `error` attribute only shows when the specific FormControl error exists
+- Supports both built-in validators (`required`, `minlength`, `maxlength`, `email`, etc.) and custom validators
+- Multiple validation messages per input component
+- Seamless integration with existing validation styling (`semantic="critical"` for error messages)
 
 ```typescript
 // form.component.ts
