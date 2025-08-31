@@ -301,7 +301,7 @@ export default function DBSelect(props: DBSelectProps) {
 					</For>
 				</Show>
 			</select>
-			<Show when={props.placeholder !== ''}>
+			<Show when={props.placeholder}>
 				<span id={state._placeholderId}>{props.placeholder}</span>
 			</Show>
 			<Show when={stringPropVisible(props.message, props.showMessage)}>
