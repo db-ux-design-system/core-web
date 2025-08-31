@@ -5,7 +5,8 @@
       "packages/components/src/components/**/*.figma.ts",
       "output/react/src/**/*.figma.ts",
       "output/vue/src/**/*.figma.ts", 
-      "output/angular/src/**/*.figma.ts"
+      "output/angular/src/**/*.figma.ts",
+      "docs/examples/figma-code-connect/**/*.figma.ts"
     ],
     "exclude": [
       "**/*.test.ts",

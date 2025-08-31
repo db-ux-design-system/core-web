@@ -47,7 +47,7 @@ The configuration is defined in `figma.config.json`:
 
 ### Publishing Component Connections
 
-1. **Create Code Connect files** for your components (see example in `output/react/src/button.figma.ts`)
+1. **Create Code Connect files** for your components (see examples in `docs/examples/figma-code-connect/`)
 
 2. **Set up Figma URLs** in your `.figma.ts` files:
    ```typescript
