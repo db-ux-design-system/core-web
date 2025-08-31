@@ -1,5 +1,5 @@
 import { createContext, useContext, useEffect, useState, type ReactNode } from 'react';
-import { DEFAULT_FRAMEWORK, type Framework } from '../framework-switcher/data';
+import { DEFAULT_FRAMEWORK, type Framework } from './framework-switcher/data';
 
 interface FrameworkContextType {
 	framework: Framework;
