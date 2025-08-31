@@ -81,6 +81,28 @@ As [DB UX Design System](https://marketingportal.extranet.deutschebahn.com/marke
 
 </details>
 
+## Figma Integration
+
+We support enhanced design-development workflow through Figma's developer tools:
+
+- **[Figma VS Code Extension](https://marketplace.visualstudio.com/items?itemName=figma.figma-vscode-extension)**: View designs, access tokens, and export assets directly in VS Code
+- **[Figma Code Connect](https://github.com/figma/code-connect)**: Link component implementations to Figma designs for better collaboration
+
+### Quick Start
+
+```bash
+# Install Figma VS Code extension (included in recommended extensions)
+# Code Connect is included in dev dependencies
+
+# Authenticate with Figma
+npx figma connect auth
+
+# Publish component connections (after configuration)
+npm run figma:connect:publish
+```
+
+For detailed setup instructions, see our [Figma Integration Setup Guide](/docs/figma-integration-setup.md) and [Figma Solutions Research](/docs/research/figma-solutions.md).
+
 ## Migration
 
 ### From DB UI Core or DB UI Elements to DB UX Design System Core

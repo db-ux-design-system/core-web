@@ -1,0 +1,19 @@
+{
+  "$schema": "https://figma.com/code-connect/config.schema.json",
+  "codeConnect": {
+    "include": [
+      "packages/components/src/components/**/*.figma.ts",
+      "output/react/src/**/*.figma.ts",
+      "output/vue/src/**/*.figma.ts", 
+      "output/angular/src/**/*.figma.ts"
+    ],
+    "exclude": [
+      "**/*.test.ts",
+      "**/*.spec.ts",
+      "**/node_modules/**"
+    ],
+    "label": "DB UX Design System v3",
+    "documentUrl": "https://www.figma.com/design/[FIGMA_FILE_ID]",
+    "parser": "typescript"
+  }
+}

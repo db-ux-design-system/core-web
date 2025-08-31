@@ -4,5 +4,7 @@
 	"editor.formatOnSave": true,
 	"files.associations": {
 		".env.template": "dotenv"
-	}
+	},
+	"figma.enableCodeConnect": true,
+	"figma.showInlineComments": true
 }
