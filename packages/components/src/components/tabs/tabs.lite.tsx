@@ -80,6 +80,10 @@ export default function DBTabs(props: DBTabsProps) {
 							container.addEventListener('scroll', () => {
 								state.evaluateScrollButtons(container);
 							});
+							// Add window resize listener to re-evaluate scroll buttons
+							window.addEventListener('resize', () => {
+								state.evaluateScrollButtons(container);
+							});
 						}
 					}
 				}
