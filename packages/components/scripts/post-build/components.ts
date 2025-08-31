@@ -315,7 +315,44 @@ export const getComponents = (): Component[] => [
 	},
 
 	{
-		name: 'infotext'
+		name: 'infotext',
+		overwrites: {
+			angular: [
+				{
+					from: 'import { CommonModule } from "@angular/common";',
+					to: 'import { CommonModule } from "@angular/common";\nimport { inject, Optional } from "@angular/core";\nimport { DBInput } from "../input/input";'
+				},
+				{
+					from: 'export class DBInfotext implements AfterViewInit {',
+					to: 'export class DBInfotext implements AfterViewInit {\n  private parentInput = inject(DBInput, { optional: true, skipSelf: true, host: true });'
+				},
+				{
+					from: '@if(text()){ {{text()}} }@else{',
+					to: '@if(shouldShow()){ @if(text()){ {{text()}} }@else{'
+				},
+				{
+					from: '<ng-content></ng-content>\n    }</span',
+					to: '<ng-content></ng-content>\n    } }</span'
+				},
+				{
+					from: 'constructor() {}',
+					to: `constructor() {}
+
+  shouldShow(): boolean {
+    const errorAttr = this.error();
+    if (!errorAttr) {
+      return true; // Show by default if no error attribute
+    }
+    
+    if (this.parentInput) {
+      return this.parentInput.hasFormControlError(errorAttr);
+    }
+    
+    return false; // Hide if error attribute exists but no parent input or no error
+  }`
+				}
+			]
+		}
 	},
 
 	{
@@ -377,6 +414,35 @@ export const getComponents = (): Component[] => [
 						'			this.type() === "month" ||\n' +
 						'			this.type() === "datetime-local"\n' +
 						'			)) return;'
+				},
+				{
+					from: 'Renderer2 } from "@angular/core";',
+					to: 'Renderer2, Optional, HostBinding, inject } from "@angular/core";'
+				},
+				{
+					from: 'import { ControlValueAccessor, NG_VALUE_ACCESSOR } from \'@angular/forms\';',
+					to: 'import { ControlValueAccessor, NG_VALUE_ACCESSOR, NgControl, ValidationErrors } from \'@angular/forms\';'
+				},
+				{
+					from: 'constructor(private renderer: Renderer2,) {',
+					to: 'private ngControl = inject(NgControl, { optional: true });\n\n  constructor(private renderer: Renderer2,) {'
+				},
+				{
+					from: 'handleValidation() {',
+					to: `getFormControlErrors(): ValidationErrors | null {
+    return this.ngControl?.control?.errors || null;
+  }
+
+  hasFormControlError(errorType: string): boolean {
+    const errors = this.getFormControlErrors();
+    return errors ? errors[errorType] : false;
+  }
+
+  handleValidation() {`
+				},
+				{
+					from: '!this._ref()?.nativeElement?.validity.valid ||',
+					to: '!this._ref()?.nativeElement?.validity.valid || this.getFormControlErrors() ||'
 				}
 			]
 		},

@@ -7,7 +7,8 @@ import {
 	FormControl,
 	FormGroup,
 	FormsModule,
-	ReactiveFormsModule
+	ReactiveFormsModule,
+	Validators
 } from '@angular/forms';
 import {
 	DBButton,
@@ -81,7 +82,30 @@ export class FormComponent {
 		select: new FormControl('test2')
 	});
 
+	// New validation demo form
+	validationForm = new FormGroup({
+		username: new FormControl('', [
+			Validators.required,
+			Validators.minLength(3),
+			Validators.maxLength(100),
+			this.customUsernameValidator
+		]),
+		email: new FormControl('', [
+			Validators.required,
+			Validators.email
+		])
+	});
+
 	getRadioName = (radioName: string): string => `Radio ${radioName}`;
+
+	// Custom validator for demonstration
+	customUsernameValidator(control: FormControl) {
+		const value = control.value || '';
+		if (value === 'admin' || value === 'test') {
+			return { usernameTaken: true };
+		}
+		return null;
+	}
 
 	getTagName = (tag: string): string => `Tag ${tag}`;
 
