@@ -96,6 +96,8 @@ export default function DBSelect(props: DBSelectProps) {
 				state._descByIds = state._messageId;
 			} else if (props.placeholder) {
 				state._descByIds = state._placeholderId;
+			} else {
+				state._descByIds = undefined;
 			}
 		},
 		handleClick: (event: ClickEvent<HTMLSelectElement> | any) => {
@@ -184,6 +186,8 @@ export default function DBSelect(props: DBSelectProps) {
 				state._descByIds = messageId;
 			} else if (props.placeholder) {
 				state._descByIds = placeholderId;
+			} else {
+				state._descByIds = undefined;
 			}
 
 			state.handleValidation();
