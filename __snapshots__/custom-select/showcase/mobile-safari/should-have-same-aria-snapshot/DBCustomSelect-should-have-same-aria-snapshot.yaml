@@ -1,7 +1,7 @@
 - main:
   - heading "DBCustomSelect" [level=1]
   - link "Density"
-  - text: Functionaltest
+  - text: Functional
   - group:
     - article:
       - radiogroup "id-10206-Functional":
@@ -14,7 +14,7 @@
             - text: Option 2
       - button "Close"
   - status
-  - text: (Default) Regulartest
+  - text: (Default) Regular
   - group:
     - article:
       - radiogroup "id-10207-(Default) Regular":
@@ -27,7 +27,7 @@
             - text: Option 2
       - button "Close"
   - status
-  - text: Expressivetest
+  - text: Expressive
   - group:
     - article:
       - radiogroup "id-10208-Expressive":
@@ -41,7 +41,7 @@
       - button "Close"
   - status
   - link "Multiple"
-  - text: (Default) Falsetest
+  - text: (Default) False
   - group:
     - article:
       - radiogroup "id-10209-(Default) False":
@@ -54,7 +54,7 @@
             - text: Option 2
       - button "Close"
   - status
-  - text: Truetest
+  - text: "True"
   - group:
     - article:
       - group "id-10210-True":
@@ -68,7 +68,7 @@
       - button "Close"
   - status
   - link "Variant"
-  - text: (Default) Label Abovetest
+  - text: (Default) Label Above
   - group:
     - article:
       - radiogroup "id-10211-(Default) Label Above":
@@ -81,7 +81,7 @@
             - text: Option 2
       - button "Close"
   - status
-  - text: Floating Labeltest
+  - text: Floating Label
   - group:
     - article:
       - radiogroup "id-10212-Floating Label":
@@ -95,7 +95,7 @@
       - button "Close"
   - status
   - link "Show Label"
-  - text: (Default) Truetest
+  - text: (Default) True
   - group:
     - article:
       - radiogroup "id-10213-(Default) True":
@@ -108,7 +108,7 @@
             - text: Option 2
       - button "Close"
   - status
-  - text: Falsetest
+  - text: "False"
   - group:
     - article:
       - radiogroup "id-10214-False":
@@ -122,7 +122,7 @@
       - button "Close"
   - status
   - link "Show Message"
-  - text: (Default) Falsetest
+  - text: (Default) False
   - group:
     - article:
       - radiogroup "id-10215-(Default) False":
@@ -135,7 +135,7 @@
             - text: Option 2
       - button "Close"
   - status
-  - text: Truetest
+  - text: "True"
   - group:
     - article:
       - radiogroup "id-10216-True":
@@ -150,7 +150,7 @@
   - text: Helper Message
   - status
   - link "Show Icon"
-  - text: (Default) Falsetest
+  - text: (Default) False
   - group:
     - article:
       - radiogroup "id-10217-(Default) False":
@@ -163,7 +163,7 @@
             - text: Option 2
       - button "Close"
   - status
-  - text: Truetest
+  - text: "True"
   - group:
     - article:
       - radiogroup "id-10218-True":
@@ -177,7 +177,7 @@
       - button "Close"
   - status
   - link "Validation"
-  - text: (Default) No Validationtest
+  - text: (Default) No Validation
   - group:
     - article:
       - radiogroup "id-102061-(Default) No Validation":
@@ -190,7 +190,7 @@
             - text: Option 2
       - button "Close"
   - status
-  - text: Invalidtest
+  - text: Invalid
   - group:
     - article:
       - radiogroup "id-102062-Invalid":
@@ -204,7 +204,7 @@
       - button "Close"
   - text: Invalid Message
   - status
-  - text: Validtest
+  - text: Valid
   - group:
     - article:
       - radiogroup "id-102063-Valid":
@@ -219,7 +219,7 @@
   - text: "TODO: Add a validMessage"
   - status
   - link "Required"
-  - text: (Default) Falsetest
+  - text: (Default) False
   - group:
     - article:
       - group "id-10219-(Default) False":
@@ -232,7 +232,7 @@
             - text: Option 2
       - button "Close"
   - status
-  - text: Truetest
+  - text: "True"
   - group:
     - article:
       - group "id-10220-True":
@@ -246,7 +246,7 @@
       - button "Close"
   - status
   - link "Show Required Asterisk"
-  - text: (Default) Truetest
+  - text: (Default) True
   - group:
     - article:
       - group "id-1021s9-(Default) True":
@@ -259,7 +259,7 @@
             - text: Option 2
       - button "Close"
   - status
-  - text: Falsetest
+  - text: "False"
   - group:
     - article:
       - group "id-10s220-False":
@@ -273,7 +273,7 @@
       - button "Close"
   - status
   - link "Disabled"
-  - text: (Default) Falsetest
+  - text: (Default) False
   - group:
     - article:
       - group "id-10221-(Default) False":
@@ -286,7 +286,7 @@
             - text: Option 2
       - button "Close"
   - status
-  - text: Truetest
+  - text: "True"
   - group:
     - article:
       - group "id-10222-True":
@@ -300,7 +300,7 @@
       - button "Close"
   - status
   - link "Form Field Width"
-  - text: (Default) Fulltest
+  - text: (Default) Full
   - group:
     - article:
       - radiogroup "id-10223-(Default) Full":
@@ -313,7 +313,7 @@
             - text: Option 2
       - button "Close"
   - status
-  - text: Autotest
+  - text: Auto
   - group:
     - article:
       - radiogroup "id-10224-Auto":
@@ -327,7 +327,7 @@
       - button "Close"
   - status
   - link "Dropdown Width"
-  - text: "Form Field Width: Full (Default) Fixedtest"
+  - text: "Form Field Width: Full (Default) Fixed"
   - group:
     - article:
       - radiogroup "id-10227-(Default) Fixed":
@@ -340,7 +340,7 @@
             - text: Option 2
       - button "Close"
   - status
-  - text: Autotest
+  - text: Auto
   - group:
     - article:
       - radiogroup "id-10228-Auto":
@@ -353,7 +353,7 @@
             - text: "2"
       - button "Close"
   - status
-  - text: Fulltest
+  - text: Full
   - group:
     - article:
       - radiogroup "id-10229-Full":
@@ -366,7 +366,7 @@
             - text: "2"
       - button "Close"
   - status
-  - text: "Form Field Width: Auto (Default) Fixedtest"
+  - text: "Form Field Width: Auto (Default) Fixed"
   - group:
     - article:
       - radiogroup "id-10233-(Default) Fixed":
@@ -379,7 +379,7 @@
             - text: Option 2
       - button "Close"
   - status
-  - text: Autotest
+  - text: Auto
   - group:
     - article:
       - radiogroup "id-10234-Auto":
@@ -392,7 +392,7 @@
             - text: "2"
       - button "Close"
   - status
-  - text: Fulltest
+  - text: Full
   - group:
     - article:
       - radiogroup "id-10235-Full":
@@ -406,7 +406,7 @@
       - button "Close"
   - status
   - link "Placement"
-  - text: "Form Field Width: Full (Default) Bottomtest"
+  - text: "Form Field Width: Full (Default) Bottom"
   - group:
     - article:
       - radiogroup "id-10238-(Default) Bottom":
@@ -419,7 +419,7 @@
             - text: Option 2
       - button "Close"
   - status
-  - text: Toptest
+  - text: Top
   - group:
     - article:
       - radiogroup "id-10239-Top":
@@ -432,7 +432,7 @@
             - text: Option 2
       - button "Close"
   - status
-  - text: "Form Field Width: Auto (Default) Bottom-Starttest"
+  - text: "Form Field Width: Auto (Default) Bottom-Start"
   - group:
     - article:
       - radiogroup "id-10243-(Default) Bottom-Start":
@@ -445,7 +445,7 @@
             - text: Option 2
       - button "Close"
   - status
-  - text: Bottom-Endtest
+  - text: Bottom-End
   - group:
     - article:
       - radiogroup "id-10244-Bottom-End":
@@ -458,7 +458,7 @@
             - text: Option 2
       - button "Close"
   - status
-  - text: Top-Starttest
+  - text: Top-Start
   - group:
     - article:
       - radiogroup "id-10245-Top-Start":
@@ -471,7 +471,7 @@
             - text: Option 2
       - button "Close"
   - status
-  - text: Top-Endtest
+  - text: Top-End
   - group:
     - article:
       - radiogroup "id-10246-Top-End":
@@ -485,7 +485,7 @@
       - button "Close"
   - status
   - link "Selected type"
-  - text: (Default) Texttest
+  - text: (Default) Text
   - group:
     - article:
       - group "id-10247-(Default) Text":
@@ -504,7 +504,7 @@
             - text: Option 4
       - button "Close"
   - status
-  - text: Amounttest
+  - text: Amount
   - group:
     - article:
       - group "id-10248-Amount":
@@ -523,7 +523,7 @@
             - text: Option 4
       - button "Close"
   - status
-  - text: Tagtest
+  - text: Tag
   - group:
     - article:
       - group "id-10249-Tag":
@@ -543,7 +543,7 @@
       - button "Close"
   - status
   - link "Show No Result"
-  - text: (Default) Falsetest
+  - text: (Default) False
   - group:
     - article:
       - group "id-10250-(Default) False":
@@ -556,14 +556,14 @@
             - text: Option 2
       - button "Close"
   - status
-  - text: Truetest
+  - text: "True"
   - group:
     - article:
       - text: Nothing found
       - button "Close"
   - status
   - link "Show Loading"
-  - text: (Default) Falsetest
+  - text: (Default) False
   - group:
     - article:
       - group "id-10252-(Default) False":
@@ -576,14 +576,14 @@
             - text: Option 2
       - button "Close"
   - status
-  - text: Truetest
+  - text: "True"
   - group:
     - article:
       - text: Loading
       - button "Close"
   - status
   - link "Show Search"
-  - text: (Default) Falsetest
+  - text: (Default) False
   - group:
     - article:
       - checkbox "Select all"
@@ -622,7 +622,7 @@
             - text: Option 10
       - button "Close"
   - status
-  - text: Truetest
+  - text: "True"
   - group:
     - article:
       - text: Search
@@ -639,7 +639,7 @@
       - button "Close"
   - status
   - link "Show Select All"
-  - text: (Default) Falsetest
+  - text: (Default) False
   - group:
     - article:
       - group "id-10256-(Default) False":
@@ -664,7 +664,7 @@
             - text: Option 6
       - button "Close"
   - status
-  - text: Truetest
+  - text: "True"
   - group:
     - article:
       - checkbox "Select all"
@@ -680,7 +680,7 @@
       - button "Close"
   - status
   - link "Show Clear Selection"
-  - text: (Default) Truetest
+  - text: (Default) True
   - group:
     - article:
       - group "id-10258-(Default) True":
@@ -693,7 +693,7 @@
             - text: Option 2
       - button "Close"
   - status
-  - text: Falsetest
+  - text: "False"
   - group:
     - article:
       - group "id-10259-False":
@@ -707,7 +707,7 @@
       - button "Close"
   - status
   - link "Examples Single"
-  - text: Iconstest
+  - text: Icons
   - group:
     - article:
       - radiogroup "id-10260-Icons":
@@ -720,7 +720,7 @@
             - text: Option 2
       - button "Close"
   - status
-  - text: Less than 6test
+  - text: Less than 6
   - group:
     - article:
       - radiogroup "id-10261-Less than 6":
@@ -742,7 +742,7 @@
             - text: Option 5
       - button "Close"
   - status
-  - text: Option Group Titletest
+  - text: Option Group Title
   - group:
     - article:
       - radiogroup "id-10262-Option Group Title":
@@ -763,7 +763,7 @@
             - text: G2:Option 2
       - button "Close"
   - status
-  - text: Option Groupstest
+  - text: Option Groups
   - group:
     - article:
       - radiogroup "id-10263-Option Groups":
@@ -782,7 +782,7 @@
             - text: G2:Option 2
       - button "Close"
   - status
-  - text: More than 6test
+  - text: More than 6
   - group:
     - article:
       - radiogroup "id-10264-More than 6":
@@ -810,7 +810,7 @@
             - text: Option 7
       - button "Close"
   - status
-  - text: More than 10test
+  - text: More than 10
   - group:
     - article:
       - text: Search
@@ -851,7 +851,7 @@
       - button "Close"
   - status
   - link "Examples Multiple"
-  - text: Less than 6test
+  - text: Less than 6
   - group:
     - article:
       - group "id-10266-Less than 6":
@@ -873,7 +873,7 @@
             - text: Option 5
       - button "Close"
   - status
-  - text: Option Group Titletest
+  - text: Option Group Title
   - group:
     - article:
       - group "id-10267-Option Group Title":
@@ -894,7 +894,7 @@
             - text: G2:Option 2
       - button "Close"
   - status
-  - text: Option Groupstest
+  - text: Option Groups
   - group:
     - article:
       - group "id-10268-Option Groups":
@@ -913,7 +913,7 @@
             - text: G2:Option 2
       - button "Close"
   - status
-  - text: More than 6test
+  - text: More than 6
   - group:
     - article:
       - checkbox "Select all"
@@ -943,7 +943,7 @@
             - text: Option 7
       - button "Close"
   - status
-  - text: More than 10test
+  - text: More than 10
   - group:
     - article:
       - text: Search
@@ -986,7 +986,7 @@
       - button "Close"
   - status
   - link "Example tags"
-  - text: Tag growtest
+  - text: Tag grow
   - group:
     - article:
       - group "id-10271-Tag grow":
@@ -1005,7 +1005,7 @@
             - text: Option 4
       - button "Close"
   - status
-  - text: Tag grow + autotest
+  - text: Tag grow + auto
   - group:
     - article:
       - group "id-10272-Tag grow + auto":
@@ -1025,7 +1025,7 @@
       - button "Close"
   - status
   - 'link "Example: Other configuration"':
-  - text: Search Valuetest
+  - text: Search Value
   - group:
     - article:
       - text: Search
@@ -1038,7 +1038,7 @@
             - text: Option 1
       - button "Close"
   - status
-  - text: Custom Selected Labeltest
+  - text: Custom Selected Label
   - group:
     - text: Label controlled
     - article:
@@ -1052,7 +1052,7 @@
             - text: Option 2
       - button "Close"
   - status
-  - text: Transform Selected Labeltest
+  - text: Transform Selected Label
   - group:
     - article:
       - radiogroup "id-10aasds4-Transform Selected Label":
@@ -1065,7 +1065,7 @@
             - text: Option 2
       - button "Close"
   - status
-  - text: Custom Search Filtertest
+  - text: Custom Search Filter
   - group:
     - article:
       - text: Search
