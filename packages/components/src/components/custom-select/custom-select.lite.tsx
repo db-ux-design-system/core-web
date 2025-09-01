@@ -847,7 +847,7 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 			data-icon={props.icon}
 			data-show-icon={getBooleanAsString(props.showIcon)}>
 			<label id={state._labelId}>
-				{props.label ?? DEFAULT_LABEL}test
+				{props.label ?? DEFAULT_LABEL}
 				<select
 					role="none"
 					hidden
