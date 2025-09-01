@@ -182,7 +182,7 @@ export default function DBSelect(props: DBSelectProps) {
 
 			if (stringPropVisible(props.message, props.showMessage)) {
 				state._descByIds = messageId;
-			} else {
+			} else if (props.placeholder) {
 				state._descByIds = placeholderId;
 			}
 
