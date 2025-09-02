@@ -3,21 +3,21 @@
   - link "Density"
   - text: Label
   - combobox "Label":
-    - option [selected]
+    - option "test" [selected]
     - option "Option 1"
     - option "Option 2"
   - text: Functional
   - status
   - text: Label
   - combobox "Label":
-    - option [selected]
+    - option "test" [selected]
     - option "Option 1"
     - option "Option 2"
   - text: (Default) Regular
   - status
   - text: Label
   - combobox "Label":
-    - option [selected]
+    - option "test" [selected]
     - option "Option 1"
     - option "Option 2"
   - text: Expressive
@@ -25,28 +25,28 @@
   - link "Variant"
   - text: Label
   - combobox "Label":
-    - option [selected]
+    - option "test" [selected]
     - option "Option 1"
     - option "Option 2"
   - text: (Default) Label Above
   - status
   - text: Label
   - combobox "Label":
-    - option
+    - option "test"
     - option "Floating Label" [selected]
     - option "Option 2"
   - status
   - link "Show Label"
   - text: Label
   - combobox "Label":
-    - option [selected]
+    - option "test" [selected]
     - option "Option 1"
     - option "Option 2"
   - text: (Default) True
   - status
   - text: Label
   - combobox "Label":
-    - option [selected]
+    - option "test" [selected]
     - option "Option 1"
     - option "Option 2"
   - text: "False"
@@ -54,14 +54,14 @@
   - link "Show Message"
   - text: Label
   - combobox "Label":
-    - option [selected]
+    - option "test" [selected]
     - option "Option 1"
     - option "Option 2"
   - text: (Default) False
   - status
   - text: Label
   - combobox "Label":
-    - option [selected]
+    - option "test" [selected]
     - option "Option 1"
     - option "Option 2"
   - text: True Message
@@ -69,35 +69,35 @@
   - link "State"
   - text: Label
   - combobox "Label":
-    - option [selected]
+    - option "test" [selected]
     - option "Option 1"
     - option "Option 2"
   - text: (Default) Empty
   - status
   - text: Label
   - combobox "Label":
-    - option
+    - option "test"
     - option "Filled" [selected]
     - option "Option 2"
   - status
   - link "Validation"
   - text: Label
   - combobox "Label":
-    - option [selected]
+    - option "test" [selected]
     - option "Option 1"
     - option "Option 2"
   - text: (Default) No validation
   - status
   - text: Label
   - combobox "Label":
-    - option [selected]
+    - option "test" [selected]
     - option "Option 1"
     - option "Option 2"
   - text: Invalid Invalid Message
   - status
   - text: Label
   - combobox "Label":
-    - option [selected]
+    - option "test" [selected]
     - option "Valid"
     - option "Option 2"
   - text: Valid Valid message
@@ -105,14 +105,14 @@
   - link "Disabled"
   - text: Label
   - combobox "Label":
-    - option [selected]
+    - option "test" [selected]
     - option "Option 1"
     - option "Option 2"
   - text: (Default) False
   - status
   - text: Label
   - combobox "Label" [disabled]:
-    - option [selected]
+    - option "test" [selected]
     - option "Option 1"
     - option "Option 2"
   - text: "True"
@@ -120,14 +120,14 @@
   - link "Content"
   - text: Label
   - combobox "Label":
-    - option [selected]
+    - option "test" [selected]
     - option "Option 1"
     - option "Option 2"
   - text: (Default) Text
   - status
   - text: Label
   - combobox "Label":
-    - option [selected]
+    - option "test" [selected]
     - option "Option 1"
     - option "Option 2"
   - text: Text - Leading Icon
@@ -135,14 +135,14 @@
   - link "Required"
   - text: Label
   - combobox "Label":
-    - option [selected]
+    - option "test" [selected]
     - option "Option 1"
     - option "Option 2"
   - text: (Default) False
   - status
   - text: Label
   - combobox "Label":
-    - option [selected]
+    - option "test" [selected]
     - option "Option 1"
     - option "Option 2"
   - text: "True"
@@ -150,14 +150,14 @@
   - link "Show Required Asterisk"
   - text: Label
   - combobox "Label":
-    - option [selected]
+    - option "test" [selected]
     - option "Option 1"
     - option "Option 2"
   - text: (Default) True
   - status
   - text: Label
   - combobox "Label":
-    - option [selected]
+    - option "test" [selected]
     - option "Option 1"
     - option "Option 2"
   - text: "False"
@@ -165,20 +165,20 @@
   - link "Examples Floating Label"
   - text: Label
   - combobox "Label":
-    - option [selected]
+    - option "test" [selected]
     - option "Option 1"
     - option "Option 2"
   - text: (Default) Empty
   - status
   - text: Label
   - combobox "Label":
-    - option
+    - option "test"
     - option "Filled" [selected]
     - option "Option 2"
   - status
   - text: Label
   - combobox "Label" [disabled]:
-    - option
+    - option "test"
     - option "Disabled" [selected]
     - option "Option 2"
   - status
