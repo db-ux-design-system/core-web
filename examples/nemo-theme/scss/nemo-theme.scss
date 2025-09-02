@@ -1,0 +1,307 @@
+/**
+ * NEMO Theme SCSS Version
+ * Definiert spezifische Farben für RiFF-Anwendung
+ */
+
+// NEMO-spezifische SCSS Variablen
+$nemo-seat-available: #28a745;
+$nemo-seat-occupied: #dc3545;
+$nemo-seat-reserved: #ffc107;
+$nemo-seat-disabled: #6c757d;
+
+$nemo-class-first: #6f42c1;
+$nemo-class-second: #007bff;
+$nemo-class-business: #fd7e14;
+
+$nemo-priority-high: #dc3545;
+$nemo-priority-medium: #ffc107;
+$nemo-priority-low: #28a745;
+$nemo-priority-info: #17a2b8;
+
+// Dark Mode Varianten
+$nemo-seat-available-dark: #155724;
+$nemo-seat-occupied-dark: #721c24;
+$nemo-seat-reserved-dark: #856404;
+$nemo-seat-disabled-dark: #495057;
+
+$nemo-class-first-dark: #4a2c6b;
+$nemo-class-second-dark: #004085;
+$nemo-class-business-dark: #b8610a;
+
+// Größen und Abstände
+$nemo-seat-size: 32px;
+$nemo-seat-font-size: 12px;
+$nemo-seat-border-radius: 4px;
+
+$nemo-class-tag-padding: 4px 8px;
+$nemo-class-tag-font-size: 14px;
+$nemo-class-tag-border-radius: 16px;
+
+// Breakpoints
+$mobile-max: 768px;
+$desktop-min: 1200px;
+
+// Mixins für wiederverwendbare Styles
+@mixin nemo-seat-base {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--nemo-seat-size);
+  height: var(--nemo-seat-size);
+  font-size: var(--nemo-seat-font-size);
+  font-weight: 600;
+  border-radius: var(--nemo-seat-border-radius);
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+@mixin nemo-seat-status($bg-color, $text-color: #ffffff, $hover: true) {
+  background-color: $bg-color;
+  color: $text-color;
+  
+  @if $hover {
+    &:hover {
+      transform: scale(1.1);
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    }
+  } @else {
+    cursor: not-allowed;
+  }
+}
+
+@mixin nemo-tag-base {
+  display: inline-flex;
+  align-items: center;
+  font-weight: 600;
+  border: none;
+  text-align: center;
+}
+
+@mixin nemo-class-tag($bg-color, $text-color: #ffffff) {
+  @include nemo-tag-base;
+  padding: var(--nemo-class-tag-padding);
+  font-size: var(--nemo-class-tag-font-size);
+  border-radius: var(--nemo-class-tag-border-radius);
+  background-color: $bg-color;
+  color: $text-color;
+}
+
+@mixin nemo-priority-tag($bg-color, $text-color: #ffffff) {
+  @include nemo-tag-base;
+  padding: 2px 8px;
+  font-size: 12px;
+  border-radius: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  background-color: $bg-color;
+  color: $text-color;
+}
+
+// CSS Custom Properties definieren
+:root {
+  // Sitzplatz-Status Farben
+  --nemo-seat-available-bg: #{$nemo-seat-available};
+  --nemo-seat-available-color: #ffffff;
+  --nemo-seat-occupied-bg: #{$nemo-seat-occupied};
+  --nemo-seat-occupied-color: #ffffff;
+  --nemo-seat-reserved-bg: #{$nemo-seat-reserved};
+  --nemo-seat-reserved-color: #212529;
+  --nemo-seat-disabled-bg: #{$nemo-seat-disabled};
+  --nemo-seat-disabled-color: #ffffff;
+  
+  // Wagenklassen
+  --nemo-class-first-bg: #{$nemo-class-first};
+  --nemo-class-first-color: #ffffff;
+  --nemo-class-second-bg: #{$nemo-class-second};
+  --nemo-class-second-color: #ffffff;
+  --nemo-class-business-bg: #{$nemo-class-business};
+  --nemo-class-business-color: #ffffff;
+  
+  // Prioritäts-Farben
+  --nemo-priority-high-bg: #{$nemo-priority-high};
+  --nemo-priority-high-color: #ffffff;
+  --nemo-priority-medium-bg: #{$nemo-priority-medium};
+  --nemo-priority-medium-color: #212529;
+  --nemo-priority-low-bg: #{$nemo-priority-low};
+  --nemo-priority-low-color: #ffffff;
+  --nemo-priority-info-bg: #{$nemo-priority-info};
+  --nemo-priority-info-color: #ffffff;
+  
+  // Größen
+  --nemo-seat-size: #{$nemo-seat-size};
+  --nemo-seat-font-size: #{$nemo-seat-font-size};
+  --nemo-seat-border-radius: #{$nemo-seat-border-radius};
+  --nemo-class-tag-padding: #{$nemo-class-tag-padding};
+  --nemo-class-tag-font-size: #{$nemo-class-tag-font-size};
+  --nemo-class-tag-border-radius: #{$nemo-class-tag-border-radius};
+  
+  // Überschreiben von DB-Tokens
+  --db-informational-bg-level-1-default: #{$nemo-priority-info};
+  --db-successful-bg-level-1-default: #{$nemo-priority-low};
+  --db-warning-bg-level-1-default: #{$nemo-priority-medium};
+  --db-critical-bg-level-1-default: #{$nemo-priority-high};
+}
+
+// Dark Mode
+@media (prefers-color-scheme: dark) {
+  :root {
+    --nemo-seat-available-bg: #{$nemo-seat-available-dark};
+    --nemo-seat-occupied-bg: #{$nemo-seat-occupied-dark};
+    --nemo-seat-reserved-bg: #{$nemo-seat-reserved-dark};
+    --nemo-seat-disabled-bg: #{$nemo-seat-disabled-dark};
+    
+    --nemo-class-first-bg: #{$nemo-class-first-dark};
+    --nemo-class-second-bg: #{$nemo-class-second-dark};
+    --nemo-class-business-bg: #{$nemo-class-business-dark};
+    
+    --nemo-priority-high-bg: #{darken($nemo-priority-high, 20%)};
+    --nemo-priority-medium-bg: #{darken($nemo-priority-medium, 20%)};
+    --nemo-priority-low-bg: #{darken($nemo-priority-low, 20%)};
+    --nemo-priority-info-bg: #{darken($nemo-priority-info, 20%)};
+  }
+}
+
+// Komponenten-Styles mit Mixins
+.nemo-seat,
+[data-nemo-seat-status] {
+  @include nemo-seat-base;
+}
+
+[data-nemo-seat-status="available"] {
+  @include nemo-seat-status(var(--nemo-seat-available-bg), var(--nemo-seat-available-color));
+}
+
+[data-nemo-seat-status="occupied"] {
+  @include nemo-seat-status(var(--nemo-seat-occupied-bg), var(--nemo-seat-occupied-color), false);
+}
+
+[data-nemo-seat-status="reserved"] {
+  @include nemo-seat-status(var(--nemo-seat-reserved-bg), var(--nemo-seat-reserved-color), false);
+}
+
+[data-nemo-seat-status="disabled"] {
+  @include nemo-seat-status(var(--nemo-seat-disabled-bg), var(--nemo-seat-disabled-color), false);
+  opacity: 0.6;
+}
+
+// Wagenklassen mit Mixins
+.nemo-class-tag,
+[data-nemo-class] {
+  @include nemo-tag-base;
+  padding: var(--nemo-class-tag-padding);
+  font-size: var(--nemo-class-tag-font-size);
+  border-radius: var(--nemo-class-tag-border-radius);
+}
+
+[data-nemo-class="first"] {
+  @include nemo-class-tag($nemo-class-first);
+}
+
+[data-nemo-class="second"] {
+  @include nemo-class-tag($nemo-class-second);
+}
+
+[data-nemo-class="business"] {
+  @include nemo-class-tag($nemo-class-business);
+}
+
+// Prioritäts-Tags mit Mixins
+.nemo-priority-tag,
+[data-nemo-priority] {
+  @include nemo-tag-base;
+  padding: 2px 8px;
+  font-size: 12px;
+  border-radius: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+[data-nemo-priority="high"] {
+  @include nemo-priority-tag($nemo-priority-high);
+}
+
+[data-nemo-priority="medium"] {
+  @include nemo-priority-tag($nemo-priority-medium, #212529);
+}
+
+[data-nemo-priority="low"] {
+  @include nemo-priority-tag($nemo-priority-low);
+}
+
+[data-nemo-priority="info"] {
+  @include nemo-priority-tag($nemo-priority-info);
+}
+
+// Responsive Design
+@media (max-width: $mobile-max) {
+  :root {
+    --nemo-seat-size: 24px;
+    --nemo-seat-font-size: 10px;
+    --nemo-class-tag-font-size: 12px;
+    --nemo-class-tag-padding: 2px 6px;
+  }
+}
+
+@media (min-width: $desktop-min) {
+  :root {
+    --nemo-seat-size: 40px;
+    --nemo-seat-font-size: 14px;
+    --nemo-class-tag-font-size: 16px;
+    --nemo-class-tag-padding: 6px 12px;
+  }
+}
+
+// High Contrast Mode
+@media (prefers-contrast: high) {
+  :root {
+    --nemo-seat-available-bg: #000000;
+    --nemo-seat-available-color: #ffffff;
+    --nemo-seat-occupied-bg: #ffffff;
+    --nemo-seat-occupied-color: #000000;
+    --nemo-seat-reserved-bg: #ffff00;
+    --nemo-seat-reserved-color: #000000;
+    --nemo-seat-disabled-bg: #808080;
+    --nemo-seat-disabled-color: #ffffff;
+  }
+  
+  [data-nemo-seat-status] {
+    border: 2px solid #000000;
+  }
+}
+
+// Reduced Motion
+@media (prefers-reduced-motion: reduce) {
+  [data-nemo-seat-status]:hover {
+    transform: none;
+    transition: none;
+  }
+}
+
+// Hilfsfunktionen für weitere Anpassungen
+@function nemo-color($name, $variant: 'default') {
+  @if $name == 'seat-available' {
+    @return if($variant == 'dark', $nemo-seat-available-dark, $nemo-seat-available);
+  }
+  @if $name == 'seat-occupied' {
+    @return if($variant == 'dark', $nemo-seat-occupied-dark, $nemo-seat-occupied);
+  }
+  @if $name == 'seat-reserved' {
+    @return if($variant == 'dark', $nemo-seat-reserved-dark, $nemo-seat-reserved);
+  }
+  @if $name == 'seat-disabled' {
+    @return if($variant == 'dark', $nemo-seat-disabled-dark, $nemo-seat-disabled);
+  }
+  @if $name == 'class-first' {
+    @return if($variant == 'dark', $nemo-class-first-dark, $nemo-class-first);
+  }
+  @if $name == 'class-second' {
+    @return if($variant == 'dark', $nemo-class-second-dark, $nemo-class-second);
+  }
+  @if $name == 'class-business' {
+    @return if($variant == 'dark', $nemo-class-business-dark, $nemo-class-business);
+  }
+  
+  @warn "Unknown color name: #{$name}";
+  @return null;
+}
