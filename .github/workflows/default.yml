@@ -191,12 +191,11 @@ jobs:
 
   regenerate-snapshots:
     if: |
-      needs.test-showcase-angular.outputs.aria-snapshots-changed == 'true' ||
-      needs.test-showcase-angular.outputs.visual-snapshots-changed == 'true' ||
-      needs.test-showcase-react.outputs.aria-snapshots-changed == 'true' ||
-      needs.test-showcase-react.outputs.visual-snapshots-changed == 'true' ||
-      needs.test-showcase-vue.outputs.aria-snapshots-changed == 'true' ||
-      needs.test-showcase-vue.outputs.visual-snapshots-changed == 'true'
+      always() && (
+        needs.test-showcase-angular.result == 'failure' ||
+        needs.test-showcase-react.result == 'failure' ||
+        needs.test-showcase-vue.result == 'failure'
+      )
     uses: ./.github/workflows/02-e2e-regenerate.yml
     with:
       version: ${{ needs.get-playwright-version.outputs.version }}
