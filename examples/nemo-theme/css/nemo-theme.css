@@ -1,0 +1,235 @@
+/**
+ * NEMO Theme für RiFF-Anwendung
+ * 
+ * Definiert spezifische Farben für:
+ * - Sitzplatz-Status im Wagenlayout
+ * - Wagenklassen-Tags
+ * - Prioritäts-Indikatoren
+ * 
+ * @version 1.0.0
+ * @author NEMO Development Team
+ */
+
+:root {
+  /* NEMO-spezifische Farben für Platzeigenschaften */
+  
+  /* Sitzplatz-Status Farben */
+  --nemo-seat-available-bg: #28a745;
+  --nemo-seat-available-color: #ffffff;
+  --nemo-seat-occupied-bg: #dc3545;
+  --nemo-seat-occupied-color: #ffffff;
+  --nemo-seat-reserved-bg: #ffc107;
+  --nemo-seat-reserved-color: #212529;
+  --nemo-seat-disabled-bg: #6c757d;
+  --nemo-seat-disabled-color: #ffffff;
+  
+  /* Wagenklassen */
+  --nemo-class-first-bg: #6f42c1;
+  --nemo-class-first-color: #ffffff;
+  --nemo-class-second-bg: #007bff;
+  --nemo-class-second-color: #ffffff;
+  --nemo-class-business-bg: #fd7e14;
+  --nemo-class-business-color: #ffffff;
+  
+  /* Erweiterte Prioritäts-Farben für Tags */
+  --nemo-priority-high-bg: #dc3545;
+  --nemo-priority-high-color: #ffffff;
+  --nemo-priority-medium-bg: #ffc107;
+  --nemo-priority-medium-color: #212529;
+  --nemo-priority-low-bg: #28a745;
+  --nemo-priority-low-color: #ffffff;
+  --nemo-priority-info-bg: #17a2b8;
+  --nemo-priority-info-color: #ffffff;
+  
+  /* Sitzplatz-Größen */
+  --nemo-seat-size: 32px;
+  --nemo-seat-font-size: 12px;
+  --nemo-seat-border-radius: 4px;
+  
+  /* Wagenklassen-Tag-Größen */
+  --nemo-class-tag-padding: 4px 8px;
+  --nemo-class-tag-font-size: 14px;
+  --nemo-class-tag-border-radius: 16px;
+  
+  /* Überschreiben von Standard-DB-Tokens für bessere Integration */
+  --db-informational-bg-level-1-default: var(--nemo-priority-info-bg);
+  --db-successful-bg-level-1-default: var(--nemo-priority-low-bg);
+  --db-warning-bg-level-1-default: var(--nemo-priority-medium-bg);
+  --db-critical-bg-level-1-default: var(--nemo-priority-high-bg);
+}
+
+/* Dark Mode Unterstützung */
+@media (prefers-color-scheme: dark) {
+  :root {
+    /* NEMO Dark Mode Farben - gedämpftere Varianten */
+    --nemo-seat-available-bg: #155724;
+    --nemo-seat-occupied-bg: #721c24;
+    --nemo-seat-reserved-bg: #856404;
+    --nemo-seat-disabled-bg: #495057;
+    
+    --nemo-class-first-bg: #4a2c6b;
+    --nemo-class-second-bg: #004085;
+    --nemo-class-business-bg: #b8610a;
+    
+    --nemo-priority-high-bg: #721c24;
+    --nemo-priority-medium-bg: #856404;
+    --nemo-priority-low-bg: #155724;
+    --nemo-priority-info-bg: #0c5460;
+  }
+}
+
+/* Spezifische Klassen für NEMO-Komponenten */
+
+/* Sitzplatz-Status */
+.nemo-seat,
+[data-nemo-seat-status] {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--nemo-seat-size);
+  height: var(--nemo-seat-size);
+  font-size: var(--nemo-seat-font-size);
+  font-weight: 600;
+  border-radius: var(--nemo-seat-border-radius);
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+[data-nemo-seat-status="available"] {
+  background-color: var(--nemo-seat-available-bg);
+  color: var(--nemo-seat-available-color);
+}
+
+[data-nemo-seat-status="available"]:hover {
+  transform: scale(1.1);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+[data-nemo-seat-status="occupied"] {
+  background-color: var(--nemo-seat-occupied-bg);
+  color: var(--nemo-seat-occupied-color);
+  cursor: not-allowed;
+}
+
+[data-nemo-seat-status="reserved"] {
+  background-color: var(--nemo-seat-reserved-bg);
+  color: var(--nemo-seat-reserved-color);
+  cursor: not-allowed;
+}
+
+[data-nemo-seat-status="disabled"] {
+  background-color: var(--nemo-seat-disabled-bg);
+  color: var(--nemo-seat-disabled-color);
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+/* Wagenklassen */
+.nemo-class-tag,
+[data-nemo-class] {
+  display: inline-flex;
+  align-items: center;
+  padding: var(--nemo-class-tag-padding);
+  font-size: var(--nemo-class-tag-font-size);
+  font-weight: 600;
+  border-radius: var(--nemo-class-tag-border-radius);
+  border: none;
+  text-align: center;
+}
+
+[data-nemo-class="first"] {
+  background-color: var(--nemo-class-first-bg);
+  color: var(--nemo-class-first-color);
+}
+
+[data-nemo-class="second"] {
+  background-color: var(--nemo-class-second-bg);
+  color: var(--nemo-class-second-color);
+}
+
+[data-nemo-class="business"] {
+  background-color: var(--nemo-class-business-bg);
+  color: var(--nemo-class-business-color);
+}
+
+/* Prioritäts-Tags */
+.nemo-priority-tag,
+[data-nemo-priority] {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px 8px;
+  font-size: 12px;
+  font-weight: 600;
+  border-radius: 12px;
+  border: none;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+[data-nemo-priority="high"] {
+  background-color: var(--nemo-priority-high-bg);
+  color: var(--nemo-priority-high-color);
+}
+
+[data-nemo-priority="medium"] {
+  background-color: var(--nemo-priority-medium-bg);
+  color: var(--nemo-priority-medium-color);
+}
+
+[data-nemo-priority="low"] {
+  background-color: var(--nemo-priority-low-bg);
+  color: var(--nemo-priority-low-color);
+}
+
+[data-nemo-priority="info"] {
+  background-color: var(--nemo-priority-info-bg);
+  color: var(--nemo-priority-info-color);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  :root {
+    /* Kleinere Größen für mobile Ansicht */
+    --nemo-seat-size: 24px;
+    --nemo-seat-font-size: 10px;
+    --nemo-class-tag-font-size: 12px;
+    --nemo-class-tag-padding: 2px 6px;
+  }
+}
+
+@media (min-width: 1200px) {
+  :root {
+    /* Größere Größen für Desktop */
+    --nemo-seat-size: 40px;
+    --nemo-seat-font-size: 14px;
+    --nemo-class-tag-font-size: 16px;
+    --nemo-class-tag-padding: 6px 12px;
+  }
+}
+
+/* High Contrast Mode */
+@media (prefers-contrast: high) {
+  :root {
+    --nemo-seat-available-bg: #000000;
+    --nemo-seat-available-color: #ffffff;
+    --nemo-seat-occupied-bg: #ffffff;
+    --nemo-seat-occupied-color: #000000;
+    --nemo-seat-reserved-bg: #ffff00;
+    --nemo-seat-reserved-color: #000000;
+    --nemo-seat-disabled-bg: #808080;
+    --nemo-seat-disabled-color: #ffffff;
+  }
+  
+  [data-nemo-seat-status] {
+    border: 2px solid #000000;
+  }
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  [data-nemo-seat-status]:hover {
+    transform: none;
+    transition: none;
+  }
+}

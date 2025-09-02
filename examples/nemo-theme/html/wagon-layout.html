@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="color-scheme" content="dark light">
+    <title>NEMO Wagenlayout Beispiel</title>
+    
+    <!-- DB UX Design System -->
+    <link rel="stylesheet" href="../../../packages/foundations/build/styles/defaults/default-theme.css">
+    <link rel="stylesheet" href="../../../packages/foundations/build/styles/defaults/default-root.css">
+    <link rel="stylesheet" href="../../../packages/foundations/build/styles/defaults/default-required.css">
+    <link rel="stylesheet" href="../../../packages/components/build/components/tag/tag.css">
+    <link rel="stylesheet" href="../../../packages/components/build/components/button/button.css">
+    
+    <!-- NEMO Theme -->
+    <link rel="stylesheet" href="../css/nemo-theme.css">
+    
+    <style>
+        body {
+            font-family: var(--db-font-family-sans);
+            margin: 20px;
+            background-color: var(--db-adaptive-bg-basic-level-1-default);
+            color: var(--db-adaptive-on-bg-basic-emphasis-100-default);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .section {
+            margin-bottom: 40px;
+            padding: 20px;
+            border-radius: 8px;
+            background-color: var(--db-adaptive-bg-basic-level-2-default);
+        }
+        
+        .wagon-layout {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 8px;
+            max-width: 200px;
+            margin: 20px 0;
+            padding: 16px;
+            border: 2px solid var(--db-adaptive-bg-basic-level-3-default);
+            border-radius: 8px;
+            background-color: var(--db-adaptive-bg-basic-level-1-default);
+        }
+        
+        .wagon-info {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin: 16px 0;
+        }
+        
+        .priority-examples {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin: 16px 0;
+        }
+        
+        .legend {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 12px;
+            margin: 20px 0;
+        }
+        
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .legend-sample {
+            width: 24px;
+            height: 24px;
+            border-radius: 4px;
+            display: inline-block;
+        }
+        
+        .controls {
+            display: flex;
+            gap: 12px;
+            margin: 20px 0;
+            flex-wrap: wrap;
+        }
+        
+        .demo-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        
+        .demo-table th,
+        .demo-table td {
+            border: 1px solid var(--db-adaptive-bg-basic-level-3-default);
+            padding: 12px;
+            text-align: left;
+        }
+        
+        .demo-table th {
+            background-color: var(--db-adaptive-bg-basic-level-3-default);
+            font-weight: 600;
+        }
+        
+        .status-cell {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .responsive-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+        
+        @media (max-width: 768px) {
+            .wagon-layout {
+                grid-template-columns: repeat(2, 1fr);
+                max-width: 120px;
+            }
+            
+            .controls {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>NEMO Theme Integration Beispiel</h1>
+        <p>Dieses Beispiel zeigt die Integration des NEMO-Themes für Platzeigenschaften im RiFF-System.</p>
+        
+        <!-- Theme-Umschalter -->
+        <div class="section">
+            <h2>Theme-Kontrollen</h2>
+            <div class="controls">
+                <button class="db-button" onclick="toggleDarkMode()">
+                    Dark/Light Mode wechseln
+                </button>
+                <button class="db-button" onclick="toggleHighContrast()">
+                    Hoher Kontrast
+                </button>
+                <button class="db-button" onclick="validateTheme()">
+                    Theme validieren
+                </button>
+            </div>
+        </div>
+        
+        <!-- Wagenlayout Demo -->
+        <div class="section">
+            <h2>Wagenlayout mit Sitzplatz-Status</h2>
+            <p>Beispiel eines Wagon-Layouts mit verschiedenen Sitzplatz-Status:</p>
+            
+            <div class="responsive-grid">
+                <div>
+                    <h3>Wagon A - 1. Klasse</h3>
+                    <div class="wagon-layout">
+                        <div data-nemo-seat-status="available">1A</div>
+                        <div data-nemo-seat-status="occupied">1B</div>
+                        <div data-nemo-seat-status="available">1C</div>
+                        <div data-nemo-seat-status="reserved">1D</div>
+                        <div data-nemo-seat-status="occupied">2A</div>
+                        <div data-nemo-seat-status="available">2B</div>
+                        <div data-nemo-seat-status="disabled">2C</div>
+                        <div data-nemo-seat-status="available">2D</div>
+                        <div data-nemo-seat-status="reserved">3A</div>
+                        <div data-nemo-seat-status="available">3B</div>
+                        <div data-nemo-seat-status="available">3C</div>
+                        <div data-nemo-seat-status="occupied">3D</div>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3>Wagon B - 2. Klasse</h3>
+                    <div class="wagon-layout">
+                        <div data-nemo-seat-status="available">4A</div>
+                        <div data-nemo-seat-status="available">4B</div>
+                        <div data-nemo-seat-status="occupied">4C</div>
+                        <div data-nemo-seat-status="available">4D</div>
+                        <div data-nemo-seat-status="reserved">5A</div>
+                        <div data-nemo-seat-status="occupied">5B</div>
+                        <div data-nemo-seat-status="available">5C</div>
+                        <div data-nemo-seat-status="available">5D</div>
+                        <div data-nemo-seat-status="available">6A</div>
+                        <div data-nemo-seat-status="disabled">6B</div>
+                        <div data-nemo-seat-status="reserved">6C</div>
+                        <div data-nemo-seat-status="available">6D</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Legende -->
+            <div class="legend">
+                <div class="legend-item">
+                    <span class="legend-sample" style="background-color: var(--nemo-seat-available-bg);"></span>
+                    <span>Verfügbar</span>
+                </div>
+                <div class="legend-item">
+                    <span class="legend-sample" style="background-color: var(--nemo-seat-occupied-bg);"></span>
+                    <span>Besetzt</span>
+                </div>
+                <div class="legend-item">
+                    <span class="legend-sample" style="background-color: var(--nemo-seat-reserved-bg);"></span>
+                    <span>Reserviert</span>
+                </div>
+                <div class="legend-item">
+                    <span class="legend-sample" style="background-color: var(--nemo-seat-disabled-bg);"></span>
+                    <span>Nicht verfügbar</span>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Wagenklassen Demo -->
+        <div class="section">
+            <h2>Wagenklassen-Tags</h2>
+            <p>Beispiel für Wagenklassen-Kennzeichnung:</p>
+            
+            <div class="wagon-info">
+                <div data-nemo-class="first">1. Klasse</div>
+                <div data-nemo-class="business">Business</div>
+                <div data-nemo-class="second">2. Klasse</div>
+            </div>
+        </div>
+        
+        <!-- DB UX Tags mit NEMO Theme -->
+        <div class="section">
+            <h2>DB UX Tags mit NEMO-Farben</h2>
+            <p>Standard DB UX Tags verwenden die NEMO-Theme-Farben:</p>
+            
+            <div class="priority-examples">
+                <div class="db-tag" data-variant="informational">Info</div>
+                <div class="db-tag" data-variant="successful">Verfügbar</div>
+                <div class="db-tag" data-variant="warning">Reserviert</div>
+                <div class="db-tag" data-variant="critical">Besetzt</div>
+            </div>
+        </div>
+        
+        <!-- Prioritäts-Tags -->
+        <div class="section">
+            <h2>NEMO Prioritäts-Tags</h2>
+            <p>Spezifische NEMO-Prioritäts-Tags für verschiedene Anwendungsfälle:</p>
+            
+            <div class="priority-examples">
+                <div data-nemo-priority="high">Hoch</div>
+                <div data-nemo-priority="medium">Mittel</div>
+                <div data-nemo-priority="low">Niedrig</div>
+                <div data-nemo-priority="info">Info</div>
+            </div>
+        </div>
+        
+        <!-- Tabellen-Beispiel -->
+        <div class="section">
+            <h2>Tabelle mit Status-Tags</h2>
+            <p>Beispiel einer Tabelle mit NEMO-Status-Indikatoren:</p>
+            
+            <table class="demo-table">
+                <thead>
+                    <tr>
+                        <th>Zug</th>
+                        <th>Wagon</th>
+                        <th>Platz</th>
+                        <th>Status</th>
+                        <th>Klasse</th>
+                        <th>Priorität</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>ICE 123</td>
+                        <td>A</td>
+                        <td>1A</td>
+                        <td>
+                            <div class="status-cell">
+                                <div data-nemo-seat-status="available" style="width: 16px; height: 16px; font-size: 0;"></div>
+                                Verfügbar
+                            </div>
+                        </td>
+                        <td><div data-nemo-class="first">1. Klasse</div></td>
+                        <td><div data-nemo-priority="low">Niedrig</div></td>
+                    </tr>
+                    <tr>
+                        <td>ICE 123</td>
+                        <td>A</td>
+                        <td>1B</td>
+                        <td>
+                            <div class="status-cell">
+                                <div data-nemo-seat-status="occupied" style="width: 16px; height: 16px; font-size: 0;"></div>
+                                Besetzt
+                            </div>
+                        </td>
+                        <td><div data-nemo-class="first">1. Klasse</div></td>
+                        <td><div data-nemo-priority="high">Hoch</div></td>
+                    </tr>
+                    <tr>
+                        <td>ICE 123</td>
+                        <td>B</td>
+                        <td>4A</td>
+                        <td>
+                            <div class="status-cell">
+                                <div data-nemo-seat-status="reserved" style="width: 16px; height: 16px; font-size: 0;"></div>
+                                Reserviert
+                            </div>
+                        </td>
+                        <td><div data-nemo-class="second">2. Klasse</div></td>
+                        <td><div data-nemo-priority="medium">Mittel</div></td>
+                    </tr>
+                    <tr>
+                        <td>ICE 123</td>
+                        <td>B</td>
+                        <td>6B</td>
+                        <td>
+                            <div class="status-cell">
+                                <div data-nemo-seat-status="disabled" style="width: 16px; height: 16px; font-size: 0;"></div>
+                                Nicht verfügbar
+                            </div>
+                        </td>
+                        <td><div data-nemo-class="second">2. Klasse</div></td>
+                        <td><div data-nemo-priority="info">Info</div></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        
+        <!-- Debug-Informationen -->
+        <div class="section">
+            <h2>Debug-Informationen</h2>
+            <div id="debug-info">
+                <p>Theme-Status wird hier angezeigt...</p>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // Theme-Management JavaScript
+        let isHighContrast = false;
+        
+        function toggleDarkMode() {
+            const currentMode = document.documentElement.getAttribute('data-mode');
+            const newMode = currentMode === 'dark' ? 'light' : 'dark';
+            document.documentElement.setAttribute('data-mode', newMode);
+            updateDebugInfo();
+        }
+        
+        function toggleHighContrast() {
+            isHighContrast = !isHighContrast;
+            if (isHighContrast) {
+                document.body.style.filter = 'contrast(200%)';
+            } else {
+                document.body.style.filter = '';
+            }
+            updateDebugInfo();
+        }
+        
+        function validateTheme() {
+            const requiredProperties = [
+                '--nemo-seat-available-bg',
+                '--nemo-seat-occupied-bg',
+                '--nemo-seat-reserved-bg',
+                '--nemo-seat-disabled-bg',
+                '--nemo-class-first-bg',
+                '--nemo-class-second-bg',
+                '--nemo-class-business-bg'
+            ];
+            
+            const root = getComputedStyle(document.documentElement);
+            const missing = requiredProperties.filter(prop => 
+                !root.getPropertyValue(prop).trim()
+            );
+            
+            if (missing.length > 0) {
+                alert('❌ Fehlende NEMO Theme-Eigenschaften: ' + missing.join(', '));
+                return false;
+            }
+            
+            alert('✅ NEMO Theme erfolgreich geladen!');
+            return true;
+        }
+        
+        function logNemoThemeValues() {
+            const root = getComputedStyle(document.documentElement);
+            const nemoProps = [
+                '--nemo-seat-available-bg',
+                '--nemo-seat-occupied-bg',
+                '--nemo-seat-reserved-bg',
+                '--nemo-seat-disabled-bg',
+                '--nemo-class-first-bg',
+                '--nemo-class-second-bg',
+                '--nemo-class-business-bg'
+            ];
+            
+            console.table(
+                nemoProps.reduce((acc, prop) => {
+                    acc[prop] = root.getPropertyValue(prop).trim();
+                    return acc;
+                }, {})
+            );
+        }
+        
+        function updateDebugInfo() {
+            const debugElement = document.getElementById('debug-info');
+            const currentMode = document.documentElement.getAttribute('data-mode') || 'auto';
+            const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            const prefersHighContrast = window.matchMedia('(prefers-contrast: high)').matches;
+            
+            debugElement.innerHTML = `
+                <p><strong>Aktueller Modus:</strong> ${currentMode}</p>
+                <p><strong>Browser bevorzugt Dark Mode:</strong> ${prefersDark ? 'Ja' : 'Nein'}</p>
+                <p><strong>Browser bevorzugt hohen Kontrast:</strong> ${prefersHighContrast ? 'Ja' : 'Nein'}</p>
+                <p><strong>Hoher Kontrast aktiv:</strong> ${isHighContrast ? 'Ja' : 'Nein'}</p>
+                <button onclick="logNemoThemeValues()">Theme-Werte in Konsole ausgeben</button>
+            `;
+        }
+        
+        // Seat-Interaktion
+        document.addEventListener('click', function(e) {
+            if (e.target.hasAttribute('data-nemo-seat-status')) {
+                const status = e.target.getAttribute('data-nemo-seat-status');
+                const seatNumber = e.target.textContent;
+                
+                if (status === 'available') {
+                    const confirm = window.confirm(`Möchten Sie Platz ${seatNumber} reservieren?`);
+                    if (confirm) {
+                        e.target.setAttribute('data-nemo-seat-status', 'reserved');
+                    }
+                } else if (status === 'reserved') {
+                    const confirm = window.confirm(`Möchten Sie die Reservierung für Platz ${seatNumber} aufheben?`);
+                    if (confirm) {
+                        e.target.setAttribute('data-nemo-seat-status', 'available');
+                    }
+                } else {
+                    alert(`Platz ${seatNumber} ist ${status === 'occupied' ? 'besetzt' : 'nicht verfügbar'}.`);
+                }
+            }
+        });
+        
+        // Initiale Debug-Info
+        document.addEventListener('DOMContentLoaded', function() {
+            updateDebugInfo();
+            
+            // Theme-Validierung beim Laden
+            setTimeout(validateTheme, 100);
+        });
+        
+        // Dark Mode Media Query Listener
+        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', updateDebugInfo);
+    </script>
+</body>
+</html>
