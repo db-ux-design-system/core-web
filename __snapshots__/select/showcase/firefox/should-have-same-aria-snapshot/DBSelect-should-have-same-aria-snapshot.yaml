@@ -97,8 +97,8 @@
   - status
   - text: Label
   - combobox "Label":
-    - option
-    - option "Valid" [selected]
+    - option [selected]
+    - option "Valid"
     - option "Option 2"
   - text: Valid Valid message
   - status
