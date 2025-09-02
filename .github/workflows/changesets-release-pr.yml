@@ -1,38 +1,57 @@
----
+# -------------------------------------------------------------
+# 🚢 Changesets – Create/Update Release PR and Cut Tags
+# Two paths:
+# 1) PR path: show a Changesets preview comment on the PR (no publishing)
+# 2) Main path: on push to main, create/update the Release PR and cut tags/GitHub Releases
+# -------------------------------------------------------------
 name: Changesets – Create/Update Release PR and Cut Tags
 
 on:
+  # Run on PRs to main so contributors see what would be released
   pull_request:
     branches: ["main"]
+    # Only run if one of the following events occurs
     types: [opened, synchronize, reopened, ready_for_review]
   push:
     branches: ["main"]
-  workflow_dispatch: {}
+  workflow_dispatch:
+    inputs:
+      action:
+        description: "Choose an action"
+        required: true
+        default: "version"
+        type: choice
+        options:
+          - version
+          - release
 
 permissions:
-  contents: write # needed to push version commit + create releases
-  pull-requests: write # needed to open/update the Release PR
-
-concurrency:
-  group: changesets-${{ github.ref }}
-  cancel-in-progress: false
+  # Needed to push version commit + create releases
+  contents: write
+  # Needed to open/update the Release PR
+  pull-requests: write
 
 jobs:
-  # PR PATH: Preview only (no PR creation)
+  # PR PATH: Preview only
   preview:
     if: github.event_name == 'pull_request'
     name: 🔎 Changesets Preview (PR)
     runs-on: ubuntu-24.04
+    concurrency:
+      group: changesets-preview-${{ github.event.pull_request.number }}
+      cancel-in-progress: true
     steps:
+      # Check out the PR HEAD commit (not the merge ref) to report the correct plan
       - name: ⏬ Checkout PR head (not merge ref)
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
-          ref: ${{ github.event.pull_request.head.sha }}
+          ref: ${{ github.event.pull_request.head.sha }} # Force checkout to the PR head ref, not the merge ref
 
       - name: 🔄 Init Node & NPM cache
         uses: ./.github/actions/npm-cache
 
+      # Make sure we have full history and the base branch locally for proper diffing
       - name: 🔁 Ensure full history & fetch base (main)
         shell: bash
         run: |
@@ -45,6 +64,7 @@ jobs:
           git rev-parse HEAD
           git rev-parse remotes/origin/main
 
+      # Produce human-readable Changesets status and expose it for the PR comment
       - name: 📋 Show changeset status (since origin/main)
         id: status
         shell: bash
@@ -61,6 +81,7 @@ jobs:
             printf '\nEOF\n'
           } >> "$GITHUB_OUTPUT"
 
+      # Upsert a single bot comment on the PR with the status preview
       - name: 💬 Upsert PR comment with preview
         uses: actions/github-script@v7
         env:
@@ -82,11 +103,16 @@ jobs:
 
   # MAIN PATH: Create/Update Release PR & cut tags/releases
   release_pr:
+    # Only run on main pushes (merge to main done) to drive versioning + tags
     if: github.event_name == 'push' && startsWith(github.ref, 'refs/heads/main')
     name: 🧩 Create/Update Release PR (and cut tags/releases)
     runs-on: ubuntu-24.04
+    concurrency:
+      group: changesets-main-${{ github.ref }}
+      cancel-in-progress: true
 
     steps:
+      # Work on the main branch that was just pushed
       - name: ⏬ Checkout main
         uses: actions/checkout@v4
         with:
@@ -95,19 +121,23 @@ jobs:
       - name: 🔄 Init Node & NPM cache
         uses: ./.github/actions/npm-cache
 
+      # Let changesets open/update the "Version Packages" PR, commit bumped versions and create GitHub Releases/tags
       - name: 🧩 Changesets Action
         id: changesets
         uses: changesets/action@v1
         with:
           commit: "chore(release): version packages"
           title: "chore(release): version packages"
+          # Let the action create GitHub releases for you
           createGithubReleases: true
           publish: "echo 'Publishing handled by release.yml'"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          HUSKY: "0" # disable Husky hooks in CI
+          # Ensure Husky hooks (e.g., branch name patterns) don't block CI commits
+          HUSKY: "0"
           CI: "true"
 
+      # Write a brief job summary so reviewers see what happened
       - name: 🖨️ Summary
         if: always()
         run: |
