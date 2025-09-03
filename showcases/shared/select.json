@@ -26,7 +26,8 @@
 							"value": "Option 5"
 						}
 					],
-					"label": "Label"
+					"label": "Label",
+					"placeholder": "Functional"
 				}
 			},
 			{
@@ -53,7 +54,8 @@
 							"value": "Option 5"
 						}
 					],
-					"label": "Label"
+					"label": "Label",
+					"placeholder": "(Default) Regular"
 				}
 			},
 			{
@@ -80,7 +82,8 @@
 							"value": "Option 5"
 						}
 					],
-					"label": "Label"
+					"label": "Label",
+					"placeholder": "Expressive"
 				}
 			}
 		]
@@ -111,7 +114,8 @@
 							"value": "Option 5"
 						}
 					],
-					"label": "Label"
+					"label": "Label",
+					"placeholder": "(Default) Label Above"
 				}
 			},
 			{
@@ -131,7 +135,8 @@
 					],
 					"label": "Label",
 					"variant": "floating",
-					"value": "Floating Label"
+					"value": "Floating Label",
+					"placeholder": "Floating Label"
 				}
 			}
 		]
@@ -163,7 +168,8 @@
 						}
 					],
 					"label": "Label",
-					"showLabel": true
+					"showLabel": true,
+					"placeholder": "(Default) True"
 				}
 			},
 			{
@@ -190,7 +196,8 @@
 						}
 					],
 					"label": "Label",
-					"showLabel": false
+					"showLabel": false,
+					"placeholder": "False"
 				}
 			}
 		]
@@ -223,7 +230,8 @@
 					],
 					"label": "Label",
 					"message": "Message",
-					"showMessage": false
+					"showMessage": false,
+					"placeholder": "(Default) False"
 				}
 			},
 			{
@@ -251,7 +259,8 @@
 					],
 					"label": "Label",
 					"message": "Message",
-					"showMessage": true
+					"showMessage": true,
+					"placeholder": "True"
 				}
 			}
 		]
@@ -282,7 +291,8 @@
 							"value": "Option 5"
 						}
 					],
-					"label": "Label"
+					"label": "Label",
+					"placeholder": "(Default) Empty"
 				}
 			},
 			{
@@ -301,7 +311,8 @@
 						}
 					],
 					"label": "Label",
-					"value": "Filled"
+					"value": "Filled",
+					"placeholder": "Filled"
 				}
 			}
 		]
@@ -333,7 +344,8 @@
 						}
 					],
 					"label": "Label",
-					"validation": "no-validation"
+					"validation": "no-validation",
+					"placeholder": "(Default) No validation"
 				}
 			},
 			{
@@ -361,7 +373,8 @@
 					],
 					"label": "Label",
 					"validation": "invalid",
-					"invalidMessage": "Invalid Message"
+					"invalidMessage": "Invalid Message",
+					"placeholder": "Invalid"
 				}
 			},
 			{
@@ -381,7 +394,8 @@
 					],
 					"label": "Label",
 					"validation": "valid",
-					"validMessage": "Valid message"
+					"validMessage": "Valid message",
+					"placeholder": "Valid"
 				}
 			}
 		]
@@ -413,7 +427,8 @@
 						}
 					],
 					"label": "Label",
-					"disabled": false
+					"disabled": false,
+					"placeholder": "(Default) False"
 				}
 			},
 			{
@@ -440,7 +455,8 @@
 						}
 					],
 					"label": "Label",
-					"disabled": true
+					"disabled": true,
+					"placeholder": "True"
 				}
 			}
 		]
@@ -471,7 +487,8 @@
 							"value": "Option 5"
 						}
 					],
-					"label": "Label"
+					"label": "Label",
+					"placeholder": "(Default) Text"
 				}
 			},
 			{
@@ -498,7 +515,8 @@
 						}
 					],
 					"label": "Label",
-					"icon": "x_placeholder"
+					"icon": "x_placeholder",
+					"placeholder": "Text - Leading Icon"
 				}
 			}
 		]
@@ -530,7 +548,8 @@
 						}
 					],
 					"label": "Label",
-					"required": false
+					"required": false,
+					"placeholder": "(Default) False"
 				}
 			},
 			{
@@ -557,7 +576,8 @@
 						}
 					],
 					"label": "Label",
-					"required": true
+					"required": true,
+					"placeholder": "True"
 				}
 			}
 		]
@@ -590,7 +610,8 @@
 					],
 					"label": "Label",
 					"required": true,
-					"showRequiredAsterisk": true
+					"showRequiredAsterisk": true,
+					"placeholder": "(Default) True"
 				}
 			},
 			{
@@ -618,7 +639,8 @@
 					],
 					"label": "Label",
 					"required": true,
-					"showRequiredAsterisk": false
+					"showRequiredAsterisk": false,
+					"placeholder": "False"
 				}
 			}
 		]
@@ -650,7 +672,8 @@
 						}
 					],
 					"label": "Label",
-					"variant": "floating"
+					"variant": "floating",
+					"placeholder": "(Default) Empty"
 				}
 			},
 			{
@@ -670,7 +693,8 @@
 					],
 					"label": "Label",
 					"value": "Filled",
-					"variant": "floating"
+					"variant": "floating",
+					"placeholder": "Filled"
 				}
 			},
 			{
@@ -691,7 +715,8 @@
 					"label": "Label",
 					"disabled": true,
 					"variant": "floating",
-					"value": "Disabled"
+					"value": "Disabled",
+					"placeholder": "Disabled"
 				}
 			}
 		]
