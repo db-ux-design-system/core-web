@@ -39,6 +39,21 @@ Install your preferred package via npm or yarn e.g. `npm i @db-ux/react-core-com
 Afterwards, you need to include the specific CSS or SCSS files to apply the styles of DB UX Design System (Version 3), as described in the "Styling Dependencies" section of each package's `README`.
 We even provide some [examples of integrations](https://github.com/db-ux-design-system/examples).
 
+## Creating Custom Components
+
+For developers looking to create custom components that extend the design system in their applications, we provide comprehensive guidance:
+
+📖 **[Creating Custom Components Guide](docs/creating-custom-components.md)** - Learn how to build your own components using design system foundations
+
+This guide covers:
+- **Setup and Configuration**: Getting started with the design system packages
+- **Design Principles**: Following DB UX Design System guidelines and best practices  
+- **Component Patterns**: Structured approaches to building consistent components
+- **Code Examples**: Practical implementations for cards, forms, navigation, and more
+- **Framework Support**: Specific guidance for React, Vue, Angular, and vanilla HTML/CSS
+- **Accessibility**: Ensuring your components are inclusive and compliant
+- **Common Pitfalls**: What to avoid and how to maintain design system consistency
+
 ### DB Theme
 
 In case that you're building a website or application for Deutsche Bahn, you'll additionally have to install the DB Theme via the [`@db-ux/db-theme`](https://www.npmjs.com/package/@db-ux/db-theme) node package (even also available as an inner source node package, as described within that packages [README](https://www.npmjs.com/package/@db-ux/db-theme)).
