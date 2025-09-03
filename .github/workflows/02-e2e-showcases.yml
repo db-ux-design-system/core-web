@@ -74,14 +74,10 @@ jobs:
           name: db-ux-${{ inputs.showcase }}
           path: build-showcases/${{ inputs.showcase }}
 
-      # We test everything for patternhub and main branch or in case of any aria-snapshot changes
+      # We test everything for patternhub and main branch
       - name: 👩‍🔬 Test showcase with Playwright 🎭
         shell: bash
-        if: |
-          needs.test-showcase-react.outputs.aria-snapshots-changed-to-main == 'true' ||
-          needs.test-showcase-angular.outputs.aria-snapshots-changed-to-main == 'true' ||
-          needs.test-showcase-vue.outputs.aria-snapshots-changed-to-main == 'true' ||
-          github.event.pull_request == null
+        if: github.event.pull_request == null
         env:
           NEXT_PUBLIC_BASE_PATH: ${{ inputs.path }}
         run: |
