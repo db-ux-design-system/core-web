@@ -163,6 +163,12 @@ export default function DBSelect(props: DBSelectProps) {
 		state._invalidMessageId = mId + DEFAULT_INVALID_MESSAGE_ID_SUFFIX;
 		state._placeholderId = mId + DEFAULT_PLACEHOLDER_ID_SUFFIX;
 		state._invalidMessage = props.invalidMessage || DEFAULT_INVALID_MESSAGE;
+
+		useTarget({
+			angular: () => {
+				this.writeValue?.(this.value?.());
+			}
+		});
 	});
 
 	onUpdate(() => {
