@@ -3,6 +3,7 @@
   - link "Density"
   - text: Label
   - combobox "Label":
+    - option [selected]
     - option "Option 1"
     - option "Option 2"
     - option "Option 3"
@@ -12,6 +13,7 @@
   - status
   - text: Label
   - combobox "Label":
+    - option [selected]
     - option "Option 1"
     - option "Option 2"
     - option "Option 3"
@@ -21,6 +23,7 @@
   - status
   - text: Label
   - combobox "Label":
+    - option [selected]
     - option "Option 1"
     - option "Option 2"
     - option "Option 3"
@@ -31,6 +34,7 @@
   - link "Variant"
   - text: Label
   - combobox "Label":
+    - option [selected]
     - option "Option 1"
     - option "Option 2"
     - option "Option 3"
@@ -40,12 +44,14 @@
   - status
   - text: Label
   - combobox "Label":
+    - option
     - option "Floating Label" [selected]
     - option "Option 2"
   - status
   - link "Show Label"
   - text: Label
   - combobox "Label":
+    - option [selected]
     - option "Option 1"
     - option "Option 2"
     - option "Option 3"
@@ -55,6 +61,7 @@
   - status
   - text: Label
   - combobox "Label":
+    - option [selected]
     - option "Option 1"
     - option "Option 2"
     - option "Option 3"
@@ -65,6 +72,7 @@
   - link "Show Message"
   - text: Label
   - combobox "Label":
+    - option [selected]
     - option "Option 1"
     - option "Option 2"
     - option "Option 3"
@@ -74,6 +82,7 @@
   - status
   - text: Label
   - combobox "Label":
+    - option [selected]
     - option "Option 1"
     - option "Option 2"
     - option "Option 3"
@@ -84,6 +93,7 @@
   - link "State"
   - text: Label
   - combobox "Label":
+    - option [selected]
     - option "Option 1"
     - option "Option 2"
     - option "Option 3"
@@ -93,12 +103,14 @@
   - status
   - text: Label
   - combobox "Label":
+    - option
     - option "Filled" [selected]
     - option "Option 2"
   - status
   - link "Validation"
   - text: Label
   - combobox "Label":
+    - option [selected]
     - option "Option 1"
     - option "Option 2"
     - option "Option 3"
@@ -108,6 +120,7 @@
   - status
   - text: Label
   - combobox "Label":
+    - option [selected]
     - option "Option 1"
     - option "Option 2"
     - option "Option 3"
@@ -117,6 +130,7 @@
   - status
   - text: Label
   - combobox "Label":
+    - option [selected]
     - option "Valid"
     - option "Option 2"
   - text: Valid Valid message
@@ -124,6 +138,7 @@
   - link "Disabled"
   - text: Label
   - combobox "Label":
+    - option [selected]
     - option "Option 1"
     - option "Option 2"
     - option "Option 3"
@@ -133,6 +148,7 @@
   - status
   - text: Label
   - combobox "Label" [disabled]:
+    - option [selected]
     - option "Option 1"
     - option "Option 2"
     - option "Option 3"
@@ -143,6 +159,7 @@
   - link "Content"
   - text: Label
   - combobox "Label":
+    - option [selected]
     - option "Option 1"
     - option "Option 2"
     - option "Option 3"
@@ -152,6 +169,7 @@
   - status
   - text: Label
   - combobox "Label":
+    - option [selected]
     - option "Option 1"
     - option "Option 2"
     - option "Option 3"
@@ -162,6 +180,7 @@
   - link "Required"
   - text: Label
   - combobox "Label":
+    - option [selected]
     - option "Option 1"
     - option "Option 2"
     - option "Option 3"
@@ -171,6 +190,7 @@
   - status
   - text: Label
   - combobox "Label":
+    - option [selected]
     - option "Option 1"
     - option "Option 2"
     - option "Option 3"
@@ -181,6 +201,7 @@
   - link "Show Required Asterisk"
   - text: Label
   - combobox "Label":
+    - option [selected]
     - option "Option 1"
     - option "Option 2"
     - option "Option 3"
@@ -190,6 +211,7 @@
   - status
   - text: Label
   - combobox "Label":
+    - option [selected]
     - option "Option 1"
     - option "Option 2"
     - option "Option 3"
@@ -200,6 +222,7 @@
   - link "Examples Floating Label"
   - text: Label
   - combobox "Label":
+    - option [selected]
     - option "Option 1"
     - option "Option 2"
     - option "Option 3"
@@ -209,11 +232,13 @@
   - status
   - text: Label
   - combobox "Label":
+    - option
     - option "Filled" [selected]
     - option "Option 2"
   - status
   - text: Label
   - combobox "Label" [disabled]:
+    - option
     - option "Disabled" [selected]
     - option "Option 2"
   - status

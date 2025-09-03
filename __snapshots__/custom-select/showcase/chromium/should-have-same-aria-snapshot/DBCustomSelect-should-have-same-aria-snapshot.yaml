@@ -140,6 +140,15 @@
           - listitem:
             - radio "Option 2"
             - text: Option 2
+          - listitem:
+            - radio "Option 3"
+            - text: Option 3
+          - listitem:
+            - radio "Option 4"
+            - text: Option 4
+          - listitem:
+            - radio "Option 5"
+            - text: Option 5
   - status
   - link "Show Label"
   - text: (Default) True
@@ -542,6 +551,15 @@
           - listitem:
             - radio "2"
             - text: "2"
+          - listitem:
+            - radio "3"
+            - text: "3"
+          - listitem:
+            - radio "4"
+            - text: "4"
+          - listitem:
+            - radio "5"
+            - text: "5"
   - status
   - text: Full
   - group:
@@ -554,6 +572,15 @@
           - listitem:
             - radio "2"
             - text: "2"
+          - listitem:
+            - radio "3"
+            - text: "3"
+          - listitem:
+            - radio "4"
+            - text: "4"
+          - listitem:
+            - radio "5"
+            - text: "5"
   - status
   - text: "Form Field Width: Auto (Default) Fixed"
   - group:
@@ -587,6 +614,15 @@
           - listitem:
             - radio "2"
             - text: "2"
+          - listitem:
+            - radio "3"
+            - text: "3"
+          - listitem:
+            - radio "4"
+            - text: "4"
+          - listitem:
+            - radio "5"
+            - text: "5"
   - status
   - text: Full
   - group:
@@ -599,6 +635,15 @@
           - listitem:
             - radio "2"
             - text: "2"
+          - listitem:
+            - radio "3"
+            - text: "3"
+          - listitem:
+            - radio "4"
+            - text: "4"
+          - listitem:
+            - radio "5"
+            - text: "5"
   - status
   - link "Placement"
   - text: "Form Field Width: Full (Default) Bottom"
@@ -745,6 +790,9 @@
           - listitem:
             - checkbox "Option 4"
             - text: Option 4
+          - listitem:
+            - checkbox "Option 5"
+            - text: Option 5
   - status
   - text: Amount
   - group:
@@ -763,6 +811,9 @@
           - listitem:
             - checkbox "Option 4"
             - text: Option 4
+          - listitem:
+            - checkbox "Option 5"
+            - text: Option 5
   - status
   - text: Tag
   - group:
@@ -781,6 +832,9 @@
           - listitem:
             - checkbox "Option 4"
             - text: Option 4
+          - listitem:
+            - checkbox "Option 5"
+            - text: Option 5
   - status
   - link "Show No Result"
   - text: (Default) False

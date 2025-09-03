@@ -146,6 +146,15 @@
           - listitem:
             - radio "Option 2"
             - text: Option 2
+          - listitem:
+            - radio "Option 3"
+            - text: Option 3
+          - listitem:
+            - radio "Option 4"
+            - text: Option 4
+          - listitem:
+            - radio "Option 5"
+            - text: Option 5
       - button "Close"
   - status
   - link "Show Label"
@@ -567,6 +576,15 @@
           - listitem:
             - radio "2"
             - text: "2"
+          - listitem:
+            - radio "3"
+            - text: "3"
+          - listitem:
+            - radio "4"
+            - text: "4"
+          - listitem:
+            - radio "5"
+            - text: "5"
       - button "Close"
   - status
   - text: Full
@@ -580,6 +598,15 @@
           - listitem:
             - radio "2"
             - text: "2"
+          - listitem:
+            - radio "3"
+            - text: "3"
+          - listitem:
+            - radio "4"
+            - text: "4"
+          - listitem:
+            - radio "5"
+            - text: "5"
       - button "Close"
   - status
   - text: "Form Field Width: Auto (Default) Fixed"
@@ -615,6 +642,15 @@
           - listitem:
             - radio "2"
             - text: "2"
+          - listitem:
+            - radio "3"
+            - text: "3"
+          - listitem:
+            - radio "4"
+            - text: "4"
+          - listitem:
+            - radio "5"
+            - text: "5"
       - button "Close"
   - status
   - text: Full
@@ -628,6 +664,15 @@
           - listitem:
             - radio "2"
             - text: "2"
+          - listitem:
+            - radio "3"
+            - text: "3"
+          - listitem:
+            - radio "4"
+            - text: "4"
+          - listitem:
+            - radio "5"
+            - text: "5"
       - button "Close"
   - status
   - link "Placement"
@@ -781,6 +826,9 @@
           - listitem:
             - checkbox "Option 4"
             - text: Option 4
+          - listitem:
+            - checkbox "Option 5"
+            - text: Option 5
       - button "Close"
   - status
   - text: Amount
@@ -800,6 +848,9 @@
           - listitem:
             - checkbox "Option 4"
             - text: Option 4
+          - listitem:
+            - checkbox "Option 5"
+            - text: Option 5
       - button "Close"
   - status
   - text: Tag
@@ -819,6 +870,9 @@
           - listitem:
             - checkbox "Option 4"
             - text: Option 4
+          - listitem:
+            - checkbox "Option 5"
+            - text: Option 5
       - button "Close"
   - status
   - link "Show No Result"
