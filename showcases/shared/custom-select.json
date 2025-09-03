@@ -232,6 +232,18 @@
 						{
 							"value": "Option 2",
 							"id": "ju53v02yg"
+						},
+						{
+							"value": "Option 3",
+							"id": "ju53v03yg"
+						},
+						{
+							"value": "Option 4",
+							"id": "ju53v04yg"
+						},
+						{
+							"value": "Option 5",
+							"id": "ju53v05yg"
 						}
 					],
 					"label": "Label",
@@ -943,6 +955,18 @@
 						{
 							"value": "2",
 							"id": "dstvsee1m"
+						},
+						{
+							"value": "3",
+							"id": "dstvsee2m"
+						},
+						{
+							"value": "4",
+							"id": "dstvsee3m"
+						},
+						{
+							"value": "5",
+							"id": "dstvsee4m"
 						}
 					],
 					"label": "Auto",
@@ -966,6 +990,18 @@
 						{
 							"value": "2",
 							"id": "0iiu59zbg"
+						},
+						{
+							"value": "3",
+							"id": "0iiu69zbg"
+						},
+						{
+							"value": "4",
+							"id": "0iiu79zbg"
+						},
+						{
+							"value": "5",
+							"id": "0iiu89zbg"
 						}
 					],
 					"label": "Full",
@@ -1048,6 +1084,18 @@
 						{
 							"value": "2",
 							"id": "wr6elxyf4"
+						},
+						{
+							"value": "3",
+							"id": "wr6elxyf5"
+						},
+						{
+							"value": "4",
+							"id": "wr6elxyf6"
+						},
+						{
+							"value": "5",
+							"id": "wr6elxyf7"
 						}
 					],
 					"label": "Auto",
@@ -1071,6 +1119,18 @@
 						{
 							"value": "2",
 							"id": "mzo80txs4"
+						},
+						{
+							"value": "3",
+							"id": "mzo80txs5"
+						},
+						{
+							"value": "4",
+							"id": "mzo80txs6"
+						},
+						{
+							"value": "5",
+							"id": "mzo80txs7"
 						}
 					],
 					"label": "Full",
@@ -1362,6 +1422,10 @@
 						{
 							"value": "Option 4",
 							"id": "yy82mda4v"
+						},
+						{
+							"value": "Option 5",
+							"id": "yy82mda5v"
 						}
 					],
 					"label": "Label",
@@ -1392,6 +1456,10 @@
 						{
 							"value": "Option 4",
 							"id": "riz9ea0ox"
+						},
+						{
+							"value": "Option 5",
+							"id": "riz9ea1ox"
 						}
 					],
 					"label": "Label",
@@ -1423,6 +1491,10 @@
 						{
 							"value": "Option 4",
 							"id": "4m2gbzu2q"
+						},
+						{
+							"value": "Option 5",
+							"id": "4m2gbzu3q"
 						}
 					],
 					"label": "Label",
