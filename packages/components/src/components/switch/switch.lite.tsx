@@ -159,6 +159,7 @@ export default function DBSwitch(props: DBSwitchProps) {
 			data-emphasis={props.emphasis}
 			htmlFor={state._id}
 			data-hide-asterisk={getHideProp(props.showRequiredAsterisk)}
+			data-custom-validity={props.validation}
 			class={cls('db-switch', props.className)}>
 			<input
 				id={state._id}
@@ -185,9 +186,11 @@ export default function DBSwitch(props: DBSwitchProps) {
 					state.handleFocus(event)
 				}
 			/>
-			<Show when={props.label} else={props.children}>
-				{props.label}
-			</Show>
+			<span class="db-switch-label">
+				<Show when={props.label} else={props.children}>
+					{props.label}
+				</Show>
+			</span>
 			<Show when={stringPropVisible(props.message, props.showMessage)}>
 				<DBInfotext
 					id={state._messageId}

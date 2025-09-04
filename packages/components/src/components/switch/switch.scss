@@ -32,47 +32,52 @@ $checked-active-transition-size: calc(
 	}
 }
 
-@mixin get-validity-color-switch($key: "valid") {
-	$variant: successful;
+// TODO: Move to e.g. form-components
+@mixin switch-validity($key, $label-var, $border-var) {
+	@include form-components.get-validity("switch", $key) {
+		@include form-components.get-validity-message($key);
+		--db-check-element-label-color: #{$label-var};
+		--db-check-element-border-color: #{$border-var};
+		> input { border-color: var(--db-check-element-border-color); }
+		> input:not(:checked)::before {
+			background-color: var(--db-check-element-border-color);
+			color: var(--db-check-element-border-color);
+		}
+		> input:checked {
+			background-color: var(--db-check-element-border-color);
+			border-color: var(--db-check-element-border-color);
 
-	@if $key != "valid" {
-		$variant: critical;
+			@include helpers.hover {
+				background-color: var(--db-check-element-border-color);
+				border-color: var(--db-check-element-border-color);
+			}
+			@include helpers.active {
+				background-color: var(--db-check-element-border-color);
+				border-color: var(--db-check-element-border-color);
+			}
+		}
+		> input:checked::before {
+			@if $key == "valid" {
+				background-color: colors.$db-successful-on-bg-inverted-default;
+				color: colors.$db-successful-on-bg-inverted-default;
+			} @else if $key == "invalid" {
+				background-color: colors.$db-critical-on-bg-inverted-default;
+				color: colors.$db-critical-on-bg-inverted-default;
+			}
+		}
 	}
-
-	--db-check-element-border-color: var(
-		--db-#{$variant}-on-bg-basic-emphasis-70-default
-	);
-	--db-adaptive-on-bg-basic-emphasis-100-default: var(
-		--db-#{$variant}-on-bg-basic-emphasis-80-default
-	);
-	--db-adaptive-on-bg-basic-emphasis-100-hovered: var(
-		--db-#{$variant}-on-bg-basic-emphasis-80-hovered
-	);
-	--db-adaptive-on-bg-basic-emphasis-100-pressed: var(
-		--db-#{$variant}-on-bg-basic-emphasis-80-pressed
-	);
-
-	> input:not(:checked) {
-		--db-adaptive-bg-basic-transparent-default: var(
-			--db-#{$variant}-bg-basic-transparent-default
-		);
-		--db-adaptive-bg-basic-transparent-hovered: var(
-			--db-#{$variant}-bg-basic-transparent-hovered
-		);
-		--db-adaptive-bg-basic-transparent-pressed: var(
-			--db-#{$variant}-bg-basic-transparent-pressed
-		);
-	}
-
-	@include form-components.get-validity-message($key);
 }
 
 .db-switch {
 	user-select: none;
 
+	/* enforce flex and break also in Angular */
+	display: inline-flex;
+	align-items: center;
+	flex-wrap: wrap;
+
 	@extend %helper-message;
 	@include form-components.set-default-check-element;
-	@include form-components.get-validity("switch");
 
 	&:not(:has(input:disabled)) {
 		@include form-components.get-state;
@@ -80,53 +85,6 @@ $checked-active-transition-size: calc(
 		@include form-components.get-state("active") {
 			@extend %active-transition;
 		}
-	}
-
-	@include form-components.get-validity("switch") {
-		> input {
-			border-color: colors.$db-successful-on-bg-basic-emphasis-70-default;
-
-			@include helpers.hover {
-				border-color: colors.$db-successful-on-bg-basic-emphasis-70-hovered;
-			}
-
-			@include helpers.active {
-				border-color: colors.$db-successful-on-bg-basic-emphasis-70-pressed;
-			}
-		}
-
-		> input:checked::before {
-			background-color: colors.$db-successful-on-bg-inverted-default;
-			color: colors.$db-successful-on-bg-inverted-default;
-		}
-
-		@include form-components.get-validity-message("valid");
-	}
-
-	@include form-components.get-validity("switch", "invalid") {
-		> input {
-			border-color: colors.$db-critical-on-bg-basic-emphasis-70-default;
-
-			@include helpers.hover {
-				border-color: colors.$db-critical-on-bg-basic-emphasis-70-hovered;
-			}
-
-			@include helpers.active {
-				border-color: colors.$db-critical-on-bg-basic-emphasis-70-pressed;
-			}
-		}
-
-		@include form-components.get-validity-message("invalid");
-	}
-
-	@include form-components.get-validity(switch) {
-		&:has(.db-infotext[data-semantic="successful"]) {
-			@include get-validity-color-switch("valid");
-		}
-	}
-
-	@include form-components.get-validity(switch, "invalid") {
-		@include get-validity-color-switch("invalid");
 	}
 
 	> input {
@@ -325,4 +283,37 @@ $checked-active-transition-size: calc(
 			}
 		}
 	}
+
+	/* Set variables */
+	&[data-custom-validity="valid"] { --db-switch-label-color: #{colors.$db-successful-on-bg-basic-emphasis-70-default}; }
+	&[data-custom-validity="invalid"] { --db-switch-label-color: #{colors.$db-critical-on-bg-basic-emphasis-70-default}; }
+
+	/* Set color for label */
+	> .db-switch-label,
+	> .db-switch-label * {
+		color: var(--db-switch-label-color, inherit);
+	}
+
+	/* Set color for helper message */
+	&::after {
+		color: var(--db-switch-label-color, var(--db-check-element-label-color, inherit));
+	}
+
+	/* Put infotext below switch */
+	& :is(.db-infotext, db-infotext) {
+		order: 1;
+		flex: 0 0 100%;
+		margin-top: variables.$db-spacing-fixed-2xs;
+	}
+
+	@include switch-validity(
+			"valid",
+			var(--db-successful-on-bg-basic-emphasis-100-default),
+			var(--db-successful-on-bg-basic-emphasis-70-default)
+	);
+	@include switch-validity(
+			"invalid",
+			var(--db-critical-on-bg-basic-emphasis-100-default),
+			var(--db-critical-on-bg-basic-emphasis-70-default)
+	);
 }
