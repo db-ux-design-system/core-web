@@ -322,10 +322,11 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 								}
 								
 								if (!prevElement) {
+									// Check if we have a "select all" checkbox (only relevant for multi-select)
+									const selectAllCheckbox = detailsRef.querySelector(`input[type="checkbox"]`);
 									if (
-										detailsRef.querySelector(
-											`input[type="checkbox"]`
-										) !== activeElement
+										selectAllCheckbox && 
+										selectAllCheckbox !== activeElement
 									) {
 										// We are on the top list checkbox but there is a select all checkbox as well
 										state.handleFocusFirstDropdownCheckbox(

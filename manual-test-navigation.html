@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Custom Select Issue Reproduction</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 2rem; }
+        .debug { background: #f0f0f0; padding: 1rem; margin: 1rem 0; }
+        details[open] ul { border: 1px solid #ccc; max-height: 200px; overflow-y: auto; }
+        li { list-style: none; padding: 0.25rem 0; }
+        .group-title { font-weight: bold; color: #666; border-top: 1px solid #ddd; }
+        .group-title:first-child { border-top: none; }
+        input { margin-right: 0.5rem; }
+        summary { padding: 0.5rem; background: #f5f5f5; border: 1px solid #ccc; cursor: pointer; }
+    </style>
+</head>
+<body>
+    <h1>Custom Select Option Groups - Issue Reproduction</h1>
+    
+    <div class="debug">
+        <h3>Instructions:</h3>
+        <ol>
+            <li>Click on the select to open it</li>
+            <li>Use Arrow Down/Up keys to navigate</li>
+            <li>Notice if you can reach "G2:Option 1" and "G2:Option 2"</li>
+            <li>Watch the console for debug output</li>
+        </ol>
+    </div>
+
+    <details class="db-custom-select" id="test-select">
+        <summary>
+            <input type="text" readonly placeholder="Select an option..." style="border: none; background: transparent; width: 200px;" />
+            <span>▼</span>
+        </summary>
+        
+        <div class="db-custom-select-dropdown">
+            <ul class="db-custom-select-list" role="listbox">
+                <!-- Option Group 1 Title -->
+                <li class="group-title">
+                    <span>Option group 1</span>
+                </li>
+                
+                <!-- Option Group 1 Items -->
+                <li>
+                    <label>
+                        <input type="radio" name="test-select" value="G1:Option 1" />
+                        G1:Option 1
+                    </label>
+                </li>
+                
+                <li>
+                    <label>
+                        <input type="radio" name="test-select" value="G1:Option 2" />
+                        G1:Option 2
+                    </label>
+                </li>
+                
+                <!-- Option Group 2 Title -->
+                <li class="group-title">
+                    <span>Option group 2</span>
+                </li>
+                
+                <!-- Option Group 2 Items -->
+                <li>
+                    <label>
+                        <input type="radio" name="test-select" value="G2:Option 1" />
+                        G2:Option 1
+                    </label>
+                </li>
+                
+                <li>
+                    <label>
+                        <input type="radio" name="test-select" value="G2:Option 2" />
+                        G2:Option 2
+                    </label>
+                </li>
+            </ul>
+        </div>
+    </details>
+
+    <div class="debug">
+        <button onclick="debugStructure()">Debug: Show DOM Structure</button>
+        <button onclick="testNavigationLogic()">Test: Navigation Logic</button>
+        <div id="debug-output"></div>
+    </div>
+
+    <script>
+        function log(message) {
+            const output = document.getElementById('debug-output');
+            output.innerHTML += '<div>' + message + '</div>';
+            console.log(message);
+        }
+
+        function clearLog() {
+            document.getElementById('debug-output').innerHTML = '';
+        }
+
+        function debugStructure() {
+            clearLog();
+            log('=== DOM Structure Analysis ===');
+            
+            const details = document.getElementById('test-select');
+            const inputs = Array.from(details.querySelectorAll('input[type="radio"]'));
+            
+            log('Found ' + inputs.length + ' radio inputs:');
+            inputs.forEach((input, index) => {
+                const li = input.closest('li');
+                const isGroupTitle = li.classList.contains('group-title') || !li.querySelector('input');
+                log(`${index}: "${input.value}" - Group title: ${isGroupTitle}`);
+            });
+            
+            log('\n=== LI Elements ===');
+            const lis = Array.from(details.querySelectorAll('li'));
+            lis.forEach((li, index) => {
+                const hasInput = !!li.querySelector('input');
+                const text = li.textContent.trim();
+                log(`LI ${index}: "${text}" - Has input: ${hasInput}`);
+            });
+        }
+
+        function testNavigationLogic() {
+            clearLog();
+            log('=== Navigation Logic Test ===');
+            
+            const details = document.getElementById('test-select');
+            const inputs = Array.from(details.querySelectorAll('input[type="radio"]'));
+            
+            // Test navigation from each input
+            inputs.forEach((input, index) => {
+                log(`\n--- From: ${input.value} ---`);
+                
+                const currentLi = input.closest('li');
+                
+                // Test ArrowDown navigation
+                let nextElement = currentLi.nextElementSibling;
+                let foundNext = false;
+                while (nextElement) {
+                    const nextInput = nextElement.querySelector('input');
+                    if (nextInput) {
+                        log(`ArrowDown → ${nextInput.value}`);
+                        foundNext = true;
+                        break;
+                    }
+                    log(`Skipping: "${nextElement.textContent.trim()}"`);
+                    nextElement = nextElement.nextElementSibling;
+                }
+                if (!foundNext) {
+                    log('ArrowDown → (wrap to first)');
+                }
+                
+                // Test ArrowUp navigation
+                let prevElement = currentLi.previousElementSibling;
+                let foundPrev = false;
+                while (prevElement) {
+                    const prevInput = prevElement.querySelector('input');
+                    if (prevInput) {
+                        log(`ArrowUp → ${prevInput.value}`);
+                        foundPrev = true;
+                        break;
+                    }
+                    log(`Skipping: "${prevElement.textContent.trim()}"`);
+                    prevElement = prevElement.previousElementSibling;
+                }
+                if (!foundPrev) {
+                    log('ArrowUp → (wrap to last)');
+                }
+            });
+        }
+
+        // Implement the actual navigation logic similar to DB component
+        function handleArrowNavigation(event, activeElement) {
+            if (!['ArrowDown', 'ArrowUp', 'ArrowLeft', 'ArrowRight'].includes(event.key)) {
+                return false;
+            }
+
+            const details = document.getElementById('test-select');
+            if (!details.open) {
+                if (event.key === 'ArrowDown' || event.key === 'ArrowRight') {
+                    details.open = true;
+                    // Focus first input
+                    const firstInput = details.querySelector('input[type="radio"]');
+                    if (firstInput) {
+                        setTimeout(() => firstInput.focus(), 10);
+                    }
+                }
+                return true;
+            }
+
+            // We're in the dropdown, handle navigation
+            const isCheckbox = activeElement.type === 'checkbox' || activeElement.type === 'radio';
+            if (!isCheckbox) return false;
+
+            const listElement = activeElement.closest('li');
+            
+            if (event.key === 'ArrowDown' || event.key === 'ArrowRight') {
+                log(`Navigating DOWN from: ${activeElement.value}`);
+                
+                // Find next element with input, skipping group titles
+                let nextElement = listElement?.nextElementSibling;
+                while (nextElement) {
+                    const nextInput = nextElement.querySelector('input');
+                    if (nextInput) {
+                        log(`Found next input: ${nextInput.value}`);
+                        nextInput.focus();
+                        return true;
+                    }
+                    log(`Skipping (no input): ${nextElement.textContent.trim()}`);
+                    nextElement = nextElement.nextElementSibling;
+                }
+                
+                log('Reached end - wrapping to first');
+                // We are on the last checkbox, move to the top checkbox
+                const firstInput = details.querySelector('input[type="radio"]');
+                if (firstInput) {
+                    firstInput.focus();
+                }
+                return true;
+                
+            } else if (event.key === 'ArrowUp' || event.key === 'ArrowLeft') {
+                log(`Navigating UP from: ${activeElement.value}`);
+                
+                // Find previous element with input, skipping group titles
+                let prevElement = listElement?.previousElementSibling;
+                while (prevElement) {
+                    const prevInput = prevElement.querySelector('input');
+                    if (prevInput) {
+                        log(`Found previous input: ${prevInput.value}`);
+                        prevInput.focus();
+                        return true;
+                    }
+                    log(`Skipping (no input): ${prevElement.textContent.trim()}`);
+                    prevElement = prevElement.previousElementSibling;
+                }
+                
+                log('Reached beginning - wrapping to last');
+                // We are on the first checkbox, move to the last checkbox
+                const inputs = Array.from(details.querySelectorAll('input[type="radio"]'));
+                if (inputs.length) {
+                    inputs[inputs.length - 1].focus();
+                }
+                return true;
+            }
+            
+            return false;
+        }
+
+        // Add event listeners
+        document.addEventListener('keydown', (event) => {
+            const activeElement = document.activeElement;
+            if (handleArrowNavigation(event, activeElement)) {
+                event.preventDefault();
+            }
+        });
+
+        // Handle selection
+        document.getElementById('test-select').addEventListener('change', (event) => {
+            if (event.target.type === 'radio') {
+                const summary = document.querySelector('summary input');
+                summary.value = event.target.value;
+                log(`Selected: ${event.target.value}`);
+                
+                // Close for single select
+                setTimeout(() => {
+                    document.getElementById('test-select').open = false;
+                }, 100);
+            }
+        });
+
+        // Auto-test on load
+        window.onload = () => {
+            setTimeout(() => {
+                debugStructure();
+                testNavigationLogic();
+            }, 100);
+        };
+    </script>
+</body>
+</html>
