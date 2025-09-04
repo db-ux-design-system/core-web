@@ -34,7 +34,7 @@ db-custom-select-list-item:not(:last-of-type) {
 		}
 	}
 
-	&:has(> label > input:focus-within) {
+	&:has(> label > input:focus-visible) {
 		@extend %focus-placeholder;
 	}
 
