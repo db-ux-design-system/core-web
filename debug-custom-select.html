@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Custom Select Debug Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 2rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        .debug-info {
+            background: #f5f5f5;
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 4px;
+        }
+        .test-select {
+            margin: 2rem 0;
+        }
+        button {
+            margin: 0.5rem 0;
+            padding: 0.5rem 1rem;
+        }
+    </style>
+</head>
+<body>
+    <h1>Custom Select Group Navigation Debug</h1>
+    
+    <div class="debug-info">
+        <h3>Test Instructions:</h3>
+        <ol>
+            <li>Click on the "Debug" button to show all input elements found</li>
+            <li>Click "Open Select" and then try arrow key navigation</li>
+            <li>Watch the console for debug output</li>
+        </ol>
+    </div>
+
+    <div class="test-select">
+        <h3>Option Group Example Structure:</h3>
+        <details id="test-custom-select">
+            <summary>Select an option</summary>
+            <div>
+                <ul role="listbox">
+                    <!-- Option Group 1 Title -->
+                    <li data-divider="true">
+                        <span>Option group 1</span>
+                    </li>
+                    
+                    <!-- Option Group 1 Items -->
+                    <li>
+                        <label>
+                            <input type="radio" name="test" value="G1:Option 1" />
+                            G1:Option 1
+                        </label>
+                    </li>
+                    
+                    <li>
+                        <label>
+                            <input type="radio" name="test" value="G1:Option 2" />
+                            G1:Option 2
+                        </label>
+                    </li>
+                    
+                    <!-- Option Group 2 Title -->
+                    <li data-divider="true">
+                        <span>Option group 2</span>
+                    </li>
+                    
+                    <!-- Option Group 2 Items -->
+                    <li>
+                        <label>
+                            <input type="radio" name="test" value="G2:Option 1" />
+                            G2:Option 1
+                        </label>
+                    </li>
+                    
+                    <li>
+                        <label>
+                            <input type="radio" name="test" value="G2:Option 2" />
+                            G2:Option 2
+                        </label>
+                    </li>
+                </ul>
+            </div>
+        </details>
+    </div>
+
+    <button onclick="debugInputElements()">Debug: Show All Input Elements</button>
+    <button onclick="openSelect()">Open Select</button>
+    <button onclick="testNavigation()">Test Navigation Logic</button>
+
+    <div id="debug-output" class="debug-info"></div>
+
+    <script>
+        const details = document.getElementById('test-custom-select');
+        
+        function debugInputElements() {
+            const inputs = Array.from(details.querySelectorAll('input[type="checkbox"],input[type="radio"]'));
+            console.log('Found inputs:', inputs);
+            
+            const output = document.getElementById('debug-output');
+            output.innerHTML = `
+                <h4>Found ${inputs.length} input elements:</h4>
+                <ol>
+                    ${inputs.map((input, index) => `<li>Index ${index}: ${input.value} (type: ${input.type})</li>`).join('')}
+                </ol>
+            `;
+        }
+
+        function openSelect() {
+            details.open = true;
+            const firstInput = details.querySelector('input[type="radio"]');
+            if (firstInput) {
+                setTimeout(() => {
+                    firstInput.focus();
+                    console.log('Focused first input:', firstInput.value);
+                }, 10);
+            }
+        }
+
+        function testNavigation() {
+            const inputs = Array.from(details.querySelectorAll('input[type="checkbox"],input[type="radio"]'));
+            console.log('Testing navigation between inputs...');
+            
+            inputs.forEach((input, index) => {
+                console.log(`Input ${index}: ${input.value}`);
+                console.log('  - Parent li:', input.closest('li'));
+                console.log('  - Next sibling li:', input.closest('li')?.nextElementSibling);
+                console.log('  - Previous sibling li:', input.closest('li')?.previousElementSibling);
+                
+                // Test if next sibling has input
+                let nextSibling = input.closest('li')?.nextElementSibling;
+                while (nextSibling) {
+                    const nextInput = nextSibling.querySelector('input');
+                    if (nextInput) {
+                        console.log(`  - Next input found: ${nextInput.value}`);
+                        break;
+                    }
+                    console.log(`  - Skipping sibling (no input): ${nextSibling.textContent.trim()}`);
+                    nextSibling = nextSibling.nextElementSibling;
+                }
+                if (!nextSibling) {
+                    console.log('  - No next input found (end of list)');
+                }
+                console.log('---');
+            });
+        }
+
+        // Add keyboard navigation
+        details.addEventListener('keydown', (e) => {
+            if (!details.open) return;
+
+            const activeElement = document.activeElement;
+            if (!activeElement || !['checkbox', 'radio'].includes(activeElement.type)) {
+                return;
+            }
+
+            if (e.key === 'ArrowDown' || e.key === 'ArrowRight') {
+                e.preventDefault();
+                
+                const listElement = activeElement.closest('li');
+                console.log('ArrowDown from:', activeElement.value);
+                
+                // Find next element with input, skipping group titles
+                let nextElement = listElement?.nextElementSibling;
+                while (nextElement) {
+                    const nextInput = nextElement.querySelector('input');
+                    if (nextInput) {
+                        nextInput.focus();
+                        console.log('Focused next:', nextInput.value);
+                        return;
+                    }
+                    console.log('Skipping (no input):', nextElement.textContent.trim());
+                    nextElement = nextElement.nextElementSibling;
+                }
+                
+                console.log('Reached end - wrapping to first');
+                // Wrap to first
+                const firstInput = details.querySelector('input[type="radio"]');
+                if (firstInput) {
+                    firstInput.focus();
+                }
+            } else if (e.key === 'ArrowUp' || e.key === 'ArrowLeft') {
+                e.preventDefault();
+                
+                const listElement = activeElement.closest('li');
+                console.log('ArrowUp from:', activeElement.value);
+                
+                // Find previous element with input, skipping group titles
+                let prevElement = listElement?.previousElementSibling;
+                while (prevElement) {
+                    const prevInput = prevElement.querySelector('input');
+                    if (prevInput) {
+                        prevInput.focus();
+                        console.log('Focused previous:', prevInput.value);
+                        return;
+                    }
+                    console.log('Skipping (no input):', prevElement.textContent.trim());
+                    prevElement = prevElement.previousElementSibling;
+                }
+                
+                console.log('Reached beginning - wrapping to last');
+                // Wrap to last
+                const inputs = Array.from(details.querySelectorAll('input[type="radio"]'));
+                if (inputs.length) {
+                    inputs[inputs.length - 1].focus();
+                }
+            }
+        });
+    </script>
+</body>
+</html>

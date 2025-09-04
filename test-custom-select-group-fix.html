@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Custom Select - Option Groups Keyboard Test</title>
+    <link rel="stylesheet" href="./packages/foundations/build/styles/main.css">
+    <link rel="stylesheet" href="./packages/components/build/styles/main.css">
+    <style>
+        body {
+            padding: 2rem;
+            font-family: DB Screen Sans, sans-serif;
+        }
+        .test-container {
+            max-width: 400px;
+            margin: 0 auto;
+        }
+        .instructions {
+            background: #e3f2fd;
+            padding: 1rem;
+            border-radius: 4px;
+            margin-bottom: 2rem;
+        }
+        .issue-demonstration {
+            background: #fff3e0;
+            padding: 1rem;
+            border-radius: 4px;
+            margin: 1rem 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="test-container">
+        <h1>Custom Select Keyboard Navigation Test</h1>
+        
+        <div class="instructions">
+            <h3>Instructions:</h3>
+            <ol>
+                <li>Click on the custom select below to open it</li>
+                <li>Try to navigate with Arrow Down/Up keys</li>
+                <li>Notice you can't reach "G2:Option 1" and "G2:Option 2" entries</li>
+                <li>Press Tab key - notice the same issue</li>
+            </ol>
+        </div>
+
+        <div class="issue-demonstration">
+            <h3>ISSUE: Single Select with Option Groups</h3>
+            <p>Keyboard navigation cannot reach Option Group 2 entries</p>
+            
+            <details class="db-custom-select" id="test-select">
+                <summary class="db-custom-select-summary">
+                    <input type="text" readonly placeholder="Select an option..." />
+                    <span class="db-custom-select-summary-icon"></span>
+                </summary>
+                
+                <div class="db-custom-select-dropdown">
+                    <ul class="db-custom-select-list" role="listbox">
+                        <!-- Option Group 1 Title -->
+                        <li class="db-custom-select-list-item" data-divider="true">
+                            <span>Option group 1</span>
+                        </li>
+                        
+                        <!-- Option Group 1 Items -->
+                        <li class="db-custom-select-list-item db-radio">
+                            <label>
+                                <input class="db-custom-select-list-item-checkbox" type="radio" name="test-select" value="G1:Option 1" />
+                                G1:Option 1
+                            </label>
+                        </li>
+                        
+                        <li class="db-custom-select-list-item db-radio">
+                            <label>
+                                <input class="db-custom-select-list-item-checkbox" type="radio" name="test-select" value="G1:Option 2" />
+                                G1:Option 2
+                            </label>
+                        </li>
+                        
+                        <!-- Option Group 2 Title -->
+                        <li class="db-custom-select-list-item" data-divider="true">
+                            <span>Option group 2</span>
+                        </li>
+                        
+                        <!-- Option Group 2 Items (These can't be reached via keyboard) -->
+                        <li class="db-custom-select-list-item db-radio">
+                            <label>
+                                <input class="db-custom-select-list-item-checkbox" type="radio" name="test-select" value="G2:Option 1" />
+                                G2:Option 1
+                            </label>
+                        </li>
+                        
+                        <li class="db-custom-select-list-item db-radio">
+                            <label>
+                                <input class="db-custom-select-list-item-checkbox" type="radio" name="test-select" value="G2:Option 2" />
+                                G2:Option 2
+                            </label>
+                        </li>
+                    </ul>
+                </div>
+            </details>
+        </div>
+
+        <div style="margin-top: 2rem;">
+            <p><strong>Expected Behavior:</strong> Arrow keys and Tab should be able to navigate to all radio button options, including those in "Option group 2".</p>
+            <p><strong>Current Problem:</strong> Keyboard navigation stops after "G1:Option 2" and cannot reach "G2:Option 1" or "G2:Option 2".</p>
+        </div>
+    </div>
+
+    <script>
+        // Simulate basic functionality for testing
+        const details = document.getElementById('test-select');
+        const inputs = details.querySelectorAll('input[type="radio"]');
+        const summary = details.querySelector('summary input');
+
+        // Handle radio button selection
+        inputs.forEach(input => {
+            input.addEventListener('change', (e) => {
+                if (e.target.checked) {
+                    summary.value = e.target.value;
+                    details.open = false;
+                }
+            });
+        });
+
+        // Handle keyboard navigation testing
+        let currentFocusIndex = -1;
+        const focusableInputs = Array.from(inputs);
+
+        details.addEventListener('keydown', (e) => {
+            if (!details.open) return;
+
+            if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
+                e.preventDefault();
+                
+                if (e.key === 'ArrowDown') {
+                    currentFocusIndex = (currentFocusIndex + 1) % focusableInputs.length;
+                } else {
+                    currentFocusIndex = currentFocusIndex <= 0 ? focusableInputs.length - 1 : currentFocusIndex - 1;
+                }
+                
+                focusableInputs[currentFocusIndex].focus();
+                console.log(`Focused on: ${focusableInputs[currentFocusIndex].value}`);
+            }
+        });
+
+        // Open dropdown on click
+        details.addEventListener('toggle', () => {
+            if (details.open) {
+                currentFocusIndex = -1;
+                // Focus first input when opened
+                if (focusableInputs.length > 0) {
+                    setTimeout(() => {
+                        focusableInputs[0].focus();
+                        currentFocusIndex = 0;
+                    }, 10);
+                }
+            }
+        });
+    </script>
+</body>
+</html>

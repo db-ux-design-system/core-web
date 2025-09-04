@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Custom Select Option Groups Test</title>
+    <link rel="stylesheet" href="packages/foundations/build/styles/db-ui-42.css">
+    <script type="module" src="build-outputs/wc-core-components/dist/db-ux.js"></script>
+    <style>
+        body {
+            padding: 20px;
+            font-family: Arial, sans-serif;
+        }
+        .test-container {
+            max-width: 400px;
+            margin: 20px 0;
+        }
+        .info {
+            background: #e3f2fd;
+            padding: 15px;
+            border-radius: 4px;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Custom Select Option Groups Keyboard Navigation Test</h1>
+    
+    <div class="info">
+        <strong>Test Instructions:</strong>
+        <ol>
+            <li>Click on the custom select below to open it</li>
+            <li>Use Arrow Down keys to navigate through options</li>
+            <li>Verify you can reach "G2:Option 1" and "G2:Option 2" (options in Option group 2)</li>
+            <li>Use Arrow Up keys to navigate backwards</li>
+            <li>Press Enter or Space to select an option</li>
+        </ol>
+        <p><strong>Before Fix:</strong> Could not navigate to Option group 2 entries</p>
+        <p><strong>After Fix:</strong> Should be able to navigate to all options including those in Option group 2</p>
+    </div>
+
+    <div class="test-container">
+        <h2>Single Select with Option Groups</h2>
+        <db-custom-select 
+            id="single-select-test" 
+            label="Test Single Select"
+            placeholder="Select an option">
+        </db-custom-select>
+    </div>
+
+    <div class="test-container">
+        <h2>Multi Select with Option Groups (Reference)</h2>
+        <db-custom-select 
+            id="multi-select-test" 
+            label="Test Multi Select"
+            placeholder="Select options"
+            multiple="true">
+        </db-custom-select>
+    </div>
+
+    <script>
+        // Define option groups with the same structure as the issue example
+        const testOptions = [
+            {
+                label: "Option group 1",
+                isGroupTitle: true
+            },
+            {
+                value: "G1:Option 1",
+                label: "G1:Option 1"
+            },
+            {
+                value: "G1:Option 2", 
+                label: "G1:Option 2"
+            },
+            {
+                label: "Option group 2",
+                isGroupTitle: true
+            },
+            {
+                value: "G2:Option 1",
+                label: "G2:Option 1"
+            },
+            {
+                value: "G2:Option 2",
+                label: "G2:Option 2"
+            }
+        ];
+
+        // Wait for web components to be defined
+        customElements.whenDefined('db-custom-select').then(() => {
+            const singleSelect = document.getElementById('single-select-test');
+            const multiSelect = document.getElementById('multi-select-test');
+            
+            singleSelect.options = testOptions;
+            multiSelect.options = testOptions;
+
+            // Add event listeners to show selections
+            singleSelect.addEventListener('optionSelected', (event) => {
+                console.log('Single select option selected:', event.detail);
+            });
+
+            multiSelect.addEventListener('optionSelected', (event) => {
+                console.log('Multi select options selected:', event.detail);
+            });
+        });
+    </script>
+</body>
+</html>
