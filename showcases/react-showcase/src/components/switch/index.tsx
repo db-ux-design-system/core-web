@@ -20,7 +20,13 @@ const getSwitch = ({
 	icon,
 	iconTrailing,
 	required,
-	showRequiredAsterisk
+	showRequiredAsterisk,
+	validation,
+	invalidMessage,
+	validMessage,
+	message,
+	messageIcon,
+	showMessage
 }: DBSwitchProps) => (
 	<>
 		<DBSwitch
@@ -33,7 +39,13 @@ const getSwitch = ({
 			emphasis={emphasis}
 			icon={icon}
 			iconTrailing={iconTrailing}
-			required={required}>
+			required={required}
+			validation={validation}
+			invalidMessage={invalidMessage}
+			validMessage={validMessage}
+			message={message}
+			messageIcon={messageIcon}
+			showMessage={showMessage}>
 			{children}
 		</DBSwitch>
 		{showLabel !== undefined && !showLabel && (

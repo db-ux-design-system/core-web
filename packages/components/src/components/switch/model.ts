@@ -5,8 +5,10 @@ import {
 	FocusEventProps,
 	FocusEventState,
 	FormCheckProps,
+	FormMessageProps,
 	FormProps,
 	FormState,
+	FromValidState,
 	GlobalProps,
 	GlobalState,
 	IconLeadingProps,
@@ -28,6 +30,7 @@ export type DBSwitchProps = DBSwitchDefaultProps &
 	FocusEventProps<HTMLInputElement> &
 	FormProps &
 	FormCheckProps &
+	FormMessageProps &
 	EmphasisProps &
 	SizeProps &
 	IconProps &
@@ -40,4 +43,7 @@ export type DBSwitchState = DBSwitchDefaultState &
 	GlobalState &
 	ChangeEventState<HTMLInputElement> &
 	FocusEventState<HTMLInputElement> &
-	FormState;
+	FormState &
+	FromValidState & {
+		getAriaDescribedBy: () => string | undefined;
+	};

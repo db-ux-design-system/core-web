@@ -203,5 +203,31 @@
 				}
 			}
 		]
+	},
+	{
+		"name": "Validation",
+		"examples": [
+			{
+				"name": "(Default) No validation",
+				"props": {}
+			},
+			{
+				"name": "Invalid",
+				"props": {
+					"validation": "invalid",
+					"invalidMessage": "Invalid Message",
+					"required": true
+				}
+			},
+			{
+				"name": "Valid",
+				"props": {
+					"validation": "valid",
+					"validMessage": "Valid message",
+					"checked": true,
+					"required": true
+				}
+			}
+		]
 	}
 ]
