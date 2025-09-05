@@ -24,7 +24,7 @@ jobs:
 
       - name: 🗑️ Clean all preview pages
         id: cleanup
-        uses: actions/github-script@v7
+        uses: actions/github-script@v8
         with:
           result-encoding: json
           script: |
