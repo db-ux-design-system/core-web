@@ -7,6 +7,34 @@ We try to support those IDEs:
 
 Most use cases of the Design System might work in other IDEs as well.
 
+## Figma Integration
+
+For enhanced design-development workflow, we support Figma integration through official Figma tools.
+
+### VS Code Figma Extension
+
+1. Install [the Figma VS Code extension](https://marketplace.visualstudio.com/items?itemName=figma.figma-vscode-extension) (included in our recommended extensions).
+2. The extension is automatically configured in our `.vscode/settings.json` with:
+   - Code Connect integration enabled
+   - Inline comments display enabled
+
+### Figma Code Connect
+
+We use [Figma Code Connect](https://github.com/figma/code-connect) to link our components with Figma designs. This provides:
+
+- Direct code examples in Figma
+- Design-code synchronization
+- Enhanced designer-developer collaboration
+
+Available commands:
+```bash
+npm run figma:connect:publish  # Publish component connections
+npm run figma:connect:build    # Build connections locally
+npm run figma:connect:help     # Show help
+```
+
+> **Note:** Figma Code Connect requires proper Figma organization access and configuration. See our [Figma Solutions Research](/docs/research/figma-solutions.md) for detailed setup instructions.
+
 ## Autocomplete for CSS classes and CSS Custom Properties (Variables)
 
 You can enable auto-complete of CSS classes (like e.g. `db-color-cyan`) for `HTML` or `JSX` and CSS Custom Properties (like e.g. `var(--db-bg-basic-level-1-default)`) in `.css` or `.scss` files by including `@db-ux/core-foundations/build/ide`.

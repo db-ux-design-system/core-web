@@ -9,6 +9,7 @@
 		"esbenp.prettier-vscode",
 		"stylelint.vscode-stylelint",
 		"gruntfuggly.todo-tree",
-		"kravets.vscode-publint"
+		"kravets.vscode-publint",
+		"figma.figma-vscode-extension"
 	]
 }
