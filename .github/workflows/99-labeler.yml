@@ -1,5 +1,9 @@
 ---
 name: "Pull Request Labeler"
+
+permissions:
+  contents: read
+
 on:
   workflow_call:
 

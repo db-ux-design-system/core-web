@@ -1,5 +1,9 @@
 ---
 name: "Dependency Review"
+
+permissions:
+  contents: read
+
 on:
   workflow_call:
 
