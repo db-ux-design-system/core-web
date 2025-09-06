@@ -79,6 +79,7 @@ export type DBDrawerProps = DBDrawerDefaultProps &
 
 export type DBDrawerDefaultState = {
 	handleDialogOpen: () => void;
+	globalKeyHandler: ((event: KeyboardEvent) => void) | null;
 };
 
 export type DBDrawerState = DBDrawerDefaultState &
