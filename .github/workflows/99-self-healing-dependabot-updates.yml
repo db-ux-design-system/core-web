@@ -33,7 +33,7 @@ jobs:
 
       - name: 🆙 Set up Node.js
         if: env.stylelint_update == 'true' || env.prettier_update == 'true'
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v5
         with:
           node-version-file: ".nvmrc"
 
