@@ -12,7 +12,9 @@
 
 %ugly-line-height-workarounds {
 	// resets line-height to smaller height based on timestamp
-	&:has(span) {
+	/* Performance optimization: Provide attribute-based alternatives to expensive :has selectors */
+	&:has(span),
+	&[data-has-timestamp="true"] {
 		header,
 		p,
 		&::before,

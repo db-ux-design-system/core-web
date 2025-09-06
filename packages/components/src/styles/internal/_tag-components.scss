@@ -86,7 +86,9 @@ $interactive-selectors: "label, button:not(.db-tab-remove-button), a";
 
 // get button and link tags
 @mixin get-interactive-selectors() {
+	/* Performance optimization: Provide attribute-based alternatives to expensive :has selectors */
 	&:not(:has(dbbutton)) button:not(.db-tab-remove-button),
+	&:not([data-has-dbbutton="true"]) button:not(.db-tab-remove-button),
 	dbbutton:not(.db-tab-remove-button) > button,
 	db-button > button,
 	a {
@@ -137,16 +139,22 @@ $interactive-selectors: "label, button:not(.db-tab-remove-button), a";
 			@extend %set-interactive-weak;
 		}
 
-		label:has(input) {
+		/* Performance optimization: Provide attribute-based alternatives to expensive :has selectors */
+		label:has(input),
+		label[data-has-input="true"] {
 			@extend %set-interactive-weak;
 		}
 
-		label:has(input[type="checkbox"]:checked) {
+		/* Performance optimization: Provide attribute-based alternatives to expensive :has selectors */
+		label:has(input[type="checkbox"]:checked),
+		label[data-checkbox-checked="true"] {
 			@extend %set-interactive-strong;
 		}
 
 		// radio (checked) without hover/pressed
-		label:has(input[type="radio"]:checked) {
+		/* Performance optimization: Provide attribute-based alternatives to expensive :has selectors */
+		label:has(input[type="radio"]:checked),
+		label[data-radio-checked="true"] {
 			&,
 			&:is(:hover, :focus, :active) {
 				@include get-strong;
@@ -162,15 +170,21 @@ $interactive-selectors: "label, button:not(.db-tab-remove-button), a";
 			@extend %set-interactive-strong;
 		}
 
-		label:has(input[type="checkbox"]:checked) {
+		/* Performance optimization: Provide attribute-based alternatives to expensive :has selectors */
+		label:has(input[type="checkbox"]:checked),
+		label[data-checkbox-checked="true"] {
 			@extend %set-interactive-strong;
 		}
 
-		label:has(input[type="radio"]:checked) {
+		/* Performance optimization: Provide attribute-based alternatives to expensive :has selectors */
+		label:has(input[type="radio"]:checked),
+		label[data-radio-checked="true"] {
 			@include get-strong;
 		}
 
-		&:has(input):not(:has(input:checked)) {
+		/* Performance optimization: Provide attribute-based alternatives to expensive :has selectors */
+		&:has(input):not(:has(input:checked)),
+		&[data-has-input="true"]:not([data-input-checked="true"]) {
 			@extend %set-interactive-weak;
 		}
 	}

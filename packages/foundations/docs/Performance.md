@@ -2,6 +2,57 @@
 
 If you need to improve the performance of your application, you can use the following tips:
 
+## CSS Selector Performance
+
+To optimize rendering performance, we've optimized expensive CSS selectors in the design system. However, for best performance, consider these approaches:
+
+### Use Data Attributes Instead of :has() Selectors
+
+The `:has()` selector is powerful but can be expensive for performance. We provide data attribute alternatives:
+
+```css
+/* Expensive :has() selector */
+.tag:has(input:checked) { ... }
+
+/* Performance-optimized alternative */
+.tag[data-checked="true"] { ... }
+```
+
+### Available Performance-Optimized Attributes
+
+For components that support it, you can use these data attributes for better performance:
+
+**Tag Components:**
+- `data-checked="true"` - Instead of `:has(input:checked)`
+- `data-has-input="true"` - Instead of `:has(input)`
+- `data-checkbox-checked="true"` - Instead of `:has(input[type="checkbox"]:checked)`
+- `data-radio-checked="true"` - Instead of `:has(input[type="radio"]:checked)`
+- `data-input-checked="true"` - Instead of `:has(input:checked)` for parent containers
+- `data-has-dbbutton="true"` - Instead of `:has(dbbutton)`
+
+**Form Components:**
+- `data-valid="true"` / `data-invalid="true"` - Instead of complex form validation selectors
+
+**Notification Components:**
+- `data-has-timestamp="true"` - Instead of `:has(span)` for timestamp detection
+- `data-has-button="true"` - Instead of `:has(.db-button)`
+- `data-has-header="true"` - Instead of `:has(header)`
+- `data-has-image="true"` - Instead of `:has(img)`
+
+### Implementation
+
+Set these attributes programmatically based on your component state:
+
+```javascript
+// Example: Update tag component state
+const tagElement = document.querySelector('.tag');
+const input = tagElement.querySelector('input');
+
+input.addEventListener('change', () => {
+  tagElement.setAttribute('data-checked', input.checked.toString());
+});
+```
+
 ## Minify with PurgeCSS and CSSO
 
 When you use the full bundled `.css` file we provide, you could easily reduce the file size by removing unused CSS classes. This can be done with [PurgeCSS](https://purgecss.com/) and [CSSO](https://github.com/css/csso).

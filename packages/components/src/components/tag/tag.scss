@@ -99,8 +99,8 @@
 
 			@include icons.set-icon("circle", "after");
 
-			/* TODO: maybe we could get rid of an expensive :has selector by defining this icon on the input itself */
-			&:has(input:checked) {
+			/* Performance optimization: Use attribute selector instead of expensive :has selector */
+			&[data-checked="true"]::after {
 				@include icons.set-icon("check_circle", "after");
 			}
 		}
@@ -115,7 +115,8 @@
 		align-items: center;
 
 		@media (forced-colors: active) {
-			&:not(:has(input:checked)) {
+			/* Performance optimization: Use attribute selector instead of expensive :has selector */
+			&:not([data-checked="true"]) {
 				border-style: dashed;
 			}
 		}
@@ -124,7 +125,8 @@
 			@include fonts.set-component-variables("xs");
 		}
 
-		&:has(input:checked) {
+		/* Performance optimization: Use attribute selector instead of expensive :has selector */
+		&[data-checked="true"] {
 			border-width: variables.$db-border-width-3xs;
 
 			&::before {
