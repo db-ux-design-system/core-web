@@ -222,7 +222,7 @@ export const getComponents = (): Component[] => [
 					to:
 						'ngAfterViewInit() {\n' +
 						'\tif ((this.variant() === "floating" || !!this.placeholder()) && !this.value()) {\n' +
-						'\t\tthis.writeValue(this.options()[0]?.value ?? "");\n' +
+						'\t\tthis.writeValue(this.options()?.[0]?.value ?? "");\n' +
 						'\t}\n'
 				}
 			],
