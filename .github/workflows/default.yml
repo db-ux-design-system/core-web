@@ -191,11 +191,9 @@ jobs:
 
   regenerate-snapshots:
     if: |
-      always() && (
-        needs.test-showcase-angular.result == 'failure' ||
-        needs.test-showcase-react.result == 'failure' ||
-        needs.test-showcase-vue.result == 'failure'
-      )
+      needs.test-showcase-angular.result == 'failure' ||
+      needs.test-showcase-react.result == 'failure' ||
+      needs.test-showcase-vue.result == 'failure'
     uses: ./.github/workflows/02-e2e-regenerate.yml
     with:
       version: ${{ needs.get-playwright-version.outputs.version }}
@@ -212,12 +210,10 @@ jobs:
     uses: ./.github/workflows/02-e2e-regenerated-snapshots-commit.yml
     secrets: inherit
     if: |
-      always() && (
-        needs.regenerate-snapshots-components.result == 'success' ||
-        needs.regenerate-snapshots-foundations.result == 'success' ||
-        needs.regenerate-snapshots-patternhub.result == 'success' ||
-        needs.regenerate-snapshots.result == 'success'
-      )
+      needs.regenerate-snapshots-components.result == 'success' ||
+      needs.regenerate-snapshots-foundations.result == 'success' ||
+      needs.regenerate-snapshots-patternhub.result == 'success' ||
+      needs.regenerate-snapshots.result == 'success'
     needs:
       [
         regenerate-snapshots-components,
