@@ -47,7 +47,17 @@ If dependencies are not updated automatically, packages can outdated and provide
 - Get replacement PRs to migrate from a deprecated dependency to the community suggested replacement (npm packages only)
 - Open source (installable via npm/Yarn or Docker Hub) so can be self-hosted or used via GitHub App
 
+## Additional Automation
+
+While dependabot handles npm package dependencies effectively, it cannot update certain version definitions:
+
+- **Node.js version in `.nvmrc`**: Updated via custom workflow using `update-nvmrc-action`
+- **npm version in `packageManager` field**: Updated via custom workflow with npm registry checks
+
+These additional workflows complement dependabot's dependency management and ensure all version definitions stay current.
+
 ## Links
 
 - [Dependabot](https://github.com/dependabot)
 - [Renovate](https://github.com/renovatebot/renovate)
+- [Automated Version Updates Documentation](../automated-version-updates.md)
