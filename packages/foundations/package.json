@@ -15,6 +15,12 @@
     "assets",
     "build"
   ],
+  "exports": {
+    ".": {
+      "types": "./build/index.d.ts",
+      "default": "./build/index.js"
+    }
+  },
   "scripts": {
     "build": "npm-run-all build:*",
     "build:01_normalize": "npm-run-all copy-prepare:*",
