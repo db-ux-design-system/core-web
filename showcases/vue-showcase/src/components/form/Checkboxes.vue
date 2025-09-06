@@ -5,6 +5,7 @@ import FormWrapper from "./FormWrapper.vue";
 
 const plain = ref(true);
 const vModel = ref(true);
+const standardVModel = ref(false);
 </script>
 
 <template>
@@ -16,8 +17,11 @@ const vModel = ref(true);
 		>
 			Plain
 		</DBCheckbox>
-		<DBCheckbox name="checkbox-1" v-model:checked="vModel">
-			VModel
+		<DBCheckbox name="checkbox-2" v-model:checked="vModel">
+			VModel:checked
+		</DBCheckbox>
+		<DBCheckbox name="checkbox-3" v-model="standardVModel">
+			Standard v-model: {{ standardVModel }}
 		</DBCheckbox>
 	</FormWrapper>
 </template>

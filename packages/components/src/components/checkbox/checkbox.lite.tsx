@@ -27,7 +27,8 @@ import {
 } from '../../utils';
 import {
 	handleFrameworkEventAngular,
-	handleFrameworkEventVue
+	handleFrameworkEventVue,
+	handleFrameworkEventVueCheckbox
 } from '../../utils/form-components';
 import DBInfotext from '../infotext/infotext.lite';
 import { DBCheckboxProps, DBCheckboxState } from './model';
@@ -55,6 +56,10 @@ export default function DBCheckbox(props: DBCheckboxProps) {
 		_invalidMessage: undefined,
 		_descByIds: undefined,
 		_voiceOverFallback: '',
+		// Get the effective checked value from props.checked or props.modelValue
+		getEffectiveChecked: () => {
+			return props.checked !== undefined ? props.checked : props.modelValue;
+		},
 		hasValidState: () => {
 			return !!(props.validMessage ?? props.validation === 'valid');
 		},
@@ -95,7 +100,7 @@ export default function DBCheckbox(props: DBCheckboxProps) {
 			useTarget({
 				angular: () =>
 					handleFrameworkEventAngular(state, event, 'checked'),
-				vue: () => handleFrameworkEventVue(() => {}, event, 'checked')
+				vue: () => handleFrameworkEventVueCheckbox(() => {}, event)
 			});
 			state.handleValidation();
 		},
@@ -170,13 +175,14 @@ export default function DBCheckbox(props: DBCheckboxProps) {
 	onUpdate(() => {
 		if (state.initialized && _ref) {
 			// in angular this must be set via native element
-			if (props.checked != undefined) {
-				_ref.checked = !!getBoolean(props.checked);
+			const effectiveChecked = state.getEffectiveChecked();
+			if (effectiveChecked != undefined) {
+				_ref.checked = !!getBoolean(effectiveChecked);
 			}
 
 			state.initialized = false;
 		}
-	}, [state.initialized, _ref, props.checked]);
+	}, [state.initialized, _ref, props.checked, props.modelValue]);
 	// jscpd:ignore-end
 
 	return (
@@ -193,7 +199,7 @@ export default function DBCheckbox(props: DBCheckboxProps) {
 					type="checkbox"
 					id={state._id}
 					name={props.name}
-					checked={getBoolean(props.checked, 'checked')}
+					checked={getBoolean(state.getEffectiveChecked(), 'checked')}
 					disabled={getBoolean(props.disabled, 'disabled')}
 					value={props.value}
 					required={getBoolean(props.required, 'required')}

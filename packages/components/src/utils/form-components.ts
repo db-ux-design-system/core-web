@@ -17,3 +17,13 @@ export const handleFrameworkEventVue = (
 	// TODO: Replace this with the solution out of https://github.com/BuilderIO/mitosis/issues/833 after this has been "solved"
 	emit(`update:${modelValue}`, event.target[modelValue]);
 };
+
+export const handleFrameworkEventVueCheckbox = (
+	emit: (event: string, ...args: any[]) => void,
+	event: any
+): void => {
+	// Emit both update:checked for v-model:checked and update:modelValue for v-model
+	const value = event.target.checked;
+	emit('update:checked', value);
+	emit('update:modelValue', value);
+};
