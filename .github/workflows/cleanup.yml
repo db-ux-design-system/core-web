@@ -1,6 +1,9 @@
 ---
 name: Cleans all preview pages for gh-pages
 
+permissions:
+  contents: read
+
 on:
   schedule:
     - cron: "0 0 * * *"

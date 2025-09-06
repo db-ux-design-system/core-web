@@ -1,5 +1,9 @@
 ---
 name: Dependabot auto-merge
+
+permissions:
+  contents: read
+
 on:
   workflow_call:
 
