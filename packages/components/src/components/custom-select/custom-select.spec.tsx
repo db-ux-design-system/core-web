@@ -39,6 +39,21 @@ const selectAllSelect: any = (
 		placeholder="Placeholder"></DBCustomSelect>
 );
 
+const optionGroupsComp: any = (
+	<DBCustomSelect
+		options={[
+			{ label: 'Option group 1', isGroupTitle: true },
+			{ value: 'G1:Option 1' },
+			{ value: 'G1:Option 2' },
+			{ label: 'Option group 2', isGroupTitle: true },
+			{ value: 'G2:Option 1' },
+			{ value: 'G2:Option 2' }
+		]}
+		label="Test Option Groups"
+		placeholder="Placeholder"
+	/>
+);
+
 const testComponent = () => {
 	test('should contain text', async ({ mount }) => {
 		const component = await mount(comp);
@@ -59,6 +74,14 @@ const testA11y = () => {
 	});
 	test('should not have any A11y issues', async ({ page, mount }) => {
 		await mount(comp);
+		const accessibilityScanResults = await new AxeBuilder({ page })
+			.include('.db-custom-select')
+			.analyze();
+
+		expect(accessibilityScanResults.violations).toEqual([]);
+	});
+	test('option groups should be accessible', async ({ page, mount }) => {
+		await mount(optionGroupsComp);
 		const accessibilityScanResults = await new AxeBuilder({ page })
 			.include('.db-custom-select')
 			.analyze();
@@ -140,7 +163,53 @@ const testAction = () => {
 		await page.keyboard.press('Escape');
 		await expect(summary).toContainText('Option 1');
 	});
+
+	test('option groups keyboard navigation: should navigate between option groups correctly', async ({ page, mount }) => {
+		const component = await mount(optionGroupsComp);
+		
+		// Open the dropdown and focus first option
+		await page.keyboard.press('Tab');
+		await page.keyboard.press('ArrowDown');
+		await page.waitForTimeout(1000); // wait for focus to apply
+		
+		// Should be focused on G1:Option 1
+		const focused1 = await page.evaluate(() => (document.activeElement as HTMLInputElement)?.value);
+		expect(focused1).toBe('G1:Option 1');
+		
+		// Navigate to G1:Option 2
+		await page.keyboard.press('ArrowDown');
+		await page.waitForTimeout(100);
+		const focused2 = await page.evaluate(() => (document.activeElement as HTMLInputElement)?.value);
+		expect(focused2).toBe('G1:Option 2');
+		
+		// CRITICAL TEST: Navigate from G1:Option 2 to G2:Option 1
+		// This should skip the "Option group 2" title and focus on G2:Option 1
+		// This is the core issue that was fixed in #4920
+		await page.keyboard.press('ArrowDown');
+		await page.waitForTimeout(100);
+		const focused3 = await page.evaluate(() => (document.activeElement as HTMLInputElement)?.value);
+		expect(focused3).toBe('G2:Option 1'); // This was previously broken
+		
+		// Continue to G2:Option 2
+		await page.keyboard.press('ArrowDown');
+		await page.waitForTimeout(100);
+		const focused4 = await page.evaluate(() => (document.activeElement as HTMLInputElement)?.value);
+		expect(focused4).toBe('G2:Option 2');
+		
+		// Test reverse navigation
+		await page.keyboard.press('ArrowUp');
+		await page.waitForTimeout(100);
+		const focused5 = await page.evaluate(() => (document.activeElement as HTMLInputElement)?.value);
+		expect(focused5).toBe('G2:Option 1');
+		
+		await page.keyboard.press('ArrowUp');
+		await page.waitForTimeout(100);
+		const focused6 = await page.evaluate(() => (document.activeElement as HTMLInputElement)?.value);
+		expect(focused6).toBe('G1:Option 2');
+	});
 };
+
+
 
 test.describe('DBCustomSelect', () => {
 	test.use({ viewport: DEFAULT_VIEWPORT });
