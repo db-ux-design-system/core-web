@@ -1,12 +1,24 @@
 @use "@db-ux/core-foundations/build/styles/variables";
 @use "@db-ux/core-foundations/build/styles/colors";
 
-pre:has(.hljs):not(:has(.language-shell)) {
-	@extend %db-neutral-bg-basic-transparent-full;
-
-	.hljs {
+// Ensure consistent styling for all code blocks
+pre {
+	// Apply monospace font family to all pre elements
+	font-family: monospace;
+	
+	// Ensure all pre elements with hljs get consistent transparent background
+	&:has(.hljs) {
 		@extend %db-neutral-bg-basic-transparent-full;
+
+		.hljs {
+			@extend %db-neutral-bg-basic-transparent-full;
+		}
 	}
+}
+
+// Ensure all code elements have monospace font
+code {
+	font-family: monospace;
 }
 
 .hljs-doctag,
