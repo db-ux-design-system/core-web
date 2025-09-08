@@ -221,7 +221,7 @@ export const getComponents = (): Component[] => [
 					from: 'ngAfterViewInit() {',
 					to:
 						'ngAfterViewInit() {\n' +
-						'\t  this.writeValue(this.value());'
+						'  this.writeValue(this.value() ?? "");'
 				}
 			],
 			react: [
