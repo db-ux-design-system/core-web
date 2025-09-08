@@ -4,18 +4,14 @@ export const handleFrameworkEventAngular = (
 	event: any,
 	modelValue: string = 'value'
 ): void => {
-	// Change event to work with reactive and template driven forms
+	// Handle user-initiated change events for Angular forms integration
+	// According to Angular's ControlValueAccessor pattern:
+	// - propagateChange: notifies Angular forms of view → model updates (user interactions)
+	// - writeValue: should only be used for model → view updates (programmatic changes)
+	// 
+	// For user-initiated events, propagateChange is sufficient. Calling writeValue
+	// during user events can cause double change detection cycles and redundant updates.
 	component.propagateChange(event.target[modelValue]);
-	
-	// Skip writeValue for user-initiated change events on signal-based properties
-	// to prevent double event firing. The propagateChange call above is sufficient
-	// for notifying Angular forms of the change.
-	// For signal-based properties like 'checked', the component's signal will be
-	// updated through the normal Angular change detection cycle.
-	const isSignalBasedProperty = modelValue === 'checked' || modelValue === 'disabled';
-	if (!isSignalBasedProperty) {
-		component.writeValue(event.target[modelValue]);
-	}
 };
 
 export const handleFrameworkEventVue = (
