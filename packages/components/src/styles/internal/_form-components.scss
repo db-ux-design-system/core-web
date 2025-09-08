@@ -124,7 +124,7 @@ $db-min-inline-size: var(
 		&:has(
 			#{$selector}:focus-within,
 			#{$selector}:is(input, textarea):not(:placeholder-shown),
-			> select option:checked:not([hidden]),
+			> select option:checked:not(.placeholder),
 			input[type="checkbox"]:checked,
 			input[type="radio"]:checked
 		) {
