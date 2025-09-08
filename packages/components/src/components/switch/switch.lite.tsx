@@ -208,7 +208,7 @@ export default function DBSwitch(props: DBSwitchProps) {
 					{props.message}
 				</DBInfotext>
 			</Show>
-			<Show when={state.hasValidState() && props.required}>
+			<Show when={state.hasValidState()}>
 				<DBInfotext
 					id={state._validMessageId}
 					size="small"

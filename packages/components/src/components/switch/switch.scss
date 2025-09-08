@@ -36,26 +36,53 @@ $checked-active-transition-size: calc(
 @mixin switch-validity($key, $label-var, $border-var) {
 	@include form-components.get-validity("switch", $key) {
 		@include form-components.get-validity-message($key);
+
 		--db-check-element-label-color: #{$label-var};
 		--db-check-element-border-color: #{$border-var};
-		> input { border-color: var(--db-check-element-border-color); }
+
+		> input {
+			@if $key == "valid" {
+				border-color: colors.$db-successful-on-bg-basic-emphasis-70-default;
+			} @else if $key == "invalid" {
+				border-color: colors.$db-critical-on-bg-basic-emphasis-70-default;
+			}
+		}
+
 		> input:not(:checked)::before {
 			background-color: var(--db-check-element-border-color);
 			color: var(--db-check-element-border-color);
 		}
+
 		> input:checked {
 			background-color: var(--db-check-element-border-color);
-			border-color: var(--db-check-element-border-color);
+
+			@if $key == "valid" {
+				border-color: colors.$db-successful-on-bg-basic-emphasis-70-default;
+			} @else if $key == "invalid" {
+				border-color: colors.$db-critical-on-bg-basic-emphasis-70-default;
+			}
 
 			@include helpers.hover {
 				background-color: var(--db-check-element-border-color);
-				border-color: var(--db-check-element-border-color);
+
+				@if $key == "valid" {
+					border-color: colors.$db-successful-on-bg-basic-emphasis-70-default;
+				} @else if $key == "invalid" {
+					border-color: colors.$db-critical-on-bg-basic-emphasis-70-default;
+				}
 			}
+
 			@include helpers.active {
 				background-color: var(--db-check-element-border-color);
-				border-color: var(--db-check-element-border-color);
+
+				@if $key == "valid" {
+					border-color: colors.$db-successful-on-bg-basic-emphasis-70-default;
+				} @else if $key == "invalid" {
+					border-color: colors.$db-critical-on-bg-basic-emphasis-70-default;
+				}
 			}
 		}
+
 		> input:checked::before {
 			@if $key == "valid" {
 				background-color: colors.$db-successful-on-bg-inverted-default;
@@ -285,8 +312,12 @@ $checked-active-transition-size: calc(
 	}
 
 	/* Set variables */
-	&[data-custom-validity="valid"] { --db-switch-label-color: #{colors.$db-successful-on-bg-basic-emphasis-70-default}; }
-	&[data-custom-validity="invalid"] { --db-switch-label-color: #{colors.$db-critical-on-bg-basic-emphasis-70-default}; }
+	&[data-custom-validity="valid"] {
+		--db-switch-label-color: #{colors.$db-successful-on-bg-basic-emphasis-70-default};
+	}
+	&[data-custom-validity="invalid"] {
+		--db-switch-label-color: #{colors.$db-critical-on-bg-basic-emphasis-70-default};
+	}
 
 	/* Set color for label */
 	> .db-switch-label,
@@ -296,25 +327,28 @@ $checked-active-transition-size: calc(
 
 	/* Set color for helper message */
 	&::after {
-		color: var(--db-switch-label-color, var(--db-check-element-label-color, inherit));
+		color: var(
+			--db-switch-label-color,
+			var(--db-check-element-label-color, inherit)
+		);
 	}
 
 	/* Put infotext below switch */
 	& :is(.db-infotext, db-infotext) {
 		order: 2;
 		flex: 0 0 100%;
-		margin-top: variables.$db-spacing-fixed-2xs;
+		margin-block-start: variables.$db-spacing-fixed-2xs;
 	}
 
 	@include switch-validity(
-			"valid",
-			var(--db-successful-on-bg-basic-emphasis-100-default),
-			var(--db-successful-on-bg-basic-emphasis-70-default)
+		"valid",
+		var(--db-successful-on-bg-basic-emphasis-100-default),
+		var(--db-successful-on-bg-basic-emphasis-70-default)
 	);
 	@include switch-validity(
-			"invalid",
-			var(--db-critical-on-bg-basic-emphasis-100-default),
-			var(--db-critical-on-bg-basic-emphasis-70-default)
+		"invalid",
+		var(--db-critical-on-bg-basic-emphasis-100-default),
+		var(--db-critical-on-bg-basic-emphasis-70-default)
 	);
 
 	/* Label position (leading/trailing) */
@@ -323,13 +357,15 @@ $checked-active-transition-size: calc(
 			margin-inline-end: variables.$db-spacing-fixed-xs;
 		}
 	}
+
 	&[data-label-position="leading"] {
 		> .db-switch-label {
 			order: -1;
 			margin-inline-end: variables.$db-spacing-fixed-xs;
 		}
+
 		> input {
-		   margin-inline-end: 0;
+			margin-inline-end: 0;
 		}
 	}
 
@@ -343,6 +379,7 @@ $checked-active-transition-size: calc(
 				background-color: colors.$db-successful-on-bg-basic-emphasis-70-default;
 				border-color: colors.$db-successful-on-bg-basic-emphasis-70-default;
 			}
+
 			@include helpers.active {
 				background-color: colors.$db-successful-on-bg-basic-emphasis-70-default;
 				border-color: colors.$db-successful-on-bg-basic-emphasis-70-default;

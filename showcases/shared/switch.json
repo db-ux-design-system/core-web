@@ -253,8 +253,7 @@
 				"name": "Invalid",
 				"props": {
 					"validation": "invalid",
-					"invalidMessage": "Invalid Message",
-					"required": true
+					"invalidMessage": "Invalid Message"
 				}
 			},
 			{
@@ -262,8 +261,7 @@
 				"props": {
 					"validation": "valid",
 					"validMessage": "Valid message",
-					"checked": true,
-					"required": true
+					"checked": true
 				}
 			}
 		]
