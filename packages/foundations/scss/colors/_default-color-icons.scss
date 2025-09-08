@@ -1,29 +1,29 @@
 @mixin get-color-icons-light {
 	--db-textarea-resizer-image: svg-load(
-		"layout/resize_handle_corner_20.svg",
+		"resize_handle_corner.svg",
 		fill=#282d37
 	);
 	--db-textarea-scrollbar-button-decrement: svg-load(
-		"arrows/chevron_up_20.svg",
+		"chevron_up.svg",
 		fill=#282d37
 	);
 	--db-textarea-scrollbar-button-increment: svg-load(
-		"arrows/chevron_down_20.svg",
+		"chevron_down.svg",
 		fill=#282d37
 	);
 }
 
 @mixin get-color-icons-dark {
 	--db-textarea-resizer-image: svg-load(
-		"layout/resize_handle_corner_20.svg",
+		"resize_handle_corner.svg",
 		fill=#f8f8f9
 	);
 	--db-textarea-scrollbar-button-decrement: svg-load(
-		"arrows/chevron_up_20.svg",
+		"chevron_up.svg",
 		fill=#f8f8f9
 	);
 	--db-textarea-scrollbar-button-increment: svg-load(
-		"arrows/chevron_down_20.svg",
+		"chevron_down.svg",
 		fill=#f8f8f9
 	);
 }
