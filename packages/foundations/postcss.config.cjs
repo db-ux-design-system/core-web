@@ -2,9 +2,8 @@ module.exports = {
 	plugins: [
 		require('postcss-inline-svg')({
 			paths: [
-				'./assets/icons/ui',
-				'../../assets/icons/ui',
-				'/home/runner/work/core-web/core-web/packages/foundations/assets/icons/ui'
+				'../../node_modules/@db-ux/db-theme-icons/build/assets/',
+				'../../node_modules/@db-ux-inner-source/db-theme-icons/build/assets/'
 			]
 		}),
 		require('cssnano')({
