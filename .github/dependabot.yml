@@ -102,12 +102,10 @@ updates:
           - "tsx"
           - "tslib"
       
-      # Commit and git tooling
+      # Commitlint
       commitlint:
         patterns:
           - "@commitlint*"
-          - "husky"
-          - "lint-staged"
       
       # Other grouped dependencies
       builder.io:
