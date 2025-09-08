@@ -1,6 +1,5 @@
 @use "@db-ux/core-foundations/build/styles/variables";
 @use "@db-ux/core-foundations/build/styles/colors";
-@use "@db-ux/core-foundations/build/styles/fonts";
 @use "@db-ux/core-foundations/build/styles/helpers";
 @use "@db-ux/core-foundations/build/styles/icons";
 @use "../../styles/internal/form-components";
@@ -33,12 +32,17 @@ $checked-active-transition-size: calc(
 }
 
 // TODO: Move to e.g. form-components
-@mixin switch-validity($key, $label-var, $border-var) {
+@mixin switch-validity($key) {
 	@include form-components.get-validity("switch", $key) {
 		@include form-components.get-validity-message($key);
 
-		--db-check-element-label-color: #{$label-var};
-		--db-check-element-border-color: #{$border-var};
+		@if $key == "valid" {
+			--db-check-element-label-color: #{colors.$db-successful-on-bg-basic-emphasis-100-default};
+			--db-check-element-border-color: #{colors.$db-successful-on-bg-basic-emphasis-70-default};
+		} @else if $key == "invalid" {
+			--db-check-element-label-color: #{colors.$db-critical-on-bg-basic-emphasis-100-default};
+			--db-check-element-border-color: #{colors.$db-critical-on-bg-basic-emphasis-70-default};
+		}
 
 		> input {
 			@if $key == "valid" {
@@ -315,6 +319,7 @@ $checked-active-transition-size: calc(
 	&[data-custom-validity="valid"] {
 		--db-switch-label-color: #{colors.$db-successful-on-bg-basic-emphasis-70-default};
 	}
+
 	&[data-custom-validity="invalid"] {
 		--db-switch-label-color: #{colors.$db-critical-on-bg-basic-emphasis-70-default};
 	}
@@ -340,16 +345,8 @@ $checked-active-transition-size: calc(
 		margin-block-start: variables.$db-spacing-fixed-2xs;
 	}
 
-	@include switch-validity(
-		"valid",
-		var(--db-successful-on-bg-basic-emphasis-100-default),
-		var(--db-successful-on-bg-basic-emphasis-70-default)
-	);
-	@include switch-validity(
-		"invalid",
-		var(--db-critical-on-bg-basic-emphasis-100-default),
-		var(--db-critical-on-bg-basic-emphasis-70-default)
-	);
+	@include switch-validity("valid");
+	@include switch-validity("invalid");
 
 	/* Label position (leading/trailing) */
 	&[data-label-position="trailing"] {
