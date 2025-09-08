@@ -169,12 +169,16 @@ export default function DBSwitch(props: DBSwitchProps) {
 				id={state._id}
 				type="checkbox"
 				role="switch"
+				aria-checked={
+					getBoolean(props.checked, 'checked') ? 'true' : 'false'
+				}
 				ref={_ref}
 				checked={getBoolean(props.checked, 'checked')}
 				value={props.value}
 				disabled={getBoolean(props.disabled, 'disabled')}
-				aria-invalid={props.validation === 'invalid'}
-				data-custom-validity={props.validation}
+				aria-invalid={
+					props.validation === 'invalid' ? 'true' : undefined
+				}
 				aria-describedby={state.getAriaDescribedBy()}
 				name={props.name}
 				required={getBoolean(props.required, 'required')}

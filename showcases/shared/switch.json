@@ -158,14 +158,7 @@
 				}
 			},
 			{
-				"name": "Accent unchecked",
-				"props": {
-					"label": "Accent switch",
-					"accent": true
-				}
-			},
-			{
-				"name": "Accent checked",
+				"name": "True (checked)",
 				"props": {
 					"label": "Accent switch checked",
 					"accent": true,
