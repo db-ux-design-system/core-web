@@ -301,7 +301,7 @@ $checked-active-transition-size: calc(
 
 	/* Put infotext below switch */
 	& :is(.db-infotext, db-infotext) {
-		order: 1;
+		order: 2;
 		flex: 0 0 100%;
 		margin-top: variables.$db-spacing-fixed-2xs;
 	}
@@ -316,4 +316,17 @@ $checked-active-transition-size: calc(
 			var(--db-critical-on-bg-basic-emphasis-100-default),
 			var(--db-critical-on-bg-basic-emphasis-70-default)
 	);
+
+	/* Label position (leading/trailing) */
+	&[data-label-position="trailing"] {
+		> input {
+			margin-inline-end: variables.$db-spacing-fixed-xs;
+		}
+	}
+	&[data-label-position="leading"] {
+		> .db-switch-label {
+			order: -1;
+			margin-inline-end: variables.$db-spacing-fixed-xs;
+		}
+	}
 }

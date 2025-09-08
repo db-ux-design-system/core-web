@@ -130,6 +130,24 @@
 		]
 	},
 	{
+		"name": "Label Position",
+		"examples": [
+			{
+				"name": "(Default) Trailing",
+				"props": {
+					"label": "Label after switch"
+				}
+			},
+			{
+				"name": "Leading",
+				"props": {
+					"label": "Label before switch",
+					"labelPosition": "leading"
+				}
+			}
+		]
+	},
+	{
 		"name": "Show Label",
 		"examples": [
 			{

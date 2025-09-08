@@ -42,7 +42,9 @@ useMetadata({
 		}
 	}
 });
-useDefaultProps<DBSwitchProps>({});
+useDefaultProps<DBSwitchProps>({
+	labelPosition: 'trailing'
+});
 
 export default function DBSwitch(props: DBSwitchProps) {
 	// This is used as forwardRef
@@ -158,6 +160,7 @@ export default function DBSwitch(props: DBSwitchProps) {
 			data-hide-label={getHideProp(props.showLabel)}
 			data-emphasis={props.emphasis}
 			htmlFor={state._id}
+			data-label-position={props.labelPosition}
 			data-hide-asterisk={getHideProp(props.showRequiredAsterisk)}
 			data-custom-validity={props.validation}
 			class={cls('db-switch', props.className)}>

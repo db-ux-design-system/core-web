@@ -26,7 +26,8 @@ const getSwitch = ({
 	validMessage,
 	message,
 	messageIcon,
-	showMessage
+	showMessage,
+	labelPosition
 }: DBSwitchProps) => (
 	<>
 		<DBSwitch
@@ -35,6 +36,7 @@ const getSwitch = ({
 			disabled={disabled}
 			showRequiredAsterisk={showRequiredAsterisk}
 			showLabel={showLabel}
+			labelPosition={labelPosition}
 			size={size}
 			emphasis={emphasis}
 			icon={icon}
