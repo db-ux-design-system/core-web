@@ -23,6 +23,10 @@ export type DBSwitchDefaultProps = {
 	 * Add additional icons to indicate active/inactive state.
 	 */
 	visualAid?: boolean | string;
+	/**
+	 * Use accent styling (same visual appearance as valid state).
+	 */
+	accent?: boolean | string;
 };
 
 export type DBSwitchProps = DBSwitchDefaultProps &

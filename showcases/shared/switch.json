@@ -148,6 +148,33 @@
 		]
 	},
 	{
+		"name": "Accent",
+		"examples": [
+			{
+				"name": "(Default) False",
+				"props": {
+					"label": "Normal switch",
+					"accent": false
+				}
+			},
+			{
+				"name": "Accent unchecked",
+				"props": {
+					"label": "Accent switch",
+					"accent": true
+				}
+			},
+			{
+				"name": "Accent checked",
+				"props": {
+					"label": "Accent switch checked",
+					"accent": true,
+					"checked": true
+				}
+			}
+		]
+	},
+	{
 		"name": "Show Label",
 		"examples": [
 			{

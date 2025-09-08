@@ -161,6 +161,7 @@ export default function DBSwitch(props: DBSwitchProps) {
 			data-emphasis={props.emphasis}
 			htmlFor={state._id}
 			data-label-position={props.labelPosition}
+			data-accent={getBooleanAsString(props.accent)}
 			data-hide-asterisk={getHideProp(props.showRequiredAsterisk)}
 			data-custom-validity={props.validation}
 			class={cls('db-switch', props.className)}>

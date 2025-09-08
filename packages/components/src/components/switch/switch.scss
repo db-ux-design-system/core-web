@@ -329,4 +329,28 @@ $checked-active-transition-size: calc(
 			margin-inline-end: variables.$db-spacing-fixed-xs;
 		}
 	}
+
+	/* Accent styling for checked switch */
+	&[data-accent="true"] {
+		> input:checked {
+			--db-check-element-border-color: var(--db-successful-on-bg-basic-emphasis-70-default);
+
+			background-color: var(--db-check-element-border-color);
+			border-color: var(--db-check-element-border-color);
+
+			@include helpers.hover {
+				background-color: var(--db-check-element-border-color);
+				border-color: var(--db-check-element-border-color);
+			}
+			@include helpers.active {
+				background-color: var(--db-check-element-border-color);
+				border-color: var(--db-check-element-border-color);
+			}
+
+			&::before {
+				background-color: colors.$db-successful-on-bg-inverted-default;
+				color: colors.$db-successful-on-bg-inverted-default;
+			}
+		}
+	}
 }
