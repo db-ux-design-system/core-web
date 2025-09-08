@@ -120,7 +120,7 @@ const testAction = () => {
 		const summary = component.locator('summary');
 		await summary.click({ force: true });
 		const inputs = await component.locator('input').all();
-		expect(inputs.length).toBe(4);
+		expect(inputs.length).toBe(7);
 		await inputs[0].fill('test');
 		await expect(inputs[1]).not.toBeVisible();
 		await expect(inputs[2]).not.toBeVisible();
