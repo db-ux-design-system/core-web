@@ -209,8 +209,6 @@ const testAction = () => {
 	});
 };
 
-
-
 test.describe('DBCustomSelect', () => {
 	test.use({ viewport: DEFAULT_VIEWPORT });
 	testComponent();
