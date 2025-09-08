@@ -74,7 +74,7 @@ Dependencies are logically grouped to reduce PR noise:
 - **Framework groups**: Angular, React, Next.js
 - **Tool groups**: ESLint, Stylelint, Prettier, TypeScript, Vite
 - **Testing groups**: Playwright, Vitest  
-- **Development tools**: Commitlint, Husky, Lint-staged
+- **Development tools**: Commitlint
 - **Patch group**: All patch updates bundled together
 
 #### Schedule and Timing
