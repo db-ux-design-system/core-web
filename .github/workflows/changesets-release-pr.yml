@@ -64,43 +64,6 @@ jobs:
           git rev-parse HEAD
           git rev-parse remotes/origin/main
 
-      # Produce human-readable Changesets status and expose it for the PR comment
-      - name: 📋 Show changeset status (since origin/main)
-        id: status
-        shell: bash
-        run: |
-          set -euo pipefail
-          npx changeset status --since=origin/main --verbose > .changeset-status.txt || {
-            echo "⚠️ changeset status failed; falling back to listing existing changesets"
-            ls -1 .changeset/*.md 2>/dev/null || true
-            : > .changeset-status.txt
-          }
-          {
-            printf 'STATUS<<EOF\n'
-            cat .changeset-status.txt
-            printf '\nEOF\n'
-          } >> "$GITHUB_OUTPUT"
-
-      # Upsert a single bot comment on the PR with the status preview
-      - name: 💬 Upsert PR comment with preview
-        uses: actions/github-script@v7
-        env:
-          BODY: ${{ steps.status.outputs.STATUS }}
-        with:
-          script: |
-            const { owner, repo, number } = context.issue;
-            const marker = '<!-- changesets-preview-marker -->';
-            const header = '### Changesets Preview (since origin/main)\n\n';
-            const raw = process.env.BODY || '_No status available._';
-            const body = `${header}\n\`\`\`\n${raw}\n\`\`\`\n\n${marker}`;
-            const { data: comments } = await github.rest.issues.listComments({ owner, repo, issue_number: number, per_page: 100 });
-            const existing = comments.find(c => c.user?.type === 'Bot' && c.body?.includes(marker));
-            if (existing) {
-              await github.rest.issues.updateComment({ owner, repo, comment_id: existing.id, body });
-            } else {
-              await github.rest.issues.createComment({ owner, repo, issue_number: number, body });
-            }
-
   # MAIN PATH: Create/Update Release PR & cut tags/releases
   release_pr:
     # Only run on main pushes (merge to main done) to drive versioning + tags
