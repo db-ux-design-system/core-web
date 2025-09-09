@@ -317,11 +317,11 @@ $checked-active-transition-size: calc(
 
 	/* Set variables */
 	&[data-custom-validity="valid"] {
-		--db-switch-label-color: #{colors.$db-successful-on-bg-basic-emphasis-70-default};
+		--db-switch-label-color: #{colors.$db-successful-on-bg-basic-emphasis-80-default};
 	}
 
 	&[data-custom-validity="invalid"] {
-		--db-switch-label-color: #{colors.$db-critical-on-bg-basic-emphasis-70-default};
+		--db-switch-label-color: #{colors.$db-critical-on-bg-basic-emphasis-80-default};
 	}
 
 	/* Set color for label */
