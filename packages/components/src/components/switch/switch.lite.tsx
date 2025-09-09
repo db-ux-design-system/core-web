@@ -122,12 +122,6 @@ export default function DBSwitch(props: DBSwitchProps) {
 			if (props.onFocus) {
 				props.onFocus(event);
 			}
-		},
-		getAriaDescribedBy: (): string | undefined => {
-			const legacy = (props as any)?.describedbyid as string | undefined;
-			return (
-				state._descByIds || props.ariaDescribedBy || legacy || undefined
-			);
 		}
 	});
 
@@ -179,7 +173,6 @@ export default function DBSwitch(props: DBSwitchProps) {
 				aria-invalid={
 					props.validation === 'invalid' ? 'true' : undefined
 				}
-				aria-describedby={state.getAriaDescribedBy()}
 				name={props.name}
 				required={getBoolean(props.required, 'required')}
 				data-aid-icon={props.iconLeading ?? props.icon}

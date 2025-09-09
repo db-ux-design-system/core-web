@@ -50,6 +50,4 @@ export type DBSwitchState = DBSwitchDefaultState &
 	ChangeEventState<HTMLInputElement> &
 	FocusEventState<HTMLInputElement> &
 	FormState &
-	FromValidState & {
-		getAriaDescribedBy: () => string | undefined;
-	};
+	FromValidState;
