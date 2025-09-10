@@ -1,23 +1,23 @@
 import { useEffect, useState } from 'react';
 import {
-	DBDivider,
-	DBCustomSelect,
-	DBTabList,
-	DBTabPanel,
-	DBTabs,
 	DBAccordion,
 	DBAccordionItem,
 	DBButton,
 	DBCheckbox,
+	DBCustomSelect,
+	DBDivider,
 	DBInput,
+	DBLink,
+	DBPopover,
 	DBRadio,
 	DBSelect,
 	DBTabItem,
+	DBTabList,
+	DBTabPanel,
+	DBTabs,
 	DBTag,
 	DBTextarea,
-	DBTooltip,
-	DBLink,
-	DBPopover
+	DBTooltip
 } from '../../../../../output/react/src';
 import type {
 	ChangeEvent,
@@ -336,11 +336,13 @@ const FormComponent = () => {
 						<DBTabItem icon="x_placeholder">
 							Airplane Button
 						</DBTabItem>
-						<DBTabItem iconAfter="cancel">Cancel Button</DBTabItem>
-						<DBTabItem iconAfter="cancel">
+						<DBTabItem iconTrailing="cancel">
+							Cancel Button
+						</DBTabItem>
+						<DBTabItem iconTrailing="cancel">
 							Long Button Label with a lot of text
 						</DBTabItem>
-						<DBTabItem icon="x_placeholder" iconAfter="cancel">
+						<DBTabItem icon="x_placeholder" iconTrailing="cancel">
 							Another Button Label with a lot of text
 						</DBTabItem>
 						<DBTabItem
@@ -483,16 +485,13 @@ const FormComponent = () => {
 					minLength={10}
 				/>
 
-				<DBTag
-					describedbyid="tooltip-01"
-					semantic="neutral"
-					emphasis="strong">
+				<DBTag semantic="neutral" emphasis="strong">
 					KUZ
 					<DBTooltip id="tooltip-01" placement="right-end">
 						Beschreibungstext
 					</DBTooltip>
 				</DBTag>
-				<DBButton describedbyid="tooltip-01">
+				<DBButton>
 					KUZ
 					<DBTooltip id="tooltip-01" placement="right-end">
 						Beschreibungstext
@@ -502,7 +501,7 @@ const FormComponent = () => {
 				<form
 					onSubmit={(event) => {
 						event.preventDefault();
-						/* eslint-disable-next-line no-console */
+
 						console.log(event);
 					}}>
 					<DBCustomSelect
@@ -521,8 +520,8 @@ const FormComponent = () => {
 						searchLabel="Search"
 						noResultsText="No matching filter"
 						values={multiSelectValue}
-						onOptionSelected={(val) => {
-							setMultiSelectValue(val);
+						onOptionSelected={(value) => {
+							setMultiSelectValue(value);
 						}}
 					/>
 					<DBButton

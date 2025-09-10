@@ -1,5 +1,4 @@
 /* This is a predefined beginner friendly bundle with absolute asset paths (/assets/xxx) */
 
 @use "@db-ux/core-foundations/build/styles/absolute.assets-paths";
-
 @forward "./relative";

@@ -1,13 +1,8 @@
-$variants:
-	"neutral", "brand", "critical", "successful", "warning", "informational";
-
-$variant-colors:
-	"neutral", "critical", "successful", "warning", "informational";
-
+$variants: "neutral", "brand", "critical", "successful", "warning", "informational";
+$variant-colors: "neutral", "critical", "successful", "warning", "informational";
 $on-background-colors:
 	"emphasis-100", "emphasis-90", "emphasis-80", "emphasis-70", "emphasis-60",
 	"emphasis-50";
-
 $background-colors:
 	"basic-level-1", "basic-level-2", "basic-level-3", "basic-transparent-semi",
 	"basic-transparent-full";
@@ -43,18 +38,23 @@ $db-adaptive-bg-basic-level-3-hovered: var(
 $db-adaptive-bg-basic-level-3-pressed: var(
 	--db-adaptive-bg-basic-level-3-pressed
 );
-
 $db-adaptive-bg-basic-transparent-full-default: var(
 	--db-adaptive-bg-basic-transparent-full-default
 );
 $db-adaptive-bg-basic-transparent-semi-default: var(
 	--db-adaptive-bg-basic-transparent-semi-default
 );
-$db-adaptive-bg-basic-transparent-hovered: var(
-	--db-adaptive-bg-basic-transparent-hovered
+$db-adaptive-bg-basic-transparent-full-hovered: var(
+	--db-adaptive-bg-basic-transparent-full-hovered
 );
-$db-adaptive-bg-basic-transparent-pressed: var(
-	--db-adaptive-bg-basic-transparent-pressed
+$db-adaptive-bg-basic-transparent-full-pressed: var(
+	--db-adaptive-bg-basic-transparent-full-pressed
+);
+$db-adaptive-bg-basic-transparent-semi-hovered: var(
+	--db-adaptive-bg-basic-transparent-semi-hovered
+);
+$db-adaptive-bg-basic-transparent-semi-pressed: var(
+	--db-adaptive-bg-basic-transparent-semi-pressed
 );
 
 // on-bg basic

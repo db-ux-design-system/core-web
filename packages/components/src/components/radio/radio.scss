@@ -16,27 +16,27 @@
 	--db-adaptive-on-bg-basic-emphasis-100-pressed: var(
 		--db-#{$variant}-on-bg-basic-emphasis-80-pressed
 	);
-	--db-adaptive-bg-basic-transparent-default: var(
-		--db-#{$variant}-bg-basic-transparent-default
+	--db-adaptive-bg-basic-transparent-full-default: var(
+		--db-#{$variant}-bg-basic-transparent-full-default
 	);
-	--db-adaptive-bg-basic-transparent-hovered: var(
-		--db-#{$variant}-bg-basic-transparent-hovered
+	--db-adaptive-bg-basic-transparent-full-hovered: var(
+		--db-#{$variant}-bg-basic-transparent-full-hovered
 	);
-	--db-adaptive-bg-basic-transparent-pressed: var(
-		--db-#{$variant}-bg-basic-transparent-pressed
+	--db-adaptive-bg-basic-transparent-full-pressed: var(
+		--db-#{$variant}-bg-basic-transparent-full-pressed
 	);
 }
 
 .db-radio {
-	@include form-components.set-default-check-element();
+	@include form-components.set-default-check-element;
 
 	&:not(:has(input:checked, input:disabled)) {
-		@include form-components.get-state();
+		@include form-components.get-state;
 		@include form-components.get-state("active");
 	}
 
 	@include form-components.get-validity(radio) {
-		@include get-radio-validity-colors();
+		@include get-radio-validity-colors;
 	}
 
 	@include form-components.get-validity(radio, "invalid") {

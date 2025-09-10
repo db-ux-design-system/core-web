@@ -5,13 +5,13 @@ import {
 	DBTabPanel,
 	DBTabs
 } from "../../../../../output/vue/src";
-import Form from "../form/Form.vue";
-import Textareas from "../form/Textareas.vue";
-import Selects from "../form/Selects.vue";
 import Checkboxes from "../form/Checkboxes.vue";
+import CustomSelects from "../form/Custom-Selects.vue";
+import Form from "../form/Form.vue";
 import Inputs from "../form/Inputs.vue";
 import Radios from "../form/Radios.vue";
-import CustomSelects from "../form/Custom-Selects.vue";
+import Selects from "../form/Selects.vue";
+import Textareas from "../form/Textareas.vue";
 </script>
 
 <template>

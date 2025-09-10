@@ -2,7 +2,7 @@
 
 // stylelint-disable-next-line scss/at-rule-no-unknown
 @theme {
-	@include variables.get_variables();
+	@include variables.get-variables;
 }
 
 @layer densities {
@@ -12,6 +12,6 @@
 	[data-density="regular"],
 	.db-density-functional,
 	[data-density="functional"] {
-		@include variables.get_variables();
+		@include variables.get-variables;
 	}
 }

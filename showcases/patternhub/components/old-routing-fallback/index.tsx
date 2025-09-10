@@ -19,7 +19,7 @@ const OldRoutingFallback = () => {
 				splitPath.length > 2 ? splitPath[2] : undefined;
 			const type = splitPath.length > 3 ? splitPath[3] : undefined;
 
-			const pathParams = asPath.length === 2 ? `?${asPath[1]}` : '';
+			const pathParameters = asPath.length === 2 ? `?${asPath[1]}` : '';
 
 			if (isComponent && component) {
 				const path: string[] = [];
@@ -54,7 +54,7 @@ const OldRoutingFallback = () => {
 
 				if (foundRoutes.length > 0) {
 					router.push(
-						`${foundRoutes[0].path}/${path.join('/')}${pathParams}`
+						`${foundRoutes[0].path}/${path.join('/')}${pathParameters}`
 					);
 				} else {
 					router.push('/');

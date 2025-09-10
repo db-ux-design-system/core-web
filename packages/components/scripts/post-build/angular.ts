@@ -1,6 +1,6 @@
 import { replaceInFileSync } from 'replace-in-file';
 
-import { readFileSync, writeFileSync } from 'node:fs';
+import { writeFileSync } from 'node:fs';
 
 import components, { Overwrite } from './components.js';
 
@@ -21,7 +21,7 @@ const setControlValueAccessorReplacements = (
 	replacements.push({
 		from: '} from "@angular/core";',
 		to:
-			`Renderer2, model } from "@angular/core";\n` +
+			`Renderer2 } from "@angular/core";\n` +
 			`import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';\n`
 	});
 
@@ -58,16 +58,14 @@ const setControlValueAccessorReplacements = (
 	// insert custom interface functions before ngOnInit
 	// TODO update attribute by config if necessary (e.g. for checked attribute?)
 	replacements.push({
-		from: 'ngOnInit()',
+		from: 'ngAfterViewInit()',
 		to: `
 		writeValue(value: any) {
 			${valueAccessorRequired ? 'if(value){' : ''}
 		  this.${valueAccessor}.set(${valueAccessor === 'checked' ? '!!' : ''}value);
 
 		  if (this._ref()?.nativeElement) {
-			 this.renderer.setProperty(this._ref()?.nativeElement, '${valueAccessor}', ${
-					valueAccessor === 'checked' ? '!!' : ''
-				}value);
+			 this.renderer.setProperty(this._ref()?.nativeElement, '${valueAccessor}', ${valueAccessor === 'checked' ? '!!' : ''}value);
 		  }
 			${valueAccessorRequired ? '}' : ''}
 		}
@@ -85,7 +83,7 @@ const setControlValueAccessorReplacements = (
 		  this.disabled.set(disabled);
 		}
 
-		ngOnInit()`
+		ngAfterViewInit()`
 	});
 };
 
@@ -105,11 +103,7 @@ const setDirectiveReplacements = (
 		// Add ng-content multiple times to overwrite all
 		for (let i = 0; i < 4; i++) {
 			replacements.push({
-				from: `<ng-content${
-					directive.ngContentName
-						? ` select="[${directive.ngContentName}]"`
-						: ''
-				}>`,
+				from: `<ng-content${directive.ngContentName ? ` select="[${directive.ngContentName}]"` : ''}>`,
 				to: `<ng-content *ngTemplateOutlet="db${directive.name}">`
 			});
 		}
@@ -164,9 +158,7 @@ export default (tmp?: boolean) => {
 	const outputFolder = `${tmp ? 'output/tmp' : 'output'}`;
 	for (const component of components) {
 		const componentName = component.name;
-		const upperComponentName = `DB${transformToUpperComponentName(
-			component.name
-		)}`;
+		const upperComponentName = `DB${transformToUpperComponentName(component.name)}`;
 		const file = `../../${outputFolder}/angular/src/components/${componentName}/${componentName}.ts`;
 		const indexFile = `../../${outputFolder}/angular/src/components/${componentName}/index.ts`;
 
@@ -177,28 +169,11 @@ export default (tmp?: boolean) => {
 		});
 
 		const replacements: Overwrite[] = [
-			// TODO: We don't need this after Angular drops support for v17 in may 2025
 			{
 				from: /allowSignalWrites: true,/g,
 				to: ''
 			}
 		];
-
-		if (
-			readFileSync(file)
-				.toString()
-				.includes('this.initialized.set(true);')
-		) {
-			// TODO: Solve this in mitosis by splitting onInit and onMount into ngOnInit and ngAfterViewInit
-			replacements.push({
-				from: 'this.initialized.set(true);',
-				to: ''
-			});
-			replacements.push({
-				from: 'ngAfterViewInit() {',
-				to: 'ngAfterViewInit() {\nthis.initialized.set(true);\n'
-			});
-		}
 
 		if (component.config?.angular?.controlValueAccessor) {
 			setControlValueAccessorReplacements(

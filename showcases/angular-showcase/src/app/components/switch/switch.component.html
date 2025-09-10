@@ -11,6 +11,7 @@
 		let-variantIndex="variantIndex"
 	>
 		<db-switch
+			[showRequiredAsterisk]="exampleProps?.showRequiredAsterisk"
 			[visualAid]="exampleProps?.visualAid"
 			[checked]="exampleProps?.checked"
 			[disabled]="exampleProps?.disabled"
@@ -19,7 +20,7 @@
 			[size]="exampleProps?.size"
 			[emphasis]="exampleProps?.emphasis"
 			[icon]="exampleProps?.icon"
-			[iconAfter]="exampleProps?.iconAfter"
+			[iconTrailing]="exampleProps?.iconTrailing"
 			[validation]="exampleProps?.validation"
 		>
 			{{ exampleName }}

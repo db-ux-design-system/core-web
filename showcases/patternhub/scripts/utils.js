@@ -1,5 +1,3 @@
-/* eslint-disable import/no-anonymous-default-export */
-
 /**
  * @param props {object}
  * @param framework {'angular'|'react'|'vue'}
@@ -81,6 +79,7 @@ const getTag = (componentName) =>
  * @param [children] {{name:string, props: object,native?:boolean,slot?:string, angularDirective?:boolean, content?:string,children?:{name:string, props: object,native?:boolean}[]}[]}
  * @returns {string}
  */
+
 export const getCodeByFramework = (
 	componentName,
 	framework,
@@ -91,6 +90,13 @@ export const getCodeByFramework = (
 	const { props, name, content, native } = example;
 	let className = '';
 	let tag = `DB${getTag(componentName)}`;
+	// Self-contained or composition components
+	const nonInnerContentComponents = [
+		'input',
+		'select',
+		'textarea',
+		'custom-select'
+	];
 	if (framework === 'angular') {
 		tag = `db-${componentName}`;
 	}
@@ -125,7 +131,10 @@ export const getCodeByFramework = (
 						)
 					)
 					.join('\n') + (content ?? '')
-			: (content ?? name);
+			: (content ??
+				(nonInnerContentComponents.includes(componentName)
+					? ''
+					: name));
 
 	const slots = (children ?? example.children)?.filter((child) =>
 		child.slot
@@ -144,13 +153,7 @@ export const getCodeByFramework = (
 						slotName =
 							slotName.charAt(0).toLowerCase() +
 							slotName.slice(1);
-						return `${slotName}={${getCodeByFramework(
-							child.name,
-							framework,
-							child,
-							noEvents,
-							child.children
-						)}}`;
+						return `${slotName}={${getCodeByFramework(child.name, framework, child, noEvents, child.children)}}`;
 					})
 					.join('\n');
 		} else {
@@ -183,9 +186,7 @@ export const getCodeByFramework = (
 	if (componentName === 'tooltip') {
 		return innerContent.replace(
 			'</',
-			`<${tag}${className} ${attributes
-				.filter((attr) => attr !== 'content')
-				.join(' ')}>${
+			`<${tag}${className} ${attributes.filter((attr) => attr !== 'content').join(' ')}>${
 				attributes.find((attr) => attr === 'content') ?? ''
 			}</${tag}></`
 		);
@@ -238,12 +239,4 @@ export const getComponentGroup = (components, componentName) => {
 				componentName.replace('tab-item', 'tabs').includes(sub.name)
 		)
 	);
-};
-
-export default {
-	getCodeByFramework,
-	getColorVariants,
-	getComponentName,
-	getComponentGroup,
-	transformToUpperComponentName
 };

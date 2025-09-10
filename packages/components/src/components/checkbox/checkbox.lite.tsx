@@ -8,7 +8,6 @@ import {
 	useStore,
 	useTarget
 } from '@builder.io/mitosis';
-import { DBCheckboxProps, DBCheckboxState } from './model';
 import {
 	DEFAULT_INVALID_MESSAGE,
 	DEFAULT_INVALID_MESSAGE_ID_SUFFIX,
@@ -18,11 +17,6 @@ import {
 } from '../../shared/constants';
 import { ChangeEvent, InteractionEvent } from '../../shared/model';
 import {
-	handleFrameworkEventAngular,
-	handleFrameworkEventVue
-} from '../../utils/form-components';
-import DBInfotext from '../infotext/infotext.lite';
-import {
 	cls,
 	delay,
 	getBoolean,
@@ -31,10 +25,19 @@ import {
 	stringPropVisible,
 	uuid
 } from '../../utils';
+import {
+	handleFrameworkEventAngular,
+	handleFrameworkEventVue
+} from '../../utils/form-components';
+import DBInfotext from '../infotext/infotext.lite';
+import { DBCheckboxProps, DBCheckboxState } from './model';
 
 useMetadata({
 	angular: {
-		nativeAttributes: ['disabled', 'required', 'checked', 'indeterminate']
+		nativeAttributes: ['disabled', 'required', 'checked', 'indeterminate'],
+		signals: {
+			writeable: ['disabled', 'checked']
+		}
 	}
 });
 
@@ -50,7 +53,7 @@ export default function DBCheckbox(props: DBCheckboxProps) {
 		_validMessageId: undefined,
 		_invalidMessageId: undefined,
 		_invalidMessage: undefined,
-		_descByIds: '',
+		_descByIds: undefined,
 		_voiceOverFallback: '',
 		hasValidState: () => {
 			return !!(props.validMessage ?? props.validation === 'valid');
@@ -81,7 +84,7 @@ export default function DBCheckbox(props: DBCheckboxProps) {
 			} else if (stringPropVisible(props.message, props.showMessage)) {
 				state._descByIds = state._messageId;
 			} else {
-				state._descByIds = '';
+				state._descByIds = undefined;
 			}
 		},
 		handleChange: (event: ChangeEvent<HTMLInputElement>) => {
@@ -136,6 +139,7 @@ export default function DBCheckbox(props: DBCheckboxProps) {
 			if (stringPropVisible(props.message, props.showMessage)) {
 				state._descByIds = messageId;
 			}
+			state.handleValidation();
 		}
 	}, [state._id]);
 
@@ -179,6 +183,7 @@ export default function DBCheckbox(props: DBCheckboxProps) {
 		<div
 			class={cls('db-checkbox', props.className)}
 			data-size={props.size}
+			data-hide-asterisk={getHideProp(props.showRequiredAsterisk)}
 			data-hide-label={getHideProp(props.showLabel)}>
 			<label htmlFor={state._id}>
 				<input

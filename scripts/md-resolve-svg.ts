@@ -1,12 +1,12 @@
 /* eslint-disable @typescript-eslint/prefer-regexp-exec */
 
-import * as https from 'node:https';
-import fs from 'node:fs';
-import { replaceInFileSync } from 'replace-in-file';
 import { glob } from 'glob';
+import fs from 'node:fs';
+import * as https from 'node:https';
+import { replaceInFileSync } from 'replace-in-file';
 
 // eslint-disable-next-line prefer-regex-literals
-const shieldRegex = new RegExp('https://img\\.shields\\.io/[^)|\\s]*');
+const shieldRegex = new RegExp(String.raw`https://img\.shields\.io/[^)|\s]*`);
 const docsPath = 'docs/images/download';
 
 type Replacement = {

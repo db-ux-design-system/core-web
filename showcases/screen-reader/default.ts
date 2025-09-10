@@ -1,5 +1,3 @@
-/* eslint-disable import/no-anonymous-default-export */
-import { platform } from 'node:os';
 import {
 	type NVDAPlaywright,
 	nvdaTest,
@@ -8,6 +6,7 @@ import {
 } from '@guidepup/playwright';
 import { macOSRecord, windowsRecord } from '@guidepup/record';
 import { expect } from '@playwright/test';
+import { platform } from 'node:os';
 import {
 	type DefaultTestType,
 	type RunTestType,
@@ -189,5 +188,3 @@ const isWin = (): boolean => platform() === 'win32';
 
 export const getTest = (): ScreenReaderTestType =>
 	isWin() ? nvdaTest : voiceOverTest;
-
-export default { testDefault, generateSnapshot, getTest };

@@ -1,6 +1,6 @@
-import { useEffect, useState } from 'react';
-import { useRouter } from 'next/router';
 import DOMPurify from 'dompurify';
+import { useRouter } from 'next/router';
+import { useEffect, useState } from 'react';
 import { DBSelect } from '../../../../output/react/src';
 import { type BranchGroup, type GithubResponse } from './data';
 
@@ -97,21 +97,17 @@ const VersionSwitcher = () => {
 			setGroupByTagsBranches(tags, branches);
 		};
 
-		runAsync().catch((error: unknown) => {
-			console.error(error);
-		});
+		void runAsync();
 	}, []);
 
 	const handleChange = (branch: string) => {
-		const lastPath = router.asPath;
+		const lastPath = router.asPath.replace('core-web/version/latest/', ''); // We need to handle the version/latest differently, as this is a redirect we're generating server-side, and it's not a regular route
 		const isTag =
 			(branch.split('.').length === 3 && branch.startsWith('v')) ||
 			branch === 'latest';
-		globalThis.location.replace(
+		globalThis.location.assign(
 			DOMPurify.sanitize(
-				`https://${owner}.github.io/${repo}${
-					isTag ? '/version' : '/review'
-				}/${branch}${lastPath}`
+				`https://${owner}.github.io/${repo}${isTag ? '/version' : '/review'}/${branch}${lastPath}`
 			)
 		);
 	};

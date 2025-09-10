@@ -15,10 +15,10 @@ We're providing an [overview for all of our icons](./overview).
 
 You can add an icon before or after a tag, by adding an `data-` attribute to your HTML code, like for example:
 
-| Variant  |                  Data                  |
-| -------- | :------------------------------------: |
-| `before` |    `data-icon="icon-from-overview"`    |
-| `after`  | `data-icon-after="icon-from-overview"` |
+| Variant  |                   Data                    |
+| -------- | :---------------------------------------: |
+| `before` |     `data-icon="icon-from-overview"`      |
+| `after`  | `data-icon-trailing="icon-from-overview"` |
 
 ### Icons color
 

@@ -5,8 +5,8 @@ import {
 	useRef,
 	useStore
 } from '@builder.io/mitosis';
-import type { DBIconProps, DBIconState } from './model';
 import { cls } from '../../utils';
+import type { DBIconProps, DBIconState } from './model';
 
 useMetadata({});
 

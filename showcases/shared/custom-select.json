@@ -323,6 +323,79 @@
 		]
 	},
 	{
+		"name": "Validation",
+		"examples": [
+			{
+				"name": "(Default) No Validation",
+				"style": {
+					"width": "200px"
+				},
+				"props": {
+					"options": [
+						{
+							"value": "Option 1",
+							"id": "miouzc0ec"
+						},
+						{
+							"value": "Option 2",
+							"id": "10dqnhil5"
+						}
+					],
+					"label": "Label",
+					"id": "id-102061",
+					"validation": "no-validation"
+				},
+				"children": []
+			},
+			{
+				"name": "Invalid",
+				"style": {
+					"width": "200px"
+				},
+				"props": {
+					"options": [
+						{
+							"value": "Option 1",
+							"id": "miouzc0ec"
+						},
+						{
+							"value": "Option 2",
+							"id": "10dqnhil5"
+						}
+					],
+					"label": "Label",
+					"id": "id-102062",
+					"validation": "invalid",
+					"invalidMessage": "Invalid Message"
+				},
+				"children": []
+			},
+			{
+				"name": "Valid",
+				"style": {
+					"width": "200px"
+				},
+				"props": {
+					"options": [
+						{
+							"value": "Option 1",
+							"id": "miouzc0ec"
+						},
+						{
+							"value": "Option 2",
+							"id": "10dqnhil5"
+						}
+					],
+					"label": "Label",
+					"id": "id-102063",
+					"validation": "valid",
+					"invalidMessage": "Valid Message"
+				},
+				"children": []
+			}
+		]
+	},
+	{
 		"name": "Required",
 		"examples": [
 			{
@@ -368,6 +441,59 @@
 					"required": true,
 					"multiple": true,
 					"id": "id-10220"
+				},
+				"children": []
+			}
+		]
+	},
+	{
+		"name": "Show Required Asterisk",
+		"examples": [
+			{
+				"name": "(Default) True",
+				"style": {
+					"width": "200px"
+				},
+				"props": {
+					"options": [
+						{
+							"value": "Option 1",
+							"id": "drpxs8im88"
+						},
+						{
+							"value": "Option 2",
+							"id": "211ed6zox5"
+						}
+					],
+					"label": "Label",
+					"multiple": true,
+					"required": true,
+					"showRequiredAsterisk": true,
+					"id": "id-1021s9"
+				},
+				"children": []
+			},
+			{
+				"name": "False",
+				"style": {
+					"width": "200px"
+				},
+				"props": {
+					"options": [
+						{
+							"value": "Option 1",
+							"id": "2v0zfw8afc"
+						},
+						{
+							"value": "Option 2",
+							"id": "30830f8w5z"
+						}
+					],
+					"label": "Label",
+					"required": true,
+					"showRequiredAsterisk": false,
+					"multiple": true,
+					"id": "id-10s220"
 				},
 				"children": []
 			}

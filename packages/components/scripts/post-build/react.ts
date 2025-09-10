@@ -6,9 +6,7 @@ import { replaceInFileSync } from 'replace-in-file';
 import { runReplacements, transformToUpperComponentName } from '../utils';
 
 const overwriteEvents = (tmp?: boolean) => {
-	const modelFilePath = `../../${
-		tmp ? 'output/tmp' : 'output'
-	}/react/src/shared/model.ts`;
+	const modelFilePath = `../../${tmp ? 'output/tmp' : 'output'}/react/src/shared/model.ts`;
 	let modelFileContent = readFileSync(modelFilePath).toString('utf-8');
 	modelFileContent = 'import * as React from "react";\n' + modelFileContent;
 	modelFileContent = modelFileContent.replace(
@@ -26,6 +24,14 @@ const overwriteEvents = (tmp?: boolean) => {
 	modelFileContent = modelFileContent.replace(
 		'export type InteractionEvent<T> = FocusEvent;',
 		'export type InteractionEvent<T> = React.FocusEvent<T>;'
+	);
+	modelFileContent = modelFileContent.replace(
+		'export type GeneralEvent<T> = Event;',
+		'export type GeneralEvent<T> = React.SyntheticEvent<T>;'
+	);
+	modelFileContent = modelFileContent.replace(
+		'export type GeneralKeyboardEvent<T> = KeyboardEvent;',
+		'export type GeneralKeyboardEvent<T> = React.KeyboardEvent<T>;'
 	);
 	writeFileSync(modelFilePath, modelFileContent);
 };
@@ -91,9 +97,7 @@ export default (tmp?: boolean) => {
 				component.name
 			);
 
-			const tsxFile = `../../${
-				tmp ? 'output/tmp' : 'output'
-			}/react/src/components/${component.name}/${component.name}.tsx`;
+			const tsxFile = `../../${tmp ? 'output/tmp' : 'output'}/react/src/components/${component.name}/${component.name}.tsx`;
 
 			const tsxFileContent = readFileSync(tsxFile).toString('utf-8');
 			const htmlElements = tsxFileContent.match('(?<=useRef<)(.*?)(?=>)');
@@ -138,11 +142,7 @@ export default DB${upperComponentName};`
 					from: 'ref={_ref}',
 					to:
 						'ref={_ref}\n' +
-						`{...filterPassingProps(props,${JSON.stringify([
-							...rootProps,
-							...(component?.config?.react?.propsPassingFilter ??
-								[])
-						])})}`
+						`{...filterPassingProps(props,${JSON.stringify([...rootProps, ...(component?.config?.react?.propsPassingFilter ?? [])])})}`
 				},
 				{
 					from: 'className={',

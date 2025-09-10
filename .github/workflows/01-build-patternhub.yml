@@ -25,25 +25,25 @@ jobs:
       path: ${{ steps.build.outputs.path }}
     steps:
       - name: ⏬ Checkout repo
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: 🔄 Init Cache
         uses: ./.github/actions/npm-cache
 
       - name: ⏬ Download foundations build
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v5
         with:
           name: db-ux-foundations-build
           path: packages/foundations/build
 
       - name: ⏬ Download output
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v5
         with:
           name: db-ux-output
           path: output
 
       - name: ⏬ Download components build
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v5
         with:
           name: db-ux-components-build
           path: packages/components/build
@@ -68,7 +68,7 @@ jobs:
         id: extract
 
       - name: 🛤 Get base path
-        uses: actions/github-script@v7
+        uses: actions/github-script@v8
         env:
           NAME: ${{ steps.extract.outputs.name }}
           RELEASE: ${{ inputs.release }}

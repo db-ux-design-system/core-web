@@ -27,7 +27,7 @@
 @mixin get-validity-color-check($key: "valid") {
 	$variant: successful;
 
-	@if ($key != "valid") {
+	@if $key != "valid" {
 		$variant: critical;
 	}
 
@@ -48,14 +48,14 @@
 
 	input {
 		&:not(:checked) {
-			--db-adaptive-bg-basic-transparent-default: var(
-				--db-#{$variant}-bg-basic-transparent-default
+			--db-adaptive-bg-basic-transparent-full-default: var(
+				--db-#{$variant}-bg-basic-transparent-full-default
 			);
-			--db-adaptive-bg-basic-transparent-hovered: var(
-				--db-#{$variant}-bg-basic-transparent-hovered
+			--db-adaptive-bg-basic-transparent-full-hovered: var(
+				--db-#{$variant}-bg-basic-transparent-full-hovered
 			);
-			--db-adaptive-bg-basic-transparent-pressed: var(
-				--db-#{$variant}-bg-basic-transparent-pressed
+			--db-adaptive-bg-basic-transparent-full-pressed: var(
+				--db-#{$variant}-bg-basic-transparent-full-pressed
 			);
 		}
 
@@ -64,10 +64,10 @@
 			--db-adaptive-bg-basic-transparent-full-default: var(
 				--db-#{$variant}-bg-inverted-contrast-high-default
 			);
-			--db-adaptive-bg-basic-transparent-hovered: var(
+			--db-adaptive-bg-basic-transparent-full-hovered: var(
 				--db-#{$variant}-bg-inverted-contrast-high-hovered
 			);
-			--db-adaptive-bg-basic-transparent-pressed: var(
+			--db-adaptive-bg-basic-transparent-full-pressed: var(
 				--db-#{$variant}-bg-inverted-contrast-high-pressed
 			);
 		}
@@ -76,11 +76,10 @@
 
 .db-checkbox {
 	@extend %helper-message;
-
-	@include form-components.set-default-check-element();
+	@include form-components.set-default-check-element;
 
 	&:not(:has(input:disabled)) {
-		@include form-components.get-state();
+		@include form-components.get-state;
 		@include form-components.get-state("active");
 	}
 
@@ -106,10 +105,10 @@
 			--db-adaptive-bg-basic-transparent-full-default: var(
 				--db-adaptive-bg-inverted-contrast-max-default
 			);
-			--db-adaptive-bg-basic-transparent-hovered: var(
+			--db-adaptive-bg-basic-transparent-full-hovered: var(
 				--db-adaptive-bg-inverted-contrast-max-hovered
 			);
-			--db-adaptive-bg-basic-transparent-pressed: var(
+			--db-adaptive-bg-basic-transparent-full-pressed: var(
 				--db-adaptive-bg-inverted-contrast-max-pressed
 			);
 
@@ -124,7 +123,6 @@
 
 		&:indeterminate {
 			@extend %center-icon;
-
 			@include icons.set-icon("minus");
 		}
 
@@ -135,7 +133,7 @@
 
 				border-width: form-components.$check-border-size;
 
-				&:not([data-hide-icon-before="true"])::before {
+				&:not([data-show-icon-leading="false"])::before {
 					align-content: center;
 					font-size: calc(
 						var(--db-icon-font-size) - 2 *

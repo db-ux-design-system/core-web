@@ -25,16 +25,16 @@ db-custom-select-list-item:not(:last-of-type) {
 	&:has(> label) {
 		&:not(:has(input[type="radio"]:checked)) {
 			@include helpers.hover {
-				background-color: colors.$db-adaptive-bg-basic-transparent-hovered;
+				background-color: colors.$db-adaptive-bg-basic-transparent-full-hovered;
 			}
 
 			@include helpers.active {
-				background-color: colors.$db-adaptive-bg-basic-transparent-pressed;
+				background-color: colors.$db-adaptive-bg-basic-transparent-full-pressed;
 			}
 		}
 	}
 
-	&:has(> label > input:focus-within) {
+	&:has(> label > input:focus-visible) {
 		@extend %focus-placeholder;
 	}
 
@@ -59,20 +59,20 @@ db-custom-select-list-item:not(:last-of-type) {
 		}
 
 		&:has(input[type="radio"]) {
-			--db-icon-after: "none";
+			--db-icon-trailing: "none";
 
 			gap: 0;
 		}
 
 		&:has(input[type="radio"]:checked) {
 			--db-overwrite-cursor: default;
-			--db-icon-after: "check";
+			--db-icon-trailing: "check";
 		}
 
 		> input {
 			// We revert interaction states for checkbox
-			--db-adaptive-bg-basic-transparent-hovered: #{colors.$db-adaptive-bg-basic-transparent-full-default};
-			--db-adaptive-bg-basic-transparent-pressed: #{colors.$db-adaptive-bg-basic-transparent-full-default};
+			--db-adaptive-bg-basic-transparent-full-hovered: #{colors.$db-adaptive-bg-basic-transparent-full-default};
+			--db-adaptive-bg-basic-transparent-full-pressed: #{colors.$db-adaptive-bg-basic-transparent-full-default};
 
 			&::after {
 				position: absolute;

@@ -7,10 +7,10 @@ import {
 	useRef,
 	useStore
 } from '@builder.io/mitosis';
-import { DBPopoverProps, DBPopoverState } from './model';
-import { cls, delay as utilsDelay, getBooleanAsString } from '../../utils';
-import { handleFixedPopover } from '../../utils/floating-components';
+import { cls, getBooleanAsString, delay as utilsDelay } from '../../utils';
 import { DocumentScrollListener } from '../../utils/document-scroll-listener';
+import { handleFixedPopover } from '../../utils/floating-components';
+import { DBPopoverProps, DBPopoverState } from './model';
 
 useMetadata({});
 useDefaultProps<DBPopoverProps>({});
@@ -130,14 +130,19 @@ export default function DBPopover(props: DBPopoverProps) {
 				_ref.addEventListener(event, () => state.handleLeave());
 			});
 
-			state._observer = new IntersectionObserver((payload) => {
-				const entry = payload.find(
-					({ target }) => target === state.getTrigger()
-				);
-				if (entry && !entry.isIntersecting) {
-					state.handleEscape(false);
-				}
-			});
+			if (
+				typeof window !== 'undefined' &&
+				'IntersectionObserver' in window
+			) {
+				state._observer = new IntersectionObserver((payload) => {
+					const entry = payload.find(
+						({ target }) => target === state.getTrigger()
+					);
+					if (entry && !entry.isIntersecting) {
+						state.handleEscape(false);
+					}
+				});
+			}
 		}
 	}, [_ref, state.initialized]);
 

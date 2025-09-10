@@ -5,7 +5,7 @@
 %select-icon {
 	@extend %dropdown-icon;
 
-	&[data-icon]:not([data-hide-icon="true"]) {
+	&[data-icon]:not([data-show-icon="false"]) {
 		--db-form-has-before: 1;
 	}
 }
@@ -14,7 +14,6 @@ $has-before-padding: calc(
 	var(--db-form-has-before) *
 		(#{form-components.$icon-size-sm} + #{variables.$db-spacing-fixed-sm})
 );
-
 $select-icon-padding: calc(
 	#{form-components.$font-size-height} + #{variables.$db-spacing-fixed-sm} +
 		#{variables.$db-spacing-fixed-xs}
@@ -34,6 +33,7 @@ $select-icon-padding: calc(
 
 		position: absolute;
 		pointer-events: none;
+
 		// we use the top of the element, the size of the label+label-margin-bottom and the font-size of the select/2
 		// for functional we have some rounding issues for rem, so we need 1px less
 		transform: translateY(var(--label-block-start-half));

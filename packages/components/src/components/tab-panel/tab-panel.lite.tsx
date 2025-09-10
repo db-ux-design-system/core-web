@@ -6,8 +6,8 @@ import {
 	useRef,
 	useStore
 } from '@builder.io/mitosis';
-import { DBTabPanelProps, DBTabPanelState } from './model';
 import { cls } from '../../utils';
+import { DBTabPanelProps, DBTabPanelState } from './model';
 
 useMetadata({});
 useDefaultProps<DBTabPanelProps>({});
@@ -26,8 +26,7 @@ export default function DBTabPanel(props: DBTabPanelProps) {
 			ref={_ref}
 			class={cls('db-tab-panel', props.className)}
 			id={props.id}
-			role="tabpanel"
-			aria-labelledby={props.labelledBy}>
+			role="tabpanel">
 			<Show when={props.content}> {props.content}</Show>
 			{props.children}
 		</section>

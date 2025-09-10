@@ -3,11 +3,11 @@ import {
 	DBRadio,
 	getBoolean
 } from '../../../../../output/react/src';
-import DefaultComponent from '../default-component';
-import { getVariants } from '../data';
-import defaultComponentVariants from '../../../../shared/radio.json';
 import { type DBRadioProps } from '../../../../../output/react/src/components/radio/model';
+import defaultComponentVariants from '../../../../shared/radio.json';
 import { type BaseComponentProps } from '../base-component-data';
+import { getVariants } from '../data';
+import DefaultComponent from '../default-component';
 
 const getRadio = ({
 	label,
@@ -19,10 +19,12 @@ const getRadio = ({
 	disabled,
 	value,
 	showLabel,
-	validation
+	validation,
+	showRequiredAsterisk
 }: DBRadioProps) => (
 	<>
 		<DBRadio
+			showRequiredAsterisk={showRequiredAsterisk}
 			label={label}
 			size={size}
 			name={name}

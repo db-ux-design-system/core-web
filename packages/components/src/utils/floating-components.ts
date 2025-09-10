@@ -118,11 +118,27 @@ export const handleFixedDropdown = (
 	element.style.position = 'fixed';
 };
 
-const getFloatingProps = (
+export const getFloatingProps = (
 	element: HTMLElement,
 	parent: HTMLElement,
 	placement: string
 ) => {
+	if (!element || !parent) {
+		return {
+			top: 0,
+			bottom: 0,
+			right: 0,
+			height: 0,
+			width: 0,
+			left: 0,
+			childHeight: 0,
+			childWidth: 0,
+			correctedPlacement: placement,
+			innerWidth: window.innerWidth,
+			innerHeight: window.innerHeight
+		};
+	}
+
 	const childRect = element.getBoundingClientRect();
 	const { top, height, bottom, right, left, width } =
 		parent.getBoundingClientRect();
@@ -357,9 +373,7 @@ export const handleFixedPopover = (
 		element.style.insetInlineEnd = `calc(${right}px - ${distance})`;
 	} else if (correctedPlacement?.startsWith('top')) {
 		const start = top - childHeight;
-		element.style.insetBlockStart = `calc(${
-			start < 0 ? 0 : start
-		}px - ${distance})`;
+		element.style.insetBlockStart = `calc(${start < 0 ? 0 : start}px - ${distance})`;
 		element.style.insetBlockEnd = `calc(${bottom}px - ${distance})`;
 	} else if (correctedPlacement?.startsWith('bottom')) {
 		const end = bottom + childHeight;
@@ -368,5 +382,5 @@ export const handleFixedPopover = (
 	}
 
 	element.style.position = 'fixed';
-	element.setAttribute('data-corrected-placement', correctedPlacement);
+	element.dataset['correctedPlacement'] = correctedPlacement;
 };

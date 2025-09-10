@@ -1,5 +1,5 @@
-import { test, expect } from '@playwright/experimental-ct-react';
 import AxeBuilder from '@axe-core/playwright';
+import { expect, test } from '@playwright/experimental-ct-react';
 
 import { DBCustomSelect } from './index';
 // @ts-ignore - vue can only find it with .ts as file ending
@@ -74,6 +74,7 @@ const testAction = () => {
 		await expect(summary).not.toContainText('Option 1');
 		await page.keyboard.press('Tab');
 		await page.keyboard.press('ArrowDown');
+		await page.waitForTimeout(1000); // wait for focus to apply
 		await page.keyboard.press('Space');
 		await expect(summary).toContainText('Option 1');
 	});
@@ -84,6 +85,7 @@ const testAction = () => {
 		await expect(summary).not.toContainText('Option 1');
 		await page.keyboard.press('Tab');
 		await page.keyboard.press('ArrowDown');
+		await page.waitForTimeout(1000); // wait for focus to apply
 		await page.keyboard.press('Space');
 		await page.keyboard.press('Escape');
 		await expect(summary).toContainText('Option 1');
@@ -106,9 +108,37 @@ const testAction = () => {
 		const summary = component.locator('summary');
 		await page.keyboard.press('Tab');
 		await page.keyboard.press('ArrowDown');
+		await page.waitForTimeout(1000); // wait for focus to apply
 		await page.keyboard.press('Space');
 		await page.keyboard.press('Escape');
 		await expect(summary).toContainText('Option 1, Option 2');
+	});
+
+	test('select single item with Enter key', async ({ page, mount }) => {
+		const component = await mount(comp);
+		const summary = component.locator('summary');
+		await expect(summary).not.toContainText('Option 1');
+		await page.keyboard.press('Tab');
+		await page.keyboard.press('ArrowDown');
+		await page.waitForTimeout(1000); // wait for focus to apply
+		await page.keyboard.press('Enter');
+		await expect(summary).toContainText('Option 1');
+		// For single select, dropdown should be closed after Enter
+		await expect(component.locator('details')).not.toHaveAttribute('open');
+	});
+
+	test('select multiple item with Enter key', async ({ page, mount }) => {
+		const component = await mount(multiple);
+		const summary = component.locator('summary');
+		await expect(summary).not.toContainText('Option 1');
+		await page.keyboard.press('Tab');
+		await page.keyboard.press('ArrowDown');
+		await page.waitForTimeout(1000); // wait for focus to apply
+		await page.keyboard.press('Enter');
+		// For multiple select, dropdown should remain open after Enter
+		await expect(component.locator('details')).toHaveAttribute('open');
+		await page.keyboard.press('Escape');
+		await expect(summary).toContainText('Option 1');
 	});
 };
 

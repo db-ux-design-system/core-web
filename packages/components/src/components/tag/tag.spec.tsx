@@ -1,13 +1,13 @@
-import { expect, test } from '@playwright/experimental-ct-react';
 import AxeBuilder from '@axe-core/playwright';
+import { expect, test } from '@playwright/experimental-ct-react';
 
 import { DBTag } from './index';
 // @ts-ignore - vue can only find it with .ts as file ending
 import { SEMANTICS } from '../../shared/constants.ts';
 import { DBButton } from '../button';
+import { DBCheckbox } from '../checkbox';
 import { DBLink } from '../link';
 import { DBRadio } from '../radio';
-import { DBCheckbox } from '../checkbox';
 
 const comp: any = <DBTag>Test</DBTag>;
 
