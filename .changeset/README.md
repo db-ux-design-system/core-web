@@ -36,7 +36,7 @@ You’ll be prompted to:
 - Choose the bump/release type (patch, minor, major)
 - Provide a short summary for the changelog
 
-This creates a file like `.changeset/abcd123.md.`
+This creates a file like `.changeset/abcd123.md`.
 👉 Commit this file as part of your PR.
 
 ### 2. Open a Pull Request
