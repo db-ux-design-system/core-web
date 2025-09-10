@@ -88,7 +88,7 @@
     "@babel/eslint-parser": "7.28.4",
     "@commitlint/cli": "19.8.1",
     "@commitlint/config-conventional": "19.8.1",
-    "@db-ux/db-theme": "5.0.0",
+    "@db-ux/db-theme": "5.0.1",
     "@double-great/stylelint-a11y": "3.4.0",
     "@guidepup/guidepup": "0.24.0",
     "@guidepup/playwright": "0.14.2",
