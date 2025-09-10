@@ -200,32 +200,30 @@ $popover-gap-inset: calc(-1 * #{$popover-gap-size});
 	&[data-corrected-placement^="bottom"] {
 		--db-popover-translate-y: -25%;
 
-		@include get-popover-show();
+		@include get-popover-show;
 	}
 
 	&[data-placement^="top"]:not([data-corrected-placement]),
 	&[data-corrected-placement^="top"] {
 		--db-popover-translate-y: 25%;
 
-		@include get-popover-show();
+		@include get-popover-show;
 	}
 
 	&[data-placement^="right"]:not([data-corrected-placement]),
 	&[data-corrected-placement^="right"] {
 		--db-popover-translate-x: -25%;
 
-		@include get-popover-show();
+		@include get-popover-show;
 	}
 
 	&[data-placement^="left"]:not([data-corrected-placement]),
 	&[data-corrected-placement^="left"] {
 		--db-popover-translate-x: 25%;
 
-		@include get-popover-show();
+		@include get-popover-show;
 	}
 }
-
-$max-mobile-size: calc(100vw - 2 * #{variables.$db-spacing-fixed-md});
 
 %default-popover {
 	@extend %default-card;
@@ -236,15 +234,18 @@ $max-mobile-size: calc(100vw - 2 * #{variables.$db-spacing-fixed-md});
 	box-shadow: variables.$db-elevation-md;
 	visibility: hidden;
 	z-index: 1337;
+
 	// revert this if popover is included in button
 	white-space: normal;
-	max-inline-size: $max-mobile-size;
+	max-inline-size: min(
+		#{variables.$db-container-xs},
+		calc(100vw - 2 * #{variables.$db-spacing-fixed-md})
+	);
 	block-size: fit-content;
 	inline-size: fit-content;
 
 	&[data-width="fixed"] {
 		inline-size: max-content;
-		max-inline-size: min(#{variables.$db-sizing-3xl}, #{$max-mobile-size});
 		text-align: initial;
 	}
 }

@@ -1,5 +1,8 @@
-import { devices, type PlaywrightTestConfig } from '@playwright/test';
-import { type Project } from 'playwright/types';
+import {
+	devices,
+	type PlaywrightTestConfig,
+	type Project
+} from '@playwright/test';
 import showcaseConfig from './playwright.showcase';
 
 const projects: Project[] = [

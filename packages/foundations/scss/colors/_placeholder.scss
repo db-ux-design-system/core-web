@@ -13,13 +13,13 @@
 		--db-icon-color: #{$on};
 	}
 
-	@if ($hovered) {
+	@if $hovered {
 		@include functions.hover {
 			background-color: #{$hovered};
 		}
 	}
 
-	@if ($pressed) {
+	@if $pressed {
 		@include functions.active {
 			background-color: #{$pressed};
 		}
@@ -64,11 +64,17 @@
 			--db-adaptive-bg-basic-transparent-semi-default: var(
 				--db-#{$variant}-bg-basic-transparent-semi-default
 			);
-			--db-adaptive-bg-basic-transparent-hovered: var(
-				--db-#{$variant}-bg-basic-transparent-hovered
+			--db-adaptive-bg-basic-transparent-full-hovered: var(
+				--db-#{$variant}-bg-basic-transparent-full-hovered
 			);
-			--db-adaptive-bg-basic-transparent-pressed: var(
-				--db-#{$variant}-bg-basic-transparent-pressed
+			--db-adaptive-bg-basic-transparent-full-pressed: var(
+				--db-#{$variant}-bg-basic-transparent-full-pressed
+			);
+			--db-adaptive-bg-basic-transparent-semi-hovered: var(
+				--db-#{$variant}-bg-basic-transparent-semi-hovered
+			);
+			--db-adaptive-bg-basic-transparent-semi-pressed: var(
+				--db-#{$variant}-bg-basic-transparent-semi-pressed
 			);
 
 			// on-bg basic
@@ -192,7 +198,6 @@
 	@each $bg in variables.$background-colors {
 		%db-#{$variant}-bg-#{$bg} {
 			@extend %db-#{$variant}-variables;
-
 			@include set-current-colors(
 				var(--db-#{$variant}-bg-#{$bg}-default),
 				var(--db-#{$variant}-on-bg-basic-emphasis-100-default)

@@ -8,13 +8,10 @@
 // We need some fixed padding here to avoid layout shifts
 /* stylelint-disable-next-line db-ux/use-spacings */
 $switch-fixed-padding: helpers.px-to-rem(2);
-
 $switch-inactive-thumb-size: calc(
 	#{form-components.$font-size-height} - #{$switch-fixed-padding} * 2
 );
-
 $switch-active-thumb-size: calc(#{form-components.$font-size-height});
-
 $checked-active-transition-size: calc(
 	#{form-components.$font-size-height} - #{$switch-fixed-padding} * 2
 );
@@ -38,10 +35,10 @@ $checked-active-transition-size: calc(
 .db-switch {
 	user-select: none;
 
-	@include form-components.set-default-check-element();
+	@include form-components.set-default-check-element;
 
 	&:not(:has(input:disabled)) {
-		@include form-components.get-state();
+		@include form-components.get-state;
 
 		@include form-components.get-state("active") {
 			@extend %active-transition;
@@ -143,11 +140,11 @@ $checked-active-transition-size: calc(
 		}
 
 		&[data-aid-icon]:not(:checked)::after {
-			--db-icon-after: attr(data-aid-icon);
+			--db-icon-trailing: attr(data-aid-icon);
 		}
 
-		&[data-aid-icon-after]:checked::after {
-			--db-icon-after: attr(data-aid-icon-after);
+		&[data-aid-icon-trailing]:checked::after {
+			--db-icon-trailing: attr(data-aid-icon-trailing);
 		}
 
 		@media screen and (prefers-reduced-motion: no-preference) {

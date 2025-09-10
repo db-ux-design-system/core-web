@@ -32,7 +32,7 @@ First of all you need to import a theme which contains all tokens (css-propertie
 Afterward, you may import helper classes / placeholders to easily consume the tokens from your theme. There are some categories:
 
 - **init**: Global styles which apply to all or a large group of selectors. Make sure to import `inits/required.css` to normalize tags like `body` etc. Furthermore, we provide some default styles.
-- **icons**: Icons classes to load **woff2** files and adds `[data-icon]` and `[data-icon-after]` to enable icons for all tags and components.
+- **icons**: Icons classes to load **woff2** files and adds `[data-icon]` and `[data-icon-trailing]` to enable icons for all tags and components.
 - **helpers**: Use dividers or focus border
 - **fonts**: Overwrite default `font-size`, `line-height` and `icon-size`
 - **density**: Overwrite default density to scale adaptive components inside container using density
@@ -298,7 +298,7 @@ If you want to optimize the size of the loaded styles, you might want to skip lo
 
 ```css
 /* The theme contains all prop required for components like spacings, colors, etc. You can replace it with your own theme. */
-@import "@db-ux/core-foundations/build/styles/default-theme.css";
+@import "@db-ux/core-foundations/build/styles/defaults/default-theme.css";
 /* The font include uses default font families based on your bundling paths (relative, absolute, webpack, rollup). You can replace it with your own fonts. */
 @import "@db-ux/core-foundations/build/styles/fonts/relative.css";
 /* The icon include uses default icons based on your bundling paths (relative, absolute, webpack, rollup). You can replace it with your own icons. */

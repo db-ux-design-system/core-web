@@ -128,7 +128,6 @@
 				"name": "(Default) False",
 				"props": {
 					"label": "Label",
-					"value": "(Default) False",
 					"readOnly": false
 				}
 			},
@@ -136,7 +135,6 @@
 				"name": "True",
 				"props": {
 					"label": "Label",
-					"value": "True",
 					"readOnly": true
 				}
 			}
@@ -211,35 +209,68 @@
 		]
 	},
 	{
-		"name": "Content",
+		"name": "Show Icon Leading",
 		"examples": [
 			{
-				"name": "(Default) Text",
+				"name": "(Default) False",
 				"props": {
-					"label": "Label",
-					"value": "(Default) Text"
-				}
-			},
-			{
-				"name": "Text - Leading Icon",
-				"props": {
-					"label": "Label",
-					"icon": "x_placeholder"
-				}
-			},
-			{
-				"name": "Text - Leading Icon - Trailing Icon",
-				"props": {
-					"label": "Label",
+					"label": "False",
 					"icon": "x_placeholder",
-					"iconAfter": "x_placeholder"
+					"showIcon": false
 				}
 			},
 			{
-				"name": "Text - Trailing Icon",
+				"name": "True",
 				"props": {
-					"label": "Label",
-					"iconAfter": "x_placeholder"
+					"label": "True",
+					"icon": "x_placeholder",
+					"showIcon": true
+				}
+			}
+		]
+	},
+	{
+		"name": "Show Icon Leading + Trailing",
+		"examples": [
+			{
+				"name": "(Default) False",
+				"props": {
+					"label": "False",
+					"icon": "x_placeholder",
+					"showIcon": false,
+					"iconTrailing": "x_placeholder",
+					"showIconTrailing": false
+				}
+			},
+			{
+				"name": "True",
+				"props": {
+					"label": "True",
+					"icon": "x_placeholder",
+					"showIcon": true,
+					"iconTrailing": "x_placeholder",
+					"showIconTrailing": true
+				}
+			}
+		]
+	},
+	{
+		"name": "Show Icon Trailing",
+		"examples": [
+			{
+				"name": "(Default) False",
+				"props": {
+					"label": "False",
+					"iconTrailing": "x_placeholder",
+					"showIconTrailing": false
+				}
+			},
+			{
+				"name": "True",
+				"props": {
+					"label": "True",
+					"iconTrailing": "x_placeholder",
+					"showIconTrailing": true
 				}
 			}
 		]

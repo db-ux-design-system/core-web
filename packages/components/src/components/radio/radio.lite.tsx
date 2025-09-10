@@ -18,7 +18,10 @@ import { DBRadioProps, DBRadioState } from './model';
 
 useMetadata({
 	angular: {
-		nativeAttributes: ['disabled', 'required', 'checked', 'indeterminate']
+		nativeAttributes: ['disabled', 'required', 'checked', 'indeterminate'],
+		signals: {
+			writeable: ['disabled', 'value']
+		}
 	}
 });
 useDefaultProps<DBRadioProps>({});
@@ -79,7 +82,6 @@ export default function DBRadio(props: DBRadioProps) {
 				name={props.name}
 				checked={getBoolean(props.checked, 'checked')}
 				disabled={getBoolean(props.disabled, 'disabled')}
-				aria-describedby={props.describedbyid ?? props.ariaDescribedBy}
 				value={props.value}
 				required={getBoolean(props.required, 'required')}
 				onChange={(event: ChangeEvent<HTMLInputElement>) =>

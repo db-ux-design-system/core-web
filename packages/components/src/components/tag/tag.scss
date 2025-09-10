@@ -14,13 +14,13 @@
 	&[data-no-text="true"] {
 		--icon-margin-after: 0;
 
-		@include icons.is-icon-text-replace();
+		@include icons.is-icon-text-replace;
 
 		padding: 0;
 		gap: 0;
 
 		label {
-			@include icons.is-icon-text-replace();
+			@include icons.is-icon-text-replace;
 		}
 	}
 
@@ -64,15 +64,14 @@
 	&:not(:has(#{tag-components.$interactive-selectors})),
 	&:has(.db-tab-remove-button) {
 		@extend %component-border;
-
-		@include tag-components.get-tag-colors();
+		@include tag-components.get-tag-colors;
 	}
 
 	&:has(#{tag-components.$interactive-selectors}) {
 		--db-icon-margin-end: #{variables.$db-spacing-fixed-2xs};
 
 		@include icon-passing.icon-passing(variables.$db-spacing-fixed-2xs);
-		@include tag-components.get-tag-colors-interactive();
+		@include tag-components.get-tag-colors-interactive;
 	}
 
 	button:nth-of-type(2),
@@ -147,7 +146,7 @@
 			aspect-ratio: unset;
 
 			&:checked {
-				&:not([data-hide-icon-before="true"]) {
+				&:not([data-show-icon-leading="false"]) {
 					&::before {
 						content: none;
 					}

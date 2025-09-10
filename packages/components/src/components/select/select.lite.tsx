@@ -28,6 +28,7 @@ import {
 	cls,
 	delay,
 	getBoolean,
+	getBooleanAsString,
 	getHideProp,
 	getOptionKey,
 	hasVoiceOver,
@@ -43,7 +44,10 @@ import { DBSelectOptionType, DBSelectProps, DBSelectState } from './model';
 
 useMetadata({
 	angular: {
-		nativeAttributes: ['disabled', 'required', 'value']
+		nativeAttributes: ['disabled', 'required', 'value'],
+		signals: {
+			writeable: ['disabled', 'value']
+		}
 	}
 });
 useDefaultProps<DBSelectProps>({});
@@ -58,8 +62,7 @@ export default function DBSelect(props: DBSelectProps) {
 		_invalidMessageId: undefined,
 		_invalidMessage: undefined,
 		_placeholderId: '',
-		// Workaround for Vue output: TS for Vue would think that it could be a function, and by this we clarify that it's a string
-		_descByIds: '',
+		_descByIds: undefined,
 		_value: '',
 		initialized: false,
 		_voiceOverFallback: '',
@@ -91,8 +94,10 @@ export default function DBSelect(props: DBSelectProps) {
 				}
 			} else if (stringPropVisible(props.message, props.showMessage)) {
 				state._descByIds = state._messageId;
-			} else {
+			} else if (props.placeholder) {
 				state._descByIds = state._placeholderId;
+			} else {
+				state._descByIds = undefined;
 			}
 		},
 		handleClick: (event: ClickEvent<HTMLSelectElement> | any) => {
@@ -179,10 +184,13 @@ export default function DBSelect(props: DBSelectProps) {
 
 			if (stringPropVisible(props.message, props.showMessage)) {
 				state._descByIds = messageId;
-			} else {
+			} else if (props.placeholder) {
 				state._descByIds = placeholderId;
+			} else {
+				state._descByIds = undefined;
 			}
 
+			state.handleValidation();
 			state.initialized = false;
 		}
 	}, [state._id, state.initialized]);
@@ -198,7 +206,7 @@ export default function DBSelect(props: DBSelectProps) {
 			data-hide-label={getHideProp(props.showLabel)}
 			data-hide-asterisk={getHideProp(props.showRequiredAsterisk)}
 			data-icon={props.icon}
-			data-hide-icon={getHideProp(props.showIcon)}>
+			data-show-icon={getBooleanAsString(props.showIcon)}>
 			<label htmlFor={state._id}>{props.label ?? DEFAULT_LABEL}</label>
 			<select
 				aria-invalid={props.validation === 'invalid'}
@@ -229,7 +237,9 @@ export default function DBSelect(props: DBSelectProps) {
 				}
 				aria-describedby={props.ariaDescribedBy ?? state._descByIds}>
 				{/* Empty option for floating label */}
-				<option hidden></option>
+				<Show when={props.variant === 'floating' || props.placeholder}>
+					<option class="placeholder" value=""></option>
+				</Show>
 				<Show when={props.options?.length} else={props.children}>
 					<For each={props.options}>
 						{(option: DBSelectOptionType) => (
@@ -295,9 +305,9 @@ export default function DBSelect(props: DBSelectProps) {
 					</For>
 				</Show>
 			</select>
-			<span id={state._placeholderId}>
-				{props.placeholder ?? props.label}
-			</span>
+			<Show when={props.placeholder}>
+				<span id={state._placeholderId}>{props.placeholder}</span>
+			</Show>
 			<Show when={stringPropVisible(props.message, props.showMessage)}>
 				<DBInfotext
 					size="small"

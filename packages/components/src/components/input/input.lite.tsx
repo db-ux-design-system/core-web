@@ -30,6 +30,7 @@ import {
 	cls,
 	delay,
 	getBoolean,
+	getBooleanAsString,
 	getHideProp,
 	getInputValue,
 	getNumber,
@@ -47,7 +48,10 @@ import { DBInputProps, DBInputState } from './model';
 
 useMetadata({
 	angular: {
-		nativeAttributes: ['disabled', 'required']
+		nativeAttributes: ['disabled', 'required'],
+		signals: {
+			writeable: ['disabled', 'value']
+		}
 	}
 });
 
@@ -63,8 +67,8 @@ export default function DBInput(props: DBInputProps) {
 		_invalidMessageId: undefined,
 		_invalidMessage: undefined,
 		_dataListId: undefined,
-		_descByIds: '',
-		_value: '',
+		_descByIds: undefined,
+		_value: undefined,
 		_voiceOverFallback: '',
 		hasValidState: () => {
 			return !!(props.validMessage ?? props.validation === 'valid');
@@ -98,7 +102,7 @@ export default function DBInput(props: DBInputProps) {
 			} else if (stringPropVisible(props.message, props.showMessage)) {
 				state._descByIds = state._messageId;
 			} else {
-				state._descByIds = '';
+				state._descByIds = undefined;
 			}
 		},
 		handleInput: (event: InputEvent<HTMLInputElement>) => {
@@ -188,6 +192,8 @@ export default function DBInput(props: DBInputProps) {
 			if (stringPropVisible(props.message, props.showMessage)) {
 				state._descByIds = messageId;
 			}
+
+			state.handleValidation();
 		}
 	}, [state._id]);
 
@@ -200,11 +206,15 @@ export default function DBInput(props: DBInputProps) {
 			class={cls('db-input', props.className)}
 			data-variant={props.variant}
 			data-hide-label={getHideProp(props.showLabel)}
-			data-hide-icon={getHideProp(props.showIcon)}
-			data-icon={props.icon}
-			data-icon-after={props.iconAfter}
+			data-show-icon={getBooleanAsString(
+				props.showIconLeading ?? props.showIcon
+			)}
+			data-icon={props.iconLeading ?? props.icon}
+			data-icon-trailing={props.iconTrailing}
 			data-hide-asterisk={getHideProp(props.showRequiredAsterisk)}
-			data-hide-icon-after={getHideProp(props.showIcon)}>
+			data-show-icon-trailing={getBooleanAsString(
+				props.showIconTrailing
+			)}>
 			<label htmlFor={state._id}>{props.label ?? DEFAULT_LABEL}</label>
 			<input
 				aria-invalid={props.validation === 'invalid'}
@@ -214,6 +224,7 @@ export default function DBInput(props: DBInputProps) {
 				id={state._id}
 				name={props.name}
 				type={props.type || 'text'}
+				multiple={getBoolean(props.multiple, 'multiple')}
 				placeholder={props.placeholder ?? DEFAULT_PLACEHOLDER}
 				disabled={getBoolean(props.disabled, 'disabled')}
 				required={getBoolean(props.required, 'required')}
@@ -230,9 +241,11 @@ export default function DBInput(props: DBInputProps) {
 				form={props.form}
 				pattern={props.pattern}
 				size={props.size}
-				// @ts-expect-error inout has a property autoComplete
+				// @ts-expect-error input has a property autoComplete
 				autoComplete={props.autocomplete}
 				autoFocus={getBoolean(props.autofocus, 'autofocus')}
+				enterKeyHint={props.enterkeyhint}
+				inputMode={props.inputmode}
 				onInput={(event: ChangeEvent<HTMLInputElement>) =>
 					state.handleInput(event)
 				}
@@ -268,7 +281,7 @@ export default function DBInput(props: DBInputProps) {
 			{props.children}
 			<Show when={stringPropVisible(props.message, props.showMessage)}>
 				<DBInfotext
-					size="small"
+					size={props.messageSize || 'small'}
 					icon={props.messageIcon}
 					id={state._messageId}>
 					{props.message}
@@ -278,7 +291,7 @@ export default function DBInput(props: DBInputProps) {
 			<Show when={state.hasValidState()}>
 				<DBInfotext
 					id={state._validMessageId}
-					size="small"
+					size={props.validMessageSize || 'small'}
 					semantic="successful">
 					{props.validMessage || DEFAULT_VALID_MESSAGE}
 				</DBInfotext>
@@ -286,7 +299,7 @@ export default function DBInput(props: DBInputProps) {
 
 			<DBInfotext
 				id={state._invalidMessageId}
-				size="small"
+				size={props.invalidMessageSize || 'small'}
 				semantic="critical">
 				{state._invalidMessage}
 			</DBInfotext>

@@ -63,16 +63,14 @@
 		&:has(textarea:is(:focus-within, :not(:placeholder-shown))) {
 			&::before {
 				@extend %default-transition;
-
-				@include get-scrolling-workaround();
+				@include get-scrolling-workaround;
 
 				background-color: colors.$db-adaptive-bg-basic-level-1-default;
 			}
 
 			&::after {
 				@extend %form-component-border;
-
-				@include get-scrolling-workaround();
+				@include get-scrolling-workaround;
 
 				background-color: colors.$db-adaptive-bg-basic-transparent-semi-default;
 				z-index: 1;
@@ -86,7 +84,7 @@
 
 			&:has(textarea:not(:disabled):is(:hover, :focus)) {
 				&::after {
-					background-color: colors.$db-adaptive-bg-basic-transparent-hovered;
+					background-color: colors.$db-adaptive-bg-basic-transparent-semi-hovered;
 				}
 			}
 		}

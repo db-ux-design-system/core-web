@@ -10,14 +10,14 @@
 .db-select {
 	--db-form-component-padding-inline-end: #{select-components.$select-icon-padding};
 	--db-form-component-min-inline-size: #{variables.$db-sizing-xl};
+
 	// shared from form-components
 	@extend %select-icon;
 	@extend %select-placeholder;
-
 	@include form-components.set-default-form-component(select);
 
 	// increased inline size for elements with icons
-	&[data-icon]:not([data-hide-icon="true"]) {
+	&[data-icon]:not([data-show-icon="false"]) {
 		--db-form-component-min-inline-size: #{variables.$db-sizing-2xl};
 	}
 
@@ -40,7 +40,7 @@
 		background-color: colors.$db-adaptive-bg-basic-level-3-default;
 	}
 
-	&:has(> select option:checked:not([hidden])) {
+	&:has(> select option:checked:not(.placeholder)) {
 		[id$="-placeholder"] {
 			display: none;
 		}

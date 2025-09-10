@@ -67,7 +67,10 @@ import {
 
 useMetadata({
 	angular: {
-		nativeAttributes: ['disabled']
+		nativeAttributes: ['disabled', 'required', 'multiple'],
+		signals: {
+			writeable: ['disabled', 'values']
+		}
 	}
 });
 
@@ -99,8 +102,9 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 		_placeholderId: undefined,
 		_infoTextId: undefined,
 		_validity: 'no-validation',
+		_userInteraction: false,
 		// Workaround for Vue output: TS for Vue would think that it could be a function, and by this we clarify that it's a string
-		_descByIds: '',
+		_descByIds: undefined,
 		_selectedLabels: '',
 		_selectedLabelsId: undefined,
 		_voiceOverFallback: '',
@@ -142,7 +146,9 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 					state._voiceOverFallback = state._invalidMessage;
 					delay(() => (state._voiceOverFallback = ''), 1000);
 				}
-				state._validity = props.validation ?? 'invalid';
+				if (state._userInteraction) {
+					state._validity = props.validation ?? 'invalid';
+				}
 			} else if (
 				state.hasValidState() &&
 				selectRef?.validity.valid &&
@@ -370,6 +376,22 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 			if (event.key === 'Escape' && detailsRef?.open) {
 				state.handleClose(undefined, true);
 				state.handleSummaryFocus();
+			} else if (event.key === 'Enter' && detailsRef?.open) {
+				// Handle Enter key to select option like Space key
+				if (self.document) {
+					const activeElement = self.document
+						.activeElement as HTMLInputElement;
+					if (
+						['checkbox', 'radio'].includes(
+							activeElement.getAttribute('type') || ''
+						)
+					) {
+						// Trigger click to simulate Space key behavior
+						activeElement.click();
+
+						event.preventDefault();
+					}
+				}
 			} else if (
 				event.key === 'ArrowDown' ||
 				event.key === 'ArrowUp' ||
@@ -422,6 +444,7 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 			if (skip) return;
 
 			state._values = values;
+			state._userInteraction = true;
 			if (props.onOptionSelected) {
 				props.onOptionSelected(values ?? []);
 			}
@@ -664,7 +687,7 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 		} else if (state._options) {
 			state._hasNoOptions = state._options!.length === 0;
 		}
-	}, [props.showNoResults, state._options]);
+	}, [props.showNoResults, props.showLoading, state._options]);
 
 	onUpdate(() => {
 		state.selectAllEnabled = Boolean(
@@ -688,8 +711,10 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 	}, [props.values]);
 
 	onUpdate(() => {
-		state.handleValidation();
-	}, [state._values]);
+		if (selectRef) {
+			state.handleValidation();
+		}
+	}, [state._values, selectRef]);
 
 	onUpdate(() => {
 		state._validity = props.validation;
@@ -820,7 +845,7 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 			data-selected-type={props.multiple ? props.selectedType : 'text'}
 			data-hide-label={getHideProp(props.showLabel)}
 			data-icon={props.icon}
-			data-hide-icon={getHideProp(props.showIcon)}>
+			data-show-icon={getBooleanAsString(props.showIcon)}>
 			<label id={state._labelId}>
 				{props.label ?? DEFAULT_LABEL}
 				<select
@@ -1032,18 +1057,18 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 							<DBInfotext
 								id={state._infoTextId}
 								icon={
-									state._hasNoOptions
-										? undefined
-										: 'circular_arrows'
+									props.showLoading
+										? 'circular_arrows'
+										: undefined
 								}
 								semantic={
-									state._hasNoOptions
-										? 'warning'
-										: 'informational'
+									props.showLoading
+										? 'informational'
+										: 'warning'
 								}>
-								{(state._hasNoOptions
-									? props.noResultsText
-									: props.loadingText) ?? DEFAULT_MESSAGE}
+								{(props.showLoading
+									? props.loadingText
+									: props.noResultsText) ?? DEFAULT_MESSAGE}
 							</DBInfotext>
 						</Show>
 

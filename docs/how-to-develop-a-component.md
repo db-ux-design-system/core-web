@@ -23,9 +23,9 @@ Starting with `packages/components/src/components/my-awesome-component/my-awesom
 
 1. The most important dependency are the `variables` included via `@use "@db-ux/core-foundations/build/styles/variables";`. They enable you to use e.g. `$db-spacing-fixed-md` for paddings, margins etc.
 2. A lot of times you have to force another `font-size` / `line-height`, you can do it with `@use "@db-ux/core-foundations/build/styles/density/font;` and the corresponding placeholder extend: `@extend %db-overwrite-font-size-sm;`.
-3. Some components have an 'adaptive' styling. We exclude it in an own file `@use "@db-ux/core-components/build/scss/styles/component";` so you might use this dependency. As a reference look at another component e.g. [`packages/components/src/components/button/button.scss`](../packages/components/src/components/button/button.scss).
+3. Some components have an 'adaptive' styling. We exclude it in an own file `@use "@db-ux/core-components/build/styles/internal/component";` so you might use this dependency. As a reference look at another component e.g. [`packages/components/src/components/button/button.scss`](../packages/components/src/components/button/button.scss).
 4. If you have to set a specific color (informational, warning, etc.) directly you can use `@use "@db-ux/core-foundations/build/styles/colors";`. You can take a look at the `notification` component for an example `packages/components/src/components/notification/notification.scss` you might use the `@each` to reduce the amount of code for color-variants.
-5. To set a fixed icon you might use `@use "@db-ux/core-foundations/build/styles/icon/icons.helpers" as icons;` as dependency and e.g. `@include icons.icon("arrow_forward"), "after");`. For a dynamic icon you could prefer integrating it in HTML code with the `data-icon` attribute.
+5. To set a fixed icon you might use `@use "@db-ux/core-foundations/build/styles/icons/icon-helpers" as icons;` as dependency and e.g. `@include icons.icon("arrow_forward", "after");`. For a dynamic icon you could prefer integrating it in HTML code with the `data-icon` attribute.
 
 ### Component structure with HTML
 
@@ -33,7 +33,7 @@ In addition to the `SCSS`, you need to modify the HTML code for your component. 
 
 There are some things you have to know:
 
-1. There are some reserved `data-*` attributes. For example `data-icon="xxx"` or `data-icon-after="xxx"` which will set an icon as `::before` / `::after` contents.
+1. There are some reserved `data-*` attributes. For example `data-icon="xxx"` or `data-icon-trailing="xxx"` which will set an icon as `::before` / `::after` contents.
 2. Moreover, there are some `data-*` attributes with the same meaning which we try to align across all components. For example `data-width` should be always `auto` or `full-width` to have the same possible options. We've additionally summarized those by providing models / types for these. For a closer look on this ask the Design Team for the glossary.
 3. Try to use native HTML tags. For example if you have something like an Accordion use `<details><summary>`, so you would reduce the amount of custom JS/TS code for the components.
 

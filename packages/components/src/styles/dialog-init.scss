@@ -5,7 +5,6 @@ $backdrop-color-strong: color(
 	from #{colors.$db-adaptive-on-bg-basic-emphasis-100-default} srgb r g b /
 		#{variables.$db-opacity-lg}
 );
-
 $backdrop-color-weak: color(
 	from #{colors.$db-adaptive-on-bg-basic-emphasis-100-default} srgb r g b /
 		#{variables.$db-opacity-sm}
