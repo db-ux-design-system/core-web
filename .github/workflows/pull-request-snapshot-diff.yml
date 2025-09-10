@@ -55,7 +55,7 @@ jobs:
           HAS_MINOR=0
           HAS_MAJOR=0
 
-          git diff --name-only origin/main...HEAD -- ".changeset/*.md" > .cs-files || true
+          git diff --name-only origin/main...HEAD -- .changeset/*.md > .cs-files || true
 
           if [ -s .cs-files ]; then
             while read -r f; do
