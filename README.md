@@ -85,7 +85,7 @@ As [DB UX Design System](https://marketingportal.extranet.deutschebahn.com/marke
 
 ### From DB UI Core or DB UI Elements to DB UX Design System Core
 
-We're providing a detailed migration for each component next to the documentation of each component, like e.g.
+We are providing a detailed migration for each component next to the documentation of each component, like e.g.
 <https://design-system.deutschebahn.com/core-web/review/main/components/action/button/migration>
 
 ### In between DB UX Design System Core versions
@@ -106,7 +106,7 @@ Check our migration docs for breaking changes:
 
 ### Unexpected "new" colors
 
-> We've updated to the stable version of DB UX Design System (v3) version >= 1.x, and now the colors that were supposed to be red, are colored in blue (`514ec7`).
+> We have updated to the stable version of DB UX Design System (v3) version >= 1.x, and now the colors that were supposed to be red, are colored in blue (`514ec7`).
 
 Please have a look at the [migration guide from version 0.6.x to version 0.7.x](https://github.com/db-ux-design-system/core-web/blob/main/docs/migration/v0.6.x-to-v0.7.x.md#removed-brand-assets), you need to install and reference the DB Theme, if you're building a website or web application for Deutsche Bahn.
 
