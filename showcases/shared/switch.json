@@ -54,37 +54,6 @@
 		]
 	},
 	{
-		"name": "Emphasis",
-		"examples": [
-			{
-				"name": "(Default) Weak + Unchecked",
-				"props": {
-					"emphasis": "weak"
-				}
-			},
-			{
-				"name": "(Default) Weak + Checked",
-				"props": {
-					"emphasis": "weak",
-					"checked": true
-				}
-			},
-			{
-				"name": "Strong + Unchecked",
-				"props": {
-					"emphasis": "strong"
-				}
-			},
-			{
-				"name": "Strong + Checked",
-				"props": {
-					"emphasis": "strong",
-					"checked": true
-				}
-			}
-		]
-	},
-	{
 		"name": "Visual Aid",
 		"examples": [
 			{

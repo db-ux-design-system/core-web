@@ -152,7 +152,6 @@ export default function DBSwitch(props: DBSwitchProps) {
 			data-visual-aid={getBooleanAsString(props.visualAid)}
 			data-size={props.size}
 			data-hide-label={getHideProp(props.showLabel)}
-			data-emphasis={props.emphasis}
 			htmlFor={state._id}
 			data-label-position={props.labelPosition}
 			data-accent={getBooleanAsString(props.accent)}

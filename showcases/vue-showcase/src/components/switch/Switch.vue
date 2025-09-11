@@ -19,7 +19,6 @@ import DefaultComponent from "../DefaultComponent.vue";
 				:labelPosition="exampleProps?.labelPosition"
 				:accent="exampleProps?.accent"
 				:size="exampleProps?.size"
-				:emphasis="exampleProps?.emphasis"
 				:icon="exampleProps?.icon"
 				:iconTrailing="exampleProps?.iconTrailing"
 				:validation="exampleProps?.validation"

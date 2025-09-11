@@ -1,7 +1,6 @@
 import {
 	ChangeEventProps,
 	ChangeEventState,
-	EmphasisProps,
 	FocusEventProps,
 	FocusEventState,
 	FormCheckProps,
@@ -36,7 +35,6 @@ export type DBSwitchProps = DBSwitchDefaultProps &
 	FormProps &
 	FormCheckProps &
 	FormMessageProps &
-	EmphasisProps &
 	SizeProps &
 	IconProps &
 	IconTrailingProps &
