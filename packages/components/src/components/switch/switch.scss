@@ -31,7 +31,6 @@ $checked-active-transition-size: calc(
 	}
 }
 
-// TODO: Move to e.g. form-components
 @mixin switch-validity($key) {
 	@include form-components.get-validity("switch", $key) {
 		@include form-components.get-validity-message($key);

@@ -199,15 +199,6 @@
 					"icon": "cross_circle",
 					"iconTrailing": "clock"
 				}
-			},
-			{
-				"name": "Custom Icons+ Emphasis",
-				"props": {
-					"visualAid": true,
-					"icon": "cross_circle",
-					"iconTrailing": "clock",
-					"emphasis": "strong"
-				}
 			}
 		]
 	},
