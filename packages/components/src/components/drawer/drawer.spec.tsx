@@ -59,6 +59,45 @@ const testAction = () => {
 		await component.getByRole('button').click();
 		expect(test).toEqual('close');
 	});
+
+	test(`should close drawer with escape key when focus is on body`, async ({ mount, page }) => {
+		let closed: boolean = false;
+		const drawer: any = (
+			<DBDrawer onClose={() => (closed = true)} open={true}>
+				<span data-testid="test">Test</span>
+				<button data-testid="disappearing-button" 
+					onClick={() => {
+						const btn = document.querySelector('[data-testid="disappearing-button"]');
+						if (btn) btn.remove();
+						// Simulate focus moving to body
+						document.body.focus();
+					}}>
+					Click me
+				</button>
+			</DBDrawer>
+		);
+		const component = await mount(drawer);
+		
+		// Verify drawer is open
+		const testSpan = component.getByTestId('test');
+		await expect(testSpan).toBeVisible();
+		
+		// Click the button to make it disappear and move focus to body
+		const disappearingButton = component.getByTestId('disappearing-button');
+		await disappearingButton.click();
+		
+		// Verify button is gone and focus is on body
+		await expect(disappearingButton).not.toBeVisible();
+		
+		// Press escape key - this should still close the drawer
+		await page.keyboard.press('Escape');
+		
+		// Wait a moment for the event to be processed
+		await page.waitForTimeout(100);
+		
+		// Verify the close handler was called
+		expect(closed).toBe(true);
+	});
 };
 
 test.describe('DBDrawer', () => {
