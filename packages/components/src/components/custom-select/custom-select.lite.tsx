@@ -701,21 +701,12 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 
 	// If we inform the consumer we don't want to trigger the onOptionSelected event again
 	onUpdate(() => {
-		if (
-			props.values &&
-			Array.isArray(props.values) &&
-			props.values !== state._values
-		) {
-			state._values = props.values ?? [];
-		} else if (
-			props.values === null ||
-			props.values === undefined ||
-			(Array.isArray(props.values) && props.values?.length === 0)
-		) {
-			// Handle the case where props.values is empty/null/undefined
-			// but state._values may still contain items that need to be cleared
-			// This fixes issues with form validation libraries that reset values
-			state._values = [];
+		const v = props.values;
+
+		if (Array.isArray(v)) {
+			if (state._values !== v) state._values = v;
+		} else if (v == null) {
+			if (state._values.length !== 0) state._values = [];
 		}
 	}, [props.values]);
 
