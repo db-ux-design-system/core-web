@@ -172,6 +172,8 @@ npm run generate:component # Generate new component scaffolding
 
 ## Development Workflows
 
+If possible, start by writing a test that you could use to verify your solution, as well as we could use for ongoing regression testing throughout the product's development.
+
 ### Adding a New Component
 1. `npm run generate:component` - Follow interactive prompts
 2. Implement component in `packages/components/src/components/[name]/`
