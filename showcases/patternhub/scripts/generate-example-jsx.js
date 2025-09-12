@@ -30,7 +30,7 @@ const generateExampleJSX = () => {
 				for (const example of variant.examples) {
 					const code = getCodeByFramework(
 						componentName,
-						'react',
+						'html',
 						example,
 						true,
 						variant.children
@@ -39,7 +39,7 @@ const generateExampleJSX = () => {
 						`"${componentName}${variant.name}${
 							example.name
 							// eslint-disable-next-line unicorn/no-unnecessary-slice-end
-						}":renderToString(${code.slice(0, code.length)})`
+						}":${JSON.stringify(code)}`
 					);
 				}
 			}
@@ -52,10 +52,7 @@ const generateExampleJSX = () => {
 
 	FS.writeFileSync(
 		`./scripts/generated/index.jsx`,
-		"import { renderToString } from 'react-dom/server';\n" +
-			"import React from 'react';\n" +
-			`import {${imports.join(',')}} from '../../../../output/react/src';\n\n` +
-			`export const allExamples = {${examples.join(',\n')}}`
+		`export const allExamples = {${examples.join(',\n')}}`
 	);
 };
 
