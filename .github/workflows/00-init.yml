@@ -1,5 +1,8 @@
 name: Init Workflow
 
+permissions:
+  contents: read
+
 on:
   workflow_call:
 

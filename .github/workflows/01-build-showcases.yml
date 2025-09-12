@@ -1,6 +1,9 @@
 ---
 name: Build Showcases
 
+permissions:
+  contents: read
+
 on:
   workflow_call:
     inputs:
