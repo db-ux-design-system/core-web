@@ -36,6 +36,11 @@ export type DBNavigationItemDefaultProps = {
 	 * This is for mobile navigation only, if it is set the sub-navigation is a static overlay
 	 */
 	subNavigationExpanded?: boolean | string;
+
+	/**
+	 * ID for the sub-navigation element. If not provided, a deterministic ID will be generated to ensure SSR compatibility.
+	 */
+	subNavigationId?: string;
 };
 
 export type DBNavigationItemProps = DBNavigationItemDefaultProps &
