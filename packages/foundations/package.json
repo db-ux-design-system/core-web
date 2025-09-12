@@ -11,16 +11,17 @@
   "main": "./build/index.js",
   "types": "./build/index.d.ts",
   "module": "./build/index.js",
-  "files": [
-    "assets",
-    "build"
-  ],
   "exports": {
     ".": {
       "types": "./build/index.d.ts",
       "default": "./build/index.js"
-    }
+    },
+    "./assets/*": "./assets/*"
   },
+  "files": [
+    "assets",
+    "build"
+  ],
   "scripts": {
     "build": "npm-run-all build:*",
     "build:01_normalize": "npm-run-all copy-prepare:*",
