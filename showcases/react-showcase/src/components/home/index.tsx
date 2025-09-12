@@ -3,7 +3,7 @@ import {
 	DBTabList,
 	DBTabPanel,
 	DBTabs
-} from '@db-ux/react-core-components';
+} from '../../../../../output/react/src';
 import FormComponent from '../form';
 import FormCheckboxes from '../form/checkbox';
 import FormCustomSelects from '../form/custom-select';

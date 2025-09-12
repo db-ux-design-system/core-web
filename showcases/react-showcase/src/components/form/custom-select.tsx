@@ -1,5 +1,5 @@
-import { DBCustomSelect } from '@db-ux/react-core-components';
 import { useState } from 'react';
+import { DBCustomSelect } from '../../../../../output/react/src';
 import FormWrapper from './form-wrapper';
 
 const FormCustomSelects = () => {

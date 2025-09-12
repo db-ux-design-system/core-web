@@ -1,5 +1,5 @@
-import { DBCheckbox } from '@db-ux/react-core-components';
 import { useState } from 'react';
+import { DBCheckbox } from '../../../../../output/react/src';
 import FormWrapper from './form-wrapper';
 
 const FormCheckboxes = () => {
