@@ -16,7 +16,8 @@
       "types": "./build/index.d.ts",
       "default": "./build/index.js"
     },
-    "./assets/*": "./assets/*"
+    "./assets/*": "./assets/*",
+    "./build/styles/*": "./build/styles/*"
   },
   "files": [
     "assets",
