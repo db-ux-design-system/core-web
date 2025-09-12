@@ -11,6 +11,14 @@
   "main": "./build/index.js",
   "types": "./build/index.d.ts",
   "module": "./build/index.js",
+  "exports": {
+    ".": {
+      "types": "./build/index.d.ts",
+      "default": "./build/index.js"
+    },
+    "./assets/*": "./assets/*",
+    "./build/styles/*": "./build/styles/*"
+  },
   "files": [
     "assets",
     "build"

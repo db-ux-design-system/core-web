@@ -1,5 +1,5 @@
-import { DBSelect } from '@db-ux/react-core-components/src';
 import { useState } from 'react';
+import { DBSelect } from '../../../../../output/react/src';
 import FormWrapper from './form-wrapper';
 
 const FormSelects = () => {
