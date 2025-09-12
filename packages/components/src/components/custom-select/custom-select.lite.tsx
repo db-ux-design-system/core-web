@@ -376,6 +376,22 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 			if (event.key === 'Escape' && detailsRef?.open) {
 				state.handleClose(undefined, true);
 				state.handleSummaryFocus();
+			} else if (event.key === 'Enter' && detailsRef?.open) {
+				// Handle Enter key to select option like Space key
+				if (self.document) {
+					const activeElement = self.document
+						.activeElement as HTMLInputElement;
+					if (
+						['checkbox', 'radio'].includes(
+							activeElement.getAttribute('type') || ''
+						)
+					) {
+						// Trigger click to simulate Space key behavior
+						activeElement.click();
+
+						event.preventDefault();
+					}
+				}
 			} else if (
 				event.key === 'ArrowDown' ||
 				event.key === 'ArrowUp' ||
