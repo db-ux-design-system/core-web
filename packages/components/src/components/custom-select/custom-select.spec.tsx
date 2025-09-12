@@ -142,9 +142,71 @@ const testAction = () => {
 	});
 };
 
+const testPlaceholderVisibility = () => {
+	test('should show placeholder when no options selected', async ({
+		mount,
+		page
+	}) => {
+		const component = await mount(comp);
+		const placeholder = component.locator('[id$="-placeholder"]');
+
+		// Placeholder should be visible when no options are selected
+		await expect(placeholder).toBeVisible();
+	});
+
+	test('should hide placeholder when options are selected', async ({
+		mount,
+		page
+	}) => {
+		const component = await mount(comp);
+		const placeholder = component.locator('[id$="-placeholder"]');
+		const summary = component.locator('summary');
+
+		// Initially placeholder should be visible
+		await expect(placeholder).toBeVisible();
+
+		// Open dropdown using keyboard (more reliable than click)
+		await summary.focus();
+		await page.keyboard.press('ArrowDown');
+		await page.waitForTimeout(500);
+
+		// Select first option using keyboard
+		await page.keyboard.press('Space');
+		await page.waitForTimeout(500);
+
+		// Placeholder should now be hidden since we have a selection
+		await expect(placeholder).toBeHidden();
+	});
+
+	test('should handle multiple selection placeholder visibility', async ({
+		mount,
+		page
+	}) => {
+		const component = await mount(multiple);
+		const placeholder = component.locator('[id$="-placeholder"]');
+		const summary = component.locator('summary');
+
+		// Initially placeholder should be visible
+		await expect(placeholder).toBeVisible();
+
+		// Open dropdown using keyboard (more reliable than click)
+		await summary.focus();
+		await page.keyboard.press('ArrowDown');
+		await page.waitForTimeout(500);
+
+		// Select first option using keyboard
+		await page.keyboard.press('Space');
+		await page.waitForTimeout(500);
+
+		// Placeholder should now be hidden since we have selections
+		await expect(placeholder).toBeHidden();
+	});
+};
+
 test.describe('DBCustomSelect', () => {
 	test.use({ viewport: DEFAULT_VIEWPORT });
 	testComponent();
 	testAction();
 	testA11y();
+	testPlaceholderVisibility();
 });
