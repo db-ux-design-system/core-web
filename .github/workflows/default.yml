@@ -150,7 +150,7 @@ jobs:
       path: ${{ needs.build-showcase-patternhub.outputs.path }}
 
   regenerate-snapshots-components:
-    if: always() && needs.test-components.result == 'failure'
+    if: always() && (needs.test-components.result == 'failure' || needs.test-components.outputs.has-failures == 'true')
     uses: ./.github/workflows/02-e2e-regenerate.yml
     with:
       version: ${{ needs.get-playwright-version.outputs.version }}
