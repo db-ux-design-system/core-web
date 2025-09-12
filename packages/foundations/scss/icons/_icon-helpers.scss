@@ -50,7 +50,7 @@ $default-icon-font-size: var(--db-icon-font-size, #{$default-icon-size-rem});
 }
 
 @mixin to-filled-icon() {
-	--db-icon-font-family: var(--db-icon-filled-font-family, "db-ux-filled, icon-font-fallback");
+	--db-icon-font-family: var(--db-icon-filled-font-family, db-ux-filled, icon-font-fallback);
 }
 
 // Icon SCSS mixin
@@ -133,7 +133,7 @@ $default-icon-font-size: var(--db-icon-font-size, #{$default-icon-size-rem});
 	// * use !important to prevent issues with browser extensions that change fonts
 	font-family: var(
 		--db-icon-font-family,
-		var(--db-icon-default-font-family, "db-ux-default, icon-font-fallback")
+		var(--db-icon-default-font-family, db-ux-default, icon-font-fallback)
 	) !important;
 	font-size: $default-icon-font-size;
 
