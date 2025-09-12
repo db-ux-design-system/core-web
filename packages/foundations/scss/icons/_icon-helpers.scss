@@ -133,7 +133,7 @@ $default-icon-font-size: var(--db-icon-font-size, #{$default-icon-size-rem});
 	// * use !important to prevent issues with browser extensions that change fonts
 	font-family: var(
 		--db-icon-font-family,
-		var(--db-icon-default-font-family, "db-ux-default")
+		var(--db-icon-default-font-family, "db-ux-default, icon-font-fallback")
 	) !important;
 	font-size: $default-icon-font-size;
 
