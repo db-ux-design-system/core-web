@@ -1,4 +1,4 @@
-import { DBCustomSelect } from '@db-ux/react-core-components/src';
+import { DBCustomSelect } from '@db-ux/react-core-components';
 import { useState } from 'react';
 import FormWrapper from './form-wrapper';
 
