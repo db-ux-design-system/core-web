@@ -2,7 +2,8 @@
 name: Default Pipeline
 
 permissions:
-  contents: read
+  contents: write
+  actions: write
 
 on:
   pull_request:
