@@ -49,12 +49,26 @@ jobs:
           name: db-ux-components-build
           path: packages/components/build
 
-      - name: ⏬ Download showcases
+      - name: ⏬ Download showcases - React
         if: inputs.type == 'showcases'
         uses: actions/download-artifact@v5
         with:
           name: db-ux-react-showcase
           path: build-showcases/react-showcase
+
+      - name: ⏬ Download showcases - Angular
+        if: inputs.type == 'showcases'
+        uses: actions/download-artifact@v5
+        with:
+          name: db-ux-angular-showcase
+          path: build-showcases/angular-showcase
+
+      - name: ⏬ Download showcases - Vue
+        if: inputs.type == 'showcases'
+        uses: actions/download-artifact@v5
+        with:
+          name: db-ux-vue-showcase
+          path: build-showcases/vue-showcase
 
       - name: ⏬ Download patternhub
         if: inputs.type == 'patternhub'
@@ -80,6 +94,10 @@ jobs:
           else
             npm run regenerate:visual-snapshots --workspace=react-showcase
             npm run regenerate:aria-snapshots --workspace=react-showcase
+            npm run regenerate:visual-snapshots --workspace=angular-showcase
+            npm run regenerate:aria-snapshots --workspace=angular-showcase
+            npm run regenerate:visual-snapshots --workspace=vue-showcase
+            npm run regenerate:aria-snapshots --workspace=vue-showcase
           fi
 
       - name: 🆙 Upload components

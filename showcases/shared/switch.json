@@ -54,37 +54,6 @@
 		]
 	},
 	{
-		"name": "Emphasis",
-		"examples": [
-			{
-				"name": "(Default) Weak + Unchecked",
-				"props": {
-					"emphasis": "weak"
-				}
-			},
-			{
-				"name": "(Default) Weak + Checked",
-				"props": {
-					"emphasis": "weak",
-					"checked": true
-				}
-			},
-			{
-				"name": "Strong + Unchecked",
-				"props": {
-					"emphasis": "strong"
-				}
-			},
-			{
-				"name": "Strong + Checked",
-				"props": {
-					"emphasis": "strong",
-					"checked": true
-				}
-			}
-		]
-	},
-	{
 		"name": "Visual Aid",
 		"examples": [
 			{
@@ -125,6 +94,44 @@
 				"name": "Small",
 				"props": {
 					"size": "small"
+				}
+			}
+		]
+	},
+	{
+		"name": "Label Position",
+		"examples": [
+			{
+				"name": "(Default) Trailing",
+				"props": {
+					"label": "Label after switch"
+				}
+			},
+			{
+				"name": "Leading",
+				"props": {
+					"label": "Label before switch",
+					"labelPosition": "leading"
+				}
+			}
+		]
+	},
+	{
+		"name": "Accent",
+		"examples": [
+			{
+				"name": "(Default) False",
+				"props": {
+					"label": "Normal switch",
+					"accent": false
+				}
+			},
+			{
+				"name": "True (checked)",
+				"props": {
+					"label": "Accent switch checked",
+					"accent": true,
+					"checked": true
 				}
 			}
 		]
@@ -192,14 +199,29 @@
 					"icon": "cross_circle",
 					"iconTrailing": "clock"
 				}
+			}
+		]
+	},
+	{
+		"name": "Validation",
+		"examples": [
+			{
+				"name": "(Default) No validation",
+				"props": {}
 			},
 			{
-				"name": "Custom Icons+ Emphasis",
+				"name": "Invalid",
 				"props": {
-					"visualAid": true,
-					"icon": "cross_circle",
-					"iconTrailing": "clock",
-					"emphasis": "strong"
+					"validation": "invalid",
+					"invalidMessage": "Invalid Message"
+				}
+			},
+			{
+				"name": "Valid",
+				"props": {
+					"validation": "valid",
+					"validMessage": "Valid message",
+					"checked": true
 				}
 			}
 		]

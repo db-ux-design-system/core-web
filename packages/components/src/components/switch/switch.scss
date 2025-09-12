@@ -1,6 +1,5 @@
 @use "@db-ux/core-foundations/build/styles/variables";
 @use "@db-ux/core-foundations/build/styles/colors";
-@use "@db-ux/core-foundations/build/styles/fonts";
 @use "@db-ux/core-foundations/build/styles/helpers";
 @use "@db-ux/core-foundations/build/styles/icons";
 @use "../../styles/internal/form-components";
@@ -32,9 +31,82 @@ $checked-active-transition-size: calc(
 	}
 }
 
+@mixin switch-validity($key) {
+	@include form-components.get-validity("switch", $key) {
+		@include form-components.get-validity-message($key);
+
+		@if $key == "valid" {
+			--db-check-element-label-color: #{colors.$db-successful-on-bg-basic-emphasis-100-default};
+			--db-check-element-border-color: #{colors.$db-successful-on-bg-basic-emphasis-70-default};
+		} @else if $key == "invalid" {
+			--db-check-element-label-color: #{colors.$db-critical-on-bg-basic-emphasis-100-default};
+			--db-check-element-border-color: #{colors.$db-critical-on-bg-basic-emphasis-70-default};
+		}
+
+		> input {
+			@if $key == "valid" {
+				border-color: colors.$db-successful-on-bg-basic-emphasis-70-default;
+			} @else if $key == "invalid" {
+				border-color: colors.$db-critical-on-bg-basic-emphasis-70-default;
+			}
+		}
+
+		> input:not(:checked)::before {
+			background-color: var(--db-check-element-border-color);
+			color: var(--db-check-element-border-color);
+		}
+
+		> input:checked {
+			background-color: var(--db-check-element-border-color);
+
+			@if $key == "valid" {
+				border-color: colors.$db-successful-on-bg-basic-emphasis-70-default;
+			} @else if $key == "invalid" {
+				border-color: colors.$db-critical-on-bg-basic-emphasis-70-default;
+			}
+
+			@include helpers.hover {
+				background-color: var(--db-check-element-border-color);
+
+				@if $key == "valid" {
+					border-color: colors.$db-successful-on-bg-basic-emphasis-70-default;
+				} @else if $key == "invalid" {
+					border-color: colors.$db-critical-on-bg-basic-emphasis-70-default;
+				}
+			}
+
+			@include helpers.active {
+				background-color: var(--db-check-element-border-color);
+
+				@if $key == "valid" {
+					border-color: colors.$db-successful-on-bg-basic-emphasis-70-default;
+				} @else if $key == "invalid" {
+					border-color: colors.$db-critical-on-bg-basic-emphasis-70-default;
+				}
+			}
+		}
+
+		> input:checked::before {
+			@if $key == "valid" {
+				background-color: colors.$db-successful-on-bg-inverted-default;
+				color: colors.$db-successful-on-bg-inverted-default;
+			} @else if $key == "invalid" {
+				background-color: colors.$db-critical-on-bg-inverted-default;
+				color: colors.$db-critical-on-bg-inverted-default;
+			}
+		}
+	}
+}
+
 .db-switch {
 	user-select: none;
 
+	/* enforce flex and break also in Angular */
+	display: inline-flex;
+	align-items: center;
+	flex-wrap: wrap;
+
+	@extend %helper-message;
 	@include form-components.set-default-check-element;
 
 	&:not(:has(input:disabled)) {
@@ -238,6 +310,80 @@ $checked-active-transition-size: calc(
 					);
 					block-size: $switch-active-thumb-size;
 				}
+			}
+		}
+	}
+
+	/* Set variables */
+	&[data-custom-validity="valid"] {
+		--db-switch-label-color: #{colors.$db-successful-on-bg-basic-emphasis-80-default};
+	}
+
+	&[data-custom-validity="invalid"] {
+		--db-switch-label-color: #{colors.$db-critical-on-bg-basic-emphasis-80-default};
+	}
+
+	/* Set color for label */
+	> .db-switch-label,
+	> .db-switch-label * {
+		color: var(--db-switch-label-color, inherit);
+	}
+
+	/* Set color for helper message */
+	&::after {
+		color: var(
+			--db-switch-label-color,
+			var(--db-check-element-label-color, inherit)
+		);
+	}
+
+	/* Put infotext below switch */
+	& :is(.db-infotext, db-infotext) {
+		order: 2;
+		flex: 0 0 100%;
+		margin-block-start: variables.$db-spacing-fixed-2xs;
+	}
+
+	@include switch-validity("valid");
+	@include switch-validity("invalid");
+
+	/* Label position (leading/trailing) */
+	&[data-label-position="trailing"] {
+		> input {
+			margin-inline-end: variables.$db-spacing-fixed-xs;
+		}
+	}
+
+	&[data-label-position="leading"] {
+		> .db-switch-label {
+			order: -1;
+			margin-inline-end: variables.$db-spacing-fixed-xs;
+		}
+
+		> input {
+			margin-inline-end: 0;
+		}
+	}
+
+	/* Accent styling for checked switch */
+	&[data-accent="true"] {
+		> input:checked {
+			background-color: colors.$db-successful-on-bg-basic-emphasis-70-default;
+			border-color: colors.$db-successful-on-bg-basic-emphasis-70-default;
+
+			@include helpers.hover {
+				background-color: colors.$db-successful-on-bg-basic-emphasis-70-default;
+				border-color: colors.$db-successful-on-bg-basic-emphasis-70-default;
+			}
+
+			@include helpers.active {
+				background-color: colors.$db-successful-on-bg-basic-emphasis-70-default;
+				border-color: colors.$db-successful-on-bg-basic-emphasis-70-default;
+			}
+
+			&::before {
+				background-color: colors.$db-successful-on-bg-inverted-default;
+				color: colors.$db-successful-on-bg-inverted-default;
 			}
 		}
 	}
