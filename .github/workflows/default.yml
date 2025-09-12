@@ -194,12 +194,17 @@ jobs:
 
   regenerate-snapshots:
     if: |
-      needs.test-showcase-angular.outputs.aria-snapshots-changed == 'true' ||
-      needs.test-showcase-angular.outputs.visual-snapshots-changed == 'true' ||
-      needs.test-showcase-react.outputs.aria-snapshots-changed == 'true' ||
-      needs.test-showcase-react.outputs.visual-snapshots-changed == 'true' ||
-      needs.test-showcase-vue.outputs.aria-snapshots-changed == 'true' ||
-      needs.test-showcase-vue.outputs.visual-snapshots-changed == 'true'
+      always() && (
+        needs.test-showcase-angular.result == 'failure' ||
+        needs.test-showcase-react.result == 'failure' ||
+        needs.test-showcase-vue.result == 'failure' ||
+        needs.test-showcase-angular.outputs.aria-snapshots-changed == 'true' ||
+        needs.test-showcase-angular.outputs.visual-snapshots-changed == 'true' ||
+        needs.test-showcase-react.outputs.aria-snapshots-changed == 'true' ||
+        needs.test-showcase-react.outputs.visual-snapshots-changed == 'true' ||
+        needs.test-showcase-vue.outputs.aria-snapshots-changed == 'true' ||
+        needs.test-showcase-vue.outputs.visual-snapshots-changed == 'true'
+      )
     uses: ./.github/workflows/02-e2e-regenerate.yml
     with:
       version: ${{ needs.get-playwright-version.outputs.version }}
@@ -215,7 +220,11 @@ jobs:
   commit-regenerated-snapshots:
     uses: ./.github/workflows/02-e2e-regenerated-snapshots-commit.yml
     secrets: inherit
-    if: always()
+    if: |
+      needs.regenerate-snapshots-components.result == 'success' ||
+      needs.regenerate-snapshots-foundations.result == 'success' ||
+      needs.regenerate-snapshots-patternhub.result == 'success' ||
+      needs.regenerate-snapshots.result == 'success'
     needs:
       [
         regenerate-snapshots-components,
