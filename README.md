@@ -32,11 +32,27 @@ designers, and content authors build, maintain, and scale best-of-class digital 
 | [@db-ux/v-core-components](https://github.com/db-ux-design-system/core-web/tree/main/output/vue)          | Native Vue 3 components             | [![@db-ux/v-core-components on Npmjs](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fapi.github.com%2Frepos%2Fdb-ux-design-system%2Fcore-web%2Freleases%2Flatest&query=%24.tag_name&label=npm&color=ed1c24 "npm version")](https://npmjs.com/package/@db-ux/v-core-components "DB UX Design System – on NPM")         |
 | [@db-ux/wc-core-components](https://github.com/db-ux-design-system/core-web/tree/main/output/stencil)     | Web Components                      | [![@db-ux/wc-core-components on Npmjs](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fapi.github.com%2Frepos%2Fdb-ux-design-system%2Fcore-web%2Freleases%2Flatest&query=%24.tag_name&label=npm&color=ed1c24 "npm version")](https://npmjs.com/package/@db-ux/wc-core-components "DB UX Design System – on NPM")       |
 
+### Which package should I choose?
+
+**For JavaScript framework-specific components**: Choose your framework package (React, Angular, Vue, Web Components) which includes styling and JavaScript behavior.
+
+**For other users**: Use `@db-ux/core-components` - it includes everything you need (foundations + component styles).
+
+**For design tokens only**: Use `@db-ux/core-foundations` if you only need colors, spacing, fonts, and icons without pre-built component styles.
+
 ## How to use
 
-Install your preferred package via npm or yarn e.g. `npm i @db-ux/react-core-components`.
+1. **Install your preferred package** via npm or yarn:
+   - For React: `npm i @db-ux/react-core-components`
+   - For Angular: `npm i @db-ux/ngx-core-components`
+   - For Vue: `npm i @db-ux/v-core-components`
+   - For Web Components: `npm i @db-ux/wc-core-components`
+   - For styling only: `npm i @db-ux/core-components`
 
-Afterwards, you need to include the specific CSS or SCSS files to apply the styles of DB UX Design System (Version 3), as described in the "Styling Dependencies" section of each package's `README`.
+2. **Include the CSS styles** as described in the "Styling Dependencies" section of each package's `README`.
+
+> **💡 Note**: All framework packages automatically include the necessary foundation styles - you don't need to install `@db-ux/core-foundations` separately!
+
 We even provide some [examples of integrations](https://github.com/db-ux-design-system/examples).
 
 ### DB Theme
