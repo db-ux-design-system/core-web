@@ -100,7 +100,7 @@
     "@playwright/test": "1.54.2",
     "accessibility-checker": "4.0.9",
     "adm-zip": "0.5.16",
-    "commander": "14.0.0",
+    "commander": "14.0.1",
     "cpr": "3.0.1",
     "cross-env": "10.0.0",
     "dotenv": "17.2.2",
