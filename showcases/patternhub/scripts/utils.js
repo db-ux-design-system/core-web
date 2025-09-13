@@ -6,21 +6,24 @@
  */
 // Escape unsafe characters from JSON-stringified values for code/attribute construction
 const charMap = {
-    '<': '\\u003C',
-    '>': '\\u003E',
-    '/': '\\u002F',
-    '\\': '\\\\',
-    '\b': '\\b',
-    '\f': '\\f',
-    '\n': '\\n',
-    '\r': '\\r',
-    '\t': '\\t',
-    '\0': '\\0',
-    '\u2028': '\\u2028',
-    '\u2029': '\\u2029'
+	'<': String.raw`\u003C`,
+	'>': String.raw`\u003E`,
+	'/': String.raw`\u002F`,
+	'\\': '\\\\',
+	'\b': String.raw`\b`,
+	'\f': String.raw`\f`,
+	'\n': String.raw`\n`,
+	'\r': String.raw`\r`,
+	'\t': String.raw`\t`,
+	'\0': String.raw`\0`,
+	'\u2028': String.raw`\u2028`,
+	'\u2029': String.raw`\u2029`
 };
-function escapeUnsafeChars(str) {
-    return str.replace(/[<>\b\f\n\r\t\0\u2028\u2029/\\]/g, x => charMap[x]);
+function escapeUnsafeChars(string_) {
+	return string_.replaceAll(
+		/[<>\b\f\n\r\t\0\u2028\u2029/\\]/g,
+		(x) => charMap[x]
+	);
 }
 
 const getAttributes = (props, framework, noEvents) => {
