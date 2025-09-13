@@ -4,6 +4,25 @@
  * @param noEvents {boolean}
  * @return {*[]}
  */
+// Escape unsafe characters from JSON-stringified values for code/attribute construction
+const charMap = {
+    '<': '\\u003C',
+    '>': '\\u003E',
+    '/': '\\u002F',
+    '\\': '\\\\',
+    '\b': '\\b',
+    '\f': '\\f',
+    '\n': '\\n',
+    '\r': '\\r',
+    '\t': '\\t',
+    '\0': '\\0',
+    '\u2028': '\\u2028',
+    '\u2029': '\\u2029'
+};
+function escapeUnsafeChars(str) {
+    return str.replace(/[<>\b\f\n\r\t\0\u2028\u2029/\\]/g, x => charMap[x]);
+}
+
 const getAttributes = (props, framework, noEvents) => {
 	const attributes = [];
 
@@ -35,7 +54,7 @@ const getAttributes = (props, framework, noEvents) => {
 			isEventListener
 		) {
 			if (value instanceof Object) {
-				value = JSON.stringify(value);
+				value = escapeUnsafeChars(JSON.stringify(value));
 			}
 
 			switch (framework) {
