@@ -31,69 +31,59 @@ $checked-active-transition-size: calc(
 	}
 }
 
+@mixin switch-validity-colored($border-color, $label-color, $thumb-color) {
+	// Disable is necessary to allow SCSS variables in order to prevent code duplication for valid and invalid states
+	/* stylelint-disable db-ux/use-border-color */
+	--db-check-element-label-color: #{$label-color};
+	--db-check-element-border-color: #{$border-color};
+
+	> input {
+		border-color: $border-color;
+	}
+
+	> input:not(:checked)::before {
+		background-color: var(--db-check-element-border-color);
+		color: var(--db-check-element-border-color);
+	}
+
+	> input:checked {
+		background-color: var(--db-check-element-border-color);
+		border-color: $border-color;
+
+		@include helpers.hover {
+			background-color: var(--db-check-element-border-color);
+			border-color: $border-color;
+		}
+
+		@include helpers.active {
+			background-color: var(--db-check-element-border-color);
+			border-color: $border-color;
+		}
+	}
+
+	> input:checked::before {
+		background-color: $thumb-color;
+		color: $thumb-color;
+	}
+	/* stylelint-enable db-ux/use-border-color */
+}
+
 @mixin switch-validity($key) {
 	@include form-components.get-validity("switch", $key) {
 		@include form-components.get-validity-message($key);
 
-		@if $key == "valid" {
-			--db-check-element-label-color: #{colors.$db-successful-on-bg-basic-emphasis-100-default};
-			--db-check-element-border-color: #{colors.$db-successful-on-bg-basic-emphasis-70-default};
-		} @else if $key == "invalid" {
-			--db-check-element-label-color: #{colors.$db-critical-on-bg-basic-emphasis-100-default};
-			--db-check-element-border-color: #{colors.$db-critical-on-bg-basic-emphasis-70-default};
-		}
-
-		> input {
-			@if $key == "valid" {
-				border-color: colors.$db-successful-on-bg-basic-emphasis-70-default;
-			} @else if $key == "invalid" {
-				border-color: colors.$db-critical-on-bg-basic-emphasis-70-default;
-			}
-		}
-
-		> input:not(:checked)::before {
-			background-color: var(--db-check-element-border-color);
-			color: var(--db-check-element-border-color);
-		}
-
-		> input:checked {
-			background-color: var(--db-check-element-border-color);
-
-			@if $key == "valid" {
-				border-color: colors.$db-successful-on-bg-basic-emphasis-70-default;
-			} @else if $key == "invalid" {
-				border-color: colors.$db-critical-on-bg-basic-emphasis-70-default;
-			}
-
-			@include helpers.hover {
-				background-color: var(--db-check-element-border-color);
-
-				@if $key == "valid" {
-					border-color: colors.$db-successful-on-bg-basic-emphasis-70-default;
-				} @else if $key == "invalid" {
-					border-color: colors.$db-critical-on-bg-basic-emphasis-70-default;
-				}
-			}
-
-			@include helpers.active {
-				background-color: var(--db-check-element-border-color);
-
-				@if $key == "valid" {
-					border-color: colors.$db-successful-on-bg-basic-emphasis-70-default;
-				} @else if $key == "invalid" {
-					border-color: colors.$db-critical-on-bg-basic-emphasis-70-default;
-				}
-			}
-		}
-
-		> input:checked::before {
-			@if $key == "valid" {
-				background-color: colors.$db-successful-on-bg-inverted-default;
-				color: colors.$db-successful-on-bg-inverted-default;
-			} @else if $key == "invalid" {
-				background-color: colors.$db-critical-on-bg-inverted-default;
-				color: colors.$db-critical-on-bg-inverted-default;
-			}
+		@if $key == "invalid" {
+			@include switch-validity-colored(
+				var(--db-critical-on-bg-basic-emphasis-70-default),
+				#{colors.$db-critical-on-bg-basic-emphasis-100-default},
+				colors.$db-critical-on-bg-inverted-default
+			);
+		} @else {
+			@include switch-validity-colored(
+				var(--db-successful-on-bg-basic-emphasis-70-default),
+				#{colors.$db-successful-on-bg-basic-emphasis-100-default},
+				colors.$db-successful-on-bg-inverted-default
+			);
 		}
 	}
 }
