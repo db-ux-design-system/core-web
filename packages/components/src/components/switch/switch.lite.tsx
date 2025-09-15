@@ -169,6 +169,7 @@ export default function DBSwitch(props: DBSwitchProps) {
 				aria-invalid={
 					props.validation === 'invalid' ? 'true' : undefined
 				}
+				aria-describedby={state._descByIds || undefined}
 				name={props.name}
 				required={getBoolean(props.required, 'required')}
 				data-aid-icon={props.iconLeading ?? props.icon}
