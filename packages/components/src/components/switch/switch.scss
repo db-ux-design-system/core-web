@@ -324,8 +324,7 @@ $checked-active-transition-size: calc(
 	}
 
 	/* Set color for label */
-	> .db-switch-label,
-	> .db-switch-label * {
+	> .db-switch-label {
 		color: var(--db-switch-label-color, inherit);
 	}
 
