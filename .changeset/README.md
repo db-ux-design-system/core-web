@@ -17,6 +17,7 @@ By collecting these small pieces of information, we can automatically generate:
 - Version bumps in `package.json`
 - Updated `CHANGELOG.md` entries
 - Release PRs and npm publishes
+- [GitHub Releases](https://github.com/db-ux-design-system/core-web/releases)
 
 ---
 
@@ -42,7 +43,7 @@ This creates a file like `.changeset/abcd123.md`.
 ### 2. Open a Pull Request
 
 - Every PR that changes published code must include a changeset file.
-- CI will check that at least one changeset exists when relevant.
+- CI will verify the existence of at least one changeset when necessary.
 
 ### 3. Release PRs
 
