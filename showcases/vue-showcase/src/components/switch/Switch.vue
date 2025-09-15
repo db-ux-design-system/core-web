@@ -22,6 +22,8 @@ import DefaultComponent from "../DefaultComponent.vue";
 				:icon="exampleProps?.icon"
 				:iconTrailing="exampleProps?.iconTrailing"
 				:validation="exampleProps?.validation"
+				:invalidMessage="exampleProps?.invalidMessage"
+				:validMessage="exampleProps?.validMessage"
 			>
 				{{ exampleName }}
 			</DBSwitch>
