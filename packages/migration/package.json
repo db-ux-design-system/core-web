@@ -25,14 +25,14 @@
     "test:migration": "tsx src/cli.ts migration --type v005_v006 --src=./scss --dryRun=true"
   },
   "dependencies": {
-    "commander": "14.0.0",
+    "commander": "14.0.1",
     "glob": "11.0.3",
     "replace-in-file": "8.3.0"
   },
   "devDependencies": {
     "cpr": "3.0.1",
-    "esbuild": "0.25.8",
-    "tsx": "4.20.3",
+    "esbuild": "0.25.9",
+    "tsx": "4.20.5",
     "vitest": "3.2.4"
   },
   "publishConfig": {

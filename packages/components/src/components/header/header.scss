@@ -53,16 +53,21 @@
 		}
 	}
 
-	// Hide the burger menu if there is no navigation
-	&:has(.db-header-navigation:empty) {
+	// Hide the burger ONLY when the drawer would be empty.
+	// This requires: no main navigation AND no meta navigation AND no secondary action.
+	&:has(.db-header-navigation:empty):has(
+			.db-header-meta-navigation:empty
+		):has(.db-header-secondary-action:empty) {
 		.db-header-burger-menu-container {
 			display: none;
 		}
+	}
 
-		&:has(.db-header-secondary-action:empty) {
-			.db-header-action-container::before {
-				display: none;
-			}
+	// Hide the action-area divider only when both navigation and secondary action are missing.
+	// With no navigation but a secondary action, we keep the divider.
+	&:has(.db-header-navigation:empty):has(.db-header-secondary-action:empty) {
+		.db-header-action-container::before {
+			display: none;
 		}
 	}
 }
@@ -220,6 +225,7 @@
 
 .db-header-drawer {
 	--db-drawer-content-padding-inline: 0;
+
 	// 1px for box shadow of header
 	--db-drawer-header-padding-block-end: calc(
 		1px + #{variables.$db-spacing-fixed-xs}

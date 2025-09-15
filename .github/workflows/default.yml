@@ -143,12 +143,11 @@ jobs:
       showcase: vue-showcase
 
   test-showcase-patternhub:
-    uses: ./.github/workflows/02-e2e-showcases.yml
+    uses: ./.github/workflows/02-e2e-patternhub.yml
     needs: [build-showcase-patternhub, get-playwright-version]
     with:
       version: ${{ needs.get-playwright-version.outputs.version }}
       path: ${{ needs.build-showcase-patternhub.outputs.path }}
-      showcase: patternhub
 
   regenerate-snapshots-components:
     if: always() && needs.test-components.result == 'failure'
@@ -180,14 +179,29 @@ jobs:
         get-playwright-version
       ]
 
+  # This job runs only if aria-snapshots were changed compared to main or if it runs on main branch
   test-screen-reader:
+    if: |
+      needs.test-showcase-react.outputs.aria-snapshots-changed-to-main == 'true' ||
+      github.event.pull_request == null
     uses: ./.github/workflows/02-e2e-screen-reader.yml
-    needs: [build-showcase-react, init-playwright, get-playwright-version]
+    needs: [test-showcase-react, init-playwright, get-playwright-version]
     with:
       version: ${{ needs.get-playwright-version.outputs.version }}
 
   regenerate-snapshots:
-    if: always() && (needs.test-showcase-angular.result == 'failure' || needs.test-showcase-react.result == 'failure' || needs.test-showcase-vue.result == 'failure')
+    if: |
+      always() && (
+        needs.test-showcase-angular.result == 'failure' ||
+        needs.test-showcase-react.result == 'failure' ||
+        needs.test-showcase-vue.result == 'failure' ||
+        needs.test-showcase-angular.outputs.aria-snapshots-changed == 'true' ||
+        needs.test-showcase-angular.outputs.visual-snapshots-changed == 'true' ||
+        needs.test-showcase-react.outputs.aria-snapshots-changed == 'true' ||
+        needs.test-showcase-react.outputs.visual-snapshots-changed == 'true' ||
+        needs.test-showcase-vue.outputs.aria-snapshots-changed == 'true' ||
+        needs.test-showcase-vue.outputs.visual-snapshots-changed == 'true'
+      )
     uses: ./.github/workflows/02-e2e-regenerate.yml
     with:
       version: ${{ needs.get-playwright-version.outputs.version }}
@@ -203,7 +217,11 @@ jobs:
   commit-regenerated-snapshots:
     uses: ./.github/workflows/02-e2e-regenerated-snapshots-commit.yml
     secrets: inherit
-    if: always()
+    if: |
+      needs.regenerate-snapshots-components.result == 'success' ||
+      needs.regenerate-snapshots-foundations.result == 'success' ||
+      needs.regenerate-snapshots-patternhub.result == 'success' ||
+      needs.regenerate-snapshots.result == 'success'
     needs:
       [
         regenerate-snapshots-components,
@@ -241,7 +259,7 @@ jobs:
           resultTestShowcasePatternhub="${{ needs.test-showcase-patternhub.result }}"
           resultTestScreenReader="${{ needs.test-screen-reader.result }}"
           if [[ $resultTestFoundations == "success" ]] && \
-             [[ $resultTestScreenReader == "success" ]] && \
+             [[ $resultTestScreenReader == "success" || $resultTestScreenReader == "skipped" ]] && \
              [[ $resultTestShowcaseStencil == "success" ]] && \
              [[ $resultTestShowcaseAngular == "success" ]] && \
              [[ $resultTestShowcaseReact == "success" ]] && \
@@ -286,7 +304,7 @@ jobs:
 
   deploy:
     uses: ./.github/workflows/03-deploy-gh-pages.yml
-    if: ${{ github.actor != 'dependabot[bot]' && (github.event.pull_request == null || github.event.pull_request.head.repo.owner.login == 'db-ux-design-system') }}
+    if: ${{ !cancelled() && github.actor != 'dependabot[bot]' && (github.event.pull_request == null || github.event.pull_request.head.repo.owner.login == 'db-ux-design-system') }}
     needs: [checks-done]
     with:
       release: false

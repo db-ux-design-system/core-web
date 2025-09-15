@@ -9,7 +9,6 @@ $small-section-padding-inline: max(
 	),
 	#{variables.$db-spacing-fixed-md}
 );
-
 $medium-section-padding-inline: max(
 	calc(
 		#{variables.$db-spacing-fixed-md} +
@@ -17,7 +16,6 @@ $medium-section-padding-inline: max(
 	),
 	#{variables.$db-spacing-fixed-md}
 );
-
 $large-section-padding-inline: max(
 	calc(
 		#{variables.$db-spacing-fixed-md} +
