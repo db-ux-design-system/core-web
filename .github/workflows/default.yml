@@ -7,12 +7,12 @@ on:
     branches:
       - "main"
 
-# We'd like to run the pipeline for Dependabot PRs sequentially, and all other PRs in parallel, but still only one action run for each PR.
+# We'd like to run the pipeline for Dependabot PRs with up to 2 in parallel, and all other PRs in parallel, but still only one action run for each PR.
 concurrency:
   group: >-
     ${{
       github.actor == 'dependabot[bot]' &&
-      'dependabot' ||
+      format('dependabot-{0}', github.event.number % 2) ||
       format('{0}-{1}', github.workflow, github.ref)
     }}
   cancel-in-progress: >-
