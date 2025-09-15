@@ -1,5 +1,5 @@
 %a11y-visually-hidden {
-	clip-path: rect(0 0 0 0) !important;
+	clip: rect(0, 0, 0, 0) !important;
 	overflow: hidden !important;
 	white-space: nowrap !important;
 	font-size: 0 !important;
