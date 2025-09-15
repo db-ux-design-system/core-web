@@ -87,9 +87,7 @@ jobs:
       - name: Check for failures
         id: check
         run: |
-          # Check if any matrix job failed
-          results='${{ toJSON(needs.playwright-ct.result) }}'
-          if [[ "$results" == *"failure"* ]] || [[ "${{ needs.playwright-ct.result }}" == "failure" ]]; then
+          if [[ "${{ contains(needs.playwright-ct.result, 'failure') }}" == "true" ]]; then
             echo "has-failures=true" >> $GITHUB_OUTPUT
             echo "Component tests have failures - will trigger snapshot regeneration"
           else
