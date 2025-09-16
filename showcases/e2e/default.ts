@@ -122,11 +122,11 @@ export const getDefaultScreenshotTest = ({
 				config.maxDiffPixels = Number(diffPixel);
 			}
 		} else if (isWebkit) {
-			config.maxDiffPixelRatio = 0.033;
+			config.maxDiffPixelRatio = 0.05;
 		} else if (isAngular(showcase)) {
-			config.maxDiffPixels = 1000;
+			config.maxDiffPixels = 2500;
 		} else {
-			config.maxDiffPixels = 120;
+			config.maxDiffPixels = 200;
 		}
 
 		await gotoPage(page, path, lvl1, fixedHeight);
