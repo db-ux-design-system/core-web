@@ -24,5 +24,17 @@
 			[formControl]="formControl"
 		>
 		</db-custom-select>
+		<db-custom-select
+			[options]="options"
+			label="Angular 18 Signals"
+			[values]="signalValues()"
+			(optionSelected)="handleSignalChange($event)"
+		>
+		</db-custom-select>
+		<div style="margin-top: 1rem; padding: 1rem; background: #f5f5f5; border-radius: 4px;">
+			<h4>Signals State (tests allowSignalWrites fix):</h4>
+			<p><strong>Selected Values:</strong> {{ signalValues() | json }}</p>
+			<p><strong>Selected Options:</strong> {{ signalSelectedOptions() | json }}</p>
+		</div>
 	</fieldset>
 </app-form-wrapper>
