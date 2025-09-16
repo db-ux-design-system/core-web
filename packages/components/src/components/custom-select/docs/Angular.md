@@ -23,7 +23,7 @@ import { DBCustomSelect } from '@db-ux/ngx-core-components';
 
 ```html app.component.html
 <!-- app.component.html -->
-<db-custom-select label="Label" placeholder="Placeholder" [options]="options" />
+<db-custom-select label="Label" placeholder="Placeholder" [options]="options"></db-custom-select>
 ```
 
 ```ts app.component.ts
