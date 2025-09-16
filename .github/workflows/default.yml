@@ -218,10 +218,12 @@ jobs:
     uses: ./.github/workflows/02-e2e-regenerated-snapshots-commit.yml
     secrets: inherit
     if: |
-      needs.regenerate-snapshots-components.result == 'success' ||
-      needs.regenerate-snapshots-foundations.result == 'success' ||
-      needs.regenerate-snapshots-patternhub.result == 'success' ||
-      needs.regenerate-snapshots.result == 'success'
+      ${{ !cancelled() &&
+        ( needs.regenerate-snapshots-components.result == 'success' ||
+        needs.regenerate-snapshots-foundations.result == 'success' ||
+        needs.regenerate-snapshots-patternhub.result == 'success' ||
+        needs.regenerate-snapshots.result == 'success' )
+      }}
     needs:
       [
         regenerate-snapshots-components,
