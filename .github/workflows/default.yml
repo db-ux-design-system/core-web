@@ -7,41 +7,28 @@ on:
     branches:
       - "main"
 
-# Set concurrency group for Dependabot PRs in run step, not in expression
+# We'd like to run the pipeline for Dependabot PRs with up to 2 in parallel, and all other PRs in parallel, but still only one action run for each PR.
 concurrency:
   group: >-
-    ${{ github.actor == 'dependabot[bot]' && env.dependabot_group || format('{0}-{1}', github.workflow, github.ref) }}
+    ${{
+      github.actor == 'dependabot[bot]' &&
+      format('dependabot-{0}', github.event.pull_request.number % 2) ||
+      format('{0}-{1}', github.workflow, github.ref)
+    }}
   cancel-in-progress: >-
-    ${{ github.actor != 'dependabot[bot]' && github.ref != 'refs/heads/main' }}
+    ${{
+      github.actor != 'dependabot[bot]' &&
+      github.ref != 'refs/heads/main'
+    }}
 
 jobs:
-  set-dependabot-group:
-    if: ${{ github.actor == 'dependabot[bot]' }}
-    runs-on: ubuntu-latest
-    outputs:
-      dependabot_group: ${{ steps.set_group.outputs.dependabot_group }}
-    steps:
-      - name: Set dependabot group
-        id: set_group
-        run: |
-          if [ "${{ github.event.number }}" ]; then
-            echo "dependabot_group=dependabot-$(( ${{ github.event.number }} % 2 ))" >> $GITHUB_ENV
-            echo "dependabot_group=dependabot-$(( ${{ github.event.number }} % 2 ))" >> $GITHUB_OUTPUT
-          else
-            echo "dependabot_group=dependabot-unknown" >> $GITHUB_ENV
-            echo "dependabot_group=dependabot-unknown" >> $GITHUB_OUTPUT
-          fi
-
-  # All other jobs depend on set-dependabot-group for proper env propagation
   init:
     uses: ./.github/workflows/00-init.yml
     secrets: inherit
-    needs: [set-dependabot-group]
 
   scan-secrets:
     if: github.event.pull_request == null || github.event.pull_request.head.repo.owner.login == 'db-ux-design-system'
     uses: ./.github/workflows/00-scan-secrets.yml
-    needs: [set-dependabot-group]
 
   get-playwright-version:
     uses: ./.github/workflows/01-get-playwright-version.yml
