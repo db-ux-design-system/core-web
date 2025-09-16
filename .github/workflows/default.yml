@@ -12,7 +12,7 @@ concurrency:
   group: >-
     ${{
       github.actor == 'dependabot[bot]' &&
-      format('dependabot-{0}', github.event.pull_request.number % 2) ||
+      format('dependabot-{0}', (github.event.pull_request.number % 2)) ||
       format('{0}-{1}', github.workflow, github.ref)
     }}
   cancel-in-progress: >-
