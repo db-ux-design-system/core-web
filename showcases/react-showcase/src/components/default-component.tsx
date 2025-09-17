@@ -82,22 +82,22 @@ const DefaultComponent = ({
 	const color = useQuery(redirectURLSearchParameters)[2];
 
 	const getHref = (variantName: string): string => {
-		if (typeof globalThis !== 'undefined') {
-			const currentUrl = globalThis.location.href.split('?');
-			const rawComponentUrl = currentUrl[0];
-			const searchParameters = new URLSearchParams(currentUrl[1] ?? '');
-			searchParameters.set('page', variantName.toLowerCase());
-
-			const regexComponentOverviewFragment = /\/[a-z\d\-_]*\/overview/;
-
-			if (componentName) {
-				return `${rawComponentUrl.replace(regexComponentOverviewFragment, `/${componentName}/overview`)}?${searchParameters.toString()}`;
-			}
-
-			return `${rawComponentUrl}?${searchParameters.toString()}`;
+		if (typeof globalThis === 'undefined') {
+			return '';
 		}
 
-		return '';
+		const currentUrl = globalThis.location.href.split('?');
+		const rawComponentUrl = currentUrl[0];
+		const searchParameters = new URLSearchParams(currentUrl[1] ?? '');
+		searchParameters.set('page', variantName.toLowerCase());
+
+		const regexComponentOverviewFragment = /\/[a-z\d\-_]*\/overview/;
+
+		if (componentName) {
+			return `${rawComponentUrl.replace(regexComponentOverviewFragment, `/${componentName}/overview`)}?${searchParameters.toString()}`;
+		}
+
+		return `${rawComponentUrl}?${searchParameters.toString()}`;
 	};
 
 	if (pageName) {
