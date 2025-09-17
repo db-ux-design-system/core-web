@@ -83,11 +83,18 @@ const DefaultComponent = ({
 
 	const getHref = (variantName: string): string => {
 		if (typeof globalThis !== 'undefined') {
-			const searchParameters = new URLSearchParams(
-				globalThis?.location?.href.split('?')[1]
-			);
+			const currentUrl = globalThis.location.href.split('?');
+			const rawComponentUrl = currentUrl[0];
+			const searchParameters = new URLSearchParams(currentUrl[1] ?? '');
 			searchParameters.set('page', variantName.toLowerCase());
-			return `${globalThis?.location?.href.split('?')[0]}?${searchParameters.toString()}`;
+
+			const regexComponentOverviewFragment = /\/[a-z\d\-_]*\/overview/;
+
+			if (componentName) {
+				return `${rawComponentUrl.replace(regexComponentOverviewFragment, `/${componentName}/overview`)}?${searchParameters.toString()}`;
+			}
+
+			return `${rawComponentUrl}?${searchParameters.toString()}`;
 		}
 
 		return '';
