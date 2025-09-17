@@ -64,11 +64,13 @@ The integration depends on your tech stack and varies from copying the files fro
 @use "@db-ux/core-components/build/styles/relative";
 ```
 
-### SCSS: node_modules include path / load path
+### SCSS: Configuration Options
+
+#### Option 1: Load Path (Traditional)
 
 Please keep in mind, that you would need to set your `include path` also known as `load path` depending on your setup for the sass compiler to find the correct `node_modules` folder, e.g. like the following (this is similar to how other frameworks and libraries like [Bootstrap](https://github.com/twbs/bootstrap-npm-starter/blob/main/package.json#L18) are handling this):
 
-#### [`sass` compiler](https://npmjs.com/sass)
+##### [`sass` compiler](https://npmjs.com/sass)
 
 ```json
 {
@@ -76,4 +78,28 @@ Please keep in mind, that you would need to set your `include path` also known a
 		"css-compile": "sass --load-path=node_modules style.scss:style.css"
 	}
 }
+```
+
+#### Option 2: Pkg: Importers (New, Recommended)
+
+Alternatively, you can use Sass [pkg: importers](https://sass-lang.com/blog/announcing-pkg-importers/) which eliminate the need for load-path configuration:
+
+```json
+{
+	"scripts": {
+		"css-compile": "sass --pkg-importer=node style.scss:style.css"
+	}
+}
+```
+
+With pkg: importers, use the `pkg:` prefix in your imports:
+
+```scss
+@use "pkg:@db-ux/core-components/build/styles/webpack";
+```
+
+instead of:
+
+```scss
+@use "@db-ux/core-components/build/styles/webpack";
 ```

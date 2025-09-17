@@ -1,0 +1,11 @@
+{
+  "name": "pkg-importers-test",
+  "version": "1.0.0",
+  "type": "module",
+  "dependencies": {
+    "@db-ux/core-foundations": "file:/home/runner/work/core-web/core-web/packages/foundations"
+  },
+  "devDependencies": {
+    "sass": "1.85.0"
+  }
+}

@@ -1,0 +1,8 @@
+// Test complex pkg: imports with forwarding
+@forward "pkg:@db-ux/core-foundations/build/styles/variables";
+@use "pkg:@db-ux/core-foundations/build/styles/colors";
+
+.test-pkg-complex {
+  padding: var(--db-spacing-fixed-md);
+  color: colors.$db-adaptive-on-bg-basic-emphasis-100-default;
+}
