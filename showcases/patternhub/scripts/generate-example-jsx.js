@@ -1,5 +1,6 @@
 import FS from 'node:fs';
 import {
+	generateExampleKey,
 	getCodeByFramework,
 	getComponentName,
 	transformToUpperComponentName
@@ -35,11 +36,14 @@ const generateExampleJSX = () => {
 						true,
 						variant.children
 					);
+
+					const exampleKey = generateExampleKey(
+						componentName,
+						variant.name,
+						example.name
+					);
 					examples.push(
-						`"${componentName}${variant.name}${
-							example.name
-							// eslint-disable-next-line unicorn/no-unnecessary-slice-end
-						}":renderToString(${code.slice(0, code.length)})`
+						`"${exampleKey}":renderToString(${[...code]})`
 					);
 				}
 			}
