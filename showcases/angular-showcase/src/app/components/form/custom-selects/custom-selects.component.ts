@@ -1,3 +1,4 @@
+import { CommonModule } from '@angular/common';
 import { Component, CUSTOM_ELEMENTS_SCHEMA, signal } from '@angular/core';
 import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DBCustomSelect } from '../../../../../../../output/angular/src';
@@ -7,9 +8,17 @@ import { WrapperComponent } from '../wrapper/wrapper.component';
 @Component({
 	selector: 'app-custom-selects',
 	standalone: true,
-	imports: environment.webComponents
-		? [WrapperComponent, FormsModule, ReactiveFormsModule]
-		: [WrapperComponent, DBCustomSelect, FormsModule, ReactiveFormsModule],
+	imports: [
+		environment.webComponents
+			? [WrapperComponent, FormsModule, ReactiveFormsModule]
+			: [
+					WrapperComponent,
+					DBCustomSelect,
+					FormsModule,
+					ReactiveFormsModule
+				],
+		CommonModule
+	],
 	templateUrl: './custom-selects.component.html',
 	schemas: environment.webComponents ? [CUSTOM_ELEMENTS_SCHEMA] : []
 })
