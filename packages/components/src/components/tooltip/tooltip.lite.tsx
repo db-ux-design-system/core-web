@@ -56,11 +56,14 @@ export default function DBTooltip(props: DBTooltipProps) {
 			if (_ref) {
 				// This is a workaround for angular
 				utilsDelay(() => {
-					handleFixedPopover(
-						_ref,
-						parent,
-						(props.placement as unknown as string) ?? 'bottom'
-					);
+					// Due to race conditions we need to check for _ref again
+					if (_ref) {
+						handleFixedPopover(
+							_ref,
+							parent,
+							(props.placement as unknown as string) ?? 'bottom'
+						);
+					}
 				}, 1);
 			}
 		},
