@@ -17,7 +17,7 @@ export class CustomSelectsComponent {
 	plain = ['combobox-1'];
 	ngModel = ['combobox-1'];
 	formControl: FormControl = new FormControl(['combobox-1']);
-	
+
 	// Angular 18 Signals example - tests the allowSignalWrites: true fix
 	signalValues = signal<string[]>(['combobox-1']);
 	signalSelectedOptions = signal<any[]>([]);
@@ -32,13 +32,15 @@ export class CustomSelectsComponent {
 			this.plain = values;
 		}
 	}
-	
+
 	public handleSignalChange(values: string[] | void) {
 		if (values) {
 			// This tests the allowSignalWrites fix - signals can be updated in event handlers
 			this.signalValues.set(values);
 			// Update related signal based on selected values
-			const selectedOptions = this.options.filter(option => values.includes(option.value));
+			const selectedOptions = this.options.filter((option) =>
+				values.includes(option.value)
+			);
 			this.signalSelectedOptions.set(selectedOptions);
 		}
 	}
