@@ -329,7 +329,7 @@ $input-valid-types:
 	// base inline size for inputs without icons
 	min-inline-size: $db-min-inline-size;
 
-	/* stylelint-disable-next-line scss/selector-no-redundant-nesting-selector */
+	/* stylelint-disable-next-line block-no-redundant-nested-style-rules */
 	& {
 		--db-form-has-before: 0;
 
