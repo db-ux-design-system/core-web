@@ -224,6 +224,12 @@ $db-min-inline-size: var(
 		caret-color: var(--db-#{$variant}-on-bg-basic-emphasis-100-default);
 	}
 
+	@if $selector == textarea {
+		#{$selector} {
+			border-color: var(--db-#{$variant}-on-bg-basic-emphasis-90-default);
+		}
+	}
+
 	@include get-validity-message($key);
 }
 
