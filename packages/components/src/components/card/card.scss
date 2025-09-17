@@ -4,6 +4,10 @@
 @use "../../styles/internal/component";
 
 :is(a, button) {
+	&:has(.db-card) {
+		all: unset;
+	}
+
 	@include helpers.hover {
 		> .db-card,
 		> db-card > .db-card {
