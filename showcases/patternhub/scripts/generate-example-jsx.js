@@ -42,9 +42,8 @@ const generateExampleJSX = () => {
 						variant.name,
 						example.name
 					);
-					examples.push(
-						`"${exampleKey}":renderToString(${[...code]})`
-					);
+					console.log(`Generating example: ${exampleKey}`);
+					examples.push(`"${exampleKey}":renderToString(${[code]})`);
 				}
 			}
 		}
