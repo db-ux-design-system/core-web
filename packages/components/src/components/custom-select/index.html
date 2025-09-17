@@ -2,85 +2,10 @@
 <html lang="en">
 	<head>
 		<meta charset="UTF-8" />
-		<title>DBCustomSelect - removeTagsTexts Test</title>
-		<link rel="stylesheet" href="/styles/db-ui-42.css" />
-		<style>
-			body {
-				padding: var(--db-spacing-fixed-md);
-				font-family: var(--db-font-family-sans);
-			}
-			.test-section {
-				margin: 30px 0;
-				padding: 20px;
-				border: 1px solid var(--db-adaptive-border-color-default);
-				border-radius: 8px;
-			}
-			.test-description {
-				margin-bottom: 15px;
-				color: var(--db-adaptive-on-bg-basic-emphasis-60);
-			}
-		</style>
+		<title>DBCustomSelect</title>
+		<link rel="stylesheet" href="/styles/relative.css" />
 	</head>
-	<body>
-		<h1>DBCustomSelect removeTagsTexts Test</h1>
-		
-		<div class="test-section">
-			<h2>Test Case</h2>
-			<div class="test-description">
-				This test verifies that removeTagsTexts correspond to the correct options. 
-				The Blue and Green tags should show their correct remove tooltips.
-			</div>
-			
-			<!-- Custom Select with tag mode and pre-selected values -->
-			<details class="db-custom-select" data-width="fixed" data-variant="semaphore">
-				<summary class="db-custom-select-form-field">
-					<span>Colors</span>
-					<div>
-						<!-- Blue Color tag -->
-						<div class="db-tag" data-emphasis="strong" data-semantic="adaptive">
-							Blue Color
-							<button class="db-button db-tab-remove-button" 
-									data-icon="cross" 
-									data-size="small" 
-									data-no-text="true" 
-									data-variant="ghost" 
-									type="button">
-								<div class="db-tooltip" data-variant="label">Remove Blue Color</div>
-							</button>
-						</div>
-						<!-- Green Color tag -->
-						<div class="db-tag" data-emphasis="strong" data-semantic="adaptive">
-							Green Color
-							<button class="db-button db-tab-remove-button" 
-									data-icon="cross" 
-									data-size="small" 
-									data-no-text="true" 
-									data-variant="ghost" 
-									type="button">
-								<div class="db-tooltip" data-variant="label">Remove Green Color</div>
-							</button>
-						</div>
-					</div>
-				</summary>
-				<div class="db-custom-select-dropdown" data-width="fixed">
-					<!-- Options would be here -->
-				</div>
-			</details>
-		</div>
-
-		<div class="test-section">
-			<h2>Test Instructions</h2>
-			<ol>
-				<li>Hover over the remove button (×) on the "Blue Color" tag</li>
-				<li>The tooltip should show "Remove Blue Color" (correct for index 1 in original options)</li>
-				<li>Hover over the remove button (×) on the "Green Color" tag</li>
-				<li>The tooltip should show "Remove Green Color" (correct for index 2 in original options)</li>
-			</ol>
-			<p><strong>Before the fix:</strong> Both tooltips would have shown incorrect text because they were using the selected options index instead of the original options index.</p>
-		</div>
-
-		<script>
-			console.log('DBCustomSelect removeTagsTexts test loaded');
-		</script>
+	<body style="padding: var(--db-spacing-fixed-md)">
+		<div class="db-custom-select">Test</div>
 	</body>
 </html>
