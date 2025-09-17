@@ -1831,7 +1831,13 @@
 					"label": "Label",
 					"selectedType": "tag",
 					"multiple": true,
-					"id": "id-10271"
+					"id": "id-10271",
+					"removeTagsTexts": [
+						"Removed Option 1",
+						"Removed Option 2",
+						"Removed Option 3",
+						"Removed Option 4"
+					]
 				},
 				"children": []
 			},
