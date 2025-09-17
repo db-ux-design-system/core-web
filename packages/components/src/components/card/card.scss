@@ -3,9 +3,13 @@
 @use "@db-ux/core-foundations/build/styles/helpers";
 @use "../../styles/internal/component";
 
-:is(a, button) {
+:is(a[href], button) {
+	// Resetting button and link specific declarations
 	&:has(.db-card) {
-		all: unset;
+		text-decoration: unset;
+		border-color: transparent;
+		background-color: transparent;
+		padding: unset;
 	}
 
 	@include helpers.hover {
