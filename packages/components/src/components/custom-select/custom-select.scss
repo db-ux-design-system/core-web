@@ -51,12 +51,6 @@
 		);
 	}
 
-	&:has(summary span) {
-		[id$="-placeholder"] {
-			display: none;
-		}
-	}
-
 	/* custom elements workaround */
 	> db-button > .db-button[data-icon="cross"][data-variant="ghost"],
 	> .db-button[data-icon="cross"][data-variant="ghost"] {
