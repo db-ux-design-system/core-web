@@ -4,6 +4,28 @@
  * @param noEvents {boolean}
  * @return {*[]}
  */
+// Escape unsafe characters from JSON-stringified values for code/attribute construction
+const charMap = {
+	'<': String.raw`\u003C`,
+	'>': String.raw`\u003E`,
+	'/': String.raw`\u002F`,
+	'\\': '\\\\',
+	'\b': String.raw`\b`,
+	'\f': String.raw`\f`,
+	'\n': String.raw`\n`,
+	'\r': String.raw`\r`,
+	'\t': String.raw`\t`,
+	'\0': String.raw`\0`,
+	'\u2028': String.raw`\u2028`,
+	'\u2029': String.raw`\u2029`
+};
+function escapeUnsafeChars(string_) {
+	return string_.replaceAll(
+		/[<>\b\f\n\r\t\0\u2028\u2029/\\]/g,
+		(x) => charMap[x]
+	);
+}
+
 const getAttributes = (props, framework, noEvents) => {
 	const attributes = [];
 
@@ -35,27 +57,60 @@ const getAttributes = (props, framework, noEvents) => {
 			isEventListener
 		) {
 			if (value instanceof Object) {
-				value = JSON.stringify(value);
+				value = escapeUnsafeChars(JSON.stringify(value));
 			}
 
-			if (framework === 'angular') {
-				if (isEventListener) {
-					attributes.push(`(${key})="${value}"`);
-				} else {
-					attributes.push(`[${key}]="${value}"`);
+			switch (framework) {
+				case 'angular': {
+					if (isEventListener) {
+						attributes.push(`(${key})="${value}"`);
+					} else {
+						attributes.push(`[${key}]="${value}"`);
+					}
+
+					break;
 				}
-			} else if (framework === 'vue') {
-				if (isEventListener) {
-					attributes.push(`@${key}="${value}"`);
-				} else {
-					attributes.push(`:${key}="${value}"`);
+
+				case 'vue': {
+					if (isEventListener) {
+						attributes.push(`@${key}="${value}"`);
+					} else {
+						attributes.push(`:${key}="${value}"`);
+					}
+
+					break;
 				}
-			} else if (typeof props[key] === 'boolean') {
-				attributes.push(key);
-			} else if (isEventListener) {
-				attributes.push(`${key}={()=>${value}}`);
-			} else {
-				attributes.push(`${key}={${value}}`);
+
+				case 'html': {
+					// For HTML framework, use proper HTML attributes
+					if (!isEventListener) {
+						// Convert React-specific props to HTML attributes
+						if (key === 'htmlFor') {
+							attributes.push(`for="${value}"`);
+						} else if (key === 'className') {
+							attributes.push(`class="${value}"`);
+						} else if (
+							typeof props[key] === 'boolean' &&
+							props[key]
+						) {
+							attributes.push(key);
+						} else {
+							attributes.push(`${key}="${value}"`);
+						}
+					}
+
+					break;
+				}
+
+				default: {
+					if (typeof props[key] === 'boolean') {
+						attributes.push(key);
+					} else if (isEventListener) {
+						attributes.push(`${key}={()=>${value}}`);
+					} else {
+						attributes.push(`${key}={${value}}`);
+					}
+				}
 			}
 		} else {
 			attributes.push(`${key}="${value}"`);
@@ -99,6 +154,11 @@ export const getCodeByFramework = (
 	];
 	if (framework === 'angular') {
 		tag = `db-${componentName}`;
+	}
+
+	// Special handling for HTML framework - generate proper HTML elements
+	if (framework === 'html') {
+		return getHtmlCode(componentName, example, children);
 	}
 
 	if (native) {
@@ -239,4 +299,95 @@ export const getComponentGroup = (components, componentName) => {
 				componentName.replace('tab-item', 'tabs').includes(sub.name)
 		)
 	);
+};
+
+/**
+ * Generate proper HTML code with correct attributes for accessibility
+ * @param componentName {string}
+ * @param example {{name:string, props: object, className?:string, content?:string}}
+ * @param children {array}
+ * @returns {string}
+ */
+const getHtmlCode = (componentName, example, _children) => {
+	const { props, content } = example;
+
+	// Generate unique IDs for form elements
+	const generateId = (prefix) =>
+		`${prefix}-${Math.random().toString(36).slice(2, 11)}`;
+
+	if (componentName === 'input') {
+		const inputId = generateId('input');
+		const labelText = props.label || 'Label';
+		const inputType = props.type || 'text';
+		const placeholder = props.placeholder
+			? ` placeholder="${props.placeholder}"`
+			: '';
+		const value = props.value ? ` value="${props.value}"` : '';
+		const required = props.required ? ' required' : '';
+		const disabled = props.disabled ? ' disabled' : '';
+
+		return `<label for="${inputId}">${labelText}</label>
+<input type="${inputType}" id="${inputId}"${placeholder}${value}${required}${disabled} />`;
+	}
+
+	if (componentName === 'select') {
+		const selectId = generateId('select');
+		const labelText = props.label || 'Label';
+		const required = props.required ? ' required' : '';
+		const disabled = props.disabled ? ' disabled' : '';
+
+		return `<label for="${selectId}">${labelText}</label>
+<select id="${selectId}"${required}${disabled}>
+	<option value="">Choose an option</option>
+	<option value="option1">Option 1</option>
+	<option value="option2">Option 2</option>
+</select>`;
+	}
+
+	if (componentName === 'textarea') {
+		const textareaId = generateId('textarea');
+		const labelText = props.label || 'Label';
+		const placeholder = props.placeholder
+			? ` placeholder="${props.placeholder}"`
+			: '';
+		const required = props.required ? ' required' : '';
+		const disabled = props.disabled ? ' disabled' : '';
+
+		return `<label for="${textareaId}">${labelText}</label>
+<textarea id="${textareaId}"${placeholder}${required}${disabled}></textarea>`;
+	}
+
+	if (componentName === 'checkbox') {
+		const checkboxId = generateId('checkbox');
+		const labelText = props.label || content || 'Checkbox';
+		const checked = props.checked ? ' checked' : '';
+		const required = props.required ? ' required' : '';
+		const disabled = props.disabled ? ' disabled' : '';
+
+		return `<input type="checkbox" id="${checkboxId}"${checked}${required}${disabled} />
+<label for="${checkboxId}">${labelText}</label>`;
+	}
+
+	if (componentName === 'radio') {
+		const radioId = generateId('radio');
+		const labelText = props.label || content || 'Radio';
+		const name = props.name || 'radio-group';
+		const value = props.value || 'value';
+		const checked = props.checked ? ' checked' : '';
+		const required = props.required ? ' required' : '';
+		const disabled = props.disabled ? ' disabled' : '';
+
+		return `<input type="radio" id="${radioId}" name="${name}" value="${value}"${checked}${required}${disabled} />
+<label for="${radioId}">${labelText}</label>`;
+	}
+
+	// For other components, fall back to the generic approach but with proper HTML syntax
+	const className = example.className ? ` class="${example.className}"` : '';
+	const tag = `db-${componentName}`;
+	const attributes = getAttributes(props, 'html', true);
+	const innerContent = content || example.name || '';
+
+	return `<${tag}${className} ${attributes.join(' ')}>
+${innerContent}
+</${tag}>`;
 };
