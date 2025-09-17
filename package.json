@@ -142,8 +142,7 @@
   "overrides": {
     "brace-expansion": "2.0.2",
     "cross-spawn": "7.0.6",
-    "vite": "6.3.5",
-    "@vitejs/plugin-vue": "6.0.1"
+    "vite": "6.3.5"
   },
   "validate-branch-name": {
     "pattern": "((copilot/)|(dependabot-)|^((test|feat|fix|chore|docs|refactor|style|ci|perf|alert|[0-9]+)\\-[a-zA-Z0-9\\-]+)$)",
