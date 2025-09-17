@@ -29,7 +29,11 @@ export default function DBNavigationItem(props: DBNavigationItemProps) {
 		hasSubNavigation: true,
 		isSubNavigationExpanded: false,
 		autoClose: false,
-		subNavigationId: 'sub-navigation-' + uuid(),
+		// Use deterministic ID generation for SSR compatibility:
+		// 1. Prefer explicit subNavigationId prop
+		// 2. Fallback to component id + suffix
+		// 3. Default to fixed string (instead of random UUID)
+		subNavigationId: props.subNavigationId ?? (props.id ? `${props.id}-sub-navigation` : 'sub-navigation'),
 		navigationItemSafeTriangle: undefined,
 		handleNavigationItemClick: (event: any) => {
 			if (event?.target?.nodeName === 'A') {
@@ -67,6 +71,14 @@ export default function DBNavigationItem(props: DBNavigationItemProps) {
 			);
 		}
 	}, [props.subNavigationExpanded]);
+
+	onUpdate(() => {
+		// Update subNavigationId if props change
+		const newSubNavigationId = props.subNavigationId ?? (props.id ? `${props.id}-sub-navigation` : 'sub-navigation');
+		if (state.subNavigationId !== newSubNavigationId) {
+			state.subNavigationId = newSubNavigationId;
+		}
+	}, [props.subNavigationId, props.id]);
 
 	onUpdate(() => {
 		if (state.initialized && _ref) {
