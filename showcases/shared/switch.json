@@ -195,19 +195,6 @@
 		]
 	},
 	{
-		"name": "Examples",
-		"examples": [
-			{
-				"name": "Custom Icons",
-				"props": {
-					"visualAid": true,
-					"icon": "cross_circle",
-					"iconTrailing": "clock"
-				}
-			}
-		]
-	},
-	{
 		"name": "Validation",
 		"examples": [
 			{
@@ -227,6 +214,19 @@
 					"validation": "valid",
 					"validMessage": "Valid message",
 					"checked": true
+				}
+			}
+		]
+	},
+	{
+		"name": "Examples",
+		"examples": [
+			{
+				"name": "Custom Icons",
+				"props": {
+					"visualAid": true,
+					"icon": "cross_circle",
+					"iconTrailing": "clock"
 				}
 			}
 		]

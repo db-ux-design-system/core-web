@@ -151,15 +151,8 @@ $checked-active-transition-size: calc(
 			);
 
 			@media screen and (prefers-reduced-motion: no-preference) {
-				transition:
-					margin variables.$db-transition-duration-fast
-						variables.$db-transition-timing-emotional,
-					inline-size variables.$db-transition-duration-fast
-						variables.$db-transition-timing-emotional,
-					block-size variables.$db-transition-duration-fast
-						variables.$db-transition-timing-emotional,
-					transform variables.$db-transition-duration-fast
-						variables.$db-transition-timing-emotional;
+				transition: visibility variables.$db-transition-duration-fast
+					variables.$db-transition-timing-emotional;
 			}
 		}
 
