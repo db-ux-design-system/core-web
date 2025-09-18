@@ -194,7 +194,7 @@ export default function DBSwitch(props: DBSwitchProps) {
 					id={state._messageId}
 					size="small"
 					icon={props.messageIcon ?? 'none'}
-					semantic="informational">
+					semantic="adaptive">
 					{props.message}
 				</DBInfotext>
 			</Show>

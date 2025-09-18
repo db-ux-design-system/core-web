@@ -219,6 +219,22 @@
 		]
 	},
 	{
+		"name": "Show Message",
+		"examples": [
+			{
+				"name": "(Default) No message",
+				"props": {}
+			},
+			{
+				"name": "Show message",
+				"props": {
+					"showMessage": true,
+					"message": "Shown message"
+				}
+			}
+		]
+	},
+	{
 		"name": "Examples",
 		"examples": [
 			{
