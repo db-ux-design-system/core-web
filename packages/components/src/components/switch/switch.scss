@@ -75,13 +75,13 @@ $checked-active-transition-size: calc(
 		@if $key == "invalid" {
 			@include switch-validity-colored(
 				var(--db-critical-on-bg-basic-emphasis-70-default),
-				#{colors.$db-critical-on-bg-basic-emphasis-100-default},
+				#{colors.$db-critical-on-bg-basic-emphasis-80-default},
 				colors.$db-critical-on-bg-inverted-default
 			);
 		} @else {
 			@include switch-validity-colored(
 				var(--db-successful-on-bg-basic-emphasis-70-default),
-				#{colors.$db-successful-on-bg-basic-emphasis-100-default},
+				#{colors.$db-successful-on-bg-basic-emphasis-80-default},
 				colors.$db-successful-on-bg-inverted-default
 			);
 		}
