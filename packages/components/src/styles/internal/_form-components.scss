@@ -224,7 +224,7 @@ $db-min-inline-size: var(
 		caret-color: var(--db-#{$variant}-on-bg-basic-emphasis-100-default);
 	}
 
-	@if $selector == textarea {
+	@if list.index($valid-read-only-form-fields, $selector) {
 		#{$selector} {
 			border-color: var(--db-#{$variant}-on-bg-basic-emphasis-90-default);
 		}
