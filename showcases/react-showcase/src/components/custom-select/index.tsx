@@ -42,7 +42,8 @@ const getCustomSelect = ({
 	validMessage,
 	validation,
 	invalidMessage,
-	showRequiredAsterisk
+	showRequiredAsterisk,
+	removeTagsTexts
 }: DBCustomSelectProps & {
 	lineBreak?: boolean;
 	info?: boolean;
@@ -89,6 +90,7 @@ const getCustomSelect = ({
 			label={children}
 			ariaListLabel={`${id}-${children}`}
 			options={options}
+			removeTagsTexts={removeTagsTexts}
 			variant={variant}
 			message={message}
 			required={required}

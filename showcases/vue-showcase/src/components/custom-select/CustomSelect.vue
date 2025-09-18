@@ -62,6 +62,7 @@ const getSearchFilter = (option: CustomSelectOptionType, _: string): boolean =>
 				"
 				:label="exampleName"
 				:options="exampleProps?.options"
+				:removeTagsTexts="exampleProps?.removeTagsTexts"
 				:variant="exampleProps?.variant"
 				:message="exampleProps?.message"
 				:required="exampleProps?.required"
