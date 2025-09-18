@@ -116,6 +116,7 @@ const getCustomSelect = ({
 			onOptionSelected={(value) => {
 				setValue(value);
 			}}
+			removeTagsTexts={removeTagsTexts}
 		/>
 	);
 };

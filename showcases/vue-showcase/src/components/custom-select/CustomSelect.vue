@@ -87,6 +87,7 @@ const getSearchFilter = (option: CustomSelectOptionType, _: string): boolean =>
 				:selectedType="exampleProps?.selectedType"
 				:formFieldWidth="exampleProps?.formFieldWidth"
 				:on-option-selected="(values) => log(values)"
+				:removeTagsTexts="exampleProps?.removeTagsTexts"
 			/>
 		</template>
 	</DefaultComponent>
