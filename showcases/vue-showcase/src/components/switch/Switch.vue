@@ -21,6 +21,7 @@ import DefaultComponent from "../DefaultComponent.vue";
 				:size="exampleProps?.size"
 				:icon="exampleProps?.icon"
 				:iconTrailing="exampleProps?.iconTrailing"
+				:iconLeading="exampleProps?.iconLeading"
 				:validation="exampleProps?.validation"
 				:invalidMessage="exampleProps?.invalidMessage"
 				:validMessage="exampleProps?.validMessage"

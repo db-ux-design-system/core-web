@@ -72,14 +72,18 @@
 			{
 				"name": "True + Unchecked",
 				"props": {
-					"visualAid": true
+					"visualAid": true,
+					"iconLeading": "moon",
+					"iconTrailing": "sun"
 				}
 			},
 			{
 				"name": "True + Checked",
 				"props": {
 					"visualAid": true,
-					"checked": true
+					"checked": true,
+					"iconLeading": "moon",
+					"iconTrailing": "sun"
 				}
 			}
 		]
@@ -123,7 +127,8 @@
 				"name": "(Default) False",
 				"props": {
 					"label": "Normal switch",
-					"accent": false
+					"accent": false,
+					"checked": true
 				}
 			},
 			{

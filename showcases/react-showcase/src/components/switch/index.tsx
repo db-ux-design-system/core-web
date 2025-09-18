@@ -18,6 +18,7 @@ const getSwitch = ({
 	size,
 	icon,
 	iconTrailing,
+	iconLeading,
 	required,
 	showRequiredAsterisk,
 	validation,
@@ -41,6 +42,7 @@ const getSwitch = ({
 			size={size}
 			icon={icon}
 			iconTrailing={iconTrailing}
+			iconLeading={iconLeading}
 			required={required}
 			validation={validation}
 			invalidMessage={invalidMessage}
