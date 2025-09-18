@@ -226,7 +226,7 @@ $db-min-inline-size: var(
 
 	@if list.index($valid-read-only-form-fields, $selector) {
 		#{$selector} {
-			border-color: var(--db-#{$variant}-on-bg-basic-emphasis-90-default);
+			border-color: var(--db-#{$variant}-on-bg-basic-emphasis-70-default);
 		}
 	}
 
@@ -352,13 +352,13 @@ $input-valid-types:
 
 	@include get-validity($selector) {
 		> label {
-			color: var(--db-successful-on-bg-basic-emphasis-90-default);
+			color: var(--db-successful-on-bg-basic-emphasis-80-default);
 		}
 	}
 
 	@include get-validity($selector, "invalid") {
 		> label {
-			color: var(--db-critical-on-bg-basic-emphasis-90-default);
+			color: var(--db-critical-on-bg-basic-emphasis-80-default);
 		}
 	}
 
