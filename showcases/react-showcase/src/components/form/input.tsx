@@ -1,5 +1,5 @@
-import { DBInput } from '@db-ux/react-core-components/src';
 import { useState } from 'react';
+import { DBInput } from '../../../../../output/react/src';
 import FormWrapper from './form-wrapper';
 
 const FormInputs = () => {
