@@ -31,11 +31,22 @@ $checked-active-transition-size: calc(
 	}
 }
 
-@mixin switch-validity-colored($border-color, $label-color, $thumb-color) {
+@mixin switch-validity-colored(
+	$border-color,
+	$label-color,
+	$thumb-color,
+	$hover-color-checked,
+	$hover-color-unchecked,
+	$pressed-color-checked
+) {
 	// Disable is necessary to allow SCSS variables in order to prevent code duplication for valid and invalid states
 	/* stylelint-disable db-ux/use-border-color */
-	--db-check-element-label-color: #{$label-color};
 	--db-check-element-border-color: #{$border-color};
+	--db-check-element-label-color: #{$label-color};
+	--db-check-element-thumb-color: #{$thumb-color};
+	--db-check-element-hover-color-checked: #{$hover-color-checked};
+	--db-check-element-hover-color-unchecked: #{$hover-color-unchecked};
+	--db-check-element-pressed-color-checked: #{$pressed-color-checked};
 
 	> input {
 		border-color: $border-color;
@@ -51,14 +62,19 @@ $checked-active-transition-size: calc(
 		border-color: $border-color;
 
 		@include helpers.hover {
-			background-color: var(--db-check-element-border-color);
-			border-color: $border-color;
+			background-color: var(--db-check-element-hover-color-checked);
+			border-color: var(--db-check-element-hover-color-checked);
 		}
 
 		@include helpers.active {
-			background-color: var(--db-check-element-border-color);
-			border-color: $border-color;
+			background-color: var(--db-check-element-pressed-color-checked);
+			border-color: var(--db-check-element-pressed-color-checked);
 		}
+	}
+
+	> input:not(:checked):hover,
+	> input:not(:checked):focus {
+		background-color: var(--db-check-element-hover-color-unchecked);
 	}
 
 	> input:checked::before {
@@ -74,15 +90,31 @@ $checked-active-transition-size: calc(
 
 		@if $key == "invalid" {
 			@include switch-validity-colored(
-				var(--db-critical-on-bg-basic-emphasis-70-default),
-				#{colors.$db-critical-on-bg-basic-emphasis-80-default},
-				colors.$db-critical-on-bg-inverted-default
+				colors.$db-critical-on-bg-basic-emphasis-70-default,
+				// border
+				colors.$db-critical-on-bg-basic-emphasis-80-default,
+				// label
+				colors.$db-critical-on-bg-inverted-default,
+				// thumb
+				colors.$db-critical-bg-inverted-contrast-low-hovered,
+				// hover checked
+				colors.$db-critical-bg-basic-transparent-full-hovered,
+				// hover unchecked
+				colors.$db-critical-bg-inverted-contrast-low-pressed // pressed
 			);
 		} @else {
 			@include switch-validity-colored(
-				var(--db-successful-on-bg-basic-emphasis-70-default),
-				#{colors.$db-successful-on-bg-basic-emphasis-80-default},
-				colors.$db-successful-on-bg-inverted-default
+				colors.$db-successful-on-bg-basic-emphasis-70-default,
+				// border
+				colors.$db-successful-on-bg-basic-emphasis-80-default,
+				// label
+				colors.$db-successful-on-bg-inverted-default,
+				// thumb
+				colors.$db-successful-bg-inverted-contrast-low-hovered,
+				// hover checked
+				colors.$db-successful-bg-basic-transparent-full-hovered,
+				// hover unchecked
+				colors.$db-successful-bg-inverted-contrast-low-pressed // pressed,
 			);
 		}
 	}
