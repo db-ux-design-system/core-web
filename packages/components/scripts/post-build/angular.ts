@@ -169,10 +169,7 @@ export default (tmp?: boolean) => {
 		});
 
 		const replacements: Overwrite[] = [
-			{
-				from: /allowSignalWrites: true,/g,
-				to: ''
-			}
+			// Don't remove allowSignalWrites in Angular as it's needed for signals in effects
 		];
 
 		if (component.config?.angular?.controlValueAccessor) {
