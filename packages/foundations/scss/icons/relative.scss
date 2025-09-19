@@ -48,3 +48,12 @@
 		}
 	}
 }
+
+@font-face {
+	font-display: block;
+	font-family: icon-font-fallback;
+	font-style: normal;
+	font-weight: normal;
+	src: url("#{assets-paths.$icons-path}fonts/fallback/icon-font-fallback.woff2")
+		format("woff2");
+}
