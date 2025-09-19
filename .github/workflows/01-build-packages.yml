@@ -1,6 +1,9 @@
 ---
 name: Build Packages
 
+permissions:
+  contents: read
+
 on:
   workflow_call:
 
