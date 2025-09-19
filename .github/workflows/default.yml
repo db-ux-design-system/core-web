@@ -150,7 +150,7 @@ jobs:
       path: ${{ needs.build-showcase-patternhub.outputs.path }}
 
   regenerate-snapshots-components:
-    if: always() && needs.test-components.result == 'failure'
+    if: ${{ !cancelled() && needs.test-components.result == 'failure' }}
     uses: ./.github/workflows/02-e2e-regenerate.yml
     with:
       version: ${{ needs.get-playwright-version.outputs.version }}
@@ -158,7 +158,7 @@ jobs:
     needs: [test-components, get-playwright-version]
 
   regenerate-snapshots-foundations:
-    if: always() && needs.test-foundations.result == 'failure'
+    if: ${{ !cancelled() && needs.test-foundations.result == 'failure' }}
     uses: ./.github/workflows/02-e2e-regenerate.yml
     with:
       version: ${{ needs.get-playwright-version.outputs.version }}
@@ -166,7 +166,7 @@ jobs:
     needs: [test-foundations, get-playwright-version]
 
   regenerate-snapshots-patternhub:
-    if: always() && needs.test-showcase-patternhub.result == 'failure'
+    if: ${{ !cancelled() && needs.test-showcase-patternhub.result == 'failure' }}
     uses: ./.github/workflows/02-e2e-regenerate.yml
     with:
       version: ${{ needs.get-playwright-version.outputs.version }}
@@ -191,7 +191,7 @@ jobs:
 
   regenerate-snapshots:
     if: |
-      always() && (
+      !cancelled() && (
         needs.test-showcase-angular.result == 'failure' ||
         needs.test-showcase-react.result == 'failure' ||
         needs.test-showcase-vue.result == 'failure' ||
@@ -238,7 +238,7 @@ jobs:
       patternhub: ${{ needs.regenerate-snapshots-patternhub.result == 'success' }}
 
   checks-done:
-    if: ${{ always() }}
+    if: ${{ !cancelled() }}
     runs-on: ubuntu-24.04 # Use Ubuntu 24.04 explicitly
     steps:
       - name: 🎉 Checks done

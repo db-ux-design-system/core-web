@@ -1833,10 +1833,10 @@
 					"multiple": true,
 					"id": "id-10271",
 					"removeTagsTexts": [
-						"Removed Option 1",
-						"Removed Option 2",
-						"Removed Option 3",
-						"Removed Option 4"
+						"Remove Option entry 1",
+						"Remove Option entry 2",
+						"Remove Option entry 3",
+						"Remove Option entry 4"
 					]
 				},
 				"children": []
