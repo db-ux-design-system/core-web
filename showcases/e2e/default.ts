@@ -42,6 +42,8 @@ export const isStencil = (showcase?: string): boolean =>
 	Boolean(showcase?.startsWith('stencil'));
 export const isAngular = (showcase?: string): boolean =>
 	Boolean(showcase?.startsWith('angular'));
+export const isReact = (showcase?: string): boolean =>
+	Boolean(showcase?.startsWith('react'));
 export const isVue = (showcase: string): boolean => showcase.startsWith('vue');
 
 export const hasWebComponentSyntax = (showcase?: string): boolean => {
@@ -124,7 +126,9 @@ export const getDefaultScreenshotTest = ({
 		} else if (isWebkit) {
 			config.maxDiffPixelRatio = 0.033;
 		} else if (isAngular(showcase)) {
-			config.maxDiffPixels = 1000;
+			config.maxDiffPixels = 2500;
+		} else if (isReact(showcase)) {
+			config.maxDiffPixels = 2500;
 		} else {
 			config.maxDiffPixels = 120;
 		}

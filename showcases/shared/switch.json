@@ -54,37 +54,6 @@
 		]
 	},
 	{
-		"name": "Emphasis",
-		"examples": [
-			{
-				"name": "(Default) Weak + Unchecked",
-				"props": {
-					"emphasis": "weak"
-				}
-			},
-			{
-				"name": "(Default) Weak + Checked",
-				"props": {
-					"emphasis": "weak",
-					"checked": true
-				}
-			},
-			{
-				"name": "Strong + Unchecked",
-				"props": {
-					"emphasis": "strong"
-				}
-			},
-			{
-				"name": "Strong + Checked",
-				"props": {
-					"emphasis": "strong",
-					"checked": true
-				}
-			}
-		]
-	},
-	{
 		"name": "Visual Aid",
 		"examples": [
 			{
@@ -103,14 +72,18 @@
 			{
 				"name": "True + Unchecked",
 				"props": {
-					"visualAid": true
+					"visualAid": true,
+					"iconLeading": "moon",
+					"iconTrailing": "sun"
 				}
 			},
 			{
 				"name": "True + Checked",
 				"props": {
 					"visualAid": true,
-					"checked": true
+					"checked": true,
+					"iconLeading": "moon",
+					"iconTrailing": "sun"
 				}
 			}
 		]
@@ -125,6 +98,45 @@
 				"name": "Small",
 				"props": {
 					"size": "small"
+				}
+			}
+		]
+	},
+	{
+		"name": "Label Position",
+		"examples": [
+			{
+				"name": "(Default) Trailing",
+				"props": {
+					"label": "Label after switch"
+				}
+			},
+			{
+				"name": "Leading",
+				"props": {
+					"label": "Label before switch",
+					"labelPosition": "leading"
+				}
+			}
+		]
+	},
+	{
+		"name": "Accent",
+		"examples": [
+			{
+				"name": "(Default) False",
+				"props": {
+					"label": "Normal switch",
+					"accent": false,
+					"checked": true
+				}
+			},
+			{
+				"name": "True (checked)",
+				"props": {
+					"label": "Accent switch checked",
+					"accent": true,
+					"checked": true
 				}
 			}
 		]
@@ -183,6 +195,46 @@
 		]
 	},
 	{
+		"name": "Validation",
+		"examples": [
+			{
+				"name": "(Default) No validation",
+				"props": {}
+			},
+			{
+				"name": "Invalid",
+				"props": {
+					"validation": "invalid",
+					"invalidMessage": "Invalid Message"
+				}
+			},
+			{
+				"name": "Valid",
+				"props": {
+					"validation": "valid",
+					"validMessage": "Valid message",
+					"checked": true
+				}
+			}
+		]
+	},
+	{
+		"name": "Show Message",
+		"examples": [
+			{
+				"name": "(Default) No message",
+				"props": {}
+			},
+			{
+				"name": "Show message",
+				"props": {
+					"showMessage": true,
+					"message": "Shown message"
+				}
+			}
+		]
+	},
+	{
 		"name": "Examples",
 		"examples": [
 			{
@@ -191,15 +243,6 @@
 					"visualAid": true,
 					"icon": "cross_circle",
 					"iconTrailing": "clock"
-				}
-			},
-			{
-				"name": "Custom Icons+ Emphasis",
-				"props": {
-					"visualAid": true,
-					"icon": "cross_circle",
-					"iconTrailing": "clock",
-					"emphasis": "strong"
 				}
 			}
 		]
