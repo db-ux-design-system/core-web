@@ -12,12 +12,15 @@
 	@extend %default-button;
 	@extend %db-overwrite-font-size-md;
 
+	// Multiple lines support
+	max-inline-size: 100%;
+	overflow-wrap: break-word;
+	white-space: break-spaces;
+	text-align: center;
 	color: colors.$db-adaptive-on-bg-basic-emphasis-100-default;
-	block-size: variables.$db-sizing-md;
+	min-block-size: variables.$db-sizing-md;
 	inline-size: fit-content;
 	padding: variables.$db-spacing-fixed-xs variables.$db-spacing-fixed-md;
-
-	// disable text-decoration if someone wants to use the button for an <a> tag
 	text-decoration: none;
 
 	// Square icon only buttons
@@ -25,6 +28,7 @@
 		@include icons.is-icon-text-replace;
 
 		padding: 0;
+		block-size: variables.$db-sizing-md;
 		inline-size: variables.$db-sizing-md;
 
 		&::before {
@@ -36,7 +40,8 @@
 		@extend %db-overwrite-font-size-sm;
 
 		font-weight: 700;
-		block-size: variables.$db-sizing-sm;
+		min-block-size: variables.$db-sizing-sm;
+		padding: variables.$db-spacing-fixed-2xs;
 
 		&:not([data-no-text="true"]) {
 			padding: variables.$db-spacing-fixed-3xs
@@ -49,6 +54,7 @@
 
 		// Square icon only buttons
 		&[data-no-text="true"] {
+			block-size: variables.$db-sizing-sm;
 			inline-size: variables.$db-sizing-sm;
 		}
 	}
