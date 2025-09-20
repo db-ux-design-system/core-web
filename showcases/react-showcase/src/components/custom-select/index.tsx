@@ -90,6 +90,7 @@ const getCustomSelect = ({
 			label={children}
 			ariaListLabel={`${id}-${children}`}
 			options={options}
+			removeTagsTexts={removeTagsTexts}
 			variant={variant}
 			message={message}
 			required={required}
