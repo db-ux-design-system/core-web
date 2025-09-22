@@ -23,8 +23,6 @@ const getSourceFilePath = (title: string): string | undefined => {
 	if (componentName && /^[a-z]+(-[a-z]+)*$/.test(componentName)) {
 		return `packages/components/src/components/${componentName}/${componentName}.lite.tsx`;
 	}
-
-	return null;
 };
 
 // Function to get GitHub source URL
@@ -33,7 +31,7 @@ const getGitHubSourceUrl = (
 	branch?: string
 ): string | undefined => {
 	const filePath = getSourceFilePath(title);
-	if (!filePath) return null;
+	if (!filePath) return;
 
 	// Use provided branch, or try to detect from environment, fallback to 'main'
 	const targetBranch =
