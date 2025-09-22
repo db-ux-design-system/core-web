@@ -91,30 +91,20 @@ $checked-active-transition-size: calc(
 		@if $key == "invalid" {
 			@include switch-validity-colored(
 				colors.$db-critical-on-bg-basic-emphasis-70-default,
-				// border
 				colors.$db-critical-on-bg-basic-emphasis-80-default,
-				// label
 				colors.$db-critical-on-bg-inverted-default,
-				// thumb
 				colors.$db-critical-bg-inverted-contrast-low-hovered,
-				// hover checked
 				colors.$db-critical-bg-basic-transparent-full-hovered,
-				// hover unchecked
-				colors.$db-critical-bg-inverted-contrast-low-pressed // pressed
+				colors.$db-critical-bg-inverted-contrast-low-pressed
 			);
 		} @else {
 			@include switch-validity-colored(
 				colors.$db-successful-on-bg-basic-emphasis-70-default,
-				// border
 				colors.$db-successful-on-bg-basic-emphasis-80-default,
-				// label
 				colors.$db-successful-on-bg-inverted-default,
-				// thumb
 				colors.$db-successful-bg-inverted-contrast-low-hovered,
-				// hover checked
 				colors.$db-successful-bg-basic-transparent-full-hovered,
-				// hover unchecked
-				colors.$db-successful-bg-inverted-contrast-low-pressed // pressed,
+				colors.$db-successful-bg-inverted-contrast-low-pressed
 			);
 		}
 	}
