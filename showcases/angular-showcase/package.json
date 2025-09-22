@@ -7,8 +7,6 @@
     "dev": "npm run start -- --open",
     "ng": "ng",
     "preview": "npx http-server ../../build-showcases",
-    "regenerate:aria-snapshots": "cross-env showcase=angular-showcase npx playwright test --config=../playwright.aria-snapshots.ts --update-snapshots",
-    "regenerate:visual-snapshots": "cross-env showcase=angular-showcase npx playwright test --config=../playwright.visual-snapshots.ts --update-snapshots",
     "start": "ng serve --serve-path angular-showcase",
     "test:a11y-checker": "cross-env showcase=angular-showcase npx playwright test --config=../playwright.a11y-checker.ts",
     "test:aria-snapshots": "cross-env showcase=angular-showcase npx playwright test --config=../playwright.aria-snapshots.ts",
