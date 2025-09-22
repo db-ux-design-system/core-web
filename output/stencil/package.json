@@ -29,7 +29,7 @@
     "start": "stencil build --watch"
   },
   "devDependencies": {
-    "@custom-elements-manifest/analyzer": "0.10.5",
+    "@custom-elements-manifest/analyzer": "0.10.6",
     "@stencil/core": "4.36.3",
     "cem-plugin-expanded-types": "1.4.0",
     "custom-element-jet-brains-integration": "1.7.0",
