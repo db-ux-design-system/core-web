@@ -1,5 +1,5 @@
 import React, { useCallback, useState } from 'react';
-import { DBButton, DBCard, DBDivider, DBLink } from '../../../../output/react/src';
+import { DBCard, DBDivider, DBLink } from '../../../../output/react/src';
 import type {
 	ReactDefaultComponentProps,
 	ReactDefaultComponentVariants
@@ -11,30 +11,37 @@ const redirectURLSearchParameters = process?.env?.REDIRECT_URL_SEARCH_PARAMS
 	: true;
 
 // Function to convert component title to source file path
-const getSourceFilePath = (title: string): string | null => {
+const getSourceFilePath = (title: string): string | undefined => {
 	// Remove 'DB' prefix and convert to kebab-case
 	const componentName = title
 		.replace(/^DB/, '')
-		.replace(/([A-Z])/g, (match, letter, index) => 
+		.replaceAll(/([A-Z])/g, (match, letter, index) =>
 			index > 0 ? `-${letter.toLowerCase()}` : letter.toLowerCase()
 		);
-	
+
 	// Verify this is a valid component name by checking common patterns
-	if (componentName && componentName.match(/^[a-z]+(-[a-z]+)*$/)) {
+	if (componentName && /^[a-z]+(-[a-z]+)*$/.test(componentName)) {
 		return `packages/components/src/components/${componentName}/${componentName}.lite.tsx`;
 	}
-	
+
 	return null;
 };
 
 // Function to get GitHub source URL
-const getGitHubSourceUrl = (title: string, branch?: string): string | null => {
+const getGitHubSourceUrl = (
+	title: string,
+	branch?: string
+): string | undefined => {
 	const filePath = getSourceFilePath(title);
 	if (!filePath) return null;
-	
+
 	// Use provided branch, or try to detect from environment, fallback to 'main'
-	const targetBranch = branch || process.env.GITHUB_BRANCH || process.env.BRANCH_NAME || 'main';
-	
+	const targetBranch =
+		branch ??
+		process.env.GITHUB_BRANCH ??
+		process.env.BRANCH_NAME ??
+		'main';
+
 	return `https://github.com/db-ux-design-system/core-web/blob/${targetBranch}/${filePath}`;
 };
 
@@ -165,14 +172,13 @@ const DefaultComponent = ({
 				<div className="component-header">
 					<HeadlineTag>{title}</HeadlineTag>
 					{sourceUrl && !isSubComponent && (
-						<DBButton
-							variant="ghost"
-							size="small"
-							icon="code"
-							onClick={() => window.open(sourceUrl, '_blank')}
-							aria-label={`View source code for ${title}`}>
+						<DBLink
+							target="_blank"
+							referrerPolicy="no-referrer"
+							href={sourceUrl}
+							content="external">
 							View Source
-						</DBButton>
+						</DBLink>
 					)}
 				</div>
 				{variants
