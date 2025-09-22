@@ -24,10 +24,10 @@ import {
 	getNavigationList,
 	type NavigationItem
 } from '../data/routes';
+import { FrameworkProvider } from './framework-context';
+import FrameworkSwitcher from './framework-switcher';
 import Navigation from './navigation';
 import VersionSwitcher from './version-switcher';
-import FrameworkSwitcher from './framework-switcher';
-import { FrameworkProvider } from './framework-context';
 
 const preferDark = '(prefers-color-scheme: dark)';
 const colorModeKey = 'db-ux-mode';
