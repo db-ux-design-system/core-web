@@ -1,9 +1,9 @@
 export type Framework = 'angular' | 'html' | 'react' | 'vue';
 
-export interface FrameworkOption {
+export type FrameworkOption = {
 	value: Framework;
 	label: string;
-}
+};
 
 export const FRAMEWORK_OPTIONS: FrameworkOption[] = [
 	{ value: 'angular', label: 'Angular' },
@@ -12,4 +12,4 @@ export const FRAMEWORK_OPTIONS: FrameworkOption[] = [
 	{ value: 'vue', label: 'Vue' }
 ];
 
-export const DEFAULT_FRAMEWORK: Framework = 'html';
+export const DEFAULT_FRAMEWORK: Framework = 'react';

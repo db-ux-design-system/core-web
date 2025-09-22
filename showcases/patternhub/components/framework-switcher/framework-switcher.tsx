@@ -1,7 +1,6 @@
-import { useRouter } from 'next/router';
 import { DBSelect } from '../../../../output/react/src';
-import { FRAMEWORK_OPTIONS, type Framework } from './data';
 import { useFramework } from '../framework-context';
+import { type Framework, FRAMEWORK_OPTIONS } from './data';
 
 const FrameworkSwitcher = () => {
 	const { framework, setFramework } = useFramework();
