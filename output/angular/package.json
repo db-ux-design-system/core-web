@@ -7,9 +7,9 @@
     "url": "git+https://github.com/db-ux-design-system/core-web.git"
   },
   "license": "Apache-2.0",
-  "main": "dist/fesm5.js",
-  "module": "dist/fesm5.js",
-  "types": "dist/core.d.ts",
+  "main": "fesm2022/db-ux-ngx-core-components.mjs",
+  "module": "fesm2022/db-ux-ngx-core-components.mjs",
+  "types": "index.d.ts",
   "scripts": {
     "build": "ng build",
     "ng": "ng",
