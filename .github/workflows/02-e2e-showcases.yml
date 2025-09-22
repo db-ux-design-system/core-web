@@ -77,7 +77,8 @@ jobs:
       # We test everything for patternhub and main branch
       - name: 👩‍🔬 Test showcase with Playwright 🎭
         shell: bash
-        if: github.event.pull_request == null
+        # TODO: we need to find a more stable solution / https://github.com/db-ux-design-system/core-web/issues/4910
+        # if: github.event.pull_request == null
         env:
           NEXT_PUBLIC_BASE_PATH: ${{ inputs.path }}
         run: |
