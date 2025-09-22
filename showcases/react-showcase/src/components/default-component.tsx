@@ -169,15 +169,17 @@ const DefaultComponent = ({
 			<div className="default-container">
 				<div className="component-header">
 					<HeadlineTag>{title}</HeadlineTag>
-					{sourceUrl && !isSubComponent && (
-						<DBLink
-							target="_blank"
-							referrerPolicy="no-referrer"
-							href={sourceUrl}
-							content="external">
-							View Source
-						</DBLink>
-					)}
+					{!redirectURLSearchParameters &&
+						sourceUrl &&
+						!isSubComponent && (
+							<DBLink
+								target="_blank"
+								referrerPolicy="no-referrer"
+								href={sourceUrl}
+								content="external">
+								View Source
+							</DBLink>
+						)}
 				</div>
 				{variants
 					?.filter(
