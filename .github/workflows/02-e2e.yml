@@ -6,10 +6,6 @@ on:
       version:
         required: true
         type: string
-    outputs:
-      has-failures:
-        description: "Whether any of the component tests failed"
-        value: ${{ jobs.check-results.outputs.has-failures }}
 
 permissions:
   actions: write
@@ -76,21 +72,3 @@ jobs:
           name: ${{ matrix.framework }}-components-playwright-results-${{ matrix.shardIndex }}
           path: ./output/${{ steps.workingDirectory.outputs.dir }}/test-results
           retention-days: 30
-
-  check-results:
-    if: always()
-    needs: [playwright-ct]
-    runs-on: ubuntu-24.04
-    outputs:
-      has-failures: ${{ steps.check.outputs.has-failures }}
-    steps:
-      - name: Check for failures
-        id: check
-        run: |
-          if [[ "${{ contains(needs.playwright-ct.result, 'failure') }}" == "true" ]]; then
-            echo "has-failures=true" >> $GITHUB_OUTPUT
-            echo "Component tests have failures - will trigger snapshot regeneration"
-          else
-            echo "has-failures=false" >> $GITHUB_OUTPUT
-            echo "All component tests passed"
-          fi
