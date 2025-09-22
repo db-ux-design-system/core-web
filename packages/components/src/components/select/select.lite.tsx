@@ -166,7 +166,8 @@ export default function DBSelect(props: DBSelectProps) {
 
 		useTarget({
 			angular: () => {
-				this.writeValue?.(this.value?.());
+				// @ts-ignore
+				this.writeValue?.(this.value?.() ?? "");
 			}
 		});
 	});
