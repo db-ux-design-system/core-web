@@ -507,7 +507,8 @@
 							]
 						}
 					],
-					"label": "Label"
+					"label": "Label",
+					"placeholder": "Using optgroups"
 				}
 			},
 			{
@@ -535,7 +536,8 @@
 							"value": "Another Single Option"
 						}
 					],
-					"label": "Label"
+					"label": "Label",
+					"placeholder": "Mixed options and groups"
 				}
 			}
 		]
