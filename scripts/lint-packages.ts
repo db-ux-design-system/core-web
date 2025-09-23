@@ -27,10 +27,9 @@ for (const { name, parentPath } of packages) {
 	const packageJsonPath = path.join(packagePath, 'package.json');
 
 	try {
-		const packageJson: any = JSON.parse(
+		const { name: packageName } = JSON.parse(
 			readFileSync(packageJsonPath, 'utf8')
-		);
-		const packageName: string = packageJson.name;
+		) as { name: string };
 
 		console.log(`\n📦 Checking ${packageName} (${packagePath})...`);
 
@@ -41,8 +40,11 @@ for (const { name, parentPath } of packages) {
 					cwd: process.cwd()
 				});
 				console.log(`✅ ${packageName} - No publint issues`);
-			} catch (_) {
-				console.error(`❌ ${packageName} - Publint found issues`);
+			} catch (_error) {
+				console.error(
+					`❌ ${packageName} - Publint found issues`,
+					_error instanceof Error ? _error.message : _error
+				);
 				hasErrors = true;
 				totalIssues++;
 			}
@@ -58,7 +60,7 @@ for (const { name, parentPath } of packages) {
 }
 
 console.log(
-	`\n📊 Summary: ${totalIssues} package(s) with issues out of ${PUBLISHABLE_PACKAGES.length} checked`
+	`\n📊 Summary: ${totalIssues} package(s) with issues out of ${packages.length} checked`
 );
 
 if (hasErrors) {
