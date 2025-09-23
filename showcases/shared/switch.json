@@ -222,11 +222,11 @@
 		"name": "Show Message",
 		"examples": [
 			{
-				"name": "(Default) No message",
+				"name": "(Default) False",
 				"props": {}
 			},
 			{
-				"name": "Show message",
+				"name": "True",
 				"props": {
 					"showMessage": true,
 					"message": "Message"
