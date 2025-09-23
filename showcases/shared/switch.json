@@ -229,7 +229,6 @@
 				"name": "Show message",
 				"props": {
 					"showMessage": true,
-					"messageIcon": "information_circle",
 					"message": "Message"
 				}
 			}
