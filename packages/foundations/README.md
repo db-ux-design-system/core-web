@@ -7,6 +7,19 @@
 
 A library containing all tokens (colors, spacings, font formatting, etc.) and assets (icons) of [DB UX Design System v3](https://github.com/db-ux-design-system/core-web).
 
+## When to use this package
+
+**⚠️ Looking for UI components?** You probably want [`@db-ux/core-components`](https://www.npmjs.com/package/@db-ux/core-components) instead, which **automatically includes** this package.
+
+**Use this package when you:**
+- Only need design tokens (colors, spacing, fonts) without any component styles
+- Want to build custom components using the design system tokens
+- Need just icons and fonts without pre-built components
+
+**Use [`@db-ux/core-components`](https://www.npmjs.com/package/@db-ux/core-components) when you:**
+- Want to use ready-made UI components (buttons, inputs, navigation, etc.)
+- Need both design tokens AND component styles (most common use case)
+
 We currently support:
 
 - [CSS](https://design-system.deutschebahn.com/core-web/review/main/foundations/readme?current=css)
@@ -298,7 +311,7 @@ If you want to optimize the size of the loaded styles, you might want to skip lo
 
 ```css
 /* The theme contains all prop required for components like spacings, colors, etc. You can replace it with your own theme. */
-@import "@db-ux/core-foundations/build/styles/default-theme.css";
+@import "@db-ux/core-foundations/build/styles/defaults/default-theme.css";
 /* The font include uses default font families based on your bundling paths (relative, absolute, webpack, rollup). You can replace it with your own fonts. */
 @import "@db-ux/core-foundations/build/styles/fonts/relative.css";
 /* The icon include uses default icons based on your bundling paths (relative, absolute, webpack, rollup). You can replace it with your own icons. */

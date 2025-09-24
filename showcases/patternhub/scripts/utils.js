@@ -79,6 +79,7 @@ const getTag = (componentName) =>
  * @param [children] {{name:string, props: object,native?:boolean,slot?:string, angularDirective?:boolean, content?:string,children?:{name:string, props: object,native?:boolean}[]}[]}
  * @returns {string}
  */
+
 export const getCodeByFramework = (
 	componentName,
 	framework,
@@ -89,6 +90,13 @@ export const getCodeByFramework = (
 	const { props, name, content, native } = example;
 	let className = '';
 	let tag = `DB${getTag(componentName)}`;
+	// Self-contained or composition components
+	const nonInnerContentComponents = [
+		'input',
+		'select',
+		'textarea',
+		'custom-select'
+	];
 	if (framework === 'angular') {
 		tag = `db-${componentName}`;
 	}
@@ -123,7 +131,10 @@ export const getCodeByFramework = (
 						)
 					)
 					.join('\n') + (content ?? '')
-			: (content ?? name);
+			: (content ??
+				(nonInnerContentComponents.includes(componentName)
+					? ''
+					: name));
 
 	const slots = (children ?? example.children)?.filter((child) =>
 		child.slot
@@ -207,6 +218,29 @@ export const getColorVariants = () => [
 	'informational-transparent-full',
 	'informational-transparent-semi'
 ];
+
+/**
+ * Clean names by removing spaces and special characters to create valid JavaScript property names
+ * @param {string} name - The name to clean
+ * @returns {string} - Cleaned name with only word characters
+ */
+export const cleanupName = (name) => {
+	if (!name) return '';
+	return name.replaceAll(/\s+/g, '').replaceAll(/\W/g, '');
+};
+
+/**
+ * Generate a consistent key for allExamples object
+ * @param {string} componentName - Component name
+ * @param {string} variantName - Variant name (will be cleaned)
+ * @param {string} exampleName - Example name (will be cleaned)
+ * @returns {string} - Clean key for allExamples
+ */
+export const generateExampleKey = (componentName, variantName, exampleName) => {
+	const cleanVariantName = cleanupName(variantName);
+	const cleanExampleName = cleanupName(exampleName);
+	return `${componentName}${cleanVariantName}${cleanExampleName}`;
+};
 
 export const transformToUpperComponentName = (componentName) =>
 	componentName

@@ -24,15 +24,20 @@ inputs:
 runs:
   using: "composite"
   steps:
-    # https://docs.github.com/en/apps/creating-github-apps/authenticating-with-a-github-app/making-authenticated-api-requests-with-a-github-app-in-a-github-actions-workflow
-    - name: 🧬 Generate a token
-      id: generate-token
-      uses: actions/create-github-app-token@v2
-      with:
-        app-id: ${{ inputs.auto-merge-app-id }}
-        private-key: ${{ inputs.auto-merge-private-key }}
+    - name: 🚦 Check for changes before committing
+      id: check_changes
+      shell: bash
+      run: |
+        if [[ -z "$(git status --porcelain)" ]]; then
+          echo "No changes to commit. Skipping auto-commit step."
+          echo "changes_detected=false" >> $GITHUB_ENV
+        else
+          echo "Changes detected. Proceeding with creating a new branch and commit changes."
+          echo "changes_detected=true" >> $GITHUB_ENV
+        fi
 
     - name: 🏗️ Create new branch and commit changes
+      if: env.changes_detected == 'true'
       shell: bash
       env:
         GH_TOKEN: ${{ inputs.gh-token }}
@@ -52,6 +57,7 @@ runs:
         git push --force origin "$NEW_PR_BRANCH"
 
     - name: 🪗 Create Pull Request
+      if: env.changes_detected == 'true'
       shell: bash
       env:
         GH_TOKEN: ${{ inputs.gh-token }}
@@ -61,7 +67,17 @@ runs:
       run: |
         gh pr create --base "$BASE_BRANCH" --head "$NEW_PR_BRANCH" --title "Automated PR: $COMMIT_MESSAGE" --body "This PR was created automatically by a GitHub Action."
 
+    # https://docs.github.com/en/apps/creating-github-apps/authenticating-with-a-github-app/making-authenticated-api-requests-with-a-github-app-in-a-github-actions-workflow
+    - name: 🧬 Generate a token
+      if: env.changes_detected == 'true'
+      id: generate-token
+      uses: actions/create-github-app-token@v2
+      with:
+        app-id: ${{ inputs.auto-merge-app-id }}
+        private-key: ${{ inputs.auto-merge-private-key }}
+
     - name: 🤖 Squash the PR
+      if: env.changes_detected == 'true'
       shell: bash
       run: gh pr merge --squash "$NEW_PR_BRANCH"
       env:

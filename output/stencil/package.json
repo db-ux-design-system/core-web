@@ -31,8 +31,8 @@
     "start": "stencil build --watch"
   },
   "devDependencies": {
-    "@custom-elements-manifest/analyzer": "0.10.4",
-    "@stencil/core": "4.36.2",
+    "@custom-elements-manifest/analyzer": "0.10.6",
+    "@stencil/core": "4.37.1",
     "cem-plugin-expanded-types": "1.4.0",
     "custom-element-jet-brains-integration": "1.7.0",
     "custom-element-vs-code-integration": "1.5.0",
@@ -42,5 +42,6 @@
     "registry": "https://registry.npmjs.org/",
     "access": "public"
   },
-  "web-types": "./dist/web-types.json"
+  "web-types": "./dist/web-types.json",
+  "customElements": "dist/custom-elements.json"
 }
