@@ -55,6 +55,7 @@
     "dev": "npm run dev --workspace=scripts",
     "generate:component": "npm run generate:component --workspace=@db-ux/core-components",
     "lint": "npm-run-all --parallel lint:*",
+    "lint-docs-file-references": "node scripts/check-docs.js",
     "lint-packages": "tsx scripts/lint-packages.ts publint",
     "lint:jscpd": "jscpd . --exitCode 1 --config .config/.jscpd.json",
     "lint:markdownlint": "markdownlint --config .config/.markdown-lint.yml **/*.md",
