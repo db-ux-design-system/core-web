@@ -2,6 +2,7 @@
   "name": "@db-ux/ngx-core-components",
   "version": "0.0.0",
   "description": "Angular components @db-ux/core-components",
+  "type": "module",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/db-ux-design-system/core-web.git"
