@@ -195,6 +195,7 @@ const resolvePackageReference = (reference) => {
 				)
 			);
 		}
+
 		// Node_modules (for published packages) - only once
 		possiblePaths.push(
 			path.join(config.rootDir, 'node_modules', packageName, variation)
