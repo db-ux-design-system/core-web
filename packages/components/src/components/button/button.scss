@@ -15,7 +15,7 @@
 	// Multiple lines support
 	max-inline-size: 100%;
 	overflow-wrap: break-word;
-	white-space: break-spaces;
+	white-space: pre-wrap;
 	text-align: center;
 	color: colors.$db-adaptive-on-bg-basic-emphasis-100-default;
 	min-block-size: variables.$db-sizing-md;
