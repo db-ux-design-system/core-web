@@ -71,13 +71,13 @@
     "update:icon-fonts": "npm-run-all generate:icon-fonts generate:icon-types"
   },
   "devDependencies": {
-    "@inquirer/prompts": "7.8.4",
-    "dotenv": "17.2.1",
+    "@inquirer/prompts": "7.8.6",
+    "dotenv": "17.2.2",
     "find-versions": "6.0.0",
     "glob": "11.0.3",
-    "inquirer": "12.9.4",
+    "inquirer": "12.9.6",
     "replace-in-file": "8.3.0",
-    "tar": "7.4.3",
+    "tar": "7.5.1",
     "vitest": "3.2.4"
   }
 }
