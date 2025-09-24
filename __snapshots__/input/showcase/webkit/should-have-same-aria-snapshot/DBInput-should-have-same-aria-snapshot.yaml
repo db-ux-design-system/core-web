@@ -201,9 +201,6 @@
   - text: Search Cities
   - combobox "Search Cities"
   - status
-  - text: Search Countries
-  - combobox "Search Countries"
-  - status
   - text: Search Products
   - combobox "Search Products"
   - status
