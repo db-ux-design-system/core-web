@@ -543,21 +543,12 @@
 	},
 	{
 		"name": "Datalist / Typeahead Examples",
-		"codeFileName": "DatalistExamples", 
+		"codeFileName": "DatalistExamples",
 		"examples": [
 			{
 				"name": "Simple String List",
 				"props": {
 					"label": "Search Cities",
-					"placeholder": "Type to search...",
-					"dataList": true,
-					"variant": "floating"
-				}
-			},
-			{
-				"name": "Value-Label Pairs",
-				"props": {
-					"label": "Search Countries", 
 					"placeholder": "Type to search...",
 					"dataList": true,
 					"variant": "floating"
