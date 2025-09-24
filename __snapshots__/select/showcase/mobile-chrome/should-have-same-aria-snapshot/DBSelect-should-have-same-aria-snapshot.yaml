@@ -164,12 +164,16 @@
   - status
   - link "Option Groups"
   - text: Label
-  - combobox "Label"
+  - combobox "Label":
+    - option [selected]
+  - text: Using optgroups
   - status
   - text: Label
   - combobox "Label":
-    - option "Single Option" [selected]
+    - option [selected]
+    - option "Single Option"
     - option "Another Single Option"
+  - text: Mixed options and groups
   - status
   - link "Examples Floating Label"
   - text: Label
