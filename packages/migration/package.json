@@ -11,7 +11,7 @@
   "bin": {
     "@db-ux/core-migration": "build/index.js"
   },
-  "main": "build.js",
+  "main": "build/index.js",
   "files": [
     "build"
   ],
@@ -31,7 +31,7 @@
   },
   "devDependencies": {
     "cpr": "3.0.1",
-    "esbuild": "0.25.9",
+    "esbuild": "0.25.10",
     "tsx": "4.20.5",
     "vitest": "3.2.4"
   },
