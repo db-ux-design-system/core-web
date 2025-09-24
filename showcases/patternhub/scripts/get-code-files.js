@@ -55,7 +55,7 @@ const getExamplesAsMDX = async (componentName, variant) => {
 	for (const example of examples) {
 		result += `
 			<DBCard className="tab-container">
-			<DBTabs initialSelectedIndex={getFrameworkIndex()}>
+			<DBTabs initialSelectedIndex={getFrameworkIndex()} key={getFrameworkIndex()}>
 			<DBTabList>
 			<DBTabItem>Angular</DBTabItem>
 			<DBTabItem>HTML</DBTabItem>
