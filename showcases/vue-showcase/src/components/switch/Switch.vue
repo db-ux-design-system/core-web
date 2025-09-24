@@ -25,6 +25,8 @@ import DefaultComponent from "../DefaultComponent.vue";
 				:validation="exampleProps?.validation"
 				:invalidMessage="exampleProps?.invalidMessage"
 				:validMessage="exampleProps?.validMessage"
+				:message="exampleProps?.message"
+				:showMessage="exampleProps?.showMessage"
 			>
 				{{ exampleName }}
 			</DBSwitch>
