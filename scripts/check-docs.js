@@ -11,7 +11,7 @@ const config = {
 	// NPM organization prefix to look for
 	orgPrefix: '@db-ux/',
 	// Root directory to search from – as this script is run from the scripts directory, we set it to one level up
-	rootDir: path.join(process.cwd(), '..'),
+	rootDir: path.join(process.cwd(), '.'),
 	// Workspace packages directories (can be multiple)
 	packagesDirs: ['packages', 'output'],
 	// Debug mode - set to true to see all references found
