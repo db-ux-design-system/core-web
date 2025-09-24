@@ -39,8 +39,10 @@ const getExamplesAsMDX = async (componentName, variant) => {
 		'DBTabPanel,\n' +
 		'DBTabs\n' +
 		"} from '../../../../../output/react/src';\n" +
+		"import { useFramework } from '../../framework-context';\n" +
 		`const ${variant.name} = () => {
 			const [copied, setCopied] = useState<string>();
+			const { getFrameworkIndex } = useFramework();
 
 			useEffect(() => {
 			if (copied) {
@@ -53,7 +55,7 @@ const getExamplesAsMDX = async (componentName, variant) => {
 	for (const example of examples) {
 		result += `
 			<DBCard className="tab-container">
-			<DBTabs>
+			<DBTabs initialSelectedIndex={getFrameworkIndex()} key={getFrameworkIndex()}>
 			<DBTabList>
 			<DBTabItem>Angular</DBTabItem>
 			<DBTabItem>HTML</DBTabItem>
