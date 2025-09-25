@@ -48,7 +48,7 @@
   "devDependencies": {
     "@csstools/normalize.css": "12.1.1",
     "@db-ux/icon-font-tools": "0.3.4",
-    "@playwright/test": "1.54.2",
+    "@playwright/test": "1.55.1",
     "cpr": "3.0.1",
     "cssnano": "7.1.1",
     "dotenv": "17.2.2",
@@ -58,7 +58,7 @@
     "sass": "1.85.0",
     "tsx": "4.20.5",
     "typescript": "5.8.3",
-    "vite": "6.3.6"
+    "vite": "7.1.7"
   },
   "publishConfig": {
     "registry": "https://registry.npmjs.org/",
