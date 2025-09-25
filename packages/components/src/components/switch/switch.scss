@@ -76,6 +76,10 @@ $checked-active-transition-size: calc(
 		background-color: var(--db-check-element-hover-color-unchecked);
 	}
 
+	> input:not(:checked):focus {
+		background-color: var(--db-adaptive-bg-basic-transparent-full-default);
+	}
+
 	> input:checked::before {
 		background-color: $thumb-color;
 		color: $thumb-color;
