@@ -163,9 +163,6 @@ npx changeset status --verbose
 # Apply version bumps and changelogs
 npx changeset version
 
-# Publish (if you want to do it locally, not in CI)
-npm run release:publish
-
 # Pre-release mode
 npx changeset pre enter next # enter prerelease
 npx changeset pre exit # exit prerelease
