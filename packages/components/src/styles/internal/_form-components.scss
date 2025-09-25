@@ -124,7 +124,7 @@ $db-min-inline-size: var(
 		&:has(
 			#{$selector}:focus-within,
 			#{$selector}:is(input, textarea):not(:placeholder-shown),
-			> select option:checked:not([hidden]),
+			> select option:checked:not(.placeholder),
 			input[type="checkbox"]:checked,
 			input[type="radio"]:checked
 		) {
@@ -306,7 +306,7 @@ $input-valid-types:
 	// base inline size for inputs without icons
 	min-inline-size: $db-min-inline-size;
 
-	/* stylelint-disable-next-line scss/selector-no-redundant-nesting-selector */
+	/* stylelint-disable-next-line block-no-redundant-nested-style-rules */
 	& {
 		--db-form-has-before: 0;
 
