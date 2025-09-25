@@ -135,7 +135,9 @@ const getElevation = (): "1" | "2" | "3" =>
 		</div>
 	</DBCard>
 	<div v-if="!variantRef" class="default-container">
-		<h1>{{ title }}</h1>
+		<div class="component-header">
+			<h1>{{ title }}</h1>
+		</div>
 		<div v-for="(variant, variantIndex) in variants">
 			<DBDivider></DBDivider>
 			<DBLink
