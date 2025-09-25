@@ -167,7 +167,7 @@ export default function DBSelect(props: DBSelectProps) {
 		useTarget({
 			angular: () => {
 				// @ts-ignore
-				this.writeValue?.(this.value?.() ?? "");
+				this.writeValue?.(this.value?.() ?? '');
 			}
 		});
 	});
@@ -313,7 +313,9 @@ export default function DBSelect(props: DBSelectProps) {
 				</Show>
 			</select>
 			<Show when={props.placeholder}>
-				<span id={state._placeholderId}>{props.placeholder}</span>
+				<span class="db-select-placeholder" id={state._placeholderId}>
+					{props.placeholder}
+				</span>
 			</Show>
 			<Show when={stringPropVisible(props.message, props.showMessage)}>
 				<DBInfotext
