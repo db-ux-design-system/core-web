@@ -284,6 +284,10 @@ export const ROUTES: NavigationItem[] = [
 						path: '/components/misc/router-usage'
 					},
 					{
+						label: 'Testing',
+						path: '/components/misc/testing'
+					},
+					{
 						label: 'Validation',
 						path: '/components/misc/validation'
 					},

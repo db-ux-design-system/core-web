@@ -376,6 +376,22 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 			if (event.key === 'Escape' && detailsRef?.open) {
 				state.handleClose(undefined, true);
 				state.handleSummaryFocus();
+			} else if (event.key === 'Enter' && detailsRef?.open) {
+				// Handle Enter key to select option like Space key
+				if (self.document) {
+					const activeElement = self.document
+						.activeElement as HTMLInputElement;
+					if (
+						['checkbox', 'radio'].includes(
+							activeElement.getAttribute('type') || ''
+						)
+					) {
+						// Trigger click to simulate Space key behavior
+						activeElement.click();
+
+						event.preventDefault();
+					}
+				}
 			} else if (
 				event.key === 'ArrowDown' ||
 				event.key === 'ArrowUp' ||
@@ -1095,6 +1111,7 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 			</Show>
 
 			<span
+				class="db-custom-select-placeholder"
 				aria-hidden={getBooleanAsString(true)}
 				id={state._placeholderId}>
 				{props.placeholder ?? props.label}
