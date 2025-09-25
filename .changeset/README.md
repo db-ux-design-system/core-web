@@ -98,7 +98,7 @@ You don’t have to run anything manually, it’s handled by CI.
 - **Baseline snapshots**
 
     ARIA snapshots by Playwright help detect markup changes. If they change, prefer minor instead of patch.
-    And please mention those HTML changes within the `CHANGELOG` or of necessary (like bigger changes) in a [migration guide](https://github.com/db-ux-design-system/core-web/tree/main/docs/migration).
+    And please mention those HTML changes within the `CHANGELOG.md` or of necessary (like bigger changes) in a [migration guide](https://github.com/db-ux-design-system/core-web/tree/main/docs/migration).
 
 - **Avoid manual version bumps**
 
