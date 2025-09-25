@@ -65,9 +65,7 @@ Once everything looks good, merge the Release PR.
 After the Release PR is merged into `main` branch:
 
 - CI will build the packages (`./build-outputs/`)
-- Run the publish script (`./scripts/github/publish-npm.js`)
-- Publish new versions to npm with the tag `latest` (or `next` for pre-releases)
-- Push git tag
+- Publish new versions to npm with the tag `latest`
 - Create a [GitHub Release](https://github.com/db-ux-design-system/core-web/releases)
 
 You don’t have to run anything manually, it’s handled by CI.
@@ -108,45 +106,13 @@ You don’t have to run anything manually, it’s handled by CI.
 
 ## 🚧 Pre-Releases
 
-For [pre-releases](https://github.com/changesets/changesets/blob/main/docs/prereleases.md) (tagged `next`):
+We handle pre-releases without changesets.
+Instead, create a new [GitHub release](https://github.com/db-ux-design-system/core-web/releases/new)
+with a tag like `1.2.3-next0` and the CI will pick it up and publish it to npm with the tag `next`.
 
-```bash
-npx changeset pre enter next
-# work as usual, add changesets, publish...
-npx changeset pre exit
-```
-
-CI will publish with tag `next`. Useful for testing before a stable release.
 
 ---
 
-## 📸 Snapshot Checks
-
-- CI monitors changes in snapshot files (`__snapshots__/**/*.png`, `__snapshots__/**/*.yml`).
-- If snapshots are changed, the pipeline enforces at least a minor or major bump in your changeset.
-    - Snapshot changes usually mean visual or markup changes, these should never be published as just a patch.
-- If only a patch bump is detected, the PR will be blocked with an error:
-
-    “PNG/YML snapshots changed. Please bump at least MINOR in your changeset.”
-
-## ✅ How to handle this
-
-1. If the snapshot changes are intentional (e.g. new component, markup updates, visual updates):
-
-- Run npx changeset
-- Select at least minor or major
-- Commit the changes
-
-2. If the snapshot changes are unintentional (e.g. test noise, local mismatches):
-
-- Revert or update the snapshots correctly
-- Commit the fixed snapshots, the pipeline should pass afterwards
-
-## 🔒 Approval Gate
-
-- For PRs containing any version bumps (patch, minor or major releases), the PR requires explicit approval (as all other PRs).
-
----
 
 ## 🔑 Cheatsheet
 

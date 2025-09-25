@@ -1,13 +1,10 @@
 {
 	"$schema": "https://unpkg.com/@changesets/config/schema.json",
-	"changelog": [
-		"@changesets/changelog-github",
-		{ "repo": "db-ux-design-system/core-web" }
-	],
+	"changelog": "@changesets/changelog-git",
 	"commit": true,
-	"fixed": [],
-	"linked": [
+	"fixed": [
 		[
+			"@db-ux/core-web",
 			"@db-ux/core-foundations",
 			"@db-ux/core-components",
 			"@db-ux/react-core-components",
@@ -18,6 +15,7 @@
 			"@db-ux/core-migration"
 		]
 	],
+	"linked": [],
 	"access": "public",
 	"baseBranch": "main",
 	"updateInternalDependencies": "patch"

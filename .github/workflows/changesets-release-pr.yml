@@ -1,29 +1,12 @@
 # -------------------------------------------------------------
 # 🚢 Changesets – Create/Update Release PR and Cut Tags
-# Two paths:
-# 1) PR path: show a Changesets preview comment on the PR (no publishing)
-# 2) Main path: on push to main, create/update the Release PR and cut tags/GitHub Releases
+#    Main path: on push to main, create/update the Release PR and cut tags/GitHub Releases
 # -------------------------------------------------------------
 name: Changesets – Create/Update Release PR and Cut Tags
 
 on:
-  # Run on PRs to main so contributors see what would be released
-  pull_request:
-    branches: ["main"]
-    # Only run if one of the following events occurs
-    types: [opened, synchronize, reopened, ready_for_review]
   push:
     branches: ["main"]
-  workflow_dispatch:
-    inputs:
-      action:
-        description: "Choose an action"
-        required: true
-        default: "version"
-        type: choice
-        options:
-          - version
-          - release
 
 permissions:
   # Needed to push version commit + create releases
@@ -32,42 +15,7 @@ permissions:
   pull-requests: write
 
 jobs:
-  # PR PATH: Preview only
-  preview:
-    if: github.event_name == 'pull_request'
-    name: 🔎 Changesets Preview (PR)
-    runs-on: ubuntu-24.04
-    concurrency:
-      group: changesets-preview-${{ github.event.pull_request.number }}
-      cancel-in-progress: true
-    steps:
-      # Check out the PR HEAD commit (not the merge ref) to report the correct plan
-      - name: ⏬ Checkout PR head (not merge ref)
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-          ref: ${{ github.event.pull_request.head.sha }} # Force checkout to the PR head ref, not the merge ref
-
-      - name: 🔄 Init Node & NPM cache
-        uses: ./.github/actions/npm-cache
-
-      # Make sure we have full history and the base branch locally for proper diffing
-      - name: 🔁 Ensure full history & fetch base (main)
-        shell: bash
-        run: |
-          set -euo pipefail
-          if [ -f .git/shallow ]; then
-            git fetch --unshallow --no-tags --prune
-          fi
-          git fetch --no-tags --prune origin +refs/heads/main:refs/remotes/origin/main
-          git branch -a
-          git rev-parse HEAD
-          git rev-parse remotes/origin/main
-
-  # MAIN PATH: Create/Update Release PR & cut tags/releases
   release_pr:
-    # Only run on main pushes (merge to main done) to drive versioning + tags
-    if: github.event_name == 'push' && startsWith(github.ref, 'refs/heads/main')
     name: 🧩 Create/Update Release PR (and cut tags/releases)
     runs-on: ubuntu-24.04
     concurrency:
@@ -91,22 +39,33 @@ jobs:
         with:
           commit: "chore(release): version packages"
           title: "chore(release): version packages"
-          # Let the action create GitHub releases for you
-          createGithubReleases: true
-          publish: "echo 'Publishing handled by release.yml'"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           # Ensure Husky hooks (e.g., branch name patterns) don't block CI commits
           HUSKY: "0"
           CI: "true"
 
-      # Write a brief job summary so reviewers see what happened
-      - name: 🖨️ Summary
-        if: always()
+      - name: 🆙 Publish
+        if: steps.changesets.outputs.hasChangesets == 'false'
         run: |
-          if [ "${{ steps.changesets.outputs.hasChangesets }}" = "true" ]; then
-            echo "### Changesets\n- Release PR was created or updated." >> $GITHUB_STEP_SUMMARY
+          VERSION=$(jq -r .version package.json)
+          TAG="v$VERSION"
+          # Check if tag exists
+          if git tag --list "$TAG" | grep -q "$TAG"; then
+            echo "Tag $TAG already exists. Skipping publish creation."
+          else
+            gh tag create "$TAG" --notes "Release $TAG"
+
+            # Extract latest changes from CHANGELOG.md (between first and second h2)
+            NOTES=$(awk '/^## /{i++} i==2{exit} i==1{print}' CHANGELOG.md | sed '1d')
+            # Check if release exists
+            if gh release view "$TAG" > /dev/null 2>&1; then
+              echo "Release $TAG already exists. Skipping release creation."
+            else
+              gh release create "$TAG" --notes "$NOTES"
+            fi
           fi
-          if [ "${{ steps.changesets.outputs.published }}" = "true" ]; then
-            echo "### Tags & Releases\n- New tags and GitHub Releases were created by Changesets.\n- Your **release.yml** will now build and publish." >> $GITHUB_STEP_SUMMARY
-          fi
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          HUSKY: "0"
+          CI: "true"
