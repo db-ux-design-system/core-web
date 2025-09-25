@@ -99,7 +99,7 @@ export type DBCustomSelectDefaultProps = {
 	/**
 	 * Overwrite the default aria-label (props.label) for the custom-select-list
 	 */
-	ariaListLabel?: string;
+	listLabel?: string;
 
 	/**
 	 * Label for the clear selection button
