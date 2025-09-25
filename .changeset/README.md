@@ -67,7 +67,7 @@ After the Release PR is merged into `main` branch:
 - CI will build the packages (`./build-outputs/`)
 - Run the publish script (`./scripts/github/publish-npm.js`)
 - Publish new versions to npm with the tag `latest` (or `next` for pre-releases)
-- Push git tags
+- Push git tag
 - Create a [GitHub Release](https://github.com/db-ux-design-system/core-web/releases)
 
 You don’t have to run anything manually, it’s handled by CI.
