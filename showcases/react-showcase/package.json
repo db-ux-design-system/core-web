@@ -24,7 +24,7 @@
   "dependencies": {
     "react": "18.3.1",
     "react-dom": "18.3.1",
-    "react-router-dom": "7.6.3",
+    "react-router-dom": "7.9.2",
     "sa11y": "4.2.3"
   },
   "devDependencies": {
@@ -33,6 +33,6 @@
     "@vitejs/plugin-react": "5.0.3",
     "cross-env": "10.0.0",
     "typescript": "5.8.3",
-    "vite": "6.3.6"
+    "vite": "7.1.7"
   }
 }
