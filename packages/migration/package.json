@@ -11,7 +11,7 @@
   "bin": {
     "@db-ux/core-migration": "build/index.js"
   },
-  "main": "build.js",
+  "main": "build/index.js",
   "files": [
     "build"
   ],
