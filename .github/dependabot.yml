@@ -38,24 +38,17 @@ updates:
         update-types: ["version-update:semver-minor"]
       # There is an issue with sass:1.77.5 and additional colors in foundations we ignore updates for now
       - dependency-name: "sass"
-      # We currently need to ignore eslint@v9
-      - dependency-name: "eslint"
-        update-types: ["version-update:semver-major"]
     pull-request-branch-name:
       separator: "-"
     # https://github.com/dependabot/dependabot-core/issues/5226#issuecomment-1179434437
     versioning-strategy: increase
     groups:
+      # Automatically group all patch updates to reduce PR noise
       patch-dependencies:
         update-types:
           - "patch"
-      commitlint:
-        patterns:
-          - "@commitlint*"
-      playwright:
-        patterns:
-          - "@playwright*"
-          - "playwright*"
+      
+      # Major framework dependencies - group by framework for better review
       angular:
         patterns:
           - "@angular*"
@@ -63,27 +56,74 @@ updates:
           - "ng-packagr"
         update-types:
           - "minor"
+      
       react:
         patterns:
           - "react"
           - "react-dom"
         update-types:
           - "minor"
+      
+      # Testing frameworks
+      playwright:
+        patterns:
+          - "@playwright*"
+          - "playwright*"
+      
+      # Linting and formatting tools
+      eslint:
+        patterns:
+          - "eslint*"
+          - "@eslint*"
+          - "@typescript-eslint*"
+      
+      stylelint:
+        patterns:
+          - "stylelint*"
+          - "@double-great/stylelint-a11y"
+      
+      prettier:
+        patterns:
+          - "prettier*"
+      
+      # Build tools and bundlers
+      vite:
+        patterns:
+          - "vite*"
+          - "vitest*"
+      
+      # Development tools
+      typescript:
+        patterns:
+          - "typescript"
+          - "tsx"
+          - "tslib"
+      
+      # Commitlint
+      commitlint:
+        patterns:
+          - "@commitlint*"
+      
+      # Other grouped dependencies
+      builder.io:
+        patterns:
+          - "@builder.io/mitosis*"
+      
+      inquirer:
+        patterns:
+          - "@inquirer/*"
+          - "inquirer"
+      
+      mdx-js:
+        patterns:
+          - "@mdx-js/*"
+      
+      guidepup:
+        patterns:
+          - "@guidepup/*"
+      
       next:
         patterns:
           - "@next*"
           - "eslint-config-next"
           - "next"
-      builder.io:
-        patterns:
-          - "@builder.io/mitosis*"
-      inquirer:
-        patterns:
-          - "@inquirer/*"
-          - "inquirer"
-      mdx-js:
-        patterns:
-          - "@mdx-js/*"
-      guidepup:
-        patterns:
-          - "@guidepup/*"

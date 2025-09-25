@@ -130,12 +130,11 @@ jobs:
       showcase: vue-showcase
 
   test-showcase-patternhub:
-    uses: ./.github/workflows/02-e2e-showcases.yml
+    uses: ./.github/workflows/02-e2e-patternhub.yml
     needs: [build-showcase-patternhub, get-playwright-version]
     with:
-      path: ${{ needs.build-showcase-patternhub.outputs.path }}
       version: ${{ needs.get-playwright-version.outputs.version }}
-      showcase: patternhub
+      path: ${{ needs.build-showcase-patternhub.outputs.path }}
 
   test-screen-reader:
     uses: ./.github/workflows/02-e2e-screen-reader.yml
@@ -144,7 +143,7 @@ jobs:
       version: ${{ needs.get-playwright-version.outputs.version }}
 
   checks-done:
-    if: ${{ always() }}
+    if: ${{ !cancelled() }}
     runs-on: ubuntu-24.04 # Use Ubuntu 24.04 explicitly
     steps:
       - name: 🎉 Checks done

@@ -62,7 +62,6 @@ export default function DBSelect(props: DBSelectProps) {
 		_invalidMessageId: undefined,
 		_invalidMessage: undefined,
 		_placeholderId: '',
-		// Workaround for Vue output: TS for Vue would think that it could be a function, and by this we clarify that it's a string
 		_descByIds: undefined,
 		_value: '',
 		initialized: false,
@@ -95,8 +94,10 @@ export default function DBSelect(props: DBSelectProps) {
 				}
 			} else if (stringPropVisible(props.message, props.showMessage)) {
 				state._descByIds = state._messageId;
-			} else {
+			} else if (props.placeholder) {
 				state._descByIds = state._placeholderId;
+			} else {
+				state._descByIds = undefined;
 			}
 		},
 		handleClick: (event: ClickEvent<HTMLSelectElement> | any) => {
@@ -162,6 +163,13 @@ export default function DBSelect(props: DBSelectProps) {
 		state._invalidMessageId = mId + DEFAULT_INVALID_MESSAGE_ID_SUFFIX;
 		state._placeholderId = mId + DEFAULT_PLACEHOLDER_ID_SUFFIX;
 		state._invalidMessage = props.invalidMessage || DEFAULT_INVALID_MESSAGE;
+
+		useTarget({
+			angular: () => {
+				// @ts-ignore
+				this.writeValue?.(this.value?.() ?? '');
+			}
+		});
 	});
 
 	onUpdate(() => {
@@ -183,8 +191,10 @@ export default function DBSelect(props: DBSelectProps) {
 
 			if (stringPropVisible(props.message, props.showMessage)) {
 				state._descByIds = messageId;
-			} else {
+			} else if (props.placeholder) {
 				state._descByIds = placeholderId;
+			} else {
+				state._descByIds = undefined;
 			}
 
 			state.handleValidation();
@@ -233,8 +243,10 @@ export default function DBSelect(props: DBSelectProps) {
 					state.handleFocus(event)
 				}
 				aria-describedby={props.ariaDescribedBy ?? state._descByIds}>
-				{/* Empty option for floating label */}
-				<option hidden></option>
+				{/* Empty option for floating label and placeholder */}
+				<Show when={props.variant === 'floating' || props.placeholder}>
+					<option class="placeholder" value=""></option>
+				</Show>
 				<Show when={props.options?.length} else={props.children}>
 					<For each={props.options}>
 						{(option: DBSelectOptionType) => (
@@ -300,9 +312,11 @@ export default function DBSelect(props: DBSelectProps) {
 					</For>
 				</Show>
 			</select>
-			<span id={state._placeholderId}>
-				{props.placeholder ?? props.label}
-			</span>
+			<Show when={props.placeholder}>
+				<span class="db-select-placeholder" id={state._placeholderId}>
+					{props.placeholder}
+				</span>
+			</Show>
 			<Show when={stringPropVisible(props.message, props.showMessage)}>
 				<DBInfotext
 					size="small"

@@ -1,6 +1,6 @@
 {
   "name": "@db-ux/core-components",
-  "version": "0.0.0",
+  "version": "3.1.14",
   "type": "module",
   "description": "",
   "repository": {
@@ -48,13 +48,13 @@
     "@builder.io/eslint-plugin-mitosis": "0.0.17",
     "@builder.io/mitosis": "0.12.1",
     "@builder.io/mitosis-cli": "0.12.1",
-    "@typescript-eslint/eslint-plugin": "8.38.0",
+    "@typescript-eslint/eslint-plugin": "8.44.1",
     "cpr": "3.0.1",
-    "cssnano": "7.1.0",
+    "cssnano": "7.1.1",
     "hygen": "6.2.11",
     "nodemon": "3.1.10",
     "sass": "1.85.0",
-    "tsx": "4.20.3"
+    "tsx": "4.20.5"
   },
   "publishConfig": {
     "registry": "https://registry.npmjs.org/",

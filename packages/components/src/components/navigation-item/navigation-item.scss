@@ -81,8 +81,7 @@
 	--db-has-before: 0;
 
 	@extend %db-overwrite-font-size-md;
-
-	@include icon-passing.icon-passing();
+	@include icon-passing.icon-passing;
 
 	display: inline-flex;
 	position: relative;
@@ -118,7 +117,7 @@
 
 	.db-navigation-item-expand-button {
 		@include screen-sizes.screen("md", "max") {
-			@include sub-navi-handler-mobile();
+			@include sub-navi-handler-mobile;
 		}
 
 		&:is(button),
@@ -171,6 +170,7 @@
 	inline-size: 100%;
 	position: fixed;
 	overflow: hidden auto;
+
 	// additional #{$db-spacing-fixed-3xs} for border
 	inset-block: calc(
 			#{component.$min-mobile-header-height} +
@@ -194,7 +194,7 @@
 	visibility: hidden;
 
 	@include screen-sizes.screen("md", "max") {
-		@include sub-navigation-mobile();
+		@include sub-navigation-mobile;
 	}
 
 	@include screen-sizes.screen("md") {
@@ -230,6 +230,7 @@
 			position: absolute;
 			inset-inline-start: 0;
 			inline-size: 100%;
+
 			// #{$db-spacing-fixed--3xs} for shadows
 			block-size: calc(
 				#{variables.$db-spacing-fixed-3xs} +
@@ -267,6 +268,7 @@
 
 				&::before {
 					inset-block: auto 0;
+
 					// inline-size: calc(var(--db-navigation-item-inline-size, 100%) - #{variables.$db-spacing-fixed-xs} - 2px);
 					transform: translateX(100%) scaleX(-1);
 				}
@@ -291,6 +293,7 @@
 				content: "";
 				position: absolute;
 				padding: variables.$db-spacing-fixed-xs;
+
 				// #{$db-spacing-fixed-3xs} for box shadow
 				inset-block-start: #{variables.$db-spacing-fixed-3xs};
 				inset-inline-end: calc(-1 * #{variables.$db-spacing-fixed-xs});

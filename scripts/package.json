@@ -3,6 +3,12 @@
   "version": "0.0.0",
   "type": "module",
   "description": "contains scripts for monorepo",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/db-ux-design-system/core-web.git"
+  },
+  "license": "Apache-2.0",
+  "private": true,
   "scripts": {
     "build": "npm-run-all build:foundations build:components build:migration build:stylelint",
     "build-outputs": "npm-run-all --parallel build-outputs:*",
@@ -69,13 +75,13 @@
     "update:icon-fonts": "npm-run-all generate:icon-fonts generate:icon-types"
   },
   "devDependencies": {
-    "@inquirer/prompts": "7.8.0",
-    "dotenv": "17.2.1",
+    "@inquirer/prompts": "7.8.6",
+    "dotenv": "17.2.2",
     "find-versions": "6.0.0",
     "glob": "11.0.3",
-    "inquirer": "12.9.0",
+    "inquirer": "12.9.6",
     "replace-in-file": "8.3.0",
-    "tar": "7.4.3",
+    "tar": "7.5.1",
     "vitest": "3.2.4"
   }
 }
