@@ -35,8 +35,9 @@ jobs:
     needs: [init]
 
   lint:
-    uses: ./.github/workflows/01-lint.yml
+    uses: ./.github/workflows/01-lint-self-healing.yml
     needs: [init]
+    secrets: inherit
 
   test:
     uses: ./.github/workflows/01-test.yml
