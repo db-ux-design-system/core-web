@@ -19,7 +19,7 @@ import DefaultComponent from "../DefaultComponent.vue";
 					:delay="exampleProps?.delay"
 					:variant="exampleProps?.variant"
 				>
-					{{ exampleProps?.children }}
+					{{ exampleProps?.content }}
 				</DBTooltip>
 			</DBButton>
 		</template>

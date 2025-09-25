@@ -11,7 +11,7 @@
 				"name": "Functional",
 				"density": "functional",
 				"props": {
-					"children": "Tooltip",
+					"content": "Tooltip",
 					"id": "tooltip-01"
 				}
 			},
@@ -19,7 +19,7 @@
 				"name": "(Default) Regular",
 				"density": "regular",
 				"props": {
-					"children": "Tooltip",
+					"content": "Tooltip",
 					"id": "tooltip-02"
 				}
 			},
@@ -27,7 +27,7 @@
 				"name": "Expressive",
 				"density": "expressive",
 				"props": {
-					"children": "Tooltip",
+					"content": "Tooltip",
 					"id": "tooltip-03"
 				}
 			}
@@ -44,7 +44,7 @@
 			{
 				"name": "(Default) True",
 				"props": {
-					"children": "Tooltip",
+					"content": "Tooltip",
 					"id": "tooltip-04",
 					"showArrow": true
 				}
@@ -52,7 +52,7 @@
 			{
 				"name": "False",
 				"props": {
-					"children": "Tooltip",
+					"content": "Tooltip",
 					"showArrow": false,
 					"id": "tooltip-05"
 				}
@@ -70,14 +70,14 @@
 			{
 				"name": "(Default) Weak",
 				"props": {
-					"children": "Tooltip",
+					"content": "Tooltip",
 					"id": "tooltip-06"
 				}
 			},
 			{
 				"name": "Strong",
 				"props": {
-					"children": "Tooltip",
+					"content": "Tooltip",
 					"emphasis": "strong",
 					"id": "tooltip-07"
 				}
@@ -95,7 +95,7 @@
 			{
 				"name": "bottom-start",
 				"props": {
-					"children": "Tooltip",
+					"content": "Tooltip",
 					"placement": "bottom-start",
 					"id": "tooltip-08-start"
 				}
@@ -103,7 +103,7 @@
 			{
 				"name": "(Default) bottom",
 				"props": {
-					"children": "Tooltip",
+					"content": "Tooltip",
 					"placement": "bottom",
 					"id": "tooltip-08"
 				}
@@ -111,7 +111,7 @@
 			{
 				"name": "bottom-end",
 				"props": {
-					"children": "Tooltip",
+					"content": "Tooltip",
 					"placement": "bottom-end",
 					"id": "tooltip-08-end"
 				}
@@ -119,7 +119,7 @@
 			{
 				"name": "left-start",
 				"props": {
-					"children": "Tooltip",
+					"content": "Tooltip",
 					"placement": "left-start",
 					"id": "tooltip-10-start"
 				}
@@ -127,7 +127,7 @@
 			{
 				"name": "left",
 				"props": {
-					"children": "Tooltip",
+					"content": "Tooltip",
 					"placement": "left",
 					"id": "tooltip-10"
 				}
@@ -135,7 +135,7 @@
 			{
 				"name": "left-end",
 				"props": {
-					"children": "Tooltip",
+					"content": "Tooltip",
 					"placement": "left-end",
 					"id": "tooltip-10-end"
 				}
@@ -143,7 +143,7 @@
 			{
 				"name": "right-start",
 				"props": {
-					"children": "Tooltip",
+					"content": "Tooltip",
 					"placement": "right-start",
 					"id": "tooltip-11-start"
 				}
@@ -151,7 +151,7 @@
 			{
 				"name": "right",
 				"props": {
-					"children": "Tooltip",
+					"content": "Tooltip",
 					"placement": "right",
 					"id": "tooltip-11"
 				}
@@ -159,7 +159,7 @@
 			{
 				"name": "right-end",
 				"props": {
-					"children": "Tooltip",
+					"content": "Tooltip",
 					"placement": "right-end",
 					"id": "tooltip-11-end"
 				}
@@ -167,7 +167,7 @@
 			{
 				"name": "top-start",
 				"props": {
-					"children": "Tooltip",
+					"content": "Tooltip",
 					"placement": "top-start",
 					"id": "tooltip-09-start"
 				}
@@ -175,7 +175,7 @@
 			{
 				"name": "top",
 				"props": {
-					"children": "Tooltip",
+					"content": "Tooltip",
 					"placement": "top",
 					"id": "tooltip-09"
 				}
@@ -183,7 +183,7 @@
 			{
 				"name": "top-end",
 				"props": {
-					"children": "Tooltip",
+					"content": "Tooltip",
 					"placement": "top-end",
 					"id": "tooltip-09-end"
 				}
@@ -201,14 +201,14 @@
 			{
 				"name": "(Default) Auto",
 				"props": {
-					"children": "Max width, lorem ipsum dolor sit amet, consetetur sadipscing",
+					"content": "Max width, lorem ipsum dolor sit amet, consetetur sadipscing",
 					"id": "tooltip-12"
 				}
 			},
 			{
 				"name": "Fixed",
 				"props": {
-					"children": "Max width, lorem ipsum dolor sit amet, consetetur sadipscing",
+					"content": "Max width, lorem ipsum dolor sit amet, consetetur sadipscing",
 					"width": "fixed",
 					"id": "tooltip-13"
 				}
@@ -226,7 +226,7 @@
 			{
 				"name": "(Default) True",
 				"props": {
-					"children": "Tooltip",
+					"content": "Tooltip",
 					"id": "tooltip-14",
 					"animation": true
 				}
@@ -234,7 +234,7 @@
 			{
 				"name": "False",
 				"props": {
-					"children": "Tooltip",
+					"content": "Tooltip",
 					"animation": false,
 					"id": "tooltip-17"
 				}
@@ -252,7 +252,7 @@
 			{
 				"name": "(Default) None",
 				"props": {
-					"children": "Tooltip",
+					"content": "Tooltip",
 					"id": "tooltip-144",
 					"delay": "none"
 				}
@@ -260,7 +260,7 @@
 			{
 				"name": "Slow",
 				"props": {
-					"children": "Tooltip",
+					"content": "Tooltip",
 					"delay": "slow",
 					"id": "tooltip-15"
 				}
@@ -268,7 +268,7 @@
 			{
 				"name": "Fast",
 				"props": {
-					"children": "Tooltip",
+					"content": "Tooltip",
 					"delay": "fast",
 					"id": "tooltip-16"
 				}
