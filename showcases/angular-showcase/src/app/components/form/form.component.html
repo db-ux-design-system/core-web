@@ -333,5 +333,33 @@
 				<db-tab-panel>Tab Panel 5</db-tab-panel>
 			</db-tabs>
 		</dl>
+
+		<!-- New Angular Forms Validation Demo -->
+		<h2>Angular Forms Validation Demo</h2>
+		<form [formGroup]="validationForm">
+			<db-input 
+				formControlName="username" 
+				label="Username"
+				placeholder="Enter username"
+				message="Username should be 3-100 characters">
+				<db-infotext error="required" semantic="critical">Username is required</db-infotext>
+				<db-infotext error="minlength" semantic="critical">Username must be at least 3 characters</db-infotext>
+				<db-infotext error="maxlength" semantic="critical">Username cannot exceed 100 characters</db-infotext>
+				<db-infotext error="usernameTaken" semantic="critical">This username is already taken</db-infotext>
+			</db-input>
+
+			<db-input 
+				formControlName="email" 
+				label="Email"
+				type="email"
+				placeholder="Enter email address">
+				<db-infotext error="required" semantic="critical">Email is required</db-infotext>
+				<db-infotext error="email" semantic="critical">Please enter a valid email address</db-infotext>
+			</db-input>
+
+			<p><strong>Form Status:</strong> {{ validationForm.status }}</p>
+			<p><strong>Username Status:</strong> {{ validationForm.get('username')?.status }}</p>
+			<p><strong>Email Status:</strong> {{ validationForm.get('email')?.status }}</p>
+		</form>
 	</div>
 </div>

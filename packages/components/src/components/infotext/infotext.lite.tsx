@@ -27,6 +27,7 @@ export default function DBInfotext(props: DBInfotextProps) {
 			data-icon={props.icon}
 			data-semantic={props.semantic}
 			data-size={props.size}
+			data-error={props.error}
 			data-show-icon-leading={getBooleanAsString(props.showIcon ?? true)}>
 			<Show when={props.text} else={props.children}>
 				{props.text}
