@@ -24,7 +24,7 @@ import {
 	DBTabs,
 	DBTag,
 	DBTextarea
-} from '@db-ux/ngx-core-components/src';
+} from '../../../../../../output/angular/src';
 import { environment } from '../../../environments/environment';
 
 @Component({
