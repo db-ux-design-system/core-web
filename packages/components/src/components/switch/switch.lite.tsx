@@ -39,14 +39,11 @@ export default function DBSwitch(props: DBSwitchProps) {
 	const state = useStore<DBSwitchState>({
 		_id: undefined,
 		handleChange: (event: ChangeEvent<HTMLInputElement>) => {
-			if (props.onChange) {
-				props.onChange(event);
-			}
-
 			useTarget({
 				angular: () =>
 					handleFrameworkEventAngular(state, event, 'checked'),
-				vue: () => handleFrameworkEventVue(() => {}, event, 'checked')
+				vue: () => handleFrameworkEventVue(() => {}, event, 'checked'),
+				default: () => props.onChange?.(event)
 			});
 		},
 		handleBlur: (event: InteractionEvent<HTMLInputElement>) => {
