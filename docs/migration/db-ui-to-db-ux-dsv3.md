@@ -9,86 +9,80 @@ DB-UX Design System v3 represents a complete rethinking of the component archite
 
 ## Components without Direct Equivalents
 
-| Component | Status | Recommendation | Description |
-|-----------|:------:|-----------------|-------------|
-| `rea-main` | ❌ | Use `db-page` with custom layout | The `db-page` component provides basic page structure. Implement main content area using semantic HTML `<main>` with custom CSS grid/flexbox |
-| `rea-grid` | ❌ | Use CSS Grid or `db-stack` component | Replace with modern CSS Grid for complex layouts, or use `db-stack` for simple spacing. See [CSS Grid examples](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Grid_Layout) |
-| `rea-footer` | 🔄 | Under research - build custom for now | Footer component is being researched. Use semantic `<footer>` element with `db-link` components and custom styling. [Research document](../research/footer.md) |
-| `elm-headline` | 🔁 | Use heading elements with `db-infotext` | Replace with semantic heading tags (`<h1>`, `<h2>`, etc.) styled with CSS. For subtitle functionality, combine with `db-infotext` |
-| `elm-headline` (with pulse) | ❌ | Use heading + CSS animation | Implement pulse animation using CSS animations or transitions on heading elements. Pulse animations should be used sparingly for accessibility |
-| `elm-loadingindicator` | 🔄 | Coming in Q2/2024 | Loading indicator component is planned. Use CSS spinners or skeleton screens temporarily. Consider accessibility with `aria-live` regions |
-| `elm-progress` | 🔄 | Coming in Q2/2024 | Progress component in development. Use HTML5 `<progress>` element with custom styling or build custom solution |
-| `elm-chip` | 🔁 | Use `db-tag` with interactive elements | Replace with `db-tag` containing `db-button`, `db-checkbox`, or `db-radio` for interactive functionality. See [tag migration guide](../../packages/components/src/components/tag/docs/Migration.md) |
-| `cmp-breadcrumb` | 🔄 | Coming in Q3/2024 | Breadcrumb component planned for future release. Use `db-link` components with `aria-label="Breadcrumb"` navigation wrapper |
-| `cmp-pagination` | 🔄 | Coming in Q2/2024 | Pagination component in development. Build custom solution with `db-button` components and proper ARIA labels |
-| `cmp-table` | 🔄 | Under active research | Table component being researched with comprehensive roadmap. Use semantic HTML tables with custom styling. [Research document](../research/table.md) |
-| `cmp-sidenavi` | 🔁 | Use `db-navigation` in `db-drawer` | Combine `db-navigation` component within `db-drawer` for side navigation functionality. Configure drawer with appropriate width and positioning |
-| `cmp-dialog` | 🔁 | Use `db-drawer` or custom modal | Use `db-drawer` for side panels, or build custom modal dialog with proper focus management and ARIA attributes |
+| Component                   | Status | Recommendation                                               | Description                                                                                                                                                                                         |
+| --------------------------- | :----: | ------------------------------------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `rea-main`                  |   ❌   | Use `db-page` with custom layout                             | The `db-page` component provides basic page structure. It already includes `<main>`                                                                                                                 |
+| `rea-grid`                  |   ❌   | Use CSS Grid or `db-stack` component                         | Replace with modern CSS Grid for complex layouts, or use `db-stack` for simple spacing. See [CSS Grid examples](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Grid_Layout)                   |
+| `rea-footer`                |   🔄   | Under research - build custom for now ,Planned for Q4/2025   | Footer component is being researched. Use semantic `<footer>` element with `db-link` components and custom styling. [Research document](../research/footer.md)                                      |
+| `elm-headline`              |   🔁   | Use heading elements with `db-infotext`, Planned for Q4/2025 | Replace with semantic heading tags (`<h1>`, `<h2>`, etc.) styled with CSS. For subtitle functionality, combine with `db-infotext`                                                                   |
+| `elm-headline` (with pulse) |   ❌   | Use heading + CSS animation, Planned for Q4/2025             | Implement pulse animation using CSS animations or transitions on heading elements. Pulse animations should be used sparingly for accessibility                                                      |
+| `elm-loadingindicator`      |   🔄   | Planned for Q4/2025                                          | Loading indicator component is planned. Use CSS spinners or skeleton screens temporarily. Consider accessibility with `aria-live` regions                                                           |
+| `elm-progress`              |   🔄   | Planned for Q4/2025                                          | Progress component in development. Use HTML5 `<progress>` element with custom styling or build custom solution                                                                                      |
+| `elm-chip`                  |   🔁   | Use `db-tag` with interactive elements                       | Replace with `db-tag` containing `db-button`, `db-checkbox`, or `db-radio` for interactive functionality. See [tag migration guide](../../packages/components/src/components/tag/docs/Migration.md) |
+| `cmp-breadcrumb`            |   🔄   | Planned for Q4/2025                                          | Breadcrumb component planned for future release. Use `db-link` components with `aria-label="Breadcrumb"` navigation wrapper                                                                         |
+| `cmp-pagination`            |   🔄   | Planned for Q4/2025                                          | Pagination component in development. Build custom solution with `db-button` components and proper ARIA labels                                                                                       |
+| `cmp-table`                 |   🔄   | Under active research                                        | Table component being researched with comprehensive roadmap. Use semantic HTML tables with custom styling. [Research document](../research/table.md)                                                |
+| `cmp-sidenavi`              |   🔁   | Use `db-navigation` in `db-drawer`                           | Combine `db-navigation` component within `db-drawer` for side navigation functionality. Configure drawer with appropriate width and positioning                                                     |
+| `cmp-dialog`                |   🔁   | Use `db-drawer` or custom modal, Planned for Q4/2025         | Use `db-drawer` for side panels, or build custom modal dialog with proper focus management and ARIA attributes                                                                                      |
 
 ## Legend
 
-| Symbol | Meaning |
-|:------:|---------|
-| 🔁 | **Available replacement** - Use suggested alternative component(s) |
-| 🔄 | **Planned for future** - Component in roadmap, use temporary solution |
-| ❌ | **Not planned** - Use alternative approach or build custom solution |
-| 🆕 | **New in DB-UX-DSv3** - Enhanced or new functionality available |
+| Symbol | Meaning                                                               |
+| :----: | --------------------------------------------------------------------- |
+|   🔁   | **Available replacement** - Use suggested alternative component(s)    |
+|   🔄   | **Planned for future** - Component in roadmap, use temporary solution |
+|   ❌   | **Not planned** - Use alternative approach or build custom solution   |
+|   🆕   | **New in DB-UX-DSv3** - Enhanced or new functionality available       |
 
 ## Migration Strategies
 
 ### 1. Layout Components Migration
 
 #### From `rea-main` to `db-page` + Custom Layout
+
 ```html
 <!-- DB-UI -->
 <div class="rea-main">
-  <main>Content</main>
+	<main>Content</main>
 </div>
 
 <!-- DB-UX-DSv3 -->
-<db-page>
-  <main class="custom-main-layout">
-    Content
-  </main>
-</db-page>
+<db-page> Content </db-page>
 ```
 
 #### From `rea-grid` to CSS Grid
+
 ```css
 /* DB-UI grid replacement */
 .custom-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: var(--db-spacing-fixed-md);
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+	gap: var(--db-spacing-fixed-md);
 }
 ```
 
 ### 2. Interactive Elements Migration
 
 #### From `elm-chip` to `db-tag`
+
 ```html
 <!-- DB-UI -->
-<div class="elm-chip" data-variant="primary">
-  Chip Text
-</div>
+<div class="elm-chip" data-variant="primary">Chip Text</div>
 
 <!-- DB-UX-DSv3 -->
 <db-tag>
-  <db-button variant="ghost">Chip Text</db-button>
+	<db-button variant="ghost">Chip Text</db-button>
 </db-tag>
 ```
 
 #### From `elm-headline` to Semantic Headings
+
 ```html
 <!-- DB-UI -->
-<div class="elm-headline" data-size="h1">
-  Main Title
-</div>
+<div class="elm-headline" data-size="h1">Main Title</div>
 
 <!-- DB-UX-DSv3 -->
-<h1 class="custom-headline">
-  Main Title
-</h1>
+<h1 class="custom-headline">Main Title</h1>
 <!-- Optional subtitle -->
 <db-infotext>Subtitle text</db-infotext>
 ```
@@ -96,17 +90,18 @@ DB-UX Design System v3 represents a complete rethinking of the component archite
 ### 3. Navigation Migration
 
 #### From `cmp-sidenavi` to `db-navigation` + `db-drawer`
+
 ```html
 <!-- DB-UX-DSv3 -->
 <db-drawer>
-  <db-navigation>
-    <db-navigation-item>
-      <db-link href="/page1">Navigation Item 1</db-link>
-    </db-navigation-item>
-    <db-navigation-item>
-      <db-link href="/page2">Navigation Item 2</db-link>
-    </db-navigation-item>
-  </db-navigation>
+	<db-navigation>
+		<db-navigation-item>
+			<db-link href="/page1">Navigation Item 1</db-link>
+		</db-navigation-item>
+		<db-navigation-item>
+			<db-link href="/page2">Navigation Item 2</db-link>
+		</db-navigation-item>
+	</db-navigation>
 </db-drawer>
 ```
 
@@ -123,31 +118,32 @@ When building custom solutions for missing components:
 ## Temporary Solutions & Best Practices
 
 ### Loading States
+
 ```html
 <!-- Temporary loading indicator -->
 <div class="custom-loading" aria-live="polite" aria-label="Loading content">
-  <div class="spinner"></div>
-  <span class="visually-hidden">Loading...</span>
+	<div class="spinner"></div>
+	<span class="visually-hidden">Loading...</span>
 </div>
 ```
 
 ### Progress Indicators
+
 ```html
 <!-- HTML5 progress element -->
-<progress value="70" max="100" aria-label="Upload progress: 70%">
-  70%
-</progress>
+<progress value="70" max="100" aria-label="Upload progress: 70%">70%</progress>
 ```
 
 ### Breadcrumb Navigation
+
 ```html
 <!-- Semantic breadcrumb structure -->
 <nav aria-label="Breadcrumb">
-  <ol class="breadcrumb-list">
-    <li><db-link href="/">Home</db-link></li>
-    <li><db-link href="/category">Category</db-link></li>
-    <li aria-current="page">Current Page</li>
-  </ol>
+	<ol class="breadcrumb-list">
+		<li><db-link href="/">Home</db-link></li>
+		<li><db-link href="/category">Category</db-link></li>
+		<li aria-current="page">Current Page</li>
+	</ol>
 </nav>
 ```
 
@@ -160,8 +156,8 @@ When building custom solutions for missing components:
 
 ## Future Roadmap
 
-Components marked as "Coming in Q2/Q3/2024" are actively being developed. Check the [project board](https://github.com/orgs/db-ux-design-system/projects/4/views/1) for current status and release planning.
+Check the [project board](https://github.com/orgs/db-ux-design-system/projects/4/views/1) for current status and release planning.
 
 ---
 
-*This migration guide is maintained by the DB-UX Design System team. For specific component requests or migration assistance, please open an issue on GitHub.*
+_This migration guide is maintained by the DB-UX Design System team. For specific component requests or migration assistance, please open an issue on GitHub._
