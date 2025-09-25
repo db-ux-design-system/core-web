@@ -7,6 +7,10 @@
 @use "../../styles/internal/component";
 @use "../../styles/internal/select-components";
 
+.db-select-placeholder {
+	@extend %select-absolute-placeholder;
+}
+
 .db-select {
 	--db-form-component-padding-inline-end: #{select-components.$select-icon-padding};
 	--db-form-component-min-inline-size: #{variables.$db-sizing-xl};
