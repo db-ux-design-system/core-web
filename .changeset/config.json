@@ -4,7 +4,6 @@
 	"commit": true,
 	"fixed": [
 		[
-			"@db-ux/core-web",
 			"@db-ux/core-foundations",
 			"@db-ux/core-components",
 			"@db-ux/react-core-components",
@@ -15,6 +14,7 @@
 			"@db-ux/core-migration"
 		]
 	],
+	"ignore": ["scripts"],
 	"linked": [],
 	"access": "public",
 	"baseBranch": "main",
