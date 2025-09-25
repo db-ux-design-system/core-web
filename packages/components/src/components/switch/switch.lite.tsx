@@ -43,7 +43,11 @@ export default function DBSwitch(props: DBSwitchProps) {
 				angular: () =>
 					handleFrameworkEventAngular(state, event, 'checked'),
 				vue: () => handleFrameworkEventVue(() => {}, event, 'checked'),
-				default: () => props.onChange?.(event)
+				default: () => {
+					if (props.onChange) {
+						props.onChange(event);
+					}
+				}
 			});
 		},
 		handleBlur: (event: InteractionEvent<HTMLInputElement>) => {
