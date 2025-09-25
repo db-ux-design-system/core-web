@@ -64,7 +64,7 @@ Once everything looks good, merge the Release PR.
 
 After the Release PR is merged into `main` branch:
 
-- CI will build the packages (`build-outputs`)
+- CI will build the packages (`./build-outputs/`)
 - Run the publish script (`scripts/github/publish-npm.js`)
 - Publish new versions to npm with the tag `latest` (or `next` for pre-releases)
 - Push git tags
