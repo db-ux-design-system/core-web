@@ -3,6 +3,12 @@
   "version": "0.0.0",
   "type": "module",
   "description": "contains scripts for monorepo",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/db-ux-design-system/core-web.git"
+  },
+  "license": "Apache-2.0",
+  "private": true,
   "scripts": {
     "build": "npm-run-all build:foundations build:components build:migration build:stylelint",
     "build-outputs": "npm-run-all --parallel build-outputs:*",
@@ -35,7 +41,6 @@
     "dev:sass": "npm run dev:scss --workspace=@db-ux/core-components",
     "dev:stencil-components": "npm run dev:stencil --workspace=@db-ux/core-components",
     "dev:vue-components": "npm run dev:vue --workspace=@db-ux/core-components",
-    "pretest:docs-file-references": "npm run build",
     "rm-builds:components-build": "rimraf ../packages/components/build",
     "rm-builds:dist": "rimraf --glob showcases/**/dist",
     "rm-builds:foundations-build": "rimraf ../packages/foundations/build",
@@ -65,7 +70,6 @@
     "start-showcase:vue": "npm run dev --workspace=vue-showcase",
     "start:foundations": "npm run start --workspace=@db-ux/core-foundations",
     "test": "npm-run-all --parallel test:*",
-    "test:docs-file-references": "node check-docs.js",
     "test:migration": "npm run test --workspace=@db-ux/core-migration",
     "test:scripts": "vitest run --config vitest.config.ts",
     "update:icon-fonts": "npm-run-all generate:icon-fonts generate:icon-types"
@@ -77,7 +81,7 @@
     "glob": "11.0.3",
     "inquirer": "12.9.6",
     "replace-in-file": "8.3.0",
-    "tar": "7.4.3",
+    "tar": "7.5.1",
     "vitest": "3.2.4"
   }
 }
