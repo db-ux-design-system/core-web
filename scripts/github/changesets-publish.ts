@@ -146,7 +146,7 @@ function main() {
 		return;
 	}
 
-	run(`gh release create "${tag}" --notes "${notes.replaceAll('"', '"')}"`);
+	run(`gh release create "${tag}" --notes "${notes.replaceAll('"', '\\"')}"`);
 	console.log(`Created release ${tag}`);
 }
 
