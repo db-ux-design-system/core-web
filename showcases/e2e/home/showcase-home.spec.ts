@@ -61,18 +61,26 @@ const testFormComponents = async (
 		const index = definition.indexOf(def);
 		const text = await def.textContent();
 		switch (role) {
-			case 'checkbox':
+			case 'checkbox': {
 				expect(text).toEqual('false');
 				break;
-			case 'radio':
+			}
+
+			case 'radio': {
 				expect(text).toEqual('true');
 				break;
-			case 'group':
+			}
+
+			case 'group': {
 				expect(text).toEqual(`combobox-0`);
 				break;
-			default:
+			}
+
+			case 'combobox':
+			case 'textbox': {
 				expect(text).toEqual(`${role}-${index}`);
 				break;
+			}
 		}
 	}
 
@@ -80,7 +88,7 @@ const testFormComponents = async (
 
 	const formResetButton = await page.getByTestId('reset-button').all();
 	for (const locator of formResetButton) {
-		if (await locator.isVisible()){
+		if (await locator.isVisible()) {
 			await locator.click({ force: true });
 		}
 	}
@@ -89,18 +97,26 @@ const testFormComponents = async (
 		const index = definition.indexOf(def);
 		const text = await def.textContent();
 		switch (role) {
-			case 'checkbox':
+			case 'checkbox': {
 				expect(text).toEqual('true');
 				break;
-			case 'radio':
+			}
+
+			case 'radio': {
 				expect(text).toEqual('false');
 				break;
-			case 'group':
+			}
+
+			case 'group': {
 				expect(text).toEqual(`combobox-2`);
 				break;
-			default:
+			}
+
+			case 'combobox':
+			case 'textbox': {
 				expect(text).toEqual(`test${index + 1}`);
 				break;
+			}
 		}
 	}
 };
