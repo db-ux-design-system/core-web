@@ -60,14 +60,19 @@ const testFormComponents = async (
 	for (const def of definition) {
 		const index = definition.indexOf(def);
 		const text = await def.textContent();
-		if (role === 'checkbox') {
-			expect(text).toEqual('false');
-		} else if (role === 'radio') {
-			expect(text).toEqual('true');
-		} else if (role === 'group') {
-			expect(text).toEqual(`combobox-0`);
-		} else {
-			expect(text).toEqual(`${role}-${index}`);
+		switch (role) {
+			case 'checkbox':
+				expect(text).toEqual('false');
+				break;
+			case 'radio':
+				expect(text).toEqual('true');
+				break;
+			case 'group':
+				expect(text).toEqual(`combobox-0`);
+				break;
+			default:
+				expect(text).toEqual(`${role}-${index}`);
+				break;
 		}
 	}
 
@@ -83,14 +88,19 @@ const testFormComponents = async (
 	for (const def of definition) {
 		const index = definition.indexOf(def);
 		const text = await def.textContent();
-		if (role === 'checkbox') {
-			expect(text).toEqual('true');
-		} else if (role === 'radio') {
-			expect(text).toEqual('false');
-		} else if (role === 'group') {
-			expect(text).toEqual(`combobox-2`);
-		} else {
-			expect(text).toEqual(`test${index + 1}`);
+		switch (role) {
+			case 'checkbox':
+				expect(text).toEqual('true');
+				break;
+			case 'radio':
+				expect(text).toEqual('false');
+				break;
+			case 'group':
+				expect(text).toEqual(`combobox-2`);
+				break;
+			default:
+				expect(text).toEqual(`test${index + 1}`);
+				break;
 		}
 	}
 };
