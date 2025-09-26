@@ -1,5 +1,6 @@
 @use "sass:map";
 @use "@db-ux/core-foundations/build/styles/variables";
+@use "../../styles/internal/display";
 @use "@db-ux/core-foundations/build/styles/helpers";
 @use "@db-ux/core-foundations/build/styles/animation";
 @use "@db-ux/core-foundations/build/styles/colors";
@@ -125,8 +126,8 @@ $spacings: (
 	.db-drawer-container {
 		@extend %direction-right;
 		@extend %spacing-drawer;
+		@include display.display(flex);
 
-		display: flex;
 		flex-direction: column;
 		background-color: colors.$db-adaptive-bg-basic-level-1-default;
 		block-size: 100%;
@@ -179,8 +180,7 @@ $spacings: (
 		}
 
 		.db-drawer-header {
-			display: none;
-
+			@include display.display(none);
 			@include helpers.divider("bottom");
 
 			.db-drawer-header-text {
@@ -199,7 +199,7 @@ $spacings: (
 
 			&:has(.button-close-drawer),
 			&:has(:not(.db-drawer-header-text:empty)) {
-				display: flex;
+				@include display.display(flex);
 			}
 		}
 	}
@@ -213,7 +213,7 @@ $spacings: (
 		background-color: transparent;
 
 		&[open] {
-			display: flex;
+			@include display.display(flex);
 		}
 
 		&:not([data-direction]),
