@@ -48,23 +48,7 @@ jobs:
       - name: 🆙 Publish
         if: steps.changesets.outputs.hasChangesets == 'false'
         run: |
-          VERSION=$(jq -r .version ./packages/foundations/package.json)
-          TAG="v$VERSION"
-          # Check if tag exists
-          if git tag --list "$TAG" | grep -q "$TAG"; then
-            echo "Tag $TAG already exists. Skipping publish creation."
-          else
-            gh tag create "$TAG" --notes "Release $TAG"
-
-            # Extract latest changes from CHANGELOG.md (between first and second h2)
-            NOTES=$(awk '/^## /{i++} i==2{exit} i==1{print}' CHANGELOG.md | sed '1d')
-            # Check if release exists
-            if gh release view "$TAG" > /dev/null 2>&1; then
-              echo "Release $TAG already exists. Skipping release creation."
-            else
-              gh release create "$TAG" --notes "$NOTES"
-            fi
-          fi
+          npx --no tsx scripts/github/changesets-publish.ts
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           HUSKY: "0"
