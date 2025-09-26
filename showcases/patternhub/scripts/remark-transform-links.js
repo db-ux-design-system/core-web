@@ -23,8 +23,8 @@ export default function transformLinks() {
 
 				// Extract fragment if present
 				if (hashIndex !== -1) {
-					fragment = node.url.substring(hashIndex);
-					basePath = node.url.substring(0, hashIndex);
+					fragment = node.url.slice(Math.max(0, hashIndex));
+					basePath = node.url.slice(0, Math.max(0, hashIndex));
 				}
 
 				// Extract query if present (and not after fragment)
@@ -32,11 +32,11 @@ export default function transformLinks() {
 					queryIndex !== -1 &&
 					(hashIndex === -1 || queryIndex < hashIndex)
 				) {
-					query = node.url.substring(
+					query = node.url.slice(
 						queryIndex,
-						hashIndex !== -1 ? hashIndex : undefined
+						Math.max(hashIndex === -1 ? undefined : hashIndex)
 					);
-					basePath = node.url.substring(0, queryIndex);
+					basePath = node.url.slice(0, Math.max(0, queryIndex));
 				}
 
 				// Only transform if basePath ends with .md
@@ -48,13 +48,13 @@ export default function transformLinks() {
 							basePath
 								.slice(2) // Remove './'
 								.replace(/\.md$/, '') // Remove .md extension
-								.replaceAll(/([a-z])([A-Z])/g, '$1-$2') // camelCase to kebab-case
+								.replaceAll(/([a-z])([A-Z])/g, '$1-$2') // CamelCase to kebab-case
 								.toLowerCase();
 					} else {
 						// Handle simple .md files and other relative paths
 						basePath = basePath
 							.replace(/\.md$/, '') // Remove .md extension
-							.replaceAll(/([a-z])([A-Z])/g, '$1-$2') // camelCase to kebab-case
+							.replaceAll(/([a-z])([A-Z])/g, '$1-$2') // CamelCase to kebab-case
 							.toLowerCase();
 					}
 
