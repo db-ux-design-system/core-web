@@ -1,4 +1,4 @@
-/* eslint-disable @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-return,@typescript-eslint/no-unsafe-assignment */
+/* eslint-disable @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-return,@typescript-eslint/no-unsafe-assignment, unicorn/prefer-string-raw */
 
 import { globSync } from 'glob';
 import { execSync } from 'node:child_process';
