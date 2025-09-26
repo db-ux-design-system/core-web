@@ -3,9 +3,10 @@
 @use "@db-ux/core-foundations/build/styles/colors";
 @use "@db-ux/core-foundations/build/styles/animation";
 @use "./component";
+@use "../../styles/internal/display";
 
 %db-link-height {
-	@include display(inline-block);
+	@include display.display(inline-block);
 
 	&:not([data-wrap="true"]) {
 		block-size: variables.$db-sizing-sm;
@@ -50,7 +51,7 @@
 	}
 
 	&[data-variant="inline"] {
-		@include display(inline);
+		@include display.display(inline);
 	}
 
 	&:focus-visible {

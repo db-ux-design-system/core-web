@@ -1,4 +1,5 @@
 @use "@db-ux/core-foundations/build/styles/variables";
+@use "../../styles/internal/display";
 @use "@db-ux/core-foundations/build/styles/colors";
 @use "@db-ux/core-foundations/build/styles/icons";
 @use "@db-ux/core-foundations/build/styles/helpers";
@@ -14,7 +15,7 @@ $with-icon-padding-calc: calc(
 .db-tab-item {
 	position: relative;
 
-	@include display(inline-flex);
+	@include display.display(inline-flex);
 
 	list-style-type: "";
 	border-radius: variables.$db-border-radius-sm;
@@ -28,7 +29,7 @@ $with-icon-padding-calc: calc(
 		padding: variables.$db-spacing-fixed-xs;
 		align-items: center;
 
-		@include display(inline-block);
+		@include display.display(inline-block);
 
 		white-space: nowrap;
 		border: 0;

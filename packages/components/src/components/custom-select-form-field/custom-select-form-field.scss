@@ -1,12 +1,13 @@
 @use "@db-ux/core-foundations/build/styles/variables";
 @use "@db-ux/core-foundations/build/styles/helpers";
 @use "../../styles/internal/form-components";
+@use "../../styles/internal/display";
 
 .db-custom-select-form-field {
 	&:is(summary) {
 		list-style: none;
 
-		@include display(flex);
+		@include display.display(flex);
 
 		align-items: center;
 		justify-content: space-between;
@@ -19,7 +20,7 @@
 		}
 
 		> div {
-			@include display(flex);
+			@include display.display(flex);
 
 			gap: variables.$db-spacing-fixed-sm;
 		}

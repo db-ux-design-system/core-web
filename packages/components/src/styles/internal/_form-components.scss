@@ -8,6 +8,7 @@
 @use "@db-ux/core-foundations/build/styles/helpers";
 @use "component";
 @forward "../visually-hidden";
+@use "../internal/display";
 
 // https://developer.mozilla.org/en-US/docs/Web/CSS/:read-only
 $valid-read-only-form-fields: input, textarea;
@@ -61,7 +62,7 @@ $db-min-inline-size: var(
 		margin-block-start: variables.$db-spacing-fixed-2xs;
 
 		&:is([data-semantic="successful"], [data-semantic="critical"]) {
-			@include display(none);
+			@include display.display(none);
 		}
 	}
 }
@@ -160,17 +161,17 @@ $db-min-inline-size: var(
 	> .db-infotext {
 		@if $key == "valid" {
 			&[data-semantic="successful"] {
-				@include display(flex);
+				@include display.display(flex);
 			}
 			/* stylelint-disable-next-line at-rule-empty-line-before */
 		} @else {
 			&[data-semantic="critical"] {
-				@include display(flex);
+				@include display.display(flex);
 			}
 		}
 
 		&:not([data-semantic]) {
-			@include display(none);
+			@include display.display(none);
 		}
 	}
 }
@@ -314,7 +315,7 @@ $input-valid-types:
 		position: relative;
 		flex-direction: column;
 
-		@include display(flex);
+		@include display.display(flex);
 	}
 
 	&[data-variant="floating"],
@@ -514,7 +515,7 @@ $input-valid-types:
 
 	&:is(label),
 	> label {
-		@include display(flex);
+		@include display.display(flex);
 
 		align-items: flex-start;
 		position: relative;

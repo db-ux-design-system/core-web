@@ -4,6 +4,7 @@
 @use "@db-ux/core-foundations/build/styles/helpers";
 @use "@db-ux/core-foundations/build/styles/icons";
 @use "../../styles/internal/form-components";
+@use "../../styles/internal/display";
 
 // We need some fixed padding here to avoid layout shifts
 /* stylelint-disable-next-line db-ux/use-spacings */
@@ -58,7 +59,7 @@ $checked-active-transition-size: calc(
 		block-size: form-components.$font-size-height;
 		box-sizing: content-box;
 
-		@include display(flex);
+		@include display.display(flex);
 
 		align-items: center;
 		/* stylelint-disable-next-line db-ux/use-spacings */

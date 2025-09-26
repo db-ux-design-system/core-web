@@ -1,4 +1,5 @@
 @use "@db-ux/core-foundations/build/styles/variables";
+@use "../../styles/internal/display";
 @use "@db-ux/core-foundations/build/styles/colors";
 @use "@db-ux/core-foundations/build/styles/helpers";
 @use "../../styles/internal/component";
@@ -30,7 +31,7 @@
 
 	@extend %default-card;
 	@include component.get-data-spacing;
-	@include display(flex);
+	@include display.display(flex);
 
 	flex-direction: column;
 	background-color: var(--db-card-background-color-default);

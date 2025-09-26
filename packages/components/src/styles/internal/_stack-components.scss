@@ -2,6 +2,7 @@
 @use "@db-ux/core-foundations/build/styles/variables";
 @use "@db-ux/core-foundations/build/styles/helpers";
 @use "custom-elements";
+@use "../../styles/internal/display";
 
 $stack-gaps: (
 	"3x-small": variables.$db-spacing-fixed-3xs,
@@ -68,7 +69,7 @@ $stack-gaps: (
 }
 
 %default-stack {
-	@include display(flex);
+	@include display.display(flex);
 
 	gap: variables.$db-spacing-fixed-sm;
 	justify-content: flex-start;

@@ -7,6 +7,7 @@
 @use "@db-ux/core-foundations/build/styles/icons";
 @use "../../styles/internal/icon-passing";
 @use "../../styles/internal/component";
+@use "../../styles/internal/display";
 
 %sub-navi-handler-desktop {
 	// show sub-navigation on hover
@@ -57,7 +58,7 @@
 	cursor: pointer;
 	inline-size: 100%;
 
-	@include display(inline-flex);
+	@include display.display(inline-flex);
 
 	border-radius: variables.$db-border-radius-sm;
 	padding: variables.$db-spacing-fixed-xs variables.$db-spacing-fixed-sm;
@@ -84,7 +85,7 @@
 
 	@extend %db-overwrite-font-size-md;
 	@include icon-passing.icon-passing;
-	@include display(inline-flex);
+	@include display.display(inline-flex);
 
 	position: relative;
 	inline-size: auto;
@@ -189,7 +190,7 @@
 
 	margin: 0;
 
-	@include display(flex);
+	@include display.display(flex);
 
 	flex-direction: column;
 	z-index: 70;
@@ -203,7 +204,7 @@
 
 	@include screen-sizes.screen("md") {
 		.db-mobile-navigation-back {
-			@include display(none);
+			@include display.display(none);
 		}
 	}
 
@@ -308,7 +309,7 @@
 	}
 
 	&:empty {
-		@include display(none);
+		@include display.display(none);
 	}
 
 	.db-navigation-item {
@@ -321,7 +322,7 @@
 }
 
 .db-mobile-navigation-back {
-	@include display(flex);
+	@include display.display(flex);
 
 	font-weight: normal;
 	background-color: colors.$db-adaptive-bg-basic-level-1-default;

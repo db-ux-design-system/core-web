@@ -1,4 +1,5 @@
 @use "@db-ux/core-foundations/build/styles/variables";
+@use "../../styles/internal/display";
 @use "../../styles/internal/scrollbar";
 
 .db-tab-list {
@@ -8,7 +9,7 @@
 
 	> ul {
 		@extend %scrollbar;
-		@include display(flex);
+		@include display.display(flex);
 
 		gap: variables.$db-spacing-fixed-sm;
 		scroll-behavior: smooth;

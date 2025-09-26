@@ -9,6 +9,7 @@
 @use "../../styles/internal/tag-components";
 @use "../../styles/internal/icon-passing";
 @use "../../styles/internal/component";
+@use "../../styles/internal/display";
 
 %no-text {
 	&[data-no-text="true"] {
@@ -77,7 +78,7 @@
 	button:nth-of-type(2),
 	dbbutton:nth-of-type(2),
 	&:has(db-button):has(dbbutton) .db-tab-remove-button {
-		@include display(none);
+		@include display.display(none);
 	}
 
 	> :is(
@@ -112,7 +113,7 @@
 		inline-size: 100%;
 		margin-inline-start: 0;
 
-		@include display(flex);
+		@include display.display(flex);
 
 		align-items: center;
 
@@ -159,7 +160,7 @@
 
 	a {
 		@extend %default-transition;
-		@include display(inline-flex);
+		@include display.display(inline-flex);
 
 		align-items: center;
 		text-decoration: none;
