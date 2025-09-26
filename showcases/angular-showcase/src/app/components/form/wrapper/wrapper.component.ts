@@ -1,8 +1,9 @@
 import { Component, Input } from '@angular/core';
+import { DBButton } from '../../../../../../../output/angular/src';
 
 @Component({
 	selector: 'app-form-wrapper',
-	imports: [],
+	imports: [DBButton],
 	templateUrl: './wrapper.component.html',
 	standalone: true
 })

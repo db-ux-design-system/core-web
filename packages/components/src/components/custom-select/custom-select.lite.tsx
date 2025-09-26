@@ -48,6 +48,7 @@ import { DocumentClickListener } from '../../utils/document-click-listener';
 import { DocumentScrollListener } from '../../utils/document-scroll-listener';
 import { handleFixedDropdown } from '../../utils/floating-components';
 import {
+	addResetEventListener,
 	handleFrameworkEventAngular,
 	handleFrameworkEventVue
 } from '../../utils/form-components';
@@ -713,26 +714,23 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 	onUpdate(() => {
 		if (selectRef) {
 			state.handleValidation();
-			
-			// Add form reset listener when selectRef becomes available
-			if (selectRef.form && !selectRef._dbFormResetListenerAdded) {
-				const handleFormReset = () => {
-					// Reset internal state to match form reset behavior  
-					state._values = [];
-					state._userInteraction = false;
-					
-					// Notify frameworks and callbacks
-					if (props.onOptionSelected) {
-						props.onOptionSelected([]);
-					}
-				};
-				
-				selectRef.form.addEventListener('reset', handleFormReset);
-				// Mark as added to avoid duplicate listeners
-				selectRef._dbFormResetListenerAdded = true;
-			}
 		}
 	}, [state._values, selectRef]);
+
+	onUpdate(() => {
+		if (selectRef) {
+			const initialValues = props.values;
+			addResetEventListener(selectRef, () => {
+				const resetValue = initialValues
+					? initialValues
+					: selectRef.value
+						? [selectRef.value]
+						: [];
+				state.handleOptionSelected(resetValue);
+				state.handleValidation();
+			});
+		}
+	}, [selectRef]);
 
 	onUpdate(() => {
 		state._validity = props.validation;

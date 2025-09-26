@@ -3,12 +3,13 @@ import { ref } from "vue";
 import { DBCustomSelect } from "../../../../../output/vue/src";
 import FormWrapper from "./FormWrapper.vue";
 
-const plain = ref(["combobox-1"]);
-const vModel = ref(["combobox-1"]);
+const plain = ref(["combobox-2"]);
+const vModel = ref(["combobox-2"]);
 
 const options = [
 	{ value: "combobox-0", id: "combobox-0" },
-	{ value: "combobox-1", id: "combobox-1" }
+	{ value: "combobox-1", id: "combobox-1" },
+	{ value: "combobox-2", id: "combobox-2" }
 ];
 </script>
 
@@ -18,7 +19,12 @@ const options = [
 			:options="options"
 			:values="plain"
 			label="Plain"
-			@optionSelected="(values) => (plain = values)"
+			@optionSelected="
+				(values) => {
+					console.log(values);
+					plain = values;
+				}
+			"
 		/>
 		<DBCustomSelect
 			:options="options"

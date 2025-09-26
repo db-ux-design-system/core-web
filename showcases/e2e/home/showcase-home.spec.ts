@@ -62,10 +62,35 @@ const testFormComponents = async (
 		const text = await def.textContent();
 		if (role === 'checkbox') {
 			expect(text).toEqual('false');
+		} else if (role === 'radio') {
+			expect(text).toEqual('true');
 		} else if (role === 'group') {
 			expect(text).toEqual(`combobox-0`);
 		} else {
 			expect(text).toEqual(`${role}-${index}`);
+		}
+	}
+
+	// Reset form
+
+	const formResetButton = await page.getByTestId('reset-button').all();
+	for (const locator of formResetButton) {
+		if (await locator.isVisible()){
+			await locator.click({ force: true });
+		}
+	}
+
+	for (const def of definition) {
+		const index = definition.indexOf(def);
+		const text = await def.textContent();
+		if (role === 'checkbox') {
+			expect(text).toEqual('true');
+		} else if (role === 'radio') {
+			expect(text).toEqual('false');
+		} else if (role === 'group') {
+			expect(text).toEqual(`combobox-2`);
+		} else {
+			expect(text).toEqual(`test${index + 1}`);
 		}
 	}
 };

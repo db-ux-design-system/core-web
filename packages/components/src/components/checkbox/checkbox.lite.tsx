@@ -26,6 +26,7 @@ import {
 	uuid
 } from '../../utils';
 import {
+	addCheckedResetEventListener,
 	handleFrameworkEventAngular,
 	handleFrameworkEventVue
 } from '../../utils/form-components';
@@ -177,6 +178,22 @@ export default function DBCheckbox(props: DBCheckboxProps) {
 			state.initialized = false;
 		}
 	}, [state.initialized, _ref, props.checked]);
+
+	onUpdate(() => {
+		if (_ref) {
+			const defaultChecked = useTarget({
+				react: (props as any).defaultChecked,
+				default: undefined
+			});
+			addCheckedResetEventListener(
+				_ref,
+				{ checked: props.checked, defaultChecked },
+				(event) => {
+					state.handleChange(event);
+				}
+			);
+		}
+	}, [_ref]);
 	// jscpd:ignore-end
 
 	return (
