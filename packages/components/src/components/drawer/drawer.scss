@@ -125,7 +125,7 @@ $spacings: (
 	.db-drawer-container {
 		@extend %direction-right;
 		@extend %spacing-drawer;
-		@include db-display(flex);
+		@include display(flex);
 
 		flex-direction: column;
 		background-color: colors.$db-adaptive-bg-basic-level-1-default;
@@ -179,7 +179,7 @@ $spacings: (
 		}
 
 		.db-drawer-header {
-			@include db-display(none);
+			@include display(none);
 			@include helpers.divider("bottom");
 
 			.db-drawer-header-text {
@@ -198,7 +198,7 @@ $spacings: (
 
 			&:has(.button-close-drawer),
 			&:has(:not(.db-drawer-header-text:empty)) {
-				@include db-display(flex);
+				@include display(flex);
 			}
 		}
 	}
@@ -212,7 +212,7 @@ $spacings: (
 		background-color: transparent;
 
 		&[open] {
-			@include db-display(flex);
+			@include display(flex);
 		}
 
 		&:not([data-direction]),

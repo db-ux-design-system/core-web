@@ -5,7 +5,7 @@
 .db-popover {
 	position: relative;
 
-	@include db-display(flex);
+	@include display(flex);
 
 	block-size: fit-content;
 	inline-size: fit-content;

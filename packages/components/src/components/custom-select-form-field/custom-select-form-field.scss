@@ -6,7 +6,7 @@
 	&:is(summary) {
 		list-style: none;
 
-		@include db-display(flex);
+		@include display(flex);
 
 		align-items: center;
 		justify-content: space-between;
@@ -19,7 +19,7 @@
 		}
 
 		> div {
-			@include db-display(flex);
+			@include display(flex);
 
 			gap: variables.$db-spacing-fixed-sm;
 		}

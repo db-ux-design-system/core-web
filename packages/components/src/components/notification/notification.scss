@@ -27,7 +27,7 @@
 	@extend %component-border;
 	@extend %grid-layout-default;
 	@extend %ugly-line-height-workarounds;
-	@include db-display(grid);
+	@include display(grid);
 
 	padding: variables.$db-spacing-fixed-md;
 	gap: variables.$db-spacing-fixed-xs variables.$db-spacing-fixed-md;

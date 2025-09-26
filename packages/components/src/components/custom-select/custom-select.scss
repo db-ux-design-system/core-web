@@ -57,7 +57,7 @@
 
 	&:has(summary span) {
 		[id$="-placeholder"] {
-			@include db-display(none);
+			@include display(none);
 		}
 	}
 

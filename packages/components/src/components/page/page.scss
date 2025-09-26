@@ -7,7 +7,7 @@
 
 @mixin header-footer-style {
 	> :is(.db-header, .db-footer, header, footer) {
-		@include db-display(flex);
+		@include display(flex);
 
 		flex: 0 1 auto;
 		flex-grow: 0;
@@ -35,7 +35,7 @@
 		block-size: 100%;
 		min-block-size: 100%;
 
-		@include db-display(flex);
+		@include display(flex);
 
 		flex-direction: column;
 
@@ -45,7 +45,7 @@
 		}
 
 		> .db-main {
-			@include db-display(flex);
+			@include display(flex);
 
 			flex-direction: column;
 			overflow: auto;

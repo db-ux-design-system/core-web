@@ -4,7 +4,8 @@
 [data-icon-leading],
 [data-icon-trailing] {
 	&:is(span) {
-		display: inline-flex;
+		@include display(inline-flex);
+
 		vertical-align: baseline;
 	}
 }

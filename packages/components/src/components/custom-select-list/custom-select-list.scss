@@ -27,7 +27,7 @@
 	> ul {
 		all: unset;
 
-		@include db-display(flex);
+		@include display(flex);
 
 		flex-direction: column;
 

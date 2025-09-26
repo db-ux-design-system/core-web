@@ -89,8 +89,8 @@
 
 .db-header-meta-navigation {
 	@extend %db-density-functional;
-
 	@include display(flex);
+
 	flex-direction: column;
 	gap: variables.$db-spacing-fixed-sm;
 	justify-content: flex-end;
@@ -257,18 +257,18 @@
 	@include display(none);
 
 	@include screen-sizes.screen("md") {
-		display: inherit;
+		@include display(inherit);
 	}
 }
 
 /* Only for Mobile */
 .db-header-drawer-navigation > .db-header-meta-navigation:not(:empty) {
-	display: inherit;
+	@include display(inherit);
 }
 
 .db-header-drawer,
 .db-header-burger-menu-container {
 	@include screen-sizes.screen("md") {
-		display: none;
+		@include display(none);
 	}
 }
