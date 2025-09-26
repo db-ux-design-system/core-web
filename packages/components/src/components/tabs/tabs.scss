@@ -74,8 +74,8 @@ $max-tabs: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 	$db-tabs-z-index-button: 22;
 
 	@extend %angular-workaround;
+	@include db-display(flex);
 
-	display: flex;
 	inline-size: 100%;
 	position: relative;
 
@@ -90,7 +90,7 @@ $max-tabs: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 		@each $index in $max-tabs {
 			&:has([id$="-tab-#{$index}"]:checked)
 				~ [id$="-tab-panel-#{$index}"] {
-				display: block;
+				@include db-display(block);
 			}
 		}
 	}
