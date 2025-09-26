@@ -19,7 +19,7 @@
   "dependencies": {
     "@db-ux/db-theme": "^5.1.1",
     "@db-ux/db-theme-fonts": "2.0.4",
-    "@db-ux/db-theme-icons": "3.1.1",
+    "@db-ux/db-theme-icons": "3.1.2",
     "sa11y": "4.2.3"
   },
   "devDependencies": {
