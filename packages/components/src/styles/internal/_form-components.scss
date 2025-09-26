@@ -313,6 +313,7 @@ $input-valid-types:
 		// we use absolute icons
 		position: relative;
 		flex-direction: column;
+
 		&:not([hidden]) {
 			display: flex;
 		}
