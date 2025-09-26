@@ -1,6 +1,9 @@
 ---
 name: Get and save publish version
 
+permissions:
+  contents: read
+
 on:
   workflow_call:
     # Map the workflow outputs to job outputs
