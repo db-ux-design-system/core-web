@@ -37,7 +37,8 @@ $checked-active-transition-size: calc(
 	$thumb-color,
 	$hover-color-checked,
 	$hover-color-unchecked,
-	$pressed-color-checked
+	$pressed-color-checked,
+	$pressed-color-unchecked
 ) {
 	// Disable is necessary to allow SCSS variables in order to prevent code duplication for valid and invalid states
 	/* stylelint-disable db-ux/use-border-color */
@@ -47,6 +48,7 @@ $checked-active-transition-size: calc(
 	--db-check-element-hover-color-checked: #{$hover-color-checked};
 	--db-check-element-hover-color-unchecked: #{$hover-color-unchecked};
 	--db-check-element-pressed-color-checked: #{$pressed-color-checked};
+	--db-check-element-pressed-color-unchecked: #{$pressed-color-unchecked};
 
 	> input {
 		border-color: $border-color;
@@ -72,12 +74,9 @@ $checked-active-transition-size: calc(
 		}
 	}
 
-	> input:not(:checked):hover {
-		background-color: var(--db-check-element-hover-color-unchecked);
-	}
-
+	> input:not(:checked):hover,
 	> input:not(:checked):focus {
-		background-color: var(--db-adaptive-bg-basic-transparent-full-default);
+		background-color: var(--db-check-element-hover-color-unchecked);
 	}
 
 	> input:checked::before {
@@ -96,9 +95,10 @@ $checked-active-transition-size: calc(
 				colors.$db-critical-on-bg-basic-emphasis-70-default,
 				colors.$db-critical-on-bg-basic-emphasis-80-default,
 				colors.$db-critical-on-bg-inverted-default,
-				colors.$db-critical-bg-inverted-contrast-low-hovered,
+				colors.$db-critical-bg-inverted-contrast-low-pressed,
 				colors.$db-critical-bg-basic-transparent-full-hovered,
-				colors.$db-critical-bg-inverted-contrast-low-pressed
+				colors.$db-critical-bg-inverted-contrast-low-pressed,
+				colors.$db-critical-bg-basic-transparent-full-pressed
 			);
 		} @else {
 			@include switch-validity-colored(
@@ -107,7 +107,8 @@ $checked-active-transition-size: calc(
 				colors.$db-successful-on-bg-inverted-default,
 				colors.$db-successful-bg-inverted-contrast-low-hovered,
 				colors.$db-successful-bg-basic-transparent-full-hovered,
-				colors.$db-successful-bg-inverted-contrast-low-pressed
+				colors.$db-successful-bg-inverted-contrast-low-pressed,
+				colors.$db-successful-bg-basic-transparent-full-pressed
 			);
 		}
 	}
