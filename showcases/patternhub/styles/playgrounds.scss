@@ -1,7 +1,7 @@
 @use "@db-ux/core-foundations/build/styles/variables";
 
 section.playground {
-	display: grid;
+	@include db-display(grid);
 	grid-template-columns: repeat(2, 1fr); /* Two columns */
 	gap: variables.$db-spacing-fixed-md; /* Optional spacing between items */
 
