@@ -60,12 +60,63 @@ const testFormComponents = async (
 	for (const def of definition) {
 		const index = definition.indexOf(def);
 		const text = await def.textContent();
-		if (role === 'checkbox') {
-			expect(text).toEqual('false');
-		} else if (role === 'group') {
-			expect(text).toEqual(`combobox-0`);
-		} else {
-			expect(text).toEqual(`${role}-${index}`);
+		switch (role) {
+			case 'checkbox': {
+				expect(text).toEqual('false');
+				break;
+			}
+
+			case 'radio': {
+				expect(text).toEqual('true');
+				break;
+			}
+
+			case 'group': {
+				expect(text).toEqual(`combobox-0`);
+				break;
+			}
+
+			case 'combobox':
+			case 'textbox': {
+				expect(text).toEqual(`${role}-${index}`);
+				break;
+			}
+		}
+	}
+
+	// Reset form
+
+	const formResetButton = await page.getByTestId('reset-button').all();
+	for (const locator of formResetButton) {
+		if (await locator.isVisible()) {
+			await locator.click({ force: true });
+		}
+	}
+
+	for (const def of definition) {
+		const index = definition.indexOf(def);
+		const text = await def.textContent();
+		switch (role) {
+			case 'checkbox': {
+				expect(text).toEqual('true');
+				break;
+			}
+
+			case 'radio': {
+				expect(text).toEqual('false');
+				break;
+			}
+
+			case 'group': {
+				expect(text).toEqual(`combobox-2`);
+				break;
+			}
+
+			case 'combobox':
+			case 'textbox': {
+				expect(text).toEqual(`test${index + 1}`);
+				break;
+			}
 		}
 	}
 };

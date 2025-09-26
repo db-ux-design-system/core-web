@@ -40,6 +40,7 @@ import {
 	uuid
 } from '../../utils';
 import {
+	addValueResetEventListener,
 	handleFrameworkEventAngular,
 	handleFrameworkEventVue
 } from '../../utils/form-components';
@@ -200,6 +201,23 @@ export default function DBInput(props: DBInputProps) {
 	onUpdate(() => {
 		state._value = props.value;
 	}, [props.value]);
+
+	onUpdate(() => {
+		if (_ref) {
+			const defaultValue = useTarget({
+				react: (props as any).defaultValue,
+				default: undefined
+			});
+			addValueResetEventListener(
+				_ref,
+				{ value: props.value, defaultValue },
+				(event) => {
+					state.handleChange(event);
+					state.handleInput(event);
+				}
+			);
+		}
+	}, [_ref]);
 
 	return (
 		<div

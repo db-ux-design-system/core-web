@@ -178,6 +178,12 @@ export const getComponents = (): Component[] => [
 					to: '{{value()}}</textarea>'
 				}
 			],
+			vue: [
+				{
+					from: '</textarea>',
+					to: '{{value}}</textarea>'
+				}
+			],
 			react: [{ from: /HTMLAttributes/g, to: 'TextareaHTMLAttributes' }],
 			stencil: [{ from: 'HTMLElement', to: 'HTMLTextAreaElement' }]
 		}
@@ -214,9 +220,7 @@ export const getComponents = (): Component[] => [
 	{
 		name: 'select',
 		overwrites: {
-			angular: [
-				{ from: '<HTMLElement>', to: '<HTMLSelectElement>' }
-			],
+			angular: [{ from: '<HTMLElement>', to: '<HTMLSelectElement>' }],
 			react: [
 				// React not allowing selected for options
 				{ from: 'selected={option.selected}', to: '' },

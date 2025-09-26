@@ -20,8 +20,7 @@ const FormRadios = () => {
 			<DBRadio
 				name="radio-1"
 				value="radio-1"
-				defaultChecked={uncontrolled === 'radio-1'}
-				onChange={(event) => {
+				onInput={(event) => {
 					setUncontrolled(event.target.value);
 				}}>
 				Uncontrolled
