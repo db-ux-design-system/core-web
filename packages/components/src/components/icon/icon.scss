@@ -5,7 +5,7 @@
 
 	/* Safari hack */
 	@supports (-webkit-hyphens: none) {
-		display: inline-block;
+		@include db-display(inline-block);
 
 		&::before {
 			block-size: auto;

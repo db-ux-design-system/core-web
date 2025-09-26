@@ -46,7 +46,7 @@
 
 	&:has(> select option:checked:not(.placeholder)) {
 		[id$="-placeholder"] {
-			display: none;
+			@include db-display(none);
 		}
 	}
 }
