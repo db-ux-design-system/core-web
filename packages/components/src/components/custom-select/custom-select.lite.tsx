@@ -706,7 +706,7 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 		if (Array.isArray(v)) {
 			if (state._values !== v) state._values = v;
 		} else if (v == null) {
-			if (state._values.length !== 0) state._values = [];
+			if (state._values?.length !== 0) state._values = [];
 		}
 	}, [props.values]);
 
