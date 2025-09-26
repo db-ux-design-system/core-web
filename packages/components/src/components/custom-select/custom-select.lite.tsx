@@ -1129,6 +1129,7 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 			</Show>
 
 			<span
+				class="db-custom-select-placeholder"
 				aria-hidden={getBooleanAsString(true)}
 				id={state._placeholderId}>
 				{props.placeholder ?? props.label}
