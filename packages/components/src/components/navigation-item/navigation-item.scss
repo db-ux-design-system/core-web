@@ -56,7 +56,9 @@
 	background-color: colors.$db-adaptive-bg-basic-transparent-full-default;
 	cursor: pointer;
 	inline-size: 100%;
-	display: inline-flex;
+
+	@include db-display(inline-flex);
+
 	border-radius: variables.$db-border-radius-sm;
 	padding: variables.$db-spacing-fixed-xs variables.$db-spacing-fixed-sm;
 	white-space: nowrap; // we don't want to break
@@ -82,8 +84,8 @@
 
 	@extend %db-overwrite-font-size-md;
 	@include icon-passing.icon-passing;
+	@include db-display(inline-flex);
 
-	display: inline-flex;
 	position: relative;
 	inline-size: auto;
 
@@ -186,7 +188,9 @@
 	@extend %component-border;
 
 	margin: 0;
-	display: flex;
+
+	@include db-display(flex);
+
 	flex-direction: column;
 	z-index: 70;
 	inset-inline-start: 0;
@@ -199,7 +203,7 @@
 
 	@include screen-sizes.screen("md") {
 		.db-mobile-navigation-back {
-			display: none;
+			@include db-display(none);
 		}
 	}
 
@@ -304,7 +308,7 @@
 	}
 
 	&:empty {
-		display: none;
+		@include db-display(none);
 	}
 
 	.db-navigation-item {
@@ -317,7 +321,8 @@
 }
 
 .db-mobile-navigation-back {
-	display: flex;
+	@include db-display(flex);
+
 	font-weight: normal;
 	background-color: colors.$db-adaptive-bg-basic-level-1-default;
 	padding-block-end: variables.$db-spacing-fixed-md;
