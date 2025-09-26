@@ -1,6 +1,6 @@
 %grid-layout-variant-not-overlay {
 	span {
-		display: none;
+		@include db-display(none);
 	}
 
 	// has link

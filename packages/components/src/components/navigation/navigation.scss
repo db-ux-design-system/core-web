@@ -14,7 +14,8 @@
 	}
 
 	> menu {
-		display: flex;
+		@include db-display(flex);
+
 		flex-direction: column;
 		padding: 0;
 		margin: 0;
@@ -100,7 +101,7 @@
 	&[data-force-close="true"] {
 		> menu menu {
 			@include screen-sizes.screen("md") {
-				display: none;
+				@include db-display(none);
 			}
 		}
 	}
