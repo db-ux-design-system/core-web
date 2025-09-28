@@ -7,6 +7,10 @@
 @use "../../styles/internal/component";
 @use "../../styles/internal/select-components";
 
+.db-select-placeholder {
+	@extend %select-absolute-placeholder;
+}
+
 .db-select {
 	--db-form-component-padding-inline-end: #{select-components.$select-icon-padding};
 	--db-form-component-min-inline-size: #{variables.$db-sizing-xl};
@@ -40,7 +44,7 @@
 		background-color: colors.$db-adaptive-bg-basic-level-3-default;
 	}
 
-	&:has(> select option:checked:not([hidden])) {
+	&:has(> select option:checked:not(.placeholder)) {
 		[id$="-placeholder"] {
 			display: none;
 		}
