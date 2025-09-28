@@ -7,20 +7,21 @@
 @use "../../styles/internal/component";
 @use "../../styles/internal/button-components";
 
+// generic styles can be found in _button-components.scss
 .db-button {
 	@extend %default-interactive-component;
 	@extend %default-button;
 	@extend %db-overwrite-font-size-md;
 
-	// Multiple lines support
 	max-inline-size: 100%;
-	overflow-wrap: break-word;
-	white-space: pre-wrap;
-	text-align: center;
+	overflow-wrap: break-word; // Multiple lines support
+	white-space: pre-wrap; // Multiple lines support
 	color: colors.$db-adaptive-on-bg-basic-emphasis-100-default;
 	min-block-size: variables.$db-sizing-md;
 	inline-size: fit-content;
 	padding: variables.$db-spacing-fixed-2xs variables.$db-spacing-fixed-md;
+
+	// disable text-decoration if someone wants to use the button for an <a> tag
 	text-decoration: none;
 
 	// Square icon only buttons
@@ -28,7 +29,7 @@
 		@include icons.is-icon-text-replace;
 
 		padding: 0;
-		block-size: variables.$db-sizing-md;
+		aspect-ratio: 1;
 		inline-size: variables.$db-sizing-md;
 
 		&::before {
@@ -44,8 +45,8 @@
 		padding: variables.$db-spacing-fixed-2xs;
 
 		&:not([data-no-text="true"]) {
-			padding: variables.$db-spacing-fixed-3xs
-				variables.$db-spacing-fixed-sm;
+			// stylelint-disable-next-line db-ux/use-spacings
+			padding: 2px;
 
 			&::before {
 				margin-inline-end: variables.$db-spacing-fixed-2xs;
@@ -54,7 +55,7 @@
 
 		// Square icon only buttons
 		&[data-no-text="true"] {
-			block-size: variables.$db-sizing-sm;
+			aspect-ratio: 1;
 			inline-size: variables.$db-sizing-sm;
 		}
 	}
