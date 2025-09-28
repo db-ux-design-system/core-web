@@ -104,6 +104,8 @@ As [DB UX Design System](https://marketingportal.extranet.deutschebahn.com/marke
 We're providing a detailed migration for each component next to the documentation of each component, like e.g.
 <https://design-system.deutschebahn.com/core-web/review/main/components/action/button/migration>
 
+For a comprehensive overview of all DB-UI components and their migration status, including components that don't have direct equivalents in DB-UX Design System v3, see our [DB-UI to DB-UX Design System v3 Component Migration Guide](https://github.com/db-ux-design-system/core-web/blob/main/docs/migration/db-ui-to-db-ux-dsv3.md).
+
 ### In between DB UX Design System Core versions
 
 Check our migration docs for breaking changes:
