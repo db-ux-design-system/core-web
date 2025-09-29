@@ -36,9 +36,9 @@ export const addResetEventListener = (
 export const addCheckedResetEventListener = (
 	element: any,
 	props: { checked?: boolean | string; defaultChecked?: boolean },
-	resetFunction: (event: Event) => void
+	resetFunction: (event: any) => void
 ): void => {
-	addResetEventListener(element, (event: Event) => {
+	addResetEventListener(element, (event: any) => {
 		void delay(() => {
 			const resetValue = props.checked
 				? props.checked
@@ -57,9 +57,9 @@ export const addCheckedResetEventListener = (
 export const addValueResetEventListener = (
 	element: any,
 	props: { value?: string; defaultValue?: string },
-	resetFunction: (event: Event) => void
+	resetFunction: (event: any) => void
 ): void => {
-	addResetEventListener(element, (event: Event) => {
+	addResetEventListener(element, (event: any) => {
 		void delay(() => {
 			const resetValue = props.value
 				? props.value
