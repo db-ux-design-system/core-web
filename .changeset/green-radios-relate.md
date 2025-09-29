@@ -6,4 +6,4 @@
 "@db-ux/wc-core-components": patch
 ---
 
-fix(DBCustomSelect): tags remaining visible when form values are reset
+fix(CustomSelect): tags remaining visible when form values are reset
