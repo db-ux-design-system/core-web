@@ -94,7 +94,7 @@
     "@changesets/cli": "^2.29.5",
     "@commitlint/cli": "20.0.0",
     "@commitlint/config-conventional": "20.0.0",
-    "@db-ux/db-theme": "5.1.2",
+    "@db-ux/db-theme": "5.2.0",
     "@double-great/stylelint-a11y": "3.4.0",
     "@guidepup/guidepup": "0.24.0",
     "@guidepup/playwright": "0.14.2",
