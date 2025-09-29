@@ -288,6 +288,10 @@ export const ROUTES: NavigationItem[] = [
 						path: '/components/misc/custom-components'
 					},
 					{
+						label: 'Testing',
+						path: '/components/misc/testing'
+					},
+					{
 						label: 'Validation',
 						path: '/components/misc/validation'
 					},
