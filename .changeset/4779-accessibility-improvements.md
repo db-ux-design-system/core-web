@@ -6,4 +6,4 @@
 "@db-ux/wc-core-components": patch
 ---
 
-fix(custom-select): keyboard focus ring appears on mouse interaction
+fix(Switch): double event firing with Angular signals

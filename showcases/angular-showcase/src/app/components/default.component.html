@@ -36,7 +36,9 @@
 
 @if (!variantRef) {
 	<div class="default-container">
-		<h1>{{ title }}</h1>
+		<div class="component-header">
+			<h1>{{ title }}</h1>
+		</div>
 		@for (variant of variants; track variant; let variantIndex = $index) {
 			<div>
 				<db-divider></db-divider>

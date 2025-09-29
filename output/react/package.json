@@ -1,6 +1,6 @@
 {
   "name": "@db-ux/react-core-components",
-  "version": "0.0.0",
+  "version": "3.1.14",
   "description": "React components for @db-ux/core-components",
   "repository": {
     "type": "git",
@@ -27,7 +27,7 @@
     "tsc": "tsc --project . --sourceMap false"
   },
   "devDependencies": {
-    "@playwright/experimental-ct-react": "1.54.2",
+    "@playwright/experimental-ct-react": "1.55.1",
     "@types/react": "18.3.13",
     "react": "18.3.1",
     "react-dom": "18.3.1"
