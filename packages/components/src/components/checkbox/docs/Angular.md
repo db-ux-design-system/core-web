@@ -50,7 +50,7 @@ export class AppComponent {
 
 #### Adding Formatted Infotext
 
-The message property of the db-checkbox does not accept HTML content for security reasons (to prevent XSS attacks). To add a richly formatted description, use the `db-infotext` component as a sibling element. You must link both components using the `aria-describedby` attribute to ensure accessibility.
+The message property of the db-checkbox does not accept HTML content for security reasons (to prevent XSS attacks). To add a richly formatted description, use the `db-infotext` component as a sibling element. You must link both components using the [`aria-describedby`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Reference/Attributes/aria-describedby)-HTML-attribute to ensure accessibility.
 
 ```html
 <db-checkbox aria-describedby="checkbox-message">
