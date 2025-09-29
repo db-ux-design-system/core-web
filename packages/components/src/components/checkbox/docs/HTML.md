@@ -32,6 +32,6 @@ To add a descriptive text with HTML formatting (e.g., bold or italic text) to a 
 		/>
 		Label
 	</label>
-	<p class="db-infotext" id="checkbox-message">Example <b>Text</b></p>
+	<p class="db-infotext" id="checkbox-message">Example <strong>Text</strong></p>
 </body>
 ```
