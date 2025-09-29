@@ -1,8 +1,9 @@
-/* eslint-disable @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-return,@typescript-eslint/no-unsafe-assignment, unicorn/prefer-string-raw */
+/* eslint-disable @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-return,@typescript-eslint/no-unsafe-assignment */
 
 import { globSync } from 'glob';
 import { execSync } from 'node:child_process';
 import fs from 'node:fs';
+import os from 'node:os';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
@@ -146,8 +147,16 @@ function main() {
 		return;
 	}
 
-	run(`gh release create "${tag}" --notes "${notes.replaceAll('"', '\\"')}"`);
-	console.log(`Created release ${tag}`);
+	// Write notes to a temporary file for safe shell usage
+	const temporaryFile = path.join(os.tmpdir(), `dbux-release-notes.md`);
+	fs.writeFileSync(temporaryFile, notes, 'utf8');
+	try {
+		run(`gh release create "${tag}" --notes-file "${temporaryFile}"`);
+		console.log(`Created release ${tag}`);
+	} finally {
+		// Clean up the temporary file
+		fs.unlinkSync(temporaryFile);
+	}
 }
 
 main();
