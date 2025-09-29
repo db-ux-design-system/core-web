@@ -115,7 +115,7 @@ const DefaultComponent = ({
 	const color = useQuery(redirectURLSearchParameters)[2];
 
 	const getHref = (variantName: string): string => {
-		if (typeof globalThis === 'undefined') {
+		if (typeof globalThis === 'undefined' || !globalThis.location.href) {
 			return '';
 		}
 
