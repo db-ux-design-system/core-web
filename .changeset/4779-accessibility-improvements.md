@@ -6,4 +6,4 @@
 "@db-ux/wc-core-components": patch
 ---
 
-fix(DB Switch): double event firing with Angular signals
+fix(Switch): double event firing with Angular signals
