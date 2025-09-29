@@ -70,6 +70,25 @@ const optionGroupsComp: any = (
 	/>
 );
 
+const tagSelectWithCustomRemoveTexts: any = (
+	<DBCustomSelect
+		options={[
+			{ value: 'Red', label: 'Red Color' },
+			{ value: 'Blue', label: 'Blue Color' },
+			{ value: 'Green', label: 'Green Color' }
+		]}
+		label="Colors"
+		multiple={true}
+		selectedType="tag"
+		removeTagsTexts={[
+			'Remove Red Color',
+			'Remove Blue Color',
+			'Remove Green Color'
+		]}
+		values={['Blue', 'Green']}
+		placeholder="Select colors"></DBCustomSelect>
+);
+
 const testComponent = () => {
 	test('should contain text', async ({ mount }) => {
 		const component = await mount(comp);
@@ -237,6 +256,34 @@ const testAction = () => {
 			() => (document.activeElement as HTMLInputElement)?.value
 		);
 		expect(focused6).toBe('G1:Option 2');
+	});
+
+	test('custom removeTagsTexts should correspond to correct options', async ({
+		mount
+	}) => {
+		const component = await mount(tagSelectWithCustomRemoveTexts);
+
+		// Should have tags for Blue and Green (selected values)
+		const tags = component.locator('.db-tag');
+		await expect(tags).toHaveCount(2);
+
+		// Get the remove buttons and their tooltip text
+		const removeButtons = component.locator(
+			'.db-tag .db-tab-remove-button'
+		);
+		await expect(removeButtons).toHaveCount(2);
+
+		// The first selected option is 'Blue' (index 1 in options array)
+		// Should have 'Remove Blue Color' tooltip
+		const firstRemoveButton = removeButtons.first();
+		const firstTooltip = firstRemoveButton.locator('.db-tooltip');
+		await expect(firstTooltip).toContainText('Remove Blue Color');
+
+		// The second selected option is 'Green' (index 2 in options array)
+		// Should have 'Remove Green Color' tooltip
+		const secondRemoveButton = removeButtons.last();
+		const secondTooltip = secondRemoveButton.locator('.db-tooltip');
+		await expect(secondTooltip).toContainText('Remove Green Color');
 	});
 };
 
