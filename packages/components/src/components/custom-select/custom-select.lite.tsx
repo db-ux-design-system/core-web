@@ -718,12 +718,14 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 
 	// If we inform the consumer we don't want to trigger the onOptionSelected event again
 	onUpdate(() => {
-		if (
-			props.values &&
-			Array.isArray(props.values) &&
-			props.values !== state._values
-		) {
-			state._values = props.values ?? [];
+		const v = props.values;
+
+		if (Array.isArray(v)) {
+			if (state._values !== v) {
+				state._values = v;
+			}
+		} else if (v == null && state._values?.length !== 0) {
+			state._values = [];
 		}
 	}, [props.values]);
 
@@ -1128,6 +1130,7 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 			</Show>
 
 			<span
+				class="db-custom-select-placeholder"
 				aria-hidden={getBooleanAsString(true)}
 				id={state._placeholderId}>
 				{props.placeholder ?? props.label}
