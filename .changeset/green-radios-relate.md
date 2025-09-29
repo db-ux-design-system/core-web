@@ -6,4 +6,4 @@
 "@db-ux/wc-core-components": patch
 ---
 
-fix(custom-select): keyboard focus ring appears on mouse interaction
+fix(DBCustomSelect): tags remaining visible when form values are reset
