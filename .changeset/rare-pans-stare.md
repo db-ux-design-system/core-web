@@ -6,4 +6,4 @@
 "@db-ux/wc-core-components": patch
 ---
 
-fix(DBCustomSelect): custom removeTagsTexts are not applied correctly
+fix(CustomSelect): custom removeTagsTexts are not applied correctly
