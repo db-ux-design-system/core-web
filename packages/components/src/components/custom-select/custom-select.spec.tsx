@@ -240,9 +240,166 @@ const testAction = () => {
 	});
 };
 
+const testValuesReset = () => {
+	test('should clear tags when values prop is set to null', async ({
+		mount
+	}) => {
+		// Start with selected values
+		const componentWithValues: any = (
+			<DBCustomSelect
+				options={[{ value: 'Option 1' }, { value: 'Option 2' }]}
+				label="Test"
+				multiple={true}
+				values={['Option 1', 'Option 2']}
+				placeholder="Placeholder"></DBCustomSelect>
+		);
+
+		const component = await mount(componentWithValues);
+		const summary = component.locator('summary');
+
+		// Verify initial state has tags
+		await expect(summary).toContainText('Option 1, Option 2');
+
+		// Reset values to null
+		const componentWithNullValues: any = (
+			<DBCustomSelect
+				options={[{ value: 'Option 1' }, { value: 'Option 2' }]}
+				label="Test"
+				multiple={true}
+				values={null}
+				placeholder="Placeholder"></DBCustomSelect>
+		);
+
+		await component.unmount();
+		const resetComponent = await mount(componentWithNullValues);
+		const resetSummary = resetComponent.locator('summary');
+
+		// Verify tags are cleared
+		await expect(resetSummary).not.toContainText('Option 1');
+		await expect(resetSummary).not.toContainText('Option 2');
+		await expect(resetSummary).toContainText('');
+	});
+
+	test('should clear tags when values prop is set to undefined', async ({
+		mount
+	}) => {
+		// Start with selected values
+		const componentWithValues: any = (
+			<DBCustomSelect
+				options={[{ value: 'Option 1' }, { value: 'Option 2' }]}
+				label="Test"
+				multiple={true}
+				values={['Option 1']}
+				placeholder="Placeholder"></DBCustomSelect>
+		);
+
+		const component = await mount(componentWithValues);
+		const summary = component.locator('summary');
+
+		// Verify initial state has tags
+		await expect(summary).toContainText('Option 1');
+
+		// Reset values to undefined
+		const componentWithUndefinedValues: any = (
+			<DBCustomSelect
+				options={[{ value: 'Option 1' }, { value: 'Option 2' }]}
+				label="Test"
+				multiple={true}
+				values={undefined}
+				placeholder="Placeholder"></DBCustomSelect>
+		);
+
+		await component.unmount();
+		const resetComponent = await mount(componentWithUndefinedValues);
+		const resetSummary = resetComponent.locator('summary');
+
+		// Verify tags are cleared
+		await expect(resetSummary).not.toContainText('Option 1');
+		await expect(resetSummary).toContainText('');
+	});
+
+	test('should clear tags when values prop is set to empty array', async ({
+		mount
+	}) => {
+		// Start with selected values
+		const componentWithValues: any = (
+			<DBCustomSelect
+				options={[{ value: 'Option 1' }, { value: 'Option 2' }]}
+				label="Test"
+				multiple={true}
+				values={['Option 1', 'Option 2']}
+				placeholder="Placeholder"></DBCustomSelect>
+		);
+
+		const component = await mount(componentWithValues);
+		const summary = component.locator('summary');
+
+		// Verify initial state has tags
+		await expect(summary).toContainText('Option 1, Option 2');
+
+		// Reset values to empty array
+		const componentWithEmptyArray: any = (
+			<DBCustomSelect
+				options={[{ value: 'Option 1' }, { value: 'Option 2' }]}
+				label="Test"
+				multiple={true}
+				values={[]}
+				placeholder="Placeholder"></DBCustomSelect>
+		);
+
+		await component.unmount();
+		const resetComponent = await mount(componentWithEmptyArray);
+		const resetSummary = resetComponent.locator('summary');
+
+		// Verify tags are cleared
+		await expect(resetSummary).not.toContainText('Option 1');
+		await expect(resetSummary).not.toContainText('Option 2');
+		await expect(resetSummary).toContainText('');
+	});
+
+	test('should handle single select values reset to null', async ({
+		mount
+	}) => {
+		// Start with selected value
+		const componentWithValue: any = (
+			<DBCustomSelect
+				options={[{ value: 'Option 1' }, { value: 'Option 2' }]}
+				label="Test"
+				multiple={false}
+				values={['Option 1']}
+				placeholder="Placeholder"></DBCustomSelect>
+		);
+
+		const component = await mount(componentWithValue);
+		const summary = component.locator('summary');
+
+		// Verify initial state has selection
+		await expect(summary).toContainText('Option 1');
+
+		// Reset values to null
+		const componentWithNullValue: any = (
+			<DBCustomSelect
+				options={[{ value: 'Option 1' }, { value: 'Option 2' }]}
+				label="Test"
+				multiple={false}
+				values={null}
+				placeholder="Placeholder"></DBCustomSelect>
+		);
+
+		await component.unmount();
+		const resetComponent = await mount(componentWithNullValue);
+		const resetSummary = resetComponent.locator('summary');
+
+		// Verify selection is cleared
+		await expect(resetSummary).not.toContainText('Option 1');
+		await expect(resetSummary).toContainText('');
+	});
+};
+
 test.describe('DBCustomSelect', () => {
 	test.use({ viewport: DEFAULT_VIEWPORT });
 	testComponent();
 	testAction();
+	testValuesReset();
 	testA11y();
 });
