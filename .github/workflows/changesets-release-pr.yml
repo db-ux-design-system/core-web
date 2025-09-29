@@ -25,7 +25,7 @@ jobs:
     steps:
       # Work on the main branch that was just pushed
       - name: ⏬ Checkout main
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           fetch-depth: 0
 
