@@ -240,15 +240,20 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 
 			return false;
 		},
-		getTagRemoveLabel: (index: number) => {
-			if (
-				props.removeTagsTexts &&
-				props.removeTagsTexts!.length > index
-			) {
-				return props.removeTagsTexts!.at(index)!;
-			} else {
-				return `${DEFAULT_REMOVE} ${state._selectedOptions ? state.getOptionLabel(state._selectedOptions![index]) : ''}`;
+		getTagRemoveLabel: (option: CustomSelectOptionType) => {
+			const removeTexts = props.removeTagsTexts;
+			const options = props.options;
+			if (removeTexts && options) {
+				// Find the index of the option in the original options array
+				const optionIndex = options.findIndex(
+					(opt) => opt.value === option.value
+				);
+				if (optionIndex >= 0 && optionIndex < removeTexts.length) {
+					return removeTexts[optionIndex];
+				}
 			}
+			// Fallback to default behavior
+			return `${DEFAULT_REMOVE} ${state.getOptionLabel(option)}`;
 		},
 		handleTagRemove: (
 			option: CustomSelectOptionType,
@@ -701,12 +706,14 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 
 	// If we inform the consumer we don't want to trigger the onOptionSelected event again
 	onUpdate(() => {
-		if (
-			props.values &&
-			Array.isArray(props.values) &&
-			props.values !== state._values
-		) {
-			state._values = props.values ?? [];
+		const v = props.values;
+
+		if (Array.isArray(v)) {
+			if (state._values !== v) {
+				state._values = v;
+			}
+		} else if (v == null && state._values?.length !== 0) {
+			state._values = [];
 		}
 	}, [props.values]);
 
@@ -921,7 +928,7 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 												)
 											})}
 											removeButton={state.getTagRemoveLabel(
-												index
+												option
 											)}
 											onRemove={(
 												event?: ClickEvent<HTMLButtonElement> | void
