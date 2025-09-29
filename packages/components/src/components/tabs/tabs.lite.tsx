@@ -1,6 +1,7 @@
 import {
 	For,
 	onMount,
+	onUnMount,
 	onUpdate,
 	Show,
 	useDefaultProps,
@@ -11,6 +12,7 @@ import {
 } from '@builder.io/mitosis';
 import { InputEvent } from '../../shared/model';
 import { cls, uuid } from '../../utils';
+import { WindowResizeListener } from '../../utils/window-resize-listener';
 import DBButton from '../button/button.lite';
 import DBTabItem from '../tab-item/tab-item.lite';
 import DBTabList from '../tab-list/tab-list.lite';
@@ -30,6 +32,7 @@ export default function DBTabs(props: DBTabsProps) {
 		showScrollLeft: false,
 		showScrollRight: false,
 		scrollContainer: null,
+		_windowResizeListenerCallbackId: undefined,
 		convertTabs(): DBSimpleTabProps[] {
 			try {
 				if (typeof props.tabs === 'string') {
@@ -81,9 +84,10 @@ export default function DBTabs(props: DBTabsProps) {
 								state.evaluateScrollButtons(container);
 							});
 							// Add window resize listener to re-evaluate scroll buttons
-							window.addEventListener('resize', () => {
-								state.evaluateScrollButtons(container);
-							});
+							state._windowResizeListenerCallbackId =
+								new WindowResizeListener().addCallback(() => {
+									state.evaluateScrollButtons(container);
+								});
 						}
 					}
 				}
@@ -189,6 +193,14 @@ export default function DBTabs(props: DBTabsProps) {
 		state.initialized = true;
 	});
 	// jscpd:ignore-end
+
+	onUnMount(() => {
+		if (state._windowResizeListenerCallbackId) {
+			new WindowResizeListener().removeCallback(
+				state._windowResizeListenerCallbackId!
+			);
+		}
+	});
 
 	onUpdate(() => {
 		if (_ref && state.initialized) {

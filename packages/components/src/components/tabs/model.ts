@@ -79,6 +79,7 @@ export type DBTabsProps = DBTabsDefaultProps &
 
 export type DBTabsDefaultState = {
 	_name: string;
+	_windowResizeListenerCallbackId?: string;
 	scrollContainer?: Element | null;
 	scroll: (left?: boolean) => void;
 	showScrollLeft?: boolean;
