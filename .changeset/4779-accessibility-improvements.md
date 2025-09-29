@@ -6,4 +6,4 @@
 "@db-ux/wc-core-components": patch
 ---
 
-fix(CustomSelect): tags remaining visible when form values are reset
+fix(Switch): double event firing with Angular signals
