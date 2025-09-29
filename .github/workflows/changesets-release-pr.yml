@@ -49,4 +49,3 @@ jobs:
         if: steps.changesets.outputs.hasChangesets == 'false'
         run: |
           npx --no tsx scripts/github/changesets-publish.ts
-          CI: "true"
