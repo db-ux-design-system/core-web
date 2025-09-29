@@ -284,6 +284,10 @@ export const ROUTES: NavigationItem[] = [
 						path: '/components/misc/router-usage'
 					},
 					{
+						label: 'Creating custom Components',
+						path: '/components/misc/custom-components'
+					},
+					{
 						label: 'Testing',
 						path: '/components/misc/testing'
 					},
