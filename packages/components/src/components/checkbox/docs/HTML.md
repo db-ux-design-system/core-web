@@ -17,7 +17,7 @@ For general installation and configuration take a look at the [components](https
 
 #### Adding Formatted Infotext
 
-To add a descriptive text with HTML formatting (e.g., bold or italic text) to a checkbox, you should use a separate element for the message and link it via the aria-describedby attribute for accessibility. This ensures that screen readers correctly associate the message with the checkbox.
+To add a descriptive text with HTML formatting (e.g., bold or italic text) to a checkbox, you should use a separate element for the message and link it via the [`aria-describedby`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Reference/Attributes/aria-describedby)-HTML-attribute for accessibility. This ensures that screen readers correctly associate the message with the checkbox.
 
 ```html index.html
 <!-- Checkbox with formatted infotext -->
