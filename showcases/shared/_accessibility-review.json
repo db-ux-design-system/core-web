@@ -63,5 +63,10 @@
 		"name": "tag",
 		"status": "DONE",
 		"date": "2025-02-28"
+	},
+	{
+		"name": "switch",
+		"status": "DONE",
+		"date": "2025-09-24"
 	}
 ]

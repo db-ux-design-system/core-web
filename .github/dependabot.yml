@@ -43,16 +43,11 @@ updates:
     # https://github.com/dependabot/dependabot-core/issues/5226#issuecomment-1179434437
     versioning-strategy: increase
     groups:
+      # Automatically group all patch updates to reduce PR noise
       patch-dependencies:
         update-types:
           - "patch"
-      commitlint:
-        patterns:
-          - "@commitlint*"
-      playwright:
-        patterns:
-          - "@playwright*"
-          - "playwright*"
+      # Major framework dependencies - group by framework for better review
       angular:
         patterns:
           - "@angular*"
@@ -65,12 +60,41 @@ updates:
           - "react"
           - "react-dom"
         update-types:
-          - "minor"
-      next:
+          - "minor"  
+      # Testing frameworks
+      playwright:
         patterns:
-          - "@next*"
-          - "eslint-config-next"
-          - "next"
+          - "@playwright*"
+          - "playwright*"
+      # Linting and formatting tools
+      eslint:
+        patterns:
+          - "eslint*"
+          - "@eslint*"
+          - "@typescript-eslint*"
+      stylelint:
+        patterns:
+          - "stylelint*"
+          - "@double-great/stylelint-a11y"    
+      prettier:
+        patterns:
+          - "prettier*"
+      # Build tools and bundlers
+      vite:
+        patterns:
+          - "vite*"
+          - "vitest*"
+      # Development tools
+      typescript:
+        patterns:
+          - "typescript"
+          - "tsx"
+          - "tslib"
+      # Commitlint
+      commitlint:
+        patterns:
+          - "@commitlint*"
+      # Other grouped dependencies
       builder.io:
         patterns:
           - "@builder.io/mitosis*"
@@ -84,6 +108,8 @@ updates:
       guidepup:
         patterns:
           - "@guidepup/*"
-      stylelint:
+      next:
         patterns:
-          - "stylelint*"
+          - "@next*"
+          - "eslint-config-next"
+          - "next"
