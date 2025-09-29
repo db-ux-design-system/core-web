@@ -56,7 +56,7 @@ The message property of the db-checkbox does not accept HTML content for securit
 <db-checkbox aria-describedby="checkbox-message">
 	Example Checkbox
 </db-checkbox>
-<db-infotext id="checkbox-message"> Example <b>Text</b> </db-infotext>
+<db-infotext id="checkbox-message"> Example <strong>Text</strong> </db-infotext>
 ```
 
 ```ts app.component.ts
