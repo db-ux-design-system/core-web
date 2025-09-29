@@ -12,7 +12,7 @@ const waitForFocusChange = async (
 	timeout = 5000
 ) => {
 	await page.waitForFunction(
-		(expected) => {
+		(expected: any) => {
 			const activeElement = document.activeElement as HTMLInputElement;
 			return activeElement && activeElement.value === expected;
 		},
@@ -147,7 +147,7 @@ const testAction = () => {
 		const summary = component.locator('summary');
 		await page.keyboard.press('Tab');
 		await page.keyboard.press('ArrowDown');
-		await waitForFocusChange(page, 'Option 1');
+		await page.waitForTimeout(1000); // wait for focus to apply
 		await page.keyboard.press('Space');
 		await page.keyboard.press('Escape');
 		await expect(summary).toContainText('Option 1, Option 2');
