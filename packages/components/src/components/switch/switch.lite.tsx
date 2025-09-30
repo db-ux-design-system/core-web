@@ -153,7 +153,11 @@ export default function DBSwitch(props: DBSwitchProps) {
 			data-size={props.size}
 			data-hide-label={getHideProp(props.showLabel)}
 			htmlFor={state._id}
-			data-label-position={props.labelPosition}
+			data-label-position={
+				getHideProp(props.showLabel) === 'true'
+					? undefined
+					: props.labelPosition
+			}
 			data-accent={getBooleanAsString(props.accent)}
 			data-hide-asterisk={getHideProp(props.showRequiredAsterisk)}
 			data-custom-validity={props.validation}
