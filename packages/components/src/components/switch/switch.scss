@@ -125,6 +125,19 @@ $checked-active-transition-size: calc(
 	@extend %helper-message;
 	@include form-components.set-default-check-element;
 
+	&:not([data-hide-asterisk="true"]) {
+		&:has(> input:required),
+		&[data-required="true"] {
+			&:is(label)::after {
+				content: none;
+			}
+
+			> .db-switch-label::after {
+				@include icons.icon-content("*");
+			}
+		}
+	}
+
 	&:not(:has(input:disabled)) {
 		@include form-components.get-state;
 
