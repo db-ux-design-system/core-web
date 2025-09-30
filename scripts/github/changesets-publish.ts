@@ -131,15 +131,6 @@ function main() {
 	// Extract release notes
 	const notes = getReleaseNotes();
 
-	if (tagExists(tag)) {
-		console.log(`Tag ${tag} already exists. Skipping publish creation.`);
-		return;
-	}
-
-	// Create tag
-	run(`gh tag create "${tag}" --notes "Release ${tag}"`);
-	console.log(`Created tag ${tag}`);
-
 	if (releaseExists(tag)) {
 		console.log(
 			`Release ${tag} already exists. Skipping release creation.`
@@ -151,8 +142,19 @@ function main() {
 	const temporaryFile = path.join(os.tmpdir(), `dbux-release-notes.md`);
 	fs.writeFileSync(temporaryFile, notes, 'utf8');
 	try {
-		run(`gh release create "${tag}" --notes-file "${temporaryFile}"`);
-		console.log(`Created release ${tag}`);
+		const releaseCommand = `gh release create "${tag}" --target main --title "${tag}" --notes-file "${temporaryFile}"`;
+
+		if (process.env.CI) {
+			run(releaseCommand);
+			console.log(`Created release ${tag}`);
+		} else {
+			console.log(
+				'process.env.CI not set would run command:\n',
+				releaseCommand,
+				'\n\nContent for changelog:\n',
+				notes
+			);
+		}
 	} finally {
 		// Clean up the temporary file
 		fs.unlinkSync(temporaryFile);
