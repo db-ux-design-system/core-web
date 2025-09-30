@@ -4,9 +4,7 @@ export const handleFrameworkEventAngular = (
 	event: any,
 	modelValue: string = 'value'
 ): void => {
-	// Change event to work with reactive and template driven forms
 	component.propagateChange(event.target[modelValue]);
-	component.writeValue(event.target[modelValue]);
 };
 
 export const handleFrameworkEventVue = (
