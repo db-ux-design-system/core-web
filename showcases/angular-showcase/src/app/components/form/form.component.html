@@ -200,6 +200,14 @@
 				</db-button>
 			</fieldset>
 		</form>
+
+		<p>Switch with Angular signals</p>
+		<db-switch
+			[checked]="checkedSignal()"
+			(change)="handleChange($event)"
+			label="My Switch"
+		>
+		</db-switch>
 	</div>
 	<div>
 		<h1>Output</h1>
