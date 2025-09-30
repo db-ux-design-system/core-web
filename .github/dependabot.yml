@@ -47,7 +47,6 @@ updates:
       patch-dependencies:
         update-types:
           - "patch"
-      
       # Major framework dependencies - group by framework for better review
       angular:
         patterns:
@@ -56,72 +55,59 @@ updates:
           - "ng-packagr"
         update-types:
           - "minor"
-      
       react:
         patterns:
           - "react"
           - "react-dom"
         update-types:
-          - "minor"
-      
+          - "minor"  
       # Testing frameworks
       playwright:
         patterns:
           - "@playwright*"
           - "playwright*"
-      
       # Linting and formatting tools
       eslint:
         patterns:
           - "eslint*"
           - "@eslint*"
           - "@typescript-eslint*"
-      
       stylelint:
         patterns:
           - "stylelint*"
-          - "@double-great/stylelint-a11y"
-      
+          - "@double-great/stylelint-a11y"    
       prettier:
         patterns:
           - "prettier*"
-      
       # Build tools and bundlers
       vite:
         patterns:
           - "vite*"
           - "vitest*"
-      
       # Development tools
       typescript:
         patterns:
           - "typescript"
           - "tsx"
           - "tslib"
-      
       # Commitlint
       commitlint:
         patterns:
           - "@commitlint*"
-      
       # Other grouped dependencies
       builder.io:
         patterns:
           - "@builder.io/mitosis*"
-      
       inquirer:
         patterns:
           - "@inquirer/*"
           - "inquirer"
-      
       mdx-js:
         patterns:
           - "@mdx-js/*"
-      
       guidepup:
         patterns:
           - "@guidepup/*"
-      
       next:
         patterns:
           - "@next*"
