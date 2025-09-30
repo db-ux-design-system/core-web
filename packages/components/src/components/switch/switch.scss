@@ -376,6 +376,12 @@ $checked-active-transition-size: calc(
 		}
 	}
 
+	&[data-label-position="trailing"][data-size="small"] {
+		> input {
+			margin-inline-end: variables.$db-spacing-fixed-2xs;
+		}
+	}
+
 	&[data-label-position="leading"] {
 		> .db-switch-label {
 			order: -1;
