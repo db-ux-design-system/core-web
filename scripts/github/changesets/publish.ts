@@ -1,11 +1,11 @@
 /* eslint-disable @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-return,@typescript-eslint/no-unsafe-assignment */
 
-import { globSync } from 'glob';
 import { execSync } from 'node:child_process';
 import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { extractChangelogForVersion, findChangelogFiles } from './utils.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -38,49 +38,6 @@ function getVersion(): string {
 	return pkg.version;
 }
 
-function tagExists(tag: string): boolean {
-	const tags = run(`git tag --list "${tag}"`);
-	return tags.split('\n').includes(tag);
-}
-
-/**
- * Find all CHANGELOG.md files in the repo, excluding node_modules, using glob.
- */
-function findChangelogFiles(repoRoot: string): string[] {
-	return globSync('**/CHANGELOG.md', {
-		cwd: repoRoot,
-		ignore: ['**/node_modules/**'],
-		absolute: true
-	});
-}
-
-/**
- * Extracts the first changelog section (from the first '##' header to the next '##' or end of file).
- * This is useful for extracting the latest release notes, regardless of version string.
- */
-function extractChangelogForVersion(changelog: string): string {
-	// Find the index of the first '##' header
-	const firstHeader = /^##\s.*$/m.exec(changelog);
-	if (!firstHeader) {
-		// No '##' header found, return empty string
-		return '';
-	}
-
-	const startIdx = firstHeader.index;
-
-	// Find the index of the second '##' header after the first
-	const rest = changelog.slice(startIdx + firstHeader[0].length);
-	const secondHeader = /^##\s.*$/m.exec(rest);
-	if (secondHeader) {
-		// Second '##' found: return content from first to second header
-		const endIdx = startIdx + firstHeader[0].length + secondHeader.index;
-		return changelog.slice(startIdx, endIdx).trim();
-	}
-
-	// Only one '##' header: return from first header to end of file
-	return changelog.slice(startIdx).trim();
-}
-
 function getFirstHeadline(changelog: string): string {
 	// Match first line starting with # or ## (allow whitespace)
 	const match = /^\s*#+\s+(.+)$/m.exec(changelog);
@@ -88,8 +45,7 @@ function getFirstHeadline(changelog: string): string {
 }
 
 function getReleaseNotes(): string {
-	const version = getVersion();
-	const repoRoot = path.resolve(__dirname, '../../');
+	const repoRoot = path.resolve(__dirname, '../../../');
 	const changelogFiles = findChangelogFiles(repoRoot);
 	const notes: string[] = [];
 	for (const file of changelogFiles) {
