@@ -1,2 +1,13 @@
 [codespell]
-skip = *.lock,*.json,node_modules,.git,__snapshots__,./showcases/screen-reader/translations.ts
+skip = \
+# package manager files and folders
+*.lock,*.json,node_modules,.git,__snapshots__, \
+# artefacts
+__snapshots__, \
+# build- and output-related folders
+dist,build,coverage, \
+# assets (images, fonts, icons)
+*.svg,*.png,*.jpg,*.jpeg,*.gif,*.ico, \
+*.woff,*.woff2,*.ttf,*.eot, \
+# project-specific files to skip
+./showcases/screen-reader/translations.ts
