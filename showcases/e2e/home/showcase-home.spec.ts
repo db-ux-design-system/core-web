@@ -103,16 +103,16 @@ const testFormComponents = async (
 			}
 
 			case 'radio': {
-				expect(text).toEqual('false');
+				expect(text).toEqual('radio-0');
 				break;
 			}
 
+			case 'combobox':
 			case 'group': {
 				expect(text).toEqual(`combobox-2`);
 				break;
 			}
 
-			case 'combobox':
 			case 'textbox': {
 				expect(text).toEqual(`test${index + 1}`);
 				break;
