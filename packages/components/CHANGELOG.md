@@ -1,5 +1,15 @@
 # @db-ux/core-components
 
+## 3.1.16
+
+### Patch Changes
+
+- a28eb71: fix(custom-select): keyboard navigation for option groups in single-select mode:
+  - Fixes a keyboard accessibility issue where users could not navigate to options in subsequent option groups using arrow keys in single-select mode.
+  - Now, all options are accessible via keyboard regardless of group boundaries.
+- a28eb71: fix: JS framework core-components packages are missing `@db-ux` dependencies
+  - @db-ux/core-foundations@3.1.16
+
 ## 3.1.15
 
 ### Patch Changes
