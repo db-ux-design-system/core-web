@@ -32,7 +32,7 @@ function run(cmd: string, options = {}): any {
 function getVersion(): string {
 	const pkgPath = path.resolve(
 		__dirname,
-		'../../packages/foundations/package.json'
+		'../../../packages/foundations/package.json'
 	);
 	const pkg = JSON.parse(fs.readFileSync(pkgPath, 'utf8'));
 	return pkg.version;
