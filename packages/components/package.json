@@ -1,6 +1,6 @@
 {
   "name": "@db-ux/core-components",
-  "version": "3.1.15",
+  "version": "3.1.16",
   "type": "module",
   "description": "",
   "repository": {
@@ -43,7 +43,7 @@
     "start": "nodemon --watch src --watch scripts --watch scripts --ext js,tsx,ts,scss,json --exec \"npm run build\""
   },
   "dependencies": {
-    "@db-ux/core-foundations": "*"
+    "@db-ux/core-foundations": "3.1.16"
   },
   "devDependencies": {
     "@builder.io/eslint-plugin-mitosis": "0.0.17",
