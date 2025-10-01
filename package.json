@@ -93,7 +93,7 @@
     "@axe-core/playwright": "4.10.2",
     "@babel/eslint-parser": "7.28.4",
     "@changesets/cli": "^2.29.5",
-    "@commitlint/cli": "20.0.0",
+    "@commitlint/cli": "20.1.0",
     "@commitlint/config-conventional": "20.0.0",
     "@db-ux/db-theme": "5.2.0",
     "@double-great/stylelint-a11y": "3.4.0",
