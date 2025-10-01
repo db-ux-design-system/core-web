@@ -52,6 +52,7 @@
     "changeset": "changeset",
     "ci:version": "changeset version && tsx scripts/github/changesets/version-bump.ts",
     "clean": "git clean -dfx --exclude=.env",
+    "codespell": "codespell --ignore-words .config/.codespellignorewords --config .config/.codespellrc",
     "codestyle": "prettier . --write",
     "commit:updated-snapshots": "git diff --name-only --diff-filter=M | xargs git add && git commit --message 'test: updated snapshots'",
     "dev": "npm run dev --workspace=scripts",
