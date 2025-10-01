@@ -17,7 +17,8 @@
     }
   },
   "files": [
-    "dist/"
+    "dist/",
+    "CHANGELOG.md"
   ],
   "scripts": {
     "build": "stencil build",
@@ -41,5 +42,9 @@
     "access": "public"
   },
   "web-types": "./dist/web-types.json",
-  "customElements": "dist/custom-elements.json"
+  "customElements": "dist/custom-elements.json",
+  "dependencies": {
+    "@db-ux/core-components": "3.1.15",
+    "@db-ux/core-foundations": "3.1.15"
+  }
 }
