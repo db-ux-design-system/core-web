@@ -22,5 +22,9 @@
   "publishConfig": {
     "registry": "https://registry.npmjs.org/",
     "access": "public"
+  },
+  "dependencies": {
+    "@db-ux/core-components": "3.1.15",
+    "@db-ux/core-foundations": "3.1.15"
   }
 }
