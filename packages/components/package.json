@@ -10,6 +10,7 @@
   "author": "General technical components out of DB UX Design System (Version 3)",
   "license": "Apache-2.0",
   "files": [
+    "CHANGELOG.md",
     "build"
   ],
   "scripts": {
