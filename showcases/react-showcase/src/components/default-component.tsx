@@ -177,6 +177,7 @@ const DefaultComponent = ({
 								className="link-headline"
 								content="external"
 								target="_blank"
+								rel="noopener noreferrer"
 								href={getHref(variant.name)}>
 								{variant.name}
 							</DBLink>
