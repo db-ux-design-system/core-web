@@ -1,6 +1,9 @@
 ---
 name: Build Patternhub
 
+permissions:
+  contents: read
+
 on:
   workflow_call:
     inputs:
