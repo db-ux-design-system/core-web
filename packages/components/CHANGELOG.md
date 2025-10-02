@@ -1,5 +1,12 @@
 # @db-ux/core-components
 
+## 3.1.17
+
+### Patch Changes
+
+- 354e270: fix: color mode for textarea resizer control set by color-mode-switch documentation UI component
+  - @db-ux/core-foundations@3.1.17
+
 ## 3.1.16
 
 ### Patch Changes
