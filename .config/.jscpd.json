@@ -61,5 +61,6 @@
 		"showcases/shared/*.json",
 		"showcases/vue-showcase/src/components/form/Form.vue"
 	],
+	"ignorePattern": ["<option value=\"test5\">Test5</option>"],
 	"absolute": true
 }
