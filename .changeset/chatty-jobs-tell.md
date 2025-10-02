@@ -1,5 +1,9 @@
 ---
-"@db-ux/core-foundations": patch
+"@db-ux/core-components": patch
+"@db-ux/ngx-core-components": patch
+"@db-ux/react-core-components": patch
+"@db-ux/v-core-components": patch
+"@db-ux/wc-core-components": patch
 ---
 
 fix: color mode for textarea resizer control set by color-mode-switch documentation UI component
