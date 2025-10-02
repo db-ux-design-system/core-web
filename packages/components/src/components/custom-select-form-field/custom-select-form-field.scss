@@ -1,7 +1,7 @@
 @use "@db-ux/core-foundations/build/styles/variables";
 @use "@db-ux/core-foundations/build/styles/helpers";
 @use "../../styles/internal/form-components";
-@use "../../styles/internal/display";
+@use "@db-ux/core-foundations/build/styles/helpers/display";
 
 .db-custom-select-form-field {
 	&:is(summary) {

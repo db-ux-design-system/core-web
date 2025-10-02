@@ -6,7 +6,7 @@
 @use "../../styles/internal/form-components";
 @use "../../styles/internal/component";
 @use "../../styles/internal/select-components";
-@use "../../styles/internal/display";
+@use "@db-ux/core-foundations/build/styles/helpers/display";
 
 .db-select-placeholder {
 	@extend %select-absolute-placeholder;

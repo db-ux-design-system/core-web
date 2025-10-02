@@ -3,7 +3,7 @@
 @use "@db-ux/core-foundations/build/styles/colors";
 @use "@db-ux/core-foundations/build/styles/animation";
 @use "../../styles/internal/form-components";
-@use "../../styles/internal/display";
+@use "@db-ux/core-foundations/build/styles/helpers/display";
 @use "../../styles/internal/component";
 
 .db-accordion-item {

@@ -2,7 +2,7 @@
 @use "@db-ux/core-foundations/build/styles/variables";
 @use "@db-ux/core-foundations/build/styles/helpers";
 @use "custom-elements";
-@use "../../styles/internal/display";
+@use "@db-ux/core-foundations/build/styles/helpers/display";
 
 $stack-gaps: (
 	"3x-small": variables.$db-spacing-fixed-3xs,
