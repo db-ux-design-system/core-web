@@ -4,6 +4,7 @@ name: Test and publish to package registries after new GitHub release
 permissions:
   contents: write
   actions: write
+  id-token: write
 
 on:
   release:
