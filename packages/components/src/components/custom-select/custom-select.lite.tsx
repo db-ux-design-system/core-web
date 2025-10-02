@@ -298,47 +298,74 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 								event.key === 'ArrowDown' ||
 								event.key === 'ArrowRight'
 							) {
-								if (listElement?.nextElementSibling) {
-									listElement?.nextElementSibling
-										?.querySelector('input')
-										?.focus();
-								} else {
+								// Find next element with input, skipping group titles
+								let nextElement =
+									listElement?.nextElementSibling;
+								while (nextElement) {
+									const nextInput =
+										nextElement.querySelector('input');
+									if (nextInput) {
+										nextInput.focus();
+										break;
+									}
+									nextElement =
+										nextElement.nextElementSibling;
+								}
+
+								if (!nextElement) {
 									// We are on the last checkbox we move to the top checkbox
 									state.handleFocusFirstDropdownCheckbox(
 										activeElement
 									);
 								}
 							} else {
-								if (listElement?.previousElementSibling) {
-									listElement?.previousElementSibling
-										?.querySelector('input')
-										?.focus();
-								} else if (
-									detailsRef.querySelector(
-										`input[type="checkbox"]`
-									) !== activeElement
-								) {
-									// We are on the top list checkbox but there is a select all checkbox as well
-									state.handleFocusFirstDropdownCheckbox(
-										activeElement
-									);
-								} else {
-									// We are on the top checkbox, we need to move to the search
-									// or to the last checkbox
-									const search = getSearchInput(detailsRef);
-									if (search) {
-										delay(() => {
-											search.focus();
-										}, 100);
+								// Find previous element with input, skipping group titles
+								let prevElement =
+									listElement?.previousElementSibling;
+								while (prevElement) {
+									const prevInput =
+										prevElement.querySelector('input');
+									if (prevInput) {
+										prevInput.focus();
+										break;
+									}
+									prevElement =
+										prevElement.previousElementSibling;
+								}
+
+								if (!prevElement) {
+									// Check if we have a "select all" checkbox (only relevant for multi-select)
+									const selectAllCheckbox =
+										detailsRef.querySelector(
+											`input[type="checkbox"]`
+										);
+									if (
+										selectAllCheckbox &&
+										selectAllCheckbox !== activeElement
+									) {
+										// We are on the top list checkbox but there is a select all checkbox as well
+										state.handleFocusFirstDropdownCheckbox(
+											activeElement
+										);
 									} else {
-										const checkboxList: HTMLInputElement[] =
-											Array.from(
-												detailsRef?.querySelectorAll(
-													`input[type="checkbox"],input[type="radio"]`
-												)
-											);
-										if (checkboxList.length) {
-											checkboxList.at(-1)?.focus();
+										// We are on the top checkbox, we need to move to the search
+										// or to the last checkbox
+										const search =
+											getSearchInput(detailsRef);
+										if (search) {
+											delay(() => {
+												search.focus();
+											}, 100);
+										} else {
+											const checkboxList: HTMLInputElement[] =
+												Array.from(
+													detailsRef?.querySelectorAll(
+														`input[type="checkbox"],input[type="radio"]`
+													)
+												);
+											if (checkboxList.length) {
+												checkboxList.at(-1)?.focus();
+											}
 										}
 									}
 								}
