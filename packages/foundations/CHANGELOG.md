@@ -2,8 +2,7 @@
 
 ## 3.1.17
 
-*version bump*
-
+_version bump_
 
 ## 3.1.16
 
