@@ -57,7 +57,9 @@ $checked-active-transition-size: calc(
 		);
 		block-size: form-components.$font-size-height;
 		box-sizing: content-box;
-		display: flex;
+
+		@include helpers.display(flex);
+
 		align-items: center;
 		/* stylelint-disable-next-line db-ux/use-spacings */
 		gap: $switch-fixed-padding;
