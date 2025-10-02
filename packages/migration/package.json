@@ -1,6 +1,6 @@
 {
   "name": "@db-ux/core-migration",
-  "version": "3.1.14",
+  "version": "3.1.16",
   "type": "module",
   "description": "Migration script for changing your code in between DB UX Design System v3 versions regarding BREAKING CHANGES.",
   "repository": {
@@ -13,6 +13,7 @@
   },
   "main": "build/index.js",
   "files": [
+    "CHANGELOG.md",
     "build"
   ],
   "scripts": {
