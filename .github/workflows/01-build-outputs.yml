@@ -56,6 +56,11 @@ jobs:
       - name: 🔨 Build outputs
         run: npm run build-outputs
 
+      - name: 📦 Validate Package Publishing
+        run: |
+          npm run lint-packages
+          npm run lint-docs-file-references
+
       - name: ⏫ Upload outputs
         uses: actions/upload-artifact@v4
         with:
