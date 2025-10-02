@@ -8,7 +8,6 @@
 @use "@db-ux/core-foundations/build/styles/helpers";
 @use "component";
 @forward "../visually-hidden";
-@use "../internal/display";
 
 // https://developer.mozilla.org/en-US/docs/Web/CSS/:read-only
 $valid-read-only-form-fields: input, textarea;
