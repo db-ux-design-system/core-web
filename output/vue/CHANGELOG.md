@@ -1,16 +1,5 @@
 # @db-ux/v-core-components
 
-## 3.1.17
-
-### Patch Changes
-
-- 1a7023a: fix: color mode for textarea resizer control set by color-mode-switch documentation UI component
-- 1a7023a: refactor: enabling `hidden` HTML attribute in every context in which we need to set overwriting styling declarations (`display`)
-- Updated dependencies [1a7023a]
-- Updated dependencies [1a7023a]
-  - @db-ux/core-components@3.1.17
-  - @db-ux/core-foundations@3.1.17
-
 ## 3.1.16
 
 ### Patch Changes
