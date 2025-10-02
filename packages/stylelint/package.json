@@ -1,6 +1,6 @@
 {
   "name": "@db-ux/core-stylelint",
-  "version": "3.1.16",
+  "version": "3.1.17",
   "type": "module",
   "description": "Ensures DB UX styles are used correctly",
   "repository": {
