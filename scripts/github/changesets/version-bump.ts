@@ -32,7 +32,7 @@ export function ensureChangelogHasContent() {
 			const insertPos = fileHeaderMatch.index + fileHeaderMatch[0].length;
 			const newContent =
 				content.slice(0, insertPos) +
-				'\n\n*version bump*\n' +
+				'\n\n_version bump_\n' +
 				content.slice(insertPos);
 			fs.writeFileSync(file, newContent, 'utf8');
 		}
