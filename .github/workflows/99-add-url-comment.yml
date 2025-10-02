@@ -1,6 +1,10 @@
 ---
 name: 💬 Add url for gh-page as issue comment to PR
 
+permissions:
+  contents: read
+  pull-requests: write
+
 on:
   workflow_call:
 jobs:

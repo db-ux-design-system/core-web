@@ -21,6 +21,14 @@
 		@media (prefers-color-scheme: dark) {
 			@include default-color-icons.get-color-icons-dark;
 		}
+
+		[data-mode="dark"] {
+			@include default-color-icons.get-color-icons-dark;
+		}
+
+		[data-mode="light"] {
+			@include default-color-icons.get-color-icons-light;
+		}
 	}
 }
 
