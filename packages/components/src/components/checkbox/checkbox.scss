@@ -94,7 +94,7 @@
 	}
 
 	input {
-		@include display.display(flex);
+		@include helpers.display(flex);
 
 		border-radius: variables.$db-border-radius-2xs;
 		align-items: center;

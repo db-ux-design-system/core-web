@@ -30,7 +30,7 @@
 
 	@extend %default-card;
 	@include component.get-data-spacing;
-	@include display.display(flex);
+	@include helpers.display(flex);
 
 	flex-direction: column;
 	background-color: var(--db-card-background-color-default);

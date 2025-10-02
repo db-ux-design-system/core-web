@@ -14,7 +14,7 @@ db-custom-select-list-item:not(:last-of-type) {
 }
 
 .db-custom-select-list-item {
-	@include display.display(flex);
+	@include helpers.display(flex);
 
 	block-size: 100%;
 	position: relative;

@@ -64,7 +64,7 @@
 			@include helpers.divider("top", "after");
 
 			@include screen-sizes.screen("sm") {
-				@include display.display(none);
+				@include helpers.display(none);
 			}
 		}
 	}

@@ -8,7 +8,7 @@
 .db-header {
 	background-color: colors.$db-adaptive-bg-basic-level-1-default;
 
-	@include display.display(flex);
+	@include helpers.display(flex);
 
 	flex-direction: column;
 	position: relative;
@@ -36,7 +36,7 @@
 	}
 
 	.db-link {
-		@include display.display(inline-block);
+		@include helpers.display(inline-block);
 	}
 
 	&[data-on-forcing-mobile="true"] {
@@ -61,7 +61,7 @@
 			.db-header-meta-navigation:empty
 		):has(.db-header-secondary-action:empty) {
 		.db-header-burger-menu-container {
-			@include display.display(none);
+			@include helpers.display(none);
 		}
 	}
 
@@ -75,7 +75,7 @@
 }
 
 .db-header-navigation-bar {
-	@include display.display(flex);
+	@include helpers.display(flex);
 
 	position: relative;
 	padding: variables.$db-spacing-fixed-xs variables.$db-spacing-fixed-md;
@@ -89,7 +89,7 @@
 
 .db-header-meta-navigation {
 	@extend %db-density-functional;
-	@include display.display(flex);
+	@include helpers.display(flex);
 
 	flex-direction: column;
 	gap: variables.$db-spacing-fixed-sm;
@@ -110,17 +110,17 @@
 		}
 
 		&:empty {
-			@include display.display(none);
+			@include helpers.display(none);
 		}
 	}
 
 	&:empty {
-		@include display.display(none);
+		@include helpers.display(none);
 	}
 }
 
 .db-header-navigation-container {
-	@include display.display(inherit);
+	@include helpers.display(inherit);
 
 	flex: 1 1 auto;
 	inline-size: 100%;
@@ -143,12 +143,12 @@
 }
 
 .db-header-brand-container:not(:has(> :nth-child(1))) {
-	@include display.display(none);
+	@include helpers.display(none);
 }
 
 .db-header-action-container:has(> .db-header-secondary-action:empty) {
 	@include screen-sizes.screen("md") {
-		@include display.display(none);
+		@include helpers.display(none);
 	}
 }
 
@@ -177,7 +177,7 @@
 	align-items: center;
 	block-size: 100%;
 
-	@include display.display(inherit);
+	@include helpers.display(inherit);
 
 	gap: inherit;
 	flex: 0 1 auto;
@@ -201,7 +201,7 @@
 }
 
 .db-header-drawer-navigation {
-	@include display.display(flex);
+	@include helpers.display(flex);
 
 	flex-direction: column;
 	flex: 1 1 auto;
@@ -220,7 +220,7 @@
 
 .db-header-navigation,
 .db-header-secondary-action {
-	@include display.display(flex);
+	@include helpers.display(flex);
 
 	gap: variables.$db-spacing-fixed-sm;
 	padding-inline: variables.$db-spacing-fixed-md;
@@ -242,7 +242,7 @@
 	padding-block-end: 0;
 
 	.db-drawer-content {
-		@include display.display(flex);
+		@include helpers.display(flex);
 
 		flex-direction: column;
 		block-size: 100%;
@@ -254,21 +254,21 @@
 .db-header-meta-navigation,
 .db-header-navigation-container > .db-header-navigation,
 .db-header-action-container > .db-header-secondary-action {
-	@include display.display(none);
+	@include helpers.display(none);
 
 	@include screen-sizes.screen("md") {
-		@include display.display(inherit);
+		@include helpers.display(inherit);
 	}
 }
 
 /* Only for Mobile */
 .db-header-drawer-navigation > .db-header-meta-navigation:not(:empty) {
-	@include display.display(inherit);
+	@include helpers.display(inherit);
 }
 
 .db-header-drawer,
 .db-header-burger-menu-container {
 	@include screen-sizes.screen("md") {
-		@include display.display(none);
+		@include helpers.display(none);
 	}
 }
