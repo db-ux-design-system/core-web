@@ -9,7 +9,6 @@
 @use "../../styles/internal/tag-components";
 @use "../../styles/internal/icon-passing";
 @use "../../styles/internal/component";
-@use "@db-ux/core-foundations/build/styles/helpers/display";
 
 %no-text {
 	&[data-no-text="true"] {

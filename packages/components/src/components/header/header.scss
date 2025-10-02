@@ -4,7 +4,6 @@
 @use "@db-ux/core-foundations/build/styles/density";
 @use "@db-ux/core-foundations/build/styles/colors";
 @use "../../styles/internal/component";
-@use "@db-ux/core-foundations/build/styles/helpers/display";
 
 .db-header {
 	background-color: colors.$db-adaptive-bg-basic-level-1-default;
