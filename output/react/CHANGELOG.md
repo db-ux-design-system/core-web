@@ -1,5 +1,14 @@
 # @db-ux/react-core-components
 
+## 3.1.18
+
+### Patch Changes
+
+- 8bb6ee9: refactor: enabling `hidden` HTML attribute in every context in which we need to set overwriting styling declarations (`display`)
+- Updated dependencies [8bb6ee9]
+  - @db-ux/core-components@3.1.18
+  - @db-ux/core-foundations@3.1.18
+
 ## 3.1.17
 
 ### Patch Changes
