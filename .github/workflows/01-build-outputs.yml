@@ -1,6 +1,9 @@
 ---
 name: Build outputs
 
+permissions:
+  contents: read
+
 on:
   workflow_call:
 

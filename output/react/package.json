@@ -1,6 +1,6 @@
 {
   "name": "@db-ux/react-core-components",
-  "version": "3.1.14",
+  "version": "3.1.17",
   "description": "React components for @db-ux/core-components",
   "repository": {
     "type": "git",
@@ -11,7 +11,8 @@
   "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "files": [
-    "dist/"
+    "dist/",
+    "CHANGELOG.md"
   ],
   "scripts": {
     "build": "npm-run-all tsc",
@@ -36,5 +37,9 @@
     "registry": "https://registry.npmjs.org/",
     "access": "public"
   },
-  "sideEffects": false
+  "sideEffects": false,
+  "dependencies": {
+    "@db-ux/core-components": "3.1.17",
+    "@db-ux/core-foundations": "3.1.17"
+  }
 }
