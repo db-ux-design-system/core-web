@@ -3,6 +3,7 @@ name: Dependabot auto-merge
 
 permissions:
   contents: read
+  pull-requests: write
 
 on:
   workflow_call:
