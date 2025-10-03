@@ -109,6 +109,7 @@ updates:
           - "typescript"
           - "tsx"
           - "tslib"
+        # There is no entry for `major`, as these are configured to be ignored in the `ignore` section of this configuration file.
         update-types:
           - "minor"
       # Commitlint
