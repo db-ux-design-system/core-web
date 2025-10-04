@@ -51,6 +51,8 @@ updates:
       patch-dependencies:
         update-types:
           - "patch"
+        patterns:
+          - "*"
       # Major framework dependencies - group by framework for better review
       angular:
         patterns:
