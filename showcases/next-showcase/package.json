@@ -1,9 +1,17 @@
 {
   "name": "next-showcase",
+  "version": "0.0.0",
+  "description": "A Next.js showcase application",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/db-ux-design-system/core-web.git"
+  },
+  "license": "Apache-2.0",
   "private": true,
   "engines": {
     "node": ">=18"
   },
+  "files": [],
   "scripts": {
     "build": "next build",
     "dev": "npm-run-all open next:dev",

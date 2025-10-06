@@ -60,13 +60,13 @@ jobs:
         run: |
           mkdir -p ./build-showcases${{ inputs.path }}
           cp -RT ./build-showcases/patternhub ./build-showcases${{ inputs.path }}
-          npm run test:e2e --workspace=patternhub
+          pnpm --filter=patternhub run test:e2e
 
       - name: 🔣 Print GitHub Report
         if: failure()
         shell: bash
         run: |
-          npx playwright merge-reports --reporter github ./blob-report
+          pnpm exec playwright merge-reports --reporter github ./blob-report
 
       - name: 🆙 Upload test results
         if: failure()

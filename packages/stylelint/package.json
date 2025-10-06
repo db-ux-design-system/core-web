@@ -24,7 +24,7 @@
   ],
   "scripts": {
     "build": "tsc",
-    "copy-output": "npm-run-all copy:*",
+    "copy-output": "pnpm run '/^copy:[^:]*$/'",
     "copy:outputs": "cpr build ../../build-outputs/stylelint/build -o",
     "copy:package.json": "cpr package.json ../../build-outputs/stylelint/package.json -o",
     "copy:readme": "cpr README.md ../../build-outputs/stylelint/README.md -o",

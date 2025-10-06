@@ -1,19 +1,26 @@
 {
   "name": "angular-showcase",
   "version": "0.0.0",
+  "description": "An Angular-based showcase for demonstrating UI components.",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/db-ux-design-system/core-web.git"
+  },
+  "license": "Apache-2.0",
   "private": true,
+  "files": [],
   "scripts": {
     "build": "ng build",
-    "dev": "npm run start -- --open",
+    "dev": "pnpm run start --open",
     "ng": "ng",
-    "preview": "npx http-server ../../build-showcases",
+    "preview": "pnpm exec http-server ../../build-showcases",
     "start": "ng serve --serve-path angular-showcase",
-    "test:a11y-checker": "cross-env showcase=angular-showcase npx playwright test --config=../playwright.a11y-checker.ts",
-    "test:aria-snapshots": "cross-env showcase=angular-showcase npx playwright test --config=../playwright.aria-snapshots.ts",
-    "test:axe-core": "cross-env showcase=angular-showcase npx playwright test --config=../playwright.axe-core.ts",
-    "test:e2e": "cross-env showcase=angular-showcase npx playwright test --config=../playwright.config.ts",
-    "test:ui": "npm run test:e2e -- --ui",
-    "test:visual-snapshots": "cross-env showcase=angular-showcase npx playwright test --config=../playwright.visual-snapshots.ts",
+    "test:a11y-checker": "cross-env showcase=angular-showcase pnpm exec playwright test --config=../playwright.a11y-checker.ts",
+    "test:aria-snapshots": "cross-env showcase=angular-showcase pnpm exec playwright test --config=../playwright.aria-snapshots.ts",
+    "test:axe-core": "cross-env showcase=angular-showcase pnpm exec playwright test --config=../playwright.axe-core.ts",
+    "test:e2e": "cross-env showcase=angular-showcase pnpm exec playwright test --config=../playwright.config.ts",
+    "test:ui": "pnpm run test:e2e --ui",
+    "test:visual-snapshots": "cross-env showcase=angular-showcase pnpm exec playwright test --config=../playwright.visual-snapshots.ts",
     "watch": "ng build --watch --configuration development"
   },
   "dependencies": {

@@ -82,7 +82,7 @@ jobs:
         env:
           NEXT_PUBLIC_BASE_PATH: ${{ inputs.path }}
         run: |
-          npm run test:e2e --workspace=${{ inputs.showcase }} -- --shard=${{ matrix.shardIndex }}/${{ matrix.shardTotal }}
+          pnpm --filter=${{ inputs.showcase }} run test:e2e --shard=${{ matrix.shardIndex }}/${{ matrix.shardTotal }}
 
       # We check if aria-snapshots were changed
       - name: 👩‍🔬 Test aria-snapshots with Playwright 🎭
@@ -90,25 +90,25 @@ jobs:
         shell: bash
         if: github.event.pull_request != null
         run: |
-          npm run test:aria-snapshots --workspace=${{ inputs.showcase }} -- --shard=${{ matrix.shardIndex }}/${{ matrix.shardTotal }} --update-snapshots
-          OUTPUT=$(npx --no tsx scripts/github/snapshot-changes/check-aria.ts)
+          pnpm --filter=${{ inputs.showcase }} run test:aria-snapshots --shard=${{ matrix.shardIndex }}/${{ matrix.shardTotal }} --update-snapshots
+          OUTPUT=$(pnpm exec tsx scripts/github/snapshot-changes/check-aria.ts)
           echo "aria-snapshots-changed=$OUTPUT" >> $GITHUB_OUTPUT
-          OUTPUT=$(npx --no tsx scripts/github/snapshot-changes/check-main-aria.ts)
+          OUTPUT=$(pnpm exec tsx scripts/github/snapshot-changes/check-main-aria.ts)
           echo "aria-snapshots-changed-to-main=$OUTPUT" >> $GITHUB_OUTPUT
 
       - name: 👩‍🔬 Test axe-core with Playwright 🎭
         shell: bash
         if: github.event.pull_request != null
         run: |
-          npm run test:axe-core --workspace=${{ inputs.showcase }} -- --shard=${{ matrix.shardIndex }}/${{ matrix.shardTotal }}
+          pnpm --filter=${{ inputs.showcase }} run test:axe-core --shard=${{ matrix.shardIndex }}/${{ matrix.shardTotal }}
 
       - name: 👩‍🔬 Test visual-snapshots with Playwright 🎭
         id: visual-snapshots
         shell: bash
         if: github.event.pull_request != null
         run: |
-          npm run test:visual-snapshots --workspace=${{ inputs.showcase }} -- --shard=${{ matrix.shardIndex }}/${{ matrix.shardTotal }} --update-snapshots
-          OUTPUT=$(npx --no tsx scripts/github/snapshot-changes/check-visual.ts)
+          pnpm --filter=${{ inputs.showcase }} run test:visual-snapshots --shard=${{ matrix.shardIndex }}/${{ matrix.shardTotal }} --update-snapshots
+          OUTPUT=$(pnpm exec tsx scripts/github/snapshot-changes/check-visual.ts)
           echo "visual-snapshots-changed=$OUTPUT" >> $GITHUB_OUTPUT
 
       - name: 👩‍🔬 Test a11y-checker with Playwright 🎭
@@ -117,13 +117,13 @@ jobs:
           github.event.pull_request != null &&
           steps.aria-snapshots.outputs.aria-snapshots-changed-to-main=='true'
         run: |
-          npm run test:a11y-checker --workspace=${{ inputs.showcase }} -- --shard=${{ matrix.shardIndex }}/${{ matrix.shardTotal }}
+          pnpm --filter=${{ inputs.showcase }} run test:a11y-checker --shard=${{ matrix.shardIndex }}/${{ matrix.shardTotal }}
 
       - name: 🔣 Print GitHub Report
         if: failure()
         shell: bash
         run: |
-          npx playwright merge-reports --reporter github ./blob-report
+          pnpm exec playwright merge-reports --reporter github ./blob-report
 
       - name: 🆙 Upload test results
         if: failure()

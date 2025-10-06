@@ -2,12 +2,19 @@
   "name": "patternhub",
   "version": "0.1.0",
   "type": "module",
+  "description": "PatternHub is a component library and design system showcase for building consistent and reusable UI components.",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/db-ux-design-system/core-web.git"
+  },
+  "license": "Apache-2.0",
   "private": true,
+  "files": [],
   "scripts": {
     "build": "npm-run-all compile build:*",
     "build:app": "next build",
     "build:copy": "cpr out ../../build-showcases/patternhub -o",
-    "compile": "npm-run-all compile:*",
+    "compile": "pnpm run '/^compile:[^:]*$/'",
     "compile:01_jsx": "node scripts/generate-example-jsx.js",
     "compile:02_copy-docs": "cpr ../../docs ./public/docs -o",
     "compile:03_components": "node scripts/esbuild-generate.mjs",
@@ -18,9 +25,9 @@
     "next:dev": "next dev",
     "open": "open-cli http://localhost:3000/core-web/sub",
     "prebuild:app": "cpr ../../node_modules/iframe-resizer/js/ public/iframe-resizer -o",
-    "regenerate:screenshots": "npx playwright test --config=./playwright.patternhub-config.ts --update-snapshots",
+    "regenerate:screenshots": "pnpm exec playwright test --config=./playwright.patternhub-config.ts --update-snapshots",
     "start": "cross-env NEXT_PUBLIC_BASE_PATH=/core-web/sub npm-run-all compile next:dev",
-    "test:e2e": "npx playwright test --config=./playwright.patternhub-config.ts"
+    "test:e2e": "pnpm exec playwright test --config=./playwright.patternhub-config.ts"
   },
   "dependencies": {
     "dompurify": "3.2.7",
