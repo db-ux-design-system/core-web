@@ -34,15 +34,15 @@ jobs:
     name: Repository Settings
     runs-on: ubuntu-24.04
     outputs:
-      name: ${{ steps.extract-name-and-base.outputs.result.name }}
-      baseUrl: ${{ steps.extract-name-and-base.outputs.result.baseUrl }}
-      repoName: ${{ steps.extract-name-and-base.outputs.result.repo }}
-      repoOwner: ${{ steps.extract-name-and-base.outputs.result.owner }}
+      name: ${{ steps.extract-name-and-base.outputs.name }}
+      baseUrl: ${{ steps.extract-name-and-base.outputs.baseUrl }}
+      repoName: ${{ steps.extract-name-and-base.outputs.repo }}
+      repoOwner: ${{ steps.extract-name-and-base.outputs.owner }}
     steps:
       - name: ⏬ Checkout repo
         uses: actions/checkout@v5
 
-      - name: 🛤 Get base path
+      - name: 🛤 Extract name and base
         id: extract-name-and-base
         uses: actions/github-script@v8
         with:

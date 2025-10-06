@@ -45,7 +45,7 @@ function extractNameAndBaseUrl(context) {
 	const ownerName = process.env.GITHUB_REPOSITORY_OWNER || '';
 	console.log('repoName:', repoName, 'ownerName:', ownerName);
 
-	const baseUrl = `/${repoName}/${path}/${process.env.NAME}`;
+	const baseUrl = `/${repoName}/${path}/${name}`;
 	console.log('Constructed baseUrl:', baseUrl);
 
 	const result = { name, baseUrl, repo: repoName, owner: ownerName };
