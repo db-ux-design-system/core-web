@@ -34,16 +34,16 @@ jobs:
     name: Repository Settings
     runs-on: ubuntu-24.04
     outputs:
-      name: ${{ steps.base-path.outputs.result.name }}
-      baseUrl: ${{ steps.base-path.outputs.result.baseUrl }}
-      repoName: ${{ steps.base-path.outputs.result.repo }}
-      repoOwner: ${{ steps.base-path.outputs.result.owner }}
+      name: ${{ steps.extract-name-and-base.outputs.result.name }}
+      baseUrl: ${{ steps.extract-name-and-base.outputs.result.baseUrl }}
+      repoName: ${{ steps.extract-name-and-base.outputs.result.repo }}
+      repoOwner: ${{ steps.extract-name-and-base.outputs.result.owner }}
     steps:
       - name: ⏬ Checkout repo
         uses: actions/checkout@v5
 
       - name: 🛤 Get base path
-        id: base-path
+        id: extract-name-and-base
         uses: actions/github-script@v8
         with:
           result-encoding: json
