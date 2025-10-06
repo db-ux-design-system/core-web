@@ -318,7 +318,10 @@ jobs:
       preRelease: false
 
   preview-url-pr-description:
-    runs-on: ubuntu-24.04 [Beta]
+    runs-on: ubuntu-24.04  # Use Ubuntu 24.04 explicitly
+    permissions:
+      pull-requests: write
+      contents: write
     steps:
       - name: 🔭 Add url for preview page
         id: cleanup
@@ -327,5 +330,5 @@ jobs:
           script: |
             const { default: previewUrlPrDescription } = await import('${{ github.workspace }}/scripts/github/preview-url-pr-description.js');
             return await previewUrlPrDescription(github, context);
-    if: ${{ github.event.pull_request != null }}
+    if: ${{ !cancelled() && github.event.pull_request != null }}
     needs: [deploy]
