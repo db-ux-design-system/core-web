@@ -48,7 +48,7 @@ jobs:
         with:
           script: |
             const { default: extractNameAndBaseUrl } = await import('${{ github.workspace }}/scripts/github/extract-name-and-base-url.js');
-            return await extractNameAndBaseUrl(context);
+            return extractNameAndBaseUrl(context);
 
       - name: ✒️ Write to output
         id: result
