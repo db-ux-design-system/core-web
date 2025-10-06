@@ -53,10 +53,11 @@ jobs:
       - name: ✒️ Write to output
         id: result
         env:
-          NAME: ${{ steps.extract-name-and-base.outputs.name }}
-          BASE_URL: ${{ steps.extract-name-and-base.outputs.baseUrl }}
-          REPO_NAME: ${{ steps.extract-name-and-base.outputs.repo }}
-          REPO_OWNER: ${{ steps.extract-name-and-base.outputs.owner }}
+          RESULT: ${{ steps.extract-name-and-base.outputs.result }}
+          NAME: ${{ toJSON(steps.extract-name-and-base.outputs.result).name }}
+          BASE_URL: ${{ toJSON(steps.extract-name-and-base.outputs.result).baseUrl }}
+          REPO_NAME: ${{ toJSON(steps.extract-name-and-base.outputs.result).repo }}
+          REPO_OWNER: ${{ toJSON(steps.extract-name-and-base.outputs.result).owner }}
         run: |
           echo "name=$NAME" >> $GITHUB_OUTPUT
           echo "baseUrl=$BASE_URL" >> $GITHUB_OUTPUT
