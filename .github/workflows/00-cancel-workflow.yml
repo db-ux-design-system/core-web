@@ -20,5 +20,5 @@ jobs:
             --header "Accept: application/vnd.github+json" \
             /repos/db-ux-design-system/core-web/actions/runs/${{ github.run_id }}/cancel
         shell: bash
-        with:
+        env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
