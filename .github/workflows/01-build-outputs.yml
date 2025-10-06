@@ -66,9 +66,3 @@ jobs:
         with:
           name: db-ux-outputs
           path: build-outputs
-
-      - name: 💀 Killing me softly
-        uses: ./.github/actions/cancel-workflow
-        if: failure()
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
