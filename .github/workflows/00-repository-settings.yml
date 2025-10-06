@@ -46,7 +46,6 @@ jobs:
         id: extract-name-and-base
         uses: actions/github-script@v8
         with:
-          result-encoding: json
           script: |
             const { default: extractNameAndBaseUrl } = await import('${{ github.workspace }}/scripts/github/extract-name-and-base-url.js');
             return await extractNameAndBaseUrl(context);
@@ -54,10 +53,10 @@ jobs:
       - name: ✒️ Write to output
         id: result
         env:
-          NAME: ${{ steps.extract-name-and-base.outputs.result.name }}
-          BASE_URL: ${{ steps.extract-name-and-base.outputs.result.baseUrl }}
-          REPO_NAME: ${{ steps.extract-name-and-base.outputs.result.repo }}
-          REPO_OWNER: ${{ steps.extract-name-and-base.outputs.result.owner }}
+          NAME: ${{ steps.extract-name-and-base.outputs.name }}
+          BASE_URL: ${{ steps.extract-name-and-base.outputs.baseUrl }}
+          REPO_NAME: ${{ steps.extract-name-and-base.outputs.repo }}
+          REPO_OWNER: ${{ steps.extract-name-and-base.outputs.owner }}
         run: |
           echo "name=$NAME" >> $GITHUB_OUTPUT
           echo "baseUrl=$BASE_URL" >> $GITHUB_OUTPUT

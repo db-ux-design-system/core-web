@@ -1,5 +1,8 @@
 ---
-name: Build Storyboojs
+name: Build Storybooks
+
+permissions:
+  contents: read
 
 on:
   workflow_call:
