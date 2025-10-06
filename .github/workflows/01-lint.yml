@@ -1,5 +1,8 @@
 name: Lint
 
+permissions:
+  contents: read
+
 on:
   workflow_call:
 
@@ -19,9 +22,3 @@ jobs:
           pnpm --filter=nuxt-showcase run postinstall
           pnpm --filter=@db-ux/core-stylelint run build
           pnpm run lint
-
-      - name: 💀 Killing me softly
-        uses: ./.github/actions/cancel-workflow
-        if: failure()
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}

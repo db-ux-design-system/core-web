@@ -1,6 +1,6 @@
 {
   "name": "@db-ux/react-core-components",
-  "version": "0.0.0",
+  "version": "3.1.17",
   "description": "React components for @db-ux/core-components",
   "repository": {
     "type": "git",
@@ -11,7 +11,8 @@
   "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "files": [
-    "dist/"
+    "dist/",
+    "CHANGELOG.md"
   ],
   "scripts": {
     "build": "pnpm run tsc",
@@ -27,7 +28,7 @@
     "tsc": "tsc --project . --sourceMap false"
   },
   "devDependencies": {
-    "@playwright/experimental-ct-react": "1.54.2",
+    "@playwright/experimental-ct-react": "1.55.1",
     "@types/react": "18.3.13",
     "react": "18.3.1",
     "react-dom": "18.3.1"
@@ -36,5 +37,9 @@
     "registry": "https://registry.npmjs.org/",
     "access": "public"
   },
-  "sideEffects": false
+  "sideEffects": false,
+  "dependencies": {
+    "@db-ux/core-components": "3.1.17",
+    "@db-ux/core-foundations": "3.1.17"
+  }
 }

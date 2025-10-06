@@ -37,24 +37,27 @@ const packages = [
 for (const PACKAGE of packages) {
 	console.log(`Start ${PACKAGE} bundle:`);
 
-	console.log('🆚 Update Version');
-	execSync(
-		`pnpm --filter=@db-ux/${PACKAGE} version --no-git-tag-version ${VALID_SEMVER_VERSION}`
-	);
-
-	if (
-		PACKAGE !== 'core-foundations' &&
-		PACKAGE !== 'core-migration' &&
-		PACKAGE !== 'core-stylelint'
-	) {
-		console.log('🕵️‍ Set foundations dependency');
+	if (PRE_RELEASE) {
+		// Only update versions for pre-releases
+		console.log('🆚 Update Version');
 		execSync(
-			`pnpm --filter=@db-ux/${PACKAGE} pkg set dependencies.@db-ux/core-foundations=${VALID_SEMVER_VERSION}`
+			`pnpm --filter=@db-ux/${PACKAGE} version --no-git-tag-version ${VALID_SEMVER_VERSION}`
 		);
-		if (PACKAGE !== 'core-components') {
+
+		if (
+			PACKAGE !== 'core-foundations' &&
+			PACKAGE !== 'core-migration' &&
+			PACKAGE !== 'core-stylelint'
+		) {
+			console.log('🕵️‍ Set foundations dependency');
 			execSync(
 				`pnpm --filter=@db-ux/${PACKAGE} pkg set dependencies.@db-ux/core-components=${VALID_SEMVER_VERSION}`
 			);
+			if (PACKAGE !== 'core-components') {
+				execSync(
+					`pnpm --filter=@db-ux/${PACKAGE} pkg set dependencies.@db-ux/core-components=${VALID_SEMVER_VERSION}`
+				);
+			}
 		}
 	}
 

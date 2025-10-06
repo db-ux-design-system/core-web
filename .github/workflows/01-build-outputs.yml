@@ -1,6 +1,9 @@
 ---
 name: Build outputs
 
+permissions:
+  contents: read
+
 on:
   workflow_call:
 
@@ -51,14 +54,13 @@ jobs:
       - name: 🔨 Build outputs
         run: pnpm run build-outputs
 
+      - name: 📦 Validate Package Publishing
+        run: |
+          npm run lint-packages
+          npm run lint-docs-file-references
+
       - name: ⏫ Upload outputs
         uses: actions/upload-artifact@v4
         with:
           name: db-ux-outputs
           path: build-outputs
-
-      - name: 💀 Killing me softly
-        uses: ./.github/actions/cancel-workflow
-        if: failure()
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}

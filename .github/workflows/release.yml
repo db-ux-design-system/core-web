@@ -1,6 +1,11 @@
 ---
 name: Test and publish to package registries after new GitHub release
 
+permissions:
+  contents: write
+  actions: write
+  id-token: write
+
 on:
   release:
     types: [published]
@@ -143,7 +148,7 @@ jobs:
       version: ${{ needs.get-playwright-version.outputs.version }}
 
   checks-done:
-    if: ${{ always() }}
+    if: ${{ !cancelled() }}
     runs-on: ubuntu-24.04 # Use Ubuntu 24.04 explicitly
     steps:
       - name: 🎉 Checks done

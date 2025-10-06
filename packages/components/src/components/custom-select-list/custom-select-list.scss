@@ -1,5 +1,6 @@
 @use "@db-ux/core-foundations/build/styles/variables";
 @use "../../styles/internal/form-components";
+@use "@db-ux/core-foundations/build/styles/helpers/display";
 
 .db-custom-select-list {
 	all: unset;
@@ -26,7 +27,9 @@
 
 	> ul {
 		all: unset;
-		display: flex;
+
+		@include display.display(flex);
+
 		flex-direction: column;
 
 		&:has(span) {
