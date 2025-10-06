@@ -6,6 +6,7 @@
 @use "../../styles/internal/form-components";
 @use "../../styles/internal/component";
 @use "../../styles/internal/select-components";
+@use "@db-ux/core-foundations/build/styles/helpers/display";
 
 .db-select-placeholder {
 	@extend %select-absolute-placeholder;
@@ -46,7 +47,7 @@
 
 	&:has(> select option:checked:not(.placeholder)) {
 		[id$="-placeholder"] {
-			display: none;
+			@include display.display(none);
 		}
 	}
 }

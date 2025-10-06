@@ -1,6 +1,6 @@
 {
   "name": "@db-ux/v-core-components",
-  "version": "3.1.15",
+  "version": "3.1.17",
   "type": "module",
   "description": "Vue components for @db-ux/core-components",
   "repository": {
@@ -23,7 +23,8 @@
     }
   },
   "files": [
-    "dist/"
+    "dist/",
+    "CHANGELOG.md"
   ],
   "scripts": {
     "build": "npm-run-all build:*",
@@ -51,5 +52,9 @@
     "access": "public"
   },
   "sideEffects": false,
-  "source": "src/index.ts"
+  "source": "src/index.ts",
+  "dependencies": {
+    "@db-ux/core-components": "3.1.17",
+    "@db-ux/core-foundations": "3.1.17"
+  }
 }
