@@ -1,6 +1,9 @@
 ---
 name: Repository Settings
 
+permissions:
+  contents: read
+
 on:
   workflow_call:
     inputs:
@@ -47,4 +50,3 @@ jobs:
           script: |
             const { default: extractNameAndBaseUrl } = await import('${{ github.workspace }}/scripts/github/extract-name-and-base-url.js');
             return await extractNameAndBaseUrl(context);
-
