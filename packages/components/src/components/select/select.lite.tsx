@@ -61,10 +61,9 @@ export default function DBSelect(props: DBSelectProps) {
 		_validMessageId: undefined,
 		_invalidMessageId: undefined,
 		_invalidMessage: undefined,
-		_placeholderId: '',
+		_placeholderId: undefined,
 		_descByIds: undefined,
 		_value: '',
-		initialized: false,
 		_voiceOverFallback: '',
 		hasValidState: () => {
 			return !!(props.validMessage ?? props.validation === 'valid');
@@ -155,7 +154,6 @@ export default function DBSelect(props: DBSelectProps) {
 	});
 
 	onMount(() => {
-		state.initialized = true;
 		const mId = props.id ?? `select-${uuid()}`;
 		state._id = mId;
 		state._messageId = mId + DEFAULT_MESSAGE_ID_SUFFIX;
@@ -180,27 +178,24 @@ export default function DBSelect(props: DBSelectProps) {
 	}, [_ref, props.invalidMessage]);
 
 	onUpdate(() => {
-		if (state._id && state.initialized) {
+		if (state._id) {
 			const messageId = state._id + DEFAULT_MESSAGE_ID_SUFFIX;
-			const placeholderId = state._id + DEFAULT_PLACEHOLDER_ID_SUFFIX;
-			state._messageId = messageId;
 			state._validMessageId = state._id + DEFAULT_VALID_MESSAGE_ID_SUFFIX;
 			state._invalidMessageId =
 				state._id + DEFAULT_INVALID_MESSAGE_ID_SUFFIX;
-			state._placeholderId = placeholderId;
+			state._placeholderId = state._id + DEFAULT_PLACEHOLDER_ID_SUFFIX;
 
 			if (stringPropVisible(props.message, props.showMessage)) {
 				state._descByIds = messageId;
 			} else if (props.placeholder) {
-				state._descByIds = placeholderId;
+				state._descByIds = state._placeholderId;
 			} else {
 				state._descByIds = undefined;
 			}
 
 			state.handleValidation();
-			state.initialized = false;
 		}
-	}, [state._id, state.initialized]);
+	}, [state._id]);
 
 	onUpdate(() => {
 		state._value = props.value;

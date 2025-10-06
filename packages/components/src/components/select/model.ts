@@ -13,7 +13,6 @@ import {
 	GlobalProps,
 	GlobalState,
 	IconProps,
-	InitializedState,
 	InputEventProps,
 	InputEventState,
 	ShowIconProps
@@ -77,7 +76,7 @@ export type DBSelectProps = GlobalProps &
 	FormSizeProps;
 
 export type DBSelectDefaultState = {
-	_placeholderId: string;
+	_placeholderId: string | undefined;
 	getOptionLabel: (option: DBSelectOptionType) => string;
 };
 
@@ -88,5 +87,4 @@ export type DBSelectState = DBSelectDefaultState &
 	FocusEventState<HTMLSelectElement> &
 	InputEventState<HTMLSelectElement> &
 	FormState &
-	InitializedState &
 	FromValidState;
