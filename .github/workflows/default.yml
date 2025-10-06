@@ -182,7 +182,7 @@ jobs:
 
   test-showcase-patternhub:
     uses: ./.github/workflows/02-e2e-patternhub.yml
-    needs: [build-showcase-patternhub, get-playwright-version]
+    needs: [build-showcase-patternhub, get-playwright-version, repo-settings]
     with:
       version: ${{ needs.get-playwright-version.outputs.version }}
       baseUrl: ${{ needs.repo-settings.outputs.baseUrl }}
