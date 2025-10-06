@@ -15,10 +15,7 @@ jobs:
     steps:
       - name: 💀 Killing me softly
         run: |
-          gh api \
-            --method POST \
-            --header "Accept: application/vnd.github+json" \
-            /repos/db-ux-design-system/core-web/actions/runs/${{ github.run_id }}/cancel
+          gh run cancel ${{ github.run_id }}
         shell: bash
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
