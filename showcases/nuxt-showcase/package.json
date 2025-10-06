@@ -2,7 +2,14 @@
   "name": "nuxt-showcase",
   "version": "0.0.0",
   "type": "module",
+  "description": "A Nuxt 4 showcase project",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/db-ux-design-system/core-web.git"
+  },
+  "license": "Apache-2.0",
   "private": true,
+  "files": [],
   "scripts": {
     "build": "nuxt build",
     "dev": "nuxt dev --open",

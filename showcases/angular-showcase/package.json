@@ -1,7 +1,14 @@
 {
   "name": "angular-showcase",
   "version": "0.0.0",
+  "description": "An Angular-based showcase for demonstrating UI components.",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/db-ux-design-system/core-web.git"
+  },
+  "license": "Apache-2.0",
   "private": true,
+  "files": [],
   "scripts": {
     "build": "ng build",
     "dev": "pnpm run start --open",

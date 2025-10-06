@@ -2,7 +2,14 @@
   "name": "react-showcase",
   "version": "0.0.0",
   "type": "module",
+  "description": "A React-based showcase for demonstrating accessibility features and best practices.",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/db-ux-design-system/core-web.git"
+  },
+  "license": "Apache-2.0",
   "private": true,
+  "files": [],
   "scripts": {
     "build": "pnpm run '/^build:[^:]*$/'",
     "build:01_tsc": "tsc",

@@ -2,7 +2,14 @@
   "name": "vue-showcase",
   "version": "0.0.0",
   "type": "module",
+  "description": "A Vue 3 Showcase for Sa11y",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/db-ux-design-system/core-web.git"
+  },
+  "license": "Apache-2.0",
   "private": true,
+  "files": [],
   "scripts": {
     "build": "pnpm run '/^build:[^:]*$/'",
     "build:01_vite": "vite build",

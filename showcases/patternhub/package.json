@@ -2,7 +2,14 @@
   "name": "patternhub",
   "version": "0.1.0",
   "type": "module",
+  "description": "PatternHub is a component library and design system showcase for building consistent and reusable UI components.",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/db-ux-design-system/core-web.git"
+  },
+  "license": "Apache-2.0",
   "private": true,
+  "files": [],
   "scripts": {
     "build": "npm-run-all compile build:*",
     "build:app": "next build",
