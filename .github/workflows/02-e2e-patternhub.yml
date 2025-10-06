@@ -6,7 +6,7 @@ on:
       version:
         required: true
         type: string
-      path:
+      baseUrl:
         required: false
         type: string
 
@@ -56,10 +56,10 @@ jobs:
       - name: 👩‍🔬 Test showcase with Playwright 🎭
         shell: bash
         env:
-          NEXT_PUBLIC_BASE_PATH: ${{ inputs.path }}
+          NEXT_PUBLIC_BASE_PATH: ${{ inputs.baseUrl }}
         run: |
-          mkdir -p ./build-showcases${{ inputs.path }}
-          cp -RT ./build-showcases/patternhub ./build-showcases${{ inputs.path }}
+          mkdir -p ./build-showcases${{ inputs.baseUrl }}
+          cp -RT ./build-showcases/patternhub ./build-showcases${{ inputs.baseUrl }}
           npm run test:e2e --workspace=patternhub
 
       - name: 🔣 Print GitHub Report

@@ -1,0 +1,12 @@
+{
+  "name": "angular-storybook",
+  "version": "0.0.0",
+  "scripts": {
+    "storybook": "ng run angular-latest:storybook",
+    "build": "ng run angular-latest:build-storybook"
+  },
+  "private": true,
+  "devDependencies": {
+    "@storybook/angular": "9.1.9"
+  }
+}

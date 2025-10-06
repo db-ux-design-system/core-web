@@ -18,6 +18,13 @@ jobs:
     uses: ./.github/workflows/01-get-publish-version.yml
     needs: [init]
 
+  repo-settings:
+    uses: ./.github/workflows/00-repository-settings.yml
+    needs: [get-publish-version]
+    with:
+      release: ${{ needs.get-publish-version.outputs.release }}
+      preRelease: ${{ needs.get-publish-version.outputs.preRelease }}
+
   lint:
     uses: ./.github/workflows/01-lint.yml
     needs: [init]
@@ -51,6 +58,34 @@ jobs:
     needs: [build-packages, get-playwright-version]
     with:
       version: ${{ needs.get-playwright-version.outputs.version }}
+
+  build-storybook-composition:
+    uses: ./.github/workflows/01-build-storybooks.yml
+    needs: [build-packages, repo-settings]
+    with:
+      storybook: storybook
+      baseUrl: ${{ needs.repo-settings.outputs.baseUrl }}
+
+  build-storybook-angular:
+    uses: ./.github/workflows/01-build-storybooks.yml
+    needs: [build-packages, repo-settings]
+    with:
+      storybook: angular-storybook
+      baseUrl: ${{ needs.repo-settings.outputs.baseUrl }}
+
+  build-storybook-react:
+    uses: ./.github/workflows/01-build-storybooks.yml
+    needs: [build-packages, repo-settings]
+    with:
+      storybook: react-storybook
+      baseUrl: ${{ needs.repo-settings.outputs.baseUrl }}
+
+  build-storybook-vue:
+    uses: ./.github/workflows/01-build-storybooks.yml
+    needs: [build-packages, repo-settings]
+    with:
+      storybook: vue-storybook
+      baseUrl: ${{ needs.repo-settings.outputs.baseUrl }}
 
   build-showcase-stencil:
     uses: ./.github/workflows/01-build-showcases.yml
@@ -98,8 +133,7 @@ jobs:
     uses: ./.github/workflows/01-build-patternhub.yml
     needs: [build-packages, get-publish-version]
     with:
-      release: ${{ needs.get-publish-version.outputs.release }}
-      preRelease: ${{ needs.get-publish-version.outputs.preRelease }}
+      baseUrl: ${{ needs.repo-settings.outputs.baseUrl }}
 
   test-showcase-stencil:
     uses: ./.github/workflows/02-e2e-showcases.yml
@@ -134,7 +168,7 @@ jobs:
     needs: [build-showcase-patternhub, get-playwright-version]
     with:
       version: ${{ needs.get-playwright-version.outputs.version }}
-      path: ${{ needs.build-showcase-patternhub.outputs.path }}
+      baseUrl: ${{ needs.repo-settings.outputs.baseUrl }}
 
   test-screen-reader:
     uses: ./.github/workflows/02-e2e-screen-reader.yml
@@ -148,6 +182,10 @@ jobs:
     steps:
       - name: 🎉 Checks done
         run: |
+          resultBuildStorybookComposition="${{ needs.build-storybook-composition.result }}"
+          resultBuildStorybookAngular="${{ needs.build-storybook-angular.result }}"
+          resultBuildStorybookReact="${{ needs.build-storybook-react.result }}"
+          resultBuildStorybookVue="${{ needs.build-storybook-vue.result }}"
           resultBuildShowcaseStencil="${{ needs.build-showcase-stencil.result }}"
           resultBuildShowcaseAngular="${{ needs.build-showcase-angular.result }}"
           resultBuildShowcaseAngularSSR="${{ needs.build-showcase-angular-ssr.result }}"
@@ -165,7 +203,11 @@ jobs:
           resultTestShowcaseVue="${{ needs.test-showcase-vue.result }}"
           resultTestShowcasePatternhub="${{ needs.test-showcase-patternhub.result }}"
           resultTestScreenReader="${{ needs.test-screen-reader.result }}"
-          if [[ $resultTestFoundations == "success" ]] && \
+          if [[ $resultBuildStorybookComposition == "success" ]] && \
+             [[ $resultBuildStorybookAngular == "success" ]] && \
+             [[ $resultBuildStorybookReact == "success" ]] && \
+             [[ $resultBuildStorybookVue == "success" ]] && \
+             [[ $resultTestFoundations == "success" ]] && \
              [[ $resultTestScreenReader == "success" ]] && \
              [[ $resultTestShowcaseStencil == "success" ]] && \
              [[ $resultTestShowcaseAngular == "success" ]] && \
@@ -190,6 +232,10 @@ jobs:
           fi
     needs:
       [
+        build-storybook-composition,
+        build-storybook-angular,
+        build-storybook-react,
+        build-storybook-vue,
         build-showcase-stencil,
         build-showcase-angular,
         build-showcase-angular-ssr,
@@ -211,10 +257,13 @@ jobs:
 
   deploy:
     uses: ./.github/workflows/03-deploy-gh-pages.yml
-    needs: [checks-done, get-publish-version]
+    needs: [checks-done, get-publish-version, repo-settings]
     with:
       release: ${{ needs.get-publish-version.outputs.release }}
       preRelease: ${{ needs.get-publish-version.outputs.preRelease }}
+      name: ${{ needs.repo-settings.outputs.name }}
+      repoName: ${{ needs.repo-settings.outputs.repoName }}
+      repoOwner: ${{ needs.repo-settings.outputs.repoOwner }}
 
   publishpackages:
     uses: ./.github/workflows/03-publish-packages.yml

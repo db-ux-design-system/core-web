@@ -1,0 +1,50 @@
+---
+name: Repository Settings
+
+on:
+  workflow_call:
+    inputs:
+      release:
+        required: false
+        default: "false"
+        type: string
+      preRelease:
+        required: false
+        default: "false"
+        type: string
+    outputs:
+      name:
+        description: "Branch or Tag name"
+        value: ${{ jobs.repository-settings.outputs.name }}
+      baseUrl:
+        description: "Base URL for the repository"
+        value: ${{ jobs.repository-settings.outputs.baseUrl }}
+      repoName:
+        description: "Repository name"
+        value: ${{ jobs.repository-settings.outputs.repoName }}
+      repoOwner:
+        description: "Repository owner"
+        value: ${{ jobs.repository-settings.outputs.repoOwner }}
+
+jobs:
+  repository-settings:
+    name: Repository Settings
+    runs-on: ubuntu-24.04
+    outputs:
+      name: ${{ steps.base-path.outputs.result.name }}
+      baseUrl: ${{ steps.base-path.outputs.result.baseUrl }}
+      repoName: ${{ steps.base-path.outputs.result.repo }}
+      repoOwner: ${{ steps.base-path.outputs.result.owner }}
+    steps:
+      - name: ⏬ Checkout repo
+        uses: actions/checkout@v5
+
+      - name: 🛤 Get base path
+        id: base-path
+        uses: actions/github-script@v8
+        with:
+          result-encoding: json
+          script: |
+            const { default: extractNameAndBaseUrl } = await import('${{ github.workspace }}/scripts/github/extract-name-and-base-url.js');
+            return await extractNameAndBaseUrl(context);
+
