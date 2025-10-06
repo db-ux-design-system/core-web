@@ -1,3 +1,4 @@
+/* eslint-disable camelcase */
 // Usage: node update-pr-description.js <owner> <repo> <pull_number> <head_ref>
 // Requires: GITHUB_TOKEN in env
 
