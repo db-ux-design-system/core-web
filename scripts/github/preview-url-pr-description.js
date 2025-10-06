@@ -6,13 +6,17 @@
  * @param {import('@actions/github').GitHub} github - Octokit client from actions/github-script
  * @param {object} context - GitHub Actions context
  */
-async function previewUrlPrDescription(github, context) {
-	const { owner, repo } = context;
+async function previewUrlPrDescription({ github, context }) {
+	const { owner, repo } = context.repo;
 	const pullNumber = context.payload.pull_request.number;
 	const headRef = context.payload.pull_request.head.ref;
 
 	// Fetch current PR
-	const pr = await github.rest.pulls.get({ owner, repo, pullNumber });
+	const pr = await github.rest.pulls.get({
+		owner,
+		repo,
+		pull_number: pullNumber
+	});
 	const urlSectionStart = '\n<!-- DBUX-TEST-URL-START -->';
 	const urlSectionEnd = '\n<!-- DBUX-TEST-URL-END -->';
 	const testUrl = `🔭🐙🐈 Test this branch here: https://${owner}.github.io/${repo}/review/${headRef}`;
@@ -27,7 +31,12 @@ async function previewUrlPrDescription(github, context) {
 
 	// Add the new test URL section at the end
 	body = body.trim() + `${urlSectionStart}\n${testUrl}${urlSectionEnd}`;
-	await github.rest.pulls.update({ owner, repo, pullNumber, body });
+	await github.rest.pulls.update({
+		owner,
+		repo,
+		pull_number: pullNumber,
+		body
+	});
 }
 
 export default previewUrlPrDescription;
