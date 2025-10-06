@@ -34,10 +34,10 @@ jobs:
     name: Repository Settings
     runs-on: ubuntu-24.04
     outputs:
-      name: ${{ steps.extract-name-and-base.outputs.name }}
-      baseUrl: ${{ steps.extract-name-and-base.outputs.baseUrl }}
-      repoName: ${{ steps.extract-name-and-base.outputs.repo }}
-      repoOwner: ${{ steps.extract-name-and-base.outputs.owner }}
+      name: ${{ steps.result.outputs.name }}
+      baseUrl: ${{ steps.result.outputs.baseUrl }}
+      repoName: ${{ steps.result.outputs.repo }}
+      repoOwner: ${{ steps.result.outputs.owner }}
     steps:
       - name: ⏬ Checkout repo
         uses: actions/checkout@v5
@@ -50,3 +50,16 @@ jobs:
           script: |
             const { default: extractNameAndBaseUrl } = await import('${{ github.workspace }}/scripts/github/extract-name-and-base-url.js');
             return await extractNameAndBaseUrl(context);
+
+      - name: ✒️ Write to output
+        id: result
+        env:
+          NAME: ${{ steps.extract-name-and-base.outputs.result.name }}
+          BASE_URL: ${{ steps.extract-name-and-base.outputs.result.baseUrl }}
+          REPO_NAME: ${{ steps.extract-name-and-base.outputs.result.repo }}
+          REPO_OWNER: ${{ steps.extract-name-and-base.outputs.result.owner }}
+        run: |
+          echo "name=$NAME" >> $GITHUB_OUTPUT
+          echo "baseUrl=$BASE_URL" >> $GITHUB_OUTPUT
+          echo "repo=$REPO_NAME" >> $GITHUB_OUTPUT
+          echo "owner=$REPO_OWNER" >> $GITHUB_OUTPUT
