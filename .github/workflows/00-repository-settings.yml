@@ -54,12 +54,8 @@ jobs:
         id: result
         env:
           RESULT: ${{ steps.extract-name-and-base.outputs.result }}
-          NAME: ${{ toJSON(steps.extract-name-and-base.outputs.result).name }}
-          BASE_URL: ${{ toJSON(steps.extract-name-and-base.outputs.result).baseUrl }}
-          REPO_NAME: ${{ toJSON(steps.extract-name-and-base.outputs.result).repo }}
-          REPO_OWNER: ${{ toJSON(steps.extract-name-and-base.outputs.result).owner }}
         run: |
-          echo "name=$NAME" >> $GITHUB_OUTPUT
-          echo "baseUrl=$BASE_URL" >> $GITHUB_OUTPUT
-          echo "repo=$REPO_NAME" >> $GITHUB_OUTPUT
-          echo "owner=$REPO_OWNER" >> $GITHUB_OUTPUT
+          echo "name=$(echo $RESULT | jq -r .name)" >> $GITHUB_OUTPUT
+          echo "baseUrl=$(echo $RESULT | jq -r .baseUrl)" >> $GITHUB_OUTPUT
+          echo "repo=$(echo $RESULT | jq -r .repo)" >> $GITHUB_OUTPUT
+          echo "owner=$(echo $RESULT | jq -r .owner)" >> $GITHUB_OUTPUT
