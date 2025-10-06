@@ -23,9 +23,6 @@
     "e2e"
   ],
   "packageManager": "npm@11.5.2",
-  "engines": {
-    "node": ">= 24"
-  },
   "keywords": [
     "design-system",
     "ui-library",
