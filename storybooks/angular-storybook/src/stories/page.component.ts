@@ -81,10 +81,10 @@ import type { User } from './user';
 	styleUrls: ['./page.css']
 })
 export class PageComponent {
-	user: User | undefined = null;
+	user: User | undefined = undefined;
 
 	doLogout() {
-		this.user = null;
+		this.user = undefined;
 	}
 
 	doLogin() {

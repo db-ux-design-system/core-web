@@ -64,7 +64,7 @@ import type { User } from './user';
 })
 export class HeaderComponent {
 	@Input()
-	user: User | undefined = null;
+	user: User | undefined = undefined;
 
 	@Output()
 	onLogin = new EventEmitter<Event>();
