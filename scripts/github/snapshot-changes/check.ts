@@ -9,12 +9,18 @@ export const checkSnapshotChanges = (aria = true, branch = ''): boolean => {
 			.split('\n')
 			.filter(Boolean);
 
+		console.log(`Changed files:`, changedFiles);
+
 		// Check if any file in __snapshots__ with the name *-aria-snapshot.yml has changed
-		return changedFiles.some(
+		const ariaSnapshots = changedFiles.some(
 			(file) =>
 				file.startsWith('__snapshots__') &&
 				file.endsWith(aria ? '-aria-snapshot.yaml' : '-screenshot.png')
 		);
+
+		console.log(`ariaSnapshots changed`, ariaSnapshots);
+
+		return ariaSnapshots;
 	} catch (error) {
 		console.error('Error while checking for changes:', error.message);
 		return false;

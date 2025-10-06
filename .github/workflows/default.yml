@@ -215,8 +215,7 @@ jobs:
         test-showcase-angular,
         test-showcase-react,
         test-showcase-vue,
-        test-showcase-stencil,
-        get-playwright-version
+        test-showcase-stencil
       ]
     runs-on: ubuntu-24.04
     steps:

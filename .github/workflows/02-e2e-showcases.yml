@@ -114,9 +114,20 @@ jobs:
         shell: bash
         if: |
           github.event.pull_request != null &&
-          steps.aria-snapshots.outputs.aria-snapshots-changed-to-main=='true'
+          steps.aria-snapshots.outputs.aria-snapshots-changed-to-main == 'true'
         run: |
           npm run test:a11y-checker --workspace=${{ inputs.showcase }} -- --shard=${{ matrix.shardIndex }}/${{ matrix.shardTotal }}
+
+      - name: 🌳 Log Snapshot Changes
+        if: github.event.pull_request != null
+        env:
+          ARIA: ${{ steps.aria-snapshots.outputs.aria-snapshots-changed}}
+          VISUAL: ${{ steps.visual-snapshots.outputs.visual-snapshots-changed}}
+          ARIA_MAIN: ${{ steps.aria-snapshots.outputs.aria-snapshots-changed-to-main }}
+        run: |
+          echo "$ARIA"
+          echo "$VISUAL"
+          echo "$ARIA_MAIN"
 
       - name: 🔣 Print GitHub Report
         if: failure()
