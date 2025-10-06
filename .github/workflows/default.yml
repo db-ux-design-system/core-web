@@ -31,12 +31,6 @@ jobs:
     uses: ./.github/workflows/00-init.yml
     secrets: inherit
 
-  cancel-init:
-    if: ${{ needs.init.result == 'failure' }}
-    uses: ./.github/workflows/00-cancel-workflow.yml
-    secrets: inherit
-    needs: [init]
-
   scan-secrets:
     if: github.event.pull_request == null || github.event.pull_request.head.repo.owner.login == 'db-ux-design-system'
     uses: ./.github/workflows/00-scan-secrets.yml
@@ -47,12 +41,6 @@ jobs:
   get-playwright-version:
     uses: ./.github/workflows/01-get-playwright-version.yml
     needs: [init]
-
-  cancel-on-failure-get-playwright-version:
-    if: ${{ needs.get-playwright-version.result == 'failure' }}
-    uses: ./.github/workflows/00-cancel-workflow.yml
-    secrets: inherit
-    needs: [get-playwright-version]
 
   lint:
     uses: ./.github/workflows/01-lint.yml
@@ -89,12 +77,6 @@ jobs:
     needs: [get-playwright-version]
     with:
       version: ${{ needs.get-playwright-version.outputs.version }}
-
-  cancel-on-failure-init-playwright:
-    if: ${{ needs.init-playwright.result == 'failure' }}
-    uses: ./.github/workflows/00-cancel-workflow.yml
-    secrets: inherit
-    needs: [init-playwright]
 
   build-outputs:
     uses: ./.github/workflows/01-build-outputs.yml
