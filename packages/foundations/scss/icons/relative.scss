@@ -59,6 +59,9 @@
 }
 
 /* pre-load icon fallback font */
-head {
-  font-family: icon-font-fallback, sans-serif;
+html::after {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    font-family: icon-font-fallback,sans-serif;
 }
