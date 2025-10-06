@@ -51,9 +51,3 @@ jobs:
         with:
           name: db-ux-${{ inputs.showcase }}
           path: build-showcases/${{ inputs.showcase }}
-
-      - name: 💀 Killing me softly
-        uses: ./.github/actions/cancel-workflow
-        if: failure()
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
