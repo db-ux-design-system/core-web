@@ -35,7 +35,7 @@ Key requirements:
 
     - For deeper or ad-hoc queries, use the "Attach Context" feature in Copilot Chat to load component Markdown files during the session.
 
-5. Static Site & Developer Docs
+5. Static Site & Developer Docs (future usage, not part of the current scope)
 
     - Integrate component docs via Astro as a package in the monorepo, referencing Markdown sources in packages/components/... .
     - Render pages dynamically under /components/[slug] and /api/[slug] for manual browsing.
