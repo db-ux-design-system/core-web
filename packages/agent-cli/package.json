@@ -25,8 +25,7 @@
     "test:cli": "tsx src/cli.ts --help"
   },
   "dependencies": {
-    "commander": "14.0.0",
-    "glob": "11.0.3"
+    "commander": "14.0.0"
   },
   "devDependencies": {
     "cpr": "3.0.1",
