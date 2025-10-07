@@ -1,6 +1,6 @@
 {
   "name": "@db-ux/core-foundations",
-  "version": "0.0.0",
+  "version": "3.1.17",
   "type": "module",
   "description": "Provides basic tokens and assets based on DB UX Design System (Version 3).",
   "repository": {
@@ -13,6 +13,7 @@
   "module": "./build/index.js",
   "files": [
     "agent",
+    "CHANGELOG.md",
     "assets",
     "build"
   ],
@@ -50,17 +51,17 @@
   "devDependencies": {
     "@csstools/normalize.css": "12.1.1",
     "@db-ux/icon-font-tools": "0.3.4",
-    "@playwright/test": "1.55.0",
+    "@playwright/test": "1.55.1",
     "cpr": "3.0.1",
     "cssnano": "7.1.1",
-    "dotenv": "17.2.2",
+    "dotenv": "17.2.3",
     "glob": "11.0.3",
     "nodemon": "3.1.10",
     "prettier": "3.6.2",
     "sass": "1.85.0",
-    "tsx": "4.20.5",
+    "tsx": "4.20.6",
     "typescript": "5.8.3",
-    "vite": "6.3.6"
+    "vite": "7.1.9"
   },
   "publishConfig": {
     "registry": "https://registry.npmjs.org/",

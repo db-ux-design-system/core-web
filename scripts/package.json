@@ -3,6 +3,12 @@
   "version": "0.0.0",
   "type": "module",
   "description": "contains scripts for monorepo",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/db-ux-design-system/core-web.git"
+  },
+  "license": "Apache-2.0",
+  "private": true,
   "scripts": {
     "agent": "npm-run-all -p agent:00_*",
     "agent:00_extract-css": "tsx documentation/extract-css-vars.ts",
@@ -83,7 +89,7 @@
   },
   "devDependencies": {
     "@inquirer/prompts": "7.8.6",
-    "dotenv": "17.2.2",
+    "dotenv": "17.2.3",
     "find-versions": "6.0.0",
     "glob": "11.0.3",
     "inquirer": "12.9.6",

@@ -1,6 +1,9 @@
 ---
 name: Build Packages
 
+permissions:
+  contents: read
+
 on:
   workflow_call:
 
@@ -53,9 +56,3 @@ jobs:
         with:
           name: db-ux-agent-cli-build
           path: packages/agent-cli/build
-
-      - name: 💀 Killing me softly
-        uses: ./.github/actions/cancel-workflow
-        if: failure()
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}

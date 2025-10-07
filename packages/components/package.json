@@ -1,6 +1,6 @@
 {
   "name": "@db-ux/core-components",
-  "version": "0.0.0",
+  "version": "3.1.17",
   "type": "module",
   "description": "",
   "repository": {
@@ -11,6 +11,7 @@
   "license": "Apache-2.0",
   "files": [
     "agent",
+    "CHANGELOG.md",
     "build"
   ],
   "scripts": {
@@ -45,20 +46,20 @@
     "start": "nodemon --watch src --watch scripts --watch scripts --ext js,tsx,ts,scss,json --exec \"npm run build\""
   },
   "dependencies": {
-    "@db-ux/core-foundations": "*"
+    "@db-ux/core-foundations": "3.1.17"
   },
   "devDependencies": {
     "@builder.io/eslint-plugin-mitosis": "0.0.17",
     "@builder.io/mitosis": "0.12.1",
     "@builder.io/mitosis-cli": "0.12.1",
-    "@typescript-eslint/eslint-plugin": "8.44.0",
+    "@typescript-eslint/eslint-plugin": "8.45.0",
     "cpr": "3.0.1",
     "cssnano": "7.1.1",
     "hygen": "6.2.11",
     "nodemon": "3.1.10",
     "sass": "1.85.0",
     "sassdoc": "^2.7.4",
-    "tsx": "4.20.5"
+    "tsx": "4.20.6"
   },
   "publishConfig": {
     "registry": "https://registry.npmjs.org/",

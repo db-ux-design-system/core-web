@@ -55,6 +55,21 @@ designers, and content authors build, maintain, and scale best-of-class digital 
 
 We even provide some [examples of integrations](https://github.com/db-ux-design-system/examples).
 
+## Creating Custom Components
+
+For developers looking to create custom components that extend the design system in their applications, we provide comprehensive guidance:
+
+📖 **[Creating Custom Components Guide](docs/creating-custom-components.md)** - Learn how to build your own components using design system foundations
+
+This guide covers:
+- **Setup and Configuration**: Getting started with the design system packages
+- **Design Principles**: Following DB UX Design System guidelines and best practices  
+- **Component Patterns**: Structured approaches to building consistent components
+- **Code Examples**: Practical implementations for cards, forms, navigation, and more
+- **Framework Support**: Specific guidance for React, Vue, Angular, and vanilla HTML/CSS
+- **Accessibility**: Ensuring your components are inclusive and compliant
+- **Common Pitfalls**: What to avoid and how to maintain design system consistency
+
 ### DB Theme
 
 In case that you're building a website or application for Deutsche Bahn, you'll additionally have to install the DB Theme via the [`@db-ux/db-theme`](https://www.npmjs.com/package/@db-ux/db-theme) node package (even also available as an inner source node package, as described within that packages [README](https://www.npmjs.com/package/@db-ux/db-theme)).
@@ -103,6 +118,8 @@ As [DB UX Design System](https://marketingportal.extranet.deutschebahn.com/marke
 
 We're providing a detailed migration for each component next to the documentation of each component, like e.g.
 <https://design-system.deutschebahn.com/core-web/review/main/components/action/button/migration>
+
+For a comprehensive overview of all DB-UI components and their migration status, including components that don't have direct equivalents in DB-UX Design System v3, see our [DB-UI to DB-UX Design System v3 Component Migration Guide](https://github.com/db-ux-design-system/core-web/blob/main/docs/migration/db-ui-to-db-ux-dsv3.md).
 
 ### In between DB UX Design System Core versions
 
