@@ -1,6 +1,6 @@
 ## CSS
 
-- If you use CSS follow these rules:
+- If you use CSS follow, these rules:
     - use for `variables` like, sizing, spacing, elevation, border, container-size the file **agent-path**/agent/css/Variables.md
 
 ## SCSS
