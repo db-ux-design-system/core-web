@@ -15,7 +15,7 @@
     "build": "ng build",
     "mv:agent": "cpr agent ../../build-outputs/angular/agent --overwrite",
     "ng": "ng",
-    "postbuild": "npm-run-all -p mv:*",
+    "postbuild": "npm-run-all --parallel mv:*",
     "start": "ng serve"
   },
   "devDependencies": {
