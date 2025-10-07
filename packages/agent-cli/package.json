@@ -13,7 +13,8 @@
   },
   "main": "build/index.js",
   "files": [
-    "build"
+    "build",
+    "CHANGELOG.md"
   ],
   "scripts": {
     "build": "node esbuild.js",
