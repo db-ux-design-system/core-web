@@ -50,8 +50,8 @@ jobs:
       - name: ⏬ Download composition-storybook
         uses: actions/download-artifact@v5
         with:
-          name: db-ux-storybook
-          path: build-storybooks/storybook
+          name: db-ux-composition-storybook
+          path: build-storybooks/composition-storybook
 
       - name: ⏬ Download angular-storybook
         uses: actions/download-artifact@v5
@@ -75,7 +75,7 @@ jobs:
         shell: bash
         run: |
           mv build-showcases/patternhub out
-          mv build-storybooks/storybook out/storybook
+          mv build-storybooks/composition-storybook out/composition-storybook
           mv build-storybooks/angular-storybook out/angular-storybook
           mv build-storybooks/react-storybook out/react-storybook
           mv build-storybooks/vue-storybook out/vue-storybook
