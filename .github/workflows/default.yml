@@ -201,14 +201,14 @@ jobs:
         needs.test-showcase-react.result == 'failure' ||
         needs.test-showcase-vue.result == 'failure' ||
         needs.test-showcase-stencil.result == 'failure' ||
-        needs.test-showcase-angular.outputs.aria-snapshots-changed == 'true' ||
-        needs.test-showcase-angular.outputs.visual-snapshots-changed == 'true' ||
-        needs.test-showcase-react.outputs.aria-snapshots-changed == 'true' ||
-        needs.test-showcase-react.outputs.visual-snapshots-changed == 'true' ||
-        needs.test-showcase-vue.outputs.aria-snapshots-changed == 'true' ||
-        needs.test-showcase-vue.outputs.visual-snapshots-changed == 'true' ||
-        needs.test-showcase-stencil.outputs.aria-snapshots-changed == 'true' ||
-        needs.test-showcase-stencil.outputs.visual-snapshots-changed == 'true'
+        needs.test-showcase-angular.outputs.aria-snapshots-changed  ||
+        needs.test-showcase-angular.outputs.visual-snapshots-changed  ||
+        needs.test-showcase-react.outputs.aria-snapshots-changed  ||
+        needs.test-showcase-react.outputs.visual-snapshots-changed  ||
+        needs.test-showcase-vue.outputs.aria-snapshots-changed  ||
+        needs.test-showcase-vue.outputs.visual-snapshots-changed  ||
+        needs.test-showcase-stencil.outputs.aria-snapshots-changed  ||
+        needs.test-showcase-stencil.outputs.visual-snapshots-changed
       )
     needs:
       [
@@ -224,6 +224,23 @@ jobs:
           if [[ "${{ github.actor }}" == *"[bot]"* ]]; then
               exit 1
           fi
+        shell: bash
+
+  print:
+    needs:
+      [
+        test-showcase-angular,
+        test-showcase-react,
+        test-showcase-vue,
+        test-showcase-stencil
+      ]
+    runs-on: ubuntu-24.04
+    steps:
+      - name: "Print"
+        env:
+          CHANGED: ${{ needs.test-showcase-stencil.outputs.aria-snapshots-changed }}
+        run: |
+          echo "$CHANGED"
         shell: bash
 
   regenerate-snapshots:
