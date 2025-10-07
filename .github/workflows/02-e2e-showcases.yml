@@ -91,9 +91,13 @@ jobs:
         run: |
           npm run test:aria-snapshots --workspace=${{ inputs.showcase }} -- --shard=${{ matrix.shardIndex }}/${{ matrix.shardTotal }} --update-snapshots
           OUTPUT=$(npx --no tsx scripts/github/snapshot-changes/check-aria.ts)
-          echo "aria-snapshots-changed=$OUTPUT" >> $GITHUB_OUTPUT
+          if [ "$OUTPUT" = "true" ]; then
+            echo "aria-snapshots-changed=$OUTPUT" >> $GITHUB_OUTPUT
+          fi
           OUTPUT=$(npx --no tsx scripts/github/snapshot-changes/check-main-aria.ts)
-          echo "aria-snapshots-changed-to-main=$OUTPUT" >> $GITHUB_OUTPUT
+          if [ "$OUTPUT" = "true" ]; then
+            echo "aria-snapshots-changed-to-main=$OUTPUT" >> $GITHUB_OUTPUT
+          fi
 
       - name: 👩‍🔬 Test axe-core with Playwright 🎭
         shell: bash
@@ -108,7 +112,9 @@ jobs:
         run: |
           npm run test:visual-snapshots --workspace=${{ inputs.showcase }} -- --shard=${{ matrix.shardIndex }}/${{ matrix.shardTotal }} --update-snapshots
           OUTPUT=$(npx --no tsx scripts/github/snapshot-changes/check-visual.ts)
-          echo "visual-snapshots-changed=$OUTPUT" >> $GITHUB_OUTPUT
+          if [ "$OUTPUT" = "true" ]; then
+            echo "visual-snapshots-changed=$OUTPUT" >> $GITHUB_OUTPUT
+          fi
 
       - name: 👩‍🔬 Test a11y-checker with Playwright 🎭
         shell: bash
