@@ -304,23 +304,6 @@ jobs:
           fi
         shell: bash
 
-  print:
-    needs:
-      [
-        test-showcase-angular,
-        test-showcase-react,
-        test-showcase-vue,
-        test-showcase-stencil
-      ]
-    runs-on: ubuntu-24.04
-    steps:
-      - name: "Print"
-        env:
-          CHANGED: ${{ needs.test-showcase-stencil.outputs.aria-snapshots-changed }}
-        run: |
-          echo "$CHANGED"
-        shell: bash
-
   regenerate-snapshots:
     if: |
       !cancelled() && needs.should-regenerate-snapshots.result == 'success'
@@ -328,7 +311,7 @@ jobs:
     with:
       version: ${{ needs.get-playwright-version.outputs.version }}
       type: showcases
-    needs: [should-regenerate-snapshots]
+    needs: [should-regenerate-snapshots, get-playwright-version]
 
   commit-regenerated-snapshots:
     uses: ./.github/workflows/02-e2e-regenerated-snapshots-commit.yml
