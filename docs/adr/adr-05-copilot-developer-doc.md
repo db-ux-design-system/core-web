@@ -21,7 +21,7 @@ Key requirements:
     - Use Markdown files per component, stored in packages/components/docs/ or packages/components/src/components/docs/.
     - Central table of contents in docs/llms.txt listing all component docs with relative paths.
 
-2. Copilot Custom Instructions
+2. GitHub Copilot Custom Instructions
 
     - Place copilot-instructions.md in the project root (under .github/) to provide global guidance.
     - Instruct Copilot Chat to load this file automatically; it will include links to llms.txt and recommended file paths.
