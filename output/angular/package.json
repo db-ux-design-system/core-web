@@ -11,10 +11,6 @@
   "main": "fesm2022/db-ux-ngx-core-components.mjs",
   "module": "fesm2022/db-ux-ngx-core-components.mjs",
   "types": "index.d.ts",
-  "files": [
-    "dist/",
-    "agent"
-  ],
   "scripts": {
     "build": "ng build",
     "mv:agent": "cpr agent ../../build-outputs/angular/agent -o",
