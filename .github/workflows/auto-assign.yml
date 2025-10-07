@@ -12,10 +12,10 @@ on:
 
 jobs:
   add_labels:
-    if: ${{ github.actor != 'dependabot[bot]' }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions-ecosystem/action-add-assignees@v1
+        if: ${{ github.actor != 'dependabot[bot]' }}
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           assignees: ${{ github.actor }}
