@@ -83,7 +83,7 @@ jobs:
   publish:
     name: Get and save publish version
     runs-on: ubuntu-24.04 # Use Ubuntu 24.04 explicitly
-    if: & { { inputs.release } }
+    if: ${{ inputs.release }}
     outputs:
       release: ${{ steps.releaseCheck.outputs.release }}
       preRelease: ${{ steps.releaseCheck.outputs.preRelease }}
