@@ -1,6 +1,11 @@
 ---
 name: Default Pipeline
 
+permissions:
+  contents: write
+  actions: write
+  pull-requests: write
+
 on:
   pull_request:
   push:
@@ -26,6 +31,12 @@ jobs:
     uses: ./.github/workflows/00-init.yml
     secrets: inherit
 
+  cancel-init:
+    if: ${{ needs.init.result == 'failure' }}
+    uses: ./.github/workflows/00-cancel-workflow.yml
+    secrets: inherit
+    needs: [init]
+
   scan-secrets:
     if: github.event.pull_request == null || github.event.pull_request.head.repo.owner.login == 'db-ux-design-system'
     uses: ./.github/workflows/00-scan-secrets.yml
@@ -34,17 +45,41 @@ jobs:
     uses: ./.github/workflows/01-get-playwright-version.yml
     needs: [init]
 
+  cancel-on-failure-get-playwright-version:
+    if: ${{ needs.get-playwright-version.result == 'failure' }}
+    uses: ./.github/workflows/00-cancel-workflow.yml
+    secrets: inherit
+    needs: [get-playwright-version]
+
   lint:
     uses: ./.github/workflows/01-lint.yml
     needs: [init]
+
+  cancel-on-failure-lint:
+    if: ${{ needs.lint.result == 'failure' }}
+    uses: ./.github/workflows/00-cancel-workflow.yml
+    secrets: inherit
+    needs: [lint]
 
   test:
     uses: ./.github/workflows/01-test.yml
     needs: [init]
 
+  cancel-on-failure-test:
+    if: ${{ needs.test.result == 'failure' }}
+    uses: ./.github/workflows/00-cancel-workflow.yml
+    secrets: inherit
+    needs: [test]
+
   build-packages:
     uses: ./.github/workflows/01-build-packages.yml
     needs: [init]
+
+  cancel-on-failure-build-packages:
+    if: ${{ needs.build-packages.result == 'failure' }}
+    uses: ./.github/workflows/00-cancel-workflow.yml
+    secrets: inherit
+    needs: [build-packages]
 
   init-playwright:
     uses: ./.github/workflows/01-init-playwright.yml
@@ -52,9 +87,21 @@ jobs:
     with:
       version: ${{ needs.get-playwright-version.outputs.version }}
 
+  cancel-on-failure-init-playwright:
+    if: ${{ needs.init-playwright.result == 'failure' }}
+    uses: ./.github/workflows/00-cancel-workflow.yml
+    secrets: inherit
+    needs: [init-playwright]
+
   build-outputs:
     uses: ./.github/workflows/01-build-outputs.yml
     needs: [build-packages]
+
+  cancel-on-failure-build-outputs:
+    if: ${{ needs.build-outputs.result == 'failure' }}
+    uses: ./.github/workflows/00-cancel-workflow.yml
+    secrets: inherit
+    needs: [build-outputs]
 
   test-components:
     uses: ./.github/workflows/02-e2e.yml
@@ -62,11 +109,23 @@ jobs:
     with:
       version: ${{ needs.get-playwright-version.outputs.version }}
 
+  cancel-on-failure-test-components:
+    if: ${{ needs.test-components.result == 'failure' }}
+    uses: ./.github/workflows/00-cancel-workflow.yml
+    secrets: inherit
+    needs: [test-components]
+
   test-foundations:
     uses: ./.github/workflows/02-e2e-foundations.yml
     needs: [build-packages, get-playwright-version]
     with:
       version: ${{ needs.get-playwright-version.outputs.version }}
+
+  cancel-on-failure-test-foundations:
+    if: ${{ needs.test-foundations.result == 'failure' }}
+    uses: ./.github/workflows/00-cancel-workflow.yml
+    secrets: inherit
+    needs: [test-foundations]
 
   build-showcase-stencil:
     uses: ./.github/workflows/01-build-showcases.yml
@@ -74,11 +133,23 @@ jobs:
     with:
       showcase: stencil-showcase
 
+  cancel-on-failure-build-showcase-stencil:
+    if: ${{ needs.build-showcase-stencil.result == 'failure' }}
+    uses: ./.github/workflows/00-cancel-workflow.yml
+    secrets: inherit
+    needs: [build-showcase-stencil]
+
   build-showcase-angular:
     uses: ./.github/workflows/01-build-showcases.yml
     needs: [build-packages]
     with:
       showcase: angular-showcase
+
+  cancel-on-failure-build-showcase-angular:
+    if: ${{ needs.build-showcase-angular.result == 'failure' }}
+    uses: ./.github/workflows/00-cancel-workflow.yml
+    secrets: inherit
+    needs: [build-showcase-angular]
 
   build-showcase-angular-ssr:
     uses: ./.github/workflows/01-build-showcases.yml
@@ -86,11 +157,23 @@ jobs:
     with:
       showcase: angular-ssr-showcase
 
+  cancel-on-failure-build-showcase-angular-ssr:
+    if: ${{ needs.build-showcase-angular-ssr.result == 'failure' }}
+    uses: ./.github/workflows/00-cancel-workflow.yml
+    secrets: inherit
+    needs: [build-showcase-angular-ssr]
+
   build-showcase-react:
     uses: ./.github/workflows/01-build-showcases.yml
     needs: [build-packages]
     with:
       showcase: react-showcase
+
+  cancel-on-failure-build-showcase-react:
+    if: ${{ needs.build-showcase-react.result == 'failure' }}
+    uses: ./.github/workflows/00-cancel-workflow.yml
+    secrets: inherit
+    needs: [build-showcase-react]
 
   build-showcase-next:
     uses: ./.github/workflows/01-build-showcases.yml
@@ -98,11 +181,23 @@ jobs:
     with:
       showcase: next-showcase
 
+  cancel-on-failure-build-showcase-next:
+    if: ${{ needs.build-showcase-next.result == 'failure' }}
+    uses: ./.github/workflows/00-cancel-workflow.yml
+    secrets: inherit
+    needs: [build-showcase-next]
+
   build-showcase-vue:
     uses: ./.github/workflows/01-build-showcases.yml
     needs: [build-packages]
     with:
       showcase: vue-showcase
+
+  cancel-on-failure-build-showcase-vue:
+    if: ${{ needs.build-showcase-vue.result == 'failure' }}
+    uses: ./.github/workflows/00-cancel-workflow.yml
+    secrets: inherit
+    needs: [build-showcase-vue]
 
   build-showcase-nuxt:
     uses: ./.github/workflows/01-build-showcases.yml
@@ -110,9 +205,21 @@ jobs:
     with:
       showcase: nuxt-showcase
 
+  cancel-on-failure-build-showcase-nuxt:
+    if: ${{ needs.build-showcase-nuxt.result == 'failure' }}
+    uses: ./.github/workflows/00-cancel-workflow.yml
+    secrets: inherit
+    needs: [build-showcase-nuxt]
+
   build-showcase-patternhub:
     uses: ./.github/workflows/01-build-patternhub.yml
     needs: [build-packages]
+
+  cancel-on-failure-build-showcase-patternhub:
+    if: ${{ needs.build-showcase-patternhub.result == 'failure' }}
+    uses: ./.github/workflows/00-cancel-workflow.yml
+    secrets: inherit
+    needs: [build-showcase-patternhub]
 
   test-showcase-stencil:
     uses: ./.github/workflows/02-e2e-showcases.yml
@@ -121,12 +228,24 @@ jobs:
       version: ${{ needs.get-playwright-version.outputs.version }}
       showcase: stencil-showcase
 
+  cancel-on-failure-test-showcase-stencil:
+    if: ${{ needs.test-showcase-stencil.result == 'failure' }}
+    uses: ./.github/workflows/00-cancel-workflow.yml
+    secrets: inherit
+    needs: [test-showcase-stencil]
+
   test-showcase-angular:
     uses: ./.github/workflows/02-e2e-showcases.yml
     needs: [build-showcase-angular, get-playwright-version]
     with:
       version: ${{ needs.get-playwright-version.outputs.version }}
       showcase: angular-showcase
+
+  cancel-on-failure-test-showcase-angular:
+    if: ${{ needs.test-showcase-angular.result == 'failure' }}
+    uses: ./.github/workflows/00-cancel-workflow.yml
+    secrets: inherit
+    needs: [test-showcase-angular]
 
   test-showcase-react:
     uses: ./.github/workflows/02-e2e-showcases.yml
@@ -135,6 +254,12 @@ jobs:
       version: ${{ needs.get-playwright-version.outputs.version }}
       showcase: react-showcase
 
+  cancel-on-failure-test-showcase-react:
+    if: ${{ needs.test-showcase-react.result == 'failure' }}
+    uses: ./.github/workflows/00-cancel-workflow.yml
+    secrets: inherit
+    needs: [test-showcase-react]
+
   test-showcase-vue:
     uses: ./.github/workflows/02-e2e-showcases.yml
     needs: [build-showcase-vue, get-playwright-version]
@@ -142,12 +267,24 @@ jobs:
       version: ${{ needs.get-playwright-version.outputs.version }}
       showcase: vue-showcase
 
+  cancel-on-failure-test-showcase-vue:
+    if: ${{ needs.test-showcase-vue.result == 'failure' }}
+    uses: ./.github/workflows/00-cancel-workflow.yml
+    secrets: inherit
+    needs: [test-showcase-vue]
+
   test-showcase-patternhub:
     uses: ./.github/workflows/02-e2e-patternhub.yml
     needs: [build-showcase-patternhub, get-playwright-version]
     with:
       version: ${{ needs.get-playwright-version.outputs.version }}
       path: ${{ needs.build-showcase-patternhub.outputs.path }}
+
+  cancel-on-failure-test-showcase-patternhub:
+    if: ${{ needs.test-showcase-patternhub.result == 'failure' }}
+    uses: ./.github/workflows/00-cancel-workflow.yml
+    secrets: inherit
+    needs: [test-showcase-patternhub]
 
   regenerate-snapshots-components:
     if: ${{ !cancelled() && needs.test-components.result == 'failure' }}

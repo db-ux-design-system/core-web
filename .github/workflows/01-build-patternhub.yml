@@ -1,6 +1,9 @@
 ---
 name: Build Patternhub
 
+permissions:
+  contents: read
+
 on:
   workflow_call:
     inputs:
@@ -99,9 +102,3 @@ jobs:
         with:
           name: db-ux-patternhub
           path: build-showcases/patternhub
-
-      - name: 💀 Killing me softly
-        uses: ./.github/actions/cancel-workflow
-        if: failure()
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
