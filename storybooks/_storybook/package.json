@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "storybook": "storybook dev -p 6001",
-    "build": "storybook build --output-dir ../../build-storybooks/storybook"
+    "build": "storybook build --output-dir ../../build-storybooks/composition-storybook"
   },
   "dependencies": {
     "react": "18.3.1",
