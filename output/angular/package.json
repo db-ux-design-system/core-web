@@ -13,7 +13,7 @@
   "types": "index.d.ts",
   "scripts": {
     "build": "ng build",
-    "mv:agent": "cpr agent ../../build-outputs/angular/agent -o",
+    "mv:agent": "cpr agent ../../build-outputs/angular/agent --overwrite",
     "ng": "ng",
     "postbuild": "npm-run-all -p mv:*",
     "start": "ng serve"

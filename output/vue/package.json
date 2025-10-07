@@ -32,7 +32,7 @@
     "build:01_vite": "vite build",
     "build:02_types": "vue-tsc --declaration --emitDeclarationOnly",
     "mv:dist": "cpr dist ../../build-outputs/vue/dist --overwrite",
-    "mv:agent": "cpr agent ../../build-outputs/vue/agent -o",
+    "mv:agent": "cpr agent ../../build-outputs/vue/agent --overwrite",
     "mv:package.json": "cpr package.json ../../build-outputs/vue/package.json --overwrite",
     "mv:readme": "cpr README.md ../../build-outputs/vue/README.md --overwrite",
     "postbuild": "npm-run-all --parallel mv:*",

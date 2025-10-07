@@ -18,7 +18,7 @@
   "scripts": {
     "build": "npm-run-all tsc",
     "mv:dist": "cpr dist ../../build-outputs/react/dist --overwrite",
-    "mv:agent": "cpr agent ../../build-outputs/react/agent -o",
+    "mv:agent": "cpr agent ../../build-outputs/react/agent --overwrite",
     "mv:package.json": "cpr package.json ../../build-outputs/react/package.json --overwrite",
     "mv:readme": "cpr README.md ../../build-outputs/react/README.md --overwrite",
     "open:report": "npx playwright show-report",
