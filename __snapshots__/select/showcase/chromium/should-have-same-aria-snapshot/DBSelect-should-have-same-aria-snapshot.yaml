@@ -1,5 +1,4 @@
 - main:
-  - test trigger
   - heading "DBSelect" [level=1]
   - link "Density"
   - text: Label
