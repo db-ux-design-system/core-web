@@ -29,7 +29,7 @@
     "compile:vue": "mitosis build --config configs/vue/mitosis.config.cjs && tsx scripts/exec/vue.ts && cpr ../../output/tmp/vue/src ../../output/vue/src --overwrite",
     "copy-assets": "cpr ../foundations/assets build/assets -o",
     "copy-output": "npm-run-all copy:*",
-    "copy:agent": "cpr agent ../../build-outputs/components/agent -o",
+    "copy:agent": "cpr agent ../../build-outputs/components/agent --overwrite",
     "copy:outputs": "cpr build ../../build-outputs/components/build --overwrite",
     "copy:package.json": "cpr package.json ../../build-outputs/components/package.json --overwrite",
     "copy:readme": "cpr README.md ../../build-outputs/components/README.md --overwrite",
