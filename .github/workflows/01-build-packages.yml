@@ -50,9 +50,3 @@ jobs:
         with:
           name: db-ux-stylelint-build
           path: packages/stylelint/build
-
-      - name: 💀 Killing me softly
-        uses: ./.github/actions/cancel-workflow
-        if: failure()
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
