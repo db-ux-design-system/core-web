@@ -12,7 +12,7 @@ Key requirements:
 - Single source of truth for component documentation.
 - Automatic inclusion of context in Copilot Chat for both IDEs, VS Code and IntelliJ.
 - Developer-friendly Markdown for manual reading and static site generation.
-- Compatibility with LLM context conventions (llms.txt; to be integrated in a later phase) and GitHub Copilot Custom Instructions (copilot-instructions.md).
+- Compatibility with LLM context conventions (llms.txt; to be integrated in a later phase) and GitHub Copilot Custom Instructions (`copilot-instructions.md`).
 
 ## Decision
 
@@ -23,13 +23,13 @@ Key requirements:
 
 2. GitHub Copilot Custom Instructions
 
-    - Place copilot-instructions.md in the project root (under .github/) to provide global guidance.
+    - Place `copilot-instructions.md` in the project root (under .github/) to provide global guidance.
     - Instruct Copilot Chat to load this file automatically; it will include links to llms.txt and recommended file paths.
 
 3. Automatic Context Loading
 
-    - In VS Code and IntelliJ, Copilot Chat will automatically read .github/copilot-instructions.md on new chats.
-    - To surface specific details, embed documentation (e.g., Button.md) directly in copilot-instructions.md.
+    - In VS Code and IntelliJ, Copilot Chat will automatically read `.github/copilot-instructions.md` on new chats.
+    - To surface specific details, embed documentation (e.g., Button.md) directly in `copilot-instructions.md`.
 
 4. Interactive Context Attachment
 
@@ -63,7 +63,7 @@ Key requirements:
 
 - Pros:
 
-    - Clear separation: manual design guidance (Markdown) vs. AI context (Instructions + llms.txt snippets).
+    - Clear separation: manual design guidance (Markdown) vs. AI context (`copilot-instructions.md` + `llms.txt` snippets).
     - Maintains single source (docs in packages/components/docs).
     - Enables Copilot to provide accurate, component-specific suggestions without manual file opening.
     - Developer site generation remains straightforward via Astro.
@@ -71,7 +71,7 @@ Key requirements:
     - Guarantees that only the intended component documentation is merged into Copilot instructions.
 
 - Cons:
-    - Requires maintaining excerpts in copilot-instructions.md when docs change.
+    - Requires maintaining excerpts in `copilot-instructions.md` when docs change.
     - Copilot cannot truly auto-load all linked docs; manual attachment or excerpt embedding needed for deep context.
     - Postinstall hooks may be disabled for security reasons, making it impossible to automate the copying of the copilot instructions.
     - Relies on strict naming conventions; any divergence between folder and file names will cause a component’s docs to be skipped.

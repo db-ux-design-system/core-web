@@ -62,9 +62,9 @@ import { DBButton } from '@db-ux/react-core-components';
 ## Documentation for AI Agents
 
 We provide a documentation for every component in the DB UX Design System via `docs` folder.
-To consume those documentation for AI Agents the best way is to copy the `docs` folder into your project.
+To consume those documentation for AI Agents (currently GitHub Copilot) the best way is to copy the `docs` folder into your project.
 
-We provide a CLI tool to do this automatically, which you can run with:
+We provide a [CLI tool (`@db-ux/agent-cli`)](https://www.npmjs.com/package/@db-ux/agent-cli) to do this automatically, which you can run with:
 
 ```shell
 npx @db-ux/agent-cli
