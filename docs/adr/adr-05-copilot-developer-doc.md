@@ -12,7 +12,7 @@ Key requirements:
 - Single source of truth for component documentation.
 - Automatic inclusion of context in Copilot Chat for both IDEs, VS Code and IntelliJ.
 - Developer-friendly Markdown for manual reading and static site generation.
-- Compatibility with LLM context conventions (llms.txt) and Copilot Custom Instructions (copilot-instructions.md).
+- Compatibility with LLM context conventions (llms.txt; to be integrated in a later phase) and GitHub Copilot Custom Instructions (copilot-instructions.md).
 
 ## Decision
 
