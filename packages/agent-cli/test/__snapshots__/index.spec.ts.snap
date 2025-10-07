@@ -12,6 +12,6 @@ exports[`default > check if docs are created 1`] = `
 - use x for frontend/node_modules/@db-ux/foundations/test.md
 
 
---- END: DB UX Copilot Instructions ---
+--- END: DB UX Copilot Instructions – do not edit above ---
 "
 `;
