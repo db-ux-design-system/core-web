@@ -41,8 +41,8 @@ export const generateCopilot = (rootPath: string) => {
 
 	for (const nodeModulesPath of nodeModulesDirectories) {
 		const databaseUxPaths = [
-			path.join(nodeModulesPath, '@db-ux'),
-			path.join(nodeModulesPath, '@db-ux-inner-source')
+			path.join(nodeModulesPath, '@db-ux/'),
+			path.join(nodeModulesPath, '@db-ux-inner-source/')
 		];
 
 		for (const databaseUxPath of databaseUxPaths) {
@@ -100,8 +100,8 @@ export const generateCopilot = (rootPath: string) => {
 			copilotInstructionsPath,
 			'utf8'
 		);
-		const startMarker = '--- START: DB UX Copilot Instructions ---';
-		const endMarker = '--- END: DB UX Copilot Instructions ---';
+		const startMarker = '--- START: DB UX Copilot Instructions – do not edit below ---';
+		const endMarker = '--- END: DB UX Copilot Instructions – do not edit above ---';
 		const startIndex = copilotFileContent.indexOf(startMarker);
 		const endIndex = copilotFileContent.indexOf(endMarker);
 		if (startIndex !== -1 && endIndex !== -1 && endIndex > startIndex) {

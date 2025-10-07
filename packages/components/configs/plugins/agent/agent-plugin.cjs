@@ -13,7 +13,7 @@ module.exports = () => ({
 	json: {
 		post: (json) => {
 			const target = json.pluginData.target;
-			const tagetMapItem = targetMapping.find(
+			const targetMapItem = targetMapping.find(
 				({ name }) => name === target
 			);
 
@@ -27,7 +27,7 @@ module.exports = () => ({
 					) {
 						return {
 							...importLine,
-							path: `@db-ux/${tagetMapItem.lib}-core-components`
+							path: `@db-ux/${targetMapItem.lib}-core-components`
 						};
 					}
 
@@ -39,7 +39,7 @@ module.exports = () => ({
 	code: {
 		post: (code, json) => {
 			const target = json.pluginData.target;
-			const tagetMapItem = targetMapping.find(
+			const targetMapItem = targetMapping.find(
 				({ name }) => name === target
 			);
 			const displayName = json.name.replace(/Docs$/, '');
@@ -93,7 +93,7 @@ module.exports = () => ({
 			return [
 				`# ${displayName} Examples (${target})`,
 				'',
-				'```' + tagetMapItem.mdExtension,
+				'```' + targetMapItem.mdExtension,
 				changedCode,
 				'```'
 			].join('\n');
