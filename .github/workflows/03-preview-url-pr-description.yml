@@ -2,7 +2,6 @@ name: Preview URL PR Description
 
 permissions:
   pull-requests: write
-  contents: write
 
 on:
   workflow_call:
