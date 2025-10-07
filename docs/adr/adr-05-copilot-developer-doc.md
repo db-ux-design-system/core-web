@@ -50,7 +50,7 @@ Key requirements:
 
 7. Automate generation and propagation of Copilot instructions on package build.
 
-    - Define `generate:copilot-instructions` in `package.json` and hook into `prepare`.
+    - Define `generate:agent` in `package.json` and hook into `prepare`.
     - Only include `*.md` files whose filename matches the parent directory converted to PascalCase (e.g. `custom-select` → `CustomSelect.md`), ensuring no unrelated MDs are merged.
 
 ## Alternatives Considered
