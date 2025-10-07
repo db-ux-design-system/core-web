@@ -52,8 +52,9 @@ jobs:
     needs: [get-playwright-version]
 
   lint:
-    uses: ./.github/workflows/01-lint.yml
+    uses: ./.github/workflows/01-lint-self-healing.yml
     needs: [init]
+    secrets: inherit
 
   cancel-on-failure-lint:
     if: ${{ needs.lint.result == 'failure' }}
