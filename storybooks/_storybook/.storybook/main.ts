@@ -25,7 +25,7 @@ const config: StorybookConfig = {
 
 		return mergeConfig(config, {
 			// TODO: Remove `/storybook` after removing patternhub
-			base: `${baseUrl}/storybook`
+			base: `${baseUrl}/composition-storybook`
 		});
 	},
 	refs: (_, { configType }) => {

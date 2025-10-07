@@ -31,7 +31,7 @@
     "build-showcases:stencil": "npm run build --workspace=stencil-showcase",
     "build-showcases:vue": "npm run build --workspace=vue-showcase",
     "build-storybooks": "npm-run-all --parallel build-storybooks:*",
-    "build-storybooks:_composition": "npm run build --workspace=storybook",
+    "build-storybooks:_composition": "npm run build --workspace=composition-storybook",
     "build-storybooks:angular": "npm run build --workspace=angular-storybook",
     "build-storybooks:react": "npm run build --workspace=react-storybook",
     "build-storybooks:vue": "npm run build --workspace=vue-storybook",
