@@ -10,6 +10,6 @@
 
 ## Tailwind
 
-- If you use Tailwind follow these rules:
+- If you use Tailwind, follow these rules:
     - use for `variables` like, sizing, spacing, elevation, border, container-size the file **agent-path**/agent/tailwind/Variables.md
     - Always stick to the variables. Don't use values like `p-4` or `m-[16px]`; use `p-fix-xs` or `m-fix-md` instead.
