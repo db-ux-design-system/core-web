@@ -9,6 +9,9 @@ import { dirname, join } from 'path';
 function getAbsolutePath(value: string): any {
 	return dirname(require.resolve(join(value, 'package.json')));
 }
+
+const baseUrl = process.env.BASE_URL || '';
+
 const config: StorybookConfig = {
 	stories: ['../src/**/*.mdx', '../src/**/*.stories.@(js|jsx|mjs|ts|tsx)'],
 	addons: ['@storybook/addon-docs'],
@@ -20,7 +23,6 @@ const config: StorybookConfig = {
 		const { mergeConfig } = await import('vite');
 
 
-		const baseUrl = process.env.BASE_URL || '';
 		return mergeConfig(config, {
 			// TODO: Remove `/storybook` after removing patternhub
 			base: `${baseUrl}/storybook`
@@ -49,17 +51,17 @@ const config: StorybookConfig = {
 		return {
 			angular: {
 				title: 'Angular',
-				url: 'BASE_URL/angular-storybook',
+				url: `${baseUrl}/angular-storybook`,
 				expanded: false
 			},
 			react: {
 				title: 'React',
-				url: 'BASE_URL/react-storybook',
+				url: `${baseUrl}/react-storybook`,
 				expanded: false
 			},
 			vue: {
 				title: 'Vue',
-				url: 'BASE_URL/vue-storybook',
+				url: `${baseUrl}/vue-storybook`,
 				expanded: false
 			}
 		};

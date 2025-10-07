@@ -11,7 +11,7 @@ function getAbsolutePath(value) {
 	return dirname(require.resolve(join(value, 'package.json')));
 }
 
-const BASE_URL = process.env.BASE_URL || '/BASE_URL/angular/';
+const BASE_URL = `${process.env.BASE_URL ? `${process.env.BASE_URL}/` : ''}angular-storybook`;
 
 const config: StorybookConfig = {
 	stories: ['../src/**/*.stories.@(js|jsx|mjs|ts|tsx)'],

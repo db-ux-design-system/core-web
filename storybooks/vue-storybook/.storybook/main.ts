@@ -20,7 +20,7 @@ const config: StorybookConfig = {
 		const { mergeConfig } = await import('vite');
 		const baseUrl = process.env.BASE_URL || '';
 		return mergeConfig(config, {
-			base: `${baseUrl}/vue`
+			base: `${baseUrl}/vue-storybook`
 		});
 	}
 };
