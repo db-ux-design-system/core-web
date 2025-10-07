@@ -1,14 +1,20 @@
-name: Lint
+name: Lint & Test
 
 permissions:
   contents: read
 
 on:
   workflow_call:
+    inputs:
+      test:
+        required: false
+        default: false
+        type: boolean
 
 jobs:
   lint:
     name: Lint
+    if: ${{ !inputs.test }}
     runs-on: ubuntu-24.04 # Use Ubuntu 24.04 explicitly
     steps:
       - name: ⏬️ Checkout repo
@@ -22,3 +28,17 @@ jobs:
           npm run postinstall --workspace=nuxt-showcase
           npm run build --workspace=@db-ux/core-stylelint
           npm run lint
+
+  test:
+    name: Test
+    if: ${{ inputs.test }}
+    runs-on: ubuntu-24.04 # Use Ubuntu 24.04 explicitly
+    steps:
+      - name: ⏬️ Checkout repo
+        uses: actions/checkout@v5
+
+      - name: 🔄 Init Cache
+        uses: ./.github/actions/npm-cache
+
+      - name: ⚡ Run Test
+        run: npm run test
