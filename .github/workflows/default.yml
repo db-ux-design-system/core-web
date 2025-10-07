@@ -36,7 +36,7 @@ jobs:
     needs: [init]
 
   cancel-on-failure-lint:
-    if: ${{ needs.lint.result == 'failure' }}
+    if: ${{ !cancelled() && needs.lint.result == 'failure' }}
     uses: ./.github/workflows/00-cancel-workflow.yml
     secrets: inherit
     needs: [lint]
@@ -46,7 +46,7 @@ jobs:
     needs: [init]
 
   cancel-on-failure-build-packages:
-    if: ${{ needs.build-packages.result == 'failure' }}
+    if: ${{ !cancelled() && needs.build-packages.result == 'failure' }}
     uses: ./.github/workflows/00-cancel-workflow.yml
     secrets: inherit
     needs: [build-packages]
@@ -62,7 +62,7 @@ jobs:
     needs: [build-packages]
 
   cancel-on-failure-build-outputs:
-    if: ${{ needs.build-outputs.result == 'failure' }}
+    if: ${{ !cancelled() && needs.build-outputs.result == 'failure' }}
     uses: ./.github/workflows/00-cancel-workflow.yml
     secrets: inherit
     needs: [build-outputs]
@@ -73,24 +73,11 @@ jobs:
     with:
       version: ${{ needs.init.outputs.playwrightVersion }}
 
-  cancel-on-failure-test-components:
-    if: ${{ needs.test-components.result == 'failure' }}
-    uses: ./.github/workflows/00-cancel-workflow.yml
-    secrets: inherit
-    needs: [test-components]
-
   test-foundations:
     uses: ./.github/workflows/02-e2e-foundations.yml
     needs: [build-packages, init]
     with:
       version: ${{ needs.init.outputs.playwrightVersion }}
-
-  cancel-on-failure-test-foundations:
-    if: ${{ needs.test-foundations.result == 'failure' }}
-    uses: ./.github/workflows/00-cancel-workflow.yml
-    secrets: inherit
-    needs: [test-foundations]
-
   build-storybook-composition:
     uses: ./.github/workflows/01-build-storybooks.yml
     needs: [build-packages, init]
@@ -126,7 +113,7 @@ jobs:
       showcase: stencil-showcase
 
   cancel-on-failure-build-showcase-stencil:
-    if: ${{ needs.build-showcase-stencil.result == 'failure' }}
+    if: ${{ !cancelled() && needs.build-showcase-stencil.result == 'failure' }}
     uses: ./.github/workflows/00-cancel-workflow.yml
     secrets: inherit
     needs: [build-showcase-stencil]
@@ -138,7 +125,7 @@ jobs:
       showcase: angular-showcase
 
   cancel-on-failure-build-showcase-angular:
-    if: ${{ needs.build-showcase-angular.result == 'failure' }}
+    if: ${{ !cancelled() && needs.build-showcase-angular.result == 'failure' }}
     uses: ./.github/workflows/00-cancel-workflow.yml
     secrets: inherit
     needs: [build-showcase-angular]
@@ -150,7 +137,7 @@ jobs:
       showcase: angular-ssr-showcase
 
   cancel-on-failure-build-showcase-angular-ssr:
-    if: ${{ needs.build-showcase-angular-ssr.result == 'failure' }}
+    if: ${{ !cancelled() && needs.build-showcase-angular-ssr.result == 'failure' }}
     uses: ./.github/workflows/00-cancel-workflow.yml
     secrets: inherit
     needs: [build-showcase-angular-ssr]
@@ -162,7 +149,7 @@ jobs:
       showcase: react-showcase
 
   cancel-on-failure-build-showcase-react:
-    if: ${{ needs.build-showcase-react.result == 'failure' }}
+    if: ${{ !cancelled() && needs.build-showcase-react.result == 'failure' }}
     uses: ./.github/workflows/00-cancel-workflow.yml
     secrets: inherit
     needs: [build-showcase-react]
@@ -174,7 +161,7 @@ jobs:
       showcase: next-showcase
 
   cancel-on-failure-build-showcase-next:
-    if: ${{ needs.build-showcase-next.result == 'failure' }}
+    if: ${{ !cancelled() && needs.build-showcase-next.result == 'failure' }}
     uses: ./.github/workflows/00-cancel-workflow.yml
     secrets: inherit
     needs: [build-showcase-next]
@@ -186,7 +173,7 @@ jobs:
       showcase: vue-showcase
 
   cancel-on-failure-build-showcase-vue:
-    if: ${{ needs.build-showcase-vue.result == 'failure' }}
+    if: ${{ !cancelled() && needs.build-showcase-vue.result == 'failure' }}
     uses: ./.github/workflows/00-cancel-workflow.yml
     secrets: inherit
     needs: [build-showcase-vue]
@@ -198,7 +185,7 @@ jobs:
       showcase: nuxt-showcase
 
   cancel-on-failure-build-showcase-nuxt:
-    if: ${{ needs.build-showcase-nuxt.result == 'failure' }}
+    if: ${{ !cancelled() && needs.build-showcase-nuxt.result == 'failure' }}
     uses: ./.github/workflows/00-cancel-workflow.yml
     secrets: inherit
     needs: [build-showcase-nuxt]
@@ -210,7 +197,7 @@ jobs:
       baseUrl: ${{ needs.init.outputs.baseUrl }}
 
   cancel-on-failure-build-showcase-patternhub:
-    if: ${{ needs.build-showcase-patternhub.result == 'failure' }}
+    if: ${{ !cancelled() && needs.build-showcase-patternhub.result == 'failure' }}
     uses: ./.github/workflows/00-cancel-workflow.yml
     secrets: inherit
     needs: [build-showcase-patternhub]
@@ -222,24 +209,12 @@ jobs:
       version: ${{ needs.init.outputs.playwrightVersion }}
       showcase: stencil-showcase
 
-  cancel-on-failure-test-showcase-stencil:
-    if: ${{ needs.test-showcase-stencil.result == 'failure' }}
-    uses: ./.github/workflows/00-cancel-workflow.yml
-    secrets: inherit
-    needs: [test-showcase-stencil]
-
   test-showcase-angular:
     uses: ./.github/workflows/02-e2e-showcases.yml
     needs: [build-showcase-angular, init]
     with:
       version: ${{ needs.init.outputs.playwrightVersion }}
       showcase: angular-showcase
-
-  cancel-on-failure-test-showcase-angular:
-    if: ${{ needs.test-showcase-angular.result == 'failure' }}
-    uses: ./.github/workflows/00-cancel-workflow.yml
-    secrets: inherit
-    needs: [test-showcase-angular]
 
   test-showcase-react:
     uses: ./.github/workflows/02-e2e-showcases.yml
@@ -248,12 +223,6 @@ jobs:
       version: ${{ needs.init.outputs.playwrightVersion }}
       showcase: react-showcase
 
-  cancel-on-failure-test-showcase-react:
-    if: ${{ needs.test-showcase-react.result == 'failure' }}
-    uses: ./.github/workflows/00-cancel-workflow.yml
-    secrets: inherit
-    needs: [test-showcase-react]
-
   test-showcase-vue:
     uses: ./.github/workflows/02-e2e-showcases.yml
     needs: [build-showcase-vue, init]
@@ -261,24 +230,12 @@ jobs:
       version: ${{ needs.init.outputs.playwrightVersion }}
       showcase: vue-showcase
 
-  cancel-on-failure-test-showcase-vue:
-    if: ${{ needs.test-showcase-vue.result == 'failure' }}
-    uses: ./.github/workflows/00-cancel-workflow.yml
-    secrets: inherit
-    needs: [test-showcase-vue]
-
   test-showcase-patternhub:
     uses: ./.github/workflows/02-e2e-patternhub.yml
     needs: [build-showcase-patternhub, init, init]
     with:
       version: ${{ needs.init.outputs.playwrightVersion }}
       baseUrl: ${{ needs.init.outputs.baseUrl }}
-
-  cancel-on-failure-test-showcase-patternhub:
-    if: ${{ needs.test-showcase-patternhub.result == 'failure' }}
-    uses: ./.github/workflows/00-cancel-workflow.yml
-    secrets: inherit
-    needs: [test-showcase-patternhub]
 
   regenerate-snapshots-components:
     if: ${{ !cancelled() && needs.test-components.result == 'failure' }}
