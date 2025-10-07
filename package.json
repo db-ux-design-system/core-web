@@ -150,7 +150,6 @@
     "zone.js": "0.15.1"
   },
   "overrides": {
-    "brace-expansion": "2.0.2",
     "cross-spawn": "7.0.6"
   },
   "validate-branch-name": {
