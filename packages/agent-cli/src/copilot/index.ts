@@ -9,7 +9,9 @@ function findAllNodeModulesDirectories(
 		return found;
 	}
 
-	const entries = fs.readdirSync(directory, { withFileTypes: true });
+	const entries = fs
+      .readdirSync(directory, { withFileTypes: true })
+      .sort((a, b) => a.name.localeCompare(b.name, "en"));
 	for (const entry of entries) {
 		if (entry.isDirectory()) {
 			if (entry.name === 'node_modules') {
