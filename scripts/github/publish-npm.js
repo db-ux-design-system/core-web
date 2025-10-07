@@ -48,7 +48,7 @@ for (const PACKAGE of packages) {
 		if (
 			PACKAGE !== 'core-foundations' &&
 			PACKAGE !== 'agent-cli' &&
-		PACKAGE !== 'core-migration' &&
+			PACKAGE !== 'core-migration' &&
 			PACKAGE !== 'core-stylelint'
 		) {
 			console.log('🕵️‍ Set foundations dependency');
