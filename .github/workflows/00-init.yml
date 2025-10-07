@@ -50,6 +50,17 @@ jobs:
       - name: ⏬ Checkout repo
         uses: actions/checkout@v5
 
+      # https://github.com/marketplace/actions/trufflehog-oss#advanced-usage-scan-entire-branch
+      - name: 🐷 TruffleHog OSS
+        if: ${{ github.event.pull_request != null && github.event.pull_request.head.repo.owner.login == 'db-ux-design-system' }} # only scan on pull-requests
+        uses: trufflesecurity/trufflehog@main
+        with:
+          # Setting base to an empty string scans the entire branch, per TruffleHog OSS advanced usage:
+          # https://github.com/marketplace/actions/trufflehog-oss#advanced-usage-scan-entire-branch
+          base: ""
+          head: ${{ github.ref_name }}
+          extra_args: --results=verified,unknown
+
       - name: 🔄 Init Cache Default
         uses: ./.github/actions/npm-cache
         env:

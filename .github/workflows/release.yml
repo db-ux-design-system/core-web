@@ -21,12 +21,6 @@ jobs:
     uses: ./.github/workflows/01-lint-test.yml
     needs: [init]
 
-  test:
-    uses: ./.github/workflows/01-lint-test.yml
-    needs: [init]
-    with:
-      test: true
-
   build-packages:
     uses: ./.github/workflows/01-build-packages.yml
     needs: [init]

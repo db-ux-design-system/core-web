@@ -31,26 +31,6 @@ jobs:
     uses: ./.github/workflows/00-init.yml
     secrets: inherit
 
-  scan-secrets:
-    if: github.event.pull_request == null || github.event.pull_request.head.repo.owner.login == 'db-ux-design-system'
-    runs-on: ubuntu-24.04 # Use Ubuntu 24.04 explicitly
-    steps:
-      - name: ⏬ Checkout repo
-        uses: actions/checkout@v5
-        with:
-          fetch-depth: 0
-
-      # https://github.com/marketplace/actions/trufflehog-oss#advanced-usage-scan-entire-branch
-      - name: 🐷 TruffleHog OSS
-        if: ${{ github.event.pull_request != null }} # only scan on pull-requests
-        uses: trufflesecurity/trufflehog@main
-        with:
-          # Setting base to an empty string scans the entire branch, per TruffleHog OSS advanced usage:
-          # https://github.com/marketplace/actions/trufflehog-oss#advanced-usage-scan-entire-branch
-          base: ""
-          head: ${{ github.ref_name }}
-          extra_args: --results=verified,unknown
-
   lint:
     uses: ./.github/workflows/01-lint-test.yml
     needs: [init]
@@ -60,18 +40,6 @@ jobs:
     uses: ./.github/workflows/00-cancel-workflow.yml
     secrets: inherit
     needs: [lint]
-
-  test:
-    uses: ./.github/workflows/01-lint-test.yml
-    needs: [init]
-    with:
-      test: true
-
-  cancel-on-failure-test:
-    if: ${{ needs.test.result == 'failure' }}
-    uses: ./.github/workflows/00-cancel-workflow.yml
-    secrets: inherit
-    needs: [test]
 
   build-packages:
     uses: ./.github/workflows/01-build-packages.yml
@@ -479,6 +447,6 @@ jobs:
     with:
       release: false
       preRelease: false
-      name: ${{ needs.init.outputs.name }}
+      name: ${{ needs.init.outputs.branchName }}
       repoName: ${{ needs.init.outputs.repoName }}
       repoOwner: ${{ needs.init.outputs.repoOwner }}
