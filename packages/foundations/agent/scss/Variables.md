@@ -38,7 +38,7 @@ Use fixed spacings for all kind of distances (margin, padding, ...)
 - `$db-spacing-fixed-2xl`
 - `$db-spacing-fixed-3xl`
 
-The primary use-case for responsive spacings are paddings/gaps in an application e.g. the <main> should have a responsive padding.
+The primary use case for responsive spacings are paddings/gaps in an application e.g. the <main> should have a responsive padding.
 
 - `$db-spacing-responsive-3xs`
 - `$db-spacing-responsive-2xs`
