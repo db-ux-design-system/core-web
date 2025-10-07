@@ -46,7 +46,7 @@
 							"browser": "angular-storybook",
 							"base": "../../build-storybooks"
 						},
-						"index": "src/index.html",
+						"index": false,
 						"polyfills": ["zone.js"],
 						"tsConfig": "tsconfig.app.json",
 						"inlineStyleLanguage": "scss"
