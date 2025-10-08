@@ -287,11 +287,14 @@ jobs:
         needs.test-showcase-angular.result == 'failure' ||
         needs.test-showcase-react.result == 'failure' ||
         needs.test-showcase-vue.result == 'failure' ||
-        needs.test-showcase-stencil.result == 'failure' ||
-        env.ARIA_ANGULAR == 'true' || env.VISUAL_ANGULAR == 'true' ||
-        env.ARIA_REACT == 'true' || env.VISUAL_REACT == 'true' ||
-        env.ARIA_VUE == 'true' || env.VISUAL_VUE == 'true' ||
-        env.ARIA_STENCIL == 'true' || env.VISUAL_STENCIL == 'true'
+        needs.test-showcase-angular.outputs.aria-snapshots-changed == 'true' ||
+        needs.test-showcase-angular.outputs.visual-snapshots-changed == 'true' ||
+        needs.test-showcase-react.outputs.aria-snapshots-changed == 'true' ||
+        needs.test-showcase-react.outputs.visual-snapshots-changed == 'true' ||
+        needs.test-showcase-vue.outputs.aria-snapshots-changed == 'true' ||
+        needs.test-showcase-vue.outputs.visual-snapshots-changed == 'true' ||
+        needs.test-showcase-stencil.outputs.aria-snapshots-changed == 'true' ||
+        needs.test-showcase-stencil.outputs.visual-snapshots-changed == 'true'
       )
     needs:
       [
@@ -306,12 +309,12 @@ jobs:
         run: |
           if [[ "${{ github.actor }}" == *"[bot]"* ]]; then
               echo "The snapshots between frameworks are different." >> $GITHUB_STEP_SUMMARY
-              echo "| Framework | Aria Snapshots Changed   | Visual Snapshots Changed  |" >> $GITHUB_STEP_SUMMARY
-              echo "|-----------|--------------------------|---------------------------|" >> $GITHUB_STEP_SUMMARY
-              echo "| Angular   | ${{ env.ARIA_ANGULAR }}  | ${{ env.VISUAL_ANGULAR }} |" >> $GITHUB_STEP_SUMMARY
-              echo "| React     | ${{ env.ARIA_REACT }}    | ${{ env.VISUAL_REACT }}   |" >> $GITHUB_STEP_SUMMARY
-              echo "| Vue       | ${{ env.ARIA_VUE }}      | ${{ env.VISUAL_VUE }}     |" >> $GITHUB_STEP_SUMMARY
-              echo "| Stencil   | ${{ env.ARIA_STENCIL }}  | ${{ env.VISUAL_STENCIL }} |" >> $GITHUB_STEP_SUMMARY
+              echo "| Framework | Aria Snapshots Changed | Visual Snapshots Changed |" >> $GITHUB_STEP_SUMMARY
+              echo "|-----------|------------------------|--------------------------|" >> $GITHUB_STEP_SUMMARY
+              echo "| Angular   | "$ARIA_ANGULAR"  | "$VISUAL_ANGULAR" |" >> $GITHUB_STEP_SUMMARY
+              echo "| React     | "$ARIA_REACT"    | "$VISUAL_REACT"   |" >> $GITHUB_STEP_SUMMARY
+              echo "| Vue       | "$ARIA_VUE"      | "$VISUAL_VUE"     |" >> $GITHUB_STEP_SUMMARY
+              echo "| Stencil   | "$ARIA_STENCIL"  | "$VISUAL_STENCIL" |" >> $GITHUB_STEP_SUMMARY
               exit 1
           fi
         shell: bash
