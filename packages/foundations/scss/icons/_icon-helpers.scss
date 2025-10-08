@@ -43,8 +43,9 @@ $default-icon-font-size: var(--db-icon-font-size, #{$default-icon-size-rem});
 	content: $icon;
 
 	// Hiding icon from screenreaders, https://www.w3.org/TR/css-content-3/#alt
-	// TODO: remove the @support wrapper as soon as we drop our partly-support for Firefox < version 128 (Enterprise ESR / Extended Support Release; expected to end in 2025, September / https://whattrainisitnow.com/calendar/)
+	// TODO: remove the @support wrapper as soon as we drop our partly-support for Firefox < version 128 (Enterprise ESR / Extended Support Release; expected to end in 2026, March / https://whattrainisitnow.com/calendar/)
 	@supports (content: ""/"") {
+		// stylelint-disable-next-line no-invalid-position-declaration
 		content: $icon / "";
 	}
 }
@@ -156,10 +157,12 @@ $default-icon-font-size: var(--db-icon-font-size, #{$default-icon-size-rem});
 	@include icon-content($default-icon-content); // TODO: ONLY FOR data-icon
 
 	// Hiding icon from screenreaders
+	// stylelint-disable-next-line media-type-no-deprecated
 	@media aural {
 		content: none;
 	}
 
+	// stylelint-disable-next-line media-type-no-deprecated
 	@media speech {
 		content: none;
 	}

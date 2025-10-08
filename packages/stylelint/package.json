@@ -1,6 +1,6 @@
 {
   "name": "@db-ux/core-stylelint",
-  "version": "0.0.0",
+  "version": "3.1.17",
   "type": "module",
   "description": "Ensures DB UX styles are used correctly",
   "repository": {
@@ -15,6 +15,7 @@
     }
   },
   "files": [
+    "CHANGELOG.md",
     "build"
   ],
   "keywords": [
@@ -36,7 +37,7 @@
     "postcss": "8.5.6",
     "postcss-html": "1.8.0",
     "stylelint-config-standard": "39.0.0",
-    "stylelint-config-standard-scss": "15.0.1",
+    "stylelint-config-standard-scss": "16.0.0",
     "stylelint-config-standard-vue": "1.0.0",
     "typescript": "5.8.3",
     "vitest": "3.2.4"
