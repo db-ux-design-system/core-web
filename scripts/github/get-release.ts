@@ -8,8 +8,8 @@ const getRelease = () => {
 	/* eslint-enable @typescript-eslint/naming-convention */
 
 	if (GITHUB_REF?.startsWith('refs/tags/v')) {
-		if (GITHUB_ACTOR?.includes('[bot]')) {
-			console.error('Bots have no permission to publish!');
+		if (GITHUB_ACTOR === 'dependabot[bot]') {
+			console.error('Dependabot has no permission to publish!');
 			process.exit(1);
 		} else if (GITHUB_COMMITISH === 'main' && !GITHUB_PRE_RELEASE) {
 			console.log('RELEASE');
