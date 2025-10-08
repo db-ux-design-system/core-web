@@ -1,6 +1,6 @@
 {
   "name": "@db-ux/core-foundations",
-  "version": "3.1.16",
+  "version": "3.1.17",
   "type": "module",
   "description": "Provides basic tokens and assets based on DB UX Design System (Version 3).",
   "repository": {
@@ -12,6 +12,7 @@
   "types": "./build/index.d.ts",
   "module": "./build/index.js",
   "files": [
+    "agent",
     "CHANGELOG.md",
     "assets",
     "build"
@@ -28,6 +29,7 @@
     "build:06_ts": "tsc",
     "clean": "rm --recursive --force build",
     "copy-build": "npm-run-all copy-build:*",
+    "copy-build:agent": "cpr agent ../../build-outputs/foundations/agent --overwrite",
     "copy-build:assets": "cpr assets ../../build-outputs/foundations/assets --overwrite",
     "copy-build:package.json": "cpr package.json ../../build-outputs/foundations/package.json --overwrite",
     "copy-build:readme": "cpr README.md ../../build-outputs/foundations/README.md --overwrite",
@@ -59,7 +61,7 @@
     "sass": "1.85.0",
     "tsx": "4.20.6",
     "typescript": "5.8.3",
-    "vite": "7.1.7"
+    "vite": "7.1.9"
   },
   "publishConfig": {
     "registry": "https://registry.npmjs.org/",
