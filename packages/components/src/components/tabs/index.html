@@ -4,40 +4,9 @@
 		<meta charset="UTF-8" />
 		<title>DBTabs</title>
 		<link rel="stylesheet" href="/styles/relative.css" />
-		<style>
-			body {
-				padding: var(--db-spacing-fixed-md);
-			}
-			.test-container {
-				width: 300px;
-				border: 2px solid #ccc;
-				padding: 20px;
-				margin: 20px 0;
-				resize: horizontal;
-				overflow: auto;
-				background: #f9f9f9;
-			}
-			.instructions {
-				background: #e6f3ff;
-				padding: 10px;
-				margin-bottom: 20px;
-				border-radius: 5px;
-			}
-		</style>
 	</head>
-	<body>
-		<div class="instructions">
-			<h3>Testing DBTabs with behavior="arrows" and Window Resize</h3>
-			<p><strong>Instructions:</strong></p>
-			<ol>
-				<li>The container below is resizable - drag the bottom-right corner to resize it</li>
-				<li>When the container is narrow, arrow buttons should appear to navigate tabs</li>
-				<li>When the container is wide, arrow buttons should disappear</li>
-				<li>This tests that the window resize listener properly updates the arrow buttons</li>
-			</ol>
-		</div>
-
-		<h2>Original Angular Example</h2>
+	<body style="padding: var(--db-spacing-fixed-md)">
+		<h2>Angular Example</h2>
 		<db-tabs ng-_reflect-arrow-scroll-distance="75">
 			<div class="db-tabs">
 				<db-tab-list>
@@ -149,107 +118,5 @@
 				</db-tab-panel>
 			</div>
 		</db-tabs>
-
-		<div class="test-container">
-			<h2>Testing Arrows Behavior with Resize</h2>
-			<div class="db-tabs" data-scroll-behavior="arrows">
-				<div class="db-tab-list">
-					<div role="tablist" aria-orientation="horizontal" style="display: flex; overflow-x: auto;">
-						<label role="tab" class="db-tab" for="test-tab-1" style="white-space: nowrap; padding: 8px 16px; border: 1px solid #ccc; margin-right: 4px;">
-							<input type="radio" name="test-tabs" id="test-tab-1" checked style="display: none;" />
-							Very Long Tab Name 1
-						</label>
-						<label role="tab" class="db-tab" for="test-tab-2" style="white-space: nowrap; padding: 8px 16px; border: 1px solid #ccc; margin-right: 4px;">
-							<input type="radio" name="test-tabs" id="test-tab-2" style="display: none;" />
-							Extremely Long Tab Name 2
-						</label>
-						<label role="tab" class="db-tab" for="test-tab-3" style="white-space: nowrap; padding: 8px 16px; border: 1px solid #ccc; margin-right: 4px;">
-							<input type="radio" name="test-tabs" id="test-tab-3" style="display: none;" />
-							Super Extra Long Tab Name 3
-						</label>
-						<label role="tab" class="db-tab" for="test-tab-4" style="white-space: nowrap; padding: 8px 16px; border: 1px solid #ccc; margin-right: 4px;">
-							<input type="radio" name="test-tabs" id="test-tab-4" style="display: none;" />
-							Incredibly Long Tab Name 4
-						</label>
-						<label role="tab" class="db-tab" for="test-tab-5" style="white-space: nowrap; padding: 8px 16px; border: 1px solid #ccc;">
-							<input type="radio" name="test-tabs" id="test-tab-5" style="display: none;" />
-							Amazingly Long Tab Name 5
-						</label>
-					</div>
-				</div>
-			</div>
-		</div>
-
-		<script>
-			// Simulate the DBTabs behavior to demonstrate the fix
-			function initTabsWithArrows() {
-				const container = document.querySelector('[role="tablist"]');
-				if (!container || container.id.includes('tab-list-d1abe676')) return; // Skip the original example
-				
-				let showScrollLeft = false;
-				let showScrollRight = false;
-
-				function evaluateScrollButtons() {
-					const needsScroll = container.scrollWidth > container.clientWidth;
-					console.log('Evaluating scroll buttons:', {
-						scrollWidth: container.scrollWidth,
-						clientWidth: container.clientWidth,
-						needsScroll,
-						scrollLeft: container.scrollLeft
-					});
-
-					showScrollLeft = needsScroll && container.scrollLeft > 1;
-					showScrollRight = needsScroll && container.scrollLeft < container.scrollWidth - container.clientWidth;
-
-					updateButtons();
-				}
-
-				function updateButtons() {
-					// Remove existing buttons
-					document.querySelectorAll('.tabs-scroll-left, .tabs-scroll-right').forEach(btn => btn.remove());
-
-					const tabsContainer = container.closest('.db-tabs');
-					if (!tabsContainer) return;
-
-					if (showScrollLeft) {
-						const leftBtn = document.createElement('button');
-						leftBtn.className = 'tabs-scroll-left';
-						leftBtn.innerHTML = '◀';
-						leftBtn.style.cssText = 'position: absolute; left: 5px; top: 50%; transform: translateY(-50%); z-index: 10; background: #0070f3; color: white; border: none; padding: 8px 12px; border-radius: 4px; cursor: pointer;';
-						leftBtn.onclick = () => container.scrollBy({ left: -100, behavior: 'smooth' });
-						tabsContainer.style.position = 'relative';
-						tabsContainer.appendChild(leftBtn);
-					}
-
-					if (showScrollRight) {
-						const rightBtn = document.createElement('button');
-						rightBtn.className = 'tabs-scroll-right';
-						rightBtn.innerHTML = '▶';
-						rightBtn.style.cssText = 'position: absolute; right: 5px; top: 50%; transform: translateY(-50%); z-index: 10; background: #0070f3; color: white; border: none; padding: 8px 12px; border-radius: 4px; cursor: pointer;';
-						rightBtn.onclick = () => container.scrollBy({ left: 100, behavior: 'smooth' });
-						tabsContainer.style.position = 'relative';
-						tabsContainer.appendChild(rightBtn);
-					}
-
-					console.log('Updated buttons:', { showScrollLeft, showScrollRight });
-				}
-
-				// Initial evaluation
-				setTimeout(evaluateScrollButtons, 100);
-
-				// Add scroll listener
-				container.addEventListener('scroll', evaluateScrollButtons);
-
-				// Add window resize listener (this is the fix being tested)
-				window.addEventListener('resize', evaluateScrollButtons);
-
-				// Also listen for container resize
-				const observer = new ResizeObserver(evaluateScrollButtons);
-				observer.observe(container.closest('.test-container'));
-			}
-
-			// Initialize when DOM is ready
-			document.addEventListener('DOMContentLoaded', initTabsWithArrows);
-		</script>
 	</body>
 </html>
