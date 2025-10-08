@@ -326,6 +326,45 @@ You are able to optimize the initial settings as well:
 @import "@db-ux/core-foundations/build/styles/defaults/default-code.css";
 ```
 
+## Font Preloading Instructions
+
+To ensure optimal performance and reliability — especially in flaky or offline internet conditions — **you could preload any fonts your application depends on**.
+
+### How to Preload Fonts
+
+After identifying the critical fonts required for your application's UI, use the following `<link>` tag in the `<head>` of your HTML to preload them:
+
+```html
+<link
+  rel="preload"
+  href="/media/dbneoscreensans-regular.woff2"
+  as="font"
+  type="font/woff2"
+  crossorigin="anonymous"
+/>
+```
+
+```html
+<link
+  rel="preload"
+  href="/assets/icons/fonts/default/db-ux.woff2"
+  as="font"
+  type="font/woff2"
+  crossorigin="anonymous"
+/>
+```
+
+### Tips for Identifying Fonts to Preload
+
+- Use browser dev tools to track font requests that are essential to your application
+- Fonts that fail to load during unstable connections should be prioritized.
+
+### Important Notes
+
+- Make sure the `href` path is correct and accessible at runtime.
+- Always use `crossorigin="anonymous"` for fonts served from your domain or a CDN, unless your server requires credentials (rare for fonts).
+- By preloading fonts this way, you improve perceived performance and avoid layout shifts or invisible text during initial rendering.
+
 ## Migration
 
 We provide a [CLI tool](https://github.com/db-ux-design-system/core-web/blob/main/packages/migration/README.md) to auto migrate your source code.
