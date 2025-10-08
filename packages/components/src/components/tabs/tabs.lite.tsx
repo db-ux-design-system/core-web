@@ -197,10 +197,8 @@ export default function DBTabs(props: DBTabsProps) {
 	// jscpd:ignore-end
 
 	onUnMount(() => {
-		if (state._resizeObserver) {
-			state._resizeObserver?.disconnect();
-			state._resizeObserver = undefined;
-		}
+		state._resizeObserver?.disconnect();
+		state._resizeObserver = undefined;
 	});
 
 	onUpdate(() => {
