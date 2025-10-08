@@ -10,6 +10,4 @@
 
 enabled [`@db-ux/agent-cli`](https://www.npmjs.com/package/@db-ux/agent-cli) for every package
 
-
-auto-generate/auto-update `.github/copilot-instructions.md`, to ensure GitHub Copilot
-uses DB UX Components for code generation
+auto-generate/auto-update `.github/copilot-instructions.md`, to ensure GitHub Copilot uses DB UX Components for code generation
