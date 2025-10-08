@@ -6,17 +6,23 @@ const getReleaseLine = async (changeset, _type, options) => {
 		.split('\n')
 		.map((l) => l.trimEnd());
 
-	let returnValue = `#### ${firstLine}\n\n`;
+	let returnValue = `- ${firstLine}`;
 
 	// Options are coming from .changeset/config.json
 	if (changeset.commit && options.owner && options.repo) {
 		const link = `https://github.com/${options.owner}/${options.repo}/commit/${changeset.commit}`;
-		returnValue += `- For more information checkout this [commit](${link}). - \n\n`;
+		returnValue += ` - [see commit](${link})`;
 	}
 
 	if (futureLines.length > 0) {
-		returnValue += `\n${futureLines.map((l) => `  ${l}`).join('\n')}`;
+		returnValue += `:\n\n`;
+		returnValue += `\n${futureLines
+			.filter((l) => l.length)
+			.map((l) => `\t- ${l}`)
+			.join('\n')}`;
 	}
+
+	returnValue += `\n`;
 
 	return returnValue;
 };
