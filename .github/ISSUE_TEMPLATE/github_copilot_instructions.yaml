@@ -13,7 +13,7 @@ body:
   - type: input
     id: model-used
     attributes:
-      label: 🤖 Model You Used
+      label: 🤖 Model you used
       description: Which model (if any) did you follow or reference from the documentation?
       placeholder: e.g. GPT-4o, Claude 2, Custom LLM, etc.
     validations:
@@ -22,7 +22,7 @@ body:
   - type: textarea
     id: prompt-used
     attributes:
-      label: 💬 Prompt or Usage Example
+      label: 💬 Prompt or usage example
       description: Share the exact or approximate prompt or example you tried using, based on the documentation.
       placeholder: Copy/paste or summarize the input/prompt you used.
     validations:
@@ -31,7 +31,7 @@ body:
   - type: textarea
     id: issue-description
     attributes:
-      label: ❗ What Didn’t Work As Expected?
+      label: ❗ What didn’t work as expected?
       description: Describe what was confusing, broken, or didn’t meet your expectations. Be as detailed as possible.
       placeholder: Include any error messages, mismatches, unexpected behaviors, or missing context.
     validations:
@@ -40,7 +40,7 @@ body:
   - type: textarea
     id: expected-behavior
     attributes:
-      label: ✅ What Did You Expect Instead?
+      label: ✅ What did you expect instead?
       description: What outcome were you hoping for or expecting based on the instructions provided?
       placeholder: Describe the result you thought you’d get.
     validations:
@@ -49,7 +49,7 @@ body:
   - type: textarea
     id: suggestions
     attributes:
-      label: 💡 Suggestions for Improvement
+      label: 💡 Suggestions for improvement
       description: How could we make the documentation clearer, more accurate, or more helpful?
       placeholder: e.g. "Add a note about prompt structure", "Link to working examples", etc.
     validations:
@@ -58,7 +58,7 @@ body:
   - type: dropdown
     id: clarity-rating
     attributes:
-      label: 📝 How clear was the Documentation?
+      label: 📝 How clear was the documentation?
       description: Rate how easy it was to follow the instructions.
       options:
         - 1 - Very unclear
