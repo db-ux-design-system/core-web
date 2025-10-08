@@ -16,7 +16,7 @@
 
 ## CSS Variables List
 
-Use sizing's for fixed heights/widths e.g. the db-button has always a fixed height
+Use sizing's for fixed heights/widths, e.g. the db-button always has a fixed height
 
 - `--db-sizing-3xs`
 - `--db-sizing-2xs`
@@ -28,7 +28,7 @@ Use sizing's for fixed heights/widths e.g. the db-button has always a fixed heig
 - `--db-sizing-2xl`
 - `--db-sizing-3xl`
 
-Use fixed spacings for all kind of distances (margin, padding, ...)
+Use fixed spacings for all types of distances, such as margins and padding.
 
 - `--db-spacing-fixed-3xs`
 - `--db-spacing-fixed-2xs`
@@ -40,7 +40,7 @@ Use fixed spacings for all kind of distances (margin, padding, ...)
 - `--db-spacing-fixed-2xl`
 - `--db-spacing-fixed-3xl`
 
-The primary use case for responsive spacings are paddings/gaps in an application e.g. the <main> should have a responsive padding.
+Responsive spacings are primarily used for paddings and gaps in an application. For example, the <main> HTML element should have responsive padding.
 
 - `--db-spacing-responsive-3xs`
 - `--db-spacing-responsive-2xs`
@@ -52,13 +52,13 @@ The primary use case for responsive spacings are paddings/gaps in an application
 - `--db-spacing-responsive-2xl`
 - `--db-spacing-responsive-3xl`
 
-Elevation
+### Elevation
 
 - `--db-elevation-sm`
 - `--db-elevation-md`
 - `--db-elevation-lg`
 
-Border
+### Border
 
 - `--db-border-width-3xs`
 - `--db-border-width-2xs`
@@ -80,7 +80,7 @@ Border
 - `--db-border-radius-3xl`
 - `--db-border-radius-full`
 
-Opacity
+### Opacity
 
 - `--db-opacity-3xs`
 - `--db-opacity-2xs`
@@ -93,7 +93,7 @@ Opacity
 - `--db-opacity-3xl`
 - `--db-opacity-full`
 
-Transitions
+### Transitions
 
 - `--db-transition-duration-extra-slow`
 - `--db-transition-duration-slow`
@@ -109,7 +109,7 @@ Transitions
 - `--db-transition-straight-show`
 - `--db-transition-straight-hide`
 
-Screen sizes
+### Screen sizes
 
 - `--db-screen-xs`
 - `--db-screen-sm`
@@ -117,7 +117,7 @@ Screen sizes
 - `--db-screen-lg`
 - `--db-screen-xl`
 
-Container sizes
+### Container sizes
 
 - `--db-container-3xs`
 - `--db-container-2xs`
