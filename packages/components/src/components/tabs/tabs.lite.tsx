@@ -82,7 +82,7 @@ export default function DBTabs(props: DBTabsProps) {
 							container.addEventListener('scroll', () => {
 								state.evaluateScrollButtons(container);
 							});
-							// Use ResizeObserver to re-evaluate scroll buttons
+							// Use ResizeObserver to re-evaluate scroll buttons because it provides more accurate, container-specific resize detection than global window resize events.
 							if (!state._resizeObserver) {
 								const observer = new ResizeObserver(() => {
 									state.evaluateScrollButtons(container);
