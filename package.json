@@ -55,6 +55,7 @@
     "codestyle": "prettier . --write",
     "commit:updated-snapshots": "git diff --name-only --diff-filter=M | xargs git add && git commit --message 'test: updated snapshots'",
     "dev": "npm run dev --workspace=scripts",
+    "generate:agent": "npm run agent --workspace=scripts",
     "generate:component": "npm run generate:component --workspace=@db-ux/core-components",
     "lint": "npm-run-all --parallel lint:*",
     "lint-docs-file-references": "node scripts/check-docs.js",
@@ -74,6 +75,9 @@
     "test:react-core-components": "playwright test --config output/react/playwright.config.ts --ui",
     "test:vue-components": "playwright test --config output/vue/playwright.config.ts --ui",
     "update:dependency:playwright": "node scripts/github/update-playwright.js"
+  },
+  "dependencies": {
+    "fast-glob": "^3.3.3"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "19.2.17",
