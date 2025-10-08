@@ -56,6 +56,18 @@ body:
       required: false
 
   - type: dropdown
+    id: ide
+    attributes:
+      label: 📝 Which IDE did you use?
+      description: Please provide information on the IDE you've used.
+      options:
+        - Visual Studio Code
+        - IntelliJ
+        - Others (please provide more information in another field)
+    validations:
+      required: false
+
+  - type: dropdown
     id: clarity-rating
     attributes:
       label: 📝 How clear was the documentation?
