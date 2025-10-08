@@ -273,20 +273,25 @@ jobs:
       version: ${{ needs.get-playwright-version.outputs.version }}
 
   should-regenerate-snapshots:
+    env:
+      ARIA_ANGULAR: ${{ needs.test-showcase-angular.outputs.aria-snapshots-changed }}
+      VISUAL_ANGULAR: ${{ needs.test-showcase-angular.outputs.visual-snapshots-changed }}
+      ARIA_REACT: ${{ needs.test-showcase-react.outputs.aria-snapshots-changed }}
+      VISUAL_REACT: ${{ needs.test-showcase-react.outputs.visual-snapshots-changed }}
+      ARIA_VUE: ${{ needs.test-showcase-vue.outputs.aria-snapshots-changed }}
+      VISUAL_VUE: ${{ needs.test-showcase-vue.outputs.visual-snapshots-changed }}
+      ARIA_STENCIL: ${{ needs.test-showcase-stencil.outputs.aria-snapshots-changed }}
+      VISUAL_STENCIL: ${{ needs.test-showcase-stencil.outputs.visual-snapshots-changed }}
     if: |
       !cancelled() && (
         needs.test-showcase-angular.result == 'failure' ||
         needs.test-showcase-react.result == 'failure' ||
         needs.test-showcase-vue.result == 'failure' ||
         needs.test-showcase-stencil.result == 'failure' ||
-        needs.test-showcase-angular.outputs.aria-snapshots-changed == 'true' ||
-        needs.test-showcase-angular.outputs.visual-snapshots-changed == 'true' ||
-        needs.test-showcase-react.outputs.aria-snapshots-changed == 'true' ||
-        needs.test-showcase-react.outputs.visual-snapshots-changed == 'true' ||
-        needs.test-showcase-vue.outputs.aria-snapshots-changed == 'true' ||
-        needs.test-showcase-vue.outputs.visual-snapshots-changed == 'true' ||
-        needs.test-showcase-stencil.outputs.aria-snapshots-changed == 'true' ||
-        needs.test-showcase-stencil.outputs.visual-snapshots-changed == 'true'
+        env.ARIA_ANGULAR == 'true' || env.VISUAL_ANGULAR == 'true' ||
+        env.ARIA_REACT == 'true' || env.VISUAL_REACT == 'true' ||
+        env.ARIA_VUE == 'true' || env.VISUAL_VUE == 'true' ||
+        env.ARIA_STENCIL == 'true' || env.VISUAL_STENCIL == 'true'
       )
     needs:
       [
@@ -300,6 +305,13 @@ jobs:
       - name: "Fail if actor is a bot and regeneration is triggered"
         run: |
           if [[ "${{ github.actor }}" == *"[bot]"* ]]; then
+              echo "The snapshots between frameworks are different." >> $GITHUB_STEP_SUMMARY
+              echo "| Framework | Aria Snapshots Changed   | Visual Snapshots Changed  |" >> $GITHUB_STEP_SUMMARY
+              echo "|-----------|--------------------------|---------------------------|" >> $GITHUB_STEP_SUMMARY
+              echo "| Angular   | ${{ env.ARIA_ANGULAR }}  | ${{ env.VISUAL_ANGULAR }} |" >> $GITHUB_STEP_SUMMARY
+              echo "| React     | ${{ env.ARIA_REACT }}    | ${{ env.VISUAL_REACT }}   |" >> $GITHUB_STEP_SUMMARY
+              echo "| Vue       | ${{ env.ARIA_VUE }}      | ${{ env.VISUAL_VUE }}     |" >> $GITHUB_STEP_SUMMARY
+              echo "| Stencil   | ${{ env.ARIA_STENCIL }}  | ${{ env.VISUAL_STENCIL }} |" >> $GITHUB_STEP_SUMMARY
               exit 1
           fi
         shell: bash

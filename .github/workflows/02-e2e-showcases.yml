@@ -131,9 +131,9 @@ jobs:
           VISUAL: ${{ steps.visual-snapshots.outputs.visual-snapshots-changed}}
           ARIA_MAIN: ${{ steps.aria-snapshots.outputs.aria-snapshots-changed-to-main }}
         run: |
-          echo "$ARIA"
-          echo "$VISUAL"
-          echo "$ARIA_MAIN"
+          echo "ARIA: $ARIA"
+          echo "VISUAL: $VISUAL"
+          echo "ARIA_MAIN: $ARIA_MAIN"
 
       - name: 🔣 Print GitHub Report
         if: failure()
