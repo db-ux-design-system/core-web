@@ -328,7 +328,7 @@ You are able to optimize the initial settings as well:
 
 ## Font Preloading Instructions
 
-To ensure optimal performance and reliability — especially in flaky or offline internet conditions — **you could preload any fonts your application depends on**.
+To ensure optimal performance and reliability — especially in flaky or offline internet conditions — **you could preload or at least prefetch any fonts your application depends on**.
 
 ### How to Preload Fonts
 
@@ -344,12 +344,12 @@ After identifying the critical fonts required for your application's UI, use the
 />
 ```
 
+Otherwise if the font is not that important that it would be initially required, but probably after another request or by some dynamically inserted content, you could still [prefetch](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Attributes/rel/prefetch) it, which works at a lower priority than `preload`:
+
 ```html
 <link
-  rel="preload"
+  rel="prefetch"
   href="/assets/icons/fonts/default/db-ux.woff2"
-  as="font"
-  type="font/woff2"
   crossorigin="anonymous"
 />
 ```
