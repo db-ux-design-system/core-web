@@ -1,5 +1,5 @@
 name: 📄 GitHub Copilot Instructions feedback
-description: Share feedback about the `.github/copilot-instructions.md` documentation (model choice, prompt results, clarity, etc.).
+description: Share feedback about the .github/copilot-instructions.md documentation (model choice, prompt results, clarity, etc.).
 title: "[GitHub Copilot Instructions feedback]: "
 labels: [documentation, copilot]
 body:
