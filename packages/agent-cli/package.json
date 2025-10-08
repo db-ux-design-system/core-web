@@ -26,11 +26,11 @@
     "test:cli": "tsx src/cli.ts --help"
   },
   "dependencies": {
-    "commander": "14.0.0"
+    "commander": "14.0.1"
   },
   "devDependencies": {
     "cpr": "3.0.1",
-    "esbuild": "0.25.5",
+    "esbuild": "0.25.10",
     "tsx": "4.19.4",
     "vitest": "3.2.4"
   },
