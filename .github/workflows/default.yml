@@ -407,3 +407,8 @@ jobs:
       name: ${{ needs.init.outputs.branchName }}
       repoName: ${{ needs.init.outputs.repoName }}
       repoOwner: ${{ needs.init.outputs.repoOwner }}
+
+  preview-url-pr-description:
+    if: ${{ !cancelled() && github.event.pull_request != null }}
+    needs: [deploy]
+    uses: ./.github/workflows/03-preview-url-pr-description.yml
