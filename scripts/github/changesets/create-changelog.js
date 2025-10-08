@@ -11,7 +11,7 @@ const getReleaseLine = async (changeset, _type, options) => {
 	// Options are coming from .changeset/config.json
 	if (changeset.commit && options.owner && options.repo) {
 		const link = `https://github.com/${options.owner}/${options.repo}/commit/${changeset.commit}`;
-		returnValue += ` - [see commit](${link})`;
+		returnValue += ` - [see commit ${changeset.commit.slice(0, 7)}](${link})`;
 	}
 
 	if (futureLines.length > 0) {
