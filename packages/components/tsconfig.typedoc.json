@@ -1,0 +1,22 @@
+{
+	"extends": "./tsconfig.json",
+	"compilerOptions": {
+		"jsx": "react",
+		"skipLibCheck": true,
+		"target": "es2015",
+		"module": "ESNext",
+		"moduleResolution": "node",
+		"esModuleInterop": true,
+		"allowSyntheticDefaultImports": true,
+		"strict": true
+	},
+	"include": ["src/components/**/*.ts", "src/components/**/*.tsx"],
+	"exclude": [
+		"node_modules",
+		"**/index.ts",
+		"**/*.spec.ts",
+		"**/*.spec.tsx",
+		"**/*.agent.lite.tsx",
+		"**/__snapshots__/**"
+	]
+}
