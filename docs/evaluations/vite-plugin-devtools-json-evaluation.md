@@ -121,7 +121,6 @@ The repository currently uses Vite in several locations:
 1. Add to all Vite configurations if Phase 1 is successful:
     - React showcase
     - Vue showcase
-    - Vue output package
 2. Update documentation with DevTools usage guidelines
 
 #### Phase 3: Documentation
