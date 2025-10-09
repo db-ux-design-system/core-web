@@ -16,7 +16,7 @@ This document evaluates the potential usage of `vite-plugin-devtools-json` in th
 - License: MIT
 - Dependencies: uuid ^11.1.0
 
-## Purpose of com.chrome.devtools.json
+## Purpose of `com.chrome.devtools.json` file / "endpoint"
 
 The `com.chrome.devtools.json` file is a metadata file that:
 
