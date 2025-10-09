@@ -350,18 +350,6 @@ $input-valid-types:
 		@include get-validity-color($selector, "invalid");
 	}
 
-	@include get-validity($selector) {
-		> label {
-			color: var(--db-successful-on-bg-basic-emphasis-80-default);
-		}
-	}
-
-	@include get-validity($selector, "invalid") {
-		> label {
-			color: var(--db-critical-on-bg-basic-emphasis-80-default);
-		}
-	}
-
 	@include placeholder-content($selector) {
 		opacity: variables.$db-opacity-xl;
 		font-family: var(--db-font-family-sans);

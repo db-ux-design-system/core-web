@@ -32,10 +32,112 @@ $checked-active-transition-size: calc(
 	}
 }
 
+@mixin switch-validity-colored(
+	$border-color,
+	$label-color,
+	$thumb-color,
+	$hover-color-checked,
+	$hover-color-unchecked,
+	$pressed-color-checked,
+	$pressed-color-unchecked
+) {
+	// Disable is necessary to allow SCSS variables in order to prevent code duplication for valid and invalid states
+	/* stylelint-disable db-ux/use-border-color */
+	--db-check-element-border-color: #{$border-color};
+	--db-check-element-label-color: #{$label-color};
+	--db-check-element-thumb-color: #{$thumb-color};
+	--db-check-element-hover-color-checked: #{$hover-color-checked};
+	--db-check-element-hover-color-unchecked: #{$hover-color-unchecked};
+	--db-check-element-pressed-color-checked: #{$pressed-color-checked};
+	--db-check-element-pressed-color-unchecked: #{$pressed-color-unchecked};
+
+	> input {
+		border-color: $border-color;
+	}
+
+	> input:not(:checked)::before {
+		background-color: var(--db-check-element-border-color);
+		color: var(--db-check-element-border-color);
+	}
+
+	> input:checked {
+		background-color: var(--db-check-element-border-color);
+		border-color: $border-color;
+
+		@include helpers.hover {
+			background-color: var(--db-check-element-hover-color-checked);
+			border-color: var(--db-check-element-hover-color-checked);
+		}
+
+		@include helpers.active {
+			background-color: var(--db-check-element-pressed-color-checked);
+			border-color: var(--db-check-element-pressed-color-checked);
+		}
+	}
+
+	> input:not(:checked):hover,
+	> input:not(:checked):focus {
+		background-color: var(--db-check-element-hover-color-unchecked);
+	}
+
+	> input:checked::before {
+		background-color: $thumb-color;
+		color: $thumb-color;
+	}
+	/* stylelint-enable db-ux/use-border-color */
+}
+
+@mixin switch-validity($key) {
+	@include form-components.get-validity("switch", $key) {
+		@include form-components.get-validity-message($key);
+
+		@if $key == "invalid" {
+			@include switch-validity-colored(
+				colors.$db-critical-on-bg-basic-emphasis-70-default,
+				colors.$db-critical-on-bg-basic-emphasis-80-default,
+				colors.$db-critical-on-bg-inverted-default,
+				colors.$db-critical-bg-inverted-contrast-low-pressed,
+				colors.$db-critical-bg-basic-transparent-full-hovered,
+				colors.$db-critical-bg-inverted-contrast-low-pressed,
+				colors.$db-critical-bg-basic-transparent-full-pressed
+			);
+		} @else {
+			@include switch-validity-colored(
+				colors.$db-successful-on-bg-basic-emphasis-70-default,
+				colors.$db-successful-on-bg-basic-emphasis-80-default,
+				colors.$db-successful-on-bg-inverted-default,
+				colors.$db-successful-bg-inverted-contrast-low-hovered,
+				colors.$db-successful-bg-basic-transparent-full-hovered,
+				colors.$db-successful-bg-inverted-contrast-low-pressed,
+				colors.$db-successful-bg-basic-transparent-full-pressed
+			);
+		}
+	}
+}
+
 .db-switch {
 	user-select: none;
 
+	/* enforce flex and break also in Angular */
+	display: inline-flex;
+	align-items: center;
+	flex-wrap: wrap;
+
+	@extend %helper-message;
 	@include form-components.set-default-check-element;
+
+	&:not([data-hide-asterisk="true"]) {
+		&:has(> input:required),
+		&[data-required="true"] {
+			&:is(label)::after {
+				content: none;
+			}
+
+			> .db-switch-label::after {
+				@include icons.icon-content("*");
+			}
+		}
+	}
 
 	&:not(:has(input:disabled)) {
 		@include form-components.get-state;
@@ -89,15 +191,8 @@ $checked-active-transition-size: calc(
 			);
 
 			@media screen and (prefers-reduced-motion: no-preference) {
-				transition:
-					margin variables.$db-transition-duration-fast
-						variables.$db-transition-timing-emotional,
-					inline-size variables.$db-transition-duration-fast
-						variables.$db-transition-timing-emotional,
-					block-size variables.$db-transition-duration-fast
-						variables.$db-transition-timing-emotional,
-					transform variables.$db-transition-duration-fast
-						variables.$db-transition-timing-emotional;
+				transition: visibility variables.$db-transition-duration-fast
+					variables.$db-transition-timing-emotional;
 			}
 		}
 
@@ -238,6 +333,86 @@ $checked-active-transition-size: calc(
 					);
 					block-size: $switch-active-thumb-size;
 				}
+			}
+		}
+	}
+
+	/* Set variables */
+	&[data-custom-validity="valid"] {
+		--db-switch-label-color: #{colors.$db-successful-on-bg-basic-emphasis-80-default};
+	}
+
+	&[data-custom-validity="invalid"] {
+		--db-switch-label-color: #{colors.$db-critical-on-bg-basic-emphasis-80-default};
+	}
+
+	/* Set color for label */
+	> .db-switch-label {
+		color: var(--db-switch-label-color, inherit);
+		flex: 1 1 0;
+	}
+
+	/* Set color for helper message */
+	&::after {
+		color: var(
+			--db-switch-label-color,
+			var(--db-check-element-label-color, inherit)
+		);
+	}
+
+	/* Put infotext below switch */
+	& :is(.db-infotext, db-infotext) {
+		order: 2;
+		flex: 0 0 100%;
+		margin-block-start: variables.$db-spacing-fixed-2xs;
+	}
+
+	@include switch-validity("valid");
+	@include switch-validity("invalid");
+
+	/* Label position (leading/trailing) */
+	&[data-label-position="trailing"] {
+		> input {
+			margin-inline-end: variables.$db-spacing-fixed-xs;
+		}
+	}
+
+	&[data-label-position="trailing"][data-size="small"] {
+		> input {
+			margin-inline-end: variables.$db-spacing-fixed-2xs;
+		}
+	}
+
+	&[data-label-position="leading"] {
+		> .db-switch-label {
+			order: -1;
+			margin-inline-end: variables.$db-spacing-fixed-xs;
+		}
+
+		> input {
+			margin-inline-end: 0;
+		}
+	}
+
+	/* Accent styling for checked switch */
+	&[data-accent="true"] {
+		> input:checked {
+			background-color: colors.$db-successful-on-bg-basic-emphasis-70-default;
+			border-color: colors.$db-successful-on-bg-basic-emphasis-70-default;
+
+			@include helpers.hover {
+				background-color: colors.$db-successful-on-bg-basic-emphasis-70-default;
+				border-color: colors.$db-successful-on-bg-basic-emphasis-70-default;
+			}
+
+			@include helpers.active {
+				background-color: colors.$db-successful-on-bg-basic-emphasis-70-default;
+				border-color: colors.$db-successful-on-bg-basic-emphasis-70-default;
+			}
+
+			&::before {
+				background-color: colors.$db-successful-on-bg-inverted-default;
+				color: colors.$db-successful-on-bg-inverted-default;
 			}
 		}
 	}
