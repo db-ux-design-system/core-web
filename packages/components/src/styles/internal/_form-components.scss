@@ -1,6 +1,7 @@
 @use "sass:map";
 @use "sass:string";
 @use "sass:list";
+@use "sass:selector";
 @use "@db-ux/core-foundations/build/styles/icons";
 @use "@db-ux/core-foundations/build/styles/fonts";
 @use "@db-ux/core-foundations/build/styles/variables";
@@ -75,6 +76,18 @@ $db-min-inline-size: var(
 
 @mixin set-floating-label-overwrites($selector) {
 	&[data-variant="floating"] {
+		@include get-validity($selector) {
+			label {
+				color: var(--db-successful-on-bg-basic-emphasis-80-default);
+			}
+		}
+
+		@include get-validity($selector, "invalid") {
+			label {
+				color: var(--db-critical-on-bg-basic-emphasis-80-default);
+			}
+		}
+
 		> label {
 			@extend %db-overwrite-font-size-md;
 
@@ -345,18 +358,6 @@ $input-valid-types:
 
 	@include get-validity($selector, "invalid") {
 		@include get-validity-color($selector, "invalid");
-	}
-
-	@include get-validity($selector) {
-		> label {
-			color: var(--db-successful-on-bg-basic-emphasis-80-default);
-		}
-	}
-
-	@include get-validity($selector, "invalid") {
-		> label {
-			color: var(--db-critical-on-bg-basic-emphasis-80-default);
-		}
 	}
 
 	@include placeholder-content($selector) {
