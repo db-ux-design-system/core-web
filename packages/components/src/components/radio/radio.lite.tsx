@@ -33,8 +33,18 @@ export default function DBRadio(props: DBRadioProps) {
 	const state = useStore<DBRadioState>({
 		initialized: false,
 		_id: undefined,
-		handleInput: (event: ChangeEvent<HTMLInputElement> | any) => {
+		handleInput: (
+			event: ChangeEvent<HTMLInputElement> | any,
+			reset?: boolean
+		) => {
 			useTarget({
+				angular: () => {
+					if (props.onInput) {
+						if (reset) {
+							props.onInput(event);
+						}
+					}
+				},
 				vue: () => {
 					if (props.input) {
 						props.input(event);
@@ -55,10 +65,25 @@ export default function DBRadio(props: DBRadioProps) {
 				vue: () => handleFrameworkEventVue(() => {}, event)
 			});
 		},
-		handleChange: (event: ChangeEvent<HTMLInputElement> | any) => {
-			if (props.onChange) {
-				props.onChange(event);
-			}
+		handleChange: (
+			event: ChangeEvent<HTMLInputElement> | any,
+			reset?: boolean
+		) => {
+			useTarget({
+				angular: () => {
+					if (props.onChange) {
+						// We need to split the if statements for generation
+						if (reset) {
+							props.onChange(event);
+						}
+					}
+				},
+				default: () => {
+					if (props.onChange) {
+						props.onChange(event);
+					}
+				}
+			});
 
 			useTarget({
 				angular: () => handleFrameworkEventAngular(state, event),
@@ -109,8 +134,8 @@ export default function DBRadio(props: DBRadioProps) {
 							checked: resetChecked
 						}
 					};
-					state.handleChange(valueEvent);
-					state.handleInput(valueEvent);
+					state.handleChange(valueEvent, true);
+					state.handleInput(valueEvent, true);
 				}, 1);
 			});
 		}

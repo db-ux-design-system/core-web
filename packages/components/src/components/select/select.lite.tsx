@@ -36,7 +36,6 @@ import {
 	uuid
 } from '../../utils';
 import {
-	addResetEventListener,
 	addValueResetEventListener,
 	handleFrameworkEventAngular,
 	handleFrameworkEventVue
@@ -107,8 +106,18 @@ export default function DBSelect(props: DBSelectProps) {
 				props.onClick(event);
 			}
 		},
-		handleInput: (event: InputEvent<HTMLSelectElement> | any) => {
+		handleInput: (
+			event: InputEvent<HTMLSelectElement> | any,
+			reset?: boolean
+		) => {
 			useTarget({
+				angular: () => {
+					if (props.onInput) {
+						if (reset) {
+							props.onInput(event);
+						}
+					}
+				},
 				vue: () => {
 					if (props.input) {
 						props.input(event);
@@ -130,10 +139,25 @@ export default function DBSelect(props: DBSelectProps) {
 			});
 			state.handleValidation();
 		},
-		handleChange: (event: ChangeEvent<HTMLSelectElement> | any) => {
-			if (props.onChange) {
-				props.onChange(event);
-			}
+		handleChange: (
+			event: ChangeEvent<HTMLSelectElement> | any,
+			reset?: boolean
+		) => {
+			useTarget({
+				angular: () => {
+					if (props.onChange) {
+						// We need to split the if statements for generation
+						if (reset) {
+							props.onChange(event);
+						}
+					}
+				},
+				default: () => {
+					if (props.onChange) {
+						props.onChange(event);
+					}
+				}
+			});
 
 			useTarget({
 				angular: () => handleFrameworkEventAngular(state, event),
@@ -218,8 +242,8 @@ export default function DBSelect(props: DBSelectProps) {
 				_ref,
 				{ value: props.value, defaultValue },
 				(event) => {
-					state.handleChange(event);
-					state.handleInput(event);
+					state.handleChange(event, true);
+					state.handleInput(event, true);
 				}
 			);
 		}

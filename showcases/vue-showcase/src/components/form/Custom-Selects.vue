@@ -11,11 +11,20 @@ const options = [
 	{ value: "combobox-1", id: "combobox-1" },
 	{ value: "combobox-2", id: "combobox-2" }
 ];
+
+const log = (values: string[]) => {
+	plain.value = values;
+};
 </script>
 
 <template>
 	<FormWrapper :plain="plain" :vmodel="vModel">
-		<DBCustomSelect :options="options" :values="plain" label="Plain" />
+		<DBCustomSelect
+			:options="options"
+			:values="plain"
+			@option-selected="log"
+			label="Plainccc"
+		/>
 		<DBCustomSelect
 			:options="options"
 			label="VModel"

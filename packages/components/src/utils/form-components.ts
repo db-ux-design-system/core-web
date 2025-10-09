@@ -7,6 +7,7 @@ export const handleFrameworkEventAngular = (
 	modelValue: string = 'value'
 ): void => {
 	component.propagateChange(event.target[modelValue]);
+	component.writeValue(event.target[modelValue]);
 };
 
 export const handleFrameworkEventVue = (
