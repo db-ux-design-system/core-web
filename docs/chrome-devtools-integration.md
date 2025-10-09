@@ -8,8 +8,7 @@ The DB UX Design System now includes enhanced Chrome DevTools integration via th
 
 The plugin is automatically enabled in all Vite-based development environments:
 - React showcase (`/showcases/react-showcase/`)
-- Vue showcase (`/showcases/vue-showcase/`) 
-- Vue output package (`/output/vue/`)
+- Vue showcase (`/showcases/vue-showcase/`)
 
 ## Enhanced Features
 
@@ -33,8 +32,8 @@ The plugin automatically generates a `com.chrome.devtools.json` file that provid
    ```bash
    # React showcase
    cd showcases/react-showcase && npm run dev
-   
-   # Vue showcase  
+
+   # Vue showcase
    cd showcases/vue-showcase && npm run dev
    ```
 
@@ -84,7 +83,7 @@ plugins: [
 ## Browser Compatibility
 
 - ✅ Google Chrome (recommended)
-- ✅ Microsoft Edge (Chromium-based)  
+- ✅ Microsoft Edge (Chromium-based)
 - ✅ Opera (Chromium-based)
 - ❌ Firefox (limited support)
 - ❌ Safari (not supported)

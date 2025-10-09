@@ -1,6 +1,5 @@
 import { defineConfig } from 'vite';
 import vue from '@vitejs/plugin-vue';
-import devtoolsJson from 'vite-plugin-devtools-json';
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -22,7 +21,6 @@ export default defineConfig({
 		}
 	},
 	plugins: [
-		vue(),
-		devtoolsJson() // Enable Chrome DevTools JSON generation for enhanced debugging
+		vue()
 	]
 });

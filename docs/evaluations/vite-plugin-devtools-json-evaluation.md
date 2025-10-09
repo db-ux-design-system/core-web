@@ -41,13 +41,6 @@ The repository currently uses Vite in several locations:
     - Builds to `build-showcases/vue-showcase`
     - Enables CSS dev source maps
 
-### Output Packages
-
-- **Vue Output** (`/output/vue/vite.config.ts`)
-    - Library build configuration
-    - UMD and ES module formats
-    - External Vue dependency
-
 ## Evaluation Criteria
 
 ### 1. Development Experience Benefits

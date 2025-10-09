@@ -43,7 +43,6 @@
     "tsx": "4.20.4",
     "typescript": "5.8.3",
     "vite": "6.3.5",
-    "vite-plugin-devtools-json": "1.0.0",
     "vue": "3.5.18",
     "vue-tsc": "3.0.5"
   },
