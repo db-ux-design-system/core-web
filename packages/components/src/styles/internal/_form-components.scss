@@ -182,10 +182,6 @@ $db-min-inline-size: var(
 		$variant: "critical";
 	}
 
-	@if $selector == textarea {
-		--db-textarea-read-only: var(--db-#{$variant}-bg-basic-level-1-default);
-	}
-
 	@if $selector != textarea {
 		@extend %db-#{$variant}-variables;
 		/* stylelint-disable-next-line at-rule-empty-line-before */
