@@ -2,7 +2,7 @@
 
 ## Overview
 
-This document evaluates the potential usage of `vite-plugin-devtools-json` in the DB UX Design System core-web repository.
+This document evaluates the potential usage of [`vite-plugin-devtools-json` node package](https://www.npmjs.com/package/vite-plugin-devtools-json) in the DB UX Design System `core-web` repository.
 
 ## What is `vite-plugin-devtools-json` node package?
 
