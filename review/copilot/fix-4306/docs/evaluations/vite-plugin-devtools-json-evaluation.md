@@ -2,9 +2,9 @@
 
 ## Overview
 
-This document evaluates the potential usage of `vite-plugin-devtools-json` in the DB UX Design System core-web repository.
+This document evaluates the potential usage of [`vite-plugin-devtools-json` node package](https://www.npmjs.com/package/vite-plugin-devtools-json) in the DB UX Design System `core-web` repository.
 
-## What is vite-plugin-devtools-json?
+## What is `vite-plugin-devtools-json` node package?
 
 `vite-plugin-devtools-json` is a Vite plugin that generates a `com.chrome.devtools.json` file on the fly in the development server. This file is used by Chrome DevTools to provide enhanced debugging capabilities for web applications.
 
@@ -16,7 +16,7 @@ This document evaluates the potential usage of `vite-plugin-devtools-json` in th
 - License: MIT
 - Dependencies: uuid ^11.1.0
 
-## Purpose of com.chrome.devtools.json
+## Purpose of `com.chrome.devtools.json` file / "endpoint"
 
 The `com.chrome.devtools.json` file is a metadata file that:
 
@@ -121,7 +121,6 @@ The repository currently uses Vite in several locations:
 1. Add to all Vite configurations if Phase 1 is successful:
     - React showcase
     - Vue showcase
-    - Vue output package
 2. Update documentation with DevTools usage guidelines
 
 #### Phase 3: Documentation
