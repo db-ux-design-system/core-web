@@ -92,9 +92,15 @@ for (const REGISTRY of registries) {
 		console.log(
 			`⤴ (Dry-run) Publish ${PACKAGE} with tag ${TAG} to ${REGISTRY}`
 		);
-		execSync(
-			`npm publish --tag ${TAG} db-ux-${PACKAGE}-${VALID_SEMVER_VERSION}.tgz --dry-run`
-		);
+		try {
+			execSync(
+				`npm publish --tag ${TAG} db-ux-${PACKAGE}-${VALID_SEMVER_VERSION}.tgz --dry-run`
+			);
+		} catch (error) {
+			console.error(`❌ Dry-run publish failed for ${PACKAGE} with tag ${TAG} to ${REGISTRY}`);
+			console.error(error.message || error);
+			process.exit(1);
+		}
 	}
 
 	for (const PACKAGE of packages) {
