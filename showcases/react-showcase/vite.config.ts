@@ -1,6 +1,6 @@
 import react from '@vitejs/plugin-react';
-import devtoolsJson from 'vite-plugin-devtools-json';
 import { defineConfig } from 'vite';
+import devtoolsJson from 'vite-plugin-devtools-json';
 
 // https://vitejs.dev/config/
 export default defineConfig({
