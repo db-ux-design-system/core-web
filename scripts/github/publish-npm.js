@@ -88,25 +88,23 @@ for (const REGISTRY of registries) {
 	}
 
 	// We do a try-run to check if everything is alright
-	for (const PACKAGE of packages) {
-		console.log(
-			`⤴ (Dry-run) Publish ${PACKAGE} with tag ${TAG} to ${REGISTRY}`
-		);
-		try {
-			execSync(
-				`npm publish --tag ${TAG} db-ux-${PACKAGE}-${VALID_SEMVER_VERSION}.tgz --dry-run`
-			);
-		} catch (error) {
-			console.error(`❌ Dry-run publish failed for ${PACKAGE} with tag ${TAG} to ${REGISTRY}`);
-			console.error(error.message || error);
-			process.exit(1);
-		}
-	}
 
-	for (const PACKAGE of packages) {
-		console.log(`⤴ Publish ${PACKAGE} with tag ${TAG} to ${REGISTRY}`);
-		execSync(
-			`npm publish --tag ${TAG} db-ux-${PACKAGE}-${VALID_SEMVER_VERSION}.tgz --provenance`
-		);
+	for (const step of ['dry-run', 'provenance']) {
+		for (const PACKAGE of packages) {
+			console.log(
+				`⤴ (${step}) Publish ${PACKAGE} with tag ${TAG} to ${REGISTRY}`
+			);
+			try {
+				execSync(
+					`npm publish --tag ${TAG} db-ux-${PACKAGE}-${VALID_SEMVER_VERSION}.tgz --${step}`
+				);
+			} catch (error) {
+				console.error(
+					`❌ ${step} publish failed for ${PACKAGE} with tag ${TAG} to ${REGISTRY}`
+				);
+				console.error(error.message || error);
+				process.exit(1);
+			}
+		}
 	}
 }
