@@ -1,1 +1,1 @@
-["Label, combo box, collapsed, (Default) Regular","expanded","Option 1. list. Option 1, not selected, 1 of 3","Option 2, not selected, 2 of 3"]
+["Label, combo box, collapsed, (Default) Regular","expanded. list. list item, 1 of 6","Option 1, not selected, 2 of 6","Option 2, not selected, 3 of 6"]

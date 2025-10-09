@@ -6,9 +6,12 @@ import { DBSelect } from './index';
 import { DEFAULT_VIEWPORT } from '../../shared/constants.ts';
 
 const comp: any = (
-	<DBSelect id="test" label="Label" message="Description">
+	<DBSelect id="test" label="Label" message="Description" value="test1">
 		<option value="test1">Test1</option>
 		<option value="test2">Test2</option>
+		<option value="test3">Test3</option>
+		<option value="test4">Test4</option>
+		<option value="test5">Test5</option>
 	</DBSelect>
 );
 
@@ -53,6 +56,9 @@ const testAction = () => {
 					Test1
 				</option>
 				<option value="test2">Test2</option>
+				<option value="test3">Test3</option>
+				<option value="test4">Test4</option>
+				<option value="test5">Test5</option>
 			</DBSelect>
 		);
 		const component = await mount(comp);

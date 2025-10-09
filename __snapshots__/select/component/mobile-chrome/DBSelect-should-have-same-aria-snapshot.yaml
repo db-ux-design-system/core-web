@@ -1,6 +1,9 @@
 - text: Label
 - combobox "Label":
-  - option "Test1"
+  - option "Test1" [selected]
   - option "Test2"
-- text: Label Description
+  - option "Test3"
+  - option "Test4"
+  - option "Test5"
+- text: Description
 - status

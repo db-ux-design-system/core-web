@@ -23,9 +23,20 @@ For additional information besides the frameworks see our [Getting started](http
 
 If you just need the styling follow this:
 
+## Package Relationship
+
+**✅ Do I need foundations if I install components?**
+
+**No!** The `@db-ux/core-components` package **automatically includes** all the foundations (`@db-ux/core-foundations`) you need. You only need to install one package:
+
+- **Use `@db-ux/core-components`** - If you want to use UI components (buttons, inputs, etc.)
+- **Use `@db-ux/core-foundations`** - If you only need design tokens, colors, spacing, fonts, and assets without any component styles
+
 ## Install
 
 `npm i @db-ux/core-components`
+
+> **Note**: This automatically includes `@db-ux/core-foundations` as a dependency, so you don't need to install it separately.
 
 ## Styling Dependencies
 
@@ -35,7 +46,7 @@ Import the styles in `scss` or `css`. Based on your technology the file names co
 - `webpack`: asset path point to `~@db-ux/core-foundations/assets`
 - `rollup`: asset path point to `@db-ux/core-foundations/assets`
 
-They are bundling all dependencies from [foundations](https://www.npmjs.com/package/@db-ux/core-foundations) and all [components](https://github.com/db-ux-design-system/core-web/blob/main/packages/components/src/styles/db-ux-components.scss) available.
+**Important**: These bundled files automatically include **all dependencies from [foundations](https://www.npmjs.com/package/@db-ux/core-foundations)** (design tokens, colors, fonts, etc.) **and all [components](https://github.com/db-ux-design-system/core-web/blob/main/packages/components/src/styles/db-ux-components.scss)** - everything you need in one import!
 
 **SCSS**
 

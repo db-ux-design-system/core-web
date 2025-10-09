@@ -25,36 +25,41 @@ process.chdir('build-outputs');
 
 const packages = [
 	'core-foundations',
-	'core-migration',
-	'core-stylelint',
 	'core-components',
 	'ngx-core-components',
 	'react-core-components',
 	'v-core-components',
-	'wc-core-components'
+	'wc-core-components',
+	'core-migration',
+	'core-stylelint',
+	'agent-cli'
 ];
 
 for (const PACKAGE of packages) {
 	console.log(`Start ${PACKAGE} bundle:`);
 
-	console.log('🆚 Update Version');
-	execSync(
-		`npm version --no-git-tag-version ${VALID_SEMVER_VERSION} --workspace=@db-ux/${PACKAGE}`
-	);
-
-	if (
-		PACKAGE !== 'core-foundations' &&
-		PACKAGE !== 'core-migration' &&
-		PACKAGE !== 'core-stylelint'
-	) {
-		console.log('🕵️‍ Set foundations dependency');
+	if (PRE_RELEASE) {
+		// Only update versions for pre-releases
+		console.log('🆚 Update Version');
 		execSync(
-			`npm pkg set dependencies.@db-ux/core-foundations=${VALID_SEMVER_VERSION} --workspace=@db-ux/${PACKAGE}`
+			`npm version --no-git-tag-version ${VALID_SEMVER_VERSION} --workspace=@db-ux/${PACKAGE}`
 		);
-		if (PACKAGE !== 'core-components') {
+
+		if (
+			PACKAGE !== 'core-foundations' &&
+			PACKAGE !== 'agent-cli' &&
+			PACKAGE !== 'core-migration' &&
+			PACKAGE !== 'core-stylelint'
+		) {
+			console.log('🕵️‍ Set foundations dependency');
 			execSync(
-				`npm pkg set dependencies.@db-ux/core-components=${VALID_SEMVER_VERSION} --workspace=@db-ux/${PACKAGE}`
+				`npm pkg set dependencies.@db-ux/core-foundations=${VALID_SEMVER_VERSION} --workspace=@db-ux/${PACKAGE}`
 			);
+			if (PACKAGE !== 'core-components') {
+				execSync(
+					`npm pkg set dependencies.@db-ux/core-components=${VALID_SEMVER_VERSION} --workspace=@db-ux/${PACKAGE}`
+				);
+			}
 		}
 	}
 

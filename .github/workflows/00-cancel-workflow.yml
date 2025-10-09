@@ -1,0 +1,24 @@
+name: Cancel Workflow
+
+permissions:
+  contents: read
+  pull-requests: write
+  actions: write
+
+on:
+  workflow_call:
+
+jobs:
+  cancel-workflow:
+    name: Cancel Workflow
+    runs-on: ubuntu-24.04 # Use Ubuntu 24.04 explicitly
+    steps:
+      - name: ⏬ Checkout repo
+        uses: actions/checkout@v5
+
+      - name: 💀 Killing me softly
+        run: |
+          gh run cancel ${{ github.run_id }}
+        shell: bash
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
