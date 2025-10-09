@@ -10,8 +10,8 @@
   "author": "General technical components out of DB UX Design System (Version 3)",
   "license": "Apache-2.0",
   "files": [
-    "agent",
     "CHANGELOG.md",
+    "agent",
     "build"
   ],
   "scripts": {
@@ -30,6 +30,7 @@
     "copy-assets": "cpr ../foundations/assets build/assets -o",
     "copy-output": "npm-run-all copy:*",
     "copy:agent": "cpr agent ../../build-outputs/components/agent --overwrite",
+    "copy:changelog": "cpr CHANGELOG.md ../../build-outputs/components/CHANGELOG.md --overwrite",
     "copy:outputs": "cpr build ../../build-outputs/components/build --overwrite",
     "copy:package.json": "cpr package.json ../../build-outputs/components/package.json --overwrite",
     "copy:readme": "cpr README.md ../../build-outputs/components/README.md --overwrite",
