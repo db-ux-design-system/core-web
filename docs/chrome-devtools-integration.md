@@ -2,7 +2,7 @@
 
 ## Overview
 
-The DB UX Design System now includes enhanced Chrome DevTools integration via the `vite-plugin-devtools-json` plugin. This provides improved debugging capabilities during development.
+The DB UX Design System now includes enhanced Chrome DevTools integration via the [`vite-plugin-devtools-json`](https://www.npmjs.com/package/vite-plugin-devtools-json) plugin. This provides improved debugging capabilities during development.
 
 ## What's Included
 
