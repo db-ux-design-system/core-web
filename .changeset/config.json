@@ -14,7 +14,8 @@
 			"@db-ux/v-core-components",
 			"@db-ux/wc-core-components",
 			"@db-ux/core-stylelint",
-			"@db-ux/core-migration"
+			"@db-ux/core-migration",
+			"@db-ux/agent-cli"
 		]
 	],
 	"ignore": ["scripts"],
