@@ -101,9 +101,3 @@ jobs:
           fi
           echo "URL: $URL"
           echo "### GH-Pages URL :rocket: <br> <br> $URL" >> $GITHUB_STEP_SUMMARY
-
-      - name: 💀 Killing me softly
-        uses: ./.github/actions/cancel-workflow
-        if: failure()
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}

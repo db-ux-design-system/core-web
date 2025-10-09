@@ -1,6 +1,6 @@
 {
   "name": "@db-ux/ngx-core-components",
-  "version": "3.1.16",
+  "version": "3.1.18",
   "description": "Angular components @db-ux/core-components",
   "type": "module",
   "repository": {
@@ -13,7 +13,9 @@
   "types": "index.d.ts",
   "scripts": {
     "build": "ng build",
+    "mv:agent": "cpr agent ../../build-outputs/angular/agent --overwrite",
     "ng": "ng",
+    "postbuild": "npm-run-all --parallel mv:*",
     "start": "ng serve"
   },
   "devDependencies": {
@@ -24,7 +26,7 @@
     "access": "public"
   },
   "dependencies": {
-    "@db-ux/core-components": "3.1.16",
-    "@db-ux/core-foundations": "3.1.16"
+    "@db-ux/core-components": "3.1.18",
+    "@db-ux/core-foundations": "3.1.18"
   }
 }

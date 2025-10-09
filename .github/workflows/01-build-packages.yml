@@ -51,8 +51,8 @@ jobs:
           name: db-ux-stylelint-build
           path: packages/stylelint/build
 
-      - name: 💀 Killing me softly
-        uses: ./.github/actions/cancel-workflow
-        if: failure()
+      - name: ⏫ Upload agent-cli build
+        uses: actions/upload-artifact@v4
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
+          name: db-ux-agent-cli-build
+          path: packages/agent-cli/build

@@ -25,13 +25,14 @@ process.chdir('build-outputs');
 
 const packages = [
 	'core-foundations',
-	'core-migration',
-	'core-stylelint',
 	'core-components',
 	'ngx-core-components',
 	'react-core-components',
 	'v-core-components',
-	'wc-core-components'
+	'wc-core-components',
+	'core-migration',
+	'core-stylelint',
+	'agent-cli'
 ];
 
 for (const PACKAGE of packages) {
@@ -46,6 +47,7 @@ for (const PACKAGE of packages) {
 
 		if (
 			PACKAGE !== 'core-foundations' &&
+			PACKAGE !== 'agent-cli' &&
 			PACKAGE !== 'core-migration' &&
 			PACKAGE !== 'core-stylelint'
 		) {
