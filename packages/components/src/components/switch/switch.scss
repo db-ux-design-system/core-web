@@ -32,27 +32,27 @@ $checked-active-transition-size: calc(
 	}
 }
 
-@mixin switch-validity-colored(
-	$border-color,
-	$label-color,
-	$thumb-color,
-	$hover-color-checked,
-	$hover-color-unchecked,
-	$pressed-color-checked,
-	$pressed-color-unchecked
-) {
+@mixin switch-validity-colored($variant) {
+	$border-70: var(--db-#{$variant}-on-bg-basic-emphasis-70-default);
+	$label-80: var(--db-#{$variant}-on-bg-basic-emphasis-80-default);
+	$thumb-inverted: var(--db-#{$variant}-on-bg-inverted-default);
+	$hover-checked: var(--db-#{$variant}-bg-inverted-contrast-low-pressed);
+	$hover-unchecked: var(--db-#{$variant}-bg-basic-transparent-full-hovered);
+	$press-checked: var(--db-#{$variant}-bg-inverted-contrast-low-pressed);
+	$press-unchecked: var(--db-#{$variant}-bg-basic-transparent-full-pressed);
+
 	// Disable is necessary to allow SCSS variables in order to prevent code duplication for valid and invalid states
 	/* stylelint-disable db-ux/use-border-color */
-	--db-check-element-border-color: #{$border-color};
-	--db-check-element-label-color: #{$label-color};
-	--db-check-element-thumb-color: #{$thumb-color};
-	--db-check-element-hover-color-checked: #{$hover-color-checked};
-	--db-check-element-hover-color-unchecked: #{$hover-color-unchecked};
-	--db-check-element-pressed-color-checked: #{$pressed-color-checked};
-	--db-check-element-pressed-color-unchecked: #{$pressed-color-unchecked};
+	--db-check-element-border-color: #{$border-70};
+	--db-check-element-label-color: #{$label-80};
+	--db-check-element-thumb-color: #{$thumb-inverted};
+	--db-check-element-hover-color-checked: #{$hover-checked};
+	--db-check-element-hover-color-unchecked: #{$hover-unchecked};
+	--db-check-element-pressed-color-checked: #{$press-checked};
+	--db-check-element-pressed-color-unchecked: #{$press-unchecked};
 
 	> input {
-		border-color: $border-color;
+		border-color: $border-70;
 	}
 
 	> input:not(:checked)::before {
@@ -62,7 +62,7 @@ $checked-active-transition-size: calc(
 
 	> input:checked {
 		background-color: var(--db-check-element-border-color);
-		border-color: $border-color;
+		border-color: $border-70;
 
 		@include helpers.hover {
 			background-color: var(--db-check-element-hover-color-checked);
@@ -81,8 +81,8 @@ $checked-active-transition-size: calc(
 	}
 
 	> input:checked::before {
-		background-color: $thumb-color;
-		color: $thumb-color;
+		background-color: $thumb-inverted;
+		color: $thumb-inverted;
 	}
 	/* stylelint-enable db-ux/use-border-color */
 }
@@ -91,27 +91,13 @@ $checked-active-transition-size: calc(
 	@include form-components.get-validity("switch", $key) {
 		@include form-components.get-validity-message($key);
 
-		@if $key == "invalid" {
-			@include switch-validity-colored(
-				colors.$db-critical-on-bg-basic-emphasis-70-default,
-				colors.$db-critical-on-bg-basic-emphasis-80-default,
-				colors.$db-critical-on-bg-inverted-default,
-				colors.$db-critical-bg-inverted-contrast-low-pressed,
-				colors.$db-critical-bg-basic-transparent-full-hovered,
-				colors.$db-critical-bg-inverted-contrast-low-pressed,
-				colors.$db-critical-bg-basic-transparent-full-pressed
-			);
-		} @else {
-			@include switch-validity-colored(
-				colors.$db-successful-on-bg-basic-emphasis-70-default,
-				colors.$db-successful-on-bg-basic-emphasis-80-default,
-				colors.$db-successful-on-bg-inverted-default,
-				colors.$db-successful-bg-inverted-contrast-low-hovered,
-				colors.$db-successful-bg-basic-transparent-full-hovered,
-				colors.$db-successful-bg-inverted-contrast-low-pressed,
-				colors.$db-successful-bg-basic-transparent-full-pressed
-			);
+		$variant: successful;
+
+		@if $key != "valid" {
+			$variant: critical;
 		}
+
+		@include switch-validity-colored($variant);
 	}
 }
 
