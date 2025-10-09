@@ -1,5 +1,6 @@
 import {
 	onMount,
+	onUpdate,
 	Show,
 	useDefaultProps,
 	useMetadata,
@@ -17,6 +18,7 @@ import {
 	uuid
 } from '../../utils';
 import {
+	addCheckedResetEventListener,
 	handleFrameworkEventAngular,
 	handleFrameworkEventVue
 } from '../../utils/form-components';
@@ -38,16 +40,31 @@ export default function DBSwitch(props: DBSwitchProps) {
 	// jscpd:ignore-start
 	const state = useStore<DBSwitchState>({
 		_id: undefined,
-		handleChange: (event: ChangeEvent<HTMLInputElement>) => {
+		handleChange: (
+			event: ChangeEvent<HTMLInputElement>,
+			reset?: boolean
+		) => {
 			useTarget({
-				angular: () =>
-					handleFrameworkEventAngular(state, event, 'checked'),
-				vue: () => handleFrameworkEventVue(() => {}, event, 'checked'),
+				angular: () => {
+					if (props.onChange) {
+						// We need to split the if statements for generation
+						if (reset) {
+							props.onChange(event);
+						}
+					}
+				},
 				default: () => {
 					if (props.onChange) {
 						props.onChange(event);
 					}
 				}
+			});
+
+			useTarget({
+				angular: () => {
+					handleFrameworkEventAngular(state, event, 'checked');
+				},
+				vue: () => handleFrameworkEventVue(() => {}, event, 'checked')
 			});
 		},
 		handleBlur: (event: InteractionEvent<HTMLInputElement>) => {
@@ -66,6 +83,21 @@ export default function DBSwitch(props: DBSwitchProps) {
 		state._id = props.id ?? `switch-${uuid()}`;
 	});
 
+	onUpdate(() => {
+		if (_ref) {
+			const defaultChecked = useTarget({
+				react: (props as any).defaultChecked,
+				default: undefined
+			});
+			addCheckedResetEventListener(
+				_ref,
+				{ checked: props.checked, defaultChecked },
+				(event) => {
+					state.handleChange(event, true);
+				}
+			);
+		}
+	}, [_ref]);
 	// jscpd:ignore-end
 
 	return (

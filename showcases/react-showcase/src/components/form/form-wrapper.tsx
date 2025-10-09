@@ -1,3 +1,4 @@
+import { DBButton } from '@db-ux/react-core-components/src';
 import { type PropsWithChildren } from 'react';
 
 const FormWrapper = ({
@@ -12,6 +13,9 @@ const FormWrapper = ({
 		<div className="form-container">
 			<form>
 				<fieldset>{children}</fieldset>
+				<DBButton type="reset" data-testid="reset-button">
+					Reset
+				</DBButton>
 			</form>
 			<dl data-testid="data-list">
 				<dt>Controlled:</dt>

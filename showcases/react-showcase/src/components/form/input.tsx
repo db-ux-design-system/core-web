@@ -30,13 +30,6 @@ const FormInputs = () => {
 					setUncontrolled(event.target.value);
 				}}
 			/>
-			<DBInput
-				label="Test label"
-				variant="floating"
-				invalidMessage="Test message"
-				validMessage=""
-				required
-			/>
 		</FormWrapper>
 	);
 };

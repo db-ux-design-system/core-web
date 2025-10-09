@@ -1,0 +1,25 @@
+<app-form-wrapper
+	[plain]="plain"
+	[model]="ngModel"
+	[control]="formControl.value"
+>
+	<fieldset>
+		<legend>Different form approaches</legend>
+		<db-switch
+			[checked]="plain"
+			(change)="handlePlainChange($event)"
+			name="switch"
+			label="Plain"
+		></db-switch>
+		<db-switch
+			[(ngModel)]="ngModel"
+			name="switch"
+			label="ngModel"
+		></db-switch>
+		<db-switch
+			[formControl]="formControl"
+			name="switch"
+			label="formControl"
+		></db-switch>
+	</fieldset>
+</app-form-wrapper>

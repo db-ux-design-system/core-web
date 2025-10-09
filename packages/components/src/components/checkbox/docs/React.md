@@ -47,7 +47,7 @@ const App = () => {
 
 			{/* The DBInfotext component holds the formatted message. */}
 			<DBInfotext id="checkbox-message">
-			Example <strong>Text</strong>
+				Example <strong>Text</strong>
 			</DBInfotext>
 		</div>
 	);

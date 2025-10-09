@@ -48,6 +48,7 @@ import { DocumentClickListener } from '../../utils/document-click-listener';
 import { DocumentScrollListener } from '../../utils/document-scroll-listener';
 import { handleFixedDropdown } from '../../utils/floating-components';
 import {
+	addResetEventListener,
 	handleFrameworkEventAngular,
 	handleFrameworkEventVue
 } from '../../utils/form-components';
@@ -749,6 +750,21 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 			state.handleValidation();
 		}
 	}, [state._values, selectRef]);
+
+	onUpdate(() => {
+		if (selectRef) {
+			const initialValues = props.values;
+			addResetEventListener(selectRef, () => {
+				const resetValue = initialValues
+					? initialValues
+					: selectRef.value
+						? [selectRef.value]
+						: [];
+				state.handleOptionSelected(resetValue);
+				state.handleValidation();
+			});
+		}
+	}, [selectRef]);
 
 	onUpdate(() => {
 		state._validity = props.validation;

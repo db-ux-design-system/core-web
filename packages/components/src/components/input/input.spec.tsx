@@ -50,7 +50,9 @@ const testAction = () => {
 		expect(test).toEqual('test');
 	});
 
-	test('should have enterkeyhint attribute when provided', async ({ mount }) => {
+	test('should have enterkeyhint attribute when provided', async ({
+		mount
+	}) => {
 		const component = await mount(
 			<DBInput label="Label" enterkeyhint="done" />
 		);
@@ -66,12 +68,10 @@ const testAction = () => {
 		await expect(input).toHaveAttribute('inputmode', 'numeric');
 	});
 
-
-
-	test('should not have enterkeyhint or inputmode when not provided', async ({ mount }) => {
-		const component = await mount(
-			<DBInput label="Label" type="text" />
-		);
+	test('should not have enterkeyhint or inputmode when not provided', async ({
+		mount
+	}) => {
+		const component = await mount(<DBInput label="Label" type="text" />);
 		const input = component.getByRole('textbox');
 		await expect(input).not.toHaveAttribute('enterkeyhint');
 		await expect(input).not.toHaveAttribute('inputmode');

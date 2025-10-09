@@ -30,6 +30,7 @@ import {
 	uuid
 } from '../../utils';
 import {
+	addValueResetEventListener,
 	handleFrameworkEventAngular,
 	handleFrameworkEventVue
 } from '../../utils/form-components';
@@ -91,8 +92,18 @@ export default function DBTextarea(props: DBTextareaProps) {
 				state._descByIds = undefined;
 			}
 		},
-		handleInput: (event: InputEvent<HTMLTextAreaElement>) => {
+		handleInput: (
+			event: InputEvent<HTMLTextAreaElement>,
+			reset?: boolean
+		) => {
 			useTarget({
+				angular: () => {
+					if (props.onInput) {
+						if (reset) {
+							props.onInput(event);
+						}
+					}
+				},
 				vue: () => {
 					if (props.input) {
 						props.input(event);
@@ -113,10 +124,26 @@ export default function DBTextarea(props: DBTextareaProps) {
 			});
 			state.handleValidation();
 		},
-		handleChange: (event: ChangeEvent<HTMLTextAreaElement>) => {
-			if (props.onChange) {
-				props.onChange(event);
-			}
+		handleChange: (
+			event: ChangeEvent<HTMLTextAreaElement>,
+			reset?: boolean
+		) => {
+			useTarget({
+				angular: () => {
+					if (props.onChange) {
+						// We need to split the if statements for generation
+						if (reset) {
+							props.onChange(event);
+						}
+					}
+				},
+				default: () => {
+					if (props.onChange) {
+						props.onChange(event);
+					}
+				}
+			});
+
 			useTarget({
 				angular: () => handleFrameworkEventAngular(state, event),
 				vue: () => handleFrameworkEventVue(() => {}, event)
@@ -169,6 +196,23 @@ export default function DBTextarea(props: DBTextareaProps) {
 	onUpdate(() => {
 		state._value = props.value;
 	}, [props.value]);
+
+	onUpdate(() => {
+		if (_ref) {
+			const defaultValue = useTarget({
+				react: (props as any).defaultValue,
+				default: undefined
+			});
+			addValueResetEventListener(
+				_ref,
+				{ value: props.value, defaultValue },
+				(event) => {
+					state.handleChange(event, true);
+					state.handleInput(event, true);
+				}
+			);
+		}
+	}, [_ref]);
 
 	return (
 		<div
