@@ -341,7 +341,7 @@ You are able to optimize the initial settings as well:
 @import "@db-ux/core-foundations/build/styles/defaults/default-code.css";
 ```
 
-## Font Preloading Instructions
+## Font Preloading
 
 To ensure optimal performance and reliability — especially in flaky or offline internet conditions — **you could preload or at least prefetch any fonts your application depends on**.
 
@@ -359,7 +359,7 @@ After identifying the critical fonts required for your application's UI, use the
 />
 ```
 
-Otherwise if the font is not that important that it would be initially required, but probably after another request or by some dynamically inserted content, you could still [prefetch](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Attributes/rel/prefetch) it, which works at a lower priority than `preload`:
+Otherwise, if the font is not initially required but would be requested later or by some dynamically inserted content, you could still [prefetch](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Attributes/rel/prefetch) it. Prefetching works at a lower priority than `preload`:
 
 ```html
 <link
@@ -369,12 +369,12 @@ Otherwise if the font is not that important that it would be initially required,
 />
 ```
 
-### Tips for Identifying Fonts to Preload
+### Tips for identifying fonts to preload
 
 - Use browser dev tools to track font requests that are essential to your application
 - Fonts that fail to load during unstable connections should be prioritized.
 
-### Important Notes
+### Important notes
 
 - Make sure the `href` path is correct and accessible at runtime.
 - Always use `crossorigin="anonymous"` for fonts served from your domain or a CDN, unless your server requires credentials (rare for fonts).

@@ -1,8 +1,8 @@
 import { generateIconFonts } from '@db-ux/icon-font-tools';
-import { promises as fs } from 'fs';
-import { rename } from 'fs/promises';
-import * as path from 'path';
-import { fileURLToPath } from 'url';
+import { promises as fs } from 'node:fs';
+import { rename } from 'node:fs/promises';
+import * as path from 'node:path';
+import { fileURLToPath } from 'node:url';
 
 const fontName = 'icon-font-fallback';
 
