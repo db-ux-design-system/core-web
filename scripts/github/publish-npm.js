@@ -87,6 +87,16 @@ for (const REGISTRY of registries) {
 		process.exit(1);
 	}
 
+	// We do a try-run to check if everything is alright
+	for (const PACKAGE of packages) {
+		console.log(
+			`⤴ (Dry-run) Publish ${PACKAGE} with tag ${TAG} to ${REGISTRY}`
+		);
+		execSync(
+			`npm publish --tag ${TAG} db-ux-${PACKAGE}-${VALID_SEMVER_VERSION}.tgz --dry-run`
+		);
+	}
+
 	for (const PACKAGE of packages) {
 		console.log(`⤴ Publish ${PACKAGE} with tag ${TAG} to ${REGISTRY}`);
 		execSync(
