@@ -31,7 +31,9 @@
 			[label]="exampleProps?.label"
 		>
 			<!-- eslint-disable-next-line -->
-			{{ exampleName }}</db-switch
+			{{
+				exampleProps?.label ? exampleProps?.label : exampleName
+			}}</db-switch
 		>
 		@if (
 			exampleProps?.showLabel !== undefined &&

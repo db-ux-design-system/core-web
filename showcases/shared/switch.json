@@ -108,13 +108,13 @@
 			{
 				"name": "(Default) Trailing",
 				"props": {
-					"label": "Label after switch"
+					"label": "(Default) Trailing"
 				}
 			},
 			{
 				"name": "Leading",
 				"props": {
-					"label": "Label before switch",
+					"label": "Leading",
 					"labelPosition": "leading"
 				}
 			}
