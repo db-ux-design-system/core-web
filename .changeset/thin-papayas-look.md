@@ -2,4 +2,4 @@
 "@db-ux/core-foundations": patch
 ---
 
-refactor: added icon fallback font
+fix: added icon fallback font
