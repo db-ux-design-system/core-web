@@ -29,4 +29,3 @@ const FormSwitches = () => {
 };
 
 export default FormSwitches;
-

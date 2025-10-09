@@ -22,4 +22,3 @@ export class SwitchesComponent {
 		this.plain = event.target.checked;
 	}
 }
-
