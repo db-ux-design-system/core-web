@@ -1,6 +1,6 @@
 {
   "name": "@db-ux/agent-cli",
-  "version": "0.0.0",
+  "version": "3.1.18",
   "type": "module",
   "description": "CLI for DB UX Design System generate AI agent instructions",
   "repository": {
@@ -13,25 +13,26 @@
   },
   "main": "build/index.js",
   "files": [
-    "build",
-    "CHANGELOG.md"
+    "CHANGELOG.md",
+    "build"
   ],
   "scripts": {
     "build": "node esbuild.js",
     "copy-build": "npm-run-all copy-build:*",
     "copy-build:build": "cpr build ../../build-outputs/agent-cli/build --overwrite",
+    "copy-build:changelog": "cpr CHANGELOG.md ../../build-outputs/agent-cli/CHANGELOG.md --overwrite",
     "copy-build:package.json": "cpr package.json ../../build-outputs/agent-cli/package.json --overwrite",
     "copy-build:readme": "cpr README.md ../../build-outputs/agent-cli/README.md --overwrite",
     "test": "vitest run --config vitest.config.ts",
     "test:cli": "tsx src/cli.ts --help"
   },
   "dependencies": {
-    "commander": "14.0.0"
+    "commander": "14.0.1"
   },
   "devDependencies": {
     "cpr": "3.0.1",
-    "esbuild": "0.25.5",
-    "tsx": "4.19.4",
+    "esbuild": "0.25.10",
+    "tsx": "4.20.6",
     "vitest": "3.2.4"
   },
   "publishConfig": {
