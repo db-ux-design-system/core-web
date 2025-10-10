@@ -77,6 +77,51 @@
 	font: var(--db-type-headline-3xl);
 }
 
+@utility text-head-light-3xs {
+	font: var(--db-type-headline-3xs);
+	font-weight: 300;
+}
+
+@utility text-head-light-2xs {
+	font: var(--db-type-headline-2xs);
+	font-weight: 300;
+}
+
+@utility text-head-light-xs {
+	font: var(--db-type-headline-xs);
+	font-weight: 300;
+}
+
+@utility text-head-light-sm {
+	font: var(--db-type-headline-sm);
+	font-weight: 300;
+}
+
+@utility text-head-light-md {
+	font: var(--db-type-headline-md);
+	font-weight: 300;
+}
+
+@utility text-head-light-lg {
+	font: var(--db-type-headline-lg);
+	font-weight: 300;
+}
+
+@utility text-head-light-xl {
+	font: var(--db-type-headline-xl);
+	font-weight: 300;
+}
+
+@utility text-head-light-2xl {
+	font: var(--db-type-headline-2xl);
+	font-weight: 300;
+}
+
+@utility text-head-light-3xl {
+	font: var(--db-type-headline-3xl);
+	font-weight: 300;
+}
+
 @layer base {
 	p {
 		font: var(--db-type-body-md);
