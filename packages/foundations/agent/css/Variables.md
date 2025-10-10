@@ -1,6 +1,8 @@
 ```css
 .my-component {
-	inline-size: var(--db-sizing-md); /* Use sizing for fixed widths */
+	inline-size: var(
+		--db-container-sm
+	); /* Use container for larger fixed widths */
 	block-size: var(--db-sizing-lg); /* Use sizing for fixed heights */
 	padding: var(--db-spacing-fixed-sm); /* Use fixed spacing for paddings */
 	margin: var(
