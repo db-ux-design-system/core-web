@@ -51,7 +51,11 @@ $default-icon-font-size: var(--db-icon-font-size, #{$default-icon-size-rem});
 }
 
 @mixin to-filled-icon() {
-	--db-icon-font-family: var(--db-icon-filled-font-family, "db-ux-filled");
+	--db-icon-font-family: var(
+		--db-icon-filled-font-family,
+		"db-ux-filled",
+		"icon-font-fallback"
+	);
 }
 
 // Icon SCSS mixin
@@ -134,7 +138,11 @@ $default-icon-font-size: var(--db-icon-font-size, #{$default-icon-size-rem});
 	// * use !important to prevent issues with browser extensions that change fonts
 	font-family: var(
 		--db-icon-font-family,
-		var(--db-icon-default-font-family, "db-ux-default")
+		var(
+			--db-icon-default-font-family,
+			"db-ux-default",
+			"icon-font-fallback"
+		)
 	) !important;
 	font-size: $default-icon-font-size;
 
@@ -150,6 +158,7 @@ $default-icon-font-size: var(--db-icon-font-size, #{$default-icon-size-rem});
 	/* stylelint-disable-next-line declaration-property-value-no-unknown */
 	speak: never; // Hiding icon from screenreaders
 	text-transform: none;
+	overflow: clip;
 	vertical-align: var(--db-icon-vertical-align, middle);
 	block-size: $default-icon-font-size;
 	inline-size: $default-icon-font-size;
