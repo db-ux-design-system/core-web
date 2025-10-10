@@ -29,7 +29,7 @@ If you just need the styling follow this:
 
 **No!** The `@db-ux/core-components` package **automatically includes** all the foundations (`@db-ux/core-foundations`) you need. You only need to install one package:
 
-- **Use `@db-ux/core-components`** - If you want to use UI components (buttons, inputs, etc.) 
+- **Use `@db-ux/core-components`** - If you want to use UI components (buttons, inputs, etc.)
 - **Use `@db-ux/core-foundations`** - If you only need design tokens, colors, spacing, fonts, and assets without any component styles
 
 ## Install

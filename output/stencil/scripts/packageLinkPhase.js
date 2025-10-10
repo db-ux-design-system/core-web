@@ -166,7 +166,7 @@ const resolveAllUnions = (resolvedData, resolvedProps, resolvedUnions) => {
 };
 
 const resolveManifestTypes = (resolvedUnions, manifestValues) =>
-	manifestValues.map((manifestValue) => {
+	manifestValues?.map((manifestValue) => {
 		if (!manifestValue.type) {
 			// those are methods
 			return manifestValue;
@@ -219,12 +219,12 @@ export const packageLinkPhase = (
 	resolveAllUnions(resolvedData, resolvedProps, resolvedUnions);
 
 	customElementsManifest.modules = customElementsManifest.modules
-		.filter(
+		?.filter(
 			// We just need the .tsx files for elements
 			(module) => module.path.endsWith('.tsx')
 		)
 		.map((module) => {
-			const declarations = module.declarations.map((declaration) => {
+			const declarations = module.declarations?.map((declaration) => {
 				const members = resolveManifestTypes(
 					resolvedUnions,
 					declaration.members
@@ -234,7 +234,7 @@ export const packageLinkPhase = (
 					declaration.attributes
 				);
 
-				const slots = declaration.slots.map((slot) => ({
+				const slots = declaration.slots?.map((slot) => ({
 					name: slot.name,
 					description:
 						resolvedUnions[
