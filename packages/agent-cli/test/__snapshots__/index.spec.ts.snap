@@ -1,0 +1,17 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`default > check if docs are created 1`] = `
+"
+--- START: DB UX Copilot Instructions – do not edit below ---
+
+# @db-ux/components
+- use y for frontend/node_modules/@db-ux/components/test.md
+
+
+# @db-ux/foundations
+- use x for frontend/node_modules/@db-ux/foundations/test.md
+
+
+--- END: DB UX Copilot Instructions – do not edit above ---
+"
+`;
