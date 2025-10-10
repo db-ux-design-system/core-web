@@ -6,20 +6,6 @@
 
 $max-tabs: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
-%angular-workaround {
-	db-tab-list,
-	dbtablist {
-		@each $index in $max-tabs {
-			&:has([id$="-tab-#{$index}"]:checked) {
-				~ dbtabpanel > [id$="-tab-panel-#{$index}"],
-				~ db-tab-panel > [id$="-tab-panel-#{$index}"] {
-					@include display.display(block);
-				}
-			}
-		}
-	}
-}
-
 %horizontal-pulse {
 	.db-tab-item {
 		@include db-puls.set-db-puls-horizontal;
@@ -74,9 +60,7 @@ $max-tabs: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 	$db-tabs-z-index-button-background: 21;
 	$db-tabs-z-index-button: 22;
 
-	@extend %angular-workaround;
 	@include display.display(flex);
-
 	inline-size: 100%;
 	position: relative;
 
@@ -87,12 +71,11 @@ $max-tabs: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 	.db-tab-list {
 		max-inline-size: 100%;
 		z-index: $db-tabs-z-index-tab-list;
+	}
 
-		@each $index in $max-tabs {
-			&:has([id$="-tab-#{$index}"]:checked)
-				~ [id$="-tab-panel-#{$index}"] {
-				@include display.display(block);
-			}
+	@each $index in $max-tabs {
+		&:has([id$="-tab-#{$index}"]:checked) [id$="-tab-panel-#{$index}"] {
+      @include display.display(block);
 		}
 	}
 
