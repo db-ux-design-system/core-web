@@ -186,7 +186,7 @@
 		"name": "Variant",
 		"examples": [
 			{
-				"name": "(Default) Label Above",
+				"name": "(Default) Above",
 				"style": {
 					"width": "200px"
 				},
@@ -219,7 +219,7 @@
 				"children": []
 			},
 			{
-				"name": "Floating Label",
+				"name": "Floating",
 				"style": {
 					"width": "200px"
 				},
