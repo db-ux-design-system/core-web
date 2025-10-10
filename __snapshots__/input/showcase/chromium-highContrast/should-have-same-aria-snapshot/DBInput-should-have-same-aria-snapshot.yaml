@@ -15,7 +15,7 @@
   - textbox "Label"
   - status
   - text: Label
-  - textbox "Label": Floating Label
+  - textbox "Label": Floating
   - status
   - link "Show Label"
   - text: Label
