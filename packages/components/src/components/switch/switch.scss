@@ -359,19 +359,19 @@ $checked-active-transition-size: calc(
 	@include switch-validity("invalid");
 
 	/* Label position (leading/trailing) */
-	&[data-label-position="trailing"] {
+	&[data-variant="trailing"] {
 		> input {
 			margin-inline-end: variables.$db-spacing-fixed-xs;
 		}
 	}
 
-	&[data-label-position="trailing"][data-size="small"] {
+	&[data-variant="trailing"][data-size="small"] {
 		> input {
 			margin-inline-end: variables.$db-spacing-fixed-2xs;
 		}
 	}
 
-	&[data-label-position="leading"] {
+	&[data-variant="leading"] {
 		> .db-switch-label {
 			order: -1;
 			margin-inline-end: variables.$db-spacing-fixed-xs;

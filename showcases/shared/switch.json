@@ -103,7 +103,7 @@
 		]
 	},
 	{
-		"name": "Label Position",
+		"name": "Variant",
 		"examples": [
 			{
 				"name": "(Default) Trailing",
@@ -115,7 +115,7 @@
 				"name": "Leading",
 				"props": {
 					"label": "Leading",
-					"labelPosition": "leading"
+					"variant": "leading"
 				}
 			}
 		]

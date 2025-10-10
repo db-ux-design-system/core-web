@@ -16,7 +16,7 @@ import DefaultComponent from "../DefaultComponent.vue";
 				:disabled="exampleProps?.disabled"
 				:required="exampleProps?.required"
 				:showLabel="exampleProps?.showLabel"
-				:labelPosition="exampleProps?.labelPosition"
+				:variant="exampleProps?.variant"
 				:accent="exampleProps?.accent"
 				:size="exampleProps?.size"
 				:icon="exampleProps?.icon"

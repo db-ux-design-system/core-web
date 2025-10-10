@@ -43,7 +43,7 @@ useMetadata({
 	}
 });
 useDefaultProps<DBSwitchProps>({
-	labelPosition: 'trailing'
+	variant: 'trailing'
 });
 
 export default function DBSwitch(props: DBSwitchProps) {
@@ -154,10 +154,10 @@ export default function DBSwitch(props: DBSwitchProps) {
 			data-size={props.size}
 			data-hide-label={getHideProp(props.showLabel)}
 			htmlFor={state._id}
-			data-label-position={
+			data-variant={
 				getHideProp(props.showLabel) === 'true'
 					? undefined
-					: props.labelPosition
+					: props.variant
 			}
 			data-accent={getBooleanAsString(props.accent)}
 			data-hide-asterisk={getHideProp(props.showRequiredAsterisk)}

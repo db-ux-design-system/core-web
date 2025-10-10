@@ -406,7 +406,12 @@ export type FormCheckProps = {
 	checked?: boolean | string;
 };
 
-export const LabelVariantList = ['above', 'floating'] as const;
+export const LabelVariantList = [
+	'above',
+	'floating',
+	'leading',
+	'trailing'
+] as const;
 export type LabelVariantType = (typeof LabelVariantList)[number];
 export const AutoCompleteList = [
 	'off',
