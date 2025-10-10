@@ -42,7 +42,8 @@ const getCustomSelect = ({
 	validMessage,
 	validation,
 	invalidMessage,
-	showRequiredAsterisk
+	showRequiredAsterisk,
+	removeTagsTexts
 }: DBCustomSelectProps & {
 	lineBreak?: boolean;
 	info?: boolean;
@@ -114,6 +115,7 @@ const getCustomSelect = ({
 			onOptionSelected={(value) => {
 				setValue(value);
 			}}
+			removeTagsTexts={removeTagsTexts}
 		/>
 	);
 };

@@ -2,6 +2,7 @@
 @use "@db-ux/core-foundations/build/styles/colors";
 @use "../../styles/internal/form-components";
 @use "../../styles/internal/db-puls";
+@use "@db-ux/core-foundations/build/styles/helpers/display";
 
 $max-tabs: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
@@ -59,7 +60,7 @@ $max-tabs: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 	$db-tabs-z-index-button-background: 21;
 	$db-tabs-z-index-button: 22;
 
-	display: flex;
+	@include display.display(flex);
 	inline-size: 100%;
 	position: relative;
 
@@ -74,7 +75,7 @@ $max-tabs: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
 	@each $index in $max-tabs {
 		&:has([id$="-tab-#{$index}"]:checked) [id$="-tab-panel-#{$index}"] {
-			display: block;
+      @include display.display(block);
 		}
 	}
 
