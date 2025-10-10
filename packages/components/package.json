@@ -2,12 +2,12 @@
   "name": "@db-ux/core-components",
   "version": "3.1.18",
   "type": "module",
-  "description": "",
+  "description": "General technical components (styling, fonts and icons) out of DB UX Design System (Version 3)",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/db-ux-design-system/core-web.git"
   },
-  "author": "General technical components out of DB UX Design System (Version 3)",
+  "author": "DB Systel GmbH",
   "license": "Apache-2.0",
   "files": [
     "CHANGELOG.md",
