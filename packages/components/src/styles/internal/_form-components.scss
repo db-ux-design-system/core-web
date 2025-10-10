@@ -75,6 +75,18 @@ $db-min-inline-size: var(
 
 @mixin set-floating-label-overwrites($selector) {
 	&[data-variant="floating"] {
+		@include get-validity($selector) {
+			label {
+				color: var(--db-successful-on-bg-basic-emphasis-80-default);
+			}
+		}
+
+		@include get-validity($selector, "invalid") {
+			label {
+				color: var(--db-critical-on-bg-basic-emphasis-80-default);
+			}
+		}
+
 		> label {
 			@extend %db-overwrite-font-size-md;
 
@@ -218,6 +230,12 @@ $db-min-inline-size: var(
 	[id$="-placeholder"] {
 		color: var(--db-#{$variant}-on-bg-basic-emphasis-100-default);
 		caret-color: var(--db-#{$variant}-on-bg-basic-emphasis-100-default);
+	}
+
+	@if list.index($valid-read-only-form-fields, $selector) {
+		#{$selector} {
+			border-color: var(--db-#{$variant}-on-bg-basic-emphasis-70-default);
+		}
 	}
 
 	@include get-validity-message($key);
