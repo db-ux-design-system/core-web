@@ -40,12 +40,12 @@
     - option "Option 3"
     - option "Option 4"
     - option "Option 5"
-  - text: (Default) Label Above
+  - text: (Default) Above
   - status
   - text: Label
   - combobox "Label":
     - option
-    - option "Floating Label" [selected]
+    - option "Floating" [selected]
     - option "Option 2"
   - status
   - link "Show Label"
