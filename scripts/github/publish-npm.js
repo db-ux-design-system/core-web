@@ -25,13 +25,14 @@ process.chdir('build-outputs');
 
 const packages = [
 	'core-foundations',
-	'core-migration',
-	'core-stylelint',
 	'core-components',
 	'ngx-core-components',
 	'react-core-components',
 	'v-core-components',
-	'wc-core-components'
+	'wc-core-components',
+	'core-migration',
+	'core-stylelint',
+	'agent-cli'
 ];
 
 for (const PACKAGE of packages) {
@@ -46,6 +47,7 @@ for (const PACKAGE of packages) {
 
 		if (
 			PACKAGE !== 'core-foundations' &&
+			PACKAGE !== 'agent-cli' &&
 			PACKAGE !== 'core-migration' &&
 			PACKAGE !== 'core-stylelint'
 		) {
@@ -85,10 +87,24 @@ for (const REGISTRY of registries) {
 		process.exit(1);
 	}
 
-	for (const PACKAGE of packages) {
-		console.log(`⤴ Publish ${PACKAGE} with tag ${TAG} to ${REGISTRY}`);
-		execSync(
-			`npm publish --tag ${TAG} db-ux-${PACKAGE}-${VALID_SEMVER_VERSION}.tgz --provenance`
-		);
+	// We do a try-run to check if everything is alright
+
+	for (const step of ['dry-run', 'provenance']) {
+		for (const PACKAGE of packages) {
+			console.log(
+				`⤴ (${step}) Publish ${PACKAGE} with tag ${TAG} to ${REGISTRY}`
+			);
+			try {
+				execSync(
+					`npm publish --tag ${TAG} db-ux-${PACKAGE}-${VALID_SEMVER_VERSION}.tgz --${step}`
+				);
+			} catch (error) {
+				console.error(
+					`❌ ${step} publish failed for ${PACKAGE} with tag ${TAG} to ${REGISTRY}`
+				);
+				console.error(error.message || error);
+				process.exit(1);
+			}
+		}
 	}
 }
