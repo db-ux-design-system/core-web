@@ -1,5 +1,10 @@
 # @db-ux/react-core-components
 
+## 3.1.19
+
+_version bump_
+
+
 ## 3.1.18
 
 ### Patch Changes
