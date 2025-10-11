@@ -271,7 +271,7 @@ export default function DBInput(props: DBInputProps) {
 				}
 				list={props.dataList && state._dataListId}
 				aria-describedby={props.ariaDescribedBy ?? state._descByIds}
-				// iOS Safari Voiceover input type="date" hack
+				// iOS Safari Voiceover input:is([type="date"], [type="datetime-local"], [type="time"]) hack
 				role={['datetime-local', 'date', 'time'].includes('time') && isIOSSafari() ? 'textbox' : undefined}
 
 			/>
