@@ -130,16 +130,16 @@
   - textbox "Label"
   - status
   - text: Label
-  - combobox "Label"
-  - status
-  - text: Label
-  - combobox "Label"
+  - textbox "Label"
   - status
   - text: Label
   - textbox "Label"
   - status
   - text: Label
-  - combobox "Label"
+  - textbox "Label"
+  - status
+  - text: Label
+  - textbox "Label"
   - status
   - text: Label
   - textbox "Label"
@@ -177,16 +177,16 @@
   - textbox "Label"
   - status
   - text: Label
-  - combobox "Label"
-  - status
-  - text: Label
-  - combobox "Label"
+  - textbox "Label"
   - status
   - text: Label
   - textbox "Label"
   - status
   - text: Label
-  - combobox "Label"
+  - textbox "Label"
+  - status
+  - text: Label
+  - textbox "Label"
   - status
   - text: Label
   - textbox "Label"
