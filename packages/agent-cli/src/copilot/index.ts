@@ -10,8 +10,8 @@ function findAllNodeModulesDirectories(
 	}
 
 	const entries = fs
-      .readdirSync(directory, { withFileTypes: true })
-      .sort((a, b) => a.name.localeCompare(b.name, "en"));
+		.readdirSync(directory, { withFileTypes: true })
+		.sort((a, b) => a.name.localeCompare(b.name, 'en'));
 	for (const entry of entries) {
 		if (entry.isDirectory()) {
 			if (entry.name === 'node_modules') {
@@ -100,8 +100,10 @@ export const generateCopilot = (rootPath: string) => {
 			copilotInstructionsPath,
 			'utf8'
 		);
-		const startMarker = '--- START: DB UX Copilot Instructions – do not edit below ---';
-		const endMarker = '--- END: DB UX Copilot Instructions – do not edit above ---';
+		const startMarker =
+			'--- START: DB UX Copilot Instructions – do not edit below ---';
+		const endMarker =
+			'--- END: DB UX Copilot Instructions – do not edit above ---';
 		const startIndex = copilotFileContent.indexOf(startMarker);
 		const endIndex = copilotFileContent.indexOf(endMarker);
 		if (startIndex !== -1 && endIndex !== -1 && endIndex > startIndex) {
