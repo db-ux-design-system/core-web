@@ -100,7 +100,7 @@ export type DBInputDefaultProps = {
 		| 'search'
 		| 'email'
 		| 'url';
-  /**
+	/**
 	 * The size of the message infotext. Defaults to "small".
 	 */
 	messageSize?: SizeType;
@@ -133,6 +133,7 @@ export type DBInputProps = DBInputDefaultProps &
 export type DBInputDefaultState = {
 	_dataListId?: string;
 	getDataList: () => ValueLabelType[];
+	isIOSSafari: () => boolean;
 };
 
 export type DBInputState = DBInputDefaultState &

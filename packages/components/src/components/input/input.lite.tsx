@@ -159,6 +159,21 @@ export default function DBInput(props: DBInputProps) {
 						}))
 					: _list) || []
 			);
+		},
+		// iOS Safari Voiceover input:is([type="date"], [type="datetime-local"], [type="time"]) hack
+		isIOSSafari: (): boolean => {
+			if (
+				typeof window === 'undefined' ||
+				typeof navigator === 'undefined'
+			)
+				return false;
+			const ua = navigator.userAgent;
+			// iOS detection
+			const isIOS = /iP(ad|hone|od)/.test(ua);
+			// Safari detection (not Chrome or Firefox on iOS)
+			const isSafari =
+				!!ua.match(/Safari/) && !ua.match(/CriOS|FxiOS|OPiOS|EdgiOS/);
+			return isIOS && isSafari;
 		}
 	});
 
@@ -200,17 +215,6 @@ export default function DBInput(props: DBInputProps) {
 	onUpdate(() => {
 		state._value = props.value;
 	}, [props.value]);
-
-	// iOS Safari Voiceover input:is([type="date"], [type="datetime-local"], [type="time"]) hack
-	const isIOSSafari = () => {
-		if (typeof window === 'undefined' || typeof navigator === 'undefined') return false;
-		const ua = navigator.userAgent;
-		// iOS detection
-		const isIOS = /iP(ad|hone|od)/.test(ua);
-		// Safari detection (not Chrome or Firefox on iOS)
-		const isSafari = !!ua.match(/Safari/) && !ua.match(/CriOS|FxiOS|OPiOS|EdgiOS/);
-		return isIOS && isSafari;
-	}
 
 	return (
 		<div
@@ -272,8 +276,12 @@ export default function DBInput(props: DBInputProps) {
 				list={props.dataList && state._dataListId}
 				aria-describedby={props.ariaDescribedBy ?? state._descByIds}
 				// iOS Safari Voiceover input:is([type="date"], [type="datetime-local"], [type="time"]) hack
-				role={['datetime-local', 'date', 'time'].includes('time') && isIOSSafari() ? 'textbox' : undefined}
-
+				role={
+					['datetime-local', 'date', 'time'].includes('time') &&
+					state.isIOSSafari()
+						? 'textbox'
+						: undefined
+				}
 			/>
 			<Show when={props.dataList}>
 				<datalist id={state._dataListId}>
