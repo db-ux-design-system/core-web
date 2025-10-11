@@ -95,6 +95,16 @@ export type IconTrailingProps = {
 	iconTrailing?: IconTypes;
 };
 
+export const LabelPositionList = ['leading', 'trailing'] as const;
+export type LabelPositionType = (typeof LabelPositionList)[number];
+
+export type LabelPositionProps = {
+	/**
+	 * Position of the label.
+	 */
+	labelPosition?: LabelPositionType;
+};
+
 export const SpacingList = ['medium', 'small', 'large', 'none'] as const;
 export type SpacingType = (typeof SpacingList)[number];
 
@@ -396,7 +406,12 @@ export type FormCheckProps = {
 	checked?: boolean | string;
 };
 
-export const LabelVariantList = ['above', 'floating'] as const;
+export const LabelVariantList = [
+	'above',
+	'floating',
+	'leading',
+	'trailing'
+] as const;
 export type LabelVariantType = (typeof LabelVariantList)[number];
 export const AutoCompleteList = [
 	'off',

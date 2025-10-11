@@ -182,6 +182,10 @@ $db-min-inline-size: var(
 		$variant: "critical";
 	}
 
+	@if $selector == textarea {
+		--db-textarea-read-only: var(--db-#{$variant}-bg-basic-level-1-default);
+	}
+
 	@if $selector != textarea {
 		@extend %db-#{$variant}-variables;
 		/* stylelint-disable-next-line at-rule-empty-line-before */
@@ -218,6 +222,12 @@ $db-min-inline-size: var(
 	[id$="-placeholder"] {
 		color: var(--db-#{$variant}-on-bg-basic-emphasis-100-default);
 		caret-color: var(--db-#{$variant}-on-bg-basic-emphasis-100-default);
+	}
+
+	@if list.index($valid-read-only-form-fields, $selector) {
+		#{$selector} {
+			border-color: var(--db-#{$variant}-on-bg-basic-emphasis-70-default);
+		}
 	}
 
 	@include get-validity-message($key);
