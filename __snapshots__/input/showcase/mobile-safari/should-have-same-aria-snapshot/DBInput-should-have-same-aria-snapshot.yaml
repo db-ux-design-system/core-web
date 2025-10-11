@@ -2,208 +2,208 @@
   - heading "DBInput" [level=1]
   - link "Density"
   - text: Label
-  - textbox "Label"
+  - combobox "Label"
   - status
   - text: Label
-  - textbox "Label"
+  - combobox "Label"
   - status
   - text: Label
-  - textbox "Label"
+  - combobox "Label"
   - status
   - link "Variant"
   - text: Label
-  - textbox "Label"
+  - combobox "Label"
   - status
   - text: Label
-  - textbox "Label": Floating Label
+  - combobox "Label": Floating Label
   - status
   - link "Show Label"
   - text: Label
-  - textbox "Label"
+  - combobox "Label"
   - status
   - text: Label
-  - textbox "Label"
+  - combobox "Label"
   - status
   - link "Show Message"
   - text: Label
-  - textbox "Label"
+  - combobox "Label"
   - status
   - text: Label
-  - textbox "Label"
+  - combobox "Label"
   - text: Message
   - status
   - link "State"
   - text: Label
-  - textbox "Label"
+  - combobox "Label"
   - status
   - text: Label
-  - textbox "Label": Filled
+  - combobox "Label": Filled
   - status
   - link "Disabled"
   - text: Label
-  - textbox "Label"
+  - combobox "Label"
   - status
   - text: Label
-  - textbox "Label" [disabled]
+  - combobox "Label" [disabled]
   - status
   - link "Readonly"
   - text: Label
-  - textbox "Label"
+  - combobox "Label"
   - status
   - text: Label
-  - textbox "Label"
+  - combobox "Label"
   - status
   - link "Validation"
   - text: Label
-  - textbox "Label"
+  - combobox "Label"
   - status
   - text: Label
-  - textbox "Label"
+  - combobox "Label"
   - text: Invalid Message
   - status
   - text: Label
-  - textbox "Label"
+  - combobox "Label"
   - text: Valid message
   - status
   - link "Required"
   - text: Label
-  - textbox "Label"
+  - combobox "Label"
   - status
   - text: Label
-  - textbox "Label"
+  - combobox "Label"
   - status
   - link "Show Required Asterisk"
   - text: Label
-  - textbox "Label"
+  - combobox "Label"
   - status
   - text: Label
-  - textbox "Label"
+  - combobox "Label"
   - status
   - link "Show Icon Leading"
   - text: "False"
-  - textbox "False"
+  - combobox "False"
   - status
   - text: "True"
-  - textbox "True"
+  - combobox "True"
   - status
   - link "Show Icon Leading + Trailing"
   - text: "False"
-  - textbox "False"
+  - combobox "False"
   - status
   - text: "True"
-  - textbox "True"
+  - combobox "True"
   - status
   - link "Show Icon Trailing"
   - text: "False"
-  - textbox "False"
+  - combobox "False"
   - status
   - text: "True"
-  - textbox "True"
+  - combobox "True"
   - status
   - link "Example - Length"
   - text: Label
-  - textbox "Label"
+  - combobox "Label"
   - status
   - text: Label
-  - textbox "Label"
+  - combobox "Label"
   - status
   - text: Label
-  - textbox "Label"
+  - combobox "Label"
   - status
   - link "Example - Types with min and max"
   - text: Label
-  - textbox "Label"
+  - combobox "Label"
   - status
   - text: Label
-  - textbox "Label"
+  - combobox "Label"
   - status
   - text: Label
-  - textbox "Label"
+  - combobox "Label"
   - status
   - text: Label
-  - textbox "Label"
+  - combobox "Label"
   - status
   - text: Label
-  - textbox "Label"
+  - combobox "Label"
   - status
   - text: Label
-  - textbox "Label"
+  - combobox "Label"
   - status
   - text: Label
-  - textbox "Label"
+  - combobox "Label"
   - status
   - text: Label
-  - textbox "Label"
+  - combobox "Label"
   - status
   - text: Label
-  - textbox "Label"
+  - combobox "Label"
   - status
   - text: Label
-  - textbox "Label"
+  - combobox "Label"
   - status
   - text: Label
-  - textbox "Label"
+  - combobox "Label"
   - status
   - link "Example Floating Label"
   - text: Label
-  - textbox "Label"
+  - combobox "Label"
   - status
   - text: Label
-  - textbox "Label": Filled
+  - combobox "Label": Filled
   - status
   - text: Label
-  - textbox "Label" [disabled]
+  - combobox "Label" [disabled]
   - status
   - text: Label
-  - textbox "Label": Readonly - Filled
+  - combobox "Label": Readonly - Filled
   - status
   - link "Example - Types - Floating Label"
   - text: Label
-  - textbox "Label"
+  - combobox "Label"
   - status
   - text: Label
-  - textbox "Label"
+  - combobox "Label"
   - status
   - text: Label
-  - textbox "Label"
+  - combobox "Label"
   - status
   - text: Label
-  - textbox "Label"
+  - combobox "Label"
   - status
   - text: Label
-  - textbox "Label"
+  - combobox "Label"
   - status
   - text: Label
-  - textbox "Label"
+  - combobox "Label"
   - status
   - text: Label
-  - textbox "Label"
+  - combobox "Label"
   - status
   - text: Label
-  - textbox "Label"
+  - combobox "Label"
   - status
   - text: Label
-  - textbox "Label"
+  - combobox "Label"
   - status
   - text: Label
-  - textbox "Label"
+  - combobox "Label"
   - status
   - text: Label
-  - textbox "Label"
+  - combobox "Label"
   - status
   - text: Label
-  - textbox "Label"
+  - combobox "Label"
   - status
   - text: Label
-  - textbox "Label"
+  - combobox "Label"
   - status
   - link "Datalist / Typeahead Examples"
   - text: Search Cities
-  - textbox "Search Cities"
+  - combobox "Search Cities"
   - status
   - text: Search Products
-  - textbox "Search Products"
+  - combobox "Search Products"
   - status
   - text: Search Stations
-  - textbox "Search Stations"
+  - combobox "Search Stations"
   - status
