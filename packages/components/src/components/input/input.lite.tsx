@@ -160,7 +160,8 @@ export default function DBInput(props: DBInputProps) {
 					: _list) || []
 			);
 		},
-		// iOS Safari Voiceover input:is([type="date"], [type="datetime-local"], [type="time"]) hack
+		// iOS Safari Voiceover input:is([type="date"], [type="datetime-local"], [type="time"], [type="week"], [type="month"]) hack
+		// TODO: We could remove this one again, after https://bugs.webkit.org/show_bug.cgi?id=294649 (mentioned in https://github.com/facebook/react/issues/33541) has been resolved.
 		isIOSSafari: (): boolean => {
 			if (
 				typeof window === 'undefined' ||
@@ -275,7 +276,8 @@ export default function DBInput(props: DBInputProps) {
 				}
 				list={props.dataList && state._dataListId}
 				aria-describedby={props.ariaDescribedBy ?? state._descByIds}
-				// iOS Safari Voiceover input:is([type="date"], [type="datetime-local"], [type="time"]) hack
+				// iOS Safari Voiceover input:is([type="date"], [type="datetime-local"], [type="time"], [type="week"], [type="month"]) hack
+				// TODO: We could remove this one again, after https://bugs.webkit.org/show_bug.cgi?id=294649 (mentioned in https://github.com/facebook/react/issues/33541) has been resolved.
 				role={
 					['datetime-local', 'date', 'time', 'week', 'month'].includes(
 						props.type ?? ''
