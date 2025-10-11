@@ -977,7 +977,7 @@
   - group:
     - article:
       - text: Search
-      - combobox "Search"
+      - searchbox "Search"
       - status
       - group "id-10255-True":
         - list:
@@ -1210,7 +1210,7 @@
   - group:
     - article:
       - text: Search
-      - combobox "Search"
+      - searchbox "Search"
       - status
       - radiogroup "id-10265-More than 10":
         - list:
@@ -1343,7 +1343,7 @@
   - group:
     - article:
       - text: Search
-      - combobox "Search"
+      - searchbox "Search"
       - status
       - checkbox "Select all"
       - text: Select all
@@ -1431,7 +1431,7 @@
   - group:
     - article:
       - text: Search
-      - combobox "Search": "1"
+      - searchbox "Search": "1"
       - status
       - group "id-10as4-Search Value":
         - list:
@@ -1489,7 +1489,7 @@
   - group:
     - article:
       - text: Search
-      - combobox "Search"
+      - searchbox "Search"
       - status
       - radiogroup "id-10aasds4-Custom Search Filter":
         - list:
