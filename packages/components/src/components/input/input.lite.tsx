@@ -201,7 +201,7 @@ export default function DBInput(props: DBInputProps) {
 		state._value = props.value;
 	}, [props.value]);
 
-	// iOS Safari Voiceover input type="date" hack
+	// iOS Safari Voiceover input:is([type="date"], [type="datetime-local"], [type="time"]) hack
 	const isIOSSafari = () => {
 		if (typeof window === 'undefined' || typeof navigator === 'undefined') return false;
 		const ua = navigator.userAgent;
