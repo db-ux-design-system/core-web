@@ -280,7 +280,7 @@ export default function DBInput(props: DBInputProps) {
 					['datetime-local', 'date', 'time'].includes(
 						props.type ?? ''
 					) && state.isIOSSafari()
-						? 'combobox'
+						? 'textbox'
 						: undefined
 				}
 			/>
