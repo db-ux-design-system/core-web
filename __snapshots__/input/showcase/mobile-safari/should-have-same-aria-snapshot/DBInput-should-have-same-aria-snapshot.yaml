@@ -118,7 +118,7 @@
   - textbox "Label"
   - status
   - text: Label
-  - searchbox "Label"
+  - textbox "Label"
   - status
   - text: Label
   - textbox "Label"
@@ -165,9 +165,6 @@
   - textbox "Label"
   - status
   - text: Label
-  - searchbox "Label"
-  - status
-  - text: Label
   - textbox "Label"
   - status
   - text: Label
@@ -192,18 +189,21 @@
   - textbox "Label"
   - status
   - text: Label
-  - combobox "Label"
+  - textbox "Label"
   - status
   - text: Label
-  - button "Label"
+  - textbox "Label"
+  - status
+  - text: Label
+  - textbox "Label"
   - status
   - link "Datalist / Typeahead Examples"
   - text: Search Cities
-  - combobox "Search Cities"
+  - textbox "Search Cities"
   - status
   - text: Search Products
-  - combobox "Search Products"
+  - textbox "Search Products"
   - status
   - text: Search Stations
-  - combobox "Search Stations"
+  - textbox "Search Stations"
   - status
