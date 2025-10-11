@@ -6,4 +6,4 @@
 "@db-ux/wc-core-components": patch
 ---
 
-fix(input): iOS Safari Voiceover bug for types `date` or `time`
+fix(input): iOS Safari Voiceover bug for types `date`, `datetime-local` or `time`
