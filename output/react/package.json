@@ -1,6 +1,6 @@
 {
   "name": "@db-ux/react-core-components",
-  "version": "3.1.14",
+  "version": "3.1.19",
   "description": "React components for @db-ux/core-components",
   "repository": {
     "type": "git",
@@ -11,11 +11,15 @@
   "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "files": [
-    "dist/"
+    "dist/",
+    "agent",
+    "CHANGELOG.md"
   ],
   "scripts": {
     "build": "npm-run-all tsc",
     "mv:dist": "cpr dist ../../build-outputs/react/dist --overwrite",
+    "mv:agent": "cpr agent ../../build-outputs/react/agent --overwrite",
+    "mv:changelog": "cpr CHANGELOG.md ../../build-outputs/react/CHANGELOG.md --overwrite",
     "mv:package.json": "cpr package.json ../../build-outputs/react/package.json --overwrite",
     "mv:readme": "cpr README.md ../../build-outputs/react/README.md --overwrite",
     "open:report": "npx playwright show-report",
@@ -36,5 +40,9 @@
     "registry": "https://registry.npmjs.org/",
     "access": "public"
   },
-  "sideEffects": false
+  "sideEffects": false,
+  "dependencies": {
+    "@db-ux/core-components": "3.1.19",
+    "@db-ux/core-foundations": "3.1.19"
+  }
 }

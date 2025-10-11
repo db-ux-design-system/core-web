@@ -1,6 +1,7 @@
 @use "sass:map";
 @use "@db-ux/core-foundations/build/styles/density";
 @use "@db-ux/core-foundations/build/styles/variables";
+@use "@db-ux/core-foundations/build/styles/helpers/display";
 @use "@db-ux/core-foundations/build/styles/colors";
 @use "@db-ux/core-foundations/build/styles/icons";
 @use "@db-ux/core-foundations/build/styles/screen-sizes";
@@ -27,8 +28,8 @@
 	@extend %component-border;
 	@extend %grid-layout-default;
 	@extend %ugly-line-height-workarounds;
+	@include display.display(grid);
 
-	display: grid;
 	padding: variables.$db-spacing-fixed-md;
 	gap: variables.$db-spacing-fixed-xs variables.$db-spacing-fixed-md;
 	inline-size: inherit;

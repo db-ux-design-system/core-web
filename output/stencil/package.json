@@ -1,6 +1,6 @@
 {
   "name": "@db-ux/wc-core-components",
-  "version": "3.1.14",
+  "version": "3.1.19",
   "description": "Stencil components for @db-ux/core-components",
   "repository": {
     "type": "git",
@@ -17,20 +17,24 @@
     }
   },
   "files": [
-    "dist/"
+    "dist/",
+    "agent",
+    "CHANGELOG.md"
   ],
   "scripts": {
     "build": "stencil build",
     "build:cem": "cem analyze",
     "mv:dist": "cpr dist ../../build-outputs/wc-core-components/dist -o",
+    "mv:agent": "cpr agent ../../build-outputs/wc-core-components/agent --overwrite",
+    "mv:changelog": "cpr CHANGELOG.md ../../build-outputs/wc-core-components/CHANGELOG.md --overwrite",
     "mv:package.json": "cpr package.json ../../build-outputs/wc-core-components/package.json -o",
     "mv:readme": "cpr README.md ../../build-outputs/wc-core-components/README.md -o",
     "postbuild": "npm-run-all --parallel build:* --parallel mv:*",
     "start": "stencil build --watch"
   },
   "devDependencies": {
-    "@custom-elements-manifest/analyzer": "0.10.6",
-    "@stencil/core": "4.37.1",
+    "@custom-elements-manifest/analyzer": "0.10.10",
+    "@stencil/core": "4.38.0",
     "cem-plugin-expanded-types": "1.4.0",
     "custom-element-jet-brains-integration": "1.7.0",
     "custom-element-vs-code-integration": "1.5.0",
@@ -41,5 +45,9 @@
     "access": "public"
   },
   "web-types": "./dist/web-types.json",
-  "customElements": "dist/custom-elements.json"
+  "customElements": "dist/custom-elements.json",
+  "dependencies": {
+    "@db-ux/core-components": "3.1.19",
+    "@db-ux/core-foundations": "3.1.19"
+  }
 }

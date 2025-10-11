@@ -1,6 +1,11 @@
 ---
 name: Default Pipeline
 
+permissions:
+  contents: write
+  actions: write
+  pull-requests: write
+
 on:
   pull_request:
   push:
@@ -38,13 +43,31 @@ jobs:
     uses: ./.github/workflows/01-lint.yml
     needs: [init]
 
+  cancel-on-failure-lint:
+    if: ${{ !cancelled() && needs.lint.result == 'failure' }}
+    uses: ./.github/workflows/00-cancel-workflow.yml
+    secrets: inherit
+    needs: [lint]
+
   test:
     uses: ./.github/workflows/01-test.yml
     needs: [init]
 
+  cancel-on-failure-test:
+    if: ${{ !cancelled() && needs.test.result == 'failure' }}
+    uses: ./.github/workflows/00-cancel-workflow.yml
+    secrets: inherit
+    needs: [test]
+
   build-packages:
     uses: ./.github/workflows/01-build-packages.yml
     needs: [init]
+
+  cancel-on-failure-build-packages:
+    if: ${{ !cancelled() && needs.build-packages.result == 'failure' }}
+    uses: ./.github/workflows/00-cancel-workflow.yml
+    secrets: inherit
+    needs: [build-packages]
 
   init-playwright:
     uses: ./.github/workflows/01-init-playwright.yml
@@ -52,9 +75,21 @@ jobs:
     with:
       version: ${{ needs.get-playwright-version.outputs.version }}
 
+  cancel-on-failure-init-playwright:
+    if: ${{ !cancelled() && needs.init-playwright.result == 'failure' }}
+    uses: ./.github/workflows/00-cancel-workflow.yml
+    secrets: inherit
+    needs: [init-playwright]
+
   build-outputs:
     uses: ./.github/workflows/01-build-outputs.yml
     needs: [build-packages]
+
+  cancel-on-failure-build-outputs:
+    if: ${{ !cancelled() && needs.build-outputs.result == 'failure' }}
+    uses: ./.github/workflows/00-cancel-workflow.yml
+    secrets: inherit
+    needs: [build-outputs]
 
   test-components:
     uses: ./.github/workflows/02-e2e.yml
@@ -71,48 +106,104 @@ jobs:
   build-showcase-stencil:
     uses: ./.github/workflows/01-build-showcases.yml
     needs: [build-packages]
+    secrets: inherit
     with:
       showcase: stencil-showcase
+
+  cancel-on-failure-build-showcase-stencil:
+    if: ${{ !cancelled() && needs.build-showcase-stencil.result == 'failure' }}
+    uses: ./.github/workflows/00-cancel-workflow.yml
+    secrets: inherit
+    needs: [build-showcase-stencil]
 
   build-showcase-angular:
     uses: ./.github/workflows/01-build-showcases.yml
     needs: [build-packages]
+    secrets: inherit
     with:
       showcase: angular-showcase
+
+  cancel-on-failure-build-showcase-angular:
+    if: ${{ !cancelled() && needs.build-showcase-angular.result == 'failure' }}
+    uses: ./.github/workflows/00-cancel-workflow.yml
+    secrets: inherit
+    needs: [build-showcase-angular]
 
   build-showcase-angular-ssr:
     uses: ./.github/workflows/01-build-showcases.yml
     needs: [build-packages]
+    secrets: inherit
     with:
       showcase: angular-ssr-showcase
+
+  cancel-on-failure-build-showcase-angular-ssr:
+    if: ${{ !cancelled() && needs.build-showcase-angular-ssr.result == 'failure' }}
+    uses: ./.github/workflows/00-cancel-workflow.yml
+    secrets: inherit
+    needs: [build-showcase-angular-ssr]
 
   build-showcase-react:
     uses: ./.github/workflows/01-build-showcases.yml
     needs: [build-packages]
+    secrets: inherit
     with:
       showcase: react-showcase
+
+  cancel-on-failure-build-showcase-react:
+    if: ${{ !cancelled() && needs.build-showcase-react.result == 'failure' }}
+    uses: ./.github/workflows/00-cancel-workflow.yml
+    secrets: inherit
+    needs: [build-showcase-react]
 
   build-showcase-next:
     uses: ./.github/workflows/01-build-showcases.yml
     needs: [build-packages]
+    secrets: inherit
     with:
       showcase: next-showcase
+
+  cancel-on-failure-build-showcase-next:
+    if: ${{ !cancelled() && needs.build-showcase-next.result == 'failure' }}
+    uses: ./.github/workflows/00-cancel-workflow.yml
+    secrets: inherit
+    needs: [build-showcase-next]
 
   build-showcase-vue:
     uses: ./.github/workflows/01-build-showcases.yml
     needs: [build-packages]
+    secrets: inherit
     with:
       showcase: vue-showcase
+
+  cancel-on-failure-build-showcase-vue:
+    if: ${{ !cancelled() && needs.build-showcase-vue.result == 'failure' }}
+    uses: ./.github/workflows/00-cancel-workflow.yml
+    secrets: inherit
+    needs: [build-showcase-vue]
 
   build-showcase-nuxt:
     uses: ./.github/workflows/01-build-showcases.yml
     needs: [build-packages]
+    secrets: inherit
     with:
       showcase: nuxt-showcase
+
+  cancel-on-failure-build-showcase-nuxt:
+    if: ${{ !cancelled() && needs.build-showcase-nuxt.result == 'failure' }}
+    uses: ./.github/workflows/00-cancel-workflow.yml
+    secrets: inherit
+    needs: [build-showcase-nuxt]
 
   build-showcase-patternhub:
     uses: ./.github/workflows/01-build-patternhub.yml
     needs: [build-packages]
+    secrets: inherit
+
+  cancel-on-failure-build-showcase-patternhub:
+    if: ${{ !cancelled() && needs.build-showcase-patternhub.result == 'failure' }}
+    uses: ./.github/workflows/00-cancel-workflow.yml
+    secrets: inherit
+    needs: [build-showcase-patternhub]
 
   test-showcase-stencil:
     uses: ./.github/workflows/02-e2e-showcases.yml
@@ -189,7 +280,16 @@ jobs:
     with:
       version: ${{ needs.get-playwright-version.outputs.version }}
 
-  regenerate-snapshots:
+  should-regenerate-snapshots:
+    env:
+      ARIA_ANGULAR: ${{ needs.test-showcase-angular.outputs.aria-snapshots-changed }}
+      VISUAL_ANGULAR: ${{ needs.test-showcase-angular.outputs.visual-snapshots-changed }}
+      ARIA_REACT: ${{ needs.test-showcase-react.outputs.aria-snapshots-changed }}
+      VISUAL_REACT: ${{ needs.test-showcase-react.outputs.visual-snapshots-changed }}
+      ARIA_VUE: ${{ needs.test-showcase-vue.outputs.aria-snapshots-changed }}
+      VISUAL_VUE: ${{ needs.test-showcase-vue.outputs.visual-snapshots-changed }}
+      ARIA_STENCIL: ${{ needs.test-showcase-stencil.outputs.aria-snapshots-changed }}
+      VISUAL_STENCIL: ${{ needs.test-showcase-stencil.outputs.visual-snapshots-changed }}
     if: |
       !cancelled() && (
         needs.test-showcase-angular.result == 'failure' ||
@@ -200,19 +300,41 @@ jobs:
         needs.test-showcase-react.outputs.aria-snapshots-changed == 'true' ||
         needs.test-showcase-react.outputs.visual-snapshots-changed == 'true' ||
         needs.test-showcase-vue.outputs.aria-snapshots-changed == 'true' ||
-        needs.test-showcase-vue.outputs.visual-snapshots-changed == 'true'
+        needs.test-showcase-vue.outputs.visual-snapshots-changed == 'true' ||
+        needs.test-showcase-stencil.outputs.aria-snapshots-changed == 'true' ||
+        needs.test-showcase-stencil.outputs.visual-snapshots-changed == 'true'
       )
-    uses: ./.github/workflows/02-e2e-regenerate.yml
-    with:
-      version: ${{ needs.get-playwright-version.outputs.version }}
-      type: showcases
     needs:
       [
         test-showcase-angular,
         test-showcase-react,
         test-showcase-vue,
-        get-playwright-version
+        test-showcase-stencil
       ]
+    runs-on: ubuntu-24.04
+    steps:
+      - name: "Fail if actor is a bot and regeneration is triggered"
+        run: |
+          if [[ "${{ github.actor }}" == *"[bot]"* ]]; then
+              echo "The snapshots between frameworks are different." >> $GITHUB_STEP_SUMMARY
+              echo "| Framework | Aria Snapshots Changed | Visual Snapshots Changed |" >> $GITHUB_STEP_SUMMARY
+              echo "|-----------|------------------------|--------------------------|" >> $GITHUB_STEP_SUMMARY
+              echo "| Angular   | "$ARIA_ANGULAR"  | "$VISUAL_ANGULAR" |" >> $GITHUB_STEP_SUMMARY
+              echo "| React     | "$ARIA_REACT"    | "$VISUAL_REACT"   |" >> $GITHUB_STEP_SUMMARY
+              echo "| Vue       | "$ARIA_VUE"      | "$VISUAL_VUE"     |" >> $GITHUB_STEP_SUMMARY
+              echo "| Stencil   | "$ARIA_STENCIL"  | "$VISUAL_STENCIL" |" >> $GITHUB_STEP_SUMMARY
+              exit 1
+          fi
+        shell: bash
+
+  regenerate-snapshots:
+    if: |
+      !cancelled() && needs.should-regenerate-snapshots.result == 'success'
+    uses: ./.github/workflows/02-e2e-regenerate.yml
+    with:
+      version: ${{ needs.get-playwright-version.outputs.version }}
+      type: showcases
+    needs: [should-regenerate-snapshots, get-playwright-version]
 
   commit-regenerated-snapshots:
     uses: ./.github/workflows/02-e2e-regenerated-snapshots-commit.yml
@@ -311,3 +433,8 @@ jobs:
     with:
       release: false
       preRelease: false
+
+  preview-url-pr-description:
+    if: ${{ !cancelled() && github.event.pull_request != null }}
+    needs: [deploy]
+    uses: ./.github/workflows/03-preview-url-pr-description.yml

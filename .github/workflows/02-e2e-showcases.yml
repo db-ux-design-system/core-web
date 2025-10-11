@@ -77,8 +77,7 @@ jobs:
       # We test everything for patternhub and main branch
       - name: 👩‍🔬 Test showcase with Playwright 🎭
         shell: bash
-        # TODO: we need to find a more stable solution / https://github.com/db-ux-design-system/core-web/issues/4910
-        # if: github.event.pull_request == null
+        if: github.event.pull_request == null
         env:
           NEXT_PUBLIC_BASE_PATH: ${{ inputs.path }}
         run: |
@@ -92,9 +91,13 @@ jobs:
         run: |
           npm run test:aria-snapshots --workspace=${{ inputs.showcase }} -- --shard=${{ matrix.shardIndex }}/${{ matrix.shardTotal }} --update-snapshots
           OUTPUT=$(npx --no tsx scripts/github/snapshot-changes/check-aria.ts)
-          echo "aria-snapshots-changed=$OUTPUT" >> $GITHUB_OUTPUT
+          if [ "$OUTPUT" = "true" ]; then
+            echo "aria-snapshots-changed=$OUTPUT" >> $GITHUB_OUTPUT
+          fi
           OUTPUT=$(npx --no tsx scripts/github/snapshot-changes/check-main-aria.ts)
-          echo "aria-snapshots-changed-to-main=$OUTPUT" >> $GITHUB_OUTPUT
+          if [ "$OUTPUT" = "true" ]; then
+            echo "aria-snapshots-changed-to-main=$OUTPUT" >> $GITHUB_OUTPUT
+          fi
 
       - name: 👩‍🔬 Test axe-core with Playwright 🎭
         shell: bash
@@ -109,15 +112,28 @@ jobs:
         run: |
           npm run test:visual-snapshots --workspace=${{ inputs.showcase }} -- --shard=${{ matrix.shardIndex }}/${{ matrix.shardTotal }} --update-snapshots
           OUTPUT=$(npx --no tsx scripts/github/snapshot-changes/check-visual.ts)
-          echo "visual-snapshots-changed=$OUTPUT" >> $GITHUB_OUTPUT
+          if [ "$OUTPUT" = "true" ]; then
+            echo "visual-snapshots-changed=$OUTPUT" >> $GITHUB_OUTPUT
+          fi
 
       - name: 👩‍🔬 Test a11y-checker with Playwright 🎭
         shell: bash
         if: |
           github.event.pull_request != null &&
-          steps.aria-snapshots.outputs.aria-snapshots-changed-to-main=='true'
+          steps.aria-snapshots.outputs.aria-snapshots-changed-to-main == 'true'
         run: |
           npm run test:a11y-checker --workspace=${{ inputs.showcase }} -- --shard=${{ matrix.shardIndex }}/${{ matrix.shardTotal }}
+
+      - name: 🌳 Log Snapshot Changes
+        if: github.event.pull_request != null
+        env:
+          ARIA: ${{ steps.aria-snapshots.outputs.aria-snapshots-changed}}
+          VISUAL: ${{ steps.visual-snapshots.outputs.visual-snapshots-changed}}
+          ARIA_MAIN: ${{ steps.aria-snapshots.outputs.aria-snapshots-changed-to-main }}
+        run: |
+          echo "ARIA: $ARIA"
+          echo "VISUAL: $VISUAL"
+          echo "ARIA_MAIN: $ARIA_MAIN"
 
       - name: 🔣 Print GitHub Report
         if: failure()

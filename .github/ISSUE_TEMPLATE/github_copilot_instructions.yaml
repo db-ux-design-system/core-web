@@ -1,0 +1,123 @@
+name: 📄 GitHub Copilot Instructions feedback
+description: Share feedback about the .github/copilot-instructions.md documentation (model choice, prompt results, clarity, etc.).
+title: "[GitHub Copilot Instructions feedback]: "
+labels: [📕documentation, 💡copilot]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to share your feedback! This form is to help us improve the `.github/copilot-instructions.md` documentation provided in the design system by using the [`@db-ux/agent-cli`](https://www.npmjs.com/package/@db-ux/agent-cli) node package.
+
+        Please keep in mind not to share any internal information or data this way. This includes internal URLs. Only use sample material.
+
+  - type: input
+    id: model-used
+    attributes:
+      label: 🤖 Model you used
+      description: Which model (if any) did you follow or reference from the documentation?
+      placeholder: e.g. GPT-4o, Claude 2, Custom LLM, etc.
+    validations:
+      required: false
+
+  - type: textarea
+    id: prompt-used
+    attributes:
+      label: 💬 Prompt or usage example
+      description: Share the exact or approximate prompt or example you tried using, based on the documentation.
+      placeholder: Copy/paste or summarize the input/prompt you used.
+    validations:
+      required: false
+
+  - type: textarea
+    id: issue-description
+    attributes:
+      label: ❗ What didn’t work as expected?
+      description: Describe what was confusing, broken, or didn’t meet your expectations. Be as detailed as possible.
+      placeholder: Include any error messages, mismatches, unexpected behaviors, or missing context.
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected-behavior
+    attributes:
+      label: ✅ What did you expect instead?
+      description: What outcome were you hoping for or expecting based on the instructions provided?
+      placeholder: Describe the result you thought you’d get.
+    validations:
+      required: false
+
+  - type: textarea
+    id: suggestions
+    attributes:
+      label: 💡 Suggestions for improvement
+      description: How could we make the documentation clearer, more accurate, or more helpful?
+      placeholder: e.g. "Add a note about prompt structure", "Link to working examples", etc.
+    validations:
+      required: false
+
+  - type: dropdown
+    id: ide
+    attributes:
+      label: 📝 Which IDE did you use?
+      description: Please provide information on the IDE you've used.
+      options:
+        - Visual Studio Code
+        - IntelliJ
+        - Others (please provide more information in another field)
+    validations:
+      required: false
+
+  - type: dropdown
+    id: clarity-rating
+    attributes:
+      label: 📝 How clear was the documentation?
+      description: Rate how easy it was to follow the instructions.
+      options:
+        - 1 - Very unclear
+        - 2 - Somewhat unclear
+        - 3 - Neutral
+        - 4 - Mostly clear
+        - 5 - Very clear
+    validations:
+      required: false
+
+  - type: input
+    id: link-or-context
+    attributes:
+      label: 🔗 Context (optional)
+      description: If you're referencing a specific section or line in the documentation, include a link or brief context.
+      placeholder: e.g. Line 32 in .github/copilot-instructions.md or a permalink to the file
+    validations:
+      required: false
+
+  - type: dropdown
+    id: businessunit
+    attributes:
+      label: Which DB business unit do you work for?
+      options:
+        - DB Systel GmbH (please name your customer below)
+        - DB Fernverkehr AG
+        - DB Regio AG
+        - DB InfraGO AG
+        - DB Cargo AG
+        - DB Konzern
+        - DB Vertrieb GmbH
+        - DB Energie
+        - DB Connect
+        - other (please specify below)
+    validations:
+      required: false
+
+  - type: input
+    id: businessunit2
+    attributes:
+      label: ”DB Systel” please enter your customer / ”other” please enter your area or business unit.
+    validations:
+      required: false
+
+  - type: input
+    id: project
+    attributes:
+      label: What project are you working on?
+    validations:
+      required: false

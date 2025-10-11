@@ -61,7 +61,7 @@ $db-min-inline-size: var(
 		margin-block-start: variables.$db-spacing-fixed-2xs;
 
 		&:is([data-semantic="successful"], [data-semantic="critical"]) {
-			display: none;
+			@include helpers.display(none);
 		}
 	}
 }
@@ -160,17 +160,17 @@ $db-min-inline-size: var(
 	> .db-infotext {
 		@if $key == "valid" {
 			&[data-semantic="successful"] {
-				display: flex;
+				@include helpers.display(flex);
 			}
 			/* stylelint-disable-next-line at-rule-empty-line-before */
 		} @else {
 			&[data-semantic="critical"] {
-				display: flex;
+				@include helpers.display(flex);
 			}
 		}
 
 		&:not([data-semantic]) {
-			display: none;
+			@include helpers.display(none);
 		}
 	}
 }
@@ -312,8 +312,9 @@ $input-valid-types:
 
 		// we use absolute icons
 		position: relative;
-		display: flex;
 		flex-direction: column;
+
+		@include helpers.display(flex);
 	}
 
 	&[data-variant="floating"],
@@ -513,7 +514,8 @@ $input-valid-types:
 
 	&:is(label),
 	> label {
-		display: flex;
+		@include helpers.display(flex);
+
 		align-items: flex-start;
 		position: relative;
 		color: var(

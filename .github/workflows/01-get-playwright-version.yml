@@ -1,6 +1,9 @@
 ---
 name: 🎭 Get playwright version
 
+permissions:
+  contents: read
+
 on:
   workflow_call:
     outputs:
@@ -26,9 +29,3 @@ jobs:
         run: |
           OUTPUT=$(npx --no tsx scripts/github/get-playwright-version.ts)
           echo "version=$OUTPUT" >> $GITHUB_OUTPUT
-
-      - name: 💀 Killing me softly
-        uses: ./.github/actions/cancel-workflow
-        if: failure()
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}

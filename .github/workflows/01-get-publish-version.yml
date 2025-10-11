@@ -1,6 +1,9 @@
 ---
 name: Get and save publish version
 
+permissions:
+  contents: read
+
 on:
   workflow_call:
     # Map the workflow outputs to job outputs
@@ -66,9 +69,3 @@ jobs:
         env:
           VALID_SEMVER_VERSION: ${{ steps.getVersion.outputs.version }}
         run: echo "$VALID_SEMVER_VERSION"
-
-      - name: 💀 Killing me softly
-        uses: ./.github/actions/cancel-workflow
-        if: failure()
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
