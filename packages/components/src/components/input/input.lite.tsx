@@ -201,6 +201,17 @@ export default function DBInput(props: DBInputProps) {
 		state._value = props.value;
 	}, [props.value]);
 
+	// iOS Safari Voiceover input type="date" hack
+	const isIOSSafari = () => {
+		if (typeof window === 'undefined' || typeof navigator === 'undefined') return false;
+		const ua = navigator.userAgent;
+		// iOS detection
+		const isIOS = /iP(ad|hone|od)/.test(ua);
+		// Safari detection (not Chrome or Firefox on iOS)
+		const isSafari = !!ua.match(/Safari/) && !ua.match(/CriOS|FxiOS|OPiOS|EdgiOS/);
+		return isIOS && isSafari;
+	}
+
 	return (
 		<div
 			class={cls('db-input', props.className)}
@@ -260,6 +271,9 @@ export default function DBInput(props: DBInputProps) {
 				}
 				list={props.dataList && state._dataListId}
 				aria-describedby={props.ariaDescribedBy ?? state._descByIds}
+				// iOS Safari Voiceover input type="date" hack
+				role={props.type === 'date' && isIOSSafari() ? 'textbox' : undefined}
+
 			/>
 			<Show when={props.dataList}>
 				<datalist id={state._dataListId}>
