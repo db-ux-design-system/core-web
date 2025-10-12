@@ -1,9 +1,14 @@
 # @db-ux/react-core-components
 
+## 3.1.20
+
+### Patch Changes
+
+- fix(input): iOS Safari VoiceOver bug for types `date`, `datetime-local`, `week`, `month`, `time` and `color` - [see commit 2ca96c8](https://github.com/db-ux-design-system/core-web/commit/2ca96c8852b7413f9a3281d69e9c4fc6f79c4f13)
+
 ## 3.1.19
 
 _version bump_
-
 
 ## 3.1.18
 
