@@ -17,7 +17,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [macos-15, windows-2022]
+        os: [macos-14, windows-2022]
     steps:
       - name: ⏬ Checkout repo
         uses: actions/checkout@v5
