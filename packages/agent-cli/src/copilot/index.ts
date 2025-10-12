@@ -13,14 +13,21 @@ function findAllNodeModulesDirectories(
 		.readdirSync(directory, { withFileTypes: true })
 		.sort((a, b) => a.name.localeCompare(b.name, 'en'));
 	for (const entry of entries) {
-		if (entry.isDirectory()) {
+		const fullPath = path.join(directory, entry.name);
+		// Use statSync to follow symlinks (important for pnpm compatibility)
+		let isDirectory = false;
+		try {
+			isDirectory = fs.statSync(fullPath).isDirectory();
+		} catch {
+			// Skip entries that can't be accessed
+			continue;
+		}
+
+		if (isDirectory) {
 			if (entry.name === 'node_modules') {
-				found.push(path.join(directory, entry.name));
+				found.push(fullPath);
 			} else if (!entry.name.startsWith('.')) {
-				findAllNodeModulesDirectories(
-					path.join(directory, entry.name),
-					found
-				);
+				findAllNodeModulesDirectories(fullPath, found);
 			}
 		}
 	}
@@ -54,10 +61,19 @@ export const generateCopilot = (rootPath: string) => {
 				withFileTypes: true
 			});
 			for (const package_ of packages) {
-				if (package_.isDirectory()) {
+				const packagePath = path.join(databaseUxPath, package_.name);
+				// Use statSync to follow symlinks (important for pnpm compatibility)
+				let isDirectory = false;
+				try {
+					isDirectory = fs.statSync(packagePath).isDirectory();
+				} catch {
+					// Skip entries that can't be accessed
+					continue;
+				}
+
+				if (isDirectory) {
 					const instructionsPath = path.join(
-						databaseUxPath,
-						package_.name,
+						packagePath,
 						'agent',
 						'_instructions.md'
 					);
@@ -65,7 +81,7 @@ export const generateCopilot = (rootPath: string) => {
 						let content = fs.readFileSync(instructionsPath, 'utf8');
 						const relativePath = path.relative(
 							rootPath,
-							path.join(databaseUxPath, package_.name)
+							packagePath
 						);
 						content = content
 							.replaceAll(
