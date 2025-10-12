@@ -1,7 +1,7 @@
 - main:
   - heading "DBButton" [level=1]
   - link "Density"
-  - button "Functional"
+  - button "Functional test"
   - button "(Default) Regular"
   - button "Expressive"
   - link "Variant"
