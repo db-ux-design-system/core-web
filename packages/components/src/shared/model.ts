@@ -95,16 +95,6 @@ export type IconTrailingProps = {
 	iconTrailing?: IconTypes;
 };
 
-export const LabelPositionList = ['leading', 'trailing'] as const;
-export type LabelPositionType = (typeof LabelPositionList)[number];
-
-export type LabelPositionProps = {
-	/**
-	 * Position of the label.
-	 */
-	labelPosition?: LabelPositionType;
-};
-
 export const SpacingList = ['medium', 'small', 'large', 'none'] as const;
 export type SpacingType = (typeof SpacingList)[number];
 
