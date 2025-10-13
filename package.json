@@ -152,7 +152,7 @@
     "vite": "7.1.9",
     "vite-plugin-devtools-json": "1.0.0",
     "vitest": "3.2.4",
-    "xo": "1.2.2",
+    "xo": "1.2.3",
     "zone.js": "0.15.1"
   },
   "overrides": {
