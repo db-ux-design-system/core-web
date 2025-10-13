@@ -84,7 +84,7 @@
     "@angular/animations": "20.3.2",
     "@angular/build": "20.3.3",
     "@angular/cli": "20.3.3",
-    "@angular/common": "20.3.2",
+    "@angular/common": "20.3.4",
     "@angular/compiler": "20.3.2",
     "@angular/compiler-cli": "20.3.2",
     "@angular/core": "20.3.2",
