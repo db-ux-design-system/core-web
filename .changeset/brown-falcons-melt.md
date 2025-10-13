@@ -1,9 +1,9 @@
 ---
-"@db-ux/core-components": patch
-"@db-ux/ngx-core-components": patch
-"@db-ux/react-core-components": patch
-"@db-ux/v-core-components": patch
-"@db-ux/wc-core-components": patch
+"@db-ux/core-components": major
+"@db-ux/ngx-core-components": major
+"@db-ux/react-core-components": major
+"@db-ux/v-core-components": major
+"@db-ux/wc-core-components": major
 ---
 
 feat: Switch stable rework
