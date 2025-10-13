@@ -133,7 +133,6 @@ export type DBInputProps = DBInputDefaultProps &
 export type DBInputDefaultState = {
 	_dataListId?: string;
 	getDataList: () => ValueLabelType[];
-	isIOSSafari: () => boolean;
 };
 
 export type DBInputState = DBInputDefaultState &
