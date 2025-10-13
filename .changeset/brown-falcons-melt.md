@@ -8,5 +8,5 @@
 
 feat: Switch stable rework
 BREAKING CHANGE: remove `emphasis` property
-introduce state (invalid and valid)
+introduce validation (invalid and valid)
 configurable label position
