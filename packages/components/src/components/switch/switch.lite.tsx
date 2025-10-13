@@ -152,7 +152,6 @@ export default function DBSwitch(props: DBSwitchProps) {
 			data-size={props.size}
 			data-hide-label={getHideProp(props.showLabel)}
 			data-variant={props.variant}
-			data-accent={getBooleanAsString(props.accent)}
 			data-hide-asterisk={getHideProp(props.showRequiredAsterisk)}
 			data-custom-validity={props.validation}
 			class={cls('db-switch', props.className)}>

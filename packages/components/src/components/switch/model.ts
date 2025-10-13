@@ -22,10 +22,6 @@ export type DBSwitchDefaultProps = {
 	 * Add additional icons to indicate active/inactive state.
 	 */
 	visualAid?: boolean | string;
-	/**
-	 * Use accent styling (same visual appearance as valid state).
-	 */
-	accent?: boolean | string;
 
 	/**
 	 * Change the variant of the label to `trailing` or `leading`. Defaults to `trailing`

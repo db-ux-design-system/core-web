@@ -108,8 +108,14 @@ $checked-active-transition-size: calc(
 			align-content: center;
 			aspect-ratio: 1;
 			block-size: $switch-inactive-thumb-size;
-			background-color: colors.$db-adaptive-on-bg-basic-emphasis-100-default;
-			color: colors.$db-adaptive-on-bg-basic-emphasis-100-default;
+			background-color: var(
+				--db-check-element-border-color,
+				#{colors.$db-adaptive-on-bg-basic-emphasis-100-default}
+			);
+			color: var(
+				--db-check-element-border-color,
+				#{colors.$db-adaptive-on-bg-basic-emphasis-100-default}
+			);
 			border-radius: variables.$db-border-radius-full;
 			transform: translateX(var(--thumb-offset-x));
 			margin-inline-end: calc(
@@ -134,7 +140,6 @@ $checked-active-transition-size: calc(
 		/* positioned at the end of the track: track length - 100% (thumb width) */
 		&:checked {
 			--thumb-offset-x: calc(100% + #{$switch-fixed-padding});
-			--db-check-element-border-color: #{colors.$db-adaptive-bg-basic-transparent-full-default};
 			--db-icon-color: var(--db-adaptive-on-bg-inverted-default);
 			--db-adaptive-bg-basic-transparent-full-default: var(
 				--db-adaptive-bg-inverted-contrast-max-default
@@ -145,14 +150,6 @@ $checked-active-transition-size: calc(
 			--db-adaptive-bg-basic-transparent-full-pressed: var(
 				--db-adaptive-bg-inverted-contrast-max-pressed
 			);
-
-			@include helpers.hover {
-				--db-check-element-border-color: #{colors.$db-adaptive-bg-basic-transparent-full-hovered};
-			}
-
-			@include helpers.active {
-				--db-check-element-border-color: #{colors.$db-adaptive-bg-basic-transparent-full-pressed};
-			}
 
 			&::after {
 				--db-icon-color: #{colors.$db-adaptive-on-bg-inverted-default};
@@ -241,13 +238,6 @@ $checked-active-transition-size: calc(
 	&[data-variant="leading"] {
 		> label {
 			flex-direction: row-reverse;
-		}
-	}
-
-	/* Accent styling for checked switch */
-	&[data-accent="true"] {
-		&:has(input:checked) {
-			@include form-components.get-validity-color-checkbox("valid");
 		}
 	}
 }

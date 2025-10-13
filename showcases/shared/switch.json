@@ -174,23 +174,6 @@
 		]
 	},
 	{
-		"name": "Accent",
-		"examples": [
-			{
-				"name": "(Default) False",
-				"props": {
-					"accent": false
-				}
-			},
-			{
-				"name": "True",
-				"props": {
-					"accent": true
-				}
-			}
-		]
-	},
-	{
 		"name": "Validation",
 		"examples": [
 			{
