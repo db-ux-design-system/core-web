@@ -106,6 +106,7 @@ jobs:
   build-showcase-stencil:
     uses: ./.github/workflows/01-build-showcases.yml
     needs: [build-packages]
+    secrets: inherit
     with:
       showcase: stencil-showcase
 
@@ -118,6 +119,7 @@ jobs:
   build-showcase-angular:
     uses: ./.github/workflows/01-build-showcases.yml
     needs: [build-packages]
+    secrets: inherit
     with:
       showcase: angular-showcase
 
@@ -130,6 +132,7 @@ jobs:
   build-showcase-angular-ssr:
     uses: ./.github/workflows/01-build-showcases.yml
     needs: [build-packages]
+    secrets: inherit
     with:
       showcase: angular-ssr-showcase
 
@@ -142,6 +145,7 @@ jobs:
   build-showcase-react:
     uses: ./.github/workflows/01-build-showcases.yml
     needs: [build-packages]
+    secrets: inherit
     with:
       showcase: react-showcase
 
@@ -154,6 +158,7 @@ jobs:
   build-showcase-next:
     uses: ./.github/workflows/01-build-showcases.yml
     needs: [build-packages]
+    secrets: inherit
     with:
       showcase: next-showcase
 
@@ -166,6 +171,7 @@ jobs:
   build-showcase-vue:
     uses: ./.github/workflows/01-build-showcases.yml
     needs: [build-packages]
+    secrets: inherit
     with:
       showcase: vue-showcase
 
@@ -178,6 +184,7 @@ jobs:
   build-showcase-nuxt:
     uses: ./.github/workflows/01-build-showcases.yml
     needs: [build-packages]
+    secrets: inherit
     with:
       showcase: nuxt-showcase
 
@@ -190,6 +197,7 @@ jobs:
   build-showcase-patternhub:
     uses: ./.github/workflows/01-build-patternhub.yml
     needs: [build-packages]
+    secrets: inherit
 
   cancel-on-failure-build-showcase-patternhub:
     if: ${{ !cancelled() && needs.build-showcase-patternhub.result == 'failure' }}

@@ -1,6 +1,6 @@
 {
   "name": "@db-ux/core-foundations",
-  "version": "3.1.19",
+  "version": "3.1.20",
   "type": "module",
   "description": "Provides basic tokens and assets based on DB UX Design System (Version 3).",
   "repository": {
