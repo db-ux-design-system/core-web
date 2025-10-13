@@ -42,9 +42,7 @@ useMetadata({
 		}
 	}
 });
-useDefaultProps<DBSwitchProps>({
-	variant: 'trailing'
-});
+useDefaultProps<DBSwitchProps>({});
 
 export default function DBSwitch(props: DBSwitchProps) {
 	// This is used as forwardRef

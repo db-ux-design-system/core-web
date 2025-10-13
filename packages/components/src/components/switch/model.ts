@@ -26,10 +26,14 @@ export type DBSwitchDefaultProps = {
 	 * Use accent styling (same visual appearance as valid state).
 	 */
 	accent?: boolean | string;
+
+	/**
+	 * Change the variant of the label to `trailing` or `leading`. Defaults to `trailing`
+	 */
+	variant?: LabelVariantHorizontalType;
 };
 
-export type DBSwitchProps = DBSwitchDefaultProps &
-	GlobalProps &
+export type DBSwitchProps = GlobalProps &
 	ChangeEventProps<HTMLInputElement> &
 	FocusEventProps<HTMLInputElement> &
 	FormProps &
@@ -39,7 +43,7 @@ export type DBSwitchProps = DBSwitchDefaultProps &
 	IconProps &
 	IconTrailingProps &
 	IconLeadingProps &
-	LabelVariantHorizontalType;
+	DBSwitchDefaultProps;
 
 export type DBSwitchDefaultState = {};
 
