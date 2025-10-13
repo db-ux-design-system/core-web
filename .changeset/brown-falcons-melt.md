@@ -7,3 +7,7 @@
 ---
 
 feat: Switch stable rework
+BREAKING CHANGE: remove `emphasis` property
+introduce state (invalid and valid)
+add accent styling
+configurable label position
