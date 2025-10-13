@@ -82,7 +82,7 @@
   "devDependencies": {
     "@angular-devkit/build-angular": "20.3.3",
     "@angular/animations": "20.3.2",
-    "@angular/build": "20.3.3",
+    "@angular/build": "20.3.5",
     "@angular/cli": "20.3.3",
     "@angular/common": "20.3.2",
     "@angular/compiler": "20.3.2",
