@@ -47,6 +47,8 @@
 		"packages/foundations/assets/icons/functional/fonts/**",
 		"packages/foundations/assets/icons/fonts/**",
 		"packages/foundations/dev",
+		"packages/migration/test/**/has-changes.txt",
+		"packages/migration/test/**/no-change.txt",
 		"showcases/**/results/**",
 		"showcases/angular-showcase/.angular/cache",
 		"showcases/angular-showcase/.angular/cache/**",

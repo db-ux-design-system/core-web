@@ -1,6 +1,6 @@
 {
   "name": "@db-ux/v-core-components",
-  "version": "3.1.19",
+  "version": "3.1.20",
   "type": "module",
   "description": "Vue components for @db-ux/core-components",
   "repository": {
@@ -57,7 +57,7 @@
   "sideEffects": false,
   "source": "src/index.ts",
   "dependencies": {
-    "@db-ux/core-components": "3.1.19",
-    "@db-ux/core-foundations": "3.1.19"
+    "@db-ux/core-components": "3.1.20",
+    "@db-ux/core-foundations": "3.1.20"
   }
 }
