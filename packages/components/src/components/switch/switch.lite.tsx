@@ -56,7 +56,7 @@ export default function DBSwitch(props: DBSwitchProps) {
 		_validMessageId: undefined as string | undefined,
 		_invalidMessageId: undefined as string | undefined,
 		_invalidMessage: undefined as string | undefined,
-		_descByIds: '' as string,
+		_descByIds: undefined,
 		_voiceOverFallback: '' as string,
 
 		hasValidState: () => {
@@ -99,7 +99,7 @@ export default function DBSwitch(props: DBSwitchProps) {
 				return;
 			}
 
-			state._descByIds = '';
+			state._descByIds = undefined;
 		},
 		handleChange: (event: ChangeEvent<HTMLInputElement>) => {
 			useTarget({
@@ -149,51 +149,49 @@ export default function DBSwitch(props: DBSwitchProps) {
 	// jscpd:ignore-end
 
 	return (
-		<label
+		<div
 			data-visual-aid={getBooleanAsString(props.visualAid)}
 			data-size={props.size}
 			data-hide-label={getHideProp(props.showLabel)}
-			htmlFor={state._id}
-			data-variant={
-				getHideProp(props.showLabel) === 'true'
-					? undefined
-					: props.variant
-			}
+			data-variant={props.variant}
 			data-accent={getBooleanAsString(props.accent)}
 			data-hide-asterisk={getHideProp(props.showRequiredAsterisk)}
 			data-custom-validity={props.validation}
 			class={cls('db-switch', props.className)}>
-			<input
-				id={state._id}
-				type="checkbox"
-				role="switch"
-				ref={_ref}
-				checked={getBoolean(props.checked, 'checked')}
-				value={props.value}
-				disabled={getBoolean(props.disabled, 'disabled')}
-				aria-invalid={
-					props.validation === 'invalid' ? 'true' : undefined
-				}
-				aria-describedby={state._descByIds || undefined}
-				name={props.name}
-				required={getBoolean(props.required, 'required')}
-				data-aid-icon={props.iconLeading ?? props.icon}
-				data-aid-icon-trailing={props.iconTrailing}
-				onChange={(event: ChangeEvent<HTMLInputElement>) =>
-					state.handleChange(event)
-				}
-				onBlur={(event: InteractionEvent<HTMLInputElement>) =>
-					state.handleBlur(event)
-				}
-				onFocus={(event: InteractionEvent<HTMLInputElement>) =>
-					state.handleFocus(event)
-				}
-			/>
-			<span class="db-switch-label">
-				<Show when={props.label} else={props.children}>
-					{props.label}
-				</Show>
-			</span>
+			<label htmlFor={state._id}>
+				<input
+					id={state._id}
+					type="checkbox"
+					role="switch"
+					ref={_ref}
+					checked={getBoolean(props.checked, 'checked')}
+					value={props.value}
+					disabled={getBoolean(props.disabled, 'disabled')}
+					aria-invalid={
+						props.validation === 'invalid' ? 'true' : undefined
+					}
+					aria-describedby={state._descByIds}
+					name={props.name}
+					required={getBoolean(props.required, 'required')}
+					data-aid-icon={props.iconLeading ?? props.icon}
+					data-aid-icon-trailing={props.iconTrailing}
+					onChange={(event: ChangeEvent<HTMLInputElement>) =>
+						state.handleChange(event)
+					}
+					onBlur={(event: InteractionEvent<HTMLInputElement>) =>
+						state.handleBlur(event)
+					}
+					onFocus={(event: InteractionEvent<HTMLInputElement>) =>
+						state.handleFocus(event)
+					}
+				/>
+				<span>
+					<Show when={props.label} else={props.children}>
+						{props.label}
+					</Show>
+				</span>
+			</label>
+
 			<Show when={stringPropVisible(props.message, props.showMessage)}>
 				<DBInfotext
 					id={state._messageId}
@@ -222,6 +220,6 @@ export default function DBSwitch(props: DBSwitchProps) {
 			<span data-visually-hidden="true" role="status">
 				{state._voiceOverFallback}
 			</span>
-		</label>
+		</div>
 	);
 }

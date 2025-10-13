@@ -13,6 +13,7 @@ import {
 	IconLeadingProps,
 	IconProps,
 	IconTrailingProps,
+	LabelVariantHorizontalType,
 	SizeProps
 } from '../../shared/model';
 
@@ -37,7 +38,8 @@ export type DBSwitchProps = DBSwitchDefaultProps &
 	SizeProps &
 	IconProps &
 	IconTrailingProps &
-	IconLeadingProps;
+	IconLeadingProps &
+	LabelVariantHorizontalType;
 
 export type DBSwitchDefaultState = {};
 
