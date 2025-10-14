@@ -207,35 +207,35 @@ jobs:
 
   test-showcase-stencil:
     uses: ./.github/workflows/02-e2e-showcases.yml
-    needs: [build-showcase-stencil, get-playwright-version, init]
+    needs: [build-showcase-stencil, get-playwright-version]
     with:
       version: ${{ needs.get-playwright-version.outputs.version }}
       showcase: stencil-showcase
-      test-a11y: ${{ needs.init.outputs.test-a11y }}
+      test-ally: ${{ needs.get-playwright-version.outputs.test-ally }}
 
   test-showcase-angular:
     uses: ./.github/workflows/02-e2e-showcases.yml
-    needs: [build-showcase-angular, get-playwright-version, init]
+    needs: [build-showcase-angular, get-playwright-version]
     with:
       version: ${{ needs.get-playwright-version.outputs.version }}
       showcase: angular-showcase
-      test-a11y: ${{ needs.init.outputs.test-a11y }}
+      test-ally: ${{ needs.get-playwright-version.outputs.test-ally }}
 
   test-showcase-react:
     uses: ./.github/workflows/02-e2e-showcases.yml
-    needs: [build-showcase-react, get-playwright-version, init]
+    needs: [build-showcase-react, get-playwright-version]
     with:
       version: ${{ needs.get-playwright-version.outputs.version }}
       showcase: react-showcase
-      test-a11y: ${{ needs.init.outputs.test-a11y }}
+      test-ally: ${{ needs.get-playwright-version.outputs.test-ally }}
 
   test-showcase-vue:
     uses: ./.github/workflows/02-e2e-showcases.yml
-    needs: [build-showcase-vue, get-playwright-version, init]
+    needs: [build-showcase-vue, get-playwright-version]
     with:
       version: ${{ needs.get-playwright-version.outputs.version }}
       showcase: vue-showcase
-      test-a11y: ${{ needs.init.outputs.test-a11y }}
+      test-ally: ${{ needs.get-playwright-version.outputs.test-ally }}
 
   test-showcase-patternhub:
     uses: ./.github/workflows/02-e2e-patternhub.yml
@@ -277,10 +277,10 @@ jobs:
   # This job runs only if aria-snapshots were changed compared to main or if it runs on main branch
   test-screen-reader:
     if: |
-      needs.init.outputs.test-a11y == 'true' ||
+      needs.get-playwright-version.outputs.test-ally == 'true' ||
       github.event.pull_request == null
     uses: ./.github/workflows/02-e2e-screen-reader.yml
-    needs: [test-showcase-react, init-playwright, get-playwright-version, init]
+    needs: [test-showcase-react, init-playwright, get-playwright-version]
     with:
       version: ${{ needs.get-playwright-version.outputs.version }}
 
