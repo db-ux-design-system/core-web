@@ -292,9 +292,6 @@ jobs:
       VISUAL_STENCIL: ${{ needs.test-showcase-stencil.outputs.visual-snapshots-changed }}
     if: |
       !cancelled() && (
-        needs.test-showcase-angular.result == 'failure' ||
-        needs.test-showcase-react.result == 'failure' ||
-        needs.test-showcase-vue.result == 'failure' ||
         needs.test-showcase-angular.outputs.aria-snapshots-changed == 'true' ||
         needs.test-showcase-angular.outputs.visual-snapshots-changed == 'true' ||
         needs.test-showcase-react.outputs.aria-snapshots-changed == 'true' ||
@@ -315,15 +312,23 @@ jobs:
     steps:
       - name: "Fail if actor is a bot and regeneration is triggered"
         run: |
+          echo "The snapshots between frameworks are different." >> $GITHUB_STEP_SUMMARY
+          echo "| Framework | Aria Snapshots Changed | Visual Snapshots Changed |" >> $GITHUB_STEP_SUMMARY
+          echo "|-----------|------------------------|--------------------------|" >> $GITHUB_STEP_SUMMARY
+          echo "| Angular   | "$ARIA_ANGULAR"  | "$VISUAL_ANGULAR" |" >> $GITHUB_STEP_SUMMARY
+          echo "| React     | "$ARIA_REACT"    | "$VISUAL_REACT"   |" >> $GITHUB_STEP_SUMMARY
+          echo "| Vue       | "$ARIA_VUE"      | "$VISUAL_VUE"     |" >> $GITHUB_STEP_SUMMARY
+          echo "| Stencil   | "$ARIA_STENCIL"  | "$VISUAL_STENCIL" |" >> $GITHUB_STEP_SUMMARY
+
           if [[ "${{ github.actor }}" == *"[bot]"* ]]; then
-              echo "The snapshots between frameworks are different." >> $GITHUB_STEP_SUMMARY
-              echo "| Framework | Aria Snapshots Changed | Visual Snapshots Changed |" >> $GITHUB_STEP_SUMMARY
-              echo "|-----------|------------------------|--------------------------|" >> $GITHUB_STEP_SUMMARY
-              echo "| Angular   | "$ARIA_ANGULAR"  | "$VISUAL_ANGULAR" |" >> $GITHUB_STEP_SUMMARY
-              echo "| React     | "$ARIA_REACT"    | "$VISUAL_REACT"   |" >> $GITHUB_STEP_SUMMARY
-              echo "| Vue       | "$ARIA_VUE"      | "$VISUAL_VUE"     |" >> $GITHUB_STEP_SUMMARY
-              echo "| Stencil   | "$ARIA_STENCIL"  | "$VISUAL_STENCIL" |" >> $GITHUB_STEP_SUMMARY
+              echo "We don't allow bots to regenerate snapshots."
               exit 1
+          fi
+
+          if [ "$ARIA_REACT" != "true" ] || [ "$VISUAL_REACT" != "true" ]; then
+            echo "React Showcase is correct, some other framework might be wrong."
+            echo "Check the snapshots to identify problems."
+            exit 1
           fi
         shell: bash
 

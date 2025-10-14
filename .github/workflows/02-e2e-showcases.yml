@@ -34,8 +34,8 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        shardIndex: [1, 2, 3, 4]
-        shardTotal: [4]
+        shardIndex: [1, 2, 3, 4, 5]
+        shardTotal: [5]
     outputs:
       aria-snapshots-changed: ${{ steps.aria-snapshots.outputs.aria-snapshots-changed }}
       aria-snapshots-changed-to-main: ${{ steps.aria-snapshots.outputs.aria-snapshots-changed-to-main }}
@@ -44,8 +44,7 @@ jobs:
       - name: ⏬ Checkout repo
         uses: actions/checkout@v5
         with:
-          fetch-depth: 0 # fetch all history for all branches
-          fetch-tags: false
+          fetch-depth: 2
 
       - name: 🔄 Init Cache
         uses: ./.github/actions/npm-cache
@@ -90,13 +89,13 @@ jobs:
         if: github.event.pull_request != null
         run: |
           npm run test:aria-snapshots --workspace=${{ inputs.showcase }} -- --shard=${{ matrix.shardIndex }}/${{ matrix.shardTotal }} --update-snapshots
-          OUTPUT=$(npx --no tsx scripts/github/snapshot-changes/check-aria.ts)
-          if [ "$OUTPUT" = "true" ]; then
-            echo "aria-snapshots-changed=$OUTPUT" >> $GITHUB_OUTPUT
+          ARIA=$(npx --no tsx scripts/github/snapshot-changes/check-aria.ts)
+          if [ "$ARIA" = "true" ]; then
+            echo "aria-snapshots-changed=$ARIA" >> $GITHUB_OUTPUT
           fi
-          OUTPUT=$(npx --no tsx scripts/github/snapshot-changes/check-main-aria.ts)
-          if [ "$OUTPUT" = "true" ]; then
-            echo "aria-snapshots-changed-to-main=$OUTPUT" >> $GITHUB_OUTPUT
+          ARIA_MAIN=$(npx --no tsx scripts/github/snapshot-changes/check-main-aria.ts)
+          if [ "$ARIA_MAIN" = "true" ]; then
+            echo "aria-snapshots-changed-to-main=$ARIA_MAIN" >> $GITHUB_OUTPUT
           fi
 
       - name: 👩‍🔬 Test axe-core with Playwright 🎭
@@ -142,7 +141,11 @@ jobs:
           npx playwright merge-reports --reporter github ./blob-report
 
       - name: 🆙 Upload test results
-        if: failure()
+        if: ${{ failure() ||
+          steps.aria-snapshots.outputs.aria-snapshots-changed ||
+          steps.visual-snapshots.outputs.visual-snapshots-changed ||
+          steps.aria-snapshots.outputs.aria-snapshots-changed-to-main
+          }}
         uses: actions/upload-artifact@v4
         with:
           name: ${{ inputs.showcase }}-playwright-results-${{ matrix.shardIndex }}
