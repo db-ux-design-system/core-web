@@ -21,7 +21,7 @@
     "@types/react": "18.3.13",
     "npm-run-all2": "8.0.4",
     "open-cli": "8.0.0",
-    "typescript": "5.8.3"
+    "typescript": "5.9.3"
   },
   "overrides": {
     "cross-spawn": "7.0.6"
