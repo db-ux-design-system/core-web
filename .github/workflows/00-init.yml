@@ -10,7 +10,6 @@ jobs:
   init:
     name: Init
     runs-on: ubuntu-24.04 # Use Ubuntu 24.04 explicitly
-    outputs:
     steps:
       - name: ⏬ Checkout repo
         uses: actions/checkout@v5
