@@ -21,7 +21,6 @@ jobs:
   playwright-showcases:
     name: 🧪🎭 - ${{ inputs.showcase }}:${{ matrix.shardIndex }}/${{ matrix.shardTotal }}
     runs-on: ubuntu-24.04 # Use Ubuntu 24.04 explicitly
-    continue-on-error: true
     container:
       image: mcr.microsoft.com/playwright:v${{ inputs.version }}
       options: --user 1001
