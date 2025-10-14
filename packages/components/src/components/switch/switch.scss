@@ -233,11 +233,24 @@ $checked-active-transition-size: calc(
 	}
 
 	&[data-variant="leading"] {
-		> label {
-			flex-direction: row-reverse;
+		&:not([data-hide-asterisk="true"]) {
+			&:has(input:required),
+			&[data-required="true"] {
+				> label::after {
+					/* We remove default asterisk because we need a wrapping span for switch */
+					content: none;
+				}
+
+				> label::before {
+					order: 1;
+
+					@include icons.icon-content("*");
+				}
+			}
 		}
 
 		input {
+			order: 2;
 			margin-inline-start: variables.$db-spacing-fixed-xs;
 		}
 
