@@ -57,20 +57,20 @@
 		"name": "Visual Aid",
 		"examples": [
 			{
-				"name": "(Default) False + Unchecked",
+				"name": "(Default) False (Unchecked)",
 				"props": {
 					"visualAid": false
 				}
 			},
 			{
-				"name": "(Default) False + Checked",
+				"name": "(Default) False (Checked)",
 				"props": {
 					"visualAid": false,
 					"checked": true
 				}
 			},
 			{
-				"name": "True + Unchecked",
+				"name": "True (Unchecked)",
 				"props": {
 					"visualAid": true,
 					"iconLeading": "moon",
@@ -78,7 +78,7 @@
 				}
 			},
 			{
-				"name": "True + Checked",
+				"name": "True (Checked)",
 				"props": {
 					"visualAid": true,
 					"checked": true,
