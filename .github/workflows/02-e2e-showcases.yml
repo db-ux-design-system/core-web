@@ -82,9 +82,7 @@ jobs:
 
       - name: 👩‍🔬 Test axe-core with Playwright 🎭
         shell: bash
-        if: |
-          github.event.pull_request != null &&
-          inputs.test-a11y == 'true'
+        if: github.event.pull_request != null
         run: |
           npm run test:axe-core --workspace=${{ inputs.showcase }} -- --shard=${{ matrix.shardIndex }}/${{ matrix.shardTotal }}
 
