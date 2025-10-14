@@ -21,6 +21,7 @@ jobs:
   playwright-showcases:
     name: 🧪🎭 - ${{ inputs.showcase }}:${{ matrix.shardIndex }}/${{ matrix.shardTotal }}
     runs-on: ubuntu-24.04 # Use Ubuntu 24.04 explicitly
+    continue-on-error: true
     container:
       image: mcr.microsoft.com/playwright:v${{ inputs.version }}
       options: --user 1001
@@ -75,24 +76,22 @@ jobs:
       - name: 👩‍🔬 Test aria-snapshots with Playwright 🎭
         id: aria-snapshots
         shell: bash
-        continue-on-error: true
         if: github.event.pull_request != null
         run: |
           npm run test:aria-snapshots --workspace=${{ inputs.showcase }} -- --shard=${{ matrix.shardIndex }}/${{ matrix.shardTotal }}
+
+      - name: 👩‍🔬 Test visual-snapshots with Playwright 🎭
+        id: visual-snapshots
+        shell: bash
+        if: github.event.pull_request != null
+        run: |
+          npm run test:visual-snapshots --workspace=${{ inputs.showcase }} -- --shard=${{ matrix.shardIndex }}/${{ matrix.shardTotal }}
 
       - name: 👩‍🔬 Test axe-core with Playwright 🎭
         shell: bash
         if: github.event.pull_request != null
         run: |
           npm run test:axe-core --workspace=${{ inputs.showcase }} -- --shard=${{ matrix.shardIndex }}/${{ matrix.shardTotal }}
-
-      - name: 👩‍🔬 Test visual-snapshots with Playwright 🎭
-        id: visual-snapshots
-        continue-on-error: true
-        shell: bash
-        if: github.event.pull_request != null
-        run: |
-          npm run test:visual-snapshots --workspace=${{ inputs.showcase }} -- --shard=${{ matrix.shardIndex }}/${{ matrix.shardTotal }}
 
       - name: 👩‍🔬 Test a11y-checker with Playwright 🎭
         shell: bash
