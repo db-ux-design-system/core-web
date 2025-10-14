@@ -71,6 +71,13 @@ $db-min-inline-size: var(
 	[id$="-placeholder"] {
 		@content;
 	}
+
+	// Workaround, until – fingers crossed – the pseudo selector :blank would be the better solution.
+	#{$selector}:is([type="date"], [type="datetime-local"]):not(
+			:user-valid
+		)::-webkit-datetime-edit {
+		@content;
+	}
 }
 
 @mixin set-floating-label-overwrites($selector) {
