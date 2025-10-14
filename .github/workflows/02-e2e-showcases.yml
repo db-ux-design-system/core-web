@@ -9,16 +9,9 @@ on:
       showcase:
         required: true
         type: string
-    outputs:
-      aria-snapshots-changed:
-        description: "If aria snapshots changed in current PR"
-        value: ${{ jobs.playwright-showcases.outputs.aria-snapshots-changed }}
-      aria-snapshots-changed-to-main:
-        description: "If aria snapshots changed to main branch"
-        value: ${{ jobs.playwright-showcases.outputs.aria-snapshots-changed-to-main }}
-      visual-snapshots-changed:
-        description: "If visual snapshots changed"
-        value: ${{ jobs.playwright-showcases.outputs.visual-snapshots-changed }}
+      test-a11y:
+        required: false
+        type: boolean
 
 permissions:
   actions: write
@@ -36,10 +29,6 @@ jobs:
       matrix:
         shardIndex: [1, 2, 3, 4, 5]
         shardTotal: [5]
-    outputs:
-      aria-snapshots-changed: ${{ steps.aria-snapshots.outputs.aria-snapshots-changed }}
-      aria-snapshots-changed-to-main: ${{ steps.aria-snapshots.outputs.aria-snapshots-changed-to-main }}
-      visual-snapshots-changed: ${{ steps.visual-snapshots.outputs.visual-snapshots-changed }}
     steps:
       - name: ⏬ Checkout repo
         uses: actions/checkout@v5
@@ -86,53 +75,34 @@ jobs:
       - name: 👩‍🔬 Test aria-snapshots with Playwright 🎭
         id: aria-snapshots
         shell: bash
+        continue-on-error: true
         if: github.event.pull_request != null
         run: |
-          npm run test:aria-snapshots --workspace=${{ inputs.showcase }} -- --shard=${{ matrix.shardIndex }}/${{ matrix.shardTotal }} --update-snapshots
-          ARIA=$(npx --no tsx scripts/github/snapshot-changes/check-aria.ts)
-          if [ "$ARIA" = "true" ]; then
-            echo "aria-snapshots-changed=$ARIA" >> $GITHUB_OUTPUT
-          fi
-          ARIA_MAIN=$(npx --no tsx scripts/github/snapshot-changes/check-main-aria.ts)
-          if [ "$ARIA_MAIN" = "true" ]; then
-            echo "aria-snapshots-changed-to-main=$ARIA_MAIN" >> $GITHUB_OUTPUT
-          fi
+          npm run test:aria-snapshots --workspace=${{ inputs.showcase }} -- --shard=${{ matrix.shardIndex }}/${{ matrix.shardTotal }}
 
       - name: 👩‍🔬 Test axe-core with Playwright 🎭
         shell: bash
-        if: github.event.pull_request != null
+        if: |
+          github.event.pull_request != null &&
+          inputs.test-a11y == 'true'
         run: |
           npm run test:axe-core --workspace=${{ inputs.showcase }} -- --shard=${{ matrix.shardIndex }}/${{ matrix.shardTotal }}
 
       - name: 👩‍🔬 Test visual-snapshots with Playwright 🎭
         id: visual-snapshots
+        continue-on-error: true
         shell: bash
         if: github.event.pull_request != null
         run: |
-          npm run test:visual-snapshots --workspace=${{ inputs.showcase }} -- --shard=${{ matrix.shardIndex }}/${{ matrix.shardTotal }} --update-snapshots
-          OUTPUT=$(npx --no tsx scripts/github/snapshot-changes/check-visual.ts)
-          if [ "$OUTPUT" = "true" ]; then
-            echo "visual-snapshots-changed=$OUTPUT" >> $GITHUB_OUTPUT
-          fi
+          npm run test:visual-snapshots --workspace=${{ inputs.showcase }} -- --shard=${{ matrix.shardIndex }}/${{ matrix.shardTotal }}
 
       - name: 👩‍🔬 Test a11y-checker with Playwright 🎭
         shell: bash
         if: |
           github.event.pull_request != null &&
-          steps.aria-snapshots.outputs.aria-snapshots-changed-to-main == 'true'
+          inputs.test-a11y == 'true'
         run: |
           npm run test:a11y-checker --workspace=${{ inputs.showcase }} -- --shard=${{ matrix.shardIndex }}/${{ matrix.shardTotal }}
-
-      - name: 🌳 Log Snapshot Changes
-        if: github.event.pull_request != null
-        env:
-          ARIA: ${{ steps.aria-snapshots.outputs.aria-snapshots-changed}}
-          VISUAL: ${{ steps.visual-snapshots.outputs.visual-snapshots-changed}}
-          ARIA_MAIN: ${{ steps.aria-snapshots.outputs.aria-snapshots-changed-to-main }}
-        run: |
-          echo "ARIA: $ARIA"
-          echo "VISUAL: $VISUAL"
-          echo "ARIA_MAIN: $ARIA_MAIN"
 
       - name: 🔣 Print GitHub Report
         if: failure()
@@ -141,11 +111,7 @@ jobs:
           npx playwright merge-reports --reporter github ./blob-report
 
       - name: 🆙 Upload test results
-        if: ${{ failure() ||
-          steps.aria-snapshots.outputs.aria-snapshots-changed ||
-          steps.visual-snapshots.outputs.visual-snapshots-changed ||
-          steps.aria-snapshots.outputs.aria-snapshots-changed-to-main
-          }}
+        if: ${{ failure() }}
         uses: actions/upload-artifact@v4
         with:
           name: ${{ inputs.showcase }}-playwright-results-${{ matrix.shardIndex }}

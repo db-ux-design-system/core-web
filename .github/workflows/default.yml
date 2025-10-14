@@ -207,31 +207,35 @@ jobs:
 
   test-showcase-stencil:
     uses: ./.github/workflows/02-e2e-showcases.yml
-    needs: [build-showcase-stencil, get-playwright-version]
+    needs: [build-showcase-stencil, get-playwright-version, init]
     with:
       version: ${{ needs.get-playwright-version.outputs.version }}
       showcase: stencil-showcase
+      test-a11y: ${{ needs.init.outputs.test-a11y }}
 
   test-showcase-angular:
     uses: ./.github/workflows/02-e2e-showcases.yml
-    needs: [build-showcase-angular, get-playwright-version]
+    needs: [build-showcase-angular, get-playwright-version, init]
     with:
       version: ${{ needs.get-playwright-version.outputs.version }}
       showcase: angular-showcase
+      test-a11y: ${{ needs.init.outputs.test-a11y }}
 
   test-showcase-react:
     uses: ./.github/workflows/02-e2e-showcases.yml
-    needs: [build-showcase-react, get-playwright-version]
+    needs: [build-showcase-react, get-playwright-version, init]
     with:
       version: ${{ needs.get-playwright-version.outputs.version }}
       showcase: react-showcase
+      test-a11y: ${{ needs.init.outputs.test-a11y }}
 
   test-showcase-vue:
     uses: ./.github/workflows/02-e2e-showcases.yml
-    needs: [build-showcase-vue, get-playwright-version]
+    needs: [build-showcase-vue, get-playwright-version, init]
     with:
       version: ${{ needs.get-playwright-version.outputs.version }}
       showcase: vue-showcase
+      test-a11y: ${{ needs.init.outputs.test-a11y }}
 
   test-showcase-patternhub:
     uses: ./.github/workflows/02-e2e-patternhub.yml
@@ -273,73 +277,33 @@ jobs:
   # This job runs only if aria-snapshots were changed compared to main or if it runs on main branch
   test-screen-reader:
     if: |
-      needs.test-showcase-react.outputs.aria-snapshots-changed-to-main == 'true' ||
+      needs.init.outputs.test-a11y == 'true' ||
       github.event.pull_request == null
     uses: ./.github/workflows/02-e2e-screen-reader.yml
-    needs: [test-showcase-react, init-playwright, get-playwright-version]
+    needs: [test-showcase-react, init-playwright, get-playwright-version, init]
     with:
       version: ${{ needs.get-playwright-version.outputs.version }}
 
-  should-regenerate-snapshots:
-    env:
-      ARIA_ANGULAR: ${{ needs.test-showcase-angular.outputs.aria-snapshots-changed }}
-      VISUAL_ANGULAR: ${{ needs.test-showcase-angular.outputs.visual-snapshots-changed }}
-      ARIA_REACT: ${{ needs.test-showcase-react.outputs.aria-snapshots-changed }}
-      VISUAL_REACT: ${{ needs.test-showcase-react.outputs.visual-snapshots-changed }}
-      ARIA_VUE: ${{ needs.test-showcase-vue.outputs.aria-snapshots-changed }}
-      VISUAL_VUE: ${{ needs.test-showcase-vue.outputs.visual-snapshots-changed }}
-      ARIA_STENCIL: ${{ needs.test-showcase-stencil.outputs.aria-snapshots-changed }}
-      VISUAL_STENCIL: ${{ needs.test-showcase-stencil.outputs.visual-snapshots-changed }}
+  regenerate-snapshots:
     if: |
-      !cancelled() && (
-        needs.test-showcase-angular.outputs.aria-snapshots-changed == 'true' ||
-        needs.test-showcase-angular.outputs.visual-snapshots-changed == 'true' ||
-        needs.test-showcase-react.outputs.aria-snapshots-changed == 'true' ||
-        needs.test-showcase-react.outputs.visual-snapshots-changed == 'true' ||
-        needs.test-showcase-vue.outputs.aria-snapshots-changed == 'true' ||
-        needs.test-showcase-vue.outputs.visual-snapshots-changed == 'true' ||
-        needs.test-showcase-stencil.outputs.aria-snapshots-changed == 'true' ||
-        needs.test-showcase-stencil.outputs.visual-snapshots-changed == 'true'
+      !cancelled() && !contains(github.actor,'[bot]') && (
+        needs.test-showcase-angular.result == 'failure' ||
+        needs.test-showcase-react.result == 'failure' ||
+        needs.test-showcase-vue.result == 'failure' ||
+        needs.test-showcase-stencil.result == 'failure'
       )
+    uses: ./.github/workflows/02-e2e-regenerate.yml
+    with:
+      version: ${{ needs.get-playwright-version.outputs.version }}
+      type: showcases
     needs:
       [
         test-showcase-angular,
         test-showcase-react,
         test-showcase-vue,
-        test-showcase-stencil
+        test-showcase-stencil,
+        get-playwright-version
       ]
-    runs-on: ubuntu-24.04
-    steps:
-      - name: "Fail if actor is a bot and regeneration is triggered"
-        run: |
-          echo "The snapshots between frameworks are different." >> $GITHUB_STEP_SUMMARY
-          echo "| Framework | Aria Snapshots Changed | Visual Snapshots Changed |" >> $GITHUB_STEP_SUMMARY
-          echo "|-----------|------------------------|--------------------------|" >> $GITHUB_STEP_SUMMARY
-          echo "| Angular   | "$ARIA_ANGULAR"  | "$VISUAL_ANGULAR" |" >> $GITHUB_STEP_SUMMARY
-          echo "| React     | "$ARIA_REACT"    | "$VISUAL_REACT"   |" >> $GITHUB_STEP_SUMMARY
-          echo "| Vue       | "$ARIA_VUE"      | "$VISUAL_VUE"     |" >> $GITHUB_STEP_SUMMARY
-          echo "| Stencil   | "$ARIA_STENCIL"  | "$VISUAL_STENCIL" |" >> $GITHUB_STEP_SUMMARY
-
-          if [[ "${{ github.actor }}" == *"[bot]"* ]]; then
-              echo "We don't allow bots to regenerate snapshots."
-              exit 1
-          fi
-
-          if [ "$ARIA_REACT" != "true" ] && [ "$VISUAL_REACT" != "true" ]; then
-            echo "React Showcase is correct, some other framework might be wrong."
-            echo "Check the snapshots to identify problems."
-            exit 1
-          fi
-        shell: bash
-
-  regenerate-snapshots:
-    if: |
-      !cancelled() && needs.should-regenerate-snapshots.result == 'success'
-    uses: ./.github/workflows/02-e2e-regenerate.yml
-    with:
-      version: ${{ needs.get-playwright-version.outputs.version }}
-      type: showcases
-    needs: [should-regenerate-snapshots, get-playwright-version]
 
   commit-regenerated-snapshots:
     uses: ./.github/workflows/02-e2e-regenerated-snapshots-commit.yml

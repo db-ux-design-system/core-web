@@ -5,17 +5,36 @@ permissions:
 
 on:
   workflow_call:
+    outputs:
+      test-a11y:
+        description: "If aria-snapshots are changed"
+        value: ${{ jobs.init.outputs.test-a11y }}
 
 jobs:
   init:
     name: Init
     runs-on: ubuntu-24.04 # Use Ubuntu 24.04 explicitly
+    outputs:
+      test-a11y: ${{ steps.should-test-a11y.outputs.test-a11y }}
     steps:
       - name: ⏬ Checkout repo
         uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+          fetch-tags: false
 
       - name: 🔄 Init Cache Default
         uses: ./.github/actions/npm-cache
         env:
           ASSET_INIT_VECTOR: ${{ secrets.ASSET_INIT_VECTOR }}
           ASSET_PASSWORD: ${{ secrets.ASSET_PASSWORD }}
+
+      - name: 👩 Should Test a11y
+        id: should-test-a11y
+        shell: bash
+        run: |
+          ARIA_MAIN=$(npx --no tsx scripts/github/snapshot-changes/check-main-aria.ts)
+          echo "test-a11y=$ARIA_MAIN"
+          if [ "$ARIA_MAIN" = "true" ]; then
+            echo "test-a11y=$ARIA_MAIN" >> $GITHUB_OUTPUT
+          fi
