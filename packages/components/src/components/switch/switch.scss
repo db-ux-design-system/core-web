@@ -38,20 +38,6 @@ $checked-active-transition-size: calc(
 	@extend %helper-message;
 	@include form-components.set-default-check-element;
 
-	&:not([data-hide-asterisk="true"]) {
-		&:has(input:required),
-		&[data-required="true"] {
-			> label::after {
-				/* We remove default asterisk because we need a wrapping span for switch */
-				content: none;
-			}
-
-			> label > span::after {
-				@include icons.icon-content("*");
-			}
-		}
-	}
-
 	&:not(:has(input:disabled)) {
 		@include form-components.get-state;
 
@@ -182,13 +168,9 @@ $checked-active-transition-size: calc(
 		}
 	}
 
-	> label {
-		gap: variables.$db-spacing-fixed-xs;
-	}
-
 	&[data-hide-label="true"] {
 		> label {
-			gap: 0;
+			margin: 0;
 
 			> span {
 				font-size: 0;
@@ -238,11 +220,31 @@ $checked-active-transition-size: calc(
 		> label {
 			flex-direction: row;
 		}
+
+		input {
+			margin-inline-end: variables.$db-spacing-fixed-xs;
+		}
+
+		&[data-size="small"] {
+			input {
+				margin-inline-end: variables.$db-spacing-fixed-xs;
+			}
+		}
 	}
 
 	&[data-variant="leading"] {
 		> label {
 			flex-direction: row-reverse;
+		}
+
+		input {
+			margin-inline-start: variables.$db-spacing-fixed-xs;
+		}
+
+		&[data-size="small"] {
+			input {
+				margin-inline-start: variables.$db-spacing-fixed-2xs;
+			}
 		}
 	}
 }
