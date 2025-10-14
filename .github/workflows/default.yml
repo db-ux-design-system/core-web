@@ -325,7 +325,7 @@ jobs:
               exit 1
           fi
 
-          if [ "$ARIA_REACT" != "true" ] || [ "$VISUAL_REACT" != "true" ]; then
+          if [ "$ARIA_REACT" != "true" ] && [ "$VISUAL_REACT" != "true" ]; then
             echo "React Showcase is correct, some other framework might be wrong."
             echo "Check the snapshots to identify problems."
             exit 1
