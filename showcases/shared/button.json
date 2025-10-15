@@ -3,7 +3,7 @@
 		"name": "Density",
 		"examples": [
 			{
-				"name": "Functional1",
+				"name": "Functional",
 				"density": "functional",
 				"props": {}
 			},
