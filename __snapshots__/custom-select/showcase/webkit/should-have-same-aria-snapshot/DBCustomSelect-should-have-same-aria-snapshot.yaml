@@ -108,10 +108,10 @@
             - text: Option 5
   - status
   - link "Variant"
-  - text: (Default) Label Above
+  - text: (Default) Above
   - group:
     - article:
-      - radiogroup "id-10211-(Default) Label Above":
+      - radiogroup "id-10211-(Default) Above":
         - list:
           - listitem:
             - radio "Option 1"
@@ -129,14 +129,14 @@
             - radio "Option 5"
             - text: Option 5
   - status
-  - text: Floating Label
+  - text: Floating
   - group:
     - article:
-      - radiogroup "id-10212-Floating Label":
+      - radiogroup "id-10212-Floating":
         - list:
           - listitem:
-            - radio "Floating Label"
-            - text: Floating Label
+            - radio "Option 1"
+            - text: Option 1
           - listitem:
             - radio "Option 2"
             - text: Option 2

@@ -1,5 +1,10 @@
 # @db-ux/wc-core-components
 
+## 4.0.1
+
+_version bump_
+
+
 ## 4.0.0
 
 ### Major Changes
