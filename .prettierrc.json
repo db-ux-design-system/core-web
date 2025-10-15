@@ -7,14 +7,8 @@
 			"options": {
 				"bracketSameLine": true
 			}
-		},
-		{
-			"files": [".env"],
-			"options": {
-				"parser": "sh"
-			}
 		}
 	],
 	"endOfLine": "auto",
-	"plugins": ["prettier-plugin-sh", "prettier-plugin-pkg"]
+	"plugins": ["prettier-plugin-pkg", "prettier-plugin-organize-imports"]
 }

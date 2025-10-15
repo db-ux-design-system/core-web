@@ -1,0 +1,27 @@
+@use "@db-ux/core-foundations/build/styles/variables";
+@use "@db-ux/core-foundations/build/styles/helpers";
+@use "../../styles/internal/form-components";
+
+.db-custom-select-form-field {
+	&:is(summary) {
+		list-style: none;
+
+		@include helpers.display(flex);
+
+		align-items: center;
+		justify-content: space-between;
+		gap: variables.$db-spacing-fixed-sm;
+
+		span {
+			text-overflow: ellipsis;
+			overflow: hidden;
+			text-wrap: nowrap;
+		}
+
+		> div {
+			@include helpers.display(flex);
+
+			gap: variables.$db-spacing-fixed-sm;
+		}
+	}
+}

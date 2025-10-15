@@ -7,18 +7,23 @@ $db-cyan-bg-basic-level-2-pressed: var(--db-cyan-bg-basic-level-2-pressed);
 $db-cyan-bg-basic-level-3-default: var(--db-cyan-bg-basic-level-3-default);
 $db-cyan-bg-basic-level-3-hovered: var(--db-cyan-bg-basic-level-3-hovered);
 $db-cyan-bg-basic-level-3-pressed: var(--db-cyan-bg-basic-level-3-pressed);
-
 $db-cyan-bg-basic-transparent-full-default: var(
 	--db-cyan-bg-basic-transparent-full-default
 );
 $db-cyan-bg-basic-transparent-semi-default: var(
 	--db-cyan-bg-basic-transparent-semi-default
 );
-$db-cyan-bg-basic-transparent-hovered: var(
-	--db-cyan-bg-basic-transparent-hovered
+$db-cyan-bg-basic-transparent-full-hovered: var(
+	--db-cyan-bg-basic-transparent-full-hovered
 );
-$db-cyan-bg-basic-transparent-pressed: var(
-	--db-cyan-bg-basic-transparent-pressed
+$db-cyan-bg-basic-transparent-full-pressed: var(
+	--db-cyan-bg-basic-transparent-full-pressed
+);
+$db-cyan-bg-basic-transparent-semi-hovered: var(
+	--db-cyan-bg-basic-transparent-semi-hovered
+);
+$db-cyan-bg-basic-transparent-semi-pressed: var(
+	--db-cyan-bg-basic-transparent-semi-pressed
 );
 $db-cyan-on-bg-basic-emphasis-100-default: var(
 	--db-cyan-on-bg-basic-emphasis-100-default
@@ -110,3 +115,13 @@ $db-cyan-origin-pressed: var(--db-cyan-origin-pressed);
 $db-cyan-on-origin-default: var(--db-cyan-on-origin-default);
 $db-cyan-on-origin-hovered: var(--db-cyan-on-origin-hovered);
 $db-cyan-on-origin-pressed: var(--db-cyan-on-origin-pressed);
+
+// vibrant
+$db-cyan-bg-vibrant-default: var(--db-cyan-bg-vibrant-default);
+$db-cyan-bg-vibrant-hovered: var(--db-cyan-bg-vibrant-hovered);
+$db-cyan-bg-vibrant-pressed: var(--db-cyan-bg-vibrant-pressed);
+
+// on-vibrant
+$db-cyan-on-bg-vibrant-default: var(--db-cyan-on-bg-vibrant-default);
+$db-cyan-on-bg-vibrant-hovered: var(--db-cyan-on-bg-vibrant-hovered);
+$db-cyan-on-bg-vibrant-pressed: var(--db-cyan-on-bg-vibrant-pressed);

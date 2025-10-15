@@ -1,24 +1,36 @@
-import { useRouter } from 'next/router';
-import dynamic from 'next/dynamic';
-import { Fragment, type PropsWithChildren, useEffect, useState } from 'react';
 import hljs from 'highlight.js';
+import dynamic from 'next/dynamic';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
+import {
+	Fragment,
+	type PropsWithChildren,
+	useCallback,
+	useEffect,
+	useState
+} from 'react';
 import {
 	DBBrand,
-	DBButton,
+	DBCard,
 	DBHeader,
+	DBIcon,
 	DBPage,
 	DBSection,
-	DBCard,
-	DBIcon
+	DBSwitch,
+	DBTooltip
 } from '../../../output/react/src';
 import {
 	getBreadcrumb,
 	getNavigationList,
 	type NavigationItem
 } from '../data/routes';
+import { FrameworkProvider } from './framework-context';
+import FrameworkSwitcher from './framework-switcher';
 import Navigation from './navigation';
 import VersionSwitcher from './version-switcher';
+
+const preferDark = '(prefers-color-scheme: dark)';
+const colorModeKey = 'db-ux-mode';
 
 const DefaultPage = ({
 	children,
@@ -37,6 +49,25 @@ const DefaultPage = ({
 	>();
 	const [breadcrumb, setBreadcrumb] = useState<NavigationItem[]>();
 	const router = useRouter();
+
+	const [mode, setMode] = useState<boolean>(
+		localStorage.getItem(colorModeKey) === null
+			? globalThis.matchMedia?.(preferDark).matches
+			: localStorage.getItem(colorModeKey) === 'dark'
+	);
+
+	const setColorMode = useCallback((dark: boolean) => {
+		localStorage.setItem(colorModeKey, dark ? 'dark' : 'light');
+		setMode(dark);
+	}, []);
+
+	useEffect(() => {
+		globalThis
+			.matchMedia(preferDark)
+			.addEventListener('change', (event) => {
+				setColorMode(event.matches);
+			});
+	}, []);
 
 	useEffect(() => {
 		hljs.configure({
@@ -95,17 +126,16 @@ const DefaultPage = ({
 	}, [router]);
 
 	return (
-		<>
+		<FrameworkProvider>
 			{router.isReady && fullscreen && (
 				<div
-					className={`${noH1 ? 'noh1' : ''} ${
-						properties ? 'is-properties' : ''
-					}`}>
+					className={`${noH1 ? 'noh1' : ''} ${properties ? 'is-properties' : ''}`}>
 					{children}
 				</div>
 			)}
 			{router.isReady && !fullscreen && (
 				<DBPage
+					data-mode={mode ? 'dark' : 'light'}
 					fadeIn
 					variant="fixed"
 					header={
@@ -118,14 +148,27 @@ const DefaultPage = ({
 								</DBBrand>
 							}
 							primaryAction={
-								<DBButton
-									icon="magnifying_glass"
-									variant="ghost"
-									noText>
-									Search
-								</DBButton>
+								<DBSwitch
+									checked={mode}
+									visualAid
+									icon="sun"
+									iconTrailing="moon"
+									showLabel={false}
+									onChange={() => {
+										setColorMode(!mode);
+									}}>
+									<DBTooltip>
+										Switch color scheme (light/dark)
+									</DBTooltip>
+									Switch color scheme (light/dark)
+								</DBSwitch>
 							}
-							secondaryAction={<VersionSwitcher />}>
+							secondaryAction={
+								<>
+									<FrameworkSwitcher />
+									<VersionSwitcher />
+								</>
+							}>
 							<Navigation />
 						</DBHeader>
 					}>
@@ -186,7 +229,7 @@ const DefaultPage = ({
 										href={nextNavigationItem.path ?? '/'}>
 										<DBCard behavior="interactive">
 											<small>Next</small>
-											<span data-icon-after="arrow_right">
+											<span data-icon-trailing="arrow_right">
 												{nextNavigationItem.label}
 											</span>
 										</DBCard>
@@ -196,7 +239,7 @@ const DefaultPage = ({
 						)}
 				</DBPage>
 			)}
-		</>
+		</FrameworkProvider>
 	);
 };
 

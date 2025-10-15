@@ -1,0 +1,86 @@
+import DefaultPage from "../../../components/default-page";
+import { DBCard } from "../../../../../output/react/src";
+
+# Playgrounds
+
+You can try out our components on StackBlitz or CodeSandbox without downloading or installing anything on your local machine.
+
+We would also appreciate it if you could provide a working example when opening an issue in our repository. Please keep in mind not to share any internal information or data this way, not even in screenshots. This includes internal URLs. Only use sample material.
+
+<section class="playground">
+
+    ## CodeSandbox
+
+    <a href="https://codesandbox.io/s/github/db-ux-design-system/examples/tree/main/react-example">
+    	<DBCard behavior="interactive">
+    		![](/assets/images/react-showcase.svg)
+    		<strong>React</strong>
+    		React app including `@db-ux/react-core-components`
+    	</DBCard>
+    </a>
+
+    <a href="https://codesandbox.io/s/github/db-ux-design-system/examples/tree/main/vue-example">
+    	<DBCard behavior="interactive">
+    		![](/assets/images/vue-showcase.svg)
+    		<strong>Vue</strong>
+    		Vue app including `@db-ux/v-core-components`
+    	</DBCard>
+    </a>
+
+    <a href="https://codesandbox.io/s/github/db-ux-design-system/examples/tree/main/angular-example">
+    	<DBCard behavior="interactive">
+    		![](/assets/images/angular-showcase.svg)
+    		<strong>Angular</strong>
+    		Angular app including `@db-ux/ngx-core-components`
+    	</DBCard>
+    </a>
+
+    <a href="https://codesandbox.io/s/github/db-ux-design-system/examples/tree/main/react-tailwind-template">
+    	<DBCard behavior="interactive">
+    		![](/assets/images/react-wind-showcase.svg)
+    		<strong>React + tailwind</strong>
+    		React + tailwind app including `@db-ux/react-core-components`
+    	</DBCard>
+    </a>
+
+</section>
+
+<section class="playground">
+
+    ## StackBlitz
+
+    <a href="https://stackblitz.com/fork/github/db-ux-design-system/examples/tree/main/react-example?file=index.html">
+    	<DBCard behavior="interactive">
+    		![](/assets/images/react-showcase.svg)
+    		<strong>React</strong>
+    		React app including `@db-ux/react-core-components`
+    	</DBCard>
+    </a>
+
+    <a href="https://stackblitz.com/fork/github/db-ux-design-system/examples/tree/main/vue-example?file=index.html">
+    	<DBCard behavior="interactive">
+    		![](/assets/images/vue-showcase.svg)
+    		<strong>Vue 3</strong>
+    		Vue app including `@db-ux/v-core-components`
+    	</DBCard>
+    </a>
+
+    <a href="https://stackblitz.com/fork/github/db-ux-design-system/examples/tree/main/angular-example?file=index.html">
+    	<DBCard behavior="interactive">
+    		![](/assets/images/angular-showcase.svg)
+    		<strong>Angular</strong>
+    		Angular app including `@db-ux/ngx-core-components`
+    	</DBCard>
+    </a>
+
+    <a href="https://stackblitz.com/fork/github/db-ux-design-system/examples/tree/main/react-tailwind-template?file=index.html">
+    	<DBCard behavior="interactive">
+    		![](/assets/images/react-wind-showcase.svg)
+    		<strong>React + tailwind</strong>
+    		React + tailwind app including `@db-ux/react-core-components`
+    	</DBCard>
+    </a>
+
+</section>
+
+export default ({ children }) => <DefaultPage>{children}</DefaultPage>;

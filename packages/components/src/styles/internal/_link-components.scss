@@ -5,8 +5,11 @@
 @use "./component";
 
 %db-link-height {
-	display: inline-block;
-	block-size: variables.$db-sizing-sm;
+	@include helpers.display(inline-block);
+
+	&:not([data-wrap="true"]) {
+		block-size: variables.$db-sizing-sm;
+	}
 }
 
 %db-link-default-color {
@@ -42,12 +45,12 @@
 	text-decoration-thickness: helpers.px-to-rem($pxValue: 1);
 	text-decoration-line: underline;
 
-	&:not([data-variant="inline"]) {
+	&:not([data-wrap="true"], [data-variant="inline"]) {
 		white-space: nowrap;
 	}
 
 	&[data-variant="inline"] {
-		display: inline;
+		@include helpers.display(inline);
 	}
 
 	&:focus-visible {
@@ -56,7 +59,7 @@
 
 	// "disabled" links
 	&[aria-disabled="true"] {
-		opacity: component.$default-disabled;
+		opacity: variables.$db-opacity-md;
 		pointer-events: none;
 	}
 }

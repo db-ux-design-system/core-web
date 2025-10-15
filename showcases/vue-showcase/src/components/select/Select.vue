@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import DefaultComponent from "../DefaultComponent.vue";
+import { DBSelect } from "../../../../../output/vue/src";
 import defaultComponentVariants from "../../../../shared/select.json";
-import { DBCheckbox, DBInput, DBSelect } from "../../../../../output/vue/src";
+import DefaultComponent from "../DefaultComponent.vue";
 </script>
 
 <template>
@@ -10,8 +10,9 @@ import { DBCheckbox, DBInput, DBSelect } from "../../../../../output/vue/src";
 			#example="{ exampleIndex, variantIndex, exampleName, exampleProps }"
 		>
 			<DBSelect
+				:showRequiredAsterisk="exampleProps?.showRequiredAsterisk"
 				:label="exampleProps?.label"
-				:placeholder="exampleName"
+				:placeholder="exampleProps?.placeholder"
 				:variant="exampleProps?.variant"
 				:show-label="exampleProps?.showLabel"
 				:options="exampleProps?.options"
@@ -24,9 +25,7 @@ import { DBCheckbox, DBInput, DBSelect } from "../../../../../output/vue/src";
 				:invalidMessage="exampleProps?.invalidMessage"
 				:validMessage="exampleProps?.validMessage"
 				:validation="exampleProps?.validation"
-			>
-				{{ exampleName }}
-			</DBSelect>
+			/>
 		</template>
 	</DefaultComponent>
 </template>

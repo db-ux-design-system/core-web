@@ -5,16 +5,45 @@
 @use "../helpers";
 @use "../fonts";
 @use "../screen-sizes";
-
+@use "../colors/default-color-icons";
+@forward "../colors/default-color-mappings";
 @forward "../normalize";
+@include screen-sizes.get-breakpoint-properties;
 
-:root {
-	--db-breakpoint-xs: #{screen-sizes.$db-breakpoint-xs};
-	--db-breakpoint-sm: #{screen-sizes.$db-breakpoint-sm};
-	--db-breakpoint-md: #{screen-sizes.$db-breakpoint-md};
-	--db-breakpoint-lg: #{screen-sizes.$db-breakpoint-lg};
+/* stylelint-disable-next-line at-rule-prelude-no-invalid,layer-name-pattern */
+@layer #{helpers.$layer-variables} {
+	:is(:root, :host) {
+		@extend %db-font-size-md;
 
-	@extend %db-font-size-md;
+		/* COLORS */
+		@include default-color-icons.get-color-icons-light;
+
+		@media (prefers-color-scheme: dark) {
+			@include default-color-icons.get-color-icons-dark;
+		}
+
+		[data-mode="dark"] {
+			@include default-color-icons.get-color-icons-dark;
+		}
+
+		[data-mode="light"] {
+			@include default-color-icons.get-color-icons-light;
+		}
+	}
+}
+
+// We'll set the color scheme (https://developer.mozilla.org/en-US/docs/Web/CSS/color-scheme) to light and dark if it's not already set as a meta tag in the head, which would be the recommended way.
+html:not(:has(> head > meta[name="color-scheme"])) {
+	color-scheme: light dark;
+}
+
+/* TODO: Switch to attr() as soon as this one is fully supported */
+[data-mode="light"] {
+	color-scheme: light;
+}
+
+[data-mode="dark"] {
+	color-scheme: dark;
 }
 
 // *! this is an opionionated (especially based on "enhancing" normalize.css) version of minireset.css v0.0.4 | MIT License | github.com/jgthms/minireset.css
@@ -43,13 +72,10 @@ html {
 
 // global
 * {
-	/*
-		we overwrite this for all elements to pass the correct sizes even for elements
-		which have a default font-size/line-height set
-	*/
-	font-size: inherit;
-	line-height: inherit;
-	font-family: inherit;
+	/* Use this to get similar fonts in all browser */
+	-webkit-font-smoothing: antialiased;
+	font-synthesis: none;
+	text-rendering: optimizelegibility;
 }
 
 *,
@@ -103,7 +129,7 @@ iframe {
 :where(ul) {
 	padding-inline-start: variables.$db-spacing-fixed-md;
 	/* stylelint-disable-next-line declaration-property-value-no-unknown, no-irregular-whitespace */
-	list-style-type: "\2022"+ " ";
+	list-style-type: "\2022" + " ";
 
 	li::marker {
 		color: #{colors.$db-brand-origin-default};

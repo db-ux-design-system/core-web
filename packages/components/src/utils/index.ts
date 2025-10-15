@@ -1,3 +1,5 @@
+import { ClickEvent, GeneralKeyboardEvent } from '../shared/model';
+
 export const uuid = () => {
 	if (typeof window !== 'undefined') {
 		if (window.crypto?.randomUUID) {
@@ -47,88 +49,6 @@ export const cls = (...args: ClassNameArg[]) => {
 	return result.trim();
 };
 
-export const visibleInVX = (el: Element) => {
-	const { left, right } = el.getBoundingClientRect();
-	const { innerWidth } = window;
-	return left >= 0 && right <= innerWidth;
-};
-export const visibleInVY = (el: Element) => {
-	const { top, bottom } = el.getBoundingClientRect();
-	const { innerHeight } = window;
-	return top >= 0 && bottom <= innerHeight;
-};
-
-export const isInView = (el: Element) => {
-	const { top, bottom, left, right } = el.getBoundingClientRect();
-	const { innerHeight, innerWidth } = window;
-
-	let outTop = top < 0;
-	let outBottom = bottom > innerHeight;
-	let outLeft = left < 0;
-	let outRight = right > innerWidth;
-
-	// We need to check if it was already outside
-	const outsideY = el.hasAttribute('data-outside-vy');
-	const outsideX = el.hasAttribute('data-outside-vx');
-	const parentRect = el?.parentElement?.getBoundingClientRect();
-
-	if (parentRect) {
-		if (outsideY) {
-			const position = el.getAttribute('data-outside-vy');
-			if (position === 'top') {
-				outTop = parentRect.top - (bottom - parentRect.bottom) < 0;
-			} else {
-				outBottom =
-					parentRect.bottom + (parentRect.top - top) > innerHeight;
-			}
-		}
-
-		if (outsideX) {
-			const position = el.getAttribute('data-outside-vx');
-			if (position === 'left') {
-				outLeft = parentRect.left - (right - parentRect.right) < 0;
-			} else {
-				outRight =
-					parentRect.right + (parentRect.left - left) > innerWidth;
-			}
-		}
-	}
-
-	return {
-		outTop,
-		outBottom,
-		outLeft,
-		outRight
-	};
-};
-
-export interface DBDataOutsidePair {
-	vx?: 'left' | 'right';
-	vy?: 'top' | 'bottom';
-}
-export const handleDataOutside = (el: Element): DBDataOutsidePair => {
-	const { outTop, outBottom, outLeft, outRight } = isInView(el);
-	let dataOutsidePair: DBDataOutsidePair = {};
-
-	if (outTop || outBottom) {
-		dataOutsidePair = { vy: outTop ? 'top' : 'bottom' };
-		el.setAttribute('data-outside-vy', dataOutsidePair.vy!);
-	} else {
-		el.removeAttribute('data-outside-vy');
-	}
-	if (outLeft || outRight) {
-		dataOutsidePair = {
-			...dataOutsidePair,
-			vx: outRight ? 'right' : 'left'
-		};
-		el.setAttribute('data-outside-vx', dataOutsidePair.vx!);
-	} else {
-		el.removeAttribute('data-outside-vx');
-	}
-
-	return dataOutsidePair;
-};
-
 export const isArrayOfStrings = (value: unknown): value is string[] =>
 	Array.isArray(value) && value.every((item) => typeof item === 'string');
 
@@ -136,6 +56,27 @@ const appleOs = ['Mac', 'iPhone', 'iPad', 'iPod'];
 export const hasVoiceOver = (): boolean =>
 	typeof window !== 'undefined' &&
 	appleOs.some((os) => window.navigator.userAgent.includes(os));
+
+/**
+ * Determines if the current browser is Safari running on an iOS device.
+ *
+ * This function checks the user agent string to verify both iOS platform
+ * (iPad, iPhone, or iPod) and Safari browser, excluding other browsers
+ * such as Chrome, Firefox, Opera, and Edge on iOS.
+ *
+ * @returns {boolean} `true` if the browser is Safari on iOS, otherwise `false`.
+ */
+export const isIOSSafari = (): boolean => {
+	if (typeof window === 'undefined' || typeof navigator === 'undefined')
+		return false;
+	const ua = navigator.userAgent;
+	// iOS detection
+	const isIOS = /iP(ad|hone|od)/.test(ua);
+	// Safari detection (not Chrome or Firefox on iOS)
+	const isSafari =
+		!!ua.match(/Safari/) && !ua.match(/CriOS|FxiOS|OPiOS|EdgiOS/);
+	return isIOS && isSafari;
+};
 
 export const delay = (fn: () => void, ms: number) =>
 	new Promise(() => setTimeout(fn, ms));
@@ -146,46 +87,94 @@ export const delay = (fn: () => void, ms: number) =>
  * @param originBool Some boolean to convert to string
  */
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-export const getBooleanAsString = (originBool?: boolean): any => {
-	if (originBool) {
-		return String(originBool);
+export const getBooleanAsString = (originBool?: boolean | string): any => {
+	if (originBool === undefined || originBool === null) return;
+
+	if (typeof originBool === 'string') {
+		return String(Boolean(originBool));
 	}
 
-	return originBool;
+	return String(originBool);
+};
+
+export const getBoolean = (
+	originBool?: boolean | string,
+	propertyName?: string
+): boolean | undefined => {
+	if (originBool === undefined || originBool === null) return;
+
+	if (typeof originBool === 'string' && propertyName) {
+		return Boolean(propertyName === originBool || originBool);
+	}
+
+	return Boolean(originBool);
+};
+
+export const getNumber = (
+	originNumber?: number | string,
+	alternativeNumber?: number | string
+): number | undefined => {
+	if (
+		(originNumber === undefined || originNumber === null) &&
+		(alternativeNumber === undefined || alternativeNumber === null)
+	) {
+		return;
+	}
+
+	return Number(originNumber ?? alternativeNumber);
+};
+
+/**
+ * Retrieves the input value based on the provided value and input type.
+ *
+ * If the input type is "number" or "range", the value is processed as a number.
+ * Otherwise, the value is returned as-is.
+ *
+ * @param value - The input value, which can be a number, string, or undefined.
+ * @param inputType - The type of the input, such as "number", "range", or other string types.
+ * @returns The processed input value as a string, number, or undefined.
+ */
+export const getInputValue = (
+	value?: number | string,
+	inputType?: string
+): string | number | undefined => {
+	return inputType && ['number', 'range'].includes(inputType)
+		? getNumber(value)
+		: value;
 };
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-export const getHideProp = (show?: boolean): any => {
+export const getHideProp = (show?: boolean | string): any => {
 	if (show === undefined || show === null) {
 		return undefined;
 	}
 
-	return getBooleanAsString(!show);
+	return getBooleanAsString(!Boolean(show));
 };
 
 export const stringPropVisible = (
 	givenString?: string,
-	showString?: boolean
+	showString?: boolean | string
 ) => {
 	if (showString === undefined) {
 		return !!givenString;
 	} else {
-		return showString && givenString;
+		return Boolean(showString) && Boolean(givenString);
 	}
 };
 
-export default {
-	cls,
-	addAttributeToChildren,
-	uuid,
-	visibleInVX,
-	visibleInVY,
-	isInView,
-	handleDataOutside,
-	isArrayOfStrings,
-	hasVoiceOver,
-	delay,
-	getBooleanAsString,
-	getHideProp,
-	stringPropVisible
+export const getSearchInput = (element: HTMLElement): HTMLInputElement | null =>
+	element.querySelector<HTMLInputElement>(`input[type="search"]`);
+
+export const getOptionKey = (
+	option: { id?: string; value?: string | number | string[] | undefined },
+	prefix: string
+) => {
+	const key = option.id ?? option.value ?? uuid();
+	return `${prefix}${key}`;
 };
+
+export const isKeyboardEvent = <T>(
+	event?: ClickEvent<T> | GeneralKeyboardEvent<T>
+): event is GeneralKeyboardEvent<T> =>
+	(event as GeneralKeyboardEvent<T>).key !== undefined;

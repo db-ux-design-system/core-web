@@ -1,6 +1,6 @@
 - main:
   - heading "DBTabItem" [level=1]
-  - link "Density arrow_up_right\" / \""
+  - link "Density"
   - tablist:
     - tab "Functional"
     - text: Functional
@@ -10,7 +10,7 @@
   - tablist:
     - tab "Expressive"
     - text: Expressive
-  - link "States arrow_up_right\" / \""
+  - link "States"
   - tablist:
     - tab "(Default) Enabled"
     - text: (Default) Enabled
@@ -20,29 +20,28 @@
   - tablist:
     - tab "disabled" [disabled]
     - text: disabled
-  - link "Content arrow_up_right\" / \""
+  - link "Show Icon Leading"
   - tablist:
-    - tab "(Default) Text"
-    - text: (Default) Text
+    - tab "(Default) False"
+    - text: (Default) False
   - tablist:
-    - text: x_placeholder" / "
-    - tab "x_placeholder\" / \" Text - Icon (Leading)"
-    - text: Text - Icon (Leading)
+    - tab "True"
+    - text: "True"
+  - link "Show Icon Trailing"
   - tablist:
-    - tab "Text - Icon (Trailing) x_placeholder\" / \""
-    - text: Text - Icon (Trailing) x_placeholder" / "
+    - tab "(Default) False"
+    - text: (Default) False
   - tablist:
-    - text: x_placeholder" / "
-    - tab "x_placeholder\" / \" Icon"
-    - text: Icon
-  - link "Behavior arrow_up_right\" / \""
+    - tab "True"
+    - text: "True"
+  - link "Behavior"
   - tablist:
     - tab "(Default) Auto Width"
     - text: (Default) Auto Width
   - tablist:
     - tab "Width full"
     - text: Width full
-  - link "Content Alignment Full Width arrow_up_right\" / \""
+  - link "Content Alignment Full Width"
   - tablist:
     - tab "Left"
     - text: Left

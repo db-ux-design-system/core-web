@@ -1,6 +1,7 @@
 @use "@db-ux/core-foundations/build/styles/variables";
 @use "@db-ux/core-foundations/build/styles/colors";
 @use "@db-ux/core-foundations/build/styles/animation";
+@use "@db-ux/core-foundations/build/styles/screen-sizes";
 @use "component";
 
 $popover-gap-size: var(--db-popover-distance);
@@ -8,29 +9,20 @@ $popover-inset: calc(100% + #{$popover-gap-size} * var(--db-popover-gap, 0));
 $popover-gap-inset: calc(-1 * #{$popover-gap-size});
 
 %popover-center {
-	&:not([data-placement]),
-	&[data-placement="bottom"]:not([data-outside-vy]),
-	&[data-placement="top"]:not([data-outside-vy]),
-	&:is([data-outside-vy="bottom"], [data-outside-vy="top"]):not(
-			[data-outside-vx],
-			[data-placement$="end"],
-			[data-placement$="start"]
-		) {
+	&:not([data-placement], [data-corrected-placement]),
+	&[data-placement="bottom"]:not([data-corrected-placement]),
+	&[data-placement="top"]:not([data-corrected-placement]),
+	&[data-corrected-placement="bottom"],
+	&[data-corrected-placement="top"] {
 		--db-popover-center-x: -50%;
 
 		inset-inline-start: 50%;
 	}
 
-	&[data-placement="left"]:not([data-outside-vx]),
-	&[data-placement="right"]:not([data-outside-vx]),
-	&[data-outside-vx="left"]:not(
-			[data-placement$="end"],
-			[data-placement$="start"]
-		),
-	&[data-outside-vx="right"]:not(
-			[data-placement$="end"],
-			[data-placement$="start"]
-		) {
+	&[data-corrected-placement="left"],
+	&[data-corrected-placement="right"],
+	&[data-placement="left"]:not([data-corrected-placement]),
+	&[data-placement="right"]:not([data-corrected-placement]) {
 		--db-popover-center-y: -50%;
 
 		inset-block-start: 50%;
@@ -46,6 +38,43 @@ $popover-gap-inset: calc(-1 * #{$popover-gap-size});
 		position: absolute;
 	}
 
+	&:not([data-placement], [data-corrected-placement]),
+	&[data-placement^="bottom"]:not([data-corrected-placement]),
+	&[data-corrected-placement^="bottom"] {
+		&::before {
+			inset-block-end: 100%;
+			inset-inline: 0;
+			block-size: var(--db-popover-distance);
+		}
+	}
+
+	&[data-placement^="top"]:not([data-corrected-placement]),
+	&[data-corrected-placement^="top"] {
+		&::before {
+			inset-block-start: 100%;
+			inset-inline: 0;
+			block-size: var(--db-popover-distance);
+		}
+	}
+
+	&[data-placement^="right"]:not([data-corrected-placement]),
+	&[data-corrected-placement^="right"] {
+		&::before {
+			inset-inline-end: 100%;
+			inset-block: 0;
+			inline-size: var(--db-popover-distance);
+		}
+	}
+
+	&[data-placement^="left"]:not([data-corrected-placement]),
+	&[data-corrected-placement^="left"] {
+		&::before {
+			inset-inline-start: 100%;
+			inset-block: 0;
+			inline-size: var(--db-popover-distance);
+		}
+	}
+
 	&[data-gap="true"] {
 		--db-popover-gap: 1;
 		--db-popover-distance: #{variables.$db-spacing-fixed-md};
@@ -55,78 +84,73 @@ $popover-gap-inset: calc(-1 * #{$popover-gap-size});
 		--db-popover-distance: #{variables.$db-spacing-fixed-sm};
 	}
 
-	&[data-placement^="bottom"]:not([data-outside-vy]),
-	&[data-placement^="top"]:not([data-outside-vy]),
-	&[data-outside-vy="bottom"]:not([data-outside-vx]),
-	&[data-outside-vy="top"]:not([data-outside-vx]) {
-		&[data-placement$="end"] {
-			inset-inline-end: 0;
+	/* This is for pure html css without using JS */
+	&:not([data-corrected-placement]) {
+		&[data-placement^="bottom"],
+		&[data-placement^="top"] {
+			&[data-placement$="end"] {
+				inset-inline-end: 0;
+			}
+
+			&[data-placement$="start"] {
+				inset-inline-start: 0;
+			}
 		}
 
-		&[data-placement$="start"] {
-			inset-inline-start: 0;
-		}
-	}
+		&[data-placement^="left"],
+		&[data-placement^="right"] {
+			&[data-placement$="end"] {
+				inset-block-end: 0;
+			}
 
-	&[data-placement^="left"]:not([data-outside-vx]),
-	&[data-placement^="right"]:not([data-outside-vx]),
-	&[data-outside-vx="left"],
-	&[data-outside-vx="right"] {
-		&[data-placement$="end"] {
-			inset-block-end: 0;
+			&[data-placement$="start"] {
+				inset-block-start: 0;
+			}
 		}
 
-		&[data-placement$="start"] {
-			inset-block-start: 0;
+		&:not([data-placement]),
+		&[data-placement^="bottom"] {
+			inset-block-start: $popover-inset;
+
+			&::before {
+				inset-inline-start: 0;
+				inline-size: 100%;
+				block-size: $popover-gap-size;
+				inset-block-start: $popover-gap-inset;
+			}
 		}
-	}
 
-	&:not([data-placement], [data-outside-vy]),
-	&[data-placement^="bottom"]:not([data-outside-vy]),
-	&[data-outside-vy="top"]:not([data-outside-vx]) {
-		inset-block-start: $popover-inset;
+		&[data-placement^="top"] {
+			inset-block-end: $popover-inset;
 
-		&::before {
-			inset-inline-start: 0;
-			inline-size: 100%;
-			block-size: $popover-gap-size;
-			inset-block-start: $popover-gap-inset;
+			&::before {
+				inset-inline-end: 0;
+				inline-size: 100%;
+				block-size: $popover-gap-size;
+				inset-block-end: $popover-gap-inset;
+			}
 		}
-	}
 
-	&[data-placement^="top"]:not([data-outside-vy]),
-	&[data-outside-vy="bottom"]:not([data-outside-vx]) {
-		inset-block-end: $popover-inset;
+		&[data-placement^="left"] {
+			inset-inline-end: $popover-inset;
 
-		&::before {
-			inset-inline-end: 0;
-			inline-size: 100%;
-			block-size: $popover-gap-size;
-			inset-block-end: $popover-gap-inset;
+			&::before {
+				inset-block-end: 0;
+				block-size: 100%;
+				inline-size: $popover-gap-size;
+				inset-inline-end: $popover-gap-inset;
+			}
 		}
-	}
 
-	&[data-placement^="left"]:not([data-outside-vx]),
-	&[data-outside-vx="right"] {
-		inset-inline-end: $popover-inset;
+		&[data-placement^="right"] {
+			inset-inline-start: $popover-inset;
 
-		&::before {
-			inset-block-end: 0;
-			block-size: 100%;
-			inline-size: $popover-gap-size;
-			inset-inline-end: $popover-gap-inset;
-		}
-	}
-
-	&[data-placement^="right"]:not([data-outside-vx]),
-	&[data-outside-vx="left"] {
-		inset-inline-start: $popover-inset;
-
-		&::before {
-			inset-block-start: 0;
-			block-size: 100%;
-			inline-size: $popover-gap-size;
-			inset-inline-start: $popover-gap-inset;
+			&::before {
+				inset-block-start: 0;
+				block-size: 100%;
+				inline-size: $popover-gap-size;
+				inset-inline-start: $popover-gap-inset;
+			}
 		}
 	}
 }
@@ -147,48 +171,57 @@ $popover-gap-inset: calc(-1 * #{$popover-gap-size});
 				#{variables.$db-transition-straight-emotional} normal both;
 
 			&[data-delay="slow"] {
-				animation-delay: variables.$db-transition-duration-fast;
+				animation-delay: variables.$db-transition-duration-extra-slow;
 			}
 
 			&[data-delay="fast"] {
-				animation-delay: calc(
-					#{variables.$db-transition-duration-fast} / 2
-				);
+				animation-delay: variables.$db-transition-duration-medium;
+			}
+
+			@include screen-sizes.screen-min-max(
+				(
+					max: "md"
+				)
+			) {
+				// If we are in mobile and have no delay set we force some delay to avoid layout shift
+				&:not([data-delay]) {
+					animation-delay: variables.$db-transition-duration-medium;
+				}
 			}
 		}
 	}
 }
 
 %show-popover {
-	display: revert;
+	visibility: var(--db-show-popover-visibility, visible);
 
-	&:not([data-placement], [data-outside-vy]),
-	&[data-placement^="bottom"]:not([data-outside-vy]),
-	&[data-outside-vy="top"]:not([data-outside-vx]) {
+	&:not([data-placement], [data-corrected-placement]),
+	&[data-placement^="bottom"]:not([data-corrected-placement]),
+	&[data-corrected-placement^="bottom"] {
 		--db-popover-translate-y: -25%;
 
-		@include get-popover-show();
+		@include get-popover-show;
 	}
 
-	&[data-placement^="top"]:not([data-outside-vy]),
-	&[data-outside-vy="bottom"]:not([data-outside-vx]) {
+	&[data-placement^="top"]:not([data-corrected-placement]),
+	&[data-corrected-placement^="top"] {
 		--db-popover-translate-y: 25%;
 
-		@include get-popover-show();
+		@include get-popover-show;
 	}
 
-	&[data-placement^="right"]:not([data-outside-vx]),
-	&[data-outside-vx="left"] {
+	&[data-placement^="right"]:not([data-corrected-placement]),
+	&[data-corrected-placement^="right"] {
 		--db-popover-translate-x: -25%;
 
-		@include get-popover-show();
+		@include get-popover-show;
 	}
 
-	&[data-placement^="left"]:not([data-outside-vx]),
-	&[data-outside-vx="right"] {
+	&[data-placement^="left"]:not([data-corrected-placement]),
+	&[data-corrected-placement^="left"] {
 		--db-popover-translate-x: 25%;
 
-		@include get-popover-show();
+		@include get-popover-show;
 	}
 }
 
@@ -199,15 +232,20 @@ $popover-gap-inset: calc(-1 * #{$popover-gap-size});
 	position: absolute;
 	background-color: colors.$db-adaptive-bg-basic-level-1-default;
 	box-shadow: variables.$db-elevation-md;
-	display: none;
+	visibility: hidden;
 	z-index: 1337;
-	white-space: nowrap;
+
+	// revert this if popover is included in button
+	white-space: normal;
+	max-inline-size: min(
+		#{variables.$db-container-xs},
+		calc(100vw - 2 * #{variables.$db-spacing-fixed-md})
+	);
+	block-size: fit-content;
+	inline-size: fit-content;
 
 	&[data-width="fixed"] {
 		inline-size: max-content;
-		max-inline-size: variables.$db-sizing-3xl;
-		// revert this if popover is included in button
-		white-space: normal;
 		text-align: initial;
 	}
 }

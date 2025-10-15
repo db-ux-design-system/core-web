@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import DefaultComponent from "../DefaultComponent.vue";
-import defaultComponentVariants from "../../../../shared/tab-item.json";
 import { DBTabItem, DBTabList } from "../../../../../output/vue/src";
+import defaultComponentVariants from "../../../../shared/tab-item.json";
+import DefaultComponent from "../DefaultComponent.vue";
 </script>
 
 <template>
@@ -14,7 +14,9 @@ import { DBTabItem, DBTabList } from "../../../../../output/vue/src";
 					:active="exampleProps?.active"
 					:noText="exampleProps?.noText"
 					:icon="exampleProps?.icon"
-					:iconAfter="exampleProps?.iconAfter"
+					:iconTrailing="exampleProps?.iconTrailing"
+					:showIcon="exampleProps?.showIcon"
+					:showIconTrailing="exampleProps?.showIconTrailing"
 					:disabled="exampleProps?.disabled"
 				>
 					{{ exampleName }}

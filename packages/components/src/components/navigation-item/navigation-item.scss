@@ -56,23 +56,25 @@
 	background-color: colors.$db-adaptive-bg-basic-transparent-full-default;
 	cursor: pointer;
 	inline-size: 100%;
-	display: inline-flex;
 	border-radius: variables.$db-border-radius-sm;
 	padding: variables.$db-spacing-fixed-xs variables.$db-spacing-fixed-sm;
 	white-space: nowrap; // we don't want to break
 	text-align: center;
 	align-items: center; // Centering the content vertically and horizontally
+	justify-content: space-between;
+
+	@include helpers.display(inline-flex);
 
 	@include helpers.hover {
-		background-color: colors.$db-adaptive-bg-basic-transparent-hovered;
+		background-color: colors.$db-adaptive-bg-basic-transparent-full-hovered;
 	}
 
 	@include helpers.active {
-		background-color: colors.$db-adaptive-bg-basic-transparent-pressed;
+		background-color: colors.$db-adaptive-bg-basic-transparent-full-pressed;
 	}
 
 	&:has(~ .db-sub-navigation:is(:hover, :focus)) {
-		background-color: colors.$db-adaptive-bg-basic-transparent-hovered;
+		background-color: colors.$db-adaptive-bg-basic-transparent-full-hovered;
 	}
 }
 
@@ -80,12 +82,18 @@
 	--db-has-before: 0;
 
 	@extend %db-overwrite-font-size-md;
+	@include icon-passing.icon-passing;
+	@include helpers.display(inline-flex);
 
-	@include icon-passing.icon-passing();
-
-	display: inline-flex;
 	position: relative;
 	inline-size: auto;
+
+	&[data-wrap="true"] {
+		:is(a, .db-navigation-item-expand-button):first-of-type {
+			white-space: normal;
+			text-align: start;
+		}
+	}
 
 	@include screen-sizes.screen("md", "max") {
 		&:not([data-width="full"]) {
@@ -110,7 +118,7 @@
 
 	.db-navigation-item-expand-button {
 		@include screen-sizes.screen("md", "max") {
-			@include sub-navi-handler-mobile();
+			@include sub-navi-handler-mobile;
 		}
 
 		&:is(button),
@@ -153,7 +161,7 @@
 	}
 
 	&[aria-disabled="true"] {
-		opacity: component.$default-disabled;
+		opacity: variables.$db-opacity-md;
 		pointer-events: none;
 	}
 }
@@ -163,6 +171,7 @@
 	inline-size: 100%;
 	position: fixed;
 	overflow: hidden auto;
+
 	// additional #{$db-spacing-fixed-3xs} for border
 	inset-block: calc(
 			#{component.$min-mobile-header-height} +
@@ -175,8 +184,12 @@
 }
 
 .db-sub-navigation {
+	@extend %component-border;
+
 	margin: 0;
-	display: flex;
+
+	@include helpers.display(flex);
+
 	flex-direction: column;
 	z-index: 70;
 	inset-inline-start: 0;
@@ -184,12 +197,12 @@
 	visibility: hidden;
 
 	@include screen-sizes.screen("md", "max") {
-		@include sub-navigation-mobile();
+		@include sub-navigation-mobile;
 	}
 
 	@include screen-sizes.screen("md") {
 		.db-mobile-navigation-back {
-			display: none;
+			@include helpers.display(none);
 		}
 	}
 
@@ -220,6 +233,7 @@
 			position: absolute;
 			inset-inline-start: 0;
 			inline-size: 100%;
+
 			// #{$db-spacing-fixed--3xs} for shadows
 			block-size: calc(
 				#{variables.$db-spacing-fixed-3xs} +
@@ -257,6 +271,7 @@
 
 				&::before {
 					inset-block: auto 0;
+
 					// inline-size: calc(var(--db-navigation-item-inline-size, 100%) - #{variables.$db-spacing-fixed-xs} - 2px);
 					transform: translateX(100%) scaleX(-1);
 				}
@@ -281,6 +296,7 @@
 				content: "";
 				position: absolute;
 				padding: variables.$db-spacing-fixed-xs;
+
 				// #{$db-spacing-fixed-3xs} for box shadow
 				inset-block-start: #{variables.$db-spacing-fixed-3xs};
 				inset-inline-end: calc(-1 * #{variables.$db-spacing-fixed-xs});
@@ -291,7 +307,7 @@
 	}
 
 	&:empty {
-		display: none;
+		@include helpers.display(none);
 	}
 
 	.db-navigation-item {
@@ -304,7 +320,8 @@
 }
 
 .db-mobile-navigation-back {
-	display: flex;
+	@include helpers.display(flex);
+
 	font-weight: normal;
 	background-color: colors.$db-adaptive-bg-basic-level-1-default;
 	padding-block-end: variables.$db-spacing-fixed-md;

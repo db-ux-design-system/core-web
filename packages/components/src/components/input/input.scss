@@ -15,26 +15,39 @@ $icon-padding: calc(
 .db-input {
 	@include form-components.set-default-form-component(input);
 
+	// increased inline size for elements with icons or specific input types that have icons
+	&:is([data-icon], [data-icon-trailing]):not([data-show-icon="false"]),
+	&:has(
+		input[type="search"],
+		input[type="date"],
+		input[type="month"],
+		input[type="week"],
+		input[type="datetime-local"],
+		input[type="time"]
+	) {
+		--db-form-component-min-inline-size: #{variables.$db-sizing-xl};
+	}
+
+	// even larger size when both - leading and trailing icons - are present
+	&[data-icon][data-icon-trailing] {
+		--db-form-component-min-inline-size: #{variables.$db-sizing-2xl};
+	}
+
 	// padding-inline-end according to current amount of icons
-	&[data-icon],
+	&[data-icon]:not([data-show-icon="false"]),
 	&:has(input[type="search"]) {
 		--db-form-component-padding-inline-start: #{$icon-padding};
 	}
 
-	&[data-icon-after],
+	&[data-icon-trailing]:not([data-show-icon-trailing="false"]),
 	&:has(input[type="search"]),
 	&:has(datalist) {
 		--db-form-component-padding-inline-end: #{$icon-padding};
 	}
 
-	&[data-hide-label="true"] {
-		--db-label-visible-height: 0;
-		--db-label-visible-spacing: 1;
-	}
-
 	&:has(input[type="search"]) {
 		@include icons.set-icon("magnifying_glass");
-		@include icons.set-icon("cross_circle", "after");
+		@include icons.set-icon("cross", "after");
 
 		&::after {
 			opacity: 0;
@@ -54,15 +67,19 @@ $icon-padding: calc(
 		}
 	}
 
-	&:has(input[type="date"]),
-	&:has(input[type="week"]),
-	&:has(input[type="datetime-local"]),
-	&:has(input[type="month"]) {
-		@include icons.set-icon("calendar", "after");
-	}
+	// This @supports should exclude Mozilla Firefox
+	// TODO: Reevaluate after Mozilla is supporting week and month input types
+	@supports selector(::-webkit-calendar-picker-indicator) {
+		&:has(input[type="date"]),
+		&:has(input[type="week"]),
+		&:has(input[type="datetime-local"]),
+		&:has(input[type="month"]) {
+			@include icons.set-icon("calendar", "after");
+		}
 
-	&:has(input[type="time"]) {
-		@include icons.set-icon("clock", "after");
+		&:has(input[type="time"]) {
+			@include icons.set-icon("clock", "after");
+		}
 	}
 
 	&:has(input[type="file"]) {
@@ -92,16 +109,35 @@ $icon-padding: calc(
 		}
 	}
 
+	&[data-variant="floating"] {
+		input {
+			&::-webkit-calendar-picker-indicator,
+			&::-webkit-search-cancel-button {
+				/* stylelint-disable-next-line db-ux/use-spacings */
+				margin-block-end: var(--db-base-body-icon-font-size-2xs);
+			}
+		}
+	}
+
 	input {
 		position: relative;
 
 		&::-webkit-calendar-picker-indicator,
 		&::-webkit-search-cancel-button {
+			@extend %db-overwrite-font-size-sm;
+
 			background-image: none;
 			inline-size: icons.$default-icon-font-size;
 			block-size: icons.$default-icon-font-size;
 			padding: 0;
 			cursor: pointer;
+			/* stylelint-disable-next-line db-ux/use-spacings */
+			margin-block-start: variables.$db-border-width-3xs;
+			border-radius: variables.$db-border-radius-xs;
+
+			&:focus-visible {
+				@include helpers.get-focus-placeholder;
+			}
 		}
 
 		&::-webkit-search-cancel-button {
@@ -109,7 +145,7 @@ $icon-padding: calc(
 			position: absolute;
 			inset-inline-end: calc(
 				#{variables.$db-spacing-fixed-sm} +
-					#{variables.$db-border-height-3xs}
+					#{variables.$db-border-width-3xs}
 			);
 		}
 
@@ -126,11 +162,11 @@ $icon-padding: calc(
 
 			&:hover,
 			&:focus {
-				background-color: colors.$db-adaptive-bg-basic-transparent-hovered;
+				background-color: colors.$db-adaptive-bg-basic-transparent-full-hovered;
 			}
 
 			&:active {
-				background-color: colors.$db-adaptive-bg-basic-transparent-pressed;
+				background-color: colors.$db-adaptive-bg-basic-transparent-full-pressed;
 			}
 		}
 	}

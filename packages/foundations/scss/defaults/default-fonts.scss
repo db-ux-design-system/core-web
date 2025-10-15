@@ -17,27 +17,10 @@ $headlines: (
 	"h6": "2xs"
 );
 
-:is(h1, h2, h3, h4, h5, h6) {
-	font-family: var(--db-font-family-head);
-	font-weight: 700;
-	text-wrap: balance;
-
-	&[data-variant="light"] {
-		font-weight: 300;
-	}
-
-	&[data-variant="regular"] {
-		font-weight: 400;
-	}
-}
-
 @each $headline, $size in $headlines {
 	#{string.unquote($headline)} {
 		/* stylelint-disable custom-property-pattern */
-		line-height: var(
-			--db-type-headline-line-height-#{string.unquote($size)}
-		);
-		font-size: var(--db-type-headline-font-size-#{string.unquote($size)});
+		font: var(--db-type-headline-#{string.unquote($size)});
 		margin-block: var(--db-spacing-fixed-#{string.unquote($size)});
 
 		&::before,
@@ -50,6 +33,20 @@ $headlines: (
 			);
 		}
 		/* stylelint-enable custom-property-pattern */
+	}
+}
+
+:is(h1, h2, h3, h4, h5, h6) {
+	font-family: var(--db-font-family-head);
+	font-weight: bolder;
+	text-wrap: balance;
+
+	&[data-variant="light"] {
+		font-weight: 300;
+	}
+
+	&[data-variant="regular"] {
+		font-weight: 400;
 	}
 }
 

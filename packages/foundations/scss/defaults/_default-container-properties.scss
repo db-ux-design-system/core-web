@@ -1,0 +1,62 @@
+/* 224px */
+@property --db-container-3xs {
+	syntax: "*";
+	initial-value: 14rem;
+	inherits: true;
+}
+
+/* 256px */
+@property --db-container-2xs {
+	syntax: "*";
+	initial-value: 16rem;
+	inherits: true;
+}
+
+/* 320px */
+@property --db-container-xs {
+	syntax: "*";
+	initial-value: 20rem;
+	inherits: true;
+}
+
+/* 384px */
+@property --db-container-sm {
+	syntax: "*";
+	initial-value: 24rem;
+	inherits: true;
+}
+
+/* 448px */
+@property --db-container-md {
+	syntax: "*";
+	initial-value: 28rem;
+	inherits: true;
+}
+
+/* 512px */
+@property --db-container-lg {
+	syntax: "*";
+	initial-value: 32rem;
+	inherits: true;
+}
+
+/* 576px */
+@property --db-container-xl {
+	syntax: "*";
+	initial-value: 36rem;
+	inherits: true;
+}
+
+/* 672px */
+@property --db-container-2xl {
+	syntax: "*";
+	initial-value: 42rem;
+	inherits: true;
+}
+
+/* 768px */
+@property --db-container-3xl {
+	syntax: "*";
+	initial-value: 48rem;
+	inherits: true;
+}

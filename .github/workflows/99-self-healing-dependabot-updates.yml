@@ -1,0 +1,65 @@
+name: Auto-Format with Stylelint and Prettier
+
+on:
+  workflow_call:
+
+jobs:
+  format:
+    name: 🆙 Auto-Format
+    if: ${{ github.actor == 'dependabot[bot]' }}
+    runs-on: ubuntu-24.04 # Use Ubuntu 24.04 explicitly
+    permissions:
+      contents: write
+      pull-requests: write
+    steps:
+      - name: ⏬ Checkout code
+        uses: actions/checkout@v5
+        with:
+          ref: ${{ github.head_ref }}
+
+      - name: 🔍 Check if Stylelint or Prettier update PR
+        id: check_pr
+        run: |
+          echo "PR title: ${{ github.event.pull_request.title }}"
+          if [[ "${{ github.event.pull_request.title }}" =~ "bump stylelint from" ]] || [[ "${{ github.event.pull_request.title }}" =~ "bump the stylelint group with" ]]; then
+            echo "Stylelint update detected."
+            echo "stylelint_update=true" >> $GITHUB_ENV
+          elif [[ "${{ github.event.pull_request.title }}" =~ "bump prettier from" ]] || [[ "${{ github.event.pull_request.title }}" =~ "bump the prettier group with" ]]; then
+            echo "Prettier update detected."
+            echo "prettier_update=true" >> $GITHUB_ENV
+          else
+            echo "No Stylelint or Prettier updates detected."
+          fi
+
+      - name: 🆙 Set up Node.js
+        if: env.stylelint_update == 'true' || env.prettier_update == 'true'
+        uses: actions/setup-node@v5
+        with:
+          node-version-file: ".nvmrc"
+
+      - name: ⏬ Install dependencies
+        if: env.stylelint_update == 'true' || env.prettier_update == 'true'
+        run: |
+          npm ci
+
+      - name: 🏃 Run Stylelint to format the code
+        if: env.stylelint_update == 'true'
+        run: |
+          npm run build --workspace=@db-ux/core-stylelint
+          npm run lint:stylelint -- --fix
+
+      - name: 🏃 Run Prettier to format the code
+        if: env.prettier_update == 'true'
+        run: |
+          npm run codestyle
+
+      - name: 🚘 Auto commit
+        if: env.stylelint_update == 'true' || env.prettier_update == 'true'
+        uses: ./.github/actions/auto-commit
+        with:
+          branch-name: "${{ github.head_ref }}-auto"
+          commit-message: "auto format code"
+          commit-files: "."
+          auto-merge-app-id: ${{ vars.AUTO_MERGE_APP_ID }}
+          auto-merge-private-key: ${{ secrets.AUTO_MERGE_PRIVATE_KEY }}
+          gh-token: ${{ secrets.GITHUB_TOKEN }}

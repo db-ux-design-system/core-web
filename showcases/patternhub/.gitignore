@@ -38,12 +38,10 @@ public/docs
 
 styles/db-ux-components.scss
 scripts/generated
+!pages/components/misc
 pages/components/
 components/src
 components/code-docs/
-!pages/components/readme.mdx
-!pages/components/validation.mdx
-!pages/components/router-usage.mdx
 !pages/components/[[...slug]].tsx
 !components/src/tsconfig.json
 !components/component-parser

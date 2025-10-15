@@ -3,11 +3,11 @@ import {
 	DBAccordionItem,
 	DBInfotext
 } from '../../../../../output/react/src';
-import DefaultComponent from '../default-component';
-import defaultComponentVariants from '../../../../shared/accordion.json';
 import type { DBAccordionProps } from '../../../../../output/react/src/components/accordion/model';
-import { getVariants } from '../data';
+import defaultComponentVariants from '../../../../shared/accordion.json';
 import { type BaseComponentProps } from '../base-component-data';
+import { getVariants } from '../data';
+import DefaultComponent from '../default-component';
 
 const getAccordion = ({ behavior, children, variant }: DBAccordionProps) => (
 	<>

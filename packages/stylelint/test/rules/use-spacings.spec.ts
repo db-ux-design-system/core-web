@@ -1,5 +1,5 @@
-import { describe, test } from 'vitest';
 import { type Config } from 'stylelint';
+import { describe, test } from 'vitest';
 import useSpacings from '../../src/rules/use-spacings.js';
 import {
 	defaultConfig,

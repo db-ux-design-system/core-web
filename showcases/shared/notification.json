@@ -77,7 +77,6 @@
 				"name": "(Default) Adaptive",
 				"style": { "width": "300px" },
 				"props": {
-					"type": "alert",
 					"headline": "Headline",
 					"closeable": true
 				}
@@ -86,7 +85,6 @@
 				"name": "Neutral",
 				"style": { "width": "300px" },
 				"props": {
-					"type": "alert",
 					"semantic": "neutral",
 					"headline": "Headline",
 					"closeable": true
@@ -96,7 +94,6 @@
 				"name": "Critical",
 				"style": { "width": "300px" },
 				"props": {
-					"type": "alert",
 					"semantic": "critical",
 					"headline": "Headline",
 					"closeable": true
@@ -106,7 +103,6 @@
 				"name": "Informational",
 				"style": { "width": "300px" },
 				"props": {
-					"type": "alert",
 					"semantic": "informational",
 					"headline": "Headline",
 					"closeable": true
@@ -116,7 +112,6 @@
 				"name": "Successful",
 				"style": { "width": "300px" },
 				"props": {
-					"type": "alert",
 					"semantic": "successful",
 					"headline": "Headline",
 					"closeable": true
@@ -126,7 +121,6 @@
 				"name": "Warning",
 				"style": { "width": "300px" },
 				"props": {
-					"type": "alert",
 					"semantic": "warning",
 					"headline": "Headline",
 					"closeable": true

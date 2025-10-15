@@ -1,12 +1,11 @@
 <script setup lang="ts">
-import DefaultComponent from "../DefaultComponent.vue";
-import defaultComponentVariants from "../../../../shared/input.json";
 import {
-	DBCheckbox,
 	DBInput,
 	LabelVariantType,
 	ValueLabelType
 } from "../../../../../output/vue/src";
+import defaultComponentVariants from "../../../../shared/input.json";
+import DefaultComponent from "../DefaultComponent.vue";
 
 const getDataList = (
 	variant?: LabelVariantType
@@ -28,6 +27,10 @@ const getDataList = (
 			#example="{ exampleIndex, variantIndex, exampleName, exampleProps }"
 		>
 			<DBInput
+				:showRequiredAsterisk="exampleProps?.showRequiredAsterisk"
+				:maxLength="exampleProps?.maxLength"
+				:max="exampleProps?.max"
+				:min="exampleProps?.min"
 				:variant="exampleProps?.variant"
 				:show-label="exampleProps?.showLabel"
 				:label="exampleProps?.label"
@@ -40,7 +43,9 @@ const getDataList = (
 				:readOnly="exampleProps?.readOnly"
 				:value="exampleProps?.value"
 				:icon="exampleProps?.icon"
-				:iconAfter="exampleProps?.iconAfter"
+				:showIcon="exampleProps?.showIcon"
+				:iconTrailing="exampleProps?.iconTrailing"
+				:showIconTrailing="exampleProps?.showIconTrailing"
 				:showMessage="exampleProps?.showMessage"
 				:invalidMessage="exampleProps?.invalidMessage"
 				:validMessage="exampleProps?.validMessage"

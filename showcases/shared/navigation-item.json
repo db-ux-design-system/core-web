@@ -234,5 +234,69 @@
 				]
 			}
 		]
+	},
+	{
+		"name": "Wrap",
+		"examples": [
+			{
+				"name": "No Wrap (Default)",
+				"props": {
+					"areaPopup": true
+				},
+				"children": [
+					{
+						"name": "a",
+						"native": true,
+						"props": {
+							"href": "#"
+						},
+						"content": "True"
+					}
+				]
+			},
+			{
+				"name": "This is a very long text that is broken into multiple lines.",
+				"props": {
+					"areaPopup": true,
+					"icon": "x_placeholder",
+					"showIcon": true,
+					"wrap": true
+				},
+				"style": {
+					"width": "200px"
+				},
+				"children": [
+					{
+						"name": "a",
+						"native": true,
+						"content": "Sub-Sub-Navi-Item 1",
+						"props": {
+							"href": "#"
+						}
+					}
+				]
+			},
+			{
+				"name": "This is a very long text that is broken into multiple lines.",
+				"props": {
+					"areaPopup": true,
+					"wrap": true
+				},
+				"style": {
+					"width": "200px"
+				},
+				"slot": "sub-navigation",
+				"children": [
+					{
+						"name": "a",
+						"native": true,
+						"props": {
+							"href": "#"
+						},
+						"content": "True"
+					}
+				]
+			}
+		]
 	}
 ]

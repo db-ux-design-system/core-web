@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import DefaultComponent from "../DefaultComponent.vue";
+import { DBTextarea } from "../../../../../output/vue/src";
 import defaultComponentVariants from "../../../../shared/textarea.json";
-import { DBCheckbox, DBInput, DBTextarea } from "../../../../../output/vue/src";
+import DefaultComponent from "../DefaultComponent.vue";
 </script>
 
 <template>
@@ -10,6 +10,7 @@ import { DBCheckbox, DBInput, DBTextarea } from "../../../../../output/vue/src";
 			#example="{ exampleIndex, variantIndex, exampleName, exampleProps }"
 		>
 			<DBTextarea
+				:showRequiredAsterisk="exampleProps?.showRequiredAsterisk"
 				:cols="exampleProps?.cols"
 				:disabled="exampleProps?.disabled"
 				:show-label="exampleProps?.showLabel"
@@ -25,6 +26,8 @@ import { DBCheckbox, DBInput, DBTextarea } from "../../../../../output/vue/src";
 				:invalidMessage="exampleProps?.invalidMessage"
 				:validMessage="exampleProps?.validMessage"
 				:validation="exampleProps?.validation"
+				:showResizer="exampleProps?.showResizer"
+				:fieldSizing="exampleProps?.fieldSizing"
 			></DBTextarea>
 		</template>
 	</DefaultComponent>

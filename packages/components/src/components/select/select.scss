@@ -5,36 +5,34 @@
 @use "@db-ux/core-foundations/build/styles/fonts";
 @use "../../styles/internal/form-components";
 @use "../../styles/internal/component";
+@use "../../styles/internal/select-components";
+@use "@db-ux/core-foundations/build/styles/helpers/display";
 
-%select-icon {
-	@extend %dropdown-icon;
-
-	&[data-icon] {
-		--db-form-has-before: 1;
-	}
+.db-select-placeholder {
+	@extend %select-absolute-placeholder;
 }
 
-$has-before-padding: calc(
-	var(--db-form-has-before) *
-		(#{form-components.$icon-size-sm} + #{variables.$db-spacing-fixed-sm})
-);
-
 .db-select {
-	--db-form-component-padding-inline-end: calc(
-		#{form-components.$font-size-height} + #{variables.$db-spacing-fixed-sm}
-	);
+	--db-form-component-padding-inline-end: #{select-components.$select-icon-padding};
+	--db-form-component-min-inline-size: #{variables.$db-sizing-xl};
+
 	// shared from form-components
 	@extend %select-icon;
-
-	min-inline-size: calc(
-		4 * #{variables.$db-sizing-md} + var(--db-form-has-before) *
-			#{variables.$db-sizing-md}
-	);
-
+	@extend %select-placeholder;
 	@include form-components.set-default-form-component(select);
 
+	// increased inline size for elements with icons
+	&[data-icon]:not([data-show-icon="false"]) {
+		--db-form-component-min-inline-size: #{variables.$db-sizing-2xl};
+	}
+
 	select {
-		text-indent: $has-before-padding;
+		text-indent: select-components.$has-before-padding;
+	}
+
+	&[data-hide-label="true"] {
+		--db-label-visible-height: 0;
+		--db-label-visible-spacing: 1;
 	}
 
 	// Most likely this wouldn't work on MacOS, but we're still progressively enhancing Windows by this
@@ -43,41 +41,13 @@ $has-before-padding: calc(
 		color: colors.$db-adaptive-on-bg-basic-emphasis-100-default;
 	}
 
-	&[data-hide-label="true"] {
-		--db-label-visible-height: 0;
-		--db-label-visible-spacing: 1;
+	optgroup {
+		background-color: colors.$db-adaptive-bg-basic-level-3-default;
 	}
 
-	[id$="-placeholder"] {
-		@extend %db-overwrite-font-size-md;
-
-		position: absolute;
-		pointer-events: none;
-		// we use the top of the element, the size of the label+label-margin-bottom and the font-size of the select/2
-		// for functional we have some rounding issues for rem, so we need 1px less
-		inset-block-start: calc(
-			0% +
-				(
-					#{form-components.$label-size-height-xs} +
-						#{variables.$db-spacing-fixed-xs}
-				) *
-				var(--db-label-visible-height, 1) + var(--db-base-font-size) /
-				2 - var(--db-density-functional, 0) * 1px
-		);
-		inset-inline: $has-before-padding;
-		margin-inline-start: variables.$db-spacing-fixed-sm;
-		overflow: hidden;
-		white-space: nowrap;
-		text-overflow: ellipsis;
-		inline-size: calc(
-			100% - var(--db-form-component-padding-inline-end) -
-				#{$has-before-padding} - #{variables.$db-spacing-fixed-sm}
-		);
-	}
-
-	&:has(> select option:checked:not([hidden])) {
+	&:has(> select option:checked:not(.placeholder)) {
 		[id$="-placeholder"] {
-			display: none;
+			@include display.display(none);
 		}
 	}
 }

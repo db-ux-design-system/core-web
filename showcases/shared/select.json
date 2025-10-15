@@ -15,9 +15,19 @@
 						},
 						{
 							"value": "Option 2"
+						},
+						{
+							"value": "Option 3"
+						},
+						{
+							"value": "Option 4"
+						},
+						{
+							"value": "Option 5"
 						}
 					],
-					"label": "Label"
+					"label": "Label",
+					"placeholder": "Functional"
 				}
 			},
 			{
@@ -33,9 +43,19 @@
 						},
 						{
 							"value": "Option 2"
+						},
+						{
+							"value": "Option 3"
+						},
+						{
+							"value": "Option 4"
+						},
+						{
+							"value": "Option 5"
 						}
 					],
-					"label": "Label"
+					"label": "Label",
+					"placeholder": "(Default) Regular"
 				}
 			},
 			{
@@ -51,9 +71,19 @@
 						},
 						{
 							"value": "Option 2"
+						},
+						{
+							"value": "Option 3"
+						},
+						{
+							"value": "Option 4"
+						},
+						{
+							"value": "Option 5"
 						}
 					],
-					"label": "Label"
+					"label": "Label",
+					"placeholder": "Expressive"
 				}
 			}
 		]
@@ -62,7 +92,7 @@
 		"name": "Variant",
 		"examples": [
 			{
-				"name": "(Default) Label Above",
+				"name": "(Default) Above",
 				"style": {
 					"width": "300px"
 				},
@@ -73,9 +103,19 @@
 						},
 						{
 							"value": "Option 2"
+						},
+						{
+							"value": "Option 3"
+						},
+						{
+							"value": "Option 4"
+						},
+						{
+							"value": "Option 5"
 						}
 					],
-					"label": "Label"
+					"label": "Label",
+					"placeholder": "(Default) Above"
 				}
 			},
 			{
@@ -86,7 +126,7 @@
 				"props": {
 					"options": [
 						{
-							"value": "Floating Label",
+							"value": "Floating",
 							"selected": true
 						},
 						{
@@ -95,7 +135,8 @@
 					],
 					"label": "Label",
 					"variant": "floating",
-					"value": "Floating Label"
+					"value": "Floating",
+					"placeholder": "Floating"
 				}
 			}
 		]
@@ -115,10 +156,20 @@
 						},
 						{
 							"value": "Option 2"
+						},
+						{
+							"value": "Option 3"
+						},
+						{
+							"value": "Option 4"
+						},
+						{
+							"value": "Option 5"
 						}
 					],
 					"label": "Label",
-					"showLabel": true
+					"showLabel": true,
+					"placeholder": "(Default) True"
 				}
 			},
 			{
@@ -133,10 +184,20 @@
 						},
 						{
 							"value": "Option 2"
+						},
+						{
+							"value": "Option 3"
+						},
+						{
+							"value": "Option 4"
+						},
+						{
+							"value": "Option 5"
 						}
 					],
 					"label": "Label",
-					"showLabel": false
+					"showLabel": false,
+					"placeholder": "False"
 				}
 			}
 		]
@@ -156,11 +217,21 @@
 						},
 						{
 							"value": "Option 2"
+						},
+						{
+							"value": "Option 3"
+						},
+						{
+							"value": "Option 4"
+						},
+						{
+							"value": "Option 5"
 						}
 					],
 					"label": "Label",
 					"message": "Message",
-					"showMessage": false
+					"showMessage": false,
+					"placeholder": "(Default) False"
 				}
 			},
 			{
@@ -175,11 +246,21 @@
 						},
 						{
 							"value": "Option 2"
+						},
+						{
+							"value": "Option 3"
+						},
+						{
+							"value": "Option 4"
+						},
+						{
+							"value": "Option 5"
 						}
 					],
 					"label": "Label",
 					"message": "Message",
-					"showMessage": true
+					"showMessage": true,
+					"placeholder": "True"
 				}
 			}
 		]
@@ -199,9 +280,19 @@
 						},
 						{
 							"value": "Option 2"
+						},
+						{
+							"value": "Option 3"
+						},
+						{
+							"value": "Option 4"
+						},
+						{
+							"value": "Option 5"
 						}
 					],
-					"label": "Label"
+					"label": "Label",
+					"placeholder": "(Default) Empty"
 				}
 			},
 			{
@@ -220,7 +311,8 @@
 						}
 					],
 					"label": "Label",
-					"value": "Filled"
+					"value": "Filled",
+					"placeholder": "Filled"
 				}
 			}
 		]
@@ -240,10 +332,20 @@
 						},
 						{
 							"value": "Option 2"
+						},
+						{
+							"value": "Option 3"
+						},
+						{
+							"value": "Option 4"
+						},
+						{
+							"value": "Option 5"
 						}
 					],
 					"label": "Label",
-					"validation": "no-validation"
+					"validation": "no-validation",
+					"placeholder": "(Default) No validation"
 				}
 			},
 			{
@@ -258,11 +360,21 @@
 						},
 						{
 							"value": "Option 2"
+						},
+						{
+							"value": "Option 3"
+						},
+						{
+							"value": "Option 4"
+						},
+						{
+							"value": "Option 5"
 						}
 					],
 					"label": "Label",
 					"validation": "invalid",
-					"invalidMessage": "Invalid Message"
+					"invalidMessage": "Invalid Message",
+					"placeholder": "Invalid"
 				}
 			},
 			{
@@ -283,7 +395,7 @@
 					"label": "Label",
 					"validation": "valid",
 					"validMessage": "Valid message",
-					"value": "Valid"
+					"placeholder": "Valid"
 				}
 			}
 		]
@@ -303,10 +415,20 @@
 						},
 						{
 							"value": "Option 2"
+						},
+						{
+							"value": "Option 3"
+						},
+						{
+							"value": "Option 4"
+						},
+						{
+							"value": "Option 5"
 						}
 					],
 					"label": "Label",
-					"disabled": false
+					"disabled": false,
+					"placeholder": "(Default) False"
 				}
 			},
 			{
@@ -321,10 +443,20 @@
 						},
 						{
 							"value": "Option 2"
+						},
+						{
+							"value": "Option 3"
+						},
+						{
+							"value": "Option 4"
+						},
+						{
+							"value": "Option 5"
 						}
 					],
 					"label": "Label",
-					"disabled": true
+					"disabled": true,
+					"placeholder": "True"
 				}
 			}
 		]
@@ -344,9 +476,19 @@
 						},
 						{
 							"value": "Option 2"
+						},
+						{
+							"value": "Option 3"
+						},
+						{
+							"value": "Option 4"
+						},
+						{
+							"value": "Option 5"
 						}
 					],
-					"label": "Label"
+					"label": "Label",
+					"placeholder": "(Default) Text"
 				}
 			},
 			{
@@ -361,10 +503,20 @@
 						},
 						{
 							"value": "Option 2"
+						},
+						{
+							"value": "Option 3"
+						},
+						{
+							"value": "Option 4"
+						},
+						{
+							"value": "Option 5"
 						}
 					],
 					"label": "Label",
-					"icon": "x_placeholder"
+					"icon": "x_placeholder",
+					"placeholder": "Text - Leading Icon"
 				}
 			}
 		]
@@ -384,10 +536,20 @@
 						},
 						{
 							"value": "Option 2"
+						},
+						{
+							"value": "Option 3"
+						},
+						{
+							"value": "Option 4"
+						},
+						{
+							"value": "Option 5"
 						}
 					],
 					"label": "Label",
-					"required": false
+					"required": false,
+					"placeholder": "(Default) False"
 				}
 			},
 			{
@@ -402,10 +564,151 @@
 						},
 						{
 							"value": "Option 2"
+						},
+						{
+							"value": "Option 3"
+						},
+						{
+							"value": "Option 4"
+						},
+						{
+							"value": "Option 5"
 						}
 					],
 					"label": "Label",
-					"required": true
+					"required": true,
+					"placeholder": "True"
+				}
+			}
+		]
+	},
+	{
+		"name": "Show Required Asterisk",
+		"examples": [
+			{
+				"name": "(Default) True",
+				"style": {
+					"width": "300px"
+				},
+				"props": {
+					"options": [
+						{
+							"value": "Option 1"
+						},
+						{
+							"value": "Option 2"
+						},
+						{
+							"value": "Option 3"
+						},
+						{
+							"value": "Option 4"
+						},
+						{
+							"value": "Option 5"
+						}
+					],
+					"label": "Label",
+					"required": true,
+					"showRequiredAsterisk": true,
+					"placeholder": "(Default) True"
+				}
+			},
+			{
+				"name": "False",
+				"style": {
+					"width": "300px"
+				},
+				"props": {
+					"options": [
+						{
+							"value": "Option 1"
+						},
+						{
+							"value": "Option 2"
+						},
+						{
+							"value": "Option 3"
+						},
+						{
+							"value": "Option 4"
+						},
+						{
+							"value": "Option 5"
+						}
+					],
+					"label": "Label",
+					"required": true,
+					"showRequiredAsterisk": false,
+					"placeholder": "False"
+				}
+			}
+		]
+	},
+	{
+		"name": "Option Groups",
+		"examples": [
+			{
+				"name": "Using optgroups",
+				"style": {
+					"width": "300px"
+				},
+				"props": {
+					"options": [
+						{
+							"label": "Group 1",
+							"options": [
+								{
+									"value": "Option 1"
+								},
+								{
+									"value": "Option 2"
+								}
+							]
+						},
+						{
+							"label": "Group 2",
+							"options": [
+								{
+									"value": "Option 3"
+								},
+								{
+									"value": "Option 4"
+								}
+							]
+						}
+					],
+					"label": "Label",
+					"placeholder": "Using optgroups"
+				}
+			},
+			{
+				"name": "Mixed options and groups",
+				"style": {
+					"width": "300px"
+				},
+				"props": {
+					"options": [
+						{
+							"value": "Single Option"
+						},
+						{
+							"label": "Grouped Options",
+							"options": [
+								{
+									"value": "Group Option 1"
+								},
+								{
+									"value": "Group Option 2"
+								}
+							]
+						},
+						{
+							"value": "Another Single Option"
+						}
+					],
+					"label": "Label",
+					"placeholder": "Mixed options and groups"
 				}
 			}
 		]
@@ -425,10 +728,20 @@
 						},
 						{
 							"value": "Option 2"
+						},
+						{
+							"value": "Option 3"
+						},
+						{
+							"value": "Option 4"
+						},
+						{
+							"value": "Option 5"
 						}
 					],
 					"label": "Label",
-					"variant": "floating"
+					"variant": "floating",
+					"placeholder": "(Default) Empty"
 				}
 			},
 			{
@@ -448,7 +761,8 @@
 					],
 					"label": "Label",
 					"value": "Filled",
-					"variant": "floating"
+					"variant": "floating",
+					"placeholder": "Filled"
 				}
 			},
 			{
@@ -469,7 +783,8 @@
 					"label": "Label",
 					"disabled": true,
 					"variant": "floating",
-					"value": "Disabled"
+					"value": "Disabled",
+					"placeholder": "Disabled"
 				}
 			}
 		]

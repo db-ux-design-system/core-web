@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import DefaultComponent from "../DefaultComponent.vue";
-import defaultComponentVariants from "../../../../shared/header.json";
 import {
 	DBBrand,
 	DBButton,
@@ -9,6 +7,8 @@ import {
 	DBNavigation,
 	DBNavigationItem
 } from "../../../../../output/vue/src";
+import defaultComponentVariants from "../../../../shared/header.json";
+import DefaultComponent from "../DefaultComponent.vue";
 </script>
 
 <template>

@@ -8,7 +8,7 @@
 		<db-select
 			label="Plain"
 			[value]="plain"
-			(change)="plain = $event.target.value"
+			(change)="handlePlainChange($event)"
 		>
 			<option value="combobox-0">combobox-0</option>
 			<option value="combobox-1">combobox-1</option>

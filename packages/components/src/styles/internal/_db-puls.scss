@@ -4,7 +4,7 @@
 
 @mixin set-db-puls-horizontal() {
 	&::after {
-		block-size: variables.$db-border-height-xs;
+		block-size: variables.$db-border-width-xs;
 		inline-size: 0;
 		transform: translate(-50%, 0);
 		inset-inline-start: 50%;
@@ -16,7 +16,7 @@
 @mixin set-db-puls-vertical() {
 	&::after {
 		block-size: 0;
-		inline-size: variables.$db-border-height-xs;
+		inline-size: variables.$db-border-width-xs;
 		transform: translate(0, -50%);
 		inset-block: 50% auto;
 		background-color: colors.$db-brand-on-bg-basic-emphasis-70-default;
@@ -42,21 +42,20 @@
 
 %db-puls-auto {
 	@extend %db-puls;
-
-	@include set-db-puls-vertical();
+	@include set-db-puls-vertical;
 
 	@include screen-sizes.screen("md") {
-		@include set-db-puls-horizontal();
+		@include set-db-puls-horizontal;
 	}
 }
 
 @mixin show-db-puls-horizontal() {
 	&::after {
-		block-size: variables.$db-border-height-xs;
+		block-size: variables.$db-border-width-xs;
 		inline-size: 100%;
 
 		@media (forced-colors: active) {
-			border: calc(#{variables.$db-border-height-xs} - 1px) solid
+			border: calc(#{variables.$db-border-width-xs} - 1px) solid
 				colors.$db-adaptive-on-bg-basic-emphasis-100-default;
 		}
 	}
@@ -65,10 +64,10 @@
 @mixin show-db-puls-vertical() {
 	&::after {
 		block-size: 100%;
-		inline-size: variables.$db-border-height-xs;
+		inline-size: variables.$db-border-width-xs;
 
 		@media (forced-colors: active) {
-			border: calc(#{variables.$db-border-height-xs} - 1px) solid
+			border: calc(#{variables.$db-border-width-xs} - 1px) solid
 				colors.$db-adaptive-on-bg-basic-emphasis-100-default;
 		}
 	}

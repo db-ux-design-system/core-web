@@ -1,8 +1,8 @@
 import Frameworks from './frameworks';
 
+import { cpSync, existsSync } from 'node:fs';
 import { replaceInFileSync } from 'replace-in-file';
 import components from './components.js';
-import { existsSync, cpSync } from 'node:fs';
 
 export default () => {
 	for (const { name } of components) {

@@ -1,6 +1,6 @@
 - main:
   - heading "DBNavigationItem" [level=1]
-  - link "Density arrow_up_right\" / \""
+  - link "Density"
   - list:
     - listitem:
       - link "Functional"
@@ -10,39 +10,48 @@
   - list:
     - listitem:
       - link "Expressive"
-  - link "Disabled arrow_up_right\" / \""
+  - link "Disabled"
+  - list:
+    - listitem:
+      - link "(Default) False"
+  - list:
+    - listitem:
+      - link "True" [disabled]
+  - link "Active"
   - list:
     - listitem:
       - link "(Default) False"
   - list:
     - listitem:
       - link "True"
-  - link "Active arrow_up_right\" / \""
+  - link "Expanded"
+  - list:
+    - listitem:
+      - link "(Default) False"
+  - list:
+    - listitem:
+      - button "True"
+  - link "Show Icon"
   - list:
     - listitem:
       - link "(Default) False"
   - list:
     - listitem:
       - link "True"
-  - link "Expanded arrow_up_right\" / \""
-  - list:
-    - listitem:
-      - link "(Default) False"
-  - list:
-    - listitem:
-      - button "True chevron_right\" / \""
-  - link "Show Icon arrow_up_right\" / \""
-  - list:
-    - listitem:
-      - link "(Default) False"
-  - list:
-    - listitem:
-      - text: x_placeholder" / "
-      - link "True"
-  - link "Width arrow_up_right\" / \""
+  - link "Width"
   - list:
     - listitem:
       - link "(Default) Auto"
   - list:
     - listitem:
       - link "Full"
+  - link "Wrap"
+  - list:
+    - listitem:
+      - button "No Wrap (Default)"
+  - list:
+    - listitem:
+      - button "This is a very long text that is broken into multiple lines."
+  - list:
+    - listitem:
+      - button "This is a very long text that is broken into multiple lines."

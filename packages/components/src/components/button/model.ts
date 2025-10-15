@@ -1,10 +1,13 @@
 import {
 	ClickEventProps,
-	ClickEventState,
 	GlobalProps,
 	GlobalState,
+	IconLeadingProps,
 	IconProps,
+	IconTrailingProps,
+	ShowIconLeadingProps,
 	ShowIconProps,
+	ShowIconTrailingProps,
 	SizeProps,
 	TextProps,
 	WidthProps
@@ -21,39 +24,26 @@ export type ButtonVariantType = (typeof ButtonVariantList)[number];
 export const ButtonTypeList = ['button', 'reset', 'submit'] as const;
 export type ButtonTypeType = (typeof ButtonTypeList)[number];
 
-export const ButtonStateList = ['loading'] as const;
-export type ButtonStateType = (typeof ButtonStateList)[number];
-
 export type DBButtonDefaultProps = {
-	/**
-	 * If the button controls a grouping of other elements, the ariaexpanded state [indicates whether the controlled grouping is currently expanded or collapsed](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-expanded).
-	 */
-	ariaexpanded?: boolean;
-
-	/**
-	 * Defines the button as a toggle button. The value of [ariapressed describes the state of the button](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-pressed).
-	 */
-	ariapressed?: boolean;
-
 	/**
 	 * The disabled attribute can be set to [keep a user from clicking on the button](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button#disabled).
 	 */
-	disabled?: boolean;
+	disabled?: boolean | string;
 
 	/**
-	 * Define the text next to the icon specified via the icon Property to get hidden.
+	 * 	Associates the control with a form element
 	 */
-	noText?: boolean; // We had to rename this to noText because wc-core-components uses a regex and always finds "icon" instead of "onlyIcon"
-
-	/**
-	 * The label represents the [aria-label attributes](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-label) value of the button
-	 */
-	label?: string;
+	form?: string;
 
 	/**
 	 * The name attribute specifies a [name attributes value](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button#name) for the button.
 	 */
 	name?: string;
+
+	/**
+	 * Define the text next to the icon specified via the icon Property to get hidden.
+	 */
+	noText?: boolean | string;
 
 	/**
 	 * The type attribute specifies the [type of button](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button#type).
@@ -64,11 +54,6 @@ export type DBButtonDefaultProps = {
 	 * The value attribute specifies an initial [value for the button](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button#value).
 	 */
 	value?: string;
-
-	/**
-	 * Show loading progress inside button.
-	 */
-	state?: ButtonStateType;
 
 	/**
 	 * Variant of the button. Use only 1 primary button on a page as CTA otherwise use one of the adaptive buttons.
@@ -83,10 +68,14 @@ export type DBButtonProps = DBButtonDefaultProps &
 	WidthProps &
 	SizeProps &
 	ShowIconProps &
-	TextProps;
+	TextProps &
+	ShowIconLeadingProps &
+	ShowIconTrailingProps &
+	IconLeadingProps &
+	IconTrailingProps;
 
-export type DBButtonDefaultState = {};
+export type DBButtonDefaultState = {
+	getButtonType: () => ButtonTypeType;
+};
 
-export type DBButtonState = DBButtonDefaultState &
-	GlobalState &
-	ClickEventState<HTMLButtonElement>;
+export type DBButtonState = DBButtonDefaultState & GlobalState;

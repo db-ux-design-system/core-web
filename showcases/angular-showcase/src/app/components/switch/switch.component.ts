@@ -1,9 +1,9 @@
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import { DefaultComponent } from '../default.component';
-import defaultComponentVariants from '../../../../../shared/switch.json';
-import { DBSwitch } from '../../../../../../output/angular/src/components/switch';
 import { DBInfotext } from '../../../../../../output/angular/src/components/infotext';
+import { DBSwitch } from '../../../../../../output/angular/src/components/switch';
+import defaultComponentVariants from '../../../../../shared/switch.json';
 import { environment } from '../../../environments/environment';
+import { DefaultComponent } from '../default.component';
 
 @Component({
 	selector: 'app-switch',
@@ -13,7 +13,7 @@ import { environment } from '../../../environments/environment';
 			? [DefaultComponent]
 			: [DefaultComponent, DBSwitch, DBInfotext]
 	],
-	schemas: [CUSTOM_ELEMENTS_SCHEMA],
+	schemas: environment.webComponents ? [CUSTOM_ELEMENTS_SCHEMA] : [],
 	standalone: true
 })
 export class SwitchComponent {

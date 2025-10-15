@@ -7,7 +7,7 @@ import {
 } from '../../../../packages/components/src/shared/constants';
 import useUniversalSearchParameters from './use-universal-search-parameters';
 
-const useQuery = (redirectURLSearchParams = true): any => {
+const useQuery = (redirectURLSearchParameters = true): any => {
 	const [searchParameters, setSearchParameters] =
 		useUniversalSearchParameters();
 
@@ -22,7 +22,7 @@ const useQuery = (redirectURLSearchParams = true): any => {
 	const [searchRead, setSearchRead] = useState<boolean>(false);
 
 	useEffect(() => {
-		for (const [key, value] of Array.from(searchParameters.entries())) {
+		for (const [key, value] of searchParameters.entries()) {
 			if (value) {
 				if (key === DENSITY_CONST && density !== value) {
 					setDensity(value);
@@ -56,7 +56,7 @@ const useQuery = (redirectURLSearchParams = true): any => {
 				nextQuery.fullscreen = true;
 			}
 
-			if (redirectURLSearchParams) {
+			if (redirectURLSearchParameters) {
 				setSearchParameters(nextQuery);
 			}
 		}

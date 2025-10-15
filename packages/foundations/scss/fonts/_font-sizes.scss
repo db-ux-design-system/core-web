@@ -1,25 +1,33 @@
+@use "../helpers";
+
 @mixin set-component-variables($size) {
-	/* Those variables are only for components to calculate heights and change icons */
-	--db-icon-font-weight: var(--db-base-body-icon-weight-#{$size});
-	--db-icon-font-size: var(--db-base-body-icon-font-size-#{$size});
-	--db-base-line-height: var(--db-type-body-line-height-#{$size});
-	--db-base-font-size: var(--db-type-body-font-size-#{$size});
+	/* stylelint-disable-next-line at-rule-prelude-no-invalid,layer-name-pattern */
+	@layer #{helpers.$layer-variables} {
+		/* Those variables are only for components to calculate heights and change icons */
+		// stylelint-disable-next-line no-invalid-position-declaration
+		--db-icon-font-weight: var(--db-base-body-icon-weight-#{$size});
+		// stylelint-disable-next-line no-invalid-position-declaration
+		--db-icon-font-size: var(--db-base-body-icon-font-size-#{$size});
+	}
 }
 
 @mixin set-font-size($size) {
-	line-height: var(--db-type-body-line-height-#{$size});
-	font-size: var(--db-type-body-font-size-#{$size});
+	font: var(--db-type-body-#{$size});
 }
 
 @mixin set-headline-variables($size) {
-	/* Those variables are only for components to calculate heights and change icons */
-	--db-icon-font-weight: var(--db-base-headline-icon-weight-#{$size});
-	--db-icon-font-size: var(--db-base-headline-icon-font-size-#{$size});
+	/* stylelint-disable-next-line at-rule-prelude-no-invalid,layer-name-pattern */
+	@layer #{helpers.$layer-variables} {
+		/* Those variables are only for components to calculate heights and change icons */
+		// stylelint-disable-next-line no-invalid-position-declaration
+		--db-icon-font-weight: var(--db-base-headline-icon-weight-#{$size});
+		// stylelint-disable-next-line no-invalid-position-declaration
+		--db-icon-font-size: var(--db-base-headline-icon-font-size-#{$size});
+	}
 }
 
 @mixin set-headline-size($size) {
-	line-height: var(--db-type-headline-line-height-#{$size});
-	font-size: var(--db-type-headline-font-size-#{$size});
+	font: var(--db-type-headline-#{$size});
 }
 
 $font-sizes: "3xl", "2xl", "xl", "lg", "md", "sm", "xs", "2xs", "3xs";
@@ -41,15 +49,15 @@ $font-sizes: "3xl", "2xl", "xl", "lg", "md", "sm", "xs", "2xs", "3xs";
 		}
 
 		%db-overwrite-font-size-#{$font-size} {
-			@include set-component-variables($font-size);
 			@include set-font-size($font-size);
+			@include set-component-variables($font-size);
 		}
 
 		%db-overwrite-headline-size-#{$font-size} {
-			@include set-headline-variables($font-size);
 			@include set-headline-size($font-size);
+			@include set-headline-variables($font-size);
 		}
 	}
 }
 
-@include generate-font-sizes();
+@include generate-font-sizes;

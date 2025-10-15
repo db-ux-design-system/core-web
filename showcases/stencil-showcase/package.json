@@ -4,40 +4,29 @@
   "private": true,
   "scripts": {
     "build": "ng build",
-    "dev": "npm-run-all -p dev:*",
+    "dev": "npm-run-all --parallel dev:*",
     "dev:angular": "npm run start -- --open",
     "dev:stencil": "npm run start --workspace @db-ux/wc-core-components",
     "ng": "ng",
     "prebuild": "npm run build --workspace @db-ux/wc-core-components",
     "preview": "npx http-server ../../build-showcases",
     "start": "ng serve --port 4202 --serve-path stencil-showcase",
+    "test:a11y-checker": "cross-env showcase=stencil-showcase npx playwright test --config=../playwright.a11y-checker.ts",
+    "test:aria-snapshots": "cross-env showcase=stencil-showcase npx playwright test --config=../playwright.aria-snapshots.ts",
+    "test:axe-core": "cross-env showcase=stencil-showcase npx playwright test --config=../playwright.axe-core.ts",
     "test:e2e": "cross-env showcase=stencil-showcase npx playwright test --config=../playwright.config.ts",
+    "test:ui": "npm run test:e2e -- --ui",
+    "test:visual-snapshots": "cross-env showcase=stencil-showcase npx playwright test --config=../playwright.visual-snapshots.ts",
     "watch": "ng build --watch --configuration development"
   },
   "dependencies": {
-    "@angular/animations": "17.3.12",
-    "@angular/common": "17.3.12",
-    "@angular/compiler": "17.3.12",
-    "@angular/core": "17.3.12",
-    "@angular/forms": "17.3.12",
-    "@angular/platform-browser": "17.3.12",
-    "@angular/platform-browser-dynamic": "17.3.12",
-    "@angular/router": "17.3.12",
-    "@db-ux/db-theme": "1.0.2",
-    "@stencil/core": "4.27.2",
-    "rxjs": "~7.8.2",
-    "tslib": "^2.8.1",
-    "zone.js": "~0.14.10"
+    "@stencil/core": "4.38.1"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "17.3.12",
-    "@angular/cli": "17.3.12",
-    "@angular/compiler-cli": "17.3.12",
-    "ng-packagr": "17.3.0",
-    "npm-run-all2": "7.0.2",
-    "typescript": "^5.4.5"
+    "npm-run-all2": "8.0.4",
+    "typescript": "5.9.3"
   },
   "overrides": {
-    "cross-spawn": "~7.0.5"
+    "cross-spawn": "7.0.6"
   }
 }

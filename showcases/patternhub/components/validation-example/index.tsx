@@ -1,8 +1,8 @@
 import {
-	DBCard,
-	DBInput,
 	DBButton,
-	DBInfotext
+	DBCard,
+	DBInfotext,
+	DBInput
 } from '../../../../output/react/src';
 
 const ValidationExample = () => {

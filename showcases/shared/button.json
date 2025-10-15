@@ -78,7 +78,7 @@
 		]
 	},
 	{
-		"name": "Show Icon",
+		"name": "Show Icon Leading",
 		"examples": [
 			{
 				"name": "(Default) False",
@@ -92,6 +92,25 @@
 				"props": {
 					"icon": "x_placeholder",
 					"showIcon": true
+				}
+			}
+		]
+	},
+	{
+		"name": "Show Icon Trailing",
+		"examples": [
+			{
+				"name": "(Default) False",
+				"props": {
+					"iconTrailing": "x_placeholder",
+					"showIconTrailing": false
+				}
+			},
+			{
+				"name": "True",
+				"props": {
+					"iconTrailing": "x_placeholder",
+					"showIconTrailing": true
 				}
 			}
 		]

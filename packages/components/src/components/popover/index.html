@@ -7,113 +7,51 @@
 	</head>
 	<body style="padding: var(--db-spacing-fixed-md)">
 		<h2>Default</h2>
-		<button class="db-button" aria-describedby="popover-01">
-			Popover bottom
-			<i class="db-popover" id="popover-01">Test</i>
-		</button>
-		<button class="db-button" aria-describedby="popover-02">
-			Popover top
-			<i class="db-popover" data-placement="top" id="popover-02">Test</i>
-		</button>
-		<button class="db-button" aria-describedby="popover-03">
-			Popover left
-			<i class="db-popover" data-placement="left" id="popover-03">Test</i>
-		</button>
-		<button class="db-button" aria-describedby="popover-04">
-			Popover right
-			<i class="db-popover" data-placement="right" id="popover-04"
-				>Test</i
-			>
-		</button>
-
-		<h2>Gap</h2>
-		<button class="db-button" aria-describedby="popover-05">
-			Popover bottom gap
-			<i class="db-popover" data-gap="true" id="popover-05">Test</i>
-		</button>
-		<button class="db-button" aria-describedby="popover-06">
-			Popover top gap
-			<i
-				class="db-popover"
-				data-placement="top"
-				data-gap="true"
-				id="popover-06"
-			>
-				Test
-			</i>
-		</button>
-		<button class="db-button" aria-describedby="popover-07">
-			Popover left gap
-			<i
-				class="db-popover"
-				data-placement="left"
-				data-gap="true"
-				id="popover-07"
-			>
-				Test
-			</i>
-		</button>
-		<button class="db-button" aria-describedby="popover-08">
-			Popover right gap
-			<i
-				class="db-popover"
-				data-placement="right"
-				data-gap="true"
-				id="popover-08"
-			>
-				Test
-			</i>
-		</button>
-
-		<h2>Animation/delay</h2>
-
-		<button class="db-button" aria-describedby="popover-09">
-			Popover delay slow
-			<i class="db-popover" data-delay="slow" id="popover-09">Test</i>
-		</button>
-
-		<button class="db-button" aria-describedby="popover-10">
-			Popover delay fast
-			<i class="db-popover" data-delay="fast" id="popover-10">Test</i>
-		</button>
-
-		<button class="db-button" aria-describedby="popover-11">
-			Popover plain
-			<i class="db-popover" data-behavior="plain" id="popover-11">Test</i>
-		</button>
-
-		<h2>Width</h2>
-
-		<button class="db-button" aria-describedby="popover-12">
-			Popover auto width
-			<i class="db-popover" id="popover-12">
-				Max width, lorem ipsum dolor sit amet, consetetur sadipscing
-			</i>
-		</button>
-
-		<button class="db-button" aria-describedby="popover-13">
-			Popover fixed width
-			<i class="db-popover" data-width="fixed" id="popover-13">
-				Max width, lorem ipsum dolor sit amet, consetetur sadipscing
-			</i>
-		</button>
-
-		<button class="db-button" aria-describedby="popover-14">
-			Popover test
-			<i class="db-popover" data-placement="top" id="popover-14">
-				<h4>Title</h4>
-				<p>Paragraph</p>
-				<a href="#">Link</a>
-			</i>
-		</button>
-
-		<button class="db-button" aria-describedby="popover-15">
-			Popover open
-			<i class="db-popover" data-open="true" id="popover-15">
-				<h4>Title</h4>
-				<p>Paragraph</p>
-				<a href="#">Link</a>
-			</i>
-		</button>
+		<div class="db-stack" data-direction="row" style="overflow: unset">
+			<div id="popover-00" class="db-popover">
+				<button class="db-button" type="button">right</button>
+				<article
+					class="db-popover-content"
+					data-placement="right"
+					data-animation="true"
+				>
+					<button class="db-button" type="button">
+						Inside Popover
+					</button>
+				</article>
+			</div>
+			<div id="popover-01" class="db-popover">
+				<button class="db-button" type="button">bottom</button>
+				<article class="db-popover-content" data-animation="true">
+					<button class="db-button" type="button">
+						Inside Popover
+					</button>
+				</article>
+			</div>
+			<div id="popover-02" class="db-popover">
+				<button class="db-button" type="button">top</button>
+				<article
+					class="db-popover-content"
+					data-placement="top"
+					data-animation="true"
+				>
+					<button class="db-button" type="button">
+						Inside Popover
+					</button>
+				</article>
+			</div>
+			<div id="popover-02" class="db-popover">
+				<button class="db-button" type="button">left</button>
+				<article
+					class="db-popover-content"
+					data-placement="left"
+					data-animation="true"
+				>
+					<button class="db-button" type="button">
+						Inside Popover
+					</button>
+				</article>
+			</div>
+		</div>
 	</body>
 </html>

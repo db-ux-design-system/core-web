@@ -5,8 +5,8 @@ const FormWrapper = ({
 	uncontrolled,
 	controlled
 }: PropsWithChildren<{
-	controlled: string | boolean;
-	uncontrolled: string | boolean;
+	controlled: string | boolean | string[];
+	uncontrolled: string | boolean | string[];
 }>) => {
 	return (
 		<div className="form-container">

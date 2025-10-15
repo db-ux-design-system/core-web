@@ -25,18 +25,23 @@ $db-critical-bg-basic-level-3-hovered: var(
 $db-critical-bg-basic-level-3-pressed: var(
 	--db-critical-bg-basic-level-3-pressed
 );
-
 $db-critical-bg-basic-transparent-full-default: var(
 	--db-critical-bg-basic-transparent-full-default
 );
 $db-critical-bg-basic-transparent-semi-default: var(
 	--db-critical-bg-basic-transparent-semi-default
 );
-$db-critical-bg-basic-transparent-hovered: var(
-	--db-critical-bg-basic-transparent-hovered
+$db-critical-bg-basic-transparent-full-hovered: var(
+	--db-critical-bg-basic-transparent-full-hovered
 );
-$db-critical-bg-basic-transparent-pressed: var(
-	--db-critical-bg-basic-transparent-pressed
+$db-critical-bg-basic-transparent-full-pressed: var(
+	--db-critical-bg-basic-transparent-full-pressed
+);
+$db-critical-bg-basic-transparent-semi-hovered: var(
+	--db-critical-bg-basic-transparent-semi-hovered
+);
+$db-critical-bg-basic-transparent-semi-pressed: var(
+	--db-critical-bg-basic-transparent-semi-pressed
 );
 $db-critical-on-bg-basic-emphasis-100-default: var(
 	--db-critical-on-bg-basic-emphasis-100-default
@@ -128,3 +133,13 @@ $db-critical-origin-pressed: var(--db-critical-origin-pressed);
 $db-critical-on-origin-default: var(--db-critical-on-origin-default);
 $db-critical-on-origin-hovered: var(--db-critical-on-origin-hovered);
 $db-critical-on-origin-pressed: var(--db-critical-on-origin-pressed);
+
+// vibrant
+$db-critical-vibrant-default: var(--db-critical-vibrant-default);
+$db-critical-vibrant-hovered: var(--db-critical-vibrant-hovered);
+$db-critical-vibrant-pressed: var(--db-critical-vibrant-pressed);
+
+// on-vibrant
+$db-critical-on-vibrant-default: var(--db-critical-on-vibrant-default);
+$db-critical-on-vibrant-hovered: var(--db-critical-on-vibrant-hovered);
+$db-critical-on-vibrant-pressed: var(--db-critical-on-vibrant-pressed);

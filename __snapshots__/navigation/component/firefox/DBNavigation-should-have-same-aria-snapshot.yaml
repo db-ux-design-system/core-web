@@ -1,8 +1,10 @@
 - navigation:
   - list:
     - listitem:
-      - button "Test1 chevron_right\" / \""
+      - button "Test1"
     - listitem:
-      - link "Test2"
+      - link "Test2":
+        - /url: "#"
     - listitem:
-      - link "Test3"
+      - link "Test3":
+        - /url: "#"

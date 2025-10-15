@@ -11,8 +11,9 @@
 		let-variantIndex="variantIndex"
 	>
 		<db-select
+			[showRequiredAsterisk]="exampleProps?.showRequiredAsterisk"
 			[label]="exampleProps?.label"
-			[placeholder]="exampleName"
+			[placeholder]="exampleProps?.placeholder"
 			[variant]="exampleProps?.variant"
 			[showLabel]="exampleProps?.showLabel"
 			[options]="exampleProps?.options"
@@ -25,7 +26,6 @@
 			[invalidMessage]="exampleProps?.invalidMessage"
 			[validMessage]="exampleProps?.validMessage"
 			[validation]="exampleProps?.validation"
-			>{{ exampleName }}</db-select
-		>
+		></db-select>
 	</ng-template>
 </app-default-component>

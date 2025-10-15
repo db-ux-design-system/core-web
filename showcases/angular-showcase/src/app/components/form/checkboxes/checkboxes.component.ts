@@ -1,8 +1,8 @@
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { WrapperComponent } from '../wrapper/wrapper.component';
-import { DBCheckbox, DBInput } from '../../../../../../../output/angular/src';
+import { DBCheckbox } from '../../../../../../../output/angular/src';
 import { environment } from '../../../../environments/environment';
+import { WrapperComponent } from '../wrapper/wrapper.component';
 
 @Component({
 	selector: 'app-checkboxes',
@@ -11,10 +11,14 @@ import { environment } from '../../../../environments/environment';
 		? [WrapperComponent, FormsModule, ReactiveFormsModule]
 		: [WrapperComponent, DBCheckbox, FormsModule, ReactiveFormsModule],
 	templateUrl: './checkboxes.component.html',
-	schemas: [CUSTOM_ELEMENTS_SCHEMA]
+	schemas: environment.webComponents ? [CUSTOM_ELEMENTS_SCHEMA] : []
 })
 export class CheckboxesComponent {
 	plain = true;
 	ngModel = true;
 	formControl: FormControl = new FormControl(true);
+
+	public handlePlainChange(event: any) {
+		this.plain = event.target.checked;
+	}
 }

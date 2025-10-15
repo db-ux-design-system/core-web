@@ -14,12 +14,12 @@
 
 ## How to include colors
 
-For **CSS** and **Tailwind** you need to use the import `@import "@db-ux/core-foundations/build/styles/color/classes/all.css";` in your root `.css` file.
-Or if you only want a single variant e.g. **informational** you can import `@import "@db-ux/core-foundations/build/styles/color/classes/informational.css";`.
+For **CSS** and **Tailwind** you need to use the import `@import "@db-ux/core-foundations/build/styles/colors/classes/all.css";` in your root `.css` file.
+Or if you only want a single variant e.g. **informational** you can import `@import "@db-ux/core-foundations/build/styles/colors/classes/informational.css";`.
 
 In case that you're either using a bundler (recommended) or importing the CSS within your JavaScript files, please adapt this `@import` syntax accordingly.
 
-For **SCSS** you need to use the import `@use "@db-ux/core-foundations/build/styles/color/placeholder"` in your `.scss` file, where you need to reference the specific variable.
+For **SCSS** you need to use the import `@use "@db-ux/core-foundations/build/styles/colors/placeholder"` in your `.scss` file, where you need to reference the specific variable.
 Then you can use e.g. **informational** color by extending our SCSS placeholders like this: `@extend %db-informational-bg-1`.
 
 ## Dark- & Light-Mode
@@ -32,7 +32,9 @@ It's [recommended to set a `meta`-HTML-tag](https://web.dev/articles/color-schem
 <meta name="color-scheme" content="dark light" />
 ```
 
-We recommend using the default media query based on the user preference, but if you want to force a mode for your page or a container you can do it with adding the attributes `data-mode="dark"` or `data-mode="light"`:
+We recommend using the default media query based on the user preference, but if you want to force a mode for your page, you could set the `color-scheme` `meta`-HTML-tag to either [`only light`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/meta/name#only_light), [`dark` or `light`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/meta/name#light).
+
+If you want to set it on a specific container as e.g. shown on the documentation page "Color schemes" you can do that by adding the HTML-attributes `data-mode="dark"` or `data-mode="light"`:
 
 ### HTML
 

@@ -1,38 +1,34 @@
 - main:
   - heading "DBHeader" [level=1]
-  - link "Density arrow_up_right\" / \""
-  - text: brand" / " DBHeader
-  - button "magnifying_glass\" / \" Search"
-  - button "menu\" / \" BurgerMenu"
-  - text: brand" / " DBHeader
-  - button "magnifying_glass\" / \" Search"
-  - button "menu\" / \" BurgerMenu"
-  - text: brand" / " DBHeader
-  - button "magnifying_glass\" / \" Search"
-  - button "menu\" / \" BurgerMenu"
-  - link "Width arrow_up_right\" / \""
-  - text: brand" / " DBHeader
-  - button "magnifying_glass\" / \" Search"
-  - button "menu\" / \" BurgerMenu"
-  - text: brand" / " DBHeader
-  - button "magnifying_glass\" / \" Search"
-  - button "menu\" / \" BurgerMenu"
-  - text: brand" / " DBHeader
-  - button "magnifying_glass\" / \" Search"
-  - button "menu\" / \" BurgerMenu"
-  - link "Behavior arrow_up_right\" / \""
-  - text: brand" / " DBHeader
-  - button "magnifying_glass\" / \" Search"
-  - button "menu\" / \" BurgerMenu"
-  - text: brand" / " DBHeader
-  - button "magnifying_glass\" / \" Search"
-  - button "menu\" / \" BurgerMenu"
-  - link "Examples arrow_up_right\" / \""
-  - text: brand" / " DBHeader
-  - button "menu\" / \" BurgerMenu"
-  - text: brand" / " DBHeader
-  - button "menu\" / \" BurgerMenu"
-  - text: brand" / "
-  - button "menu\" / \" BurgerMenu"
-  - text: brand" / "
-  - button "menu\" / \" BurgerMenu"
+  - link "Density"
+  - text: DBHeader
+  - button "Search"
+  - button "BurgerMenu"
+  - text: DBHeader
+  - button "Search"
+  - button "BurgerMenu"
+  - text: DBHeader
+  - button "Search"
+  - button "BurgerMenu"
+  - link "Width"
+  - text: DBHeader
+  - button "Search"
+  - button "BurgerMenu"
+  - text: DBHeader
+  - button "Search"
+  - button "BurgerMenu"
+  - text: DBHeader
+  - button "Search"
+  - button "BurgerMenu"
+  - link "Behavior"
+  - text: DBHeader
+  - button "Search"
+  - button "BurgerMenu"
+  - text: DBHeader
+  - button "Search"
+  - button "BurgerMenu"
+  - link "Examples"
+  - text: DBHeader
+  - button "BurgerMenu"
+  - text: DBHeader
+  - button "BurgerMenu"

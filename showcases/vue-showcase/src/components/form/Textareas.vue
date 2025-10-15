@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import FormWrapper from "./FormWrapper.vue";
-import { DBTextarea } from "../../../../../output/vue/src";
 import { ref } from "vue";
+import { DBTextarea } from "../../../../../output/vue/src";
+import FormWrapper from "./FormWrapper.vue";
 
 const plain = ref("test1");
 const vModel = ref("test2");

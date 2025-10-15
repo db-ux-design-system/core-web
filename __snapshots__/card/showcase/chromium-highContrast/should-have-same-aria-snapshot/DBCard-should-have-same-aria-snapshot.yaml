@@ -1,23 +1,23 @@
 - main:
   - heading "DBCard" [level=1]
-  - link "Density arrow_up_right\" / \""
+  - link "Density"
   - strong: Functional
   - strong: (Default) Regular
   - strong: Expressive
-  - link "Elevation Level arrow_up_right\" / \""
+  - link "Elevation Level"
   - strong: (Default) 1
   - strong: "2"
   - strong: "3"
-  - link "Spacing arrow_up_right\" / \""
+  - link "Spacing"
   - strong: (Default) Small
   - strong: Medium
   - strong: Large
   - strong: None
-  - link "Behavior arrow_up_right\" / \""
+  - link "Behavior"
   - strong: (Default) Static
   - button "Interactive":
     - strong: Interactive
-  - link "Example arrow_up_right\" / \""
+  - link "Example"
   - button "Level 1 - Interactive":
     - strong: Level 1 - Interactive
   - button "Level 2 - Interactive":

@@ -5,6 +5,10 @@
 
 @each $density in variables.$densities {
 	%db-density-#{$density} {
+		@if $density == "functional" {
+			--db-density-functional: 1;
+		}
+
 		@extend %db-scaling-#{$density};
 		@extend %db-typography-headline-#{$density};
 		@extend %db-typography-body-#{$density};

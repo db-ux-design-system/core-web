@@ -1,100 +1,97 @@
 - main:
   - heading "DBNotification" [level=1]
-  - link "Density arrow_up_right\" / \""
+  - link "Density"
   - article:
-    - text: information_circle" / " Headline
+    - text: Headline
     - paragraph: functional
-    - button "cross\" / \" Close Button"
+    - button "Close"
   - article:
-    - text: information_circle" / " Headline
+    - text: Headline
     - paragraph: regular (Default)
-    - button "cross\" / \" Close Button"
+    - button "Close"
   - article:
-    - text: information_circle" / " Headline
+    - text: Headline
     - paragraph: expressive
-    - button "cross\" / \" Close Button"
-  - link "Variant arrow_up_right\" / \""
+    - button "Close"
+  - link "Variant"
   - article:
-    - text: information_circle" / " Headline
+    - text: Headline
     - paragraph: (Default) Docked
-    - button "cross\" / \" Close Button"
+    - button "Close"
   - article:
-    - text: information_circle" / " Headline
+    - text: Headline
     - paragraph: Standalone
-    - button "cross\" / \" Close Button"
+    - button "Close"
   - article:
-    - text: information_circle" / " Headline
+    - text: Headline
     - paragraph: Overlay
     - text: 10 min ago
-    - button "cross\" / \" Close Button"
-  - link "Semantic arrow_up_right\" / \""
+    - button "Close"
+  - link "Semantic"
   - article:
     - text: Headline
     - paragraph: (Default) Adaptive
-    - button "cross\" / \" Close Button"
+    - button "Close"
   - article:
-    - text: information_circle" / " Headline
+    - text: Headline
     - paragraph: Neutral
-    - button "cross\" / \" Close Button"
+    - button "Close"
   - article:
-    - text: exclamation_mark_circle" / " Headline
+    - text: Headline
     - paragraph: Critical
-    - button "cross\" / \" Close Button"
+    - button "Close"
   - article:
-    - text: information_circle" / " Headline
+    - text: Headline
     - paragraph: Informational
-    - button "cross\" / \" Close Button"
+    - button "Close"
   - article:
-    - text: check_circle" / " Headline
+    - text: Headline
     - paragraph: Successful
-    - button "cross\" / \" Close Button"
+    - button "Close"
   - article:
-    - text: exclamation_mark_triangle" / " Headline
+    - text: Headline
     - paragraph: Warning
-    - button "cross\" / \" Close Button"
-  - link "Closeable arrow_up_right\" / \""
+    - button "Close"
+  - link "Closeable"
   - article:
     - paragraph: (Default) False
   - article:
     - paragraph: "True"
-    - button "cross\" / \" Close Button"
-  - link "Visual arrow_up_right\" / \""
+    - button "Close"
+  - link "Visual"
   - article:
-    - text: information_circle" / "
     - paragraph: (Default) Icon
   - article:
     - img "this is a fancy placeholder"
     - paragraph: Image
-  - link "Show Icon arrow_up_right\" / \""
+  - link "Show Icon"
   - article:
-    - text: information_circle" / "
     - paragraph: (Default) True
   - article:
     - paragraph: "False"
-  - link "Link Variant arrow_up_right\" / \""
+  - link "Link Variant"
   - article:
     - paragraph: (Default) Block
     - link "Textlink"
   - article:
     - paragraph: Inline
     - link "Textlink"
-  - link "Show Headline arrow_up_right\" / \""
+  - link "Show Headline"
   - article:
     - text: Headline
     - paragraph: (Default) True
   - article:
     - paragraph: "False"
-  - link "Show Timestamp arrow_up_right\" / \""
+  - link "Show Timestamp"
   - article:
     - paragraph: (Default) False
   - article:
     - paragraph: "True"
     - text: 10 min ago
-  - link "Examples - Variant:Docked arrow_up_right\" / \""
+  - link "Examples - VariantDocked":
   - article:
     - paragraph: Text
   - article:
-    - text: information_circle" / "
     - paragraph: Text & Icon
   - article:
     - img "this is a fancy placeholder"
@@ -113,14 +110,13 @@
     - paragraph: Text & Headline & Textlink Inline & Cloaseable
     - link "Textlink"
   - article:
-    - text: information_circle" / " Headline
+    - text: Headline
     - paragraph: Text & Icon & Headline & Textlink Inline & Cloaseable
     - link "Textlink"
-  - link "Examples - Variant:Standalone arrow_up_right\" / \""
+  - link "Examples - VariantStandalone":
   - article:
     - paragraph: Text
   - article:
-    - text: information_circle" / "
     - paragraph: Text & Icon
   - article:
     - img "this is a fancy placeholder"
@@ -139,14 +135,13 @@
     - paragraph: Text & Headline & Textlink Inline & Cloaseable
     - link "Textlink"
   - article:
-    - text: information_circle" / " Headline
+    - text: Headline
     - paragraph: Text & Icon & Headline & Textlink Inline & Cloaseable
     - link "Textlink"
-  - link "Examples - Variant:Overlay arrow_up_right\" / \""
+  - link "Examples - VariantOverlay":
   - article:
     - paragraph: Text
   - article:
-    - text: information_circle" / "
     - paragraph: Text & Icon
   - article:
     - img "this is a fancy placeholder"
@@ -162,7 +157,7 @@
     - paragraph: Text & Headline & Textlink Inline & Cloaseable
     - link "Textlink"
   - article:
-    - text: information_circle" / " Headline
+    - text: Headline
     - paragraph: Text & Icon & Headline & Textlink Inline & Cloaseable
     - link "Textlink"
   - article:
@@ -176,6 +171,6 @@
     - paragraph: Text & Headline & Timed & Cloaseable
     - text: 10 min ago
   - article:
-    - text: information_circle" / " Headline
+    - text: Headline
     - paragraph: Text & Icon & Headline & Timed & Cloaseable
     - text: 10 min ago

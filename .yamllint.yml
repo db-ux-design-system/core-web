@@ -10,7 +10,16 @@ rules:
     allow-non-breakable-inline-mappings: true
   document-start:
     present: false
+  document-end:
+    present: false
   comments:
     min-spaces-from-content: 1
+  indentation:
+    spaces: 2
+  trailing-spaces:
+    level: error
+  new-line-at-end-of-file:
+    present: true
 ignore: |
   .git/
+  node_modules/

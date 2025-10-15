@@ -1,8 +1,5 @@
 {
-	"extends": [
-		"stylelint-config-standard",
-		"stylelint-config-sass-guidelines"
-	],
+	"extends": ["stylelint-config-standard-scss"],
 	"plugins": [
 		"stylelint-use-logical",
 		"@double-great/stylelint-a11y",
@@ -24,49 +21,16 @@
 				}
 			}
 		],
-		"db-ux/use-border-height": [true],
+		"db-ux/use-border-width": [true],
 		"db-ux/use-border-radius": [true],
 		"db-ux/use-border-color": [true],
 		"a11y/media-prefers-reduced-motion": true,
 		"a11y/no-outline-none": true,
 		"a11y/selector-pseudo-class-focus": true,
 		"csstools/use-logical": ["always", { "except": ["float"] }],
-		"max-nesting-depth": null,
-		"scss/dollar-variable-colon-space-after": null,
 		"selector-type-no-unknown": [true, { "ignoreTypes": ["/^db/"] }],
 		"no-descending-specificity": null,
-		"selector-max-compound-selectors": null,
-		"selector-no-qualifying-type": [
-			true,
-			{
-				"ignore": ["attribute"]
-			}
-		],
 		"number-max-precision": null,
-		"annotation-no-unknown": [
-			true,
-			{
-				"ignoreAnnotations": ["default", "global"]
-			}
-		],
-		"declaration-property-value-no-unknown": true,
-		"@stylistic/block-opening-brace-space-before": null,
-		"@stylistic/color-hex-case": null,
-		"@stylistic/declaration-bang-space-after": null,
-		"@stylistic/declaration-bang-space-before": null,
-		"@stylistic/declaration-block-semicolon-newline-after": null,
-		"@stylistic/declaration-block-semicolon-space-before": null,
-		"@stylistic/declaration-block-trailing-semicolon": null,
-		"@stylistic/declaration-colon-space-after": null,
-		"@stylistic/declaration-colon-space-before": null,
-		"@stylistic/function-comma-space-after": null,
-		"@stylistic/function-parentheses-space-inside": null,
-		"@stylistic/indentation": null,
-		"@stylistic/media-feature-parentheses-space-inside": null,
-		"@stylistic/no-missing-end-of-source-newline": null,
-		"@stylistic/number-leading-zero": null,
-		"@stylistic/number-no-trailing-zeros": null,
-		"@stylistic/selector-list-comma-newline-after": null,
-		"@stylistic/string-quotes": null
+		"scss/operator-no-newline-after": null
 	}
 }

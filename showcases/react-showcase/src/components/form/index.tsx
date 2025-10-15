@@ -1,23 +1,23 @@
 import { useEffect, useState } from 'react';
 import {
-	DBDivider,
-	DBTabList,
-	DBTabPanel,
-	DBTabs
-} from '@db-ux/react-core-components/src';
-import {
 	DBAccordion,
 	DBAccordionItem,
 	DBButton,
 	DBCheckbox,
+	DBCustomSelect,
+	DBDivider,
 	DBInput,
+	DBLink,
+	DBPopover,
 	DBRadio,
 	DBSelect,
 	DBTabItem,
+	DBTabList,
+	DBTabPanel,
+	DBTabs,
 	DBTag,
 	DBTextarea,
-	DBTooltip,
-	DBLink
+	DBTooltip
 } from '../../../../../output/react/src';
 import type {
 	ChangeEvent,
@@ -36,6 +36,10 @@ const FormComponent = () => {
 
 	const [accordionItems, setAccordionItems] = useState<ValueLabelType[]>();
 	const [tabsTest, setTabsTest] = useState<boolean>(false);
+
+	const [multiSelectValue, setMultiSelectValue] = useState<
+		string[] | undefined
+	>(['o2']);
 
 	useEffect(() => {
 		setTimeout(() => {
@@ -68,6 +72,26 @@ const FormComponent = () => {
 		<div className="form-container">
 			<div>
 				<form>
+					<DBTextarea
+						label="test"
+						placeholder="fieldsizing"
+						resize="none"
+						fieldSizing="content"></DBTextarea>
+
+					<DBCustomSelect
+						options={[
+							{ value: 'Option 1' },
+							{ value: 'Option 2' },
+							{ value: 'Option 3' },
+							{ value: 'Option 4' },
+							{ value: 'Option 5' }
+						]}
+						label="Test"
+						required
+						showSearch
+						multiple
+						placeholder="Placeholder"
+					/>
 					<fieldset>
 						<p>Input:</p>
 						<DBInput
@@ -318,11 +342,13 @@ const FormComponent = () => {
 						<DBTabItem icon="x_placeholder">
 							Airplane Button
 						</DBTabItem>
-						<DBTabItem iconAfter="cancel">Cancel Button</DBTabItem>
-						<DBTabItem iconAfter="cancel">
+						<DBTabItem iconTrailing="cancel">
+							Cancel Button
+						</DBTabItem>
+						<DBTabItem iconTrailing="cancel">
 							Long Button Label with a lot of text
 						</DBTabItem>
-						<DBTabItem icon="x_placeholder" iconAfter="cancel">
+						<DBTabItem icon="x_placeholder" iconTrailing="cancel">
 							Another Button Label with a lot of text
 						</DBTabItem>
 						<DBTabItem
@@ -370,11 +396,40 @@ const FormComponent = () => {
 				<DBDivider />
 
 				<DBAccordion>
-					{accordionItems?.map((item) => (
+					{accordionItems?.map((item, index) => (
 						<DBAccordionItem
 							key={item.value}
 							headlinePlain={item.value}>
-							{item.value}
+							<p>{item.value}</p>
+							{index === 0 && (
+								<DBCustomSelect
+									options={[
+										{ value: 'Option 1' },
+										{ value: 'Option 2' }
+									]}
+									label="Test"
+									required
+									showSearch
+									multiple
+									placeholder="Placeholder"
+								/>
+							)}
+							{index === 1 && (
+								<DBPopover
+									trigger={<DBButton>Popover</DBButton>}>
+									<ul>
+										<li>Content 1</li>
+										<li>Content 2</li>
+										<li>Content 3</li>
+									</ul>
+								</DBPopover>
+							)}
+							{index === 2 && (
+								<DBButton>
+									Tooltip
+									<DBTooltip>Tooltip</DBTooltip>
+								</DBButton>
+							)}
 						</DBAccordionItem>
 					))}
 				</DBAccordion>
@@ -436,21 +491,53 @@ const FormComponent = () => {
 					minLength={10}
 				/>
 
-				<DBTag
-					describedbyid="tooltip-01"
-					semantic="neutral"
-					emphasis="strong">
+				<DBTag semantic="neutral" emphasis="strong">
 					KUZ
 					<DBTooltip id="tooltip-01" placement="right-end">
 						Beschreibungstext
 					</DBTooltip>
 				</DBTag>
-				<DBButton describedbyid="tooltip-01">
+				<DBButton>
 					KUZ
 					<DBTooltip id="tooltip-01" placement="right-end">
 						Beschreibungstext
 					</DBTooltip>
 				</DBButton>
+
+				<form
+					onSubmit={(event) => {
+						event.preventDefault();
+
+						console.log(event);
+					}}>
+					<DBCustomSelect
+						name="input-multi"
+						label="Test"
+						options={[
+							{ label: 'O1', value: 'o1' },
+							{ label: 'O2', value: 'o2' },
+							{ label: 'O3', value: 'o3' },
+							{ label: 'O4', value: 'o4' },
+							{ label: 'O5', value: 'o5' },
+							{ label: 'O6', value: 'o6' }
+						]}
+						placeholder="Test"
+						selectAllLabel="Select all"
+						searchLabel="Search"
+						noResultsText="No matching filter"
+						values={multiSelectValue}
+						onOptionSelected={(value) => {
+							setMultiSelectValue(value);
+						}}
+					/>
+					<DBButton
+						onClick={() => {
+							setMultiSelectValue([]);
+						}}>
+						Reset Multiselect
+					</DBButton>
+					<DBButton type="submit">Submit</DBButton>
+				</form>
 
 				<div>
 					<DBTag>

@@ -1,9 +1,13 @@
-import { DBCheckbox, DBInfotext } from '../../../../../output/react/src';
-import DefaultComponent from '../default-component';
-import { getVariants } from '../data';
-import defaultComponentVariants from '../../../../shared/checkbox.json';
+import {
+	DBCheckbox,
+	DBInfotext,
+	getBoolean
+} from '../../../../../output/react/src';
 import { type DBCheckboxProps } from '../../../../../output/react/src/components/checkbox/model';
+import defaultComponentVariants from '../../../../shared/checkbox.json';
 import { type BaseComponentProps } from '../base-component-data';
+import { getVariants } from '../data';
+import DefaultComponent from '../default-component';
 
 const getCheckbox = ({
 	label,
@@ -18,16 +22,18 @@ const getCheckbox = ({
 	showLabel,
 	validation,
 	invalidMessage,
-	validMessage
+	validMessage,
+	showRequiredAsterisk
 }: DBCheckboxProps) => (
 	<>
 		<DBCheckbox
 			label={label}
 			size={size}
 			name={name}
-			defaultChecked={checked}
+			defaultChecked={getBoolean(checked)}
 			invalidMessage={invalidMessage}
 			validMessage={validMessage}
+			showRequiredAsterisk={showRequiredAsterisk}
 			required={required}
 			disabled={disabled}
 			variant={variant}

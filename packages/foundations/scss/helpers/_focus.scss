@@ -1,23 +1,30 @@
 @use "../variables";
 @use "../colors";
 
-%focus-placeholder {
-	outline: #{variables.$db-border-height-2xs} solid
+@mixin get-focus-placeholder {
+	outline: #{variables.$db-border-width-2xs} solid
 		var(
 			--db-focus-outline-color,
-			#{colors.$db-informational-on-bg-basic-emphasis-80-default}
+			#{colors.$db-informational-on-bg-basic-emphasis-70-default}
 		);
-	outline-offset: variables.$db-border-height-xs;
-	box-shadow: 0 0 0 #{variables.$db-border-height-xs}
+	outline-offset: variables.$db-border-width-xs;
+	box-shadow: 0 0 0 #{variables.$db-border-width-xs}
 		var(--db-focus-box-shadow-bg-color, transparent);
 
-	&:not([type="radio"], [role="switch"]) {
-		border-radius: variables.$db-border-radius-xs;
-	}
-
 	@media screen and (prefers-reduced-motion: no-preference) {
+		// stylelint-disable-next-line no-invalid-position-declaration
 		transition:
 			outline #{variables.$db-transition-duration-extra-fast},
 			box-shadow #{variables.$db-transition-duration-extra-fast};
+	}
+}
+
+%focus-placeholder {
+	&:not([data-disable-focus="true"]) {
+		@include get-focus-placeholder;
+
+		&:not([type="radio"], [role="switch"]) {
+			border-radius: variables.$db-border-radius-xs;
+		}
 	}
 }

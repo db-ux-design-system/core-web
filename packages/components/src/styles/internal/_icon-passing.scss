@@ -2,7 +2,7 @@
 @use "@db-ux/core-foundations/build/styles/icons";
 
 @mixin icon-passing($inline-start: variables.$db-spacing-fixed-sm) {
-	&[data-icon]:not([data-hide-icon="true"]) {
+	&[data-icon]:not([data-show-icon="false"]) {
 		&::before {
 			position: absolute;
 			inset-block-start: calc(50% - 0.5em);
@@ -16,7 +16,7 @@
 		label {
 			--db-padding-inline-start: calc(
 				#{$inline-start} + #{icons.$default-icon-margin-end} +
-					var(--db-base-font-size) * var(--db-base-line-height)
+					var(--db-icon-font-size)
 			);
 
 			/* stylelint-disable-next-line db-ux/use-spacings */

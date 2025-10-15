@@ -18,17 +18,15 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [macos-13, windows-2022]
+        # TODO: enable again after guidepup controlling Voiceover on MacOS 14 and 15 gets more stable
+        # https://github.com/actions/runner-images/issues/11257 needs to get fixed for that
+        # os: [macos-13, windows-2022]
+        os: [windows-2022] # macOS is not perfectly supported yet, we disable it for now
         shardIndex: [1, 2, 3, 4]
         shardTotal: [4]
     steps:
       - name: ⏬ Checkout repo
-        uses: actions/checkout@v4
-
-      - name: 🦮 Guidepup Setup
-        uses: guidepup/setup-action@0.17.2
-        with:
-          record: true
+        uses: actions/checkout@v5
 
       - name: 🔄 Init Cache
         uses: ./.github/actions/npm-cache
@@ -36,10 +34,16 @@ jobs:
       - name: 🔄 Init Playwright Cache
         uses: ./.github/actions/playwright-cache
         with:
+          os: ${{ matrix.os }}
           version: ${{ inputs.version }}
 
+      - name: 🦮 Guidepup Setup Windows
+        uses: guidepup/setup-action@0.17.3
+        with:
+          record: true
+
       - name: ⏬ Download react-showcase
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v5
         with:
           name: db-ux-react-showcase
           path: build-showcases/react-showcase

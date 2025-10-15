@@ -7,18 +7,23 @@ $db-violet-bg-basic-level-2-pressed: var(--db-violet-bg-basic-level-2-pressed);
 $db-violet-bg-basic-level-3-default: var(--db-violet-bg-basic-level-3-default);
 $db-violet-bg-basic-level-3-hovered: var(--db-violet-bg-basic-level-3-hovered);
 $db-violet-bg-basic-level-3-pressed: var(--db-violet-bg-basic-level-3-pressed);
-
 $db-violet-bg-basic-transparent-full-default: var(
 	--db-violet-bg-basic-transparent-full-default
 );
 $db-violet-bg-basic-transparent-semi-default: var(
 	--db-violet-bg-basic-transparent-semi-default
 );
-$db-violet-bg-basic-transparent-hovered: var(
-	--db-violet-bg-basic-transparent-hovered
+$db-violet-bg-basic-transparent-full-hovered: var(
+	--db-violet-bg-basic-transparent-full-hovered
 );
-$db-violet-bg-basic-transparent-pressed: var(
-	--db-violet-bg-basic-transparent-pressed
+$db-violet-bg-basic-transparent-full-pressed: var(
+	--db-violet-bg-basic-transparent-full-pressed
+);
+$db-violet-bg-basic-transparent-semi-hovered: var(
+	--db-violet-bg-basic-transparent-semi-hovered
+);
+$db-violet-bg-basic-transparent-semi-pressed: var(
+	--db-violet-bg-basic-transparent-semi-pressed
 );
 $db-violet-on-bg-basic-emphasis-100-default: var(
 	--db-violet-on-bg-basic-emphasis-100-default
@@ -110,3 +115,13 @@ $db-violet-origin-pressed: var(--db-violet-origin-pressed);
 $db-violet-on-origin-default: var(--db-violet-on-origin-default);
 $db-violet-on-origin-hovered: var(--db-violet-on-origin-hovered);
 $db-violet-on-origin-pressed: var(--db-violet-on-origin-pressed);
+
+// vibrant
+$db-violet-bg-vibrant-default: var(--db-violet-bg-vibrant-default);
+$db-violet-bg-vibrant-hovered: var(--db-violet-bg-vibrant-hovered);
+$db-violet-bg-vibrant-pressed: var(--db-violet-bg-vibrant-pressed);
+
+// on-vibrant
+$db-violet-on-bg-vibrant-default: var(--db-violet-on-bg-vibrant-default);
+$db-violet-on-bg-vibrant-hovered: var(--db-violet-on-bg-vibrant-hovered);
+$db-violet-on-bg-vibrant-pressed: var(--db-violet-on-bg-vibrant-pressed);

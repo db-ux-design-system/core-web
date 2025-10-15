@@ -26,12 +26,6 @@
 				"name": "(Default) Weak"
 			},
 			{
-				"name": "Origin",
-				"props": {
-					"emphasis": "origin"
-				}
-			},
-			{
 				"name": "Strong",
 				"props": {
 					"emphasis": "strong"
@@ -79,47 +73,6 @@
 				"name": "Line Break",
 				"props": {
 					"lineBreak": true
-				}
-			},
-			{
-				"name": "Adaptive Origin",
-				"props": {
-					"emphasis": "origin"
-				}
-			},
-			{
-				"name": "Critical Origin",
-				"props": {
-					"semantic": "critical",
-					"emphasis": "origin"
-				}
-			},
-			{
-				"name": "Informational Origin",
-				"props": {
-					"semantic": "informational",
-					"emphasis": "origin"
-				}
-			},
-			{
-				"name": "Neutral Origin",
-				"props": {
-					"semantic": "neutral",
-					"emphasis": "origin"
-				}
-			},
-			{
-				"name": "Successful Origin",
-				"props": {
-					"semantic": "successful",
-					"emphasis": "origin"
-				}
-			},
-			{
-				"name": "Warning Origin",
-				"props": {
-					"semantic": "warning",
-					"emphasis": "origin"
 				}
 			},
 			{
@@ -181,7 +134,7 @@
 			{
 				"name": "Removable",
 				"props": {
-					"behaviour": "removable"
+					"behavior": "removable"
 				}
 			},
 			{
@@ -306,12 +259,6 @@
 						]
 					}
 				]
-			},
-			{
-				"name": "Removeable",
-				"props": {
-					"behavior": "removable"
-				}
 			}
 		]
 	},
@@ -483,7 +430,7 @@
 				"name": "True",
 				"props": {
 					"icon": "x_placeholder",
-					"content": true
+					"content": "true"
 				}
 			}
 		]
@@ -674,132 +621,6 @@
 								"props": {
 									"name": "radio03",
 									"id": "radio04",
-									"type": "radio"
-								}
-							}
-						]
-					}
-				]
-			}
-		]
-	},
-	{
-		"name": "Example Origin",
-		"role": "group",
-		"examples": [
-			{
-				"name": "Interactive Origin Button with Icon",
-				"props": {
-					"component": "button",
-					"emphasis": "origin",
-					"icon": "x_placeholder",
-					"behaviour": "removable"
-				},
-				"children": [
-					{
-						"name": "button",
-						"native": true,
-						"content": "Interactive Button"
-					}
-				]
-			},
-			{
-				"name": "Interactive Origin Link with Icon",
-				"props": {
-					"component": "link",
-					"emphasis": "origin",
-					"icon": "x_placeholder"
-				},
-				"children": [
-					{
-						"name": "a",
-						"native": true,
-						"content": "Interactive Link",
-						"props": {
-							"href": "#"
-						}
-					}
-				]
-			},
-			{
-				"name": "Interactive Origin Checkbox with Icon",
-				"props": {
-					"component": "checkbox",
-					"emphasis": "origin",
-					"icon": "x_placeholder"
-				},
-				"children": [
-					{
-						"name": "label",
-						"native": true,
-						"content": "Interactive Checkbox",
-						"props": {
-							"for": "checkbox055"
-						},
-						"children": [
-							{
-								"name": "input",
-								"native": true,
-								"id": "checkbox055",
-								"type": "checkbox"
-							}
-						]
-					}
-				]
-			},
-			{
-				"name": "Interactive Origin Radio 1 with Icon",
-				"props": {
-					"component": "radio",
-					"emphasis": "origin",
-					"icon": "x_placeholder",
-					"identifier": "radio035"
-				},
-				"children": [
-					{
-						"name": "label",
-						"native": true,
-						"content": "Interactive Radio 3",
-						"props": {
-							"for": "radio035"
-						},
-						"children": [
-							{
-								"name": "input",
-								"native": true,
-								"props": {
-									"name": "radio035",
-									"id": "radio035",
-									"type": "radio"
-								}
-							}
-						]
-					}
-				]
-			},
-			{
-				"name": "Interactive Origin Radio 2 with Icon",
-				"props": {
-					"component": "radio",
-					"emphasis": "origin",
-					"icon": "x_placeholder",
-					"identifier": "radio035"
-				},
-				"children": [
-					{
-						"name": "label",
-						"native": true,
-						"content": "Interactive Radio 4",
-						"props": {
-							"for": "radio045"
-						},
-						"children": [
-							{
-								"name": "input",
-								"native": true,
-								"props": {
-									"name": "radio035",
-									"id": "radio045",
 									"type": "radio"
 								}
 							}

@@ -1,0 +1,21 @@
+name: Preview URL PR Description
+
+permissions:
+  pull-requests: write
+
+on:
+  workflow_call:
+
+jobs:
+  preview-url-pr-description:
+    runs-on: ubuntu-24.04 # Use Ubuntu 24.04 explicitly
+    steps:
+      - name: ⏬ Checkout repo
+        uses: actions/checkout@v5
+
+      - name: 🔭 Add url for preview page
+        uses: actions/github-script@v8
+        with:
+          script: |
+            const { default: previewUrlPrDescription } = await import('${{ github.workspace }}/scripts/github/preview-url-pr-description.js');
+            return await previewUrlPrDescription({github, context});

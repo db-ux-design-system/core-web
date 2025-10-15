@@ -1,10 +1,10 @@
+import { isDevMode } from '@angular/core';
 import { bootstrapApplication } from '@angular/platform-browser';
 import { provideRouter, withHashLocation } from '@angular/router';
-import { isDevMode } from '@angular/core';
-import { Sa11y, Lang } from 'sa11y/dist/js/sa11y.esm.js';
 import Sa11yLangEn from 'sa11y/dist/js/lang/en.js';
-import { getRoutes } from './app/utils/navigation-item';
+import { Lang, Sa11y } from 'sa11y/dist/js/sa11y.esm.js';
 import { AppComponent } from './app/app.component';
+import { getRoutes } from './app/utils/navigation-item';
 
 if (isDevMode()) {
 	Lang.addI18n(Sa11yLangEn.strings);

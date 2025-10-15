@@ -1,5 +1,3 @@
-/* eslint-disable import/no-anonymous-default-export */
-
 /**
  * @param props {object}
  * @param framework {'angular'|'react'|'vue'}
@@ -81,6 +79,7 @@ const getTag = (componentName) =>
  * @param [children] {{name:string, props: object,native?:boolean,slot?:string, angularDirective?:boolean, content?:string,children?:{name:string, props: object,native?:boolean}[]}[]}
  * @returns {string}
  */
+
 export const getCodeByFramework = (
 	componentName,
 	framework,
@@ -91,6 +90,13 @@ export const getCodeByFramework = (
 	const { props, name, content, native } = example;
 	let className = '';
 	let tag = `DB${getTag(componentName)}`;
+	// Self-contained or composition components
+	const nonInnerContentComponents = [
+		'input',
+		'select',
+		'textarea',
+		'custom-select'
+	];
 	if (framework === 'angular') {
 		tag = `db-${componentName}`;
 	}
@@ -125,7 +131,10 @@ export const getCodeByFramework = (
 						)
 					)
 					.join('\n') + (content ?? '')
-			: (content ?? name);
+			: (content ??
+				(nonInnerContentComponents.includes(componentName)
+					? ''
+					: name));
 
 	const slots = (children ?? example.children)?.filter((child) =>
 		child.slot
@@ -144,13 +153,7 @@ export const getCodeByFramework = (
 						slotName =
 							slotName.charAt(0).toLowerCase() +
 							slotName.slice(1);
-						return `${slotName}={${getCodeByFramework(
-							child.name,
-							framework,
-							child,
-							noEvents,
-							child.children
-						)}}`;
+						return `${slotName}={${getCodeByFramework(child.name, framework, child, noEvents, child.children)}}`;
 					})
 					.join('\n');
 		} else {
@@ -181,14 +184,16 @@ export const getCodeByFramework = (
 
 	// Workaround for tooltip
 	if (componentName === 'tooltip') {
-		return innerContent.replace(
+		const tooltipCode = innerContent.replace(
 			'</',
-			`<${tag}${className} ${attributes
-				.filter((attr) => attr !== 'content')
-				.join(' ')}>${
-				attributes.find((attr) => attr === 'content') ?? ''
+			`<${tag}${className} ${attributes.filter((attr) => attr.startsWith('"content')).join(' ')}>${
+				props.content ?? ''
 			}</${tag}></`
 		);
+
+		console.log(tooltipCode);
+
+		return tooltipCode;
 	}
 
 	return `<${tag}${className} ${attributes.join(' ')}${reactSlots}>
@@ -218,6 +223,29 @@ export const getColorVariants = () => [
 	'informational-transparent-semi'
 ];
 
+/**
+ * Clean names by removing spaces and special characters to create valid JavaScript property names
+ * @param {string} name - The name to clean
+ * @returns {string} - Cleaned name with only word characters
+ */
+export const cleanupName = (name) => {
+	if (!name) return '';
+	return name.replaceAll(/\s+/g, '').replaceAll(/\W/g, '');
+};
+
+/**
+ * Generate a consistent key for allExamples object
+ * @param {string} componentName - Component name
+ * @param {string} variantName - Variant name (will be cleaned)
+ * @param {string} exampleName - Example name (will be cleaned)
+ * @returns {string} - Clean key for allExamples
+ */
+export const generateExampleKey = (componentName, variantName, exampleName) => {
+	const cleanVariantName = cleanupName(variantName);
+	const cleanExampleName = cleanupName(exampleName);
+	return `${componentName}${cleanVariantName}${cleanExampleName}`;
+};
+
 export const transformToUpperComponentName = (componentName) =>
 	componentName
 		? componentName
@@ -226,24 +254,13 @@ export const transformToUpperComponentName = (componentName) =>
 				.join('')
 		: '';
 
-export const getComponentName = (elementName) => {
-	return elementName.replace('db-', '');
-};
+export const getComponentName = (elementName) => elementName.replace('db-', '');
 
-export const getComponentGroup = (components, componentName) => {
-	return components.find((comp) =>
+export const getComponentGroup = (components, componentName) =>
+	components.find((comp) =>
 		comp.subNavigation.find(
 			(sub) =>
 				componentName.includes(sub.name) ||
 				componentName.replace('tab-item', 'tabs').includes(sub.name)
 		)
 	);
-};
-
-export default {
-	getCodeByFramework,
-	getColorVariants,
-	getComponentName,
-	getComponentGroup,
-	transformToUpperComponentName
-};

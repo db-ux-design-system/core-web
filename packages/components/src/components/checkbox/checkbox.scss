@@ -15,39 +15,58 @@
 		justify-content: center;
 		block-size: calc(
 			#{form-components.$font-size-height} - 2 *
-				#{variables.$db-border-height-3xs}
+				#{variables.$db-border-width-3xs}
 		);
 		inline-size: calc(
 			#{form-components.$font-size-height} - 2 *
-				#{variables.$db-border-height-3xs}
+				#{variables.$db-border-width-3xs}
 		);
 	}
 }
 
 .db-checkbox {
 	@extend %helper-message;
+	@include form-components.set-default-check-element;
 
-	@include form-components.set-default-check-element(check);
+	&:not(:has(input:disabled)) {
+		@include form-components.get-state;
+		@include form-components.get-state("active");
+	}
+
+	@include form-components.get-validity(check) {
+		&:has(.db-infotext[data-semantic="successful"]) {
+			@include form-components.get-validity-color-checkbox("valid");
+		}
+	}
+
+	@include form-components.get-validity(check, "invalid") {
+		@include form-components.get-validity-color-checkbox("invalid");
+	}
 
 	input {
-		display: flex;
+		@include helpers.display(flex);
+
 		border-radius: variables.$db-border-radius-2xs;
 		align-items: center;
 		justify-content: center;
 
 		&:checked {
 			--db-check-element-border-color: #{colors.$db-adaptive-on-bg-basic-emphasis-70-default};
+			--db-icon-color: var(--db-adaptive-on-bg-inverted-default);
+			--db-adaptive-bg-basic-transparent-full-default: var(
+				--db-adaptive-bg-inverted-contrast-max-default
+			);
+			--db-adaptive-bg-basic-transparent-full-hovered: var(
+				--db-adaptive-bg-inverted-contrast-max-hovered
+			);
+			--db-adaptive-bg-basic-transparent-full-pressed: var(
+				--db-adaptive-bg-inverted-contrast-max-pressed
+			);
 
 			@extend %center-icon;
 
 			// Check icon
 			@include icons.set-icon("check");
-			@include colors.set-current-colors(
-				colors.$db-adaptive-bg-inverted-contrast-max-default,
-				colors.$db-adaptive-on-bg-inverted-default,
-				colors.$db-adaptive-bg-inverted-contrast-max-hovered,
-				colors.$db-adaptive-bg-inverted-contrast-max-pressed
-			);
 
 			// The icon within the checkbox has the same dimensions as the checkbox itself and that for there can't be any border
 			border-width: 0;
@@ -55,7 +74,6 @@
 
 		&:indeterminate {
 			@extend %center-icon;
-
 			@include icons.set-icon("minus");
 		}
 
@@ -66,7 +84,7 @@
 
 				border-width: form-components.$check-border-size;
 
-				&:not([data-hide-icon-before="true"])::before {
+				&:not([data-show-icon-leading="false"])::before {
 					align-content: center;
 					font-size: calc(
 						var(--db-icon-font-size) - 2 *

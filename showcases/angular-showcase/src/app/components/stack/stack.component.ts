@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
-import { DefaultComponent } from '../default.component';
-import defaultComponentVariants from '../../../../../shared/stack.json';
-import { DBStack } from '../../../../../../output/angular/src/components/stack';
-import { DBInfotext } from '../../../../../../output/angular/src/components/infotext';
 import { DBDivider } from '../../../../../../output/angular/src/components/divider';
+import { DBInfotext } from '../../../../../../output/angular/src/components/infotext';
+import { DBStack } from '../../../../../../output/angular/src/components/stack';
+import defaultComponentVariants from '../../../../../shared/stack.json';
 import { environment } from '../../../environments/environment';
+import { DefaultComponent } from '../default.component';
 
 @Component({
 	selector: 'app-stack',

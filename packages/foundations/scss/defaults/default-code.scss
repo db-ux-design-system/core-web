@@ -4,13 +4,19 @@
 @use "../variables";
 @use "../helpers";
 
-pre:has(code) {
+pre:not([class]):has(code) {
 	background-color: colors.$db-adaptive-bg-inverted-contrast-max-default;
 	color: colors.$db-adaptive-on-bg-inverted-default;
 	padding: variables.$db-spacing-fixed-xs;
+
+	&,
+	code,
+	span {
+		font-family: monospace;
+	}
 }
 
-a:has(code) {
+a:has(code:not([class]):only-child) {
 	background-color: colors.$db-adaptive-bg-inverted-contrast-max-default;
 	color: colors.$db-adaptive-on-bg-inverted-default;
 
@@ -27,14 +33,19 @@ a:has(code) {
 	}
 }
 
-code {
+code:not([class]) {
 	background-color: colors.$db-adaptive-bg-inverted-contrast-max-default;
 	color: colors.$db-adaptive-on-bg-inverted-default;
 	padding-block: variables.$db-spacing-fixed-3xs;
 	padding-inline: variables.$db-spacing-fixed-2xs;
+
+	&,
+	span {
+		font-family: monospace;
+	}
 }
 
-blockquote {
+blockquote:not([class]) {
 	@extend %db-neutral-bg-basic-transparent-semi;
 
 	margin: 0;

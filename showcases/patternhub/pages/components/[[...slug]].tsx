@@ -1,13 +1,13 @@
-import { useRouter } from 'next/router';
-import React, { ReactElement } from 'react';
 import { GetStaticPaths, GetStaticProps } from 'next';
+import { useRouter } from 'next/router';
+import { ReactElement } from 'react';
+import CardNavigation from '../../components/card-navigation/card-navigation';
+import DefaultPage from '../../components/default-page';
+import OldRoutingFallback from '../../components/old-routing-fallback';
 import {
 	componentChildren,
 	getAllComponentGroupNames
 } from '../../data/routes';
-import DefaultPage from '../../components/default-page';
-import CardNavigation from '../../components/card-navigation/card-navigation';
-import OldRoutingFallback from '../../components/old-routing-fallback';
 
 export interface DBPagePath {
 	params: {

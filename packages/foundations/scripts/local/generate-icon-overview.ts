@@ -3,7 +3,6 @@
  */
 
 import { writeFileSync } from 'node:fs';
-import * as prettier from 'prettier';
 import { ALL_ICONS } from '../../src';
 
 const generateIconOverview = async () => {
@@ -14,12 +13,9 @@ const generateIconOverview = async () => {
 <html lang="en">
 	<head>
 		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title>Icon Overview</title>
-		<link
-			rel="stylesheet"
-			href="/build/styles/absolute.css"
-		/>
-		<link rel="stylesheet" href="/build/styles/defaults/default-theme.css" />
+		<link rel="stylesheet" href="/dev/index.css" />
 		<link rel="stylesheet" href="/build/styles/icons/absolute.css" />
 		<style>
 			.db-infotext {
@@ -52,11 +48,8 @@ data-semantic="informational"
 </div>
 </body>
 </html>`;
-		// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment,@typescript-eslint/no-unsafe-call
-		const output: string = await prettier.format(iconHtml, {
-			parser: 'html'
-		});
-		writeFileSync('./dev/icons.html', output);
+		// we're formatting the code with Prettier within package.json (to easily resolve to the config)
+		writeFileSync('./dev/icons.html', iconHtml);
 	} catch (error) {
 		console.error(error);
 	}

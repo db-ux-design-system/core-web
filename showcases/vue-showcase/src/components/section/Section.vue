@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import DefaultComponent from "../DefaultComponent.vue";
+import { DBCard, DBSection } from "../../../../../output/vue/src";
 import defaultComponentVariants from "../../../../shared/section.json";
-import { DBSection, DBCard } from "../../../../../output/vue/src";
+import DefaultComponent from "../DefaultComponent.vue";
 </script>
 
 <template>
@@ -10,7 +10,7 @@ import { DBSection, DBCard } from "../../../../../output/vue/src";
 			#example="{ exampleIndex, variantIndex, exampleName, exampleProps }"
 		>
 			<DBSection
-				class="db-informational-bg-basic-level-2 section-card-container"
+				class="db-color-informational db-bg-color-basic-level-2 section-card-container"
 				:spacing="exampleProps?.spacing"
 				:width="exampleProps?.width"
 			>

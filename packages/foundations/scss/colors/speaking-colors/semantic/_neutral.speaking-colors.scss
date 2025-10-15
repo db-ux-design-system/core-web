@@ -25,18 +25,23 @@ $db-neutral-bg-basic-level-3-hovered: var(
 $db-neutral-bg-basic-level-3-pressed: var(
 	--db-neutral-bg-basic-level-3-pressed
 );
-
 $db-neutral-bg-basic-transparent-full-default: var(
 	--db-neutral-bg-basic-transparent-full-default
 );
 $db-neutral-bg-basic-transparent-semi-default: var(
 	--db-neutral-bg-basic-transparent-semi-default
 );
-$db-neutral-bg-basic-transparent-hovered: var(
-	--db-neutral-bg-basic-transparent-hovered
+$db-neutral-bg-basic-transparent-full-hovered: var(
+	--db-neutral-bg-basic-transparent-full-hovered
 );
-$db-neutral-bg-basic-transparent-pressed: var(
-	--db-neutral-bg-basic-transparent-pressed
+$db-neutral-bg-basic-transparent-full-pressed: var(
+	--db-neutral-bg-basic-transparent-full-pressed
+);
+$db-neutral-bg-basic-transparent-semi-hovered: var(
+	--db-neutral-bg-basic-transparent-semi-hovered
+);
+$db-neutral-bg-basic-transparent-semi-pressed: var(
+	--db-neutral-bg-basic-transparent-semi-pressed
 );
 $db-neutral-on-bg-basic-emphasis-100-default: var(
 	--db-neutral-on-bg-basic-emphasis-100-default
@@ -128,3 +133,13 @@ $db-neutral-origin-pressed: var(--db-neutral-origin-pressed);
 $db-neutral-on-origin-default: var(--db-neutral-on-origin-default);
 $db-neutral-on-origin-hovered: var(--db-neutral-on-origin-hovered);
 $db-neutral-on-origin-pressed: var(--db-neutral-on-origin-pressed);
+
+// vibrant
+$db-neutral-vibrant-default: var(--db-neutral-vibrant-default);
+$db-neutral-vibrant-hovered: var(--db-neutral-vibrant-hovered);
+$db-neutral-vibrant-pressed: var(--db-neutral-vibrant-pressed);
+
+// on-vibrant
+$db-neutral-on-vibrant-default: var(--db-neutral-on-vibrant-default);
+$db-neutral-on-vibrant-hovered: var(--db-neutral-on-vibrant-hovered);
+$db-neutral-on-vibrant-pressed: var(--db-neutral-on-vibrant-pressed);

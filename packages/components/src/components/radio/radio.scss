@@ -1,12 +1,49 @@
 @use "@db-ux/core-foundations/build/styles/variables";
 @use "@db-ux/core-foundations/build/styles/colors";
+@use "@db-ux/core-foundations/build/styles/helpers";
 @use "../../styles/internal/form-components";
 
+@mixin get-radio-validity-colors($variant: "successful") {
+	--db-check-element-border-color: var(
+		--db-#{$variant}-on-bg-basic-emphasis-70-default
+	);
+	--db-adaptive-on-bg-basic-emphasis-100-default: var(
+		--db-#{$variant}-on-bg-basic-emphasis-80-default
+	);
+	--db-adaptive-on-bg-basic-emphasis-100-hovered: var(
+		--db-#{$variant}-on-bg-basic-emphasis-80-hovered
+	);
+	--db-adaptive-on-bg-basic-emphasis-100-pressed: var(
+		--db-#{$variant}-on-bg-basic-emphasis-80-pressed
+	);
+	--db-adaptive-bg-basic-transparent-full-default: var(
+		--db-#{$variant}-bg-basic-transparent-full-default
+	);
+	--db-adaptive-bg-basic-transparent-full-hovered: var(
+		--db-#{$variant}-bg-basic-transparent-full-hovered
+	);
+	--db-adaptive-bg-basic-transparent-full-pressed: var(
+		--db-#{$variant}-bg-basic-transparent-full-pressed
+	);
+}
+
 .db-radio {
-	@include form-components.set-default-check-element(radio);
+	@include form-components.set-default-check-element;
+
+	&:not(:has(input:checked, input:disabled)) {
+		@include form-components.get-state;
+		@include form-components.get-state("active");
+	}
+
+	@include form-components.get-validity(radio) {
+		@include get-radio-validity-colors;
+	}
+
+	@include form-components.get-validity(radio, "invalid") {
+		@include get-radio-validity-colors("critical");
+	}
 
 	input {
-		border-color: currentcolor;
 		border-radius: variables.$db-border-radius-full;
 
 		@media screen and (prefers-reduced-motion: no-preference) {
@@ -15,11 +52,6 @@
 		}
 
 		&:checked {
-			// The radio element still has the default background for the dot on :hover when in checked state
-			&:not(:disabled):is(:hover, :focus) {
-				background-color: colors.$db-adaptive-bg-basic-transparent-full-default;
-			}
-
 			&:not([data-size="small"]) {
 				border-width: calc(
 					(

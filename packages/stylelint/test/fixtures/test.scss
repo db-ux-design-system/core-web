@@ -1,7 +1,7 @@
 @use "sass:map";
 
 .border-color-special {
-	border: variables.$db-border-height-sm solid
+	border: variables.$db-border-width-sm solid
 		var(
 			--db-check-element-border-color,
 			#{colors.$db-adaptive-on-bg-basic-emphasis-100-default}
@@ -17,7 +17,7 @@
 .right {
 	margin: calc(var(--db-spacing-fixed-xl) + var(--db-sizing-sm));
 	border-radius: var(--db-border-radius-md);
-	border: var(--db-border-height-md) solid
+	border: var(--db-border-width-md) solid
 		var(--db-adaptive-on-bg-basic-emphasis-70);
 }
 
@@ -26,7 +26,8 @@
 	padding: $default-icon-margin-end;
 	border-top-left-radius: $custom-radius;
 	border-top-right-radius: var(--custom-radius);
-	border: var(--custom-border) solid var(--db-adaptive-on-bg-basic-emphasis-70);
+	border: var(--custom-border) solid
+		var(--db-adaptive-on-bg-basic-emphasis-70);
 }
 
 .map {

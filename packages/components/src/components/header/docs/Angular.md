@@ -9,7 +9,7 @@ For general installation and configuration take a look at the [ngx-core-componen
 import {
 	DBHeader,
 	NavigationDirective,
-	ActionBarDirective,
+	SecondaryActionDirective,
 	MetaNavigationDirective
 } from '@db-ux/ngx-core-components';
 

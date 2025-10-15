@@ -10,12 +10,24 @@
 		let-exampleIndex="exampleIndex"
 		let-variantIndex="variantIndex"
 	>
-		<db-card
-			[behavior]="exampleProps?.behavior"
-			[elevationLevel]="exampleProps?.elevationLevel"
-			[spacing]="exampleProps?.spacing"
-		>
-			<strong>{{ exampleName }}</strong>
-		</db-card>
+		@if (exampleProps?.behavior === "interactive") {
+			<button type="button">
+				<db-card
+					[behavior]="exampleProps?.behavior"
+					[elevationLevel]="exampleProps?.elevationLevel"
+					[spacing]="exampleProps?.spacing"
+				>
+					<strong>{{ exampleName }}</strong>
+				</db-card>
+			</button>
+		} @else {
+			<db-card
+				[behavior]="exampleProps?.behavior"
+				[elevationLevel]="exampleProps?.elevationLevel"
+				[spacing]="exampleProps?.spacing"
+			>
+				<strong>{{ exampleName }}</strong>
+			</db-card>
+		}
 	</ng-template>
 </app-default-component>

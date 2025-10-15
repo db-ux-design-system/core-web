@@ -5,11 +5,13 @@ import {
 	DBTabPanel,
 	DBTabs
 } from "../../../../../output/vue/src";
-import Form from "../form/Form.vue";
-import Textareas from "../form/Textareas.vue";
-import Selects from "../form/Selects.vue";
 import Checkboxes from "../form/Checkboxes.vue";
+import CustomSelects from "../form/Custom-Selects.vue";
+import Form from "../form/Form.vue";
 import Inputs from "../form/Inputs.vue";
+import Radios from "../form/Radios.vue";
+import Selects from "../form/Selects.vue";
+import Textareas from "../form/Textareas.vue";
 </script>
 
 <template>
@@ -20,6 +22,10 @@ import Inputs from "../form/Inputs.vue";
 			<DBTabItem data-testid="tab-textareas">Textarea</DBTabItem>
 			<DBTabItem data-testid="tab-selects">Select</DBTabItem>
 			<DBTabItem data-testid="tab-checkboxes">Checkbox</DBTabItem>
+			<DBTabItem data-testid="tab-radios">Radios</DBTabItem>
+			<DBTabItem data-testid="tab-custom-selects"
+				>Custom Selects</DBTabItem
+			>
 		</DBTabList>
 		<DBTabPanel>
 			<Form />
@@ -35,6 +41,12 @@ import Inputs from "../form/Inputs.vue";
 		</DBTabPanel>
 		<DBTabPanel>
 			<Checkboxes />
+		</DBTabPanel>
+		<DBTabPanel>
+			<Radios />
+		</DBTabPanel>
+		<DBTabPanel>
+			<CustomSelects />
 		</DBTabPanel>
 	</DBTabs>
 </template>

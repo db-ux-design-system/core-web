@@ -25,18 +25,23 @@ $db-turquoise-bg-basic-level-3-hovered: var(
 $db-turquoise-bg-basic-level-3-pressed: var(
 	--db-turquoise-bg-basic-level-3-pressed
 );
-
 $db-turquoise-bg-basic-transparent-full-default: var(
 	--db-turquoise-bg-basic-transparent-full-default
 );
 $db-turquoise-bg-basic-transparent-semi-default: var(
 	--db-turquoise-bg-basic-transparent-semi-default
 );
-$db-turquoise-bg-basic-transparent-hovered: var(
-	--db-turquoise-bg-basic-transparent-hovered
+$db-turquoise-bg-basic-transparent-full-hovered: var(
+	--db-turquoise-bg-basic-transparent-full-hovered
 );
-$db-turquoise-bg-basic-transparent-pressed: var(
-	--db-turquoise-bg-basic-transparent-pressed
+$db-turquoise-bg-basic-transparent-full-pressed: var(
+	--db-turquoise-bg-basic-transparent-full-pressed
+);
+$db-turquoise-bg-basic-transparent-semi-hovered: var(
+	--db-turquoise-bg-basic-transparent-semi-hovered
+);
+$db-turquoise-bg-basic-transparent-semi-pressed: var(
+	--db-turquoise-bg-basic-transparent-semi-pressed
 );
 $db-turquoise-on-bg-basic-emphasis-100-default: var(
 	--db-turquoise-on-bg-basic-emphasis-100-default
@@ -134,3 +139,13 @@ $db-turquoise-origin-pressed: var(--db-turquoise-origin-pressed);
 $db-turquoise-on-origin-default: var(--db-turquoise-on-origin-default);
 $db-turquoise-on-origin-hovered: var(--db-turquoise-on-origin-hovered);
 $db-turquoise-on-origin-pressed: var(--db-turquoise-on-origin-pressed);
+
+// vibrant
+$db-turquoise-bg-vibrant-default: var(--db-turquoise-bg-vibrant-default);
+$db-turquoise-bg-vibrant-hovered: var(--db-turquoise-bg-vibrant-hovered);
+$db-turquoise-bg-vibrant-pressed: var(--db-turquoise-bg-vibrant-pressed);
+
+// on-vibrant
+$db-turquoise-on-bg-vibrant-default: var(--db-turquoise-on-bg-vibrant-default);
+$db-turquoise-on-bg-vibrant-hovered: var(--db-turquoise-on-bg-vibrant-hovered);
+$db-turquoise-on-bg-vibrant-pressed: var(--db-turquoise-on-bg-vibrant-pressed);

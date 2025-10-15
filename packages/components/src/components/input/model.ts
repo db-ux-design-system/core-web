@@ -8,13 +8,18 @@ import {
 	FormSizeProps,
 	FormState,
 	FormTextProps,
+	FromValidState,
 	GlobalProps,
 	GlobalState,
-	IconAfterProps,
+	IconLeadingProps,
 	IconProps,
+	IconTrailingProps,
 	InputEventProps,
 	InputEventState,
+	ShowIconLeadingProps,
 	ShowIconProps,
+	ShowIconTrailingProps,
+	SizeType,
 	ValueLabelType
 } from '../../shared/model';
 
@@ -48,6 +53,10 @@ export type DBInputDefaultProps = {
 	 */
 	dataListId?: string;
 	/**
+	 * Allow selecting multiple files. https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/input/file#multiple
+	 */
+	multiple?: boolean | string;
+	/**
 	 * Maximum value
 	 */
 	max?: number | string;
@@ -68,6 +77,41 @@ export type DBInputDefaultProps = {
 	 * Sets [step value](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/step).
 	 */
 	step?: number | string;
+	/**
+	 * Hint for the [enter key behavior](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/enterkeyhint) on virtual keyboards.
+	 */
+	enterkeyhint?:
+		| 'enter'
+		| 'done'
+		| 'go'
+		| 'next'
+		| 'previous'
+		| 'search'
+		| 'send';
+	/**
+	 * Hint for [virtual keyboard](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/inputmode) selection.
+	 */
+	inputmode?:
+		| 'none'
+		| 'text'
+		| 'decimal'
+		| 'numeric'
+		| 'tel'
+		| 'search'
+		| 'email'
+		| 'url';
+	/**
+	 * The size of the message infotext. Defaults to "small".
+	 */
+	messageSize?: SizeType;
+	/**
+	 * The size of the valid message infotext. Defaults to "small".
+	 */
+	validMessageSize?: SizeType;
+	/**
+	 * The size of the invalid message infotext. Defaults to "small".
+	 */
+	invalidMessageSize?: SizeType;
 };
 
 export type DBInputProps = DBInputDefaultProps &
@@ -78,14 +122,17 @@ export type DBInputProps = DBInputDefaultProps &
 	FocusEventProps<HTMLInputElement> &
 	FormProps &
 	IconProps &
-	IconAfterProps &
+	IconTrailingProps &
 	FormMessageProps &
 	ShowIconProps &
+	IconLeadingProps &
+	ShowIconLeadingProps &
+	ShowIconTrailingProps &
 	FormSizeProps;
 
 export type DBInputDefaultState = {
 	_dataListId?: string;
-	getDataList: (_list?: string[] | ValueLabelType[]) => ValueLabelType[];
+	getDataList: () => ValueLabelType[];
 };
 
 export type DBInputState = DBInputDefaultState &
@@ -93,4 +140,5 @@ export type DBInputState = DBInputDefaultState &
 	InputEventState<HTMLInputElement> &
 	ChangeEventState<HTMLInputElement> &
 	FocusEventState<HTMLInputElement> &
-	FormState;
+	FormState &
+	FromValidState;

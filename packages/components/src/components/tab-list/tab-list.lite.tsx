@@ -5,16 +5,16 @@ import {
 	useRef,
 	useStore
 } from '@builder.io/mitosis';
-import { DBTabListProps, DBTabListState } from './model';
-import { cls, uuid } from '../../utils';
 import { DEFAULT_ID } from '../../shared/constants';
+import { cls, uuid } from '../../utils';
+import { DBTabListProps, DBTabListState } from './model';
 
 useMetadata({});
 useDefaultProps<DBTabListProps>({});
 
 export default function DBTabList(props: DBTabListProps) {
 	// This is used as forwardRef
-	const _ref = useRef<HTMLDivElement | null>(null);
+	const _ref = useRef<HTMLDivElement | any>(null);
 	// jscpd:ignore-start
 	const state = useStore<DBTabListState>({
 		_id: DEFAULT_ID

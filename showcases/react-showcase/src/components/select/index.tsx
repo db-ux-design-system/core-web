@@ -1,13 +1,13 @@
 import { useState } from 'react';
 import { DBSelect } from '../../../../../output/react/src';
-import DefaultComponent from '../default-component';
-import defaultComponentVariants from '../../../../shared/select.json';
 import type { DBSelectProps } from '../../../../../output/react/src/components/select/model';
-import { getVariants } from '../data';
+import defaultComponentVariants from '../../../../shared/select.json';
 import { type BaseComponentProps } from '../base-component-data';
+import { getVariants } from '../data';
+import DefaultComponent from '../default-component';
 
 const getSelect = ({
-	children,
+	placeholder,
 	label,
 	options,
 	icon,
@@ -20,19 +20,21 @@ const getSelect = ({
 	showMessage,
 	invalidMessage,
 	validMessage,
-	validation
+	validation,
+	showRequiredAsterisk
 }: DBSelectProps) => {
 	const [mValue, setValue] = useState<string>(value);
 	return (
 		<DBSelect
 			label={label}
-			placeholder={children}
+			placeholder={placeholder}
 			options={options}
 			disabled={disabled}
 			variant={variant}
 			showLabel={showLabel}
 			icon={icon}
 			value={mValue}
+			showRequiredAsterisk={showRequiredAsterisk}
 			onChange={(event) => {
 				setValue(event.target.value);
 			}}
@@ -41,9 +43,8 @@ const getSelect = ({
 			showMessage={showMessage}
 			invalidMessage={invalidMessage}
 			validMessage={validMessage}
-			validation={validation}>
-			{children}
-		</DBSelect>
+			validation={validation}
+		/>
 	);
 };
 

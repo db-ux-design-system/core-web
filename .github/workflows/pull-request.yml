@@ -17,8 +17,9 @@ jobs:
   dependabot:
     uses: ./.github/workflows/99-auto-merge.yml
 
-  codeql:
-    uses: ./.github/workflows/99-codeql-analysis.yml
+  self-healing-dependabot-updates:
+    uses: ./.github/workflows/99-self-healing-dependabot-updates.yml
+    secrets: inherit
 
   dependency-review:
     uses: ./.github/workflows/99-dependency-review.yml

@@ -1,10 +1,10 @@
 import { useState } from 'react';
 import { DBButton, DBDrawer } from '../../../../../output/react/src';
-import defaultComponentVariants from '../../../../shared/drawer.json';
 import type { DBDrawerProps } from '../../../../../output/react/src/components/drawer/model';
-import DefaultComponent from '../default-component';
-import { getVariants } from '../data';
+import defaultComponentVariants from '../../../../shared/drawer.json';
 import { type BaseComponentProps } from '../base-component-data';
+import { getVariants } from '../data';
+import DefaultComponent from '../default-component';
 
 type AdditionalDrawerProperties = {
 	openDrawer: string;

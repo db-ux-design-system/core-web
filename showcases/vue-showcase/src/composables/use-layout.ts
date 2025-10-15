@@ -1,5 +1,5 @@
-import { useRoute, useRouter } from 'vue-router';
 import { computed, ref, watch } from 'vue';
+import { useRoute, useRouter } from 'vue-router';
 import {
 	COLOR,
 	COLOR_CONST,

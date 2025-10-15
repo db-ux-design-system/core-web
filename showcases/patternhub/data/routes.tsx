@@ -1,62 +1,64 @@
 import { type ReactElement } from 'react';
-import ButtonComponent from '../../react-showcase/src/components/button';
-import LinkComponent from '../../react-showcase/src/components/link';
 import AccordionComponent from '../../react-showcase/src/components/accordion';
 import AccordionItemComponent from '../../react-showcase/src/components/accordion-item';
 import BrandComponent from '../../react-showcase/src/components/brand';
+import ButtonComponent from '../../react-showcase/src/components/button';
+import LinkComponent from '../../react-showcase/src/components/link';
 // Import IconComponent from '../../react-showcase/src/components/icon';
-import TooltipComponent from '../../react-showcase/src/components/tooltip';
-import InfotextComponent from '../../react-showcase/src/components/infotext';
-import TagComponent from '../../react-showcase/src/components/tag';
-import TabsComponent from '../../react-showcase/src/components/tabs';
-import TabItemComponent from '../../react-showcase/src/components/tab-item';
-import CheckboxComponent from '../../react-showcase/src/components/checkbox';
-import InputComponent from '../../react-showcase/src/components/input';
-import RadioComponent from '../../react-showcase/src/components/radio';
-import SelectComponent from '../../react-showcase/src/components/select';
-import SwitchComponent from '../../react-showcase/src/components/switch';
-import TextareaComponent from '../../react-showcase/src/components/textarea';
-import NotificationComponent from '../../react-showcase/src/components/notification';
 import BadgeComponent from '../../react-showcase/src/components/badge';
 import CardComponent from '../../react-showcase/src/components/card';
+import CheckboxComponent from '../../react-showcase/src/components/checkbox';
 import DividerComponent from '../../react-showcase/src/components/divider';
 import DrawerComponent from '../../react-showcase/src/components/drawer';
 import HeaderComponent from '../../react-showcase/src/components/header';
+import InfotextComponent from '../../react-showcase/src/components/infotext';
+import InputComponent from '../../react-showcase/src/components/input';
+import NotificationComponent from '../../react-showcase/src/components/notification';
+import RadioComponent from '../../react-showcase/src/components/radio';
+import SelectComponent from '../../react-showcase/src/components/select';
+import SwitchComponent from '../../react-showcase/src/components/switch';
+import TabItemComponent from '../../react-showcase/src/components/tab-item';
+import TabsComponent from '../../react-showcase/src/components/tabs';
+import TagComponent from '../../react-showcase/src/components/tag';
+import TextareaComponent from '../../react-showcase/src/components/textarea';
+import TooltipComponent from '../../react-showcase/src/components/tooltip';
 // Import PageComponent from '../../react-showcase/src/components/page';
-import SectionComponent from '../../react-showcase/src/components/section';
 import NavigationComponent from '../../react-showcase/src/components/navigation';
 import NavigationItemComponent from '../../react-showcase/src/components/navigation-item';
 import PopoverComponent from '../../react-showcase/src/components/popover';
-import * as buttonCode from '../components/code-docs/button';
-import * as linkCode from '../components/code-docs/link';
+import SectionComponent from '../../react-showcase/src/components/section';
 import * as accordionCode from '../components/code-docs/accordion';
 import * as accordionItemCode from '../components/code-docs/accordion-item';
 import * as brandCode from '../components/code-docs/brand';
+import * as buttonCode from '../components/code-docs/button';
+import * as linkCode from '../components/code-docs/link';
 // Import * as iconCode from '../components/code-docs/icon';
-import * as tooltipCode from '../components/code-docs/tooltip';
-import * as infotextCode from '../components/code-docs/infotext';
-import * as tagCode from '../components/code-docs/tag';
-import * as tabsCode from '../components/code-docs/tabs';
-import * as tabItemCode from '../components/code-docs/tab-item';
-import * as checkboxCode from '../components/code-docs/checkbox';
-import * as inputCode from '../components/code-docs/input';
-import * as radioCode from '../components/code-docs/radio';
-import * as selectCode from '../components/code-docs/select';
-import * as switchCode from '../components/code-docs/switch';
-import * as textareaCode from '../components/code-docs/textarea';
-import * as notificationCode from '../components/code-docs/notification';
 import * as badgeCode from '../components/code-docs/badge';
 import * as cardCode from '../components/code-docs/card';
+import * as checkboxCode from '../components/code-docs/checkbox';
 import * as dividerCode from '../components/code-docs/divider';
 import * as drawerCode from '../components/code-docs/drawer';
 import * as headerCode from '../components/code-docs/header';
+import * as infotextCode from '../components/code-docs/infotext';
+import * as inputCode from '../components/code-docs/input';
+import * as notificationCode from '../components/code-docs/notification';
+import * as radioCode from '../components/code-docs/radio';
+import * as selectCode from '../components/code-docs/select';
+import * as switchCode from '../components/code-docs/switch';
+import * as tabItemCode from '../components/code-docs/tab-item';
+import * as tabsCode from '../components/code-docs/tabs';
+import * as tagCode from '../components/code-docs/tag';
+import * as textareaCode from '../components/code-docs/textarea';
+import * as tooltipCode from '../components/code-docs/tooltip';
 // Import * as pageCode from '../components/code-docs/page';
-import * as sectionCode from '../components/code-docs/section';
+import MutliSelectComponent from '../../react-showcase/src/components/custom-select';
+import StackComponent from '../../react-showcase/src/components/stack';
+import * as CustomSelectCode from '../components/code-docs/custom-select';
 import * as navigationCode from '../components/code-docs/navigation';
 import * as navigationItemCode from '../components/code-docs/navigation-item';
 import * as popoverCode from '../components/code-docs/popover';
+import * as sectionCode from '../components/code-docs/section';
 import * as StackCode from '../components/code-docs/stack';
-import StackComponent from '../../react-showcase/src/components/stack';
 import Components from './components.json';
 
 export type NavigationItem = {
@@ -69,6 +71,7 @@ export type NavigationItem = {
 };
 
 const nameComponentMap = {
+	'custom-select': <MutliSelectComponent slotCode={CustomSelectCode} />,
 	stack: <StackComponent slotCode={StackCode} />,
 	button: <ButtonComponent slotCode={buttonCode} />,
 	link: <LinkComponent slotCode={linkCode} />,
@@ -234,7 +237,8 @@ export const ROUTES: NavigationItem[] = [
 				path: '/foundations/test-table'
 			},
 			{ label: 'IDE Support', path: '/foundations/ide' },
-			{ label: 'Performance', path: '/foundations/performance' }
+			{ label: 'Performance', path: '/foundations/performance' },
+			{ label: 'Browser Support', path: '/foundations/browser-support' }
 		]
 	},
 	{
@@ -242,8 +246,6 @@ export const ROUTES: NavigationItem[] = [
 		path: '/components',
 		subNavigation: [
 			{ label: 'Readme', path: '/components/readme' },
-			{ label: 'Router usage', path: '/components/router-usage' },
-			{ label: 'Validation', path: '/components/validation' },
 			...componentChildren.map((category) => ({
 				...category,
 				subNavigation: category?.subNavigation?.map(
@@ -272,16 +274,40 @@ export const ROUTES: NavigationItem[] = [
 						]
 					})
 				)
-			}))
+			})),
+			{
+				label: 'Misc',
+				path: '/components/misc',
+				subNavigation: [
+					{
+						label: 'Router usage',
+						path: '/components/misc/router-usage'
+					},
+					{
+						label: 'Creating custom Components',
+						path: '/components/misc/custom-components'
+					},
+					{
+						label: 'Testing',
+						path: '/components/misc/testing'
+					},
+					{
+						label: 'Validation',
+						path: '/components/misc/validation'
+					},
+					{ label: 'Backdrop', path: '/components/misc/backdrop' }
+				]
+			}
 		]
-	}
+	},
+	{ label: 'Playgrounds', path: '/foundations/playgrounds' }
 ];
 
 const fillNavigationRecursive = (
 	navigationItems: NavigationItem[],
 	tree: NavigationItem[],
 	isBreadcrumb?: boolean,
-	prevLabel?: string
+	previousLabel?: string
 ) => {
 	for (const navItem of navigationItems) {
 		tree.push(
@@ -289,8 +315,8 @@ const fillNavigationRecursive = (
 				? navItem
 				: {
 						...navItem,
-						label: prevLabel
-							? `${prevLabel}:${navItem.label}`
+						label: previousLabel
+							? `${previousLabel}:${navItem.label}`
 							: navItem.label
 					}
 		);

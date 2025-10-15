@@ -4,15 +4,15 @@ import {
 	useRef,
 	useStore
 } from '@builder.io/mitosis';
-import { DBStackProps, DBStackState } from './model';
 import { cls, getBooleanAsString } from '../../utils';
+import { DBStackProps, DBStackState } from './model';
 
 useMetadata({});
 useDefaultProps<DBStackProps>({});
 
 export default function DBStack(props: DBStackProps) {
 	// This is used as forwardRef
-	const _ref = useRef<HTMLDivElement | null>(null);
+	const _ref = useRef<HTMLDivElement | any>(null);
 	// jscpd:ignore-start
 	const state = useStore<DBStackState>({});
 	// jscpd:ignore-end

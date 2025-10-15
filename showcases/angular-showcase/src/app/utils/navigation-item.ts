@@ -1,33 +1,34 @@
 import { Routes } from '@angular/router';
-import { StackComponent } from '../components/stack/stack.component';
-import { SwitchComponent } from '../components/switch/switch.component';
-import { TabsComponent } from '../components/tabs/tabs.component';
-import { TabItemComponent } from '../components/tab-item/tab-item.component';
-import { TooltipComponent } from '../components/tooltip/tooltip.component';
-import { PopoverComponent } from '../components/popover/popover.component';
 import { AccordionItemComponent } from '../components/accordion-item/accordion-item.component';
 import { AccordionComponent } from '../components/accordion/accordion.component';
-import { TextareaComponent } from '../components/textarea/textarea.component';
 import { BadgeComponent } from '../components/badge/badge.component';
-import { NavigationItemComponent } from '../components/navigation-item/navigation-item.component';
-import { NavigationComponent } from '../components/navigation/navigation.component';
-import { SelectComponent } from '../components/select/select.component';
-import { TagComponent } from '../components/tag/tag.component';
-import { InputComponent } from '../components/input/input.component';
+import { BrandComponent } from '../components/brand/brand.component';
 import { ButtonComponent } from '../components/button/button.component';
-import { LinkComponent } from '../components/link/link.component';
-import { NotificationComponent } from '../components/notification/notification.component';
-import { RadioComponent } from '../components/radio/radio.component';
-import { CheckboxComponent } from '../components/checkbox/checkbox.component';
-import { InfotextComponent } from '../components/infotext/infotext.component';
-import { SectionComponent } from '../components/section/section.component';
 import { CardComponent } from '../components/card/card.component';
+import { CheckboxComponent } from '../components/checkbox/checkbox.component';
+import { CustomSelectComponent } from '../components/custom-select/custom-select.component';
 import { DividerComponent } from '../components/divider/divider.component';
 import { DrawerComponent } from '../components/drawer/drawer.component';
-import { IconComponent } from '../components/icon/icon.component';
-import { BrandComponent } from '../components/brand/brand.component';
 import { HeaderComponent } from '../components/header/header.component';
 import { HomeComponent } from '../components/home/home.component';
+import { IconComponent } from '../components/icon/icon.component';
+import { InfotextComponent } from '../components/infotext/infotext.component';
+import { InputComponent } from '../components/input/input.component';
+import { LinkComponent } from '../components/link/link.component';
+import { NavigationItemComponent } from '../components/navigation-item/navigation-item.component';
+import { NavigationComponent } from '../components/navigation/navigation.component';
+import { NotificationComponent } from '../components/notification/notification.component';
+import { PopoverComponent } from '../components/popover/popover.component';
+import { RadioComponent } from '../components/radio/radio.component';
+import { SectionComponent } from '../components/section/section.component';
+import { SelectComponent } from '../components/select/select.component';
+import { StackComponent } from '../components/stack/stack.component';
+import { SwitchComponent } from '../components/switch/switch.component';
+import { TabItemComponent } from '../components/tab-item/tab-item.component';
+import { TabsComponent } from '../components/tabs/tabs.component';
+import { TagComponent } from '../components/tag/tag.component';
+import { TextareaComponent } from '../components/textarea/textarea.component';
+import { TooltipComponent } from '../components/tooltip/tooltip.component';
 
 export type NavItem = {
 	path: string;
@@ -116,6 +117,11 @@ export const NAVIGATION_ITEMS: NavItem[] = [
 		path: '03',
 		label: '03 Data-Input',
 		subNavigation: getSortedNavigationItems([
+			{
+				path: '03/custom-select',
+				label: 'CustomSelect',
+				component: CustomSelectComponent
+			},
 			{ path: '03/input', label: 'Input', component: InputComponent },
 			{
 				path: '03/textarea',

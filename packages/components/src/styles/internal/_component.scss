@@ -6,27 +6,25 @@
 $min-mobile-header-height: calc(
 	#{variables.$db-sizing-md} + 2 * #{variables.$db-spacing-fixed-xs}
 );
-
-$default-disabled: 0.4;
-// 0.68 would be fine as well for a11y, but we are big Bryan Adams fans :)
-$placeholder-disabled: 0.69;
+$component-border: variables.$db-border-width-3xs solid
+	colors.$db-adaptive-on-bg-basic-emphasis-60-default;
 
 %default-adaptive-border {
-	border: variables.$db-border-height-3xs solid
+	border: variables.$db-border-width-3xs solid
 		colors.$db-adaptive-on-bg-basic-emphasis-100-default;
 }
 
 %transparent-border {
-	border: variables.$db-border-height-3xs solid transparent;
+	border: variables.$db-border-width-3xs solid transparent;
 }
 
 %component-border {
-	border: variables.$db-border-height-3xs solid
-		colors.$db-adaptive-on-bg-basic-emphasis-60-default;
+	// stylelint-disable-next-line db-ux/use-border-width, db-ux/use-border-color
+	border: $component-border;
 }
 
 %form-component-border {
-	border: variables.$db-border-height-3xs solid
+	border: variables.$db-border-width-3xs solid
 		colors.$db-adaptive-on-bg-basic-emphasis-70-default;
 }
 
@@ -53,7 +51,6 @@ $responsive-spacings: (
 	"small": variables.$db-spacing-responsive-sm,
 	"none": 0
 );
-
 $default-spacings: (
 	"default": variables.$db-spacing-fixed-sm,
 	"large": variables.$db-spacing-fixed-lg,
@@ -64,7 +61,7 @@ $default-spacings: (
 
 @mixin get-data-spacing($type: padding, $spacings: $default-spacings) {
 	@each $name, $spacing in $spacings {
-		@if ($name == "default") {
+		@if $name == "default" {
 			&:not([data-spacing]) {
 				#{$type}: $spacing;
 			}

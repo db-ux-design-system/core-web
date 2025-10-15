@@ -1,7 +1,10 @@
 export const DEFAULT_ID: string = 'OVERWRITE_DEFAULT_ID';
 export const DEFAULT_LABEL: string = 'LABEL SHOULD BE SET';
 export const DEFAULT_PLACEHOLDER: string = ' ';
+export const DEFAULT_MESSAGE: string = 'MESSAGE SHOULD BE SET';
 
+export const DEFAULT_LABEL_ID_SUFFIX: string = '-label';
+export const DEFAULT_SELECT_ID_SUFFIX: string = '-select';
 export const DEFAULT_MESSAGE_ID_SUFFIX: string = '-message';
 export const DEFAULT_VALID_MESSAGE_ID_SUFFIX: string = '-valid-message';
 export const DEFAULT_INVALID_MESSAGE_ID_SUFFIX: string = '-invalid-message';
@@ -11,13 +14,15 @@ export const DEFAULT_DATALIST_ID_SUFFIX: string = '-datalist';
 export const DEFAULT_VALID_MESSAGE: string = 'TODO: Add a validMessage';
 export const DEFAULT_INVALID_MESSAGE: string = 'TODO: Add an invalidMessage';
 
+export const DEFAULT_REMOVE: string = 'Remove';
 export const DEFAULT_BACK: string = 'Back';
+export const DEFAULT_SELECTED: string = 'Selected';
 
 export const DEFAULT_BURGER_MENU: string = 'BurgerMenu';
 export const DEFAULT_ICON: string = 'brand';
 export const DEFAULT_ROWS: number = 4;
 
-export const DEFAULT_CLOSE_BUTTON: string = 'Close Button';
+export const DEFAULT_CLOSE_BUTTON: string = 'Close';
 export const DENSITY_CONST: string = 'density';
 export const COLOR_CONST: string = 'color';
 

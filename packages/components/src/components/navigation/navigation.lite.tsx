@@ -5,16 +5,16 @@ import {
 	useRef,
 	useStore
 } from '@builder.io/mitosis';
-import { DBNavigationProps, DBNavigationState } from './model';
-import { cls, uuid } from '../../utils';
 import { DEFAULT_ID } from '../../shared/constants';
+import { cls, uuid } from '../../utils';
+import { DBNavigationProps, DBNavigationState } from './model';
 
 useMetadata({});
 
 useDefaultProps<DBNavigationProps>({});
 
 export default function DBNavigation(props: DBNavigationProps) {
-	const _ref = useRef<HTMLDivElement | null>(null);
+	const _ref = useRef<HTMLDivElement | any>(null);
 	// jscpd:ignore-start
 	const state = useStore<DBNavigationState>({
 		_id: DEFAULT_ID
@@ -30,7 +30,6 @@ export default function DBNavigation(props: DBNavigationProps) {
 		<nav
 			ref={_ref}
 			id={state._id}
-			aria-labelledby={props.labelledBy}
 			class={cls('db-navigation', props.className)}>
 			<menu>{props.children}</menu>
 		</nav>

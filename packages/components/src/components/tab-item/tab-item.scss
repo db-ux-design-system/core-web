@@ -11,22 +11,25 @@ $with-icon-padding-calc: calc(
 		#{form-components.$font-size-height}
 );
 
-
 .db-tab-item {
 	position: relative;
-	display: inline-flex;
+
+	@include helpers.display(inline-flex);
+
 	list-style-type: "";
 	border-radius: variables.$db-border-radius-sm;
 
 	&:has(input:disabled) {
-		opacity: component.$default-disabled;
+		opacity: variables.$db-opacity-md;
 	}
 
 	label {
 		background-color: colors.$db-adaptive-bg-basic-transparent-full-default;
 		padding: variables.$db-spacing-fixed-xs;
 		align-items: center;
-		display: inline-block;
+
+		@include helpers.display(inline-block);
+
 		white-space: nowrap;
 		border: 0;
 		border-radius: variables.$db-border-radius-sm;
@@ -35,7 +38,7 @@ $with-icon-padding-calc: calc(
 
 		@include helpers.hover {
 			&:has(:not(input:disabled)) {
-				background-color: colors.$db-adaptive-bg-basic-transparent-hovered;
+				background-color: colors.$db-adaptive-bg-basic-transparent-full-hovered;
 			}
 
 			&:has(input:disabled) {
@@ -45,7 +48,7 @@ $with-icon-padding-calc: calc(
 
 		@include helpers.hover {
 			&:has(:not(input:disabled)) {
-				background-color: colors.$db-adaptive-bg-basic-transparent-hovered;
+				background-color: colors.$db-adaptive-bg-basic-transparent-full-hovered;
 			}
 
 			&:has(input:disabled) {
@@ -70,7 +73,7 @@ $with-icon-padding-calc: calc(
 			}
 		}
 
-		&[data-icon-after] {
+		&[data-icon-trailing] {
 			padding-inline-end: $with-icon-padding-calc;
 
 			&::after {
@@ -82,7 +85,7 @@ $with-icon-padding-calc: calc(
 		}
 
 		&:is([data-no-text], [data-no-text="true"]) {
-			@include icons.is-icon-text-replace();
+			@include icons.is-icon-text-replace;
 
 			padding: 0;
 			inline-size: calc(

@@ -7,18 +7,23 @@ $db-green-bg-basic-level-2-pressed: var(--db-green-bg-basic-level-2-pressed);
 $db-green-bg-basic-level-3-default: var(--db-green-bg-basic-level-3-default);
 $db-green-bg-basic-level-3-hovered: var(--db-green-bg-basic-level-3-hovered);
 $db-green-bg-basic-level-3-pressed: var(--db-green-bg-basic-level-3-pressed);
-
 $db-green-bg-basic-transparent-full-default: var(
 	--db-green-bg-basic-transparent-full-default
 );
 $db-green-bg-basic-transparent-semi-default: var(
 	--db-green-bg-basic-transparent-semi-default
 );
-$db-green-bg-basic-transparent-hovered: var(
-	--db-green-bg-basic-transparent-hovered
+$db-green-bg-basic-transparent-full-hovered: var(
+	--db-green-bg-basic-transparent-full-hovered
 );
-$db-green-bg-basic-transparent-pressed: var(
-	--db-green-bg-basic-transparent-pressed
+$db-green-bg-basic-transparent-full-pressed: var(
+	--db-green-bg-basic-transparent-full-pressed
+);
+$db-green-bg-basic-transparent-semi-hovered: var(
+	--db-green-bg-basic-transparent-semi-hovered
+);
+$db-green-bg-basic-transparent-semi-pressed: var(
+	--db-green-bg-basic-transparent-semi-pressed
 );
 $db-green-on-bg-basic-emphasis-100-default: var(
 	--db-green-on-bg-basic-emphasis-100-default
@@ -110,3 +115,13 @@ $db-green-origin-pressed: var(--db-green-origin-pressed);
 $db-green-on-origin-default: var(--db-green-on-origin-default);
 $db-green-on-origin-hovered: var(--db-green-on-origin-hovered);
 $db-green-on-origin-pressed: var(--db-green-on-origin-pressed);
+
+// vibrant
+$db-green-bg-vibrant-default: var(--db-green-bg-vibrant-default);
+$db-green-bg-vibrant-hovered: var(--db-green-bg-vibrant-hovered);
+$db-green-bg-vibrant-pressed: var(--db-green-bg-vibrant-pressed);
+
+// on-vibrant
+$db-green-on-bg-vibrant-default: var(--db-green-on-bg-vibrant-default);
+$db-green-on-bg-vibrant-hovered: var(--db-green-on-bg-vibrant-hovered);
+$db-green-on-bg-vibrant-pressed: var(--db-green-on-bg-vibrant-pressed);

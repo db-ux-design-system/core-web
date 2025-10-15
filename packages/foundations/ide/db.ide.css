@@ -42,16 +42,16 @@ head {
 	--db-elevation-md: "Changes elevation of element.";
 	--db-elevation-lg: "Changes elevation of element.";
 
-	/* https://marketingportal.extranet.deutschebahn.com/marketingportal/Design-Anwendungen/db-ux-design-system/version-3/foundation/border-height */
-	--db-border-height-3xs: "Changes border-height of element";
-	--db-border-height-2xs: "Changes border-height of element";
-	--db-border-height-xs: "Changes border-height of element";
-	--db-border-height-sm: "Changes border-height of element";
-	--db-border-height-md: "Changes border-height of element";
-	--db-border-height-lg: "Changes border-height of element";
-	--db-border-height-xl: "Changes border-height of element";
-	--db-border-height-2xl: "Changes border-height of element";
-	--db-border-height-3xl: "Changes border-height of element";
+	/* https://marketingportal.extranet.deutschebahn.com/marketingportal/Design-Anwendungen/db-ux-design-system/version-3/foundation/border-width */
+	--db-border-width-3xs: "Changes border-width of element";
+	--db-border-width-2xs: "Changes border-width of element";
+	--db-border-width-xs: "Changes border-width of element";
+	--db-border-width-sm: "Changes border-width of element";
+	--db-border-width-md: "Changes border-width of element";
+	--db-border-width-lg: "Changes border-width of element";
+	--db-border-width-xl: "Changes border-width of element";
+	--db-border-width-2xl: "Changes border-width of element";
+	--db-border-width-3xl: "Changes border-width of element";
 
 	/* https://marketingportal.extranet.deutschebahn.com/marketingportal/Design-Anwendungen/db-ux-design-system/version-3/foundation/border-radius */
 	--db-border-radius-3xs: "Changes border-radius of element";

@@ -3,6 +3,7 @@
 	"reporters": ["console"],
 	"minTokens": 65,
 	"ignore": [
+		"showcases/patternhub/public/assets/images/*.svg",
 		"**/.angular/**",
 		".history/**",
 		"**/__snapshots__/**",
@@ -11,6 +12,7 @@
 		"**/.next/**",
 		"**/.nuxt/**",
 		"**/.output/**",
+		"**/agent/**",
 		"**/.vscode/**",
 		"**/*-example/index.html",
 		"**/*-showcase/index.html",
@@ -34,6 +36,7 @@
 		"**/test-results/**",
 		"**/tests/**",
 		"**/tsconfig.json",
+		"**/e2e/**/*.spec.ts",
 		"packages/components/scripts/post-build/components.ts",
 		"packages/components/src/components/**/*.spec.tsx",
 		"packages/components/src/components/**/index.html",
@@ -44,6 +47,8 @@
 		"packages/foundations/assets/icons/functional/fonts/**",
 		"packages/foundations/assets/icons/fonts/**",
 		"packages/foundations/dev",
+		"packages/migration/test/**/has-changes.txt",
+		"packages/migration/test/**/no-change.txt",
 		"showcases/**/results/**",
 		"showcases/angular-showcase/.angular/cache",
 		"showcases/angular-showcase/.angular/cache/**",
@@ -59,5 +64,6 @@
 		"showcases/shared/*.json",
 		"showcases/vue-showcase/src/components/form/Form.vue"
 	],
+	"ignorePattern": ["<option value=\"test5\">Test5</option>"],
 	"absolute": true
 }

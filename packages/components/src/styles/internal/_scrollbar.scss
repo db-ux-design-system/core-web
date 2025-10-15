@@ -7,6 +7,15 @@
 $scrollbar-width: helpers.px-to-rem(8);
 
 %scrollbar {
+	&[data-field-sizing="content"] {
+		&:is([data-hide-resizer="true"], [data-resize="none"]) {
+			@supports (field-sizing: content) {
+				/* We don't show a scrollbar if we use field-sizing: content and no resizer is available */
+				scrollbar-width: none;
+			}
+		}
+	}
+
 	&::-webkit-scrollbar {
 		@extend %default-transition;
 
@@ -20,14 +29,14 @@ $scrollbar-width: helpers.px-to-rem(8);
 	&:is(:hover, :focus) {
 		&::-webkit-scrollbar-track,
 		&::-webkit-scrollbar-button:single-button {
-			background-color: colors.$db-adaptive-bg-basic-transparent-hovered;
+			background-color: colors.$db-adaptive-bg-basic-transparent-full-hovered;
 		}
 	}
 
 	&:read-only {
 		&::-webkit-scrollbar-track,
 		&::-webkit-scrollbar-button:single-button {
-			background-color: colors.$db-adaptive-bg-basic-level-1-default !important;
+			background-color: colors.$db-adaptive-bg-basic-level-1-default;
 		}
 	}
 
@@ -36,7 +45,7 @@ $scrollbar-width: helpers.px-to-rem(8);
 	}
 
 	&::-webkit-scrollbar-thumb {
-		background-color: colors.$db-adaptive-bg-basic-transparent-pressed;
+		background-color: colors.$db-adaptive-bg-basic-transparent-full-pressed;
 	}
 
 	/* Buttons */
@@ -48,22 +57,33 @@ $scrollbar-width: helpers.px-to-rem(8);
 		block-size: form-components.$floating-label-size-calc;
 
 		&:is(:hover, :focus) {
-			background-color: colors.$db-adaptive-bg-basic-transparent-hovered;
+			background-color: colors.$db-adaptive-bg-basic-transparent-full-hovered;
 		}
 
 		&:active {
-			background-color: colors.$db-adaptive-bg-basic-transparent-pressed;
+			background-color: colors.$db-adaptive-bg-basic-transparent-full-pressed;
 		}
 	}
 
 	/* Up */
 	&::-webkit-scrollbar-button:single-button:vertical:decrement {
-		background-image: var(--db-textarea-scrollbar-button-decrement);
+		border-start-end-radius: variables.$db-border-radius-xs;
+		background-image: var(--db-scrollbar-button-vertical-decrement);
 	}
 
 	/* Down */
 	&::-webkit-scrollbar-button:single-button:vertical:increment {
-		background-image: var(--db-textarea-scrollbar-button-increment);
+		background-image: var(--db-scrollbar-button-vertical-increment);
+	}
+
+	/* Left */
+	&::-webkit-scrollbar-button:single-button:horizontal:decrement {
+		background-image: var(--db-scrollbar-button-horizontal-decrement);
+	}
+
+	/* Right */
+	&::-webkit-scrollbar-button:single-button:horizontal:increment {
+		background-image: var(--db-scrollbar-button-horizontal-increment);
 	}
 
 	&[data-variant="floating"] {

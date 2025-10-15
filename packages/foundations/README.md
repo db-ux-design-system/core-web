@@ -7,11 +7,26 @@
 
 A library containing all tokens (colors, spacings, font formatting, etc.) and assets (icons) of [DB UX Design System v3](https://github.com/db-ux-design-system/core-web).
 
+## When to use this package
+
+**⚠️ Looking for UI components?** You probably want [`@db-ux/core-components`](https://www.npmjs.com/package/@db-ux/core-components) instead, which **automatically includes** this package.
+
+**Use this package when you:**
+
+- Only need design tokens (colors, spacing, fonts) without any component styles
+- Want to build custom components using the design system tokens
+- Need just icons and fonts without pre-built components
+
+**Use [`@db-ux/core-components`](https://www.npmjs.com/package/@db-ux/core-components) when you:**
+
+- Want to use ready-made UI components (buttons, inputs, navigation, etc.)
+- Need both design tokens AND component styles (most common use case)
+
 We currently support:
 
-- [CSS](https://db-ux-design-system.github.io/core-web/review/main/foundations/readme?current=css)
-- [SCSS](https://db-ux-design-system.github.io/core-web/review/main/foundations/readme?current=scss)
-- [Tailwind](https://db-ux-design-system.github.io/core-web/review/main/foundations/readme?current=tailwind)
+- [CSS](https://design-system.deutschebahn.com/core-web/review/main/foundations/readme?current=css)
+- [SCSS](https://design-system.deutschebahn.com/core-web/review/main/foundations/readme?current=scss)
+- [Tailwind](https://design-system.deutschebahn.com/core-web/review/main/foundations/readme?current=tailwind)
 
 ## Install
 
@@ -32,7 +47,7 @@ First of all you need to import a theme which contains all tokens (css-propertie
 Afterward, you may import helper classes / placeholders to easily consume the tokens from your theme. There are some categories:
 
 - **init**: Global styles which apply to all or a large group of selectors. Make sure to import `inits/required.css` to normalize tags like `body` etc. Furthermore, we provide some default styles.
-- **icons**: Icons classes to load **woff2** files and adds `[data-icon]` and `[data-icon-after]` to enable icons for all tags and components.
+- **icons**: Icons classes to load **woff2** files and adds `[data-icon]` and `[data-icon-trailing]` to enable icons for all tags and components.
 - **helpers**: Use dividers or focus border
 - **fonts**: Overwrite default `font-size`, `line-height` and `icon-size`
 - **density**: Overwrite default density to scale adaptive components inside container using density
@@ -198,7 +213,7 @@ In HTML:
 
 ### Tailwind
 
-Check the required imports for [CSS](https://db-ux-design-system.github.io/core-web/review/main/foundations/readme?current=css) to enable all tokens and defaults.
+Check the required imports for [CSS](https://design-system.deutschebahn.com/core-web/review/main/foundations/readme?current=css) to enable all tokens and defaults.
 
 #### Tailwind v4
 
@@ -298,7 +313,7 @@ If you want to optimize the size of the loaded styles, you might want to skip lo
 
 ```css
 /* The theme contains all prop required for components like spacings, colors, etc. You can replace it with your own theme. */
-@import "@db-ux/core-foundations/build/styles/default-theme.css";
+@import "@db-ux/core-foundations/build/styles/defaults/default-theme.css";
 /* The font include uses default font families based on your bundling paths (relative, absolute, webpack, rollup). You can replace it with your own fonts. */
 @import "@db-ux/core-foundations/build/styles/fonts/relative.css";
 /* The icon include uses default icons based on your bundling paths (relative, absolute, webpack, rollup). You can replace it with your own icons. */
@@ -326,13 +341,52 @@ You are able to optimize the initial settings as well:
 @import "@db-ux/core-foundations/build/styles/defaults/default-code.css";
 ```
 
+## Font Preloading
+
+To ensure optimal performance and reliability — especially in flaky or offline internet conditions — **you could preload or at least prefetch any fonts your application depends on**.
+
+### How to Preload Fonts
+
+After identifying the critical fonts required for your application's UI, use the following `<link>` tag in the `<head>` of your HTML to preload them:
+
+```html
+<link
+	rel="preload"
+	href="/media/dbneoscreensans-regular.woff2"
+	as="font"
+	type="font/woff2"
+	crossorigin="anonymous"
+/>
+```
+
+Otherwise, if the font is not initially required but would be requested later or by some dynamically inserted content, you could still [prefetch](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Attributes/rel/prefetch) it. Prefetching works at a lower priority than `preload`:
+
+```html
+<link
+	rel="prefetch"
+	href="/assets/icons/fonts/default/db-ux.woff2"
+	crossorigin="anonymous"
+/>
+```
+
+### Tips for identifying fonts to preload
+
+- Use browser dev tools to track font requests that are essential to your application
+- Fonts that fail to load during unstable connections should be prioritized.
+
+### Important notes
+
+- Make sure the `href` path is correct and accessible at runtime.
+- Always use `crossorigin="anonymous"` for fonts served from your domain or a CDN, unless your server requires credentials (rare for fonts).
+- By preloading fonts this way, you improve perceived performance and avoid layout shifts or invisible text during initial rendering.
+
 ## Migration
 
 We provide a [CLI tool](https://github.com/db-ux-design-system/core-web/blob/main/packages/migration/README.md) to auto migrate your source code.
 
 ## Deutsche Bahn brand
 
-As we'd like to perfectly support our users and customers on their digital journey, the usage of Deutsche Bahn brand and trademarks are bound of clear guidelines and restrictions even when being used with the code that we're provide with this product; Deutsche Bahn fully reserves all rights regarding the Deutsche Bahn brand, even though that we're providing the code of DB UX Design System products free to use and release it under the Apache 2.0 license.
+As we'd like to perfectly support our users and customers on their digital journey, the usage of Deutsche Bahn brand and trademarks are bound of clear guidelines and restrictions even if being used with the code that we're providing with this product; Deutsche Bahn fully reserves all rights regarding the Deutsche Bahn brand, even though that we're providing the code of DB UX Design System products free to use and release it under the Apache 2.0 license.
 Please have a look at our brand portal at <https://marketingportal.extranet.deutschebahn.com/> for any further questions and whom to contact on any brand issues.
 
 For any usage outside of Deutsche Bahn websites and applications you aren't allowed to use any Deutsche Bahn brand and

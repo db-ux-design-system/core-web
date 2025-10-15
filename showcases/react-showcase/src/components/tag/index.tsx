@@ -1,10 +1,10 @@
 import { useState } from 'react';
-import { DBTag } from '../../../../../output/react/src';
-import DefaultComponent from '../default-component';
-import defaultComponentVariants from '../../../../shared/tag.json';
+import { DBTag, getBoolean } from '../../../../../output/react/src';
 import { type DBTagProps } from '../../../../../output/react/src/components/tag/model';
-import { getVariants } from '../data';
+import defaultComponentVariants from '../../../../shared/tag.json';
 import { type BaseComponentProps } from '../base-component-data';
+import { getVariants } from '../data';
+import DefaultComponent from '../default-component';
 
 const getTag = ({
 	semantic,
@@ -23,7 +23,8 @@ const getTag = ({
 	showCheckState,
 	lineBreak,
 	showIcon
-}: DBTagProps & {
+}: Omit<DBTagProps, 'disabled'> & {
+	disabled?: boolean;
 	checked?: boolean;
 	component?: 'button' | 'link' | 'radio' | 'checkbox';
 	identifier?: string;
@@ -62,7 +63,7 @@ const getTag = ({
 					<input
 						type="checkbox"
 						checked={checkedState}
-						disabled={disabled}
+						disabled={getBoolean(disabled)}
 						onChange={(event) => {
 							setCheckedState(event.target.checked);
 						}}

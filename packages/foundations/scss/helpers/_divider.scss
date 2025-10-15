@@ -8,7 +8,7 @@
 @mixin divider($position: "top", $slot: "before") {
 	--db-divider-bg-color: #{colors.$db-adaptive-on-bg-basic-emphasis-60-default};
 
-	position: relative;
+	position: var(--db-tooltip-parent-position, relative);
 
 	&[data-emphasis="strong"] {
 		--db-divider-bg-color: #{colors.$db-adaptive-on-bg-basic-emphasis-70-default};
@@ -20,22 +20,22 @@
 		position: absolute;
 
 		@if $position == "top" {
-			block-size: variables.$db-border-height-3xs;
+			block-size: variables.$db-border-width-3xs;
 			inset-block-start: 0;
 			inset-inline: 0;
 			/* stylelint-disable-next-line at-rule-empty-line-before */
 		} @else if $position == "bottom" {
-			block-size: variables.$db-border-height-3xs;
+			block-size: variables.$db-border-width-3xs;
 			inset-block-end: 0;
 			inset-inline: 0;
 			/* stylelint-disable-next-line at-rule-empty-line-before */
 		} @else if $position == "left" {
-			inline-size: variables.$db-border-height-3xs;
+			inline-size: variables.$db-border-width-3xs;
 			inset-inline-start: 0;
 			inset-block: 0;
 			/* stylelint-disable-next-line at-rule-empty-line-before */
 		} @else if $position == "right" {
-			inline-size: variables.$db-border-height-3xs;
+			inline-size: variables.$db-border-width-3xs;
 			inset-inline-end: 0;
 			inset-block: 0;
 		}
@@ -44,7 +44,7 @@
 	@media (forced-colors: active) {
 		// border is the better implementation, but border height changes in windows based on pixel density
 		// we use it as a fallback for color contrast
-		/* stylelint-disable-next-line db-ux/use-border-color */
-		border: variables.$db-border-height-3xs solid var(--db-divider-bg-color);
+		/* stylelint-disable-next-line no-invalid-position-declaration, db-ux/use-border-color */
+		border: variables.$db-border-width-3xs solid var(--db-divider-bg-color);
 	}
 }

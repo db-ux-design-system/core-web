@@ -6,8 +6,8 @@ import {
 	DBInfotext
 } from '../../../../../../output/angular/src';
 import defaultComponentVariants from '../../../../../shared/badge.json';
-import { DefaultComponent } from '../default.component';
 import { environment } from '../../../environments/environment';
+import { DefaultComponent } from '../default.component';
 
 @Component({
 	selector: 'app-badge',
@@ -16,7 +16,7 @@ import { environment } from '../../../environments/environment';
 		? [DefaultComponent]
 		: [DefaultComponent, DBBadge, DBInfotext, DBButton, DBIcon],
 	standalone: true,
-	schemas: [CUSTOM_ELEMENTS_SCHEMA]
+	schemas: environment.webComponents ? [CUSTOM_ELEMENTS_SCHEMA] : []
 })
 export class BadgeComponent {
 	variants = defaultComponentVariants;

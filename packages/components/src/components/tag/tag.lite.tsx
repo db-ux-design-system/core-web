@@ -1,6 +1,4 @@
 import {
-	onInit,
-	onUpdate,
 	Show,
 	Slot,
 	useDefaultProps,
@@ -8,19 +6,24 @@ import {
 	useRef,
 	useStore
 } from '@builder.io/mitosis';
+import { DEFAULT_REMOVE } from '../../shared/constants';
+import { ClickEvent } from '../../shared/model';
+import { cls, getBooleanAsString } from '../../utils';
+import DBTooltip from '../tooltip/tooltip.lite';
 import { DBTagProps, DBTagState } from './model';
-import { cls, getBooleanAsString, getHideProp } from '../../utils';
 
 useMetadata({});
 useDefaultProps<DBTagProps>({});
 
 export default function DBTag(props: DBTagProps) {
-	const _ref = useRef<HTMLDivElement | null>(null);
+	const _ref = useRef<HTMLDivElement | any>(null);
 	const state = useStore<DBTagState>({
-		initialized: false,
-		handleRemove: () => {
+		handleRemove: (event?: ClickEvent<HTMLButtonElement> | void) => {
+			if (!event) return;
+
+			event.stopPropagation();
 			if (props.onRemove) {
-				props.onRemove();
+				props.onRemove(event);
 			}
 		},
 		getRemoveButtonText: () => {
@@ -29,41 +32,22 @@ export default function DBTag(props: DBTagProps) {
 			}
 
 			// TODO: We should think this through again, if we would really like to have default and especially english, instead of german labels in here
-			return 'Remove tag';
+			return DEFAULT_REMOVE;
 		}
 	});
-
-	onInit(() => {
-		state.initialized = true;
-	});
-
-	onUpdate(() => {
-		if (state.initialized && _ref && props.disabled !== undefined) {
-			const button: HTMLButtonElement | null = _ref?.querySelector(
-				'button:not(.db-tab-remove-button)'
-			);
-			const input: HTMLInputElement | null = _ref?.querySelector('input');
-			for (const element of [button, input]) {
-				if (element) {
-					element.disabled = props.disabled;
-				}
-			}
-		}
-	}, [state.initialized, props.disabled, _ref]);
 
 	return (
 		<div
 			ref={_ref}
 			id={props.id}
 			class={cls('db-tag', props.className)}
-			data-disabled={getBooleanAsString(props.disabled)}
 			data-semantic={props.semantic}
 			data-emphasis={props.emphasis}
 			data-icon={props.icon}
 			data-show-check-state={getBooleanAsString(
 				props.showCheckState ?? true
 			)}
-			data-hide-icon={getHideProp(props.showIcon)}
+			data-show-icon={getBooleanAsString(props.showIcon)}
 			data-no-text={getBooleanAsString(props.noText)}
 			data-overflow={getBooleanAsString(props.overflow)}>
 			<Slot name="content" />
@@ -76,13 +60,15 @@ export default function DBTag(props: DBTagProps) {
 				{/* we aren't using DBButton here because of angular would wrap it in custom component */}
 				<button
 					class="db-button db-tab-remove-button"
-					onClick={() => state.handleRemove()}
+					onClick={(event) => state.handleRemove(event)}
 					data-icon="cross"
 					data-size="small"
 					data-no-text="true"
 					data-variant="ghost"
-					title={state.getRemoveButtonText()}>
-					{state.getRemoveButtonText()}
+					type="button">
+					<DBTooltip variant="label">
+						{state.getRemoveButtonText()}
+					</DBTooltip>
 				</button>
 			</Show>
 		</div>

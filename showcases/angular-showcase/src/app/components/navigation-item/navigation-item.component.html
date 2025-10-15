@@ -17,6 +17,7 @@
 				[width]="exampleProps?.width"
 				[disabled]="exampleProps?.disabled"
 				[active]="exampleProps?.active"
+				[wrap]="exampleProps?.wrap"
 				(click)="showAlert(exampleName)"
 			>
 				<ng-container *dbNavigationContent>
@@ -30,23 +31,32 @@
 
 				@if (exampleProps?.areaPopup) {
 					<ng-container sub-navigation>
-						<ul>
-							<db-navigation-item>
-								<ng-container *dbNavigationContent>
-									<a href="#">Test1</a>
-								</ng-container>
-							</db-navigation-item>
-							<db-navigation-item>
-								<ng-container *dbNavigationContent>
-									<a href="#">Test2</a>
-								</ng-container>
-							</db-navigation-item>
-							<db-navigation-item>
-								<ng-container *dbNavigationContent>
-									<a href="#">Test3</a>
-								</ng-container>
-							</db-navigation-item>
-						</ul>
+						<db-navigation-item
+							[icon]="exampleProps?.icon"
+							[showIcon]="exampleProps?.showIcon"
+						>
+							<ng-container *dbNavigationContent>
+								Also a navigation item with longer label
+							</ng-container>
+							<ng-container sub-navigation>
+								<db-navigation-item
+									[icon]="exampleProps?.icon"
+									[showIcon]="exampleProps?.showIcon"
+								>
+									<ng-container *dbNavigationContent>
+										<a href="#">Navigation-Item 2</a>
+									</ng-container>
+								</db-navigation-item>
+							</ng-container>
+						</db-navigation-item>
+						<db-navigation-item
+							[icon]="exampleProps?.icon"
+							[showIcon]="exampleProps?.showIcon"
+						>
+							<ng-container *dbNavigationContent>
+								<a href="#">Navigation-Item 1</a>
+							</ng-container>
+						</db-navigation-item>
 					</ng-container>
 				}
 			</db-navigation-item>

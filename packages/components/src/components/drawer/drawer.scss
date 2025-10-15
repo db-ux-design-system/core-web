@@ -26,8 +26,16 @@
 
 %full-horizontal {
 	&:not([data-width="full"]) {
+		/// Sets the maximum height of the drawer
+		/// @propertyname max-block-size
+		/// @cssprop --db-drawer-max-height
+		/// @default calc(100% - #{variables.$db-spacing-fixed-xl})
 		max-block-size: var(
 			--db-drawer-max-height,
+			calc(100% - #{variables.$db-spacing-fixed-xl})
+		);
+		min-block-size: var(
+			--db-drawer-min-height,
 			calc(100% - #{variables.$db-spacing-fixed-xl})
 		);
 		max-inline-size: none;
@@ -76,13 +84,17 @@ $spacings: (
 );
 
 @mixin get-spacing($spacing) {
-	/* stylelint-disable-next-line scss/selector-no-redundant-nesting-selector */
+	/* stylelint-disable-next-line block-no-redundant-nested-style-rules */
 	& {
 		padding-block: map.get($spacing, "block");
 	}
 
 	.db-drawer-header {
 		// We need this variable to overwrite it inside the header
+		/// Controls the bottom padding inside the drawer header
+		/// @propertyname padding-block-end
+		/// @cssprop --db-drawer-header-padding-block-end
+		/// @default #{map.get($spacing, "block")}
 		/* stylelint-disable-next-line db-ux/use-spacings */
 		padding-block-end: var(
 			--db-drawer-header-padding-block-end,
@@ -93,19 +105,25 @@ $spacings: (
 
 	.db-drawer-content {
 		// We need this variable to overwrite it inside the header
+		/// Controls left/right padding inside the drawer content area
+		/// @propertyname padding-inline
+		/// @cssprop --db-drawer-content-padding-inline
+		/// @default #{map.get($spacing, "inline")}
 		/* stylelint-disable-next-line db-ux/use-spacings */
 		padding-inline: var(
 			--db-drawer-content-padding-inline,
 			#{map.get($spacing, "inline")}
 		);
+
 		// TODO: Evaluate whether we need overflow: hidden and that for only specifically set y here.
 		overflow-y: auto;
+		overflow-block: auto;
 	}
 }
 
 %spacing-drawer {
 	@each $name, $spacing in $spacings {
-		@if ($name == "medium") {
+		@if $name == "medium" {
 			@include get-spacing($spacing);
 		}
 
@@ -119,8 +137,8 @@ $spacings: (
 	.db-drawer-container {
 		@extend %direction-right;
 		@extend %spacing-drawer;
+		@include helpers.display(flex);
 
-		display: flex;
 		flex-direction: column;
 		background-color: colors.$db-adaptive-bg-basic-level-1-default;
 		block-size: 100%;
@@ -129,10 +147,44 @@ $spacings: (
 		box-shadow: variables.$db-elevation-md;
 
 		&:not([data-width="full"]) {
+			/// Sets the maximum width of the drawer
+			/// and some default values for the drawer
+			/// @propertyname max-inline-size
+			/// @cssprop --db-drawer-max-width
+			/// @default calc(100% - #{variables.$db-spacing-fixed-xl})
+			///
+			/// @example css - Wide drawer
+			///   .db-drawer-wide {
+			///     --db-drawer-max-width: 800px;
+			///   }
+			///   <div class="db-drawer db-drawer-wide">
+			///     <!-- wide drawer -->
+			///   </div>
 			max-inline-size: var(
 				--db-drawer-max-width,
 				calc(100% - #{variables.$db-spacing-fixed-xl})
 			);
+			min-inline-size: var(
+				--db-drawer-min-width,
+				calc(100% - #{variables.$db-spacing-fixed-xl})
+			);
+
+			&:not([data-direction]),
+			&[data-direction="right"] {
+				border-inline-start: component.$component-border;
+			}
+
+			&[data-direction="left"] {
+				border-inline-end: component.$component-border;
+			}
+
+			&[data-direction="up"] {
+				border-block-start: component.$component-border;
+			}
+
+			&[data-direction="down"] {
+				border-block-end: component.$component-border;
+			}
 		}
 
 		&[data-rounded="true"] {
@@ -152,8 +204,7 @@ $spacings: (
 		}
 
 		.db-drawer-header {
-			display: none;
-
+			@include helpers.display(none);
 			@include helpers.divider("bottom");
 
 			.db-drawer-header-text {
@@ -172,8 +223,42 @@ $spacings: (
 
 			&:has(.button-close-drawer),
 			&:has(:not(.db-drawer-header-text:empty)) {
-				display: flex;
+				@include helpers.display(flex);
 			}
+		}
+	}
+
+	&[data-position="absolute"] {
+		position: absolute;
+		z-index: 3;
+		inset: 0;
+		block-size: 100%;
+		inline-size: 100%;
+		background-color: transparent;
+
+		&[open] {
+			@include helpers.display(flex);
+		}
+
+		&:not([data-direction]),
+		&[data-direction="right"],
+		&[data-direction="left"] {
+			flex-direction: column;
+		}
+
+		&[data-direction="left"],
+		&[data-direction="down"] {
+			align-items: start;
+		}
+
+		&:not([data-direction]),
+		&[data-direction="right"],
+		&[data-direction="up"] {
+			align-items: end;
+		}
+
+		.db-drawer-container {
+			position: relative;
 		}
 	}
 

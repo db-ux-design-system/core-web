@@ -40,16 +40,15 @@ $db-elevation-lg: var(--db-elevation-lg);
 
 /* Border */
 
-$db-border-height-3xs: var(--db-border-height-3xs);
-$db-border-height-2xs: var(--db-border-height-2xs);
-$db-border-height-xs: var(--db-border-height-xs);
-$db-border-height-sm: var(--db-border-height-sm);
-$db-border-height-md: var(--db-border-height-md);
-$db-border-height-lg: var(--db-border-height-lg);
-$db-border-height-xl: var(--db-border-height-xl);
-$db-border-height-2xl: var(--db-border-height-2xl);
-$db-border-height-3xl: var(--db-border-height-3xl);
-
+$db-border-width-3xs: var(--db-border-width-3xs);
+$db-border-width-2xs: var(--db-border-width-2xs);
+$db-border-width-xs: var(--db-border-width-xs);
+$db-border-width-sm: var(--db-border-width-sm);
+$db-border-width-md: var(--db-border-width-md);
+$db-border-width-lg: var(--db-border-width-lg);
+$db-border-width-xl: var(--db-border-width-xl);
+$db-border-width-2xl: var(--db-border-width-2xl);
+$db-border-width-3xl: var(--db-border-width-3xl);
 $db-border-radius-3xs: var(--db-border-radius-3xs);
 $db-border-radius-2xs: var(--db-border-radius-2xs);
 $db-border-radius-xs: var(--db-border-radius-xs);
@@ -61,6 +60,19 @@ $db-border-radius-2xl: var(--db-border-radius-2xl);
 $db-border-radius-3xl: var(--db-border-radius-3xl);
 $db-border-radius-full: var(--db-border-radius-full);
 
+/* Opacity */
+
+$db-opacity-3xs: var(--db-opacity-3xs);
+$db-opacity-2xs: var(--db-opacity-2xs);
+$db-opacity-xs: var(--db-opacity-xs);
+$db-opacity-sm: var(--db-opacity-sm);
+$db-opacity-md: var(--db-opacity-md);
+$db-opacity-lg: var(--db-opacity-lg);
+$db-opacity-xl: var(--db-opacity-xl);
+$db-opacity-2xl: var(--db-opacity-2xl);
+$db-opacity-3xl: var(--db-opacity-3xl);
+$db-opacity-full: var(--db-opacity-full);
+
 /* Transitions */
 
 $db-transition-duration-extra-slow: var(--db-transition-duration-extra-slow);
@@ -68,13 +80,31 @@ $db-transition-duration-slow: var(--db-transition-duration-slow);
 $db-transition-duration-medium: var(--db-transition-duration-medium);
 $db-transition-duration-fast: var(--db-transition-duration-fast);
 $db-transition-duration-extra-fast: var(--db-transition-duration-extra-fast);
-
 $db-transition-timing-emotional: var(--db-transition-timing-emotional);
 $db-transition-timing-functional: var(--db-transition-timing-functional);
 $db-transition-timing-show: var(--db-transition-timing-show);
 $db-transition-timing-hide: var(--db-transition-timing-hide);
-
 $db-transition-straight-emotional: var(--db-transition-straight-emotional);
 $db-transition-straight-functional: var(--db-transition-straight-functional);
 $db-transition-straight-show: var(--db-transition-straight-show);
 $db-transition-straight-hide: var(--db-transition-straight-hide);
+
+/* Screen sizes */
+
+$db-screen-xs: var(--db-screen-xs);
+$db-screen-sm: var(--db-screen-sm);
+$db-screen-md: var(--db-screen-md);
+$db-screen-lg: var(--db-screen-lg);
+$db-screen-xl: var(--db-screen-xl);
+
+/* Container sizes */
+
+$db-container-3xs: var(--db-container-3xs);
+$db-container-2xs: var(--db-container-2xs);
+$db-container-xs: var(--db-container-xs);
+$db-container-sm: var(--db-container-sm);
+$db-container-md: var(--db-container-md);
+$db-container-lg: var(--db-container-lg);
+$db-container-xl: var(--db-container-xl);
+$db-container-2xl: var(--db-container-2xl);
+$db-container-3xl: var(--db-container-3xl);

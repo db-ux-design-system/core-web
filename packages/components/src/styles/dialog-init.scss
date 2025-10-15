@@ -1,15 +1,14 @@
 @use "@db-ux/core-foundations/build/styles/colors";
+@use "@db-ux/core-foundations/build/styles/variables";
 
-$backdrop-color: #{colors.$db-adaptive-on-bg-basic-emphasis-100-default};
-
-$backdrop-opacity-strong: 0.64;
-$backdrop-opacity-weak: 0.32;
-
-%dialog-container {
-	position: fixed;
-	inset: 0;
-	z-index: 9995;
-}
+$backdrop-color-strong: color(
+	from #{colors.$db-adaptive-on-bg-basic-emphasis-100-default} srgb r g b /
+		#{variables.$db-opacity-lg}
+);
+$backdrop-color-weak: color(
+	from #{colors.$db-adaptive-on-bg-basic-emphasis-100-default} srgb r g b /
+		#{variables.$db-opacity-sm}
+);
 
 dialog {
 	padding: 0;
@@ -18,17 +17,21 @@ dialog {
 	z-index: 9996;
 	color: inherit;
 
-	&[data-variant],
-	&[data-backdrop] {
-		@extend %dialog-container;
-	}
+	&:not([data-position="absolute"]) {
+		&[data-variant],
+		&[data-backdrop] {
+			position: fixed;
+			inset: 0;
+			z-index: 9995;
+		}
 
-	&[data-variant="inside"] {
-		&:not([data-backdrop="none"]) {
-			&::before {
-				content: "";
-				position: fixed;
-				inset: 0;
+		&[data-variant="inside"] {
+			&:not([data-backdrop="none"]) {
+				&::before {
+					content: "";
+					position: fixed;
+					inset: 0;
+				}
 			}
 		}
 	}
@@ -36,21 +39,20 @@ dialog {
 	&:not([data-backdrop="none"]) {
 		&::backdrop,
 		&::before {
-			background-color: $backdrop-color;
-			opacity: $backdrop-opacity-strong;
+			background-color: $backdrop-color-strong;
 		}
 
 		&[data-backdrop="invisible"] {
 			&::backdrop,
 			&::before {
-				opacity: 0;
+				background-color: transparent;
 			}
 		}
 
 		&[data-backdrop="weak"] {
 			&::backdrop,
 			&::before {
-				opacity: $backdrop-opacity-weak;
+				background-color: $backdrop-color-weak;
 			}
 		}
 	}

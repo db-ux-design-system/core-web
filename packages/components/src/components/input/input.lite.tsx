@@ -9,16 +9,7 @@ import {
 	useStore,
 	useTarget
 } from '@builder.io/mitosis';
-import {
-	cls,
-	delay,
-	getHideProp,
-	hasVoiceOver,
-	isArrayOfStrings,
-	stringPropVisible,
-	uuid
-} from '../../utils';
-import { DBInputProps, DBInputState } from './model';
+
 import {
 	DEFAULT_DATALIST_ID_SUFFIX,
 	DEFAULT_INVALID_MESSAGE,
@@ -35,72 +26,73 @@ import {
 	InteractionEvent,
 	ValueLabelType
 } from '../../shared/model';
-import DBInfotext from '../infotext/infotext.lite';
 import {
-	handleFrameworkEventVue,
-	handleFrameworkEventAngular
+	cls,
+	delay,
+	getBoolean,
+	getBooleanAsString,
+	getHideProp,
+	getInputValue,
+	getNumber,
+	hasVoiceOver,
+	isArrayOfStrings,
+	isIOSSafari,
+	stringPropVisible,
+	uuid
+} from '../../utils';
+import {
+	handleFrameworkEventAngular,
+	handleFrameworkEventVue
 } from '../../utils/form-components';
+import DBInfotext from '../infotext/infotext.lite';
+import { DBInputProps, DBInputState } from './model';
 
 useMetadata({
 	angular: {
-		nativeAttributes: ['disabled', 'required']
+		nativeAttributes: ['disabled', 'required'],
+		signals: {
+			writeable: ['disabled', 'value']
+		}
 	}
 });
 
 useDefaultProps<DBInputProps>({});
 
 export default function DBInput(props: DBInputProps) {
-	const _ref = useRef<HTMLInputElement | null>(null);
+	const _ref = useRef<HTMLInputElement | any>(null);
 	// jscpd:ignore-start
 	const state = useStore<DBInputState>({
 		_id: undefined,
 		_messageId: undefined,
 		_validMessageId: undefined,
 		_invalidMessageId: undefined,
+		_invalidMessage: undefined,
 		_dataListId: undefined,
-		_descByIds: '',
-		_value: '',
+		_descByIds: undefined,
+		_value: undefined,
 		_voiceOverFallback: '',
-		handleInput: (event: InputEvent<HTMLInputElement>) => {
-			if (props.onInput) {
-				props.onInput(event);
-			}
-
-			if (props.input) {
-				props.input(event);
-			}
+		hasValidState: () => {
+			return !!(props.validMessage ?? props.validation === 'valid');
 		},
-		handleChange: (event: ChangeEvent<HTMLInputElement>) => {
-			if (props.onChange) {
-				props.onChange(event);
-			}
-
-			if (props.change) {
-				props.change(event);
-			}
-
-			useTarget({
-				angular: () => handleFrameworkEventAngular(this, event),
-				vue: () => handleFrameworkEventVue(() => {}, event)
-			});
-
+		handleValidation: () => {
 			/* For a11y reasons we need to map the correct message with the input */
 			if (!_ref?.validity.valid || props.validation === 'invalid') {
 				state._descByIds = state._invalidMessageId;
+				state._invalidMessage =
+					props.invalidMessage ||
+					_ref?.validationMessage ||
+					DEFAULT_INVALID_MESSAGE;
 				if (hasVoiceOver()) {
-					state._voiceOverFallback =
-						props.invalidMessage ??
-						_ref?.validationMessage ??
-						DEFAULT_INVALID_MESSAGE;
+					state._voiceOverFallback = state._invalidMessage;
 					delay(() => (state._voiceOverFallback = ''), 1000);
 				}
 			} else if (
-				props.validation === 'valid' ||
-				(_ref?.validity.valid &&
-					(props.required ||
-						props.minLength ||
-						props.maxLength ||
-						props.pattern))
+				state.hasValidState() &&
+				_ref?.validity.valid &&
+				(props.required ||
+					props.minLength ||
+					props.maxLength ||
+					props.pattern)
 			) {
 				state._descByIds = state._validMessageId;
 				if (hasVoiceOver()) {
@@ -111,33 +103,58 @@ export default function DBInput(props: DBInputProps) {
 			} else if (stringPropVisible(props.message, props.showMessage)) {
 				state._descByIds = state._messageId;
 			} else {
-				state._descByIds = '';
+				state._descByIds = undefined;
 			}
 		},
-		handleBlur: (event: InteractionEvent<HTMLInputElement>) => {
+		handleInput: (event: InputEvent<HTMLInputElement>) => {
+			useTarget({
+				vue: () => {
+					if (props.input) {
+						props.input(event);
+					}
+					if (props.onInput) {
+						props.onInput(event);
+					}
+				},
+				default: () => {
+					if (props.onInput) {
+						props.onInput(event);
+					}
+				}
+			});
+
+			useTarget({
+				angular: () => handleFrameworkEventAngular(state, event),
+				vue: () => handleFrameworkEventVue(() => {}, event)
+			});
+			state.handleValidation();
+		},
+		handleChange: (event: ChangeEvent<HTMLInputElement>) => {
+			if (props.onChange) {
+				props.onChange(event);
+			}
+
+			useTarget({
+				angular: () => handleFrameworkEventAngular(state, event),
+				vue: () => handleFrameworkEventVue(() => {}, event)
+			});
+			state.handleValidation();
+		},
+		handleBlur: (event: InteractionEvent<HTMLInputElement> | any) => {
 			if (props.onBlur) {
 				props.onBlur(event);
 			}
-
-			if (props.blur) {
-				props.blur(event);
-			}
 		},
-		handleFocus: (event: InteractionEvent<HTMLInputElement>) => {
+		handleFocus: (event: InteractionEvent<HTMLInputElement> | any) => {
 			if (props.onFocus) {
 				props.onFocus(event);
 			}
-
-			if (props.focus) {
-				props.focus(event);
-			}
 		},
-		getDataList: (
-			_list?: string[] | ValueLabelType[]
-		): ValueLabelType[] => {
+		getDataList: (): ValueLabelType[] => {
+			const _list = props.dataList;
 			return Array.from(
 				(isArrayOfStrings(_list)
-					? _list.map((val: string) => ({
+					? _list?.map((val: string) => ({
 							value: val,
 							label: undefined
 						}))
@@ -153,7 +170,15 @@ export default function DBInput(props: DBInputProps) {
 		state._validMessageId = mId + DEFAULT_VALID_MESSAGE_ID_SUFFIX;
 		state._invalidMessageId = mId + DEFAULT_INVALID_MESSAGE_ID_SUFFIX;
 		state._dataListId = mId + DEFAULT_DATALIST_ID_SUFFIX;
+		state._invalidMessage = props.invalidMessage || DEFAULT_INVALID_MESSAGE;
 	});
+
+	onUpdate(() => {
+		state._invalidMessage =
+			props.invalidMessage ||
+			_ref?.validationMessage ||
+			DEFAULT_INVALID_MESSAGE;
+	}, [_ref, props.invalidMessage]);
 
 	onUpdate(() => {
 		if (state._id) {
@@ -168,6 +193,8 @@ export default function DBInput(props: DBInputProps) {
 			if (stringPropVisible(props.message, props.showMessage)) {
 				state._descByIds = messageId;
 			}
+
+			state.handleValidation();
 		}
 	}, [state._id]);
 
@@ -180,35 +207,46 @@ export default function DBInput(props: DBInputProps) {
 			class={cls('db-input', props.className)}
 			data-variant={props.variant}
 			data-hide-label={getHideProp(props.showLabel)}
-			data-hide-icon={getHideProp(props.showIcon)}
-			data-icon={props.icon}
-			data-icon-after={props.iconAfter}
-			data-hide-icon-after={getHideProp(props.showIcon)}>
+			data-show-icon={getBooleanAsString(
+				props.showIconLeading ?? props.showIcon
+			)}
+			data-icon={props.iconLeading ?? props.icon}
+			data-icon-trailing={props.iconTrailing}
+			data-hide-asterisk={getHideProp(props.showRequiredAsterisk)}
+			data-show-icon-trailing={getBooleanAsString(
+				props.showIconTrailing
+			)}>
 			<label htmlFor={state._id}>{props.label ?? DEFAULT_LABEL}</label>
 			<input
 				aria-invalid={props.validation === 'invalid'}
 				data-custom-validity={props.validation}
+				data-field-sizing={props.fieldSizing}
 				ref={_ref}
 				id={state._id}
 				name={props.name}
 				type={props.type || 'text'}
+				multiple={getBoolean(props.multiple, 'multiple')}
 				placeholder={props.placeholder ?? DEFAULT_PLACEHOLDER}
-				disabled={props.disabled}
-				required={props.required}
-				step={props.step}
+				disabled={getBoolean(props.disabled, 'disabled')}
+				required={getBoolean(props.required, 'required')}
+				step={getNumber(props.step)}
 				value={props.value ?? state._value}
-				maxLength={props.maxLength}
-				minLength={props.minLength}
-				max={props.max}
-				min={props.min}
-				readOnly={props.readOnly}
+				maxLength={getNumber(props.maxLength, props.maxlength)}
+				minLength={getNumber(props.minLength, props.minlength)}
+				max={getInputValue(props.max, props.type)}
+				min={getInputValue(props.min, props.type)}
+				readOnly={
+					getBoolean(props.readOnly, 'readOnly') ||
+					getBoolean(props.readonly, 'readonly')
+				}
 				form={props.form}
 				pattern={props.pattern}
 				size={props.size}
-				// @ts-ignore
+				// @ts-expect-error input has a property autoComplete
 				autoComplete={props.autocomplete}
-				// @ts-ignore
-				autoFocus={props.autofocus}
+				autoFocus={getBoolean(props.autofocus, 'autofocus')}
+				enterKeyHint={props.enterkeyhint}
+				inputMode={props.inputmode}
 				onInput={(event: ChangeEvent<HTMLInputElement>) =>
 					state.handleInput(event)
 				}
@@ -222,11 +260,25 @@ export default function DBInput(props: DBInputProps) {
 					state.handleFocus(event)
 				}
 				list={props.dataList && state._dataListId}
-				aria-describedby={state._descByIds}
+				aria-describedby={props.ariaDescribedBy ?? state._descByIds}
+				// iOS Safari VoiceOver input:is([type="date"], [type="datetime-local"], [type="time"], [type="week"], [type="month"], [type="color"]) hack
+				// TODO: We could remove this one again, after https://bugs.webkit.org/show_bug.cgi?id=294649 (mentioned in https://github.com/facebook/react/issues/33541) has been resolved.
+				role={
+					[
+						'datetime-local',
+						'date',
+						'time',
+						'week',
+						'month',
+						'color'
+					].includes(props.type ?? '') && isIOSSafari()
+						? 'textbox'
+						: undefined
+				}
 			/>
 			<Show when={props.dataList}>
 				<datalist id={state._dataListId}>
-					<For each={state.getDataList(props.dataList)}>
+					<For each={state.getDataList()}>
 						{(option: ValueLabelType) => (
 							<option
 								key={
@@ -244,27 +296,27 @@ export default function DBInput(props: DBInputProps) {
 			{props.children}
 			<Show when={stringPropVisible(props.message, props.showMessage)}>
 				<DBInfotext
-					size="small"
+					size={props.messageSize || 'small'}
 					icon={props.messageIcon}
 					id={state._messageId}>
 					{props.message}
 				</DBInfotext>
 			</Show>
 
-			<DBInfotext
-				id={state._validMessageId}
-				size="small"
-				semantic="successful">
-				{props.validMessage ?? DEFAULT_VALID_MESSAGE}
-			</DBInfotext>
+			<Show when={state.hasValidState()}>
+				<DBInfotext
+					id={state._validMessageId}
+					size={props.validMessageSize || 'small'}
+					semantic="successful">
+					{props.validMessage || DEFAULT_VALID_MESSAGE}
+				</DBInfotext>
+			</Show>
 
 			<DBInfotext
 				id={state._invalidMessageId}
-				size="small"
+				size={props.invalidMessageSize || 'small'}
 				semantic="critical">
-				{props.invalidMessage ??
-					_ref?.validationMessage ??
-					DEFAULT_INVALID_MESSAGE}
+				{state._invalidMessage}
 			</DBInfotext>
 
 			{/* * https://www.davidmacd.com/blog/test-aria-describedby-errormessage-aria-live.html

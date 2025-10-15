@@ -53,47 +53,47 @@ $tooltip-arrow-shadow-size: variables.$db-sizing-2xs;
 				calc(100% + #{$tooltip-arrow-shadow-size})
 					calc(100% + #{$tooltip-arrow-shadow-size})
 			);
-			 /* stylelint-disable-next-line db-ux/use-border-radius */
+			/* stylelint-disable-next-line db-ux/use-border-radius */
 			border-radius: 0 2px;
 			transform: skew(-8deg, -8deg);
 		}
 	}
 
-	&:not([data-placement], [data-outside-vy]),
-	&[data-placement^="bottom"]:not([data-outside-vy]),
-	&[data-outside-vy="top"]:not([data-outside-vx]) {
+	&:not([data-placement], [data-corrected-placement]),
+	&[data-placement^="bottom"]:not([data-corrected-placement]),
+	&[data-corrected-placement^="bottom"] {
 		&::after {
-			inset-inline-start: 50%;
+			inset-inline-start: var(--db-tooltip-arrow-inline-start, 50%);
 			inset-block-start: 0;
 			translate: -50% -50%;
 			rotate: 315deg;
 		}
 	}
 
-	&[data-placement^="top"]:not([data-outside-vy]),
-	&[data-outside-vy="bottom"]:not([data-outside-vx]) {
+	&[data-placement^="top"]:not([data-corrected-placement]),
+	&[data-corrected-placement^="top"] {
 		&::after {
-			inset-inline-start: 50%;
+			inset-inline-start: var(--db-tooltip-arrow-inline-start, 50%);
 			inset-block-end: 0;
 			translate: -50% 50%;
 			rotate: 135deg;
 		}
 	}
 
-	&[data-placement^="right"]:not([data-outside-vx]),
-	&[data-outside-vx="left"] {
+	&[data-placement^="right"]:not([data-corrected-placement]),
+	&[data-corrected-placement^="right"] {
 		&::after {
-			inset-block-start: 50%;
+			inset-block-start: var(--db-tooltip-arrow-block-start, 50%);
 			inset-inline-start: 0;
 			translate: -50% -50%;
 			rotate: 225deg;
 		}
 	}
 
-	&[data-placement^="left"]:not([data-outside-vx]),
-	&[data-outside-vx="right"] {
+	&[data-placement^="left"]:not([data-corrected-placement]),
+	&[data-corrected-placement^="left"] {
 		&::after {
-			inset-block-start: 50%;
+			inset-block-start: var(--db-tooltip-arrow-block-start, 50%);
 			inset-inline-end: 0;
 			translate: 50% -50%;
 			rotate: 45deg;
@@ -127,10 +127,10 @@ $tooltip-arrow-shadow-size: variables.$db-sizing-2xs;
 }
 
 [data-has-tooltip="true"] {
-	position: relative;
+	position: var(--db-tooltip-parent-position, relative);
 }
 
-$popover-states: "hover", "focus";
+$popover-states: "hover", "focus-visible";
 
 @each $state in $popover-states {
 	@include show-popover($state);

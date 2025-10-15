@@ -1,10 +1,10 @@
 - main:
   - heading "DBInfotext" [level=1]
-  - link "Density arrow_up_right\" / \""
-  - text: information_circle" / " Functional information_circle" / " (Default) Regular information_circle" / " Expressive
-  - link "Semantic arrow_up_right\" / \""
-  - text: information_circle" / " (Default) Adaptive information_circle" / " Neutral exclamation_mark_circle" / " Critical information_circle" / " Informational check_circle" / " Successful exclamation_mark_triangle" / " Warning
-  - link "Size arrow_up_right\" / \""
-  - text: information_circle" / " (Default) Medium information_circle" / " Small
-  - link "Show Icon arrow_up_right\" / \""
-  - text: information_circle" / " (Default) True False
+  - link "Density"
+  - text: Functional (Default) Regular Expressive
+  - link "Semantic"
+  - text: (Default) Adaptive Neutral Critical Informational Successful Warning
+  - link "Size"
+  - text: (Default) Medium Small
+  - link "Show Icon"
+  - text: (Default) True False

@@ -1,13 +1,13 @@
-import { useState } from 'react';
 import { ALL_ICONS } from '@db-ux/db-theme-icons';
-import DefaultPage from '../../../components/default-page';
+import { useState } from 'react';
 import {
 	DBCard,
-	DBInput,
-	DBSelect,
 	DBIcon,
-	DBInfotext
+	DBInfotext,
+	DBInput,
+	DBSelect
 } from '../../../../../output/react/src';
+import DefaultPage from '../../../components/default-page';
 
 const IconOverview = () => {
 	const [weight, setWeight] = useState<string>('24');

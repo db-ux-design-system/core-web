@@ -1,28 +1,47 @@
 import {
 	onMount,
+	onUpdate,
 	Show,
 	Slot,
 	useDefaultProps,
 	useMetadata,
 	useRef,
-	useStore
+	useStore,
+	useTarget
 } from '@builder.io/mitosis';
-import { DBAccordionItemProps, DBAccordionItemState } from './model';
-import { cls, getBooleanAsString, uuid } from '../../utils';
-import { ClickEvent } from '../../shared/model';
 import { DEFAULT_ID } from '../../shared/constants';
+import { ClickEvent } from '../../shared/model';
+import { cls, getBooleanAsString, uuid } from '../../utils';
+import { DBAccordionItemProps, DBAccordionItemState } from './model';
 
-useMetadata({});
+useMetadata({
+	angular: {
+		nativeAttributes: ['open']
+	}
+});
 
 useDefaultProps<DBAccordionItemProps>({});
 
 export default function DBAccordionItem(props: DBAccordionItemProps) {
-	const _ref = useRef<HTMLDetailsElement | null>(null);
+	const _ref = useRef<HTMLDetailsElement | any>(null);
 	// jscpd:ignore-start
 	const state = useStore<DBAccordionItemState>({
 		_id: DEFAULT_ID,
 		_open: false,
-		toggle: (event: ClickEvent<HTMLElement>) => {
+		_name: undefined,
+		initialized: false,
+		handleNameAttribute: () => {
+			if (_ref) {
+				const setAttribute = _ref.setAttribute;
+				_ref.setAttribute = (attribute: string, value: string) => {
+					setAttribute.call(_ref, attribute, value);
+					if (attribute === 'name') {
+						state._name = value;
+					}
+				};
+			}
+		},
+		handleToggle: (event: ClickEvent<HTMLElement> | any) => {
 			// We need this for react https://github.com/facebook/react/issues/15486#issuecomment-488028431
 			event?.preventDefault();
 			const newStateOpen = !state._open;
@@ -38,7 +57,22 @@ export default function DBAccordionItem(props: DBAccordionItemProps) {
 		if (props.defaultOpen) {
 			state._open = props.defaultOpen;
 		}
+
+		state.initialized = true;
 	});
+
+	onUpdate(() => {
+		if (_ref && state.initialized) {
+			useTarget({ react: () => state.handleNameAttribute() });
+		}
+	}, [_ref, state.initialized]);
+
+	onUpdate(() => {
+		if (props.name) {
+			state._name = props.name;
+		}
+	}, [props.name]);
+
 	// jscpd:ignore-end
 
 	return (
@@ -46,8 +80,9 @@ export default function DBAccordionItem(props: DBAccordionItemProps) {
 			<details
 				aria-disabled={getBooleanAsString(props.disabled)}
 				ref={_ref}
+				name={state._name}
 				open={state._open}>
-				<summary onClick={(event) => state.toggle(event)}>
+				<summary onClick={(event) => state.handleToggle(event)}>
 					<Show when={props.headlinePlain}>
 						{props.headlinePlain}
 					</Show>

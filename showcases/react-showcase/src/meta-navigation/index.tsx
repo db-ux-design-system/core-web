@@ -1,13 +1,13 @@
 import { useEffect, useState } from 'react';
+import { DBSelect } from '../../../../output/react/src';
 import {
 	COLOR,
+	COLOR_CONST,
 	COLORS,
 	DENSITIES,
 	DENSITY,
-	COLOR_CONST,
 	DENSITY_CONST
 } from '../../../../packages/components/src/shared/constants';
-import { DBSelect } from '../../../../output/react/src';
 import useUniversalSearchParameters from '../hooks/use-universal-search-parameters';
 
 export type MetaNavigationProps = {
@@ -29,7 +29,7 @@ const MetaNavigation = ({
 	);
 
 	useEffect(() => {
-		for (const [key, value] of Array.from(searchParameters.entries())) {
+		for (const [key, value] of searchParameters.entries()) {
 			if (value) {
 				if (key === DENSITY_CONST && density !== value) {
 					setDensity(value);

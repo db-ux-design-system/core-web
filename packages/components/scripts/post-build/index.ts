@@ -1,8 +1,8 @@
-import Vue from './vue';
 import Angular from './angular';
+import CopyFiles from './copy-files';
 import React from './react';
 import Stencil from './stencil';
-import CopyFiles from './copy-files';
+import Vue from './vue';
 
 CopyFiles();
 Vue();

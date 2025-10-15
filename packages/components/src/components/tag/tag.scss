@@ -14,13 +14,13 @@
 	&[data-no-text="true"] {
 		--icon-margin-after: 0;
 
-		@include icons.is-icon-text-replace();
+		@include icons.is-icon-text-replace;
 
 		padding: 0;
 		gap: 0;
 
 		label {
-			@include icons.is-icon-text-replace();
+			@include icons.is-icon-text-replace;
 		}
 	}
 
@@ -33,6 +33,7 @@
 
 		&:has(.db-tab-remove-button) {
 			padding-inline-end: 0;
+			border-inline-end: 0;
 		}
 
 		&:has(dbbutton):has(dbbutton:not(.db-tab-remove-button)),
@@ -63,29 +64,28 @@
 	&:not(:has(#{tag-components.$interactive-selectors})),
 	&:has(.db-tab-remove-button) {
 		@extend %component-border;
-
-		@include tag-components.get-tag-colors();
+		@include tag-components.get-tag-colors;
 	}
 
 	&:has(#{tag-components.$interactive-selectors}) {
 		--db-icon-margin-end: #{variables.$db-spacing-fixed-2xs};
 
 		@include icon-passing.icon-passing(variables.$db-spacing-fixed-2xs);
-		@include tag-components.get-tag-colors-interactive();
+		@include tag-components.get-tag-colors-interactive;
 	}
 
 	button:nth-of-type(2),
 	dbbutton:nth-of-type(2),
 	&:has(db-button):has(dbbutton) .db-tab-remove-button {
-		display: none;
+		@include helpers.display(none);
 	}
 
 	> :is(
-			[class="db-checkbox"],
-			[class="db-radio"],
-			[class="db-link"],
-			[class="db-button"]
-		) {
+		[class="db-checkbox"],
+		[class="db-radio"],
+		[class="db-link"],
+		[class="db-button"]
+	) {
 		block-size: 100%;
 	}
 }
@@ -111,7 +111,9 @@
 
 		inline-size: 100%;
 		margin-inline-start: 0;
-		display: flex;
+
+		@include helpers.display(flex);
+
 		align-items: center;
 
 		@media (forced-colors: active) {
@@ -125,7 +127,7 @@
 		}
 
 		&:has(input:checked) {
-			border-width: variables.$db-border-height-3xs;
+			border-width: variables.$db-border-width-3xs;
 
 			&::before {
 				content: none;
@@ -146,7 +148,7 @@
 			aspect-ratio: unset;
 
 			&:checked {
-				&:not([data-hide-icon-before="true"]) {
+				&:not([data-show-icon-leading="false"]) {
 					&::before {
 						content: none;
 					}
@@ -157,8 +159,8 @@
 
 	a {
 		@extend %default-transition;
+		@include helpers.display(inline-flex);
 
-		display: inline-flex;
 		align-items: center;
 		text-decoration: none;
 
@@ -208,7 +210,7 @@
 
 	&:has(:disabled),
 	&[data-disabled="true"] {
-		opacity: component.$default-disabled;
+		opacity: variables.$db-opacity-md;
 		pointer-events: none;
 	}
 
@@ -229,8 +231,12 @@
 			// overwrite to transparent
 			background-color: colors.$db-adaptive-bg-basic-transparent-full-default;
 			color: currentcolor;
-			border: 0;
 			aspect-ratio: 1 / 1;
+			border-inline-start: 0;
+			border-start-start-radius: 0;
+			border-end-start-radius: 0;
+			// stylelint-disable-next-line db-ux/use-border-color
+			border-color: var(--db-tag-border-color);
 		}
 	}
 }

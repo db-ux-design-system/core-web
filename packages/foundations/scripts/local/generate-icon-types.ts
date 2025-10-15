@@ -2,7 +2,7 @@
  * This script can be used to update the icon type for all components using icons.
  */
 
-import { writeFileSync, readFileSync } from 'node:fs';
+import { readFileSync, writeFileSync } from 'node:fs';
 
 export type GenerateIconTypesProps = {
 	fontJsonPath: string;
@@ -22,12 +22,8 @@ export const generateIconTypes = ({
 		const icons = Object.keys(allIcons);
 
 		const generatedDisclaimer = '/* This file was generated */\n';
-		const iconTypes = `${generatedDisclaimer}export type BaseIconTypes = ${icons
-			.map((icon) => `"${icon}"`)
-			.join('|\n')};`;
-		const allIconsFile = `${generatedDisclaimer}export const ALL_ICONS: string[] = ${JSON.stringify(
-			icons
-		)};`;
+		const iconTypes = `${generatedDisclaimer}export type BaseIconTypes = ${icons.map((icon) => `"${icon}"`).join('|\n')};`;
+		const allIconsFile = `${generatedDisclaimer}export const ALL_ICONS: string[] = ${JSON.stringify(icons)};`;
 
 		const filesToWrite = [
 			{
@@ -44,8 +40,11 @@ export const generateIconTypes = ({
 			writeFileSync(`${outDir}/${name}.ts`, content);
 		}
 
-		const indexContent = filesToWrite
-			.map(({ name }) => `export * from "./${name}.js";`)
+		const indexContent = [
+			...filesToWrite.map(({ name }) => name),
+			'icon-types'
+		]
+			.map((name) => `export * from "./${name}.js";`)
 			.join('\n');
 
 		writeFileSync(`${outDir}/index.ts`, indexContent);

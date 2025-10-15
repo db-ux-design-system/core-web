@@ -8,20 +8,27 @@
 @use "../../styles/internal/scrollbar";
 
 %resize-textarea {
-	&[data-resize="none"] {
+	&[data-hide-resizer="true"] {
 		resize: none;
 	}
 
-	&[data-resize="both"] {
-		resize: both;
-	}
+	// TODO: Consolidate data-hide-resizer and data-resize attributes in the future
+	&:not([data-hide-resizer="true"]) {
+		&[data-resize="none"] {
+			resize: none;
+		}
 
-	&[data-resize="horizontal"] {
-		resize: horizontal;
-	}
+		&[data-resize="both"] {
+			resize: both;
+		}
 
-	&[data-resize="vertical"] {
-		resize: vertical;
+		&[data-resize="horizontal"] {
+			resize: horizontal;
+		}
+
+		&[data-resize="vertical"] {
+			resize: vertical;
+		}
 	}
 }
 
@@ -34,6 +41,7 @@
 	margin-inline: 0;
 	inline-size: calc(100% - #{scrollbar.$scrollbar-width} - 1px);
 	inset-inline: 0;
+	transform: none;
 }
 
 .db-textarea {
@@ -43,8 +51,8 @@
 		@extend %resize-textarea;
 		@extend %scrollbar;
 
-		cursor: auto;
 		overflow-y: scroll;
+		overflow-block: scroll;
 
 		// we don't have icons in textarea so we can overwrite it here
 		padding-block: variables.$db-spacing-fixed-xs
@@ -55,16 +63,14 @@
 		&:has(textarea:is(:focus-within, :not(:placeholder-shown))) {
 			&::before {
 				@extend %default-transition;
-
-				@include get-scrolling-workaround();
+				@include get-scrolling-workaround;
 
 				background-color: colors.$db-adaptive-bg-basic-level-1-default;
 			}
 
 			&::after {
 				@extend %form-component-border;
-
-				@include get-scrolling-workaround();
+				@include get-scrolling-workaround;
 
 				background-color: colors.$db-adaptive-bg-basic-transparent-semi-default;
 				z-index: 1;
@@ -78,7 +84,7 @@
 
 			&:has(textarea:not(:disabled):is(:hover, :focus)) {
 				&::after {
-					background-color: colors.$db-adaptive-bg-basic-transparent-hovered;
+					background-color: colors.$db-adaptive-bg-basic-transparent-semi-hovered;
 				}
 			}
 		}

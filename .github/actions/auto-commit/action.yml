@@ -1,0 +1,85 @@
+---
+name: "Auto commit and merge changes"
+description: "Creates a new branch and commits current changes and merges it afterwards to retrigger pipeline"
+inputs:
+  branch-name:
+    description: "The new branch name to commit to"
+    required: true
+  commit-message:
+    description: "The message you want to commit"
+    required: true
+  commit-files:
+    description: "The files which should be commited with `git add xxx`"
+    required: true
+  auto-merge-app-id:
+    description: "The id for github app to allow auto-merge"
+    required: true
+  auto-merge-private-key:
+    description: "The private key for github app to allow auto-merge"
+    required: true
+  gh-token:
+    description: "The default github token"
+    required: true
+
+runs:
+  using: "composite"
+  steps:
+    - name: 🚦 Check for changes before committing
+      id: check_changes
+      shell: bash
+      run: |
+        if [[ -z "$(git status --porcelain)" ]]; then
+          echo "No changes to commit. Skipping auto-commit step."
+          echo "changes_detected=false" >> $GITHUB_ENV
+        else
+          echo "Changes detected. Proceeding with creating a new branch and commit changes."
+          echo "changes_detected=true" >> $GITHUB_ENV
+        fi
+
+    - name: 🏗️ Create new branch and commit changes
+      if: env.changes_detected == 'true'
+      shell: bash
+      env:
+        GH_TOKEN: ${{ inputs.gh-token }}
+        NEW_PR_BRANCH: ${{ inputs.branch-name }}
+        COMMIT_MESSAGE: ${{ inputs.commit-message }}
+        COMMIT_FILES: ${{ inputs.commit-files }}
+        HUSKY: 0 # Disable Husky hooks in CI
+      run: |
+        git config --global user.name "github-actions[bot]"
+        git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+        git checkout -b "$NEW_PR_BRANCH"
+        git add $COMMIT_FILES
+
+        # We can't use semantic commits here because of the if statement in the workflow
+        git commit --message "$COMMIT_MESSAGE"
+        git push --force origin "$NEW_PR_BRANCH"
+
+    - name: 🪗 Create Pull Request
+      if: env.changes_detected == 'true'
+      shell: bash
+      env:
+        GH_TOKEN: ${{ inputs.gh-token }}
+        COMMIT_MESSAGE: ${{ inputs.commit-message }}
+        NEW_PR_BRANCH: ${{ inputs.branch-name }}
+        BASE_BRANCH: ${{ github.head_ref }}
+      run: |
+        gh pr create --base "$BASE_BRANCH" --head "$NEW_PR_BRANCH" --title "Automated PR: $COMMIT_MESSAGE" --body "This PR was created automatically by a GitHub Action."
+
+    # https://docs.github.com/en/apps/creating-github-apps/authenticating-with-a-github-app/making-authenticated-api-requests-with-a-github-app-in-a-github-actions-workflow
+    - name: 🧬 Generate a token
+      if: env.changes_detected == 'true'
+      id: generate-token
+      uses: actions/create-github-app-token@v2
+      with:
+        app-id: ${{ inputs.auto-merge-app-id }}
+        private-key: ${{ inputs.auto-merge-private-key }}
+
+    - name: 🤖 Squash the PR
+      if: env.changes_detected == 'true'
+      shell: bash
+      run: gh pr merge --squash "$NEW_PR_BRANCH"
+      env:
+        GITHUB_TOKEN: ${{ steps.generate-token.outputs.token }}
+        NEW_PR_BRANCH: ${{ inputs.branch-name }}

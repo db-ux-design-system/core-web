@@ -13,71 +13,69 @@
 
 	> details {
 		&[open] {
-			summary + div {
+			> summary + div {
 				block-size: auto;
 				/* stylelint-disable-next-line declaration-property-value-no-unknown */
 				block-size: calc-size(auto, size);
 			}
 
-			summary::after {
+			> summary::after {
 				transform: form-components.$dropdown-icon-transform;
 			}
 		}
 
 		&[aria-disabled="true"] {
 			pointer-events: none;
-			opacity: component.$default-disabled;
+			opacity: variables.$db-opacity-md;
 		}
-	}
 
-	@media screen and (prefers-reduced-motion: reduce) {
-		summary + div {
+		@media screen and (prefers-reduced-motion: no-preference) {
+			> summary + div {
+				transition: block-size
+					#{variables.$db-transition-straight-emotional};
+			}
+		}
+
+		> summary + div {
 			block-size: 0;
 			overflow: hidden;
-			transition: none;
 			padding: variables.$db-spacing-fixed-md;
 			padding-block-end: variables.$db-spacing-fixed-lg;
 		}
-	}
 
-	summary + div {
-		block-size: 0;
-		overflow: hidden;
-		transition: block-size #{variables.$db-transition-straight-emotional};
-		padding: variables.$db-spacing-fixed-md;
-		padding-block-end: variables.$db-spacing-fixed-lg;
-	}
+		> summary {
+			@extend %dropdown-icon;
+			@extend %db-overwrite-font-size-md;
 
-	summary {
-		@extend %dropdown-icon;
-		@extend %db-overwrite-font-size-md;
+			background-color: colors.$db-adaptive-bg-basic-level-1-default;
+			list-style: none;
 
-		background-color: colors.$db-adaptive-bg-basic-level-1-default;
-		list-style: none;
-		display: flex;
-		justify-content: space-between;
-		padding: variables.$db-spacing-fixed-md;
-		gap: variables.$db-spacing-fixed-md;
-		border-radius: variables.$db-border-radius-sm;
+			@include helpers.display(flex);
 
-		@include helpers.hover {
-			background-color: colors.$db-adaptive-bg-basic-level-1-hovered;
-		}
+			justify-content: space-between;
+			padding: variables.$db-spacing-fixed-md;
+			gap: variables.$db-spacing-fixed-md;
+			border-radius: variables.$db-border-radius-sm;
 
-		@include helpers.active {
-			background-color: colors.$db-adaptive-bg-basic-level-1-pressed;
-		}
+			@include helpers.hover {
+				background-color: colors.$db-adaptive-bg-basic-level-1-hovered;
+			}
 
-		&::-webkit-details-marker {
-			display: none;
-		}
+			@include helpers.active {
+				background-color: colors.$db-adaptive-bg-basic-level-1-pressed;
+			}
 
-		&::after {
-			inset-inline-end: variables.$db-spacing-fixed-sm;
-		}
+			&::-webkit-details-marker {
+				display: none;
+			}
 
-		&:focus-visible {
-			border-radius: variables.$db-border-radius-xs;
+			&::after {
+				inset-inline-end: variables.$db-spacing-fixed-sm;
+			}
+
+			&:focus-visible {
+				border-radius: variables.$db-border-radius-xs;
+			}
 		}
 	}
 }

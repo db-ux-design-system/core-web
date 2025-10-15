@@ -7,6 +7,7 @@ import {
 	FormMessageProps,
 	FormProps,
 	FormState,
+	FromValidState,
 	GlobalProps,
 	GlobalState,
 	InitializedState,
@@ -17,7 +18,7 @@ export type DBCheckboxDefaultProps = {
 	/**
 	 * Define an [indeterminate](https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement#indeterminate) state of a checkbox
 	 */
-	indeterminate?: boolean;
+	indeterminate?: boolean | string;
 };
 
 export type DBCheckboxProps = DBCheckboxDefaultProps &
@@ -36,4 +37,5 @@ export type DBCheckboxState = DBCheckboxDefaultState &
 	ChangeEventState<HTMLInputElement> &
 	FocusEventState<HTMLInputElement> &
 	FormState &
-	InitializedState;
+	InitializedState &
+	FromValidState;

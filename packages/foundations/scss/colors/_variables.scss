@@ -1,13 +1,11 @@
-$variants: "neutral", "brand", "critical", "successful", "warning",
-	"informational";
-
+$variants: "neutral", "brand", "critical", "successful", "warning", "informational";
 $variant-colors: "neutral", "critical", "successful", "warning", "informational";
-
-$on-background-colors: "emphasis-100", "emphasis-90", "emphasis-80",
-	"emphasis-70", "emphasis-60", "emphasis-50";
-
-$background-colors: "basic-level-1", "basic-level-2", "basic-level-3",
-	"basic-transparent-semi", "basic-transparent-full";
+$on-background-colors:
+	"emphasis-100", "emphasis-90", "emphasis-80", "emphasis-70", "emphasis-60",
+	"emphasis-50";
+$background-colors:
+	"basic-level-1", "basic-level-2", "basic-level-3", "basic-transparent-semi",
+	"basic-transparent-full";
 $inverted-colors: "contrast-max", "contrast-high", "contrast-low";
 
 // adaptive colors
@@ -40,18 +38,23 @@ $db-adaptive-bg-basic-level-3-hovered: var(
 $db-adaptive-bg-basic-level-3-pressed: var(
 	--db-adaptive-bg-basic-level-3-pressed
 );
-
 $db-adaptive-bg-basic-transparent-full-default: var(
 	--db-adaptive-bg-basic-transparent-full-default
 );
 $db-adaptive-bg-basic-transparent-semi-default: var(
 	--db-adaptive-bg-basic-transparent-semi-default
 );
-$db-adaptive-bg-basic-transparent-hovered: var(
-	--db-adaptive-bg-basic-transparent-hovered
+$db-adaptive-bg-basic-transparent-full-hovered: var(
+	--db-adaptive-bg-basic-transparent-full-hovered
 );
-$db-adaptive-bg-basic-transparent-pressed: var(
-	--db-adaptive-bg-basic-transparent-pressed
+$db-adaptive-bg-basic-transparent-full-pressed: var(
+	--db-adaptive-bg-basic-transparent-full-pressed
+);
+$db-adaptive-bg-basic-transparent-semi-hovered: var(
+	--db-adaptive-bg-basic-transparent-semi-hovered
+);
+$db-adaptive-bg-basic-transparent-semi-pressed: var(
+	--db-adaptive-bg-basic-transparent-semi-pressed
 );
 
 // on-bg basic
@@ -94,20 +97,8 @@ $db-adaptive-on-bg-basic-emphasis-70-pressed: var(
 $db-adaptive-on-bg-basic-emphasis-60-default: var(
 	--db-adaptive-on-bg-basic-emphasis-60-default
 );
-$db-adaptive-on-bg-basic-emphasis-60-hovered: var(
-	--db-adaptive-on-bg-basic-emphasis-60-hovered
-);
-$db-adaptive-on-bg-basic-emphasis-60-pressed: var(
-	--db-adaptive-on-bg-basic-emphasis-60-pressed
-);
 $db-adaptive-on-bg-basic-emphasis-50-default: var(
 	--db-adaptive-on-bg-basic-emphasis-50-default
-);
-$db-adaptive-on-bg-basic-emphasis-50-hovered: var(
-	--db-adaptive-on-bg-basic-emphasis-50-hovered
-);
-$db-adaptive-on-bg-basic-emphasis-50-pressed: var(
-	--db-adaptive-on-bg-basic-emphasis-50-pressed
 );
 
 // inverted
@@ -154,3 +145,13 @@ $db-adaptive-origin-pressed: var(--db-adaptive-origin-pressed);
 $db-adaptive-on-origin-default: var(--db-adaptive-on-origin-default);
 $db-adaptive-on-origin-hovered: var(--db-adaptive-on-origin-hovered);
 $db-adaptive-on-origin-pressed: var(--db-adaptive-on-origin-pressed);
+
+// vibrant
+$db-adaptive-bg-vibrant-default: var(--db-adaptive-bg-vibrant-default);
+$db-adaptive-bg-vibrant-hovered: var(--db-adaptive-bg-vibrant-hovered);
+$db-adaptive-bg-vibrant-pressed: var(--db-adaptive-bg-vibrant-pressed);
+
+// on-vibrant
+$db-adaptive-on-bg-vibrant-default: var(--db-adaptive-on-bg-vibrant-default);
+$db-adaptive-on-bg-vibrant-hovered: var(--db-adaptive-on-bg-vibrant-hovered);
+$db-adaptive-on-bg-vibrant-pressed: var(--db-adaptive-on-bg-vibrant-pressed);

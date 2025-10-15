@@ -23,9 +23,7 @@ const startProgram = (
 			`-${option.name.charAt(0)}`;
 		const long =
 			option.long ??
-			`--${option.name} ${option.array ? '[' : '<'}${option.name}${
-				option.array ? 's...]' : '>'
-			}`;
+			`--${option.name} ${option.array ? '[' : '<'}${option.name}${option.array ? 's...]' : '>'}`;
 		if (option.required) {
 			program.requiredOption(
 				`${short}, ${long}`,

@@ -19,10 +19,16 @@
 						"pressed": "var(--db-adaptive-bg-basic-level-3-pressed)"
 					},
 					"transparent": {
-						"full-default": "var(--db-adaptive-bg-basic-transparent-full-default)",
-						"semi-default": "var(--db-adaptive-bg-basic-transparent-semi-default)",
-						"hovered": "var(--db-adaptive-bg-basic-transparent-hovered)",
-						"pressed": "var(--db-adaptive-bg-basic-transparent-pressed)"
+						"full": {
+							"default": "var(--db-adaptive-bg-basic-transparent-full-default)",
+							"hovered": "var(--db-adaptive-bg-basic-transparent-full-hovered)",
+							"pressed": "var(--db-adaptive-bg-basic-transparent-full-pressed)"
+						},
+						"semi": {
+							"default": "var(--db-adaptive-bg-basic-transparent-semi-default)",
+							"hovered": "var(--db-adaptive-bg-basic-transparent-semi-hovered)",
+							"pressed": "var(--db-adaptive-bg-basic-transparent-semi-pressed)"
+						}
 					}
 				},
 				"inverted": {
@@ -100,83 +106,26 @@
 		"sans": "var(--db-font-family-sans)",
 		"head": "var(--db-font-family-head)"
 	},
-	"fontSize": {
-		"base": [
-			"var(--db-type-body-font-size-md)",
-			"var(--db-type-body-line-height-md)"
-		],
-		"body-3xs": [
-			"var(--db-type-body-font-size-3xs)",
-			"var(--db-type-body-line-height-3xs)"
-		],
-		"body-2xs": [
-			"var(--db-type-body-font-size-2xs)",
-			"var(--db-type-body-line-height-2xs)"
-		],
-		"body-2xl": [
-			"var(--db-type-body-font-size-2xl)",
-			"var(--db-type-body-line-height-2xl)"
-		],
-		"body-3xl": [
-			"var(--db-type-body-font-size-3xl)",
-			"var(--db-type-body-line-height-3xl)"
-		],
-		"body-xs": [
-			"var(--db-type-body-font-size-xs)",
-			"var(--db-type-body-line-height-xs)"
-		],
-		"body-sm": [
-			"var(--db-type-body-font-size-sm)",
-			"var(--db-type-body-line-height-sm)"
-		],
-		"body-md": [
-			"var(--db-type-body-font-size-md)",
-			"var(--db-type-body-line-height-md)"
-		],
-		"body-lg": [
-			"var(--db-type-body-font-size-lg)",
-			"var(--db-type-body-line-height-lg)"
-		],
-		"body-xl": [
-			"var(--db-type-body-font-size-xl)",
-			"var(--db-type-body-line-height-xl)"
-		],
-		"head-3xs": [
-			"var(--db-type-headline-font-size-3xs)",
-			"var(--db-type-headline-line-height-3xs)"
-		],
-		"head-2xs": [
-			"var(--db-type-headline-font-size-2xs)",
-			"var(--db-type-headline-line-height-2xs)"
-		],
-		"head-2xl": [
-			"var(--db-type-headline-font-size-2xl)",
-			"var(--db-type-headline-line-height-2xl)"
-		],
-		"head-3xl": [
-			"var(--db-type-headline-font-size-3xl)",
-			"var(--db-type-headline-line-height-3xl)"
-		],
-		"head-xs": [
-			"var(--db-type-headline-font-size-xs)",
-			"var(--db-type-headline-line-height-xs)"
-		],
-		"head-sm": [
-			"var(--db-type-headline-font-size-sm)",
-			"var(--db-type-headline-line-height-sm)"
-		],
-		"head-md": [
-			"var(--db-type-headline-font-size-md)",
-			"var(--db-type-headline-line-height-md)"
-		],
-		"head-lg": [
-			"var(--db-type-headline-font-size-lg)",
-			"var(--db-type-headline-line-height-lg)"
-		],
-		"head-xl": [
-			"var(--db-type-headline-font-size-xl)",
-			"var(--db-type-headline-line-height-xl)"
-		]
+	"font": {
+		"base": "var(--db-type-body-md)",
+		"body-3xs": "var(--db-type-body-3xs)",
+		"body-2xs": "var(--db-type-body-2xs)",
+		"body-xs": "var(--db-type-body-xs)",
+		"body-sm": "var(--db-type-body-sm)",
+		"body-md": "var(--db-type-body-md)",
+		"body-lg": "var(--db-type-body-lg)",
+		"body-xl": "var(--db-type-body-xl)",
+		"body-2xl": "var(--db-type-body-2xl)",
+		"body-3xl": "var(--db-type-body-3xl)",
+		"head-3xs": "var(--db-type-headline-3xs)",
+		"head-2xs": "var(--db-type-headline-2xs)",
+		"head-xs": "var(--db-type-headline-xs)",
+		"head-sm": "var(--db-type-headline-sm)",
+		"head-md": "var(--db-type-headline-md)",
+		"head-lg": "var(--db-type-headline-lg)",
+		"head-xl": "var(--db-type-headline-xl)",
+		"head-2xl": "var(--db-type-headline-2xl)",
+		"head-3xl": "var(--db-type-headline-3xl)"
 	},
 	"borderRadius": {
 		"DEFAULT": "var(--db-border-radius-xs)",
@@ -193,17 +142,17 @@
 		"full": "var(--db-border-radius-full)"
 	},
 	"borderWidth": {
-		"DEFAULT": "var(--db-border-height-3xs)",
+		"DEFAULT": "var(--db-border-width-3xs)",
 		"none": "0px",
-		"3xs": "var(--db-border-height-3xs)",
-		"2xs": "var(--db-border-height-2xs)",
-		"xs": "var(--db-border-height-xs)",
-		"sm": "var(--db-border-height-sm)",
-		"md": "var(--db-border-height-md)",
-		"lg": "var(--db-border-height-lg)",
-		"xl": "var(--db-border-height-xl)",
-		"2xl": "var(--db-border-height-2xl)",
-		"3xl": "var(--db-border-height-3xl)"
+		"3xs": "var(--db-border-width-3xs)",
+		"2xs": "var(--db-border-width-2xs)",
+		"xs": "var(--db-border-width-xs)",
+		"sm": "var(--db-border-width-sm)",
+		"md": "var(--db-border-width-md)",
+		"lg": "var(--db-border-width-lg)",
+		"xl": "var(--db-border-width-xl)",
+		"2xl": "var(--db-border-width-2xl)",
+		"3xl": "var(--db-border-width-3xl)"
 	},
 	"screens": {
 		"xs": "360px",

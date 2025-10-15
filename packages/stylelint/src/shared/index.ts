@@ -1,5 +1,5 @@
-import stylelint, { type PostcssResult } from 'stylelint';
 import type { Declaration } from 'postcss';
+import stylelint, { type PostcssResult } from 'stylelint';
 import type { RuleFunctionType } from './create-rule.js';
 
 const {

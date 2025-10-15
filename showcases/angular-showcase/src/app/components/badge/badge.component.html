@@ -10,79 +10,99 @@
 		let-exampleIndex="exampleIndex"
 		let-variantIndex="variantIndex"
 	>
-		@if (!exampleProps?.placement && !exampleProps?.example) {
-			<db-badge
-				[semantic]="exampleProps?.semantic"
-				[emphasis]="exampleProps?.emphasis"
-				[size]="exampleProps?.size"
-				>{{ exampleProps?.noContent ? "" : exampleName }}</db-badge
-			>
-			@if (exampleProps?.noContent) {
+		@if (exampleProps?.lineBreak) {
+			<i class="line-break"></i>
+		} @else {
+			@if (!exampleProps?.placement && !exampleProps?.example) {
+				<db-badge
+					[semantic]="exampleProps?.semantic"
+					[emphasis]="exampleProps?.emphasis"
+					[size]="exampleProps?.size"
+					>{{ exampleProps?.noContent ? "" : exampleName }}</db-badge
+				>
+				@if (exampleProps?.noContent) {
+					<db-infotext
+						semantic="informational"
+						size="small"
+						icon="none"
+					>
+						{{ exampleName }}
+					</db-infotext>
+				}
+			}
+
+			@if (
+				exampleProps?.placement &&
+				exampleProps?.placement !== "inline" &&
+				!exampleProps?.example
+			) {
+				<db-button
+					icon="x_placeholder"
+					variant="outlined"
+					[noText]="true"
+				>
+					<db-badge
+						emphasis="strong"
+						semantic="critical"
+						size="small"
+						[placement]="exampleProps?.placement"
+					></db-badge>
+					{{ exampleName }}
+				</db-button>
 				<db-infotext semantic="informational" size="small" icon="none">
 					{{ exampleName }}
 				</db-infotext>
 			}
-		}
 
-		@if (
-			exampleProps?.placement &&
-			exampleProps?.placement !== "inline" &&
-			!exampleProps?.example
-		) {
-			<db-button icon="x_placeholder" variant="outlined" [noText]="true">
+			@if (exampleProps?.placement === "inline") {
+				<div class="badge-inline-container">
+					<db-icon icon="x_placeholder"></db-icon>
+					<span>{{ exampleName }}</span>
+					<db-badge
+						size="small"
+						emphasis="strong"
+						semantic="critical"
+					>
+						Label
+					</db-badge>
+					<db-icon icon="error"></db-icon>
+				</div>
+			}
+
+			@if (exampleProps?.example === "icon") {
 				<db-badge
-					emphasis="strong"
 					semantic="critical"
-					size="small"
-					[placement]="exampleProps?.placement"
-				></db-badge>
-				{{ exampleName }}
-			</db-button>
-			<db-infotext semantic="informational" size="small" icon="none">
-				{{ exampleName }}
-			</db-infotext>
-		}
-
-		@if (exampleProps?.placement === "inline") {
-			<div class="badge-inline-container">
-				<db-icon icon="x_placeholder"></db-icon>
-				<span>{{ exampleName }}</span>
-				<db-badge size="small" emphasis="strong" semantic="critical">
-					Label
+					emphasis="strong"
+					[size]="exampleProps?.size"
+				>
+					<db-icon icon="x_placeholder">{{ exampleName }}</db-icon>
 				</db-badge>
-				<db-icon icon="error"></db-icon>
-			</div>
-		}
+				<db-infotext semantic="informational" size="small" icon="none">
+					{{ exampleName }}
+				</db-infotext>
+			}
 
-		@if (exampleProps?.example === "icon") {
-			<db-badge
-				semantic="critical"
-				emphasis="strong"
-				[size]="exampleProps?.size"
-			>
-				<db-icon icon="x_placeholder">{{ exampleName }}</db-icon>
-			</db-badge>
-			<db-infotext semantic="informational" size="small" icon="none">
-				{{ exampleName }}
-			</db-infotext>
-		}
-
-		@if (exampleProps?.example === "number") {
-			<db-badge semantic="successful">9</db-badge>
-			<db-badge semantic="informational">12</db-badge>
-			<db-badge semantic="warning">123</db-badge>
-			<db-badge size="small" emphasis="strong" semantic="successful">
-				9
-			</db-badge>
-			<db-badge size="small" emphasis="strong" semantic="informational">
-				12
-			</db-badge>
-			<db-badge size="small" emphasis="strong" semantic="warning">
-				123
-			</db-badge>
-			<db-infotext semantic="informational" size="small" icon="none">
-				{{ exampleName }}
-			</db-infotext>
+			@if (exampleProps?.example === "number") {
+				<db-badge semantic="successful">9</db-badge>
+				<db-badge semantic="informational">12</db-badge>
+				<db-badge semantic="warning">123</db-badge>
+				<db-badge size="small" emphasis="strong" semantic="successful">
+					9
+				</db-badge>
+				<db-badge
+					size="small"
+					emphasis="strong"
+					semantic="informational"
+				>
+					12
+				</db-badge>
+				<db-badge size="small" emphasis="strong" semantic="warning">
+					123
+				</db-badge>
+				<db-infotext semantic="informational" size="small" icon="none">
+					{{ exampleName }}
+				</db-infotext>
+			}
 		}
 	</ng-template>
 </app-default-component>

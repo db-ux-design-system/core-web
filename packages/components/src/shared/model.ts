@@ -20,11 +20,6 @@ export type GlobalProps = {
 	class?: string | any;
 
 	/**
-	 * [`aria-describedby`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-describedby) is used to link to the elements that describe the element with the set attribute.
-	 */
-	describedbyid?: string;
-
-	/**
 	 * [ID](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/id) of the component, generated automatically for some components as a fallback if unset.
 	 */
 	id?: string;
@@ -32,7 +27,7 @@ export type GlobalProps = {
 	/**
 	 * Before using please check for the [accessibility concerns](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/autofocus#accessibility_concerns)
 	 */
-	autofocus?: boolean;
+	autofocus?: boolean | string;
 };
 
 export type GlobalState = {
@@ -57,7 +52,7 @@ export type SemanticProps = {
 
 export type IconProps = {
 	/**
-	 * Define an icon by its identifier (like e.g. _user_, compare to [Icons](https://db-ux-design-system.github.io/core-web/review/main/foundations/icons/overview)) to get displayed in front of the elements content.
+	 * Define an icon by its identifier (like e.g. _user_, compare to [Icons](https://design-system.deutschebahn.com/core-web/review/main/foundations/icons/overview)) to get displayed in front of the elements content.
 	 */
 	icon?: IconTypes;
 };
@@ -67,14 +62,37 @@ export type ShowIconProps = {
 	 * Enables or disables the visibility of the icon. The default value depends on the component.
 	 * For many components this property is optional to reflect Figma properties.
 	 */
-	showIcon?: boolean;
+	showIcon?: boolean | string;
 };
 
-export type IconAfterProps = {
+export type ShowIconLeadingProps = {
 	/**
-	 * Define an icon by its identifier (like e.g. _user_, compare to [Icons](https://db-ux-design-system.github.io/core-web/review/main/foundations/icons/overview)) to get displayed in front of the elements content.
+	 * Enables or disables the visibility of the leading icon.
+	 * For many components this property is optional to reflect Figma properties.
 	 */
-	iconAfter?: IconTypes;
+	showIconLeading?: boolean | string;
+};
+
+export type ShowIconTrailingProps = {
+	/**
+	 * Enables or disables the visibility of the trailing icon.
+	 * For many components this property is optional to reflect Figma properties.
+	 */
+	showIconTrailing?: boolean | string;
+};
+
+export type IconLeadingProps = {
+	/**
+	 * Define an icon by its identifier (like e.g. _user_, compare to [Icons](https://design-system.deutschebahn.com/core-web/review/main/foundations/icons/overview)) to get displayed in front of the elements content.
+	 */
+	iconLeading?: IconTypes;
+};
+
+export type IconTrailingProps = {
+	/**
+	 * Define an icon by its identifier (like e.g. _user_, compare to [Icons](https://design-system.deutschebahn.com/core-web/review/main/foundations/icons/overview)) to get displayed in front of the elements content.
+	 */
+	iconTrailing?: IconTypes;
 };
 
 export const SpacingList = ['medium', 'small', 'large', 'none'] as const;
@@ -84,7 +102,7 @@ export type SpacingProps = {
 	/**
 	 * The spacing attribute changes the padding of the component.
 	 */
-	spacing?: SpacingType;
+	spacing?: SpacingType | string;
 };
 export const MarginList = ['medium', 'small', 'large', 'none'] as const;
 export type MarginType = (typeof MarginList)[number];
@@ -96,19 +114,29 @@ export type MarginProps = {
 	margin?: MarginType;
 };
 
-export const PlacementList = [
+export const PlacementHorizontalList = [
 	'left',
 	'right',
-	'top',
-	'bottom',
 	'left-start',
 	'left-end',
 	'right-start',
-	'right-end',
+	'right-end'
+] as const;
+export type PlacementHorizontalType = (typeof PlacementHorizontalList)[number];
+
+export const PlacementVerticalList = [
+	'top',
+	'bottom',
 	'top-start',
 	'top-end',
 	'bottom-start',
 	'bottom-end'
+] as const;
+export type PlacementVerticalType = (typeof PlacementVerticalList)[number];
+
+export const PlacementList = [
+	...PlacementHorizontalList,
+	...PlacementVerticalList
 ] as const;
 export type PlacementType = (typeof PlacementList)[number];
 export type PlacementProps = {
@@ -119,14 +147,14 @@ export type PlacementProps = {
 };
 
 export type NavigationBehaviorState = {
-	handleNavigationItemClick: (event: unknown) => void;
+	handleNavigationItemClick: (event: any) => void;
 };
 
 export type GapProps = {
 	/**
 	 * If the absolute element should have a gap between the parent element.
 	 */
-	gap?: boolean;
+	gap?: boolean | string;
 };
 
 export const GapSpacingList = [
@@ -153,7 +181,14 @@ export type OverflowProps = {
 	/**
 	 * The overflow attribute sets a max-width and longer text will be dotted.
 	 */
-	overflow?: boolean;
+	overflow?: boolean | string;
+};
+
+export type WrapProps = {
+	/**
+	 * Determines whether the text should wrap when its parent container is too small, preventing overflow.
+	 */
+	wrap?: boolean | string;
 };
 
 export const OrientationList = ['horizontal', 'vertical'] as const;
@@ -171,7 +206,7 @@ export type WidthProps = {
 	/**
 	 * Width of the component. Auto width based on children size, full width based on parent elements width.
 	 */
-	width?: WidthType;
+	width?: WidthType | string;
 };
 
 export const MaxWidthList = ['full', 'medium', 'large', 'small'] as const;
@@ -196,15 +231,23 @@ export type PopoverProps = {
 	/**
 	 * Disable animation
 	 */
-	animation?: boolean;
+	animation?: boolean | string;
 	/**
 	 * Use fixed with for default max-width
 	 */
 	width?: PopoverWidthType;
 };
 
-export type PopoverState = {
-	handleAutoPlacement: () => void;
+export type NameProps = {
+	/**
+	 * The name attribute gives the name of the element to group it.
+	 */
+	name?: string;
+};
+
+export type NameState = {
+	_name?: string;
+	handleNameAttribute: () => void;
 };
 
 export type ContentSlotProps = {
@@ -232,31 +275,44 @@ export type EmphasisProps = {
 	emphasis?: EmphasisType;
 };
 
-export const TagEmphasisList = [...EmphasisList, 'origin'] as const;
-export type TagEmphasisType = (typeof TagEmphasisList)[number];
-export type TagEmphasisProps = {
-	/**
-	 * The emphasis attribute divides in between a weak, strong or origin appearance.
-	 */
-	emphasis?: TagEmphasisType;
-};
-
 export const ValidationList = ['invalid', 'valid', 'no-validation'] as const;
 export type ValidationType = (typeof ValidationList)[number];
-export type FormProps = {
+
+/**
+ * Properties to control the required state and its visual annotation for input components.
+ */
+export type RequiredProps = {
 	/**
-	 * Marks an input element as invalid (red) / valid (green) / no-validation (grey). Overwrites the :user-valid selector.
+	 * When the required attribute specified, the user will be required to fill the form element before submitting the form.
+	 * The form element will be marked semantically as required and by default also visually with an asterisk '*' next to the label (unless the property `showRequiredAsterisk` is also set with the value `false`).
 	 */
-	validation?: ValidationType;
+	required?: boolean | string;
+	/**
+	 * This attribute allows to specify whether a form field which is marked as required will show a visual indicator (an asterisk '*').
+	 * It allows to prevent adding the visual indicator but still keep the field semantically required by setting its value to `false`.
+	 * By default, its value is `true`, so the asterisk is shown when `required` is set.
+	 */
+	showRequiredAsterisk?: boolean | string;
+};
+export type ShowLabelProps = {
+	/**
+	 * Enables/disables the visibility of the label
+	 */
+	showLabel?: boolean | string;
+};
+
+export type ValueProps = {
+	/**
+	 * The value property is to receive results from the native form element.
+	 */
+	value?: any;
+};
+
+export type BaseFormProps = {
 	/**
 	 * The disabled attribute can be set to keep a user from clicking on the form element.
 	 */
-	disabled?: boolean;
-	/**
-	 * 	Associates the control with a form element
-	 */
-	form?: string;
-
+	disabled?: boolean | string;
 	/**
 	 * The label attribute specifies the caption of the form element.
 	 */
@@ -266,34 +322,64 @@ export type FormProps = {
 	 * The name attribute gives the name of the form control, as used in form submission and in the form element's elements object.
 	 */
 	name?: string;
+};
+
+export type CustomFormProps = {
+	/**
+	 * Overwrites auto handling for aria-describedby.
+	 */
+	ariaDescribedBy?: string;
+	/**
+	 * 	Associates the control with a form element
+	 */
+	form?: string;
 
 	/**
-	 * When the required attribute specified, the user will be required to fill the form element before submitting the form.
+	 * Marks an input element as invalid (red) / valid (green) / no-validation (grey). Overwrites the :user-valid selector.
 	 */
-	required?: boolean;
-	/**
-	 * Enables/disables the visibility of the label
-	 */
-	showLabel?: boolean;
-	/**
-	 * The value property is to receive results from the native form element.
-	 */
-	value?: any;
+	validation?: ValidationType;
 };
+
+export type FormProps = CustomFormProps &
+	BaseFormProps &
+	RequiredProps &
+	ShowLabelProps &
+	ValueProps;
+
+export const FieldSizingList = ['fixed', 'content'] as const;
+export type FieldSizingType = (typeof FieldSizingList)[number];
 
 export type FormTextProps = {
 	/**
 	 * Maximum length (number of characters) of value
 	 */
-	maxLength?: number;
+	maxLength?: number | string;
 	/**
 	 * Minimum length (number of characters) of value
 	 */
-	minLength?: number;
+	minLength?: number | string;
+	/**
+	 * Maximum length (number of characters) of value
+	 */
+	maxlength?: number | string;
+	/**
+	 * Minimum length (number of characters) of value
+	 */
+	minlength?: number | string;
 	/**
 	 * The disabled attribute can be set to keep a user from edit on the form element
 	 */
-	readOnly?: boolean;
+	readOnly?: boolean | string;
+	/**
+	 * The disabled attribute can be set to keep a user from edit on the form element
+	 */
+	readonly?: boolean | string;
+
+	/**
+	 * Adds shrinkwrap for input and textarea: https://developer.mozilla.org/en-US/docs/Web/CSS/field-sizing
+	 * Note: Only supported in Chromium browsers so far
+	 */
+	fieldSizing?: FieldSizingType;
 };
 
 export type FormSizeProps = {
@@ -307,11 +393,16 @@ export type FormCheckProps = {
 	/**
 	 * Define the radio or checkbox elements checked state
 	 */
-	checked?: boolean;
+	checked?: boolean | string;
 };
 
 export const LabelVariantList = ['above', 'floating'] as const;
 export type LabelVariantType = (typeof LabelVariantList)[number];
+
+export const LabelVariantHorizontalList = ['leading', 'trailing'] as const;
+export type LabelVariantHorizontalType =
+	(typeof LabelVariantHorizontalList)[number];
+
 export const AutoCompleteList = [
 	'off',
 	'on',
@@ -409,7 +500,13 @@ export type FormMessageProps = {
 	/**
 	 * Enables or disables the visibility of the message.
 	 */
-	showMessage?: boolean;
+	showMessage?: boolean | string;
+};
+
+export type FromValidState = {
+	hasValidState: () => boolean;
+	handleValidation: () => void;
+	_invalidMessage?: string;
 };
 
 export type FormState = {
@@ -418,7 +515,7 @@ export type FormState = {
 	_invalidMessageId?: string;
 	_descByIds?: string;
 	_value?: string;
-
+	_invalidMessage?: string;
 	/**
 	 * https://www.davidmacd.com/blog/test-aria-describedby-errormessage-aria-live.html
 	 * Currently VoiceOver isn't supporting changes from aria-describedby.
@@ -431,16 +528,6 @@ export type InitializedState = {
 	initialized: boolean;
 };
 
-export const LinkCurrentList = [
-	'time',
-	'true',
-	'false',
-	'date',
-	'page',
-	'step',
-	'location'
-] as const;
-export type LinkCurrentType = (typeof LinkCurrentList)[number];
 export const LinkTargetList = ['_self', '_blank', '_parent', '_top'] as const;
 export type LinkTargetType = (typeof LinkTargetList)[number];
 export const LinkReferrerPolicyList = [
@@ -456,13 +543,9 @@ export const LinkReferrerPolicyList = [
 export type LinkReferrerPolicyType = (typeof LinkReferrerPolicyList)[number];
 export type LinkProps = {
 	/**
-	 * Sets aria attribute based on [`aria-current`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-current).
-	 */
-	current?: boolean | LinkCurrentType;
-	/**
 	 * Disables the link.
 	 */
-	disabled?: boolean;
+	disabled?: boolean | string;
 	/**
 	 * The [URL that the hyperlink points to](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a#href).
 	 */
@@ -471,10 +554,6 @@ export type LinkProps = {
 	 * Hints for the human [language of the linked page or document](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a#hreflang).
 	 */
 	hreflang?: string;
-	/**
-	 * Sets aria attribute based on [`aria-label`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-label).
-	 */
-	label?: string;
 	/**
 	 * Where to open the linked URL, as the name for a [browsing context](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a#target).
 	 */
@@ -491,10 +570,6 @@ export type LinkProps = {
 	 * How much of the referrer to send when following the link.
 	 */
 	referrerpolicy?: LinkReferrerPolicyType;
-	/**
-	 * Sets aria role based on [`aria-selected`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-selected).
-	 */
-	selected?: boolean;
 };
 
 export type TextProps = {
@@ -503,6 +578,11 @@ export type TextProps = {
 	 */
 	text?: string;
 };
+
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+export type GeneralEvent<T> = Event;
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+export type GeneralKeyboardEvent<T> = KeyboardEvent;
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 export type ClickEvent<T> = MouseEvent;
@@ -514,26 +594,31 @@ export type ClickEventProps<T> = {
 };
 
 export type ClickEventState<T> = {
-	handleClick: (event: ClickEvent<T>) => void;
+	handleClick: (event: ClickEvent<T> | any) => void;
 };
 
 export type ToggleEventProps = {
+	toggle?: (open: boolean) => void;
 	onToggle?: (open: boolean) => void;
 };
 
 export type ToggleEventState<T> = {
-	toggle: (event?: ClickEvent<T>) => void;
+	handleToggle: (event?: ClickEvent<T> | any) => void;
 };
 
-export type CloseEventProps = {
+export type CloseEventProps<T> = {
 	/**
 	 * Function to handle button click (close).
 	 */
-	onClose?: (event?: any) => void;
+	onClose?: (event?: T) => void;
+	/**
+	 * Function to handle button click (close).
+	 */
+	close?: (event?: T) => void;
 };
 
-export type CloseEventState = {
-	handleClose: (event: any) => void;
+export type CloseEventState<T> = {
+	handleClose: (event?: T | void, forceClose?: boolean) => void;
 };
 
 export const AlignmentList = ['start', 'center'] as const;
@@ -542,14 +627,14 @@ export type AlignmentProps = {
 	/**
 	 * Define the content alignment in full width
 	 */
-	alignment?: AlignmentType;
+	alignment?: AlignmentType | string;
 };
 
 export type ActiveProps = {
 	/**
 	 * If the tab is checked/active.
 	 */
-	active?: boolean;
+	active?: boolean | string;
 };
 
 export type InputEvent<T> = Event;
@@ -559,7 +644,7 @@ export type InputEventProps<T> = {
 };
 
 export type InputEventState<T> = {
-	handleInput: (event: InputEvent<T>) => void;
+	handleInput: (event: InputEvent<T> | any) => void;
 };
 
 export type ChangeEvent<T> = Event;
@@ -569,7 +654,7 @@ export type ChangeEventProps<T> = {
 };
 
 export type ChangeEventState<T> = {
-	handleChange: (event: ChangeEvent<T>) => void;
+	handleChange: (event: ChangeEvent<T> | any) => void;
 };
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -583,8 +668,8 @@ export type FocusEventProps<T> = {
 };
 
 export type FocusEventState<T> = {
-	handleBlur: (event: InteractionEvent<T>) => void;
-	handleFocus: (event: InteractionEvent<T>) => void;
+	handleBlur: (event: InteractionEvent<T> | any) => void;
+	handleFocus: (event: InteractionEvent<T> | any) => void;
 };
 
 export type InnerCloseButtonProps = {
@@ -609,16 +694,9 @@ export type NavigationBackButtonProps = {
 	backButtonText?: string;
 };
 
-export type AriaLabelledByProps = {
-	/**
-	 * Pass aria-labelledby to inner element
-	 */
-	labelledBy?: string;
-};
-
 export type AriaControlsProps = {
 	/**
-	 * Pass aria-controls to inner element
+	 * Pass `aria-controls` to inner element
 	 */
 	controls?: string;
 };
@@ -627,3 +705,16 @@ export type ValueLabelType = {
 	value: string;
 	label?: string;
 };
+
+export type DocumentScrollState = {
+	_documentScrollListenerCallbackId?: string;
+	handleDocumentScroll: (event: any, parent?: HTMLElement) => void;
+	_observer?: IntersectionObserver;
+};
+
+export type PopoverState = {
+	handleEscape: (event: any) => void;
+	handleAutoPlacement: (parent?: HTMLElement) => void;
+	handleEnter: (parent?: HTMLElement) => void;
+	handleLeave: (event?: any) => void;
+} & DocumentScrollState;

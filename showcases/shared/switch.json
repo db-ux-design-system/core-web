@@ -54,63 +54,36 @@
 		]
 	},
 	{
-		"name": "Emphasis",
-		"examples": [
-			{
-				"name": "(Default) Weak + Unchecked",
-				"props": {
-					"emphasis": "weak"
-				}
-			},
-			{
-				"name": "(Default) Weak + Checked",
-				"props": {
-					"emphasis": "weak",
-					"checked": true
-				}
-			},
-			{
-				"name": "Strong + Unchecked",
-				"props": {
-					"emphasis": "strong"
-				}
-			},
-			{
-				"name": "Strong + Checked",
-				"props": {
-					"emphasis": "strong",
-					"checked": true
-				}
-			}
-		]
-	},
-	{
 		"name": "Visual Aid",
 		"examples": [
 			{
-				"name": "(Default) False + Unchecked",
+				"name": "(Default) False (Unchecked)",
 				"props": {
 					"visualAid": false
 				}
 			},
 			{
-				"name": "(Default) False + Checked",
+				"name": "(Default) False (Checked)",
 				"props": {
 					"visualAid": false,
 					"checked": true
 				}
 			},
 			{
-				"name": "True + Unchecked",
+				"name": "True (Unchecked)",
 				"props": {
-					"visualAid": true
+					"visualAid": true,
+					"iconLeading": "moon",
+					"iconTrailing": "sun"
 				}
 			},
 			{
-				"name": "True + Checked",
+				"name": "True (Checked)",
 				"props": {
 					"visualAid": true,
-					"checked": true
+					"checked": true,
+					"iconLeading": "moon",
+					"iconTrailing": "sun"
 				}
 			}
 		]
@@ -125,6 +98,24 @@
 				"name": "Small",
 				"props": {
 					"size": "small"
+				}
+			}
+		]
+	},
+	{
+		"name": "Variant",
+		"examples": [
+			{
+				"name": "(Default) Trailing",
+				"props": {
+					"label": "(Default) Trailing"
+				}
+			},
+			{
+				"name": "Leading",
+				"props": {
+					"label": "Leading",
+					"variant": "leading"
 				}
 			}
 		]
@@ -164,6 +155,65 @@
 		]
 	},
 	{
+		"name": "Show Required Asterisk",
+		"examples": [
+			{
+				"name": "(Default) True",
+				"props": {
+					"required": true,
+					"showRequiredAsterisk": true
+				}
+			},
+			{
+				"name": "False",
+				"props": {
+					"required": true,
+					"showRequiredAsterisk": false
+				}
+			}
+		]
+	},
+	{
+		"name": "Validation",
+		"examples": [
+			{
+				"name": "(Default) No validation",
+				"props": {}
+			},
+			{
+				"name": "Invalid",
+				"props": {
+					"validation": "invalid",
+					"invalidMessage": "Invalid Message"
+				}
+			},
+			{
+				"name": "Valid",
+				"props": {
+					"validation": "valid",
+					"validMessage": "Valid message",
+					"checked": true
+				}
+			}
+		]
+	},
+	{
+		"name": "Show Message",
+		"examples": [
+			{
+				"name": "(Default) False",
+				"props": {}
+			},
+			{
+				"name": "True",
+				"props": {
+					"showMessage": true,
+					"message": "Message"
+				}
+			}
+		]
+	},
+	{
 		"name": "Examples",
 		"examples": [
 			{
@@ -171,16 +221,15 @@
 				"props": {
 					"visualAid": true,
 					"icon": "cross_circle",
-					"iconAfter": "clock"
+					"iconTrailing": "clock"
 				}
 			},
 			{
-				"name": "Custom Icons+ Emphasis",
+				"name": "Required + Visual Aid",
 				"props": {
 					"visualAid": true,
-					"icon": "cross_circle",
-					"iconAfter": "clock",
-					"emphasis": "strong"
+					"required": true,
+					"validMessage": "Valid"
 				}
 			}
 		]

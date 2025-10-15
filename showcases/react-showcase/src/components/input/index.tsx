@@ -3,11 +3,11 @@ import {
 	type LabelVariantType,
 	type ValueLabelType
 } from '../../../../../output/react/src';
-import DefaultComponent from '../default-component';
-import defaultComponentVariants from '../../../../shared/input.json';
 import { type DBInputProps } from '../../../../../output/react/src/components/input/model';
-import { getVariants } from '../data';
+import defaultComponentVariants from '../../../../shared/input.json';
 import { type BaseComponentProps } from '../base-component-data';
+import { getVariants } from '../data';
+import DefaultComponent from '../default-component';
 
 const getDataList = (
 	variant?: LabelVariantType
@@ -29,7 +29,9 @@ const getInput = ({
 	minLength,
 	required,
 	disabled,
-	iconAfter,
+	iconTrailing,
+	showIcon,
+	showIconTrailing,
 	icon,
 	children,
 	message,
@@ -40,7 +42,11 @@ const getInput = ({
 	showMessage,
 	validMessage,
 	validation,
-	invalidMessage
+	invalidMessage,
+	showRequiredAsterisk,
+	maxLength,
+	max,
+	min
 }: DBInputProps & { dataList: boolean }) => {
 	return (
 		<DBInput
@@ -49,14 +55,20 @@ const getInput = ({
 			placeholder={children}
 			variant={variant}
 			showLabel={showLabel}
+			showRequiredAsterisk={showRequiredAsterisk}
 			defaultValue={value}
 			type={type}
 			minLength={minLength}
 			required={required}
 			disabled={disabled}
 			readOnly={readOnly}
-			iconAfter={iconAfter}
+			iconTrailing={iconTrailing}
+			showIconTrailing={showIconTrailing}
+			maxLength={maxLength}
+			max={max}
+			min={min}
 			icon={icon}
+			showIcon={showIcon}
 			showMessage={showMessage}
 			invalidMessage={invalidMessage}
 			validMessage={validMessage}

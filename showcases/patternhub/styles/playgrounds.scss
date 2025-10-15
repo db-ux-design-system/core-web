@@ -1,0 +1,26 @@
+@use "@db-ux/core-foundations/build/styles/variables";
+@use "@db-ux/core-foundations/build/styles/helpers/display";
+
+section.playground {
+	@include display.display(grid);
+	grid-template-columns: repeat(2, 1fr); /* Two columns */
+	gap: variables.$db-spacing-fixed-md; /* Optional spacing between items */
+
+	h2 {
+		grid-column: span 2;
+	}
+
+	a {
+		text-decoration: none;
+
+		strong {
+			@include display.display(block);
+		}
+
+		img {
+			width: variables.$db-sizing-md;
+			float: left;
+			margin-inline-end: variables.$db-spacing-fixed-sm;
+		}
+	}
+}

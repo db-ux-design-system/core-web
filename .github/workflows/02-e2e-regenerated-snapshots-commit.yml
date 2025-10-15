@@ -1,0 +1,75 @@
+name: Commit Regenerated Snapshots
+
+on:
+  workflow_call:
+    inputs:
+      components:
+        description: "Regenerate snapshots for components"
+        required: true
+        type: boolean
+      foundations:
+        description: "Regenerate snapshots for foundations"
+        required: true
+        type: boolean
+      patternhub:
+        description: "Regenerate snapshots for patternhub"
+        required: true
+        type: boolean
+      showcases:
+        description: "Regenerate snapshots for showcases"
+        required: true
+        type: boolean
+
+jobs:
+  commit-showcases:
+    name: 🆙 Commit regenerated snapshots
+    if: (inputs.showcases || inputs.components || inputs.foundations || inputs.patternhub) && !contains(github.actor,'[bot]')
+    runs-on: ubuntu-24.04 # Use Ubuntu 24.04 explicitly
+    permissions:
+      contents: write
+      pull-requests: write
+    steps:
+      - name: ⏬ Checkout repo
+        uses: actions/checkout@v5
+        with:
+          ref: ${{ github.head_ref }}
+
+      - name: ⏬ Download components
+        uses: actions/download-artifact@v5
+        # Only download artifact if the artifact exists
+        if: inputs.components
+        with:
+          name: snapshots-components
+          path: ./__snapshots__/
+
+      - name: ⏬ Download foundations
+        uses: actions/download-artifact@v5
+        # Only download artifact if the artifact exists
+        if: inputs.foundations
+        with:
+          name: snapshots-foundations
+          path: ./__snapshots__/foundations
+
+      - name: ⏬ Download patternhub
+        uses: actions/download-artifact@v5
+        if: inputs.patternhub
+        with:
+          name: snapshots-patternhub
+          path: ./__snapshots__/
+
+      - name: ⏬ Download showcase
+        uses: actions/download-artifact@v5
+        if: inputs.showcases
+        with:
+          name: snapshots-showcases
+          path: ./__snapshots__/
+
+      - name: 🚘 Auto commit
+        uses: ./.github/actions/auto-commit
+        with:
+          branch-name: "${{ github.head_ref }}-auto"
+          commit-message: "auto update snapshots"
+          commit-files: "__snapshots__/*"
+          auto-merge-app-id: ${{ vars.AUTO_MERGE_APP_ID }}
+          auto-merge-private-key: ${{ secrets.AUTO_MERGE_PRIVATE_KEY }}
+          gh-token: ${{ secrets.GITHUB_TOKEN }}

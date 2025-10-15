@@ -1,0 +1,17 @@
+@use "variables";
+
+// stylelint-disable-next-line scss/at-rule-no-unknown
+@theme {
+	@include variables.get-variables;
+}
+
+@layer densities {
+	.db-density-expressive,
+	[data-density="expressive"],
+	.db-density-regular,
+	[data-density="regular"],
+	.db-density-functional,
+	[data-density="functional"] {
+		@include variables.get-variables;
+	}
+}

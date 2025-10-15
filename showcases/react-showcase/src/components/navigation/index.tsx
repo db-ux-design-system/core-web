@@ -1,13 +1,13 @@
 import {
+	DBInfotext,
 	DBNavigation,
-	DBNavigationItem,
-	DBInfotext
+	DBNavigationItem
 } from '../../../../../output/react/src';
-import DefaultComponent from '../default-component';
-import defaultComponentVariants from '../../../../shared/navigation.json';
 import type { DBNavigationProps } from '../../../../../output/react/src/components/navigation/model';
-import { getVariants } from '../data';
+import defaultComponentVariants from '../../../../shared/navigation.json';
 import { type BaseComponentProps } from '../base-component-data';
+import { getVariants } from '../data';
+import DefaultComponent from '../default-component';
 
 const getNavigation = ({ children }: DBNavigationProps) => {
 	const labelID = `${children.replaceAll(/\W/g, '_').toLowerCase()}`;
@@ -20,7 +20,7 @@ const getNavigation = ({ children }: DBNavigationProps) => {
 				icon="none">
 				{children}
 			</DBInfotext>
-			<DBNavigation labelledBy={labelID}>
+			<DBNavigation aria-labelledby={labelID}>
 				<DBNavigationItem
 					subNavigation={
 						<>

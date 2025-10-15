@@ -1,5 +1,5 @@
-import DefaultPage from '../../../components/default-page';
 import { DBInfotext } from '../../../../../output/react/src';
+import DefaultPage from '../../../components/default-page';
 import ColorsOverviewTabs from '../../../components/foundations/colors/colors-overview-tabs';
 import {
 	additionalColors,

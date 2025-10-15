@@ -1,7 +1,7 @@
 #!/usr/bin/env node
+import * as dotenv from 'dotenv';
 import * as ChildProcess from 'node:child_process';
 import * as process from 'node:process';
-import * as dotenv from 'dotenv';
 
 dotenv.config();
 

@@ -1,5 +1,4 @@
 @charset "utf-8";
-
 @use "@db-ux/core-foundations/build/styles/fonts";
 @use "@db-ux/core-foundations/build/styles/variables";
 @use "@db-ux/core-foundations/build/styles/colors";
@@ -21,17 +20,9 @@
 	// disable text-decoration if someone wants to use the button for an <a> tag
 	text-decoration: none;
 
-	@include helpers.hover {
-		background-color: colors.$db-adaptive-bg-basic-transparent-hovered;
-	}
-
-	@include helpers.active {
-		background-color: colors.$db-adaptive-bg-basic-transparent-pressed;
-	}
-
 	// Square icon only buttons
 	&[data-no-text="true"] {
-		@include icons.is-icon-text-replace();
+		@include icons.is-icon-text-replace;
 
 		padding: 0;
 		inline-size: variables.$db-sizing-md;
@@ -44,6 +35,7 @@
 	&[data-size="small"] {
 		@extend %db-overwrite-font-size-sm;
 
+		font-weight: 700;
 		block-size: variables.$db-sizing-sm;
 
 		&:not([data-no-text="true"]) {
@@ -72,12 +64,12 @@
 
 		@include helpers.hover {
 			background-color: colors.$db-brand-origin-hovered;
-			border-color: colors.$db-brand-on-bg-basic-emphasis-70-hovered;
+			border-color: colors.$db-brand-on-bg-basic-emphasis-70-default;
 		}
 
 		@include helpers.active {
 			background-color: colors.$db-brand-origin-pressed;
-			border-color: colors.$db-brand-on-bg-basic-emphasis-70-pressed;
+			border-color: colors.$db-brand-on-bg-basic-emphasis-70-default;
 		}
 	}
 
@@ -88,27 +80,33 @@
 
 	&[data-variant="outlined"],
 	&:not([data-variant]),
+	&[data-variant=""],
 	&[data-variant="ghost"] {
 		background-color: colors.$db-adaptive-bg-basic-transparent-full-default;
+
+		@include helpers.hover {
+			background-color: colors.$db-adaptive-bg-basic-transparent-full-hovered;
+		}
+
+		@include helpers.active {
+			background-color: colors.$db-adaptive-bg-basic-transparent-full-pressed;
+		}
 	}
 
 	&[data-variant="filled"] {
 		background-color: colors.$db-adaptive-bg-basic-transparent-semi-default;
-	}
 
-	&:disabled {
-		opacity: component.$default-disabled;
-	}
-
-	// States (currently only "loading")
-	&[data-state="loading"] {
-		@include icons.is-icon-text-replace();
-
-		font-size: 0;
-
-		&::before {
-			content: "";
+		@include helpers.hover {
+			background-color: colors.$db-adaptive-bg-basic-transparent-semi-hovered;
 		}
+
+		@include helpers.active {
+			background-color: colors.$db-adaptive-bg-basic-transparent-semi-pressed;
+		}
+	}
+
+	&:is(:disabled, [aria-disabled="true"]) {
+		opacity: variables.$db-opacity-md;
 	}
 
 	// Workaround for current stencil implementation for header

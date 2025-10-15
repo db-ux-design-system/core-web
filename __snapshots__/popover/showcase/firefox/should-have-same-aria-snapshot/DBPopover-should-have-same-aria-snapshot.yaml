@@ -1,6 +1,6 @@
 - main:
   - heading "DBPopover" [level=1]
-  - link "Density arrow_up_right\" / \""
+  - link "Density"
   - button "Functional"
   - article:
     - list:
@@ -19,7 +19,7 @@
       - listitem: Popover Custom Item 1
       - listitem: Popover Custom Item 2
     - button "Popover Custom Item 3"
-  - link "Spacing arrow_up_right\" / \""
+  - link "Spacing"
   - button "(Default) Small"
   - article:
     - list:
@@ -44,7 +44,7 @@
       - listitem: Popover Custom Item 1
       - listitem: Popover Custom Item 2
     - button "Popover Custom Item 3"
-  - link "Placement arrow_up_right\" / \""
+  - link "Placement"
   - button "bottom-start"
   - article:
     - list:
@@ -117,7 +117,7 @@
       - listitem: Popover Custom Item 1
       - listitem: Popover Custom Item 2
     - button "Popover Custom Item 3"
-  - link "Gap arrow_up_right\" / \""
+  - link "Gap"
   - button "(Default) False"
   - article:
     - list:
@@ -130,7 +130,7 @@
       - listitem: Popover Custom Item 1
       - listitem: Popover Custom Item 2
     - button "Popover Custom Item 3"
-  - link "Animation arrow_up_right\" / \""
+  - link "Animation"
   - button "(Default) True"
   - article:
     - list:
@@ -143,7 +143,7 @@
       - listitem: Popover Custom Item 1
       - listitem: Popover Custom Item 2
     - button "Popover Custom Item 3"
-  - link "Delay arrow_up_right\" / \""
+  - link "Delay"
   - button "(Default) None"
   - article:
     - list:
@@ -162,7 +162,7 @@
       - listitem: Popover Custom Item 1
       - listitem: Popover Custom Item 2
     - button "Popover Custom Item 3"
-  - link "Width arrow_up_right\" / \""
+  - link "Width"
   - button "(Default) Auto"
   - article: Max width, lorem ipsum dolor sit amet, consetetur sadipscing
   - button "Fixed"

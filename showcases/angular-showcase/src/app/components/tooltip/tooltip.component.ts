@@ -1,8 +1,8 @@
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import defaultComponentVariants from '../../../../../shared/tooltip.json';
-import { DefaultComponent } from '../default.component';
 import { DBButton, DBTooltip } from '../../../../../../output/angular/src';
+import defaultComponentVariants from '../../../../../shared/tooltip.json';
 import { environment } from '../../../environments/environment';
+import { DefaultComponent } from '../default.component';
 
 @Component({
 	selector: 'app-tooltip',
@@ -10,7 +10,7 @@ import { environment } from '../../../environments/environment';
 	imports: environment.webComponents
 		? [DefaultComponent]
 		: [DefaultComponent, DBTooltip, DBButton],
-	schemas: [CUSTOM_ELEMENTS_SCHEMA],
+	schemas: environment.webComponents ? [CUSTOM_ELEMENTS_SCHEMA] : [],
 	standalone: true
 })
 export class TooltipComponent {

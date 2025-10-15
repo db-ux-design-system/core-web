@@ -1,0 +1,86 @@
+@use "@db-ux/core-foundations/build/styles/variables";
+@use "@db-ux/core-foundations/build/styles/colors";
+@use "@db-ux/core-foundations/build/styles/screen-sizes";
+@use "@db-ux/core-foundations/build/styles/helpers";
+@use "@db-ux/core-foundations/build/styles/animation";
+@use "../../styles/internal/form-components";
+
+.db-custom-select-dropdown {
+	@extend %db-neutral-variables;
+
+	position: absolute;
+	z-index: 32;
+	box-shadow: variables.$db-elevation-md;
+	min-inline-size: variables.$db-sizing-xl;
+	max-inline-size: calc(100vw - 2 * #{variables.$db-spacing-fixed-sm});
+	max-block-size: calc(100vh - 2 * #{variables.$db-spacing-fixed-sm});
+
+	&:not([data-width]),
+	&[data-width="fixed"] {
+		inline-size: var(
+			--db-custom-select-dropdown-fixed-inline-size,
+			#{variables.$db-sizing-3xl}
+		);
+	}
+
+	&[data-width="full"] {
+		inline-size: 100%;
+	}
+
+	@include screen-sizes.screen("sm", "max") {
+		position: fixed;
+		z-index: 9999;
+		inset-block: 0;
+		inset-inline: 50%;
+		transform: translateX(-50%);
+		block-size: fit-content;
+		margin: auto;
+	}
+
+	.db-input {
+		min-inline-size: variables.$db-sizing-2xl;
+	}
+
+	> db-custom-select-list > div:not([class~="db-custom-select-list"]),
+	> div:not([class~="db-custom-select-list"]) {
+		&:has(.db-checkbox) {
+			padding: variables.$db-spacing-fixed-xs
+				variables.$db-spacing-fixed-sm;
+
+			@include helpers.divider("bottom", "after");
+		}
+
+		&:has(.db-button),
+		&:has(.db-input) {
+			padding: variables.$db-spacing-fixed-md
+				calc(#{variables.$db-spacing-fixed-sm} * 2);
+		}
+
+		&:has(.db-input) {
+			@include helpers.divider("bottom", "after");
+		}
+
+		&:has(.db-button) {
+			@include helpers.divider("top", "after");
+
+			@include screen-sizes.screen("sm") {
+				@include helpers.display(none);
+			}
+		}
+	}
+
+	> db-infotext > .db-infotext,
+	> .db-infotext {
+		padding: variables.$db-spacing-fixed-lg variables.$db-spacing-fixed-md;
+		margin: auto;
+
+		&[data-icon="circular_arrows"] {
+			&::before {
+				@media screen and (prefers-reduced-motion: no-preference) {
+					animation: rotate 1.5s linear 0s infinite normal none
+						running;
+				}
+			}
+		}
+	}
+}

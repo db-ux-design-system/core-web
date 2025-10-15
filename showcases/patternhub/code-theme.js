@@ -1,5 +1,3 @@
-/* eslint-disable import/no-anonymous-default-export */
-
 // TODO: Make own shiki template
 export const getTheme = () => ({
 	name: 'nord',
@@ -1418,5 +1416,3 @@ export const getTheme = () => ({
 		}
 	]
 });
-
-export default { getTheme };

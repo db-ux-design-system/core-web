@@ -1,34 +1,35 @@
-import type { RouteRecordRaw } from 'vue-router';
 import { markRaw } from 'vue';
-import Stack from '../components/stack/Stack.vue';
-import Switch from '../components/switch/Switch.vue';
-import Tabs from '../components/tabs/Tabs.vue';
-import TabItem from '../components/tab-item/TabItem.vue';
-import Tooltip from '../components/tooltip/Tooltip.vue';
-import Popover from '../components/popover/Popover.vue';
+import type { RouteRecordRaw } from 'vue-router';
 import AccordionItem from '../components/accordion-item/AccordionItem.vue';
 import Accordion from '../components/accordion/Accordion.vue';
 import Badge from '../components/badge/Badge.vue';
-import NavigationItem from '../components/navigation-item/NavigationItem.vue';
-import Navigation from '../components/navigation/Navigation.vue';
-import Select from '../components/select/Select.vue';
-import Tag from '../components/tag/Tag.vue';
+import Brand from '../components/brand/Brand.vue';
 import Button from '../components/button/Button.vue';
-import Input from '../components/input/Input.vue';
-import Link from '../components/link/Link.vue';
-import Notification from '../components/notification/Notification.vue';
 import Card from '../components/card/Card.vue';
 import Checkbox from '../components/checkbox/Checkbox.vue';
+import CustomSelect from '../components/custom-select/CustomSelect.vue';
 import Divider from '../components/divider/Divider.vue';
 import Drawer from '../components/drawer/Drawer.vue';
-import Infotext from '../components/infotext/Infotext.vue';
-import Radio from '../components/radio/Radio.vue';
-import Section from '../components/section/Section.vue';
-import Textarea from '../components/textarea/Textarea.vue';
-import Brand from '../components/brand/Brand.vue';
-import Icon from '../components/icon/Icon.vue';
 import Header from '../components/header/Header.vue';
 import Home from '../components/home/Home.vue';
+import Icon from '../components/icon/Icon.vue';
+import Infotext from '../components/infotext/Infotext.vue';
+import Input from '../components/input/Input.vue';
+import Link from '../components/link/Link.vue';
+import NavigationItem from '../components/navigation-item/NavigationItem.vue';
+import Navigation from '../components/navigation/Navigation.vue';
+import Notification from '../components/notification/Notification.vue';
+import Popover from '../components/popover/Popover.vue';
+import Radio from '../components/radio/Radio.vue';
+import Section from '../components/section/Section.vue';
+import Select from '../components/select/Select.vue';
+import Stack from '../components/stack/Stack.vue';
+import Switch from '../components/switch/Switch.vue';
+import TabItem from '../components/tab-item/TabItem.vue';
+import Tabs from '../components/tabs/Tabs.vue';
+import Tag from '../components/tag/Tag.vue';
+import Textarea from '../components/textarea/Textarea.vue';
+import Tooltip from '../components/tooltip/Tooltip.vue';
 
 export type NavItem = {
 	path: string;
@@ -121,6 +122,11 @@ export const navigationItems: NavItem[] = [
 		path: '/03',
 		label: '03 Data-Input',
 		subNavigation: getSortedNavigationItems([
+			{
+				path: '/03/custom-select',
+				label: 'CustomSelect',
+				component: markRaw(CustomSelect)
+			},
 			{ path: '/03/input', label: 'Input', component: markRaw(Input) },
 			{
 				path: '/03/textarea',

@@ -1,5 +1,4 @@
 @charset "utf-8";
-
 @use "@db-ux/core-foundations/build/styles/fonts";
 @use "@db-ux/core-foundations/build/styles/variables";
 @use "@db-ux/core-foundations/build/styles/animation";
@@ -9,6 +8,9 @@
 @use "../../styles/internal/link-components";
 
 .db-link {
+	--db-icon-margin-start: #{variables.$db-spacing-fixed-2xs};
+	--db-icon-vertical-align: top;
+
 	@extend %db-default-link;
 	@extend %db-overwrite-font-size-md;
 
@@ -18,37 +20,27 @@
 	}
 
 	&[data-content="internal"] {
-		@include icons.set-icon("arrow_right", "after");
-
-		&:not([data-hide-icon-after="true"])::after {
-			vertical-align: top;
+		&:not([data-variant="inline"]) {
+			@include icons.set-icon("arrow_right", "after");
 		}
 	}
 
 	&[data-content="external"] {
-		@include icons.set-icon("arrow_up_right", "after");
-	}
-
-	&[data-content="internal"],
-	&[data-content="external"] {
-		--db-icon-margin-start: #{variables.$db-spacing-fixed-2xs};
-
-		&::after {
-			/* stylelint-disable-next-line db-ux/use-spacings */
-			margin-inline-start: var(--db-icon-margin-start);
+		&:not([data-variant="inline"]) {
+			@include icons.set-icon("arrow_up_right", "after");
 		}
 	}
 
 	// We couldn't extend any existing SCSS placeholders, as this is a special construct
 	&[data-variant="brand"] {
-		color: colors.$db-brand-bg-inverted-contrast-high-default;
+		color: colors.$db-brand-on-bg-basic-emphasis-80-default;
 
 		@include helpers.hover {
-			color: #{colors.$db-brand-bg-inverted-contrast-high-hovered};
+			color: #{colors.$db-brand-on-bg-basic-emphasis-80-hovered};
 		}
 
 		@include helpers.active {
-			color: #{colors.$db-brand-bg-inverted-contrast-high-pressed};
+			color: #{colors.$db-brand-on-bg-basic-emphasis-80-pressed};
 		}
 	}
 

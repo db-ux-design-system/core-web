@@ -25,18 +25,23 @@ $db-informational-bg-basic-level-3-hovered: var(
 $db-informational-bg-basic-level-3-pressed: var(
 	--db-informational-bg-basic-level-3-pressed
 );
-
 $db-informational-bg-basic-transparent-full-default: var(
 	--db-informational-bg-basic-transparent-full-default
 );
 $db-informational-bg-basic-transparent-semi-default: var(
 	--db-informational-bg-basic-transparent-semi-default
 );
-$db-informational-bg-basic-transparent-hovered: var(
-	--db-informational-bg-basic-transparent-hovered
+$db-informational-bg-basic-transparent-full-hovered: var(
+	--db-informational-bg-basic-transparent-full-hovered
 );
-$db-informational-bg-basic-transparent-pressed: var(
-	--db-informational-bg-basic-transparent-pressed
+$db-informational-bg-basic-transparent-full-pressed: var(
+	--db-informational-bg-basic-transparent-full-pressed
+);
+$db-informational-bg-basic-transparent-semi-hovered: var(
+	--db-informational-bg-basic-transparent-semi-hovered
+);
+$db-informational-bg-basic-transparent-semi-pressed: var(
+	--db-informational-bg-basic-transparent-semi-pressed
 );
 $db-informational-on-bg-basic-emphasis-100-default: var(
 	--db-informational-on-bg-basic-emphasis-100-default
@@ -134,3 +139,19 @@ $db-informational-origin-pressed: var(--db-informational-origin-pressed);
 $db-informational-on-origin-default: var(--db-informational-on-origin-default);
 $db-informational-on-origin-hovered: var(--db-informational-on-origin-hovered);
 $db-informational-on-origin-pressed: var(--db-informational-on-origin-pressed);
+
+// vibrant
+$db-informational-vibrant-default: var(--db-informational-vibrant-default);
+$db-informational-vibrant-hovered: var(--db-informational-vibrant-hovered);
+$db-informational-vibrant-pressed: var(--db-informational-vibrant-pressed);
+
+// on-vibrant
+$db-informational-on-vibrant-default: var(
+	--db-informational-on-vibrant-default
+);
+$db-informational-on-vibrant-hovered: var(
+	--db-informational-on-vibrant-hovered
+);
+$db-informational-on-vibrant-pressed: var(
+	--db-informational-on-vibrant-pressed
+);

@@ -13,7 +13,7 @@ export type DBPopoverDefaultProps = {
 	/**
 	 * Use open to disable the default hover/focus behavior to use it on click or other trigger.
 	 */
-	open?: boolean;
+	open?: boolean | string;
 
 	/**
 	 * The trigger to open the popover e.g. a button
@@ -31,8 +31,6 @@ export type DBPopoverProps = DBPopoverDefaultProps &
 export type DBPopoverDefaultState = {
 	isExpanded?: boolean;
 	getTrigger: () => Element | null;
-	// eslint-disable-next-line @typescript-eslint/no-explicit-any
-	handleLeave: (event: any) => void;
 };
 
 export type DBPopoverState = DBPopoverDefaultState &

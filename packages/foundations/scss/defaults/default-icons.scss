@@ -1,16 +1,18 @@
 @use "../icons";
+@use "../helpers/display";
 
 [data-icon],
-[data-icon-before],
-[data-icon-after] {
+[data-icon-leading],
+[data-icon-trailing] {
 	&:is(span) {
-		display: inline-flex;
+		@include display.display(inline-flex);
+
 		vertical-align: baseline;
 	}
 }
 
 [data-icon],
-[data-icon-before] {
+[data-icon-leading] {
 	&::before {
 		@extend %icon !optional;
 
@@ -18,27 +20,27 @@
 	}
 }
 
-[data-hide-icon="true"],
-[data-hide-icon-before="true"],
+[data-show-icon="false"],
+[data-show-icon-leading="false"],
 [data-icon="none"],
-[data-icon-before="none"] {
+[data-icon-leading="none"] {
 	&::before {
 		content: none;
 	}
 }
 
-[data-icon-after] {
+[data-icon-trailing] {
 	&::after {
 		@extend %icon !optional;
 
-		@include icons.icon-content(icons.$default-icon-content-after);
-
 		margin-inline-start: icons.$default-icon-margin-start;
+
+		@include icons.icon-content(icons.$default-icon-content-after);
 	}
 }
 
-[data-hide-icon-after="true"],
-[data-icon-after="none"] {
+[data-show-icon-trailing="false"],
+[data-icon-trailing="none"] {
 	&::after {
 		content: none;
 	}
@@ -47,11 +49,11 @@
 // Providing a mechanism for text replacements
 .is-icon-text-replace {
 	&[data-icon],
-	&[data-icon-before] {
-		@include icons.is-icon-text-replace();
+	&[data-icon-leading] {
+		@include icons.is-icon-text-replace;
 	}
 
-	&[data-icon-after] {
+	&[data-icon-trailing] {
 		@include icons.is-icon-text-replace("after");
 	}
 }

@@ -1,14 +1,14 @@
 @use "@db-ux/core-foundations/build/styles/variables";
+@use "@db-ux/core-foundations/build/styles/helpers/display";
 
 .decision-tree {
-	display: flex;
+	@include display.display(flex);
 	flex-direction: column;
 	gap: variables.$db-spacing-fixed-3xl;
 	text-align: center;
 
 	h2 {
-		font-size: var(--db-type-headline-font-size-3xs);
-		line-height: var(--db-type-headline-line-height-3xs);
+		font: var(--db-type-headline-3xs);
 		margin-block: var(--db-spacing-fixed-3xs);
 	}
 
@@ -22,7 +22,7 @@
 }
 
 .decision-tree-row {
-	display: grid;
+	@include display.display(grid);
 	justify-content: center;
 	gap: variables.$db-spacing-fixed-md;
 

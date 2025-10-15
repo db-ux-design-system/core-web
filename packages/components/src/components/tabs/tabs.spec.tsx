@@ -1,15 +1,21 @@
-import { expect, test } from '@playwright/experimental-ct-react';
 import AxeBuilder from '@axe-core/playwright';
+import { expect, test } from '@playwright/experimental-ct-react';
 
+import { existsSync, rmSync, writeFileSync } from 'node:fs';
 import { DBTabs } from './index';
 // @ts-ignore - vue can only find it with .ts as file ending
 import { DEFAULT_VIEWPORT } from '../../shared/constants.ts';
-import { DBTabList } from '../tab-list';
 import { DBTabItem } from '../tab-item';
+import { DBTabList } from '../tab-list';
 import { DBTabPanel } from '../tab-panel';
 
+const filePath = './test-results/onIndexChange.txt';
+
 const comp: any = (
-	<DBTabs>
+	<DBTabs
+		onIndexChange={(index: number) =>
+			writeFileSync(filePath, index.toString())
+		}>
 		<DBTabList>
 			<DBTabItem data-testid="test">Test 1</DBTabItem>
 			<DBTabItem data-testid="test2">Test 2</DBTabItem>
@@ -38,6 +44,10 @@ const testComponent = () => {
 
 const testActions = () => {
 	test('should be clickable', async ({ mount }) => {
+		if (existsSync(filePath)) {
+			rmSync(filePath);
+		}
+
 		const component = await mount(comp);
 		await component
 			.getByTestId('test2')
@@ -48,6 +58,8 @@ const testActions = () => {
 			// VUE: .getByRole('tab')
 			.isChecked();
 		expect(!tabChecked).toBeTruthy();
+
+		expect(existsSync(filePath)).toBeTruthy();
 	});
 };
 

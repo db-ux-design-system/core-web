@@ -1,19 +1,19 @@
 - main:
   - heading "DBAccordionItem" [level=1]
-  - link "Density arrow_up_right\" / \""
+  - link "Density"
   - listitem:
-    - group: Functional chevron_down" / "
+    - group: Functional
   - listitem:
-    - group: (Default) Regular chevron_down" / "
+    - group: (Default) Regular
   - listitem:
-    - group: Expressive chevron_down" / "
-  - link "Disabled arrow_up_right\" / \""
+    - group: Expressive
+  - link "Disabled"
   - listitem:
-    - group: (Default) False chevron_down" / "
+    - group: (Default) False
   - listitem:
-    - group [disabled]: True chevron_down" / "
-  - link "Open arrow_up_right\" / \""
+    - group [disabled]: "True"
+  - link "Open"
   - listitem:
-    - group: (Default) False chevron_down" / "
+    - group: (Default) False
   - listitem:
-    - group: True chevron_down" / " True
+    - group: True True

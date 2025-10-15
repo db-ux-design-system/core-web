@@ -1,176 +1,153 @@
-/* stylelint-disable custom-property-pattern, custom-property-empty-line-before */
+/* stylelint-disable custom-property-pattern, custom-property-empty-line-before, import-notation, scss/at-rule-no-unknown */
 
 /* The prefix for variables are predefined by Tailwind, stylelint would throw an error */
-/* stylelint-disable-next-line import-notation */
 @import "./colors.css";
+@import "./revert-theme.css";
+@import "./dimensions.css";
 
-/* stylelint-disable-next-line scss/at-rule-no-unknown */
-@theme {
-	--font-*: initial; /* Font family utilities like font-sans */
-	--font-sans: var(--db-font-family-sans);
-	--font-head: var(--db-font-family-head);
-
-	--text-*: initial; /* Font size utilities like text-body-xl */
-	--text-base: var(--db-type-body-font-size-md);
-	--text-base--line-height: var(--db-type-body-line-height-md);
-	--text-body-3xs: var(--db-type-body-font-size-3xs);
-	--text-body-3xs--line-height: var(--db-type-body-line-height-3xs);
-	--text-body-2xs: var(--db-type-body-font-size-2xs);
-	--text-body-2xs--line-height: var(--db-type-body-line-height-2xs);
-	--text-body-xs: var(--db-type-body-font-size-xs);
-	--text-body-xs--line-height: var(--db-type-body-line-height-xs);
-	--text-body-sm: var(--db-type-body-font-size-sm);
-	--text-body-sm--line-height: var(--db-type-body-line-height-sm);
-	--text-body-md: var(--db-type-body-font-size-md);
-	--text-body-md--line-height: var(--db-type-body-line-height-md);
-	--text-body-lg: var(--db-type-body-font-size-lg);
-	--text-body-lg--line-height: var(--db-type-body-line-height-lg);
-	--text-body-xl: var(--db-type-body-font-size-xl);
-	--text-body-xl--line-height: var(--db-type-body-line-height-xl);
-	--text-body-2xl: var(--db-type-body-font-size-2xl);
-	--text-body-2xl--line-height: var(--db-type-body-line-height-2xl);
-	--text-body-3xl: var(--db-type-body-font-size-3xl);
-	--text-body-3xl--line-height: var(--db-type-body-line-height-3xl);
-	--text-head-3xs: var(--db-type-headline-font-size-3xs);
-	--text-head-3xs--line-height: var(--db-type-headline-line-height-3xs);
-	--text-head-2xs: var(--db-type-headline-font-size-2xs);
-	--text-head-2xs--line-height: var(--db-type-headline-line-height-2xs);
-	--text-head-xs: var(--db-type-headline-font-size-xs);
-	--text-head-xs--line-height: var(--db-type-headline-line-height-xs);
-	--text-head-sm: var(--db-type-headline-font-size-sm);
-	--text-head-sm--line-height: var(--db-type-headline-line-height-sm);
-	--text-head-md: var(--db-type-headline-font-size-md);
-	--text-head-md--line-height: var(--db-type-headline-line-height-md);
-	--text-head-lg: var(--db-type-headline-font-size-lg);
-	--text-head-lg--line-height: var(--db-type-headline-line-height-lg);
-	--text-head-xl: var(--db-type-headline-font-size-xl);
-	--text-head-xl--line-height: var(--db-type-headline-line-height-xl);
-	--text-head-2xl: var(--db-type-headline-font-size-2xl);
-	--text-head-2xl--line-height: var(--db-type-headline-line-height-2xl);
-	--text-head-3xl: var(--db-type-headline-font-size-3xl);
-	--text-head-3xl--line-height: var(--db-type-headline-line-height-3xl);
-
-	--breakpoint-*: initial; /* Responsive breakpoint variants like sm:* */
-	--breakpoint-xs: 360px;
-	--breakpoint-sm: 720px;
-	--breakpoint-md: 1024px;
-	--breakpoint-lg: 1440px;
-	--breakpoint-xl: 1920px;
-
-	--spacing-*: initial; /* Spacing and sizing utilities like px-fix-md, max-h-siz-xl, and many more */
-	--spacing-none: 0;
-	--spacing-0: 0;
-	--spacing-fix-3xs: var(--db-spacing-fixed-3xs);
-	--spacing-fix-2xs: var(--db-spacing-fixed-2xs);
-	--spacing-fix-xs: var(--db-spacing-fixed-xs);
-	--spacing-fix-sm: var(--db-spacing-fixed-sm);
-	--spacing-fix-md: var(--db-spacing-fixed-md);
-	--spacing-fix-lg: var(--db-spacing-fixed-lg);
-	--spacing-fix-xl: var(--db-spacing-fixed-xl);
-	--spacing-fix-2xl: var(--db-spacing-fixed-2xl);
-	--spacing-fix-3xl: var(--db-spacing-fixed-3xl);
-	--spacing-res-3xs: var(--db-spacing-responsive-3xs);
-	--spacing-res-2xs: var(--db-spacing-responsive-2xs);
-	--spacing-res-xs: var(--db-spacing-responsive-xs);
-	--spacing-res-sm: var(--db-spacing-responsive-sm);
-	--spacing-res-md: var(--db-spacing-responsive-md);
-	--spacing-res-lg: var(--db-spacing-responsive-lg);
-	--spacing-res-xl: var(--db-spacing-responsive-xl);
-	--spacing-res-2xl: var(--db-spacing-responsive-2xl);
-	--spacing-res-3xl: var(--db-spacing-responsive-3xl);
-	--spacing-siz-3xs: var(--db-sizing-3xs);
-	--spacing-siz-2xs: var(--db-sizing-2xs);
-	--spacing-siz-xs: var(--db-sizing-xs);
-	--spacing-siz-sm: var(--db-sizing-sm);
-	--spacing-siz-md: var(--db-sizing-md);
-	--spacing-siz-lg: var(--db-sizing-lg);
-	--spacing-siz-xl: var(--db-sizing-xl);
-	--spacing-siz-2xl: var(--db-sizing-2xl);
-	--spacing-siz-3xl: var(--db-sizing-3xl);
-
-	--gap-*: initial; /* Gap */
-	--gap-none: 0;
-	--gap-0: 0;
-	--gap-3xs: var(--db-gap-fixed-3xs);
-	--gap-2xs: var(--db-gap-fixed-2xs);
-	--gap-xs: var(--db-gap-fixed-xs);
-	--gap-sm: var(--db-gap-fixed-sm);
-	--gap-md: var(--db-gap-fixed-md);
-	--gap-lg: var(--db-gap-fixed-lg);
-	--gap-xl: var(--db-gap-fixed-xl);
-	--gap-2xl: var(--db-gap-fixed-2xl);
-	--gap-3xl: var(--db-gap-fixed-3xl);
-
-	--border-*: initial; /* Border width */
-	--border: var(--db-border-height-3xs);
-	--border-none: 0;
-	--border-0: 0;
-	--border-3xs: var(--db-border-height-3xs);
-	--border-2xs: var(--db-border-height-2xs);
-	--border-xs: var(--db-border-height-xs);
-	--border-sm: var(--db-border-height-sm);
-	--border-md: var(--db-border-height-md);
-	--border-lg: var(--db-border-height-lg);
-	--border-xl: var(--db-border-height-xl);
-	--border-2xl: var(--db-border-height-2xl);
-	--border-3xl: var(--db-border-height-3xl);
-
-	--radius-*: initial; /* Border radius utilities like rounded-sm */
-	--radius: var(--db-border-radius-xs);
-	--radius-none: 0;
-	--radius-0: 0;
-	--radius-3xs: var(--db-border-radius-3xs);
-	--radius-2xs: var(--db-border-radius-2xs);
-	--radius-xs: var(--db-border-radius-xs);
-	--radius-sm: var(--db-border-radius-sm);
-	--radius-md: var(--db-border-radius-md);
-	--radius-lg: var(--db-border-radius-lg);
-	--radius-xl: var(--db-border-radius-xl);
-	--radius-2xl: var(--db-border-radius-2xl);
-	--radius-3xl: var(--db-border-radius-3xl);
-	--radius-full: var(--db-border-radius-full);
-
-	--shadow-*: initial; /* Box shadow utilities like shadow-md */
-	--shadow: var(--db-elevation-md);
-	--shadow-sm: var(--db-elevation-sm);
-	--shadow-md: var(--db-elevation-md);
-	--shadow-lg: var(--db-elevation-lg);
+@utility text-body-3xs {
+	font: var(--db-type-body-3xs);
 }
 
-@layer components {
-	.typography {
-		p {
-			font-size: var(--text-body-md);
-		}
+@utility text-body-2xs {
+	font: var(--db-type-body-2xs);
+}
 
-		h1 {
-			font-size: var(--text-xl);
-			line-height: var(--text-xl--line-height);
-		}
+@utility text-body-xs {
+	font: var(--db-type-body-xs);
+}
 
-		h2 {
-			font-size: var(--text-lg);
-			line-height: var(--text-lg--line-height);
-		}
+@utility text-body-sm {
+	font: var(--db-type-body-sm);
+}
 
-		h3 {
-			font-size: var(--text-md);
-			line-height: var(--text-md--line-height);
-		}
+@utility text-body-md {
+	font: var(--db-type-body-md);
+}
 
-		h4 {
-			font-size: var(--text-sm);
-			line-height: var(--text-sm--line-height);
-		}
+@utility text-body-lg {
+	font: var(--db-type-body-lg);
+}
 
-		h5 {
-			font-size: var(--text-xs);
-			line-height: var(--text-xs--line-height);
-		}
+@utility text-body-xl {
+	font: var(--db-type-body-xl);
+}
 
-		h6 {
-			font-size: var(--text-2xs);
-			line-height: var(--text-2xs--line-height);
-		}
+@utility text-body-2xl {
+	font: var(--db-type-body-2xl);
+}
+
+@utility text-body-3xl {
+	font: var(--db-type-body-3xl);
+}
+
+@utility text-head-3xs {
+	font: var(--db-type-headline-3xs);
+}
+
+@utility text-head-2xs {
+	font: var(--db-type-headline-2xs);
+}
+
+@utility text-head-xs {
+	font: var(--db-type-headline-xs);
+}
+
+@utility text-head-sm {
+	font: var(--db-type-headline-sm);
+}
+
+@utility text-head-md {
+	font: var(--db-type-headline-md);
+}
+
+@utility text-head-lg {
+	font: var(--db-type-headline-lg);
+}
+
+@utility text-head-xl {
+	font: var(--db-type-headline-xl);
+}
+
+@utility text-head-2xl {
+	font: var(--db-type-headline-2xl);
+}
+
+@utility text-head-3xl {
+	font: var(--db-type-headline-3xl);
+}
+
+@utility text-head-light-3xs {
+	font: var(--db-type-headline-3xs);
+	font-weight: 300;
+}
+
+@utility text-head-light-2xs {
+	font: var(--db-type-headline-2xs);
+	font-weight: 300;
+}
+
+@utility text-head-light-xs {
+	font: var(--db-type-headline-xs);
+	font-weight: 300;
+}
+
+@utility text-head-light-sm {
+	font: var(--db-type-headline-sm);
+	font-weight: 300;
+}
+
+@utility text-head-light-md {
+	font: var(--db-type-headline-md);
+	font-weight: 300;
+}
+
+@utility text-head-light-lg {
+	font: var(--db-type-headline-lg);
+	font-weight: 300;
+}
+
+@utility text-head-light-xl {
+	font: var(--db-type-headline-xl);
+	font-weight: 300;
+}
+
+@utility text-head-light-2xl {
+	font: var(--db-type-headline-2xl);
+	font-weight: 300;
+}
+
+@utility text-head-light-3xl {
+	font: var(--db-type-headline-3xl);
+	font-weight: 300;
+}
+
+@layer base {
+	p {
+		font: var(--db-type-body-md);
+	}
+
+	h1 {
+		font: var(--db-type-headline-xl);
+	}
+
+	h2 {
+		font: var(--db-type-headline-lg);
+	}
+
+	h3 {
+		font: var(--db-type-headline-md);
+	}
+
+	h4 {
+		font: var(--db-type-headline-sm);
+	}
+
+	h5 {
+		font: var(--db-type-headline-xs);
+	}
+
+	h6 {
+		font: var(--db-type-headline-2xs);
 	}
 }

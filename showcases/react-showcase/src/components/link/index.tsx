@@ -1,9 +1,9 @@
 import { DBLink } from '../../../../../output/react/src';
-import DefaultComponent from '../default-component';
-import defaultComponentVariants from '../../../../shared/link.json';
 import { type DBLinkProps } from '../../../../../output/react/src/components/link/model';
-import { getVariants } from '../data';
+import defaultComponentVariants from '../../../../shared/link.json';
 import { type BaseComponentProps } from '../base-component-data';
+import { getVariants } from '../data';
+import DefaultComponent from '../default-component';
 
 const getLink = ({
 	href,
@@ -12,7 +12,8 @@ const getLink = ({
 	size,
 	content,
 	children,
-	showIcon
+	showIcon,
+	wrap
 }: DBLinkProps) => (
 	<DBLink
 		href={href}
@@ -20,7 +21,8 @@ const getLink = ({
 		disabled={disabled}
 		size={size}
 		content={content}
-		showIcon={showIcon}>
+		showIcon={showIcon}
+		wrap={wrap}>
 		{children}
 	</DBLink>
 );

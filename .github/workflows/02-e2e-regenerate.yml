@@ -23,44 +23,42 @@ jobs:
     runs-on: ubuntu-24.04 # Use Ubuntu 24.04 explicitly
     container:
       image: mcr.microsoft.com/playwright:v${{ inputs.version }}
+      options: --user 1001
     steps:
       - name: ⏬ Checkout repo
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: 🔄 Init Cache
         uses: ./.github/actions/npm-cache
 
-      - name: 📲 Install esbuild (binary workaround)
-        run: npm i -D esbuild-linux-64
-
       - name: ⏬ Download foundations build
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v5
         with:
           name: db-ux-foundations-build
           path: packages/foundations/build
 
       - name: ⏬ Download output
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v5
         with:
           name: db-ux-output
           path: output
 
       - name: ⏬ Download components styles build
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v5
         with:
           name: db-ux-components-build
           path: packages/components/build
 
       - name: ⏬ Download showcases
         if: inputs.type == 'showcases'
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v5
         with:
           name: db-ux-react-showcase
           path: build-showcases/react-showcase
 
       - name: ⏬ Download patternhub
         if: inputs.type == 'patternhub'
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v5
         with:
           name: db-ux-patternhub
           path: build-showcases/patternhub
@@ -68,7 +66,6 @@ jobs:
       - name: 👩‍🔬 Generate snapshots 🎭
         shell: bash
         env:
-          HOME: /root
           TYPE: ${{ inputs.type }}
           NEXT_PUBLIC_BASE_PATH: ${{ inputs.path }}
         run: |
@@ -77,41 +74,42 @@ jobs:
           elif [[ $TYPE == "foundations" ]]; then
             npm run regenerate:screenshots --workspace=@db-ux/core-foundations
           elif [[ $TYPE == "patternhub" ]]; then
-            mkdir -p ./build-showcases${{ inputs.path }}
-            cp -RT ./build-showcases/${{ inputs.type }} ./build-showcases${{ inputs.path }}
+            mkdir --parents ./build-showcases${{ inputs.path }}
+            cp --recursive --no-target-directory ./build-showcases/${{ inputs.type }} ./build-showcases${{ inputs.path }}
             npm run regenerate:screenshots --workspace=patternhub
           else
-            npm run regenerate:screenshots --workspace=react-showcase
+            npm run regenerate:visual-snapshots --workspace=react-showcase
+            npm run regenerate:aria-snapshots --workspace=react-showcase
           fi
 
       - name: 🆙 Upload components
-        if: always() && inputs.type == 'components'
+        if: ${{ !cancelled() && inputs.type == 'components' }}
         uses: actions/upload-artifact@v4
         with:
           name: snapshots-${{ inputs.type }}
           path: ./__snapshots__/*/component
-          retention-days: 30
+          retention-days: 7
 
       - name: 🆙 Upload foundations
-        if: always() && inputs.type == 'foundations'
+        if: ${{ !cancelled() && inputs.type == 'foundations' }}
         uses: actions/upload-artifact@v4
         with:
           name: snapshots-${{ inputs.type }}
           path: ./__snapshots__/foundations
-          retention-days: 30
+          retention-days: 7
 
       - name: 🆙 Upload patternhub
-        if: always() && inputs.type == 'patternhub'
+        if: ${{ !cancelled() && inputs.type == 'patternhub' }}
         uses: actions/upload-artifact@v4
         with:
           name: snapshots-${{ inputs.type }}
           path: ./__snapshots__/*/patternhub
-          retention-days: 30
+          retention-days: 7
 
       - name: 🆙 Upload showcase
-        if: always() && inputs.type == 'showcases'
+        if: ${{ !cancelled() && inputs.type == 'showcases' }}
         uses: actions/upload-artifact@v4
         with:
           name: snapshots-${{ inputs.type }}
           path: ./__snapshots__/*/showcase
-          retention-days: 30
+          retention-days: 7

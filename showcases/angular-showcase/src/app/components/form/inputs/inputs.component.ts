@@ -1,8 +1,8 @@
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { WrapperComponent } from '../wrapper/wrapper.component';
-import { DBInput, DBSelect } from '../../../../../../../output/angular/src';
+import { DBInput } from '../../../../../../../output/angular/src';
 import { environment } from '../../../../environments/environment';
+import { WrapperComponent } from '../wrapper/wrapper.component';
 
 @Component({
 	selector: 'app-inputs',
@@ -11,10 +11,13 @@ import { environment } from '../../../../environments/environment';
 		? [WrapperComponent, FormsModule, ReactiveFormsModule]
 		: [WrapperComponent, DBInput, FormsModule, ReactiveFormsModule],
 	templateUrl: './inputs.component.html',
-	schemas: [CUSTOM_ELEMENTS_SCHEMA]
+	schemas: environment.webComponents ? [CUSTOM_ELEMENTS_SCHEMA] : []
 })
 export class InputsComponent {
 	plain = 'test1';
 	ngModel = 'test2';
 	formControl: FormControl = new FormControl('test3');
+	public handlePlainChange(event: any) {
+		this.plain = event.target.value;
+	}
 }

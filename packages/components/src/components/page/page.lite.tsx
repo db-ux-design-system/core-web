@@ -8,14 +8,14 @@ import {
 	useRef,
 	useStore
 } from '@builder.io/mitosis';
-import { DBPageProps, DBPageState } from './model';
 import { cls, getBooleanAsString } from '../../utils';
+import { DBPageProps, DBPageState } from './model';
 
 useMetadata({});
 useDefaultProps<DBPageProps>({});
 
 export default function DBPage(props: DBPageProps) {
-	const _ref = useRef<HTMLDivElement | null>(null);
+	const _ref = useRef<HTMLDivElement | any>(null);
 	// jscpd:ignore-start
 	const state = useStore<DBPageState>({
 		fontsLoaded: false
@@ -65,10 +65,12 @@ export default function DBPage(props: DBPageProps) {
 			id={props.id}
 			class={cls('db-page', props.className)}
 			data-variant={props.variant}
-			data-fade-in={props.fadeIn}
+			data-fade-in={getBooleanAsString(props.fadeIn)}
 			data-fonts-loaded={getBooleanAsString(state.fontsLoaded)}>
 			<Slot name="header" />
-			<main class="db-main">{props.children}</main>
+			<main class={cls('db-main', props.mainClass)}>
+				{props.children}
+			</main>
 			<Slot name="footer" />
 		</div>
 	);

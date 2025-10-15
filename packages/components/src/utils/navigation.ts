@@ -1,4 +1,4 @@
-import { handleDataOutside } from './index';
+import { handleDataOutside } from './floating-components';
 
 export type TriangleData = {
 	itemRect: DOMRect;
@@ -19,13 +19,16 @@ export const isEventTargetNavigationItem = (event: unknown): boolean => {
 
 export class NavigationItemSafeTriangle {
 	private readonly element: HTMLElement | null;
-	private readonly subNavigation: Element | null;
-	private readonly parentSubNavigation: Element | null = null;
+	private readonly subNavigation: HTMLElement | null;
+	private readonly parentSubNavigation: HTMLElement | null = null;
 	private triangleData?: TriangleData;
 	private initialized: boolean = false;
 	private mouseX: number = 0;
 	private mouseY: number = 0;
-	constructor(element: HTMLElement | null, subNavigation: Element | null) {
+	constructor(
+		element: HTMLElement | null,
+		subNavigation: HTMLElement | null
+	) {
 		this.element = element;
 		this.subNavigation = subNavigation;
 

@@ -11,6 +11,10 @@
 		let-variantIndex="variantIndex"
 	>
 		<db-input
+			[showRequiredAsterisk]="exampleProps?.showRequiredAsterisk"
+			[maxLength]="exampleProps?.maxLength"
+			[max]="exampleProps?.max"
+			[min]="exampleProps?.min"
 			[variant]="exampleProps?.variant"
 			[label]="exampleProps?.label"
 			[message]="exampleProps?.message"
@@ -21,7 +25,9 @@
 			[disabled]="exampleProps?.disabled"
 			[value]="exampleProps?.value"
 			[icon]="exampleProps?.icon"
-			[iconAfter]="exampleProps?.iconAfter"
+			[showIcon]="exampleProps?.showIcon"
+			[iconTrailing]="exampleProps?.iconTrailing"
+			[showIconTrailing]="exampleProps?.showIconTrailing"
 			[readOnly]="exampleProps?.readOnly"
 			[showLabel]="exampleProps?.showLabel"
 			[showMessage]="exampleProps?.showMessage"

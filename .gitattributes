@@ -1,0 +1,29 @@
+# adapted out of https://github.com/h5bp/html5-boilerplate/blob/main/.gitattributes and https://rehansaeed.com/gitattributes-best-practices/
+# Automatically normalize line endings for all text-based files
+# https://git-scm.com/docs/gitattributes#_end_of_line_conversion
+
+###############################
+# Git Line Endings            #
+###############################
+
+# Set default behaviour to automatically normalize line endings.
+* text=auto
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+# For the following file types, normalize line endings to LF on
+# checkin and prevent conversion to CRLF when they are checked out
+# (this is required in order to prevent newline related issues like,
+# for example, after the build script is run)
+
+.*      text eol=lf
+*.css   text eol=lf
+*.html  text eol=lf
+*.js    text eol=lf
+*.json  text eol=lf
+*.md    text eol=lf
+*.mjs   text eol=lf
+*.sh    text eol=lf
+*.txt   text eol=lf
+*.xml   text eol=lf
+*.yml   text eol=lf

@@ -1,18 +1,18 @@
 <script setup lang="ts">
+import { inject, type Ref, ref, watch } from "vue";
+import { useRoute } from "vue-router";
 import { DBCard, DBDivider, DBLink } from "../../../../output/vue/src";
-import type {
-	DefaultComponentExample,
-	DefaultComponentProps,
-	DefaultComponentVariants
-} from "../../../shared/default-component-data";
 import {
 	COLOR,
 	COLOR_CONST,
 	DENSITY,
 	DENSITY_CONST
 } from "../../../../packages/components/src/shared/constants";
-import { useRoute } from "vue-router";
-import { inject, type Ref, ref, watch } from "vue";
+import type {
+	DefaultComponentExample,
+	DefaultComponentProps,
+	DefaultComponentVariants
+} from "../../../shared/default-component-data";
 
 interface DefaultExample extends DefaultComponentExample {
 	name?: string;
@@ -84,9 +84,7 @@ const createLinkFromVariantAndUrl = (variantName: string) => {
 		currentUrl += `&color=${route.query[COLOR_CONST] || COLOR.NEUTRAL_BG_LEVEL_1}`;
 	}
 	if (!currentUrl.includes("density=")) {
-		currentUrl += `&density=${
-			route.query[DENSITY_CONST] || DENSITY.REGULAR
-		}`;
+		currentUrl += `&density=${route.query[DENSITY_CONST] || DENSITY.REGULAR}`;
 	}
 	return `${currentUrl}&page=${variantName.toLowerCase()}`;
 };
@@ -137,7 +135,9 @@ const getElevation = (): "1" | "2" | "3" =>
 		</div>
 	</DBCard>
 	<div v-if="!variantRef" class="default-container">
-		<h1>{{ title }}</h1>
+		<div class="component-header">
+			<h1>{{ title }}</h1>
+		</div>
 		<div v-for="(variant, variantIndex) in variants">
 			<DBDivider></DBDivider>
 			<DBLink

@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+import { Buffer } from 'node:buffer';
 import fs from 'node:fs';
 import path from 'node:path';
 import { extract } from 'tar';
@@ -6,9 +7,9 @@ import { extract } from 'tar';
 // eslint-disable-next-line @typescript-eslint/naming-convention
 const buildGHPage = async () => {
 	/* eslint-disable @typescript-eslint/naming-convention */
-	const NAME: string | undefined = process.env.NAME;
-	const OWNER_NAME: string | undefined = process.env.OWNER_NAME;
-	const REPO_NAME: string | undefined = process.env.REPO_NAME;
+	const { NAME } = process.env;
+	const { OWNER_NAME } = process.env;
+	const { REPO_NAME } = process.env;
 	const OUT_DIR: string = process.env.OUT_DIR ?? 'out';
 	const RELEASE: boolean = process.env.RELEASE === 'true';
 	const PRE_RELEASE: boolean = process.env.PRE_RELEASE === 'true';
@@ -61,14 +62,14 @@ const buildGHPage = async () => {
 		const nameDir = path.join(versionDir, NAME);
 		if (fs.existsSync(nameDir)) {
 			console.log(`Remove dir ./public/version/${NAME}`);
-			fs.rmdirSync(nameDir, { recursive: true });
+			fs.rmSync(nameDir, { recursive: true });
 		}
 
 		if (RELEASE) {
 			const latestDir = path.join(versionDir, 'latest');
 			if (fs.existsSync(latestDir)) {
 				console.log('Remove dir ./public/version/latest');
-				fs.rmdirSync(latestDir, { recursive: true });
+				fs.rmSync(latestDir, { recursive: true });
 			}
 
 			fs.mkdirSync(latestDir);

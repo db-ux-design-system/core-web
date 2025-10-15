@@ -3,6 +3,7 @@ import {
 	GlobalProps,
 	GlobalState,
 	InitializedState,
+	InputEvent,
 	OrientationProps,
 	WidthProps
 } from '../../shared/model';
@@ -21,7 +22,7 @@ export type DBTabsDefaultProps = {
 	/**
 	 * Change amount of distance if you click on an arrow, only available with behavior="arrows"
 	 */
-	arrowScrollDistance?: number;
+	arrowScrollDistance?: number | string;
 	/**
 	 * Show a scrollbar or buttons with arrows to navigate for horizontal tabs with overflow visible
 	 */
@@ -30,7 +31,7 @@ export type DBTabsDefaultProps = {
 	/**
 	 * Default behavior is auto selecting the first tab, change selected tab by index
 	 */
-	initialSelectedIndex?: number;
+	initialSelectedIndex?: number | string;
 
 	/**
 	 * Default behavior is auto selecting the first tab, disable it with 'manually'
@@ -43,26 +44,38 @@ export type DBTabsDefaultProps = {
 	name?: string;
 
 	/**
+	 * Provide simple tabs with label + text as content
+	 */
+	tabs?: DBSimpleTabProps[] | string;
+};
+
+export type DBTabsEventProps = {
+	/**
+	 * Informs the user if the current tab index has changed.
+	 */
+	indexChange?: (index?: number) => void;
+
+	/**
 	 * Informs the user if the current tab index has changed.
 	 */
 	onIndexChange?: (index?: number) => void;
+	/**
+	 * Informs the user if another tab has been selected.
+	 */
+	onTabSelect?: (event?: InputEvent<HTMLElement>) => void;
 
 	/**
 	 * Informs the user if another tab has been selected.
 	 */
-	onTabSelect?: (event?: Event) => void;
-
-	/**
-	 * Provide simple tabs with label + text as content
-	 */
-	tabs?: DBSimpleTabProps[] | string;
+	tabSelect?: (event?: InputEvent<HTMLElement>) => void;
 };
 
 export type DBTabsProps = DBTabsDefaultProps &
 	GlobalProps &
 	OrientationProps &
 	WidthProps &
-	AlignmentProps;
+	AlignmentProps &
+	DBTabsEventProps;
 
 export type DBTabsDefaultState = {
 	_name: string;
@@ -71,10 +84,11 @@ export type DBTabsDefaultState = {
 	showScrollLeft?: boolean;
 	showScrollRight?: boolean;
 	evaluateScrollButtons: (tabList: Element) => void;
-	convertTabs: (tabs?: unknown[] | string | undefined) => DBSimpleTabProps[];
+	convertTabs: () => DBSimpleTabProps[];
 	initTabList: () => void;
 	initTabs: (init?: boolean) => void;
-	handleChange: (event: any) => void;
+	handleChange: (event: InputEvent<HTMLElement>) => void;
+	_resizeObserver?: ResizeObserver;
 };
 
 export type DBTabsState = DBTabsDefaultState & GlobalState & InitializedState;

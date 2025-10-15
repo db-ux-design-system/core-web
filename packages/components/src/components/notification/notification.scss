@@ -1,6 +1,7 @@
 @use "sass:map";
 @use "@db-ux/core-foundations/build/styles/density";
 @use "@db-ux/core-foundations/build/styles/variables";
+@use "@db-ux/core-foundations/build/styles/helpers/display";
 @use "@db-ux/core-foundations/build/styles/colors";
 @use "@db-ux/core-foundations/build/styles/icons";
 @use "@db-ux/core-foundations/build/styles/screen-sizes";
@@ -27,8 +28,8 @@
 	@extend %component-border;
 	@extend %grid-layout-default;
 	@extend %ugly-line-height-workarounds;
+	@include display.display(grid);
 
-	display: grid;
 	padding: variables.$db-spacing-fixed-md;
 	gap: variables.$db-spacing-fixed-xs variables.$db-spacing-fixed-md;
 	inline-size: inherit;
@@ -63,7 +64,6 @@
 	// headline
 	header {
 		grid-area: head;
-		font-weight: 700;
 
 		&,
 		h1,
@@ -72,10 +72,9 @@
 		h4,
 		h5,
 		h6 {
-			font-family: var(--db-font-family-sans);
 			margin: 0;
-			line-height: var(--db-type-body-line-height-md);
-			font-size: var(--db-type-body-font-size-md);
+			font: var(--db-type-body-md);
+			font-weight: 700;
 
 			&::before,
 			&::after {
@@ -125,7 +124,7 @@
 	img {
 		--db-icon-margin-end: 0;
 
-		@include icons.to-filled-icon();
+		@include icons.to-filled-icon;
 
 		grid-area: icon;
 	}
@@ -205,7 +204,6 @@
 	@each $name in colors.$variant-colors {
 		&[data-semantic="#{$name}"] {
 			@extend %db-#{$name}-variables;
-
 			@include icons.variant-icons($name);
 
 			&::before {

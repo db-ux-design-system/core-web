@@ -1,11 +1,11 @@
 {
   "name": "@db-ux/v-core-components",
-  "version": "0.0.0",
+  "version": "4.0.1",
   "type": "module",
   "description": "Vue components for @db-ux/core-components",
   "repository": {
     "type": "git",
-    "url": "https://github.com/db-ux-design-system/core-web.git"
+    "url": "git+https://github.com/db-ux-design-system/core-web.git"
   },
   "license": "Apache-2.0",
   "main": "./dist/db-ux.umd.js",
@@ -23,32 +23,41 @@
     }
   },
   "files": [
-    "dist/"
+    "dist/",
+    "agent",
+    "CHANGELOG.md"
   ],
   "scripts": {
     "build": "npm-run-all build:*",
     "build:01_vite": "vite build",
     "build:02_types": "vue-tsc --declaration --emitDeclarationOnly",
-    "mv:dist": "cpr dist ../../build-outputs/vue/dist -o",
-    "mv:package.json": "cpr package.json ../../build-outputs/vue/package.json -o",
-    "mv:readme": "cpr README.md ../../build-outputs/vue/README.md -o",
-    "postbuild": "npm-run-all -p mv:*",
-    "test:components": "playwright test -c playwright.config.ts"
+    "mv:dist": "cpr dist ../../build-outputs/vue/dist --overwrite",
+    "mv:agent": "cpr agent ../../build-outputs/vue/agent --overwrite",
+    "mv:changelog": "cpr CHANGELOG.md ../../build-outputs/vue/CHANGELOG.md --overwrite",
+    "mv:package.json": "cpr package.json ../../build-outputs/vue/package.json --overwrite",
+    "mv:readme": "cpr README.md ../../build-outputs/vue/README.md --overwrite",
+    "postbuild": "npm-run-all --parallel mv:*",
+    "test:components": "playwright test --config playwright.config.ts",
+    "test:components:ui": "playwright test --config playwright.config.ts --ui"
   },
   "devDependencies": {
-    "@playwright/experimental-ct-vue": "1.50.1",
-    "@vitejs/plugin-vue": "^5.2.0",
-    "replace-in-file": "^8.3.0",
-    "tsx": "^4.19.3",
-    "typescript": "^5.4.5",
-    "vite": "^6.2.0",
-    "vue": "^3.5.13",
-    "vue-tsc": "^2.2.8"
+    "@playwright/experimental-ct-vue": "1.55.1",
+    "@vitejs/plugin-vue": "6.0.1",
+    "replace-in-file": "8.3.0",
+    "tsx": "4.20.6",
+    "typescript": "5.9.3",
+    "vite": "7.1.9",
+    "vue": "3.5.22",
+    "vue-tsc": "3.1.1"
   },
   "publishConfig": {
     "registry": "https://registry.npmjs.org/",
     "access": "public"
   },
   "sideEffects": false,
-  "source": "src/index.ts"
+  "source": "src/index.ts",
+  "dependencies": {
+    "@db-ux/core-components": "4.0.1",
+    "@db-ux/core-foundations": "4.0.1"
+  }
 }

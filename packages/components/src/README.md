@@ -52,11 +52,11 @@ Main use-case to overwrite a color or change colors by `data-variant`. Example:
 
 .db-xxx {
 	@include helpers.hover {
-		background-color: colors.$db-adaptive-bg-basic-transparent-hovered;
+		background-color: colors.$db-adaptive-bg-basic-transparent-full-hovered;
 	}
 
 	@include helpers.active {
-		background-color: colors.$db-adaptive-bg-basic-transparent-pressed;
+		background-color: colors.$db-adaptive-bg-basic-transparent-full-pressed;
 	}
 
 	@each $name in colors.$variant-colors {

@@ -1,10 +1,10 @@
 /* eslint-disable unicorn/prefer-top-level-await, no-await-in-loop */
 
 import FS from 'node:fs';
-import getPropertiesFile from './get-properties-file.js';
-import getHowToFile from './get-how-to-file.js';
 import writeCodeFiles from './get-code-files.js';
+import getHowToFile from './get-how-to-file.js';
 import getMigrationFile from './get-migration-file.js';
+import getPropertiesFile from './get-properties-file.js';
 import { getComponentGroup, getComponentName } from './utils.js';
 
 const componentsPath = './pages/components';
@@ -32,9 +32,17 @@ const generateDocsMdx = async () => {
 		for (const element of elements) {
 			const componentName = getComponentName(element.name);
 			const componentGroup = getComponentGroup(components, componentName);
-			const displayName = componentGroup?.subNavigation?.find(
+			const foundComponent = componentGroup?.subNavigation?.find(
 				(component) => component.name === componentName
-			).label;
+			);
+			if (!foundComponent) {
+				console.error(
+					`Component ${componentName} not found in the components.json file`
+				);
+				continue;
+			}
+
+			const displayName = foundComponent.label;
 
 			if (componentGroup) {
 				const componentOldPath = `${componentsPath}/${componentName}`;

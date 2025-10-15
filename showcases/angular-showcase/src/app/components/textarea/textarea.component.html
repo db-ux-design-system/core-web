@@ -11,6 +11,7 @@
 		let-variantIndex="variantIndex"
 	>
 		<db-textarea
+			[showRequiredAsterisk]="exampleProps?.showRequiredAsterisk"
 			[variant]="exampleProps?.variant"
 			[label]="exampleProps?.label"
 			[required]="exampleProps?.required"
@@ -26,6 +27,8 @@
 			[invalidMessage]="exampleProps?.invalidMessage"
 			[validMessage]="exampleProps?.validMessage"
 			[validation]="exampleProps?.validation"
+			[showResizer]="exampleProps?.showResizer"
+			[fieldSizing]="exampleProps?.fieldSizing"
 		></db-textarea>
 	</ng-template>
 </app-default-component>

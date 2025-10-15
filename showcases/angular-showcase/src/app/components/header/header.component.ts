@@ -1,6 +1,4 @@
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import defaultComponentVariants from '../../../../../shared/header.json';
-import { DefaultComponent } from '../default.component';
 import {
 	DBBrand,
 	DBButton,
@@ -13,7 +11,9 @@ import {
 	NavigationDirective,
 	SecondaryActionDirective
 } from '../../../../../../output/angular/src';
+import defaultComponentVariants from '../../../../../shared/header.json';
 import { environment } from '../../../environments/environment';
+import { DefaultComponent } from '../default.component';
 
 @Component({
 	selector: 'app-header',
@@ -43,7 +43,7 @@ import { environment } from '../../../environments/environment';
 				NavigationContentDirective
 			],
 	standalone: true,
-	schemas: [CUSTOM_ELEMENTS_SCHEMA]
+	schemas: environment.webComponents ? [CUSTOM_ELEMENTS_SCHEMA] : []
 })
 export class HeaderComponent {
 	variants = defaultComponentVariants;

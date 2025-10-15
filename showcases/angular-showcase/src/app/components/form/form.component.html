@@ -18,7 +18,7 @@
 			message="Description"
 			icon="x_placeholder"
 			[value]="textarea"
-			(change)="textarea = $event.target.value"
+			(change)="changeTextarea('textarea', $event)"
 		></db-textarea>
 
 		<db-textarea
@@ -28,7 +28,7 @@
 			message="Description"
 			icon="x_placeholder"
 			defaultValue="default value"
-			(change)="textareaDefaultValue = $event.target.value"
+			(change)="changeTextarea('textareaDefaultValue', $event)"
 		></db-textarea>
 
 		<db-textarea
@@ -56,6 +56,9 @@
 		>
 			<option value="test1">Test1</option>
 			<option value="test2">Test2</option>
+			<option value="test3">Test3</option>
+			<option value="test4">Test4</option>
+			<option value="test5">Test5</option>
 		</db-select>
 
 		<p>Reactive Forms Example:</p>
@@ -128,7 +131,7 @@
 							<db-tag
 								[semantic]="i === 0 ? undefined : 'successful'"
 								[emphasis]="i === 2 ? 'strong' : 'weak'"
-								><db-checkbox (onChange)="changeTags(tag)">{{
+								><db-checkbox (change)="changeTags(tag)">{{
 									getTagName(tag)
 								}}</db-checkbox></db-tag
 							>
@@ -168,7 +171,7 @@
 				<db-checkbox
 					name="checkbox4"
 					label="Checkbox with defaultValue"
-					[defaultChecked]="true"
+					[checked]="true"
 				></db-checkbox>
 				<p>Select:</p>
 				<db-select
@@ -182,6 +185,9 @@
 				>
 					<option value="test1">Test1</option>
 					<option value="test2">Test2</option>
+					<option value="test3">Test3</option>
+					<option value="test4">Test4</option>
+					<option value="test5">Test5</option>
 				</db-select>
 				<!-- <db-select
         [value]="select"
@@ -190,6 +196,9 @@
         >
         <option value="test1">Test1</option>
         <option value="test2">Test2</option>
+        <option value="test3">Test3</option>
+        <option value="test4">Test4</option>
+        <option value="test5">Test5</option>
       </db-select> -->
 				<p>Button:</p>
 				<db-button type="button" (click)="resetValues()">
@@ -200,6 +209,14 @@
 				</db-button>
 			</fieldset>
 		</form>
+
+		<p>Switch with Angular signals</p>
+		<db-switch
+			[checked]="checkedSignal()"
+			(change)="handleChange($event)"
+			label="My Switch"
+		>
+		</db-switch>
 	</div>
 	<div>
 		<h1>Output</h1>
@@ -266,11 +283,13 @@
 					<db-tab-item icon="x_placeholder"
 						>Airplane Button</db-tab-item
 					>
-					<db-tab-item iconAfter="cancel">Cancel Button</db-tab-item>
-					<db-tab-item iconAfter="cancel">
+					<db-tab-item iconTrailing="cancel"
+						>Cancel Button</db-tab-item
+					>
+					<db-tab-item iconTrailing="cancel">
 						Long Button Label with a lot of text
 					</db-tab-item>
-					<db-tab-item icon="x_placeholder" iconAfter="cancel">
+					<db-tab-item icon="x_placeholder" iconTrailing="cancel">
 						Another Button Label with a lot of text
 					</db-tab-item>
 					<db-tab-item

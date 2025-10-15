@@ -1,7 +1,8 @@
 import {
 	Component,
 	CUSTOM_ELEMENTS_SCHEMA,
-	NO_ERRORS_SCHEMA
+	NO_ERRORS_SCHEMA,
+	signal
 } from '@angular/core';
 import {
 	FormControl,
@@ -16,6 +17,7 @@ import {
 	DBInput,
 	DBRadio,
 	DBSelect,
+	DBSwitch,
 	DBTabItem,
 	DBTabList,
 	DBTabPanel,
@@ -23,18 +25,16 @@ import {
 	DBTag,
 	DBTextarea
 } from '../../../../../../output/angular/src';
-import { DefaultComponent } from '../default.component';
 import { environment } from '../../../environments/environment';
 
 @Component({
 	selector: 'app-form',
 	templateUrl: './form.component.html',
 	imports: environment.webComponents
-		? [FormsModule, ReactiveFormsModule, DefaultComponent]
+		? [FormsModule, ReactiveFormsModule]
 		: [
 				FormsModule,
 				ReactiveFormsModule,
-				DefaultComponent,
 				DBInput,
 				DBTextarea,
 				DBSelect,
@@ -46,12 +46,16 @@ import { environment } from '../../../environments/environment';
 				DBTabs,
 				DBTabList,
 				DBTabItem,
-				DBTabPanel
+				DBTabPanel,
+				DBSwitch
 			],
 	standalone: true,
 	schemas: [NO_ERRORS_SCHEMA, CUSTOM_ELEMENTS_SCHEMA]
 })
 export class FormComponent {
+	// DB Switch with Angular signals
+	checkedSignal = signal(false);
+
 	array = ['X', 'Y', 'Z'];
 	radio = '';
 	input = '';
@@ -94,6 +98,10 @@ export class FormComponent {
 			? this.tags.filter((t) => t !== tag)
 			: [...this.tags, tag];
 	};
+
+	changeTextarea(key: string, event: any) {
+		this[key] = event.target.value;
+	}
 
 	resetValues(): void {
 		this.model.input = 'reset';
@@ -147,5 +155,9 @@ export class FormComponent {
 				tags: this.tags
 			})
 		);
+	}
+
+	handleChange(event: any) {
+		this.checkedSignal.set(event.target.checked);
 	}
 }

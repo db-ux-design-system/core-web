@@ -1,8 +1,8 @@
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import defaultComponentVariants from '../../../../../shared/accordion-item.json';
 import { DBAccordionItem } from '../../../../../../output/angular/src';
-import { DefaultComponent } from '../default.component';
+import defaultComponentVariants from '../../../../../shared/accordion-item.json';
 import { environment } from '../../../environments/environment';
+import { DefaultComponent } from '../default.component';
 
 @Component({
 	selector: 'app-accordion-item',
@@ -11,7 +11,7 @@ import { environment } from '../../../environments/environment';
 		? [DefaultComponent]
 		: [DefaultComponent, DBAccordionItem],
 	standalone: true,
-	schemas: [CUSTOM_ELEMENTS_SCHEMA]
+	schemas: environment.webComponents ? [CUSTOM_ELEMENTS_SCHEMA] : []
 })
 export class AccordionItemComponent {
 	variants = defaultComponentVariants;

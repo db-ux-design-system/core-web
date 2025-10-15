@@ -1,40 +1,47 @@
 @use "sass:map";
 @use "sass:string";
+@use "sass:list";
 @use "@db-ux/core-foundations/build/styles/icons";
 @use "@db-ux/core-foundations/build/styles/fonts";
 @use "@db-ux/core-foundations/build/styles/variables";
 @use "@db-ux/core-foundations/build/styles/colors";
 @use "@db-ux/core-foundations/build/styles/helpers";
 @use "component";
-
 @forward "../visually-hidden";
 
+// https://developer.mozilla.org/en-US/docs/Web/CSS/:read-only
+$valid-read-only-form-fields: input, textarea;
+
+// https://developer.mozilla.org/en-US/docs/Web/CSS/field-sizing
+$valid-field-sizing-form-fields: input, textarea;
 $dropdown-icon-transition: transform variables.$db-transition-straight-emotional;
 $dropdown-icon-transform: rotate(-180deg);
-
-$font-size-height: calc(var(--db-base-font-size) * var(--db-base-line-height));
+$font-size-height: var(--db-icon-font-size);
 $icon-size-sm: var(--db-base-body-icon-font-size-sm);
-$label-size-height-sm: calc(
-	var(--db-type-body-font-size-sm) * var(--db-type-body-line-height-sm)
-);
-$label-size-height-xs: calc(
-	var(--db-type-body-font-size-xs) * var(--db-type-body-line-height-xs)
-);
-$label-size-height-2xs: calc(
-	var(--db-type-body-font-size-2xs) * var(--db-type-body-line-height-2xs)
-);
-
+$label-size-height-xs: var(--db-base-body-icon-font-size-xs);
+$label-size-height-2xs: var(--db-base-body-icon-font-size-2xs);
 $floating-label-size-calc: calc(
 	#{variables.$db-spacing-fixed-3xs} + #{variables.$db-spacing-fixed-2xs} +
 		#{$label-size-height-2xs}
 );
 
+// font-size label which is 2xs + smallest spacing
+$floating-label-padding-block-start: calc(
+	var(--db-type-body-font-size-2xs) + #{variables.$db-spacing-fixed-3xs}
+);
+$icon-inline-block-start: calc(
+	(#{variables.$db-spacing-fixed-xs} + #{$label-size-height-xs}) *
+		var(--db-label-visible-above, 1) + #{variables.$db-sizing-md} / 2
+);
 $input-types:
 	"button", "checkbox", "color", "date", "datetime-local", "email", "file",
 	"hidden", "image", "month", "number", "password", "radio", "range", "reset",
 	"search", "submit", "tel", "text", "time", "url", "week";
-
-$check-border-size: min(#{variables.$db-border-height-2xs}, 2px);
+$check-border-size: min(#{variables.$db-border-width-2xs}, 2px);
+$db-min-inline-size: var(
+	--db-form-component-min-inline-size,
+	#{variables.$db-sizing-lg}
+);
 
 %dropdown-icon {
 	@include icons.set-icon("chevron_down", "after");
@@ -49,46 +56,57 @@ $check-border-size: min(#{variables.$db-border-height-2xs}, 2px);
 }
 
 %helper-message {
-	.db-infotext {
+	> db-infotext > .db-infotext,
+	> .db-infotext {
 		margin-block-start: variables.$db-spacing-fixed-2xs;
 
-		&[data-semantic] {
-			display: none;
+		&:is([data-semantic="successful"], [data-semantic="critical"]) {
+			@include helpers.display(none);
 		}
 	}
 }
 
-@mixin placeholder-content() {
-	&::placeholder,
-	+ [id$="-placeholder"] {
+@mixin placeholder-content($selector) {
+	#{$selector}::placeholder,
+	[id$="-placeholder"] {
 		@content;
+	}
+
+	// Workaround until the :blank pseudo-class is widely supported; then prefer targeting that pseudo-class.
+	#{$selector} {
+		&:is(
+			[type="date"],
+			[type="datetime-local"],
+			[type="month"],
+			[type="week"],
+			[type="time"]
+		):not(:user-valid)::-webkit-datetime-edit {
+			@content;
+		}
 	}
 }
 
 @mixin set-floating-label-overwrites($selector) {
 	&[data-variant="floating"] {
-		label {
+		> label {
 			@extend %db-overwrite-font-size-md;
 
-			opacity: component.$placeholder-disabled;
+			opacity: variables.$db-opacity-xl;
 			position: absolute;
 			z-index: 2;
 			inset-block-start: calc(
 				(#{variables.$db-sizing-md} - #{$font-size-height}) / 2
 			);
 			inset-inline: var(
-				--db-form-component-padding-inline-start,
-				#{variables.$db-spacing-fixed-sm}
-			);
+					--db-form-component-padding-inline-start,
+					#{variables.$db-spacing-fixed-sm}
+				)
+				var(
+					--db-form-component-padding-inline-end,
+					#{variables.$db-spacing-fixed-sm}
+				);
 			pointer-events: none;
-		}
-
-		// icons
-		&::after,
-		&::before {
-			inset-block-start: calc(
-				#{variables.$db-sizing-md} / 2 - #{$font-size-height} / 2
-			);
+			font-style: italic;
 		}
 
 		[id$="-placeholder"] {
@@ -99,46 +117,51 @@ $check-border-size: min(#{variables.$db-border-height-2xs}, 2px);
 			);
 		}
 
+		@include placeholder-content($selector) {
+			transition: none;
+			opacity: 0;
+		}
+
 		#{$selector} {
 			@extend %db-overwrite-font-size-sm;
 
-			@include placeholder-content() {
-				transition: none;
-				opacity: 0;
-			}
-
-			@if ($selector == textarea) {
+			@if $selector == textarea {
 				padding-block-start: $floating-label-size-calc;
 				/* stylelint-disable-next-line at-rule-empty-line-before */
 			} @else {
-				// font-size label which is 2xs + smallest spacing
-				padding-block-start: calc(
-					var(--db-type-body-font-size-2xs) +
-						#{variables.$db-spacing-fixed-3xs}
-				);
+				/* stylelint-disable-next-line db-ux/use-spacings */
+				padding-block-start: var(--db-base-body-icon-font-size-2xs);
 			}
 		}
 
 		&:has(
-				#{$selector}:focus-within,
-				#{$selector}:is(input, textarea):not(:placeholder-shown),
-				> select option:checked:not([hidden])
-			) {
-			label {
+			#{$selector}:focus-within,
+			#{$selector}:is(input, textarea):not(:placeholder-shown),
+			> select option:checked:not(.placeholder),
+			input[type="checkbox"]:checked,
+			input[type="radio"]:checked
+		) {
+			> label {
 				@extend %db-overwrite-font-size-2xs;
 
 				inset-block-start: variables.$db-spacing-fixed-2xs;
 				opacity: 1;
+				font-style: normal;
 			}
 
-			#{$selector} {
-				@include placeholder-content() {
-					opacity: component.$placeholder-disabled;
+			@include placeholder-content($selector) {
+				opacity: variables.$db-opacity-xl;
+				font-family: var(--db-font-family-sans);
+				font-style: italic;
 
-					@media screen and (prefers-reduced-motion: no-preference) {
-						transition: opacity
-							#{variables.$db-transition-straight-emotional};
-					}
+				@if $selector == select or $selector == summary {
+					/* stylelint-disable-next-line db-ux/use-spacings */
+					padding-block-start: var(--db-base-body-icon-font-size-2xs);
+				}
+
+				@media screen and (prefers-reduced-motion: no-preference) {
+					transition: opacity
+						#{variables.$db-transition-straight-emotional};
 				}
 			}
 		}
@@ -146,20 +169,21 @@ $check-border-size: min(#{variables.$db-border-height-2xs}, 2px);
 }
 
 @mixin get-validity-message($key: "valid") {
-	.db-infotext {
-		@if ($key == "valid") {
+	> db-infotext > .db-infotext,
+	> .db-infotext {
+		@if $key == "valid" {
 			&[data-semantic="successful"] {
-				display: flex;
+				@include helpers.display(flex);
 			}
 			/* stylelint-disable-next-line at-rule-empty-line-before */
 		} @else {
 			&[data-semantic="critical"] {
-				display: flex;
+				@include helpers.display(flex);
 			}
 		}
 
 		&:not([data-semantic]) {
-			display: none;
+			@include helpers.display(none);
 		}
 	}
 }
@@ -167,19 +191,15 @@ $check-border-size: min(#{variables.$db-border-height-2xs}, 2px);
 @mixin get-validity-color($selector, $key: "valid") {
 	$variant: "successful";
 
-	@if ($key != "valid") {
+	@if $key != "valid" {
 		$variant: "critical";
 	}
 
-	@include get-validity-message($key);
-
-	#{$selector},
-	[id$="-placeholder"] {
-		color: var(--db-#{$variant}-on-bg-basic-emphasis-100-default);
-		caret-color: var(--db-#{$variant}-on-bg-basic-emphasis-100-default);
+	@if $selector == textarea {
+		--db-textarea-read-only: var(--db-#{$variant}-bg-basic-level-1-default);
 	}
 
-	@if ($selector != textarea) {
+	@if $selector != textarea {
 		@extend %db-#{$variant}-variables;
 		/* stylelint-disable-next-line at-rule-empty-line-before */
 	} @else {
@@ -191,19 +211,39 @@ $check-border-size: min(#{variables.$db-border-height-2xs}, 2px);
 		--db-adaptive-bg-basic-transparent-semi-default: var(
 			--db-#{$variant}-bg-basic-transparent-semi-default
 		);
-		--db-adaptive-bg-basic-transparent-hovered: var(
-			--db-#{$variant}-bg-basic-transparent-hovered
+		--db-adaptive-bg-basic-transparent-full-hovered: var(
+			--db-#{$variant}-bg-basic-transparent-full-hovered
 		);
-		--db-adaptive-bg-basic-transparent-pressed: var(
-			--db-#{$variant}-bg-basic-transparent-pressed
+		--db-adaptive-bg-basic-transparent-full-pressed: var(
+			--db-#{$variant}-bg-basic-transparent-full-pressed
 		);
-		--db-adaptive-default: var(
+		--db-adaptive-bg-basic-transparent-semi-hovered: var(
+			--db-#{$variant}-bg-basic-transparent-semi-hovered
+		);
+		--db-adaptive-bg-basic-transparent-semi-pressed: var(
+			--db-#{$variant}-bg-basic-transparent-semi-pressed
+		);
+		--db-adaptive-on-bg-basic-emphasis-100-default: var(
 			--db-#{$variant}-on-bg-basic-emphasis-100-default
 		);
 		--db-adaptive-on-bg-basic-emphasis-60-default: var(
 			--db-#{$variant}-on-bg-basic-emphasis-60-default
 		);
 	}
+
+	#{$selector},
+	[id$="-placeholder"] {
+		color: var(--db-#{$variant}-on-bg-basic-emphasis-100-default);
+		caret-color: var(--db-#{$variant}-on-bg-basic-emphasis-100-default);
+	}
+
+	@if list.index($valid-read-only-form-fields, $selector) {
+		#{$selector} {
+			border-color: var(--db-#{$variant}-on-bg-basic-emphasis-70-default);
+		}
+	}
+
+	@include get-validity-message($key);
 }
 
 // This doesn't contain text, search and password, because they don't have an auto-validation
@@ -214,7 +254,8 @@ $input-valid-types:
 @function get-validations($selector, $key) {
 	$validations: ":required";
 
-	@if ($selector == input) {
+	@if $selector == input {
+		/* We use all client side form-validation for input here */
 		// https://developer.mozilla.org/en-US/docs/Learn/Forms/Form_validation#using_built-in_form_validation
 		$validations: ":required, [minlength], [maxlength], [pattern]";
 
@@ -222,7 +263,8 @@ $input-valid-types:
 			$validations: $validations + ", [type=#{$type}]";
 		}
 		/* stylelint-disable-next-line at-rule-empty-line-before */
-	} @else if($selector == textarea) {
+	} @else if $selector == textarea {
+		/* We use all client side form-validation for textarea here */
 		$validations: ":required, [minlength], [maxlength]";
 	}
 
@@ -232,74 +274,100 @@ $input-valid-types:
 }
 
 @mixin get-validity($selector, $key: "valid") {
-	@if ($key == "valid") {
-		$boolean: "false";
-	}
-
 	$user: "";
 
-	@if ($selector == check) {
+	@if $selector == check or $selector == switch {
 		$user: "user-";
 	}
 
-	@if ($selector == check or $selector == radio) {
+	@if $selector == check or $selector == radio or $selector == switch {
 		$selector: input;
 
 		&:has(
-				#{$selector}:not(
-						[data-custom-validity]
-					):required:#{$user}#{$key}
-			) {
+			#{$selector}:not([data-custom-validity]):required:#{$user}#{$key}
+		) {
 			@content;
 		}
 		/* stylelint-disable-next-line at-rule-empty-line-before */
 	} @else {
+		@if $selector == summary {
+			$selector: select;
+		}
+
 		#{get-validations($selector,$key)} {
 			@content;
 		}
 	}
 
 	// If data-custom-validity is set we overwrite the selectors above
-	&:has(#{$selector}[data-custom-validity="#{$key}"]) {
+	&:has(#{$selector}[data-custom-validity="#{$key}"]),
+	&[data-custom-validity="#{$key}"] {
 		@content;
 	}
 }
 
 @mixin set-required-label($selector) {
-	&:has(#{$selector}:required) {
+	&:has(#{$selector}:required),
+	&[data-required="true"] {
 		&:is(label),
-		label {
+		> label {
 			&::after {
-				@include icons.icon-content("*");
-
 				// We're using 1px instead of a token here on purpose, as this is an edge case
 				/* stylelint-disable-next-line db-ux/use-spacings */
 				padding-inline-start: 1px;
+
+				@include icons.icon-content("*");
 			}
 		}
 	}
 }
 
 @mixin set-default-form-component($selector) {
-	--db-form-has-before: 0;
-
 	@extend %db-overwrite-font-size-sm;
 	@extend %helper-message;
 
-	// we use absolute icons
-	position: relative;
-	display: flex;
-	flex-direction: column;
+	// base inline size for inputs without icons
+	min-inline-size: $db-min-inline-size;
+
+	/* stylelint-disable-next-line block-no-redundant-nested-style-rules */
+	& {
+		--db-form-has-before: 0;
+
+		// we use absolute icons
+		position: relative;
+		flex-direction: column;
+
+		@include helpers.display(flex);
+	}
+
+	&[data-variant="floating"],
+	&[data-hide-label="true"] {
+		--db-label-visible-above: 0;
+	}
+
+	&:not([data-hide-asterisk="true"]) {
+		@include set-required-label($selector);
+	}
 
 	@include set-floating-label-overwrites($selector);
-	@include set-required-label($selector);
 
 	@include get-validity($selector) {
-		@include get-validity-color($selector, "valid");
+		&:has(
+			> .db-infotext[data-semantic="successful"],
+			> db-infotext > .db-infotext[data-semantic="successful"]
+		) {
+			@include get-validity-color($selector, "valid");
+		}
 	}
 
 	@include get-validity($selector, "invalid") {
 		@include get-validity-color($selector, "invalid");
+	}
+
+	@include placeholder-content($selector) {
+		opacity: variables.$db-opacity-xl;
+		font-family: var(--db-font-family-sans);
+		font-style: italic;
 	}
 
 	#{$selector} {
@@ -312,6 +380,7 @@ $input-valid-types:
 		appearance: none;
 		max-inline-size: 100%;
 		inline-size: 100%;
+		min-inline-size: $db-min-inline-size;
 
 		/* stylelint-disable-next-line db-ux/use-spacings */
 		padding-inline: var(
@@ -323,24 +392,33 @@ $input-valid-types:
 				#{variables.$db-spacing-fixed-sm}
 			);
 
-		@include placeholder-content() {
-			opacity: component.$placeholder-disabled;
-		}
-
 		@include helpers.hover {
-			background-color: colors.$db-adaptive-bg-basic-transparent-hovered;
+			background-color: colors.$db-adaptive-bg-basic-transparent-semi-hovered;
 		}
 
-		&:is(input, textarea):not(:disabled):read-only {
-			background-color: var(
-				--db-textarea-read-only,
-				#{colors.$db-adaptive-bg-basic-level-1-default}
-			) !important;
+		@if list.index($valid-field-sizing-form-fields, $selector) {
+			/* see https://developer.mozilla.org/en-US/docs/Web/CSS/field-sizing */
+			&[data-field-sizing="content"] {
+				field-sizing: content;
+			}
+
+			&[data-field-sizing="fixed"] {
+				field-sizing: fixed;
+			}
+		}
+
+		@if list.index($valid-read-only-form-fields, $selector) {
+			&:not(:disabled):read-only {
+				background-color: var(
+					--db-#{$selector}-read-only,
+					#{colors.$db-adaptive-bg-basic-transparent-full-default}
+				) !important;
+			}
 		}
 	}
 
 	// label
-	label {
+	> label {
 		@extend %db-overwrite-font-size-xs;
 
 		padding-block-end: variables.$db-spacing-fixed-xs;
@@ -355,7 +433,7 @@ $input-valid-types:
 	}
 
 	&[data-hide-label="true"] {
-		label {
+		> label {
 			@extend %a11y-visually-hidden;
 
 			padding: 0;
@@ -363,9 +441,13 @@ $input-valid-types:
 	}
 
 	// disabled
-	&:has(#{$selector}:disabled) {
+	&:has(
+		#{$selector}:disabled,
+		#{$selector}[data-disabled="true"],
+		#{$selector}[aria-disabled="true"]
+	) {
 		// Decided against cursor: not-allowed, compare to e.g. https://phabricator.wikimedia.org/T121960
-		opacity: component.$default-disabled;
+		opacity: variables.$db-opacity-md;
 		pointer-events: none;
 	}
 
@@ -374,13 +456,10 @@ $input-valid-types:
 	&::before {
 		position: absolute;
 		pointer-events: none;
-		// 1px for border
-		inset-block-start: calc(
-			#{variables.$db-sizing-md} / 2 - #{variables.$db-spacing-fixed-xs} *
-				var(--db-label-visible-spacing, 0) + #{$label-size-height-xs} *
-				var(--db-label-visible-height, 1) - 1px
-		);
+		inset-block-start: $icon-inline-block-start;
 		color: colors.$db-adaptive-on-bg-basic-emphasis-100-default;
+		transform: translateY(-50%);
+		z-index: 1;
 	}
 
 	&::before {
@@ -393,7 +472,7 @@ $input-valid-types:
 		inset-inline-end: variables.$db-spacing-fixed-sm;
 	}
 
-	@if ($selector == input or $selector == select) {
+	@if $selector == input or $selector == select or $selector == summary {
 		#{$selector} {
 			block-size: variables.$db-sizing-md;
 			text-overflow: ellipsis;
@@ -401,79 +480,123 @@ $input-valid-types:
 	}
 }
 
-// CHECKBOX & RADIO
-
-@mixin get-validity-color-check($key: "valid") {
+@mixin get-validity-color-check-label-color($state, $key: "valid") {
 	$variant: successful;
 
-	@if ($key != "valid") {
+	@if $key != "valid" {
 		$variant: critical;
 	}
+
+	&:has(input:not([role="switch"])) {
+		&:is(label),
+		> label {
+			color: var(--db-#{$variant}-on-bg-basic-emphasis-100-#{$state});
+		}
+	}
+}
+
+// CHECKBOX & RADIO
+
+@mixin get-state($state: "hover") {
+	$variant: "hovered";
+
+	@if $state != "hover" {
+		$variant: "pressed";
+	}
+
+	&:has(input:#{$state}, > label:#{$state}, :is(label):#{$state}) {
+		--db-check-element-label-color: var(
+			--db-adaptive-on-bg-basic-emphasis-100-#{$variant}
+		);
+
+		&:is(label),
+		> label {
+			cursor: helpers.$cursor-pointer;
+		}
+
+		input {
+			cursor: helpers.$cursor-pointer;
+			background-color: var(
+				--db-adaptive-bg-basic-transparent-full-#{$variant}
+			);
+			@content;
+		}
+	}
+}
+
+@mixin get-validity-color-checkbox($key: "valid") {
+	$variant: successful;
+
+	@if $key != "valid" {
+		$variant: critical;
+	}
+
+	--db-check-element-border-color: var(
+		--db-#{$variant}-on-bg-basic-emphasis-70-default
+	);
+	--db-adaptive-on-bg-basic-emphasis-100-default: var(
+		--db-#{$variant}-on-bg-basic-emphasis-80-default
+	);
+	--db-adaptive-on-bg-basic-emphasis-100-hovered: var(
+		--db-#{$variant}-on-bg-basic-emphasis-80-hovered
+	);
+	--db-adaptive-on-bg-basic-emphasis-100-pressed: var(
+		--db-#{$variant}-on-bg-basic-emphasis-80-pressed
+	);
+	--db-adaptive-on-bg-inverted-default: var(
+		--db-#{$variant}-on-bg-inverted-default
+	);
 
 	@include get-validity-message($key);
 
 	input {
-		--db-adaptive-bg-basic-transparent-semi: var(
-			--db-#{$variant}-bg-basic-transparent-semi-default
-		);
-		--db-adaptive-bg-basic-transparent-hovered: var(
-			--db-#{$variant}-bg-basic-transparent-hovered
-		);
-		--db-adaptive-bg-basic-transparent-pressed: var(
-			--db-#{$variant}-bg-basic-transparent-pressed
-		);
-
-		&:not(:checked),
-		&:is([type="radio"]) {
-			--db-check-element-border-color: var(
-				--db-#{$variant}-on-bg-basic-emphasis-70-default
+		&:not(:checked) {
+			--db-adaptive-bg-basic-transparent-full-default: var(
+				--db-#{$variant}-bg-basic-transparent-full-default
+			);
+			--db-adaptive-bg-basic-transparent-full-hovered: var(
+				--db-#{$variant}-bg-basic-transparent-full-hovered
+			);
+			--db-adaptive-bg-basic-transparent-full-pressed: var(
+				--db-#{$variant}-bg-basic-transparent-full-pressed
 			);
 		}
 
-		&:not([type="radio"]):checked {
-			@include colors.set-current-colors(
-				colors.$db-successful-bg-inverted-contrast-high-default,
-				colors.$db-successful-on-bg-inverted-default,
-				colors.$db-successful-bg-inverted-contrast-high-hovered,
-				colors.$db-successful-bg-inverted-contrast-high-pressed
+		&:checked {
+			--db-adaptive-bg-basic-transparent-full-default: var(
+				--db-#{$variant}-bg-inverted-contrast-low-default
+			);
+			--db-adaptive-bg-basic-transparent-full-hovered: var(
+				--db-#{$variant}-bg-inverted-contrast-low-hovered
+			);
+			--db-adaptive-bg-basic-transparent-full-pressed: var(
+				--db-#{$variant}-bg-inverted-contrast-low-pressed
 			);
 		}
-	}
-
-	&:is(label),
-	label {
-		color: var(--db-#{$variant}-on-bg-basic-emphasis-80-default);
 	}
 }
 
-@mixin set-default-check-element($selector) {
+@mixin set-default-check-element() {
 	@extend %db-overwrite-font-size-md;
 
-	@include set-required-label(input);
-
-	@include get-validity($selector) {
-		@include get-validity-color-check("valid");
-	}
-
-	@include get-validity($selector, "invalid") {
-		@include get-validity-color-check("invalid");
+	&:not([data-hide-asterisk="true"]) {
+		@include set-required-label(input);
 	}
 
 	&:has(input:disabled) {
-		opacity: component.$default-disabled;
+		opacity: variables.$db-opacity-md;
 	}
 
 	&:is(label),
-	label {
-		display: flex;
+	> label {
+		@include helpers.display(flex);
+
 		align-items: flex-start;
 		position: relative;
-		gap: variables.$db-spacing-fixed-xs;
-
-		&:not(:has(input:disabled)) {
-			@include helpers.hover;
-			@include helpers.active;
-		}
+		color: var(
+			--db-check-element-label-color,
+			#{colors.$db-adaptive-on-bg-basic-emphasis-100-default}
+		);
 	}
 
 	input {
@@ -481,7 +604,7 @@ $input-valid-types:
 		place-content: center center;
 		appearance: none;
 		aspect-ratio: 1;
-		/* stylelint-disable-next-line db-ux/use-border-height */
+		/* stylelint-disable-next-line db-ux/use-border-width */
 		border: #{$check-border-size} solid
 			var(
 				--db-check-element-border-color,
@@ -490,14 +613,7 @@ $input-valid-types:
 		block-size: $font-size-height;
 		inline-size: $font-size-height;
 		padding: 0;
-
-		@include helpers.hover {
-			background-color: colors.$db-adaptive-bg-basic-transparent-hovered;
-		}
-
-		@include helpers.active {
-			background-color: colors.$db-adaptive-bg-basic-transparent-pressed;
-		}
+		margin-inline-end: var(--db-spacing-fixed-xs);
 	}
 
 	&[data-size="small"] {

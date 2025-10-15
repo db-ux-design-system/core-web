@@ -1,4 +1,4 @@
 - dialog:
   - article:
-    - button "cross\" / \" Close Button"
+    - button "Close"
     - text: Test

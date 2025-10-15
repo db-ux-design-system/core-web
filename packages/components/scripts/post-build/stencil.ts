@@ -1,7 +1,7 @@
-import components, { Overwrite } from './components';
-import { runReplacements, transformToUpperComponentName } from '../utils';
+import { existsSync, writeFileSync } from 'node:fs';
 import { replaceInFileSync } from 'replace-in-file';
-import { writeFileSync, existsSync } from 'node:fs';
+import { runReplacements, transformToUpperComponentName } from '../utils';
+import components, { Overwrite } from './components';
 
 const getSlotDocs = (foundSlots: string[]): string => {
 	return `
@@ -13,7 +13,7 @@ ${foundSlots.map((slot) => ` * @slot ${slot} - TODO: Add description for slot${t
 };
 
 const changeFile = (upperComponentName: string, input: string) => {
-	const foundSlots = [];
+	const foundSlots: string[] = [];
 
 	return input
 		.split('\n')
@@ -28,12 +28,7 @@ const changeFile = (upperComponentName: string, input: string) => {
 					option = '{attribute: "classname"}';
 				}
 
-				return line
-					.replace('@Prop()', `@Prop(${option})`)
-					.replace(
-						'any',
-						`${upperComponentName}Props["${line.replace(`@Prop() `, '').replace(': any;', '').trim()}"]`
-					);
+				return line.replace('@Prop()', `@Prop(${option})`);
 			}
 
 			if (line.includes('<slot name=')) {
@@ -84,14 +79,7 @@ export default (tmp?: boolean) => {
 			processor: (input: string) => changeFile(upperComponentName, input)
 		});
 
-		const replacements: Overwrite[] = [
-			{ from: /ref=\{\(el\)/g, to: 'ref={(el:any)' },
-			{ from: 'for={', to: 'htmlFor={' },
-			{
-				from: 'onInput={(event) => this.handleChange(event)}',
-				to: 'onChange={(event) => this.handleChange(event)}'
-			}
-		];
+		const replacements: Overwrite[] = [{ from: 'for={', to: 'htmlFor={' }];
 		replaceIndexFile(indexFile, componentName, upperComponentName);
 		runReplacements(replacements, component, 'stencil', file);
 	}

@@ -1,19 +1,14 @@
+const onClickPlugin = require('../plugins/on-click.cjs');
+
+/**
+ * @type {import('@builder.io/mitosis').ToAngularOptions}
+ */
 module.exports = {
 	typescript: true,
-	standalone: true,
-	visuallyIgnoreHostElement: false,
 	attributePassing: {
 		enabled: true,
 		customRef: '_ref'
 	},
-	importMapper: (component, theImport, importedValues, componentsUsed) => {
-		const { defaultImport } = importedValues;
-		const { path } = theImport;
-
-		if (componentsUsed.includes(defaultImport)) {
-			return `import { ${defaultImport} } from '${path}';`;
-		}
-
-		return undefined;
-	}
+	api: 'signals',
+	plugins: [onClickPlugin]
 };

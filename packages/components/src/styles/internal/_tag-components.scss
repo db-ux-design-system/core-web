@@ -6,35 +6,32 @@
 
 $interactive-selectors: "label, button:not(.db-tab-remove-button), a";
 
-%set-adaptive-weak-tag {
-	border-color: colors.$db-adaptive-on-bg-basic-emphasis-60-default;
+@mixin get-weak($name: "adaptive", $border-color: 60, $background-color: 1) {
+	--db-tag-border-color: var(
+		--db-#{$name}-on-bg-basic-emphasis-#{$border-color}-default
+	);
+	// stylelint-disable-next-line db-ux/use-border-color
+	border-color: var(--db-tag-border-color);
 
 	@include colors.set-current-colors(
-		colors.$db-adaptive-bg-basic-level-1-default,
-		colors.$db-adaptive-on-bg-basic-emphasis-80-default
+		var(--db-#{$name}-bg-basic-level-#{$background-color}-default),
+		var(--db-#{$name}-on-bg-basic-emphasis-80-default)
 	);
 }
 
-%set-adaptive-strong-tag {
-	border-color: colors.$db-adaptive-on-bg-basic-emphasis-80-default;
+@mixin get-strong($name: "adaptive") {
+	--db-tag-border-color: var(--db-#{$name}-on-bg-basic-emphasis-70-default);
+	// stylelint-disable-next-line db-ux/use-border-color
+	border-color: var(--db-tag-border-color);
 
 	@include colors.set-current-colors(
-		colors.$db-adaptive-bg-inverted-contrast-high-default,
-		colors.$db-adaptive-on-bg-inverted-default
-	);
-}
-
-%set-adaptive-origin-tag {
-	border-color: colors.$db-adaptive-on-bg-basic-emphasis-70-default;
-
-	@include colors.set-current-colors(
-		colors.$db-adaptive-origin-default,
-		colors.$db-adaptive-on-origin-default
+		var(--db-#{$name}-bg-vibrant-default),
+		var(--db-#{$name}-on-bg-vibrant-default)
 	);
 }
 
 %set-interactive-weak {
-	@extend %set-adaptive-weak-tag;
+	@include get-weak;
 
 	@include helpers.hover {
 		background-color: colors.$db-adaptive-bg-basic-level-1-hovered;
@@ -45,70 +42,43 @@ $interactive-selectors: "label, button:not(.db-tab-remove-button), a";
 	}
 }
 
-%set-interactive-strong {
-	@extend %set-adaptive-strong-tag;
+@mixin get-tag-colors($htmlTag: "tag") {
+	$border-color: 60;
+	$background-color: 1;
 
-	@include helpers.hover {
-		background-color: colors.$db-adaptive-bg-inverted-contrast-high-hovered;
-	}
+	&:not([data-semantic]),
+	&[data-semantic="adaptive"] {
+		&:not([data-emphasis]),
+		&[data-emphasis="weak"] {
+			@if $htmlTag == "badge" {
+				$border-color: 70;
+				$background-color: 3;
 
-	@include helpers.active {
-		background-color: colors.$db-adaptive-bg-inverted-contrast-high-pressed;
-	}
-}
+				@include get-weak("adaptive", $border-color, $background-color);
+				/* stylelint-disable-next-line at-rule-empty-line-before */
+			} @else {
+				@include get-weak;
+			}
+		}
 
-%set-interactive-origin {
-	@extend %set-adaptive-origin-tag;
+		&[data-emphasis="strong"] {
+			@include get-strong;
 
-	@include helpers.hover {
-		background-color: colors.$db-adaptive-origin-hovered;
-	}
-
-	@include helpers.active {
-		background-color: colors.$db-adaptive-origin-pressed;
-	}
-}
-
-@mixin get-tag-colors() {
-	@extend %set-adaptive-weak-tag;
-
-	&[data-emphasis="strong"] {
-		@extend %set-adaptive-strong-tag;
-	}
-
-	&[data-emphasis="origin"] {
-		@extend %set-adaptive-origin-tag;
+			.db-tab-remove-button {
+				@extend %set-interactive-strong;
+			}
+		}
 	}
 
 	@each $name in colors.$variant-colors {
 		&[data-semantic="#{$name}"] {
-			border-color: var(--db-#{$name}-on-bg-basic-emphasis-60-default);
-
-			@include colors.set-current-colors(
-				var(--db-#{$name}-bg-basic-level-1-default),
-				var(--db-#{$name}-on-bg-basic-emphasis-80-default)
-			);
-
-			&[data-emphasis="strong"] {
-				border-color: var(
-					--db-#{$name}-on-bg-basic-emphasis-80-default
-				);
-
-				@include colors.set-current-colors(
-					var(--db-#{$name}-bg-inverted-contrast-high-default),
-					var(--db-#{$name}-on-bg-inverted-default)
-				);
+			&:not([data-emphasis]),
+			&[data-emphasis="weak"] {
+				@include get-weak($name, $border-color, $background-color);
 			}
 
-			&[data-emphasis="origin"] {
-				border-color: var(
-					--db-#{$name}-on-bg-basic-emphasis-70-default
-				);
-
-				@include colors.set-current-colors(
-					var(--db-#{$name}-origin-default),
-					var(--db-#{$name}-on-origin-default)
-				);
+			&[data-emphasis="strong"] {
+				@include get-strong($name);
 			}
 		}
 	}
@@ -125,20 +95,14 @@ $interactive-selectors: "label, button:not(.db-tab-remove-button), a";
 }
 
 %set-interactive-strong {
-	@extend %set-adaptive-strong-tag;
+	@include get-strong;
 
 	@include helpers.hover {
-		background-color: colors.$db-adaptive-bg-inverted-contrast-high-hovered;
-		// TODO: will be changed in the future tag refactoring
-		/* stylelint-disable-next-line db-ux/use-border-color */
-		border-color: colors.$db-adaptive-bg-inverted-contrast-high-hovered;
+		background-color: colors.$db-adaptive-bg-vibrant-hovered;
 	}
 
 	@include helpers.active {
-		background-color: colors.$db-adaptive-bg-inverted-contrast-high-pressed;
-		// TODO: will be changed in the future tag refactoring
-		/* stylelint-disable-next-line db-ux/use-border-color */
-		border-color: colors.$db-adaptive-bg-inverted-contrast-high-pressed;
+		background-color: colors.$db-adaptive-bg-vibrant-pressed;
 	}
 }
 
@@ -169,7 +133,7 @@ $interactive-selectors: "label, button:not(.db-tab-remove-button), a";
 	&:not([data-emphasis]),
 	&[data-emphasis="weak"] {
 		// buttons and links
-		@include get-interactive-selectors() {
+		@include get-interactive-selectors {
 			@extend %set-interactive-weak;
 		}
 
@@ -185,7 +149,7 @@ $interactive-selectors: "label, button:not(.db-tab-remove-button), a";
 		label:has(input[type="radio"]:checked) {
 			&,
 			&:is(:hover, :focus, :active) {
-				@extend %set-adaptive-strong-tag;
+				@include get-strong;
 			}
 		}
 	}
@@ -194,7 +158,7 @@ $interactive-selectors: "label, button:not(.db-tab-remove-button), a";
 		@extend %set-interactive-strong;
 
 		// buttons and links
-		@include get-interactive-selectors() {
+		@include get-interactive-selectors {
 			@extend %set-interactive-strong;
 		}
 
@@ -203,28 +167,7 @@ $interactive-selectors: "label, button:not(.db-tab-remove-button), a";
 		}
 
 		label:has(input[type="radio"]:checked) {
-			@extend %set-adaptive-strong-tag;
-		}
-
-		&:has(input):not(:has(input:checked)) {
-			@extend %set-interactive-weak;
-		}
-	}
-
-	&[data-emphasis="origin"] {
-		@extend %set-interactive-origin;
-
-		// buttons and links
-		@include get-interactive-selectors() {
-			@extend %set-interactive-origin;
-		}
-
-		label:has(input[type="checkbox"]:checked) {
-			@extend %set-interactive-origin;
-		}
-
-		label:has(input[type="radio"]:checked) {
-			@extend %set-adaptive-origin-tag;
+			@include get-strong;
 		}
 
 		&:has(input):not(:has(input:checked)) {

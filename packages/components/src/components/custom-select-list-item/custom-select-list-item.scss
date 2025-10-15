@@ -1,0 +1,96 @@
+@use "@db-ux/core-foundations/build/styles/variables";
+@use "@db-ux/core-foundations/build/styles/colors";
+@use "@db-ux/core-foundations/build/styles/helpers";
+@use "@db-ux/core-foundations/build/styles/fonts";
+@use "@db-ux/core-foundations/build/styles/icons";
+@use "@db-ux/core-foundations/build/styles/screen-sizes";
+@use "../../styles/internal/form-components";
+
+// web-component workaround
+db-custom-select-list-item:not(:last-of-type) {
+	.db-custom-select-list-item[data-divider="true"] {
+		@include helpers.divider("bottom");
+	}
+}
+
+.db-custom-select-list-item {
+	@include helpers.display(flex);
+
+	block-size: 100%;
+	position: relative;
+	padding: variables.$db-spacing-fixed-sm;
+	background-color: colors.$db-adaptive-bg-basic-transparent-full-default;
+	border-radius: variables.$db-border-radius-xs;
+	box-sizing: border-box;
+
+	&:has(> label) {
+		&:not(:has(input[type="radio"]:checked)) {
+			@include helpers.hover {
+				background-color: colors.$db-adaptive-bg-basic-transparent-full-hovered;
+			}
+
+			@include helpers.active {
+				background-color: colors.$db-adaptive-bg-basic-transparent-full-pressed;
+			}
+		}
+	}
+
+	&:has(> label > input:focus-visible) {
+		@extend %focus-placeholder;
+	}
+
+	span {
+		@extend %db-overwrite-font-size-md;
+
+		color: colors.$db-adaptive-on-bg-basic-emphasis-80-default;
+	}
+
+	&[data-divider="true"]:not(:last-of-type) {
+		@include helpers.divider("bottom");
+	}
+
+	> label {
+		--db-icon-margin-start: auto;
+		--db-check-element-label-color: #{colors.$db-adaptive-on-bg-basic-emphasis-100-default};
+
+		inline-size: 100%;
+
+		&:has(input:checked) {
+			font-weight: 700;
+		}
+
+		&:has(input[type="radio"]) {
+			--db-icon-trailing: "none";
+
+			gap: 0;
+		}
+
+		&:has(input[type="radio"]:checked) {
+			--db-overwrite-cursor: default;
+			--db-icon-trailing: "check";
+		}
+
+		> input {
+			// We revert interaction states for checkbox
+			--db-adaptive-bg-basic-transparent-full-hovered: #{colors.$db-adaptive-bg-basic-transparent-full-default};
+			--db-adaptive-bg-basic-transparent-full-pressed: #{colors.$db-adaptive-bg-basic-transparent-full-default};
+
+			&::after {
+				position: absolute;
+				content: "";
+				inset-block: calc(-1 * #{variables.$db-spacing-fixed-xs});
+				inset-inline: calc(-1 * #{variables.$db-spacing-fixed-xs});
+			}
+
+			&[type="radio"] {
+				all: unset;
+			}
+
+			/* We set focus on complete list element, we remove it from checkbox with this trick */
+			/* stylelint-disable-next-line a11y/no-outline-none */
+			&:focus-visible {
+				outline: none !important;
+			}
+		}
+	}
+}

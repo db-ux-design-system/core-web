@@ -5,9 +5,8 @@ import {
 	useRef,
 	useStore
 } from '@builder.io/mitosis';
+import { cls, getBoolean, getBooleanAsString } from '../../utils';
 import type { DBButtonProps, DBButtonState } from './model';
-import { cls, getBooleanAsString, getHideProp } from '../../utils';
-import { ClickEvent } from '../../shared/model';
 
 useMetadata({
 	angular: {
@@ -18,41 +17,39 @@ useMetadata({
 useDefaultProps<DBButtonProps>({});
 
 export default function DBButton(props: DBButtonProps) {
-	const _ref = useRef<HTMLButtonElement | null>(null);
-	// jscpd:ignore-start
+	const _ref = useRef<HTMLButtonElement | any>(null);
+
 	const state = useStore<DBButtonState>({
-		handleClick: (event: ClickEvent<HTMLButtonElement>) => {
-			if (props.onClick) {
-				props.onClick(event);
+		getButtonType: () => {
+			if (props.type) {
+				return props.type;
+			} else if (props.onClick) {
+				return 'button';
 			}
+			return 'submit';
 		}
 	});
-
-	// jscpd:ignore-end
 
 	return (
 		<button
 			ref={_ref}
 			id={props.id}
 			class={cls('db-button', props.className)}
-			type={props.type || 'button'}
-			disabled={props.disabled}
-			aria-label={props.label}
-			data-icon={props.icon}
-			data-hide-icon={getHideProp(props.showIcon)}
+			type={state.getButtonType()}
+			disabled={getBoolean(props.disabled, 'disabled')}
+			data-icon={props.iconLeading ?? props.icon}
+			data-show-icon={getBooleanAsString(
+				props.showIconLeading ?? props.showIcon
+			)}
+			data-icon-trailing={props.iconTrailing}
+			data-show-icon-trailing={getBooleanAsString(props.showIconTrailing)}
 			data-size={props.size}
-			data-state={props.state}
 			data-width={props.width}
 			data-variant={props.variant}
 			data-no-text={getBooleanAsString(props.noText)}
 			name={props.name}
-			value={props.value}
-			aria-describedby={props.describedbyid}
-			aria-expanded={props.ariaexpanded}
-			aria-pressed={props.ariapressed}
-			onClick={(event: ClickEvent<HTMLButtonElement>) =>
-				state.handleClick(event)
-			}>
+			form={props.form}
+			value={props.value}>
 			<Show when={props.text} else={props.children}>
 				{props.text}
 			</Show>

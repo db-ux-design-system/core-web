@@ -1,16 +1,18 @@
 import { DBTabItem, DBTabList } from '../../../../../output/react/src';
-import DefaultComponent from '../default-component';
-import defaultComponentVariants from '../../../../shared/tab-item.json';
 import type { DBTabItemProps } from '../../../../../output/react/src/components/tab-item/model';
-import { getVariants } from '../data';
+import defaultComponentVariants from '../../../../shared/tab-item.json';
 import { type BaseComponentProps } from '../base-component-data';
+import { getVariants } from '../data';
+import DefaultComponent from '../default-component';
 
 const getTab = ({
 	children,
 	active,
 	noText,
 	icon,
-	iconAfter,
+	iconTrailing,
+	showIconTrailing,
+	showIcon,
 	disabled
 }: DBTabItemProps) => (
 	<DBTabList>
@@ -18,7 +20,9 @@ const getTab = ({
 			active={active}
 			noText={noText}
 			icon={icon}
-			iconAfter={iconAfter}
+			iconTrailing={iconTrailing}
+			showIcon={showIcon}
+			showIconTrailing={showIconTrailing}
 			disabled={disabled}>
 			{children}
 		</DBTabItem>

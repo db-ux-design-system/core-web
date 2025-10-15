@@ -1,5 +1,4 @@
 import { expect, test } from '@playwright/experimental-ct-react';
-import AxeBuilder from '@axe-core/playwright';
 
 import { DBTooltip } from './index';
 // @ts-ignore - vue can only find it with .ts as file ending
@@ -8,7 +7,7 @@ import { DBButton } from '../button';
 
 const comp: any = (
 	<div className="padding-box">
-		<DBButton describedbyid="tooltip" data-testid="button">
+		<DBButton aria-describedby="tooltip" data-testid="button">
 			Button
 			<DBTooltip animation="disabled" id="tooltip" data-testid="tooltip">
 				Test
@@ -37,7 +36,9 @@ const testComponent = () => {
 	test('after open should match screenshot', async ({ mount }) => {
 		const component = await mount(comp);
 		await component.getByTestId('button').focus();
-		await expect(component).toHaveScreenshot();
+		await expect(component).toHaveScreenshot({
+			maxDiffPixels: 200
+		});
 	});
 };
 

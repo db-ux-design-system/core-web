@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import DefaultComponent from "../DefaultComponent.vue";
-import defaultComponentVariants from "../../../../shared/navigation-item.json";
 import { DBNavigationItem } from "../../../../../output/vue/src";
+import defaultComponentVariants from "../../../../shared/navigation-item.json";
+import DefaultComponent from "../DefaultComponent.vue";
 
 const log = (exampleName?: string) => {
 	// eslint-disable-next-line no-alert
@@ -25,20 +25,29 @@ const log = (exampleName?: string) => {
 					:disabled="exampleProps?.disabled"
 					:active="exampleProps?.active"
 					:areaPopup="exampleProps?.areaPopup"
+					:wrap="exampleProps?.wrap"
 					@click="log(exampleName)"
 				>
 					<template v-if="exampleProps?.areaPopup" #sub-navigation>
-						<ul>
-							<DBNavigationItem
-								><a href="#">Test1</a></DBNavigationItem
-							>
-							<DBNavigationItem
-								><a href="#">Test2</a></DBNavigationItem
-							>
-							<DBNavigationItem
-								><a href="#">Test3</a></DBNavigationItem
-							>
-						</ul>
+						<DBNavigationItem
+							:icon="exampleProps?.icon"
+							:showIcon="exampleProps?.showIcon"
+						>
+							Also a navigation item with longer label
+							<template v-slot:sub-navigation>
+								<DBNavigationItem
+									:icon="exampleProps?.icon"
+									:showIcon="exampleProps?.showIcon"
+								>
+									<a href="#">Navigation Item 2</a>
+								</DBNavigationItem>
+							</template>
+						</DBNavigationItem>
+						<DBNavigationItem
+							:icon="exampleProps?.icon"
+							:showIcon="exampleProps?.showIcon"
+							><a href="#">Navigation Item 1</a></DBNavigationItem
+						>
 					</template>
 					<template v-if="exampleProps?.areaPopup">
 						{{ exampleName }}
