@@ -43,7 +43,7 @@
 ## Figma MCP
 
 - If you use Figma MCP always generate code with adapt this code to your project's conventions, such as using @db-ux/core-components and @db-ux/core-foundations.
-- If a code snippet from Figma MCP has a font-family with "DB Neo Screen Head" use HTML `<h1>`, `<h2>`, `<h3>`, `<h4>`, `<h5>`, `<h6>`.
+- If a code snippet from Figma MCP has a font-family with "DB Neo Screen Head" use HTML headlines (`<h1>`, `<h2>`, `<h3>`, `<h4>`, `<h5>`, `<h6>` HTML tags).
 - If the headline has a `font-weight: 300;` use `data-variant="light"` additionally.
 - If a code snippet has a Figma `Mode` add it as `data-xxx`, where `xxx` is the mode in lower-case.
 
