@@ -1,7 +1,3 @@
-// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
-
-exports[`default > check if docs are created 1`] = `
-"
 --- START: DB UX Copilot Instructions – do not edit below ---
 
 # @db-ux/components
@@ -12,6 +8,6 @@ exports[`default > check if docs are created 1`] = `
 - use x for node_modules/@db-ux/foundations/test.md
 
 
---- END: DB UX Copilot Instructions – do not edit above ---
-"
-`;
+---
+
+END: DB UX Copilot Instructions – do not edit above ---
