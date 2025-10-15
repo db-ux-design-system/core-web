@@ -18,7 +18,19 @@
 			"@db-ux/agent-cli"
 		]
 	],
-	"ignore": ["scripts", "@db-ux/core-web", "@db-ux/docs", "@db-ux/e2e", "angular-showcase", "angular-ssr-showcase", "next-showcase", "nuxt-showcase", "patternhub", "react-showcase", "stencil-showcase", "vue-showcase"],
+	"ignore": [
+		"scripts",
+		"@db-ux/docs",
+		"@db-ux/e2e",
+		"angular-showcase",
+		"angular-ssr-showcase",
+		"next-showcase",
+		"nuxt-showcase",
+		"patternhub",
+		"react-showcase",
+		"stencil-showcase",
+		"vue-showcase"
+	],
 	"linked": [],
 	"access": "public",
 	"baseBranch": "origin/main",
