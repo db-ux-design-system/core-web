@@ -1,7 +1,7 @@
 /* stylelint-disable custom-property-pattern, custom-property-empty-line-before, import-notation, scss/at-rule-no-unknown */
 
 /* The prefix for variables are predefined by Tailwind, stylelint would throw an error */
-@import "./colors.css";
+@import "./colors/index.css";
 @import "./revert-theme.css";
 @import "./dimensions.css";
 
