@@ -41,11 +41,10 @@
 
 		font-weight: 700;
 		min-block-size: variables.$db-sizing-sm;
-		padding: variables.$db-spacing-fixed-2xs;
 
 		&:not([data-no-text="true"]) {
 			// stylelint-disable-next-line db-ux/use-spacings
-			padding: 2px;
+			padding: 2px variables.$db-spacing-fixed-sm;
 
 			&::before {
 				margin-inline-end: variables.$db-spacing-fixed-2xs;
@@ -54,7 +53,6 @@
 
 		// Square icon only buttons
 		&[data-no-text="true"] {
-			aspect-ratio: 1;
 			inline-size: variables.$db-sizing-sm;
 		}
 	}
