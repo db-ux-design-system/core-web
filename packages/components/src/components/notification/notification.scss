@@ -132,7 +132,7 @@
 	// has link inline or overlay
 	&:has(a) {
 		&[data-link-variant="inline"],
-		&[data-variant="overlay"] {
+		&[data-variant="overlay"]:not([data-link-variant="block"]) {
 			// 1. only content (min. requirement)
 			grid-template-areas: "content link";
 			grid-template-columns: 1fr min-content;
@@ -190,6 +190,11 @@
 		@extend %grid-layout-variant-overlay;
 
 		box-shadow: variables.$db-elevation-md;
+
+		// Apply block link layout for overlay notifications with block links
+		&[data-link-variant="block"] {
+			@extend %grid-layout-variant-not-overlay;
+		}
 	}
 
 	&:not([data-variant="overlay"]) {

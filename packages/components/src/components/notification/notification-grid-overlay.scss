@@ -1,53 +1,56 @@
 %grid-layout-variant-overlay {
-	// has timestamp
-	&:has(span) {
-		// 1. only content (min. requirement)
-		grid-template-areas: "content timestamp";
-		grid-template-columns: 1fr min-content;
-
-		&:has(.db-button) {
-			grid-template-columns: 1fr min-content min-content;
-			grid-template-areas: "content timestamp close";
-		}
-
-		// 2. headline
-		&:has(header) {
+	// Block link variant should not use overlay-specific grid layout
+	&:not([data-link-variant="block"]) {
+		// has timestamp
+		&:has(span) {
+			// 1. only content (min. requirement)
+			grid-template-areas: "content timestamp";
 			grid-template-columns: 1fr min-content;
-			grid-template-areas:
-				"head timestamp"
-				"content content";
 
 			&:has(.db-button) {
 				grid-template-columns: 1fr min-content min-content;
-				grid-template-areas:
-					"head timestamp close"
-					"content content content";
-			}
-		}
-
-		// 3. icon or img
-		&[data-icon],
-		&[data-semantic]:not([data-semantic="adaptive"]),
-		&:has(img) {
-			grid-template-areas: "icon content timestamp";
-			grid-template-columns: min-content 1fr min-content;
-
-			&:has(.db-button) {
-				grid-template-columns: min-content 1fr min-content min-content;
-				grid-template-areas: "icon content timestamp close";
+				grid-template-areas: "content timestamp close";
 			}
 
+			// 2. headline
 			&:has(header) {
-				grid-template-columns: min-content 1fr min-content;
+				grid-template-columns: 1fr min-content;
 				grid-template-areas:
-					"icon head timestamp"
-					"icon content content";
+					"head timestamp"
+					"content content";
+
+				&:has(.db-button) {
+					grid-template-columns: 1fr min-content min-content;
+					grid-template-areas:
+						"head timestamp close"
+						"content content content";
+				}
+			}
+
+			// 3. icon or img
+			&[data-icon],
+			&[data-semantic]:not([data-semantic="adaptive"]),
+			&:has(img) {
+				grid-template-areas: "icon content timestamp";
+				grid-template-columns: min-content 1fr min-content;
 
 				&:has(.db-button) {
 					grid-template-columns: min-content 1fr min-content min-content;
+					grid-template-areas: "icon content timestamp close";
+				}
+
+				&:has(header) {
+					grid-template-columns: min-content 1fr min-content;
 					grid-template-areas:
-						"icon head timestamp close"
-						"icon content content content";
+						"icon head timestamp"
+						"icon content content";
+
+					&:has(.db-button) {
+						grid-template-columns: min-content 1fr min-content min-content;
+						grid-template-areas:
+							"icon head timestamp close"
+							"icon content content content";
+					}
 				}
 			}
 		}

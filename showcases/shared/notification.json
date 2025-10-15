@@ -337,7 +337,7 @@
 				]
 			},
 			{
-				"name": "Text & Headline & Textlink Inline & Cloaseable",
+				"name": "Text & Headline & Textlink Inline & Closeable",
 				"style": { "width": "300px" },
 				"props": {
 					"headline": "Headline",
@@ -356,7 +356,7 @@
 				]
 			},
 			{
-				"name": "Text & Icon & Headline & Textlink Inline & Cloaseable",
+				"name": "Text & Icon & Headline & Textlink Inline & Closeable",
 				"style": { "width": "300px" },
 				"props": {
 					"icon": "information_circle",
@@ -468,7 +468,7 @@
 				]
 			},
 			{
-				"name": "Text & Headline & Textlink Inline & Cloaseable",
+				"name": "Text & Headline & Textlink Inline & Closeable",
 				"style": { "width": "300px" },
 				"props": {
 					"headline": "Headline",
@@ -488,7 +488,7 @@
 				]
 			},
 			{
-				"name": "Text & Icon & Headline & Textlink Inline & Cloaseable",
+				"name": "Text & Icon & Headline & Textlink Inline & Closeable",
 				"style": { "width": "300px" },
 				"props": {
 					"icon": "information_circle",
@@ -571,7 +571,27 @@
 				}
 			},
 			{
-				"name": "Text & Headline & Textlink Inline & Cloaseable",
+				"name": "Text & Textlink Block",
+				"style": { "width": "300px" },
+				"props": {
+					"link": true,
+					"variant": "overlay",
+					"behavior": "permanent",
+					"linkVariant": "block"
+				},
+				"children": [
+					{
+						"name": "link",
+						"slot": "link",
+						"content": "Textlink",
+						"props": {
+							"href": "#"
+						}
+					}
+				]
+			},
+			{
+				"name": "Text & Headline & Textlink Inline & Closeable",
 				"style": { "width": "300px" },
 				"props": {
 					"headline": "Headline",
@@ -580,7 +600,7 @@
 				}
 			},
 			{
-				"name": "Text & Icon & Headline & Textlink Inline & Cloaseable",
+				"name": "Text & Icon & Headline & Textlink Inline & Closeable",
 				"style": { "width": "300px" },
 				"props": {
 					"icon": "information_circle",
@@ -599,7 +619,7 @@
 				}
 			},
 			{
-				"name": "Text & Timed & Cloaseable",
+				"name": "Text & Timed & Closeable",
 				"style": { "width": "300px" },
 				"props": {
 					"timestamp": "10 min ago",
@@ -607,7 +627,7 @@
 				}
 			},
 			{
-				"name": "Text & Headline & Timed & Cloaseable",
+				"name": "Text & Headline & Timed & Closeable",
 				"style": { "width": "300px" },
 				"props": {
 					"headline": "Headline",
@@ -616,7 +636,7 @@
 				}
 			},
 			{
-				"name": "Text & Icon & Headline & Timed & Cloaseable",
+				"name": "Text & Icon & Headline & Timed & Closeable",
 				"style": { "width": "300px" },
 				"props": {
 					"icon": "information_circle",
