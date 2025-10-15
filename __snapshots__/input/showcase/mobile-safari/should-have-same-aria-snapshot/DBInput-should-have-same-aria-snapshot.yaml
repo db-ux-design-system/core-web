@@ -2,194 +2,250 @@
   - heading "DBInput" [level=1]
   - link "Density"
   - text: Label
-  - textbox "Label"
+  - textbox "Label":
+    - /placeholder: Functional
   - status
   - text: Label
-  - textbox "Label"
+  - textbox "Label":
+    - /placeholder: (Default) Regular
   - status
   - text: Label
-  - textbox "Label"
+  - textbox "Label":
+    - /placeholder: Expressive
   - status
   - link "Variant"
   - text: Label
-  - textbox "Label"
+  - textbox "Label":
+    - /placeholder: (Default) Label Above
   - status
   - text: Label
-  - textbox "Label": Floating Label
+  - textbox "Label":
+    - /placeholder: Floating Label
+    - text: Floating Label
   - status
   - link "Show Label"
   - text: Label
-  - textbox "Label"
+  - textbox "Label":
+    - /placeholder: (Default) True
   - status
   - text: Label
-  - textbox "Label"
+  - textbox "Label":
+    - /placeholder: "False"
   - status
   - link "Show Message"
   - text: Label
-  - textbox "Label"
+  - textbox "Label":
+    - /placeholder: (Default) False
   - status
   - text: Label
-  - textbox "Label"
+  - textbox "Label":
+    - /placeholder: "True"
   - text: Message
   - status
   - link "State"
   - text: Label
-  - textbox "Label"
+  - textbox "Label":
+    - /placeholder: (Default) Empty
   - status
   - text: Label
-  - textbox "Label": Filled
+  - textbox "Label":
+    - /placeholder: Filled
+    - text: Filled
   - status
   - link "Disabled"
   - text: Label
-  - textbox "Label"
+  - textbox "Label":
+    - /placeholder: (Default) False
   - status
   - text: Label
-  - textbox "Label" [disabled]
+  - textbox "Label" [disabled]:
+    - /placeholder: "True"
   - status
   - link "Readonly"
   - text: Label
-  - textbox "Label"
+  - textbox "Label":
+    - /placeholder: (Default) False
   - status
   - text: Label
-  - textbox "Label"
+  - textbox "Label":
+    - /placeholder: "True"
   - status
   - link "Validation"
   - text: Label
-  - textbox "Label"
+  - textbox "Label":
+    - /placeholder: (Default) No validation
   - status
   - text: Label
-  - textbox "Label"
+  - textbox "Label":
+    - /placeholder: Invalid
   - text: Invalid Message
   - status
   - text: Label
-  - textbox "Label"
+  - textbox "Label":
+    - /placeholder: Valid
   - text: Valid message
   - status
   - link "Required"
   - text: Label
-  - textbox "Label"
+  - textbox "Label":
+    - /placeholder: (Default) False
   - status
   - text: Label
-  - textbox "Label"
+  - textbox "Label":
+    - /placeholder: "True"
   - status
   - link "Show Required Asterisk"
   - text: Label
-  - textbox "Label"
+  - textbox "Label":
+    - /placeholder: (Default) True
   - status
   - text: Label
-  - textbox "Label"
+  - textbox "Label":
+    - /placeholder: "False"
   - status
   - link "Show Icon Leading"
   - text: "False"
-  - textbox "False"
+  - textbox "False":
+    - /placeholder: (Default) False
   - status
   - text: "True"
   - textbox "True"
   - status
   - link "Show Icon Leading + Trailing"
   - text: "False"
-  - textbox "False"
+  - textbox "False":
+    - /placeholder: (Default) False
   - status
   - text: "True"
   - textbox "True"
   - status
   - link "Show Icon Trailing"
   - text: "False"
-  - textbox "False"
+  - textbox "False":
+    - /placeholder: (Default) False
   - status
   - text: "True"
   - textbox "True"
   - status
   - link "Example - Length"
   - text: Label
-  - textbox "Label"
+  - textbox "Label":
+    - /placeholder: MinLength
   - status
   - text: Label
-  - textbox "Label"
+  - textbox "Label":
+    - /placeholder: MaxLength
   - status
   - text: Label
-  - textbox "Label"
+  - textbox "Label":
+    - /placeholder: MinMaxLength
   - status
   - link "Example - Types with min and max"
   - text: Label
-  - textbox "Label"
+  - textbox "Label":
+    - /placeholder: (Default) Text
   - status
   - text: Label
-  - textbox "Label"
+  - textbox "Label":
+    - /placeholder: Password
   - status
   - text: Label
   - searchbox "Label"
   - status
   - text: Label
-  - textbox "Label"
+  - textbox "Label":
+    - /placeholder: E-Mail
   - status
   - text: Label
-  - textbox "Label"
+  - textbox "Label":
+    - /placeholder: Tel
   - status
   - text: Label
-  - textbox "Label"
+  - textbox "Label":
+    - /placeholder: URL
   - status
   - text: Label
-  - textbox "Label"
+  - textbox "Label":
+    - /placeholder: Date
   - status
   - text: Label
-  - textbox "Label"
+  - textbox "Label":
+    - /placeholder: Datetime Local
   - status
   - text: Label
-  - textbox "Label"
+  - textbox "Label":
+    - /placeholder: Month
   - status
   - text: Label
-  - textbox "Label"
+  - textbox "Label":
+    - /placeholder: Time
   - status
   - text: Label
-  - textbox "Label"
+  - textbox "Label":
+    - /placeholder: Week
   - status
   - link "Example Floating Label"
   - text: Label
-  - textbox "Label"
+  - textbox "Label":
+    - /placeholder: (Default) Empty
   - status
   - text: Label
-  - textbox "Label": Filled
+  - textbox "Label":
+    - /placeholder: Filled
+    - text: Filled
   - status
   - text: Label
-  - textbox "Label" [disabled]
+  - textbox "Label" [disabled]:
+    - /placeholder: Disabled
   - status
   - text: Label
-  - textbox "Label": Readonly - Filled
+  - textbox "Label":
+    - /placeholder: Readonly - Filled
+    - text: Readonly - Filled
   - status
   - link "Example - Types - Floating Label"
   - text: Label
-  - textbox "Label"
+  - textbox "Label":
+    - /placeholder: (Default) Text
   - status
   - text: Label
-  - textbox "Label"
+  - textbox "Label":
+    - /placeholder: Password
   - status
   - text: Label
   - searchbox "Label"
   - status
   - text: Label
-  - textbox "Label"
+  - textbox "Label":
+    - /placeholder: E-Mail
   - status
   - text: Label
-  - textbox "Label"
+  - textbox "Label":
+    - /placeholder: Tel
   - status
   - text: Label
-  - textbox "Label"
+  - textbox "Label":
+    - /placeholder: URL
   - status
   - text: Label
-  - textbox "Label"
+  - textbox "Label":
+    - /placeholder: Date
   - status
   - text: Label
-  - textbox "Label"
+  - textbox "Label":
+    - /placeholder: Datetime Local
   - status
   - text: Label
-  - textbox "Label"
+  - textbox "Label":
+    - /placeholder: Month
   - status
   - text: Label
-  - textbox "Label"
+  - textbox "Label":
+    - /placeholder: Time
   - status
   - text: Label
-  - textbox "Label"
+  - textbox "Label":
+    - /placeholder: Week
   - status
   - text: Label
   - combobox "Label"
