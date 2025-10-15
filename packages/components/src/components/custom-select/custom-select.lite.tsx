@@ -240,15 +240,20 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 
 			return false;
 		},
-		getTagRemoveLabel: (index: number) => {
-			if (
-				props.removeTagsTexts &&
-				props.removeTagsTexts!.length > index
-			) {
-				return props.removeTagsTexts!.at(index)!;
-			} else {
-				return `${DEFAULT_REMOVE} ${state._selectedOptions ? state.getOptionLabel(state._selectedOptions![index]) : ''}`;
+		getTagRemoveLabel: (option: CustomSelectOptionType) => {
+			const removeTexts = props.removeTagsTexts;
+			const options = props.options;
+			if (removeTexts && options) {
+				// Find the index of the option in the original options array
+				const optionIndex = options.findIndex(
+					(opt) => opt.value === option.value
+				);
+				if (optionIndex >= 0 && optionIndex < removeTexts.length) {
+					return removeTexts[optionIndex];
+				}
 			}
+			// Fallback to default behavior
+			return `${DEFAULT_REMOVE} ${state.getOptionLabel(option)}`;
 		},
 		handleTagRemove: (
 			option: CustomSelectOptionType,
@@ -292,47 +297,74 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 								event.key === 'ArrowDown' ||
 								event.key === 'ArrowRight'
 							) {
-								if (listElement?.nextElementSibling) {
-									listElement?.nextElementSibling
-										?.querySelector('input')
-										?.focus();
-								} else {
+								// Find next element with input, skipping group titles
+								let nextElement =
+									listElement?.nextElementSibling;
+								while (nextElement) {
+									const nextInput =
+										nextElement.querySelector('input');
+									if (nextInput) {
+										nextInput.focus();
+										break;
+									}
+									nextElement =
+										nextElement.nextElementSibling;
+								}
+
+								if (!nextElement) {
 									// We are on the last checkbox we move to the top checkbox
 									state.handleFocusFirstDropdownCheckbox(
 										activeElement
 									);
 								}
 							} else {
-								if (listElement?.previousElementSibling) {
-									listElement?.previousElementSibling
-										?.querySelector('input')
-										?.focus();
-								} else if (
-									detailsRef.querySelector(
-										`input[type="checkbox"]`
-									) !== activeElement
-								) {
-									// We are on the top list checkbox but there is a select all checkbox as well
-									state.handleFocusFirstDropdownCheckbox(
-										activeElement
-									);
-								} else {
-									// We are on the top checkbox, we need to move to the search
-									// or to the last checkbox
-									const search = getSearchInput(detailsRef);
-									if (search) {
-										delay(() => {
-											search.focus();
-										}, 100);
+								// Find previous element with input, skipping group titles
+								let prevElement =
+									listElement?.previousElementSibling;
+								while (prevElement) {
+									const prevInput =
+										prevElement.querySelector('input');
+									if (prevInput) {
+										prevInput.focus();
+										break;
+									}
+									prevElement =
+										prevElement.previousElementSibling;
+								}
+
+								if (!prevElement) {
+									// Check if we have a "select all" checkbox (only relevant for multi-select)
+									const selectAllCheckbox =
+										detailsRef.querySelector(
+											`input[type="checkbox"]`
+										);
+									if (
+										selectAllCheckbox &&
+										selectAllCheckbox !== activeElement
+									) {
+										// We are on the top list checkbox but there is a select all checkbox as well
+										state.handleFocusFirstDropdownCheckbox(
+											activeElement
+										);
 									} else {
-										const checkboxList: HTMLInputElement[] =
-											Array.from(
-												detailsRef?.querySelectorAll(
-													`input[type="checkbox"],input[type="radio"]`
-												)
-											);
-										if (checkboxList.length) {
-											checkboxList.at(-1)?.focus();
+										// We are on the top checkbox, we need to move to the search
+										// or to the last checkbox
+										const search =
+											getSearchInput(detailsRef);
+										if (search) {
+											delay(() => {
+												search.focus();
+											}, 100);
+										} else {
+											const checkboxList: HTMLInputElement[] =
+												Array.from(
+													detailsRef?.querySelectorAll(
+														`input[type="checkbox"],input[type="radio"]`
+													)
+												);
+											if (checkboxList.length) {
+												checkboxList.at(-1)?.focus();
+											}
 										}
 									}
 								}
@@ -701,12 +733,14 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 
 	// If we inform the consumer we don't want to trigger the onOptionSelected event again
 	onUpdate(() => {
-		if (
-			props.values &&
-			Array.isArray(props.values) &&
-			props.values !== state._values
-		) {
-			state._values = props.values ?? [];
+		const v = props.values;
+
+		if (Array.isArray(v)) {
+			if (state._values !== v) {
+				state._values = v;
+			}
+		} else if (v == null && state._values?.length !== 0) {
+			state._values = [];
 		}
 	}, [props.values]);
 
@@ -921,7 +955,7 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 												)
 											})}
 											removeButton={state.getTagRemoveLabel(
-												index
+												option
 											)}
 											onRemove={(
 												event?: ClickEvent<HTMLButtonElement> | void
@@ -1001,7 +1035,7 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 											'multiple'
 										)}
 										label={
-											props.ariaListLabel ??
+											props.listLabel ??
 											props.label ??
 											DEFAULT_LABEL
 										}>
@@ -1111,6 +1145,7 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 			</Show>
 
 			<span
+				class="db-custom-select-placeholder"
 				aria-hidden={getBooleanAsString(true)}
 				id={state._placeholderId}>
 				{props.placeholder ?? props.label}

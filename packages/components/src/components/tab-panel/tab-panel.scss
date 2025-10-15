@@ -1,5 +1,6 @@
 @use "@db-ux/core-foundations/build/styles/variables";
+@use "@db-ux/core-foundations/build/styles/helpers/display";
 
 .db-tab-panel {
-	display: none;
+	@include display.display(none);
 }

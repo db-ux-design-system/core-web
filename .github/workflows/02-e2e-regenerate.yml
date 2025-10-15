@@ -83,7 +83,7 @@ jobs:
           fi
 
       - name: 🆙 Upload components
-        if: always() && inputs.type == 'components'
+        if: ${{ !cancelled() && inputs.type == 'components' }}
         uses: actions/upload-artifact@v4
         with:
           name: snapshots-${{ inputs.type }}
@@ -91,7 +91,7 @@ jobs:
           retention-days: 7
 
       - name: 🆙 Upload foundations
-        if: always() && inputs.type == 'foundations'
+        if: ${{ !cancelled() && inputs.type == 'foundations' }}
         uses: actions/upload-artifact@v4
         with:
           name: snapshots-${{ inputs.type }}
@@ -99,7 +99,7 @@ jobs:
           retention-days: 7
 
       - name: 🆙 Upload patternhub
-        if: always() && inputs.type == 'patternhub'
+        if: ${{ !cancelled() && inputs.type == 'patternhub' }}
         uses: actions/upload-artifact@v4
         with:
           name: snapshots-${{ inputs.type }}
@@ -107,7 +107,7 @@ jobs:
           retention-days: 7
 
       - name: 🆙 Upload showcase
-        if: always() && inputs.type == 'showcases'
+        if: ${{ !cancelled() && inputs.type == 'showcases' }}
         uses: actions/upload-artifact@v4
         with:
           name: snapshots-${{ inputs.type }}

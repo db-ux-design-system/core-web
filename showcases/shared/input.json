@@ -29,17 +29,17 @@
 		"name": "Variant",
 		"examples": [
 			{
-				"name": "(Default) Label Above",
+				"name": "(Default) Above",
 				"props": {
 					"label": "Label"
 				}
 			},
 			{
-				"name": "Floating Label",
+				"name": "Floating",
 				"props": {
 					"label": "Label",
 					"variant": "floating",
-					"value": "Floating Label"
+					"value": "Floating"
 				}
 			}
 		]
@@ -524,7 +524,6 @@
 			},
 			{
 				"name": "Datalist",
-				"experimental": true,
 				"props": {
 					"label": "Label",
 					"variant": "floating",
@@ -538,6 +537,41 @@
 					"label": "Label",
 					"type": "file",
 					"variant": "floating"
+				}
+			}
+		]
+	},
+	{
+		"name": "Datalist / Typeahead Examples",
+		"codeFileName": "DatalistExamples",
+		"examples": [
+			{
+				"name": "Simple String List",
+				"props": {
+					"label": "Search Cities",
+					"placeholder": "Type to search...",
+					"dataList": true,
+					"variant": "floating"
+				}
+			},
+			{
+				"name": "Regular Variant with Datalist",
+				"props": {
+					"label": "Search Products",
+					"placeholder": "Type to search...",
+					"dataList": true
+				}
+			},
+			{
+				"name": "With Search Icon",
+				"props": {
+					"label": "Search Stations",
+					"placeholder": "Type to search...",
+					"dataList": true,
+					"variant": "floating",
+					"type": "search",
+					"icon": "magnifying_glass",
+					"showIcon": true
 				}
 			}
 		]

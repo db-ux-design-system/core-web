@@ -34,8 +34,8 @@
 
 	@extend %default-card;
 	@include component.get-data-spacing;
+	@include helpers.display(flex);
 
-	display: flex;
 	flex-direction: column;
 	background-color: var(--db-card-background-color-default);
 

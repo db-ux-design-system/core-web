@@ -1,6 +1,6 @@
 {
   "name": "@db-ux/v-core-components",
-  "version": "0.0.0",
+  "version": "4.0.1",
   "type": "module",
   "description": "Vue components for @db-ux/core-components",
   "repository": {
@@ -23,13 +23,17 @@
     }
   },
   "files": [
-    "dist/"
+    "dist/",
+    "agent",
+    "CHANGELOG.md"
   ],
   "scripts": {
     "build": "npm-run-all build:*",
     "build:01_vite": "vite build",
     "build:02_types": "vue-tsc --declaration --emitDeclarationOnly",
     "mv:dist": "cpr dist ../../build-outputs/vue/dist --overwrite",
+    "mv:agent": "cpr agent ../../build-outputs/vue/agent --overwrite",
+    "mv:changelog": "cpr CHANGELOG.md ../../build-outputs/vue/CHANGELOG.md --overwrite",
     "mv:package.json": "cpr package.json ../../build-outputs/vue/package.json --overwrite",
     "mv:readme": "cpr README.md ../../build-outputs/vue/README.md --overwrite",
     "postbuild": "npm-run-all --parallel mv:*",
@@ -37,19 +41,23 @@
     "test:components:ui": "playwright test --config playwright.config.ts --ui"
   },
   "devDependencies": {
-    "@playwright/experimental-ct-vue": "1.54.2",
+    "@playwright/experimental-ct-vue": "1.55.1",
     "@vitejs/plugin-vue": "6.0.1",
     "replace-in-file": "8.3.0",
-    "tsx": "4.20.5",
-    "typescript": "5.8.3",
-    "vite": "6.3.6",
-    "vue": "3.5.21",
-    "vue-tsc": "3.0.7"
+    "tsx": "4.20.6",
+    "typescript": "5.9.3",
+    "vite": "7.1.9",
+    "vue": "3.5.22",
+    "vue-tsc": "3.1.1"
   },
   "publishConfig": {
     "registry": "https://registry.npmjs.org/",
     "access": "public"
   },
   "sideEffects": false,
-  "source": "src/index.ts"
+  "source": "src/index.ts",
+  "dependencies": {
+    "@db-ux/core-components": "4.0.1",
+    "@db-ux/core-foundations": "4.0.1"
+  }
 }

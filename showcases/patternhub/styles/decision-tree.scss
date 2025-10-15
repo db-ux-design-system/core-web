@@ -1,7 +1,8 @@
 @use "@db-ux/core-foundations/build/styles/variables";
+@use "@db-ux/core-foundations/build/styles/helpers/display";
 
 .decision-tree {
-	display: flex;
+	@include display.display(flex);
 	flex-direction: column;
 	gap: variables.$db-spacing-fixed-3xl;
 	text-align: center;
@@ -21,7 +22,7 @@
 }
 
 .decision-tree-row {
-	display: grid;
+	@include display.display(grid);
 	justify-content: center;
 	gap: variables.$db-spacing-fixed-md;
 
