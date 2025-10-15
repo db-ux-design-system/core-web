@@ -9,16 +9,9 @@ on:
       showcase:
         required: true
         type: string
-    outputs:
-      aria-snapshots-changed:
-        description: "If aria snapshots changed in current PR"
-        value: ${{ jobs.playwright-showcases.outputs.aria-snapshots-changed }}
-      aria-snapshots-changed-to-main:
-        description: "If aria snapshots changed to main branch"
-        value: ${{ jobs.playwright-showcases.outputs.aria-snapshots-changed-to-main }}
-      visual-snapshots-changed:
-        description: "If visual snapshots changed"
-        value: ${{ jobs.playwright-showcases.outputs.visual-snapshots-changed }}
+      test-ally:
+        required: false
+        type: string
 
 permissions:
   actions: write
@@ -32,20 +25,15 @@ jobs:
       image: mcr.microsoft.com/playwright:v${{ inputs.version }}
       options: --user 1001
     strategy:
-      fail-fast: false
+      fail-fast: true
       matrix:
-        shardIndex: [1, 2, 3, 4]
-        shardTotal: [4]
-    outputs:
-      aria-snapshots-changed: ${{ steps.aria-snapshots.outputs.aria-snapshots-changed }}
-      aria-snapshots-changed-to-main: ${{ steps.aria-snapshots.outputs.aria-snapshots-changed-to-main }}
-      visual-snapshots-changed: ${{ steps.visual-snapshots.outputs.visual-snapshots-changed }}
+        shardIndex: [1, 2, 3, 4, 5]
+        shardTotal: [5]
     steps:
       - name: ⏬ Checkout repo
         uses: actions/checkout@v5
         with:
-          fetch-depth: 0 # fetch all history for all branches
-          fetch-tags: false
+          fetch-depth: 2
 
       - name: 🔄 Init Cache
         uses: ./.github/actions/npm-cache
@@ -89,11 +77,14 @@ jobs:
         shell: bash
         if: github.event.pull_request != null
         run: |
-          npm run test:aria-snapshots --workspace=${{ inputs.showcase }} -- --shard=${{ matrix.shardIndex }}/${{ matrix.shardTotal }} --update-snapshots
-          OUTPUT=$(npx --no tsx scripts/github/snapshot-changes/check-aria.ts)
-          echo "aria-snapshots-changed=$OUTPUT" >> $GITHUB_OUTPUT
-          OUTPUT=$(npx --no tsx scripts/github/snapshot-changes/check-main-aria.ts)
-          echo "aria-snapshots-changed-to-main=$OUTPUT" >> $GITHUB_OUTPUT
+          npm run test:aria-snapshots --workspace=${{ inputs.showcase }} -- --shard=${{ matrix.shardIndex }}/${{ matrix.shardTotal }}
+
+      - name: 👩‍🔬 Test visual-snapshots with Playwright 🎭
+        id: visual-snapshots
+        shell: bash
+        if: github.event.pull_request != null
+        run: |
+          npm run test:visual-snapshots --workspace=${{ inputs.showcase }} -- --shard=${{ matrix.shardIndex }}/${{ matrix.shardTotal }}
 
       - name: 👩‍🔬 Test axe-core with Playwright 🎭
         shell: bash
@@ -101,20 +92,11 @@ jobs:
         run: |
           npm run test:axe-core --workspace=${{ inputs.showcase }} -- --shard=${{ matrix.shardIndex }}/${{ matrix.shardTotal }}
 
-      - name: 👩‍🔬 Test visual-snapshots with Playwright 🎭
-        id: visual-snapshots
-        shell: bash
-        if: github.event.pull_request != null
-        run: |
-          npm run test:visual-snapshots --workspace=${{ inputs.showcase }} -- --shard=${{ matrix.shardIndex }}/${{ matrix.shardTotal }} --update-snapshots
-          OUTPUT=$(npx --no tsx scripts/github/snapshot-changes/check-visual.ts)
-          echo "visual-snapshots-changed=$OUTPUT" >> $GITHUB_OUTPUT
-
       - name: 👩‍🔬 Test a11y-checker with Playwright 🎭
         shell: bash
         if: |
           github.event.pull_request != null &&
-          steps.aria-snapshots.outputs.aria-snapshots-changed-to-main=='true'
+          inputs.test-ally == 'true'
         run: |
           npm run test:a11y-checker --workspace=${{ inputs.showcase }} -- --shard=${{ matrix.shardIndex }}/${{ matrix.shardTotal }}
 
@@ -125,7 +107,7 @@ jobs:
           npx playwright merge-reports --reporter github ./blob-report
 
       - name: 🆙 Upload test results
-        if: failure()
+        if: ${{ failure() }}
         uses: actions/upload-artifact@v4
         with:
           name: ${{ inputs.showcase }}-playwright-results-${{ matrix.shardIndex }}

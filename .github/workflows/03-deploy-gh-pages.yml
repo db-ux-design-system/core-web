@@ -1,6 +1,9 @@
 ---
 name: Deploy to gh-pages
 
+permissions:
+  contents: read
+
 on:
   workflow_call:
     inputs:
@@ -17,6 +20,8 @@ jobs:
   deploy:
     name: Deploy
     runs-on: ubuntu-24.04 # Use Ubuntu 24.04 explicitly
+    permissions:
+      contents: write
     steps:
       - name: ⏬ Checkout repo
         uses: actions/checkout@v5
@@ -55,7 +60,7 @@ jobs:
         id: extract
 
       - name: 📛 Get repo name
-        uses: actions/github-script@v7
+        uses: actions/github-script@v8
         id: repo-name
         with:
           result-encoding: string
@@ -96,9 +101,3 @@ jobs:
           fi
           echo "URL: $URL"
           echo "### GH-Pages URL :rocket: <br> <br> $URL" >> $GITHUB_STEP_SUMMARY
-
-      - name: 💀 Killing me softly
-        uses: ./.github/actions/cancel-workflow
-        if: failure()
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}

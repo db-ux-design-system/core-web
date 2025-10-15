@@ -36,6 +36,7 @@ import {
 	getNumber,
 	hasVoiceOver,
 	isArrayOfStrings,
+	isIOSSafari,
 	stringPropVisible,
 	uuid
 } from '../../utils';
@@ -244,6 +245,8 @@ export default function DBInput(props: DBInputProps) {
 				// @ts-expect-error input has a property autoComplete
 				autoComplete={props.autocomplete}
 				autoFocus={getBoolean(props.autofocus, 'autofocus')}
+				enterKeyHint={props.enterkeyhint}
+				inputMode={props.inputmode}
 				onInput={(event: ChangeEvent<HTMLInputElement>) =>
 					state.handleInput(event)
 				}
@@ -258,6 +261,20 @@ export default function DBInput(props: DBInputProps) {
 				}
 				list={props.dataList && state._dataListId}
 				aria-describedby={props.ariaDescribedBy ?? state._descByIds}
+				// iOS Safari VoiceOver input:is([type="date"], [type="datetime-local"], [type="time"], [type="week"], [type="month"], [type="color"]) hack
+				// TODO: We could remove this one again, after https://bugs.webkit.org/show_bug.cgi?id=294649 (mentioned in https://github.com/facebook/react/issues/33541) has been resolved.
+				role={
+					[
+						'datetime-local',
+						'date',
+						'time',
+						'week',
+						'month',
+						'color'
+					].includes(props.type ?? '') && isIOSSafari()
+						? 'textbox'
+						: undefined
+				}
 			/>
 			<Show when={props.dataList}>
 				<datalist id={state._dataListId}>
@@ -279,7 +296,7 @@ export default function DBInput(props: DBInputProps) {
 			{props.children}
 			<Show when={stringPropVisible(props.message, props.showMessage)}>
 				<DBInfotext
-					size="small"
+					size={props.messageSize || 'small'}
 					icon={props.messageIcon}
 					id={state._messageId}>
 					{props.message}
@@ -289,7 +306,7 @@ export default function DBInput(props: DBInputProps) {
 			<Show when={state.hasValidState()}>
 				<DBInfotext
 					id={state._validMessageId}
-					size="small"
+					size={props.validMessageSize || 'small'}
 					semantic="successful">
 					{props.validMessage || DEFAULT_VALID_MESSAGE}
 				</DBInfotext>
@@ -297,7 +314,7 @@ export default function DBInput(props: DBInputProps) {
 
 			<DBInfotext
 				id={state._invalidMessageId}
-				size="small"
+				size={props.invalidMessageSize || 'small'}
 				semantic="critical">
 				{state._invalidMessage}
 			</DBInfotext>

@@ -7,7 +7,9 @@
 
 .db-header {
 	background-color: colors.$db-adaptive-bg-basic-level-1-default;
-	display: flex;
+
+	@include helpers.display(flex);
+
 	flex-direction: column;
 	position: relative;
 	min-block-size: component.$min-mobile-header-height;
@@ -34,7 +36,7 @@
 	}
 
 	.db-link {
-		display: inline-block;
+		@include helpers.display(inline-block);
 	}
 
 	&[data-on-forcing-mobile="true"] {
@@ -59,7 +61,7 @@
 			.db-header-meta-navigation:empty
 		):has(.db-header-secondary-action:empty) {
 		.db-header-burger-menu-container {
-			display: none;
+			@include helpers.display(none);
 		}
 	}
 
@@ -73,7 +75,8 @@
 }
 
 .db-header-navigation-bar {
-	display: flex;
+	@include helpers.display(flex);
+
 	position: relative;
 	padding: variables.$db-spacing-fixed-xs variables.$db-spacing-fixed-md;
 	inline-size: 100%;
@@ -86,8 +89,8 @@
 
 .db-header-meta-navigation {
 	@extend %db-density-functional;
+	@include helpers.display(flex);
 
-	display: flex;
 	flex-direction: column;
 	gap: variables.$db-spacing-fixed-sm;
 	justify-content: flex-end;
@@ -107,17 +110,18 @@
 		}
 
 		&:empty {
-			display: none;
+			@include helpers.display(none);
 		}
 	}
 
 	&:empty {
-		display: none;
+		@include helpers.display(none);
 	}
 }
 
 .db-header-navigation-container {
-	display: inherit;
+	@include helpers.display(inherit);
+
 	flex: 1 1 auto;
 	inline-size: 100%;
 	align-items: center;
@@ -139,12 +143,12 @@
 }
 
 .db-header-brand-container:not(:has(> :nth-child(1))) {
-	display: none;
+	@include helpers.display(none);
 }
 
 .db-header-action-container:has(> .db-header-secondary-action:empty) {
 	@include screen-sizes.screen("md") {
-		display: none;
+		@include helpers.display(none);
 	}
 }
 
@@ -172,7 +176,9 @@
 .db-header-action-container {
 	align-items: center;
 	block-size: 100%;
-	display: inherit;
+
+	@include helpers.display(inherit);
+
 	gap: inherit;
 	flex: 0 1 auto;
 	flex-grow: 0;
@@ -195,7 +201,8 @@
 }
 
 .db-header-drawer-navigation {
-	display: flex;
+	@include helpers.display(flex);
+
 	flex-direction: column;
 	flex: 1 1 auto;
 	block-size: 100%;
@@ -213,7 +220,8 @@
 
 .db-header-navigation,
 .db-header-secondary-action {
-	display: flex;
+	@include helpers.display(flex);
+
 	gap: variables.$db-spacing-fixed-sm;
 	padding-inline: variables.$db-spacing-fixed-md;
 
@@ -234,7 +242,8 @@
 	padding-block-end: 0;
 
 	.db-drawer-content {
-		display: flex;
+		@include helpers.display(flex);
+
 		flex-direction: column;
 		block-size: 100%;
 		overflow: hidden;
@@ -245,21 +254,21 @@
 .db-header-meta-navigation,
 .db-header-navigation-container > .db-header-navigation,
 .db-header-action-container > .db-header-secondary-action {
-	display: none;
+	@include helpers.display(none);
 
 	@include screen-sizes.screen("md") {
-		display: inherit;
+		@include helpers.display(inherit);
 	}
 }
 
 /* Only for Mobile */
 .db-header-drawer-navigation > .db-header-meta-navigation:not(:empty) {
-	display: inherit;
+	@include helpers.display(inherit);
 }
 
 .db-header-drawer,
 .db-header-burger-menu-container {
 	@include screen-sizes.screen("md") {
-		display: none;
+		@include helpers.display(none);
 	}
 }
