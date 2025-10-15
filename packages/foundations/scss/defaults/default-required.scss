@@ -6,11 +6,9 @@
 @use "../fonts";
 @use "../screen-sizes";
 @use "../colors/default-color-icons";
-
 @forward "../colors/default-color-mappings";
 @forward "../normalize";
-
-@include screen-sizes.get-breakpoint-properties();
+@include screen-sizes.get-breakpoint-properties;
 
 /* stylelint-disable-next-line at-rule-prelude-no-invalid,layer-name-pattern */
 @layer #{helpers.$layer-variables} {
@@ -22,6 +20,14 @@
 
 		@media (prefers-color-scheme: dark) {
 			@include default-color-icons.get-color-icons-dark;
+		}
+
+		[data-mode="dark"] {
+			@include default-color-icons.get-color-icons-dark;
+		}
+
+		[data-mode="light"] {
+			@include default-color-icons.get-color-icons-light;
 		}
 	}
 }

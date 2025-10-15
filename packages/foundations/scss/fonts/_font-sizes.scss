@@ -4,7 +4,9 @@
 	/* stylelint-disable-next-line at-rule-prelude-no-invalid,layer-name-pattern */
 	@layer #{helpers.$layer-variables} {
 		/* Those variables are only for components to calculate heights and change icons */
+		// stylelint-disable-next-line no-invalid-position-declaration
 		--db-icon-font-weight: var(--db-base-body-icon-weight-#{$size});
+		// stylelint-disable-next-line no-invalid-position-declaration
 		--db-icon-font-size: var(--db-base-body-icon-font-size-#{$size});
 	}
 }
@@ -17,7 +19,9 @@
 	/* stylelint-disable-next-line at-rule-prelude-no-invalid,layer-name-pattern */
 	@layer #{helpers.$layer-variables} {
 		/* Those variables are only for components to calculate heights and change icons */
+		// stylelint-disable-next-line no-invalid-position-declaration
 		--db-icon-font-weight: var(--db-base-headline-icon-weight-#{$size});
+		// stylelint-disable-next-line no-invalid-position-declaration
 		--db-icon-font-size: var(--db-base-headline-icon-font-size-#{$size});
 	}
 }
@@ -56,4 +60,4 @@ $font-sizes: "3xl", "2xl", "xl", "lg", "md", "sm", "xs", "2xs", "3xs";
 	}
 }
 
-@include generate-font-sizes();
+@include generate-font-sizes;

@@ -1,0 +1,13 @@
+<DBCustomSelect
+  ariaListLabel="Lorem Ipsum"
+  options={[
+    { value: "Option 1", id: "ykzqfs8oa" },
+    { value: "Option 2", id: "kcndx1xog" },
+    { value: "Option 3", id: "kcndx2xog" },
+    { value: "Option 4", id: "kcndx3xog" },
+    { value: "Option 5", id: "kcndx4xog" },
+  ]}
+  label="Label"
+  multiple
+  id="id-10209"
+></DBCustomSelect>

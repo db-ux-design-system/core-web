@@ -9,6 +9,8 @@ updates:
       timezone: "Europe/Berlin"
     pull-request-branch-name:
       separator: "-"
+    cooldown:
+      default-days: 7
 
   # Daily: Check minor and patch updates
   - package-ecosystem: "npm"
@@ -18,6 +20,8 @@ updates:
       interval: "daily"
       time: "23:00"
       timezone: "Europe/Berlin"
+    cooldown:
+      default-days: 3
     ignore:
       # angular: we update the major version manually
       - dependency-name: "@angular*"
@@ -38,52 +42,114 @@ updates:
         update-types: ["version-update:semver-minor"]
       # There is an issue with sass:1.77.5 and additional colors in foundations we ignore updates for now
       - dependency-name: "sass"
-      # We currently need to ignore eslint@v9
-      - dependency-name: "eslint"
-        update-types: ["version-update:semver-major"]
     pull-request-branch-name:
       separator: "-"
     # https://github.com/dependabot/dependabot-core/issues/5226#issuecomment-1179434437
     versioning-strategy: increase
     groups:
+      # Automatically group all patch updates to reduce PR noise
       patch-dependencies:
         update-types:
           - "patch"
-      commitlint:
         patterns:
-          - "@commitlint*"
-      playwright:
-        patterns:
-          - "@playwright*"
-          - "playwright*"
+          - "*"
+      # Major framework dependencies - group by framework for better review
       angular:
         patterns:
           - "@angular*"
           - "@angular-devkit*"
           - "ng-packagr"
-        update-types:
-          - "minor"
       react:
         patterns:
           - "react"
           - "react-dom"
         update-types:
           - "minor"
+      # Testing frameworks
+      playwright:
+        patterns:
+          - "@playwright*"
+          - "playwright*"
+        update-types:
+          - "minor"
+          - "major"
+      # Linting and formatting tools
+      eslint:
+        patterns:
+          - "eslint*"
+          - "@eslint*"
+          - "@typescript-eslint*"
+        update-types:
+          - "minor"
+          - "major"
+      stylelint:
+        patterns:
+          - "stylelint*"
+          - "@double-great/stylelint-a11y"
+        update-types:
+          - "minor"
+          - "major"
+      prettier:
+        patterns:
+          - "prettier*"
+        update-types:
+          - "minor"
+          - "major"
+      # Build tools and bundlers
+      vite:
+        patterns:
+          - "vite*"
+          - "vitest*"
+        update-types:
+          - "minor"
+          - "major"
+      # Development tools
+      typescript:
+        patterns:
+          - "typescript"
+          - "tsx"
+          - "tslib"
+        update-types:
+          - "minor"
+          - "major"
+      # Commitlint
+      commitlint:
+        patterns:
+          - "@commitlint*"
+        update-types:
+          - "minor"
+          - "major"
+      # Other grouped dependencies
+      builder.io:
+        patterns:
+          - "@builder.io/mitosis*"
+        update-types:
+          - "minor"
+          - "major"
+      inquirer:
+        patterns:
+          - "@inquirer/*"
+          - "inquirer"
+        update-types:
+          - "minor"
+          - "major"
+      mdx-js:
+        patterns:
+          - "@mdx-js/*"
+        update-types:
+          - "minor"
+          - "major"
+      guidepup:
+        patterns:
+          - "@guidepup/*"
+        update-types:
+          - "minor"
+          - "major"
       next:
         patterns:
           - "@next*"
           - "eslint-config-next"
           - "next"
-      builder.io:
-        patterns:
-          - "@builder.io/mitosis*"
-      inquirer:
-        patterns:
-          - "@inquirer/*"
-          - "inquirer"
-      mdx-js:
-        patterns:
-          - "@mdx-js/*"
-      guidepup:
-        patterns:
-          - "@guidepup/*"
+        update-types:
+          - "minor"
+          - "major"

@@ -1,6 +1,7 @@
 @use "@db-ux/core-foundations/build/styles/variables";
 @use "@db-ux/core-foundations/build/styles/screen-sizes";
 @use "../../styles/internal/component";
+@use "@db-ux/core-foundations/build/styles/helpers/display";
 @use "../../styles/internal/form-components";
 @use "../../styles/internal/db-puls";
 
@@ -14,7 +15,8 @@
 	}
 
 	> menu {
-		display: flex;
+		@include display.display(flex);
+
 		flex-direction: column;
 		padding: 0;
 		margin: 0;
@@ -100,7 +102,7 @@
 	&[data-force-close="true"] {
 		> menu menu {
 			@include screen-sizes.screen("md") {
-				display: none;
+				@include display.display(none);
 			}
 		}
 	}

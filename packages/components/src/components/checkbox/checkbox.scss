@@ -24,78 +24,28 @@
 	}
 }
 
-@mixin get-validity-color-check($key: "valid") {
-	$variant: successful;
-
-	@if ($key != "valid") {
-		$variant: critical;
-	}
-
-	--db-check-element-border-color: var(
-		--db-#{$variant}-on-bg-basic-emphasis-70-default
-	);
-	--db-adaptive-on-bg-basic-emphasis-100-default: var(
-		--db-#{$variant}-on-bg-basic-emphasis-80-default
-	);
-	--db-adaptive-on-bg-basic-emphasis-100-hovered: var(
-		--db-#{$variant}-on-bg-basic-emphasis-80-hovered
-	);
-	--db-adaptive-on-bg-basic-emphasis-100-pressed: var(
-		--db-#{$variant}-on-bg-basic-emphasis-80-pressed
-	);
-
-	@include form-components.get-validity-message($key);
-
-	input {
-		&:not(:checked) {
-			--db-adaptive-bg-basic-transparent-full-default: var(
-				--db-#{$variant}-bg-basic-transparent-full-default
-			);
-			--db-adaptive-bg-basic-transparent-full-hovered: var(
-				--db-#{$variant}-bg-basic-transparent-full-hovered
-			);
-			--db-adaptive-bg-basic-transparent-full-pressed: var(
-				--db-#{$variant}-bg-basic-transparent-full-pressed
-			);
-		}
-
-		&:checked {
-			--db-icon-color: var(--db-#{$variant}-on-bg-inverted-default);
-			--db-adaptive-bg-basic-transparent-full-default: var(
-				--db-#{$variant}-bg-inverted-contrast-high-default
-			);
-			--db-adaptive-bg-basic-transparent-full-hovered: var(
-				--db-#{$variant}-bg-inverted-contrast-high-hovered
-			);
-			--db-adaptive-bg-basic-transparent-full-pressed: var(
-				--db-#{$variant}-bg-inverted-contrast-high-pressed
-			);
-		}
-	}
-}
-
 .db-checkbox {
 	@extend %helper-message;
-
-	@include form-components.set-default-check-element();
+	@include form-components.set-default-check-element;
 
 	&:not(:has(input:disabled)) {
-		@include form-components.get-state();
+		@include form-components.get-state;
 		@include form-components.get-state("active");
 	}
 
 	@include form-components.get-validity(check) {
 		&:has(.db-infotext[data-semantic="successful"]) {
-			@include get-validity-color-check("valid");
+			@include form-components.get-validity-color-checkbox("valid");
 		}
 	}
 
 	@include form-components.get-validity(check, "invalid") {
-		@include get-validity-color-check("invalid");
+		@include form-components.get-validity-color-checkbox("invalid");
 	}
 
 	input {
-		display: flex;
+		@include helpers.display(flex);
+
 		border-radius: variables.$db-border-radius-2xs;
 		align-items: center;
 		justify-content: center;
@@ -124,7 +74,6 @@
 
 		&:indeterminate {
 			@extend %center-icon;
-
 			@include icons.set-icon("minus");
 		}
 

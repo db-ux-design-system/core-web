@@ -1,6 +1,9 @@
 ---
 name: Get and save publish version
 
+permissions:
+  contents: read
+
 on:
   workflow_call:
     # Map the workflow outputs to job outputs
@@ -25,7 +28,7 @@ jobs:
       version: ${{ steps.getVersion.outputs.version }}
     steps:
       - name: ⏬ Checkout repo
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: 🔄 Init Cache
         uses: ./.github/actions/npm-cache
@@ -66,9 +69,3 @@ jobs:
         env:
           VALID_SEMVER_VERSION: ${{ steps.getVersion.outputs.version }}
         run: echo "$VALID_SEMVER_VERSION"
-
-      - name: 💀 Killing me softly
-        uses: ./.github/actions/cancel-workflow
-        if: failure()
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}

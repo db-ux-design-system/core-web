@@ -1,22 +1,25 @@
 @use "sass:map";
 @use "sass:string";
+@use "sass:list";
 @use "@db-ux/core-foundations/build/styles/icons";
 @use "@db-ux/core-foundations/build/styles/fonts";
 @use "@db-ux/core-foundations/build/styles/variables";
 @use "@db-ux/core-foundations/build/styles/colors";
 @use "@db-ux/core-foundations/build/styles/helpers";
 @use "component";
-
 @forward "../visually-hidden";
 
+// https://developer.mozilla.org/en-US/docs/Web/CSS/:read-only
+$valid-read-only-form-fields: input, textarea;
+
+// https://developer.mozilla.org/en-US/docs/Web/CSS/field-sizing
+$valid-field-sizing-form-fields: input, textarea;
 $dropdown-icon-transition: transform variables.$db-transition-straight-emotional;
 $dropdown-icon-transform: rotate(-180deg);
-
 $font-size-height: var(--db-icon-font-size);
 $icon-size-sm: var(--db-base-body-icon-font-size-sm);
 $label-size-height-xs: var(--db-base-body-icon-font-size-xs);
 $label-size-height-2xs: var(--db-base-body-icon-font-size-2xs);
-
 $floating-label-size-calc: calc(
 	#{variables.$db-spacing-fixed-3xs} + #{variables.$db-spacing-fixed-2xs} +
 		#{$label-size-height-2xs}
@@ -26,19 +29,15 @@ $floating-label-size-calc: calc(
 $floating-label-padding-block-start: calc(
 	var(--db-type-body-font-size-2xs) + #{variables.$db-spacing-fixed-3xs}
 );
-
 $icon-inline-block-start: calc(
 	(#{variables.$db-spacing-fixed-xs} + #{$label-size-height-xs}) *
 		var(--db-label-visible-above, 1) + #{variables.$db-sizing-md} / 2
 );
-
 $input-types:
 	"button", "checkbox", "color", "date", "datetime-local", "email", "file",
 	"hidden", "image", "month", "number", "password", "radio", "range", "reset",
 	"search", "submit", "tel", "text", "time", "url", "week";
-
 $check-border-size: min(#{variables.$db-border-width-2xs}, 2px);
-
 $db-min-inline-size: var(
 	--db-form-component-min-inline-size,
 	#{variables.$db-sizing-lg}
@@ -62,7 +61,7 @@ $db-min-inline-size: var(
 		margin-block-start: variables.$db-spacing-fixed-2xs;
 
 		&:is([data-semantic="successful"], [data-semantic="critical"]) {
-			display: none;
+			@include helpers.display(none);
 		}
 	}
 }
@@ -71,6 +70,19 @@ $db-min-inline-size: var(
 	#{$selector}::placeholder,
 	[id$="-placeholder"] {
 		@content;
+	}
+
+	// Workaround until the :blank pseudo-class is widely supported; then prefer targeting that pseudo-class.
+	#{$selector} {
+		&:is(
+			[type="date"],
+			[type="datetime-local"],
+			[type="month"],
+			[type="week"],
+			[type="time"]
+		):not(:user-valid)::-webkit-datetime-edit {
+			@content;
+		}
 	}
 }
 
@@ -113,7 +125,7 @@ $db-min-inline-size: var(
 		#{$selector} {
 			@extend %db-overwrite-font-size-sm;
 
-			@if ($selector == textarea) {
+			@if $selector == textarea {
 				padding-block-start: $floating-label-size-calc;
 				/* stylelint-disable-next-line at-rule-empty-line-before */
 			} @else {
@@ -125,7 +137,7 @@ $db-min-inline-size: var(
 		&:has(
 			#{$selector}:focus-within,
 			#{$selector}:is(input, textarea):not(:placeholder-shown),
-			> select option:checked:not([hidden]),
+			> select option:checked:not(.placeholder),
 			input[type="checkbox"]:checked,
 			input[type="radio"]:checked
 		) {
@@ -142,7 +154,7 @@ $db-min-inline-size: var(
 				font-family: var(--db-font-family-sans);
 				font-style: italic;
 
-				@if ($selector == select or $selector == summary) {
+				@if $selector == select or $selector == summary {
 					/* stylelint-disable-next-line db-ux/use-spacings */
 					padding-block-start: var(--db-base-body-icon-font-size-2xs);
 				}
@@ -159,19 +171,19 @@ $db-min-inline-size: var(
 @mixin get-validity-message($key: "valid") {
 	> db-infotext > .db-infotext,
 	> .db-infotext {
-		@if ($key == "valid") {
+		@if $key == "valid" {
 			&[data-semantic="successful"] {
-				display: flex;
+				@include helpers.display(flex);
 			}
 			/* stylelint-disable-next-line at-rule-empty-line-before */
 		} @else {
 			&[data-semantic="critical"] {
-				display: flex;
+				@include helpers.display(flex);
 			}
 		}
 
 		&:not([data-semantic]) {
-			display: none;
+			@include helpers.display(none);
 		}
 	}
 }
@@ -179,11 +191,15 @@ $db-min-inline-size: var(
 @mixin get-validity-color($selector, $key: "valid") {
 	$variant: "successful";
 
-	@if ($key != "valid") {
+	@if $key != "valid" {
 		$variant: "critical";
 	}
 
-	@if ($selector != textarea) {
+	@if $selector == textarea {
+		--db-textarea-read-only: var(--db-#{$variant}-bg-basic-level-1-default);
+	}
+
+	@if $selector != textarea {
 		@extend %db-#{$variant}-variables;
 		/* stylelint-disable-next-line at-rule-empty-line-before */
 	} @else {
@@ -221,6 +237,12 @@ $db-min-inline-size: var(
 		caret-color: var(--db-#{$variant}-on-bg-basic-emphasis-100-default);
 	}
 
+	@if list.index($valid-read-only-form-fields, $selector) {
+		#{$selector} {
+			border-color: var(--db-#{$variant}-on-bg-basic-emphasis-70-default);
+		}
+	}
+
 	@include get-validity-message($key);
 }
 
@@ -232,7 +254,7 @@ $input-valid-types:
 @function get-validations($selector, $key) {
 	$validations: ":required";
 
-	@if ($selector == input) {
+	@if $selector == input {
 		/* We use all client side form-validation for input here */
 		// https://developer.mozilla.org/en-US/docs/Learn/Forms/Form_validation#using_built-in_form_validation
 		$validations: ":required, [minlength], [maxlength], [pattern]";
@@ -241,7 +263,7 @@ $input-valid-types:
 			$validations: $validations + ", [type=#{$type}]";
 		}
 		/* stylelint-disable-next-line at-rule-empty-line-before */
-	} @else if($selector == textarea) {
+	} @else if $selector == textarea {
 		/* We use all client side form-validation for textarea here */
 		$validations: ":required, [minlength], [maxlength]";
 	}
@@ -254,11 +276,11 @@ $input-valid-types:
 @mixin get-validity($selector, $key: "valid") {
 	$user: "";
 
-	@if ($selector == check or $selector == switch) {
+	@if $selector == check or $selector == switch {
 		$user: "user-";
 	}
 
-	@if ($selector == check or $selector == radio or $selector == switch) {
+	@if $selector == check or $selector == radio or $selector == switch {
 		$selector: input;
 
 		&:has(
@@ -268,7 +290,7 @@ $input-valid-types:
 		}
 		/* stylelint-disable-next-line at-rule-empty-line-before */
 	} @else {
-		@if ($selector == summary) {
+		@if $selector == summary {
 			$selector: select;
 		}
 
@@ -307,13 +329,15 @@ $input-valid-types:
 	// base inline size for inputs without icons
 	min-inline-size: $db-min-inline-size;
 
-	/* stylelint-disable-next-line scss/selector-no-redundant-nesting-selector */
+	/* stylelint-disable-next-line block-no-redundant-nested-style-rules */
 	& {
 		--db-form-has-before: 0;
+
 		// we use absolute icons
 		position: relative;
-		display: flex;
 		flex-direction: column;
+
+		@include helpers.display(flex);
 	}
 
 	&[data-variant="floating"],
@@ -372,7 +396,7 @@ $input-valid-types:
 			background-color: colors.$db-adaptive-bg-basic-transparent-semi-hovered;
 		}
 
-		&:is(input, textarea) {
+		@if list.index($valid-field-sizing-form-fields, $selector) {
 			/* see https://developer.mozilla.org/en-US/docs/Web/CSS/field-sizing */
 			&[data-field-sizing="content"] {
 				field-sizing: content;
@@ -383,11 +407,13 @@ $input-valid-types:
 			}
 		}
 
-		&:is(input, textarea):not(:disabled):read-only {
-			background-color: var(
-				--db-textarea-read-only,
-				#{colors.$db-adaptive-bg-basic-level-1-default}
-			) !important;
+		@if list.index($valid-read-only-form-fields, $selector) {
+			&:not(:disabled):read-only {
+				background-color: var(
+					--db-#{$selector}-read-only,
+					#{colors.$db-adaptive-bg-basic-transparent-full-default}
+				) !important;
+			}
 		}
 	}
 
@@ -446,7 +472,7 @@ $input-valid-types:
 		inset-inline-end: variables.$db-spacing-fixed-sm;
 	}
 
-	@if ($selector == input or $selector == select or $selector == summary) {
+	@if $selector == input or $selector == select or $selector == summary {
 		#{$selector} {
 			block-size: variables.$db-sizing-md;
 			text-overflow: ellipsis;
@@ -457,7 +483,7 @@ $input-valid-types:
 @mixin get-validity-color-check-label-color($state, $key: "valid") {
 	$variant: successful;
 
-	@if ($key != "valid") {
+	@if $key != "valid" {
 		$variant: critical;
 	}
 
@@ -474,7 +500,7 @@ $input-valid-types:
 @mixin get-state($state: "hover") {
 	$variant: "hovered";
 
-	@if ($state != "hover") {
+	@if $state != "hover" {
 		$variant: "pressed";
 	}
 
@@ -498,6 +524,58 @@ $input-valid-types:
 	}
 }
 
+@mixin get-validity-color-checkbox($key: "valid") {
+	$variant: successful;
+
+	@if $key != "valid" {
+		$variant: critical;
+	}
+
+	--db-check-element-border-color: var(
+		--db-#{$variant}-on-bg-basic-emphasis-70-default
+	);
+	--db-adaptive-on-bg-basic-emphasis-100-default: var(
+		--db-#{$variant}-on-bg-basic-emphasis-80-default
+	);
+	--db-adaptive-on-bg-basic-emphasis-100-hovered: var(
+		--db-#{$variant}-on-bg-basic-emphasis-80-hovered
+	);
+	--db-adaptive-on-bg-basic-emphasis-100-pressed: var(
+		--db-#{$variant}-on-bg-basic-emphasis-80-pressed
+	);
+	--db-adaptive-on-bg-inverted-default: var(
+		--db-#{$variant}-on-bg-inverted-default
+	);
+
+	@include get-validity-message($key);
+
+	input {
+		&:not(:checked) {
+			--db-adaptive-bg-basic-transparent-full-default: var(
+				--db-#{$variant}-bg-basic-transparent-full-default
+			);
+			--db-adaptive-bg-basic-transparent-full-hovered: var(
+				--db-#{$variant}-bg-basic-transparent-full-hovered
+			);
+			--db-adaptive-bg-basic-transparent-full-pressed: var(
+				--db-#{$variant}-bg-basic-transparent-full-pressed
+			);
+		}
+
+		&:checked {
+			--db-adaptive-bg-basic-transparent-full-default: var(
+				--db-#{$variant}-bg-inverted-contrast-low-default
+			);
+			--db-adaptive-bg-basic-transparent-full-hovered: var(
+				--db-#{$variant}-bg-inverted-contrast-low-hovered
+			);
+			--db-adaptive-bg-basic-transparent-full-pressed: var(
+				--db-#{$variant}-bg-inverted-contrast-low-pressed
+			);
+		}
+	}
+}
+
 @mixin set-default-check-element() {
 	@extend %db-overwrite-font-size-md;
 
@@ -511,7 +589,8 @@ $input-valid-types:
 
 	&:is(label),
 	> label {
-		display: flex;
+		@include helpers.display(flex);
+
 		align-items: flex-start;
 		position: relative;
 		color: var(

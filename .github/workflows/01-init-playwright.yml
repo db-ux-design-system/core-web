@@ -1,5 +1,8 @@
 name: 🎭 Init Playwright
 
+permissions:
+  contents: read
+
 on:
   workflow_call:
     inputs:
@@ -15,11 +18,12 @@ jobs:
       fail-fast: false
       matrix:
         # TODO: enable again after guidepup controlling Voiceover on MacOS 14 and 15 gets more stable
+        # https://github.com/actions/runner-images/issues/11257 needs to get fixed for that
         # os: [macos-13, windows-2022]
         os: [windows-2022] # macOS is not perfectly supported yet, we disable it for now
     steps:
       - name: ⏬ Checkout repo
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: 🔄 Init Cache Default
         uses: ./.github/actions/npm-cache

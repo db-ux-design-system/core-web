@@ -1,4 +1,5 @@
 @use "@db-ux/core-foundations/build/styles/variables";
+@use "@db-ux/core-foundations/build/styles/helpers/display";
 
 .db-page-document {
 	block-size: 100%;
@@ -7,7 +8,8 @@
 
 @mixin header-footer-style {
 	> :is(.db-header, .db-footer, header, footer) {
-		display: flex;
+		@include display.display(flex);
+
 		flex: 0 1 auto;
 		flex-grow: 0;
 		flex-shrink: 0;
@@ -29,20 +31,23 @@
 	}
 
 	&[data-variant="fixed"] {
-		@include header-footer-style();
+		@include header-footer-style;
 
 		block-size: 100%;
 		min-block-size: 100%;
-		display: flex;
+
+		@include display.display(flex);
+
 		flex-direction: column;
 
 		/* workaround for angular */
 		> :is(db-header, dbheader, dbfooter, db-footer) {
-			@include header-footer-style();
+			@include header-footer-style;
 		}
 
 		> .db-main {
-			display: flex;
+			@include display.display(flex);
+
 			flex-direction: column;
 			overflow: auto;
 			flex: 1 1 auto;

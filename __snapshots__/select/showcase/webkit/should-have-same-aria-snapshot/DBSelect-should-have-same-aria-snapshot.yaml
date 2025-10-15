@@ -3,87 +3,134 @@
   - link "Density"
   - text: Label
   - combobox "Label":
+    - option [selected]
     - option "Option 1"
     - option "Option 2"
+    - option "Option 3"
+    - option "Option 4"
+    - option "Option 5"
   - text: Functional
   - status
   - text: Label
   - combobox "Label":
+    - option [selected]
     - option "Option 1"
     - option "Option 2"
+    - option "Option 3"
+    - option "Option 4"
+    - option "Option 5"
   - text: (Default) Regular
   - status
   - text: Label
   - combobox "Label":
+    - option [selected]
     - option "Option 1"
     - option "Option 2"
+    - option "Option 3"
+    - option "Option 4"
+    - option "Option 5"
   - text: Expressive
   - status
   - link "Variant"
   - text: Label
   - combobox "Label":
+    - option [selected]
     - option "Option 1"
     - option "Option 2"
-  - text: (Default) Label Above
+    - option "Option 3"
+    - option "Option 4"
+    - option "Option 5"
+  - text: (Default) Above
   - status
   - text: Label
   - combobox "Label":
-    - option "Floating Label" [selected]
+    - option
+    - option "Floating" [selected]
     - option "Option 2"
   - status
   - link "Show Label"
   - text: Label
   - combobox "Label":
+    - option [selected]
     - option "Option 1"
     - option "Option 2"
+    - option "Option 3"
+    - option "Option 4"
+    - option "Option 5"
   - text: (Default) True
   - status
   - text: Label
   - combobox "Label":
+    - option [selected]
     - option "Option 1"
     - option "Option 2"
+    - option "Option 3"
+    - option "Option 4"
+    - option "Option 5"
   - text: "False"
   - status
   - link "Show Message"
   - text: Label
   - combobox "Label":
+    - option [selected]
     - option "Option 1"
     - option "Option 2"
+    - option "Option 3"
+    - option "Option 4"
+    - option "Option 5"
   - text: (Default) False
   - status
   - text: Label
   - combobox "Label":
+    - option [selected]
     - option "Option 1"
     - option "Option 2"
+    - option "Option 3"
+    - option "Option 4"
+    - option "Option 5"
   - text: True Message
   - status
   - link "State"
   - text: Label
   - combobox "Label":
+    - option [selected]
     - option "Option 1"
     - option "Option 2"
+    - option "Option 3"
+    - option "Option 4"
+    - option "Option 5"
   - text: (Default) Empty
   - status
   - text: Label
   - combobox "Label":
+    - option
     - option "Filled" [selected]
     - option "Option 2"
   - status
   - link "Validation"
   - text: Label
   - combobox "Label":
+    - option [selected]
     - option "Option 1"
     - option "Option 2"
+    - option "Option 3"
+    - option "Option 4"
+    - option "Option 5"
   - text: (Default) No validation
   - status
   - text: Label
   - combobox "Label":
+    - option [selected]
     - option "Option 1"
     - option "Option 2"
+    - option "Option 3"
+    - option "Option 4"
+    - option "Option 5"
   - text: Invalid Invalid Message
   - status
   - text: Label
   - combobox "Label":
+    - option [selected]
     - option "Valid"
     - option "Option 2"
   - text: Valid Valid message
@@ -91,69 +138,129 @@
   - link "Disabled"
   - text: Label
   - combobox "Label":
+    - option [selected]
     - option "Option 1"
     - option "Option 2"
+    - option "Option 3"
+    - option "Option 4"
+    - option "Option 5"
   - text: (Default) False
   - status
   - text: Label
   - combobox "Label" [disabled]:
+    - option [selected]
     - option "Option 1"
     - option "Option 2"
+    - option "Option 3"
+    - option "Option 4"
+    - option "Option 5"
   - text: "True"
   - status
   - link "Content"
   - text: Label
   - combobox "Label":
+    - option [selected]
     - option "Option 1"
     - option "Option 2"
+    - option "Option 3"
+    - option "Option 4"
+    - option "Option 5"
   - text: (Default) Text
   - status
   - text: Label
   - combobox "Label":
+    - option [selected]
     - option "Option 1"
     - option "Option 2"
+    - option "Option 3"
+    - option "Option 4"
+    - option "Option 5"
   - text: Text - Leading Icon
   - status
   - link "Required"
   - text: Label
   - combobox "Label":
+    - option [selected]
     - option "Option 1"
     - option "Option 2"
+    - option "Option 3"
+    - option "Option 4"
+    - option "Option 5"
   - text: (Default) False
   - status
   - text: Label
   - combobox "Label":
+    - option [selected]
     - option "Option 1"
     - option "Option 2"
+    - option "Option 3"
+    - option "Option 4"
+    - option "Option 5"
   - text: "True"
   - status
   - link "Show Required Asterisk"
   - text: Label
   - combobox "Label":
+    - option [selected]
     - option "Option 1"
     - option "Option 2"
+    - option "Option 3"
+    - option "Option 4"
+    - option "Option 5"
   - text: (Default) True
   - status
   - text: Label
   - combobox "Label":
+    - option [selected]
     - option "Option 1"
     - option "Option 2"
+    - option "Option 3"
+    - option "Option 4"
+    - option "Option 5"
   - text: "False"
+  - status
+  - link "Option Groups"
+  - text: Label
+  - combobox "Label":
+    - option [selected]
+    - group:
+      - option "Option 1"
+      - option "Option 2"
+    - group:
+      - option "Option 3"
+      - option "Option 4"
+  - text: Using optgroups
+  - status
+  - text: Label
+  - combobox "Label":
+    - option [selected]
+    - option "Single Option"
+    - group:
+      - option "Group Option 1"
+      - option "Group Option 2"
+    - option "Another Single Option"
+  - text: Mixed options and groups
   - status
   - link "Examples Floating Label"
   - text: Label
   - combobox "Label":
+    - option [selected]
     - option "Option 1"
     - option "Option 2"
+    - option "Option 3"
+    - option "Option 4"
+    - option "Option 5"
   - text: (Default) Empty
   - status
   - text: Label
   - combobox "Label":
+    - option
     - option "Filled" [selected]
     - option "Option 2"
   - status
   - text: Label
   - combobox "Label" [disabled]:
+    - option
     - option "Disabled" [selected]
     - option "Option 2"
   - status

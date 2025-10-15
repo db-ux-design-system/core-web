@@ -10,10 +10,10 @@ const config = {
 	markdownExtensions: ['md', 'mdx'],
 	// NPM organization prefix to look for
 	orgPrefix: '@db-ux/',
-	// Root directory to search from
-	rootDir: process.cwd(),
-	// Workspace packages directory (adjust if different)
-	packagesDir: 'packages',
+	// Root directory to search from – as this script is run from the scripts directory, we set it to one level up
+	rootDir: path.join(process.cwd(), '.'),
+	// Workspace packages directories (can be multiple)
+	packagesDirs: ['packages', 'output'],
 	// Debug mode - set to true to see all references found
 	debug: process.argv.includes('--debug') || process.env.DEBUG === 'true',
 	// Folder patterns to ignore
@@ -21,7 +21,8 @@ const config = {
 		'node_modules/**',
 		'**/node_modules/**',
 		'.git/**',
-		'docs/migration/**'
+		'docs/migration/**',
+		'showcases/patternhub/public/docs/migration/**'
 	]
 };
 
@@ -174,25 +175,30 @@ const resolvePackageReference = (reference) => {
 	const possiblePaths = [];
 
 	for (const variation of fileVariations) {
+		for (const packagesDir of config.packagesDirs) {
+			possiblePaths.push(
+				// Direct workspace package
+				path.join(
+					config.rootDir,
+					packagesDir,
+					packageDirName,
+					variation
+				),
+				// Workspace node_modules
+				path.join(
+					config.rootDir,
+					packagesDir,
+					packageDirName,
+					'node_modules',
+					packageName,
+					variation
+				)
+			);
+		}
+
+		// Node_modules (for published packages) - only once
 		possiblePaths.push(
-			// Direct workspace package
-			path.join(
-				config.rootDir,
-				config.packagesDir,
-				packageDirName,
-				variation
-			),
-			// Node_modules (for published packages)
-			path.join(config.rootDir, 'node_modules', packageName, variation),
-			// Workspace node_modules
-			path.join(
-				config.rootDir,
-				config.packagesDir,
-				packageDirName,
-				'node_modules',
-				packageName,
-				variation
-			)
+			path.join(config.rootDir, 'node_modules', packageName, variation)
 		);
 	}
 
@@ -203,7 +209,7 @@ const resolvePackageReference = (reference) => {
 			console.log(`    🔍 Resolved to: ${resolvedPath}`);
 		} else {
 			console.log(
-				`    ❌ Tried paths: ${possiblePaths.slice(0, 3).join(', ')}...`
+				`    ❌ Tried paths: ${possiblePaths.slice(0, 6).join(', ')}...`
 			);
 		}
 	}

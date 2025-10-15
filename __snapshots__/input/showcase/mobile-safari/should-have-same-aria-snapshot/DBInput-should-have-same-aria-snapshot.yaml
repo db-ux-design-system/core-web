@@ -15,7 +15,7 @@
   - textbox "Label"
   - status
   - text: Label
-  - textbox "Label": Floating Label
+  - textbox "Label": Floating
   - status
   - link "Show Label"
   - text: Label
@@ -48,10 +48,10 @@
   - status
   - link "Readonly"
   - text: Label
-  - textbox "Label": (Default) False
+  - textbox "Label"
   - status
   - text: Label
-  - textbox "Label": "True"
+  - textbox "Label"
   - status
   - link "Validation"
   - text: Label
@@ -196,4 +196,14 @@
   - status
   - text: Label
   - button "Label"
+  - status
+  - link "Datalist / Typeahead Examples"
+  - text: Search Cities
+  - combobox "Search Cities"
+  - status
+  - text: Search Products
+  - combobox "Search Products"
+  - status
+  - text: Search Stations
+  - combobox "Search Stations"
   - status
