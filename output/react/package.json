@@ -1,6 +1,6 @@
 {
   "name": "@db-ux/react-core-components",
-  "version": "3.1.20",
+  "version": "4.0.1",
   "description": "React components for @db-ux/core-components",
   "repository": {
     "type": "git",
@@ -42,7 +42,7 @@
   },
   "sideEffects": false,
   "dependencies": {
-    "@db-ux/core-components": "3.1.20",
-    "@db-ux/core-foundations": "3.1.20"
+    "@db-ux/core-components": "4.0.1",
+    "@db-ux/core-foundations": "4.0.1"
   }
 }

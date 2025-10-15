@@ -2,7 +2,7 @@ import ignoreFolders from './.config/ignores.js';
 
 /** @type {import('xo').FlatXoConfig} */
 const xoConfig = [
-	{ ignores: [...ignoreFolders] },
+	{ ignores: [...ignoreFolders, '**/*.vue'] },
 	{
 		prettier: true,
 		rules: {

@@ -18,9 +18,9 @@ async function previewUrlPrDescription({ github, context }) {
 		repo,
 		pull_number: pullNumber
 	});
-	const urlSectionStart = '\n<!-- DBUX-TEST-URL-START -->';
+	const urlSectionStart = '\n<!-- DBUX-TEST-URL-START -->\n';
 	const urlSectionEnd = '\n<!-- DBUX-TEST-URL-END -->';
-	const testUrl = `🔭🐙🐈 Test this branch here: https://${owner}.github.io/${repo}/review/${headRef}`;
+	const testUrl = `\n🔭🐙🐈 Test this branch here: <https://${owner}.github.io/${repo}/review/${headRef}>\n`;
 	let body = pr.data.body || '';
 	// Remove any existing test URL section
 	const startIdx = body.indexOf(urlSectionStart);
