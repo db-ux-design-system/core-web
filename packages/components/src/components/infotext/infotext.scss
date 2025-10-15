@@ -9,8 +9,8 @@
 	--db-icon-margin-end: #{variables.$db-spacing-fixed-2xs};
 
 	@extend %db-overwrite-font-size-sm;
-
 	@include display.display(flex);
+	
 	white-space: pre-wrap;
 
 	@include icons.has-no-icon {
