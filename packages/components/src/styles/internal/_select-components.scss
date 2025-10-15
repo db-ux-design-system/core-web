@@ -23,6 +23,15 @@ $select-icon-padding: calc(
 	position: absolute;
 	inset-block-start: 0;
 	inset-inline-start: 0;
+	opacity: 0;
+
+	@media screen and (prefers-reduced-motion: no-preference) {
+		transition:
+			opacity #{variables.$db-transition-straight-emotional},
+			outline #{variables.$db-transition-duration-extra-fast},
+			border-color #{variables.$db-transition-straight-emotional},
+			background-color #{variables.$db-transition-straight-emotional};
+	}
 }
 
 %select-placeholder {

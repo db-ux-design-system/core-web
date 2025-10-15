@@ -44,16 +44,13 @@ jobs:
         env:
           ASSET_INIT_VECTOR: ${{ secrets.ASSET_INIT_VECTOR }}
           ASSET_PASSWORD: ${{ secrets.ASSET_PASSWORD }}
-        run: npm run build --workspace=${{ inputs.showcase }}
+        run: |
+          node node_modules/@db-ux/db-theme-fonts/build/scripts/index.js
+          node node_modules/@db-ux/db-theme-icons/build/scripts/index.js
+          npm run build --workspace=${{ inputs.showcase }}
 
       - name: ⏫ Upload ${{ inputs.showcase }}
         uses: actions/upload-artifact@v4
         with:
           name: db-ux-${{ inputs.showcase }}
           path: build-showcases/${{ inputs.showcase }}
-
-      - name: 💀 Killing me softly
-        uses: ./.github/actions/cancel-workflow
-        if: failure()
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}

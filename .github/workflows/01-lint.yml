@@ -22,9 +22,3 @@ jobs:
           npm run postinstall --workspace=nuxt-showcase
           npm run build --workspace=@db-ux/core-stylelint
           npm run lint
-
-      - name: 💀 Killing me softly
-        uses: ./.github/actions/cancel-workflow
-        if: failure()
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
