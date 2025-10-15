@@ -162,7 +162,7 @@ $default-icon-font-size: var(--db-icon-font-size, #{$default-icon-size-rem});
 	vertical-align: var(--db-icon-vertical-align, middle);
 	block-size: $default-icon-font-size;
 	aspect-ratio: 1;
-	flex-shrink: 0
+	flex-shrink: 0;
 
 	@include icon-content($default-icon-content); // TODO: ONLY FOR data-icon
 
