@@ -71,6 +71,19 @@ $db-min-inline-size: var(
 	[id$="-placeholder"] {
 		@content;
 	}
+
+	// Workaround until the :blank pseudo-class is widely supported; then prefer targeting that pseudo-class.
+	#{$selector} {
+		&:is(
+			[type="date"],
+			[type="datetime-local"],
+			[type="month"],
+			[type="week"],
+			[type="time"]
+		):not(:user-valid)::-webkit-datetime-edit {
+			@content;
+		}
+	}
 }
 
 @mixin set-floating-label-overwrites($selector) {
