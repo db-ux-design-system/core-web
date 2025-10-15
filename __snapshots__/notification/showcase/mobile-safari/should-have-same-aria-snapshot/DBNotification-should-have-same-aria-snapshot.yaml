@@ -107,11 +107,11 @@
     - link "Textlink"
   - article:
     - text: Headline
-    - paragraph: Text & Headline & Textlink Inline & Cloaseable
+    - paragraph: Text & Headline & Textlink Inline & Closeable
     - link "Textlink"
   - article:
     - text: Headline
-    - paragraph: Text & Icon & Headline & Textlink Inline & Cloaseable
+    - paragraph: Text & Icon & Headline & Textlink Inline & Closeable
     - link "Textlink"
   - link "Examples - VariantStandalone":
   - article:
@@ -132,11 +132,11 @@
     - link "Textlink"
   - article:
     - text: Headline
-    - paragraph: Text & Headline & Textlink Inline & Cloaseable
+    - paragraph: Text & Headline & Textlink Inline & Closeable
     - link "Textlink"
   - article:
     - text: Headline
-    - paragraph: Text & Icon & Headline & Textlink Inline & Cloaseable
+    - paragraph: Text & Icon & Headline & Textlink Inline & Closeable
     - link "Textlink"
   - link "Examples - VariantOverlay":
   - article:
@@ -153,24 +153,27 @@
     - paragraph: Text & Textlink Inline
     - link "Textlink"
   - article:
-    - text: Headline
-    - paragraph: Text & Headline & Textlink Inline & Cloaseable
+    - paragraph: Text & Textlink Block
     - link "Textlink"
   - article:
     - text: Headline
-    - paragraph: Text & Icon & Headline & Textlink Inline & Cloaseable
+    - paragraph: Text & Headline & Textlink Inline & Closeable
+    - link "Textlink"
+  - article:
+    - text: Headline
+    - paragraph: Text & Icon & Headline & Textlink Inline & Closeable
     - link "Textlink"
   - article:
     - paragraph: Text & Timed
     - text: 10 min ago
   - article:
-    - paragraph: Text & Timed & Cloaseable
+    - paragraph: Text & Timed & Closeable
     - text: 10 min ago
   - article:
     - text: Headline
-    - paragraph: Text & Headline & Timed & Cloaseable
+    - paragraph: Text & Headline & Timed & Closeable
     - text: 10 min ago
   - article:
     - text: Headline
-    - paragraph: Text & Icon & Headline & Timed & Cloaseable
+    - paragraph: Text & Icon & Headline & Timed & Closeable
     - text: 10 min ago
