@@ -65,17 +65,11 @@ runs:
         NEW_PR_BRANCH: ${{ inputs.branch-name }}
         BASE_BRANCH: ${{ github.head_ref }}
       run: |
-        PR_BODY="This PR was created automatically by a GitHub Action."
+        PR_BODY="This PR was created automatically by a GitHub Action.
+        
+        Target PR (this PR will be merged into): <https://github.com/${{ github.repository }}/pull/${{ github.event.pull_request.number }}>"
         # Create the PR and capture its URL
-        PR_URL=$(gh pr create --base "$BASE_BRANCH" --head "$NEW_PR_BRANCH" --title "Automated PR: $COMMIT_MESSAGE" --body "$PR_BODY")
-
-        # Find the PR URL that will merge this PR (i.e., the PR with this branch as its head)
-        TARGET_PR_URL=$(gh pr list --head "$NEW_PR_BRANCH" --state open --json url --jq '.[0].url')
-
-        # Update the PR body to include the target PR URL
-        gh pr edit "$PR_URL" --body "$PR_BODY
-
-        Target PR (this PR will be merged into): $TARGET_PR_URL"
+        gh pr create --base "$BASE_BRANCH" --head "$NEW_PR_BRANCH" --title "Automated PR: $COMMIT_MESSAGE" --body "$PR_BODY"
 
     # https://docs.github.com/en/apps/creating-github-apps/authenticating-with-a-github-app/making-authenticated-api-requests-with-a-github-app-in-a-github-actions-workflow
     - name: 🧬 Generate a token
