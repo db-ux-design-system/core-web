@@ -68,6 +68,7 @@ runs:
         PR_BODY="This PR was created automatically by a GitHub Action.
         
         Target PR (this PR will be merged into): <https://github.com/${{ github.repository }}/pull/${{ github.event.pull_request.number }}>"
+        
         # Create the PR and capture its URL
         gh pr create --base "$BASE_BRANCH" --head "$NEW_PR_BRANCH" --title "Automated PR: $COMMIT_MESSAGE" --body "$PR_BODY"
 
