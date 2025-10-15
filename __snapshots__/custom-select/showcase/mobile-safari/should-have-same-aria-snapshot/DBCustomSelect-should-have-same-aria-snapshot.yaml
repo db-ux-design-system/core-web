@@ -141,8 +141,8 @@
       - radiogroup "id-10212-Floating":
         - list:
           - listitem:
-            - radio "Floating Label"
-            - text: Floating Label
+            - radio "Option 1"
+            - text: Option 1
           - listitem:
             - radio "Option 2"
             - text: Option 2
