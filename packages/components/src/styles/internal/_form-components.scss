@@ -88,6 +88,18 @@ $db-min-inline-size: var(
 
 @mixin set-floating-label-overwrites($selector) {
 	&[data-variant="floating"] {
+		@include get-validity($selector) {
+			label {
+				color: var(--db-successful-on-bg-basic-emphasis-80-default);
+			}
+		}
+
+		@include get-validity($selector, "invalid") {
+			label {
+				color: var(--db-critical-on-bg-basic-emphasis-80-default);
+			}
+		}
+
 		> label {
 			@extend %db-overwrite-font-size-md;
 
