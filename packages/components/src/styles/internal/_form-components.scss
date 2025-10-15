@@ -72,7 +72,7 @@ $db-min-inline-size: var(
 		@content;
 	}
 
-	// Workaround, until – fingers crossed – the pseudo selector :blank would be the better solution.
+	// Workaround until the :blank pseudo-class is widely supported; then prefer targeting that pseudo-class.
 	#{$selector} {
 		&:is(
 			[type="date"],
