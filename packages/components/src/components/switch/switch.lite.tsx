@@ -182,11 +182,9 @@ export default function DBSwitch(props: DBSwitchProps) {
 						state.handleFocus(event)
 					}
 				/>
-				<span>
-					<Show when={props.label} else={props.children}>
-						{props.label}
-					</Show>
-				</span>
+				<Show when={props.label} else={props.children}>
+					{props.label}
+				</Show>
 			</label>
 
 			<Show when={stringPropVisible(props.message, props.showMessage)}>

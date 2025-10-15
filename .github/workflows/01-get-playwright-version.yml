@@ -10,6 +10,9 @@ on:
       version:
         description: "Current playwright version"
         value: ${{ jobs.playwright-version.outputs.version }}
+      test-ally:
+        description: "If aria-snapshots are changed"
+        value: ${{ jobs.playwright-version.outputs.test-ally }}
 
 jobs:
   playwright-version:
@@ -17,9 +20,13 @@ jobs:
     runs-on: ubuntu-24.04 # Use Ubuntu 24.04 explicitly
     outputs:
       version: ${{ steps.version.outputs.version }}
+      test-ally: ${{ steps.ally.outputs.test-ally }}
     steps:
       - name: ⏬ Checkout repo
         uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+          fetch-tags: false
 
       - name: 🔄 Init Cache
         uses: ./.github/actions/npm-cache
@@ -29,3 +36,11 @@ jobs:
         run: |
           OUTPUT=$(npx --no tsx scripts/github/get-playwright-version.ts)
           echo "version=$OUTPUT" >> $GITHUB_OUTPUT
+
+      - name: 👩 Should Test a11y
+        id: ally
+        shell: bash
+        run: |
+          ARIA_MAIN=$(npx --no tsx scripts/github/snapshot-changes/check-main-aria.ts)
+          echo "test-ally=$ARIA_MAIN"
+          echo "test-ally=$ARIA_MAIN" >> $GITHUB_OUTPUT
