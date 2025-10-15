@@ -6,4 +6,4 @@
 "@db-ux/wc-core-components": patch
 ---
 
-Set border of textarea to corresponding color when in/valid state is set.
+Set border of select, textarea, custom select and input to corresponding color when in/valid state is set.
