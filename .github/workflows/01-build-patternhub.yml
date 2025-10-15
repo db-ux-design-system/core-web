@@ -1,6 +1,9 @@
 ---
 name: Build Patternhub
 
+permissions:
+  contents: read
+
 on:
   workflow_call:
     inputs:
@@ -90,6 +93,8 @@ jobs:
           ASSET_PASSWORD: ${{ secrets.ASSET_PASSWORD }}
           NEXT_PUBLIC_BASE_PATH: ${{ steps.base-path.outputs.result }}
         run: |
+          node node_modules/@db-ux/db-theme-fonts/build/scripts/index.js
+          node node_modules/@db-ux/db-theme-icons/build/scripts/index.js
           npx --no tsx scripts/md-resolve-svg.ts
           npm run build --workspace=patternhub
           echo "path=${NEXT_PUBLIC_BASE_PATH}" >> $GITHUB_OUTPUT
@@ -99,9 +104,3 @@ jobs:
         with:
           name: db-ux-patternhub
           path: build-showcases/patternhub
-
-      - name: 💀 Killing me softly
-        uses: ./.github/actions/cancel-workflow
-        if: failure()
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
