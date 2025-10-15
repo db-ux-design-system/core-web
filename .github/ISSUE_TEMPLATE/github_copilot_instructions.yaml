@@ -8,7 +8,11 @@ body:
       value: |
         Thanks for taking the time to share your feedback! This form is to help us improve the `.github/copilot-instructions.md` documentation provided in the design system by using the [`@db-ux/agent-cli`](https://www.npmjs.com/package/@db-ux/agent-cli) node package.
 
-        Please keep in mind not to share any internal information or data this way. This includes internal URLs. Only use sample material.
+        ⚠️ **Please keep in mind to use anonymous sample material:**
+        - **Do not share any personal data (e.g., names, email addresses, customer data)**
+        - **Do not attach any confidential company information**
+        - **Do not upload full-screen product screenshots**
+        - **Do not share internal URLs.**
 
   - type: input
     id: model-used

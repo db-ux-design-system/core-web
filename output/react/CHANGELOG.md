@@ -1,5 +1,26 @@
 # @db-ux/react-core-components
 
+## 4.0.0
+
+### Major Changes
+
+- feat: Switch stable rework - [see commit cb2deb0](https://github.com/db-ux-design-system/core-web/commit/cb2deb0f1c54900d1967483aea05d81279c02f59):
+  - **BREAKING CHANGE**: remove `emphasis` property
+  - introduce validation (invalid and valid)
+  - configurable label position
+
+- **BREAKING CHANGE**: refactor(Custom Select): renamed `ariaListLabel` property to `listLabel` - [see commit 966d5ad](https://github.com/db-ux-design-system/core-web/commit/966d5ad01f00d0ca1707cc316a63e2d431fff1e9)
+
+## 3.1.20
+
+### Patch Changes
+
+- fix(input): iOS Safari VoiceOver bug for types `date`, `datetime-local`, `week`, `month`, `time` and `color` - [see commit 2ca96c8](https://github.com/db-ux-design-system/core-web/commit/2ca96c8852b7413f9a3281d69e9c4fc6f79c4f13)
+
+## 3.1.19
+
+_version bump_
+
 ## 3.1.18
 
 ### Patch Changes
