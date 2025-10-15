@@ -73,9 +73,13 @@ $db-min-inline-size: var(
 	}
 
 	// Workaround, until – fingers crossed – the pseudo selector :blank would be the better solution.
-	#{$selector}:is([type="date"], [type="datetime-local"], [type="month"], [type="week"], [type="time"]):not(
-			:user-valid
-		)::-webkit-datetime-edit {
+	#{$selector}:is(
+			[type="date"],
+			[type="datetime-local"],
+			[type="month"],
+			[type="week"],
+			[type="time"]
+		):not(:user-valid)::-webkit-datetime-edit {
 		@content;
 	}
 }
