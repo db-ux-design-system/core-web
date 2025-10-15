@@ -119,6 +119,7 @@
 	&:has(> .db-button) {
 		margin: 0;
 		padding: 0;
+		block-size: variables.$db-sizing-md;
 
 		&::before {
 			content: none;
