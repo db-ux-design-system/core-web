@@ -337,7 +337,7 @@
 				]
 			},
 			{
-				"name": "Text & Headline & Textlink Inline & Closeable",
+				"name": "Text & Headline & Textlink Inline & Closable",
 				"style": { "width": "300px" },
 				"props": {
 					"headline": "Headline",
@@ -356,7 +356,7 @@
 				]
 			},
 			{
-				"name": "Text & Icon & Headline & Textlink Inline & Closeable",
+				"name": "Text & Icon & Headline & Textlink Inline & Closable",
 				"style": { "width": "300px" },
 				"props": {
 					"icon": "information_circle",
@@ -468,7 +468,7 @@
 				]
 			},
 			{
-				"name": "Text & Headline & Textlink Inline & Closeable",
+				"name": "Text & Headline & Textlink Inline & Closable",
 				"style": { "width": "300px" },
 				"props": {
 					"headline": "Headline",
@@ -488,7 +488,7 @@
 				]
 			},
 			{
-				"name": "Text & Icon & Headline & Textlink Inline & Closeable",
+				"name": "Text & Icon & Headline & Textlink Inline & Closable",
 				"style": { "width": "300px" },
 				"props": {
 					"icon": "information_circle",
@@ -591,7 +591,7 @@
 				]
 			},
 			{
-				"name": "Text & Headline & Textlink Inline & Closeable",
+				"name": "Text & Headline & Textlink Inline & Closable",
 				"style": { "width": "300px" },
 				"props": {
 					"headline": "Headline",
@@ -600,7 +600,7 @@
 				}
 			},
 			{
-				"name": "Text & Icon & Headline & Textlink Inline & Closeable",
+				"name": "Text & Icon & Headline & Textlink Inline & Closable",
 				"style": { "width": "300px" },
 				"props": {
 					"icon": "information_circle",
@@ -619,7 +619,7 @@
 				}
 			},
 			{
-				"name": "Text & Timed & Closeable",
+				"name": "Text & Timed & Closable",
 				"style": { "width": "300px" },
 				"props": {
 					"timestamp": "10 min ago",
@@ -627,7 +627,7 @@
 				}
 			},
 			{
-				"name": "Text & Headline & Timed & Closeable",
+				"name": "Text & Headline & Timed & Closable",
 				"style": { "width": "300px" },
 				"props": {
 					"headline": "Headline",
@@ -636,7 +636,7 @@
 				}
 			},
 			{
-				"name": "Text & Icon & Headline & Timed & Closeable",
+				"name": "Text & Icon & Headline & Timed & Closable",
 				"style": { "width": "300px" },
 				"props": {
 					"icon": "information_circle",

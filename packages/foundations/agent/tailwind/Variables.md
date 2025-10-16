@@ -1,75 +1,136 @@
 ```html
 <div class="flex flex-col gap-md">
 	<div class="grid grid-cols-2 md:grid-cols-3 gap-xs">
-		<div class="w-siz-md h-siz-lg p-fix-md m-res-sm border-sm radius-md">
-			Example
+		<div
+			class="w-container-md h-siz-lg p-fix-md m-res-sm border-sm radius-md"
+		>
+			<h1 class="text-head-lg">Headline</h1>
+			<h2 class="text-head-light-md">Subline</h2>
+			<p class="text-body-md">Normal Text</p>
+			<p class="text-body-sm">Smaller Text</p>
 		</div>
 	</div>
 </div>
 ```
 
-## Available Variables
+## Custom utility classes
 
-```css
---spacing-fix-3xs: var(--db-spacing-fixed-3xs);
---spacing-fix-2xs: var(--db-spacing-fixed-2xs);
---spacing-fix-xs: var(--db-spacing-fixed-xs);
---spacing-fix-sm: var(--db-spacing-fixed-sm);
---spacing-fix-md: var(--db-spacing-fixed-md);
---spacing-fix-lg: var(--db-spacing-fixed-lg);
---spacing-fix-xl: var(--db-spacing-fixed-xl);
---spacing-fix-2xl: var(--db-spacing-fixed-2xl);
---spacing-fix-3xl: var(--db-spacing-fixed-3xl);
---spacing-res-3xs: var(--db-spacing-responsive-3xs);
---spacing-res-2xs: var(--db-spacing-responsive-2xs);
---spacing-res-xs: var(--db-spacing-responsive-xs);
---spacing-res-sm: var(--db-spacing-responsive-sm);
---spacing-res-md: var(--db-spacing-responsive-md);
---spacing-res-lg: var(--db-spacing-responsive-lg);
---spacing-res-xl: var(--db-spacing-responsive-xl);
---spacing-res-2xl: var(--db-spacing-responsive-2xl);
---spacing-res-3xl: var(--db-spacing-responsive-3xl);
---spacing-siz-3xs: var(--db-sizing-3xs);
---spacing-siz-2xs: var(--db-sizing-2xs);
---spacing-siz-xs: var(--db-sizing-xs);
---spacing-siz-sm: var(--db-sizing-sm);
---spacing-siz-md: var(--db-sizing-md);
---spacing-siz-lg: var(--db-sizing-lg);
---spacing-siz-xl: var(--db-sizing-xl);
---spacing-siz-2xl: var(--db-sizing-2xl);
---spacing-siz-3xl: var(--db-sizing-3xl);
---gap-3xs: var(--db-spacing-fixed-3xs);
---gap-2xs: var(--db-spacing-fixed-2xs);
---gap-xs: var(--db-spacing-fixed-xs);
---gap-sm: var(--db-spacing-fixed-sm);
---gap-md: var(--db-spacing-fixed-md);
---gap-lg: var(--db-spacing-fixed-lg);
---gap-xl: var(--db-spacing-fixed-xl);
---gap-2xl: var(--db-spacing-fixed-2xl);
---gap-3xl: var(--db-spacing-fixed-3xl);
---border: var(--db-border-width-3xs);
---border-3xs: var(--db-border-width-3xs);
---border-2xs: var(--db-border-width-2xs);
---border-xs: var(--db-border-width-xs);
---border-sm: var(--db-border-width-sm);
---border-md: var(--db-border-width-md);
---border-lg: var(--db-border-width-lg);
---border-xl: var(--db-border-width-xl);
---border-2xl: var(--db-border-width-2xl);
---border-3xl: var(--db-border-width-3xl);
---radius: var(--db-border-radius-xs);
---radius-3xs: var(--db-border-radius-3xs);
---radius-2xs: var(--db-border-radius-2xs);
---radius-xs: var(--db-border-radius-xs);
---radius-sm: var(--db-border-radius-sm);
---radius-md: var(--db-border-radius-md);
---radius-lg: var(--db-border-radius-lg);
---radius-xl: var(--db-border-radius-xl);
---radius-2xl: var(--db-border-radius-2xl);
---radius-3xl: var(--db-border-radius-3xl);
---radius-full: var(--db-border-radius-full);
---shadow: var(--db-elevation-md);
---shadow-sm: var(--db-elevation-sm);
---shadow-md: var(--db-elevation-md);
---shadow-lg: var(--db-elevation-lg);
-```
+### Padding
+
+- `p-fix-3xs`
+- `p-fix-2xs`
+- `p-fix-xs`
+- `p-fix-sm`
+- `p-fix-md`
+- `p-fix-lg`
+- `p-fix-xl`
+- `p-fix-2xl`
+- `p-fix-3xl`
+- `p-res-3xs`
+- `p-res-2xs`
+- `p-res-xs`
+- `p-res-sm`
+- `p-res-md`
+- `p-res-lg`
+- `p-res-xl`
+- `p-res-2xl`
+- `p-res-3xl`
+
+### Margin
+
+- `m-fix-3xs`
+- `m-fix-2xs`
+- `m-fix-xs`
+- `m-fix-sm`
+- `m-fix-md`
+- `m-fix-lg`
+- `m-fix-xl`
+- `m-fix-2xl`
+- `m-fix-3xl`
+- `m-res-3xs`
+- `m-res-2xs`
+- `m-res-xs`
+- `m-res-sm`
+- `m-res-md`
+- `m-res-lg`
+- `m-res-xl`
+- `m-res-2xl`
+- `m-res-3xl`
+
+### Width
+
+- `w-container-3xs`
+- `w-container-2xs`
+- `w-container-xs`
+- `w-container-sm`
+- `w-container-md`
+- `w-container-lg`
+- `w-container-xl`
+- `w-container-2xl`
+- `w-container-3xl`
+- `w-siz-3xs`
+- `w-siz-2xs`
+- `w-siz-xs`
+- `w-siz-sm`
+- `w-siz-md`
+- `w-siz-lg`
+- `w-siz-xl`
+- `w-siz-2xl`
+- `w-siz-3xl`
+
+### Height
+
+- `h-container-3xs`
+- `h-container-2xs`
+- `h-container-xs`
+- `h-container-sm`
+- `h-container-md`
+- `h-container-lg`
+- `h-container-xl`
+- `h-container-2xl`
+- `h-container-3xl`
+- `h-siz-3xs`
+- `h-siz-2xs`
+- `h-siz-xs`
+- `h-siz-sm`
+- `h-siz-md`
+- `h-siz-lg`
+- `h-siz-xl`
+- `h-siz-2xl`
+- `h-siz-3xl`
+
+### Border
+
+- `border-3xs`
+- `border-2xs`
+- `border-xs`
+- `border-sm`
+- `border-md`
+- `border-lg`
+- `border-xl`
+- `border-2xl`
+- `border-3xl`
+
+### Border Radius
+
+- `radius-3xs`
+- `radius-2xs`
+- `radius-xs`
+- `radius-sm`
+- `radius-md`
+- `radius-lg`
+- `radius-xl`
+- `radius-2xl`
+- `radius-3xl`
+
+### Gap
+
+- `gap-3xs`
+- `gap-2xs`
+- `gap-xs`
+- `gap-sm`
+- `gap-md`
+- `gap-lg`
+- `gap-xl`
+- `gap-2xl`
+- `gap-3xl`
