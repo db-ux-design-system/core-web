@@ -16,12 +16,12 @@
   - link "Variant"
   - text: Label
   - textbox "Label":
-    - /placeholder: (Default) Label Above
+    - /placeholder: (Default) Above
   - status
   - text: Label
   - textbox "Label":
-    - /placeholder: Floating Label
-    - text: Floating Label
+    - /placeholder: Floating
+    - text: Floating
   - status
   - link "Show Label"
   - text: Label
