@@ -132,7 +132,7 @@
 	// has link inline or overlay
 	&:has(a) {
 		&:not([data-link-variant="block"]),
-		&[data-variant="overlay"]:not([data-link-variant="block"]) {
+		{
 			// 1. only content (min. requirement)
 			grid-template-areas: "content link";
 			grid-template-columns: 1fr min-content;
