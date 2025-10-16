@@ -1,0 +1,28 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8" data-next-head=""/><meta name="viewport" content="width=device-width" data-next-head=""/><title data-next-head="">DB UX</title><link data-next-font="size-adjust" rel="preconnect" href="/" crossorigin="anonymous"/><link rel="preload" href="/core-web/review/chore-spelling/_next/static/css/ec3211dff9fbacf7.css" as="style"/><link rel="stylesheet" href="/core-web/review/chore-spelling/_next/static/css/ec3211dff9fbacf7.css" data-n-g=""/><noscript data-n-css=""></noscript><script defer="" nomodule="" src="/core-web/review/chore-spelling/_next/static/chunks/polyfills-42372ed130431b0a.js"></script><script src="/core-web/review/chore-spelling/_next/static/chunks/webpack-e9007399e64c1156.js" defer=""></script><script src="/core-web/review/chore-spelling/_next/static/chunks/framework-18f3d10fd924e320.js" defer=""></script><script src="/core-web/review/chore-spelling/_next/static/chunks/main-9f072ddbe76bc0d0.js" defer=""></script><script src="/core-web/review/chore-spelling/_next/static/chunks/pages/_app-ffda70400e61ec5c.js" defer=""></script><script src="/core-web/review/chore-spelling/_next/static/chunks/pages/components/data-input/input/docs/Vue-c3af87ff912aafb6.js" defer=""></script><script src="/core-web/review/chore-spelling/_next/static/pMaaiQPBtOlqUoOd5yvPt/_buildManifest.js" defer=""></script><script src="/core-web/review/chore-spelling/_next/static/pMaaiQPBtOlqUoOd5yvPt/_ssgManifest.js" defer=""></script></head><body><div id="__next"><h2 id="vue">Vue<a class="header-link" href="/core-web/review/chore-spelling/components/data-input/input/docs/Vue?current=vue"><span aria-hidden="true" class="db-icon" data-icon="paper_clip"></span>vue<!-- --> anchor link</a></h2>
+<p>Load SCSS globally in a <code>index.scss</code> file and import it in your <code>main.ts</code>/<code>main.js</code> file in your app:</p>
+<pre><code class="language-scss">@forward &quot;@db-ux/core-components/build/styles/rollup&quot;;
+</code></pre>
+<p>Use component:</p>
+<pre><code class="language-vue">&lt;script&gt;
+import { DBInput } from &quot;@db-ux/v-core-components&quot;;
+&lt;/script&gt;
+
+&lt;template&gt;
+	&lt;DBInput
+		label=&quot;Label&quot;
+		placeholder=&quot;Placeholder&quot;
+		@change=&quot;onChange($event)&quot;
+	&gt;&lt;/DBInput&gt;
+&lt;/template&gt;
+</code></pre>
+<p>To get DBInput work with <code>v-model</code> you have to use v-model argument syntax:</p>
+<pre><code class="language-typescript">&lt;DBInput
+	label=&quot;Textlabel&quot;
+	placeholder=&quot;Start typing&quot;
+	v-model:value=&quot;value&quot;
+&gt;&lt;/DBInput&gt;
+</code></pre>
+<p>or using on-change listener:</p>
+<pre><code class="language-typescript">&lt;DBInput label=&quot;Textlabel&quot; placeholder=&quot;Start&quot; :value=&quot;modelAndChange&quot; @change=&quot;($event) =&gt; { modelAndChange = $event.target.value;
+}&quot;/&gt; {{ modelAndChange }}
+</code></pre></div><script id="__NEXT_DATA__" type="application/json">{"props":{"pageProps":{}},"page":"/components/data-input/input/docs/Vue","query":{},"buildId":"pMaaiQPBtOlqUoOd5yvPt","assetPrefix":"/core-web/review/chore-spelling","nextExport":true,"autoExport":true,"isFallback":false,"scriptLoader":[]}</script></body></html>
