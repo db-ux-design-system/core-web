@@ -153,6 +153,9 @@
     - paragraph: Text & Textlink Inline
     - link "Textlink"
   - article:
+    - paragraph: Text & Textlink Block
+    - link "Textlink"
+  - article:
     - text: Headline
     - paragraph: Text & Headline & Textlink Inline & Closable
     - link "Textlink"
