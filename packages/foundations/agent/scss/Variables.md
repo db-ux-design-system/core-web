@@ -2,7 +2,7 @@
 @use "@db-ux/core-foundations/build/styles/variables";
 
 .my-component {
-	inline-size: variables.$db-sizing-md; // Use sizing for fixed widths
+	inline-size: variables.$db-container-sm; // Use container for larger fixed widths
 	block-size: variables.$db-sizing-lg; // Use sizing for fixed heights
 	padding: variables.$db-spacing-fixed-sm; // Use fixed spacing for paddings
 	margin: variables.$db-spacing-responsive-md; // Use responsive spacing for margins

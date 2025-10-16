@@ -398,6 +398,11 @@ export type FormCheckProps = {
 
 export const LabelVariantList = ['above', 'floating'] as const;
 export type LabelVariantType = (typeof LabelVariantList)[number];
+
+export const LabelVariantHorizontalList = ['leading', 'trailing'] as const;
+export type LabelVariantHorizontalType =
+	(typeof LabelVariantHorizontalList)[number];
+
 export const AutoCompleteList = [
 	'off',
 	'on',

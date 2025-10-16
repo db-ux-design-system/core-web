@@ -1,5 +1,25 @@
 # @db-ux/core-foundations
 
+## 4.0.1
+
+### Patch Changes
+
+- fix: prevent cropped icons in webkit - [see commit 76c3459](https://github.com/db-ux-design-system/core-web/commit/76c3459d8a043f0320ec8d6bc3b520d3f69f055b)
+
+## 4.0.0
+
+_version bump_
+
+## 3.1.20
+
+_version bump_
+
+## 3.1.19
+
+### Patch Changes
+
+- fix: added icon fallback font - [see commit 9643085](https://github.com/db-ux-design-system/core-web/commit/964308522935db01b220c681b47960b8191c74a6)
+
 ## 3.1.18
 
 ### Patch Changes

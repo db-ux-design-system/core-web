@@ -48,8 +48,11 @@ showcases/patternhub/public/iframe-resizer/*
 
 /__snapshots__/**/*-win32.png
 /packages/foundations/scss/_normalize.scss
+/packages/foundations/assets/fallback-icons
 /packages/foundations/assets/icons/tmp/
 /packages/foundations/assets/icons/fonts/**/index.html
+/packages/foundations/assets/icons/fonts/**/symbol.html
+/packages/foundations/assets/icons/fonts/**/unicode.html
 /packages/foundations/assets/icons/fonts/**/index.css
 /packages/foundations/assets/icons/fonts/**/font-face.css
 /packages/foundations/assets/icons/fonts/**/info.json

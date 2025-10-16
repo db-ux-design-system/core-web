@@ -1051,7 +1051,7 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 											'multiple'
 										)}
 										label={
-											props.ariaListLabel ??
+											props.listLabel ??
 											props.label ??
 											DEFAULT_LABEL
 										}>

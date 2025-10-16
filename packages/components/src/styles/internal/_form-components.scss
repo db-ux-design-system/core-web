@@ -71,10 +71,35 @@ $db-min-inline-size: var(
 	[id$="-placeholder"] {
 		@content;
 	}
+
+	// Workaround until the :blank pseudo-class is widely supported; then prefer targeting that pseudo-class.
+	#{$selector} {
+		&:is(
+			[type="date"],
+			[type="datetime-local"],
+			[type="month"],
+			[type="week"],
+			[type="time"]
+		):not(:user-valid)::-webkit-datetime-edit {
+			@content;
+		}
+	}
 }
 
 @mixin set-floating-label-overwrites($selector) {
 	&[data-variant="floating"] {
+		@include get-validity($selector) {
+			label {
+				color: var(--db-successful-on-bg-basic-emphasis-80-default);
+			}
+		}
+
+		@include get-validity($selector, "invalid") {
+			label {
+				color: var(--db-critical-on-bg-basic-emphasis-80-default);
+			}
+		}
+
 		> label {
 			@extend %db-overwrite-font-size-md;
 
@@ -182,6 +207,10 @@ $db-min-inline-size: var(
 		$variant: "critical";
 	}
 
+	@if $selector == textarea {
+		--db-textarea-read-only: var(--db-#{$variant}-bg-basic-level-1-default);
+	}
+
 	@if $selector != textarea {
 		@extend %db-#{$variant}-variables;
 		/* stylelint-disable-next-line at-rule-empty-line-before */
@@ -218,6 +247,12 @@ $db-min-inline-size: var(
 	[id$="-placeholder"] {
 		color: var(--db-#{$variant}-on-bg-basic-emphasis-100-default);
 		caret-color: var(--db-#{$variant}-on-bg-basic-emphasis-100-default);
+	}
+
+	@if list.index($valid-read-only-form-fields, $selector) {
+		#{$selector} {
+			border-color: var(--db-#{$variant}-on-bg-basic-emphasis-70-default);
+		}
 	}
 
 	@include get-validity-message($key);
@@ -497,6 +532,58 @@ $input-valid-types:
 				--db-adaptive-bg-basic-transparent-full-#{$variant}
 			);
 			@content;
+		}
+	}
+}
+
+@mixin get-validity-color-checkbox($key: "valid") {
+	$variant: successful;
+
+	@if $key != "valid" {
+		$variant: critical;
+	}
+
+	--db-check-element-border-color: var(
+		--db-#{$variant}-on-bg-basic-emphasis-70-default
+	);
+	--db-adaptive-on-bg-basic-emphasis-100-default: var(
+		--db-#{$variant}-on-bg-basic-emphasis-80-default
+	);
+	--db-adaptive-on-bg-basic-emphasis-100-hovered: var(
+		--db-#{$variant}-on-bg-basic-emphasis-80-hovered
+	);
+	--db-adaptive-on-bg-basic-emphasis-100-pressed: var(
+		--db-#{$variant}-on-bg-basic-emphasis-80-pressed
+	);
+	--db-adaptive-on-bg-inverted-default: var(
+		--db-#{$variant}-on-bg-inverted-default
+	);
+
+	@include get-validity-message($key);
+
+	input {
+		&:not(:checked) {
+			--db-adaptive-bg-basic-transparent-full-default: var(
+				--db-#{$variant}-bg-basic-transparent-full-default
+			);
+			--db-adaptive-bg-basic-transparent-full-hovered: var(
+				--db-#{$variant}-bg-basic-transparent-full-hovered
+			);
+			--db-adaptive-bg-basic-transparent-full-pressed: var(
+				--db-#{$variant}-bg-basic-transparent-full-pressed
+			);
+		}
+
+		&:checked {
+			--db-adaptive-bg-basic-transparent-full-default: var(
+				--db-#{$variant}-bg-inverted-contrast-low-default
+			);
+			--db-adaptive-bg-basic-transparent-full-hovered: var(
+				--db-#{$variant}-bg-inverted-contrast-low-hovered
+			);
+			--db-adaptive-bg-basic-transparent-full-pressed: var(
+				--db-#{$variant}-bg-inverted-contrast-low-pressed
+			);
 		}
 	}
 }

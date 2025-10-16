@@ -1,6 +1,6 @@
 {
   "name": "@db-ux/core-foundations",
-  "version": "3.1.18",
+  "version": "4.0.1",
   "type": "module",
   "description": "Provides basic tokens and assets based on DB UX Design System (Version 3).",
   "repository": {
@@ -39,6 +39,7 @@
     "copy-prepare:normalize": "cpr ../../node_modules/@csstools/normalize.css/normalize.css scss/_normalize.scss --overwrite",
     "copy:scss": "cpr scss build/styles --overwrite",
     "dev": "vite --open",
+    "generate:fallback-icon-font": "tsx scripts/local/generate-fallback-icon-font.ts",
     "generate:fonts": "tsx assets/fonts/generate-eu-fonts.ts",
     "generate:icons": "tsx scripts/local/generate-icon-font.ts",
     "postcopy-prepare:icon-overview": "prettier dev/icons.html --write",
@@ -61,7 +62,7 @@
     "prettier": "3.6.2",
     "sass": "1.85.0",
     "tsx": "4.20.6",
-    "typescript": "5.8.3",
+    "typescript": "5.9.3",
     "vite": "7.1.9"
   },
   "publishConfig": {
