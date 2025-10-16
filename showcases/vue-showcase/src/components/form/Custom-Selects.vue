@@ -23,7 +23,7 @@ const log = (values: string[]) => {
 			:options="options"
 			:values="plain"
 			@option-selected="log"
-			label="Plainccc"
+			label="Plain"
 		/>
 		<DBCustomSelect
 			:options="options"
