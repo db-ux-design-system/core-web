@@ -197,7 +197,7 @@
 		}
 	}
 
-	&:not([data-variant="overlay"]) {
+	&[data-link-variant="block"] {
 		@extend %grid-layout-variant-not-overlay;
 	}
 
