@@ -1,0 +1,154 @@
+/* The prefix for variables are predefined by Tailwind, stylelint would throw an error */
+/* stylelint-disable-next-line scss/at-rule-no-unknown */
+@theme {
+	/* stylelint-disable-next-line custom-property-pattern */
+	--color-*: initial; /* 	Color utilities like */
+
+	/* Basic-Level */
+	--color-cyan-bg-basic-level-1-default: var(
+		--db-cyan-bg-basic-level-1-default
+	);
+	--color-cyan-bg-basic-level-1-hovered: var(
+		--db-cyan-bg-basic-level-1-hovered
+	);
+	--color-cyan-bg-basic-level-1-pressed: var(
+		--db-cyan-bg-basic-level-1-pressed
+	);
+	--color-cyan-bg-basic-level-2-default: var(
+		--db-cyan-bg-basic-level-2-default
+	);
+	--color-cyan-bg-basic-level-2-hovered: var(
+		--db-cyan-bg-basic-level-2-hovered
+	);
+	--color-cyan-bg-basic-level-2-pressed: var(
+		--db-cyan-bg-basic-level-2-pressed
+	);
+	--color-cyan-bg-basic-level-3-default: var(
+		--db-cyan-bg-basic-level-3-default
+	);
+	--color-cyan-bg-basic-level-3-hovered: var(
+		--db-cyan-bg-basic-level-3-hovered
+	);
+	--color-cyan-bg-basic-level-3-pressed: var(
+		--db-cyan-bg-basic-level-3-pressed
+	);
+
+	/* Transparent */
+	--color-cyan-bg-basic-transparent-full-default: var(
+		--db-cyan-bg-basic-transparent-full-default
+	);
+	--color-cyan-bg-basic-transparent-semi-default: var(
+		--db-cyan-bg-basic-transparent-semi-default
+	);
+	--color-cyan-bg-basic-transparent-full-hovered: var(
+		--db-cyan-bg-basic-transparent-full-hovered
+	);
+	--color-cyan-bg-basic-transparent-full-pressed: var(
+		--db-cyan-bg-basic-transparent-full-pressed
+	);
+	--color-cyan-bg-basic-transparent-semi-hovered: var(
+		--db-cyan-bg-basic-transparent-semi-hovered
+	);
+	--color-cyan-bg-basic-transparent-semi-pressed: var(
+		--db-cyan-bg-basic-transparent-semi-pressed
+	);
+
+	/* Inverted */
+	--color-cyan-bg-inverted-contrast-max-default: var(
+		--db-cyan-bg-inverted-contrast-max-default
+	);
+	--color-cyan-bg-inverted-contrast-max-hovered: var(
+		--db-cyan-bg-inverted-contrast-max-hovered
+	);
+	--color-cyan-bg-inverted-contrast-max-pressed: var(
+		--db-cyan-bg-inverted-contrast-max-pressed
+	);
+	--color-cyan-bg-inverted-contrast-high-default: var(
+		--db-cyan-bg-inverted-contrast-high-default
+	);
+	--color-cyan-bg-inverted-contrast-high-hovered: var(
+		--db-cyan-bg-inverted-contrast-high-hovered
+	);
+	--color-cyan-bg-inverted-contrast-high-pressed: var(
+		--db-cyan-bg-inverted-contrast-high-pressed
+	);
+	--color-cyan-bg-inverted-contrast-low-default: var(
+		--db-cyan-bg-inverted-contrast-low-default
+	);
+	--color-cyan-bg-inverted-contrast-low-hovered: var(
+		--db-cyan-bg-inverted-contrast-low-hovered
+	);
+	--color-cyan-bg-inverted-contrast-low-pressed: var(
+		--db-cyan-bg-inverted-contrast-low-pressed
+	);
+
+	/* On Colors */
+
+	--color-cyan-on-bg-basic-emphasis-100-default: var(
+		--db-cyan-on-bg-basic-emphasis-100-default
+	);
+	--color-cyan-on-bg-basic-emphasis-100-hovered: var(
+		--db-cyan-on-bg-basic-emphasis-100-hovered
+	);
+	--color-cyan-on-bg-basic-emphasis-100-pressed: var(
+		--db-cyan-on-bg-basic-emphasis-100-pressed
+	);
+	--color-cyan-on-bg-basic-emphasis-90-default: var(
+		--db-cyan-on-bg-basic-emphasis-90-default
+	);
+	--color-cyan-on-bg-basic-emphasis-90-hovered: var(
+		--db-cyan-on-bg-basic-emphasis-90-hovered
+	);
+	--color-cyan-on-bg-basic-emphasis-90-pressed: var(
+		--db-cyan-on-bg-basic-emphasis-90-pressed
+	);
+	--color-cyan-on-bg-basic-emphasis-80-default: var(
+		--db-cyan-on-bg-basic-emphasis-80-default
+	);
+	--color-cyan-on-bg-basic-emphasis-80-hovered: var(
+		--db-cyan-on-bg-basic-emphasis-80-hovered
+	);
+	--color-cyan-on-bg-basic-emphasis-80-pressed: var(
+		--db-cyan-on-bg-basic-emphasis-80-pressed
+	);
+	--color-cyan-on-bg-basic-emphasis-70-default: var(
+		--db-cyan-on-bg-basic-emphasis-70-default
+	);
+	--color-cyan-on-bg-basic-emphasis-70-hovered: var(
+		--db-cyan-on-bg-basic-emphasis-70-hovered
+	);
+	--color-cyan-on-bg-basic-emphasis-70-pressed: var(
+		--db-cyan-on-bg-basic-emphasis-70-pressed
+	);
+	--color-cyan-on-bg-basic-emphasis-60-default: var(
+		--db-cyan-on-bg-basic-emphasis-60-default
+	);
+	--color-cyan-on-bg-basic-emphasis-60-hovered: var(
+		--db-cyan-on-bg-basic-emphasis-60-hovered
+	);
+	--color-cyan-on-bg-basic-emphasis-60-pressed: var(
+		--db-cyan-on-bg-basic-emphasis-60-pressed
+	);
+	--color-cyan-on-bg-basic-emphasis-50-default: var(
+		--db-cyan-on-bg-basic-emphasis-50-default
+	);
+	--color-cyan-on-bg-basic-emphasis-50-hovered: var(
+		--db-cyan-on-bg-basic-emphasis-50-hovered
+	);
+	--color-cyan-on-bg-basic-emphasis-50-pressed: var(
+		--db-cyan-on-bg-basic-emphasis-50-pressed
+	);
+
+	/* On Inverted */
+	--color-cyan-on-bg-inverted-default: var(--db-cyan-on-bg-inverted-default);
+	--color-cyan-on-bg-inverted-hovered: var(--db-cyan-on-bg-inverted-hovered);
+	--color-cyan-on-bg-inverted-pressed: var(--db-cyan-on-bg-inverted-pressed);
+
+	/* On Origin */
+	--color-cyan-on-origin-default: var(--db-cyan-on-origin-default);
+	--color-cyan-on-origin-hovered: var(--db-cyan-on-origin-hovered);
+	--color-cyan-on-origin-pressed: var(--db-cyan-on-origin-pressed);
+	--color-cyan-origin-default: var(--db-cyan-origin-default);
+	--color-cyan-origin-hovered: var(--db-cyan-origin-hovered);
+	--color-cyan-origin-pressed: var(--db-cyan-origin-pressed);
+}
