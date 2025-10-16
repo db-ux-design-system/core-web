@@ -1,6 +1,6 @@
 {
   "name": "@db-ux/react-core-components",
-  "version": "3.1.17",
+  "version": "4.0.1",
   "description": "React components for @db-ux/core-components",
   "repository": {
     "type": "git",
@@ -12,11 +12,14 @@
   "types": "./dist/index.d.ts",
   "files": [
     "dist/",
+    "agent",
     "CHANGELOG.md"
   ],
   "scripts": {
     "build": "npm-run-all tsc",
     "mv:dist": "cpr dist ../../build-outputs/react/dist --overwrite",
+    "mv:agent": "cpr agent ../../build-outputs/react/agent --overwrite",
+    "mv:changelog": "cpr CHANGELOG.md ../../build-outputs/react/CHANGELOG.md --overwrite",
     "mv:package.json": "cpr package.json ../../build-outputs/react/package.json --overwrite",
     "mv:readme": "cpr README.md ../../build-outputs/react/README.md --overwrite",
     "open:report": "npx playwright show-report",
@@ -28,7 +31,7 @@
     "tsc": "tsc --project . --sourceMap false"
   },
   "devDependencies": {
-    "@playwright/experimental-ct-react": "1.55.1",
+    "@playwright/experimental-ct-react": "1.56.0",
     "@types/react": "18.3.13",
     "react": "18.3.1",
     "react-dom": "18.3.1"
@@ -39,7 +42,7 @@
   },
   "sideEffects": false,
   "dependencies": {
-    "@db-ux/core-components": "3.1.17",
-    "@db-ux/core-foundations": "3.1.17"
+    "@db-ux/core-components": "4.0.1",
+    "@db-ux/core-foundations": "4.0.1"
   }
 }

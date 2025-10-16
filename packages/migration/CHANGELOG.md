@@ -1,9 +1,29 @@
 # @db-ux/core-migration
 
-## 3.1.17
+## 4.0.1
 
 _version bump_
 
+
+## 4.0.0
+
+_version bump_
+
+## 3.1.20
+
+_version bump_
+
+## 3.1.19
+
+_version bump_
+
+## 3.1.18
+
+_version bump_
+
+## 3.1.17
+
+_version bump_
 
 ## 3.1.16
 

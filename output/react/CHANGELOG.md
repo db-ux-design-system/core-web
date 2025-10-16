@@ -1,5 +1,43 @@
 # @db-ux/react-core-components
 
+## 4.0.1
+
+_version bump_
+
+
+## 4.0.0
+
+### Major Changes
+
+- feat: Switch stable rework - [see commit cb2deb0](https://github.com/db-ux-design-system/core-web/commit/cb2deb0f1c54900d1967483aea05d81279c02f59):
+  - **BREAKING CHANGE**: remove `emphasis` property
+  - introduce validation (invalid and valid)
+  - configurable label position
+
+- **BREAKING CHANGE**: refactor(Custom Select): renamed `ariaListLabel` property to `listLabel` - [see commit 966d5ad](https://github.com/db-ux-design-system/core-web/commit/966d5ad01f00d0ca1707cc316a63e2d431fff1e9)
+
+## 3.1.20
+
+### Patch Changes
+
+- fix(input): iOS Safari VoiceOver bug for types `date`, `datetime-local`, `week`, `month`, `time` and `color` - [see commit 2ca96c8](https://github.com/db-ux-design-system/core-web/commit/2ca96c8852b7413f9a3281d69e9c4fc6f79c4f13)
+
+## 3.1.19
+
+_version bump_
+
+## 3.1.18
+
+### Patch Changes
+
+- fix(DBTabs): ensure navigation arrows appear correctly on window resize - [see commit 4e65e00](https://github.com/db-ux-design-system/core-web/commit/4e65e00d280cae18baee03b5a7a9b13eec063835):
+  - This update resolves an issue where navigation arrows in DBTabs would not appear or update correctly when the window was resized. The component now properly responds to resize events, ensuring arrows are always shown or hidden as needed.
+
+- fix(select): jumping placeholder for label above - [see commit 7ed8d22](https://github.com/db-ux-design-system/core-web/commit/7ed8d2225102e0e9044437e95917e11eef4bc73f)
+
+- enabled [`@db-ux/agent-cli`](https://www.npmjs.com/package/@db-ux/agent-cli) for every package - [see commit 0233048](https://github.com/db-ux-design-system/core-web/commit/023304869e61f5a506dca66a22d69e5f3d70f4d0):
+  - auto-generate/auto-update `.github/copilot-instructions.md`, to ensure GitHub Copilot uses DB UX Components for code generation
+
 ## 3.1.17
 
 ### Patch Changes

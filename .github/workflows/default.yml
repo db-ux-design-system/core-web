@@ -109,6 +109,7 @@ jobs:
   build-showcase-stencil:
     uses: ./.github/workflows/01-build-showcases.yml
     needs: [build-packages, init]
+    secrets: inherit
     with:
       showcase: stencil-showcase
 
@@ -121,6 +122,7 @@ jobs:
   build-showcase-angular:
     uses: ./.github/workflows/01-build-showcases.yml
     needs: [build-packages]
+    secrets: inherit
     with:
       showcase: angular-showcase
 
@@ -133,6 +135,7 @@ jobs:
   build-showcase-angular-ssr:
     uses: ./.github/workflows/01-build-showcases.yml
     needs: [build-packages]
+    secrets: inherit
     with:
       showcase: angular-ssr-showcase
 
@@ -145,6 +148,7 @@ jobs:
   build-showcase-react:
     uses: ./.github/workflows/01-build-showcases.yml
     needs: [build-packages]
+    secrets: inherit
     with:
       showcase: react-showcase
 
@@ -157,6 +161,7 @@ jobs:
   build-showcase-next:
     uses: ./.github/workflows/01-build-showcases.yml
     needs: [build-packages]
+    secrets: inherit
     with:
       showcase: next-showcase
 
@@ -169,6 +174,7 @@ jobs:
   build-showcase-vue:
     uses: ./.github/workflows/01-build-showcases.yml
     needs: [build-packages]
+    secrets: inherit
     with:
       showcase: vue-showcase
 
@@ -181,6 +187,7 @@ jobs:
   build-showcase-nuxt:
     uses: ./.github/workflows/01-build-showcases.yml
     needs: [build-packages]
+    secrets: inherit
     with:
       showcase: nuxt-showcase
 
@@ -195,6 +202,7 @@ jobs:
     needs: [build-packages, init]
     with:
       baseUrl: ${{ needs.init.outputs.baseUrl }}
+    secrets: inherit
 
   cancel-on-failure-build-showcase-patternhub:
     if: ${{ !cancelled() && needs.build-showcase-patternhub.result == 'failure' }}
@@ -208,6 +216,7 @@ jobs:
     with:
       version: ${{ needs.init.outputs.playwrightVersion }}
       showcase: stencil-showcase
+      test-ally: ${{ needs.init.outputs.test-ally }}
 
   test-showcase-angular:
     uses: ./.github/workflows/02-e2e-showcases.yml
@@ -215,6 +224,7 @@ jobs:
     with:
       version: ${{ needs.init.outputs.playwrightVersion }}
       showcase: angular-showcase
+      test-ally: ${{ needs.init.outputs.test-ally }}
 
   test-showcase-react:
     uses: ./.github/workflows/02-e2e-showcases.yml
@@ -222,6 +232,7 @@ jobs:
     with:
       version: ${{ needs.init.outputs.playwrightVersion }}
       showcase: react-showcase
+      test-ally: ${{ needs.init.outputs.test-ally }}
 
   test-showcase-vue:
     uses: ./.github/workflows/02-e2e-showcases.yml
@@ -229,6 +240,7 @@ jobs:
     with:
       version: ${{ needs.init.outputs.playwrightVersion }}
       showcase: vue-showcase
+      test-ally: ${{ needs.init.outputs.test-ally }}
 
   test-showcase-patternhub:
     uses: ./.github/workflows/02-e2e-patternhub.yml
@@ -265,7 +277,7 @@ jobs:
   # This job runs only if aria-snapshots were changed compared to main or if it runs on main branch
   test-screen-reader:
     if: |
-      needs.test-showcase-react.outputs.aria-snapshots-changed-to-main == 'true' ||
+      needs.init.outputs.test-ally == 'true' ||
       github.event.pull_request == null
     uses: ./.github/workflows/02-e2e-screen-reader.yml
     needs: [test-showcase-react, init-playwright, init]
@@ -274,22 +286,24 @@ jobs:
 
   regenerate-snapshots:
     if: |
-      !cancelled() && (
+      !cancelled() && !contains(github.actor,'[bot]') && (
         needs.test-showcase-angular.result == 'failure' ||
         needs.test-showcase-react.result == 'failure' ||
         needs.test-showcase-vue.result == 'failure' ||
-        needs.test-showcase-angular.outputs.aria-snapshots-changed == 'true' ||
-        needs.test-showcase-angular.outputs.visual-snapshots-changed == 'true' ||
-        needs.test-showcase-react.outputs.aria-snapshots-changed == 'true' ||
-        needs.test-showcase-react.outputs.visual-snapshots-changed == 'true' ||
-        needs.test-showcase-vue.outputs.aria-snapshots-changed == 'true' ||
-        needs.test-showcase-vue.outputs.visual-snapshots-changed == 'true'
+        needs.test-showcase-stencil.result == 'failure'
       )
     uses: ./.github/workflows/02-e2e-regenerate.yml
     with:
       version: ${{ needs.init.outputs.playwrightVersion }}
       type: showcases
-    needs: [test-showcase-angular, test-showcase-react, test-showcase-vue, init]
+    needs:
+      [
+        test-showcase-angular,
+        test-showcase-react,
+        test-showcase-vue,
+        test-showcase-stencil,
+        init
+      ]
 
   commit-regenerated-snapshots:
     uses: ./.github/workflows/02-e2e-regenerated-snapshots-commit.yml

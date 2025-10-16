@@ -48,3 +48,20 @@
 		}
 	}
 }
+
+@font-face {
+	font-display: block;
+	font-family: icon-font-fallback;
+	font-style: normal;
+	font-weight: normal;
+	src: url("#{assets-paths.$icons-path}fonts/fallback/icon-font-fallback.woff2")
+		format("woff2");
+}
+
+/* pre-load icon fallback font */
+html::after {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    font-family: icon-font-fallback,sans-serif;
+}

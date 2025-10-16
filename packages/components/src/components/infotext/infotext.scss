@@ -22,7 +22,7 @@
 
 	&[data-semantic="adaptive"],
 	&:not([data-semantic]) {
-		color: colors.$db-adaptive-bg-inverted-contrast-high-default;
+		color: colors.$db-adaptive-on-bg-basic-emphasis-80-default;
 
 		&::before {
 			--db-icon-color: #{colors.$db-adaptive-on-bg-basic-emphasis-70-default};
@@ -33,7 +33,7 @@
 		&[data-semantic="#{$name}"] {
 			@include icons.variant-icons($name);
 
-			color: var(--db-#{$name}-bg-inverted-contrast-high-default);
+			color: var(--db-#{$name}-on-bg-basic-emphasis-80-default);
 
 			&::before {
 				--db-icon-color: var(

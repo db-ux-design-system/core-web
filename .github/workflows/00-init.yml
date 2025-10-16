@@ -26,6 +26,9 @@ on:
       playwrightVersion:
         description: "Current playwright version"
         value: ${{ jobs.init.outputs.version }}
+      test-ally:
+        description: "If aria-snapshots are changed"
+        value: ${{ jobs.init.outputs.test-ally }}
       # Publish outputs
       release:
         description: "If the current tag is a release"
@@ -45,10 +48,14 @@ jobs:
       repoName: ${{ steps.result.outputs.repo }}
       repoOwner: ${{ steps.result.outputs.owner }}
       version: ${{ steps.version.outputs.version }}
+      test-ally: ${{ steps.ally.outputs.test-ally }}
     runs-on: ubuntu-24.04 # Use Ubuntu 24.04 explicitly
     steps:
       - name: ⏬ Checkout repo
         uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+          fetch-tags: false
 
       # https://github.com/marketplace/actions/trufflehog-oss#advanced-usage-scan-entire-branch
       - name: 🐷 TruffleHog OSS
@@ -90,6 +97,14 @@ jobs:
         run: |
           OUTPUT=$(npx --no tsx scripts/github/get-playwright-version.ts)
           echo "version=$OUTPUT" >> $GITHUB_OUTPUT
+
+      - name: 👩 Should Test a11y
+        id: ally
+        shell: bash
+        run: |
+          ARIA_MAIN=$(npx --no tsx scripts/github/snapshot-changes/check-main-aria.ts)
+          echo "test-ally=$ARIA_MAIN"
+          echo "test-ally=$ARIA_MAIN" >> $GITHUB_OUTPUT
 
   publish:
     name: Get and save publish version

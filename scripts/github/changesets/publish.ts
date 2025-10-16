@@ -46,7 +46,7 @@ function getFirstHeadline(changelog: string): string {
 
 function getReleaseNotes(): string {
 	const repoRoot = path.resolve(__dirname, '../../../');
-	const changelogFiles = findChangelogFiles(repoRoot);
+	const changelogFiles = findChangelogFiles(repoRoot, ['output/**']);
 	const notes: string[] = [];
 	for (const file of changelogFiles) {
 		const changelog = fs.readFileSync(file, 'utf8');
@@ -58,15 +58,7 @@ function getReleaseNotes(): string {
 		}
 	}
 
-	return notes
-		.map((log) =>
-			log
-				.split('\n')
-				.map((line) => line.replace('#', '##'))
-				.join('\n')
-		)
-		.join('\n\n---\n\n')
-		.trim();
+	return notes.join('\n\n---\n\n').trim();
 }
 
 function releaseExists(tag: string): boolean {

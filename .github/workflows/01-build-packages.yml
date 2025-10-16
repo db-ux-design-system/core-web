@@ -50,3 +50,9 @@ jobs:
         with:
           name: db-ux-stylelint-build
           path: packages/stylelint/build
+
+      - name: ⏫ Upload agent-cli build
+        uses: actions/upload-artifact@v4
+        with:
+          name: db-ux-agent-cli-build
+          path: packages/agent-cli/build
