@@ -100,6 +100,1723 @@
 				"hovered": "var(--db-adaptive-origin-hovered)",
 				"pressed": "var(--db-adaptive-origin-pressed)"
 			}
+		},
+		"blue": {
+			"bg": {
+				"basic": {
+					"level-1": {
+						"default": "var(--db-blue-bg-basic-level-1-default)",
+						"hovered": "var(--db-blue-bg-basic-level-1-hovered)",
+						"pressed": "var(--db-blue-bg-basic-level-1-pressed)"
+					},
+					"level-2": {
+						"default": "var(--db-blue-bg-basic-level-2-default)",
+						"hovered": "var(--db-blue-bg-basic-level-2-hovered)",
+						"pressed": "var(--db-blue-bg-basic-level-2-pressed)"
+					},
+					"level-3": {
+						"default": "var(--db-blue-bg-basic-level-3-default)",
+						"hovered": "var(--db-blue-bg-basic-level-3-hovered)",
+						"pressed": "var(--db-blue-bg-basic-level-3-pressed)"
+					},
+					"transparent": {
+						"full": {
+							"default": "var(--db-blue-bg-basic-transparent-full-default)",
+							"hovered": "var(--db-blue-bg-basic-transparent-full-hovered)",
+							"pressed": "var(--db-blue-bg-basic-transparent-full-pressed)"
+						},
+						"semi": {
+							"default": "var(--db-blue-bg-basic-transparent-semi-default)",
+							"hovered": "var(--db-blue-bg-basic-transparent-semi-hovered)",
+							"pressed": "var(--db-blue-bg-basic-transparent-semi-pressed)"
+						}
+					}
+				},
+				"inverted": {
+					"contrast": {
+						"max": {
+							"default": "var(--db-blue-bg-inverted-contrast-max-default)",
+							"hovered": "var(--db-blue-bg-inverted-contrast-max-hovered)",
+							"pressed": "var(--db-blue-bg-inverted-contrast-max-pressed)"
+						},
+						"high": {
+							"default": "var(--db-blue-bg-inverted-contrast-high-default)",
+							"hovered": "var(--db-blue-bg-inverted-contrast-high-hovered)",
+							"pressed": "var(--db-blue-bg-inverted-contrast-high-pressed)"
+						},
+						"low": {
+							"default": "var(--db-blue-bg-inverted-contrast-low-default)",
+							"hovered": "var(--db-blue-bg-inverted-contrast-low-hovered)",
+							"pressed": "var(--db-blue-bg-inverted-contrast-low-pressed)"
+						}
+					}
+				}
+			},
+			"on": {
+				"basic": {
+					"emphasis-100": {
+						"default": "var(--db-blue-on-bg-basic-emphasis-100-default)",
+						"hovered": "var(--db-blue-on-bg-basic-emphasis-100-hovered)",
+						"pressed": "var(--db-blue-on-bg-basic-emphasis-100-pressed)"
+					},
+					"emphasis-90": {
+						"default": "var(--db-blue-on-bg-basic-emphasis-90-default)",
+						"hovered": "var(--db-blue-on-bg-basic-emphasis-90-hovered)",
+						"pressed": "var(--db-blue-on-bg-basic-emphasis-90-pressed)"
+					},
+					"emphasis-80": {
+						"default": "var(--db-blue-on-bg-basic-emphasis-80-default)",
+						"hovered": "var(--db-blue-on-bg-basic-emphasis-80-hovered)",
+						"pressed": "var(--db-blue-on-bg-basic-emphasis-80-pressed)"
+					},
+					"emphasis-70": {
+						"default": "var(--db-blue-on-bg-basic-emphasis-70-default)",
+						"hovered": "var(--db-blue-on-bg-basic-emphasis-70-hovered)",
+						"pressed": "var(--db-blue-on-bg-basic-emphasis-70-pressed)"
+					},
+					"emphasis-60": {
+						"default": "var(--db-blue-on-bg-basic-emphasis-60-default)",
+						"hovered": "var(--db-blue-on-bg-basic-emphasis-60-hovered)",
+						"pressed": "var(--db-blue-on-bg-basic-emphasis-60-pressed)"
+					},
+					"emphasis-50": {
+						"default": "var(--db-blue-on-bg-basic-emphasis-50-default)",
+						"hovered": "var(--db-blue-on-bg-basic-emphasis-50-hovered)",
+						"pressed": "var(--db-blue-on-bg-basic-emphasis-50-pressed)"
+					}
+				},
+				"inverted": {
+					"default": "var(--db-blue-on-bg-inverted-default)",
+					"hovered": "var(--db-blue-on-bg-inverted-hovered)",
+					"pressed": "var(--db-blue-on-bg-inverted-pressed)"
+				},
+				"origin": {
+					"default": "var(--db-blue-on-origin-default)",
+					"hovered": "var(--db-blue-on-origin-hovered)",
+					"pressed": "var(--db-blue-on-origin-pressed)"
+				}
+			},
+			"origin": {
+				"default": "var(--db-blue-origin-default)",
+				"hovered": "var(--db-blue-origin-hovered)",
+				"pressed": "var(--db-blue-origin-pressed)"
+			}
+		},
+		"brand": {
+			"bg": {
+				"basic": {
+					"level-1": {
+						"default": "var(--db-brand-bg-basic-level-1-default)",
+						"hovered": "var(--db-brand-bg-basic-level-1-hovered)",
+						"pressed": "var(--db-brand-bg-basic-level-1-pressed)"
+					},
+					"level-2": {
+						"default": "var(--db-brand-bg-basic-level-2-default)",
+						"hovered": "var(--db-brand-bg-basic-level-2-hovered)",
+						"pressed": "var(--db-brand-bg-basic-level-2-pressed)"
+					},
+					"level-3": {
+						"default": "var(--db-brand-bg-basic-level-3-default)",
+						"hovered": "var(--db-brand-bg-basic-level-3-hovered)",
+						"pressed": "var(--db-brand-bg-basic-level-3-pressed)"
+					},
+					"transparent": {
+						"full": {
+							"default": "var(--db-brand-bg-basic-transparent-full-default)",
+							"hovered": "var(--db-brand-bg-basic-transparent-full-hovered)",
+							"pressed": "var(--db-brand-bg-basic-transparent-full-pressed)"
+						},
+						"semi": {
+							"default": "var(--db-brand-bg-basic-transparent-semi-default)",
+							"hovered": "var(--db-brand-bg-basic-transparent-semi-hovered)",
+							"pressed": "var(--db-brand-bg-basic-transparent-semi-pressed)"
+						}
+					}
+				},
+				"inverted": {
+					"contrast": {
+						"max": {
+							"default": "var(--db-brand-bg-inverted-contrast-max-default)",
+							"hovered": "var(--db-brand-bg-inverted-contrast-max-hovered)",
+							"pressed": "var(--db-brand-bg-inverted-contrast-max-pressed)"
+						},
+						"high": {
+							"default": "var(--db-brand-bg-inverted-contrast-high-default)",
+							"hovered": "var(--db-brand-bg-inverted-contrast-high-hovered)",
+							"pressed": "var(--db-brand-bg-inverted-contrast-high-pressed)"
+						},
+						"low": {
+							"default": "var(--db-brand-bg-inverted-contrast-low-default)",
+							"hovered": "var(--db-brand-bg-inverted-contrast-low-hovered)",
+							"pressed": "var(--db-brand-bg-inverted-contrast-low-pressed)"
+						}
+					}
+				}
+			},
+			"on": {
+				"basic": {
+					"emphasis-100": {
+						"default": "var(--db-brand-on-bg-basic-emphasis-100-default)",
+						"hovered": "var(--db-brand-on-bg-basic-emphasis-100-hovered)",
+						"pressed": "var(--db-brand-on-bg-basic-emphasis-100-pressed)"
+					},
+					"emphasis-90": {
+						"default": "var(--db-brand-on-bg-basic-emphasis-90-default)",
+						"hovered": "var(--db-brand-on-bg-basic-emphasis-90-hovered)",
+						"pressed": "var(--db-brand-on-bg-basic-emphasis-90-pressed)"
+					},
+					"emphasis-80": {
+						"default": "var(--db-brand-on-bg-basic-emphasis-80-default)",
+						"hovered": "var(--db-brand-on-bg-basic-emphasis-80-hovered)",
+						"pressed": "var(--db-brand-on-bg-basic-emphasis-80-pressed)"
+					},
+					"emphasis-70": {
+						"default": "var(--db-brand-on-bg-basic-emphasis-70-default)",
+						"hovered": "var(--db-brand-on-bg-basic-emphasis-70-hovered)",
+						"pressed": "var(--db-brand-on-bg-basic-emphasis-70-pressed)"
+					},
+					"emphasis-60": {
+						"default": "var(--db-brand-on-bg-basic-emphasis-60-default)",
+						"hovered": "var(--db-brand-on-bg-basic-emphasis-60-hovered)",
+						"pressed": "var(--db-brand-on-bg-basic-emphasis-60-pressed)"
+					},
+					"emphasis-50": {
+						"default": "var(--db-brand-on-bg-basic-emphasis-50-default)",
+						"hovered": "var(--db-brand-on-bg-basic-emphasis-50-hovered)",
+						"pressed": "var(--db-brand-on-bg-basic-emphasis-50-pressed)"
+					}
+				},
+				"inverted": {
+					"default": "var(--db-brand-on-bg-inverted-default)",
+					"hovered": "var(--db-brand-on-bg-inverted-hovered)",
+					"pressed": "var(--db-brand-on-bg-inverted-pressed)"
+				},
+				"origin": {
+					"default": "var(--db-brand-on-origin-default)",
+					"hovered": "var(--db-brand-on-origin-hovered)",
+					"pressed": "var(--db-brand-on-origin-pressed)"
+				}
+			},
+			"origin": {
+				"default": "var(--db-brand-origin-default)",
+				"hovered": "var(--db-brand-origin-hovered)",
+				"pressed": "var(--db-brand-origin-pressed)"
+			}
+		},
+		"burgundy": {
+			"bg": {
+				"basic": {
+					"level-1": {
+						"default": "var(--db-burgundy-bg-basic-level-1-default)",
+						"hovered": "var(--db-burgundy-bg-basic-level-1-hovered)",
+						"pressed": "var(--db-burgundy-bg-basic-level-1-pressed)"
+					},
+					"level-2": {
+						"default": "var(--db-burgundy-bg-basic-level-2-default)",
+						"hovered": "var(--db-burgundy-bg-basic-level-2-hovered)",
+						"pressed": "var(--db-burgundy-bg-basic-level-2-pressed)"
+					},
+					"level-3": {
+						"default": "var(--db-burgundy-bg-basic-level-3-default)",
+						"hovered": "var(--db-burgundy-bg-basic-level-3-hovered)",
+						"pressed": "var(--db-burgundy-bg-basic-level-3-pressed)"
+					},
+					"transparent": {
+						"full": {
+							"default": "var(--db-burgundy-bg-basic-transparent-full-default)",
+							"hovered": "var(--db-burgundy-bg-basic-transparent-full-hovered)",
+							"pressed": "var(--db-burgundy-bg-basic-transparent-full-pressed)"
+						},
+						"semi": {
+							"default": "var(--db-burgundy-bg-basic-transparent-semi-default)",
+							"hovered": "var(--db-burgundy-bg-basic-transparent-semi-hovered)",
+							"pressed": "var(--db-burgundy-bg-basic-transparent-semi-pressed)"
+						}
+					}
+				},
+				"inverted": {
+					"contrast": {
+						"max": {
+							"default": "var(--db-burgundy-bg-inverted-contrast-max-default)",
+							"hovered": "var(--db-burgundy-bg-inverted-contrast-max-hovered)",
+							"pressed": "var(--db-burgundy-bg-inverted-contrast-max-pressed)"
+						},
+						"high": {
+							"default": "var(--db-burgundy-bg-inverted-contrast-high-default)",
+							"hovered": "var(--db-burgundy-bg-inverted-contrast-high-hovered)",
+							"pressed": "var(--db-burgundy-bg-inverted-contrast-high-pressed)"
+						},
+						"low": {
+							"default": "var(--db-burgundy-bg-inverted-contrast-low-default)",
+							"hovered": "var(--db-burgundy-bg-inverted-contrast-low-hovered)",
+							"pressed": "var(--db-burgundy-bg-inverted-contrast-low-pressed)"
+						}
+					}
+				}
+			},
+			"on": {
+				"basic": {
+					"emphasis-100": {
+						"default": "var(--db-burgundy-on-bg-basic-emphasis-100-default)",
+						"hovered": "var(--db-burgundy-on-bg-basic-emphasis-100-hovered)",
+						"pressed": "var(--db-burgundy-on-bg-basic-emphasis-100-pressed)"
+					},
+					"emphasis-90": {
+						"default": "var(--db-burgundy-on-bg-basic-emphasis-90-default)",
+						"hovered": "var(--db-burgundy-on-bg-basic-emphasis-90-hovered)",
+						"pressed": "var(--db-burgundy-on-bg-basic-emphasis-90-pressed)"
+					},
+					"emphasis-80": {
+						"default": "var(--db-burgundy-on-bg-basic-emphasis-80-default)",
+						"hovered": "var(--db-burgundy-on-bg-basic-emphasis-80-hovered)",
+						"pressed": "var(--db-burgundy-on-bg-basic-emphasis-80-pressed)"
+					},
+					"emphasis-70": {
+						"default": "var(--db-burgundy-on-bg-basic-emphasis-70-default)",
+						"hovered": "var(--db-burgundy-on-bg-basic-emphasis-70-hovered)",
+						"pressed": "var(--db-burgundy-on-bg-basic-emphasis-70-pressed)"
+					},
+					"emphasis-60": {
+						"default": "var(--db-burgundy-on-bg-basic-emphasis-60-default)",
+						"hovered": "var(--db-burgundy-on-bg-basic-emphasis-60-hovered)",
+						"pressed": "var(--db-burgundy-on-bg-basic-emphasis-60-pressed)"
+					},
+					"emphasis-50": {
+						"default": "var(--db-burgundy-on-bg-basic-emphasis-50-default)",
+						"hovered": "var(--db-burgundy-on-bg-basic-emphasis-50-hovered)",
+						"pressed": "var(--db-burgundy-on-bg-basic-emphasis-50-pressed)"
+					}
+				},
+				"inverted": {
+					"default": "var(--db-burgundy-on-bg-inverted-default)",
+					"hovered": "var(--db-burgundy-on-bg-inverted-hovered)",
+					"pressed": "var(--db-burgundy-on-bg-inverted-pressed)"
+				},
+				"origin": {
+					"default": "var(--db-burgundy-on-origin-default)",
+					"hovered": "var(--db-burgundy-on-origin-hovered)",
+					"pressed": "var(--db-burgundy-on-origin-pressed)"
+				}
+			},
+			"origin": {
+				"default": "var(--db-burgundy-origin-default)",
+				"hovered": "var(--db-burgundy-origin-hovered)",
+				"pressed": "var(--db-burgundy-origin-pressed)"
+			}
+		},
+		"critical": {
+			"bg": {
+				"basic": {
+					"level-1": {
+						"default": "var(--db-critical-bg-basic-level-1-default)",
+						"hovered": "var(--db-critical-bg-basic-level-1-hovered)",
+						"pressed": "var(--db-critical-bg-basic-level-1-pressed)"
+					},
+					"level-2": {
+						"default": "var(--db-critical-bg-basic-level-2-default)",
+						"hovered": "var(--db-critical-bg-basic-level-2-hovered)",
+						"pressed": "var(--db-critical-bg-basic-level-2-pressed)"
+					},
+					"level-3": {
+						"default": "var(--db-critical-bg-basic-level-3-default)",
+						"hovered": "var(--db-critical-bg-basic-level-3-hovered)",
+						"pressed": "var(--db-critical-bg-basic-level-3-pressed)"
+					},
+					"transparent": {
+						"full": {
+							"default": "var(--db-critical-bg-basic-transparent-full-default)",
+							"hovered": "var(--db-critical-bg-basic-transparent-full-hovered)",
+							"pressed": "var(--db-critical-bg-basic-transparent-full-pressed)"
+						},
+						"semi": {
+							"default": "var(--db-critical-bg-basic-transparent-semi-default)",
+							"hovered": "var(--db-critical-bg-basic-transparent-semi-hovered)",
+							"pressed": "var(--db-critical-bg-basic-transparent-semi-pressed)"
+						}
+					}
+				},
+				"inverted": {
+					"contrast": {
+						"max": {
+							"default": "var(--db-critical-bg-inverted-contrast-max-default)",
+							"hovered": "var(--db-critical-bg-inverted-contrast-max-hovered)",
+							"pressed": "var(--db-critical-bg-inverted-contrast-max-pressed)"
+						},
+						"high": {
+							"default": "var(--db-critical-bg-inverted-contrast-high-default)",
+							"hovered": "var(--db-critical-bg-inverted-contrast-high-hovered)",
+							"pressed": "var(--db-critical-bg-inverted-contrast-high-pressed)"
+						},
+						"low": {
+							"default": "var(--db-critical-bg-inverted-contrast-low-default)",
+							"hovered": "var(--db-critical-bg-inverted-contrast-low-hovered)",
+							"pressed": "var(--db-critical-bg-inverted-contrast-low-pressed)"
+						}
+					}
+				}
+			},
+			"on": {
+				"basic": {
+					"emphasis-100": {
+						"default": "var(--db-critical-on-bg-basic-emphasis-100-default)",
+						"hovered": "var(--db-critical-on-bg-basic-emphasis-100-hovered)",
+						"pressed": "var(--db-critical-on-bg-basic-emphasis-100-pressed)"
+					},
+					"emphasis-90": {
+						"default": "var(--db-critical-on-bg-basic-emphasis-90-default)",
+						"hovered": "var(--db-critical-on-bg-basic-emphasis-90-hovered)",
+						"pressed": "var(--db-critical-on-bg-basic-emphasis-90-pressed)"
+					},
+					"emphasis-80": {
+						"default": "var(--db-critical-on-bg-basic-emphasis-80-default)",
+						"hovered": "var(--db-critical-on-bg-basic-emphasis-80-hovered)",
+						"pressed": "var(--db-critical-on-bg-basic-emphasis-80-pressed)"
+					},
+					"emphasis-70": {
+						"default": "var(--db-critical-on-bg-basic-emphasis-70-default)",
+						"hovered": "var(--db-critical-on-bg-basic-emphasis-70-hovered)",
+						"pressed": "var(--db-critical-on-bg-basic-emphasis-70-pressed)"
+					},
+					"emphasis-60": {
+						"default": "var(--db-critical-on-bg-basic-emphasis-60-default)",
+						"hovered": "var(--db-critical-on-bg-basic-emphasis-60-hovered)",
+						"pressed": "var(--db-critical-on-bg-basic-emphasis-60-pressed)"
+					},
+					"emphasis-50": {
+						"default": "var(--db-critical-on-bg-basic-emphasis-50-default)",
+						"hovered": "var(--db-critical-on-bg-basic-emphasis-50-hovered)",
+						"pressed": "var(--db-critical-on-bg-basic-emphasis-50-pressed)"
+					}
+				},
+				"inverted": {
+					"default": "var(--db-critical-on-bg-inverted-default)",
+					"hovered": "var(--db-critical-on-bg-inverted-hovered)",
+					"pressed": "var(--db-critical-on-bg-inverted-pressed)"
+				},
+				"origin": {
+					"default": "var(--db-critical-on-origin-default)",
+					"hovered": "var(--db-critical-on-origin-hovered)",
+					"pressed": "var(--db-critical-on-origin-pressed)"
+				}
+			},
+			"origin": {
+				"default": "var(--db-critical-origin-default)",
+				"hovered": "var(--db-critical-origin-hovered)",
+				"pressed": "var(--db-critical-origin-pressed)"
+			}
+		},
+		"cyan": {
+			"bg": {
+				"basic": {
+					"level-1": {
+						"default": "var(--db-cyan-bg-basic-level-1-default)",
+						"hovered": "var(--db-cyan-bg-basic-level-1-hovered)",
+						"pressed": "var(--db-cyan-bg-basic-level-1-pressed)"
+					},
+					"level-2": {
+						"default": "var(--db-cyan-bg-basic-level-2-default)",
+						"hovered": "var(--db-cyan-bg-basic-level-2-hovered)",
+						"pressed": "var(--db-cyan-bg-basic-level-2-pressed)"
+					},
+					"level-3": {
+						"default": "var(--db-cyan-bg-basic-level-3-default)",
+						"hovered": "var(--db-cyan-bg-basic-level-3-hovered)",
+						"pressed": "var(--db-cyan-bg-basic-level-3-pressed)"
+					},
+					"transparent": {
+						"full": {
+							"default": "var(--db-cyan-bg-basic-transparent-full-default)",
+							"hovered": "var(--db-cyan-bg-basic-transparent-full-hovered)",
+							"pressed": "var(--db-cyan-bg-basic-transparent-full-pressed)"
+						},
+						"semi": {
+							"default": "var(--db-cyan-bg-basic-transparent-semi-default)",
+							"hovered": "var(--db-cyan-bg-basic-transparent-semi-hovered)",
+							"pressed": "var(--db-cyan-bg-basic-transparent-semi-pressed)"
+						}
+					}
+				},
+				"inverted": {
+					"contrast": {
+						"max": {
+							"default": "var(--db-cyan-bg-inverted-contrast-max-default)",
+							"hovered": "var(--db-cyan-bg-inverted-contrast-max-hovered)",
+							"pressed": "var(--db-cyan-bg-inverted-contrast-max-pressed)"
+						},
+						"high": {
+							"default": "var(--db-cyan-bg-inverted-contrast-high-default)",
+							"hovered": "var(--db-cyan-bg-inverted-contrast-high-hovered)",
+							"pressed": "var(--db-cyan-bg-inverted-contrast-high-pressed)"
+						},
+						"low": {
+							"default": "var(--db-cyan-bg-inverted-contrast-low-default)",
+							"hovered": "var(--db-cyan-bg-inverted-contrast-low-hovered)",
+							"pressed": "var(--db-cyan-bg-inverted-contrast-low-pressed)"
+						}
+					}
+				}
+			},
+			"on": {
+				"basic": {
+					"emphasis-100": {
+						"default": "var(--db-cyan-on-bg-basic-emphasis-100-default)",
+						"hovered": "var(--db-cyan-on-bg-basic-emphasis-100-hovered)",
+						"pressed": "var(--db-cyan-on-bg-basic-emphasis-100-pressed)"
+					},
+					"emphasis-90": {
+						"default": "var(--db-cyan-on-bg-basic-emphasis-90-default)",
+						"hovered": "var(--db-cyan-on-bg-basic-emphasis-90-hovered)",
+						"pressed": "var(--db-cyan-on-bg-basic-emphasis-90-pressed)"
+					},
+					"emphasis-80": {
+						"default": "var(--db-cyan-on-bg-basic-emphasis-80-default)",
+						"hovered": "var(--db-cyan-on-bg-basic-emphasis-80-hovered)",
+						"pressed": "var(--db-cyan-on-bg-basic-emphasis-80-pressed)"
+					},
+					"emphasis-70": {
+						"default": "var(--db-cyan-on-bg-basic-emphasis-70-default)",
+						"hovered": "var(--db-cyan-on-bg-basic-emphasis-70-hovered)",
+						"pressed": "var(--db-cyan-on-bg-basic-emphasis-70-pressed)"
+					},
+					"emphasis-60": {
+						"default": "var(--db-cyan-on-bg-basic-emphasis-60-default)",
+						"hovered": "var(--db-cyan-on-bg-basic-emphasis-60-hovered)",
+						"pressed": "var(--db-cyan-on-bg-basic-emphasis-60-pressed)"
+					},
+					"emphasis-50": {
+						"default": "var(--db-cyan-on-bg-basic-emphasis-50-default)",
+						"hovered": "var(--db-cyan-on-bg-basic-emphasis-50-hovered)",
+						"pressed": "var(--db-cyan-on-bg-basic-emphasis-50-pressed)"
+					}
+				},
+				"inverted": {
+					"default": "var(--db-cyan-on-bg-inverted-default)",
+					"hovered": "var(--db-cyan-on-bg-inverted-hovered)",
+					"pressed": "var(--db-cyan-on-bg-inverted-pressed)"
+				},
+				"origin": {
+					"default": "var(--db-cyan-on-origin-default)",
+					"hovered": "var(--db-cyan-on-origin-hovered)",
+					"pressed": "var(--db-cyan-on-origin-pressed)"
+				}
+			},
+			"origin": {
+				"default": "var(--db-cyan-origin-default)",
+				"hovered": "var(--db-cyan-origin-hovered)",
+				"pressed": "var(--db-cyan-origin-pressed)"
+			}
+		},
+		"green": {
+			"bg": {
+				"basic": {
+					"level-1": {
+						"default": "var(--db-green-bg-basic-level-1-default)",
+						"hovered": "var(--db-green-bg-basic-level-1-hovered)",
+						"pressed": "var(--db-green-bg-basic-level-1-pressed)"
+					},
+					"level-2": {
+						"default": "var(--db-green-bg-basic-level-2-default)",
+						"hovered": "var(--db-green-bg-basic-level-2-hovered)",
+						"pressed": "var(--db-green-bg-basic-level-2-pressed)"
+					},
+					"level-3": {
+						"default": "var(--db-green-bg-basic-level-3-default)",
+						"hovered": "var(--db-green-bg-basic-level-3-hovered)",
+						"pressed": "var(--db-green-bg-basic-level-3-pressed)"
+					},
+					"transparent": {
+						"full": {
+							"default": "var(--db-green-bg-basic-transparent-full-default)",
+							"hovered": "var(--db-green-bg-basic-transparent-full-hovered)",
+							"pressed": "var(--db-green-bg-basic-transparent-full-pressed)"
+						},
+						"semi": {
+							"default": "var(--db-green-bg-basic-transparent-semi-default)",
+							"hovered": "var(--db-green-bg-basic-transparent-semi-hovered)",
+							"pressed": "var(--db-green-bg-basic-transparent-semi-pressed)"
+						}
+					}
+				},
+				"inverted": {
+					"contrast": {
+						"max": {
+							"default": "var(--db-green-bg-inverted-contrast-max-default)",
+							"hovered": "var(--db-green-bg-inverted-contrast-max-hovered)",
+							"pressed": "var(--db-green-bg-inverted-contrast-max-pressed)"
+						},
+						"high": {
+							"default": "var(--db-green-bg-inverted-contrast-high-default)",
+							"hovered": "var(--db-green-bg-inverted-contrast-high-hovered)",
+							"pressed": "var(--db-green-bg-inverted-contrast-high-pressed)"
+						},
+						"low": {
+							"default": "var(--db-green-bg-inverted-contrast-low-default)",
+							"hovered": "var(--db-green-bg-inverted-contrast-low-hovered)",
+							"pressed": "var(--db-green-bg-inverted-contrast-low-pressed)"
+						}
+					}
+				}
+			},
+			"on": {
+				"basic": {
+					"emphasis-100": {
+						"default": "var(--db-green-on-bg-basic-emphasis-100-default)",
+						"hovered": "var(--db-green-on-bg-basic-emphasis-100-hovered)",
+						"pressed": "var(--db-green-on-bg-basic-emphasis-100-pressed)"
+					},
+					"emphasis-90": {
+						"default": "var(--db-green-on-bg-basic-emphasis-90-default)",
+						"hovered": "var(--db-green-on-bg-basic-emphasis-90-hovered)",
+						"pressed": "var(--db-green-on-bg-basic-emphasis-90-pressed)"
+					},
+					"emphasis-80": {
+						"default": "var(--db-green-on-bg-basic-emphasis-80-default)",
+						"hovered": "var(--db-green-on-bg-basic-emphasis-80-hovered)",
+						"pressed": "var(--db-green-on-bg-basic-emphasis-80-pressed)"
+					},
+					"emphasis-70": {
+						"default": "var(--db-green-on-bg-basic-emphasis-70-default)",
+						"hovered": "var(--db-green-on-bg-basic-emphasis-70-hovered)",
+						"pressed": "var(--db-green-on-bg-basic-emphasis-70-pressed)"
+					},
+					"emphasis-60": {
+						"default": "var(--db-green-on-bg-basic-emphasis-60-default)",
+						"hovered": "var(--db-green-on-bg-basic-emphasis-60-hovered)",
+						"pressed": "var(--db-green-on-bg-basic-emphasis-60-pressed)"
+					},
+					"emphasis-50": {
+						"default": "var(--db-green-on-bg-basic-emphasis-50-default)",
+						"hovered": "var(--db-green-on-bg-basic-emphasis-50-hovered)",
+						"pressed": "var(--db-green-on-bg-basic-emphasis-50-pressed)"
+					}
+				},
+				"inverted": {
+					"default": "var(--db-green-on-bg-inverted-default)",
+					"hovered": "var(--db-green-on-bg-inverted-hovered)",
+					"pressed": "var(--db-green-on-bg-inverted-pressed)"
+				},
+				"origin": {
+					"default": "var(--db-green-on-origin-default)",
+					"hovered": "var(--db-green-on-origin-hovered)",
+					"pressed": "var(--db-green-on-origin-pressed)"
+				}
+			},
+			"origin": {
+				"default": "var(--db-green-origin-default)",
+				"hovered": "var(--db-green-origin-hovered)",
+				"pressed": "var(--db-green-origin-pressed)"
+			}
+		},
+		"informational": {
+			"bg": {
+				"basic": {
+					"level-1": {
+						"default": "var(--db-informational-bg-basic-level-1-default)",
+						"hovered": "var(--db-informational-bg-basic-level-1-hovered)",
+						"pressed": "var(--db-informational-bg-basic-level-1-pressed)"
+					},
+					"level-2": {
+						"default": "var(--db-informational-bg-basic-level-2-default)",
+						"hovered": "var(--db-informational-bg-basic-level-2-hovered)",
+						"pressed": "var(--db-informational-bg-basic-level-2-pressed)"
+					},
+					"level-3": {
+						"default": "var(--db-informational-bg-basic-level-3-default)",
+						"hovered": "var(--db-informational-bg-basic-level-3-hovered)",
+						"pressed": "var(--db-informational-bg-basic-level-3-pressed)"
+					},
+					"transparent": {
+						"full": {
+							"default": "var(--db-informational-bg-basic-transparent-full-default)",
+							"hovered": "var(--db-informational-bg-basic-transparent-full-hovered)",
+							"pressed": "var(--db-informational-bg-basic-transparent-full-pressed)"
+						},
+						"semi": {
+							"default": "var(--db-informational-bg-basic-transparent-semi-default)",
+							"hovered": "var(--db-informational-bg-basic-transparent-semi-hovered)",
+							"pressed": "var(--db-informational-bg-basic-transparent-semi-pressed)"
+						}
+					}
+				},
+				"inverted": {
+					"contrast": {
+						"max": {
+							"default": "var(--db-informational-bg-inverted-contrast-max-default)",
+							"hovered": "var(--db-informational-bg-inverted-contrast-max-hovered)",
+							"pressed": "var(--db-informational-bg-inverted-contrast-max-pressed)"
+						},
+						"high": {
+							"default": "var(--db-informational-bg-inverted-contrast-high-default)",
+							"hovered": "var(--db-informational-bg-inverted-contrast-high-hovered)",
+							"pressed": "var(--db-informational-bg-inverted-contrast-high-pressed)"
+						},
+						"low": {
+							"default": "var(--db-informational-bg-inverted-contrast-low-default)",
+							"hovered": "var(--db-informational-bg-inverted-contrast-low-hovered)",
+							"pressed": "var(--db-informational-bg-inverted-contrast-low-pressed)"
+						}
+					}
+				}
+			},
+			"on": {
+				"basic": {
+					"emphasis-100": {
+						"default": "var(--db-informational-on-bg-basic-emphasis-100-default)",
+						"hovered": "var(--db-informational-on-bg-basic-emphasis-100-hovered)",
+						"pressed": "var(--db-informational-on-bg-basic-emphasis-100-pressed)"
+					},
+					"emphasis-90": {
+						"default": "var(--db-informational-on-bg-basic-emphasis-90-default)",
+						"hovered": "var(--db-informational-on-bg-basic-emphasis-90-hovered)",
+						"pressed": "var(--db-informational-on-bg-basic-emphasis-90-pressed)"
+					},
+					"emphasis-80": {
+						"default": "var(--db-informational-on-bg-basic-emphasis-80-default)",
+						"hovered": "var(--db-informational-on-bg-basic-emphasis-80-hovered)",
+						"pressed": "var(--db-informational-on-bg-basic-emphasis-80-pressed)"
+					},
+					"emphasis-70": {
+						"default": "var(--db-informational-on-bg-basic-emphasis-70-default)",
+						"hovered": "var(--db-informational-on-bg-basic-emphasis-70-hovered)",
+						"pressed": "var(--db-informational-on-bg-basic-emphasis-70-pressed)"
+					},
+					"emphasis-60": {
+						"default": "var(--db-informational-on-bg-basic-emphasis-60-default)",
+						"hovered": "var(--db-informational-on-bg-basic-emphasis-60-hovered)",
+						"pressed": "var(--db-informational-on-bg-basic-emphasis-60-pressed)"
+					},
+					"emphasis-50": {
+						"default": "var(--db-informational-on-bg-basic-emphasis-50-default)",
+						"hovered": "var(--db-informational-on-bg-basic-emphasis-50-hovered)",
+						"pressed": "var(--db-informational-on-bg-basic-emphasis-50-pressed)"
+					}
+				},
+				"inverted": {
+					"default": "var(--db-informational-on-bg-inverted-default)",
+					"hovered": "var(--db-informational-on-bg-inverted-hovered)",
+					"pressed": "var(--db-informational-on-bg-inverted-pressed)"
+				},
+				"origin": {
+					"default": "var(--db-informational-on-origin-default)",
+					"hovered": "var(--db-informational-on-origin-hovered)",
+					"pressed": "var(--db-informational-on-origin-pressed)"
+				}
+			},
+			"origin": {
+				"default": "var(--db-informational-origin-default)",
+				"hovered": "var(--db-informational-origin-hovered)",
+				"pressed": "var(--db-informational-origin-pressed)"
+			}
+		},
+		"light-green": {
+			"bg": {
+				"basic": {
+					"level-1": {
+						"default": "var(--db-light-green-bg-basic-level-1-default)",
+						"hovered": "var(--db-light-green-bg-basic-level-1-hovered)",
+						"pressed": "var(--db-light-green-bg-basic-level-1-pressed)"
+					},
+					"level-2": {
+						"default": "var(--db-light-green-bg-basic-level-2-default)",
+						"hovered": "var(--db-light-green-bg-basic-level-2-hovered)",
+						"pressed": "var(--db-light-green-bg-basic-level-2-pressed)"
+					},
+					"level-3": {
+						"default": "var(--db-light-green-bg-basic-level-3-default)",
+						"hovered": "var(--db-light-green-bg-basic-level-3-hovered)",
+						"pressed": "var(--db-light-green-bg-basic-level-3-pressed)"
+					},
+					"transparent": {
+						"full": {
+							"default": "var(--db-light-green-bg-basic-transparent-full-default)",
+							"hovered": "var(--db-light-green-bg-basic-transparent-full-hovered)",
+							"pressed": "var(--db-light-green-bg-basic-transparent-full-pressed)"
+						},
+						"semi": {
+							"default": "var(--db-light-green-bg-basic-transparent-semi-default)",
+							"hovered": "var(--db-light-green-bg-basic-transparent-semi-hovered)",
+							"pressed": "var(--db-light-green-bg-basic-transparent-semi-pressed)"
+						}
+					}
+				},
+				"inverted": {
+					"contrast": {
+						"max": {
+							"default": "var(--db-light-green-bg-inverted-contrast-max-default)",
+							"hovered": "var(--db-light-green-bg-inverted-contrast-max-hovered)",
+							"pressed": "var(--db-light-green-bg-inverted-contrast-max-pressed)"
+						},
+						"high": {
+							"default": "var(--db-light-green-bg-inverted-contrast-high-default)",
+							"hovered": "var(--db-light-green-bg-inverted-contrast-high-hovered)",
+							"pressed": "var(--db-light-green-bg-inverted-contrast-high-pressed)"
+						},
+						"low": {
+							"default": "var(--db-light-green-bg-inverted-contrast-low-default)",
+							"hovered": "var(--db-light-green-bg-inverted-contrast-low-hovered)",
+							"pressed": "var(--db-light-green-bg-inverted-contrast-low-pressed)"
+						}
+					}
+				}
+			},
+			"on": {
+				"basic": {
+					"emphasis-100": {
+						"default": "var(--db-light-green-on-bg-basic-emphasis-100-default)",
+						"hovered": "var(--db-light-green-on-bg-basic-emphasis-100-hovered)",
+						"pressed": "var(--db-light-green-on-bg-basic-emphasis-100-pressed)"
+					},
+					"emphasis-90": {
+						"default": "var(--db-light-green-on-bg-basic-emphasis-90-default)",
+						"hovered": "var(--db-light-green-on-bg-basic-emphasis-90-hovered)",
+						"pressed": "var(--db-light-green-on-bg-basic-emphasis-90-pressed)"
+					},
+					"emphasis-80": {
+						"default": "var(--db-light-green-on-bg-basic-emphasis-80-default)",
+						"hovered": "var(--db-light-green-on-bg-basic-emphasis-80-hovered)",
+						"pressed": "var(--db-light-green-on-bg-basic-emphasis-80-pressed)"
+					},
+					"emphasis-70": {
+						"default": "var(--db-light-green-on-bg-basic-emphasis-70-default)",
+						"hovered": "var(--db-light-green-on-bg-basic-emphasis-70-hovered)",
+						"pressed": "var(--db-light-green-on-bg-basic-emphasis-70-pressed)"
+					},
+					"emphasis-60": {
+						"default": "var(--db-light-green-on-bg-basic-emphasis-60-default)",
+						"hovered": "var(--db-light-green-on-bg-basic-emphasis-60-hovered)",
+						"pressed": "var(--db-light-green-on-bg-basic-emphasis-60-pressed)"
+					},
+					"emphasis-50": {
+						"default": "var(--db-light-green-on-bg-basic-emphasis-50-default)",
+						"hovered": "var(--db-light-green-on-bg-basic-emphasis-50-hovered)",
+						"pressed": "var(--db-light-green-on-bg-basic-emphasis-50-pressed)"
+					}
+				},
+				"inverted": {
+					"default": "var(--db-light-green-on-bg-inverted-default)",
+					"hovered": "var(--db-light-green-on-bg-inverted-hovered)",
+					"pressed": "var(--db-light-green-on-bg-inverted-pressed)"
+				},
+				"origin": {
+					"default": "var(--db-light-green-on-origin-default)",
+					"hovered": "var(--db-light-green-on-origin-hovered)",
+					"pressed": "var(--db-light-green-on-origin-pressed)"
+				}
+			},
+			"origin": {
+				"default": "var(--db-light-green-origin-default)",
+				"hovered": "var(--db-light-green-origin-hovered)",
+				"pressed": "var(--db-light-green-origin-pressed)"
+			}
+		},
+		"neutral": {
+			"bg": {
+				"basic": {
+					"level-1": {
+						"default": "var(--db-neutral-bg-basic-level-1-default)",
+						"hovered": "var(--db-neutral-bg-basic-level-1-hovered)",
+						"pressed": "var(--db-neutral-bg-basic-level-1-pressed)"
+					},
+					"level-2": {
+						"default": "var(--db-neutral-bg-basic-level-2-default)",
+						"hovered": "var(--db-neutral-bg-basic-level-2-hovered)",
+						"pressed": "var(--db-neutral-bg-basic-level-2-pressed)"
+					},
+					"level-3": {
+						"default": "var(--db-neutral-bg-basic-level-3-default)",
+						"hovered": "var(--db-neutral-bg-basic-level-3-hovered)",
+						"pressed": "var(--db-neutral-bg-basic-level-3-pressed)"
+					},
+					"transparent": {
+						"full": {
+							"default": "var(--db-neutral-bg-basic-transparent-full-default)",
+							"hovered": "var(--db-neutral-bg-basic-transparent-full-hovered)",
+							"pressed": "var(--db-neutral-bg-basic-transparent-full-pressed)"
+						},
+						"semi": {
+							"default": "var(--db-neutral-bg-basic-transparent-semi-default)",
+							"hovered": "var(--db-neutral-bg-basic-transparent-semi-hovered)",
+							"pressed": "var(--db-neutral-bg-basic-transparent-semi-pressed)"
+						}
+					}
+				},
+				"inverted": {
+					"contrast": {
+						"max": {
+							"default": "var(--db-neutral-bg-inverted-contrast-max-default)",
+							"hovered": "var(--db-neutral-bg-inverted-contrast-max-hovered)",
+							"pressed": "var(--db-neutral-bg-inverted-contrast-max-pressed)"
+						},
+						"high": {
+							"default": "var(--db-neutral-bg-inverted-contrast-high-default)",
+							"hovered": "var(--db-neutral-bg-inverted-contrast-high-hovered)",
+							"pressed": "var(--db-neutral-bg-inverted-contrast-high-pressed)"
+						},
+						"low": {
+							"default": "var(--db-neutral-bg-inverted-contrast-low-default)",
+							"hovered": "var(--db-neutral-bg-inverted-contrast-low-hovered)",
+							"pressed": "var(--db-neutral-bg-inverted-contrast-low-pressed)"
+						}
+					}
+				}
+			},
+			"on": {
+				"basic": {
+					"emphasis-100": {
+						"default": "var(--db-neutral-on-bg-basic-emphasis-100-default)",
+						"hovered": "var(--db-neutral-on-bg-basic-emphasis-100-hovered)",
+						"pressed": "var(--db-neutral-on-bg-basic-emphasis-100-pressed)"
+					},
+					"emphasis-90": {
+						"default": "var(--db-neutral-on-bg-basic-emphasis-90-default)",
+						"hovered": "var(--db-neutral-on-bg-basic-emphasis-90-hovered)",
+						"pressed": "var(--db-neutral-on-bg-basic-emphasis-90-pressed)"
+					},
+					"emphasis-80": {
+						"default": "var(--db-neutral-on-bg-basic-emphasis-80-default)",
+						"hovered": "var(--db-neutral-on-bg-basic-emphasis-80-hovered)",
+						"pressed": "var(--db-neutral-on-bg-basic-emphasis-80-pressed)"
+					},
+					"emphasis-70": {
+						"default": "var(--db-neutral-on-bg-basic-emphasis-70-default)",
+						"hovered": "var(--db-neutral-on-bg-basic-emphasis-70-hovered)",
+						"pressed": "var(--db-neutral-on-bg-basic-emphasis-70-pressed)"
+					},
+					"emphasis-60": {
+						"default": "var(--db-neutral-on-bg-basic-emphasis-60-default)",
+						"hovered": "var(--db-neutral-on-bg-basic-emphasis-60-hovered)",
+						"pressed": "var(--db-neutral-on-bg-basic-emphasis-60-pressed)"
+					},
+					"emphasis-50": {
+						"default": "var(--db-neutral-on-bg-basic-emphasis-50-default)",
+						"hovered": "var(--db-neutral-on-bg-basic-emphasis-50-hovered)",
+						"pressed": "var(--db-neutral-on-bg-basic-emphasis-50-pressed)"
+					}
+				},
+				"inverted": {
+					"default": "var(--db-neutral-on-bg-inverted-default)",
+					"hovered": "var(--db-neutral-on-bg-inverted-hovered)",
+					"pressed": "var(--db-neutral-on-bg-inverted-pressed)"
+				},
+				"origin": {
+					"default": "var(--db-neutral-on-origin-default)",
+					"hovered": "var(--db-neutral-on-origin-hovered)",
+					"pressed": "var(--db-neutral-on-origin-pressed)"
+				}
+			},
+			"origin": {
+				"default": "var(--db-neutral-origin-default)",
+				"hovered": "var(--db-neutral-origin-hovered)",
+				"pressed": "var(--db-neutral-origin-pressed)"
+			}
+		},
+		"orange": {
+			"bg": {
+				"basic": {
+					"level-1": {
+						"default": "var(--db-orange-bg-basic-level-1-default)",
+						"hovered": "var(--db-orange-bg-basic-level-1-hovered)",
+						"pressed": "var(--db-orange-bg-basic-level-1-pressed)"
+					},
+					"level-2": {
+						"default": "var(--db-orange-bg-basic-level-2-default)",
+						"hovered": "var(--db-orange-bg-basic-level-2-hovered)",
+						"pressed": "var(--db-orange-bg-basic-level-2-pressed)"
+					},
+					"level-3": {
+						"default": "var(--db-orange-bg-basic-level-3-default)",
+						"hovered": "var(--db-orange-bg-basic-level-3-hovered)",
+						"pressed": "var(--db-orange-bg-basic-level-3-pressed)"
+					},
+					"transparent": {
+						"full": {
+							"default": "var(--db-orange-bg-basic-transparent-full-default)",
+							"hovered": "var(--db-orange-bg-basic-transparent-full-hovered)",
+							"pressed": "var(--db-orange-bg-basic-transparent-full-pressed)"
+						},
+						"semi": {
+							"default": "var(--db-orange-bg-basic-transparent-semi-default)",
+							"hovered": "var(--db-orange-bg-basic-transparent-semi-hovered)",
+							"pressed": "var(--db-orange-bg-basic-transparent-semi-pressed)"
+						}
+					}
+				},
+				"inverted": {
+					"contrast": {
+						"max": {
+							"default": "var(--db-orange-bg-inverted-contrast-max-default)",
+							"hovered": "var(--db-orange-bg-inverted-contrast-max-hovered)",
+							"pressed": "var(--db-orange-bg-inverted-contrast-max-pressed)"
+						},
+						"high": {
+							"default": "var(--db-orange-bg-inverted-contrast-high-default)",
+							"hovered": "var(--db-orange-bg-inverted-contrast-high-hovered)",
+							"pressed": "var(--db-orange-bg-inverted-contrast-high-pressed)"
+						},
+						"low": {
+							"default": "var(--db-orange-bg-inverted-contrast-low-default)",
+							"hovered": "var(--db-orange-bg-inverted-contrast-low-hovered)",
+							"pressed": "var(--db-orange-bg-inverted-contrast-low-pressed)"
+						}
+					}
+				}
+			},
+			"on": {
+				"basic": {
+					"emphasis-100": {
+						"default": "var(--db-orange-on-bg-basic-emphasis-100-default)",
+						"hovered": "var(--db-orange-on-bg-basic-emphasis-100-hovered)",
+						"pressed": "var(--db-orange-on-bg-basic-emphasis-100-pressed)"
+					},
+					"emphasis-90": {
+						"default": "var(--db-orange-on-bg-basic-emphasis-90-default)",
+						"hovered": "var(--db-orange-on-bg-basic-emphasis-90-hovered)",
+						"pressed": "var(--db-orange-on-bg-basic-emphasis-90-pressed)"
+					},
+					"emphasis-80": {
+						"default": "var(--db-orange-on-bg-basic-emphasis-80-default)",
+						"hovered": "var(--db-orange-on-bg-basic-emphasis-80-hovered)",
+						"pressed": "var(--db-orange-on-bg-basic-emphasis-80-pressed)"
+					},
+					"emphasis-70": {
+						"default": "var(--db-orange-on-bg-basic-emphasis-70-default)",
+						"hovered": "var(--db-orange-on-bg-basic-emphasis-70-hovered)",
+						"pressed": "var(--db-orange-on-bg-basic-emphasis-70-pressed)"
+					},
+					"emphasis-60": {
+						"default": "var(--db-orange-on-bg-basic-emphasis-60-default)",
+						"hovered": "var(--db-orange-on-bg-basic-emphasis-60-hovered)",
+						"pressed": "var(--db-orange-on-bg-basic-emphasis-60-pressed)"
+					},
+					"emphasis-50": {
+						"default": "var(--db-orange-on-bg-basic-emphasis-50-default)",
+						"hovered": "var(--db-orange-on-bg-basic-emphasis-50-hovered)",
+						"pressed": "var(--db-orange-on-bg-basic-emphasis-50-pressed)"
+					}
+				},
+				"inverted": {
+					"default": "var(--db-orange-on-bg-inverted-default)",
+					"hovered": "var(--db-orange-on-bg-inverted-hovered)",
+					"pressed": "var(--db-orange-on-bg-inverted-pressed)"
+				},
+				"origin": {
+					"default": "var(--db-orange-on-origin-default)",
+					"hovered": "var(--db-orange-on-origin-hovered)",
+					"pressed": "var(--db-orange-on-origin-pressed)"
+				}
+			},
+			"origin": {
+				"default": "var(--db-orange-origin-default)",
+				"hovered": "var(--db-orange-origin-hovered)",
+				"pressed": "var(--db-orange-origin-pressed)"
+			}
+		},
+		"pink": {
+			"bg": {
+				"basic": {
+					"level-1": {
+						"default": "var(--db-pink-bg-basic-level-1-default)",
+						"hovered": "var(--db-pink-bg-basic-level-1-hovered)",
+						"pressed": "var(--db-pink-bg-basic-level-1-pressed)"
+					},
+					"level-2": {
+						"default": "var(--db-pink-bg-basic-level-2-default)",
+						"hovered": "var(--db-pink-bg-basic-level-2-hovered)",
+						"pressed": "var(--db-pink-bg-basic-level-2-pressed)"
+					},
+					"level-3": {
+						"default": "var(--db-pink-bg-basic-level-3-default)",
+						"hovered": "var(--db-pink-bg-basic-level-3-hovered)",
+						"pressed": "var(--db-pink-bg-basic-level-3-pressed)"
+					},
+					"transparent": {
+						"full": {
+							"default": "var(--db-pink-bg-basic-transparent-full-default)",
+							"hovered": "var(--db-pink-bg-basic-transparent-full-hovered)",
+							"pressed": "var(--db-pink-bg-basic-transparent-full-pressed)"
+						},
+						"semi": {
+							"default": "var(--db-pink-bg-basic-transparent-semi-default)",
+							"hovered": "var(--db-pink-bg-basic-transparent-semi-hovered)",
+							"pressed": "var(--db-pink-bg-basic-transparent-semi-pressed)"
+						}
+					}
+				},
+				"inverted": {
+					"contrast": {
+						"max": {
+							"default": "var(--db-pink-bg-inverted-contrast-max-default)",
+							"hovered": "var(--db-pink-bg-inverted-contrast-max-hovered)",
+							"pressed": "var(--db-pink-bg-inverted-contrast-max-pressed)"
+						},
+						"high": {
+							"default": "var(--db-pink-bg-inverted-contrast-high-default)",
+							"hovered": "var(--db-pink-bg-inverted-contrast-high-hovered)",
+							"pressed": "var(--db-pink-bg-inverted-contrast-high-pressed)"
+						},
+						"low": {
+							"default": "var(--db-pink-bg-inverted-contrast-low-default)",
+							"hovered": "var(--db-pink-bg-inverted-contrast-low-hovered)",
+							"pressed": "var(--db-pink-bg-inverted-contrast-low-pressed)"
+						}
+					}
+				}
+			},
+			"on": {
+				"basic": {
+					"emphasis-100": {
+						"default": "var(--db-pink-on-bg-basic-emphasis-100-default)",
+						"hovered": "var(--db-pink-on-bg-basic-emphasis-100-hovered)",
+						"pressed": "var(--db-pink-on-bg-basic-emphasis-100-pressed)"
+					},
+					"emphasis-90": {
+						"default": "var(--db-pink-on-bg-basic-emphasis-90-default)",
+						"hovered": "var(--db-pink-on-bg-basic-emphasis-90-hovered)",
+						"pressed": "var(--db-pink-on-bg-basic-emphasis-90-pressed)"
+					},
+					"emphasis-80": {
+						"default": "var(--db-pink-on-bg-basic-emphasis-80-default)",
+						"hovered": "var(--db-pink-on-bg-basic-emphasis-80-hovered)",
+						"pressed": "var(--db-pink-on-bg-basic-emphasis-80-pressed)"
+					},
+					"emphasis-70": {
+						"default": "var(--db-pink-on-bg-basic-emphasis-70-default)",
+						"hovered": "var(--db-pink-on-bg-basic-emphasis-70-hovered)",
+						"pressed": "var(--db-pink-on-bg-basic-emphasis-70-pressed)"
+					},
+					"emphasis-60": {
+						"default": "var(--db-pink-on-bg-basic-emphasis-60-default)",
+						"hovered": "var(--db-pink-on-bg-basic-emphasis-60-hovered)",
+						"pressed": "var(--db-pink-on-bg-basic-emphasis-60-pressed)"
+					},
+					"emphasis-50": {
+						"default": "var(--db-pink-on-bg-basic-emphasis-50-default)",
+						"hovered": "var(--db-pink-on-bg-basic-emphasis-50-hovered)",
+						"pressed": "var(--db-pink-on-bg-basic-emphasis-50-pressed)"
+					}
+				},
+				"inverted": {
+					"default": "var(--db-pink-on-bg-inverted-default)",
+					"hovered": "var(--db-pink-on-bg-inverted-hovered)",
+					"pressed": "var(--db-pink-on-bg-inverted-pressed)"
+				},
+				"origin": {
+					"default": "var(--db-pink-on-origin-default)",
+					"hovered": "var(--db-pink-on-origin-hovered)",
+					"pressed": "var(--db-pink-on-origin-pressed)"
+				}
+			},
+			"origin": {
+				"default": "var(--db-pink-origin-default)",
+				"hovered": "var(--db-pink-origin-hovered)",
+				"pressed": "var(--db-pink-origin-pressed)"
+			}
+		},
+		"red": {
+			"bg": {
+				"basic": {
+					"level-1": {
+						"default": "var(--db-red-bg-basic-level-1-default)",
+						"hovered": "var(--db-red-bg-basic-level-1-hovered)",
+						"pressed": "var(--db-red-bg-basic-level-1-pressed)"
+					},
+					"level-2": {
+						"default": "var(--db-red-bg-basic-level-2-default)",
+						"hovered": "var(--db-red-bg-basic-level-2-hovered)",
+						"pressed": "var(--db-red-bg-basic-level-2-pressed)"
+					},
+					"level-3": {
+						"default": "var(--db-red-bg-basic-level-3-default)",
+						"hovered": "var(--db-red-bg-basic-level-3-hovered)",
+						"pressed": "var(--db-red-bg-basic-level-3-pressed)"
+					},
+					"transparent": {
+						"full": {
+							"default": "var(--db-red-bg-basic-transparent-full-default)",
+							"hovered": "var(--db-red-bg-basic-transparent-full-hovered)",
+							"pressed": "var(--db-red-bg-basic-transparent-full-pressed)"
+						},
+						"semi": {
+							"default": "var(--db-red-bg-basic-transparent-semi-default)",
+							"hovered": "var(--db-red-bg-basic-transparent-semi-hovered)",
+							"pressed": "var(--db-red-bg-basic-transparent-semi-pressed)"
+						}
+					}
+				},
+				"inverted": {
+					"contrast": {
+						"max": {
+							"default": "var(--db-red-bg-inverted-contrast-max-default)",
+							"hovered": "var(--db-red-bg-inverted-contrast-max-hovered)",
+							"pressed": "var(--db-red-bg-inverted-contrast-max-pressed)"
+						},
+						"high": {
+							"default": "var(--db-red-bg-inverted-contrast-high-default)",
+							"hovered": "var(--db-red-bg-inverted-contrast-high-hovered)",
+							"pressed": "var(--db-red-bg-inverted-contrast-high-pressed)"
+						},
+						"low": {
+							"default": "var(--db-red-bg-inverted-contrast-low-default)",
+							"hovered": "var(--db-red-bg-inverted-contrast-low-hovered)",
+							"pressed": "var(--db-red-bg-inverted-contrast-low-pressed)"
+						}
+					}
+				}
+			},
+			"on": {
+				"basic": {
+					"emphasis-100": {
+						"default": "var(--db-red-on-bg-basic-emphasis-100-default)",
+						"hovered": "var(--db-red-on-bg-basic-emphasis-100-hovered)",
+						"pressed": "var(--db-red-on-bg-basic-emphasis-100-pressed)"
+					},
+					"emphasis-90": {
+						"default": "var(--db-red-on-bg-basic-emphasis-90-default)",
+						"hovered": "var(--db-red-on-bg-basic-emphasis-90-hovered)",
+						"pressed": "var(--db-red-on-bg-basic-emphasis-90-pressed)"
+					},
+					"emphasis-80": {
+						"default": "var(--db-red-on-bg-basic-emphasis-80-default)",
+						"hovered": "var(--db-red-on-bg-basic-emphasis-80-hovered)",
+						"pressed": "var(--db-red-on-bg-basic-emphasis-80-pressed)"
+					},
+					"emphasis-70": {
+						"default": "var(--db-red-on-bg-basic-emphasis-70-default)",
+						"hovered": "var(--db-red-on-bg-basic-emphasis-70-hovered)",
+						"pressed": "var(--db-red-on-bg-basic-emphasis-70-pressed)"
+					},
+					"emphasis-60": {
+						"default": "var(--db-red-on-bg-basic-emphasis-60-default)",
+						"hovered": "var(--db-red-on-bg-basic-emphasis-60-hovered)",
+						"pressed": "var(--db-red-on-bg-basic-emphasis-60-pressed)"
+					},
+					"emphasis-50": {
+						"default": "var(--db-red-on-bg-basic-emphasis-50-default)",
+						"hovered": "var(--db-red-on-bg-basic-emphasis-50-hovered)",
+						"pressed": "var(--db-red-on-bg-basic-emphasis-50-pressed)"
+					}
+				},
+				"inverted": {
+					"default": "var(--db-red-on-bg-inverted-default)",
+					"hovered": "var(--db-red-on-bg-inverted-hovered)",
+					"pressed": "var(--db-red-on-bg-inverted-pressed)"
+				},
+				"origin": {
+					"default": "var(--db-red-on-origin-default)",
+					"hovered": "var(--db-red-on-origin-hovered)",
+					"pressed": "var(--db-red-on-origin-pressed)"
+				}
+			},
+			"origin": {
+				"default": "var(--db-red-origin-default)",
+				"hovered": "var(--db-red-origin-hovered)",
+				"pressed": "var(--db-red-origin-pressed)"
+			}
+		},
+		"successful": {
+			"bg": {
+				"basic": {
+					"level-1": {
+						"default": "var(--db-successful-bg-basic-level-1-default)",
+						"hovered": "var(--db-successful-bg-basic-level-1-hovered)",
+						"pressed": "var(--db-successful-bg-basic-level-1-pressed)"
+					},
+					"level-2": {
+						"default": "var(--db-successful-bg-basic-level-2-default)",
+						"hovered": "var(--db-successful-bg-basic-level-2-hovered)",
+						"pressed": "var(--db-successful-bg-basic-level-2-pressed)"
+					},
+					"level-3": {
+						"default": "var(--db-successful-bg-basic-level-3-default)",
+						"hovered": "var(--db-successful-bg-basic-level-3-hovered)",
+						"pressed": "var(--db-successful-bg-basic-level-3-pressed)"
+					},
+					"transparent": {
+						"full": {
+							"default": "var(--db-successful-bg-basic-transparent-full-default)",
+							"hovered": "var(--db-successful-bg-basic-transparent-full-hovered)",
+							"pressed": "var(--db-successful-bg-basic-transparent-full-pressed)"
+						},
+						"semi": {
+							"default": "var(--db-successful-bg-basic-transparent-semi-default)",
+							"hovered": "var(--db-successful-bg-basic-transparent-semi-hovered)",
+							"pressed": "var(--db-successful-bg-basic-transparent-semi-pressed)"
+						}
+					}
+				},
+				"inverted": {
+					"contrast": {
+						"max": {
+							"default": "var(--db-successful-bg-inverted-contrast-max-default)",
+							"hovered": "var(--db-successful-bg-inverted-contrast-max-hovered)",
+							"pressed": "var(--db-successful-bg-inverted-contrast-max-pressed)"
+						},
+						"high": {
+							"default": "var(--db-successful-bg-inverted-contrast-high-default)",
+							"hovered": "var(--db-successful-bg-inverted-contrast-high-hovered)",
+							"pressed": "var(--db-successful-bg-inverted-contrast-high-pressed)"
+						},
+						"low": {
+							"default": "var(--db-successful-bg-inverted-contrast-low-default)",
+							"hovered": "var(--db-successful-bg-inverted-contrast-low-hovered)",
+							"pressed": "var(--db-successful-bg-inverted-contrast-low-pressed)"
+						}
+					}
+				}
+			},
+			"on": {
+				"basic": {
+					"emphasis-100": {
+						"default": "var(--db-successful-on-bg-basic-emphasis-100-default)",
+						"hovered": "var(--db-successful-on-bg-basic-emphasis-100-hovered)",
+						"pressed": "var(--db-successful-on-bg-basic-emphasis-100-pressed)"
+					},
+					"emphasis-90": {
+						"default": "var(--db-successful-on-bg-basic-emphasis-90-default)",
+						"hovered": "var(--db-successful-on-bg-basic-emphasis-90-hovered)",
+						"pressed": "var(--db-successful-on-bg-basic-emphasis-90-pressed)"
+					},
+					"emphasis-80": {
+						"default": "var(--db-successful-on-bg-basic-emphasis-80-default)",
+						"hovered": "var(--db-successful-on-bg-basic-emphasis-80-hovered)",
+						"pressed": "var(--db-successful-on-bg-basic-emphasis-80-pressed)"
+					},
+					"emphasis-70": {
+						"default": "var(--db-successful-on-bg-basic-emphasis-70-default)",
+						"hovered": "var(--db-successful-on-bg-basic-emphasis-70-hovered)",
+						"pressed": "var(--db-successful-on-bg-basic-emphasis-70-pressed)"
+					},
+					"emphasis-60": {
+						"default": "var(--db-successful-on-bg-basic-emphasis-60-default)",
+						"hovered": "var(--db-successful-on-bg-basic-emphasis-60-hovered)",
+						"pressed": "var(--db-successful-on-bg-basic-emphasis-60-pressed)"
+					},
+					"emphasis-50": {
+						"default": "var(--db-successful-on-bg-basic-emphasis-50-default)",
+						"hovered": "var(--db-successful-on-bg-basic-emphasis-50-hovered)",
+						"pressed": "var(--db-successful-on-bg-basic-emphasis-50-pressed)"
+					}
+				},
+				"inverted": {
+					"default": "var(--db-successful-on-bg-inverted-default)",
+					"hovered": "var(--db-successful-on-bg-inverted-hovered)",
+					"pressed": "var(--db-successful-on-bg-inverted-pressed)"
+				},
+				"origin": {
+					"default": "var(--db-successful-on-origin-default)",
+					"hovered": "var(--db-successful-on-origin-hovered)",
+					"pressed": "var(--db-successful-on-origin-pressed)"
+				}
+			},
+			"origin": {
+				"default": "var(--db-successful-origin-default)",
+				"hovered": "var(--db-successful-origin-hovered)",
+				"pressed": "var(--db-successful-origin-pressed)"
+			}
+		},
+		"turquoise": {
+			"bg": {
+				"basic": {
+					"level-1": {
+						"default": "var(--db-turquoise-bg-basic-level-1-default)",
+						"hovered": "var(--db-turquoise-bg-basic-level-1-hovered)",
+						"pressed": "var(--db-turquoise-bg-basic-level-1-pressed)"
+					},
+					"level-2": {
+						"default": "var(--db-turquoise-bg-basic-level-2-default)",
+						"hovered": "var(--db-turquoise-bg-basic-level-2-hovered)",
+						"pressed": "var(--db-turquoise-bg-basic-level-2-pressed)"
+					},
+					"level-3": {
+						"default": "var(--db-turquoise-bg-basic-level-3-default)",
+						"hovered": "var(--db-turquoise-bg-basic-level-3-hovered)",
+						"pressed": "var(--db-turquoise-bg-basic-level-3-pressed)"
+					},
+					"transparent": {
+						"full": {
+							"default": "var(--db-turquoise-bg-basic-transparent-full-default)",
+							"hovered": "var(--db-turquoise-bg-basic-transparent-full-hovered)",
+							"pressed": "var(--db-turquoise-bg-basic-transparent-full-pressed)"
+						},
+						"semi": {
+							"default": "var(--db-turquoise-bg-basic-transparent-semi-default)",
+							"hovered": "var(--db-turquoise-bg-basic-transparent-semi-hovered)",
+							"pressed": "var(--db-turquoise-bg-basic-transparent-semi-pressed)"
+						}
+					}
+				},
+				"inverted": {
+					"contrast": {
+						"max": {
+							"default": "var(--db-turquoise-bg-inverted-contrast-max-default)",
+							"hovered": "var(--db-turquoise-bg-inverted-contrast-max-hovered)",
+							"pressed": "var(--db-turquoise-bg-inverted-contrast-max-pressed)"
+						},
+						"high": {
+							"default": "var(--db-turquoise-bg-inverted-contrast-high-default)",
+							"hovered": "var(--db-turquoise-bg-inverted-contrast-high-hovered)",
+							"pressed": "var(--db-turquoise-bg-inverted-contrast-high-pressed)"
+						},
+						"low": {
+							"default": "var(--db-turquoise-bg-inverted-contrast-low-default)",
+							"hovered": "var(--db-turquoise-bg-inverted-contrast-low-hovered)",
+							"pressed": "var(--db-turquoise-bg-inverted-contrast-low-pressed)"
+						}
+					}
+				}
+			},
+			"on": {
+				"basic": {
+					"emphasis-100": {
+						"default": "var(--db-turquoise-on-bg-basic-emphasis-100-default)",
+						"hovered": "var(--db-turquoise-on-bg-basic-emphasis-100-hovered)",
+						"pressed": "var(--db-turquoise-on-bg-basic-emphasis-100-pressed)"
+					},
+					"emphasis-90": {
+						"default": "var(--db-turquoise-on-bg-basic-emphasis-90-default)",
+						"hovered": "var(--db-turquoise-on-bg-basic-emphasis-90-hovered)",
+						"pressed": "var(--db-turquoise-on-bg-basic-emphasis-90-pressed)"
+					},
+					"emphasis-80": {
+						"default": "var(--db-turquoise-on-bg-basic-emphasis-80-default)",
+						"hovered": "var(--db-turquoise-on-bg-basic-emphasis-80-hovered)",
+						"pressed": "var(--db-turquoise-on-bg-basic-emphasis-80-pressed)"
+					},
+					"emphasis-70": {
+						"default": "var(--db-turquoise-on-bg-basic-emphasis-70-default)",
+						"hovered": "var(--db-turquoise-on-bg-basic-emphasis-70-hovered)",
+						"pressed": "var(--db-turquoise-on-bg-basic-emphasis-70-pressed)"
+					},
+					"emphasis-60": {
+						"default": "var(--db-turquoise-on-bg-basic-emphasis-60-default)",
+						"hovered": "var(--db-turquoise-on-bg-basic-emphasis-60-hovered)",
+						"pressed": "var(--db-turquoise-on-bg-basic-emphasis-60-pressed)"
+					},
+					"emphasis-50": {
+						"default": "var(--db-turquoise-on-bg-basic-emphasis-50-default)",
+						"hovered": "var(--db-turquoise-on-bg-basic-emphasis-50-hovered)",
+						"pressed": "var(--db-turquoise-on-bg-basic-emphasis-50-pressed)"
+					}
+				},
+				"inverted": {
+					"default": "var(--db-turquoise-on-bg-inverted-default)",
+					"hovered": "var(--db-turquoise-on-bg-inverted-hovered)",
+					"pressed": "var(--db-turquoise-on-bg-inverted-pressed)"
+				},
+				"origin": {
+					"default": "var(--db-turquoise-on-origin-default)",
+					"hovered": "var(--db-turquoise-on-origin-hovered)",
+					"pressed": "var(--db-turquoise-on-origin-pressed)"
+				}
+			},
+			"origin": {
+				"default": "var(--db-turquoise-origin-default)",
+				"hovered": "var(--db-turquoise-origin-hovered)",
+				"pressed": "var(--db-turquoise-origin-pressed)"
+			}
+		},
+		"violet": {
+			"bg": {
+				"basic": {
+					"level-1": {
+						"default": "var(--db-violet-bg-basic-level-1-default)",
+						"hovered": "var(--db-violet-bg-basic-level-1-hovered)",
+						"pressed": "var(--db-violet-bg-basic-level-1-pressed)"
+					},
+					"level-2": {
+						"default": "var(--db-violet-bg-basic-level-2-default)",
+						"hovered": "var(--db-violet-bg-basic-level-2-hovered)",
+						"pressed": "var(--db-violet-bg-basic-level-2-pressed)"
+					},
+					"level-3": {
+						"default": "var(--db-violet-bg-basic-level-3-default)",
+						"hovered": "var(--db-violet-bg-basic-level-3-hovered)",
+						"pressed": "var(--db-violet-bg-basic-level-3-pressed)"
+					},
+					"transparent": {
+						"full": {
+							"default": "var(--db-violet-bg-basic-transparent-full-default)",
+							"hovered": "var(--db-violet-bg-basic-transparent-full-hovered)",
+							"pressed": "var(--db-violet-bg-basic-transparent-full-pressed)"
+						},
+						"semi": {
+							"default": "var(--db-violet-bg-basic-transparent-semi-default)",
+							"hovered": "var(--db-violet-bg-basic-transparent-semi-hovered)",
+							"pressed": "var(--db-violet-bg-basic-transparent-semi-pressed)"
+						}
+					}
+				},
+				"inverted": {
+					"contrast": {
+						"max": {
+							"default": "var(--db-violet-bg-inverted-contrast-max-default)",
+							"hovered": "var(--db-violet-bg-inverted-contrast-max-hovered)",
+							"pressed": "var(--db-violet-bg-inverted-contrast-max-pressed)"
+						},
+						"high": {
+							"default": "var(--db-violet-bg-inverted-contrast-high-default)",
+							"hovered": "var(--db-violet-bg-inverted-contrast-high-hovered)",
+							"pressed": "var(--db-violet-bg-inverted-contrast-high-pressed)"
+						},
+						"low": {
+							"default": "var(--db-violet-bg-inverted-contrast-low-default)",
+							"hovered": "var(--db-violet-bg-inverted-contrast-low-hovered)",
+							"pressed": "var(--db-violet-bg-inverted-contrast-low-pressed)"
+						}
+					}
+				}
+			},
+			"on": {
+				"basic": {
+					"emphasis-100": {
+						"default": "var(--db-violet-on-bg-basic-emphasis-100-default)",
+						"hovered": "var(--db-violet-on-bg-basic-emphasis-100-hovered)",
+						"pressed": "var(--db-violet-on-bg-basic-emphasis-100-pressed)"
+					},
+					"emphasis-90": {
+						"default": "var(--db-violet-on-bg-basic-emphasis-90-default)",
+						"hovered": "var(--db-violet-on-bg-basic-emphasis-90-hovered)",
+						"pressed": "var(--db-violet-on-bg-basic-emphasis-90-pressed)"
+					},
+					"emphasis-80": {
+						"default": "var(--db-violet-on-bg-basic-emphasis-80-default)",
+						"hovered": "var(--db-violet-on-bg-basic-emphasis-80-hovered)",
+						"pressed": "var(--db-violet-on-bg-basic-emphasis-80-pressed)"
+					},
+					"emphasis-70": {
+						"default": "var(--db-violet-on-bg-basic-emphasis-70-default)",
+						"hovered": "var(--db-violet-on-bg-basic-emphasis-70-hovered)",
+						"pressed": "var(--db-violet-on-bg-basic-emphasis-70-pressed)"
+					},
+					"emphasis-60": {
+						"default": "var(--db-violet-on-bg-basic-emphasis-60-default)",
+						"hovered": "var(--db-violet-on-bg-basic-emphasis-60-hovered)",
+						"pressed": "var(--db-violet-on-bg-basic-emphasis-60-pressed)"
+					},
+					"emphasis-50": {
+						"default": "var(--db-violet-on-bg-basic-emphasis-50-default)",
+						"hovered": "var(--db-violet-on-bg-basic-emphasis-50-hovered)",
+						"pressed": "var(--db-violet-on-bg-basic-emphasis-50-pressed)"
+					}
+				},
+				"inverted": {
+					"default": "var(--db-violet-on-bg-inverted-default)",
+					"hovered": "var(--db-violet-on-bg-inverted-hovered)",
+					"pressed": "var(--db-violet-on-bg-inverted-pressed)"
+				},
+				"origin": {
+					"default": "var(--db-violet-on-origin-default)",
+					"hovered": "var(--db-violet-on-origin-hovered)",
+					"pressed": "var(--db-violet-on-origin-pressed)"
+				}
+			},
+			"origin": {
+				"default": "var(--db-violet-origin-default)",
+				"hovered": "var(--db-violet-origin-hovered)",
+				"pressed": "var(--db-violet-origin-pressed)"
+			}
+		},
+		"warning": {
+			"bg": {
+				"basic": {
+					"level-1": {
+						"default": "var(--db-warning-bg-basic-level-1-default)",
+						"hovered": "var(--db-warning-bg-basic-level-1-hovered)",
+						"pressed": "var(--db-warning-bg-basic-level-1-pressed)"
+					},
+					"level-2": {
+						"default": "var(--db-warning-bg-basic-level-2-default)",
+						"hovered": "var(--db-warning-bg-basic-level-2-hovered)",
+						"pressed": "var(--db-warning-bg-basic-level-2-pressed)"
+					},
+					"level-3": {
+						"default": "var(--db-warning-bg-basic-level-3-default)",
+						"hovered": "var(--db-warning-bg-basic-level-3-hovered)",
+						"pressed": "var(--db-warning-bg-basic-level-3-pressed)"
+					},
+					"transparent": {
+						"full": {
+							"default": "var(--db-warning-bg-basic-transparent-full-default)",
+							"hovered": "var(--db-warning-bg-basic-transparent-full-hovered)",
+							"pressed": "var(--db-warning-bg-basic-transparent-full-pressed)"
+						},
+						"semi": {
+							"default": "var(--db-warning-bg-basic-transparent-semi-default)",
+							"hovered": "var(--db-warning-bg-basic-transparent-semi-hovered)",
+							"pressed": "var(--db-warning-bg-basic-transparent-semi-pressed)"
+						}
+					}
+				},
+				"inverted": {
+					"contrast": {
+						"max": {
+							"default": "var(--db-warning-bg-inverted-contrast-max-default)",
+							"hovered": "var(--db-warning-bg-inverted-contrast-max-hovered)",
+							"pressed": "var(--db-warning-bg-inverted-contrast-max-pressed)"
+						},
+						"high": {
+							"default": "var(--db-warning-bg-inverted-contrast-high-default)",
+							"hovered": "var(--db-warning-bg-inverted-contrast-high-hovered)",
+							"pressed": "var(--db-warning-bg-inverted-contrast-high-pressed)"
+						},
+						"low": {
+							"default": "var(--db-warning-bg-inverted-contrast-low-default)",
+							"hovered": "var(--db-warning-bg-inverted-contrast-low-hovered)",
+							"pressed": "var(--db-warning-bg-inverted-contrast-low-pressed)"
+						}
+					}
+				}
+			},
+			"on": {
+				"basic": {
+					"emphasis-100": {
+						"default": "var(--db-warning-on-bg-basic-emphasis-100-default)",
+						"hovered": "var(--db-warning-on-bg-basic-emphasis-100-hovered)",
+						"pressed": "var(--db-warning-on-bg-basic-emphasis-100-pressed)"
+					},
+					"emphasis-90": {
+						"default": "var(--db-warning-on-bg-basic-emphasis-90-default)",
+						"hovered": "var(--db-warning-on-bg-basic-emphasis-90-hovered)",
+						"pressed": "var(--db-warning-on-bg-basic-emphasis-90-pressed)"
+					},
+					"emphasis-80": {
+						"default": "var(--db-warning-on-bg-basic-emphasis-80-default)",
+						"hovered": "var(--db-warning-on-bg-basic-emphasis-80-hovered)",
+						"pressed": "var(--db-warning-on-bg-basic-emphasis-80-pressed)"
+					},
+					"emphasis-70": {
+						"default": "var(--db-warning-on-bg-basic-emphasis-70-default)",
+						"hovered": "var(--db-warning-on-bg-basic-emphasis-70-hovered)",
+						"pressed": "var(--db-warning-on-bg-basic-emphasis-70-pressed)"
+					},
+					"emphasis-60": {
+						"default": "var(--db-warning-on-bg-basic-emphasis-60-default)",
+						"hovered": "var(--db-warning-on-bg-basic-emphasis-60-hovered)",
+						"pressed": "var(--db-warning-on-bg-basic-emphasis-60-pressed)"
+					},
+					"emphasis-50": {
+						"default": "var(--db-warning-on-bg-basic-emphasis-50-default)",
+						"hovered": "var(--db-warning-on-bg-basic-emphasis-50-hovered)",
+						"pressed": "var(--db-warning-on-bg-basic-emphasis-50-pressed)"
+					}
+				},
+				"inverted": {
+					"default": "var(--db-warning-on-bg-inverted-default)",
+					"hovered": "var(--db-warning-on-bg-inverted-hovered)",
+					"pressed": "var(--db-warning-on-bg-inverted-pressed)"
+				},
+				"origin": {
+					"default": "var(--db-warning-on-origin-default)",
+					"hovered": "var(--db-warning-on-origin-hovered)",
+					"pressed": "var(--db-warning-on-origin-pressed)"
+				}
+			},
+			"origin": {
+				"default": "var(--db-warning-origin-default)",
+				"hovered": "var(--db-warning-origin-hovered)",
+				"pressed": "var(--db-warning-origin-pressed)"
+			}
+		},
+		"yellow": {
+			"bg": {
+				"basic": {
+					"level-1": {
+						"default": "var(--db-yellow-bg-basic-level-1-default)",
+						"hovered": "var(--db-yellow-bg-basic-level-1-hovered)",
+						"pressed": "var(--db-yellow-bg-basic-level-1-pressed)"
+					},
+					"level-2": {
+						"default": "var(--db-yellow-bg-basic-level-2-default)",
+						"hovered": "var(--db-yellow-bg-basic-level-2-hovered)",
+						"pressed": "var(--db-yellow-bg-basic-level-2-pressed)"
+					},
+					"level-3": {
+						"default": "var(--db-yellow-bg-basic-level-3-default)",
+						"hovered": "var(--db-yellow-bg-basic-level-3-hovered)",
+						"pressed": "var(--db-yellow-bg-basic-level-3-pressed)"
+					},
+					"transparent": {
+						"full": {
+							"default": "var(--db-yellow-bg-basic-transparent-full-default)",
+							"hovered": "var(--db-yellow-bg-basic-transparent-full-hovered)",
+							"pressed": "var(--db-yellow-bg-basic-transparent-full-pressed)"
+						},
+						"semi": {
+							"default": "var(--db-yellow-bg-basic-transparent-semi-default)",
+							"hovered": "var(--db-yellow-bg-basic-transparent-semi-hovered)",
+							"pressed": "var(--db-yellow-bg-basic-transparent-semi-pressed)"
+						}
+					}
+				},
+				"inverted": {
+					"contrast": {
+						"max": {
+							"default": "var(--db-yellow-bg-inverted-contrast-max-default)",
+							"hovered": "var(--db-yellow-bg-inverted-contrast-max-hovered)",
+							"pressed": "var(--db-yellow-bg-inverted-contrast-max-pressed)"
+						},
+						"high": {
+							"default": "var(--db-yellow-bg-inverted-contrast-high-default)",
+							"hovered": "var(--db-yellow-bg-inverted-contrast-high-hovered)",
+							"pressed": "var(--db-yellow-bg-inverted-contrast-high-pressed)"
+						},
+						"low": {
+							"default": "var(--db-yellow-bg-inverted-contrast-low-default)",
+							"hovered": "var(--db-yellow-bg-inverted-contrast-low-hovered)",
+							"pressed": "var(--db-yellow-bg-inverted-contrast-low-pressed)"
+						}
+					}
+				}
+			},
+			"on": {
+				"basic": {
+					"emphasis-100": {
+						"default": "var(--db-yellow-on-bg-basic-emphasis-100-default)",
+						"hovered": "var(--db-yellow-on-bg-basic-emphasis-100-hovered)",
+						"pressed": "var(--db-yellow-on-bg-basic-emphasis-100-pressed)"
+					},
+					"emphasis-90": {
+						"default": "var(--db-yellow-on-bg-basic-emphasis-90-default)",
+						"hovered": "var(--db-yellow-on-bg-basic-emphasis-90-hovered)",
+						"pressed": "var(--db-yellow-on-bg-basic-emphasis-90-pressed)"
+					},
+					"emphasis-80": {
+						"default": "var(--db-yellow-on-bg-basic-emphasis-80-default)",
+						"hovered": "var(--db-yellow-on-bg-basic-emphasis-80-hovered)",
+						"pressed": "var(--db-yellow-on-bg-basic-emphasis-80-pressed)"
+					},
+					"emphasis-70": {
+						"default": "var(--db-yellow-on-bg-basic-emphasis-70-default)",
+						"hovered": "var(--db-yellow-on-bg-basic-emphasis-70-hovered)",
+						"pressed": "var(--db-yellow-on-bg-basic-emphasis-70-pressed)"
+					},
+					"emphasis-60": {
+						"default": "var(--db-yellow-on-bg-basic-emphasis-60-default)",
+						"hovered": "var(--db-yellow-on-bg-basic-emphasis-60-hovered)",
+						"pressed": "var(--db-yellow-on-bg-basic-emphasis-60-pressed)"
+					},
+					"emphasis-50": {
+						"default": "var(--db-yellow-on-bg-basic-emphasis-50-default)",
+						"hovered": "var(--db-yellow-on-bg-basic-emphasis-50-hovered)",
+						"pressed": "var(--db-yellow-on-bg-basic-emphasis-50-pressed)"
+					}
+				},
+				"inverted": {
+					"default": "var(--db-yellow-on-bg-inverted-default)",
+					"hovered": "var(--db-yellow-on-bg-inverted-hovered)",
+					"pressed": "var(--db-yellow-on-bg-inverted-pressed)"
+				},
+				"origin": {
+					"default": "var(--db-yellow-on-origin-default)",
+					"hovered": "var(--db-yellow-on-origin-hovered)",
+					"pressed": "var(--db-yellow-on-origin-pressed)"
+				}
+			},
+			"origin": {
+				"default": "var(--db-yellow-origin-default)",
+				"hovered": "var(--db-yellow-origin-hovered)",
+				"pressed": "var(--db-yellow-origin-pressed)"
+			}
 		}
 	},
 	"fontFamily": {
