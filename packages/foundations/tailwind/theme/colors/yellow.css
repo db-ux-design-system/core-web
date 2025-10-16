@@ -1,0 +1,160 @@
+/* The prefix for variables are predefined by Tailwind, stylelint would throw an error */
+/* stylelint-disable-next-line scss/at-rule-no-unknown */
+@theme {
+	/* stylelint-disable-next-line custom-property-pattern */
+	--color-*: initial; /* 	Color utilities like */
+
+	/* Basic-Level */
+	--color-yellow-bg-basic-level-1-default: var(
+		--db-yellow-bg-basic-level-1-default
+	);
+	--color-yellow-bg-basic-level-1-hovered: var(
+		--db-yellow-bg-basic-level-1-hovered
+	);
+	--color-yellow-bg-basic-level-1-pressed: var(
+		--db-yellow-bg-basic-level-1-pressed
+	);
+	--color-yellow-bg-basic-level-2-default: var(
+		--db-yellow-bg-basic-level-2-default
+	);
+	--color-yellow-bg-basic-level-2-hovered: var(
+		--db-yellow-bg-basic-level-2-hovered
+	);
+	--color-yellow-bg-basic-level-2-pressed: var(
+		--db-yellow-bg-basic-level-2-pressed
+	);
+	--color-yellow-bg-basic-level-3-default: var(
+		--db-yellow-bg-basic-level-3-default
+	);
+	--color-yellow-bg-basic-level-3-hovered: var(
+		--db-yellow-bg-basic-level-3-hovered
+	);
+	--color-yellow-bg-basic-level-3-pressed: var(
+		--db-yellow-bg-basic-level-3-pressed
+	);
+
+	/* Transparent */
+	--color-yellow-bg-basic-transparent-full-default: var(
+		--db-yellow-bg-basic-transparent-full-default
+	);
+	--color-yellow-bg-basic-transparent-semi-default: var(
+		--db-yellow-bg-basic-transparent-semi-default
+	);
+	--color-yellow-bg-basic-transparent-full-hovered: var(
+		--db-yellow-bg-basic-transparent-full-hovered
+	);
+	--color-yellow-bg-basic-transparent-full-pressed: var(
+		--db-yellow-bg-basic-transparent-full-pressed
+	);
+	--color-yellow-bg-basic-transparent-semi-hovered: var(
+		--db-yellow-bg-basic-transparent-semi-hovered
+	);
+	--color-yellow-bg-basic-transparent-semi-pressed: var(
+		--db-yellow-bg-basic-transparent-semi-pressed
+	);
+
+	/* Inverted */
+	--color-yellow-bg-inverted-contrast-max-default: var(
+		--db-yellow-bg-inverted-contrast-max-default
+	);
+	--color-yellow-bg-inverted-contrast-max-hovered: var(
+		--db-yellow-bg-inverted-contrast-max-hovered
+	);
+	--color-yellow-bg-inverted-contrast-max-pressed: var(
+		--db-yellow-bg-inverted-contrast-max-pressed
+	);
+	--color-yellow-bg-inverted-contrast-high-default: var(
+		--db-yellow-bg-inverted-contrast-high-default
+	);
+	--color-yellow-bg-inverted-contrast-high-hovered: var(
+		--db-yellow-bg-inverted-contrast-high-hovered
+	);
+	--color-yellow-bg-inverted-contrast-high-pressed: var(
+		--db-yellow-bg-inverted-contrast-high-pressed
+	);
+	--color-yellow-bg-inverted-contrast-low-default: var(
+		--db-yellow-bg-inverted-contrast-low-default
+	);
+	--color-yellow-bg-inverted-contrast-low-hovered: var(
+		--db-yellow-bg-inverted-contrast-low-hovered
+	);
+	--color-yellow-bg-inverted-contrast-low-pressed: var(
+		--db-yellow-bg-inverted-contrast-low-pressed
+	);
+
+	/* On Colors */
+
+	--color-yellow-on-bg-basic-emphasis-100-default: var(
+		--db-yellow-on-bg-basic-emphasis-100-default
+	);
+	--color-yellow-on-bg-basic-emphasis-100-hovered: var(
+		--db-yellow-on-bg-basic-emphasis-100-hovered
+	);
+	--color-yellow-on-bg-basic-emphasis-100-pressed: var(
+		--db-yellow-on-bg-basic-emphasis-100-pressed
+	);
+	--color-yellow-on-bg-basic-emphasis-90-default: var(
+		--db-yellow-on-bg-basic-emphasis-90-default
+	);
+	--color-yellow-on-bg-basic-emphasis-90-hovered: var(
+		--db-yellow-on-bg-basic-emphasis-90-hovered
+	);
+	--color-yellow-on-bg-basic-emphasis-90-pressed: var(
+		--db-yellow-on-bg-basic-emphasis-90-pressed
+	);
+	--color-yellow-on-bg-basic-emphasis-80-default: var(
+		--db-yellow-on-bg-basic-emphasis-80-default
+	);
+	--color-yellow-on-bg-basic-emphasis-80-hovered: var(
+		--db-yellow-on-bg-basic-emphasis-80-hovered
+	);
+	--color-yellow-on-bg-basic-emphasis-80-pressed: var(
+		--db-yellow-on-bg-basic-emphasis-80-pressed
+	);
+	--color-yellow-on-bg-basic-emphasis-70-default: var(
+		--db-yellow-on-bg-basic-emphasis-70-default
+	);
+	--color-yellow-on-bg-basic-emphasis-70-hovered: var(
+		--db-yellow-on-bg-basic-emphasis-70-hovered
+	);
+	--color-yellow-on-bg-basic-emphasis-70-pressed: var(
+		--db-yellow-on-bg-basic-emphasis-70-pressed
+	);
+	--color-yellow-on-bg-basic-emphasis-60-default: var(
+		--db-yellow-on-bg-basic-emphasis-60-default
+	);
+	--color-yellow-on-bg-basic-emphasis-60-hovered: var(
+		--db-yellow-on-bg-basic-emphasis-60-hovered
+	);
+	--color-yellow-on-bg-basic-emphasis-60-pressed: var(
+		--db-yellow-on-bg-basic-emphasis-60-pressed
+	);
+	--color-yellow-on-bg-basic-emphasis-50-default: var(
+		--db-yellow-on-bg-basic-emphasis-50-default
+	);
+	--color-yellow-on-bg-basic-emphasis-50-hovered: var(
+		--db-yellow-on-bg-basic-emphasis-50-hovered
+	);
+	--color-yellow-on-bg-basic-emphasis-50-pressed: var(
+		--db-yellow-on-bg-basic-emphasis-50-pressed
+	);
+
+	/* On Inverted */
+	--color-yellow-on-bg-inverted-default: var(
+		--db-yellow-on-bg-inverted-default
+	);
+	--color-yellow-on-bg-inverted-hovered: var(
+		--db-yellow-on-bg-inverted-hovered
+	);
+	--color-yellow-on-bg-inverted-pressed: var(
+		--db-yellow-on-bg-inverted-pressed
+	);
+
+	/* On Origin */
+	--color-yellow-on-origin-default: var(--db-yellow-on-origin-default);
+	--color-yellow-on-origin-hovered: var(--db-yellow-on-origin-hovered);
+	--color-yellow-on-origin-pressed: var(--db-yellow-on-origin-pressed);
+	--color-yellow-origin-default: var(--db-yellow-origin-default);
+	--color-yellow-origin-hovered: var(--db-yellow-origin-hovered);
+	--color-yellow-origin-pressed: var(--db-yellow-origin-pressed);
+}
