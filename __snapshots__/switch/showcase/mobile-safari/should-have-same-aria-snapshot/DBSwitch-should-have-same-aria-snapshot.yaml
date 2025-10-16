@@ -25,17 +25,17 @@
   - text: "True"
   - status
   - link "Visual Aid"
-  - switch "(Default) False + Unchecked"
-  - text: (Default) False + Unchecked
+  - switch "(Default) False (Unchecked)"
+  - text: (Default) False (Unchecked)
   - status
-  - switch "(Default) False + Checked" [checked]
-  - text: (Default) False + Checked
+  - switch "(Default) False (Checked)" [checked]
+  - text: (Default) False (Checked)
   - status
-  - switch "True + Unchecked"
-  - text: True + Unchecked
+  - switch "True (Unchecked)"
+  - text: True (Unchecked)
   - status
-  - switch "True + Checked" [checked]
-  - text: True + Checked
+  - switch "True (Checked)" [checked]
+  - text: True (Checked)
   - status
   - link "Size"
   - switch "(Default) Medium"
