@@ -1,3 +1,5 @@
 - text: Label
-- textbox "Label": Test
+- textbox "Label":
+  - /placeholder: " "
+  - text: Test
 - status
