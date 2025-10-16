@@ -99,7 +99,7 @@ export type DBCustomSelectDefaultProps = {
 	/**
 	 * Overwrite the default aria-label (props.label) for the custom-select-list
 	 */
-	ariaListLabel?: string;
+	listLabel?: string;
 
 	/**
 	 * Label for the clear selection button
@@ -265,7 +265,7 @@ export type DBCustomSelectDefaultState = {
 	getNativeSelectValue: () => string;
 	getOptionLabel: (option: CustomSelectOptionType) => string;
 	getOptionChecked: (value?: string) => boolean;
-	getTagRemoveLabel: (index: number) => string;
+	getTagRemoveLabel: (option: CustomSelectOptionType) => string;
 	selectAllEnabled: boolean;
 	searchEnabled: boolean;
 	amountOptions: number;

@@ -32,6 +32,13 @@ jobs:
       - name: 🔄 Init Node & NPM cache
         uses: ./.github/actions/npm-cache
 
+      - name: 🧬 Generate a token
+        id: generate-token
+        uses: actions/create-github-app-token@v2
+        with:
+          app-id: ${{ vars.AUTO_MERGE_APP_ID }}
+          private-key: ${{ secrets.AUTO_MERGE_PRIVATE_KEY }}
+
       # Let changesets open/update the "Version Packages" PR, commit bumped versions and create GitHub Releases/tags
       - name: 🧩 Changesets Action
         id: changesets
@@ -39,33 +46,14 @@ jobs:
         with:
           commit: "chore(release): version packages"
           title: "chore(release): version packages"
+          version: npm run ci:version
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          # Ensure Husky hooks (e.g., branch name patterns) don't block CI commits
-          HUSKY: "0"
-          CI: "true"
+          GITHUB_TOKEN: ${{ steps.generate-token.outputs.token }}
+          HUSKY: 0 # Disable Husky hooks in CI
 
       - name: 🆙 Publish
         if: steps.changesets.outputs.hasChangesets == 'false'
         run: |
-          VERSION=$(jq -r .version ./packages/foundations/package.json)
-          TAG="v$VERSION"
-          # Check if tag exists
-          if git tag --list "$TAG" | grep -q "$TAG"; then
-            echo "Tag $TAG already exists. Skipping publish creation."
-          else
-            gh tag create "$TAG" --notes "Release $TAG"
-
-            # Extract latest changes from CHANGELOG.md (between first and second h2)
-            NOTES=$(awk '/^## /{i++} i==2{exit} i==1{print}' CHANGELOG.md | sed '1d')
-            # Check if release exists
-            if gh release view "$TAG" > /dev/null 2>&1; then
-              echo "Release $TAG already exists. Skipping release creation."
-            else
-              gh release create "$TAG" --notes "$NOTES"
-            fi
-          fi
+          npx --no tsx scripts/github/changesets/publish.ts
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          HUSKY: "0"
-          CI: "true"
+          GITHUB_TOKEN: ${{ steps.generate-token.outputs.token }}

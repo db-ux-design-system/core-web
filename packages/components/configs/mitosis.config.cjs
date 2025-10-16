@@ -7,7 +7,8 @@ const stencil = require('./stencil/index.cjs');
  * @type {import('@builder.io/mitosis').MitosisConfig}
  */
 module.exports = {
-	files: 'src/**',
+	files: 'src/**/*.{lite.tsx,ts}',
+	exclude: ['src/**/*.agent.lite.tsx'],
 	targets: ['angular', 'vue', 'react', 'stencil'],
 	dest: '../../output',
 	commonOptions: {

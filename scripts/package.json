@@ -10,8 +10,13 @@
   "license": "Apache-2.0",
   "private": true,
   "scripts": {
-    "build": "npm-run-all build:foundations build:components build:migration build:stylelint",
+    "agent": "npm-run-all -p agent:00_*",
+    "agent:00_extract-css": "tsx documentation/extract-css-vars.ts",
+    "agent:00_mitosis-agent": "npm run generate:agent --workspace=@db-ux/core-components",
+    "agent:x00_typedoc": "typedoc --options typedoc.json --tsconfig tsconfig.typedoc.json",
+    "build": "npm-run-all build:foundations build:components -p build:migration build:stylelint build:agent-cli",
     "build-outputs": "npm-run-all --parallel build-outputs:*",
+    "build-outputs:agent-cli": "npm run copy-build --workspace=@db-ux/agent-cli",
     "build-outputs:components": "npm run copy-output --workspace=@db-ux/core-components",
     "build-outputs:foundations": "npm run copy-build --workspace=@db-ux/core-foundations",
     "build-outputs:migration": "npm run copy-build --workspace=@db-ux/core-migration",
@@ -30,6 +35,7 @@
     "build-showcases:react": "npm run build --workspace=react-showcase",
     "build-showcases:stencil": "npm run build --workspace=stencil-showcase",
     "build-showcases:vue": "npm run build --workspace=vue-showcase",
+    "build:agent-cli": "npm run build --workspace=@db-ux/agent-cli",
     "build:components": "npm run build --workspace=@db-ux/core-components",
     "build:foundations": "npm run build --workspace=@db-ux/core-foundations",
     "build:migration": "npm run build --workspace=@db-ux/core-migration",
@@ -41,6 +47,8 @@
     "dev:sass": "npm run dev:scss --workspace=@db-ux/core-components",
     "dev:stencil-components": "npm run dev:stencil --workspace=@db-ux/core-components",
     "dev:vue-components": "npm run dev:vue --workspace=@db-ux/core-components",
+    "postagent": "tsx documentation/merge-component-docs.ts",
+    "pretest:docs-file-references": "npm run build",
     "rm-builds:components-build": "rimraf ../packages/components/build",
     "rm-builds:dist": "rimraf --glob showcases/**/dist",
     "rm-builds:foundations-build": "rimraf ../packages/foundations/build",
@@ -70,18 +78,27 @@
     "start-showcase:vue": "npm run dev --workspace=vue-showcase",
     "start:foundations": "npm run start --workspace=@db-ux/core-foundations",
     "test": "npm-run-all --parallel test:*",
+    "test:agent-cli": "npm run test --workspace=@db-ux/agent-cli",
+    "test:docs-file-references": "node check-docs.js",
     "test:migration": "npm run test --workspace=@db-ux/core-migration",
     "test:scripts": "vitest run --config vitest.config.ts",
     "update:icon-fonts": "npm-run-all generate:icon-fonts generate:icon-types"
   },
+  "dependencies": {
+    "postcss-scss": "^4.0.9"
+  },
   "devDependencies": {
     "@inquirer/prompts": "7.8.6",
-    "dotenv": "17.2.2",
+    "dotenv": "17.2.3",
     "find-versions": "6.0.0",
     "glob": "11.0.3",
     "inquirer": "12.9.6",
     "replace-in-file": "8.3.0",
+    "sassdoc": "2.7.4",
     "tar": "7.5.1",
+    "typedoc": "^0.28.14",
+    "typedoc-plugin-markdown": "^4.6.4",
+    "typedoc-plugin-merge-modules": "^7.0.0",
     "vitest": "3.2.4"
   }
 }
