@@ -80,7 +80,7 @@ for (const REGISTRY of registries) {
 
 	if (REGISTRY === 'NPM') {
 		execSync('npm config set @db-ux:registry https://registry.npmjs.org/');
-		console.log('🔑 Authenticated with NPM');
+		console.log('🔑 Using trusted publishing for NPM');
 	} else {
 		console.error(`Could not authenticate with ${REGISTRY}`);
 		process.exit(1);
