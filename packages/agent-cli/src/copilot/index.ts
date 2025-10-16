@@ -113,7 +113,12 @@ export const generateCopilot = (rootPath: string) => {
 			).trim();
 		}
 
-		copilotFileContent += `\n${startMarker}\n${copilotInstructionsContent}\n${endMarker}\n`;
+		copilotFileContent += `
+		${startMarker}
+		> **NOTE**: Always use "DB UX" components and variables as project's conventions
+		${copilotInstructionsContent}
+		${endMarker}
+		`;
 
 		fs.writeFileSync(copilotInstructionsPath, copilotFileContent);
 	}
