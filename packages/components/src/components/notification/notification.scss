@@ -10,6 +10,7 @@
 @use "./notification-grid-default";
 @use "./notification-grid-overlay";
 @use "./notification-grid-non-overlay";
+@use "./notification-grid-layout-link-variant-inline";
 
 %ugly-line-height-workarounds {
 	// resets line-height to smaller height based on timestamp
@@ -27,6 +28,7 @@
 .db-notification {
 	@extend %component-border;
 	@extend %grid-layout-default;
+	@extend %grid-layout-link-variant-inline;
 	@extend %ugly-line-height-workarounds;
 	@include display.display(grid);
 
@@ -127,63 +129,6 @@
 		@include icons.to-filled-icon;
 
 		grid-area: icon;
-	}
-
-	// has link inline or overlay
-	&:has(a) {
-		&:not([data-link-variant="block"]),
-		{
-			// 1. only content (min. requirement)
-			grid-template-areas: "content link";
-			grid-template-columns: 1fr min-content;
-
-			&:has(.db-button) {
-				grid-template-columns: 1fr min-content min-content;
-				grid-template-areas: "content link close";
-			}
-
-			// 2. headline
-			&:has(header) {
-				grid-template-columns: 1fr min-content;
-				grid-template-areas:
-					"head link"
-					"content content";
-
-				&:has(.db-button) {
-					grid-template-columns: 1fr min-content min-content;
-					grid-template-areas:
-						"head link close"
-						"content content content";
-				}
-			}
-
-			// 3. icon or img
-			&[data-icon],
-			&[data-semantic]:not([data-semantic="adaptive"]),
-			&:has(img) {
-				grid-template-areas: "icon content link";
-				grid-template-columns: min-content 1fr min-content;
-
-				&:has(.db-button) {
-					grid-template-columns: min-content 1fr min-content min-content;
-					grid-template-areas: "icon content link close";
-				}
-
-				&:has(header) {
-					grid-template-columns: min-content 1fr min-content;
-					grid-template-areas:
-						"icon head link"
-						"icon content content";
-
-					&:has(.db-button) {
-						grid-template-columns: min-content 1fr min-content min-content;
-						grid-template-areas:
-							"icon head link close"
-							"icon content content content";
-					}
-				}
-			}
-		}
 	}
 
 	&[data-variant="overlay"] {
