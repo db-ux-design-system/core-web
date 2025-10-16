@@ -190,11 +190,6 @@
 		@extend %grid-layout-variant-overlay;
 
 		box-shadow: variables.$db-elevation-md;
-
-		// Apply block link layout for overlay notifications with block links
-		&[data-link-variant="block"] {
-			@extend %grid-layout-variant-not-overlay;
-		}
 	}
 
 	&[data-link-variant="block"] {
