@@ -74,3 +74,4 @@ showcases/patternhub/public/iframe-resizer/*
 /output/**/agent/
 /packages/agent-cli/test/.github/copilot-instructions.md
 /core-web.iml
+/build-storybooks/

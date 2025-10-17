@@ -5,17 +5,155 @@ permissions:
 
 on:
   workflow_call:
-
+    inputs:
+      release:
+        required: false
+        default: false
+        type: boolean
+    outputs:
+      branchName:
+        description: "Branch or Tag name"
+        value: ${{ jobs.init.outputs.name }}
+      baseUrl:
+        description: "Base URL for the repository"
+        value: ${{ jobs.init.outputs.baseUrl }}
+      repoName:
+        description: "Repository name"
+        value: ${{ jobs.init.outputs.repoName }}
+      repoOwner:
+        description: "Repository owner"
+        value: ${{ jobs.init.outputs.repoOwner }}
+      playwrightVersion:
+        description: "Current playwright version"
+        value: ${{ jobs.init.outputs.version }}
+      test-ally:
+        description: "If aria-snapshots are changed"
+        value: ${{ jobs.init.outputs.test-ally }}
+      # Publish outputs
+      release:
+        description: "If the current tag is a release"
+        value: ${{ jobs.publish.outputs.release }}
+      preRelease:
+        description: "If the current tag is a pre-release"
+        value: ${{ jobs.publish.outputs.preRelease }}
+      version:
+        description: "Which version has the tag"
+        value: ${{ jobs.publish.outputs.version }}
 jobs:
   init:
     name: Init
+    outputs:
+      name: ${{ steps.result.outputs.name }}
+      baseUrl: ${{ steps.result.outputs.baseUrl }}
+      repoName: ${{ steps.result.outputs.repo }}
+      repoOwner: ${{ steps.result.outputs.owner }}
+      version: ${{ steps.version.outputs.version }}
+      test-ally: ${{ steps.ally.outputs.test-ally }}
     runs-on: ubuntu-24.04 # Use Ubuntu 24.04 explicitly
     steps:
       - name: ⏬ Checkout repo
         uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+          fetch-tags: false
+
+      # https://github.com/marketplace/actions/trufflehog-oss#advanced-usage-scan-entire-branch
+      - name: 🐷 TruffleHog OSS
+        if: ${{ github.event.pull_request != null && github.event.pull_request.head.repo.owner.login == 'db-ux-design-system' }} # only scan on pull-requests
+        uses: trufflesecurity/trufflehog@main
+        with:
+          # Setting base to an empty string scans the entire branch, per TruffleHog OSS advanced usage:
+          # https://github.com/marketplace/actions/trufflehog-oss#advanced-usage-scan-entire-branch
+          base: ""
+          head: ${{ github.ref_name }}
+          extra_args: --results=verified,unknown
 
       - name: 🔄 Init Cache Default
         uses: ./.github/actions/npm-cache
         env:
           ASSET_INIT_VECTOR: ${{ secrets.ASSET_INIT_VECTOR }}
           ASSET_PASSWORD: ${{ secrets.ASSET_PASSWORD }}
+
+      - name: 🛤 Extract name and base
+        id: extract-name-and-base
+        uses: actions/github-script@v8
+        with:
+          script: |
+            const { default: extractNameAndBaseUrl } = await import('${{ github.workspace }}/scripts/github/extract-name-and-base-url.js');
+            return extractNameAndBaseUrl(context);
+
+      - name: ✒️ Write to output
+        id: result
+        env:
+          RESULT: ${{ steps.extract-name-and-base.outputs.result }}
+        run: |
+          echo "name=$(echo $RESULT | jq -r .name)" >> $GITHUB_OUTPUT
+          echo "baseUrl=$(echo $RESULT | jq -r .baseUrl)" >> $GITHUB_OUTPUT
+          echo "repo=$(echo $RESULT | jq -r .repo)" >> $GITHUB_OUTPUT
+          echo "owner=$(echo $RESULT | jq -r .owner)" >> $GITHUB_OUTPUT
+
+      - name: 🪁 Get playwright version
+        id: version
+        run: |
+          OUTPUT=$(npx --no tsx scripts/github/get-playwright-version.ts)
+          echo "version=$OUTPUT" >> $GITHUB_OUTPUT
+
+      - name: 👩 Should Test a11y
+        id: ally
+        shell: bash
+        run: |
+          ARIA_MAIN=$(npx --no tsx scripts/github/snapshot-changes/check-main-aria.ts)
+          echo "test-ally=$ARIA_MAIN"
+          echo "test-ally=$ARIA_MAIN" >> $GITHUB_OUTPUT
+
+  publish:
+    name: Get and save publish version
+    runs-on: ubuntu-24.04 # Use Ubuntu 24.04 explicitly
+    if: ${{ inputs.release }}
+    outputs:
+      release: ${{ steps.releaseCheck.outputs.release }}
+      preRelease: ${{ steps.releaseCheck.outputs.preRelease }}
+      version: ${{ steps.getVersion.outputs.version }}
+    steps:
+      - name: ⏬ Checkout repo
+        uses: actions/checkout@v5
+
+      - name: 🔄 Init Cache
+        uses: ./.github/actions/npm-cache
+
+      - name: 💃🕺 Check if release or prerelease
+        id: releaseCheck
+        run: |
+          OUTPUT=$(npx --no tsx scripts/github/get-release.ts)
+          if [[ $OUTPUT == "RELEASE" ]];
+          then
+            echo "release=true" >> $GITHUB_OUTPUT
+          elif [[ $OUTPUT == "PRE_RELEASE" ]];
+          then
+            echo "preRelease=true" >> $GITHUB_OUTPUT
+          fi
+        env:
+          GITHUB_REF: ${{ github.ref }}
+          GITHUB_ACTOR: ${{ github.actor }}
+          GITHUB_COMMITISH: ${{ github.event.release.target_commitish }}
+          GITHUB_PRE_RELEASE: ${{ github.event.release.prerelease }}
+
+      - name: ↔ Extract tag name
+        shell: bash
+        run: echo "tag=${GITHUB_REF#refs/tags/}" >> $GITHUB_OUTPUT
+        id: extractTag
+
+      - name: 🏷 Get and Set Package Version on Env
+        id: getVersion
+        env:
+          RELEASE: ${{ steps.releaseCheck.outputs.release }}
+          PRE_RELEASE: ${{ steps.releaseCheck.outputs.preRelease }}
+          TAG: ${{ steps.extractTag.outputs.tag }}
+        run: |
+          OUTPUT=$(npx --no tsx scripts/github/package-version.ts)
+          echo "version=$OUTPUT" >> $GITHUB_OUTPUT
+
+      - name: 🌳 Log Valid Version
+        env:
+          VALID_SEMVER_VERSION: ${{ steps.getVersion.outputs.version }}
+        run: echo "$VALID_SEMVER_VERSION"
