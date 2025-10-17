@@ -54,11 +54,6 @@ jobs:
           name: db-ux-output
           path: output
 
-      - name: 📥 Install output dependencies
-        uses: bahmutov/npm-install@v1
-        with:
-          install-command: npm i
-
       - name: 🔨 Build outputs
         run: |
           npm run generate:agent
