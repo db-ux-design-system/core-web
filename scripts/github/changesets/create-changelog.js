@@ -18,7 +18,11 @@ const getReleaseLine = async (changeset, _type, options) => {
 		returnValue += `:\n\n`;
 		returnValue += `\n${futureLines
 			.filter((l) => l.length)
-			.map((l) => l.trim().startsWith('* ') || l.trim().startsWith('- ') ? `\t  ${l}` : `\t- ${l}`)
+			.map((l) =>
+				l.trim().startsWith('* ') || l.trim().startsWith('- ')
+					? `\t  ${l}`
+					: `\t- ${l}`
+			)
 			.join('\n')}`;
 	}
 
