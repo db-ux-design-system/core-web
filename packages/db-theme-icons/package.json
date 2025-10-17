@@ -31,7 +31,6 @@
   ],
   "scripts": {
     "build": "tsc",
-    "postinstall": "node build/scripts/index.js",
     "prebuild": "node scripts/update-version.js"
   },
   "devDependencies": {
