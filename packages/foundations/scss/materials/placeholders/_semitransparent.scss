@@ -1,0 +1,34 @@
+@use "../materials";
+@use "../../colors";
+
+%material-bg-interactive-semitransparent {
+	@include materials.get-material-bg-interactive(
+		colors.$db-adaptive-bg-basic-transparent-semi-hovered,
+		colors.$db-adaptive-bg-basic-transparent-semi-pressed
+	);
+}
+
+%material-on-bg-interactive-semitransparent {
+	@include materials.get-material-on-bg-interactive(
+		colors.$db-adaptive-on-bg-basic-emphasis-100-hovered,
+		colors.$db-adaptive-on-bg-basic-emphasis-100-pressed
+	);
+}
+
+%material-semitransparent {
+	@include materials.get-material(
+		colors.$db-adaptive-bg-basic-transparent-semi-default,
+		colors.$db-adaptive-on-bg-basic-emphasis-100-default,
+		transparent
+	);
+}
+
+%material-checked-semitransparent {
+	@include materials.get-material-checked(
+		colors.$db-adaptive-bg-basic-level-3-default,
+		colors.$db-adaptive-on-bg-basic-emphasis-100-default,
+		transparent,
+		colors.$db-adaptive-bg-basic-level-3-hovered,
+		colors.$db-adaptive-bg-basic-level-3-pressed
+	);
+}

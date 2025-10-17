@@ -4,6 +4,7 @@
 @use "@db-ux/core-foundations/build/styles/colors";
 @use "@db-ux/core-foundations/build/styles/icons";
 @use "@db-ux/core-foundations/build/styles/helpers";
+@use "@db-ux/core-foundations/build/styles/materials/classes/all";
 @use "../../styles/internal/component";
 @use "../../styles/internal/button-components";
 
@@ -12,7 +13,6 @@
 	@extend %default-button;
 	@extend %db-overwrite-font-size-md;
 
-	color: colors.$db-adaptive-on-bg-basic-emphasis-100-default;
 	block-size: variables.$db-sizing-md;
 	inline-size: fit-content;
 	padding: variables.$db-spacing-fixed-xs variables.$db-spacing-fixed-md;
@@ -58,50 +58,26 @@
 	}
 
 	&[data-variant="brand"] {
-		background-color: colors.$db-brand-origin-default;
-		color: colors.$db-brand-on-origin-default;
-		border-color: colors.$db-brand-on-bg-basic-emphasis-70-default;
-
-		@include helpers.hover {
-			background-color: colors.$db-brand-origin-hovered;
-			border-color: colors.$db-brand-on-bg-basic-emphasis-70-default;
-		}
-
-		@include helpers.active {
-			background-color: colors.$db-brand-origin-pressed;
-			border-color: colors.$db-brand-on-bg-basic-emphasis-70-default;
-		}
+		@extend %db-brand-variables;
 	}
 
-	&[data-variant="filled"],
-	&[data-variant="ghost"] {
-		@extend %transparent-border;
-	}
-
-	&[data-variant="outlined"],
-	&:not([data-variant]),
-	&[data-variant=""],
-	&[data-variant="ghost"] {
-		background-color: colors.$db-adaptive-bg-basic-transparent-full-default;
-
-		@include helpers.hover {
-			background-color: colors.$db-adaptive-bg-basic-transparent-full-hovered;
+	&:not([data-material]) {
+		&[data-variant="brand"] {
+			@extend .db-material-origin;
 		}
 
-		@include helpers.active {
-			background-color: colors.$db-adaptive-bg-basic-transparent-full-pressed;
-		}
-	}
-
-	&[data-variant="filled"] {
-		background-color: colors.$db-adaptive-bg-basic-transparent-semi-default;
-
-		@include helpers.hover {
-			background-color: colors.$db-adaptive-bg-basic-transparent-semi-hovered;
+		&[data-variant="filled"] {
+			@extend .db-material-semitransparent;
 		}
 
-		@include helpers.active {
-			background-color: colors.$db-adaptive-bg-basic-transparent-semi-pressed;
+		&[data-variant="ghost"] {
+			@extend .db-material-transparent;
+		}
+
+		&[data-variant="outlined"],
+		&:not([data-variant]),
+		&[data-variant=""] {
+			@extend .db-material-filled;
 		}
 	}
 

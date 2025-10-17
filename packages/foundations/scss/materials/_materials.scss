@@ -1,0 +1,23 @@
+@mixin get-material-bg-interactive($hovered, $pressed) {
+	--db-global-bg-color-hovered: #{$hovered};
+	--db-global-bg-color-pressed: #{$pressed};
+}
+
+@mixin get-material-on-bg-interactive($hovered, $pressed) {
+	--db-global-on-bg-color-hovered: #{$hovered};
+	--db-global-on-bg-color-pressed: #{$pressed};
+}
+
+@mixin get-material-checked($bg, $on-bg, $border, $hovered, $pressed) {
+	--db-global-checked-bg-color-default: #{$bg};
+	--db-global-checked-on-bg-color-default: #{$on-bg};
+	--db-global-checked-border-color-default: #{$border};
+	--db-global-checked-bg-color-hovered: #{$hovered};
+	--db-global-checked-bg-color-pressed: #{$pressed};
+}
+
+@mixin get-material($bg, $on-bg, $border) {
+	--db-global-bg-color-default: #{$bg};
+	--db-global-on-bg-color-default: #{$on-bg};
+	--db-global-border-color-default: #{$border};
+}

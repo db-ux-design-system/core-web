@@ -53,7 +53,7 @@
 		}
 
 		&[data-variant="brand"] {
-			@extend %db-link-default-color;
+			@extend %db-neutral-variables; // revert db-link brand
 		}
 
 		&[data-size="small"] {

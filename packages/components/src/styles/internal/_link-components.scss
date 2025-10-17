@@ -2,6 +2,7 @@
 @use "@db-ux/core-foundations/build/styles/helpers";
 @use "@db-ux/core-foundations/build/styles/colors";
 @use "@db-ux/core-foundations/build/styles/animation";
+@use "@db-ux/core-foundations/build/styles/materials/classes/all";
 @use "./component";
 
 %db-link-height {
@@ -12,30 +13,28 @@
 	}
 }
 
-%db-link-default-color {
-	color: colors.$db-adaptive-on-bg-basic-emphasis-100-default;
+%db-default-link {
+	@extend %default-fg-transition;
+	@extend %db-link-height;
+
+	color: var(
+		--db-global-on-bg-color-default,
+		#{colors.$db-adaptive-on-bg-basic-emphasis-100-default}
+	);
 
 	@include helpers.hover {
-		color: color-mix(
-			in srgb,
-			transparent 25%,
-			#{colors.$db-adaptive-on-bg-basic-emphasis-100-default}
+		color: var(
+			--db-global-on-bg-color-hovered,
+			#{colors.$db-adaptive-on-bg-basic-emphasis-100-hovered}
 		);
 	}
 
 	@include helpers.active {
-		color: color-mix(
-			in srgb,
-			transparent 50%,
-			#{colors.$db-adaptive-on-bg-basic-emphasis-100-default}
+		color: var(
+			--db-global-on-bg-color-pressed,
+			#{colors.$db-adaptive-on-bg-basic-emphasis-100-pressed}
 		);
 	}
-}
-
-%db-default-link {
-	@extend %default-fg-transition;
-	@extend %db-link-height;
-	@extend %db-link-default-color;
 
 	inline-size: fit-content;
 

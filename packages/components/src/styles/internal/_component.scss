@@ -28,10 +28,48 @@ $component-border: variables.$db-border-width-3xs solid
 		colors.$db-adaptive-on-bg-basic-emphasis-70-default;
 }
 
-%default-interactive-component {
-	@extend %default-adaptive-border;
+$default-bg-color-default: var(
+	--db-global-bg-color-default,
+	#{colors.$db-adaptive-bg-basic-level-1-default}
+);
+$default-bg-color-hovered: var(
+	--db-global-bg-color-hovered,
+	#{colors.$db-adaptive-bg-basic-level-1-hovered}
+);
+$default-bg-color-pressed: var(
+	--db-global-bg-color-pressed,
+	#{colors.$db-adaptive-bg-basic-level-1-pressed}
+);
+$default-on-bg-color-default: var(
+	--db-global-on-bg-color-default,
+	#{colors.$db-adaptive-on-bg-basic-emphasis-100-default}
+);
+$default-on-bg-color-hovered: var(
+	--db-global-on-bg-color-hovered,
+	#{colors.$db-adaptive-on-bg-basic-emphasis-100-hovered}
+);
+$default-on-bg-color-pressed: var(
+	--db-global-on-bg-color-pressed,
+	#{colors.$db-adaptive-on-bg-basic-emphasis-100-pressed}
+);
+$default-border-color-default: var(
+	--db-global-border-color-default,
+	#{colors.$db-adaptive-on-bg-basic-emphasis-60-default}
+);
 
+%default-interactive-component {
+	background-color: $default-bg-color-default;
+	color: $default-on-bg-color-default;
+	border: variables.$db-border-width-3xs solid $default-border-color-default;
 	border-radius: variables.$db-border-radius-xs;
+
+	@include helpers.hover {
+		background-color: $default-bg-color-hovered;
+	}
+
+	@include helpers.active {
+		background-color: $default-bg-color-pressed;
+	}
 }
 
 %default-card {

@@ -1,0 +1,44 @@
+@use "../placeholders";
+
+@mixin init($material) {
+	.db-material-bg-interactive-#{$material},
+	[data-material-bg-interactive="#{$material}"] {
+		@extend %material-bg-interactive-#{$material};
+	}
+
+	.db-material-on-bg-interactive-#{$material},
+	[data-material-on-bg-interactive="#{$material}"] {
+		@extend %material-on-bg-interactive-#{$material};
+	}
+
+	.db-material-checked-#{$material},
+	[data-material-checked="#{$material}"] {
+		@extend %material-checked-#{$material};
+	}
+
+	.db-material-#{$material},
+	[data-material="#{$material}"] {
+		@extend %material-#{$material};
+
+		&:not(
+			.db-material-on-bg-interactive-#{$material},
+			[data-material-on-bg-interactive="#{$material}"]
+		) {
+			@extend %material-bg-interactive-#{$material};
+		}
+
+		&:not(
+			.db-material-on-bg-interactive-#{$material},
+			[data-material-on-bg-interactive="#{$material}"]
+		) {
+			@extend %material-on-bg-interactive-#{$material};
+		}
+
+		&:not(
+			.db-material-checked-#{$material},
+			[data-material-checked="#{$material}"]
+		) {
+			@extend %material-checked-#{$material};
+		}
+	}
+}

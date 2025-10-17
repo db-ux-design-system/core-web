@@ -38,6 +38,7 @@ export default function DBButton(props: DBButtonProps) {
 			type={state.getButtonType()}
 			disabled={getBoolean(props.disabled, 'disabled')}
 			data-icon={props.iconLeading ?? props.icon}
+			data-material={props.material}
 			data-show-icon={getBooleanAsString(
 				props.showIconLeading ?? props.showIcon
 			)}

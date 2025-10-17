@@ -6,6 +6,7 @@
 @use "@db-ux/core-foundations/build/styles/variables";
 @use "@db-ux/core-foundations/build/styles/colors";
 @use "@db-ux/core-foundations/build/styles/helpers";
+@use "@db-ux/core-foundations/build/styles/materials/classes/all";
 @use "component";
 @forward "../visually-hidden";
 
@@ -90,13 +91,13 @@ $db-min-inline-size: var(
 	&[data-variant="floating"] {
 		@include get-validity($selector) {
 			label {
-				color: var(--db-successful-on-bg-basic-emphasis-80-default);
+				color: var(--db-successful-on-bg-basic-emphasis-90-default);
 			}
 		}
 
 		@include get-validity($selector, "invalid") {
 			label {
-				color: var(--db-critical-on-bg-basic-emphasis-80-default);
+				color: var(--db-critical-on-bg-basic-emphasis-90-default);
 			}
 		}
 
@@ -243,18 +244,6 @@ $db-min-inline-size: var(
 		}
 	}
 
-	#{$selector},
-	[id$="-placeholder"] {
-		color: var(--db-#{$variant}-on-bg-basic-emphasis-100-default);
-		caret-color: var(--db-#{$variant}-on-bg-basic-emphasis-100-default);
-	}
-
-	@if list.index($valid-read-only-form-fields, $selector) {
-		#{$selector} {
-			border-color: var(--db-#{$variant}-on-bg-basic-emphasis-70-default);
-		}
-	}
-
 	@include get-validity-message($key);
 }
 
@@ -387,8 +376,7 @@ $input-valid-types:
 		@extend %default-interactive-component;
 		@extend %form-component-border;
 
-		background-color: colors.$db-adaptive-bg-basic-transparent-semi-default;
-		caret-color: colors.$db-adaptive-on-bg-basic-emphasis-100-default;
+		caret-color: component.$default-on-bg-color-default;
 		appearance: none;
 		max-inline-size: 100%;
 		inline-size: 100%;
@@ -404,8 +392,14 @@ $input-valid-types:
 				#{variables.$db-spacing-fixed-sm}
 			);
 
-		@include helpers.hover {
-			background-color: colors.$db-adaptive-bg-basic-transparent-semi-hovered;
+		&:not([data-material]) {
+			// Old default for form-components
+			@extend .db-material-semitransparent;
+
+			& {
+				// TODO: Remove this if when we make materials stable
+				border-color: colors.$db-adaptive-on-bg-basic-emphasis-70-default;
+			}
 		}
 
 		@if list.index($valid-field-sizing-form-fields, $selector) {
@@ -421,6 +415,7 @@ $input-valid-types:
 
 		@if list.index($valid-read-only-form-fields, $selector) {
 			&:not(:disabled):read-only {
+				// TODO: What do we do with read-only state?
 				background-color: var(
 					--db-#{$selector}-read-only,
 					#{colors.$db-adaptive-bg-basic-transparent-full-default}
@@ -469,7 +464,7 @@ $input-valid-types:
 		position: absolute;
 		pointer-events: none;
 		inset-block-start: $icon-inline-block-start;
-		color: colors.$db-adaptive-on-bg-basic-emphasis-100-default;
+		color: component.$default-on-bg-color-default;
 		transform: translateY(-50%);
 		z-index: 1;
 	}

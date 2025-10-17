@@ -5,6 +5,7 @@
 @use "@db-ux/core-foundations/build/styles/helpers";
 @use "@db-ux/core-foundations/build/styles/animation";
 @use "@db-ux/core-foundations/build/styles/icons";
+@use "@db-ux/core-foundations/build/styles/materials/classes/all";
 @use "../../styles/internal/icon-passing";
 @use "../../styles/internal/component";
 
@@ -52,6 +53,7 @@
 	@extend %default-interactive-component;
 	@extend %transparent-border;
 	@extend %db-overwrite-font-size-md;
+	@extend .db-material-transparent; // Make it a ghost button
 
 	background-color: colors.$db-adaptive-bg-basic-transparent-full-default;
 	cursor: pointer;

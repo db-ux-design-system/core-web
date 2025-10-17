@@ -221,6 +221,7 @@ export default function DBInput(props: DBInputProps) {
 				aria-invalid={props.validation === 'invalid'}
 				data-custom-validity={props.validation}
 				data-field-sizing={props.fieldSizing}
+				data-material={props.material}
 				ref={_ref}
 				id={state._id}
 				name={props.name}

@@ -28,6 +28,11 @@ export type GlobalProps = {
 	 * Before using please check for the [accessibility concerns](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/autofocus#accessibility_concerns)
 	 */
 	autofocus?: boolean | string;
+
+	/**
+	 * Change the material for the component. Disable a fixed material with `none`.
+	 */
+	material?: 'transparent' | 'semitransparent' | 'filled' | 'origin' | 'none';
 };
 
 export type GlobalState = {

@@ -1,0 +1,6 @@
+@use "../index";
+@use "get-class";
+
+@each $material in index.$materials {
+	@include get-class.init($material);
+}
