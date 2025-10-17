@@ -47,33 +47,33 @@ jobs:
     with:
       version: ${{ needs.init.outputs.playwrightVersion }}
 
-  build-storybook-composition:
-    uses: ./.github/workflows/01-build-storybooks.yml
-    needs: [build-packages, init]
-    with:
-      storybook: storybook
-      baseUrl: ${{ needs.init.outputs.baseUrl }}
+  # build-storybook-composition:
+  #   uses: ./.github/workflows/01-build-storybooks.yml
+  #   needs: [build-packages, init]
+  #   with:
+  #     storybook: storybook
+  #     baseUrl: ${{ needs.init.outputs.baseUrl }}
 
-  build-storybook-angular:
-    uses: ./.github/workflows/01-build-storybooks.yml
-    needs: [build-packages, init]
-    with:
-      storybook: angular-storybook
-      baseUrl: ${{ needs.init.outputs.baseUrl }}
+  # build-storybook-angular:
+  #   uses: ./.github/workflows/01-build-storybooks.yml
+  #   needs: [build-packages, init]
+  #   with:
+  #     storybook: angular-storybook
+  #     baseUrl: ${{ needs.init.outputs.baseUrl }}
 
-  build-storybook-react:
-    uses: ./.github/workflows/01-build-storybooks.yml
-    needs: [build-packages, init]
-    with:
-      storybook: react-storybook
-      baseUrl: ${{ needs.init.outputs.baseUrl }}
+  # build-storybook-react:
+  #   uses: ./.github/workflows/01-build-storybooks.yml
+  #   needs: [build-packages, init]
+  #   with:
+  #     storybook: react-storybook
+  #     baseUrl: ${{ needs.init.outputs.baseUrl }}
 
-  build-storybook-vue:
-    uses: ./.github/workflows/01-build-storybooks.yml
-    needs: [build-packages, init]
-    with:
-      storybook: vue-storybook
-      baseUrl: ${{ needs.init.outputs.baseUrl }}
+  # build-storybook-vue:
+  #   uses: ./.github/workflows/01-build-storybooks.yml
+  #   needs: [build-packages, init]
+  #   with:
+  #     storybook: vue-storybook
+  #     baseUrl: ${{ needs.init.outputs.baseUrl }}
 
   build-showcase-stencil:
     uses: ./.github/workflows/01-build-showcases.yml
@@ -178,10 +178,6 @@ jobs:
     steps:
       - name: 🎉 Checks done
         run: |
-          resultBuildStorybookComposition="${{ needs.build-storybook-composition.result }}"
-          resultBuildStorybookAngular="${{ needs.build-storybook-angular.result }}"
-          resultBuildStorybookReact="${{ needs.build-storybook-react.result }}"
-          resultBuildStorybookVue="${{ needs.build-storybook-vue.result }}"
           resultBuildShowcaseStencil="${{ needs.build-showcase-stencil.result }}"
           resultBuildShowcaseAngular="${{ needs.build-showcase-angular.result }}"
           resultBuildShowcaseAngularSSR="${{ needs.build-showcase-angular-ssr.result }}"
@@ -228,10 +224,6 @@ jobs:
           fi
     needs:
       [
-        build-storybook-composition,
-        build-storybook-angular,
-        build-storybook-react,
-        build-storybook-vue,
         build-showcase-stencil,
         build-showcase-angular,
         build-showcase-angular-ssr,
