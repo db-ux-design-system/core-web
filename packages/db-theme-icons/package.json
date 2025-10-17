@@ -1,0 +1,44 @@
+{
+  "name": "@db-ux/db-theme-icons",
+  "version": "3.2.0",
+  "type": "module",
+  "description": "DB UX Design System Icons with version export",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/db-ux-design-system/core-web.git"
+  },
+  "author": "DB Systel GmbH",
+  "license": "Apache-2.0",
+  "main": "./build/js/index.js",
+  "types": "./build/js/index.d.ts",
+  "exports": {
+    "./build/styles/*": {
+      "sass": "./build/styles/*.scss",
+      "default": "./build/styles/*.css"
+    },
+    "./build/*": "./build/*",
+    ".": {
+      "types": "./build/js/index.d.ts",
+      "import": "./build/js/index.js"
+    }
+  },
+  "files": [
+    "*.license",
+    "CHANGELOG.md",
+    "agent",
+    "build",
+    "LICENSE"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "postinstall": "node build/scripts/index.js",
+    "prebuild": "node scripts/update-version.js"
+  },
+  "devDependencies": {
+    "typescript": "5.9.3"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  }
+}
