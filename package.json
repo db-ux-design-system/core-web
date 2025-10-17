@@ -18,6 +18,7 @@
     "packages/*",
     "output/*",
     "showcases/*",
+    "storybooks/*",
     "docs",
     "scripts",
     "e2e"
@@ -49,6 +50,7 @@
     "build": "npm run build --workspace=scripts",
     "build-outputs": "npm run build-outputs --workspace=scripts",
     "build-showcases": "npm run build-showcases --workspace=scripts",
+    "build-storybooks": "npm run build-storybooks --workspace=scripts",
     "changeset": "changeset",
     "ci:version": "changeset version && tsx scripts/github/changesets/version-bump.ts",
     "clean": "git clean -dfx --exclude=.env",
