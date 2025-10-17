@@ -6,4 +6,4 @@
 "@db-ux/wc-core-components": patch
 ---
 
-fix(card): removing obsolete, but harmful declaration
+fix(card): Remove the obsolete but harmful declaration regarding wrapping button and link styles.
