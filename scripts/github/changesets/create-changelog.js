@@ -22,7 +22,7 @@ const getReleaseLine = async (changeset, _type, options) => {
 				l.trim().startsWith('* ') ||
 				l.trim().startsWith('- ') ||
 				l.trim().startsWith('+ ')
-					? `\t${l}`
+					? `\t\t${l}`
 					: `\t- ${l}`
 			)
 			.join('\n')}`;
