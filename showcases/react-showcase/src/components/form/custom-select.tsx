@@ -3,12 +3,13 @@ import { useState } from 'react';
 import FormWrapper from './form-wrapper';
 
 const FormCustomSelects = () => {
-	const [controlled, setControlled] = useState(['combobox-1']);
-	const [uncontrolled, setUncontrolled] = useState(['combobox-1']);
+	const [controlled, setControlled] = useState(['combobox-2']);
+	const [uncontrolled, setUncontrolled] = useState(['combobox-2']);
 
 	const options = [
 		{ value: 'combobox-0', id: 'combobox-0' },
-		{ value: 'combobox-1', id: 'combobox-1' }
+		{ value: 'combobox-1', id: 'combobox-1' },
+		{ value: 'combobox-2', id: 'combobox-2' }
 	];
 
 	return (
