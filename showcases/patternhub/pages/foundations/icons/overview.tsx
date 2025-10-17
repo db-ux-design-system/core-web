@@ -9,9 +9,10 @@ import {
 } from '../../../../../output/react/src';
 import DefaultPage from '../../../components/default-page';
 
-// Dynamic version imports
-import themeIconsPackage from '@db-ux/db-theme-icons/package.json';
+// Import root package.json for theme version
 import rootPackage from '../../../../../package.json';
+// Import the dynamically determined theme-icons version
+import { getThemeIconsVersion } from '../../../utils/theme-icons-package-version';
 
 const IconOverview = () => {
 	const [weight, setWeight] = useState<string>('24');
@@ -19,12 +20,12 @@ const IconOverview = () => {
 	// TODO: we should add a better search for this
 	const [search, setSearch] = useState<string>('');
 
-	// Dynamically get versions from imported package.json files
+	// Get theme version from root package.json
 	const themeVersion =
 		rootPackage.devDependencies?.['@db-ux/db-theme'] ??
 		rootPackage.dependencies?.['@db-ux/db-theme'] ??
 		'unknown';
-	const themeIconsVersion = themeIconsPackage.version ?? 'unknown';
+
 	return (
 		<DefaultPage>
 			<h1>Icon overview</h1>
@@ -33,9 +34,9 @@ const IconOverview = () => {
 			</p>
 			<p>
 				These icons reflect the [<code>@db-ux/db-theme-icons</code> node
-				package of version "{themeIconsVersion}
+				package of version "{getThemeIconsVersion()}
 				"](https://www.npmjs.com/package/@db-ux/db-theme-icons/v/
-				{themeIconsVersion}), which is part of the [
+				{getThemeIconsVersion()}), which is part of the [
 				<code>@db-ux/db-theme</code> package, version "{themeVersion}
 				"](https://www.npmjs.com/package/@db-ux/db-theme/v/
 				{themeVersion}).
