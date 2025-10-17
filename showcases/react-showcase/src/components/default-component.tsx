@@ -119,7 +119,7 @@ const DefaultComponent = ({
 			return '';
 		}
 
-		const [baseUrl, query=''] = globalThis.location.href.split('?');
+		const [baseUrl, query = ''] = globalThis.location.href.split('?');
 		const rawComponentUrl = baseUrl;
 		const searchParameters = new URLSearchParams(query);
 		searchParameters.set('page', variantName.toLowerCase());
