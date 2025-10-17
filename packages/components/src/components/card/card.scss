@@ -7,9 +7,11 @@
 	// Resetting button and link specific declarations
 	&:has(.db-card) {
 		text-decoration: unset;
-		border-color: transparent;
+		margin: unset;
+		border: unset;
 		background-color: transparent;
 		padding: unset;
+		font: inherit;
 	}
 
 	@include helpers.hover {
