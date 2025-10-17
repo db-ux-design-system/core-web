@@ -1,9 +1,9 @@
 %grid-layout-variant-overlay {
-	// Block link variant should not use overlay-specific grid layout
+	// Only apply when not using block link variant
 	&:not([data-link-variant="block"]) {
-		// has timestamp
+		// For overlay with timestamp, override any inline link layout
 		&:has(span) {
-			// 1. only content (min. requirement)
+			// 1. Basic layout with timestamp (overrides inline link if present)
 			grid-template-areas: "content timestamp";
 			grid-template-columns: 1fr min-content;
 
