@@ -9,19 +9,19 @@ Move colors.css to colors/ subdirectory with adaptive theme
 Add colors/index.css that imports all color variants
 Update theme/index.css to import from colors/index.css
 
-  * burgundy
-  * critical
-  * cyan
-  * green
-  * informational
-  * light-green
-  * neutral
-  * orange
-  * pink
-  * red
-  * successful
-  * turquoise
-  * violet
-  * warning
-  * yellow
-  
+* burgundy
+* critical
+* cyan
+* green
+* informational
+* light-green
+* neutral
+* orange
+* pink
+* red
+* successful
+* turquoise
+* violet
+* warning
+* yellow
+
