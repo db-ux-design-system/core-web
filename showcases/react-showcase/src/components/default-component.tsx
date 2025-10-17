@@ -119,9 +119,9 @@ const DefaultComponent = ({
 			return '';
 		}
 
-		const currentUrl = globalThis.location.href.split('?');
-		const rawComponentUrl = currentUrl[0];
-		const searchParameters = new URLSearchParams(currentUrl[1] ?? '');
+		const [baseUrl, query=''] = globalThis.location.href.split('?');
+		const rawComponentUrl = baseUrl;
+		const searchParameters = new URLSearchParams(query);
 		searchParameters.set('page', variantName.toLowerCase());
 
 		const regexComponentOverviewFragment = /\/[a-z\d\-_]*\/overview/;
