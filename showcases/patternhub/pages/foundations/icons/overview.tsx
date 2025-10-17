@@ -11,8 +11,8 @@ import DefaultPage from '../../../components/default-page';
 
 // Import root package.json for theme version
 import rootPackage from '../../../../../package.json';
-// Import the dynamically determined theme-icons version
-import { getThemeIconsVersion } from '../../../utils/theme-icons-package-version';
+// Import the theme-icons version constant
+import { THEME_ICONS_VERSION } from '../../../utils/theme-icons-package-version';
 
 const IconOverview = () => {
 	const [weight, setWeight] = useState<string>('24');
@@ -34,9 +34,9 @@ const IconOverview = () => {
 			</p>
 			<p>
 				These icons reflect the [<code>@db-ux/db-theme-icons</code> node
-				package of version "{getThemeIconsVersion()}
+				package of version "{THEME_ICONS_VERSION}
 				"](https://www.npmjs.com/package/@db-ux/db-theme-icons/v/
-				{getThemeIconsVersion()}), which is part of the [
+				{THEME_ICONS_VERSION}), which is part of the [
 				<code>@db-ux/db-theme</code> package, version "{themeVersion}
 				"](https://www.npmjs.com/package/@db-ux/db-theme/v/
 				{themeVersion}).
