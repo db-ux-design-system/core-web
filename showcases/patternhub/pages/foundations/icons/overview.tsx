@@ -33,13 +33,27 @@ const IconOverview = () => {
 				We don't provide all icons with family <code>filled</code>
 			</p>
 			<p>
-				These icons reflect the [<code>@db-ux/db-theme-icons</code> node
-				package of version "{THEME_ICONS_VERSION}
-				"](https://www.npmjs.com/package/@db-ux/db-theme-icons/v/
-				{THEME_ICONS_VERSION}), which is part of the [
-				<code>@db-ux/db-theme</code> package, version "{themeVersion}
-				"](https://www.npmjs.com/package/@db-ux/db-theme/v/
-				{themeVersion}).
+				These icons reflect the
+				<a
+					href={`https://www.npmjs.com/package/@db-ux/db-theme-icons/v/${THEME_ICONS_VERSION}`}>
+					<code>@db-ux/db-theme-icons</code> node package
+				</a>{' '}
+				of version{' '}
+				<a
+					href={`https://www.npmjs.com/package/@db-ux/db-theme-icons/v/${THEME_ICONS_VERSION}`}>
+					{THEME_ICONS_VERSION}
+				</a>
+				, which is part of the{' '}
+				<a
+					href={`https://www.npmjs.com/package/@db-ux/db-theme/v/${themeVersion}`}>
+					<code>@db-ux/db-theme</code> package
+				</a>
+				, version{' '}
+				<a
+					href={`https://www.npmjs.com/package/@db-ux/db-theme/v/${themeVersion}`}>
+					{themeVersion}
+				</a>
+				.
 			</p>
 			<div className="icons-filter-container">
 				<search>
