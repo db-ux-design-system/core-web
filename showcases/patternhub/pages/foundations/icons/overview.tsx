@@ -21,10 +21,10 @@ const IconOverview = () => {
 
 	// Dynamically get versions from imported package.json files
 	const themeVersion =
-		rootPackage.devDependencies?.['@db-ux/db-theme'] ||
-		rootPackage.dependencies?.['@db-ux/db-theme'] ||
+		rootPackage.devDependencies?.['@db-ux/db-theme'] ??
+		rootPackage.dependencies?.['@db-ux/db-theme'] ??
 		'unknown';
-	const themeIconsVersion = themeIconsPackage.version || 'unknown';
+	const themeIconsVersion = themeIconsPackage.version ?? 'unknown';
 	return (
 		<DefaultPage>
 			<h1>Icon overview</h1>
