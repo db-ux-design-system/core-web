@@ -571,6 +571,26 @@
 				}
 			},
 			{
+				"name": "Text & Textlink Block",
+				"style": { "width": "300px" },
+				"props": {
+					"link": true,
+					"variant": "overlay",
+					"behavior": "permanent",
+					"linkVariant": "block"
+				},
+				"children": [
+					{
+						"name": "link",
+						"slot": "link",
+						"content": "Textlink",
+						"props": {
+							"href": "#"
+						}
+					}
+				]
+			},
+			{
 				"name": "Text & Headline & Textlink Inline & Closable",
 				"style": { "width": "300px" },
 				"props": {
