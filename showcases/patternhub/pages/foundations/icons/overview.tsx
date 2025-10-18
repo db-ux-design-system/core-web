@@ -9,16 +9,51 @@ import {
 } from '../../../../../output/react/src';
 import DefaultPage from '../../../components/default-page';
 
+// Import root package.json for theme version
+import rootPackage from '../../../../../package.json';
+// Import the theme-icons version constant
+import { THEME_ICONS_VERSION } from '../../../utils/theme-icons-package-version';
+
 const IconOverview = () => {
 	const [weight, setWeight] = useState<string>('24');
 	const [family, setFamily] = useState<string>('default');
 	// TODO: we should add a better search for this
 	const [search, setSearch] = useState<string>('');
+
+	// Get theme version from root package.json
+	const themeVersion =
+		rootPackage.devDependencies?.['@db-ux/db-theme'] ??
+		rootPackage.dependencies?.['@db-ux/db-theme'] ??
+		'unknown';
+
 	return (
 		<DefaultPage>
 			<h1>Icon overview</h1>
 			<p>
 				We don't provide all icons with family <code>filled</code>
+			</p>
+			<p>
+				These icons reflect the
+				<a
+					href={`https://www.npmjs.com/package/@db-ux/db-theme-icons/v/${THEME_ICONS_VERSION}`}>
+					<code>@db-ux/db-theme-icons</code> node package
+				</a>{' '}
+				of version{' '}
+				<a
+					href={`https://www.npmjs.com/package/@db-ux/db-theme-icons/v/${THEME_ICONS_VERSION}`}>
+					{THEME_ICONS_VERSION}
+				</a>
+				, which is part of the{' '}
+				<a
+					href={`https://www.npmjs.com/package/@db-ux/db-theme/v/${themeVersion}`}>
+					<code>@db-ux/db-theme</code> package
+				</a>
+				, version{' '}
+				<a
+					href={`https://www.npmjs.com/package/@db-ux/db-theme/v/${themeVersion}`}>
+					{themeVersion}
+				</a>
+				.
 			</p>
 			<div className="icons-filter-container">
 				<search>
