@@ -54,7 +54,12 @@ function getReleaseNotes(): string {
 		if (section) {
 			const headline =
 				getFirstHeadline(changelog) || path.relative(repoRoot, file);
-			notes.push(`# ${headline}\n${section}`);
+			const entry = `# ${headline}\n${section}`;
+			if (/^\s*_version bump_\s*$/i.test(section)) {
+				notes.push(entry);
+			} else {
+				notes.unshift(entry);
+			}
 		}
 	}
 
