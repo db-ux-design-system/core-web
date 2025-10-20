@@ -12,13 +12,13 @@
     "react-dom": "18.3.1"
   },
   "devDependencies": {
-    "@eslint/js": "9.36.0",
+    "@eslint/js": "9.37.0",
     "@storybook/react-vite": "9.1.10",
     "@types/react": "18.3.13",
     "@types/react-dom": "18.3.1",
     "@vitejs/plugin-react": "5.0.4",
-    "eslint": "9.36.0",
-    "eslint-plugin-react-hooks": "5.2.0",
+    "eslint": "9.37.0",
+    "eslint-plugin-react-hooks": "7.0.0",
     "eslint-plugin-react-refresh": "0.4.24",
     "eslint-plugin-storybook": "9.1.10",
     "globals": "16.4.0",
