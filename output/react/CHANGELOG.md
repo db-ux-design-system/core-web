@@ -1,16 +1,9 @@
 # @db-ux/react-core-components
 
-## 4.0.2
-
-### Patch Changes
-
-- fix(card): Remove the obsolete but harmful declaration regarding wrapping button and link styles. - [see commit 15679ff](https://github.com/db-ux-design-system/core-web/commit/15679ffe6cf4634d2edc39b14bf2f5911d723081)
-
-- Set border of select, textarea, custom select and input to corresponding color when in/valid state is set. - [see commit 15679ff](https://github.com/db-ux-design-system/core-web/commit/15679ffe6cf4634d2edc39b14bf2f5911d723081)
-
 ## 4.0.1
 
 _version bump_
+
 
 ## 4.0.0
 
