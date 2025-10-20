@@ -4,7 +4,7 @@
 
 ### Patch Changes
 
-- chore: update instructions files for better copilot outputs - [see commit 15679ff](https://github.com/db-ux-design-system/core-web/commit/15679ffe6cf4634d2edc39b14bf2f5911d723081):
+- chore: update instructions files for better copilot outputs - [see commit 797a114](https://github.com/db-ux-design-system/core-web/commit/797a114d7abc680667276f8ffc2f7f4482d89d3e):
   - fix: add some missing variables
 
 ## 4.0.1
