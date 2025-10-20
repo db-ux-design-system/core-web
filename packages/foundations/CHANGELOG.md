@@ -1,33 +1,5 @@
 # @db-ux/core-foundations
 
-## 4.0.2
-
-### Patch Changes
-
-- chore: update instructions files for better copilot outputs - [see commit 15679ff](https://github.com/db-ux-design-system/core-web/commit/15679ffe6cf4634d2edc39b14bf2f5911d723081):
-  - fix: add some missing variables
-
-- fix(tailwind): add individual color theme files for all color variants - [see commit 15679ff](https://github.com/db-ux-design-system/core-web/commit/15679ffe6cf4634d2edc39b14bf2f5911d723081):
-  - Create separate CSS files for each color
-  - Move colors.css to colors/ subdirectory with adaptive theme
-  - Add colors/index.css that imports all color variants
-  - Update theme/index.css to import from colors/index.css
-    - burgundy
-    - critical
-    - cyan
-    - green
-    - informational
-    - light-green
-    - neutral
-    - orange
-    - pink
-    - red
-    - successful
-    - turquoise
-    - violet
-    - warning
-    - yellow
-
 ## 4.0.1
 
 ### Patch Changes
