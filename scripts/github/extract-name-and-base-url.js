@@ -18,11 +18,10 @@ function extractNameAndBaseUrl(context) {
 
 	// Check environment variables
 	const isRelease = process.env.RELEASE === 'true';
-	const isPreRelease = process.env.PRE_RELEASE === 'true';
-	console.log('isRelease:', isRelease, 'isPreRelease:', isPreRelease);
+	console.log('isRelease:', isRelease);
 
 	let name;
-	if (isRelease || isPreRelease) {
+	if (isRelease) {
 		// Use tag name from GITHUB_REF (remove refs/tags/ prefix)
 		const githubRef = process.env.GITHUB_REF || '';
 		name = githubRef.replace(/^refs\/tags\//, '');
@@ -35,7 +34,7 @@ function extractNameAndBaseUrl(context) {
 
 	// Construct BASE_URL
 	let path = 'review';
-	if (isRelease || isPreRelease) {
+	if (isRelease) {
 		path = 'version';
 	}
 
