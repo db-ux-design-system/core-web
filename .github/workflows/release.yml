@@ -51,7 +51,7 @@ jobs:
     uses: ./.github/workflows/01-build-storybooks.yml
     needs: [build-packages, init]
     with:
-      storybook: storybook
+      storybook: composition-storybook
       baseUrl: ${{ needs.init.outputs.baseUrl }}
 
   build-storybook-angular:
