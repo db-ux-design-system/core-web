@@ -78,6 +78,7 @@ jobs:
     needs: [build-packages, init]
     with:
       version: ${{ needs.init.outputs.playwrightVersion }}
+
   build-storybook-composition:
     uses: ./.github/workflows/01-build-storybooks.yml
     needs: [build-packages, init]
