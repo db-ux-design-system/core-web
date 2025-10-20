@@ -1,15 +1,9 @@
 # @db-ux/agent-cli
 
-## 4.0.2
-
-### Patch Changes
-
-- chore: update instructions files for better copilot outputs - [see commit e4bc905](https://github.com/db-ux-design-system/core-web/commit/e4bc90508479387371d816d5776f9f568aa5fb82):
-  - fix: add some missing variables
-
 ## 4.0.1
 
 _version bump_
+
 
 ## 4.0.0
 
