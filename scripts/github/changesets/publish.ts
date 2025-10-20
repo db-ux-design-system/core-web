@@ -55,7 +55,7 @@ function getReleaseNotes(): string {
 			const headline =
 				getFirstHeadline(changelog) || path.relative(repoRoot, file);
 			const entry = `# ${headline}\n${section}`;
-			if (/^\s*_version bump_\s*$/i.test(section)) {
+			if (/^\s*_version bump_\s*$/im.test(section)) {
 				notes.push(entry);
 			} else {
 				notes.unshift(entry);
