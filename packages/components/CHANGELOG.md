@@ -1,9 +1,19 @@
 # @db-ux/core-components
 
+## 4.0.2
+
+### Patch Changes
+
+- chore: update instructions files for better copilot outputs - [see commit 797a114](https://github.com/db-ux-design-system/core-web/commit/797a114d7abc680667276f8ffc2f7f4482d89d3e):
+  - fix: add some missing variables
+
+- fix(card): Remove the obsolete but harmful declaration regarding wrapping button and link styles. - [see commit 797a114](https://github.com/db-ux-design-system/core-web/commit/797a114d7abc680667276f8ffc2f7f4482d89d3e)
+
+- Set border of select, textarea, custom select and input to corresponding color when in/valid state is set. - [see commit 797a114](https://github.com/db-ux-design-system/core-web/commit/797a114d7abc680667276f8ffc2f7f4482d89d3e)
+
 ## 4.0.1
 
 _version bump_
-
 
 ## 4.0.0
 
