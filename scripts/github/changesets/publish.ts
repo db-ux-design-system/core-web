@@ -55,7 +55,7 @@ function getReleaseNotes(): string {
 			const headline =
 				getFirstHeadline(changelog) || path.relative(repoRoot, file);
 			const entry = `# ${headline}\n${section}`;
-			// Ensure a logical sequence, packages with Release notes first, packages that are only getting version bumped last 
+			// Ensure a logical sequence, packages with Release notes first, packages that are only getting version bumped last
 			if (/^\s*_version bump_\s*$/im.test(section)) {
 				notes.push(entry);
 			} else {
