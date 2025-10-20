@@ -4,9 +4,9 @@
 
 ### Patch Changes
 
-- fix(card): Remove the obsolete but harmful declaration regarding wrapping button and link styles. - [see commit 34c78df](https://github.com/db-ux-design-system/core-web/commit/34c78dffd4f43b0ac740574358b426a562e05cd0)
+- fix(card): Remove the obsolete but harmful declaration regarding wrapping button and link styles. - [see commit 15679ff](https://github.com/db-ux-design-system/core-web/commit/15679ffe6cf4634d2edc39b14bf2f5911d723081)
 
-- Set border of select, textarea, custom select and input to corresponding color when in/valid state is set. - [see commit 2a02263](https://github.com/db-ux-design-system/core-web/commit/2a022632f8fea7445e77fb632f109d6cd093e2d3)
+- Set border of select, textarea, custom select and input to corresponding color when in/valid state is set. - [see commit 15679ff](https://github.com/db-ux-design-system/core-web/commit/15679ffe6cf4634d2edc39b14bf2f5911d723081)
 
 ## 4.0.1
 
