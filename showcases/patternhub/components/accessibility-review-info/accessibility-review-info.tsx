@@ -20,16 +20,19 @@ const AccessibilityReviewInfo = (
 				setText('Done');
 				break;
 			}
+
 			case 'REVIEW': {
 				setSemantic('warning');
 				setText('In review');
 				break;
 			}
+
 			case 'PROGRESS': {
 				setSemantic('warning');
 				setText('In progress');
 				break;
 			}
+
 			default: {
 				setSemantic('critical');
 				setText('Missing');
