@@ -1,6 +1,6 @@
 {
   "name": "@db-ux/react-core-components",
-  "version": "4.0.1",
+  "version": "4.0.3",
   "description": "React components for @db-ux/core-components",
   "repository": {
     "type": "git",
@@ -31,7 +31,7 @@
     "tsc": "tsc --project . --sourceMap false"
   },
   "devDependencies": {
-    "@playwright/experimental-ct-react": "1.56.0",
+    "@playwright/experimental-ct-react": "1.56.1",
     "@types/react": "18.3.13",
     "react": "18.3.1",
     "react-dom": "18.3.1"
@@ -42,7 +42,7 @@
   },
   "sideEffects": false,
   "dependencies": {
-    "@db-ux/core-components": "4.0.1",
-    "@db-ux/core-foundations": "4.0.1"
+    "@db-ux/core-components": "4.0.3",
+    "@db-ux/core-foundations": "4.0.3"
   }
 }

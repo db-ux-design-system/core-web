@@ -1,11 +1,7 @@
 #!/usr/bin/env node
 
 import { program } from 'commander';
-import { generateCopilot } from './copilot';
-
-const action = async (rootPath: string = '.') => {
-	generateCopilot(rootPath);
-};
+import { action } from './index';
 
 const startProgram = (
 	name: string,
