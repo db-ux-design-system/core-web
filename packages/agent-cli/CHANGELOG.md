@@ -1,10 +1,16 @@
 # @db-ux/agent-cli
 
+## 4.0.3
+
+### Patch Changes
+
+- chore: generate AmazonQ rule file with @db-ux/agent-cli - [see commit b61c8b1](https://github.com/db-ux-design-system/core-web/commit/b61c8b14992f5a5b3615c6bff74018d5682aa0cc)
+
 ## 4.0.2
 
 ### Patch Changes
 
-- chore: update instructions files for better copilot outputs - [see commit e4bc905](https://github.com/db-ux-design-system/core-web/commit/e4bc90508479387371d816d5776f9f568aa5fb82):
+- chore: update instructions files for better copilot outputs - [see commit 797a114](https://github.com/db-ux-design-system/core-web/commit/797a114d7abc680667276f8ffc2f7f4482d89d3e):
   - fix: add some missing variables
 
 ## 4.0.1

@@ -1,14 +1,3 @@
-## Common AI mistakes
+## Best Practise / Common AI mistakes
 
-### `DBButton` or `db-button`
-
-- available variants are `outlined`, `brand`, `filled`, `ghost`
-- always use variant `outlined` as default
-- use variant `brand` as CTA or primary action
-- if `noText`/`no-text` property is used add a `DBTooltip` or `db-tooltip` inside the Button
-- always add a `type` as property as best practise
-
-### `DBStack` or `db-stack`
-
-- there is no property `gap="fix-md"`, available values are `small`, `medium`, etc.
-- there is no property `direction="horizontal"`, available values are `row`, `column`, etc.
+- always read this file if you use Components: `**agent-path**/agent/Best-Practise_Common-AI-Mistakes.md`
