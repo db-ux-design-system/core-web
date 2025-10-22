@@ -41,7 +41,8 @@ const IconOverview = () => {
 				</a>{' '}
 				of version{' '}
 				<a
-					href={`https://www.npmjs.com/package/@db-ux/db-theme-icons/v/${themeIconsVersion}`}>
+					href={`https://www.npmjs.com/package/@db-ux/db-theme-icons/v/${themeIconsVersion}`}
+					target="_blank" rel="noopener noreferrer">
 					{themeIconsVersion}
 				</a>
 				, which is part of the{' '}
