@@ -35,7 +35,8 @@ const IconOverview = () => {
 			<p>
 				These icons reflect the
 				<a
-					href={`https://www.npmjs.com/package/@db-ux/db-theme-icons/v/${themeIconsVersion}`}>
+					href={`https://www.npmjs.com/package/@db-ux/db-theme-icons/v/${themeIconsVersion}`}
+					target="_blank" rel="noopener noreferrer">
 					<code>@db-ux/db-theme-icons</code> node package
 				</a>{' '}
 				of version{' '}
