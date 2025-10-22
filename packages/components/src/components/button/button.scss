@@ -1,7 +1,6 @@
 @charset "utf-8";
 @use "@db-ux/core-foundations/build/styles/fonts";
 @use "@db-ux/core-foundations/build/styles/variables";
-@use "@db-ux/core-foundations/build/styles/colors";
 @use "@db-ux/core-foundations/build/styles/icons";
 @use "@db-ux/core-foundations/build/styles/helpers";
 @use "@db-ux/core-foundations/build/styles/materials/classes/all";
@@ -63,21 +62,26 @@
 
 	&:not([data-material]) {
 		&[data-variant="brand"] {
-			@extend .db-material-origin;
+			@extend [data-material="origin"];
 		}
 
 		&[data-variant="filled"] {
-			@extend .db-material-semitransparent;
+			@extend [data-material="semitransparent"];
+
+			// TODO: Remove this when braking change happens
+			border-color: transparent;
 		}
 
 		&[data-variant="ghost"] {
-			@extend .db-material-transparent;
+			@extend [data-material="transparent"];
 		}
 
 		&[data-variant="outlined"],
 		&:not([data-variant]),
 		&[data-variant=""] {
-			@extend .db-material-filled;
+			@extend [data-material="filled"];
+			// TODO: Remove this when braking change happens
+			border-color: variables.$db-global-on-bg-color-default;
 		}
 	}
 

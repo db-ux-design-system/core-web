@@ -10,29 +10,6 @@ $background-colors:
 	"basic-transparent-full";
 $inverted-colors: "contrast-max", "contrast-high", "contrast-low";
 
-/* Global colors */
-
-$db-global-bg-color-default: var(--db-global-bg-color-default);
-$db-global-bg-color-hovered: var(--db-global-bg-color-hovered);
-$db-global-bg-color-pressed: var(--db-global-bg-color-pressed);
-
-$db-global-on-bg-color-default: var(--db-global-on-bg-color-default);
-$db-global-on-bg-color-hovered: var(--db-global-on-bg-color-hovered);
-$db-global-on-bg-color-pressed: var(--db-global-on-bg-color-pressed);
-
-$db-global-border-color-default: var(--db-global-border-color-default);
-
-/* Checked */
-$db-global-checked-bg-color-default: var(--db-global-checked-bg-color-default);
-$db-global-checked-bg-color-hovered: var(--db-global-checked-bg-color-hovered);
-$db-global-checked-bg-color-pressed: var(--db-global-checked-bg-color-pressed);
-$db-global-checked-on-bg-color-default: var(
-	--db-global-checked-on-bg-color-default
-);
-$db-global-checked-border-color-default: var(
-	--db-global-checked-border-color-default
-);
-
 // adaptive colors
 
 // bg basic

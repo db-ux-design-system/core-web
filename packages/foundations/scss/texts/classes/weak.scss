@@ -1,0 +1,6 @@
+@use "../index";
+@use "get-class";
+
+$text: "vibrant";
+
+@include get-class.init($text);

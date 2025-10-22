@@ -1,34 +1,26 @@
 @use "../materials";
 @use "../../colors";
 
-%material-bg-interactive-filled {
-	@include materials.get-material-bg-interactive(
+%material-filled {
+	@include materials.get-material(
+		colors.$db-adaptive-bg-basic-level-1-default,
 		colors.$db-adaptive-bg-basic-level-1-hovered,
-		colors.$db-adaptive-bg-basic-level-1-pressed
-	);
-}
-
-%material-on-bg-interactive-filled {
-	@include materials.get-material-on-bg-interactive(
+		colors.$db-adaptive-bg-basic-level-1-pressed,
+		colors.$db-adaptive-on-bg-basic-emphasis-60-default,
+		colors.$db-adaptive-on-bg-basic-emphasis-100-default,
 		colors.$db-adaptive-on-bg-basic-emphasis-100-hovered,
 		colors.$db-adaptive-on-bg-basic-emphasis-100-pressed
 	);
 }
 
-%material-filled {
-	@include materials.get-material(
-		colors.$db-adaptive-bg-basic-level-1-default,
-		colors.$db-adaptive-on-bg-basic-emphasis-100-default,
-		colors.$db-adaptive-on-bg-basic-emphasis-60-default
-	);
-}
-
-%material-checked-filled {
-	@include materials.get-material-checked(
+%material-swap-filled {
+	@include materials.get-material-swap(
 		colors.$db-adaptive-bg-inverted-contrast-max-default,
-		colors.$db-adaptive-on-bg-inverted-default,
-		colors.$db-adaptive-on-bg-basic-emphasis-80-default,
 		colors.$db-adaptive-bg-inverted-contrast-max-hovered,
-		colors.$db-adaptive-bg-inverted-contrast-max-pressed
+		colors.$db-adaptive-bg-inverted-contrast-max-pressed,
+		colors.$db-adaptive-on-bg-basic-emphasis-80-default,
+		colors.$db-adaptive-on-bg-inverted-default,
+		colors.$db-adaptive-on-bg-inverted-hovered,
+		colors.$db-adaptive-on-bg-inverted-pressed
 	);
 }

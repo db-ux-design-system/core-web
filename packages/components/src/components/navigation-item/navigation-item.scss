@@ -51,11 +51,8 @@
 
 %navigation-item {
 	@extend %default-interactive-component;
-	@extend %transparent-border;
 	@extend %db-overwrite-font-size-md;
-	@extend .db-material-transparent; // Make it a ghost button
 
-	background-color: colors.$db-adaptive-bg-basic-transparent-full-default;
 	cursor: pointer;
 	inline-size: 100%;
 	border-radius: variables.$db-border-radius-sm;
@@ -67,16 +64,8 @@
 
 	@include helpers.display(inline-flex);
 
-	@include helpers.hover {
-		background-color: colors.$db-adaptive-bg-basic-transparent-full-hovered;
-	}
-
-	@include helpers.active {
-		background-color: colors.$db-adaptive-bg-basic-transparent-full-pressed;
-	}
-
-	&:has(~ .db-sub-navigation:is(:hover, :focus)) {
-		background-color: colors.$db-adaptive-bg-basic-transparent-full-hovered;
+	&:not([data-material]) {
+		@extend [data-material="transparent"]; // Make it a ghost button
 	}
 }
 
@@ -195,7 +184,7 @@
 	flex-direction: column;
 	z-index: 70;
 	inset-inline-start: 0;
-	background-color: colors.$db-adaptive-bg-basic-level-1-default;
+	background-color: variables.$db-global-bg-color-default;
 	visibility: hidden;
 
 	@include screen-sizes.screen("md", "max") {
@@ -325,7 +314,7 @@
 	@include helpers.display(flex);
 
 	font-weight: normal;
-	background-color: colors.$db-adaptive-bg-basic-level-1-default;
+	background-color: variables.$db-global-bg-color-default;
 	padding-block-end: variables.$db-spacing-fixed-md;
 	margin-block-end: variables.$db-spacing-fixed-md;
 

@@ -1,5 +1,6 @@
 @use "@db-ux/core-foundations/build/styles/helpers";
 @use "@db-ux/core-foundations/build/styles/variables";
+@use "@db-ux/core-foundations/build/styles/materials/classes/all";
 @use "../../styles/internal/component";
 
 @mixin accordion-subsequent-item-selector() {
@@ -32,31 +33,17 @@ The spacings are not part of the styling of the accordion items themselves.
 				inset-block-start: calc(-1 * #{variables.$db-spacing-fixed-sm});
 			}
 		}
+
+		&:not([data-material]) {
+			.db-accordion-item {
+				@extend [data-material="transparent"];
+			}
+		}
 	}
 
 	&[data-variant="card"] {
 		@include accordion-subsequent-item-selector {
 			margin-block-start: variables.$db-spacing-fixed-sm;
-		}
-
-		.db-accordion-item {
-			/*
-			Adding the component-border to the item itself leads to a render error (tested in Chrome and Safari):
-			On mouseover, a small white gap appears between the rounded border and the rounded gray area.
-			If the border is added to the after element, the error does not occur.
-			 */
-			&::after {
-				@extend %component-border;
-
-				content: "";
-				position: absolute;
-				inset-inline-start: 0;
-				inset-block-start: 0;
-				inline-size: 100%;
-				block-size: 100%;
-				border-radius: variables.$db-border-radius-sm;
-				pointer-events: none;
-			}
 		}
 	}
 }

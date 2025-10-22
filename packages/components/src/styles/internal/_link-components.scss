@@ -2,7 +2,7 @@
 @use "@db-ux/core-foundations/build/styles/helpers";
 @use "@db-ux/core-foundations/build/styles/colors";
 @use "@db-ux/core-foundations/build/styles/animation";
-@use "@db-ux/core-foundations/build/styles/materials/classes/all";
+@use "@db-ux/core-foundations/build/styles/weights/classes/all";
 @use "./component";
 
 %db-link-height {
@@ -17,23 +17,18 @@
 	@extend %default-fg-transition;
 	@extend %db-link-height;
 
-	color: var(
-		--db-global-on-bg-color-default,
-		#{colors.$db-adaptive-on-bg-basic-emphasis-100-default}
-	);
+	color: variables.$db-global-on-bg-color-default;
 
 	@include helpers.hover {
-		color: var(
-			--db-global-on-bg-color-hovered,
-			#{colors.$db-adaptive-on-bg-basic-emphasis-100-hovered}
-		);
+		color: variables.$db-global-on-bg-color-hovered;
 	}
 
 	@include helpers.active {
-		color: var(
-			--db-global-on-bg-color-pressed,
-			#{colors.$db-adaptive-on-bg-basic-emphasis-100-pressed}
-		);
+		color: variables.$db-global-on-bg-color-pressed;
+	}
+
+	&:not([data-weight]) {
+		@extend [data-weight="regular"];
 	}
 
 	inline-size: fit-content;

@@ -6,69 +6,50 @@
 $min-mobile-header-height: calc(
 	#{variables.$db-sizing-md} + 2 * #{variables.$db-spacing-fixed-xs}
 );
+
 $component-border: variables.$db-border-width-3xs solid
-	colors.$db-adaptive-on-bg-basic-emphasis-60-default;
-
-%default-adaptive-border {
-	border: variables.$db-border-width-3xs solid
-		colors.$db-adaptive-on-bg-basic-emphasis-100-default;
-}
-
-%transparent-border {
-	border: variables.$db-border-width-3xs solid transparent;
-}
+	variables.$db-global-border-color-default;
+$card-border-radius: var(
+	--default-card-border-radius,
+	#{variables.$db-border-radius-sm}
+);
 
 %component-border {
 	// stylelint-disable-next-line db-ux/use-border-width, db-ux/use-border-color
 	border: $component-border;
 }
 
-%form-component-border {
-	border: variables.$db-border-width-3xs solid
-		colors.$db-adaptive-on-bg-basic-emphasis-70-default;
+%default-component {
+	@extend %component-border;
+
+	background-color: variables.$db-global-bg-color-default;
+	color: variables.$db-global-on-bg-color-default;
+	border-radius: variables.$db-border-radius-xs;
 }
 
-$default-bg-color-default: var(
-	--db-global-bg-color-default,
-	#{colors.$db-adaptive-bg-basic-level-1-default}
-);
-$default-bg-color-hovered: var(
-	--db-global-bg-color-hovered,
-	#{colors.$db-adaptive-bg-basic-level-1-hovered}
-);
-$default-bg-color-pressed: var(
-	--db-global-bg-color-pressed,
-	#{colors.$db-adaptive-bg-basic-level-1-pressed}
-);
-$default-on-bg-color-default: var(
-	--db-global-on-bg-color-default,
-	#{colors.$db-adaptive-on-bg-basic-emphasis-100-default}
-);
-$default-on-bg-color-hovered: var(
-	--db-global-on-bg-color-hovered,
-	#{colors.$db-adaptive-on-bg-basic-emphasis-100-hovered}
-);
-$default-on-bg-color-pressed: var(
-	--db-global-on-bg-color-pressed,
-	#{colors.$db-adaptive-on-bg-basic-emphasis-100-pressed}
-);
-$default-border-color-default: var(
-	--db-global-border-color-default,
-	#{colors.$db-adaptive-on-bg-basic-emphasis-60-default}
-);
-
 %default-interactive-component {
-	background-color: $default-bg-color-default;
-	color: $default-on-bg-color-default;
-	border: variables.$db-border-width-3xs solid $default-border-color-default;
-	border-radius: variables.$db-border-radius-xs;
+	@extend %default-component;
 
 	@include helpers.hover {
-		background-color: $default-bg-color-hovered;
+		background-color: variables.$db-global-bg-color-hovered;
 	}
 
 	@include helpers.active {
-		background-color: $default-bg-color-pressed;
+		background-color: variables.$db-global-bg-color-pressed;
+	}
+}
+
+%default-swap-component {
+	background-color: variables.$db-global-swap-bg-color-default;
+	color: variables.$db-global-swap-on-bg-color-default;
+	border-color: variables.$db-global-swap-on-bg-color-default;
+
+	@include helpers.hover {
+		background-color: variables.$db-global-swap-bg-color-hovered;
+	}
+
+	@include helpers.active {
+		background-color: variables.$db-global-swap-bg-color-pressed;
 	}
 }
 
@@ -76,10 +57,7 @@ $default-border-color-default: var(
 	@extend %component-border;
 
 	/* stylelint-disable-next-line db-ux/use-border-radius */
-	border-radius: var(
-		--default-card-border-radius,
-		#{variables.$db-border-radius-sm}
-	);
+	border-radius: $card-border-radius;
 }
 
 $responsive-spacings: (

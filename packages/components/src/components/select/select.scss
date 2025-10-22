@@ -4,9 +4,9 @@
 @use "@db-ux/core-foundations/build/styles/icons";
 @use "@db-ux/core-foundations/build/styles/fonts";
 @use "../../styles/internal/form-components";
-@use "../../styles/internal/component";
 @use "../../styles/internal/select-components";
-@use "@db-ux/core-foundations/build/styles/helpers/display";
+@use "@db-ux/core-foundations/build/styles/helpers";
+@use "@db-ux/core-foundations/build/styles/materials/classes/all";
 
 .db-select-placeholder {
 	@extend %select-absolute-placeholder;
@@ -36,18 +36,17 @@
 	}
 
 	// Most likely this wouldn't work on MacOS, but we're still progressively enhancing Windows by this
-	option {
-		background-color: colors.$db-adaptive-bg-basic-level-1-default;
-		color: colors.$db-adaptive-on-bg-basic-emphasis-100-default;
-	}
-
+	option,
 	optgroup {
-		background-color: colors.$db-adaptive-bg-basic-level-3-default;
+		@extend [data-material="filled"];
+
+		background-color: variables.$db-global-bg-color-default;
+		color: variables.$db-global-on-bg-color-default;
 	}
 
 	&:has(> select option:checked:not(.placeholder)) {
 		[id$="-placeholder"] {
-			@include display.display(none);
+			@include helpers.display(none);
 		}
 	}
 }

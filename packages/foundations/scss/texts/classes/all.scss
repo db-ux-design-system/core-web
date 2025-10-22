@@ -1,0 +1,6 @@
+@use "../index";
+@use "get-class";
+
+@each $text in index.$texts {
+	@include get-class.init($text);
+}

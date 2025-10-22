@@ -1,7 +1,7 @@
 @use "@db-ux/core-foundations/build/styles/helpers/functions";
 @use "@db-ux/core-foundations/build/styles/variables";
-@use "@db-ux/core-foundations/build/styles/colors";
 @use "@db-ux/core-foundations/build/styles/fonts";
+@use "@db-ux/core-foundations/build/styles/materials/classes/all";
 @use "../../styles/internal/popover-component";
 @use "../../styles/internal/component";
 
@@ -15,9 +15,6 @@ $tooltip-arrow-shadow-size: variables.$db-sizing-2xs;
 	@extend %popover-center;
 	@extend %default-popover;
 
-	background-color: colors.$db-adaptive-bg-basic-level-1-default;
-	color: colors.$db-adaptive-on-bg-basic-emphasis-100-default;
-
 	// i HTML tags browsers default styling reset
 	font-style: normal;
 
@@ -26,7 +23,7 @@ $tooltip-arrow-shadow-size: variables.$db-sizing-2xs;
 	padding: variables.$db-spacing-fixed-2xs variables.$db-spacing-fixed-xs;
 
 	&::after {
-		background-color: colors.$db-adaptive-bg-basic-level-1-default;
+		background-color: variables.$db-global-bg-color-default;
 	}
 
 	// Only for testing
@@ -42,7 +39,6 @@ $tooltip-arrow-shadow-size: variables.$db-sizing-2xs;
 			content: "";
 			box-shadow: variables.$db-elevation-md;
 			position: absolute;
-			background-color: colors.$db-adaptive-bg-basic-level-1-default;
 			inline-size: $tooltip-arrow-shadow-size;
 			block-size: $tooltip-arrow-shadow-size;
 			clip-path: polygon(
@@ -100,16 +96,9 @@ $tooltip-arrow-shadow-size: variables.$db-sizing-2xs;
 		}
 	}
 
-	&[data-emphasis="strong"] {
-		background-color: colors.$db-adaptive-bg-inverted-contrast-high-default;
-		color: colors.$db-adaptive-on-bg-inverted-default;
-
-		&::before {
-			--db-icon-color: #{colors.$db-adaptive-on-bg-inverted-default};
-		}
-
-		&::after {
-			background-color: colors.$db-adaptive-bg-inverted-contrast-high-default;
+	&:not([data-material]) {
+		&[data-emphasis="strong"] {
+			@extend [data-material="inverted"];
 		}
 	}
 }

@@ -1,0 +1,6 @@
+@use "../index";
+@use "get-class";
+
+$material: "vibrant";
+
+@include get-class.init($material);

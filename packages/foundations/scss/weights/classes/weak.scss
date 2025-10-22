@@ -1,0 +1,6 @@
+@use "../index";
+@use "get-class";
+
+$weight: "weak";
+
+@include get-class.init($weight);

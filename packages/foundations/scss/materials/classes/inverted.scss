@@ -1,0 +1,6 @@
+@use "../index";
+@use "get-class";
+
+$material: "inverted";
+
+@include get-class.init($material);

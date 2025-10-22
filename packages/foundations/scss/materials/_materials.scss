@@ -1,23 +1,63 @@
-@mixin get-material-bg-interactive($hovered, $pressed) {
-	--db-global-bg-color-hovered: #{$hovered};
-	--db-global-bg-color-pressed: #{$pressed};
+@use "../helpers";
+@use "../variables";
+
+@mixin get-material-swap(
+	$bg,
+	$hovered,
+	$pressed,
+	$border,
+	$on-bg,
+	$on-bg-hovered,
+	$on-bg-pressed
+) {
+	@layer #{helpers.$layer-materials} {
+		--db-global-swap-bg-color-default: #{$bg};
+		--db-global-swap-bg-color-hovered: #{$hovered};
+		--db-global-swap-bg-color-pressed: #{$pressed};
+
+		--db-global-swap-border-color-default: #{$border};
+
+		--db-global-swap-on-bg-color-default: color(
+			from #{$on-bg} srgb r g b /
+				#{variables.$db-global-swap-font-strength}
+		);
+		--db-global-swap-on-bg-color-hovered: color(
+			from #{$on-bg-hovered} srgb r g b /
+				#{variables.$db-global-swap-font-strength}
+		);
+		--db-global-swap-on-bg-color-pressed: color(
+			from #{$on-bg-pressed} srgb r g b /
+				#{variables.$db-global-swap-font-strength}
+		);
+	}
 }
 
-@mixin get-material-on-bg-interactive($hovered, $pressed) {
-	--db-global-on-bg-color-hovered: #{$hovered};
-	--db-global-on-bg-color-pressed: #{$pressed};
-}
+@mixin get-material(
+	$bg,
+	$hovered,
+	$pressed,
+	$border,
+	$on-bg,
+	$on-bg-hovered,
+	$on-bg-pressed
+) {
+	@layer #{helpers.$layer-materials} {
+		--db-global-bg-color-default: #{$bg};
+		--db-global-bg-color-hovered: #{$hovered};
+		--db-global-bg-color-pressed: #{$pressed};
 
-@mixin get-material-checked($bg, $on-bg, $border, $hovered, $pressed) {
-	--db-global-checked-bg-color-default: #{$bg};
-	--db-global-checked-on-bg-color-default: #{$on-bg};
-	--db-global-checked-border-color-default: #{$border};
-	--db-global-checked-bg-color-hovered: #{$hovered};
-	--db-global-checked-bg-color-pressed: #{$pressed};
-}
+		--db-global-border-color-default: #{$border};
 
-@mixin get-material($bg, $on-bg, $border) {
-	--db-global-bg-color-default: #{$bg};
-	--db-global-on-bg-color-default: #{$on-bg};
-	--db-global-border-color-default: #{$border};
+		--db-global-on-bg-color-default: color(
+			from #{$on-bg} srgb r g b / #{variables.$db-global-font-strength}
+		);
+		--db-global-on-bg-color-hovered: color(
+			from #{$on-bg-hovered} srgb r g b /
+				#{variables.$db-global-font-strength}
+		);
+		--db-global-on-bg-color-pressed: color(
+			from #{$on-bg-pressed} srgb r g b /
+				#{variables.$db-global-font-strength}
+		);
+	}
 }

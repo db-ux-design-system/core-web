@@ -9,6 +9,8 @@
 @use "../../styles/internal/tag-components";
 @use "../../styles/internal/icon-passing";
 @use "../../styles/internal/component";
+@use "@db-ux/core-foundations/build/styles/materials/classes/all";
+@use "@db-ux/core-foundations/build/styles/texts/classes/all" as texts;
 
 %no-text {
 	&[data-no-text="true"] {
@@ -25,23 +27,10 @@
 	}
 
 	&:not([data-no-text="true"]) {
-		--db-padding-inline-start: #{variables.$db-spacing-fixed-2xs};
-
-		/* stylelint-disable-next-line db-ux/use-spacings */
-		padding-inline: var(--db-padding-inline-start)
-			#{variables.$db-spacing-fixed-2xs};
+		padding-inline: variables.$db-spacing-fixed-2xs;
 
 		&:has(.db-tab-remove-button) {
 			padding-inline-end: 0;
-			border-inline-end: 0;
-		}
-
-		&:has(dbbutton):has(dbbutton:not(.db-tab-remove-button)),
-		&:has(db-button):has(db-button:not(.db-tab-remove-button)),
-		&:not(:has(dbbutton)):has(button:not(.db-tab-remove-button)),
-		&:has(a),
-		&:has(label) {
-			padding-inline: 0;
 		}
 	}
 }
@@ -49,7 +38,6 @@
 %db-tag {
 	--db-icon-margin-end: 0;
 
-	@extend %default-interactive-component;
 	@extend %db-overwrite-font-size-sm;
 	@extend %default-button;
 	@extend %no-text;
@@ -61,32 +49,69 @@
 	position: relative;
 	gap: variables.$db-spacing-fixed-2xs;
 
+	@each $name in colors.$variant-colors {
+		&[data-semantic="#{$name}"] {
+			@extend %db-#{$name}-variables;
+		}
+	}
+
+	&:not([data-emphasis="strong"], :has(input:checked)) {
+		&:not([data-text]) {
+			@extend [data-text="vibrant"];
+
+			.db-tab-remove-button,
+			.db-button,
+			.db-link,
+			.db-checkbox,
+			.db-radio {
+				@extend [data-text="vibrant"];
+			}
+		}
+	}
+
+	&[data-emphasis="strong"] {
+		&:not([data-material]) {
+			@extend [data-material="vibrant"];
+		}
+	}
+
 	&:not(:has(#{tag-components.$interactive-selectors})),
 	&:has(.db-tab-remove-button) {
-		@extend %component-border;
-		@include tag-components.get-tag-colors;
+		@extend %default-component;
 	}
 
 	&:has(#{tag-components.$interactive-selectors}) {
 		--db-icon-margin-end: #{variables.$db-spacing-fixed-2xs};
 
+		@extend %default-interactive-component;
+
 		@include icon-passing.icon-passing(variables.$db-spacing-fixed-2xs);
-		@include tag-components.get-tag-colors-interactive;
+
+		#{tag-components.$interactive-selectors},
+		input {
+			text-decoration: unset;
+			margin: unset;
+			border: unset;
+			background-color: transparent;
+			padding: unset;
+			font: inherit;
+			appearance: none;
+			transition: none;
+
+			&::after {
+				content: none !important;
+			}
+		}
 	}
 
-	button:nth-of-type(2),
-	dbbutton:nth-of-type(2),
-	&:has(db-button):has(dbbutton) .db-tab-remove-button {
-		@include helpers.display(none);
+	@media (forced-colors: active) {
+		&:not(:has(input:checked)) {
+			border-style: dashed;
+		}
 	}
 
-	> :is(
-		[class="db-checkbox"],
-		[class="db-radio"],
-		[class="db-link"],
-		[class="db-button"]
-	) {
-		block-size: 100%;
+	&:has(input:checked) {
+		@extend %default-swap-component;
 	}
 }
 
@@ -106,106 +131,15 @@
 		}
 	}
 
+	a,
 	label {
-		@extend %default-transition;
-
-		inline-size: 100%;
-		margin-inline-start: 0;
-
-		@include helpers.display(flex);
-
-		align-items: center;
-
-		@media (forced-colors: active) {
-			&:not(:has(input:checked)) {
-				border-style: dashed;
-			}
-		}
-
-		&::after {
-			@include fonts.set-component-variables("xs");
-		}
-
-		&:has(input:checked) {
-			border-width: variables.$db-border-width-3xs;
-
-			&::before {
-				content: none;
-			}
-		}
-
-		// Handle native radio and checkbox input elements, especially regarding focus-visible indicator
-		input {
-			appearance: none;
-			inline-size: 100%;
-			block-size: 100%;
-			position: absolute;
-			margin-inline-end: initial;
-			border: 0;
-			border-radius: inherit;
-			cursor: pointer;
-			inset: 0;
-			aspect-ratio: unset;
-
-			&:checked {
-				&:not([data-show-icon-leading="false"]) {
-					&::before {
-						content: none;
-					}
-				}
-			}
-		}
-	}
-
-	a {
-		@extend %default-transition;
 		@include helpers.display(inline-flex);
 
 		align-items: center;
-		text-decoration: none;
-
-		&::after {
-			--db-icon-margin-start: 0;
-			--db-icon-font-size: 0;
-
-			content: none !important;
-		}
 	}
 
-	.db-link {
-		&:is(:hover, :focus, :active) {
-			color: inherit;
-		}
-	}
-
-	&:not(:has(dbbutton, db-button)):has(button:not(.db-tab-remove-button)),
-	&:has(:is(dbbutton, db-button):not(.db-tab-remove-button), a, label) {
-		border: 0;
-	}
-
-	button,
-	a,
-	label {
-		@extend %db-overwrite-font-size-sm;
-		@extend %component-border;
-
-		block-size: inherit;
-		padding: 0 variables.$db-spacing-fixed-2xs;
-		border-radius: variables.$db-border-radius-xs;
-		font-weight: 700;
-		appearance: none;
-	}
-
-	db-button,
-	dbbutton,
-	db-checkbox,
-	dbcheckbox,
-	db-radio,
-	dbradio,
-	db-link,
-	dblink {
-		// angular workaround
-		block-size: inherit;
+	input {
+		@extend %a11y-visually-hidden;
 	}
 
 	&:has(:disabled),
@@ -226,17 +160,6 @@
 	}
 
 	.db-tab-remove-button {
-		&:is(button),
-		button {
-			// overwrite to transparent
-			background-color: colors.$db-adaptive-bg-basic-transparent-full-default;
-			color: currentcolor;
-			aspect-ratio: 1 / 1;
-			border-inline-start: 0;
-			border-start-start-radius: 0;
-			border-end-start-radius: 0;
-			// stylelint-disable-next-line db-ux/use-border-color
-			border-color: var(--db-tag-border-color);
-		}
+		@extend [data-material="transparent"];
 	}
 }

@@ -2,6 +2,7 @@
 @use "@db-ux/core-foundations/build/styles/colors";
 @use "@db-ux/core-foundations/build/styles/icons";
 @use "@db-ux/core-foundations/build/styles/helpers";
+@use "@db-ux/core-foundations/build/styles/materials/classes/all";
 @use "../../styles/internal/component";
 @use "../../styles/internal/db-puls";
 @use "../../styles/internal/form-components";
@@ -17,14 +18,18 @@ $with-icon-padding-calc: calc(
 	@include helpers.display(inline-flex);
 
 	list-style-type: "";
-	border-radius: variables.$db-border-radius-sm;
 
 	&:has(input:disabled) {
 		opacity: variables.$db-opacity-md;
 	}
 
+	&:not([data-material]) {
+		@extend [data-material="transparent"];
+	}
+
 	label {
-		background-color: colors.$db-adaptive-bg-basic-transparent-full-default;
+		@extend %default-card;
+		background-color: variables.$db-global-bg-color-default;
 		padding: variables.$db-spacing-fixed-xs;
 		align-items: center;
 
@@ -32,13 +37,12 @@ $with-icon-padding-calc: calc(
 
 		white-space: nowrap;
 		border: 0;
-		border-radius: variables.$db-border-radius-sm;
 		overflow: hidden;
 		text-overflow: ellipsis;
 
 		@include helpers.hover {
 			&:has(:not(input:disabled)) {
-				background-color: colors.$db-adaptive-bg-basic-transparent-full-hovered;
+				background-color: variables.$db-global-bg-color-hovered;
 			}
 
 			&:has(input:disabled) {
@@ -46,9 +50,9 @@ $with-icon-padding-calc: calc(
 			}
 		}
 
-		@include helpers.hover {
+		@include helpers.active {
 			&:has(:not(input:disabled)) {
-				background-color: colors.$db-adaptive-bg-basic-transparent-full-hovered;
+				background-color: variables.$db-global-bg-color-pressed;
 			}
 
 			&:has(input:disabled) {

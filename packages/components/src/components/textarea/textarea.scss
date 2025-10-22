@@ -65,26 +65,29 @@
 				@extend %default-transition;
 				@include get-scrolling-workaround;
 
+				// we want a solid color here
 				background-color: colors.$db-adaptive-bg-basic-level-1-default;
 			}
 
 			&::after {
-				@extend %form-component-border;
+				@extend %component-border;
 				@include get-scrolling-workaround;
 
-				background-color: colors.$db-adaptive-bg-basic-transparent-semi-default;
+				background-color: variables.$db-global-bg-color-default;
+				border-color: variables.$db-global-border-color-default;
 				z-index: 1;
 				border-block-end: none;
 				border-inline-end: none;
 			}
 
 			&:has(textarea:read-only)::after {
+				// we want a solid color here
 				background-color: colors.$db-adaptive-bg-basic-level-1-default !important;
 			}
 
 			&:has(textarea:not(:disabled):is(:hover, :focus)) {
 				&::after {
-					background-color: colors.$db-adaptive-bg-basic-transparent-semi-hovered;
+					background-color: variables.$db-global-bg-color-hovered;
 				}
 			}
 		}

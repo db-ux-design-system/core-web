@@ -1,0 +1,17 @@
+@use "../placeholders";
+
+@mixin init($weight) {
+	[data-weight-swap="#{$weight}"] {
+		@extend %weight-swap-#{$weight};
+	}
+
+	[data-weight="#{$weight}"] {
+		@extend %weight-#{$weight};
+
+		&:not(
+			[data-weight-swap]
+		) {
+			@extend %weight-swap-#{$weight};
+		}
+	}
+}

@@ -1,13 +1,20 @@
-@use "@db-ux/core-foundations/build/styles/helpers/display";
+@use "@db-ux/core-foundations/build/styles/helpers";
+@use "@db-ux/core-foundations/build/styles/variables";
+@use "@db-ux/core-foundations/build/styles/weights/classes/all";
 
 %default-button {
-	font-weight: 700;
+	font-weight: variables.$db-global-font-weight;
 	white-space: nowrap; // we don't want to break buttons
 	justify-content: center;
 	text-align: center;
 
-	@include display.display(inline-flex);
+	@include helpers.display(inline-flex);
 
 	align-items: center; // Centering the content vertically and horizontally
 	vertical-align: top; // Alignment of inline-flex buttons with different content
+
+	&:not([data-weight]) {
+		// TODO: we can remove this when we do breaking-changes for material
+		@extend [data-weight="strong"];
+	}
 }

@@ -6,7 +6,7 @@
 @use "../../styles/internal/component";
 
 .db-header {
-	background-color: colors.$db-adaptive-bg-basic-level-1-default;
+	background-color: variables.$db-global-bg-color-default;
 
 	@include helpers.display(flex);
 
@@ -94,6 +94,7 @@
 	flex-direction: column;
 	gap: variables.$db-spacing-fixed-sm;
 	justify-content: flex-end;
+	// TODO: Consistency
 	background-color: colors.$db-adaptive-bg-basic-level-2-default;
 	padding: variables.$db-spacing-fixed-md;
 

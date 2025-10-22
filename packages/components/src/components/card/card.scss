@@ -17,49 +17,45 @@
 	@include helpers.hover {
 		> .db-card,
 		> db-card > .db-card {
-			background-color: var(--db-card-background-color-hovered);
+			background-color: variables.$db-global-bg-color-hovered;
 		}
 	}
 
 	@include helpers.active {
 		> .db-card,
 		> db-card > .db-card {
-			background-color: var(--db-card-background-color-pressed);
+			background-color: variables.$db-global-bg-color-pressed;
 		}
 	}
 }
 
 .db-card {
-	--db-card-background-color-default: #{colors.$db-adaptive-bg-basic-level-1-default};
-	--db-card-background-color-hovered: #{colors.$db-adaptive-bg-basic-level-1-hovered};
-	--db-card-background-color-pressed: #{colors.$db-adaptive-bg-basic-level-1-pressed};
-
 	@extend %default-card;
 	@include component.get-data-spacing;
 	@include helpers.display(flex);
 
 	flex-direction: column;
-	background-color: var(--db-card-background-color-default);
+	background-color: variables.$db-global-bg-color-default;
 
 	&[data-behavior="interactive"] {
 		@include helpers.hover {
-			background-color: var(--db-card-background-color-hovered);
+			background-color: variables.$db-global-bg-color-hovered;
 		}
 
 		@include helpers.active {
-			background-color: var(--db-card-background-color-pressed);
+			background-color: variables.$db-global-bg-color-pressed;
 		}
 	}
 
 	&[data-elevation-level="2"] {
-		--db-card-background-color-default: #{colors.$db-adaptive-bg-basic-level-2-default};
-		--db-card-background-color-hovered: #{colors.$db-adaptive-bg-basic-level-2-hovered};
-		--db-card-background-color-pressed: #{colors.$db-adaptive-bg-basic-level-2-pressed};
+		--db-global-bg-color-default: #{colors.$db-adaptive-bg-basic-level-2-default};
+		--db-global-bg-color-hovered: #{colors.$db-adaptive-bg-basic-level-2-hovered};
+		--db-global-bg-color-pressed: #{colors.$db-adaptive-bg-basic-level-2-pressed};
 	}
 
 	&[data-elevation-level="3"] {
-		--db-card-background-color-default: #{colors.$db-adaptive-bg-basic-level-3-default};
-		--db-card-background-color-hovered: #{colors.$db-adaptive-bg-basic-level-3-hovered};
-		--db-card-background-color-pressed: #{colors.$db-adaptive-bg-basic-level-3-pressed};
+		--db-global-bg-color-default: #{colors.$db-adaptive-bg-basic-level-3-default};
+		--db-global-bg-color-hovered: #{colors.$db-adaptive-bg-basic-level-3-hovered};
+		--db-global-bg-color-pressed: #{colors.$db-adaptive-bg-basic-level-3-pressed};
 	}
 }

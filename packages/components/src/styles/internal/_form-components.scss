@@ -89,18 +89,6 @@ $db-min-inline-size: var(
 
 @mixin set-floating-label-overwrites($selector) {
 	&[data-variant="floating"] {
-		@include get-validity($selector) {
-			label {
-				color: var(--db-successful-on-bg-basic-emphasis-90-default);
-			}
-		}
-
-		@include get-validity($selector, "invalid") {
-			label {
-				color: var(--db-critical-on-bg-basic-emphasis-90-default);
-			}
-		}
-
 		> label {
 			@extend %db-overwrite-font-size-md;
 
@@ -160,6 +148,7 @@ $db-min-inline-size: var(
 				inset-block-start: variables.$db-spacing-fixed-2xs;
 				opacity: 1;
 				font-style: normal;
+				color: variables.$db-global-highlight-color-default;
 			}
 
 			@include placeholder-content($selector) {
@@ -208,41 +197,7 @@ $db-min-inline-size: var(
 		$variant: "critical";
 	}
 
-	@if $selector != textarea {
-		@extend %db-#{$variant}-variables;
-		/* stylelint-disable-next-line at-rule-empty-line-before */
-	} @else {
-		// this is a workaround for the textarea scrollbar
-		--db-textarea-read-only: var(--db-#{$variant}-bg-basic-level-1-default);
-		--db-adaptive-bg-basic-transparent-full-default: var(
-			--db-#{$variant}-bg-basic-transparent-full-default
-		);
-		--db-adaptive-bg-basic-transparent-semi-default: var(
-			--db-#{$variant}-bg-basic-transparent-semi-default
-		);
-		--db-adaptive-bg-basic-transparent-full-hovered: var(
-			--db-#{$variant}-bg-basic-transparent-full-hovered
-		);
-		--db-adaptive-bg-basic-transparent-full-pressed: var(
-			--db-#{$variant}-bg-basic-transparent-full-pressed
-		);
-		--db-adaptive-bg-basic-transparent-semi-hovered: var(
-			--db-#{$variant}-bg-basic-transparent-semi-hovered
-		);
-		--db-adaptive-bg-basic-transparent-semi-pressed: var(
-			--db-#{$variant}-bg-basic-transparent-semi-pressed
-		);
-		--db-adaptive-on-bg-basic-emphasis-100-default: var(
-			--db-#{$variant}-on-bg-basic-emphasis-100-default
-		);
-		--db-adaptive-on-bg-basic-emphasis-60-default: var(
-			--db-#{$variant}-on-bg-basic-emphasis-60-default
-		);
-
-		&[data-variant="floating"]::after {
-			border-color: var(--db-#{$variant}-on-bg-basic-emphasis-70-default);
-		}
-	}
+	@extend %db-#{$variant}-variables;
 
 	@include get-validity-message($key);
 }
@@ -330,6 +285,11 @@ $input-valid-types:
 	// base inline size for inputs without icons
 	min-inline-size: $db-min-inline-size;
 
+	&:not([data-material]) {
+		// Old default for form-components
+		@extend [data-material="semitransparent"];
+	}
+
 	/* stylelint-disable-next-line block-no-redundant-nested-style-rules */
 	& {
 		--db-form-has-before: 0;
@@ -374,9 +334,8 @@ $input-valid-types:
 	#{$selector} {
 		@extend %db-overwrite-font-size-md;
 		@extend %default-interactive-component;
-		@extend %form-component-border;
 
-		caret-color: component.$default-on-bg-color-default;
+		caret-color: variables.$db-global-highlight-color-default;
 		appearance: none;
 		max-inline-size: 100%;
 		inline-size: 100%;
@@ -391,16 +350,6 @@ $input-valid-types:
 				--db-form-component-padding-inline-end,
 				#{variables.$db-spacing-fixed-sm}
 			);
-
-		&:not([data-material]) {
-			// Old default for form-components
-			@extend .db-material-semitransparent;
-
-			& {
-				// TODO: Remove this if when we make materials stable
-				border-color: colors.$db-adaptive-on-bg-basic-emphasis-70-default;
-			}
-		}
 
 		@if list.index($valid-field-sizing-form-fields, $selector) {
 			/* see https://developer.mozilla.org/en-US/docs/Web/CSS/field-sizing */
@@ -429,6 +378,7 @@ $input-valid-types:
 		@extend %db-overwrite-font-size-xs;
 
 		padding-block-end: variables.$db-spacing-fixed-xs;
+		color: variables.$db-global-on-bg-color-default;
 		max-inline-size: 25ch;
 		text-overflow: ellipsis;
 		white-space: nowrap;
@@ -464,7 +414,7 @@ $input-valid-types:
 		position: absolute;
 		pointer-events: none;
 		inset-block-start: $icon-inline-block-start;
-		color: component.$default-on-bg-color-default;
+		color: variables.$db-global-on-bg-color-default;
 		transform: translateY(-50%);
 		z-index: 1;
 	}
@@ -483,21 +433,6 @@ $input-valid-types:
 		#{$selector} {
 			block-size: variables.$db-sizing-md;
 			text-overflow: ellipsis;
-		}
-	}
-}
-
-@mixin get-validity-color-check-label-color($state, $key: "valid") {
-	$variant: successful;
-
-	@if $key != "valid" {
-		$variant: critical;
-	}
-
-	&:has(input:not([role="switch"])) {
-		&:is(label),
-		> label {
-			color: var(--db-#{$variant}-on-bg-basic-emphasis-100-#{$state});
 		}
 	}
 }
@@ -584,6 +519,7 @@ $input-valid-types:
 }
 
 @mixin set-default-check-element() {
+	// TODO: Change check-elements
 	@extend %db-overwrite-font-size-md;
 
 	&:not([data-hide-asterisk="true"]) {

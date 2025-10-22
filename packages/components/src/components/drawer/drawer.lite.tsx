@@ -81,7 +81,7 @@ export default function DBDrawer(props: DBDrawerProps) {
 					if (dialogContainerRef) {
 						dialogContainerRef.hidden = true;
 					}
-					delay(() => {
+					void delay(() => {
 						if (dialogContainerRef) {
 							dialogContainerRef.hidden = false;
 						}

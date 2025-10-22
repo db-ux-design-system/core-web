@@ -3,6 +3,7 @@
 @use "@db-ux/core-foundations/build/styles/screen-sizes";
 @use "@db-ux/core-foundations/build/styles/helpers";
 @use "@db-ux/core-foundations/build/styles/animation";
+@use "@db-ux/core-foundations/build/styles/materials/classes/all";
 @use "../../styles/internal/form-components";
 
 .db-custom-select-dropdown {
@@ -14,6 +15,11 @@
 	min-inline-size: variables.$db-sizing-xl;
 	max-inline-size: calc(100vw - 2 * #{variables.$db-spacing-fixed-sm});
 	max-block-size: calc(100vh - 2 * #{variables.$db-spacing-fixed-sm});
+	background-color: variables.$db-global-bg-color-default;
+
+	&:not([data-material]) {
+		@extend [data-material="filled"];
+	}
 
 	&:not([data-width]),
 	&[data-width="fixed"] {

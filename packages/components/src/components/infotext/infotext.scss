@@ -1,45 +1,43 @@
 @use "sass:map";
 @use "@db-ux/core-foundations/build/styles/fonts";
 @use "@db-ux/core-foundations/build/styles/variables";
-@use "@db-ux/core-foundations/build/styles/helpers/display";
+@use "@db-ux/core-foundations/build/styles/helpers";
 @use "@db-ux/core-foundations/build/styles/colors";
 @use "@db-ux/core-foundations/build/styles/icons";
+@use "@db-ux/core-foundations/build/styles/texts/classes/all";
 
 .db-infotext {
 	--db-icon-margin-end: #{variables.$db-spacing-fixed-2xs};
 
-	@extend %db-overwrite-font-size-sm;
-	@include display.display(flex);
+	@include helpers.display(flex);
 
 	@include icons.has-no-icon {
 		@include icons.to-filled-icon;
 		@include icons.set-icon("information_circle");
 	}
 
+	&:not([data-size="small"]) {
+		@extend %db-overwrite-font-size-sm;
+	}
+
 	&[data-size="small"] {
 		@extend %db-overwrite-font-size-xs;
 	}
 
-	&[data-semantic="adaptive"],
-	&:not([data-semantic]) {
-		color: colors.$db-adaptive-on-bg-basic-emphasis-80-default;
+	color: variables.$db-global-on-bg-color-default;
 
-		&::before {
-			--db-icon-color: #{colors.$db-adaptive-on-bg-basic-emphasis-70-default};
-		}
+	&::before {
+		--db-icon-color: #{variables.$db-global-highlight-color-default};
+	}
+
+	&:not([data-text]) {
+		@extend [data-text="vibrant"];
 	}
 
 	@each $name, $colors in colors.$variant-colors {
 		&[data-semantic="#{$name}"] {
+			@extend %db-#{$name}-variables;
 			@include icons.variant-icons($name);
-
-			color: var(--db-#{$name}-on-bg-basic-emphasis-80-default);
-
-			&::before {
-				--db-icon-color: var(
-					--db-#{$name}-on-bg-basic-emphasis-70-default
-				);
-			}
 		}
 	}
 

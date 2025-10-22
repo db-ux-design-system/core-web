@@ -1,8 +1,8 @@
-@use "@db-ux/core-foundations/build/styles/helpers/display";
+@use "@db-ux/core-foundations/build/styles/helpers";
 
 %grid-layout-variant-not-overlay {
 	span {
-		@include display.display(none);
+		@include helpers.display(none);
 	}
 
 	// has link

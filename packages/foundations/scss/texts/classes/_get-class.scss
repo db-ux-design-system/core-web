@@ -1,0 +1,17 @@
+@use "../placeholders";
+
+@mixin init($text) {
+	[data-text-swap="#{$text}"] {
+		@extend %text-swap-#{$text};
+	}
+
+	[data-text="#{$text}"] {
+		@extend %text-#{$text};
+
+		&:not(
+			[data-text-swap]
+		) {
+			@extend %text-swap-#{$text};
+		}
+	}
+}

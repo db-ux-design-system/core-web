@@ -1,88 +1,19 @@
 @use "sass:map";
 @use "component";
 @use "@db-ux/core-foundations/build/styles/variables";
-@use "@db-ux/core-foundations/build/styles/colors";
 @use "@db-ux/core-foundations/build/styles/helpers";
+@use "@db-ux/core-foundations/build/styles/materials/classes/all";
 
 $interactive-selectors: "label, button:not(.db-tab-remove-button), a";
 
-@mixin get-weak($name: "adaptive", $border-color: 60, $background-color: 1) {
-	--db-tag-border-color: var(
-		--db-#{$name}-on-bg-basic-emphasis-#{$border-color}-default
-	);
-	// stylelint-disable-next-line db-ux/use-border-color
-	border-color: var(--db-tag-border-color);
-
-	@include colors.set-current-colors(
-		var(--db-#{$name}-bg-basic-level-#{$background-color}-default),
-		var(--db-#{$name}-on-bg-basic-emphasis-80-default)
-	);
+@mixin get-weak() {
+	@extend [data-material="filled"];
 }
 
-@mixin get-strong($name: "adaptive") {
-	--db-tag-border-color: var(--db-#{$name}-on-bg-basic-emphasis-70-default);
-	// stylelint-disable-next-line db-ux/use-border-color
-	border-color: var(--db-tag-border-color);
-
-	@include colors.set-current-colors(
-		var(--db-#{$name}-bg-vibrant-default),
-		var(--db-#{$name}-on-bg-vibrant-default)
-	);
+@mixin get-strong() {
+	@extend [data-material="vibrant"];
 }
 
-%set-interactive-weak {
-	@include get-weak;
-
-	@include helpers.hover {
-		background-color: colors.$db-adaptive-bg-basic-level-1-hovered;
-	}
-
-	@include helpers.active {
-		background-color: colors.$db-adaptive-bg-basic-level-1-pressed;
-	}
-}
-
-@mixin get-tag-colors($htmlTag: "tag") {
-	$border-color: 60;
-	$background-color: 1;
-
-	&:not([data-semantic]),
-	&[data-semantic="adaptive"] {
-		&:not([data-emphasis]),
-		&[data-emphasis="weak"] {
-			@if $htmlTag == "badge" {
-				$border-color: 70;
-				$background-color: 3;
-
-				@include get-weak("adaptive", $border-color, $background-color);
-				/* stylelint-disable-next-line at-rule-empty-line-before */
-			} @else {
-				@include get-weak;
-			}
-		}
-
-		&[data-emphasis="strong"] {
-			@include get-strong;
-
-			.db-tab-remove-button {
-				@extend %set-interactive-strong;
-			}
-		}
-	}
-
-	@each $name in colors.$variant-colors {
-		&[data-semantic="#{$name}"] {
-			&:not([data-emphasis]),
-			&[data-emphasis="weak"] {
-				@include get-weak($name, $border-color, $background-color);
-			}
-
-			&[data-emphasis="strong"] {
-				@include get-strong($name);
-			}
-		}
-	}
-}
 
 // get button and link tags
 @mixin get-interactive-selectors() {
@@ -91,18 +22,6 @@ $interactive-selectors: "label, button:not(.db-tab-remove-button), a";
 	db-button > button,
 	a {
 		@content;
-	}
-}
-
-%set-interactive-strong {
-	@include get-strong;
-
-	@include helpers.hover {
-		background-color: colors.$db-adaptive-bg-vibrant-hovered;
-	}
-
-	@include helpers.active {
-		background-color: colors.$db-adaptive-bg-vibrant-pressed;
 	}
 }
 
@@ -124,25 +43,19 @@ $interactive-selectors: "label, button:not(.db-tab-remove-button), a";
 	@include revert-db-components;
 
 	// overwrite current variables for semantic color
-	@each $name in colors.$variant-colors {
-		&[data-semantic="#{$name}"] {
-			@extend %db-#{$name}-variables;
-		}
-	}
 
-	&:not([data-emphasis]),
-	&[data-emphasis="weak"] {
+	&:not([data-emphasis="strong"]) {
 		// buttons and links
 		@include get-interactive-selectors {
-			@extend %set-interactive-weak;
+			/*@extend %set-interactive-weak;*/
 		}
 
 		label:has(input) {
-			@extend %set-interactive-weak;
+			/*@extend %set-interactive-weak;*/
 		}
 
 		label:has(input[type="checkbox"]:checked) {
-			@extend %set-interactive-strong;
+			/*@extend %set-interactive-strong;*/
 		}
 
 		// radio (checked) without hover/pressed
@@ -155,15 +68,15 @@ $interactive-selectors: "label, button:not(.db-tab-remove-button), a";
 	}
 
 	&[data-emphasis="strong"] {
-		@extend %set-interactive-strong;
+		/*@extend %set-interactive-strong;*/
 
 		// buttons and links
 		@include get-interactive-selectors {
-			@extend %set-interactive-strong;
+			/*@extend %set-interactive-strong;*/
 		}
 
 		label:has(input[type="checkbox"]:checked) {
-			@extend %set-interactive-strong;
+			/*@extend %set-interactive-strong;*/
 		}
 
 		label:has(input[type="radio"]:checked) {
@@ -171,7 +84,7 @@ $interactive-selectors: "label, button:not(.db-tab-remove-button), a";
 		}
 
 		&:has(input):not(:has(input:checked)) {
-			@extend %set-interactive-weak;
+			/*@extend %set-interactive-weak;*/
 		}
 	}
 }

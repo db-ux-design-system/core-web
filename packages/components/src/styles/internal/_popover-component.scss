@@ -2,6 +2,7 @@
 @use "@db-ux/core-foundations/build/styles/colors";
 @use "@db-ux/core-foundations/build/styles/animation";
 @use "@db-ux/core-foundations/build/styles/screen-sizes";
+@use "@db-ux/core-foundations/build/styles/materials/classes/all";
 @use "component";
 
 $popover-gap-size: var(--db-popover-distance);
@@ -230,7 +231,8 @@ $popover-gap-inset: calc(-1 * #{$popover-gap-size});
 	@extend %popover-placement;
 
 	position: absolute;
-	background-color: colors.$db-adaptive-bg-basic-level-1-default;
+	background-color: variables.$db-global-bg-color-default;
+	color: variables.$db-global-on-bg-color-default;
 	box-shadow: variables.$db-elevation-md;
 	visibility: hidden;
 	z-index: 1337;
@@ -247,5 +249,9 @@ $popover-gap-inset: calc(-1 * #{$popover-gap-size});
 	&[data-width="fixed"] {
 		inline-size: max-content;
 		text-align: initial;
+	}
+
+	&:not([data-material]) {
+		@extend [data-material="filled"];
 	}
 }

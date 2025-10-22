@@ -5,6 +5,7 @@
 @use "@db-ux/core-foundations/build/styles/helpers";
 @use "@db-ux/core-foundations/build/styles/icons";
 @use "@db-ux/core-foundations/build/styles/colors";
+@use "@db-ux/core-foundations/build/styles/texts/classes/all";
 @use "../../styles/internal/link-components";
 
 .db-link {
@@ -34,24 +35,11 @@
 	// We couldn't extend any existing SCSS placeholders, as this is a special construct
 	&[data-variant="brand"] {
 		@extend %db-brand-variables;
+	}
 
-		color: var(
-			--db-global-on-bg-color-default,
-			#{colors.$db-adaptive-on-bg-basic-emphasis-80-default}
-		);
-
-		@include helpers.hover {
-			color: var(
-				--db-global-on-bg-color-hovered,
-				#{colors.$db-adaptive-on-bg-basic-emphasis-80-hovered}
-			);
-		}
-
-		@include helpers.active {
-			color: var(
-				--db-global-on-bg-color-pressed,
-				#{colors.$db-adaptive-on-bg-basic-emphasis-80-pressed}
-			);
+	&:not([data-text]) {
+		&[data-variant="brand"] {
+			@extend [data-text="vibrant"];
 		}
 	}
 

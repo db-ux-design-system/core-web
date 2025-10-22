@@ -1,0 +1,13 @@
+@use "../../colors";
+@use "../../helpers";
+
+@each $swap in "", "-swap" {
+	%text#{$swap}-vibrant {
+		@layer #{helpers.$layer-texts} {
+			--db-global#{$swap}-on-bg-color-default: #{colors.$db-adaptive-on-bg-basic-emphasis-80-default};
+			--db-global#{$swap}-on-bg-color-hovered: #{colors.$db-adaptive-on-bg-basic-emphasis-80-hovered};
+			--db-global#{$swap}-on-bg-color-pressed: #{colors.$db-adaptive-on-bg-basic-emphasis-80-pressed};
+			--db-global#{$swap}-highlight-color-default: #{colors.$db-adaptive-on-bg-basic-emphasis-70-default};
+		}
+	}
+}

@@ -2,8 +2,9 @@
 @use "@db-ux/core-foundations/build/styles/variables";
 @use "@db-ux/core-foundations/build/styles/fonts";
 @use "../../styles/internal/button-components";
-@use "../../styles/internal/tag-components";
 @use "../../styles/internal/component";
+@use "@db-ux/core-foundations/build/styles/colors";
+@use "@db-ux/core-foundations/build/styles/materials/classes/all";
 
 %absolute-badge {
 	position: absolute;
@@ -43,16 +44,31 @@
 .db-badge {
 	--badge-size: #{variables.$db-spacing-fixed-xs};
 
-	@extend %component-border;
+	@extend %default-component;
 	@extend %db-overwrite-font-size-2xs;
 	@extend %default-button;
-	@include tag-components.get-tag-colors("badge");
 
 	border-radius: variables.$db-border-radius-full;
 	padding-inline: variables.$db-spacing-fixed-2xs;
 	block-size: fit-content;
 	inline-size: fit-content;
 	font-weight: 700;
+
+	&:not([data-material]) {
+		&:not([data-emphasis="strong"]) {
+			@extend [data-material="semitransparent"];
+		}
+
+		&[data-emphasis="strong"] {
+			@extend [data-material="vibrant"];
+		}
+	}
+
+	@each $name in colors.$variant-colors {
+		&[data-semantic="#{$name}"] {
+			@extend %db-#{$name}-variables;
+		}
+	}
 
 	// Added a minimum inline size, especially for single-character content, to ensure that it won't be any narrower than a circle.
 	&:not(:empty) {
