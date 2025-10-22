@@ -12,7 +12,7 @@ import DefaultPage from '../../../components/default-page';
 // Import root package.json for theme version
 import rootPackage from '../../../../../package.json';
 // Import the theme-icons version constant
-import { THEME_ICONS_VERSION } from '../../../utils/theme-icons-package-version';
+import themeIconsPackage from '../../../../../node_modules/@db-ux/db-theme-icons/package.json';
 
 const IconOverview = () => {
 	const [weight, setWeight] = useState<string>('24');
@@ -25,7 +25,7 @@ const IconOverview = () => {
 		rootPackage.devDependencies?.['@db-ux/db-theme'] ??
 		rootPackage.dependencies?.['@db-ux/db-theme'] ??
 		'unknown';
-
+	const themeIconsVersion = themeIconsPackage.version ?? 'unknown';
 	return (
 		<DefaultPage>
 			<h1>Icon overview</h1>
@@ -35,13 +35,13 @@ const IconOverview = () => {
 			<p>
 				These icons reflect the
 				<a
-					href={`https://www.npmjs.com/package/@db-ux/db-theme-icons/v/${THEME_ICONS_VERSION}`}>
+					href={`https://www.npmjs.com/package/@db-ux/db-theme-icons/v/${themeIconsVersion}`}>
 					<code>@db-ux/db-theme-icons</code> node package
 				</a>{' '}
 				of version{' '}
 				<a
-					href={`https://www.npmjs.com/package/@db-ux/db-theme-icons/v/${THEME_ICONS_VERSION}`}>
-					{THEME_ICONS_VERSION}
+					href={`https://www.npmjs.com/package/@db-ux/db-theme-icons/v/${themeIconsVersion}`}>
+					{themeIconsVersion}
 				</a>
 				, which is part of the{' '}
 				<a
