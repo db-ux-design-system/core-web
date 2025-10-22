@@ -228,7 +228,7 @@ Check the required imports for [CSS](https://design-system.deutschebahn.com/core
 
 After this you can extend your tailwind config like this:
 
-##### Javascript
+##### JavaScript
 
 ```javascript
 //tailwind.config.js
@@ -250,7 +250,7 @@ export default {
 };
 ```
 
-##### Typescript
+##### TypeScript
 
 ```typescript
 //tailwind.config.ts
