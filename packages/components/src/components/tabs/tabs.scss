@@ -2,7 +2,7 @@
 @use "@db-ux/core-foundations/build/styles/colors";
 @use "../../styles/internal/form-components";
 @use "../../styles/internal/db-puls";
-@use "@db-ux/core-foundations/build/styles/helpers/display";
+@use "@db-ux/core-foundations/build/styles/helpers";
 
 $max-tabs: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
@@ -13,7 +13,7 @@ $max-tabs: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 			&:has([id$="-tab-#{$index}"]:checked) {
 				~ dbtabpanel > [id$="-tab-panel-#{$index}"],
 				~ db-tab-panel > [id$="-tab-panel-#{$index}"] {
-					@include display.display(block);
+					@include helpers.display(block);
 				}
 			}
 		}
@@ -75,7 +75,7 @@ $max-tabs: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 	$db-tabs-z-index-button: 22;
 
 	@extend %angular-workaround;
-	@include display.display(flex);
+	@include helpers.display(flex);
 
 	inline-size: 100%;
 	position: relative;
@@ -91,7 +91,7 @@ $max-tabs: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 		@each $index in $max-tabs {
 			&:has([id$="-tab-#{$index}"]:checked)
 				~ [id$="-tab-panel-#{$index}"] {
-				@include display.display(block);
+				@include helpers.display(block);
 			}
 		}
 	}
