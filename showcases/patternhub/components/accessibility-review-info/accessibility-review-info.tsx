@@ -33,6 +33,7 @@ const AccessibilityReviewInfo = (
 				break;
 			}
 
+			case undefined:
 			default: {
 				setSemantic('critical');
 				setText('Missing');
