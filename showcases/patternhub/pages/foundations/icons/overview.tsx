@@ -52,7 +52,8 @@ const IconOverview = () => {
 				</a>
 				, version{' '}
 				<a
-					href={`https://www.npmjs.com/package/@db-ux/db-theme/v/${themeVersion}`}>
+					href={`https://www.npmjs.com/package/@db-ux/db-theme/v/${themeVersion}`}
+					target="_blank" rel="noopener noreferrer">
 					{themeVersion}
 				</a>
 				.
