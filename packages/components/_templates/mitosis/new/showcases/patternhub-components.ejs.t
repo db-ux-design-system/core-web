@@ -1,9 +1,9 @@
 ---
 inject: true
 to: "<%= showcases ? `../../showcases/patternhub/data/components.json` : null %>"
-before: \[
+after: \[
 ---
-			{
-				"label": "TODO: Add to specific category; DB<%= h.changeCase.pascal(name) %>",
-				"name": "<%= name %>",
-			},
+	{
+		"label": "TODO: Add to specific category; DB<%= h.changeCase.pascal(name) %>",
+		"name": "<%= name %>",
+	},
