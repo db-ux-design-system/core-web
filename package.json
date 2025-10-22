@@ -109,7 +109,7 @@
     "@guidepup/record": "0.1.0",
     "@guidepup/setup": "0.19.3",
     "@playwright/experimental-ct-core": "1.56.0",
-    "@playwright/experimental-ct-react": "1.56.0",
+    "@playwright/experimental-ct-react": "1.56.1",
     "@playwright/experimental-ct-vue": "1.56.0",
     "@playwright/test": "1.56.0",
     "accessibility-checker": "4.0.9",
