@@ -1,0 +1,29 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8" data-next-head=""/><meta name="viewport" content="width=device-width" data-next-head=""/><title data-next-head="">DB UX</title><link data-next-font="size-adjust" rel="preconnect" href="/" crossorigin="anonymous"/><link rel="preload" href="/core-web/review/fix-changelogs/_next/static/css/90b7a4487752c216.css" as="style"/><link rel="stylesheet" href="/core-web/review/fix-changelogs/_next/static/css/90b7a4487752c216.css" data-n-g=""/><noscript data-n-css=""></noscript><script defer="" nomodule="" src="/core-web/review/fix-changelogs/_next/static/chunks/polyfills-42372ed130431b0a.js"></script><script src="/core-web/review/fix-changelogs/_next/static/chunks/webpack-8317785754660429.js" defer=""></script><script src="/core-web/review/fix-changelogs/_next/static/chunks/framework-18f3d10fd924e320.js" defer=""></script><script src="/core-web/review/fix-changelogs/_next/static/chunks/main-7a0b2e51d55ff98a.js" defer=""></script><script src="/core-web/review/fix-changelogs/_next/static/chunks/pages/_app-a3290ea397ff08db.js" defer=""></script><script src="/core-web/review/fix-changelogs/_next/static/chunks/pages/components/data-input/checkbox/docs/HTML-147e030d08579a81.js" defer=""></script><script src="/core-web/review/fix-changelogs/_next/static/HgaiLcLWVb7boCpcDyRzm/_buildManifest.js" defer=""></script><script src="/core-web/review/fix-changelogs/_next/static/HgaiLcLWVb7boCpcDyRzm/_ssgManifest.js" defer=""></script></head><body><div id="__next"><h2 id="html">HTML<a class="header-link" href="/core-web/review/fix-changelogs/components/data-input/checkbox/docs/HTML?current=html"><span aria-hidden="true" class="db-icon" data-icon="paper_clip"></span>html<!-- --> anchor link</a></h2>
+<p>For general installation and configuration take a look at the <a target="_blank" referrerPolicy="no-referrer" href="https://www.npmjs.com/package/@db-ux/core-components">components</a> package.</p>
+<h3 id="use-component">Use component<a class="header-link" href="/core-web/review/fix-changelogs/components/data-input/checkbox/docs/HTML?current=use-component"><span aria-hidden="true" class="db-icon" data-icon="paper_clip"></span>use-component<!-- --> anchor link</a></h3>
+<pre><code class="language-html">&lt;!-- index.html --&gt;
+...
+&lt;body&gt;
+	&lt;label class=&quot;db-checkbox&quot; for=&quot;checkbox-element&quot;&gt;
+		&lt;input type=&quot;checkbox&quot; id=&quot;checkbox-element&quot; name=&quot;States&quot; /&gt;
+		Label
+	&lt;/label&gt;
+&lt;/body&gt;
+</code></pre>
+<h4 id="adding-formatted-infotext">Adding Formatted Infotext<a class="header-link" href="/core-web/review/fix-changelogs/components/data-input/checkbox/docs/HTML?current=adding-formatted-infotext"><span aria-hidden="true" class="db-icon" data-icon="paper_clip"></span>adding-formatted-infotext<!-- --> anchor link</a></h4>
+<p>To add a descriptive text with HTML formatting (e.g., bold or italic text) to a checkbox, you should use a separate element for the message and link it via the <a target="_blank" referrerPolicy="no-referrer" href="https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Reference/Attributes/aria-describedby"><code>aria-describedby</code></a>-HTML-attribute for accessibility. This ensures that screen readers correctly associate the message with the checkbox.</p>
+<pre><code class="language-html">&lt;!-- Checkbox with formatted infotext --&gt;
+...
+&lt;body&gt;
+	&lt;label class=&quot;db-checkbox&quot; for=&quot;checkbox-element&quot;&gt;
+		&lt;input
+			type=&quot;checkbox&quot;
+			id=&quot;checkbox-element&quot;
+			name=&quot;States&quot;
+			aria-describedby=&quot;checkbox-message&quot;
+		/&gt;
+		Label
+	&lt;/label&gt;
+	&lt;p class=&quot;db-infotext&quot; id=&quot;checkbox-message&quot;&gt;Example &lt;strong&gt;Text&lt;/strong&gt;&lt;/p&gt;
+&lt;/body&gt;
+</code></pre></div><script id="__NEXT_DATA__" type="application/json">{"props":{"pageProps":{}},"page":"/components/data-input/checkbox/docs/HTML","query":{},"buildId":"HgaiLcLWVb7boCpcDyRzm","assetPrefix":"/core-web/review/fix-changelogs","nextExport":true,"autoExport":true,"isFallback":false,"scriptLoader":[]}</script></body></html>
