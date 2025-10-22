@@ -35,25 +35,28 @@ const IconOverview = () => {
 			<p>
 				These icons reflect the
 				<a
-					href={`https://www.npmjs.com/package/@db-ux/db-theme-icons/v/${themeIconsVersion}`}
-					target="_blank" rel="noopener noreferrer">
+					href={`https://www.npmjs.com/package/@db-ux/db-theme-icons/${themeIconsVersion === 'unknown' ? '' : 'v/' + themeIconsVersion}`}
+					target="_blank"
+					rel="noopener noreferrer">
 					<code>@db-ux/db-theme-icons</code> node package
 				</a>{' '}
 				of version{' '}
 				<a
-					href={`https://www.npmjs.com/package/@db-ux/db-theme-icons/v/${themeIconsVersion}`}
-					target="_blank" rel="noopener noreferrer">
+					href={`https://www.npmjs.com/package/@db-ux/db-theme-icons/${themeIconsVersion === 'unknown' ? '' : 'v/' + themeIconsVersion}`}
+					target="_blank"
+					rel="noopener noreferrer">
 					{themeIconsVersion}
 				</a>
 				, which is part of the{' '}
 				<a
-					href={`https://www.npmjs.com/package/@db-ux/db-theme/v/${themeVersion}`}>
+					href={`https://www.npmjs.com/package/@db-ux/db-theme/${themeVersion === 'unknown' ? '' : 'v/' + themeVersion}`}>
 					<code>@db-ux/db-theme</code> package
 				</a>
 				, version{' '}
 				<a
-					href={`https://www.npmjs.com/package/@db-ux/db-theme/v/${themeVersion}`}
-					target="_blank" rel="noopener noreferrer">
+					href={`https://www.npmjs.com/package/@db-ux/db-theme/${themeVersion === 'unknown' ? '' : 'v/' + themeVersion}`}
+					target="_blank"
+					rel="noopener noreferrer">
 					{themeVersion}
 				</a>
 				.
