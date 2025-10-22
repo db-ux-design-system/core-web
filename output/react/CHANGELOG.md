@@ -61,10 +61,10 @@ _version bump_
 
 ### Patch Changes
 
-- a28eb71: fix(custom-select): keyboard navigation for option groups in single-select mode - [see commit 6d60bab](https://github.com/db-ux-design-system/core-web/commit/6d60bab2eb87f16a9ffa942085bffd658564769c):
+- a28eb71: fix(custom-select): keyboard navigation for option groups in single-select mode:
   - Fixes a keyboard accessibility issue where users could not navigate to options in subsequent option groups using arrow keys in single-select mode.
   - Now, all options are accessible via keyboard regardless of group boundaries.
-- fix: JS framework core-components packages are missing `@db-ux` dependencies - [see commit 49df866](https://github.com/db-ux-design-system/core-web/commit/49df866e753a9459f5acdca4ad1e19141b477471)
+- a28eb71: fix: JS framework core-components packages are missing `@db-ux` dependencies
 
 ## 3.1.15
 
