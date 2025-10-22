@@ -29,6 +29,7 @@
 		"**/navigation-items.ts",
 		"**/node_modules/**",
 		"**/output/**",
+		"**/*storybooks/**",
 		"**/patternhub/**/components/**",
 		"**/playwright-report/**",
 		"**/public/**",
