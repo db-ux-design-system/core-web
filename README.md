@@ -43,11 +43,11 @@ designers, and content authors build, maintain, and scale best-of-class digital 
 ## How to use
 
 1. **Install your preferred package** via npm or yarn:
-   - For React: `npm i @db-ux/react-core-components`
-   - For Angular: `npm i @db-ux/ngx-core-components`
-   - For Vue: `npm i @db-ux/v-core-components`
-   - For Web Components: `npm i @db-ux/wc-core-components`
-   - For styling only: `npm i @db-ux/core-components`
+    - For React: `npm i @db-ux/react-core-components`
+    - For Angular: `npm i @db-ux/ngx-core-components`
+    - For Vue: `npm i @db-ux/v-core-components`
+    - For Web Components: `npm i @db-ux/wc-core-components`
+    - For styling only: `npm i @db-ux/core-components`
 
 2. **Include the CSS styles** as described in the "Styling Dependencies" section of each package's `README`.
 
@@ -62,8 +62,9 @@ For developers looking to create custom components that extend the design system
 📖 **[Creating Custom Components Guide](docs/creating-custom-components.md)** - Learn how to build your own components using design system foundations
 
 This guide covers:
+
 - **Setup and Configuration**: Getting started with the design system packages
-- **Design Principles**: Following DB UX Design System guidelines and best practices  
+- **Design Principles**: Following DB UX Design System guidelines and best practices
 - **Component Patterns**: Structured approaches to building consistent components
 - **Code Examples**: Practical implementations for cards, forms, navigation, and more
 - **Framework Support**: Specific guidance for React, Vue, Angular, and vanilla HTML/CSS
