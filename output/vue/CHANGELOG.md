@@ -4,7 +4,7 @@
 
 ### Patch Changes
 
-- chore: generate AmazonQ rule file with @db-ux/agent-cli - [see commit b61c8b1](https://github.com/db-ux-design-system/core-web/commit/b61c8b14992f5a5b3615c6bff74018d5682aa0cc)
+- chore: generate Amazon Q rule file with @db-ux/agent-cli - [see commit b61c8b1](https://github.com/db-ux-design-system/core-web/commit/b61c8b14992f5a5b3615c6bff74018d5682aa0cc)
 
 ## 4.0.2
 
