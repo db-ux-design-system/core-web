@@ -82,7 +82,7 @@ $db-min-inline-size: var(
 				[type="time"]
 			):not(
 				:user-valid,
-				// we need to set those values, as an the element might have an empty value-HTML-attribute
+				/* we need to set those values, as an the element might have an empty value-HTML-attribute */
 				[value*="1"],
 				[value*="2"],
 				[value*="3"],
