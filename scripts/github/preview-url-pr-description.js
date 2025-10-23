@@ -20,6 +20,8 @@ async function previewUrlPrDescription({ github, context }) {
 			repo
 		});
 
+		console.log(pagesResponse);
+
 		// Use custom domain if available, otherwise fall back to github.io
 		baseUrl += pagesResponse.data.cname ?? `${owner}.github.io/${repo}`;
 	} catch (error) {
