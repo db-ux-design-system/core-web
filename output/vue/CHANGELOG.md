@@ -1,5 +1,11 @@
 # @db-ux/v-core-components
 
+## 4.0.4
+
+### Patch Changes
+
+- fix: hide-animation for drawer - [see commit d4a73fa](https://github.com/db-ux-design-system/core-web/commit/d4a73fa9faba38b6f20fda6f7c85d5c6617793fe)
+
 ## 4.0.3
 
 ### Patch Changes
@@ -55,7 +61,7 @@ _version bump_
 
 ### Patch Changes
 
-- fix: color mode for textarea resizer control set by color-mode-switch documentation UI component  - [see commit 354e270](https://github.com/db-ux-design-system/core-web/commit/354e27029a4378288a97ed5e31b75c11758f0c01)
+- fix: color mode for textarea resizer control set by color-mode-switch documentation UI component - [see commit 354e270](https://github.com/db-ux-design-system/core-web/commit/354e27029a4378288a97ed5e31b75c11758f0c01)
 - refactor: enabling `hidden` HTML attribute in every context in which we need to set overwriting styling declarations (`display`) - [see commit 4826455](https://github.com/db-ux-design-system/core-web/commit/4826455637590b6ae780afb93abb9effe9380342)
 
 ## 3.1.16
