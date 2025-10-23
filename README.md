@@ -55,6 +55,22 @@ designers, and content authors build, maintain, and scale best-of-class digital 
 
 We even provide some [examples of integrations](https://github.com/db-ux-design-system/examples).
 
+## AI Agent Support
+
+For developers using AI coding assistants like GitHub Copilot or Amazon Q, we provide the [`@db-ux/agent-cli`](https://www.npmjs.com/package/@db-ux/agent-cli) tool that automatically adds DB UX Design System documentation to your repository.
+
+### Quick Start
+
+Run this command in your repository:
+
+```shell
+npx @db-ux/agent-cli
+```
+
+This will create or update `.github/copilot-instructions.md` with component documentation based on your installed `@db-ux` packages, helping AI agents provide better suggestions.
+
+📖 **[Learn more about `@db-ux/agent-cli` node package](packages/agent-cli/README.md)**
+
 ## Creating Custom Components
 
 For developers looking to create custom components that extend the design system in their applications, we provide comprehensive guidance:
