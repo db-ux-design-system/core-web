@@ -1,0 +1,36 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8" data-next-head=""/><meta name="viewport" content="width=device-width" data-next-head=""/><title data-next-head="">DB UX</title><link data-next-font="size-adjust" rel="preconnect" href="/" crossorigin="anonymous"/><link rel="preload" href="/core-web/review/minor-fixes-notification-showcases/_next/static/css/158696b57d6b0ccd.css" as="style"/><link rel="stylesheet" href="/core-web/review/minor-fixes-notification-showcases/_next/static/css/158696b57d6b0ccd.css" data-n-g=""/><noscript data-n-css=""></noscript><script defer="" nomodule="" src="/core-web/review/minor-fixes-notification-showcases/_next/static/chunks/polyfills-42372ed130431b0a.js"></script><script src="/core-web/review/minor-fixes-notification-showcases/_next/static/chunks/webpack-ff12a6ce2a69e727.js" defer=""></script><script src="/core-web/review/minor-fixes-notification-showcases/_next/static/chunks/framework-18f3d10fd924e320.js" defer=""></script><script src="/core-web/review/minor-fixes-notification-showcases/_next/static/chunks/main-72dfe23f58042bf0.js" defer=""></script><script src="/core-web/review/minor-fixes-notification-showcases/_next/static/chunks/pages/_app-7987601426f806c4.js" defer=""></script><script src="/core-web/review/minor-fixes-notification-showcases/_next/static/chunks/pages/components/data-input/textarea/docs/Angular-849a488f5cfa1f64.js" defer=""></script><script src="/core-web/review/minor-fixes-notification-showcases/_next/static/qlbPyZggJc5CrB4Ae6aMc/_buildManifest.js" defer=""></script><script src="/core-web/review/minor-fixes-notification-showcases/_next/static/qlbPyZggJc5CrB4Ae6aMc/_ssgManifest.js" defer=""></script></head><body><div id="__next"><h2 id="angular">Angular<a class="header-link" href="/core-web/review/minor-fixes-notification-showcases/components/data-input/textarea/docs/Angular?current=angular"><span aria-hidden="true" class="db-icon" data-icon="paper_clip"></span>angular<!-- --> anchor link</a></h2>
+<p>For general installation and configuration look at the <a target="_blank" referrerPolicy="no-referrer" href="https://www.npmjs.com/package/@db-ux/ngx-core-components">ngx-core-components</a> package.</p>
+<h3 id="load-component">Load component<a class="header-link" href="/core-web/review/minor-fixes-notification-showcases/components/data-input/textarea/docs/Angular?current=load-component"><span aria-hidden="true" class="db-icon" data-icon="paper_clip"></span>load-component<!-- --> anchor link</a></h3>
+<pre><code class="language-ts">// app.component.ts
+import { DBTextarea } from &#x27;@db-ux/ngx-core-components&#x27;;
+
+@Component({
+  // ...
+  standalone: true,
+  imports: [..., DBTextarea],
+  // ...
+})
+</code></pre>
+<h3 id="use-component">Use component<a class="header-link" href="/core-web/review/minor-fixes-notification-showcases/components/data-input/textarea/docs/Angular?current=use-component"><span aria-hidden="true" class="db-icon" data-icon="paper_clip"></span>use-component<!-- --> anchor link</a></h3>
+<pre><code class="language-ts">import { Component } from &quot;@angular/core&quot;;
+
+@Component({
+	selector: &quot;app-root&quot;,
+	templateUrl: &quot;./app.component.html&quot;
+})
+export class AppComponent {
+	textarea = &quot;default value&quot;;
+}
+</code></pre>
+<pre><code class="language-html">&lt;!-- app.component.html --&gt;
+
+&lt;db-textarea
+	name=&quot;textarea&quot;
+	label=&quot;Textarea Controlled&quot;
+	placeholder=&quot;Placeholder&quot;
+	message=&quot;Message&quot;
+	icon=&quot;x_placeholder&quot;
+	[value]=&quot;textarea&quot;
+	(change)=&quot;textarea = $event.target.value&quot;
+&gt;&lt;/db-textarea&gt;
+</code></pre></div><script id="__NEXT_DATA__" type="application/json">{"props":{"pageProps":{}},"page":"/components/data-input/textarea/docs/Angular","query":{},"buildId":"qlbPyZggJc5CrB4Ae6aMc","assetPrefix":"/core-web/review/minor-fixes-notification-showcases","nextExport":true,"autoExport":true,"isFallback":false,"scriptLoader":[]}</script></body></html>
