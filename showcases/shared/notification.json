@@ -8,8 +8,7 @@
 				"style": { "width": "300px" },
 				"props": {
 					"headline": "Headline",
-					"icon": "information_circle",
-					"closeable": true
+					"icon": "information_circle"
 				}
 			},
 			{
@@ -18,8 +17,7 @@
 				"style": { "width": "300px" },
 				"props": {
 					"headline": "Headline",
-					"icon": "information_circle",
-					"closeable": true
+					"icon": "information_circle"
 				}
 			},
 			{
@@ -28,8 +26,7 @@
 				"style": { "width": "300px" },
 				"props": {
 					"headline": "Headline",
-					"icon": "information_circle",
-					"closeable": true
+					"icon": "information_circle"
 				}
 			}
 		]
@@ -43,8 +40,7 @@
 				"props": {
 					"variant": "docked",
 					"headline": "Headline",
-					"icon": "information_circle",
-					"closeable": true
+					"icon": "information_circle"
 				}
 			},
 			{
@@ -53,8 +49,7 @@
 				"props": {
 					"variant": "standalone",
 					"headline": "Headline",
-					"icon": "information_circle",
-					"closeable": true
+					"icon": "information_circle"
 				}
 			},
 			{
@@ -63,9 +58,7 @@
 				"props": {
 					"variant": "overlay",
 					"headline": "Headline",
-					"icon": "information_circle",
-					"closeable": true,
-					"timestamp": "10 min ago"
+					"icon": "information_circle"
 				}
 			}
 		]
@@ -77,8 +70,7 @@
 				"name": "(Default) Adaptive",
 				"style": { "width": "300px" },
 				"props": {
-					"headline": "Headline",
-					"closeable": true
+					"headline": "Headline"
 				}
 			},
 			{
@@ -86,8 +78,7 @@
 				"style": { "width": "300px" },
 				"props": {
 					"semantic": "neutral",
-					"headline": "Headline",
-					"closeable": true
+					"headline": "Headline"
 				}
 			},
 			{
@@ -95,8 +86,7 @@
 				"style": { "width": "300px" },
 				"props": {
 					"semantic": "critical",
-					"headline": "Headline",
-					"closeable": true
+					"headline": "Headline"
 				}
 			},
 			{
@@ -104,8 +94,7 @@
 				"style": { "width": "300px" },
 				"props": {
 					"semantic": "informational",
-					"headline": "Headline",
-					"closeable": true
+					"headline": "Headline"
 				}
 			},
 			{
@@ -113,8 +102,7 @@
 				"style": { "width": "300px" },
 				"props": {
 					"semantic": "successful",
-					"headline": "Headline",
-					"closeable": true
+					"headline": "Headline"
 				}
 			},
 			{
@@ -122,8 +110,7 @@
 				"style": { "width": "300px" },
 				"props": {
 					"semantic": "warning",
-					"headline": "Headline",
-					"closeable": true
+					"headline": "Headline"
 				}
 			}
 		]
@@ -337,12 +324,13 @@
 				]
 			},
 			{
-				"name": "Text & Headline & Textlink Inline & Closable",
+				"name": "Text & Headline & Textlink Inline & Closeable",
 				"style": { "width": "300px" },
 				"props": {
 					"headline": "Headline",
 					"link": true,
-					"linkVariant": "inline"
+					"linkVariant": "inline",
+					"closeable": true
 				},
 				"children": [
 					{
@@ -356,13 +344,14 @@
 				]
 			},
 			{
-				"name": "Text & Icon & Headline & Textlink Inline & Closable",
+				"name": "Text & Icon & Headline & Textlink Inline & Closeable",
 				"style": { "width": "300px" },
 				"props": {
 					"icon": "information_circle",
 					"headline": "Headline",
 					"link": true,
-					"linkVariant": "inline"
+					"linkVariant": "inline",
+					"closeable": true
 				},
 				"children": [
 					{
@@ -468,13 +457,14 @@
 				]
 			},
 			{
-				"name": "Text & Headline & Textlink Inline & Closable",
+				"name": "Text & Headline & Textlink Inline & Closeable",
 				"style": { "width": "300px" },
 				"props": {
 					"headline": "Headline",
 					"link": true,
 					"linkVariant": "inline",
-					"variant": "standalone"
+					"variant": "standalone",
+					"closeable": true
 				},
 				"children": [
 					{
@@ -488,14 +478,15 @@
 				]
 			},
 			{
-				"name": "Text & Icon & Headline & Textlink Inline & Closable",
+				"name": "Text & Icon & Headline & Textlink Inline & Closeable",
 				"style": { "width": "300px" },
 				"props": {
 					"icon": "information_circle",
 					"headline": "Headline",
 					"link": true,
 					"linkVariant": "inline",
-					"variant": "standalone"
+					"variant": "standalone",
+					"closeable": true
 				},
 				"children": [
 					{
@@ -591,22 +582,24 @@
 				]
 			},
 			{
-				"name": "Text & Headline & Textlink Inline & Closable",
+				"name": "Text & Headline & Textlink Inline & Closeable",
 				"style": { "width": "300px" },
 				"props": {
 					"headline": "Headline",
 					"link": true,
-					"variant": "overlay"
+					"variant": "overlay",
+					"closeable": true
 				}
 			},
 			{
-				"name": "Text & Icon & Headline & Textlink Inline & Closable",
+				"name": "Text & Icon & Headline & Textlink Inline & Closeable",
 				"style": { "width": "300px" },
 				"props": {
 					"icon": "information_circle",
 					"headline": "Headline",
 					"link": true,
-					"variant": "overlay"
+					"variant": "overlay",
+					"closeable": true
 				}
 			},
 			{
@@ -619,30 +612,33 @@
 				}
 			},
 			{
-				"name": "Text & Timed & Closable",
+				"name": "Text & Timed & Closeable",
 				"style": { "width": "300px" },
 				"props": {
 					"timestamp": "10 min ago",
-					"variant": "overlay"
+					"variant": "overlay",
+					"closeable": true
 				}
 			},
 			{
-				"name": "Text & Headline & Timed & Closable",
+				"name": "Text & Headline & Timed & Closeable",
 				"style": { "width": "300px" },
 				"props": {
 					"headline": "Headline",
 					"timestamp": "10 min ago",
-					"variant": "overlay"
+					"variant": "overlay",
+					"closeable": true
 				}
 			},
 			{
-				"name": "Text & Icon & Headline & Timed & Closable",
+				"name": "Text & Icon & Headline & Timed & Closeable",
 				"style": { "width": "300px" },
 				"props": {
 					"icon": "information_circle",
 					"headline": "Headline",
 					"timestamp": "10 min ago",
-					"variant": "overlay"
+					"variant": "overlay",
+					"closeable": true
 				}
 			}
 		]
