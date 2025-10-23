@@ -12,6 +12,24 @@ async function previewUrlPrDescription({ github, context }) {
 	const pullNumber = context.payload.pull_request.number;
 	const headRef = context.payload.pull_request.head.ref;
 
+	// Get the configured custom domain for GitHub Pages
+	let baseUrl = 'https://';
+	try {
+		const pagesResponse = await github.rest.repos.getPages({
+			owner,
+			repo
+		});
+
+		// Use custom domain if available, otherwise fall back to github.io
+		baseUrl += pagesResponse.data.cname ?? `${owner}.github.io/${repo}`;
+	} catch (error) {
+		console.warn(
+			'Could not fetch GitHub Pages configuration, using default domain:',
+			error.message
+		);
+		baseUrl += `${owner}.github.io/${repo}`;
+	}
+
 	// Fetch current PR
 	const pr = await github.rest.pulls.get({
 		owner,
@@ -20,7 +38,7 @@ async function previewUrlPrDescription({ github, context }) {
 	});
 	const urlSectionStart = '\n<!-- DBUX-TEST-URL-START -->';
 	const urlSectionEnd = '\n<!-- DBUX-TEST-URL-END -->';
-	const testUrl = `\n\n🔭🐙🐈 Test this branch here: <https://${owner}.github.io/${repo}/review/${headRef}>\n`;
+	const testUrl = `\n\n🔭🐙🐈 Test this branch here: <${baseUrl}/review/${headRef}>\n`;
 	let body = pr.data.body || '';
 	// Remove any existing test URL section
 	const startIdx = body.indexOf(urlSectionStart);
