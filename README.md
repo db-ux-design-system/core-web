@@ -69,7 +69,7 @@ npx @db-ux/agent-cli
 
 This will create or update `.github/copilot-instructions.md` with component documentation based on your installed `@db-ux` packages, helping AI agents provide better suggestions.
 
-📖 **[Learn more about @db-ux/agent-cli](packages/agent-cli/README.md)**
+📖 **[Learn more about `@db-ux/agent-cli` node package](packages/agent-cli/README.md)**
 
 ## Creating Custom Components
 
