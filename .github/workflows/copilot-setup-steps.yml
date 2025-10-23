@@ -35,5 +35,4 @@ jobs:
 
       - name: Install JavaScript dependencies
         run: npm ci
-
 # TODO: we probably would want to enhance this with further aspects like e.g. linting or testing. But we would need to determine the tradeoff in between slowing down Copilot with this, as we would most likely run some of this work later on within the PR anyhow.
