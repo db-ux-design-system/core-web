@@ -17,32 +17,39 @@ Key requirements:
 ## Decision
 
 1. Documentation Format & Location
+
     - Use Markdown files per component, stored in packages/components/docs/ or packages/components/src/components/docs/.
     - Central table of contents in docs/llms.txt listing all component docs with relative paths.
 
 2. GitHub Copilot Custom Instructions
+
     - Place `copilot-instructions.md` in the project root (under .github/) to provide global guidance.
     - Instruct Copilot Chat to load this file automatically; it will include links to llms.txt and recommended file paths.
 
 3. Automatic Context Loading
+
     - In VS Code and IntelliJ, Copilot Chat will automatically read `.github/copilot-instructions.md` on new chats.
     - To surface specific details, embed documentation (e.g., Button.md) directly in `copilot-instructions.md`.
 
 4. Interactive Context Attachment
+
     - For deeper or ad-hoc queries, use the "Attach Context" feature in Copilot Chat to load component Markdown files during the session.
 
 5. Static Site & Developer Docs (future usage, not part of the current scope)
+
     - Integrate component docs via Astro as a package in the monorepo, referencing Markdown sources in packages/components/... .
     - Render pages dynamically under /components/[slug] and /api/[slug] for manual browsing.
 
 6. Automated Propagation of Copilot Instructions
 
     We add a `postinstall` hook to our component package that:
+
     - copies or appends the package-specific file `.github/copilot-instructions.md` to the target project,
     - uses unique markers to automatically replace outdated blocks during future installations,
     - handles missing or already existing files as well as idempotent updates cleanly, ensuring that every installation immediately provides the latest Copilot context for our package.
 
 7. Automate generation and propagation of Copilot instructions on package build.
+
     - Define `generate:agent` in `package.json` and hook into `prepare`.
     - Only include `*.md` files whose filename matches the parent directory converted to PascalCase (e.g. `custom-select` → `CustomSelect.md`), ensuring no unrelated MDs are merged.
 
@@ -55,6 +62,7 @@ Key requirements:
 ## Consequences
 
 - Pros:
+
     - Clear separation: manual design guidance (Markdown) vs. AI context (`copilot-instructions.md` + `llms.txt` snippets).
     - Maintains single source (docs in packages/components/docs).
     - Enables Copilot to provide accurate, component-specific suggestions without manual file opening.
