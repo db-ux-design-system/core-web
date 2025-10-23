@@ -22,12 +22,20 @@ async function previewUrlPrDescription({ github, context }) {
 		
 		// Use custom domain if available, otherwise fall back to github.io
 		baseUrl = pagesResponse.data.html_url ?? `https://${owner}.github.io/${repo}/`;
+		// Ensure baseUrl ends with a single trailing slash
+		if (!baseUrl.endsWith('/')) {
+			baseUrl += '/';
+		}
 	} catch (error) {
 		console.warn(
 			'Could not fetch GitHub Pages configuration, using default domain:',
 			error.message
 		);
 		baseUrl = `https://${owner}.github.io/${repo}/`;
+		// Ensure baseUrl ends with a single trailing slash
+		if (!baseUrl.endsWith('/')) {
+			baseUrl += '/';
+		}
 	}
 
 	// Fetch current PR
