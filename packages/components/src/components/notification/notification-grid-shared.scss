@@ -1,0 +1,66 @@
+// Shared grid mixins for notification layouts
+// These mixins contain the common grid logic used by both overlay and non-overlay variants
+
+@mixin shared-base-grid($areas, $columns) {
+	grid-template-areas: $areas;
+	grid-template-columns: $columns;
+}
+
+@mixin shared-with-close($areas, $columns) {
+	&:has(.db-button) {
+		grid-template-areas: $areas;
+		grid-template-columns: $columns;
+	}
+}
+
+@mixin shared-with-header($areas, $columns) {
+	&:has(header) {
+		grid-template-areas: $areas;
+		grid-template-columns: $columns;
+	}
+}
+
+@mixin shared-with-header-close($areas, $columns) {
+	&:has(header):has(.db-button) {
+		grid-template-areas: $areas;
+		grid-template-columns: $columns;
+	}
+}
+
+@mixin shared-with-icon($areas, $columns) {
+	&[data-icon],
+	&[data-semantic]:not([data-semantic="adaptive"]),
+	&:has(img) {
+		grid-template-areas: $areas;
+		grid-template-columns: $columns;
+	}
+}
+
+@mixin shared-with-icon-close($areas, $columns) {
+	&[data-icon]:has(.db-button),
+	&[data-semantic]:not([data-semantic="adaptive"]):has(.db-button),
+	&:has(img):has(.db-button) {
+		grid-template-areas: $areas;
+		grid-template-columns: $columns;
+	}
+}
+
+@mixin shared-with-icon-header($areas, $columns) {
+	&[data-icon]:has(header),
+	&[data-semantic]:not([data-semantic="adaptive"]):has(header),
+	&:has(img):has(header) {
+		grid-template-areas: $areas;
+		grid-template-columns: $columns;
+	}
+}
+
+@mixin shared-with-icon-header-close($areas, $columns) {
+	&[data-icon]:has(header):has(.db-button),
+	&[data-semantic]:not([data-semantic="adaptive"]):has(header):has(
+			.db-button
+		),
+	&:has(img):has(header):has(.db-button) {
+		grid-template-areas: $areas;
+		grid-template-columns: $columns;
+	}
+}
