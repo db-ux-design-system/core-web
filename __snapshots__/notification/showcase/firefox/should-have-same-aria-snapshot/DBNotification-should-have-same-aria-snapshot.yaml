@@ -147,6 +147,9 @@
     - paragraph: Text & Textlink Block
     - link "Textlink"
   - article:
+    - paragraph: Text & Textlink Block & Timed
+    - link "Textlink"
+  - article:
     - text: Headline
     - paragraph: Text & Headline & Textlink Inline & Closeable
     - link "Textlink"
