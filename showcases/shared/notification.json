@@ -582,6 +582,28 @@
 				]
 			},
 			{
+				"name": "Text & Textlink Block & Timed",
+				"style": { "width": "300px" },
+				"props": {
+					"link": true,
+					"variant": "overlay",
+					"behavior": "permanent",
+					"linkVariant": "block",
+					"showTimestamp": true,
+					"timestamp": "10 min ago"
+				},
+				"children": [
+					{
+						"name": "link",
+						"slot": "link",
+						"content": "Textlink",
+						"props": {
+							"href": "#"
+						}
+					}
+				]
+			},
+			{
 				"name": "Text & Headline & Textlink Inline & Closeable",
 				"style": { "width": "300px" },
 				"props": {
@@ -606,18 +628,20 @@
 				"name": "Text & Timed",
 				"style": { "width": "300px" },
 				"props": {
-					"timestamp": "10 min ago",
 					"variant": "overlay",
-					"behavior": "permanent"
+					"behavior": "permanent",
+					"showTimestamp": true,
+					"timestamp": "10 min ago"
 				}
 			},
 			{
 				"name": "Text & Timed & Closeable",
 				"style": { "width": "300px" },
 				"props": {
-					"timestamp": "10 min ago",
 					"variant": "overlay",
-					"closeable": true
+					"closeable": true,
+					"showTimestamp": true,
+					"timestamp": "10 min ago"
 				}
 			},
 			{
@@ -625,9 +649,10 @@
 				"style": { "width": "300px" },
 				"props": {
 					"headline": "Headline",
-					"timestamp": "10 min ago",
 					"variant": "overlay",
-					"closeable": true
+					"closeable": true,
+					"showTimestamp": true,
+					"timestamp": "10 min ago"
 				}
 			},
 			{
@@ -636,9 +661,10 @@
 				"props": {
 					"icon": "information_circle",
 					"headline": "Headline",
-					"timestamp": "10 min ago",
 					"variant": "overlay",
-					"closeable": true
+					"closeable": true,
+					"showTimestamp": true,
+					"timestamp": "10 min ago"
 				}
 			}
 		]

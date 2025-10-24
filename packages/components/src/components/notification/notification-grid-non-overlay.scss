@@ -1,7 +1,103 @@
 @use "@db-ux/core-foundations/build/styles/helpers/display";
 
+// Mixins for non-overlay grid patterns
+@mixin non-overlay-base-grid($areas, $columns) {
+	grid-template-areas: $areas;
+	grid-template-columns: $columns;
+}
+
+@mixin non-overlay-with-close($areas, $columns) {
+	&:has(.db-button) {
+		grid-template-areas: $areas;
+		grid-template-columns: $columns;
+	}
+}
+
+@mixin non-overlay-with-header($areas, $columns) {
+	&:has(header) {
+		grid-template-areas: $areas;
+		grid-template-columns: $columns;
+	}
+}
+
+@mixin non-overlay-with-header-close($areas, $columns) {
+	&:has(header):has(.db-button) {
+		grid-template-areas: $areas;
+		grid-template-columns: $columns;
+	}
+}
+
+@mixin non-overlay-with-icon($areas, $columns) {
+	&[data-icon],
+	&[data-semantic]:not([data-semantic="adaptive"]),
+	&:has(img) {
+		grid-template-areas: $areas;
+		grid-template-columns: $columns;
+	}
+}
+
+@mixin non-overlay-with-icon-close($areas, $columns) {
+	&[data-icon]:has(.db-button),
+	&[data-semantic]:not([data-semantic="adaptive"]):has(.db-button),
+	&:has(img):has(.db-button) {
+		grid-template-areas: $areas;
+		grid-template-columns: $columns;
+	}
+}
+
+@mixin non-overlay-with-icon-header($areas, $columns) {
+	&[data-icon]:has(header),
+	&[data-semantic]:not([data-semantic="adaptive"]):has(header),
+	&:has(img):has(header) {
+		grid-template-areas: $areas;
+		grid-template-columns: $columns;
+	}
+}
+
+@mixin non-overlay-with-icon-header-close($areas, $columns) {
+	&[data-icon]:has(header):has(.db-button),
+	&[data-semantic]:not([data-semantic="adaptive"]):has(header):has(
+			.db-button
+		),
+	&:has(img):has(header):has(.db-button) {
+		grid-template-areas: $areas;
+		grid-template-columns: $columns;
+	}
+}
+
+@mixin non-overlay-block-link-layouts() {
+	// 1. Base: content + block link (no additional elements)
+	@include non-overlay-base-grid("content" "link", 1fr);
+	@include non-overlay-with-close(
+		"content close" "link link",
+		1fr min-content
+	);
+
+	// 2. Adds: headline
+	@include non-overlay-with-header("head" "content" "link", 1fr);
+	@include non-overlay-with-header-close(
+		"head close" "content content" "link link",
+		1fr min-content
+	);
+
+	// 3. Adds: icon or image
+	@include non-overlay-with-icon("icon content" "icon link", min-content 1fr);
+	@include non-overlay-with-icon-close(
+		"icon content close" "icon link link",
+		min-content 1fr min-content
+	);
+	@include non-overlay-with-icon-header(
+		"icon head" "icon content" "icon link",
+		min-content 1fr
+	);
+	@include non-overlay-with-icon-header-close(
+		"icon head close" "icon content content" "icon link link",
+		min-content 1fr min-content
+	);
+}
+
 %grid-layout-variant-not-overlay {
-	// Hide timestamp for non-overlay variants
+	// Hide timestamp for non-overlay variants only
 	span {
 		@include display.display(none);
 	}
@@ -10,60 +106,6 @@
 	// - has link element
 	// - not inline link variant (i.e., block or unspecified)
 	&:has(a):not([data-link-variant="inline"]) {
-		// 1. Basic content with block link
-		grid-template-areas:
-			"content"
-			"link";
-		grid-template-columns: 1fr;
-
-		&:has(.db-button) {
-			grid-template-columns: 1fr min-content;
-			grid-template-areas:
-				"content close"
-				"link link";
-		}
-
-		// 2. headline
-		&:has(header) {
-			grid-template-columns: 1fr;
-			grid-template-areas:
-				"head"
-				"content"
-				"link";
-
-			&:has(.db-button) {
-				grid-template-columns: 1fr min-content;
-				grid-template-areas:
-					"head close"
-					"content content"
-					"link link";
-			}
-		}
-
-		// 3. icon or img
-		&[data-icon],
-		&[data-semantic]:not([data-semantic="adaptive"]),
-		&:has(img) {
-			grid-template-areas:
-				"icon content"
-				"icon link";
-			grid-template-columns: min-content 1fr;
-
-			&:has(header) {
-				grid-template-columns: min-content 1fr;
-				grid-template-areas:
-					"icon head"
-					"icon content"
-					"icon link";
-
-				&:has(.db-button) {
-					grid-template-columns: min-content 1fr min-content;
-					grid-template-areas:
-						"icon head close"
-						"icon content content"
-						"icon link link";
-				}
-			}
-		}
+		@include non-overlay-block-link-layouts;
 	}
 }

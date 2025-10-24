@@ -12,8 +12,8 @@
 @use "./notification-grid-non-overlay";
 @use "./notification-grid-layout-link-variant-inline";
 
-%ugly-line-height-workarounds {
-	// resets line-height to smaller height based on timestamp
+%timestamp-line-height-adjustments {
+	// Adjusts line-height for elements when timestamp is present
 	&:has(span) {
 		header,
 		p,
@@ -29,7 +29,7 @@
 	@extend %component-border;
 	@extend %grid-layout-default;
 	@extend %grid-layout-link-variant-inline;
-	@extend %ugly-line-height-workarounds;
+	@extend %timestamp-line-height-adjustments;
 	@include display.display(grid);
 
 	padding: variables.$db-spacing-fixed-md;
@@ -94,12 +94,15 @@
 		margin: 0;
 	}
 
+	// Image styling and grid positioning
 	img {
 		min-block-size: variables.$db-sizing-md;
 		min-inline-size: variables.$db-sizing-md;
 		max-block-size: variables.$db-sizing-md;
 		max-inline-size: variables.$db-sizing-md;
 		border-radius: variables.$db-border-radius-xs;
+		object-fit: cover;
+		grid-area: icon;
 	}
 
 	// timestamp
@@ -114,21 +117,21 @@
 		grid-area: close;
 	}
 
-	&:has(img) {
-		// we don't show a icon if we have an image
-		::before {
-			content: none !important;
-		}
-	}
-
+	// Icon grid positioning
 	&[data-icon]::before,
-	&::before,
-	img {
+	&::before {
 		--db-icon-margin-end: 0;
 
 		@include icons.to-filled-icon;
 
 		grid-area: icon;
+	}
+
+	&:has(img) {
+		// Hide icon when image is present to avoid conflicts
+		&::before {
+			content: none !important;
+		}
 	}
 
 	&[data-variant="overlay"] {
