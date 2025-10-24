@@ -1,66 +1,36 @@
-// Mixins for overlay grid patterns
+@use "notification-grid-shared" as shared;
+
+// Wrapper mixins for overlay variants that use shared grid logic
 @mixin overlay-base-grid($areas, $columns) {
-	grid-template-areas: $areas;
-	grid-template-columns: $columns;
+	@include shared.shared-base-grid($areas, $columns);
 }
 
 @mixin overlay-with-close($areas, $columns) {
-	&:has(.db-button) {
-		grid-template-areas: $areas;
-		grid-template-columns: $columns;
-	}
+	@include shared.shared-with-close($areas, $columns);
 }
 
 @mixin overlay-with-header($areas, $columns) {
-	&:has(header) {
-		grid-template-areas: $areas;
-		grid-template-columns: $columns;
-	}
+	@include shared.shared-with-header($areas, $columns);
 }
 
 @mixin overlay-with-header-close($areas, $columns) {
-	&:has(header):has(.db-button) {
-		grid-template-areas: $areas;
-		grid-template-columns: $columns;
-	}
+	@include shared.shared-with-header-close($areas, $columns);
 }
 
 @mixin overlay-with-icon($areas, $columns) {
-	&[data-icon],
-	&[data-semantic]:not([data-semantic="adaptive"]),
-	&:has(img) {
-		grid-template-areas: $areas;
-		grid-template-columns: $columns;
-	}
+	@include shared.shared-with-icon($areas, $columns);
 }
 
 @mixin overlay-with-icon-close($areas, $columns) {
-	&[data-icon]:has(.db-button),
-	&[data-semantic]:not([data-semantic="adaptive"]):has(.db-button),
-	&:has(img):has(.db-button) {
-		grid-template-areas: $areas;
-		grid-template-columns: $columns;
-	}
+	@include shared.shared-with-icon-close($areas, $columns);
 }
 
 @mixin overlay-with-icon-header($areas, $columns) {
-	&[data-icon]:has(header),
-	&[data-semantic]:not([data-semantic="adaptive"]):has(header),
-	&:has(img):has(header) {
-		grid-template-areas: $areas;
-		grid-template-columns: $columns;
-	}
+	@include shared.shared-with-icon-header($areas, $columns);
 }
 
 @mixin overlay-with-icon-header-close($areas, $columns) {
-	&[data-icon]:has(header):has(.db-button),
-	&[data-semantic]:not([data-semantic="adaptive"]):has(header):has(
-			.db-button
-		),
-	&:has(img):has(header):has(.db-button) {
-		grid-template-areas: $areas;
-		grid-template-columns: $columns;
-	}
+	@include shared.shared-with-icon-header-close($areas, $columns);
 }
 
 @mixin overlay-inline-layouts() {
