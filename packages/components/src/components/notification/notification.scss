@@ -10,7 +10,6 @@
 @use "./notification-grid-default";
 @use "./notification-grid-overlay";
 @use "./notification-grid-non-overlay";
-@use "./notification-grid-layout-link-variant-inline";
 
 %timestamp-line-height-adjustments {
 	// Adjusts line-height for elements when timestamp is present
