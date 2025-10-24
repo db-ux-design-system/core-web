@@ -1,9 +1,28 @@
 # @db-ux/v-core-components
 
+## 4.0.4
+
+### Patch Changes
+
+- fix: hide-animation for drawer - [see commit d4a73fa](https://github.com/db-ux-design-system/core-web/commit/d4a73fa9faba38b6f20fda6f7c85d5c6617793fe)
+
+## 4.0.3
+
+### Patch Changes
+
+- chore: generate Amazon Q rule file with [`@db-ux/agent-cli` node package](https://www.npmjs.com/package/@db-ux/agent-cli) - [see commit b61c8b1](https://github.com/db-ux-design-system/core-web/commit/b61c8b14992f5a5b3615c6bff74018d5682aa0cc)
+
+## 4.0.2
+
+### Patch Changes
+
+- fix(card): Remove the obsolete but harmful declaration regarding wrapping button and link styles. - [see commit 34c78df](https://github.com/db-ux-design-system/core-web/commit/34c78dffd4f43b0ac740574358b426a562e05cd0)
+
+- Set border of select, textarea, custom select and input to corresponding color when in/valid state is set. - [see commit 2a02263](https://github.com/db-ux-design-system/core-web/commit/2a022632f8fea7445e77fb632f109d6cd093e2d3)
+
 ## 4.0.1
 
 _version bump_
-
 
 ## 4.0.0
 
@@ -42,25 +61,17 @@ _version bump_
 
 ### Patch Changes
 
-- 0c20c00: fix: color mode for textarea resizer control set by color-mode-switch documentation UI component
-- 0c20c00: refactor: enabling `hidden` HTML attribute in every context in which we need to set overwriting styling declarations (`display`)
-- Updated dependencies [0c20c00]
-- Updated dependencies [0c20c00]
-  - @db-ux/core-components@3.1.17
-  - @db-ux/core-foundations@3.1.17
+- fix: color mode for textarea resizer control set by color-mode-switch documentation UI component - [see commit 354e270](https://github.com/db-ux-design-system/core-web/commit/354e27029a4378288a97ed5e31b75c11758f0c01)
+- refactor: enabling `hidden` HTML attribute in every context in which we need to set overwriting styling declarations (`display`) - [see commit 4826455](https://github.com/db-ux-design-system/core-web/commit/4826455637590b6ae780afb93abb9effe9380342)
 
 ## 3.1.16
 
 ### Patch Changes
 
-- a28eb71: fix(custom-select): keyboard navigation for option groups in single-select mode:
+- a28eb71: fix(custom-select): keyboard navigation for option groups in single-select mode - [see commit 6d60bab](https://github.com/db-ux-design-system/core-web/commit/6d60bab2eb87f16a9ffa942085bffd658564769c):
   - Fixes a keyboard accessibility issue where users could not navigate to options in subsequent option groups using arrow keys in single-select mode.
   - Now, all options are accessible via keyboard regardless of group boundaries.
-- a28eb71: fix: JS framework core-components packages are missing `@db-ux` dependencies
-- Updated dependencies [a28eb71]
-- Updated dependencies [a28eb71]
-  - @db-ux/core-components@3.1.16
-  - @db-ux/core-foundations@3.1.16
+- fix: JS framework core-components packages are missing `@db-ux` dependencies - [see commit 49df866](https://github.com/db-ux-design-system/core-web/commit/49df866e753a9459f5acdca4ad1e19141b477471)
 
 ## 3.1.15
 

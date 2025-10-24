@@ -1,0 +1,160 @@
+/* The prefix for variables are predefined by Tailwind, stylelint would throw an error */
+/* stylelint-disable-next-line scss/at-rule-no-unknown */
+@theme {
+	/* stylelint-disable-next-line custom-property-pattern */
+	--color-*: initial; /* 	Color utilities like */
+
+	/* Basic-Level */
+	--color-brand-bg-basic-level-1-default: var(
+		--db-brand-bg-basic-level-1-default
+	);
+	--color-brand-bg-basic-level-1-hovered: var(
+		--db-brand-bg-basic-level-1-hovered
+	);
+	--color-brand-bg-basic-level-1-pressed: var(
+		--db-brand-bg-basic-level-1-pressed
+	);
+	--color-brand-bg-basic-level-2-default: var(
+		--db-brand-bg-basic-level-2-default
+	);
+	--color-brand-bg-basic-level-2-hovered: var(
+		--db-brand-bg-basic-level-2-hovered
+	);
+	--color-brand-bg-basic-level-2-pressed: var(
+		--db-brand-bg-basic-level-2-pressed
+	);
+	--color-brand-bg-basic-level-3-default: var(
+		--db-brand-bg-basic-level-3-default
+	);
+	--color-brand-bg-basic-level-3-hovered: var(
+		--db-brand-bg-basic-level-3-hovered
+	);
+	--color-brand-bg-basic-level-3-pressed: var(
+		--db-brand-bg-basic-level-3-pressed
+	);
+
+	/* Transparent */
+	--color-brand-bg-basic-transparent-full-default: var(
+		--db-brand-bg-basic-transparent-full-default
+	);
+	--color-brand-bg-basic-transparent-semi-default: var(
+		--db-brand-bg-basic-transparent-semi-default
+	);
+	--color-brand-bg-basic-transparent-full-hovered: var(
+		--db-brand-bg-basic-transparent-full-hovered
+	);
+	--color-brand-bg-basic-transparent-full-pressed: var(
+		--db-brand-bg-basic-transparent-full-pressed
+	);
+	--color-brand-bg-basic-transparent-semi-hovered: var(
+		--db-brand-bg-basic-transparent-semi-hovered
+	);
+	--color-brand-bg-basic-transparent-semi-pressed: var(
+		--db-brand-bg-basic-transparent-semi-pressed
+	);
+
+	/* Inverted */
+	--color-brand-bg-inverted-contrast-max-default: var(
+		--db-brand-bg-inverted-contrast-max-default
+	);
+	--color-brand-bg-inverted-contrast-max-hovered: var(
+		--db-brand-bg-inverted-contrast-max-hovered
+	);
+	--color-brand-bg-inverted-contrast-max-pressed: var(
+		--db-brand-bg-inverted-contrast-max-pressed
+	);
+	--color-brand-bg-inverted-contrast-high-default: var(
+		--db-brand-bg-inverted-contrast-high-default
+	);
+	--color-brand-bg-inverted-contrast-high-hovered: var(
+		--db-brand-bg-inverted-contrast-high-hovered
+	);
+	--color-brand-bg-inverted-contrast-high-pressed: var(
+		--db-brand-bg-inverted-contrast-high-pressed
+	);
+	--color-brand-bg-inverted-contrast-low-default: var(
+		--db-brand-bg-inverted-contrast-low-default
+	);
+	--color-brand-bg-inverted-contrast-low-hovered: var(
+		--db-brand-bg-inverted-contrast-low-hovered
+	);
+	--color-brand-bg-inverted-contrast-low-pressed: var(
+		--db-brand-bg-inverted-contrast-low-pressed
+	);
+
+	/* On Colors */
+
+	--color-brand-on-bg-basic-emphasis-100-default: var(
+		--db-brand-on-bg-basic-emphasis-100-default
+	);
+	--color-brand-on-bg-basic-emphasis-100-hovered: var(
+		--db-brand-on-bg-basic-emphasis-100-hovered
+	);
+	--color-brand-on-bg-basic-emphasis-100-pressed: var(
+		--db-brand-on-bg-basic-emphasis-100-pressed
+	);
+	--color-brand-on-bg-basic-emphasis-90-default: var(
+		--db-brand-on-bg-basic-emphasis-90-default
+	);
+	--color-brand-on-bg-basic-emphasis-90-hovered: var(
+		--db-brand-on-bg-basic-emphasis-90-hovered
+	);
+	--color-brand-on-bg-basic-emphasis-90-pressed: var(
+		--db-brand-on-bg-basic-emphasis-90-pressed
+	);
+	--color-brand-on-bg-basic-emphasis-80-default: var(
+		--db-brand-on-bg-basic-emphasis-80-default
+	);
+	--color-brand-on-bg-basic-emphasis-80-hovered: var(
+		--db-brand-on-bg-basic-emphasis-80-hovered
+	);
+	--color-brand-on-bg-basic-emphasis-80-pressed: var(
+		--db-brand-on-bg-basic-emphasis-80-pressed
+	);
+	--color-brand-on-bg-basic-emphasis-70-default: var(
+		--db-brand-on-bg-basic-emphasis-70-default
+	);
+	--color-brand-on-bg-basic-emphasis-70-hovered: var(
+		--db-brand-on-bg-basic-emphasis-70-hovered
+	);
+	--color-brand-on-bg-basic-emphasis-70-pressed: var(
+		--db-brand-on-bg-basic-emphasis-70-pressed
+	);
+	--color-brand-on-bg-basic-emphasis-60-default: var(
+		--db-brand-on-bg-basic-emphasis-60-default
+	);
+	--color-brand-on-bg-basic-emphasis-60-hovered: var(
+		--db-brand-on-bg-basic-emphasis-60-hovered
+	);
+	--color-brand-on-bg-basic-emphasis-60-pressed: var(
+		--db-brand-on-bg-basic-emphasis-60-pressed
+	);
+	--color-brand-on-bg-basic-emphasis-50-default: var(
+		--db-brand-on-bg-basic-emphasis-50-default
+	);
+	--color-brand-on-bg-basic-emphasis-50-hovered: var(
+		--db-brand-on-bg-basic-emphasis-50-hovered
+	);
+	--color-brand-on-bg-basic-emphasis-50-pressed: var(
+		--db-brand-on-bg-basic-emphasis-50-pressed
+	);
+
+	/* On Inverted */
+	--color-brand-on-bg-inverted-default: var(
+		--db-brand-on-bg-inverted-default
+	);
+	--color-brand-on-bg-inverted-hovered: var(
+		--db-brand-on-bg-inverted-hovered
+	);
+	--color-brand-on-bg-inverted-pressed: var(
+		--db-brand-on-bg-inverted-pressed
+	);
+
+	/* On Origin */
+	--color-brand-on-origin-default: var(--db-brand-on-origin-default);
+	--color-brand-on-origin-hovered: var(--db-brand-on-origin-hovered);
+	--color-brand-on-origin-pressed: var(--db-brand-on-origin-pressed);
+	--color-brand-origin-default: var(--db-brand-origin-default);
+	--color-brand-origin-hovered: var(--db-brand-origin-hovered);
+	--color-brand-origin-pressed: var(--db-brand-origin-pressed);
+}

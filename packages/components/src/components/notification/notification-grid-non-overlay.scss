@@ -1,15 +1,6 @@
-@use "@db-ux/core-foundations/build/styles/helpers/display";
-
-// Mixins for non-overlay grid patterns
-@mixin non-overlay-base-grid($areas, $columns) {
-	grid-template-areas: $areas;
-	grid-template-columns: $columns;
-}
-
-@mixin non-overlay-with-close($areas, $columns) {
-	&:has(.db-button) {
-		grid-template-areas: $areas;
-		grid-template-columns: $columns;
+%grid-layout-variant-not-overlay {
+	span {
+		display: none;
 	}
 }
 
