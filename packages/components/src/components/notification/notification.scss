@@ -28,7 +28,7 @@
 .db-notification {
 	@extend %component-border;
 	@extend %grid-layout-default;
-	@extend %ugly-line-height-workarounds;
+	@extend %timestamp-line-height-adjustments;
 	@include helpers.display(grid);
 
 	padding: variables.$db-spacing-fixed-md;

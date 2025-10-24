@@ -4,6 +4,18 @@
 	}
 }
 
+@mixin non-overlay-base-grid($areas, $columns) {
+	grid-template-areas: $areas;
+	grid-template-columns: $columns;
+}
+
+@mixin non-overlay-with-close($areas, $columns) {
+	&:has(.db-button) {
+		grid-template-areas: $areas;
+		grid-template-columns: $columns;
+	}
+}
+
 @mixin non-overlay-with-header($areas, $columns) {
 	&:has(header) {
 		grid-template-areas: $areas;
@@ -90,7 +102,7 @@
 %grid-layout-variant-not-overlay {
 	// Hide timestamp for non-overlay variants only
 	span {
-		@include display.display(none);
+		display: none;
 	}
 
 	// Apply block link layout when:
