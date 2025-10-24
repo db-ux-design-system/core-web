@@ -19,9 +19,11 @@ async function previewUrlPrDescription({ github, context }) {
 			owner,
 			repo
 		});
-		
+
 		// Use custom domain if available, otherwise fall back to github.io
-		baseUrl = pagesResponse.data.html_url ?? `https://${owner}.github.io/${repo}/`;
+		baseUrl =
+			pagesResponse.data.html_url ??
+			`https://${owner}.github.io/${repo}/`;
 		// Ensure baseUrl ends with a single trailing slash
 		if (!baseUrl.endsWith('/')) {
 			baseUrl += '/';
