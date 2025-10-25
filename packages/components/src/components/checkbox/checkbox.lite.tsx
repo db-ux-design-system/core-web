@@ -26,6 +26,7 @@ import {
 	uuid
 } from '../../utils';
 import {
+	addCheckedResetEventListener,
 	handleFrameworkEventAngular,
 	handleFrameworkEventVue
 } from '../../utils/form-components';
@@ -87,10 +88,25 @@ export default function DBCheckbox(props: DBCheckboxProps) {
 				state._descByIds = undefined;
 			}
 		},
-		handleChange: (event: ChangeEvent<HTMLInputElement>) => {
-			if (props.onChange) {
-				props.onChange(event);
-			}
+		handleChange: (
+			event: ChangeEvent<HTMLInputElement>,
+			reset?: boolean
+		) => {
+			useTarget({
+				angular: () => {
+					if (props.onChange) {
+						// We need to split the if statements for generation
+						if (reset) {
+							props.onChange(event);
+						}
+					}
+				},
+				default: () => {
+					if (props.onChange) {
+						props.onChange(event);
+					}
+				}
+			});
 
 			useTarget({
 				angular: () =>
@@ -177,6 +193,22 @@ export default function DBCheckbox(props: DBCheckboxProps) {
 			state.initialized = false;
 		}
 	}, [state.initialized, _ref, props.checked]);
+
+	onUpdate(() => {
+		if (_ref) {
+			const defaultChecked = useTarget({
+				react: (props as any).defaultChecked,
+				default: undefined
+			});
+			addCheckedResetEventListener(
+				_ref,
+				{ checked: props.checked, defaultChecked },
+				(event) => {
+					state.handleChange(event, true);
+				}
+			);
+		}
+	}, [_ref]);
 	// jscpd:ignore-end
 
 	return (
