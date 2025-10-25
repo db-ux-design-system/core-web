@@ -96,7 +96,7 @@
     "@angular/platform-server": "20.3.6",
     "@angular/router": "20.3.6",
     "@angular/ssr": "20.3.6",
-    "@axe-core/playwright": "4.10.2",
+    "@axe-core/playwright": "4.11.0",
     "@babel/eslint-parser": "7.28.4",
     "@changesets/cli": "2.29.7",
     "@changesets/types": "6.1.0",
