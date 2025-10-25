@@ -49,12 +49,10 @@ jobs:
           path: output
 
       - name: 📥 Install output dependencies
-        uses: bahmutov/npm-install@v1
-        with:
-          install-command: npm i
+        run: pnpm install
 
       - name: 🔨 Build outputs
-        run: npm run build-outputs
+        run: pnpm run build-outputs
 
       - name: 📦 Validate Package Publishing
         run: |

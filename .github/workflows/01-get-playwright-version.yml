@@ -27,5 +27,5 @@ jobs:
       - name: 🪁 Get playwright version
         id: version
         run: |
-          OUTPUT=$(npx --no tsx scripts/github/get-playwright-version.ts)
+          OUTPUT=$(pnpm exec tsx scripts/github/get-playwright-version.ts)
           echo "version=$OUTPUT" >> $GITHUB_OUTPUT

@@ -1,0 +1,7 @@
+packages:
+  - 'packages/*'
+  - 'output/*'
+  - 'showcases/*'
+  - 'docs'
+  - 'scripts'
+  - 'e2e'

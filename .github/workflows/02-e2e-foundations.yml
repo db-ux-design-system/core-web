@@ -33,7 +33,7 @@ jobs:
 
       - name: 👩‍🔬 Test with Playwright 🎭
         working-directory: ./packages/foundations
-        run: npm run test:e2e
+        run: pnpm run test:e2e
 
       - name: 🆙 Upload test results
         if: failure()

@@ -17,7 +17,7 @@
     "build": "npm-run-all --parallel build-components build-assets --sequential build-style:*",
     "build-assets": "cpr src build --overwrite --filter \"(.ts|.tsx|.md|.html)$\"",
     "build-components": "npm-run-all build:mitosis build-components:post build-components:docs",
-    "build-components:docs": "npm run build:cem --workspace @db-ux/wc-core-components",
+    "build-components:docs": "pnpm --filter=@db-ux/wc-core-components run build:cem",
     "build-components:post": "tsx scripts/post-build/index.ts",
     "build-style:01_sass": "sass src:build --no-source-map --load-path=node_modules/ --load-path=../../node_modules/ --fatal-deprecation=mixed-decls",
     "build-style:02_postcss": "postcss build/**/*.css --replace",
@@ -27,23 +27,23 @@
     "compile:stencil": "mitosis build --config configs/stencil/mitosis.config.cjs && tsx scripts/exec/stencil.ts && cpr ../../output/tmp/stencil/src ../../output/stencil/src --overwrite",
     "compile:vue": "mitosis build --config configs/vue/mitosis.config.cjs && tsx scripts/exec/vue.ts && cpr ../../output/tmp/vue/src ../../output/vue/src --overwrite",
     "copy-assets": "cpr ../foundations/assets build/assets -o",
-    "copy-output": "npm-run-all copy:*",
+    "copy-output": "pnpm run '/^copy:[^:]*$/'",
     "copy:outputs": "cpr build ../../build-outputs/components/build --overwrite",
     "copy:package.json": "cpr package.json ../../build-outputs/components/package.json --overwrite",
     "copy:readme": "cpr README.md ../../build-outputs/components/README.md --overwrite",
-    "dev:angular": "nodemon --watch src --watch scripts --ext tsx,ts --exec \"npm run compile:angular\"",
-    "dev:html": "npm run copy-assets && npm run build-assets && npm run build-style:01_sass && vite --open",
-    "dev:react": "nodemon --watch src --watch scripts --ext tsx,ts --exec \"npm run compile:react\"",
-    "dev:scss": "npm run build-style:01_sass -- --watch --source-map",
-    "dev:stencil": "nodemon --watch src --watch scripts --ext tsx,ts --exec \"npm run compile:stencil\"",
-    "dev:vue": "nodemon --watch src --watch scripts --ext tsx,ts --exec \"npm run compile:vue\"",
+    "dev:angular": "nodemon --watch src --watch scripts --ext tsx,ts --exec \"pnpm run compile:angular\"",
+    "dev:html": "pnpm run copy-assets && pnpm run build-assets && pnpm run build-style:01_sass && vite --open",
+    "dev:react": "nodemon --watch src --watch scripts --ext tsx,ts --exec \"pnpm run compile:react\"",
+    "dev:scss": "pnpm run build-style:01_sass --watch --source-map",
+    "dev:stencil": "nodemon --watch src --watch scripts --ext tsx,ts --exec \"pnpm run compile:stencil\"",
+    "dev:vue": "nodemon --watch src --watch scripts --ext tsx,ts --exec \"pnpm run compile:vue\"",
     "generate:component": "hygen mitosis new",
     "generate:docs": "hygen update-docs new",
-    "prepack": "npm run copy-assets",
-    "start": "nodemon --watch src --watch scripts --watch scripts --ext js,tsx,ts,scss,json --exec \"npm run build\""
+    "prepack": "pnpm run copy-assets",
+    "start": "nodemon --watch src --watch scripts --watch scripts --ext js,tsx,ts,scss,json --exec \"pnpm run build\""
   },
   "dependencies": {
-    "@db-ux/core-foundations": "3.1.17"
+    "@db-ux/core-foundations": "workspace:*"
   },
   "devDependencies": {
     "@builder.io/eslint-plugin-mitosis": "0.0.17",

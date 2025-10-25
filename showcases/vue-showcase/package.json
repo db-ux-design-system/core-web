@@ -2,18 +2,25 @@
   "name": "vue-showcase",
   "version": "0.0.0",
   "type": "module",
+  "description": "A Vue 3 Showcase for Sa11y",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/db-ux-design-system/core-web.git"
+  },
+  "license": "Apache-2.0",
   "private": true,
+  "files": [],
   "scripts": {
-    "build": "npm-run-all build:*",
+    "build": "pnpm run '/^build:[^:]*$/'",
     "build:01_vite": "vite build",
     "dev": "vite --open",
-    "preview": "npx http-server ../../build-showcases",
+    "preview": "pnpm exec http-server ../../build-showcases",
     "start": "vite",
-    "test:a11y-checker": "cross-env showcase=vue-showcase npx playwright test --config=../playwright.a11y-checker.ts",
-    "test:aria-snapshots": "cross-env showcase=vue-showcase npx playwright test --config=../playwright.aria-snapshots.ts",
-    "test:axe-core": "cross-env showcase=vue-showcase npx playwright test --config=../playwright.axe-core.ts",
-    "test:e2e": "cross-env showcase=vue-showcase npx playwright test --config=../playwright.config.ts",
-    "test:visual-snapshots": "cross-env showcase=vue-showcase npx playwright test --config=../playwright.visual-snapshots.ts"
+    "test:a11y-checker": "cross-env showcase=vue-showcase pnpm exec playwright test --config=../playwright.a11y-checker.ts",
+    "test:aria-snapshots": "cross-env showcase=vue-showcase pnpm exec playwright test --config=../playwright.aria-snapshots.ts",
+    "test:axe-core": "cross-env showcase=vue-showcase pnpm exec playwright test --config=../playwright.axe-core.ts",
+    "test:e2e": "cross-env showcase=vue-showcase pnpm exec playwright test --config=../playwright.config.ts",
+    "test:visual-snapshots": "cross-env showcase=vue-showcase pnpm exec playwright test --config=../playwright.visual-snapshots.ts"
   },
   "dependencies": {
     "sa11y": "4.3.2",

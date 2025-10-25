@@ -35,7 +35,7 @@ for (const { name, parentPath } of packages) {
 
 		if (mode === 'publint') {
 			try {
-				execSync(`npx publint ${packagePath}`, {
+				execSync(`pnpm exec publint ${packagePath}`, {
 					stdio: 'inherit',
 					cwd: process.cwd()
 				});

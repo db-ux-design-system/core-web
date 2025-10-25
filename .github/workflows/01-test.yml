@@ -18,4 +18,4 @@ jobs:
         uses: ./.github/actions/npm-cache
 
       - name: ⚡ Run Test
-        run: npm run test
+        run: pnpm run test

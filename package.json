@@ -14,15 +14,7 @@
   "author": "DB Systel GmbH",
   "license": "Apache-2.0",
   "private": true,
-  "workspaces": [
-    "packages/*",
-    "output/*",
-    "showcases/*",
-    "docs",
-    "scripts",
-    "e2e"
-  ],
-  "packageManager": "npm@11.5.2",
+  "packageManager": "pnpm@10.14.0+sha512.ad27a79641b49c3e481a16a805baa71817a04bbe06a38d17e60e2eaee83f6a146c6a688125f5792e48dd5ba30e7da52a5cda4c3992b9ccf333f9ce223af84748",
   "engines": {
     "node": ">= 24"
   },
@@ -49,17 +41,17 @@
     "styleguide"
   ],
   "scripts": {
-    "build": "npm run build --workspace=scripts",
-    "build-outputs": "npm run build-outputs --workspace=scripts",
-    "build-showcases": "npm run build-showcases --workspace=scripts",
+    "build": "pnpm --filter='./scripts' run build",
+    "build-outputs": "pnpm --filter='./scripts' run build-outputs",
+    "build-showcases": "pnpm --filter='./scripts' run build-showcases",
     "changeset": "changeset",
     "ci:version": "changeset version && tsx scripts/github/changesets/version-bump.ts",
     "clean": "git clean -dfx --exclude=.env",
     "codestyle": "prettier . --write",
     "commit:updated-snapshots": "git diff --name-only --diff-filter=M | xargs git add && git commit --message 'test: updated snapshots'",
-    "dev": "npm run dev --workspace=scripts",
-    "generate:component": "npm run generate:component --workspace=@db-ux/core-components",
-    "lint": "npm-run-all --parallel lint:*",
+    "dev": "pnpm --filter='./scripts' run dev",
+    "generate:component": "pnpm --filter=@db-ux/core-components run generate:component",
+    "lint": "pnpm --parallel run '/^lint:[^:]*$/'",
     "lint-docs-file-references": "node scripts/check-docs.js",
     "lint-packages": "tsx scripts/lint-packages.ts publint",
     "lint:jscpd": "jscpd . --exitCode 1 --config .config/.jscpd.json",
@@ -68,12 +60,12 @@
     "lint:stylelint": "stylelint **/*.{css,scss}",
     "lint:xo": "xo",
     "prepare": "husky",
-    "regenerate:screenshots": "npm run build && npm run build --workspace=react-showcase && docker-compose --file ./e2e/docker-compose.regenerate.yml up",
-    "regenerate:screenshots:rebuild": "npm run rm:builds && node scripts/rebuild-e2e.js",
+    "regenerate:screenshots": "pnpm run build && pnpm --filter=react-showcase run build && docker-compose --file ./e2e/docker-compose.regenerate.yml up",
+    "regenerate:screenshots:rebuild": "pnpm run rm:builds && node scripts/rebuild-e2e.js",
     "release:publish": "node scripts/github/publish-npm.js",
-    "rm:builds": "npm run rm:builds --workspace=scripts",
-    "start": "npm run start --workspace=patternhub",
-    "test": "npm run test --workspace=scripts",
+    "rm:builds": "pnpm --filter='./scripts' run rm:builds",
+    "start": "pnpm --filter=patternhub run start",
+    "test": "pnpm --filter='./scripts' run test",
     "test:react-core-components": "playwright test --config output/react/playwright.config.ts --ui",
     "test:vue-components": "playwright test --config output/vue/playwright.config.ts --ui",
     "update:dependency:playwright": "node scripts/github/update-playwright.js"
@@ -152,9 +144,16 @@
     "xo": "1.2.2",
     "zone.js": "0.15.1"
   },
-  "overrides": {
-    "brace-expansion": "2.0.2",
-    "cross-spawn": "7.0.6"
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "@db-ux/db-theme-fonts",
+      "@db-ux/db-theme-icons",
+      "@db-ux/db-theme-illustrative-icons"
+    ],
+    "overrides": {
+      "brace-expansion": "2.0.2",
+      "cross-spawn": "7.0.6"
+    }
   },
   "validate-branch-name": {
     "pattern": "((copilot/)|(dependabot-)|^((test|feat|fix|chore|docs|refactor|style|ci|perf|alert|[0-9]+)\\-[a-zA-Z0-9\\-]+)$)",

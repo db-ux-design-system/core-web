@@ -17,9 +17,9 @@
     "build"
   ],
   "scripts": {
-    "build": "npm-run-all build:*",
-    "build:01_normalize": "npm-run-all copy-prepare:*",
-    "build:02_copy": "npm run copy:scss",
+    "build": "pnpm run '/^build:[^:]*$/'",
+    "build:01_normalize": "pnpm run '/^copy-prepare:[^:]*$/'",
+    "build:02_copy": "pnpm run copy:scss",
     "build:03_css": "sass --no-source-map --load-path=node_modules/ --load-path=../../node_modules/ build/styles  --fatal-deprecation=mixed-decls",
     "build:04_tailwind": "cpr tailwind build/tailwind --overwrite",
     "build:05_postcss": "postcss build/styles/**/*.css --replace",
@@ -27,7 +27,7 @@
     "build:06_ide": "cpr ide build/ide --overwrite",
     "build:06_ts": "tsc",
     "clean": "rm --recursive --force build",
-    "copy-build": "npm-run-all copy-build:*",
+    "copy-build": "pnpm run '/^copy-build:[^:]*$/'",
     "copy-build:assets": "cpr assets ../../build-outputs/foundations/assets --overwrite",
     "copy-build:package.json": "cpr package.json ../../build-outputs/foundations/package.json --overwrite",
     "copy-build:readme": "cpr README.md ../../build-outputs/foundations/README.md --overwrite",
@@ -39,12 +39,12 @@
     "generate:fonts": "tsx assets/fonts/generate-eu-fonts.ts",
     "generate:icons": "tsx scripts/local/generate-icon-font.ts",
     "postcopy-prepare:icon-overview": "prettier dev/icons.html --write",
-    "prebuild": "npm-run-all copy-prepare:*",
-    "predev": "npm-run-all copy-prepare:*",
-    "prestart": "npm-run-all copy-prepare:*",
-    "regenerate:screenshots": "npx playwright test --config ./test/playwright.config.js --update-snapshots",
+    "prebuild": "pnpm run '/^copy-prepare:[^:]*$/'",
+    "predev": "pnpm run '/^copy-prepare:[^:]*$/'",
+    "prestart": "pnpm run '/^copy-prepare:[^:]*$/'",
+    "regenerate:screenshots": "pnpm exec playwright test --config ./test/playwright.config.js --update-snapshots",
     "start": "nodemon --config nodemon.json",
-    "test:e2e": "npx playwright test --config=./test/playwright.config.js"
+    "test:e2e": "pnpm exec playwright test --config=./test/playwright.config.js"
   },
   "devDependencies": {
     "@csstools/normalize.css": "12.1.1",

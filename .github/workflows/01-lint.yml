@@ -19,6 +19,6 @@ jobs:
 
       - name: ⚡ Run Lint
         run: |
-          npm run postinstall --workspace=nuxt-showcase
-          npm run build --workspace=@db-ux/core-stylelint
-          npm run lint
+          pnpm --filter=nuxt-showcase run postinstall
+          pnpm --filter=@db-ux/core-stylelint run build
+          pnpm run lint

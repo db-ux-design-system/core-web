@@ -44,7 +44,7 @@ jobs:
         env:
           ASSET_INIT_VECTOR: ${{ secrets.ASSET_INIT_VECTOR }}
           ASSET_PASSWORD: ${{ secrets.ASSET_PASSWORD }}
-        run: npm run build --workspace=${{ inputs.showcase }}
+        run: pnpm --filter=${{ inputs.showcase }} run build
 
       - name: ⏫ Upload ${{ inputs.showcase }}
         uses: actions/upload-artifact@v4

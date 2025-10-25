@@ -19,7 +19,7 @@ jobs:
         uses: ./.github/actions/npm-cache
 
       - name: 🔨 Build Packages
-        run: npm run build
+        run: pnpm run build
 
       - name: ⏫ Upload foundations build
         uses: actions/upload-artifact@v4

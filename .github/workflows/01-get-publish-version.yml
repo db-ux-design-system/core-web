@@ -36,7 +36,7 @@ jobs:
       - name: 💃🕺 Check if release or prerelease
         id: releaseCheck
         run: |
-          OUTPUT=$(npx --no tsx scripts/github/get-release.ts)
+          OUTPUT=$(pnpm exec tsx scripts/github/get-release.ts)
           if [[ $OUTPUT == "RELEASE" ]];
           then
             echo "release=true" >> $GITHUB_OUTPUT
@@ -62,7 +62,7 @@ jobs:
           PRE_RELEASE: ${{ steps.releaseCheck.outputs.preRelease }}
           TAG: ${{ steps.extractTag.outputs.tag }}
         run: |
-          OUTPUT=$(npx --no tsx scripts/github/package-version.ts)
+          OUTPUT=$(pnpm exec tsx scripts/github/package-version.ts)
           echo "version=$OUTPUT" >> $GITHUB_OUTPUT
 
       - name: 🌳 Log Valid Version

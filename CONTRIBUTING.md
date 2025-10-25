@@ -9,7 +9,7 @@ We are committed to fostering a welcoming, respectful, and harassment-free envir
 Get credentials for public usage from [Marketingportal](https://marketingportal.extranet.deutschebahn.com/marketingportal/Design-Anwendungen/db-ux-design-system/resources/db-theme) and add them to your [`.env` File](./.env) - see [`.env.template`](./.env.template).
 
 ```shell
-npm install
+pnpm install
 # it should run postinstall tasks from @db-ux/db-theme* by default, if not:
 # execute this tasks manually to decode the assets using the previously made setup:
 node node_modules/@db-ux/db-theme-fonts/build/scripts/index.js
@@ -18,13 +18,13 @@ node node_modules/@db-ux/db-theme-illustrative-icons/build/scripts/index.js
 ```
 
 > [!NOTE]
-> If you missed setting up the `.env`-file before running `npm install`, you may need to re-install your packages to ensure the postinstall scrips are executed for decrypting the fonts and other artifacts (`rm --recursive --force node_modules/@db-ux/db-theme* && npm update @db-ux/db-theme`)
+> If you missed setting up the `.env`-file before running `pnpm install`, you may need to re-install your packages to ensure the postinstall scrips are executed for decrypting the fonts and other artifacts (`rm --recursive --force node_modules/@db-ux/db-theme* && pnpm update @db-ux/db-theme`)
 
 ## Start locally
 
 ```shell
-npm run build
-npm run dev
+pnpm run build
+pnpm run dev
 ```
 
 ## Make changes / Before you commit
