@@ -1,8 +1,6 @@
-@use "@db-ux/core-foundations/build/styles/helpers/display";
-
 %grid-layout-variant-not-overlay {
 	span {
-		@include display.display(none);
+		display: none;
 	}
 
 	// has link
