@@ -1,7 +1,8 @@
+import CardWrapperShowcase from '../../../shared/showcase/card-wrapper.showcase.lite';
 import ContainerWrapperShowcase from '../../../shared/showcase/container-wrapper.showcase.lite';
 import LinkWrapperShowcase from '../../../shared/showcase/link-wrapper.showcase.lite';
-import ButtonDensity from './density.showcase.lite';
-import ButtonVariant from './variant.showcase.lite';
+import ButtonDensity from '../examples/density.example.lite';
+import ButtonVariant from '../examples/variant.example.lite';
 
 export default function ButtonShowcase() {
 	function getComponentPath() {
@@ -13,12 +14,16 @@ export default function ButtonShowcase() {
 			<LinkWrapperShowcase
 				exampleName="Density"
 				componentPath={getComponentPath()}>
-				<ButtonDensity />
+				<CardWrapperShowcase>
+					<ButtonDensity />
+				</CardWrapperShowcase>
 			</LinkWrapperShowcase>
 			<LinkWrapperShowcase
 				exampleName="Variant"
 				componentPath={getComponentPath()}>
-				<ButtonVariant />
+				<CardWrapperShowcase>
+					<ButtonVariant />
+				</CardWrapperShowcase>
 			</LinkWrapperShowcase>
 		</ContainerWrapperShowcase>
 	);
