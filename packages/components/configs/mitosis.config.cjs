@@ -8,7 +8,12 @@ const stencil = require('./stencil/index.cjs');
  */
 module.exports = {
 	files: 'src/**/*.{lite.tsx,ts}',
-	exclude: ['src/**/*.agent.lite.tsx'],
+	exclude: [
+		'src/**/*.agent.lite.tsx',
+		'src/**/*.example.lite.tsx',
+		'src/**/*.showcase.lite.tsx',
+		'src/**/*.storybook.lite.tsx'
+	],
 	targets: ['angular', 'vue', 'react', 'stencil'],
 	dest: '../../output',
 	commonOptions: {

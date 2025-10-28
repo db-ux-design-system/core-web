@@ -3,7 +3,7 @@ import {
 	DBInfotext,
 	DBSwitch,
 	getBoolean
-} from '../../../../../output/react/src';
+} from '@components';
 import defaultComponentVariants from '../../../../shared/switch.json';
 import { type BaseComponentProps } from '../base-component-data';
 import { getVariants } from '../data';

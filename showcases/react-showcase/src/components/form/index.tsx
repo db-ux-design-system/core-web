@@ -18,11 +18,11 @@ import {
 	DBTag,
 	DBTextarea,
 	DBTooltip
-} from '../../../../../output/react/src';
+} from '@components';
 import type {
 	ChangeEvent,
 	ValueLabelType
-} from '../../../../../output/react/src/shared/model';
+} from '@components/shared/model';
 
 const FormComponent = () => {
 	const [input, setInput] = useState('');

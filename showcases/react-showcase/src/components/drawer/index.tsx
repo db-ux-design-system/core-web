@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import { DBButton, DBDrawer } from '../../../../../output/react/src';
-import type { DBDrawerProps } from '../../../../../output/react/src/components/drawer/model';
+import { DBButton, DBDrawer } from '@components';
+import type { DBDrawerProps } from '@components/src/components/drawer/model';
 import defaultComponentVariants from '../../../../shared/drawer.json';
 import { type BaseComponentProps } from '../base-component-data';
 import { getVariants } from '../data';

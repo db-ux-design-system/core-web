@@ -1,6 +1,10 @@
 import react from '@vitejs/plugin-react';
-import { defineConfig } from 'vite';
 import devtoolsJson from 'vite-plugin-devtools-json';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
+import { defineConfig } from 'vite';
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -26,6 +30,11 @@ export default defineConfig({
 				GITHUB_BRANCH: JSON.stringify(process.env.GITHUB_BRANCH),
 				BRANCH_NAME: JSON.stringify(process.env.BRANCH_NAME)
 			}
+		}
+	},
+	resolve: {
+		alias: {
+			'@components': path.resolve(__dirname, '../../output/react/src')
 		}
 	},
 	css: {

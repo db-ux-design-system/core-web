@@ -2,7 +2,6 @@ import AccordionComponent from '../components/accordion';
 import AccordionItemComponent from '../components/accordion-item';
 import BadgeComponent from '../components/badge';
 import BrandComponent from '../components/brand';
-import ButtonComponent from '../components/button';
 import CardComponent from '../components/card';
 import CheckboxComponent from '../components/checkbox';
 import CustomSelectComponent from '../components/custom-select';
@@ -28,6 +27,8 @@ import TabsComponent from '../components/tabs';
 import TagComponent from '../components/tag';
 import TextareaComponent from '../components/textarea';
 import TooltipComponent from '../components/tooltip';
+
+import ButtonShowcase from '../../../../output/react/src/components/button/showcase/_button.showcase';
 
 export type NavigationItem = {
 	path: string;
@@ -146,7 +147,7 @@ export const NAVIGATION_ITEMS: NavigationItem[] = [
 		label: '02 Action',
 		subNavigation: getSortedNavigationItems([
 			{ path: 'link', label: 'Link', component: <LinkComponent /> },
-			{ path: 'button', label: 'Button', component: <ButtonComponent /> }
+			{ path: 'button', label: 'Button', component: <ButtonShowcase /> }
 		])
 	},
 	{
