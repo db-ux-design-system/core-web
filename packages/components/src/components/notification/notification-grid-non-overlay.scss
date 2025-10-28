@@ -76,10 +76,10 @@
 		display: none;
 	}
 
-	// Apply block link layout when:
-	// - has link element
-	// - not inline link variant (i.e., block or unspecified)
-	&:has(a):not([data-link-variant="inline"]) {
+	// Apply block link layout when linkVariant is "block" (explicit or default)
+	// Only applies to non-overlay variants with block links
+	&[data-link-variant="block"],
+	&:not([data-link-variant]):has(a) {
 		@include non-overlay-block-link-layouts;
 	}
 }

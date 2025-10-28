@@ -33,8 +33,8 @@
 	@include shared.shared-with-icon-header-close($areas, $columns);
 }
 
-@mixin overlay-inline-layouts() {
-	// 1. Base layout: content + timestamp (progressively enhanced by subsequent mixins when additional elements are detected such as close button, header, or icon)
+@mixin overlay-timestamp-area-layouts() {
+	// 1. Base layout: content + timestamp
 	@include overlay-base-grid("content timestamp", 1fr min-content);
 	@include overlay-with-close(
 		"content timestamp close",
@@ -140,18 +140,16 @@
 }
 
 %grid-layout-variant-overlay {
-	// For overlay with timestamp but no block link - use inline timestamp layout
-	&:has(span):not([data-link-variant="block"]) {
-		@include overlay-inline-layouts;
-	}
+	// 1. Standard: Layout for inline links AND timestamps
+	//    Both use the 'timestamp' area, which moves to the header when a header is present.
+	@include overlay-timestamp-area-layouts;
 
-	// For overlay with timestamp AND block link - timestamp top right, link bottom
+	// 2. Override: Wenn explizit "block" Link-Variante mit Timestamp
 	&:has(span)[data-link-variant="block"] {
 		@include overlay-block-layouts;
 	}
 
-	// Matches overlays that have a block link variant but do NOT contain a <span> (timestamp), ensuring correct grid layout for this case.
-	// For overlay with block link but NO timestamp - use overlay block layout without timestamp
+	// 3. Override: Wenn "block" Link-Variante OHNE Timestamp
 	&:not(:has(span))[data-link-variant="block"] {
 		@include overlay-block-layouts-without-timestamp;
 	}

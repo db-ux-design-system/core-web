@@ -558,7 +558,8 @@
 				"props": {
 					"link": true,
 					"variant": "overlay",
-					"behavior": "permanent"
+					"behavior": "permanent",
+					"linkVariant": "inline"
 				}
 			},
 			{
@@ -610,7 +611,8 @@
 					"headline": "Headline",
 					"link": true,
 					"variant": "overlay",
-					"closeable": true
+					"closeable": true,
+					"linkVariant": "inline"
 				}
 			},
 			{
@@ -621,7 +623,8 @@
 					"headline": "Headline",
 					"link": true,
 					"variant": "overlay",
-					"closeable": true
+					"closeable": true,
+					"linkVariant": "inline"
 				}
 			},
 			{

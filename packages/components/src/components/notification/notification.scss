@@ -42,9 +42,6 @@
 	a {
 		@extend %db-default-link;
 
-		grid-area: link;
-		white-space: nowrap;
-
 		// Overwrite settings for db-link ALWAYS
 		&::before,
 		&::after {
@@ -109,10 +106,42 @@
 
 		grid-area: timestamp;
 		white-space: nowrap;
+		justify-self: end;
 	}
 
 	.db-button {
 		grid-area: close;
+	}
+
+	// Inline links stay within content flow
+	&[data-link-variant="inline"] a {
+		// 1. Weise den Link dem "timestamp" Bereich zu.
+		//    Alle Layouts (overlay und default) müssen diesen Bereich kennen.
+		grid-area: timestamp;
+		white-space: nowrap;
+
+		// 2. Richte den Link am Ende (rechts) seiner Grid-Zelle aus
+		justify-self: end;
+
+		// 3. Inline-Links sollen die 'md'-Größe haben (wie <p>),
+		//    nicht 'sm' (wie <span>)
+		@extend %db-overwrite-font-size-md;
+	}
+
+	// If an inline link is present, it takes precedence over the timestamp
+	// Note: :has() pseudo-class has limited browser support (Firefox < 121)
+	// Progressive enhancement - timestamps gracefully shown in older browsers
+	&[data-link-variant="inline"]:has(a) {
+		> span {
+			display: none;
+		}
+	}
+
+	// Block links get placed in grid area (default behavior)
+	// This applies when linkVariant is "block" or not specified
+	&:not([data-link-variant="inline"]) a {
+		grid-area: link;
+		white-space: nowrap;
 	}
 
 	// Icon grid positioning
@@ -138,8 +167,13 @@
 		box-shadow: variables.$db-elevation-md;
 	}
 
-	&[data-link-variant="block"] {
-		@extend %grid-layout-variant-not-overlay;
+	// Apply non-overlay grid layout for notifications with block links
+	// This applies when linkVariant is "block" (explicit or default when links are present)
+	&:not([data-variant="overlay"]) {
+		&[data-link-variant="block"],
+		&:not([data-link-variant]):has(a) {
+			@extend %grid-layout-variant-not-overlay;
+		}
 	}
 
 	&[data-variant="overlay"],
