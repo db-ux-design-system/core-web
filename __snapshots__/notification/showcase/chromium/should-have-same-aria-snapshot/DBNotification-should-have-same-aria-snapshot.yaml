@@ -148,6 +148,7 @@
     - link "Textlink"
   - article:
     - paragraph: Text & Textlink Block & Timed
+    - text: 10 min ago
     - link "Textlink"
   - article:
     - text: Headline
