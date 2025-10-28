@@ -1,6 +1,9 @@
 ---
 name: Build outputs
 
+permissions:
+  contents: read
+
 on:
   workflow_call:
 
@@ -39,19 +42,22 @@ jobs:
           name: db-ux-stylelint-build
           path: packages/stylelint/build
 
+      - name: ⏬ Download agent-cli build
+        uses: actions/download-artifact@v5
+        with:
+          name: db-ux-agent-cli-build
+          path: packages/agent-cli/build
+
       - name: ⏬ Download output
         uses: actions/download-artifact@v5
         with:
           name: db-ux-output
           path: output
 
-      - name: 📥 Install output dependencies
-        uses: bahmutov/npm-install@v1
-        with:
-          install-command: npm i
-
       - name: 🔨 Build outputs
-        run: npm run build-outputs
+        run: |
+          npm run generate:agent
+          npm run build-outputs
 
       - name: 📦 Validate Package Publishing
         run: |
@@ -63,9 +69,3 @@ jobs:
         with:
           name: db-ux-outputs
           path: build-outputs
-
-      - name: 💀 Killing me softly
-        uses: ./.github/actions/cancel-workflow
-        if: failure()
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}

@@ -1,6 +1,6 @@
 {
   "name": "@db-ux/core-stylelint",
-  "version": "3.1.14",
+  "version": "4.0.4",
   "type": "module",
   "description": "Ensures DB UX styles are used correctly",
   "repository": {
@@ -15,6 +15,7 @@
     }
   },
   "files": [
+    "CHANGELOG.md",
     "build"
   ],
   "keywords": [
@@ -24,22 +25,23 @@
   "scripts": {
     "build": "tsc",
     "copy-output": "npm-run-all copy:*",
+    "copy:changelog": "cpr CHANGELOG.md ../../build-outputs/stylelint/CHANGELOG.md --overwrite",
     "copy:outputs": "cpr build ../../build-outputs/stylelint/build -o",
     "copy:package.json": "cpr package.json ../../build-outputs/stylelint/package.json -o",
     "copy:readme": "cpr README.md ../../build-outputs/stylelint/README.md -o",
     "test": "vitest run --config vitest.config.ts"
   },
+  "peerDependencies": {
+    "stylelint": "^14.0.0 || ^15.0.0 || ^16.0.0"
+  },
   "devDependencies": {
     "postcss": "8.5.6",
     "postcss-html": "1.8.0",
-    "stylelint-config-standard": "39.0.0",
+    "stylelint-config-standard": "39.0.1",
     "stylelint-config-standard-scss": "16.0.0",
     "stylelint-config-standard-vue": "1.0.0",
-    "typescript": "5.8.3",
+    "typescript": "5.9.3",
     "vitest": "3.2.4"
-  },
-  "peerDependencies": {
-    "stylelint": "^14.0.0 || ^15.0.0 || ^16.0.0"
   },
   "publishConfig": {
     "registry": "https://registry.npmjs.org/",

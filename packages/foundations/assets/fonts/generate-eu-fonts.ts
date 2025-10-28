@@ -27,7 +27,7 @@ const generateFonts = async () => {
 	try {
 		const files = await glob(`${__dirname}/*.ttf`);
 
-		for (const file of files) {
+		for (const file of files.map(f=> f.replaceAll('\\', '/'))) {
 			// Security: Validate that the file is within the expected directory
 			// and has the expected extension to prevent path traversal attacks
 			if (!file.startsWith(__dirname) || !file.endsWith('.ttf')) {

@@ -1,5 +1,6 @@
 .DS_Store
 node_modules
+!packages/agent-cli/test/**/node_modules
 npm-debug.log
 .history
 .idea
@@ -47,8 +48,11 @@ showcases/patternhub/public/iframe-resizer/*
 
 /__snapshots__/**/*-win32.png
 /packages/foundations/scss/_normalize.scss
+/packages/foundations/assets/fallback-icons
 /packages/foundations/assets/icons/tmp/
 /packages/foundations/assets/icons/fonts/**/index.html
+/packages/foundations/assets/icons/fonts/**/symbol.html
+/packages/foundations/assets/icons/fonts/**/unicode.html
 /packages/foundations/assets/icons/fonts/**/index.css
 /packages/foundations/assets/icons/fonts/**/font-face.css
 /packages/foundations/assets/icons/fonts/**/info.json
@@ -66,4 +70,9 @@ showcases/patternhub/public/iframe-resizer/*
 /scripts/public/
 /scripts/gh-pages.tar.gz
 !/scripts/tests/fixtures/out
+/output/**/docs/
+/output/**/agent/
+/packages/agent-cli/test/.github/copilot-instructions.md
+/packages/agent-cli/test/.amazonq/rules/db-ux.md
 /core-web.iml
+/build-storybooks/

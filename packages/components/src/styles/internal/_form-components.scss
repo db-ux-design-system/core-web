@@ -61,7 +61,7 @@ $db-min-inline-size: var(
 		margin-block-start: variables.$db-spacing-fixed-2xs;
 
 		&:is([data-semantic="successful"], [data-semantic="critical"]) {
-			display: none;
+			@include helpers.display(none);
 		}
 	}
 }
@@ -71,10 +71,35 @@ $db-min-inline-size: var(
 	[id$="-placeholder"] {
 		@content;
 	}
+
+	// Workaround until the :blank pseudo-class is widely supported; then prefer targeting that pseudo-class.
+	#{$selector} {
+		&:is(
+				[type="date"],
+				[type="datetime-local"],
+				[type="month"],
+				[type="week"],
+				[type="time"]
+			):not(:user-valid)::-webkit-datetime-edit {
+			@content;
+		}
+	}
 }
 
 @mixin set-floating-label-overwrites($selector) {
 	&[data-variant="floating"] {
+		@include get-validity($selector) {
+			label {
+				color: var(--db-successful-on-bg-basic-emphasis-80-default);
+			}
+		}
+
+		@include get-validity($selector, "invalid") {
+			label {
+				color: var(--db-critical-on-bg-basic-emphasis-80-default);
+			}
+		}
+
 		> label {
 			@extend %db-overwrite-font-size-md;
 
@@ -160,17 +185,17 @@ $db-min-inline-size: var(
 	> .db-infotext {
 		@if $key == "valid" {
 			&[data-semantic="successful"] {
-				display: flex;
+				@include helpers.display(flex);
 			}
 			/* stylelint-disable-next-line at-rule-empty-line-before */
 		} @else {
 			&[data-semantic="critical"] {
-				display: flex;
+				@include helpers.display(flex);
 			}
 		}
 
 		&:not([data-semantic]) {
-			display: none;
+			@include helpers.display(none);
 		}
 	}
 }
@@ -212,12 +237,22 @@ $db-min-inline-size: var(
 		--db-adaptive-on-bg-basic-emphasis-60-default: var(
 			--db-#{$variant}-on-bg-basic-emphasis-60-default
 		);
+
+		&[data-variant="floating"]::after {
+			border-color: var(--db-#{$variant}-on-bg-basic-emphasis-70-default);
+		}
 	}
 
 	#{$selector},
 	[id$="-placeholder"] {
 		color: var(--db-#{$variant}-on-bg-basic-emphasis-100-default);
 		caret-color: var(--db-#{$variant}-on-bg-basic-emphasis-100-default);
+	}
+
+	@if list.index($valid-read-only-form-fields, $selector) {
+		#{$selector} {
+			border-color: var(--db-#{$variant}-on-bg-basic-emphasis-70-default);
+		}
 	}
 
 	@include get-validity-message($key);
@@ -312,8 +347,9 @@ $input-valid-types:
 
 		// we use absolute icons
 		position: relative;
-		display: flex;
 		flex-direction: column;
+
+		@include helpers.display(flex);
 	}
 
 	&[data-variant="floating"],
@@ -500,6 +536,58 @@ $input-valid-types:
 	}
 }
 
+@mixin get-validity-color-checkbox($key: "valid") {
+	$variant: successful;
+
+	@if $key != "valid" {
+		$variant: critical;
+	}
+
+	--db-check-element-border-color: var(
+		--db-#{$variant}-on-bg-basic-emphasis-70-default
+	);
+	--db-adaptive-on-bg-basic-emphasis-100-default: var(
+		--db-#{$variant}-on-bg-basic-emphasis-80-default
+	);
+	--db-adaptive-on-bg-basic-emphasis-100-hovered: var(
+		--db-#{$variant}-on-bg-basic-emphasis-80-hovered
+	);
+	--db-adaptive-on-bg-basic-emphasis-100-pressed: var(
+		--db-#{$variant}-on-bg-basic-emphasis-80-pressed
+	);
+	--db-adaptive-on-bg-inverted-default: var(
+		--db-#{$variant}-on-bg-inverted-default
+	);
+
+	@include get-validity-message($key);
+
+	input {
+		&:not(:checked) {
+			--db-adaptive-bg-basic-transparent-full-default: var(
+				--db-#{$variant}-bg-basic-transparent-full-default
+			);
+			--db-adaptive-bg-basic-transparent-full-hovered: var(
+				--db-#{$variant}-bg-basic-transparent-full-hovered
+			);
+			--db-adaptive-bg-basic-transparent-full-pressed: var(
+				--db-#{$variant}-bg-basic-transparent-full-pressed
+			);
+		}
+
+		&:checked {
+			--db-adaptive-bg-basic-transparent-full-default: var(
+				--db-#{$variant}-bg-inverted-contrast-low-default
+			);
+			--db-adaptive-bg-basic-transparent-full-hovered: var(
+				--db-#{$variant}-bg-inverted-contrast-low-hovered
+			);
+			--db-adaptive-bg-basic-transparent-full-pressed: var(
+				--db-#{$variant}-bg-inverted-contrast-low-pressed
+			);
+		}
+	}
+}
+
 @mixin set-default-check-element() {
 	@extend %db-overwrite-font-size-md;
 
@@ -513,7 +601,8 @@ $input-valid-types:
 
 	&:is(label),
 	> label {
-		display: flex;
+		@include helpers.display(flex);
+
 		align-items: flex-start;
 		position: relative;
 		color: var(

@@ -17,6 +17,9 @@ For general installation and configuration take a look at the [components](https
 		<select hidden>
 			<option value="Option 1">Option 1</option>
 			<option value="Option 2">Option 2</option>
+			<option value="Option 3">Option 3</option>
+			<option value="Option 4">Option 4</option>
+			<option value="Option 5">Option 5</option>
 		</select>
 		<label>Label</label>
 		<details>
@@ -54,6 +57,45 @@ For general installation and configuration take a look at the [components](https
 									data-disable-focus="true"
 								/>
 								Option 2
+							</label>
+						</li>
+						<li class="db-custom-select-list-item db-radio">
+							<label for="option-3">
+								<input
+									class="db-custom-select-list-item-checkbox"
+									id="option-3"
+									type="radio"
+									name="multi-selct"
+									value="Option 3"
+									data-disable-focus="true"
+								/>
+								Option 3
+							</label>
+						</li>
+						<li class="db-custom-select-list-item db-radio">
+							<label for="option-4">
+								<input
+									class="db-custom-select-list-item-checkbox"
+									id="option-4"
+									type="radio"
+									name="multi-selct"
+									value="Option 4"
+									data-disable-focus="true"
+								/>
+								Option 4
+							</label>
+						</li>
+						<li class="db-custom-select-list-item db-radio">
+							<label for="option-5">
+								<input
+									class="db-custom-select-list-item-checkbox"
+									id="option-5"
+									type="radio"
+									name="multi-selct"
+									value="Option 5"
+									data-disable-focus="true"
+								/>
+								Option 5
 							</label>
 						</li>
 					</ul>

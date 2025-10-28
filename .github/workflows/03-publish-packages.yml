@@ -43,10 +43,3 @@ jobs:
           RELEASE: ${{ inputs.release }}
           PRE_RELEASE: ${{ inputs.preRelease }}
           VALID_SEMVER_VERSION: ${{ inputs.version }}
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-
-      - name: 💀 Killing me softly
-        uses: ./.github/actions/cancel-workflow
-        if: failure()
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}

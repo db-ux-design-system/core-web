@@ -100,7 +100,7 @@ export type DBInputDefaultProps = {
 		| 'search'
 		| 'email'
 		| 'url';
-  /**
+	/**
 	 * The size of the message infotext. Defaults to "small".
 	 */
 	messageSize?: SizeType;
