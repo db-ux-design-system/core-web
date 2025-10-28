@@ -5,7 +5,8 @@
 @use "@db-ux/core-foundations/build/styles/helpers";
 @use "@db-ux/core-foundations/build/styles/icons";
 @use "@db-ux/core-foundations/build/styles/colors";
-@use "@db-ux/core-foundations/build/styles/texts/classes/all";
+@use "@db-ux/core-foundations/build/styles/materials/classes/filled";
+@use "@db-ux/core-foundations/build/styles/contrasts";
 @use "../../styles/internal/link-components";
 
 .db-link {
@@ -37,9 +38,9 @@
 		@extend %db-brand-variables;
 	}
 
-	&:not([data-text]) {
+	&:not([data-contrast-texts]) {
 		&[data-variant="brand"] {
-			@extend [data-text="vibrant"];
+			@extend %contrast-texts-min;
 		}
 	}
 

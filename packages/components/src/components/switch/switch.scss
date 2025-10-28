@@ -38,13 +38,6 @@ $checked-active-transition-size: calc(
 	@extend %helper-message;
 	@include form-components.set-default-check-element;
 
-	&:not(:has(input:disabled)) {
-		@include form-components.get-state;
-
-		@include form-components.get-state("active") {
-			@extend %active-transition;
-		}
-	}
 
 	@include form-components.get-validity(check) {
 		&:has(.db-infotext[data-semantic="successful"]) {

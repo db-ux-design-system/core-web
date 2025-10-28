@@ -23,7 +23,7 @@ $tooltip-arrow-shadow-size: variables.$db-sizing-2xs;
 	padding: variables.$db-spacing-fixed-2xs variables.$db-spacing-fixed-xs;
 
 	&::after {
-		background-color: variables.$db-global-bg-color-default;
+		background-color: variables.$db-bg-color-default;
 	}
 
 	// Only for testing

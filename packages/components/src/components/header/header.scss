@@ -6,7 +6,7 @@
 @use "../../styles/internal/component";
 
 .db-header {
-	background-color: variables.$db-global-bg-color-default;
+	background-color: variables.$db-bg-color-default;
 
 	@include helpers.display(flex);
 
@@ -14,7 +14,7 @@
 	position: relative;
 	min-block-size: component.$min-mobile-header-height;
 	border-block-end: variables.$db-border-width-3xs solid
-		colors.$db-adaptive-on-bg-basic-emphasis-60-default;
+		variables.$db-border-color-default;
 
 	@include screen-sizes.screen("md") {
 		--db-drawer-max-width: #{screen-sizes.$db-breakpoint-sm};

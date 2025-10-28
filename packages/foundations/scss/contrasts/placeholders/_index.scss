@@ -1,0 +1,18 @@
+@use "../../helpers";
+@use "../variables";
+
+@each $type in variables.$contrasts-types {
+	@each $contrast in variables.$contrasts {
+		%contrast-#{$type}-#{$contrast} {
+			$min: 0;
+
+			@if ($contrast == "min") {
+				$min: 1;
+			}
+
+			--db-on-bg-color-contrast-#{$type}-is-min: #{$min};
+
+			@extend %global-on-bg-colors;
+		}
+	}
+}

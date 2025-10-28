@@ -17,14 +17,14 @@
 	@include helpers.hover {
 		> .db-card,
 		> db-card > .db-card {
-			background-color: variables.$db-global-bg-color-hovered;
+			background-color: variables.$db-bg-color-hovered;
 		}
 	}
 
 	@include helpers.active {
 		> .db-card,
 		> db-card > .db-card {
-			background-color: variables.$db-global-bg-color-pressed;
+			background-color: variables.$db-bg-color-pressed;
 		}
 	}
 }
@@ -35,27 +35,27 @@
 	@include helpers.display(flex);
 
 	flex-direction: column;
-	background-color: variables.$db-global-bg-color-default;
+	background-color: variables.$db-bg-color-default;
 
 	&[data-behavior="interactive"] {
 		@include helpers.hover {
-			background-color: variables.$db-global-bg-color-hovered;
+			background-color: variables.$db-bg-color-hovered;
 		}
 
 		@include helpers.active {
-			background-color: variables.$db-global-bg-color-pressed;
+			background-color: variables.$db-bg-color-pressed;
 		}
 	}
 
 	&[data-elevation-level="2"] {
-		--db-global-bg-color-default: #{colors.$db-adaptive-bg-basic-level-2-default};
-		--db-global-bg-color-hovered: #{colors.$db-adaptive-bg-basic-level-2-hovered};
-		--db-global-bg-color-pressed: #{colors.$db-adaptive-bg-basic-level-2-pressed};
+		--db-bg-color-default: #{colors.$db-adaptive-bg-basic-level-2-default};
+		--db-bg-color-hovered: #{colors.$db-adaptive-bg-basic-level-2-hovered};
+		--db-bg-color-pressed: #{colors.$db-adaptive-bg-basic-level-2-pressed};
 	}
 
 	&[data-elevation-level="3"] {
-		--db-global-bg-color-default: #{colors.$db-adaptive-bg-basic-level-3-default};
-		--db-global-bg-color-hovered: #{colors.$db-adaptive-bg-basic-level-3-hovered};
-		--db-global-bg-color-pressed: #{colors.$db-adaptive-bg-basic-level-3-pressed};
+		--db-bg-color-default: #{colors.$db-adaptive-bg-basic-level-3-default};
+		--db-bg-color-hovered: #{colors.$db-adaptive-bg-basic-level-3-hovered};
+		--db-bg-color-pressed: #{colors.$db-adaptive-bg-basic-level-3-pressed};
 	}
 }

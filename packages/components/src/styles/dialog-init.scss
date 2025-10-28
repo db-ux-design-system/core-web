@@ -1,11 +1,11 @@
 @use "@db-ux/core-foundations/build/styles/variables";
 
 $backdrop-color-strong: color(
-	from #{variables.$db-global-bg-color-default} srgb r g b /
+	from #{variables.$db-bg-color-default} srgb r g b /
 		#{variables.$db-opacity-lg}
 );
 $backdrop-color-weak: color(
-	from #{variables.$db-global-bg-color-default} srgb r g b /
+	from #{variables.$db-bg-color-default} srgb r g b /
 		#{variables.$db-opacity-sm}
 );
 

@@ -1,0 +1,10 @@
+@use "../placeholders";
+@use "../variables";
+
+@each $type in variables.$contrasts-types {
+	@each $contrast in variables.$contrasts {
+		[data-contrast-#{$type}="#{$contrast}"] {
+			@extend %contrast-#{$type}-#{$contrast};
+		}
+	}
+}

@@ -1,0 +1,118 @@
+/*
+ $type: texts|icons
+ $state: default|hovered|pressed
+
+ db-alternate-on-bg-color-contrast-{$type}-is-min: Boolean value (0|1)
+ db-alternate-on-bg-color-contrast-{$type}-min-{$state}: Consume material
+ db-font-strength: Consume Weight
+ db-is-alternate: Boolean value (0|1)
+*/
+
+@function get-on-color($type: "texts", $state: "default") {
+	@return color-mix(
+		in srgb,
+		color(
+				from
+					color-mix(
+						in srgb,
+						var(
+								--db-alternate-on-bg-color-contrast-#{$type}-min-#{$state}
+							)
+							calc(
+								100% *
+									var(
+										--db-on-bg-color-contrast-#{$type}-is-min,
+										0
+									)
+							),
+						var(
+							--db-alternate-on-bg-color-contrast-#{$type}-max-#{$state}
+						)
+					)
+					srgb r g b / var(--db-font-strength)
+			)
+			calc(100% * var(--db-is-alternate, 0)),
+		color(
+			from
+				color-mix(
+					in srgb,
+					var(--db-base-on-bg-color-contrast-#{$type}-min-#{$state})
+						calc(
+							100% *
+								var(
+									--db-on-bg-color-contrast-#{$type}-is-min,
+									0
+								)
+						),
+					var(--db-base-on-bg-color-contrast-#{$type}-max-#{$state})
+				)
+				srgb r g b / var(--db-font-strength)
+		)
+	);
+}
+
+/*
+ $type: texts|icons
+ $state: default|hovered|pressed
+
+ db-alternate-on-bg-color-contrast-{$type}-{$range}-#$state}: Consume material
+ db-font-strength: Consume Weight
+ db-is-alternate: Boolean value (0|1)
+*/
+
+@function get-on-color-range($type: "texts", $state: "default", $range: "max") {
+	@return color-mix(
+		in srgb,
+		color(
+				from
+					var(
+						--db-alternate-on-bg-color-contrast-#{$type}-#{$range}-#{$state}
+					)
+					srgb r g b / var(--db-font-strength)
+			)
+			calc(100% * var(--db-is-alternate, 0)),
+		color(
+			from
+				var(--db-base-on-bg-color-contrast-#{$type}-#{$range}-#{$state})
+				srgb r g b / var(--db-font-strength)
+		)
+	);
+}
+
+/**
+ $type: bg|border
+ $state: default|hovered|pressed
+
+ db-alternate-{$type}-color-{$state}: Consume material
+ db-is-alternate: Boolean value (0|1)
+ */
+@function get-bg-color($type: "bg", $state: "default") {
+	@return color-mix(
+		in srgb,
+		var(--db-alternate-#{$type}-color-#{$state})
+			calc(100% * var(--db-is-alternate, 0)),
+		var(--db-base-#{$type}-color-#{$state})
+	);
+}
+
+$states: ("default", "hovered", "pressed");
+
+%global-on-bg-colors {
+	@each $state in $states {
+		--db-on-bg-color-#{$state}: #{get-on-color("texts", $state)};
+	}
+	--db-icon-color-default: #{get-on-color("icons", "default")};
+}
+
+%global-bg-colors {
+	@each $state in $states {
+		--db-bg-color-#{$state}: #{get-bg-color("bg", $state)};
+	}
+}
+
+%global-colors {
+	--db-border-color-default: #{get-bg-color("border", "default")};
+
+	@extend %global-on-bg-colors;
+	@extend %global-bg-colors;
+}

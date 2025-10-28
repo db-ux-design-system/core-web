@@ -5,7 +5,7 @@
 @use "@db-ux/core-foundations/build/styles/colors";
 @use "@db-ux/core-foundations/build/styles/icons";
 @use "@db-ux/core-foundations/build/styles/screen-sizes";
-@use "@db-ux/core-foundations/build/styles/texts/classes/all";
+@use "@db-ux/core-foundations/build/styles/contrasts";
 @use "../../styles/internal/component";
 @use "../../styles/internal/link-components";
 @use "./notification-grid-default";
@@ -34,13 +34,15 @@
 	padding: variables.$db-spacing-fixed-md;
 	gap: variables.$db-spacing-fixed-xs variables.$db-spacing-fixed-md;
 	inline-size: inherit;
-	background-color: variables.$db-global-bg-color-default;
-	color: variables.$db-global-on-bg-color-default;
+	background-color: variables.$db-bg-color-default;
+	color: variables.$db-on-bg-color-default;
+
+	&:not([data-contrast-icons]) {
+		@extend %contrast-icons-min;
+	}
 
 	&::before {
-		--db-icon-color: #{variables.$db-global-highlight-color-default};
-		// TODO: Should headline/text be same like infotext?
-		@extend [data-text="vibrant"];
+		--db-icon-color: #{variables.$db-icon-color-default};
 	}
 
 	a {

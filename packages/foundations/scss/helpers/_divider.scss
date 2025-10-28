@@ -1,4 +1,3 @@
-@use "../colors";
 @use "../variables";
 
 // Workaround until we get Relative Color Syntax
@@ -6,12 +5,15 @@
 // https://bugs.chromium.org/p/chromium/issues/detail?id=1274133
 // https://github.com/WebKit/WebKit/commit/1890bfb551da24735804cb1a3d5f14b210f7c7b8
 @mixin divider($position: "top", $slot: "before") {
-	--db-divider-bg-color: #{colors.$db-adaptive-on-bg-basic-emphasis-60-default};
+	// TODO: What shall we do with divider
+	--db-divider-bg-color: var(--db-adaptive-on-bg-basic-emphasis-60-default);
 
 	position: var(--db-tooltip-parent-position, relative);
 
 	&[data-emphasis="strong"] {
-		--db-divider-bg-color: #{colors.$db-adaptive-on-bg-basic-emphasis-70-default};
+		--db-divider-bg-color: var(
+			--db-adaptive-on-bg-basic-emphasis-70-default
+		);
 	}
 
 	&::#{$slot} {

@@ -73,8 +73,8 @@
 				@extend %component-border;
 				@include get-scrolling-workaround;
 
-				background-color: variables.$db-global-bg-color-default;
-				border-color: variables.$db-global-border-color-default;
+				background-color: variables.$db-bg-color-default;
+				border-color: variables.$db-border-color-default;
 				z-index: 1;
 				border-block-end: none;
 				border-inline-end: none;
@@ -87,7 +87,7 @@
 
 			&:has(textarea:not(:disabled):is(:hover, :focus)) {
 				&::after {
-					background-color: variables.$db-global-bg-color-hovered;
+					background-color: variables.$db-bg-color-hovered;
 				}
 			}
 		}

@@ -8,7 +8,7 @@ $min-mobile-header-height: calc(
 );
 
 $component-border: variables.$db-border-width-3xs solid
-	variables.$db-global-border-color-default;
+	variables.$db-border-color-default;
 $card-border-radius: var(
 	--default-card-border-radius,
 	#{variables.$db-border-radius-sm}
@@ -22,8 +22,8 @@ $card-border-radius: var(
 %default-component {
 	@extend %component-border;
 
-	background-color: variables.$db-global-bg-color-default;
-	color: variables.$db-global-on-bg-color-default;
+	background-color: variables.$db-bg-color-default;
+	color: variables.$db-on-bg-color-default;
 	border-radius: variables.$db-border-radius-xs;
 }
 
@@ -31,27 +31,14 @@ $card-border-radius: var(
 	@extend %default-component;
 
 	@include helpers.hover {
-		background-color: variables.$db-global-bg-color-hovered;
+		background-color: variables.$db-bg-color-hovered;
 	}
 
 	@include helpers.active {
-		background-color: variables.$db-global-bg-color-pressed;
+		background-color: variables.$db-bg-color-pressed;
 	}
 }
 
-%default-swap-component {
-	background-color: variables.$db-global-swap-bg-color-default;
-	color: variables.$db-global-swap-on-bg-color-default;
-	border-color: variables.$db-global-swap-on-bg-color-default;
-
-	@include helpers.hover {
-		background-color: variables.$db-global-swap-bg-color-hovered;
-	}
-
-	@include helpers.active {
-		background-color: variables.$db-global-swap-bg-color-pressed;
-	}
-}
 
 %default-card {
 	@extend %component-border;

@@ -2,7 +2,6 @@
 @use "@db-ux/core-foundations/build/styles/variables";
 @use "@db-ux/core-foundations/build/styles/helpers";
 @use "@db-ux/core-foundations/build/styles/animation";
-@use "@db-ux/core-foundations/build/styles/colors";
 @use "../../styles/internal/component";
 @use "../../styles/dialog-init";
 
@@ -140,7 +139,7 @@ $spacings: (
 		display: flex;
 
 		flex-direction: column;
-		background-color: variables.$db-global-bg-color-default;
+		background-color: variables.$db-bg-color-default;
 		block-size: 100%;
 		inline-size: 100%;
 		position: fixed;

@@ -1,5 +1,4 @@
 @use "@db-ux/core-foundations/build/styles/variables";
-@use "@db-ux/core-foundations/build/styles/colors";
 @use "@db-ux/core-foundations/build/styles/icons";
 @use "@db-ux/core-foundations/build/styles/helpers";
 @use "@db-ux/core-foundations/build/styles/materials/classes/all";
@@ -29,7 +28,7 @@ $with-icon-padding-calc: calc(
 
 	label {
 		@extend %default-card;
-		background-color: variables.$db-global-bg-color-default;
+		background-color: variables.$db-bg-color-default;
 		padding: variables.$db-spacing-fixed-xs;
 		align-items: center;
 
@@ -42,7 +41,7 @@ $with-icon-padding-calc: calc(
 
 		@include helpers.hover {
 			&:has(:not(input:disabled)) {
-				background-color: variables.$db-global-bg-color-hovered;
+				background-color: variables.$db-bg-color-hovered;
 			}
 
 			&:has(input:disabled) {
@@ -52,7 +51,7 @@ $with-icon-padding-calc: calc(
 
 		@include helpers.active {
 			&:has(:not(input:disabled)) {
-				background-color: variables.$db-global-bg-color-pressed;
+				background-color: variables.$db-bg-color-pressed;
 			}
 
 			&:has(input:disabled) {
@@ -112,7 +111,7 @@ $with-icon-padding-calc: calc(
 		inline-size: 100%;
 		margin-inline-end: initial;
 		inset: 0;
-		background-color: colors.$db-adaptive-bg-basic-transparent-full-default;
+		background-color: transparent;
 		border-radius: variables.$db-border-radius-sm;
 		z-index: -1;
 

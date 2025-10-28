@@ -1,5 +1,3 @@
-@use "colors";
-
 /* Use sizing's for fixed heights/widths e.g. the db-button has always a fixed height */
 $db-sizing-3xs: var(--db-sizing-3xs);
 $db-sizing-2xs: var(--db-sizing-2xs);
@@ -111,79 +109,19 @@ $db-container-xl: var(--db-container-xl);
 $db-container-2xl: var(--db-container-2xl);
 $db-container-3xl: var(--db-container-3xl);
 
-/* Globals */
+/* Global Colors */
 
-$db-global-bg-color-default: var(
-	--db-global-bg-color-default,
-	#{colors.$db-adaptive-bg-basic-level-1-default}
-);
-$db-global-bg-color-hovered: var(
-	--db-global-bg-color-hovered,
-	#{colors.$db-adaptive-bg-basic-level-1-hovered}
-);
-$db-global-bg-color-pressed: var(
-	--db-global-bg-color-pressed,
-	#{colors.$db-adaptive-bg-basic-level-1-pressed}
-);
+$db-bg-color-default: var(--db-bg-color-default);
+$db-bg-color-hovered: var(--db-bg-color-hovered);
+$db-bg-color-pressed: var(--db-bg-color-pressed);
 
-$db-global-on-bg-color-default: var(
-	--db-global-on-bg-color-default,
-	#{colors.$db-adaptive-on-bg-basic-emphasis-100-default}
-);
-$db-global-on-bg-color-hovered: var(
-	--db-global-on-bg-color-hovered,
-	#{colors.$db-adaptive-on-bg-basic-emphasis-100-hovered}
-);
-$db-global-on-bg-color-pressed: var(
-	--db-global-on-bg-color-pressed,
-	#{colors.$db-adaptive-on-bg-basic-emphasis-100-pressed}
-);
+$db-border-color-default: var(--db-border-color-default);
 
-$db-global-border-color-default: var(
-	--db-global-border-color-default,
-	#{colors.$db-adaptive-on-bg-basic-emphasis-60-default}
-);
-$db-global-highlight-color-default: var(
-	--db-global-highlight-color-default,
-	#{colors.$db-adaptive-on-bg-basic-emphasis-90-default}
-);
+$db-on-bg-color-default: var(--db-on-bg-color-default);
+$db-on-bg-color-hovered: var(--db-on-bg-color-hovered);
+$db-on-bg-color-pressed: var(--db-on-bg-color-pressed);
 
-$db-global-font-weight: var(--db-global-font-weight, normal);
-$db-global-font-strength: var(--db-global-font-strength, 1);
+$db-icon-color-default: var(--db-icon-color-default);
 
-/* Swap */
-$db-global-swap-bg-color-default: var(
-	--db-global-swap-bg-color-default,
-	#{colors.$db-adaptive-bg-inverted-contrast-max-default}
-);
-$db-global-swap-bg-color-hovered: var(
-	--db-global-swap-bg-color-hovered,
-	#{colors.$db-adaptive-bg-inverted-contrast-max-hovered}
-);
-$db-global-swap-bg-color-pressed: var(
-	--db-global-swap-bg-color-pressed,
-	#{colors.$db-adaptive-bg-inverted-contrast-max-pressed}
-);
-$db-global-swap-on-bg-color-default: var(
-	--db-global-swap-on-bg-color-default,
-	#{colors.$db-adaptive-on-bg-inverted-default}
-);
-$db-global-swap-on-bg-color-hovered: var(
-	--db-global-swap-on-bg-color-hovered,
-	#{colors.$db-adaptive-on-bg-inverted-hovered}
-);
-$db-global-swap-on-bg-color-pressed: var(
-	--db-global-swap-on-bg-color-pressed,
-	#{colors.$db-adaptive-on-bg-inverted-pressed}
-);
-$db-global-swap-border-color-default: var(
-	--db-global-swap-border-color-default,
-	#{colors.$db-adaptive-on-bg-basic-emphasis-80-default}
-);
-$db-global-swap-highlight-color-default: var(
-		--db-global-swap-highlight-color-default,
-		#{colors.$db-adaptive-on-bg-basic-emphasis-90-default}
-);
-
-$db-global-swap-font-weight: var(--db-global-swap-font-weight, normal);
-$db-global-swap-font-strength: var(--db-global-swap-font-strength, 1);
+$db-font-weight: var(--db-font-weight);
+$db-font-strength: var(--db-font-strength);

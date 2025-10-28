@@ -2,6 +2,7 @@
 @use "variables";
 @use "../helpers/functions";
 @use "../helpers/layer";
+@use "../materials/classes/filled" as filled;
 @use "variables.additional" as additional-colors;
 
 @mixin set-current-colors($bg, $on, $hovered: false, $pressed: false) {
@@ -192,6 +193,10 @@
 			--db-adaptive-on-bg-vibrant-pressed: var(
 				--db-#{$variant}-on-bg-vibrant-pressed
 			);
+
+			&:not([data-material]) {
+				@extend [data-material="filled"];
+			}
 		}
 	}
 

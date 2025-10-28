@@ -4,13 +4,23 @@
 @use "@db-ux/core-foundations/build/styles/fonts";
 @use "@db-ux/core-foundations/build/styles/icons";
 @use "@db-ux/core-foundations/build/styles/helpers";
-@use "@db-ux/core-foundations/build/styles/colors";
 @use "../../styles/internal/button-components";
-@use "../../styles/internal/tag-components";
-@use "../../styles/internal/icon-passing";
 @use "../../styles/internal/component";
 @use "@db-ux/core-foundations/build/styles/materials/classes/all";
-@use "@db-ux/core-foundations/build/styles/texts/classes/all" as texts;
+@use "@db-ux/core-foundations/build/styles/appearances";
+@use "@db-ux/core-foundations/build/styles/contrasts";
+
+$interactive-selectors: "label, button:not(.db-tab-remove-button), a";
+
+// get button and link tags
+@mixin get-interactive-selectors() {
+	&:not(:has(dbbutton)) button:not(.db-tab-remove-button),
+	dbbutton:not(.db-tab-remove-button) > button,
+	db-button > button,
+	a {
+		@content;
+	}
+}
 
 %no-text {
 	&[data-no-text="true"] {
@@ -49,22 +59,20 @@
 	position: relative;
 	gap: variables.$db-spacing-fixed-2xs;
 
-	@each $name in colors.$variant-colors {
-		&[data-semantic="#{$name}"] {
-			@extend %db-#{$name}-variables;
-		}
-	}
-
 	&:not([data-emphasis="strong"], :has(input:checked)) {
-		&:not([data-text]) {
-			@extend [data-text="vibrant"];
+		&:not([data-material]) {
+			@extend [data-material="filled"];
+		}
+
+		&:not([data-contrast-texts]) {
+			@extend %contrast-texts-min;
 
 			.db-tab-remove-button,
 			.db-button,
 			.db-link,
 			.db-checkbox,
 			.db-radio {
-				@extend [data-text="vibrant"];
+				@extend %contrast-texts-min;
 			}
 		}
 	}
@@ -75,19 +83,15 @@
 		}
 	}
 
-	&:not(:has(#{tag-components.$interactive-selectors})),
+	&:not(:has(#{$interactive-selectors})),
 	&:has(.db-tab-remove-button) {
 		@extend %default-component;
 	}
 
-	&:has(#{tag-components.$interactive-selectors}) {
-		--db-icon-margin-end: #{variables.$db-spacing-fixed-2xs};
-
+	&:has(#{$interactive-selectors}) {
 		@extend %default-interactive-component;
 
-		@include icon-passing.icon-passing(variables.$db-spacing-fixed-2xs);
-
-		#{tag-components.$interactive-selectors},
+		#{$interactive-selectors},
 		input {
 			text-decoration: unset;
 			margin: unset;
@@ -97,6 +101,9 @@
 			font: inherit;
 			appearance: none;
 			transition: none;
+			color: inherit;
+			block-size: 100%;
+			inline-size: 100%;
 
 			&::after {
 				content: none !important;
@@ -111,7 +118,7 @@
 	}
 
 	&:has(input:checked) {
-		@extend %default-swap-component;
+		--db-is-alternate: 1;
 	}
 }
 

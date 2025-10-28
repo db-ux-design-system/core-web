@@ -1,11 +1,4 @@
-@use "../../colors";
-@use "../../helpers";
-
-@each $swap in "", "-swap" {
-	%weight#{$swap}-regular {
-		@layer #{helpers.$layer-weights} {
-			--db-global#{$swap}-font-weight: normal;
-			--db-global#{$swap}-font-strength: 1;
-		}
-	}
+%weight-regular {
+	--db-font-weight: normal;
+	--db-font-strength: 1;
 }

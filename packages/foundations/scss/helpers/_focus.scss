@@ -1,11 +1,10 @@
 @use "../variables";
-@use "../colors";
 
 @mixin get-focus-placeholder {
 	outline: #{variables.$db-border-width-2xs} solid
 		var(
 			--db-focus-outline-color,
-			#{colors.$db-informational-on-bg-basic-emphasis-70-default}
+			var(--db-informational-on-bg-basic-emphasis-70-default)
 		);
 	outline-offset: variables.$db-border-width-xs;
 	box-shadow: 0 0 0 #{variables.$db-border-width-xs}

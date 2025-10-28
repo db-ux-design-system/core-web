@@ -4,7 +4,7 @@
 @use "@db-ux/core-foundations/build/styles/helpers";
 @use "@db-ux/core-foundations/build/styles/colors";
 @use "@db-ux/core-foundations/build/styles/icons";
-@use "@db-ux/core-foundations/build/styles/texts/classes/all";
+@use "@db-ux/core-foundations/build/styles/contrasts";
 
 .db-infotext {
 	--db-icon-margin-end: #{variables.$db-spacing-fixed-2xs};
@@ -24,19 +24,22 @@
 		@extend %db-overwrite-font-size-xs;
 	}
 
-	color: variables.$db-global-on-bg-color-default;
+	color: variables.$db-on-bg-color-default;
 
 	&::before {
-		--db-icon-color: #{variables.$db-global-highlight-color-default};
+		--db-icon-color: #{variables.$db-icon-color-default};
 	}
 
-	&:not([data-text]) {
-		@extend [data-text="vibrant"];
+	&:not([data-contrast-icons]) {
+		@extend %contrast-icons-min;
+	}
+
+	&:not([data-contrast-texts]) {
+		@extend %contrast-texts-min;
 	}
 
 	@each $name, $colors in colors.$variant-colors {
 		&[data-semantic="#{$name}"] {
-			@extend %db-#{$name}-variables;
 			@include icons.variant-icons($name);
 		}
 	}

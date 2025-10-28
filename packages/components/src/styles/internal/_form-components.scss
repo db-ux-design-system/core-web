@@ -7,6 +7,7 @@
 @use "@db-ux/core-foundations/build/styles/colors";
 @use "@db-ux/core-foundations/build/styles/helpers";
 @use "@db-ux/core-foundations/build/styles/materials/classes/all";
+@use "@db-ux/core-foundations/build/styles/appearances";
 @use "component";
 @forward "../visually-hidden";
 
@@ -148,7 +149,7 @@ $db-min-inline-size: var(
 				inset-block-start: variables.$db-spacing-fixed-2xs;
 				opacity: 1;
 				font-style: normal;
-				color: variables.$db-global-highlight-color-default;
+				color: variables.$db-icon-color-default;
 			}
 
 			@include placeholder-content($selector) {
@@ -335,7 +336,7 @@ $input-valid-types:
 		@extend %db-overwrite-font-size-md;
 		@extend %default-interactive-component;
 
-		caret-color: variables.$db-global-highlight-color-default;
+		caret-color: variables.$db-icon-color-default;
 		appearance: none;
 		max-inline-size: 100%;
 		inline-size: 100%;
@@ -378,7 +379,7 @@ $input-valid-types:
 		@extend %db-overwrite-font-size-xs;
 
 		padding-block-end: variables.$db-spacing-fixed-xs;
-		color: variables.$db-global-on-bg-color-default;
+		color: variables.$db-on-bg-color-default;
 		max-inline-size: 25ch;
 		text-overflow: ellipsis;
 		white-space: nowrap;
@@ -414,7 +415,7 @@ $input-valid-types:
 		position: absolute;
 		pointer-events: none;
 		inset-block-start: $icon-inline-block-start;
-		color: variables.$db-global-on-bg-color-default;
+		color: variables.$db-on-bg-color-default;
 		transform: translateY(-50%);
 		z-index: 1;
 	}
@@ -438,33 +439,6 @@ $input-valid-types:
 }
 
 // CHECKBOX & RADIO
-
-@mixin get-state($state: "hover") {
-	$variant: "hovered";
-
-	@if $state != "hover" {
-		$variant: "pressed";
-	}
-
-	&:has(input:#{$state}, > label:#{$state}, :is(label):#{$state}) {
-		--db-check-element-label-color: var(
-			--db-adaptive-on-bg-basic-emphasis-100-#{$variant}
-		);
-
-		&:is(label),
-		> label {
-			cursor: helpers.$cursor-pointer;
-		}
-
-		input {
-			cursor: helpers.$cursor-pointer;
-			background-color: var(
-				--db-adaptive-bg-basic-transparent-full-#{$variant}
-			);
-			@content;
-		}
-	}
-}
 
 @mixin get-validity-color-checkbox($key: "valid") {
 	$variant: successful;
@@ -519,15 +493,54 @@ $input-valid-types:
 }
 
 @mixin set-default-check-element() {
-	// TODO: Change check-elements
 	@extend %db-overwrite-font-size-md;
 
 	&:not([data-hide-asterisk="true"]) {
 		@include set-required-label(input);
 	}
 
+	&:not([data-material]) {
+		@extend [data-material="transparent"];
+
+		input {
+			// TODO: Remove this when braking change happens
+			border-color: variables.$db-on-bg-color-default;
+		}
+	}
+
 	&:has(input:disabled) {
 		opacity: variables.$db-opacity-md;
+	}
+
+	:has(input:checked) {
+		--db-is-alternate: 1;
+	}
+
+	:has(
+		input[type="checkbox"]:not(:disabled),
+		input[type="radio"]:not(:disabled)
+	) {
+		&:hover {
+			&:is(label),
+			> label {
+				color: variables.$db-on-bg-color-hovered;
+			}
+
+			input {
+				background-color: variables.$db-bg-color-pressed;
+			}
+		}
+
+		&:active {
+			&:is(label),
+			> label {
+				color: variables.$db-on-bg-color-pressed;
+			}
+
+			input {
+				background-color: variables.$db-bg-color-pressed;
+			}
+		}
 	}
 
 	&:is(label),
@@ -536,23 +549,15 @@ $input-valid-types:
 
 		align-items: flex-start;
 		position: relative;
-		color: var(
-			--db-check-element-label-color,
-			#{colors.$db-adaptive-on-bg-basic-emphasis-100-default}
-		);
+		color: variables.$db-on-bg-color-default;
 	}
 
 	input {
-		background-color: colors.$db-adaptive-bg-basic-transparent-full-default;
+		@extend %default-component;
+
 		place-content: center center;
 		appearance: none;
 		aspect-ratio: 1;
-		/* stylelint-disable-next-line db-ux/use-border-width */
-		border: #{$check-border-size} solid
-			var(
-				--db-check-element-border-color,
-				#{colors.$db-adaptive-on-bg-basic-emphasis-100-default}
-			);
 		block-size: $font-size-height;
 		inline-size: $font-size-height;
 		padding: 0;

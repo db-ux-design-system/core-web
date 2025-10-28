@@ -1,13 +1,12 @@
 @mixin init($variant) {
+	[data-semantic="#{$variant}"],
 	[data-color="#{$variant}"],
 	.db-color-#{$variant} {
 		@extend %db-#{$variant}-variables;
-
-		color: var(--db-adaptive-on-bg-basic-emphasis-100-default);
-		background-color: var(--db-adaptive-bg-basic-level-1-default);
 	}
 }
 
+// TODO: We don't need those anymore ⬇️
 @mixin init-on-background-colors($color) {
 	[data-on-bg-color="#{$color}"],
 	.db-on-bg-color-#{$color} {

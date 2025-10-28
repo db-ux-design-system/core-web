@@ -1,6 +1,5 @@
 @use "sass:map";
 @use "@db-ux/core-foundations/build/styles/variables";
-@use "@db-ux/core-foundations/build/styles/colors";
 @use "@db-ux/core-foundations/build/styles/icons";
 @use "@db-ux/core-foundations/build/styles/fonts";
 @use "../../styles/internal/form-components";
@@ -40,8 +39,8 @@
 	optgroup {
 		@extend [data-material="filled"];
 
-		background-color: variables.$db-global-bg-color-default;
-		color: variables.$db-global-on-bg-color-default;
+		background-color: variables.$db-bg-color-default;
+		color: variables.$db-on-bg-color-default;
 	}
 
 	&:has(> select option:checked:not(.placeholder)) {

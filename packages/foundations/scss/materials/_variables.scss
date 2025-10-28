@@ -1,3 +1,5 @@
+@use "../colors/variables" as colors;
+
 $materials: (
 	"transparent",
 	"semitransparent",
@@ -5,4 +7,132 @@ $materials: (
 	"origin",
 	"inverted",
 	"vibrant"
+);
+
+$filled-variables: (
+	// Backgrounds
+	colors.$db-adaptive-bg-basic-level-1-default,
+	colors.$db-adaptive-bg-basic-level-1-hovered,
+	colors.$db-adaptive-bg-basic-level-1-pressed,
+	// Border
+	colors.$db-adaptive-on-bg-basic-emphasis-60-default,
+	// On colors contrast-max
+	colors.$db-adaptive-on-bg-basic-emphasis-100-default,
+	colors.$db-adaptive-on-bg-basic-emphasis-100-hovered,
+	colors.$db-adaptive-on-bg-basic-emphasis-100-pressed,
+	// On colors contrast-min
+	colors.$db-adaptive-on-bg-basic-emphasis-80-default,
+	colors.$db-adaptive-on-bg-basic-emphasis-80-hovered,
+	colors.$db-adaptive-on-bg-basic-emphasis-80-pressed,
+	// Icon Colors
+	colors.$db-adaptive-on-bg-basic-emphasis-100-default,
+	colors.$db-adaptive-on-bg-basic-emphasis-70-default
+);
+
+$inverted-variables: (
+	colors.$db-adaptive-bg-inverted-contrast-max-default,
+	colors.$db-adaptive-bg-inverted-contrast-max-hovered,
+	colors.$db-adaptive-bg-inverted-contrast-max-pressed,
+	colors.$db-adaptive-on-bg-basic-emphasis-80-default,
+	colors.$db-adaptive-on-bg-inverted-default,
+	colors.$db-adaptive-on-bg-inverted-hovered,
+	colors.$db-adaptive-on-bg-inverted-pressed,
+	colors.$db-adaptive-on-bg-inverted-default,
+	colors.$db-adaptive-on-bg-inverted-hovered,
+	colors.$db-adaptive-on-bg-inverted-pressed,
+	colors.$db-adaptive-on-bg-inverted-default,
+	colors.$db-adaptive-on-bg-inverted-default
+);
+
+$origin-variables: (
+	colors.$db-adaptive-origin-default,
+	colors.$db-adaptive-origin-hovered,
+	colors.$db-adaptive-origin-pressed,
+	colors.$db-adaptive-on-bg-basic-emphasis-70-default,
+	colors.$db-adaptive-on-origin-default,
+	colors.$db-adaptive-on-origin-hovered,
+	colors.$db-adaptive-on-origin-pressed,
+	colors.$db-adaptive-on-origin-default,
+	colors.$db-adaptive-on-origin-hovered,
+	colors.$db-adaptive-on-origin-pressed,
+	colors.$db-adaptive-on-origin-default,
+	colors.$db-adaptive-on-origin-default
+);
+
+$semitransparent-variables: (
+	colors.$db-adaptive-bg-basic-transparent-semi-default,
+	colors.$db-adaptive-bg-basic-transparent-semi-hovered,
+	colors.$db-adaptive-bg-basic-transparent-semi-pressed,
+	colors.$db-adaptive-on-bg-basic-emphasis-60-default,
+	// On colors contrast-max
+	colors.$db-adaptive-on-bg-basic-emphasis-100-default,
+	colors.$db-adaptive-on-bg-basic-emphasis-100-hovered,
+	colors.$db-adaptive-on-bg-basic-emphasis-100-pressed,
+	// On colors contrast-min
+	colors.$db-adaptive-on-bg-basic-emphasis-80-default,
+	colors.$db-adaptive-on-bg-basic-emphasis-80-hovered,
+	colors.$db-adaptive-on-bg-basic-emphasis-80-pressed,
+	// Icon Colors
+	colors.$db-adaptive-on-bg-basic-emphasis-100-default,
+	colors.$db-adaptive-on-bg-basic-emphasis-70-default
+);
+
+$transparent-variables: (
+	colors.$db-adaptive-bg-basic-transparent-full-default,
+	colors.$db-adaptive-bg-basic-transparent-full-hovered,
+	colors.$db-adaptive-bg-basic-transparent-full-pressed,
+	transparent,
+	// On colors contrast-max
+	colors.$db-adaptive-on-bg-basic-emphasis-100-default,
+	colors.$db-adaptive-on-bg-basic-emphasis-100-hovered,
+	colors.$db-adaptive-on-bg-basic-emphasis-100-pressed,
+	// On colors contrast-min
+	colors.$db-adaptive-on-bg-basic-emphasis-80-default,
+	colors.$db-adaptive-on-bg-basic-emphasis-80-hovered,
+	colors.$db-adaptive-on-bg-basic-emphasis-80-pressed,
+	// Icon Colors
+	colors.$db-adaptive-on-bg-basic-emphasis-100-default,
+	colors.$db-adaptive-on-bg-basic-emphasis-70-default
+);
+
+$vibrant-variables: (
+	colors.$db-adaptive-bg-vibrant-default,
+	colors.$db-adaptive-bg-vibrant-hovered,
+	colors.$db-adaptive-bg-vibrant-pressed,
+	colors.$db-adaptive-on-bg-basic-emphasis-70-default,
+	colors.$db-adaptive-on-bg-vibrant-default,
+	colors.$db-adaptive-on-bg-vibrant-hovered,
+	colors.$db-adaptive-on-bg-vibrant-pressed,
+	colors.$db-adaptive-on-bg-vibrant-default,
+	colors.$db-adaptive-on-bg-vibrant-hovered,
+	colors.$db-adaptive-on-bg-vibrant-pressed,
+	colors.$db-adaptive-on-bg-vibrant-default,
+	colors.$db-adaptive-on-bg-vibrant-default
+);
+
+$material-map: (
+	"filled": (
+		$filled-variables,
+		$inverted-variables
+	),
+	"inverted": (
+		$inverted-variables,
+		$filled-variables
+	),
+	"origin": (
+		$origin-variables,
+		$inverted-variables
+	),
+	"semitransparent": (
+		$semitransparent-variables,
+		$inverted-variables
+	),
+	"transparent": (
+		$transparent-variables,
+		$inverted-variables
+	),
+	"vibrant": (
+		$vibrant-variables,
+		$filled-variables
+	)
 );

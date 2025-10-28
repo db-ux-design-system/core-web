@@ -17,14 +17,14 @@
 	@extend %default-fg-transition;
 	@extend %db-link-height;
 
-	color: variables.$db-global-on-bg-color-default;
+	color: variables.$db-on-bg-color-default;
 
 	@include helpers.hover {
-		color: variables.$db-global-on-bg-color-hovered;
+		color: variables.$db-on-bg-color-hovered;
 	}
 
 	@include helpers.active {
-		color: variables.$db-global-on-bg-color-pressed;
+		color: variables.$db-on-bg-color-pressed;
 	}
 
 	&:not([data-weight]) {

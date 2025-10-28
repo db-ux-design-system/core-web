@@ -1,5 +1,4 @@
 @use "@db-ux/core-foundations/build/styles/variables";
-@use "@db-ux/core-foundations/build/styles/colors";
 @use "@db-ux/core-foundations/build/styles/fonts";
 @use "@db-ux/core-foundations/build/styles/screen-sizes";
 @use "@db-ux/core-foundations/build/styles/helpers";
@@ -184,7 +183,7 @@
 	flex-direction: column;
 	z-index: 70;
 	inset-inline-start: 0;
-	background-color: variables.$db-global-bg-color-default;
+	background-color: variables.$db-bg-color-default;
 	visibility: hidden;
 
 	@include screen-sizes.screen("md", "max") {
@@ -314,7 +313,7 @@
 	@include helpers.display(flex);
 
 	font-weight: normal;
-	background-color: variables.$db-global-bg-color-default;
+	background-color: variables.$db-bg-color-default;
 	padding-block-end: variables.$db-spacing-fixed-md;
 	margin-block-end: variables.$db-spacing-fixed-md;
 

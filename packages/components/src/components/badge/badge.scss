@@ -3,7 +3,6 @@
 @use "@db-ux/core-foundations/build/styles/fonts";
 @use "../../styles/internal/button-components";
 @use "../../styles/internal/component";
-@use "@db-ux/core-foundations/build/styles/colors";
 @use "@db-ux/core-foundations/build/styles/materials/classes/all";
 
 %absolute-badge {
@@ -61,12 +60,6 @@
 
 		&[data-emphasis="strong"] {
 			@extend [data-material="vibrant"];
-		}
-	}
-
-	@each $name in colors.$variant-colors {
-		&[data-semantic="#{$name}"] {
-			@extend %db-#{$name}-variables;
 		}
 	}
 

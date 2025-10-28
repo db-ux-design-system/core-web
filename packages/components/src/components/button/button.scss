@@ -76,12 +76,15 @@
 			@extend [data-material="transparent"];
 		}
 
+		&[data-variant="outlined"] {
+			@extend [data-material="filled"];
+		}
+
 		&[data-variant="outlined"],
 		&:not([data-variant]),
 		&[data-variant=""] {
-			@extend [data-material="filled"];
 			// TODO: Remove this when braking change happens
-			border-color: variables.$db-global-on-bg-color-default;
+			border-color: variables.$db-on-bg-color-default;
 		}
 	}
 

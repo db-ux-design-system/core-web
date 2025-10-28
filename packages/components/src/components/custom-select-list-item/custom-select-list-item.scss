@@ -1,11 +1,10 @@
 @use "@db-ux/core-foundations/build/styles/variables";
-@use "@db-ux/core-foundations/build/styles/colors";
 @use "@db-ux/core-foundations/build/styles/helpers";
 @use "@db-ux/core-foundations/build/styles/fonts";
 @use "@db-ux/core-foundations/build/styles/icons";
 @use "@db-ux/core-foundations/build/styles/screen-sizes";
 @use "@db-ux/core-foundations/build/styles/materials/classes/all";
-@use "@db-ux/core-foundations/build/styles/texts/classes/all" as texts;
+@use "@db-ux/core-foundations/build/styles/contrasts";
 @use "../../styles/internal/form-components";
 
 // web-component workaround
@@ -21,7 +20,7 @@ db-custom-select-list-item:not(:last-of-type) {
 	block-size: 100%;
 	position: relative;
 	padding: variables.$db-spacing-fixed-sm;
-	background-color: variables.$db-global-bg-color-default;
+	background-color: variables.$db-bg-color-default;
 	border-radius: variables.$db-border-radius-xs;
 	box-sizing: border-box;
 
@@ -32,11 +31,11 @@ db-custom-select-list-item:not(:last-of-type) {
 	&:has(> label) {
 		&:not(:has(input[type="radio"]:checked)) {
 			@include helpers.hover {
-				background-color: variables.$db-global-bg-color-hovered;
+				background-color: variables.$db-bg-color-hovered;
 			}
 
 			@include helpers.active {
-				background-color: variables.$db-global-bg-color-pressed;
+				background-color: variables.$db-bg-color-pressed;
 			}
 		}
 	}
@@ -47,9 +46,9 @@ db-custom-select-list-item:not(:last-of-type) {
 
 	span {
 		@extend %db-overwrite-font-size-md;
-		@extend [data-text="vibrant"]; // TODO: Vibrant or weak?
+		@extend %contrast-texts-min;
 
-		color: variables.$db-global-on-bg-color-default;
+		color: variables.$db-on-bg-color-default;
 	}
 
 	&[data-divider="true"]:not(:last-of-type) {
@@ -58,8 +57,6 @@ db-custom-select-list-item:not(:last-of-type) {
 
 	> label {
 		--db-icon-margin-start: auto;
-		// TODO: Shall we do it like this?
-		--db-check-element-label-color: #{variables.$db-global-on-bg-color-default};
 
 		inline-size: 100%;
 
@@ -81,8 +78,8 @@ db-custom-select-list-item:not(:last-of-type) {
 		> input {
 			// We revert interaction states for checkbox
 			// TODO: This might not the best solution
-			--db-adaptive-bg-basic-transparent-full-hovered: #{colors.$db-adaptive-bg-basic-transparent-full-default};
-			--db-adaptive-bg-basic-transparent-full-pressed: #{colors.$db-adaptive-bg-basic-transparent-full-default};
+			--db-adaptive-bg-basic-transparent-full-hovered: transparent;
+			--db-adaptive-bg-basic-transparent-full-pressed: transparent;
 
 			&::after {
 				position: absolute;

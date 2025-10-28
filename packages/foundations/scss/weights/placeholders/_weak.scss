@@ -1,12 +1,6 @@
-@use "../../colors";
-@use "../../helpers";
 @use "../../variables";
 
-@each $swap in "", "-swap" {
-	%weight#{$swap}-weak {
-		@layer #{helpers.$layer-weights} {
-			--db-global#{$swap}-font-weight: normal;
-			--db-global#{$swap}-font-strength: #{variables.$db-opacity-2xl};
-		}
-	}
+%weight-weak {
+	--db-font-weight: normal;
+	--db-font-strength: 0.75;
 }
