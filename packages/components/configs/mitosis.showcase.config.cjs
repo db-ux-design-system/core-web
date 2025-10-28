@@ -15,9 +15,5 @@ module.exports = {
 	},
 	commonOptions: {
 		typescript: true
-		/*explicitBuildFileExtensions: {
-			'.md': /.*(agent\.lite\.tsx)$/g
-		},
-		plugins: [agentPlugin]*/
 	}
 };

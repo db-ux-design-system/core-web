@@ -28,7 +28,7 @@ import TagComponent from '../components/tag';
 import TextareaComponent from '../components/textarea';
 import TooltipComponent from '../components/tooltip';
 
-import ButtonShowcase from '../../../../output/react/src/components/button/showcase/_button.showcase';
+import ButtonShowcase from '@components/components/button/showcase/button.showcase';
 
 export type NavigationItem = {
 	path: string;

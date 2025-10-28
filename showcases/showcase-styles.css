@@ -8,7 +8,10 @@
 	display: flex;
 	flex-direction: column;
 	gap: var(--db-spacing-fixed-md);
-	padding: var(--db-spacing-fixed-md);
+
+	&:has(.component-header) {
+		padding: var(--db-spacing-fixed-md);
+	}
 }
 
 .component-header {

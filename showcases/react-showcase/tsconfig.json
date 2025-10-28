@@ -22,7 +22,8 @@
 		"types": ["vite/client"],
 		"paths": {
 			"@components": ["../../output/react/src"],
-			"@components/src/*": ["../../output/react/src/*"]
+			"@components/src/*": ["../../output/react/src/*"],
+			"@components/components/*": ["../../output/react/src/components/*"]
 		}
 	},
 	"include": ["src"],
