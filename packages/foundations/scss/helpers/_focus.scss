@@ -12,6 +12,7 @@
 		var(--db-focus-box-shadow-bg-color, transparent);
 
 	@media screen and (prefers-reduced-motion: no-preference) {
+		// stylelint-disable-next-line no-invalid-position-declaration
 		transition:
 			outline #{variables.$db-transition-duration-extra-fast},
 			box-shadow #{variables.$db-transition-duration-extra-fast};

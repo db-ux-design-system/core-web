@@ -59,6 +59,22 @@ import { DBButton } from '@db-ux/react-core-components';
 ...
 ```
 
+## AI Agent Support
+
+For developers using AI coding assistants like GitHub Copilot or Amazon Q, we provide the [`@db-ux/agent-cli`](https://www.npmjs.com/package/@db-ux/agent-cli) tool that automatically adds DB UX Design System documentation to your repository.
+
+### Quick Start
+
+Run this command in your repository:
+
+```shell
+npx @db-ux/agent-cli
+```
+
+This will create or update `.github/copilot-instructions.md` with component documentation based on your installed `@db-ux` packages, helping AI agents provide better suggestions.
+
+📖 **[Learn more about `@db-ux/agent-cli` node package](packages/agent-cli/README.md)**
+
 ## Deutsche Bahn brand
 
 As we'd like to perfectly support our users and customers on their digital journey, the usage of Deutsche Bahn brand and trademarks are bound of clear guidelines and restrictions even if being used with the code that we're providing with this product; Deutsche Bahn fully reserves all rights regarding the Deutsche Bahn brand, even though that we're providing the code of DB UX Design System products free to use and release it under the Apache 2.0 license.

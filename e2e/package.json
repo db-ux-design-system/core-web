@@ -3,6 +3,11 @@
   "version": "0.0.0",
   "type": "module",
   "description": "",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/db-ux-design-system/core-web.git"
+  },
+  "license": "Apache-2.0",
   "private": true,
   "workspaces": [
     "showcases/*",
@@ -24,14 +29,14 @@
     "test:vue-showcase": "npm run test:e2e --workspace=vue-showcase"
   },
   "devDependencies": {
-    "@playwright/test": "1.54.2",
+    "@playwright/test": "1.56.1",
     "cpr": "3.0.1",
-    "cross-env": "10.0.0",
-    "dotenv": "17.2.1",
+    "cross-env": "10.1.0",
+    "dotenv": "17.2.3",
     "http-server": "14.1.1",
     "npm-run-all2": "8.0.4",
     "tslib": "2.8.1",
-    "typescript": "5.8.3"
+    "typescript": "5.9.3"
   },
   "overrides": {
     "cross-spawn": "7.0.6"

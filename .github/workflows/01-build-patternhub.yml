@@ -1,28 +1,20 @@
 ---
 name: Build Patternhub
 
+permissions:
+  contents: read
+
 on:
   workflow_call:
     inputs:
-      release:
-        required: false
-        default: "false"
+      baseUrl:
+        required: true
         type: string
-      preRelease:
-        required: false
-        default: "false"
-        type: string
-    outputs:
-      path:
-        description: "Base path for patternhub"
-        value: ${{ jobs.build-patternhub.outputs.path }}
 
 jobs:
   build-patternhub:
     name: Build Patternhub
     runs-on: ubuntu-24.04 # Use Ubuntu 24.04 explicitly
-    outputs:
-      path: ${{ steps.build.outputs.path }}
     steps:
       - name: ⏬ Checkout repo
         uses: actions/checkout@v5
@@ -48,48 +40,15 @@ jobs:
           name: db-ux-components-build
           path: packages/components/build
 
-      - name: ↔ Extract branch name
-        uses: ./.github/actions/extract-branch
-        id: extract_branch
-
-      - name: ↔ Extract branch/tag name
-        shell: bash
-        env:
-          RELEASE: ${{ inputs.release }}
-          PRE_RELEASE: ${{ inputs.preRelease }}
-          BRANCH_NAME: ${{ steps.extract_branch.outputs.branch-name }}
-        run: |
-          if [[ $RELEASE == "true" || $PRE_RELEASE == "true" ]]
-          then
-            echo "name=${GITHUB_REF#refs/tags/}" >> $GITHUB_OUTPUT
-          else
-            echo "name=${BRANCH_NAME}" >> $GITHUB_OUTPUT
-          fi
-        id: extract
-
-      - name: 🛤 Get base path
-        uses: actions/github-script@v7
-        env:
-          NAME: ${{ steps.extract.outputs.name }}
-          RELEASE: ${{ inputs.release }}
-          PRE_RELEASE: ${{ inputs.preRelease }}
-        id: base-path
-        with:
-          result-encoding: string
-          script: |
-            var path = 'review';
-            if(process.env.RELEASE === "true" || process.env.PRE_RELEASE === "true") {
-              path = 'version'
-            }
-            return `/${context?.payload?.repository?.name}/${path}/${process.env.NAME}`
-
       - name: 🔨 Build Patternhub
         id: build
         env:
           ASSET_INIT_VECTOR: ${{ secrets.ASSET_INIT_VECTOR }}
           ASSET_PASSWORD: ${{ secrets.ASSET_PASSWORD }}
-          NEXT_PUBLIC_BASE_PATH: ${{ steps.base-path.outputs.result }}
+          NEXT_PUBLIC_BASE_PATH: ${{ inputs.baseUrl }}
         run: |
+          node node_modules/@db-ux/db-theme-fonts/build/scripts/index.js
+          node node_modules/@db-ux/db-theme-icons/build/scripts/index.js
           npx --no tsx scripts/md-resolve-svg.ts
           npm run build --workspace=patternhub
           echo "path=${NEXT_PUBLIC_BASE_PATH}" >> $GITHUB_OUTPUT
@@ -99,9 +58,3 @@ jobs:
         with:
           name: db-ux-patternhub
           path: build-showcases/patternhub
-
-      - name: 💀 Killing me softly
-        uses: ./.github/actions/cancel-workflow
-        if: failure()
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}

@@ -19,7 +19,7 @@
 		} @else {
 			<db-custom-select
 				[showRequiredAsterisk]="exampleProps?.showRequiredAsterisk"
-				[ariaListLabel]="getAriaLabel(exampleProps, exampleName)"
+				[listLabel]="getAriaLabel(exampleProps, exampleName)"
 				[disabled]="exampleProps?.disabled"
 				[showMessage]="exampleProps?.showMessage"
 				[icon]="exampleProps?.icon"
@@ -61,6 +61,7 @@
 				[validMessage]="exampleProps?.validMessage"
 				[validation]="exampleProps?.validation"
 				(optionSelected)="console.log($event)"
+				[removeTagsTexts]="exampleProps?.removeTagsTexts"
 			></db-custom-select>
 		}
 	</ng-template>

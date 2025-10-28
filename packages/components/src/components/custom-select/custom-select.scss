@@ -7,6 +7,10 @@
 @use "../../styles/internal/select-components";
 @use "../../styles/dialog-init";
 
+.db-custom-select-placeholder {
+	@extend %select-absolute-placeholder;
+}
+
 .db-custom-select {
 	--db-form-component-padding-inline-end: calc(
 		#{select-components.$select-icon-padding} + #{variables.$db-sizing-sm} +
@@ -53,7 +57,7 @@
 
 	&:has(summary span) {
 		[id$="-placeholder"] {
-			display: none;
+			@include helpers.display(none);
 		}
 	}
 

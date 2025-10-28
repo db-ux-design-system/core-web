@@ -14,7 +14,8 @@ db-custom-select-list-item:not(:last-of-type) {
 }
 
 .db-custom-select-list-item {
-	display: flex;
+	@include helpers.display(flex);
+
 	block-size: 100%;
 	position: relative;
 	padding: variables.$db-spacing-fixed-sm;
@@ -34,7 +35,7 @@ db-custom-select-list-item:not(:last-of-type) {
 		}
 	}
 
-	&:has(> label > input:focus-within) {
+	&:has(> label > input:focus-visible) {
 		@extend %focus-placeholder;
 	}
 

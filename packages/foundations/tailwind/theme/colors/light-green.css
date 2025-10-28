@@ -1,0 +1,166 @@
+/* The prefix for variables are predefined by Tailwind, stylelint would throw an error */
+/* stylelint-disable-next-line scss/at-rule-no-unknown */
+@theme {
+	/* stylelint-disable-next-line custom-property-pattern */
+	--color-*: initial; /* 	Color utilities like */
+
+	/* Basic-Level */
+	--color-light-green-bg-basic-level-1-default: var(
+		--db-light-green-bg-basic-level-1-default
+	);
+	--color-light-green-bg-basic-level-1-hovered: var(
+		--db-light-green-bg-basic-level-1-hovered
+	);
+	--color-light-green-bg-basic-level-1-pressed: var(
+		--db-light-green-bg-basic-level-1-pressed
+	);
+	--color-light-green-bg-basic-level-2-default: var(
+		--db-light-green-bg-basic-level-2-default
+	);
+	--color-light-green-bg-basic-level-2-hovered: var(
+		--db-light-green-bg-basic-level-2-hovered
+	);
+	--color-light-green-bg-basic-level-2-pressed: var(
+		--db-light-green-bg-basic-level-2-pressed
+	);
+	--color-light-green-bg-basic-level-3-default: var(
+		--db-light-green-bg-basic-level-3-default
+	);
+	--color-light-green-bg-basic-level-3-hovered: var(
+		--db-light-green-bg-basic-level-3-hovered
+	);
+	--color-light-green-bg-basic-level-3-pressed: var(
+		--db-light-green-bg-basic-level-3-pressed
+	);
+
+	/* Transparent */
+	--color-light-green-bg-basic-transparent-full-default: var(
+		--db-light-green-bg-basic-transparent-full-default
+	);
+	--color-light-green-bg-basic-transparent-semi-default: var(
+		--db-light-green-bg-basic-transparent-semi-default
+	);
+	--color-light-green-bg-basic-transparent-full-hovered: var(
+		--db-light-green-bg-basic-transparent-full-hovered
+	);
+	--color-light-green-bg-basic-transparent-full-pressed: var(
+		--db-light-green-bg-basic-transparent-full-pressed
+	);
+	--color-light-green-bg-basic-transparent-semi-hovered: var(
+		--db-light-green-bg-basic-transparent-semi-hovered
+	);
+	--color-light-green-bg-basic-transparent-semi-pressed: var(
+		--db-light-green-bg-basic-transparent-semi-pressed
+	);
+
+	/* Inverted */
+	--color-light-green-bg-inverted-contrast-max-default: var(
+		--db-light-green-bg-inverted-contrast-max-default
+	);
+	--color-light-green-bg-inverted-contrast-max-hovered: var(
+		--db-light-green-bg-inverted-contrast-max-hovered
+	);
+	--color-light-green-bg-inverted-contrast-max-pressed: var(
+		--db-light-green-bg-inverted-contrast-max-pressed
+	);
+	--color-light-green-bg-inverted-contrast-high-default: var(
+		--db-light-green-bg-inverted-contrast-high-default
+	);
+	--color-light-green-bg-inverted-contrast-high-hovered: var(
+		--db-light-green-bg-inverted-contrast-high-hovered
+	);
+	--color-light-green-bg-inverted-contrast-high-pressed: var(
+		--db-light-green-bg-inverted-contrast-high-pressed
+	);
+	--color-light-green-bg-inverted-contrast-low-default: var(
+		--db-light-green-bg-inverted-contrast-low-default
+	);
+	--color-light-green-bg-inverted-contrast-low-hovered: var(
+		--db-light-green-bg-inverted-contrast-low-hovered
+	);
+	--color-light-green-bg-inverted-contrast-low-pressed: var(
+		--db-light-green-bg-inverted-contrast-low-pressed
+	);
+
+	/* On Colors */
+
+	--color-light-green-on-bg-basic-emphasis-100-default: var(
+		--db-light-green-on-bg-basic-emphasis-100-default
+	);
+	--color-light-green-on-bg-basic-emphasis-100-hovered: var(
+		--db-light-green-on-bg-basic-emphasis-100-hovered
+	);
+	--color-light-green-on-bg-basic-emphasis-100-pressed: var(
+		--db-light-green-on-bg-basic-emphasis-100-pressed
+	);
+	--color-light-green-on-bg-basic-emphasis-90-default: var(
+		--db-light-green-on-bg-basic-emphasis-90-default
+	);
+	--color-light-green-on-bg-basic-emphasis-90-hovered: var(
+		--db-light-green-on-bg-basic-emphasis-90-hovered
+	);
+	--color-light-green-on-bg-basic-emphasis-90-pressed: var(
+		--db-light-green-on-bg-basic-emphasis-90-pressed
+	);
+	--color-light-green-on-bg-basic-emphasis-80-default: var(
+		--db-light-green-on-bg-basic-emphasis-80-default
+	);
+	--color-light-green-on-bg-basic-emphasis-80-hovered: var(
+		--db-light-green-on-bg-basic-emphasis-80-hovered
+	);
+	--color-light-green-on-bg-basic-emphasis-80-pressed: var(
+		--db-light-green-on-bg-basic-emphasis-80-pressed
+	);
+	--color-light-green-on-bg-basic-emphasis-70-default: var(
+		--db-light-green-on-bg-basic-emphasis-70-default
+	);
+	--color-light-green-on-bg-basic-emphasis-70-hovered: var(
+		--db-light-green-on-bg-basic-emphasis-70-hovered
+	);
+	--color-light-green-on-bg-basic-emphasis-70-pressed: var(
+		--db-light-green-on-bg-basic-emphasis-70-pressed
+	);
+	--color-light-green-on-bg-basic-emphasis-60-default: var(
+		--db-light-green-on-bg-basic-emphasis-60-default
+	);
+	--color-light-green-on-bg-basic-emphasis-60-hovered: var(
+		--db-light-green-on-bg-basic-emphasis-60-hovered
+	);
+	--color-light-green-on-bg-basic-emphasis-60-pressed: var(
+		--db-light-green-on-bg-basic-emphasis-60-pressed
+	);
+	--color-light-green-on-bg-basic-emphasis-50-default: var(
+		--db-light-green-on-bg-basic-emphasis-50-default
+	);
+	--color-light-green-on-bg-basic-emphasis-50-hovered: var(
+		--db-light-green-on-bg-basic-emphasis-50-hovered
+	);
+	--color-light-green-on-bg-basic-emphasis-50-pressed: var(
+		--db-light-green-on-bg-basic-emphasis-50-pressed
+	);
+
+	/* On Inverted */
+	--color-light-green-on-bg-inverted-default: var(
+		--db-light-green-on-bg-inverted-default
+	);
+	--color-light-green-on-bg-inverted-hovered: var(
+		--db-light-green-on-bg-inverted-hovered
+	);
+	--color-light-green-on-bg-inverted-pressed: var(
+		--db-light-green-on-bg-inverted-pressed
+	);
+
+	/* On Origin */
+	--color-light-green-on-origin-default: var(
+		--db-light-green-on-origin-default
+	);
+	--color-light-green-on-origin-hovered: var(
+		--db-light-green-on-origin-hovered
+	);
+	--color-light-green-on-origin-pressed: var(
+		--db-light-green-on-origin-pressed
+	);
+	--color-light-green-origin-default: var(--db-light-green-origin-default);
+	--color-light-green-origin-hovered: var(--db-light-green-origin-hovered);
+	--color-light-green-origin-pressed: var(--db-light-green-origin-pressed);
+}

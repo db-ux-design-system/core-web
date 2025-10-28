@@ -13,7 +13,7 @@
     "generate:component-research": "node scripts/component-research/generate-component-research.js"
   },
   "devDependencies": {
-    "inquirer": "12.9.3"
+    "inquirer": "12.10.0"
   },
   "publishConfig": {
     "registry": "https://registry.npmjs.org/",
