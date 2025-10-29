@@ -11,30 +11,8 @@
 @use "./notification-grid-overlay";
 @use "./notification-grid-non-overlay";
 
-// Shared styles for heading elements
-@mixin heading-reset {
-	margin: 0;
-	font: var(--db-type-body-md);
-	font-weight: 700;
-
-	&::before,
-	&::after {
-		--db-icon-font-size: var(--db-base-body-icon-font-size-md);
-		--db-icon-font-weight: var(--db-base-body-icon-weight-md);
-	}
-}
-
-// Link pseudo-element reset
-@mixin link-pseudo-reset {
-	&::before,
-	&::after {
-		content: none !important;
-		margin: 0 !important;
-	}
-}
-
-// Timestamp line-height adjustments
 %timestamp-line-height-adjustments {
+	// Adjusts line-height for elements when timestamp is present
 	&:has(span) {
 		header,
 		p,
@@ -61,10 +39,15 @@
 		--db-icon-color: #{colors.$db-adaptive-on-bg-basic-emphasis-70-default};
 	}
 
-	// Link styles
 	a {
 		@extend %db-default-link;
-		@include link-pseudo-reset;
+
+		// Overwrite settings for db-link ALWAYS
+		&::before,
+		&::after {
+			content: none !important;
+			margin: 0 !important;
+		}
 
 		&[data-variant="brand"] {
 			@extend %db-link-default-color;
@@ -75,27 +58,7 @@
 		}
 	}
 
-	// Inline link positioning and sizing
-	&[data-link-variant="inline"] a {
-		grid-area: timestamp;
-		white-space: nowrap;
-		justify-self: end;
-
-		@extend %db-overwrite-font-size-md;
-	}
-
-	// Hide timestamp when inline link present
-	&[data-link-variant="inline"]:has(a) > span {
-		display: none;
-	}
-
-	// Block link positioning
-	&:not([data-link-variant="inline"]) a {
-		grid-area: link;
-		white-space: nowrap;
-	}
-
-	// Header styles
+	// headline
 	header {
 		grid-area: head;
 
@@ -106,11 +69,19 @@
 		h4,
 		h5,
 		h6 {
-			@include heading-reset;
+			margin: 0;
+			font: var(--db-type-body-md);
+			font-weight: 700;
+
+			&::before,
+			&::after {
+				--db-icon-font-size: var(--db-base-body-icon-font-size-md);
+				--db-icon-font-weight: var(--db-base-body-icon-weight-md);
+			}
 		}
 	}
 
-	// Content styles
+	// content
 	p {
 		@extend %db-overwrite-font-size-md;
 
@@ -118,21 +89,7 @@
 		margin: 0;
 	}
 
-	// Timestamp styles
-	span {
-		@extend %db-overwrite-font-size-sm;
-
-		grid-area: timestamp;
-		white-space: nowrap;
-		justify-self: end;
-	}
-
-	// Close button positioning
-	.db-button {
-		grid-area: close;
-	}
-
-	// Image styles
+	// Image styling and grid positioning
 	img {
 		min-block-size: variables.$db-sizing-md;
 		min-inline-size: variables.$db-sizing-md;
@@ -143,7 +100,51 @@
 		grid-area: icon;
 	}
 
-	// Icon styles
+	// timestamp
+	span {
+		@extend %db-overwrite-font-size-sm;
+
+		grid-area: timestamp;
+		white-space: nowrap;
+		justify-self: end;
+	}
+
+	.db-button {
+		grid-area: close;
+	}
+
+	// Inline links stay within content flow
+	&[data-link-variant="inline"] a {
+		// 1. Assign the link to the "timestamp" area.
+		//    All layouts (overlay and default) must recognize this area.
+		grid-area: timestamp;
+		white-space: nowrap;
+
+		// 2. Align the link at the end (right) of its grid cell
+		justify-self: end;
+
+		// 3. Inline links should use 'md' size (like <p>),
+		//    not 'sm' (like <span>)
+		@extend %db-overwrite-font-size-md;
+	}
+
+	// If an inline link is present, it takes precedence over the timestamp
+	// Note: :has() pseudo-class has limited browser support (Firefox < 121)
+	// Progressive enhancement - timestamps gracefully shown in older browsers
+	&[data-link-variant="inline"]:has(a) {
+		> span {
+			display: none;
+		}
+	}
+
+	// Block links get placed in grid area (default behavior)
+	// This applies when linkVariant is "block" or not specified
+	&:not([data-link-variant="inline"]) a {
+		grid-area: link;
+		white-space: nowrap;
+	}
+
+	// Icon grid positioning
 	&[data-icon]::before,
 	&::before {
 		--db-icon-margin-end: 0;
@@ -153,24 +154,29 @@
 		grid-area: icon;
 	}
 
-	// Hide icon when showIcon is false
+	// If showIcon is explicitly set to false, hide the generated icon
+	// pseudo-element.
 	&[data-show-icon="false"]::before {
+		/* Hidden when showIcon is explicitly false. Using `display:none`
+		   is sufficient; avoid extra properties that don't affect layout. */
 		display: none;
 	}
 
-	// Hide icon when image present
-	&:has(img)::before {
-		content: none !important;
+	&:has(img) {
+		// Hide icon when image is present to avoid conflicts
+		&::before {
+			content: none !important;
+		}
 	}
 
-	// Variant: overlay
 	&[data-variant="overlay"] {
 		@extend %grid-layout-variant-overlay;
 
 		box-shadow: variables.$db-elevation-md;
 	}
 
-	// Variant: non-overlay with block links
+	// Apply non-overlay grid layout for notifications with block links
+	// This applies when linkVariant is "block" (explicit or default when links are present)
 	&:not([data-variant="overlay"]) {
 		&[data-link-variant="block"],
 		&:not([data-link-variant]):has(a) {
@@ -178,13 +184,11 @@
 		}
 	}
 
-	// Card styling for overlay and standalone
 	&[data-variant="overlay"],
 	&[data-variant="standalone"] {
 		@extend %default-card;
 	}
 
-	// Semantic variants
 	@each $name in colors.$variant-colors {
 		&[data-semantic="#{$name}"] {
 			@extend %db-#{$name}-variables;

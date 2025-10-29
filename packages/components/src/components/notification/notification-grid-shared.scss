@@ -1,77 +1,80 @@
 // Shared grid mixins for notification layouts
 // These mixins contain the common grid logic used by both overlay and non-overlay variants
 
-// Core mixin to set grid areas and columns
-@mixin apply-grid($areas, $columns) {
+@mixin shared-base-grid($areas, $columns) {
 	grid-template-areas: $areas;
 	grid-template-columns: $columns;
 }
 
-// Icon selector: only show icon when not explicitly disabled
-@mixin icon-selector {
+@mixin shared-with-close($areas, $columns) {
+	&:has(.db-button) {
+		grid-template-areas: $areas;
+		grid-template-columns: $columns;
+	}
+}
+
+@mixin shared-with-header($areas, $columns) {
+	&:has(header) {
+		grid-template-areas: $areas;
+		grid-template-columns: $columns;
+	}
+}
+
+@mixin shared-with-header-close($areas, $columns) {
+	&:has(header):has(.db-button) {
+		grid-template-areas: $areas;
+		grid-template-columns: $columns;
+	}
+}
+
+@mixin shared-with-icon($areas, $columns) {
+	// Only treat the element as having an icon when the "data-show-icon"
+	// attribute is not explicitly set to "false". This prevents reserving
+	// grid space for an icon when the component has an `icon` prop but
+	// `showIcon` is false (the common cause for unintended left padding).
 	&[data-icon]:not([data-show-icon="false"]),
 	&[data-semantic]:not([data-semantic="adaptive"], [data-show-icon="false"]),
 	&:has(img) {
-		@content;
+		grid-template-areas: $areas;
+		grid-template-columns: $columns;
 	}
 }
 
-// Base layout: content only
-@mixin shared-base-grid($areas, $columns) {
-	@include apply-grid($areas, $columns);
-}
-
-// Progressive enhancement: adds close button
-@mixin shared-with-close($areas, $columns) {
-	&:has(.db-button) {
-		@include apply-grid($areas, $columns);
-	}
-}
-
-// Progressive enhancement: adds header
-@mixin shared-with-header($areas, $columns) {
-	&:has(header) {
-		@include apply-grid($areas, $columns);
-	}
-}
-
-// Progressive enhancement: adds header + close button
-@mixin shared-with-header-close($areas, $columns) {
-	&:has(header):has(.db-button) {
-		@include apply-grid($areas, $columns);
-	}
-}
-
-// Progressive enhancement: adds icon or image
-@mixin shared-with-icon($areas, $columns) {
-	@include icon-selector {
-		@include apply-grid($areas, $columns);
-	}
-}
-
-// Progressive enhancement: adds icon + close button
 @mixin shared-with-icon-close($areas, $columns) {
-	@include icon-selector {
-		&:has(.db-button) {
-			@include apply-grid($areas, $columns);
-		}
+	// Same as shared-with-icon but for variants that also have a close button
+	&[data-icon]:not([data-show-icon="false"]):has(.db-button),
+	&[data-semantic]:not(
+			[data-semantic="adaptive"],
+			[data-show-icon="false"]
+		):has(.db-button),
+	&:has(img):has(.db-button) {
+		grid-template-areas: $areas;
+		grid-template-columns: $columns;
 	}
 }
 
-// Progressive enhancement: adds icon + header
 @mixin shared-with-icon-header($areas, $columns) {
-	@include icon-selector {
-		&:has(header) {
-			@include apply-grid($areas, $columns);
-		}
+	// Same as shared-with-icon but for variants that also have a header
+	&[data-icon]:not([data-show-icon="false"]):has(header),
+	&[data-semantic]:not(
+			[data-semantic="adaptive"],
+			[data-show-icon="false"]
+		):has(header),
+	&:has(img):has(header) {
+		grid-template-areas: $areas;
+		grid-template-columns: $columns;
 	}
 }
 
-// Progressive enhancement: adds icon + header + close button
 @mixin shared-with-icon-header-close($areas, $columns) {
-	@include icon-selector {
-		&:has(header):has(.db-button) {
-			@include apply-grid($areas, $columns);
-		}
+	// Same as shared-with-icon but for variants that have a header and close button
+	&[data-icon]:not([data-show-icon="false"]):has(header):has(.db-button),
+	&[data-semantic]:not(
+			[data-semantic="adaptive"],
+			[data-show-icon="false"]
+		):has(header):has(.db-button),
+	&:has(img):has(header):has(.db-button) {
+		grid-template-areas: $areas;
+		grid-template-columns: $columns;
 	}
 }

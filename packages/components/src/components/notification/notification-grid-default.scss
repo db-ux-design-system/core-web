@@ -1,134 +1,102 @@
-// Shared selector for icon/semantic/image detection
-@mixin icon-or-image-selector {
-	&[data-icon],
-	&[data-semantic]:not([data-semantic="adaptive"]),
-	&:has(img) {
-		@content;
-	}
-}
-
 %grid-layout-default {
-	// 1. Base: content only
+	// 1. only content (min. requirement)
 	grid-template-areas: "content";
 	grid-template-columns: 1fr;
 
-	// 2. Inline link variant (uses timestamp area)
+	// Add a layout for inline links
 	&[data-link-variant="inline"] {
 		grid-template-columns: 1fr min-content;
 		grid-template-areas: "content timestamp";
 	}
 
-	// 3. Close button added
 	&:has(.db-button) {
 		grid-template-columns: 1fr min-content;
 		grid-template-areas: "content close";
+
+		// Inline link + close button
+		&[data-link-variant="inline"] {
+			grid-template-columns: 1fr min-content min-content;
+			grid-template-areas: "content timestamp close";
+		}
 	}
 
-	// 4. Inline link + close button
-	&[data-link-variant="inline"]:has(.db-button) {
-		grid-template-columns: 1fr min-content min-content;
-		grid-template-areas: "content timestamp close";
-	}
-
-	// 5. Header added
+	// 2. headline
 	&:has(header) {
 		grid-template-columns: 1fr;
 		grid-template-areas:
 			"head"
 			"content";
+
+		&[data-link-variant="inline"] {
+			grid-template-columns: 1fr min-content;
+			grid-template-areas:
+				"head timestamp"
+				"content content";
+		}
+
+		&:has(.db-button) {
+			grid-template-columns: 1fr min-content;
+			grid-template-areas:
+				"head close"
+				"content content";
+
+			&[data-link-variant="inline"] {
+				grid-template-columns: 1fr min-content min-content;
+				grid-template-areas:
+					"head timestamp close"
+					"content content ."; // Empty cell aligns content column with head row
+			}
+		}
 	}
 
-	// 6. Header + inline link
-	&[data-link-variant="inline"]:has(header) {
-		grid-template-columns: 1fr min-content;
-		grid-template-areas:
-			"head timestamp"
-			"content content";
-	}
-
-	// 7. Header + close button
-	&:has(header):has(.db-button) {
-		grid-template-columns: 1fr min-content;
-		grid-template-areas:
-			"head close"
-			"content content";
-	}
-
-	// 8. Header + inline link + close button
-	&[data-link-variant="inline"]:has(header):has(.db-button) {
-		grid-template-columns: 1fr min-content min-content;
-		grid-template-areas:
-			"head timestamp close"
-			"content content .";
-	}
-
-	// 9. Icon/image added
-	@include icon-or-image-selector {
+	// 3. icon or img
+	&[data-icon],
+	&[data-semantic]:not([data-semantic="adaptive"]),
+	&:has(img) {
 		grid-template-areas: "icon content";
 		grid-template-columns: min-content 1fr;
-	}
 
-	// 10. Icon + inline link
-	@include icon-or-image-selector {
 		&[data-link-variant="inline"] {
 			grid-template-columns: min-content 1fr min-content;
 			grid-template-areas: "icon content timestamp";
 		}
-	}
 
-	// 11. Icon + close button
-	@include icon-or-image-selector {
 		&:has(.db-button) {
 			grid-template-columns: min-content 1fr min-content;
 			grid-template-areas: "icon content close";
-		}
-	}
 
-	// 12. Icon + inline link + close button
-	@include icon-or-image-selector {
-		&[data-link-variant="inline"]:has(.db-button) {
-			grid-template-columns: min-content 1fr min-content min-content;
-			grid-template-areas: "icon content timestamp close";
+			&[data-link-variant="inline"] {
+				grid-template-columns: min-content 1fr min-content min-content;
+				grid-template-areas: "icon content timestamp close";
+			}
 		}
-	}
 
-	// 13. Icon + header
-	@include icon-or-image-selector {
 		&:has(header) {
 			grid-template-columns: min-content 1fr;
 			grid-template-areas:
 				"icon head"
 				"icon content";
-		}
-	}
 
-	// 14. Icon + header + inline link
-	@include icon-or-image-selector {
-		&[data-link-variant="inline"]:has(header) {
-			grid-template-columns: min-content 1fr min-content;
-			grid-template-areas:
-				"icon head timestamp"
-				"icon content content";
-		}
-	}
+			&[data-link-variant="inline"] {
+				grid-template-columns: min-content 1fr min-content;
+				grid-template-areas:
+					"icon head timestamp"
+					"icon content content";
+			}
 
-	// 15. Icon + header + close button
-	@include icon-or-image-selector {
-		&:has(header):has(.db-button) {
-			grid-template-columns: min-content 1fr min-content;
-			grid-template-areas:
-				"icon head close"
-				"icon content content";
-		}
-	}
+			&:has(.db-button) {
+				grid-template-columns: min-content 1fr min-content;
+				grid-template-areas:
+					"icon head close"
+					"icon content content";
 
-	// 16. Icon + header + inline link + close button (full combination)
-	@include icon-or-image-selector {
-		&[data-link-variant="inline"]:has(header):has(.db-button) {
-			grid-template-columns: min-content 1fr min-content min-content;
-			grid-template-areas:
-				"icon head timestamp close"
-				"icon content content .";
+				&[data-link-variant="inline"] {
+					grid-template-columns: min-content 1fr min-content min-content;
+					grid-template-areas:
+						"icon head timestamp close"
+						"icon content content ."; // Empty cell aligns content column with head row
+				}
+			}
 		}
 	}
 }
