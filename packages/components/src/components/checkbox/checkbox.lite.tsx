@@ -221,9 +221,7 @@ export default function DBCheckbox(props: DBCheckboxProps) {
 	}, [_ref]);
 
 	onUnMount(() => {
-		if (state.abortController) {
-			state.abortController.abort();
-		}
+		state.abortController?.abort();
 	});
 	// jscpd:ignore-end
 

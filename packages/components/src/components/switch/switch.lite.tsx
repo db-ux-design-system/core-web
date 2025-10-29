@@ -186,9 +186,7 @@ export default function DBSwitch(props: DBSwitchProps) {
 	}, [_ref]);
 
 	onUnMount(() => {
-		if (state.abortController) {
-			state.abortController.abort();
-		}
+		state.abortController?.abort();
 	});
 	// jscpd:ignore-end
 

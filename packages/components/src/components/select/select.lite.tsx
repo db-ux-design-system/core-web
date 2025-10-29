@@ -260,9 +260,7 @@ export default function DBSelect(props: DBSelectProps) {
 	}, [_ref]);
 
 	onUnMount(() => {
-		if (state.abortController) {
-			state.abortController.abort();
-		}
+		state.abortController?.abort();
 	});
 
 	return (

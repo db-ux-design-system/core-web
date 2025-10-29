@@ -253,9 +253,7 @@ export default function DBInput(props: DBInputProps) {
 	}, [_ref]);
 
 	onUnMount(() => {
-		if (state.abortController) {
-			state.abortController.abort();
-		}
+		state.abortController?.abort();
 	});
 
 	return (

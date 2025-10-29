@@ -225,9 +225,7 @@ export default function DBTextarea(props: DBTextareaProps) {
 	}, [_ref]);
 
 	onUnMount(() => {
-		if (state.abortController) {
-			state.abortController.abort();
-		}
+		state.abortController?.abort();
 	});
 
 	return (

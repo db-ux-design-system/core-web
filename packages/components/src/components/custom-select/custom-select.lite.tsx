@@ -882,9 +882,7 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 	}, [selectRef, props.invalidMessage]);
 
 	onUnMount(() => {
-		if (state.abortController) {
-			state.abortController.abort();
-		}
+		state.abortController?.abort();
 	});
 
 	function satisfyReact(event: any) {

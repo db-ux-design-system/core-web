@@ -155,9 +155,7 @@ export default function DBRadio(props: DBRadioProps) {
 	}, [_ref]);
 
 	onUnMount(() => {
-		if (state.abortController) {
-			state.abortController.abort();
-		}
+		state.abortController?.abort();
 	});
 	// jscpd:ignore-end
 
