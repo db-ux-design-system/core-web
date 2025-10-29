@@ -77,6 +77,9 @@ jobs:
       - name: 🛤 Extract name and base
         id: extract-name-and-base
         uses: actions/github-script@v8
+        env:
+          GITHUB_REF: ${{ github.ref }}
+          RELEASE: ${{ inputs.release }}
         with:
           script: |
             const { default: extractNameAndBaseUrl } = await import('${{ github.workspace }}/scripts/github/extract-name-and-base-url.js');

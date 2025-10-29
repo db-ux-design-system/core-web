@@ -24,21 +24,21 @@ You can add an icon before or after a tag, by adding an `data-` attribute to you
 
 You can control the size/weight of icons by using the `data-icon-weight` attribute. Available weights are: `16`, `20`, `24`, `32`, `48`, `64`.
 
-| Position | Data attribute                                      | Example                                                |
-| -------- | :-------------------------------------------------: | ------------------------------------------------------ |
-| `before` | `data-icon-weight="24"`                             | `<span data-icon="user" data-icon-weight="24">Text</span>` |
-| `before` | `data-icon-weight-before="32"`                      | `<span data-icon="user" data-icon-weight-before="32">Text</span>` |
-| `after`  | `data-icon-weight-after="20"`                       | `<span data-icon-trailing="user" data-icon-weight-after="20">Text</span>` |
+| Position |         Data attribute         | Example                                                                   |
+| -------- | :----------------------------: | ------------------------------------------------------------------------- |
+| `before` |    `data-icon-weight="24"`     | `<span data-icon="user" data-icon-weight="24">Text</span>`                |
+| `before` | `data-icon-weight-before="32"` | `<span data-icon="user" data-icon-weight-before="32">Text</span>`         |
+| `after`  | `data-icon-weight-after="20"`  | `<span data-icon-trailing="user" data-icon-weight-after="20">Text</span>` |
 
 ### Icon variant (family)
 
 You can control the variant/family of icons by using the `data-icon-variant` attribute. Available variants are: `default`, `filled`.
 
-| Position | Data attribute                                      | Example                                                |
-| -------- | :-------------------------------------------------: | ------------------------------------------------------ |
-| `before` | `data-icon-variant="filled"`                        | `<span data-icon="user" data-icon-variant="filled">Text</span>` |
-| `before` | `data-icon-variant-before="filled"`                 | `<span data-icon="user" data-icon-variant-before="filled">Text</span>` |
-| `after`  | `data-icon-variant-after="filled"`                  | `<span data-icon-trailing="user" data-icon-variant-after="filled">Text</span>` |
+| Position |           Data attribute            | Example                                                                        |
+| -------- | :---------------------------------: | ------------------------------------------------------------------------------ |
+| `before` |    `data-icon-variant="filled"`     | `<span data-icon="user" data-icon-variant="filled">Text</span>`                |
+| `before` | `data-icon-variant-before="filled"` | `<span data-icon="user" data-icon-variant-before="filled">Text</span>`         |
+| `after`  | `data-icon-variant-after="filled"`  | `<span data-icon-trailing="user" data-icon-variant-after="filled">Text</span>` |
 
 ### Combining weight and variant
 
@@ -46,20 +46,28 @@ You can combine both weight and variant attributes for precise icon control:
 
 ```html
 <!-- 32px filled icon before text -->
-<span data-icon="user" data-icon-weight="32" data-icon-variant="filled">User Profile</span>
+<span data-icon="user" data-icon-weight="32" data-icon-variant="filled"
+	>User Profile</span
+>
 
 <!-- 24px default icon after text -->
-<span data-icon-trailing="arrow_right" data-icon-weight-after="24" data-icon-variant-after="default">Next</span>
+<span
+	data-icon-trailing="arrow_right"
+	data-icon-weight-after="24"
+	data-icon-variant-after="default"
+	>Next</span
+>
 
 <!-- Different styling for before and after icons -->
-<span 
-  data-icon="star" 
-  data-icon-weight-before="20" 
-  data-icon-variant-before="filled"
-  data-icon-trailing="arrow_right" 
-  data-icon-weight-after="16" 
-  data-icon-variant-after="default">
-  Favorite Item
+<span
+	data-icon="star"
+	data-icon-weight-before="20"
+	data-icon-variant-before="filled"
+	data-icon-trailing="arrow_right"
+	data-icon-weight-after="16"
+	data-icon-variant-after="default"
+>
+	Favorite Item
 </span>
 ```
 
