@@ -10,6 +10,7 @@ import FormCustomSelects from '../form/custom-select';
 import FormInputs from '../form/input';
 import FormRadios from '../form/radio';
 import FormSelects from '../form/select';
+import FormSwitches from '../form/switch';
 import FormTextareas from '../form/textarea';
 
 const Home = () => {
@@ -25,6 +26,7 @@ const Home = () => {
 				<DBTabItem data-testid="tab-custom-selects">
 					Custom Selects
 				</DBTabItem>
+				<DBTabItem data-testid="tab-switches">Switches</DBTabItem>
 			</DBTabList>
 			<DBTabPanel>
 				<FormComponent />
@@ -46,6 +48,9 @@ const Home = () => {
 			</DBTabPanel>
 			<DBTabPanel>
 				<FormCustomSelects />
+			</DBTabPanel>
+			<DBTabPanel>
+				<FormSwitches />
 			</DBTabPanel>
 		</DBTabs>
 	);
