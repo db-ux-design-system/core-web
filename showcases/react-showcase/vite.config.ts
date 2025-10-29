@@ -1,8 +1,8 @@
 import react from '@vitejs/plugin-react';
-import devtoolsJson from 'vite-plugin-devtools-json';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { defineConfig } from 'vite';
+import devtoolsJson from 'vite-plugin-devtools-json';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 

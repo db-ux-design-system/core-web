@@ -1,8 +1,4 @@
-import {
-	DBInfotext,
-	DBRadio,
-	getBoolean
-} from '@components';
+import { DBInfotext, DBRadio, getBoolean } from '@components';
 import { type DBRadioProps } from '@components/src/components/radio/model';
 import defaultComponentVariants from '../../../../shared/radio.json';
 import { type BaseComponentProps } from '../base-component-data';

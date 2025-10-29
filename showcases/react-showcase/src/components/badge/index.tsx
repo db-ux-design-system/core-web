@@ -1,9 +1,4 @@
-import {
-	DBBadge,
-	DBButton,
-	DBIcon,
-	DBInfotext
-} from '@components';
+import { DBBadge, DBButton, DBIcon, DBInfotext } from '@components';
 import type { DBBadgeProps } from '@components/src/components/badge/model';
 import defaultComponentVariants from '../../../../shared/badge.json';
 import { type BaseComponentProps } from '../base-component-data';

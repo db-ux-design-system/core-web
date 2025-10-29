@@ -1,8 +1,4 @@
-import {
-	DBInfotext,
-	DBNavigation,
-	DBNavigationItem
-} from '@components';
+import { DBInfotext, DBNavigation, DBNavigationItem } from '@components';
 import type { DBNavigationProps } from '@components/src/components/navigation/model';
 import defaultComponentVariants from '../../../../shared/navigation.json';
 import { type BaseComponentProps } from '../base-component-data';

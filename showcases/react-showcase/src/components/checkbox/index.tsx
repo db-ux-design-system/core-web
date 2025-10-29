@@ -1,8 +1,4 @@
-import {
-	DBCheckbox,
-	DBInfotext,
-	getBoolean
-} from '@components';
+import { DBCheckbox, DBInfotext, getBoolean } from '@components';
 import { type DBCheckboxProps } from '@components/src/components/checkbox/model';
 import defaultComponentVariants from '../../../../shared/checkbox.json';
 import { type BaseComponentProps } from '../base-component-data';

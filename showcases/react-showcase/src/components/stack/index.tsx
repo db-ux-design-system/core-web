@@ -1,8 +1,4 @@
-import {
-	DBDivider,
-	DBInfotext,
-	DBStack
-} from '@components';
+import { DBDivider, DBInfotext, DBStack } from '@components';
 import type { DBStackProps } from '@components/src/components/stack/model';
 import defaultComponentVariants from '../../../../shared/stack.json';
 import type { BaseComponentProps } from '../base-component-data';
