@@ -1,10 +1,5 @@
 @use "notification-grid-shared" as shared;
 
-%grid-layout-variant-not-overlay {
-	span {
-		display: none;
-	}
-}
 
 // Wrapper mixins for non-overlay variants that use shared grid logic
 @mixin non-overlay-base-grid($areas, $columns) {
