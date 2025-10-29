@@ -154,6 +154,14 @@
 		grid-area: icon;
 	}
 
+	// If showIcon is explicitly set to false, hide the generated icon
+	// pseudo-element.
+	&[data-show-icon="false"]::before {
+		/* Hidden when showIcon is explicitly false. Using `display:none`
+		   is sufficient; avoid extra properties that don't affect layout. */
+		display: none;
+	}
+
 	&:has(img) {
 		// Hide icon when image is present to avoid conflicts
 		&::before {

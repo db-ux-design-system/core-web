@@ -44,7 +44,12 @@ export default function DBNotification(props: DBNotificationProps) {
 			aria-live={props.ariaLive}
 			data-semantic={props.semantic}
 			data-variant={props.variant}
-			data-icon={props.icon}
+			// Only set `data-icon` when the icon should be shown. We treat an
+			// undefined `showIcon` as "show" (backwards compatible default).
+			// Omit `data-icon` only when `showIcon` is explicitly false.
+			data-icon={
+				getBoolean(props.showIcon) !== false ? props.icon : undefined
+			}
 			data-show-icon={getBooleanAsString(props.showIcon)}
 			data-link-variant={props.linkVariant}>
 			<Slot name="image" />

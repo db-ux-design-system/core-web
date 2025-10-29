@@ -28,8 +28,12 @@
 }
 
 @mixin shared-with-icon($areas, $columns) {
-	&[data-icon],
-	&[data-semantic]:not([data-semantic="adaptive"]),
+	// Only treat the element as having an icon when the "data-show-icon"
+	// attribute is not explicitly set to "false". This prevents reserving
+	// grid space for an icon when the component has an `icon` prop but
+	// `showIcon` is false (the common cause for unintended left padding).
+	&[data-icon]:not([data-show-icon="false"]),
+	&[data-semantic]:not([data-semantic="adaptive"], [data-show-icon="false"]),
 	&:has(img) {
 		grid-template-areas: $areas;
 		grid-template-columns: $columns;
@@ -37,8 +41,12 @@
 }
 
 @mixin shared-with-icon-close($areas, $columns) {
-	&[data-icon]:has(.db-button),
-	&[data-semantic]:not([data-semantic="adaptive"]):has(.db-button),
+	// Same as shared-with-icon but for variants that also have a close button
+	&[data-icon]:not([data-show-icon="false"]):has(.db-button),
+	&[data-semantic]:not(
+			[data-semantic="adaptive"],
+			[data-show-icon="false"]
+		):has(.db-button),
 	&:has(img):has(.db-button) {
 		grid-template-areas: $areas;
 		grid-template-columns: $columns;
@@ -46,8 +54,12 @@
 }
 
 @mixin shared-with-icon-header($areas, $columns) {
-	&[data-icon]:has(header),
-	&[data-semantic]:not([data-semantic="adaptive"]):has(header),
+	// Same as shared-with-icon but for variants that also have a header
+	&[data-icon]:not([data-show-icon="false"]):has(header),
+	&[data-semantic]:not(
+			[data-semantic="adaptive"],
+			[data-show-icon="false"]
+		):has(header),
 	&:has(img):has(header) {
 		grid-template-areas: $areas;
 		grid-template-columns: $columns;
@@ -55,10 +67,12 @@
 }
 
 @mixin shared-with-icon-header-close($areas, $columns) {
-	&[data-icon]:has(header):has(.db-button),
-	&[data-semantic]:not([data-semantic="adaptive"]):has(header):has(
-			.db-button
-		),
+	// Same as shared-with-icon but for variants that have a header and close button
+	&[data-icon]:not([data-show-icon="false"]):has(header):has(.db-button),
+	&[data-semantic]:not(
+			[data-semantic="adaptive"],
+			[data-show-icon="false"]
+		):has(header):has(.db-button),
 	&:has(img):has(header):has(.db-button) {
 		grid-template-areas: $areas;
 		grid-template-columns: $columns;
