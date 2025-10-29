@@ -9,7 +9,6 @@
     "build:copy": "cpr out ../../build-showcases/patternhub -o",
     "compile": "npm-run-all compile:*",
     "compile:02_copy-docs": "cpr ../../docs ./public/docs -o",
-    "compile:04_run": "node generated.js",
     "compile:05_test-table": "node scripts/generate-test-table.js",
     "dev": "cross-env NEXT_PUBLIC_BASE_PATH=/core-web/sub NODE_OPTIONS='--inspect' npm-run-all compile:* --parallel open next:dev",
     "lint": "next lint",
