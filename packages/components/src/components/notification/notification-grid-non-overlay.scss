@@ -1,85 +1,82 @@
 @use "notification-grid-shared" as shared;
 
-%grid-layout-variant-not-overlay {
-	span {
-		display: none;
-	}
+// Reusable mixin for all 8 progressive enhancement combinations
+@mixin apply-layouts(
+	$base-areas,
+	$base-cols,
+	$close-areas,
+	$close-cols,
+	$header-areas,
+	$header-cols,
+	$header-close-areas,
+	$header-close-cols,
+	$icon-areas,
+	$icon-cols,
+	$icon-close-areas,
+	$icon-close-cols,
+	$icon-header-areas,
+	$icon-header-cols,
+	$icon-header-close-areas,
+	$icon-header-close-cols
+) {
+	@include shared.shared-base-grid($base-areas, $base-cols);
+	@include shared.shared-with-close($close-areas, $close-cols);
+	@include shared.shared-with-header($header-areas, $header-cols);
+	@include shared.shared-with-header-close(
+		$header-close-areas,
+		$header-close-cols
+	);
+	@include shared.shared-with-icon($icon-areas, $icon-cols);
+	@include shared.shared-with-icon-close($icon-close-areas, $icon-close-cols);
+	@include shared.shared-with-icon-header(
+		$icon-header-areas,
+		$icon-header-cols
+	);
+	@include shared.shared-with-icon-header-close(
+		$icon-header-close-areas,
+		$icon-header-close-cols
+	);
 }
 
-// Wrapper mixins for non-overlay variants that use shared grid logic
-@mixin non-overlay-base-grid($areas, $columns) {
-	@include shared.shared-base-grid($areas, $columns);
-}
-
-@mixin non-overlay-with-close($areas, $columns) {
-	@include shared.shared-with-close($areas, $columns);
-}
-
-@mixin non-overlay-with-header($areas, $columns) {
-	@include shared.shared-with-header($areas, $columns);
-}
-
-@mixin non-overlay-with-header-close($areas, $columns) {
-	@include shared.shared-with-header-close($areas, $columns);
-}
-
-@mixin non-overlay-with-icon($areas, $columns) {
-	@include shared.shared-with-icon($areas, $columns);
-}
-
-@mixin non-overlay-with-icon-close($areas, $columns) {
-	@include shared.shared-with-icon-close($areas, $columns);
-}
-
-@mixin non-overlay-with-icon-header($areas, $columns) {
-	@include shared.shared-with-icon-header($areas, $columns);
-}
-
-@mixin non-overlay-with-icon-header-close($areas, $columns) {
-	@include shared.shared-with-icon-header-close($areas, $columns);
-}
-
-@mixin non-overlay-block-link-layouts() {
-	// 1. Base: content + block link (no additional elements)
-	@include non-overlay-base-grid("content" "link", 1fr);
-	@include non-overlay-with-close(
+// Layout for non-overlay with block link
+@mixin non-overlay-block-layouts() {
+	@include apply-layouts(
+		// Base: content + link
+		"content" "link",
+		1fr,
+		// + close
 		"content close" "link link",
-		1fr min-content
-	);
-
-	// 2. Adds: headline
-	@include non-overlay-with-header("head" "content" "link", 1fr);
-	@include non-overlay-with-header-close(
+		1fr min-content,
+		// + header
+		"head" "content" "link",
+		1fr,
+		// + header + close
 		"head close" "content content" "link link",
-		1fr min-content
-	);
-
-	// 3. Adds: icon or image
-	@include non-overlay-with-icon("icon content" "icon link", min-content 1fr);
-	@include non-overlay-with-icon-close(
+		1fr min-content,
+		// + icon
+		"icon content" "icon link",
+		min-content 1fr,
+		// + icon + close
 		"icon content close" "icon link link",
-		min-content 1fr min-content
-	);
-	@include non-overlay-with-icon-header(
+		min-content 1fr min-content,
+		// + icon + header
 		"icon head" "icon content" "icon link",
-		min-content 1fr
-	);
-	@include non-overlay-with-icon-header-close(
+		min-content 1fr,
+		// + icon + header + close
 		"icon head close" "icon content content" "icon link link",
 		min-content 1fr min-content
 	);
 }
 
 %grid-layout-variant-not-overlay {
-	// Hide timestamp for non-overlay variants only
+	// Hide timestamp for non-overlay variants
 	span {
 		display: none;
 	}
 
-	// Apply block link layout when linkVariant is "block" (explicit or default)
-	// Only applies to non-overlay variants with block links
+	// Apply block link layout (explicit or default when links present)
 	&[data-link-variant="block"],
 	&:not([data-link-variant]):has(a) {
-		@include non-overlay-block-link-layouts;
+		@include non-overlay-block-layouts;
 	}
 }
