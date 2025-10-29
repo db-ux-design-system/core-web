@@ -1,5 +1,6 @@
 import {
 	onMount,
+	onUnMount,
 	onUpdate,
 	Show,
 	useDefaultProps,
@@ -28,6 +29,7 @@ import {
 	uuid
 } from '../../utils';
 import {
+	addCheckedResetEventListener,
 	handleFrameworkEventAngular,
 	handleFrameworkEventVue
 } from '../../utils/form-components';
@@ -56,7 +58,7 @@ export default function DBSwitch(props: DBSwitchProps) {
 		_invalidMessage: undefined as string | undefined,
 		_descByIds: undefined,
 		_voiceOverFallback: '' as string,
-
+		abortController: undefined,
 		hasValidState: () => {
 			return !!(props.validMessage ?? props.validation === 'valid');
 		},
@@ -99,11 +101,19 @@ export default function DBSwitch(props: DBSwitchProps) {
 
 			state._descByIds = undefined;
 		},
-		handleChange: (event: ChangeEvent<HTMLInputElement>) => {
+		handleChange: (
+			event: ChangeEvent<HTMLInputElement>,
+			reset?: boolean
+		) => {
 			useTarget({
-				angular: () =>
-					handleFrameworkEventAngular(state, event, 'checked'),
-				vue: () => handleFrameworkEventVue(() => {}, event, 'checked'),
+				angular: () => {
+					if (props.onChange) {
+						// We need to split the if statements for generation
+						if (reset) {
+							props.onChange(event);
+						}
+					}
+				},
 				default: () => {
 					if (props.onChange) {
 						props.onChange(event);
@@ -111,6 +121,13 @@ export default function DBSwitch(props: DBSwitchProps) {
 				}
 			});
 			state.handleValidation();
+
+			useTarget({
+				angular: () => {
+					handleFrameworkEventAngular(state, event, 'checked');
+				},
+				vue: () => handleFrameworkEventVue(() => {}, event, 'checked')
+			});
 		},
 		handleBlur: (event: InteractionEvent<HTMLInputElement>) => {
 			if (props.onBlur) {
@@ -144,6 +161,33 @@ export default function DBSwitch(props: DBSwitchProps) {
 		props.checked
 	]);
 
+	onUpdate(() => {
+		if (_ref) {
+			const defaultChecked = useTarget({
+				react: (props as any).defaultChecked,
+				default: undefined
+			});
+
+			let controller = state.abortController;
+			if (!controller) {
+				controller = new AbortController();
+				state.abortController = controller;
+			}
+
+			addCheckedResetEventListener(
+				_ref,
+				{ checked: props.checked, defaultChecked },
+				(event) => {
+					state.handleChange(event, true);
+				},
+				controller.signal
+			);
+		}
+	}, [_ref]);
+
+	onUnMount(() => {
+		state.abortController?.abort();
+	});
 	// jscpd:ignore-end
 
 	return (

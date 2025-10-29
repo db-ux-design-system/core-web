@@ -56,6 +56,11 @@ export default function ButtonShowcase(props: PatternhubProps) {
 					<ButtonWidth />
 				</CardWrapperShowcase>
 			</LinkWrapperShowcase>
+			<LinkWrapperShowcase exampleName="Multiline Text">
+				<CardWrapperShowcase>
+					<ButtonWidth />
+				</CardWrapperShowcase>
+			</LinkWrapperShowcase>
 		</ContainerWrapperShowcase>
 	);
 }
