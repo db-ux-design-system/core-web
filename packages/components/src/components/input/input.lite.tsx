@@ -1,6 +1,7 @@
 import {
 	For,
 	onMount,
+	onUnMount,
 	onUpdate,
 	Show,
 	useDefaultProps,
@@ -41,6 +42,7 @@ import {
 	uuid
 } from '../../utils';
 import {
+	addValueResetEventListener,
 	handleFrameworkEventAngular,
 	handleFrameworkEventVue
 } from '../../utils/form-components';
@@ -71,6 +73,7 @@ export default function DBInput(props: DBInputProps) {
 		_descByIds: undefined,
 		_value: undefined,
 		_voiceOverFallback: '',
+		abortController: undefined,
 		hasValidState: () => {
 			return !!(props.validMessage ?? props.validation === 'valid');
 		},
@@ -106,8 +109,15 @@ export default function DBInput(props: DBInputProps) {
 				state._descByIds = undefined;
 			}
 		},
-		handleInput: (event: InputEvent<HTMLInputElement>) => {
+		handleInput: (event: InputEvent<HTMLInputElement>, reset?: boolean) => {
 			useTarget({
+				angular: () => {
+					if (props.onInput) {
+						if (reset) {
+							props.onInput(event);
+						}
+					}
+				},
 				vue: () => {
 					if (props.input) {
 						props.input(event);
@@ -129,10 +139,25 @@ export default function DBInput(props: DBInputProps) {
 			});
 			state.handleValidation();
 		},
-		handleChange: (event: ChangeEvent<HTMLInputElement>) => {
-			if (props.onChange) {
-				props.onChange(event);
-			}
+		handleChange: (
+			event: ChangeEvent<HTMLInputElement>,
+			reset?: boolean
+		) => {
+			useTarget({
+				angular: () => {
+					if (props.onChange) {
+						// We need to split the if statements for generation
+						if (reset) {
+							props.onChange(event);
+						}
+					}
+				},
+				default: () => {
+					if (props.onChange) {
+						props.onChange(event);
+					}
+				}
+			});
 
 			useTarget({
 				angular: () => handleFrameworkEventAngular(state, event),
@@ -201,6 +226,35 @@ export default function DBInput(props: DBInputProps) {
 	onUpdate(() => {
 		state._value = props.value;
 	}, [props.value]);
+
+	onUpdate(() => {
+		if (_ref) {
+			const defaultValue = useTarget({
+				react: (props as any).defaultValue,
+				default: undefined
+			});
+
+			let controller = state.abortController;
+			if (!controller) {
+				controller = new AbortController();
+				state.abortController = controller;
+			}
+
+			addValueResetEventListener(
+				_ref,
+				{ value: props.value, defaultValue },
+				(event) => {
+					state.handleChange(event, true);
+					state.handleInput(event, true);
+				},
+				controller.signal
+			);
+		}
+	}, [_ref]);
+
+	onUnMount(() => {
+		state.abortController?.abort();
+	});
 
 	return (
 		<div
