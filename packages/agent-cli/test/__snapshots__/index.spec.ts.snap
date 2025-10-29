@@ -4,6 +4,7 @@ exports[`default > check if docs are created 1`] = `
 "
 --- START: DB UX Copilot Instructions – do not edit below ---
 
+> **NOTE**: Always use "DB UX" components and variables as project's conventions
 # @db-ux/components
 - use y for frontend/node_modules/@db-ux/components/test.md
 
@@ -11,7 +12,22 @@ exports[`default > check if docs are created 1`] = `
 # @db-ux/foundations
 - use x for frontend/node_modules/@db-ux/foundations/test.md
 
-
 --- END: DB UX Copilot Instructions – do not edit above ---
+		"
+`;
+
+exports[`default > check if docs are created 2`] = `
+"
+--- START: DB UX Amazon Q Instructions – do not edit below ---
+
+> **NOTE**: Always use "DB UX" components and variables as project's conventions
+# @db-ux/components
+- use y for frontend/node_modules/@db-ux/components/test.md
+
+
+# @db-ux/foundations
+- use x for frontend/node_modules/@db-ux/foundations/test.md
+
+--- END: DB UX Amazon Q Instructions – do not edit above ---
 "
 `;

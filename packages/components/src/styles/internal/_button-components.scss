@@ -1,4 +1,4 @@
-@use "@db-ux/core-foundations/build/styles/helpers/display";
+@use "@db-ux/core-foundations/build/styles/helpers";
 
 %default-button {
 	font-weight: 700;
@@ -7,7 +7,7 @@
 	justify-content: center;
 	text-align: center;
 
-	@include display.display(inline-flex);
+	@include helpers.display(inline-flex);
 
 	align-items: center; // Centering the content vertically and horizontally
 	vertical-align: top; // Alignment of inline-flex buttons with different content

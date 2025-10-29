@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 import { execSync } from 'node:child_process';
 
-const { VALID_SEMVER_VERSION, NPM_TOKEN } = process.env;
+const { VALID_SEMVER_VERSION } = process.env;
 const RELEASE = process.env.RELEASE === 'true';
 const PRE_RELEASE = process.env.PRE_RELEASE === 'true';
 
@@ -80,8 +80,7 @@ for (const REGISTRY of registries) {
 
 	if (REGISTRY === 'NPM') {
 		execSync('npm config set @db-ux:registry https://registry.npmjs.org/');
-		execSync(`npm set //registry.npmjs.org/:_authToken ${NPM_TOKEN}`);
-		console.log('🔑 Authenticated with NPM');
+		console.log('🔑 Using trusted publishing for NPM');
 	} else {
 		console.error(`Could not authenticate with ${REGISTRY}`);
 		process.exit(1);

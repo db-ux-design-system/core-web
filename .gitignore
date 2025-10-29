@@ -73,4 +73,6 @@ showcases/patternhub/public/iframe-resizer/*
 /output/**/docs/
 /output/**/agent/
 /packages/agent-cli/test/.github/copilot-instructions.md
+/packages/agent-cli/test/.amazonq/rules/db-ux.md
 /core-web.iml
+/build-storybooks/

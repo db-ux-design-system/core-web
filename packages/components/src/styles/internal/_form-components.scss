@@ -75,12 +75,25 @@ $db-min-inline-size: var(
 	// Workaround until the :blank pseudo-class is widely supported; then prefer targeting that pseudo-class.
 	#{$selector} {
 		&:is(
-			[type="date"],
-			[type="datetime-local"],
-			[type="month"],
-			[type="week"],
-			[type="time"]
-		):not(:user-valid)::-webkit-datetime-edit {
+				[type="date"],
+				[type="datetime-local"],
+				[type="month"],
+				[type="week"],
+				[type="time"]
+			):not(
+				:user-valid,
+				/* we need to set those values, as the element might have an empty HTML value attribute */
+				[value*="1"],
+				[value*="2"],
+				[value*="3"],
+				[value*="4"],
+				[value*="5"],
+				[value*="6"],
+				[value*="7"],
+				[value*="8"],
+				[value*="9"],
+				[value*="0"]
+			)::-webkit-datetime-edit {
 			@content;
 		}
 	}
@@ -88,6 +101,18 @@ $db-min-inline-size: var(
 
 @mixin set-floating-label-overwrites($selector) {
 	&[data-variant="floating"] {
+		@include get-validity($selector) {
+			label {
+				color: var(--db-successful-on-bg-basic-emphasis-80-default);
+			}
+		}
+
+		@include get-validity($selector, "invalid") {
+			label {
+				color: var(--db-critical-on-bg-basic-emphasis-80-default);
+			}
+		}
+
 		> label {
 			@extend %db-overwrite-font-size-md;
 
@@ -195,10 +220,6 @@ $db-min-inline-size: var(
 		$variant: "critical";
 	}
 
-	@if $selector == textarea {
-		--db-textarea-read-only: var(--db-#{$variant}-bg-basic-level-1-default);
-	}
-
 	@if $selector != textarea {
 		@extend %db-#{$variant}-variables;
 		/* stylelint-disable-next-line at-rule-empty-line-before */
@@ -229,6 +250,10 @@ $db-min-inline-size: var(
 		--db-adaptive-on-bg-basic-emphasis-60-default: var(
 			--db-#{$variant}-on-bg-basic-emphasis-60-default
 		);
+
+		&[data-variant="floating"]::after {
+			border-color: var(--db-#{$variant}-on-bg-basic-emphasis-70-default);
+		}
 	}
 
 	#{$selector},
