@@ -43,17 +43,33 @@ designers, and content authors build, maintain, and scale best-of-class digital 
 ## How to use
 
 1. **Install your preferred package** via npm or yarn:
-   - For React: `npm i @db-ux/react-core-components`
-   - For Angular: `npm i @db-ux/ngx-core-components`
-   - For Vue: `npm i @db-ux/v-core-components`
-   - For Web Components: `npm i @db-ux/wc-core-components`
-   - For styling only: `npm i @db-ux/core-components`
+    - For React: `npm i @db-ux/react-core-components`
+    - For Angular: `npm i @db-ux/ngx-core-components`
+    - For Vue: `npm i @db-ux/v-core-components`
+    - For Web Components: `npm i @db-ux/wc-core-components`
+    - For styling only: `npm i @db-ux/core-components`
 
 2. **Include the CSS styles** as described in the "Styling Dependencies" section of each package's `README`.
 
 > **💡 Note**: All framework packages automatically include the necessary foundation styles - you don't need to install `@db-ux/core-foundations` separately!
 
 We even provide some [examples of integrations](https://github.com/db-ux-design-system/examples).
+
+## AI Agent Support
+
+For developers using AI coding assistants like GitHub Copilot or Amazon Q, we provide the [`@db-ux/agent-cli`](https://www.npmjs.com/package/@db-ux/agent-cli) tool that automatically adds DB UX Design System documentation to your repository.
+
+### Quick Start
+
+Run this command in your repository:
+
+```shell
+npx @db-ux/agent-cli
+```
+
+This will create or update `.github/copilot-instructions.md` with component documentation based on your installed `@db-ux` packages, helping AI agents provide better suggestions.
+
+📖 **[Learn more about `@db-ux/agent-cli` node package](packages/agent-cli/README.md)**
 
 ## Creating Custom Components
 
@@ -62,8 +78,9 @@ For developers looking to create custom components that extend the design system
 📖 **[Creating Custom Components Guide](docs/creating-custom-components.md)** - Learn how to build your own components using design system foundations
 
 This guide covers:
+
 - **Setup and Configuration**: Getting started with the design system packages
-- **Design Principles**: Following DB UX Design System guidelines and best practices  
+- **Design Principles**: Following DB UX Design System guidelines and best practices
 - **Component Patterns**: Structured approaches to building consistent components
 - **Code Examples**: Practical implementations for cards, forms, navigation, and more
 - **Framework Support**: Specific guidance for React, Vue, Angular, and vanilla HTML/CSS

@@ -4,34 +4,26 @@
   - article:
     - text: Headline
     - paragraph: functional
-    - button "Close"
   - article:
     - text: Headline
     - paragraph: regular (Default)
-    - button "Close"
   - article:
     - text: Headline
     - paragraph: expressive
-    - button "Close"
   - link "Variant"
   - article:
     - text: Headline
     - paragraph: (Default) Docked
-    - button "Close"
   - article:
     - text: Headline
     - paragraph: Standalone
-    - button "Close"
   - article:
     - text: Headline
     - paragraph: Overlay
-    - text: 10 min ago
-    - button "Close"
   - link "Semantic"
   - article:
     - text: Headline
     - paragraph: (Default) Adaptive
-    - button "Close"
   - article:
     - text: Headline
     - paragraph: Neutral
@@ -51,7 +43,6 @@
   - alert:
     - text: Headline
     - paragraph: Warning
-    - button "Close"
   - link "Closeable"
   - article:
     - paragraph: (Default) False
@@ -107,12 +98,14 @@
     - link "Textlink"
   - article:
     - text: Headline
-    - paragraph: Text & Headline & Textlink Inline & Closable
+    - paragraph: Text & Headline & Textlink Inline & Closeable
     - link "Textlink"
+    - button "Close"
   - article:
     - text: Headline
-    - paragraph: Text & Icon & Headline & Textlink Inline & Closable
+    - paragraph: Text & Icon & Headline & Textlink Inline & Closeable
     - link "Textlink"
+    - button "Close"
   - link "Examples - VariantStandalone":
   - article:
     - paragraph: Text
@@ -132,12 +125,14 @@
     - link "Textlink"
   - article:
     - text: Headline
-    - paragraph: Text & Headline & Textlink Inline & Closable
+    - paragraph: Text & Headline & Textlink Inline & Closeable
     - link "Textlink"
+    - button "Close"
   - article:
     - text: Headline
-    - paragraph: Text & Icon & Headline & Textlink Inline & Closable
+    - paragraph: Text & Icon & Headline & Textlink Inline & Closeable
     - link "Textlink"
+    - button "Close"
   - link "Examples - VariantOverlay":
   - article:
     - paragraph: Text
@@ -153,24 +148,36 @@
     - paragraph: Text & Textlink Inline
     - link "Textlink"
   - article:
-    - text: Headline
-    - paragraph: Text & Headline & Textlink Inline & Closable
+    - paragraph: Text & Textlink Block
+    - link "Textlink"
+  - article:
+    - paragraph: Text & Textlink Block & Timed
+    - text: 10 min ago
     - link "Textlink"
   - article:
     - text: Headline
-    - paragraph: Text & Icon & Headline & Textlink Inline & Closable
+    - paragraph: Text & Headline & Textlink Inline & Closeable
     - link "Textlink"
+    - button "Close"
+  - article:
+    - text: Headline
+    - paragraph: Text & Icon & Headline & Textlink Inline & Closeable
+    - link "Textlink"
+    - button "Close"
   - article:
     - paragraph: Text & Timed
     - text: 10 min ago
   - article:
-    - paragraph: Text & Timed & Closable
+    - paragraph: Text & Timed & Closeable
     - text: 10 min ago
+    - button "Close"
   - article:
     - text: Headline
-    - paragraph: Text & Headline & Timed & Closable
+    - paragraph: Text & Headline & Timed & Closeable
     - text: 10 min ago
+    - button "Close"
   - article:
     - text: Headline
-    - paragraph: Text & Icon & Headline & Timed & Closable
+    - paragraph: Text & Icon & Headline & Timed & Closeable
     - text: 10 min ago
+    - button "Close"

@@ -22,8 +22,8 @@ jobs:
       fail-fast: false
       matrix:
         framework: [react, vue]
-        shardIndex: [1, 2, 3]
-        shardTotal: [3]
+        shardIndex: [1, 2]
+        shardTotal: [2]
     steps:
       - name: ⏬ Checkout repo
         uses: actions/checkout@v5
