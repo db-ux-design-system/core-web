@@ -115,22 +115,24 @@ const DefaultComponent = ({
 	const color = useQuery(redirectURLSearchParameters)[2];
 
 	const getHref = (variantName: string): string => {
-		if (typeof globalThis === 'undefined' || !globalThis.location.href) {
-			return '';
+		if (
+			globalThis.window === undefined ||
+			globalThis.location === undefined
+		) {
+			return `?page=${encodeURIComponent(variantName.toLowerCase())}`;
 		}
 
 		const [baseUrl, query = ''] = globalThis.location.href.split('?');
-		const rawComponentUrl = baseUrl;
 		const searchParameters = new URLSearchParams(query);
 		searchParameters.set('page', variantName.toLowerCase());
 
 		const regexComponentOverviewFragment = /\/[a-z\d\-_]*\/overview/;
 
 		if (componentName) {
-			return `${rawComponentUrl.replace(regexComponentOverviewFragment, `/${componentName}/overview`)}?${searchParameters.toString()}`;
+			return `${baseUrl.replace(regexComponentOverviewFragment, `/${componentName}/overview`)}?${searchParameters.toString()}`;
 		}
 
-		return `${rawComponentUrl}?${searchParameters.toString()}`;
+		return `${baseUrl}?${searchParameters.toString()}`;
 	};
 
 	if (pageName) {
