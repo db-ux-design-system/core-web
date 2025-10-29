@@ -14,6 +14,10 @@
 	}
 }
 
+.show-code-link {
+	display: none;
+}
+
 .component-header {
 	display: flex;
 	align-items: center;

@@ -1,9 +1,26 @@
-import { onMount, Show, Slot, useState } from '@builder.io/mitosis';
+import { Fragment, onMount, Show, Slot, useState } from '@builder.io/mitosis';
+import DBLink from '../../components/link/link.lite';
 
-interface Props {
-	title?: string;
-	children?: any;
+export interface PatternhubProps {
+	/**
+	 * Used for Patternhub
+	 */
+	isPatternhub?: boolean;
 }
+
+type Props = {
+	title?: string;
+	/**
+	 * Slot for subcomponents - used for Patternhub
+	 */
+	subComponent?: any;
+	/**
+	 * Changes header level - used for Patternhub
+	 */
+	isSubComponent?: boolean;
+
+	children?: any;
+} & PatternhubProps;
 
 export default function ContainerWrapperShowcase(props: Props) {
 	const [hidden, setHidden] = useState<boolean>(false);
@@ -18,14 +35,57 @@ export default function ContainerWrapperShowcase(props: Props) {
 		setHidden(Boolean(params.get('page')));
 	});
 
+	function getSourceFilePath(): string | undefined {
+		if (!props.title) return;
+
+		const componentName = props.title
+			.replace(/^DB/, '')
+			.replaceAll(/([A-Z])/g, (match, letter, index) =>
+				index > 0 ? `-${letter.toLowerCase()}` : letter.toLowerCase()
+			);
+
+		if (componentName && /^[a-z]+(-[a-z]+)*$/.test(componentName)) {
+			return `packages/components/src/components/${componentName}/${componentName}.lite.tsx`;
+		}
+	}
+
+	function getGitHubSourceUrl(): string | undefined {
+		const filePath = getSourceFilePath();
+		if (!filePath) return;
+
+		const targetBranch =
+			process.env.GITHUB_BRANCH ?? process.env.BRANCH_NAME ?? 'main';
+
+		return `https://github.com/db-ux-design-system/core-web/blob/${targetBranch}/${filePath}`;
+	}
+
 	return (
-		<div className="default-container">
-			<Show when={!hidden}>
-				<div className="component-header">
-					<h1>{props.title}</h1>
-				</div>
+		<Fragment>
+			<div className="default-container">
+				<Show when={!hidden}>
+					<div className="component-header">
+						<Show
+							when={props.isSubComponent}
+							else={<h1>{props.title}</h1>}>
+							<h2>{props.title}</h2>
+						</Show>
+
+						<Show when={props.isPatternhub}>
+							<DBLink
+								target="_blank"
+								referrerpolicy="no-referrer"
+								href={getGitHubSourceUrl()}
+								content="external">
+								View Source
+							</DBLink>
+						</Show>
+					</div>
+				</Show>
+				<Slot />
+			</div>
+			<Show when={props.isPatternhub}>
+				<Slot name="subComponent" />
 			</Show>
-			<Slot />
-		</div>
+		</Fragment>
 	);
 }

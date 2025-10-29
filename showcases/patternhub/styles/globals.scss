@@ -417,85 +417,17 @@ h6 {
 	}
 }
 
+.show-code-link:is(.db-link):not([hidden]) {
+	display: flex;
+	margin-inline-start: auto;
+}
+
 .db-code-docs {
 	min-block-size: max(#{variables.$db-sizing-3xl}, 50vh);
 	align-items: center;
 	justify-content: center;
 	padding: variables.$db-spacing-fixed-xl;
-	margin-block-end: calc(
-		#{variables.$db-spacing-fixed-xl} + #{variables.$db-sizing-sm}
-	);
-	position: relative;
-
-	.code-details {
-		@include display.display(flex);
-
-		&[open] {
-			inset-inline-start: 0;
-			inset-block-start: 0;
-		}
-
-		.code-button {
-			position: absolute;
-			inset-block-end: calc(
-				-1 *
-					(
-						#{variables.$db-spacing-fixed-sm} +
-							#{variables.$db-sizing-sm}
-					)
-			);
-			inset-inline-end: variables.$db-spacing-fixed-sm;
-			z-index: 1;
-			cursor: pointer;
-
-			&::-webkit-details-marker {
-				display: none;
-			}
-		}
-
-		.no-code {
-			margin: auto;
-		}
-
-		.backdrop {
-			border-radius: variables.$db-border-radius-sm;
-			background-color: colors.$db-adaptive-on-bg-basic-emphasis-100-default;
-			opacity: 0.64;
-			position: absolute;
-			inset: 0;
-		}
-
-		.code {
-			overflow: auto;
-			position: absolute;
-			z-index: 20;
-			inset: 0;
-			margin: variables.$db-spacing-fixed-md;
-			@include display.display(flex);
-			flex-direction: column;
-			gap: variables.$db-spacing-fixed-sm;
-
-			code {
-				@include display.display(block);
-				white-space: pre-wrap;
-			}
-
-			.tab-container {
-				position: relative;
-
-				.copy-button {
-					position: absolute;
-					z-index: 20;
-					inset-inline-end: variables.$db-spacing-fixed-sm;
-					inset-block-end: variables.$db-spacing-fixed-sm;
-
-					@include screen-sizes.screen("md") {
-						inset-block: variables.$db-spacing-fixed-sm auto;
-					}
-				}
-			}
-		}
-	}
+	margin-block-end: variables.$db-spacing-fixed-md;
 }
 
 .validity-container {

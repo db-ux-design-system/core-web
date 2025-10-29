@@ -2,7 +2,6 @@ import { type ReactElement } from 'react';
 import AccordionComponent from '../../react-showcase/src/components/accordion';
 import AccordionItemComponent from '../../react-showcase/src/components/accordion-item';
 import BrandComponent from '../../react-showcase/src/components/brand';
-import ButtonComponent from '../../react-showcase/src/components/button';
 import LinkComponent from '../../react-showcase/src/components/link';
 // Import IconComponent from '../../react-showcase/src/components/icon';
 import BadgeComponent from '../../react-showcase/src/components/badge';
@@ -30,7 +29,6 @@ import SectionComponent from '../../react-showcase/src/components/section';
 import * as accordionCode from '../components/code-docs/accordion';
 import * as accordionItemCode from '../components/code-docs/accordion-item';
 import * as brandCode from '../components/code-docs/brand';
-import * as buttonCode from '../components/code-docs/button';
 import * as linkCode from '../components/code-docs/link';
 // Import * as iconCode from '../components/code-docs/icon';
 import * as badgeCode from '../components/code-docs/badge';
@@ -51,6 +49,7 @@ import * as tagCode from '../components/code-docs/tag';
 import * as textareaCode from '../components/code-docs/textarea';
 import * as tooltipCode from '../components/code-docs/tooltip';
 // Import * as pageCode from '../components/code-docs/page';
+import ButtonShowcase from '@components/components/button/showcase/button.showcase';
 import MutliSelectComponent from '../../react-showcase/src/components/custom-select';
 import StackComponent from '../../react-showcase/src/components/stack';
 import * as CustomSelectCode from '../components/code-docs/custom-select';
@@ -73,7 +72,7 @@ export type NavigationItem = {
 const nameComponentMap = {
 	'custom-select': <MutliSelectComponent slotCode={CustomSelectCode} />,
 	stack: <StackComponent slotCode={StackCode} />,
-	button: <ButtonComponent slotCode={buttonCode} />,
+	button: <ButtonShowcase isPatternhub />,
 	link: <LinkComponent slotCode={linkCode} />,
 	brand: <BrandComponent slotCode={brandCode} />,
 	// Icon: <IconComponent slotCode={iconCode} />,
