@@ -1,5 +1,6 @@
 import {
 	onMount,
+	onUnMount,
 	onUpdate,
 	Show,
 	useDefaultProps,
@@ -56,6 +57,7 @@ export default function DBCheckbox(props: DBCheckboxProps) {
 		_invalidMessage: undefined,
 		_descByIds: undefined,
 		_voiceOverFallback: '',
+		abortController: undefined,
 		hasValidState: () => {
 			return !!(props.validMessage ?? props.validation === 'valid');
 		},
@@ -200,15 +202,29 @@ export default function DBCheckbox(props: DBCheckboxProps) {
 				react: (props as any).defaultChecked,
 				default: undefined
 			});
+
+			let controller = state.abortController;
+			if (!controller) {
+				controller = new AbortController();
+				state.abortController = controller;
+			}
+
 			addCheckedResetEventListener(
 				_ref,
 				{ checked: props.checked, defaultChecked },
 				(event) => {
 					state.handleChange(event, true);
-				}
+				},
+				controller.signal
 			);
 		}
 	}, [_ref]);
+
+	onUnMount(() => {
+		if (state.abortController) {
+			state.abortController.abort();
+		}
+	});
 	// jscpd:ignore-end
 
 	return (

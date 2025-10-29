@@ -1,5 +1,6 @@
 import {
 	onMount,
+	onUnMount,
 	onUpdate,
 	Show,
 	useDefaultProps,
@@ -33,6 +34,7 @@ export default function DBRadio(props: DBRadioProps) {
 	const state = useStore<DBRadioState>({
 		initialized: false,
 		_id: undefined,
+		abortController: undefined,
 		handleInput: (
 			event: ChangeEvent<HTMLInputElement> | any,
 			reset?: boolean
@@ -119,28 +121,44 @@ export default function DBRadio(props: DBRadioProps) {
 				react: (props as any).defaultChecked,
 				default: undefined
 			});
-			addResetEventListener(_ref, (event: Event) => {
-				void delay(() => {
-					const resetChecked = props.checked
-						? props.checked
-						: defaultChecked
-							? defaultChecked
-							: _ref.checked;
-					const valueEvent: any = {
-						...event,
-						target: {
-							...event.target,
-							value: '',
-							checked: resetChecked
-						}
-					};
-					state.handleChange(valueEvent, true);
-					state.handleInput(valueEvent, true);
-				}, 1);
-			});
+
+			let controller = state.abortController;
+			if (!controller) {
+				controller = new AbortController();
+				state.abortController = controller;
+			}
+
+			addResetEventListener(
+				_ref,
+				(event: Event) => {
+					void delay(() => {
+						const resetChecked = props.checked
+							? props.checked
+							: defaultChecked
+								? defaultChecked
+								: _ref.checked;
+						const valueEvent: any = {
+							...event,
+							target: {
+								...event.target,
+								value: '',
+								checked: resetChecked
+							}
+						};
+						state.handleChange(valueEvent, true);
+						state.handleInput(valueEvent, true);
+					}, 1);
+				},
+				controller.signal
+			);
 		}
 	}, [_ref]);
 
+	onUnMount(() => {
+		if (state.abortController) {
+			state.abortController.abort();
+		}
+	});
 	// jscpd:ignore-end
 
 	return (

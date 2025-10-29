@@ -522,6 +522,11 @@ export type FormState = {
 	 * This is an internal Fallback
 	 */
 	_voiceOverFallback?: string;
+
+	/**
+	 * We use this to remove form event listener
+	 */
+	abortController?: AbortController;
 };
 
 export type InitializedState = {

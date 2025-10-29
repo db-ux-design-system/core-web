@@ -1,6 +1,7 @@
 import {
 	For,
 	onMount,
+	onUnMount,
 	onUpdate,
 	Show,
 	useDefaultProps,
@@ -67,6 +68,7 @@ export default function DBSelect(props: DBSelectProps) {
 		_value: '',
 		initialized: false,
 		_voiceOverFallback: '',
+		abortController: undefined,
 		hasValidState: () => {
 			return !!(props.validMessage ?? props.validation === 'valid');
 		},
@@ -238,16 +240,30 @@ export default function DBSelect(props: DBSelectProps) {
 				react: (props as any).defaultValue,
 				default: undefined
 			});
+
+			let controller = state.abortController;
+			if (!controller) {
+				controller = new AbortController();
+				state.abortController = controller;
+			}
+
 			addValueResetEventListener(
 				_ref,
 				{ value: props.value, defaultValue },
 				(event) => {
 					state.handleChange(event, true);
 					state.handleInput(event, true);
-				}
+				},
+				controller.signal
 			);
 		}
 	}, [_ref]);
+
+	onUnMount(() => {
+		if (state.abortController) {
+			state.abortController.abort();
+		}
+	});
 
 	return (
 		<div

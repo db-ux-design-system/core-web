@@ -1,5 +1,6 @@
 import {
 	onMount,
+	onUnMount,
 	onUpdate,
 	Show,
 	useDefaultProps,
@@ -60,6 +61,7 @@ export default function DBTextarea(props: DBTextareaProps) {
 		_descByIds: undefined,
 		_value: '',
 		_voiceOverFallback: '',
+		abortController: undefined,
 		hasValidState: () => {
 			return !!(props.validMessage ?? props.validation === 'valid');
 		},
@@ -203,16 +205,30 @@ export default function DBTextarea(props: DBTextareaProps) {
 				react: (props as any).defaultValue,
 				default: undefined
 			});
+
+			let controller = state.abortController;
+			if (!controller) {
+				controller = new AbortController();
+				state.abortController = controller;
+			}
+
 			addValueResetEventListener(
 				_ref,
 				{ value: props.value, defaultValue },
 				(event) => {
 					state.handleChange(event, true);
 					state.handleInput(event, true);
-				}
+				},
+				controller.signal
 			);
 		}
 	}, [_ref]);
+
+	onUnMount(() => {
+		if (state.abortController) {
+			state.abortController.abort();
+		}
+	});
 
 	return (
 		<div
