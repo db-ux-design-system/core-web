@@ -27,6 +27,7 @@ useDefaultProps<DBTabItemProps>({});
 
 export default function DBTabItem(props: DBTabItemProps) {
 	const _ref = useRef<HTMLInputElement | any>(null);
+
 	// jscpd:ignore-start
 	const state = useStore<DBTabItemState>({
 		_selected: false,
@@ -49,18 +50,6 @@ export default function DBTabItem(props: DBTabItemProps) {
 				props.onChange(event);
 			}
 
-			// We have different ts types in different frameworks, so we need to use any here
-
-			useTarget({
-				stencil: () => {
-					const selected = (event.target as any)?.['checked'];
-					state._selected = getBooleanAsString(selected);
-				},
-				default: () => {
-					state._selected = (event.target as any)?.['checked'];
-				}
-			});
-
 			useTarget({
 				angular: () =>
 					handleFrameworkEventAngular(state, event, 'checked'),
@@ -82,6 +71,14 @@ export default function DBTabItem(props: DBTabItemProps) {
 
 			useTarget({ react: () => state.handleNameAttribute() });
 			state.initialized = false;
+
+			// deselect this tab when another tab in tablist is selected
+			_ref.closest('[role=tablist]')?.addEventListener(
+				'change',
+				(event: any) => {
+					state._selected = event.target === _ref;
+				}
+			);
 		}
 	}, [_ref, state.initialized]);
 
