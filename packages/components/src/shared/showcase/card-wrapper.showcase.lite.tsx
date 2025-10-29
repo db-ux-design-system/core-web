@@ -22,7 +22,7 @@ export default function CardWrapperShowcase(props: Props) {
 	}
 
 	onMount(() => {
-		if (window && localStorage) {
+		if (typeof window !== 'undefined' && localStorage) {
 			updateHref();
 		}
 	});

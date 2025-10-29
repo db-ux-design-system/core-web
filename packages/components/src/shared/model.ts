@@ -718,3 +718,11 @@ export type PopoverState = {
 	handleEnter: (parent?: HTMLElement) => void;
 	handleLeave: (event?: any) => void;
 } & DocumentScrollState;
+
+// TODO: Remove this after we migrate to one-platform
+export interface PatternhubProps {
+	/**
+	 * Used for Patternhub
+	 */
+	isPatternhub?: boolean;
+}

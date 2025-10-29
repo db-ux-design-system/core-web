@@ -1,12 +1,6 @@
 import { Fragment, onMount, Show, Slot, useState } from '@builder.io/mitosis';
 import DBLink from '../../components/link/link.lite';
-
-export interface PatternhubProps {
-	/**
-	 * Used for Patternhub
-	 */
-	isPatternhub?: boolean;
-}
+import { PatternhubProps } from '../model';
 
 type Props = {
 	title?: string;
@@ -26,20 +20,22 @@ export default function ContainerWrapperShowcase(props: Props) {
 	const [hidden, setHidden] = useState<boolean>(false);
 
 	onMount(() => {
-		const hash = window.location.hash;
-		const queryString = hash.includes('?') ? hash.split('?')[1] : '';
-		const params = new URLSearchParams(
-			window.location.search || queryString
-		);
+		if (typeof window !== 'undefined') {
+			const hash = window.location.hash;
+			const queryString = hash.includes('?') ? hash.split('?')[1] : '';
+			const params = new URLSearchParams(
+				window.location.search || queryString
+			);
 
-		setHidden(Boolean(params.get('page')));
+			setHidden(Boolean(params.get('page')));
+		}
 	});
 
 	function getSourceFilePath(): string | undefined {
 		if (!props.title) return;
 
 		const componentName = props.title
-			.replace(/^DB/, '')
+			?.replace(/^DB/, '')
 			.replaceAll(/([A-Z])/g, (match, letter, index) =>
 				index > 0 ? `-${letter.toLowerCase()}` : letter.toLowerCase()
 			);
@@ -47,6 +43,8 @@ export default function ContainerWrapperShowcase(props: Props) {
 		if (componentName && /^[a-z]+(-[a-z]+)*$/.test(componentName)) {
 			return `packages/components/src/components/${componentName}/${componentName}.lite.tsx`;
 		}
+
+		return;
 	}
 
 	function getGitHubSourceUrl(): string | undefined {
@@ -54,7 +52,9 @@ export default function ContainerWrapperShowcase(props: Props) {
 		if (!filePath) return;
 
 		const targetBranch =
-			process.env.GITHUB_BRANCH ?? process.env.BRANCH_NAME ?? 'main';
+			process.env['GITHUB_BRANCH'] ??
+			process.env['BRANCH_NAME'] ??
+			'main';
 
 		return `https://github.com/db-ux-design-system/core-web/blob/${targetBranch}/${filePath}`;
 	}

@@ -18,7 +18,7 @@ import {
 	DBTextarea,
 	DBTooltip
 } from '@components';
-import type { ChangeEvent, ValueLabelType } from '@components/shared/model';
+import type { ChangeEvent, ValueLabelType } from '@components/src/shared/model';
 import { useEffect, useState } from 'react';
 
 const FormComponent = () => {

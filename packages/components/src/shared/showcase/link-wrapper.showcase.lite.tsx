@@ -13,20 +13,26 @@ export default function LinkWrapperShowcase(props: Props) {
 	}
 
 	function getHref(): string {
-		const hash = window.location.hash;
-		const basePath = hash.includes('?') ? hash.split('?')[0] : hash;
-		return `${basePath}?page=${getPage()}`;
+		if (typeof window !== 'undefined') {
+			const hash = window.location.hash;
+			const basePath = hash.includes('?') ? hash.split('?')[0] : hash;
+			return `${basePath}?page=${getPage()}`;
+		}
+
+		return '';
 	}
 
 	const [pageParam, setPageParam] = useState<string | null>(null);
 
 	onMount(() => {
-		const hash = window.location.hash;
-		const queryString = hash.includes('?') ? hash.split('?')[1] : '';
-		const params = new URLSearchParams(
-			window.location.search || queryString
-		);
-		setPageParam(params.get('page'));
+		if (typeof window !== 'undefined') {
+			const hash = window.location.hash;
+			const queryString = hash.includes('?') ? hash.split('?')[1] : '';
+			const params = new URLSearchParams(
+				window.location.search || queryString
+			);
+			setPageParam(params.get('page'));
+		}
 	});
 
 	return (
