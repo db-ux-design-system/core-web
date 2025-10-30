@@ -23,7 +23,7 @@ const patternHubConfig: PlaywrightTestConfig = {
 	},
 	use: {
 		/* Maximum time each action such as `click()` can take. Defaults to 0 (no limit). */
-		actionTimeout: 60_000,
+		actionTimeout: 30_000,
 		/* Base URL to use in actions like `await page.goto('/')`. */
 		baseURL: `http://localhost:8080${process.env.NEXT_PUBLIC_BASE_PATH ?? ''}/`,
 
