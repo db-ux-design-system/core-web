@@ -15,7 +15,7 @@
     - tab "(Default) Enabled"
     - text: (Default) Enabled
   - tablist:
-    - tab "active" [selected]
+    - tab "active"
     - text: active
   - tablist:
     - tab "disabled" [disabled]
