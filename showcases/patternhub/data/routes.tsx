@@ -1,63 +1,32 @@
+import ButtonShowcase from '@components/components/button/showcase/button.showcase';
 import { type ReactElement } from 'react';
 import AccordionComponent from '../../react-showcase/src/components/accordion';
 import AccordionItemComponent from '../../react-showcase/src/components/accordion-item';
-import BrandComponent from '../../react-showcase/src/components/brand';
-import LinkComponent from '../../react-showcase/src/components/link';
-// Import IconComponent from '../../react-showcase/src/components/icon';
 import BadgeComponent from '../../react-showcase/src/components/badge';
+import BrandComponent from '../../react-showcase/src/components/brand';
 import CardComponent from '../../react-showcase/src/components/card';
 import CheckboxComponent from '../../react-showcase/src/components/checkbox';
+import MutliSelectComponent from '../../react-showcase/src/components/custom-select';
 import DividerComponent from '../../react-showcase/src/components/divider';
 import DrawerComponent from '../../react-showcase/src/components/drawer';
 import HeaderComponent from '../../react-showcase/src/components/header';
 import InfotextComponent from '../../react-showcase/src/components/infotext';
 import InputComponent from '../../react-showcase/src/components/input';
+import LinkComponent from '../../react-showcase/src/components/link';
+import NavigationComponent from '../../react-showcase/src/components/navigation';
+import NavigationItemComponent from '../../react-showcase/src/components/navigation-item';
 import NotificationComponent from '../../react-showcase/src/components/notification';
+import PopoverComponent from '../../react-showcase/src/components/popover';
 import RadioComponent from '../../react-showcase/src/components/radio';
+import SectionComponent from '../../react-showcase/src/components/section';
 import SelectComponent from '../../react-showcase/src/components/select';
+import StackComponent from '../../react-showcase/src/components/stack';
 import SwitchComponent from '../../react-showcase/src/components/switch';
 import TabItemComponent from '../../react-showcase/src/components/tab-item';
 import TabsComponent from '../../react-showcase/src/components/tabs';
 import TagComponent from '../../react-showcase/src/components/tag';
 import TextareaComponent from '../../react-showcase/src/components/textarea';
 import TooltipComponent from '../../react-showcase/src/components/tooltip';
-// Import PageComponent from '../../react-showcase/src/components/page';
-import NavigationComponent from '../../react-showcase/src/components/navigation';
-import NavigationItemComponent from '../../react-showcase/src/components/navigation-item';
-import PopoverComponent from '../../react-showcase/src/components/popover';
-import SectionComponent from '../../react-showcase/src/components/section';
-import * as accordionCode from '../components/code-docs/accordion';
-import * as accordionItemCode from '../components/code-docs/accordion-item';
-import * as brandCode from '../components/code-docs/brand';
-import * as linkCode from '../components/code-docs/link';
-// Import * as iconCode from '../components/code-docs/icon';
-import * as badgeCode from '../components/code-docs/badge';
-import * as cardCode from '../components/code-docs/card';
-import * as checkboxCode from '../components/code-docs/checkbox';
-import * as dividerCode from '../components/code-docs/divider';
-import * as drawerCode from '../components/code-docs/drawer';
-import * as headerCode from '../components/code-docs/header';
-import * as infotextCode from '../components/code-docs/infotext';
-import * as inputCode from '../components/code-docs/input';
-import * as notificationCode from '../components/code-docs/notification';
-import * as radioCode from '../components/code-docs/radio';
-import * as selectCode from '../components/code-docs/select';
-import * as switchCode from '../components/code-docs/switch';
-import * as tabItemCode from '../components/code-docs/tab-item';
-import * as tabsCode from '../components/code-docs/tabs';
-import * as tagCode from '../components/code-docs/tag';
-import * as textareaCode from '../components/code-docs/textarea';
-import * as tooltipCode from '../components/code-docs/tooltip';
-// Import * as pageCode from '../components/code-docs/page';
-import ButtonShowcase from '@components/components/button/showcase/button.showcase';
-import MutliSelectComponent from '../../react-showcase/src/components/custom-select';
-import StackComponent from '../../react-showcase/src/components/stack';
-import * as CustomSelectCode from '../components/code-docs/custom-select';
-import * as navigationCode from '../components/code-docs/navigation';
-import * as navigationItemCode from '../components/code-docs/navigation-item';
-import * as popoverCode from '../components/code-docs/popover';
-import * as sectionCode from '../components/code-docs/section';
-import * as StackCode from '../components/code-docs/stack';
 import Components from './components.json';
 
 export type NavigationItem = {
@@ -70,71 +39,63 @@ export type NavigationItem = {
 };
 
 const nameComponentMap = {
-	'custom-select': <MutliSelectComponent slotCode={CustomSelectCode} />,
-	stack: <StackComponent slotCode={StackCode} />,
+	'custom-select': <MutliSelectComponent />,
+	stack: <StackComponent />,
 	button: <ButtonShowcase isPatternhub />,
-	link: <LinkComponent slotCode={linkCode} />,
-	brand: <BrandComponent slotCode={brandCode} />,
-	// Icon: <IconComponent slotCode={iconCode} />,
-	tooltip: <TooltipComponent slotCode={tooltipCode} />,
-	infotext: <InfotextComponent slotCode={infotextCode} />,
-	tag: <TagComponent slotCode={tagCode} />,
+	link: <LinkComponent />,
+	brand: <BrandComponent />,
+	// Icon: <IconComponent />,
+	tooltip: <TooltipComponent />,
+	infotext: <InfotextComponent />,
+	tag: <TagComponent />,
 	accordion: (
 		<AccordionComponent
-			slotCode={accordionCode}
 			subComponent={
 				<AccordionItemComponent
 					isSubComponent={true}
 					componentName="accordion-item"
-					slotCode={accordionItemCode}
 				/>
 			}
 		/>
 	),
-	'accordion-item': <AccordionItemComponent slotCode={accordionItemCode} />,
+	'accordion-item': <AccordionItemComponent />,
 	tabs: (
 		<TabsComponent
-			slotCode={tabsCode}
 			subComponent={
 				<TabItemComponent
 					isSubComponent={true}
 					componentName="tab-item"
-					slotCode={tabItemCode}
 				/>
 			}
 		/>
 	),
-	'tab-item': <TabItemComponent slotCode={tabItemCode} />,
-	checkbox: <CheckboxComponent slotCode={checkboxCode} />,
-	input: <InputComponent slotCode={inputCode} />,
-	radio: <RadioComponent slotCode={radioCode} />,
-	select: <SelectComponent slotCode={selectCode} />,
-	switch: <SwitchComponent slotCode={switchCode} />,
-	textarea: <TextareaComponent slotCode={textareaCode} />,
-	notification: <NotificationComponent slotCode={notificationCode} />,
-	badge: <BadgeComponent slotCode={badgeCode} />,
-	card: <CardComponent slotCode={cardCode} />,
-	divider: <DividerComponent slotCode={dividerCode} />,
-	drawer: <DrawerComponent slotCode={drawerCode} />,
-	header: <HeaderComponent slotCode={headerCode} />,
-	// Page: <PageComponent slotCode={pageCode} />,
-	section: <SectionComponent slotCode={sectionCode} />,
+	'tab-item': <TabItemComponent />,
+	checkbox: <CheckboxComponent />,
+	input: <InputComponent />,
+	radio: <RadioComponent />,
+	select: <SelectComponent />,
+	switch: <SwitchComponent />,
+	textarea: <TextareaComponent />,
+	notification: <NotificationComponent />,
+	badge: <BadgeComponent />,
+	card: <CardComponent />,
+	divider: <DividerComponent />,
+	drawer: <DrawerComponent />,
+	header: <HeaderComponent />,
+	// Page: <PageComponent />,
+	section: <SectionComponent />,
 	navigation: (
 		<NavigationComponent
-			slotCode={navigationCode}
 			subComponent={
 				<NavigationItemComponent
 					isSubComponent={true}
 					componentName="navigation-item"
-					slotCode={navigationItemCode}
 				/>
 			}
 		/>
 	),
-	'navigation-item': (
-		<NavigationItemComponent slotCode={navigationItemCode} />
-	),
-	popover: <PopoverComponent slotCode={popoverCode} />
+	'navigation-item': <NavigationItemComponent />,
+	popover: <PopoverComponent />
 };
 
 const addComponentsToNavigationItems = (
