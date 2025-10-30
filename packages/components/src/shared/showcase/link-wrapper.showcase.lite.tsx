@@ -9,7 +9,7 @@ interface Props {
 
 export default function LinkWrapperShowcase(props: Props) {
 	function getPage(): string | undefined {
-		return props.exampleName?.replaceAll(' ', '-').toLowerCase();
+		return props.exampleName?.replaceAll(' ', '+').toLowerCase();
 	}
 
 	function getHref(): string {
