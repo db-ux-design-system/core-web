@@ -1,0 +1,35 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8" data-next-head=""/><meta name="viewport" content="width=device-width" data-next-head=""/><title data-next-head="">DB UX</title><link data-next-font="size-adjust" rel="preconnect" href="/" crossorigin="anonymous"/><link rel="preload" href="/core-web/review/fix-tab-item-selected-state/_next/static/css/432356273d814842.css" as="style"/><link rel="stylesheet" href="/core-web/review/fix-tab-item-selected-state/_next/static/css/432356273d814842.css" data-n-g=""/><noscript data-n-css=""></noscript><script defer="" nomodule="" src="/core-web/review/fix-tab-item-selected-state/_next/static/chunks/polyfills-42372ed130431b0a.js"></script><script src="/core-web/review/fix-tab-item-selected-state/_next/static/chunks/webpack-a6b6c1e489c8b976.js" defer=""></script><script src="/core-web/review/fix-tab-item-selected-state/_next/static/chunks/framework-c528b96079bb3756.js" defer=""></script><script src="/core-web/review/fix-tab-item-selected-state/_next/static/chunks/main-cd3474844adf252c.js" defer=""></script><script src="/core-web/review/fix-tab-item-selected-state/_next/static/chunks/pages/_app-a1683986d898d5c8.js" defer=""></script><script src="/core-web/review/fix-tab-item-selected-state/_next/static/chunks/pages/components/layout/drawer/docs/React-b0a1b868d772735a.js" defer=""></script><script src="/core-web/review/fix-tab-item-selected-state/_next/static/BwmD3x3U_K44uD9Q86E24/_buildManifest.js" defer=""></script><script src="/core-web/review/fix-tab-item-selected-state/_next/static/BwmD3x3U_K44uD9Q86E24/_ssgManifest.js" defer=""></script></head><body><div id="__next"><h2 id="react">React<a class="header-link" href="/core-web/review/fix-tab-item-selected-state/components/layout/drawer/docs/React?current=react"><span aria-hidden="true" class="db-icon" data-icon="paper_clip"></span>react<!-- --> anchor link</a></h2>
+<p>For general installation and configuration take a look at the <a target="_blank" referrerPolicy="no-referrer" href="https://www.npmjs.com/package/@db-ux/react-core-components">react-core-components</a> package.</p>
+<h3 id="general">General<a class="header-link" href="/core-web/review/fix-tab-item-selected-state/components/layout/drawer/docs/React?current=general"><span aria-hidden="true" class="db-icon" data-icon="paper_clip"></span>general<!-- --> anchor link</a></h3>
+<p>If you use <code>width !== full</code> you are able to overwrite the <code>max-width</code> with <code>--db-drawer-max-width:</code> CSS variable.</p>
+<h3 id="use-component">Use component<a class="header-link" href="/core-web/review/fix-tab-item-selected-state/components/layout/drawer/docs/React?current=use-component"><span aria-hidden="true" class="db-icon" data-icon="paper_clip"></span>use-component<!-- --> anchor link</a></h3>
+<pre><code class="language-tsx">// App.tsx
+import { useState } from &quot;react&quot;;
+import { DBButton, DBDrawer } from &quot;@db-ux/react-core-components&quot;;
+
+const App = () =&gt; {
+	const [open, setOpen] = useState&lt;boolean&gt;(false);
+	return (
+		&lt;div&gt;
+			&lt;DBButton
+				onClick={() =&gt; {
+					setOpen(true);
+				}}
+			&gt;
+				Open Me
+			&lt;/DBButton&gt;
+			&lt;DBDrawer
+				open={open}
+				onClose={() =&gt; {
+					setOpen(false);
+				}}
+				drawerHeader={&lt;header&gt;Optional drawer header&lt;/header&gt;}
+			&gt;
+				My Drawer content
+			&lt;/DBDrawer&gt;
+		&lt;/div&gt;
+	);
+};
+
+export default App;
+</code></pre></div><script id="__NEXT_DATA__" type="application/json">{"props":{"pageProps":{}},"page":"/components/layout/drawer/docs/React","query":{},"buildId":"BwmD3x3U_K44uD9Q86E24","assetPrefix":"/core-web/review/fix-tab-item-selected-state","nextExport":true,"autoExport":true,"isFallback":false,"scriptLoader":[]}</script></body></html>
