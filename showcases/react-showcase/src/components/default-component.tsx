@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react';
+import { useCallback, useState } from 'react';
 import { DBCard, DBDivider, DBLink } from '../../../../output/react/src';
 import type {
 	ReactDefaultComponentProps,
@@ -115,41 +115,24 @@ const DefaultComponent = ({
 	const color = useQuery(redirectURLSearchParameters)[2];
 
 	const getHref = (variantName: string): string => {
-		if (typeof globalThis !== 'undefined') {
-			const searchParameters = new URLSearchParams(
-				globalThis?.location?.href.split('?')[1]
-			);
-			searchParameters.set('page', variantName.toLowerCase());
-			return `${globalThis?.location?.href.split('?')[0]}?${searchParameters.toString()}`;
-		}
-
-		return '';
-	};
-
-	const openVariantInNewWindow = (
-		event: React.MouseEvent<HTMLAnchorElement>,
-		variantName: string
-	) => {
 		if (
-			typeof globalThis === 'undefined' ||
-			!globalThis.location.origin ||
-			!globalThis.location.href
+			globalThis.window === undefined ||
+			globalThis.location === undefined
 		) {
-			return;
+			return `?page=${encodeURIComponent(variantName.toLowerCase())}`;
 		}
 
-		const currentUrl = globalThis.location.href.split('?');
-		const rawComponentUrl = currentUrl[0];
-		const searchParameters = new URLSearchParams(currentUrl[1] ?? '');
+		const [baseUrl, query = ''] = globalThis.location.href.split('?');
+		const searchParameters = new URLSearchParams(query);
 		searchParameters.set('page', variantName.toLowerCase());
 
 		const regexComponentOverviewFragment = /\/[a-z\d\-_]*\/overview/;
 
-		const openUrl = componentName
-			? `${rawComponentUrl.replace(regexComponentOverviewFragment, `/${componentName}/overview`)}?${searchParameters.toString()}`
-			: `${currentUrl[0]}?${searchParameters.toString()}`;
+		if (componentName) {
+			return `${baseUrl.replace(regexComponentOverviewFragment, `/${componentName}/overview`)}?${searchParameters.toString()}`;
+		}
 
-		window.open(openUrl, '_blank');
+		return `${baseUrl}?${searchParameters.toString()}`;
 	};
 
 	if (pageName) {
@@ -196,9 +179,7 @@ const DefaultComponent = ({
 								className="link-headline"
 								content="external"
 								target="_blank"
-								onClick={(event) => {
-									openVariantInNewWindow(event, variant.name);
-								}}
+								rel="noopener noreferrer"
 								href={getHref(variant.name)}>
 								{variant.name}
 							</DBLink>

@@ -2,7 +2,8 @@
 
 %default-button {
 	font-weight: 700;
-	white-space: nowrap; // we don't want to break buttons
+	overflow-wrap: break-word; // Multiple lines support
+	white-space: pre-line; // Multiple lines support
 	justify-content: center;
 	text-align: center;
 
