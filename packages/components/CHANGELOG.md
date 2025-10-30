@@ -1,5 +1,23 @@
 # @db-ux/core-components
 
+## 4.1.0
+
+### Minor Changes
+
+- refactor(notification): update and simplify grid layout for block link variant - [see commit cb83f96](https://github.com/db-ux-design-system/core-web/commit/cb83f966eaf29c85b4cf0079750bdd563f216d6e)
+
+- fix(DBCustomSelect): properly announce selected options - [see commit 773edeb](https://github.com/db-ux-design-system/core-web/commit/773edeb943a085eb79e1c8d59059137b2830fbf0):
+  - feat(DBCustomSelect): introduce new property `selectedPrefix`
+
+### Patch Changes
+
+- fix(DBCustomSelect): automatically handle form reset events - [see commit 6af5246](https://github.com/db-ux-design-system/core-web/commit/6af5246b3b2e6febdc6ff6342ba1a8eb10184d14):
+  - An event listener is now added for every form component (input, custom-select, etc.) when a `form` property is passed.
+  - This listener detects form resets and updates the component's internal value/checked state accordingly.
+  - > **Note**: This does not work for `ngModel` in Angular.
+
+- fix(button): Replace fixed height with min-height for buttons to allow dynamic height adjustment when text wraps - [see commit d1fd2c4](https://github.com/db-ux-design-system/core-web/commit/d1fd2c4e58a5ed6f75fab44700cd2d93c7232474)
+
 ## 4.0.4
 
 ### Patch Changes
