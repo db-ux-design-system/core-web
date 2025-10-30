@@ -28,5 +28,6 @@
   - button "(Default) Auto"
   - button "Width"
   - link "Multi-line Text With Line Breaks"
-  - button "(Default) Auto"
-  - button "Width"
+  - button "Multi-line Text With Automatic Line Breaks"
+  - button "Multi-line Text With Automatic Line Breaks and Icon"
+  - button "Button Small Multi-line Text With Automatic Line Breaks"
