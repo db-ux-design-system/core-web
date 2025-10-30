@@ -125,6 +125,7 @@ db-card:is(.variants-card) > .db-card {
 
 .badge-inline-container {
 	display: flex;
+	align-items: center;
 	gap: var(--db-spacing-fixed-sm);
 	padding: var(--db-spacing-fixed-xs) var(--db-spacing-fixed-sm);
 	background-color: var(--db-adaptive-bg-basic-level-2-default);
@@ -132,7 +133,6 @@ db-card:is(.variants-card) > .db-card {
 
 .badge-inline-container .db-badge {
 	margin-inline-start: var(--db-spacing-responsive-md);
-	margin-block: auto;
 }
 
 .fixed-header-footer {
