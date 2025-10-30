@@ -1,0 +1,75 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8" data-next-head=""/><meta name="viewport" content="width=device-width" data-next-head=""/><title data-next-head="">DB UX</title><link data-next-font="size-adjust" rel="preconnect" href="/" crossorigin="anonymous"/><link rel="preload" href="/core-web/review/5391-badge-default-inline-placement-wraps-to-new-line-on-mobile-safari/_next/static/css/46857a237736e5e6.css" as="style"/><link rel="stylesheet" href="/core-web/review/5391-badge-default-inline-placement-wraps-to-new-line-on-mobile-safari/_next/static/css/46857a237736e5e6.css" data-n-g=""/><noscript data-n-css=""></noscript><script defer="" nomodule="" src="/core-web/review/5391-badge-default-inline-placement-wraps-to-new-line-on-mobile-safari/_next/static/chunks/polyfills-42372ed130431b0a.js"></script><script src="/core-web/review/5391-badge-default-inline-placement-wraps-to-new-line-on-mobile-safari/_next/static/chunks/webpack-b5f72bbd2efb3615.js" defer=""></script><script src="/core-web/review/5391-badge-default-inline-placement-wraps-to-new-line-on-mobile-safari/_next/static/chunks/framework-c528b96079bb3756.js" defer=""></script><script src="/core-web/review/5391-badge-default-inline-placement-wraps-to-new-line-on-mobile-safari/_next/static/chunks/main-08183ba1eae5bed4.js" defer=""></script><script src="/core-web/review/5391-badge-default-inline-placement-wraps-to-new-line-on-mobile-safari/_next/static/chunks/pages/_app-af0ac8c3ff806c88.js" defer=""></script><script src="/core-web/review/5391-badge-default-inline-placement-wraps-to-new-line-on-mobile-safari/_next/static/chunks/pages/components/data-display/tab-item/docs/HTML-c4b0a5ecfb6c81b8.js" defer=""></script><script src="/core-web/review/5391-badge-default-inline-placement-wraps-to-new-line-on-mobile-safari/_next/static/rLm9MUbP_Y5O2jS8su94W/_buildManifest.js" defer=""></script><script src="/core-web/review/5391-badge-default-inline-placement-wraps-to-new-line-on-mobile-safari/_next/static/rLm9MUbP_Y5O2jS8su94W/_ssgManifest.js" defer=""></script></head><body><div id="__next"><h2 id="html">HTML<a class="header-link" href="/core-web/review/5391-badge-default-inline-placement-wraps-to-new-line-on-mobile-safari/components/data-display/tab-item/docs/HTML?current=html"><span aria-hidden="true" class="db-icon" data-icon="paper_clip"></span>html<!-- --> anchor link</a></h2>
+<p>For general installation and configuration take a look at the <a target="_blank" referrerPolicy="no-referrer" href="https://www.npmjs.com/package/@db-ux/core-components">components</a> package.</p>
+<h3 id="use-component">Use component<a class="header-link" href="/core-web/review/5391-badge-default-inline-placement-wraps-to-new-line-on-mobile-safari/components/data-display/tab-item/docs/HTML?current=use-component"><span aria-hidden="true" class="db-icon" data-icon="paper_clip"></span>use-component<!-- --> anchor link</a></h3>
+<pre><code class="language-html">&lt;!-- index.html --&gt;
+...
+&lt;body&gt;
+	&lt;div class=&quot;db-tabs&quot;&gt;
+		&lt;div role=&quot;tablist&quot; class=&quot;db-tab-list&quot; aria-orientation=&quot;horizontal&quot;&gt;
+			&lt;div class=&quot;db-tab-list-scroll-container&quot;&gt;
+				&lt;label
+					role=&quot;tab&quot;
+					for=&quot;my-tabs-tab-0&quot;
+					class=&quot;db-tab-item&quot;
+					data-width=&quot;auto&quot;
+					data-alignment=&quot;start&quot;
+					aria-controls=&quot;my-tabs-tab-panel-0&quot;
+					&gt;&lt;input
+						type=&quot;radio&quot;
+						id=&quot;my-tabs-tab-0&quot;
+						name=&quot;my-tabs&quot;
+					/&gt;Test 1&lt;/label
+				&gt;&lt;label
+					role=&quot;tab&quot;
+					for=&quot;my-tabs-tab-1&quot;
+					class=&quot;db-tab-item&quot;
+					data-width=&quot;auto&quot;
+					data-alignment=&quot;start&quot;
+					aria-controls=&quot;my-tabs-tab-panel-1&quot;
+					&gt;&lt;input
+						type=&quot;radio&quot;
+						id=&quot;my-tabs-tab-1&quot;
+						name=&quot;my-tabs&quot;
+					/&gt;Test 2&lt;/label
+				&gt;&lt;label
+					role=&quot;tab&quot;
+					for=&quot;my-tabs-tab-2&quot;
+					class=&quot;db-tab-item&quot;
+					data-width=&quot;auto&quot;
+					data-alignment=&quot;start&quot;
+					aria-controls=&quot;my-tabs-tab-panel-2&quot;
+					&gt;&lt;input
+						type=&quot;radio&quot;
+						id=&quot;my-tabs-tab-2&quot;
+						name=&quot;my-tabs&quot;
+					/&gt;Test 3&lt;/label
+				&gt;
+			&lt;/div&gt;
+		&lt;/div&gt;
+		&lt;article
+			role=&quot;tabpanel&quot;
+			class=&quot;db-tab-panel&quot;
+			id=&quot;my-tabs-tab-panel-0&quot;
+			aria-labelledby=&quot;my-tabs-tab-0&quot;
+		&gt;
+			Tab Panel 1
+		&lt;/article&gt;
+		&lt;article
+			role=&quot;tabpanel&quot;
+			class=&quot;db-tab-panel&quot;
+			id=&quot;my-tabs-tab-panel-1&quot;
+			aria-labelledby=&quot;my-tabs-tab-1&quot;
+		&gt;
+			Tab Panel 2
+		&lt;/article&gt;
+		&lt;article
+			role=&quot;tabpanel&quot;
+			class=&quot;db-tab-panel&quot;
+			id=&quot;my-tabs-tab-panel-2&quot;
+			aria-labelledby=&quot;my-tabs-tab-2&quot;
+		&gt;
+			Tab Panel 3
+		&lt;/article&gt;
+	&lt;/div&gt;
+&lt;/body&gt;
+</code></pre></div><script id="__NEXT_DATA__" type="application/json">{"props":{"pageProps":{}},"page":"/components/data-display/tab-item/docs/HTML","query":{},"buildId":"rLm9MUbP_Y5O2jS8su94W","assetPrefix":"/core-web/review/5391-badge-default-inline-placement-wraps-to-new-line-on-mobile-safari","nextExport":true,"autoExport":true,"isFallback":false,"scriptLoader":[]}</script></body></html>
