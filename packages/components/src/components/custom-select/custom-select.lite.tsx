@@ -140,7 +140,7 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 			}
 			/* For a11y reasons we need to map the correct message with the select */
 			if (!selectRef?.validity.valid || props.validation === 'invalid') {
-				state._descByIds = state._invalidMessageId;
+				state.setDescById(state._invalidMessageId);
 				state._invalidMessage =
 					props.invalidMessage ||
 					selectRef?.validationMessage ||
@@ -157,7 +157,7 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 				selectRef?.validity.valid &&
 				props.required
 			) {
-				state._descByIds = state._validMessageId;
+				state.setDescById(state._validMessageId);
 				if (hasVoiceOver()) {
 					state._voiceOverFallback =
 						props.validMessage ?? DEFAULT_VALID_MESSAGE;
@@ -165,10 +165,10 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 				}
 				state._validity = props.validation ?? 'valid';
 			} else if (stringPropVisible(props.message, props.showMessage)) {
-				state._descByIds = state._messageId;
+				state.setDescById(state._messageId);
 				state._validity = props.validation ?? 'no-validation';
 			} else {
-				state._descByIds = state._placeholderId;
+				state.setDescById(state._placeholderId);
 				state._validity = props.validation ?? 'no-validation';
 			}
 		},
@@ -967,6 +967,11 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 									props.selectedType === 'tag'
 								)}
 								id={state._selectedLabelsId}>
+								<Show when={props.selectedPrefix}>
+									<span data-visually-hidden="true">
+										{props.selectedPrefix}
+									</span>
+								</Show>
 								{state._selectedLabels}
 							</span>
 						</Show>

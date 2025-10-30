@@ -75,6 +75,7 @@ const getSearchFilter = (option: CustomSelectOptionType, _: string): boolean =>
 				searchLabel="Search"
 				:searchValue="exampleProps?.searchValue"
 				:selectedLabels="exampleProps?.selectedLabels"
+				selectedPrefix="Selected"
 				:transformSelectedLabels="
 					exampleProps?.transformSelectedLabels
 						? getTransformSelectedLabels
