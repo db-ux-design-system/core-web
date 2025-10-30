@@ -12,6 +12,7 @@ This may leave some older browser versions behind. If you need to take care of t
 | [Customizable select elements](https://caniuse.com/selectlist) (planned)                                                                | 134 (19.03.2024) | tbd              | tbd                                          |
 | [`dialog[closedby="closerequest"]`](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/dialog#closerequest) (planned) | 134 (19.03.2024) | 141 (22.07.2025) | tbd                                          |
 | [`hidden="until-found"`-HTML-attribute](https://caniuse.com/mdn-html_global_attributes_hidden_until-found) (planned)                    | 102 (24.05.2022) | 139 (27.05.2025) | Technology Preview (225)                     |
+| [`select[multiple][size="1"]` UI optimization on Desktop browsers](https://chromestatus.com/feature/5412736871825408) (planned)         | 142 (28.10.2025) | tbd              | tbd                                          |
 
 ## Without graceful degradation
 
