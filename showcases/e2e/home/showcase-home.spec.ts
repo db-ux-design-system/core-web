@@ -97,6 +97,8 @@ const testFormComponents = async (
 	for (const locator of formResetButton) {
 		if (await locator.isVisible()) {
 			await locator.click({ force: true });
+			// Wait until event for reset was fired
+			await page.waitForTimeout(1000);
 		}
 	}
 
