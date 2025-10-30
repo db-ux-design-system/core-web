@@ -105,6 +105,7 @@ const getCustomSelect = ({
 			values={mValue}
 			searchValue={searchValue}
 			selectedLabels={selectedLabels}
+			selectedPrefix="Selected"
 			invalidMessage={invalidMessage}
 			validMessage={validMessage}
 			validation={validation}
