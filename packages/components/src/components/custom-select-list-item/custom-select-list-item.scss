@@ -3,7 +3,7 @@
 @use "@db-ux/core-foundations/build/styles/fonts";
 @use "@db-ux/core-foundations/build/styles/icons";
 @use "@db-ux/core-foundations/build/styles/screen-sizes";
-@use "@db-ux/core-foundations/build/styles/materials/classes/all";
+@use "@db-ux/core-foundations/build/styles/materials";
 @use "@db-ux/core-foundations/build/styles/contrasts";
 @use "../../styles/internal/form-components";
 
@@ -25,7 +25,8 @@ db-custom-select-list-item:not(:last-of-type) {
 	box-sizing: border-box;
 
 	&:not([data-material]) {
-		@extend [data-material="transparent"];
+		@extend %material-transparent;
+		@extend %apply-global-colors;
 	}
 
 	&:has(> label) {
@@ -46,7 +47,7 @@ db-custom-select-list-item:not(:last-of-type) {
 
 	span {
 		@extend %db-overwrite-font-size-md;
-		@extend %contrast-texts-min;
+		@extend %contrast-text-min;
 
 		color: variables.$db-on-bg-color-default;
 	}

@@ -1,6 +1,0 @@
-@use "../index";
-@use "get-class";
-
-@each $weight in index.$weights {
-	@include get-class.init($weight);
-}

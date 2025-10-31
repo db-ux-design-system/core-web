@@ -1,5 +1,4 @@
 @use "@db-ux/core-foundations/build/styles/variables";
-@use "@db-ux/core-foundations/build/styles/colors";
 @use "@db-ux/core-foundations/build/styles/fonts";
 @use "@db-ux/core-foundations/build/styles/helpers";
 @use "@db-ux/core-foundations/build/styles/icons";
@@ -38,7 +37,6 @@ $checked-active-transition-size: calc(
 	@extend %helper-message;
 	@include form-components.set-default-check-element;
 
-
 	@include form-components.get-validity(check) {
 		&:has(.db-infotext[data-semantic="successful"]) {
 			@include form-components.get-validity-color-checkbox("valid");
@@ -73,7 +71,7 @@ $checked-active-transition-size: calc(
 		@include icons.set-icon("cross", "after");
 
 		&::after {
-			--db-icon-color: #{colors.$db-adaptive-on-bg-basic-emphasis-100-default};
+			--db-icon-color: #{variables.$db-on-bg-color-default};
 
 			visibility: hidden;
 			align-self: center;
@@ -89,11 +87,11 @@ $checked-active-transition-size: calc(
 			block-size: $switch-inactive-thumb-size;
 			background-color: var(
 				--db-check-element-border-color,
-				#{colors.$db-adaptive-on-bg-basic-emphasis-100-default}
+				#{variables.$db-on-bg-color-default}
 			);
 			color: var(
 				--db-check-element-border-color,
-				#{colors.$db-adaptive-on-bg-basic-emphasis-100-default}
+				#{variables.$db-on-bg-color-default}
 			);
 			border-radius: variables.$db-border-radius-full;
 			transform: translateX(var(--thumb-offset-x));
@@ -119,25 +117,18 @@ $checked-active-transition-size: calc(
 		/* positioned at the end of the track: track length - 100% (thumb width) */
 		&:checked {
 			--thumb-offset-x: calc(100% + #{$switch-fixed-padding});
-			--db-icon-color: var(--db-adaptive-on-bg-inverted-default);
-			--db-adaptive-bg-basic-transparent-full-default: var(
-				--db-adaptive-bg-inverted-contrast-max-default
-			);
-			--db-adaptive-bg-basic-transparent-full-hovered: var(
-				--db-adaptive-bg-inverted-contrast-max-hovered
-			);
-			--db-adaptive-bg-basic-transparent-full-pressed: var(
-				--db-adaptive-bg-inverted-contrast-max-pressed
-			);
+
+			/* stylelint-disable-next-line db-ux/use-border-color */
+			border-color: variables.$db-bg-color-default;
 
 			&::after {
-				--db-icon-color: #{colors.$db-adaptive-on-bg-inverted-default};
+				--db-icon-color: #{variables.$db-on-bg-color-default};
 			}
 
 			&::before {
 				block-size: $switch-active-thumb-size;
-				background-color: colors.$db-adaptive-on-bg-inverted-default;
-				color: colors.$db-adaptive-on-bg-inverted-default;
+				background-color: variables.$db-on-bg-color-default;
+				color: variables.$db-on-bg-color-default;
 				margin: 0;
 			}
 		}

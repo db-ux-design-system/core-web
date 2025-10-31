@@ -1,10 +1,11 @@
 @use "@db-ux/core-foundations/build/styles/variables";
 @use "@db-ux/core-foundations/build/styles/icons";
 @use "@db-ux/core-foundations/build/styles/helpers";
-@use "@db-ux/core-foundations/build/styles/materials/classes/all";
+@use "@db-ux/core-foundations/build/styles/materials";
 @use "../../styles/internal/component";
 @use "../../styles/internal/db-puls";
 @use "../../styles/internal/form-components";
+@use "../../styles/internal/text-components";
 
 $with-icon-padding-calc: calc(
 	#{variables.$db-spacing-fixed-xs} + #{variables.$db-spacing-fixed-sm} +
@@ -23,11 +24,14 @@ $with-icon-padding-calc: calc(
 	}
 
 	&:not([data-material]) {
-		@extend [data-material="transparent"];
+		@extend %material-transparent;
+		@extend %apply-global-colors;
 	}
 
 	label {
+		@extend %default-text-component;
 		@extend %default-card;
+
 		background-color: variables.$db-bg-color-default;
 		padding: variables.$db-spacing-fixed-xs;
 		align-items: center;

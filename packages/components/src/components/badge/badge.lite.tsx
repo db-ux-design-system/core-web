@@ -49,6 +49,8 @@ export default function DBBadge(props: DBBadgeProps) {
 			class={cls('db-badge', props.className)}
 			data-semantic={props.semantic}
 			data-size={props.size}
+			data-weight={props.weight}
+			data-text-opacity={props.textOpacity}
 			data-emphasis={props.emphasis}
 			data-placement={props.placement}
 			data-label={

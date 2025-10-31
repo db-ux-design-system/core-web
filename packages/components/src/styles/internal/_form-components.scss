@@ -6,8 +6,8 @@
 @use "@db-ux/core-foundations/build/styles/variables";
 @use "@db-ux/core-foundations/build/styles/colors";
 @use "@db-ux/core-foundations/build/styles/helpers";
-@use "@db-ux/core-foundations/build/styles/materials/classes/all";
-@use "@db-ux/core-foundations/build/styles/appearances";
+@use "@db-ux/core-foundations/build/styles/materials";
+@use "../../styles/internal/alternate-components";
 @use "component";
 @forward "../visually-hidden";
 
@@ -149,7 +149,7 @@ $db-min-inline-size: var(
 				inset-block-start: variables.$db-spacing-fixed-2xs;
 				opacity: 1;
 				font-style: normal;
-				color: variables.$db-icon-color-default;
+				color: variables.$db-visual-color-default;
 			}
 
 			@include placeholder-content($selector) {
@@ -288,7 +288,9 @@ $input-valid-types:
 
 	&:not([data-material]) {
 		// Old default for form-components
-		@extend [data-material="semitransparent"];
+		// TODO: Remove this after braking change happens
+		@extend %material-semitransparent;
+		@extend %apply-global-colors;
 	}
 
 	/* stylelint-disable-next-line block-no-redundant-nested-style-rules */
@@ -336,7 +338,7 @@ $input-valid-types:
 		@extend %db-overwrite-font-size-md;
 		@extend %default-interactive-component;
 
-		caret-color: variables.$db-icon-color-default;
+		caret-color: variables.$db-visual-color-default;
 		appearance: none;
 		max-inline-size: 100%;
 		inline-size: 100%;
@@ -447,6 +449,10 @@ $input-valid-types:
 		$variant: critical;
 	}
 
+	@extend %db-#{$variant}-variables;
+
+	// TODO: Remove this after braking change happens
+
 	--db-check-element-border-color: var(
 		--db-#{$variant}-on-bg-basic-emphasis-70-default
 	);
@@ -462,9 +468,6 @@ $input-valid-types:
 	--db-adaptive-on-bg-inverted-default: var(
 		--db-#{$variant}-on-bg-inverted-default
 	);
-
-	@include get-validity-message($key);
-
 	input {
 		&:not(:checked) {
 			--db-adaptive-bg-basic-transparent-full-default: var(
@@ -479,17 +482,19 @@ $input-valid-types:
 		}
 
 		&:checked {
-			--db-adaptive-bg-basic-transparent-full-default: var(
+			--db-adaptive-bg-inverted-contrast-max-default: var(
 				--db-#{$variant}-bg-inverted-contrast-low-default
 			);
-			--db-adaptive-bg-basic-transparent-full-hovered: var(
+			--db-adaptive-bg-inverted-contrast-max-hovered: var(
 				--db-#{$variant}-bg-inverted-contrast-low-hovered
 			);
-			--db-adaptive-bg-basic-transparent-full-pressed: var(
+			--db-adaptive-bg-inverted-contrast-max-pressed: var(
 				--db-#{$variant}-bg-inverted-contrast-low-pressed
 			);
 		}
 	}
+
+	@include get-validity-message($key);
 }
 
 @mixin set-default-check-element() {
@@ -500,20 +505,18 @@ $input-valid-types:
 	}
 
 	&:not([data-material]) {
-		@extend [data-material="transparent"];
+		@extend %material-transparent;
+		@extend %apply-global-colors;
 
 		input {
 			// TODO: Remove this when braking change happens
+			/* stylelint-disable-next-line db-ux/use-border-color */
 			border-color: variables.$db-on-bg-color-default;
 		}
 	}
 
 	&:has(input:disabled) {
 		opacity: variables.$db-opacity-md;
-	}
-
-	:has(input:checked) {
-		--db-is-alternate: 1;
 	}
 
 	:has(
@@ -527,7 +530,7 @@ $input-valid-types:
 			}
 
 			input {
-				background-color: variables.$db-bg-color-pressed;
+				background-color: variables.$db-bg-color-hovered;
 			}
 		}
 
@@ -560,8 +563,20 @@ $input-valid-types:
 		aspect-ratio: 1;
 		block-size: $font-size-height;
 		inline-size: $font-size-height;
+		border-width: variables.$db-border-width-2xs;
 		padding: 0;
 		margin-inline-end: var(--db-spacing-fixed-xs);
+
+		&:checked {
+			@extend %setup-alternate;
+
+			&:not([data-material-aternate]) {
+				&:not([type="radio"]) {
+					@extend %material-inverted;
+					@extend %apply-global-colors;
+				}
+			}
+		}
 	}
 
 	&[data-size="small"] {

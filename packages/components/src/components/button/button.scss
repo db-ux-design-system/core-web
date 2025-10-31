@@ -3,14 +3,16 @@
 @use "@db-ux/core-foundations/build/styles/variables";
 @use "@db-ux/core-foundations/build/styles/icons";
 @use "@db-ux/core-foundations/build/styles/helpers";
-@use "@db-ux/core-foundations/build/styles/materials/classes/all";
+@use "@db-ux/core-foundations/build/styles/materials";
 @use "../../styles/internal/component";
 @use "../../styles/internal/button-components";
+@use "../../styles/internal/text-components";
 
 .db-button {
 	@extend %default-interactive-component;
 	@extend %default-button;
 	@extend %db-overwrite-font-size-md;
+	@extend %default-text-component;
 
 	block-size: variables.$db-sizing-md;
 	inline-size: fit-content;
@@ -62,28 +64,33 @@
 
 	&:not([data-material]) {
 		&[data-variant="brand"] {
-			@extend [data-material="origin"];
+			@extend %material-origin;
+			@extend %apply-global-colors;
 		}
 
 		&[data-variant="filled"] {
-			@extend [data-material="semitransparent"];
+			@extend %material-semitransparent;
+			@extend %apply-global-colors;
 
 			// TODO: Remove this when braking change happens
 			border-color: transparent;
 		}
 
 		&[data-variant="ghost"] {
-			@extend [data-material="transparent"];
+			@extend %material-transparent;
+			@extend %apply-global-colors;
 		}
 
 		&[data-variant="outlined"] {
-			@extend [data-material="filled"];
+			@extend %material-filled;
+			@extend %apply-global-colors;
 		}
 
 		&[data-variant="outlined"],
 		&:not([data-variant]),
 		&[data-variant=""] {
 			// TODO: Remove this when braking change happens
+			/* stylelint-disable-next-line db-ux/use-border-color */
 			border-color: variables.$db-on-bg-color-default;
 		}
 	}

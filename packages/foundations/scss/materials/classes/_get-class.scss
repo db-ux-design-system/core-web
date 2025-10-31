@@ -1,23 +1,11 @@
 @use "sass:map";
-@use "sass:list";
 @use "../variables";
 @use "../materials";
 @use "../../helpers/appearances";
 
 @mixin init($material) {
-	$map: map.get(variables.$material-map, $material);
-	$material-variables: list.nth($map, 1);
-	$fallback-variables: list.nth($map, 2);
-
-	[data-material-alternate="#{$material}"] {
-		@include materials.get-material(true, $material-variables);
-
-		@extend %global-colors;
-	}
-
 	[data-material="#{$material}"] {
-		@include materials.get-material(false, $material-variables);
-
-		@extend %global-colors;
+		@extend %material-#{$material};
+		@extend %apply-global-colors;
 	}
 }

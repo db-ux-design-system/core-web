@@ -1,44 +1,45 @@
 @use "sass:list";
+@use "sass:map";
+@use "variables";
+@use "../helpers/layer";
 
-@mixin get-material($isAlternate, $passed-variables) {
-	$appearance: "base";
+@each $name, $passed-variables in variables.$material-map {
+	%material-#{$name} {
+		// Backgrounds
+		$bg: list.nth($passed-variables, 1);
+		$hovered: list.nth($passed-variables, 2);
+		$pressed: list.nth($passed-variables, 3);
+		// Border
+		$border: list.nth($passed-variables, 4);
+		// On colors contrast-max
+		$on-bg-max: list.nth($passed-variables, 5);
+		$on-bg-max-hovered: list.nth($passed-variables, 6);
+		$on-bg-max-pressed: list.nth($passed-variables, 7);
+		// On colors contrast-min
+		$on-bg-min: list.nth($passed-variables, 8);
+		$on-bg-min-hovered: list.nth($passed-variables, 9);
+		$on-bg-min-pressed: list.nth($passed-variables, 10);
+		// Icon Colors
+		$icon-max: list.nth($passed-variables, 11);
+		$icon-min: list.nth($passed-variables, 12);
 
-	@if ($isAlternate) {
-		$appearance: "alternate";
+		@layer #{layer.$layer-material} {
+			--db-material-bg-color-default: #{$bg};
+			--db-material-bg-color-hovered: #{$hovered};
+			--db-material-bg-color-pressed: #{$pressed};
+
+			--db-material-border-color-default: #{$border};
+
+			--db-material-on-bg-color-contrast-text-max-default: #{$on-bg-max};
+			--db-material-on-bg-color-contrast-text-max-hovered: #{$on-bg-max-hovered};
+			--db-material-on-bg-color-contrast-text-max-pressed: #{$on-bg-max-pressed};
+
+			--db-material-on-bg-color-contrast-text-min-default: #{$on-bg-min};
+			--db-material-on-bg-color-contrast-text-min-hovered: #{$on-bg-min-hovered};
+			--db-material-on-bg-color-contrast-text-min-pressed: #{$on-bg-min-pressed};
+
+			--db-material-on-bg-color-contrast-visual-max-default: #{$icon-max};
+			--db-material-on-bg-color-contrast-visual-min-default: #{$icon-min};
+		}
 	}
-
-	// Backgrounds
-	$bg: list.nth($passed-variables, 1);
-	$hovered: list.nth($passed-variables, 2);
-	$pressed: list.nth($passed-variables, 3);
-	// Border
-	$border: list.nth($passed-variables, 4);
-	// On colors contrast-max
-	$on-bg-max: list.nth($passed-variables, 5);
-	$on-bg-max-hovered: list.nth($passed-variables, 6);
-	$on-bg-max-pressed: list.nth($passed-variables, 7);
-	// On colors contrast-min
-	$on-bg-min: list.nth($passed-variables, 8);
-	$on-bg-min-hovered: list.nth($passed-variables, 9);
-	$on-bg-min-pressed: list.nth($passed-variables, 10);
-	// Icon Colors
-	$icon-max: list.nth($passed-variables, 11);
-	$icon-min: list.nth($passed-variables, 12);
-
-	--db-#{$appearance}-bg-color-default: #{$bg};
-	--db-#{$appearance}-bg-color-hovered: #{$hovered};
-	--db-#{$appearance}-bg-color-pressed: #{$pressed};
-
-	--db-#{$appearance}-border-color-default: #{$border};
-
-	--db-#{$appearance}-on-bg-color-contrast-texts-max-default: #{$on-bg-max};
-	--db-#{$appearance}-on-bg-color-contrast-texts-max-hovered: #{$on-bg-max-hovered};
-	--db-#{$appearance}-on-bg-color-contrast-texts-max-pressed: #{$on-bg-max-pressed};
-
-	--db-#{$appearance}-on-bg-color-contrast-texts-min-default: #{$on-bg-min};
-	--db-#{$appearance}-on-bg-color-contrast-texts-min-hovered: #{$on-bg-min-hovered};
-	--db-#{$appearance}-on-bg-color-contrast-texts-min-pressed: #{$on-bg-min-pressed};
-
-	--db-#{$appearance}-on-bg-color-contrast-icons-max-default: #{$icon-max};
-	--db-#{$appearance}-on-bg-color-contrast-icons-min-default: #{$icon-min};
 }

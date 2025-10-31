@@ -1,6 +1,7 @@
 import {
 	onMount,
 	onUpdate,
+	Show,
 	useDefaultProps,
 	useMetadata,
 	useRef,
@@ -152,6 +153,8 @@ export default function DBTooltip(props: DBTooltipProps) {
 			data-animation={getBooleanAsString(props.animation ?? true)}
 			data-delay={props.delay}
 			data-width={props.width}
+			data-weight={props.weight}
+			data-text-opacity={props.textOpacity}
 			data-show-arrow={getBooleanAsString(props.showArrow ?? true)}
 			data-placement={props.placement}
 			// TODO: clarify this attribute and we need to set it statically
@@ -159,7 +162,9 @@ export default function DBTooltip(props: DBTooltipProps) {
 			onClick={(event: ClickEvent<HTMLElement>) =>
 				state.handleClick(event)
 			}>
-			{props.children}
+			<Show when={props.text} else={props.children}>
+				{props.text}
+			</Show>
 		</i>
 	);
 }

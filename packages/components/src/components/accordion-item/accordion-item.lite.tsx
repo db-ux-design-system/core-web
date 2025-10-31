@@ -90,7 +90,9 @@ export default function DBAccordionItem(props: DBAccordionItemProps) {
 						<Slot name="headline" />
 					</Show>
 				</summary>
-				<div>
+				<div
+					data-weight={props.weight}
+					data-text-opacity={props.textOpacity}>
 					<Show when={props.text} else={props.children}>
 						{props.text}
 					</Show>

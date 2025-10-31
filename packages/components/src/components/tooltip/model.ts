@@ -7,7 +7,8 @@ import {
 	InitializedState,
 	PlacementProps,
 	PopoverProps,
-	PopoverState
+	PopoverState,
+	TextProps
 } from '../../shared/model';
 
 export const TooltipVariantList = ['description', 'label'] as const;
@@ -30,7 +31,8 @@ export type DBTooltipProps = DBTooltipDefaultProps &
 	GlobalProps &
 	EmphasisProps &
 	PlacementProps &
-	PopoverProps;
+	PopoverProps &
+	TextProps;
 
 export type DBTooltipDefaultState = {
 	getParent: () => HTMLElement;

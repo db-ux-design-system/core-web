@@ -2,7 +2,6 @@
 @use "@db-ux/core-foundations/build/styles/helpers";
 @use "@db-ux/core-foundations/build/styles/colors";
 @use "@db-ux/core-foundations/build/styles/animation";
-@use "@db-ux/core-foundations/build/styles/weights/classes/all";
 @use "./component";
 
 %db-link-height {
@@ -21,14 +20,18 @@
 
 	@include helpers.hover {
 		color: variables.$db-on-bg-color-hovered;
+
+		&[data-text-opacity="weak"] {
+			color: helpers.get-on-color-weak(variables.$db-on-bg-color-hovered);
+		}
 	}
 
 	@include helpers.active {
 		color: variables.$db-on-bg-color-pressed;
-	}
 
-	&:not([data-weight]) {
-		@extend [data-weight="regular"];
+		&[data-text-opacity="weak"] {
+			color: helpers.get-on-color-weak(variables.$db-on-bg-color-pressed);
+		}
 	}
 
 	inline-size: fit-content;

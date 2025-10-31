@@ -24,7 +24,7 @@ $filled-variables: (
 	colors.$db-adaptive-on-bg-basic-emphasis-80-default,
 	colors.$db-adaptive-on-bg-basic-emphasis-80-hovered,
 	colors.$db-adaptive-on-bg-basic-emphasis-80-pressed,
-	// Icon Colors
+	// Visual Colors
 	colors.$db-adaptive-on-bg-basic-emphasis-100-default,
 	colors.$db-adaptive-on-bg-basic-emphasis-70-default
 );
@@ -111,28 +111,10 @@ $vibrant-variables: (
 );
 
 $material-map: (
-	"filled": (
-		$filled-variables,
-		$inverted-variables
-	),
-	"inverted": (
-		$inverted-variables,
-		$filled-variables
-	),
-	"origin": (
-		$origin-variables,
-		$inverted-variables
-	),
-	"semitransparent": (
-		$semitransparent-variables,
-		$inverted-variables
-	),
-	"transparent": (
-		$transparent-variables,
-		$inverted-variables
-	),
-	"vibrant": (
-		$vibrant-variables,
-		$filled-variables
-	)
+	"filled": $filled-variables,
+	"inverted": $inverted-variables,
+	"origin": $origin-variables,
+	"semitransparent": $semitransparent-variables,
+	"transparent": $transparent-variables,
+	"vibrant": $vibrant-variables
 );

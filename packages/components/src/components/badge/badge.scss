@@ -3,7 +3,9 @@
 @use "@db-ux/core-foundations/build/styles/fonts";
 @use "../../styles/internal/button-components";
 @use "../../styles/internal/component";
-@use "@db-ux/core-foundations/build/styles/materials/classes/all";
+@use "../../styles/internal/text-components";
+@use "@db-ux/core-foundations/build/styles/materials";
+@use "@db-ux/core-foundations/build/styles/helpers";
 
 %absolute-badge {
 	position: absolute;
@@ -46,6 +48,7 @@
 	@extend %default-component;
 	@extend %db-overwrite-font-size-2xs;
 	@extend %default-button;
+	@extend %default-text-component;
 
 	border-radius: variables.$db-border-radius-full;
 	padding-inline: variables.$db-spacing-fixed-2xs;
@@ -55,11 +58,13 @@
 
 	&:not([data-material]) {
 		&:not([data-emphasis="strong"]) {
-			@extend [data-material="semitransparent"];
+			@extend %material-semitransparent;
+			@extend %apply-global-colors;
 		}
 
 		&[data-emphasis="strong"] {
-			@extend [data-material="vibrant"];
+			@extend %material-vibrant;
+			@extend %apply-global-colors;
 		}
 	}
 

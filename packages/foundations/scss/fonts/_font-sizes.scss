@@ -1,7 +1,7 @@
 @use "../helpers";
 
 @mixin set-component-variables($size) {
-	/* stylelint-disable-next-line at-rule-prelude-no-invalid,layer-name-pattern */
+	/* stylelint-disable-next-line at-rule-prelude-no-invalid */
 	@layer #{helpers.$layer-variables} {
 		/* Those variables are only for components to calculate heights and change icons */
 		// stylelint-disable-next-line no-invalid-position-declaration
@@ -16,7 +16,7 @@
 }
 
 @mixin set-headline-variables($size) {
-	/* stylelint-disable-next-line at-rule-prelude-no-invalid,layer-name-pattern */
+	/* stylelint-disable-next-line at-rule-prelude-no-invalid */
 	@layer #{helpers.$layer-variables} {
 		/* Those variables are only for components to calculate heights and change icons */
 		// stylelint-disable-next-line no-invalid-position-declaration

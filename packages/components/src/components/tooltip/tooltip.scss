@@ -1,9 +1,10 @@
-@use "@db-ux/core-foundations/build/styles/helpers/functions";
+@use "@db-ux/core-foundations/build/styles/helpers";
 @use "@db-ux/core-foundations/build/styles/variables";
 @use "@db-ux/core-foundations/build/styles/fonts";
-@use "@db-ux/core-foundations/build/styles/materials/classes/all";
+@use "@db-ux/core-foundations/build/styles/materials";
 @use "../../styles/internal/popover-component";
 @use "../../styles/internal/component";
+@use "../../styles/internal/text-components";
 
 $tooltip-arrow-shadow-size: variables.$db-sizing-2xs;
 
@@ -12,6 +13,7 @@ $tooltip-arrow-shadow-size: variables.$db-sizing-2xs;
 	--default-card-border-radius: #{variables.$db-border-radius-xs};
 
 	@extend %db-overwrite-font-size-sm;
+	@extend %default-text-component;
 	@extend %popover-center;
 	@extend %default-popover;
 
@@ -98,7 +100,8 @@ $tooltip-arrow-shadow-size: variables.$db-sizing-2xs;
 
 	&:not([data-material]) {
 		&[data-emphasis="strong"] {
-			@extend [data-material="inverted"];
+			@extend %material-inverted;
+			@extend %apply-global-colors;
 		}
 	}
 }

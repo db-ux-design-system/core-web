@@ -8,6 +8,7 @@
 @use "@db-ux/core-foundations/build/styles/contrasts";
 @use "../../styles/internal/component";
 @use "../../styles/internal/link-components";
+@use "../../styles/internal/text-components";
 @use "./notification-grid-default";
 @use "./notification-grid-overlay";
 @use "./notification-grid-non-overlay";
@@ -37,12 +38,12 @@
 	background-color: variables.$db-bg-color-default;
 	color: variables.$db-on-bg-color-default;
 
-	&:not([data-contrast-icons]) {
-		@extend %contrast-icons-min;
+	&:not([data-contrast-visual]) {
+		@extend %contrast-visual-min;
 	}
 
 	&::before {
-		--db-icon-color: #{variables.$db-icon-color-default};
+		--db-icon-color: #{variables.$db-visual-color-default};
 	}
 
 	a {
@@ -92,6 +93,7 @@
 
 	// content
 	p {
+		@extend %default-text-component;
 		@extend %db-overwrite-font-size-md;
 
 		grid-area: content;

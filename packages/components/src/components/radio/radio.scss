@@ -1,42 +1,17 @@
 @use "@db-ux/core-foundations/build/styles/variables";
-@use "@db-ux/core-foundations/build/styles/colors";
 @use "@db-ux/core-foundations/build/styles/helpers";
 @use "../../styles/internal/form-components";
-
-@mixin get-radio-validity-colors($variant: "successful") {
-	--db-check-element-border-color: var(
-		--db-#{$variant}-on-bg-basic-emphasis-70-default
-	);
-	--db-adaptive-on-bg-basic-emphasis-100-default: var(
-		--db-#{$variant}-on-bg-basic-emphasis-80-default
-	);
-	--db-adaptive-on-bg-basic-emphasis-100-hovered: var(
-		--db-#{$variant}-on-bg-basic-emphasis-80-hovered
-	);
-	--db-adaptive-on-bg-basic-emphasis-100-pressed: var(
-		--db-#{$variant}-on-bg-basic-emphasis-80-pressed
-	);
-	--db-adaptive-bg-basic-transparent-full-default: var(
-		--db-#{$variant}-bg-basic-transparent-full-default
-	);
-	--db-adaptive-bg-basic-transparent-full-hovered: var(
-		--db-#{$variant}-bg-basic-transparent-full-hovered
-	);
-	--db-adaptive-bg-basic-transparent-full-pressed: var(
-		--db-#{$variant}-bg-basic-transparent-full-pressed
-	);
-}
 
 .db-radio {
 	@include form-components.set-default-check-element;
 
 
 	@include form-components.get-validity(radio) {
-		@include get-radio-validity-colors;
+		@include form-components.get-validity-color-checkbox("valid");
 	}
 
 	@include form-components.get-validity(radio, "invalid") {
-		@include get-radio-validity-colors("critical");
+		@include form-components.get-validity-color-checkbox("invalid");
 	}
 
 	input {

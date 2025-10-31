@@ -51,7 +51,7 @@ export default function DBNotification(props: DBNotificationProps) {
 			<Show when={stringPropVisible(props.headline, props.showHeadline)}>
 				<header>{props.headline}</header>
 			</Show>
-			<p>
+			<p data-weight={props.weight} data-text-opacity={props.textOpacity}>
 				<Show when={props.text} else={props.children}>
 					{props.text}
 				</Show>
@@ -68,6 +68,7 @@ export default function DBNotification(props: DBNotificationProps) {
 					id={props.closeButtonId}
 					icon="cross"
 					variant="ghost"
+					material={props.material ? 'adaptive' : undefined}
 					size="small"
 					noText
 					onClick={(event: ClickEvent<HTMLButtonElement>) =>

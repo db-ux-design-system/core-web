@@ -43,6 +43,12 @@ export default function DBTag(props: DBTagProps) {
 			class={cls('db-tag', props.className)}
 			data-semantic={props.semantic}
 			data-emphasis={props.emphasis}
+			data-material={props.material}
+			data-weight={props.weight}
+			data-text-opacity={props.textOpacity}
+			data-material-alternate={props.materialAlternate}
+			data-weight-alternate={props.weightAlternate}
+			data-text-opacity-alternate={props.textOpacityAlternate}
 			data-icon={props.icon}
 			data-show-check-state={getBooleanAsString(
 				props.showCheckState ?? true
@@ -52,9 +58,9 @@ export default function DBTag(props: DBTagProps) {
 			data-overflow={getBooleanAsString(props.overflow)}>
 			<Slot name="content" />
 
-			{props.children}
-
-			<Show when={props.text}>{props.text}</Show>
+			<Show when={props.text} else={props.children}>
+				{props.text}
+			</Show>
 
 			<Show when={props.behavior === 'removable'}>
 				{/* we aren't using DBButton here because of angular would wrap it in custom component */}

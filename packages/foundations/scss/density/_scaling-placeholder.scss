@@ -8,7 +8,7 @@
 
 @each $density in variables.$densities {
 	%db-scaling-#{$density} {
-		/* stylelint-disable-next-line at-rule-prelude-no-invalid,layer-name-pattern */
+		/* stylelint-disable-next-line at-rule-prelude-no-invalid */
 		@layer #{helpers.$layer-variables} {
 			@each $sizing in variables.$sizings {
 				--db-sizing-#{$sizing}: #{get-variable(

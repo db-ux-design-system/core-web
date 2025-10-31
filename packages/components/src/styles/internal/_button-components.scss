@@ -1,9 +1,7 @@
 @use "@db-ux/core-foundations/build/styles/helpers";
 @use "@db-ux/core-foundations/build/styles/variables";
-@use "@db-ux/core-foundations/build/styles/weights";
 
 %default-button {
-	font-weight: variables.$db-font-weight;
 	white-space: nowrap; // we don't want to break buttons
 	justify-content: center;
 	text-align: center;
@@ -15,6 +13,6 @@
 
 	&:not([data-weight]) {
 		// TODO: we can remove this when we do breaking-changes for material
-		@extend %weight-strong;
+		font-weight: bold;
 	}
 }

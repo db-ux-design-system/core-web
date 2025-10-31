@@ -1,0 +1,14 @@
+@use "@db-ux/core-foundations/build/styles/helpers";
+@use "@db-ux/core-foundations/build/styles/variables";
+
+%default-text-component {
+	@each $weight in (normal, bold) {
+		&[data-weight="#{$weight}"] {
+			font-weight: $weight;
+		}
+	}
+
+	&[data-text-opacity="weak"] {
+		color: helpers.get-on-color-weak(variables.$db-on-bg-color-default);
+	}
+}

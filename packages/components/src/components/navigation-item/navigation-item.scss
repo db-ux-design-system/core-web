@@ -4,9 +4,10 @@
 @use "@db-ux/core-foundations/build/styles/helpers";
 @use "@db-ux/core-foundations/build/styles/animation";
 @use "@db-ux/core-foundations/build/styles/icons";
-@use "@db-ux/core-foundations/build/styles/materials/classes/all";
+@use "@db-ux/core-foundations/build/styles/materials";
 @use "../../styles/internal/icon-passing";
 @use "../../styles/internal/component";
+@use "../../styles/internal/text-components";
 
 %sub-navi-handler-desktop {
 	// show sub-navigation on hover
@@ -64,7 +65,8 @@
 	@include helpers.display(inline-flex);
 
 	&:not([data-material]) {
-		@extend [data-material="transparent"]; // Make it a ghost button
+		@extend %material-transparent; // Make it a ghost button
+		@extend %apply-global-colors;
 	}
 }
 
@@ -77,6 +79,20 @@
 
 	position: relative;
 	inline-size: auto;
+
+	@each $weight in (normal, bold) {
+		&[data-weight="#{$weight}"] {
+			> :is(a, button) {
+				font-weight: $weight;
+			}
+		}
+	}
+
+	&[data-text-opacity="weak"] {
+		> :is(a, button) {
+			color: helpers.get-on-color-weak(variables.$db-on-bg-color-default);
+		}
+	}
 
 	&[data-wrap="true"] {
 		:is(a, .db-navigation-item-expand-button):first-of-type {

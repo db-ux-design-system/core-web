@@ -31,7 +31,7 @@
 
 @each $density in variables.$densities {
 	%db-typography-headline-#{$density} {
-		/* stylelint-disable-next-line at-rule-prelude-no-invalid,layer-name-pattern */
+		/* stylelint-disable-next-line at-rule-prelude-no-invalid */
 		@layer #{helpers.$layer-variables} {
 			@include screen-sizes.screen-min-max(
 				(
@@ -70,7 +70,7 @@
 	}
 
 	%db-typography-body-#{$density} {
-		/* stylelint-disable-next-line at-rule-prelude-no-invalid,layer-name-pattern */
+		/* stylelint-disable-next-line at-rule-prelude-no-invalid */
 		@layer #{helpers.$layer-variables} {
 			@include screen-sizes.screen-min-max(
 				(

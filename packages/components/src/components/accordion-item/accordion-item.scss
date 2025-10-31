@@ -3,10 +3,12 @@
 @use "@db-ux/core-foundations/build/styles/animation";
 @use "../../styles/internal/form-components";
 @use "../../styles/internal/component";
+@use "../../styles/internal/text-components";
 
 .db-accordion-item {
 	position: relative;
 	inline-size: 100%;
+	/* stylelint-disable-next-line db-ux/use-border-radius */
 	border-radius: component.$card-border-radius;
 	list-style-type: "";
 
@@ -36,6 +38,8 @@
 		}
 
 		> summary + div {
+			@extend %default-text-component;
+
 			block-size: 0;
 			overflow: hidden;
 			padding: variables.$db-spacing-fixed-md;

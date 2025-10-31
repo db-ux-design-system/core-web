@@ -13,10 +13,10 @@ export type DBIconDefaultProps = {
 	weight?: IconWeightType;
 };
 
-export type DBIconProps = DBIconDefaultProps &
+export type DBIconProps = TextProps &
+	DBIconDefaultProps &
 	GlobalProps &
-	IconProps &
-	TextProps;
+	IconProps;
 
 export type DBIconDefaultState = {};
 

@@ -42,6 +42,7 @@
 
 		align-items: center;
 		justify-content: center;
+		border-radius: variables.$db-border-radius-2xs;
 
 		&:checked {
 			@extend %center-icon;
@@ -51,10 +52,6 @@
 
 			// The icon within the checkbox has the same dimensions as the checkbox itself and that for there can't be any border
 			border-width: 0;
-		}
-
-		&:not(:checked) {
-			border-radius: variables.$db-border-radius-2xs;
 		}
 
 		&:indeterminate {

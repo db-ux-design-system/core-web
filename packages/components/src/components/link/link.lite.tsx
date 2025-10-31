@@ -24,6 +24,8 @@ export default function DBLink(props: DBLinkProps) {
 			rel={props.rel}
 			role={props.role}
 			data-material={props.material}
+			data-weight={props.weight}
+			data-text-opacity={props.textOpacity}
 			hrefLang={props.hreflang}
 			aria-disabled={getBooleanAsString(props.disabled)}
 			tabIndex={props.disabled ? -1 : 0}

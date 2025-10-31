@@ -2,16 +2,13 @@
 
 @use "../materials";
 @use "../helpers";
-@use "../weights";
-@forward "../colors";
-@forward "../density";
+@use "../colors";
+@use "../density";
 
 // Setup default styles for
 :is(:root, :host) {
-	@extend %weight-regular;
 	@extend %db-neutral-bg-basic-level-1;
 	@extend %db-density-regular;
-	@extend %global-colors;
-	@include materials.get-material(false, materials.$filled-variables);
-	@include materials.get-material(true, materials.$inverted-variables);
+	@extend %material-filled;
+	@extend %apply-global-colors;
 }

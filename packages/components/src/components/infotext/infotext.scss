@@ -5,9 +5,12 @@
 @use "@db-ux/core-foundations/build/styles/colors";
 @use "@db-ux/core-foundations/build/styles/icons";
 @use "@db-ux/core-foundations/build/styles/contrasts";
+@use "../../styles/internal/text-components";
 
 .db-infotext {
 	--db-icon-margin-end: #{variables.$db-spacing-fixed-2xs};
+
+	@extend %default-text-component;
 
 	@include helpers.display(flex);
 
@@ -27,15 +30,15 @@
 	color: variables.$db-on-bg-color-default;
 
 	&::before {
-		--db-icon-color: #{variables.$db-icon-color-default};
+		--db-icon-color: #{variables.$db-visual-color-default};
 	}
 
-	&:not([data-contrast-icons]) {
-		@extend %contrast-icons-min;
+	&:not([data-contrast-visual]) {
+		@extend %contrast-visual-min;
 	}
 
-	&:not([data-contrast-texts]) {
-		@extend %contrast-texts-min;
+	&:not([data-contrast-text]) {
+		@extend %contrast-text-min;
 	}
 
 	@each $name, $colors in colors.$variant-colors {

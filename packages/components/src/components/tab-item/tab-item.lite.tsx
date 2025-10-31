@@ -103,6 +103,8 @@ export default function DBTabItem(props: DBTabItemProps) {
 				data-show-icon-trailing={getBooleanAsString(
 					props.showIconTrailing
 				)}
+				data-weight={props.weight}
+				data-text-opacity={props.textOpacity}
 				data-no-text={getBooleanAsString(props.noText)}>
 				<input
 					disabled={getBoolean(props.disabled, 'disabled')}
@@ -115,9 +117,9 @@ export default function DBTabItem(props: DBTabItemProps) {
 					id={props.id}
 					onInput={(event: any) => state.handleChange(event)}
 				/>
-
-				<Show when={props.label}>{props.label}</Show>
-				{props.children}
+				<Show when={props.text || props.label} else={props.children}>
+					{props.text || props.label}
+				</Show>
 			</label>
 		</li>
 	);

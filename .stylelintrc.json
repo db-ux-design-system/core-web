@@ -31,6 +31,7 @@
 		"selector-type-no-unknown": [true, { "ignoreTypes": ["/^db/"] }],
 		"no-descending-specificity": null,
 		"number-max-precision": null,
-		"scss/operator-no-newline-after": null
+		"scss/operator-no-newline-after": null,
+		"layer-name-pattern": null
 	}
 }

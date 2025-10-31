@@ -5,9 +5,9 @@
 @use "@db-ux/core-foundations/build/styles/helpers";
 @use "@db-ux/core-foundations/build/styles/icons";
 @use "@db-ux/core-foundations/build/styles/colors";
-@use "@db-ux/core-foundations/build/styles/materials/classes/filled";
 @use "@db-ux/core-foundations/build/styles/contrasts";
 @use "../../styles/internal/link-components";
+@use "../../styles/internal/text-components";
 
 .db-link {
 	--db-icon-margin-start: #{variables.$db-spacing-fixed-2xs};
@@ -15,6 +15,7 @@
 
 	@extend %db-default-link;
 	@extend %db-overwrite-font-size-md;
+	@extend %default-text-component;
 
 	a {
 		// Workaround for angular
@@ -36,11 +37,13 @@
 	// We couldn't extend any existing SCSS placeholders, as this is a special construct
 	&[data-variant="brand"] {
 		@extend %db-brand-variables;
-	}
 
-	&:not([data-contrast-texts]) {
-		&[data-variant="brand"] {
-			@extend %contrast-texts-min;
+		&:not([data-contrast-text]) {
+			@extend %contrast-text-min;
+		}
+
+		&:not([data-contrast-visual]) {
+			@extend %contrast-visual-min;
 		}
 	}
 

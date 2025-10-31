@@ -12,7 +12,8 @@ import {
 	NameState,
 	ShowIconLeadingProps,
 	ShowIconProps,
-	ShowIconTrailingProps
+	ShowIconTrailingProps,
+	TextProps
 } from '../../shared/model';
 
 export type DBTabItemDefaultProps = {
@@ -26,6 +27,7 @@ export type DBTabItemDefaultProps = {
 	 */
 	disabled?: boolean | string;
 	/**
+	 * @deprecated Use `text` instead.
 	 * The label of the tab-item, if you don't want to use children.
 	 */
 	label?: string;
@@ -45,7 +47,8 @@ export type DBTabItemProps = GlobalProps &
 	ActiveProps &
 	ChangeEventProps<HTMLInputElement> &
 	ShowIconProps &
-	NameProps;
+	NameProps &
+	TextProps;
 
 export type DBTabItemDefaultState = {
 	_selected: boolean;

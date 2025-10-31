@@ -1,18 +1,27 @@
 @use "../../helpers";
 @use "../variables";
+@use "../../helpers/layer";
 
 @each $type in variables.$contrasts-types {
 	@each $contrast in variables.$contrasts {
 		%contrast-#{$type}-#{$contrast} {
-			$min: 0;
+			@layer #{layer.$layer-contrast} {
+				@if ($type == "visual") {
+					--db-on-bg-color-contrast-#{$type}-default: var(
+						--db-material-on-bg-color-contrast-#{$type}-#{$contrast}-default
+					);
 
-			@if ($contrast == "min") {
-				$min: 1;
+					@extend %apply-global-visual-color;
+				} @else {
+					@each $state in helpers.$states {
+						--db-on-bg-color-contrast-#{$type}-#{$state}: var(
+							--db-material-on-bg-color-contrast-#{$type}-#{$contrast}-#{$state}
+						);
+					}
+
+					@extend %apply-global-on-bg-colors;
+				}
 			}
-
-			--db-on-bg-color-contrast-#{$type}-is-min: #{$min};
-
-			@extend %global-on-bg-colors;
 		}
 	}
 }

@@ -2,6 +2,48 @@
 
 import { IconTypes } from '@db-ux/core-foundations';
 
+export const ContrastRangeList = ['min', 'max'] as const;
+export type ContrastRangeType = (typeof ContrastRangeList)[number];
+
+export const MaterialList = [
+	'filled',
+	'vibrant',
+	'inverted',
+	'origin',
+	'transparent',
+	'semitransparent'
+] as const;
+export type MaterialType = (typeof MaterialList)[number];
+
+export const WeightList = ['normal', 'bold'] as const;
+export type WeightType = (typeof WeightList)[number];
+
+export const TextOpacityList = ['weak', 'regular'] as const;
+export type TextOpacityType = (typeof TextOpacityList)[number];
+
+export type MaterialAlternateProps = {
+	materialAlternate: MaterialType;
+	textOpacityAlternate: TextOpacityType;
+	weightAlternate: WeightType;
+};
+
+export type TextProps = {
+	/**
+	 * Alternative for default slot/children.
+	 */
+	text?: string;
+
+	/**
+	 * Add weak (25%) or regular(0%) text opacity.
+	 */
+	textOpacity: TextOpacityType;
+
+	/**
+	 * Change the font-weight of the component.
+	 */
+	weight: WeightType;
+};
+
 export type GlobalProps = {
 	/**
 	 * default slot
@@ -30,9 +72,14 @@ export type GlobalProps = {
 	autofocus?: boolean | string;
 
 	/**
-	 * Change the material for the component. Disable a fixed material with `none`.
+	 * Change the material for the component. Disable a fixed material with `adaptive`.
 	 */
-	material?: 'transparent' | 'semitransparent' | 'filled' | 'origin' | 'none';
+	material?: MaterialType | 'adaptive';
+
+	/**
+	 * Change the on-bg-color of the component.
+	 */
+	textContrast?: ContrastRangeType;
 };
 
 export type GlobalState = {
@@ -60,6 +107,11 @@ export type IconProps = {
 	 * Define an icon by its identifier (like e.g. _user_, compare to [Icons](https://design-system.deutschebahn.com/core-web/review/main/foundations/icons/overview)) to get displayed in front of the elements content.
 	 */
 	icon?: IconTypes;
+
+	/**
+	 * Change the on-bg-color of the icon.
+	 */
+	visualContrast?: ContrastRangeType;
 };
 
 export type ShowIconProps = {
@@ -575,13 +627,6 @@ export type LinkProps = {
 	 * How much of the referrer to send when following the link.
 	 */
 	referrerpolicy?: LinkReferrerPolicyType;
-};
-
-export type TextProps = {
-	/**
-	 * Alternative for default slot/children.
-	 */
-	text?: string;
 };
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars

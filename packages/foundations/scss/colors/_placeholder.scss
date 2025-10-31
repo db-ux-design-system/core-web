@@ -2,7 +2,8 @@
 @use "variables";
 @use "../helpers/functions";
 @use "../helpers/layer";
-@use "../materials/classes/filled" as filled;
+@use "../helpers/appearances";
+@use "../materials";
 @use "variables.additional" as additional-colors;
 
 @mixin set-current-colors($bg, $on, $hovered: false, $pressed: false) {
@@ -29,7 +30,7 @@
 
 @mixin generate-color-placeholder($variant) {
 	%db-#{$variant}-variables {
-		/* stylelint-disable-next-line at-rule-prelude-no-invalid,layer-name-pattern */
+		/* stylelint-disable-next-line at-rule-prelude-no-invalid */
 		@layer #{layer.$layer-variables} {
 			// bg basic
 			--db-adaptive-bg-basic-level-1-default: var(
@@ -195,7 +196,8 @@
 			);
 
 			&:not([data-material]) {
-				@extend [data-material="filled"];
+				@extend %material-filled;
+				@extend %apply-global-colors;
 			}
 		}
 	}

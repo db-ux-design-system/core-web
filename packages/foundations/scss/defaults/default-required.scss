@@ -10,7 +10,7 @@
 @forward "../normalize";
 @include screen-sizes.get-breakpoint-properties;
 
-/* stylelint-disable-next-line at-rule-prelude-no-invalid,layer-name-pattern */
+/* stylelint-disable-next-line at-rule-prelude-no-invalid */
 @layer #{helpers.$layer-variables} {
 	:is(:root, :host) {
 		@extend %db-font-size-md;
