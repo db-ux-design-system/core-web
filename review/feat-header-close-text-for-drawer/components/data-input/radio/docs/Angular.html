@@ -1,0 +1,79 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8" data-next-head=""/><meta name="viewport" content="width=device-width" data-next-head=""/><title data-next-head="">DB UX</title><link data-next-font="size-adjust" rel="preconnect" href="/" crossorigin="anonymous"/><link rel="preload" href="/core-web/review/feat-header-close-text-for-drawer/_next/static/css/5121b30bd4fa223c.css" as="style"/><link rel="stylesheet" href="/core-web/review/feat-header-close-text-for-drawer/_next/static/css/5121b30bd4fa223c.css" data-n-g=""/><noscript data-n-css=""></noscript><script defer="" nomodule="" src="/core-web/review/feat-header-close-text-for-drawer/_next/static/chunks/polyfills-42372ed130431b0a.js"></script><script src="/core-web/review/feat-header-close-text-for-drawer/_next/static/chunks/webpack-16aa61fa09878d4f.js" defer=""></script><script src="/core-web/review/feat-header-close-text-for-drawer/_next/static/chunks/framework-c528b96079bb3756.js" defer=""></script><script src="/core-web/review/feat-header-close-text-for-drawer/_next/static/chunks/main-733e0e1c6c804ff5.js" defer=""></script><script src="/core-web/review/feat-header-close-text-for-drawer/_next/static/chunks/pages/_app-9fb1da4fc4c8ab82.js" defer=""></script><script src="/core-web/review/feat-header-close-text-for-drawer/_next/static/chunks/pages/components/data-input/radio/docs/Angular-6a7401ae82c8e7b9.js" defer=""></script><script src="/core-web/review/feat-header-close-text-for-drawer/_next/static/kodm3F2ErZMlMKmahHN1N/_buildManifest.js" defer=""></script><script src="/core-web/review/feat-header-close-text-for-drawer/_next/static/kodm3F2ErZMlMKmahHN1N/_ssgManifest.js" defer=""></script></head><body><div id="__next"><h2 id="angular">Angular<a class="header-link" href="/core-web/review/feat-header-close-text-for-drawer/components/data-input/radio/docs/Angular?current=angular"><span aria-hidden="true" class="db-icon" data-icon="paper_clip"></span>angular<!-- --> anchor link</a></h2>
+<p>For general installation and configuration take a look at the <a target="_blank" referrerPolicy="no-referrer" href="https://www.npmjs.com/package/@db-ux/ngx-core-components">ngx-core-components</a> package.</p>
+<h3 id="load-component">Load component<a class="header-link" href="/core-web/review/feat-header-close-text-for-drawer/components/data-input/radio/docs/Angular?current=load-component"><span aria-hidden="true" class="db-icon" data-icon="paper_clip"></span>load-component<!-- --> anchor link</a></h3>
+<pre><code class="language-ts">// app.component.ts
+import { DBRadio } from &#x27;@db-ux/ngx-core-components&#x27;;
+
+@Component({
+  // ...
+  standalone: true,
+  imports: [..., DBRadio],
+  // ...
+})
+</code></pre>
+<h3 id="use-component">Use component<a class="header-link" href="/core-web/review/feat-header-close-text-for-drawer/components/data-input/radio/docs/Angular?current=use-component"><span aria-hidden="true" class="db-icon" data-icon="paper_clip"></span>use-component<!-- --> anchor link</a></h3>
+<pre><code class="language-html">&lt;!-- app.component.html --&gt;
+&lt;ul&gt;
+	@for (radioName of radioNames; track radioName) {
+	&lt;li&gt;
+		&lt;db-radio
+			(change)=&quot;radio = radioName&quot;
+			[label]=&quot;&#x27;Radio &#x27; + radioName&quot;
+			[value]=&quot;radioName&quot;
+			name=&quot;RadioGroup&quot;
+		&gt;&lt;/db-radio&gt;
+	&lt;/li&gt;
+	}
+&lt;/ul&gt;
+</code></pre>
+<pre><code class="language-ts">// app.component.ts
+import { Component } from &quot;@angular/core&quot;;
+
+@Component({
+	selector: &quot;app-app&quot;,
+	templateUrl: &quot;./app.component.html&quot;
+})
+export class AppComponent {
+	radioNames = [&quot;X&quot;, &quot;Y&quot;, &quot;Z&quot;];
+	radio = &quot;&quot;;
+}
+</code></pre>
+<h2 id="how-to-use-with-template-driven-forms">How to use with Template Driven Forms<a class="header-link" href="/core-web/review/feat-header-close-text-for-drawer/components/data-input/radio/docs/Angular?current=how-to-use-with-template-driven-forms"><span aria-hidden="true" class="db-icon" data-icon="paper_clip"></span>how-to-use-with-template-driven-forms<!-- --> anchor link</a></h2>
+<p>Third party controls require a <code>ControlValueAccessor</code> to function with angular forms. Adding an <code>ngDefaultControl</code> attribute will allow them to use that directive.
+<a target="_blank" referrerPolicy="no-referrer" href="https://stackoverflow.com/a/46465959">Further information</a></p>
+<pre><code class="language-ts">//app.component.ts
+import { FormsModule } from &#x27;@angular/forms&#x27;;
+
+@Component({
+	// ...
+	imports: [
+		// ...,
+		FormsModule
+    ],
+	// ...
+})
+</code></pre>
+<pre><code class="language-html">&lt;!-- form.component.html --&gt;
+&lt;form&gt;
+	&lt;DBRadio ngDefaultControl [(ngModel)]=&quot;radio&quot;&gt;Label&lt;/DBRadio&gt;
+	&lt;DBButton type=&quot;button&quot; variant=&quot;brand&quot; (click)=&quot;showValues()&quot;
+		&gt;Get radio value&lt;/DBButton
+	&gt;
+&lt;/form&gt;
+
+&lt;h2&gt;Output&lt;/h2&gt;
+&lt;dl&gt;
+	&lt;dt&gt;radio&#x27;s value&lt;/dt&gt;
+	&lt;dd&gt;{{ radio ? radio : &quot;No radio set&quot; }}&lt;/dd&gt;
+&lt;/dl&gt;
+</code></pre>
+<pre><code class="language-ts">// form.component.ts
+export class FormComponent {
+	radio = &quot;&quot;;
+	showValues(): void {
+		alert(JSON.stringify({ radio: this.radio }));
+	}
+}
+</code></pre>
+<h2 id="how-to-use-with-reactive-forms">How to use with Reactive Forms<a class="header-link" href="/core-web/review/feat-header-close-text-for-drawer/components/data-input/radio/docs/Angular?current=how-to-use-with-reactive-forms"><span aria-hidden="true" class="db-icon" data-icon="paper_clip"></span>how-to-use-with-reactive-forms<!-- --> anchor link</a></h2>
+<p>coming soon … if your interested in contributing, you&#x27;re very welcome ;)</p></div><script id="__NEXT_DATA__" type="application/json">{"props":{"pageProps":{}},"page":"/components/data-input/radio/docs/Angular","query":{},"buildId":"kodm3F2ErZMlMKmahHN1N","assetPrefix":"/core-web/review/feat-header-close-text-for-drawer","nextExport":true,"autoExport":true,"isFallback":false,"scriptLoader":[]}</script></body></html>
