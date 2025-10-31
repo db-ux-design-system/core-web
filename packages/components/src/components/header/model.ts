@@ -38,6 +38,12 @@ export type DBHeaderDefaultProps = {
 	drawerOpen?: boolean | string;
 
 	/**
+	 * This attribute sets the label for the close button in the drawer
+	 * which is shown after the burger menu opened.
+	 */
+	closeDrawerLabel?: string;
+
+	/**
 	 * Forces the header to use mobile layout for desktop as well.
 	 * You should only use this setting if you really can't provide a smaller navigation.
 	 * Overwrite size of the drawer with '--db-drawer-max-width: xxx'

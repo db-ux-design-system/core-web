@@ -71,6 +71,7 @@ export default function DBHeader(props: DBHeaderProps) {
 				class="db-header-drawer"
 				rounded
 				spacing="small"
+				closeButtonText={props.closeDrawerLabel}
 				open={getBoolean(props.drawerOpen)}
 				onClose={() => state.handleToggle()}>
 				<div class="db-header-drawer-navigation">
