@@ -32,33 +32,33 @@ jobs:
         uses: ./.github/actions/npm-cache
 
       - name: ⏬ Download foundations build
-        uses: actions/download-artifact@v5
+        uses: actions/download-artifact@v6
         with:
           name: db-ux-foundations-build
           path: packages/foundations/build
 
       - name: ⏬ Download output
-        uses: actions/download-artifact@v5
+        uses: actions/download-artifact@v6
         with:
           name: db-ux-output
           path: output
 
       - name: ⏬ Download components styles build
-        uses: actions/download-artifact@v5
+        uses: actions/download-artifact@v6
         with:
           name: db-ux-components-build
           path: packages/components/build
 
       - name: ⏬ Download showcases
         if: inputs.type == 'showcases'
-        uses: actions/download-artifact@v5
+        uses: actions/download-artifact@v6
         with:
           name: db-ux-react-showcase
           path: build-showcases/react-showcase
 
       - name: ⏬ Download patternhub
         if: inputs.type == 'patternhub'
-        uses: actions/download-artifact@v5
+        uses: actions/download-artifact@v6
         with:
           name: db-ux-patternhub
           path: build-showcases/patternhub

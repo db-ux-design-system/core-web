@@ -43,7 +43,7 @@ jobs:
           record: true
 
       - name: ⏬ Download react-showcase
-        uses: actions/download-artifact@v5
+        uses: actions/download-artifact@v6
         with:
           name: db-ux-react-showcase
           path: build-showcases/react-showcase
