@@ -54,7 +54,7 @@ jobs:
           echo "path=${NEXT_PUBLIC_BASE_PATH}" >> $GITHUB_OUTPUT
 
       - name: ⏫ Upload Patternhub
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v5
         with:
           name: db-ux-patternhub
           path: build-showcases/patternhub
