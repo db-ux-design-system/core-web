@@ -1,5 +1,6 @@
 import {
 	onMount,
+	onUnMount,
 	onUpdate,
 	Show,
 	useDefaultProps,
@@ -27,6 +28,10 @@ useDefaultProps<DBTabItemProps>({});
 
 export default function DBTabItem(props: DBTabItemProps) {
 	const _ref = useRef<HTMLInputElement | any>(null);
+
+	function setSelectedOnChange(event: any) {
+		state._selected = event.target === _ref;
+	}
 
 	// jscpd:ignore-start
 	const state = useStore<DBTabItemState>({
@@ -65,20 +70,18 @@ export default function DBTabItem(props: DBTabItemProps) {
 
 	onUpdate(() => {
 		if (state.initialized && _ref) {
-			if (props.active) {
-				_ref.click();
-			}
-
 			useTarget({ react: () => state.handleNameAttribute() });
 			state.initialized = false;
 
 			// deselect this tab when another tab in tablist is selected
 			_ref.closest('[role=tablist]')?.addEventListener(
 				'change',
-				(event: any) => {
-					state._selected = event.target === _ref;
-				}
+				setSelectedOnChange
 			);
+
+			if (props.active) {
+				_ref.click();
+			}
 		}
 	}, [_ref, state.initialized]);
 
@@ -87,6 +90,13 @@ export default function DBTabItem(props: DBTabItemProps) {
 			state._name = props.name;
 		}
 	}, [props.name]);
+
+	onUnMount(() => {
+		_ref.closest('[role=tablist]')?.removeEventListener(
+			'change',
+			setSelectedOnChange
+		);
+	});
 
 	return (
 		<li class={cls('db-tab-item', props.className)} role="none">
