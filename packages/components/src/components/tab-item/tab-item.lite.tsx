@@ -55,6 +55,10 @@ export default function DBTabItem(props: DBTabItemProps) {
 				props.onChange(event);
 			}
 
+			if (_ref.checked && !state._selected) {
+				state._selected = true;
+			}
+
 			useTarget({
 				angular: () =>
 					handleFrameworkEventAngular(state, event, 'checked'),
@@ -80,6 +84,7 @@ export default function DBTabItem(props: DBTabItemProps) {
 			);
 
 			if (props.active) {
+				state._selected = true;
 				_ref.click();
 			}
 		}
@@ -92,10 +97,12 @@ export default function DBTabItem(props: DBTabItemProps) {
 	}, [props.name]);
 
 	onUnMount(() => {
-		_ref.closest('[role=tablist]')?.removeEventListener(
-			'change',
-			setSelectedOnChange
-		);
+		if (state.initialized && _ref) {
+			_ref.closest('[role=tablist]')?.removeEventListener(
+				'change',
+				setSelectedOnChange
+			);
+		}
 	});
 
 	return (
