@@ -30,7 +30,14 @@ export default function DBTabItem(props: DBTabItemProps) {
 	const _ref = useRef<HTMLInputElement | any>(null);
 
 	function setSelectedOnChange(event: any) {
-		state._selected = event.target === _ref;
+		useTarget({
+			stencil: () => {
+				state._selected = getBooleanAsString(event.target === _ref);
+			},
+			default: () => {
+				state._selected = event.target === _ref;
+			}
+		});
 	}
 
 	// jscpd:ignore-start
@@ -56,7 +63,14 @@ export default function DBTabItem(props: DBTabItemProps) {
 			}
 
 			if (_ref.checked && !state._selected) {
-				state._selected = true;
+				useTarget({
+					stencil: () => {
+						state._selected = getBooleanAsString(true);
+					},
+					default: () => {
+						state._selected = true;
+					}
+				});
 			}
 
 			useTarget({
@@ -84,7 +98,14 @@ export default function DBTabItem(props: DBTabItemProps) {
 			);
 
 			if (props.active) {
-				state._selected = true;
+				useTarget({
+					stencil: () => {
+						state._selected = getBooleanAsString(true);
+					},
+					default: () => {
+						state._selected = true;
+					}
+				});
 				_ref.click();
 			}
 		}
