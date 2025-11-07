@@ -21,69 +21,82 @@
 		display: flex;
 		align-items: center;
 		gap: variables.$db-spacing-fixed-3xs; // 2px between separator and item (small)
+	}
 
-		// Separator icon (chevron-right) before each item except the first
-		&:not(:first-child)::before {
-			content: "\203A"; // Unicode chevron right (›)
-			display: flex;
-			align-items: center;
-			justify-content: center;
-			inline-size: variables.$db-sizing-sm; // 24px (small)
-			block-size: variables.$db-sizing-sm;
-			font-size: variables.$db-sizing-md; // 20px
-			color: colors.$db-adaptive-on-bg-basic-emphasis-100-default;
-			font-weight: 400;
+	// Link and text styling (small)
+	a,
+	span {
+		display: flex;
+		align-items: center;
+		padding: variables.$db-spacing-fixed-3xs variables.$db-spacing-fixed-2xs; // 2px 4px (small)
+		border-radius: variables.$db-border-radius-xs; // 4px
+		background-color: colors.$db-adaptive-bg-basic-transparent-full-default;
+		color: colors.$db-adaptive-on-bg-basic-emphasis-100-default;
+		font-size: variables.$db-sizing-sm; // 14px (body-sm)
+		line-height: variables.$db-sizing-md; // 20px
+		font-family: var(--db-font-family-sans);
+		font-weight: 400;
+		text-decoration: none;
+		white-space: nowrap;
+		transition: background-color 0.2s ease;
+
+		&:hover,
+		&:focus {
+			background-color: colors.$db-adaptive-bg-basic-transparent-semi-default;
+			text-decoration: underline;
 		}
 
-		// Link and text styling (small)
+		&:active {
+			background-color: colors.$db-adaptive-bg-basic-transparent-full-pressed;
+		}
+
+		@media screen and (prefers-reduced-motion: reduce) {
+			transition: none;
+		}
+	}
+
+	// Current page (last item with aria-current="page")
+	li[aria-current="page"] {
 		a,
 		span {
-			display: flex;
-			align-items: center;
-			padding: variables.$db-spacing-fixed-3xs
-				variables.$db-spacing-fixed-2xs; // 2px 4px (small)
-
-			border-radius: variables.$db-border-radius-xs; // 4px
-			background-color: colors.$db-adaptive-bg-basic-transparent-full-default;
-			color: colors.$db-adaptive-on-bg-basic-emphasis-100-default;
-			font-size: variables.$db-sizing-sm; // 14px (body-sm)
-			line-height: variables.$db-sizing-md; // 20px
-			font-family: var(--db-font-family-sans);
-			font-weight: 400;
-			text-decoration: none;
-			white-space: nowrap;
-			transition: background-color 0.2s ease;
+			font-weight: 700; // Bold for current item
+			cursor: default;
+			pointer-events: none;
 
 			&:hover,
 			&:focus {
-				background-color: colors.$db-adaptive-bg-basic-transparent-semi-default;
-				text-decoration: underline;
-			}
-
-			&:active {
-				background-color: colors.$db-adaptive-bg-basic-transparent-full-pressed;
-			}
-
-			@media screen and (prefers-reduced-motion: reduce) {
-				transition: none;
+				background-color: colors.$db-adaptive-bg-basic-transparent-full-default;
+				text-decoration: none;
 			}
 		}
+	}
 
-		// Current page (last item with aria-current="page")
-		&[aria-current="page"] {
-			a,
-			span {
-				font-weight: 700; // Bold for current item
-				cursor: default;
-				pointer-events: none;
+	// Default chevron: apply when the breadcrumb does NOT request a slash
+	&:not([data-separator="slash"])
+		.db-breadcrumb-list
+		li:not(:first-child)::before {
+		content: "›"; // chevron right glyph (U+203A)
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		inline-size: variables.$db-sizing-sm; // 24px (small)
+		block-size: variables.$db-sizing-sm;
+		font-size: variables.$db-sizing-md; // 20px
+		color: colors.$db-adaptive-on-bg-basic-emphasis-100-default;
+		font-weight: 400;
+	}
 
-				&:hover,
-				&:focus {
-					background-color: colors.$db-adaptive-bg-basic-transparent-full-default;
-					text-decoration: none;
-				}
-			}
-		}
+	// Slash separator override when component has data-separator="slash"
+	&[data-separator="slash"] .db-breadcrumb-list li:not(:first-child)::before {
+		content: "/"; // ASCII slash (0x2F)
+		font-weight: 400;
+		color: colors.$db-adaptive-on-bg-basic-emphasis-100-default;
+
+		/* reduce the inline size so the slash doesn't create extra empty box */
+		inline-size: auto;
+		block-size: auto;
+		font-size: variables.$db-sizing-sm; // match small text sizing by default
+		margin: 0 variables.$db-spacing-fixed-2xs; // small horizontal spacing
 	}
 
 	// Medium size variant
@@ -114,7 +127,6 @@
 				// Keep the medium padding but ensure comfortable tap/click area
 				padding: variables.$db-spacing-fixed-2xs
 					variables.$db-spacing-fixed-xs; // 4px 8px (medium)
-
 				font-size: variables.$db-sizing-md; // 16px (body-md)
 				line-height: variables.$db-sizing-lg; // 24px
 			}

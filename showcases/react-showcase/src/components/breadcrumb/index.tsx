@@ -13,14 +13,16 @@ type BreadcrumbExampleProps = {
 	children?: BreadcrumbItem[];
 	size?: 'small' | 'medium';
 	className?: string;
+	separator?: 'chevron' | 'slash';
 };
 
 const getBreadcrumb = ({
 	children,
 	size,
-	className
+	className,
+	separator
 }: BreadcrumbExampleProps) => (
-	<DBBreadcrumb size={size} className={className}>
+	<DBBreadcrumb size={size} className={className} separator={separator}>
 		{children && Array.isArray(children)
 			? children.map((item, index) =>
 					item.href ? (

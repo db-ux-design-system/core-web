@@ -17,6 +17,7 @@ const DBBreadcrumb = "nav";
 				:is="DBBreadcrumb"
 				:class="['db-breadcrumb', exampleProps?.className]"
 				:data-size="exampleProps?.size"
+				:data-separator="exampleProps?.separator"
 				aria-label="breadcrumb"
 			>
 				<ol class="db-breadcrumb-list" role="list">

@@ -10,7 +10,8 @@ import type { DBBreadcrumbProps, DBBreadcrumbState } from './model';
 useMetadata({});
 
 useDefaultProps<DBBreadcrumbProps>({
-	size: 'small'
+	size: 'small',
+	separator: 'chevron'
 });
 
 export default function DBBreadcrumb(props: DBBreadcrumbProps) {
@@ -24,6 +25,7 @@ export default function DBBreadcrumb(props: DBBreadcrumbProps) {
 			id={props.id}
 			class={cls('db-breadcrumb', props.className)}
 			data-size={props.size}
+			data-separator={props.separator}
 			aria-label="breadcrumb">
 			<ol class="db-breadcrumb-list" role="list">
 				{props.children}
