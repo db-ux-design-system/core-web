@@ -15,5 +15,5 @@
 ### Import styles
 
 ```scss app.scss
-@use "@db-ux/core-components/build/css/breadcrumb";
+@use "@db-ux/core-components/build/styles/breadcrumb";
 ```
