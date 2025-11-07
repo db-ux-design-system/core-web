@@ -127,6 +127,7 @@
 				// Keep the medium padding but ensure comfortable tap/click area
 				padding: variables.$db-spacing-fixed-2xs
 					variables.$db-spacing-fixed-xs; // 4px 8px (medium)
+
 				font-size: variables.$db-sizing-md; // 16px (body-md)
 				line-height: variables.$db-sizing-lg; // 24px
 			}
