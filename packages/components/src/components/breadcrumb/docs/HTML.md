@@ -15,5 +15,5 @@
 ### Import styles
 
 ```scss app.scss
-@use "@db-ux/core-components/build/styles/breadcrumb";
+@forward "@db-ux/core-components/build/styles/relative";
 ```
