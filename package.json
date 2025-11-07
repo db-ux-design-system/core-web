@@ -142,7 +142,7 @@
     "prettier-plugin-pkg": "0.21.2",
     "publint": "0.3.15",
     "replace-in-file": "8.3.0",
-    "rimraf": "6.0.1",
+    "rimraf": "6.1.0",
     "rxjs": "7.8.2",
     "stylelint": "16.25.0",
     "stylelint-config-standard-scss": "16.0.0",
