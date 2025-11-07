@@ -1,0 +1,29 @@
+[
+	{
+		"name": "Size",
+		"examples": [
+			{
+				"name": "(Default) Small",
+				"props": {
+					"size": "small",
+					"children": [
+						{ "href": "#", "text": "Home" },
+						{ "href": "#", "text": "Category" },
+						{ "text": "Current Page", "ariaCurrent": "page" }
+					]
+				}
+			},
+			{
+				"name": "Medium",
+				"props": {
+					"size": "medium",
+					"children": [
+						{ "href": "#", "text": "Home" },
+						{ "href": "#", "text": "Category" },
+						{ "text": "Current Page", "ariaCurrent": "page" }
+					]
+				}
+			}
+		]
+	}
+]

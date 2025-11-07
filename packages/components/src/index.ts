@@ -6,6 +6,8 @@ export * from './components/badge';
 export * from './components/badge/model';
 export * from './components/brand';
 export * from './components/brand/model';
+export * from './components/breadcrumb';
+export * from './components/breadcrumb/model';
 export * from './components/button';
 export * from './components/button/model';
 export * from './components/card';

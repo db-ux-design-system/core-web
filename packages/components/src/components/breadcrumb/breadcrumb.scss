@@ -1,0 +1,114 @@
+@charset "utf-8";
+@use "@db-ux/core-foundations/build/styles/fonts";
+@use "@db-ux/core-foundations/build/styles/variables";
+@use "@db-ux/core-foundations/build/styles/colors";
+@use "@db-ux/core-foundations/build/styles/helpers";
+
+.db-breadcrumb {
+	// Default: Small size
+	.db-breadcrumb-list {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: flex-start;
+		gap: variables.$db-spacing-fixed-3xs; // 2px gap for small
+		list-style: none;
+		margin: 0;
+		padding: 0;
+	}
+
+	// Breadcrumb items (li elements)
+	li {
+		display: flex;
+		align-items: center;
+		gap: variables.$db-spacing-fixed-3xs; // 2px between separator and item (small)
+
+		// Separator icon (chevron-right) before each item except the first
+		&:not(:first-child)::before {
+			content: "\203A"; // Unicode chevron right (›)
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			inline-size: variables.$db-sizing-sm; // 24px (small)
+			block-size: variables.$db-sizing-sm;
+			font-size: variables.$db-sizing-md; // 20px
+			color: colors.$db-adaptive-on-bg-basic-emphasis-100-default;
+			font-weight: 400;
+		}
+
+		// Link and text styling (small)
+		a,
+		span {
+			display: flex;
+			align-items: center;
+			padding: variables.$db-spacing-fixed-3xs
+				variables.$db-spacing-fixed-2xs; // 2px 4px (small)
+			border-radius: variables.$db-border-radius-xs; // 4px
+			background-color: colors.$db-adaptive-bg-basic-transparent-full-default;
+			color: colors.$db-adaptive-on-bg-basic-emphasis-100-default;
+			font-size: variables.$db-sizing-sm; // 14px (body-sm)
+			line-height: variables.$db-sizing-md; // 20px
+			font-family: var(--db-font-family-sans);
+			font-weight: 400;
+			text-decoration: none;
+			white-space: nowrap;
+			transition: background-color 0.2s ease;
+
+			&:hover,
+			&:focus {
+				background-color: colors.$db-adaptive-bg-basic-transparent-semi-default;
+				text-decoration: underline;
+			}
+
+			&:active {
+				background-color: colors.$db-adaptive-bg-basic-transparent-full-pressed;
+			}
+
+			@media screen and (prefers-reduced-motion: reduce) {
+				transition: none;
+			}
+		}
+
+		// Current page (last item with aria-current="page")
+		&[aria-current="page"] {
+			a,
+			span {
+				font-weight: 700; // Bold for current item
+				cursor: default;
+				pointer-events: none;
+
+				&:hover,
+				&:focus {
+					background-color: colors.$db-adaptive-bg-basic-transparent-full-default;
+					text-decoration: none;
+				}
+			}
+		}
+	}
+
+	// Medium size variant
+	&[data-size="medium"] {
+		.db-breadcrumb-list {
+			gap: variables.$db-spacing-fixed-2xs; // 4px gap for medium
+		}
+
+		li {
+			gap: variables.$db-spacing-fixed-2xs; // 4px between separator and item (medium)
+
+			&:not(:first-child)::before {
+				inline-size: variables.$db-sizing-md +
+					variables.$db-spacing-fixed-2xs; // 28px (medium)
+				block-size: variables.$db-sizing-md +
+					variables.$db-spacing-fixed-2xs;
+				font-size: variables.$db-sizing-lg; // 24px
+			}
+
+			a,
+			span {
+				padding: variables.$db-spacing-fixed-2xs
+					variables.$db-spacing-fixed-xs; // 4px 8px (medium)
+				font-size: variables.$db-sizing-md; // 16px (body-md)
+				line-height: variables.$db-sizing-lg; // 24px
+			}
+		}
+	}
+}

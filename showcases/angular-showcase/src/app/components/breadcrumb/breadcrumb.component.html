@@ -1,0 +1,27 @@
+<app-default-component
+	title="DBBreadcrumb"
+	[variants]="variants"
+	[exampleTemplate]="exampleTemplate"
+>
+	<ng-template
+		#exampleTemplate
+		let-exampleProps="exampleProps"
+		let-exampleName="exampleName"
+		let-exampleIndex="exampleIndex"
+		let-variantIndex="variantIndex"
+	>
+		<db-breadcrumb>
+			@for (item of exampleProps?.children; track $index) {
+				@if (item.href) {
+					<li>
+						<a [href]="item.href">{{ item.text }}</a>
+					</li>
+				} @else {
+					<li [attr.aria-current]="item.ariaCurrent">
+						<span>{{ item.text }}</span>
+					</li>
+				}
+			}
+		</db-breadcrumb>
+	</ng-template>
+</app-default-component>
