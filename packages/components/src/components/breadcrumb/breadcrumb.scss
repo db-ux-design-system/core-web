@@ -42,6 +42,7 @@
 			align-items: center;
 			padding: variables.$db-spacing-fixed-3xs
 				variables.$db-spacing-fixed-2xs; // 2px 4px (small)
+
 			border-radius: variables.$db-border-radius-xs; // 4px
 			background-color: colors.$db-adaptive-bg-basic-transparent-full-default;
 			color: colors.$db-adaptive-on-bg-basic-emphasis-100-default;
@@ -88,24 +89,32 @@
 	// Medium size variant
 	&[data-size="medium"] {
 		.db-breadcrumb-list {
-			gap: variables.$db-spacing-fixed-2xs; // 4px gap for medium
+			// Slightly more breathing room for medium size (matches Figma spacing)
+			gap: variables.$db-spacing-fixed-xs; // 8px gap for medium
+
+			/* ensure list items are vertically centered in medium size */
+			align-items: center;
 		}
 
 		li {
-			gap: variables.$db-spacing-fixed-2xs; // 4px between separator and item (medium)
+			// Increase gap between separator and item for better touch target
+			gap: variables.$db-spacing-fixed-xs; // 8px between separator and item (medium)
 
 			&:not(:first-child)::before {
-				inline-size: variables.$db-sizing-md +
-					variables.$db-spacing-fixed-2xs; // 28px (medium)
-				block-size: variables.$db-sizing-md +
-					variables.$db-spacing-fixed-2xs;
-				font-size: variables.$db-sizing-lg; // 24px
+				// Make the chevron larger to match visual weight in Figma
+				inline-size: variables.$db-sizing-lg; // ~24px
+				block-size: variables.$db-sizing-lg;
+				font-size: variables.$db-sizing-lg; // use large sizing token
+				font-weight: 600;
+				color: colors.$db-adaptive-on-bg-basic-emphasis-100-default;
 			}
 
 			a,
 			span {
+				// Keep the medium padding but ensure comfortable tap/click area
 				padding: variables.$db-spacing-fixed-2xs
 					variables.$db-spacing-fixed-xs; // 4px 8px (medium)
+
 				font-size: variables.$db-sizing-md; // 16px (body-md)
 				line-height: variables.$db-sizing-lg; // 24px
 			}

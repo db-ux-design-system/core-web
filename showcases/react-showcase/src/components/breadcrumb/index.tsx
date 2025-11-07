@@ -3,16 +3,32 @@ import defaultComponentVariants from '../../../../shared/breadcrumb.json';
 import { getVariants } from '../data';
 import DefaultComponent from '../default-component';
 
-const getBreadcrumb = ({ children, size }: any) => (
-	<DBBreadcrumb size={size}>
+type BreadcrumbItem = {
+	href?: string;
+	text: string;
+	ariaCurrent?: 'page' | undefined;
+};
+
+type BreadcrumbExampleProps = {
+	children?: BreadcrumbItem[];
+	size?: 'small' | 'medium';
+	className?: string;
+};
+
+const getBreadcrumb = ({
+	children,
+	size,
+	className
+}: BreadcrumbExampleProps) => (
+	<DBBreadcrumb size={size} className={className}>
 		{children && Array.isArray(children)
-			? children.map((item: any, index: number) =>
+			? children.map((item, index) =>
 					item.href ? (
 						<li key={index}>
 							<a href={item.href}>{item.text}</a>
 						</li>
 					) : (
-						<li key={index} aria-current={item.ariaCurrent}>
+						<li key={index} aria-current={item.ariaCurrent as any}>
 							<span>{item.text}</span>
 						</li>
 					)
@@ -21,16 +37,18 @@ const getBreadcrumb = ({ children, size }: any) => (
 	</DBBreadcrumb>
 );
 
-const BreadcrumbComponent = (props: any) => {
-	return (
-		<DefaultComponent
-			title="DBBreadcrumb"
-			variants={getVariants(
-				defaultComponentVariants,
-				getBreadcrumb,
-				props.slotCode
-			)}></DefaultComponent>
-	);
+type BreadcrumbComponentProps = {
+	slotCode?: Record<string, React.FC>;
 };
+
+const BreadcrumbComponent = (props: BreadcrumbComponentProps) => (
+	<DefaultComponent
+		title="DBBreadcrumb"
+		variants={getVariants(
+			defaultComponentVariants,
+			getBreadcrumb,
+			props.slotCode
+		)}></DefaultComponent>
+);
 
 export default BreadcrumbComponent;

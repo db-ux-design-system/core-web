@@ -10,18 +10,28 @@
 		let-exampleIndex="exampleIndex"
 		let-variantIndex="variantIndex"
 	>
-		<db-breadcrumb>
-			@for (item of exampleProps?.children; track $index) {
-				@if (item.href) {
-					<li>
-						<a [href]="item.href">{{ item.text }}</a>
-					</li>
-				} @else {
-					<li [attr.aria-current]="item.ariaCurrent">
-						<span>{{ item.text }}</span>
-					</li>
+		<!-- Plain HTML structure to avoid relying on missing Angular wrapper / web component -->
+		<nav
+			[attr.class]="
+				'db-breadcrumb' +
+				(exampleProps?.className ? ' ' + exampleProps.className : '')
+			"
+			[attr.data-size]="exampleProps?.size ?? 'small'"
+			aria-label="breadcrumb"
+		>
+			<ol class="db-breadcrumb-list" role="list">
+				@for (item of exampleProps?.children; track $index) {
+					@if (item.href) {
+						<li>
+							<a [href]="item.href">{{ item.text }}</a>
+						</li>
+					} @else {
+						<li [attr.aria-current]="item.ariaCurrent">
+							<span>{{ item.text }}</span>
+						</li>
+					}
 				}
-			}
-		</db-breadcrumb>
+			</ol>
+		</nav>
 	</ng-template>
 </app-default-component>

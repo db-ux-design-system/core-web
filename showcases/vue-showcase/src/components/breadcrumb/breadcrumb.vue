@@ -15,7 +15,8 @@ const DBBreadcrumb = "nav";
 		>
 			<component
 				:is="DBBreadcrumb"
-				class="db-breadcrumb"
+				:class="['db-breadcrumb', exampleProps?.className]"
+				:data-size="exampleProps?.size"
 				aria-label="breadcrumb"
 			>
 				<ol class="db-breadcrumb-list" role="list">

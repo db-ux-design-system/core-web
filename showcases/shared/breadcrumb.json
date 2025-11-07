@@ -4,6 +4,7 @@
 		"examples": [
 			{
 				"name": "(Default) Small",
+				"className": "w-full",
 				"props": {
 					"size": "small",
 					"children": [
@@ -15,6 +16,7 @@
 			},
 			{
 				"name": "Medium",
+				"className": "w-full",
 				"props": {
 					"size": "medium",
 					"children": [
