@@ -1,11 +1,11 @@
 {
   "name": "composition-storybook",
-  "private": true,
   "version": "0.0.0",
   "type": "module",
+  "private": true,
   "scripts": {
-    "storybook": "storybook dev -p 6001",
-    "build": "storybook build --output-dir ../../build-storybooks/composition-storybook"
+    "build": "storybook build --output-dir ../../build-storybooks/composition-storybook",
+    "storybook": "storybook dev -p 6001"
   },
   "dependencies": {
     "react": "18.3.1",
@@ -21,7 +21,6 @@
     "eslint": "9.39.1",
     "eslint-plugin-react-hooks": "7.0.0",
     "eslint-plugin-react-refresh": "0.4.24",
-    "eslint-plugin-storybook": "10.0.5",
     "globals": "16.4.0",
     "storybook": "10.0.5",
     "typescript": "~5.9.3",
