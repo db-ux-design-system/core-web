@@ -120,6 +120,12 @@ updates:
         update-types:
           - "minor"
           - "major"
+      storybook:
+        patterns:
+          - "@storybook*"
+        update-types:
+          - "minor"
+          - "major"
       inquirer:
         patterns:
           - "@inquirer/*"
