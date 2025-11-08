@@ -1,1 +1,0 @@
-(self.webpackChunk_N_E=self.webpackChunk_N_E||[]).push([[6178],{58156:(_,n,s)=>{(window.__NEXT_P=window.__NEXT_P||[]).push(["/foundations",function(){return s(70956)}])},70956:(_,n,s)=>{"use strict";s.r(n),s.d(n,{default:()=>t});var u=s(6029),e=s(36838);let t=()=>(0,u.jsx)(e.A,{})}},_=>{_.O(0,[5714,310,4580,3850,6838,636,6593,8792],()=>_(_.s=58156)),_N_E=_.O()}]);
