@@ -1,1 +1,0 @@
-(self.webpackChunk_N_E=self.webpackChunk_N_E||[]).push([[4401],{5996:(_,s,n)=>{(window.__NEXT_P=window.__NEXT_P||[]).push(["/foundations/colors",function(){return n(65665)}])},65665:(_,s,n)=>{"use strict";n.r(s),n.d(s,{default:()=>o});var u=n(6029),e=n(36838);let o=()=>(0,u.jsx)(e.A,{})}},_=>{_.O(0,[5714,310,4580,3850,6838,636,6593,8792],()=>_(_.s=5996)),_N_E=_.O()}]);
