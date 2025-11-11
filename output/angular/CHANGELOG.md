@@ -1,5 +1,11 @@
 # @db-ux/ngx-core-components
 
+## 4.2.0
+
+### Minor Changes
+
+- feat(DBHeader): Passthrough property `closeButtonText` for the close button within the inner `DBDrawer`. - [see commit 211cf1d](https://github.com/db-ux-design-system/core-web/commit/211cf1d1fa98938d5bce732863da8bb3f7b75f98)
+
 ## 4.1.0
 
 ### Minor Changes
