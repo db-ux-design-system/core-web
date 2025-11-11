@@ -112,6 +112,7 @@
     "@playwright/experimental-ct-react": "1.56.1",
     "@playwright/experimental-ct-vue": "1.56.1",
     "@playwright/test": "1.56.1",
+    "@storybook/angular": "10.0.6",
     "accessibility-checker": "4.0.9",
     "adm-zip": "0.5.16",
     "commander": "14.0.2",
