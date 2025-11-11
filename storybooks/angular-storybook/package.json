@@ -7,7 +7,6 @@
     "storybook": "ng run angular-latest:storybook"
   },
   "devDependencies": {
-    "@storybook/angular": "10.0.5",
     "storybook": "10.0.5"
   }
 }
