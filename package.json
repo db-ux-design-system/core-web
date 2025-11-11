@@ -79,7 +79,7 @@
     "update:dependency:playwright": "node scripts/github/update-playwright.js"
   },
   "dependencies": {
-    "fast-glob": "^3.3.3"
+    "fast-glob": "3.3.3"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "20.3.9",
