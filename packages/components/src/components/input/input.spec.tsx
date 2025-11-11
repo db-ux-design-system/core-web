@@ -76,6 +76,36 @@ const testAction = () => {
 		await expect(input).not.toHaveAttribute('enterkeyhint');
 		await expect(input).not.toHaveAttribute('inputmode');
 	});
+
+	test('should clear date input when value is set to empty string', async ({
+		mount,
+		page
+	}) => {
+		const component = await mount(
+			<DBInput label="Date" type="date" value="2025-01-15" />
+		);
+		const input = page.locator('input[type="date"]');
+
+		// Verify initial value is set
+		await expect(input).toHaveValue('2025-01-15');
+
+		// Update component with empty string value
+		await component.evaluate((node: any, newValue: string) => {
+			const inputElement = node.querySelector('input');
+			if (inputElement) {
+				inputElement.value = newValue;
+				inputElement.dispatchEvent(
+					new Event('input', { bubbles: true })
+				);
+				inputElement.dispatchEvent(
+					new Event('change', { bubbles: true })
+				);
+			}
+		}, '');
+
+		// Verify the input is cleared
+		await expect(input).toHaveValue('');
+	});
 };
 
 test.describe('DBInput', () => {
