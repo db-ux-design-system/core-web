@@ -18,6 +18,8 @@
 
 - fix(button): Replace fixed height with min-height for buttons to allow dynamic height adjustment when text wraps - [see commit d1fd2c4](https://github.com/db-ux-design-system/core-web/commit/d1fd2c4e58a5ed6f75fab44700cd2d93c7232474)
 
+- fix(input): Date or time types – initial value gets displayed as placeholder [see commit e3c7ce7](e3c7ce7718803624557bc8fc66f7b662b42ff0be)
+
 ## 4.0.4
 
 ### Patch Changes

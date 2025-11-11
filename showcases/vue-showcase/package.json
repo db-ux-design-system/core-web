@@ -17,7 +17,7 @@
     "test:visual-snapshots": "cross-env showcase=vue-showcase npx playwright test --config=../playwright.visual-snapshots.ts"
   },
   "dependencies": {
-    "sa11y": "4.3.4",
+    "sa11y": "4.3.5",
     "vue": "3.5.22",
     "vue-router": "4.6.3"
   },
@@ -25,7 +25,7 @@
     "@vitejs/plugin-vue": "6.0.1",
     "cross-env": "10.1.0",
     "typescript": "5.9.3",
-    "vite": "7.1.11",
-    "vue-tsc": "3.1.1"
+    "vite": "7.1.12",
+    "vue-tsc": "3.1.3"
   }
 }
