@@ -1,0 +1,27 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8" data-next-head=""/><meta name="viewport" content="width=device-width" data-next-head=""/><title data-next-head="">DB UX</title><link data-next-font="size-adjust" rel="preconnect" href="/" crossorigin="anonymous"/><link rel="preload" href="/core-web/review/dependabot-npm_and_yarn-eslint-plugin-storybook-10.0.6/_next/static/css/03d42c3ecafaff5f.css" as="style"/><link rel="stylesheet" href="/core-web/review/dependabot-npm_and_yarn-eslint-plugin-storybook-10.0.6/_next/static/css/03d42c3ecafaff5f.css" data-n-g=""/><noscript data-n-css=""></noscript><script defer="" nomodule="" src="/core-web/review/dependabot-npm_and_yarn-eslint-plugin-storybook-10.0.6/_next/static/chunks/polyfills-42372ed130431b0a.js"></script><script src="/core-web/review/dependabot-npm_and_yarn-eslint-plugin-storybook-10.0.6/_next/static/chunks/webpack-2cf7274153b375b0.js" defer=""></script><script src="/core-web/review/dependabot-npm_and_yarn-eslint-plugin-storybook-10.0.6/_next/static/chunks/framework-c528b96079bb3756.js" defer=""></script><script src="/core-web/review/dependabot-npm_and_yarn-eslint-plugin-storybook-10.0.6/_next/static/chunks/main-68ea128e6077c47c.js" defer=""></script><script src="/core-web/review/dependabot-npm_and_yarn-eslint-plugin-storybook-10.0.6/_next/static/chunks/pages/_app-1797764eb484029a.js" defer=""></script><script src="/core-web/review/dependabot-npm_and_yarn-eslint-plugin-storybook-10.0.6/_next/static/chunks/pages/components/data-input/radio/docs/React-d41a3b789775de6a.js" defer=""></script><script src="/core-web/review/dependabot-npm_and_yarn-eslint-plugin-storybook-10.0.6/_next/static/2E-V8xt2FnbBC_DhLj6F7/_buildManifest.js" defer=""></script><script src="/core-web/review/dependabot-npm_and_yarn-eslint-plugin-storybook-10.0.6/_next/static/2E-V8xt2FnbBC_DhLj6F7/_ssgManifest.js" defer=""></script></head><body><div id="__next"><h2 id="react">React<a class="header-link" href="/core-web/review/dependabot-npm_and_yarn-eslint-plugin-storybook-10.0.6/components/data-input/radio/docs/React?current=react"><span aria-hidden="true" class="db-icon" data-icon="paper_clip"></span>react<!-- --> anchor link</a></h2>
+<p>For general installation and configuration take a look at the <a target="_blank" referrerPolicy="no-referrer" href="https://www.npmjs.com/package/@db-ux/react-core-components">react-core-components</a> package.</p>
+<h3 id="use-component">Use component<a class="header-link" href="/core-web/review/dependabot-npm_and_yarn-eslint-plugin-storybook-10.0.6/components/data-input/radio/docs/React?current=use-component"><span aria-hidden="true" class="db-icon" data-icon="paper_clip"></span>use-component<!-- --> anchor link</a></h3>
+<pre><code class="language-tsx">// App.tsx
+import { useState } from &quot;react&quot;;
+import { DBRadio } from &quot;@db-ux/react-core-components&quot;;
+
+const App = () =&gt; (
+	&lt;ul&gt;
+		{[&quot;X&quot;, &quot;Y&quot;, &quot;Z&quot;].map((radioName) =&gt; (
+			&lt;li key={radioName}&gt;
+				&lt;DBRadio
+					name=&quot;radio-group&quot;
+					value={radioName}
+					onChange={() =&gt; {
+						setRadio(radioName);
+					}}
+				&gt;
+					Radio {radioName}
+				&lt;/DBRadio&gt;
+			&lt;/li&gt;
+		))}
+	&lt;/ul&gt;
+);
+
+export default App;
+</code></pre></div><script id="__NEXT_DATA__" type="application/json">{"props":{"pageProps":{}},"page":"/components/data-input/radio/docs/React","query":{},"buildId":"2E-V8xt2FnbBC_DhLj6F7","assetPrefix":"/core-web/review/dependabot-npm_and_yarn-eslint-plugin-storybook-10.0.6","nextExport":true,"autoExport":true,"isFallback":false,"scriptLoader":[]}</script></body></html>
