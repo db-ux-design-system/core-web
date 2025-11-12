@@ -83,7 +83,7 @@ const testAction = () => {
 		await page.goto(getPathname('components-input--default'));
 
 		// Get the date input
-		const input = page.locator('db-input[type="date"] input');
+		const input = page.locator('db-input[type="date"]');
 
 		// Set an initial date value
 		await input.fill('2024-01-15');
@@ -123,7 +123,7 @@ const testAction = () => {
 		await page.goto(getPathname('components-input--default'));
 
 		const dbInput = page.locator('db-input[type="date"]');
-		const input = page.locator('db-input[type="date"] input');
+		const input = page.locator('db-input[type="date"]');
 
 		// Set a date first
 		await dbInput.evaluate((el: any) => {
@@ -171,7 +171,7 @@ const testAction = () => {
 		await page.goto(getPathname('components-input--default'));
 
 		const dbInput = page.locator('db-input[type="datetime-local"]');
-		const input = page.locator('db-input[type="datetime-local"] input');
+		const input = page.locator('db-input[type="datetime-local"]');
 
 		// Set a datetime value
 		await dbInput.evaluate((el: any) => {
