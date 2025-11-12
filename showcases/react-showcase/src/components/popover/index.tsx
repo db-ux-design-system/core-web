@@ -1,5 +1,5 @@
-import { DBButton, DBPopover } from '../../../../../output/react/src';
-import type { DBPopoverProps } from '../../../../../output/react/src/components/popover/model';
+import { DBButton, DBPopover } from '@components';
+import type { DBPopoverProps } from '@components/src/components/popover/model';
 import defaultComponentVariants from '../../../../shared/popover.json';
 import { type BaseComponentProps } from '../base-component-data';
 import { getVariants } from '../data';
