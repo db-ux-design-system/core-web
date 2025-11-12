@@ -17,7 +17,11 @@ import {
 	DEFAULT_VALID_MESSAGE,
 	DEFAULT_VALID_MESSAGE_ID_SUFFIX
 } from '../../shared/constants';
-import { ChangeEvent, InteractionEvent } from '../../shared/model';
+import {
+	ChangeEvent,
+	GeneralKeyboardEvent,
+	InteractionEvent
+} from '../../shared/model';
 import {
 	cls,
 	delay,
@@ -138,6 +142,14 @@ export default function DBSwitch(props: DBSwitchProps) {
 			if (props.onFocus) {
 				props.onFocus(event);
 			}
+		},
+		handleKeyDown: (event: GeneralKeyboardEvent<HTMLInputElement>) => {
+			// Support ENTER key for toggling the switch (a11y requirement)
+			if (event.key === 'Enter') {
+				event.preventDefault();
+				// Toggle the switch by clicking it programmatically
+				(_ref as HTMLInputElement)?.click();
+			}
 		}
 	});
 
@@ -225,6 +237,9 @@ export default function DBSwitch(props: DBSwitchProps) {
 					onFocus={(event: InteractionEvent<HTMLInputElement>) =>
 						state.handleFocus(event)
 					}
+					onKeyDown={(
+						event: GeneralKeyboardEvent<HTMLInputElement>
+					) => state.handleKeyDown(event)}
 				/>
 				<Show when={props.label} else={props.children}>
 					{props.label}
