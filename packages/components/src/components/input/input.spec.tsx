@@ -78,87 +78,73 @@ const testAction = () => {
 	});
 
 	test('should handle empty string value for date input without clearing', async ({
-		page
+		mount
 	}) => {
-		await page.goto(getPathname('components-input--default'));
-
-		// Get the date input
-		const input = page.locator('db-input[type="date"]');
+		const comp: any = <DBInput type="date" label="Date" />;
+		const component = await mount(comp);
+		const input = component.locator('input');
 
 		// Set an initial date value
 		await input.fill('2024-01-15');
 		await expect(input).toHaveValue('2024-01-15');
 
-		// Now set an empty string - this should NOT clear the input to null
-		await input.evaluate((el: HTMLInputElement) => {
+		// Now programmatically set empty string via the component
+		await component.evaluate((el: any) => {
 			el.value = '';
 		});
 
-		// The value should be empty string, not null
-		const valueAfterEmpty = await input.evaluate(
-			(el: HTMLInputElement) => el.value
-		);
-		expect(valueAfterEmpty).toBe('');
-
-		// Now test programmatically setting empty string via the component
-		const dbInput = page.locator('db-input[type="date"]');
-		await dbInput.evaluate((el: any) => {
-			el.value = '';
-		});
-
-		// Check that the internal input value is empty string, not cleared
+		// The internal input value should be empty string, not null
 		const internalValue = await input.evaluate(
 			(el: HTMLInputElement) => el.value
 		);
 		expect(internalValue).toBe('');
 
-		// Verify the component's value property
-		const componentValue = await dbInput.evaluate((el: any) => el.value);
+		// Verify the component's value property is also empty string
+		const componentValue = await component.evaluate((el: any) => el.value);
 		expect(componentValue).toBe('');
 	});
 
 	test('should distinguish between undefined, null, and empty string for date input', async ({
-		page
+		mount
 	}) => {
-		await page.goto(getPathname('components-input--default'));
-
-		const dbInput = page.locator('db-input[type="date"]');
-		const input = page.locator('db-input[type="date"]');
+		const comp: any = <DBInput type="date" label="Date" />;
+		const component = await mount(comp);
+		const input = component.locator('input');
 
 		// Set a date first
-		await dbInput.evaluate((el: any) => {
+		await component.evaluate((el: any) => {
 			el.value = '2024-01-15';
 		});
 		await expect(input).toHaveValue('2024-01-15');
 
 		// Test empty string - should keep the input but make it empty
-		await dbInput.evaluate((el: any) => {
+		await component.evaluate((el: any) => {
 			el.value = '';
 		});
 		let value = await input.evaluate((el: HTMLInputElement) => el.value);
 		expect(value).toBe('');
 
 		// Set date again
-		await dbInput.evaluate((el: any) => {
+		await component.evaluate((el: any) => {
 			el.value = '2024-02-20';
 		});
 		await expect(input).toHaveValue('2024-02-20');
 
 		// Test null - should clear the input
-		await dbInput.evaluate((el: any) => {
+		await component.evaluate((el: any) => {
 			el.value = null;
 		});
 		value = await input.evaluate((el: HTMLInputElement) => el.value);
 		expect(value).toBe('');
 
 		// Set date again
-		await dbInput.evaluate((el: any) => {
+		await component.evaluate((el: any) => {
 			el.value = '2024-03-25';
 		});
 		await expect(input).toHaveValue('2024-03-25');
 
 		// Test undefined - should clear the input
-		await dbInput.evaluate((el: any) => {
+		await component.evaluate((el: any) => {
 			el.value = undefined;
 		});
 		value = await input.evaluate((el: HTMLInputElement) => el.value);
@@ -166,21 +152,20 @@ const testAction = () => {
 	});
 
 	test('should handle empty string for datetime-local input', async ({
-		page
+		mount
 	}) => {
-		await page.goto(getPathname('components-input--default'));
-
-		const dbInput = page.locator('db-input[type="datetime-local"]');
-		const input = page.locator('db-input[type="datetime-local"]');
+		const comp: any = <DBInput type="datetime-local" label="DateTime" />;
+		const component = await mount(comp);
+		const input = component.locator('input');
 
 		// Set a datetime value
-		await dbInput.evaluate((el: any) => {
+		await component.evaluate((el: any) => {
 			el.value = '2024-01-15T10:30';
 		});
 		await expect(input).toHaveValue('2024-01-15T10:30');
 
 		// Set empty string - should not be treated as falsy and cleared
-		await dbInput.evaluate((el: any) => {
+		await component.evaluate((el: any) => {
 			el.value = '';
 		});
 
