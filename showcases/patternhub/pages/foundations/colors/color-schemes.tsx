@@ -60,7 +60,7 @@ const ColorSchemes = () => {
 					automatically adapt to the color set.
 				</p>
 				<p>
-					Each adaptive color scheme class functions as a shorthand
+					Each adaptive color scheme declaration functions as a shorthand
 					and applies the following by default:
 				</p>
 				<ul>
