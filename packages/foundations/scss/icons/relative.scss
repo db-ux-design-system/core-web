@@ -60,8 +60,8 @@
 
 /* pre-load icon fallback font */
 html::after {
-    content: "";
-    position: absolute;
-    z-index: -1;
-    font-family: icon-font-fallback,sans-serif;
+	content: "";
+	position: absolute;
+	z-index: -1;
+	font-family: icon-font-fallback, sans-serif;
 }

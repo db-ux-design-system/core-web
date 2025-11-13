@@ -22,7 +22,6 @@ const config: StorybookConfig = {
 	async viteFinal(config) {
 		const { mergeConfig } = await import('vite');
 
-
 		return mergeConfig(config, {
 			// TODO: Remove `/storybook` after removing patternhub
 			base: `${baseUrl}/composition-storybook`

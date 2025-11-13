@@ -1,11 +1,11 @@
 {
   "name": "composition-storybook",
-  "private": true,
   "version": "0.0.0",
   "type": "module",
+  "private": true,
   "scripts": {
-    "storybook": "storybook dev -p 6001",
-    "build": "storybook build --output-dir ../../build-storybooks/composition-storybook"
+    "build": "storybook build --output-dir ../../build-storybooks/composition-storybook",
+    "storybook": "storybook dev -p 6001"
   },
   "dependencies": {
     "react": "18.3.1",
