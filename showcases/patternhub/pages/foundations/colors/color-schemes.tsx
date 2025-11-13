@@ -39,18 +39,18 @@ const ColorSchemes = () => {
 					<li>
 						Should an entire container be given an{' '}
 						<strong>adaptive color scheme</strong>? Then use a{' '}
-						<code>db-color-[ color ]</code> class.
+						<code>data-color="[ color ]"</code> HTML-attribute.
 					</li>
 					<li>
 						The <strong>background color</strong>, in particular the{' '}
 						<strong>elevation level</strong>, can be modified with a{' '}
-						<code>db-bg-color-[ color ]</code> class.
+						<code>data-bg-color="[ color ]"</code> HTML-attribute.
 					</li>
 					<li>
 						The contrast of the <strong>text</strong> and{' '}
 						<strong>icon color</strong> can be changed with the{' '}
-						<strong>on-background</strong> classes:{' '}
-						<code>db-on-bg-color-[ color ]</code>
+						<strong>on-background</strong> <code>data</code>-HTML-{' '}
+						attribute: <code>data-on-bg-color="[ color ]"</code>
 					</li>
 				</ol>
 				<h2 id="container-color-classes">1. Adaptive Color Scheme</h2>
