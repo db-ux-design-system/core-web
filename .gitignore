@@ -76,3 +76,4 @@ showcases/patternhub/public/iframe-resizer/*
 /packages/agent-cli/test/.amazonq/rules/db-ux.md
 /core-web.iml
 /build-storybooks/
+**/blob-report

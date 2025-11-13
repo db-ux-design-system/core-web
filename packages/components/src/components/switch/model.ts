@@ -8,6 +8,7 @@ import {
 	FormProps,
 	FormState,
 	FromValidState,
+	GeneralKeyboardEvent,
 	GlobalProps,
 	GlobalState,
 	IconLeadingProps,
@@ -41,7 +42,9 @@ export type DBSwitchProps = GlobalProps &
 	IconLeadingProps &
 	DBSwitchDefaultProps;
 
-export type DBSwitchDefaultState = {};
+export type DBSwitchDefaultState = {
+	handleKeyDown: (event: GeneralKeyboardEvent<HTMLInputElement>) => void;
+};
 
 export type DBSwitchState = DBSwitchDefaultState &
 	GlobalState &
