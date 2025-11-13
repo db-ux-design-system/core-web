@@ -100,7 +100,7 @@ const ColorSchemes = () => {
 					2. Background color modifier
 				</h2>
 				<p>
-					These classes define the type of background color for a
+					These declarations define the type of background color for a
 					container. The exact color tone than results from the
 					current semantics (in root <strong>neutral</strong> by
 					default). This means that each of these background types
@@ -115,7 +115,7 @@ const ColorSchemes = () => {
 					3. On background color modifier
 				</h2>
 				<p>
-					This class is used to define the contrast for{' '}
+					This declarations is used to define the contrast for{' '}
 					<strong>texts</strong> and <strong>icons</strong>. As with
 					the background colors, these are displayed according to the
 					current color scheme.
