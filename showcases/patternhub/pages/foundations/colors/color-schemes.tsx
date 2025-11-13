@@ -12,17 +12,16 @@ const ColorSchemes = () => {
 	return (
 		<DefaultPage>
 			<div>
-				<h1>Color classes</h1>
+				<h1>Color attributes</h1>
 				<p>
-					These <strong>classes</strong> (or <code>data-</code>
-					-attributes) can be used to apply a{' '}
-					<strong>monochromatic adaptive color scheme</strong> or a{' '}
-					<strong>color modifier</strong> (background color,
-					on-background color) to containers and elements.
+					These <code>data-</code>-attributes (or <strong>classes</strong>){' '}
+					can be used to apply a <strong>monochromatic adaptive color
+					scheme</strong> or a <strong>color modifier</strong> (background{' '}
+					color, on-background color) to containers and elements.
 				</p>
 				<p>
 					<i>
-						These classes are <strong>not</strong> intended for
+						These declarations are <strong>not</strong> intended for
 						individual styling of your own components. The
 						corresponding CSS Custom Properties should be used for
 						this.
