@@ -1,9 +1,13 @@
 # @db-ux/core-stylelint
 
-## 4.1.0
+## 4.2.0
 
 _version bump_
 
+
+## 4.1.0
+
+_version bump_
 
 ## 4.0.4
 
