@@ -1,11 +1,11 @@
 {
   "name": "react-storybook",
-  "private": true,
   "version": "0.0.0",
   "type": "module",
+  "private": true,
   "scripts": {
-    "storybook": "storybook dev -p 6005",
-    "build": "storybook build --output-dir ../../build-storybooks/react-storybook"
+    "build": "storybook build --output-dir ../../build-storybooks/react-storybook",
+    "storybook": "storybook dev -p 6005"
   },
   "dependencies": {
     "react": "18.3.1",

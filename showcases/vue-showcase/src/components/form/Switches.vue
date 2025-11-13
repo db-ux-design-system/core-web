@@ -16,9 +16,6 @@ const vModel = ref(true);
 		>
 			Plain
 		</DBSwitch>
-		<DBSwitch name="switch-1" v-model:checked="vModel">
-			VModel
-		</DBSwitch>
+		<DBSwitch name="switch-1" v-model:checked="vModel"> VModel </DBSwitch>
 	</FormWrapper>
 </template>
-
