@@ -12,7 +12,7 @@ const ColorSchemes = () => {
 	return (
 		<DefaultPage>
 			<div>
-				<h1>Color attributes</h1>
+				<h1>Color declarations</h1>
 				<p>
 					These <code>data-</code>-attributes (or{' '}
 					<strong>classes</strong>) can be used to apply a{' '}
