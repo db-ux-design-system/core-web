@@ -14,10 +14,11 @@ const ColorSchemes = () => {
 			<div>
 				<h1>Color attributes</h1>
 				<p>
-					These <code>data-</code>-attributes (or <strong>classes</strong>){' '}
-					can be used to apply a <strong>monochromatic adaptive color
-					scheme</strong> or a <strong>color modifier</strong> (background{' '}
-					color, on-background color) to containers and elements.
+					These <code>data-</code>-attributes (or{' '}
+					<strong>classes</strong>) can be used to apply a{' '}
+					<strong>monochromatic adaptive color scheme</strong> or a{' '}
+					<strong>color modifier</strong> (background color,
+					on-background color) to containers and elements.
 				</p>
 				<p>
 					<i>
@@ -60,8 +61,8 @@ const ColorSchemes = () => {
 					automatically adapt to the color set.
 				</p>
 				<p>
-					Each adaptive color scheme declaration functions as a shorthand
-					and applies the following by default:
+					Each adaptive color scheme declaration functions as a
+					shorthand and applies the following by default:
 				</p>
 				<ul>
 					<li>
