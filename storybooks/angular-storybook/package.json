@@ -7,6 +7,6 @@
   },
   "private": true,
   "devDependencies": {
-    "@storybook/angular": "9.1.13"
+    "@storybook/angular": "10.0.6"
   }
 }
