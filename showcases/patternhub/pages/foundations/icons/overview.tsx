@@ -8,6 +8,7 @@ import {
 	DBSelect
 } from '../../../../../output/react/src';
 import DefaultPage from '../../../components/default-page';
+import IconCodeSnippet from '../../../components/icon-code-snippet';
 
 // Import root package.json for theme version
 import rootPackage from '../../../../../package.json';
@@ -65,7 +66,9 @@ const IconOverview = () => {
 							setWeight(event.target.value);
 						}}>
 						{[16, 20, 24, 32].map((fw) => (
-							<option value={fw}>{fw}</option>
+							<option key={fw} value={fw}>
+								{fw}
+							</option>
 						))}
 					</DBSelect>
 					<DBSelect
@@ -75,7 +78,9 @@ const IconOverview = () => {
 							setFamily(event.target.value);
 						}}>
 						{['default', 'filled'].map((fam) => (
-							<option value={fam}>{fam}</option>
+							<option key={fam} value={fam}>
+								{fam}
+							</option>
 						))}
 					</DBSelect>
 				</search>
@@ -91,12 +96,19 @@ const IconOverview = () => {
 				}>
 				{ALL_ICONS.filter((icon) => icon.includes(search)).map(
 					(icon) => (
-						<DBCard key={icon} spacing="small">
-							{/* TODO: Make this interactive to copy the icon name */}
+						<DBCard
+							key={icon}
+							spacing="small"
+							className="icon-card">
 							<DBIcon icon={icon}>{icon}</DBIcon>
 							<DBInfotext semantic="informational" icon="none">
 								{icon}
 							</DBInfotext>
+							<IconCodeSnippet
+								iconName={icon}
+								weight={weight}
+								family={family}
+							/>
 						</DBCard>
 					)
 				)}
