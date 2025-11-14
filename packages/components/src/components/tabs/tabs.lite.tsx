@@ -170,11 +170,11 @@ export default function DBTabs(props: DBTabsProps) {
 					if (tabItem) {
 						const list = tabItem.parentElement;
 						if (list) {
-							const indices = Array.from(list.childNodes).indexOf(
+							const tabIndex = Array.from(list.children).indexOf(
 								tabItem
 							);
 							if (props.onIndexChange) {
-								props.onIndexChange(indices);
+								props.onIndexChange(tabIndex);
 							}
 
 							if (props.onTabSelect) {

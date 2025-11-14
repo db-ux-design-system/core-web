@@ -1,5 +1,6 @@
 import {
 	onMount,
+	onUnMount,
 	onUpdate,
 	Show,
 	useDefaultProps,
@@ -27,6 +28,18 @@ useDefaultProps<DBTabItemProps>({});
 
 export default function DBTabItem(props: DBTabItemProps) {
 	const _ref = useRef<HTMLInputElement | any>(null);
+
+	function setSelectedOnChange(event: any) {
+		useTarget({
+			stencil: () => {
+				state._selected = getBooleanAsString(event.target === _ref);
+			},
+			default: () => {
+				state._selected = event.target === _ref;
+			}
+		});
+	}
+
 	// jscpd:ignore-start
 	const state = useStore<DBTabItemState>({
 		_selected: false,
@@ -49,17 +62,16 @@ export default function DBTabItem(props: DBTabItemProps) {
 				props.onChange(event);
 			}
 
-			// We have different ts types in different frameworks, so we need to use any here
-
-			useTarget({
-				stencil: () => {
-					const selected = (event.target as any)?.['checked'];
-					state._selected = getBooleanAsString(selected);
-				},
-				default: () => {
-					state._selected = (event.target as any)?.['checked'];
-				}
-			});
+			if (_ref.checked && !state._selected) {
+				useTarget({
+					stencil: () => {
+						state._selected = getBooleanAsString(true);
+					},
+					default: () => {
+						state._selected = true;
+					}
+				});
+			}
 
 			useTarget({
 				angular: () =>
@@ -76,12 +88,26 @@ export default function DBTabItem(props: DBTabItemProps) {
 
 	onUpdate(() => {
 		if (state.initialized && _ref) {
-			if (props.active) {
-				_ref.click();
-			}
-
 			useTarget({ react: () => state.handleNameAttribute() });
 			state.initialized = false;
+
+			// deselect this tab when another tab in tablist is selected
+			_ref.closest('[role=tablist]')?.addEventListener(
+				'change',
+				setSelectedOnChange
+			);
+
+			if (props.active) {
+				useTarget({
+					stencil: () => {
+						state._selected = getBooleanAsString(true);
+					},
+					default: () => {
+						state._selected = true;
+					}
+				});
+				_ref.click();
+			}
 		}
 	}, [_ref, state.initialized]);
 
@@ -90,6 +116,15 @@ export default function DBTabItem(props: DBTabItemProps) {
 			state._name = props.name;
 		}
 	}, [props.name]);
+
+	onUnMount(() => {
+		if (state.initialized && _ref) {
+			_ref.closest('[role=tablist]')?.removeEventListener(
+				'change',
+				setSelectedOnChange
+			);
+		}
+	});
 
 	return (
 		<li class={cls('db-tab-item', props.className)} role="none">
