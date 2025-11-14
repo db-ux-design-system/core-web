@@ -8,6 +8,7 @@ import {
 	DBSelect
 } from '../../../../../output/react/src';
 import DefaultPage from '../../../components/default-page';
+import IconCodeSnippet from '../../../components/icon-code-snippet';
 
 // Import root package.json for theme version
 import rootPackage from '../../../../../package.json';
@@ -91,12 +92,19 @@ const IconOverview = () => {
 				}>
 				{ALL_ICONS.filter((icon) => icon.includes(search)).map(
 					(icon) => (
-						<DBCard key={icon} spacing="small">
-							{/* TODO: Make this interactive to copy the icon name */}
+						<DBCard
+							key={icon}
+							spacing="small"
+							className="icon-card">
 							<DBIcon icon={icon}>{icon}</DBIcon>
 							<DBInfotext semantic="informational" icon="none">
 								{icon}
 							</DBInfotext>
+							<IconCodeSnippet
+								iconName={icon}
+								weight={weight}
+								family={family}
+							/>
 						</DBCard>
 					)
 				)}
