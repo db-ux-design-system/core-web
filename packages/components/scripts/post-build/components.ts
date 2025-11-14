@@ -356,6 +356,9 @@ export const getComponents = (): Component[] => [
 		name: 'brand'
 	},
 	{
+		name: 'breadcrumb'
+	},
+	{
 		name: 'input',
 		overwrites: {
 			global: [{ from: ', KeyValueType', to: '' }],

@@ -1,0 +1,36 @@
+- main:
+  - heading "DBBreadcrumb" [level=1]
+  - link "Size"
+  - navigation "breadcrumb":
+    - list:
+      - listitem:
+        - link "Home"
+      - listitem:
+        - text: ›
+        - link "Category"
+      - listitem: › Current Page
+  - navigation "breadcrumb":
+    - list:
+      - listitem:
+        - link "Home"
+      - listitem:
+        - text: ›
+        - link "Category"
+      - listitem: › Current Page
+  - link "Separator"
+  - navigation "breadcrumb":
+    - list:
+      - listitem:
+        - link "Home"
+      - listitem:
+        - text: ›
+        - link "Category"
+      - listitem: › Current Page
+  - navigation "breadcrumb":
+    - list:
+      - listitem:
+        - link "Home"
+      - listitem:
+        - text: /
+        - link "Category"
+      - listitem: / Current Page

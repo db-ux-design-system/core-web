@@ -1,0 +1,60 @@
+[
+	{
+		"name": "Size",
+		"examples": [
+			{
+				"name": "(Default) Small",
+				"className": "w-full",
+				"props": {
+					"size": "small",
+					"children": [
+						{ "href": "#", "text": "Home" },
+						{ "href": "#", "text": "Category" },
+						{ "text": "Current Page", "ariaCurrent": "page" }
+					]
+				}
+			},
+			{
+				"name": "Medium",
+				"className": "w-full",
+				"props": {
+					"size": "medium",
+					"children": [
+						{ "href": "#", "text": "Home" },
+						{ "href": "#", "text": "Category" },
+						{ "text": "Current Page", "ariaCurrent": "page" }
+					]
+				}
+			}
+		]
+	},
+	{
+		"name": "Separator",
+		"examples": [
+			{
+				"name": "Chevron",
+				"className": "w-full",
+				"props": {
+					"separator": "chevron",
+					"children": [
+						{ "href": "#", "text": "Home" },
+						{ "href": "#", "text": "Category" },
+						{ "text": "Current Page", "ariaCurrent": "page" }
+					]
+				}
+			},
+			{
+				"name": "Slash",
+				"className": "w-full",
+				"props": {
+					"separator": "slash",
+					"children": [
+						{ "href": "#", "text": "Home" },
+						{ "href": "#", "text": "Category" },
+						{ "text": "Current Page", "ariaCurrent": "page" }
+					]
+				}
+			}
+		]
+	}
+]
