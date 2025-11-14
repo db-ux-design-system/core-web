@@ -172,6 +172,11 @@ export default (tmp?: boolean) => {
 			{
 				from: /allowSignalWrites: true,/g,
 				to: ''
+			},
+			// Fix for screen reader accessibility: Pass id attribute from custom element to internal input
+			{
+				from: /(attr\.name\.startsWith\("data-"\) \|\| attr\.name\.startsWith\("aria-"\))/,
+				to: '(attr.name.startsWith("data-") || attr.name.startsWith("aria-") || attr.name === "id")'
 			}
 		];
 
