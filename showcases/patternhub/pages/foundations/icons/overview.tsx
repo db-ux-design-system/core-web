@@ -66,7 +66,9 @@ const IconOverview = () => {
 							setWeight(event.target.value);
 						}}>
 						{[16, 20, 24, 32].map((fw) => (
-							<option value={fw}>{fw}</option>
+							<option key={fw} value={fw}>
+								{fw}
+							</option>
 						))}
 					</DBSelect>
 					<DBSelect
@@ -76,7 +78,9 @@ const IconOverview = () => {
 							setFamily(event.target.value);
 						}}>
 						{['default', 'filled'].map((fam) => (
-							<option value={fam}>{fam}</option>
+							<option key={fam} value={fam}>
+								{fam}
+							</option>
 						))}
 					</DBSelect>
 				</search>
