@@ -93,7 +93,14 @@ updates:
       vite:
         patterns:
           - "vite*"
-          - "vitest*"
+        update-types:
+          - "minor"
+          - "major"
+      # Test tools
+      vitest:
+        patterns:
+          - "vitest"
+          - "@vitest*"
         update-types:
           - "minor"
           - "major"
@@ -117,6 +124,12 @@ updates:
       builder.io:
         patterns:
           - "@builder.io/mitosis*"
+        update-types:
+          - "minor"
+          - "major"
+      storybook:
+        patterns:
+          - "@storybook*"
         update-types:
           - "minor"
           - "major"
