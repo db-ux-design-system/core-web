@@ -6829,7 +6829,7 @@ Inside
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-8993873757439165"
+                    id="sub-navigation-4626572808737318"
                   ></menu>
                 </li>
                 <li
@@ -6848,7 +6848,7 @@ Inside
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-8058140712641835"
+                    id="sub-navigation-8991093740615347"
                   ></menu>
                 </li>
               </menu>
@@ -6908,7 +6908,7 @@ Inside
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-9192281678061351"
+                id="sub-navigation-40836381578710435"
               ></menu>
             </li>
             <li
@@ -6927,7 +6927,7 @@ Inside
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-5519339629986806"
+                id="sub-navigation-8072552979256221"
               ></menu>
             </li>
           </menu>
@@ -7005,7 +7005,7 @@ Inside
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-8993873757439165"
+                    id="sub-navigation-4626572808737318"
                   ></menu>
                 </li>
                 <li
@@ -7024,7 +7024,7 @@ Inside
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-8058140712641835"
+                    id="sub-navigation-8991093740615347"
                   ></menu>
                 </li>
               </menu>
@@ -7084,7 +7084,7 @@ Inside
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-9192281678061351"
+                id="sub-navigation-40836381578710435"
               ></menu>
             </li>
             <li
@@ -7103,7 +7103,7 @@ Inside
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-5519339629986806"
+                id="sub-navigation-8072552979256221"
               ></menu>
             </li>
           </menu>
@@ -7181,7 +7181,7 @@ Inside
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-8993873757439165"
+                    id="sub-navigation-4626572808737318"
                   ></menu>
                 </li>
                 <li
@@ -7200,7 +7200,7 @@ Inside
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-8058140712641835"
+                    id="sub-navigation-8991093740615347"
                   ></menu>
                 </li>
               </menu>
@@ -7260,7 +7260,7 @@ Inside
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-9192281678061351"
+                id="sub-navigation-40836381578710435"
               ></menu>
             </li>
             <li
@@ -7279,7 +7279,7 @@ Inside
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-5519339629986806"
+                id="sub-navigation-8072552979256221"
               ></menu>
             </li>
           </menu>
@@ -7357,7 +7357,7 @@ Inside
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-8993873757439165"
+                    id="sub-navigation-4626572808737318"
                   ></menu>
                 </li>
                 <li
@@ -7376,7 +7376,7 @@ Inside
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-8058140712641835"
+                    id="sub-navigation-8991093740615347"
                   ></menu>
                 </li>
               </menu>
@@ -7436,7 +7436,7 @@ Inside
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-9192281678061351"
+                id="sub-navigation-40836381578710435"
               ></menu>
             </li>
             <li
@@ -7455,7 +7455,7 @@ Inside
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-5519339629986806"
+                id="sub-navigation-8072552979256221"
               ></menu>
             </li>
           </menu>
@@ -7829,7 +7829,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-8704178001689977"
+                    id="sub-navigation-07487031306697545"
                   ></menu>
                 </li>
                 <li
@@ -7848,7 +7848,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-9418425124686579"
+                    id="sub-navigation-10594794462294477"
                   ></menu>
                 </li>
               </menu>
@@ -7908,7 +7908,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-3124865741413968"
+                id="sub-navigation-6254596301220066"
               ></menu>
             </li>
             <li
@@ -7927,7 +7927,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-08872838706373687"
+                id="sub-navigation-8091205899320614"
               ></menu>
             </li>
           </menu>
@@ -8005,7 +8005,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-8704178001689977"
+                    id="sub-navigation-07487031306697545"
                   ></menu>
                 </li>
                 <li
@@ -8024,7 +8024,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-9418425124686579"
+                    id="sub-navigation-10594794462294477"
                   ></menu>
                 </li>
               </menu>
@@ -8084,7 +8084,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-3124865741413968"
+                id="sub-navigation-6254596301220066"
               ></menu>
             </li>
             <li
@@ -8103,7 +8103,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-08872838706373687"
+                id="sub-navigation-8091205899320614"
               ></menu>
             </li>
           </menu>
@@ -8181,7 +8181,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-8704178001689977"
+                    id="sub-navigation-07487031306697545"
                   ></menu>
                 </li>
                 <li
@@ -8200,7 +8200,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-9418425124686579"
+                    id="sub-navigation-10594794462294477"
                   ></menu>
                 </li>
               </menu>
@@ -8260,7 +8260,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-3124865741413968"
+                id="sub-navigation-6254596301220066"
               ></menu>
             </li>
             <li
@@ -8279,7 +8279,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-08872838706373687"
+                id="sub-navigation-8091205899320614"
               ></menu>
             </li>
           </menu>
@@ -8357,7 +8357,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-8704178001689977"
+                    id="sub-navigation-07487031306697545"
                   ></menu>
                 </li>
                 <li
@@ -8376,7 +8376,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-9418425124686579"
+                    id="sub-navigation-10594794462294477"
                   ></menu>
                 </li>
               </menu>
@@ -8436,7 +8436,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-3124865741413968"
+                id="sub-navigation-6254596301220066"
               ></menu>
             </li>
             <li
@@ -8455,7 +8455,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-08872838706373687"
+                id="sub-navigation-8091205899320614"
               ></menu>
             </li>
           </menu>
@@ -8829,7 +8829,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-7865653708969096"
+                    id="sub-navigation-6324438819928668"
                   ></menu>
                 </li>
                 <li
@@ -8848,7 +8848,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-6986243041244181"
+                    id="sub-navigation-8951955493229147"
                   ></menu>
                 </li>
               </menu>
@@ -8908,7 +8908,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-9200227931213704"
+                id="sub-navigation-2993992606226553"
               ></menu>
             </li>
             <li
@@ -8927,7 +8927,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-9831597371664895"
+                id="sub-navigation-21973557109257724"
               ></menu>
             </li>
           </menu>
@@ -9005,7 +9005,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-7865653708969096"
+                    id="sub-navigation-6324438819928668"
                   ></menu>
                 </li>
                 <li
@@ -9024,7 +9024,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-6986243041244181"
+                    id="sub-navigation-8951955493229147"
                   ></menu>
                 </li>
               </menu>
@@ -9084,7 +9084,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-9200227931213704"
+                id="sub-navigation-2993992606226553"
               ></menu>
             </li>
             <li
@@ -9103,7 +9103,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-9831597371664895"
+                id="sub-navigation-21973557109257724"
               ></menu>
             </li>
           </menu>
@@ -9181,7 +9181,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-7865653708969096"
+                    id="sub-navigation-6324438819928668"
                   ></menu>
                 </li>
                 <li
@@ -9200,7 +9200,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-6986243041244181"
+                    id="sub-navigation-8951955493229147"
                   ></menu>
                 </li>
               </menu>
@@ -9260,7 +9260,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-9200227931213704"
+                id="sub-navigation-2993992606226553"
               ></menu>
             </li>
             <li
@@ -9279,7 +9279,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-9831597371664895"
+                id="sub-navigation-21973557109257724"
               ></menu>
             </li>
           </menu>
@@ -9357,7 +9357,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-7865653708969096"
+                    id="sub-navigation-6324438819928668"
                   ></menu>
                 </li>
                 <li
@@ -9376,7 +9376,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-6986243041244181"
+                    id="sub-navigation-8951955493229147"
                   ></menu>
                 </li>
               </menu>
@@ -9436,7 +9436,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-9200227931213704"
+                id="sub-navigation-2993992606226553"
               ></menu>
             </li>
             <li
@@ -9455,7 +9455,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-9831597371664895"
+                id="sub-navigation-21973557109257724"
               ></menu>
             </li>
           </menu>
@@ -9829,7 +9829,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-004948028105959956"
+                    id="sub-navigation-298484113323349"
                   ></menu>
                 </li>
                 <li
@@ -9848,7 +9848,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-09797333361467397"
+                    id="sub-navigation-8158179097529804"
                   ></menu>
                 </li>
               </menu>
@@ -9908,7 +9908,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-22400333035470177"
+                id="sub-navigation-180552446532404"
               ></menu>
             </li>
             <li
@@ -9927,7 +9927,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-8847560594799699"
+                id="sub-navigation-25025829623572915"
               ></menu>
             </li>
           </menu>
@@ -10005,7 +10005,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-004948028105959956"
+                    id="sub-navigation-298484113323349"
                   ></menu>
                 </li>
                 <li
@@ -10024,7 +10024,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-09797333361467397"
+                    id="sub-navigation-8158179097529804"
                   ></menu>
                 </li>
               </menu>
@@ -10084,7 +10084,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-22400333035470177"
+                id="sub-navigation-180552446532404"
               ></menu>
             </li>
             <li
@@ -10103,7 +10103,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-8847560594799699"
+                id="sub-navigation-25025829623572915"
               ></menu>
             </li>
           </menu>
@@ -10181,7 +10181,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-004948028105959956"
+                    id="sub-navigation-298484113323349"
                   ></menu>
                 </li>
                 <li
@@ -10200,7 +10200,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-09797333361467397"
+                    id="sub-navigation-8158179097529804"
                   ></menu>
                 </li>
               </menu>
@@ -10260,7 +10260,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-22400333035470177"
+                id="sub-navigation-180552446532404"
               ></menu>
             </li>
             <li
@@ -10279,7 +10279,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-8847560594799699"
+                id="sub-navigation-25025829623572915"
               ></menu>
             </li>
           </menu>
@@ -10357,7 +10357,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-004948028105959956"
+                    id="sub-navigation-298484113323349"
                   ></menu>
                 </li>
                 <li
@@ -10376,7 +10376,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-09797333361467397"
+                    id="sub-navigation-8158179097529804"
                   ></menu>
                 </li>
               </menu>
@@ -10436,7 +10436,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-22400333035470177"
+                id="sub-navigation-180552446532404"
               ></menu>
             </li>
             <li
@@ -10455,7 +10455,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-8847560594799699"
+                id="sub-navigation-25025829623572915"
               ></menu>
             </li>
           </menu>
@@ -10829,7 +10829,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-43399521160828425"
+                    id="sub-navigation-6404919390901292"
                   ></menu>
                 </li>
                 <li
@@ -10848,7 +10848,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-3791768459867456"
+                    id="sub-navigation-9841843955588917"
                   ></menu>
                 </li>
               </menu>
@@ -10908,7 +10908,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-5489649188294028"
+                id="sub-navigation-5873617894717287"
               ></menu>
             </li>
             <li
@@ -10927,7 +10927,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-32872017926680464"
+                id="sub-navigation-9671817544001045"
               ></menu>
             </li>
           </menu>
@@ -11005,7 +11005,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-43399521160828425"
+                    id="sub-navigation-6404919390901292"
                   ></menu>
                 </li>
                 <li
@@ -11024,7 +11024,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-3791768459867456"
+                    id="sub-navigation-9841843955588917"
                   ></menu>
                 </li>
               </menu>
@@ -11084,7 +11084,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-5489649188294028"
+                id="sub-navigation-5873617894717287"
               ></menu>
             </li>
             <li
@@ -11103,7 +11103,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-32872017926680464"
+                id="sub-navigation-9671817544001045"
               ></menu>
             </li>
           </menu>
@@ -11181,7 +11181,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-43399521160828425"
+                    id="sub-navigation-6404919390901292"
                   ></menu>
                 </li>
                 <li
@@ -11200,7 +11200,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-3791768459867456"
+                    id="sub-navigation-9841843955588917"
                   ></menu>
                 </li>
               </menu>
@@ -11260,7 +11260,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-5489649188294028"
+                id="sub-navigation-5873617894717287"
               ></menu>
             </li>
             <li
@@ -11279,7 +11279,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-32872017926680464"
+                id="sub-navigation-9671817544001045"
               ></menu>
             </li>
           </menu>
@@ -11357,7 +11357,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-43399521160828425"
+                    id="sub-navigation-6404919390901292"
                   ></menu>
                 </li>
                 <li
@@ -11376,7 +11376,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-3791768459867456"
+                    id="sub-navigation-9841843955588917"
                   ></menu>
                 </li>
               </menu>
@@ -11436,7 +11436,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-5489649188294028"
+                id="sub-navigation-5873617894717287"
               ></menu>
             </li>
             <li
@@ -11455,7 +11455,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-32872017926680464"
+                id="sub-navigation-9671817544001045"
               ></menu>
             </li>
           </menu>
@@ -11833,7 +11833,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-7131619966791256"
+                    id="sub-navigation-10693746555647365"
                   ></menu>
                 </li>
                 <li
@@ -11852,7 +11852,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-9077738573931157"
+                    id="sub-navigation-1454876408818262"
                   ></menu>
                 </li>
               </menu>
@@ -11912,7 +11912,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-1982853916432341"
+                id="sub-navigation-5486724014248888"
               ></menu>
             </li>
             <li
@@ -11931,7 +11931,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-6630679905060038"
+                id="sub-navigation-5396583245242127"
               ></menu>
             </li>
           </menu>
@@ -12009,7 +12009,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-7131619966791256"
+                    id="sub-navigation-10693746555647365"
                   ></menu>
                 </li>
                 <li
@@ -12028,7 +12028,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-9077738573931157"
+                    id="sub-navigation-1454876408818262"
                   ></menu>
                 </li>
               </menu>
@@ -12088,7 +12088,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-1982853916432341"
+                id="sub-navigation-5486724014248888"
               ></menu>
             </li>
             <li
@@ -12107,7 +12107,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-6630679905060038"
+                id="sub-navigation-5396583245242127"
               ></menu>
             </li>
           </menu>
@@ -12185,7 +12185,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-7131619966791256"
+                    id="sub-navigation-10693746555647365"
                   ></menu>
                 </li>
                 <li
@@ -12204,7 +12204,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-9077738573931157"
+                    id="sub-navigation-1454876408818262"
                   ></menu>
                 </li>
               </menu>
@@ -12264,7 +12264,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-1982853916432341"
+                id="sub-navigation-5486724014248888"
               ></menu>
             </li>
             <li
@@ -12283,7 +12283,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-6630679905060038"
+                id="sub-navigation-5396583245242127"
               ></menu>
             </li>
           </menu>
@@ -12361,7 +12361,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-7131619966791256"
+                    id="sub-navigation-10693746555647365"
                   ></menu>
                 </li>
                 <li
@@ -12380,7 +12380,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-9077738573931157"
+                    id="sub-navigation-1454876408818262"
                   ></menu>
                 </li>
               </menu>
@@ -12440,7 +12440,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-1982853916432341"
+                id="sub-navigation-5486724014248888"
               ></menu>
             </li>
             <li
@@ -12459,7 +12459,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-6630679905060038"
+                id="sub-navigation-5396583245242127"
               ></menu>
             </li>
           </menu>
@@ -12837,7 +12837,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-18819638123733984"
+                    id="sub-navigation-4517808509793664"
                   ></menu>
                 </li>
                 <li
@@ -12856,7 +12856,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-44898282521845534"
+                    id="sub-navigation-029486416862621545"
                   ></menu>
                 </li>
               </menu>
@@ -12916,7 +12916,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-25999796405484643"
+                id="sub-navigation-5782534927781366"
               ></menu>
             </li>
             <li
@@ -12935,7 +12935,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-9014277266039438"
+                id="sub-navigation-03967399600579502"
               ></menu>
             </li>
           </menu>
@@ -13013,7 +13013,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-18819638123733984"
+                    id="sub-navigation-4517808509793664"
                   ></menu>
                 </li>
                 <li
@@ -13032,7 +13032,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-44898282521845534"
+                    id="sub-navigation-029486416862621545"
                   ></menu>
                 </li>
               </menu>
@@ -13092,7 +13092,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-25999796405484643"
+                id="sub-navigation-5782534927781366"
               ></menu>
             </li>
             <li
@@ -13111,7 +13111,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-9014277266039438"
+                id="sub-navigation-03967399600579502"
               ></menu>
             </li>
           </menu>
@@ -13189,7 +13189,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-18819638123733984"
+                    id="sub-navigation-4517808509793664"
                   ></menu>
                 </li>
                 <li
@@ -13208,7 +13208,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-44898282521845534"
+                    id="sub-navigation-029486416862621545"
                   ></menu>
                 </li>
               </menu>
@@ -13268,7 +13268,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-25999796405484643"
+                id="sub-navigation-5782534927781366"
               ></menu>
             </li>
             <li
@@ -13287,7 +13287,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-9014277266039438"
+                id="sub-navigation-03967399600579502"
               ></menu>
             </li>
           </menu>
@@ -13365,7 +13365,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-18819638123733984"
+                    id="sub-navigation-4517808509793664"
                   ></menu>
                 </li>
                 <li
@@ -13384,7 +13384,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-44898282521845534"
+                    id="sub-navigation-029486416862621545"
                   ></menu>
                 </li>
               </menu>
@@ -13444,7 +13444,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-25999796405484643"
+                id="sub-navigation-5782534927781366"
               ></menu>
             </li>
             <li
@@ -13463,7 +13463,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-9014277266039438"
+                id="sub-navigation-03967399600579502"
               ></menu>
             </li>
           </menu>
@@ -13837,7 +13837,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-5654201754150552"
+                    id="sub-navigation-47600590064338755"
                   ></menu>
                 </li>
                 <li
@@ -13856,7 +13856,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-01799517260218564"
+                    id="sub-navigation-6267233879832385"
                   ></menu>
                 </li>
               </menu>
@@ -13916,7 +13916,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-5142281164881601"
+                id="sub-navigation-42343994500259885"
               ></menu>
             </li>
             <li
@@ -13935,7 +13935,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-5327264142099566"
+                id="sub-navigation-39296289186892996"
               ></menu>
             </li>
           </menu>
@@ -14013,7 +14013,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-5654201754150552"
+                    id="sub-navigation-47600590064338755"
                   ></menu>
                 </li>
                 <li
@@ -14032,7 +14032,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-01799517260218564"
+                    id="sub-navigation-6267233879832385"
                   ></menu>
                 </li>
               </menu>
@@ -14092,7 +14092,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-5142281164881601"
+                id="sub-navigation-42343994500259885"
               ></menu>
             </li>
             <li
@@ -14111,7 +14111,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-5327264142099566"
+                id="sub-navigation-39296289186892996"
               ></menu>
             </li>
           </menu>
@@ -14189,7 +14189,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-5654201754150552"
+                    id="sub-navigation-47600590064338755"
                   ></menu>
                 </li>
                 <li
@@ -14208,7 +14208,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-01799517260218564"
+                    id="sub-navigation-6267233879832385"
                   ></menu>
                 </li>
               </menu>
@@ -14268,7 +14268,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-5142281164881601"
+                id="sub-navigation-42343994500259885"
               ></menu>
             </li>
             <li
@@ -14287,7 +14287,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-5327264142099566"
+                id="sub-navigation-39296289186892996"
               ></menu>
             </li>
           </menu>
@@ -14365,7 +14365,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-5654201754150552"
+                    id="sub-navigation-47600590064338755"
                   ></menu>
                 </li>
                 <li
@@ -14384,7 +14384,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-01799517260218564"
+                    id="sub-navigation-6267233879832385"
                   ></menu>
                 </li>
               </menu>
@@ -14444,7 +14444,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-5142281164881601"
+                id="sub-navigation-42343994500259885"
               ></menu>
             </li>
             <li
@@ -14463,7 +14463,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-5327264142099566"
+                id="sub-navigation-39296289186892996"
               ></menu>
             </li>
           </menu>
@@ -14841,7 +14841,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-0021855883743447935"
+                    id="sub-navigation-897536626659143"
                   ></menu>
                 </li>
                 <li
@@ -14860,7 +14860,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-7913959335843896"
+                    id="sub-navigation-2979696752049642"
                   ></menu>
                 </li>
               </menu>
@@ -14920,7 +14920,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-22400831585251735"
+                id="sub-navigation-3850742332126985"
               ></menu>
             </li>
             <li
@@ -14939,7 +14939,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-8314594212470805"
+                id="sub-navigation-9016924835864509"
               ></menu>
             </li>
           </menu>
@@ -15017,7 +15017,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-0021855883743447935"
+                    id="sub-navigation-897536626659143"
                   ></menu>
                 </li>
                 <li
@@ -15036,7 +15036,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-7913959335843896"
+                    id="sub-navigation-2979696752049642"
                   ></menu>
                 </li>
               </menu>
@@ -15096,7 +15096,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-22400831585251735"
+                id="sub-navigation-3850742332126985"
               ></menu>
             </li>
             <li
@@ -15115,7 +15115,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-8314594212470805"
+                id="sub-navigation-9016924835864509"
               ></menu>
             </li>
           </menu>
@@ -15193,7 +15193,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-0021855883743447935"
+                    id="sub-navigation-897536626659143"
                   ></menu>
                 </li>
                 <li
@@ -15212,7 +15212,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-7913959335843896"
+                    id="sub-navigation-2979696752049642"
                   ></menu>
                 </li>
               </menu>
@@ -15272,7 +15272,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-22400831585251735"
+                id="sub-navigation-3850742332126985"
               ></menu>
             </li>
             <li
@@ -15291,7 +15291,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-8314594212470805"
+                id="sub-navigation-9016924835864509"
               ></menu>
             </li>
           </menu>
@@ -15369,7 +15369,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-0021855883743447935"
+                    id="sub-navigation-897536626659143"
                   ></menu>
                 </li>
                 <li
@@ -15388,7 +15388,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-7913959335843896"
+                    id="sub-navigation-2979696752049642"
                   ></menu>
                 </li>
               </menu>
@@ -15448,7 +15448,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-22400831585251735"
+                id="sub-navigation-3850742332126985"
               ></menu>
             </li>
             <li
@@ -15467,7 +15467,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-8314594212470805"
+                id="sub-navigation-9016924835864509"
               ></menu>
             </li>
           </menu>
@@ -15853,7 +15853,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-9608541841023553"
+                    id="sub-navigation-5252475748848873"
                   ></menu>
                 </li>
                 <li
@@ -15872,7 +15872,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-2902918362243271"
+                    id="sub-navigation-4144346763999205"
                   ></menu>
                 </li>
               </menu>
@@ -15932,7 +15932,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-6342307468707353"
+                id="sub-navigation-8699244497655367"
               ></menu>
             </li>
             <li
@@ -15951,7 +15951,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-34351369737957593"
+                id="sub-navigation-8344005798865539"
               ></menu>
             </li>
           </menu>
@@ -16029,7 +16029,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-9608541841023553"
+                    id="sub-navigation-5252475748848873"
                   ></menu>
                 </li>
                 <li
@@ -16048,7 +16048,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-2902918362243271"
+                    id="sub-navigation-4144346763999205"
                   ></menu>
                 </li>
               </menu>
@@ -16108,7 +16108,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-6342307468707353"
+                id="sub-navigation-8699244497655367"
               ></menu>
             </li>
             <li
@@ -16127,7 +16127,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-34351369737957593"
+                id="sub-navigation-8344005798865539"
               ></menu>
             </li>
           </menu>
@@ -16205,7 +16205,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-9608541841023553"
+                    id="sub-navigation-5252475748848873"
                   ></menu>
                 </li>
                 <li
@@ -16224,7 +16224,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-2902918362243271"
+                    id="sub-navigation-4144346763999205"
                   ></menu>
                 </li>
               </menu>
@@ -16284,7 +16284,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-6342307468707353"
+                id="sub-navigation-8699244497655367"
               ></menu>
             </li>
             <li
@@ -16303,7 +16303,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-34351369737957593"
+                id="sub-navigation-8344005798865539"
               ></menu>
             </li>
           </menu>
@@ -16381,7 +16381,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-9608541841023553"
+                    id="sub-navigation-5252475748848873"
                   ></menu>
                 </li>
                 <li
@@ -16400,7 +16400,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-2902918362243271"
+                    id="sub-navigation-4144346763999205"
                   ></menu>
                 </li>
               </menu>
@@ -16460,7 +16460,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-6342307468707353"
+                id="sub-navigation-8699244497655367"
               ></menu>
             </li>
             <li
@@ -16479,7 +16479,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-34351369737957593"
+                id="sub-navigation-8344005798865539"
               ></menu>
             </li>
           </menu>
@@ -16865,7 +16865,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-6836028521294337"
+                    id="sub-navigation-46401208540444816"
                   ></menu>
                 </li>
                 <li
@@ -16884,7 +16884,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-8207714757562868"
+                    id="sub-navigation-7192173131275703"
                   ></menu>
                 </li>
               </menu>
@@ -16944,7 +16944,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-00631755427585734"
+                id="sub-navigation-22899472167930224"
               ></menu>
             </li>
             <li
@@ -16963,7 +16963,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-1789269439438823"
+                id="sub-navigation-45457613043002343"
               ></menu>
             </li>
           </menu>
@@ -17041,7 +17041,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-6836028521294337"
+                    id="sub-navigation-46401208540444816"
                   ></menu>
                 </li>
                 <li
@@ -17060,7 +17060,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-8207714757562868"
+                    id="sub-navigation-7192173131275703"
                   ></menu>
                 </li>
               </menu>
@@ -17120,7 +17120,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-00631755427585734"
+                id="sub-navigation-22899472167930224"
               ></menu>
             </li>
             <li
@@ -17139,7 +17139,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-1789269439438823"
+                id="sub-navigation-45457613043002343"
               ></menu>
             </li>
           </menu>
@@ -17217,7 +17217,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-6836028521294337"
+                    id="sub-navigation-46401208540444816"
                   ></menu>
                 </li>
                 <li
@@ -17236,7 +17236,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-8207714757562868"
+                    id="sub-navigation-7192173131275703"
                   ></menu>
                 </li>
               </menu>
@@ -17296,7 +17296,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-00631755427585734"
+                id="sub-navigation-22899472167930224"
               ></menu>
             </li>
             <li
@@ -17315,7 +17315,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-1789269439438823"
+                id="sub-navigation-45457613043002343"
               ></menu>
             </li>
           </menu>
@@ -17393,7 +17393,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-6836028521294337"
+                    id="sub-navigation-46401208540444816"
                   ></menu>
                 </li>
                 <li
@@ -17412,7 +17412,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-8207714757562868"
+                    id="sub-navigation-7192173131275703"
                   ></menu>
                 </li>
               </menu>
@@ -17472,7 +17472,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-00631755427585734"
+                id="sub-navigation-22899472167930224"
               ></menu>
             </li>
             <li
@@ -17491,7 +17491,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-1789269439438823"
+                id="sub-navigation-45457613043002343"
               ></menu>
             </li>
           </menu>
@@ -17877,7 +17877,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-029217859342490993"
+                    id="sub-navigation-8757233242199344"
                   ></menu>
                 </li>
                 <li
@@ -17896,7 +17896,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-671024263597928"
+                    id="sub-navigation-1084111405960021"
                   ></menu>
                 </li>
               </menu>
@@ -17956,7 +17956,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-43357560145606033"
+                id="sub-navigation-764326360202487"
               ></menu>
             </li>
             <li
@@ -17975,7 +17975,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-26871687266284294"
+                id="sub-navigation-3500757822563145"
               ></menu>
             </li>
           </menu>
@@ -18053,7 +18053,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-029217859342490993"
+                    id="sub-navigation-8757233242199344"
                   ></menu>
                 </li>
                 <li
@@ -18072,7 +18072,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-671024263597928"
+                    id="sub-navigation-1084111405960021"
                   ></menu>
                 </li>
               </menu>
@@ -18132,7 +18132,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-43357560145606033"
+                id="sub-navigation-764326360202487"
               ></menu>
             </li>
             <li
@@ -18151,7 +18151,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-26871687266284294"
+                id="sub-navigation-3500757822563145"
               ></menu>
             </li>
           </menu>
@@ -18229,7 +18229,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-029217859342490993"
+                    id="sub-navigation-8757233242199344"
                   ></menu>
                 </li>
                 <li
@@ -18248,7 +18248,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-671024263597928"
+                    id="sub-navigation-1084111405960021"
                   ></menu>
                 </li>
               </menu>
@@ -18308,7 +18308,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-43357560145606033"
+                id="sub-navigation-764326360202487"
               ></menu>
             </li>
             <li
@@ -18327,7 +18327,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-26871687266284294"
+                id="sub-navigation-3500757822563145"
               ></menu>
             </li>
           </menu>
@@ -18405,7 +18405,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-029217859342490993"
+                    id="sub-navigation-8757233242199344"
                   ></menu>
                 </li>
                 <li
@@ -18424,7 +18424,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-671024263597928"
+                    id="sub-navigation-1084111405960021"
                   ></menu>
                 </li>
               </menu>
@@ -18484,7 +18484,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-43357560145606033"
+                id="sub-navigation-764326360202487"
               ></menu>
             </li>
             <li
@@ -18503,7 +18503,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-26871687266284294"
+                id="sub-navigation-3500757822563145"
               ></menu>
             </li>
           </menu>
@@ -33247,7 +33247,7 @@ Centered
   <db-tab-panel> Tab Panel 2 </db-tab-panel>
   <db-tab-panel> Tab Panel 3 </db-tab-panel>
 </db-tabs>`)},children:"Copy code"})]}),(0,I.jsxs)(e$.A,{children:[(0,I.jsx)(F.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,I.jsx)("pre",{children:(0,I.jsx)("code",{className:"hljs language-html",children:`<div
-  id="tabs-8468168247895341"
+  id="tabs-998798701225427"
   class="db-tabs"
   data-alignment="start"
   data-width="auto"
@@ -33275,7 +33275,7 @@ Centered
   <section role="tabpanel" class="db-tab-panel">Tab Panel 2</section>
   <section role="tabpanel" class="db-tab-panel">Tab Panel 3</section>
 </div>`})}),(0,I.jsx)(ee.A,{className:"copy-button",noText:!0,icon:e===`<div
-  id="tabs-8468168247895341"
+  id="tabs-998798701225427"
   class="db-tabs"
   data-alignment="start"
   data-width="auto"
@@ -33303,7 +33303,7 @@ Centered
   <section role="tabpanel" class="db-tab-panel">Tab Panel 2</section>
   <section role="tabpanel" class="db-tab-panel">Tab Panel 3</section>
 </div>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<div
-  id="tabs-8468168247895341"
+  id="tabs-998798701225427"
   class="db-tabs"
   data-alignment="start"
   data-width="auto"
@@ -33331,7 +33331,7 @@ Centered
   <section role="tabpanel" class="db-tab-panel">Tab Panel 2</section>
   <section role="tabpanel" class="db-tab-panel">Tab Panel 3</section>
 </div>`),navigator.clipboard.writeText(`<div
-  id="tabs-8468168247895341"
+  id="tabs-998798701225427"
   class="db-tabs"
   data-alignment="start"
   data-width="auto"
@@ -33515,7 +33515,7 @@ Tab Panel 3
   <db-tab-panel> Tab Panel 2 </db-tab-panel>
   <db-tab-panel> Tab Panel 3 </db-tab-panel>
 </db-tabs>`)},children:"Copy code"})]}),(0,I.jsxs)(e$.A,{children:[(0,I.jsx)(F.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,I.jsx)("pre",{children:(0,I.jsx)("code",{className:"hljs language-html",children:`<div
-  id="tabs-23758740476345463"
+  id="tabs-00016036163351440536"
   class="db-tabs"
   data-alignment="start"
   data-width="auto"
@@ -33543,7 +33543,7 @@ Tab Panel 3
   <section role="tabpanel" class="db-tab-panel">Tab Panel 2</section>
   <section role="tabpanel" class="db-tab-panel">Tab Panel 3</section>
 </div>`})}),(0,I.jsx)(ee.A,{className:"copy-button",noText:!0,icon:e===`<div
-  id="tabs-23758740476345463"
+  id="tabs-00016036163351440536"
   class="db-tabs"
   data-alignment="start"
   data-width="auto"
@@ -33571,7 +33571,7 @@ Tab Panel 3
   <section role="tabpanel" class="db-tab-panel">Tab Panel 2</section>
   <section role="tabpanel" class="db-tab-panel">Tab Panel 3</section>
 </div>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<div
-  id="tabs-23758740476345463"
+  id="tabs-00016036163351440536"
   class="db-tabs"
   data-alignment="start"
   data-width="auto"
@@ -33599,7 +33599,7 @@ Tab Panel 3
   <section role="tabpanel" class="db-tab-panel">Tab Panel 2</section>
   <section role="tabpanel" class="db-tab-panel">Tab Panel 3</section>
 </div>`),navigator.clipboard.writeText(`<div
-  id="tabs-23758740476345463"
+  id="tabs-00016036163351440536"
   class="db-tabs"
   data-alignment="start"
   data-width="auto"
@@ -33783,7 +33783,7 @@ Tab Panel 3
   <db-tab-panel> Tab Panel 2 </db-tab-panel>
   <db-tab-panel> Tab Panel 3 </db-tab-panel>
 </db-tabs>`)},children:"Copy code"})]}),(0,I.jsxs)(e$.A,{children:[(0,I.jsx)(F.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,I.jsx)("pre",{children:(0,I.jsx)("code",{className:"hljs language-html",children:`<div
-  id="tabs-3212830676449312"
+  id="tabs-20140514346156824"
   class="db-tabs"
   data-alignment="start"
   data-width="auto"
@@ -33811,7 +33811,7 @@ Tab Panel 3
   <section role="tabpanel" class="db-tab-panel">Tab Panel 2</section>
   <section role="tabpanel" class="db-tab-panel">Tab Panel 3</section>
 </div>`})}),(0,I.jsx)(ee.A,{className:"copy-button",noText:!0,icon:e===`<div
-  id="tabs-3212830676449312"
+  id="tabs-20140514346156824"
   class="db-tabs"
   data-alignment="start"
   data-width="auto"
@@ -33839,7 +33839,7 @@ Tab Panel 3
   <section role="tabpanel" class="db-tab-panel">Tab Panel 2</section>
   <section role="tabpanel" class="db-tab-panel">Tab Panel 3</section>
 </div>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<div
-  id="tabs-3212830676449312"
+  id="tabs-20140514346156824"
   class="db-tabs"
   data-alignment="start"
   data-width="auto"
@@ -33867,7 +33867,7 @@ Tab Panel 3
   <section role="tabpanel" class="db-tab-panel">Tab Panel 2</section>
   <section role="tabpanel" class="db-tab-panel">Tab Panel 3</section>
 </div>`),navigator.clipboard.writeText(`<div
-  id="tabs-3212830676449312"
+  id="tabs-20140514346156824"
   class="db-tabs"
   data-alignment="start"
   data-width="auto"
@@ -34051,7 +34051,7 @@ Tab Panel 3
   <db-tab-panel> Tab Panel 2 </db-tab-panel>
   <db-tab-panel> Tab Panel 3 </db-tab-panel>
 </db-tabs>`)},children:"Copy code"})]}),(0,I.jsxs)(e$.A,{children:[(0,I.jsx)(F.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,I.jsx)("pre",{children:(0,I.jsx)("code",{className:"hljs language-html",children:`<div
-  id="tabs-8017578887177769"
+  id="tabs-39901904279360123"
   class="db-tabs"
   data-orientation="horizontal"
   data-alignment="start"
@@ -34080,7 +34080,7 @@ Tab Panel 3
   <section role="tabpanel" class="db-tab-panel">Tab Panel 2</section>
   <section role="tabpanel" class="db-tab-panel">Tab Panel 3</section>
 </div>`})}),(0,I.jsx)(ee.A,{className:"copy-button",noText:!0,icon:e===`<div
-  id="tabs-8017578887177769"
+  id="tabs-39901904279360123"
   class="db-tabs"
   data-orientation="horizontal"
   data-alignment="start"
@@ -34109,7 +34109,7 @@ Tab Panel 3
   <section role="tabpanel" class="db-tab-panel">Tab Panel 2</section>
   <section role="tabpanel" class="db-tab-panel">Tab Panel 3</section>
 </div>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<div
-  id="tabs-8017578887177769"
+  id="tabs-39901904279360123"
   class="db-tabs"
   data-orientation="horizontal"
   data-alignment="start"
@@ -34138,7 +34138,7 @@ Tab Panel 3
   <section role="tabpanel" class="db-tab-panel">Tab Panel 2</section>
   <section role="tabpanel" class="db-tab-panel">Tab Panel 3</section>
 </div>`),navigator.clipboard.writeText(`<div
-  id="tabs-8017578887177769"
+  id="tabs-39901904279360123"
   class="db-tabs"
   data-orientation="horizontal"
   data-alignment="start"
@@ -34323,7 +34323,7 @@ Tab Panel 3
   <db-tab-panel> Tab Panel 2 </db-tab-panel>
   <db-tab-panel> Tab Panel 3 </db-tab-panel>
 </db-tabs>`)},children:"Copy code"})]}),(0,I.jsxs)(e$.A,{children:[(0,I.jsx)(F.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,I.jsx)("pre",{children:(0,I.jsx)("code",{className:"hljs language-html",children:`<div
-  id="tabs-851650508808356"
+  id="tabs-22605114265572823"
   class="db-tabs"
   data-orientation="vertical"
   data-alignment="start"
@@ -34352,7 +34352,7 @@ Tab Panel 3
   <section role="tabpanel" class="db-tab-panel">Tab Panel 2</section>
   <section role="tabpanel" class="db-tab-panel">Tab Panel 3</section>
 </div>`})}),(0,I.jsx)(ee.A,{className:"copy-button",noText:!0,icon:e===`<div
-  id="tabs-851650508808356"
+  id="tabs-22605114265572823"
   class="db-tabs"
   data-orientation="vertical"
   data-alignment="start"
@@ -34381,7 +34381,7 @@ Tab Panel 3
   <section role="tabpanel" class="db-tab-panel">Tab Panel 2</section>
   <section role="tabpanel" class="db-tab-panel">Tab Panel 3</section>
 </div>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<div
-  id="tabs-851650508808356"
+  id="tabs-22605114265572823"
   class="db-tabs"
   data-orientation="vertical"
   data-alignment="start"
@@ -34410,7 +34410,7 @@ Tab Panel 3
   <section role="tabpanel" class="db-tab-panel">Tab Panel 2</section>
   <section role="tabpanel" class="db-tab-panel">Tab Panel 3</section>
 </div>`),navigator.clipboard.writeText(`<div
-  id="tabs-851650508808356"
+  id="tabs-22605114265572823"
   class="db-tabs"
   data-orientation="vertical"
   data-alignment="start"
@@ -34595,7 +34595,7 @@ Tab Panel 3
   <db-tab-panel> Tab Panel 2 </db-tab-panel>
   <db-tab-panel> Tab Panel 3 </db-tab-panel>
 </db-tabs>`)},children:"Copy code"})]}),(0,I.jsxs)(e$.A,{children:[(0,I.jsx)(F.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,I.jsx)("pre",{children:(0,I.jsx)("code",{className:"hljs language-html",children:`<div
-  id="tabs-8850533914939382"
+  id="tabs-7095936436083031"
   class="db-tabs"
   data-alignment="start"
   data-width="auto"
@@ -34623,7 +34623,7 @@ Tab Panel 3
   <section role="tabpanel" class="db-tab-panel">Tab Panel 2</section>
   <section role="tabpanel" class="db-tab-panel">Tab Panel 3</section>
 </div>`})}),(0,I.jsx)(ee.A,{className:"copy-button",noText:!0,icon:e===`<div
-  id="tabs-8850533914939382"
+  id="tabs-7095936436083031"
   class="db-tabs"
   data-alignment="start"
   data-width="auto"
@@ -34651,7 +34651,7 @@ Tab Panel 3
   <section role="tabpanel" class="db-tab-panel">Tab Panel 2</section>
   <section role="tabpanel" class="db-tab-panel">Tab Panel 3</section>
 </div>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<div
-  id="tabs-8850533914939382"
+  id="tabs-7095936436083031"
   class="db-tabs"
   data-alignment="start"
   data-width="auto"
@@ -34679,7 +34679,7 @@ Tab Panel 3
   <section role="tabpanel" class="db-tab-panel">Tab Panel 2</section>
   <section role="tabpanel" class="db-tab-panel">Tab Panel 3</section>
 </div>`),navigator.clipboard.writeText(`<div
-  id="tabs-8850533914939382"
+  id="tabs-7095936436083031"
   class="db-tabs"
   data-alignment="start"
   data-width="auto"
@@ -34863,7 +34863,7 @@ Tab Panel 3
   <db-tab-panel> Tab Panel 2 </db-tab-panel>
   <db-tab-panel> Tab Panel 3 </db-tab-panel>
 </db-tabs>`)},children:"Copy code"})]}),(0,I.jsxs)(e$.A,{children:[(0,I.jsx)(F.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,I.jsx)("pre",{children:(0,I.jsx)("code",{className:"hljs language-html",children:`<div
-  id="tabs-06018593534710337"
+  id="tabs-8609168902564458"
   class="db-tabs"
   data-alignment="start"
   data-width="full"
@@ -34891,7 +34891,7 @@ Tab Panel 3
   <section role="tabpanel" class="db-tab-panel">Tab Panel 2</section>
   <section role="tabpanel" class="db-tab-panel">Tab Panel 3</section>
 </div>`})}),(0,I.jsx)(ee.A,{className:"copy-button",noText:!0,icon:e===`<div
-  id="tabs-06018593534710337"
+  id="tabs-8609168902564458"
   class="db-tabs"
   data-alignment="start"
   data-width="full"
@@ -34919,7 +34919,7 @@ Tab Panel 3
   <section role="tabpanel" class="db-tab-panel">Tab Panel 2</section>
   <section role="tabpanel" class="db-tab-panel">Tab Panel 3</section>
 </div>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<div
-  id="tabs-06018593534710337"
+  id="tabs-8609168902564458"
   class="db-tabs"
   data-alignment="start"
   data-width="full"
@@ -34947,7 +34947,7 @@ Tab Panel 3
   <section role="tabpanel" class="db-tab-panel">Tab Panel 2</section>
   <section role="tabpanel" class="db-tab-panel">Tab Panel 3</section>
 </div>`),navigator.clipboard.writeText(`<div
-  id="tabs-06018593534710337"
+  id="tabs-8609168902564458"
   class="db-tabs"
   data-alignment="start"
   data-width="full"
@@ -35131,7 +35131,7 @@ Tab Panel 3
   <db-tab-panel> Tab Panel 2 </db-tab-panel>
   <db-tab-panel> Tab Panel 3 </db-tab-panel>
 </db-tabs>`)},children:"Copy code"})]}),(0,I.jsxs)(e$.A,{children:[(0,I.jsx)(F.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,I.jsx)("pre",{children:(0,I.jsx)("code",{className:"hljs language-html",children:`<div
-  id="tabs-9356716882664066"
+  id="tabs-8447554938087531"
   class="db-tabs"
   data-alignment="center"
   data-width="full"
@@ -35159,7 +35159,7 @@ Tab Panel 3
   <section role="tabpanel" class="db-tab-panel">Tab Panel 2</section>
   <section role="tabpanel" class="db-tab-panel">Tab Panel 3</section>
 </div>`})}),(0,I.jsx)(ee.A,{className:"copy-button",noText:!0,icon:e===`<div
-  id="tabs-9356716882664066"
+  id="tabs-8447554938087531"
   class="db-tabs"
   data-alignment="center"
   data-width="full"
@@ -35187,7 +35187,7 @@ Tab Panel 3
   <section role="tabpanel" class="db-tab-panel">Tab Panel 2</section>
   <section role="tabpanel" class="db-tab-panel">Tab Panel 3</section>
 </div>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<div
-  id="tabs-9356716882664066"
+  id="tabs-8447554938087531"
   class="db-tabs"
   data-alignment="center"
   data-width="full"
@@ -35215,7 +35215,7 @@ Tab Panel 3
   <section role="tabpanel" class="db-tab-panel">Tab Panel 2</section>
   <section role="tabpanel" class="db-tab-panel">Tab Panel 3</section>
 </div>`),navigator.clipboard.writeText(`<div
-  id="tabs-9356716882664066"
+  id="tabs-8447554938087531"
   class="db-tabs"
   data-alignment="center"
   data-width="full"
@@ -35399,7 +35399,7 @@ Tab Panel 3
   <db-tab-panel> Tab Panel 2 </db-tab-panel>
   <db-tab-panel> Tab Panel 3 </db-tab-panel>
 </db-tabs>`)},children:"Copy code"})]}),(0,I.jsxs)(e$.A,{children:[(0,I.jsx)(F.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,I.jsx)("pre",{children:(0,I.jsx)("code",{className:"hljs language-html",children:`<div
-  id="tabs-05606149822789053"
+  id="tabs-9570125270878266"
   class="db-tabs"
   data-alignment="start"
   data-width="auto"
@@ -35427,7 +35427,7 @@ Tab Panel 3
   <section role="tabpanel" class="db-tab-panel">Tab Panel 2</section>
   <section role="tabpanel" class="db-tab-panel">Tab Panel 3</section>
 </div>`})}),(0,I.jsx)(ee.A,{className:"copy-button",noText:!0,icon:e===`<div
-  id="tabs-05606149822789053"
+  id="tabs-9570125270878266"
   class="db-tabs"
   data-alignment="start"
   data-width="auto"
@@ -35455,7 +35455,7 @@ Tab Panel 3
   <section role="tabpanel" class="db-tab-panel">Tab Panel 2</section>
   <section role="tabpanel" class="db-tab-panel">Tab Panel 3</section>
 </div>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<div
-  id="tabs-05606149822789053"
+  id="tabs-9570125270878266"
   class="db-tabs"
   data-alignment="start"
   data-width="auto"
@@ -35483,7 +35483,7 @@ Tab Panel 3
   <section role="tabpanel" class="db-tab-panel">Tab Panel 2</section>
   <section role="tabpanel" class="db-tab-panel">Tab Panel 3</section>
 </div>`),navigator.clipboard.writeText(`<div
-  id="tabs-05606149822789053"
+  id="tabs-9570125270878266"
   class="db-tabs"
   data-alignment="start"
   data-width="auto"
@@ -35667,7 +35667,7 @@ Tab Panel 3
   <db-tab-panel> Tab Panel 2 </db-tab-panel>
   <db-tab-panel> Tab Panel 3 </db-tab-panel>
 </db-tabs>`)},children:"Copy code"})]}),(0,I.jsxs)(e$.A,{children:[(0,I.jsx)(F.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,I.jsx)("pre",{children:(0,I.jsx)("code",{className:"hljs language-html",children:`<div
-  id="tabs-8824585677259278"
+  id="tabs-3905949961649532"
   class="db-tabs"
   data-scroll-behavior="arrows"
   data-alignment="start"
@@ -35696,7 +35696,7 @@ Tab Panel 3
   <section role="tabpanel" class="db-tab-panel">Tab Panel 2</section>
   <section role="tabpanel" class="db-tab-panel">Tab Panel 3</section>
 </div>`})}),(0,I.jsx)(ee.A,{className:"copy-button",noText:!0,icon:e===`<div
-  id="tabs-8824585677259278"
+  id="tabs-3905949961649532"
   class="db-tabs"
   data-scroll-behavior="arrows"
   data-alignment="start"
@@ -35725,7 +35725,7 @@ Tab Panel 3
   <section role="tabpanel" class="db-tab-panel">Tab Panel 2</section>
   <section role="tabpanel" class="db-tab-panel">Tab Panel 3</section>
 </div>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<div
-  id="tabs-8824585677259278"
+  id="tabs-3905949961649532"
   class="db-tabs"
   data-scroll-behavior="arrows"
   data-alignment="start"
@@ -35754,7 +35754,7 @@ Tab Panel 3
   <section role="tabpanel" class="db-tab-panel">Tab Panel 2</section>
   <section role="tabpanel" class="db-tab-panel">Tab Panel 3</section>
 </div>`),navigator.clipboard.writeText(`<div
-  id="tabs-8824585677259278"
+  id="tabs-3905949961649532"
   class="db-tabs"
   data-scroll-behavior="arrows"
   data-alignment="start"
@@ -35939,7 +35939,7 @@ Tab Panel 3
   <db-tab-panel> Tab Panel 2 </db-tab-panel>
   <db-tab-panel> Tab Panel 3 </db-tab-panel>
 </db-tabs>`)},children:"Copy code"})]}),(0,I.jsxs)(e$.A,{children:[(0,I.jsx)(F.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,I.jsx)("pre",{children:(0,I.jsx)("code",{className:"hljs language-html",children:`<div
-  id="tabs-9475051300778433"
+  id="tabs-6261395473450799"
   class="db-tabs"
   data-alignment="start"
   data-width="auto"
@@ -35967,7 +35967,7 @@ Tab Panel 3
   <section role="tabpanel" class="db-tab-panel">Tab Panel 2</section>
   <section role="tabpanel" class="db-tab-panel">Tab Panel 3</section>
 </div>`})}),(0,I.jsx)(ee.A,{className:"copy-button",noText:!0,icon:e===`<div
-  id="tabs-9475051300778433"
+  id="tabs-6261395473450799"
   class="db-tabs"
   data-alignment="start"
   data-width="auto"
@@ -35995,7 +35995,7 @@ Tab Panel 3
   <section role="tabpanel" class="db-tab-panel">Tab Panel 2</section>
   <section role="tabpanel" class="db-tab-panel">Tab Panel 3</section>
 </div>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<div
-  id="tabs-9475051300778433"
+  id="tabs-6261395473450799"
   class="db-tabs"
   data-alignment="start"
   data-width="auto"
@@ -36023,7 +36023,7 @@ Tab Panel 3
   <section role="tabpanel" class="db-tab-panel">Tab Panel 2</section>
   <section role="tabpanel" class="db-tab-panel">Tab Panel 3</section>
 </div>`),navigator.clipboard.writeText(`<div
-  id="tabs-9475051300778433"
+  id="tabs-6261395473450799"
   class="db-tabs"
   data-alignment="start"
   data-width="auto"
@@ -36207,7 +36207,7 @@ Tab Panel 3
   <db-tab-panel> Tab Panel 2 </db-tab-panel>
   <db-tab-panel> Tab Panel 3 </db-tab-panel>
 </db-tabs>`)},children:"Copy code"})]}),(0,I.jsxs)(e$.A,{children:[(0,I.jsx)(F.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,I.jsx)("pre",{children:(0,I.jsx)("code",{className:"hljs language-html",children:`<div
-  id="tabs-8204911655861921"
+  id="tabs-5753748794068345"
   class="db-tabs"
   data-alignment="start"
   data-width="auto"
@@ -36235,7 +36235,7 @@ Tab Panel 3
   <section role="tabpanel" class="db-tab-panel">Tab Panel 2</section>
   <section role="tabpanel" class="db-tab-panel">Tab Panel 3</section>
 </div>`})}),(0,I.jsx)(ee.A,{className:"copy-button",noText:!0,icon:e===`<div
-  id="tabs-8204911655861921"
+  id="tabs-5753748794068345"
   class="db-tabs"
   data-alignment="start"
   data-width="auto"
@@ -36263,7 +36263,7 @@ Tab Panel 3
   <section role="tabpanel" class="db-tab-panel">Tab Panel 2</section>
   <section role="tabpanel" class="db-tab-panel">Tab Panel 3</section>
 </div>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<div
-  id="tabs-8204911655861921"
+  id="tabs-5753748794068345"
   class="db-tabs"
   data-alignment="start"
   data-width="auto"
@@ -36291,7 +36291,7 @@ Tab Panel 3
   <section role="tabpanel" class="db-tab-panel">Tab Panel 2</section>
   <section role="tabpanel" class="db-tab-panel">Tab Panel 3</section>
 </div>`),navigator.clipboard.writeText(`<div
-  id="tabs-8204911655861921"
+  id="tabs-5753748794068345"
   class="db-tabs"
   data-alignment="start"
   data-width="auto"
@@ -36475,7 +36475,7 @@ Tab Panel 3
   <db-tab-panel> Tab Panel 2 </db-tab-panel>
   <db-tab-panel> Tab Panel 3 </db-tab-panel>
 </db-tabs>`)},children:"Copy code"})]}),(0,I.jsxs)(e$.A,{children:[(0,I.jsx)(F.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,I.jsx)("pre",{children:(0,I.jsx)("code",{className:"hljs language-html",children:`<div
-  id="tabs-2583972674952195"
+  id="tabs-22655833279493354"
   class="db-tabs"
   data-alignment="start"
   data-width="auto"
@@ -36503,7 +36503,7 @@ Tab Panel 3
   <section role="tabpanel" class="db-tab-panel">Tab Panel 2</section>
   <section role="tabpanel" class="db-tab-panel">Tab Panel 3</section>
 </div>`})}),(0,I.jsx)(ee.A,{className:"copy-button",noText:!0,icon:e===`<div
-  id="tabs-2583972674952195"
+  id="tabs-22655833279493354"
   class="db-tabs"
   data-alignment="start"
   data-width="auto"
@@ -36531,7 +36531,7 @@ Tab Panel 3
   <section role="tabpanel" class="db-tab-panel">Tab Panel 2</section>
   <section role="tabpanel" class="db-tab-panel">Tab Panel 3</section>
 </div>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<div
-  id="tabs-2583972674952195"
+  id="tabs-22655833279493354"
   class="db-tabs"
   data-alignment="start"
   data-width="auto"
@@ -36559,7 +36559,7 @@ Tab Panel 3
   <section role="tabpanel" class="db-tab-panel">Tab Panel 2</section>
   <section role="tabpanel" class="db-tab-panel">Tab Panel 3</section>
 </div>`),navigator.clipboard.writeText(`<div
-  id="tabs-2583972674952195"
+  id="tabs-22655833279493354"
   class="db-tabs"
   data-alignment="start"
   data-width="auto"
@@ -60139,7 +60139,7 @@ button
       <menu
         class="db-sub-navigation"
         data-force-close="false"
-        id="sub-navigation-6356551090979153"
+        id="sub-navigation-5155955673147495"
       >
         <li class="db-navigation-item">
           <button
@@ -60152,7 +60152,7 @@ button
           <menu
             class="db-sub-navigation"
             data-force-close="false"
-            id="sub-navigation-3542301342209446"
+            id="sub-navigation-8952180441955048"
           >
             <li class="db-navigation-item" data-active="true">
               <button
@@ -60165,7 +60165,7 @@ button
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-03894578755123901"
+                id="sub-navigation-4845124608148208"
               ></menu>
             </li>
           </menu>
@@ -60183,7 +60183,7 @@ button
       <menu
         class="db-sub-navigation"
         data-force-close="false"
-        id="sub-navigation-7951557155937508"
+        id="sub-navigation-6368723186576282"
       ></menu>
     </li>
   </menu>
@@ -60200,7 +60200,7 @@ button
       <menu
         class="db-sub-navigation"
         data-force-close="false"
-        id="sub-navigation-6356551090979153"
+        id="sub-navigation-5155955673147495"
       >
         <li class="db-navigation-item">
           <button
@@ -60213,7 +60213,7 @@ button
           <menu
             class="db-sub-navigation"
             data-force-close="false"
-            id="sub-navigation-3542301342209446"
+            id="sub-navigation-8952180441955048"
           >
             <li class="db-navigation-item" data-active="true">
               <button
@@ -60226,7 +60226,7 @@ button
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-03894578755123901"
+                id="sub-navigation-4845124608148208"
               ></menu>
             </li>
           </menu>
@@ -60244,7 +60244,7 @@ button
       <menu
         class="db-sub-navigation"
         data-force-close="false"
-        id="sub-navigation-7951557155937508"
+        id="sub-navigation-6368723186576282"
       ></menu>
     </li>
   </menu>
@@ -60261,7 +60261,7 @@ button
       <menu
         class="db-sub-navigation"
         data-force-close="false"
-        id="sub-navigation-6356551090979153"
+        id="sub-navigation-5155955673147495"
       >
         <li class="db-navigation-item">
           <button
@@ -60274,7 +60274,7 @@ button
           <menu
             class="db-sub-navigation"
             data-force-close="false"
-            id="sub-navigation-3542301342209446"
+            id="sub-navigation-8952180441955048"
           >
             <li class="db-navigation-item" data-active="true">
               <button
@@ -60287,7 +60287,7 @@ button
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-03894578755123901"
+                id="sub-navigation-4845124608148208"
               ></menu>
             </li>
           </menu>
@@ -60305,7 +60305,7 @@ button
       <menu
         class="db-sub-navigation"
         data-force-close="false"
-        id="sub-navigation-7951557155937508"
+        id="sub-navigation-6368723186576282"
       ></menu>
     </li>
   </menu>
@@ -60322,7 +60322,7 @@ button
       <menu
         class="db-sub-navigation"
         data-force-close="false"
-        id="sub-navigation-6356551090979153"
+        id="sub-navigation-5155955673147495"
       >
         <li class="db-navigation-item">
           <button
@@ -60335,7 +60335,7 @@ button
           <menu
             class="db-sub-navigation"
             data-force-close="false"
-            id="sub-navigation-3542301342209446"
+            id="sub-navigation-8952180441955048"
           >
             <li class="db-navigation-item" data-active="true">
               <button
@@ -60348,7 +60348,7 @@ button
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-03894578755123901"
+                id="sub-navigation-4845124608148208"
               ></menu>
             </li>
           </menu>
@@ -60366,7 +60366,7 @@ button
       <menu
         class="db-sub-navigation"
         data-force-close="false"
-        id="sub-navigation-7951557155937508"
+        id="sub-navigation-6368723186576282"
       ></menu>
     </li>
   </menu>
@@ -60579,7 +60579,7 @@ Navi-Item 2
       <menu
         class="db-sub-navigation"
         data-force-close="false"
-        id="sub-navigation-694499665750877"
+        id="sub-navigation-9512744157214406"
       >
         <li class="db-navigation-item">
           <button
@@ -60592,7 +60592,7 @@ Navi-Item 2
           <menu
             class="db-sub-navigation"
             data-force-close="false"
-            id="sub-navigation-17708329440302217"
+            id="sub-navigation-5071656486709056"
           >
             <li class="db-navigation-item" data-active="true">
               <button
@@ -60605,7 +60605,7 @@ Navi-Item 2
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-8065047650174553"
+                id="sub-navigation-8554884983792705"
               ></menu>
             </li>
           </menu>
@@ -60623,7 +60623,7 @@ Navi-Item 2
       <menu
         class="db-sub-navigation"
         data-force-close="false"
-        id="sub-navigation-9866531042924974"
+        id="sub-navigation-5252755715856102"
       ></menu>
     </li>
   </menu>
@@ -60640,7 +60640,7 @@ Navi-Item 2
       <menu
         class="db-sub-navigation"
         data-force-close="false"
-        id="sub-navigation-694499665750877"
+        id="sub-navigation-9512744157214406"
       >
         <li class="db-navigation-item">
           <button
@@ -60653,7 +60653,7 @@ Navi-Item 2
           <menu
             class="db-sub-navigation"
             data-force-close="false"
-            id="sub-navigation-17708329440302217"
+            id="sub-navigation-5071656486709056"
           >
             <li class="db-navigation-item" data-active="true">
               <button
@@ -60666,7 +60666,7 @@ Navi-Item 2
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-8065047650174553"
+                id="sub-navigation-8554884983792705"
               ></menu>
             </li>
           </menu>
@@ -60684,7 +60684,7 @@ Navi-Item 2
       <menu
         class="db-sub-navigation"
         data-force-close="false"
-        id="sub-navigation-9866531042924974"
+        id="sub-navigation-5252755715856102"
       ></menu>
     </li>
   </menu>
@@ -60701,7 +60701,7 @@ Navi-Item 2
       <menu
         class="db-sub-navigation"
         data-force-close="false"
-        id="sub-navigation-694499665750877"
+        id="sub-navigation-9512744157214406"
       >
         <li class="db-navigation-item">
           <button
@@ -60714,7 +60714,7 @@ Navi-Item 2
           <menu
             class="db-sub-navigation"
             data-force-close="false"
-            id="sub-navigation-17708329440302217"
+            id="sub-navigation-5071656486709056"
           >
             <li class="db-navigation-item" data-active="true">
               <button
@@ -60727,7 +60727,7 @@ Navi-Item 2
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-8065047650174553"
+                id="sub-navigation-8554884983792705"
               ></menu>
             </li>
           </menu>
@@ -60745,7 +60745,7 @@ Navi-Item 2
       <menu
         class="db-sub-navigation"
         data-force-close="false"
-        id="sub-navigation-9866531042924974"
+        id="sub-navigation-5252755715856102"
       ></menu>
     </li>
   </menu>
@@ -60762,7 +60762,7 @@ Navi-Item 2
       <menu
         class="db-sub-navigation"
         data-force-close="false"
-        id="sub-navigation-694499665750877"
+        id="sub-navigation-9512744157214406"
       >
         <li class="db-navigation-item">
           <button
@@ -60775,7 +60775,7 @@ Navi-Item 2
           <menu
             class="db-sub-navigation"
             data-force-close="false"
-            id="sub-navigation-17708329440302217"
+            id="sub-navigation-5071656486709056"
           >
             <li class="db-navigation-item" data-active="true">
               <button
@@ -60788,7 +60788,7 @@ Navi-Item 2
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-8065047650174553"
+                id="sub-navigation-8554884983792705"
               ></menu>
             </li>
           </menu>
@@ -60806,7 +60806,7 @@ Navi-Item 2
       <menu
         class="db-sub-navigation"
         data-force-close="false"
-        id="sub-navigation-9866531042924974"
+        id="sub-navigation-5252755715856102"
       ></menu>
     </li>
   </menu>
@@ -61019,7 +61019,7 @@ Navi-Item 2
       <menu
         class="db-sub-navigation"
         data-force-close="false"
-        id="sub-navigation-07724525087557466"
+        id="sub-navigation-22805564435983228"
       >
         <li class="db-navigation-item">
           <button
@@ -61032,7 +61032,7 @@ Navi-Item 2
           <menu
             class="db-sub-navigation"
             data-force-close="false"
-            id="sub-navigation-5621142837732909"
+            id="sub-navigation-3667348483498124"
           >
             <li class="db-navigation-item" data-active="true">
               <button
@@ -61045,7 +61045,7 @@ Navi-Item 2
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-10207146685926982"
+                id="sub-navigation-23869220660948842"
               ></menu>
             </li>
           </menu>
@@ -61063,7 +61063,7 @@ Navi-Item 2
       <menu
         class="db-sub-navigation"
         data-force-close="false"
-        id="sub-navigation-8801254576688944"
+        id="sub-navigation-8662815975188386"
       ></menu>
     </li>
   </menu>
@@ -61080,7 +61080,7 @@ Navi-Item 2
       <menu
         class="db-sub-navigation"
         data-force-close="false"
-        id="sub-navigation-07724525087557466"
+        id="sub-navigation-22805564435983228"
       >
         <li class="db-navigation-item">
           <button
@@ -61093,7 +61093,7 @@ Navi-Item 2
           <menu
             class="db-sub-navigation"
             data-force-close="false"
-            id="sub-navigation-5621142837732909"
+            id="sub-navigation-3667348483498124"
           >
             <li class="db-navigation-item" data-active="true">
               <button
@@ -61106,7 +61106,7 @@ Navi-Item 2
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-10207146685926982"
+                id="sub-navigation-23869220660948842"
               ></menu>
             </li>
           </menu>
@@ -61124,7 +61124,7 @@ Navi-Item 2
       <menu
         class="db-sub-navigation"
         data-force-close="false"
-        id="sub-navigation-8801254576688944"
+        id="sub-navigation-8662815975188386"
       ></menu>
     </li>
   </menu>
@@ -61141,7 +61141,7 @@ Navi-Item 2
       <menu
         class="db-sub-navigation"
         data-force-close="false"
-        id="sub-navigation-07724525087557466"
+        id="sub-navigation-22805564435983228"
       >
         <li class="db-navigation-item">
           <button
@@ -61154,7 +61154,7 @@ Navi-Item 2
           <menu
             class="db-sub-navigation"
             data-force-close="false"
-            id="sub-navigation-5621142837732909"
+            id="sub-navigation-3667348483498124"
           >
             <li class="db-navigation-item" data-active="true">
               <button
@@ -61167,7 +61167,7 @@ Navi-Item 2
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-10207146685926982"
+                id="sub-navigation-23869220660948842"
               ></menu>
             </li>
           </menu>
@@ -61185,7 +61185,7 @@ Navi-Item 2
       <menu
         class="db-sub-navigation"
         data-force-close="false"
-        id="sub-navigation-8801254576688944"
+        id="sub-navigation-8662815975188386"
       ></menu>
     </li>
   </menu>
@@ -61202,7 +61202,7 @@ Navi-Item 2
       <menu
         class="db-sub-navigation"
         data-force-close="false"
-        id="sub-navigation-07724525087557466"
+        id="sub-navigation-22805564435983228"
       >
         <li class="db-navigation-item">
           <button
@@ -61215,7 +61215,7 @@ Navi-Item 2
           <menu
             class="db-sub-navigation"
             data-force-close="false"
-            id="sub-navigation-5621142837732909"
+            id="sub-navigation-3667348483498124"
           >
             <li class="db-navigation-item" data-active="true">
               <button
@@ -61228,7 +61228,7 @@ Navi-Item 2
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-10207146685926982"
+                id="sub-navigation-23869220660948842"
               ></menu>
             </li>
           </menu>
@@ -61246,7 +61246,7 @@ Navi-Item 2
       <menu
         class="db-sub-navigation"
         data-force-close="false"
-        id="sub-navigation-8801254576688944"
+        id="sub-navigation-8662815975188386"
       ></menu>
     </li>
   </menu>
@@ -61405,7 +61405,7 @@ Navi-Item 2
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-8522622740185579"
+    id="sub-navigation-8149408326749633"
   ></menu>
 </li>`})}),(0,I.jsx)(ee.A,{className:"copy-button",noText:!0,icon:e===`<li class="db-navigation-item">
   <button
@@ -61418,7 +61418,7 @@ Navi-Item 2
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-8522622740185579"
+    id="sub-navigation-8149408326749633"
   ></menu>
 </li>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<li class="db-navigation-item">
   <button
@@ -61431,7 +61431,7 @@ Navi-Item 2
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-8522622740185579"
+    id="sub-navigation-8149408326749633"
   ></menu>
 </li>`),navigator.clipboard.writeText(`<li class="db-navigation-item">
   <button
@@ -61444,7 +61444,7 @@ Navi-Item 2
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-8522622740185579"
+    id="sub-navigation-8149408326749633"
   ></menu>
 </li>`)},children:"Copy code"})]}),(0,I.jsxs)(e$.A,{children:[(0,I.jsx)(F.A,{content:"external",target:"_blank",href:"how-to-use?current=react",children:"How to use this in react"}),(0,I.jsx)("pre",{children:(0,I.jsx)("code",{className:"hljs language-tsx",children:`<DBNavigationItem>
   <a href="#">Functional</a>
@@ -61489,7 +61489,7 @@ Functional
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-11042429839815338"
+    id="sub-navigation-0018756450767625221"
   ></menu>
 </li>`})}),(0,I.jsx)(ee.A,{className:"copy-button",noText:!0,icon:e===`<li class="db-navigation-item">
   <button
@@ -61502,7 +61502,7 @@ Functional
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-11042429839815338"
+    id="sub-navigation-0018756450767625221"
   ></menu>
 </li>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<li class="db-navigation-item">
   <button
@@ -61515,7 +61515,7 @@ Functional
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-11042429839815338"
+    id="sub-navigation-0018756450767625221"
   ></menu>
 </li>`),navigator.clipboard.writeText(`<li class="db-navigation-item">
   <button
@@ -61528,7 +61528,7 @@ Functional
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-11042429839815338"
+    id="sub-navigation-0018756450767625221"
   ></menu>
 </li>`)},children:"Copy code"})]}),(0,I.jsxs)(e$.A,{children:[(0,I.jsx)(F.A,{content:"external",target:"_blank",href:"how-to-use?current=react",children:"How to use this in react"}),(0,I.jsx)("pre",{children:(0,I.jsx)("code",{className:"hljs language-tsx",children:`<DBNavigationItem>
   <a href="#">(Default) Regular</a>
@@ -61573,7 +61573,7 @@ Functional
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-3306667296272401"
+    id="sub-navigation-18286287701161508"
   ></menu>
 </li>`})}),(0,I.jsx)(ee.A,{className:"copy-button",noText:!0,icon:e===`<li class="db-navigation-item">
   <button
@@ -61586,7 +61586,7 @@ Functional
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-3306667296272401"
+    id="sub-navigation-18286287701161508"
   ></menu>
 </li>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<li class="db-navigation-item">
   <button
@@ -61599,7 +61599,7 @@ Functional
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-3306667296272401"
+    id="sub-navigation-18286287701161508"
   ></menu>
 </li>`),navigator.clipboard.writeText(`<li class="db-navigation-item">
   <button
@@ -61612,7 +61612,7 @@ Functional
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-3306667296272401"
+    id="sub-navigation-18286287701161508"
   ></menu>
 </li>`)},children:"Copy code"})]}),(0,I.jsxs)(e$.A,{children:[(0,I.jsx)(F.A,{content:"external",target:"_blank",href:"how-to-use?current=react",children:"How to use this in react"}),(0,I.jsx)("pre",{children:(0,I.jsx)("code",{className:"hljs language-tsx",children:`<DBNavigationItem>
   <a href="#">Expressive</a>
@@ -61658,7 +61658,7 @@ Expressive
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-7236581973918058"
+    id="sub-navigation-7738319526892738"
   ></menu>
 </li>`})}),(0,I.jsx)(ee.A,{className:"copy-button",noText:!0,icon:e===`<li class="db-navigation-item" aria-disabled="true">
   <button
@@ -61672,7 +61672,7 @@ Expressive
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-7236581973918058"
+    id="sub-navigation-7738319526892738"
   ></menu>
 </li>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<li class="db-navigation-item" aria-disabled="true">
   <button
@@ -61686,7 +61686,7 @@ Expressive
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-7236581973918058"
+    id="sub-navigation-7738319526892738"
   ></menu>
 </li>`),navigator.clipboard.writeText(`<li class="db-navigation-item" aria-disabled="true">
   <button
@@ -61700,7 +61700,7 @@ Expressive
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-7236581973918058"
+    id="sub-navigation-7738319526892738"
   ></menu>
 </li>`)},children:"Copy code"})]}),(0,I.jsxs)(e$.A,{children:[(0,I.jsx)(F.A,{content:"external",target:"_blank",href:"how-to-use?current=react",children:"How to use this in react"}),(0,I.jsx)("pre",{children:(0,I.jsx)("code",{className:"hljs language-tsx",children:`<DBNavigationItem disabled>
   <a href="#">(Default) False</a>
@@ -61746,7 +61746,7 @@ Expressive
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-7576938205267497"
+    id="sub-navigation-0002189710576548931"
   ></menu>
 </li>`})}),(0,I.jsx)(ee.A,{className:"copy-button",noText:!0,icon:e===`<li class="db-navigation-item" aria-disabled="true">
   <button
@@ -61760,7 +61760,7 @@ Expressive
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-7576938205267497"
+    id="sub-navigation-0002189710576548931"
   ></menu>
 </li>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<li class="db-navigation-item" aria-disabled="true">
   <button
@@ -61774,7 +61774,7 @@ Expressive
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-7576938205267497"
+    id="sub-navigation-0002189710576548931"
   ></menu>
 </li>`),navigator.clipboard.writeText(`<li class="db-navigation-item" aria-disabled="true">
   <button
@@ -61788,7 +61788,7 @@ Expressive
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-7576938205267497"
+    id="sub-navigation-0002189710576548931"
   ></menu>
 </li>`)},children:"Copy code"})]}),(0,I.jsxs)(e$.A,{children:[(0,I.jsx)(F.A,{content:"external",target:"_blank",href:"how-to-use?current=react",children:"How to use this in react"}),(0,I.jsx)("pre",{children:(0,I.jsx)("code",{className:"hljs language-tsx",children:`<DBNavigationItem disabled>
   <a href="#">True</a>
@@ -61833,7 +61833,7 @@ True
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-009910852564989692"
+    id="sub-navigation-23379410844530257"
   ></menu>
 </li>`})}),(0,I.jsx)(ee.A,{className:"copy-button",noText:!0,icon:e===`<li class="db-navigation-item" data-active="true">
   <button
@@ -61846,7 +61846,7 @@ True
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-009910852564989692"
+    id="sub-navigation-23379410844530257"
   ></menu>
 </li>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<li class="db-navigation-item" data-active="true">
   <button
@@ -61859,7 +61859,7 @@ True
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-009910852564989692"
+    id="sub-navigation-23379410844530257"
   ></menu>
 </li>`),navigator.clipboard.writeText(`<li class="db-navigation-item" data-active="true">
   <button
@@ -61872,7 +61872,7 @@ True
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-009910852564989692"
+    id="sub-navigation-23379410844530257"
   ></menu>
 </li>`)},children:"Copy code"})]}),(0,I.jsxs)(e$.A,{children:[(0,I.jsx)(F.A,{content:"external",target:"_blank",href:"how-to-use?current=react",children:"How to use this in react"}),(0,I.jsx)("pre",{children:(0,I.jsx)("code",{className:"hljs language-tsx",children:`<DBNavigationItem active>
   <a href="#">(Default) False</a>
@@ -61917,7 +61917,7 @@ True
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-5738675974300909"
+    id="sub-navigation-6043017662090006"
   ></menu>
 </li>`})}),(0,I.jsx)(ee.A,{className:"copy-button",noText:!0,icon:e===`<li class="db-navigation-item" data-active="true">
   <button
@@ -61930,7 +61930,7 @@ True
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-5738675974300909"
+    id="sub-navigation-6043017662090006"
   ></menu>
 </li>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<li class="db-navigation-item" data-active="true">
   <button
@@ -61943,7 +61943,7 @@ True
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-5738675974300909"
+    id="sub-navigation-6043017662090006"
   ></menu>
 </li>`),navigator.clipboard.writeText(`<li class="db-navigation-item" data-active="true">
   <button
@@ -61956,7 +61956,7 @@ True
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-5738675974300909"
+    id="sub-navigation-6043017662090006"
   ></menu>
 </li>`)},children:"Copy code"})]}),(0,I.jsxs)(e$.A,{children:[(0,I.jsx)(F.A,{content:"external",target:"_blank",href:"how-to-use?current=react",children:"How to use this in react"}),(0,I.jsx)("pre",{children:(0,I.jsx)("code",{className:"hljs language-tsx",children:`<DBNavigationItem active>
   <a href="#">True</a>
@@ -62001,7 +62001,7 @@ True
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-14113541890449255"
+    id="sub-navigation-04710491625367852"
   ></menu>
 </li>`})}),(0,I.jsx)(ee.A,{className:"copy-button",noText:!0,icon:e===`<li class="db-navigation-item">
   <button
@@ -62014,7 +62014,7 @@ True
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-14113541890449255"
+    id="sub-navigation-04710491625367852"
   ></menu>
 </li>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<li class="db-navigation-item">
   <button
@@ -62027,7 +62027,7 @@ True
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-14113541890449255"
+    id="sub-navigation-04710491625367852"
   ></menu>
 </li>`),navigator.clipboard.writeText(`<li class="db-navigation-item">
   <button
@@ -62040,7 +62040,7 @@ True
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-14113541890449255"
+    id="sub-navigation-04710491625367852"
   ></menu>
 </li>`)},children:"Copy code"})]}),(0,I.jsxs)(e$.A,{children:[(0,I.jsx)(F.A,{content:"external",target:"_blank",href:"how-to-use?current=react",children:"How to use this in react"}),(0,I.jsx)("pre",{children:(0,I.jsx)("code",{className:"hljs language-tsx",children:`<DBNavigationItem areaPopup>
   <a href="#">(Default) False</a>
@@ -62085,7 +62085,7 @@ True
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-04202946836384924"
+    id="sub-navigation-275435067826428"
   ></menu>
 </li>`})}),(0,I.jsx)(ee.A,{className:"copy-button",noText:!0,icon:e===`<li class="db-navigation-item">
   <button
@@ -62098,7 +62098,7 @@ True
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-04202946836384924"
+    id="sub-navigation-275435067826428"
   ></menu>
 </li>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<li class="db-navigation-item">
   <button
@@ -62111,7 +62111,7 @@ True
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-04202946836384924"
+    id="sub-navigation-275435067826428"
   ></menu>
 </li>`),navigator.clipboard.writeText(`<li class="db-navigation-item">
   <button
@@ -62124,7 +62124,7 @@ True
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-04202946836384924"
+    id="sub-navigation-275435067826428"
   ></menu>
 </li>`)},children:"Copy code"})]}),(0,I.jsxs)(e$.A,{children:[(0,I.jsx)(F.A,{content:"external",target:"_blank",href:"how-to-use?current=react",children:"How to use this in react"}),(0,I.jsx)("pre",{children:(0,I.jsx)("code",{className:"hljs language-tsx",children:`<DBNavigationItem areaPopup>
   <a href="#">True</a>
@@ -62169,7 +62169,7 @@ True
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-7351248948001531"
+    id="sub-navigation-6828417648856259"
   ></menu>
 </li>`})}),(0,I.jsx)(ee.A,{className:"copy-button",noText:!0,icon:e===`<li class="db-navigation-item" data-icon="x_placeholder" data-show-icon="true">
   <button
@@ -62182,7 +62182,7 @@ True
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-7351248948001531"
+    id="sub-navigation-6828417648856259"
   ></menu>
 </li>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<li class="db-navigation-item" data-icon="x_placeholder" data-show-icon="true">
   <button
@@ -62195,7 +62195,7 @@ True
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-7351248948001531"
+    id="sub-navigation-6828417648856259"
   ></menu>
 </li>`),navigator.clipboard.writeText(`<li class="db-navigation-item" data-icon="x_placeholder" data-show-icon="true">
   <button
@@ -62208,7 +62208,7 @@ True
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-7351248948001531"
+    id="sub-navigation-6828417648856259"
   ></menu>
 </li>`)},children:"Copy code"})]}),(0,I.jsxs)(e$.A,{children:[(0,I.jsx)(F.A,{content:"external",target:"_blank",href:"how-to-use?current=react",children:"How to use this in react"}),(0,I.jsx)("pre",{children:(0,I.jsx)("code",{className:"hljs language-tsx",children:`<DBNavigationItem icon="x_placeholder" showIcon>
   <a href="#">(Default) False</a>
@@ -62253,7 +62253,7 @@ True
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-7892912016212956"
+    id="sub-navigation-3040920074942276"
   ></menu>
 </li>`})}),(0,I.jsx)(ee.A,{className:"copy-button",noText:!0,icon:e===`<li class="db-navigation-item" data-icon="x_placeholder" data-show-icon="true">
   <button
@@ -62266,7 +62266,7 @@ True
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-7892912016212956"
+    id="sub-navigation-3040920074942276"
   ></menu>
 </li>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<li class="db-navigation-item" data-icon="x_placeholder" data-show-icon="true">
   <button
@@ -62279,7 +62279,7 @@ True
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-7892912016212956"
+    id="sub-navigation-3040920074942276"
   ></menu>
 </li>`),navigator.clipboard.writeText(`<li class="db-navigation-item" data-icon="x_placeholder" data-show-icon="true">
   <button
@@ -62292,7 +62292,7 @@ True
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-7892912016212956"
+    id="sub-navigation-3040920074942276"
   ></menu>
 </li>`)},children:"Copy code"})]}),(0,I.jsxs)(e$.A,{children:[(0,I.jsx)(F.A,{content:"external",target:"_blank",href:"how-to-use?current=react",children:"How to use this in react"}),(0,I.jsx)("pre",{children:(0,I.jsx)("code",{className:"hljs language-tsx",children:`<DBNavigationItem icon="x_placeholder" showIcon>
   <a href="#">True</a>
@@ -62337,7 +62337,7 @@ True
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-2460252385433277"
+    id="sub-navigation-1527461726443602"
   ></menu>
 </li>`})}),(0,I.jsx)(ee.A,{className:"copy-button",noText:!0,icon:e===`<li class="db-navigation-item">
   <button
@@ -62350,7 +62350,7 @@ True
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-2460252385433277"
+    id="sub-navigation-1527461726443602"
   ></menu>
 </li>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<li class="db-navigation-item">
   <button
@@ -62363,7 +62363,7 @@ True
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-2460252385433277"
+    id="sub-navigation-1527461726443602"
   ></menu>
 </li>`),navigator.clipboard.writeText(`<li class="db-navigation-item">
   <button
@@ -62376,7 +62376,7 @@ True
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-2460252385433277"
+    id="sub-navigation-1527461726443602"
   ></menu>
 </li>`)},children:"Copy code"})]}),(0,I.jsxs)(e$.A,{children:[(0,I.jsx)(F.A,{content:"external",target:"_blank",href:"how-to-use?current=react",children:"How to use this in react"}),(0,I.jsx)("pre",{children:(0,I.jsx)("code",{className:"hljs language-tsx",children:`<DBNavigationItem>
   <a href="#">(Default) Auto</a>
@@ -62421,7 +62421,7 @@ True
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-7011738156236658"
+    id="sub-navigation-9318428655675648"
   ></menu>
 </li>`})}),(0,I.jsx)(ee.A,{className:"copy-button",noText:!0,icon:e===`<li class="db-navigation-item" data-width="full">
   <button
@@ -62434,7 +62434,7 @@ True
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-7011738156236658"
+    id="sub-navigation-9318428655675648"
   ></menu>
 </li>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<li class="db-navigation-item" data-width="full">
   <button
@@ -62447,7 +62447,7 @@ True
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-7011738156236658"
+    id="sub-navigation-9318428655675648"
   ></menu>
 </li>`),navigator.clipboard.writeText(`<li class="db-navigation-item" data-width="full">
   <button
@@ -62460,7 +62460,7 @@ True
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-7011738156236658"
+    id="sub-navigation-9318428655675648"
   ></menu>
 </li>`)},children:"Copy code"})]}),(0,I.jsxs)(e$.A,{children:[(0,I.jsx)(F.A,{content:"external",target:"_blank",href:"how-to-use?current=react",children:"How to use this in react"}),(0,I.jsx)("pre",{children:(0,I.jsx)("code",{className:"hljs language-tsx",children:`<DBNavigationItem width="full">
   <a href="#">Full</a>
@@ -62505,7 +62505,7 @@ Full
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-4578518831661106"
+    id="sub-navigation-9142530130248346"
   ></menu>
 </li>`})}),(0,I.jsx)(ee.A,{className:"copy-button",noText:!0,icon:e===`<li class="db-navigation-item">
   <button
@@ -62518,7 +62518,7 @@ Full
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-4578518831661106"
+    id="sub-navigation-9142530130248346"
   ></menu>
 </li>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<li class="db-navigation-item">
   <button
@@ -62531,7 +62531,7 @@ Full
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-4578518831661106"
+    id="sub-navigation-9142530130248346"
   ></menu>
 </li>`),navigator.clipboard.writeText(`<li class="db-navigation-item">
   <button
@@ -62544,7 +62544,7 @@ Full
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-4578518831661106"
+    id="sub-navigation-9142530130248346"
   ></menu>
 </li>`)},children:"Copy code"})]}),(0,I.jsxs)(e$.A,{children:[(0,I.jsx)(F.A,{content:"external",target:"_blank",href:"how-to-use?current=react",children:"How to use this in react"}),(0,I.jsx)("pre",{children:(0,I.jsx)("code",{className:"hljs language-tsx",children:`<DBNavigationItem areaPopup>
   <a href="#">True</a>
@@ -62609,7 +62609,7 @@ True
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-3156925780581674"
+    id="sub-navigation-47750022587393304"
   ></menu>
 </li>`})}),(0,I.jsx)(ee.A,{className:"copy-button",noText:!0,icon:e===`<li class="db-navigation-item" data-wrap="true">
   <button
@@ -62622,7 +62622,7 @@ True
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-3156925780581674"
+    id="sub-navigation-47750022587393304"
   ></menu>
 </li>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<li class="db-navigation-item" data-wrap="true">
   <button
@@ -62635,7 +62635,7 @@ True
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-3156925780581674"
+    id="sub-navigation-47750022587393304"
   ></menu>
 </li>`),navigator.clipboard.writeText(`<li class="db-navigation-item" data-wrap="true">
   <button
@@ -62648,7 +62648,7 @@ True
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-3156925780581674"
+    id="sub-navigation-47750022587393304"
   ></menu>
 </li>`)},children:"Copy code"})]}),(0,I.jsxs)(e$.A,{children:[(0,I.jsx)(F.A,{content:"external",target:"_blank",href:"how-to-use?current=react",children:"How to use this in react"}),(0,I.jsx)("pre",{children:(0,I.jsx)("code",{className:"hljs language-tsx",children:`<DBNavigationItem areaPopup icon="x_placeholder" showIcon wrap>
   <a href="#">Sub-Sub-Navi-Item 1</a>
@@ -62713,7 +62713,7 @@ Sub-Sub-Navi-Item 1
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-3156925780581674"
+    id="sub-navigation-47750022587393304"
   ></menu>
 </li>`})}),(0,I.jsx)(ee.A,{className:"copy-button",noText:!0,icon:e===`<li class="db-navigation-item" data-wrap="true">
   <button
@@ -62726,7 +62726,7 @@ Sub-Sub-Navi-Item 1
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-3156925780581674"
+    id="sub-navigation-47750022587393304"
   ></menu>
 </li>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<li class="db-navigation-item" data-wrap="true">
   <button
@@ -62739,7 +62739,7 @@ Sub-Sub-Navi-Item 1
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-3156925780581674"
+    id="sub-navigation-47750022587393304"
   ></menu>
 </li>`),navigator.clipboard.writeText(`<li class="db-navigation-item" data-wrap="true">
   <button
@@ -62752,7 +62752,7 @@ Sub-Sub-Navi-Item 1
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-3156925780581674"
+    id="sub-navigation-47750022587393304"
   ></menu>
 </li>`)},children:"Copy code"})]}),(0,I.jsxs)(e$.A,{children:[(0,I.jsx)(F.A,{content:"external",target:"_blank",href:"how-to-use?current=react",children:"How to use this in react"}),(0,I.jsx)("pre",{children:(0,I.jsx)("code",{className:"hljs language-tsx",children:`<DBNavigationItem areaPopup wrap>
   <a href="#">True</a>
@@ -68426,4 +68426,4 @@ Content 2
 <span >
 Content 3
 </span>
-</DBStack>`)},children:"Copy code"})]})]},t())})]})},iW=JSON.parse('[{"label":"Action","name":"action","path":"/components/action","subNavigation":[{"label":"DBButton","name":"button"},{"label":"DBLink","name":"link"}]},{"label":"Data-Display","path":"/components/data-display","name":"data-display","subNavigation":[{"label":"DBBrand","name":"brand"},{"label":"DBTooltip","name":"tooltip"},{"label":"DBInfotext","name":"infotext"},{"label":"DBTag","name":"tag"},{"label":"DBAccordion","name":"accordion","subNavigation":[{"label":"DBAccordionItem Properties","path":"/components/accordion-item/properties"}]},{"label":"DBAccordionItem","name":"accordion-item","isHiddenInMenu":true},{"label":"DBTabs","name":"tabs","subNavigation":[{"label":"DBTabItem Properties","path":"/components/tab-item/properties"}]},{"label":"DBTabItem","name":"tab-item","isHiddenInMenu":true}]},{"label":"Data-Input","path":"/components/data-input","name":"data-input","subNavigation":[{"label":"DBCheckbox","name":"checkbox"},{"label":"DBInput","name":"input"},{"label":"DBCustomSelect","name":"custom-select"},{"label":"DBRadio","name":"radio"},{"label":"DBSelect","name":"select"},{"label":"DBSwitch","name":"switch"},{"label":"DBTextarea","name":"textarea"}]},{"label":"Feedback","path":"/components/feedback","name":"feedback","subNavigation":[{"label":"DBNotification","name":"notification"},{"label":"DBBadge","name":"badge"}]},{"label":"Layout","path":"/components/layout","name":"layout","subNavigation":[{"label":"DBCard","name":"card"},{"label":"DBDivider","name":"divider"},{"label":"DBDrawer","name":"drawer"},{"label":"DBHeader","name":"header"},{"label":"DBSection","name":"section"},{"label":"DBStack","name":"stack"}]},{"label":"Navigation","path":"/components/navigation","name":"navigation","subNavigation":[{"label":"DBNavigation","name":"navigation","subNavigation":[{"label":"DBNavigationItem Properties","path":"/components/navigation-item/properties"}]},{"label":"DBNavigationItem","name":"navigation-item","isHiddenInMenu":true}]},{"label":"Utilities","path":"/components/utilities","name":"utilities","subNavigation":[{"label":"DBPopover","name":"popover"}]}]'),iU={"custom-select":(0,I.jsx)(e=>(0,I.jsx)(G,{title:"DBCustomSelect",variants:z(nK,nQ,e.slotCode)}),{slotCode:A}),stack:(0,I.jsx)(e=>(0,I.jsx)(G,{title:"DBStack",variants:z(n0,n1,e.slotCode)}),{slotCode:N}),button:(0,I.jsx)(e=>(0,I.jsx)(G,{title:"DBButton",variants:z(ea,et,e.slotCode)}),{slotCode:o}),link:(0,I.jsx)(e=>(0,I.jsx)(G,{title:"DBLink",variants:z(en,ei,e.slotCode)}),{slotCode:s}),brand:(0,I.jsx)(e=>(0,I.jsx)(G,{title:"DBBrand",variants:z(Q,X,e.slotCode)}),{slotCode:l}),tooltip:(0,I.jsx)(e=>(0,I.jsx)(G,{title:"DBTooltip",variants:z(e3,e4,e.slotCode)}),{slotCode:T}),infotext:(0,I.jsx)(e=>(0,I.jsx)(G,{title:"DBInfotext",variants:z(eT,eA,e.slotCode)}),{slotCode:b}),tag:(0,I.jsx)(e=>(0,I.jsx)(G,{title:"DBTag",variants:z(eK,eQ,e.slotCode)}),{slotCode:f}),accordion:(0,I.jsx)(e=>(0,I.jsx)("div",{children:(0,I.jsx)(G,{title:"DBAccordion",subComponent:e.subComponent,variants:z(H,$,e.slotCode)})}),{slotCode:n,subComponent:(0,I.jsx)(Z,{isSubComponent:!0,componentName:"accordion-item",slotCode:i})}),"accordion-item":(0,I.jsx)(Z,{slotCode:i}),tabs:(0,I.jsx)(e=>(0,I.jsx)(G,{title:"DBTabs",subComponent:e.subComponent,variants:z(eJ,eY,e.slotCode)}),{slotCode:B,subComponent:(0,I.jsx)(eU,{isSubComponent:!0,componentName:"tab-item",slotCode:D})}),"tab-item":(0,I.jsx)(eU,{slotCode:D}),checkbox:(0,I.jsx)(e=>(0,I.jsx)(G,{title:"DBCheckbox",variants:z(eh,eb,e.slotCode)}),{slotCode:r}),input:(0,I.jsx)(e=>(0,I.jsx)(G,{title:"DBInput",variants:z(ek,eC,e.slotCode)}),{slotCode:x}),radio:(0,I.jsx)(e=>(0,I.jsx)(G,{title:"DBRadio",variants:z(eS,e_,e.slotCode)}),{slotCode:m}),select:(0,I.jsx)(e=>(0,I.jsx)(G,{title:"DBSelect",variants:z(ez,eP,e.slotCode)}),{slotCode:g}),switch:(0,I.jsx)(e=>(0,I.jsx)(G,{title:"DBSwitch",variants:z(eF,eE,e.slotCode)}),{slotCode:j}),textarea:(0,I.jsx)(e=>(0,I.jsx)(I.Fragment,{children:(0,I.jsx)(G,{title:"DBTextarea",variants:z(e0,e1,e.slotCode)})}),{slotCode:w}),notification:(0,I.jsx)(e=>(0,I.jsx)(G,{title:"DBNotification",variants:z(eN,eI,e.slotCode)}),{slotCode:v}),badge:(0,I.jsx)(e=>(0,I.jsx)(G,{title:"DBBadge",variants:z(es,ec,e.slotCode)}),{slotCode:c}),card:(0,I.jsx)(e=>(0,I.jsx)(G,{title:"DBCard",variants:z(ed,er,e.slotCode)}),{slotCode:d}),divider:(0,I.jsx)(e=>(0,I.jsx)(G,{title:"DBDivider",variants:z(ex,ev,e.slotCode)}),{slotCode:u}),drawer:(0,I.jsx)(e=>{let[a,t]=(0,P.useState)(void 0);return(0,I.jsx)(G,{title:"DBDrawer",variants:z(eg,e=>(({id:e,width:a,rounded:t,spacing:n,openDrawer:i,setOpenDrawer:l,direction:o,children:s,backdrop:c,variant:d})=>(0,I.jsxs)("div",{children:[(0,I.jsxs)(ee.A,{onClick:()=>{l(e)},children:["Open: ",s]}),(0,I.jsx)(em.A,{rounded:t,width:a,spacing:n,backdrop:c,direction:o,variant:d,open:i===e,onClose:()=>{l(void 0)},children:s})]}))({...e,openDrawer:a,setOpenDrawer:t}),e.slotCode)})},{slotCode:p}),header:(0,I.jsx)(e=>(0,I.jsx)(G,{title:"DBHeader",variants:z(ef,ew,e.slotCode)}),{slotCode:h}),section:(0,I.jsx)(e=>(0,I.jsx)(G,{title:"DBSection",variants:z(ai,al,e.slotCode)}),{slotCode:O}),navigation:(0,I.jsx)(e=>(0,I.jsx)(G,{title:"DBNavigation",subComponent:e.subComponent,variants:z(e5,e8,e.slotCode)}),{slotCode:y,subComponent:(0,I.jsx)(e6,{isSubComponent:!0,componentName:"navigation-item",slotCode:k})}),"navigation-item":(0,I.jsx)(e6,{slotCode:k}),popover:(0,I.jsx)(e=>(0,I.jsx)(G,{title:"DBPopover",variants:z(aa,at,e.slotCode)}),{slotCode:C})},iG=iW.map(e=>({...e,subNavigation:e.subNavigation?.map(e=>({...e,component:e.name?iU[e.name]:void 0}))})),i$=[{label:"Home",path:"/"},{label:"Foundations",path:"/foundations",subNavigation:[{label:"Readme",path:"/foundations/readme"},{label:"Colors",path:"/foundations/colors",subNavigation:[{label:"Readme",path:"/foundations/colors/readme"},{label:"Color Schemes",path:"/foundations/colors/color-schemes"},{label:"Color Modes",path:"/foundations/colors/color-modes"},{label:"Color Usage Guide",path:"/foundations/colors/color-usage-guide"}]},{label:"Font Sizes",path:"/foundations/font-sizes",subNavigation:[{label:"Readme",path:"/foundations/font-sizes/readme"},{label:"Overview",path:"/foundations/font-sizes/overview"}]},{label:"Icons",path:"/foundations/icons",subNavigation:[{label:"Readme",path:"/foundations/icons/readme"},{label:"Custom Icons",path:"/foundations/icons/custom-icons"},{label:"Overview",path:"/foundations/icons/overview"}]},{label:"Densities",path:"/foundations/densities",subNavigation:[{label:"Readme",path:"/foundations/densities/readme"},{label:"Examples",path:"/foundations/densities/examples"}]},{label:"Variables",path:"/foundations/variables",subNavigation:[{label:"Readme",path:"/foundations/variables/readme"},{label:"Examples",path:"/foundations/variables/examples"}]},{label:"Testing Overview Table",path:"/foundations/test-table"},{label:"IDE Support",path:"/foundations/ide"},{label:"Performance",path:"/foundations/performance"},{label:"Browser Support",path:"/foundations/browser-support"}]},{label:"Components",path:"/components",subNavigation:[{label:"Readme",path:"/components/readme"},...iG.map(e=>({...e,subNavigation:e?.subNavigation?.map(a=>({label:a.label,path:`/components/${e.name}/${a.name}`,isHiddenInMenu:a.isHiddenInMenu,subNavigation:[{label:"Overview",path:`/components/${e.name}/${a.name}/overview`},{label:"Properties",path:`/components/${e.name}/${a.name}/properties`},{label:"How to use",path:`/components/${e.name}/${a.name}/how-to-use`},{label:"Migration",path:`/components/${e.name}/${a.name}/migration`},...a.subNavigation??[]]}))})),{label:"Misc",path:"/components/misc",subNavigation:[{label:"Router usage",path:"/components/misc/router-usage"},{label:"Creating custom Components",path:"/components/misc/custom-components"},{label:"Testing",path:"/components/misc/testing"},{label:"Validation",path:"/components/misc/validation"},{label:"Backdrop",path:"/components/misc/backdrop"}]}]},{label:"Playgrounds",path:"/foundations/playgrounds"}],iJ=(e,a,t,n)=>{for(let i of e)a.push(t?i:{...i,label:n?`${n}:${i.label}`:i.label}),i.subNavigation&&i.subNavigation?.length>0&&iJ(i.subNavigation,a,t,t?void 0:i.label)},iY=e=>{let a=[];return iJ(i$,a,e),a},iZ=e=>{let a=iY().filter(e=>!e.subNavigation),t=a.findIndex(a=>a.path===e);return{previous:0===t?void 0:a[t-1],next:t+1===a.length?void 0:a[t+1]}},iK=e=>iY(!0).filter(a=>e.includes(a.path??"")).sort((e,a)=>(e.path?.length??0)-(a.path?.length??0)),iQ=()=>iG.filter(({name:e})=>!!e).map(({name:e})=>e)},59745:(e,a,t)=>{t.d(a,{C:()=>n,z:()=>i});let n=[{value:"angular",label:"Angular"},{value:"html",label:"HTML"},{value:"react",label:"React"},{value:"vue",label:"Vue"}],i="react"},87184:(e,a,t)=>{t.d(a,{U:()=>d,u:()=>c});var n=t(6029),i=t(55729),l=t(59745);let o=(0,i.createContext)(void 0),s="db-ux-framework",c=()=>{let e=(0,i.useContext)(o);if(!e)throw Error("useFramework must be used within a FrameworkProvider");return e},d=({children:e})=>{let[a,t]=(0,i.useState)(l.z);return(0,i.useEffect)(()=>{if(void 0!==globalThis.window){let e=new URLSearchParams(globalThis.location.search).get("framework");if(e&&["angular","html","react","vue"].includes(e)){t(e),localStorage.setItem(s,e);return}let a=localStorage.getItem(s);a&&["angular","html","react","vue"].includes(a)&&t(a)}},[]),(0,n.jsx)(o.Provider,{value:{framework:a,setFramework:e=>{if(t(e),void 0!==globalThis.window){localStorage.setItem(s,e);let a=new URL(globalThis.location.href);a.searchParams.set("framework",e),globalThis.history.replaceState({},"",a.toString())}},getFrameworkIndex:()=>["angular","html","react","vue"].indexOf(a)},children:e})}}}]);
+</DBStack>`)},children:"Copy code"})]})]},t())})]})},iW=JSON.parse('[{"label":"Action","name":"action","path":"/components/action","subNavigation":[{"label":"DBButton","name":"button"},{"label":"DBLink","name":"link"}]},{"label":"Data-Display","path":"/components/data-display","name":"data-display","subNavigation":[{"label":"DBBrand","name":"brand"},{"label":"DBTooltip","name":"tooltip"},{"label":"DBInfotext","name":"infotext"},{"label":"DBTag","name":"tag"},{"label":"DBAccordion","name":"accordion","subNavigation":[{"label":"DBAccordionItem Properties","path":"/components/accordion-item/properties"}]},{"label":"DBAccordionItem","name":"accordion-item","isHiddenInMenu":true},{"label":"DBTabs","name":"tabs","subNavigation":[{"label":"DBTabItem Properties","path":"/components/tab-item/properties"}]},{"label":"DBTabItem","name":"tab-item","isHiddenInMenu":true}]},{"label":"Data-Input","path":"/components/data-input","name":"data-input","subNavigation":[{"label":"DBCheckbox","name":"checkbox"},{"label":"DBInput","name":"input"},{"label":"DBCustomSelect","name":"custom-select"},{"label":"DBRadio","name":"radio"},{"label":"DBSelect","name":"select"},{"label":"DBSwitch","name":"switch"},{"label":"DBTextarea","name":"textarea"}]},{"label":"Feedback","path":"/components/feedback","name":"feedback","subNavigation":[{"label":"DBNotification","name":"notification"},{"label":"DBBadge","name":"badge"}]},{"label":"Layout","path":"/components/layout","name":"layout","subNavigation":[{"label":"DBCard","name":"card"},{"label":"DBDivider","name":"divider"},{"label":"DBDrawer","name":"drawer"},{"label":"DBHeader","name":"header"},{"label":"DBSection","name":"section"},{"label":"DBStack","name":"stack"}]},{"label":"Navigation","path":"/components/navigation","name":"navigation","subNavigation":[{"label":"DBNavigation","name":"navigation","subNavigation":[{"label":"DBNavigationItem Properties","path":"/components/navigation-item/properties"}]},{"label":"DBNavigationItem","name":"navigation-item","isHiddenInMenu":true},{"label":"DBBreadcrumb","name":"breadcrumb","subNavigation":[{"label":"DBBreadcrumb Properties","path":"/components/breadcrumb/properties"}]}]},{"label":"Utilities","path":"/components/utilities","name":"utilities","subNavigation":[{"label":"DBPopover","name":"popover"}]}]'),iU={"custom-select":(0,I.jsx)(e=>(0,I.jsx)(G,{title:"DBCustomSelect",variants:z(nK,nQ,e.slotCode)}),{slotCode:A}),stack:(0,I.jsx)(e=>(0,I.jsx)(G,{title:"DBStack",variants:z(n0,n1,e.slotCode)}),{slotCode:N}),button:(0,I.jsx)(e=>(0,I.jsx)(G,{title:"DBButton",variants:z(ea,et,e.slotCode)}),{slotCode:o}),link:(0,I.jsx)(e=>(0,I.jsx)(G,{title:"DBLink",variants:z(en,ei,e.slotCode)}),{slotCode:s}),brand:(0,I.jsx)(e=>(0,I.jsx)(G,{title:"DBBrand",variants:z(Q,X,e.slotCode)}),{slotCode:l}),tooltip:(0,I.jsx)(e=>(0,I.jsx)(G,{title:"DBTooltip",variants:z(e3,e4,e.slotCode)}),{slotCode:T}),infotext:(0,I.jsx)(e=>(0,I.jsx)(G,{title:"DBInfotext",variants:z(eT,eA,e.slotCode)}),{slotCode:b}),tag:(0,I.jsx)(e=>(0,I.jsx)(G,{title:"DBTag",variants:z(eK,eQ,e.slotCode)}),{slotCode:f}),accordion:(0,I.jsx)(e=>(0,I.jsx)("div",{children:(0,I.jsx)(G,{title:"DBAccordion",subComponent:e.subComponent,variants:z(H,$,e.slotCode)})}),{slotCode:n,subComponent:(0,I.jsx)(Z,{isSubComponent:!0,componentName:"accordion-item",slotCode:i})}),"accordion-item":(0,I.jsx)(Z,{slotCode:i}),tabs:(0,I.jsx)(e=>(0,I.jsx)(G,{title:"DBTabs",subComponent:e.subComponent,variants:z(eJ,eY,e.slotCode)}),{slotCode:B,subComponent:(0,I.jsx)(eU,{isSubComponent:!0,componentName:"tab-item",slotCode:D})}),"tab-item":(0,I.jsx)(eU,{slotCode:D}),checkbox:(0,I.jsx)(e=>(0,I.jsx)(G,{title:"DBCheckbox",variants:z(eh,eb,e.slotCode)}),{slotCode:r}),input:(0,I.jsx)(e=>(0,I.jsx)(G,{title:"DBInput",variants:z(ek,eC,e.slotCode)}),{slotCode:x}),radio:(0,I.jsx)(e=>(0,I.jsx)(G,{title:"DBRadio",variants:z(eS,e_,e.slotCode)}),{slotCode:m}),select:(0,I.jsx)(e=>(0,I.jsx)(G,{title:"DBSelect",variants:z(ez,eP,e.slotCode)}),{slotCode:g}),switch:(0,I.jsx)(e=>(0,I.jsx)(G,{title:"DBSwitch",variants:z(eF,eE,e.slotCode)}),{slotCode:j}),textarea:(0,I.jsx)(e=>(0,I.jsx)(I.Fragment,{children:(0,I.jsx)(G,{title:"DBTextarea",variants:z(e0,e1,e.slotCode)})}),{slotCode:w}),notification:(0,I.jsx)(e=>(0,I.jsx)(G,{title:"DBNotification",variants:z(eN,eI,e.slotCode)}),{slotCode:v}),badge:(0,I.jsx)(e=>(0,I.jsx)(G,{title:"DBBadge",variants:z(es,ec,e.slotCode)}),{slotCode:c}),card:(0,I.jsx)(e=>(0,I.jsx)(G,{title:"DBCard",variants:z(ed,er,e.slotCode)}),{slotCode:d}),divider:(0,I.jsx)(e=>(0,I.jsx)(G,{title:"DBDivider",variants:z(ex,ev,e.slotCode)}),{slotCode:u}),drawer:(0,I.jsx)(e=>{let[a,t]=(0,P.useState)(void 0);return(0,I.jsx)(G,{title:"DBDrawer",variants:z(eg,e=>(({id:e,width:a,rounded:t,spacing:n,openDrawer:i,setOpenDrawer:l,direction:o,children:s,backdrop:c,variant:d})=>(0,I.jsxs)("div",{children:[(0,I.jsxs)(ee.A,{onClick:()=>{l(e)},children:["Open: ",s]}),(0,I.jsx)(em.A,{rounded:t,width:a,spacing:n,backdrop:c,direction:o,variant:d,open:i===e,onClose:()=>{l(void 0)},children:s})]}))({...e,openDrawer:a,setOpenDrawer:t}),e.slotCode)})},{slotCode:p}),header:(0,I.jsx)(e=>(0,I.jsx)(G,{title:"DBHeader",variants:z(ef,ew,e.slotCode)}),{slotCode:h}),section:(0,I.jsx)(e=>(0,I.jsx)(G,{title:"DBSection",variants:z(ai,al,e.slotCode)}),{slotCode:O}),navigation:(0,I.jsx)(e=>(0,I.jsx)(G,{title:"DBNavigation",subComponent:e.subComponent,variants:z(e5,e8,e.slotCode)}),{slotCode:y,subComponent:(0,I.jsx)(e6,{isSubComponent:!0,componentName:"navigation-item",slotCode:k})}),"navigation-item":(0,I.jsx)(e6,{slotCode:k}),popover:(0,I.jsx)(e=>(0,I.jsx)(G,{title:"DBPopover",variants:z(aa,at,e.slotCode)}),{slotCode:C})},iG=iW.map(e=>({...e,subNavigation:e.subNavigation?.map(e=>({...e,component:e.name?iU[e.name]:void 0}))})),i$=[{label:"Home",path:"/"},{label:"Foundations",path:"/foundations",subNavigation:[{label:"Readme",path:"/foundations/readme"},{label:"Colors",path:"/foundations/colors",subNavigation:[{label:"Readme",path:"/foundations/colors/readme"},{label:"Color Schemes",path:"/foundations/colors/color-schemes"},{label:"Color Modes",path:"/foundations/colors/color-modes"},{label:"Color Usage Guide",path:"/foundations/colors/color-usage-guide"}]},{label:"Font Sizes",path:"/foundations/font-sizes",subNavigation:[{label:"Readme",path:"/foundations/font-sizes/readme"},{label:"Overview",path:"/foundations/font-sizes/overview"}]},{label:"Icons",path:"/foundations/icons",subNavigation:[{label:"Readme",path:"/foundations/icons/readme"},{label:"Custom Icons",path:"/foundations/icons/custom-icons"},{label:"Overview",path:"/foundations/icons/overview"}]},{label:"Densities",path:"/foundations/densities",subNavigation:[{label:"Readme",path:"/foundations/densities/readme"},{label:"Examples",path:"/foundations/densities/examples"}]},{label:"Variables",path:"/foundations/variables",subNavigation:[{label:"Readme",path:"/foundations/variables/readme"},{label:"Examples",path:"/foundations/variables/examples"}]},{label:"Testing Overview Table",path:"/foundations/test-table"},{label:"IDE Support",path:"/foundations/ide"},{label:"Performance",path:"/foundations/performance"},{label:"Browser Support",path:"/foundations/browser-support"}]},{label:"Components",path:"/components",subNavigation:[{label:"Readme",path:"/components/readme"},...iG.map(e=>({...e,subNavigation:e?.subNavigation?.map(a=>({label:a.label,path:`/components/${e.name}/${a.name}`,isHiddenInMenu:a.isHiddenInMenu,subNavigation:[{label:"Overview",path:`/components/${e.name}/${a.name}/overview`},{label:"Properties",path:`/components/${e.name}/${a.name}/properties`},{label:"How to use",path:`/components/${e.name}/${a.name}/how-to-use`},{label:"Migration",path:`/components/${e.name}/${a.name}/migration`},...a.subNavigation??[]]}))})),{label:"Misc",path:"/components/misc",subNavigation:[{label:"Router usage",path:"/components/misc/router-usage"},{label:"Creating custom Components",path:"/components/misc/custom-components"},{label:"Testing",path:"/components/misc/testing"},{label:"Validation",path:"/components/misc/validation"},{label:"Backdrop",path:"/components/misc/backdrop"}]}]},{label:"Playgrounds",path:"/foundations/playgrounds"}],iJ=(e,a,t,n)=>{for(let i of e)a.push(t?i:{...i,label:n?`${n}:${i.label}`:i.label}),i.subNavigation&&i.subNavigation?.length>0&&iJ(i.subNavigation,a,t,t?void 0:i.label)},iY=e=>{let a=[];return iJ(i$,a,e),a},iZ=e=>{let a=iY().filter(e=>!e.subNavigation),t=a.findIndex(a=>a.path===e);return{previous:0===t?void 0:a[t-1],next:t+1===a.length?void 0:a[t+1]}},iK=e=>iY(!0).filter(a=>e.includes(a.path??"")).sort((e,a)=>(e.path?.length??0)-(a.path?.length??0)),iQ=()=>iG.filter(({name:e})=>!!e).map(({name:e})=>e)},59745:(e,a,t)=>{t.d(a,{C:()=>n,z:()=>i});let n=[{value:"angular",label:"Angular"},{value:"html",label:"HTML"},{value:"react",label:"React"},{value:"vue",label:"Vue"}],i="react"},87184:(e,a,t)=>{t.d(a,{U:()=>d,u:()=>c});var n=t(6029),i=t(55729),l=t(59745);let o=(0,i.createContext)(void 0),s="db-ux-framework",c=()=>{let e=(0,i.useContext)(o);if(!e)throw Error("useFramework must be used within a FrameworkProvider");return e},d=({children:e})=>{let[a,t]=(0,i.useState)(l.z);return(0,i.useEffect)(()=>{if(void 0!==globalThis.window){let e=new URLSearchParams(globalThis.location.search).get("framework");if(e&&["angular","html","react","vue"].includes(e)){t(e),localStorage.setItem(s,e);return}let a=localStorage.getItem(s);a&&["angular","html","react","vue"].includes(a)&&t(a)}},[]),(0,n.jsx)(o.Provider,{value:{framework:a,setFramework:e=>{if(t(e),void 0!==globalThis.window){localStorage.setItem(s,e);let a=new URL(globalThis.location.href);a.searchParams.set("framework",e),globalThis.history.replaceState({},"",a.toString())}},getFrameworkIndex:()=>["angular","html","react","vue"].indexOf(a)},children:e})}}}]);
