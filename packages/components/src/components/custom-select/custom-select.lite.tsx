@@ -32,7 +32,7 @@ import {
 	GeneralEvent,
 	InputEvent,
 	InteractionEvent,
-	GeneralKeyboardEvent
+	KeyboardEvent
 } from '../../shared/model';
 import {
 	cls,
@@ -407,7 +407,7 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 			event.stopPropagation();
 			event.preventDefault();
 		},
-		handleKeyboardPress: (event: GeneralKeyboardEvent<HTMLInputElement>) => {
+		handleKeyboardPress: (event: KeyboardEvent<HTMLDetailsElement>) => {
 			event.stopPropagation();
 			if (event.key === 'Escape' && detailsRef?.open) {
 				state.handleClose(undefined, true);
