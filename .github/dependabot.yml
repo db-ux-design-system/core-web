@@ -93,6 +93,12 @@ updates:
       vite:
         patterns:
           - "vite*"
+        update-types:
+          - "minor"
+          - "major"
+      # Test tools
+      vitest:
+        patterns:
           - "vitest"
           - "@vitest*"
         update-types:
