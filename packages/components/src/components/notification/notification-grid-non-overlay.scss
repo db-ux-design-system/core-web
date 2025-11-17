@@ -1,6 +1,5 @@
 @use "notification-grid-shared" as shared;
 
-
 // Wrapper mixins for non-overlay variants that use shared grid logic
 @mixin non-overlay-base-grid($areas, $columns) {
 	@include shared.shared-base-grid($areas, $columns);

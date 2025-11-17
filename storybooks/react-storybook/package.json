@@ -1,11 +1,11 @@
 {
   "name": "react-storybook",
-  "private": true,
   "version": "0.0.0",
   "type": "module",
+  "private": true,
   "scripts": {
-    "storybook": "storybook dev -p 6005",
-    "build": "storybook build --output-dir ../../build-storybooks/react-storybook"
+    "build": "storybook build --output-dir ../../build-storybooks/react-storybook",
+    "storybook": "storybook dev -p 6005"
   },
   "dependencies": {
     "react": "18.3.1",
@@ -18,13 +18,13 @@
     "@types/react-dom": "18.3.1",
     "@vitejs/plugin-react": "5.0.4",
     "eslint": "9.39.1",
-    "eslint-plugin-react-hooks": "7.0.0",
+    "eslint-plugin-react-hooks": "7.0.1",
     "eslint-plugin-react-refresh": "0.4.24",
-    "eslint-plugin-storybook": "10.0.3",
+    "eslint-plugin-storybook": "10.0.7",
     "globals": "16.4.0",
     "storybook": "9.1.13",
     "typescript": "~5.9.3",
-    "typescript-eslint": "8.46.3",
+    "typescript-eslint": "8.46.4",
     "vite": "7.1.12"
   }
 }
