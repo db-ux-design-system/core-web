@@ -113,8 +113,7 @@ const testAction = () => {
 		await component.unmount();
 		component = await mount(<DBInput type="date" label="Date" value="" />);
 		input = component.locator('input');
-		let value = await input.evaluate((el: HTMLInputElement) => el.value);
-		expect(value).toBe('');
+		await expect(input).toHaveValue('');
 
 		// Test null - should also result in empty value
 		await component.unmount();
@@ -122,8 +121,7 @@ const testAction = () => {
 			<DBInput type="date" label="Date" value={null as any} />
 		);
 		input = component.locator('input');
-		value = await input.evaluate((el: HTMLInputElement) => el.value);
-		expect(value).toBe('');
+		await expect(input).toHaveValue('');
 
 		// Test undefined - should also result in empty value
 		await component.unmount();
@@ -131,8 +129,7 @@ const testAction = () => {
 			<DBInput type="date" label="Date" value={undefined} />
 		);
 		input = component.locator('input');
-		value = await input.evaluate((el: HTMLInputElement) => el.value);
-		expect(value).toBe('');
+		await expect(input).toHaveValue('');
 	});
 
 	test('should handle empty string for datetime-local input', async ({
@@ -156,10 +153,21 @@ const testAction = () => {
 		);
 		input = component.locator('input');
 
-		const value = await input.evaluate((el: HTMLInputElement) => el.value);
-		expect(value).toBe('');
+		await expect(input).toHaveValue('');
 	});
 };
+
+test('should handle null as empty for datetime-local input', async ({ mount }) => {
+  const component = await mount(<DBInput type="datetime-local" label="DateTime" value={null as any} />);
+  const input = component.locator('input');
+  await expect(input).toHaveValue('');
+});
+
+test('should handle undefined as empty for datetime-local input', async ({ mount }) => {
+  const component = await mount(<DBInput type="datetime-local" label="DateTime" value={undefined} />);
+  const input = component.locator('input');
+  await expect(input).toHaveValue('');
+});
 
 test.describe('DBInput', () => {
 	test.use({ viewport: DEFAULT_VIEWPORT });
