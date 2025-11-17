@@ -148,7 +148,7 @@ export default function DBSwitch(props: DBSwitchProps) {
 			if (event.key === 'Enter') {
 				event.preventDefault();
 				// Toggle the switch by clicking it programmatically
-				if (!props.disabled && !props.readonly) {
+				if (!props.disabled) {
 					(_ref as HTMLInputElement)?.click();
 				}
 			}
