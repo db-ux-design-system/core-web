@@ -5,4 +5,4 @@
 "@db-ux/v-core-components": patch
 ---
 
-refactor(DBSwitch): Even also toggle on pressing Enter key, not just Space
+refactor(DBSwitch): Also toggle on pressing Enter key, not just Space
