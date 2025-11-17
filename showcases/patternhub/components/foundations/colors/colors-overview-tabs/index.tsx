@@ -41,12 +41,12 @@ const ColorsOverviewTabs = ({
 			</div>
 			<DBTabs>
 				<DBTabList>
-					<DBTabItem>Classes</DBTabItem>
 					<DBTabItem>Data Attributes</DBTabItem>
+					<DBTabItem>Classes</DBTabItem>
 				</DBTabList>
 				<DBTabPanel>
 					<ColorsGrid
-						variant="class"
+						variant="dataAttribute"
 						values={values}
 						prefixClass={prefixClass}
 						dataAttributeName={dataAttributeName}
@@ -56,7 +56,7 @@ const ColorsOverviewTabs = ({
 				</DBTabPanel>
 				<DBTabPanel>
 					<ColorsGrid
-						variant="dataAttribute"
+						variant="class"
 						values={values}
 						prefixClass={prefixClass}
 						dataAttributeName={dataAttributeName}
