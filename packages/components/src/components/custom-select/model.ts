@@ -19,7 +19,7 @@ import {
 	ShowLabelProps,
 	ValidationType,
 	WidthType,
-	GeneralKeyboardEvent
+	KeyboardEvent
 } from '../../shared/model';
 import { CustomSelectDropdownWidthType } from '../custom-select-dropdown/model';
 import { DBCustomSelectFormFieldDefaultProps } from '../custom-select-form-field/model';
@@ -289,7 +289,7 @@ export type DBCustomSelectDefaultState = {
 	handleDocumentClose: (event: any) => void;
 	handleOpenByKeyboardFocus: () => void;
 	handleFocusFirstDropdownCheckbox: (activeElement?: Element) => void;
-	handleKeyboardPress: (event: GeneralKeyboardEvent<HTMLInputElement>) => void;
+	handleKeyboardPress: (event: KeyboardEvent<HTMLDetailsElement>) => void;
 	handleArrowDownUp: (event: any) => void;
 	handleSearch: (event: any) => void;
 	handleOptionSelected: (_values: string[]) => void;
