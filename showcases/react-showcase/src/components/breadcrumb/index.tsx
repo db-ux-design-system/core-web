@@ -14,29 +14,26 @@ type BreadcrumbExampleProps = {
 	size?: 'small' | 'medium';
 	className?: string;
 	separator?: 'chevron' | 'slash';
+	maxItems?: number;
+	collapsedMenu?: boolean;
 };
 
 const getBreadcrumb = ({
 	children,
 	size,
 	className,
-	separator
+	separator,
+	maxItems,
+	collapsedMenu
 }: BreadcrumbExampleProps) => (
-	<DBBreadcrumb size={size} className={className} separator={separator}>
-		{children && Array.isArray(children)
-			? children.map((item, index) =>
-					item.href ? (
-						<li key={index}>
-							<a href={item.href}>{item.text}</a>
-						</li>
-					) : (
-						<li key={index} aria-current={item.ariaCurrent as any}>
-							<span>{item.text}</span>
-						</li>
-					)
-				)
-			: children}
-	</DBBreadcrumb>
+	<DBBreadcrumb
+		size={size}
+		className={className}
+		separator={separator}
+		maxItems={maxItems}
+		collapsedMenu={collapsedMenu}
+		items={children}
+	/>
 );
 
 type BreadcrumbComponentProps = {

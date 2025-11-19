@@ -56,5 +56,41 @@
 				}
 			}
 		]
+	},
+	{
+		"name": "Collapsed",
+		"examples": [
+			{
+				"name": "Collapsed (maxItems=3)",
+				"className": "w-full",
+				"props": {
+					"size": "small",
+					"maxItems": 3,
+					"children": [
+						{ "href": "#", "text": "Root" },
+						{ "href": "#", "text": "Path 1" },
+						{ "href": "#", "text": "Path 2" },
+						{ "href": "#", "text": "Path 3" },
+						{ "text": "Current Page", "ariaCurrent": "page" }
+					]
+				}
+			},
+			{
+				"name": "Collapsed with Menu",
+				"className": "w-full",
+				"props": {
+					"size": "small",
+					"maxItems": 3,
+					"collapsedMenu": true,
+					"children": [
+						{ "href": "#", "text": "Root" },
+						{ "href": "#", "text": "Path 1" },
+						{ "href": "#", "text": "Path 2" },
+						{ "href": "#", "text": "Path 3" },
+						{ "text": "Current Page", "ariaCurrent": "page" }
+					]
+				}
+			}
+		]
 	}
 ]

@@ -12,4 +12,9 @@ import { DefaultComponent } from '../default.component';
 })
 export class BreadcrumbComponent {
 	variants = defaultComponentVariants;
+	isExpanded: Record<string, boolean> = {};
+
+	toggleExpanded(key: string) {
+		this.isExpanded[key] = !this.isExpanded[key];
+	}
 }

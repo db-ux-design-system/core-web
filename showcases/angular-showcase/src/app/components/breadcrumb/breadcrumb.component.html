@@ -21,14 +21,71 @@
 			aria-label="breadcrumb"
 		>
 			<ol class="db-breadcrumb-list" role="list">
-				@for (item of exampleProps?.children; track $index) {
-					@if (item.href) {
+				@if (
+					exampleProps?.maxItems &&
+					exampleProps.children.length > exampleProps.maxItems &&
+					!isExpanded[variantIndex + "-" + exampleIndex]
+				) {
+					<!-- Collapsed view: first item + ellipsis + last items -->
+					@if (exampleProps.children[0]; as firstItem) {
 						<li>
-							<a [href]="item.href">{{ item.text }}</a>
+							@if (firstItem.href) {
+								<a [href]="firstItem.href">{{
+									firstItem.text
+								}}</a>
+							} @else {
+								<span
+									[attr.aria-current]="firstItem.ariaCurrent"
+									>{{ firstItem.text }}</span
+								>
+							}
 						</li>
-					} @else {
-						<li [attr.aria-current]="item.ariaCurrent">
-							<span>{{ item.text }}</span>
+					}
+
+					<!-- Ellipsis button -->
+					<li>
+						<button
+							type="button"
+							class="db-breadcrumb-ellipsis"
+							aria-label="Alle Breadcrumb-Einträge anzeigen"
+							(click)="
+								toggleExpanded(
+									variantIndex + '-' + exampleIndex
+								)
+							"
+						>
+							…
+						</button>
+					</li>
+
+					<!-- Last (maxItems - 1) items -->
+					@for (
+						item of exampleProps.children.slice(
+							-(exampleProps.maxItems - 1)
+						);
+						track $index
+					) {
+						<li>
+							@if (item.href) {
+								<a [href]="item.href">{{ item.text }}</a>
+							} @else {
+								<span [attr.aria-current]="item.ariaCurrent">{{
+									item.text
+								}}</span>
+							}
+						</li>
+					}
+				} @else {
+					<!-- All items (normal or expanded view) -->
+					@for (item of exampleProps?.children; track $index) {
+						<li>
+							@if (item.href) {
+								<a [href]="item.href">{{ item.text }}</a>
+							} @else {
+								<span [attr.aria-current]="item.ariaCurrent">{{
+									item.text
+								}}</span>
+							}
 						</li>
 					}
 				}
