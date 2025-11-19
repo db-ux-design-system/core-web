@@ -91,7 +91,3 @@ export const buttonExamplesMeta: ButtonExampleMeta[] = [
 		storybookNames: ['Width']
 	}
 ];
-
-export default function ButtonExamplesMeta() {
-	return null;
-}

@@ -16,7 +16,7 @@ import ButtonWidth from '../examples/width.example.lite';
 import {
 	buttonExamplesMeta,
 	type ButtonExampleIdentifier
-} from '../examples/button.examples.meta.lite';
+} from '../examples/button.examples.meta';
 
 const getExampleName = (id: ButtonExampleIdentifier): string =>
 	(buttonExamplesMeta.find((example) => example.id === id)?.exampleName ??

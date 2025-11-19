@@ -4,8 +4,7 @@
 module.exports = {
 	files: [
 		'src/components/**/*.showcase.lite.tsx',
-		'src/components/**/*.example.lite.tsx',
-		'src/components/**/*.meta.lite.tsx'
+		'src/components/**/*.example.lite.tsx'
 	],
 	targets: ['angular', 'vue', 'react', 'stencil'],
 	dest: '../../output',
@@ -14,7 +13,7 @@ module.exports = {
 			api: 'signals'
 		},
 		vue: {
-			api: 'options'
+			api: 'composition'
 		}
 	},
 	commonOptions: {
