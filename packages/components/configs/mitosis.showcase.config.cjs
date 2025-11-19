@@ -14,7 +14,7 @@ module.exports = {
 			api: 'signals'
 		},
 		vue: {
-			api: 'composition'
+			api: 'options'
 		}
 	},
 	commonOptions: {

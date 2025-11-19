@@ -1,5 +1,4 @@
-import ButtonShowcase from '@components/components/button/showcase/button.showcase';
-import { type ReactElement } from 'react';
+import type { ReactElement } from 'react';
 import AccordionComponent from '../../react-showcase/src/components/accordion';
 import AccordionItemComponent from '../../react-showcase/src/components/accordion-item';
 import BadgeComponent from '../../react-showcase/src/components/badge';
@@ -27,6 +26,7 @@ import TabsComponent from '../../react-showcase/src/components/tabs';
 import TagComponent from '../../react-showcase/src/components/tag';
 import TextareaComponent from '../../react-showcase/src/components/textarea';
 import TooltipComponent from '../../react-showcase/src/components/tooltip';
+import { getShowcasePlugin } from '../../shared/showcase-plugins';
 import Components from './components.json';
 
 export type NavigationItem = {
@@ -41,7 +41,9 @@ export type NavigationItem = {
 const nameComponentMap = {
 	'custom-select': <MutliSelectComponent />,
 	stack: <StackComponent />,
-	button: <ButtonShowcase isPatternhub />,
+	button: getShowcasePlugin('button')!.getShowcaseComponent({
+		host: 'patternhub'
+	}),
 	link: <LinkComponent />,
 	brand: <BrandComponent />,
 	// Icon: <IconComponent />,
