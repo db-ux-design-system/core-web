@@ -1,6 +1,6 @@
 {
   "name": "@db-ux/wc-core-components",
-  "version": "4.1.0",
+  "version": "4.2.1",
   "description": "Stencil components for @db-ux/core-components",
   "repository": {
     "type": "git",
@@ -33,8 +33,8 @@
     "start": "stencil build --watch"
   },
   "devDependencies": {
-    "@custom-elements-manifest/analyzer": "0.10.10",
-    "@stencil/core": "4.38.2",
+    "@custom-elements-manifest/analyzer": "0.11.0",
+    "@stencil/core": "4.38.3",
     "cem-plugin-expanded-types": "1.4.0",
     "custom-element-jet-brains-integration": "1.7.0",
     "custom-element-vs-code-integration": "1.5.0",
@@ -47,7 +47,7 @@
   "web-types": "./dist/web-types.json",
   "customElements": "dist/custom-elements.json",
   "dependencies": {
-    "@db-ux/core-components": "4.1.0",
-    "@db-ux/core-foundations": "4.1.0"
+    "@db-ux/core-components": "4.2.1",
+    "@db-ux/core-foundations": "4.2.1"
   }
 }
