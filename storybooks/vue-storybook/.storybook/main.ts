@@ -1,7 +1,7 @@
 // This file has been automatically migrated to valid ESM format by Storybook.
 import { createRequire } from "node:module";
 import type { StorybookConfig } from '@storybook/vue3-vite';
-import { dirname, join } from 'path';
+import { dirname, join } from 'node:path';
 
 const require = createRequire(import.meta.url);
 

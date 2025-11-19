@@ -2,7 +2,7 @@
 import { createRequire } from "node:module";
 import { StorybookConfig } from '@storybook/angular';
 
-import { dirname, join } from 'path';
+import { dirname, join } from 'node:path';
 
 const require = createRequire(import.meta.url);
 

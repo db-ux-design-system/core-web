@@ -2,7 +2,7 @@
 import { createRequire } from "node:module";
 import type { StorybookConfig } from '@storybook/react-vite';
 
-import { dirname, join } from 'path';
+import { dirname, join } from 'node:path';
 
 const require = createRequire(import.meta.url);
 
@@ -25,7 +25,6 @@ const config: StorybookConfig = {
 	},
 	async viteFinal(config) {
 		const { mergeConfig } = await import('vite');
-
 
 		return mergeConfig(config, {
 			// TODO: Remove `/storybook` after removing patternhub

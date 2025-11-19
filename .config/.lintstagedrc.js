@@ -15,5 +15,5 @@ export default {
 	'**/package.json': [
 		() => 'npm install --package-lock-only --ignore-scripts',
 		'npx npm-package-json-lint'
-	],
+	]
 };
