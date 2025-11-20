@@ -49,6 +49,7 @@ export type DBTabItemProps = GlobalProps &
 
 export type DBTabItemDefaultState = {
 	_selected: boolean;
+	_listenerAdded: boolean;
 };
 
 export type DBTabItemState = DBTabItemDefaultState &

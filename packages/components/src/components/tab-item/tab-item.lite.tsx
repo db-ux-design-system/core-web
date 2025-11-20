@@ -45,6 +45,7 @@ export default function DBTabItem(props: DBTabItemProps) {
 		_selected: false,
 		_name: undefined,
 		initialized: false,
+		_listenerAdded: false,
 		handleNameAttribute: () => {
 			if (_ref) {
 				const setAttribute = _ref.setAttribute;
@@ -60,17 +61,6 @@ export default function DBTabItem(props: DBTabItemProps) {
 			event.stopPropagation();
 			if (props.onChange) {
 				props.onChange(event);
-			}
-
-			if (_ref.checked && !state._selected) {
-				useTarget({
-					stencil: () => {
-						state._selected = getBooleanAsString(true);
-					},
-					default: () => {
-						state._selected = true;
-					}
-				});
 			}
 
 			useTarget({
@@ -92,12 +82,15 @@ export default function DBTabItem(props: DBTabItemProps) {
 			state.initialized = false;
 
 			// deselect this tab when another tab in tablist is selected
-			_ref.closest('[role=tablist]')?.addEventListener(
-				'change',
-				setSelectedOnChange
-			);
+			if (!state._listenerAdded) {
+				_ref.closest('[role=tablist]')?.addEventListener(
+					'change',
+					setSelectedOnChange
+				);
+				state._listenerAdded = true;
+			}
 
-			if (props.active) {
+			if (props.active || _ref.checked) {
 				useTarget({
 					stencil: () => {
 						state._selected = getBooleanAsString(true);
@@ -118,11 +111,12 @@ export default function DBTabItem(props: DBTabItemProps) {
 	}, [props.name]);
 
 	onUnMount(() => {
-		if (state.initialized && _ref) {
+		if (state._listenerAdded && _ref) {
 			_ref.closest('[role=tablist]')?.removeEventListener(
 				'change',
 				setSelectedOnChange
 			);
+			state._listenerAdded = false;
 		}
 	});
 

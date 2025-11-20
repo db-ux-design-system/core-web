@@ -8,23 +8,27 @@ import { DBTabItem } from '../tab-item';
 import { DBTabList } from '../tab-list';
 import { DBTabPanel } from '../tab-panel';
 
-let tabIndex: number;
+let tabIndex: number | undefined;
+let comp: any;
 
-const comp: any = (
-	<DBTabs onIndexChange={(index: number) => (tabIndex = index)}>
-		<DBTabList>
-			<DBTabItem data-testid="test">Test 1</DBTabItem>
-			<DBTabItem data-testid="test2">Test 2</DBTabItem>
-			<DBTabItem>Test 3</DBTabItem>
-		</DBTabList>
+test.beforeEach(() => {
+	tabIndex = undefined;
+	comp = (
+		<DBTabs onIndexChange={(index: number) => (tabIndex = index)}>
+			<DBTabList>
+				<DBTabItem data-testid="test">Test 1</DBTabItem>
+				<DBTabItem data-testid="test2">Test 2</DBTabItem>
+				<DBTabItem>Test 3</DBTabItem>
+			</DBTabList>
 
-		<DBTabPanel>TestPanel 1</DBTabPanel>
+			<DBTabPanel>TestPanel 1</DBTabPanel>
 
-		<DBTabPanel>TestPanel 2</DBTabPanel>
+			<DBTabPanel>TestPanel 2</DBTabPanel>
 
-		<DBTabPanel>TestPanel 3</DBTabPanel>
-	</DBTabs>
-);
+			<DBTabPanel>TestPanel 3</DBTabPanel>
+		</DBTabs>
+	);
+});
 
 const testComponent = () => {
 	test('should contain text', async ({ mount }) => {
