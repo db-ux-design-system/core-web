@@ -30,6 +30,7 @@ export default function DBTabItem(props: DBTabItemProps) {
 	const _ref = useRef<HTMLInputElement | any>(null);
 
 	function setSelectedOnChange(event: any) {
+		event.stopPropagation();
 		useTarget({
 			stencil: () => {
 				state._selected = getBooleanAsString(event.target === _ref);
@@ -58,7 +59,6 @@ export default function DBTabItem(props: DBTabItemProps) {
 			}
 		},
 		handleChange: (event: any) => {
-			event.stopPropagation();
 			if (props.onChange) {
 				props.onChange(event);
 			}
