@@ -31,7 +31,14 @@ export default function LinkWrapperShowcase(props: Props) {
 			const params = new URLSearchParams(
 				window.location.search || queryString
 			);
-			setPageParam(params.get('page'));
+
+			const rawPage = params.get('page');
+
+			const normalizedPage = rawPage
+				? rawPage.replaceAll(' ', '+').toLowerCase()
+				: null;
+
+			setPageParam(normalizedPage);
 		}
 	});
 
