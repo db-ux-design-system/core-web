@@ -20,7 +20,7 @@ jobs:
         # TODO: enable again after guidepup controlling Voiceover on MacOS 15 gets more stable
         # https://github.com/actions/runner-images/issues/11257 needs to get fixed for that
         # the new version should be either macos-14-xlarge or macos-15-xlarge, as those provide M2 machines, compare to https://github.blog/changelog/2025-11-06-new-releases-for-github-actions-november-2025/
-        os: [macos-14-xlarge, windows-2022]
+        os: [macos-14, windows-2022]
     steps:
       - name: ⏬ Checkout repo
         uses: actions/checkout@v5
