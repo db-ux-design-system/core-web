@@ -254,6 +254,7 @@ const FormComponent = () => {
 							type="button"
 							onClick={() => {
 								setInput('reset');
+								setDateinput('');
 							}}>
 							Reset and Toggle
 						</DBButton>
