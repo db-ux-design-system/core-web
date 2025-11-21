@@ -5,6 +5,7 @@ import {
 	useStore
 } from '@builder.io/mitosis';
 import { cls } from '../../utils';
+import { DBIcon } from '../icon';
 import type { DBBreadcrumbProps, DBBreadcrumbState } from './model';
 
 useMetadata({});
@@ -48,6 +49,11 @@ export default function DBBreadcrumb(props: DBBreadcrumbProps) {
 								<li>
 									{props.items[0].href ? (
 										<a href={props.items[0].href}>
+											{props.items[0].icon && (
+												<DBIcon
+													icon={props.items[0].icon}
+												/>
+											)}
 											{props.items[0].text}
 										</a>
 									) : (
@@ -55,6 +61,11 @@ export default function DBBreadcrumb(props: DBBreadcrumbProps) {
 											aria-current={
 												props.items[0].ariaCurrent
 											}>
+											{props.items[0].icon && (
+												<DBIcon
+													icon={props.items[0].icon}
+												/>
+											)}
 											{props.items[0].text}
 										</span>
 									)}
@@ -78,6 +89,11 @@ export default function DBBreadcrumb(props: DBBreadcrumbProps) {
 										<li key={index}>
 											{item.href ? (
 												<a href={item.href}>
+													{item.icon && (
+														<DBIcon
+															icon={item.icon}
+														/>
+													)}
 													{item.text}
 												</a>
 											) : (
@@ -85,6 +101,11 @@ export default function DBBreadcrumb(props: DBBreadcrumbProps) {
 													aria-current={
 														item.ariaCurrent
 													}>
+													{item.icon && (
+														<DBIcon
+															icon={item.icon}
+														/>
+													)}
 													{item.text}
 												</span>
 											)}
@@ -97,10 +118,18 @@ export default function DBBreadcrumb(props: DBBreadcrumbProps) {
 								{props.items.map((item, index) => (
 									<li key={index}>
 										{item.href ? (
-											<a href={item.href}>{item.text}</a>
+											<a href={item.href}>
+												{item.icon && (
+													<DBIcon icon={item.icon} />
+												)}
+												{item.text}
+											</a>
 										) : (
 											<span
 												aria-current={item.ariaCurrent}>
+												{item.icon && (
+													<DBIcon icon={item.icon} />
+												)}
 												{item.text}
 											</span>
 										)}

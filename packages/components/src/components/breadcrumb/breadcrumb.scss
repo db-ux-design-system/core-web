@@ -28,6 +28,7 @@
 	span {
 		display: flex;
 		align-items: center;
+		gap: variables.$db-spacing-fixed-2xs; // 4px gap between icon and text
 		padding: variables.$db-spacing-fixed-3xs variables.$db-spacing-fixed-2xs; // 2px 4px (small)
 		border-radius: variables.$db-border-radius-xs; // 4px
 		background-color: colors.$db-adaptive-bg-basic-transparent-full-default;

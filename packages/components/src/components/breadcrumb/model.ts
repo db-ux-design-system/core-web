@@ -1,26 +1,10 @@
 import { GlobalProps, GlobalState } from '../../shared/model';
+import type { DBBreadcrumbItemProps } from '../breadcrumb-item/model';
 
 export const BreadcrumbSizeList = ['small', 'medium'] as const;
 export type BreadcrumbSize = (typeof BreadcrumbSizeList)[number];
 export const BreadcrumbSeparatorList = ['chevron', 'slash'] as const;
 export type BreadcrumbSeparator = (typeof BreadcrumbSeparatorList)[number];
-
-export interface DBBreadcrumbItem {
-	/**
-	 * The URL the breadcrumb item links to
-	 */
-	href?: string;
-
-	/**
-	 * The text content of the breadcrumb item
-	 */
-	text: string;
-
-	/**
-	 * Indicates the current page in the breadcrumb
-	 */
-	ariaCurrent?: 'page' | 'step' | 'location' | 'date' | 'time' | 'true';
-}
 
 export interface DBBreadcrumbDefaultProps {
 	/**
@@ -51,7 +35,7 @@ export interface DBBreadcrumbDefaultProps {
 	/**
 	 * The breadcrumb items
 	 */
-	items?: DBBreadcrumbItem[];
+	items?: DBBreadcrumbItemProps[];
 }
 
 export interface DBBreadcrumbProps

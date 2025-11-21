@@ -92,5 +92,27 @@
 				}
 			}
 		]
+	},
+	{
+		"name": "Icons",
+		"examples": [
+			{
+				"name": "With Icons",
+				"className": "w-full",
+				"props": {
+					"size": "small",
+					"children": [
+						{ "href": "#", "text": "Root", "icon": "house" },
+						{
+							"href": "#",
+							"text": "Settings",
+							"icon": "gear_wheel"
+						},
+						{ "href": "#", "text": "Profile", "icon": "person" },
+						{ "href": "#", "text": "Notifications", "icon": "bell" }
+					]
+				}
+			}
+		]
 	}
 ]

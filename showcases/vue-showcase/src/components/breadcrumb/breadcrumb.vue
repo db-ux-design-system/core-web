@@ -2,6 +2,7 @@
 // TODO: Uncomment after build-outputs
 // import { DBBreadcrumb } from "../../../../../output/vue/src";
 import { ref } from "vue";
+import { DBIcon } from "../../../../../output/vue/src";
 import defaultComponentVariants from "../../../../shared/breadcrumb.json";
 import DefaultComponent from "../DefaultComponent.vue";
 
@@ -42,15 +43,25 @@ const toggleExpanded = (key: string) => {
 							<a
 								v-if="exampleProps.children[0].href"
 								:href="exampleProps.children[0].href"
-								>{{ exampleProps.children[0].text }}</a
 							>
+								<DBIcon
+									v-if="exampleProps.children[0].icon"
+									:icon="exampleProps.children[0].icon"
+								/>
+								{{ exampleProps.children[0].text }}
+							</a>
 							<span
 								v-else
 								:aria-current="
 									exampleProps.children[0].ariaCurrent
 								"
-								>{{ exampleProps.children[0].text }}</span
 							>
+								<DBIcon
+									v-if="exampleProps.children[0].icon"
+									:icon="exampleProps.children[0].icon"
+								/>
+								{{ exampleProps.children[0].text }}
+							</span>
 						</li>
 
 						<!-- Ellipsis button -->
@@ -76,12 +87,14 @@ const toggleExpanded = (key: string) => {
 							)"
 							:key="index"
 						>
-							<a v-if="item.href" :href="item.href">{{
-								item.text
-							}}</a>
-							<span v-else :aria-current="item.ariaCurrent">{{
-								item.text
-							}}</span>
+							<a v-if="item.href" :href="item.href">
+								<DBIcon v-if="item.icon" :icon="item.icon" />
+								{{ item.text }}
+							</a>
+							<span v-else :aria-current="item.ariaCurrent">
+								<DBIcon v-if="item.icon" :icon="item.icon" />
+								{{ item.text }}
+							</span>
 						</li>
 					</template>
 					<template v-else>
@@ -90,12 +103,14 @@ const toggleExpanded = (key: string) => {
 							v-for="(item, index) in exampleProps?.children"
 							:key="index"
 						>
-							<a v-if="item.href" :href="item.href">{{
-								item.text
-							}}</a>
-							<span v-else :aria-current="item.ariaCurrent">{{
-								item.text
-							}}</span>
+							<a v-if="item.href" :href="item.href">
+								<DBIcon v-if="item.icon" :icon="item.icon" />
+								{{ item.text }}
+							</a>
+							<span v-else :aria-current="item.ariaCurrent">
+								<DBIcon v-if="item.icon" :icon="item.icon" />
+								{{ item.text }}
+							</span>
 						</li>
 					</template>
 				</ol>

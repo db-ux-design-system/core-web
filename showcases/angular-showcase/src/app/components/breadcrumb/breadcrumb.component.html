@@ -30,14 +30,25 @@
 					@if (exampleProps.children[0]; as firstItem) {
 						<li>
 							@if (firstItem.href) {
-								<a [href]="firstItem.href">{{
-									firstItem.text
-								}}</a>
+								<a [href]="firstItem.href">
+									@if (firstItem.icon) {
+										<db-icon
+											[icon]="firstItem.icon"
+										></db-icon>
+									}
+									{{ firstItem.text }}
+								</a>
 							} @else {
 								<span
 									[attr.aria-current]="firstItem.ariaCurrent"
-									>{{ firstItem.text }}</span
 								>
+									@if (firstItem.icon) {
+										<db-icon
+											[icon]="firstItem.icon"
+										></db-icon>
+									}
+									{{ firstItem.text }}
+								</span>
 							}
 						</li>
 					}
@@ -67,11 +78,19 @@
 					) {
 						<li>
 							@if (item.href) {
-								<a [href]="item.href">{{ item.text }}</a>
+								<a [href]="item.href">
+									@if (item.icon) {
+										<db-icon [icon]="item.icon"></db-icon>
+									}
+									{{ item.text }}
+								</a>
 							} @else {
-								<span [attr.aria-current]="item.ariaCurrent">{{
-									item.text
-								}}</span>
+								<span [attr.aria-current]="item.ariaCurrent">
+									@if (item.icon) {
+										<db-icon [icon]="item.icon"></db-icon>
+									}
+									{{ item.text }}
+								</span>
 							}
 						</li>
 					}
@@ -80,11 +99,19 @@
 					@for (item of exampleProps?.children; track $index) {
 						<li>
 							@if (item.href) {
-								<a [href]="item.href">{{ item.text }}</a>
+								<a [href]="item.href">
+									@if (item.icon) {
+										<db-icon [icon]="item.icon"></db-icon>
+									}
+									{{ item.text }}
+								</a>
 							} @else {
-								<span [attr.aria-current]="item.ariaCurrent">{{
-									item.text
-								}}</span>
+								<span [attr.aria-current]="item.ariaCurrent">
+									@if (item.icon) {
+										<db-icon [icon]="item.icon"></db-icon>
+									}
+									{{ item.text }}
+								</span>
 							}
 						</li>
 					}

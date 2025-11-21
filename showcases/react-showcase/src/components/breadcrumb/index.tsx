@@ -6,6 +6,7 @@ import DefaultComponent from '../default-component';
 type BreadcrumbItem = {
 	href?: string;
 	text: string;
+	icon?: string;
 	ariaCurrent?: 'page' | undefined;
 };
 

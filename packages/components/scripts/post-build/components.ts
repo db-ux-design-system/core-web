@@ -356,7 +356,32 @@ export const getComponents = (): Component[] => [
 		name: 'brand'
 	},
 	{
-		name: 'breadcrumb'
+		name: 'breadcrumb',
+		overwrites: {
+			stencil: [{ from: 'import { DBIcon } from "../icon";\n', to: '' }],
+			angular: [
+				// Fix TypeScript strict null checks by adding non-null assertions
+				// Within the conditional block where items() is checked, subsequent accesses need !
+				{ from: /items\(\)\.length/g, to: 'items()!.length' },
+				{ from: /items\(\)\[0\]/g, to: 'items()![0]' },
+				{ from: /items\(\)\.slice/g, to: 'items()!.slice' },
+				{ from: /maxItems\(\) >/g, to: 'maxItems()! >' },
+				{ from: /> maxItems\(\)/g, to: '> maxItems()!' },
+				{ from: /maxItems\(\) - 1/g, to: 'maxItems()! - 1' }
+			]
+		}
+	},
+	{
+		name: 'breadcrumb-item',
+		overwrites: {
+			stencil: [
+				{ from: 'import { DBIcon } from "../icon";\n', to: '' },
+				{
+					from: '{this.text || this.children}',
+					to: '{this.text ? this.text : <slot></slot>}'
+				}
+			]
+		}
 	},
 	{
 		name: 'input',
