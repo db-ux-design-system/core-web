@@ -124,7 +124,7 @@
     "eslint-plugin-package-json": "0.83.0",
     "eslint-plugin-prettier": "5.5.4",
     "find-versions": "6.0.0",
-    "glob": "11.0.3",
+    "glob": "11.1.0",
     "http-server": "14.1.1",
     "husky": "9.1.7",
     "jscpd": "4.0.5",
