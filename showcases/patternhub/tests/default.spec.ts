@@ -33,7 +33,7 @@ for (const group of Components) {
 			await getDefaultScreenshotTest(
 				component.name,
 				`overview`,
-				`.${group.path}${component.name}/overview?fullscreen=true`,
+				`.${group.path}/${component.name}/overview?fullscreen=true`,
 				async (page) => {
 					const firstH2 = page.locator('h1').first();
 					await expect(firstH2).toBeVisible();
