@@ -1,6 +1,6 @@
 {
   "name": "@db-ux/core-migration",
-  "version": "4.0.4",
+  "version": "4.2.1",
   "type": "module",
   "description": "Migration script for changing your code in between DB UX Design System v3 versions regarding BREAKING CHANGES.",
   "repository": {
@@ -27,13 +27,13 @@
     "test:migration": "tsx src/cli.ts migration --type v005_v006 --src=./scss --dryRun=true"
   },
   "dependencies": {
-    "commander": "14.0.1",
-    "glob": "11.0.3",
+    "commander": "14.0.2",
+    "glob": "11.1.0",
     "replace-in-file": "8.3.0"
   },
   "devDependencies": {
     "cpr": "3.0.1",
-    "esbuild": "0.25.11",
+    "esbuild": "0.25.12",
     "tsx": "4.20.6",
     "vitest": "3.2.4"
   },

@@ -16,7 +16,7 @@
 		"noImplicitReturns": false,
 		"noUnusedLocals": false,
 		"noUnusedParameters": false,
-		"jsx": "preserve",
+		"jsx": "react-jsx",
 		"incremental": true
 	},
 	"include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
