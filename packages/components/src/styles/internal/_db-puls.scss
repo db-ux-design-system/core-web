@@ -42,11 +42,10 @@
 
 %db-puls-auto {
 	@extend %db-puls;
-
-	@include set-db-puls-vertical();
+	@include set-db-puls-vertical;
 
 	@include screen-sizes.screen("md") {
-		@include set-db-puls-horizontal();
+		@include set-db-puls-horizontal;
 	}
 }
 

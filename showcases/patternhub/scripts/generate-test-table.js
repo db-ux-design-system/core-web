@@ -43,10 +43,10 @@ const generateTestTable = () => {
 			`./../../packages/components/src/components/${componentName}/${componentName}.spec.tsx`
 		);
 		const hasShowcaseVisuals = FS.existsSync(
-			`./../../showcases/e2e/${componentName}/${componentName}-snapshot.spec.ts`
+			`./../../showcases/e2e/${componentName}/${componentName}-visual-snapshot.spec.ts`
 		);
 		const hasShowcaseTest = FS.existsSync(
-			`./../../showcases/e2e/${componentName}/${componentName}-a11y.spec.ts`
+			`./../../showcases/e2e/${componentName}/${componentName}-axe-core.spec.ts`
 		);
 		const hasScreenReaderTest = FS.existsSync(
 			`./../../showcases/screen-reader/tests/${componentName}.spec.ts`

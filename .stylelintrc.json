@@ -1,8 +1,5 @@
 {
-	"extends": [
-		"stylelint-config-standard",
-		"stylelint-config-recommended-scss"
-	],
+	"extends": ["stylelint-config-standard-scss"],
 	"plugins": [
 		"stylelint-use-logical",
 		"@double-great/stylelint-a11y",

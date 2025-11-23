@@ -30,12 +30,12 @@ jobs:
       pull-requests: write
     steps:
       - name: ⏬ Checkout repo
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           ref: ${{ github.head_ref }}
 
       - name: ⏬ Download components
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v6
         # Only download artifact if the artifact exists
         if: inputs.components
         with:
@@ -43,7 +43,7 @@ jobs:
           path: ./__snapshots__/
 
       - name: ⏬ Download foundations
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v6
         # Only download artifact if the artifact exists
         if: inputs.foundations
         with:
@@ -51,14 +51,14 @@ jobs:
           path: ./__snapshots__/foundations
 
       - name: ⏬ Download patternhub
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v6
         if: inputs.patternhub
         with:
           name: snapshots-patternhub
           path: ./__snapshots__/
 
       - name: ⏬ Download showcase
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v6
         if: inputs.showcases
         with:
           name: snapshots-showcases

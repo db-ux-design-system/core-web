@@ -22,29 +22,29 @@ jobs:
       fail-fast: false
       matrix:
         framework: [react, vue]
-        shardIndex: [1, 2, 3]
-        shardTotal: [3]
+        shardIndex: [1, 2]
+        shardTotal: [2]
     steps:
       - name: ⏬ Checkout repo
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: 🔄 Init Cache
         uses: ./.github/actions/npm-cache
 
       - name: ⏬ Download foundations build
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v6
         with:
           name: db-ux-foundations-build
           path: packages/foundations/build
 
       - name: ⏬ Download output
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v6
         with:
           name: db-ux-output
           path: output
 
       - name: ⏬ Download components styles build
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v6
         with:
           name: db-ux-components-build
           path: packages/components/build
@@ -67,7 +67,7 @@ jobs:
 
       - name: 🆙 Upload test results
         if: failure()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v5
         with:
           name: ${{ matrix.framework }}-components-playwright-results-${{ matrix.shardIndex }}
           path: ./output/${{ steps.workingDirectory.outputs.dir }}/test-results

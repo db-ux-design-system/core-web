@@ -13,13 +13,13 @@
 		--db-icon-color: #{$on};
 	}
 
-	@if ($hovered) {
+	@if $hovered {
 		@include functions.hover {
 			background-color: #{$hovered};
 		}
 	}
 
-	@if ($pressed) {
+	@if $pressed {
 		@include functions.active {
 			background-color: #{$pressed};
 		}
@@ -198,7 +198,6 @@
 	@each $bg in variables.$background-colors {
 		%db-#{$variant}-bg-#{$bg} {
 			@extend %db-#{$variant}-variables;
-
 			@include set-current-colors(
 				var(--db-#{$variant}-bg-#{$bg}-default),
 				var(--db-#{$variant}-on-bg-basic-emphasis-100-default)

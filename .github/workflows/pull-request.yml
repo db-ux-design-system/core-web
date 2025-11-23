@@ -19,9 +19,6 @@ jobs:
     uses: ./.github/workflows/99-self-healing-dependabot-updates.yml
     secrets: inherit
 
-  codeql:
-    uses: ./.github/workflows/99-codeql-analysis.yml
-
   dependency-review:
     uses: ./.github/workflows/99-dependency-review.yml
 

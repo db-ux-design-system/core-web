@@ -1,5 +1,10 @@
 ---
 name: Dependabot auto-merge
+
+permissions:
+  contents: write
+  pull-requests: write
+
 on:
   workflow_call:
 
@@ -15,13 +20,16 @@ jobs:
           github-token: "${{ secrets.GITHUB_TOKEN }}"
 
       - name: ✔ Approve a PR
+        if: ${{ steps.metadata.outputs.update-type == 'version-update:semver-patch' }}
         run: gh pr review --approve "$PR_URL"
         env:
           PR_URL: ${{github.event.pull_request.html_url}}
           GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
 
+      - name: 🐛 Debug update-type output
+        run: echo "Update type is '${{ steps.metadata.outputs.update-type }}'"
+
       - name: 🤖 Enable auto-merge for Dependabot PRs
-        if: ${{steps.metadata.outputs.update-type == 'version-update:semver-patch'}}
         run: gh pr merge --auto --squash "$PR_URL"
         env:
           PR_URL: ${{github.event.pull_request.html_url}}

@@ -1,6 +1,11 @@
 ---
 name: Default Pipeline
 
+permissions:
+  contents: write
+  actions: write
+  pull-requests: write
+
 on:
   pull_request:
   push:
@@ -26,193 +31,291 @@ jobs:
     uses: ./.github/workflows/00-init.yml
     secrets: inherit
 
-  scan-secrets:
-    if: github.event.pull_request == null || github.event.pull_request.head.repo.owner.login == 'db-ux-design-system'
-    uses: ./.github/workflows/00-scan-secrets.yml
-
-  get-playwright-version:
-    uses: ./.github/workflows/01-get-playwright-version.yml
-    needs: [init]
-
   lint:
-    uses: ./.github/workflows/01-lint.yml
+    uses: ./.github/workflows/01-lint-test.yml
     needs: [init]
 
-  test:
-    uses: ./.github/workflows/01-test.yml
-    needs: [init]
+  cancel-on-failure-lint:
+    if: ${{ !cancelled() && needs.lint.result == 'failure' }}
+    uses: ./.github/workflows/00-cancel-workflow.yml
+    secrets: inherit
+    needs: [lint]
 
   build-packages:
     uses: ./.github/workflows/01-build-packages.yml
     needs: [init]
 
+  cancel-on-failure-build-packages:
+    if: ${{ !cancelled() && needs.build-packages.result == 'failure' }}
+    uses: ./.github/workflows/00-cancel-workflow.yml
+    secrets: inherit
+    needs: [build-packages]
+
   init-playwright:
     uses: ./.github/workflows/01-init-playwright.yml
-    needs: [get-playwright-version]
+    needs: [init]
     with:
-      version: ${{ needs.get-playwright-version.outputs.version }}
+      version: ${{ needs.init.outputs.playwrightVersion }}
 
   build-outputs:
     uses: ./.github/workflows/01-build-outputs.yml
     needs: [build-packages]
 
+  cancel-on-failure-build-outputs:
+    if: ${{ !cancelled() && needs.build-outputs.result == 'failure' }}
+    uses: ./.github/workflows/00-cancel-workflow.yml
+    secrets: inherit
+    needs: [build-outputs]
+
   test-components:
     uses: ./.github/workflows/02-e2e.yml
-    needs: [build-packages, get-playwright-version]
+    needs: [build-packages, init]
     with:
-      version: ${{ needs.get-playwright-version.outputs.version }}
+      version: ${{ needs.init.outputs.playwrightVersion }}
 
   test-foundations:
     uses: ./.github/workflows/02-e2e-foundations.yml
-    needs: [build-packages, get-playwright-version]
+    needs: [build-packages, init]
     with:
-      version: ${{ needs.get-playwright-version.outputs.version }}
+      version: ${{ needs.init.outputs.playwrightVersion }}
+
+  build-storybook-composition:
+    uses: ./.github/workflows/01-build-storybooks.yml
+    needs: [build-packages, init]
+    with:
+      storybook: composition-storybook
+      baseUrl: ${{ needs.init.outputs.baseUrl }}
+
+  build-storybook-angular:
+    uses: ./.github/workflows/01-build-storybooks.yml
+    needs: [build-packages, init]
+    with:
+      storybook: angular-storybook
+      baseUrl: ${{ needs.init.outputs.baseUrl }}
+
+  build-storybook-react:
+    uses: ./.github/workflows/01-build-storybooks.yml
+    needs: [build-packages, init]
+    with:
+      storybook: react-storybook
+      baseUrl: ${{ needs.init.outputs.baseUrl }}
+
+  build-storybook-vue:
+    uses: ./.github/workflows/01-build-storybooks.yml
+    needs: [build-packages, init]
+    with:
+      storybook: vue-storybook
+      baseUrl: ${{ needs.init.outputs.baseUrl }}
 
   build-showcase-stencil:
     uses: ./.github/workflows/01-build-showcases.yml
-    needs: [build-packages]
+    needs: [build-packages, init]
+    secrets: inherit
     with:
       showcase: stencil-showcase
+
+  cancel-on-failure-build-showcase-stencil:
+    if: ${{ !cancelled() && needs.build-showcase-stencil.result == 'failure' }}
+    uses: ./.github/workflows/00-cancel-workflow.yml
+    secrets: inherit
+    needs: [build-showcase-stencil]
 
   build-showcase-angular:
     uses: ./.github/workflows/01-build-showcases.yml
     needs: [build-packages]
+    secrets: inherit
     with:
       showcase: angular-showcase
+
+  cancel-on-failure-build-showcase-angular:
+    if: ${{ !cancelled() && needs.build-showcase-angular.result == 'failure' }}
+    uses: ./.github/workflows/00-cancel-workflow.yml
+    secrets: inherit
+    needs: [build-showcase-angular]
 
   build-showcase-angular-ssr:
     uses: ./.github/workflows/01-build-showcases.yml
     needs: [build-packages]
+    secrets: inherit
     with:
       showcase: angular-ssr-showcase
+
+  cancel-on-failure-build-showcase-angular-ssr:
+    if: ${{ !cancelled() && needs.build-showcase-angular-ssr.result == 'failure' }}
+    uses: ./.github/workflows/00-cancel-workflow.yml
+    secrets: inherit
+    needs: [build-showcase-angular-ssr]
 
   build-showcase-react:
     uses: ./.github/workflows/01-build-showcases.yml
     needs: [build-packages]
+    secrets: inherit
     with:
       showcase: react-showcase
+
+  cancel-on-failure-build-showcase-react:
+    if: ${{ !cancelled() && needs.build-showcase-react.result == 'failure' }}
+    uses: ./.github/workflows/00-cancel-workflow.yml
+    secrets: inherit
+    needs: [build-showcase-react]
 
   build-showcase-next:
     uses: ./.github/workflows/01-build-showcases.yml
     needs: [build-packages]
+    secrets: inherit
     with:
       showcase: next-showcase
+
+  cancel-on-failure-build-showcase-next:
+    if: ${{ !cancelled() && needs.build-showcase-next.result == 'failure' }}
+    uses: ./.github/workflows/00-cancel-workflow.yml
+    secrets: inherit
+    needs: [build-showcase-next]
 
   build-showcase-vue:
     uses: ./.github/workflows/01-build-showcases.yml
     needs: [build-packages]
+    secrets: inherit
     with:
       showcase: vue-showcase
+
+  cancel-on-failure-build-showcase-vue:
+    if: ${{ !cancelled() && needs.build-showcase-vue.result == 'failure' }}
+    uses: ./.github/workflows/00-cancel-workflow.yml
+    secrets: inherit
+    needs: [build-showcase-vue]
 
   build-showcase-nuxt:
     uses: ./.github/workflows/01-build-showcases.yml
     needs: [build-packages]
+    secrets: inherit
     with:
       showcase: nuxt-showcase
 
+  cancel-on-failure-build-showcase-nuxt:
+    if: ${{ !cancelled() && needs.build-showcase-nuxt.result == 'failure' }}
+    uses: ./.github/workflows/00-cancel-workflow.yml
+    secrets: inherit
+    needs: [build-showcase-nuxt]
+
   build-showcase-patternhub:
     uses: ./.github/workflows/01-build-patternhub.yml
-    needs: [build-packages]
+    needs: [build-packages, init]
+    with:
+      baseUrl: ${{ needs.init.outputs.baseUrl }}
+    secrets: inherit
+
+  cancel-on-failure-build-showcase-patternhub:
+    if: ${{ !cancelled() && needs.build-showcase-patternhub.result == 'failure' }}
+    uses: ./.github/workflows/00-cancel-workflow.yml
+    secrets: inherit
+    needs: [build-showcase-patternhub]
 
   test-showcase-stencil:
     uses: ./.github/workflows/02-e2e-showcases.yml
-    needs: [build-showcase-stencil, get-playwright-version]
+    needs: [build-showcase-stencil, init]
     with:
-      version: ${{ needs.get-playwright-version.outputs.version }}
+      version: ${{ needs.init.outputs.playwrightVersion }}
       showcase: stencil-showcase
+      test-ally: ${{ needs.init.outputs.test-ally }}
 
   test-showcase-angular:
     uses: ./.github/workflows/02-e2e-showcases.yml
-    needs: [build-showcase-angular, get-playwright-version]
+    needs: [build-showcase-angular, init]
     with:
-      version: ${{ needs.get-playwright-version.outputs.version }}
+      version: ${{ needs.init.outputs.playwrightVersion }}
       showcase: angular-showcase
+      test-ally: ${{ needs.init.outputs.test-ally }}
 
   test-showcase-react:
     uses: ./.github/workflows/02-e2e-showcases.yml
-    needs: [build-showcase-react, get-playwright-version]
+    needs: [build-showcase-react, init]
     with:
-      version: ${{ needs.get-playwright-version.outputs.version }}
+      version: ${{ needs.init.outputs.playwrightVersion }}
       showcase: react-showcase
+      test-ally: ${{ needs.init.outputs.test-ally }}
 
   test-showcase-vue:
     uses: ./.github/workflows/02-e2e-showcases.yml
-    needs: [build-showcase-vue, get-playwright-version]
+    needs: [build-showcase-vue, init]
     with:
-      version: ${{ needs.get-playwright-version.outputs.version }}
+      version: ${{ needs.init.outputs.playwrightVersion }}
       showcase: vue-showcase
+      test-ally: ${{ needs.init.outputs.test-ally }}
 
   test-showcase-patternhub:
     uses: ./.github/workflows/02-e2e-patternhub.yml
-    needs: [build-showcase-patternhub, get-playwright-version]
+    needs: [build-showcase-patternhub, init, init]
     with:
-      version: ${{ needs.get-playwright-version.outputs.version }}
-      path: ${{ needs.build-showcase-patternhub.outputs.path }}
+      version: ${{ needs.init.outputs.playwrightVersion }}
+      baseUrl: ${{ needs.init.outputs.baseUrl }}
 
   regenerate-snapshots-components:
-    if: always() && needs.test-components.result == 'failure'
+    if: ${{ !cancelled() && needs.test-components.result == 'failure' }}
     uses: ./.github/workflows/02-e2e-regenerate.yml
     with:
-      version: ${{ needs.get-playwright-version.outputs.version }}
+      version: ${{ needs.init.outputs.playwrightVersion }}
       type: components
-    needs: [test-components, get-playwright-version]
+    needs: [test-components, init]
 
   regenerate-snapshots-foundations:
-    if: always() && needs.test-foundations.result == 'failure'
+    if: ${{ !cancelled() && needs.test-foundations.result == 'failure' }}
     uses: ./.github/workflows/02-e2e-regenerate.yml
     with:
-      version: ${{ needs.get-playwright-version.outputs.version }}
+      version: ${{ needs.init.outputs.playwrightVersion }}
       type: foundations
-    needs: [test-foundations, get-playwright-version]
+    needs: [test-foundations, init]
 
   regenerate-snapshots-patternhub:
-    if: always() && needs.test-showcase-patternhub.result == 'failure'
+    if: ${{ !cancelled() && needs.test-showcase-patternhub.result == 'failure' }}
     uses: ./.github/workflows/02-e2e-regenerate.yml
     with:
-      version: ${{ needs.get-playwright-version.outputs.version }}
+      version: ${{ needs.init.outputs.playwrightVersion }}
       path: ${{ needs.build-showcase-patternhub.outputs.path }}
       type: patternhub
-    needs:
-      [
-        build-showcase-patternhub,
-        test-showcase-patternhub,
-        get-playwright-version
-      ]
+    needs: [build-showcase-patternhub, test-showcase-patternhub, init]
 
   # This job runs only if aria-snapshots were changed compared to main or if it runs on main branch
   test-screen-reader:
     if: |
-      needs.test-showcase-react.outputs.aria-snapshots-changed-to-main == 'true' ||
+      needs.init.outputs.test-ally == 'true' ||
       github.event.pull_request == null
     uses: ./.github/workflows/02-e2e-screen-reader.yml
-    needs: [test-showcase-react, init-playwright, get-playwright-version]
+    needs: [test-showcase-react, init-playwright, init]
     with:
-      version: ${{ needs.get-playwright-version.outputs.version }}
+      version: ${{ needs.init.outputs.playwrightVersion }}
 
   regenerate-snapshots:
     if: |
-      needs.test-showcase-angular.outputs.aria-snapshots-changed == 'true' ||
-      needs.test-showcase-angular.outputs.visual-snapshots-changed == 'true' ||
-      needs.test-showcase-react.outputs.aria-snapshots-changed == 'true' ||
-      needs.test-showcase-react.outputs.visual-snapshots-changed == 'true' ||
-      needs.test-showcase-vue.outputs.aria-snapshots-changed == 'true' ||
-      needs.test-showcase-vue.outputs.visual-snapshots-changed == 'true'
+      !cancelled() && !contains(github.actor,'[bot]') && (
+        needs.test-showcase-angular.result == 'failure' ||
+        needs.test-showcase-react.result == 'failure' ||
+        needs.test-showcase-vue.result == 'failure' ||
+        needs.test-showcase-stencil.result == 'failure'
+      )
     uses: ./.github/workflows/02-e2e-regenerate.yml
     with:
-      version: ${{ needs.get-playwright-version.outputs.version }}
+      version: ${{ needs.init.outputs.playwrightVersion }}
       type: showcases
     needs:
       [
         test-showcase-angular,
         test-showcase-react,
         test-showcase-vue,
-        get-playwright-version
+        test-showcase-stencil,
+        init
       ]
 
   commit-regenerated-snapshots:
     uses: ./.github/workflows/02-e2e-regenerated-snapshots-commit.yml
     secrets: inherit
-    if: always()
+    if: |
+      ${{ !cancelled() &&
+        ( needs.regenerate-snapshots-components.result == 'success' ||
+        needs.regenerate-snapshots-foundations.result == 'success' ||
+        needs.regenerate-snapshots-patternhub.result == 'success' ||
+        needs.regenerate-snapshots.result == 'success' )
+      }}
     needs:
       [
         regenerate-snapshots-components,
@@ -227,11 +330,15 @@ jobs:
       patternhub: ${{ needs.regenerate-snapshots-patternhub.result == 'success' }}
 
   checks-done:
-    if: ${{ always() }}
+    if: ${{ !cancelled() }}
     runs-on: ubuntu-24.04 # Use Ubuntu 24.04 explicitly
     steps:
       - name: 🎉 Checks done
         run: |
+          resultBuildStorybookComposition="${{ needs.build-storybook-composition.result }}"
+          resultBuildStorybookAngular="${{ needs.build-storybook-angular.result }}"
+          resultBuildStorybookReact="${{ needs.build-storybook-react.result }}"
+          resultBuildStorybookVue="${{ needs.build-storybook-vue.result }}"
           resultBuildShowcaseStencil="${{ needs.build-showcase-stencil.result }}"
           resultBuildShowcaseAngular="${{ needs.build-showcase-angular.result }}"
           resultBuildShowcaseAngularSSR="${{ needs.build-showcase-angular-ssr.result }}"
@@ -249,7 +356,11 @@ jobs:
           resultTestShowcaseVue="${{ needs.test-showcase-vue.result }}"
           resultTestShowcasePatternhub="${{ needs.test-showcase-patternhub.result }}"
           resultTestScreenReader="${{ needs.test-screen-reader.result }}"
-          if [[ $resultTestFoundations == "success" ]] && \
+          if [[ $resultBuildStorybookComposition == "success" ]] && \
+             [[ $resultBuildStorybookAngular == "success" ]] && \
+             [[ $resultBuildStorybookReact == "success" ]] && \
+             [[ $resultBuildStorybookVue == "success" ]] && \
+             [[ $resultTestFoundations == "success" ]] && \
              [[ $resultTestScreenReader == "success" || $resultTestScreenReader == "skipped" ]] && \
              [[ $resultTestShowcaseStencil == "success" ]] && \
              [[ $resultTestShowcaseAngular == "success" ]] && \
@@ -274,6 +385,10 @@ jobs:
           fi
     needs:
       [
+        build-storybook-composition,
+        build-storybook-angular,
+        build-storybook-react,
+        build-storybook-vue,
         build-showcase-stencil,
         build-showcase-angular,
         build-showcase-angular-ssr,
@@ -295,8 +410,20 @@ jobs:
 
   deploy:
     uses: ./.github/workflows/03-deploy-gh-pages.yml
-    if: ${{ !cancelled() && github.actor != 'dependabot[bot]' && (github.event.pull_request == null || github.event.pull_request.head.repo.owner.login == 'db-ux-design-system') }}
-    needs: [checks-done]
+    if: |
+      ${{
+      !cancelled() && github.actor != 'dependabot[bot]' &&
+      (github.event.pull_request == null || github.event.pull_request.head.repo.owner.login == 'db-ux-design-system')
+      }}
+    needs: [checks-done, init]
     with:
       release: false
       preRelease: false
+      name: ${{ needs.init.outputs.branchName }}
+      repoName: ${{ needs.init.outputs.repoName }}
+      repoOwner: ${{ needs.init.outputs.repoOwner }}
+
+  preview-url-pr-description:
+    if: ${{ !cancelled() && github.event.pull_request != null }}
+    needs: [deploy]
+    uses: ./.github/workflows/03-preview-url-pr-description.yml

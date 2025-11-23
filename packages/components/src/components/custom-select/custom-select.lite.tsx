@@ -2,6 +2,7 @@
 import {
 	For,
 	onMount,
+	onUnMount,
 	onUpdate,
 	Show,
 	useDefaultProps,
@@ -48,6 +49,7 @@ import { DocumentClickListener } from '../../utils/document-click-listener';
 import { DocumentScrollListener } from '../../utils/document-scroll-listener';
 import { handleFixedDropdown } from '../../utils/floating-components';
 import {
+	addResetEventListener,
 	handleFrameworkEventAngular,
 	handleFrameworkEventVue
 } from '../../utils/form-components';
@@ -103,6 +105,7 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 		_infoTextId: undefined,
 		_validity: 'no-validation',
 		_userInteraction: false,
+		abortController: undefined,
 		// Workaround for Vue output: TS for Vue would think that it could be a function, and by this we clarify that it's a string
 		_descByIds: undefined,
 		_selectedLabels: '',
@@ -137,7 +140,7 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 			}
 			/* For a11y reasons we need to map the correct message with the select */
 			if (!selectRef?.validity.valid || props.validation === 'invalid') {
-				state._descByIds = state._invalidMessageId;
+				state.setDescById(state._invalidMessageId);
 				state._invalidMessage =
 					props.invalidMessage ||
 					selectRef?.validationMessage ||
@@ -154,7 +157,7 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 				selectRef?.validity.valid &&
 				props.required
 			) {
-				state._descByIds = state._validMessageId;
+				state.setDescById(state._validMessageId);
 				if (hasVoiceOver()) {
 					state._voiceOverFallback =
 						props.validMessage ?? DEFAULT_VALID_MESSAGE;
@@ -162,10 +165,10 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 				}
 				state._validity = props.validation ?? 'valid';
 			} else if (stringPropVisible(props.message, props.showMessage)) {
-				state._descByIds = state._messageId;
+				state.setDescById(state._messageId);
 				state._validity = props.validation ?? 'no-validation';
 			} else {
-				state._descByIds = state._placeholderId;
+				state.setDescById(state._placeholderId);
 				state._validity = props.validation ?? 'no-validation';
 			}
 		},
@@ -240,15 +243,20 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 
 			return false;
 		},
-		getTagRemoveLabel: (index: number) => {
-			if (
-				props.removeTagsTexts &&
-				props.removeTagsTexts!.length > index
-			) {
-				return props.removeTagsTexts!.at(index)!;
-			} else {
-				return `${DEFAULT_REMOVE} ${state._selectedOptions ? state.getOptionLabel(state._selectedOptions![index]) : ''}`;
+		getTagRemoveLabel: (option: CustomSelectOptionType) => {
+			const removeTexts = props.removeTagsTexts;
+			const options = props.options;
+			if (removeTexts && options) {
+				// Find the index of the option in the original options array
+				const optionIndex = options.findIndex(
+					(opt) => opt.value === option.value
+				);
+				if (optionIndex >= 0 && optionIndex < removeTexts.length) {
+					return removeTexts[optionIndex];
+				}
 			}
+			// Fallback to default behavior
+			return `${DEFAULT_REMOVE} ${state.getOptionLabel(option)}`;
 		},
 		handleTagRemove: (
 			option: CustomSelectOptionType,
@@ -292,47 +300,74 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 								event.key === 'ArrowDown' ||
 								event.key === 'ArrowRight'
 							) {
-								if (listElement?.nextElementSibling) {
-									listElement?.nextElementSibling
-										?.querySelector('input')
-										?.focus();
-								} else {
+								// Find next element with input, skipping group titles
+								let nextElement =
+									listElement?.nextElementSibling;
+								while (nextElement) {
+									const nextInput =
+										nextElement.querySelector('input');
+									if (nextInput) {
+										nextInput.focus();
+										break;
+									}
+									nextElement =
+										nextElement.nextElementSibling;
+								}
+
+								if (!nextElement) {
 									// We are on the last checkbox we move to the top checkbox
 									state.handleFocusFirstDropdownCheckbox(
 										activeElement
 									);
 								}
 							} else {
-								if (listElement?.previousElementSibling) {
-									listElement?.previousElementSibling
-										?.querySelector('input')
-										?.focus();
-								} else if (
-									detailsRef.querySelector(
-										`input[type="checkbox"]`
-									) !== activeElement
-								) {
-									// We are on the top list checkbox but there is a select all checkbox as well
-									state.handleFocusFirstDropdownCheckbox(
-										activeElement
-									);
-								} else {
-									// We are on the top checkbox, we need to move to the search
-									// or to the last checkbox
-									const search = getSearchInput(detailsRef);
-									if (search) {
-										delay(() => {
-											search.focus();
-										}, 100);
+								// Find previous element with input, skipping group titles
+								let prevElement =
+									listElement?.previousElementSibling;
+								while (prevElement) {
+									const prevInput =
+										prevElement.querySelector('input');
+									if (prevInput) {
+										prevInput.focus();
+										break;
+									}
+									prevElement =
+										prevElement.previousElementSibling;
+								}
+
+								if (!prevElement) {
+									// Check if we have a "select all" checkbox (only relevant for multi-select)
+									const selectAllCheckbox =
+										detailsRef.querySelector(
+											`input[type="checkbox"]`
+										);
+									if (
+										selectAllCheckbox &&
+										selectAllCheckbox !== activeElement
+									) {
+										// We are on the top list checkbox but there is a select all checkbox as well
+										state.handleFocusFirstDropdownCheckbox(
+											activeElement
+										);
 									} else {
-										const checkboxList: HTMLInputElement[] =
-											Array.from(
-												detailsRef?.querySelectorAll(
-													`input[type="checkbox"],input[type="radio"]`
-												)
-											);
-										if (checkboxList.length) {
-											checkboxList.at(-1)?.focus();
+										// We are on the top checkbox, we need to move to the search
+										// or to the last checkbox
+										const search =
+											getSearchInput(detailsRef);
+										if (search) {
+											delay(() => {
+												search.focus();
+											}, 100);
+										} else {
+											const checkboxList: HTMLInputElement[] =
+												Array.from(
+													detailsRef?.querySelectorAll(
+														`input[type="checkbox"],input[type="radio"]`
+													)
+												);
+											if (checkboxList.length) {
+												checkboxList.at(-1)?.focus();
+											}
 										}
 									}
 								}
@@ -376,6 +411,22 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 			if (event.key === 'Escape' && detailsRef?.open) {
 				state.handleClose(undefined, true);
 				state.handleSummaryFocus();
+			} else if (event.key === 'Enter' && detailsRef?.open) {
+				// Handle Enter key to select option like Space key
+				if (self.document) {
+					const activeElement = self.document
+						.activeElement as HTMLInputElement;
+					if (
+						['checkbox', 'radio'].includes(
+							activeElement.getAttribute('type') || ''
+						)
+					) {
+						// Trigger click to simulate Space key behavior
+						activeElement.click();
+
+						event.preventDefault();
+					}
+				}
 			} else if (
 				event.key === 'ArrowDown' ||
 				event.key === 'ArrowUp' ||
@@ -685,12 +736,14 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 
 	// If we inform the consumer we don't want to trigger the onOptionSelected event again
 	onUpdate(() => {
-		if (
-			props.values &&
-			Array.isArray(props.values) &&
-			props.values !== state._values
-		) {
-			state._values = props.values ?? [];
+		const v = props.values;
+
+		if (Array.isArray(v)) {
+			if (state._values !== v) {
+				state._values = v;
+			}
+		} else if (v == null && state._values?.length !== 0) {
+			state._values = [];
 		}
 	}, [props.values]);
 
@@ -699,6 +752,31 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 			state.handleValidation();
 		}
 	}, [state._values, selectRef]);
+
+	onUpdate(() => {
+		if (selectRef) {
+			let controller = state.abortController;
+			if (!controller) {
+				controller = new AbortController();
+				state.abortController = controller;
+			}
+
+			const initialValues = props.values;
+			addResetEventListener(
+				selectRef,
+				() => {
+					const resetValue = initialValues
+						? initialValues
+						: selectRef.value
+							? [selectRef.value]
+							: [];
+					state.handleOptionSelected(resetValue);
+					state.handleValidation();
+				},
+				controller.signal
+			);
+		}
+	}, [selectRef]);
 
 	onUpdate(() => {
 		state._validity = props.validation;
@@ -803,6 +881,10 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 			DEFAULT_INVALID_MESSAGE;
 	}, [selectRef, props.invalidMessage]);
 
+	onUnMount(() => {
+		state.abortController?.abort();
+	});
+
 	function satisfyReact(event: any) {
 		// This is a function to satisfy React
 		event.stopPropagation();
@@ -885,6 +967,11 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 									props.selectedType === 'tag'
 								)}
 								id={state._selectedLabelsId}>
+								<Show when={props.selectedPrefix}>
+									<span data-visually-hidden="true">
+										{props.selectedPrefix}
+									</span>
+								</Show>
 								{state._selectedLabels}
 							</span>
 						</Show>
@@ -905,7 +992,7 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 												)
 											})}
 											removeButton={state.getTagRemoveLabel(
-												index
+												option
 											)}
 											onRemove={(
 												event?: ClickEvent<HTMLButtonElement> | void
@@ -985,7 +1072,7 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 											'multiple'
 										)}
 										label={
-											props.ariaListLabel ??
+											props.listLabel ??
 											props.label ??
 											DEFAULT_LABEL
 										}>
@@ -1095,6 +1182,7 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 			</Show>
 
 			<span
+				class="db-custom-select-placeholder"
 				aria-hidden={getBooleanAsString(true)}
 				id={state._placeholderId}>
 				{props.placeholder ?? props.label}

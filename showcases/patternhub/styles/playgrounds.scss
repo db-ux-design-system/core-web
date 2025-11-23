@@ -1,7 +1,8 @@
 @use "@db-ux/core-foundations/build/styles/variables";
+@use "@db-ux/core-foundations/build/styles/helpers/display";
 
 section.playground {
-	display: grid;
+	@include display.display(grid);
 	grid-template-columns: repeat(2, 1fr); /* Two columns */
 	gap: variables.$db-spacing-fixed-md; /* Optional spacing between items */
 
@@ -13,7 +14,7 @@ section.playground {
 		text-decoration: none;
 
 		strong {
-			display: block;
+			@include display.display(block);
 		}
 
 		img {

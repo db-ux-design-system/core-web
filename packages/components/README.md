@@ -23,9 +23,20 @@ For additional information besides the frameworks see our [Getting started](http
 
 If you just need the styling follow this:
 
+## Package Relationship
+
+**✅ Do I need foundations if I install components?**
+
+**No!** The `@db-ux/core-components` package **automatically includes** all the foundations (`@db-ux/core-foundations`) you need. You only need to install one package:
+
+- **Use `@db-ux/core-components`** - If you want to use UI components (buttons, inputs, etc.)
+- **Use `@db-ux/core-foundations`** - If you only need design tokens, colors, spacing, fonts, and assets without any component styles
+
 ## Install
 
 `npm i @db-ux/core-components`
+
+> **Note**: This automatically includes `@db-ux/core-foundations` as a dependency, so you don't need to install it separately.
 
 ## Styling Dependencies
 
@@ -35,7 +46,7 @@ Import the styles in `scss` or `css`. Based on your technology the file names co
 - `webpack`: asset path point to `~@db-ux/core-foundations/assets`
 - `rollup`: asset path point to `@db-ux/core-foundations/assets`
 
-They are bundling all dependencies from [foundations](https://www.npmjs.com/package/@db-ux/core-foundations) and all [components](https://github.com/db-ux-design-system/core-web/blob/main/packages/components/src/styles/db-ux-components.scss) available.
+**Important**: These bundled files automatically include **all dependencies from [foundations](https://www.npmjs.com/package/@db-ux/core-foundations)** (design tokens, colors, fonts, etc.) **and all [components](https://github.com/db-ux-design-system/core-web/blob/main/packages/components/src/styles/db-ux-components.scss)** - everything you need in one import!
 
 **SCSS**
 
@@ -70,20 +81,20 @@ If you only need some of the components or some features from [`@db-ux/core-foun
 In the case you want to include only some components, and you could do it like this:
 
 ```css
-/* The theme contains all prop required for components like spacings, colors, ... */
-@import "@db-ux/core-foundations/build/styles/default-theme.css";
+/* The theme contains all props required for components like spacings, colors, ... */
+@import "@db-ux/core-foundations/build/styles/defaults/default-theme.css";
 /* The font include uses default font families based on your bundling paths (relative, absolute, webpack, rollup) */
-@import "@db-ux/core-foundations/build/styles/fonts/include-rollup.css";
+@import "@db-ux/core-foundations/build/styles/fonts/rollup.css";
 /* The required styles will normalize css and add focus and default font to body */
-@import "@db-ux/core-foundations/build/styles/init/required.css";
-/* The default root adds a default color space (neutral) and a density (regular) */
-@import "@db-ux/core-foundations/build/styles/init/default-root.css";
+@import "@db-ux/core-foundations/build/styles/defaults/default-required.css";
+/* The default setting for :root, adds a color space (neutral-bg-basic-level-1) and a density (regular). */
+@import "@db-ux/core-foundations/build/styles/defaults/default-root.css";
 
 /* Optional: Add animations / transitions for components */
 @import "@db-ux/core-components/build/styles/component-animations.css";
 
 /* Optional: Add data-icon/data-icon-trailing to global attributes to enable icons for components */
-@import "@db-ux/core-foundations/build/styles/icons/include-rollup.css";
+@import "@db-ux/core-foundations/build/styles/icons/rollup.css";
 
 /* Optional: Add components */
 @import "@db-ux/core-components/build/components/button/button.css";
