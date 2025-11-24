@@ -38,7 +38,7 @@ export default function DBNotification(props: DBNotificationProps) {
 	// jscpd:ignore-end
 
 	return (
-		<article
+		<div
 			ref={_ref}
 			id={props.id}
 			class={cls('db-notification', props.className)}
@@ -83,6 +83,6 @@ export default function DBNotification(props: DBNotificationProps) {
 					{props.closeButtonText ?? DEFAULT_CLOSE_BUTTON}
 				</DBButton>
 			</Show>
-		</article>
+		</div>
 	);
 }
