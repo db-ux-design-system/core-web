@@ -29,18 +29,6 @@ useDefaultProps<DBTabItemProps>({});
 export default function DBTabItem(props: DBTabItemProps) {
 	const _ref = useRef<HTMLInputElement | any>(null);
 
-	function setSelectedOnChange(event: any) {
-		event.stopPropagation();
-		useTarget({
-			stencil: () => {
-				state._selected = getBooleanAsString(event.target === _ref);
-			},
-			default: () => {
-				state._selected = event.target === _ref;
-			}
-		});
-	}
-
 	// jscpd:ignore-start
 	const state = useStore<DBTabItemState>({
 		_selected: false,
@@ -57,6 +45,18 @@ export default function DBTabItem(props: DBTabItemProps) {
 					}
 				};
 			}
+		},
+		setSelectedOnChange: (event: any) => {
+			event.stopPropagation();
+			console.log('setSelectedOnChange', event.target === _ref);
+			useTarget({
+				stencil: () => {
+					state._selected = getBooleanAsString(event.target === _ref);
+				},
+				default: () => {
+					state._selected = event.target === _ref;
+				}
+			});
 		},
 		handleChange: (event: any) => {
 			if (props.onChange) {
@@ -77,20 +77,23 @@ export default function DBTabItem(props: DBTabItemProps) {
 	// jscpd:ignore-end
 
 	onUpdate(() => {
+		console.log('onUpdate triggered', state.initialized, _ref);
 		if (state.initialized && _ref) {
 			useTarget({ react: () => state.handleNameAttribute() });
 			state.initialized = false;
 
 			// deselect this tab when another tab in tablist is selected
 			if (!state._listenerAdded) {
+				console.log('adding listener');
 				_ref.closest('[role=tablist]')?.addEventListener(
 					'change',
-					setSelectedOnChange
+					state.setSelectedOnChange
 				);
 				state._listenerAdded = true;
 			}
 
 			if (props.active || _ref.checked) {
+				console.log('active or checked', props.active, _ref.checked);
 				useTarget({
 					stencil: () => {
 						state._selected = getBooleanAsString(true);
@@ -112,9 +115,10 @@ export default function DBTabItem(props: DBTabItemProps) {
 
 	onUnMount(() => {
 		if (state._listenerAdded && _ref) {
+			console.log('removing listener');
 			_ref.closest('[role=tablist]')?.removeEventListener(
 				'change',
-				setSelectedOnChange
+				state.setSelectedOnChange
 			);
 			state._listenerAdded = false;
 		}

@@ -50,6 +50,7 @@ export type DBTabItemProps = GlobalProps &
 export type DBTabItemDefaultState = {
 	_selected: boolean;
 	_listenerAdded: boolean;
+	setSelectedOnChange: (event: any) => void;
 };
 
 export type DBTabItemState = DBTabItemDefaultState &
