@@ -41,6 +41,19 @@
 		white-space: nowrap;
 		transition: background-color 0.2s ease;
 
+		// Current page (last item with aria-current="page")
+		&[aria-current="page"] {
+			font-weight: 700; // Bold for current item
+			cursor: default;
+			pointer-events: none;
+
+			&:hover,
+			&:focus {
+				background-color: colors.$db-adaptive-bg-basic-transparent-full-default;
+				text-decoration: none;
+			}
+		}
+
 		&:hover,
 		&:focus {
 			background-color: colors.$db-adaptive-bg-basic-transparent-semi-default;
@@ -53,22 +66,6 @@
 
 		@media screen and (prefers-reduced-motion: reduce) {
 			transition: none;
-		}
-	}
-
-	// Current page (last item with aria-current="page")
-	li[aria-current="page"] {
-		a,
-		span {
-			font-weight: 700; // Bold for current item
-			cursor: default;
-			pointer-events: none;
-
-			&:hover,
-			&:focus {
-				background-color: colors.$db-adaptive-bg-basic-transparent-full-default;
-				text-decoration: none;
-			}
 		}
 	}
 

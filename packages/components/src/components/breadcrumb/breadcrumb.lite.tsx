@@ -116,25 +116,33 @@ export default function DBBreadcrumb(props: DBBreadcrumbProps) {
 							<>
 								{/* All items (normal or expanded view) */}
 								{props.items.map((item, index) => (
-									<li key={index}>
-										{item.href ? (
-											<a href={item.href}>
-												{item.icon && (
-													<DBIcon icon={item.icon} />
-												)}
+										<li key={index}>
+											{item.href ? (
+												<a
+													href={item.href}
+													aria-current={
+														index === (props.items?.length ?? 0) - 1
+															? item.ariaCurrent
+															: undefined
+													}
+												>
+													{item.icon && <DBIcon icon={item.icon} />}
+													{item.text}
+												</a>
+											) : (
+												<span
+													aria-current={
+														index === (props.items?.length ?? 0) - 1
+															? item.ariaCurrent
+															: undefined
+													}
+												>
+												{item.icon && <DBIcon icon={item.icon} />}
 												{item.text}
-											</a>
-										) : (
-											<span
-												aria-current={item.ariaCurrent}>
-												{item.icon && (
-													<DBIcon icon={item.icon} />
-												)}
-												{item.text}
-											</span>
-										)}
-									</li>
-								))}
+											  </span>
+											)}
+										</li>
+									))}
 							</>
 						)}
 					</>
