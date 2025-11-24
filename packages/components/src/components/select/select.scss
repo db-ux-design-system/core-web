@@ -71,6 +71,7 @@
 
 		option {
 			justify-content: space-between;
+			
 			// change order of the included text and pseudo-element within this flexbox item, to make sure the icon is always on the right
 			flex-direction: row-reverse;
 
@@ -81,7 +82,6 @@
 			/* stylelint-disable-next-line selector-pseudo-element-no-unknown */
 			:is(&::checkmark) {
 				@extend %icon;
-
 				@include icons.icon-content("check");
 			}
 		}
