@@ -37,7 +37,7 @@ export default function DBBreadcrumb(props: DBBreadcrumbProps) {
 			data-size={props.size}
 			data-separator={props.separator}
 			aria-label="Breadcrumb">
-			<ol class="db-breadcrumb-list" role="list">
+			<ol class="db-breadcrumb-list">
 				{props.items && props.items.length > 0 ? (
 					<>
 						{props.maxItems &&
