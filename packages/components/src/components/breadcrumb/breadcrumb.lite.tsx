@@ -36,7 +36,7 @@ export default function DBBreadcrumb(props: DBBreadcrumbProps) {
 			class={cls('db-breadcrumb', props.className)}
 			data-size={props.size}
 			data-separator={props.separator}
-			aria-label="breadcrumb">
+			aria-label="Breadcrumb">
 			<ol class="db-breadcrumb-list" role="list">
 				{props.items && props.items.length > 0 ? (
 					<>
@@ -88,24 +88,24 @@ export default function DBBreadcrumb(props: DBBreadcrumbProps) {
 									.map((item, index) => (
 										<li key={index}>
 											{item.href ? (
-												<a href={item.href}>
-													{item.icon && (
-														<DBIcon
-															icon={item.icon}
-														/>
-													)}
+												<a
+													href={item.href}
+													aria-current={
+														index === (props.items?.length ?? 0) - 1
+															? item.ariaCurrent
+															: undefined
+													}>
+													{item.icon && <DBIcon icon={item.icon} />}
 													{item.text}
 												</a>
 											) : (
 												<span
 													aria-current={
-														item.ariaCurrent
+														index === (props.items?.length ?? 0) - 1
+															? item.ariaCurrent
+															: undefined
 													}>
-													{item.icon && (
-														<DBIcon
-															icon={item.icon}
-														/>
-													)}
+													{item.icon &&  <DBIcon icon={item.icon} />}
 													{item.text}
 												</span>
 											)}
