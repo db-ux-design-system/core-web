@@ -1,5 +1,14 @@
 import { GlobalProps } from '../../shared/model';
 
+export type AriaCurrent =
+	| 'page'
+	| 'step'
+	| 'location'
+	| 'date'
+	| 'time'
+	| 'true'
+	| 'false';
+
 export type DBBreadcrumbItemDefaultProps = {
 	/**
 	 * The URL the breadcrumb item links to
@@ -19,7 +28,7 @@ export type DBBreadcrumbItemDefaultProps = {
 	/**
 	 * Indicates the current page in the breadcrumb
 	 */
-	ariaCurrent?: 'page' | 'step' | 'location' | 'date' | 'time' | 'true';
+	ariaCurrent?: AriaCurrent;
 
 	/**
 	 * Whether this item is disabled (renders as span instead of link)
