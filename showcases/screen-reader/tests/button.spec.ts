@@ -34,6 +34,7 @@ test.describe('DBButton', () => {
 			await nvda?.clearSpokenPhraseLog();
 			await nvda?.press('Shift+Tab');
 			await nvda?.press('Tab');
+			await nvda?.press('Tab');
 		}
 	});
 });
