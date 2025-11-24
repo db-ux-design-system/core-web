@@ -29,6 +29,26 @@ export default function DBBreadcrumb(props: DBBreadcrumbProps) {
 		}
 	});
 
+	function renderBreadcrumbContent(item: any, isLast: boolean) {
+		const ariaCurrent = isLast ? item.ariaCurrent : undefined;
+
+		if (item.href) {
+			return (
+				<a href={item.href} aria-current={ariaCurrent}>
+					{item.icon && <DBIcon icon={item.icon} />}
+					{item.text}
+				</a>
+			);
+		}
+
+		return (
+			<span aria-current={ariaCurrent}>
+				{item.icon && <DBIcon icon={item.icon} />}
+				{item.text}
+			</span>
+		);
+	}
+
 	return (
 		<nav
 			ref={_ref}
@@ -46,33 +66,12 @@ export default function DBBreadcrumb(props: DBBreadcrumbProps) {
 						!state.isExpanded ? (
 							<>
 								{/* Collapsed view: first item + ellipsis + last items */}
-								<li>
-									{props.items[0].href ? (
-										<a href={props.items[0].href}>
-											{props.items[0].icon && (
-												<DBIcon
-													icon={props.items[0].icon}
-												/>
-											)}
-											{props.items[0].text}
-										</a>
-									) : (
-										<span
-											aria-current={
-												props.items[0].ariaCurrent
-											}>
-											{props.items[0].icon && (
-												<DBIcon
-													icon={props.items[0].icon}
-												/>
-											)}
-											{props.items[0].text}
-										</span>
-									)}
+								<li key={0}>
+									{renderBreadcrumbContent(props.items[0], false)}
 								</li>
 
 								{/* Ellipsis button */}
-								<li>
+								<li key="ellipsis">
 									<button
 										type="button"
 										class="db-breadcrumb-ellipsis"
@@ -84,31 +83,10 @@ export default function DBBreadcrumb(props: DBBreadcrumbProps) {
 
 								{/* Last (maxItems - 1) items */}
 								{props.items
-									.slice(-(props.maxItems - 1))
+									.slice(props.items.length - (props.maxItems - 1))
 									.map((item, index) => (
-										<li key={index}>
-											{item.href ? (
-												<a
-													href={item.href}
-													aria-current={
-														index === (props.items?.length ?? 0) - 1
-															? item.ariaCurrent
-															: undefined
-													}>
-													{item.icon && <DBIcon icon={item.icon} />}
-													{item.text}
-												</a>
-											) : (
-												<span
-													aria-current={
-														index === (props.items?.length ?? 0) - 1
-															? item.ariaCurrent
-															: undefined
-													}>
-													{item.icon &&  <DBIcon icon={item.icon} />}
-													{item.text}
-												</span>
-											)}
+										<li key={index + 1}>
+											{renderBreadcrumbContent(item, index === props.maxItems! - 2)}
 										</li>
 									))}
 							</>
@@ -116,33 +94,10 @@ export default function DBBreadcrumb(props: DBBreadcrumbProps) {
 							<>
 								{/* All items (normal or expanded view) */}
 								{props.items.map((item, index) => (
-										<li key={index}>
-											{item.href ? (
-												<a
-													href={item.href}
-													aria-current={
-														index === (props.items?.length ?? 0) - 1
-															? item.ariaCurrent
-															: undefined
-													}
-												>
-													{item.icon && <DBIcon icon={item.icon} />}
-													{item.text}
-												</a>
-											) : (
-												<span
-													aria-current={
-														index === (props.items?.length ?? 0) - 1
-															? item.ariaCurrent
-															: undefined
-													}
-												>
-												{item.icon && <DBIcon icon={item.icon} />}
-												{item.text}
-											  </span>
-											)}
-										</li>
-									))}
+									<li key={index}>
+										{renderBreadcrumbContent(item, index === props.items!.length - 1)}
+									</li>
+								))}
 							</>
 						)}
 					</>
