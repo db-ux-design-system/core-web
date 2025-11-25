@@ -8,6 +8,7 @@ import { cls } from '../../utils';
 import { DBIcon } from '../icon';
 import type { DBBreadcrumbProps, DBBreadcrumbState } from './model';
 import DBTooltip from '../tooltip/tooltip.lite';
+import DBPopover from '../popover/popover.lite';
 
 useMetadata({});
 
@@ -63,18 +64,53 @@ export default function DBBreadcrumb(props: DBBreadcrumbProps) {
 
 								{/* Ellipsis button */}
 								<li key="ellipsis">
-									<button
-										type="button"
-										class="db-breadcrumb-ellipsis"
-										aria-label={props.ellipsisAriaLabel}
-										aria-expanded={state.isExpanded ? 'true' : 'false'}
-										aria-controls={props.id || 'db-breadcrumb-list'}
-										onClick={state.toggleExpanded}>
-										…
-										<DBTooltip>
-											{props.ellipsisAriaLabel}
-										</DBTooltip>
-									</button>
+									{props.collapsedMenu ? (
+										<DBPopover
+											placement="bottom"
+											trigger={
+												<button
+													type="button"
+													class="db-breadcrumb-ellipsis"
+													aria-label={props.ellipsisAriaLabel}
+													aria-expanded={state.isExpanded ? 'true' : 'false'}
+													aria-controls={'db-breadcrumb-menu'}>
+													…
+												</button>
+											}>
+											<ul class="db-breadcrumb-menu" id="db-breadcrumb-menu">
+												{props.items
+													.slice(1, props.items.length - (props.maxItems! - 1))
+													.map((item, index) => (
+														<li key={index}>
+															{item.href ? (
+																<a href={item.href}>
+																	{item.icon && <DBIcon icon={item.icon} />}
+																	{item.text}
+																</a>
+															) : (
+																<span>
+																	{item.icon && <DBIcon icon={item.icon} />}
+																	{item.text}
+																</span>
+															)}
+														</li>
+													))}
+											</ul>
+										</DBPopover>
+									) : (
+										<button
+											type="button"
+											class="db-breadcrumb-ellipsis"
+											aria-label={props.ellipsisAriaLabel}
+											aria-expanded={state.isExpanded ? 'true' : 'false'}
+											aria-controls={props.id || 'db-breadcrumb-list'}
+											onClick={() => state.toggleExpanded()}>
+											…
+											<DBTooltip>
+												{props.ellipsisAriaLabel}
+											</DBTooltip>
+										</button>
+									)}
 								</li>
 
 								{/* Last (maxItems - 1) items */}

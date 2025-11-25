@@ -57,7 +57,6 @@
 		&:hover,
 		&:focus {
 			background-color: colors.$db-adaptive-bg-basic-transparent-semi-default;
-			text-decoration: underline;
 		}
 
 		&:active {
@@ -92,7 +91,6 @@
 		&:hover,
 		&:focus {
 			background-color: colors.$db-adaptive-bg-basic-transparent-semi-default;
-			text-decoration: underline;
 		}
 
 		&:active {
@@ -100,8 +98,7 @@
 		}
 
 		&:focus-visible {
-			outline: 2px solid
-				colors.$db-adaptive-on-bg-basic-emphasis-100-default;
+			outline: 2px solid colors.$db-adaptive-on-bg-basic-emphasis-100-default;
 			outline-offset: 2px;
 		}
 
@@ -113,7 +110,7 @@
 	// Default chevron: apply when the breadcrumb does NOT request a slash
 	&:not([data-separator="slash"])
 		.db-breadcrumb-list
-		li:not(:first-child)::before {
+		> li:not(:first-child)::before {
 		content: "›"; // chevron right glyph (U+203A)
 		display: flex;
 		align-items: center;

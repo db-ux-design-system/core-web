@@ -87,9 +87,9 @@
 					"ellipsisAriaLabel": "More breadcrumb items",
 					"children": [
 						{ "href": "#", "text": "Root" },
-						{ "href": "#", "text": "Path 1" },
-						{ "href": "#", "text": "Path 2" },
-						{ "href": "#", "text": "Path 3" },
+						{ "href": "#1", "text": "Path 1" },
+						{ "href": "#2", "text": "Path 2" },
+						{ "href": "#3", "text": "Path 3" },
 						{ "text": "Current Page", "ariaCurrent": "page", "href": "#" }
 					]
 				}
