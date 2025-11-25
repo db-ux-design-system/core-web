@@ -7,6 +7,7 @@ import {
 import { cls } from '../../utils';
 import { DBIcon } from '../icon';
 import type { DBBreadcrumbProps, DBBreadcrumbState } from './model';
+import DBTooltip from '../tooltip/tooltip.lite';
 
 useMetadata({});
 
@@ -21,6 +22,7 @@ useDefaultProps<DBBreadcrumbProps>({
 
 export default function DBBreadcrumb(props: DBBreadcrumbProps) {
 	const _ref = useRef<HTMLElement | any>(null);
+	const listId = props.id ? `${props.id}-list` : 'db-breadcrumb-list';
 
 	const state = useStore<DBBreadcrumbState>({
 		isExpanded: false,
@@ -49,6 +51,8 @@ export default function DBBreadcrumb(props: DBBreadcrumbProps) {
 		);
 	}
 
+
+
 	return (
 		<nav
 			ref={_ref}
@@ -57,7 +61,7 @@ export default function DBBreadcrumb(props: DBBreadcrumbProps) {
 			data-size={props.size}
 			data-separator={props.separator}
 			aria-label="Breadcrumb">
-			<ol class="db-breadcrumb-list">
+			<ol class="db-breadcrumb-list" id={listId}>
 				{props.items && props.items.length > 0 ? (
 					<>
 						{props.maxItems &&
@@ -76,8 +80,13 @@ export default function DBBreadcrumb(props: DBBreadcrumbProps) {
 										type="button"
 										class="db-breadcrumb-ellipsis"
 										aria-label={props.ellipsisAriaLabel}
+										aria-expanded={state.isExpanded ? 'true' : 'false'}
+										aria-controls={listId}
 										onClick={() => state.toggleExpanded()}>
 										…
+										<DBTooltip>
+											{props.ellipsisAriaLabel}
+										</DBTooltip>
 									</button>
 								</li>
 
