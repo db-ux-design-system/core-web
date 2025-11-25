@@ -2,7 +2,7 @@
 // TODO: Uncomment after build-outputs
 // import { DBBreadcrumb } from "../../../../../output/vue/src";
 import { ref } from "vue";
-import { DBIcon } from "../../../../../output/vue/src";
+import { DBIcon, DBTooltip } from "../../../../../output/vue/src";
 import defaultComponentVariants from "../../../../shared/breadcrumb.json";
 import DefaultComponent from "../DefaultComponent.vue";
 
@@ -27,9 +27,9 @@ const toggleExpanded = (key: string) => {
 				:class="['db-breadcrumb', exampleProps?.className]"
 				:data-size="exampleProps?.size"
 				:data-separator="exampleProps?.separator"
-				aria-label="breadcrumb"
+				:aria-label="exampleProps?.ariaLabel || 'Breadcrumb'"
 			>
-				<ol class="db-breadcrumb-list" role="list">
+				<ol class="db-breadcrumb-list" :id="exampleProps.id || 'db-breadcrumb-list'">
 					<template
 						v-if="
 							exampleProps?.maxItems &&
@@ -50,12 +50,7 @@ const toggleExpanded = (key: string) => {
 								/>
 								{{ exampleProps.children[0].text }}
 							</a>
-							<span
-								v-else
-								:aria-current="
-									exampleProps.children[0].ariaCurrent
-								"
-							>
+							<span v-else>
 								<DBIcon
 									v-if="exampleProps.children[0].icon"
 									:icon="exampleProps.children[0].icon"
@@ -69,14 +64,15 @@ const toggleExpanded = (key: string) => {
 							<button
 								type="button"
 								class="db-breadcrumb-ellipsis"
-								aria-label="Alle Breadcrumb-Einträge anzeigen"
-								@click="
-									toggleExpanded(
-										`${variantIndex}-${exampleIndex}`
-									)
-								"
+								:aria-label="exampleProps.ellipsisAriaLabel"
+								:aria-expanded="isExpanded[`${variantIndex}-${exampleIndex}`] ? 'true' : 'false'"
+								:aria-controls="exampleProps.id || 'db-breadcrumb-list'"
+								@click="toggleExpanded(`${variantIndex}-${exampleIndex}`)"
 							>
-								…
+								{{"..."}}
+								<DBTooltip>
+									{{exampleProps.ellipsisAriaLabel}}
+								</DBTooltip>
 							</button>
 						</li>
 
@@ -87,11 +83,18 @@ const toggleExpanded = (key: string) => {
 							)"
 							:key="index"
 						>
-							<a v-if="item.href" :href="item.href">
+							<a
+								v-if="item.href"
+								:href="item.href"
+								:aria-current="index === (exampleProps.maxItems - 2) ? item.ariaCurrent : undefined"
+							>
 								<DBIcon v-if="item.icon" :icon="item.icon" />
 								{{ item.text }}
 							</a>
-							<span v-else :aria-current="item.ariaCurrent">
+							<span
+								v-else
+								:aria-current="index === (exampleProps.maxItems - 2) ? item.ariaCurrent : undefined"
+							>
 								<DBIcon v-if="item.icon" :icon="item.icon" />
 								{{ item.text }}
 							</span>
@@ -103,11 +106,18 @@ const toggleExpanded = (key: string) => {
 							v-for="(item, index) in exampleProps?.children"
 							:key="index"
 						>
-							<a v-if="item.href" :href="item.href">
+							<a
+								v-if="item.href"
+								:href="item.href"
+								:aria-current="index === exampleProps.children.length - 1 ? item.ariaCurrent : undefined"
+							>
 								<DBIcon v-if="item.icon" :icon="item.icon" />
 								{{ item.text }}
 							</a>
-							<span v-else :aria-current="item.ariaCurrent">
+							<span
+								v-else
+								:aria-current="index === exampleProps.children.length - 1 ? item.ariaCurrent : undefined"
+							>
 								<DBIcon v-if="item.icon" :icon="item.icon" />
 								{{ item.text }}
 							</span>

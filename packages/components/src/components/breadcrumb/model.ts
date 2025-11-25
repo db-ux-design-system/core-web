@@ -1,5 +1,5 @@
 import { GlobalProps, GlobalState } from '../../shared/model';
-import type { DBBreadcrumbItemProps } from '../breadcrumb-item/model';
+import type { DBBreadcrumbItemProps } from '../breadcrumb-item';
 
 export const BreadcrumbSizeList = ['small', 'medium'] as const;
 export type BreadcrumbSize = (typeof BreadcrumbSizeList)[number];
