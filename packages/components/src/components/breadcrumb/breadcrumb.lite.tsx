@@ -22,7 +22,6 @@ useDefaultProps<DBBreadcrumbProps>({
 
 export default function DBBreadcrumb(props: DBBreadcrumbProps) {
 	const _ref = useRef<HTMLElement | any>(null);
-	const listId = props.id ? `${props.id}-list` : 'db-breadcrumb-list';
 
 	const state = useStore<DBBreadcrumbState>({
 		isExpanded: false,
@@ -61,7 +60,7 @@ export default function DBBreadcrumb(props: DBBreadcrumbProps) {
 			data-size={props.size}
 			data-separator={props.separator}
 			aria-label="Breadcrumb">
-			<ol class="db-breadcrumb-list" id={listId}>
+			<ol class="db-breadcrumb-list" id={props.id ? `${props.id}-list` : 'db-breadcrumb-list'}>
 				{props.items && props.items.length > 0 ? (
 					<>
 						{props.maxItems &&
@@ -81,7 +80,7 @@ export default function DBBreadcrumb(props: DBBreadcrumbProps) {
 										class="db-breadcrumb-ellipsis"
 										aria-label={props.ellipsisAriaLabel}
 										aria-expanded={state.isExpanded ? 'true' : 'false'}
-										aria-controls={listId}
+										aria-controls={props.id ? `${props.id}-list` : 'db-breadcrumb-list'}
 										onClick={() => state.toggleExpanded()}>
 										…
 										<DBTooltip>
