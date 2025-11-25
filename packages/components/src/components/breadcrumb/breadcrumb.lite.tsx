@@ -30,28 +30,6 @@ export default function DBBreadcrumb(props: DBBreadcrumbProps) {
 		}
 	});
 
-	function renderBreadcrumbContent(item: any, isLast: boolean) {
-		const ariaCurrent = isLast ? item.ariaCurrent : undefined;
-
-		if (item.href) {
-			return (
-				<a href={item.href} aria-current={ariaCurrent}>
-					{item.icon && <DBIcon icon={item.icon} />}
-					{item.text}
-				</a>
-			);
-		}
-
-		return (
-			<span aria-current={ariaCurrent}>
-				{item.icon && <DBIcon icon={item.icon} />}
-				{item.text}
-			</span>
-		);
-	}
-
-
-
 	return (
 		<nav
 			ref={_ref}
@@ -59,8 +37,8 @@ export default function DBBreadcrumb(props: DBBreadcrumbProps) {
 			class={cls('db-breadcrumb', props.className)}
 			data-size={props.size}
 			data-separator={props.separator}
-			aria-label="Breadcrumb">
-			<ol class="db-breadcrumb-list" id={props.id ? `${props.id}-list` : 'db-breadcrumb-list'}>
+			aria-label={props.ariaLabel ?? 'Breadcrumb'}>
+			<ol class="db-breadcrumb-list" id={props.id || 'db-breadcrumb-list'}>
 				{props.items && props.items.length > 0 ? (
 					<>
 						{props.maxItems &&
@@ -70,7 +48,17 @@ export default function DBBreadcrumb(props: DBBreadcrumbProps) {
 							<>
 								{/* Collapsed view: first item + ellipsis + last items */}
 								<li key={0}>
-									{renderBreadcrumbContent(props.items[0], false)}
+									{props.items[0].href ? (
+										<a href={props.items[0].href}>
+											{props.items[0].icon && <DBIcon icon={props.items[0].icon} />}
+											{props.items[0].text}
+										</a>
+									) : (
+										<span>
+          									{props.items[0].icon && <DBIcon icon={props.items[0].icon} />}
+											{props.items[0].text}
+        								</span>
+									)}
 								</li>
 
 								{/* Ellipsis button */}
@@ -80,8 +68,8 @@ export default function DBBreadcrumb(props: DBBreadcrumbProps) {
 										class="db-breadcrumb-ellipsis"
 										aria-label={props.ellipsisAriaLabel}
 										aria-expanded={state.isExpanded ? 'true' : 'false'}
-										aria-controls={props.id ? `${props.id}-list` : 'db-breadcrumb-list'}
-										onClick={() => state.toggleExpanded()}>
+										aria-controls={props.id || 'db-breadcrumb-list'}
+										onClick={state.toggleExpanded}>
 										…
 										<DBTooltip>
 											{props.ellipsisAriaLabel}
@@ -94,16 +82,63 @@ export default function DBBreadcrumb(props: DBBreadcrumbProps) {
 									.slice(props.items.length - (props.maxItems - 1))
 									.map((item, index) => (
 										<li key={index + 1}>
-											{renderBreadcrumbContent(item, index === props.maxItems! - 2)}
+											{item.href ? (
+												<a
+													href={item.href}
+													aria-current={
+														index === props.maxItems! - 2
+															? item.ariaCurrent
+															: undefined
+													}
+												>
+													{item.icon && <DBIcon icon={item.icon} />}
+													{item.text}
+												</a>
+											) : (
+												<span
+													aria-current={
+														index === props.maxItems! - 2
+															? item.ariaCurrent
+															: undefined
+													}
+												>
+          											{item.icon && <DBIcon icon={item.icon} />}
+													{item.text}
+        										</span>
+											)}
 										</li>
-									))}
+									))
+								}
 							</>
 						) : (
 							<>
 								{/* All items (normal or expanded view) */}
 								{props.items.map((item, index) => (
 									<li key={index}>
-										{renderBreadcrumbContent(item, index === props.items!.length - 1)}
+										{item.href ? (
+											<a
+												href={item.href}
+												aria-current={
+													index === props.items!.length - 1
+														? item.ariaCurrent
+														: undefined
+												}
+											>
+												{item.icon && <DBIcon icon={item.icon} />}
+												{item.text}
+											</a>
+										) : (
+											<span
+												aria-current={
+													index === props.items!.length - 1
+														? item.ariaCurrent
+														: undefined
+												}
+											>
+												{item.icon && <DBIcon icon={item.icon} />}
+												{item.text}
+      										</span>
+										)}
 									</li>
 								))}
 							</>
