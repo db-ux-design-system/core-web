@@ -10,7 +10,7 @@
 					"children": [
 						{ "href": "#", "text": "Home" },
 						{ "href": "#", "text": "Category" },
-						{ "text": "Current Page", "ariaCurrent": "page" }
+						{ "text": "Current Page", "ariaCurrent": "page", "href": "#" }
 					]
 				}
 			},
@@ -66,12 +66,13 @@
 				"props": {
 					"size": "small",
 					"maxItems": 3,
+					"ellipsisAriaLabel": "More breadcrumb items",
 					"children": [
 						{ "href": "#", "text": "Root" },
 						{ "href": "#", "text": "Path 1" },
 						{ "href": "#", "text": "Path 2" },
 						{ "href": "#", "text": "Path 3" },
-						{ "text": "Current Page", "ariaCurrent": "page" }
+						{ "text": "Current Page", "ariaCurrent": "page", "href": "#" }
 					]
 				}
 			},
@@ -82,12 +83,14 @@
 					"size": "small",
 					"maxItems": 3,
 					"collapsedMenu": true,
+					"ariaLabel": "Breadcrumb Menu",
+					"ellipsisAriaLabel": "More breadcrumb items",
 					"children": [
 						{ "href": "#", "text": "Root" },
 						{ "href": "#", "text": "Path 1" },
 						{ "href": "#", "text": "Path 2" },
 						{ "href": "#", "text": "Path 3" },
-						{ "text": "Current Page", "ariaCurrent": "page" }
+						{ "text": "Current Page", "ariaCurrent": "page", "href": "#" }
 					]
 				}
 			}

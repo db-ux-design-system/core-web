@@ -17,6 +17,7 @@ type BreadcrumbExampleProps = {
 	separator?: 'chevron' | 'slash';
 	maxItems?: number;
 	collapsedMenu?: boolean;
+	ariaLabel?: string;
 };
 
 const getBreadcrumb = ({
@@ -25,7 +26,8 @@ const getBreadcrumb = ({
 	className,
 	separator,
 	maxItems,
-	collapsedMenu
+	collapsedMenu,
+	ariaLabel
 }: BreadcrumbExampleProps) => (
 	<DBBreadcrumb
 		size={size}
@@ -34,6 +36,7 @@ const getBreadcrumb = ({
 		maxItems={maxItems}
 		collapsedMenu={collapsedMenu}
 		items={children}
+		ariaLabel={ariaLabel}
 	/>
 );
 

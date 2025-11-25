@@ -36,6 +36,11 @@ export interface DBBreadcrumbDefaultProps {
 	 * The breadcrumb items
 	 */
 	items?: DBBreadcrumbItemProps[];
+
+	/**
+	 * Aria label for the breadcrumb navigation
+	 */
+	ariaLabel?: string;
 }
 
 export interface DBBreadcrumbProps
