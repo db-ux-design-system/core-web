@@ -18,14 +18,14 @@
 			"
 			[attr.data-size]="exampleProps?.size ?? 'small'"
 			[attr.data-separator]="exampleProps?.separator"
-			aria-label="breadcrumb"
+			[attr.aria-label]="exampleProps?.ariaLabel || 'Breadcrumb'"
 		>
-			<ol class="db-breadcrumb-list" role="list">
+			<ol class="db-breadcrumb-list" [attr.id]="exampleProps.id || 'db-breadcrumb-list'">
 				@if (
 					exampleProps?.maxItems &&
 					exampleProps.children.length > exampleProps.maxItems &&
 					!isExpanded[variantIndex + "-" + exampleIndex]
-				) {
+					) {
 					<!-- Collapsed view: first item + ellipsis + last items -->
 					@if (exampleProps.children[0]; as firstItem) {
 						<li>
@@ -39,9 +39,7 @@
 									{{ firstItem.text }}
 								</a>
 							} @else {
-								<span
-									[attr.aria-current]="firstItem.ariaCurrent"
-								>
+								<span>
 									@if (firstItem.icon) {
 										<db-icon
 											[icon]="firstItem.icon"
@@ -58,14 +56,15 @@
 						<button
 							type="button"
 							class="db-breadcrumb-ellipsis"
-							aria-label="Alle Breadcrumb-Einträge anzeigen"
-							(click)="
-								toggleExpanded(
-									variantIndex + '-' + exampleIndex
-								)
-							"
+							[attr.aria-label]="exampleProps.ariaLabelExpand || 'Expand breadcrumb items'"
+							[attr.aria-controls]="exampleProps.id || 'db-breadcrumb-list'"
+							aria-expanded="false"
+							(click)="toggleExpanded(variantIndex + '-' + exampleIndex)"
 						>
 							…
+							<db-tooltip>
+								{{exampleProps.ellipsisAriaLabel}}
+							</db-tooltip>
 						</button>
 					</li>
 
@@ -78,14 +77,14 @@
 					) {
 						<li>
 							@if (item.href) {
-								<a [href]="item.href">
+								<a [href]="item.href" [attr.aria-current]="$index === exampleProps.maxItems - 2 ? item.ariaCurrent : null">
 									@if (item.icon) {
 										<db-icon [icon]="item.icon"></db-icon>
 									}
 									{{ item.text }}
 								</a>
 							} @else {
-								<span [attr.aria-current]="item.ariaCurrent">
+								<span [attr.aria-current]="$index === exampleProps.maxItems - 2 ? item.ariaCurrent : null">
 									@if (item.icon) {
 										<db-icon [icon]="item.icon"></db-icon>
 									}
@@ -99,14 +98,22 @@
 					@for (item of exampleProps?.children; track $index) {
 						<li>
 							@if (item.href) {
-								<a [href]="item.href">
+								<a [href]="item.href" [attr.aria-current]="
+									$index === exampleProps.children.length - 1
+									  ? item.ariaCurrent
+									  : null
+								  ">
 									@if (item.icon) {
 										<db-icon [icon]="item.icon"></db-icon>
 									}
 									{{ item.text }}
 								</a>
 							} @else {
-								<span [attr.aria-current]="item.ariaCurrent">
+								<span [attr.aria-current]="
+									$index === exampleProps.children.length - 1
+									  ? item.ariaCurrent
+									  : null
+								  ">
 									@if (item.icon) {
 										<db-icon [icon]="item.icon"></db-icon>
 									}
