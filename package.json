@@ -103,7 +103,7 @@
     "@commitlint/cli": "20.1.0",
     "@commitlint/config-conventional": "20.0.0",
     "@db-ux/db-theme": "5.2.1",
-    "@double-great/stylelint-a11y": "3.4.0",
+    "@double-great/stylelint-a11y": "3.4.1",
     "@guidepup/guidepup": "0.24.0",
     "@guidepup/playwright": "0.14.2",
     "@guidepup/record": "0.1.0",
