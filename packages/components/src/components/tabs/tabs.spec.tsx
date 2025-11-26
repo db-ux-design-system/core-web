@@ -8,13 +8,13 @@ import { DBTabItem } from '../tab-item';
 import { DBTabList } from '../tab-list';
 import { DBTabPanel } from '../tab-panel';
 
-let tabIndex: number | undefined;
+let activeTabIndex: number | undefined;
 let comp: any = null;
 
 test.beforeEach(() => {
-	tabIndex = undefined;
+	activeTabIndex = undefined;
 	comp = (
-		<DBTabs onIndexChange={(index: number) => (tabIndex = index)}>
+		<DBTabs onIndexChange={(index: number) => (activeTabIndex = index)}>
 			<DBTabList>
 				<DBTabItem data-testid="test">Test 1</DBTabItem>
 				<DBTabItem data-testid="test2">Test 2</DBTabItem>
@@ -44,7 +44,7 @@ const testComponent = () => {
 
 const testActions = () => {
 	test('should be clickable', async ({ mount }) => {
-		expect(tabIndex).toBe(undefined);
+		expect(activeTabIndex).toBe(undefined);
 
 		// Beware: the comments below actually change the selector for vue
 		// this is necessary because vue will not trigger a check on an list element but requires the actual
@@ -60,7 +60,7 @@ const testActions = () => {
 			.isChecked();
 		expect(!tabChecked).toBeTruthy();
 
-		expect(tabIndex).toBe(1);
+		expect(activeTabIndex).toBe(1);
 	});
 };
 
