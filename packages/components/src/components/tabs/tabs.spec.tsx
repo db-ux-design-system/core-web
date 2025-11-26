@@ -9,7 +9,7 @@ import { DBTabList } from '../tab-list';
 import { DBTabPanel } from '../tab-panel';
 
 let tabIndex: number | undefined;
-let comp: any;
+let comp: any = null;
 
 test.beforeEach(() => {
 	tabIndex = undefined;

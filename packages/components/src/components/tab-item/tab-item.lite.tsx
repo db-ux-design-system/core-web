@@ -129,7 +129,7 @@ export default function DBTabItem(props: DBTabItemProps) {
 	}, [props.name]);
 
 	onUnMount(() => {
-		if (state._listenerAdded && _ref) {
+		if (state._listenerAdded && _ref && state.boundSetSelectedOnChange) {
 			_ref.closest('[role=tablist]')?.removeEventListener(
 				'change',
 				state.boundSetSelectedOnChange
