@@ -1,12 +1,6 @@
 import { ALL_ICONS } from '@db-ux/db-theme-icons';
 import { useState } from 'react';
-import {
-	DBCard,
-	DBIcon,
-	DBInfotext,
-	DBInput,
-	DBSelect
-} from '../../../../../output/react/src';
+import { DBCard, DBInput, DBSelect } from '../../../../../output/react/src';
 import DefaultPage from '../../../components/default-page';
 import IconCodeSnippet from '../../../components/icon-code-snippet';
 
@@ -100,10 +94,6 @@ const IconOverview = () => {
 							key={icon}
 							spacing="small"
 							className="icon-card">
-							<DBIcon icon={icon}>{icon}</DBIcon>
-							<DBInfotext semantic="informational" icon="none">
-								{icon}
-							</DBInfotext>
 							<IconCodeSnippet
 								iconName={icon}
 								weight={weight}

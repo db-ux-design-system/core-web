@@ -1,6 +1,8 @@
 import {
 	DBButton,
 	DBDivider,
+	DBIcon,
+	DBInfotext,
 	DBPopover
 } from '../../../../output/react/src/index';
 import CopyClipboardButton from '../copy-clipboard-button';
@@ -75,7 +77,18 @@ const IconCodeSnippet = ({
 	];
 
 	return (
-		<DBPopover placement="top" width="fixed">
+		<DBPopover
+			placement="top"
+			width="fixed"
+			delay="slow"
+			trigger={
+				<>
+					<DBIcon icon={iconName}>{iconName}</DBIcon>
+					<DBInfotext semantic="informational" icon="none">
+						{iconName}
+					</DBInfotext>
+				</>
+			}>
 			<DBButton
 				slot="trigger"
 				variant="ghost"
@@ -91,7 +104,10 @@ const IconCodeSnippet = ({
 				<div className="icon-code-snippet-content">
 					{snippets.map((snippet, index) => (
 						<div key={index} className="snippet-item">
-							<div className="snippet-title">{snippet.title}</div>
+							<div className="snippet-title">
+								<DBIcon icon={iconName}>{iconName}</DBIcon>
+								{snippet.title}
+							</div>
 							<div className="snippet-code-container">
 								<code className="snippet-code">
 									{snippet.code}
