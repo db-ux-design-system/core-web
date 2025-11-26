@@ -2,7 +2,7 @@ import { createRequire } from 'node:module';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
-const { dirname, join } = path;
+const { dirname } = path;
 
 // Create a require function that works in both ESM and transpiled CJS contexts
 const requireFunc = (() => {
@@ -22,12 +22,12 @@ const requireFunc = (() => {
  * Uses import.meta.resolve for Node.js 24+ when available in ESM context.
  */
 function getAbsolutePath(value) {
+	const packageJsonPath = `${value}/package.json`;
+
 	// Try to use import.meta.resolve if available (Node.js 24+ in true ESM context)
 	if (typeof import.meta?.resolve === 'function') {
 		try {
-			const resolvedUrl = import.meta.resolve(
-				join(value, 'package.json')
-			);
+			const resolvedUrl = import.meta.resolve(packageJsonPath);
 			return dirname(fileURLToPath(resolvedUrl));
 		} catch {
 			// Fall through to require.resolve
@@ -36,7 +36,7 @@ function getAbsolutePath(value) {
 
 	// Fallback to require.resolve for transpiled CJS environments
 	if (requireFunc) {
-		return dirname(requireFunc.resolve(join(value, 'package.json')));
+		return dirname(requireFunc.resolve(packageJsonPath));
 	}
 
 	throw new Error(
