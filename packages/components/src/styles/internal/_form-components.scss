@@ -376,13 +376,8 @@ $input-valid-types:
 
 	@include set-floating-label-overwrites($selector);
 
-	@include get-validity($selector) {
-		&:has(
-			> .db-infotext[data-semantic="successful"],
-			> db-infotext > .db-infotext[data-semantic="successful"]
-		) {
-			@include get-validity-color($selector, "valid");
-		}
+	@include get-validity($selector, "valid") {
+		@include get-validity-color($selector, "valid");
 	}
 
 	@include get-validity($selector, "invalid") {
