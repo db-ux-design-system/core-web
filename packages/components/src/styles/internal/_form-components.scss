@@ -101,7 +101,7 @@ $db-min-inline-size: var(
 
 @mixin set-floating-label-overwrites($selector) {
 	&[data-variant="floating"] {
-		@include get-validity($selector) {
+		@include get-validity($selector, "valid") {
 			label {
 				color: var(--db-successful-on-bg-basic-emphasis-90-default);
 			}
