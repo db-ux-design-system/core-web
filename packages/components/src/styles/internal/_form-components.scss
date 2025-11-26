@@ -103,13 +103,13 @@ $db-min-inline-size: var(
 	&[data-variant="floating"] {
 		@include get-validity($selector) {
 			label {
-				color: var(--db-successful-on-bg-basic-emphasis-80-default);
+				color: var(--db-successful-on-bg-basic-emphasis-90-default);
 			}
 		}
 
 		@include get-validity($selector, "invalid") {
 			label {
-				color: var(--db-critical-on-bg-basic-emphasis-80-default);
+				color: var(--db-critical-on-bg-basic-emphasis-90-default);
 			}
 		}
 
