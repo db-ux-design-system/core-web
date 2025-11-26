@@ -39,7 +39,7 @@ export default function DBBreadcrumb(props: DBBreadcrumbProps) {
 			data-size={props.size}
 			data-separator={props.separator}
 			aria-label={props.ariaLabel ?? 'Breadcrumb'}>
-			<ol class="db-breadcrumb-list" id={props.id || 'db-breadcrumb-list'}>
+			<ol class="db-breadcrumb-list" id={props.id ? `${props.id}-list` : 'db-breadcrumb-list'}>
 				{props.items && props.items.length > 0 ? (
 					<>
 						{props.maxItems &&
@@ -73,11 +73,11 @@ export default function DBBreadcrumb(props: DBBreadcrumbProps) {
 													class="db-breadcrumb-ellipsis"
 													aria-label={props.ellipsisAriaLabel}
 													aria-expanded={state.isExpanded ? 'true' : 'false'}
-													aria-controls={'db-breadcrumb-menu'}>
+													aria-controls={props.id ? `${props.id}-menu` : 'db-breadcrumb-menu'}>
 													…
 												</button>
 											}>
-											<ul class="db-breadcrumb-menu" id="db-breadcrumb-menu">
+											<ul class="db-breadcrumb-menu" id={props.id ? `${props.id}-menu` : 'db-breadcrumb-menu'}>
 												{props.items
 													.slice(1, props.items.length - (props.maxItems! - 1))
 													.map((item, index) => (
@@ -103,7 +103,7 @@ export default function DBBreadcrumb(props: DBBreadcrumbProps) {
 											class="db-breadcrumb-ellipsis"
 											aria-label={props.ellipsisAriaLabel}
 											aria-expanded={state.isExpanded ? 'true' : 'false'}
-											aria-controls={props.id || 'db-breadcrumb-list'}
+											aria-controls={props.id ? `${props.id}-list` : 'db-breadcrumb-list'}
 											onClick={() => state.toggleExpanded()}>
 											…
 											<DBTooltip>
