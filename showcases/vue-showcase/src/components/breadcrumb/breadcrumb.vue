@@ -28,6 +28,7 @@ const toggleExpanded = (key: string) => {
 				:data-size="exampleProps?.size"
 				:data-separator="exampleProps?.separator"
 				:aria-label="exampleProps?.ariaLabel || 'Breadcrumb'"
+				:id="exampleProps.id"
 			>
 				<ol class="db-breadcrumb-list" :id="exampleProps.id || 'db-breadcrumb-list'">
 					<template

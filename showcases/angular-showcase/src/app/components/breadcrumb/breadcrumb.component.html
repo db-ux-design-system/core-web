@@ -19,6 +19,7 @@
 			[attr.data-size]="exampleProps?.size ?? 'small'"
 			[attr.data-separator]="exampleProps?.separator"
 			[attr.aria-label]="exampleProps?.ariaLabel || 'Breadcrumb'"
+			[attr.id]="exampleProps?.id"
 		>
 			<ol class="db-breadcrumb-list" [attr.id]="exampleProps.id || 'db-breadcrumb-list'">
 				@if (
