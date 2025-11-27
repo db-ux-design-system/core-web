@@ -1,5 +1,17 @@
 # @db-ux/ngx-core-components
 
+## 4.2.2
+
+### Patch Changes
+
+- fix(form elements): `valid` background- and border-colors - [see commit 8f07e55](https://github.com/db-ux-design-system/core-web/commit/8f07e55f2155fcb619198857397ce354f90c4803)
+
+- DBInput: inserting an empty string doesn't reset/empty date or time related form fields - [see commit 884b03d](https://github.com/db-ux-design-system/core-web/commit/884b03d3997ffad725c99f63480563f309a046ef)
+
+- fix: set DBTabItem internal state `_selected` correctly - [see commit f7625cb](https://github.com/db-ux-design-system/core-web/commit/f7625cbd9d64513527e826c9d2c1ef42b2734a4b):
+
+      - Now also sets aria-selected=true|false correctly which improves screen reader behaviour
+
 ## 4.2.1
 
 ### Patch Changes
