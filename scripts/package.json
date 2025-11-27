@@ -96,7 +96,7 @@
     "@inquirer/prompts": "8.0.1",
     "dotenv": "17.2.3",
     "find-versions": "6.0.0",
-    "glob": "11.1.0",
+    "glob": "12.0.0",
     "inquirer": "13.0.1",
     "replace-in-file": "8.3.0",
     "sassdoc": "2.7.4",
