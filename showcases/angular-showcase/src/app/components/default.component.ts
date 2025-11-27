@@ -8,6 +8,7 @@ import {
 	type TemplateRef
 } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+// Import from output/angular for local development - this path is mapped in tsconfig.json
 import {
 	COLOR,
 	COLOR_CONST,
@@ -16,7 +17,7 @@ import {
 	DBLink,
 	DENSITY,
 	DENSITY_CONST
-} from '@db-ux/ngx-core-components/src';
+} from '../../../../../output/angular/src';
 import type {
 	DefaultComponentProps,
 	DefaultComponentVariants
