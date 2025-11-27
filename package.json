@@ -129,7 +129,7 @@
     "husky": "9.1.7",
     "jscpd": "4.0.5",
     "lint-staged": "16.2.6",
-    "markdownlint-cli": "0.45.0",
+    "markdownlint-cli": "0.46.0",
     "ng-packagr": "20.3.2",
     "npm-package-json-lint": "9.0.0",
     "npm-run-all2": "8.0.4",
