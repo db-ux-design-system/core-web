@@ -1,9 +1,14 @@
 # @db-ux/core-components
 
+## 4.2.2
+
+### Patch Changes
+
+- fix(form elements): `valid` background- and border-colors - [see commit 8f07e55](https://github.com/db-ux-design-system/core-web/commit/8f07e55f2155fcb619198857397ce354f90c4803)
+
 ## 4.2.1
 
 _version bump_
-
 
 ## 4.2.0
 
