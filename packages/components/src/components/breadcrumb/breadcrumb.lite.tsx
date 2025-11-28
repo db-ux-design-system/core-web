@@ -7,8 +7,6 @@ import {
 import { cls } from '../../utils';
 import { DBIcon } from '../icon';
 import type { DBBreadcrumbProps, DBBreadcrumbState } from './model';
-import DBTooltip from '../tooltip/tooltip.lite';
-import DBPopover from '../popover/popover.lite';
 
 useMetadata({});
 
@@ -16,9 +14,8 @@ useDefaultProps<DBBreadcrumbProps>({
 	size: 'small',
 	separator: 'chevron',
 	maxItems: undefined,
-	collapsedMenu: false,
 	items: undefined,
-	ellipsisAriaLabel: 'Show all breadcrumb items'
+	ellipsisAriaLabel: 'Expand to show all breadcrumb items'
 });
 
 export default function DBBreadcrumb(props: DBBreadcrumbProps) {
@@ -39,7 +36,9 @@ export default function DBBreadcrumb(props: DBBreadcrumbProps) {
 			data-size={props.size}
 			data-separator={props.separator}
 			aria-label={props.ariaLabel ?? 'Breadcrumb'}>
-			<ol class="db-breadcrumb-list" id={props.id ? `${props.id}-list` : 'db-breadcrumb-list'}>
+			<ol
+				class="db-breadcrumb-list"
+				id={props.id ? `${props.id}-list` : 'db-breadcrumb-list'}>
 				{props.items && props.items.length > 0 ? (
 					<>
 						{props.maxItems &&
@@ -51,100 +50,84 @@ export default function DBBreadcrumb(props: DBBreadcrumbProps) {
 								<li key={0}>
 									{props.items[0].href ? (
 										<a href={props.items[0].href}>
-											{props.items[0].icon && <DBIcon icon={props.items[0].icon} />}
+											{props.items[0].icon && (
+												<DBIcon
+													icon={props.items[0].icon}
+												/>
+											)}
 											{props.items[0].text}
 										</a>
 									) : (
 										<span>
-          									{props.items[0].icon && <DBIcon icon={props.items[0].icon} />}
+											{props.items[0].icon && (
+												<DBIcon
+													icon={props.items[0].icon}
+												/>
+											)}
 											{props.items[0].text}
-        								</span>
+										</span>
 									)}
 								</li>
-
 								{/* Ellipsis button */}
 								<li key="ellipsis">
-									{props.collapsedMenu ? (
-										<DBPopover
-											placement="bottom"
-											trigger={
-												<button
-													type="button"
-													class="db-breadcrumb-ellipsis"
-													aria-label={props.ellipsisAriaLabel}
-													aria-expanded={state.isExpanded ? 'true' : 'false'}
-													aria-controls={props.id ? `${props.id}-menu` : 'db-breadcrumb-menu'}>
-													…
-												</button>
-											}>
-											<ul class="db-breadcrumb-menu" id={props.id ? `${props.id}-menu` : 'db-breadcrumb-menu'}>
-												{props.items
-													.slice(1, props.items.length - (props.maxItems! - 1))
-													.map((item, index) => (
-														<li key={index}>
-															{item.href ? (
-																<a href={item.href}>
-																	{item.icon && <DBIcon icon={item.icon} />}
-																	{item.text}
-																</a>
-															) : (
-																<span>
-																	{item.icon && <DBIcon icon={item.icon} />}
-																	{item.text}
-																</span>
-															)}
-														</li>
-													))}
-											</ul>
-										</DBPopover>
-									) : (
-										<button
-											type="button"
-											class="db-breadcrumb-ellipsis"
-											aria-label={props.ellipsisAriaLabel}
-											aria-expanded={state.isExpanded ? 'true' : 'false'}
-											aria-controls={props.id ? `${props.id}-list` : 'db-breadcrumb-list'}
-											onClick={() => state.toggleExpanded()}>
-											…
-											<DBTooltip>
-												{props.ellipsisAriaLabel}
-											</DBTooltip>
-										</button>
-									)}
+									<button
+										type="button"
+										class="db-breadcrumb-ellipsis"
+										aria-label={props.ellipsisAriaLabel}
+										aria-expanded={
+											state.isExpanded ? 'true' : 'false'
+										}
+										aria-controls={
+											props.id
+												? `${props.id}-list`
+												: 'db-breadcrumb-list'
+										}
+										onClick={() => state.toggleExpanded()}>
+										…
+									</button>
 								</li>
-
 								{/* Last (maxItems - 1) items */}
 								{props.items
-									.slice(props.items.length - (props.maxItems - 1))
+									.slice(
+										props.items.length -
+											(props.maxItems - 1)
+									)
 									.map((item, index) => (
 										<li key={index + 1}>
 											{item.href ? (
 												<a
 													href={item.href}
 													aria-current={
-														index === props.maxItems! - 2
+														index ===
+														props.maxItems! - 2
 															? item.ariaCurrent
 															: undefined
-													}
-												>
-													{item.icon && <DBIcon icon={item.icon} />}
+													}>
+													{item.icon && (
+														<DBIcon
+															icon={item.icon}
+														/>
+													)}
 													{item.text}
 												</a>
 											) : (
 												<span
 													aria-current={
-														index === props.maxItems! - 2
+														index ===
+														props.maxItems! - 2
 															? item.ariaCurrent
 															: undefined
-													}
-												>
-          											{item.icon && <DBIcon icon={item.icon} />}
+													}>
+													{item.icon && (
+														<DBIcon
+															icon={item.icon}
+														/>
+													)}
 													{item.text}
-        										</span>
+												</span>
 											)}
 										</li>
-									))
-								}
+									))}
 							</>
 						) : (
 							<>
@@ -155,25 +138,29 @@ export default function DBBreadcrumb(props: DBBreadcrumbProps) {
 											<a
 												href={item.href}
 												aria-current={
-													index === props.items!.length - 1
+													index ===
+													props.items!.length - 1
 														? item.ariaCurrent
 														: undefined
-												}
-											>
-												{item.icon && <DBIcon icon={item.icon} />}
+												}>
+												{item.icon && (
+													<DBIcon icon={item.icon} />
+												)}
 												{item.text}
 											</a>
 										) : (
 											<span
 												aria-current={
-													index === props.items!.length - 1
+													index ===
+													props.items!.length - 1
 														? item.ariaCurrent
 														: undefined
-												}
-											>
-												{item.icon && <DBIcon icon={item.icon} />}
+												}>
+												{item.icon && (
+													<DBIcon icon={item.icon} />
+												)}
 												{item.text}
-      										</span>
+											</span>
 										)}
 									</li>
 								))}
