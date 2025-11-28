@@ -67,6 +67,18 @@ db-card:is(.variants-card) > .db-card {
 	margin-block: 0 auto;
 }
 
+/* Breadcrumb showcase: stack breadcrumb examples vertically */
+@supports selector(:has(*)) {
+	.variants-list > div:has(.db-breadcrumb) {
+		flex: 0 0 100%;
+	}
+}
+
+/* Fallback: if :has unsupported, rely on utility class or force wrappers containing db-breadcrumb to behave as block via descendant width trick */
+.variants-list .db-breadcrumb {
+	inline-size: 100%;
+}
+
 .html-code-container {
 	display: flex;
 	flex-direction: column;
