@@ -2,7 +2,7 @@
 // TODO: Uncomment after build-outputs
 // import { DBBreadcrumb } from "../../../../../output/vue/src";
 import { ref } from "vue";
-import { DBIcon } from "../../../../../output/vue/src";
+import { DBIcon, DBTooltip } from "../../../../../output/vue/src";
 import defaultComponentVariants from "../../../../shared/breadcrumb.json";
 import DefaultComponent from "../DefaultComponent.vue";
 
@@ -30,10 +30,7 @@ const toggleExpanded = (key: string) => {
 				:aria-label="exampleProps?.ariaLabel || 'Breadcrumb'"
 				:id="exampleProps.id"
 			>
-				<ol
-					class="db-breadcrumb-list"
-					:id="exampleProps.id || 'db-breadcrumb-list'"
-				>
+				<ol class="db-breadcrumb-list" :id="exampleProps.id || 'db-breadcrumb-list'">
 					<template
 						v-if="
 							exampleProps?.maxItems &&
@@ -69,23 +66,14 @@ const toggleExpanded = (key: string) => {
 								type="button"
 								class="db-breadcrumb-ellipsis"
 								:aria-label="exampleProps.ellipsisAriaLabel"
-								:aria-expanded="
-									isExpanded[
-										`${variantIndex}-${exampleIndex}`
-									]
-										? 'true'
-										: 'false'
-								"
-								:aria-controls="
-									exampleProps.id || 'db-breadcrumb-list'
-								"
-								@click="
-									toggleExpanded(
-										`${variantIndex}-${exampleIndex}`
-									)
-								"
+								:aria-expanded="isExpanded[`${variantIndex}-${exampleIndex}`] ? 'true' : 'false'"
+								:aria-controls="exampleProps.id || 'db-breadcrumb-list'"
+								@click="toggleExpanded(`${variantIndex}-${exampleIndex}`)"
 							>
-								{{ "..." }}
+								{{"..."}}
+								<DBTooltip>
+									{{exampleProps.ellipsisAriaLabel}}
+								</DBTooltip>
 							</button>
 						</li>
 
@@ -99,22 +87,14 @@ const toggleExpanded = (key: string) => {
 							<a
 								v-if="item.href"
 								:href="item.href"
-								:aria-current="
-									index === exampleProps.maxItems - 2
-										? item.ariaCurrent
-										: undefined
-								"
+								:aria-current="index === (exampleProps.maxItems - 2) ? item.ariaCurrent : undefined"
 							>
 								<DBIcon v-if="item.icon" :icon="item.icon" />
 								{{ item.text }}
 							</a>
 							<span
 								v-else
-								:aria-current="
-									index === exampleProps.maxItems - 2
-										? item.ariaCurrent
-										: undefined
-								"
+								:aria-current="index === (exampleProps.maxItems - 2) ? item.ariaCurrent : undefined"
 							>
 								<DBIcon v-if="item.icon" :icon="item.icon" />
 								{{ item.text }}
@@ -130,22 +110,14 @@ const toggleExpanded = (key: string) => {
 							<a
 								v-if="item.href"
 								:href="item.href"
-								:aria-current="
-									index === exampleProps.children.length - 1
-										? item.ariaCurrent
-										: undefined
-								"
+								:aria-current="index === exampleProps.children.length - 1 ? item.ariaCurrent : undefined"
 							>
 								<DBIcon v-if="item.icon" :icon="item.icon" />
 								{{ item.text }}
 							</a>
 							<span
 								v-else
-								:aria-current="
-									index === exampleProps.children.length - 1
-										? item.ariaCurrent
-										: undefined
-								"
+								:aria-current="index === exampleProps.children.length - 1 ? item.ariaCurrent : undefined"
 							>
 								<DBIcon v-if="item.icon" :icon="item.icon" />
 								{{ item.text }}

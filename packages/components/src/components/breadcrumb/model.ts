@@ -1,5 +1,5 @@
 import { GlobalProps, GlobalState } from '../../shared/model';
-import type { DBBreadcrumbItemProps } from '../breadcrumb-item/model';
+import type { DBBreadcrumbItemProps } from '../breadcrumb-item';
 
 export const BreadcrumbSizeList = ['small', 'medium'] as const;
 export type BreadcrumbSize = (typeof BreadcrumbSizeList)[number];
@@ -21,6 +21,11 @@ export interface DBBreadcrumbDefaultProps {
 	 * Maximum number of items to display before collapsing
 	 */
 	maxItems?: number;
+
+	/**
+	 * Show collapsed items in a dropdown menu instead of expanding inline
+	 */
+	collapsedMenu?: boolean;
 
 	/**
 	 * Aria label for the ellipsis button in collapsed view

@@ -10,11 +10,7 @@
 					"children": [
 						{ "href": "#", "text": "Home" },
 						{ "href": "#", "text": "Category" },
-						{
-							"text": "Current Page",
-							"ariaCurrent": "page",
-							"href": "#"
-						}
+						{ "text": "Current Page", "ariaCurrent": "page", "href": "#" }
 					]
 				}
 			},
@@ -77,11 +73,26 @@
 						{ "href": "#", "text": "Path 1" },
 						{ "href": "#", "text": "Path 2" },
 						{ "href": "#", "text": "Path 3" },
-						{
-							"text": "Current Page",
-							"ariaCurrent": "page",
-							"href": "#"
-						}
+						{ "text": "Current Page", "ariaCurrent": "page", "href": "#" }
+					]
+				}
+			},
+			{
+				"name": "Collapsed with Menu",
+				"className": "w-full",
+				"props": {
+					"size": "small",
+					"maxItems": 3,
+					"id": "234",
+					"collapsedMenu": true,
+					"ariaLabel": "Breadcrumb Menu",
+					"ellipsisAriaLabel": "More breadcrumb items",
+					"children": [
+						{ "href": "#", "text": "Root" },
+						{ "href": "#1", "text": "Path 1" },
+						{ "href": "#2", "text": "Path 2" },
+						{ "href": "#3", "text": "Path 3" },
+						{ "text": "Current Page", "ariaCurrent": "page", "href": "#" }
 					]
 				}
 			}

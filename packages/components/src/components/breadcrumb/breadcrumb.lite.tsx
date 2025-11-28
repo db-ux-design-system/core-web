@@ -7,6 +7,8 @@ import {
 import { cls } from '../../utils';
 import { DBIcon } from '../icon';
 import type { DBBreadcrumbProps, DBBreadcrumbState } from './model';
+import DBTooltip from '../tooltip/tooltip.lite';
+import DBPopover from '../popover/popover.lite';
 
 useMetadata({});
 
@@ -14,41 +16,13 @@ useDefaultProps<DBBreadcrumbProps>({
 	size: 'small',
 	separator: 'chevron',
 	maxItems: undefined,
-	// collapsedMenu: false, // disabled
+	collapsedMenu: false,
 	items: undefined,
 	ellipsisAriaLabel: 'Show all breadcrumb items'
 });
 
 export default function DBBreadcrumb(props: DBBreadcrumbProps) {
 	const _ref = useRef<HTMLElement | any>(null);
-	function itemsArray() {
-		return (props.items ?? []) as any[];
-	}
-	function itemsLen() {
-		return itemsArray().length;
-	}
-	function shouldCollapse() {
-		return (
-			!!props.maxItems &&
-			props.maxItems! > 0 &&
-			itemsLen() > props.maxItems!
-		);
-	}
-	function headItem() {
-		return itemsArray()[0];
-	}
-	function tailItems() {
-		// when collapsed, show last (maxItems - 1) items
-		const count = Math.max(props.maxItems! - 1, 0);
-		return itemsArray().slice(itemsLen() - count);
-	}
-	function isTailLast(index: number) {
-		// tail list length equals (maxItems - 1); last index is maxItems - 2
-		return index === props.maxItems! - 2;
-	}
-	function isLast(index: number) {
-		return index === itemsLen() - 1;
-	}
 
 	const state = useStore<DBBreadcrumbState>({
 		isExpanded: false,
@@ -65,120 +39,150 @@ export default function DBBreadcrumb(props: DBBreadcrumbProps) {
 			data-size={props.size}
 			data-separator={props.separator}
 			aria-label={props.ariaLabel ?? 'Breadcrumb'}>
-			<ol
-				class="db-breadcrumb-list"
-				id={props.id ? `${props.id}-list` : 'db-breadcrumb-list'}>
-				{itemsLen() > 0 ? (
+			<ol class="db-breadcrumb-list" id={props.id ? `${props.id}-list` : 'db-breadcrumb-list'}>
+				{props.items && props.items.length > 0 ? (
 					<>
-						{shouldCollapse() && !state.isExpanded ? (
+						{props.maxItems &&
+						props.maxItems > 0 &&
+						props.items.length > props.maxItems &&
+						!state.isExpanded ? (
 							<>
+								{/* Collapsed view: first item + ellipsis + last items */}
 								<li key={0}>
-									{headItem().href ? (
-										<a href={headItem().href}>
-											{headItem().icon && (
-												<DBIcon
-													icon={headItem().icon}
-												/>
-											)}
-											{headItem().text}
+									{props.items[0].href ? (
+										<a href={props.items[0].href}>
+											{props.items[0].icon && <DBIcon icon={props.items[0].icon} />}
+											{props.items[0].text}
 										</a>
 									) : (
 										<span>
-											{headItem().icon && (
-												<DBIcon
-													icon={headItem().icon}
-												/>
-											)}
-											{headItem().text}
-										</span>
+          									{props.items[0].icon && <DBIcon icon={props.items[0].icon} />}
+											{props.items[0].text}
+        								</span>
 									)}
 								</li>
+
+								{/* Ellipsis button */}
 								<li key="ellipsis">
-									<button
-										type="button"
-										class="db-breadcrumb-ellipsis"
-										aria-label={props.ellipsisAriaLabel}
-										aria-expanded={
-											state.isExpanded ? 'true' : 'false'
-										}
-										aria-controls="db-breadcrumb-list"
-										onClick={() => state.toggleExpanded()}>
-										…
-									</button>
+									{props.collapsedMenu ? (
+										<DBPopover
+											placement="bottom"
+											trigger={
+												<button
+													type="button"
+													class="db-breadcrumb-ellipsis"
+													aria-label={props.ellipsisAriaLabel}
+													aria-expanded={state.isExpanded ? 'true' : 'false'}
+													aria-controls={props.id ? `${props.id}-menu` : 'db-breadcrumb-menu'}>
+													…
+												</button>
+											}>
+											<ul class="db-breadcrumb-menu" id={props.id ? `${props.id}-menu` : 'db-breadcrumb-menu'}>
+												{props.items
+													.slice(1, props.items.length - (props.maxItems! - 1))
+													.map((item, index) => (
+														<li key={index}>
+															{item.href ? (
+																<a href={item.href}>
+																	{item.icon && <DBIcon icon={item.icon} />}
+																	{item.text}
+																</a>
+															) : (
+																<span>
+																	{item.icon && <DBIcon icon={item.icon} />}
+																	{item.text}
+																</span>
+															)}
+														</li>
+													))}
+											</ul>
+										</DBPopover>
+									) : (
+										<button
+											type="button"
+											class="db-breadcrumb-ellipsis"
+											aria-label={props.ellipsisAriaLabel}
+											aria-expanded={state.isExpanded ? 'true' : 'false'}
+											aria-controls={props.id ? `${props.id}-list` : 'db-breadcrumb-list'}
+											onClick={() => state.toggleExpanded()}>
+											…
+											<DBTooltip>
+												{props.ellipsisAriaLabel}
+											</DBTooltip>
+										</button>
+									)}
 								</li>
-								{tailItems().map((item: any, index: number) => (
-									<li key={index + 1}>
-										{item.href ? (
-											<a
-												href={item.href}
-												aria-current={
-													isTailLast(index)
-														? item.ariaCurrent
-														: undefined
-												}>
-												{item.icon && (
-													<DBIcon icon={item.icon} />
-												)}
-												{item.text}
-											</a>
-										) : (
-											<span
-												aria-current={
-													isTailLast(index)
-														? item.ariaCurrent
-														: undefined
-												}>
-												{item.icon && (
-													<DBIcon icon={item.icon} />
-												)}
-												{item.text}
-											</span>
-										)}
-									</li>
-								))}
-							</>
-						) : (
-							<>
-								{itemsArray().map(
-									(item: any, index: number) => (
-										<li key={index}>
+
+								{/* Last (maxItems - 1) items */}
+								{props.items
+									.slice(props.items.length - (props.maxItems - 1))
+									.map((item, index) => (
+										<li key={index + 1}>
 											{item.href ? (
 												<a
 													href={item.href}
 													aria-current={
-														isLast(index)
+														index === props.maxItems! - 2
 															? item.ariaCurrent
 															: undefined
-													}>
-													{item.icon && (
-														<DBIcon
-															icon={item.icon}
-														/>
-													)}
+													}
+												>
+													{item.icon && <DBIcon icon={item.icon} />}
 													{item.text}
 												</a>
 											) : (
 												<span
 													aria-current={
-														isLast(index)
+														index === props.maxItems! - 2
 															? item.ariaCurrent
 															: undefined
-													}>
-													{item.icon && (
-														<DBIcon
-															icon={item.icon}
-														/>
-													)}
+													}
+												>
+          											{item.icon && <DBIcon icon={item.icon} />}
 													{item.text}
-												</span>
+        										</span>
 											)}
 										</li>
-									)
-								)}
+									))
+								}
+							</>
+						) : (
+							<>
+								{/* All items (normal or expanded view) */}
+								{props.items.map((item, index) => (
+									<li key={index}>
+										{item.href ? (
+											<a
+												href={item.href}
+												aria-current={
+													index === props.items!.length - 1
+														? item.ariaCurrent
+														: undefined
+												}
+											>
+												{item.icon && <DBIcon icon={item.icon} />}
+												{item.text}
+											</a>
+										) : (
+											<span
+												aria-current={
+													index === props.items!.length - 1
+														? item.ariaCurrent
+														: undefined
+												}
+											>
+												{item.icon && <DBIcon icon={item.icon} />}
+												{item.text}
+      										</span>
+										)}
+									</li>
+								))}
 							</>
 						)}
 					</>
-				) : null}
+				) : (
+					<>{props.children}</>
+				)}
 			</ol>
 		</nav>
 	);
