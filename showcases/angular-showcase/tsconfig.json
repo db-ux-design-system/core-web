@@ -20,12 +20,7 @@
 		"target": "ES2022",
 		"module": "ES2022",
 		"useDefineForClassFields": false,
-		"lib": ["ES2022", "dom"],
-		// Path mappings for local development - maps @db-ux/ngx-core-components to the output/angular directory
-		"paths": {
-			"@db-ux/ngx-core-components": ["../../output/angular/src/index.ts"],
-			"@db-ux/ngx-core-components/*": ["../../output/angular/src/*"]
-		}
+		"lib": ["ES2022", "dom"]
 	},
 	"angularCompilerOptions": {
 		"enableI18nLegacyMessageIdFormat": false,

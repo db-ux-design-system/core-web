@@ -1,10 +1,6 @@
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import { DBIcon, DBTooltip } from '../../../../../../output/angular/src';
-// TODO: Uncomment after proper breadcrumb component integration
-// import {
-// 	DBBreadcrumb,
-// 	DBBreadcrumbItem
-// } from '../../../../../../output/angular/src';
+// TODO: Uncomment after build-outputs: import { DBBreadcrumb } from '../../../../../../output/angular/src';
+import { DBIcon, DBTooltip } from '@db-ux/ngx-core-components/src';
 import defaultComponentVariants from '../../../../../shared/breadcrumb.json';
 import { DefaultComponent } from '../default.component';
 
