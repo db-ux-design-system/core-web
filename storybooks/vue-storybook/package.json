@@ -17,7 +17,7 @@
     "@storybook/addon-vitest": "9.1.13",
     "@storybook/vue3-vite": "9.1.13",
     "@vitejs/plugin-vue": "6.0.1",
-    "@vitest/browser": "4.0.13",
+    "@vitest/browser": "4.0.14",
     "@vitest/coverage-v8": "4.0.13",
     "@vue/tsconfig": "0.8.1",
     "eslint-plugin-storybook": "10.0.8",
