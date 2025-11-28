@@ -3,6 +3,7 @@
 @use "@db-ux/core-foundations/build/styles/variables";
 @use "@db-ux/core-foundations/build/styles/colors";
 @use "@db-ux/core-foundations/build/styles/helpers";
+@use "@db-ux/core-foundations/build/styles/icons";
 
 .db-breadcrumb {
 	// Default: Small size
@@ -33,10 +34,13 @@
 		border-radius: variables.$db-border-radius-xs; // 4px
 		background-color: colors.$db-adaptive-bg-basic-transparent-full-default;
 		color: colors.$db-adaptive-on-bg-basic-emphasis-100-default;
-		font-size: variables.$db-sizing-sm; // 14px (body-sm)
-		line-height: variables.$db-sizing-md; // 20px
-		font-family: var(--db-font-family-sans);
+		font-family: var(
+			--db-type-body-font-family,
+			var(--db-font-family-sans)
+		);
+		font-size: var(--db-type-body-font-size-md, 0.875rem); // 14px (small)
 		font-weight: 400;
+		line-height: var(--db-type-body-line-height-md, 1.5rem); // 24px
 		text-decoration: none;
 		white-space: nowrap;
 		transition: background-color 0.2s ease;
@@ -81,10 +85,16 @@
 		border-radius: variables.$db-border-radius-xs;
 		background-color: colors.$db-adaptive-bg-basic-transparent-full-default;
 		color: colors.$db-adaptive-on-bg-basic-emphasis-100-default;
-		font-size: variables.$db-sizing-sm; // 14px (body-sm)
-		line-height: variables.$db-sizing-md; // 20px
-		font-family: var(--db-font-family-sans);
+		font-family: var(
+			--db-type-body-font-family,
+			var(--db-font-family-sans)
+		);
+		font-size: var(--db-type-body-font-size-md, 0.875rem); // 14px (small)
 		font-weight: 400;
+		line-height: var(--db-type-body-line-height-md, 1.5rem); // 24px
+		font-feature-settings:
+			"liga" off,
+			"clig" off;
 		white-space: nowrap;
 		transition: background-color 0.2s ease;
 
@@ -98,7 +108,8 @@
 		}
 
 		&:focus-visible {
-			outline: 2px solid colors.$db-adaptive-on-bg-basic-emphasis-100-default;
+			outline: 2px solid
+				colors.$db-adaptive-on-bg-basic-emphasis-100-default;
 			outline-offset: 2px;
 		}
 
@@ -107,19 +118,30 @@
 		}
 	}
 
+	// Accessibility: ensure links show a clear focus indicator
+	a:focus-visible {
+		outline: 2px solid colors.$db-adaptive-on-bg-basic-emphasis-100-default;
+		outline-offset: 2px;
+	}
+
 	// Default chevron: apply when the breadcrumb does NOT request a slash
 	&:not([data-separator="slash"])
 		.db-breadcrumb-list
 		> li:not(:first-child)::before {
-		content: "›"; // chevron right glyph (U+203A)
+		@extend %icon;
+
+		--db-icon: "chevron_right";
+		--db-icon-color: #{colors.$db-adaptive-on-bg-basic-emphasis-100-default};
+		--db-icon-font-size: var(
+			--db-base-icon-font-size-md,
+			1.5rem
+		); // 24px icon size (small) = 1.5rem
+
 		display: flex;
 		align-items: center;
 		justify-content: center;
-		inline-size: variables.$db-sizing-sm; // 24px (small)
-		block-size: variables.$db-sizing-sm;
-		font-size: variables.$db-sizing-md; // 20px
-		color: colors.$db-adaptive-on-bg-basic-emphasis-100-default;
-		font-weight: 400;
+		inline-size: var(--db-icon-font-size); // match icon size
+		block-size: var(--db-icon-font-size); // match icon size
 	}
 
 	// Slash separator override when component has data-separator="slash"
@@ -131,14 +153,13 @@
 		/* reduce the inline size so the slash doesn't create extra empty box */
 		inline-size: auto;
 		block-size: auto;
-		font-size: variables.$db-sizing-sm; // match small text sizing by default
+		font-size: var(--db-sizing-functional-xs, 0.875rem); // 14px (0.875rem)
 		margin: 0 variables.$db-spacing-fixed-2xs; // small horizontal spacing
 	}
 
 	// Medium size variant
 	&[data-size="medium"] {
 		.db-breadcrumb-list {
-			// Slightly more breathing room for medium size (matches Figma spacing)
 			gap: variables.$db-spacing-fixed-xs; // 8px gap for medium
 
 			/* ensure list items are vertically centered in medium size */
@@ -149,24 +170,32 @@
 			// Increase gap between separator and item for better touch target
 			gap: variables.$db-spacing-fixed-xs; // 8px between separator and item (medium)
 
-			&:not(:first-child)::before {
-				// Make the chevron larger to match visual weight in Figma
-				inline-size: variables.$db-sizing-lg; // ~24px
-				block-size: variables.$db-sizing-lg;
-				font-size: variables.$db-sizing-lg; // use large sizing token
-				font-weight: 600;
-				color: colors.$db-adaptive-on-bg-basic-emphasis-100-default;
-			}
-
 			a,
 			span {
 				// Keep the medium padding but ensure comfortable tap/click area
 				padding: variables.$db-spacing-fixed-2xs
 					variables.$db-spacing-fixed-xs; // 4px 8px (medium)
 
-				font-size: variables.$db-sizing-md; // 16px (body-md)
-				line-height: variables.$db-sizing-lg; // 24px
+				font-size: var(
+					--db-type-body-font-size-md,
+					1rem
+				); // 16px (medium)
 			}
+		}
+
+		// Ensure medium size chevron overrides default with matching specificity
+		&:not([data-separator="slash"])
+			.db-breadcrumb-list
+			> li:not(:first-child)::before {
+			--db-icon-font-size: var(
+				--db-base-icon-font-size-lg,
+				1.75rem
+			); // 28px
+
+			inline-size: var(--db-icon-font-size);
+			block-size: var(--db-icon-font-size);
+
+			--db-icon-color: #{colors.$db-adaptive-on-bg-basic-emphasis-100-default};
 		}
 
 		// Ellipsis button styling for medium size
@@ -174,8 +203,7 @@
 			padding: variables.$db-spacing-fixed-2xs
 				variables.$db-spacing-fixed-xs; // match medium padding
 
-			font-size: variables.$db-sizing-md; // 16px (body-md)
-			line-height: variables.$db-sizing-lg; // 24px
+			font-size: var(--db-type-body-font-size-md, 1rem); // 16px (medium)
 		}
 	}
 }
