@@ -1,13 +1,13 @@
 export type ButtonExampleIdentifier =
 	| 'density'
+	| 'variant'
 	| 'disabled'
-	| 'multi-line-text'
-	| 'no-text'
+	| 'size'
 	| 'show-icon-leading'
 	| 'show-icon-trailing'
-	| 'size'
-	| 'variant'
-	| 'width';
+	| 'no-text'
+	| 'width'
+	| 'multi-line-text';
 
 export type ButtonExampleGroup =
 	| 'Content'
@@ -43,22 +43,22 @@ export const buttonExamplesMeta: ButtonExampleMeta[] = [
 		storybookNames: ['Density']
 	},
 	{
+		id: 'variant',
+		exampleName: 'Variant',
+		group: 'Variants',
+		storybookNames: ['Outlined', 'Filled', 'Ghost', 'Brand']
+	},
+	{
 		id: 'disabled',
 		exampleName: 'Disabled',
 		group: 'State',
 		storybookNames: ['Disabled']
 	},
 	{
-		id: 'multi-line-text',
-		exampleName: 'Multi-line Text With Line Breaks',
-		group: 'Content',
-		storybookNames: ['Multi-line Text']
-	},
-	{
-		id: 'no-text',
-		exampleName: 'No Text',
-		group: 'Content',
-		storybookNames: ['Icon Only']
+		id: 'size',
+		exampleName: 'Size',
+		group: 'Size',
+		storybookNames: ['Size']
 	},
 	{
 		id: 'show-icon-leading',
@@ -73,21 +73,21 @@ export const buttonExamplesMeta: ButtonExampleMeta[] = [
 		storybookNames: ['Show Icon Trailing']
 	},
 	{
-		id: 'size',
-		exampleName: 'Size',
-		group: 'Size',
-		storybookNames: ['Size']
-	},
-	{
-		id: 'variant',
-		exampleName: 'Variant',
-		group: 'Variants',
-		storybookNames: ['Outlined', 'Filled', 'Ghost', 'Brand']
+		id: 'no-text',
+		exampleName: 'No Text',
+		group: 'Content',
+		storybookNames: ['Icon Only']
 	},
 	{
 		id: 'width',
 		exampleName: 'Width',
 		group: 'Layout',
 		storybookNames: ['Width']
+	},
+	{
+		id: 'multi-line-text',
+		exampleName: 'Multi-line Text With Line Breaks',
+		group: 'Content',
+		storybookNames: ['Multi-line Text']
 	}
 ];
