@@ -32,20 +32,19 @@ export default function ButtonShowcase(props: PatternhubProps) {
 					<ButtonDensity />
 				</CardWrapperShowcase>
 			</LinkWrapperShowcase>
+			<LinkWrapperShowcase exampleName={getExampleName('variant')}>
+				<CardWrapperShowcase>
+					<ButtonVariant />
+				</CardWrapperShowcase>
+			</LinkWrapperShowcase>
 			<LinkWrapperShowcase exampleName={getExampleName('disabled')}>
 				<CardWrapperShowcase>
 					<ButtonDisabled />
 				</CardWrapperShowcase>
 			</LinkWrapperShowcase>
-			<LinkWrapperShowcase
-				exampleName={getExampleName('multi-line-text')}>
+			<LinkWrapperShowcase exampleName={getExampleName('size')}>
 				<CardWrapperShowcase>
-					<ButtonMultiLineText />
-				</CardWrapperShowcase>
-			</LinkWrapperShowcase>
-			<LinkWrapperShowcase exampleName={getExampleName('no-text')}>
-				<CardWrapperShowcase>
-					<ButtonNoText />
+					<ButtonSize />
 				</CardWrapperShowcase>
 			</LinkWrapperShowcase>
 			<LinkWrapperShowcase
@@ -60,19 +59,20 @@ export default function ButtonShowcase(props: PatternhubProps) {
 					<ButtonShowIconTrailing />
 				</CardWrapperShowcase>
 			</LinkWrapperShowcase>
-			<LinkWrapperShowcase exampleName={getExampleName('size')}>
+			<LinkWrapperShowcase exampleName={getExampleName('no-text')}>
 				<CardWrapperShowcase>
-					<ButtonSize />
-				</CardWrapperShowcase>
-			</LinkWrapperShowcase>
-			<LinkWrapperShowcase exampleName={getExampleName('variant')}>
-				<CardWrapperShowcase>
-					<ButtonVariant />
+					<ButtonNoText />
 				</CardWrapperShowcase>
 			</LinkWrapperShowcase>
 			<LinkWrapperShowcase exampleName={getExampleName('width')}>
 				<CardWrapperShowcase>
 					<ButtonWidth />
+				</CardWrapperShowcase>
+			</LinkWrapperShowcase>
+			<LinkWrapperShowcase
+				exampleName={getExampleName('multi-line-text')}>
+				<CardWrapperShowcase>
+					<ButtonMultiLineText />
 				</CardWrapperShowcase>
 			</LinkWrapperShowcase>
 		</ContainerWrapperShowcase>
