@@ -1,15 +1,17 @@
 - main:
   - heading "DBBreadcrumb" [level=1]
   - link "Size"
-  - navigation "breadcrumb":
+  - navigation "Breadcrumb":
     - list:
       - listitem:
         - link "Home"
       - listitem:
         - text: ›
         - link "Category"
-      - listitem: › Current Page
-  - navigation "breadcrumb":
+      - listitem:
+        - text: ›
+        - link "Current Page"
+  - navigation "Breadcrumb":
     - list:
       - listitem:
         - link "Home"
@@ -18,7 +20,7 @@
         - link "Category"
       - listitem: › Current Page
   - link "Separator"
-  - navigation "breadcrumb":
+  - navigation "Breadcrumb":
     - list:
       - listitem:
         - link "Home"
@@ -26,7 +28,7 @@
         - text: ›
         - link "Category"
       - listitem: › Current Page
-  - navigation "breadcrumb":
+  - navigation "Breadcrumb":
     - list:
       - listitem:
         - link "Home"
@@ -34,3 +36,31 @@
         - text: /
         - link "Category"
       - listitem: / Current Page
+  - link "Collapsed"
+  - navigation "Breadcrumb":
+    - list:
+      - listitem:
+        - link "Root"
+      - listitem:
+        - text: ›
+        - button "Expand to show all breadcrumb items": …
+      - listitem:
+        - text: ›
+        - link "Path 3"
+      - listitem:
+        - text: ›
+        - link "Current Page"
+  - link "Icons"
+  - navigation "Breadcrumb":
+    - list:
+      - listitem:
+        - link "Root"
+      - listitem:
+        - text: ›
+        - link "Settings"
+      - listitem:
+        - text: ›
+        - link "Profile"
+      - listitem:
+        - text: ›
+        - link "Notifications"
