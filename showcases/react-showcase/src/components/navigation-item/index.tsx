@@ -1,5 +1,5 @@
-import { DBNavigationItem } from '../../../../../output/react/src';
-import type { DBNavigationItemProps } from '../../../../../output/react/src/components/navigation-item/model';
+import { DBNavigationItem } from '@components';
+import type { DBNavigationItemProps } from '@components/src/components/navigation-item/model';
 import defaultComponentVariants from '../../../../shared/navigation-item.json';
 import { type BaseComponentProps } from '../base-component-data';
 import { getVariants } from '../data';

@@ -35,8 +35,8 @@ for (const group of Components) {
 				`overview`,
 				`.${group.path}/${component.name}/overview?fullscreen=true`,
 				async (page) => {
-					const firstH2 = page.locator('h1').first();
-					await expect(firstH2).toBeVisible();
+					const firstH1 = page.locator('h1').first();
+					await expect(firstH1).toBeVisible();
 				}
 			);
 		});

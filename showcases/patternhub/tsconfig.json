@@ -17,7 +17,13 @@
 		"noUnusedLocals": false,
 		"noUnusedParameters": false,
 		"jsx": "react-jsx",
-		"incremental": true
+		"incremental": true,
+		"baseUrl": ".",
+		"paths": {
+			"@components": ["../../output/react/src"],
+			"@components/src/*": ["../../output/react/src/*"],
+			"@components/components/*": ["../../output/react/src/components/*"]
+		}
 	},
 	"include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
 	"exclude": ["node_modules"]
