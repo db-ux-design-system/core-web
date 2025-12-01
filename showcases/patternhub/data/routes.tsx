@@ -23,6 +23,7 @@ import TagComponent from '../../react-showcase/src/components/tag';
 import TextareaComponent from '../../react-showcase/src/components/textarea';
 import TooltipComponent from '../../react-showcase/src/components/tooltip';
 // Import PageComponent from '../../react-showcase/src/components/page';
+import BreadcrumbComponent from '../../react-showcase/src/components/breadcrumb';
 import NavigationComponent from '../../react-showcase/src/components/navigation';
 import NavigationItemComponent from '../../react-showcase/src/components/navigation-item';
 import PopoverComponent from '../../react-showcase/src/components/popover';
@@ -135,7 +136,8 @@ const nameComponentMap = {
 	'navigation-item': (
 		<NavigationItemComponent slotCode={navigationItemCode} />
 	),
-	popover: <PopoverComponent slotCode={popoverCode} />
+	popover: <PopoverComponent slotCode={popoverCode} />,
+	breadcrumb: <BreadcrumbComponent />
 };
 
 const addComponentsToNavigationItems = (
