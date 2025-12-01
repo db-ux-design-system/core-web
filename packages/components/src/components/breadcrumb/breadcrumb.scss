@@ -206,4 +206,12 @@
 			font-size: var(--db-type-body-font-size-md, 1rem); // 16px (medium)
 		}
 	}
+
+	// Remove hover effect for icons within breadcrumb items
+	a:hover .db-icon,
+	a:focus .db-icon,
+	a:active .db-icon {
+		color: colors.$db-adaptive-on-bg-basic-emphasis-100-default;
+		background: none;
+	}
 }
