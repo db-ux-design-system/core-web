@@ -7,6 +7,7 @@
 				"className": "w-full",
 				"props": {
 					"size": "small",
+					"ariaLabel": "Breadcrumb - Small Size",
 					"children": [
 						{ "href": "#", "text": "Home" },
 						{ "href": "#", "text": "Category" },
@@ -23,6 +24,7 @@
 				"className": "w-full",
 				"props": {
 					"size": "medium",
+					"ariaLabel": "Breadcrumb - Medium Size",
 					"children": [
 						{ "href": "#", "text": "Home" },
 						{ "href": "#", "text": "Category" },
@@ -40,6 +42,7 @@
 				"className": "w-full",
 				"props": {
 					"separator": "chevron",
+					"ariaLabel": "Breadcrumb - Chevron Separator",
 					"children": [
 						{ "href": "#", "text": "Home" },
 						{ "href": "#", "text": "Category" },
@@ -52,6 +55,7 @@
 				"className": "w-full",
 				"props": {
 					"separator": "slash",
+					"ariaLabel": "Breadcrumb - Slash Separator",
 					"children": [
 						{ "href": "#", "text": "Home" },
 						{ "href": "#", "text": "Category" },
@@ -71,6 +75,7 @@
 					"size": "small",
 					"id": "123",
 					"maxItems": 3,
+					"ariaLabel": "Breadcrumb - Collapsed Navigation",
 					"ellipsisAriaLabel": "More breadcrumb items",
 					"children": [
 						{ "href": "#", "text": "Root" },
@@ -95,6 +100,7 @@
 				"className": "w-full",
 				"props": {
 					"size": "small",
+					"ariaLabel": "Breadcrumb - With Icons",
 					"children": [
 						{ "href": "#", "text": "Root", "icon": "house" },
 						{
