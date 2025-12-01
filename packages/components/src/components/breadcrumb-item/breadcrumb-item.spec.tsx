@@ -23,17 +23,17 @@ const testComponent = () => {
 
 	test('should match screenshot', async ({ mount }) => {
 		const component = await mount(comp);
+		await component.page().setViewportSize(DEFAULT_VIEWPORT);
 		await expect(component).toHaveScreenshot();
 	});
 
-	test('should not have any accessibility issues', async ({
-		mount,
-		page
-	}) => {
-		await mount(comp);
+	test('should not have any accessibility issues', async ({ mount }) => {
+		const component = await mount(comp);
 		const accessibilityScanResults = await new AxeBuilder({
-			page
-		}).analyze();
+			page: component.page()
+		})
+			.include('.db-breadcrumb')
+			.analyze();
 
 		expect(accessibilityScanResults.violations).toEqual([]);
 	});

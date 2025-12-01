@@ -108,22 +108,27 @@ test.describe('DBBreadcrumb', () => {
 			await expect(ellipsisButton).toBeVisible();
 
 			// First item should be visible
-			await expect(component.locator('a:has-text("Home")')).toBeVisible();
+			await expect(
+				component.getByRole('link', { name: 'Home', exact: true })
+			).toBeVisible();
 
 			// Middle items should not be visible in collapsed state
 			await expect(
-				component.locator('a:has-text("Products")')
+				component.getByRole('link', { name: 'Products', exact: true })
 			).not.toBeVisible();
 			await expect(
-				component.locator('a:has-text("Category")')
+				component.getByRole('link', { name: 'Category', exact: true })
 			).not.toBeVisible();
 
 			// Last items should be visible
 			await expect(
-				component.locator('a:has-text("Subcategory")')
+				component.getByRole('link', {
+					name: 'Subcategory',
+					exact: true
+				})
 			).toBeVisible();
 			await expect(
-				component.locator('span:has-text("Current Page")')
+				component.getByText('Current Page', { exact: true })
 			).toBeVisible();
 		});
 
@@ -147,18 +152,23 @@ test.describe('DBBreadcrumb', () => {
 			await expect(listItems).toHaveCount(5);
 
 			// All items should now be visible
-			await expect(component.locator('a:has-text("Home")')).toBeVisible();
 			await expect(
-				component.locator('a:has-text("Products")')
+				component.getByRole('link', { name: 'Home', exact: true })
 			).toBeVisible();
 			await expect(
-				component.locator('a:has-text("Category")')
+				component.getByRole('link', { name: 'Products', exact: true })
 			).toBeVisible();
 			await expect(
-				component.locator('a:has-text("Subcategory")')
+				component.getByRole('link', { name: 'Category', exact: true })
 			).toBeVisible();
 			await expect(
-				component.locator('span:has-text("Current Page")')
+				component.getByRole('link', {
+					name: 'Subcategory',
+					exact: true
+				})
+			).toBeVisible();
+			await expect(
+				component.getByText('Current Page', { exact: true })
 			).toBeVisible();
 
 			// Ellipsis button should not be visible anymore
@@ -237,21 +247,21 @@ test.describe('DBBreadcrumb', () => {
 			);
 		});
 
-		test('should show correct items count for different maxItems values', async ({
+		test('should show correct items count for maxItems=2', async ({
 			mount
 		}) => {
-			// maxItems = 2
 			const component2 = await mount(
 				(<DBBreadcrumb items={breadcrumbItems} maxItems={2} />) as any
 			);
-			// First + ellipsis + last 1 = 3 items
 			await expect(component2.locator('li')).toHaveCount(3);
+		});
 
-			// maxItems = 4
+		test('should show correct items count for maxItems=4', async ({
+			mount
+		}) => {
 			const component4 = await mount(
 				(<DBBreadcrumb items={breadcrumbItems} maxItems={4} />) as any
 			);
-			// First + ellipsis + last 3 = 5 items
 			await expect(component4.locator('li')).toHaveCount(5);
 		});
 
@@ -272,7 +282,7 @@ test.describe('DBBreadcrumb', () => {
 				{ href: '#', text: 'Home', icon: 'house' },
 				{ href: '#', text: 'Settings', icon: 'gear_wheel' },
 				{ href: '#', text: 'Profile', icon: 'person' },
-				{ text: 'Current', ariaCurrent: 'page' as const }
+				{ text: 'Current', ariaCurrent: 'page' as const, icon: 'dot' }
 			];
 
 			const component = await mount(
@@ -280,7 +290,8 @@ test.describe('DBBreadcrumb', () => {
 			);
 
 			// Icons should be rendered
-			const icons = component.locator('db-icon');
+			const icons = component.locator('.db-icon');
+			await expect(icons).toHaveCount(1);
 			await expect(icons.first()).toBeVisible();
 		});
 	});
