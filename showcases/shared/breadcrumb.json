@@ -6,7 +6,6 @@
 				"name": "(Default) Small",
 				"className": "w-full",
 				"props": {
-					"size": "small",
 					"ariaLabel": "Breadcrumb - Small Size",
 					"children": [
 						{ "href": "#", "text": "Home" },
@@ -72,7 +71,6 @@
 				"name": "Collapsed (maxItems=3)",
 				"className": "w-full",
 				"props": {
-					"size": "small",
 					"id": "123",
 					"maxItems": 3,
 					"ariaLabel": "Breadcrumb - Collapsed Navigation",
@@ -99,8 +97,25 @@
 				"name": "With Icons",
 				"className": "w-full",
 				"props": {
-					"size": "small",
 					"ariaLabel": "Breadcrumb - With Icons",
+					"children": [
+						{ "href": "#", "text": "Root", "icon": "house" },
+						{
+							"href": "#",
+							"text": "Settings",
+							"icon": "gear_wheel"
+						},
+						{ "href": "#", "text": "Profile", "icon": "person" },
+						{ "href": "#", "text": "Notifications", "icon": "bell" }
+					]
+				}
+			},
+			{
+				"name": "With Icons",
+				"className": "w-full",
+				"props": {
+					"ariaLabel": "Breadcrumb - With Icons",
+					"size": "medium",
 					"children": [
 						{ "href": "#", "text": "Root", "icon": "house" },
 						{

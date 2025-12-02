@@ -52,6 +52,11 @@ export default function DBBreadcrumb(props: DBBreadcrumbProps) {
 										<a href={props.items[0].href}>
 											{props.items[0].icon && (
 												<DBIcon
+													weight={
+														props.size === 'medium'
+															? '24'
+															: '20'
+													}
 													icon={props.items[0].icon}
 												/>
 											)}
@@ -61,6 +66,11 @@ export default function DBBreadcrumb(props: DBBreadcrumbProps) {
 										<span>
 											{props.items[0].icon && (
 												<DBIcon
+													weight={
+														props.size === 'medium'
+															? '24'
+															: '20'
+													}
 													icon={props.items[0].icon}
 												/>
 											)}
@@ -100,11 +110,18 @@ export default function DBBreadcrumb(props: DBBreadcrumbProps) {
 													aria-current={
 														index ===
 														props.maxItems! - 2
-															? item.ariaCurrent
+															? (item.ariaCurrent ??
+																'page')
 															: undefined
 													}>
 													{item.icon && (
 														<DBIcon
+															weight={
+																props.size ===
+																'medium'
+																	? '24'
+																	: '20'
+															}
 															icon={item.icon}
 														/>
 													)}
@@ -115,11 +132,18 @@ export default function DBBreadcrumb(props: DBBreadcrumbProps) {
 													aria-current={
 														index ===
 														props.maxItems! - 2
-															? item.ariaCurrent
+															? (item.ariaCurrent ??
+																'page')
 															: undefined
 													}>
 													{item.icon && (
 														<DBIcon
+															weight={
+																props.size ===
+																'medium'
+																	? '24'
+																	: '20'
+															}
 															icon={item.icon}
 														/>
 													)}
@@ -140,11 +164,20 @@ export default function DBBreadcrumb(props: DBBreadcrumbProps) {
 												aria-current={
 													index ===
 													props.items!.length - 1
-														? item.ariaCurrent
+														? (item.ariaCurrent ??
+															'page')
 														: undefined
 												}>
 												{item.icon && (
-													<DBIcon icon={item.icon} />
+													<DBIcon
+														weight={
+															props.size ===
+															'medium'
+																? '24'
+																: '20'
+														}
+														icon={item.icon}
+													/>
 												)}
 												{item.text}
 											</a>
@@ -153,11 +186,20 @@ export default function DBBreadcrumb(props: DBBreadcrumbProps) {
 												aria-current={
 													index ===
 													props.items!.length - 1
-														? item.ariaCurrent
+														? (item.ariaCurrent ??
+															'page')
 														: undefined
 												}>
 												{item.icon && (
-													<DBIcon icon={item.icon} />
+													<DBIcon
+														weight={
+															props.size ===
+															'medium'
+																? '24'
+																: '20'
+														}
+														icon={item.icon}
+													/>
 												)}
 												{item.text}
 											</span>

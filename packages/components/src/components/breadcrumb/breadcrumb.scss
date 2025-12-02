@@ -26,7 +26,7 @@
 
 	// Link and text styling (small)
 	a,
-	span {
+	> span:not(.db-icon) {
 		display: flex;
 		align-items: center;
 		gap: variables.$db-spacing-fixed-2xs; // 4px gap between icon and text
@@ -132,16 +132,13 @@
 
 		--db-icon: "chevron_right";
 		--db-icon-color: #{colors.$db-adaptive-on-bg-basic-emphasis-100-default};
-		--db-icon-font-size: var(
-			--db-base-icon-font-size-sm,
-			1rem
-		); // 16px icon size (small) = 1rem
+		--db-icon-font-size: 1rem; // 16px (small)
 
 		display: flex;
 		align-items: center;
 		justify-content: center;
-		inline-size: var(--db-icon-font-size); // match icon size
-		block-size: var(--db-icon-font-size); // match icon size
+		inline-size: var(--db-icon-font-size);
+		block-size: var(--db-icon-font-size);
 	}
 
 	// Slash separator override when component has data-separator="slash"
@@ -171,7 +168,7 @@
 			gap: variables.$db-spacing-fixed-2xs; // 4px between separator and item (medium)
 
 			a,
-			span {
+			> span:not(.db-icon) {
 				// Keep the medium padding but ensure comfortable tap/click area
 				padding: variables.$db-spacing-fixed-2xs
 					variables.$db-spacing-fixed-xs; // 4px 8px (medium)
@@ -189,10 +186,7 @@
 		&:not([data-separator="slash"])
 			.db-breadcrumb-list
 			> li:not(:first-child)::before {
-			--db-icon-font-size: var(
-				--db-base-icon-font-size-md,
-				1.25rem
-			); // 20px
+			--db-icon-font-size: 1.25rem; // 20px (medium)
 
 			inline-size: var(--db-icon-font-size);
 			block-size: var(--db-icon-font-size);
@@ -216,21 +210,5 @@
 	a:active .db-icon {
 		color: colors.$db-adaptive-on-bg-basic-emphasis-100-default;
 		background: none;
-	}
-
-	// Icon sizing within breadcrumb items (small size)
-	.db-icon {
-		--db-icon-font-size: var(
-			--db-base-icon-font-size-md,
-			1.25rem
-		); // 20px for item icons (small)
-	}
-
-	// Icon sizing for medium size items
-	&[data-size="medium"] .db-icon {
-		--db-icon-font-size: var(
-			--db-base-icon-font-size-lg,
-			1.5rem
-		); // 24px for item icons (medium)
 	}
 }
