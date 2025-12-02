@@ -54,3 +54,13 @@
         - link "Profile"
       - listitem:
         - link "Notifications"
+  - navigation "Breadcrumb - With Icons":
+    - list:
+      - listitem:
+        - link "Root"
+      - listitem:
+        - link "Settings"
+      - listitem:
+        - link "Profile"
+      - listitem:
+        - link "Notifications"
