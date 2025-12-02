@@ -1,7 +1,7 @@
 - main:
   - heading "DBBreadcrumb" [level=1]
   - link "Size"
-  - navigation "Breadcrumb":
+  - navigation "Breadcrumb - Small Size":
     - list:
       - listitem:
         - link "Home"
@@ -9,7 +9,7 @@
         - link "Category"
       - listitem:
         - link "Current Page"
-  - navigation "Breadcrumb":
+  - navigation "Breadcrumb - Medium Size":
     - list:
       - listitem:
         - link "Home"
@@ -17,14 +17,14 @@
         - link "Category"
       - listitem: Current Page
   - link "Separator"
-  - navigation "Breadcrumb":
+  - navigation "Breadcrumb - Chevron Separator":
     - list:
       - listitem:
         - link "Home"
       - listitem:
         - link "Category"
       - listitem: Current Page
-  - navigation "Breadcrumb":
+  - navigation "Breadcrumb - Slash Separator":
     - list:
       - listitem:
         - link "Home"
@@ -33,7 +33,7 @@
         - link "Category"
       - listitem: / Current Page
   - link "Collapsed"
-  - navigation "Breadcrumb":
+  - navigation "Breadcrumb - Collapsed Navigation":
     - list:
       - listitem:
         - link "Root"
@@ -44,7 +44,7 @@
       - listitem:
         - link "Current Page"
   - link "Icons"
-  - navigation "Breadcrumb":
+  - navigation "Breadcrumb - With Icons":
     - list:
       - listitem:
         - link "Root"
