@@ -49,7 +49,6 @@ db-card:is(.variants-card) > .db-card {
 	inline-size: 100%;
 	justify-content: center;
 	gap: var(--db-spacing-fixed-md);
-	align-items: center;
 }
 
 .variants-list > div {
