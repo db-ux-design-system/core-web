@@ -13,7 +13,7 @@ import DefaultComponent from "../DefaultComponent.vue";
 				:size="exampleProps?.size"
 				:separator="exampleProps?.separator"
 				:maxItems="exampleProps?.maxItems"
-				:items="exampleProps?.children"
+				:items="exampleProps?.items"
 				:ariaLabel="exampleProps?.ariaLabel"
 				:ellipsisAriaLabel="exampleProps?.ellipsisAriaLabel"
 				:className="exampleProps?.className"

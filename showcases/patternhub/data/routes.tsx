@@ -31,6 +31,7 @@ import SectionComponent from '../../react-showcase/src/components/section';
 import * as accordionCode from '../components/code-docs/accordion';
 import * as accordionItemCode from '../components/code-docs/accordion-item';
 import * as brandCode from '../components/code-docs/brand';
+import * as breadcrumbCode from '../components/code-docs/breadcrumb';
 import * as buttonCode from '../components/code-docs/button';
 import * as linkCode from '../components/code-docs/link';
 // Import * as iconCode from '../components/code-docs/icon';
@@ -137,7 +138,7 @@ const nameComponentMap = {
 		<NavigationItemComponent slotCode={navigationItemCode} />
 	),
 	popover: <PopoverComponent slotCode={popoverCode} />,
-	breadcrumb: <BreadcrumbComponent />
+	breadcrumb: <BreadcrumbComponent slotCode={breadcrumbCode} />
 };
 
 const addComponentsToNavigationItems = (

@@ -11,7 +11,7 @@ type BreadcrumbItem = {
 };
 
 type BreadcrumbExampleProps = {
-	children?: BreadcrumbItem[];
+	items?: BreadcrumbItem[];
 	size?: 'small' | 'medium';
 	className?: string;
 	separator?: 'chevron' | 'slash';
@@ -21,7 +21,7 @@ type BreadcrumbExampleProps = {
 };
 
 const getBreadcrumb = ({
-	children,
+	items,
 	size,
 	className,
 	separator,
@@ -34,7 +34,7 @@ const getBreadcrumb = ({
 		className={className}
 		separator={separator}
 		maxItems={maxItems}
-		items={children}
+		items={items}
 		ariaLabel={ariaLabel}
 		id={id}
 	/>

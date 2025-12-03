@@ -7,7 +7,7 @@
 				"className": "w-full",
 				"props": {
 					"ariaLabel": "Breadcrumb - Small Size",
-					"children": [
+					"items": [
 						{ "href": "#", "text": "Home" },
 						{ "href": "#", "text": "Category" },
 						{
@@ -24,7 +24,7 @@
 				"props": {
 					"size": "medium",
 					"ariaLabel": "Breadcrumb - Medium Size",
-					"children": [
+					"items": [
 						{ "href": "#", "text": "Home" },
 						{ "href": "#", "text": "Category" },
 						{ "text": "Current Page", "ariaCurrent": "page" }
@@ -42,7 +42,7 @@
 				"props": {
 					"separator": "chevron",
 					"ariaLabel": "Breadcrumb - Chevron Separator",
-					"children": [
+					"items": [
 						{ "href": "#", "text": "Home" },
 						{ "href": "#", "text": "Category" },
 						{ "text": "Current Page", "ariaCurrent": "page" }
@@ -55,7 +55,7 @@
 				"props": {
 					"separator": "slash",
 					"ariaLabel": "Breadcrumb - Slash Separator",
-					"children": [
+					"items": [
 						{ "href": "#", "text": "Home" },
 						{ "href": "#", "text": "Category" },
 						{ "text": "Current Page", "ariaCurrent": "page" }
@@ -74,7 +74,7 @@
 					"id": "123",
 					"maxItems": 3,
 					"ariaLabel": "Breadcrumb - Collapsed Navigation",
-					"children": [
+					"items": [
 						{ "href": "#", "text": "Root" },
 						{ "href": "#", "text": "Path 1" },
 						{ "href": "#", "text": "Path 2" },
@@ -97,7 +97,7 @@
 				"className": "w-full",
 				"props": {
 					"ariaLabel": "Breadcrumb - With Icons",
-					"children": [
+					"items": [
 						{ "href": "#", "text": "Root", "icon": "house" },
 						{
 							"href": "#",
@@ -115,7 +115,7 @@
 				"props": {
 					"ariaLabel": "Breadcrumb - With Icons",
 					"size": "medium",
-					"children": [
+					"items": [
 						{ "href": "#", "text": "Root", "icon": "house" },
 						{
 							"href": "#",
