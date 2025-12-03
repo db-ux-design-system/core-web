@@ -60,7 +60,7 @@
     "nodemon": "3.1.11",
     "sass": "1.85.0",
     "sassdoc": "2.7.4",
-    "tsx": "4.20.6"
+    "tsx": "4.21.0"
   },
   "publishConfig": {
     "registry": "https://registry.npmjs.org/",
