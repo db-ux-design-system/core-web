@@ -44,7 +44,7 @@
       - listitem:
         - link "Current Page"
   - link "Icons"
-  - navigation "Breadcrumb - With Icons":
+  - navigation "Breadcrumb - With Icons Small Size":
     - list:
       - listitem:
         - link "Root"
@@ -54,7 +54,7 @@
         - link "Profile"
       - listitem:
         - link "Notifications"
-  - navigation "Breadcrumb - With Icons":
+  - navigation "Breadcrumb - With Icons Medium Size":
     - list:
       - listitem:
         - link "Root"
