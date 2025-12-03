@@ -25,8 +25,8 @@
 	}
 
 	// Link and text styling (small)
-	a,
-	> span:not(.db-icon) {
+	li a,
+	li > span:not(.db-icon) {
 		display: flex;
 		align-items: center;
 		gap: variables.$db-spacing-fixed-2xs; // 4px gap between icon and text
@@ -201,9 +201,9 @@
 	}
 
 	// Remove hover effect for icons within breadcrumb items
-	a:hover .db-icon,
-	a:focus .db-icon,
-	a:active .db-icon {
+	li a:hover .db-icon,
+	li a:focus .db-icon,
+	li a:active .db-icon {
 		color: colors.$db-adaptive-on-bg-basic-emphasis-100-default;
 		background: none;
 	}
