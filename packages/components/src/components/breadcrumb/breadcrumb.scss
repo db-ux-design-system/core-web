@@ -132,13 +132,12 @@
 
 		--db-icon: "chevron_right";
 		--db-icon-color: #{colors.$db-adaptive-on-bg-basic-emphasis-100-default};
-		--db-icon-font-size: 1rem; // 16px (small)
+		--db-icon-font-weight: 16; // Font weight to load 16px icon font variant
+		--db-icon-font-size: 1rem; // Actual size: 16px (small)
 
 		display: flex;
 		align-items: center;
 		justify-content: center;
-		inline-size: var(--db-icon-font-size);
-		block-size: var(--db-icon-font-size);
 	}
 
 	// Slash separator override when component has data-separator="slash"
@@ -182,15 +181,12 @@
 			}
 		}
 
-		// Ensure medium size chevron overrides default with matching specificity
+		// Ensure medium size chevron styling
 		&:not([data-separator="slash"])
 			.db-breadcrumb-list
 			> li:not(:first-child)::before {
-			--db-icon-font-size: 1.25rem; // 20px (medium)
-
-			inline-size: var(--db-icon-font-size);
-			block-size: var(--db-icon-font-size);
-
+			--db-icon-font-weight: 20; // Font weight to load 20px icon font variant
+			--db-icon-font-size: 1.25rem; // Actual size: 20px (medium)
 			--db-icon-color: #{colors.$db-adaptive-on-bg-basic-emphasis-100-default};
 		}
 
@@ -210,5 +206,15 @@
 	a:active .db-icon {
 		color: colors.$db-adaptive-on-bg-basic-emphasis-100-default;
 		background: none;
+	}
+
+	// Ensure icon size matches weight attribute for small size (20px)
+	.db-icon[data-icon-weight="20"]::before {
+		--db-icon-font-size: 1.25rem; // 20px
+	}
+
+	// Ensure icon size matches weight attribute for medium size (24px)
+	&[data-size="medium"] .db-icon[data-icon-weight="24"]::before {
+		--db-icon-font-size: 1.5rem; // 24px
 	}
 }
