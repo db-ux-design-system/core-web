@@ -94,10 +94,10 @@
 		"name": "Icons",
 		"examples": [
 			{
-				"name": "With Icons",
+				"name": "With Icons (Small)",
 				"className": "w-full",
 				"props": {
-					"ariaLabel": "Breadcrumb - With Icons",
+					"ariaLabel": "Breadcrumb - With Icons Small Size",
 					"items": [
 						{ "href": "#", "text": "Root", "icon": "house" },
 						{
@@ -111,10 +111,10 @@
 				}
 			},
 			{
-				"name": "With Icons",
+				"name": "With Icons (Medium)",
 				"className": "w-full",
 				"props": {
-					"ariaLabel": "Breadcrumb - With Icons",
+					"ariaLabel": "Breadcrumb - With Icons Medium Size",
 					"size": "medium",
 					"items": [
 						{ "href": "#", "text": "Root", "icon": "house" },
