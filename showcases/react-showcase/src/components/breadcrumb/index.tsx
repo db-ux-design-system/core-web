@@ -17,6 +17,7 @@ type BreadcrumbExampleProps = {
 	separator?: 'chevron' | 'slash';
 	maxItems?: number;
 	ariaLabel?: string;
+	ellipsisAriaLabel?: string;
 	id?: string;
 };
 
@@ -27,6 +28,7 @@ const getBreadcrumb = ({
 	separator,
 	maxItems,
 	ariaLabel,
+	ellipsisAriaLabel,
 	id
 }: BreadcrumbExampleProps) => (
 	<DBBreadcrumb
@@ -36,6 +38,7 @@ const getBreadcrumb = ({
 		maxItems={maxItems}
 		items={items}
 		ariaLabel={ariaLabel}
+		ellipsisAriaLabel={ellipsisAriaLabel}
 		id={id}
 	/>
 );
