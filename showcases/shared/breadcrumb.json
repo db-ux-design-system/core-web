@@ -74,7 +74,6 @@
 					"id": "123",
 					"maxItems": 3,
 					"ariaLabel": "Breadcrumb - Collapsed Navigation",
-					"ellipsisAriaLabel": "More breadcrumb items",
 					"children": [
 						{ "href": "#", "text": "Root" },
 						{ "href": "#", "text": "Path 1" },
