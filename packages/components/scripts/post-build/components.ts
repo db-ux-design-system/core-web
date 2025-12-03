@@ -358,7 +358,23 @@ export const getComponents = (): Component[] => [
 	{
 		name: 'breadcrumb',
 		overwrites: {
-			stencil: [{ from: 'import { DBIcon } from "../icon";\n', to: '' }],
+			stencil: [
+				{ from: 'import { DBIcon } from "../icon";\n', to: '' },
+				// Add Host import for ARIA transparency
+				{
+					from: 'import { Component, h, Fragment, Prop, State } from "@stencil/core";',
+					to: 'import { Component, h, Fragment, Host, Prop, State } from "@stencil/core";'
+				},
+				// Wrap render output in Host with role="presentation" to make custom element ARIA-transparent
+				{
+					from: '  render() {\n    return (',
+					to: '  render() {\n    return (\n      <Host role="presentation">'
+				},
+				{
+					from: '      </nav>\n    );',
+					to: '      </nav>\n      </Host>\n    );'
+				}
+			],
 			angular: [
 				// Fix TypeScript strict null checks by adding non-null assertions
 				// Within the conditional block where items() is checked, subsequent accesses need !
