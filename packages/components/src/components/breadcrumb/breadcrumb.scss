@@ -156,7 +156,7 @@
 	// Medium size variant
 	&[data-size="medium"] {
 		.db-breadcrumb-list {
-			gap: variables.$db-spacing-fixed-2xs; // 4px gap for medium
+			gap: variables.$db-spacing-fixed-xs; // 8px gap for medium
 
 			/* ensure list items are vertically centered in medium size */
 			align-items: center;
@@ -164,7 +164,7 @@
 
 		li {
 			// Increase gap between separator and item for better touch target
-			gap: variables.$db-spacing-fixed-2xs; // 4px between separator and item (medium)
+			gap: variables.$db-spacing-fixed-xs; // 8px between separator and item (medium)
 
 			a,
 			> span:not(.db-icon) {
