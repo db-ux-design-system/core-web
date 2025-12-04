@@ -33,8 +33,18 @@
 }
 
 // We'll set the color scheme (https://developer.mozilla.org/en-US/docs/Web/CSS/color-scheme) to light and dark if it's not already set as a meta tag in the head, which would be the recommended way.
-:root:not(:has([name="color-scheme"])) {
-	color-scheme: light dark;
+:root {
+	color-scheme: var(--db-color-scheme, light dark);
+
+	&:has([name="color-scheme"][content="light dark"]) {
+		--db-color-scheme: light dark;
+	}
+	&:has([name="color-scheme"][content="light"]) {
+		--db-color-scheme: light;
+	}
+	&:has([name="color-scheme"][content="dark"]) {
+		--db-color-scheme: dark;
+	}
 }
 
 /* TODO: Switch to attr() as soon as this one is fully supported */
