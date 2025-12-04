@@ -11,7 +11,7 @@
 		display: flex;
 		flex-wrap: wrap;
 		align-items: flex-start;
-		gap: variables.$db-spacing-fixed-3xs; // 2px gap for small
+		gap: variables.$db-spacing-fixed-2xs; // 2px gap for small
 		list-style: none;
 		margin: 0;
 		padding: 0;
@@ -21,7 +21,7 @@
 	li {
 		display: flex;
 		align-items: center;
-		gap: variables.$db-spacing-fixed-3xs; // 2px between separator and item (small)
+		gap: variables.$db-spacing-fixed-2xs; // 2px between separator and item (small)
 	}
 
 	// Link and text styling (small)
@@ -30,7 +30,7 @@
 		display: flex;
 		align-items: center;
 		gap: variables.$db-spacing-fixed-2xs; // 4px gap between icon and text
-		padding: variables.$db-spacing-fixed-3xs variables.$db-spacing-fixed-2xs; // 2px 4px (small)
+		padding: variables.$db-spacing-fixed-2xs variables.$db-spacing-fixed-2xs; // 2px 4px (small)
 		border-radius: variables.$db-border-radius-xs; // 4px
 		background-color: colors.$db-adaptive-bg-basic-transparent-full-default;
 		color: colors.$db-adaptive-on-bg-basic-emphasis-100-default;
@@ -81,7 +81,7 @@
 		cursor: pointer;
 		display: flex;
 		align-items: center;
-		padding: variables.$db-spacing-fixed-3xs variables.$db-spacing-fixed-2xs; // match link padding (small)
+		padding: variables.$db-spacing-fixed-2xs variables.$db-spacing-fixed-2xs; // match link padding (small)
 		border-radius: variables.$db-border-radius-xs;
 		background-color: colors.$db-adaptive-bg-basic-transparent-full-default;
 		color: colors.$db-adaptive-on-bg-basic-emphasis-100-default;
