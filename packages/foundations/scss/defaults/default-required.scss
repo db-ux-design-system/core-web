@@ -39,9 +39,11 @@
 	&:has([name="color-scheme"][content="light dark"]) {
 		--db-color-scheme: light dark;
 	}
+	
 	&:has([name="color-scheme"][content="light"]) {
 		--db-color-scheme: light;
 	}
+	
 	&:has([name="color-scheme"][content="dark"]) {
 		--db-color-scheme: dark;
 	}
