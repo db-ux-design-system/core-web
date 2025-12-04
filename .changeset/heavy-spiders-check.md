@@ -7,4 +7,4 @@
 "@db-ux/v-core-components": patch
 ---
 
-fix(SASS): return typed values from scss functions instead of strings
+fix(SASS): return typed values from scss functions `px-to-rem` and `px-to-em` instead of strings
