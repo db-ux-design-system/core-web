@@ -32,11 +32,6 @@
 	}
 }
 
-// We'll set the color scheme (https://developer.mozilla.org/en-US/docs/Web/CSS/color-scheme) to light and dark if it's not already set as a meta tag in the head, which would be the recommended way.
-html:not(:has([name="color-scheme"])) {
-	color-scheme: light dark;
-}
-
 /* TODO: Switch to attr() as soon as this one is fully supported */
 [data-mode="light"] {
 	color-scheme: light;
