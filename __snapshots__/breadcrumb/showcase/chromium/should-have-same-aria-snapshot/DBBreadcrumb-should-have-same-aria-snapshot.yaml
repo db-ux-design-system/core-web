@@ -1,6 +1,8 @@
 - main:
   - heading "DBBreadcrumb" [level=1]
   - link "Size"
+  - navigation "Breadcrumb":
+    - list:
   - navigation "Breadcrumb - Small Size":
     - list:
       - listitem:
@@ -9,6 +11,13 @@
         - link "Category"
       - listitem:
         - link "Current Page"
+  - navigation "Breadcrumb":
+    - list:
+      - listitem:
+        - link "Home"
+      - listitem:
+        - link "Category"
+      - listitem: Current Page
   - navigation "Breadcrumb - Medium Size":
     - list:
       - listitem:
@@ -17,6 +26,13 @@
         - link "Category"
       - listitem: Current Page
   - link "Separator"
+  - navigation "Breadcrumb":
+    - list:
+      - listitem:
+        - link "Home"
+      - listitem:
+        - link "Category"
+      - listitem: Current Page
   - navigation "Breadcrumb - Chevron Separator":
     - list:
       - listitem:
@@ -24,6 +40,14 @@
       - listitem:
         - link "Category"
       - listitem: Current Page
+  - navigation "Breadcrumb":
+    - list:
+      - listitem:
+        - link "Home"
+      - listitem:
+        - text: /
+        - link "Category"
+      - listitem: / Current Page
   - navigation "Breadcrumb - Slash Separator":
     - list:
       - listitem:
@@ -33,6 +57,16 @@
         - link "Category"
       - listitem: / Current Page
   - link "Collapsed"
+  - navigation "Breadcrumb":
+    - list:
+      - listitem:
+        - link "Root"
+      - listitem:
+        - button "Expand to show all breadcrumb items": …
+      - listitem:
+        - link "Path 3"
+      - listitem:
+        - link "Current Page"
   - navigation "Breadcrumb - Collapsed Navigation":
     - list:
       - listitem:
@@ -44,7 +78,27 @@
       - listitem:
         - link "Current Page"
   - link "Icons"
+  - navigation "Breadcrumb":
+    - list:
+      - listitem:
+        - link "Root"
+      - listitem:
+        - link "Settings"
+      - listitem:
+        - link "Profile"
+      - listitem:
+        - link "Notifications"
   - navigation "Breadcrumb - With Icons Small Size":
+    - list:
+      - listitem:
+        - link "Root"
+      - listitem:
+        - link "Settings"
+      - listitem:
+        - link "Profile"
+      - listitem:
+        - link "Notifications"
+  - navigation "Breadcrumb":
     - list:
       - listitem:
         - link "Root"
