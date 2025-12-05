@@ -61,9 +61,9 @@
     "nodemon": "3.1.11",
     "prettier": "3.7.3",
     "sass": "1.85.0",
-    "tsx": "4.20.6",
+    "tsx": "4.21.0",
     "typescript": "5.9.3",
-    "vite": "7.2.4"
+    "vite": "7.2.6"
   },
   "publishConfig": {
     "registry": "https://registry.npmjs.org/",
