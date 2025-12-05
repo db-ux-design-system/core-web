@@ -12,10 +12,10 @@ export default function DBSection(props: DBSectionProps) {
 		<section
 			ref={_ref}
 			id={props.id}
-			class={cls('db-section', props.className)}
+			class={cls('db-section', props.className, props.id)}
 			data-spacing={props.spacing || 'medium'}
 			data-width={props.width}>
-			{props.children}
+			{props.children}{props.id}
 		</section>
 	);
 }
