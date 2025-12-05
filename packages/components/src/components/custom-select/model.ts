@@ -1,5 +1,6 @@
 import {
 	BaseFormProps,
+	ChangeEvent,
 	ClickEvent,
 	CloseEventState,
 	CustomFormProps,
@@ -283,8 +284,8 @@ export type DBCustomSelectDefaultState = {
 	) => void;
 	handleSummaryFocus: () => void;
 	handleSelect: (value?: string) => void;
-	handleSelectAll: (event: InputEvent<HTMLInputElement>) => void;
-	handleClearAll: (event: InputEvent<HTMLInputElement>) => void;
+	handleSelectAll: (event: ChangeEvent<HTMLInputElement>) => void;
+	handleClearAll: (event: ChangeEvent<HTMLInputElement>) => void;
 	handleDropdownToggle: (event: GeneralEvent<HTMLDetailsElement>) => void;
 	handleDocumentClose: (event: GeneralEvent<HTMLElement>) => void;
 	handleOpenByKeyboardFocus: () => void;
@@ -293,7 +294,9 @@ export type DBCustomSelectDefaultState = {
 		event: GeneralKeyboardEvent<HTMLDetailsElement>
 	) => void;
 	handleArrowDownUp: (event: GeneralKeyboardEvent<HTMLElement>) => void;
-	handleSearch: (valueOrEvent?: InputEvent<HTMLInputElement> | string | void) => void;
+	handleSearch: (
+		valueOrEvent?: InputEvent<HTMLInputElement> | string | void
+	) => void;
 	handleOptionSelected: (_values: string[]) => void;
 	getSelectAllLabel: () => string;
 	selectAllChecked: boolean;
