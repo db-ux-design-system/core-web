@@ -1,7 +1,6 @@
 /* eslint-disable unicorn/prefer-top-level-await, no-await-in-loop */
 
 import FS from 'node:fs';
-import writeCodeFiles from './get-code-files.js';
 import getHowToFile from './get-how-to-file.js';
 import getMigrationFile from './get-migration-file.js';
 import getPropertiesFile from './get-properties-file.js';
@@ -82,11 +81,6 @@ const generateDocsMdx = async () => {
 				if (!FS.existsSync('./components/code-docs')) {
 					FS.mkdirSync('./components/code-docs');
 				}
-
-				await writeCodeFiles(
-					`./components/code-docs/${componentName}`,
-					componentName
-				);
 
 				// Write old files for Marketingportal
 

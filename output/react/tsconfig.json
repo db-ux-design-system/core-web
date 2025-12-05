@@ -21,7 +21,7 @@
 		"target": "es2015"
 	},
 	"include": ["src/**/*.ts", "src/**/*.tsx"],
-	"exclude": ["node_modules", "src/**/*.spec.tsx"],
+	"exclude": ["node_modules", "src/**/*.spec.tsx", "src/**/*.example.tsx", "src/**/*.showcase.tsx"],
 	"compileOnSave": false,
 	"buildOnSave": false
 }

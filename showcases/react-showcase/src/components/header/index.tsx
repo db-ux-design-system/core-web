@@ -5,8 +5,8 @@ import {
 	DBLink,
 	DBNavigation,
 	DBNavigationItem
-} from '../../../../../output/react/src';
-import { type DBHeaderProps } from '../../../../../output/react/src/components/header/model';
+} from '@components';
+import { type DBHeaderProps } from '@components/src/components/header/model';
 import defaultComponentVariants from '../../../../shared/header.json';
 import { type BaseComponentProps } from '../base-component-data';
 import { getVariants } from '../data';
