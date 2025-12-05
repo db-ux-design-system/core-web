@@ -35,16 +35,17 @@
 // We'll set the color scheme (https://developer.mozilla.org/en-US/docs/Web/CSS/color-scheme) to light and dark if it's not already set as a meta tag in the head, which would be the recommended way.
 :root {
 	color-scheme: var(--db-color-scheme, light dark);
-
-	// We need to set the CSS value based on an existing HTML meta tag definition because the previous CSS definition would override that HTML declaration.
+}
+// We need to set the CSS value based on an existing HTML meta tag definition because the previous CSS definition would override that HTML declaration.
+body {
 	&:has([name="color-scheme"][content="light dark"]) {
 		--db-color-scheme: light dark;
 	}
-	
+
 	&:has([name="color-scheme"][content="light"]) {
 		--db-color-scheme: light;
 	}
-	
+
 	&:has([name="color-scheme"][content="dark"]) {
 		--db-color-scheme: dark;
 	}
