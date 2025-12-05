@@ -1,20 +1,12 @@
-import {
-	useDefaultProps,
-	useMetadata,
-	useRef,
-	useStore
-} from '@builder.io/mitosis';
+import { useDefaultProps, useMetadata, useRef } from '@builder.io/mitosis';
 import { cls } from '../../utils';
-import { DBSectionProps, DBSectionState } from './model';
+import { DBSectionProps } from './model';
 
 useMetadata({});
 useDefaultProps<DBSectionProps>({});
 
 export default function DBSection(props: DBSectionProps) {
 	const _ref = useRef<HTMLDivElement | any>(null);
-	// jscpd:ignore-start
-	const state = useStore<DBSectionState>({});
-	// jscpd:ignore-end
 
 	return (
 		<section
