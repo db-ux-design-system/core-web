@@ -36,37 +36,37 @@ jobs:
       contents: write
     steps:
       - name: ⏬ Checkout repo
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
 
       - name: 🔄 Init Cache
         uses: ./.github/actions/npm-cache
 
       - name: ⏬ Download patternhub
-        uses: actions/download-artifact@v5
+        uses: actions/download-artifact@v6
         with:
           name: db-ux-patternhub
           path: build-showcases/patternhub
 
       - name: ⏬ Download composition-storybook
-        uses: actions/download-artifact@v5
+        uses: actions/download-artifact@v6
         with:
           name: db-ux-composition-storybook
           path: build-storybooks/composition-storybook
 
       - name: ⏬ Download angular-storybook
-        uses: actions/download-artifact@v5
+        uses: actions/download-artifact@v6
         with:
           name: db-ux-angular-storybook
           path: build-storybooks/angular-storybook
 
       - name: ⏬ Download react-storybook
-        uses: actions/download-artifact@v5
+        uses: actions/download-artifact@v6
         with:
           name: db-ux-react-storybook
           path: build-storybooks/react-storybook
 
       - name: ⏬ Download vue-storybook
-        uses: actions/download-artifact@v5
+        uses: actions/download-artifact@v6
         with:
           name: db-ux-vue-storybook
           path: build-storybooks/vue-storybook

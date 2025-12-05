@@ -120,6 +120,10 @@
 					opacity: variables.$db-opacity-lg;
 				}
 			}
+
+			> span > span::after {
+				content: ": ";
+			}
 		}
 	}
 

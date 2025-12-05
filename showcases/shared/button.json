@@ -150,5 +150,32 @@
 				}
 			}
 		]
+	},
+	{
+		"name": "Multi-line Text With Line Breaks",
+		"examples": [
+			{
+				"name": "Multi-line Text With Automatic Line Breaks",
+				"style": { "width": "300px" },
+				"props": {
+					"width": "full"
+				}
+			},
+			{
+				"name": "Multi-line Text With Automatic Line Breaks and Icon",
+				"style": { "width": "300px" },
+				"props": {
+					"width": "full",
+					"icon": "x_placeholder"
+				}
+			},
+			{
+				"name": "Button Small Multi-line Text With Automatic Line Breaks",
+				"style": { "width": "300px" },
+				"props": {
+					"size": "small"
+				}
+			}
+		]
 	}
 ]

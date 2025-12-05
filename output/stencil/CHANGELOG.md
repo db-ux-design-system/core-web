@@ -1,5 +1,59 @@
 # @db-ux/wc-core-components
 
+## 4.2.3
+
+### Patch Changes
+
+- fix(SASS): return typed values from scss functions `px-to-rem` and `px-to-em` instead of strings - [see commit e1be60a](https://github.com/db-ux-design-system/core-web/commit/e1be60a871596107d8026390b194f0730c84a8ad)
+
+- refactor(css): replacing slow selector - [see commit 1133c21](https://github.com/db-ux-design-system/core-web/commit/1133c216ab5ec802241c6986fc9287ff22a287b0)
+
+- fix: DBSection ignoring `id` prop during SSR - [see commit 254a705](https://github.com/db-ux-design-system/core-web/commit/254a70507422b070c35b69487323b797de3c73a9)
+
+- fix(textarea): "responsiveness" due to CSS selector - [see commit c1104df](https://github.com/db-ux-design-system/core-web/commit/c1104dfe242a455ea8cf80716322a591e6e6e109)
+
+## 4.2.2
+
+### Patch Changes
+
+- fix(form elements): `valid` background- and border-colors - [see commit 8f07e55](https://github.com/db-ux-design-system/core-web/commit/8f07e55f2155fcb619198857397ce354f90c4803)
+
+- fix: set DBTabItem internal state `_selected` correctly - [see commit f7625cb](https://github.com/db-ux-design-system/core-web/commit/f7625cbd9d64513527e826c9d2c1ef42b2734a4b):
+
+      - Now also sets aria-selected=true|false correctly which improves screen reader behaviour
+
+## 4.2.1
+
+### Patch Changes
+
+- refactor(DBSwitch): Also toggle on pressing Enter key, not just Space - [see commit 95a7569](https://github.com/db-ux-design-system/core-web/commit/95a7569121ccf0fef318df4f23941c3f48a4a074)
+
+## 4.2.0
+
+### Minor Changes
+
+- feat(DBHeader): Passthrough property `closeButtonText` for the close button within the inner `DBDrawer`. - [see commit 211cf1d](https://github.com/db-ux-design-system/core-web/commit/211cf1d1fa98938d5bce732863da8bb3f7b75f98)
+
+## 4.1.0
+
+### Minor Changes
+
+- refactor(notification): update and simplify grid layout for block link variant - [see commit cb83f96](https://github.com/db-ux-design-system/core-web/commit/cb83f966eaf29c85b4cf0079750bdd563f216d6e)
+
+- fix(DBCustomSelect): properly announce selected options - [see commit 773edeb](https://github.com/db-ux-design-system/core-web/commit/773edeb943a085eb79e1c8d59059137b2830fbf0):
+  - feat(DBCustomSelect): introduce new property `selectedPrefix`
+
+### Patch Changes
+
+- fix(DBCustomSelect): automatically handle form reset events - [see commit 6af5246](https://github.com/db-ux-design-system/core-web/commit/6af5246b3b2e6febdc6ff6342ba1a8eb10184d14):
+  - An event listener is now added for every form component (input, custom-select, etc.) when a `form` property is passed.
+  - This listener detects form resets and updates the component's internal value/checked state accordingly.
+  - > **Note**: This does not work for `ngModel` in Angular.
+
+- fix(button): Replace fixed height with min-height for buttons to allow dynamic height adjustment when text wraps - [see commit d1fd2c4](https://github.com/db-ux-design-system/core-web/commit/d1fd2c4e58a5ed6f75fab44700cd2d93c7232474)
+
+- fix(input): Date or time types – initial value gets displayed as placeholder [see commit e3c7ce7](e3c7ce7718803624557bc8fc66f7b662b42ff0be)
+
 ## 4.0.4
 
 ### Patch Changes

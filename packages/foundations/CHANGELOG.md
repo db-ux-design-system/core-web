@@ -1,9 +1,32 @@
 # @db-ux/core-foundations
 
-## 4.0.4
+## 4.2.3
+
+### Patch Changes
+
+- fix(SASS): return typed values from scss functions `px-to-rem` and `px-to-em` instead of strings - [see commit e1be60a](https://github.com/db-ux-design-system/core-web/commit/e1be60a871596107d8026390b194f0730c84a8ad)
+
+- refactor(css): replacing slow selector - [see commit 1133c21](https://github.com/db-ux-design-system/core-web/commit/1133c216ab5ec802241c6986fc9287ff22a287b0)
+
+## 4.2.2
 
 _version bump_
 
+## 4.2.1
+
+_version bump_
+
+## 4.2.0
+
+_version bump_
+
+## 4.1.0
+
+_version bump_
+
+## 4.0.4
+
+_version bump_
 
 ## 4.0.3
 
@@ -14,28 +37,28 @@ _version bump_
 ### Patch Changes
 
 - chore: update instructions files for better copilot outputs - [see commit e4bc905](https://github.com/db-ux-design-system/core-web/commit/e4bc90508479387371d816d5776f9f568aa5fb82):
-  - fix: add some missing variables
+    - fix: add some missing variables
 
 - fix(tailwind): add individual color theme files for all color variants - [see commit e8d58bd](https://github.com/db-ux-design-system/core-web/commit/e8d58bde01039a3d233105c2c72efa71c619c4b4):
-  - Create separate CSS files for each color
-  - Move colors.css to colors/ subdirectory with adaptive theme
-  - Add colors/index.css that imports all color variants
-  - Update theme/index.css to import from colors/index.css
-    - burgundy
-    - critical
-    - cyan
-    - green
-    - informational
-    - light-green
-    - neutral
-    - orange
-    - pink
-    - red
-    - successful
-    - turquoise
-    - violet
-    - warning
-    - yellow
+    - Create separate CSS files for each color
+    - Move colors.css to colors/ subdirectory with adaptive theme
+    - Add colors/index.css that imports all color variants
+    - Update theme/index.css to import from colors/index.css
+        - burgundy
+        - critical
+        - cyan
+        - green
+        - informational
+        - light-green
+        - neutral
+        - orange
+        - pink
+        - red
+        - successful
+        - turquoise
+        - violet
+        - warning
+        - yellow
 
 ## 4.0.1
 
@@ -62,7 +85,7 @@ _version bump_
 ### Patch Changes
 
 - enabled [`@db-ux/agent-cli`](https://www.npmjs.com/package/@db-ux/agent-cli) for every package - [see commit 0233048](https://github.com/db-ux-design-system/core-web/commit/023304869e61f5a506dca66a22d69e5f3d70f4d0):
-  - auto-generate/auto-update `.github/copilot-instructions.md`, to ensure GitHub Copilot uses DB UX Components for code generation
+    - auto-generate/auto-update `.github/copilot-instructions.md`, to ensure GitHub Copilot uses DB UX Components for code generation
 
 ## 3.1.17
 

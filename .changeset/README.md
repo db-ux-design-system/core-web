@@ -110,9 +110,7 @@ We handle pre-releases without changesets.
 Instead, create a new [GitHub release](https://github.com/db-ux-design-system/core-web/releases/new)
 with a tag like `1.2.3-next0` and the CI will pick it up and publish it to npm with the tag `next`.
 
-
 ---
-
 
 ## 🔑 Cheatsheet
 

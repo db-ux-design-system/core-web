@@ -80,7 +80,20 @@ $db-min-inline-size: var(
 				[type="month"],
 				[type="week"],
 				[type="time"]
-			):not(:user-valid)::-webkit-datetime-edit {
+			):not(
+				:user-valid,
+				/* we need to set those values, as the element might have an empty HTML value attribute */
+				[value*="1"],
+				[value*="2"],
+				[value*="3"],
+				[value*="4"],
+				[value*="5"],
+				[value*="6"],
+				[value*="7"],
+				[value*="8"],
+				[value*="9"],
+				[value*="0"]
+			)::-webkit-datetime-edit {
 			@content;
 		}
 	}
@@ -88,15 +101,15 @@ $db-min-inline-size: var(
 
 @mixin set-floating-label-overwrites($selector) {
 	&[data-variant="floating"] {
-		@include get-validity($selector) {
+		@include get-validity($selector, "valid") {
 			label {
-				color: var(--db-successful-on-bg-basic-emphasis-80-default);
+				color: var(--db-successful-on-bg-basic-emphasis-90-default);
 			}
 		}
 
 		@include get-validity($selector, "invalid") {
 			label {
-				color: var(--db-critical-on-bg-basic-emphasis-80-default);
+				color: var(--db-critical-on-bg-basic-emphasis-90-default);
 			}
 		}
 
@@ -363,13 +376,8 @@ $input-valid-types:
 
 	@include set-floating-label-overwrites($selector);
 
-	@include get-validity($selector) {
-		&:has(
-			> .db-infotext[data-semantic="successful"],
-			> db-infotext > .db-infotext[data-semantic="successful"]
-		) {
-			@include get-validity-color($selector, "valid");
-		}
+	@include get-validity($selector, "valid") {
+		@include get-validity-color($selector, "valid");
 	}
 
 	@include get-validity($selector, "invalid") {

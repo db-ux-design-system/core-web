@@ -35,12 +35,12 @@
     "build-showcases:react": "npm run build --workspace=react-showcase",
     "build-showcases:stencil": "npm run build --workspace=stencil-showcase",
     "build-showcases:vue": "npm run build --workspace=vue-showcase",
-    "build:agent-cli": "npm run build --workspace=@db-ux/agent-cli",
     "build-storybooks": "npm-run-all --parallel build-storybooks:*",
     "build-storybooks:_composition": "npm run build --workspace=composition-storybook",
     "build-storybooks:angular": "npm run build --workspace=angular-storybook",
     "build-storybooks:react": "npm run build --workspace=react-storybook",
     "build-storybooks:vue": "npm run build --workspace=vue-storybook",
+    "build:agent-cli": "npm run build --workspace=@db-ux/agent-cli",
     "build:components": "npm run build --workspace=@db-ux/core-components",
     "build:foundations": "npm run build --workspace=@db-ux/core-foundations",
     "build:migration": "npm run build --workspace=@db-ux/core-migration",
@@ -90,20 +90,20 @@
     "update:icon-fonts": "npm-run-all generate:icon-fonts generate:icon-types"
   },
   "dependencies": {
-    "postcss-scss": "^4.0.9"
+    "postcss-scss": "4.0.9"
   },
   "devDependencies": {
-    "@inquirer/prompts": "7.9.0",
+    "@inquirer/prompts": "8.0.1",
     "dotenv": "17.2.3",
     "find-versions": "6.0.0",
-    "glob": "11.0.3",
-    "inquirer": "12.10.0",
+    "glob": "11.1.0",
+    "inquirer": "13.0.1",
     "replace-in-file": "8.3.0",
     "sassdoc": "2.7.4",
-    "tar": "7.5.1",
-    "typedoc": "^0.28.14",
-    "typedoc-plugin-markdown": "^4.6.4",
-    "typedoc-plugin-merge-modules": "^7.0.0",
+    "tar": "7.5.2",
+    "typedoc": "0.28.14",
+    "typedoc-plugin-markdown": "4.6.4",
+    "typedoc-plugin-merge-modules": "7.0.0",
     "vitest": "3.2.4"
   }
 }
