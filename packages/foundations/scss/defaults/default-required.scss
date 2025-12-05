@@ -34,8 +34,23 @@
 }
 
 // We'll set the color scheme (https://developer.mozilla.org/en-US/docs/Web/CSS/color-scheme) to light and dark if it's not already set as a meta tag in the head, which would be the recommended way.
-html:not(:has(> head > meta[name="color-scheme"])) {
-	color-scheme: light dark;
+:root {
+	color-scheme: var(--db-color-scheme, light dark);
+}
+
+// We need to set the CSS value based on an existing HTML meta tag definition because the previous CSS definition would override that HTML declaration.
+head {
+	&:has([name="color-scheme"][content*="light"][content*="dark"]) + body {
+		--db-color-scheme: light dark;
+	}
+
+	&:has([name="color-scheme"][content="light"]) + body {
+		--db-color-scheme: light;
+	}
+
+	&:has([name="color-scheme"][content="dark"]) + body {
+		--db-color-scheme: dark;
+	}
 }
 
 /* TODO: Switch to attr() as soon as this one is fully supported */
@@ -67,7 +82,9 @@ body {
 }
 
 // Box sizing
-html {
+*,
+::before,
+::after {
 	box-sizing: var(--db-box-sizing, border-box);
 }
 
@@ -77,12 +94,6 @@ html {
 	-webkit-font-smoothing: antialiased;
 	font-synthesis: none;
 	text-rendering: optimizelegibility;
-}
-
-*,
-::before,
-::after {
-	box-sizing: inherit;
 }
 
 // Make sure every elements has the current color from container above
