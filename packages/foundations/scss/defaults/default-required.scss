@@ -12,7 +12,8 @@
 
 /* stylelint-disable-next-line at-rule-prelude-no-invalid,layer-name-pattern */
 @layer #{helpers.$layer-variables} {
-	:is(:root, :host) {
+	:root,
+	:host {
 		@extend %db-font-size-md;
 
 		/* COLORS */
