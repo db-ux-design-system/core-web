@@ -6,7 +6,8 @@ const onClickPlugin = require('../plugins/on-click.cjs');
 module.exports = {
 	typescript: true,
 	attributePassing: {
-		enabled: false
+		enabled: true,
+		customRef: '_ref'
 	},
 	plugins: [onClickPlugin]
 };
