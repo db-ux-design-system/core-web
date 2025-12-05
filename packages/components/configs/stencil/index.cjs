@@ -5,15 +5,8 @@ const onClickPlugin = require('../plugins/on-click.cjs');
  */
 module.exports = {
 	typescript: true,
-	attributePassing: (component) => {
-		// Disable attribute passing for breadcrumb to prevent Host wrapper generation
-		if (component?.path?.includes('/breadcrumb/breadcrumb')) {
-			return { enabled: false };
-		}
-		return {
-			enabled: true,
-			customRef: '_ref'
-		};
+	attributePassing: {
+		enabled: false
 	},
 	plugins: [onClickPlugin]
 };
