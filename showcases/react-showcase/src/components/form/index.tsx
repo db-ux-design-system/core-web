@@ -118,6 +118,7 @@ const FormComponent = () => {
 							label="Date input"
 							message="Description"
 							name="input-date-name"
+							value={dateinput}
 							onChange={(event) => {
 								setDateinput(event.target.value);
 							}}
@@ -254,6 +255,7 @@ const FormComponent = () => {
 							type="button"
 							onClick={() => {
 								setInput('reset');
+								setDateinput('');
 							}}>
 							Reset and Toggle
 						</DBButton>

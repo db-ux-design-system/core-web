@@ -1,6 +1,6 @@
 {
   "name": "@db-ux/v-core-components",
-  "version": "4.2.1",
+  "version": "4.2.3",
   "type": "module",
   "description": "Vue components for @db-ux/core-components",
   "repository": {
@@ -44,9 +44,9 @@
     "@playwright/experimental-ct-vue": "1.56.1",
     "@vitejs/plugin-vue": "6.0.1",
     "replace-in-file": "8.3.0",
-    "tsx": "4.20.6",
+    "tsx": "4.21.0",
     "typescript": "5.9.3",
-    "vite": "7.2.2",
+    "vite": "7.2.6",
     "vue": "3.5.24",
     "vue-tsc": "3.1.3"
   },
@@ -57,7 +57,7 @@
   "sideEffects": false,
   "source": "src/index.ts",
   "dependencies": {
-    "@db-ux/core-components": "4.2.1",
-    "@db-ux/core-foundations": "4.2.1"
+    "@db-ux/core-components": "4.2.3",
+    "@db-ux/core-foundations": "4.2.3"
   }
 }

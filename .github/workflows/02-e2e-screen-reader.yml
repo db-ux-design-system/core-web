@@ -27,7 +27,7 @@ jobs:
         shardTotal: [4]
     steps:
       - name: ⏬ Checkout repo
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
 
       - name: 🔄 Init Cache
         uses: ./.github/actions/npm-cache
@@ -39,7 +39,7 @@ jobs:
           version: ${{ inputs.version }}
 
       - name: 🦮 Guidepup Setup Windows
-        uses: guidepup/setup-action@0.17.3
+        uses: guidepup/setup-action@0.18.0
         with:
           record: true
 
