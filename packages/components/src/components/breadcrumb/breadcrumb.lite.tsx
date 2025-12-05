@@ -34,7 +34,7 @@ export default function DBBreadcrumb(props: DBBreadcrumbProps) {
 			class={cls('db-breadcrumb', props.className)}
 			data-size={props.size}
 			data-separator={props.separator}
-			aria-label={props.ariaLabel ?? 'Breadcrumb'}>
+			aria-label={props.ariaLabel}>
 			<ol
 				class="db-breadcrumb-list"
 				id={props.id ? `${props.id}-list` : 'db-breadcrumb-list'}>
