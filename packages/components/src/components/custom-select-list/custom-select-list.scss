@@ -9,7 +9,6 @@
 	@extend %select-list-container;
 
 	padding: variables.$db-spacing-fixed-sm;
-	overflow-y: auto;
 
 	&::-webkit-scrollbar-button:single-button:vertical:decrement {
 		border-start-end-radius: 0;
