@@ -36,6 +36,7 @@
 :root {
 	color-scheme: var(--db-color-scheme, light dark);
 
+	// We need to set the CSS value based on an existing HTML meta tag definition because the previous CSS definition would override that HTML declaration.
 	&:has([name="color-scheme"][content="light dark"]) {
 		--db-color-scheme: light dark;
 	}
