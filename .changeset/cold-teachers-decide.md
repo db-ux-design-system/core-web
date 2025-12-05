@@ -5,4 +5,4 @@
 "@db-ux/v-core-components": minor
 ---
 
-feat: Implement framework-specific `useId` for SSR-compatible component ID generation
+feat(SSR-compatibility): Implement framework-specific `useId` for component ID generation
