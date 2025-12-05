@@ -1,4 +1,5 @@
 import {
+	onMount,
 	useDefaultProps,
 	useMetadata,
 	useRef,
@@ -24,6 +25,18 @@ export default function DBBreadcrumb(props: DBBreadcrumbProps) {
 		isExpanded: false,
 		toggleExpanded() {
 			state.isExpanded = !state.isExpanded;
+		}
+	});
+
+	// Prevent nested/duplicate navigation landmarks in Stencil by stripping host role
+	onMount(() => {
+		try {
+			const parent = (_ref as any)?.get()?.closest?.('db-breadcrumb');
+			if (parent && parent.hasAttribute('role')) {
+				parent.removeAttribute('role');
+			}
+		} catch {
+			/* no-op */
 		}
 	});
 

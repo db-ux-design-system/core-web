@@ -19,7 +19,7 @@ import { DBBreadcrumb } from './index';
 import { DEFAULT_VIEWPORT } from '../../shared/constants.ts';
 
 const defaultBreadcrumb: any = (
-	<DBBreadcrumb>
+	<DBBreadcrumb ariaLabel="Breadcrumb">
 		<li>
 			<a href="#">Home</a>
 		</li>
