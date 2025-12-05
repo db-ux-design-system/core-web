@@ -40,7 +40,7 @@
 
 // We need to set the CSS value based on an existing HTML meta tag definition because the previous CSS definition would override that HTML declaration.
 head {
-	&:has([name="color-scheme"][content="light dark"]) + body {
+	&:has([name="color-scheme"][content*="light"][content*="dark"]) + body {
 		--db-color-scheme: light dark;
 	}
 
