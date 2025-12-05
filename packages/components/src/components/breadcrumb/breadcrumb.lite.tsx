@@ -19,7 +19,7 @@ useDefaultProps<DBBreadcrumbProps>({
 });
 
 export default function DBBreadcrumb(props: DBBreadcrumbProps) {
-	const _ref = useRef<HTMLElement>(null);
+	const _ref = useRef<HTMLElement | null>(null);
 
 	const state = useStore<DBBreadcrumbState>({
 		isExpanded: false,
