@@ -4,15 +4,12 @@
 @use "@db-ux/core-foundations/build/styles/helpers";
 @use "@db-ux/core-foundations/build/styles/animation";
 @use "../../styles/internal/form-components";
+@use "../../styles/internal/select-dropdown-components";
 
 .db-custom-select-dropdown {
 	@extend %db-neutral-variables;
+	@extend %select-dropdown-container;
 
-	position: absolute;
-	z-index: 32;
-	box-shadow: variables.$db-elevation-md;
-	min-inline-size: variables.$db-sizing-xl;
-	max-inline-size: calc(100vw - 2 * #{variables.$db-spacing-fixed-sm});
 	max-block-size: calc(100vh - 2 * #{variables.$db-spacing-fixed-sm});
 
 	&:not([data-width]),
