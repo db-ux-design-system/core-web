@@ -1,9 +1,4 @@
-import {
-	useDefaultProps,
-	useMetadata,
-	useRef,
-	useStore
-} from '@builder.io/mitosis';
+import { useDefaultProps, useMetadata, useStore } from '@builder.io/mitosis';
 import { cls } from '../../utils';
 import { DBIcon } from '../icon';
 import type { DBBreadcrumbProps, DBBreadcrumbState } from './model';
@@ -19,8 +14,6 @@ useDefaultProps<DBBreadcrumbProps>({
 });
 
 export default function DBBreadcrumb(props: DBBreadcrumbProps) {
-	const _ref = useRef<HTMLElement | any>(null);
-
 	const state = useStore<DBBreadcrumbState>({
 		isExpanded: false,
 		toggleExpanded() {
@@ -30,7 +23,6 @@ export default function DBBreadcrumb(props: DBBreadcrumbProps) {
 
 	return (
 		<nav
-			ref={_ref}
 			id={props.id}
 			class={cls('db-breadcrumb', props.className)}
 			data-size={props.size}
