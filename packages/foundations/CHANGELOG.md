@@ -1,9 +1,20 @@
 # @db-ux/core-foundations
 
-## 4.2.1
+## 4.2.3
+
+### Patch Changes
+
+- fix(SASS): return typed values from scss functions `px-to-rem` and `px-to-em` instead of strings - [see commit e1be60a](https://github.com/db-ux-design-system/core-web/commit/e1be60a871596107d8026390b194f0730c84a8ad)
+
+- refactor(css): replacing slow selector - [see commit 1133c21](https://github.com/db-ux-design-system/core-web/commit/1133c216ab5ec802241c6986fc9287ff22a287b0)
+
+## 4.2.2
 
 _version bump_
 
+## 4.2.1
+
+_version bump_
 
 ## 4.2.0
 

@@ -17,12 +17,12 @@
     "@storybook/addon-vitest": "10.0.8",
     "@storybook/vue3-vite": "10.0.8",
     "@vitejs/plugin-vue": "6.0.1",
-    "@vitest/browser": "4.0.13",
-    "@vitest/coverage-v8": "4.0.10",
+    "@vitest/browser": "4.0.14",
+    "@vitest/coverage-v8": "4.0.14",
     "@vue/tsconfig": "0.8.1",
     "storybook": "10.0.8",
     "typescript": "~5.9.3",
-    "vite": "7.2.4",
+    "vite": "7.2.6",
     "vue-tsc": "3.1.3"
   }
 }
