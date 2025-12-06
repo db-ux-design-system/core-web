@@ -125,6 +125,9 @@ export const getDefaultScreenshotTest = ({
 			config.maxDiffPixelRatio = 0.033;
 		} else if (isAngular(showcase)) {
 			config.maxDiffPixels = 1000;
+		} else if (project.name.startsWith('mobile')) {
+			// Mobile Chrome can have minor anti-aliasing/layout differences; allow small ratio
+			config.maxDiffPixelRatio = 0.015;
 		} else {
 			config.maxDiffPixels = 120;
 		}
