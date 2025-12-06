@@ -1,29 +1,18 @@
 @use "@db-ux/core-foundations/build/styles/variables";
 @use "../../styles/internal/form-components";
 @use "@db-ux/core-foundations/build/styles/helpers";
+@use "../../styles/internal/select-dropdown-components";
 
 .db-custom-select-list {
 	all: unset;
+
+	@extend %select-list-container;
+
 	padding: variables.$db-spacing-fixed-sm;
-	overflow-y: auto;
-	overflow-block: auto;
 
 	&::-webkit-scrollbar-button:single-button:vertical:decrement {
 		border-start-end-radius: 0;
 	}
-
-	/* (checkbox height + list-item padding) * 6 items + list padding */
-	max-block-size: calc(
-		5.5 *
-			(
-				(
-						#{form-components.$font-size-height} - 2 *
-							#{variables.$db-border-width-3xs}
-					) +
-					2 * #{variables.$db-spacing-fixed-sm}
-			) +
-			(#{variables.$db-spacing-fixed-sm} * 2)
-	);
 
 	> ul {
 		all: unset;
