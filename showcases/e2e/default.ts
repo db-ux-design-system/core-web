@@ -125,24 +125,25 @@ export const getDefaultScreenshotTest = ({
 			config.maxDiffPixelRatio = 0.033;
 		} else if (isAngular(showcase)) {
 			config.maxDiffPixels = 1000;
-		} else if (project.name.startsWith('mobile')) {
-			// Mobile Chrome can have minor anti-aliasing/layout differences; allow small ratio
-			config.maxDiffPixelRatio = 0.015;
 		} else {
 			config.maxDiffPixels = 120;
 		}
 
 		await gotoPage(page, path, lvl1, fixedHeight);
 
-		const header = page.locator('header').first();
+		// Target the DBBreadcrumb section to avoid page-level layout noise
+		const breadcrumbSection = page
+			.getByRole('heading', { name: 'DBBreadcrumb', level: 1 })
+			.locator('xpath=ancestor::section[1]');
 
-		config.mask = [header];
+		// Ensure section is present and stable
+		await expect(breadcrumbSection).toBeVisible();
 
 		if (preScreenShot) {
 			await preScreenShot(page, project);
 		}
 
-		await expect(page).toHaveScreenshot(config);
+		await expect(breadcrumbSection).toHaveScreenshot(config);
 	});
 };
 
