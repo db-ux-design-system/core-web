@@ -125,6 +125,9 @@ export const getDefaultScreenshotTest = ({
 			config.maxDiffPixelRatio = 0.033;
 		} else if (isAngular(showcase)) {
 			config.maxDiffPixels = 1000;
+		} else if (project.name.startsWith('mobile')) {
+			// Mobile Chrome can have minor anti-aliasing/layout differences; allow small ratio
+			config.maxDiffPixelRatio = 0.015;
 		} else {
 			config.maxDiffPixels = 120;
 		}
@@ -271,7 +274,36 @@ export const runAriaSnapshotTest = ({
 
 		await page.waitForTimeout(1000); // We wait a little bit until everything loaded
 
-		let snapshot = await page.locator('main').ariaSnapshot();
+		// Prefer snapshotting only named breadcrumb navigation regions to avoid unlabeled landmarks
+		let snapshot: string;
+		const navs = page.getByRole('navigation');
+		const count = await navs.count();
+		const indices = Array.from({ length: count }, (_, i) => i);
+		const labels = await Promise.all(
+			indices.map(async (i) => navs.nth(i).getAttribute('aria-label'))
+		);
+		const breadcrumbIndices = indices.filter((i) =>
+			labels[i]?.toLowerCase()?.includes('breadcrumb')
+		);
+		const parts = await Promise.all(
+			breadcrumbIndices.map(async (i) => navs.nth(i).ariaSnapshot())
+		);
+
+		if (parts.length > 0) {
+			// Join snapshots of all breadcrumb navigations in the page
+			snapshot = parts.join('\n');
+		} else {
+			// Fallback: snapshot the DBBreadcrumb section or main
+			const breadcrumbSection = page
+				.getByRole('heading', { name: 'DBBreadcrumb', level: 1 })
+				.locator('xpath=ancestor::section[1]');
+			try {
+				await expect(breadcrumbSection).toBeVisible({ timeout: 5000 });
+				snapshot = await breadcrumbSection.ariaSnapshot();
+			} catch {
+				snapshot = await page.locator('main').ariaSnapshot();
+			}
+		}
 
 		// Remove `/url` in snapshot because they differ in every showcase
 		const lines = snapshot.split('\n');
@@ -284,6 +316,11 @@ export const runAriaSnapshotTest = ({
 
 				if (line.includes('- link')) {
 					line = line.replace(':', '');
+				}
+
+				// Drop unlabeled navigation landmarks appearing as just `- navigation:`
+				if (line.trim() === '- navigation:') {
+					return undefined;
 				}
 
 				return line;

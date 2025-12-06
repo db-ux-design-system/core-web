@@ -23,6 +23,7 @@ import TagComponent from '../../react-showcase/src/components/tag';
 import TextareaComponent from '../../react-showcase/src/components/textarea';
 import TooltipComponent from '../../react-showcase/src/components/tooltip';
 // Import PageComponent from '../../react-showcase/src/components/page';
+import BreadcrumbComponent from '../../react-showcase/src/components/breadcrumb';
 import NavigationComponent from '../../react-showcase/src/components/navigation';
 import NavigationItemComponent from '../../react-showcase/src/components/navigation-item';
 import PopoverComponent from '../../react-showcase/src/components/popover';
@@ -30,6 +31,7 @@ import SectionComponent from '../../react-showcase/src/components/section';
 import * as accordionCode from '../components/code-docs/accordion';
 import * as accordionItemCode from '../components/code-docs/accordion-item';
 import * as brandCode from '../components/code-docs/brand';
+import * as breadcrumbCode from '../components/code-docs/breadcrumb';
 import * as buttonCode from '../components/code-docs/button';
 import * as linkCode from '../components/code-docs/link';
 // Import * as iconCode from '../components/code-docs/icon';
@@ -135,7 +137,8 @@ const nameComponentMap = {
 	'navigation-item': (
 		<NavigationItemComponent slotCode={navigationItemCode} />
 	),
-	popover: <PopoverComponent slotCode={popoverCode} />
+	popover: <PopoverComponent slotCode={popoverCode} />,
+	breadcrumb: <BreadcrumbComponent slotCode={breadcrumbCode} />
 };
 
 const addComponentsToNavigationItems = (

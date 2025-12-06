@@ -242,7 +242,7 @@ $popover-gap-inset: calc(-1 * #{$popover-gap-size});
 		calc(100vw - 2 * #{variables.$db-spacing-fixed-md})
 	);
 	block-size: fit-content;
-	inline-size: fit-content;
+	inline-size: max-content;
 
 	&[data-width="fixed"] {
 		inline-size: max-content;
