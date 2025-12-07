@@ -131,19 +131,24 @@ export const getDefaultScreenshotTest = ({
 
 		await gotoPage(page, path, lvl1, fixedHeight);
 
-		// Target the DBBreadcrumb section to avoid page-level layout noise
+		// Prefer scoping to the DBBreadcrumb section when present; otherwise fallback to default page
 		const breadcrumbSection = page
 			.getByRole('heading', { name: 'DBBreadcrumb', level: 1 })
 			.locator('xpath=ancestor::section[1]');
 
-		// Ensure section is present and stable
-		await expect(breadcrumbSection).toBeVisible();
+		let target = breadcrumbSection;
+		try {
+			await expect(breadcrumbSection).toBeVisible({ timeout: 2000 });
+		} catch {
+			// Breadcrumb section not found for non-breadcrumb showcases; use full main content
+			target = page.locator('main');
+		}
 
 		if (preScreenShot) {
 			await preScreenShot(page, project);
 		}
 
-		await expect(breadcrumbSection).toHaveScreenshot(config);
+		await expect(target).toHaveScreenshot(config);
 	});
 };
 
