@@ -82,8 +82,8 @@ const isCheckerError = (object: any): object is ICheckerError =>
 
 const shouldSkip = (skip?: SkipType): boolean => {
 	if (skip) {
-		const { showcase } = process.env;
-		if (skip.angular && showcase?.startsWith('angular')) {
+		const showcaseVal = process.env.showcase;
+		if (skip.angular && showcaseVal?.startsWith('angular')) {
 			return true;
 		}
 	}
@@ -131,17 +131,35 @@ export const getDefaultScreenshotTest = ({
 
 		await gotoPage(page, path, lvl1, fixedHeight);
 
-		// Prefer scoping to the DBBreadcrumb section when present; otherwise fallback to default page
-		const breadcrumbSection = page
+		// Prefer scoping to the DBBreadcrumb section/component; for Stencil, target the component/nav explicitly
+		const byHeadingSection = page
 			.getByRole('heading', { name: 'DBBreadcrumb', level: 1 })
 			.locator('xpath=ancestor::section[1]');
 
-		let target = breadcrumbSection;
+		const showcaseEnv = process.env.showcase;
+		let target = byHeadingSection;
+
 		try {
-			await expect(breadcrumbSection).toBeVisible({ timeout: 2000 });
+			await expect(byHeadingSection).toBeVisible({ timeout: 1500 });
 		} catch {
-			// Breadcrumb section not found for non-breadcrumb showcases; use full main content
-			target = page.locator('main');
+			if (isStencil(showcaseEnv)) {
+				// In stencil showcase, snapshot the component root or its labeled nav
+				const wcComponent = page.locator('db-breadcrumb');
+				const labeledNav = page.getByRole('navigation', { name: /breadcrumb/i });
+				if (await wcComponent.count()) {
+					target = wcComponent;
+					await expect(target).toBeVisible({ timeout: 3000 });
+				} else if (await labeledNav.count()) {
+					target = labeledNav.first();
+					await expect(target).toBeVisible({ timeout: 3000 });
+				} else {
+					// Fallback to main if component/nav not found
+					target = page.locator('main');
+				}
+			} else {
+				// Non-breadcrumb showcases: use full main content
+				target = page.locator('main');
+			}
 		}
 
 		if (preScreenShot) {
