@@ -24,7 +24,7 @@ for (const group of Components) {
 				`docs`,
 				`.${group.path}/${component.name}/docs/Angular`,
 				async (page) => {
-					await page.waitForSelector('h1, h2', { timeout: 30000 });
+					await page.waitForSelector('h1, h2', { timeout: 30_000 });
 					const firstHeadline = page.locator('h1, h2').first();
 					await expect(firstHeadline).toBeVisible();
 				}
@@ -36,7 +36,7 @@ for (const group of Components) {
 				`overview`,
 				`.${group.path}/${component.name}/overview?fullscreen=true`,
 				async (page) => {
-					await page.waitForSelector('h1, h2', { timeout: 30000 });
+					await page.waitForSelector('h1, h2', { timeout: 30_000 });
 					const firstHeadline = page.locator('h1, h2').first();
 					await expect(firstHeadline).toBeVisible();
 				}
