@@ -48,6 +48,7 @@ for (const group of Components) {
 				`properties`,
 				`.${group.path}/${component.name}/properties?fullscreen=true&noh1=true`,
 				async (page) => {
+					await page.waitForSelector('h2', { timeout: 30_000 });
 					const firstH2 = page.locator('h2').first();
 					await expect(firstH2).toBeVisible();
 				}
