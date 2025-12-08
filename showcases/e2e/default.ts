@@ -131,47 +131,19 @@ export const getDefaultScreenshotTest = ({
 
 		await gotoPage(page, path, lvl1, fixedHeight);
 
-		// Prefer scoping to the DBBreadcrumb section/component; for Stencil, target the component/nav explicitly
-		const byHeadingSection = page
-			.getByRole('heading', { name: 'DBBreadcrumb', level: 1 })
-			.locator('xpath=ancestor::section[1]');
-
+		// For visual snapshots, compare full-page screenshots to match baselines
 		const showcaseEnv = process.env.showcase;
-		let target = byHeadingSection;
 
-		try {
-			await expect(byHeadingSection).toBeVisible({ timeout: 1500 });
-		} catch {
-			if (isStencil(showcaseEnv)) {
-				// In stencil showcase, snapshot the component within the section or its labeled nav
-				const wcComponents = page.locator('db-breadcrumb');
-				const labeledNavs = page.getByRole('navigation', {
-					name: /breadcrumb/i
+		// Ensure Stencil component is hydrated before taking the full-page screenshot
+		if (isStencil(showcaseEnv)) {
+			const hydratedBreadcrumb = page.locator('db-breadcrumb.hydrated');
+			try {
+				await expect(hydratedBreadcrumb.first()).toBeVisible({
+					timeout: 5000
 				});
-				const wcInSection = byHeadingSection.locator('db-breadcrumb');
-				const navInSection = byHeadingSection.getByRole('navigation', {
-					name: /breadcrumb/i
-				});
-
-				if ((await wcInSection.count()) > 0) {
-					target = wcInSection.first();
-					await expect(target).toBeVisible({ timeout: 3000 });
-				} else if ((await navInSection.count()) > 0) {
-					target = navInSection.first();
-					await expect(target).toBeVisible({ timeout: 3000 });
-				} else if ((await wcComponents.count()) === 1) {
-					target = wcComponents.first();
-					await expect(target).toBeVisible({ timeout: 3000 });
-				} else if ((await labeledNavs.count()) > 0) {
-					target = labeledNavs.first();
-					await expect(target).toBeVisible({ timeout: 3000 });
-				} else {
-					// Fallback to main if component/nav not found
-					target = page.locator('main');
-				}
-			} else {
-				// Non-breadcrumb showcases: use full main content
-				target = page.locator('main');
+			} catch {
+				// If hydration class not present, wait briefly for stability
+				await page.waitForTimeout(500);
 			}
 		}
 
@@ -179,7 +151,7 @@ export const getDefaultScreenshotTest = ({
 			await preScreenShot(page, project);
 		}
 
-		await expect(target).toHaveScreenshot(config);
+		await expect(page).toHaveScreenshot(config);
 	});
 };
 
