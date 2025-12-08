@@ -8,7 +8,7 @@ const getDefaultScreenshotTest = (
 	fn: (page: Page) => Promise<void>
 ) => {
 	test(`${type} should match screenshot`, async ({ page }) => {
-		// navigate and wait for network idle to let assets load
+		// Navigate and wait for network idle to let assets load
 		await page.goto(`${path}`, {
 			waitUntil: 'domcontentloaded'
 		});
@@ -21,7 +21,7 @@ const getDefaultScreenshotTest = (
 
 for (const group of Components) {
 	for (const component of group.subNavigation) {
-		// register tests synchronously (do not use async/await here)
+		// Register tests synchronously (do not use async/await here)
 		test.describe(component.name, () => {
 			getDefaultScreenshotTest(
 				component.name,
@@ -29,8 +29,8 @@ for (const group of Components) {
 				`.${group.path}/${component.name}/docs/Angular`,
 				async (page) => {
 					const firstH2 = page.locator('h2').first();
-					// allow more time for CI to render
-					await expect(firstH2).toBeVisible({ timeout: 60000 });
+					// Allow more time for CI to render
+					await expect(firstH2).toBeVisible({ timeout: 60_000 });
 				}
 			);
 		});
@@ -42,7 +42,7 @@ for (const group of Components) {
 				`.${group.path}/${component.name}/overview?fullscreen=true`,
 				async (page) => {
 					const firstH1 = page.locator('h1').first();
-					await expect(firstH1).toBeVisible({ timeout: 60000 });
+					await expect(firstH1).toBeVisible({ timeout: 60_000 });
 				}
 			);
 		});
@@ -54,7 +54,7 @@ for (const group of Components) {
 				`.${group.path}/${component.name}/properties?fullscreen=true&noh1=true`,
 				async (page) => {
 					const firstH2 = page.locator('h2').first();
-					await expect(firstH2).toBeVisible({ timeout: 60000 });
+					await expect(firstH2).toBeVisible({ timeout: 60_000 });
 				}
 			);
 		});
