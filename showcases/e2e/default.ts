@@ -143,16 +143,27 @@ export const getDefaultScreenshotTest = ({
 			await expect(byHeadingSection).toBeVisible({ timeout: 1500 });
 		} catch {
 			if (isStencil(showcaseEnv)) {
-				// In stencil showcase, snapshot the component root or its labeled nav
-				const wcComponent = page.locator('db-breadcrumb');
-				const labeledNav = page.getByRole('navigation', {
+				// In stencil showcase, snapshot the component within the section or its labeled nav
+				const wcComponents = page.locator('db-breadcrumb');
+				const labeledNavs = page.getByRole('navigation', {
 					name: /breadcrumb/i
 				});
-				if (await wcComponent.count()) {
-					target = wcComponent;
+				const wcInSection = byHeadingSection.locator('db-breadcrumb');
+				const navInSection = byHeadingSection.getByRole('navigation', {
+					name: /breadcrumb/i
+				});
+
+				if ((await wcInSection.count()) > 0) {
+					target = wcInSection.first();
 					await expect(target).toBeVisible({ timeout: 3000 });
-				} else if (await labeledNav.count()) {
-					target = labeledNav.first();
+				} else if ((await navInSection.count()) > 0) {
+					target = navInSection.first();
+					await expect(target).toBeVisible({ timeout: 3000 });
+				} else if ((await wcComponents.count()) === 1) {
+					target = wcComponents.first();
+					await expect(target).toBeVisible({ timeout: 3000 });
+				} else if ((await labeledNavs.count()) > 0) {
+					target = labeledNavs.first();
 					await expect(target).toBeVisible({ timeout: 3000 });
 				} else {
 					// Fallback to main if component/nav not found
