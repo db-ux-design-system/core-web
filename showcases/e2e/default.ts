@@ -82,8 +82,8 @@ const isCheckerError = (object: any): object is ICheckerError =>
 
 const shouldSkip = (skip?: SkipType): boolean => {
 	if (skip) {
-		const showcaseVal = process.env.showcase;
-		if (skip.angular && showcaseVal?.startsWith('angular')) {
+		const showcaseValue = process.env.showcase;
+		if (skip.angular && showcaseValue?.startsWith('angular')) {
 			return true;
 		}
 	}
@@ -145,7 +145,9 @@ export const getDefaultScreenshotTest = ({
 			if (isStencil(showcaseEnv)) {
 				// In stencil showcase, snapshot the component root or its labeled nav
 				const wcComponent = page.locator('db-breadcrumb');
-				const labeledNav = page.getByRole('navigation', { name: /breadcrumb/i });
+				const labeledNav = page.getByRole('navigation', {
+					name: /breadcrumb/i
+				});
 				if (await wcComponent.count()) {
 					target = wcComponent;
 					await expect(target).toBeVisible({ timeout: 3000 });
