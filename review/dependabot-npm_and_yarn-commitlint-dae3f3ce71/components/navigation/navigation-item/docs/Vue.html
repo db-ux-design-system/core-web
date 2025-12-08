@@ -1,0 +1,29 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8" data-next-head=""/><meta name="viewport" content="width=device-width" data-next-head=""/><title data-next-head="">DB UX</title><link data-next-font="size-adjust" rel="preconnect" href="/" crossorigin="anonymous"/><link rel="preload" href="/core-web/review/dependabot-npm_and_yarn-commitlint-dae3f3ce71/_next/static/css/ac4282add4b11741.css" as="style"/><link rel="stylesheet" href="/core-web/review/dependabot-npm_and_yarn-commitlint-dae3f3ce71/_next/static/css/ac4282add4b11741.css" data-n-g=""/><noscript data-n-css=""></noscript><script defer="" nomodule="" src="/core-web/review/dependabot-npm_and_yarn-commitlint-dae3f3ce71/_next/static/chunks/polyfills-42372ed130431b0a.js"></script><script src="/core-web/review/dependabot-npm_and_yarn-commitlint-dae3f3ce71/_next/static/chunks/webpack-1f5319552f583ae5.js" defer=""></script><script src="/core-web/review/dependabot-npm_and_yarn-commitlint-dae3f3ce71/_next/static/chunks/framework-c528b96079bb3756.js" defer=""></script><script src="/core-web/review/dependabot-npm_and_yarn-commitlint-dae3f3ce71/_next/static/chunks/main-cf2763cbb2250c95.js" defer=""></script><script src="/core-web/review/dependabot-npm_and_yarn-commitlint-dae3f3ce71/_next/static/chunks/pages/_app-96343e1d028c17f8.js" defer=""></script><script src="/core-web/review/dependabot-npm_and_yarn-commitlint-dae3f3ce71/_next/static/chunks/pages/components/navigation/navigation-item/docs/Vue-1b65fc0ff4ad6adb.js" defer=""></script><script src="/core-web/review/dependabot-npm_and_yarn-commitlint-dae3f3ce71/_next/static/Bkg3vsq1CM2g8J0Qe4okL/_buildManifest.js" defer=""></script><script src="/core-web/review/dependabot-npm_and_yarn-commitlint-dae3f3ce71/_next/static/Bkg3vsq1CM2g8J0Qe4okL/_ssgManifest.js" defer=""></script></head><body><div id="__next"><h2 id="vue">Vue<a class="header-link" href="/core-web/review/dependabot-npm_and_yarn-commitlint-dae3f3ce71/components/navigation/navigation-item/docs/Vue?current=vue"><span aria-hidden="true" class="db-icon" data-icon="paper_clip"></span>vue<!-- --> anchor link</a></h2>
+<p>For general installation and configuration take a look at the <a target="_blank" referrerPolicy="no-referrer" href="https://www.npmjs.com/package/@db-ux/v-core-components">v-core-components</a> package.</p>
+<h3 id="use-component">Use component<a class="header-link" href="/core-web/review/dependabot-npm_and_yarn-commitlint-dae3f3ce71/components/navigation/navigation-item/docs/Vue?current=use-component"><span aria-hidden="true" class="db-icon" data-icon="paper_clip"></span>use-component<!-- --> anchor link</a></h3>
+<p>We try to set <code>areaPopup</code> (has/hasn&#x27;t sub-navigation) inside the component, but this doesn&#x27;t work in all frameworks. If you encounter some problems you have the set <code>areaPopup</code> with <code>true/false</code> for sub-navigation or link</p>
+<pre><code class="language-vue">&lt;!-- App.vue --&gt;
+&lt;script&gt;
+import { DBNavigationItem } from &quot;@db-ux/v-core-components&quot;;
+&lt;/script&gt;
+
+&lt;template&gt;
+	&lt;!-- Only link	--&gt;
+	&lt;DBNavigationItem&gt;
+		&lt;router-link to=&quot;mypath&quot;&gt;NavigationItem&lt;/router-link&gt;
+	&lt;/DBNavigationItem&gt;
+
+	&lt;!-- With Sub-Navigation --&gt;
+	&lt;DBNavigationItem&gt;
+		&lt;template #subnavigation&gt;
+			&lt;DBNavigationItem&gt;
+				&lt;router-link to=&quot;mypath&quot;&gt;Sub-Navi-Item 1&lt;/router-link&gt;
+			&lt;/DBNavigationItem&gt;
+			&lt;DBNavigationItem&gt;
+				&lt;router-link to=&quot;mypath&quot;&gt;Sub-Navi-Item 2&lt;/router-link&gt;
+			&lt;/DBNavigationItem&gt;
+		&lt;/template&gt;
+		Navi-Item 1
+	&lt;/DBNavigationItem&gt;
+&lt;/template&gt;
+</code></pre></div><script id="__NEXT_DATA__" type="application/json">{"props":{"pageProps":{}},"page":"/components/navigation/navigation-item/docs/Vue","query":{},"buildId":"Bkg3vsq1CM2g8J0Qe4okL","assetPrefix":"/core-web/review/dependabot-npm_and_yarn-commitlint-dae3f3ce71","nextExport":true,"autoExport":true,"isFallback":false,"scriptLoader":[]}</script></body></html>
