@@ -16,6 +16,7 @@ useDefaultProps<DBBreadcrumbProps>({
 });
 
 export default function DBBreadcrumb(props: DBBreadcrumbProps) {
+	const defaultEllipsisAriaLabel = 'Expand to show all breadcrumb items';
 	const _ref = useRef<HTMLElement | any>(null);
 	const state = useStore<DBBreadcrumbState>({
 		isExpanded: false,
@@ -84,7 +85,10 @@ export default function DBBreadcrumb(props: DBBreadcrumbProps) {
 									<button
 										type="button"
 										class="db-breadcrumb-ellipsis"
-										aria-label={props.ellipsisAriaLabel}
+										aria-label={
+											props.ellipsisAriaLabel ??
+											defaultEllipsisAriaLabel
+										}
 										aria-expanded={
 											state.isExpanded ? 'true' : 'false'
 										}
