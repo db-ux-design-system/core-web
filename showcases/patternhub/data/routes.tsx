@@ -52,7 +52,7 @@ import * as popoverCode from '../components/code-docs/popover';
 import * as radioCode from '../components/code-docs/radio';
 import * as sectionCode from '../components/code-docs/section';
 import * as selectCode from '../components/code-docs/select';
-import * as StackCode from '../components/code-docs/stack';
+import * as stackCode from '../components/code-docs/stack';
 import * as switchCode from '../components/code-docs/switch';
 import * as tabItemCode from '../components/code-docs/tab-item';
 import * as tabsCode from '../components/code-docs/tabs';
@@ -72,7 +72,7 @@ export type NavigationItem = {
 
 const nameComponentMap = {
 	'custom-select': <CustomSelectComponent slotCode={customSelectCode} />,
-	stack: <StackComponent slotCode={StackCode} />,
+	stack: <StackComponent slotCode={stackCode} />,
 	button: <ButtonComponent slotCode={buttonCode} />,
 	link: <LinkComponent slotCode={linkCode} />,
 	brand: <BrandComponent slotCode={brandCode} />,
