@@ -1,4 +1,4 @@
-"use strict";(self.webpackChunk_N_E=self.webpackChunk_N_E||[]).push([[3383],{3383:(e,a,t)=>{t.d(a,{bw:()=>i2,ll:()=>i1,sr:()=>i9,g9:()=>i4,Oj:()=>i8,Pb:()=>i5});var n={};t.r(n),t.d(n,{Behavior:()=>ab,Density:()=>ap,Variant:()=>ah});var i={};t.r(i),t.d(i,{Density:()=>ax,Disabled:()=>av,Open:()=>am});var l={};t.r(l),t.d(l,{Density:()=>ag,Variants:()=>aj});var o={};t.r(o),t.d(o,{Collapsed:()=>af,Icons:()=>aw,Separator:()=>aB,Size:()=>aD});var s={};t.r(s),t.d(s,{Density:()=>aA,Disabled:()=>ay,MultilineTextWithLineBreaks:()=>aL,NoText:()=>aN,ShowIconLeading:()=>aC,ShowIconTrailing:()=>aO,Size:()=>ak,Variant:()=>aT,Width:()=>aI});var c={};t.r(c),t.d(c,{Content:()=>aP,Density:()=>aS,Disabled:()=>aH,Examples:()=>aE,ShowIcon:()=>aR,Size:()=>az,Variant:()=>a_,Wrap:()=>aF});var d={};t.r(d),t.d(d,{Content:()=>aU,Density:()=>aq,Emphasis:()=>aM,Examples:()=>a$,Placement:()=>aG,Semantic:()=>aV,Size:()=>aW});var r={};t.r(r),t.d(r,{Behavior:()=>aK,Density:()=>aJ,ElevationLevel:()=>aY,Example:()=>aQ,Spacing:()=>aZ});var u={};t.r(u),t.d(u,{Checked:()=>a1,Density:()=>aX,Disabled:()=>a0,Example:()=>a9,Indeterminate:()=>a2,Required:()=>a5,ShowLabel:()=>a8,ShowRequiredAsterisk:()=>a7,Size:()=>a4,Validation:()=>a3});var p={};t.r(p),t.d(p,{Density:()=>a6,Emphasis:()=>ta,Variant:()=>te});var h={};t.r(h),t.d(h,{Backdrop:()=>to,Density:()=>tt,Direction:()=>ts,Example:()=>tc,Rounded:()=>ti,Size:()=>tn,Spacing:()=>tl});var b={};t.r(b),t.d(b,{Behavior:()=>tu,Density:()=>td,Examples:()=>tp,Width:()=>tr});var x={};t.r(x),t.d(x,{Density:()=>th,Semantic:()=>tb,ShowIcon:()=>tv,Size:()=>tx});var v={};t.r(v),t.d(v,{DatalistTypeaheadExamples:()=>t_,Density:()=>tm,Disabled:()=>tf,ExampleFloatingLabel:()=>tL,ExampleLength:()=>tN,ExampleTypesFloatingLabel:()=>tS,ExampleTypeswithminandmax:()=>tI,Readonly:()=>tw,Required:()=>tT,ShowIconLeading:()=>tk,ShowIconLeadingTrailing:()=>tC,ShowIconTrailing:()=>tO,ShowLabel:()=>tj,ShowMessage:()=>tD,ShowRequiredAsterisk:()=>ty,State:()=>tB,Validation:()=>tA,Variant:()=>tg});var m={};t.r(m),t.d(m,{Closeable:()=>tR,Density:()=>tH,ExamplesVariantDocked:()=>tW,ExamplesVariantOverlay:()=>tG,ExamplesVariantStandalone:()=>tU,LinkVariant:()=>tq,Semantic:()=>tP,ShowHeadline:()=>tM,ShowIcon:()=>tE,ShowTimestamp:()=>tV,Variant:()=>tz,Visual:()=>tF});var g={};t.r(g),t.d(g,{Checked:()=>tY,Density:()=>t$,Disabled:()=>tJ,Required:()=>tQ,ShowLabel:()=>tX,ShowRequiredAsterisk:()=>t0,Size:()=>tK,Validation:()=>tZ});var j={};t.r(j),t.d(j,{Content:()=>t7,Density:()=>t1,Disabled:()=>t9,ExamplesFloatingLabel:()=>nt,OptionGroups:()=>na,Required:()=>t6,ShowLabel:()=>t3,ShowMessage:()=>t4,ShowRequiredAsterisk:()=>ne,State:()=>t5,Validation:()=>t8,Variant:()=>t2});var D={};t.r(D),t.d(D,{Checked:()=>ni,Density:()=>nn,Disabled:()=>nl,Examples:()=>nb,Required:()=>nr,ShowLabel:()=>nd,ShowMessage:()=>nh,ShowRequiredAsterisk:()=>nu,Size:()=>ns,Validation:()=>np,Variant:()=>nc,VisualAid:()=>no});var B={};t.r(B),t.d(B,{Behavior:()=>nj,ContentAlignmentFullWidth:()=>nD,Density:()=>nx,ShowIconLeading:()=>nm,ShowIconTrailing:()=>ng,States:()=>nv});var f={};t.r(f),t.d(f,{Density:()=>nB,Examples:()=>nT,Orientation:()=>nf,Overflow:()=>nA,Width:()=>nw});var w={};t.r(w),t.d(w,{Behavior:()=>nO,Checked:()=>nN,Density:()=>ny,Disabled:()=>nI,Emphasis:()=>nk,ExampleStrong:()=>nP,NoText:()=>nS,Overflow:()=>nz,Semantic:()=>nC,ShowCheckState:()=>nH,ShowIcon:()=>nL,ShowSlot:()=>n_});var A={};t.r(A),t.d(A,{Density:()=>nR,Disabled:()=>nV,ExamplesFloatingLabel:()=>nK,FieldSizing:()=>nZ,Readonly:()=>nW,Required:()=>nG,Rows:()=>nJ,ShowLabel:()=>nE,ShowMessage:()=>nq,ShowRequiredAsterisk:()=>n$,ShowResizer:()=>nY,State:()=>nM,Validation:()=>nU,Variant:()=>nF});var T={};t.r(T),t.d(T,{Animation:()=>n3,Delay:()=>n4,Density:()=>nQ,Emphasis:()=>n0,Placement:()=>n1,ShowArrow:()=>nX,Width:()=>n2});var y={};t.r(y),t.d(y,{Density:()=>ia,Disabled:()=>iu,DropdownWidth:()=>ih,ExampleOtherconfiguration:()=>iT,ExamplesMultiple:()=>iw,ExamplesSingle:()=>iB,Exampletags:()=>iA,FormFieldWidth:()=>ip,Multiple:()=>it,Placement:()=>ib,Required:()=>id,Selectedtype:()=>ix,ShowClearSelection:()=>iD,ShowIcon:()=>is,ShowLabel:()=>il,ShowLoading:()=>im,ShowMessage:()=>io,ShowNoResult:()=>iv,ShowRequiredAsterisk:()=>ir,ShowSearch:()=>ig,ShowSelectAll:()=>ij,Validation:()=>ic,Variant:()=>ii});var k={};t.r(k),t.d(k,{Density:()=>iy});var C={};t.r(C),t.d(C,{Active:()=>iO,Density:()=>ik,Disabled:()=>iC,Expanded:()=>iN,ShowIcon:()=>iI,Width:()=>iL,Wrap:()=>iS});var O={};t.r(O),t.d(O,{Animation:()=>iR,Delay:()=>iF,Density:()=>i_,Gap:()=>iP,Placement:()=>iz,Spacing:()=>iH,Width:()=>iE});var N={};t.r(N),t.d(N,{Density:()=>iq,Spacing:()=>iV,Width:()=>iM});var I={};t.r(I),t.d(I,{AlignmentColumn:()=>iY,AlignmentRow:()=>iZ,Density:()=>iW,Direction:()=>i$,Gap:()=>iG,JustifyContentColumn:()=>iK,JustifyContentRow:()=>iQ,Variant:()=>iU,Wrap:()=>iJ});var L=t(6029),S=t(70159),_=t(13375),H=t(64297);let z=JSON.parse('[{"name":"Density","children":[{"name":"accordion-item","text":"Content 1","props":{"headline":"Item 1"}},{"name":"accordion-item","text":"Content 2","props":{"headline":"Item 2"}},{"name":"accordion-item","text":"Content 3","props":{"headline":"Item 3"}}],"examples":[{"name":"Functional","density":"functional","props":{}},{"name":"(Default) Regular","density":"regular","props":{}},{"name":"Expressive","density":"expressive","props":{}}]},{"name":"Variant","children":[{"name":"accordion-item","text":"Content 1","props":{"headline":"Item 1"}},{"name":"accordion-item","text":"Content 2","props":{"headline":"Item 2"}},{"name":"accordion-item","text":"Content 3","props":{"headline":"Item 3"}}],"examples":[{"name":"(Default) Divider","props":{"variant":"divider"}},{"name":"Card","props":{"variant":"card"}}]},{"name":"Behavior","children":[{"name":"accordion-item","text":"Content 1","props":{"headline":"Item 1"}},{"name":"accordion-item","text":"Content 2","props":{"headline":"Item 2"}},{"name":"accordion-item","text":"Content 3","props":{"headline":"Item 3"}}],"examples":[{"name":"(Default) Multiple","props":{"behavior":"multiple"}},{"name":"Single","props":{"behavior":"single"}}]}]'),P=(e,a,t)=>e.map((e,n)=>({...e,SlotCode:t?.[e.codeFileName??e.name.replaceAll(" ","")],examples:e.examples.map((e,t)=>({...e,className:e.className??e.props?.className,example:a({...e.props,id:e.props?.id??e.name,children:e.props?.children??e.name})}))}));var R=t(55729),F=t(72389),E=t(92737),q=t(22055),M=t(45601),V=t(52229);let W=(e=!0)=>{let[a,t]=(()=>{let e=(0,V.useRouter)(),a=(0,V.usePathname)(),[t,n]=[(0,V.useSearchParams)()];return[t,t=>{if(void 0!==globalThis.window&&void 0!==globalThis.location){let e=new URLSearchParams(globalThis.location.search||"");e.sort();let a=new URLSearchParams(t);if(a.sort(),e.toString()===a.toString())return}n?n(t):a&&e?.push(`${a}?${new URLSearchParams(t).toString()}`)}]})(),[n,i]=(0,R.useState)(a.get(M.HI)??M.fY.REGULAR),[l,o]=(0,R.useState)(a.get(M.wr)??M.o$.NEUTRAL_BG_LEVEL_1),[s,c]=(0,R.useState)(void 0),[d,r]=(0,R.useState)(!1),[u,p]=(0,R.useState)(!1);return(0,R.useEffect)(()=>{for(let[e,t]of a.entries())t&&(e===M.HI&&n!==t&&i(t),e===M.wr&&l!==t&&o(t),"page"===e&&s!==t.toLowerCase()&&c(t.toLowerCase()),"fullscreen"===e&&!!t!==d&&r(!!t));p(!0)},[a]),(0,R.useEffect)(()=>{if(u){let a={density:n,color:l};s&&(a.page=s),d&&(a.fullscreen=!0),e&&t(a)}},[l,n,s,d,u]),[n,i,l,o,s,d]};var U=t(29143);let G=({name:e,examples:a,color:t,role:n,SlotCode:i})=>{let l=(0,R.useCallback)(()=>t?.includes("3")?"3":t?.includes("2")?"2":"1",[t]),[o,s]=(0,R.useState)(),c=a.filter(e=>!e.experimental);return(0,L.jsxs)(F.A,{className:"variants-card db-code-docs",elevationLevel:l(),children:[(0,L.jsx)("div",{role:n,"aria-label":n?e:void 0,className:"variants-list",children:c.map((e,a)=>(0,L.jsx)("div",{style:e.style,className:e.className,"data-density":e.density,children:e.example},`${e.name}-${a}`))}),i&&(0,L.jsxs)("details",{className:"code-details",onToggle:()=>{s(!o)},children:[(0,L.jsx)("summary",{className:"db-button code-button","data-size":"small","data-variant":"filled",children:o?"Hide code":"Show code"}),(0,L.jsxs)("div",{"data-density":"functional",children:[(0,L.jsx)("div",{className:"backdrop"}),(0,L.jsx)(F.A,{className:"code",spacing:"small",children:(0,L.jsx)(i,{})})]})]})]})},$=({title:e,variants:a,subComponent:t,isSubComponent:n,componentName:i})=>{let l=W(!1)[4],o=W(!1)[2];if(l){let e=a.find(e=>e.name.toLowerCase()===l);if(e)return(0,L.jsx)(G,{...e,color:o})}let s=((e,a)=>{let t=(e=>{let a=e.replace(/^DB/,"").replaceAll(/([A-Z])/g,(e,a,t)=>t>0?`-${a.toLowerCase()}`:a.toLowerCase());if(a&&/^[a-z]+(-[a-z]+)*$/.test(a))return`packages/components/src/components/${a}/${a}.lite.tsx`})(e);if(!t)return;let n=(void 0)??U.env.GITHUB_BRANCH??U.env.BRANCH_NAME??"main";return`https://github.com/db-ux-design-system/core-web/blob/${n}/${t}`})(e);return(0,L.jsxs)(L.Fragment,{children:[(0,L.jsxs)("div",{className:"default-container",children:[(0,L.jsxs)("div",{className:"component-header",children:[(0,L.jsx)(n?"h2":"h1",{children:e}),s&&!n&&(0,L.jsx)(E.A,{target:"_blank",referrerPolicy:"no-referrer",href:s,content:"external",children:"View Source"})]}),a?.filter(e=>e.examples.find(e=>!e.experimental)).map((e,a)=>(0,L.jsxs)("div",{children:[(0,L.jsx)(q.A,{}),(0,L.jsx)(E.A,{className:"link-headline",content:"external",target:"_blank",rel:"noopener noreferrer",href:(e=>{if(void 0===globalThis.window||void 0===globalThis.location)return`?page=${encodeURIComponent(e.toLowerCase())}`;let[a,t=""]=globalThis.location.href.split("?"),n=new URLSearchParams(t);return(n.set("page",e.toLowerCase()),i)?`${a.replace(/\/[a-z\d\-_]*\/overview/,`/${i}/overview`)}?${n.toString()}`:`${a}?${n.toString()}`})(e.name),children:e.name}),(0,L.jsx)(G,{...e,color:o})]},`${e.name}-${a}`))]}),t]})},J=({behavior:e,children:a,variant:t})=>(0,L.jsxs)(L.Fragment,{children:[(0,L.jsx)(S.A,{size:"small",semantic:"informational",icon:"none",children:a}),(0,L.jsxs)(_.A,{behavior:e,variant:t,children:[(0,L.jsx)(H.A,{headlinePlain:"Item 1",text:"Content 1"}),(0,L.jsx)(H.A,{headlinePlain:"Item 2",text:"Content 2"}),(0,L.jsx)(H.A,{headlinePlain:"Item 3",text:"Content 3"})]})]}),Y=JSON.parse('[{"name":"Density","examples":[{"name":"Functional","density":"functional","props":{"headlinePlain":"Functional"}},{"name":"(Default) Regular","density":"regular","props":{"headlinePlain":"(Default) Regular"}},{"name":"Expressive","density":"expressive","props":{"headlinePlain":"Expressive"}}]},{"name":"Disabled","examples":[{"name":"(Default) False","props":{"headlinePlain":"(Default) False","disabled":false}},{"name":"True","props":{"headlinePlain":"True","disabled":true}}]},{"name":"Open","examples":[{"name":"(Default) False","props":{"headlinePlain":"(Default) False","open":false}},{"name":"True","props":{"headlinePlain":"True","open":true}}]}]'),Z=({children:e,disabled:a,open:t,headlinePlain:n})=>(0,L.jsx)(H.A,{headlinePlain:n,disabled:a,defaultOpen:t,children:e}),K=e=>(0,L.jsx)($,{title:"DBAccordionItem",isSubComponent:e.isSubComponent,componentName:e.componentName,variants:P(Y,Z,e.slotCode)});var Q=t(18627);let X=JSON.parse('[{"name":"Density","examples":[{"name":"Functional","density":"functional","props":{}},{"name":"(Default) Regular","density":"regular","props":{}},{"name":"Expressive","density":"expressive","props":{}}]},{"name":"Variants","examples":[{"name":"(Default) With Logo"},{"name":"No Logo","props":{"hideLogo":true}},{"name":"Custom Logo","props":{"hideLogo":true,"customLogo":true}}]}]'),ee=({children:e,hideLogo:a,customLogo:t})=>(0,L.jsxs)(Q.A,{hideLogo:a,children:[t&&(0,L.jsx)("img",{src:"/core-web/review/1493-erstellung-einer-mvp-breadcrumb-komponente/assets/images/placeholder.jpg",alt:"this is a fancy placeholder logo"}),e]});var ea=t(80357);let et=JSON.parse('[{"name":"Density","examples":[{"name":"Functional","density":"functional","props":{}},{"name":"(Default) Regular","density":"regular","props":{}},{"name":"Expressive","density":"expressive","props":{}}]},{"name":"Variant","examples":[{"name":"(Default) Outlined - Adaptive"},{"name":"Filled - Adaptive","props":{"variant":"filled"}},{"name":"Ghost - Adaptive","props":{"variant":"ghost"}},{"name":"Brand","props":{"variant":"brand"}}]},{"name":"Disabled","examples":[{"name":"(Default) False","props":{"disabled":false}},{"name":"True","props":{"disabled":true}}]},{"name":"Size","examples":[{"name":"(Default) Medium"},{"name":"Small","props":{"size":"small"}}]},{"name":"Show Icon Leading","examples":[{"name":"(Default) False","props":{"icon":"x_placeholder","showIcon":false}},{"name":"True","props":{"icon":"x_placeholder","showIcon":true}}]},{"name":"Show Icon Trailing","examples":[{"name":"(Default) False","props":{"iconTrailing":"x_placeholder","showIconTrailing":false}},{"name":"True","props":{"iconTrailing":"x_placeholder","showIconTrailing":true}}]},{"name":"No Text","examples":[{"name":"(Default) False","props":{"icon":"x_placeholder"}},{"name":"True","props":{"icon":"x_placeholder","noText":true}}]},{"name":"Width","examples":[{"name":"(Default) Auto","props":{"width":"auto"}},{"name":"Width","style":{"width":"500px"},"props":{"width":"full"}}]},{"name":"Multi-line Text With Line Breaks","examples":[{"name":"Multi-line Text With Automatic Line Breaks","style":{"width":"300px"},"props":{"width":"full"}},{"name":"Multi-line Text With Automatic Line Breaks and Icon","style":{"width":"300px"},"props":{"width":"full","icon":"x_placeholder"}},{"name":"Button Small Multi-line Text With Automatic Line Breaks","style":{"width":"300px"},"props":{"size":"small"}}]}]'),en=({variant:e,size:a,noText:t,icon:n,width:i,disabled:l,children:o,type:s,showIcon:c,showIconTrailing:d,iconTrailing:r})=>(0,L.jsx)(ea.A,{variant:e,size:a,noText:t,icon:n,disabled:l,width:i,showIcon:c,iconTrailing:r,showIconTrailing:d,onClick:()=>{alert(o.toString())},type:s,children:o}),ei=JSON.parse('[{"name":"Density","examples":[{"name":"Functional","density":"functional","props":{"href":"#"}},{"name":"(Default) Regular","density":"regular","props":{"href":"#"}},{"name":"Expressive","density":"expressive","props":{"href":"#"}}]},{"name":"Variant","examples":[{"name":"(Default) Adaptive","props":{"href":"#"}},{"name":"Brand","props":{"href":"#","variant":"brand"}}]},{"name":"Disabled","examples":[{"name":"(Default) False","props":{"href":"#","disabled":false}},{"name":"True","props":{"href":"#","disabled":true}}]},{"name":"Size","examples":[{"name":"(Default) Medium","props":{"href":"#"}},{"name":"Small","props":{"href":"#","size":"small"}}]},{"name":"Content","examples":[{"name":"(Default) Internal","props":{"href":"#"}},{"name":"External","props":{"href":"#","content":"external"}}]},{"name":"Show Icon","examples":[{"name":"(Default) True","props":{"href":"#","showIcon":true}},{"name":"False","props":{"href":"#","showIcon":false}}]},{"name":"Wrap","examples":[{"name":"(Default) False","props":{"href":"#","wrap":false}},{"name":"True [Multiline]","style":{"width":"2ch"},"props":{"href":"#","wrap":true}}]},{"name":"Examples","examples":[{"name":"Variant Inline","props":{"href":"#","variant":"inline"}}]}]'),el=({href:e,variant:a,disabled:t,size:n,content:i,children:l,showIcon:o,wrap:s})=>(0,L.jsx)(E.A,{href:e,variant:a,disabled:t,size:n,content:i,showIcon:o,wrap:s,children:l});var eo=t(23487),es=t(90271);let ec=JSON.parse('[{"name":"Density","examples":[{"name":"Functional","density":"functional","props":{}},{"name":"(Default) Regular","density":"regular","props":{}},{"name":"Expressive","density":"expressive","props":{}}]},{"name":"Emphasis","examples":[{"name":"(Default) Weak"},{"name":"Strong","props":{"emphasis":"strong"}}]},{"name":"Semantic","examples":[{"name":"(Default) Adaptive"},{"name":"Critical","props":{"semantic":"critical"}},{"name":"Informational","props":{"semantic":"informational"}},{"name":"Neutral","props":{"semantic":"neutral"}},{"name":"Successful","props":{"semantic":"successful"}},{"name":"Warning","props":{"semantic":"warning"}},{"name":"Line Break","props":{"lineBreak":true}},{"name":"Adaptive Strong","props":{"emphasis":"strong"}},{"name":"Critical Strong","props":{"semantic":"critical","emphasis":"strong"}},{"name":"Informational Strong","props":{"semantic":"informational","emphasis":"strong"}},{"name":"Neutral Strong","props":{"semantic":"neutral","emphasis":"strong"}},{"name":"Successful Strong","props":{"semantic":"successful","emphasis":"strong"}},{"name":"Warning Strong","props":{"semantic":"warning","emphasis":"strong"}}]},{"name":"Size","examples":[{"name":"(Default) Small"},{"name":"Medium","props":{"size":"medium"}}]},{"name":"Content","examples":[{"name":"(Default) Text"},{"name":"Dot - Small","content":"","props":{"noContent":true}},{"name":"Icon - Small","props":{"example":"icon"}}]},{"name":"Placement","examples":[{"name":"(Default) Inline","props":{"placement":"inline"}},{"name":"Corner - Top - Left","content":"","props":{"placement":"corner-top-left"}},{"name":"Corner - Center - Left","content":"","props":{"placement":"corner-center-left"}},{"name":"Corner - Bottom- Left","content":"","props":{"placement":"corner-bottom-left"}},{"name":"Corner - Top - Right","content":"","props":{"placement":"corner-top-right"}},{"name":"Corner - Center - Right","content":"","props":{"placement":"corner-center-right"}},{"name":"Corner - Bottom- Right","content":"","props":{"placement":"corner-bottom-right"}}]},{"name":"Examples","examples":[{"name":"Numbers","props":{"example":"number"}},{"name":"Line Break","props":{"lineBreak":true}},{"name":"(Default) Text - Medium","props":{"size":"medium"}},{"name":"Dot - Medium","content":"","props":{"noContent":true,"size":"medium"}},{"name":"Icon - Medium","props":{"example":"icon","size":"medium"}}]}]'),ed=({children:e,semantic:a,emphasis:t,noContent:n,size:i,placement:l,example:o,lineBreak:s})=>s?(0,L.jsx)("i",{className:"line-break"}):(0,L.jsxs)(L.Fragment,{children:[!l&&!o&&(0,L.jsxs)(L.Fragment,{children:[(0,L.jsx)(eo.A,{semantic:a,emphasis:t,size:i,children:n?"":e}),n&&(0,L.jsx)(S.A,{semantic:"informational",size:"small",icon:"none",children:e})]}),l&&"inline"!==l&&!o&&(0,L.jsxs)(L.Fragment,{children:[(0,L.jsxs)(ea.A,{icon:"x_placeholder",variant:"outlined",noText:!0,children:[(0,L.jsx)(eo.A,{size:"small",emphasis:"strong",semantic:"critical",placement:l}),e]}),(0,L.jsx)(S.A,{semantic:"informational",size:"small",icon:"none",children:e})]}),"inline"===l&&(0,L.jsx)(L.Fragment,{children:(0,L.jsxs)("div",{className:"badge-inline-container",children:[(0,L.jsx)(es.A,{icon:"x_placeholder"}),(0,L.jsx)("span",{children:e}),(0,L.jsx)(eo.A,{size:"small",emphasis:"strong",semantic:"critical",children:"Label"}),(0,L.jsx)(es.A,{icon:"error"})]})}),"icon"===o&&(0,L.jsxs)(L.Fragment,{children:[(0,L.jsx)(eo.A,{semantic:"critical",emphasis:"strong",size:i,children:(0,L.jsx)(es.A,{icon:"x_placeholder",children:e})}),(0,L.jsx)(S.A,{semantic:"informational",size:"small",icon:"none",children:e})]}),"number"===o&&(0,L.jsxs)(L.Fragment,{children:[(0,L.jsx)(eo.A,{semantic:"successful",children:"9"}),(0,L.jsx)(eo.A,{semantic:"informational",children:"12"}),(0,L.jsx)(eo.A,{semantic:"warning",children:"123"}),(0,L.jsx)(eo.A,{size:"small",emphasis:"strong",semantic:"successful",children:"9"}),(0,L.jsx)(eo.A,{size:"small",emphasis:"strong",semantic:"informational",children:"12"}),(0,L.jsx)(eo.A,{size:"small",emphasis:"strong",semantic:"warning",children:"123"}),(0,L.jsx)(S.A,{semantic:"informational",size:"small",icon:"none",children:e})]})]}),er=JSON.parse('[{"name":"Density","examples":[{"name":"Functional","density":"functional","props":{}},{"name":"(Default) Regular","density":"regular","props":{}},{"name":"Expressive","density":"expressive","props":{}}]},{"name":"Elevation Level","examples":[{"name":"(Default) 1","props":{"elevationLevel":"1"}},{"name":"2","props":{"elevationLevel":"2"}},{"name":"3","props":{"elevationLevel":"3"}}]},{"name":"Spacing","examples":[{"name":"(Default) Small","props":{"spacing":"small"}},{"name":"Medium","props":{"spacing":"medium"}},{"name":"Large","props":{"spacing":"large"}},{"name":"None","props":{"spacing":"none"}}]},{"name":"Behavior","examples":[{"name":"(Default) Static","props":{"behavior":"static"}},{"name":"Interactive","props":{"behavior":"interactive"}}]},{"name":"Example","examples":[{"name":"Level 1 - Interactive","props":{"elevationLevel":"1","behavior":"interactive"}},{"name":"Level 2 - Interactive","props":{"elevationLevel":"2","behavior":"interactive"}},{"name":"Level 3 - Interactive","props":{"elevationLevel":"3","behavior":"interactive"}}]}]'),eu=({behavior:e,children:a,spacing:t,elevationLevel:n})=>{let i=(0,L.jsx)(F.A,{behavior:e,spacing:t,elevationLevel:n,children:(0,L.jsx)("strong",{children:a})});return"interactive"===e?(0,L.jsx)("button",{type:"button",children:i}):i};var ep=t(9839),eh=t(56179);let eb=JSON.parse('[{"name":"Density","role":"group","examples":[{"name":"Functional","density":"functional","props":{"name":"Density"}},{"name":"(Default) Regular","density":"regular","props":{"name":"Density"}},{"name":"Expressive","density":"expressive","props":{"name":"Density"}}]},{"name":"Disabled","role":"group","examples":[{"name":"(Default) False","props":{"name":"Disabled","disabled":false}},{"name":"True","props":{"name":"Disabled","disabled":true}}]},{"name":"Checked","role":"group","examples":[{"name":"(Default) False","props":{"name":"State","checked":false}},{"name":"True","props":{"name":"State","checked":true}}]},{"name":"Indeterminate","role":"group","examples":[{"name":"(Default) False","props":{"name":"Indeterminate","indeterminate":false}},{"name":"True","props":{"name":"Indeterminate","indeterminate":true}}]},{"name":"Validation","role":"group","examples":[{"name":"(Default) No validation","props":{"name":"Validation","validation":"no-validation"}},{"name":"Invalid","props":{"name":"Validation","validation":"invalid","invalidMessage":"Invalid Message"}},{"name":"Valid","props":{"name":"Validation","validation":"valid","validMessage":"Valid message"}}]},{"name":"Size","role":"group","examples":[{"name":"(Default) Medium","props":{"name":"Size"}},{"name":"Small","props":{"name":"Size","size":"small"}}]},{"name":"Required","role":"group","examples":[{"name":"(Default) False","props":{"name":"Requirement","required":false}},{"name":"True","props":{"name":"Requirement","required":true}}]},{"name":"Show Label","role":"group","examples":[{"name":"(Default) True","props":{"name":"Label","showLabel":true}},{"name":"False","props":{"name":"Label","showLabel":false}}]},{"name":"Example","role":"group","examples":[{"name":"Long label","style":{"width":"100px"},"props":{"checked":true,"name":"Example"}}]},{"name":"Show Required Asterisk","role":"group","examples":[{"name":"(Default) True","props":{"name":"Asterisk","required":true,"showRequiredAsterisk":true}},{"name":"False","props":{"name":"Asterisk","required":true,"showRequiredAsterisk":false}}]}]'),ex=({label:e,size:a,name:t,checked:n,required:i,children:l,disabled:o,indeterminate:s,variant:c,showLabel:d,validation:r,invalidMessage:u,validMessage:p,showRequiredAsterisk:h})=>(0,L.jsxs)(L.Fragment,{children:[(0,L.jsx)(ep.A,{label:e,size:a,name:t,defaultChecked:(0,eh.pW)(n),invalidMessage:u,validMessage:p,showRequiredAsterisk:h,required:i,disabled:o,variant:c,showLabel:d,indeterminate:s,validation:r,children:l}),void 0!==d&&!d&&(0,L.jsx)(S.A,{size:"small",semantic:"informational",showIcon:!1,children:l})]}),ev=JSON.parse('[{"name":"Density","examples":[{"name":"Functional","style":{"width":"200px"},"content":"","density":"functional","props":{"width":"full"}},{"name":"(Default) Regular","style":{"width":"200px"},"content":"","density":"regular","props":{"width":"full"}},{"name":"Expressive","style":{"width":"200px"},"content":"","density":"expressive","props":{"width":"full"}}]},{"name":"Variant","examples":[{"name":"(Default) Adaptive - Horizontal","style":{"width":"200px"},"content":"","props":{"width":"full"}},{"name":"Adaptive - Vertical","style":{"height":"100px"},"content":"","props":{"variant":"vertical","width":"full"}}]},{"name":"Emphasis","examples":[{"name":"(Default) Weak","style":{"width":"200px"},"content":"","props":{"width":"full"}},{"name":"Strong","style":{"width":"200px"},"content":"","props":{"emphasis":"strong","width":"full"}}]}]'),em=({variant:e,emphasis:a,children:t,width:n})=>(0,L.jsxs)(L.Fragment,{children:[(0,L.jsx)(S.A,{size:"small",semantic:"informational",children:t}),(0,L.jsx)(q.A,{variant:e,emphasis:a,width:n})]});var eg=t(19831);let ej=JSON.parse('[{"name":"Density","examples":[{"name":"Functional","density":"functional","props":{"open":"open","onClose":"toggleDrawer(false)"}},{"name":"(Default) Regular","density":"regular","props":{"open":"open","onClose":"toggleDrawer(false)"}},{"name":"Expressive","density":"expressive","props":{"open":"open","onClose":"toggleDrawer(false)"}}]},{"name":"Size","examples":[{"name":"(Default) Medium","props":{"open":"open","onClose":"toggleDrawer(false)"}},{"name":"Full","props":{"width":"full","open":"open","onClose":"toggleDrawer(false)"}}]},{"name":"Rounded","examples":[{"name":"(Default) False","props":{"rounded":false,"open":"open","onClose":"toggleDrawer(false)"}},{"name":"True","props":{"rounded":true,"open":"open","onClose":"toggleDrawer(false)"}}]},{"name":"Spacing","examples":[{"name":"(Default) Medium","props":{"open":"open","onClose":"toggleDrawer(false)"}},{"name":"Small","props":{"spacing":"small","open":"open","onClose":"toggleDrawer(false)"}},{"name":"Large","props":{"spacing":"large","open":"open","onClose":"toggleDrawer(false)"}},{"name":"None","props":{"spacing":"none","open":"open","onClose":"toggleDrawer(false)"}}]},{"name":"Backdrop","examples":[{"name":"(Default) Strong","props":{"backdrop":"strong","open":"open","onClose":"toggleDrawer(false)"}},{"name":"Weak","props":{"backdrop":"weak","open":"open","onClose":"toggleDrawer(false)"}},{"name":"Invisible","props":{"backdrop":"invisible","open":"open","onClose":"toggleDrawer(false)"}},{"name":"No Backdrop","props":{"backdrop":"none","open":"open","onClose":"toggleDrawer(false)"}}]},{"name":"Direction","examples":[{"name":"(Default) Right","props":{"open":"open","onClose":"toggleDrawer(false)"}},{"name":"Left","props":{"direction":"left","open":"open","onClose":"toggleDrawer(false)"}},{"name":"Up","props":{"direction":"up","open":"open","onClose":"toggleDrawer(false)"}},{"name":"Down","props":{"direction":"down","open":"open","onClose":"toggleDrawer(false)"}}]},{"name":"Example","examples":[{"name":"(Default) As modal","props":{"variant":"modal","open":"open","onClose":"toggleDrawer(false)"}},{"name":"Inside","props":{"variant":"inside","open":"open","onClose":"toggleDrawer(false)"}}]}]');var eD=t(37975),eB=t(90137),ef=t(99279);let ew=JSON.parse('[{"name":"Density","children":[{"name":"brand","slot":"brand","content":"DBHeader"},{"name":"link","slot":"meta-navigation","angularDirective":true,"content":"Imprint","props":{"href":"#"}},{"name":"button","slot":"primary-action","content":"Search","props":{"icon":"magnifying_glass","variant":"ghost","noText":true}},{"name":"button","slot":"secondary-action","angularDirective":true,"content":"Profile","props":{"icon":"x_placeholder","variant":"ghost","noText":true}},{"name":"navigation","slot":"Navigation","angularDirective":true,"children":[{"name":"navigation-item","props":{"icon":"x_placeholder"},"children":[{"name":"a","native":true,"slot":"NavigationContent","angularDirective":true,"content":"Link","props":{"href":"#"}}]},{"name":"navigation-item","props":{"icon":"x_placeholder","disabled":true},"children":[{"name":"a","native":true,"slot":"NavigationContent","angularDirective":true,"content":"Link disabled","props":{"href":"#"}}]}]}],"examples":[{"name":"Functional","density":"functional","props":{},"style":{"width":"100%","display":"block"}},{"name":"(Default) Regular","density":"regular","props":{},"style":{"width":"100%","display":"block"}},{"name":"Expressive","density":"expressive","props":{},"style":{"width":"100%","display":"block"}}]},{"name":"Width","children":[{"name":"brand","slot":"brand","content":"DBHeader"},{"name":"link","slot":"meta-navigation","angularDirective":true,"content":"Imprint","props":{"href":"#"}},{"name":"button","slot":"primary-action","content":"Search","props":{"icon":"magnifying_glass","variant":"ghost","noText":true}},{"name":"button","slot":"secondary-action","angularDirective":true,"content":"Profile","props":{"icon":"x_placeholder","variant":"ghost","noText":true}},{"name":"navigation","slot":"Navigation","angularDirective":true,"children":[{"name":"navigation-item","props":{"icon":"x_placeholder"},"children":[{"name":"a","native":true,"slot":"NavigationContent","angularDirective":true,"content":"Link","props":{"href":"#"}}]},{"name":"navigation-item","props":{"icon":"x_placeholder","disabled":true},"children":[{"name":"a","native":true,"slot":"NavigationContent","angularDirective":true,"content":"Link disabled","props":{"href":"#"}}]}]}],"examples":[{"name":"Full","style":{"width":"100%","display":"block"}},{"name":"Medium","style":{"width":"100%","display":"block"},"props":{"width":"medium"}},{"name":"Large","style":{"width":"100%","display":"block"},"props":{"width":"large"}}]},{"name":"Behavior","children":[{"name":"brand","slot":"brand","content":"DBHeader"},{"name":"link","slot":"meta-navigation","angularDirective":true,"content":"Imprint","props":{"href":"#"}},{"name":"button","slot":"primary-action","content":"Search","props":{"icon":"magnifying_glass","variant":"ghost","noText":true}},{"name":"button","slot":"secondary-action","angularDirective":true,"content":"Profile","props":{"icon":"x_placeholder","variant":"ghost","noText":true}},{"name":"navigation","slot":"Navigation","angularDirective":true,"children":[{"name":"navigation-item","props":{"icon":"x_placeholder"},"children":[{"name":"a","native":true,"slot":"NavigationContent","angularDirective":true,"content":"Link","props":{"href":"#"}}]},{"name":"navigation-item","props":{"icon":"x_placeholder","disabled":true},"children":[{"name":"a","native":true,"slot":"NavigationContent","angularDirective":true,"content":"Link disabled","props":{"href":"#"}}]}]}],"examples":[{"name":"Desktop (full width)","style":{"width":"100%","display":"block"}},{"name":"Mobile","style":{"width":"100%","display":"block"},"props":{"forceMobile":"true"}}]},{"name":"Examples","children":[{"name":"brand","slot":"brand","content":"DBHeader"},{"name":"link","slot":"meta-navigation","angularDirective":true,"content":"Imprint","props":{"href":"#"}},{"name":"button","slot":"primary-action","content":"Search","props":{"icon":"magnifying_glass","variant":"ghost","noText":true}},{"name":"button","slot":"secondary-action","angularDirective":true,"content":"Profile","props":{"icon":"x_placeholder","variant":"ghost","noText":true}},{"name":"navigation","slot":"Navigation","angularDirective":true,"children":[{"name":"navigation-item","props":{"icon":"x_placeholder"},"children":[{"name":"a","native":true,"slot":"NavigationContent","angularDirective":true,"content":"Link","props":{"href":"#"}}]},{"name":"navigation-item","props":{"icon":"x_placeholder","disabled":true},"children":[{"name":"a","native":true,"slot":"NavigationContent","angularDirective":true,"content":"Link disabled","props":{"href":"#"}}]}]}],"examples":[{"name":"With Application Name + Navigation","style":{"width":"100%","display":"block"},"props":{"example":true,"withName":true,"withNavigation":true}},{"name":"Without Navigation","style":{"width":"100%","display":"block"},"props":{"example":true,"withName":true,"withNavigation":false}},{"name":"Without Application Name","style":{"width":"100%","display":"block"},"props":{"example":true,"withName":false,"withNavigation":true}},{"name":"Without Application Name + Navigation","style":{"width":"100%","display":"block"},"props":{"example":true,"withName":false,"withNavigation":false}}]}]'),eA=({drawerOpen:e,forceMobile:a,burgerMenuLabel:t,children:n,className:i,id:l,onToggle:o,width:s,example:c,withNavigation:d,withName:r})=>(0,L.jsx)(eD.A,{width:s,brand:(0,L.jsx)(Q.A,{title:"DBHeader",children:(!c||r)&&"DBHeader"}),metaNavigation:!c&&(0,L.jsxs)(L.Fragment,{children:[(0,L.jsx)(E.A,{href:"#",children:"Imprint"}),(0,L.jsx)(E.A,{href:"#",children:"Help"})]}),primaryAction:!c&&(0,L.jsx)(ea.A,{icon:"magnifying_glass",variant:"ghost",noText:!0,children:"Search"}),secondaryAction:!c&&(0,L.jsxs)(L.Fragment,{children:[(0,L.jsx)(ea.A,{icon:"x_placeholder",variant:"ghost",noText:!0,children:"Profile"}),(0,L.jsx)(ea.A,{icon:"x_placeholder",variant:"ghost",noText:!0,children:"Notification"}),(0,L.jsx)(ea.A,{icon:"x_placeholder",variant:"ghost",noText:!0,children:"Help"})]}),drawerOpen:e,forceMobile:a,burgerMenuLabel:t,className:i,id:l,onToggle:o,children:(!c||d)&&(0,L.jsxs)(eB.A,{"aria-label":n,children:[(0,L.jsx)(ef.A,{icon:"x_placeholder",children:(0,L.jsx)("a",{href:"#",children:n})}),(0,L.jsx)(ef.A,{disabled:!0,children:(0,L.jsxs)("a",{href:"#",children:[n," disabled"]})})]})}),eT=JSON.parse('[{"name":"Density","examples":[{"name":"Functional","density":"functional","props":{}},{"name":"(Default) Regular","density":"regular","props":{}},{"name":"Expressive","density":"expressive","props":{}}]},{"name":"Semantic","examples":[{"name":"(Default) Adaptive"},{"name":"Neutral","props":{"semantic":"neutral"}},{"name":"Critical","props":{"semantic":"critical"}},{"name":"Informational","props":{"semantic":"informational"}},{"name":"Successful","props":{"semantic":"successful"}},{"name":"Warning","props":{"semantic":"warning"}}]},{"name":"Size","examples":[{"name":"(Default) Medium"},{"name":"Small","props":{"size":"small"}}]},{"name":"Show Icon","examples":[{"name":"(Default) True","props":{"showIcon":true}},{"name":"False","props":{"showIcon":false}}]}]'),ey=({semantic:e,size:a,icon:t,children:n,showIcon:i})=>(0,L.jsx)(S.A,{semantic:e,size:a,icon:t,showIcon:i,children:n});var ek=t(78815);let eC=JSON.parse('[{"name":"Density","examples":[{"name":"Functional","density":"functional","props":{"label":"Label"}},{"name":"(Default) Regular","density":"regular","props":{"label":"Label"}},{"name":"Expressive","density":"expressive","props":{"label":"Label"}}]},{"name":"Variant","examples":[{"name":"(Default) Above","props":{"label":"Label"}},{"name":"Floating","props":{"label":"Label","variant":"floating","value":"Floating"}}]},{"name":"Show Label","examples":[{"name":"(Default) True","props":{"label":"Label","showLabel":true}},{"name":"False","props":{"label":"Label","showLabel":false}}]},{"name":"Show Message","examples":[{"name":"(Default) False","props":{"label":"Label","message":"Message","showMessage":false}},{"name":"True","props":{"label":"Label","message":"Message","showMessage":true}}]},{"name":"State","examples":[{"name":"(Default) Empty","props":{"label":"Label"}},{"name":"Filled","props":{"label":"Label","value":"Filled"}}]},{"name":"Disabled","examples":[{"name":"(Default) False","props":{"label":"Label","disabled":false}},{"name":"True","props":{"label":"Label","disabled":true}}]},{"name":"Readonly","examples":[{"name":"(Default) False","props":{"label":"Label","readOnly":false}},{"name":"True","props":{"label":"Label","readOnly":true}}]},{"name":"Validation","examples":[{"name":"(Default) No validation","props":{"label":"Label","validation":"no-validation"}},{"name":"Invalid","props":{"label":"Label","validation":"invalid","invalidMessage":"Invalid Message"}},{"name":"Valid","props":{"label":"Label","validation":"valid","validMessage":"Valid message"}}]},{"name":"Required","examples":[{"name":"(Default) False","props":{"label":"Label","required":false}},{"name":"True","props":{"label":"Label","required":true}}]},{"name":"Show Required Asterisk","examples":[{"name":"(Default) True","props":{"label":"Label","required":true,"showRequiredAsterisk":true}},{"name":"False","props":{"label":"Label","required":true,"showRequiredAsterisk":false}}]},{"name":"Show Icon Leading","examples":[{"name":"(Default) False","props":{"label":"False","icon":"x_placeholder","showIcon":false}},{"name":"True","props":{"label":"True","icon":"x_placeholder","showIcon":true}}]},{"name":"Show Icon Leading + Trailing","examples":[{"name":"(Default) False","props":{"label":"False","icon":"x_placeholder","showIcon":false,"iconTrailing":"x_placeholder","showIconTrailing":false}},{"name":"True","props":{"label":"True","icon":"x_placeholder","showIcon":true,"iconTrailing":"x_placeholder","showIconTrailing":true}}]},{"name":"Show Icon Trailing","examples":[{"name":"(Default) False","props":{"label":"False","iconTrailing":"x_placeholder","showIconTrailing":false}},{"name":"True","props":{"label":"True","iconTrailing":"x_placeholder","showIconTrailing":true}}]},{"name":"Example - Length","examples":[{"name":"MinLength","props":{"label":"Label","minLength":3}},{"name":"MaxLength","props":{"label":"Label","maxLength":5}},{"name":"MinMaxLength","props":{"label":"Label","minLength":3,"maxLength":5}}]},{"name":"Example - Types with min and max","codeFileName":"ExampleTypes","examples":[{"name":"(Default) Text","props":{"label":"Label"}},{"name":"Password","props":{"label":"Label","type":"password"}},{"name":"Search","props":{"label":"Label","type":"search"}},{"name":"E-Mail","props":{"label":"Label","type":"email"}},{"name":"Tel","props":{"label":"Label","type":"tel"}},{"name":"URL","props":{"label":"Label","type":"url"}},{"name":"Date","props":{"label":"Label","type":"date","min":"2023-01-01","max":"2030-12-31"}},{"name":"Datetime Local","props":{"label":"Label","type":"datetime-local","min":"2023-01-01T00:00","max":"2030-12-31T23:59"}},{"name":"Month","props":{"label":"Label","type":"month","min":"2023-01","max":"2030-12"}},{"name":"Time","props":{"label":"Label","type":"time","min":"00:00","max":"23:59"}},{"name":"Week","props":{"label":"Label","type":"week","min":"2023-W01","max":"2030-W52"}}]},{"name":"Example Floating Label","examples":[{"name":"(Default) Empty","props":{"label":"Label","variant":"floating"}},{"name":"Filled","props":{"label":"Label","value":"Filled","variant":"floating"}},{"name":"Disabled","props":{"label":"Label","disabled":true,"variant":"floating"}},{"name":"Readonly - Filled","props":{"label":"Label","value":"Readonly - Filled","readOnly":true,"variant":"floating"}}]},{"name":"Example - Types - Floating Label","codeFileName":"ExampleTypesFloatingLabel","examples":[{"name":"(Default) Text","props":{"label":"Label","variant":"floating"}},{"name":"Password","props":{"label":"Label","type":"password","variant":"floating"}},{"name":"Search","props":{"label":"Label","type":"search","variant":"floating"}},{"name":"E-Mail","props":{"label":"Label","type":"email","variant":"floating"}},{"name":"Tel","props":{"label":"Label","type":"tel","variant":"floating"}},{"name":"URL","props":{"label":"Label","type":"url","variant":"floating"}},{"name":"Date","props":{"label":"Label","type":"date","variant":"floating"}},{"name":"Datetime Local","props":{"label":"Label","type":"datetime-local","variant":"floating"}},{"name":"Month","props":{"label":"Label","type":"month","variant":"floating"}},{"name":"Time","props":{"label":"Label","type":"time","variant":"floating"}},{"name":"Week","props":{"label":"Label","type":"week","variant":"floating"}},{"name":"Datalist","props":{"label":"Label","variant":"floating","dataList":true}},{"name":"File","experimental":true,"props":{"label":"Label","type":"file","variant":"floating"}}]},{"name":"Datalist / Typeahead Examples","codeFileName":"DatalistExamples","examples":[{"name":"Simple String List","props":{"label":"Search Cities","placeholder":"Type to search...","dataList":true,"variant":"floating"}},{"name":"Regular Variant with Datalist","props":{"label":"Search Products","placeholder":"Type to search...","dataList":true}},{"name":"With Search Icon","props":{"label":"Search Stations","placeholder":"Type to search...","dataList":true,"variant":"floating","type":"search","icon":"magnifying_glass","showIcon":true}}]}]'),eO=({label:e,value:a,type:t,minLength:n,required:i,disabled:l,iconTrailing:o,showIcon:s,showIconTrailing:c,icon:d,children:r,message:u,variant:p,readOnly:h,dataList:b,showLabel:x,showMessage:v,validMessage:m,validation:g,invalidMessage:j,showRequiredAsterisk:D,maxLength:B,max:f,min:w})=>(0,L.jsx)(ek.A,{label:e,message:u,placeholder:r,variant:p,showLabel:x,showRequiredAsterisk:D,defaultValue:a,type:t,minLength:n,required:i,disabled:l,readOnly:h,iconTrailing:o,showIconTrailing:c,maxLength:B,max:f,min:w,icon:d,showIcon:s,showMessage:v,invalidMessage:j,validMessage:m,validation:g,dataList:b?"floating"===p?["Test 1","Test 2"]:[{value:"test1",label:"Test 1"},{value:"test2",label:"Test 2"}]:void 0});var eN=t(57319);let eI=JSON.parse('[{"name":"Density","examples":[{"name":"functional","density":"functional","style":{"width":"300px"},"props":{"headline":"Headline","icon":"information_circle"}},{"name":"regular (Default)","density":"regular","style":{"width":"300px"},"props":{"headline":"Headline","icon":"information_circle"}},{"name":"expressive","density":"expressive","style":{"width":"300px"},"props":{"headline":"Headline","icon":"information_circle"}}]},{"name":"Variant","examples":[{"name":"(Default) Docked","style":{"width":"300px"},"props":{"variant":"docked","headline":"Headline","icon":"information_circle"}},{"name":"Standalone","style":{"width":"300px"},"props":{"variant":"standalone","headline":"Headline","icon":"information_circle"}},{"name":"Overlay","style":{"width":"300px"},"props":{"variant":"overlay","headline":"Headline","icon":"information_circle"}}]},{"name":"Semantic","examples":[{"name":"(Default) Adaptive","style":{"width":"300px"},"props":{"headline":"Headline"}},{"name":"Neutral","style":{"width":"300px"},"props":{"semantic":"neutral","headline":"Headline"}},{"name":"Critical","style":{"width":"300px"},"props":{"semantic":"critical","headline":"Headline"}},{"name":"Informational","style":{"width":"300px"},"props":{"semantic":"informational","headline":"Headline"}},{"name":"Successful","style":{"width":"300px"},"props":{"semantic":"successful","headline":"Headline"}},{"name":"Warning","style":{"width":"300px"},"props":{"semantic":"warning","headline":"Headline"}}]},{"name":"Closeable","examples":[{"name":"(Default) False","style":{"width":"300px"},"props":{"closeable":false}},{"name":"True","style":{"width":"300px"},"props":{"closeable":true}}]},{"name":"Visual","examples":[{"name":"(Default) Icon","style":{"width":"300px"},"props":{"icon":"information_circle"}},{"name":"Image","style":{"width":"300px"},"props":{"img":true}}]},{"name":"Show Icon","examples":[{"name":"(Default) True","style":{"width":"300px"},"props":{"icon":"information_circle","showIcon":true}},{"name":"False","style":{"width":"300px"},"props":{"icon":"information_circle","showIcon":false}}]},{"name":"Link Variant","examples":[{"name":"(Default) Block","style":{"width":"300px"},"props":{"link":true,"linkVariant":"block"}},{"name":"Inline","style":{"width":"300px"},"props":{"link":true,"linkVariant":"inline"}}]},{"name":"Show Headline","examples":[{"name":"(Default) True","style":{"width":"300px"},"props":{"headline":"Headline","showHeadline":true}},{"name":"False","style":{"width":"300px"},"props":{"headline":"Headline","showHeadline":false}}]},{"name":"Show Timestamp","examples":[{"name":"(Default) False","style":{"width":"300px"},"props":{"variant":"overlay","showTimestamp":false,"timestamp":"10 min ago"}},{"name":"True","style":{"width":"300px"},"props":{"variant":"overlay","showTimestamp":true,"timestamp":"10 min ago"}}]},{"name":"Examples - Variant:Docked","codeFileName":"ContentVariantDocked","examples":[{"name":"Text","style":{"width":"300px"},"props":{"behavior":"permanent"}},{"name":"Text & Icon","style":{"width":"300px"},"props":{"icon":"information_circle","behavior":"permanent"}},{"name":"Text & Preview Image","style":{"width":"300px"},"props":{"img":true,"behavior":"permanent"},"children":[{"name":"img","native":true,"slot":"image","content":"","props":{"src":"/assets/images/placeholder.jpg","alt":""}}]},{"name":"Text & Headline","style":{"width":"300px"},"props":{"headline":"Headline","behavior":"permanent"}},{"name":"Text & Textlink Block","style":{"width":"300px"},"props":{"link":true,"behavior":"permanent"},"children":[{"name":"link","slot":"link","content":"Textlink","props":{"href":"#"}}]},{"name":"Text & Textlink Inline","style":{"width":"300px"},"props":{"link":true,"linkVariant":"inline","behavior":"permanent"},"children":[{"name":"link","slot":"link","content":"Textlink","props":{"href":"#"}}]},{"name":"Text & Headline & Textlink Inline & Closeable","style":{"width":"300px"},"props":{"headline":"Headline","link":true,"linkVariant":"inline","closeable":true},"children":[{"name":"link","slot":"link","content":"Textlink","props":{"href":"#"}}]},{"name":"Text & Icon & Headline & Textlink Inline & Closeable","style":{"width":"300px"},"props":{"icon":"information_circle","headline":"Headline","link":true,"linkVariant":"inline","closeable":true},"children":[{"name":"link","slot":"link","content":"Textlink","props":{"href":"#"}}]}]},{"name":"Examples - Variant:Standalone","codeFileName":"ContentVariantStandalone","examples":[{"name":"Text","style":{"width":"300px"},"props":{"variant":"standalone","behavior":"permanent"}},{"name":"Text & Icon","style":{"width":"300px"},"props":{"icon":"information_circle","variant":"standalone","behavior":"permanent"}},{"name":"Text & Preview Image","style":{"width":"300px"},"props":{"img":true,"variant":"standalone","behavior":"permanent"},"children":[{"name":"img","native":true,"slot":"image","content":"","props":{"src":"/assets/images/placeholder.jpg","alt":""}}]},{"name":"Text & Headline","style":{"width":"300px"},"props":{"headline":"Headline","variant":"standalone","behavior":"permanent"}},{"name":"Text & Textlink Block","style":{"width":"300px"},"props":{"link":true,"variant":"standalone","behavior":"permanent"},"children":[{"name":"link","slot":"link","content":"Textlink","props":{"href":"#"}}]},{"name":"Text & Textlink Inline","style":{"width":"300px"},"props":{"link":true,"linkVariant":"inline","variant":"standalone","behavior":"permanent"},"children":[{"name":"link","slot":"link","content":"Textlink","props":{"href":"#"}}]},{"name":"Text & Headline & Textlink Inline & Closeable","style":{"width":"300px"},"props":{"headline":"Headline","link":true,"linkVariant":"inline","variant":"standalone","closeable":true},"children":[{"name":"link","slot":"link","content":"Textlink","props":{"href":"#"}}]},{"name":"Text & Icon & Headline & Textlink Inline & Closeable","style":{"width":"300px"},"props":{"icon":"information_circle","headline":"Headline","link":true,"linkVariant":"inline","variant":"standalone","closeable":true},"children":[{"name":"link","slot":"link","content":"Textlink","props":{"href":"#"}}]}]},{"name":"Examples - Variant:Overlay","codeFileName":"ContentVariantOverlay","examples":[{"name":"Text","style":{"width":"300px"},"props":{"variant":"overlay","behavior":"permanent"}},{"name":"Text & Icon","style":{"width":"300px"},"props":{"icon":"information_circle","variant":"overlay","behavior":"permanent"}},{"name":"Text & Preview Image","style":{"width":"300px"},"props":{"img":true,"variant":"overlay","behavior":"permanent"},"children":[{"name":"img","native":true,"slot":"image","content":"","props":{"src":"/assets/images/placeholder.jpg","alt":""}}]},{"name":"Text & Headline","style":{"width":"300px"},"props":{"headline":"Headline","variant":"overlay","behavior":"permanent"}},{"name":"Text & Textlink Inline","style":{"width":"300px"},"props":{"link":true,"variant":"overlay","behavior":"permanent","linkVariant":"inline"}},{"name":"Text & Textlink Block","style":{"width":"300px"},"props":{"link":true,"variant":"overlay","behavior":"permanent","linkVariant":"block"},"children":[{"name":"link","slot":"link","content":"Textlink","props":{"href":"#"}}]},{"name":"Text & Textlink Block & Timed","style":{"width":"300px"},"props":{"link":true,"variant":"overlay","behavior":"permanent","linkVariant":"block","showTimestamp":true,"timestamp":"10 min ago"},"children":[{"name":"link","slot":"link","content":"Textlink","props":{"href":"#"}}]},{"name":"Text & Headline & Textlink Inline & Closeable","style":{"width":"300px"},"props":{"headline":"Headline","link":true,"variant":"overlay","closeable":true,"linkVariant":"inline"}},{"name":"Text & Icon & Headline & Textlink Inline & Closeable","style":{"width":"300px"},"props":{"icon":"information_circle","headline":"Headline","link":true,"variant":"overlay","closeable":true,"linkVariant":"inline"}},{"name":"Text & Timed","style":{"width":"300px"},"props":{"variant":"overlay","behavior":"permanent","showTimestamp":true,"timestamp":"10 min ago"}},{"name":"Text & Timed & Closeable","style":{"width":"300px"},"props":{"variant":"overlay","closeable":true,"showTimestamp":true,"timestamp":"10 min ago"}},{"name":"Text & Headline & Timed & Closeable","style":{"width":"300px"},"props":{"headline":"Headline","variant":"overlay","closeable":true,"showTimestamp":true,"timestamp":"10 min ago"}},{"name":"Text & Icon & Headline & Timed & Closeable","style":{"width":"300px"},"props":{"icon":"information_circle","headline":"Headline","variant":"overlay","closeable":true,"showTimestamp":true,"timestamp":"10 min ago"}}]}]'),eL=({semantic:e,icon:a,headline:t,variant:n,children:i,closeable:l,link:o,timestamp:s,linkVariant:c,img:d,showIcon:r,showHeadline:u,showTimestamp:p})=>(0,L.jsx)(eN.A,{semantic:e,icon:a,headline:t,link:o?(0,L.jsx)(E.A,{href:"#",children:"Textlink"}):void 0,image:d?(0,L.jsx)("img",{src:"/core-web/review/1493-erstellung-einer-mvp-breadcrumb-komponente/assets/images/placeholder.jpg",alt:"this is a fancy placeholder"}):void 0,variant:n,closeable:l,linkVariant:c,timestamp:s,showTimestamp:p,onClose:()=>{alert(i.toString())},showIcon:r,showHeadline:u,children:i});var eS=t(71031);let e_=JSON.parse('[{"name":"Density","role":"radiogroup","examples":[{"name":"Functional","density":"functional","props":{"name":"Density","value":"functional"}},{"name":"(Default) Regular","density":"regular","props":{"name":"Density","value":"regular"}},{"name":"Expressive","density":"expressive","props":{"name":"Density","value":"expressive"}}]},{"name":"Disabled","role":"radiogroup","examples":[{"name":"(Default) False","props":{"name":"Disabled","disabled":false}},{"name":"True","props":{"name":"Disabled","disabled":true}}]},{"name":"Checked","role":"radiogroup","examples":[{"name":"(Default) False","props":{"name":"Checked"}},{"name":"True","props":{"name":"Checked","checked":true}}]},{"name":"Validation","role":"radiogroup","examples":[{"name":"(Default) No validation","props":{"name":"No validation","validation":"no-validation"}},{"name":"Invalid","props":{"name":"invalid","validation":"invalid","invalidMessage":"Invalid Message"}},{"name":"Valid","props":{"name":"valid","validation":"valid","validMessage":"Valid message","checked":true}}]},{"name":"Size","role":"radiogroup","examples":[{"name":"(Default) Medium","props":{"name":"Size"}},{"name":"Small","props":{"name":"Size","size":"small"}}]},{"name":"Required","role":"radiogroup","examples":[{"name":"(Default) False","props":{"name":"Requirement","required":false}},{"name":"True","props":{"name":"Requirement","required":true}}]},{"name":"Show Label","role":"radiogroup","examples":[{"name":"(Default) True","props":{"name":"Content","showLabel":true}},{"name":"False","props":{"name":"Content","showLabel":false}}]},{"name":"Show Required Asterisk","role":"radiogroup","examples":[{"name":"(Default) True","props":{"name":"Asterisk","required":true,"showRequiredAsterisk":true}},{"name":"False","props":{"name":"Asterisk","required":true,"showRequiredAsterisk":false}}]}]'),eH=({label:e,size:a,name:t,checked:n,required:i,children:l,disabled:o,value:s,showLabel:c,validation:d,showRequiredAsterisk:r})=>(0,L.jsxs)(L.Fragment,{children:[(0,L.jsx)(eS.A,{showRequiredAsterisk:r,label:e,size:a,name:t,defaultChecked:(0,eh.pW)(n),required:i,disabled:o,showLabel:c,value:s,validation:d,children:l}),void 0!==c&&!c&&(0,L.jsx)(S.A,{size:"small",semantic:"informational",showIcon:!1,children:l})]});var ez=t(24845);let eP=JSON.parse('[{"name":"Density","examples":[{"name":"Functional","density":"functional","style":{"width":"300px"},"props":{"options":[{"value":"Option 1"},{"value":"Option 2"},{"value":"Option 3"},{"value":"Option 4"},{"value":"Option 5"}],"label":"Label","placeholder":"Functional"}},{"name":"(Default) Regular","density":"regular","style":{"width":"300px"},"props":{"options":[{"value":"Option 1"},{"value":"Option 2"},{"value":"Option 3"},{"value":"Option 4"},{"value":"Option 5"}],"label":"Label","placeholder":"(Default) Regular"}},{"name":"Expressive","density":"expressive","style":{"width":"300px"},"props":{"options":[{"value":"Option 1"},{"value":"Option 2"},{"value":"Option 3"},{"value":"Option 4"},{"value":"Option 5"}],"label":"Label","placeholder":"Expressive"}}]},{"name":"Variant","examples":[{"name":"(Default) Above","style":{"width":"300px"},"props":{"options":[{"value":"Option 1"},{"value":"Option 2"},{"value":"Option 3"},{"value":"Option 4"},{"value":"Option 5"}],"label":"Label","placeholder":"(Default) Above"}},{"name":"Floating Label","style":{"width":"300px"},"props":{"options":[{"value":"Floating","selected":true},{"value":"Option 2"}],"label":"Label","variant":"floating","value":"Floating","placeholder":"Floating"}}]},{"name":"Show Label","examples":[{"name":"(Default) True","style":{"width":"300px"},"props":{"options":[{"value":"Option 1"},{"value":"Option 2"},{"value":"Option 3"},{"value":"Option 4"},{"value":"Option 5"}],"label":"Label","showLabel":true,"placeholder":"(Default) True"}},{"name":"False","style":{"width":"300px"},"props":{"options":[{"value":"Option 1"},{"value":"Option 2"},{"value":"Option 3"},{"value":"Option 4"},{"value":"Option 5"}],"label":"Label","showLabel":false,"placeholder":"False"}}]},{"name":"Show Message","examples":[{"name":"(Default) False","style":{"width":"300px"},"props":{"options":[{"value":"Option 1"},{"value":"Option 2"},{"value":"Option 3"},{"value":"Option 4"},{"value":"Option 5"}],"label":"Label","message":"Message","showMessage":false,"placeholder":"(Default) False"}},{"name":"True","style":{"width":"300px"},"props":{"options":[{"value":"Option 1"},{"value":"Option 2"},{"value":"Option 3"},{"value":"Option 4"},{"value":"Option 5"}],"label":"Label","message":"Message","showMessage":true,"placeholder":"True"}}]},{"name":"State","examples":[{"name":"(Default) Empty","style":{"width":"300px"},"props":{"options":[{"value":"Option 1"},{"value":"Option 2"},{"value":"Option 3"},{"value":"Option 4"},{"value":"Option 5"}],"label":"Label","placeholder":"(Default) Empty"}},{"name":"Filled","style":{"width":"300px"},"props":{"options":[{"value":"Filled","selected":true},{"value":"Option 2"}],"label":"Label","value":"Filled","placeholder":"Filled"}}]},{"name":"Validation","examples":[{"name":"(Default) No validation","style":{"width":"300px"},"props":{"options":[{"value":"Option 1"},{"value":"Option 2"},{"value":"Option 3"},{"value":"Option 4"},{"value":"Option 5"}],"label":"Label","validation":"no-validation","placeholder":"(Default) No validation"}},{"name":"Invalid","style":{"width":"300px"},"props":{"options":[{"value":"Option 1"},{"value":"Option 2"},{"value":"Option 3"},{"value":"Option 4"},{"value":"Option 5"}],"label":"Label","validation":"invalid","invalidMessage":"Invalid Message","placeholder":"Invalid"}},{"name":"Valid","style":{"width":"300px"},"props":{"options":[{"value":"Valid","selected":true},{"value":"Option 2"}],"label":"Label","validation":"valid","validMessage":"Valid message","placeholder":"Valid"}}]},{"name":"Disabled","examples":[{"name":"(Default) False","style":{"width":"300px"},"props":{"options":[{"value":"Option 1"},{"value":"Option 2"},{"value":"Option 3"},{"value":"Option 4"},{"value":"Option 5"}],"label":"Label","disabled":false,"placeholder":"(Default) False"}},{"name":"True","style":{"width":"300px"},"props":{"options":[{"value":"Option 1"},{"value":"Option 2"},{"value":"Option 3"},{"value":"Option 4"},{"value":"Option 5"}],"label":"Label","disabled":true,"placeholder":"True"}}]},{"name":"Content","examples":[{"name":"(Default) Text","style":{"width":"300px"},"props":{"options":[{"value":"Option 1"},{"value":"Option 2"},{"value":"Option 3"},{"value":"Option 4"},{"value":"Option 5"}],"label":"Label","placeholder":"(Default) Text"}},{"name":"Text - Leading Icon","style":{"width":"300px"},"props":{"options":[{"value":"Option 1"},{"value":"Option 2"},{"value":"Option 3"},{"value":"Option 4"},{"value":"Option 5"}],"label":"Label","icon":"x_placeholder","placeholder":"Text - Leading Icon"}}]},{"name":"Required","examples":[{"name":"(Default) False","style":{"width":"300px"},"props":{"options":[{"value":"Option 1"},{"value":"Option 2"},{"value":"Option 3"},{"value":"Option 4"},{"value":"Option 5"}],"label":"Label","required":false,"placeholder":"(Default) False"}},{"name":"True","style":{"width":"300px"},"props":{"options":[{"value":"Option 1"},{"value":"Option 2"},{"value":"Option 3"},{"value":"Option 4"},{"value":"Option 5"}],"label":"Label","required":true,"placeholder":"True"}}]},{"name":"Show Required Asterisk","examples":[{"name":"(Default) True","style":{"width":"300px"},"props":{"options":[{"value":"Option 1"},{"value":"Option 2"},{"value":"Option 3"},{"value":"Option 4"},{"value":"Option 5"}],"label":"Label","required":true,"showRequiredAsterisk":true,"placeholder":"(Default) True"}},{"name":"False","style":{"width":"300px"},"props":{"options":[{"value":"Option 1"},{"value":"Option 2"},{"value":"Option 3"},{"value":"Option 4"},{"value":"Option 5"}],"label":"Label","required":true,"showRequiredAsterisk":false,"placeholder":"False"}}]},{"name":"Option Groups","examples":[{"name":"Using optgroups","style":{"width":"300px"},"props":{"options":[{"label":"Group 1","options":[{"value":"Option 1"},{"value":"Option 2"}]},{"label":"Group 2","options":[{"value":"Option 3"},{"value":"Option 4"}]}],"label":"Label","placeholder":"Using optgroups"}},{"name":"Mixed options and groups","style":{"width":"300px"},"props":{"options":[{"value":"Single Option"},{"label":"Grouped Options","options":[{"value":"Group Option 1"},{"value":"Group Option 2"}]},{"value":"Another Single Option"}],"label":"Label","placeholder":"Mixed options and groups"}}]},{"name":"Examples Floating Label","examples":[{"name":"(Default) Empty","style":{"width":"300px"},"props":{"options":[{"value":"Option 1"},{"value":"Option 2"},{"value":"Option 3"},{"value":"Option 4"},{"value":"Option 5"}],"label":"Label","variant":"floating","placeholder":"(Default) Empty"}},{"name":"Filled","style":{"width":"300px"},"props":{"options":[{"value":"Filled","selected":true},{"value":"Option 2"}],"label":"Label","value":"Filled","variant":"floating","placeholder":"Filled"}},{"name":"Disabled","style":{"width":"300px"},"props":{"options":[{"value":"Disabled","selected":true},{"value":"Option 2"}],"label":"Label","disabled":true,"variant":"floating","value":"Disabled","placeholder":"Disabled"}}]}]'),eR=({placeholder:e,label:a,options:t,icon:n,message:i,disabled:l,value:o,required:s,variant:c,showLabel:d,showMessage:r,invalidMessage:u,validMessage:p,validation:h,showRequiredAsterisk:b})=>{let[x,v]=(0,R.useState)(o);return(0,L.jsx)(ez.A,{label:a,placeholder:e,options:t,disabled:l,variant:c,showLabel:d,icon:n,value:x,showRequiredAsterisk:b,onChange:e=>{v(e.target.value)},message:i,required:s,showMessage:r,invalidMessage:u,validMessage:p,validation:h})};var eF=t(31509);let eE=JSON.parse('[{"name":"Density","examples":[{"name":"functional","density":"functional","props":{}},{"name":"regular (Default)","density":"regular","props":{}},{"name":"expressive","density":"expressive","props":{}}]},{"name":"Checked","examples":[{"name":"(Default) False","props":{"checked":false}},{"name":"True","props":{"checked":true}}]},{"name":"Disabled","examples":[{"name":"(Default) False","props":{"disabled":false}},{"name":"True","props":{"disabled":true}}]},{"name":"Visual Aid","examples":[{"name":"(Default) False (Unchecked)","props":{"visualAid":false}},{"name":"(Default) False (Checked)","props":{"visualAid":false,"checked":true}},{"name":"True (Unchecked)","props":{"visualAid":true,"iconLeading":"moon","iconTrailing":"sun"}},{"name":"True (Checked)","props":{"visualAid":true,"checked":true,"iconLeading":"moon","iconTrailing":"sun"}}]},{"name":"Size","examples":[{"name":"(Default) Medium"},{"name":"Small","props":{"size":"small"}}]},{"name":"Variant","examples":[{"name":"(Default) Trailing","props":{"label":"(Default) Trailing"}},{"name":"Leading","props":{"label":"Leading","variant":"leading"}}]},{"name":"Show Label","examples":[{"name":"(Default) True","props":{"showLabel":true}},{"name":"False","props":{"showLabel":false}}]},{"name":"Required","examples":[{"name":"(Default) False","props":{"required":false}},{"name":"True","props":{"required":true}}]},{"name":"Show Required Asterisk","examples":[{"name":"(Default) True","props":{"required":true,"showRequiredAsterisk":true}},{"name":"False","props":{"required":true,"showRequiredAsterisk":false}}]},{"name":"Validation","examples":[{"name":"(Default) No validation","props":{}},{"name":"Invalid","props":{"validation":"invalid","invalidMessage":"Invalid Message"}},{"name":"Valid","props":{"validation":"valid","validMessage":"Valid message","checked":true}}]},{"name":"Show Message","examples":[{"name":"(Default) False","props":{}},{"name":"True","props":{"showMessage":true,"message":"Message"}}]},{"name":"Examples","examples":[{"name":"Custom Icons","props":{"visualAid":true,"icon":"cross_circle","iconTrailing":"clock"}},{"name":"Required + Visual Aid","props":{"visualAid":true,"required":true,"validMessage":"Valid"}}]}]'),eq=({children:e,checked:a,visualAid:t,disabled:n,showLabel:i,size:l,icon:o,iconTrailing:s,iconLeading:c,required:d,showRequiredAsterisk:r,validation:u,invalidMessage:p,validMessage:h,message:b,messageIcon:x,showMessage:v,variant:m})=>(0,L.jsxs)(L.Fragment,{children:[(0,L.jsx)(eF.A,{visualAid:t,defaultChecked:(0,eh.pW)(a),disabled:n,showRequiredAsterisk:r,showLabel:i,variant:m,size:l,icon:o,iconTrailing:s,iconLeading:c,required:d,validation:u,invalidMessage:p,validMessage:h,message:b,messageIcon:x,showMessage:v,children:e}),void 0!==i&&!i&&(0,L.jsx)(S.A,{semantic:"informational",icon:"none",children:e})]});var eM=t(65269),eV=t(99687);let eW=JSON.parse('[{"name":"Density","examples":[{"name":"Functional","density":"functional","className":"tab-hide-article","props":{"label":"functional"}},{"name":"(Default) Regular","density":"regular","className":"tab-hide-article","props":{"label":"(Default) Regular"}},{"name":"Expressive","density":"expressive","className":"tab-hide-article","props":{"label":"expressive"}}]},{"name":"States","examples":[{"name":"(Default) Enabled","props":{"label":"(Default) Enabled"}},{"name":"active","props":{"label":"active","active":true}},{"name":"disabled","props":{"label":"active","disabled":true}}]},{"name":"Show Icon Leading","examples":[{"name":"(Default) False","props":{"label":"False","icon":"x_placeholder","showIcon":false}},{"name":"True","props":{"label":"True","icon":"x_placeholder","showIcon":true}}]},{"name":"Show Icon Trailing","examples":[{"name":"(Default) False","props":{"label":"False","icon":"x_placeholder","showIcon":false,"iconTrailing":"x_placeholder","showIconTrailing":false}},{"name":"True","props":{"label":"True","icon":"x_placeholder","showIcon":true,"iconTrailing":"x_placeholder","showIconTrailing":true}}]},{"name":"Behavior","examples":[{"name":"(Default) Auto Width","props":{"label":"(Default) Auto Width"}},{"name":"Width full","style":{"width":"500px"},"props":{"label":"Width full","width":"full"}}]},{"name":"Content Alignment Full Width","examples":[{"name":"Left","style":{"width":"500px"},"props":{"label":"Left","width":"full"}},{"name":"Centered","style":{"width":"500px"},"props":{"label":"Centered","width":"full","alignment":"center"}}]}]'),eU=({children:e,active:a,noText:t,icon:n,iconTrailing:i,showIconTrailing:l,showIcon:o,disabled:s})=>(0,L.jsx)(eM.A,{children:(0,L.jsx)(eV.A,{active:a,noText:t,icon:n,iconTrailing:i,showIcon:o,showIconTrailing:l,disabled:s,children:e})}),eG=e=>(0,L.jsx)($,{title:"DBTabItem",isSubComponent:e.isSubComponent,componentName:e.componentName,variants:P(eW,eU,e.slotCode)});var e$=t(4913),eJ=t(45023);let eY=JSON.parse('[{"name":"Density","children":[{"name":"tab-list","children":[{"name":"tab-item","content":"Tab 1"},{"name":"tab-item","content":"Tab 2"},{"name":"tab-item","content":"Tab 3"}]},{"name":"tab-panel","content":"Tab Panel 1"},{"name":"tab-panel","content":"Tab Panel 2"},{"name":"tab-panel","content":"Tab Panel 3"}],"examples":[{"name":"Functional","density":"functional","props":{}},{"name":"(Default) Regular","density":"regular","props":{}},{"name":"Expressive","density":"expressive","props":{}}]},{"name":"Orientation","children":[{"name":"tab-list","children":[{"name":"tab-item","content":"Tab 1"},{"name":"tab-item","content":"Tab 2"},{"name":"tab-item","content":"Tab 3"}]},{"name":"tab-panel","content":"Tab Panel 1"},{"name":"tab-panel","content":"Tab Panel 2"},{"name":"tab-panel","content":"Tab Panel 3"}],"examples":[{"name":"horizontal","props":{"orientation":"horizontal"}},{"name":"vertical","props":{"orientation":"vertical"}}]},{"name":"Width","children":[{"name":"tab-list","children":[{"name":"tab-item","content":"Tab 1"},{"name":"tab-item","content":"Tab 2"},{"name":"tab-item","content":"Tab 3"}]},{"name":"tab-panel","content":"Tab Panel 1"},{"name":"tab-panel","content":"Tab Panel 2"},{"name":"tab-panel","content":"Tab Panel 3"}],"examples":[{"name":"auto","style":{"width":"100%"},"props":{"width":"auto"}},{"name":"full - alignment: start","style":{"width":"100%"},"props":{"width":"full"}},{"name":"full - alignment: center","style":{"width":"100%"},"props":{"width":"full","alignment":"center"}}]},{"name":"Overflow","children":[{"name":"tab-list","children":[{"name":"tab-item","content":"Tab 1"},{"name":"tab-item","content":"Tab 2"},{"name":"tab-item","content":"Tab 3"}]},{"name":"tab-panel","content":"Tab Panel 1"},{"name":"tab-panel","content":"Tab Panel 2"},{"name":"tab-panel","content":"Tab Panel 3"}],"examples":[{"name":"no overflow","style":{"width":"300px"},"props":{"width":"auto"}},{"name":"with overflow - behavior: arrows","style":{"width":"300px"},"props":{"overflow":true,"behavior":"arrows"}},{"name":"with overflow - behavior: scrollbar","style":{"width":"300px"},"props":{"overflow":true}}]},{"name":"Examples","children":[{"name":"tab-list","children":[{"name":"tab-item","content":"Tab 1"},{"name":"tab-item","content":"Tab 2"},{"name":"tab-item","content":"Tab 3"}]},{"name":"tab-panel","content":"Tab Panel 1"},{"name":"tab-panel","content":"Tab Panel 2"},{"name":"tab-panel","content":"Tab Panel 3"}],"examples":[{"name":"2nd tab selected","props":{"initialSelectedIndex":1}},{"name":"nothing selected","props":{"initialSelectedMode":"manually"}}]}]'),eZ=({children:e,orientation:a,width:t,alignment:n,overflow:i,behavior:l,initialSelectedMode:o,initialSelectedIndex:s})=>(0,L.jsxs)("div",{className:"w-full",children:[(0,L.jsxs)(S.A,{icon:"none",size:"small",semantic:"informational",children:[e,":"]}),(0,L.jsxs)(e$.A,{orientation:a,width:t,alignment:n,behavior:l,initialSelectedIndex:s,initialSelectedMode:o,arrowScrollDistance:75,children:[(0,L.jsxs)(eM.A,{children:[(0,L.jsx)(eV.A,{children:"Test 1"}),(0,L.jsx)(eV.A,{children:"Test 2"}),(0,L.jsx)(eV.A,{children:"Test 3"}),i&&(0,L.jsxs)(L.Fragment,{children:[(0,L.jsx)(eV.A,{children:"Test 4"}),(0,L.jsx)(eV.A,{children:"Test 5"})]})]}),(0,L.jsx)(eJ.A,{children:"Tab Panel 1"}),(0,L.jsx)(eJ.A,{children:"Tab Panel 2"}),(0,L.jsx)(eJ.A,{children:"Tab Panel 3"}),i&&(0,L.jsxs)(L.Fragment,{children:[(0,L.jsx)(eJ.A,{children:"Tab Panel 4"}),(0,L.jsx)(eJ.A,{children:"Tab Panel 5"})]})]})]});var eK=t(78147);let eQ=JSON.parse('[{"name":"Density","examples":[{"name":"Functional","density":"functional","props":{}},{"name":"(Default) Regular","density":"regular","props":{}},{"name":"Expressive","density":"expressive","props":{}}]},{"name":"Emphasis","examples":[{"name":"(Default) Weak"},{"name":"Strong","props":{"emphasis":"strong"}}]},{"name":"Semantic","examples":[{"name":"(Default) Adaptive"},{"name":"Critical","props":{"semantic":"critical"}},{"name":"Informational","props":{"semantic":"informational"}},{"name":"Neutral","props":{"semantic":"neutral"}},{"name":"Successful","props":{"semantic":"successful"}},{"name":"Warning","props":{"semantic":"warning"}},{"name":"Line Break","props":{"lineBreak":true}},{"name":"Line Break","props":{"lineBreak":true}},{"name":"Adaptive Strong","props":{"emphasis":"strong"}},{"name":"Critical Strong","props":{"semantic":"critical","emphasis":"strong"}},{"name":"Informational Strong","props":{"semantic":"informational","emphasis":"strong"}},{"name":"Neutral Strong","props":{"semantic":"neutral","emphasis":"strong"}},{"name":"Successful Strong","props":{"semantic":"successful","emphasis":"strong"}},{"name":"Warning Strong","props":{"semantic":"warning","emphasis":"strong"}}]},{"name":"Behavior","role":"group","examples":[{"name":"(Default) Static"},{"name":"Removable","props":{"behavior":"removable"}},{"name":"Line Break","props":{"lineBreak":true}},{"name":"Interactive (Button)","props":{"component":"button"},"children":[{"name":"button","native":true,"content":"Interactive Button"}]},{"name":"Interactive (Link)","props":{"component":"link"},"children":[{"name":"a","native":true,"content":"Interactive Link","props":{"href":"#"}}]},{"name":"Line Break","props":{"lineBreak":true}},{"name":"Interactive (Checkbox)","props":{"component":"checkbox"},"children":[{"name":"label","native":true,"content":"Interactive Checkbox","props":{"for":"checkbox01"},"children":[{"name":"input","native":true,"props":{"id":"checkbox01","type":"checkbox"}}]}]},{"name":"Interactive (Radio)","props":{"component":"radio","identifier":"radio01"},"children":[{"name":"label","native":true,"content":"Interactive Radio 1","props":{"for":"radio01"},"children":[{"name":"input","native":true,"props":{"name":"radio01","id":"radio01","type":"radio"}}]}]},{"name":"Interactive Radio 2","props":{"component":"radio","identifier":"radio01"},"children":[{"name":"label","native":true,"content":"Interactive Radio 2","props":{"for":"radio02"},"children":[{"name":"input","native":true,"props":{"name":"radio02","id":"radio02","type":"radio"}}]}]}]},{"name":"Checked","role":"group","examples":[{"name":"(Default) False","props":{"component":"checkbox"},"children":[{"name":"label","native":true,"content":"Interactive Checkbox","props":{"for":"checkbox02"},"children":[{"name":"input","native":true,"props":{"id":"checkbox02","type":"checkbox"}}]}]},{"name":"True","props":{"component":"checkbox","checked":true},"children":[{"name":"label","native":true,"content":"Interactive Checkbox","props":{"for":"checkbox03"},"children":[{"name":"input","native":true,"props":{"checked":true,"id":"checkbox03","type":"checkbox"}}]}]}]},{"name":"Disabled","role":"group","examples":[{"name":"(Default) False","props":{"component":"checkbox"},"children":[{"name":"label","native":true,"content":"Interactive Checkbox","props":{"for":"checkbox02"},"children":[{"name":"input","native":true,"props":{"id":"checkbox02","type":"checkbox"}}]}]},{"name":"True","props":{"component":"checkbox","disabled":true},"children":[{"name":"label","native":true,"content":"Interactive Checkbox","props":{"for":"checkbox04"},"children":[{"name":"input","native":true,"props":{"checked":true,"disabled":true,"id":"checkbox04","type":"checkbox"}}]}]}]},{"name":"Show Icon","examples":[{"name":"(Default) False","props":{"icon":"x_placeholder","showIcon":false}},{"name":"True","props":{"icon":"x_placeholder","showIcon":true}}]},{"name":"No Text","examples":[{"name":"(Default) False","props":{"icon":"x_placeholder"}},{"name":"True","props":{"icon":"x_placeholder","noText":true}}]},{"name":"Show Slot","examples":[{"name":"(Default) False"},{"name":"True","props":{"icon":"x_placeholder","content":"true"}}]},{"name":"Show Check State","examples":[{"name":"(Default) True","props":{"component":"checkbox","showCheckState":true},"children":[{"name":"label","native":true,"content":"Interactive Checkbox","props":{"for":"checkbox099"},"children":[{"name":"input","native":true,"id":"checkbox099","type":"checkbox"}]}]},{"name":"False","props":{"component":"checkbox","showCheckState":false},"children":[{"name":"label","native":true,"content":"Interactive Checkbox","props":{"for":"checkbox099"},"children":[{"name":"input","native":true,"id":"checkbox099","type":"checkbox"}]}]}]},{"name":"Overflow","examples":[{"name":"(Default) False"},{"name":"True - lorem ipsum dolor","props":{"overflow":true}}]},{"name":"Example Strong","role":"group","examples":[{"name":"Interactive Strong Button with Icon","props":{"component":"button","emphasis":"strong","icon":"x_placeholder","behavior":"removable"},"children":[{"name":"button","native":true,"content":"Interactive Button"}]},{"name":"Interactive Strong Link with Icon","props":{"component":"link","emphasis":"strong","icon":"x_placeholder"},"children":[{"name":"a","native":true,"content":"Interactive Link","props":{"href":"#"}}]},{"name":"Interactive Strong Checkbox with Icon","props":{"component":"checkbox","emphasis":"strong","icon":"x_placeholder"},"children":[{"name":"label","native":true,"content":"Interactive Checkbox","props":{"for":"checkbox05"},"children":[{"name":"input","native":true,"id":"checkbox05","type":"checkbox"}]}]},{"name":"Interactive Strong Radio 1 with Icon","props":{"component":"radio","emphasis":"strong","icon":"x_placeholder","identifier":"radio03"},"children":[{"name":"label","native":true,"content":"Interactive Radio 3","props":{"for":"radio03"},"children":[{"name":"input","native":true,"props":{"name":"radio03","id":"radio03","type":"radio"}}]}]},{"name":"Interactive Strong Radio 2 with Icon","props":{"component":"radio","emphasis":"strong","icon":"x_placeholder","identifier":"radio03"},"children":[{"name":"label","native":true,"content":"Interactive Radio 4","props":{"for":"radio04"},"children":[{"name":"input","native":true,"props":{"name":"radio03","id":"radio04","type":"radio"}}]}]}]}]'),eX=({semantic:e,disabled:a,children:t,icon:n,overflow:i,noText:l,behavior:o,emphasis:s,removeButton:c,checked:d,component:r,identifier:u,content:p,showCheckState:h,lineBreak:b,showIcon:x})=>{let[v,m]=(0,R.useState)(d??!1);return b?(0,L.jsx)("i",{className:"line-break"}):(0,L.jsxs)(eK.A,{semantic:e,icon:n,noText:l,behavior:o,emphasis:s,overflow:i,removeButton:c,showCheckState:h,showIcon:x,content:p?(0,L.jsx)("div",{className:"default-content-slot",children:"Swap Slot"}):void 0,onRemove:()=>{alert(t.toString())},children:["button"===r&&(0,L.jsx)("button",{children:t}),"link"===r&&(0,L.jsx)("a",{href:"#",children:t}),"checkbox"===r&&(0,L.jsxs)("label",{children:[(0,L.jsx)("input",{type:"checkbox",checked:v,disabled:(0,eh.pW)(a),onChange:e=>{m(e.target.checked)}}),t]}),"radio"===r&&(0,L.jsxs)("label",{children:[(0,L.jsx)("input",{type:"radio",checked:d,name:u}),t]}),!r&&!i&&(0,L.jsx)(L.Fragment,{children:t}),!r&&i&&(0,L.jsx)("span",{children:t})]})};var e0=t(14529);let e1=JSON.parse('[{"name":"Density","examples":[{"name":"Functional","density":"functional","props":{"label":"Label"}},{"name":"(Default) Regular","density":"regular","props":{"label":"Label"}},{"name":"Expressive","density":"expressive","props":{"label":"Label"}}]},{"name":"Variant","examples":[{"name":"(Default) Above","props":{"label":"Label"}},{"name":"Floating","props":{"label":"Label","variant":"floating","value":"Floating Label"}}]},{"name":"Show Label","examples":[{"name":"(Default) True","props":{"label":"Label","showLabel":true}},{"name":"False","props":{"label":"Label","showLabel":false}}]},{"name":"Show Message","examples":[{"name":"(Default) False","props":{"label":"Label","showMessage":false}},{"name":"true","props":{"label":"Label","message":"Message","showMessage":true}}]},{"name":"State","examples":[{"name":"(Default) Empty","props":{"label":"Label"}},{"name":"Filled","props":{"label":"Label","value":"Filled"}}]},{"name":"Disabled","examples":[{"name":"(Default) False","props":{"label":"Label","disabled":false}},{"name":"True","props":{"label":"Label","disabled":true}}]},{"name":"Readonly","examples":[{"name":"(Default) False","props":{"label":"Label","value":"(Default) False","readOnly":false}},{"name":"True","props":{"label":"Label","value":"True","readOnly":true}}]},{"name":"Validation","examples":[{"name":"(Default) No validation","props":{"label":"Label","validation":"no-validation"}},{"name":"Invalid","props":{"label":"Label","validation":"invalid","invalidMessage":"Invalid Message"}},{"name":"Valid","props":{"label":"Label","validation":"valid","validMessage":"Valid message"}}]},{"name":"Required","examples":[{"name":"(Default) False","props":{"label":"Label","required":false}},{"name":"True","props":{"label":"Label","required":true}}]},{"name":"Show Required Asterisk","examples":[{"name":"(Default) True","props":{"label":"Label","required":true,"showRequiredAsterisk":true}},{"name":"False","props":{"label":"Label","required":true,"showRequiredAsterisk":false}}]},{"name":"Rows","examples":[{"name":"(Default) 4 Rows","style":{"width":"328px"},"props":{"label":"(Default) 4 Rows","value":"Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua."}},{"name":"Custom","style":{"width":"328px"},"props":{"label":"Custom Example 8 Rows","rows":8,"value":"Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua."}}]},{"name":"Show Resizer","examples":[{"name":"(Default) True","props":{"label":"Label","showResizer":true}},{"name":"False","props":{"label":"Label","showResizer":false}}]},{"name":"Field Sizing","examples":[{"name":"(Default) Fixed","style":{"width":"300px"},"props":{"label":"Label","fieldSizing":"fixed"}},{"name":"Content","style":{"width":"300px"},"props":{"label":"Label","fieldSizing":"content"}}]},{"name":"Examples Floating Label","examples":[{"name":"(Default) Empty","props":{"label":"Label","variant":"floating"}},{"name":"Filled","props":{"label":"Label","value":"Filled","variant":"floating"}},{"name":"Disabled","props":{"label":"Label","disabled":true,"variant":"floating"}},{"name":"Readonly - Filled","props":{"label":"Label","value":"Readonly - Filled","readOnly":true,"variant":"floating"}}]}]'),e2=({cols:e,disabled:a,message:t,label:n,placeholder:i,rows:l,value:o,readOnly:s,required:c,children:d,variant:r,showLabel:u,showMessage:p,validMessage:h,validation:b,invalidMessage:x,fieldSizing:v,showResizer:m,showRequiredAsterisk:g})=>{let[j,D]=(0,R.useState)(o);return(0,L.jsx)(e0.A,{cols:e,showRequiredAsterisk:g,disabled:a,showLabel:u,message:t,label:n,variant:r,readOnly:s,onChange:e=>{D(e.target.value)},required:c,placeholder:i??d,rows:l,value:j,showMessage:p,invalidMessage:x,validMessage:h,validation:b,showResizer:m,fieldSizing:v})};var e3=t(33791);let e4=JSON.parse('[{"name":"Density","children":[{"name":"button"}],"examples":[{"name":"Functional","density":"functional","props":{"content":"Tooltip","id":"tooltip-01"}},{"name":"(Default) Regular","density":"regular","props":{"content":"Tooltip","id":"tooltip-02"}},{"name":"Expressive","density":"expressive","props":{"content":"Tooltip","id":"tooltip-03"}}]},{"name":"Show Arrow","children":[{"name":"button"}],"examples":[{"name":"(Default) True","props":{"content":"Tooltip","id":"tooltip-04","showArrow":true}},{"name":"False","props":{"content":"Tooltip","showArrow":false,"id":"tooltip-05"}}]},{"name":"Emphasis","children":[{"name":"button"}],"examples":[{"name":"(Default) Weak","props":{"content":"Tooltip","id":"tooltip-06"}},{"name":"Strong","props":{"content":"Tooltip","emphasis":"strong","id":"tooltip-07"}}]},{"name":"Placement","children":[{"name":"button"}],"examples":[{"name":"bottom-start","props":{"content":"Tooltip","placement":"bottom-start","id":"tooltip-08-start"}},{"name":"(Default) bottom","props":{"content":"Tooltip","placement":"bottom","id":"tooltip-08"}},{"name":"bottom-end","props":{"content":"Tooltip","placement":"bottom-end","id":"tooltip-08-end"}},{"name":"left-start","props":{"content":"Tooltip","placement":"left-start","id":"tooltip-10-start"}},{"name":"left","props":{"content":"Tooltip","placement":"left","id":"tooltip-10"}},{"name":"left-end","props":{"content":"Tooltip","placement":"left-end","id":"tooltip-10-end"}},{"name":"right-start","props":{"content":"Tooltip","placement":"right-start","id":"tooltip-11-start"}},{"name":"right","props":{"content":"Tooltip","placement":"right","id":"tooltip-11"}},{"name":"right-end","props":{"content":"Tooltip","placement":"right-end","id":"tooltip-11-end"}},{"name":"top-start","props":{"content":"Tooltip","placement":"top-start","id":"tooltip-09-start"}},{"name":"top","props":{"content":"Tooltip","placement":"top","id":"tooltip-09"}},{"name":"top-end","props":{"content":"Tooltip","placement":"top-end","id":"tooltip-09-end"}}]},{"name":"Width","children":[{"name":"button"}],"examples":[{"name":"(Default) Auto","props":{"content":"Max width, lorem ipsum dolor sit amet, consetetur sadipscing","id":"tooltip-12"}},{"name":"Fixed","props":{"content":"Max width, lorem ipsum dolor sit amet, consetetur sadipscing","width":"fixed","id":"tooltip-13"}}]},{"name":"Animation","children":[{"name":"button"}],"examples":[{"name":"(Default) True","props":{"content":"Tooltip","id":"tooltip-14","animation":true}},{"name":"False","props":{"content":"Tooltip","animation":false,"id":"tooltip-17"}}]},{"name":"Delay","children":[{"name":"button"}],"examples":[{"name":"(Default) None","props":{"content":"Tooltip","id":"tooltip-144","delay":"none"}},{"name":"Slow","props":{"content":"Tooltip","delay":"slow","id":"tooltip-15"}},{"name":"Fast","props":{"content":"Tooltip","delay":"fast","id":"tooltip-16"}}]}]'),e5=({children:e,width:a,emphasis:t,placement:n,delay:i,content:l,animation:o,showArrow:s})=>(0,L.jsxs)(ea.A,{children:[e,(0,L.jsx)(e3.A,{width:a,emphasis:t,placement:n,animation:o,delay:i,showArrow:s,children:l})]});var e8=t(68756);let e9=(0,R.forwardRef)(function(e,a){e={size:"small",separator:"chevron",maxItems:void 0,items:void 0,ellipsisAriaLabel:"Expand to show all breadcrumb items",...e};let t=a||(0,R.useRef)(a),[n,i]=(0,R.useState)(()=>!1);return(0,R.useEffect)(()=>{try{let e=t.current?.get()?.closest?.("db-breadcrumb");e&&e.hasAttribute("role")&&e.removeAttribute("role")}catch{}},[]),(0,L.jsx)("nav",{ref:t,...(0,e8.MD)(e,["data-icon-variant","data-icon-variant-before","data-icon-variant-after","data-icon-weight","data-icon-weight-before","data-icon-weight-after","data-interactive","data-force-mobile","data-color","data-container-color","data-bg-color","data-on-bg-color","data-color-scheme","data-font-size","data-headline-size","data-divider","data-focus","data-font"]),id:e.id,...(0,e8.vC)(e,["data-icon-variant","data-icon-variant-before","data-icon-variant-after","data-icon-weight","data-icon-weight-before","data-icon-weight-after","data-interactive","data-force-mobile","data-color","data-container-color","data-bg-color","data-on-bg-color","data-color-scheme","data-font-size","data-headline-size","data-divider","data-focus","data-font"]),className:(0,eh.xF)("db-breadcrumb",e.className),"data-size":e.size,"data-separator":e.separator,"aria-label":e.ariaLabel,children:(0,L.jsx)("ol",{className:"db-breadcrumb-list",id:e.id?`${e.id}-list`:"db-breadcrumb-list",children:e.items&&e.items.length>0?e.maxItems&&e.maxItems>0&&e.items.length>e.maxItems&&!n?(0,L.jsxs)(L.Fragment,{children:[(0,L.jsx)("li",{children:e.items[0].href?(0,L.jsxs)("a",{href:e.items[0].href,children:[e.items[0].icon?(0,L.jsx)(es.A,{weight:"medium"===e.size?"24":"20",icon:e.items[0].icon}):null,e.items[0].text]}):(0,L.jsx)(L.Fragment,{children:(0,L.jsxs)("span",{children:[e.items[0].icon?(0,L.jsx)(es.A,{weight:"medium"===e.size?"24":"20",icon:e.items[0].icon}):null,e.items[0].text]})})},0),(0,L.jsx)("li",{children:(0,L.jsx)("button",{type:"button",className:"db-breadcrumb-ellipsis","aria-label":e.ellipsisAriaLabel,"aria-expanded":n?"true":"false","aria-controls":e.id?`${e.id}-list`:"db-breadcrumb-list",onClick:e=>void i(!n),children:"…"})},"ellipsis"),e.items.slice(e.items.length-(e.maxItems-1))?.map((a,t)=>(0,L.jsx)("li",{children:a.href?(0,L.jsxs)("a",{href:a.href,"aria-current":t===e.maxItems-2?a.ariaCurrent??"page":void 0,children:[a.icon?(0,L.jsx)(es.A,{weight:"medium"===e.size?"24":"20",icon:a.icon}):null,a.text]}):(0,L.jsx)(L.Fragment,{children:(0,L.jsxs)("span",{"aria-current":t===e.maxItems-2?a.ariaCurrent??"page":void 0,children:[a.icon?(0,L.jsx)(es.A,{weight:"medium"===e.size?"24":"20",icon:a.icon}):null,a.text]})})},t+1))]}):e.items?.map((a,t)=>(0,L.jsx)("li",{children:a.href?(0,L.jsxs)("a",{href:a.href,"aria-current":t===e.items.length-1?a.ariaCurrent??"page":void 0,children:[a.icon?(0,L.jsx)(es.A,{weight:"medium"===e.size?"24":"20",icon:a.icon}):null,a.text]}):(0,L.jsx)(L.Fragment,{children:(0,L.jsxs)("span",{"aria-current":t===e.items.length-1?a.ariaCurrent??"page":void 0,children:[a.icon?(0,L.jsx)(es.A,{weight:"medium"===e.size?"24":"20",icon:a.icon}):null,a.text]})})},t)):(0,L.jsx)(L.Fragment,{children:e.children})})})}),e7=JSON.parse('[{"name":"Size","examples":[{"name":"(Default) Small","className":"w-full","props":{"ariaLabel":"Breadcrumb - Small Size","items":[{"href":"#","text":"Home"},{"href":"#","text":"Category"},{"text":"Current Page","ariaCurrent":"page","href":"#"}]}},{"name":"Medium","className":"w-full","props":{"size":"medium","ariaLabel":"Breadcrumb - Medium Size","items":[{"href":"#","text":"Home"},{"href":"#","text":"Category"},{"text":"Current Page","ariaCurrent":"page"}]}}]},{"name":"Separator","examples":[{"name":"Chevron","className":"w-full","props":{"separator":"chevron","ariaLabel":"Breadcrumb - Chevron Separator","items":[{"href":"#","text":"Home"},{"href":"#","text":"Category"},{"text":"Current Page","ariaCurrent":"page"}]}},{"name":"Slash","className":"w-full","props":{"separator":"slash","ariaLabel":"Breadcrumb - Slash Separator","items":[{"href":"#","text":"Home"},{"href":"#","text":"Category"},{"text":"Current Page","ariaCurrent":"page"}]}}]},{"name":"Collapsed","examples":[{"name":"Collapsed (maxItems=3)","className":"w-full","props":{"id":"123","maxItems":3,"ariaLabel":"Breadcrumb - Collapsed Navigation","ellipsisAriaLabel":"Expand to show all breadcrumb items","items":[{"href":"#","text":"Root"},{"href":"#","text":"Path 1"},{"href":"#","text":"Path 2"},{"href":"#","text":"Path 3"},{"text":"Current Page","ariaCurrent":"page","href":"#"}]}}]},{"name":"Icons","examples":[{"name":"With Icons (Small)","className":"w-full","props":{"ariaLabel":"Breadcrumb - With Icons Small Size","items":[{"href":"#","text":"Root","icon":"house"},{"href":"#","text":"Settings","icon":"gear_wheel"},{"href":"#","text":"Profile","icon":"person"},{"href":"#","text":"Notifications","icon":"bell"}]}},{"name":"With Icons (Medium)","className":"w-full","props":{"ariaLabel":"Breadcrumb - With Icons Medium Size","size":"medium","items":[{"href":"#","text":"Root","icon":"house"},{"href":"#","text":"Settings","icon":"gear_wheel"},{"href":"#","text":"Profile","icon":"person"},{"href":"#","text":"Notifications","icon":"bell"}]}}]}]'),e6=({items:e,size:a,className:t,separator:n,maxItems:i,ariaLabel:l,ellipsisAriaLabel:o,id:s})=>(0,L.jsx)(e9,{size:a,className:t,separator:n,maxItems:i,items:e,ariaLabel:l,ellipsisAriaLabel:o,id:s}),ae=JSON.parse('[{"name":"Density","children":[{"name":"navigation-item","content":"Navi-Item 1","children":[{"name":"navigation-item","content":"Sub-Navi-Item 1","slot":"sub-navigation","children":[{"name":"navigation-item","slot":"sub-navigation","props":{"active":true},"children":[{"name":"a","native":true,"content":"Sub-Sub-Navi-Item 1","props":{"href":"#"}}]}]}]},{"name":"navigation-item","children":[{"name":"a","native":true,"content":"Navi-Item 2","props":{"href":"#"}}]}],"examples":[{"name":"Functional","density":"functional","props":{}},{"name":"(Default) Regular","density":"regular","props":{}},{"name":"Expressive","density":"expressive","props":{}}]}]'),aa=({children:e})=>{let a=`${e.replaceAll(/\W/g,"_").toLowerCase()}`;return(0,L.jsxs)("div",{children:[(0,L.jsx)(S.A,{id:a,size:"small",semantic:"informational",icon:"none",children:e}),(0,L.jsxs)(eB.A,{"aria-labelledby":a,children:[(0,L.jsx)(ef.A,{subNavigation:(0,L.jsxs)(L.Fragment,{children:[(0,L.jsx)(ef.A,{subNavigation:(0,L.jsxs)(L.Fragment,{children:[(0,L.jsx)(ef.A,{children:(0,L.jsx)("a",{href:"#","aria-current":"page",children:"Sub-Sub-Navi-Item 1"})}),(0,L.jsx)(ef.A,{children:(0,L.jsx)("a",{href:"#",children:"Sub-Sub-Navi-Item 2"})})]}),children:"Sub-Navi-Item 1"}),(0,L.jsx)(ef.A,{children:(0,L.jsx)("a",{href:"#",children:"Sub-Navi-Item 2"})})]}),children:"Navi-Item 1"}),(0,L.jsx)(ef.A,{icon:"x_placeholder",children:(0,L.jsx)("a",{href:"#",children:"Navi-Item 2"})}),(0,L.jsx)(ef.A,{disabled:!0,children:(0,L.jsx)("a",{href:"#",children:"Navi-Item 3"})})]})]})},at=JSON.parse('[{"name":"Density","examples":[{"name":"Functional","density":"functional","props":{},"children":[{"name":"a","native":true,"props":{"href":"#"},"content":"Functional"}]},{"name":"(Default) Regular","density":"regular","props":{},"children":[{"name":"a","native":true,"props":{"href":"#"},"content":"(Default) Regular"}]},{"name":"Expressive","density":"expressive","props":{},"children":[{"name":"a","native":true,"props":{"href":"#"},"content":"Expressive"}]}]},{"name":"Disabled","examples":[{"name":"(Default) False","props":{"disabled":false},"children":[{"name":"a","native":true,"props":{"href":"#"},"content":"(Default) False"}]},{"name":"True","props":{"disabled":true},"children":[{"name":"a","native":true,"props":{"href":"#"},"content":"True"}]}]},{"name":"Active","examples":[{"name":"(Default) False","props":{"active":false},"children":[{"name":"a","native":true,"props":{"href":"#"},"content":"(Default) False"}]},{"name":"True","props":{"active":true},"children":[{"name":"a","native":true,"props":{"href":"#"},"content":"True"}]}]},{"name":"Expanded","examples":[{"name":"(Default) False","props":{"areaPopup":false},"children":[{"name":"a","native":true,"props":{"href":"#"},"content":"(Default) False"}]},{"name":"True","props":{"areaPopup":true},"children":[{"name":"a","native":true,"props":{"href":"#"},"content":"True"}]}]},{"name":"Show Icon","examples":[{"name":"(Default) False","props":{"icon":"x_placeholder","showIcon":false},"children":[{"name":"a","native":true,"props":{"href":"#"},"content":"(Default) False"}]},{"name":"True","props":{"icon":"x_placeholder","showIcon":true},"children":[{"name":"a","native":true,"props":{"href":"#"},"content":"True"}]}]},{"name":"Width","examples":[{"name":"(Default) Auto","style":{"width":"400px"},"children":[{"name":"a","native":true,"props":{"href":"#"},"content":"(Default) Auto"}]},{"name":"Full","style":{"width":"400px"},"props":{"width":"full"},"children":[{"name":"a","native":true,"props":{"href":"#"},"content":"Full"}]}]},{"name":"Wrap","examples":[{"name":"No Wrap (Default)","props":{"areaPopup":true},"children":[{"name":"a","native":true,"props":{"href":"#"},"content":"True"}]},{"name":"This is a very long text that is broken into multiple lines.","props":{"areaPopup":true,"icon":"x_placeholder","showIcon":true,"wrap":true},"style":{"width":"200px"},"children":[{"name":"a","native":true,"content":"Sub-Sub-Navi-Item 1","props":{"href":"#"}}]},{"name":"This is a very long text that is broken into multiple lines.","props":{"areaPopup":true,"wrap":true},"style":{"width":"200px"},"slot":"sub-navigation","children":[{"name":"a","native":true,"props":{"href":"#"},"content":"True"}]}]}]'),an=({children:e,icon:a,disabled:t,active:n,width:i,areaPopup:l,showIcon:o,wrap:s})=>(0,L.jsx)("ul",{className:"nav-item-list",children:(0,L.jsx)(ef.A,{icon:a,disabled:t,active:n,width:i,onClick:()=>{alert(e.toString())},showIcon:o,wrap:s,subNavigation:l&&(0,L.jsxs)(L.Fragment,{children:[(0,L.jsx)(ef.A,{icon:a,showIcon:o,subNavigation:(0,L.jsx)(L.Fragment,{children:(0,L.jsx)(ef.A,{icon:a,showIcon:o,children:(0,L.jsx)("a",{href:"#",children:"Navigation-Item 2"})})}),children:"Also a navigation item with longer label"}),(0,L.jsx)(ef.A,{icon:a,showIcon:o,children:(0,L.jsx)("a",{href:"#",children:"Navigation-Item 1"})})]}),children:l?e:(0,L.jsx)("a",{href:"#",children:e})})}),ai=e=>(0,L.jsx)($,{title:"DBNavigationItem",isSubComponent:e.isSubComponent,componentName:e.componentName,variants:P(at,an,e.slotCode)});var al=t(70631);let ao=JSON.parse('[{"name":"Density","children":[{"name":"button","slot":"trigger"},{"name":"button","content":"Inside Popover"}],"examples":[{"name":"Functional","density":"functional","props":{"id":"popover-01"}},{"name":"(Default) Regular","density":"regular","props":{"id":"popover-02"}},{"name":"Expressive","density":"expressive","props":{"id":"popover-03"}}]},{"name":"Spacing","children":[{"name":"button","slot":"trigger"},{"name":"button","content":"Inside Popover"}],"examples":[{"name":"(Default) Small","props":{"spacing":"small","id":"popover-04"}},{"name":"Medium","props":{"spacing":"medium","id":"popover-05"}},{"name":"Large","props":{"spacing":"large","id":"popover-055"}},{"name":"None","props":{"spacing":"none","id":"popover-06"}}]},{"name":"Placement","children":[{"name":"button","slot":"trigger"},{"name":"button","content":"Inside Popover"}],"examples":[{"name":"bottom-start","props":{"placement":"bottom-start","id":"popover-07-start"}},{"name":"(Default) bottom","props":{"placement":"bottom","id":"popover-07"}},{"name":"bottom-end","props":{"placement":"bottom-end","id":"popover-07-end"}},{"name":"left-start","props":{"placement":"left-start","id":"popover-09-start"}},{"name":"left","props":{"placement":"left","id":"popover-09"}},{"name":"left-end","props":{"placement":"left-end","id":"popover-09-end"}},{"name":"right-start","props":{"placement":"right-start","id":"popover-10-start"}},{"name":"right","props":{"placement":"right","id":"popover-10"}},{"name":"right-end","props":{"placement":"right-end","id":"popover-10-end"}},{"name":"top-start","props":{"placement":"top-start","id":"popover-08-start"}},{"name":"top","props":{"placement":"top","id":"popover-08"}},{"name":"top-end","props":{"placement":"top-end","id":"popover-08-end"}}]},{"name":"Gap","children":[{"name":"button","slot":"trigger"},{"name":"button","content":"Inside Popover"}],"examples":[{"name":"(Default) False","props":{"gap":false,"id":"popover-11"}},{"name":"True","props":{"gap":true,"id":"popover-12"}}]},{"name":"Animation","children":[{"name":"button","slot":"trigger"},{"name":"button","content":"Inside Popover"}],"examples":[{"name":"(Default) True","props":{"id":"popover-13","animation":true}},{"name":"False","props":{"animation":false,"id":"popover-16"}}]},{"name":"Delay","children":[{"name":"button","slot":"trigger"},{"name":"button","content":"Inside Popover"}],"examples":[{"name":"(Default) None","props":{"id":"popover-133","delay":"none"}},{"name":"Slow","props":{"delay":"slow","id":"popover-14"}},{"name":"Fast","props":{"delay":"fast","id":"popover-15"}}]},{"name":"Width","children":[{"name":"button","slot":"trigger"},{"name":"button","content":"Inside Popover"}],"examples":[{"name":"(Default) Auto","props":{"content":"Max width, lorem ipsum dolor sit amet, consetetur sadipscing","id":"popover-17"}},{"name":"Fixed","props":{"content":"Max width, lorem ipsum dolor sit amet, consetetur sadipscing","width":"fixed","id":"popover-18"}}]}]'),as=({id:e,children:a,width:t,gap:n,spacing:i,placement:l,delay:o,content:s,animation:c})=>(0,L.jsx)(al.A,{trigger:(0,L.jsx)(ea.A,{children:a}),width:t,gap:n,spacing:i,placement:l,animation:c,delay:o,id:e,children:s??(0,L.jsxs)(L.Fragment,{children:[(0,L.jsxs)("ul",{className:"popover-list",children:[(0,L.jsx)("li",{children:"Popover Custom Item 1"}),(0,L.jsx)("li",{children:"Popover Custom Item 2"})]}),(0,L.jsx)(ea.A,{children:"Popover Custom Item 3"})]})});var ac=t(77383);let ad=JSON.parse('[{"name":"Density","examples":[{"name":"Functional","density":"functional","props":{"id":"test-id-123"}},{"name":"(Default) Regular","density":"regular","props":{}},{"name":"Expressive","density":"expressive","props":{}}]},{"name":"Width","examples":[{"name":"(Default) Full","style":{"width":"100%","display":"block"}},{"name":"Small","style":{"width":"100%","display":"block"},"props":{"width":"small"}},{"name":"Medium","style":{"width":"100%","display":"block"},"props":{"width":"medium"}},{"name":"Large","style":{"width":"100%","display":"block"},"props":{"width":"large"}}]},{"name":"Spacing","examples":[{"name":"(Default) Medium","props":{"spacing":"medium"}},{"name":"Large","props":{"spacing":"large"}},{"name":"Small","props":{"spacing":"small"}},{"name":"None","props":{"spacing":"none"}}]}]'),ar=({width:e,spacing:a,children:t,id:n})=>(0,L.jsxs)(ac.A,{className:"db-color-informational db-bg-color-basic-level-2  section-card-container",spacing:a,width:e,id:n,children:[(0,L.jsx)(F.A,{children:t}),(0,L.jsx)(F.A,{children:t}),(0,L.jsx)(F.A,{children:t}),(0,L.jsx)(F.A,{children:t})]});var au=t(87184);let ap=()=>{let[e,a]=(0,R.useState)(),{getFrameworkIndex:t}=(0,au.u)();return(0,R.useEffect)(()=>{e&&setTimeout(()=>a(""),1500)},[e]),(0,L.jsxs)(L.Fragment,{children:[(0,L.jsx)(F.A,{className:"tab-container",children:(0,L.jsxs)(e$.A,{initialSelectedIndex:t(),children:[(0,L.jsxs)(eM.A,{children:[(0,L.jsx)(eV.A,{children:"Angular"}),(0,L.jsx)(eV.A,{children:"HTML"}),(0,L.jsx)(eV.A,{children:"React"}),(0,L.jsx)(eV.A,{children:"Vue"})]}),(0,L.jsxs)(eJ.A,{children:[(0,L.jsx)(E.A,{content:"external",target:"_blank",href:"how-to-use?current=angular",children:"How to use this in angular"}),(0,L.jsx)("pre",{children:(0,L.jsx)("code",{className:"hljs language-html",children:`<db-accordion>
+"use strict";(self.webpackChunk_N_E=self.webpackChunk_N_E||[]).push([[3383],{3383:(e,a,t)=>{t.d(a,{bw:()=>i2,ll:()=>i1,sr:()=>i9,g9:()=>i4,Oj:()=>i8,Pb:()=>i5});var n={};t.r(n),t.d(n,{Behavior:()=>ab,Density:()=>ap,Variant:()=>ah});var i={};t.r(i),t.d(i,{Density:()=>ax,Disabled:()=>av,Open:()=>am});var l={};t.r(l),t.d(l,{Density:()=>ag,Variants:()=>aj});var o={};t.r(o),t.d(o,{Collapsed:()=>af,Icons:()=>aw,Separator:()=>aB,Size:()=>aD});var s={};t.r(s),t.d(s,{Density:()=>aA,Disabled:()=>ay,MultilineTextWithLineBreaks:()=>aL,NoText:()=>aN,ShowIconLeading:()=>aC,ShowIconTrailing:()=>aO,Size:()=>ak,Variant:()=>aT,Width:()=>aI});var c={};t.r(c),t.d(c,{Content:()=>aP,Density:()=>aS,Disabled:()=>aH,Examples:()=>aE,ShowIcon:()=>aR,Size:()=>az,Variant:()=>a_,Wrap:()=>aF});var d={};t.r(d),t.d(d,{Content:()=>aU,Density:()=>aq,Emphasis:()=>aM,Examples:()=>a$,Placement:()=>aG,Semantic:()=>aV,Size:()=>aW});var r={};t.r(r),t.d(r,{Behavior:()=>aK,Density:()=>aJ,ElevationLevel:()=>aY,Example:()=>aQ,Spacing:()=>aZ});var u={};t.r(u),t.d(u,{Checked:()=>a1,Density:()=>aX,Disabled:()=>a0,Example:()=>a9,Indeterminate:()=>a2,Required:()=>a5,ShowLabel:()=>a8,ShowRequiredAsterisk:()=>a7,Size:()=>a4,Validation:()=>a3});var p={};t.r(p),t.d(p,{Density:()=>a6,Emphasis:()=>ta,Variant:()=>te});var h={};t.r(h),t.d(h,{Backdrop:()=>to,Density:()=>tt,Direction:()=>ts,Example:()=>tc,Rounded:()=>ti,Size:()=>tn,Spacing:()=>tl});var b={};t.r(b),t.d(b,{Behavior:()=>tu,Density:()=>td,Examples:()=>tp,Width:()=>tr});var x={};t.r(x),t.d(x,{Density:()=>th,Semantic:()=>tb,ShowIcon:()=>tv,Size:()=>tx});var v={};t.r(v),t.d(v,{DatalistTypeaheadExamples:()=>t_,Density:()=>tm,Disabled:()=>tf,ExampleFloatingLabel:()=>tL,ExampleLength:()=>tN,ExampleTypesFloatingLabel:()=>tS,ExampleTypeswithminandmax:()=>tI,Readonly:()=>tw,Required:()=>tT,ShowIconLeading:()=>tk,ShowIconLeadingTrailing:()=>tC,ShowIconTrailing:()=>tO,ShowLabel:()=>tj,ShowMessage:()=>tD,ShowRequiredAsterisk:()=>ty,State:()=>tB,Validation:()=>tA,Variant:()=>tg});var m={};t.r(m),t.d(m,{Closeable:()=>tR,Density:()=>tH,ExamplesVariantDocked:()=>tW,ExamplesVariantOverlay:()=>tG,ExamplesVariantStandalone:()=>tU,LinkVariant:()=>tq,Semantic:()=>tP,ShowHeadline:()=>tM,ShowIcon:()=>tE,ShowTimestamp:()=>tV,Variant:()=>tz,Visual:()=>tF});var g={};t.r(g),t.d(g,{Checked:()=>tY,Density:()=>t$,Disabled:()=>tJ,Required:()=>tQ,ShowLabel:()=>tX,ShowRequiredAsterisk:()=>t0,Size:()=>tK,Validation:()=>tZ});var j={};t.r(j),t.d(j,{Content:()=>t7,Density:()=>t1,Disabled:()=>t9,ExamplesFloatingLabel:()=>nt,OptionGroups:()=>na,Required:()=>t6,ShowLabel:()=>t3,ShowMessage:()=>t4,ShowRequiredAsterisk:()=>ne,State:()=>t5,Validation:()=>t8,Variant:()=>t2});var D={};t.r(D),t.d(D,{Checked:()=>ni,Density:()=>nn,Disabled:()=>nl,Examples:()=>nb,Required:()=>nr,ShowLabel:()=>nd,ShowMessage:()=>nh,ShowRequiredAsterisk:()=>nu,Size:()=>ns,Validation:()=>np,Variant:()=>nc,VisualAid:()=>no});var B={};t.r(B),t.d(B,{Behavior:()=>nj,ContentAlignmentFullWidth:()=>nD,Density:()=>nx,ShowIconLeading:()=>nm,ShowIconTrailing:()=>ng,States:()=>nv});var f={};t.r(f),t.d(f,{Density:()=>nB,Examples:()=>nT,Orientation:()=>nf,Overflow:()=>nA,Width:()=>nw});var w={};t.r(w),t.d(w,{Behavior:()=>nO,Checked:()=>nN,Density:()=>ny,Disabled:()=>nI,Emphasis:()=>nk,ExampleStrong:()=>nP,NoText:()=>nS,Overflow:()=>nz,Semantic:()=>nC,ShowCheckState:()=>nH,ShowIcon:()=>nL,ShowSlot:()=>n_});var A={};t.r(A),t.d(A,{Density:()=>nR,Disabled:()=>nV,ExamplesFloatingLabel:()=>nK,FieldSizing:()=>nZ,Readonly:()=>nW,Required:()=>nG,Rows:()=>nJ,ShowLabel:()=>nE,ShowMessage:()=>nq,ShowRequiredAsterisk:()=>n$,ShowResizer:()=>nY,State:()=>nM,Validation:()=>nU,Variant:()=>nF});var T={};t.r(T),t.d(T,{Animation:()=>n3,Delay:()=>n4,Density:()=>nQ,Emphasis:()=>n0,Placement:()=>n1,ShowArrow:()=>nX,Width:()=>n2});var y={};t.r(y),t.d(y,{Density:()=>ia,Disabled:()=>iu,DropdownWidth:()=>ih,ExampleOtherconfiguration:()=>iT,ExamplesMultiple:()=>iw,ExamplesSingle:()=>iB,Exampletags:()=>iA,FormFieldWidth:()=>ip,Multiple:()=>it,Placement:()=>ib,Required:()=>id,Selectedtype:()=>ix,ShowClearSelection:()=>iD,ShowIcon:()=>is,ShowLabel:()=>il,ShowLoading:()=>im,ShowMessage:()=>io,ShowNoResult:()=>iv,ShowRequiredAsterisk:()=>ir,ShowSearch:()=>ig,ShowSelectAll:()=>ij,Validation:()=>ic,Variant:()=>ii});var k={};t.r(k),t.d(k,{Density:()=>iy});var C={};t.r(C),t.d(C,{Active:()=>iO,Density:()=>ik,Disabled:()=>iC,Expanded:()=>iN,ShowIcon:()=>iI,Width:()=>iL,Wrap:()=>iS});var O={};t.r(O),t.d(O,{Animation:()=>iR,Delay:()=>iF,Density:()=>i_,Gap:()=>iP,Placement:()=>iz,Spacing:()=>iH,Width:()=>iE});var N={};t.r(N),t.d(N,{Density:()=>iq,Spacing:()=>iV,Width:()=>iM});var I={};t.r(I),t.d(I,{AlignmentColumn:()=>iY,AlignmentRow:()=>iZ,Density:()=>iW,Direction:()=>i$,Gap:()=>iG,JustifyContentColumn:()=>iK,JustifyContentRow:()=>iQ,Variant:()=>iU,Wrap:()=>iJ});var L=t(6029),S=t(70159),_=t(13375),H=t(64297);let z=JSON.parse('[{"name":"Density","children":[{"name":"accordion-item","text":"Content 1","props":{"headline":"Item 1"}},{"name":"accordion-item","text":"Content 2","props":{"headline":"Item 2"}},{"name":"accordion-item","text":"Content 3","props":{"headline":"Item 3"}}],"examples":[{"name":"Functional","density":"functional","props":{}},{"name":"(Default) Regular","density":"regular","props":{}},{"name":"Expressive","density":"expressive","props":{}}]},{"name":"Variant","children":[{"name":"accordion-item","text":"Content 1","props":{"headline":"Item 1"}},{"name":"accordion-item","text":"Content 2","props":{"headline":"Item 2"}},{"name":"accordion-item","text":"Content 3","props":{"headline":"Item 3"}}],"examples":[{"name":"(Default) Divider","props":{"variant":"divider"}},{"name":"Card","props":{"variant":"card"}}]},{"name":"Behavior","children":[{"name":"accordion-item","text":"Content 1","props":{"headline":"Item 1"}},{"name":"accordion-item","text":"Content 2","props":{"headline":"Item 2"}},{"name":"accordion-item","text":"Content 3","props":{"headline":"Item 3"}}],"examples":[{"name":"(Default) Multiple","props":{"behavior":"multiple"}},{"name":"Single","props":{"behavior":"single"}}]}]'),P=(e,a,t)=>e.map((e,n)=>({...e,SlotCode:t?.[e.codeFileName??e.name.replaceAll(" ","")],examples:e.examples.map((e,t)=>({...e,className:e.className??e.props?.className,example:a({...e.props,id:e.props?.id??e.name,children:e.props?.children??e.name})}))}));var R=t(55729),F=t(72389),E=t(92737),q=t(22055),M=t(45601),V=t(52229);let W=(e=!0)=>{let[a,t]=(()=>{let e=(0,V.useRouter)(),a=(0,V.usePathname)(),[t,n]=[(0,V.useSearchParams)()];return[t,t=>{if(void 0!==globalThis.window&&void 0!==globalThis.location){let e=new URLSearchParams(globalThis.location.search||"");e.sort();let a=new URLSearchParams(t);if(a.sort(),e.toString()===a.toString())return}n?n(t):a&&e?.push(`${a}?${new URLSearchParams(t).toString()}`)}]})(),[n,i]=(0,R.useState)(a.get(M.HI)??M.fY.REGULAR),[l,o]=(0,R.useState)(a.get(M.wr)??M.o$.NEUTRAL_BG_LEVEL_1),[s,c]=(0,R.useState)(void 0),[d,r]=(0,R.useState)(!1),[u,p]=(0,R.useState)(!1);return(0,R.useEffect)(()=>{for(let[e,t]of a.entries())t&&(e===M.HI&&n!==t&&i(t),e===M.wr&&l!==t&&o(t),"page"===e&&s!==t.toLowerCase()&&c(t.toLowerCase()),"fullscreen"===e&&!!t!==d&&r(!!t));p(!0)},[a]),(0,R.useEffect)(()=>{if(u){let a={density:n,color:l};s&&(a.page=s),d&&(a.fullscreen=!0),e&&t(a)}},[l,n,s,d,u]),[n,i,l,o,s,d]};var U=t(29143);let G=({name:e,examples:a,color:t,role:n,SlotCode:i})=>{let l=(0,R.useCallback)(()=>t?.includes("3")?"3":t?.includes("2")?"2":"1",[t]),[o,s]=(0,R.useState)(),c=a.filter(e=>!e.experimental);return(0,L.jsxs)(F.A,{className:"variants-card db-code-docs",elevationLevel:l(),children:[(0,L.jsx)("div",{role:n,"aria-label":n?e:void 0,className:"variants-list",children:c.map((e,a)=>(0,L.jsx)("div",{style:e.style,className:e.className,"data-density":e.density,children:e.example},`${e.name}-${a}`))}),i&&(0,L.jsxs)("details",{className:"code-details",onToggle:()=>{s(!o)},children:[(0,L.jsx)("summary",{className:"db-button code-button","data-size":"small","data-variant":"filled",children:o?"Hide code":"Show code"}),(0,L.jsxs)("div",{"data-density":"functional",children:[(0,L.jsx)("div",{className:"backdrop"}),(0,L.jsx)(F.A,{className:"code",spacing:"small",children:(0,L.jsx)(i,{})})]})]})]})},$=({title:e,variants:a,subComponent:t,isSubComponent:n,componentName:i})=>{let l=W(!1)[4],o=W(!1)[2];if(l){let e=a.find(e=>e.name.toLowerCase()===l);if(e)return(0,L.jsx)(G,{...e,color:o})}let s=((e,a)=>{let t=(e=>{let a=e.replace(/^DB/,"").replaceAll(/([A-Z])/g,(e,a,t)=>t>0?`-${a.toLowerCase()}`:a.toLowerCase());if(a&&/^[a-z]+(-[a-z]+)*$/.test(a))return`packages/components/src/components/${a}/${a}.lite.tsx`})(e);if(!t)return;let n=(void 0)??U.env.GITHUB_BRANCH??U.env.BRANCH_NAME??"main";return`https://github.com/db-ux-design-system/core-web/blob/${n}/${t}`})(e);return(0,L.jsxs)(L.Fragment,{children:[(0,L.jsxs)("div",{className:"default-container",children:[(0,L.jsxs)("div",{className:"component-header",children:[(0,L.jsx)(n?"h2":"h1",{children:e}),s&&!n&&(0,L.jsx)(E.A,{target:"_blank",referrerPolicy:"no-referrer",href:s,content:"external",children:"View Source"})]}),a?.filter(e=>e.examples.find(e=>!e.experimental)).map((e,a)=>(0,L.jsxs)("div",{children:[(0,L.jsx)(q.A,{}),(0,L.jsx)(E.A,{className:"link-headline",content:"external",target:"_blank",rel:"noopener noreferrer",href:(e=>{if(void 0===globalThis.window||void 0===globalThis.location)return`?page=${encodeURIComponent(e.toLowerCase())}`;let[a,t=""]=globalThis.location.href.split("?"),n=new URLSearchParams(t);return(n.set("page",e.toLowerCase()),i)?`${a.replace(/\/[a-z\d\-_]*\/overview/,`/${i}/overview`)}?${n.toString()}`:`${a}?${n.toString()}`})(e.name),children:e.name}),(0,L.jsx)(G,{...e,color:o})]},`${e.name}-${a}`))]}),t]})},J=({behavior:e,children:a,variant:t})=>(0,L.jsxs)(L.Fragment,{children:[(0,L.jsx)(S.A,{size:"small",semantic:"informational",icon:"none",children:a}),(0,L.jsxs)(_.A,{behavior:e,variant:t,children:[(0,L.jsx)(H.A,{headlinePlain:"Item 1",text:"Content 1"}),(0,L.jsx)(H.A,{headlinePlain:"Item 2",text:"Content 2"}),(0,L.jsx)(H.A,{headlinePlain:"Item 3",text:"Content 3"})]})]}),Y=JSON.parse('[{"name":"Density","examples":[{"name":"Functional","density":"functional","props":{"headlinePlain":"Functional"}},{"name":"(Default) Regular","density":"regular","props":{"headlinePlain":"(Default) Regular"}},{"name":"Expressive","density":"expressive","props":{"headlinePlain":"Expressive"}}]},{"name":"Disabled","examples":[{"name":"(Default) False","props":{"headlinePlain":"(Default) False","disabled":false}},{"name":"True","props":{"headlinePlain":"True","disabled":true}}]},{"name":"Open","examples":[{"name":"(Default) False","props":{"headlinePlain":"(Default) False","open":false}},{"name":"True","props":{"headlinePlain":"True","open":true}}]}]'),Z=({children:e,disabled:a,open:t,headlinePlain:n})=>(0,L.jsx)(H.A,{headlinePlain:n,disabled:a,defaultOpen:t,children:e}),K=e=>(0,L.jsx)($,{title:"DBAccordionItem",isSubComponent:e.isSubComponent,componentName:e.componentName,variants:P(Y,Z,e.slotCode)});var Q=t(18627);let X=JSON.parse('[{"name":"Density","examples":[{"name":"Functional","density":"functional","props":{}},{"name":"(Default) Regular","density":"regular","props":{}},{"name":"Expressive","density":"expressive","props":{}}]},{"name":"Variants","examples":[{"name":"(Default) With Logo"},{"name":"No Logo","props":{"hideLogo":true}},{"name":"Custom Logo","props":{"hideLogo":true,"customLogo":true}}]}]'),ee=({children:e,hideLogo:a,customLogo:t})=>(0,L.jsxs)(Q.A,{hideLogo:a,children:[t&&(0,L.jsx)("img",{src:"/core-web/review/1493-erstellung-einer-mvp-breadcrumb-komponente/assets/images/placeholder.jpg",alt:"this is a fancy placeholder logo"}),e]});var ea=t(80357);let et=JSON.parse('[{"name":"Density","examples":[{"name":"Functional","density":"functional","props":{}},{"name":"(Default) Regular","density":"regular","props":{}},{"name":"Expressive","density":"expressive","props":{}}]},{"name":"Variant","examples":[{"name":"(Default) Outlined - Adaptive"},{"name":"Filled - Adaptive","props":{"variant":"filled"}},{"name":"Ghost - Adaptive","props":{"variant":"ghost"}},{"name":"Brand","props":{"variant":"brand"}}]},{"name":"Disabled","examples":[{"name":"(Default) False","props":{"disabled":false}},{"name":"True","props":{"disabled":true}}]},{"name":"Size","examples":[{"name":"(Default) Medium"},{"name":"Small","props":{"size":"small"}}]},{"name":"Show Icon Leading","examples":[{"name":"(Default) False","props":{"icon":"x_placeholder","showIcon":false}},{"name":"True","props":{"icon":"x_placeholder","showIcon":true}}]},{"name":"Show Icon Trailing","examples":[{"name":"(Default) False","props":{"iconTrailing":"x_placeholder","showIconTrailing":false}},{"name":"True","props":{"iconTrailing":"x_placeholder","showIconTrailing":true}}]},{"name":"No Text","examples":[{"name":"(Default) False","props":{"icon":"x_placeholder"}},{"name":"True","props":{"icon":"x_placeholder","noText":true}}]},{"name":"Width","examples":[{"name":"(Default) Auto","props":{"width":"auto"}},{"name":"Width","style":{"width":"500px"},"props":{"width":"full"}}]},{"name":"Multi-line Text With Line Breaks","examples":[{"name":"Multi-line Text With Automatic Line Breaks","style":{"width":"300px"},"props":{"width":"full"}},{"name":"Multi-line Text With Automatic Line Breaks and Icon","style":{"width":"300px"},"props":{"width":"full","icon":"x_placeholder"}},{"name":"Button Small Multi-line Text With Automatic Line Breaks","style":{"width":"300px"},"props":{"size":"small"}}]}]'),en=({variant:e,size:a,noText:t,icon:n,width:i,disabled:l,children:o,type:s,showIcon:c,showIconTrailing:d,iconTrailing:r})=>(0,L.jsx)(ea.A,{variant:e,size:a,noText:t,icon:n,disabled:l,width:i,showIcon:c,iconTrailing:r,showIconTrailing:d,onClick:()=>{alert(o.toString())},type:s,children:o}),ei=JSON.parse('[{"name":"Density","examples":[{"name":"Functional","density":"functional","props":{"href":"#"}},{"name":"(Default) Regular","density":"regular","props":{"href":"#"}},{"name":"Expressive","density":"expressive","props":{"href":"#"}}]},{"name":"Variant","examples":[{"name":"(Default) Adaptive","props":{"href":"#"}},{"name":"Brand","props":{"href":"#","variant":"brand"}}]},{"name":"Disabled","examples":[{"name":"(Default) False","props":{"href":"#","disabled":false}},{"name":"True","props":{"href":"#","disabled":true}}]},{"name":"Size","examples":[{"name":"(Default) Medium","props":{"href":"#"}},{"name":"Small","props":{"href":"#","size":"small"}}]},{"name":"Content","examples":[{"name":"(Default) Internal","props":{"href":"#"}},{"name":"External","props":{"href":"#","content":"external"}}]},{"name":"Show Icon","examples":[{"name":"(Default) True","props":{"href":"#","showIcon":true}},{"name":"False","props":{"href":"#","showIcon":false}}]},{"name":"Wrap","examples":[{"name":"(Default) False","props":{"href":"#","wrap":false}},{"name":"True [Multiline]","style":{"width":"2ch"},"props":{"href":"#","wrap":true}}]},{"name":"Examples","examples":[{"name":"Variant Inline","props":{"href":"#","variant":"inline"}}]}]'),el=({href:e,variant:a,disabled:t,size:n,content:i,children:l,showIcon:o,wrap:s})=>(0,L.jsx)(E.A,{href:e,variant:a,disabled:t,size:n,content:i,showIcon:o,wrap:s,children:l});var eo=t(23487),es=t(90271);let ec=JSON.parse('[{"name":"Density","examples":[{"name":"Functional","density":"functional","props":{}},{"name":"(Default) Regular","density":"regular","props":{}},{"name":"Expressive","density":"expressive","props":{}}]},{"name":"Emphasis","examples":[{"name":"(Default) Weak"},{"name":"Strong","props":{"emphasis":"strong"}}]},{"name":"Semantic","examples":[{"name":"(Default) Adaptive"},{"name":"Critical","props":{"semantic":"critical"}},{"name":"Informational","props":{"semantic":"informational"}},{"name":"Neutral","props":{"semantic":"neutral"}},{"name":"Successful","props":{"semantic":"successful"}},{"name":"Warning","props":{"semantic":"warning"}},{"name":"Line Break","props":{"lineBreak":true}},{"name":"Adaptive Strong","props":{"emphasis":"strong"}},{"name":"Critical Strong","props":{"semantic":"critical","emphasis":"strong"}},{"name":"Informational Strong","props":{"semantic":"informational","emphasis":"strong"}},{"name":"Neutral Strong","props":{"semantic":"neutral","emphasis":"strong"}},{"name":"Successful Strong","props":{"semantic":"successful","emphasis":"strong"}},{"name":"Warning Strong","props":{"semantic":"warning","emphasis":"strong"}}]},{"name":"Size","examples":[{"name":"(Default) Small"},{"name":"Medium","props":{"size":"medium"}}]},{"name":"Content","examples":[{"name":"(Default) Text"},{"name":"Dot - Small","content":"","props":{"noContent":true}},{"name":"Icon - Small","props":{"example":"icon"}}]},{"name":"Placement","examples":[{"name":"(Default) Inline","props":{"placement":"inline"}},{"name":"Corner - Top - Left","content":"","props":{"placement":"corner-top-left"}},{"name":"Corner - Center - Left","content":"","props":{"placement":"corner-center-left"}},{"name":"Corner - Bottom- Left","content":"","props":{"placement":"corner-bottom-left"}},{"name":"Corner - Top - Right","content":"","props":{"placement":"corner-top-right"}},{"name":"Corner - Center - Right","content":"","props":{"placement":"corner-center-right"}},{"name":"Corner - Bottom- Right","content":"","props":{"placement":"corner-bottom-right"}}]},{"name":"Examples","examples":[{"name":"Numbers","props":{"example":"number"}},{"name":"Line Break","props":{"lineBreak":true}},{"name":"(Default) Text - Medium","props":{"size":"medium"}},{"name":"Dot - Medium","content":"","props":{"noContent":true,"size":"medium"}},{"name":"Icon - Medium","props":{"example":"icon","size":"medium"}}]}]'),ed=({children:e,semantic:a,emphasis:t,noContent:n,size:i,placement:l,example:o,lineBreak:s})=>s?(0,L.jsx)("i",{className:"line-break"}):(0,L.jsxs)(L.Fragment,{children:[!l&&!o&&(0,L.jsxs)(L.Fragment,{children:[(0,L.jsx)(eo.A,{semantic:a,emphasis:t,size:i,children:n?"":e}),n&&(0,L.jsx)(S.A,{semantic:"informational",size:"small",icon:"none",children:e})]}),l&&"inline"!==l&&!o&&(0,L.jsxs)(L.Fragment,{children:[(0,L.jsxs)(ea.A,{icon:"x_placeholder",variant:"outlined",noText:!0,children:[(0,L.jsx)(eo.A,{size:"small",emphasis:"strong",semantic:"critical",placement:l}),e]}),(0,L.jsx)(S.A,{semantic:"informational",size:"small",icon:"none",children:e})]}),"inline"===l&&(0,L.jsx)(L.Fragment,{children:(0,L.jsxs)("div",{className:"badge-inline-container",children:[(0,L.jsx)(es.A,{icon:"x_placeholder"}),(0,L.jsx)("span",{children:e}),(0,L.jsx)(eo.A,{size:"small",emphasis:"strong",semantic:"critical",children:"Label"}),(0,L.jsx)(es.A,{icon:"error"})]})}),"icon"===o&&(0,L.jsxs)(L.Fragment,{children:[(0,L.jsx)(eo.A,{semantic:"critical",emphasis:"strong",size:i,children:(0,L.jsx)(es.A,{icon:"x_placeholder",children:e})}),(0,L.jsx)(S.A,{semantic:"informational",size:"small",icon:"none",children:e})]}),"number"===o&&(0,L.jsxs)(L.Fragment,{children:[(0,L.jsx)(eo.A,{semantic:"successful",children:"9"}),(0,L.jsx)(eo.A,{semantic:"informational",children:"12"}),(0,L.jsx)(eo.A,{semantic:"warning",children:"123"}),(0,L.jsx)(eo.A,{size:"small",emphasis:"strong",semantic:"successful",children:"9"}),(0,L.jsx)(eo.A,{size:"small",emphasis:"strong",semantic:"informational",children:"12"}),(0,L.jsx)(eo.A,{size:"small",emphasis:"strong",semantic:"warning",children:"123"}),(0,L.jsx)(S.A,{semantic:"informational",size:"small",icon:"none",children:e})]})]}),er=JSON.parse('[{"name":"Density","examples":[{"name":"Functional","density":"functional","props":{}},{"name":"(Default) Regular","density":"regular","props":{}},{"name":"Expressive","density":"expressive","props":{}}]},{"name":"Elevation Level","examples":[{"name":"(Default) 1","props":{"elevationLevel":"1"}},{"name":"2","props":{"elevationLevel":"2"}},{"name":"3","props":{"elevationLevel":"3"}}]},{"name":"Spacing","examples":[{"name":"(Default) Small","props":{"spacing":"small"}},{"name":"Medium","props":{"spacing":"medium"}},{"name":"Large","props":{"spacing":"large"}},{"name":"None","props":{"spacing":"none"}}]},{"name":"Behavior","examples":[{"name":"(Default) Static","props":{"behavior":"static"}},{"name":"Interactive","props":{"behavior":"interactive"}}]},{"name":"Example","examples":[{"name":"Level 1 - Interactive","props":{"elevationLevel":"1","behavior":"interactive"}},{"name":"Level 2 - Interactive","props":{"elevationLevel":"2","behavior":"interactive"}},{"name":"Level 3 - Interactive","props":{"elevationLevel":"3","behavior":"interactive"}}]}]'),eu=({behavior:e,children:a,spacing:t,elevationLevel:n})=>{let i=(0,L.jsx)(F.A,{behavior:e,spacing:t,elevationLevel:n,children:(0,L.jsx)("strong",{children:a})});return"interactive"===e?(0,L.jsx)("button",{type:"button",children:i}):i};var ep=t(9839),eh=t(56179);let eb=JSON.parse('[{"name":"Density","role":"group","examples":[{"name":"Functional","density":"functional","props":{"name":"Density"}},{"name":"(Default) Regular","density":"regular","props":{"name":"Density"}},{"name":"Expressive","density":"expressive","props":{"name":"Density"}}]},{"name":"Disabled","role":"group","examples":[{"name":"(Default) False","props":{"name":"Disabled","disabled":false}},{"name":"True","props":{"name":"Disabled","disabled":true}}]},{"name":"Checked","role":"group","examples":[{"name":"(Default) False","props":{"name":"State","checked":false}},{"name":"True","props":{"name":"State","checked":true}}]},{"name":"Indeterminate","role":"group","examples":[{"name":"(Default) False","props":{"name":"Indeterminate","indeterminate":false}},{"name":"True","props":{"name":"Indeterminate","indeterminate":true}}]},{"name":"Validation","role":"group","examples":[{"name":"(Default) No validation","props":{"name":"Validation","validation":"no-validation"}},{"name":"Invalid","props":{"name":"Validation","validation":"invalid","invalidMessage":"Invalid Message"}},{"name":"Valid","props":{"name":"Validation","validation":"valid","validMessage":"Valid message"}}]},{"name":"Size","role":"group","examples":[{"name":"(Default) Medium","props":{"name":"Size"}},{"name":"Small","props":{"name":"Size","size":"small"}}]},{"name":"Required","role":"group","examples":[{"name":"(Default) False","props":{"name":"Requirement","required":false}},{"name":"True","props":{"name":"Requirement","required":true}}]},{"name":"Show Label","role":"group","examples":[{"name":"(Default) True","props":{"name":"Label","showLabel":true}},{"name":"False","props":{"name":"Label","showLabel":false}}]},{"name":"Example","role":"group","examples":[{"name":"Long label","style":{"width":"100px"},"props":{"checked":true,"name":"Example"}}]},{"name":"Show Required Asterisk","role":"group","examples":[{"name":"(Default) True","props":{"name":"Asterisk","required":true,"showRequiredAsterisk":true}},{"name":"False","props":{"name":"Asterisk","required":true,"showRequiredAsterisk":false}}]}]'),ex=({label:e,size:a,name:t,checked:n,required:i,children:l,disabled:o,indeterminate:s,variant:c,showLabel:d,validation:r,invalidMessage:u,validMessage:p,showRequiredAsterisk:h})=>(0,L.jsxs)(L.Fragment,{children:[(0,L.jsx)(ep.A,{label:e,size:a,name:t,defaultChecked:(0,eh.pW)(n),invalidMessage:u,validMessage:p,showRequiredAsterisk:h,required:i,disabled:o,variant:c,showLabel:d,indeterminate:s,validation:r,children:l}),void 0!==d&&!d&&(0,L.jsx)(S.A,{size:"small",semantic:"informational",showIcon:!1,children:l})]}),ev=JSON.parse('[{"name":"Density","examples":[{"name":"Functional","style":{"width":"200px"},"content":"","density":"functional","props":{"width":"full"}},{"name":"(Default) Regular","style":{"width":"200px"},"content":"","density":"regular","props":{"width":"full"}},{"name":"Expressive","style":{"width":"200px"},"content":"","density":"expressive","props":{"width":"full"}}]},{"name":"Variant","examples":[{"name":"(Default) Adaptive - Horizontal","style":{"width":"200px"},"content":"","props":{"width":"full"}},{"name":"Adaptive - Vertical","style":{"height":"100px"},"content":"","props":{"variant":"vertical","width":"full"}}]},{"name":"Emphasis","examples":[{"name":"(Default) Weak","style":{"width":"200px"},"content":"","props":{"width":"full"}},{"name":"Strong","style":{"width":"200px"},"content":"","props":{"emphasis":"strong","width":"full"}}]}]'),em=({variant:e,emphasis:a,children:t,width:n})=>(0,L.jsxs)(L.Fragment,{children:[(0,L.jsx)(S.A,{size:"small",semantic:"informational",children:t}),(0,L.jsx)(q.A,{variant:e,emphasis:a,width:n})]});var eg=t(19831);let ej=JSON.parse('[{"name":"Density","examples":[{"name":"Functional","density":"functional","props":{"open":"open","onClose":"toggleDrawer(false)"}},{"name":"(Default) Regular","density":"regular","props":{"open":"open","onClose":"toggleDrawer(false)"}},{"name":"Expressive","density":"expressive","props":{"open":"open","onClose":"toggleDrawer(false)"}}]},{"name":"Size","examples":[{"name":"(Default) Medium","props":{"open":"open","onClose":"toggleDrawer(false)"}},{"name":"Full","props":{"width":"full","open":"open","onClose":"toggleDrawer(false)"}}]},{"name":"Rounded","examples":[{"name":"(Default) False","props":{"rounded":false,"open":"open","onClose":"toggleDrawer(false)"}},{"name":"True","props":{"rounded":true,"open":"open","onClose":"toggleDrawer(false)"}}]},{"name":"Spacing","examples":[{"name":"(Default) Medium","props":{"open":"open","onClose":"toggleDrawer(false)"}},{"name":"Small","props":{"spacing":"small","open":"open","onClose":"toggleDrawer(false)"}},{"name":"Large","props":{"spacing":"large","open":"open","onClose":"toggleDrawer(false)"}},{"name":"None","props":{"spacing":"none","open":"open","onClose":"toggleDrawer(false)"}}]},{"name":"Backdrop","examples":[{"name":"(Default) Strong","props":{"backdrop":"strong","open":"open","onClose":"toggleDrawer(false)"}},{"name":"Weak","props":{"backdrop":"weak","open":"open","onClose":"toggleDrawer(false)"}},{"name":"Invisible","props":{"backdrop":"invisible","open":"open","onClose":"toggleDrawer(false)"}},{"name":"No Backdrop","props":{"backdrop":"none","open":"open","onClose":"toggleDrawer(false)"}}]},{"name":"Direction","examples":[{"name":"(Default) Right","props":{"open":"open","onClose":"toggleDrawer(false)"}},{"name":"Left","props":{"direction":"left","open":"open","onClose":"toggleDrawer(false)"}},{"name":"Up","props":{"direction":"up","open":"open","onClose":"toggleDrawer(false)"}},{"name":"Down","props":{"direction":"down","open":"open","onClose":"toggleDrawer(false)"}}]},{"name":"Example","examples":[{"name":"(Default) As modal","props":{"variant":"modal","open":"open","onClose":"toggleDrawer(false)"}},{"name":"Inside","props":{"variant":"inside","open":"open","onClose":"toggleDrawer(false)"}}]}]');var eD=t(37975),eB=t(90137),ef=t(99279);let ew=JSON.parse('[{"name":"Density","children":[{"name":"brand","slot":"brand","content":"DBHeader"},{"name":"link","slot":"meta-navigation","angularDirective":true,"content":"Imprint","props":{"href":"#"}},{"name":"button","slot":"primary-action","content":"Search","props":{"icon":"magnifying_glass","variant":"ghost","noText":true}},{"name":"button","slot":"secondary-action","angularDirective":true,"content":"Profile","props":{"icon":"x_placeholder","variant":"ghost","noText":true}},{"name":"navigation","slot":"Navigation","angularDirective":true,"children":[{"name":"navigation-item","props":{"icon":"x_placeholder"},"children":[{"name":"a","native":true,"slot":"NavigationContent","angularDirective":true,"content":"Link","props":{"href":"#"}}]},{"name":"navigation-item","props":{"icon":"x_placeholder","disabled":true},"children":[{"name":"a","native":true,"slot":"NavigationContent","angularDirective":true,"content":"Link disabled","props":{"href":"#"}}]}]}],"examples":[{"name":"Functional","density":"functional","props":{},"style":{"width":"100%","display":"block"}},{"name":"(Default) Regular","density":"regular","props":{},"style":{"width":"100%","display":"block"}},{"name":"Expressive","density":"expressive","props":{},"style":{"width":"100%","display":"block"}}]},{"name":"Width","children":[{"name":"brand","slot":"brand","content":"DBHeader"},{"name":"link","slot":"meta-navigation","angularDirective":true,"content":"Imprint","props":{"href":"#"}},{"name":"button","slot":"primary-action","content":"Search","props":{"icon":"magnifying_glass","variant":"ghost","noText":true}},{"name":"button","slot":"secondary-action","angularDirective":true,"content":"Profile","props":{"icon":"x_placeholder","variant":"ghost","noText":true}},{"name":"navigation","slot":"Navigation","angularDirective":true,"children":[{"name":"navigation-item","props":{"icon":"x_placeholder"},"children":[{"name":"a","native":true,"slot":"NavigationContent","angularDirective":true,"content":"Link","props":{"href":"#"}}]},{"name":"navigation-item","props":{"icon":"x_placeholder","disabled":true},"children":[{"name":"a","native":true,"slot":"NavigationContent","angularDirective":true,"content":"Link disabled","props":{"href":"#"}}]}]}],"examples":[{"name":"Full","style":{"width":"100%","display":"block"}},{"name":"Medium","style":{"width":"100%","display":"block"},"props":{"width":"medium"}},{"name":"Large","style":{"width":"100%","display":"block"},"props":{"width":"large"}}]},{"name":"Behavior","children":[{"name":"brand","slot":"brand","content":"DBHeader"},{"name":"link","slot":"meta-navigation","angularDirective":true,"content":"Imprint","props":{"href":"#"}},{"name":"button","slot":"primary-action","content":"Search","props":{"icon":"magnifying_glass","variant":"ghost","noText":true}},{"name":"button","slot":"secondary-action","angularDirective":true,"content":"Profile","props":{"icon":"x_placeholder","variant":"ghost","noText":true}},{"name":"navigation","slot":"Navigation","angularDirective":true,"children":[{"name":"navigation-item","props":{"icon":"x_placeholder"},"children":[{"name":"a","native":true,"slot":"NavigationContent","angularDirective":true,"content":"Link","props":{"href":"#"}}]},{"name":"navigation-item","props":{"icon":"x_placeholder","disabled":true},"children":[{"name":"a","native":true,"slot":"NavigationContent","angularDirective":true,"content":"Link disabled","props":{"href":"#"}}]}]}],"examples":[{"name":"Desktop (full width)","style":{"width":"100%","display":"block"}},{"name":"Mobile","style":{"width":"100%","display":"block"},"props":{"forceMobile":"true"}}]},{"name":"Examples","children":[{"name":"brand","slot":"brand","content":"DBHeader"},{"name":"link","slot":"meta-navigation","angularDirective":true,"content":"Imprint","props":{"href":"#"}},{"name":"button","slot":"primary-action","content":"Search","props":{"icon":"magnifying_glass","variant":"ghost","noText":true}},{"name":"button","slot":"secondary-action","angularDirective":true,"content":"Profile","props":{"icon":"x_placeholder","variant":"ghost","noText":true}},{"name":"navigation","slot":"Navigation","angularDirective":true,"children":[{"name":"navigation-item","props":{"icon":"x_placeholder"},"children":[{"name":"a","native":true,"slot":"NavigationContent","angularDirective":true,"content":"Link","props":{"href":"#"}}]},{"name":"navigation-item","props":{"icon":"x_placeholder","disabled":true},"children":[{"name":"a","native":true,"slot":"NavigationContent","angularDirective":true,"content":"Link disabled","props":{"href":"#"}}]}]}],"examples":[{"name":"With Application Name + Navigation","style":{"width":"100%","display":"block"},"props":{"example":true,"withName":true,"withNavigation":true}},{"name":"Without Navigation","style":{"width":"100%","display":"block"},"props":{"example":true,"withName":true,"withNavigation":false}},{"name":"Without Application Name","style":{"width":"100%","display":"block"},"props":{"example":true,"withName":false,"withNavigation":true}},{"name":"Without Application Name + Navigation","style":{"width":"100%","display":"block"},"props":{"example":true,"withName":false,"withNavigation":false}}]}]'),eA=({drawerOpen:e,forceMobile:a,burgerMenuLabel:t,children:n,className:i,id:l,onToggle:o,width:s,example:c,withNavigation:d,withName:r})=>(0,L.jsx)(eD.A,{width:s,brand:(0,L.jsx)(Q.A,{title:"DBHeader",children:(!c||r)&&"DBHeader"}),metaNavigation:!c&&(0,L.jsxs)(L.Fragment,{children:[(0,L.jsx)(E.A,{href:"#",children:"Imprint"}),(0,L.jsx)(E.A,{href:"#",children:"Help"})]}),primaryAction:!c&&(0,L.jsx)(ea.A,{icon:"magnifying_glass",variant:"ghost",noText:!0,children:"Search"}),secondaryAction:!c&&(0,L.jsxs)(L.Fragment,{children:[(0,L.jsx)(ea.A,{icon:"x_placeholder",variant:"ghost",noText:!0,children:"Profile"}),(0,L.jsx)(ea.A,{icon:"x_placeholder",variant:"ghost",noText:!0,children:"Notification"}),(0,L.jsx)(ea.A,{icon:"x_placeholder",variant:"ghost",noText:!0,children:"Help"})]}),drawerOpen:e,forceMobile:a,burgerMenuLabel:t,className:i,id:l,onToggle:o,children:(!c||d)&&(0,L.jsxs)(eB.A,{"aria-label":n,children:[(0,L.jsx)(ef.A,{icon:"x_placeholder",children:(0,L.jsx)("a",{href:"#",children:n})}),(0,L.jsx)(ef.A,{disabled:!0,children:(0,L.jsxs)("a",{href:"#",children:[n," disabled"]})})]})}),eT=JSON.parse('[{"name":"Density","examples":[{"name":"Functional","density":"functional","props":{}},{"name":"(Default) Regular","density":"regular","props":{}},{"name":"Expressive","density":"expressive","props":{}}]},{"name":"Semantic","examples":[{"name":"(Default) Adaptive"},{"name":"Neutral","props":{"semantic":"neutral"}},{"name":"Critical","props":{"semantic":"critical"}},{"name":"Informational","props":{"semantic":"informational"}},{"name":"Successful","props":{"semantic":"successful"}},{"name":"Warning","props":{"semantic":"warning"}}]},{"name":"Size","examples":[{"name":"(Default) Medium"},{"name":"Small","props":{"size":"small"}}]},{"name":"Show Icon","examples":[{"name":"(Default) True","props":{"showIcon":true}},{"name":"False","props":{"showIcon":false}}]}]'),ey=({semantic:e,size:a,icon:t,children:n,showIcon:i})=>(0,L.jsx)(S.A,{semantic:e,size:a,icon:t,showIcon:i,children:n});var ek=t(78815);let eC=JSON.parse('[{"name":"Density","examples":[{"name":"Functional","density":"functional","props":{"label":"Label"}},{"name":"(Default) Regular","density":"regular","props":{"label":"Label"}},{"name":"Expressive","density":"expressive","props":{"label":"Label"}}]},{"name":"Variant","examples":[{"name":"(Default) Above","props":{"label":"Label"}},{"name":"Floating","props":{"label":"Label","variant":"floating","value":"Floating"}}]},{"name":"Show Label","examples":[{"name":"(Default) True","props":{"label":"Label","showLabel":true}},{"name":"False","props":{"label":"Label","showLabel":false}}]},{"name":"Show Message","examples":[{"name":"(Default) False","props":{"label":"Label","message":"Message","showMessage":false}},{"name":"True","props":{"label":"Label","message":"Message","showMessage":true}}]},{"name":"State","examples":[{"name":"(Default) Empty","props":{"label":"Label"}},{"name":"Filled","props":{"label":"Label","value":"Filled"}}]},{"name":"Disabled","examples":[{"name":"(Default) False","props":{"label":"Label","disabled":false}},{"name":"True","props":{"label":"Label","disabled":true}}]},{"name":"Readonly","examples":[{"name":"(Default) False","props":{"label":"Label","readOnly":false}},{"name":"True","props":{"label":"Label","readOnly":true}}]},{"name":"Validation","examples":[{"name":"(Default) No validation","props":{"label":"Label","validation":"no-validation"}},{"name":"Invalid","props":{"label":"Label","validation":"invalid","invalidMessage":"Invalid Message"}},{"name":"Valid","props":{"label":"Label","validation":"valid","validMessage":"Valid message"}}]},{"name":"Required","examples":[{"name":"(Default) False","props":{"label":"Label","required":false}},{"name":"True","props":{"label":"Label","required":true}}]},{"name":"Show Required Asterisk","examples":[{"name":"(Default) True","props":{"label":"Label","required":true,"showRequiredAsterisk":true}},{"name":"False","props":{"label":"Label","required":true,"showRequiredAsterisk":false}}]},{"name":"Show Icon Leading","examples":[{"name":"(Default) False","props":{"label":"False","icon":"x_placeholder","showIcon":false}},{"name":"True","props":{"label":"True","icon":"x_placeholder","showIcon":true}}]},{"name":"Show Icon Leading + Trailing","examples":[{"name":"(Default) False","props":{"label":"False","icon":"x_placeholder","showIcon":false,"iconTrailing":"x_placeholder","showIconTrailing":false}},{"name":"True","props":{"label":"True","icon":"x_placeholder","showIcon":true,"iconTrailing":"x_placeholder","showIconTrailing":true}}]},{"name":"Show Icon Trailing","examples":[{"name":"(Default) False","props":{"label":"False","iconTrailing":"x_placeholder","showIconTrailing":false}},{"name":"True","props":{"label":"True","iconTrailing":"x_placeholder","showIconTrailing":true}}]},{"name":"Example - Length","examples":[{"name":"MinLength","props":{"label":"Label","minLength":3}},{"name":"MaxLength","props":{"label":"Label","maxLength":5}},{"name":"MinMaxLength","props":{"label":"Label","minLength":3,"maxLength":5}}]},{"name":"Example - Types with min and max","codeFileName":"ExampleTypes","examples":[{"name":"(Default) Text","props":{"label":"Label"}},{"name":"Password","props":{"label":"Label","type":"password"}},{"name":"Search","props":{"label":"Label","type":"search"}},{"name":"E-Mail","props":{"label":"Label","type":"email"}},{"name":"Tel","props":{"label":"Label","type":"tel"}},{"name":"URL","props":{"label":"Label","type":"url"}},{"name":"Date","props":{"label":"Label","type":"date","min":"2023-01-01","max":"2030-12-31"}},{"name":"Datetime Local","props":{"label":"Label","type":"datetime-local","min":"2023-01-01T00:00","max":"2030-12-31T23:59"}},{"name":"Month","props":{"label":"Label","type":"month","min":"2023-01","max":"2030-12"}},{"name":"Time","props":{"label":"Label","type":"time","min":"00:00","max":"23:59"}},{"name":"Week","props":{"label":"Label","type":"week","min":"2023-W01","max":"2030-W52"}}]},{"name":"Example Floating Label","examples":[{"name":"(Default) Empty","props":{"label":"Label","variant":"floating"}},{"name":"Filled","props":{"label":"Label","value":"Filled","variant":"floating"}},{"name":"Disabled","props":{"label":"Label","disabled":true,"variant":"floating"}},{"name":"Readonly - Filled","props":{"label":"Label","value":"Readonly - Filled","readOnly":true,"variant":"floating"}}]},{"name":"Example - Types - Floating Label","codeFileName":"ExampleTypesFloatingLabel","examples":[{"name":"(Default) Text","props":{"label":"Label","variant":"floating"}},{"name":"Password","props":{"label":"Label","type":"password","variant":"floating"}},{"name":"Search","props":{"label":"Label","type":"search","variant":"floating"}},{"name":"E-Mail","props":{"label":"Label","type":"email","variant":"floating"}},{"name":"Tel","props":{"label":"Label","type":"tel","variant":"floating"}},{"name":"URL","props":{"label":"Label","type":"url","variant":"floating"}},{"name":"Date","props":{"label":"Label","type":"date","variant":"floating"}},{"name":"Datetime Local","props":{"label":"Label","type":"datetime-local","variant":"floating"}},{"name":"Month","props":{"label":"Label","type":"month","variant":"floating"}},{"name":"Time","props":{"label":"Label","type":"time","variant":"floating"}},{"name":"Week","props":{"label":"Label","type":"week","variant":"floating"}},{"name":"Datalist","props":{"label":"Label","variant":"floating","dataList":true}},{"name":"File","experimental":true,"props":{"label":"Label","type":"file","variant":"floating"}}]},{"name":"Datalist / Typeahead Examples","codeFileName":"DatalistExamples","examples":[{"name":"Simple String List","props":{"label":"Search Cities","placeholder":"Type to search...","dataList":true,"variant":"floating"}},{"name":"Regular Variant with Datalist","props":{"label":"Search Products","placeholder":"Type to search...","dataList":true}},{"name":"With Search Icon","props":{"label":"Search Stations","placeholder":"Type to search...","dataList":true,"variant":"floating","type":"search","icon":"magnifying_glass","showIcon":true}}]}]'),eO=({label:e,value:a,type:t,minLength:n,required:i,disabled:l,iconTrailing:o,showIcon:s,showIconTrailing:c,icon:d,children:r,message:u,variant:p,readOnly:h,dataList:b,showLabel:x,showMessage:v,validMessage:m,validation:g,invalidMessage:j,showRequiredAsterisk:D,maxLength:B,max:f,min:w})=>(0,L.jsx)(ek.A,{label:e,message:u,placeholder:r,variant:p,showLabel:x,showRequiredAsterisk:D,defaultValue:a,type:t,minLength:n,required:i,disabled:l,readOnly:h,iconTrailing:o,showIconTrailing:c,maxLength:B,max:f,min:w,icon:d,showIcon:s,showMessage:v,invalidMessage:j,validMessage:m,validation:g,dataList:b?"floating"===p?["Test 1","Test 2"]:[{value:"test1",label:"Test 1"},{value:"test2",label:"Test 2"}]:void 0});var eN=t(57319);let eI=JSON.parse('[{"name":"Density","examples":[{"name":"functional","density":"functional","style":{"width":"300px"},"props":{"headline":"Headline","icon":"information_circle"}},{"name":"regular (Default)","density":"regular","style":{"width":"300px"},"props":{"headline":"Headline","icon":"information_circle"}},{"name":"expressive","density":"expressive","style":{"width":"300px"},"props":{"headline":"Headline","icon":"information_circle"}}]},{"name":"Variant","examples":[{"name":"(Default) Docked","style":{"width":"300px"},"props":{"variant":"docked","headline":"Headline","icon":"information_circle"}},{"name":"Standalone","style":{"width":"300px"},"props":{"variant":"standalone","headline":"Headline","icon":"information_circle"}},{"name":"Overlay","style":{"width":"300px"},"props":{"variant":"overlay","headline":"Headline","icon":"information_circle"}}]},{"name":"Semantic","examples":[{"name":"(Default) Adaptive","style":{"width":"300px"},"props":{"headline":"Headline"}},{"name":"Neutral","style":{"width":"300px"},"props":{"semantic":"neutral","headline":"Headline"}},{"name":"Critical","style":{"width":"300px"},"props":{"semantic":"critical","headline":"Headline"}},{"name":"Informational","style":{"width":"300px"},"props":{"semantic":"informational","headline":"Headline"}},{"name":"Successful","style":{"width":"300px"},"props":{"semantic":"successful","headline":"Headline"}},{"name":"Warning","style":{"width":"300px"},"props":{"semantic":"warning","headline":"Headline"}}]},{"name":"Closeable","examples":[{"name":"(Default) False","style":{"width":"300px"},"props":{"closeable":false}},{"name":"True","style":{"width":"300px"},"props":{"closeable":true}}]},{"name":"Visual","examples":[{"name":"(Default) Icon","style":{"width":"300px"},"props":{"icon":"information_circle"}},{"name":"Image","style":{"width":"300px"},"props":{"img":true}}]},{"name":"Show Icon","examples":[{"name":"(Default) True","style":{"width":"300px"},"props":{"icon":"information_circle","showIcon":true}},{"name":"False","style":{"width":"300px"},"props":{"icon":"information_circle","showIcon":false}}]},{"name":"Link Variant","examples":[{"name":"(Default) Block","style":{"width":"300px"},"props":{"link":true,"linkVariant":"block"}},{"name":"Inline","style":{"width":"300px"},"props":{"link":true,"linkVariant":"inline"}}]},{"name":"Show Headline","examples":[{"name":"(Default) True","style":{"width":"300px"},"props":{"headline":"Headline","showHeadline":true}},{"name":"False","style":{"width":"300px"},"props":{"headline":"Headline","showHeadline":false}}]},{"name":"Show Timestamp","examples":[{"name":"(Default) False","style":{"width":"300px"},"props":{"variant":"overlay","showTimestamp":false,"timestamp":"10 min ago"}},{"name":"True","style":{"width":"300px"},"props":{"variant":"overlay","showTimestamp":true,"timestamp":"10 min ago"}}]},{"name":"Examples - Variant:Docked","codeFileName":"ContentVariantDocked","examples":[{"name":"Text","style":{"width":"300px"},"props":{"behavior":"permanent"}},{"name":"Text & Icon","style":{"width":"300px"},"props":{"icon":"information_circle","behavior":"permanent"}},{"name":"Text & Preview Image","style":{"width":"300px"},"props":{"img":true,"behavior":"permanent"},"children":[{"name":"img","native":true,"slot":"image","content":"","props":{"src":"/assets/images/placeholder.jpg","alt":""}}]},{"name":"Text & Headline","style":{"width":"300px"},"props":{"headline":"Headline","behavior":"permanent"}},{"name":"Text & Textlink Block","style":{"width":"300px"},"props":{"link":true,"behavior":"permanent"},"children":[{"name":"link","slot":"link","content":"Textlink","props":{"href":"#"}}]},{"name":"Text & Textlink Inline","style":{"width":"300px"},"props":{"link":true,"linkVariant":"inline","behavior":"permanent"},"children":[{"name":"link","slot":"link","content":"Textlink","props":{"href":"#"}}]},{"name":"Text & Headline & Textlink Inline & Closeable","style":{"width":"300px"},"props":{"headline":"Headline","link":true,"linkVariant":"inline","closeable":true},"children":[{"name":"link","slot":"link","content":"Textlink","props":{"href":"#"}}]},{"name":"Text & Icon & Headline & Textlink Inline & Closeable","style":{"width":"300px"},"props":{"icon":"information_circle","headline":"Headline","link":true,"linkVariant":"inline","closeable":true},"children":[{"name":"link","slot":"link","content":"Textlink","props":{"href":"#"}}]}]},{"name":"Examples - Variant:Standalone","codeFileName":"ContentVariantStandalone","examples":[{"name":"Text","style":{"width":"300px"},"props":{"variant":"standalone","behavior":"permanent"}},{"name":"Text & Icon","style":{"width":"300px"},"props":{"icon":"information_circle","variant":"standalone","behavior":"permanent"}},{"name":"Text & Preview Image","style":{"width":"300px"},"props":{"img":true,"variant":"standalone","behavior":"permanent"},"children":[{"name":"img","native":true,"slot":"image","content":"","props":{"src":"/assets/images/placeholder.jpg","alt":""}}]},{"name":"Text & Headline","style":{"width":"300px"},"props":{"headline":"Headline","variant":"standalone","behavior":"permanent"}},{"name":"Text & Textlink Block","style":{"width":"300px"},"props":{"link":true,"variant":"standalone","behavior":"permanent"},"children":[{"name":"link","slot":"link","content":"Textlink","props":{"href":"#"}}]},{"name":"Text & Textlink Inline","style":{"width":"300px"},"props":{"link":true,"linkVariant":"inline","variant":"standalone","behavior":"permanent"},"children":[{"name":"link","slot":"link","content":"Textlink","props":{"href":"#"}}]},{"name":"Text & Headline & Textlink Inline & Closeable","style":{"width":"300px"},"props":{"headline":"Headline","link":true,"linkVariant":"inline","variant":"standalone","closeable":true},"children":[{"name":"link","slot":"link","content":"Textlink","props":{"href":"#"}}]},{"name":"Text & Icon & Headline & Textlink Inline & Closeable","style":{"width":"300px"},"props":{"icon":"information_circle","headline":"Headline","link":true,"linkVariant":"inline","variant":"standalone","closeable":true},"children":[{"name":"link","slot":"link","content":"Textlink","props":{"href":"#"}}]}]},{"name":"Examples - Variant:Overlay","codeFileName":"ContentVariantOverlay","examples":[{"name":"Text","style":{"width":"300px"},"props":{"variant":"overlay","behavior":"permanent"}},{"name":"Text & Icon","style":{"width":"300px"},"props":{"icon":"information_circle","variant":"overlay","behavior":"permanent"}},{"name":"Text & Preview Image","style":{"width":"300px"},"props":{"img":true,"variant":"overlay","behavior":"permanent"},"children":[{"name":"img","native":true,"slot":"image","content":"","props":{"src":"/assets/images/placeholder.jpg","alt":""}}]},{"name":"Text & Headline","style":{"width":"300px"},"props":{"headline":"Headline","variant":"overlay","behavior":"permanent"}},{"name":"Text & Textlink Inline","style":{"width":"300px"},"props":{"link":true,"variant":"overlay","behavior":"permanent","linkVariant":"inline"}},{"name":"Text & Textlink Block","style":{"width":"300px"},"props":{"link":true,"variant":"overlay","behavior":"permanent","linkVariant":"block"},"children":[{"name":"link","slot":"link","content":"Textlink","props":{"href":"#"}}]},{"name":"Text & Textlink Block & Timed","style":{"width":"300px"},"props":{"link":true,"variant":"overlay","behavior":"permanent","linkVariant":"block","showTimestamp":true,"timestamp":"10 min ago"},"children":[{"name":"link","slot":"link","content":"Textlink","props":{"href":"#"}}]},{"name":"Text & Headline & Textlink Inline & Closeable","style":{"width":"300px"},"props":{"headline":"Headline","link":true,"variant":"overlay","closeable":true,"linkVariant":"inline"}},{"name":"Text & Icon & Headline & Textlink Inline & Closeable","style":{"width":"300px"},"props":{"icon":"information_circle","headline":"Headline","link":true,"variant":"overlay","closeable":true,"linkVariant":"inline"}},{"name":"Text & Timed","style":{"width":"300px"},"props":{"variant":"overlay","behavior":"permanent","showTimestamp":true,"timestamp":"10 min ago"}},{"name":"Text & Timed & Closeable","style":{"width":"300px"},"props":{"variant":"overlay","closeable":true,"showTimestamp":true,"timestamp":"10 min ago"}},{"name":"Text & Headline & Timed & Closeable","style":{"width":"300px"},"props":{"headline":"Headline","variant":"overlay","closeable":true,"showTimestamp":true,"timestamp":"10 min ago"}},{"name":"Text & Icon & Headline & Timed & Closeable","style":{"width":"300px"},"props":{"icon":"information_circle","headline":"Headline","variant":"overlay","closeable":true,"showTimestamp":true,"timestamp":"10 min ago"}}]}]'),eL=({semantic:e,icon:a,headline:t,variant:n,children:i,closeable:l,link:o,timestamp:s,linkVariant:c,img:d,showIcon:r,showHeadline:u,showTimestamp:p})=>(0,L.jsx)(eN.A,{semantic:e,icon:a,headline:t,link:o?(0,L.jsx)(E.A,{href:"#",children:"Textlink"}):void 0,image:d?(0,L.jsx)("img",{src:"/core-web/review/1493-erstellung-einer-mvp-breadcrumb-komponente/assets/images/placeholder.jpg",alt:"this is a fancy placeholder"}):void 0,variant:n,closeable:l,linkVariant:c,timestamp:s,showTimestamp:p,onClose:()=>{alert(i.toString())},showIcon:r,showHeadline:u,children:i});var eS=t(71031);let e_=JSON.parse('[{"name":"Density","role":"radiogroup","examples":[{"name":"Functional","density":"functional","props":{"name":"Density","value":"functional"}},{"name":"(Default) Regular","density":"regular","props":{"name":"Density","value":"regular"}},{"name":"Expressive","density":"expressive","props":{"name":"Density","value":"expressive"}}]},{"name":"Disabled","role":"radiogroup","examples":[{"name":"(Default) False","props":{"name":"Disabled","disabled":false}},{"name":"True","props":{"name":"Disabled","disabled":true}}]},{"name":"Checked","role":"radiogroup","examples":[{"name":"(Default) False","props":{"name":"Checked"}},{"name":"True","props":{"name":"Checked","checked":true}}]},{"name":"Validation","role":"radiogroup","examples":[{"name":"(Default) No validation","props":{"name":"No validation","validation":"no-validation"}},{"name":"Invalid","props":{"name":"invalid","validation":"invalid","invalidMessage":"Invalid Message"}},{"name":"Valid","props":{"name":"valid","validation":"valid","validMessage":"Valid message","checked":true}}]},{"name":"Size","role":"radiogroup","examples":[{"name":"(Default) Medium","props":{"name":"Size"}},{"name":"Small","props":{"name":"Size","size":"small"}}]},{"name":"Required","role":"radiogroup","examples":[{"name":"(Default) False","props":{"name":"Requirement","required":false}},{"name":"True","props":{"name":"Requirement","required":true}}]},{"name":"Show Label","role":"radiogroup","examples":[{"name":"(Default) True","props":{"name":"Content","showLabel":true}},{"name":"False","props":{"name":"Content","showLabel":false}}]},{"name":"Show Required Asterisk","role":"radiogroup","examples":[{"name":"(Default) True","props":{"name":"Asterisk","required":true,"showRequiredAsterisk":true}},{"name":"False","props":{"name":"Asterisk","required":true,"showRequiredAsterisk":false}}]}]'),eH=({label:e,size:a,name:t,checked:n,required:i,children:l,disabled:o,value:s,showLabel:c,validation:d,showRequiredAsterisk:r})=>(0,L.jsxs)(L.Fragment,{children:[(0,L.jsx)(eS.A,{showRequiredAsterisk:r,label:e,size:a,name:t,defaultChecked:(0,eh.pW)(n),required:i,disabled:o,showLabel:c,value:s,validation:d,children:l}),void 0!==c&&!c&&(0,L.jsx)(S.A,{size:"small",semantic:"informational",showIcon:!1,children:l})]});var ez=t(24845);let eP=JSON.parse('[{"name":"Density","examples":[{"name":"Functional","density":"functional","style":{"width":"300px"},"props":{"options":[{"value":"Option 1"},{"value":"Option 2"},{"value":"Option 3"},{"value":"Option 4"},{"value":"Option 5"}],"label":"Label","placeholder":"Functional"}},{"name":"(Default) Regular","density":"regular","style":{"width":"300px"},"props":{"options":[{"value":"Option 1"},{"value":"Option 2"},{"value":"Option 3"},{"value":"Option 4"},{"value":"Option 5"}],"label":"Label","placeholder":"(Default) Regular"}},{"name":"Expressive","density":"expressive","style":{"width":"300px"},"props":{"options":[{"value":"Option 1"},{"value":"Option 2"},{"value":"Option 3"},{"value":"Option 4"},{"value":"Option 5"}],"label":"Label","placeholder":"Expressive"}}]},{"name":"Variant","examples":[{"name":"(Default) Above","style":{"width":"300px"},"props":{"options":[{"value":"Option 1"},{"value":"Option 2"},{"value":"Option 3"},{"value":"Option 4"},{"value":"Option 5"}],"label":"Label","placeholder":"(Default) Above"}},{"name":"Floating Label","style":{"width":"300px"},"props":{"options":[{"value":"Floating","selected":true},{"value":"Option 2"}],"label":"Label","variant":"floating","value":"Floating","placeholder":"Floating"}}]},{"name":"Show Label","examples":[{"name":"(Default) True","style":{"width":"300px"},"props":{"options":[{"value":"Option 1"},{"value":"Option 2"},{"value":"Option 3"},{"value":"Option 4"},{"value":"Option 5"}],"label":"Label","showLabel":true,"placeholder":"(Default) True"}},{"name":"False","style":{"width":"300px"},"props":{"options":[{"value":"Option 1"},{"value":"Option 2"},{"value":"Option 3"},{"value":"Option 4"},{"value":"Option 5"}],"label":"Label","showLabel":false,"placeholder":"False"}}]},{"name":"Show Message","examples":[{"name":"(Default) False","style":{"width":"300px"},"props":{"options":[{"value":"Option 1"},{"value":"Option 2"},{"value":"Option 3"},{"value":"Option 4"},{"value":"Option 5"}],"label":"Label","message":"Message","showMessage":false,"placeholder":"(Default) False"}},{"name":"True","style":{"width":"300px"},"props":{"options":[{"value":"Option 1"},{"value":"Option 2"},{"value":"Option 3"},{"value":"Option 4"},{"value":"Option 5"}],"label":"Label","message":"Message","showMessage":true,"placeholder":"True"}}]},{"name":"State","examples":[{"name":"(Default) Empty","style":{"width":"300px"},"props":{"options":[{"value":"Option 1"},{"value":"Option 2"},{"value":"Option 3"},{"value":"Option 4"},{"value":"Option 5"}],"label":"Label","placeholder":"(Default) Empty"}},{"name":"Filled","style":{"width":"300px"},"props":{"options":[{"value":"Filled","selected":true},{"value":"Option 2"}],"label":"Label","value":"Filled","placeholder":"Filled"}}]},{"name":"Validation","examples":[{"name":"(Default) No validation","style":{"width":"300px"},"props":{"options":[{"value":"Option 1"},{"value":"Option 2"},{"value":"Option 3"},{"value":"Option 4"},{"value":"Option 5"}],"label":"Label","validation":"no-validation","placeholder":"(Default) No validation"}},{"name":"Invalid","style":{"width":"300px"},"props":{"options":[{"value":"Option 1"},{"value":"Option 2"},{"value":"Option 3"},{"value":"Option 4"},{"value":"Option 5"}],"label":"Label","validation":"invalid","invalidMessage":"Invalid Message","placeholder":"Invalid"}},{"name":"Valid","style":{"width":"300px"},"props":{"options":[{"value":"Valid","selected":true},{"value":"Option 2"}],"label":"Label","validation":"valid","validMessage":"Valid message","placeholder":"Valid"}}]},{"name":"Disabled","examples":[{"name":"(Default) False","style":{"width":"300px"},"props":{"options":[{"value":"Option 1"},{"value":"Option 2"},{"value":"Option 3"},{"value":"Option 4"},{"value":"Option 5"}],"label":"Label","disabled":false,"placeholder":"(Default) False"}},{"name":"True","style":{"width":"300px"},"props":{"options":[{"value":"Option 1"},{"value":"Option 2"},{"value":"Option 3"},{"value":"Option 4"},{"value":"Option 5"}],"label":"Label","disabled":true,"placeholder":"True"}}]},{"name":"Content","examples":[{"name":"(Default) Text","style":{"width":"300px"},"props":{"options":[{"value":"Option 1"},{"value":"Option 2"},{"value":"Option 3"},{"value":"Option 4"},{"value":"Option 5"}],"label":"Label","placeholder":"(Default) Text"}},{"name":"Text - Leading Icon","style":{"width":"300px"},"props":{"options":[{"value":"Option 1"},{"value":"Option 2"},{"value":"Option 3"},{"value":"Option 4"},{"value":"Option 5"}],"label":"Label","icon":"x_placeholder","placeholder":"Text - Leading Icon"}}]},{"name":"Required","examples":[{"name":"(Default) False","style":{"width":"300px"},"props":{"options":[{"value":"Option 1"},{"value":"Option 2"},{"value":"Option 3"},{"value":"Option 4"},{"value":"Option 5"}],"label":"Label","required":false,"placeholder":"(Default) False"}},{"name":"True","style":{"width":"300px"},"props":{"options":[{"value":"Option 1"},{"value":"Option 2"},{"value":"Option 3"},{"value":"Option 4"},{"value":"Option 5"}],"label":"Label","required":true,"placeholder":"True"}}]},{"name":"Show Required Asterisk","examples":[{"name":"(Default) True","style":{"width":"300px"},"props":{"options":[{"value":"Option 1"},{"value":"Option 2"},{"value":"Option 3"},{"value":"Option 4"},{"value":"Option 5"}],"label":"Label","required":true,"showRequiredAsterisk":true,"placeholder":"(Default) True"}},{"name":"False","style":{"width":"300px"},"props":{"options":[{"value":"Option 1"},{"value":"Option 2"},{"value":"Option 3"},{"value":"Option 4"},{"value":"Option 5"}],"label":"Label","required":true,"showRequiredAsterisk":false,"placeholder":"False"}}]},{"name":"Option Groups","examples":[{"name":"Using optgroups","style":{"width":"300px"},"props":{"options":[{"label":"Group 1","options":[{"value":"Option 1"},{"value":"Option 2"}]},{"label":"Group 2","options":[{"value":"Option 3"},{"value":"Option 4"}]}],"label":"Label","placeholder":"Using optgroups"}},{"name":"Mixed options and groups","style":{"width":"300px"},"props":{"options":[{"value":"Single Option"},{"label":"Grouped Options","options":[{"value":"Group Option 1"},{"value":"Group Option 2"}]},{"value":"Another Single Option"}],"label":"Label","placeholder":"Mixed options and groups"}}]},{"name":"Examples Floating Label","examples":[{"name":"(Default) Empty","style":{"width":"300px"},"props":{"options":[{"value":"Option 1"},{"value":"Option 2"},{"value":"Option 3"},{"value":"Option 4"},{"value":"Option 5"}],"label":"Label","variant":"floating","placeholder":"(Default) Empty"}},{"name":"Filled","style":{"width":"300px"},"props":{"options":[{"value":"Filled","selected":true},{"value":"Option 2"}],"label":"Label","value":"Filled","variant":"floating","placeholder":"Filled"}},{"name":"Disabled","style":{"width":"300px"},"props":{"options":[{"value":"Disabled","selected":true},{"value":"Option 2"}],"label":"Label","disabled":true,"variant":"floating","value":"Disabled","placeholder":"Disabled"}}]}]'),eR=({placeholder:e,label:a,options:t,icon:n,message:i,disabled:l,value:o,required:s,variant:c,showLabel:d,showMessage:r,invalidMessage:u,validMessage:p,validation:h,showRequiredAsterisk:b})=>{let[x,v]=(0,R.useState)(o);return(0,L.jsx)(ez.A,{label:a,placeholder:e,options:t,disabled:l,variant:c,showLabel:d,icon:n,value:x,showRequiredAsterisk:b,onChange:e=>{v(e.target.value)},message:i,required:s,showMessage:r,invalidMessage:u,validMessage:p,validation:h})};var eF=t(31509);let eE=JSON.parse('[{"name":"Density","examples":[{"name":"functional","density":"functional","props":{}},{"name":"regular (Default)","density":"regular","props":{}},{"name":"expressive","density":"expressive","props":{}}]},{"name":"Checked","examples":[{"name":"(Default) False","props":{"checked":false}},{"name":"True","props":{"checked":true}}]},{"name":"Disabled","examples":[{"name":"(Default) False","props":{"disabled":false}},{"name":"True","props":{"disabled":true}}]},{"name":"Visual Aid","examples":[{"name":"(Default) False (Unchecked)","props":{"visualAid":false}},{"name":"(Default) False (Checked)","props":{"visualAid":false,"checked":true}},{"name":"True (Unchecked)","props":{"visualAid":true,"iconLeading":"moon","iconTrailing":"sun"}},{"name":"True (Checked)","props":{"visualAid":true,"checked":true,"iconLeading":"moon","iconTrailing":"sun"}}]},{"name":"Size","examples":[{"name":"(Default) Medium"},{"name":"Small","props":{"size":"small"}}]},{"name":"Variant","examples":[{"name":"(Default) Trailing","props":{"label":"(Default) Trailing"}},{"name":"Leading","props":{"label":"Leading","variant":"leading"}}]},{"name":"Show Label","examples":[{"name":"(Default) True","props":{"showLabel":true}},{"name":"False","props":{"showLabel":false}}]},{"name":"Required","examples":[{"name":"(Default) False","props":{"required":false}},{"name":"True","props":{"required":true}}]},{"name":"Show Required Asterisk","examples":[{"name":"(Default) True","props":{"required":true,"showRequiredAsterisk":true}},{"name":"False","props":{"required":true,"showRequiredAsterisk":false}}]},{"name":"Validation","examples":[{"name":"(Default) No validation","props":{}},{"name":"Invalid","props":{"validation":"invalid","invalidMessage":"Invalid Message"}},{"name":"Valid","props":{"validation":"valid","validMessage":"Valid message","checked":true}}]},{"name":"Show Message","examples":[{"name":"(Default) False","props":{}},{"name":"True","props":{"showMessage":true,"message":"Message"}}]},{"name":"Examples","examples":[{"name":"Custom Icons","props":{"visualAid":true,"icon":"cross_circle","iconTrailing":"clock"}},{"name":"Required + Visual Aid","props":{"visualAid":true,"required":true,"validMessage":"Valid"}}]}]'),eq=({children:e,checked:a,visualAid:t,disabled:n,showLabel:i,size:l,icon:o,iconTrailing:s,iconLeading:c,required:d,showRequiredAsterisk:r,validation:u,invalidMessage:p,validMessage:h,message:b,messageIcon:x,showMessage:v,variant:m})=>(0,L.jsxs)(L.Fragment,{children:[(0,L.jsx)(eF.A,{visualAid:t,defaultChecked:(0,eh.pW)(a),disabled:n,showRequiredAsterisk:r,showLabel:i,variant:m,size:l,icon:o,iconTrailing:s,iconLeading:c,required:d,validation:u,invalidMessage:p,validMessage:h,message:b,messageIcon:x,showMessage:v,children:e}),void 0!==i&&!i&&(0,L.jsx)(S.A,{semantic:"informational",icon:"none",children:e})]});var eM=t(65269),eV=t(99687);let eW=JSON.parse('[{"name":"Density","examples":[{"name":"Functional","density":"functional","className":"tab-hide-article","props":{"label":"functional"}},{"name":"(Default) Regular","density":"regular","className":"tab-hide-article","props":{"label":"(Default) Regular"}},{"name":"Expressive","density":"expressive","className":"tab-hide-article","props":{"label":"expressive"}}]},{"name":"States","examples":[{"name":"(Default) Enabled","props":{"label":"(Default) Enabled"}},{"name":"active","props":{"label":"active","active":true}},{"name":"disabled","props":{"label":"active","disabled":true}}]},{"name":"Show Icon Leading","examples":[{"name":"(Default) False","props":{"label":"False","icon":"x_placeholder","showIcon":false}},{"name":"True","props":{"label":"True","icon":"x_placeholder","showIcon":true}}]},{"name":"Show Icon Trailing","examples":[{"name":"(Default) False","props":{"label":"False","icon":"x_placeholder","showIcon":false,"iconTrailing":"x_placeholder","showIconTrailing":false}},{"name":"True","props":{"label":"True","icon":"x_placeholder","showIcon":true,"iconTrailing":"x_placeholder","showIconTrailing":true}}]},{"name":"Behavior","examples":[{"name":"(Default) Auto Width","props":{"label":"(Default) Auto Width"}},{"name":"Width full","style":{"width":"500px"},"props":{"label":"Width full","width":"full"}}]},{"name":"Content Alignment Full Width","examples":[{"name":"Left","style":{"width":"500px"},"props":{"label":"Left","width":"full"}},{"name":"Centered","style":{"width":"500px"},"props":{"label":"Centered","width":"full","alignment":"center"}}]}]'),eU=({children:e,active:a,noText:t,icon:n,iconTrailing:i,showIconTrailing:l,showIcon:o,disabled:s})=>(0,L.jsx)(eM.A,{children:(0,L.jsx)(eV.A,{active:a,noText:t,icon:n,iconTrailing:i,showIcon:o,showIconTrailing:l,disabled:s,children:e})}),eG=e=>(0,L.jsx)($,{title:"DBTabItem",isSubComponent:e.isSubComponent,componentName:e.componentName,variants:P(eW,eU,e.slotCode)});var e$=t(4913),eJ=t(45023);let eY=JSON.parse('[{"name":"Density","children":[{"name":"tab-list","children":[{"name":"tab-item","content":"Tab 1"},{"name":"tab-item","content":"Tab 2"},{"name":"tab-item","content":"Tab 3"}]},{"name":"tab-panel","content":"Tab Panel 1"},{"name":"tab-panel","content":"Tab Panel 2"},{"name":"tab-panel","content":"Tab Panel 3"}],"examples":[{"name":"Functional","density":"functional","props":{}},{"name":"(Default) Regular","density":"regular","props":{}},{"name":"Expressive","density":"expressive","props":{}}]},{"name":"Orientation","children":[{"name":"tab-list","children":[{"name":"tab-item","content":"Tab 1"},{"name":"tab-item","content":"Tab 2"},{"name":"tab-item","content":"Tab 3"}]},{"name":"tab-panel","content":"Tab Panel 1"},{"name":"tab-panel","content":"Tab Panel 2"},{"name":"tab-panel","content":"Tab Panel 3"}],"examples":[{"name":"horizontal","props":{"orientation":"horizontal"}},{"name":"vertical","props":{"orientation":"vertical"}}]},{"name":"Width","children":[{"name":"tab-list","children":[{"name":"tab-item","content":"Tab 1"},{"name":"tab-item","content":"Tab 2"},{"name":"tab-item","content":"Tab 3"}]},{"name":"tab-panel","content":"Tab Panel 1"},{"name":"tab-panel","content":"Tab Panel 2"},{"name":"tab-panel","content":"Tab Panel 3"}],"examples":[{"name":"auto","style":{"width":"100%"},"props":{"width":"auto"}},{"name":"full - alignment: start","style":{"width":"100%"},"props":{"width":"full"}},{"name":"full - alignment: center","style":{"width":"100%"},"props":{"width":"full","alignment":"center"}}]},{"name":"Overflow","children":[{"name":"tab-list","children":[{"name":"tab-item","content":"Tab 1"},{"name":"tab-item","content":"Tab 2"},{"name":"tab-item","content":"Tab 3"}]},{"name":"tab-panel","content":"Tab Panel 1"},{"name":"tab-panel","content":"Tab Panel 2"},{"name":"tab-panel","content":"Tab Panel 3"}],"examples":[{"name":"no overflow","style":{"width":"300px"},"props":{"width":"auto"}},{"name":"with overflow - behavior: arrows","style":{"width":"300px"},"props":{"overflow":true,"behavior":"arrows"}},{"name":"with overflow - behavior: scrollbar","style":{"width":"300px"},"props":{"overflow":true}}]},{"name":"Examples","children":[{"name":"tab-list","children":[{"name":"tab-item","content":"Tab 1"},{"name":"tab-item","content":"Tab 2"},{"name":"tab-item","content":"Tab 3"}]},{"name":"tab-panel","content":"Tab Panel 1"},{"name":"tab-panel","content":"Tab Panel 2"},{"name":"tab-panel","content":"Tab Panel 3"}],"examples":[{"name":"2nd tab selected","props":{"initialSelectedIndex":1}},{"name":"nothing selected","props":{"initialSelectedMode":"manually"}}]}]'),eZ=({children:e,orientation:a,width:t,alignment:n,overflow:i,behavior:l,initialSelectedMode:o,initialSelectedIndex:s})=>(0,L.jsxs)("div",{className:"w-full",children:[(0,L.jsxs)(S.A,{icon:"none",size:"small",semantic:"informational",children:[e,":"]}),(0,L.jsxs)(e$.A,{orientation:a,width:t,alignment:n,behavior:l,initialSelectedIndex:s,initialSelectedMode:o,arrowScrollDistance:75,children:[(0,L.jsxs)(eM.A,{children:[(0,L.jsx)(eV.A,{children:"Test 1"}),(0,L.jsx)(eV.A,{children:"Test 2"}),(0,L.jsx)(eV.A,{children:"Test 3"}),i&&(0,L.jsxs)(L.Fragment,{children:[(0,L.jsx)(eV.A,{children:"Test 4"}),(0,L.jsx)(eV.A,{children:"Test 5"})]})]}),(0,L.jsx)(eJ.A,{children:"Tab Panel 1"}),(0,L.jsx)(eJ.A,{children:"Tab Panel 2"}),(0,L.jsx)(eJ.A,{children:"Tab Panel 3"}),i&&(0,L.jsxs)(L.Fragment,{children:[(0,L.jsx)(eJ.A,{children:"Tab Panel 4"}),(0,L.jsx)(eJ.A,{children:"Tab Panel 5"})]})]})]});var eK=t(78147);let eQ=JSON.parse('[{"name":"Density","examples":[{"name":"Functional","density":"functional","props":{}},{"name":"(Default) Regular","density":"regular","props":{}},{"name":"Expressive","density":"expressive","props":{}}]},{"name":"Emphasis","examples":[{"name":"(Default) Weak"},{"name":"Strong","props":{"emphasis":"strong"}}]},{"name":"Semantic","examples":[{"name":"(Default) Adaptive"},{"name":"Critical","props":{"semantic":"critical"}},{"name":"Informational","props":{"semantic":"informational"}},{"name":"Neutral","props":{"semantic":"neutral"}},{"name":"Successful","props":{"semantic":"successful"}},{"name":"Warning","props":{"semantic":"warning"}},{"name":"Line Break","props":{"lineBreak":true}},{"name":"Line Break","props":{"lineBreak":true}},{"name":"Adaptive Strong","props":{"emphasis":"strong"}},{"name":"Critical Strong","props":{"semantic":"critical","emphasis":"strong"}},{"name":"Informational Strong","props":{"semantic":"informational","emphasis":"strong"}},{"name":"Neutral Strong","props":{"semantic":"neutral","emphasis":"strong"}},{"name":"Successful Strong","props":{"semantic":"successful","emphasis":"strong"}},{"name":"Warning Strong","props":{"semantic":"warning","emphasis":"strong"}}]},{"name":"Behavior","role":"group","examples":[{"name":"(Default) Static"},{"name":"Removable","props":{"behavior":"removable"}},{"name":"Line Break","props":{"lineBreak":true}},{"name":"Interactive (Button)","props":{"component":"button"},"children":[{"name":"button","native":true,"content":"Interactive Button"}]},{"name":"Interactive (Link)","props":{"component":"link"},"children":[{"name":"a","native":true,"content":"Interactive Link","props":{"href":"#"}}]},{"name":"Line Break","props":{"lineBreak":true}},{"name":"Interactive (Checkbox)","props":{"component":"checkbox"},"children":[{"name":"label","native":true,"content":"Interactive Checkbox","props":{"for":"checkbox01"},"children":[{"name":"input","native":true,"props":{"id":"checkbox01","type":"checkbox"}}]}]},{"name":"Interactive (Radio)","props":{"component":"radio","identifier":"radio01"},"children":[{"name":"label","native":true,"content":"Interactive Radio 1","props":{"for":"radio01"},"children":[{"name":"input","native":true,"props":{"name":"radio01","id":"radio01","type":"radio"}}]}]},{"name":"Interactive Radio 2","props":{"component":"radio","identifier":"radio01"},"children":[{"name":"label","native":true,"content":"Interactive Radio 2","props":{"for":"radio02"},"children":[{"name":"input","native":true,"props":{"name":"radio02","id":"radio02","type":"radio"}}]}]}]},{"name":"Checked","role":"group","examples":[{"name":"(Default) False","props":{"component":"checkbox"},"children":[{"name":"label","native":true,"content":"Interactive Checkbox","props":{"for":"checkbox02"},"children":[{"name":"input","native":true,"props":{"id":"checkbox02","type":"checkbox"}}]}]},{"name":"True","props":{"component":"checkbox","checked":true},"children":[{"name":"label","native":true,"content":"Interactive Checkbox","props":{"for":"checkbox03"},"children":[{"name":"input","native":true,"props":{"checked":true,"id":"checkbox03","type":"checkbox"}}]}]}]},{"name":"Disabled","role":"group","examples":[{"name":"(Default) False","props":{"component":"checkbox"},"children":[{"name":"label","native":true,"content":"Interactive Checkbox","props":{"for":"checkbox02"},"children":[{"name":"input","native":true,"props":{"id":"checkbox02","type":"checkbox"}}]}]},{"name":"True","props":{"component":"checkbox","disabled":true},"children":[{"name":"label","native":true,"content":"Interactive Checkbox","props":{"for":"checkbox04"},"children":[{"name":"input","native":true,"props":{"checked":true,"disabled":true,"id":"checkbox04","type":"checkbox"}}]}]}]},{"name":"Show Icon","examples":[{"name":"(Default) False","props":{"icon":"x_placeholder","showIcon":false}},{"name":"True","props":{"icon":"x_placeholder","showIcon":true}}]},{"name":"No Text","examples":[{"name":"(Default) False","props":{"icon":"x_placeholder"}},{"name":"True","props":{"icon":"x_placeholder","noText":true}}]},{"name":"Show Slot","examples":[{"name":"(Default) False"},{"name":"True","props":{"icon":"x_placeholder","content":"true"}}]},{"name":"Show Check State","examples":[{"name":"(Default) True","props":{"component":"checkbox","showCheckState":true},"children":[{"name":"label","native":true,"content":"Interactive Checkbox","props":{"for":"checkbox099"},"children":[{"name":"input","native":true,"id":"checkbox099","type":"checkbox"}]}]},{"name":"False","props":{"component":"checkbox","showCheckState":false},"children":[{"name":"label","native":true,"content":"Interactive Checkbox","props":{"for":"checkbox099"},"children":[{"name":"input","native":true,"id":"checkbox099","type":"checkbox"}]}]}]},{"name":"Overflow","examples":[{"name":"(Default) False"},{"name":"True - lorem ipsum dolor","props":{"overflow":true}}]},{"name":"Example Strong","role":"group","examples":[{"name":"Interactive Strong Button with Icon","props":{"component":"button","emphasis":"strong","icon":"x_placeholder","behavior":"removable"},"children":[{"name":"button","native":true,"content":"Interactive Button"}]},{"name":"Interactive Strong Link with Icon","props":{"component":"link","emphasis":"strong","icon":"x_placeholder"},"children":[{"name":"a","native":true,"content":"Interactive Link","props":{"href":"#"}}]},{"name":"Interactive Strong Checkbox with Icon","props":{"component":"checkbox","emphasis":"strong","icon":"x_placeholder"},"children":[{"name":"label","native":true,"content":"Interactive Checkbox","props":{"for":"checkbox05"},"children":[{"name":"input","native":true,"id":"checkbox05","type":"checkbox"}]}]},{"name":"Interactive Strong Radio 1 with Icon","props":{"component":"radio","emphasis":"strong","icon":"x_placeholder","identifier":"radio03"},"children":[{"name":"label","native":true,"content":"Interactive Radio 3","props":{"for":"radio03"},"children":[{"name":"input","native":true,"props":{"name":"radio03","id":"radio03","type":"radio"}}]}]},{"name":"Interactive Strong Radio 2 with Icon","props":{"component":"radio","emphasis":"strong","icon":"x_placeholder","identifier":"radio03"},"children":[{"name":"label","native":true,"content":"Interactive Radio 4","props":{"for":"radio04"},"children":[{"name":"input","native":true,"props":{"name":"radio03","id":"radio04","type":"radio"}}]}]}]}]'),eX=({semantic:e,disabled:a,children:t,icon:n,overflow:i,noText:l,behavior:o,emphasis:s,removeButton:c,checked:d,component:r,identifier:u,content:p,showCheckState:h,lineBreak:b,showIcon:x})=>{let[v,m]=(0,R.useState)(d??!1);return b?(0,L.jsx)("i",{className:"line-break"}):(0,L.jsxs)(eK.A,{semantic:e,icon:n,noText:l,behavior:o,emphasis:s,overflow:i,removeButton:c,showCheckState:h,showIcon:x,content:p?(0,L.jsx)("div",{className:"default-content-slot",children:"Swap Slot"}):void 0,onRemove:()=>{alert(t.toString())},children:["button"===r&&(0,L.jsx)("button",{children:t}),"link"===r&&(0,L.jsx)("a",{href:"#",children:t}),"checkbox"===r&&(0,L.jsxs)("label",{children:[(0,L.jsx)("input",{type:"checkbox",checked:v,disabled:(0,eh.pW)(a),onChange:e=>{m(e.target.checked)}}),t]}),"radio"===r&&(0,L.jsxs)("label",{children:[(0,L.jsx)("input",{type:"radio",checked:d,name:u}),t]}),!r&&!i&&(0,L.jsx)(L.Fragment,{children:t}),!r&&i&&(0,L.jsx)("span",{children:t})]})};var e0=t(14529);let e1=JSON.parse('[{"name":"Density","examples":[{"name":"Functional","density":"functional","props":{"label":"Label"}},{"name":"(Default) Regular","density":"regular","props":{"label":"Label"}},{"name":"Expressive","density":"expressive","props":{"label":"Label"}}]},{"name":"Variant","examples":[{"name":"(Default) Above","props":{"label":"Label"}},{"name":"Floating","props":{"label":"Label","variant":"floating","value":"Floating Label"}}]},{"name":"Show Label","examples":[{"name":"(Default) True","props":{"label":"Label","showLabel":true}},{"name":"False","props":{"label":"Label","showLabel":false}}]},{"name":"Show Message","examples":[{"name":"(Default) False","props":{"label":"Label","showMessage":false}},{"name":"true","props":{"label":"Label","message":"Message","showMessage":true}}]},{"name":"State","examples":[{"name":"(Default) Empty","props":{"label":"Label"}},{"name":"Filled","props":{"label":"Label","value":"Filled"}}]},{"name":"Disabled","examples":[{"name":"(Default) False","props":{"label":"Label","disabled":false}},{"name":"True","props":{"label":"Label","disabled":true}}]},{"name":"Readonly","examples":[{"name":"(Default) False","props":{"label":"Label","value":"(Default) False","readOnly":false}},{"name":"True","props":{"label":"Label","value":"True","readOnly":true}}]},{"name":"Validation","examples":[{"name":"(Default) No validation","props":{"label":"Label","validation":"no-validation"}},{"name":"Invalid","props":{"label":"Label","validation":"invalid","invalidMessage":"Invalid Message"}},{"name":"Valid","props":{"label":"Label","validation":"valid","validMessage":"Valid message"}}]},{"name":"Required","examples":[{"name":"(Default) False","props":{"label":"Label","required":false}},{"name":"True","props":{"label":"Label","required":true}}]},{"name":"Show Required Asterisk","examples":[{"name":"(Default) True","props":{"label":"Label","required":true,"showRequiredAsterisk":true}},{"name":"False","props":{"label":"Label","required":true,"showRequiredAsterisk":false}}]},{"name":"Rows","examples":[{"name":"(Default) 4 Rows","style":{"width":"328px"},"props":{"label":"(Default) 4 Rows","value":"Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua."}},{"name":"Custom","style":{"width":"328px"},"props":{"label":"Custom Example 8 Rows","rows":8,"value":"Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua."}}]},{"name":"Show Resizer","examples":[{"name":"(Default) True","props":{"label":"Label","showResizer":true}},{"name":"False","props":{"label":"Label","showResizer":false}}]},{"name":"Field Sizing","examples":[{"name":"(Default) Fixed","style":{"width":"300px"},"props":{"label":"Label","fieldSizing":"fixed"}},{"name":"Content","style":{"width":"300px"},"props":{"label":"Label","fieldSizing":"content"}}]},{"name":"Examples Floating Label","examples":[{"name":"(Default) Empty","props":{"label":"Label","variant":"floating"}},{"name":"Filled","props":{"label":"Label","value":"Filled","variant":"floating"}},{"name":"Disabled","props":{"label":"Label","disabled":true,"variant":"floating"}},{"name":"Readonly - Filled","props":{"label":"Label","value":"Readonly - Filled","readOnly":true,"variant":"floating"}}]}]'),e2=({cols:e,disabled:a,message:t,label:n,placeholder:i,rows:l,value:o,readOnly:s,required:c,children:d,variant:r,showLabel:u,showMessage:p,validMessage:h,validation:b,invalidMessage:x,fieldSizing:v,showResizer:m,showRequiredAsterisk:g})=>{let[j,D]=(0,R.useState)(o);return(0,L.jsx)(e0.A,{cols:e,showRequiredAsterisk:g,disabled:a,showLabel:u,message:t,label:n,variant:r,readOnly:s,onChange:e=>{D(e.target.value)},required:c,placeholder:i??d,rows:l,value:j,showMessage:p,invalidMessage:x,validMessage:h,validation:b,showResizer:m,fieldSizing:v})};var e3=t(33791);let e4=JSON.parse('[{"name":"Density","children":[{"name":"button"}],"examples":[{"name":"Functional","density":"functional","props":{"content":"Tooltip","id":"tooltip-01"}},{"name":"(Default) Regular","density":"regular","props":{"content":"Tooltip","id":"tooltip-02"}},{"name":"Expressive","density":"expressive","props":{"content":"Tooltip","id":"tooltip-03"}}]},{"name":"Show Arrow","children":[{"name":"button"}],"examples":[{"name":"(Default) True","props":{"content":"Tooltip","id":"tooltip-04","showArrow":true}},{"name":"False","props":{"content":"Tooltip","showArrow":false,"id":"tooltip-05"}}]},{"name":"Emphasis","children":[{"name":"button"}],"examples":[{"name":"(Default) Weak","props":{"content":"Tooltip","id":"tooltip-06"}},{"name":"Strong","props":{"content":"Tooltip","emphasis":"strong","id":"tooltip-07"}}]},{"name":"Placement","children":[{"name":"button"}],"examples":[{"name":"bottom-start","props":{"content":"Tooltip","placement":"bottom-start","id":"tooltip-08-start"}},{"name":"(Default) bottom","props":{"content":"Tooltip","placement":"bottom","id":"tooltip-08"}},{"name":"bottom-end","props":{"content":"Tooltip","placement":"bottom-end","id":"tooltip-08-end"}},{"name":"left-start","props":{"content":"Tooltip","placement":"left-start","id":"tooltip-10-start"}},{"name":"left","props":{"content":"Tooltip","placement":"left","id":"tooltip-10"}},{"name":"left-end","props":{"content":"Tooltip","placement":"left-end","id":"tooltip-10-end"}},{"name":"right-start","props":{"content":"Tooltip","placement":"right-start","id":"tooltip-11-start"}},{"name":"right","props":{"content":"Tooltip","placement":"right","id":"tooltip-11"}},{"name":"right-end","props":{"content":"Tooltip","placement":"right-end","id":"tooltip-11-end"}},{"name":"top-start","props":{"content":"Tooltip","placement":"top-start","id":"tooltip-09-start"}},{"name":"top","props":{"content":"Tooltip","placement":"top","id":"tooltip-09"}},{"name":"top-end","props":{"content":"Tooltip","placement":"top-end","id":"tooltip-09-end"}}]},{"name":"Width","children":[{"name":"button"}],"examples":[{"name":"(Default) Auto","props":{"content":"Max width, lorem ipsum dolor sit amet, consetetur sadipscing","id":"tooltip-12"}},{"name":"Fixed","props":{"content":"Max width, lorem ipsum dolor sit amet, consetetur sadipscing","width":"fixed","id":"tooltip-13"}}]},{"name":"Animation","children":[{"name":"button"}],"examples":[{"name":"(Default) True","props":{"content":"Tooltip","id":"tooltip-14","animation":true}},{"name":"False","props":{"content":"Tooltip","animation":false,"id":"tooltip-17"}}]},{"name":"Delay","children":[{"name":"button"}],"examples":[{"name":"(Default) None","props":{"content":"Tooltip","id":"tooltip-144","delay":"none"}},{"name":"Slow","props":{"content":"Tooltip","delay":"slow","id":"tooltip-15"}},{"name":"Fast","props":{"content":"Tooltip","delay":"fast","id":"tooltip-16"}}]}]'),e5=({children:e,width:a,emphasis:t,placement:n,delay:i,content:l,animation:o,showArrow:s})=>(0,L.jsxs)(ea.A,{children:[e,(0,L.jsx)(e3.A,{width:a,emphasis:t,placement:n,animation:o,delay:i,showArrow:s,children:l})]});var e8=t(68756);let e9=(0,R.forwardRef)(function(e,a){e={size:"small",separator:"chevron",...e};let t=a||(0,R.useRef)(a),[n,i]=(0,R.useState)(()=>!1);return(0,L.jsx)("nav",{ref:t,...(0,e8.MD)(e,["data-icon-variant","data-icon-variant-before","data-icon-variant-after","data-icon-weight","data-icon-weight-before","data-icon-weight-after","data-interactive","data-force-mobile","data-color","data-container-color","data-bg-color","data-on-bg-color","data-color-scheme","data-font-size","data-headline-size","data-divider","data-focus","data-font"]),id:e.id,...(0,e8.vC)(e,["data-icon-variant","data-icon-variant-before","data-icon-variant-after","data-icon-weight","data-icon-weight-before","data-icon-weight-after","data-interactive","data-force-mobile","data-color","data-container-color","data-bg-color","data-on-bg-color","data-color-scheme","data-font-size","data-headline-size","data-divider","data-focus","data-font"]),className:(0,eh.xF)("db-breadcrumb",e.className),"data-size":e.size,"data-separator":e.separator,"aria-label":e.ariaLabel??(e.id?`Breadcrumb Navigation (${e.id})`:"Breadcrumb Navigation"),children:(0,L.jsx)("ol",{className:"db-breadcrumb-list",id:e.id?`${e.id}-list`:"db-breadcrumb-list",children:e.items&&e.items.length>0?e.maxItems&&e.maxItems>0&&e.items.length>e.maxItems&&!n?(0,L.jsxs)(L.Fragment,{children:[(0,L.jsx)("li",{children:e.items[0].href?(0,L.jsxs)("a",{href:e.items[0].href,children:[e.items[0].icon?(0,L.jsx)(es.A,{weight:"medium"===e.size?"24":"20",icon:e.items[0].icon}):null,e.items[0].text]}):(0,L.jsx)(L.Fragment,{children:(0,L.jsxs)("span",{children:[e.items[0].icon?(0,L.jsx)(es.A,{weight:"medium"===e.size?"24":"20",icon:e.items[0].icon}):null,e.items[0].text]})})},0),(0,L.jsx)("li",{children:(0,L.jsx)("button",{type:"button",className:"db-breadcrumb-ellipsis","aria-label":e.ellipsisAriaLabel,"aria-expanded":n?"true":"false","aria-controls":e.id?`${e.id}-list`:"db-breadcrumb-list",onClick:e=>void i(!n),children:"…"})},"ellipsis"),e.items.slice(e.items.length-(e.maxItems-1))?.map((a,t)=>(0,L.jsx)("li",{children:a.href?(0,L.jsxs)("a",{href:a.href,"aria-current":t===e.maxItems-2?a.ariaCurrent??"page":void 0,children:[a.icon?(0,L.jsx)(es.A,{weight:"medium"===e.size?"24":"20",icon:a.icon}):null,a.text]}):(0,L.jsx)(L.Fragment,{children:(0,L.jsxs)("span",{"aria-current":t===e.maxItems-2?a.ariaCurrent??"page":void 0,children:[a.icon?(0,L.jsx)(es.A,{weight:"medium"===e.size?"24":"20",icon:a.icon}):null,a.text]})})},t+1))]}):e.items?.map((a,t)=>(0,L.jsx)("li",{children:a.href?(0,L.jsxs)("a",{href:a.href,"aria-current":t===e.items.length-1?a.ariaCurrent??"page":void 0,children:[a.icon?(0,L.jsx)(es.A,{weight:"medium"===e.size?"24":"20",icon:a.icon}):null,a.text]}):(0,L.jsx)(L.Fragment,{children:(0,L.jsxs)("span",{"aria-current":t===e.items.length-1?a.ariaCurrent??"page":void 0,children:[a.icon?(0,L.jsx)(es.A,{weight:"medium"===e.size?"24":"20",icon:a.icon}):null,a.text]})})},t)):(0,L.jsx)(L.Fragment,{children:e.children})})})}),e7=JSON.parse('[{"name":"Size","examples":[{"name":"(Default) Small","className":"w-full","props":{"id":"breadcrumb-size-small","ariaLabel":"Breadcrumb - Small Size","items":[{"href":"#","text":"Home"},{"href":"#","text":"Category"},{"text":"Current Page","ariaCurrent":"page","href":"#"}]}},{"name":"Medium","className":"w-full","props":{"id":"breadcrumb-size-medium","size":"medium","ariaLabel":"Breadcrumb - Medium Size","items":[{"href":"#","text":"Home"},{"href":"#","text":"Category"},{"text":"Current Page","ariaCurrent":"page"}]}}]},{"name":"Separator","examples":[{"name":"Chevron","className":"w-full","props":{"id":"breadcrumb-separator-chevron","separator":"chevron","ariaLabel":"Breadcrumb - Chevron Separator","items":[{"href":"#","text":"Home"},{"href":"#","text":"Category"},{"text":"Current Page","ariaCurrent":"page"}]}},{"name":"Slash","className":"w-full","props":{"id":"breadcrumb-separator-slash","separator":"slash","ariaLabel":"Breadcrumb - Slash Separator","items":[{"href":"#","text":"Home"},{"href":"#","text":"Category"},{"text":"Current Page","ariaCurrent":"page"}]}}]},{"name":"Collapsed","examples":[{"name":"Collapsed (maxItems=3)","className":"w-full","props":{"id":"breadcrumb-collapsed","maxItems":3,"ariaLabel":"Breadcrumb - Collapsed Navigation","ellipsisAriaLabel":"Expand to show all breadcrumb items","items":[{"href":"#","text":"Root"},{"href":"#","text":"Path 1"},{"href":"#","text":"Path 2"},{"href":"#","text":"Path 3"},{"text":"Current Page","ariaCurrent":"page","href":"#"}]}}]},{"name":"Icons","examples":[{"name":"With Icons (Small)","className":"w-full","props":{"id":"breadcrumb-icons-small","ariaLabel":"Breadcrumb - With Icons Small Size","items":[{"href":"#","text":"Root","icon":"house"},{"href":"#","text":"Settings","icon":"gear_wheel"},{"href":"#","text":"Profile","icon":"person"},{"href":"#","text":"Notifications","icon":"bell"}]}},{"name":"With Icons (Medium)","className":"w-full","props":{"id":"breadcrumb-icons-medium","ariaLabel":"Breadcrumb - With Icons Medium Size","size":"medium","items":[{"href":"#","text":"Root","icon":"house"},{"href":"#","text":"Settings","icon":"gear_wheel"},{"href":"#","text":"Profile","icon":"person"},{"href":"#","text":"Notifications","icon":"bell"}]}}]}]'),e6=({items:e,size:a,className:t,separator:n,maxItems:i,ariaLabel:l,ellipsisAriaLabel:o,id:s})=>(0,L.jsx)(e9,{size:a,className:t,separator:n,maxItems:i,items:e,ariaLabel:l,ellipsisAriaLabel:o,id:s}),ae=JSON.parse('[{"name":"Density","children":[{"name":"navigation-item","content":"Navi-Item 1","children":[{"name":"navigation-item","content":"Sub-Navi-Item 1","slot":"sub-navigation","children":[{"name":"navigation-item","slot":"sub-navigation","props":{"active":true},"children":[{"name":"a","native":true,"content":"Sub-Sub-Navi-Item 1","props":{"href":"#"}}]}]}]},{"name":"navigation-item","children":[{"name":"a","native":true,"content":"Navi-Item 2","props":{"href":"#"}}]}],"examples":[{"name":"Functional","density":"functional","props":{}},{"name":"(Default) Regular","density":"regular","props":{}},{"name":"Expressive","density":"expressive","props":{}}]}]'),aa=({children:e})=>{let a=`${e.replaceAll(/\W/g,"_").toLowerCase()}`;return(0,L.jsxs)("div",{children:[(0,L.jsx)(S.A,{id:a,size:"small",semantic:"informational",icon:"none",children:e}),(0,L.jsxs)(eB.A,{"aria-labelledby":a,children:[(0,L.jsx)(ef.A,{subNavigation:(0,L.jsxs)(L.Fragment,{children:[(0,L.jsx)(ef.A,{subNavigation:(0,L.jsxs)(L.Fragment,{children:[(0,L.jsx)(ef.A,{children:(0,L.jsx)("a",{href:"#","aria-current":"page",children:"Sub-Sub-Navi-Item 1"})}),(0,L.jsx)(ef.A,{children:(0,L.jsx)("a",{href:"#",children:"Sub-Sub-Navi-Item 2"})})]}),children:"Sub-Navi-Item 1"}),(0,L.jsx)(ef.A,{children:(0,L.jsx)("a",{href:"#",children:"Sub-Navi-Item 2"})})]}),children:"Navi-Item 1"}),(0,L.jsx)(ef.A,{icon:"x_placeholder",children:(0,L.jsx)("a",{href:"#",children:"Navi-Item 2"})}),(0,L.jsx)(ef.A,{disabled:!0,children:(0,L.jsx)("a",{href:"#",children:"Navi-Item 3"})})]})]})},at=JSON.parse('[{"name":"Density","examples":[{"name":"Functional","density":"functional","props":{},"children":[{"name":"a","native":true,"props":{"href":"#"},"content":"Functional"}]},{"name":"(Default) Regular","density":"regular","props":{},"children":[{"name":"a","native":true,"props":{"href":"#"},"content":"(Default) Regular"}]},{"name":"Expressive","density":"expressive","props":{},"children":[{"name":"a","native":true,"props":{"href":"#"},"content":"Expressive"}]}]},{"name":"Disabled","examples":[{"name":"(Default) False","props":{"disabled":false},"children":[{"name":"a","native":true,"props":{"href":"#"},"content":"(Default) False"}]},{"name":"True","props":{"disabled":true},"children":[{"name":"a","native":true,"props":{"href":"#"},"content":"True"}]}]},{"name":"Active","examples":[{"name":"(Default) False","props":{"active":false},"children":[{"name":"a","native":true,"props":{"href":"#"},"content":"(Default) False"}]},{"name":"True","props":{"active":true},"children":[{"name":"a","native":true,"props":{"href":"#"},"content":"True"}]}]},{"name":"Expanded","examples":[{"name":"(Default) False","props":{"areaPopup":false},"children":[{"name":"a","native":true,"props":{"href":"#"},"content":"(Default) False"}]},{"name":"True","props":{"areaPopup":true},"children":[{"name":"a","native":true,"props":{"href":"#"},"content":"True"}]}]},{"name":"Show Icon","examples":[{"name":"(Default) False","props":{"icon":"x_placeholder","showIcon":false},"children":[{"name":"a","native":true,"props":{"href":"#"},"content":"(Default) False"}]},{"name":"True","props":{"icon":"x_placeholder","showIcon":true},"children":[{"name":"a","native":true,"props":{"href":"#"},"content":"True"}]}]},{"name":"Width","examples":[{"name":"(Default) Auto","style":{"width":"400px"},"children":[{"name":"a","native":true,"props":{"href":"#"},"content":"(Default) Auto"}]},{"name":"Full","style":{"width":"400px"},"props":{"width":"full"},"children":[{"name":"a","native":true,"props":{"href":"#"},"content":"Full"}]}]},{"name":"Wrap","examples":[{"name":"No Wrap (Default)","props":{"areaPopup":true},"children":[{"name":"a","native":true,"props":{"href":"#"},"content":"True"}]},{"name":"This is a very long text that is broken into multiple lines.","props":{"areaPopup":true,"icon":"x_placeholder","showIcon":true,"wrap":true},"style":{"width":"200px"},"children":[{"name":"a","native":true,"content":"Sub-Sub-Navi-Item 1","props":{"href":"#"}}]},{"name":"This is a very long text that is broken into multiple lines.","props":{"areaPopup":true,"wrap":true},"style":{"width":"200px"},"slot":"sub-navigation","children":[{"name":"a","native":true,"props":{"href":"#"},"content":"True"}]}]}]'),an=({children:e,icon:a,disabled:t,active:n,width:i,areaPopup:l,showIcon:o,wrap:s})=>(0,L.jsx)("ul",{className:"nav-item-list",children:(0,L.jsx)(ef.A,{icon:a,disabled:t,active:n,width:i,onClick:()=>{alert(e.toString())},showIcon:o,wrap:s,subNavigation:l&&(0,L.jsxs)(L.Fragment,{children:[(0,L.jsx)(ef.A,{icon:a,showIcon:o,subNavigation:(0,L.jsx)(L.Fragment,{children:(0,L.jsx)(ef.A,{icon:a,showIcon:o,children:(0,L.jsx)("a",{href:"#",children:"Navigation-Item 2"})})}),children:"Also a navigation item with longer label"}),(0,L.jsx)(ef.A,{icon:a,showIcon:o,children:(0,L.jsx)("a",{href:"#",children:"Navigation-Item 1"})})]}),children:l?e:(0,L.jsx)("a",{href:"#",children:e})})}),ai=e=>(0,L.jsx)($,{title:"DBNavigationItem",isSubComponent:e.isSubComponent,componentName:e.componentName,variants:P(at,an,e.slotCode)});var al=t(70631);let ao=JSON.parse('[{"name":"Density","children":[{"name":"button","slot":"trigger"},{"name":"button","content":"Inside Popover"}],"examples":[{"name":"Functional","density":"functional","props":{"id":"popover-01"}},{"name":"(Default) Regular","density":"regular","props":{"id":"popover-02"}},{"name":"Expressive","density":"expressive","props":{"id":"popover-03"}}]},{"name":"Spacing","children":[{"name":"button","slot":"trigger"},{"name":"button","content":"Inside Popover"}],"examples":[{"name":"(Default) Small","props":{"spacing":"small","id":"popover-04"}},{"name":"Medium","props":{"spacing":"medium","id":"popover-05"}},{"name":"Large","props":{"spacing":"large","id":"popover-055"}},{"name":"None","props":{"spacing":"none","id":"popover-06"}}]},{"name":"Placement","children":[{"name":"button","slot":"trigger"},{"name":"button","content":"Inside Popover"}],"examples":[{"name":"bottom-start","props":{"placement":"bottom-start","id":"popover-07-start"}},{"name":"(Default) bottom","props":{"placement":"bottom","id":"popover-07"}},{"name":"bottom-end","props":{"placement":"bottom-end","id":"popover-07-end"}},{"name":"left-start","props":{"placement":"left-start","id":"popover-09-start"}},{"name":"left","props":{"placement":"left","id":"popover-09"}},{"name":"left-end","props":{"placement":"left-end","id":"popover-09-end"}},{"name":"right-start","props":{"placement":"right-start","id":"popover-10-start"}},{"name":"right","props":{"placement":"right","id":"popover-10"}},{"name":"right-end","props":{"placement":"right-end","id":"popover-10-end"}},{"name":"top-start","props":{"placement":"top-start","id":"popover-08-start"}},{"name":"top","props":{"placement":"top","id":"popover-08"}},{"name":"top-end","props":{"placement":"top-end","id":"popover-08-end"}}]},{"name":"Gap","children":[{"name":"button","slot":"trigger"},{"name":"button","content":"Inside Popover"}],"examples":[{"name":"(Default) False","props":{"gap":false,"id":"popover-11"}},{"name":"True","props":{"gap":true,"id":"popover-12"}}]},{"name":"Animation","children":[{"name":"button","slot":"trigger"},{"name":"button","content":"Inside Popover"}],"examples":[{"name":"(Default) True","props":{"id":"popover-13","animation":true}},{"name":"False","props":{"animation":false,"id":"popover-16"}}]},{"name":"Delay","children":[{"name":"button","slot":"trigger"},{"name":"button","content":"Inside Popover"}],"examples":[{"name":"(Default) None","props":{"id":"popover-133","delay":"none"}},{"name":"Slow","props":{"delay":"slow","id":"popover-14"}},{"name":"Fast","props":{"delay":"fast","id":"popover-15"}}]},{"name":"Width","children":[{"name":"button","slot":"trigger"},{"name":"button","content":"Inside Popover"}],"examples":[{"name":"(Default) Auto","props":{"content":"Max width, lorem ipsum dolor sit amet, consetetur sadipscing","id":"popover-17"}},{"name":"Fixed","props":{"content":"Max width, lorem ipsum dolor sit amet, consetetur sadipscing","width":"fixed","id":"popover-18"}}]}]'),as=({id:e,children:a,width:t,gap:n,spacing:i,placement:l,delay:o,content:s,animation:c})=>(0,L.jsx)(al.A,{trigger:(0,L.jsx)(ea.A,{children:a}),width:t,gap:n,spacing:i,placement:l,animation:c,delay:o,id:e,children:s??(0,L.jsxs)(L.Fragment,{children:[(0,L.jsxs)("ul",{className:"popover-list",children:[(0,L.jsx)("li",{children:"Popover Custom Item 1"}),(0,L.jsx)("li",{children:"Popover Custom Item 2"})]}),(0,L.jsx)(ea.A,{children:"Popover Custom Item 3"})]})});var ac=t(77383);let ad=JSON.parse('[{"name":"Density","examples":[{"name":"Functional","density":"functional","props":{"id":"test-id-123"}},{"name":"(Default) Regular","density":"regular","props":{}},{"name":"Expressive","density":"expressive","props":{}}]},{"name":"Width","examples":[{"name":"(Default) Full","style":{"width":"100%","display":"block"}},{"name":"Small","style":{"width":"100%","display":"block"},"props":{"width":"small"}},{"name":"Medium","style":{"width":"100%","display":"block"},"props":{"width":"medium"}},{"name":"Large","style":{"width":"100%","display":"block"},"props":{"width":"large"}}]},{"name":"Spacing","examples":[{"name":"(Default) Medium","props":{"spacing":"medium"}},{"name":"Large","props":{"spacing":"large"}},{"name":"Small","props":{"spacing":"small"}},{"name":"None","props":{"spacing":"none"}}]}]'),ar=({width:e,spacing:a,children:t,id:n})=>(0,L.jsxs)(ac.A,{className:"db-color-informational db-bg-color-basic-level-2  section-card-container",spacing:a,width:e,id:n,children:[(0,L.jsx)(F.A,{children:t}),(0,L.jsx)(F.A,{children:t}),(0,L.jsx)(F.A,{children:t}),(0,L.jsx)(F.A,{children:t})]});var au=t(87184);let ap=()=>{let[e,a]=(0,R.useState)(),{getFrameworkIndex:t}=(0,au.u)();return(0,R.useEffect)(()=>{e&&setTimeout(()=>a(""),1500)},[e]),(0,L.jsxs)(L.Fragment,{children:[(0,L.jsx)(F.A,{className:"tab-container",children:(0,L.jsxs)(e$.A,{initialSelectedIndex:t(),children:[(0,L.jsxs)(eM.A,{children:[(0,L.jsx)(eV.A,{children:"Angular"}),(0,L.jsx)(eV.A,{children:"HTML"}),(0,L.jsx)(eV.A,{children:"React"}),(0,L.jsx)(eV.A,{children:"Vue"})]}),(0,L.jsxs)(eJ.A,{children:[(0,L.jsx)(E.A,{content:"external",target:"_blank",href:"how-to-use?current=angular",children:"How to use this in angular"}),(0,L.jsx)("pre",{children:(0,L.jsx)("code",{className:"hljs language-html",children:`<db-accordion>
   <db-accordion-item headline="Item 1"> accordion-item </db-accordion-item>
   <db-accordion-item headline="Item 2"> accordion-item </db-accordion-item>
   <db-accordion-item headline="Item 3"> accordion-item </db-accordion-item>
@@ -1358,64 +1358,69 @@ Custom Logo
 Custom Logo
 </DBBrand>`),navigator.clipboard.writeText(`<DBBrand :hideLogo="true" :customLogo="true">
 Custom Logo
-</DBBrand>`)},children:"Copy code"})]})]},t())})]})},aD=()=>{let[e,a]=(0,R.useState)(),{getFrameworkIndex:t}=(0,au.u)();return(0,R.useEffect)(()=>{e&&setTimeout(()=>a(""),1500)},[e]),(0,L.jsxs)(L.Fragment,{children:[(0,L.jsx)(F.A,{className:"tab-container",children:(0,L.jsxs)(e$.A,{initialSelectedIndex:t(),children:[(0,L.jsxs)(eM.A,{children:[(0,L.jsx)(eV.A,{children:"Angular"}),(0,L.jsx)(eV.A,{children:"HTML"}),(0,L.jsx)(eV.A,{children:"React"}),(0,L.jsx)(eV.A,{children:"Vue"})]}),(0,L.jsxs)(eJ.A,{children:[(0,L.jsx)(E.A,{content:"external",target:"_blank",href:"how-to-use?current=angular",children:"How to use this in angular"}),(0,L.jsx)("pre",{children:(0,L.jsx)("code",{className:"hljs language-html",children:`<db-breadcrumb class="w-full" ariaLabel="Breadcrumb - Small Size" [items]="[{"href":"#","text":"Home"},{"href":"#","text":"Category"},{"text":"Current Page","ariaCurrent":"page","href":"#"}]">
+</DBBrand>`)},children:"Copy code"})]})]},t())})]})},aD=()=>{let[e,a]=(0,R.useState)(),{getFrameworkIndex:t}=(0,au.u)();return(0,R.useEffect)(()=>{e&&setTimeout(()=>a(""),1500)},[e]),(0,L.jsxs)(L.Fragment,{children:[(0,L.jsx)(F.A,{className:"tab-container",children:(0,L.jsxs)(e$.A,{initialSelectedIndex:t(),children:[(0,L.jsxs)(eM.A,{children:[(0,L.jsx)(eV.A,{children:"Angular"}),(0,L.jsx)(eV.A,{children:"HTML"}),(0,L.jsx)(eV.A,{children:"React"}),(0,L.jsx)(eV.A,{children:"Vue"})]}),(0,L.jsxs)(eJ.A,{children:[(0,L.jsx)(E.A,{content:"external",target:"_blank",href:"how-to-use?current=angular",children:"How to use this in angular"}),(0,L.jsx)("pre",{children:(0,L.jsx)("code",{className:"hljs language-html",children:`<db-breadcrumb class="w-full" id="breadcrumb-size-small" ariaLabel="Breadcrumb - Small Size" [items]="[{"href":"#","text":"Home"},{"href":"#","text":"Category"},{"text":"Current Page","ariaCurrent":"page","href":"#"}]">
 (Default) Small
-</db-breadcrumb>`})}),(0,L.jsx)(ea.A,{className:"copy-button",noText:!0,icon:e===`<db-breadcrumb class="w-full" ariaLabel="Breadcrumb - Small Size" [items]="[{"href":"#","text":"Home"},{"href":"#","text":"Category"},{"text":"Current Page","ariaCurrent":"page","href":"#"}]">
+</db-breadcrumb>`})}),(0,L.jsx)(ea.A,{className:"copy-button",noText:!0,icon:e===`<db-breadcrumb class="w-full" id="breadcrumb-size-small" ariaLabel="Breadcrumb - Small Size" [items]="[{"href":"#","text":"Home"},{"href":"#","text":"Category"},{"text":"Current Page","ariaCurrent":"page","href":"#"}]">
 (Default) Small
-</db-breadcrumb>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<db-breadcrumb class="w-full" ariaLabel="Breadcrumb - Small Size" [items]="[{"href":"#","text":"Home"},{"href":"#","text":"Category"},{"text":"Current Page","ariaCurrent":"page","href":"#"}]">
+</db-breadcrumb>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<db-breadcrumb class="w-full" id="breadcrumb-size-small" ariaLabel="Breadcrumb - Small Size" [items]="[{"href":"#","text":"Home"},{"href":"#","text":"Category"},{"text":"Current Page","ariaCurrent":"page","href":"#"}]">
 (Default) Small
-</db-breadcrumb>`),navigator.clipboard.writeText(`<db-breadcrumb class="w-full" ariaLabel="Breadcrumb - Small Size" [items]="[{"href":"#","text":"Home"},{"href":"#","text":"Category"},{"text":"Current Page","ariaCurrent":"page","href":"#"}]">
+</db-breadcrumb>`),navigator.clipboard.writeText(`<db-breadcrumb class="w-full" id="breadcrumb-size-small" ariaLabel="Breadcrumb - Small Size" [items]="[{"href":"#","text":"Home"},{"href":"#","text":"Category"},{"text":"Current Page","ariaCurrent":"page","href":"#"}]">
 (Default) Small
 </db-breadcrumb>`)},children:"Copy code"})]}),(0,L.jsxs)(eJ.A,{children:[(0,L.jsx)(E.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,L.jsx)("pre",{children:(0,L.jsx)("code",{className:"hljs language-html",children:`<nav
   items="[object Object],[object Object],[object Object]"
+  id="breadcrumb-size-small"
   class="db-breadcrumb w-full"
   data-size="small"
   data-separator="chevron"
   aria-label="Breadcrumb - Small Size"
 >
-  <ol class="db-breadcrumb-list" id="db-breadcrumb-list">
+  <ol class="db-breadcrumb-list" id="breadcrumb-size-small-list">
     <li><a href="#">Home</a></li>
     <li><a href="#">Category</a></li>
     <li><a href="#" aria-current="page">Current Page</a></li>
   </ol>
 </nav>`})}),(0,L.jsx)(ea.A,{className:"copy-button",noText:!0,icon:e===`<nav
   items="[object Object],[object Object],[object Object]"
+  id="breadcrumb-size-small"
   class="db-breadcrumb w-full"
   data-size="small"
   data-separator="chevron"
   aria-label="Breadcrumb - Small Size"
 >
-  <ol class="db-breadcrumb-list" id="db-breadcrumb-list">
+  <ol class="db-breadcrumb-list" id="breadcrumb-size-small-list">
     <li><a href="#">Home</a></li>
     <li><a href="#">Category</a></li>
     <li><a href="#" aria-current="page">Current Page</a></li>
   </ol>
 </nav>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<nav
   items="[object Object],[object Object],[object Object]"
+  id="breadcrumb-size-small"
   class="db-breadcrumb w-full"
   data-size="small"
   data-separator="chevron"
   aria-label="Breadcrumb - Small Size"
 >
-  <ol class="db-breadcrumb-list" id="db-breadcrumb-list">
+  <ol class="db-breadcrumb-list" id="breadcrumb-size-small-list">
     <li><a href="#">Home</a></li>
     <li><a href="#">Category</a></li>
     <li><a href="#" aria-current="page">Current Page</a></li>
   </ol>
 </nav>`),navigator.clipboard.writeText(`<nav
   items="[object Object],[object Object],[object Object]"
+  id="breadcrumb-size-small"
   class="db-breadcrumb w-full"
   data-size="small"
   data-separator="chevron"
   aria-label="Breadcrumb - Small Size"
 >
-  <ol class="db-breadcrumb-list" id="db-breadcrumb-list">
+  <ol class="db-breadcrumb-list" id="breadcrumb-size-small-list">
     <li><a href="#">Home</a></li>
     <li><a href="#">Category</a></li>
     <li><a href="#" aria-current="page">Current Page</a></li>
   </ol>
 </nav>`)},children:"Copy code"})]}),(0,L.jsxs)(eJ.A,{children:[(0,L.jsx)(E.A,{content:"external",target:"_blank",href:"how-to-use?current=react",children:"How to use this in react"}),(0,L.jsx)("pre",{children:(0,L.jsx)("code",{className:"hljs language-tsx",children:`<DBBreadcrumb
   className="w-full"
+  id="breadcrumb-size-small"
   ariaLabel="Breadcrumb - Small Size"
   items={[
     { href: "#", text: "Home" },
@@ -1426,6 +1431,7 @@ Custom Logo
   (Default) Small
 </DBBreadcrumb>`})}),(0,L.jsx)(ea.A,{className:"copy-button",noText:!0,icon:e===`<DBBreadcrumb
   className="w-full"
+  id="breadcrumb-size-small"
   ariaLabel="Breadcrumb - Small Size"
   items={[
     { href: "#", text: "Home" },
@@ -1436,6 +1442,7 @@ Custom Logo
   (Default) Small
 </DBBreadcrumb>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<DBBreadcrumb
   className="w-full"
+  id="breadcrumb-size-small"
   ariaLabel="Breadcrumb - Small Size"
   items={[
     { href: "#", text: "Home" },
@@ -1446,6 +1453,7 @@ Custom Logo
   (Default) Small
 </DBBreadcrumb>`),navigator.clipboard.writeText(`<DBBreadcrumb
   className="w-full"
+  id="breadcrumb-size-small"
   ariaLabel="Breadcrumb - Small Size"
   items={[
     { href: "#", text: "Home" },
@@ -1454,72 +1462,77 @@ Custom Logo
   ]}
 >
   (Default) Small
-</DBBreadcrumb>`)},children:"Copy code"})]}),(0,L.jsxs)(eJ.A,{children:[(0,L.jsx)(E.A,{content:"external",target:"_blank",href:"how-to-use?current=vue",children:"How to use this in vue"}),(0,L.jsx)("pre",{children:(0,L.jsx)("code",{className:"hljs language-tsx",children:`<DBBreadcrumb class="w-full" ariaLabel="Breadcrumb - Small Size" :items="[{"href":"#","text":"Home"},{"href":"#","text":"Category"},{"text":"Current Page","ariaCurrent":"page","href":"#"}]">
+</DBBreadcrumb>`)},children:"Copy code"})]}),(0,L.jsxs)(eJ.A,{children:[(0,L.jsx)(E.A,{content:"external",target:"_blank",href:"how-to-use?current=vue",children:"How to use this in vue"}),(0,L.jsx)("pre",{children:(0,L.jsx)("code",{className:"hljs language-tsx",children:`<DBBreadcrumb class="w-full" id="breadcrumb-size-small" ariaLabel="Breadcrumb - Small Size" :items="[{"href":"#","text":"Home"},{"href":"#","text":"Category"},{"text":"Current Page","ariaCurrent":"page","href":"#"}]">
 (Default) Small
-</DBBreadcrumb>`})}),(0,L.jsx)(ea.A,{className:"copy-button",noText:!0,icon:e===`<DBBreadcrumb class="w-full" ariaLabel="Breadcrumb - Small Size" :items="[{"href":"#","text":"Home"},{"href":"#","text":"Category"},{"text":"Current Page","ariaCurrent":"page","href":"#"}]">
+</DBBreadcrumb>`})}),(0,L.jsx)(ea.A,{className:"copy-button",noText:!0,icon:e===`<DBBreadcrumb class="w-full" id="breadcrumb-size-small" ariaLabel="Breadcrumb - Small Size" :items="[{"href":"#","text":"Home"},{"href":"#","text":"Category"},{"text":"Current Page","ariaCurrent":"page","href":"#"}]">
 (Default) Small
-</DBBreadcrumb>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<DBBreadcrumb class="w-full" ariaLabel="Breadcrumb - Small Size" :items="[{"href":"#","text":"Home"},{"href":"#","text":"Category"},{"text":"Current Page","ariaCurrent":"page","href":"#"}]">
+</DBBreadcrumb>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<DBBreadcrumb class="w-full" id="breadcrumb-size-small" ariaLabel="Breadcrumb - Small Size" :items="[{"href":"#","text":"Home"},{"href":"#","text":"Category"},{"text":"Current Page","ariaCurrent":"page","href":"#"}]">
 (Default) Small
-</DBBreadcrumb>`),navigator.clipboard.writeText(`<DBBreadcrumb class="w-full" ariaLabel="Breadcrumb - Small Size" :items="[{"href":"#","text":"Home"},{"href":"#","text":"Category"},{"text":"Current Page","ariaCurrent":"page","href":"#"}]">
+</DBBreadcrumb>`),navigator.clipboard.writeText(`<DBBreadcrumb class="w-full" id="breadcrumb-size-small" ariaLabel="Breadcrumb - Small Size" :items="[{"href":"#","text":"Home"},{"href":"#","text":"Category"},{"text":"Current Page","ariaCurrent":"page","href":"#"}]">
 (Default) Small
-</DBBreadcrumb>`)},children:"Copy code"})]})]},t())}),(0,L.jsx)(F.A,{className:"tab-container",children:(0,L.jsxs)(e$.A,{initialSelectedIndex:t(),children:[(0,L.jsxs)(eM.A,{children:[(0,L.jsx)(eV.A,{children:"Angular"}),(0,L.jsx)(eV.A,{children:"HTML"}),(0,L.jsx)(eV.A,{children:"React"}),(0,L.jsx)(eV.A,{children:"Vue"})]}),(0,L.jsxs)(eJ.A,{children:[(0,L.jsx)(E.A,{content:"external",target:"_blank",href:"how-to-use?current=angular",children:"How to use this in angular"}),(0,L.jsx)("pre",{children:(0,L.jsx)("code",{className:"hljs language-html",children:`<db-breadcrumb class="w-full" size="medium" ariaLabel="Breadcrumb - Medium Size" [items]="[{"href":"#","text":"Home"},{"href":"#","text":"Category"},{"text":"Current Page","ariaCurrent":"page"}]">
+</DBBreadcrumb>`)},children:"Copy code"})]})]},t())}),(0,L.jsx)(F.A,{className:"tab-container",children:(0,L.jsxs)(e$.A,{initialSelectedIndex:t(),children:[(0,L.jsxs)(eM.A,{children:[(0,L.jsx)(eV.A,{children:"Angular"}),(0,L.jsx)(eV.A,{children:"HTML"}),(0,L.jsx)(eV.A,{children:"React"}),(0,L.jsx)(eV.A,{children:"Vue"})]}),(0,L.jsxs)(eJ.A,{children:[(0,L.jsx)(E.A,{content:"external",target:"_blank",href:"how-to-use?current=angular",children:"How to use this in angular"}),(0,L.jsx)("pre",{children:(0,L.jsx)("code",{className:"hljs language-html",children:`<db-breadcrumb class="w-full" id="breadcrumb-size-medium" size="medium" ariaLabel="Breadcrumb - Medium Size" [items]="[{"href":"#","text":"Home"},{"href":"#","text":"Category"},{"text":"Current Page","ariaCurrent":"page"}]">
 Medium
-</db-breadcrumb>`})}),(0,L.jsx)(ea.A,{className:"copy-button",noText:!0,icon:e===`<db-breadcrumb class="w-full" size="medium" ariaLabel="Breadcrumb - Medium Size" [items]="[{"href":"#","text":"Home"},{"href":"#","text":"Category"},{"text":"Current Page","ariaCurrent":"page"}]">
+</db-breadcrumb>`})}),(0,L.jsx)(ea.A,{className:"copy-button",noText:!0,icon:e===`<db-breadcrumb class="w-full" id="breadcrumb-size-medium" size="medium" ariaLabel="Breadcrumb - Medium Size" [items]="[{"href":"#","text":"Home"},{"href":"#","text":"Category"},{"text":"Current Page","ariaCurrent":"page"}]">
 Medium
-</db-breadcrumb>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<db-breadcrumb class="w-full" size="medium" ariaLabel="Breadcrumb - Medium Size" [items]="[{"href":"#","text":"Home"},{"href":"#","text":"Category"},{"text":"Current Page","ariaCurrent":"page"}]">
+</db-breadcrumb>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<db-breadcrumb class="w-full" id="breadcrumb-size-medium" size="medium" ariaLabel="Breadcrumb - Medium Size" [items]="[{"href":"#","text":"Home"},{"href":"#","text":"Category"},{"text":"Current Page","ariaCurrent":"page"}]">
 Medium
-</db-breadcrumb>`),navigator.clipboard.writeText(`<db-breadcrumb class="w-full" size="medium" ariaLabel="Breadcrumb - Medium Size" [items]="[{"href":"#","text":"Home"},{"href":"#","text":"Category"},{"text":"Current Page","ariaCurrent":"page"}]">
+</db-breadcrumb>`),navigator.clipboard.writeText(`<db-breadcrumb class="w-full" id="breadcrumb-size-medium" size="medium" ariaLabel="Breadcrumb - Medium Size" [items]="[{"href":"#","text":"Home"},{"href":"#","text":"Category"},{"text":"Current Page","ariaCurrent":"page"}]">
 Medium
 </db-breadcrumb>`)},children:"Copy code"})]}),(0,L.jsxs)(eJ.A,{children:[(0,L.jsx)(E.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,L.jsx)("pre",{children:(0,L.jsx)("code",{className:"hljs language-html",children:`<nav
   items="[object Object],[object Object],[object Object]"
+  id="breadcrumb-size-medium"
   class="db-breadcrumb w-full"
   data-size="medium"
   data-separator="chevron"
   aria-label="Breadcrumb - Medium Size"
 >
-  <ol class="db-breadcrumb-list" id="db-breadcrumb-list">
+  <ol class="db-breadcrumb-list" id="breadcrumb-size-medium-list">
     <li><a href="#">Home</a></li>
     <li><a href="#">Category</a></li>
     <li><span aria-current="page">Current Page</span></li>
   </ol>
 </nav>`})}),(0,L.jsx)(ea.A,{className:"copy-button",noText:!0,icon:e===`<nav
   items="[object Object],[object Object],[object Object]"
+  id="breadcrumb-size-medium"
   class="db-breadcrumb w-full"
   data-size="medium"
   data-separator="chevron"
   aria-label="Breadcrumb - Medium Size"
 >
-  <ol class="db-breadcrumb-list" id="db-breadcrumb-list">
+  <ol class="db-breadcrumb-list" id="breadcrumb-size-medium-list">
     <li><a href="#">Home</a></li>
     <li><a href="#">Category</a></li>
     <li><span aria-current="page">Current Page</span></li>
   </ol>
 </nav>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<nav
   items="[object Object],[object Object],[object Object]"
+  id="breadcrumb-size-medium"
   class="db-breadcrumb w-full"
   data-size="medium"
   data-separator="chevron"
   aria-label="Breadcrumb - Medium Size"
 >
-  <ol class="db-breadcrumb-list" id="db-breadcrumb-list">
+  <ol class="db-breadcrumb-list" id="breadcrumb-size-medium-list">
     <li><a href="#">Home</a></li>
     <li><a href="#">Category</a></li>
     <li><span aria-current="page">Current Page</span></li>
   </ol>
 </nav>`),navigator.clipboard.writeText(`<nav
   items="[object Object],[object Object],[object Object]"
+  id="breadcrumb-size-medium"
   class="db-breadcrumb w-full"
   data-size="medium"
   data-separator="chevron"
   aria-label="Breadcrumb - Medium Size"
 >
-  <ol class="db-breadcrumb-list" id="db-breadcrumb-list">
+  <ol class="db-breadcrumb-list" id="breadcrumb-size-medium-list">
     <li><a href="#">Home</a></li>
     <li><a href="#">Category</a></li>
     <li><span aria-current="page">Current Page</span></li>
   </ol>
 </nav>`)},children:"Copy code"})]}),(0,L.jsxs)(eJ.A,{children:[(0,L.jsx)(E.A,{content:"external",target:"_blank",href:"how-to-use?current=react",children:"How to use this in react"}),(0,L.jsx)("pre",{children:(0,L.jsx)("code",{className:"hljs language-tsx",children:`<DBBreadcrumb
   className="w-full"
+  id="breadcrumb-size-medium"
   size="medium"
   ariaLabel="Breadcrumb - Medium Size"
   items={[
@@ -1531,6 +1544,7 @@ Medium
   Medium
 </DBBreadcrumb>`})}),(0,L.jsx)(ea.A,{className:"copy-button",noText:!0,icon:e===`<DBBreadcrumb
   className="w-full"
+  id="breadcrumb-size-medium"
   size="medium"
   ariaLabel="Breadcrumb - Medium Size"
   items={[
@@ -1542,6 +1556,7 @@ Medium
   Medium
 </DBBreadcrumb>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<DBBreadcrumb
   className="w-full"
+  id="breadcrumb-size-medium"
   size="medium"
   ariaLabel="Breadcrumb - Medium Size"
   items={[
@@ -1553,6 +1568,7 @@ Medium
   Medium
 </DBBreadcrumb>`),navigator.clipboard.writeText(`<DBBreadcrumb
   className="w-full"
+  id="breadcrumb-size-medium"
   size="medium"
   ariaLabel="Breadcrumb - Medium Size"
   items={[
@@ -1562,72 +1578,77 @@ Medium
   ]}
 >
   Medium
-</DBBreadcrumb>`)},children:"Copy code"})]}),(0,L.jsxs)(eJ.A,{children:[(0,L.jsx)(E.A,{content:"external",target:"_blank",href:"how-to-use?current=vue",children:"How to use this in vue"}),(0,L.jsx)("pre",{children:(0,L.jsx)("code",{className:"hljs language-tsx",children:`<DBBreadcrumb class="w-full" size="medium" ariaLabel="Breadcrumb - Medium Size" :items="[{"href":"#","text":"Home"},{"href":"#","text":"Category"},{"text":"Current Page","ariaCurrent":"page"}]">
+</DBBreadcrumb>`)},children:"Copy code"})]}),(0,L.jsxs)(eJ.A,{children:[(0,L.jsx)(E.A,{content:"external",target:"_blank",href:"how-to-use?current=vue",children:"How to use this in vue"}),(0,L.jsx)("pre",{children:(0,L.jsx)("code",{className:"hljs language-tsx",children:`<DBBreadcrumb class="w-full" id="breadcrumb-size-medium" size="medium" ariaLabel="Breadcrumb - Medium Size" :items="[{"href":"#","text":"Home"},{"href":"#","text":"Category"},{"text":"Current Page","ariaCurrent":"page"}]">
 Medium
-</DBBreadcrumb>`})}),(0,L.jsx)(ea.A,{className:"copy-button",noText:!0,icon:e===`<DBBreadcrumb class="w-full" size="medium" ariaLabel="Breadcrumb - Medium Size" :items="[{"href":"#","text":"Home"},{"href":"#","text":"Category"},{"text":"Current Page","ariaCurrent":"page"}]">
+</DBBreadcrumb>`})}),(0,L.jsx)(ea.A,{className:"copy-button",noText:!0,icon:e===`<DBBreadcrumb class="w-full" id="breadcrumb-size-medium" size="medium" ariaLabel="Breadcrumb - Medium Size" :items="[{"href":"#","text":"Home"},{"href":"#","text":"Category"},{"text":"Current Page","ariaCurrent":"page"}]">
 Medium
-</DBBreadcrumb>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<DBBreadcrumb class="w-full" size="medium" ariaLabel="Breadcrumb - Medium Size" :items="[{"href":"#","text":"Home"},{"href":"#","text":"Category"},{"text":"Current Page","ariaCurrent":"page"}]">
+</DBBreadcrumb>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<DBBreadcrumb class="w-full" id="breadcrumb-size-medium" size="medium" ariaLabel="Breadcrumb - Medium Size" :items="[{"href":"#","text":"Home"},{"href":"#","text":"Category"},{"text":"Current Page","ariaCurrent":"page"}]">
 Medium
-</DBBreadcrumb>`),navigator.clipboard.writeText(`<DBBreadcrumb class="w-full" size="medium" ariaLabel="Breadcrumb - Medium Size" :items="[{"href":"#","text":"Home"},{"href":"#","text":"Category"},{"text":"Current Page","ariaCurrent":"page"}]">
+</DBBreadcrumb>`),navigator.clipboard.writeText(`<DBBreadcrumb class="w-full" id="breadcrumb-size-medium" size="medium" ariaLabel="Breadcrumb - Medium Size" :items="[{"href":"#","text":"Home"},{"href":"#","text":"Category"},{"text":"Current Page","ariaCurrent":"page"}]">
 Medium
-</DBBreadcrumb>`)},children:"Copy code"})]})]},t())})]})},aB=()=>{let[e,a]=(0,R.useState)(),{getFrameworkIndex:t}=(0,au.u)();return(0,R.useEffect)(()=>{e&&setTimeout(()=>a(""),1500)},[e]),(0,L.jsxs)(L.Fragment,{children:[(0,L.jsx)(F.A,{className:"tab-container",children:(0,L.jsxs)(e$.A,{initialSelectedIndex:t(),children:[(0,L.jsxs)(eM.A,{children:[(0,L.jsx)(eV.A,{children:"Angular"}),(0,L.jsx)(eV.A,{children:"HTML"}),(0,L.jsx)(eV.A,{children:"React"}),(0,L.jsx)(eV.A,{children:"Vue"})]}),(0,L.jsxs)(eJ.A,{children:[(0,L.jsx)(E.A,{content:"external",target:"_blank",href:"how-to-use?current=angular",children:"How to use this in angular"}),(0,L.jsx)("pre",{children:(0,L.jsx)("code",{className:"hljs language-html",children:`<db-breadcrumb class="w-full" separator="chevron" ariaLabel="Breadcrumb - Chevron Separator" [items]="[{"href":"#","text":"Home"},{"href":"#","text":"Category"},{"text":"Current Page","ariaCurrent":"page"}]">
+</DBBreadcrumb>`)},children:"Copy code"})]})]},t())})]})},aB=()=>{let[e,a]=(0,R.useState)(),{getFrameworkIndex:t}=(0,au.u)();return(0,R.useEffect)(()=>{e&&setTimeout(()=>a(""),1500)},[e]),(0,L.jsxs)(L.Fragment,{children:[(0,L.jsx)(F.A,{className:"tab-container",children:(0,L.jsxs)(e$.A,{initialSelectedIndex:t(),children:[(0,L.jsxs)(eM.A,{children:[(0,L.jsx)(eV.A,{children:"Angular"}),(0,L.jsx)(eV.A,{children:"HTML"}),(0,L.jsx)(eV.A,{children:"React"}),(0,L.jsx)(eV.A,{children:"Vue"})]}),(0,L.jsxs)(eJ.A,{children:[(0,L.jsx)(E.A,{content:"external",target:"_blank",href:"how-to-use?current=angular",children:"How to use this in angular"}),(0,L.jsx)("pre",{children:(0,L.jsx)("code",{className:"hljs language-html",children:`<db-breadcrumb class="w-full" id="breadcrumb-separator-chevron" separator="chevron" ariaLabel="Breadcrumb - Chevron Separator" [items]="[{"href":"#","text":"Home"},{"href":"#","text":"Category"},{"text":"Current Page","ariaCurrent":"page"}]">
 Chevron
-</db-breadcrumb>`})}),(0,L.jsx)(ea.A,{className:"copy-button",noText:!0,icon:e===`<db-breadcrumb class="w-full" separator="chevron" ariaLabel="Breadcrumb - Chevron Separator" [items]="[{"href":"#","text":"Home"},{"href":"#","text":"Category"},{"text":"Current Page","ariaCurrent":"page"}]">
+</db-breadcrumb>`})}),(0,L.jsx)(ea.A,{className:"copy-button",noText:!0,icon:e===`<db-breadcrumb class="w-full" id="breadcrumb-separator-chevron" separator="chevron" ariaLabel="Breadcrumb - Chevron Separator" [items]="[{"href":"#","text":"Home"},{"href":"#","text":"Category"},{"text":"Current Page","ariaCurrent":"page"}]">
 Chevron
-</db-breadcrumb>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<db-breadcrumb class="w-full" separator="chevron" ariaLabel="Breadcrumb - Chevron Separator" [items]="[{"href":"#","text":"Home"},{"href":"#","text":"Category"},{"text":"Current Page","ariaCurrent":"page"}]">
+</db-breadcrumb>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<db-breadcrumb class="w-full" id="breadcrumb-separator-chevron" separator="chevron" ariaLabel="Breadcrumb - Chevron Separator" [items]="[{"href":"#","text":"Home"},{"href":"#","text":"Category"},{"text":"Current Page","ariaCurrent":"page"}]">
 Chevron
-</db-breadcrumb>`),navigator.clipboard.writeText(`<db-breadcrumb class="w-full" separator="chevron" ariaLabel="Breadcrumb - Chevron Separator" [items]="[{"href":"#","text":"Home"},{"href":"#","text":"Category"},{"text":"Current Page","ariaCurrent":"page"}]">
+</db-breadcrumb>`),navigator.clipboard.writeText(`<db-breadcrumb class="w-full" id="breadcrumb-separator-chevron" separator="chevron" ariaLabel="Breadcrumb - Chevron Separator" [items]="[{"href":"#","text":"Home"},{"href":"#","text":"Category"},{"text":"Current Page","ariaCurrent":"page"}]">
 Chevron
 </db-breadcrumb>`)},children:"Copy code"})]}),(0,L.jsxs)(eJ.A,{children:[(0,L.jsx)(E.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,L.jsx)("pre",{children:(0,L.jsx)("code",{className:"hljs language-html",children:`<nav
   items="[object Object],[object Object],[object Object]"
+  id="breadcrumb-separator-chevron"
   class="db-breadcrumb w-full"
   data-size="small"
   data-separator="chevron"
   aria-label="Breadcrumb - Chevron Separator"
 >
-  <ol class="db-breadcrumb-list" id="db-breadcrumb-list">
+  <ol class="db-breadcrumb-list" id="breadcrumb-separator-chevron-list">
     <li><a href="#">Home</a></li>
     <li><a href="#">Category</a></li>
     <li><span aria-current="page">Current Page</span></li>
   </ol>
 </nav>`})}),(0,L.jsx)(ea.A,{className:"copy-button",noText:!0,icon:e===`<nav
   items="[object Object],[object Object],[object Object]"
+  id="breadcrumb-separator-chevron"
   class="db-breadcrumb w-full"
   data-size="small"
   data-separator="chevron"
   aria-label="Breadcrumb - Chevron Separator"
 >
-  <ol class="db-breadcrumb-list" id="db-breadcrumb-list">
+  <ol class="db-breadcrumb-list" id="breadcrumb-separator-chevron-list">
     <li><a href="#">Home</a></li>
     <li><a href="#">Category</a></li>
     <li><span aria-current="page">Current Page</span></li>
   </ol>
 </nav>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<nav
   items="[object Object],[object Object],[object Object]"
+  id="breadcrumb-separator-chevron"
   class="db-breadcrumb w-full"
   data-size="small"
   data-separator="chevron"
   aria-label="Breadcrumb - Chevron Separator"
 >
-  <ol class="db-breadcrumb-list" id="db-breadcrumb-list">
+  <ol class="db-breadcrumb-list" id="breadcrumb-separator-chevron-list">
     <li><a href="#">Home</a></li>
     <li><a href="#">Category</a></li>
     <li><span aria-current="page">Current Page</span></li>
   </ol>
 </nav>`),navigator.clipboard.writeText(`<nav
   items="[object Object],[object Object],[object Object]"
+  id="breadcrumb-separator-chevron"
   class="db-breadcrumb w-full"
   data-size="small"
   data-separator="chevron"
   aria-label="Breadcrumb - Chevron Separator"
 >
-  <ol class="db-breadcrumb-list" id="db-breadcrumb-list">
+  <ol class="db-breadcrumb-list" id="breadcrumb-separator-chevron-list">
     <li><a href="#">Home</a></li>
     <li><a href="#">Category</a></li>
     <li><span aria-current="page">Current Page</span></li>
   </ol>
 </nav>`)},children:"Copy code"})]}),(0,L.jsxs)(eJ.A,{children:[(0,L.jsx)(E.A,{content:"external",target:"_blank",href:"how-to-use?current=react",children:"How to use this in react"}),(0,L.jsx)("pre",{children:(0,L.jsx)("code",{className:"hljs language-tsx",children:`<DBBreadcrumb
   className="w-full"
+  id="breadcrumb-separator-chevron"
   separator="chevron"
   ariaLabel="Breadcrumb - Chevron Separator"
   items={[
@@ -1639,6 +1660,7 @@ Chevron
   Chevron
 </DBBreadcrumb>`})}),(0,L.jsx)(ea.A,{className:"copy-button",noText:!0,icon:e===`<DBBreadcrumb
   className="w-full"
+  id="breadcrumb-separator-chevron"
   separator="chevron"
   ariaLabel="Breadcrumb - Chevron Separator"
   items={[
@@ -1650,6 +1672,7 @@ Chevron
   Chevron
 </DBBreadcrumb>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<DBBreadcrumb
   className="w-full"
+  id="breadcrumb-separator-chevron"
   separator="chevron"
   ariaLabel="Breadcrumb - Chevron Separator"
   items={[
@@ -1661,6 +1684,7 @@ Chevron
   Chevron
 </DBBreadcrumb>`),navigator.clipboard.writeText(`<DBBreadcrumb
   className="w-full"
+  id="breadcrumb-separator-chevron"
   separator="chevron"
   ariaLabel="Breadcrumb - Chevron Separator"
   items={[
@@ -1670,72 +1694,77 @@ Chevron
   ]}
 >
   Chevron
-</DBBreadcrumb>`)},children:"Copy code"})]}),(0,L.jsxs)(eJ.A,{children:[(0,L.jsx)(E.A,{content:"external",target:"_blank",href:"how-to-use?current=vue",children:"How to use this in vue"}),(0,L.jsx)("pre",{children:(0,L.jsx)("code",{className:"hljs language-tsx",children:`<DBBreadcrumb class="w-full" separator="chevron" ariaLabel="Breadcrumb - Chevron Separator" :items="[{"href":"#","text":"Home"},{"href":"#","text":"Category"},{"text":"Current Page","ariaCurrent":"page"}]">
+</DBBreadcrumb>`)},children:"Copy code"})]}),(0,L.jsxs)(eJ.A,{children:[(0,L.jsx)(E.A,{content:"external",target:"_blank",href:"how-to-use?current=vue",children:"How to use this in vue"}),(0,L.jsx)("pre",{children:(0,L.jsx)("code",{className:"hljs language-tsx",children:`<DBBreadcrumb class="w-full" id="breadcrumb-separator-chevron" separator="chevron" ariaLabel="Breadcrumb - Chevron Separator" :items="[{"href":"#","text":"Home"},{"href":"#","text":"Category"},{"text":"Current Page","ariaCurrent":"page"}]">
 Chevron
-</DBBreadcrumb>`})}),(0,L.jsx)(ea.A,{className:"copy-button",noText:!0,icon:e===`<DBBreadcrumb class="w-full" separator="chevron" ariaLabel="Breadcrumb - Chevron Separator" :items="[{"href":"#","text":"Home"},{"href":"#","text":"Category"},{"text":"Current Page","ariaCurrent":"page"}]">
+</DBBreadcrumb>`})}),(0,L.jsx)(ea.A,{className:"copy-button",noText:!0,icon:e===`<DBBreadcrumb class="w-full" id="breadcrumb-separator-chevron" separator="chevron" ariaLabel="Breadcrumb - Chevron Separator" :items="[{"href":"#","text":"Home"},{"href":"#","text":"Category"},{"text":"Current Page","ariaCurrent":"page"}]">
 Chevron
-</DBBreadcrumb>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<DBBreadcrumb class="w-full" separator="chevron" ariaLabel="Breadcrumb - Chevron Separator" :items="[{"href":"#","text":"Home"},{"href":"#","text":"Category"},{"text":"Current Page","ariaCurrent":"page"}]">
+</DBBreadcrumb>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<DBBreadcrumb class="w-full" id="breadcrumb-separator-chevron" separator="chevron" ariaLabel="Breadcrumb - Chevron Separator" :items="[{"href":"#","text":"Home"},{"href":"#","text":"Category"},{"text":"Current Page","ariaCurrent":"page"}]">
 Chevron
-</DBBreadcrumb>`),navigator.clipboard.writeText(`<DBBreadcrumb class="w-full" separator="chevron" ariaLabel="Breadcrumb - Chevron Separator" :items="[{"href":"#","text":"Home"},{"href":"#","text":"Category"},{"text":"Current Page","ariaCurrent":"page"}]">
+</DBBreadcrumb>`),navigator.clipboard.writeText(`<DBBreadcrumb class="w-full" id="breadcrumb-separator-chevron" separator="chevron" ariaLabel="Breadcrumb - Chevron Separator" :items="[{"href":"#","text":"Home"},{"href":"#","text":"Category"},{"text":"Current Page","ariaCurrent":"page"}]">
 Chevron
-</DBBreadcrumb>`)},children:"Copy code"})]})]},t())}),(0,L.jsx)(F.A,{className:"tab-container",children:(0,L.jsxs)(e$.A,{initialSelectedIndex:t(),children:[(0,L.jsxs)(eM.A,{children:[(0,L.jsx)(eV.A,{children:"Angular"}),(0,L.jsx)(eV.A,{children:"HTML"}),(0,L.jsx)(eV.A,{children:"React"}),(0,L.jsx)(eV.A,{children:"Vue"})]}),(0,L.jsxs)(eJ.A,{children:[(0,L.jsx)(E.A,{content:"external",target:"_blank",href:"how-to-use?current=angular",children:"How to use this in angular"}),(0,L.jsx)("pre",{children:(0,L.jsx)("code",{className:"hljs language-html",children:`<db-breadcrumb class="w-full" separator="slash" ariaLabel="Breadcrumb - Slash Separator" [items]="[{"href":"#","text":"Home"},{"href":"#","text":"Category"},{"text":"Current Page","ariaCurrent":"page"}]">
+</DBBreadcrumb>`)},children:"Copy code"})]})]},t())}),(0,L.jsx)(F.A,{className:"tab-container",children:(0,L.jsxs)(e$.A,{initialSelectedIndex:t(),children:[(0,L.jsxs)(eM.A,{children:[(0,L.jsx)(eV.A,{children:"Angular"}),(0,L.jsx)(eV.A,{children:"HTML"}),(0,L.jsx)(eV.A,{children:"React"}),(0,L.jsx)(eV.A,{children:"Vue"})]}),(0,L.jsxs)(eJ.A,{children:[(0,L.jsx)(E.A,{content:"external",target:"_blank",href:"how-to-use?current=angular",children:"How to use this in angular"}),(0,L.jsx)("pre",{children:(0,L.jsx)("code",{className:"hljs language-html",children:`<db-breadcrumb class="w-full" id="breadcrumb-separator-slash" separator="slash" ariaLabel="Breadcrumb - Slash Separator" [items]="[{"href":"#","text":"Home"},{"href":"#","text":"Category"},{"text":"Current Page","ariaCurrent":"page"}]">
 Slash
-</db-breadcrumb>`})}),(0,L.jsx)(ea.A,{className:"copy-button",noText:!0,icon:e===`<db-breadcrumb class="w-full" separator="slash" ariaLabel="Breadcrumb - Slash Separator" [items]="[{"href":"#","text":"Home"},{"href":"#","text":"Category"},{"text":"Current Page","ariaCurrent":"page"}]">
+</db-breadcrumb>`})}),(0,L.jsx)(ea.A,{className:"copy-button",noText:!0,icon:e===`<db-breadcrumb class="w-full" id="breadcrumb-separator-slash" separator="slash" ariaLabel="Breadcrumb - Slash Separator" [items]="[{"href":"#","text":"Home"},{"href":"#","text":"Category"},{"text":"Current Page","ariaCurrent":"page"}]">
 Slash
-</db-breadcrumb>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<db-breadcrumb class="w-full" separator="slash" ariaLabel="Breadcrumb - Slash Separator" [items]="[{"href":"#","text":"Home"},{"href":"#","text":"Category"},{"text":"Current Page","ariaCurrent":"page"}]">
+</db-breadcrumb>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<db-breadcrumb class="w-full" id="breadcrumb-separator-slash" separator="slash" ariaLabel="Breadcrumb - Slash Separator" [items]="[{"href":"#","text":"Home"},{"href":"#","text":"Category"},{"text":"Current Page","ariaCurrent":"page"}]">
 Slash
-</db-breadcrumb>`),navigator.clipboard.writeText(`<db-breadcrumb class="w-full" separator="slash" ariaLabel="Breadcrumb - Slash Separator" [items]="[{"href":"#","text":"Home"},{"href":"#","text":"Category"},{"text":"Current Page","ariaCurrent":"page"}]">
+</db-breadcrumb>`),navigator.clipboard.writeText(`<db-breadcrumb class="w-full" id="breadcrumb-separator-slash" separator="slash" ariaLabel="Breadcrumb - Slash Separator" [items]="[{"href":"#","text":"Home"},{"href":"#","text":"Category"},{"text":"Current Page","ariaCurrent":"page"}]">
 Slash
 </db-breadcrumb>`)},children:"Copy code"})]}),(0,L.jsxs)(eJ.A,{children:[(0,L.jsx)(E.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,L.jsx)("pre",{children:(0,L.jsx)("code",{className:"hljs language-html",children:`<nav
   items="[object Object],[object Object],[object Object]"
+  id="breadcrumb-separator-slash"
   class="db-breadcrumb w-full"
   data-size="small"
   data-separator="slash"
   aria-label="Breadcrumb - Slash Separator"
 >
-  <ol class="db-breadcrumb-list" id="db-breadcrumb-list">
+  <ol class="db-breadcrumb-list" id="breadcrumb-separator-slash-list">
     <li><a href="#">Home</a></li>
     <li><a href="#">Category</a></li>
     <li><span aria-current="page">Current Page</span></li>
   </ol>
 </nav>`})}),(0,L.jsx)(ea.A,{className:"copy-button",noText:!0,icon:e===`<nav
   items="[object Object],[object Object],[object Object]"
+  id="breadcrumb-separator-slash"
   class="db-breadcrumb w-full"
   data-size="small"
   data-separator="slash"
   aria-label="Breadcrumb - Slash Separator"
 >
-  <ol class="db-breadcrumb-list" id="db-breadcrumb-list">
+  <ol class="db-breadcrumb-list" id="breadcrumb-separator-slash-list">
     <li><a href="#">Home</a></li>
     <li><a href="#">Category</a></li>
     <li><span aria-current="page">Current Page</span></li>
   </ol>
 </nav>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<nav
   items="[object Object],[object Object],[object Object]"
+  id="breadcrumb-separator-slash"
   class="db-breadcrumb w-full"
   data-size="small"
   data-separator="slash"
   aria-label="Breadcrumb - Slash Separator"
 >
-  <ol class="db-breadcrumb-list" id="db-breadcrumb-list">
+  <ol class="db-breadcrumb-list" id="breadcrumb-separator-slash-list">
     <li><a href="#">Home</a></li>
     <li><a href="#">Category</a></li>
     <li><span aria-current="page">Current Page</span></li>
   </ol>
 </nav>`),navigator.clipboard.writeText(`<nav
   items="[object Object],[object Object],[object Object]"
+  id="breadcrumb-separator-slash"
   class="db-breadcrumb w-full"
   data-size="small"
   data-separator="slash"
   aria-label="Breadcrumb - Slash Separator"
 >
-  <ol class="db-breadcrumb-list" id="db-breadcrumb-list">
+  <ol class="db-breadcrumb-list" id="breadcrumb-separator-slash-list">
     <li><a href="#">Home</a></li>
     <li><a href="#">Category</a></li>
     <li><span aria-current="page">Current Page</span></li>
   </ol>
 </nav>`)},children:"Copy code"})]}),(0,L.jsxs)(eJ.A,{children:[(0,L.jsx)(E.A,{content:"external",target:"_blank",href:"how-to-use?current=react",children:"How to use this in react"}),(0,L.jsx)("pre",{children:(0,L.jsx)("code",{className:"hljs language-tsx",children:`<DBBreadcrumb
   className="w-full"
+  id="breadcrumb-separator-slash"
   separator="slash"
   ariaLabel="Breadcrumb - Slash Separator"
   items={[
@@ -1747,6 +1776,7 @@ Slash
   Slash
 </DBBreadcrumb>`})}),(0,L.jsx)(ea.A,{className:"copy-button",noText:!0,icon:e===`<DBBreadcrumb
   className="w-full"
+  id="breadcrumb-separator-slash"
   separator="slash"
   ariaLabel="Breadcrumb - Slash Separator"
   items={[
@@ -1758,6 +1788,7 @@ Slash
   Slash
 </DBBreadcrumb>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<DBBreadcrumb
   className="w-full"
+  id="breadcrumb-separator-slash"
   separator="slash"
   ariaLabel="Breadcrumb - Slash Separator"
   items={[
@@ -1769,6 +1800,7 @@ Slash
   Slash
 </DBBreadcrumb>`),navigator.clipboard.writeText(`<DBBreadcrumb
   className="w-full"
+  id="breadcrumb-separator-slash"
   separator="slash"
   ariaLabel="Breadcrumb - Slash Separator"
   items={[
@@ -1778,31 +1810,31 @@ Slash
   ]}
 >
   Slash
-</DBBreadcrumb>`)},children:"Copy code"})]}),(0,L.jsxs)(eJ.A,{children:[(0,L.jsx)(E.A,{content:"external",target:"_blank",href:"how-to-use?current=vue",children:"How to use this in vue"}),(0,L.jsx)("pre",{children:(0,L.jsx)("code",{className:"hljs language-tsx",children:`<DBBreadcrumb class="w-full" separator="slash" ariaLabel="Breadcrumb - Slash Separator" :items="[{"href":"#","text":"Home"},{"href":"#","text":"Category"},{"text":"Current Page","ariaCurrent":"page"}]">
+</DBBreadcrumb>`)},children:"Copy code"})]}),(0,L.jsxs)(eJ.A,{children:[(0,L.jsx)(E.A,{content:"external",target:"_blank",href:"how-to-use?current=vue",children:"How to use this in vue"}),(0,L.jsx)("pre",{children:(0,L.jsx)("code",{className:"hljs language-tsx",children:`<DBBreadcrumb class="w-full" id="breadcrumb-separator-slash" separator="slash" ariaLabel="Breadcrumb - Slash Separator" :items="[{"href":"#","text":"Home"},{"href":"#","text":"Category"},{"text":"Current Page","ariaCurrent":"page"}]">
 Slash
-</DBBreadcrumb>`})}),(0,L.jsx)(ea.A,{className:"copy-button",noText:!0,icon:e===`<DBBreadcrumb class="w-full" separator="slash" ariaLabel="Breadcrumb - Slash Separator" :items="[{"href":"#","text":"Home"},{"href":"#","text":"Category"},{"text":"Current Page","ariaCurrent":"page"}]">
+</DBBreadcrumb>`})}),(0,L.jsx)(ea.A,{className:"copy-button",noText:!0,icon:e===`<DBBreadcrumb class="w-full" id="breadcrumb-separator-slash" separator="slash" ariaLabel="Breadcrumb - Slash Separator" :items="[{"href":"#","text":"Home"},{"href":"#","text":"Category"},{"text":"Current Page","ariaCurrent":"page"}]">
 Slash
-</DBBreadcrumb>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<DBBreadcrumb class="w-full" separator="slash" ariaLabel="Breadcrumb - Slash Separator" :items="[{"href":"#","text":"Home"},{"href":"#","text":"Category"},{"text":"Current Page","ariaCurrent":"page"}]">
+</DBBreadcrumb>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<DBBreadcrumb class="w-full" id="breadcrumb-separator-slash" separator="slash" ariaLabel="Breadcrumb - Slash Separator" :items="[{"href":"#","text":"Home"},{"href":"#","text":"Category"},{"text":"Current Page","ariaCurrent":"page"}]">
 Slash
-</DBBreadcrumb>`),navigator.clipboard.writeText(`<DBBreadcrumb class="w-full" separator="slash" ariaLabel="Breadcrumb - Slash Separator" :items="[{"href":"#","text":"Home"},{"href":"#","text":"Category"},{"text":"Current Page","ariaCurrent":"page"}]">
+</DBBreadcrumb>`),navigator.clipboard.writeText(`<DBBreadcrumb class="w-full" id="breadcrumb-separator-slash" separator="slash" ariaLabel="Breadcrumb - Slash Separator" :items="[{"href":"#","text":"Home"},{"href":"#","text":"Category"},{"text":"Current Page","ariaCurrent":"page"}]">
 Slash
-</DBBreadcrumb>`)},children:"Copy code"})]})]},t())})]})},af=()=>{let[e,a]=(0,R.useState)(),{getFrameworkIndex:t}=(0,au.u)();return(0,R.useEffect)(()=>{e&&setTimeout(()=>a(""),1500)},[e]),(0,L.jsx)(L.Fragment,{children:(0,L.jsx)(F.A,{className:"tab-container",children:(0,L.jsxs)(e$.A,{initialSelectedIndex:t(),children:[(0,L.jsxs)(eM.A,{children:[(0,L.jsx)(eV.A,{children:"Angular"}),(0,L.jsx)(eV.A,{children:"HTML"}),(0,L.jsx)(eV.A,{children:"React"}),(0,L.jsx)(eV.A,{children:"Vue"})]}),(0,L.jsxs)(eJ.A,{children:[(0,L.jsx)(E.A,{content:"external",target:"_blank",href:"how-to-use?current=angular",children:"How to use this in angular"}),(0,L.jsx)("pre",{children:(0,L.jsx)("code",{className:"hljs language-html",children:`<db-breadcrumb class="w-full" id="123" [maxItems]="3" ariaLabel="Breadcrumb - Collapsed Navigation" ellipsisAriaLabel="Expand to show all breadcrumb items" [items]="[{"href":"#","text":"Root"},{"href":"#","text":"Path 1"},{"href":"#","text":"Path 2"},{"href":"#","text":"Path 3"},{"text":"Current Page","ariaCurrent":"page","href":"#"}]">
+</DBBreadcrumb>`)},children:"Copy code"})]})]},t())})]})},af=()=>{let[e,a]=(0,R.useState)(),{getFrameworkIndex:t}=(0,au.u)();return(0,R.useEffect)(()=>{e&&setTimeout(()=>a(""),1500)},[e]),(0,L.jsx)(L.Fragment,{children:(0,L.jsx)(F.A,{className:"tab-container",children:(0,L.jsxs)(e$.A,{initialSelectedIndex:t(),children:[(0,L.jsxs)(eM.A,{children:[(0,L.jsx)(eV.A,{children:"Angular"}),(0,L.jsx)(eV.A,{children:"HTML"}),(0,L.jsx)(eV.A,{children:"React"}),(0,L.jsx)(eV.A,{children:"Vue"})]}),(0,L.jsxs)(eJ.A,{children:[(0,L.jsx)(E.A,{content:"external",target:"_blank",href:"how-to-use?current=angular",children:"How to use this in angular"}),(0,L.jsx)("pre",{children:(0,L.jsx)("code",{className:"hljs language-html",children:`<db-breadcrumb class="w-full" id="breadcrumb-collapsed" [maxItems]="3" ariaLabel="Breadcrumb - Collapsed Navigation" ellipsisAriaLabel="Expand to show all breadcrumb items" [items]="[{"href":"#","text":"Root"},{"href":"#","text":"Path 1"},{"href":"#","text":"Path 2"},{"href":"#","text":"Path 3"},{"text":"Current Page","ariaCurrent":"page","href":"#"}]">
 Collapsed (maxItems=3)
-</db-breadcrumb>`})}),(0,L.jsx)(ea.A,{className:"copy-button",noText:!0,icon:e===`<db-breadcrumb class="w-full" id="123" [maxItems]="3" ariaLabel="Breadcrumb - Collapsed Navigation" ellipsisAriaLabel="Expand to show all breadcrumb items" [items]="[{"href":"#","text":"Root"},{"href":"#","text":"Path 1"},{"href":"#","text":"Path 2"},{"href":"#","text":"Path 3"},{"text":"Current Page","ariaCurrent":"page","href":"#"}]">
+</db-breadcrumb>`})}),(0,L.jsx)(ea.A,{className:"copy-button",noText:!0,icon:e===`<db-breadcrumb class="w-full" id="breadcrumb-collapsed" [maxItems]="3" ariaLabel="Breadcrumb - Collapsed Navigation" ellipsisAriaLabel="Expand to show all breadcrumb items" [items]="[{"href":"#","text":"Root"},{"href":"#","text":"Path 1"},{"href":"#","text":"Path 2"},{"href":"#","text":"Path 3"},{"text":"Current Page","ariaCurrent":"page","href":"#"}]">
 Collapsed (maxItems=3)
-</db-breadcrumb>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<db-breadcrumb class="w-full" id="123" [maxItems]="3" ariaLabel="Breadcrumb - Collapsed Navigation" ellipsisAriaLabel="Expand to show all breadcrumb items" [items]="[{"href":"#","text":"Root"},{"href":"#","text":"Path 1"},{"href":"#","text":"Path 2"},{"href":"#","text":"Path 3"},{"text":"Current Page","ariaCurrent":"page","href":"#"}]">
+</db-breadcrumb>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<db-breadcrumb class="w-full" id="breadcrumb-collapsed" [maxItems]="3" ariaLabel="Breadcrumb - Collapsed Navigation" ellipsisAriaLabel="Expand to show all breadcrumb items" [items]="[{"href":"#","text":"Root"},{"href":"#","text":"Path 1"},{"href":"#","text":"Path 2"},{"href":"#","text":"Path 3"},{"text":"Current Page","ariaCurrent":"page","href":"#"}]">
 Collapsed (maxItems=3)
-</db-breadcrumb>`),navigator.clipboard.writeText(`<db-breadcrumb class="w-full" id="123" [maxItems]="3" ariaLabel="Breadcrumb - Collapsed Navigation" ellipsisAriaLabel="Expand to show all breadcrumb items" [items]="[{"href":"#","text":"Root"},{"href":"#","text":"Path 1"},{"href":"#","text":"Path 2"},{"href":"#","text":"Path 3"},{"text":"Current Page","ariaCurrent":"page","href":"#"}]">
+</db-breadcrumb>`),navigator.clipboard.writeText(`<db-breadcrumb class="w-full" id="breadcrumb-collapsed" [maxItems]="3" ariaLabel="Breadcrumb - Collapsed Navigation" ellipsisAriaLabel="Expand to show all breadcrumb items" [items]="[{"href":"#","text":"Root"},{"href":"#","text":"Path 1"},{"href":"#","text":"Path 2"},{"href":"#","text":"Path 3"},{"text":"Current Page","ariaCurrent":"page","href":"#"}]">
 Collapsed (maxItems=3)
 </db-breadcrumb>`)},children:"Copy code"})]}),(0,L.jsxs)(eJ.A,{children:[(0,L.jsx)(E.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,L.jsx)("pre",{children:(0,L.jsx)("code",{className:"hljs language-html",children:`<nav
   items="[object Object],[object Object],[object Object],[object Object],[object Object]"
-  id="123"
+  id="breadcrumb-collapsed"
   class="db-breadcrumb w-full"
   data-size="small"
   data-separator="chevron"
   aria-label="Breadcrumb - Collapsed Navigation"
 >
-  <ol class="db-breadcrumb-list" id="123-list">
+  <ol class="db-breadcrumb-list" id="breadcrumb-collapsed-list">
     <li><a href="#">Root</a></li>
     <li>
       <button
@@ -1810,7 +1842,7 @@ Collapsed (maxItems=3)
         class="db-breadcrumb-ellipsis"
         aria-label="Expand to show all breadcrumb items"
         aria-expanded="false"
-        aria-controls="123-list"
+        aria-controls="breadcrumb-collapsed-list"
       >
         …
       </button>
@@ -1820,13 +1852,13 @@ Collapsed (maxItems=3)
   </ol>
 </nav>`})}),(0,L.jsx)(ea.A,{className:"copy-button",noText:!0,icon:e===`<nav
   items="[object Object],[object Object],[object Object],[object Object],[object Object]"
-  id="123"
+  id="breadcrumb-collapsed"
   class="db-breadcrumb w-full"
   data-size="small"
   data-separator="chevron"
   aria-label="Breadcrumb - Collapsed Navigation"
 >
-  <ol class="db-breadcrumb-list" id="123-list">
+  <ol class="db-breadcrumb-list" id="breadcrumb-collapsed-list">
     <li><a href="#">Root</a></li>
     <li>
       <button
@@ -1834,7 +1866,7 @@ Collapsed (maxItems=3)
         class="db-breadcrumb-ellipsis"
         aria-label="Expand to show all breadcrumb items"
         aria-expanded="false"
-        aria-controls="123-list"
+        aria-controls="breadcrumb-collapsed-list"
       >
         …
       </button>
@@ -1844,13 +1876,13 @@ Collapsed (maxItems=3)
   </ol>
 </nav>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<nav
   items="[object Object],[object Object],[object Object],[object Object],[object Object]"
-  id="123"
+  id="breadcrumb-collapsed"
   class="db-breadcrumb w-full"
   data-size="small"
   data-separator="chevron"
   aria-label="Breadcrumb - Collapsed Navigation"
 >
-  <ol class="db-breadcrumb-list" id="123-list">
+  <ol class="db-breadcrumb-list" id="breadcrumb-collapsed-list">
     <li><a href="#">Root</a></li>
     <li>
       <button
@@ -1858,7 +1890,7 @@ Collapsed (maxItems=3)
         class="db-breadcrumb-ellipsis"
         aria-label="Expand to show all breadcrumb items"
         aria-expanded="false"
-        aria-controls="123-list"
+        aria-controls="breadcrumb-collapsed-list"
       >
         …
       </button>
@@ -1868,13 +1900,13 @@ Collapsed (maxItems=3)
   </ol>
 </nav>`),navigator.clipboard.writeText(`<nav
   items="[object Object],[object Object],[object Object],[object Object],[object Object]"
-  id="123"
+  id="breadcrumb-collapsed"
   class="db-breadcrumb w-full"
   data-size="small"
   data-separator="chevron"
   aria-label="Breadcrumb - Collapsed Navigation"
 >
-  <ol class="db-breadcrumb-list" id="123-list">
+  <ol class="db-breadcrumb-list" id="breadcrumb-collapsed-list">
     <li><a href="#">Root</a></li>
     <li>
       <button
@@ -1882,7 +1914,7 @@ Collapsed (maxItems=3)
         class="db-breadcrumb-ellipsis"
         aria-label="Expand to show all breadcrumb items"
         aria-expanded="false"
-        aria-controls="123-list"
+        aria-controls="breadcrumb-collapsed-list"
       >
         …
       </button>
@@ -1892,7 +1924,7 @@ Collapsed (maxItems=3)
   </ol>
 </nav>`)},children:"Copy code"})]}),(0,L.jsxs)(eJ.A,{children:[(0,L.jsx)(E.A,{content:"external",target:"_blank",href:"how-to-use?current=react",children:"How to use this in react"}),(0,L.jsx)("pre",{children:(0,L.jsx)("code",{className:"hljs language-tsx",children:`<DBBreadcrumb
   className="w-full"
-  id="123"
+  id="breadcrumb-collapsed"
   maxItems={3}
   ariaLabel="Breadcrumb - Collapsed Navigation"
   ellipsisAriaLabel="Expand to show all breadcrumb items"
@@ -1907,7 +1939,7 @@ Collapsed (maxItems=3)
   Collapsed (maxItems=3)
 </DBBreadcrumb>`})}),(0,L.jsx)(ea.A,{className:"copy-button",noText:!0,icon:e===`<DBBreadcrumb
   className="w-full"
-  id="123"
+  id="breadcrumb-collapsed"
   maxItems={3}
   ariaLabel="Breadcrumb - Collapsed Navigation"
   ellipsisAriaLabel="Expand to show all breadcrumb items"
@@ -1922,7 +1954,7 @@ Collapsed (maxItems=3)
   Collapsed (maxItems=3)
 </DBBreadcrumb>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<DBBreadcrumb
   className="w-full"
-  id="123"
+  id="breadcrumb-collapsed"
   maxItems={3}
   ariaLabel="Breadcrumb - Collapsed Navigation"
   ellipsisAriaLabel="Expand to show all breadcrumb items"
@@ -1937,7 +1969,7 @@ Collapsed (maxItems=3)
   Collapsed (maxItems=3)
 </DBBreadcrumb>`),navigator.clipboard.writeText(`<DBBreadcrumb
   className="w-full"
-  id="123"
+  id="breadcrumb-collapsed"
   maxItems={3}
   ariaLabel="Breadcrumb - Collapsed Navigation"
   ellipsisAriaLabel="Expand to show all breadcrumb items"
@@ -1950,30 +1982,31 @@ Collapsed (maxItems=3)
   ]}
 >
   Collapsed (maxItems=3)
-</DBBreadcrumb>`)},children:"Copy code"})]}),(0,L.jsxs)(eJ.A,{children:[(0,L.jsx)(E.A,{content:"external",target:"_blank",href:"how-to-use?current=vue",children:"How to use this in vue"}),(0,L.jsx)("pre",{children:(0,L.jsx)("code",{className:"hljs language-tsx",children:`<DBBreadcrumb class="w-full" id="123" :maxItems="3" ariaLabel="Breadcrumb - Collapsed Navigation" ellipsisAriaLabel="Expand to show all breadcrumb items" :items="[{"href":"#","text":"Root"},{"href":"#","text":"Path 1"},{"href":"#","text":"Path 2"},{"href":"#","text":"Path 3"},{"text":"Current Page","ariaCurrent":"page","href":"#"}]">
+</DBBreadcrumb>`)},children:"Copy code"})]}),(0,L.jsxs)(eJ.A,{children:[(0,L.jsx)(E.A,{content:"external",target:"_blank",href:"how-to-use?current=vue",children:"How to use this in vue"}),(0,L.jsx)("pre",{children:(0,L.jsx)("code",{className:"hljs language-tsx",children:`<DBBreadcrumb class="w-full" id="breadcrumb-collapsed" :maxItems="3" ariaLabel="Breadcrumb - Collapsed Navigation" ellipsisAriaLabel="Expand to show all breadcrumb items" :items="[{"href":"#","text":"Root"},{"href":"#","text":"Path 1"},{"href":"#","text":"Path 2"},{"href":"#","text":"Path 3"},{"text":"Current Page","ariaCurrent":"page","href":"#"}]">
 Collapsed (maxItems=3)
-</DBBreadcrumb>`})}),(0,L.jsx)(ea.A,{className:"copy-button",noText:!0,icon:e===`<DBBreadcrumb class="w-full" id="123" :maxItems="3" ariaLabel="Breadcrumb - Collapsed Navigation" ellipsisAriaLabel="Expand to show all breadcrumb items" :items="[{"href":"#","text":"Root"},{"href":"#","text":"Path 1"},{"href":"#","text":"Path 2"},{"href":"#","text":"Path 3"},{"text":"Current Page","ariaCurrent":"page","href":"#"}]">
+</DBBreadcrumb>`})}),(0,L.jsx)(ea.A,{className:"copy-button",noText:!0,icon:e===`<DBBreadcrumb class="w-full" id="breadcrumb-collapsed" :maxItems="3" ariaLabel="Breadcrumb - Collapsed Navigation" ellipsisAriaLabel="Expand to show all breadcrumb items" :items="[{"href":"#","text":"Root"},{"href":"#","text":"Path 1"},{"href":"#","text":"Path 2"},{"href":"#","text":"Path 3"},{"text":"Current Page","ariaCurrent":"page","href":"#"}]">
 Collapsed (maxItems=3)
-</DBBreadcrumb>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<DBBreadcrumb class="w-full" id="123" :maxItems="3" ariaLabel="Breadcrumb - Collapsed Navigation" ellipsisAriaLabel="Expand to show all breadcrumb items" :items="[{"href":"#","text":"Root"},{"href":"#","text":"Path 1"},{"href":"#","text":"Path 2"},{"href":"#","text":"Path 3"},{"text":"Current Page","ariaCurrent":"page","href":"#"}]">
+</DBBreadcrumb>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<DBBreadcrumb class="w-full" id="breadcrumb-collapsed" :maxItems="3" ariaLabel="Breadcrumb - Collapsed Navigation" ellipsisAriaLabel="Expand to show all breadcrumb items" :items="[{"href":"#","text":"Root"},{"href":"#","text":"Path 1"},{"href":"#","text":"Path 2"},{"href":"#","text":"Path 3"},{"text":"Current Page","ariaCurrent":"page","href":"#"}]">
 Collapsed (maxItems=3)
-</DBBreadcrumb>`),navigator.clipboard.writeText(`<DBBreadcrumb class="w-full" id="123" :maxItems="3" ariaLabel="Breadcrumb - Collapsed Navigation" ellipsisAriaLabel="Expand to show all breadcrumb items" :items="[{"href":"#","text":"Root"},{"href":"#","text":"Path 1"},{"href":"#","text":"Path 2"},{"href":"#","text":"Path 3"},{"text":"Current Page","ariaCurrent":"page","href":"#"}]">
+</DBBreadcrumb>`),navigator.clipboard.writeText(`<DBBreadcrumb class="w-full" id="breadcrumb-collapsed" :maxItems="3" ariaLabel="Breadcrumb - Collapsed Navigation" ellipsisAriaLabel="Expand to show all breadcrumb items" :items="[{"href":"#","text":"Root"},{"href":"#","text":"Path 1"},{"href":"#","text":"Path 2"},{"href":"#","text":"Path 3"},{"text":"Current Page","ariaCurrent":"page","href":"#"}]">
 Collapsed (maxItems=3)
-</DBBreadcrumb>`)},children:"Copy code"})]})]},t())})})},aw=()=>{let[e,a]=(0,R.useState)(),{getFrameworkIndex:t}=(0,au.u)();return(0,R.useEffect)(()=>{e&&setTimeout(()=>a(""),1500)},[e]),(0,L.jsxs)(L.Fragment,{children:[(0,L.jsx)(F.A,{className:"tab-container",children:(0,L.jsxs)(e$.A,{initialSelectedIndex:t(),children:[(0,L.jsxs)(eM.A,{children:[(0,L.jsx)(eV.A,{children:"Angular"}),(0,L.jsx)(eV.A,{children:"HTML"}),(0,L.jsx)(eV.A,{children:"React"}),(0,L.jsx)(eV.A,{children:"Vue"})]}),(0,L.jsxs)(eJ.A,{children:[(0,L.jsx)(E.A,{content:"external",target:"_blank",href:"how-to-use?current=angular",children:"How to use this in angular"}),(0,L.jsx)("pre",{children:(0,L.jsx)("code",{className:"hljs language-html",children:`<db-breadcrumb class="w-full" ariaLabel="Breadcrumb - With Icons Small Size" [items]="[{"href":"#","text":"Root","icon":"house"},{"href":"#","text":"Settings","icon":"gear_wheel"},{"href":"#","text":"Profile","icon":"person"},{"href":"#","text":"Notifications","icon":"bell"}]">
+</DBBreadcrumb>`)},children:"Copy code"})]})]},t())})})},aw=()=>{let[e,a]=(0,R.useState)(),{getFrameworkIndex:t}=(0,au.u)();return(0,R.useEffect)(()=>{e&&setTimeout(()=>a(""),1500)},[e]),(0,L.jsxs)(L.Fragment,{children:[(0,L.jsx)(F.A,{className:"tab-container",children:(0,L.jsxs)(e$.A,{initialSelectedIndex:t(),children:[(0,L.jsxs)(eM.A,{children:[(0,L.jsx)(eV.A,{children:"Angular"}),(0,L.jsx)(eV.A,{children:"HTML"}),(0,L.jsx)(eV.A,{children:"React"}),(0,L.jsx)(eV.A,{children:"Vue"})]}),(0,L.jsxs)(eJ.A,{children:[(0,L.jsx)(E.A,{content:"external",target:"_blank",href:"how-to-use?current=angular",children:"How to use this in angular"}),(0,L.jsx)("pre",{children:(0,L.jsx)("code",{className:"hljs language-html",children:`<db-breadcrumb class="w-full" id="breadcrumb-icons-small" ariaLabel="Breadcrumb - With Icons Small Size" [items]="[{"href":"#","text":"Root","icon":"house"},{"href":"#","text":"Settings","icon":"gear_wheel"},{"href":"#","text":"Profile","icon":"person"},{"href":"#","text":"Notifications","icon":"bell"}]">
 With Icons (Small)
-</db-breadcrumb>`})}),(0,L.jsx)(ea.A,{className:"copy-button",noText:!0,icon:e===`<db-breadcrumb class="w-full" ariaLabel="Breadcrumb - With Icons Small Size" [items]="[{"href":"#","text":"Root","icon":"house"},{"href":"#","text":"Settings","icon":"gear_wheel"},{"href":"#","text":"Profile","icon":"person"},{"href":"#","text":"Notifications","icon":"bell"}]">
+</db-breadcrumb>`})}),(0,L.jsx)(ea.A,{className:"copy-button",noText:!0,icon:e===`<db-breadcrumb class="w-full" id="breadcrumb-icons-small" ariaLabel="Breadcrumb - With Icons Small Size" [items]="[{"href":"#","text":"Root","icon":"house"},{"href":"#","text":"Settings","icon":"gear_wheel"},{"href":"#","text":"Profile","icon":"person"},{"href":"#","text":"Notifications","icon":"bell"}]">
 With Icons (Small)
-</db-breadcrumb>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<db-breadcrumb class="w-full" ariaLabel="Breadcrumb - With Icons Small Size" [items]="[{"href":"#","text":"Root","icon":"house"},{"href":"#","text":"Settings","icon":"gear_wheel"},{"href":"#","text":"Profile","icon":"person"},{"href":"#","text":"Notifications","icon":"bell"}]">
+</db-breadcrumb>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<db-breadcrumb class="w-full" id="breadcrumb-icons-small" ariaLabel="Breadcrumb - With Icons Small Size" [items]="[{"href":"#","text":"Root","icon":"house"},{"href":"#","text":"Settings","icon":"gear_wheel"},{"href":"#","text":"Profile","icon":"person"},{"href":"#","text":"Notifications","icon":"bell"}]">
 With Icons (Small)
-</db-breadcrumb>`),navigator.clipboard.writeText(`<db-breadcrumb class="w-full" ariaLabel="Breadcrumb - With Icons Small Size" [items]="[{"href":"#","text":"Root","icon":"house"},{"href":"#","text":"Settings","icon":"gear_wheel"},{"href":"#","text":"Profile","icon":"person"},{"href":"#","text":"Notifications","icon":"bell"}]">
+</db-breadcrumb>`),navigator.clipboard.writeText(`<db-breadcrumb class="w-full" id="breadcrumb-icons-small" ariaLabel="Breadcrumb - With Icons Small Size" [items]="[{"href":"#","text":"Root","icon":"house"},{"href":"#","text":"Settings","icon":"gear_wheel"},{"href":"#","text":"Profile","icon":"person"},{"href":"#","text":"Notifications","icon":"bell"}]">
 With Icons (Small)
 </db-breadcrumb>`)},children:"Copy code"})]}),(0,L.jsxs)(eJ.A,{children:[(0,L.jsx)(E.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,L.jsx)("pre",{children:(0,L.jsx)("code",{className:"hljs language-html",children:`<nav
   items="[object Object],[object Object],[object Object],[object Object]"
+  id="breadcrumb-icons-small"
   class="db-breadcrumb w-full"
   data-size="small"
   data-separator="chevron"
   aria-label="Breadcrumb - With Icons Small Size"
 >
-  <ol class="db-breadcrumb-list" id="db-breadcrumb-list">
+  <ol class="db-breadcrumb-list" id="breadcrumb-icons-small-list">
     <li>
       <a href="#"
         ><span
@@ -2021,12 +2054,13 @@ With Icons (Small)
   </ol>
 </nav>`})}),(0,L.jsx)(ea.A,{className:"copy-button",noText:!0,icon:e===`<nav
   items="[object Object],[object Object],[object Object],[object Object]"
+  id="breadcrumb-icons-small"
   class="db-breadcrumb w-full"
   data-size="small"
   data-separator="chevron"
   aria-label="Breadcrumb - With Icons Small Size"
 >
-  <ol class="db-breadcrumb-list" id="db-breadcrumb-list">
+  <ol class="db-breadcrumb-list" id="breadcrumb-icons-small-list">
     <li>
       <a href="#"
         ><span
@@ -2074,12 +2108,13 @@ With Icons (Small)
   </ol>
 </nav>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<nav
   items="[object Object],[object Object],[object Object],[object Object]"
+  id="breadcrumb-icons-small"
   class="db-breadcrumb w-full"
   data-size="small"
   data-separator="chevron"
   aria-label="Breadcrumb - With Icons Small Size"
 >
-  <ol class="db-breadcrumb-list" id="db-breadcrumb-list">
+  <ol class="db-breadcrumb-list" id="breadcrumb-icons-small-list">
     <li>
       <a href="#"
         ><span
@@ -2127,12 +2162,13 @@ With Icons (Small)
   </ol>
 </nav>`),navigator.clipboard.writeText(`<nav
   items="[object Object],[object Object],[object Object],[object Object]"
+  id="breadcrumb-icons-small"
   class="db-breadcrumb w-full"
   data-size="small"
   data-separator="chevron"
   aria-label="Breadcrumb - With Icons Small Size"
 >
-  <ol class="db-breadcrumb-list" id="db-breadcrumb-list">
+  <ol class="db-breadcrumb-list" id="breadcrumb-icons-small-list">
     <li>
       <a href="#"
         ><span
@@ -2180,6 +2216,7 @@ With Icons (Small)
   </ol>
 </nav>`)},children:"Copy code"})]}),(0,L.jsxs)(eJ.A,{children:[(0,L.jsx)(E.A,{content:"external",target:"_blank",href:"how-to-use?current=react",children:"How to use this in react"}),(0,L.jsx)("pre",{children:(0,L.jsx)("code",{className:"hljs language-tsx",children:`<DBBreadcrumb
   className="w-full"
+  id="breadcrumb-icons-small"
   ariaLabel="Breadcrumb - With Icons Small Size"
   items={[
     { href: "#", text: "Root", icon: "house" },
@@ -2191,6 +2228,7 @@ With Icons (Small)
   With Icons (Small)
 </DBBreadcrumb>`})}),(0,L.jsx)(ea.A,{className:"copy-button",noText:!0,icon:e===`<DBBreadcrumb
   className="w-full"
+  id="breadcrumb-icons-small"
   ariaLabel="Breadcrumb - With Icons Small Size"
   items={[
     { href: "#", text: "Root", icon: "house" },
@@ -2202,6 +2240,7 @@ With Icons (Small)
   With Icons (Small)
 </DBBreadcrumb>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<DBBreadcrumb
   className="w-full"
+  id="breadcrumb-icons-small"
   ariaLabel="Breadcrumb - With Icons Small Size"
   items={[
     { href: "#", text: "Root", icon: "house" },
@@ -2213,6 +2252,7 @@ With Icons (Small)
   With Icons (Small)
 </DBBreadcrumb>`),navigator.clipboard.writeText(`<DBBreadcrumb
   className="w-full"
+  id="breadcrumb-icons-small"
   ariaLabel="Breadcrumb - With Icons Small Size"
   items={[
     { href: "#", text: "Root", icon: "house" },
@@ -2222,30 +2262,31 @@ With Icons (Small)
   ]}
 >
   With Icons (Small)
-</DBBreadcrumb>`)},children:"Copy code"})]}),(0,L.jsxs)(eJ.A,{children:[(0,L.jsx)(E.A,{content:"external",target:"_blank",href:"how-to-use?current=vue",children:"How to use this in vue"}),(0,L.jsx)("pre",{children:(0,L.jsx)("code",{className:"hljs language-tsx",children:`<DBBreadcrumb class="w-full" ariaLabel="Breadcrumb - With Icons Small Size" :items="[{"href":"#","text":"Root","icon":"house"},{"href":"#","text":"Settings","icon":"gear_wheel"},{"href":"#","text":"Profile","icon":"person"},{"href":"#","text":"Notifications","icon":"bell"}]">
+</DBBreadcrumb>`)},children:"Copy code"})]}),(0,L.jsxs)(eJ.A,{children:[(0,L.jsx)(E.A,{content:"external",target:"_blank",href:"how-to-use?current=vue",children:"How to use this in vue"}),(0,L.jsx)("pre",{children:(0,L.jsx)("code",{className:"hljs language-tsx",children:`<DBBreadcrumb class="w-full" id="breadcrumb-icons-small" ariaLabel="Breadcrumb - With Icons Small Size" :items="[{"href":"#","text":"Root","icon":"house"},{"href":"#","text":"Settings","icon":"gear_wheel"},{"href":"#","text":"Profile","icon":"person"},{"href":"#","text":"Notifications","icon":"bell"}]">
 With Icons (Small)
-</DBBreadcrumb>`})}),(0,L.jsx)(ea.A,{className:"copy-button",noText:!0,icon:e===`<DBBreadcrumb class="w-full" ariaLabel="Breadcrumb - With Icons Small Size" :items="[{"href":"#","text":"Root","icon":"house"},{"href":"#","text":"Settings","icon":"gear_wheel"},{"href":"#","text":"Profile","icon":"person"},{"href":"#","text":"Notifications","icon":"bell"}]">
+</DBBreadcrumb>`})}),(0,L.jsx)(ea.A,{className:"copy-button",noText:!0,icon:e===`<DBBreadcrumb class="w-full" id="breadcrumb-icons-small" ariaLabel="Breadcrumb - With Icons Small Size" :items="[{"href":"#","text":"Root","icon":"house"},{"href":"#","text":"Settings","icon":"gear_wheel"},{"href":"#","text":"Profile","icon":"person"},{"href":"#","text":"Notifications","icon":"bell"}]">
 With Icons (Small)
-</DBBreadcrumb>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<DBBreadcrumb class="w-full" ariaLabel="Breadcrumb - With Icons Small Size" :items="[{"href":"#","text":"Root","icon":"house"},{"href":"#","text":"Settings","icon":"gear_wheel"},{"href":"#","text":"Profile","icon":"person"},{"href":"#","text":"Notifications","icon":"bell"}]">
+</DBBreadcrumb>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<DBBreadcrumb class="w-full" id="breadcrumb-icons-small" ariaLabel="Breadcrumb - With Icons Small Size" :items="[{"href":"#","text":"Root","icon":"house"},{"href":"#","text":"Settings","icon":"gear_wheel"},{"href":"#","text":"Profile","icon":"person"},{"href":"#","text":"Notifications","icon":"bell"}]">
 With Icons (Small)
-</DBBreadcrumb>`),navigator.clipboard.writeText(`<DBBreadcrumb class="w-full" ariaLabel="Breadcrumb - With Icons Small Size" :items="[{"href":"#","text":"Root","icon":"house"},{"href":"#","text":"Settings","icon":"gear_wheel"},{"href":"#","text":"Profile","icon":"person"},{"href":"#","text":"Notifications","icon":"bell"}]">
+</DBBreadcrumb>`),navigator.clipboard.writeText(`<DBBreadcrumb class="w-full" id="breadcrumb-icons-small" ariaLabel="Breadcrumb - With Icons Small Size" :items="[{"href":"#","text":"Root","icon":"house"},{"href":"#","text":"Settings","icon":"gear_wheel"},{"href":"#","text":"Profile","icon":"person"},{"href":"#","text":"Notifications","icon":"bell"}]">
 With Icons (Small)
-</DBBreadcrumb>`)},children:"Copy code"})]})]},t())}),(0,L.jsx)(F.A,{className:"tab-container",children:(0,L.jsxs)(e$.A,{initialSelectedIndex:t(),children:[(0,L.jsxs)(eM.A,{children:[(0,L.jsx)(eV.A,{children:"Angular"}),(0,L.jsx)(eV.A,{children:"HTML"}),(0,L.jsx)(eV.A,{children:"React"}),(0,L.jsx)(eV.A,{children:"Vue"})]}),(0,L.jsxs)(eJ.A,{children:[(0,L.jsx)(E.A,{content:"external",target:"_blank",href:"how-to-use?current=angular",children:"How to use this in angular"}),(0,L.jsx)("pre",{children:(0,L.jsx)("code",{className:"hljs language-html",children:`<db-breadcrumb class="w-full" ariaLabel="Breadcrumb - With Icons Medium Size" size="medium" [items]="[{"href":"#","text":"Root","icon":"house"},{"href":"#","text":"Settings","icon":"gear_wheel"},{"href":"#","text":"Profile","icon":"person"},{"href":"#","text":"Notifications","icon":"bell"}]">
+</DBBreadcrumb>`)},children:"Copy code"})]})]},t())}),(0,L.jsx)(F.A,{className:"tab-container",children:(0,L.jsxs)(e$.A,{initialSelectedIndex:t(),children:[(0,L.jsxs)(eM.A,{children:[(0,L.jsx)(eV.A,{children:"Angular"}),(0,L.jsx)(eV.A,{children:"HTML"}),(0,L.jsx)(eV.A,{children:"React"}),(0,L.jsx)(eV.A,{children:"Vue"})]}),(0,L.jsxs)(eJ.A,{children:[(0,L.jsx)(E.A,{content:"external",target:"_blank",href:"how-to-use?current=angular",children:"How to use this in angular"}),(0,L.jsx)("pre",{children:(0,L.jsx)("code",{className:"hljs language-html",children:`<db-breadcrumb class="w-full" id="breadcrumb-icons-medium" ariaLabel="Breadcrumb - With Icons Medium Size" size="medium" [items]="[{"href":"#","text":"Root","icon":"house"},{"href":"#","text":"Settings","icon":"gear_wheel"},{"href":"#","text":"Profile","icon":"person"},{"href":"#","text":"Notifications","icon":"bell"}]">
 With Icons (Medium)
-</db-breadcrumb>`})}),(0,L.jsx)(ea.A,{className:"copy-button",noText:!0,icon:e===`<db-breadcrumb class="w-full" ariaLabel="Breadcrumb - With Icons Medium Size" size="medium" [items]="[{"href":"#","text":"Root","icon":"house"},{"href":"#","text":"Settings","icon":"gear_wheel"},{"href":"#","text":"Profile","icon":"person"},{"href":"#","text":"Notifications","icon":"bell"}]">
+</db-breadcrumb>`})}),(0,L.jsx)(ea.A,{className:"copy-button",noText:!0,icon:e===`<db-breadcrumb class="w-full" id="breadcrumb-icons-medium" ariaLabel="Breadcrumb - With Icons Medium Size" size="medium" [items]="[{"href":"#","text":"Root","icon":"house"},{"href":"#","text":"Settings","icon":"gear_wheel"},{"href":"#","text":"Profile","icon":"person"},{"href":"#","text":"Notifications","icon":"bell"}]">
 With Icons (Medium)
-</db-breadcrumb>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<db-breadcrumb class="w-full" ariaLabel="Breadcrumb - With Icons Medium Size" size="medium" [items]="[{"href":"#","text":"Root","icon":"house"},{"href":"#","text":"Settings","icon":"gear_wheel"},{"href":"#","text":"Profile","icon":"person"},{"href":"#","text":"Notifications","icon":"bell"}]">
+</db-breadcrumb>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<db-breadcrumb class="w-full" id="breadcrumb-icons-medium" ariaLabel="Breadcrumb - With Icons Medium Size" size="medium" [items]="[{"href":"#","text":"Root","icon":"house"},{"href":"#","text":"Settings","icon":"gear_wheel"},{"href":"#","text":"Profile","icon":"person"},{"href":"#","text":"Notifications","icon":"bell"}]">
 With Icons (Medium)
-</db-breadcrumb>`),navigator.clipboard.writeText(`<db-breadcrumb class="w-full" ariaLabel="Breadcrumb - With Icons Medium Size" size="medium" [items]="[{"href":"#","text":"Root","icon":"house"},{"href":"#","text":"Settings","icon":"gear_wheel"},{"href":"#","text":"Profile","icon":"person"},{"href":"#","text":"Notifications","icon":"bell"}]">
+</db-breadcrumb>`),navigator.clipboard.writeText(`<db-breadcrumb class="w-full" id="breadcrumb-icons-medium" ariaLabel="Breadcrumb - With Icons Medium Size" size="medium" [items]="[{"href":"#","text":"Root","icon":"house"},{"href":"#","text":"Settings","icon":"gear_wheel"},{"href":"#","text":"Profile","icon":"person"},{"href":"#","text":"Notifications","icon":"bell"}]">
 With Icons (Medium)
 </db-breadcrumb>`)},children:"Copy code"})]}),(0,L.jsxs)(eJ.A,{children:[(0,L.jsx)(E.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,L.jsx)("pre",{children:(0,L.jsx)("code",{className:"hljs language-html",children:`<nav
   items="[object Object],[object Object],[object Object],[object Object]"
+  id="breadcrumb-icons-medium"
   class="db-breadcrumb w-full"
   data-size="medium"
   data-separator="chevron"
   aria-label="Breadcrumb - With Icons Medium Size"
 >
-  <ol class="db-breadcrumb-list" id="db-breadcrumb-list">
+  <ol class="db-breadcrumb-list" id="breadcrumb-icons-medium-list">
     <li>
       <a href="#"
         ><span
@@ -2293,12 +2334,13 @@ With Icons (Medium)
   </ol>
 </nav>`})}),(0,L.jsx)(ea.A,{className:"copy-button",noText:!0,icon:e===`<nav
   items="[object Object],[object Object],[object Object],[object Object]"
+  id="breadcrumb-icons-medium"
   class="db-breadcrumb w-full"
   data-size="medium"
   data-separator="chevron"
   aria-label="Breadcrumb - With Icons Medium Size"
 >
-  <ol class="db-breadcrumb-list" id="db-breadcrumb-list">
+  <ol class="db-breadcrumb-list" id="breadcrumb-icons-medium-list">
     <li>
       <a href="#"
         ><span
@@ -2346,12 +2388,13 @@ With Icons (Medium)
   </ol>
 </nav>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<nav
   items="[object Object],[object Object],[object Object],[object Object]"
+  id="breadcrumb-icons-medium"
   class="db-breadcrumb w-full"
   data-size="medium"
   data-separator="chevron"
   aria-label="Breadcrumb - With Icons Medium Size"
 >
-  <ol class="db-breadcrumb-list" id="db-breadcrumb-list">
+  <ol class="db-breadcrumb-list" id="breadcrumb-icons-medium-list">
     <li>
       <a href="#"
         ><span
@@ -2399,12 +2442,13 @@ With Icons (Medium)
   </ol>
 </nav>`),navigator.clipboard.writeText(`<nav
   items="[object Object],[object Object],[object Object],[object Object]"
+  id="breadcrumb-icons-medium"
   class="db-breadcrumb w-full"
   data-size="medium"
   data-separator="chevron"
   aria-label="Breadcrumb - With Icons Medium Size"
 >
-  <ol class="db-breadcrumb-list" id="db-breadcrumb-list">
+  <ol class="db-breadcrumb-list" id="breadcrumb-icons-medium-list">
     <li>
       <a href="#"
         ><span
@@ -2452,6 +2496,7 @@ With Icons (Medium)
   </ol>
 </nav>`)},children:"Copy code"})]}),(0,L.jsxs)(eJ.A,{children:[(0,L.jsx)(E.A,{content:"external",target:"_blank",href:"how-to-use?current=react",children:"How to use this in react"}),(0,L.jsx)("pre",{children:(0,L.jsx)("code",{className:"hljs language-tsx",children:`<DBBreadcrumb
   className="w-full"
+  id="breadcrumb-icons-medium"
   ariaLabel="Breadcrumb - With Icons Medium Size"
   size="medium"
   items={[
@@ -2464,6 +2509,7 @@ With Icons (Medium)
   With Icons (Medium)
 </DBBreadcrumb>`})}),(0,L.jsx)(ea.A,{className:"copy-button",noText:!0,icon:e===`<DBBreadcrumb
   className="w-full"
+  id="breadcrumb-icons-medium"
   ariaLabel="Breadcrumb - With Icons Medium Size"
   size="medium"
   items={[
@@ -2476,6 +2522,7 @@ With Icons (Medium)
   With Icons (Medium)
 </DBBreadcrumb>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<DBBreadcrumb
   className="w-full"
+  id="breadcrumb-icons-medium"
   ariaLabel="Breadcrumb - With Icons Medium Size"
   size="medium"
   items={[
@@ -2488,6 +2535,7 @@ With Icons (Medium)
   With Icons (Medium)
 </DBBreadcrumb>`),navigator.clipboard.writeText(`<DBBreadcrumb
   className="w-full"
+  id="breadcrumb-icons-medium"
   ariaLabel="Breadcrumb - With Icons Medium Size"
   size="medium"
   items={[
@@ -2498,13 +2546,13 @@ With Icons (Medium)
   ]}
 >
   With Icons (Medium)
-</DBBreadcrumb>`)},children:"Copy code"})]}),(0,L.jsxs)(eJ.A,{children:[(0,L.jsx)(E.A,{content:"external",target:"_blank",href:"how-to-use?current=vue",children:"How to use this in vue"}),(0,L.jsx)("pre",{children:(0,L.jsx)("code",{className:"hljs language-tsx",children:`<DBBreadcrumb class="w-full" ariaLabel="Breadcrumb - With Icons Medium Size" size="medium" :items="[{"href":"#","text":"Root","icon":"house"},{"href":"#","text":"Settings","icon":"gear_wheel"},{"href":"#","text":"Profile","icon":"person"},{"href":"#","text":"Notifications","icon":"bell"}]">
+</DBBreadcrumb>`)},children:"Copy code"})]}),(0,L.jsxs)(eJ.A,{children:[(0,L.jsx)(E.A,{content:"external",target:"_blank",href:"how-to-use?current=vue",children:"How to use this in vue"}),(0,L.jsx)("pre",{children:(0,L.jsx)("code",{className:"hljs language-tsx",children:`<DBBreadcrumb class="w-full" id="breadcrumb-icons-medium" ariaLabel="Breadcrumb - With Icons Medium Size" size="medium" :items="[{"href":"#","text":"Root","icon":"house"},{"href":"#","text":"Settings","icon":"gear_wheel"},{"href":"#","text":"Profile","icon":"person"},{"href":"#","text":"Notifications","icon":"bell"}]">
 With Icons (Medium)
-</DBBreadcrumb>`})}),(0,L.jsx)(ea.A,{className:"copy-button",noText:!0,icon:e===`<DBBreadcrumb class="w-full" ariaLabel="Breadcrumb - With Icons Medium Size" size="medium" :items="[{"href":"#","text":"Root","icon":"house"},{"href":"#","text":"Settings","icon":"gear_wheel"},{"href":"#","text":"Profile","icon":"person"},{"href":"#","text":"Notifications","icon":"bell"}]">
+</DBBreadcrumb>`})}),(0,L.jsx)(ea.A,{className:"copy-button",noText:!0,icon:e===`<DBBreadcrumb class="w-full" id="breadcrumb-icons-medium" ariaLabel="Breadcrumb - With Icons Medium Size" size="medium" :items="[{"href":"#","text":"Root","icon":"house"},{"href":"#","text":"Settings","icon":"gear_wheel"},{"href":"#","text":"Profile","icon":"person"},{"href":"#","text":"Notifications","icon":"bell"}]">
 With Icons (Medium)
-</DBBreadcrumb>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<DBBreadcrumb class="w-full" ariaLabel="Breadcrumb - With Icons Medium Size" size="medium" :items="[{"href":"#","text":"Root","icon":"house"},{"href":"#","text":"Settings","icon":"gear_wheel"},{"href":"#","text":"Profile","icon":"person"},{"href":"#","text":"Notifications","icon":"bell"}]">
+</DBBreadcrumb>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<DBBreadcrumb class="w-full" id="breadcrumb-icons-medium" ariaLabel="Breadcrumb - With Icons Medium Size" size="medium" :items="[{"href":"#","text":"Root","icon":"house"},{"href":"#","text":"Settings","icon":"gear_wheel"},{"href":"#","text":"Profile","icon":"person"},{"href":"#","text":"Notifications","icon":"bell"}]">
 With Icons (Medium)
-</DBBreadcrumb>`),navigator.clipboard.writeText(`<DBBreadcrumb class="w-full" ariaLabel="Breadcrumb - With Icons Medium Size" size="medium" :items="[{"href":"#","text":"Root","icon":"house"},{"href":"#","text":"Settings","icon":"gear_wheel"},{"href":"#","text":"Profile","icon":"person"},{"href":"#","text":"Notifications","icon":"bell"}]">
+</DBBreadcrumb>`),navigator.clipboard.writeText(`<DBBreadcrumb class="w-full" id="breadcrumb-icons-medium" ariaLabel="Breadcrumb - With Icons Medium Size" size="medium" :items="[{"href":"#","text":"Root","icon":"house"},{"href":"#","text":"Settings","icon":"gear_wheel"},{"href":"#","text":"Profile","icon":"person"},{"href":"#","text":"Notifications","icon":"bell"}]">
 With Icons (Medium)
 </DBBreadcrumb>`)},children:"Copy code"})]})]},t())})]})},aA=()=>{let[e,a]=(0,R.useState)(),{getFrameworkIndex:t}=(0,au.u)();return(0,R.useEffect)(()=>{e&&setTimeout(()=>a(""),1500)},[e]),(0,L.jsxs)(L.Fragment,{children:[(0,L.jsx)(F.A,{className:"tab-container",children:(0,L.jsxs)(e$.A,{initialSelectedIndex:t(),children:[(0,L.jsxs)(eM.A,{children:[(0,L.jsx)(eV.A,{children:"Angular"}),(0,L.jsx)(eV.A,{children:"HTML"}),(0,L.jsx)(eV.A,{children:"React"}),(0,L.jsx)(eV.A,{children:"Vue"})]}),(0,L.jsxs)(eJ.A,{children:[(0,L.jsx)(E.A,{content:"external",target:"_blank",href:"how-to-use?current=angular",children:"How to use this in angular"}),(0,L.jsx)("pre",{children:(0,L.jsx)("code",{className:"hljs language-html",children:"<db-button> Functional </db-button>"})}),(0,L.jsx)(ea.A,{className:"copy-button",noText:!0,icon:"<db-button> Functional </db-button>"===e?"check":"copy",variant:"ghost",onClick:()=>{a("<db-button> Functional </db-button>"),navigator.clipboard.writeText("<db-button> Functional </db-button>")},children:"Copy code"})]}),(0,L.jsxs)(eJ.A,{children:[(0,L.jsx)(E.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,L.jsx)("pre",{children:(0,L.jsx)("code",{className:"hljs language-html",children:'<button class="db-button" type="submit">Functional</button>'})}),(0,L.jsx)(ea.A,{className:"copy-button",noText:!0,icon:'<button class="db-button" type="submit">Functional</button>'===e?"check":"copy",variant:"ghost",onClick:()=>{a('<button class="db-button" type="submit">Functional</button>'),navigator.clipboard.writeText('<button class="db-button" type="submit">Functional</button>')},children:"Copy code"})]}),(0,L.jsxs)(eJ.A,{children:[(0,L.jsx)(E.A,{content:"external",target:"_blank",href:"how-to-use?current=react",children:"How to use this in react"}),(0,L.jsx)("pre",{children:(0,L.jsx)("code",{className:"hljs language-tsx",children:"<DBButton>Functional</DBButton>"})}),(0,L.jsx)(ea.A,{className:"copy-button",noText:!0,icon:"<DBButton>Functional</DBButton>"===e?"check":"copy",variant:"ghost",onClick:()=>{a("<DBButton>Functional</DBButton>"),navigator.clipboard.writeText("<DBButton>Functional</DBButton>")},children:"Copy code"})]}),(0,L.jsxs)(eJ.A,{children:[(0,L.jsx)(E.A,{content:"external",target:"_blank",href:"how-to-use?current=vue",children:"How to use this in vue"}),(0,L.jsx)("pre",{children:(0,L.jsx)("code",{className:"hljs language-tsx",children:`<DBButton>
 Functional
@@ -7977,7 +8025,7 @@ Inside
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-6515411220926158"
+                    id="sub-navigation-47506054522481755"
                   ></menu>
                 </li>
                 <li
@@ -7996,7 +8044,7 @@ Inside
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-49652991561213167"
+                    id="sub-navigation-2929796615510557"
                   ></menu>
                 </li>
               </menu>
@@ -8056,7 +8104,7 @@ Inside
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-16068279042723477"
+                id="sub-navigation-48158112626306415"
               ></menu>
             </li>
             <li
@@ -8075,7 +8123,7 @@ Inside
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-6830589738143305"
+                id="sub-navigation-7341844494145183"
               ></menu>
             </li>
           </menu>
@@ -8153,7 +8201,7 @@ Inside
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-6515411220926158"
+                    id="sub-navigation-47506054522481755"
                   ></menu>
                 </li>
                 <li
@@ -8172,7 +8220,7 @@ Inside
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-49652991561213167"
+                    id="sub-navigation-2929796615510557"
                   ></menu>
                 </li>
               </menu>
@@ -8232,7 +8280,7 @@ Inside
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-16068279042723477"
+                id="sub-navigation-48158112626306415"
               ></menu>
             </li>
             <li
@@ -8251,7 +8299,7 @@ Inside
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-6830589738143305"
+                id="sub-navigation-7341844494145183"
               ></menu>
             </li>
           </menu>
@@ -8329,7 +8377,7 @@ Inside
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-6515411220926158"
+                    id="sub-navigation-47506054522481755"
                   ></menu>
                 </li>
                 <li
@@ -8348,7 +8396,7 @@ Inside
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-49652991561213167"
+                    id="sub-navigation-2929796615510557"
                   ></menu>
                 </li>
               </menu>
@@ -8408,7 +8456,7 @@ Inside
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-16068279042723477"
+                id="sub-navigation-48158112626306415"
               ></menu>
             </li>
             <li
@@ -8427,7 +8475,7 @@ Inside
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-6830589738143305"
+                id="sub-navigation-7341844494145183"
               ></menu>
             </li>
           </menu>
@@ -8505,7 +8553,7 @@ Inside
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-6515411220926158"
+                    id="sub-navigation-47506054522481755"
                   ></menu>
                 </li>
                 <li
@@ -8524,7 +8572,7 @@ Inside
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-49652991561213167"
+                    id="sub-navigation-2929796615510557"
                   ></menu>
                 </li>
               </menu>
@@ -8584,7 +8632,7 @@ Inside
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-16068279042723477"
+                id="sub-navigation-48158112626306415"
               ></menu>
             </li>
             <li
@@ -8603,7 +8651,7 @@ Inside
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-6830589738143305"
+                id="sub-navigation-7341844494145183"
               ></menu>
             </li>
           </menu>
@@ -8977,7 +9025,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-8254630959995483"
+                    id="sub-navigation-4613587514625024"
                   ></menu>
                 </li>
                 <li
@@ -8996,7 +9044,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-8494250350607535"
+                    id="sub-navigation-348136732804077"
                   ></menu>
                 </li>
               </menu>
@@ -9056,7 +9104,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-8898121015679058"
+                id="sub-navigation-5920824672035012"
               ></menu>
             </li>
             <li
@@ -9075,7 +9123,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-4220022366809624"
+                id="sub-navigation-8422651407656547"
               ></menu>
             </li>
           </menu>
@@ -9153,7 +9201,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-8254630959995483"
+                    id="sub-navigation-4613587514625024"
                   ></menu>
                 </li>
                 <li
@@ -9172,7 +9220,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-8494250350607535"
+                    id="sub-navigation-348136732804077"
                   ></menu>
                 </li>
               </menu>
@@ -9232,7 +9280,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-8898121015679058"
+                id="sub-navigation-5920824672035012"
               ></menu>
             </li>
             <li
@@ -9251,7 +9299,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-4220022366809624"
+                id="sub-navigation-8422651407656547"
               ></menu>
             </li>
           </menu>
@@ -9329,7 +9377,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-8254630959995483"
+                    id="sub-navigation-4613587514625024"
                   ></menu>
                 </li>
                 <li
@@ -9348,7 +9396,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-8494250350607535"
+                    id="sub-navigation-348136732804077"
                   ></menu>
                 </li>
               </menu>
@@ -9408,7 +9456,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-8898121015679058"
+                id="sub-navigation-5920824672035012"
               ></menu>
             </li>
             <li
@@ -9427,7 +9475,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-4220022366809624"
+                id="sub-navigation-8422651407656547"
               ></menu>
             </li>
           </menu>
@@ -9505,7 +9553,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-8254630959995483"
+                    id="sub-navigation-4613587514625024"
                   ></menu>
                 </li>
                 <li
@@ -9524,7 +9572,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-8494250350607535"
+                    id="sub-navigation-348136732804077"
                   ></menu>
                 </li>
               </menu>
@@ -9584,7 +9632,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-8898121015679058"
+                id="sub-navigation-5920824672035012"
               ></menu>
             </li>
             <li
@@ -9603,7 +9651,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-4220022366809624"
+                id="sub-navigation-8422651407656547"
               ></menu>
             </li>
           </menu>
@@ -9977,7 +10025,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-09519584086303934"
+                    id="sub-navigation-19019263271969722"
                   ></menu>
                 </li>
                 <li
@@ -9996,7 +10044,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-18059436717478472"
+                    id="sub-navigation-3906462803421412"
                   ></menu>
                 </li>
               </menu>
@@ -10056,7 +10104,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-5098664410819522"
+                id="sub-navigation-9336088577725037"
               ></menu>
             </li>
             <li
@@ -10075,7 +10123,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-8065522177050141"
+                id="sub-navigation-7068960964515562"
               ></menu>
             </li>
           </menu>
@@ -10153,7 +10201,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-09519584086303934"
+                    id="sub-navigation-19019263271969722"
                   ></menu>
                 </li>
                 <li
@@ -10172,7 +10220,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-18059436717478472"
+                    id="sub-navigation-3906462803421412"
                   ></menu>
                 </li>
               </menu>
@@ -10232,7 +10280,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-5098664410819522"
+                id="sub-navigation-9336088577725037"
               ></menu>
             </li>
             <li
@@ -10251,7 +10299,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-8065522177050141"
+                id="sub-navigation-7068960964515562"
               ></menu>
             </li>
           </menu>
@@ -10329,7 +10377,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-09519584086303934"
+                    id="sub-navigation-19019263271969722"
                   ></menu>
                 </li>
                 <li
@@ -10348,7 +10396,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-18059436717478472"
+                    id="sub-navigation-3906462803421412"
                   ></menu>
                 </li>
               </menu>
@@ -10408,7 +10456,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-5098664410819522"
+                id="sub-navigation-9336088577725037"
               ></menu>
             </li>
             <li
@@ -10427,7 +10475,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-8065522177050141"
+                id="sub-navigation-7068960964515562"
               ></menu>
             </li>
           </menu>
@@ -10505,7 +10553,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-09519584086303934"
+                    id="sub-navigation-19019263271969722"
                   ></menu>
                 </li>
                 <li
@@ -10524,7 +10572,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-18059436717478472"
+                    id="sub-navigation-3906462803421412"
                   ></menu>
                 </li>
               </menu>
@@ -10584,7 +10632,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-5098664410819522"
+                id="sub-navigation-9336088577725037"
               ></menu>
             </li>
             <li
@@ -10603,7 +10651,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-8065522177050141"
+                id="sub-navigation-7068960964515562"
               ></menu>
             </li>
           </menu>
@@ -10977,7 +11025,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-5811433606891563"
+                    id="sub-navigation-031339326848286"
                   ></menu>
                 </li>
                 <li
@@ -10996,7 +11044,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-8488844055385345"
+                    id="sub-navigation-7894423561706695"
                   ></menu>
                 </li>
               </menu>
@@ -11056,7 +11104,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-4472830589305673"
+                id="sub-navigation-9354050370964954"
               ></menu>
             </li>
             <li
@@ -11075,7 +11123,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-555382746265627"
+                id="sub-navigation-7026437029966749"
               ></menu>
             </li>
           </menu>
@@ -11153,7 +11201,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-5811433606891563"
+                    id="sub-navigation-031339326848286"
                   ></menu>
                 </li>
                 <li
@@ -11172,7 +11220,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-8488844055385345"
+                    id="sub-navigation-7894423561706695"
                   ></menu>
                 </li>
               </menu>
@@ -11232,7 +11280,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-4472830589305673"
+                id="sub-navigation-9354050370964954"
               ></menu>
             </li>
             <li
@@ -11251,7 +11299,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-555382746265627"
+                id="sub-navigation-7026437029966749"
               ></menu>
             </li>
           </menu>
@@ -11329,7 +11377,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-5811433606891563"
+                    id="sub-navigation-031339326848286"
                   ></menu>
                 </li>
                 <li
@@ -11348,7 +11396,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-8488844055385345"
+                    id="sub-navigation-7894423561706695"
                   ></menu>
                 </li>
               </menu>
@@ -11408,7 +11456,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-4472830589305673"
+                id="sub-navigation-9354050370964954"
               ></menu>
             </li>
             <li
@@ -11427,7 +11475,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-555382746265627"
+                id="sub-navigation-7026437029966749"
               ></menu>
             </li>
           </menu>
@@ -11505,7 +11553,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-5811433606891563"
+                    id="sub-navigation-031339326848286"
                   ></menu>
                 </li>
                 <li
@@ -11524,7 +11572,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-8488844055385345"
+                    id="sub-navigation-7894423561706695"
                   ></menu>
                 </li>
               </menu>
@@ -11584,7 +11632,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-4472830589305673"
+                id="sub-navigation-9354050370964954"
               ></menu>
             </li>
             <li
@@ -11603,7 +11651,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-555382746265627"
+                id="sub-navigation-7026437029966749"
               ></menu>
             </li>
           </menu>
@@ -11977,7 +12025,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-6497500366436878"
+                    id="sub-navigation-5779758465375163"
                   ></menu>
                 </li>
                 <li
@@ -11996,7 +12044,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-2688470392761828"
+                    id="sub-navigation-7267778637328892"
                   ></menu>
                 </li>
               </menu>
@@ -12056,7 +12104,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-45406825408380813"
+                id="sub-navigation-3457257083960783"
               ></menu>
             </li>
             <li
@@ -12075,7 +12123,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-2120909721806581"
+                id="sub-navigation-4820339204334637"
               ></menu>
             </li>
           </menu>
@@ -12153,7 +12201,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-6497500366436878"
+                    id="sub-navigation-5779758465375163"
                   ></menu>
                 </li>
                 <li
@@ -12172,7 +12220,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-2688470392761828"
+                    id="sub-navigation-7267778637328892"
                   ></menu>
                 </li>
               </menu>
@@ -12232,7 +12280,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-45406825408380813"
+                id="sub-navigation-3457257083960783"
               ></menu>
             </li>
             <li
@@ -12251,7 +12299,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-2120909721806581"
+                id="sub-navigation-4820339204334637"
               ></menu>
             </li>
           </menu>
@@ -12329,7 +12377,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-6497500366436878"
+                    id="sub-navigation-5779758465375163"
                   ></menu>
                 </li>
                 <li
@@ -12348,7 +12396,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-2688470392761828"
+                    id="sub-navigation-7267778637328892"
                   ></menu>
                 </li>
               </menu>
@@ -12408,7 +12456,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-45406825408380813"
+                id="sub-navigation-3457257083960783"
               ></menu>
             </li>
             <li
@@ -12427,7 +12475,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-2120909721806581"
+                id="sub-navigation-4820339204334637"
               ></menu>
             </li>
           </menu>
@@ -12505,7 +12553,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-6497500366436878"
+                    id="sub-navigation-5779758465375163"
                   ></menu>
                 </li>
                 <li
@@ -12524,7 +12572,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-2688470392761828"
+                    id="sub-navigation-7267778637328892"
                   ></menu>
                 </li>
               </menu>
@@ -12584,7 +12632,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-45406825408380813"
+                id="sub-navigation-3457257083960783"
               ></menu>
             </li>
             <li
@@ -12603,7 +12651,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-2120909721806581"
+                id="sub-navigation-4820339204334637"
               ></menu>
             </li>
           </menu>
@@ -12981,7 +13029,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-8550097460820548"
+                    id="sub-navigation-09883752216878094"
                   ></menu>
                 </li>
                 <li
@@ -13000,7 +13048,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-31983694308075983"
+                    id="sub-navigation-7157044210829325"
                   ></menu>
                 </li>
               </menu>
@@ -13060,7 +13108,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-36529956316597945"
+                id="sub-navigation-41352615117195957"
               ></menu>
             </li>
             <li
@@ -13079,7 +13127,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-3233573877425492"
+                id="sub-navigation-0701783667680389"
               ></menu>
             </li>
           </menu>
@@ -13157,7 +13205,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-8550097460820548"
+                    id="sub-navigation-09883752216878094"
                   ></menu>
                 </li>
                 <li
@@ -13176,7 +13224,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-31983694308075983"
+                    id="sub-navigation-7157044210829325"
                   ></menu>
                 </li>
               </menu>
@@ -13236,7 +13284,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-36529956316597945"
+                id="sub-navigation-41352615117195957"
               ></menu>
             </li>
             <li
@@ -13255,7 +13303,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-3233573877425492"
+                id="sub-navigation-0701783667680389"
               ></menu>
             </li>
           </menu>
@@ -13333,7 +13381,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-8550097460820548"
+                    id="sub-navigation-09883752216878094"
                   ></menu>
                 </li>
                 <li
@@ -13352,7 +13400,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-31983694308075983"
+                    id="sub-navigation-7157044210829325"
                   ></menu>
                 </li>
               </menu>
@@ -13412,7 +13460,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-36529956316597945"
+                id="sub-navigation-41352615117195957"
               ></menu>
             </li>
             <li
@@ -13431,7 +13479,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-3233573877425492"
+                id="sub-navigation-0701783667680389"
               ></menu>
             </li>
           </menu>
@@ -13509,7 +13557,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-8550097460820548"
+                    id="sub-navigation-09883752216878094"
                   ></menu>
                 </li>
                 <li
@@ -13528,7 +13576,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-31983694308075983"
+                    id="sub-navigation-7157044210829325"
                   ></menu>
                 </li>
               </menu>
@@ -13588,7 +13636,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-36529956316597945"
+                id="sub-navigation-41352615117195957"
               ></menu>
             </li>
             <li
@@ -13607,7 +13655,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-3233573877425492"
+                id="sub-navigation-0701783667680389"
               ></menu>
             </li>
           </menu>
@@ -13985,7 +14033,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-1700240544841799"
+                    id="sub-navigation-9672594739631756"
                   ></menu>
                 </li>
                 <li
@@ -14004,7 +14052,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-9637397005984045"
+                    id="sub-navigation-8203064462114603"
                   ></menu>
                 </li>
               </menu>
@@ -14064,7 +14112,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-8018900232742951"
+                id="sub-navigation-3594166610335101"
               ></menu>
             </li>
             <li
@@ -14083,7 +14131,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-8194513219507168"
+                id="sub-navigation-8871347228526124"
               ></menu>
             </li>
           </menu>
@@ -14161,7 +14209,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-1700240544841799"
+                    id="sub-navigation-9672594739631756"
                   ></menu>
                 </li>
                 <li
@@ -14180,7 +14228,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-9637397005984045"
+                    id="sub-navigation-8203064462114603"
                   ></menu>
                 </li>
               </menu>
@@ -14240,7 +14288,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-8018900232742951"
+                id="sub-navigation-3594166610335101"
               ></menu>
             </li>
             <li
@@ -14259,7 +14307,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-8194513219507168"
+                id="sub-navigation-8871347228526124"
               ></menu>
             </li>
           </menu>
@@ -14337,7 +14385,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-1700240544841799"
+                    id="sub-navigation-9672594739631756"
                   ></menu>
                 </li>
                 <li
@@ -14356,7 +14404,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-9637397005984045"
+                    id="sub-navigation-8203064462114603"
                   ></menu>
                 </li>
               </menu>
@@ -14416,7 +14464,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-8018900232742951"
+                id="sub-navigation-3594166610335101"
               ></menu>
             </li>
             <li
@@ -14435,7 +14483,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-8194513219507168"
+                id="sub-navigation-8871347228526124"
               ></menu>
             </li>
           </menu>
@@ -14513,7 +14561,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-1700240544841799"
+                    id="sub-navigation-9672594739631756"
                   ></menu>
                 </li>
                 <li
@@ -14532,7 +14580,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-9637397005984045"
+                    id="sub-navigation-8203064462114603"
                   ></menu>
                 </li>
               </menu>
@@ -14592,7 +14640,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-8018900232742951"
+                id="sub-navigation-3594166610335101"
               ></menu>
             </li>
             <li
@@ -14611,7 +14659,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-8194513219507168"
+                id="sub-navigation-8871347228526124"
               ></menu>
             </li>
           </menu>
@@ -14985,7 +15033,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-705874759811414"
+                    id="sub-navigation-9081334282578353"
                   ></menu>
                 </li>
                 <li
@@ -15004,7 +15052,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-8655019667385302"
+                    id="sub-navigation-950517173953344"
                   ></menu>
                 </li>
               </menu>
@@ -15064,7 +15112,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-8962139544524889"
+                id="sub-navigation-17107179057558553"
               ></menu>
             </li>
             <li
@@ -15083,7 +15131,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-861124025914804"
+                id="sub-navigation-19704722377269945"
               ></menu>
             </li>
           </menu>
@@ -15161,7 +15209,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-705874759811414"
+                    id="sub-navigation-9081334282578353"
                   ></menu>
                 </li>
                 <li
@@ -15180,7 +15228,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-8655019667385302"
+                    id="sub-navigation-950517173953344"
                   ></menu>
                 </li>
               </menu>
@@ -15240,7 +15288,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-8962139544524889"
+                id="sub-navigation-17107179057558553"
               ></menu>
             </li>
             <li
@@ -15259,7 +15307,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-861124025914804"
+                id="sub-navigation-19704722377269945"
               ></menu>
             </li>
           </menu>
@@ -15337,7 +15385,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-705874759811414"
+                    id="sub-navigation-9081334282578353"
                   ></menu>
                 </li>
                 <li
@@ -15356,7 +15404,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-8655019667385302"
+                    id="sub-navigation-950517173953344"
                   ></menu>
                 </li>
               </menu>
@@ -15416,7 +15464,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-8962139544524889"
+                id="sub-navigation-17107179057558553"
               ></menu>
             </li>
             <li
@@ -15435,7 +15483,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-861124025914804"
+                id="sub-navigation-19704722377269945"
               ></menu>
             </li>
           </menu>
@@ -15513,7 +15561,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-705874759811414"
+                    id="sub-navigation-9081334282578353"
                   ></menu>
                 </li>
                 <li
@@ -15532,7 +15580,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-8655019667385302"
+                    id="sub-navigation-950517173953344"
                   ></menu>
                 </li>
               </menu>
@@ -15592,7 +15640,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-8962139544524889"
+                id="sub-navigation-17107179057558553"
               ></menu>
             </li>
             <li
@@ -15611,7 +15659,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-861124025914804"
+                id="sub-navigation-19704722377269945"
               ></menu>
             </li>
           </menu>
@@ -15989,7 +16037,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-8231401348703836"
+                    id="sub-navigation-6338684242215042"
                   ></menu>
                 </li>
                 <li
@@ -16008,7 +16056,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-6019885040882144"
+                    id="sub-navigation-990674189131868"
                   ></menu>
                 </li>
               </menu>
@@ -16068,7 +16116,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-4670739468140891"
+                id="sub-navigation-5186997480055864"
               ></menu>
             </li>
             <li
@@ -16087,7 +16135,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-22657440208685475"
+                id="sub-navigation-5573682747685782"
               ></menu>
             </li>
           </menu>
@@ -16165,7 +16213,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-8231401348703836"
+                    id="sub-navigation-6338684242215042"
                   ></menu>
                 </li>
                 <li
@@ -16184,7 +16232,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-6019885040882144"
+                    id="sub-navigation-990674189131868"
                   ></menu>
                 </li>
               </menu>
@@ -16244,7 +16292,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-4670739468140891"
+                id="sub-navigation-5186997480055864"
               ></menu>
             </li>
             <li
@@ -16263,7 +16311,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-22657440208685475"
+                id="sub-navigation-5573682747685782"
               ></menu>
             </li>
           </menu>
@@ -16341,7 +16389,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-8231401348703836"
+                    id="sub-navigation-6338684242215042"
                   ></menu>
                 </li>
                 <li
@@ -16360,7 +16408,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-6019885040882144"
+                    id="sub-navigation-990674189131868"
                   ></menu>
                 </li>
               </menu>
@@ -16420,7 +16468,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-4670739468140891"
+                id="sub-navigation-5186997480055864"
               ></menu>
             </li>
             <li
@@ -16439,7 +16487,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-22657440208685475"
+                id="sub-navigation-5573682747685782"
               ></menu>
             </li>
           </menu>
@@ -16517,7 +16565,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-8231401348703836"
+                    id="sub-navigation-6338684242215042"
                   ></menu>
                 </li>
                 <li
@@ -16536,7 +16584,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-6019885040882144"
+                    id="sub-navigation-990674189131868"
                   ></menu>
                 </li>
               </menu>
@@ -16596,7 +16644,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-4670739468140891"
+                id="sub-navigation-5186997480055864"
               ></menu>
             </li>
             <li
@@ -16615,7 +16663,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-22657440208685475"
+                id="sub-navigation-5573682747685782"
               ></menu>
             </li>
           </menu>
@@ -17001,7 +17049,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-02186671274062857"
+                    id="sub-navigation-614273260884434"
                   ></menu>
                 </li>
                 <li
@@ -17020,7 +17068,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-17724979807446195"
+                    id="sub-navigation-6636835010895964"
                   ></menu>
                 </li>
               </menu>
@@ -17080,7 +17128,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-27555446999684896"
+                id="sub-navigation-8307605833006866"
               ></menu>
             </li>
             <li
@@ -17099,7 +17147,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-9441427711169592"
+                id="sub-navigation-6843408134215814"
               ></menu>
             </li>
           </menu>
@@ -17177,7 +17225,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-02186671274062857"
+                    id="sub-navigation-614273260884434"
                   ></menu>
                 </li>
                 <li
@@ -17196,7 +17244,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-17724979807446195"
+                    id="sub-navigation-6636835010895964"
                   ></menu>
                 </li>
               </menu>
@@ -17256,7 +17304,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-27555446999684896"
+                id="sub-navigation-8307605833006866"
               ></menu>
             </li>
             <li
@@ -17275,7 +17323,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-9441427711169592"
+                id="sub-navigation-6843408134215814"
               ></menu>
             </li>
           </menu>
@@ -17353,7 +17401,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-02186671274062857"
+                    id="sub-navigation-614273260884434"
                   ></menu>
                 </li>
                 <li
@@ -17372,7 +17420,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-17724979807446195"
+                    id="sub-navigation-6636835010895964"
                   ></menu>
                 </li>
               </menu>
@@ -17432,7 +17480,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-27555446999684896"
+                id="sub-navigation-8307605833006866"
               ></menu>
             </li>
             <li
@@ -17451,7 +17499,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-9441427711169592"
+                id="sub-navigation-6843408134215814"
               ></menu>
             </li>
           </menu>
@@ -17529,7 +17577,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-02186671274062857"
+                    id="sub-navigation-614273260884434"
                   ></menu>
                 </li>
                 <li
@@ -17548,7 +17596,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-17724979807446195"
+                    id="sub-navigation-6636835010895964"
                   ></menu>
                 </li>
               </menu>
@@ -17608,7 +17656,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-27555446999684896"
+                id="sub-navigation-8307605833006866"
               ></menu>
             </li>
             <li
@@ -17627,7 +17675,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-9441427711169592"
+                id="sub-navigation-6843408134215814"
               ></menu>
             </li>
           </menu>
@@ -18013,7 +18061,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-9054136653148881"
+                    id="sub-navigation-945817773109273"
                   ></menu>
                 </li>
                 <li
@@ -18032,7 +18080,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-02478111541565431"
+                    id="sub-navigation-46875490484231563"
                   ></menu>
                 </li>
               </menu>
@@ -18092,7 +18140,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-09830855984900011"
+                id="sub-navigation-07471353980036632"
               ></menu>
             </li>
             <li
@@ -18111,7 +18159,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-5926800411168606"
+                id="sub-navigation-7731027224981921"
               ></menu>
             </li>
           </menu>
@@ -18189,7 +18237,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-9054136653148881"
+                    id="sub-navigation-945817773109273"
                   ></menu>
                 </li>
                 <li
@@ -18208,7 +18256,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-02478111541565431"
+                    id="sub-navigation-46875490484231563"
                   ></menu>
                 </li>
               </menu>
@@ -18268,7 +18316,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-09830855984900011"
+                id="sub-navigation-07471353980036632"
               ></menu>
             </li>
             <li
@@ -18287,7 +18335,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-5926800411168606"
+                id="sub-navigation-7731027224981921"
               ></menu>
             </li>
           </menu>
@@ -18365,7 +18413,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-9054136653148881"
+                    id="sub-navigation-945817773109273"
                   ></menu>
                 </li>
                 <li
@@ -18384,7 +18432,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-02478111541565431"
+                    id="sub-navigation-46875490484231563"
                   ></menu>
                 </li>
               </menu>
@@ -18444,7 +18492,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-09830855984900011"
+                id="sub-navigation-07471353980036632"
               ></menu>
             </li>
             <li
@@ -18463,7 +18511,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-5926800411168606"
+                id="sub-navigation-7731027224981921"
               ></menu>
             </li>
           </menu>
@@ -18541,7 +18589,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-9054136653148881"
+                    id="sub-navigation-945817773109273"
                   ></menu>
                 </li>
                 <li
@@ -18560,7 +18608,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-02478111541565431"
+                    id="sub-navigation-46875490484231563"
                   ></menu>
                 </li>
               </menu>
@@ -18620,7 +18668,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-09830855984900011"
+                id="sub-navigation-07471353980036632"
               ></menu>
             </li>
             <li
@@ -18639,7 +18687,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-5926800411168606"
+                id="sub-navigation-7731027224981921"
               ></menu>
             </li>
           </menu>
@@ -19025,7 +19073,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-6664796043431932"
+                    id="sub-navigation-662828743176176"
                   ></menu>
                 </li>
                 <li
@@ -19044,7 +19092,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-03229215247094097"
+                    id="sub-navigation-7312123586701064"
                   ></menu>
                 </li>
               </menu>
@@ -19104,7 +19152,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-3556827278015414"
+                id="sub-navigation-45360224251783865"
               ></menu>
             </li>
             <li
@@ -19123,7 +19171,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-8148499148962939"
+                id="sub-navigation-561973482812195"
               ></menu>
             </li>
           </menu>
@@ -19201,7 +19249,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-6664796043431932"
+                    id="sub-navigation-662828743176176"
                   ></menu>
                 </li>
                 <li
@@ -19220,7 +19268,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-03229215247094097"
+                    id="sub-navigation-7312123586701064"
                   ></menu>
                 </li>
               </menu>
@@ -19280,7 +19328,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-3556827278015414"
+                id="sub-navigation-45360224251783865"
               ></menu>
             </li>
             <li
@@ -19299,7 +19347,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-8148499148962939"
+                id="sub-navigation-561973482812195"
               ></menu>
             </li>
           </menu>
@@ -19377,7 +19425,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-6664796043431932"
+                    id="sub-navigation-662828743176176"
                   ></menu>
                 </li>
                 <li
@@ -19396,7 +19444,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-03229215247094097"
+                    id="sub-navigation-7312123586701064"
                   ></menu>
                 </li>
               </menu>
@@ -19456,7 +19504,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-3556827278015414"
+                id="sub-navigation-45360224251783865"
               ></menu>
             </li>
             <li
@@ -19475,7 +19523,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-8148499148962939"
+                id="sub-navigation-561973482812195"
               ></menu>
             </li>
           </menu>
@@ -19553,7 +19601,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-6664796043431932"
+                    id="sub-navigation-662828743176176"
                   ></menu>
                 </li>
                 <li
@@ -19572,7 +19620,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-03229215247094097"
+                    id="sub-navigation-7312123586701064"
                   ></menu>
                 </li>
               </menu>
@@ -19632,7 +19680,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-3556827278015414"
+                id="sub-navigation-45360224251783865"
               ></menu>
             </li>
             <li
@@ -19651,7 +19699,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-8148499148962939"
+                id="sub-navigation-561973482812195"
               ></menu>
             </li>
           </menu>
@@ -34395,7 +34443,7 @@ Centered
   <db-tab-panel> Tab Panel 2 </db-tab-panel>
   <db-tab-panel> Tab Panel 3 </db-tab-panel>
 </db-tabs>`)},children:"Copy code"})]}),(0,L.jsxs)(eJ.A,{children:[(0,L.jsx)(E.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,L.jsx)("pre",{children:(0,L.jsx)("code",{className:"hljs language-html",children:`<div
-  id="tabs-633594424265306"
+  id="tabs-9936357324418502"
   class="db-tabs"
   data-alignment="start"
   data-width="auto"
@@ -34423,7 +34471,7 @@ Centered
   <section role="tabpanel" class="db-tab-panel">Tab Panel 2</section>
   <section role="tabpanel" class="db-tab-panel">Tab Panel 3</section>
 </div>`})}),(0,L.jsx)(ea.A,{className:"copy-button",noText:!0,icon:e===`<div
-  id="tabs-633594424265306"
+  id="tabs-9936357324418502"
   class="db-tabs"
   data-alignment="start"
   data-width="auto"
@@ -34451,7 +34499,7 @@ Centered
   <section role="tabpanel" class="db-tab-panel">Tab Panel 2</section>
   <section role="tabpanel" class="db-tab-panel">Tab Panel 3</section>
 </div>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<div
-  id="tabs-633594424265306"
+  id="tabs-9936357324418502"
   class="db-tabs"
   data-alignment="start"
   data-width="auto"
@@ -34479,7 +34527,7 @@ Centered
   <section role="tabpanel" class="db-tab-panel">Tab Panel 2</section>
   <section role="tabpanel" class="db-tab-panel">Tab Panel 3</section>
 </div>`),navigator.clipboard.writeText(`<div
-  id="tabs-633594424265306"
+  id="tabs-9936357324418502"
   class="db-tabs"
   data-alignment="start"
   data-width="auto"
@@ -34663,7 +34711,7 @@ Tab Panel 3
   <db-tab-panel> Tab Panel 2 </db-tab-panel>
   <db-tab-panel> Tab Panel 3 </db-tab-panel>
 </db-tabs>`)},children:"Copy code"})]}),(0,L.jsxs)(eJ.A,{children:[(0,L.jsx)(E.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,L.jsx)("pre",{children:(0,L.jsx)("code",{className:"hljs language-html",children:`<div
-  id="tabs-41946398679171004"
+  id="tabs-016729714416019337"
   class="db-tabs"
   data-alignment="start"
   data-width="auto"
@@ -34691,7 +34739,7 @@ Tab Panel 3
   <section role="tabpanel" class="db-tab-panel">Tab Panel 2</section>
   <section role="tabpanel" class="db-tab-panel">Tab Panel 3</section>
 </div>`})}),(0,L.jsx)(ea.A,{className:"copy-button",noText:!0,icon:e===`<div
-  id="tabs-41946398679171004"
+  id="tabs-016729714416019337"
   class="db-tabs"
   data-alignment="start"
   data-width="auto"
@@ -34719,7 +34767,7 @@ Tab Panel 3
   <section role="tabpanel" class="db-tab-panel">Tab Panel 2</section>
   <section role="tabpanel" class="db-tab-panel">Tab Panel 3</section>
 </div>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<div
-  id="tabs-41946398679171004"
+  id="tabs-016729714416019337"
   class="db-tabs"
   data-alignment="start"
   data-width="auto"
@@ -34747,7 +34795,7 @@ Tab Panel 3
   <section role="tabpanel" class="db-tab-panel">Tab Panel 2</section>
   <section role="tabpanel" class="db-tab-panel">Tab Panel 3</section>
 </div>`),navigator.clipboard.writeText(`<div
-  id="tabs-41946398679171004"
+  id="tabs-016729714416019337"
   class="db-tabs"
   data-alignment="start"
   data-width="auto"
@@ -34931,7 +34979,7 @@ Tab Panel 3
   <db-tab-panel> Tab Panel 2 </db-tab-panel>
   <db-tab-panel> Tab Panel 3 </db-tab-panel>
 </db-tabs>`)},children:"Copy code"})]}),(0,L.jsxs)(eJ.A,{children:[(0,L.jsx)(E.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,L.jsx)("pre",{children:(0,L.jsx)("code",{className:"hljs language-html",children:`<div
-  id="tabs-5533190094665152"
+  id="tabs-2628372578760664"
   class="db-tabs"
   data-alignment="start"
   data-width="auto"
@@ -34959,7 +35007,7 @@ Tab Panel 3
   <section role="tabpanel" class="db-tab-panel">Tab Panel 2</section>
   <section role="tabpanel" class="db-tab-panel">Tab Panel 3</section>
 </div>`})}),(0,L.jsx)(ea.A,{className:"copy-button",noText:!0,icon:e===`<div
-  id="tabs-5533190094665152"
+  id="tabs-2628372578760664"
   class="db-tabs"
   data-alignment="start"
   data-width="auto"
@@ -34987,7 +35035,7 @@ Tab Panel 3
   <section role="tabpanel" class="db-tab-panel">Tab Panel 2</section>
   <section role="tabpanel" class="db-tab-panel">Tab Panel 3</section>
 </div>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<div
-  id="tabs-5533190094665152"
+  id="tabs-2628372578760664"
   class="db-tabs"
   data-alignment="start"
   data-width="auto"
@@ -35015,7 +35063,7 @@ Tab Panel 3
   <section role="tabpanel" class="db-tab-panel">Tab Panel 2</section>
   <section role="tabpanel" class="db-tab-panel">Tab Panel 3</section>
 </div>`),navigator.clipboard.writeText(`<div
-  id="tabs-5533190094665152"
+  id="tabs-2628372578760664"
   class="db-tabs"
   data-alignment="start"
   data-width="auto"
@@ -35199,7 +35247,7 @@ Tab Panel 3
   <db-tab-panel> Tab Panel 2 </db-tab-panel>
   <db-tab-panel> Tab Panel 3 </db-tab-panel>
 </db-tabs>`)},children:"Copy code"})]}),(0,L.jsxs)(eJ.A,{children:[(0,L.jsx)(E.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,L.jsx)("pre",{children:(0,L.jsx)("code",{className:"hljs language-html",children:`<div
-  id="tabs-7206770622753184"
+  id="tabs-06909565194161094"
   class="db-tabs"
   data-orientation="horizontal"
   data-alignment="start"
@@ -35228,7 +35276,7 @@ Tab Panel 3
   <section role="tabpanel" class="db-tab-panel">Tab Panel 2</section>
   <section role="tabpanel" class="db-tab-panel">Tab Panel 3</section>
 </div>`})}),(0,L.jsx)(ea.A,{className:"copy-button",noText:!0,icon:e===`<div
-  id="tabs-7206770622753184"
+  id="tabs-06909565194161094"
   class="db-tabs"
   data-orientation="horizontal"
   data-alignment="start"
@@ -35257,7 +35305,7 @@ Tab Panel 3
   <section role="tabpanel" class="db-tab-panel">Tab Panel 2</section>
   <section role="tabpanel" class="db-tab-panel">Tab Panel 3</section>
 </div>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<div
-  id="tabs-7206770622753184"
+  id="tabs-06909565194161094"
   class="db-tabs"
   data-orientation="horizontal"
   data-alignment="start"
@@ -35286,7 +35334,7 @@ Tab Panel 3
   <section role="tabpanel" class="db-tab-panel">Tab Panel 2</section>
   <section role="tabpanel" class="db-tab-panel">Tab Panel 3</section>
 </div>`),navigator.clipboard.writeText(`<div
-  id="tabs-7206770622753184"
+  id="tabs-06909565194161094"
   class="db-tabs"
   data-orientation="horizontal"
   data-alignment="start"
@@ -35471,7 +35519,7 @@ Tab Panel 3
   <db-tab-panel> Tab Panel 2 </db-tab-panel>
   <db-tab-panel> Tab Panel 3 </db-tab-panel>
 </db-tabs>`)},children:"Copy code"})]}),(0,L.jsxs)(eJ.A,{children:[(0,L.jsx)(E.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,L.jsx)("pre",{children:(0,L.jsx)("code",{className:"hljs language-html",children:`<div
-  id="tabs-8252806545307807"
+  id="tabs-3245917567425539"
   class="db-tabs"
   data-orientation="vertical"
   data-alignment="start"
@@ -35500,7 +35548,7 @@ Tab Panel 3
   <section role="tabpanel" class="db-tab-panel">Tab Panel 2</section>
   <section role="tabpanel" class="db-tab-panel">Tab Panel 3</section>
 </div>`})}),(0,L.jsx)(ea.A,{className:"copy-button",noText:!0,icon:e===`<div
-  id="tabs-8252806545307807"
+  id="tabs-3245917567425539"
   class="db-tabs"
   data-orientation="vertical"
   data-alignment="start"
@@ -35529,7 +35577,7 @@ Tab Panel 3
   <section role="tabpanel" class="db-tab-panel">Tab Panel 2</section>
   <section role="tabpanel" class="db-tab-panel">Tab Panel 3</section>
 </div>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<div
-  id="tabs-8252806545307807"
+  id="tabs-3245917567425539"
   class="db-tabs"
   data-orientation="vertical"
   data-alignment="start"
@@ -35558,7 +35606,7 @@ Tab Panel 3
   <section role="tabpanel" class="db-tab-panel">Tab Panel 2</section>
   <section role="tabpanel" class="db-tab-panel">Tab Panel 3</section>
 </div>`),navigator.clipboard.writeText(`<div
-  id="tabs-8252806545307807"
+  id="tabs-3245917567425539"
   class="db-tabs"
   data-orientation="vertical"
   data-alignment="start"
@@ -35743,7 +35791,7 @@ Tab Panel 3
   <db-tab-panel> Tab Panel 2 </db-tab-panel>
   <db-tab-panel> Tab Panel 3 </db-tab-panel>
 </db-tabs>`)},children:"Copy code"})]}),(0,L.jsxs)(eJ.A,{children:[(0,L.jsx)(E.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,L.jsx)("pre",{children:(0,L.jsx)("code",{className:"hljs language-html",children:`<div
-  id="tabs-5219945826584579"
+  id="tabs-16321902506873598"
   class="db-tabs"
   data-alignment="start"
   data-width="auto"
@@ -35771,7 +35819,7 @@ Tab Panel 3
   <section role="tabpanel" class="db-tab-panel">Tab Panel 2</section>
   <section role="tabpanel" class="db-tab-panel">Tab Panel 3</section>
 </div>`})}),(0,L.jsx)(ea.A,{className:"copy-button",noText:!0,icon:e===`<div
-  id="tabs-5219945826584579"
+  id="tabs-16321902506873598"
   class="db-tabs"
   data-alignment="start"
   data-width="auto"
@@ -35799,7 +35847,7 @@ Tab Panel 3
   <section role="tabpanel" class="db-tab-panel">Tab Panel 2</section>
   <section role="tabpanel" class="db-tab-panel">Tab Panel 3</section>
 </div>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<div
-  id="tabs-5219945826584579"
+  id="tabs-16321902506873598"
   class="db-tabs"
   data-alignment="start"
   data-width="auto"
@@ -35827,7 +35875,7 @@ Tab Panel 3
   <section role="tabpanel" class="db-tab-panel">Tab Panel 2</section>
   <section role="tabpanel" class="db-tab-panel">Tab Panel 3</section>
 </div>`),navigator.clipboard.writeText(`<div
-  id="tabs-5219945826584579"
+  id="tabs-16321902506873598"
   class="db-tabs"
   data-alignment="start"
   data-width="auto"
@@ -36011,7 +36059,7 @@ Tab Panel 3
   <db-tab-panel> Tab Panel 2 </db-tab-panel>
   <db-tab-panel> Tab Panel 3 </db-tab-panel>
 </db-tabs>`)},children:"Copy code"})]}),(0,L.jsxs)(eJ.A,{children:[(0,L.jsx)(E.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,L.jsx)("pre",{children:(0,L.jsx)("code",{className:"hljs language-html",children:`<div
-  id="tabs-45593632867699097"
+  id="tabs-013182696680866468"
   class="db-tabs"
   data-alignment="start"
   data-width="full"
@@ -36039,7 +36087,7 @@ Tab Panel 3
   <section role="tabpanel" class="db-tab-panel">Tab Panel 2</section>
   <section role="tabpanel" class="db-tab-panel">Tab Panel 3</section>
 </div>`})}),(0,L.jsx)(ea.A,{className:"copy-button",noText:!0,icon:e===`<div
-  id="tabs-45593632867699097"
+  id="tabs-013182696680866468"
   class="db-tabs"
   data-alignment="start"
   data-width="full"
@@ -36067,7 +36115,7 @@ Tab Panel 3
   <section role="tabpanel" class="db-tab-panel">Tab Panel 2</section>
   <section role="tabpanel" class="db-tab-panel">Tab Panel 3</section>
 </div>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<div
-  id="tabs-45593632867699097"
+  id="tabs-013182696680866468"
   class="db-tabs"
   data-alignment="start"
   data-width="full"
@@ -36095,7 +36143,7 @@ Tab Panel 3
   <section role="tabpanel" class="db-tab-panel">Tab Panel 2</section>
   <section role="tabpanel" class="db-tab-panel">Tab Panel 3</section>
 </div>`),navigator.clipboard.writeText(`<div
-  id="tabs-45593632867699097"
+  id="tabs-013182696680866468"
   class="db-tabs"
   data-alignment="start"
   data-width="full"
@@ -36279,7 +36327,7 @@ Tab Panel 3
   <db-tab-panel> Tab Panel 2 </db-tab-panel>
   <db-tab-panel> Tab Panel 3 </db-tab-panel>
 </db-tabs>`)},children:"Copy code"})]}),(0,L.jsxs)(eJ.A,{children:[(0,L.jsx)(E.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,L.jsx)("pre",{children:(0,L.jsx)("code",{className:"hljs language-html",children:`<div
-  id="tabs-5877269988058044"
+  id="tabs-4703762917739154"
   class="db-tabs"
   data-alignment="center"
   data-width="full"
@@ -36307,7 +36355,7 @@ Tab Panel 3
   <section role="tabpanel" class="db-tab-panel">Tab Panel 2</section>
   <section role="tabpanel" class="db-tab-panel">Tab Panel 3</section>
 </div>`})}),(0,L.jsx)(ea.A,{className:"copy-button",noText:!0,icon:e===`<div
-  id="tabs-5877269988058044"
+  id="tabs-4703762917739154"
   class="db-tabs"
   data-alignment="center"
   data-width="full"
@@ -36335,7 +36383,7 @@ Tab Panel 3
   <section role="tabpanel" class="db-tab-panel">Tab Panel 2</section>
   <section role="tabpanel" class="db-tab-panel">Tab Panel 3</section>
 </div>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<div
-  id="tabs-5877269988058044"
+  id="tabs-4703762917739154"
   class="db-tabs"
   data-alignment="center"
   data-width="full"
@@ -36363,7 +36411,7 @@ Tab Panel 3
   <section role="tabpanel" class="db-tab-panel">Tab Panel 2</section>
   <section role="tabpanel" class="db-tab-panel">Tab Panel 3</section>
 </div>`),navigator.clipboard.writeText(`<div
-  id="tabs-5877269988058044"
+  id="tabs-4703762917739154"
   class="db-tabs"
   data-alignment="center"
   data-width="full"
@@ -36547,7 +36595,7 @@ Tab Panel 3
   <db-tab-panel> Tab Panel 2 </db-tab-panel>
   <db-tab-panel> Tab Panel 3 </db-tab-panel>
 </db-tabs>`)},children:"Copy code"})]}),(0,L.jsxs)(eJ.A,{children:[(0,L.jsx)(E.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,L.jsx)("pre",{children:(0,L.jsx)("code",{className:"hljs language-html",children:`<div
-  id="tabs-14511976014836325"
+  id="tabs-8344412663294104"
   class="db-tabs"
   data-alignment="start"
   data-width="auto"
@@ -36575,7 +36623,7 @@ Tab Panel 3
   <section role="tabpanel" class="db-tab-panel">Tab Panel 2</section>
   <section role="tabpanel" class="db-tab-panel">Tab Panel 3</section>
 </div>`})}),(0,L.jsx)(ea.A,{className:"copy-button",noText:!0,icon:e===`<div
-  id="tabs-14511976014836325"
+  id="tabs-8344412663294104"
   class="db-tabs"
   data-alignment="start"
   data-width="auto"
@@ -36603,7 +36651,7 @@ Tab Panel 3
   <section role="tabpanel" class="db-tab-panel">Tab Panel 2</section>
   <section role="tabpanel" class="db-tab-panel">Tab Panel 3</section>
 </div>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<div
-  id="tabs-14511976014836325"
+  id="tabs-8344412663294104"
   class="db-tabs"
   data-alignment="start"
   data-width="auto"
@@ -36631,7 +36679,7 @@ Tab Panel 3
   <section role="tabpanel" class="db-tab-panel">Tab Panel 2</section>
   <section role="tabpanel" class="db-tab-panel">Tab Panel 3</section>
 </div>`),navigator.clipboard.writeText(`<div
-  id="tabs-14511976014836325"
+  id="tabs-8344412663294104"
   class="db-tabs"
   data-alignment="start"
   data-width="auto"
@@ -36815,7 +36863,7 @@ Tab Panel 3
   <db-tab-panel> Tab Panel 2 </db-tab-panel>
   <db-tab-panel> Tab Panel 3 </db-tab-panel>
 </db-tabs>`)},children:"Copy code"})]}),(0,L.jsxs)(eJ.A,{children:[(0,L.jsx)(E.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,L.jsx)("pre",{children:(0,L.jsx)("code",{className:"hljs language-html",children:`<div
-  id="tabs-1695796960159286"
+  id="tabs-2954579472208463"
   class="db-tabs"
   data-scroll-behavior="arrows"
   data-alignment="start"
@@ -36844,7 +36892,7 @@ Tab Panel 3
   <section role="tabpanel" class="db-tab-panel">Tab Panel 2</section>
   <section role="tabpanel" class="db-tab-panel">Tab Panel 3</section>
 </div>`})}),(0,L.jsx)(ea.A,{className:"copy-button",noText:!0,icon:e===`<div
-  id="tabs-1695796960159286"
+  id="tabs-2954579472208463"
   class="db-tabs"
   data-scroll-behavior="arrows"
   data-alignment="start"
@@ -36873,7 +36921,7 @@ Tab Panel 3
   <section role="tabpanel" class="db-tab-panel">Tab Panel 2</section>
   <section role="tabpanel" class="db-tab-panel">Tab Panel 3</section>
 </div>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<div
-  id="tabs-1695796960159286"
+  id="tabs-2954579472208463"
   class="db-tabs"
   data-scroll-behavior="arrows"
   data-alignment="start"
@@ -36902,7 +36950,7 @@ Tab Panel 3
   <section role="tabpanel" class="db-tab-panel">Tab Panel 2</section>
   <section role="tabpanel" class="db-tab-panel">Tab Panel 3</section>
 </div>`),navigator.clipboard.writeText(`<div
-  id="tabs-1695796960159286"
+  id="tabs-2954579472208463"
   class="db-tabs"
   data-scroll-behavior="arrows"
   data-alignment="start"
@@ -37087,7 +37135,7 @@ Tab Panel 3
   <db-tab-panel> Tab Panel 2 </db-tab-panel>
   <db-tab-panel> Tab Panel 3 </db-tab-panel>
 </db-tabs>`)},children:"Copy code"})]}),(0,L.jsxs)(eJ.A,{children:[(0,L.jsx)(E.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,L.jsx)("pre",{children:(0,L.jsx)("code",{className:"hljs language-html",children:`<div
-  id="tabs-37860243704030905"
+  id="tabs-9918541181045366"
   class="db-tabs"
   data-alignment="start"
   data-width="auto"
@@ -37115,7 +37163,7 @@ Tab Panel 3
   <section role="tabpanel" class="db-tab-panel">Tab Panel 2</section>
   <section role="tabpanel" class="db-tab-panel">Tab Panel 3</section>
 </div>`})}),(0,L.jsx)(ea.A,{className:"copy-button",noText:!0,icon:e===`<div
-  id="tabs-37860243704030905"
+  id="tabs-9918541181045366"
   class="db-tabs"
   data-alignment="start"
   data-width="auto"
@@ -37143,7 +37191,7 @@ Tab Panel 3
   <section role="tabpanel" class="db-tab-panel">Tab Panel 2</section>
   <section role="tabpanel" class="db-tab-panel">Tab Panel 3</section>
 </div>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<div
-  id="tabs-37860243704030905"
+  id="tabs-9918541181045366"
   class="db-tabs"
   data-alignment="start"
   data-width="auto"
@@ -37171,7 +37219,7 @@ Tab Panel 3
   <section role="tabpanel" class="db-tab-panel">Tab Panel 2</section>
   <section role="tabpanel" class="db-tab-panel">Tab Panel 3</section>
 </div>`),navigator.clipboard.writeText(`<div
-  id="tabs-37860243704030905"
+  id="tabs-9918541181045366"
   class="db-tabs"
   data-alignment="start"
   data-width="auto"
@@ -37355,7 +37403,7 @@ Tab Panel 3
   <db-tab-panel> Tab Panel 2 </db-tab-panel>
   <db-tab-panel> Tab Panel 3 </db-tab-panel>
 </db-tabs>`)},children:"Copy code"})]}),(0,L.jsxs)(eJ.A,{children:[(0,L.jsx)(E.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,L.jsx)("pre",{children:(0,L.jsx)("code",{className:"hljs language-html",children:`<div
-  id="tabs-5379849384712663"
+  id="tabs-09531351094332263"
   class="db-tabs"
   data-alignment="start"
   data-width="auto"
@@ -37383,7 +37431,7 @@ Tab Panel 3
   <section role="tabpanel" class="db-tab-panel">Tab Panel 2</section>
   <section role="tabpanel" class="db-tab-panel">Tab Panel 3</section>
 </div>`})}),(0,L.jsx)(ea.A,{className:"copy-button",noText:!0,icon:e===`<div
-  id="tabs-5379849384712663"
+  id="tabs-09531351094332263"
   class="db-tabs"
   data-alignment="start"
   data-width="auto"
@@ -37411,7 +37459,7 @@ Tab Panel 3
   <section role="tabpanel" class="db-tab-panel">Tab Panel 2</section>
   <section role="tabpanel" class="db-tab-panel">Tab Panel 3</section>
 </div>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<div
-  id="tabs-5379849384712663"
+  id="tabs-09531351094332263"
   class="db-tabs"
   data-alignment="start"
   data-width="auto"
@@ -37439,7 +37487,7 @@ Tab Panel 3
   <section role="tabpanel" class="db-tab-panel">Tab Panel 2</section>
   <section role="tabpanel" class="db-tab-panel">Tab Panel 3</section>
 </div>`),navigator.clipboard.writeText(`<div
-  id="tabs-5379849384712663"
+  id="tabs-09531351094332263"
   class="db-tabs"
   data-alignment="start"
   data-width="auto"
@@ -37623,7 +37671,7 @@ Tab Panel 3
   <db-tab-panel> Tab Panel 2 </db-tab-panel>
   <db-tab-panel> Tab Panel 3 </db-tab-panel>
 </db-tabs>`)},children:"Copy code"})]}),(0,L.jsxs)(eJ.A,{children:[(0,L.jsx)(E.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,L.jsx)("pre",{children:(0,L.jsx)("code",{className:"hljs language-html",children:`<div
-  id="tabs-3670431024575771"
+  id="tabs-28873690050120615"
   class="db-tabs"
   data-alignment="start"
   data-width="auto"
@@ -37651,7 +37699,7 @@ Tab Panel 3
   <section role="tabpanel" class="db-tab-panel">Tab Panel 2</section>
   <section role="tabpanel" class="db-tab-panel">Tab Panel 3</section>
 </div>`})}),(0,L.jsx)(ea.A,{className:"copy-button",noText:!0,icon:e===`<div
-  id="tabs-3670431024575771"
+  id="tabs-28873690050120615"
   class="db-tabs"
   data-alignment="start"
   data-width="auto"
@@ -37679,7 +37727,7 @@ Tab Panel 3
   <section role="tabpanel" class="db-tab-panel">Tab Panel 2</section>
   <section role="tabpanel" class="db-tab-panel">Tab Panel 3</section>
 </div>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<div
-  id="tabs-3670431024575771"
+  id="tabs-28873690050120615"
   class="db-tabs"
   data-alignment="start"
   data-width="auto"
@@ -37707,7 +37755,7 @@ Tab Panel 3
   <section role="tabpanel" class="db-tab-panel">Tab Panel 2</section>
   <section role="tabpanel" class="db-tab-panel">Tab Panel 3</section>
 </div>`),navigator.clipboard.writeText(`<div
-  id="tabs-3670431024575771"
+  id="tabs-28873690050120615"
   class="db-tabs"
   data-alignment="start"
   data-width="auto"
@@ -61287,7 +61335,7 @@ button
       <menu
         class="db-sub-navigation"
         data-force-close="false"
-        id="sub-navigation-588326586892117"
+        id="sub-navigation-3458860680870599"
       >
         <li class="db-navigation-item">
           <button
@@ -61300,7 +61348,7 @@ button
           <menu
             class="db-sub-navigation"
             data-force-close="false"
-            id="sub-navigation-05994931299646944"
+            id="sub-navigation-1643537270247002"
           >
             <li class="db-navigation-item" data-active="true">
               <button
@@ -61313,7 +61361,7 @@ button
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-15346845917108853"
+                id="sub-navigation-16737036046124332"
               ></menu>
             </li>
           </menu>
@@ -61331,7 +61379,7 @@ button
       <menu
         class="db-sub-navigation"
         data-force-close="false"
-        id="sub-navigation-5611744708009399"
+        id="sub-navigation-8375383422884719"
       ></menu>
     </li>
   </menu>
@@ -61348,7 +61396,7 @@ button
       <menu
         class="db-sub-navigation"
         data-force-close="false"
-        id="sub-navigation-588326586892117"
+        id="sub-navigation-3458860680870599"
       >
         <li class="db-navigation-item">
           <button
@@ -61361,7 +61409,7 @@ button
           <menu
             class="db-sub-navigation"
             data-force-close="false"
-            id="sub-navigation-05994931299646944"
+            id="sub-navigation-1643537270247002"
           >
             <li class="db-navigation-item" data-active="true">
               <button
@@ -61374,7 +61422,7 @@ button
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-15346845917108853"
+                id="sub-navigation-16737036046124332"
               ></menu>
             </li>
           </menu>
@@ -61392,7 +61440,7 @@ button
       <menu
         class="db-sub-navigation"
         data-force-close="false"
-        id="sub-navigation-5611744708009399"
+        id="sub-navigation-8375383422884719"
       ></menu>
     </li>
   </menu>
@@ -61409,7 +61457,7 @@ button
       <menu
         class="db-sub-navigation"
         data-force-close="false"
-        id="sub-navigation-588326586892117"
+        id="sub-navigation-3458860680870599"
       >
         <li class="db-navigation-item">
           <button
@@ -61422,7 +61470,7 @@ button
           <menu
             class="db-sub-navigation"
             data-force-close="false"
-            id="sub-navigation-05994931299646944"
+            id="sub-navigation-1643537270247002"
           >
             <li class="db-navigation-item" data-active="true">
               <button
@@ -61435,7 +61483,7 @@ button
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-15346845917108853"
+                id="sub-navigation-16737036046124332"
               ></menu>
             </li>
           </menu>
@@ -61453,7 +61501,7 @@ button
       <menu
         class="db-sub-navigation"
         data-force-close="false"
-        id="sub-navigation-5611744708009399"
+        id="sub-navigation-8375383422884719"
       ></menu>
     </li>
   </menu>
@@ -61470,7 +61518,7 @@ button
       <menu
         class="db-sub-navigation"
         data-force-close="false"
-        id="sub-navigation-588326586892117"
+        id="sub-navigation-3458860680870599"
       >
         <li class="db-navigation-item">
           <button
@@ -61483,7 +61531,7 @@ button
           <menu
             class="db-sub-navigation"
             data-force-close="false"
-            id="sub-navigation-05994931299646944"
+            id="sub-navigation-1643537270247002"
           >
             <li class="db-navigation-item" data-active="true">
               <button
@@ -61496,7 +61544,7 @@ button
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-15346845917108853"
+                id="sub-navigation-16737036046124332"
               ></menu>
             </li>
           </menu>
@@ -61514,7 +61562,7 @@ button
       <menu
         class="db-sub-navigation"
         data-force-close="false"
-        id="sub-navigation-5611744708009399"
+        id="sub-navigation-8375383422884719"
       ></menu>
     </li>
   </menu>
@@ -61727,7 +61775,7 @@ Navi-Item 2
       <menu
         class="db-sub-navigation"
         data-force-close="false"
-        id="sub-navigation-4775328426027824"
+        id="sub-navigation-19174501935490373"
       >
         <li class="db-navigation-item">
           <button
@@ -61740,7 +61788,7 @@ Navi-Item 2
           <menu
             class="db-sub-navigation"
             data-force-close="false"
-            id="sub-navigation-7746763470495093"
+            id="sub-navigation-5573324457873193"
           >
             <li class="db-navigation-item" data-active="true">
               <button
@@ -61753,7 +61801,7 @@ Navi-Item 2
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-051731430606627105"
+                id="sub-navigation-5490025520272526"
               ></menu>
             </li>
           </menu>
@@ -61771,7 +61819,7 @@ Navi-Item 2
       <menu
         class="db-sub-navigation"
         data-force-close="false"
-        id="sub-navigation-5310204385894235"
+        id="sub-navigation-35384551840916745"
       ></menu>
     </li>
   </menu>
@@ -61788,7 +61836,7 @@ Navi-Item 2
       <menu
         class="db-sub-navigation"
         data-force-close="false"
-        id="sub-navigation-4775328426027824"
+        id="sub-navigation-19174501935490373"
       >
         <li class="db-navigation-item">
           <button
@@ -61801,7 +61849,7 @@ Navi-Item 2
           <menu
             class="db-sub-navigation"
             data-force-close="false"
-            id="sub-navigation-7746763470495093"
+            id="sub-navigation-5573324457873193"
           >
             <li class="db-navigation-item" data-active="true">
               <button
@@ -61814,7 +61862,7 @@ Navi-Item 2
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-051731430606627105"
+                id="sub-navigation-5490025520272526"
               ></menu>
             </li>
           </menu>
@@ -61832,7 +61880,7 @@ Navi-Item 2
       <menu
         class="db-sub-navigation"
         data-force-close="false"
-        id="sub-navigation-5310204385894235"
+        id="sub-navigation-35384551840916745"
       ></menu>
     </li>
   </menu>
@@ -61849,7 +61897,7 @@ Navi-Item 2
       <menu
         class="db-sub-navigation"
         data-force-close="false"
-        id="sub-navigation-4775328426027824"
+        id="sub-navigation-19174501935490373"
       >
         <li class="db-navigation-item">
           <button
@@ -61862,7 +61910,7 @@ Navi-Item 2
           <menu
             class="db-sub-navigation"
             data-force-close="false"
-            id="sub-navigation-7746763470495093"
+            id="sub-navigation-5573324457873193"
           >
             <li class="db-navigation-item" data-active="true">
               <button
@@ -61875,7 +61923,7 @@ Navi-Item 2
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-051731430606627105"
+                id="sub-navigation-5490025520272526"
               ></menu>
             </li>
           </menu>
@@ -61893,7 +61941,7 @@ Navi-Item 2
       <menu
         class="db-sub-navigation"
         data-force-close="false"
-        id="sub-navigation-5310204385894235"
+        id="sub-navigation-35384551840916745"
       ></menu>
     </li>
   </menu>
@@ -61910,7 +61958,7 @@ Navi-Item 2
       <menu
         class="db-sub-navigation"
         data-force-close="false"
-        id="sub-navigation-4775328426027824"
+        id="sub-navigation-19174501935490373"
       >
         <li class="db-navigation-item">
           <button
@@ -61923,7 +61971,7 @@ Navi-Item 2
           <menu
             class="db-sub-navigation"
             data-force-close="false"
-            id="sub-navigation-7746763470495093"
+            id="sub-navigation-5573324457873193"
           >
             <li class="db-navigation-item" data-active="true">
               <button
@@ -61936,7 +61984,7 @@ Navi-Item 2
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-051731430606627105"
+                id="sub-navigation-5490025520272526"
               ></menu>
             </li>
           </menu>
@@ -61954,7 +62002,7 @@ Navi-Item 2
       <menu
         class="db-sub-navigation"
         data-force-close="false"
-        id="sub-navigation-5310204385894235"
+        id="sub-navigation-35384551840916745"
       ></menu>
     </li>
   </menu>
@@ -62167,7 +62215,7 @@ Navi-Item 2
       <menu
         class="db-sub-navigation"
         data-force-close="false"
-        id="sub-navigation-47503840333031166"
+        id="sub-navigation-9590211080448194"
       >
         <li class="db-navigation-item">
           <button
@@ -62180,7 +62228,7 @@ Navi-Item 2
           <menu
             class="db-sub-navigation"
             data-force-close="false"
-            id="sub-navigation-26829227561094005"
+            id="sub-navigation-7827973847502786"
           >
             <li class="db-navigation-item" data-active="true">
               <button
@@ -62193,7 +62241,7 @@ Navi-Item 2
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-7133924418925307"
+                id="sub-navigation-6231057208001761"
               ></menu>
             </li>
           </menu>
@@ -62211,7 +62259,7 @@ Navi-Item 2
       <menu
         class="db-sub-navigation"
         data-force-close="false"
-        id="sub-navigation-4540738492223132"
+        id="sub-navigation-3660616922727533"
       ></menu>
     </li>
   </menu>
@@ -62228,7 +62276,7 @@ Navi-Item 2
       <menu
         class="db-sub-navigation"
         data-force-close="false"
-        id="sub-navigation-47503840333031166"
+        id="sub-navigation-9590211080448194"
       >
         <li class="db-navigation-item">
           <button
@@ -62241,7 +62289,7 @@ Navi-Item 2
           <menu
             class="db-sub-navigation"
             data-force-close="false"
-            id="sub-navigation-26829227561094005"
+            id="sub-navigation-7827973847502786"
           >
             <li class="db-navigation-item" data-active="true">
               <button
@@ -62254,7 +62302,7 @@ Navi-Item 2
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-7133924418925307"
+                id="sub-navigation-6231057208001761"
               ></menu>
             </li>
           </menu>
@@ -62272,7 +62320,7 @@ Navi-Item 2
       <menu
         class="db-sub-navigation"
         data-force-close="false"
-        id="sub-navigation-4540738492223132"
+        id="sub-navigation-3660616922727533"
       ></menu>
     </li>
   </menu>
@@ -62289,7 +62337,7 @@ Navi-Item 2
       <menu
         class="db-sub-navigation"
         data-force-close="false"
-        id="sub-navigation-47503840333031166"
+        id="sub-navigation-9590211080448194"
       >
         <li class="db-navigation-item">
           <button
@@ -62302,7 +62350,7 @@ Navi-Item 2
           <menu
             class="db-sub-navigation"
             data-force-close="false"
-            id="sub-navigation-26829227561094005"
+            id="sub-navigation-7827973847502786"
           >
             <li class="db-navigation-item" data-active="true">
               <button
@@ -62315,7 +62363,7 @@ Navi-Item 2
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-7133924418925307"
+                id="sub-navigation-6231057208001761"
               ></menu>
             </li>
           </menu>
@@ -62333,7 +62381,7 @@ Navi-Item 2
       <menu
         class="db-sub-navigation"
         data-force-close="false"
-        id="sub-navigation-4540738492223132"
+        id="sub-navigation-3660616922727533"
       ></menu>
     </li>
   </menu>
@@ -62350,7 +62398,7 @@ Navi-Item 2
       <menu
         class="db-sub-navigation"
         data-force-close="false"
-        id="sub-navigation-47503840333031166"
+        id="sub-navigation-9590211080448194"
       >
         <li class="db-navigation-item">
           <button
@@ -62363,7 +62411,7 @@ Navi-Item 2
           <menu
             class="db-sub-navigation"
             data-force-close="false"
-            id="sub-navigation-26829227561094005"
+            id="sub-navigation-7827973847502786"
           >
             <li class="db-navigation-item" data-active="true">
               <button
@@ -62376,7 +62424,7 @@ Navi-Item 2
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-7133924418925307"
+                id="sub-navigation-6231057208001761"
               ></menu>
             </li>
           </menu>
@@ -62394,7 +62442,7 @@ Navi-Item 2
       <menu
         class="db-sub-navigation"
         data-force-close="false"
-        id="sub-navigation-4540738492223132"
+        id="sub-navigation-3660616922727533"
       ></menu>
     </li>
   </menu>
@@ -62553,7 +62601,7 @@ Navi-Item 2
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-06793115473785549"
+    id="sub-navigation-4619440680625445"
   ></menu>
 </li>`})}),(0,L.jsx)(ea.A,{className:"copy-button",noText:!0,icon:e===`<li class="db-navigation-item">
   <button
@@ -62566,7 +62614,7 @@ Navi-Item 2
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-06793115473785549"
+    id="sub-navigation-4619440680625445"
   ></menu>
 </li>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<li class="db-navigation-item">
   <button
@@ -62579,7 +62627,7 @@ Navi-Item 2
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-06793115473785549"
+    id="sub-navigation-4619440680625445"
   ></menu>
 </li>`),navigator.clipboard.writeText(`<li class="db-navigation-item">
   <button
@@ -62592,7 +62640,7 @@ Navi-Item 2
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-06793115473785549"
+    id="sub-navigation-4619440680625445"
   ></menu>
 </li>`)},children:"Copy code"})]}),(0,L.jsxs)(eJ.A,{children:[(0,L.jsx)(E.A,{content:"external",target:"_blank",href:"how-to-use?current=react",children:"How to use this in react"}),(0,L.jsx)("pre",{children:(0,L.jsx)("code",{className:"hljs language-tsx",children:`<DBNavigationItem>
   <a href="#">Functional</a>
@@ -62637,7 +62685,7 @@ Functional
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-9281647842176928"
+    id="sub-navigation-9119696330763895"
   ></menu>
 </li>`})}),(0,L.jsx)(ea.A,{className:"copy-button",noText:!0,icon:e===`<li class="db-navigation-item">
   <button
@@ -62650,7 +62698,7 @@ Functional
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-9281647842176928"
+    id="sub-navigation-9119696330763895"
   ></menu>
 </li>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<li class="db-navigation-item">
   <button
@@ -62663,7 +62711,7 @@ Functional
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-9281647842176928"
+    id="sub-navigation-9119696330763895"
   ></menu>
 </li>`),navigator.clipboard.writeText(`<li class="db-navigation-item">
   <button
@@ -62676,7 +62724,7 @@ Functional
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-9281647842176928"
+    id="sub-navigation-9119696330763895"
   ></menu>
 </li>`)},children:"Copy code"})]}),(0,L.jsxs)(eJ.A,{children:[(0,L.jsx)(E.A,{content:"external",target:"_blank",href:"how-to-use?current=react",children:"How to use this in react"}),(0,L.jsx)("pre",{children:(0,L.jsx)("code",{className:"hljs language-tsx",children:`<DBNavigationItem>
   <a href="#">(Default) Regular</a>
@@ -62721,7 +62769,7 @@ Functional
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-4458291003802509"
+    id="sub-navigation-8299311749891689"
   ></menu>
 </li>`})}),(0,L.jsx)(ea.A,{className:"copy-button",noText:!0,icon:e===`<li class="db-navigation-item">
   <button
@@ -62734,7 +62782,7 @@ Functional
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-4458291003802509"
+    id="sub-navigation-8299311749891689"
   ></menu>
 </li>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<li class="db-navigation-item">
   <button
@@ -62747,7 +62795,7 @@ Functional
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-4458291003802509"
+    id="sub-navigation-8299311749891689"
   ></menu>
 </li>`),navigator.clipboard.writeText(`<li class="db-navigation-item">
   <button
@@ -62760,7 +62808,7 @@ Functional
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-4458291003802509"
+    id="sub-navigation-8299311749891689"
   ></menu>
 </li>`)},children:"Copy code"})]}),(0,L.jsxs)(eJ.A,{children:[(0,L.jsx)(E.A,{content:"external",target:"_blank",href:"how-to-use?current=react",children:"How to use this in react"}),(0,L.jsx)("pre",{children:(0,L.jsx)("code",{className:"hljs language-tsx",children:`<DBNavigationItem>
   <a href="#">Expressive</a>
@@ -62806,7 +62854,7 @@ Expressive
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-47774993159771395"
+    id="sub-navigation-7465520511006973"
   ></menu>
 </li>`})}),(0,L.jsx)(ea.A,{className:"copy-button",noText:!0,icon:e===`<li class="db-navigation-item" aria-disabled="true">
   <button
@@ -62820,7 +62868,7 @@ Expressive
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-47774993159771395"
+    id="sub-navigation-7465520511006973"
   ></menu>
 </li>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<li class="db-navigation-item" aria-disabled="true">
   <button
@@ -62834,7 +62882,7 @@ Expressive
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-47774993159771395"
+    id="sub-navigation-7465520511006973"
   ></menu>
 </li>`),navigator.clipboard.writeText(`<li class="db-navigation-item" aria-disabled="true">
   <button
@@ -62848,7 +62896,7 @@ Expressive
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-47774993159771395"
+    id="sub-navigation-7465520511006973"
   ></menu>
 </li>`)},children:"Copy code"})]}),(0,L.jsxs)(eJ.A,{children:[(0,L.jsx)(E.A,{content:"external",target:"_blank",href:"how-to-use?current=react",children:"How to use this in react"}),(0,L.jsx)("pre",{children:(0,L.jsx)("code",{className:"hljs language-tsx",children:`<DBNavigationItem disabled>
   <a href="#">(Default) False</a>
@@ -62894,7 +62942,7 @@ Expressive
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-07298631442934356"
+    id="sub-navigation-618323374701319"
   ></menu>
 </li>`})}),(0,L.jsx)(ea.A,{className:"copy-button",noText:!0,icon:e===`<li class="db-navigation-item" aria-disabled="true">
   <button
@@ -62908,7 +62956,7 @@ Expressive
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-07298631442934356"
+    id="sub-navigation-618323374701319"
   ></menu>
 </li>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<li class="db-navigation-item" aria-disabled="true">
   <button
@@ -62922,7 +62970,7 @@ Expressive
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-07298631442934356"
+    id="sub-navigation-618323374701319"
   ></menu>
 </li>`),navigator.clipboard.writeText(`<li class="db-navigation-item" aria-disabled="true">
   <button
@@ -62936,7 +62984,7 @@ Expressive
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-07298631442934356"
+    id="sub-navigation-618323374701319"
   ></menu>
 </li>`)},children:"Copy code"})]}),(0,L.jsxs)(eJ.A,{children:[(0,L.jsx)(E.A,{content:"external",target:"_blank",href:"how-to-use?current=react",children:"How to use this in react"}),(0,L.jsx)("pre",{children:(0,L.jsx)("code",{className:"hljs language-tsx",children:`<DBNavigationItem disabled>
   <a href="#">True</a>
@@ -62981,7 +63029,7 @@ True
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-2956521629651936"
+    id="sub-navigation-18973521780308433"
   ></menu>
 </li>`})}),(0,L.jsx)(ea.A,{className:"copy-button",noText:!0,icon:e===`<li class="db-navigation-item" data-active="true">
   <button
@@ -62994,7 +63042,7 @@ True
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-2956521629651936"
+    id="sub-navigation-18973521780308433"
   ></menu>
 </li>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<li class="db-navigation-item" data-active="true">
   <button
@@ -63007,7 +63055,7 @@ True
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-2956521629651936"
+    id="sub-navigation-18973521780308433"
   ></menu>
 </li>`),navigator.clipboard.writeText(`<li class="db-navigation-item" data-active="true">
   <button
@@ -63020,7 +63068,7 @@ True
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-2956521629651936"
+    id="sub-navigation-18973521780308433"
   ></menu>
 </li>`)},children:"Copy code"})]}),(0,L.jsxs)(eJ.A,{children:[(0,L.jsx)(E.A,{content:"external",target:"_blank",href:"how-to-use?current=react",children:"How to use this in react"}),(0,L.jsx)("pre",{children:(0,L.jsx)("code",{className:"hljs language-tsx",children:`<DBNavigationItem active>
   <a href="#">(Default) False</a>
@@ -63065,7 +63113,7 @@ True
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-8466065534084815"
+    id="sub-navigation-027198631400369377"
   ></menu>
 </li>`})}),(0,L.jsx)(ea.A,{className:"copy-button",noText:!0,icon:e===`<li class="db-navigation-item" data-active="true">
   <button
@@ -63078,7 +63126,7 @@ True
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-8466065534084815"
+    id="sub-navigation-027198631400369377"
   ></menu>
 </li>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<li class="db-navigation-item" data-active="true">
   <button
@@ -63091,7 +63139,7 @@ True
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-8466065534084815"
+    id="sub-navigation-027198631400369377"
   ></menu>
 </li>`),navigator.clipboard.writeText(`<li class="db-navigation-item" data-active="true">
   <button
@@ -63104,7 +63152,7 @@ True
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-8466065534084815"
+    id="sub-navigation-027198631400369377"
   ></menu>
 </li>`)},children:"Copy code"})]}),(0,L.jsxs)(eJ.A,{children:[(0,L.jsx)(E.A,{content:"external",target:"_blank",href:"how-to-use?current=react",children:"How to use this in react"}),(0,L.jsx)("pre",{children:(0,L.jsx)("code",{className:"hljs language-tsx",children:`<DBNavigationItem active>
   <a href="#">True</a>
@@ -63149,7 +63197,7 @@ True
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-7501444011538052"
+    id="sub-navigation-18182421890391898"
   ></menu>
 </li>`})}),(0,L.jsx)(ea.A,{className:"copy-button",noText:!0,icon:e===`<li class="db-navigation-item">
   <button
@@ -63162,7 +63210,7 @@ True
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-7501444011538052"
+    id="sub-navigation-18182421890391898"
   ></menu>
 </li>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<li class="db-navigation-item">
   <button
@@ -63175,7 +63223,7 @@ True
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-7501444011538052"
+    id="sub-navigation-18182421890391898"
   ></menu>
 </li>`),navigator.clipboard.writeText(`<li class="db-navigation-item">
   <button
@@ -63188,7 +63236,7 @@ True
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-7501444011538052"
+    id="sub-navigation-18182421890391898"
   ></menu>
 </li>`)},children:"Copy code"})]}),(0,L.jsxs)(eJ.A,{children:[(0,L.jsx)(E.A,{content:"external",target:"_blank",href:"how-to-use?current=react",children:"How to use this in react"}),(0,L.jsx)("pre",{children:(0,L.jsx)("code",{className:"hljs language-tsx",children:`<DBNavigationItem areaPopup>
   <a href="#">(Default) False</a>
@@ -63233,7 +63281,7 @@ True
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-2870823525817444"
+    id="sub-navigation-7284622872373379"
   ></menu>
 </li>`})}),(0,L.jsx)(ea.A,{className:"copy-button",noText:!0,icon:e===`<li class="db-navigation-item">
   <button
@@ -63246,7 +63294,7 @@ True
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-2870823525817444"
+    id="sub-navigation-7284622872373379"
   ></menu>
 </li>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<li class="db-navigation-item">
   <button
@@ -63259,7 +63307,7 @@ True
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-2870823525817444"
+    id="sub-navigation-7284622872373379"
   ></menu>
 </li>`),navigator.clipboard.writeText(`<li class="db-navigation-item">
   <button
@@ -63272,7 +63320,7 @@ True
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-2870823525817444"
+    id="sub-navigation-7284622872373379"
   ></menu>
 </li>`)},children:"Copy code"})]}),(0,L.jsxs)(eJ.A,{children:[(0,L.jsx)(E.A,{content:"external",target:"_blank",href:"how-to-use?current=react",children:"How to use this in react"}),(0,L.jsx)("pre",{children:(0,L.jsx)("code",{className:"hljs language-tsx",children:`<DBNavigationItem areaPopup>
   <a href="#">True</a>
@@ -63317,7 +63365,7 @@ True
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-345554806760099"
+    id="sub-navigation-05647189659829943"
   ></menu>
 </li>`})}),(0,L.jsx)(ea.A,{className:"copy-button",noText:!0,icon:e===`<li class="db-navigation-item" data-icon="x_placeholder" data-show-icon="true">
   <button
@@ -63330,7 +63378,7 @@ True
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-345554806760099"
+    id="sub-navigation-05647189659829943"
   ></menu>
 </li>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<li class="db-navigation-item" data-icon="x_placeholder" data-show-icon="true">
   <button
@@ -63343,7 +63391,7 @@ True
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-345554806760099"
+    id="sub-navigation-05647189659829943"
   ></menu>
 </li>`),navigator.clipboard.writeText(`<li class="db-navigation-item" data-icon="x_placeholder" data-show-icon="true">
   <button
@@ -63356,7 +63404,7 @@ True
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-345554806760099"
+    id="sub-navigation-05647189659829943"
   ></menu>
 </li>`)},children:"Copy code"})]}),(0,L.jsxs)(eJ.A,{children:[(0,L.jsx)(E.A,{content:"external",target:"_blank",href:"how-to-use?current=react",children:"How to use this in react"}),(0,L.jsx)("pre",{children:(0,L.jsx)("code",{className:"hljs language-tsx",children:`<DBNavigationItem icon="x_placeholder" showIcon>
   <a href="#">(Default) False</a>
@@ -63401,7 +63449,7 @@ True
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-8968336529189178"
+    id="sub-navigation-49683592245953534"
   ></menu>
 </li>`})}),(0,L.jsx)(ea.A,{className:"copy-button",noText:!0,icon:e===`<li class="db-navigation-item" data-icon="x_placeholder" data-show-icon="true">
   <button
@@ -63414,7 +63462,7 @@ True
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-8968336529189178"
+    id="sub-navigation-49683592245953534"
   ></menu>
 </li>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<li class="db-navigation-item" data-icon="x_placeholder" data-show-icon="true">
   <button
@@ -63427,7 +63475,7 @@ True
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-8968336529189178"
+    id="sub-navigation-49683592245953534"
   ></menu>
 </li>`),navigator.clipboard.writeText(`<li class="db-navigation-item" data-icon="x_placeholder" data-show-icon="true">
   <button
@@ -63440,7 +63488,7 @@ True
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-8968336529189178"
+    id="sub-navigation-49683592245953534"
   ></menu>
 </li>`)},children:"Copy code"})]}),(0,L.jsxs)(eJ.A,{children:[(0,L.jsx)(E.A,{content:"external",target:"_blank",href:"how-to-use?current=react",children:"How to use this in react"}),(0,L.jsx)("pre",{children:(0,L.jsx)("code",{className:"hljs language-tsx",children:`<DBNavigationItem icon="x_placeholder" showIcon>
   <a href="#">True</a>
@@ -63485,7 +63533,7 @@ True
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-23811143686934244"
+    id="sub-navigation-42191327981510185"
   ></menu>
 </li>`})}),(0,L.jsx)(ea.A,{className:"copy-button",noText:!0,icon:e===`<li class="db-navigation-item">
   <button
@@ -63498,7 +63546,7 @@ True
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-23811143686934244"
+    id="sub-navigation-42191327981510185"
   ></menu>
 </li>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<li class="db-navigation-item">
   <button
@@ -63511,7 +63559,7 @@ True
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-23811143686934244"
+    id="sub-navigation-42191327981510185"
   ></menu>
 </li>`),navigator.clipboard.writeText(`<li class="db-navigation-item">
   <button
@@ -63524,7 +63572,7 @@ True
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-23811143686934244"
+    id="sub-navigation-42191327981510185"
   ></menu>
 </li>`)},children:"Copy code"})]}),(0,L.jsxs)(eJ.A,{children:[(0,L.jsx)(E.A,{content:"external",target:"_blank",href:"how-to-use?current=react",children:"How to use this in react"}),(0,L.jsx)("pre",{children:(0,L.jsx)("code",{className:"hljs language-tsx",children:`<DBNavigationItem>
   <a href="#">(Default) Auto</a>
@@ -63569,7 +63617,7 @@ True
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-36926538120767805"
+    id="sub-navigation-15858188069792578"
   ></menu>
 </li>`})}),(0,L.jsx)(ea.A,{className:"copy-button",noText:!0,icon:e===`<li class="db-navigation-item" data-width="full">
   <button
@@ -63582,7 +63630,7 @@ True
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-36926538120767805"
+    id="sub-navigation-15858188069792578"
   ></menu>
 </li>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<li class="db-navigation-item" data-width="full">
   <button
@@ -63595,7 +63643,7 @@ True
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-36926538120767805"
+    id="sub-navigation-15858188069792578"
   ></menu>
 </li>`),navigator.clipboard.writeText(`<li class="db-navigation-item" data-width="full">
   <button
@@ -63608,7 +63656,7 @@ True
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-36926538120767805"
+    id="sub-navigation-15858188069792578"
   ></menu>
 </li>`)},children:"Copy code"})]}),(0,L.jsxs)(eJ.A,{children:[(0,L.jsx)(E.A,{content:"external",target:"_blank",href:"how-to-use?current=react",children:"How to use this in react"}),(0,L.jsx)("pre",{children:(0,L.jsx)("code",{className:"hljs language-tsx",children:`<DBNavigationItem width="full">
   <a href="#">Full</a>
@@ -63653,7 +63701,7 @@ Full
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-7894110271774114"
+    id="sub-navigation-002780469215014847"
   ></menu>
 </li>`})}),(0,L.jsx)(ea.A,{className:"copy-button",noText:!0,icon:e===`<li class="db-navigation-item">
   <button
@@ -63666,7 +63714,7 @@ Full
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-7894110271774114"
+    id="sub-navigation-002780469215014847"
   ></menu>
 </li>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<li class="db-navigation-item">
   <button
@@ -63679,7 +63727,7 @@ Full
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-7894110271774114"
+    id="sub-navigation-002780469215014847"
   ></menu>
 </li>`),navigator.clipboard.writeText(`<li class="db-navigation-item">
   <button
@@ -63692,7 +63740,7 @@ Full
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-7894110271774114"
+    id="sub-navigation-002780469215014847"
   ></menu>
 </li>`)},children:"Copy code"})]}),(0,L.jsxs)(eJ.A,{children:[(0,L.jsx)(E.A,{content:"external",target:"_blank",href:"how-to-use?current=react",children:"How to use this in react"}),(0,L.jsx)("pre",{children:(0,L.jsx)("code",{className:"hljs language-tsx",children:`<DBNavigationItem areaPopup>
   <a href="#">True</a>
@@ -63757,7 +63805,7 @@ True
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-19986400261529025"
+    id="sub-navigation-33276974008361615"
   ></menu>
 </li>`})}),(0,L.jsx)(ea.A,{className:"copy-button",noText:!0,icon:e===`<li class="db-navigation-item" data-wrap="true">
   <button
@@ -63770,7 +63818,7 @@ True
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-19986400261529025"
+    id="sub-navigation-33276974008361615"
   ></menu>
 </li>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<li class="db-navigation-item" data-wrap="true">
   <button
@@ -63783,7 +63831,7 @@ True
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-19986400261529025"
+    id="sub-navigation-33276974008361615"
   ></menu>
 </li>`),navigator.clipboard.writeText(`<li class="db-navigation-item" data-wrap="true">
   <button
@@ -63796,7 +63844,7 @@ True
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-19986400261529025"
+    id="sub-navigation-33276974008361615"
   ></menu>
 </li>`)},children:"Copy code"})]}),(0,L.jsxs)(eJ.A,{children:[(0,L.jsx)(E.A,{content:"external",target:"_blank",href:"how-to-use?current=react",children:"How to use this in react"}),(0,L.jsx)("pre",{children:(0,L.jsx)("code",{className:"hljs language-tsx",children:`<DBNavigationItem areaPopup icon="x_placeholder" showIcon wrap>
   <a href="#">Sub-Sub-Navi-Item 1</a>
@@ -63861,7 +63909,7 @@ Sub-Sub-Navi-Item 1
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-19986400261529025"
+    id="sub-navigation-33276974008361615"
   ></menu>
 </li>`})}),(0,L.jsx)(ea.A,{className:"copy-button",noText:!0,icon:e===`<li class="db-navigation-item" data-wrap="true">
   <button
@@ -63874,7 +63922,7 @@ Sub-Sub-Navi-Item 1
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-19986400261529025"
+    id="sub-navigation-33276974008361615"
   ></menu>
 </li>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<li class="db-navigation-item" data-wrap="true">
   <button
@@ -63887,7 +63935,7 @@ Sub-Sub-Navi-Item 1
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-19986400261529025"
+    id="sub-navigation-33276974008361615"
   ></menu>
 </li>`),navigator.clipboard.writeText(`<li class="db-navigation-item" data-wrap="true">
   <button
@@ -63900,7 +63948,7 @@ Sub-Sub-Navi-Item 1
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-19986400261529025"
+    id="sub-navigation-33276974008361615"
   ></menu>
 </li>`)},children:"Copy code"})]}),(0,L.jsxs)(eJ.A,{children:[(0,L.jsx)(E.A,{content:"external",target:"_blank",href:"how-to-use?current=react",children:"How to use this in react"}),(0,L.jsx)("pre",{children:(0,L.jsx)("code",{className:"hljs language-tsx",children:`<DBNavigationItem areaPopup wrap>
   <a href="#">True</a>
