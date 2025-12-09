@@ -63,7 +63,7 @@ export default function ContainerWrapperShowcase(props: Props) {
 		<Fragment>
 			<div className="default-container">
 				<Show when={!hidden}>
-					<div className="component-header">
+					<header className="component-header">
 						<Show
 							when={props.isSubComponent}
 							else={<h1>{props.title}</h1>}>
@@ -79,7 +79,7 @@ export default function ContainerWrapperShowcase(props: Props) {
 								View Source
 							</DBLink>
 						</Show>
-					</div>
+					</header>
 				</Show>
 				<Slot />
 			</div>
