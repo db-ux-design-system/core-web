@@ -6,6 +6,7 @@ import BrandComponent from '../../react-showcase/src/components/brand';
 import ButtonComponent from '../../react-showcase/src/components/button';
 import CardComponent from '../../react-showcase/src/components/card';
 import CheckboxComponent from '../../react-showcase/src/components/checkbox';
+import CustomSelectComponent from '../../react-showcase/src/components/custom-select';
 import DividerComponent from '../../react-showcase/src/components/divider';
 import DrawerComponent from '../../react-showcase/src/components/drawer';
 import HeaderComponent from '../../react-showcase/src/components/header';
@@ -13,7 +14,6 @@ import HeaderComponent from '../../react-showcase/src/components/header';
 import InfotextComponent from '../../react-showcase/src/components/infotext';
 import InputComponent from '../../react-showcase/src/components/input';
 import LinkComponent from '../../react-showcase/src/components/link';
-import MutliSelectComponent from '../../react-showcase/src/components/custom-select';
 import NavigationComponent from '../../react-showcase/src/components/navigation';
 import NavigationItemComponent from '../../react-showcase/src/components/navigation-item';
 import NotificationComponent from '../../react-showcase/src/components/notification';
@@ -36,7 +36,7 @@ import * as brandCode from '../components/code-docs/brand';
 import * as buttonCode from '../components/code-docs/button';
 import * as cardCode from '../components/code-docs/card';
 import * as checkboxCode from '../components/code-docs/checkbox';
-import * as CustomSelectCode from '../components/code-docs/custom-select';
+import * as customSelectCode from '../components/code-docs/custom-select';
 import * as dividerCode from '../components/code-docs/divider';
 import * as drawerCode from '../components/code-docs/drawer';
 import * as headerCode from '../components/code-docs/header';
@@ -71,7 +71,7 @@ export type NavigationItem = {
 };
 
 const nameComponentMap = {
-	'custom-select': <MutliSelectComponent slotCode={CustomSelectCode} />,
+	'custom-select': <CustomSelectComponent slotCode={customSelectCode} />,
 	stack: <StackComponent slotCode={StackCode} />,
 	button: <ButtonComponent slotCode={buttonCode} />,
 	link: <LinkComponent slotCode={linkCode} />,
