@@ -1,5 +1,4 @@
 import {
-	onMount,
 	useDefaultProps,
 	useMetadata,
 	useRef,
@@ -13,10 +12,7 @@ useMetadata({});
 
 useDefaultProps<DBBreadcrumbProps>({
 	size: 'small',
-	separator: 'chevron',
-	maxItems: undefined,
-	items: undefined,
-	ellipsisAriaLabel: 'Expand to show all breadcrumb items'
+	separator: 'chevron'
 });
 
 export default function DBBreadcrumb(props: DBBreadcrumbProps) {
@@ -28,18 +24,6 @@ export default function DBBreadcrumb(props: DBBreadcrumbProps) {
 		}
 	});
 
-	// Prevent nested/duplicate navigation landmarks in Stencil by stripping host role
-	onMount(() => {
-		try {
-			const parent = (_ref as any)?.get()?.closest?.('db-breadcrumb');
-			if (parent && parent.hasAttribute('role')) {
-				parent.removeAttribute('role');
-			}
-		} catch {
-			/* no-op */
-		}
-	});
-
 	return (
 		<nav
 			ref={_ref}
@@ -47,7 +31,12 @@ export default function DBBreadcrumb(props: DBBreadcrumbProps) {
 			class={cls('db-breadcrumb', props.className)}
 			data-size={props.size}
 			data-separator={props.separator}
-			aria-label={props.ariaLabel}>
+			aria-label={
+				props.ariaLabel ??
+				(props.id
+					? `Breadcrumb Navigation (${props.id})`
+					: 'Breadcrumb Navigation')
+			}>
 			<ol
 				class="db-breadcrumb-list"
 				id={props.id ? `${props.id}-list` : 'db-breadcrumb-list'}>

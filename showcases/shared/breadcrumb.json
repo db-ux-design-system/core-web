@@ -6,6 +6,7 @@
 				"name": "(Default) Small",
 				"className": "w-full",
 				"props": {
+					"id": "breadcrumb-size-small",
 					"ariaLabel": "Breadcrumb - Small Size",
 					"items": [
 						{ "href": "#", "text": "Home" },
@@ -22,6 +23,7 @@
 				"name": "Medium",
 				"className": "w-full",
 				"props": {
+					"id": "breadcrumb-size-medium",
 					"size": "medium",
 					"ariaLabel": "Breadcrumb - Medium Size",
 					"items": [
@@ -40,6 +42,7 @@
 				"name": "Chevron",
 				"className": "w-full",
 				"props": {
+					"id": "breadcrumb-separator-chevron",
 					"separator": "chevron",
 					"ariaLabel": "Breadcrumb - Chevron Separator",
 					"items": [
@@ -53,6 +56,7 @@
 				"name": "Slash",
 				"className": "w-full",
 				"props": {
+					"id": "breadcrumb-separator-slash",
 					"separator": "slash",
 					"ariaLabel": "Breadcrumb - Slash Separator",
 					"items": [
@@ -71,7 +75,7 @@
 				"name": "Collapsed (maxItems=3)",
 				"className": "w-full",
 				"props": {
-					"id": "123",
+					"id": "breadcrumb-collapsed",
 					"maxItems": 3,
 					"ariaLabel": "Breadcrumb - Collapsed Navigation",
 					"ellipsisAriaLabel": "Expand to show all breadcrumb items",
@@ -97,6 +101,7 @@
 				"name": "With Icons (Small)",
 				"className": "w-full",
 				"props": {
+					"id": "breadcrumb-icons-small",
 					"ariaLabel": "Breadcrumb - With Icons Small Size",
 					"items": [
 						{ "href": "#", "text": "Root", "icon": "house" },
@@ -114,6 +119,7 @@
 				"name": "With Icons (Medium)",
 				"className": "w-full",
 				"props": {
+					"id": "breadcrumb-icons-medium",
 					"ariaLabel": "Breadcrumb - With Icons Medium Size",
 					"size": "medium",
 					"items": [
