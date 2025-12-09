@@ -1,1 +1,1 @@
-export { default as DBControlPanelFlatIconNavigation } from "./control-panel-flat-icon-navigation";
+export { default as DBControlPanelFlatIconNavigation } from './control-panel-flat-icon-navigation';

@@ -166,7 +166,9 @@ import { NavigationComponent } from "./navigation.component";
 				<db-brand brand>My Awesome App</db-brand>
 				<app-meta-navigation *dbMetaNavigation></app-meta-navigation>
 				<app-primary-actions primary-action></app-primary-actions>
-				<app-secondary-actions *dbSecondaryAction></app-secondary-actions>
+				<app-secondary-actions
+					*dbSecondaryAction
+				></app-secondary-actions>
 				<app-navigation *dbNavigation></app-navigation>
 			</db-header>
 			Main Page

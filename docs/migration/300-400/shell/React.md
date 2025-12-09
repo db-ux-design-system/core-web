@@ -1,6 +1,5 @@
 # Migration DBPage, DBHeader, DBNavigation
 
-
 ## Original Example
 
 ```tsx
@@ -107,11 +106,9 @@ const App = () => (
 export default App;
 ```
 
-
 ## Refactored Example
 
 ```tsx
-
 import {
 	DBShell, // previously: DBPage
 	DBControlPanelDesktop, // previously: DBHeader

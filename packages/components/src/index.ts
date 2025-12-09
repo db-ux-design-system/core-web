@@ -88,7 +88,6 @@ export * from './utils/floating-components';
 export * from './utils/index';
 export * from './utils/navigation';
 
+export * from './components/control-panel-flat-icon-navigation';
+export * from './components/control-panel-flat-icon-navigation/model';
 export * from './components/shell-sub-navigation';
-export * from "./components/control-panel-flat-icon-navigation";
-export * from "./components/control-panel-flat-icon-navigation/model";
-
