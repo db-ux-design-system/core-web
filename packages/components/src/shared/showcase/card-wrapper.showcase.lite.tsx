@@ -29,7 +29,7 @@ export default function CardWrapperShowcase(props: Props) {
 
 	return (
 		<Fragment>
-			<DBCard class="variants-card db-code-docs">
+			<DBCard className="variants-card db-code-docs">
 				<div
 					role={props.role}
 					aria-label={props.role ? props.label : undefined}
