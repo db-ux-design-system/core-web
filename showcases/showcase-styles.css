@@ -14,6 +14,7 @@
 	}
 }
 
+/* TODO: we're disabling the code link temporarily and need to reintegrate it afterwards */
 .show-code-link {
 	display: none;
 }
