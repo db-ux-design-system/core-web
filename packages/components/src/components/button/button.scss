@@ -1,5 +1,4 @@
 @charset "utf-8";
-
 @use "@db-ux/core-foundations/build/styles/fonts";
 @use "@db-ux/core-foundations/build/styles/variables";
 @use "@db-ux/core-foundations/build/styles/colors";
@@ -8,24 +7,28 @@
 @use "../../styles/internal/component";
 @use "../../styles/internal/button-components";
 
+// generic styles can be found in _button-components.scss
 .db-button {
 	@extend %default-interactive-component;
 	@extend %default-button;
 	@extend %db-overwrite-font-size-md;
 
+	max-inline-size: 100%;
 	color: colors.$db-adaptive-on-bg-basic-emphasis-100-default;
-	block-size: variables.$db-sizing-md;
+	min-block-size: variables.$db-sizing-md;
+	block-size: max-content;
 	inline-size: fit-content;
-	padding: variables.$db-spacing-fixed-xs variables.$db-spacing-fixed-md;
+	padding: variables.$db-spacing-fixed-2xs variables.$db-spacing-fixed-md;
 
 	// disable text-decoration if someone wants to use the button for an <a> tag
 	text-decoration: none;
 
 	// Square icon only buttons
 	&[data-no-text="true"] {
-		@include icons.is-icon-text-replace();
+		@include icons.is-icon-text-replace;
 
 		padding: 0;
+		aspect-ratio: 1;
 		inline-size: variables.$db-sizing-md;
 
 		&::before {
@@ -37,11 +40,11 @@
 		@extend %db-overwrite-font-size-sm;
 
 		font-weight: 700;
-		block-size: variables.$db-sizing-sm;
+		min-block-size: variables.$db-sizing-sm;
 
 		&:not([data-no-text="true"]) {
-			padding: variables.$db-spacing-fixed-3xs
-				variables.$db-spacing-fixed-sm;
+			// stylelint-disable-next-line db-ux/use-spacings
+			padding: 1px variables.$db-spacing-fixed-sm;
 
 			&::before {
 				margin-inline-end: variables.$db-spacing-fixed-2xs;
@@ -106,7 +109,7 @@
 		}
 	}
 
-	&:disabled {
+	&:is(:disabled, [aria-disabled="true"]) {
 		opacity: variables.$db-opacity-md;
 	}
 
@@ -114,6 +117,7 @@
 	&:has(> .db-button) {
 		margin: 0;
 		padding: 0;
+		block-size: variables.$db-sizing-md;
 
 		&::before {
 			content: none;

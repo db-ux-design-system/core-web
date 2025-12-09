@@ -7,7 +7,7 @@ import { getVariants } from '../data';
 import DefaultComponent from '../default-component';
 
 const getSelect = ({
-	children,
+	placeholder,
 	label,
 	options,
 	icon,
@@ -26,7 +26,7 @@ const getSelect = ({
 	return (
 		<DBSelect
 			label={label}
-			placeholder={children}
+			placeholder={placeholder}
 			options={options}
 			disabled={disabled}
 			variant={variant}

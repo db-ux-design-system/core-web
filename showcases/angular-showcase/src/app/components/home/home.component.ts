@@ -7,6 +7,7 @@ import { FormComponent } from '../form/form.component';
 import { InputsComponent } from '../form/inputs/inputs.component';
 import { RadiosComponent } from '../form/radios/radios.component';
 import { SelectsComponent } from '../form/selects/selects.component';
+import { SwitchesComponent } from '../form/switches/switches.component';
 import { TextareasComponent } from '../form/textareas/textareas.component';
 
 @Component({
@@ -20,10 +21,11 @@ import { TextareasComponent } from '../form/textareas/textareas.component';
 		SelectsComponent,
 		CheckboxesComponent,
 		RadiosComponent,
+		CustomSelectsComponent,
+		SwitchesComponent,
 		...(environment.webComponents
 			? []
-			: [DBTabs, DBTabItem, DBTabList, DBTabPanel]),
-		CustomSelectsComponent
+			: [DBTabs, DBTabItem, DBTabList, DBTabPanel])
 	],
 	schemas: environment.webComponents ? [CUSTOM_ELEMENTS_SCHEMA] : []
 })

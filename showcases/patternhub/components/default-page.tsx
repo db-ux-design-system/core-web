@@ -25,6 +25,8 @@ import {
 } from '../data/routes';
 import PrimaryActions from './control-panel/primary-actions';
 import SecondaryActions from './control-panel/secondary-actions';
+import { FrameworkProvider } from './framework-context';
+import FrameworkSwitcher from './framework-switcher';
 import Navigation from './navigation';
 
 const preferDark = '(prefers-color-scheme: dark)';
@@ -124,7 +126,7 @@ const DefaultPage = ({
 	}, [router]);
 
 	return (
-		<>
+		<FrameworkProvider>
 			{router.isReady && fullscreen && (
 				<div
 					className={`${noH1 ? 'noh1' : ''} ${properties ? 'is-properties' : ''}`}>
@@ -148,7 +150,12 @@ const DefaultPage = ({
 									setColorMode={setColorMode}
 								/>
 							}
-							secondaryActions={<SecondaryActions />}>
+							secondaryAction={
+								<>
+									<FrameworkSwitcher />
+									<SecondaryActions />
+								</>
+							}>
 							<Navigation />
 						</DBControlPanelDesktop>
 					}
@@ -236,7 +243,7 @@ const DefaultPage = ({
 						)}
 				</DBShell>
 			)}
-		</>
+		</FrameworkProvider>
 	);
 };
 

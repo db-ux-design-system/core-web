@@ -5,23 +5,23 @@
     "node": ">=18"
   },
   "scripts": {
-    "build": "next build",
+    "build": "next build --webpack",
     "dev": "npm-run-all open next:dev",
-    "next:dev": "next dev --port 5050",
+    "next:dev": "next dev --webpack --port 5050",
     "open": "open-cli http://localhost:5050/next-showcase",
     "start": "next start"
   },
   "dependencies": {
-    "next": "15.4.4",
+    "next": "16.0.7",
     "react": "18.3.1",
     "react-dom": "18.3.1"
   },
   "devDependencies": {
-    "@types/node": "24.1.0",
+    "@types/node": "24.10.0",
     "@types/react": "18.3.13",
     "npm-run-all2": "8.0.4",
     "open-cli": "8.0.0",
-    "typescript": "5.8.3"
+    "typescript": "5.9.3"
   },
   "overrides": {
     "cross-spawn": "7.0.6"

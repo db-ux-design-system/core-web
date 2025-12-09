@@ -44,6 +44,7 @@ const getSearchFilter = (option: CustomSelectOptionType, _: string): boolean =>
 			<DBCustomSelect
 				v-if="!exampleProps?.lineBreak && !exampleProps?.info"
 				:ariaListLabel="getAriaLabel(exampleProps, exampleName)"
+				:listLabel="getAriaLabel(exampleProps, exampleName)"
 				:disabled="exampleProps?.disabled"
 				:icon="exampleProps?.icon"
 				:showMessage="exampleProps?.showMessage"
@@ -71,6 +72,7 @@ const getSearchFilter = (option: CustomSelectOptionType, _: string): boolean =>
 				searchLabel="Search"
 				:searchValue="exampleProps?.searchValue"
 				:selectedLabels="exampleProps?.selectedLabels"
+				selectedPrefix="Selected"
 				:transformSelectedLabels="
 					exampleProps?.transformSelectedLabels
 						? getTransformSelectedLabels
@@ -82,6 +84,7 @@ const getSearchFilter = (option: CustomSelectOptionType, _: string): boolean =>
 				:selectedType="exampleProps?.selectedType"
 				:formFieldWidth="exampleProps?.formFieldWidth"
 				:on-option-selected="(values) => log(values)"
+				:removeTagsTexts="exampleProps?.removeTagsTexts"
 			/>
 		</template>
 	</DefaultComponent>

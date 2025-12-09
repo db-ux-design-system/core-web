@@ -1,0 +1,33 @@
+name: Lint & Test
+
+permissions:
+  contents: read
+
+on:
+  workflow_call:
+
+jobs:
+  lint:
+    name: Lint
+    runs-on: ubuntu-24.04 # Use Ubuntu 24.04 explicitly
+    strategy:
+      fail-fast: false
+      matrix:
+        command: ["lint", "test"]
+    steps:
+      - name: ⏬️ Checkout repo
+        uses: actions/checkout@v6
+
+      - name: 🔄 Init Cache
+        uses: ./.github/actions/npm-cache
+
+      - name: ⚡ Run Lint
+        if: ${{ matrix.command == 'lint' }}
+        run: |
+          npm run postinstall --workspace=nuxt-showcase
+          npm run build --workspace=@db-ux/core-stylelint
+          npm run lint
+
+      - name: ⚡ Run Test
+        if: ${{ matrix.command == 'test' }}
+        run: npm run test

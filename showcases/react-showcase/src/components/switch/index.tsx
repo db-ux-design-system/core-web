@@ -11,11 +11,18 @@ const getSwitch = ({
 	visualAid,
 	disabled,
 	showLabel,
-	emphasis,
 	size,
 	icon,
 	iconTrailing,
-	required
+	iconLeading,
+	required,
+	validation,
+	invalidMessage,
+	validMessage,
+	message,
+	messageIcon,
+	showMessage,
+	variant
 }: DBSwitchProps) => (
 	<>
 		<DBSwitch
@@ -23,11 +30,18 @@ const getSwitch = ({
 			defaultChecked={getBoolean(checked)}
 			disabled={disabled}
 			showLabel={showLabel}
+			variant={variant}
 			size={size}
-			emphasis={emphasis}
 			icon={icon}
 			iconTrailing={iconTrailing}
-			required={required}>
+			iconLeading={iconLeading}
+			required={required}
+			validation={validation}
+			invalidMessage={invalidMessage}
+			validMessage={validMessage}
+			message={message}
+			messageIcon={messageIcon}
+			showMessage={showMessage}>
 			{children}
 		</DBSwitch>
 		{showLabel !== undefined && !showLabel && (

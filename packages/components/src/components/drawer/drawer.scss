@@ -26,6 +26,10 @@
 
 %full-horizontal {
 	&:not([data-width="full"]) {
+		/// Sets the maximum height of the drawer
+		/// @propertyname max-block-size
+		/// @cssprop --db-drawer-max-height
+		/// @default calc(100% - #{variables.$db-spacing-fixed-xl})
 		max-block-size: var(
 			--db-drawer-max-height,
 			calc(100% - #{variables.$db-spacing-fixed-xl})
@@ -80,13 +84,17 @@ $spacings: (
 );
 
 @mixin get-spacing($spacing) {
-	/* stylelint-disable-next-line scss/selector-no-redundant-nesting-selector */
+	/* stylelint-disable-next-line block-no-redundant-nested-style-rules */
 	& {
 		padding-block: map.get($spacing, "block");
 	}
 
 	.db-drawer-header {
 		// We need this variable to overwrite it inside the header
+		/// Controls the bottom padding inside the drawer header
+		/// @propertyname padding-block-end
+		/// @cssprop --db-drawer-header-padding-block-end
+		/// @default #{map.get($spacing, "block")}
 		/* stylelint-disable-next-line db-ux/use-spacings */
 		padding-block-end: var(
 			--db-drawer-header-padding-block-end,
@@ -97,11 +105,16 @@ $spacings: (
 
 	.db-drawer-content {
 		// We need this variable to overwrite it inside the header
+		/// Controls left/right padding inside the drawer content area
+		/// @propertyname padding-inline
+		/// @cssprop --db-drawer-content-padding-inline
+		/// @default #{map.get($spacing, "inline")}
 		/* stylelint-disable-next-line db-ux/use-spacings */
 		padding-inline: var(
 			--db-drawer-content-padding-inline,
 			#{map.get($spacing, "inline")}
 		);
+
 		// TODO: Evaluate whether we need overflow: hidden and that for only specifically set y here.
 		overflow-y: auto;
 		overflow-block: auto;
@@ -110,7 +123,7 @@ $spacings: (
 
 %spacing-drawer {
 	@each $name, $spacing in $spacings {
-		@if ($name == "medium") {
+		@if $name == "medium" {
 			@include get-spacing($spacing);
 		}
 
@@ -133,6 +146,19 @@ $spacings: (
 		box-shadow: variables.$db-elevation-md;
 
 		&:not([data-width="full"]) {
+			/// Sets the maximum width of the drawer
+			/// and some default values for the drawer
+			/// @propertyname max-inline-size
+			/// @cssprop --db-drawer-max-width
+			/// @default calc(100% - #{variables.$db-spacing-fixed-xl})
+			///
+			/// @example css - Wide drawer
+			///   .db-drawer-wide {
+			///     --db-drawer-max-width: 800px;
+			///   }
+			///   <div class="db-drawer db-drawer-wide">
+			///     <!-- wide drawer -->
+			///   </div>
 			max-inline-size: var(
 				--db-drawer-max-width,
 				calc(100% - #{variables.$db-spacing-fixed-xl})

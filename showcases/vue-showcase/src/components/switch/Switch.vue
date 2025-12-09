@@ -15,11 +15,16 @@ import DefaultComponent from "../DefaultComponent.vue";
 				:disabled="exampleProps?.disabled"
 				:required="exampleProps?.required"
 				:showLabel="exampleProps?.showLabel"
+				:variant="exampleProps?.variant"
 				:size="exampleProps?.size"
-				:emphasis="exampleProps?.emphasis"
 				:icon="exampleProps?.icon"
 				:iconTrailing="exampleProps?.iconTrailing"
+				:iconLeading="exampleProps?.iconLeading"
 				:validation="exampleProps?.validation"
+				:invalidMessage="exampleProps?.invalidMessage"
+				:validMessage="exampleProps?.validMessage"
+				:message="exampleProps?.message"
+				:showMessage="exampleProps?.showMessage"
 			>
 				{{ exampleName }}
 			</DBSwitch>

@@ -23,25 +23,73 @@ designers, and content authors build, maintain, and scale best-of-class digital 
 
 ## Packages
 
-| Package                                                                                         | Content                             | Version                                                                                                                                                                                                                                                                                                                            |
-| ----------------------------------------------------------------------------------------------- | ----------------------------------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| [foundations](https://github.com/db-ux-design-system/core-web/tree/main/packages/foundations)   | CSS/SCSS/Tailwind styles and assets | [![@db-ux/core-foundations on Npmjs](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fapi.github.com%2Frepos%2Fdb-ux-design-system%2Fcore-web%2Freleases%2Flatest&query=%24.tag_name&label=npm&color=ed1c24 "npm version")](https://npmjs.com/package/@db-ux/core-foundations "DB UX Design System – on NPM")           |
-| [components](https://github.com/db-ux-design-system/core-web/tree/main/packages/components)     | CSS/SCSS styles for components      | [![@db-ux/core-components on Npmjs](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fapi.github.com%2Frepos%2Fdb-ux-design-system%2Fcore-web%2Freleases%2Flatest&query=%24.tag_name&label=npm&color=ed1c24 "npm version")](https://npmjs.com/package/@db-ux/core-components "DB UX Design System – on NPM")             |
-| [ngx-core-components](https://github.com/db-ux-design-system/core-web/tree/main/output/angular) | Native Angular components           | [![@db-ux/ngx-core-components on Npmjs](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fapi.github.com%2Frepos%2Fdb-ux-design-system%2Fcore-web%2Freleases%2Flatest&query=%24.tag_name&label=npm&color=ed1c24 "npm version")](https://npmjs.com/package/@db-ux/ngx-core-components "DB UX Design System – on NPM")     |
-| [react-core-components](https://github.com/db-ux-design-system/core-web/tree/main/output/react) | Native React components             | [![@db-ux/react-core-components on Npmjs](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fapi.github.com%2Frepos%2Fdb-ux-design-system%2Fcore-web%2Freleases%2Flatest&query=%24.tag_name&label=npm&color=ed1c24 "npm version")](https://npmjs.com/package/@db-ux/react-core-components "DB UX Design System – on NPM") |
-| [v-core-components](https://github.com/db-ux-design-system/core-web/tree/main/output/vue)       | Native Vue 3 components             | [![@db-ux/v-core-components on Npmjs](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fapi.github.com%2Frepos%2Fdb-ux-design-system%2Fcore-web%2Freleases%2Flatest&query=%24.tag_name&label=npm&color=ed1c24 "npm version")](https://npmjs.com/package/@db-ux/v-core-components "DB UX Design System – on NPM")         |
-| [wc-core-components](https://github.com/db-ux-design-system/core-web/tree/main/output/stencil)  | Web Components                      | [![@db-ux/wc-core-components on Npmjs](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fapi.github.com%2Frepos%2Fdb-ux-design-system%2Fcore-web%2Freleases%2Flatest&query=%24.tag_name&label=npm&color=ed1c24 "npm version")](https://npmjs.com/package/@db-ux/wc-core-components "DB UX Design System – on NPM")       |
+| Package                                                                                                   | Content                             | Version                                                                                                                                                                                                                                                                                                                            |
+| --------------------------------------------------------------------------------------------------------- | ----------------------------------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| [@db-ux/core-foundations](https://github.com/db-ux-design-system/core-web/tree/main/packages/foundations) | CSS/SCSS/Tailwind styles and assets | [![@db-ux/core-foundations on Npmjs](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fapi.github.com%2Frepos%2Fdb-ux-design-system%2Fcore-web%2Freleases%2Flatest&query=%24.tag_name&label=npm&color=ed1c24 "npm version")](https://npmjs.com/package/@db-ux/core-foundations "DB UX Design System – on NPM")           |
+| [@db-ux/core-components](https://github.com/db-ux-design-system/core-web/tree/main/packages/components)   | CSS/SCSS styles for components      | [![@db-ux/core-components on Npmjs](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fapi.github.com%2Frepos%2Fdb-ux-design-system%2Fcore-web%2Freleases%2Flatest&query=%24.tag_name&label=npm&color=ed1c24 "npm version")](https://npmjs.com/package/@db-ux/core-components "DB UX Design System – on NPM")             |
+| [@db-ux/ngx-core-components](https://github.com/db-ux-design-system/core-web/tree/main/output/angular)    | Native Angular components           | [![@db-ux/ngx-core-components on Npmjs](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fapi.github.com%2Frepos%2Fdb-ux-design-system%2Fcore-web%2Freleases%2Flatest&query=%24.tag_name&label=npm&color=ed1c24 "npm version")](https://npmjs.com/package/@db-ux/ngx-core-components "DB UX Design System – on NPM")     |
+| [@db-ux/react-core-components](https://github.com/db-ux-design-system/core-web/tree/main/output/react)    | Native React components             | [![@db-ux/react-core-components on Npmjs](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fapi.github.com%2Frepos%2Fdb-ux-design-system%2Fcore-web%2Freleases%2Flatest&query=%24.tag_name&label=npm&color=ed1c24 "npm version")](https://npmjs.com/package/@db-ux/react-core-components "DB UX Design System – on NPM") |
+| [@db-ux/v-core-components](https://github.com/db-ux-design-system/core-web/tree/main/output/vue)          | Native Vue 3 components             | [![@db-ux/v-core-components on Npmjs](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fapi.github.com%2Frepos%2Fdb-ux-design-system%2Fcore-web%2Freleases%2Flatest&query=%24.tag_name&label=npm&color=ed1c24 "npm version")](https://npmjs.com/package/@db-ux/v-core-components "DB UX Design System – on NPM")         |
+| [@db-ux/wc-core-components](https://github.com/db-ux-design-system/core-web/tree/main/output/stencil)     | Web Components                      | [![@db-ux/wc-core-components on Npmjs](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fapi.github.com%2Frepos%2Fdb-ux-design-system%2Fcore-web%2Freleases%2Flatest&query=%24.tag_name&label=npm&color=ed1c24 "npm version")](https://npmjs.com/package/@db-ux/wc-core-components "DB UX Design System – on NPM")       |
+
+### Which package should I choose?
+
+**For JavaScript framework-specific components**: Choose your framework package (React, Angular, Vue, Web Components) which includes styling and JavaScript behavior.
+
+**For other users**: Use `@db-ux/core-components` - it includes everything you need (foundations + component styles).
+
+**For design tokens only**: Use `@db-ux/core-foundations` if you only need colors, spacing, fonts, and icons without pre-built component styles.
 
 ## How to use
 
-Install your preferred package via npm or yarn e.g. `npm i @db-ux/react-core-components`.
+1. **Install your preferred package** via npm or yarn:
+    - For React: `npm i @db-ux/react-core-components`
+    - For Angular: `npm i @db-ux/ngx-core-components`
+    - For Vue: `npm i @db-ux/v-core-components`
+    - For Web Components: `npm i @db-ux/wc-core-components`
+    - For styling only: `npm i @db-ux/core-components`
 
-Afterwards, you need to include the specific CSS or SCSS files to apply the styles of DB UX Design System (Version 3), as described in the "Styling Dependencies" section of each package's `README`.
+2. **Include the CSS styles** as described in the "Styling Dependencies" section of each package's `README`.
+
+> **💡 Note**: All framework packages automatically include the necessary foundation styles - you don't need to install `@db-ux/core-foundations` separately!
+
 We even provide some [examples of integrations](https://github.com/db-ux-design-system/examples).
+
+## AI Agent Support
+
+For developers using AI coding assistants like GitHub Copilot or Amazon Q, we provide the [`@db-ux/agent-cli`](https://www.npmjs.com/package/@db-ux/agent-cli) tool that automatically adds DB UX Design System documentation to your repository.
+
+### Quick Start
+
+Run this command in your repository:
+
+```shell
+npx @db-ux/agent-cli
+```
+
+This will create or update `.github/copilot-instructions.md` with component documentation based on your installed `@db-ux` packages, helping AI agents provide better suggestions.
+
+📖 **[Learn more about `@db-ux/agent-cli` node package](packages/agent-cli/README.md)**
+
+## Creating Custom Components
+
+For developers looking to create custom components that extend the design system in their applications, we provide comprehensive guidance:
+
+📖 **[Creating Custom Components Guide](docs/creating-custom-components.md)** - Learn how to build your own components using design system foundations
+
+This guide covers:
+
+- **Setup and Configuration**: Getting started with the design system packages
+- **Design Principles**: Following DB UX Design System guidelines and best practices
+- **Component Patterns**: Structured approaches to building consistent components
+- **Code Examples**: Practical implementations for cards, forms, navigation, and more
+- **Framework Support**: Specific guidance for React, Vue, Angular, and vanilla HTML/CSS
+- **Accessibility**: Ensuring your components are inclusive and compliant
+- **Common Pitfalls**: What to avoid and how to maintain design system consistency
 
 ### DB Theme
 
-In case that you're building a website or application for Deutsche Bahn, you'll additionally have to install the DB Theme via the [`@db-ux/db-theme`](https://www.npmjs.com/package/@db-ux/db-theme) node package (even also available as an inner source node package, as described within that packages README).
+In case that you're building a website or application for Deutsche Bahn, you'll additionally have to install the DB Theme via the [`@db-ux/db-theme`](https://www.npmjs.com/package/@db-ux/db-theme) node package (even also available as an inner source node package, as described within that packages [README](https://www.npmjs.com/package/@db-ux/db-theme)).
 
 ## Components
 
@@ -88,19 +136,21 @@ As [DB UX Design System](https://marketingportal.extranet.deutschebahn.com/marke
 We're providing a detailed migration for each component next to the documentation of each component, like e.g.
 <https://design-system.deutschebahn.com/core-web/review/main/components/action/button/migration>
 
+For a comprehensive overview of all DB-UI components and their migration status, including components that don't have direct equivalents in DB-UX Design System v3, see our [DB-UI to DB-UX Design System v3 Component Migration Guide](https://github.com/db-ux-design-system/core-web/blob/main/docs/migration/db-ui-to-db-ux-dsv3.md).
+
 ### In between DB UX Design System Core versions
 
 Check our migration docs for breaking changes:
 
-1. [Alpha ➡ Beta](https://github.com/db-ux-design-system/core-web/blob/main/docs/migration/alpha-beta.md) (0.0.x➡0.x.x)
-2. [v0.2 ➡ v0.3](https://github.com/db-ux-design-system/core-web/blob/main/docs/migration/v0.2.x-to-v0.3.x.md)
-3. [v0.3 ➡ v0.4](https://github.com/db-ux-design-system/core-web/blob/main/docs/migration/v0.3.x-to-v0.4.x.md)
-4. v0.4 ➡ v0.5: no migration needed, no breaking changes
-5. [v0.5 ➡ v0.6](https://github.com/db-ux-design-system/core-web/blob/main/docs/migration/v0.5.x-to-v0.6.x.md)
-6. [v0.6 ➡ v0.7](https://github.com/db-ux-design-system/core-web/blob/main/docs/migration/v0.6.x-to-v0.7.x.md)
-7. [v0.7 ➡ v1.0](https://github.com/db-ux-design-system/core-web/blob/main/docs/migration/v0.7.x-to-v1.0.0.md)
-8. [v1.x ➡ v2.0](https://github.com/db-ux-design-system/core-web/blob/main/docs/migration/v1.x.x-to-v2.0.0.md)
-9. [v2.x ➡ v3.0](https://github.com/db-ux-design-system/core-web/blob/main/docs/migration/v2.x.x-to-v3.0.0.md)
+- [v2.x ➡ v3.0](https://github.com/db-ux-design-system/core-web/blob/main/docs/migration/v2.x.x-to-v3.0.0.md)
+- [v1.x ➡ v2.0](https://github.com/db-ux-design-system/core-web/blob/main/docs/migration/v1.x.x-to-v2.0.0.md)
+- [v0.7 ➡ v1.0](https://github.com/db-ux-design-system/core-web/blob/main/docs/migration/v0.7.x-to-v1.0.0.md)
+- [v0.6 ➡ v0.7](https://github.com/db-ux-design-system/core-web/blob/main/docs/migration/v0.6.x-to-v0.7.x.md)
+- [v0.5 ➡ v0.6](https://github.com/db-ux-design-system/core-web/blob/main/docs/migration/v0.5.x-to-v0.6.x.md)
+- v0.4 ➡ v0.5: no migration needed, no breaking changes
+- [v0.3 ➡ v0.4](https://github.com/db-ux-design-system/core-web/blob/main/docs/migration/v0.3.x-to-v0.4.x.md)
+- [v0.2 ➡ v0.3](https://github.com/db-ux-design-system/core-web/blob/main/docs/migration/v0.2.x-to-v0.3.x.md)
+- [Alpha ➡ Beta](https://github.com/db-ux-design-system/core-web/blob/main/docs/migration/alpha-beta.md) (0.0.x➡0.x.x)
 
 ## FAQ
 

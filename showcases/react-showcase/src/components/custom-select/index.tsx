@@ -38,7 +38,8 @@ const getCustomSelect = ({
 	searchValue,
 	selectedLabels,
 	transformSelectedLabels,
-	searchFilter
+	searchFilter,
+	removeTagsTexts
 }: DBCustomSelectProps & {
 	lineBreak?: boolean;
 	info?: boolean;
@@ -82,7 +83,7 @@ const getCustomSelect = ({
 			showNoResults={showNoResults}
 			multiple={multiple}
 			label={children}
-			ariaListLabel={`${id}-${children}`}
+			listLabel={`${id}-${children}`}
 			options={options}
 			variant={variant}
 			message={message}
@@ -99,6 +100,7 @@ const getCustomSelect = ({
 			values={mValue}
 			searchValue={searchValue}
 			selectedLabels={selectedLabels}
+			selectedPrefix="Selected"
 			transformSelectedLabels={
 				transformSelectedLabels ? getTransformSelectedLabels : undefined
 			}
@@ -106,6 +108,7 @@ const getCustomSelect = ({
 			onOptionSelected={(value) => {
 				setValue(value);
 			}}
+			removeTagsTexts={removeTagsTexts}
 		/>
 	);
 };

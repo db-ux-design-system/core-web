@@ -8,14 +8,18 @@
     "ng": "ng",
     "preview": "npx http-server ../../build-showcases",
     "start": "ng serve --serve-path angular-showcase",
+    "test:a11y-checker": "cross-env showcase=angular-showcase npx playwright test --config=../playwright.a11y-checker.ts",
+    "test:aria-snapshots": "cross-env showcase=angular-showcase npx playwright test --config=../playwright.aria-snapshots.ts",
+    "test:axe-core": "cross-env showcase=angular-showcase npx playwright test --config=../playwright.axe-core.ts",
     "test:e2e": "cross-env showcase=angular-showcase npx playwright test --config=../playwright.config.ts",
     "test:ui": "npm run test:e2e -- --ui",
+    "test:visual-snapshots": "cross-env showcase=angular-showcase npx playwright test --config=../playwright.visual-snapshots.ts",
     "watch": "ng build --watch --configuration development"
   },
   "dependencies": {
-    "sa11y": "4.1.10"
+    "sa11y": "4.3.5"
   },
   "devDependencies": {
-    "typescript": "5.8.3"
+    "typescript": "5.9.3"
   }
 }

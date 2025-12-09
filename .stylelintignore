@@ -2,6 +2,9 @@ assets/fonts/**/sources
 build/
 build-outputs/
 build-showcases/
+build-storybooks/
+storybooks
+playwright-report
 dist/
 out/
 output/

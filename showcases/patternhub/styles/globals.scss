@@ -3,6 +3,7 @@
 @use "@db-ux/core-foundations/build/styles/screen-sizes";
 @use "@db-ux/core-foundations/build/styles/density";
 @use "@db-ux/core-components/build/components/section/section";
+@use "@db-ux/core-foundations/build/styles/helpers/display";
 
 @forward "@db-ux/core-components/build/styles/webpack";
 @forward "@db-ux/db-theme/build/styles/webpack";
@@ -44,11 +45,11 @@ iframe {
 }
 
 .iframe-component-container {
-	display: flex;
+	@include display.display(flex);
 	flex-direction: column;
 
 	.flex {
-		display: flex;
+		@include display.display(flex);
 		gap: variables.$db-spacing-fixed-sm;
 
 		&[data-variant="column"] {
@@ -58,7 +59,7 @@ iframe {
 }
 
 .base-64-container {
-	display: grid;
+	@include display.display(grid);
 	padding: variables.$db-spacing-fixed-md;
 	gap: variables.$db-spacing-fixed-md;
 
@@ -69,7 +70,7 @@ iframe {
 
 .noh1 {
 	h1 {
-		display: none;
+		@include display.display(none);
 	}
 }
 
@@ -79,7 +80,7 @@ iframe {
 
 	h1,
 	h2 {
-		display: none;
+		@include display.display(none);
 	}
 }
 
@@ -134,7 +135,7 @@ div[class^="ch-"] {
 %grid-container {
 	--columns: 1;
 
-	display: grid;
+	@include display.display(grid);
 	grid-template-columns: repeat(var(--columns), minmax(0, 1fr));
 	gap: variables.$db-spacing-fixed-md;
 
@@ -197,7 +198,7 @@ div[class^="ch-"] {
 
 	> div {
 		position: relative;
-		display: flex;
+		@include display.display(flex);
 		justify-content: center;
 		align-items: center;
 		border: 1px solid colors.$db-adaptive-on-bg-basic-emphasis-60-default;
@@ -213,7 +214,7 @@ div[class^="ch-"] {
 }
 
 .color-overview-switches {
-	display: flex;
+	@include display.display(flex);
 	gap: variables.$db-spacing-fixed-lg;
 	margin-block-end: variables.$db-spacing-fixed-md;
 }
@@ -221,7 +222,7 @@ div[class^="ch-"] {
 // density examples
 
 .density-example-grid {
-	display: grid;
+	@include display.display(grid);
 	grid-template-columns: repeat(3, minmax(0, 1fr));
 	gap: variables.$db-spacing-fixed-md;
 
@@ -231,18 +232,18 @@ div[class^="ch-"] {
 }
 
 .density-example-page {
-	display: flex;
+	@include display.display(flex);
 	flex-direction: column;
 	gap: variables.$db-spacing-fixed-md;
 
 	.density-example-page-regular {
-		display: grid;
+		@include display.display(grid);
 		grid-template-columns: repeat(3, minmax(0, 1fr));
 		gap: variables.$db-spacing-fixed-md;
 	}
 
 	.density-example-page-functional {
-		display: grid;
+		@include display.display(grid);
 		grid-template-columns: repeat(5, minmax(0, 1fr));
 		gap: variables.$db-spacing-fixed-md;
 	}
@@ -261,14 +262,14 @@ div[class^="ch-"] {
 		color: colors.$db-successful-on-bg-inverted-default;
 		border-color: colors.$db-successful-bg-inverted-contrast-high-default;
 		block-size: 100%;
-		display: flex;
+		@include display.display(flex);
 		justify-content: center;
 		position: absolute;
 		align-items: center;
 	}
 
 	.example-item {
-		display: flex;
+		@include display.display(flex);
 		flex-direction: column;
 		justify-content: center;
 		align-items: center;
@@ -279,7 +280,7 @@ div[class^="ch-"] {
 			border: 1px solid black;
 
 			> div {
-				display: flex;
+				@include display.display(flex);
 				border: 1px solid
 					colors.$db-adaptive-on-bg-basic-emphasis-60-default;
 				position: relative;
@@ -336,7 +337,7 @@ div[class^="ch-"] {
 
 		.example-sizing {
 			> div {
-				display: flex;
+				@include display.display(flex);
 				gap: variables.$db-spacing-fixed-md;
 			}
 
@@ -357,7 +358,7 @@ div[class^="ch-"] {
 .color-modes-container {
 	padding: variables.$db-spacing-fixed-md;
 	border: 1px dashed colors.$db-adaptive-on-bg-basic-emphasis-100-default;
-	display: grid;
+	@include display.display(grid);
 	gap: variables.$db-spacing-fixed-md;
 	grid-template-columns: repeat(2, minmax(0, 1fr));
 
@@ -375,7 +376,7 @@ div[class^="ch-"] {
 
 	.color-cards {
 		grid-column: span 2 / span 2;
-		display: grid;
+		@include display.display(grid);
 		gap: variables.$db-spacing-fixed-md;
 		grid-template-columns: repeat(5, minmax(0, 1fr));
 	}
@@ -392,7 +393,7 @@ h4,
 h5,
 h6 {
 	a:is(.header-link) {
-		display: inline-block;
+		@include display.display(inline-block);
 		margin-block: auto;
 		margin-inline-start: variables.$db-spacing-fixed-xs;
 		visibility: hidden;
@@ -419,7 +420,7 @@ h6 {
 	position: relative;
 
 	.code-details {
-		display: flex;
+		@include display.display(flex);
 
 		&[open] {
 			inset-inline-start: 0;
@@ -462,12 +463,12 @@ h6 {
 			z-index: 20;
 			inset: 0;
 			margin: variables.$db-spacing-fixed-md;
-			display: flex;
+			@include display.display(flex);
 			flex-direction: column;
 			gap: variables.$db-spacing-fixed-sm;
 
 			code {
-				display: block;
+				@include display.display(block);
 				white-space: pre-wrap;
 			}
 
@@ -490,19 +491,19 @@ h6 {
 }
 
 .validity-container {
-	display: grid;
+	@include display.display(grid);
 	grid-template-columns: repeat(2, minmax(0, 1fr));
 	gap: variables.$db-spacing-fixed-sm;
 
 	form {
-		display: flex;
+		@include display.display(flex);
 		flex-direction: column;
 		gap: variables.$db-spacing-fixed-sm;
 	}
 }
 
 .link-containers {
-	display: grid;
+	@include display.display(grid);
 	grid-template-areas:
 		"previous previous"
 		"next next";
@@ -543,7 +544,7 @@ h6 {
 }
 
 .breadcrumb-container {
-	display: flex;
+	@include display.display(flex);
 	overflow-x: auto;
 	overflow-inline: auto;
 	align-content: center;
@@ -564,7 +565,7 @@ h6 {
 }
 
 .card-navigation {
-	display: grid;
+	@include display.display(grid);
 	grid-template-columns: repeat(2, minmax(0, 1fr));
 	gap: variables.$db-spacing-fixed-md;
 
@@ -577,7 +578,7 @@ h6 {
 	}
 
 	.db-card {
-		display: grid;
+		@include display.display(grid);
 		grid-template-areas: "index icon" "label icon";
 
 		small {

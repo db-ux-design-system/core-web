@@ -11,16 +11,20 @@
     "prebuild": "npm run build --workspace @db-ux/wc-core-components",
     "preview": "npx http-server ../../build-showcases",
     "start": "ng serve --port 4202 --serve-path stencil-showcase",
+    "test:a11y-checker": "cross-env showcase=stencil-showcase npx playwright test --config=../playwright.a11y-checker.ts",
+    "test:aria-snapshots": "cross-env showcase=stencil-showcase npx playwright test --config=../playwright.aria-snapshots.ts",
+    "test:axe-core": "cross-env showcase=stencil-showcase npx playwright test --config=../playwright.axe-core.ts",
     "test:e2e": "cross-env showcase=stencil-showcase npx playwright test --config=../playwright.config.ts",
     "test:ui": "npm run test:e2e -- --ui",
+    "test:visual-snapshots": "cross-env showcase=stencil-showcase npx playwright test --config=../playwright.visual-snapshots.ts",
     "watch": "ng build --watch --configuration development"
   },
   "dependencies": {
-    "@stencil/core": "4.36.2"
+    "@stencil/core": "4.38.3"
   },
   "devDependencies": {
     "npm-run-all2": "8.0.4",
-    "typescript": "5.8.3"
+    "typescript": "5.9.3"
   },
   "overrides": {
     "cross-spawn": "7.0.6"

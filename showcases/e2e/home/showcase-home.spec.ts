@@ -1,11 +1,19 @@
 import { AxeBuilder } from '@axe-core/playwright';
 import { expect, type Page, test } from '@playwright/test';
-import { hasWebComponentSyntax, isStencil, waitForDBShell } from '../default';
+import {
+	hasWebComponentSyntax,
+	isAngular,
+	isStencil,
+	waitForDBShell
+} from '../default';
+
+const stencil = isStencil(process.env.showcase);
+const angular = isAngular(process.env.showcase);
 
 const testFormComponents = async (
 	page: Page,
 	testId: string,
-	role: 'textbox' | 'combobox' | 'checkbox' | 'radio' | 'group'
+	role: 'textbox' | 'combobox' | 'checkbox' | 'radio' | 'group' | 'switch'
 ) => {
 	await page.goto('./');
 	const tab = page.getByTestId(testId);
@@ -33,6 +41,7 @@ const testFormComponents = async (
 				break;
 			}
 
+			case 'switch':
 			case 'radio':
 			case 'checkbox': {
 				await component.click({ force: true });
@@ -59,13 +68,71 @@ const testFormComponents = async (
 
 	for (const def of definition) {
 		const index = definition.indexOf(def);
+
 		const text = await def.textContent();
-		if (role === 'checkbox') {
-			expect(text).toEqual('false');
-		} else if (role === 'group') {
-			expect(text).toEqual(`combobox-0`);
-		} else {
-			expect(text).toEqual(`${role}-${index}`);
+		switch (role) {
+			case 'switch':
+			case 'checkbox': {
+				expect(text).toEqual('false');
+				break;
+			}
+
+			case 'group': {
+				expect(text).toEqual(`combobox-0`);
+				break;
+			}
+
+			case 'radio':
+			case 'combobox':
+			case 'textbox': {
+				expect(text).toEqual(`${role}-${index}`);
+				break;
+			}
+		}
+	}
+
+	// Reset form
+
+	const formResetButton = await page.getByTestId('reset-button').all();
+	for (const locator of formResetButton) {
+		if (await locator.isVisible()) {
+			await locator.click({ force: true });
+			// Wait until event for reset was fired
+			await page.waitForTimeout(1000);
+		}
+	}
+
+	for (const def of definition) {
+		const index = definition.indexOf(def);
+
+		if (angular && index === 1) {
+			// We skip ngModel for angular - reset isn't working there
+			continue;
+		}
+
+		const text = await def.textContent();
+		switch (role) {
+			case 'switch':
+			case 'checkbox': {
+				expect(text).toEqual('true');
+				break;
+			}
+
+			case 'radio': {
+				expect(text).toEqual('');
+				break;
+			}
+
+			case 'combobox':
+			case 'group': {
+				expect(text).toEqual(`combobox-2`);
+				break;
+			}
+
+			case 'textbox': {
+				expect(text).toEqual(`test${index + 1}`);
+				break;
+			}
 		}
 	}
 };
@@ -96,8 +163,6 @@ test.describe('Home', () => {
 
 		expect(accessibilityScanResults.violations).toEqual([]);
 	});
-
-	const stencil = isStencil(process.env.showcase);
 
 	test('test inputs', async ({ page }) => {
 		if (stencil) {
@@ -137,6 +202,14 @@ test.describe('Home', () => {
 		}
 
 		await testFormComponents(page, 'tab-radios', 'radio');
+	});
+
+	test('test switches', async ({ page }) => {
+		if (stencil) {
+			test.skip();
+		}
+
+		await testFormComponents(page, 'tab-switches', 'switch');
 	});
 
 	test('test custom-selects', async ({ page }, { project }) => {

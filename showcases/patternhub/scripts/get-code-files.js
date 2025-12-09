@@ -2,7 +2,7 @@
 import FS from 'node:fs';
 import prettier from 'prettier';
 import { allExamples } from './generated/index.jsx';
-import { getCodeByFramework } from './utils.js';
+import { generateExampleKey, getCodeByFramework } from './utils.js';
 
 const sharedPath = '../shared';
 const reactPath = '../react-showcase/src/components';
@@ -39,8 +39,10 @@ const getExamplesAsMDX = async (componentName, variant) => {
 		'DBTabPanel,\n' +
 		'DBTabs\n' +
 		"} from '@components';\n" +
+		"import { useFramework } from '../../framework-context';\n" +
 		`const ${variant.name} = () => {
 			const [copied, setCopied] = useState<string>();
+			const { getFrameworkIndex } = useFramework();
 
 			useEffect(() => {
 			if (copied) {
@@ -53,7 +55,7 @@ const getExamplesAsMDX = async (componentName, variant) => {
 	for (const example of examples) {
 		result += `
 			<DBCard className="tab-container">
-			<DBTabs>
+			<DBTabs initialSelectedIndex={getFrameworkIndex()} key={getFrameworkIndex()}>
 			<DBTabList>
 			<DBTabItem>Angular</DBTabItem>
 			<DBTabItem>HTML</DBTabItem>
@@ -66,10 +68,12 @@ const getExamplesAsMDX = async (componentName, variant) => {
 			if (example.code && example.code[framework]) {
 				exampleCode = example.code[framework];
 			} else if (framework === 'html') {
-				exampleCode =
-					allExamples[
-						`${componentName}${variant.name}${example.name}`
-					];
+				const exampleKey = generateExampleKey(
+					componentName,
+					variant.name,
+					example.name
+				);
+				exampleCode = allExamples[exampleKey];
 			} else {
 				exampleCode = getCodeByFramework(
 					componentName,

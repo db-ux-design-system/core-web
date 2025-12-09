@@ -12,17 +12,17 @@ const ColorSchemes = () => {
 	return (
 		<DefaultPage>
 			<div>
-				<h1>Color classes</h1>
+				<h1>Color declarations</h1>
 				<p>
-					These <strong>classes</strong> (or <code>data-</code>
-					-attributes) can be used to apply a{' '}
+					These <code>data-</code>-attributes (or{' '}
+					<strong>classes</strong>) can be used to apply a{' '}
 					<strong>monochromatic adaptive color scheme</strong> or a{' '}
 					<strong>color modifier</strong> (background color,
 					on-background color) to containers and elements.
 				</p>
 				<p>
 					<i>
-						These classes are <strong>not</strong> intended for
+						These declarations are <strong>not</strong> intended for
 						individual styling of your own components. The
 						corresponding CSS Custom Properties should be used for
 						this.
@@ -39,30 +39,30 @@ const ColorSchemes = () => {
 					<li>
 						Should an entire container be given an{' '}
 						<strong>adaptive color scheme</strong>? Then use a{' '}
-						<code>db-color-[ color ]</code> class.
+						<code>data-color="[ color ]"</code> HTML-attribute.
 					</li>
 					<li>
 						The <strong>background color</strong>, in particular the{' '}
 						<strong>elevation level</strong>, can be modified with a{' '}
-						<code>db-bg-color-[ color ]</code> class.
+						<code>data-bg-color="[ color ]"</code> HTML-attribute.
 					</li>
 					<li>
 						The contrast of the <strong>text</strong> and{' '}
 						<strong>icon color</strong> can be changed with the{' '}
-						<strong>on-background</strong> classes:{' '}
-						<code>db-on-bg-color-[ color ]</code>
+						<strong>on-background</strong> <code>data</code>-HTML-{' '}
+						attribute: <code>data-on-bg-color="[ color ]"</code>
 					</li>
 				</ol>
 				<h2 id="container-color-classes">1. Adaptive Color Scheme</h2>
 				<p>
-					These classes define the{' '}
+					These declarations define the{' '}
 					<strong>monochromatic adaptive color scheme</strong> for a
 					container. Texts, icons and backgrounds in it than
 					automatically adapt to the color set.
 				</p>
 				<p>
-					Each adaptive color scheme class functions as a shorthand
-					and applies the following by default:
+					Each adaptive color scheme declaration functions as a
+					shorthand and applies the following by default:
 				</p>
 				<ul>
 					<li>
@@ -101,7 +101,7 @@ const ColorSchemes = () => {
 					2. Background color modifier
 				</h2>
 				<p>
-					These classes define the type of background color for a
+					These declarations define the type of background color for a
 					container. The exact color tone than results from the
 					current semantics (in root <strong>neutral</strong> by
 					default). This means that each of these background types
@@ -116,7 +116,7 @@ const ColorSchemes = () => {
 					3. On background color modifier
 				</h2>
 				<p>
-					This class is used to define the contrast for{' '}
+					This declarations is used to define the contrast for{' '}
 					<strong>texts</strong> and <strong>icons</strong>. As with
 					the background colors, these are displayed according to the
 					current color scheme.

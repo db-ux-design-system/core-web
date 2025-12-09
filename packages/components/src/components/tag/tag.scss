@@ -14,13 +14,13 @@
 	&[data-no-text="true"] {
 		--icon-margin-after: 0;
 
-		@include icons.is-icon-text-replace();
+		@include icons.is-icon-text-replace;
 
 		padding: 0;
 		gap: 0;
 
 		label {
-			@include icons.is-icon-text-replace();
+			@include icons.is-icon-text-replace;
 		}
 	}
 
@@ -60,21 +60,20 @@
 	&:not(:has(#{tag-components.$interactive-selectors})),
 	&:has(.db-tab-remove-button) {
 		@extend %component-border;
-
-		@include tag-components.get-tag-colors();
+		@include tag-components.get-tag-colors;
 	}
 
 	&:has(#{tag-components.$interactive-selectors}) {
 		--db-icon-margin-end: #{variables.$db-spacing-fixed-2xs};
 
 		@include icon-passing.icon-passing(variables.$db-spacing-fixed-2xs);
-		@include tag-components.get-tag-colors-interactive();
+		@include tag-components.get-tag-colors-interactive;
 	}
 
 	button:nth-of-type(2),
 	dbbutton:nth-of-type(2),
 	&:has(db-button):has(dbbutton) .db-tab-remove-button {
-		display: none;
+		@include helpers.display(none);
 	}
 
 	> :is(
@@ -108,7 +107,9 @@
 
 		inline-size: 100%;
 		margin-inline-start: 0;
-		display: flex;
+
+		@include helpers.display(flex);
+
 		align-items: center;
 
 		@media (forced-colors: active) {
@@ -154,8 +155,8 @@
 
 	a {
 		@extend %default-transition;
+		@include helpers.display(inline-flex);
 
-		display: inline-flex;
 		align-items: center;
 		text-decoration: none;
 

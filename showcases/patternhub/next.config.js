@@ -17,8 +17,7 @@ const config = {
 	basePath: process.env.NEXT_PUBLIC_BASE_PATH || '',
 	transpilePackages: ['../react-showcase/', '@db-ux'],
 	...withMDX({
-		pageExtensions: ['ts', 'tsx', 'js', 'jsx', 'md', 'mdx'],
-		eslint: { ignoreDuringBuilds: true }
+		pageExtensions: ['ts', 'tsx', 'js', 'jsx', 'md', 'mdx']
 	}),
 	env: {
 		BASE_PATH: process.env.NEXT_PUBLIC_BASE_PATH || '',

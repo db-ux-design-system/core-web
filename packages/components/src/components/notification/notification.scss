@@ -1,6 +1,7 @@
 @use "sass:map";
 @use "@db-ux/core-foundations/build/styles/density";
 @use "@db-ux/core-foundations/build/styles/variables";
+@use "@db-ux/core-foundations/build/styles/helpers";
 @use "@db-ux/core-foundations/build/styles/colors";
 @use "@db-ux/core-foundations/build/styles/icons";
 @use "@db-ux/core-foundations/build/styles/screen-sizes";
@@ -10,8 +11,8 @@
 @use "./notification-grid-overlay";
 @use "./notification-grid-non-overlay";
 
-%ugly-line-height-workarounds {
-	// resets line-height to smaller height based on timestamp
+%timestamp-line-height-adjustments {
+	// Adjusts line-height for elements when timestamp is present
 	&:has(span) {
 		header,
 		p,
@@ -26,9 +27,9 @@
 .db-notification {
 	@extend %component-border;
 	@extend %grid-layout-default;
-	@extend %ugly-line-height-workarounds;
+	@extend %timestamp-line-height-adjustments;
+	@include helpers.display(grid);
 
-	display: grid;
 	padding: variables.$db-spacing-fixed-md;
 	gap: variables.$db-spacing-fixed-xs variables.$db-spacing-fixed-md;
 	inline-size: inherit;
@@ -40,9 +41,6 @@
 
 	a {
 		@extend %db-default-link;
-
-		grid-area: link;
-		white-space: nowrap;
 
 		// Overwrite settings for db-link ALWAYS
 		&::before,
@@ -91,12 +89,15 @@
 		margin: 0;
 	}
 
+	// Image styling and grid positioning
 	img {
 		min-block-size: variables.$db-sizing-md;
 		min-inline-size: variables.$db-sizing-md;
 		max-block-size: variables.$db-sizing-md;
 		max-inline-size: variables.$db-sizing-md;
 		border-radius: variables.$db-border-radius-xs;
+		object-fit: cover;
+		grid-area: icon;
 	}
 
 	// timestamp
@@ -105,83 +106,66 @@
 
 		grid-area: timestamp;
 		white-space: nowrap;
+		justify-self: end;
 	}
 
 	.db-button {
 		grid-area: close;
 	}
 
-	&:has(img) {
-		// we don't show a icon if we have an image
-		::before {
-			content: none !important;
+	// Inline links stay within content flow
+	&[data-link-variant="inline"] a {
+		// 1. Assign the link to the "timestamp" area.
+		//    All layouts (overlay and default) must recognize this area.
+		grid-area: timestamp;
+		white-space: nowrap;
+
+		// 2. Align the link at the end (right) of its grid cell
+		justify-self: end;
+
+		// 3. Inline links should use 'md' size (like <p>),
+		//    not 'sm' (like <span>)
+		@extend %db-overwrite-font-size-md;
+	}
+
+	// If an inline link is present, it takes precedence over the timestamp
+	// Note: :has() pseudo-class has limited browser support (Firefox < 121)
+	// Progressive enhancement - timestamps gracefully shown in older browsers
+	&[data-link-variant="inline"]:has(a) {
+		> span {
+			display: none;
 		}
 	}
 
+	// Block links get placed in grid area (default behavior)
+	// This applies when linkVariant is "block" or not specified
+	&:not([data-link-variant="inline"]) a {
+		grid-area: link;
+		white-space: nowrap;
+	}
+
+	// Icon grid positioning
 	&[data-icon]::before,
-	&::before,
-	img {
+	&::before {
 		--db-icon-margin-end: 0;
 
-		@include icons.to-filled-icon();
+		@include icons.to-filled-icon;
 
 		grid-area: icon;
 	}
 
-	// has link inline or overlay
-	&:has(a) {
-		&[data-link-variant="inline"],
-		&[data-variant="overlay"] {
-			// 1. only content (min. requirement)
-			grid-template-areas: "content link";
-			grid-template-columns: 1fr min-content;
+	// If showIcon is explicitly set to false, hide the generated icon
+	// pseudo-element.
+	&[data-show-icon="false"]::before {
+		/* Hidden when showIcon is explicitly false. Using `display:none`
+		   is sufficient; avoid extra properties that don't affect layout. */
+		display: none;
+	}
 
-			&:has(.db-button) {
-				grid-template-columns: 1fr min-content min-content;
-				grid-template-areas: "content link close";
-			}
-
-			// 2. headline
-			&:has(header) {
-				grid-template-columns: 1fr min-content;
-				grid-template-areas:
-					"head link"
-					"content content";
-
-				&:has(.db-button) {
-					grid-template-columns: 1fr min-content min-content;
-					grid-template-areas:
-						"head link close"
-						"content content content";
-				}
-			}
-
-			// 3. icon or img
-			&[data-icon],
-			&[data-semantic]:not([data-semantic="adaptive"]),
-			&:has(img) {
-				grid-template-areas: "icon content link";
-				grid-template-columns: min-content 1fr min-content;
-
-				&:has(.db-button) {
-					grid-template-columns: min-content 1fr min-content min-content;
-					grid-template-areas: "icon content link close";
-				}
-
-				&:has(header) {
-					grid-template-columns: min-content 1fr min-content;
-					grid-template-areas:
-						"icon head link"
-						"icon content content";
-
-					&:has(.db-button) {
-						grid-template-columns: min-content 1fr min-content min-content;
-						grid-template-areas:
-							"icon head link close"
-							"icon content content content";
-					}
-				}
-			}
+	&:has(img) {
+		// Hide icon when image is present to avoid conflicts
+		&::before {
+			content: none !important;
 		}
 	}
 
@@ -191,8 +175,13 @@
 		box-shadow: variables.$db-elevation-md;
 	}
 
+	// Apply non-overlay grid layout for notifications with block links
+	// This applies when linkVariant is "block" (explicit or default when links are present)
 	&:not([data-variant="overlay"]) {
-		@extend %grid-layout-variant-not-overlay;
+		&[data-link-variant="block"],
+		&:not([data-link-variant]):has(a) {
+			@extend %grid-layout-variant-not-overlay;
+		}
 	}
 
 	&[data-variant="overlay"],
@@ -203,7 +192,6 @@
 	@each $name in colors.$variant-colors {
 		&[data-semantic="#{$name}"] {
 			@extend %db-#{$name}-variables;
-
 			@include icons.variant-icons($name);
 
 			&::before {

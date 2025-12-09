@@ -9,7 +9,7 @@ on:
       showcase:
         required: true
         type: string
-      path:
+      test-ally:
         required: false
         type: string
 
@@ -25,55 +25,80 @@ jobs:
       image: mcr.microsoft.com/playwright:v${{ inputs.version }}
       options: --user 1001
     strategy:
-      fail-fast: false
+      fail-fast: true
       matrix:
-        shardIndex: [1, 2, 3, 4, 5, 6]
-        shardTotal: [6]
+        shardIndex: [1, 2, 3, 4, 5]
+        shardTotal: [5]
     steps:
       - name: ⏬ Checkout repo
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
+        with:
+          fetch-depth: 2
 
       - name: 🔄 Init Cache
         uses: ./.github/actions/npm-cache
 
       - name: ⏬ Download foundations build
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v6
         with:
           name: db-ux-foundations-build
           path: packages/foundations/build
 
       - name: ⏬ Download output
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v6
         with:
           name: db-ux-output
           path: output
 
       - name: ⏬ Download components styles build
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v6
         with:
           name: db-ux-components-build
           path: packages/components/build
 
       - name: ⏬ Download ${{ inputs.showcase }}
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v6
         with:
           name: db-ux-${{ inputs.showcase }}
           path: build-showcases/${{ inputs.showcase }}
 
-      - name: 🧴 Copy patternhub testing app
-        if: inputs.path
-        shell: bash
-        run: |
-          mkdir --parents ./build-showcases${{ inputs.path }}
-          cp --recursive --no-target-directory ./build-showcases/${{ inputs.showcase }} ./build-showcases${{ inputs.path }}
-
+      # We test everything for patternhub and main branch
       - name: 👩‍🔬 Test showcase with Playwright 🎭
         shell: bash
+        if: github.event.pull_request == null
         env:
           NEXT_PUBLIC_BASE_PATH: ${{ inputs.path }}
         run: |
-          ls ./build-showcases${{ inputs.path }}
           npm run test:e2e --workspace=${{ inputs.showcase }} -- --shard=${{ matrix.shardIndex }}/${{ matrix.shardTotal }}
+
+      # We check if aria-snapshots were changed
+      - name: 👩‍🔬 Test aria-snapshots with Playwright 🎭
+        id: aria-snapshots
+        shell: bash
+        if: github.event.pull_request != null
+        run: |
+          npm run test:aria-snapshots --workspace=${{ inputs.showcase }} -- --shard=${{ matrix.shardIndex }}/${{ matrix.shardTotal }}
+
+      - name: 👩‍🔬 Test visual-snapshots with Playwright 🎭
+        id: visual-snapshots
+        shell: bash
+        if: github.event.pull_request != null
+        run: |
+          npm run test:visual-snapshots --workspace=${{ inputs.showcase }} -- --shard=${{ matrix.shardIndex }}/${{ matrix.shardTotal }}
+
+      - name: 👩‍🔬 Test axe-core with Playwright 🎭
+        shell: bash
+        if: github.event.pull_request != null
+        run: |
+          npm run test:axe-core --workspace=${{ inputs.showcase }} -- --shard=${{ matrix.shardIndex }}/${{ matrix.shardTotal }}
+
+      - name: 👩‍🔬 Test a11y-checker with Playwright 🎭
+        shell: bash
+        if: |
+          github.event.pull_request != null &&
+          inputs.test-ally == 'true'
+        run: |
+          npm run test:a11y-checker --workspace=${{ inputs.showcase }} -- --shard=${{ matrix.shardIndex }}/${{ matrix.shardTotal }}
 
       - name: 🔣 Print GitHub Report
         if: failure()
@@ -82,17 +107,9 @@ jobs:
           npx playwright merge-reports --reporter github ./blob-report
 
       - name: 🆙 Upload test results
-        if: failure()
-        uses: actions/upload-artifact@v4
+        if: ${{ failure() }}
+        uses: actions/upload-artifact@v5
         with:
           name: ${{ inputs.showcase }}-playwright-results-${{ matrix.shardIndex }}
           path: ./showcases/${{ inputs.showcase }}/test-results
-          retention-days: 30
-
-      - name: 🆙 Upload aChecker results
-        if: failure()
-        uses: actions/upload-artifact@v4
-        with:
-          name: ${{ inputs.showcase }}-showcase-achecker-results-${{ matrix.shardIndex }}
-          path: ./showcases/${{ inputs.showcase }}-showcase/results
           retention-days: 30

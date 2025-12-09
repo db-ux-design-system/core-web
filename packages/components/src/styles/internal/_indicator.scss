@@ -64,10 +64,10 @@ $indicator-background: linear-gradient(
 %indicator-auto {
 	@extend %indicator;
 
-	@include set-indicator-vertical();
+	@include set-indicator-vertical;
 
 	@include screen-sizes.screen("md") {
-		@include set-indicator-horizontal();
+		@include set-indicator-horizontal;
 	}
 }
 

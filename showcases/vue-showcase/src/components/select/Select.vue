@@ -11,7 +11,7 @@ import DefaultComponent from "../DefaultComponent.vue";
 		>
 			<DBSelect
 				:label="exampleProps?.label"
-				:placeholder="exampleName"
+				:placeholder="exampleProps?.placeholder"
 				:variant="exampleProps?.variant"
 				:show-label="exampleProps?.showLabel"
 				:options="exampleProps?.options"

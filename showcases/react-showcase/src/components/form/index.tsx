@@ -79,7 +79,13 @@ const FormComponent = () => {
 						fieldSizing="content"></DBTextarea>
 
 					<DBCustomSelect
-						options={[{ value: 'Option 1' }, { value: 'Option 2' }]}
+						options={[
+							{ value: 'Option 1' },
+							{ value: 'Option 2' },
+							{ value: 'Option 3' },
+							{ value: 'Option 4' },
+							{ value: 'Option 5' }
+						]}
 						label="Test"
 						required
 						showSearch
@@ -112,6 +118,7 @@ const FormComponent = () => {
 							label="Date input"
 							message="Description"
 							name="input-date-name"
+							value={dateinput}
 							onChange={(event) => {
 								setDateinput(event.target.value);
 							}}
@@ -248,6 +255,7 @@ const FormComponent = () => {
 							type="button"
 							onClick={() => {
 								setInput('reset');
+								setDateinput('');
 							}}>
 							Reset and Toggle
 						</DBButton>

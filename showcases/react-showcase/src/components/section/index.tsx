@@ -5,11 +5,12 @@ import { type BaseComponentProps } from '../base-component-data';
 import { getVariants } from '../data';
 import DefaultComponent from '../default-component';
 
-const getSection = ({ width, spacing, children }: DBSectionProps) => (
+const getSection = ({ width, spacing, children, id }: DBSectionProps) => (
 	<DBSection
 		className="db-color-informational db-bg-color-basic-level-2  section-card-container"
 		spacing={spacing}
-		width={width}>
+		width={width}
+		id={id}>
 		<DBCard>{children}</DBCard>
 		<DBCard>{children}</DBCard>
 		<DBCard>{children}</DBCard>

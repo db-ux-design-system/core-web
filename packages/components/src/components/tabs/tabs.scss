@@ -3,6 +3,7 @@
 @use "../../styles/internal/form-components";
 @use "../../styles/internal/indicator";
 @use "../../styles/internal/scrollbar";
+@use "@db-ux/core-foundations/build/styles/helpers";
 
 $max-tabs: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
@@ -13,7 +14,7 @@ $max-tabs: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 			&:has([id$="-tab-#{$index}"]:checked) {
 				~ dbtabpanel > [id$="-tab-panel-#{$index}"],
 				~ db-tab-panel > [id$="-tab-panel-#{$index}"] {
-					display: block;
+					@include helpers.display(block);
 				}
 			}
 		}
@@ -66,8 +67,8 @@ $max-tabs: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 	$db-tabs-z-index-tab-list: 20;
 
 	@extend %angular-workaround;
+	@include helpers.display(flex);
 
-	display: flex;
 	inline-size: 100%;
 	position: relative;
 
@@ -82,7 +83,7 @@ $max-tabs: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 		@each $index in $max-tabs {
 			&:has([id$="-tab-#{$index}"]:checked)
 				~ [id$="-tab-panel-#{$index}"] {
-				display: block;
+				@include helpers.display(block);
 			}
 		}
 	}

@@ -6,6 +6,7 @@ import Form from "../form/Form.vue";
 import Inputs from "../form/Inputs.vue";
 import Radios from "../form/Radios.vue";
 import Selects from "../form/Selects.vue";
+import Switches from "../form/Switches.vue";
 import Textareas from "../form/Textareas.vue";
 </script>
 
@@ -21,6 +22,7 @@ import Textareas from "../form/Textareas.vue";
 			<DBTabItem data-testid="tab-custom-selects"
 				>Custom Selects</DBTabItem
 			>
+			<DBTabItem data-testid="tab-switches">Switches</DBTabItem>
 		</DBTabList>
 		<DBTabPanel>
 			<Form />
@@ -42,6 +44,9 @@ import Textareas from "../form/Textareas.vue";
 		</DBTabPanel>
 		<DBTabPanel>
 			<CustomSelects />
+		</DBTabPanel>
+		<DBTabPanel>
+			<Switches />
 		</DBTabPanel>
 	</DBTabs>
 </template>
