@@ -19,10 +19,7 @@
 	margin-block-start: variables.$db-spacing-fixed-xs;
 
 	@media screen and (prefers-reduced-motion: no-preference) {
-		& {
-			transition: block-size
-				#{variables.$db-transition-straight-emotional};
-		}
+		transition: block-size #{variables.$db-transition-straight-emotional};
 	}
 
 	&:empty {
