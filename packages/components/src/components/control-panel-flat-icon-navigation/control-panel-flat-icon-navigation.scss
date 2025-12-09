@@ -31,10 +31,10 @@
 					min-block-size: variables.$db-sizing-md;
 					min-inline-size: variables.$db-sizing-md;
 
-					@include indicator.set-indicator-horizontal();
+					@include indicator.set-indicator-horizontal;
 
 					@include navigation-item.active-navigation-item {
-						@include indicator.show-indicator-horizontal();
+						@include indicator.show-indicator-horizontal;
 					}
 				}
 			}

@@ -59,6 +59,7 @@ $outside-position: calc(-200% + #{variables.$db-spacing-fixed-xs});
 		inline-size: fit-content;
 		position: absolute;
 		min-inline-size: variables.$db-container-xs;
+
 		// TODO: This causes some flash for angular navigation item group
 		transition: visibility 1ms linear; // workaround to enable focus with keyboard
 
@@ -96,6 +97,7 @@ $outside-position: calc(-200% + #{variables.$db-spacing-fixed-xs});
 
 				&::before {
 					inset-block: auto 0;
+
 					// inline-size: calc(var(--db-navigation-item-inline-size, 100%) - #{variables.$db-spacing-fixed-xs} - 2px);
 					transform: translateX(100%) scaleX(-1);
 				}

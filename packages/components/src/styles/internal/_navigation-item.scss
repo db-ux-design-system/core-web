@@ -45,6 +45,7 @@
 		content: "";
 		position: absolute;
 		padding: variables.$db-spacing-fixed-xs;
+
 		// #{$db-spacing-fixed-3xs} for box shadow
 		inset-block-start: #{variables.$db-spacing-fixed-3xs};
 		inset-inline-end: calc(-1 * #{variables.$db-spacing-fixed-xs});
@@ -92,6 +93,7 @@
 	) {
 		inline-size: 100%;
 	}
+
 	// Desktop
 	@include screen-sizes.screen-min-max(
 		(

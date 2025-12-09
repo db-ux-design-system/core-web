@@ -11,7 +11,7 @@
 @use "./scrollbar";
 
 @mixin horizontal-navigation($scroll-buttons: true) {
-	@if ($scroll-buttons) {
+	@if $scroll-buttons {
 		@include scrollbar.set-overflow-scroll-buttons;
 
 		&:has(.overflow-scroll-left-button) {
@@ -33,7 +33,7 @@
 
 	&:has(.db-button) {
 		> menu {
-			@if ($scroll-buttons) {
+			@if $scroll-buttons {
 				@include scrollbar.set-overflow-scroll-button-backgrounds;
 			}
 
@@ -81,6 +81,7 @@
 					position: absolute;
 					inset-inline-start: 0;
 					inline-size: 100%;
+
 					// #{$db-spacing-fixed--3xs} for shadows
 					block-size: calc(
 						#{variables.$db-spacing-fixed-3xs} +
@@ -97,7 +98,7 @@
 }
 
 @mixin vertical-navigation($main-navigation: true) {
-	@if ($main-navigation) {
+	@if $main-navigation {
 		padding-block: variables.$db-spacing-fixed-md;
 	}
 
@@ -226,11 +227,10 @@
 
 			@include navigation-item.direct-navigation-items {
 				@extend %indicator;
-
-				@include indicator.set-indicator-horizontal();
+				@include indicator.set-indicator-horizontal;
 
 				@include navigation-item.active-navigation-item {
-					@include indicator.show-indicator-horizontal();
+					@include indicator.show-indicator-horizontal;
 				}
 
 				@include navigation-item.direct-navigation-items {
@@ -436,11 +436,10 @@
 		> menu {
 			@include navigation-item.direct-navigation-items {
 				@extend %indicator;
-
-				@include indicator.set-indicator-vertical();
+				@include indicator.set-indicator-vertical;
 
 				@include navigation-item.active-navigation-item {
-					@include indicator.show-indicator-vertical();
+					@include indicator.show-indicator-vertical;
 				}
 
 				@include navigation-item.direct-navigation-items {

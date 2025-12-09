@@ -102,13 +102,10 @@
 						> menu {
 							@include navigation-item.direct-navigation-items {
 								@extend %indicator;
-
-								@include indicator.set-indicator-vertical();
+								@include indicator.set-indicator-vertical;
 
 								@include navigation-item.active-navigation-item {
-									@include indicator.show-indicator-vertical(
-
-									);
+									@include indicator.show-indicator-vertical;
 								}
 
 								@include navigation-item.direct-navigation-items {

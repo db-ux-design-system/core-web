@@ -156,7 +156,7 @@ $db-overflow-scroll-buttons-button: 22;
 	 * Scroll left / right buttons
 	 */
 	.overflow-scroll-left-button {
-		@include angular-button-workaround() {
+		@include angular-button-workaround {
 			inset-inline-start: var(
 				--db-overflow-scroll-button-inset-inline-start,
 				0
@@ -165,14 +165,14 @@ $db-overflow-scroll-buttons-button: 22;
 	}
 
 	.overflow-scroll-right-button {
-		@include angular-button-workaround() {
+		@include angular-button-workaround {
 			inset-inline-end: 0;
 		}
 	}
 
 	.overflow-scroll-left-button,
 	.overflow-scroll-right-button {
-		@include angular-button-workaround() {
+		@include angular-button-workaround {
 			position: absolute;
 			z-index: $db-overflow-scroll-buttons-button;
 			inset-block: var(

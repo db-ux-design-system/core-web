@@ -10,7 +10,7 @@
 
 %popover-navigation {
 	.db-navigation-item {
-		@include icon-passing.icon-passing();
+		@include icon-passing.icon-passing;
 	}
 
 	.db-navigation-item-group {
@@ -107,7 +107,7 @@
 		}
 
 		&[data-icon] {
-			@include icon-passing.icon-passing();
+			@include icon-passing.icon-passing;
 		}
 	}
 
