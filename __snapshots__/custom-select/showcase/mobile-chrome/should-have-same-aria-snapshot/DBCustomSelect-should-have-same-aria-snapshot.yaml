@@ -1510,3 +1510,49 @@
             - text: Option 5
       - button "Close"
   - status
+  - link "Examples Floating label"
+  - text: Floating
+  - group:
+    - article:
+      - radiogroup "id-10300-Floating":
+        - list:
+          - listitem:
+            - radio "Option 1"
+            - text: Option 1
+          - listitem:
+            - radio "Option 2"
+            - text: Option 2
+          - listitem:
+            - radio "Option 3"
+            - text: Option 3
+          - listitem:
+            - radio "Option 4"
+            - text: Option 4
+          - listitem:
+            - radio "Option 5"
+            - text: Option 5
+      - button "Close"
+  - status
+  - text: Floating
+  - group:
+    - article:
+      - radiogroup "id-10300-Floating":
+        - list:
+          - listitem:
+            - radio "Option 1"
+            - text: Option 1
+          - listitem:
+            - radio "Option 2"
+            - text: Option 2
+          - listitem:
+            - radio "Option 3"
+            - text: Option 3
+          - listitem:
+            - radio "Option 4"
+            - text: Option 4
+          - listitem:
+            - radio "Option 5"
+            - text: Option 5
+      - button "Close"
+  - text: Invalid Message
+  - status
