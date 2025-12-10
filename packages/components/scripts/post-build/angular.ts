@@ -172,6 +172,15 @@ export default (tmp?: boolean) => {
 			{
 				from: /allowSignalWrites: true,/g,
 				to: ''
+			},
+			{
+				// Fix: Don't remove class attribute from parent element in Angular components
+				// Classes on the host element are needed for proper styling
+				from: `          } else {
+            parent.removeAttribute(attr.name);
+          }`,
+				to: `          }
+          // Note: Keep class attribute on parent element for Angular component styling`
 			}
 		];
 
