@@ -1,7 +1,7 @@
+import { DBLink } from '@components';
 /* eslint-disable-next-line unicorn/prefer-node-protocol */
 import { Buffer } from 'buffer';
 import { useEffect, useState } from 'react';
-import { DBLink } from '../../../../output/react/src';
 import {
 	COLOR,
 	COLORS,

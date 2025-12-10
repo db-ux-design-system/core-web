@@ -1,78 +1,94 @@
-import { useState } from 'react';
+import {
+	DBControlPanelBrand,
+	DBControlPanelDesktop,
+	DBControlPanelMobile,
+	DBShell,
+	DBShellSubNavigation
+} from '@components';
 import { Outlet } from 'react-router-dom';
-import { DBBrand, DBButton, DBHeader, DBPage } from '../../../output/react/src';
+import MetaNavigation from './control-panel/meta-navigation';
+import PrimaryActions from './control-panel/primary-actions';
+import SecondaryActions from './control-panel/secondary-actions';
 import useQuery from './hooks/use-query';
-import MetaNavigation from './meta-navigation';
 import Navigation from './navigation';
 
 const App = () => {
-	const [density, setDensity, color, setColor, pageName, fullscreen] =
-		useQuery();
+	const {
+		density,
+		setDensity,
+		color,
+		setColor,
+		page,
+		fullscreen,
+		setSettings,
+		settings
+	} = useQuery();
 
-	const [drawerOpen, setDrawerOpen] = useState<boolean>(false);
-
-	if (pageName ?? fullscreen) {
+	if (page ?? fullscreen) {
 		return (
-			<div data-density={density} className={`db-${color}`}>
+			<div data-density={density} className={`db-color-${color}`}>
 				<Outlet />
 			</div>
 		);
 	}
 
 	return (
-		<DBPage
-			variant="fixed"
-			documentOverflow="auto"
+		<DBShell
 			fadeIn
-			header={
-				<DBHeader
-					drawerOpen={drawerOpen}
-					onToggle={setDrawerOpen}
-					brand={<DBBrand>Showcase</DBBrand>}
-					metaNavigation={
-						<MetaNavigation
+			controlPanelDesktopPosition={settings.controlPanelDesktopPosition}
+			controlPanelMobilePosition={settings.controlPanelMobilePosition}
+			subNavigationDesktopPosition={settings.subNavigationDesktopPosition}
+			subNavigationMobilePosition={settings.subNavigationMobilePosition}
+			showSubNavigation={settings.subNavigation === 'true'}
+			subNavigation={
+				<DBShellSubNavigation>
+					<Navigation
+						variant={settings.subNavigationVariant}
+						aria-label="sub navigation"
+					/>
+				</DBShellSubNavigation>
+			}
+			controlPanelMobile={
+				<DBControlPanelMobile
+					drawerHeadlinePlain="Showcase"
+					brand={<DBControlPanelBrand>Showcase</DBControlPanelBrand>}
+					primaryActions={
+						<PrimaryActions
+							color={color}
+							settings={settings}
+							density={density}
+							onSettingsChange={setSettings}
 							onColorChange={setColor}
 							onDensityChange={setDensity}
 						/>
 					}
-					primaryAction={
-						/* TODO: Use DBSearchBar in future */
-						<DBButton
-							icon="magnifying_glass"
-							variant="ghost"
-							noText>
-							Search
-						</DBButton>
+					secondaryActions={<SecondaryActions />}
+					metaNavigation={<MetaNavigation />}>
+					<Navigation variant={settings.navigationMobileVariant} />
+				</DBControlPanelMobile>
+			}
+			controlPanelDesktop={
+				<DBControlPanelDesktop
+					brand={<DBControlPanelBrand>Showcase</DBControlPanelBrand>}
+					metaNavigation={<MetaNavigation />}
+					primaryActions={
+						<PrimaryActions
+							color={color}
+							settings={settings}
+							density={density}
+							onSettingsChange={setSettings}
+							onColorChange={setColor}
+							onDensityChange={setDensity}
+						/>
 					}
-					secondaryAction={
-						<>
-							<DBButton
-								icon="x_placeholder"
-								variant="ghost"
-								noText>
-								Profile
-							</DBButton>
-							<DBButton
-								icon="x_placeholder"
-								variant="ghost"
-								noText>
-								Notification
-							</DBButton>
-							<DBButton
-								icon="x_placeholder"
-								variant="ghost"
-								noText>
-								Help
-							</DBButton>
-						</>
-					}>
-					<Navigation />
-				</DBHeader>
+					secondaryActions={<SecondaryActions />}>
+					<Navigation variant={settings.navigationDesktopVariant} />
+				</DBControlPanelDesktop>
 			}>
 			<div data-density={density} className={`db-${color}`}>
 				<Outlet />
 			</div>
-		</DBPage>
+		</DBShell>
 	);
 };
 

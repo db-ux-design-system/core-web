@@ -1,5 +1,5 @@
 export type Overwrite = {
-	from: string | RegExp;
+	from: string | string[] | RegExp;
 	to: string;
 };
 
@@ -19,7 +19,6 @@ export type Component = {
 		angular?: {
 			controlValueAccessor?: string;
 			controlValueAccessorRequired?: boolean;
-			directives?: { name: string; ngContentName?: string }[];
 		};
 		react?: {
 			propsPassingFilter?: string[];
@@ -29,6 +28,34 @@ export type Component = {
 };
 
 export const getComponents = (): Component[] => [
+	{
+		name: 'control-panel-flat-icon-navigation'
+	},
+
+	{
+		name: 'shell-sub-navigation'
+	},
+
+	{
+		name: 'navigation-item-group'
+	},
+
+	{
+		name: 'control-panel-secondary-actions'
+	},
+
+	{
+		name: 'control-panel-primary-actions'
+	},
+
+	{
+		name: 'control-panel-meta-navigation'
+	},
+
+	{
+		name: 'control-panel-mobile'
+	},
+
 	{
 		name: 'stack'
 	},
@@ -210,11 +237,6 @@ export const getComponents = (): Component[] => [
 					to: 'onMouseMove={(event: any)'
 				}
 			]
-		},
-		config: {
-			angular: {
-				directives: [{ name: 'NavigationContent' }]
-			}
 		}
 	},
 	{
@@ -327,33 +349,18 @@ export const getComponents = (): Component[] => [
 	},
 
 	{
-		name: 'page'
+		name: 'shell'
 	},
 	{
-		name: 'header',
+		name: 'control-panel-desktop',
 		config: {
-			angular: {
-				directives: [
-					{
-						name: 'SecondaryAction',
-						ngContentName: 'secondary-action'
-					},
-					{
-						name: 'MetaNavigation',
-						ngContentName: 'meta-navigation'
-					},
-					{
-						name: 'Navigation'
-					}
-				]
-			},
 			react: {
 				propsPassingFilter: ['onToggle']
 			}
 		}
 	},
 	{
-		name: 'brand'
+		name: 'control-panel-brand'
 	},
 	{
 		name: 'input',

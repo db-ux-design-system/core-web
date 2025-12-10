@@ -1,0 +1,39 @@
+[
+	{
+		"name": "Density",
+		"examples": [
+			{
+				"name": "Functional",
+				"density": "functional",
+				"props": {}
+			},
+			{
+				"name": "(Default) Regular",
+				"density": "regular",
+				"props": {}
+			},
+			{
+				"name": "Expressive",
+				"density": "expressive",
+				"props": {}
+			}
+		]
+	},
+	{
+		"name": "Control Panel Desktop Position",
+		"examples": [
+			{
+				"name": "Top (Default)",
+				"props": {
+					"controlPanelDesktopPosition": "top"
+				}
+			},
+			{
+				"name": "Left",
+				"props": {
+					"controlPanelDesktopPosition": "left"
+				}
+			}
+		]
+	}
+]

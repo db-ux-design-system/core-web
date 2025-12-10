@@ -1,0 +1,124 @@
+@use "sass:string";
+@use "@db-ux/core-foundations/build/styles/screen-sizes";
+@use "@db-ux/core-foundations/build/styles/variables";
+@use "@db-ux/core-foundations/build/styles/colors";
+@use "@db-ux/core-foundations/build/styles/fonts";
+@use "@db-ux/core-foundations/build/styles/helpers";
+@use "@db-ux/core-foundations/build/styles/icons";
+@use "../../styles/internal/custom-elements";
+@use "../../styles/internal/icon-passing";
+@use "../../styles/internal/component";
+
+@mixin direct-navigation-items {
+	#{string.unquote(custom-elements.$navigation-item)},
+	#{string.unquote(custom-elements.$navigation-item-group)} {
+		@content;
+	}
+}
+
+@mixin active-navigation-item() {
+	&:has([aria-current="page"]),
+	&:has([data-active="true"]),
+	&[aria-current="page"],
+	&[data-active="true"] {
+		@content;
+	}
+}
+
+@mixin navigation-item-group-menu-triangle-vertical() {
+	&::before {
+		content: "";
+		position: absolute;
+		inset-block-start: 0;
+		inset-inline-start: 0;
+		block-size: 100%;
+		inline-size: var(--db-navigation-item-inline-size, 100%);
+		background: transparent;
+		transform: translateX(-100%);
+		clip-path: var(
+			--db-navigation-item-clip-path,
+			polygon(10% 30px, 100% 0, 100% 100%)
+		);
+	}
+
+	&::after {
+		content: "";
+		position: absolute;
+		padding: variables.$db-spacing-fixed-xs;
+
+		// #{$db-spacing-fixed-3xs} for box shadow
+		inset-block-start: #{variables.$db-spacing-fixed-3xs};
+		inset-inline-end: calc(-1 * #{variables.$db-spacing-fixed-xs});
+		block-size: calc(100% - 2 * #{variables.$db-spacing-fixed-3xs});
+		inline-size: variables.$db-spacing-fixed-xs;
+	}
+}
+
+%navigation-item-interactive-element {
+	@extend %transparent-border;
+	@extend %db-overwrite-font-size-md;
+
+	background-color: colors.$db-adaptive-bg-basic-transparent-full-default;
+	cursor: pointer;
+	inline-size: 100%;
+	display: inline-flex;
+	border-radius: variables.$db-border-radius-sm;
+	padding: variables.$db-spacing-fixed-xs variables.$db-spacing-fixed-sm;
+	white-space: nowrap; // we don't want to break
+	text-align: center;
+	align-items: center; // Centering the content vertically and horizontally
+	justify-content: space-between;
+
+	@include helpers.hover {
+		background-color: colors.$db-adaptive-bg-basic-transparent-full-hovered;
+	}
+
+	@include helpers.active {
+		background-color: colors.$db-adaptive-bg-basic-transparent-full-pressed;
+	}
+}
+
+%navigation-item {
+	@extend %db-overwrite-font-size-md;
+
+	position: relative;
+	display: flex;
+	block-size: fit-content;
+
+	// Mobile
+	@include screen-sizes.screen-min-max(
+		(
+			max: "sm"
+		)
+	) {
+		inline-size: 100%;
+	}
+
+	// Desktop
+	@include screen-sizes.screen-min-max(
+		(
+			min: "sm"
+		)
+	) {
+		inline-size: fit-content;
+	}
+
+	:is(a, .db-navigation-item-expand-button):first-of-type {
+		white-space: normal;
+		text-align: start;
+	}
+
+	&:has([aria-current="page"]),
+	&:has([data-active="true"]),
+	&[aria-current="page"],
+	&[data-active="true"] {
+		> :is(a, button) {
+			font-weight: 700;
+		}
+	}
+
+	&[aria-disabled="true"] {
+		opacity: variables.$db-opacity-md;
+		pointer-events: none;
+	}
+}

@@ -1,0 +1,454 @@
+@use "sass:string";
+@use "@db-ux/core-foundations/build/styles/variables";
+@use "@db-ux/core-foundations/build/styles/helpers";
+@use "@db-ux/core-foundations/build/styles/colors";
+@use "@db-ux/core-foundations/build/styles/screen-sizes";
+@use "./form-components";
+@use "./custom-elements";
+@use "./component";
+@use "./navigation-item";
+@use "./indicator";
+@use "./scrollbar";
+
+@mixin horizontal-navigation($scroll-buttons: true) {
+	@if $scroll-buttons {
+		@include scrollbar.set-overflow-scroll-buttons;
+
+		&:has(.overflow-scroll-left-button) {
+			> menu {
+				&::before {
+					content: "";
+				}
+			}
+		}
+
+		&:has(.overflow-scroll-right-button) {
+			> menu {
+				&::after {
+					content: "";
+				}
+			}
+		}
+	}
+
+	&:has(.db-button) {
+		> menu {
+			@if $scroll-buttons {
+				@include scrollbar.set-overflow-scroll-button-backgrounds;
+			}
+
+			@supports (scrollbar-width: none) {
+				scrollbar-width: none;
+			}
+
+			&::-webkit-scrollbar {
+				display: none;
+			}
+
+			&::before,
+			&::after {
+				block-size: calc(100% - #{variables.$db-border-width-3xs});
+				inset-block: 0;
+				flex: none;
+			}
+		}
+	}
+
+	> menu {
+		overflow: auto hidden;
+		scrollbar-gutter: stable both-edges;
+		flex-direction: row;
+
+		#{string.unquote(custom-elements.$navigation-item-group)} {
+			&:is(button),
+			> button {
+				&::after {
+					--db-icon-trailing: "chevron_down";
+				}
+			}
+
+			> .db-navigation-item-group-menu {
+				inset-block-start: calc(
+					100% +
+						var(
+							--db-popover-distance,
+							#{variables.$db-spacing-fixed-md}
+						)
+				);
+
+				&::before {
+					content: "";
+					position: absolute;
+					inset-inline-start: 0;
+					inline-size: 100%;
+
+					// #{$db-spacing-fixed--3xs} for shadows
+					block-size: calc(
+						#{variables.$db-spacing-fixed-3xs} +
+							#{variables.$db-spacing-fixed-md}
+					);
+					inset-block-start: calc(
+						-1 * #{variables.$db-spacing-fixed-md} -
+							#{variables.$db-spacing-fixed-3xs}
+					);
+				}
+			}
+		}
+	}
+}
+
+@mixin vertical-navigation($main-navigation: true) {
+	@if $main-navigation {
+		padding-block: variables.$db-spacing-fixed-md;
+	}
+
+	#{string.unquote(custom-elements.$overflow-scroll-left-button)},
+	#{string.unquote(custom-elements.$overflow-scroll-right-button)} {
+		display: none;
+	}
+
+	&:not([data-variant]),
+	&[data-variant="popover"] {
+		> menu {
+			.db-navigation-item-group {
+				.db-navigation-item-group-menu {
+					inset-inline-start: calc(
+						100% + #{variables.$db-spacing-fixed-xs}
+					);
+
+					@include navigation-item.navigation-item-group-menu-triangle-vertical;
+				}
+			}
+		}
+	}
+
+	> menu {
+		flex-direction: column;
+		padding-inline: variables.$db-spacing-fixed-lg;
+
+		.db-navigation-item-group,
+		.db-navigation-item {
+			inline-size: 100%;
+		}
+	}
+}
+
+%control-panel-desktop-horizontal-orientation {
+	border-block-end: variables.$db-border-width-3xs solid
+		colors.$db-adaptive-on-bg-basic-emphasis-60-default;
+	grid-template:
+		[meta]
+		"meta meta meta meta meta meta" auto
+		[padding-top]
+		". . navigation . . ." #{variables.$db-spacing-fixed-md}
+		[others]
+		". brand navigation primary secondary ." auto
+		[padding-bottom]
+		". . navigation . . ." #{variables.$db-spacing-fixed-md} /
+		[padding-left] #{variables.$db-spacing-fixed-lg}
+		[brand] max-content
+		[navigation] 1fr
+		[primary] max-content
+		[secondary] max-content
+		[padding-right] #{variables.$db-spacing-fixed-lg};
+
+	> .db-control-panel-desktop-scroll-container {
+		display: contents;
+	}
+
+	.db-control-panel-brand {
+		padding-inline-end: variables.$db-spacing-fixed-lg;
+	}
+
+	.db-control-panel-primary-actions,
+	.db-control-panel-secondary-actions {
+		block-size: variables.$db-sizing-md;
+	}
+
+	.db-control-panel-primary-actions {
+		margin-inline-start: variables.$db-spacing-fixed-sm;
+	}
+
+	> .db-control-panel-desktop-button {
+		display: none;
+	}
+
+	&:has(.db-control-panel-primary-actions, .db-navigation) {
+		.db-control-panel-secondary-actions {
+			padding-inline-start: variables.$db-spacing-fixed-sm;
+
+			@include helpers.divider("left");
+		}
+	}
+
+	&:has(.db-navigation) {
+		.db-control-panel-brand {
+			@include helpers.divider("right", "after");
+		}
+	}
+
+	&:has(.db-control-panel-secondary-actions) {
+		.db-control-panel-primary-actions {
+			margin-inline-end: variables.$db-spacing-fixed-sm;
+		}
+	}
+
+	&[data-width="small"] {
+		margin-inline: auto;
+		max-inline-size: screen-sizes.$db-breakpoint-sm;
+	}
+
+	&[data-width="medium"] {
+		margin-inline: auto;
+		max-inline-size: screen-sizes.$db-breakpoint-md;
+	}
+
+	&[data-width="large"] {
+		margin-inline: auto;
+		max-inline-size: screen-sizes.$db-breakpoint-lg;
+	}
+
+	.db-navigation {
+		--db-overflow-scroll-button-inset-block: #{variables.$db-spacing-fixed-md};
+		--db-overflow-scroll-button-inset-inline-start: calc(
+			#{variables.$db-spacing-fixed-lg} / 2
+		);
+
+		display: grid;
+
+		@include horizontal-navigation;
+
+		> menu {
+			padding-block: variables.$db-spacing-fixed-md;
+
+			/* workaround for showing correct scrolling and focus */
+			padding-inline-start: calc(#{variables.$db-spacing-fixed-lg} / 2);
+			margin-inline-start: calc(#{variables.$db-spacing-fixed-lg} / 2);
+
+			@include navigation-item.direct-navigation-items {
+				@extend %indicator;
+				@include indicator.set-indicator-horizontal;
+
+				@include navigation-item.active-navigation-item {
+					@include indicator.show-indicator-horizontal;
+				}
+
+				@include navigation-item.direct-navigation-items {
+					/* Workaround for custom-elements */
+					&::after {
+						content: none;
+					}
+				}
+			}
+		}
+	}
+}
+
+%control-panel-desktop-vertical-orientation {
+	border-inline-end: variables.$db-border-width-3xs solid
+		colors.$db-adaptive-on-bg-basic-emphasis-60-default;
+	block-size: 100%;
+	grid-template:
+		[padding-top] "." #{variables.$db-spacing-fixed-md}
+		[brand] "brand" auto
+		[scroll] "scroll" 1fr
+		[primary] "primary" auto
+		[secondary] "secondary" auto
+		[button] "button" auto;
+
+	@media screen and (prefers-reduced-motion: no-preference) {
+		transition: inline-size #{variables.$db-transition-straight-functional};
+
+		> .db-control-panel-desktop-button {
+			.db-button {
+				@media screen and (prefers-reduced-motion: reduce) {
+					&::before {
+						transition: none;
+					}
+				}
+
+				&::before {
+					transition: transform
+						#{variables.$db-transition-straight-functional};
+				}
+			}
+		}
+	}
+
+	&[data-open="false"] {
+		inline-size: auto;
+		/* stylelint-disable-next-line declaration-property-value-no-unknown */
+		inline-size: calc-size(auto, size);
+
+		.db-control-panel-primary-actions,
+		.db-control-panel-secondary-actions,
+		.db-control-panel-meta-navigation {
+			display: none;
+		}
+
+		.db-navigation {
+			> menu {
+				// Don't show navigation items for collapsed state (only icons)
+				@include navigation-item.direct-navigation-items {
+					--db-icon-margin-end: 0;
+
+					inline-size: variables.$db-sizing-md;
+					aspect-ratio: 1;
+					justify-content: center;
+					align-items: center;
+
+					&::before {
+						position: initial;
+					}
+
+					a {
+						font-size: 0;
+						position: absolute;
+						inset: 0;
+					}
+				}
+
+				#{string.unquote(custom-elements.$navigation-item)} {
+					.db-tooltip {
+						// We show tooltip for collapsed state
+						--db-show-popover-visibility: visible;
+					}
+				}
+			}
+		}
+
+		/* Hide navigation only if we have navigation-item-group */
+
+		.db-navigation-item-group,
+		.db-navigation-item:not([data-icon]) {
+			display: none;
+		}
+
+		&:not(:has(.db-navigation-item[data-icon])) {
+			.db-control-panel-brand {
+				&::after {
+					display: none;
+				}
+			}
+		}
+
+		.db-control-panel-brand {
+			font-size: 0;
+			gap: 0;
+			place-self: center;
+		}
+
+		> .db-control-panel-desktop-button {
+			justify-content: center;
+
+			.db-button {
+				&::before {
+					transform: form-components.$dropdown-icon-transform;
+				}
+			}
+		}
+	}
+
+	&[data-open="true"] {
+		/// Sets the inline-size (width) of the control-panel-desktop
+		/// @propertyname inline-size
+		/// @cssprop --db-control-panel-desktop-inline-size
+		/// @default var(--db-container-xs)
+		inline-size: var(
+			--db-control-panel-desktop-inline-size,
+			#{variables.$db-container-xs}
+		);
+	}
+
+	> .db-control-panel-desktop-button {
+		grid-area: button;
+		padding-block: variables.$db-spacing-fixed-xs;
+		display: flex;
+		justify-content: flex-end;
+
+		@include helpers.divider("top");
+	}
+
+	.db-control-panel-brand,
+	.db-control-panel-primary-actions,
+	.db-control-panel-secondary-actions,
+	> .db-control-panel-desktop-button {
+		padding-inline: variables.$db-spacing-fixed-lg;
+	}
+
+	.db-control-panel-brand,
+	.db-control-panel-primary-actions,
+	.db-control-panel-secondary-actions {
+		margin-block-end: variables.$db-spacing-fixed-md;
+	}
+
+	> .db-control-panel-desktop-scroll-container {
+		display: grid;
+		overflow: hidden auto;
+		grid-area: scroll;
+		grid-template-areas: "navigation" "meta";
+
+		.db-control-panel-meta-navigation {
+			margin-block-start: auto;
+
+			@include helpers.divider("top");
+		}
+	}
+
+	&:has(
+		.db-control-panel-brand,
+		.db-control-panel-primary-actions,
+		.db-navigation,
+		.db-control-panel-meta-navigation
+	) {
+		.db-control-panel-secondary-actions {
+			padding-block-start: variables.$db-spacing-fixed-sm;
+
+			@include helpers.divider("top");
+		}
+	}
+
+	&:has(.db-navigation) {
+		.db-control-panel-brand {
+			@include helpers.divider("bottom", "after");
+
+			&::after {
+				inset-block-end: calc(-1 * #{variables.$db-spacing-fixed-md});
+			}
+		}
+	}
+
+	&:has(
+		.db-control-panel-brand,
+		.db-navigation,
+		.db-control-panel-meta-navigation
+	) {
+		.db-control-panel-primary-actions {
+			padding-block-start: variables.$db-spacing-fixed-sm;
+
+			@include helpers.divider("top");
+		}
+	}
+
+	.db-navigation {
+		@include vertical-navigation;
+
+		> menu {
+			@include navigation-item.direct-navigation-items {
+				@extend %indicator;
+				@include indicator.set-indicator-vertical;
+
+				@include navigation-item.active-navigation-item {
+					@include indicator.show-indicator-vertical;
+				}
+
+				@include navigation-item.direct-navigation-items {
+					/* Workaround for custom-elements */
+					&::after {
+						content: none;
+					}
+				}
+			}
+		}
+	}
+}

@@ -1,19 +1,11 @@
 import {
-	ClickEvent,
-	ClickEventProps,
-	ClickEventState,
+	AdditionalInformationSlotProps,
+	DisabledProps,
 	GlobalProps,
 	GlobalState,
 	IconProps,
-	InitializedState,
-	NavigationBackButtonProps,
-	NavigationBehaviorState,
-	ShowIconProps,
-	TextProps,
-	WidthProps,
-	WrapProps
+	ShowIconProps
 } from '../../shared/model';
-import { NavigationItemSafeTriangle } from '../../utils/navigation';
 
 export type DBNavigationItemDefaultProps = {
 	/**
@@ -22,48 +14,24 @@ export type DBNavigationItemDefaultProps = {
 	active?: boolean;
 
 	/**
-	 * The disabled attribute can be set to [keep a user from clicking on the item](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button#disabled).
+	 * If you use DBShell with controlPanelDesktopPosition="left" you need
+	 * to add a tooltip for collapsed navigation
 	 */
-	disabled?: boolean | string;
+	tooltip?: string;
 
 	/**
-	 * React-specific property to pass in a slot for sub-navigation
+	 * Set the text for the navigation-item
 	 */
-
-	subNavigation?: any;
-
-	/**
-	 * This is for mobile navigation only, if it is set the sub-navigation is a static overlay
-	 */
-	subNavigationExpanded?: boolean | string;
+	text?: string;
 };
 
 export type DBNavigationItemProps = DBNavigationItemDefaultProps &
 	GlobalProps &
-	ClickEventProps<HTMLButtonElement> &
 	IconProps &
-	WidthProps &
-	WrapProps &
-	NavigationBackButtonProps &
 	ShowIconProps &
-	TextProps;
+	DisabledProps &
+	AdditionalInformationSlotProps;
 
-export type DBNavigationItemDefaultState = {
-	handleBackClick: (event: ClickEvent<HTMLButtonElement>) => void;
-	hasAreaPopup: boolean;
-	isSubNavigationExpanded: boolean;
-	subNavigationId: string;
+export type DBNavigationItemDefaultState = {};
 
-	/**
-	 * Internal state property to show/hide sub-navigation button
-	 */
-	hasSubNavigation?: boolean;
-	navigationItemSafeTriangle?: NavigationItemSafeTriangle;
-	autoClose?: boolean;
-};
-
-export type DBNavigationItemState = DBNavigationItemDefaultState &
-	ClickEventState<HTMLButtonElement> &
-	GlobalState &
-	InitializedState &
-	NavigationBehaviorState;
+export type DBNavigationItemState = DBNavigationItemDefaultState & GlobalState;

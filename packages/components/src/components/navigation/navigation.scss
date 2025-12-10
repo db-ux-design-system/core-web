@@ -1,16 +1,170 @@
 @use "@db-ux/core-foundations/build/styles/variables";
 @use "@db-ux/core-foundations/build/styles/screen-sizes";
-@use "../../styles/internal/component";
+@use "@db-ux/core-foundations/build/styles/icons";
+@use "@db-ux/core-foundations/build/styles/animation";
 @use "@db-ux/core-foundations/build/styles/helpers";
 @use "../../styles/internal/form-components";
-@use "../../styles/internal/db-puls";
+@use "../../styles/internal/icon-passing";
+@use "../navigation-item-group/navigation-item-group-menu-popover";
+@use "../navigation-item-group/navigation-item-group-menu-tree";
+
+%popover-navigation {
+	.db-navigation-item {
+		@include icon-passing.icon-passing;
+	}
+
+	.db-navigation-item-group {
+		@include icon-passing.icon-passing(
+			variables.$db-spacing-fixed-sm,
+			variables.$db-spacing-fixed-xs
+		);
+
+		// MOBILE Sliding
+		@include screen-sizes.screen-min-max(
+			(
+				max: "sm"
+			)
+		) {
+			.db-navigation-item-group-expand-button {
+				/* Remove the highlight here because we have an overlay for sub-navigations */
+				-webkit-tap-highlight-color: transparent;
+
+				// show/hide sub-navigation by click
+				&[aria-expanded="true"] {
+					~ .db-navigation-item-group-menu {
+						visibility: visible;
+
+						@media screen and (prefers-reduced-motion: no-preference) {
+							transition: visibility 0ms linear 0ms;
+							animation: show-right-to-left
+								#{variables.$db-transition-straight-show};
+						}
+
+						.db-navigation-item-group-menu {
+							inset-block: 0;
+						}
+					}
+				}
+
+				&:not(&[aria-expanded="true"]) {
+					@media screen and (prefers-reduced-motion: no-preference) {
+						~ .db-navigation-item-group-menu {
+							transition: visibility 0ms linear 410ms; // hide animation is 0.4s
+							animation: hide-right-to-left
+								#{variables.$db-transition-straight-hide};
+						}
+					}
+				}
+			}
+		}
+
+		// DESKTOP: show sub-navigation on hover
+		@include screen-sizes.screen-min-max(
+			(
+				min: "sm"
+			)
+		) {
+			.db-navigation-item-group-expand-button {
+				&::after {
+					@media screen and (prefers-reduced-motion: no-preference) {
+						transition: form-components.$dropdown-icon-transition;
+					}
+				}
+
+				&:is(:hover, :focus-visible):not(
+						:has(
+							~ .db-navigation-item-group-menu[data-force-close="true"]
+						)
+					) {
+					~ .db-navigation-item-group-menu {
+						visibility: visible;
+					}
+				}
+			}
+		}
+
+		.db-navigation-item-group-expand-button {
+			// default icon for navigation
+			@include icons.set-icon("chevron_right", "after");
+		}
+
+		.db-navigation-item-group-menu {
+			@extend %db-navigation-item-group-menu-popover;
+		}
+	}
+}
+
+%tree-navigation {
+	.db-navigation-item {
+		&:not([data-icon]) {
+			&::before {
+				content: none;
+			}
+
+			a {
+				@include icons.set-icon("intermediary_stop");
+			}
+		}
+
+		&[data-icon] {
+			@include icon-passing.icon-passing;
+		}
+	}
+
+	a,
+	button {
+		justify-content: flex-start;
+	}
+
+	.db-navigation-item-group {
+		display: flex;
+		flex-direction: column;
+
+		&::before {
+			content: none;
+		}
+
+		.db-navigation-item-group-expand-button {
+			@include icons.set-icon("chevron_right");
+
+			&[aria-expanded="true"] {
+				&::before {
+					transform: rotate(90deg);
+					pointer-events: none;
+
+					@media screen and (prefers-reduced-motion: no-preference) {
+						transition: form-components.$dropdown-icon-transition;
+					}
+				}
+
+				~ .db-navigation-item-group-menu {
+					visibility: visible;
+					block-size: auto;
+					/* stylelint-disable-next-line declaration-property-value-no-unknown */
+					block-size: calc-size(auto, size);
+				}
+			}
+		}
+
+		.db-navigation-item-group-menu {
+			@extend %db-navigation-item-group-menu-tree;
+		}
+	}
+
+	&[data-show-tree-line="true"] {
+		.db-navigation-item-group {
+			.db-navigation-item-group-menu {
+				@include helpers.divider("left");
+			}
+		}
+	}
+}
 
 .db-navigation {
-	-webkit-tap-highlight-color: transparent; /* for removing the highlight */
 	inline-size: 100%;
+	position: relative;
 
 	@include screen-sizes.screen("md") {
-		-webkit-tap-highlight-color: inherit;
 		inline-size: auto;
 	}
 
@@ -20,89 +174,14 @@
 		padding: 0;
 		margin: 0;
 		gap: variables.$db-spacing-fixed-sm;
-
-		@include screen-sizes.screen("md") {
-			flex-direction: row;
-		}
-
-		.db-navigation-item {
-			@extend %db-puls-auto;
-
-			.db-navigation-item-expand-button:is(button),
-			.db-navigation-item-expand-button > button {
-				// overwrite for navigation items
-				@include screen-sizes.screen("md") {
-					&::after {
-						--db-icon-margin-start: #{variables.$db-spacing-fixed-sm};
-						--db-icon-trailing: "chevron_down";
-
-						@media screen and (prefers-reduced-motion: no-preference) {
-							transition: form-components.$dropdown-icon-transition;
-						}
-					}
-
-					&:is(:hover, :focus-visible),
-					&:has(
-						~ .db-sub-navigation:is(
-								:hover,
-								:focus-visible,
-								:focus-within
-							)
-					) {
-						&::after {
-							transform: form-components.$dropdown-icon-transform;
-						}
-					}
-				}
-			}
-
-			// re overwrite for non navigation items
-			> menu {
-				.db-navigation-item-expand-button:is(button),
-				.db-navigation-item-expand-button > button {
-					@include screen-sizes.screen("md") {
-						&::after {
-							--db-icon-trailing: "chevron_right";
-							--db-icon-margin-start: auto;
-						}
-
-						&:is(:hover, :focus-visible),
-						:has(
-							~ .db-sub-navigation:is(
-									:hover,
-									:focus-visible,
-									:focus-within
-								)
-						) {
-							&::after {
-								transform: none;
-							}
-						}
-					}
-				}
-			}
-
-			&:has([aria-current="page"]),
-			&:has([data-active="true"]),
-			&[aria-current="page"],
-			&[data-active="true"] {
-				@extend %show-db-puls-auto;
-			}
-
-			// angular workaround: as no direct-child selector can be used, the pulse is hidden from the second level onwards
-			.db-navigation-item {
-				&::after {
-					display: none;
-				}
-			}
-		}
 	}
 
-	&[data-force-close="true"] {
-		> menu menu {
-			@include screen-sizes.screen("md") {
-				@include helpers.display(none);
-			}
-		}
+	&:not([data-variant]),
+	&[data-variant="popover"] {
+		@extend %popover-navigation;
+	}
+
+	&[data-variant="tree"] {
+		@extend %tree-navigation;
 	}
 }

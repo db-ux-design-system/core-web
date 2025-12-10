@@ -1,3 +1,5 @@
+import ControlPanelMobileComponent from '../components/control-panel-mobile';
+
 import AccordionComponent from '../components/accordion';
 import AccordionItemComponent from '../components/accordion-item';
 import BadgeComponent from '../components/badge';
@@ -5,10 +7,10 @@ import BrandComponent from '../components/brand';
 import ButtonComponent from '../components/button';
 import CardComponent from '../components/card';
 import CheckboxComponent from '../components/checkbox';
+import ControlPanelDesktopComponent from '../components/control-panel-desktop';
 import CustomSelectComponent from '../components/custom-select';
 import DividerComponent from '../components/divider';
 import DrawerComponent from '../components/drawer';
-import HeaderComponent from '../components/header';
 import Home from '../components/home';
 import IconComponent from '../components/icon';
 import InfotextComponent from '../components/infotext';
@@ -21,6 +23,7 @@ import PopoverComponent from '../components/popover';
 import RadioComponent from '../components/radio';
 import SectionComponent from '../components/section';
 import SelectComponent from '../components/select';
+import ShellComponent from '../components/shell';
 import StackComponent from '../components/stack';
 import SwitchComponent from '../components/switch';
 import TabItemComponent from '../components/tab-item';
@@ -145,7 +148,11 @@ export const NAVIGATION_ITEMS: NavigationItem[] = [
 		path: '02',
 		label: '02 Action',
 		subNavigation: getSortedNavigationItems([
-			{ path: 'link', label: 'Link', component: <LinkComponent /> },
+			{
+				path: 'link',
+				label: 'Link',
+				component: <LinkComponent />
+			},
 			{ path: 'button', label: 'Button', component: <ButtonComponent /> }
 		])
 	},
@@ -153,6 +160,7 @@ export const NAVIGATION_ITEMS: NavigationItem[] = [
 		path: '01',
 		label: '01 Layout',
 		subNavigation: getSortedNavigationItems([
+			{ path: 'shell', label: 'Shell', component: <ShellComponent /> },
 			{ path: 'stack', label: 'Stack', component: <StackComponent /> },
 			{ path: 'card', label: 'Card', component: <CardComponent /> },
 			{ path: 'drawer', label: 'Drawer', component: <DrawerComponent /> },
@@ -172,9 +180,14 @@ export const NAVIGATION_ITEMS: NavigationItem[] = [
 				component: <PopoverComponent />
 			},
 			{
-				path: 'header',
-				label: 'Header',
-				component: <HeaderComponent />
+				path: 'control-panel-desktop',
+				label: 'ControlPanelDesktop',
+				component: <ControlPanelDesktopComponent />
+			},
+			{
+				path: 'control-panel-mobile',
+				label: 'ControlPanelMobile',
+				component: <ControlPanelMobileComponent />
 			}
 		])
 	},

@@ -9,17 +9,15 @@ const useUniversalSearchParameters = (): [
 	URLSearchParams,
 	(parameters: Record<string, string>) => void
 ] => {
-	const nextRouter =
-		process.env.NEXT_SHOWCASE_VARIANT === 'next'
-			? useRouterNext()
-			: undefined;
-	const nextPathName =
-		process.env.NEXT_SHOWCASE_VARIANT === 'next'
-			? usePathnameNext()
-			: undefined;
+	const nextRouter = process.env.NEXT_SHOWCASE_VARIANT?.startsWith('next')
+		? useRouterNext()
+		: undefined;
+	const nextPathName = process.env.NEXT_SHOWCASE_VARIANT?.startsWith('next')
+		? usePathnameNext()
+		: undefined;
 
 	const [searchParameters, _setSearchParameters] =
-		process.env.NEXT_SHOWCASE_VARIANT === 'next'
+		process.env.NEXT_SHOWCASE_VARIANT?.startsWith('next')
 			? [useSearchParametersNext()]
 			: useSearchParams();
 

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { DBTag } from "../../../../../output/vue/src";
+import { DBTag } from "@components";
 import defaultComponentVariants from "../../../../shared/tag.json";
 import DefaultComponent from "../DefaultComponent.vue";
 

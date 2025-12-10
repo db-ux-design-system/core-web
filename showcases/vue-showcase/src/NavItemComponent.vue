@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { DBNavigationItem } from "../../../output/vue/src";
+import { DBNavigationItem, DBNavigationItemGroup } from "@components";
 import { type NavItem } from "./utils/navigation-items";
 
 defineProps<{
@@ -8,19 +8,18 @@ defineProps<{
 </script>
 
 <template>
-	<DBNavigationItem :backButtonText="`Back to ${navItem.label}`">
-		<template v-if="navItem.subNavigation" v-slot:sub-navigation>
+	<template v-if="navItem.subNavigation">
+		<DBNavigationItemGroup :text="navItem.label">
 			<template v-for="item of navItem.subNavigation">
 				<NavItemComponent :navItem="item"></NavItemComponent>
 			</template>
-		</template>
-		<router-link
-			v-if="navItem.component"
-			:to="navItem.path"
-			ariaCurrentValue="page"
-		>
-			{{ navItem.label }}
-		</router-link>
-		<template v-if="!navItem.component">{{ navItem.label }}</template>
-	</DBNavigationItem>
+		</DBNavigationItemGroup>
+	</template>
+	<template v-if="!navItem.subNavigation">
+		<DBNavigationItem :backButtonText="`Back to ${navItem.label}`">
+			<router-link :to="navItem.path" ariaCurrentValue="page">
+				{{ navItem.label }}
+			</router-link>
+		</DBNavigationItem>
+	</template>
 </template>

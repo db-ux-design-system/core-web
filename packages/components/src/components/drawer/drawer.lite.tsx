@@ -1,6 +1,7 @@
 import {
 	onMount,
 	onUpdate,
+	Show,
 	Slot,
 	useDefaultProps,
 	useMetadata,
@@ -81,7 +82,7 @@ export default function DBDrawer(props: DBDrawerProps) {
 					if (dialogContainerRef) {
 						dialogContainerRef.hidden = true;
 					}
-					delay(() => {
+					void delay(() => {
 						if (dialogContainerRef) {
 							dialogContainerRef.hidden = false;
 						}
@@ -131,13 +132,18 @@ export default function DBDrawer(props: DBDrawerProps) {
 				data-rounded={getBooleanAsString(props.rounded)}>
 				<header class="db-drawer-header">
 					<div class="db-drawer-header-text">
-						<Slot name="drawerHeader" />
+						<Show
+							when={props.drawerHeaderPlain}
+							else={<Slot name="drawerHeader" />}>
+							{props.drawerHeaderPlain}
+						</Show>
 					</div>
 					<DBButton
 						class="button-close-drawer"
 						id={props.closeButtonId}
 						icon="cross"
 						variant="ghost"
+						type="button"
 						noText
 						onClick={(event) => state.handleClose(event, true)}>
 						{props.closeButtonText ?? DEFAULT_CLOSE_BUTTON}

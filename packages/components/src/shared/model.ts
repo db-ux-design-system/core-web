@@ -114,6 +114,14 @@ export type MarginProps = {
 	margin?: MarginType;
 };
 
+export const ShellControlPanelDesktopPosition = ['top', 'left'] as const;
+export type ShellControlPanelDesktopPositionType =
+	(typeof ShellControlPanelDesktopPosition)[number];
+
+export const ShellControlPanelMobilePosition = ['top', 'bottom'] as const;
+export type ShellControlPanelMobilePositionType =
+	(typeof ShellControlPanelMobilePosition)[number];
+
 export const PlacementHorizontalList = [
 	'left',
 	'right',
@@ -308,11 +316,14 @@ export type ValueProps = {
 	value?: any;
 };
 
-export type BaseFormProps = {
+export type DisabledProps = {
 	/**
-	 * The disabled attribute can be set to keep a user from clicking on the form element.
+	 * The disabled attribute can be set to keep a user from clicking on the item.
 	 */
 	disabled?: boolean | string;
+};
+
+export type BaseFormProps = {
 	/**
 	 * The label attribute specifies the caption of the form element.
 	 */
@@ -322,7 +333,7 @@ export type BaseFormProps = {
 	 * The name attribute gives the name of the form control, as used in form submission and in the form element's elements object.
 	 */
 	name?: string;
-};
+} & DisabledProps;
 
 export type CustomFormProps = {
 	/**
@@ -706,9 +717,95 @@ export type AriaControlsProps = {
 	controls?: string;
 };
 
+export type ControlPanelProps = {
+	/**
+	 * Slot to pass in the DBControlPanelBrand component
+	 */
+	brand?: any;
+	/**
+	 * Slot to pass in a meta navigation.
+	 * Desktop: Above the regular control-panel-desktop
+	 * Mobile: Inside the drawer
+	 */
+	metaNavigation?: any;
+	/**
+	 * Slot to pass one or more elements like DBButton (e.g. search) as primary action.
+	 * Desktop: Shown next to the main-navigation
+	 * Mobile: Shown next to the control-panel-brand
+	 */
+	primaryActions?: any;
+	/**
+	 * Slot to pass one or more elements like DBButton (e.g. profile, language, etc.) as secondary action.
+	 * Desktop: Shown seperated by divider at the end of the control-panel-desktop
+	 * Mobile: Shown inside the drawer at the bottom.
+	 */
+	secondaryActions?: any;
+
+	/**
+	 * Adds ``aria-labelledby`` to the <nav> element.
+	 */
+	navigationLabeledBy?: string;
+};
+
 export type ValueLabelType = {
 	value: string;
 	label?: string;
+};
+
+export type OverflowScrollButtonProps = {
+	/**
+	 * Change amount of distance if you click on an arrow, only available with behavior="arrows"
+	 */
+	arrowScrollDistance?: number | string;
+};
+
+export type OverflowScrollButtonState = {
+	scroll: (left?: boolean) => void;
+	showScrollLeft?: boolean;
+	showScrollRight?: boolean;
+	evaluateScrollButtons: (tabList: Element) => void;
+};
+
+export type SidebarProps = {
+	/**
+	 * Set the expanded/collapsed state initially for the left sidebar
+	 */
+	expanded?: boolean | string;
+
+	/**
+	 * Set the tooltip for the expand/collapse button
+	 */
+	expandButtonTooltip?: string;
+
+	/**
+	 * Set the tooltip for the expand/collapse button based on the state. (only react|vue)
+	 */
+	expandButtonTooltipFn?: (open: boolean) => string;
+
+	/**
+	 * Set the tooltip for the expand/collapse button based on the state. (only react|vue)
+	 */
+	onExpandButtonTooltipFn?: (open: boolean) => string;
+};
+
+export type SidebarState = {
+	_open: boolean;
+	getToggleButtonText: () => string;
+};
+
+export const NavigationItemGroupVariantList = ['popover', 'tree'] as const;
+export type NavigationItemGroupVariantType =
+	(typeof NavigationItemGroupVariantList)[number];
+
+export type NavigationItemGroupVariant = {
+	variant?: NavigationItemGroupVariantType;
+};
+
+export type AdditionalInformationSlotProps = {
+	/**
+	 * Slot to add additional information most likely a DBBadge
+	 */
+	additionalInformation?: any;
 };
 
 export type DocumentScrollState = {

@@ -5,6 +5,7 @@ export type ComponentParserType = {
 export type ComponentType = {
 	index?: string | number;
 	type?: /* Template hygen type */
+		| 'control-panel-mobile'
 		| 'stack'
 		| 'switch'
 		| 'custom-select'

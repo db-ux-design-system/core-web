@@ -1,0 +1,107 @@
+@use "@db-ux/core-foundations/build/styles/screen-sizes";
+@use "@db-ux/core-foundations/build/styles/variables";
+@use "@db-ux/core-foundations/build/styles/animation";
+@use "@db-ux/core-foundations/build/styles/colors";
+@use "../../styles/internal/component";
+@use "../../styles/internal/navigation-item";
+
+$outside-position: calc(-200% + #{variables.$db-spacing-fixed-xs});
+
+%db-navigation-item-group-menu-popover {
+	--db-popover-distance: #{variables.$db-spacing-fixed-xs};
+
+	@extend %component-border;
+
+	margin: 0;
+	display: flex;
+	flex-direction: column;
+	z-index: 70;
+	inset-inline-start: 0;
+	background-color: colors.$db-adaptive-bg-basic-level-1-default;
+	visibility: hidden;
+	max-block-size: 100vh;
+
+	&:empty {
+		display: none;
+	}
+
+	.db-navigation-item,
+	.db-navigation-item-group {
+		inline-size: 100%;
+
+		&::after {
+			margin-inline-start: auto;
+		}
+	}
+
+	// Mobile
+	@include screen-sizes.screen("md", "max") {
+		--db-navigation-item-group-menu-mobile: 1;
+
+		padding: variables.$db-spacing-fixed-md;
+		border: 0;
+		inline-size: 100%;
+		position: fixed;
+		overflow: hidden auto;
+		inset-block: calc(#{component.$min-mobile-header-height})
+			calc(
+				#{variables.$db-sizing-md} + #{variables.$db-spacing-fixed-xs} *
+					2
+			);
+	}
+
+	// Desktop
+	@include screen-sizes.screen("md") {
+		border-radius: variables.$db-border-radius-sm;
+		box-shadow: variables.$db-elevation-md;
+		padding: variables.$db-spacing-fixed-sm;
+		block-size: fit-content;
+		inline-size: fit-content;
+		position: absolute;
+		min-inline-size: variables.$db-container-xs;
+
+		// TODO: This causes some flash for angular navigation item group
+		transition: visibility 1ms linear; // workaround to enable focus with keyboard
+
+		.db-navigation-item-group-back-button {
+			display: none;
+		}
+
+		&:is(:hover, :focus-within):not([data-force-close="true"]) {
+			visibility: visible;
+		}
+
+		&[data-force-close="true"] {
+			pointer-events: none;
+		}
+
+		.db-navigation-item-group-menu {
+			// 1px for box shadow
+			inset-block-start: calc(
+				-50% + #{variables.$db-spacing-fixed-xs} + 1px
+			);
+			inset-inline-start: calc(100% + #{variables.$db-spacing-fixed-xs});
+
+			@include navigation-item.navigation-item-group-menu-triangle-vertical;
+
+			&[data-outside-vy="bottom"] {
+				transform: translateY($outside-position);
+			}
+
+			&[data-outside-vx="right"] {
+				transform: translateX($outside-position);
+
+				&[data-outside-vy="bottom"] {
+					transform: translate($outside-position, $outside-position);
+				}
+
+				&::before {
+					inset-block: auto 0;
+
+					// inline-size: calc(var(--db-navigation-item-inline-size, 100%) - #{variables.$db-spacing-fixed-xs} - 2px);
+					transform: translateX(100%) scaleX(-1);
+				}
+			}
+		}
+	}
+}

@@ -7,10 +7,11 @@ import Brand from '../components/brand/Brand.vue';
 import Button from '../components/button/Button.vue';
 import Card from '../components/card/Card.vue';
 import Checkbox from '../components/checkbox/Checkbox.vue';
+import ControlPanelDesktop from '../components/control-panel-desktop/ControlPanelDesktop.vue';
+import ControlPanelMobile from '../components/control-panel-mobile/ControlPanelMobile.vue';
 import CustomSelect from '../components/custom-select/CustomSelect.vue';
 import Divider from '../components/divider/Divider.vue';
 import Drawer from '../components/drawer/Drawer.vue';
-import Header from '../components/header/Header.vue';
 import Home from '../components/home/Home.vue';
 import Icon from '../components/icon/Icon.vue';
 import Infotext from '../components/infotext/Infotext.vue';
@@ -175,8 +176,13 @@ export const navigationItems: NavItem[] = [
 			},
 			{
 				path: '/01/header',
-				label: 'Header',
-				component: markRaw(Header)
+				label: 'ControlPanelDesktop',
+				component: markRaw(ControlPanelDesktop)
+			},
+			{
+				path: '/01/control-panel-mobile',
+				label: 'ControlPanelMobile',
+				component: markRaw(ControlPanelMobile)
 			}
 		])
 	},

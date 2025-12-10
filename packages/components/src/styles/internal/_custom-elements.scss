@@ -1,10 +1,28 @@
 $custom-elements: //hygen-insert
 
-	db-custom-select-list-item, db-custom-select-list,
+	db-control-panel-flat-icon-navigation, db-shell-sub-navigation,
+	db-navigation-item-group, db-control-panel-secondary-actions,
+	db-control-panel-primary-actions, db-control-panel-meta-navigation,
+	db-control-panel-mobile, db-custom-select-list-item, db-custom-select-list,
 	db-custom-select-dropdown, db-custom-select-form-field, db-custom-select,
 	db-stack, db-switch, db-tab-panel, db-tabs, db-tab-list, db-tab-item,
 	db-tab-bar, db-tooltip, db-popover, db-textarea, db-navigation,
 	db-accordion-item, db-accordion, db-badge, db-navigation-item, db-tag,
-	db-radio, db-select, db-notification, db-brand, db-button, db-card,
-	db-checkbox, db-divider, db-drawer, db-header, db-icon, db-infotext,
-	db-input, db-link, db-page, db-section, db-tab;
+	db-radio, db-select, db-notification, db-control-panel-brand, db-button,
+	db-card, db-checkbox, db-divider, db-drawer, db-control-panel-desktop,
+	db-icon, db-infotext, db-input, db-link, db-shell, db-section, db-tab;
+
+/* Sub components for shell */
+
+@function get-sub-component($selector) {
+	@return "> * > #{$selector} > .#{$selector}, > #{$selector} > .#{$selector}, > .#{$selector}";
+}
+
+$control-panel-desktop: get-sub-component(db-control-panel-desktop);
+$control-panel-mobile: get-sub-component(db-control-panel-mobile);
+$navigation: get-sub-component(db-navigation);
+$navigation-item: get-sub-component(db-navigation-item);
+$navigation-item-group: get-sub-component(db-navigation-item-group);
+$shell-sub-navigation: get-sub-component(db-shell-sub-navigation);
+$overflow-scroll-right-button: "> .overflow-scroll-right-button, > db-button > .overflow-scroll-right-button";
+$overflow-scroll-left-button: "> .overflow-scroll-left-button, > db-button > .overflow-scroll-left-button";

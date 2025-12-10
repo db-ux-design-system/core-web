@@ -5,7 +5,7 @@ import {
 	DBTabList,
 	DBTabPanel,
 	DBTabs
-} from "../../../../../output/vue/src";
+} from "@components";
 import defaultComponentVariants from "../../../../shared/tabs.json";
 import DefaultComponent from "../DefaultComponent.vue";
 </script>

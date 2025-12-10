@@ -1,12 +1,6 @@
+import { DBCard, DBIcon, DBInfotext, DBInput, DBSelect } from '@components';
 import { ALL_ICONS } from '@db-ux/db-theme-icons';
 import { useState } from 'react';
-import {
-	DBCard,
-	DBIcon,
-	DBInfotext,
-	DBInput,
-	DBSelect
-} from '../../../../../output/react/src';
 import DefaultPage from '../../../components/default-page';
 
 // Import root package.json for theme version

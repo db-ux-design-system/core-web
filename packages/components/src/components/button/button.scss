@@ -113,7 +113,7 @@
 		opacity: variables.$db-opacity-md;
 	}
 
-	// Workaround for current stencil implementation for header
+	// Workaround for current stencil implementation for control-panel-desktop
 	&:has(> .db-button) {
 		margin: 0;
 		padding: 0;

@@ -1,5 +1,5 @@
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import { DBSelect } from '../../../../../../output/angular/src';
+import { DBSelect } from '@components';
 import defaultComponentVariants from '../../../../../shared/select.json';
 import { environment } from '../../../environments/environment';
 import { DefaultComponent } from '../default.component';

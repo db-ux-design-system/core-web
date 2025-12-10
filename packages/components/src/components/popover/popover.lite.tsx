@@ -37,11 +37,7 @@ export default function DBPopover(props: DBPopoverProps) {
 			if (article) {
 				// This is a workaround for angular
 				utilsDelay(() => {
-					handleFixedPopover(
-						article,
-						_ref,
-						(props.placement as unknown as string) ?? 'bottom'
-					);
+					handleFixedPopover(article, _ref);
 				}, 1);
 			}
 		},

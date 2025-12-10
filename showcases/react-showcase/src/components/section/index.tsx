@@ -1,5 +1,5 @@
-import { DBCard, DBSection } from '../../../../../output/react/src';
-import { type DBSectionProps } from '../../../../../output/react/src/components/section/model';
+import { DBCard, DBSection } from '@components';
+import { type DBSectionProps } from '@components/src/components/section/model';
 import defaultComponentVariants from '../../../../shared/section.json';
 import { type BaseComponentProps } from '../base-component-data';
 import { getVariants } from '../data';
