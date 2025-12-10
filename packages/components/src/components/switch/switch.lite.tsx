@@ -156,7 +156,7 @@ export default function DBSwitch(props: DBSwitchProps) {
 	});
 
 	onMount(() => {
-		state._id = props.id ?? `switch-${uuid()}`;
+		state._id = props.inputid ?? `switch-${uuid()}`;
 		state._messageId = `${state._id}${DEFAULT_MESSAGE_ID_SUFFIX}`;
 		state._validMessageId = `${state._id}${DEFAULT_VALID_MESSAGE_ID_SUFFIX}`;
 		state._invalidMessageId = `${state._id}${DEFAULT_INVALID_MESSAGE_ID_SUFFIX}`;

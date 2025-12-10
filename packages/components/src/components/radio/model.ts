@@ -14,10 +14,15 @@ import {
 	SizeProps
 } from '../../shared/model';
 
-export type DBRadioDefaultProps = {};
+export type DBRadioDefaultProps = {
+	/**
+	 * [ID](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/id) of the input element, generated automatically as a fallback if unset.
+	 */
+	inputid?: string;
+};
 
 export type DBRadioProps = DBRadioDefaultProps &
-	GlobalProps &
+	Omit<GlobalProps, 'id'> &
 	InputEventProps<HTMLInputElement> &
 	ChangeEventProps<HTMLInputElement> &
 	FocusEventProps<HTMLInputElement> &

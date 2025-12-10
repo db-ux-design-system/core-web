@@ -21,6 +21,10 @@ import {
 
 export type DBSelectDefaultProps = {
 	/**
+	 * [ID](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/id) of the select element, generated automatically as a fallback if unset.
+	 */
+	selectid?: string;
+	/**
 	 * @deprecated
 	 * Enables multiple select, but it isn't styled, please use DBCustomSelect/db-custom-select instead
 	 */
@@ -64,7 +68,7 @@ export type DBSelectOptionType = {
 	value: string | string[] | number;
 };
 
-export type DBSelectProps = GlobalProps &
+export type DBSelectProps = Omit<GlobalProps, 'id'> &
 	ClickEventProps<HTMLSelectElement> &
 	ChangeEventProps<HTMLSelectElement> &
 	FocusEventProps<HTMLSelectElement> &

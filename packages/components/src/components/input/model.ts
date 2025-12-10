@@ -45,6 +45,10 @@ export type InputTypeType = (typeof InputTypeList)[number];
 
 export type DBInputDefaultProps = {
 	/**
+	 * [ID](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/id) of the input element, generated automatically as a fallback if unset.
+	 */
+	inputid?: string;
+	/**
 	 * Set a [data list](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/datalist) via attribute instead of children.
 	 */
 	dataList?: string[] | ValueLabelType[];
@@ -115,7 +119,7 @@ export type DBInputDefaultProps = {
 };
 
 export type DBInputProps = DBInputDefaultProps &
-	GlobalProps &
+	Omit<GlobalProps, 'id'> &
 	FormTextProps &
 	InputEventProps<HTMLInputElement> &
 	ChangeEventProps<HTMLInputElement> &

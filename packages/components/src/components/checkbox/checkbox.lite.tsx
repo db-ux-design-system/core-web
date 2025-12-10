@@ -131,7 +131,7 @@ export default function DBCheckbox(props: DBCheckboxProps) {
 
 	onMount(() => {
 		state.initialized = true;
-		const mId = props.id ?? `checkbox-${uuid()}`;
+		const mId = props.inputid ?? `checkbox-${uuid()}`;
 		state._id = mId;
 		state._messageId = mId + DEFAULT_MESSAGE_ID_SUFFIX;
 		state._validMessageId = mId + DEFAULT_VALID_MESSAGE_ID_SUFFIX;

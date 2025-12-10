@@ -27,6 +27,10 @@ export type TextareaWrapType = (typeof TextareaWrapList)[number];
 
 export type DBTextareaDefaultProps = {
 	/**
+	 * [ID](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/id) of the textarea element, generated automatically as a fallback if unset.
+	 */
+	textareaid?: string;
+	/**
 	 * The visible width of the text control, in average character widths. If it is specified, it must be a positive integer
 	 */
 	cols?: number | string;
@@ -60,7 +64,7 @@ export type DBTextareaProps = DBTextareaDefaultProps &
 	InputEventProps<HTMLTextAreaElement> &
 	FocusEventProps<HTMLTextAreaElement> &
 	FormProps &
-	GlobalProps &
+	Omit<GlobalProps, 'id'> &
 	FormTextProps &
 	FormMessageProps;
 

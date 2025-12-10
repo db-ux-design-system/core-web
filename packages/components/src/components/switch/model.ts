@@ -20,6 +20,10 @@ import {
 
 export type DBSwitchDefaultProps = {
 	/**
+	 * [ID](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/id) of the input element, generated automatically as a fallback if unset.
+	 */
+	inputid?: string;
+	/**
 	 * Add additional icons to indicate active/inactive state.
 	 */
 	visualAid?: boolean | string;
@@ -30,7 +34,7 @@ export type DBSwitchDefaultProps = {
 	variant?: LabelVariantHorizontalType;
 };
 
-export type DBSwitchProps = GlobalProps &
+export type DBSwitchProps = Omit<GlobalProps, 'id'> &
 	ChangeEventProps<HTMLInputElement> &
 	FocusEventProps<HTMLInputElement> &
 	FormProps &

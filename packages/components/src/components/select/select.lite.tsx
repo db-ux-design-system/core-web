@@ -184,7 +184,7 @@ export default function DBSelect(props: DBSelectProps) {
 
 	onMount(() => {
 		state.initialized = true;
-		const mId = props.id ?? `select-${uuid()}`;
+		const mId = props.selectid ?? `select-${uuid()}`;
 		state._id = mId;
 		state._messageId = mId + DEFAULT_MESSAGE_ID_SUFFIX;
 		state._validMessageId = mId + DEFAULT_VALID_MESSAGE_ID_SUFFIX;

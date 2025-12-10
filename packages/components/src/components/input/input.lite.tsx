@@ -189,7 +189,7 @@ export default function DBInput(props: DBInputProps) {
 	});
 
 	onMount(() => {
-		const mId = props.id ?? `input-${uuid()}`;
+		const mId = props.inputid ?? `input-${uuid()}`;
 		state._id = mId;
 		state._messageId = mId + DEFAULT_MESSAGE_ID_SUFFIX;
 		state._validMessageId = mId + DEFAULT_VALID_MESSAGE_ID_SUFFIX;

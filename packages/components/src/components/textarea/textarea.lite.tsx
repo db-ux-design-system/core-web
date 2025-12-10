@@ -165,7 +165,7 @@ export default function DBTextarea(props: DBTextareaProps) {
 	});
 
 	onMount(() => {
-		const mId = props.id ?? `textarea-${uuid()}`;
+		const mId = props.textareaid ?? `textarea-${uuid()}`;
 		state._id = mId;
 		state._messageId = mId + DEFAULT_MESSAGE_ID_SUFFIX;
 		state._validMessageId = mId + DEFAULT_VALID_MESSAGE_ID_SUFFIX;
