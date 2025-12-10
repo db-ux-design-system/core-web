@@ -786,6 +786,36 @@
 					"value": "Disabled",
 					"placeholder": "Disabled"
 				}
+			},
+			{
+				"name": "(Default) Empty",
+				"style": {
+					"width": "300px"
+				},
+				"props": {
+					"options": [
+						{
+							"value": "Option 1"
+						},
+						{
+							"value": "Option 2"
+						},
+						{
+							"value": "Option 3"
+						},
+						{
+							"value": "Option 4"
+						},
+						{
+							"value": "Option 5"
+						}
+					],
+					"label": "Label",
+					"placeholder": "Invalid",
+					"variant": "floating",
+					"validation": "invalid",
+					"invalidMessage": "Invalid Message"
+				}
 			}
 		]
 	}
