@@ -150,7 +150,7 @@ const DefaultPage = ({
 									setColorMode={setColorMode}
 								/>
 							}
-							secondaryAction={
+							secondaryActions={
 								<>
 									<FrameworkSwitcher />
 									<SecondaryActions />
