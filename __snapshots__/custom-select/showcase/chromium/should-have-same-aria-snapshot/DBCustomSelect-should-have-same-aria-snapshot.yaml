@@ -1467,7 +1467,7 @@
   - text: Floating
   - group:
     - article:
-      - radiogroup "id-10300-Floating":
+      - radiogroup "id-10301-Floating":
         - list:
           - listitem:
             - radio "Option 1"
