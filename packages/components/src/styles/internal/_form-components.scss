@@ -174,7 +174,7 @@ $db-min-inline-size: var(
 				font-style: normal;
 			}
 
-			@include placeholder-content($selector) {
+			#{$selector}::placeholder {
 				opacity: variables.$db-opacity-xl;
 				font-family: var(--db-font-family-sans);
 				font-style: italic;
@@ -183,6 +183,17 @@ $db-min-inline-size: var(
 					/* stylelint-disable-next-line db-ux/use-spacings */
 					padding-block-start: var(--db-base-body-icon-font-size-2xs);
 				}
+
+				@media screen and (prefers-reduced-motion: no-preference) {
+					transition: opacity
+						#{variables.$db-transition-straight-emotional};
+				}
+			}
+
+			[id$="-placeholder"] {
+				opacity: variables.$db-opacity-xl;
+				font-family: var(--db-font-family-sans);
+				font-style: italic;
 
 				@media screen and (prefers-reduced-motion: no-preference) {
 					transition: opacity
