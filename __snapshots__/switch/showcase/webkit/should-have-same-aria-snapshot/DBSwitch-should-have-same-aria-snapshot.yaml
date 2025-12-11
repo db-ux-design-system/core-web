@@ -4,96 +4,96 @@
   - switch "functional"
   - text: functional
   - status
-  - switch "regular (Default)"
+  - switch "functional"
   - text: regular (Default)
   - status
-  - switch "expressive"
+  - switch "functional"
   - text: expressive
   - status
   - link "Checked"
-  - switch "(Default) False"
+  - switch "functional"
   - text: (Default) False
   - status
-  - switch "True" [checked]
+  - switch "functional" [checked]
   - text: "True"
   - status
   - link "Disabled"
-  - switch "(Default) False"
+  - switch "functional"
   - text: (Default) False
   - status
-  - switch "True" [disabled]
+  - switch "functional" [disabled]
   - text: "True"
   - status
   - link "Visual Aid"
-  - switch "(Default) False (Unchecked)"
+  - switch "functional"
   - text: (Default) False (Unchecked)
   - status
-  - switch "(Default) False (Checked)" [checked]
+  - switch "functional" [checked]
   - text: (Default) False (Checked)
   - status
-  - switch "True (Unchecked)"
+  - switch "functional"
   - text: True (Unchecked)
   - status
-  - switch "True (Checked)" [checked]
+  - switch "functional" [checked]
   - text: True (Checked)
   - status
   - link "Size"
-  - switch "(Default) Medium"
+  - switch "functional"
   - text: (Default) Medium
   - status
-  - switch "Small"
+  - switch "functional"
   - text: Small
   - status
   - link "Variant"
-  - switch "(Default) Trailing"
+  - switch "functional"
   - text: (Default) Trailing
   - status
-  - switch "Leading"
+  - switch "functional"
   - text: Leading
   - status
   - link "Show Label"
-  - switch "(Default) True"
+  - switch "functional"
   - text: (Default) True
   - status
-  - switch "False"
+  - switch "functional"
   - text: "False"
   - status
   - text: "False"
   - link "Required"
-  - switch "(Default) False"
+  - switch "functional"
   - text: (Default) False
   - status
-  - switch "True"
+  - switch "functional"
   - text: "True"
   - status
   - link "Show Required Asterisk"
-  - switch "(Default) True"
+  - switch "functional"
   - text: (Default) True
   - status
-  - switch "False"
+  - switch "functional"
   - text: "False"
   - status
   - link "Validation"
-  - switch "(Default) No validation"
+  - switch "functional"
   - text: (Default) No validation
   - status
-  - switch "Invalid"
+  - switch "functional"
   - text: Invalid Invalid Message
   - status
-  - switch "Valid" [checked]
+  - switch "functional" [checked]
   - text: Valid Valid message
   - status
   - link "Show Message"
-  - switch "(Default) False"
+  - switch "functional"
   - text: (Default) False
   - status
-  - switch "True"
+  - switch "functional"
   - text: True Message
   - status
   - link "Examples"
-  - switch "Custom Icons"
+  - switch "functional"
   - text: Custom Icons
   - status
-  - switch "Required + Visual Aid"
+  - switch "functional"
   - text: Required + Visual Aid
   - status
