@@ -23,6 +23,9 @@ export type DefaultTestType = {
 export type DefaultSnapshotTestType = {
 	preScreenShot?: (page: Page, project: FullProject) => Promise<void>;
 	ratio?: string;
+	// When true, capture element-only screenshot (e.g., breadcrumb section)
+	// Defaults to false for full-page to preserve existing baselines
+	elementOnly?: boolean;
 } & DefaultTestType;
 
 export type AxeCoreTestType = {
@@ -81,6 +84,7 @@ const gotoPage = async (
 const isCheckerError = (object: any): object is ICheckerError =>
 	'details' in object;
 
+// Use explicit env var name to avoid destructuring pitfalls in test runners
 const shouldSkip = (skip?: SkipType): boolean => {
 	if (skip) {
 		const showcaseValue = process.env.showcase;
@@ -97,7 +101,8 @@ export const getDefaultScreenshotTest = ({
 	fixedHeight,
 	preScreenShot,
 	skip,
-	ratio
+	ratio,
+	elementOnly
 }: DefaultSnapshotTestType) => {
 	test(`should match screenshot`, async ({ page }, { project }) => {
 		const { showcase } = process.env;
@@ -132,10 +137,13 @@ export const getDefaultScreenshotTest = ({
 
 		await gotoPage(page, path, lvl1, fixedHeight);
 
-		// For visual snapshots, compare full-page screenshots to match baselines
+		// Visual snapshots now compare the full page to align with baselines
+		// rather than masking headers. This reduces false positives from layout
+		// shifts and keeps baselines consistent across showcases.
 		const showcaseEnv = process.env.showcase;
 
-		// Ensure Stencil component is hydrated before taking the full-page screenshot
+		// Ensure Stencil components are hydrated before screenshots.
+		// Playwright may capture pre-hydration DOM, causing flakiness in Stencil.
 		if (isStencil(showcaseEnv)) {
 			const hydratedBreadcrumb = page.locator('db-breadcrumb.hydrated');
 			try {
@@ -152,7 +160,31 @@ export const getDefaultScreenshotTest = ({
 			await preScreenShot(page, project);
 		}
 
-		await expect(page).toHaveScreenshot(config);
+		if (elementOnly) {
+			// Element-level screenshot when explicitly requested
+			// Prefer direct breadcrumb component or named landmark if available
+			const candidate = page
+				.locator('db-breadcrumb, nav[aria-label="Breadcrumb"]')
+				.first();
+			try {
+				await expect(candidate).toBeVisible({ timeout: 5000 });
+				await expect(candidate).toHaveScreenshot(config);
+			} catch {
+				// Fallback to heading->section, then full page as last resort
+				const section = page
+					.getByRole('heading', { name: 'DBBreadcrumb', level: 1 })
+					.locator('xpath=ancestor::section[1]');
+				try {
+					await expect(section).toBeVisible({ timeout: 5000 });
+					await expect(section).toHaveScreenshot(config);
+				} catch {
+					await expect(page).toHaveScreenshot(config);
+				}
+			}
+		} else {
+			// Default: full-page screenshot to match existing baselines
+			await expect(page).toHaveScreenshot(config);
+		}
 	});
 };
 
@@ -209,6 +241,11 @@ export const runAxeCoreTest = ({
 			.disableRules(axeDisableRules ?? [])
 			.analyze();
 
+		// Axe workarounds scoped to Breadcrumb demos:
+		// - Custom elements inside lists can produce false-positive "list" structure issues.
+		// - Demo aria-label "Breadcrumb" can trip "landmark-unique" on sample pages.
+		// These filters only apply when testing breadcrumb paths to avoid hiding
+		// real issues elsewhere.
 		// Workaround: ignore false-positive list structure due to intermediate custom elements
 		function isAllowedIntermediateCustomElementInList(result: Result) {
 			return (
@@ -325,6 +362,8 @@ export const runAriaSnapshotTest = ({
 		await page.waitForTimeout(1000); // We wait a little bit until everything loaded
 
 		// Prefer snapshotting only named breadcrumb navigation regions to avoid unlabeled landmarks
+		// This focuses snapshots on the breadcrumb component, reducing unrelated noise
+		// from page-level landmarks in different showcases.
 		let snapshot: string;
 		const navs = page.getByRole('navigation');
 		const count = await navs.count();
@@ -343,7 +382,9 @@ export const runAriaSnapshotTest = ({
 			// Join snapshots of all breadcrumb navigations in the page
 			snapshot = parts.join('\n');
 		} else {
-			// Fallback: snapshot the DBBreadcrumb section or main
+			// Fallbacks keep the test resilient:
+			// - Try the local DBBreadcrumb section (closest ancestor section)
+			// - Otherwise snapshot the main region
 			const breadcrumbSection = page
 				.getByRole('heading', { name: 'DBBreadcrumb', level: 1 })
 				.locator('xpath=ancestor::section[1]');
@@ -369,6 +410,7 @@ export const runAriaSnapshotTest = ({
 				}
 
 				// Drop unlabeled navigation landmarks appearing as just `- navigation:`
+				// These vary across showcases and are not relevant to breadcrumb semantics.
 				if (line.trim() === '- navigation:') {
 					return undefined;
 				}

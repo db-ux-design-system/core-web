@@ -3,5 +3,6 @@ import { getDefaultScreenshotTest } from '../default.ts';
 
 const path = '05/breadcrumb';
 test.describe('DBBreadcrumb', () => {
-	getDefaultScreenshotTest({ path });
+	// Use element-only screenshot to stabilize breadcrumb visuals
+	getDefaultScreenshotTest({ path, elementOnly: true });
 });

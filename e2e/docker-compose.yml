@@ -7,8 +7,6 @@ services:
       context: "../"
       dockerfile: "./e2e/Dockerfile"
       target: "playwright"
-      args:
-        version: "1.56.1"
     volumes:
       - "./../__snapshots__:/e2e/__snapshots__"
       - "./../packages/foundations/build:/e2e/packages/foundations/build"
