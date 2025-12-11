@@ -22,7 +22,7 @@ export type DBSwitchDefaultProps = {
 	/**
 	 * [ID](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/id) of the input element, generated automatically as a fallback if unset.
 	 */
-	inputid?: string;
+	idInput?: string;
 	/**
 	 * Add additional icons to indicate active/inactive state.
 	 */

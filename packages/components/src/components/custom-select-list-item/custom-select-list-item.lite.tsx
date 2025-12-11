@@ -67,7 +67,7 @@ export default function DBCustomSelectListItem(
 	// jscpd:ignore-end
 
 	onMount(() => {
-		state._id = props.liid ?? `custom-select-list-item-${uuid()}`;
+		state._id = props.idLi ?? `custom-select-list-item-${uuid()}`;
 	});
 
 	onUpdate(() => {

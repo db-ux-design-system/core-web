@@ -23,7 +23,7 @@ export type DBSelectDefaultProps = {
 	/**
 	 * [ID](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/id) of the select element, generated automatically as a fallback if unset.
 	 */
-	selectid?: string;
+	idSelect?: string;
 	/**
 	 * @deprecated
 	 * Enables multiple select, but it isn't styled, please use DBCustomSelect/db-custom-select instead

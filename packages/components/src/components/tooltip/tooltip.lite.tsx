@@ -92,7 +92,7 @@ export default function DBTooltip(props: DBTooltipProps) {
 	});
 
 	onMount(() => {
-		state._id = props.iid || 'tooltip-' + uuid();
+		state._id = props.idI || 'tooltip-' + uuid();
 		state.initialized = true;
 	});
 

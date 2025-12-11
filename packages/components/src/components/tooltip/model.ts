@@ -17,7 +17,7 @@ export type DBTooltipDefaultProps = {
 	/**
 	 * [ID](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/id) of the i element, generated automatically as a fallback if unset.
 	 */
-	iid?: string;
+	idI?: string;
 	/**
 	 * Show/Hides arrow
 	 */

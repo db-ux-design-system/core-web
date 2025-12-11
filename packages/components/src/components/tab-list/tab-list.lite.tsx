@@ -21,7 +21,7 @@ export default function DBTabList(props: DBTabListProps) {
 	});
 
 	onMount(() => {
-		state._id = props.divid || 'tab-list-' + uuid();
+		state._id = props.idDiv || 'tab-list-' + uuid();
 	});
 	// jscpd:ignore-end
 

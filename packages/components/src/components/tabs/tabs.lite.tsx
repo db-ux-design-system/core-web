@@ -188,7 +188,7 @@ export default function DBTabs(props: DBTabsProps) {
 	});
 
 	onMount(() => {
-		state._id = props.divid || state._id;
+		state._id = props.idDiv || state._id;
 
 		state._name = `tabs-${props.name || uuid()}`;
 

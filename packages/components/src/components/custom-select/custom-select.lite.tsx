@@ -649,7 +649,7 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 	// jscpd:ignore-end
 
 	onMount(() => {
-		const mId = props.divid ?? `custom-select-${uuid()}`;
+		const mId = props.idDiv ?? `custom-select-${uuid()}`;
 		state._id = mId;
 		state._messageId = mId + DEFAULT_MESSAGE_ID_SUFFIX;
 		state._validMessageId = mId + DEFAULT_VALID_MESSAGE_ID_SUFFIX;

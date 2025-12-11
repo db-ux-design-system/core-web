@@ -22,7 +22,7 @@ export type DBTabsDefaultProps = {
 	/**
 	 * [ID](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/id) of the div element, generated automatically as a fallback if unset.
 	 */
-	divid?: string;
+	idDiv?: string;
 	/**
 	 * Change amount of distance if you click on an arrow, only available with behavior="arrows"
 	 */

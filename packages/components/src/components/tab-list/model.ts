@@ -4,7 +4,7 @@ export type DBTabListDefaultProps = {
 	/**
 	 * [ID](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/id) of the div element, generated automatically as a fallback if unset.
 	 */
-	divid?: string;
+	idDiv?: string;
 };
 
 export type DBTabListProps = DBTabListDefaultProps & Omit<GlobalProps, 'id'>;

@@ -18,7 +18,7 @@ export type DBRadioDefaultProps = {
 	/**
 	 * [ID](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/id) of the input element, generated automatically as a fallback if unset.
 	 */
-	inputid?: string;
+	idInput?: string;
 };
 
 export type DBRadioProps = DBRadioDefaultProps &

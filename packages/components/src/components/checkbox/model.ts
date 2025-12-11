@@ -18,7 +18,7 @@ export type DBCheckboxDefaultProps = {
 	/**
 	 * [ID](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/id) of the input element, generated automatically as a fallback if unset.
 	 */
-	inputid?: string;
+	idInput?: string;
 	/**
 	 * Define an [indeterminate](https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement#indeterminate) state of a checkbox
 	 */

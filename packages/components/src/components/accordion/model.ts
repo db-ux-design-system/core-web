@@ -11,7 +11,7 @@ export type DBAccordionDefaultProps = {
 	/**
 	 * [ID](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/id) of the ul element, generated automatically as a fallback if unset.
 	 */
-	ulid?: string;
+	idUl?: string;
 	/**
 	 * To allow multiple items open at the same time or only 1 item
 	 */

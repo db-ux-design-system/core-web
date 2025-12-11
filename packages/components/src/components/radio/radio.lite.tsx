@@ -106,7 +106,7 @@ export default function DBRadio(props: DBRadioProps) {
 
 	onMount(() => {
 		state.initialized = true;
-		state._id = props.inputid ?? `radio-${uuid()}`;
+		state._id = props.idInput ?? `radio-${uuid()}`;
 	});
 
 	onUpdate(() => {

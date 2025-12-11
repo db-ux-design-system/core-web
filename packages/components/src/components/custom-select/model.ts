@@ -95,7 +95,7 @@ export type DBCustomSelectDefaultProps = {
 	/**
 	 * [ID](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/id) of the div element, generated automatically as a fallback if unset.
 	 */
-	divid?: string;
+	idDiv?: string;
 	/**
 	 * Optional: if select-type="amount" change the shown text
 	 */
