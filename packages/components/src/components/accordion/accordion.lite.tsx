@@ -42,7 +42,7 @@ export default function DBAccordion(props: DBAccordionProps) {
 	});
 
 	onMount(() => {
-		state._id = props.id || 'accordion-' + uuid();
+		state._id = props.ulid || 'accordion-' + uuid();
 		state.initialized = true;
 		state._initOpenIndexDone = true;
 	});

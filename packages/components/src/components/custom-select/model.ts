@@ -93,6 +93,10 @@ export type DBCustomSelectEvents = {
 
 export type DBCustomSelectDefaultProps = {
 	/**
+	 * [ID](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/id) of the div element, generated automatically as a fallback if unset.
+	 */
+	divid?: string;
+	/**
 	 * Optional: if select-type="amount" change the shown text
 	 */
 	amountText?: string;
@@ -239,7 +243,7 @@ export type DBCustomSelectDefaultProps = {
 	values?: string[];
 };
 
-export type DBCustomSelectProps = GlobalProps &
+export type DBCustomSelectProps = Omit<GlobalProps, 'id'> &
 	CustomFormProps &
 	BaseFormProps &
 	RequiredProps &

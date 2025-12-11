@@ -15,6 +15,10 @@ export type TooltipVariantType = (typeof TooltipVariantList)[number];
 
 export type DBTooltipDefaultProps = {
 	/**
+	 * [ID](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/id) of the i element, generated automatically as a fallback if unset.
+	 */
+	iid?: string;
+	/**
 	 * Show/Hides arrow
 	 */
 	showArrow?: boolean | string;
@@ -27,7 +31,7 @@ export type DBTooltipDefaultProps = {
 };
 
 export type DBTooltipProps = DBTooltipDefaultProps &
-	GlobalProps &
+	Omit<GlobalProps, 'id'> &
 	EmphasisProps &
 	PlacementProps &
 	PopoverProps;

@@ -9,6 +9,10 @@ export type AccordionBehaviorType = (typeof AccordionBehaviorList)[number];
 
 export type DBAccordionDefaultProps = {
 	/**
+	 * [ID](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/id) of the ul element, generated automatically as a fallback if unset.
+	 */
+	ulid?: string;
+	/**
 	 * To allow multiple items open at the same time or only 1 item
 	 */
 	behavior?: AccordionBehaviorType;
@@ -40,7 +44,8 @@ export type DBAccordionDefaultProps = {
 	variant?: AccordionVariantType;
 };
 
-export type DBAccordionProps = DBAccordionDefaultProps & GlobalProps;
+export type DBAccordionProps = DBAccordionDefaultProps &
+	Omit<GlobalProps, 'id'>;
 
 export type DBAccordionDefaultState = {
 	_initOpenIndexDone: boolean;

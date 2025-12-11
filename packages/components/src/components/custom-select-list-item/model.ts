@@ -28,6 +28,10 @@ export type DBCustomSelectListItemExtraProps = {
 
 export type DBCustomSelectListItemDefaultProps = {
 	/**
+	 * [ID](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/id) of the li element, generated automatically as a fallback if unset.
+	 */
+	liid?: string;
+	/**
 	 * Set the title of a group of items - disables radio/checkbox behavior
 	 */
 	groupTitle?: string;
@@ -38,7 +42,7 @@ export type DBCustomSelectListItemDefaultProps = {
 };
 
 export type DBCustomSelectListItemProps = DBCustomSelectListItemDefaultProps &
-	GlobalProps &
+	Omit<GlobalProps, 'id'> &
 	BaseFormProps &
 	ValueProps &
 	FormCheckProps &

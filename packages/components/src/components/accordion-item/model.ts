@@ -11,6 +11,10 @@ import {
 
 export type DBAccordionItemDefaultProps = {
 	/**
+	 * [ID](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/id) of the li element, generated automatically as a fallback if unset.
+	 */
+	liid?: string;
+	/**
 	 * Initial state for the accordion item
 	 */
 	defaultOpen?: boolean;
@@ -29,7 +33,7 @@ export type DBAccordionItemDefaultProps = {
 } & TextProps;
 
 export type DBAccordionItemProps = DBAccordionItemDefaultProps &
-	GlobalProps &
+	Omit<GlobalProps, 'id'> &
 	ToggleEventProps &
 	NameProps;
 

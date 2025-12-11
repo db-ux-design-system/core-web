@@ -20,6 +20,10 @@ export type TabsInitialSelectedModeType =
 export type DBSimpleTabProps = DBTabItemProps & DBTabPanelProps;
 export type DBTabsDefaultProps = {
 	/**
+	 * [ID](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/id) of the div element, generated automatically as a fallback if unset.
+	 */
+	divid?: string;
+	/**
 	 * Change amount of distance if you click on an arrow, only available with behavior="arrows"
 	 */
 	arrowScrollDistance?: number | string;
@@ -71,7 +75,7 @@ export type DBTabsEventProps = {
 };
 
 export type DBTabsProps = DBTabsDefaultProps &
-	GlobalProps &
+	Omit<GlobalProps, 'id'> &
 	OrientationProps &
 	WidthProps &
 	AlignmentProps &

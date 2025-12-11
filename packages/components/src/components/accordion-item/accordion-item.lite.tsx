@@ -53,7 +53,7 @@ export default function DBAccordionItem(props: DBAccordionItemProps) {
 	});
 
 	onMount(() => {
-		state._id = props.id || 'accordion-item-' + uuid();
+		state._id = props.liid || 'accordion-item-' + uuid();
 		if (props.defaultOpen) {
 			state._open = props.defaultOpen;
 		}

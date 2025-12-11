@@ -21,7 +21,7 @@ export default function DBNavigation(props: DBNavigationProps) {
 	});
 
 	onMount(() => {
-		state._id = props.id || 'navigation-' + uuid();
+		state._id = props.navid || 'navigation-' + uuid();
 	});
 
 	// jscpd:ignore-end
