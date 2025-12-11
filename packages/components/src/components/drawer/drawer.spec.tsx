@@ -15,14 +15,13 @@ const testComponent = (viewport) => {
 		await expect(component).toContainText('Test');
 	});
 
-	test.fixme(
-		`should match screenshot for device ${viewport.name}`,
-		async ({ mount }) => {
-			const component = await mount(comp);
-			// TODO: Screenshots are not captured for top-layer
-			await expect(component).toHaveScreenshot();
-		}
-	);
+	test.fixme(`should match screenshot for device ${viewport.name}`, async ({
+		mount
+	}) => {
+		const component = await mount(comp);
+		// TODO: Screenshots are not captured for top-layer
+		await expect(component).toHaveScreenshot();
+	});
 };
 
 const testA11y = () => {
