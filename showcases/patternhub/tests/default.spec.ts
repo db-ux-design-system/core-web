@@ -9,7 +9,7 @@ const getDefaultScreenshotTest = async (
 ) => {
 	test(`${type} should match screenshot`, async ({ page }) => {
 		await page.goto(`${path}`, {
-			waitUntil: 'networkidle'
+			waitUntil: 'domcontentloaded'
 		});
 		await fn(page);
 		await expect(page).toHaveScreenshot([name, 'patternhub.png']);
