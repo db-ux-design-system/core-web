@@ -1,5 +1,11 @@
 # @db-ux/core-components
 
+## 4.2.4
+
+### Patch Changes
+
+- fix: deprecation warning for SASS `if()` function - [see commit 69961ca](https://github.com/db-ux-design-system/core-web/commit/69961ca130a076ddbeb13c77379278571d92fec1)
+
 ## 4.2.3
 
 ### Patch Changes

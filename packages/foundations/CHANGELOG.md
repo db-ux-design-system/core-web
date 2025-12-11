@@ -1,5 +1,11 @@
 # @db-ux/core-foundations
 
+## 4.2.4
+
+### Patch Changes
+
+- refactor(Open Sans): added missing Ukrainian glyph - [see commit d6c15a7](https://github.com/db-ux-design-system/core-web/commit/d6c15a72759ad2c076eb2dc0b4de1e2d75e63a68)
+
 ## 4.2.3
 
 ### Patch Changes
