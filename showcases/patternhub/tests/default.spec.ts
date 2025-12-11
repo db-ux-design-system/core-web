@@ -25,7 +25,6 @@ for (const group of Components) {
 				`.${group.path}/${component.name}/docs/Angular`,
 				async (page) => {
 					const firstH2 = page.locator('h2').first();
-					await expect(firstH2).toHaveCount(1); // Checks existence before visibility
 					await expect(firstH2).toBeVisible();
 				}
 			);
@@ -37,7 +36,6 @@ for (const group of Components) {
 				`.${group.path}/${component.name}/overview?fullscreen=true`,
 				async (page) => {
 					const firstH1 = page.locator('h1').first();
-					await expect(firstH1).toHaveCount(1); // Checks existence before visibility
 					await expect(firstH1).toBeVisible();
 				}
 			);
@@ -49,7 +47,6 @@ for (const group of Components) {
 				`.${group.path}/${component.name}/properties?fullscreen=true&noh1=true`,
 				async (page) => {
 					const firstH2 = page.locator('h2').first();
-					await expect(firstH2).toHaveCount(1); // Checks existence before visibility
 					await expect(firstH2).toBeVisible();
 				}
 			);
