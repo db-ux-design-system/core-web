@@ -3,18 +3,21 @@ import AccordionComponent from '../../react-showcase/src/components/accordion';
 import AccordionItemComponent from '../../react-showcase/src/components/accordion-item';
 import BadgeComponent from '../../react-showcase/src/components/badge';
 import BrandComponent from '../../react-showcase/src/components/brand';
+import ButtonComponent from '../../react-showcase/src/components/button';
 import CardComponent from '../../react-showcase/src/components/card';
 import CheckboxComponent from '../../react-showcase/src/components/checkbox';
-import MutliSelectComponent from '../../react-showcase/src/components/custom-select';
+import CustomSelectComponent from '../../react-showcase/src/components/custom-select';
 import DividerComponent from '../../react-showcase/src/components/divider';
 import DrawerComponent from '../../react-showcase/src/components/drawer';
 import HeaderComponent from '../../react-showcase/src/components/header';
+// Import IconComponent from '../../react-showcase/src/components/icon';
 import InfotextComponent from '../../react-showcase/src/components/infotext';
 import InputComponent from '../../react-showcase/src/components/input';
 import LinkComponent from '../../react-showcase/src/components/link';
 import NavigationComponent from '../../react-showcase/src/components/navigation';
 import NavigationItemComponent from '../../react-showcase/src/components/navigation-item';
 import NotificationComponent from '../../react-showcase/src/components/notification';
+// Import PageComponent from '../../react-showcase/src/components/page';
 import PopoverComponent from '../../react-showcase/src/components/popover';
 import RadioComponent from '../../react-showcase/src/components/radio';
 import SectionComponent from '../../react-showcase/src/components/section';
@@ -27,6 +30,36 @@ import TagComponent from '../../react-showcase/src/components/tag';
 import TextareaComponent from '../../react-showcase/src/components/textarea';
 import TooltipComponent from '../../react-showcase/src/components/tooltip';
 import { getShowcasePlugin } from '../../shared/showcase-plugins';
+import * as accordionCode from '../components/code-docs/accordion';
+import * as accordionItemCode from '../components/code-docs/accordion-item';
+import * as badgeCode from '../components/code-docs/badge';
+import * as brandCode from '../components/code-docs/brand';
+import * as buttonCode from '../components/code-docs/button';
+import * as cardCode from '../components/code-docs/card';
+import * as checkboxCode from '../components/code-docs/checkbox';
+import * as customSelectCode from '../components/code-docs/custom-select';
+import * as dividerCode from '../components/code-docs/divider';
+import * as drawerCode from '../components/code-docs/drawer';
+import * as headerCode from '../components/code-docs/header';
+// Import * as iconCode from '../components/code-docs/icon';
+import * as infotextCode from '../components/code-docs/infotext';
+import * as inputCode from '../components/code-docs/input';
+import * as linkCode from '../components/code-docs/link';
+import * as navigationCode from '../components/code-docs/navigation';
+import * as navigationItemCode from '../components/code-docs/navigation-item';
+import * as notificationCode from '../components/code-docs/notification';
+// Import * as pageCode from '../components/code-docs/page';
+import * as popoverCode from '../components/code-docs/popover';
+import * as radioCode from '../components/code-docs/radio';
+import * as sectionCode from '../components/code-docs/section';
+import * as selectCode from '../components/code-docs/select';
+import * as stackCode from '../components/code-docs/stack';
+import * as switchCode from '../components/code-docs/switch';
+import * as tabItemCode from '../components/code-docs/tab-item';
+import * as tabsCode from '../components/code-docs/tabs';
+import * as tagCode from '../components/code-docs/tag';
+import * as textareaCode from '../components/code-docs/textarea';
+import * as tooltipCode from '../components/code-docs/tooltip';
 import Components from './components.json';
 
 export type NavigationItem = {
@@ -39,17 +72,15 @@ export type NavigationItem = {
 };
 
 const nameComponentMap = {
-	'custom-select': <MutliSelectComponent />,
-	stack: <StackComponent />,
-	button: getShowcasePlugin('button')!.getShowcaseComponent({
-		host: 'patternhub'
-	}),
-	link: <LinkComponent />,
-	brand: <BrandComponent />,
-	// Icon: <IconComponent />,
-	tooltip: <TooltipComponent />,
-	infotext: <InfotextComponent />,
-	tag: <TagComponent />,
+	'custom-select': <CustomSelectComponent slotCode={customSelectCode} />,
+	stack: <StackComponent slotCode={stackCode} />,
+	button: <ButtonComponent slotCode={buttonCode} />,
+	link: <LinkComponent slotCode={linkCode} />,
+	brand: <BrandComponent slotCode={brandCode} />,
+	// Icon: <IconComponent slotCode={iconCode} />,
+	tooltip: <TooltipComponent slotCode={tooltipCode} />,
+	infotext: <InfotextComponent slotCode={infotextCode} />,
+	tag: <TagComponent slotCode={tagCode} />,
 	accordion: (
 		<AccordionComponent
 			subComponent={

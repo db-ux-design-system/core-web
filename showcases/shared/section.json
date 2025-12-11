@@ -5,7 +5,9 @@
 			{
 				"name": "Functional",
 				"density": "functional",
-				"props": {}
+				"props": {
+					"id": "test-id-123"
+				}
 			},
 			{
 				"name": "(Default) Regular",

@@ -22,7 +22,6 @@
     "build-outputs:migration": "npm run copy-build --workspace=@db-ux/core-migration",
     "build-outputs:ngx-core-components": "npm run build --workspace=@db-ux/ngx-core-components",
     "build-outputs:react-core-components": "npm run build --workspace=@db-ux/react-core-components",
-    "build-outputs:stencil-components": "npm run build --workspace=@db-ux/wc-core-components",
     "build-outputs:stylelint": "npm run copy-output --workspace=@db-ux/core-stylelint",
     "build-outputs:v-core-components": "npm run build --workspace=@db-ux/v-core-components",
     "build-outputs:wc-core-components": "npm run build --workspace=@db-ux/wc-core-components",
