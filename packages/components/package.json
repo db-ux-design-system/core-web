@@ -1,6 +1,6 @@
 {
   "name": "@db-ux/core-components",
-  "version": "4.2.2",
+  "version": "4.2.4",
   "type": "module",
   "description": "General technical components (styling, fonts and icons) out of DB UX Design System (Version 3)",
   "repository": {
@@ -47,7 +47,7 @@
     "start": "nodemon --watch src --watch scripts --watch scripts --ext js,tsx,ts,scss,json --exec \"npm run build\""
   },
   "dependencies": {
-    "@db-ux/core-foundations": "4.2.2"
+    "@db-ux/core-foundations": "4.2.4"
   },
   "devDependencies": {
     "@builder.io/eslint-plugin-mitosis": "0.0.17",
@@ -60,7 +60,7 @@
     "nodemon": "3.1.11",
     "sass": "1.85.0",
     "sassdoc": "2.7.4",
-    "tsx": "4.20.6"
+    "tsx": "4.21.0"
   },
   "publishConfig": {
     "registry": "https://registry.npmjs.org/",
