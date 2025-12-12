@@ -82,17 +82,16 @@ const cleanSpeakInstructions = (phraseLog: string[]): string[] => {
 		 * - Reorder to start with "check box"
 		 */
 		// Windows/NVDA specific normalization to reduce flakiness
-		if (isWin()) {
-			// 1) Reorder phrases to always start with "check box" when present
-			if (
-				result.includes('check box') &&
-				!result.startsWith('check box')
-			) {
-				const [before, after] = result.split('check box');
-				const afterTrim = after?.replace(/^,?\s*/, '');
-				const beforeTrim = before?.replace(/[,\s]*$/, '');
-				result = `check box${afterTrim ? `, ${afterTrim}` : ''}${beforeTrim ? `, ${beforeTrim}` : ''}`;
-			}
+		// 1) Reorder phrases to always start with "check box" when present
+		if (
+			isWin() &&
+			result.includes('check box') &&
+			!result.startsWith('check box')
+		) {
+			const [before, after] = result.split('check box');
+			const afterTrim = after?.replace(/^,?\s*/, '');
+			const beforeTrim = before?.replace(/[\,\s]*$/, '');
+			result = `check box${afterTrim ? `, ${afterTrim}` : ''}${beforeTrim ? `, ${beforeTrim}` : ''}`;
 		}
 
 		if (result) cleaned.push(result);
