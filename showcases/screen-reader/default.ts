@@ -42,7 +42,7 @@ const flakyExpressions: Record<string, string> = {
 };
 
 const cleanSpeakInstructions = (phraseLog: string[]): string[] => {
-	let lastVariantLabel: string | null = null;
+	let lastVariantLabel: string | undefined;
 	const cleaned: string[] = [];
 
 	for (const phrase of phraseLog) {
@@ -78,7 +78,7 @@ const cleanSpeakInstructions = (phraseLog: string[]): string[] => {
 			result = result.replaceAll(key, value);
 		}
 
-		/* Windows/NVDA: normalize phrasing for stable snapshots
+		/* Windows/NVDA: Normalize phrasing for stable snapshots
 		 * - Reorder to start with "check box"
 		 * - Drop orphan variant labels without role
 		 * - Merge cached variant label into next role phrase */
@@ -101,7 +101,7 @@ const cleanSpeakInstructions = (phraseLog: string[]): string[] => {
 				/\(Default\)|\(Unchecked\)|\(Checked\)/.test(result);
 			const hasRoleContext = result.includes('check box');
 			if (looksLikeVariantLabel && !hasRoleContext) {
-				// cache the last seen variant label to merge with the next role phrase
+				// Cache the last seen variant label to merge with the next role phrase
 				lastVariantLabel = result;
 				// Skip pushing this standalone label
 				continue;
@@ -114,7 +114,7 @@ const cleanSpeakInstructions = (phraseLog: string[]): string[] => {
 				);
 			if (lastVariantLabel && hasRoleContext && !hasVariantToken) {
 				result = `${result}, ${lastVariantLabel}`;
-				lastVariantLabel = null;
+				lastVariantLabel = undefined;
 			}
 		}
 
