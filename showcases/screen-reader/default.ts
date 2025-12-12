@@ -42,7 +42,6 @@ const flakyExpressions: Record<string, string> = {
 };
 
 const cleanSpeakInstructions = (phraseLog: string[]): string[] => {
-	let lastVariantLabel: string | undefined;
 	const cleaned: string[] = [];
 
 	for (const phrase of phraseLog) {
@@ -70,7 +69,8 @@ const cleanSpeakInstructions = (phraseLog: string[]): string[] => {
 
 				return part;
 			})
-			.filter((part) => part.length > 0)
+			// Keep empty parts on Windows/NVDA to preserve snapshot placeholders
+			.filter((part) => (isWin() ? true : part.length > 0))
 			.join('. ');
 
 		// We need to replace specific phrases, as they are being reported differently on localhost and within CI/CD
@@ -78,14 +78,12 @@ const cleanSpeakInstructions = (phraseLog: string[]): string[] => {
 			result = result.replaceAll(key, value);
 		}
 
-		/* Windows/NVDA: Normalize phrasing for stable snapshots
-		 * - Reorder to start with "check box"
-		 */
 		// Windows/NVDA specific normalization to reduce flakiness
-		// 1) Reorder phrases to always start with "check box" when present
+		// Limit reordering to interactive checkbox announcements to avoid interfering with DBSwitch truthy/variant labels.
 		if (
 			isWin() &&
 			result.includes('check box') &&
+			result.includes('Interactive (Checkbox)') &&
 			!result.startsWith('check box')
 		) {
 			const [before, after] = result.split('check box');
@@ -94,7 +92,12 @@ const cleanSpeakInstructions = (phraseLog: string[]): string[] => {
 			result = `check box${afterTrim ? `, ${afterTrim}` : ''}${beforeTrim ? `, ${beforeTrim}` : ''}`;
 		}
 
-		if (result) cleaned.push(result);
+		// On Windows, we preserve even empty results to match snapshot baselines
+		if (isWin()) {
+			cleaned.push(result);
+		} else if (result) {
+			cleaned.push(result);
+		}
 	}
 
 	return cleaned;
@@ -158,7 +161,7 @@ export const runTest = async ({
 	if (!screenRecorder) return;
 
 	/**
-	 * In macOS:Webkit the [automaticallySpeakWebPage](https://github.com/guidepup/guidepup/blob/main/src/macOS/VoiceOver/configureSettings.ts#L58) is active.
+	 * In macOS:Webkit the automaticallySpeakWebPage is active.
 	 * Therefore, we need to move back with the cursor to the start and delete the logs before starting.
 	 * In windows:Chrome the cursor is on the middle element.
 	 * Therefore, we need to move back and delete the logs, and then start everything.
@@ -210,3 +213,5 @@ const isWin = (): boolean => platform() === 'win32';
 
 export const getTest = (): ScreenReaderTestType =>
 	isWin() ? nvdaTest : voiceOverTest;
+
+// End of file
