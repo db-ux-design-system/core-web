@@ -31,10 +31,7 @@ import TextareaComponent from '../../react-showcase/src/components/textarea';
 import TooltipComponent from '../../react-showcase/src/components/tooltip';
 // Import PageComponent from '../../react-showcase/src/components/page';
 import BreadcrumbComponent from '../../react-showcase/src/components/breadcrumb';
-import NavigationComponent from '../../react-showcase/src/components/navigation';
-import NavigationItemComponent from '../../react-showcase/src/components/navigation-item';
-import PopoverComponent from '../../react-showcase/src/components/popover';
-import SectionComponent from '../../react-showcase/src/components/section';
+// Duplicate imports removed below to fix lint errors
 import * as accordionCode from '../components/code-docs/accordion';
 import * as accordionItemCode from '../components/code-docs/accordion-item';
 import * as badgeCode from '../components/code-docs/badge';
