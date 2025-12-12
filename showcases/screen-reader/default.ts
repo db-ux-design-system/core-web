@@ -85,7 +85,10 @@ const cleanSpeakInstructions = (phraseLog: string[]): string[] => {
 		// Windows/NVDA specific normalization to reduce flakiness
 		if (isWin()) {
 			// 1) Reorder phrases to always start with "check box" when present
-			if (result.includes('check box') && !result.startsWith('check box')) {
+			if (
+				result.includes('check box') &&
+				!result.startsWith('check box')
+			) {
 				const [before, after] = result.split('check box');
 				const afterTrim = after?.replace(/^,?\s*/, '');
 				const beforeTrim = before?.replace(/[,\s]*$/, '');
@@ -94,7 +97,8 @@ const cleanSpeakInstructions = (phraseLog: string[]): string[] => {
 
 			// 2) Drop standalone variant-label lines like "(Default) False" or "(Default) False (Unchecked)"
 			// when they don't include the role context (e.g., 'check box').
-			const looksLikeVariantLabel = /\(Default\)|\(Unchecked\)|\(Checked\)/.test(result);
+			const looksLikeVariantLabel =
+				/\(Default\)|\(Unchecked\)|\(Checked\)/.test(result);
 			const hasRoleContext = result.includes('check box');
 			if (looksLikeVariantLabel && !hasRoleContext) {
 				// cache the last seen variant label to merge with the next role phrase
@@ -104,7 +108,10 @@ const cleanSpeakInstructions = (phraseLog: string[]): string[] => {
 			}
 
 			// 3) If we have a cached variant label and the current entry has role but no variant label, append it
-			const hasVariantToken = /(\(Default\)|\bTrue\b|\bFalse\b|\(Unchecked\)|\(Checked\))/.test(result);
+			const hasVariantToken =
+				/(\(Default\)|\bTrue\b|\bFalse\b|\(Unchecked\)|\(Checked\))/.test(
+					result
+				);
 			if (lastVariantLabel && hasRoleContext && !hasVariantToken) {
 				result = `${result}, ${lastVariantLabel}`;
 				lastVariantLabel = null;
