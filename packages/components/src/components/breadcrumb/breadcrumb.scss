@@ -11,7 +11,7 @@
 		display: flex;
 		flex-wrap: wrap;
 		align-items: flex-start;
-		gap: variables.$db-spacing-fixed-2xs; // 2px gap for small
+		gap: variables.$db-spacing-fixed-3xs; // 2px gap for small (per Figma)
 		list-style: none;
 		margin: 0;
 		padding: 0;
@@ -21,7 +21,7 @@
 	li {
 		display: flex;
 		align-items: center;
-		gap: variables.$db-spacing-fixed-2xs; // 2px between separator and item (small)
+		gap: variables.$db-spacing-fixed-3xs; // small: spacing before/after separator per Figma
 	}
 
 	// Link and text styling (small)
@@ -29,8 +29,8 @@
 	li > span:not(.db-icon) {
 		display: flex;
 		align-items: center;
-		gap: variables.$db-spacing-fixed-2xs; // 4px gap between icon and text
-		padding: variables.$db-spacing-fixed-2xs variables.$db-spacing-fixed-2xs; // 2px 4px (small)
+		gap: variables.$db-spacing-fixed-2xs; // small: spacing between icon and text per Figma
+		padding: variables.$db-spacing-fixed-3xs variables.$db-spacing-fixed-2xs; // 2px 4px (small per Figma)
 		border-radius: variables.$db-border-radius-xs; // 4px
 		background-color: colors.$db-adaptive-bg-basic-transparent-full-default;
 		color: colors.$db-adaptive-on-bg-basic-emphasis-100-default;
@@ -81,7 +81,7 @@
 		cursor: pointer;
 		display: flex;
 		align-items: center;
-		padding: variables.$db-spacing-fixed-2xs variables.$db-spacing-fixed-2xs; // match link padding (small)
+		padding: variables.$db-spacing-fixed-3xs variables.$db-spacing-fixed-2xs; // 2px 4px (small per Figma)
 		border-radius: variables.$db-border-radius-xs;
 		background-color: colors.$db-adaptive-bg-basic-transparent-full-default;
 		color: colors.$db-adaptive-on-bg-basic-emphasis-100-default;
@@ -150,24 +150,24 @@
 		inline-size: auto;
 		block-size: auto;
 		font-size: var(--db-sizing-functional-xs, 0.875rem); // 14px (0.875rem)
-		margin: 0 variables.$db-spacing-fixed-2xs; // small horizontal spacing
 	}
 
 	// Medium size variant
 	&[data-size="medium"] {
 		.db-breadcrumb-list {
-			gap: variables.$db-spacing-fixed-xs; // 8px gap for medium
+			gap: variables.$db-spacing-fixed-2xs; // medium: list item gap (per Figma)
 
 			/* ensure list items are vertically centered in medium size */
 			align-items: center;
 		}
 
 		li {
-			// Increase gap between separator and item for better touch target
-			gap: variables.$db-spacing-fixed-xs; // 8px between separator and item (medium)
+			// Gap controls spacing around separator for medium
+			gap: variables.$db-spacing-fixed-2xs; // medium: spacing before/after separator per Figma
 
 			a,
 			> span:not(.db-icon) {
+				gap: variables.$db-spacing-fixed-xs; // medium: spacing between icon and text per Figma
 				// Keep the medium padding but ensure comfortable tap/click area
 				padding: variables.$db-spacing-fixed-2xs
 					variables.$db-spacing-fixed-xs; // 4px 8px (medium)
