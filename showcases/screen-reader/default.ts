@@ -90,7 +90,7 @@ const cleanSpeakInstructions = (phraseLog: string[]): string[] => {
 		) {
 			const [before, after] = result.split('check box');
 			const afterTrim = after?.replace(/^,?\s*/, '');
-			const beforeTrim = before?.replace(/[\,\s]*$/, '');
+			const beforeTrim = before?.replace(/[,\s]*$/, '');
 			result = `check box${afterTrim ? `, ${afterTrim}` : ''}${beforeTrim ? `, ${beforeTrim}` : ''}`;
 		}
 
