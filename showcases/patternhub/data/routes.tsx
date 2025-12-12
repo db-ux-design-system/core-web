@@ -29,10 +29,14 @@ import TabsComponent from '../../react-showcase/src/components/tabs';
 import TagComponent from '../../react-showcase/src/components/tag';
 import TextareaComponent from '../../react-showcase/src/components/textarea';
 import TooltipComponent from '../../react-showcase/src/components/tooltip';
+// Import PageComponent from '../../react-showcase/src/components/page';
+import BreadcrumbComponent from '../../react-showcase/src/components/breadcrumb';
+// Duplicate imports removed below to fix lint errors
 import * as accordionCode from '../components/code-docs/accordion';
 import * as accordionItemCode from '../components/code-docs/accordion-item';
 import * as badgeCode from '../components/code-docs/badge';
 import * as brandCode from '../components/code-docs/brand';
+import * as breadcrumbCode from '../components/code-docs/breadcrumb';
 import * as buttonCode from '../components/code-docs/button';
 import * as cardCode from '../components/code-docs/card';
 import * as checkboxCode from '../components/code-docs/checkbox';
@@ -135,7 +139,8 @@ const nameComponentMap = {
 	'navigation-item': (
 		<NavigationItemComponent slotCode={navigationItemCode} />
 	),
-	popover: <PopoverComponent slotCode={popoverCode} />
+	popover: <PopoverComponent slotCode={popoverCode} />,
+	breadcrumb: <BreadcrumbComponent slotCode={breadcrumbCode} />
 };
 
 const addComponentsToNavigationItems = (
