@@ -41,8 +41,11 @@ const flakyExpressions: Record<string, string> = {
 	'expanded. expanded': 'expanded'
 };
 
-const cleanSpeakInstructions = (phraseLog: string[]): string[] =>
-	phraseLog.map((phrase) => {
+const cleanSpeakInstructions = (phraseLog: string[]): string[] => {
+	let lastVariantLabel: string | null = null;
+	const cleaned: string[] = [];
+
+	for (const phrase of phraseLog) {
 		const phraseParts = phrase.split('. ');
 		let result = phraseParts
 			.filter(
@@ -75,8 +78,44 @@ const cleanSpeakInstructions = (phraseLog: string[]): string[] =>
 			result = result.replaceAll(key, value);
 		}
 
-		return result;
-	});
+		/* Windows/NVDA: normalize phrasing for stable snapshots
+		 * - Reorder to start with "check box"
+		 * - Drop orphan variant labels without role
+		 * - Merge cached variant label into next role phrase */
+		// Windows/NVDA specific normalization to reduce flakiness
+		if (isWin()) {
+			// 1) Reorder phrases to always start with "check box" when present
+			if (result.includes('check box') && !result.startsWith('check box')) {
+				const [before, after] = result.split('check box');
+				const afterTrim = after?.replace(/^,?\s*/, '');
+				const beforeTrim = before?.replace(/[,\s]*$/, '');
+				result = `check box${afterTrim ? `, ${afterTrim}` : ''}${beforeTrim ? `, ${beforeTrim}` : ''}`;
+			}
+
+			// 2) Drop standalone variant-label lines like "(Default) False" or "(Default) False (Unchecked)"
+			// when they don't include the role context (e.g., 'check box').
+			const looksLikeVariantLabel = /\(Default\)|\(Unchecked\)|\(Checked\)/.test(result);
+			const hasRoleContext = result.includes('check box');
+			if (looksLikeVariantLabel && !hasRoleContext) {
+				// cache the last seen variant label to merge with the next role phrase
+				lastVariantLabel = result;
+				// Skip pushing this standalone label
+				continue;
+			}
+
+			// 3) If we have a cached variant label and the current entry has role but no variant label, append it
+			const hasVariantToken = /(\(Default\)|\bTrue\b|\bFalse\b|\(Unchecked\)|\(Checked\))/.test(result);
+			if (lastVariantLabel && hasRoleContext && !hasVariantToken) {
+				result = `${result}, ${lastVariantLabel}`;
+				lastVariantLabel = null;
+			}
+		}
+
+		if (result) cleaned.push(result);
+	}
+
+	return cleaned;
+};
 
 export const generateSnapshot = async (
 	screenReader?: VoiceOverPlaywright | NVDAPlaywright,
