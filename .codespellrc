@@ -1,2 +1,2 @@
 [codespell]
-skip = *.lock,*.json,node_modules,.git,__snapshots__,__snapshots__,dist,build,coverage,*.svg,*.png,*.jpg,*.jpeg,*.gif,*.ico,*.woff,*.woff2,*.ttf,*.eot,./showcases/screen-reader/translations.ts
+skip = *.lock,package-lock.json,node_modules,.git,__snapshots__,dist,build,coverage,*.svg,*.png,*.jpg,*.jpeg,*.gif,*.ico,*.woff,*.woff2,*.ttf,*.eot,./showcases/screen-reader/translations.ts
