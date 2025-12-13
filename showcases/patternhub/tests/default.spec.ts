@@ -29,7 +29,6 @@ for (const group of Components) {
 				}
 			);
 		});
-
 		test.describe(component.name, async () => {
 			await getDefaultScreenshotTest(
 				component.name,
@@ -41,7 +40,6 @@ for (const group of Components) {
 				}
 			);
 		});
-
 		test.describe(component.name, async () => {
 			await getDefaultScreenshotTest(
 				component.name,
