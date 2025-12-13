@@ -62,7 +62,7 @@
     "lint": "npm-run-all --parallel lint:*",
     "lint-docs-file-references": "node scripts/check-docs.js",
     "lint-packages": "tsx scripts/lint-packages.ts publint",
-    "lint:codespell": "codespell --ignore-words .config/.codespellignorewords --config .config/.codespellrc",
+    "lint:codespell": "cspell --ignore-words .config/.codespellignorewords --config .config/.codespellrc",
     "lint:jscpd": "jscpd . --exitCode 1 --config .config/.jscpd.json",
     "lint:markdownlint": "markdownlint --config .config/.markdown-lint.yml **/*.md",
     "lint:package-json": "npx npm-package-json-lint packages/*/package.json",
