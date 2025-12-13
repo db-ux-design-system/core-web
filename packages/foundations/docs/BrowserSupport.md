@@ -29,6 +29,7 @@ The following functionality relies on JavaScript for support in browsers that do
 | [`attr()` CSS Values 5 extensions](https://developer.mozilla.org/en-US/docs/Web/CSS/attr) (planned)                                                                                      | 133 (04.02.2025) | tbd                  | tbd                                          |
 | [CSS Custom Functions](https://www.bram.us/2025/02/09/css-custom-functions-teaser/) (planned)                                                                                            | 139 (30.07.2025) | tbd                  | tbd                                          |
 | [CSS sibling-count() and sibling-index()](https://caniuse.com/wf-sibling-count) (planned)                                                                                            |  () | tbd                  | [26.2 (12.12.2025)](https://webkit.org/blog/17640/webkit-features-for-safari-26-2/)                                          |
+| [CSS scrollbar-color]([https://caniuse.com/wf-sibling-count](https://caniuse.com/css-scrollbar)) (planned)                                                                                            |  () | tbd                  | [26.2 (12.12.2025)](https://webkit.org/blog/17640/webkit-features-for-safari-26-2/)                                          |
 
 ## Stable in evergreen browsers
 
