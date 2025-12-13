@@ -1,6 +1,7 @@
 import {
 	For,
 	onMount,
+	onUnMount,
 	onUpdate,
 	Show,
 	useDefaultProps,
@@ -30,6 +31,7 @@ export default function DBTabs(props: DBTabsProps) {
 		showScrollLeft: false,
 		showScrollRight: false,
 		scrollContainer: null,
+		_resizeObserver: undefined,
 		convertTabs(): DBSimpleTabProps[] {
 			try {
 				if (typeof props.tabs === 'string') {
@@ -80,6 +82,14 @@ export default function DBTabs(props: DBTabsProps) {
 							container.addEventListener('scroll', () => {
 								state.evaluateScrollButtons(container);
 							});
+							// Use ResizeObserver to re-evaluate scroll buttons because it provides more accurate, container-specific resize detection than global window resize events.
+							if (!state._resizeObserver) {
+								const observer = new ResizeObserver(() => {
+									state.evaluateScrollButtons(container);
+								});
+								observer.observe(container);
+								state._resizeObserver = observer;
+							}
 						}
 					}
 				}
@@ -160,11 +170,11 @@ export default function DBTabs(props: DBTabsProps) {
 					if (tabItem) {
 						const list = tabItem.parentElement;
 						if (list) {
-							const indices = Array.from(list.childNodes).indexOf(
+							const tabIndex = Array.from(list.children).indexOf(
 								tabItem
 							);
 							if (props.onIndexChange) {
-								props.onIndexChange(indices);
+								props.onIndexChange(tabIndex);
 							}
 
 							if (props.onTabSelect) {
@@ -185,6 +195,11 @@ export default function DBTabs(props: DBTabsProps) {
 		state.initialized = true;
 	});
 	// jscpd:ignore-end
+
+	onUnMount(() => {
+		state._resizeObserver?.disconnect();
+		state._resizeObserver = undefined;
+	});
 
 	onUpdate(() => {
 		if (_ref && state.initialized) {

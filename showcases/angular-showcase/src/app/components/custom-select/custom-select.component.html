@@ -19,7 +19,7 @@
 		} @else {
 			<db-custom-select
 				[showRequiredAsterisk]="exampleProps?.showRequiredAsterisk"
-				[ariaListLabel]="getAriaLabel(exampleProps, exampleName)"
+				[listLabel]="getAriaLabel(exampleProps, exampleName)"
 				[disabled]="exampleProps?.disabled"
 				[showMessage]="exampleProps?.showMessage"
 				[icon]="exampleProps?.icon"
@@ -47,6 +47,7 @@
 				[searchLabel]="'Search'"
 				[searchValue]="exampleProps?.searchValue"
 				[selectedLabels]="exampleProps?.selectedLabels"
+				[selectedPrefix]="'Selected'"
 				[transformSelectedLabels]="
 					exampleProps?.transformSelectedLabels
 						? getTransformSelectedLabels

@@ -1,6 +1,6 @@
 {
   "name": "@db-ux/core-migration",
-  "version": "3.1.16",
+  "version": "4.2.4",
   "type": "module",
   "description": "Migration script for changing your code in between DB UX Design System v3 versions regarding BREAKING CHANGES.",
   "repository": {
@@ -20,20 +20,21 @@
     "build": "node esbuild.js",
     "copy-build": "npm-run-all copy-build:*",
     "copy-build:build": "cpr build ../../build-outputs/migration/build -o",
+    "copy-build:changelog": "cpr CHANGELOG.md ../../build-outputs/migration/CHANGELOG.md --overwrite",
     "copy-build:package.json": "cpr package.json ../../build-outputs/migration/package.json -o",
     "copy-build:readme": "cpr README.md ../../build-outputs/migration/README.md -o",
     "test": "vitest run --config vitest.config.ts",
     "test:migration": "tsx src/cli.ts migration --type v005_v006 --src=./scss --dryRun=true"
   },
   "dependencies": {
-    "commander": "14.0.1",
-    "glob": "11.0.3",
+    "commander": "14.0.2",
+    "glob": "11.1.0",
     "replace-in-file": "8.3.0"
   },
   "devDependencies": {
     "cpr": "3.0.1",
-    "esbuild": "0.25.10",
-    "tsx": "4.20.6",
+    "esbuild": "0.25.12",
+    "tsx": "4.21.0",
     "vitest": "3.2.4"
   },
   "publishConfig": {

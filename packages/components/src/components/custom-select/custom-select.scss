@@ -57,7 +57,7 @@
 
 	&:has(summary span) {
 		[id$="-placeholder"] {
-			display: none;
+			@include helpers.display(none);
 		}
 	}
 
@@ -119,6 +119,10 @@
 					background-color: dialog-init.$backdrop-color-strong;
 					opacity: variables.$db-opacity-lg;
 				}
+			}
+
+			> span > span::after {
+				content: ": ";
 			}
 		}
 	}

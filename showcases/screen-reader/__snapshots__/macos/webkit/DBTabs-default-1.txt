@@ -1,1 +1,1 @@
-["Test 1 selected tab","Test 1","Test 2 tab","selected Test 2 tab","Test 2","Test 3 tab","Test 3","on empty tab panel","on tab panel"]
+["Test 1 selected tab","Test 1","Test 2nd tab","selected Test 2nd tab","Test 2","Test 3 tab","Test 3","on empty tab panel","on tab panel"]

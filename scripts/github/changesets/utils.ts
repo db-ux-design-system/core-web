@@ -3,10 +3,16 @@ import { globSync } from 'glob';
 /**
  * Find all CHANGELOG.md files in the repo, excluding node_modules, using glob.
  */
-export function findChangelogFiles(repoRoot: string): string[] {
+export function findChangelogFiles(
+	repoRoot: string,
+	ignores?: string[]
+): string[] {
+	const ignore = ignores ?? [];
+	ignore.push('**/node_modules/**');
+
 	return globSync('**/CHANGELOG.md', {
 		cwd: repoRoot,
-		ignore: ['**/node_modules/**'],
+		ignore,
 		absolute: true
 	});
 }

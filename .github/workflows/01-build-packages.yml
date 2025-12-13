@@ -1,6 +1,9 @@
 ---
 name: Build Packages
 
+permissions:
+  contents: read
+
 on:
   workflow_call:
 
@@ -10,7 +13,7 @@ jobs:
     runs-on: ubuntu-24.04 # Use Ubuntu 24.04 explicitly
     steps:
       - name: ⏬ Checkout repo
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
 
       - name: 🔄 Init Cache
         uses: ./.github/actions/npm-cache
@@ -19,37 +22,37 @@ jobs:
         run: npm run build
 
       - name: ⏫ Upload foundations build
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v5
         with:
           name: db-ux-foundations-build
           path: packages/foundations/build
 
       - name: ⏫ Upload output
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v5
         with:
           name: db-ux-output
           path: output
 
       - name: ⏫ Upload components build
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v5
         with:
           name: db-ux-components-build
           path: packages/components/build
 
       - name: ⏫ Upload migration build
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v5
         with:
           name: db-ux-migration-build
           path: packages/migration/build
 
       - name: ⏫ Upload stylelint build
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v5
         with:
           name: db-ux-stylelint-build
           path: packages/stylelint/build
 
-      - name: 💀 Killing me softly
-        uses: ./.github/actions/cancel-workflow
-        if: failure()
+      - name: ⏫ Upload agent-cli build
+        uses: actions/upload-artifact@v5
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
+          name: db-ux-agent-cli-build
+          path: packages/agent-cli/build

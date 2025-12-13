@@ -47,18 +47,12 @@ updates:
     # https://github.com/dependabot/dependabot-core/issues/5226#issuecomment-1179434437
     versioning-strategy: increase
     groups:
-      # Automatically group all patch updates to reduce PR noise
-      patch-dependencies:
-        update-types:
-          - "patch"
       # Major framework dependencies - group by framework for better review
       angular:
         patterns:
           - "@angular*"
           - "@angular-devkit*"
           - "ng-packagr"
-        update-types:
-          - "minor"
       react:
         patterns:
           - "react"
@@ -70,50 +64,106 @@ updates:
         patterns:
           - "@playwright*"
           - "playwright*"
+        update-types:
+          - "minor"
+          - "major"
       # Linting and formatting tools
       eslint:
         patterns:
           - "eslint*"
           - "@eslint*"
           - "@typescript-eslint*"
+        update-types:
+          - "minor"
+          - "major"
       stylelint:
         patterns:
           - "stylelint*"
           - "@double-great/stylelint-a11y"
+        update-types:
+          - "minor"
+          - "major"
       prettier:
         patterns:
           - "prettier*"
+        update-types:
+          - "minor"
+          - "major"
       # Build tools and bundlers
       vite:
         patterns:
           - "vite*"
-          - "vitest*"
+        update-types:
+          - "minor"
+          - "major"
+      # Test tools
+      vitest:
+        patterns:
+          - "vitest"
+          - "@vitest*"
+        update-types:
+          - "minor"
+          - "major"
       # Development tools
       typescript:
         patterns:
           - "typescript"
           - "tsx"
           - "tslib"
+        update-types:
+          - "minor"
+          - "major"
       # Commitlint
       commitlint:
         patterns:
           - "@commitlint*"
+        update-types:
+          - "minor"
+          - "major"
       # Other grouped dependencies
       builder.io:
         patterns:
           - "@builder.io/mitosis*"
+        update-types:
+          - "minor"
+          - "major"
+      storybook:
+        patterns:
+          - "storybook"
+          - "@storybook*"
+        update-types:
+          - "minor"
+          - "major"
       inquirer:
         patterns:
           - "@inquirer/*"
           - "inquirer"
+        update-types:
+          - "minor"
+          - "major"
       mdx-js:
         patterns:
           - "@mdx-js/*"
+        update-types:
+          - "minor"
+          - "major"
       guidepup:
         patterns:
           - "@guidepup/*"
+        update-types:
+          - "minor"
+          - "major"
       next:
         patterns:
           - "@next*"
           - "eslint-config-next"
           - "next"
+        update-types:
+          - "minor"
+          - "major"
+      # Automatically group all patch updates to reduce PR noise
+      patch-dependencies:
+        update-types:
+          - "patch"
+        patterns:
+          - "*"

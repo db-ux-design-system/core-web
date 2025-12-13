@@ -5,7 +5,7 @@
   "private": true,
   "scripts": {
     "build": "npm-run-all compile build:*",
-    "build:app": "next build",
+    "build:app": "next build --webpack",
     "build:copy": "cpr out ../../build-showcases/patternhub -o",
     "compile": "npm-run-all compile:*",
     "compile:01_jsx": "node scripts/generate-example-jsx.js",
@@ -15,7 +15,7 @@
     "compile:05_test-table": "node scripts/generate-test-table.js",
     "dev": "cross-env NEXT_PUBLIC_BASE_PATH=/core-web/sub NODE_OPTIONS='--inspect' npm-run-all compile:* --parallel open next:dev",
     "lint": "next lint",
-    "next:dev": "next dev",
+    "next:dev": "next dev --webpack",
     "open": "open-cli http://localhost:3000/core-web/sub",
     "prebuild:app": "cpr ../../node_modules/iframe-resizer/js/ public/iframe-resizer -o",
     "regenerate:screenshots": "npx playwright test --config=./playwright.patternhub-config.ts --update-snapshots",
@@ -23,9 +23,9 @@
     "test:e2e": "npx playwright test --config=./playwright.patternhub-config.ts"
   },
   "dependencies": {
-    "dompurify": "3.2.7",
+    "dompurify": "3.3.0",
     "highlight.js": "11.11.1",
-    "next": "15.5.4",
+    "next": "16.0.10",
     "react": "18.3.1",
     "react-archer": "4.4.0",
     "react-dom": "18.3.1",
@@ -35,19 +35,19 @@
   "devDependencies": {
     "@mdx-js/loader": "3.1.1",
     "@mdx-js/react": "3.1.1",
-    "@next/mdx": "15.5.4",
+    "@next/mdx": "16.0.7",
     "@types/dompurify": "3.2.0",
-    "@types/node": "24.6.0",
+    "@types/node": "24.10.0",
     "@types/react": "18.3.13",
     "@types/react-dom": "18.3.1",
-    "esbuild": "0.25.10",
-    "eslint": "9.36.0",
-    "eslint-config-next": "15.5.4",
+    "esbuild": "0.25.12",
+    "eslint": "9.39.1",
+    "eslint-config-next": "16.0.7",
     "iframe-resizer": "5.5.7",
     "open-cli": "8.0.0",
-    "prettier": "3.6.2",
+    "prettier": "3.7.3",
     "sass": "1.85.0",
-    "typescript": "5.8.3",
+    "typescript": "5.9.3",
     "unist-util-visit": "5.0.0"
   }
 }

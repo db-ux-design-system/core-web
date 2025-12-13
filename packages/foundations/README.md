@@ -12,11 +12,13 @@ A library containing all tokens (colors, spacings, font formatting, etc.) and as
 **⚠️ Looking for UI components?** You probably want [`@db-ux/core-components`](https://www.npmjs.com/package/@db-ux/core-components) instead, which **automatically includes** this package.
 
 **Use this package when you:**
+
 - Only need design tokens (colors, spacing, fonts) without any component styles
 - Want to build custom components using the design system tokens
 - Need just icons and fonts without pre-built components
 
 **Use [`@db-ux/core-components`](https://www.npmjs.com/package/@db-ux/core-components) when you:**
+
 - Want to use ready-made UI components (buttons, inputs, navigation, etc.)
 - Need both design tokens AND component styles (most common use case)
 
@@ -110,12 +112,6 @@ In CSS:
 In HTML:
 
 ```html
-<!-- With classes-->
-<div
-	data-density="functional"
-	class="db-successful-bg-lvl-1 my-container"
-></div>
-
 <!-- With data attributes-->
 <div
 	class="my-container"
@@ -123,6 +119,12 @@ In HTML:
 	data-color="successful-bg-lvl-1"
 ></div>
 ```
+
+<!-- With classes-->
+<div
+	data-density="functional"
+	class="db-successful-bg-lvl-1 my-container"
+></div>
 
 > **Note:** In CSS you might to use the classes or data-attributes even more because you cannot use placeholders or mixins like we have it in **scss**. If you use a 3rd party library and cannot apply classes or data-attributes you might want to copy the content of our helper classes to apply it to the 3rd party class.
 
@@ -195,12 +197,6 @@ In SCSS with placeholder:
 In HTML:
 
 ```html
-<!-- With classes-->
-<div
-	data-density="functional"
-	class="db-successful-bg-lvl-1 my-container"
-></div>
-
 <!-- With data attributes-->
 <div
 	class="my-container"
@@ -208,6 +204,12 @@ In HTML:
 	data-color="successful-bg-lvl-1"
 ></div>
 ```
+
+<!-- With classes-->
+<div
+	data-density="functional"
+	class="db-successful-bg-lvl-1 my-container"
+></div>
 
 ### Tailwind
 
@@ -226,7 +228,7 @@ Check the required imports for [CSS](https://design-system.deutschebahn.com/core
 
 After this you can extend your tailwind config like this:
 
-##### Javascript
+##### JavaScript
 
 ```javascript
 //tailwind.config.js
@@ -248,7 +250,7 @@ export default {
 };
 ```
 
-##### Typescript
+##### TypeScript
 
 ```typescript
 //tailwind.config.ts
@@ -338,6 +340,45 @@ You are able to optimize the initial settings as well:
 /* Adds defaults for `blockquote`, `code` and `pre`. If you don't need them in your application you could skip this. */
 @import "@db-ux/core-foundations/build/styles/defaults/default-code.css";
 ```
+
+## Font Preloading
+
+To ensure optimal performance and reliability — especially in flaky or offline internet conditions — **you could preload or at least prefetch any fonts your application depends on**.
+
+### How to Preload Fonts
+
+After identifying the critical fonts required for your application's UI, use the following `<link>` tag in the `<head>` of your HTML to preload them:
+
+```html
+<link
+	rel="preload"
+	href="/media/dbneoscreensans-regular.woff2"
+	as="font"
+	type="font/woff2"
+	crossorigin="anonymous"
+/>
+```
+
+Otherwise, if the font is not initially required but would be requested later or by some dynamically inserted content, you could still [prefetch](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Attributes/rel/prefetch) it. Prefetching works at a lower priority than `preload`:
+
+```html
+<link
+	rel="prefetch"
+	href="/assets/icons/fonts/default/db-ux.woff2"
+	crossorigin="anonymous"
+/>
+```
+
+### Tips for identifying fonts to preload
+
+- Use browser dev tools to track font requests that are essential to your application
+- Fonts that fail to load during unstable connections should be prioritized.
+
+### Important notes
+
+- Make sure the `href` path is correct and accessible at runtime.
+- Always use `crossorigin="anonymous"` for fonts served from your domain or a CDN, unless your server requires credentials (rare for fonts).
+- By preloading fonts this way, you improve perceived performance and avoid layout shifts or invisible text during initial rendering.
 
 ## Migration
 
