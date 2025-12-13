@@ -8,10 +8,10 @@ This may leave some older browser versions behind. If you need to take care of t
 
 | Web Feature                                                                                                                             | Google Chrome    | Mozilla Firefox  | Apple Safari                                 |
 | --------------------------------------------------------------------------------------------------------------------------------------- | ---------------- | ---------------- | -------------------------------------------- |
-| [CSS `field-sizing: content` property](https://caniuse.com/mdn-css_properties_field-sizing_content)                                     | 123 (19.03.2024) | tbd              | Technology Preview (220), enabled by default |
+| [CSS `field-sizing: content` property](https://caniuse.com/mdn-css_properties_field-sizing_content)                                     | 123 (19.03.2024) | tbd              | [26.2 (12.12.2025)](https://webkit.org/blog/17640/webkit-features-for-safari-26-2/) |
 | [Customizable select elements](https://caniuse.com/selectlist) (planned)                                                                | 134 (19.03.2024) | tbd              | tbd                                          |
 | [`dialog[closedby="closerequest"]`](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/dialog#closerequest) (planned) | 134 (19.03.2024) | 141 (22.07.2025) | tbd                                          |
-| [`hidden="until-found"`-HTML-attribute](https://caniuse.com/mdn-html_global_attributes_hidden_until-found) (planned)                    | 102 (24.05.2022) | 139 (27.05.2025) | Technology Preview (225)                     |
+| [`hidden="until-found"`-HTML-attribute](https://caniuse.com/mdn-html_global_attributes_hidden_until-found) (planned)                    | 102 (24.05.2022) | 139 (27.05.2025) | [26.2 (12.12.2025)](https://webkit.org/blog/17640/webkit-features-for-safari-26-2/)                     |
 | [`select[multiple][size="1"]` UI optimization on Desktop browsers](https://chromestatus.com/feature/5412736871825408) (planned)         | 142 (28.10.2025) | tbd              | tbd                                          |
 
 ## Without graceful degradation
@@ -25,7 +25,7 @@ The following functionality relies on JavaScript for support in browsers that do
 | [`light-dark()` CSS function](https://developer.mozilla.org/en-US/docs/Web/CSS/color_value/light-dark)                                                                                   | 123 (19.03.2024) | 120 (21.11.2023)     | 17.5 (13.05.2024)                            |
 | [`style()` container queries for custom properties](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_containment/Container_size_and_style_queries#container_style_queries) (planned) | 111 (07.03.2023) | _behind a flag_      | 18 (16.09.2024)                              |
 | [Anchor Positioning](https://caniuse.com/css-anchor-positioning) (planned)                                                                                                               | 125 (14.05.2024) | _enabled by default_ | 26 (15.09.2025)                              |
-| [Invoker Commands](https://caniuse.com/mdn-html_elements_button_commandfor) (planned)                                                                                                    | 135 (01.04.2025) | 144 (14.10.2025)     | Technology Preview (211), enabled by default |
+| [Invoker Commands](https://caniuse.com/mdn-html_elements_button_commandfor) (planned)                                                                                                    | 135 (01.04.2025) | 144 (14.10.2025)     | [26.2 (12.12.2025)](https://webkit.org/blog/17640/webkit-features-for-safari-26-2/) |
 | [`attr()` CSS Values 5 extensions](https://developer.mozilla.org/en-US/docs/Web/CSS/attr) (planned)                                                                                      | 133 (04.02.2025) | tbd                  | tbd                                          |
 | [CSS Custom Functions](https://www.bram.us/2025/02/09/css-custom-functions-teaser/) (planned)                                                                                            | 139 (30.07.2025) | tbd                  | tbd                                          |
 
