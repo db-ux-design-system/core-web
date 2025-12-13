@@ -3,6 +3,7 @@
 @use "@db-ux/core-foundations/build/styles/colors";
 @use "@db-ux/core-foundations/build/styles/icons";
 @use "@db-ux/core-foundations/build/styles/fonts";
+@use "@db-ux/core-foundations/build/styles/helpers";
 @use "../../styles/internal/form-components";
 @use "../../styles/internal/component";
 @use "../../styles/internal/select-components";
@@ -47,6 +48,89 @@
 	&:has(> select option:checked:not(.placeholder)) {
 		[id$="-placeholder"] {
 			display: none;
+		}
+	}
+
+	// enable customized styling
+	@supports (appearance: base-select) {
+		select,
+		/* stylelint-disable-next-line selector-pseudo-element-no-unknown */
+		::picker(select) {
+			/* stylelint-disable-next-line declaration-property-value-no-unknown */
+			appearance: base-select;
+		}
+
+		/* stylelint-disable-next-line selector-pseudo-element-no-unknown */
+		&::picker-icon {
+			display: none;
+		}
+
+		/* stylelint-disable-next-line selector-pseudo-element-no-unknown */
+		:is(::picker(select)) {
+			@extend %default-card;
+
+			// Adapted from .db-custom-select-dropdown
+			position: absolute;
+			z-index: 32;
+			box-shadow: variables.$db-elevation-md;
+			min-inline-size: variables.$db-sizing-xl;
+			max-inline-size: calc(
+				100vw - 2 * #{variables.$db-spacing-fixed-sm}
+			);
+
+			// Adapted from .db-card
+			background-color: colors.$db-adaptive-bg-basic-level-1-default;
+			padding: variables.$db-spacing-fixed-sm;
+
+			// Adapted from .db-custom-select-list
+			overflow-block: auto;
+
+			/* (option height + padding) * 5.5 items (showing partial item to indicate more content) + list padding */
+			max-block-size: calc(
+				5.5 *
+					(
+						(
+								#{form-components.$font-size-height} - 2 *
+									#{variables.$db-border-width-3xs}
+							) +
+							2 * #{variables.$db-spacing-fixed-sm}
+					) +
+					(#{variables.$db-spacing-fixed-sm} * 2)
+			);
+		}
+
+		option {
+			// Adapted from .db-custom-select-list-item
+			position: relative;
+			padding: variables.$db-spacing-fixed-sm;
+			background-color: colors.$db-adaptive-bg-basic-transparent-full-default;
+			border-radius: variables.$db-border-radius-xs;
+			box-sizing: border-box;
+			justify-content: space-between;
+
+			// change order of the included text and pseudo-element within this flexbox item, to make sure the icon is always on the right
+			flex-direction: row-reverse;
+
+			&:checked {
+				font-weight: 700;
+			}
+
+			// Hover states adapted from .db-custom-select-list-item
+			&:not(:checked) {
+				@include helpers.hover {
+					background-color: colors.$db-adaptive-bg-basic-transparent-full-hovered;
+				}
+
+				@include helpers.active {
+					background-color: colors.$db-adaptive-bg-basic-transparent-full-pressed;
+				}
+			}
+
+			/* stylelint-disable-next-line selector-pseudo-element-no-unknown */
+			:is(&::checkmark) {
+				@extend %icon;
+				@include icons.icon-content("check");
+			}
 		}
 	}
 }
