@@ -8,11 +8,12 @@
     "url": "git+https://github.com/db-ux-design-system/core-web.git"
   },
   "license": "Apache-2.0",
+  "private": true,
   "scripts": {
     "generate:component-research": "node scripts/component-research/generate-component-research.js"
   },
   "devDependencies": {
-    "inquirer": "12.7.0"
+    "inquirer": "13.0.1"
   },
   "publishConfig": {
     "registry": "https://registry.npmjs.org/",
