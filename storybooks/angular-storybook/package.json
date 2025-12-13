@@ -7,6 +7,8 @@
     "storybook": "ng run angular-latest:storybook"
   },
   "devDependencies": {
-    "@storybook/angular": "9.1.13"
+    "@storybook/angular": "10.1.6",
+    "eslint-plugin-storybook": "10.1.6",
+    "storybook": "10.1.6"
   }
 }
