@@ -17,8 +17,10 @@ node node_modules/@db-ux/db-theme-icons/build/scripts/index.js
 node node_modules/@db-ux/db-theme-illustrative-icons/build/scripts/index.js
 ```
 
+If you're contributing from a fork in your user space, please also set up those credentials from the Marketing portal in your fork repository as repository secrets. You need these credentials for the pipeline to decrypt the brand assets correctly.
+
 > [!NOTE]
-> If you missed setting up the `.env`-file before running `npm install`, you may need to re-install your packages to ensure the postinstall scrips are executed for decrypting the fonts and other artifacts (`rm -rf node_modules/@db-ux/db-theme* && npm update @db-ux/db-theme`)
+> If you missed setting up the `.env`-file before running `npm install`, you may need to re-install your packages to ensure the postinstall scrips are executed for decrypting the fonts and other artifacts (`rm --recursive --force node_modules/@db-ux/db-theme* && npm update @db-ux/db-theme`)
 
 ## Start locally
 
@@ -29,7 +31,7 @@ npm run dev
 
 ## Make changes / Before you commit
 
-Please ensure that **Husky** is installed correctly to validate your changes.
+Please ensure that **Husky** is installed correctly to validate your changes, e.g. by running `npm run prepare` in the codebase.
 
 Please verify you are using a valid branch name as described by the pattern in your [`package.json`](./package.json) in the section `validate-branch-name`.
 

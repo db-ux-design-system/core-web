@@ -2,6 +2,7 @@
 @use "@db-ux/core-foundations/build/styles/colors";
 @use "../../styles/internal/form-components";
 @use "../../styles/internal/db-puls";
+@use "@db-ux/core-foundations/build/styles/helpers";
 
 $max-tabs: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
@@ -12,7 +13,7 @@ $max-tabs: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 			&:has([id$="-tab-#{$index}"]:checked) {
 				~ dbtabpanel > [id$="-tab-panel-#{$index}"],
 				~ db-tab-panel > [id$="-tab-panel-#{$index}"] {
-					display: block;
+					@include helpers.display(block);
 				}
 			}
 		}
@@ -74,8 +75,8 @@ $max-tabs: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 	$db-tabs-z-index-button: 22;
 
 	@extend %angular-workaround;
+	@include helpers.display(flex);
 
-	display: flex;
 	inline-size: 100%;
 	position: relative;
 
@@ -90,7 +91,7 @@ $max-tabs: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 		@each $index in $max-tabs {
 			&:has([id$="-tab-#{$index}"]:checked)
 				~ [id$="-tab-panel-#{$index}"] {
-				display: block;
+				@include helpers.display(block);
 			}
 		}
 	}
@@ -338,20 +339,20 @@ $max-tabs: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 		 * Scroll left / right buttons
 		 */
 		.tabs-scroll-left {
-			@include angular-button-workaround() {
+			@include angular-button-workaround {
 				inset-inline-start: 0;
 			}
 		}
 
 		.tabs-scroll-right {
-			@include angular-button-workaround() {
+			@include angular-button-workaround {
 				inset-inline-end: 0;
 			}
 		}
 
 		.tabs-scroll-left,
 		.tabs-scroll-right {
-			@include angular-button-workaround() {
+			@include angular-button-workaround {
 				position: absolute;
 				z-index: $db-tabs-z-index-button;
 				inset-block: variables.$db-spacing-fixed-xs;

@@ -1,5 +1,6 @@
 import {
 	onMount,
+	onUnMount,
 	onUpdate,
 	Show,
 	useDefaultProps,
@@ -26,6 +27,7 @@ import {
 	uuid
 } from '../../utils';
 import {
+	addCheckedResetEventListener,
 	handleFrameworkEventAngular,
 	handleFrameworkEventVue
 } from '../../utils/form-components';
@@ -34,7 +36,10 @@ import { DBCheckboxProps, DBCheckboxState } from './model';
 
 useMetadata({
 	angular: {
-		nativeAttributes: ['disabled', 'required', 'checked', 'indeterminate']
+		nativeAttributes: ['disabled', 'required', 'checked', 'indeterminate'],
+		signals: {
+			writeable: ['disabled', 'checked']
+		}
 	}
 });
 
@@ -50,8 +55,9 @@ export default function DBCheckbox(props: DBCheckboxProps) {
 		_validMessageId: undefined,
 		_invalidMessageId: undefined,
 		_invalidMessage: undefined,
-		_descByIds: '',
+		_descByIds: undefined,
 		_voiceOverFallback: '',
+		abortController: undefined,
 		hasValidState: () => {
 			return !!(props.validMessage ?? props.validation === 'valid');
 		},
@@ -81,13 +87,28 @@ export default function DBCheckbox(props: DBCheckboxProps) {
 			} else if (stringPropVisible(props.message, props.showMessage)) {
 				state._descByIds = state._messageId;
 			} else {
-				state._descByIds = '';
+				state._descByIds = undefined;
 			}
 		},
-		handleChange: (event: ChangeEvent<HTMLInputElement>) => {
-			if (props.onChange) {
-				props.onChange(event);
-			}
+		handleChange: (
+			event: ChangeEvent<HTMLInputElement>,
+			reset?: boolean
+		) => {
+			useTarget({
+				angular: () => {
+					if (props.onChange) {
+						// We need to split the if statements for generation
+						if (reset) {
+							props.onChange(event);
+						}
+					}
+				},
+				default: () => {
+					if (props.onChange) {
+						props.onChange(event);
+					}
+				}
+			});
 
 			useTarget({
 				angular: () =>
@@ -136,6 +157,7 @@ export default function DBCheckbox(props: DBCheckboxProps) {
 			if (stringPropVisible(props.message, props.showMessage)) {
 				state._descByIds = messageId;
 			}
+			state.handleValidation();
 		}
 	}, [state._id]);
 
@@ -173,6 +195,34 @@ export default function DBCheckbox(props: DBCheckboxProps) {
 			state.initialized = false;
 		}
 	}, [state.initialized, _ref, props.checked]);
+
+	onUpdate(() => {
+		if (_ref) {
+			const defaultChecked = useTarget({
+				react: (props as any).defaultChecked,
+				default: undefined
+			});
+
+			let controller = state.abortController;
+			if (!controller) {
+				controller = new AbortController();
+				state.abortController = controller;
+			}
+
+			addCheckedResetEventListener(
+				_ref,
+				{ checked: props.checked, defaultChecked },
+				(event) => {
+					state.handleChange(event, true);
+				},
+				controller.signal
+			);
+		}
+	}, [_ref]);
+
+	onUnMount(() => {
+		state.abortController?.abort();
+	});
 	// jscpd:ignore-end
 
 	return (

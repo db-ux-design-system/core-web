@@ -14,11 +14,25 @@ $has-before-padding: calc(
 	var(--db-form-has-before) *
 		(#{form-components.$icon-size-sm} + #{variables.$db-spacing-fixed-sm})
 );
-
 $select-icon-padding: calc(
 	#{form-components.$font-size-height} + #{variables.$db-spacing-fixed-sm} +
 		#{variables.$db-spacing-fixed-xs}
 );
+
+%select-absolute-placeholder {
+	position: absolute;
+	inset-block-start: 0;
+	inset-inline-start: 0;
+	opacity: 0;
+
+	@media screen and (prefers-reduced-motion: no-preference) {
+		transition:
+			opacity #{variables.$db-transition-straight-emotional},
+			outline #{variables.$db-transition-duration-extra-fast},
+			border-color #{variables.$db-transition-straight-emotional},
+			background-color #{variables.$db-transition-straight-emotional};
+	}
+}
 
 %select-placeholder {
 	[id$="-placeholder"] {
@@ -34,6 +48,7 @@ $select-icon-padding: calc(
 
 		position: absolute;
 		pointer-events: none;
+
 		// we use the top of the element, the size of the label+label-margin-bottom and the font-size of the select/2
 		// for functional we have some rounding issues for rem, so we need 1px less
 		transform: translateY(var(--label-block-start-half));
@@ -51,32 +66,4 @@ $select-icon-padding: calc(
 				#{$has-before-padding} - #{variables.$db-spacing-fixed-sm}
 		);
 	}
-
-	/* [id$="-placeholder"] {
-		@extend %db-overwrite-font-size-md;
-
-		position: absolute;
-		pointer-events: none;
-		// we use the top of the element, the size of the label+label-margin-bottom and the font-size of the select/2
-		// for functional we have some rounding issues for rem, so we need 1px less
-		inset-block-start: calc(
-			0% +
-				(
-					#{form-components.$label-size-height-xs} +
-						#{variables.$db-spacing-fixed-xs}
-				) *
-				var(--db-label-visible-above, 1) +
-				var(--db-type-body-font-size-md) /
-				2 - var(--db-density-functional, 0) * 1px
-		);
-		inset-inline: $has-before-padding;
-		margin-inline-start: variables.$db-spacing-fixed-sm;
-		overflow: hidden;
-		white-space: nowrap;
-		text-overflow: ellipsis;
-		inline-size: calc(
-			100% - var(--db-form-component-padding-inline-end) -
-				#{$has-before-padding} - #{variables.$db-spacing-fixed-sm}
-		);
-	} */
 }

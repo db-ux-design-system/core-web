@@ -14,7 +14,7 @@ const rebuildForPlaywright = () => {
 	spawnSync(
 		'docker-compose',
 		[
-			'-f',
+			'--file',
 			'./e2e/docker-compose.yml',
 			'build',
 			'--build-arg',

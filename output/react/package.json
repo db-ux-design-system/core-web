@@ -1,6 +1,6 @@
 {
   "name": "@db-ux/react-core-components",
-  "version": "0.0.0",
+  "version": "4.2.4",
   "description": "React components for @db-ux/core-components",
   "repository": {
     "type": "git",
@@ -11,30 +11,38 @@
   "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "files": [
-    "dist/"
+    "dist/",
+    "agent",
+    "CHANGELOG.md"
   ],
   "scripts": {
     "build": "npm-run-all tsc",
-    "mv:dist": "cpr dist ../../build-outputs/react/dist -o",
-    "mv:package.json": "cpr package.json ../../build-outputs/react/package.json -o",
-    "mv:readme": "cpr README.md ../../build-outputs/react/README.md -o",
+    "mv:dist": "cpr dist ../../build-outputs/react/dist --overwrite",
+    "mv:agent": "cpr agent ../../build-outputs/react/agent --overwrite",
+    "mv:changelog": "cpr CHANGELOG.md ../../build-outputs/react/CHANGELOG.md --overwrite",
+    "mv:package.json": "cpr package.json ../../build-outputs/react/package.json --overwrite",
+    "mv:readme": "cpr README.md ../../build-outputs/react/README.md --overwrite",
     "open:report": "npx playwright show-report",
     "postbuild": "npm-run-all --parallel mv:*",
-    "regenerate:screenshots": "playwright test -c playwright.config.ts --update-snapshots",
-    "test:components": "playwright test -c playwright.config.ts",
-    "test:windows": "playwright test -c playwright.screen-reader.win.ts",
-    "test:components:ui": "playwright test -c playwright.config.ts --ui",
-    "tsc": "tsc -p . --sourceMap false"
+    "regenerate:screenshots": "playwright test --config playwright.config.ts --update-snapshots",
+    "test:components": "playwright test --config playwright.config.ts",
+    "test:windows": "playwright test --config playwright.screen-reader.win.ts",
+    "test:components:ui": "playwright test --config playwright.config.ts --ui",
+    "tsc": "tsc --project . --sourceMap false"
   },
   "devDependencies": {
-    "@playwright/experimental-ct-react": "1.54.1",
-    "@types/react": "^18.3.13",
-    "react": "^18.3.1",
-    "react-dom": "^18.3.1"
+    "@playwright/experimental-ct-react": "1.56.1",
+    "@types/react": "18.3.13",
+    "react": "18.3.1",
+    "react-dom": "18.3.1"
   },
   "publishConfig": {
     "registry": "https://registry.npmjs.org/",
     "access": "public"
   },
-  "sideEffects": false
+  "sideEffects": false,
+  "dependencies": {
+    "@db-ux/core-components": "4.2.4",
+    "@db-ux/core-foundations": "4.2.4"
+  }
 }

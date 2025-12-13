@@ -7,8 +7,8 @@ import {
 	useRef,
 	useStore
 } from '@builder.io/mitosis';
-import { DEFAULT_BURGER_MENU, DEFAULT_ID } from '../../shared/constants';
-import { addAttributeToChildren, cls, getBoolean, uuid } from '../../utils';
+import { DEFAULT_BURGER_MENU } from '../../shared/constants';
+import { addAttributeToChildren, cls, getBoolean } from '../../utils';
 import { isEventTargetNavigationItem } from '../../utils/navigation';
 import DBButton from '../button/button.lite';
 import DBDrawer from '../drawer/drawer.lite';
@@ -22,7 +22,6 @@ export default function DBHeader(props: DBHeaderProps) {
 	const _ref = useRef<HTMLDivElement | any>(null);
 	// jscpd:ignore-start
 	const state = useStore<DBHeaderState>({
-		_id: DEFAULT_ID,
 		initialized: false,
 		forcedToMobile: false,
 		handleToggle: (event?: any) => {
@@ -45,25 +44,19 @@ export default function DBHeader(props: DBHeaderProps) {
 
 	onMount(() => {
 		state.initialized = true;
-		state._id = props.id || 'header-' + uuid();
 	});
 
 	onUpdate(() => {
-		if (state.initialized && document && state._id && props.forceMobile) {
-			const headerElement = document.getElementById(
-				state._id ?? ''
-			) as HTMLElement;
-			if (headerElement) {
-				// Adds this attribute to the header to enable all styling which would have
-				// @media screen and (min-width: $db-screens-m) to show mobile navigation on a desktop device
-				addAttributeToChildren(headerElement, {
-					key: 'data-force-mobile',
-					value: 'true'
-				});
-			}
+		if (state.initialized && _ref && props.forceMobile) {
+			// Adds this attribute to the header to enable all styling which would have
+			// @media screen and (min-width: $db-screens-m) to show mobile navigation on a desktop device
+			addAttributeToChildren(_ref, {
+				key: 'data-force-mobile',
+				value: 'true'
+			});
 			state.forcedToMobile = true;
 		}
-	}, [state.initialized]);
+	}, [state.initialized, _ref]);
 
 	// jscpd:ignore-end
 
@@ -71,13 +64,15 @@ export default function DBHeader(props: DBHeaderProps) {
 		<header
 			ref={_ref}
 			class={cls('db-header', props.className)}
-			id={state._id}
+			id={props.id}
 			data-width={props.width}
 			data-on-forcing-mobile={props.forceMobile && !state.forcedToMobile}>
 			<DBDrawer
 				class="db-header-drawer"
 				rounded
 				spacing="small"
+				closeButtonId={props.closeButtonId}
+				closeButtonText={props.closeButtonText}
 				open={getBoolean(props.drawerOpen)}
 				onClose={() => state.handleToggle()}>
 				<div class="db-header-drawer-navigation">
@@ -113,7 +108,6 @@ export default function DBHeader(props: DBHeaderProps) {
 				<div class="db-header-action-container">
 					<div class="db-header-burger-menu-container">
 						<DBButton
-							id={state._id + '-burger-menu'}
 							icon="menu"
 							noText
 							variant="ghost"

@@ -43,7 +43,7 @@ const getArrayType = (ts, type) => {
 
 /**
  * Get literals or type unions like: export const Test = "a" | "b";
- * @param ts {object} Typescript ast
+ * @param ts {object} TypeScript ast
  * @param types {object[]}
  */
 const getUnions = (ts, types) => {
@@ -93,7 +93,7 @@ const getTypeOfList = (type) => {
 
 /**
  * Get primitives like: string, boolean, etc.
- * @param ts {object} Typescript ast
+ * @param ts {object} TypeScript ast
  * @param members {object[]}
  */
 const getMembers = (ts, members) => {

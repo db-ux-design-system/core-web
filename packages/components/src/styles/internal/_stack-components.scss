@@ -21,11 +21,12 @@ $stack-gaps: (
 
 	@for $i from 1 through list.length($list) {
 		$e: list.nth($list, $i);
-		$result: if(
-			$i != list.length($list),
-			$result#{$e}#{$glue},
-			$result#{$e}
-		);
+
+		@if $i != list.length($list) {
+			$result: $result#{$e}#{$glue};
+		} @else {
+			$result: $result#{$e};
+		}
 	}
 
 	@return $result;
@@ -68,7 +69,8 @@ $stack-gaps: (
 }
 
 %default-stack {
-	display: flex;
+	@include helpers.display(flex);
+
 	gap: variables.$db-spacing-fixed-sm;
 	justify-content: flex-start;
 	block-size: 100%;
@@ -92,8 +94,8 @@ $stack-gaps: (
 		flex-wrap: wrap;
 	}
 
-	@include get-stack-alignments();
-	@include get-stack-justify-contents();
+	@include get-stack-alignments;
+	@include get-stack-justify-contents;
 
 	@each $name, $gap in $stack-gaps {
 		&[data-gap="#{$name}"] {

@@ -56,6 +56,9 @@
 		>
 			<option value="test1">Test1</option>
 			<option value="test2">Test2</option>
+			<option value="test3">Test3</option>
+			<option value="test4">Test4</option>
+			<option value="test5">Test5</option>
 		</db-select>
 
 		<p>Reactive Forms Example:</p>
@@ -182,6 +185,9 @@
 				>
 					<option value="test1">Test1</option>
 					<option value="test2">Test2</option>
+					<option value="test3">Test3</option>
+					<option value="test4">Test4</option>
+					<option value="test5">Test5</option>
 				</db-select>
 				<!-- <db-select
         [value]="select"
@@ -190,6 +196,9 @@
         >
         <option value="test1">Test1</option>
         <option value="test2">Test2</option>
+        <option value="test3">Test3</option>
+        <option value="test4">Test4</option>
+        <option value="test5">Test5</option>
       </db-select> -->
 				<p>Button:</p>
 				<db-button type="button" (click)="resetValues()">
@@ -200,6 +209,18 @@
 				</db-button>
 			</fieldset>
 		</form>
+
+		<p>Switch with Angular signals</p>
+		<db-switch
+			[checked]="checkedSignal()"
+			(change)="handleChange($event)"
+			label="My Switch"
+		>
+		</db-switch>
+		<p>
+			Switch with signals {{ checkedSignal() }} and no-signal
+			{{ checkedNonSignal }}
+		</p>
 	</div>
 	<div>
 		<h1>Output</h1>

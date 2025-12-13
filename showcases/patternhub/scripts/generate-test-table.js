@@ -1,6 +1,14 @@
 import FS from 'node:fs';
 import { getComponentName } from './utils.js';
 
+// If you want to hide components from the test table, add it to the unlistedComponents array.
+const unlistedComponents = new Set([
+	'page',
+	'custom-select-form-field',
+	'custom-select-dropdown'
+]);
+const unlistedSubComponentsPrefixes = new Set(['-list', '-panel', '-item']);
+
 const webTypesPath = './../../output/stencil/dist/web-types.json';
 
 const generateTestTable = () => {
@@ -22,14 +30,10 @@ const generateTestTable = () => {
 	for (const { name } of elements) {
 		const componentName = getComponentName(name);
 		if (
-			[
-				'page',
-				'custom-select-form-field',
-				'custom-select-dropdown'
-			].includes(componentName) ||
-			componentName.endsWith('-list') ||
-			componentName.endsWith('-panel') ||
-			componentName.endsWith('-item')
+			unlistedComponents.has(componentName) ||
+			[...unlistedSubComponentsPrefixes].some((suffix) =>
+				componentName.endsWith(suffix)
+			)
 		) {
 			// We don't want to add something like accordion-item
 			continue;
@@ -39,10 +43,10 @@ const generateTestTable = () => {
 			`./../../packages/components/src/components/${componentName}/${componentName}.spec.tsx`
 		);
 		const hasShowcaseVisuals = FS.existsSync(
-			`./../../showcases/e2e/${componentName}/${componentName}-snapshot.spec.ts`
+			`./../../showcases/e2e/${componentName}/${componentName}-visual-snapshot.spec.ts`
 		);
 		const hasShowcaseTest = FS.existsSync(
-			`./../../showcases/e2e/${componentName}/${componentName}-a11y.spec.ts`
+			`./../../showcases/e2e/${componentName}/${componentName}-axe-core.spec.ts`
 		);
 		const hasScreenReaderTest = FS.existsSync(
 			`./../../showcases/screen-reader/tests/${componentName}.spec.ts`

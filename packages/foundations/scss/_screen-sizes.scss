@@ -43,13 +43,13 @@ $db-breakpoint-xl: helpers.px-to-em($db-screen-size-xl);
 	$screen: $db-screen-size-sm;
 
 	/* stylelint-disable at-rule-empty-line-before */
-	@if ($size == "xs") {
+	@if $size == "xs" {
 		$screen: $db-screen-size-xs;
-	} @else if ($size == "md") {
+	} @else if $size == "md" {
 		$screen: $db-screen-size-md;
-	} @else if ($size == "lg") {
+	} @else if $size == "lg" {
 		$screen: $db-screen-size-lg;
-	} @else if ($size == "xl") {
+	} @else if $size == "xl" {
 		$screen: $db-screen-size-xl;
 	}
 	/* stylelint-enable at-rule-empty-line-before */
@@ -60,7 +60,7 @@ $db-breakpoint-xl: helpers.px-to-em($db-screen-size-xl);
 @mixin screen($size: "sm", $width: "min") {
 	$screen: get-screen-size($size);
 
-	@if ($width == "min") {
+	@if $width == "min" {
 		/* stylelint-disable-next-line media-query-no-invalid */
 		@media screen and (min-width: #{helpers.px-to-em($screen)}) {
 			&:not([data-force-mobile]),
@@ -89,11 +89,11 @@ $db-breakpoint-xl: helpers.px-to-em($db-screen-size-xl);
 	$min: "";
 	$max: "";
 
-	@if (map.get($data, "min")) {
+	@if map.get($data, "min") {
 		$min: "#{helpers.px-to-em(get-screen-size(map.get($data, "min")))} < ";
 	}
 
-	@if (map.get($data, "max")) {
+	@if map.get($data, "max") {
 		$max: " <= #{helpers.px-to-em(get-screen-size(map.get($data, "max")))}";
 	}
 

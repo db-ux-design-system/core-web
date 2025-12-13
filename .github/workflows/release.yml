@@ -1,6 +1,11 @@
 ---
 name: Test and publish to package registries after new GitHub release
 
+permissions:
+  contents: write
+  actions: write
+  id-token: write
+
 on:
   release:
     types: [published]
@@ -9,21 +14,11 @@ jobs:
   init:
     uses: ./.github/workflows/00-init.yml
     secrets: inherit
-
-  get-playwright-version:
-    uses: ./.github/workflows/01-get-playwright-version.yml
-    needs: [init]
-
-  get-publish-version:
-    uses: ./.github/workflows/01-get-publish-version.yml
-    needs: [init]
+    with:
+      release: true
 
   lint:
-    uses: ./.github/workflows/01-lint.yml
-    needs: [init]
-
-  test:
-    uses: ./.github/workflows/01-test.yml
+    uses: ./.github/workflows/01-lint-test.yml
     needs: [init]
 
   build-packages:
@@ -32,9 +27,9 @@ jobs:
 
   init-playwright:
     uses: ./.github/workflows/01-init-playwright.yml
-    needs: [get-playwright-version]
+    needs: [init]
     with:
-      version: ${{ needs.get-playwright-version.outputs.version }}
+      version: ${{ needs.init.outputs.playwrightVersion }}
 
   build-outputs:
     uses: ./.github/workflows/01-build-outputs.yml
@@ -42,113 +37,151 @@ jobs:
 
   test-components:
     uses: ./.github/workflows/02-e2e.yml
-    needs: [build-packages, get-playwright-version]
+    needs: [build-packages, init]
     with:
-      version: ${{ needs.get-playwright-version.outputs.version }}
+      version: ${{ needs.init.outputs.playwrightVersion }}
 
   test-foundations:
     uses: ./.github/workflows/02-e2e-foundations.yml
-    needs: [build-packages, get-playwright-version]
+    needs: [build-packages, init]
     with:
-      version: ${{ needs.get-playwright-version.outputs.version }}
+      version: ${{ needs.init.outputs.playwrightVersion }}
+
+  build-storybook-composition:
+    uses: ./.github/workflows/01-build-storybooks.yml
+    needs: [build-packages, init]
+    with:
+      storybook: composition-storybook
+      baseUrl: ${{ needs.init.outputs.baseUrl }}
+
+  build-storybook-angular:
+    uses: ./.github/workflows/01-build-storybooks.yml
+    needs: [build-packages, init]
+    with:
+      storybook: angular-storybook
+      baseUrl: ${{ needs.init.outputs.baseUrl }}
+
+  build-storybook-react:
+    uses: ./.github/workflows/01-build-storybooks.yml
+    needs: [build-packages, init]
+    with:
+      storybook: react-storybook
+      baseUrl: ${{ needs.init.outputs.baseUrl }}
+
+  build-storybook-vue:
+    uses: ./.github/workflows/01-build-storybooks.yml
+    needs: [build-packages, init]
+    with:
+      storybook: vue-storybook
+      baseUrl: ${{ needs.init.outputs.baseUrl }}
 
   build-showcase-stencil:
     uses: ./.github/workflows/01-build-showcases.yml
     needs: [build-packages]
+    secrets: inherit
     with:
       showcase: stencil-showcase
 
   build-showcase-angular:
     uses: ./.github/workflows/01-build-showcases.yml
     needs: [build-packages]
+    secrets: inherit
     with:
       showcase: angular-showcase
 
   build-showcase-angular-ssr:
     uses: ./.github/workflows/01-build-showcases.yml
     needs: [build-packages]
+    secrets: inherit
     with:
       showcase: angular-ssr-showcase
 
   build-showcase-react:
     uses: ./.github/workflows/01-build-showcases.yml
     needs: [build-packages]
+    secrets: inherit
     with:
       showcase: react-showcase
 
   build-showcase-next:
     uses: ./.github/workflows/01-build-showcases.yml
     needs: [build-packages]
+    secrets: inherit
     with:
       showcase: next-showcase
 
   build-showcase-vue:
     uses: ./.github/workflows/01-build-showcases.yml
     needs: [build-packages]
+    secrets: inherit
     with:
       showcase: vue-showcase
 
   build-showcase-nuxt:
     uses: ./.github/workflows/01-build-showcases.yml
     needs: [build-packages]
+    secrets: inherit
     with:
       showcase: nuxt-showcase
 
   build-showcase-patternhub:
     uses: ./.github/workflows/01-build-patternhub.yml
-    needs: [build-packages, get-publish-version]
+    needs: [build-packages, init]
+    secrets: inherit
     with:
-      release: ${{ needs.get-publish-version.outputs.release }}
-      preRelease: ${{ needs.get-publish-version.outputs.preRelease }}
+      baseUrl: ${{ needs.init.outputs.baseUrl }}
 
   test-showcase-stencil:
     uses: ./.github/workflows/02-e2e-showcases.yml
-    needs: [build-showcase-stencil, get-playwright-version]
+    needs: [build-showcase-stencil, init]
     with:
-      version: ${{ needs.get-playwright-version.outputs.version }}
+      version: ${{ needs.init.outputs.playwrightVersion }}
       showcase: stencil-showcase
 
   test-showcase-angular:
     uses: ./.github/workflows/02-e2e-showcases.yml
-    needs: [build-showcase-angular, get-playwright-version]
+    needs: [build-showcase-angular, init]
     with:
-      version: ${{ needs.get-playwright-version.outputs.version }}
+      version: ${{ needs.init.outputs.playwrightVersion }}
       showcase: angular-showcase
 
   test-showcase-react:
     uses: ./.github/workflows/02-e2e-showcases.yml
-    needs: [build-showcase-react, get-playwright-version]
+    needs: [build-showcase-react, init]
     with:
-      version: ${{ needs.get-playwright-version.outputs.version }}
+      version: ${{ needs.init.outputs.playwrightVersion }}
       showcase: react-showcase
 
   test-showcase-vue:
     uses: ./.github/workflows/02-e2e-showcases.yml
-    needs: [build-showcase-vue, get-playwright-version]
+    needs: [build-showcase-vue, init]
     with:
-      version: ${{ needs.get-playwright-version.outputs.version }}
+      version: ${{ needs.init.outputs.playwrightVersion }}
       showcase: vue-showcase
 
   test-showcase-patternhub:
-    uses: ./.github/workflows/02-e2e-showcases.yml
-    needs: [build-showcase-patternhub, get-playwright-version]
+    uses: ./.github/workflows/02-e2e-patternhub.yml
+    needs: [build-showcase-patternhub, init, init]
     with:
-      path: ${{ needs.build-showcase-patternhub.outputs.path }}
-      version: ${{ needs.get-playwright-version.outputs.version }}
-      showcase: patternhub
+      version: ${{ needs.init.outputs.playwrightVersion }}
+      baseUrl: ${{ needs.init.outputs.baseUrl }}
 
   test-screen-reader:
     uses: ./.github/workflows/02-e2e-screen-reader.yml
-    needs: [build-showcase-react, init-playwright, get-playwright-version]
+    needs: [build-showcase-react, init-playwright, init]
     with:
-      version: ${{ needs.get-playwright-version.outputs.version }}
+      version: ${{ needs.init.outputs.playwrightVersion }}
 
   checks-done:
-    if: ${{ always() }}
+    if: ${{ !cancelled() }}
     runs-on: ubuntu-24.04 # Use Ubuntu 24.04 explicitly
     steps:
       - name: 🎉 Checks done
         run: |
+          resultBuildStorybookComposition="${{ needs.build-storybook-composition.result }}"
+          resultBuildStorybookAngular="${{ needs.build-storybook-angular.result }}"
+          resultBuildStorybookReact="${{ needs.build-storybook-react.result }}"
+          resultBuildStorybookVue="${{ needs.build-storybook-vue.result }}"
           resultBuildShowcaseStencil="${{ needs.build-showcase-stencil.result }}"
           resultBuildShowcaseAngular="${{ needs.build-showcase-angular.result }}"
           resultBuildShowcaseAngularSSR="${{ needs.build-showcase-angular-ssr.result }}"
@@ -166,7 +199,11 @@ jobs:
           resultTestShowcaseVue="${{ needs.test-showcase-vue.result }}"
           resultTestShowcasePatternhub="${{ needs.test-showcase-patternhub.result }}"
           resultTestScreenReader="${{ needs.test-screen-reader.result }}"
-          if [[ $resultTestFoundations == "success" ]] && \
+          if [[ $resultBuildStorybookComposition == "success" ]] && \
+             [[ $resultBuildStorybookAngular == "success" ]] && \
+             [[ $resultBuildStorybookReact == "success" ]] && \
+             [[ $resultBuildStorybookVue == "success" ]] && \
+             [[ $resultTestFoundations == "success" ]] && \
              [[ $resultTestScreenReader == "success" ]] && \
              [[ $resultTestShowcaseStencil == "success" ]] && \
              [[ $resultTestShowcaseAngular == "success" ]] && \
@@ -191,6 +228,10 @@ jobs:
           fi
     needs:
       [
+        build-storybook-composition,
+        build-storybook-angular,
+        build-storybook-react,
+        build-storybook-vue,
         build-showcase-stencil,
         build-showcase-angular,
         build-showcase-angular-ssr,
@@ -212,16 +253,19 @@ jobs:
 
   deploy:
     uses: ./.github/workflows/03-deploy-gh-pages.yml
-    needs: [checks-done, get-publish-version]
+    needs: [checks-done, init]
     with:
-      release: ${{ needs.get-publish-version.outputs.release }}
-      preRelease: ${{ needs.get-publish-version.outputs.preRelease }}
+      release: ${{ needs.init.outputs.release }}
+      preRelease: ${{ needs.init.outputs.preRelease }}
+      name: ${{ needs.init.outputs.branchName }}
+      repoName: ${{ needs.init.outputs.repoName }}
+      repoOwner: ${{ needs.init.outputs.repoOwner }}
 
   publishpackages:
     uses: ./.github/workflows/03-publish-packages.yml
-    needs: [get-publish-version, checks-done, build-outputs]
+    needs: [init, checks-done, build-outputs]
     secrets: inherit
     with:
-      release: ${{ needs.get-publish-version.outputs.release }}
-      preRelease: ${{ needs.get-publish-version.outputs.preRelease }}
-      version: ${{ needs.get-publish-version.outputs.version }}
+      release: ${{ needs.init.outputs.release }}
+      preRelease: ${{ needs.init.outputs.preRelease }}
+      version: ${{ needs.init.outputs.version }}

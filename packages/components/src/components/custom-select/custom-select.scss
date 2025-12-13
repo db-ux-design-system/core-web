@@ -7,6 +7,10 @@
 @use "../../styles/internal/select-components";
 @use "../../styles/dialog-init";
 
+.db-custom-select-placeholder {
+	@extend %select-absolute-placeholder;
+}
+
 .db-custom-select {
 	--db-form-component-padding-inline-end: calc(
 		#{select-components.$select-icon-padding} + #{variables.$db-sizing-sm} +
@@ -43,19 +47,17 @@
 	@include form-components.set-default-form-component(summary);
 
 	[id$="-placeholder"] {
-		display: none;
+		--db-form-component-padding-inline-end: #{select-components.$select-icon-padding};
+
 		margin-inline-end: calc(
 			#{form-components.$font-size-height} +
 				#{variables.$db-spacing-fixed-sm}
 		);
 	}
 
-	&:has(.db-custom-select-form-field:empty),
-	&:has(.db-custom-select-form-field > :empty) {
-		--db-form-component-padding-inline-end: #{select-components.$select-icon-padding};
-
+	&:has(summary span) {
 		[id$="-placeholder"] {
-			display: block;
+			@include helpers.display(none);
 		}
 	}
 
@@ -117,6 +119,10 @@
 					background-color: dialog-init.$backdrop-color-strong;
 					opacity: variables.$db-opacity-lg;
 				}
+			}
+
+			> span > span::after {
+				content: ": ";
 			}
 		}
 	}

@@ -5,7 +5,9 @@
 .db-custom-select-form-field {
 	&:is(summary) {
 		list-style: none;
-		display: flex;
+
+		@include helpers.display(flex);
+
 		align-items: center;
 		justify-content: space-between;
 		gap: variables.$db-spacing-fixed-sm;
@@ -17,7 +19,8 @@
 		}
 
 		> div {
-			display: flex;
+			@include helpers.display(flex);
+
 			gap: variables.$db-spacing-fixed-sm;
 		}
 	}

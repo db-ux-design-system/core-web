@@ -10,8 +10,7 @@ import IntrinsicElements = React.JSX.IntrinsicElements;
 
 const overwriteHeadlineMarkdown = `/* Select a headline tag to be overwritten */
 h1 {
-	font-size: var(--db-type-headline-font-size-XX);
-	line-height: var(--db-type-headline-line-height-XX);
+	font: var(--db-type-headline-XX);
 
 	/* spacings may vary depending on the project */
 	margin-block: var(--db-spacing-fixed-XX);
@@ -19,8 +18,7 @@ h1 {
 `;
 
 const getCodeExampleBodyFontSize = (size: string) => `.db-font-size-${size} {
-	font-size: var(--db-type-body-font-size-${size});
-	line-height: var(--db-type-body-line-height-${size});
+	font: var(--db-type-body-${size});
 
 	/* custom properties only for components */
 	--db-icon-font-weight: var(--db-base-body-icon-weight-${size});
@@ -28,8 +26,7 @@ const getCodeExampleBodyFontSize = (size: string) => `.db-font-size-${size} {
 }
 `;
 const getCodeExampleHeadlineTag = (tag: string, size: string) => `${tag} {
-    line-height: var(--db-type-headline-line-height-${size});
-    font-size: var(--db-type-headline-font-size-${size});
+    font: var(--db-type-headline-${size});
     margin-block: var(--db-spacing-fixed-${size});
 }
 `;
@@ -37,8 +34,7 @@ const getCodeExampleHeadlineTag = (tag: string, size: string) => `${tag} {
 const getCodeExampleHeadlineSizes = (
 	size: string
 ) => `.custom-headline-selector {
-    line-height: var(--db-type-headline-line-height-${size});
-    font-size: var(--db-type-headline-font-size-${size});
+    font: var(--db-type-headline-${size});
     margin-block: var(--db-spacing-fixed-${size});
 }
 `;
@@ -200,8 +196,7 @@ const ColorOverview = () => {
 						<>
 							<h3
 								style={{
-									fontSize: `var(--db-type-headline-font-size-${size})`,
-									lineHeight: `var(--db-type-headline-line-height-${size})`,
+									font: `var(--db-type-headline-${size})`,
 									marginBlock: `var(--db-spacing-fixed-${size})`
 								}}>
 								Headline with size: <u>{size}</u>
@@ -240,9 +235,9 @@ const ColorOverview = () => {
 				<p>
 					<b>These custom properties must be used for overwrites:</b>
 				</p>
-				<code>--db-type-headline-font-size-XX</code>
-				<br />
-				<code>--db-type-headline-line-height-XX</code>
+				<code>--db-type-headline-XX</code> (This shorthand custom
+				property sets both <code>font-size</code> and{' '}
+				<code>line-height</code>)
 				<br />
 				<code>--db-spacing-fixed-XX</code> (optional e.g. for margin)
 				<p>

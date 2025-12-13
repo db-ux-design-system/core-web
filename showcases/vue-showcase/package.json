@@ -9,18 +9,23 @@
     "dev": "vite --open",
     "preview": "npx http-server ../../build-showcases",
     "start": "vite",
-    "test:e2e": "cross-env showcase=vue-showcase npx playwright test --config=../playwright.config.ts"
+    "test:a11y-checker": "cross-env showcase=vue-showcase npx playwright test --config=../playwright.a11y-checker.ts",
+    "test:aria-snapshots": "cross-env showcase=vue-showcase npx playwright test --config=../playwright.aria-snapshots.ts",
+    "test:axe-core": "cross-env showcase=vue-showcase npx playwright test --config=../playwright.axe-core.ts",
+    "test:e2e": "cross-env showcase=vue-showcase npx playwright test --config=../playwright.config.ts",
+    "test:ui": "cross-env showcase=vue-showcase npx playwright test --config=../playwright.config.ts --ui",
+    "test:visual-snapshots": "cross-env showcase=vue-showcase npx playwright test --config=../playwright.visual-snapshots.ts"
   },
   "dependencies": {
-    "sa11y": "4.1.9",
-    "vue": "^3.5.17",
-    "vue-router": "4.5.1"
+    "sa11y": "4.3.5",
+    "vue": "3.5.24",
+    "vue-router": "4.6.3"
   },
   "devDependencies": {
-    "@vitejs/plugin-vue": "^6.0.0",
-    "cross-env": "^7.0.3",
-    "typescript": "^5.8.3",
-    "vite": "^6.3.5",
-    "vue-tsc": "^3.0.3"
+    "@vitejs/plugin-vue": "6.0.1",
+    "cross-env": "10.1.0",
+    "typescript": "5.9.3",
+    "vite": "7.2.6",
+    "vue-tsc": "3.1.3"
   }
 }

@@ -13,7 +13,7 @@ jobs:
       pull-requests: write
     steps:
       - name: ⏬ Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
           ref: ${{ github.head_ref }}
 
@@ -21,19 +21,19 @@ jobs:
         id: check_pr
         run: |
           echo "PR title: ${{ github.event.pull_request.title }}"
-          if [[ "${{ github.event.pull_request.title }}" =~ "bump stylelint from" ]]; then
+          if [[ "${{ github.event.pull_request.title }}" =~ "bump stylelint from" ]] || [[ "${{ github.event.pull_request.title }}" =~ "bump the stylelint group with" ]]; then
             echo "Stylelint update detected."
             echo "stylelint_update=true" >> $GITHUB_ENV
-          elif [[ "${{ github.event.pull_request.title }}" =~ "bump prettier from" ]]; then
+          elif [[ "${{ github.event.pull_request.title }}" =~ "bump prettier from" ]] || [[ "${{ github.event.pull_request.title }}" =~ "bump the prettier group with" ]]; then
             echo "Prettier update detected."
             echo "prettier_update=true" >> $GITHUB_ENV
           else
-            echo "No Stylelint or prettier updates detected."
+            echo "No Stylelint or Prettier updates detected."
           fi
 
       - name: 🆙 Set up Node.js
         if: env.stylelint_update == 'true' || env.prettier_update == 'true'
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v6
         with:
           node-version-file: ".nvmrc"
 

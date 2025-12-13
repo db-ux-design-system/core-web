@@ -1,6 +1,7 @@
 @use "@db-ux/core-foundations/build/styles/variables";
 @use "@db-ux/core-foundations/build/styles/screen-sizes";
 @use "../../styles/internal/component";
+@use "@db-ux/core-foundations/build/styles/helpers";
 @use "../../styles/internal/form-components";
 @use "../../styles/internal/db-puls";
 
@@ -100,7 +101,7 @@
 	&[data-force-close="true"] {
 		> menu menu {
 			@include screen-sizes.screen("md") {
-				display: none;
+				@include helpers.display(none);
 			}
 		}
 	}

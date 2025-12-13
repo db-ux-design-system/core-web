@@ -1,1 +1,1 @@
-["Label, edit, required, True, blank","T. e. s. t","Test selected","blank. Please fill out this field.. unselected","T. e. s. t"]
+["Label, edit, required, Please fill out this field., True, blank","T. e. s. t","Test selected","blank. Please fill out this field.. unselected","T. e. s. t"]
