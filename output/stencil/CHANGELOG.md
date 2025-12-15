@@ -1,9 +1,14 @@
 # @db-ux/wc-core-components
 
+## 4.2.5
+
+### Patch Changes
+
+- fix: placeholder for DBSelect with variant floating is moved down - [see commit 9e1e48c](https://github.com/db-ux-design-system/core-web/commit/9e1e48c3ee10e72c52df58b65f4562be007d3447)
+
 ## 4.2.4
 
 _version bump_
-
 
 ## 4.2.3
 
