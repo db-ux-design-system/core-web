@@ -17,6 +17,9 @@
   - switch "functional" [checked]
   - text: "True"
   - status
+  - switch "functional" [checked] [disabled]
+  - text: "True"
+  - status
   - link "Disabled"
   - switch "functional"
   - text: (Default) False
