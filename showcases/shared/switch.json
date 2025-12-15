@@ -33,6 +33,13 @@
 				"props": {
 					"checked": true
 				}
+			},
+			{
+				"name": "True",
+				"props": {
+					"checked": true,
+					"disabled": true
+				}
 			}
 		]
 	},
