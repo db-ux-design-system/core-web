@@ -78,26 +78,24 @@ const cleanSpeakInstructions = (phraseLog: string[]): string[] => {
 			result = result.replaceAll(key, value);
 		}
 
-		// Windows/NVDA specific normalization to reduce flakiness
-		// Limit reordering to interactive checkbox announcements to avoid interfering with DBSwitch truthy/variant labels.
-		if (
-			isWin() &&
-			result.includes('check box') &&
-			result.includes('Interactive (Checkbox)') &&
-			!result.startsWith('check box')
-		) {
-			const [before, after] = result.split('check box');
-			const afterTrim = after?.replace(/^,?\s*/, '');
-			const beforeTrim = before?.replace(/[,\s]*$/, '');
-			result = `check box${afterTrim ? `, ${afterTrim}` : ''}${beforeTrim ? `, ${beforeTrim}` : ''}`;
-		}
+	// Windows/NVDA reorders role announcements: move "check box" to the front for consistency
+	if (
+		isWin() &&
+		result.includes('check box') &&
+		!result.startsWith('check box')
+	) {
+		const [before, after] = result.split('check box');
+		const afterTrim = after?.replace(/^,?\s*/, '');
+		const beforeTrim = before?.replace(/[,\s]*$/, '');
+		result = `check box${afterTrim ? `, ${afterTrim}` : ''}${beforeTrim ? `, ${beforeTrim}` : ''}`;
+	}
 
-		// On Windows, we preserve even empty results to match snapshot baselines
-		if (isWin()) {
-			cleaned.push(result);
-		} else if (result) {
-			cleaned.push(result);
-		}
+	// On Windows, we preserve even empty results to match snapshot baselines
+	if (isWin()) {
+		cleaned.push(result);
+	} else if (result) {
+		cleaned.push(result);
+	}
 	}
 
 	return cleaned;
