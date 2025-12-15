@@ -35,7 +35,7 @@
 				}
 			},
 			{
-				"name": "True Disabled",
+				"name": "True (Disabled)",
 				"props": {
 					"checked": true,
 					"disabled": true
