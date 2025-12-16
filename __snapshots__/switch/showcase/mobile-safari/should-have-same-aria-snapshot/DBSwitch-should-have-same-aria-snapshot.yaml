@@ -4,99 +4,99 @@
   - switch "functional"
   - text: functional
   - status
-  - switch "functional"
+  - switch "regular (Default)"
   - text: regular (Default)
   - status
-  - switch "functional"
+  - switch "expressive"
   - text: expressive
   - status
   - link "Checked"
-  - switch "functional"
+  - switch "(Default) False"
   - text: (Default) False
   - status
-  - switch "functional" [checked]
+  - switch "True" [checked]
   - text: "True"
   - status
-  - switch "functional" [checked] [disabled]
+  - switch "True (Disabled)" [checked] [disabled]
   - text: True (Disabled)
   - status
   - link "Disabled"
-  - switch "functional"
+  - switch "(Default) False"
   - text: (Default) False
   - status
-  - switch "functional" [disabled]
+  - switch "True" [disabled]
   - text: "True"
   - status
   - link "Visual Aid"
-  - switch "functional"
+  - switch "(Default) False (Unchecked)"
   - text: (Default) False (Unchecked)
   - status
-  - switch "functional" [checked]
+  - switch "(Default) False (Checked)" [checked]
   - text: (Default) False (Checked)
   - status
-  - switch "functional"
+  - switch "True (Unchecked)"
   - text: True (Unchecked)
   - status
-  - switch "functional" [checked]
+  - switch "True (Checked)" [checked]
   - text: True (Checked)
   - status
   - link "Size"
-  - switch "functional"
+  - switch "(Default) Medium"
   - text: (Default) Medium
   - status
-  - switch "functional"
+  - switch "Small"
   - text: Small
   - status
   - link "Variant"
-  - switch "functional"
+  - switch "(Default) Trailing"
   - text: (Default) Trailing
   - status
-  - switch "functional"
+  - switch "Leading"
   - text: Leading
   - status
   - link "Show Label"
-  - switch "functional"
+  - switch "(Default) True"
   - text: (Default) True
   - status
-  - switch "functional"
+  - switch "False"
   - text: "False"
   - status
   - text: "False"
   - link "Required"
-  - switch "functional"
+  - switch "(Default) False"
   - text: (Default) False
   - status
-  - switch "functional"
+  - switch "True"
   - text: "True"
   - status
   - link "Show Required Asterisk"
-  - switch "functional"
+  - switch "(Default) True"
   - text: (Default) True
   - status
-  - switch "functional"
+  - switch "False"
   - text: "False"
   - status
   - link "Validation"
-  - switch "functional"
+  - switch "(Default) No validation"
   - text: (Default) No validation
   - status
-  - switch "functional"
+  - switch "Invalid"
   - text: Invalid Invalid Message
   - status
-  - switch "functional" [checked]
+  - switch "Valid" [checked]
   - text: Valid Valid message
   - status
   - link "Show Message"
-  - switch "functional"
+  - switch "(Default) False"
   - text: (Default) False
   - status
-  - switch "functional"
+  - switch "True"
   - text: True Message
   - status
   - link "Examples"
-  - switch "functional"
+  - switch "Custom Icons"
   - text: Custom Icons
   - status
-  - switch "functional"
+  - switch "Required + Visual Aid"
   - text: Required + Visual Aid
   - status
