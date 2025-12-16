@@ -1,1 +1,1 @@
-["(Default) False off switch","on (Default) False switch","(Default) False","True on switch","off True switch","True","True Disabled","on True Disabled switch","True Disabled"]
+["(Default) False off switch","on (Default) False switch","(Default) False","True on switch","off True switch","True","True (Disabled)","on True (Disabled) switch","True (Disabled)"]
