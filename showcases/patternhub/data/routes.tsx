@@ -3,7 +3,6 @@ import AccordionComponent from '../../react-showcase/src/components/accordion';
 import AccordionItemComponent from '../../react-showcase/src/components/accordion-item';
 import BadgeComponent from '../../react-showcase/src/components/badge';
 import BrandComponent from '../../react-showcase/src/components/brand';
-import ButtonComponent from '../../react-showcase/src/components/button';
 import CardComponent from '../../react-showcase/src/components/card';
 import CheckboxComponent from '../../react-showcase/src/components/checkbox';
 import CustomSelectComponent from '../../react-showcase/src/components/custom-select';
@@ -30,12 +29,12 @@ import TagComponent from '../../react-showcase/src/components/tag';
 import TextareaComponent from '../../react-showcase/src/components/textarea';
 import TooltipComponent from '../../react-showcase/src/components/tooltip';
 import * as brandCode from '../components/code-docs/brand';
-import * as buttonCode from '../components/code-docs/button';
 import * as customSelectCode from '../components/code-docs/custom-select';
 // Import * as iconCode from '../components/code-docs/icon';
 import * as infotextCode from '../components/code-docs/infotext';
 import * as linkCode from '../components/code-docs/link';
 // Import * as pageCode from '../components/code-docs/page';
+import { getShowcasePlugin } from '../../shared/showcase-plugins';
 import * as stackCode from '../components/code-docs/stack';
 import * as tagCode from '../components/code-docs/tag';
 import * as tooltipCode from '../components/code-docs/tooltip';
@@ -53,7 +52,9 @@ export type NavigationItem = {
 const nameComponentMap = {
 	'custom-select': <CustomSelectComponent slotCode={customSelectCode} />,
 	stack: <StackComponent slotCode={stackCode} />,
-	button: <ButtonComponent slotCode={buttonCode} />,
+	button: getShowcasePlugin('button')!.getShowcaseComponent({
+		host: 'patternhub'
+	}),
 	link: <LinkComponent slotCode={linkCode} />,
 	brand: <BrandComponent slotCode={brandCode} />,
 	// Icon: <IconComponent slotCode={iconCode} />,
