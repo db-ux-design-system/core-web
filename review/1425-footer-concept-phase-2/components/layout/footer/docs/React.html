@@ -1,0 +1,78 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8" data-next-head=""/><meta name="viewport" content="width=device-width" data-next-head=""/><title data-next-head="">DB UX</title><link data-next-font="size-adjust" rel="preconnect" href="/" crossorigin="anonymous"/><link rel="preload" href="/core-web/review/1425-footer-concept-phase-2/_next/static/css/bbdace643be218c7.css" as="style"/><link rel="stylesheet" href="/core-web/review/1425-footer-concept-phase-2/_next/static/css/bbdace643be218c7.css" data-n-g=""/><noscript data-n-css=""></noscript><script defer="" nomodule="" src="/core-web/review/1425-footer-concept-phase-2/_next/static/chunks/polyfills-42372ed130431b0a.js"></script><script src="/core-web/review/1425-footer-concept-phase-2/_next/static/chunks/webpack-665b0d7f027649ad.js" defer=""></script><script src="/core-web/review/1425-footer-concept-phase-2/_next/static/chunks/framework-c528b96079bb3756.js" defer=""></script><script src="/core-web/review/1425-footer-concept-phase-2/_next/static/chunks/main-602b59f76b49eb93.js" defer=""></script><script src="/core-web/review/1425-footer-concept-phase-2/_next/static/chunks/pages/_app-b1ef1336bb1a01f5.js" defer=""></script><script src="/core-web/review/1425-footer-concept-phase-2/_next/static/chunks/pages/components/layout/footer/docs/React-bd7b845ba543b2cc.js" defer=""></script><script src="/core-web/review/1425-footer-concept-phase-2/_next/static/dXePCXICJiPkyUd1yrPLD/_buildManifest.js" defer=""></script><script src="/core-web/review/1425-footer-concept-phase-2/_next/static/dXePCXICJiPkyUd1yrPLD/_ssgManifest.js" defer=""></script></head><body><div id="__next"><h2 id="react">React<a class="header-link" href="/core-web/review/1425-footer-concept-phase-2/components/layout/footer/docs/React?current=react"><span aria-hidden="true" class="db-icon" data-icon="paper_clip"></span>react<!-- --> anchor link</a></h2>
+<p>For general installation and configuration take a look at the <a target="_blank" referrerPolicy="no-referrer" href="https://www.npmjs.com/package/@db-ux/react-core-components">react-core-components</a> package.</p>
+<h3 id="use-component">Use component<a class="header-link" href="/core-web/review/1425-footer-concept-phase-2/components/layout/footer/docs/React?current=use-component"><span aria-hidden="true" class="db-icon" data-icon="paper_clip"></span>use-component<!-- --> anchor link</a></h3>
+<h4 id="simple">Simple<a class="header-link" href="/core-web/review/1425-footer-concept-phase-2/components/layout/footer/docs/React?current=simple"><span aria-hidden="true" class="db-icon" data-icon="paper_clip"></span>simple<!-- --> anchor link</a></h4>
+<pre><code class="language-tsx">// App.tsx
+import { DBFooter } from &quot;@db-ux/react-core-components&quot;;
+
+const App = () =&gt; (
+	&lt;DBFooter
+		main={&lt;div&gt;Footer Navigation&lt;/div&gt;}
+		meta={&lt;div&gt;Legal Links&lt;/div&gt;}
+	/&gt;
+);
+
+export default App;
+</code></pre>
+<h4 id="with-custom-content">With custom content<a class="header-link" href="/core-web/review/1425-footer-concept-phase-2/components/layout/footer/docs/React?current=with-custom-content"><span aria-hidden="true" class="db-icon" data-icon="paper_clip"></span>with-custom-content<!-- --> anchor link</a></h4>
+<pre><code class="language-tsx">// App.tsx
+import { DBFooter, DBLink } from &quot;@db-ux/react-core-components&quot;;
+
+const App = () =&gt; (
+	&lt;DBFooter
+		main={
+			&lt;div&gt;
+				&lt;DBLink href=&quot;#&quot;&gt;About Us&lt;/DBLink&gt;
+				&lt;DBLink href=&quot;#&quot;&gt;Contact&lt;/DBLink&gt;
+				&lt;DBLink href=&quot;#&quot;&gt;Careers&lt;/DBLink&gt;
+			&lt;/div&gt;
+		}
+		meta={
+			&lt;&gt;
+				&lt;DBLink href=&quot;#&quot;&gt;Privacy Policy&lt;/DBLink&gt;
+				&lt;DBLink href=&quot;#&quot;&gt;Terms of Service&lt;/DBLink&gt;
+				&lt;DBLink href=&quot;#&quot;&gt;Imprint&lt;/DBLink&gt;
+			&lt;/&gt;
+		}
+	/&gt;
+);
+
+export default App;
+</code></pre>
+<h4 id="without-copyright">Without copyright<a class="header-link" href="/core-web/review/1425-footer-concept-phase-2/components/layout/footer/docs/React?current=without-copyright"><span aria-hidden="true" class="db-icon" data-icon="paper_clip"></span>without-copyright<!-- --> anchor link</a></h4>
+<pre><code class="language-tsx">// App.tsx
+import { DBFooter, DBLink } from &quot;@db-ux/react-core-components&quot;;
+
+const App = () =&gt; (
+	&lt;DBFooter
+		showCopyright={false}
+		main={&lt;div&gt;Footer Content&lt;/div&gt;}
+		meta={
+			&lt;&gt;
+				&lt;DBLink href=&quot;#&quot;&gt;Privacy&lt;/DBLink&gt;
+				&lt;DBLink href=&quot;#&quot;&gt;Legal&lt;/DBLink&gt;
+			&lt;/&gt;
+		}
+	/&gt;
+);
+
+export default App;
+</code></pre>
+<h4 id="only-meta-section">Only meta section<a class="header-link" href="/core-web/review/1425-footer-concept-phase-2/components/layout/footer/docs/React?current=only-meta-section"><span aria-hidden="true" class="db-icon" data-icon="paper_clip"></span>only-meta-section<!-- --> anchor link</a></h4>
+<pre><code class="language-tsx">// App.tsx
+import { DBFooter, DBLink } from &quot;@db-ux/react-core-components&quot;;
+
+const App = () =&gt; (
+	&lt;DBFooter
+		showMain={false}
+		meta={
+			&lt;&gt;
+				&lt;DBLink href=&quot;#&quot;&gt;Privacy&lt;/DBLink&gt;
+				&lt;DBLink href=&quot;#&quot;&gt;Imprint&lt;/DBLink&gt;
+			&lt;/&gt;
+		}
+	/&gt;
+);
+
+export default App;
+</code></pre></div><script id="__NEXT_DATA__" type="application/json">{"props":{"pageProps":{}},"page":"/components/layout/footer/docs/React","query":{},"buildId":"dXePCXICJiPkyUd1yrPLD","assetPrefix":"/core-web/review/1425-footer-concept-phase-2","nextExport":true,"autoExport":true,"isFallback":false,"scriptLoader":[]}</script></body></html>
