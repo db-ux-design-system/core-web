@@ -139,6 +139,10 @@
 				"name": "header"
 			},
 			{
+				"label": "DBFooter",
+				"name": "footer"
+			},
+			{
 				"label": "DBSection",
 				"name": "section"
 			},

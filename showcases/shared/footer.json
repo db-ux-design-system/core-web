@@ -1,0 +1,17 @@
+[
+	{
+		"name": "Default",
+		"examples": [
+			{
+				"name": "Full",
+				"content": "Default Footer with showCopyright, showMain and showMeta enabled",
+				"props": {
+					"width": "full",
+					"showMeta": true,
+					"showMain": true,
+					"showCopyright": true
+				}
+			}
+		]
+	}
+]

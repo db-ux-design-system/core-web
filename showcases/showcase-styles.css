@@ -1,6 +1,6 @@
 /* Styles for the showcases */
 .desktop-navigation ul {
-	list-style-type: "";
+	list-style-type: none;
 	display: flex;
 }
 
@@ -48,6 +48,17 @@ db-card:is(.variants-card) > .db-card {
 	align-items: center;
 	display: flex;
 	gap: var(--db-spacing-fixed-md);
+}
+
+/* Ensure footer examples take full width within variant lists */
+.variants-list > div:has(.db-footer),
+.variants-list > div:has(db-footer) {
+	inline-size: 100%;
+}
+
+.variants-list .db-footer,
+.variants-list db-footer {
+	inline-size: 100%;
 }
 
 .variants-list .db-select,
@@ -178,26 +189,27 @@ main .db-header {
 	align-items: center;
 	font: var(--db-type-body-2xs);
 	font-weight: 700;
+	white-space: nowrap;
+}
 
-	a {
-		text-decoration: none;
-	}
-
-	text-wrap: nowrap;
+.dummy-component a {
+	text-decoration: none;
 }
 
 .section-card-container {
 	display: grid;
 	gap: var(--db-spacing-fixed-sm);
 	grid-template-columns: repeat(1, minmax(0, 1fr));
+}
 
-	@media screen and (width >= 768px) {
+@media screen and (width >= 768px) {
+	.section-card-container {
 		grid-template-columns: repeat(2, minmax(0, 1fr));
 	}
+}
 
-	.db-card {
-		inline-size: 100%;
-	}
+.section-card-container .db-card {
+	inline-size: 100%;
 }
 
 .nav-item-list {
