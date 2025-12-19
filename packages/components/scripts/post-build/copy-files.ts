@@ -27,6 +27,17 @@ export default () => {
 						});
 					}
 				}
+				if (
+					framework === 'react' &&
+					existsSync(
+						`./src/components/${name}/examples/${name}.examples.meta.ts`
+					)
+				) {
+					cpSync(
+						`./src/components/${name}/examples/${name}.examples.meta.ts`,
+						`../../output/${framework}/src/components/${name}/examples/${name}.examples.meta.ts`
+					);
+				}
 				cpSync(
 					`./test/playwright/boilerplate`,
 					`../../output/${framework}/playwright`,

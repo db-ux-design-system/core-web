@@ -1,9 +1,8 @@
-import { type ReactElement } from 'react';
+import type { ReactElement } from 'react';
 import AccordionComponent from '../../react-showcase/src/components/accordion';
 import AccordionItemComponent from '../../react-showcase/src/components/accordion-item';
 import BadgeComponent from '../../react-showcase/src/components/badge';
 import BrandComponent from '../../react-showcase/src/components/brand';
-import ButtonComponent from '../../react-showcase/src/components/button';
 import CardComponent from '../../react-showcase/src/components/card';
 import CheckboxComponent from '../../react-showcase/src/components/checkbox';
 import CustomSelectComponent from '../../react-showcase/src/components/custom-select';
@@ -29,35 +28,15 @@ import TabsComponent from '../../react-showcase/src/components/tabs';
 import TagComponent from '../../react-showcase/src/components/tag';
 import TextareaComponent from '../../react-showcase/src/components/textarea';
 import TooltipComponent from '../../react-showcase/src/components/tooltip';
-import * as accordionCode from '../components/code-docs/accordion';
-import * as accordionItemCode from '../components/code-docs/accordion-item';
-import * as badgeCode from '../components/code-docs/badge';
 import * as brandCode from '../components/code-docs/brand';
-import * as buttonCode from '../components/code-docs/button';
-import * as cardCode from '../components/code-docs/card';
-import * as checkboxCode from '../components/code-docs/checkbox';
 import * as customSelectCode from '../components/code-docs/custom-select';
-import * as dividerCode from '../components/code-docs/divider';
-import * as drawerCode from '../components/code-docs/drawer';
-import * as headerCode from '../components/code-docs/header';
 // Import * as iconCode from '../components/code-docs/icon';
 import * as infotextCode from '../components/code-docs/infotext';
-import * as inputCode from '../components/code-docs/input';
 import * as linkCode from '../components/code-docs/link';
-import * as navigationCode from '../components/code-docs/navigation';
-import * as navigationItemCode from '../components/code-docs/navigation-item';
-import * as notificationCode from '../components/code-docs/notification';
 // Import * as pageCode from '../components/code-docs/page';
-import * as popoverCode from '../components/code-docs/popover';
-import * as radioCode from '../components/code-docs/radio';
-import * as sectionCode from '../components/code-docs/section';
-import * as selectCode from '../components/code-docs/select';
+import { getShowcasePlugin } from '../../shared/showcase-plugins';
 import * as stackCode from '../components/code-docs/stack';
-import * as switchCode from '../components/code-docs/switch';
-import * as tabItemCode from '../components/code-docs/tab-item';
-import * as tabsCode from '../components/code-docs/tabs';
 import * as tagCode from '../components/code-docs/tag';
-import * as textareaCode from '../components/code-docs/textarea';
 import * as tooltipCode from '../components/code-docs/tooltip';
 import Components from './components.json';
 
@@ -73,7 +52,9 @@ export type NavigationItem = {
 const nameComponentMap = {
 	'custom-select': <CustomSelectComponent slotCode={customSelectCode} />,
 	stack: <StackComponent slotCode={stackCode} />,
-	button: <ButtonComponent slotCode={buttonCode} />,
+	button: getShowcasePlugin('button')!.getShowcaseComponent({
+		host: 'patternhub'
+	}),
 	link: <LinkComponent slotCode={linkCode} />,
 	brand: <BrandComponent slotCode={brandCode} />,
 	// Icon: <IconComponent slotCode={iconCode} />,
@@ -82,60 +63,52 @@ const nameComponentMap = {
 	tag: <TagComponent slotCode={tagCode} />,
 	accordion: (
 		<AccordionComponent
-			slotCode={accordionCode}
 			subComponent={
 				<AccordionItemComponent
 					isSubComponent={true}
 					componentName="accordion-item"
-					slotCode={accordionItemCode}
 				/>
 			}
 		/>
 	),
-	'accordion-item': <AccordionItemComponent slotCode={accordionItemCode} />,
+	'accordion-item': <AccordionItemComponent />,
 	tabs: (
 		<TabsComponent
-			slotCode={tabsCode}
 			subComponent={
 				<TabItemComponent
 					isSubComponent={true}
 					componentName="tab-item"
-					slotCode={tabItemCode}
 				/>
 			}
 		/>
 	),
-	'tab-item': <TabItemComponent slotCode={tabItemCode} />,
-	checkbox: <CheckboxComponent slotCode={checkboxCode} />,
-	input: <InputComponent slotCode={inputCode} />,
-	radio: <RadioComponent slotCode={radioCode} />,
-	select: <SelectComponent slotCode={selectCode} />,
-	switch: <SwitchComponent slotCode={switchCode} />,
-	textarea: <TextareaComponent slotCode={textareaCode} />,
-	notification: <NotificationComponent slotCode={notificationCode} />,
-	badge: <BadgeComponent slotCode={badgeCode} />,
-	card: <CardComponent slotCode={cardCode} />,
-	divider: <DividerComponent slotCode={dividerCode} />,
-	drawer: <DrawerComponent slotCode={drawerCode} />,
-	header: <HeaderComponent slotCode={headerCode} />,
-	// Page: <PageComponent slotCode={pageCode} />,
-	section: <SectionComponent slotCode={sectionCode} />,
+	'tab-item': <TabItemComponent />,
+	checkbox: <CheckboxComponent />,
+	input: <InputComponent />,
+	radio: <RadioComponent />,
+	select: <SelectComponent />,
+	switch: <SwitchComponent />,
+	textarea: <TextareaComponent />,
+	notification: <NotificationComponent />,
+	badge: <BadgeComponent />,
+	card: <CardComponent />,
+	divider: <DividerComponent />,
+	drawer: <DrawerComponent />,
+	header: <HeaderComponent />,
+	// Page: <PageComponent />,
+	section: <SectionComponent />,
 	navigation: (
 		<NavigationComponent
-			slotCode={navigationCode}
 			subComponent={
 				<NavigationItemComponent
 					isSubComponent={true}
 					componentName="navigation-item"
-					slotCode={navigationItemCode}
 				/>
 			}
 		/>
 	),
-	'navigation-item': (
-		<NavigationItemComponent slotCode={navigationItemCode} />
-	),
-	popover: <PopoverComponent slotCode={popoverCode} />
+	'navigation-item': <NavigationItemComponent />,
+	popover: <PopoverComponent />
 };
 
 const addComponentsToNavigationItems = (
