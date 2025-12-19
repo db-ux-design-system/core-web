@@ -45,7 +45,7 @@
     "eslint-config-next": "16.0.7",
     "iframe-resizer": "5.5.7",
     "open-cli": "8.0.0",
-    "prettier": "3.7.3",
+    "prettier": "3.7.4",
     "sass": "1.85.0",
     "typescript": "5.9.3",
     "unist-util-visit": "5.0.0"
