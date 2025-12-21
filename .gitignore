@@ -4,6 +4,7 @@ node_modules
 npm-debug.log
 .history
 .idea
+.vscode/
 **/build/
 **/dist/
 build-old/

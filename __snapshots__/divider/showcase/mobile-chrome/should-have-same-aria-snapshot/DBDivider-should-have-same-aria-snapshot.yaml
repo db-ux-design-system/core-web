@@ -1,8 +1,5 @@
 - main:
   - heading "DBDivider" [level=1]
   - link "Density"
-  - text: Functional (Default) Regular Expressive
   - link "Variant"
-  - text: (Default) Adaptive - Horizontal Adaptive - Vertical
   - link "Emphasis"
-  - text: (Default) Weak Strong

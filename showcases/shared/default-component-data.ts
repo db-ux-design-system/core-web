@@ -2,6 +2,7 @@ export type DefaultComponentExample = {
 	name?: string;
 	experimental?: boolean;
 	example?: any;
+	content?: string;
 	style?: {
 		display?: string;
 		width?: string;

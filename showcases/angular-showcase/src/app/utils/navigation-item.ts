@@ -9,6 +9,7 @@ import { CheckboxComponent } from '../components/checkbox/checkbox.component';
 import { CustomSelectComponent } from '../components/custom-select/custom-select.component';
 import { DividerComponent } from '../components/divider/divider.component';
 import { DrawerComponent } from '../components/drawer/drawer.component';
+import { FooterComponent } from '../components/footer/footer.component';
 import { HeaderComponent } from '../components/header/header.component';
 import { HomeComponent } from '../components/home/home.component';
 import { IconComponent } from '../components/icon/icon.component';
@@ -172,6 +173,11 @@ export const NAVIGATION_ITEMS: NavItem[] = [
 				path: '01/header',
 				label: 'Header',
 				component: HeaderComponent
+			},
+			{
+				path: '01/footer',
+				label: 'Footer',
+				component: FooterComponent
 			}
 		])
 	},
