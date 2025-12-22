@@ -17,6 +17,9 @@
   - switch "True" [checked]
   - text: "True"
   - status
+  - switch "True (Disabled)" [checked] [disabled]
+  - text: True (Disabled)
+  - status
   - link "Disabled"
   - switch "(Default) False"
   - text: (Default) False

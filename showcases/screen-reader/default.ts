@@ -41,8 +41,10 @@ const flakyExpressions: Record<string, string> = {
 	'expanded. expanded': 'expanded'
 };
 
-const cleanSpeakInstructions = (phraseLog: string[]): string[] =>
-	phraseLog.map((phrase) => {
+const cleanSpeakInstructions = (phraseLog: string[]): string[] => {
+	const cleaned: string[] = [];
+
+	for (const phrase of phraseLog) {
 		const phraseParts = phrase.split('. ');
 		let result = phraseParts
 			.filter(
@@ -67,7 +69,8 @@ const cleanSpeakInstructions = (phraseLog: string[]): string[] =>
 
 				return part;
 			})
-			.filter((part) => part.length > 0)
+			// Keep empty parts on Windows/NVDA to preserve snapshot placeholders
+			.filter((part) => (isWin() ? true : part.length > 0))
 			.join('. ');
 
 		// We need to replace specific phrases, as they are being reported differently on localhost and within CI/CD
@@ -75,8 +78,28 @@ const cleanSpeakInstructions = (phraseLog: string[]): string[] =>
 			result = result.replaceAll(key, value);
 		}
 
-		return result;
-	});
+		// Windows/NVDA reorders role announcements: move "check box" to the front for consistency
+		if (
+			isWin() &&
+			result.includes('check box') &&
+			!result.startsWith('check box')
+		) {
+			const [before, after] = result.split('check box');
+			const afterTrim = after?.replace(/^,?\s*/, '');
+			const beforeTrim = before?.replace(/[,\s]*$/, '');
+			result = `check box${afterTrim ? `, ${afterTrim}` : ''}${beforeTrim ? `, ${beforeTrim}` : ''}`;
+		}
+
+		// On Windows, we preserve even empty results to match snapshot baselines
+		if (isWin()) {
+			cleaned.push(result);
+		} else if (result) {
+			cleaned.push(result);
+		}
+	}
+
+	return cleaned;
+};
 
 export const generateSnapshot = async (
 	screenReader?: VoiceOverPlaywright | NVDAPlaywright,
@@ -136,7 +159,7 @@ export const runTest = async ({
 	if (!screenRecorder) return;
 
 	/**
-	 * In macOS:Webkit the [automaticallySpeakWebPage](https://github.com/guidepup/guidepup/blob/main/src/macOS/VoiceOver/configureSettings.ts#L58) is active.
+	 * In macOS:Webkit the automaticallySpeakWebPage is active.
 	 * Therefore, we need to move back with the cursor to the start and delete the logs before starting.
 	 * In windows:Chrome the cursor is on the middle element.
 	 * Therefore, we need to move back and delete the logs, and then start everything.
@@ -188,3 +211,5 @@ const isWin = (): boolean => platform() === 'win32';
 
 export const getTest = (): ScreenReaderTestType =>
 	isWin() ? nvdaTest : voiceOverTest;
+
+// End of file

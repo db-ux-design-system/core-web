@@ -56,6 +56,7 @@ export default function DBSwitch(props: DBSwitchProps) {
 	// jscpd:ignore-start
 	const state = useStore<DBSwitchState>({
 		_id: undefined,
+		_labelId: undefined as string | undefined,
 		_messageId: undefined as string | undefined,
 		_validMessageId: undefined as string | undefined,
 		_invalidMessageId: undefined as string | undefined,
@@ -156,10 +157,12 @@ export default function DBSwitch(props: DBSwitchProps) {
 	});
 
 	onMount(() => {
-		state._id = props.id ?? `switch-${uuid()}`;
-		state._messageId = `${state._id}${DEFAULT_MESSAGE_ID_SUFFIX}`;
-		state._validMessageId = `${state._id}${DEFAULT_VALID_MESSAGE_ID_SUFFIX}`;
-		state._invalidMessageId = `${state._id}${DEFAULT_INVALID_MESSAGE_ID_SUFFIX}`;
+		const id = props.id ?? `switch-${uuid()}`;
+		state._id = id;
+		state._labelId = `${id}-label`;
+		state._messageId = `${id}${DEFAULT_MESSAGE_ID_SUFFIX}`;
+		state._validMessageId = `${id}${DEFAULT_VALID_MESSAGE_ID_SUFFIX}`;
+		state._invalidMessageId = `${id}${DEFAULT_INVALID_MESSAGE_ID_SUFFIX}`;
 		state.handleValidation();
 	});
 
@@ -213,7 +216,7 @@ export default function DBSwitch(props: DBSwitchProps) {
 			data-hide-asterisk={getHideProp(props.showRequiredAsterisk)}
 			data-custom-validity={props.validation}
 			class={cls('db-switch', props.className)}>
-			<label htmlFor={state._id}>
+			<label htmlFor={state._id} id={state._labelId}>
 				<input
 					id={state._id}
 					type="checkbox"
@@ -226,6 +229,8 @@ export default function DBSwitch(props: DBSwitchProps) {
 						props.validation === 'invalid' ? 'true' : undefined
 					}
 					aria-describedby={state._descByIds}
+					aria-label={props.ariaLabel}
+					aria-labelledby={props.ariaLabelledBy ?? state._labelId}
 					name={props.name}
 					required={getBoolean(props.required, 'required')}
 					data-aid-icon={props.iconLeading ?? props.icon}

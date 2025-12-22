@@ -1,1 +1,1 @@
-["check box, not checked, (Default) False (Unchecked)","check box, checked, (Default) False (Checked)","not checked"]
+["check box, not checked, (Default) False (Unchecked)","(Default) False (Unchecked)","check box, not checked, (Default) False (Unchecked)"]

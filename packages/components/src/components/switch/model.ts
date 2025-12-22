@@ -40,7 +40,12 @@ export type DBSwitchProps = GlobalProps &
 	IconProps &
 	IconTrailingProps &
 	IconLeadingProps &
-	DBSwitchDefaultProps;
+	DBSwitchDefaultProps & {
+		/** Accessible name for the inner input. Mirrors to `aria-label`. */
+		ariaLabel?: string;
+		/** Id(s) for element(s) labelling the input. Mirrors to `aria-labelledby`. */
+		ariaLabelledBy?: string;
+	};
 
 export type DBSwitchDefaultState = {
 	handleKeyDown: (event: GeneralKeyboardEvent<HTMLInputElement>) => void;
@@ -51,4 +56,6 @@ export type DBSwitchState = DBSwitchDefaultState &
 	ChangeEventState<HTMLInputElement> &
 	FocusEventState<HTMLInputElement> &
 	FormState &
-	FromValidState;
+	FromValidState & {
+		_labelId?: string;
+	};
