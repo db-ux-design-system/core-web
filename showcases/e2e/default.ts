@@ -399,26 +399,50 @@ export const runAriaSnapshotTest = ({
 		// Remove `/url` in snapshot because they differ in every showcase
 		const lines = snapshot.split('\n');
 		const includesUrl = '/url:';
-		snapshot = lines
-			.map((line) => {
-				if (line.includes(includesUrl)) {
-					return undefined;
-				}
+		const filteredLines: string[] = [];
+		let skipUntilIndent = -1;
 
-				if (line.includes('- link')) {
-					line = line.replace(':', '');
-				}
+		for (let i = 0; i < lines.length; i++) {
+			const line = lines[i];
 
-				// Drop unlabeled navigation landmarks appearing as just `- navigation:`
-				// These vary across showcases and are not relevant to breadcrumb semantics.
-				if (line.trim() === '- navigation:') {
-					return undefined;
-				}
+			if (line.includes(includesUrl)) {
+				continue;
+			}
 
-				return line;
-			})
-			.filter(Boolean)
-			.join('\n');
+			// Get the current line's indentation level
+			const currentIndent = line.length - line.trimStart().length;
+
+			// If we're skipping a block and we're still inside it, continue skipping
+			if (skipUntilIndent >= 0 && currentIndent > skipUntilIndent) {
+				continue;
+			} else {
+				// We've exited the block we were skipping
+				skipUntilIndent = -1;
+			}
+
+			let processedLine = line;
+
+			if (line.includes('- link')) {
+				processedLine = line.replace(':', '');
+			}
+
+			// Drop unlabeled navigation landmarks appearing as just `- navigation:`
+			// These vary across showcases and are not relevant to breadcrumb semantics.
+			if (line.trim() === '- navigation:') {
+				continue;
+			}
+
+			// Drop wrapper navigation landmarks for breadcrumbs with "Breadcrumb Navigation" label
+			// These are showcase-specific wrappers and not part of the breadcrumb component semantics
+			if (line.includes('- navigation "Breadcrumb Navigation":')) {
+				skipUntilIndent = currentIndent;
+				continue;
+			}
+
+			filteredLines.push(processedLine);
+		}
+
+		snapshot = filteredLines.join('\n') + '\n';
 
 		expect(snapshot).toMatchSnapshot(`${title}.yaml`);
 	});
