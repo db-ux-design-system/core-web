@@ -148,6 +148,9 @@ $checked-active-transition-size: calc(
 				block-size: $switch-active-thumb-size;
 				background-color: colors.$db-adaptive-on-bg-inverted-default;
 				color: colors.$db-adaptive-on-bg-inverted-default;
+				@media (forced-colors: none) {
+					color: transparent;
+				}
 				margin: 0;
 			}
 		}
