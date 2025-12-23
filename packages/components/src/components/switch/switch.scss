@@ -90,12 +90,6 @@ $checked-active-transition-size: calc(
 		// thumb
 		&::before {
 			content: "";
-			
-			// This is a workaround for forced-colors mode from browser
-			@media (forced-colors: none) {
-				content: "•" / ""; // This is a workaround for forced-colors mode from browser
-			}
-			
 			text-align: center;
 			align-content: center;
 			aspect-ratio: 1;
@@ -126,6 +120,11 @@ $checked-active-transition-size: calc(
 						variables.$db-transition-timing-emotional,
 					visibility variables.$db-transition-duration-fast
 						variables.$db-transition-timing-emotional;
+			}
+
+			// This is a workaround for forced-colors mode from browser
+			@media (forced-colors: none) {
+				content: "•" / ""; // This is a workaround for forced-colors mode from browser
 			}
 		}
 
