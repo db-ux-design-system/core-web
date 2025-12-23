@@ -106,8 +106,8 @@ export default function DBTabs(props: DBTabsProps) {
 				);
 				for (const tabItem of tabItems) {
 					const index: number = tabItems.indexOf(tabItem);
-					const summary = tabItem.querySelector('summary');
 					const details = tabItem.querySelector('details');
+					const summary = tabItem.querySelector('summary');
 
 					if (details && summary) {
 						if (!details.id) {
