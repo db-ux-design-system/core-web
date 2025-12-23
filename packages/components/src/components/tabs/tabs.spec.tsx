@@ -46,19 +46,18 @@ const testActions = () => {
 	test('should be clickable', async ({ mount }) => {
 		expect(activeTabIndex).toBe(undefined);
 
-		// Beware: the comments below actually change the selector for vue
-		// this is necessary because vue will not trigger a check on an list element but requires the actual
-		// radio button element, which has the role=tab
+		// Click on the summary element to select the tab
 		const component = await mount(comp);
 		await component
 			.getByTestId('test2')
-			// VUE: .getByRole('tab')
-			.check({ force: true });
-		const tabChecked = await component
-			.getByTestId('test')
-			// VUE: .getByRole('tab')
-			.isChecked();
-		expect(!tabChecked).toBeTruthy();
+			.getByRole('tab')
+			.click({ force: true });
+
+		const firstTab = await component.getByTestId('test').locator('details');
+		const isOpen = await firstTab.evaluate(
+			(el: HTMLDetailsElement) => el.open
+		);
+		expect(!isOpen).toBeTruthy();
 
 		expect(activeTabIndex).toBe(1);
 	});
