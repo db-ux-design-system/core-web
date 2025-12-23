@@ -124,7 +124,7 @@ $checked-active-transition-size: calc(
 
 			// This is a workaround for forced-colors mode from browser
 			@media (forced-colors: active) {
-				content: "•" / ""; // This is a workaround for forced-colors mode from browser
+				content: "•" / "";
 			}
 		}
 
