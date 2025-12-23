@@ -65,31 +65,12 @@ export default function DBTabItem(props: DBTabItemProps) {
 			}
 		},
 		handleToggle: (event: any) => {
-			// We need to prevent default to control the opening ourselves
-			event?.preventDefault();
+			// The name attribute on details elements provides mutual exclusivity
+			// So we don't need to prevent default or manually close other tabs
 
-			// Close all other tabs in the same group by closing their details elements
-			if (_ref && state._name) {
-				const tabList = _ref.closest('[role="tablist"]');
-				if (tabList) {
-					const allDetails = tabList.querySelectorAll(
-						`details[name="${state._name}"]`
-					);
-					allDetails.forEach((detail: Element) => {
-						if (
-							detail !== _ref &&
-							(detail as HTMLDetailsElement).open
-						) {
-							(detail as HTMLDetailsElement).open = false;
-						}
-					});
-				}
-			}
-
-			// Open this tab
+			// Update selected state based on whether this tab is open
 			if (_ref) {
-				_ref.open = true;
-				state._selected = true;
+				state._selected = _ref.open;
 			}
 
 			if (props.onChange) {
