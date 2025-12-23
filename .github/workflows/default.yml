@@ -32,8 +32,9 @@ jobs:
     secrets: inherit
 
   lint:
-    uses: ./.github/workflows/01-lint-test.yml
+    uses: ./.github/workflows/01-lint-self-healing.yml
     needs: [init]
+    secrets: inherit
 
   cancel-on-failure-lint:
     if: ${{ !cancelled() && needs.lint.result == 'failure' }}
