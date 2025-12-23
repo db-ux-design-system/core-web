@@ -89,7 +89,7 @@ $checked-active-transition-size: calc(
 
 		// thumb
 		&::before {
-			content: "⬤" / ""; // This is a workaround for forced-colors mode from browser
+			content: "•" / ""; // This is a workaround for forced-colors mode from browser
 			text-align: center;
 			align-content: center;
 			aspect-ratio: 1;
