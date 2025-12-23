@@ -437,7 +437,7 @@ const FormComponent = () => {
 				</DBAccordion>
 
 				<DBSelect
-					id="select-test"
+					idSelect="select-test"
 					value={select}
 					label="Label"
 					onChange={(event) => {
@@ -495,13 +495,13 @@ const FormComponent = () => {
 
 				<DBTag semantic="neutral" emphasis="strong">
 					KUZ
-					<DBTooltip id="tooltip-01" placement="right-end">
+					<DBTooltip idI="tooltip-01" placement="right-end">
 						Beschreibungstext
 					</DBTooltip>
 				</DBTag>
 				<DBButton>
 					KUZ
-					<DBTooltip id="tooltip-01" placement="right-end">
+					<DBTooltip idI="tooltip-01" placement="right-end">
 						Beschreibungstext
 					</DBTooltip>
 				</DBButton>
