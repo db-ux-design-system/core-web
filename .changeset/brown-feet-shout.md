@@ -6,4 +6,4 @@
 "@db-ux/v-core-components": patch
 ---
 
-fix: not displaying the `forced-colors` content on regular display mode
+fix(switch): not displaying the `forced-colors` content on regular display mode
