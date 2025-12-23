@@ -7,8 +7,7 @@ import {
 	useDefaultProps,
 	useMetadata,
 	useRef,
-	useStore,
-	useTarget
+	useStore
 } from '@builder.io/mitosis';
 import { InputEvent } from '../../shared/model';
 import { cls, uuid } from '../../utils';
@@ -107,17 +106,16 @@ export default function DBTabs(props: DBTabsProps) {
 				);
 				for (const tabItem of tabItems) {
 					const index: number = tabItems.indexOf(tabItem);
-					const label = tabItem.querySelector('label');
-					const input = tabItem.querySelector('input');
+					const summary = tabItem.querySelector('summary');
+					const details = tabItem.querySelector('details');
 
-					if (input && label) {
-						if (!input.id) {
+					if (details && summary) {
+						if (!details.id) {
 							const tabId = `${state._name}-tab-${index}`;
-							label.setAttribute('for', tabId);
-							input.id = tabId;
-							input.setAttribute('name', state._name);
+							details.id = tabId;
+							details.setAttribute('name', state._name);
 							if (tabPanels.length > index) {
-								input.setAttribute(
+								summary.setAttribute(
 									'aria-controls',
 									`${state._name}-tab-panel-${index}`
 								);
@@ -134,7 +132,7 @@ export default function DBTabs(props: DBTabsProps) {
 									index === 0) ||
 								Number(props.initialSelectedIndex) === index;
 							if (autoSelect && shouldAutoSelect) {
-								input.click();
+								details.open = true;
 							}
 						}
 					}
@@ -156,17 +154,9 @@ export default function DBTabs(props: DBTabsProps) {
 
 			if (event.target) {
 				const target = event.target as HTMLElement;
-				const parent = target.parentElement;
-				if (
-					parent &&
-					parent.parentElement &&
-					parent.parentElement?.nodeName === 'LI'
-				) {
-					const tabItem = useTarget({
-						angular: parent.parentElement.parentElement,
-						stencil: parent.parentElement.parentElement,
-						default: parent.parentElement
-					});
+				// For details elements, the target will be the details itself
+				if (target.nodeName === 'DETAILS') {
+					const tabItem = target.closest('.db-tab-item');
 					if (tabItem) {
 						const list = tabItem.parentElement;
 						if (list) {
@@ -181,6 +171,108 @@ export default function DBTabs(props: DBTabsProps) {
 								props.onTabSelect(event);
 							}
 						}
+					}
+				}
+			}
+		},
+		handleKeyDown: (event: KeyboardEvent) => {
+			if (!_ref) return;
+
+			const isHorizontal = props.orientation !== 'vertical';
+			const isRtl = getComputedStyle(_ref).direction === 'rtl';
+
+			// Get all tab items
+			const tabList = _ref.querySelector('[role="tablist"]');
+			if (!tabList) return;
+
+			const tabItems = Array.from<HTMLElement>(
+				tabList.querySelectorAll('.db-tab-item')
+			);
+			const currentTab = event.target as HTMLElement;
+			const currentDetails =
+				currentTab.closest('details') ||
+				currentTab.querySelector('details');
+			if (!currentDetails) return;
+
+			const currentItem = currentDetails.closest('.db-tab-item');
+			if (!currentItem) return;
+
+			const currentIndex = tabItems.indexOf(currentItem as HTMLElement);
+			if (currentIndex === -1) return;
+
+			let nextIndex = currentIndex;
+			let handled = false;
+
+			// Handle arrow keys based on orientation
+			if (isHorizontal) {
+				if (event.key === 'ArrowRight') {
+					nextIndex = isRtl ? currentIndex - 1 : currentIndex + 1;
+					handled = true;
+				} else if (event.key === 'ArrowLeft') {
+					nextIndex = isRtl ? currentIndex + 1 : currentIndex - 1;
+					handled = true;
+				}
+			} else {
+				// Vertical orientation
+				if (event.key === 'ArrowDown') {
+					nextIndex = currentIndex + 1;
+					handled = true;
+				} else if (event.key === 'ArrowUp') {
+					nextIndex = currentIndex - 1;
+					handled = true;
+				}
+			}
+
+			// Handle Home and End keys
+			if (event.key === 'Home') {
+				nextIndex = 0;
+				handled = true;
+			} else if (event.key === 'End') {
+				nextIndex = tabItems.length - 1;
+				handled = true;
+			}
+
+			if (handled) {
+				event.preventDefault();
+
+				// Wrap around
+				if (nextIndex < 0) {
+					nextIndex = tabItems.length - 1;
+				} else if (nextIndex >= tabItems.length) {
+					nextIndex = 0;
+				}
+
+				// Find and activate the next tab
+				const nextTabItem = tabItems[nextIndex];
+				const nextDetails = nextTabItem?.querySelector(
+					'details'
+				) as HTMLDetailsElement;
+				const nextSummary = nextTabItem?.querySelector(
+					'summary'
+				) as HTMLElement;
+
+				if (nextDetails && !nextDetails.hasAttribute('disabled')) {
+					// Close all tabs in the group
+					tabItems.forEach((item) => {
+						const details = item.querySelector(
+							'details'
+						) as HTMLDetailsElement;
+						if (details && details !== nextDetails) {
+							details.open = false;
+						}
+					});
+
+					// Open the next tab
+					nextDetails.open = true;
+
+					// Focus the summary element
+					if (nextSummary) {
+						nextSummary.focus();
+					}
+
+					// Trigger change event
+					if (props.onIndexChange) {
+						props.onIndexChange(nextIndex);
 					}
 				}
 			}
@@ -239,8 +331,8 @@ export default function DBTabs(props: DBTabsProps) {
 			data-scroll-behavior={props.behavior}
 			data-alignment={props.alignment ?? 'start'}
 			data-width={props.width ?? 'auto'}
-			onInput={(event) => state.handleChange(event)}
-			onChange={(event) => state.handleChange(event)}>
+			onToggle={(event) => state.handleChange(event)}
+			onKeyDown={(event: KeyboardEvent) => state.handleKeyDown(event)}>
 			<Show when={state.showScrollLeft}>
 				<DBButton
 					class="tabs-scroll-left"

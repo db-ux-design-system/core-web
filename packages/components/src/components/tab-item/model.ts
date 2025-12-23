@@ -43,7 +43,7 @@ export type DBTabItemProps = GlobalProps &
 	ShowIconLeadingProps &
 	ShowIconTrailingProps &
 	ActiveProps &
-	ChangeEventProps<HTMLInputElement> &
+	ChangeEventProps<HTMLDetailsElement> &
 	ShowIconProps &
 	NameProps;
 
@@ -56,6 +56,6 @@ export type DBTabItemDefaultState = {
 
 export type DBTabItemState = DBTabItemDefaultState &
 	GlobalState &
-	ChangeEventState<HTMLInputElement> &
+	ChangeEventState<HTMLDetailsElement> &
 	InitializedState &
 	NameState;

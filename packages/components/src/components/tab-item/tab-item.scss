@@ -19,45 +19,77 @@ $with-icon-padding-calc: calc(
 	list-style-type: "";
 	border-radius: variables.$db-border-radius-sm;
 
-	&:has(input:disabled) {
+	&:has(details[disabled]),
+	&:has(details[aria-disabled="true"]) {
 		opacity: variables.$db-opacity-md;
 	}
 
-	label {
+	details {
+		position: absolute;
+		appearance: none;
+		inline-size: 100%;
+		margin: 0;
+		inset: 0;
+		background-color: colors.$db-adaptive-bg-basic-transparent-full-default;
+		border-radius: variables.$db-border-radius-sm;
+		z-index: -1;
+		border-width: 0;
+
+		/*
+		focus must be set on details:
+		- parent summary tag may use before AND after for displaying icons
+		- placed on li.db-tab-item focus would get cut off partially by by overflow hidden (orientation vertical)
+		 */
+		&:focus-visible {
+			outline: none;
+			box-shadow: none;
+
+			&::before {
+				@extend %focus-placeholder;
+
+				content: "";
+				position: absolute;
+				inset: 0;
+				border-radius: variables.$db-border-radius-sm;
+				z-index: 10;
+				pointer-events: none;
+			}
+		}
+	}
+
+	summary {
 		background-color: colors.$db-adaptive-bg-basic-transparent-full-default;
 		padding: variables.$db-spacing-fixed-xs;
 		align-items: center;
+		cursor: pointer;
 
 		@include helpers.display(inline-block);
 
 		white-space: nowrap;
-		border: 0;
+		border-width: 0;
 		border-radius: variables.$db-border-radius-sm;
 		overflow: hidden;
 		text-overflow: ellipsis;
+		list-style: none; // Remove the disclosure triangle
 
-		@include helpers.hover {
-			&:has(:not(input:disabled)) {
-				background-color: colors.$db-adaptive-bg-basic-transparent-full-hovered;
-			}
+		// Remove default marker/disclosure triangle in all browsers
+		&::-webkit-details-marker {
+			display: none;
+		}
 
-			&:has(input:disabled) {
-				cursor: initial;
-			}
+		&::marker {
+			display: none;
 		}
 
 		@include helpers.hover {
-			&:has(:not(input:disabled)) {
+			&:not(:has(details[disabled])) {
 				background-color: colors.$db-adaptive-bg-basic-transparent-full-hovered;
 			}
 
-			&:has(input:disabled) {
+			&:has(details[disabled]),
+			&:has(details[aria-disabled="true"]) {
 				cursor: initial;
 			}
-		}
-
-		&:has(input:checked) {
-			font-weight: 700;
 		}
 
 		&[data-icon] {
@@ -102,37 +134,8 @@ $with-icon-padding-calc: calc(
 		}
 	}
 
-	input {
-		position: absolute;
-		appearance: none;
-		inline-size: 100%;
-		margin-inline-end: initial;
-		inset: 0;
-		background-color: colors.$db-adaptive-bg-basic-transparent-full-default;
-		border-radius: variables.$db-border-radius-sm;
-		z-index: -1;
-
-		/*
-		focus must be set on input:
-		- parent label tag may use before AND after for displaying icons
-		- placed on li.db-tab-item focus would get cut off partially by by overflow hidden (orientation vertical)
-		 */
-		&:focus-visible {
-			&:is(input[type="radio"]) {
-				outline: none;
-				box-shadow: none;
-			}
-
-			&::before {
-				@extend %focus-placeholder;
-
-				content: "";
-				position: absolute;
-				inset: 0;
-				border-radius: variables.$db-border-radius-sm;
-				z-index: 10;
-				pointer-events: none;
-			}
-		}
+	details[open] + summary,
+	details[open] summary {
+		font-weight: 700;
 	}
 }

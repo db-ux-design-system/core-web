@@ -10,7 +10,7 @@ $max-tabs: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 	db-tab-list,
 	dbtablist {
 		@each $index in $max-tabs {
-			&:has([id$="-tab-#{$index}"]:checked) {
+			&:has([id$="-tab-#{$index}"][open]) {
 				~ dbtabpanel > [id$="-tab-panel-#{$index}"],
 				~ db-tab-panel > [id$="-tab-panel-#{$index}"] {
 					@include helpers.display(block);
@@ -24,7 +24,7 @@ $max-tabs: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 	.db-tab-item {
 		@include db-puls.set-db-puls-horizontal;
 
-		&:has(input:checked) {
+		&:has(details[open]) {
 			@include db-puls.show-db-puls-horizontal;
 
 			&::after {
@@ -49,7 +49,7 @@ $max-tabs: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 			z-index: -2;
 		}
 
-		&:has(input:checked) {
+		&:has(details[open]) {
 			@include db-puls.show-db-puls-vertical;
 		}
 	}
@@ -89,8 +89,7 @@ $max-tabs: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 		z-index: $db-tabs-z-index-tab-list;
 
 		@each $index in $max-tabs {
-			&:has([id$="-tab-#{$index}"]:checked)
-				~ [id$="-tab-panel-#{$index}"] {
+			&:has([id$="-tab-#{$index}"][open]) ~ [id$="-tab-panel-#{$index}"] {
 				@include helpers.display(block);
 			}
 		}
@@ -201,15 +200,15 @@ $max-tabs: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 			margin-block-end: auto;
 
 			.db-tab-item {
-				label {
+				summary {
 					position: relative;
 				}
 
-				&:has(input:focus-visible),
+				&:has(details:focus-visible),
 				&:hover {
 					inline-size: fit-content;
 
-					label {
+					summary {
 						overflow: visible;
 					}
 				}
@@ -252,7 +251,7 @@ $max-tabs: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
 			padding-inline-start: $padding-start-calc;
 
-			input {
+			details {
 				padding-inline-start: $padding-start-calc;
 			}
 		}
@@ -279,12 +278,12 @@ $max-tabs: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 		}
 
 		.db-tab-item,
-		.db-tab-item label {
+		.db-tab-item summary {
 			inline-size: 100%;
 		}
 
 		&[data-alignment="center"] {
-			.db-tab-item label {
+			.db-tab-item summary {
 				text-align: center;
 				justify-content: center;
 			}

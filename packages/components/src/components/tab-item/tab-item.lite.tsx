@@ -27,7 +27,7 @@ useMetadata({
 useDefaultProps<DBTabItemProps>({});
 
 export default function DBTabItem(props: DBTabItemProps) {
-	const _ref = useRef<HTMLInputElement | any>(null);
+	const _ref = useRef<HTMLDetailsElement | any>(null);
 
 	// jscpd:ignore-start
 	const state = useStore<DBTabItemState>({
@@ -38,12 +38,18 @@ export default function DBTabItem(props: DBTabItemProps) {
 		boundSetSelectedOnChange: undefined,
 		setSelectedOnChange: (event: any) => {
 			event.stopPropagation();
+			// Check if the event target is the current details element
+			const isCurrentTab =
+				event.target === _ref ||
+				event.target.closest('details') === _ref;
 			useTarget({
 				stencil: () => {
-					state._selected = getBooleanAsString(event.target === _ref);
+					state._selected = getBooleanAsString(
+						isCurrentTab && _ref?.open
+					);
 				},
 				default: () => {
-					state._selected = event.target === _ref;
+					state._selected = isCurrentTab && _ref?.open;
 				}
 			});
 		},
@@ -58,7 +64,34 @@ export default function DBTabItem(props: DBTabItemProps) {
 				};
 			}
 		},
-		handleChange: (event: any) => {
+		handleToggle: (event: any) => {
+			// We need to prevent default to control the opening ourselves
+			event?.preventDefault();
+
+			// Close all other tabs in the same group by closing their details elements
+			if (_ref && state._name) {
+				const tabList = _ref.closest('[role="tablist"]');
+				if (tabList) {
+					const allDetails = tabList.querySelectorAll(
+						`details[name="${state._name}"]`
+					);
+					allDetails.forEach((detail: Element) => {
+						if (
+							detail !== _ref &&
+							(detail as HTMLDetailsElement).open
+						) {
+							(detail as HTMLDetailsElement).open = false;
+						}
+					});
+				}
+			}
+
+			// Open this tab
+			if (_ref) {
+				_ref.open = true;
+				state._selected = true;
+			}
+
 			if (props.onChange) {
 				props.onChange(event);
 			}
@@ -98,17 +131,18 @@ export default function DBTabItem(props: DBTabItemProps) {
 			useTarget({ react: () => state.handleNameAttribute() });
 			state.initialized = false;
 
-			// deselect this tab when another tab in tablist is selected
+			// Listen for toggle events on other tabs to update selection state
 			if (!state._listenerAdded) {
 				_ref.closest('[role=tablist]')?.addEventListener(
-					'change',
-					state.boundSetSelectedOnChange
+					'toggle',
+					state.boundSetSelectedOnChange,
+					true // Use capture phase to catch events from details elements
 				);
 				state._listenerAdded = true;
 			}
 
-			// Initialize selected state from either active prop (set by parent) or checked attribute
-			if (props.active || _ref.checked) {
+			// Initialize selected state from either active prop (set by parent) or open attribute
+			if (props.active || _ref.open) {
 				useTarget({
 					stencil: () => {
 						state._selected = getBooleanAsString(true);
@@ -117,7 +151,9 @@ export default function DBTabItem(props: DBTabItemProps) {
 						state._selected = true;
 					}
 				});
-				_ref.click();
+				if (!_ref.open) {
+					_ref.open = true;
+				}
 			}
 		}
 	}, [_ref, state.initialized, state.boundSetSelectedOnChange]);
@@ -131,8 +167,9 @@ export default function DBTabItem(props: DBTabItemProps) {
 	onUnMount(() => {
 		if (state._listenerAdded && _ref && state.boundSetSelectedOnChange) {
 			_ref.closest('[role=tablist]')?.removeEventListener(
-				'change',
-				state.boundSetSelectedOnChange
+				'toggle',
+				state.boundSetSelectedOnChange,
+				true
 			);
 			state._listenerAdded = false;
 		}
@@ -140,32 +177,32 @@ export default function DBTabItem(props: DBTabItemProps) {
 
 	return (
 		<li class={cls('db-tab-item', props.className)} role="none">
-			<label
-				htmlFor={props.id}
-				data-icon={props.iconLeading ?? props.icon}
-				data-icon-trailing={props.iconTrailing}
-				data-show-icon={getBooleanAsString(
-					props.showIconLeading ?? props.showIcon
-				)}
-				data-show-icon-trailing={getBooleanAsString(
-					props.showIconTrailing
-				)}
-				data-no-text={getBooleanAsString(props.noText)}>
-				<input
-					disabled={getBoolean(props.disabled, 'disabled')}
-					aria-selected={state._selected}
-					checked={getBoolean(props.checked, 'checked')}
-					ref={_ref}
-					type="radio"
+			<details
+				ref={_ref}
+				disabled={getBoolean(props.disabled, 'disabled')}
+				aria-disabled={
+					getBoolean(props.disabled, 'disabled') ? 'true' : undefined
+				}
+				name={state._name}
+				id={props.id}
+				open={getBoolean(props.checked, 'checked')}
+				onToggle={(event: any) => state.handleToggle(event)}>
+				<summary
 					role="tab"
-					name={state._name}
-					id={props.id}
-					onInput={(event: any) => state.handleChange(event)}
-				/>
-
-				<Show when={props.label}>{props.label}</Show>
-				{props.children}
-			</label>
+					aria-selected={state._selected}
+					data-icon={props.iconLeading ?? props.icon}
+					data-icon-trailing={props.iconTrailing}
+					data-show-icon={getBooleanAsString(
+						props.showIconLeading ?? props.showIcon
+					)}
+					data-show-icon-trailing={getBooleanAsString(
+						props.showIconTrailing
+					)}
+					data-no-text={getBooleanAsString(props.noText)}>
+					<Show when={props.label}>{props.label}</Show>
+					{props.children}
+				</summary>
+			</details>
 		</li>
 	);
 }

@@ -88,6 +88,7 @@ export type DBTabsDefaultState = {
 	initTabList: () => void;
 	initTabs: (init?: boolean) => void;
 	handleChange: (event: InputEvent<HTMLElement>) => void;
+	handleKeyDown: (event: KeyboardEvent) => void;
 	_resizeObserver?: ResizeObserver;
 };
 
