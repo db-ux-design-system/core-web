@@ -179,7 +179,6 @@ export default function DBTabItem(props: DBTabItemProps) {
 		<li class={cls('db-tab-item', props.className)} role="none">
 			<details
 				ref={_ref}
-				disabled={getBoolean(props.disabled, 'disabled')}
 				aria-disabled={
 					getBoolean(props.disabled, 'disabled') ? 'true' : undefined
 				}

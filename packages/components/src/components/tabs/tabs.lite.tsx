@@ -175,7 +175,7 @@ export default function DBTabs(props: DBTabsProps) {
 				}
 			}
 		},
-		handleKeyDown: (event: KeyboardEvent) => {
+		handleKeyDown: (event: any) => {
 			if (!_ref) return;
 
 			const isHorizontal = props.orientation !== 'vertical';
@@ -300,6 +300,12 @@ export default function DBTabs(props: DBTabsProps) {
 
 			const tabList = _ref.querySelector('.db-tab-list');
 			if (tabList) {
+				// Add toggle event listener for handling tab changes
+				const toggleHandler = (event: Event) => {
+					state.handleChange(event as any);
+				};
+				_ref.addEventListener('toggle', toggleHandler, true);
+
 				const observer = new MutationObserver((mutations) => {
 					mutations.forEach((mutation) => {
 						if (
@@ -331,8 +337,7 @@ export default function DBTabs(props: DBTabsProps) {
 			data-scroll-behavior={props.behavior}
 			data-alignment={props.alignment ?? 'start'}
 			data-width={props.width ?? 'auto'}
-			onToggle={(event) => state.handleChange(event)}
-			onKeyDown={(event: KeyboardEvent) => state.handleKeyDown(event)}>
+			onKeyDown={(event) => state.handleKeyDown(event)}>
 			<Show when={state.showScrollLeft}>
 				<DBButton
 					class="tabs-scroll-left"
