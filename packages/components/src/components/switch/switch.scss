@@ -102,6 +102,9 @@ $checked-active-transition-size: calc(
 				--db-check-element-border-color,
 				#{colors.$db-adaptive-on-bg-basic-emphasis-100-default}
 			);
+			@media (forced-colors: none) {
+				color: transparent;
+			}
 			border-radius: variables.$db-border-radius-full;
 			transform: translateX(var(--thumb-offset-x));
 			margin-inline-end: calc(
