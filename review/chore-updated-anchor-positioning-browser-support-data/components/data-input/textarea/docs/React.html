@@ -1,0 +1,23 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8" data-next-head=""/><meta name="viewport" content="width=device-width" data-next-head=""/><title data-next-head="">DB UX</title><link data-next-font="size-adjust" rel="preconnect" href="/" crossorigin="anonymous"/><link rel="preload" href="/core-web/review/chore-updated-anchor-positioning-browser-support-data/_next/static/css/2d3afdc0abbc5827.css" as="style"/><link rel="stylesheet" href="/core-web/review/chore-updated-anchor-positioning-browser-support-data/_next/static/css/2d3afdc0abbc5827.css" data-n-g=""/><noscript data-n-css=""></noscript><script defer="" nomodule="" src="/core-web/review/chore-updated-anchor-positioning-browser-support-data/_next/static/chunks/polyfills-42372ed130431b0a.js"></script><script src="/core-web/review/chore-updated-anchor-positioning-browser-support-data/_next/static/chunks/webpack-27c1bbd8542f80de.js" defer=""></script><script src="/core-web/review/chore-updated-anchor-positioning-browser-support-data/_next/static/chunks/framework-c528b96079bb3756.js" defer=""></script><script src="/core-web/review/chore-updated-anchor-positioning-browser-support-data/_next/static/chunks/main-eb0244bf2ff94ce5.js" defer=""></script><script src="/core-web/review/chore-updated-anchor-positioning-browser-support-data/_next/static/chunks/pages/_app-055a63095b14fd04.js" defer=""></script><script src="/core-web/review/chore-updated-anchor-positioning-browser-support-data/_next/static/chunks/pages/components/data-input/textarea/docs/React-03a11eae5dc383c3.js" defer=""></script><script src="/core-web/review/chore-updated-anchor-positioning-browser-support-data/_next/static/kNwH1S9rnBcFi-8_gsayK/_buildManifest.js" defer=""></script><script src="/core-web/review/chore-updated-anchor-positioning-browser-support-data/_next/static/kNwH1S9rnBcFi-8_gsayK/_ssgManifest.js" defer=""></script></head><body><div id="__next"><h2 id="react">React<a class="header-link" href="/core-web/review/chore-updated-anchor-positioning-browser-support-data/components/data-input/textarea/docs/React?current=react"><span aria-hidden="true" class="db-icon" data-icon="paper_clip"></span>react<!-- --> anchor link</a></h2>
+<p>For general installation and configuration look at the <a target="_blank" referrerPolicy="no-referrer" href="https://www.npmjs.com/package/@db-ux/react-core-components">react-core-components</a> package.</p>
+<h3 id="use-component">Use component<a class="header-link" href="/core-web/review/chore-updated-anchor-positioning-browser-support-data/components/data-input/textarea/docs/React?current=use-component"><span aria-hidden="true" class="db-icon" data-icon="paper_clip"></span>use-component<!-- --> anchor link</a></h3>
+<pre><code class="language-tsx">// App.tsx
+import { useState } from &quot;react&quot;;
+import { DBTextarea } from &quot;@db-ux/react-core-components&quot;;
+
+const App = () =&gt; {
+	const [textarea, setTextarea] = useState(&quot;default textarea&quot;);
+	return (
+		&lt;DBTextarea
+			label=&quot;Textarea Controlled&quot;
+			message=&quot;Message&quot;
+			value={textarea}
+			onChange={(event) =&gt; {
+				setTextarea(event.target.value);
+			}}
+		/&gt;
+	);
+};
+
+export default App;
+</code></pre></div><script id="__NEXT_DATA__" type="application/json">{"props":{"pageProps":{}},"page":"/components/data-input/textarea/docs/React","query":{},"buildId":"kNwH1S9rnBcFi-8_gsayK","assetPrefix":"/core-web/review/chore-updated-anchor-positioning-browser-support-data","nextExport":true,"autoExport":true,"isFallback":false,"scriptLoader":[]}</script></body></html>
