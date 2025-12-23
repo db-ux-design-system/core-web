@@ -89,7 +89,13 @@ $checked-active-transition-size: calc(
 
 		// thumb
 		&::before {
-			content: "•" / ""; // This is a workaround for forced-colors mode from browser
+			content: "";
+			
+			// This is a workaround for forced-colors mode from browser
+			@media (forced-colors: none) {
+				content: "•" / ""; // This is a workaround for forced-colors mode from browser
+			}
+			
 			text-align: center;
 			align-content: center;
 			aspect-ratio: 1;
@@ -102,11 +108,6 @@ $checked-active-transition-size: calc(
 				--db-check-element-border-color,
 				#{colors.$db-adaptive-on-bg-basic-emphasis-100-default}
 			);
-			
-			@media (forced-colors: none) {
-				color: transparent;
-			}
-			
 			border-radius: variables.$db-border-radius-full;
 			transform: translateX(var(--thumb-offset-x));
 			margin-inline-end: calc(
@@ -150,11 +151,6 @@ $checked-active-transition-size: calc(
 				block-size: $switch-active-thumb-size;
 				background-color: colors.$db-adaptive-on-bg-inverted-default;
 				color: colors.$db-adaptive-on-bg-inverted-default;
-				
-				@media (forced-colors: none) {
-					color: transparent;
-				}
-				
 				margin: 0;
 			}
 		}
