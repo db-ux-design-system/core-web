@@ -4,6 +4,8 @@
 
 This evaluation provides a comprehensive analysis of migrating from SASS to PostCSS or Lightning CSS for the DB UX Design System Core Web repository.
 
+**Critical Finding:** The CSS features mentioned in the original issue (`@function`, `if()`, `@container style()` for mixins) **do not exist in browsers** or do not work as described. Therefore, any migration would still require build tooling (PostCSS plugins) to replicate Sass functionality.
+
 ## Deliverables
 
 ### 1. Main Evaluation Document
@@ -11,7 +13,7 @@ This evaluation provides a comprehensive analysis of migrating from SASS to Post
 
 Comprehensive evaluation covering:
 - Current SASS usage analysis (192 files)
-- CSS standards reality check
+- CSS standards reality check - clarifying which features actually exist
 - Migration options comparison (Lightning CSS vs PostCSS)
 - Risk assessment and recommendations
 - Effort estimation (4-5 weeks)
@@ -46,9 +48,10 @@ Contains:
 - Sample PostCSS configuration
 - PoC README with findings
 
-### 5. PostCSS Plugin Installation
-- Installed `postcss-import`, `postcss-nesting`, `postcss-mixins` in foundations package
-- Demonstrated plugin integration approach
+### 5. No PostCSS Plugins Installed
+- **Note**: PostCSS plugins were NOT installed as part of this evaluation
+- The evaluation demonstrates that plugins **would be required** for any migration
+- Native CSS alone cannot replace Sass features at this time
 
 ## Key Findings
 
@@ -58,11 +61,14 @@ Contains:
 ❌ **Risky** - High chance of visual regressions and breaking changes
 
 ### CSS Standards Reality
-The issue mentions CSS features that **do not yet exist**:
-- ❌ CSS `if()` function - Not in any specification
-- ❌ CSS `@function` - Experimental, no browser support
-- ⚠️ CSS Container Style Queries - Limited support, not a mixin replacement
+The issue mentions CSS features that **do not exist or do not work as described**:
+
+- ❌ CSS `if()` function - Not in any browser or specification
+- ❌ CSS `@function` - Not implemented in browsers (MDN link is to draft spec)
+- ⚠️ CSS Container Style Queries - Cannot replace mixins/placeholders; they are for conditional styling based on container properties, not for defining reusable code blocks with parameters
 - ✅ CSS Nesting - Well supported, can be used
+
+**Critical Conclusion:** Native CSS alone cannot replace Sass functionality. Any migration would still require PostCSS plugins for build-time transformation.
 
 ### Migration Options Evaluated
 

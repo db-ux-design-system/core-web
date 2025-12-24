@@ -36,14 +36,16 @@ This directory contains a complete evaluation of migrating from SASS to PostCSS 
 
 ### What CSS Features Were Mentioned?
 
-The issue mentions several CSS features that **don't actually exist yet**:
+The issue mentions several CSS features that **don't actually exist or don't work as described in browsers**:
 
 | Feature | Status |
 | ------- | ------ |
-| CSS `if()` function | ❌ Not in any specification |
-| CSS `@function` | ❌ Experimental, no browser support |
-| CSS Container Style Queries | ⚠️ Partial support, not a mixin replacement |
+| CSS `if()` function | ❌ Not in any browser or specification |
+| CSS `@function` | ❌ Not implemented in browsers - MDN link is to draft spec |
+| CSS Container Style Queries for mixins | ❌ Cannot replace mixins - they're for conditional styling, not reusable code blocks |
 | CSS Nesting | ✅ Well supported |
+
+**Critical Point:** Container style queries like `@container style(--theme: dark)` can apply styles conditionally based on a container's CSS property values, but they **cannot** define reusable style blocks with parameters like Sass mixins. They are not a code organization or reusability feature.
 
 ### Alternative Recommendation
 

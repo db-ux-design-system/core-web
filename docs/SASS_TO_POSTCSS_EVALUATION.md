@@ -101,16 +101,19 @@ The issue description mentions using these CSS features, but here's the reality:
    - ❌ Not in CSS specs yet
    - ⚠️ CSS Working Group discussion only
    - **Cannot replace Sass `@if` statements**
+   - Note: The MDN link in the issue leads to a Chrome status page for a proposal that has not been implemented
 
 2. **CSS `@function` at-rule**
-   - ❌ Experimental, no browser support
+   - ❌ No browser support - the feature does not exist
    - ❌ Not in stable specs
    - **Cannot replace Sass `@function`**
+   - Note: The MDN link in the issue leads to a draft specification page that browsers have not implemented
 
 3. **Container Style Queries** (`@container style()`)
-   - ⚠️ Partial support (Chrome 111+)
-   - Limited use cases
-   - **Not a direct replacement for `@mixin` or `@extend`**
+   - ⚠️ Partial support (Chrome 111+, limited to custom properties)
+   - **Cannot replace `@mixin` or `@extend`** - Container style queries are for conditional styling based on container properties, not for code reuse patterns like mixins
+   - Not a code organization or reusability feature
+   - Example: `@container style(--theme: dark)` can apply styles conditionally, but cannot define reusable style blocks with parameters like Sass mixins
 
 ## Migration Options
 
@@ -143,20 +146,24 @@ The issue description mentions using these CSS features, but here's the reality:
 - CSS transformation tool with extensive plugin ecosystem
 - Already used in the project for minification
 
-**Required Plugins:**
+**Required Plugins (if migrating):**
+
+**Important Note:** The CSS features mentioned in the issue (`@function`, `if()`, `@container style()` for mixins) do not exist or work as described in browsers. Therefore, PostCSS plugins would be **required** to replicate Sass functionality during a migration. Native CSS alone cannot replace Sass features at this time.
 
 1. **postcss-import** - Handle file imports
    - ✅ Replaces Sass `@import`
    - ⚠️ Not a full replacement for `@use` (no namespacing)
 
-2. **postcss-nesting** - CSS nesting syntax
+2. **postcss-nesting** - CSS nesting syntax (for older browser support)
    - ✅ Supports CSS Nesting specification
    - ✅ Future-proof
+   - Note: While modern browsers support nesting, this plugin ensures compatibility with older browsers
 
 3. **postcss-mixins** - Mixin functionality
    - ✅ Similar to Sass mixins
    - ⚠️ Different syntax
    - ⚠️ No conditional logic within mixins
+   - **Required because**: CSS `@container style()` queries cannot replace mixins - they are for conditional styling, not reusable code blocks with parameters
 
 4. **postcss-simple-vars** - Variables
    - ⚠️ Sass-style variables (not CSS custom properties)
@@ -165,10 +172,12 @@ The issue description mentions using these CSS features, but here's the reality:
 5. **postcss-functions** - Custom functions
    - ✅ Can replicate some Sass functions
    - ⚠️ Different syntax, JavaScript-based
+   - **Required because**: CSS `@function` does not exist in browsers
 
 6. **postcss-extend-rule** - Extend functionality
    - ✅ Similar to `@extend`
    - ⚠️ Different implementation
+   - **Required because**: CSS `@container style()` queries cannot replace `@extend` patterns
 
 **Pros:**
 - ✅ Gradual migration possible
@@ -372,11 +381,21 @@ Given the complexity and scope, I recommend a **phased evaluation and proof-of-c
 **⚠️ NOT RECOMMENDED for immediate full migration**
 
 **Reasons:**
-1. **Limited real-world benefit**: The codebase still needs build tooling either way
+1. **Limited real-world benefit**: The codebase still needs build tooling either way - native CSS cannot replace Sass features
 2. **High risk**: 192 files with complex Sass features
 3. **Unclear ROI**: Benefits don't clearly outweigh costs
-4. **CSS standards not ready**: Key features mentioned in the issue don't exist yet
+4. **CSS standards not ready**: Key features mentioned in the issue (`if()`, `@function`, `@container style()` for mixins) don't exist or don't work as described
 5. **Current setup works well**: Sass + PostCSS is proven and reliable
+
+**Critical Clarification on CSS Features:**
+
+The issue mentions using native CSS features, but these do **not** work as described:
+
+- **CSS `if()` function**: Does not exist in any browser or specification
+- **CSS `@function`**: Does not exist in browsers (MDN link is to a draft specification)
+- **CSS `@container style()` for mixins**: Container style queries are for conditional styling based on container properties, NOT for defining reusable style blocks like Sass mixins. They cannot accept parameters or be used as code organization tools.
+
+Therefore, **any migration would still require build tooling** (PostCSS plugins) to replicate Sass functionality. The benefit of "writing modern CSS without build steps" mentioned in the issue is not achievable with current CSS standards.
 
 **Alternative Recommendation:**
 
@@ -415,12 +434,13 @@ If the team decides to proceed, here's a minimal PoC:
 
 ## Conclusion
 
-While migrating from Sass to PostCSS/Lightning CSS is technically feasible, it represents a significant undertaking with limited practical benefits given the current state of CSS standards. The features mentioned in the issue (CSS `if()`, `@function`) are not yet available, meaning we'd still rely on build-time tooling.
+While migrating from Sass to PostCSS/Lightning CSS is technically feasible, it represents a significant undertaking with limited practical benefits given the current state of CSS standards. **The features mentioned in the issue (CSS `if()`, `@function`, `@container style()` for mixins) are not available in browsers or do not work as described**, meaning we'd still rely on build-time tooling.
 
 **The recommended path forward is to:**
 1. Complete this evaluation (done)
-2. Create a proof of concept with 2-3 files
-3. Measure actual benefits and costs
-4. Make an informed decision based on PoC results
+2. Acknowledge that native CSS cannot replace Sass features at this time
+3. Continue using Sass while gradually adopting more CSS custom properties
+4. Use CSS nesting where beneficial (Sass already supports it)
+5. Consider Lightning CSS for minification only
 
-The migration should only proceed if the PoC demonstrates clear advantages that justify the 4-5 weeks of effort and associated risks.
+The migration should only proceed if there are specific, identified pain points with the current Sass setup that cannot be addressed through gradual modernization.
