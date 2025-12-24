@@ -1,0 +1,7 @@
+/* Make sure that the usage of any `display` CSS property doesn't override the usage of the `hidden` attribute. */
+/* Using container style query with CSS custom property for parameter */
+@container style(--use-display: true) {
+	&:not([hidden]) {
+		display: var(--display-value, block);
+	}
+}

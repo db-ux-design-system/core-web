@@ -1,0 +1,61 @@
+/* Default icon styles - CSS version using modern CSS features */
+@import "../icons/_index.css";
+@import "../helpers/_display.css";
+
+[data-icon],
+[data-icon-leading],
+[data-icon-trailing] {
+	&:is(span) {
+		/* Using container style query pattern for display */
+		container-type: inline-size;
+		--use-display: true;
+		--display-value: inline-flex;
+
+		vertical-align: baseline;
+	}
+}
+
+[data-icon],
+[data-icon-leading] {
+	&::before {
+		/* Icon styles would be applied via container style query */
+		/* Example: container-type: inline-size; --use-icon: true; */
+		margin-inline-end: var(--default-icon-margin-end, 0.5rem);
+	}
+}
+
+[data-show-icon="false"],
+[data-show-icon-leading="false"],
+[data-icon="none"],
+[data-icon-leading="none"] {
+	&::before {
+		content: none;
+	}
+}
+
+[data-icon-trailing] {
+	&::after {
+		/* Icon styles would be applied via container style query */
+		margin-inline-start: var(--default-icon-margin-start, 0.5rem);
+		/* Icon content handling would use CSS custom properties */
+	}
+}
+
+[data-show-icon-trailing="false"],
+[data-icon-trailing="none"] {
+	&::after {
+		content: none;
+	}
+}
+
+/* Providing a mechanism for text replacements */
+.is-icon-text-replace {
+	&[data-icon],
+	&[data-icon-leading] {
+		/* Icon text replace pattern would use container style queries */
+	}
+
+	&[data-icon-trailing] {
+		/* Icon text replace pattern for after pseudo-element */
+	}
+}

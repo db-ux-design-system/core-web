@@ -1,0 +1,8 @@
+/* Clearfix pattern using container style query for reusable style blocks */
+@container style(--use-clearfix: true) {
+	&::after {
+		clear: both;
+		content: " ";
+		display: table;
+	}
+}

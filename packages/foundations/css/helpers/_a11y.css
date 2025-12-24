@@ -1,0 +1,19 @@
+/* Visually hidden pattern using container style query for reusable style blocks */
+@container style(--use-a11y-visually-hidden: true) {
+	/* stylelint-disable-next-line property-no-deprecated */
+	clip: rect(0, 0, 0, 0) !important;
+	overflow: hidden !important;
+	white-space: nowrap !important;
+	font-size: 0 !important;
+	all: initial;
+	inset-block-start: 0 !important;
+	block-size: 1px !important;
+	position: absolute !important;
+	inline-size: 1px !important;
+	border-width: 0 !important;
+	border-style: initial !important;
+	border-color: initial !important;
+	border-image: initial !important;
+	padding: 0 !important;
+	pointer-events: none !important;
+}
