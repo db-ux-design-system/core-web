@@ -15,3 +15,4 @@ packages/foundations/scripts/generate-icon-fonts/styles/**
 packages/foundations/scss/_normalize.scss
 packages/stylelint/test/**
 .stylelintrc.json
+docs/poc-postcss/

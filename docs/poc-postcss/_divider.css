@@ -1,0 +1,113 @@
+@import "../colors.css";
+@import "../variables.css";
+
+/* Workaround until we get Relative Color Syntax */
+/* https://codepen.io/bramus/pen/VwMZOQK */
+/* https://bugs.chromium.org/p/chromium/issues/detail?id=1274133 */
+/* https://github.com/WebKit/WebKit/commit/1890bfb551da24735804cb1a3d5f14b210f7c7b8 */
+
+/* 
+  LIMITATION: This mixin with @if conditionals cannot be directly converted to PostCSS mixins
+  Options:
+  1. Create separate mixins for each position
+  2. Use CSS custom properties with fallbacks
+  3. Keep as build-time logic in PostCSS
+  
+  Demonstrating approach #1 - separate mixins per position:
+*/
+
+@define-mixin divider-top $slot {
+	--db-divider-bg-color: var(--db-adaptive-on-bg-basic-emphasis-60-default);
+
+	position: var(--db-tooltip-parent-position, relative);
+
+	&[data-emphasis="strong"] {
+		--db-divider-bg-color: var(--db-adaptive-on-bg-basic-emphasis-70-default);
+	}
+
+	&::$(slot) {
+		content: "";
+		background-color: var(--db-divider-bg-color);
+		position: absolute;
+		block-size: var(--db-border-width-3xs);
+		inset-block-start: 0;
+		inset-inline: 0;
+	}
+
+	@media (forced-colors: active) {
+		/* border is the better implementation, but border height changes in windows based on pixel density */
+		/* we use it as a fallback for color contrast */
+		border: var(--db-border-width-3xs) solid var(--db-divider-bg-color);
+	}
+}
+
+@define-mixin divider-bottom $slot {
+	--db-divider-bg-color: var(--db-adaptive-on-bg-basic-emphasis-60-default);
+
+	position: var(--db-tooltip-parent-position, relative);
+
+	&[data-emphasis="strong"] {
+		--db-divider-bg-color: var(--db-adaptive-on-bg-basic-emphasis-70-default);
+	}
+
+	&::$(slot) {
+		content: "";
+		background-color: var(--db-divider-bg-color);
+		position: absolute;
+		block-size: var(--db-border-width-3xs);
+		inset-block-end: 0;
+		inset-inline: 0;
+	}
+
+	@media (forced-colors: active) {
+		border: var(--db-border-width-3xs) solid var(--db-divider-bg-color);
+	}
+}
+
+/* Similar mixins would be created for left and right positions */
+
+/*
+  ALTERNATIVE APPROACH: Use CSS custom properties for dynamic positioning
+  This is more CSS-native but requires different usage patterns
+*/
+
+.divider-base {
+	--db-divider-bg-color: var(--db-adaptive-on-bg-basic-emphasis-60-default);
+	--db-divider-block-size: var(--db-border-width-3xs);
+	--db-divider-inline-size: var(--db-border-width-3xs);
+	--db-divider-inset-block-start: auto;
+	--db-divider-inset-block-end: auto;
+	--db-divider-inset-inline-start: auto;
+	--db-divider-inset-inline-end: auto;
+
+	position: var(--db-tooltip-parent-position, relative);
+
+	&[data-emphasis="strong"] {
+		--db-divider-bg-color: var(--db-adaptive-on-bg-basic-emphasis-70-default);
+	}
+
+	&::before,
+	&::after {
+		content: "";
+		background-color: var(--db-divider-bg-color);
+		position: absolute;
+		block-size: var(--db-divider-block-size);
+		inline-size: var(--db-divider-inline-size);
+		inset-block-start: var(--db-divider-inset-block-start);
+		inset-block-end: var(--db-divider-inset-block-end);
+		inset-inline-start: var(--db-divider-inset-inline-start);
+		inset-inline-end: var(--db-divider-inset-inline-end);
+	}
+
+	@media (forced-colors: active) {
+		border: var(--db-border-width-3xs) solid var(--db-divider-bg-color);
+	}
+}
+
+/* Usage would be: */
+.divider-top {
+	@extend .divider-base;
+	--db-divider-inset-block-start: 0;
+	--db-divider-inset-inline-start: 0;
+	--db-divider-inset-inline-end: 0;
+}
