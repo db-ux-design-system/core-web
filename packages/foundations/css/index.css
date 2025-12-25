@@ -1,0 +1,14 @@
+/* DB UX Design System - CSS Version */
+/* Modern CSS implementation for Chromium-based browsers */
+
+/* Core design tokens */
+@import "_variables.css";
+
+/* Color system */
+@import "colors/_index.css";
+
+/* Helper utilities */
+@import "helpers/_index.css";
+
+/* Defaults */
+@import "defaults/default-icons.css";

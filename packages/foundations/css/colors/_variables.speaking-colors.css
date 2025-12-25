@@ -1,0 +1,8 @@
+/* Variants for adaptive components like input, select, notification, ... */
+
+@forward "speaking-colors/semantic/brand.speaking-colors";
+@forward "speaking-colors/semantic/neutral.speaking-colors";
+@forward "speaking-colors/semantic/informational.speaking-colors";
+@forward "speaking-colors/semantic/successful.speaking-colors";
+@forward "speaking-colors/semantic/warning.speaking-colors";
+@forward "speaking-colors/semantic/critical.speaking-colors";

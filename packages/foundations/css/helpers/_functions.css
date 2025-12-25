@@ -1,0 +1,50 @@
+/* CSS custom functions for unit conversions */
+@import "_a11y.css";
+@import "_clearfix.css";
+
+/* CSS @function for px to rem conversion */
+@function --px-to-rem(--px-value) {
+	result: calc(var(--px-value) * 0.0625 * 1rem);
+}
+
+/* CSS @function for px to em conversion */
+@function --px-to-em(--px-value) {
+	result: calc(var(--px-value) * 0.0625 * 1em);
+}
+
+/* Cursor pointer custom property */
+:root {
+	--cursor-pointer: var(--db-overwrite-cursor, pointer);
+}
+
+/* Cursor pointer pattern using container style query */
+@container style(--use-cursor-pointer: true) {
+	cursor: var(--cursor-pointer);
+	
+	&:is(textarea),
+	&:is(input) {
+		cursor: initial;
+	}
+
+	&:is(input[type="checkbox"]),
+	&:is(input[type="radio"]:not(:checked)) {
+		cursor: pointer;
+	}
+}
+
+/* Hover pattern using container style query */
+@container style(--use-hover: true) {
+	/* stylelint-disable-next-line a11y/selector-pseudo-class-focus */
+	&:hover:not(:disabled, [aria-disabled="true"]) {
+		container-type: inline-size;
+		--use-cursor-pointer: true;
+	}
+}
+
+/* Active pattern using container style query */
+@container style(--use-active: true) {
+	&:active:not(:disabled, [aria-disabled="true"]) {
+		container-type: inline-size;
+		--use-cursor-pointer: true;
+	}
+}

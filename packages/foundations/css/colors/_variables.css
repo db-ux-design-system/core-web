@@ -1,0 +1,157 @@
+$variants: "neutral", "brand", "critical", "successful", "warning", "informational";
+$variant-colors: "neutral", "critical", "successful", "warning", "informational";
+$on-background-colors:
+	"emphasis-100", "emphasis-90", "emphasis-80", "emphasis-70", "emphasis-60",
+	"emphasis-50";
+$background-colors:
+	"basic-level-1", "basic-level-2", "basic-level-3", "basic-transparent-semi",
+	"basic-transparent-full";
+$inverted-colors: "contrast-max", "contrast-high", "contrast-low";
+
+// adaptive colors
+
+// bg basic
+$db-adaptive-bg-basic-level-1-default: var(
+	--db-adaptive-bg-basic-level-1-default
+);
+$db-adaptive-bg-basic-level-1-hovered: var(
+	--db-adaptive-bg-basic-level-1-hovered
+);
+$db-adaptive-bg-basic-level-1-pressed: var(
+	--db-adaptive-bg-basic-level-1-pressed
+);
+$db-adaptive-bg-basic-level-2-default: var(
+	--db-adaptive-bg-basic-level-2-default
+);
+$db-adaptive-bg-basic-level-2-hovered: var(
+	--db-adaptive-bg-basic-level-2-hovered
+);
+$db-adaptive-bg-basic-level-2-pressed: var(
+	--db-adaptive-bg-basic-level-2-pressed
+);
+$db-adaptive-bg-basic-level-3-default: var(
+	--db-adaptive-bg-basic-level-3-default
+);
+$db-adaptive-bg-basic-level-3-hovered: var(
+	--db-adaptive-bg-basic-level-3-hovered
+);
+$db-adaptive-bg-basic-level-3-pressed: var(
+	--db-adaptive-bg-basic-level-3-pressed
+);
+$db-adaptive-bg-basic-transparent-full-default: var(
+	--db-adaptive-bg-basic-transparent-full-default
+);
+$db-adaptive-bg-basic-transparent-semi-default: var(
+	--db-adaptive-bg-basic-transparent-semi-default
+);
+$db-adaptive-bg-basic-transparent-full-hovered: var(
+	--db-adaptive-bg-basic-transparent-full-hovered
+);
+$db-adaptive-bg-basic-transparent-full-pressed: var(
+	--db-adaptive-bg-basic-transparent-full-pressed
+);
+$db-adaptive-bg-basic-transparent-semi-hovered: var(
+	--db-adaptive-bg-basic-transparent-semi-hovered
+);
+$db-adaptive-bg-basic-transparent-semi-pressed: var(
+	--db-adaptive-bg-basic-transparent-semi-pressed
+);
+
+// on-bg basic
+$db-adaptive-on-bg-basic-emphasis-100-default: var(
+	--db-adaptive-on-bg-basic-emphasis-100-default
+);
+$db-adaptive-on-bg-basic-emphasis-100-hovered: var(
+	--db-adaptive-on-bg-basic-emphasis-100-hovered
+);
+$db-adaptive-on-bg-basic-emphasis-100-pressed: var(
+	--db-adaptive-on-bg-basic-emphasis-100-pressed
+);
+$db-adaptive-on-bg-basic-emphasis-90-default: var(
+	--db-adaptive-on-bg-basic-emphasis-90-default
+);
+$db-adaptive-on-bg-basic-emphasis-90-hovered: var(
+	--db-adaptive-on-bg-basic-emphasis-90-hovered
+);
+$db-adaptive-on-bg-basic-emphasis-90-pressed: var(
+	--db-adaptive-on-bg-basic-emphasis-90-pressed
+);
+$db-adaptive-on-bg-basic-emphasis-80-default: var(
+	--db-adaptive-on-bg-basic-emphasis-80-default
+);
+$db-adaptive-on-bg-basic-emphasis-80-hovered: var(
+	--db-adaptive-on-bg-basic-emphasis-80-hovered
+);
+$db-adaptive-on-bg-basic-emphasis-80-pressed: var(
+	--db-adaptive-on-bg-basic-emphasis-80-pressed
+);
+$db-adaptive-on-bg-basic-emphasis-70-default: var(
+	--db-adaptive-on-bg-basic-emphasis-70-default
+);
+$db-adaptive-on-bg-basic-emphasis-70-hovered: var(
+	--db-adaptive-on-bg-basic-emphasis-70-hovered
+);
+$db-adaptive-on-bg-basic-emphasis-70-pressed: var(
+	--db-adaptive-on-bg-basic-emphasis-70-pressed
+);
+$db-adaptive-on-bg-basic-emphasis-60-default: var(
+	--db-adaptive-on-bg-basic-emphasis-60-default
+);
+$db-adaptive-on-bg-basic-emphasis-50-default: var(
+	--db-adaptive-on-bg-basic-emphasis-50-default
+);
+
+// inverted
+
+$db-adaptive-bg-inverted-contrast-max-default: var(
+	--db-adaptive-bg-inverted-contrast-max-default
+);
+$db-adaptive-bg-inverted-contrast-max-hovered: var(
+	--db-adaptive-bg-inverted-contrast-max-hovered
+);
+$db-adaptive-bg-inverted-contrast-max-pressed: var(
+	--db-adaptive-bg-inverted-contrast-max-pressed
+);
+$db-adaptive-bg-inverted-contrast-high-default: var(
+	--db-adaptive-bg-inverted-contrast-high-default
+);
+$db-adaptive-bg-inverted-contrast-high-hovered: var(
+	--db-adaptive-bg-inverted-contrast-high-hovered
+);
+$db-adaptive-bg-inverted-contrast-high-pressed: var(
+	--db-adaptive-bg-inverted-contrast-high-pressed
+);
+$db-adaptive-bg-inverted-contrast-low-default: var(
+	--db-adaptive-bg-inverted-contrast-low-default
+);
+$db-adaptive-bg-inverted-contrast-low-hovered: var(
+	--db-adaptive-bg-inverted-contrast-low-hovered
+);
+$db-adaptive-bg-inverted-contrast-low-pressed: var(
+	--db-adaptive-bg-inverted-contrast-low-pressed
+);
+
+// on-bg-inverted
+$db-adaptive-on-bg-inverted-default: var(--db-adaptive-on-bg-inverted-default);
+$db-adaptive-on-bg-inverted-hovered: var(--db-adaptive-on-bg-inverted-hovered);
+$db-adaptive-on-bg-inverted-pressed: var(--db-adaptive-on-bg-inverted-pressed);
+
+// origin
+$db-adaptive-origin-default: var(--db-adaptive-origin-default);
+$db-adaptive-origin-hovered: var(--db-adaptive-origin-hovered);
+$db-adaptive-origin-pressed: var(--db-adaptive-origin-pressed);
+
+// on-origin
+$db-adaptive-on-origin-default: var(--db-adaptive-on-origin-default);
+$db-adaptive-on-origin-hovered: var(--db-adaptive-on-origin-hovered);
+$db-adaptive-on-origin-pressed: var(--db-adaptive-on-origin-pressed);
+
+// vibrant
+$db-adaptive-bg-vibrant-default: var(--db-adaptive-bg-vibrant-default);
+$db-adaptive-bg-vibrant-hovered: var(--db-adaptive-bg-vibrant-hovered);
+$db-adaptive-bg-vibrant-pressed: var(--db-adaptive-bg-vibrant-pressed);
+
+// on-vibrant
+$db-adaptive-on-bg-vibrant-default: var(--db-adaptive-on-bg-vibrant-default);
+$db-adaptive-on-bg-vibrant-hovered: var(--db-adaptive-on-bg-vibrant-hovered);
+$db-adaptive-on-bg-vibrant-pressed: var(--db-adaptive-on-bg-vibrant-pressed);

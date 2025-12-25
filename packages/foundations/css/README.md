@@ -9,18 +9,40 @@ This pilot migration demonstrates the feasibility of using modern CSS features t
 - **Container Style Queries** - Replace Sass placeholders (`@extend`) and mixins without parameters
 - **CSS Custom Properties** - Replace Sass variables and provide mixin parameters
 - **CSS Nesting** - Already supported, direct replacement for Sass nesting
+- **CSS @function** - Replace Sass functions with native CSS functions
 
 ## Migrated Files
 
-### Helpers (`/css/helpers/`)
-- `_clearfix.css` - Clearfix pattern using `@container style(--use-clearfix: true)`
-- `_a11y.css` - Visually hidden pattern using `@container style(--use-a11y-visually-hidden: true)`
-- `_display.css` - Display mixin pattern using container query + CSS custom property for parameter
-- `_index.css` - Index file importing all helpers
-- `README.md` - Detailed migration patterns and usage examples
+### Helpers (`/css/helpers/`) - 5 files
+- ✅ `_clearfix.css` - Clearfix pattern using `@container style(--use-clearfix: true)`
+- ✅ `_a11y.css` - Visually hidden pattern using `@container style(--use-a11y-visually-hidden: true)`
+- ✅ `_display.css` - Display mixin pattern using container query + CSS custom property for parameter
+- ✅ `_functions.css` - CSS @function for px-to-rem, px-to-em conversions; hover/active patterns
+- ✅ `_focus.css` - Focus styles using container style query
+- ✅ `_index.css` - Index file importing all helpers
+- ✅ `README.md` - Detailed migration patterns and usage examples
 
-### Defaults (`/css/defaults/`)
-- `default-icons.css` - Example of migrated icon defaults showing practical usage
+### Colors (`/css/colors/`) - 8 files  
+- ✅ `_variables.css` - Color variables (already using CSS custom properties)
+- ✅ `_variables.palette.css` - Color palette
+- ✅ `_variables.speaking-colors.css` - Speaking color names
+- ✅ `_variables.additional.css` - Additional colors
+- ✅ `_variables.additional-palette.css` - Additional palette
+- ✅ `_variables.additional-speaking-colors.css` - Additional speaking colors
+- ✅ `_placeholder.css` - Color placeholders
+- ✅ `_index.css` - Index importing all color files
+
+### Core (`/css/`) - 1 file
+- ✅ `_variables.css` - Core design tokens (sizing, spacing, borders, etc.)
+
+### Defaults (`/css/defaults/`) - 1 file
+- ✅ `default-icons.css` - Example of migrated icon defaults showing practical usage
+
+### Documentation
+- ✅ `README.md` - This file - comprehensive pilot implementation guide
+
+## Total Progress
+**15 files migrated** out of 192 SCSS files (~8% complete)
 
 ## Migration Patterns
 
