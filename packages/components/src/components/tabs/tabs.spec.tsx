@@ -71,12 +71,7 @@ const testA11y = () => {
 	});
 	test('should not have A11y issues', async ({ page, mount }) => {
 		await mount(comp);
-		const accessibilityScanResults = await new AxeBuilder({ page })
-			// TODO: There might be an issue in our implementation of which elements get which roles
-			// So we disabled "aria-allowed-role" for now
-			.include('.db-tabs')
-			.disableRules(['aria-allowed-role'])
-			.analyze();
+		const accessibilityScanResults = await new AxeBuilder({ page }).analyze();
 
 		expect(accessibilityScanResults.violations).toEqual([]);
 	});
