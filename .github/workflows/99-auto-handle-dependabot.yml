@@ -26,7 +26,7 @@ jobs:
           PR_URL: ${{github.event.pull_request.html_url}}
           GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
 
-      - name: �� Debug update-type output
+      - name: 🐛 Debug update-type output
         run: echo "Update type is '${{ steps.metadata.outputs.update-type }}'"
 
       - name: 🎁 Set project status to Ready for review (non-patch PRs)
