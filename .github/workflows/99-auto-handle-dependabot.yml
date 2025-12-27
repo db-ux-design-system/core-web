@@ -26,30 +26,32 @@ jobs:
           PR_URL: ${{github.event.pull_request.html_url}}
           GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
 
-      - name: 🐛 Debug update-type output
+      - name: �� Debug update-type output
         run: echo "Update type is '${{ steps.metadata.outputs.update-type }}'"
 
       - name: 🎁 Set project status to Ready for review (non-patch PRs)
         if: ${{ steps.metadata.outputs.update-type != 'version-update:semver-patch' }}
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           echo "Setting project state for non-patch PR to '🎁 Ready for review'"
 
-          # Get project number (assumes PR is already added to project by GitHub)
-          PROJECT_NUMBER=$(gh project list --owner db-ux-design-system --format json --limit 1 | jq -r '.[0].number')
+          # Get project data (assumes PR is already added to project by GitHub)
+          PROJECT_DATA=$(gh project list --owner db-ux-design-system --format json --limit 1)
+          PROJECT_NUMBER=$(echo "$PROJECT_DATA" | jq -r '.[0].number')
+          PROJECT_ID=$(echo "$PROJECT_DATA" | jq -r '.[0].id')
 
           if [ -z "$PROJECT_NUMBER" ] || [ "$PROJECT_NUMBER" = "null" ]; then
             echo "Unable to find project"
             exit 0
           fi
 
-          echo "Found project number: $PROJECT_NUMBER"
+          echo "Found project number: $PROJECT_NUMBER, ID: $PROJECT_ID"
 
-          # Get the Status field ID and the option ID for "🎁 Ready for review"
-          FIELD_ID=$(gh project field-list "$PROJECT_NUMBER" --owner db-ux-design-system --format json | jq -r '.fields[] | select(.name == "Status") | .id')
-          OPTION_ID=$(gh project field-list "$PROJECT_NUMBER" --owner db-ux-design-system --format json | jq -r '.fields[] | select(.name == "Status") | .options[] | select(.name == "🎁 Ready for review") | .id')
+          # Get the Status field and option IDs in one call
+          FIELD_DATA=$(gh project field-list "$PROJECT_NUMBER" --owner db-ux-design-system --format json)
+          FIELD_ID=$(echo "$FIELD_DATA" | jq -r '.fields[] | select(.name == "Status") | .id')
+          OPTION_ID=$(echo "$FIELD_DATA" | jq -r '.fields[] | select(.name == "Status") | .options[] | select(.name == "🎁 Ready for review") | .id')
 
           if [ -z "$FIELD_ID" ] || [ -z "$OPTION_ID" ] || [ "$FIELD_ID" = "null" ] || [ "$OPTION_ID" = "null" ]; then
             echo "Could not find Status field or '🎁 Ready for review' option"
@@ -59,8 +61,7 @@ jobs:
           echo "Found Status field ID: $FIELD_ID"
           echo "Found option ID for '🎁 Ready for review': $OPTION_ID"
 
-          # Get the project ID and item ID for this PR
-          PROJECT_ID=$(gh project list --owner db-ux-design-system --format json --limit 1 | jq -r '.[0].id')
+          # Get the item ID for this PR
           ITEM_ID=$(gh project item-list "$PROJECT_NUMBER" --owner db-ux-design-system --format json --limit 100 | jq -r --arg pr_url "${{ github.event.pull_request.html_url }}" '.items[] | select(.content.url == $pr_url) | .id')
 
           if [ -z "$ITEM_ID" ] || [ "$ITEM_ID" = "null" ]; then
