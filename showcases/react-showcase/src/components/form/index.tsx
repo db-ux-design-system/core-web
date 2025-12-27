@@ -37,7 +37,7 @@ const FormComponent = () => {
 	const [accordionItems, setAccordionItems] = useState<ValueLabelType[]>();
 	const [tabsTest, setTabsTest] = useState<boolean>(false);
 
-	const [multiSelectValue, setMultiSelectValue] = useState<
+	const [customSelectValue, setCustomSelectValue] = useState<
 		string[] | undefined
 	>(['o2']);
 
@@ -527,16 +527,16 @@ const FormComponent = () => {
 						selectAllLabel="Select all"
 						searchLabel="Search"
 						noResultsText="No matching filter"
-						values={multiSelectValue}
+						values={customSelectValue}
 						onOptionSelected={(value) => {
-							setMultiSelectValue(value);
+							setCustomSelectValue(value);
 						}}
 					/>
 					<DBButton
 						onClick={() => {
-							setMultiSelectValue([]);
+							setCustomSelectValue([]);
 						}}>
-						Reset Multiselect
+						Reset CustomSelect
 					</DBButton>
 					<DBButton type="submit">Submit</DBButton>
 				</form>
