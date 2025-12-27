@@ -1,0 +1,173 @@
+---
+name: Dependabot auto-handle
+
+permissions:
+  contents: write
+  pull-requests: write
+
+on:
+  workflow_call:
+
+jobs:
+  dependabot:
+    runs-on: ubuntu-24.04 # Use Ubuntu 24.04 explicitly
+    if: ${{ github.actor == 'dependabot[bot]' }}
+    steps:
+      - name: ⏬ Dependabot metadata
+        id: metadata
+        uses: dependabot/fetch-metadata@v2
+        with:
+          github-token: "${{ secrets.GITHUB_TOKEN }}"
+
+      - name: ✔ Approve a PR
+        if: ${{ steps.metadata.outputs.update-type == 'version-update:semver-patch' }}
+        run: gh pr review --approve "$PR_URL"
+        env:
+          PR_URL: ${{github.event.pull_request.html_url}}
+          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+
+      - name: 🐛 Debug update-type output
+        run: echo "Update type is '${{ steps.metadata.outputs.update-type }}'"
+
+      - name: 🎁 Add to project and set Ready for review (non-patch PRs)
+        if: ${{ steps.metadata.outputs.update-type != 'version-update:semver-patch' }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PR_NODE_ID: ${{ github.event.pull_request.node_id }}
+        run: |
+          echo "Setting project state for non-patch PR to '🎁 Ready for review'"
+
+          # Try to add PR to project and set status using GraphQL
+          # This is a best-effort approach - if it fails, the workflow continues
+
+          # Query for the organization's first project
+          PROJECT_DATA=$(gh api graphql -f query='
+            query {
+              organization(login: "db-ux-design-system") {
+                projectsV2(first: 1) {
+                  nodes {
+                    id
+                  }
+                }
+              }
+            }
+          ' 2>/dev/null || echo "")
+
+          PROJECT_ID=$(echo "$PROJECT_DATA" | jq -r '.data.organization.projectsV2.nodes[0].id // empty' 2>/dev/null)
+
+          if [ -z "$PROJECT_ID" ]; then
+            echo "Unable to find project. This may be expected if project access is restricted."
+            exit 0
+          fi
+
+          echo "Found project ID: $PROJECT_ID"
+
+          # Add PR to project
+          ADD_RESULT=$(gh api graphql -f query='
+            mutation($projectId: ID!, $contentId: ID!) {
+              addProjectV2ItemById(input: {projectId: $projectId, contentId: $contentId}) {
+                item {
+                  id
+                }
+              }
+            }
+          ' -f projectId="$PROJECT_ID" -f contentId="$PR_NODE_ID" 2>/dev/null || echo "")
+
+          ITEM_ID=$(echo "$ADD_RESULT" | jq -r '.data.addProjectV2ItemById.item.id // empty' 2>/dev/null)
+
+          if [ -z "$ITEM_ID" ]; then
+            echo "Could not add PR to project or get item ID. PR may already be in project."
+            # Try to find existing item
+            ITEMS_DATA=$(gh api graphql -f query='
+              query($projectId: ID!) {
+                node(id: $projectId) {
+                  ... on ProjectV2 {
+                    items(first: 100) {
+                      nodes {
+                        id
+                        content {
+                          ... on PullRequest {
+                            id
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            ' -f projectId="$PROJECT_ID" 2>/dev/null || echo "")
+            
+            ITEM_ID=$(echo "$ITEMS_DATA" | jq -r --arg pr_id "$PR_NODE_ID" '.data.node.items.nodes[] | select(.content.id == $pr_id) | .id // empty' 2>/dev/null)
+          fi
+
+          if [ -z "$ITEM_ID" ]; then
+            echo "Could not find or create project item for this PR."
+            exit 0
+          fi
+
+          echo "Found item ID: $ITEM_ID"
+
+          # Get status field and option IDs
+          FIELD_DATA=$(gh api graphql -f query='
+            query($projectId: ID!) {
+              node(id: $projectId) {
+                ... on ProjectV2 {
+                  fields(first: 20) {
+                    nodes {
+                      ... on ProjectV2SingleSelectField {
+                        id
+                        name
+                        options {
+                          id
+                          name
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          ' -f projectId="$PROJECT_ID" 2>/dev/null || echo "")
+
+          STATUS_FIELD_ID=$(echo "$FIELD_DATA" | jq -r '.data.node.fields.nodes[] | select(.name == "Status") | .id // empty' 2>/dev/null)
+          STATUS_OPTION_ID=$(echo "$FIELD_DATA" | jq -r '.data.node.fields.nodes[] | select(.name == "Status") | .options[] | select(.name == "🎁 Ready for review") | .id // empty' 2>/dev/null)
+
+          if [ -z "$STATUS_FIELD_ID" ] || [ -z "$STATUS_OPTION_ID" ]; then
+            echo "Could not find Status field or '🎁 Ready for review' option. Project may not have this field configured."
+            exit 0
+          fi
+
+          echo "Found Status field ID: $STATUS_FIELD_ID"
+          echo "Found option ID for '🎁 Ready for review': $STATUS_OPTION_ID"
+
+          # Update the status field
+          UPDATE_RESULT=$(gh api graphql -f query='
+            mutation($projectId: ID!, $itemId: ID!, $fieldId: ID!, $optionId: String!) {
+              updateProjectV2ItemFieldValue(input: {
+                projectId: $projectId
+                itemId: $itemId
+                fieldId: $fieldId
+                value: {
+                  singleSelectOptionId: $optionId
+                }
+              }) {
+                projectV2Item {
+                  id
+                }
+              }
+            }
+          ' -f projectId="$PROJECT_ID" -f itemId="$ITEM_ID" -f fieldId="$STATUS_FIELD_ID" -f optionId="$STATUS_OPTION_ID" 2>/dev/null || echo "")
+
+          if [ -n "$UPDATE_RESULT" ]; then
+            echo "Successfully set project status to '🎁 Ready for review'"
+          else
+            echo "Failed to update project status"
+          fi
+        continue-on-error: true
+
+      - name: 🤖 Enable auto-merge for Dependabot PRs
+        if: ${{ steps.metadata.outputs.update-type == 'version-update:semver-patch' }}
+        run: gh pr merge --auto --squash "$PR_URL"
+        env:
+          PR_URL: ${{github.event.pull_request.html_url}}
+          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
