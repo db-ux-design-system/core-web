@@ -15,5 +15,8 @@ export default {
 	'**/package.json': [
 		() => 'npm install --package-lock-only --ignore-scripts',
 		'npx npm-package-json-lint'
+	],
+	'*.{md,mdx,txt,yml,yaml,ts,tsx,js,jsx,html,css,scss,sass,vue}': [
+		'npm run lint:codespell -- --write-changes --'
 	]
 };

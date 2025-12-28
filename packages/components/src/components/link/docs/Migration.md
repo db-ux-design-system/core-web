@@ -13,8 +13,8 @@
 
 ### icons
 
-| Before        | Status | After | Description                                                            |
-| ------------- | :----: | ----- | ---------------------------------------------------------------------- |
-| `icon`        |   ❌   | ❌    | not valid anymore use `content` to show interal or external arrow icon |
-| `icononly`    |   ❌   | ❌    |                                                                        |
-| `iconVariant` |   ❌   | ❌    |                                                                        |
+| Before        | Status | After | Description                                                             |
+| ------------- | :----: | ----- | ----------------------------------------------------------------------- |
+| `icon`        |   ❌   | ❌    | not valid anymore use `content` to show internal or external arrow icon |
+| `icononly`    |   ❌   | ❌    |                                                                         |
+| `iconVariant` |   ❌   | ❌    |                                                                         |

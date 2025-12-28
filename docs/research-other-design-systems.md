@@ -24,7 +24,7 @@ We'd like to maintain a list of other design systems that might be interesting f
     - Web Components / StencilJS
 - [Porsche Design System](https://designsystem.porsche.com/v3/)
     - Web Components / StencilJS
-- [Barmer Puls Design System](https://barmer-puls.entw.bconnect.barmer.de/)
+- [Barmer Puls Design System](https://barmer-puls.entw.bconnect.barmer.de/) <!-- codespell:ignore -->
     - React Native
     - [Storybook](https://barmer-puls-react.entw.bconnect.barmer.de/?path=/story/surfaces-accordion--base)
 - [SAP UI5 Web Components](https://sap.github.io/ui5-webcomponents/)
@@ -40,7 +40,7 @@ We'd like to maintain a list of other design systems that might be interesting f
     - HTML & CSS first
     - JavaScript only as an addition, mainly because of that the target are content pages even only
     - Web Components (upcoming)
-- ["Informationstechnikzentrum Bund" Germany / KoliBri steht für "Komponentenbibliothek für die Barrierefreiheit"](https://public-ui.github.io/)
+- ["Informationstechnikzentrum Bund" Germany / KoliBri steht für "Komponentenbibliothek für die Barrierefreiheit"](https://public-ui.github.io/) <!-- codespell:ignore -->
     - Web Components / StencilJS
 - [Washington Post Design System (WPDS)](https://build.washingtonpost.com/)
     - React
