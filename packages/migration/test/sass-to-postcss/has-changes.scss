@@ -1,0 +1,79 @@
+@charset "utf-8";
+@use "@db-ux/core-foundations/build/styles/fonts";
+@use "@db-ux/core-foundations/build/styles/variables";
+@use "@db-ux/core-foundations/build/styles/colors";
+@use "@db-ux/core-foundations/build/styles/icons";
+@use "@db-ux/core-foundations/build/styles/helpers";
+@use "../../styles/internal/component";
+@use "../../styles/internal/button-components";
+@forward "defaults/default-root";
+@forward "../colors";
+
+// This is a single line comment
+
+/* This is a multi-line comment */
+
+// Another single line comment with more text
+.db-button {
+	@extend %default-interactive-component;
+	@extend %default-button;
+	@extend %db-overwrite-font-size-md;
+
+	max-inline-size: 100%;
+	color: colors.$db-adaptive-on-bg-basic-emphasis-100-default;
+	min-block-size: variables.$db-sizing-md;
+	block-size: max-content;
+	inline-size: fit-content;
+	padding: variables.$db-spacing-fixed-2xs variables.$db-spacing-fixed-md;
+
+	// disable text-decoration if someone wants to use the button for an <a> tag
+	text-decoration: none;
+
+	&[data-no-text="true"] {
+		@include icons.is-icon-text-replace;
+
+		padding: 0;
+	}
+
+	&[data-variant="brand"] {
+		background-color: colors.$db-brand-origin-default;
+
+		@include helpers.hover {
+			background-color: colors.$db-brand-origin-hovered;
+		}
+
+		@include helpers.active {
+			background-color: colors.$db-brand-origin-pressed;
+		}
+	}
+}
+
+// Mixin definition test
+@mixin cursor-pointer() {
+	cursor: var(--db-overwrite-cursor, pointer);
+	@content;
+}
+
+@mixin get-spacing($spacing) {
+	/* stylelint-disable-next-line db-ux/use-spacings */
+	padding: #{$spacing};
+}
+
+@mixin simple-mixin {
+	display: block;
+}
+
+.test-element {
+	@include cursor-pointer {
+		background: blue;
+	}
+
+	@include simple-mixin;
+}
+
+// Test string interpolation
+.interpolation-test {
+	padding: #{variables.$db-spacing-fixed-md};
+	color: #{colors.$db-adaptive-on-bg-basic-emphasis-100-default};
+	margin: #{$db-sizing-md};
+}
