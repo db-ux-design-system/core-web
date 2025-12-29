@@ -19,7 +19,7 @@ $with-icon-padding-calc: calc(
 	list-style-type: "";
 	border-radius: variables.$db-border-radius-sm;
 
-	&:has(details[aria-disabled="true"]) {
+	&:has(summary[aria-disabled="true"]) {
 		opacity: variables.$db-opacity-md;
 	}
 
@@ -81,11 +81,11 @@ $with-icon-padding-calc: calc(
 		}
 
 		@include helpers.hover {
-			&:not(:has(details[aria-disabled="true"])) {
+			&:not(:has(summary[aria-disabled="true"])) {
 				background-color: colors.$db-adaptive-bg-basic-transparent-full-hovered;
 			}
 
-			&:has(details[aria-disabled="true"]) {
+			&:has(summary[aria-disabled="true"]) {
 				cursor: initial;
 			}
 		}

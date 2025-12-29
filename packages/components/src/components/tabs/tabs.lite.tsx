@@ -253,7 +253,8 @@ export default function DBTabs(props: DBTabsProps) {
 
 				if (
 					nextDetails &&
-					nextDetails.getAttribute('aria-disabled') !== 'true'
+					nextSummary &&
+					nextSummary.getAttribute('aria-disabled') !== 'true'
 				) {
 					// Close all tabs in the group
 					tabItems.forEach((item) => {

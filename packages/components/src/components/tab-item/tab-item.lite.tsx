@@ -161,9 +161,6 @@ export default function DBTabItem(props: DBTabItemProps) {
 			<details
 				ref={_ref}
 				role="none"
-				aria-disabled={
-					getBoolean(props.disabled, 'disabled') ? 'true' : undefined
-				}
 				name={state._name}
 				id={props.id}
 				open={getBoolean(props.checked, 'checked')}
@@ -171,6 +168,11 @@ export default function DBTabItem(props: DBTabItemProps) {
 				<summary
 					role="tab"
 					aria-selected={state._selected}
+					aria-disabled={
+						getBoolean(props.disabled, 'disabled')
+							? 'true'
+							: undefined
+					}
 					data-icon={props.iconLeading ?? props.icon}
 					data-icon-trailing={props.iconTrailing}
 					data-show-icon={getBooleanAsString(
