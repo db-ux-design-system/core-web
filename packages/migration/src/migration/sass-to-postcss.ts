@@ -18,7 +18,7 @@ import type { ReplaceInFileConfig } from 'replace-in-file';
  * - Sass variables (most already map to CSS Custom Properties)
  */
 export const sass_to_postcss: ReplaceInFileConfig[] = [
-	// Convert @use with namespace to @import
+	// Convert @use with namespace to @import (double quotes)
 	// @use "@db-ux/..." -> @import "@db-ux/..."
 	{
 		files: '',
@@ -26,7 +26,15 @@ export const sass_to_postcss: ReplaceInFileConfig[] = [
 		to: '@import "$1";'
 	},
 
-	// Convert @forward to @import
+	// Convert @use with namespace to @import (single quotes)
+	// @use '@db-ux/...' -> @import '@db-ux/...'
+	{
+		files: '',
+		from: /@use\s+'([^']+)'(?:\s+as\s+\w+)?;/g,
+		to: "@import '$1';"
+	},
+
+	// Convert @forward to @import (double quotes)
 	// @forward "./path" -> @import "./path"
 	{
 		files: '',
@@ -34,12 +42,21 @@ export const sass_to_postcss: ReplaceInFileConfig[] = [
 		to: '@import "$1";'
 	},
 
+	// Convert @forward to @import (single quotes)
+	// @forward './path' -> @import './path'
+	{
+		files: '',
+		from: /@forward\s+'([^']+)';/g,
+		to: "@import '$1';"
+	},
+
 	// Convert @mixin definitions with parameters to @define-mixin
 	// @mixin name($param) { -> @define-mixin name $param {
+	// Note: $$ in replacement string produces single $ in output
 	{
 		files: '',
 		from: /@mixin\s+(\w[\w-]*)\s*\(\s*\$([^)]*)\)\s*\{/g,
-		to: '@define-mixin $1 $$$2 {'
+		to: '@define-mixin $1 $$$$2 {'
 	},
 
 	// Convert @mixin definitions without parameters to @define-mixin
@@ -85,27 +102,48 @@ export const sass_to_postcss: ReplaceInFileConfig[] = [
 	// Convert SCSS single-line comments to CSS comments
 	// // comment -> /* comment */
 	// Only match lines that start with // (with optional whitespace)
+	// Excludes lines starting with URL protocols (http://, https://, etc.)
 	{
 		files: '',
-		from: /^(\s*)\/\/\s*(.*)$/gm,
+		from: /^(\s*)\/\/(?!\/)(?!:)\s*(.*)$/gm,
 		to: '$1/* $2 */'
 	},
 
-	// Update .scss file extensions to .css in imports
+	// Update .scss file extensions to .css in imports (double quotes)
 	{
 		files: '',
 		from: /@import\s+"([^"]+)\.scss";/g,
 		to: '@import "$1.css";'
 	},
 
-	// Handle partial file imports (files starting with _)
-	// Sass allows importing _file.scss as "file"
-	// PostCSS needs the full path
-	// This is a basic pattern - may need refinement
+	// Update .scss file extensions to .css in imports (single quotes)
 	{
 		files: '',
-		from: /@import\s+"\.\/(_[\w-]+)";/g,
-		to: '@import "./$1.css";'
+		from: /@import\s+'([^']+)\.scss';/g,
+		to: "@import '$1.css';"
+	},
+
+	// Handle partial file imports with relative paths (files starting with _)
+	// Sass allows importing _file.scss as "file" or "./_file"
+	// PostCSS needs the full path with extension
+	{
+		files: '',
+		from: /@import\s+"(\.\.?\/[^"]*?)(_[\w-]+)";/g,
+		to: '@import "$1$2.css";'
+	},
+
+	// Handle partial file imports with relative paths (single quotes)
+	{
+		files: '',
+		from: /@import\s+'(\.\.?\/[^']*?)(_[\w-]+)';/g,
+		to: "@import '$1$2.css';"
+	},
+
+	// Handle partial file imports with package scope paths (@scope/_partial)
+	{
+		files: '',
+		from: /@import\s+"(@[\w-]+\/[^"]*?)(_[\w-]+)";/g,
+		to: '@import "$1$2.css";'
 	},
 
 	// Convert namespace references in variables (common pattern)

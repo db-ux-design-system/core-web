@@ -10,7 +10,7 @@ describe('sass_to_postcss', () => {
 			dryRun: true
 		});
 
-		expect(result).not.undefined;
+		expect(result).toBeDefined();
 
 		const changedFiles = (result as ReplaceResult[]).filter(
 			(res) => res.hasChanged
@@ -33,7 +33,7 @@ describe('sass_to_postcss', () => {
 			dryRun: true
 		});
 
-		expect(result).not.undefined;
+		expect(result).toBeDefined();
 
 		// The no-change.css file should not have SCSS syntax to change
 		const noChangeFile = (result as ReplaceResult[]).find((res) =>
