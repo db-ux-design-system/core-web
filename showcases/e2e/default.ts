@@ -402,9 +402,7 @@ export const runAriaSnapshotTest = ({
 		const filteredLines: string[] = [];
 		let skipUntilIndent = -1;
 
-		for (let i = 0; i < lines.length; i++) {
-			const line = lines[i];
-
+		for (const line of lines) {
 			if (line.includes(includesUrl)) {
 				continue;
 			}
