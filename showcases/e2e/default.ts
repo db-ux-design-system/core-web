@@ -441,9 +441,12 @@ export const runAriaSnapshotTest = ({
 			// Handle breadcrumb wrapper navigation landmarks
 			// The structure is: navigation "Breadcrumb" -> list -> navigation "Breadcrumb - X"
 			// We want to skip the outer wrapper and its immediate list child, then deindent the rest
-			if (!inBreadcrumbWrapper && 
+			if (
+				!inBreadcrumbWrapper &&
 				(line.includes('- navigation "Breadcrumb Navigation":') ||
-				 (line.includes('- navigation "Breadcrumb":') && !line.includes('- navigation "Breadcrumb -')))) {
+					(line.includes('- navigation "Breadcrumb":') &&
+						!line.includes('- navigation "Breadcrumb -')))
+			) {
 				// Mark that we're entering a breadcrumb wrapper
 				inBreadcrumbWrapper = true;
 				// The content we want to keep starts at currentIndent + 4 (wrapper nav + list)
@@ -453,13 +456,19 @@ export const runAriaSnapshotTest = ({
 			}
 
 			// Skip the immediate list child of breadcrumb wrapper
-			if (inBreadcrumbWrapper && line.trim() === '- list:' && currentIndent === deindentAmount - 2) {
+			if (
+				inBreadcrumbWrapper &&
+				line.trim() === '- list:' &&
+				currentIndent === deindentAmount - 2
+			) {
 				continue;
 			}
 
 			// Apply deindentation for content inside breadcrumb wrapper
 			if (deindentAmount > 0 && currentIndent >= deindentAmount) {
-				processedLine = ' '.repeat(currentIndent - deindentAmount) + line.trimStart();
+				processedLine =
+					' '.repeat(currentIndent - deindentAmount) +
+					line.trimStart();
 			}
 
 			filteredLines.push(processedLine);
