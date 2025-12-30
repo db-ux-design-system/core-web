@@ -18,26 +18,24 @@ This document outlines the evaluation and migration plan for moving from SASS (S
 
 ### Features Found in Codebase
 
-| Feature                        | Count     | Migration Approach                            |
-| ------------------------------ | --------- | --------------------------------------------- |
-| `@use`                         | Many      | Replace with CSS `@import` via postcss-import |
-| `@forward`                     | Many      | Replace with CSS `@import`                    |
-| `@mixin` / `@include`          | ~31 files | postcss-mixins plugin                         |
-| `@extend` / `%placeholder`     | ~67 files | postcss-extend-rule plugin                    |
-| `@function`                    | ~7 files  | CSS `@function` (native)                      |
-| `@if` / `@else`                | ~10 files | CSS `if()` function                           |
-| `@each`                        | ~23 files | Pre-generated or CSS future syntax            |
-| Sass variables `$var`          | Many      | CSS Custom Properties (already mapped)        |
-| String interpolation `#{$var}` | Many      | CSS variable syntax                           |
-| `sass:math` module             | Few       | CSS calc() or preprocessing                   |
-| `sass:map` module              | Few       | Preprocessing required                        |
+| Feature                        | Count     | Migration Approach                                                  |
+| ------------------------------ | --------- | ------------------------------------------------------------------- |
+| `@use`                         | Many      | Replace with CSS `@import` via postcss-import                       |
+| `@forward`                     | Many      | Replace with CSS `@import`                                          |
+| `@mixin` / `@include`          | ~31 files | postcss-mixins plugin                                               |
+| `@extend` / `%placeholder`     | ~67 files | postcss-extend-rule plugin                                          |
+| `@function`                    | ~7 files  | CSS `@function` (native)                                            |
+| `@if` / `@else`                | ~10 files | CSS `if()` function                                                 |
+| `@each`                        | ~23 files | [`postcss-each`](https://www.npmjs.com/package/postcss-each) plugin |
+| Sass variables `$var`          | Many      | CSS Custom Properties (already mapped)                              |
+| String interpolation `#{$var}` | Many      | CSS variable syntax                                                 |
+| `sass:math` module             | Few       | CSS calc() or preprocessing                                         |
+| `sass:map` module              | Few       | Preprocessing required                                              |
 
 ### Complex Features Requiring Special Handling
 
 1. **`@each` loops**: Used to generate repetitive CSS (e.g., color variants, density classes)
-    - Option A: Pre-generate these during build
-    - Option B: Use PostCSS plugin for loops
-    - Option C: Wait for CSS `@for` / `@each` proposals
+    - Use [`postcss-each`](https://www.npmjs.com/package/postcss-each) PostCSS plugin for loop support
 
 2. **Sass `sass:map` functions**: Used for dynamic lookups
     - Will need preprocessing or manual expansion
@@ -53,6 +51,7 @@ This document outlines the evaluation and migration plan for moving from SASS (S
 1. **`postcss-import`** - Handle `@import` statements (replaces `@use`/`@forward`)
 2. **`postcss-mixins`** - Support `@define-mixin` and `@mixin`
 3. **`postcss-extend-rule`** - Support `@extend` with placeholders
+4. **[`postcss-each`](https://www.npmjs.com/package/postcss-each)** - Support `@each` loops for generating repetitive CSS
 
 ### Compatibility Plugins (for legacy output)
 
@@ -240,6 +239,7 @@ module.exports = {
 	plugins: [
 		require("postcss-import"),
 		require("postcss-mixins"),
+		require("postcss-each"),
 		require("postcss-extend-rule"),
 		require("cssnano")({ preset: ["default", { svgo: false }] })
 	]
@@ -250,6 +250,7 @@ module.exports = {
 	plugins: [
 		require("postcss-import"),
 		require("postcss-mixins"),
+		require("postcss-each"),
 		require("postcss-extend-rule"),
 		require("postcss-if-function"),
 		require("cssnano")({ preset: ["default", { svgo: false }] })
@@ -311,11 +312,7 @@ npx @db-ux/core-migration migration --type sass_to_postcss --src ./packages/foun
 
 ### 1. `@each` Loops
 
-The codebase uses `@each` for generating variants. Options:
-
-- Pre-generate during build with a Node.js script
-- Use `postcss-each` plugin (not standard)
-- Manually expand loops (not recommended for maintainability)
+The codebase uses `@each` for generating variants. This can be handled using the [`postcss-each`](https://www.npmjs.com/package/postcss-each) plugin which provides similar loop functionality to Sass.
 
 ### 2. Sass Functions with Logic
 
@@ -337,8 +334,7 @@ PostCSS is generally faster than Sass, but the dual-output strategy doubles the 
 
 Migration from SASS to PostCSS is feasible and beneficial. The main challenges are:
 
-1. `@each` loops that generate variant classes
-2. Complex conditional logic in mixins
-3. Sass math and map functions
+1. Complex conditional logic in mixins
+2. Sass math and map functions
 
 A phased approach is recommended, starting with foundations and progressively migrating components. The migration script provides a foundation for automating repetitive transformations.

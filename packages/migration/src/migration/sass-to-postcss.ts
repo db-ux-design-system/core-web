@@ -216,7 +216,7 @@ export const sass_to_postcss: ReplaceInFileConfig[] = [
  * 1. Rename .scss files to .css:
  *    find packages -name "*.scss" -exec bash -c 'mv "$0" "${0%.scss}.css"' {} \;
  *
- * 2. Handle @each loops manually - these need to be expanded or use a PostCSS loop plugin
+ * 2. @each loops are supported via postcss-each plugin - no manual expansion needed
  *
  * 3. Convert @if/@else blocks to CSS if() function:
  *    @if $condition { ... } @else { ... }
@@ -233,6 +233,7 @@ export const sass_to_postcss: ReplaceInFileConfig[] = [
  * 6. Add required PostCSS plugins:
  *    - postcss-import
  *    - postcss-mixins
+ *    - postcss-each
  *    - postcss-extend-rule
  *    - postcss-if-function (for legacy output)
  */
