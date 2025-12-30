@@ -401,6 +401,8 @@ export const runAriaSnapshotTest = ({
 		const includesUrl = '/url:';
 		const filteredLines: string[] = [];
 		let skipUntilIndent = -1;
+		let deindentAmount = 0;
+		let inBreadcrumbWrapper = false;
 
 		for (const line of lines) {
 			if (line.includes(includesUrl)) {
@@ -418,6 +420,12 @@ export const runAriaSnapshotTest = ({
 				skipUntilIndent = -1;
 			}
 
+			// Reset deindent when we've moved back to original indentation or less
+			if (deindentAmount > 0 && currentIndent < deindentAmount) {
+				deindentAmount = 0;
+				inBreadcrumbWrapper = false;
+			}
+
 			let processedLine = line;
 
 			if (line.includes('- link')) {
@@ -430,11 +438,28 @@ export const runAriaSnapshotTest = ({
 				continue;
 			}
 
-			// Drop wrapper navigation landmarks for breadcrumbs with "Breadcrumb Navigation" label
-			// These are showcase-specific wrappers and not part of the breadcrumb component semantics
-			if (line.includes('- navigation "Breadcrumb Navigation":')) {
-				skipUntilIndent = currentIndent;
+			// Handle breadcrumb wrapper navigation landmarks
+			// The structure is: navigation "Breadcrumb" -> list -> navigation "Breadcrumb - X"
+			// We want to skip the outer wrapper and its immediate list child, then deindent the rest
+			if (!inBreadcrumbWrapper && 
+				(line.includes('- navigation "Breadcrumb Navigation":') ||
+				 (line.includes('- navigation "Breadcrumb":') && !line.includes('- navigation "Breadcrumb -')))) {
+				// Mark that we're entering a breadcrumb wrapper
+				inBreadcrumbWrapper = true;
+				// The content we want to keep starts at currentIndent + 4 (wrapper nav + list)
+				deindentAmount = currentIndent + 4;
+				// Skip this wrapper line
 				continue;
+			}
+
+			// Skip the immediate list child of breadcrumb wrapper
+			if (inBreadcrumbWrapper && line.trim() === '- list:' && currentIndent === deindentAmount - 2) {
+				continue;
+			}
+
+			// Apply deindentation for content inside breadcrumb wrapper
+			if (deindentAmount > 0 && currentIndent >= deindentAmount) {
+				processedLine = ' '.repeat(currentIndent - deindentAmount) + line.trimStart();
 			}
 
 			filteredLines.push(processedLine);
