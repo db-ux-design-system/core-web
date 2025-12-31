@@ -9,9 +9,9 @@
   - link "Size"
   - text: (Default) Small Medium
   - link "Content"
-  - text: (Default) Text Icon - Small
+  - text: (Default) Text Dot - Small Icon - Small
   - link "Placement"
-  - text: (Default) Inline Label
+  - text: (Default) Inline Corner - Top - Left Corner - Center - Left Corner - Bottom- Left Corner - Top - Right Corner - Center - Right Corner - Bottom- Right Label
   - button "LABEL SHOULD BE SET"
   - button "LABEL SHOULD BE SET"
   - button "LABEL SHOULD BE SET"
@@ -19,4 +19,4 @@
   - button "LABEL SHOULD BE SET"
   - button "LABEL SHOULD BE SET"
   - link "Examples"
-  - text: 9 12 123 9 12 123 Numbers (Default) Text - Medium Icon - Medium
+  - text: 9 12 123 9 12 123 Numbers (Default) Text - Medium Dot - Medium Icon - Medium

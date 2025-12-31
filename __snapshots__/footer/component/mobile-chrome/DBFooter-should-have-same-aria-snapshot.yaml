@@ -1,4 +1,5 @@
 - contentinfo:
-  - text: Footer Navigation Content
+  - banner:
+    - text: Footer Navigation Content
   - paragraph: © Deutsche Bahn AG
   - text: Legal Links
