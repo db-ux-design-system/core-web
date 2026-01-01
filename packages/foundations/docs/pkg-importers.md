@@ -12,6 +12,7 @@ This package supports both traditional imports and the new Sass pkg: importers s
 ```
 
 Build configuration:
+
 ```bash
 sass --load-path=node_modules input.scss output.css
 ```
@@ -24,6 +25,7 @@ sass --load-path=node_modules input.scss output.css
 ```
 
 Build configuration:
+
 ```bash
 sass --pkg-importer=node input.scss output.css
 ```
@@ -32,12 +34,13 @@ sass --pkg-importer=node input.scss output.css
 
 - ✅ **No load-path configuration needed**
 - ✅ **Explicit package imports**
-- ✅ **Better error messages** 
+- ✅ **Better error messages**
 - ✅ **Future-proof** approach recommended by Sass team
 
 ## Migration Guide
 
 ### Phase 1: Enable Support
+
 Update your build tools to support pkg: importers:
 
 ```bash
@@ -49,6 +52,7 @@ sass --pkg-importer=node --load-path=node_modules
 ```
 
 ### Phase 2: Gradual Adoption
+
 Start using pkg: imports in new files:
 
 ```scss
@@ -62,45 +66,47 @@ Start using pkg: imports in new files:
 ### Phase 3: Build Tool Integration
 
 #### Vite
+
 Vite supports pkg: importers out of the box:
 
 ```js
 // vite.config.js
 export default {
-  css: {
-    preprocessorOptions: {
-      scss: {
-        // No additional configuration needed for pkg: imports
-      }
-    }
-  }
-}
+	css: {
+		preprocessorOptions: {
+			scss: {
+				// No additional configuration needed for pkg: imports
+			}
+		}
+	}
+};
 ```
 
 #### Webpack (sass-loader)
+
 ```js
 // webpack.config.js
 module.exports = {
-  module: {
-    rules: [
-      {
-        test: /\.scss$/,
-        use: [
-          'style-loader',
-          'css-loader',
-          {
-            loader: 'sass-loader',
-            options: {
-              sassOptions: {
-                pkgImporter: 'node'
-              }
-            }
-          }
-        ]
-      }
-    ]
-  }
-}
+	module: {
+		rules: [
+			{
+				test: /\.scss$/,
+				use: [
+					"style-loader",
+					"css-loader",
+					{
+						loader: "sass-loader",
+						options: {
+							sassOptions: {
+								pkgImporter: "node"
+							}
+						}
+					}
+				]
+			}
+		]
+	}
+};
 ```
 
 ## Backwards Compatibility
@@ -115,10 +121,29 @@ Both import syntaxes can coexist:
 @use "pkg:@db-ux/core-foundations/build/styles/colors";
 
 .example {
-  padding: vars.$db-spacing-fixed-md;
-  color: colors.$db-adaptive-on-bg-basic-emphasis-100-default;
+	padding: vars.$db-spacing-fixed-md;
+	color: colors.$db-adaptive-on-bg-basic-emphasis-100-default;
 }
 ```
+
+## Package Configuration
+
+The `@db-ux/core-foundations` package includes the necessary `exports` field in `package.json` to support pkg: importers:
+
+```json
+{
+	"exports": {
+		".": {
+			"types": "./build/index.d.ts",
+			"default": "./build/index.js"
+		},
+		"./build/styles/*.scss": "./build/styles/*.scss",
+		"./build/styles/*": "./build/styles/*"
+	}
+}
+```
+
+This allows the Node.js pkg: importer to correctly resolve Sass file imports.
 
 ## Requirements
 

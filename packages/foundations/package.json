@@ -11,6 +11,14 @@
   "main": "./build/index.js",
   "types": "./build/index.d.ts",
   "module": "./build/index.js",
+  "exports": {
+    ".": {
+      "types": "./build/index.d.ts",
+      "default": "./build/index.js"
+    },
+    "./build/styles/*.scss": "./build/styles/*.scss",
+    "./build/styles/*": "./build/styles/*"
+  },
   "files": [
     "CHANGELOG.md",
     "agent",
