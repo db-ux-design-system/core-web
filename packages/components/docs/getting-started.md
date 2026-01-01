@@ -66,7 +66,7 @@ The integration depends on your tech stack and varies from copying the files fro
 
 ### SCSS: Configuration Options
 
-#### Option 1: Pkg: Importers (New, Recommended)
+#### Option 1: `pkg:` Importers (New, Recommended)
 
 Alternatively, you can use Sass [pkg: importers](https://sass-lang.com/blog/announcing-pkg-importers/) which eliminate the need for load-path configuration:
 
