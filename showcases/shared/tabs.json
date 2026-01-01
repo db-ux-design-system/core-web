@@ -249,7 +249,7 @@
 		],
 		"examples": [
 			{
-				"name": "2 tab selected",
+				"name": "2nd tab selected",
 				"props": {
 					"initialSelectedIndex": 1
 				}

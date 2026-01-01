@@ -37,7 +37,7 @@ const FormComponent = () => {
 	const [accordionItems, setAccordionItems] = useState<ValueLabelType[]>();
 	const [tabsTest, setTabsTest] = useState<boolean>(false);
 
-	const [multiSelectValue, setMultiSelectValue] = useState<
+	const [customSelectValue, setCustomSelectValue] = useState<
 		string[] | undefined
 	>(['o2']);
 
@@ -79,7 +79,13 @@ const FormComponent = () => {
 						fieldSizing="content"></DBTextarea>
 
 					<DBCustomSelect
-						options={[{ value: 'Option 1' }, { value: 'Option 2' }]}
+						options={[
+							{ value: 'Option 1' },
+							{ value: 'Option 2' },
+							{ value: 'Option 3' },
+							{ value: 'Option 4' },
+							{ value: 'Option 5' }
+						]}
 						label="Test"
 						required
 						showSearch
@@ -112,6 +118,7 @@ const FormComponent = () => {
 							label="Date input"
 							message="Description"
 							name="input-date-name"
+							value={dateinput}
 							onChange={(event) => {
 								setDateinput(event.target.value);
 							}}
@@ -248,6 +255,7 @@ const FormComponent = () => {
 							type="button"
 							onClick={() => {
 								setInput('reset');
+								setDateinput('');
 							}}>
 							Reset and Toggle
 						</DBButton>
@@ -519,16 +527,16 @@ const FormComponent = () => {
 						selectAllLabel="Select all"
 						searchLabel="Search"
 						noResultsText="No matching filter"
-						values={multiSelectValue}
+						values={customSelectValue}
 						onOptionSelected={(value) => {
-							setMultiSelectValue(value);
+							setCustomSelectValue(value);
 						}}
 					/>
 					<DBButton
 						onClick={() => {
-							setMultiSelectValue([]);
+							setCustomSelectValue([]);
 						}}>
-						Reset Multiselect
+						Reset CustomSelect
 					</DBButton>
 					<DBButton type="submit">Submit</DBButton>
 				</form>

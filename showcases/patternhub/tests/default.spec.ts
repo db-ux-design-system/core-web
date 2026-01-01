@@ -22,7 +22,7 @@ for (const group of Components) {
 			await getDefaultScreenshotTest(
 				component.name,
 				`docs`,
-				`./components/${component.name}/docs/Angular`,
+				`.${group.path}/${component.name}/docs/Angular`,
 				async (page) => {
 					const firstH2 = page.locator('h2').first();
 					await expect(firstH2).toBeVisible();
@@ -33,7 +33,7 @@ for (const group of Components) {
 			await getDefaultScreenshotTest(
 				component.name,
 				`overview`,
-				`./components/${component.name}/overview?fullscreen=true`,
+				`.${group.path}/${component.name}/overview?fullscreen=true`,
 				async (page) => {
 					const firstH2 = page.locator('h1').first();
 					await expect(firstH2).toBeVisible();
@@ -44,7 +44,7 @@ for (const group of Components) {
 			await getDefaultScreenshotTest(
 				component.name,
 				`properties`,
-				`./components/${component.name}/properties?fullscreen=true&noh1=true`,
+				`.${group.path}/${component.name}/properties?fullscreen=true&noh1=true`,
 				async (page) => {
 					const firstH2 = page.locator('h2').first();
 					await expect(firstH2).toBeVisible();

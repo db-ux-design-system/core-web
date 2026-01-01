@@ -1,6 +1,9 @@
 ---
 name: Cleans all preview pages for gh-pages
 
+permissions:
+  contents: write
+
 on:
   schedule:
     - cron: "0 0 * * *"
@@ -11,7 +14,7 @@ jobs:
     runs-on: ubuntu-24.04 # Use Ubuntu 24.04 explicitly
     steps:
       - name: ⏬ Checkout repo
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
 
       - name: 📥 Get gh-pages tar
         run: wget --quiet https://github.com/db-ux-design-system/core-web/tarball/gh-pages
@@ -24,7 +27,7 @@ jobs:
 
       - name: 🗑️ Clean all preview pages
         id: cleanup
-        uses: actions/github-script@v7
+        uses: actions/github-script@v8
         with:
           result-encoding: json
           script: |

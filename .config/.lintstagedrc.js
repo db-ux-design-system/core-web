@@ -12,5 +12,8 @@ export default {
 	// ensure that security vulnerabilities are fixed before committing - we need to skip `dev` for the moment as there are some unsolveable conflicts
 	'package-lock.json': 'npm audit fix --omit=dev',
 	// ensure that lock file is up to date
-	'**/package.json': () => 'npm install --package-lock-only --ignore-scripts',
+	'**/package.json': [
+		() => 'npm install --package-lock-only --ignore-scripts',
+		'npx npm-package-json-lint'
+	]
 };

@@ -44,7 +44,7 @@
 	@media (forced-colors: active) {
 		// border is the better implementation, but border height changes in windows based on pixel density
 		// we use it as a fallback for color contrast
-		/* stylelint-disable-next-line db-ux/use-border-color */
+		/* stylelint-disable-next-line no-invalid-position-declaration, db-ux/use-border-color */
 		border: variables.$db-border-width-3xs solid var(--db-divider-bg-color);
 	}
 }

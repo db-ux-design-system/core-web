@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react';
+import { useCallback, useState } from 'react';
 import { DBCard, DBDivider, DBLink } from '../../../../output/react/src';
 import type {
 	ReactDefaultComponentProps,
@@ -9,6 +9,39 @@ import useQuery from '../hooks/use-query';
 const redirectURLSearchParameters = process?.env?.REDIRECT_URL_SEARCH_PARAMS
 	? process.env.REDIRECT_URL_SEARCH_PARAMS === 'true'
 	: true;
+
+// Function to convert component title to source file path
+const getSourceFilePath = (title: string): string | undefined => {
+	// Remove 'DB' prefix and convert to kebab-case
+	const componentName = title
+		.replace(/^DB/, '')
+		.replaceAll(/([A-Z])/g, (match, letter, index) =>
+			index > 0 ? `-${letter.toLowerCase()}` : letter.toLowerCase()
+		);
+
+	// Verify this is a valid component name by checking common patterns
+	if (componentName && /^[a-z]+(-[a-z]+)*$/.test(componentName)) {
+		return `packages/components/src/components/${componentName}/${componentName}.lite.tsx`;
+	}
+};
+
+// Function to get GitHub source URL
+const getGitHubSourceUrl = (
+	title: string,
+	branch?: string
+): string | undefined => {
+	const filePath = getSourceFilePath(title);
+	if (!filePath) return;
+
+	// Use provided branch, or try to detect from environment, fallback to 'main'
+	const targetBranch =
+		branch ??
+		process.env.GITHUB_BRANCH ??
+		process.env.BRANCH_NAME ??
+		'main';
+
+	return `https://github.com/db-ux-design-system/core-web/blob/${targetBranch}/${filePath}`;
+};
 
 const VariantList = ({
 	name,
@@ -82,41 +115,24 @@ const DefaultComponent = ({
 	const color = useQuery(redirectURLSearchParameters)[2];
 
 	const getHref = (variantName: string): string => {
-		if (typeof globalThis !== 'undefined') {
-			const searchParameters = new URLSearchParams(
-				globalThis?.location?.href.split('?')[1]
-			);
-			searchParameters.set('page', variantName.toLowerCase());
-			return `${globalThis?.location?.href.split('?')[0]}?${searchParameters.toString()}`;
-		}
-
-		return '';
-	};
-
-	const openVariantInNewWindow = (
-		event: React.MouseEvent<HTMLAnchorElement>,
-		variantName: string
-	) => {
 		if (
-			typeof globalThis === 'undefined' ||
-			!globalThis.location.origin ||
-			!globalThis.location.href
+			globalThis.window === undefined ||
+			globalThis.location === undefined
 		) {
-			return;
+			return `?page=${encodeURIComponent(variantName.toLowerCase())}`;
 		}
 
-		const currentUrl = globalThis.location.href.split('?');
-		const rawComponentUrl = currentUrl[0];
-		const searchParameters = new URLSearchParams(currentUrl[1] ?? '');
+		const [baseUrl, query = ''] = globalThis.location.href.split('?');
+		const searchParameters = new URLSearchParams(query);
 		searchParameters.set('page', variantName.toLowerCase());
 
 		const regexComponentOverviewFragment = /\/[a-z\d\-_]*\/overview/;
 
-		const openUrl = componentName
-			? `${rawComponentUrl.replace(regexComponentOverviewFragment, `/${componentName}/overview`)}?${searchParameters.toString()}`
-			: `${currentUrl[0]}?${searchParameters.toString()}`;
+		if (componentName) {
+			return `${baseUrl.replace(regexComponentOverviewFragment, `/${componentName}/overview`)}?${searchParameters.toString()}`;
+		}
 
-		window.open(openUrl, '_blank');
+		return `${baseUrl}?${searchParameters.toString()}`;
 	};
 
 	if (pageName) {
@@ -129,11 +145,25 @@ const DefaultComponent = ({
 	}
 
 	const HeadlineTag = isSubComponent ? 'h2' : 'h1';
+	const sourceUrl = getGitHubSourceUrl(title);
 
 	return (
 		<>
 			<div className="default-container">
-				<HeadlineTag>{title}</HeadlineTag>
+				<div className="component-header">
+					<HeadlineTag>{title}</HeadlineTag>
+					{!redirectURLSearchParameters &&
+						sourceUrl &&
+						!isSubComponent && (
+							<DBLink
+								target="_blank"
+								referrerPolicy="no-referrer"
+								href={sourceUrl}
+								content="external">
+								View Source
+							</DBLink>
+						)}
+				</div>
 				{variants
 					?.filter(
 						(variant) =>
@@ -149,9 +179,7 @@ const DefaultComponent = ({
 								className="link-headline"
 								content="external"
 								target="_blank"
-								onClick={(event) => {
-									openVariantInNewWindow(event, variant.name);
-								}}
+								rel="noopener noreferrer"
 								href={getHref(variant.name)}>
 								{variant.name}
 							</DBLink>

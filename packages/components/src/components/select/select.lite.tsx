@@ -1,6 +1,7 @@
 import {
 	For,
 	onMount,
+	onUnMount,
 	onUpdate,
 	Show,
 	useDefaultProps,
@@ -36,6 +37,7 @@ import {
 	uuid
 } from '../../utils';
 import {
+	addValueResetEventListener,
 	handleFrameworkEventAngular,
 	handleFrameworkEventVue
 } from '../../utils/form-components';
@@ -66,6 +68,7 @@ export default function DBSelect(props: DBSelectProps) {
 		_value: '',
 		initialized: false,
 		_voiceOverFallback: '',
+		abortController: undefined,
 		hasValidState: () => {
 			return !!(props.validMessage ?? props.validation === 'valid');
 		},
@@ -94,8 +97,10 @@ export default function DBSelect(props: DBSelectProps) {
 				}
 			} else if (stringPropVisible(props.message, props.showMessage)) {
 				state._descByIds = state._messageId;
-			} else {
+			} else if (props.placeholder) {
 				state._descByIds = state._placeholderId;
+			} else {
+				state._descByIds = undefined;
 			}
 		},
 		handleClick: (event: ClickEvent<HTMLSelectElement> | any) => {
@@ -103,8 +108,18 @@ export default function DBSelect(props: DBSelectProps) {
 				props.onClick(event);
 			}
 		},
-		handleInput: (event: InputEvent<HTMLSelectElement> | any) => {
+		handleInput: (
+			event: InputEvent<HTMLSelectElement> | any,
+			reset?: boolean
+		) => {
 			useTarget({
+				angular: () => {
+					if (props.onInput) {
+						if (reset) {
+							props.onInput(event);
+						}
+					}
+				},
 				vue: () => {
 					if (props.input) {
 						props.input(event);
@@ -126,10 +141,25 @@ export default function DBSelect(props: DBSelectProps) {
 			});
 			state.handleValidation();
 		},
-		handleChange: (event: ChangeEvent<HTMLSelectElement> | any) => {
-			if (props.onChange) {
-				props.onChange(event);
-			}
+		handleChange: (
+			event: ChangeEvent<HTMLSelectElement> | any,
+			reset?: boolean
+		) => {
+			useTarget({
+				angular: () => {
+					if (props.onChange) {
+						// We need to split the if statements for generation
+						if (reset) {
+							props.onChange(event);
+						}
+					}
+				},
+				default: () => {
+					if (props.onChange) {
+						props.onChange(event);
+					}
+				}
+			});
 
 			useTarget({
 				angular: () => handleFrameworkEventAngular(state, event),
@@ -161,6 +191,13 @@ export default function DBSelect(props: DBSelectProps) {
 		state._invalidMessageId = mId + DEFAULT_INVALID_MESSAGE_ID_SUFFIX;
 		state._placeholderId = mId + DEFAULT_PLACEHOLDER_ID_SUFFIX;
 		state._invalidMessage = props.invalidMessage || DEFAULT_INVALID_MESSAGE;
+
+		useTarget({
+			angular: () => {
+				// @ts-ignore
+				this.writeValue?.(this.value?.() ?? '');
+			}
+		});
 	});
 
 	onUpdate(() => {
@@ -182,8 +219,10 @@ export default function DBSelect(props: DBSelectProps) {
 
 			if (stringPropVisible(props.message, props.showMessage)) {
 				state._descByIds = messageId;
-			} else {
+			} else if (props.placeholder) {
 				state._descByIds = placeholderId;
+			} else {
+				state._descByIds = undefined;
 			}
 
 			state.handleValidation();
@@ -194,6 +233,35 @@ export default function DBSelect(props: DBSelectProps) {
 	onUpdate(() => {
 		state._value = props.value;
 	}, [props.value]);
+
+	onUpdate(() => {
+		if (_ref) {
+			const defaultValue = useTarget({
+				react: (props as any).defaultValue,
+				default: undefined
+			});
+
+			let controller = state.abortController;
+			if (!controller) {
+				controller = new AbortController();
+				state.abortController = controller;
+			}
+
+			addValueResetEventListener(
+				_ref,
+				{ value: props.value, defaultValue },
+				(event) => {
+					state.handleChange(event, true);
+					state.handleInput(event, true);
+				},
+				controller.signal
+			);
+		}
+	}, [_ref]);
+
+	onUnMount(() => {
+		state.abortController?.abort();
+	});
 
 	return (
 		<div
@@ -232,8 +300,10 @@ export default function DBSelect(props: DBSelectProps) {
 					state.handleFocus(event)
 				}
 				aria-describedby={props.ariaDescribedBy ?? state._descByIds}>
-				{/* Empty option for floating label */}
-				<option hidden></option>
+				{/* Empty option for floating label and placeholder */}
+				<Show when={props.variant === 'floating' || props.placeholder}>
+					<option class="placeholder" value=""></option>
+				</Show>
 				<Show when={props.options?.length} else={props.children}>
 					<For each={props.options}>
 						{(option: DBSelectOptionType) => (
@@ -299,9 +369,11 @@ export default function DBSelect(props: DBSelectProps) {
 					</For>
 				</Show>
 			</select>
-			<span id={state._placeholderId}>
-				{props.placeholder ?? props.label}
-			</span>
+			<Show when={props.placeholder}>
+				<span class="db-select-placeholder" id={state._placeholderId}>
+					{props.placeholder}
+				</span>
+			</Show>
 			<Show when={stringPropVisible(props.message, props.showMessage)}>
 				<DBInfotext
 					size="small"
