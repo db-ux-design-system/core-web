@@ -7,18 +7,21 @@
       - listitem: Popover Custom Item 1
       - listitem: Popover Custom Item 2
     - button "Popover Custom Item 3"
+    - text: "1"
   - button "(Default) Regular"
   - article:
     - list:
       - listitem: Popover Custom Item 1
       - listitem: Popover Custom Item 2
     - button "Popover Custom Item 3"
+    - text: "1"
   - button "Expressive"
   - article:
     - list:
       - listitem: Popover Custom Item 1
       - listitem: Popover Custom Item 2
     - button "Popover Custom Item 3"
+    - text: "1"
   - link "Spacing"
   - button "(Default) Small"
   - article:
@@ -26,24 +29,28 @@
       - listitem: Popover Custom Item 1
       - listitem: Popover Custom Item 2
     - button "Popover Custom Item 3"
+    - text: "1"
   - button "Medium"
   - article:
     - list:
       - listitem: Popover Custom Item 1
       - listitem: Popover Custom Item 2
     - button "Popover Custom Item 3"
+    - text: "1"
   - button "Large"
   - article:
     - list:
       - listitem: Popover Custom Item 1
       - listitem: Popover Custom Item 2
     - button "Popover Custom Item 3"
+    - text: "1"
   - button "None"
   - article:
     - list:
       - listitem: Popover Custom Item 1
       - listitem: Popover Custom Item 2
     - button "Popover Custom Item 3"
+    - text: "1"
   - link "Placement"
   - button "bottom-start"
   - article:
@@ -51,72 +58,84 @@
       - listitem: Popover Custom Item 1
       - listitem: Popover Custom Item 2
     - button "Popover Custom Item 3"
+    - text: "1"
   - button "(Default) bottom"
   - article:
     - list:
       - listitem: Popover Custom Item 1
       - listitem: Popover Custom Item 2
     - button "Popover Custom Item 3"
+    - text: "1"
   - button "bottom-end"
   - article:
     - list:
       - listitem: Popover Custom Item 1
       - listitem: Popover Custom Item 2
     - button "Popover Custom Item 3"
+    - text: "1"
   - button "left-start"
   - article:
     - list:
       - listitem: Popover Custom Item 1
       - listitem: Popover Custom Item 2
     - button "Popover Custom Item 3"
+    - text: "1"
   - button "left"
   - article:
     - list:
       - listitem: Popover Custom Item 1
       - listitem: Popover Custom Item 2
     - button "Popover Custom Item 3"
+    - text: "1"
   - button "left-end"
   - article:
     - list:
       - listitem: Popover Custom Item 1
       - listitem: Popover Custom Item 2
     - button "Popover Custom Item 3"
+    - text: "1"
   - button "right-start"
   - article:
     - list:
       - listitem: Popover Custom Item 1
       - listitem: Popover Custom Item 2
     - button "Popover Custom Item 3"
+    - text: "1"
   - button "right"
   - article:
     - list:
       - listitem: Popover Custom Item 1
       - listitem: Popover Custom Item 2
     - button "Popover Custom Item 3"
+    - text: "1"
   - button "right-end"
   - article:
     - list:
       - listitem: Popover Custom Item 1
       - listitem: Popover Custom Item 2
     - button "Popover Custom Item 3"
+    - text: "1"
   - button "top-start"
   - article:
     - list:
       - listitem: Popover Custom Item 1
       - listitem: Popover Custom Item 2
     - button "Popover Custom Item 3"
+    - text: "1"
   - button "top"
   - article:
     - list:
       - listitem: Popover Custom Item 1
       - listitem: Popover Custom Item 2
     - button "Popover Custom Item 3"
+    - text: "1"
   - button "top-end"
   - article:
     - list:
       - listitem: Popover Custom Item 1
       - listitem: Popover Custom Item 2
     - button "Popover Custom Item 3"
+    - text: "1"
   - link "Gap"
   - button "(Default) False"
   - article:
@@ -124,12 +143,14 @@
       - listitem: Popover Custom Item 1
       - listitem: Popover Custom Item 2
     - button "Popover Custom Item 3"
+    - text: "1"
   - button "True"
   - article:
     - list:
       - listitem: Popover Custom Item 1
       - listitem: Popover Custom Item 2
     - button "Popover Custom Item 3"
+    - text: "1"
   - link "Animation"
   - button "(Default) True"
   - article:
@@ -137,12 +158,14 @@
       - listitem: Popover Custom Item 1
       - listitem: Popover Custom Item 2
     - button "Popover Custom Item 3"
+    - text: "1"
   - button "False"
   - article:
     - list:
       - listitem: Popover Custom Item 1
       - listitem: Popover Custom Item 2
     - button "Popover Custom Item 3"
+    - text: "1"
   - link "Delay"
   - button "(Default) None"
   - article:
@@ -150,20 +173,23 @@
       - listitem: Popover Custom Item 1
       - listitem: Popover Custom Item 2
     - button "Popover Custom Item 3"
+    - text: "1"
   - button "Slow"
   - article:
     - list:
       - listitem: Popover Custom Item 1
       - listitem: Popover Custom Item 2
     - button "Popover Custom Item 3"
+    - text: "1"
   - button "Fast"
   - article:
     - list:
       - listitem: Popover Custom Item 1
       - listitem: Popover Custom Item 2
     - button "Popover Custom Item 3"
+    - text: "1"
   - link "Width"
   - button "(Default) Auto"
-  - article: Max width, lorem ipsum dolor sit amet, consetetur sadipscing
+  - article: Max width, lorem ipsum dolor sit amet, consetetur sadipscing1
   - button "Fixed"
-  - article: Max width, lorem ipsum dolor sit amet, consetetur sadipscing
+  - article: Max width, lorem ipsum dolor sit amet, consetetur sadipscing1
