@@ -9,10 +9,6 @@
   },
   "author": "DB Systel GmbH",
   "license": "Apache-2.0",
-  "exports": {
-    "./build/styles/*.scss": "./build/styles/*.scss",
-    "./build/styles/*": "./build/styles/*"
-  },
   "files": [
     "CHANGELOG.md",
     "agent",
@@ -69,5 +65,6 @@
   "publishConfig": {
     "registry": "https://registry.npmjs.org/",
     "access": "public"
-  }
+  },
+  "sass": "./build/styles/index.scss"
 }

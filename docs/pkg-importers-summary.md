@@ -79,11 +79,6 @@ sass --load-path=node_modules input.scss output.css
 
 ## Files Added/Modified
 
-### Package Configuration
-
-- `packages/foundations/package.json` - Added `exports` field for pkg: importer support
-- `packages/components/package.json` - Added `exports` field for pkg: importer support
-
 ### Documentation
 
 - `docs/pkg-importers-evaluation.md` - Complete evaluation
@@ -102,7 +97,6 @@ sass --load-path=node_modules input.scss output.css
 - Pkg: importers produce identical output
 - Complex import patterns work correctly
 - Build configurations tested and documented
-- Package exports field configured per Sass specification
 
 ## Recommendation
 
@@ -110,7 +104,6 @@ sass --load-path=node_modules input.scss output.css
 
 1. ✅ **Immediate**: Update build tools to support both syntaxes
 2. ✅ **Short-term**: Update documentation and examples
-3. ✅ **Package config**: Add exports field to package.json files
-4. 🔄 **Long-term**: Consider pkg: imports as the recommended approach for new projects
+3. 🔄 **Long-term**: Consider pkg: imports as the recommended approach for new projects
 
 This provides maximum flexibility while positioning the design system for Sass's future direction.

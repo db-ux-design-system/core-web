@@ -140,46 +140,12 @@ sass --pkg-importer=node build/styles
 2. **Identical output** to traditional imports
 3. **Backwards compatible** - both can coexist
 4. **Complex imports work** - @forward, @use combinations tested
-5. **Package exports configured** - Added `exports` field to package.json for pkg: importer compatibility
-
-### Package.json Configuration
-
-To support pkg: importers, the package.json files have been updated with an `exports` field:
-
-**@db-ux/core-foundations:**
-
-```json
-{
-	"exports": {
-		".": {
-			"types": "./build/index.d.ts",
-			"default": "./build/index.js"
-		},
-		"./build/styles/*.scss": "./build/styles/*.scss",
-		"./build/styles/*": "./build/styles/*"
-	}
-}
-```
-
-**@db-ux/core-components:**
-
-```json
-{
-	"exports": {
-		"./build/styles/*.scss": "./build/styles/*.scss",
-		"./build/styles/*": "./build/styles/*"
-	}
-}
-```
-
-This configuration allows the Node.js pkg: importer to correctly resolve Sass file imports according to the [Sass pkg: importers specification](https://sass-lang.com/blog/announcing-pkg-importers/).
 
 ## Recommendations
 
 ### 1. Immediate Actions
 
-- [x] Test pkg: importers with current packages
-- [x] Add exports field to package.json files
+- [ ] Test pkg: importers with current packages
 - [ ] Update build configurations to support both syntaxes
 - [ ] Create example showcasing pkg: imports
 
@@ -203,6 +169,5 @@ Pkg: importers offer significant benefits for simplifying package imports and re
 - ✅ Modern syntax already in use
 - ✅ No breaking changes required
 - ✅ Can be adopted gradually
-- ✅ Package exports field configured for pkg: importer compatibility
 
 **Next Steps**: Implement testing and documentation updates to support pkg: importers while maintaining backwards compatibility.

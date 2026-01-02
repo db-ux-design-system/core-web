@@ -126,25 +126,6 @@ Both import syntaxes can coexist:
 }
 ```
 
-## Package Configuration
-
-The `@db-ux/core-foundations` package includes the necessary `exports` field in `package.json` to support pkg: importers:
-
-```json
-{
-	"exports": {
-		".": {
-			"types": "./build/index.d.ts",
-			"default": "./build/index.js"
-		},
-		"./build/styles/*.scss": "./build/styles/*.scss",
-		"./build/styles/*": "./build/styles/*"
-	}
-}
-```
-
-This allows the Node.js pkg: importer to correctly resolve Sass file imports.
-
 ## Requirements
 
 - **Sass version**: 1.71.0 or later (current: 1.85.0 ✅)
