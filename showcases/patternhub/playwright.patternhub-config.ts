@@ -17,9 +17,10 @@ const patternHubConfig: PlaywrightTestConfig = {
 		}
 	],
 	webServer: {
-		command: `npx http-server ../../build-showcases${process.env.NEXT_PUBLIC_BASE_PATH ? '' : '/patternhub'}`,
+		command: `npx http-server ../../build-showcases${process.env.NEXT_PUBLIC_BASE_PATH ? '' : '/patternhub'} -p 8080 -c-1 --cors`,
 		port: 8080,
-		reuseExistingServer: !process.env.CI
+		reuseExistingServer: !process.env.CI,
+		timeout: 120 * 1000
 	},
 	use: {
 		/* Maximum time each action such as `click()` can take. Defaults to 0 (no limit). */
