@@ -14,6 +14,6 @@ export default {
 	// ensure that lock file is up to date
 	'**/package.json': [
 		() => 'npm install --package-lock-only --ignore-scripts',
-		'npx npm-package-json-lint'
+		'npm run lint:package-json'
 	]
 };
