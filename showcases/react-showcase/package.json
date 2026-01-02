@@ -22,8 +22,8 @@
     "test:visual-snapshots": "cross-env showcase=react-showcase npx playwright test --config=../playwright.visual-snapshots.ts"
   },
   "dependencies": {
-    "react": "18.3.1",
-    "react-dom": "18.3.1",
+    "react": "19.2.3",
+    "react-dom": "19.2.3",
     "react-router-dom": "7.9.5",
     "sa11y": "4.3.5"
   },
