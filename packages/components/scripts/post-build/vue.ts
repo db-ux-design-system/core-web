@@ -24,25 +24,25 @@ export default (tmp?: boolean) => {
 				to: `vue`
 			});
 
-			// Transform React props syntax to Vue v-slots syntax for footer component
+			// Transform React props syntax to Vue slots object for footer component
 			if (componentName === 'footer') {
 				// Handle footer with both main and meta slots
 				replaceInFileSync({
 					files: `../../${outputFolder}/vue/src/components/${componentName}/${componentName}.spec.tsx`,
 					from: /main=\{(<div>.*?<\/div>)\}\s*meta=\{(<div>.*?<\/div>)\}/gs,
-					to: 'v-slots={{ main: () => $1, meta: () => $2 }}'
+					to: '{...{ slots: { main: () => $1, meta: () => $2 } }}'
 				});
 				// Handle footer with only meta slot (for compOnlyMeta)
 				replaceInFileSync({
 					files: `../../${outputFolder}/vue/src/components/${componentName}/${componentName}.spec.tsx`,
-					from: /(\s+)meta=\{(<div>.*?<\/div>)\}(?!\s*\/?>)/gs,
-					to: '$1v-slots={{ meta: () => $2 }}'
+					from: /(\s+)meta=\{(<div>.*?<\/div>)\}(\s*\/?>\s*)/gs,
+					to: '$1{...{ slots: { meta: () => $2 } }}$3'
 				});
 				// Handle footer with only main slot
 				replaceInFileSync({
 					files: `../../${outputFolder}/vue/src/components/${componentName}/${componentName}.spec.tsx`,
-					from: /(\s+)main=\{(<div>.*?<\/div>)\}(?!\s*meta)/gs,
-					to: '$1v-slots={{ main: () => $2 }}'
+					from: /(\s+)main=\{(<div>.*?<\/div>)\}(\s*\/?>\s*)/gs,
+					to: '$1{...{ slots: { main: () => $2 } }}$3'
 				});
 			}
 
