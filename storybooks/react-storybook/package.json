@@ -8,14 +8,14 @@
     "storybook": "storybook dev -p 6005"
   },
   "dependencies": {
-    "react": "18.3.1",
-    "react-dom": "18.3.1"
+    "react": "19.2.3",
+    "react-dom": "19.2.3"
   },
   "devDependencies": {
     "@eslint/js": "9.39.1",
     "@storybook/react-vite": "9.1.13",
-    "@types/react": "18.3.13",
-    "@types/react-dom": "18.3.1",
+    "@types/react": "19.2.7",
+    "@types/react-dom": "19.2.3",
     "@vitejs/plugin-react": "5.1.2",
     "eslint": "9.39.1",
     "eslint-plugin-react-hooks": "7.0.1",
