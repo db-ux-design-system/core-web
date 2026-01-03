@@ -190,6 +190,6 @@
     - text: "1"
   - link "Width"
   - button "(Default) Auto"
-  - article: Max width, lorem ipsum dolor sit amet, consetetur sadipscing 1
+  - article: Max width, lorem ipsum dolor sit amet, consetetur sadipscing1
   - button "Fixed"
-  - article: Max width, lorem ipsum dolor sit amet, consetetur sadipscing 1
+  - article: Max width, lorem ipsum dolor sit amet, consetetur sadipscing1
