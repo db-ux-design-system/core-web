@@ -5,7 +5,7 @@
   "private": true,
   "scripts": {
     "build": "npm-run-all compile build:*",
-    "build:app": "next build --webpack",
+    "build:app": "cpr ../../node_modules/iframe-resizer/js/ public/iframe-resizer -o && next build --webpack",
     "build:copy": "cpr out ../../build-showcases/patternhub -o",
     "compile": "npm-run-all compile:*",
     "compile:01_jsx": "node scripts/generate-example-jsx.js",
@@ -17,7 +17,6 @@
     "lint": "next lint",
     "next:dev": "next dev --webpack",
     "open": "open-cli http://localhost:3000/core-web/sub",
-    "prebuild:app": "cpr ../../node_modules/iframe-resizer/js/ public/iframe-resizer -o",
     "regenerate:screenshots": "npx playwright test --config=./playwright.patternhub-config.ts --update-snapshots",
     "start": "cross-env NEXT_PUBLIC_BASE_PATH=/core-web/sub npm-run-all compile next:dev",
     "test:e2e": "npx playwright test --config=./playwright.patternhub-config.ts"
