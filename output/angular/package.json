@@ -12,11 +12,10 @@
   "module": "fesm2022/db-ux-ngx-core-components.mjs",
   "types": "index.d.ts",
   "scripts": {
-    "build": "ng build",
+    "build": "ng build && npm-run-all --parallel mv:*",
     "mv:agent": "cpr agent ../../build-outputs/angular/agent --overwrite",
     "mv:changelog": "cpr CHANGELOG.md ../../build-outputs/angular/CHANGELOG.md --overwrite",
     "ng": "ng",
-    "postbuild": "npm-run-all --parallel mv:*",
     "start": "ng serve"
   },
   "devDependencies": {

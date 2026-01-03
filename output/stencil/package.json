@@ -22,14 +22,13 @@
     "CHANGELOG.md"
   ],
   "scripts": {
-    "build": "stencil build",
+    "build": "stencil build && npm-run-all --parallel build:* --parallel mv:*",
     "build:cem": "cem analyze",
     "mv:dist": "cpr dist ../../build-outputs/wc-core-components/dist -o",
     "mv:agent": "cpr agent ../../build-outputs/wc-core-components/agent --overwrite",
     "mv:changelog": "cpr CHANGELOG.md ../../build-outputs/wc-core-components/CHANGELOG.md --overwrite",
     "mv:package.json": "cpr package.json ../../build-outputs/wc-core-components/package.json -o",
     "mv:readme": "cpr README.md ../../build-outputs/wc-core-components/README.md -o",
-    "postbuild": "npm-run-all --parallel build:* --parallel mv:*",
     "start": "stencil build --watch"
   },
   "devDependencies": {

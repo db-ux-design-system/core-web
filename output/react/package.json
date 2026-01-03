@@ -16,14 +16,13 @@
     "CHANGELOG.md"
   ],
   "scripts": {
-    "build": "npm-run-all tsc",
+    "build": "npm-run-all tsc && npm-run-all --parallel mv:*",
     "mv:dist": "cpr dist ../../build-outputs/react/dist --overwrite",
     "mv:agent": "cpr agent ../../build-outputs/react/agent --overwrite",
     "mv:changelog": "cpr CHANGELOG.md ../../build-outputs/react/CHANGELOG.md --overwrite",
     "mv:package.json": "cpr package.json ../../build-outputs/react/package.json --overwrite",
     "mv:readme": "cpr README.md ../../build-outputs/react/README.md --overwrite",
     "open:report": "npx playwright show-report",
-    "postbuild": "npm-run-all --parallel mv:*",
     "regenerate:screenshots": "playwright test --config playwright.config.ts --update-snapshots",
     "test:components": "playwright test --config playwright.config.ts",
     "test:windows": "playwright test --config playwright.screen-reader.win.ts",
