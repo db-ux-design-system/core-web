@@ -5,6 +5,7 @@
 @use "@db-ux/core-foundations/build/styles/icons";
 @use "@db-ux/core-foundations/build/styles/screen-sizes";
 @use "../../styles/internal/form-components";
+@use "../../styles/internal/select-dropdown-components";
 
 // web-component workaround
 db-custom-select-list-item:not(:last-of-type) {
@@ -15,23 +16,13 @@ db-custom-select-list-item:not(:last-of-type) {
 
 .db-custom-select-list-item {
 	@include helpers.display(flex);
+	@extend %select-list-item;
 
 	block-size: 100%;
-	position: relative;
-	padding: variables.$db-spacing-fixed-sm;
-	background-color: colors.$db-adaptive-bg-basic-transparent-full-default;
-	border-radius: variables.$db-border-radius-xs;
-	box-sizing: border-box;
 
 	&:has(> label) {
 		&:not(:has(input[type="radio"]:checked)) {
-			@include helpers.hover {
-				background-color: colors.$db-adaptive-bg-basic-transparent-full-hovered;
-			}
-
-			@include helpers.active {
-				background-color: colors.$db-adaptive-bg-basic-transparent-full-pressed;
-			}
+			@extend %select-list-item-interaction;
 		}
 	}
 
