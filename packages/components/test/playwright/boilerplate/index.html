@@ -18,6 +18,11 @@
 			.padding-box {
 				padding: var(--db-spacing-fixed-3xl);
 			}
+			/* Use contain-intrinsic-size for better layout stability during testing */
+			#root {
+				contain: layout size;
+				contain-intrinsic-size: 800px 600px;
+			}
 		</style>
 	</head>
 	<body>
