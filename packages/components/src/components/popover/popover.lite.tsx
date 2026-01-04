@@ -172,7 +172,7 @@ export default function DBPopover(props: DBPopoverProps) {
 				data-delay={props.delay}
 				data-width={props.width}
 				data-placement={props.placement}>
-				{props.children} 1
+				{props.children}
 			</article>
 		</div>
 	);
