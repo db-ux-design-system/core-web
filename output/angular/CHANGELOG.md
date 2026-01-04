@@ -1,5 +1,21 @@
 # @db-ux/ngx-core-components
 
+## 4.2.6
+
+### Patch Changes
+
+- fix(switch): not displaying the `forced-colors` content on regular display mode - [see commit 3b18938](https://github.com/db-ux-design-system/core-web/commit/3b189383324edd2a30b2d60b45fe1130ae5b8478)
+
+## 4.2.5
+
+### Patch Changes
+
+- fix: placeholder for DBSelect with variant floating is moved down - [see commit 9e1e48c](https://github.com/db-ux-design-system/core-web/commit/9e1e48c3ee10e72c52df58b65f4562be007d3447)
+
+## 4.2.4
+
+_version bump_
+
 ## 4.2.3
 
 ### Patch Changes
