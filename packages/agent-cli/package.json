@@ -1,6 +1,6 @@
 {
   "name": "@db-ux/agent-cli",
-  "version": "4.2.0",
+  "version": "4.2.6",
   "type": "module",
   "description": "CLI for DB UX Design System generate AI agent instructions",
   "repository": {
@@ -32,8 +32,8 @@
   },
   "devDependencies": {
     "cpr": "3.0.1",
-    "esbuild": "0.25.12",
-    "tsx": "4.20.6",
+    "esbuild": "0.27.2",
+    "tsx": "4.21.0",
     "vitest": "3.2.4"
   },
   "publishConfig": {
