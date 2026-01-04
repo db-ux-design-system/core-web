@@ -1,5 +1,67 @@
 # @db-ux/core-components
 
+## 4.2.6
+
+### Patch Changes
+
+- fix(switch): not displaying the `forced-colors` content on regular display mode - [see commit 3b18938](https://github.com/db-ux-design-system/core-web/commit/3b189383324edd2a30b2d60b45fe1130ae5b8478)
+
+## 4.2.5
+
+### Patch Changes
+
+- fix: placeholder for DBSelect with variant floating is moved down - [see commit 9e1e48c](https://github.com/db-ux-design-system/core-web/commit/9e1e48c3ee10e72c52df58b65f4562be007d3447)
+
+## 4.2.4
+
+### Patch Changes
+
+- fix: deprecation warning for SASS `if()` function - [see commit 69961ca](https://github.com/db-ux-design-system/core-web/commit/69961ca130a076ddbeb13c77379278571d92fec1)
+
+## 4.2.3
+
+### Patch Changes
+
+- fix(SASS): return typed values from scss functions `px-to-rem` and `px-to-em` instead of strings - [see commit e1be60a](https://github.com/db-ux-design-system/core-web/commit/e1be60a871596107d8026390b194f0730c84a8ad)
+
+- refactor(css): replacing slow selector - [see commit 1133c21](https://github.com/db-ux-design-system/core-web/commit/1133c216ab5ec802241c6986fc9287ff22a287b0)
+
+- fix(textarea): "responsiveness" due to CSS selector - [see commit c1104df](https://github.com/db-ux-design-system/core-web/commit/c1104dfe242a455ea8cf80716322a591e6e6e109)
+
+## 4.2.2
+
+### Patch Changes
+
+- fix(form elements): `valid` background- and border-colors - [see commit 8f07e55](https://github.com/db-ux-design-system/core-web/commit/8f07e55f2155fcb619198857397ce354f90c4803)
+
+## 4.2.1
+
+_version bump_
+
+## 4.2.0
+
+_version bump_
+
+## 4.1.0
+
+### Minor Changes
+
+- refactor(notification): update and simplify grid layout for block link variant - [see commit cb83f96](https://github.com/db-ux-design-system/core-web/commit/cb83f966eaf29c85b4cf0079750bdd563f216d6e)
+
+- fix(DBCustomSelect): properly announce selected options - [see commit 773edeb](https://github.com/db-ux-design-system/core-web/commit/773edeb943a085eb79e1c8d59059137b2830fbf0):
+  - feat(DBCustomSelect): introduce new property `selectedPrefix`
+
+### Patch Changes
+
+- fix(DBCustomSelect): automatically handle form reset events - [see commit 6af5246](https://github.com/db-ux-design-system/core-web/commit/6af5246b3b2e6febdc6ff6342ba1a8eb10184d14):
+  - An event listener is now added for every form component (input, custom-select, etc.) when a `form` property is passed.
+  - This listener detects form resets and updates the component's internal value/checked state accordingly.
+  - > **Note**: This does not work for `ngModel` in Angular.
+
+- fix(button): Replace fixed height with min-height for buttons to allow dynamic height adjustment when text wraps - [see commit d1fd2c4](https://github.com/db-ux-design-system/core-web/commit/d1fd2c4e58a5ed6f75fab44700cd2d93c7232474)
+
+- fix(input): Date or time types – initial value gets displayed as placeholder [see commit e3c7ce7](e3c7ce7718803624557bc8fc66f7b662b42ff0be)
+
 ## 4.0.4
 
 ### Patch Changes

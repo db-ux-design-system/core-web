@@ -13,6 +13,7 @@ import DefaultComponent from "../DefaultComponent.vue";
 				class="db-color-informational db-bg-color-basic-level-2 section-card-container"
 				:spacing="exampleProps?.spacing"
 				:width="exampleProps?.width"
+				:id="exampleProps?.id"
 			>
 				<DBCard>{{ exampleName }}</DBCard>
 				<DBCard>{{ exampleName }}</DBCard>

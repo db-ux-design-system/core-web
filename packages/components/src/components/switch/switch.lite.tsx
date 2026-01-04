@@ -1,5 +1,6 @@
 import {
 	onMount,
+	onUnMount,
 	onUpdate,
 	Show,
 	useDefaultProps,
@@ -16,7 +17,11 @@ import {
 	DEFAULT_VALID_MESSAGE,
 	DEFAULT_VALID_MESSAGE_ID_SUFFIX
 } from '../../shared/constants';
-import { ChangeEvent, InteractionEvent } from '../../shared/model';
+import {
+	ChangeEvent,
+	GeneralKeyboardEvent,
+	InteractionEvent
+} from '../../shared/model';
 import {
 	cls,
 	delay,
@@ -28,6 +33,7 @@ import {
 	uuid
 } from '../../utils';
 import {
+	addCheckedResetEventListener,
 	handleFrameworkEventAngular,
 	handleFrameworkEventVue
 } from '../../utils/form-components';
@@ -56,7 +62,7 @@ export default function DBSwitch(props: DBSwitchProps) {
 		_invalidMessage: undefined as string | undefined,
 		_descByIds: undefined,
 		_voiceOverFallback: '' as string,
-
+		abortController: undefined,
 		hasValidState: () => {
 			return !!(props.validMessage ?? props.validation === 'valid');
 		},
@@ -99,11 +105,19 @@ export default function DBSwitch(props: DBSwitchProps) {
 
 			state._descByIds = undefined;
 		},
-		handleChange: (event: ChangeEvent<HTMLInputElement>) => {
+		handleChange: (
+			event: ChangeEvent<HTMLInputElement>,
+			reset?: boolean
+		) => {
 			useTarget({
-				angular: () =>
-					handleFrameworkEventAngular(state, event, 'checked'),
-				vue: () => handleFrameworkEventVue(() => {}, event, 'checked'),
+				angular: () => {
+					if (props.onChange) {
+						// We need to split the if statements for generation
+						if (reset) {
+							props.onChange(event);
+						}
+					}
+				},
 				default: () => {
 					if (props.onChange) {
 						props.onChange(event);
@@ -111,6 +125,13 @@ export default function DBSwitch(props: DBSwitchProps) {
 				}
 			});
 			state.handleValidation();
+
+			useTarget({
+				angular: () => {
+					handleFrameworkEventAngular(state, event, 'checked');
+				},
+				vue: () => handleFrameworkEventVue(() => {}, event, 'checked')
+			});
 		},
 		handleBlur: (event: InteractionEvent<HTMLInputElement>) => {
 			if (props.onBlur) {
@@ -120,6 +141,16 @@ export default function DBSwitch(props: DBSwitchProps) {
 		handleFocus: (event: InteractionEvent<HTMLInputElement>) => {
 			if (props.onFocus) {
 				props.onFocus(event);
+			}
+		},
+		handleKeyDown: (event: GeneralKeyboardEvent<HTMLInputElement>) => {
+			// Support ENTER key for toggling the switch (a11y requirement)
+			if (event.key === 'Enter') {
+				event.preventDefault();
+				// Toggle the switch by clicking it programmatically
+				if (!props.disabled) {
+					(_ref as HTMLInputElement)?.click();
+				}
 			}
 		}
 	});
@@ -144,6 +175,33 @@ export default function DBSwitch(props: DBSwitchProps) {
 		props.checked
 	]);
 
+	onUpdate(() => {
+		if (_ref) {
+			const defaultChecked = useTarget({
+				react: (props as any).defaultChecked,
+				default: undefined
+			});
+
+			let controller = state.abortController;
+			if (!controller) {
+				controller = new AbortController();
+				state.abortController = controller;
+			}
+
+			addCheckedResetEventListener(
+				_ref,
+				{ checked: props.checked, defaultChecked },
+				(event) => {
+					state.handleChange(event, true);
+				},
+				controller.signal
+			);
+		}
+	}, [_ref]);
+
+	onUnMount(() => {
+		state.abortController?.abort();
+	});
 	// jscpd:ignore-end
 
 	return (
@@ -181,6 +239,9 @@ export default function DBSwitch(props: DBSwitchProps) {
 					onFocus={(event: InteractionEvent<HTMLInputElement>) =>
 						state.handleFocus(event)
 					}
+					onKeyDown={(
+						event: GeneralKeyboardEvent<HTMLInputElement>
+					) => state.handleKeyDown(event)}
 				/>
 				<Show when={props.label} else={props.children}>
 					{props.label}

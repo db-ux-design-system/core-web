@@ -522,6 +522,11 @@ export type FormState = {
 	 * This is an internal Fallback
 	 */
 	_voiceOverFallback?: string;
+
+	/**
+	 * We use this to remove form event listener
+	 */
+	abortController?: AbortController;
 };
 
 export type InitializedState = {
@@ -644,7 +649,7 @@ export type InputEventProps<T> = {
 };
 
 export type InputEventState<T> = {
-	handleInput: (event: InputEvent<T> | any) => void;
+	handleInput: (event: InputEvent<T> | any, reset?: boolean) => void;
 };
 
 export type ChangeEvent<T> = Event;
@@ -654,7 +659,7 @@ export type ChangeEventProps<T> = {
 };
 
 export type ChangeEventState<T> = {
-	handleChange: (event: ChangeEvent<T> | any) => void;
+	handleChange: (event: ChangeEvent<T> | any, reset?: boolean) => void;
 };
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
