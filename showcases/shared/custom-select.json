@@ -2581,5 +2581,81 @@
 				"children": []
 			}
 		]
+	},
+	{
+		"name": "Examples Floating label",
+		"examples": [
+			{
+				"name": "Floating",
+				"style": {
+					"width": "200px"
+				},
+				"props": {
+					"options": [
+						{
+							"value": "Option 1",
+							"id": "otbjunoyx"
+						},
+						{
+							"value": "Option 2",
+							"id": "ju53v02yg"
+						},
+						{
+							"value": "Option 3",
+							"id": "ju53v03yg"
+						},
+						{
+							"value": "Option 4",
+							"id": "ju53v04yg"
+						},
+						{
+							"value": "Option 5",
+							"id": "ju53v05yg"
+						}
+					],
+					"label": "Label",
+					"variant": "floating",
+					"value": ["Floating Label"],
+					"id": "id-10300"
+				},
+				"children": []
+			},
+			{
+				"name": "Floating",
+				"style": {
+					"width": "200px"
+				},
+				"props": {
+					"options": [
+						{
+							"value": "Option 1",
+							"id": "otbjunoyx"
+						},
+						{
+							"value": "Option 2",
+							"id": "ju53v02yg"
+						},
+						{
+							"value": "Option 3",
+							"id": "ju53v03yg"
+						},
+						{
+							"value": "Option 4",
+							"id": "ju53v04yg"
+						},
+						{
+							"value": "Option 5",
+							"id": "ju53v05yg"
+						}
+					],
+					"label": "Label",
+					"variant": "floating",
+					"id": "id-10301",
+					"validation": "invalid",
+					"invalidMessage": "Invalid Message"
+				},
+				"children": []
+			}
+		]
 	}
 ]

@@ -1,4 +1,4 @@
-import { StorybookConfig } from '@storybook/angular';
+import type { StorybookConfig } from '@storybook/angular';
 
 import { dirname, join } from 'node:path';
 

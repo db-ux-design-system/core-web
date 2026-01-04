@@ -1,5 +1,43 @@
 # @db-ux/v-core-components
 
+## 4.2.6
+
+### Patch Changes
+
+- fix(switch): not displaying the `forced-colors` content on regular display mode - [see commit 3b18938](https://github.com/db-ux-design-system/core-web/commit/3b189383324edd2a30b2d60b45fe1130ae5b8478)
+
+## 4.2.5
+
+### Patch Changes
+
+- fix: placeholder for DBSelect with variant floating is moved down - [see commit 9e1e48c](https://github.com/db-ux-design-system/core-web/commit/9e1e48c3ee10e72c52df58b65f4562be007d3447)
+
+## 4.2.4
+
+_version bump_
+
+## 4.2.3
+
+### Patch Changes
+
+- fix(SASS): return typed values from scss functions `px-to-rem` and `px-to-em` instead of strings - [see commit e1be60a](https://github.com/db-ux-design-system/core-web/commit/e1be60a871596107d8026390b194f0730c84a8ad)
+
+- refactor(css): replacing slow selector - [see commit 1133c21](https://github.com/db-ux-design-system/core-web/commit/1133c216ab5ec802241c6986fc9287ff22a287b0)
+
+- fix: DBSection ignoring `id` prop during SSR - [see commit 254a705](https://github.com/db-ux-design-system/core-web/commit/254a70507422b070c35b69487323b797de3c73a9)
+
+- fix(textarea): "responsiveness" due to CSS selector - [see commit c1104df](https://github.com/db-ux-design-system/core-web/commit/c1104dfe242a455ea8cf80716322a591e6e6e109)
+
+## 4.2.2
+
+### Patch Changes
+
+- fix(form elements): `valid` background- and border-colors - [see commit 8f07e55](https://github.com/db-ux-design-system/core-web/commit/8f07e55f2155fcb619198857397ce354f90c4803)
+
+- fix: set DBTabItem internal state `_selected` correctly - [see commit f7625cb](https://github.com/db-ux-design-system/core-web/commit/f7625cbd9d64513527e826c9d2c1ef42b2734a4b):
+
+      - Now also sets aria-selected=true|false correctly which improves screen reader behaviour
+
 ## 4.2.1
 
 ### Patch Changes
