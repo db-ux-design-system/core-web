@@ -11,6 +11,13 @@
 	padding: var(--db-spacing-fixed-md);
 }
 
+.component-header {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: var(--db-spacing-fixed-md);
+}
+
 /* Linebreak for variant cards */
 .line-break {
 	inline-size: 100vw;
@@ -119,6 +126,7 @@ db-card:is(.variants-card) > .db-card {
 
 .badge-inline-container {
 	display: flex;
+	align-items: center;
 	gap: var(--db-spacing-fixed-sm);
 	padding: var(--db-spacing-fixed-xs) var(--db-spacing-fixed-sm);
 	background-color: var(--db-adaptive-bg-basic-level-2-default);
@@ -126,7 +134,6 @@ db-card:is(.variants-card) > .db-card {
 
 .badge-inline-container .db-badge {
 	margin-inline-start: var(--db-spacing-responsive-md);
-	margin-block: auto;
 }
 
 .fixed-header-footer {

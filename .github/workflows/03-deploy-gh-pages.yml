@@ -1,6 +1,9 @@
 ---
 name: Deploy to gh-pages
 
+permissions:
+  contents: read
+
 on:
   workflow_call:
     inputs:
@@ -12,62 +15,78 @@ on:
         required: false
         default: "false"
         type: string
+      name:
+        description: "Branch or Tag name"
+        required: true
+        type: string
+      repoName:
+        description: "Repository name"
+        required: true
+        type: string
+      repoOwner:
+        description: "Repository owner"
+        required: true
+        type: string
 
 jobs:
   deploy:
     name: Deploy
     runs-on: ubuntu-24.04 # Use Ubuntu 24.04 explicitly
+    permissions:
+      contents: write
     steps:
       - name: ⏬ Checkout repo
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
 
       - name: 🔄 Init Cache
         uses: ./.github/actions/npm-cache
 
       - name: ⏬ Download patternhub
-        uses: actions/download-artifact@v5
+        uses: actions/download-artifact@v7
         with:
           name: db-ux-patternhub
           path: build-showcases/patternhub
+
+      - name: ⏬ Download composition-storybook
+        uses: actions/download-artifact@v7
+        with:
+          name: db-ux-composition-storybook
+          path: build-storybooks/composition-storybook
+
+      - name: ⏬ Download angular-storybook
+        uses: actions/download-artifact@v7
+        with:
+          name: db-ux-angular-storybook
+          path: build-storybooks/angular-storybook
+
+      - name: ⏬ Download react-storybook
+        uses: actions/download-artifact@v7
+        with:
+          name: db-ux-react-storybook
+          path: build-storybooks/react-storybook
+
+      - name: ⏬ Download vue-storybook
+        uses: actions/download-artifact@v7
+        with:
+          name: db-ux-vue-storybook
+          path: build-storybooks/vue-storybook
 
       - name: 🦵🦿 I like to move it move it
         shell: bash
         run: |
           mv build-showcases/patternhub out
-
-      - name: ↔ Extract branch name
-        uses: ./.github/actions/extract-branch
-        id: extract_branch
-
-      - name: ↔ Extract branch/tag name
-        shell: bash
-        env:
-          RELEASE: ${{ inputs.release }}
-          PRE_RELEASE: ${{ inputs.preRelease }}
-          BRANCH_NAME: ${{ steps.extract_branch.outputs.branch-name }}
-        run: |
-          if [[ $RELEASE == "true" || $PRE_RELEASE == "true" ]]
-          then
-            echo "name=${GITHUB_REF#refs/tags/}" >> $GITHUB_OUTPUT
-          else
-            echo "name=${BRANCH_NAME}" >> $GITHUB_OUTPUT
-          fi
-        id: extract
-
-      - name: 📛 Get repo name
-        uses: actions/github-script@v7
-        id: repo-name
-        with:
-          result-encoding: string
-          script: return context?.payload?.repository?.name
+          mv build-storybooks/composition-storybook out/composition-storybook
+          mv build-storybooks/angular-storybook out/angular-storybook
+          mv build-storybooks/react-storybook out/react-storybook
+          mv build-storybooks/vue-storybook out/vue-storybook
 
       - name: 🔨 Build page
         env:
           RELEASE: ${{ inputs.release }}
           PRE_RELEASE: ${{ inputs.preRelease }}
-          NAME: ${{ steps.extract.outputs.name }}
-          REPO_NAME: ${{ steps.repo-name.outputs.result }}
-          OWNER_NAME: ${{ github.repository_owner }}
+          NAME: ${{ inputs.name }}
+          REPO_NAME: ${{ inputs.repoName }}
+          OWNER_NAME: ${{ inputs.repoOwner }}
         run: |
           npx --no tsx scripts/github/build-gh-page.ts
 
@@ -81,9 +100,9 @@ jobs:
         env:
           RELEASE: ${{ inputs.release }}
           PRE_RELEASE: ${{ inputs.preRelease }}
-          NAME: ${{ steps.extract_branch.outputs.branch-name }}
-          REPO_NAME: ${{ steps.repo-name.outputs.result }}
-          OWNER_NAME: ${{ github.repository_owner }}
+          NAME: ${{ inputs.name }}
+          REPO_NAME: ${{ inputs.repoName }}
+          OWNER_NAME: ${{ inputs.repoOwner }}
         run: |
           if [[ $RELEASE == "true" ]];
           then
@@ -96,9 +115,3 @@ jobs:
           fi
           echo "URL: $URL"
           echo "### GH-Pages URL :rocket: <br> <br> $URL" >> $GITHUB_STEP_SUMMARY
-
-      - name: 💀 Killing me softly
-        uses: ./.github/actions/cancel-workflow
-        if: failure()
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}

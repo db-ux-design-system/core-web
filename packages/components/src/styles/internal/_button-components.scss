@@ -1,8 +1,14 @@
+@use "@db-ux/core-foundations/build/styles/helpers";
+
 %default-button {
 	font-weight: 700;
-	white-space: nowrap; // we don't want to break buttons
+	overflow-wrap: break-word; // Multiple lines support
+	white-space: pre-line; // Multiple lines support
 	justify-content: center;
 	text-align: center;
-	display: inline-flex;
+
+	@include helpers.display(inline-flex);
+
 	align-items: center; // Centering the content vertically and horizontally
+	vertical-align: top; // Alignment of inline-flex buttons with different content
 }

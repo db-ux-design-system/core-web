@@ -1,0 +1,160 @@
+/* The prefix for variables are predefined by Tailwind, stylelint would throw an error */
+/* stylelint-disable-next-line scss/at-rule-no-unknown */
+@theme {
+	/* stylelint-disable-next-line custom-property-pattern */
+	--color-*: initial; /* 	Color utilities like */
+
+	/* Basic-Level */
+	--color-neutral-bg-basic-level-1-default: var(
+		--db-neutral-bg-basic-level-1-default
+	);
+	--color-neutral-bg-basic-level-1-hovered: var(
+		--db-neutral-bg-basic-level-1-hovered
+	);
+	--color-neutral-bg-basic-level-1-pressed: var(
+		--db-neutral-bg-basic-level-1-pressed
+	);
+	--color-neutral-bg-basic-level-2-default: var(
+		--db-neutral-bg-basic-level-2-default
+	);
+	--color-neutral-bg-basic-level-2-hovered: var(
+		--db-neutral-bg-basic-level-2-hovered
+	);
+	--color-neutral-bg-basic-level-2-pressed: var(
+		--db-neutral-bg-basic-level-2-pressed
+	);
+	--color-neutral-bg-basic-level-3-default: var(
+		--db-neutral-bg-basic-level-3-default
+	);
+	--color-neutral-bg-basic-level-3-hovered: var(
+		--db-neutral-bg-basic-level-3-hovered
+	);
+	--color-neutral-bg-basic-level-3-pressed: var(
+		--db-neutral-bg-basic-level-3-pressed
+	);
+
+	/* Transparent */
+	--color-neutral-bg-basic-transparent-full-default: var(
+		--db-neutral-bg-basic-transparent-full-default
+	);
+	--color-neutral-bg-basic-transparent-semi-default: var(
+		--db-neutral-bg-basic-transparent-semi-default
+	);
+	--color-neutral-bg-basic-transparent-full-hovered: var(
+		--db-neutral-bg-basic-transparent-full-hovered
+	);
+	--color-neutral-bg-basic-transparent-full-pressed: var(
+		--db-neutral-bg-basic-transparent-full-pressed
+	);
+	--color-neutral-bg-basic-transparent-semi-hovered: var(
+		--db-neutral-bg-basic-transparent-semi-hovered
+	);
+	--color-neutral-bg-basic-transparent-semi-pressed: var(
+		--db-neutral-bg-basic-transparent-semi-pressed
+	);
+
+	/* Inverted */
+	--color-neutral-bg-inverted-contrast-max-default: var(
+		--db-neutral-bg-inverted-contrast-max-default
+	);
+	--color-neutral-bg-inverted-contrast-max-hovered: var(
+		--db-neutral-bg-inverted-contrast-max-hovered
+	);
+	--color-neutral-bg-inverted-contrast-max-pressed: var(
+		--db-neutral-bg-inverted-contrast-max-pressed
+	);
+	--color-neutral-bg-inverted-contrast-high-default: var(
+		--db-neutral-bg-inverted-contrast-high-default
+	);
+	--color-neutral-bg-inverted-contrast-high-hovered: var(
+		--db-neutral-bg-inverted-contrast-high-hovered
+	);
+	--color-neutral-bg-inverted-contrast-high-pressed: var(
+		--db-neutral-bg-inverted-contrast-high-pressed
+	);
+	--color-neutral-bg-inverted-contrast-low-default: var(
+		--db-neutral-bg-inverted-contrast-low-default
+	);
+	--color-neutral-bg-inverted-contrast-low-hovered: var(
+		--db-neutral-bg-inverted-contrast-low-hovered
+	);
+	--color-neutral-bg-inverted-contrast-low-pressed: var(
+		--db-neutral-bg-inverted-contrast-low-pressed
+	);
+
+	/* On Colors */
+
+	--color-neutral-on-bg-basic-emphasis-100-default: var(
+		--db-neutral-on-bg-basic-emphasis-100-default
+	);
+	--color-neutral-on-bg-basic-emphasis-100-hovered: var(
+		--db-neutral-on-bg-basic-emphasis-100-hovered
+	);
+	--color-neutral-on-bg-basic-emphasis-100-pressed: var(
+		--db-neutral-on-bg-basic-emphasis-100-pressed
+	);
+	--color-neutral-on-bg-basic-emphasis-90-default: var(
+		--db-neutral-on-bg-basic-emphasis-90-default
+	);
+	--color-neutral-on-bg-basic-emphasis-90-hovered: var(
+		--db-neutral-on-bg-basic-emphasis-90-hovered
+	);
+	--color-neutral-on-bg-basic-emphasis-90-pressed: var(
+		--db-neutral-on-bg-basic-emphasis-90-pressed
+	);
+	--color-neutral-on-bg-basic-emphasis-80-default: var(
+		--db-neutral-on-bg-basic-emphasis-80-default
+	);
+	--color-neutral-on-bg-basic-emphasis-80-hovered: var(
+		--db-neutral-on-bg-basic-emphasis-80-hovered
+	);
+	--color-neutral-on-bg-basic-emphasis-80-pressed: var(
+		--db-neutral-on-bg-basic-emphasis-80-pressed
+	);
+	--color-neutral-on-bg-basic-emphasis-70-default: var(
+		--db-neutral-on-bg-basic-emphasis-70-default
+	);
+	--color-neutral-on-bg-basic-emphasis-70-hovered: var(
+		--db-neutral-on-bg-basic-emphasis-70-hovered
+	);
+	--color-neutral-on-bg-basic-emphasis-70-pressed: var(
+		--db-neutral-on-bg-basic-emphasis-70-pressed
+	);
+	--color-neutral-on-bg-basic-emphasis-60-default: var(
+		--db-neutral-on-bg-basic-emphasis-60-default
+	);
+	--color-neutral-on-bg-basic-emphasis-60-hovered: var(
+		--db-neutral-on-bg-basic-emphasis-60-hovered
+	);
+	--color-neutral-on-bg-basic-emphasis-60-pressed: var(
+		--db-neutral-on-bg-basic-emphasis-60-pressed
+	);
+	--color-neutral-on-bg-basic-emphasis-50-default: var(
+		--db-neutral-on-bg-basic-emphasis-50-default
+	);
+	--color-neutral-on-bg-basic-emphasis-50-hovered: var(
+		--db-neutral-on-bg-basic-emphasis-50-hovered
+	);
+	--color-neutral-on-bg-basic-emphasis-50-pressed: var(
+		--db-neutral-on-bg-basic-emphasis-50-pressed
+	);
+
+	/* On Inverted */
+	--color-neutral-on-bg-inverted-default: var(
+		--db-neutral-on-bg-inverted-default
+	);
+	--color-neutral-on-bg-inverted-hovered: var(
+		--db-neutral-on-bg-inverted-hovered
+	);
+	--color-neutral-on-bg-inverted-pressed: var(
+		--db-neutral-on-bg-inverted-pressed
+	);
+
+	/* On Origin */
+	--color-neutral-on-origin-default: var(--db-neutral-on-origin-default);
+	--color-neutral-on-origin-hovered: var(--db-neutral-on-origin-hovered);
+	--color-neutral-on-origin-pressed: var(--db-neutral-on-origin-pressed);
+	--color-neutral-origin-default: var(--db-neutral-origin-default);
+	--color-neutral-origin-hovered: var(--db-neutral-origin-hovered);
+	--color-neutral-origin-pressed: var(--db-neutral-origin-pressed);
+}

@@ -1,7 +1,8 @@
 import {
 	Component,
 	CUSTOM_ELEMENTS_SCHEMA,
-	NO_ERRORS_SCHEMA
+	NO_ERRORS_SCHEMA,
+	signal
 } from '@angular/core';
 import {
 	FormControl,
@@ -16,6 +17,7 @@ import {
 	DBInput,
 	DBRadio,
 	DBSelect,
+	DBSwitch,
 	DBTabItem,
 	DBTabList,
 	DBTabPanel,
@@ -44,12 +46,17 @@ import { environment } from '../../../environments/environment';
 				DBTabs,
 				DBTabList,
 				DBTabItem,
-				DBTabPanel
+				DBTabPanel,
+				DBSwitch
 			],
 	standalone: true,
 	schemas: [NO_ERRORS_SCHEMA, CUSTOM_ELEMENTS_SCHEMA]
 })
 export class FormComponent {
+	// DB Switch with Angular signals
+	checkedSignal = signal(false);
+	checkedNonSignal = false;
+
 	array = ['X', 'Y', 'Z'];
 	radio = '';
 	input = '';
@@ -104,7 +111,7 @@ export class FormComponent {
 		this.model.checkbox2 = false;
 		this.form.get('input')?.setValue('reset');
 		this.form.get('textarea')?.setValue('reset');
-		this.form.get('dateinput')?.setValue('reset');
+		this.form.get('dateinput')?.setValue('');
 		this.form.get('checkbox')?.setValue(false);
 	}
 
@@ -149,5 +156,11 @@ export class FormComponent {
 				tags: this.tags
 			})
 		);
+	}
+
+	handleChange(event: any) {
+		console.log(event.currentTarget);
+		this.checkedSignal.set(event.target.checked);
+		this.checkedNonSignal = event.target.checked;
 	}
 }

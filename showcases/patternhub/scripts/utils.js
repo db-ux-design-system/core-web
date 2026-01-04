@@ -184,12 +184,16 @@ export const getCodeByFramework = (
 
 	// Workaround for tooltip
 	if (componentName === 'tooltip') {
-		return innerContent.replace(
+		const tooltipCode = innerContent.replace(
 			'</',
-			`<${tag}${className} ${attributes.filter((attr) => attr !== 'content').join(' ')}>${
-				attributes.find((attr) => attr === 'content') ?? ''
+			`<${tag}${className} ${attributes.filter((attr) => attr.startsWith('"content')).join(' ')}>${
+				props.content ?? ''
 			}</${tag}></`
 		);
+
+		console.log(tooltipCode);
+
+		return tooltipCode;
 	}
 
 	return `<${tag}${className} ${attributes.join(' ')}${reactSlots}>
@@ -219,6 +223,29 @@ export const getColorVariants = () => [
 	'informational-transparent-semi'
 ];
 
+/**
+ * Clean names by removing spaces and special characters to create valid JavaScript property names
+ * @param {string} name - The name to clean
+ * @returns {string} - Cleaned name with only word characters
+ */
+export const cleanupName = (name) => {
+	if (!name) return '';
+	return name.replaceAll(/\s+/g, '').replaceAll(/\W/g, '');
+};
+
+/**
+ * Generate a consistent key for allExamples object
+ * @param {string} componentName - Component name
+ * @param {string} variantName - Variant name (will be cleaned)
+ * @param {string} exampleName - Example name (will be cleaned)
+ * @returns {string} - Clean key for allExamples
+ */
+export const generateExampleKey = (componentName, variantName, exampleName) => {
+	const cleanVariantName = cleanupName(variantName);
+	const cleanExampleName = cleanupName(exampleName);
+	return `${componentName}${cleanVariantName}${cleanExampleName}`;
+};
+
 export const transformToUpperComponentName = (componentName) =>
 	componentName
 		? componentName
@@ -227,16 +254,13 @@ export const transformToUpperComponentName = (componentName) =>
 				.join('')
 		: '';
 
-export const getComponentName = (elementName) => {
-	return elementName.replace('db-', '');
-};
+export const getComponentName = (elementName) => elementName.replace('db-', '');
 
-export const getComponentGroup = (components, componentName) => {
-	return components.find((comp) =>
+export const getComponentGroup = (components, componentName) =>
+	components.find((comp) =>
 		comp.subNavigation.find(
 			(sub) =>
 				componentName.includes(sub.name) ||
 				componentName.replace('tab-item', 'tabs').includes(sub.name)
 		)
 	);
-};
