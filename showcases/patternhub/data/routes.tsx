@@ -34,11 +34,11 @@ import * as customSelectCode from '../components/code-docs/custom-select';
 import * as infotextCode from '../components/code-docs/infotext';
 import * as linkCode from '../components/code-docs/link';
 // Import * as pageCode from '../components/code-docs/page';
-import { getShowcasePlugin } from '../../shared/showcase-plugins';
 import * as stackCode from '../components/code-docs/stack';
 import * as tagCode from '../components/code-docs/tag';
 import * as tooltipCode from '../components/code-docs/tooltip';
 import Components from './components.json';
+import ButtonShowcase from '@components/components/button/showcase/button.showcase';
 
 export type NavigationItem = {
 	label: string;
@@ -52,9 +52,7 @@ export type NavigationItem = {
 const nameComponentMap = {
 	'custom-select': <CustomSelectComponent slotCode={customSelectCode} />,
 	stack: <StackComponent slotCode={stackCode} />,
-	button: getShowcasePlugin('button')!.getShowcaseComponent({
-		host: 'patternhub'
-	}),
+	button: <ButtonShowcase isPatternhub />,
 	link: <LinkComponent slotCode={linkCode} />,
 	brand: <BrandComponent slotCode={brandCode} />,
 	// Icon: <IconComponent slotCode={iconCode} />,

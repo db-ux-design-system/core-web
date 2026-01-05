@@ -2,7 +2,6 @@ import { PatternhubProps } from '../../../shared/model';
 import CardWrapperShowcase from '../../../shared/showcase/card-wrapper.showcase.lite';
 import ContainerWrapperShowcase from '../../../shared/showcase/container-wrapper.showcase.lite';
 import LinkWrapperShowcase from '../../../shared/showcase/link-wrapper.showcase.lite';
-
 import ButtonDensity from '../examples/density.example.lite';
 import ButtonDisabled from '../examples/disabled.example.lite';
 import ButtonMultiLineText from '../examples/multi-line-text.example.lite';
@@ -13,64 +12,52 @@ import ButtonSize from '../examples/size.example.lite';
 import ButtonVariant from '../examples/variant.example.lite';
 import ButtonWidth from '../examples/width.example.lite';
 
-import {
-	buttonExamplesMeta,
-	type ButtonExampleIdentifier
-} from '../examples/button.examples.meta';
-
-const getExampleName = (id: ButtonExampleIdentifier): string =>
-	(buttonExamplesMeta.find((example) => example.id === id)?.exampleName ??
-		id) as string;
-
 export default function ButtonShowcase(props: PatternhubProps) {
 	return (
 		<ContainerWrapperShowcase
 			title="DBButton"
 			isPatternhub={props.isPatternhub}>
-			<LinkWrapperShowcase exampleName={getExampleName('density')}>
+			<LinkWrapperShowcase exampleName="Density">
 				<CardWrapperShowcase>
 					<ButtonDensity />
 				</CardWrapperShowcase>
 			</LinkWrapperShowcase>
-			<LinkWrapperShowcase exampleName={getExampleName('variant')}>
+			<LinkWrapperShowcase exampleName="Variant">
 				<CardWrapperShowcase>
 					<ButtonVariant />
 				</CardWrapperShowcase>
 			</LinkWrapperShowcase>
-			<LinkWrapperShowcase exampleName={getExampleName('disabled')}>
+			<LinkWrapperShowcase exampleName="Disabled">
 				<CardWrapperShowcase>
 					<ButtonDisabled />
 				</CardWrapperShowcase>
 			</LinkWrapperShowcase>
-			<LinkWrapperShowcase exampleName={getExampleName('size')}>
+			<LinkWrapperShowcase exampleName="Size">
 				<CardWrapperShowcase>
 					<ButtonSize />
 				</CardWrapperShowcase>
 			</LinkWrapperShowcase>
-			<LinkWrapperShowcase
-				exampleName={getExampleName('show-icon-leading')}>
+			<LinkWrapperShowcase exampleName="Show Icon Leading">
 				<CardWrapperShowcase>
 					<ButtonShowIconLeading />
 				</CardWrapperShowcase>
 			</LinkWrapperShowcase>
-			<LinkWrapperShowcase
-				exampleName={getExampleName('show-icon-trailing')}>
+			<LinkWrapperShowcase exampleName="Show Icon Trailing">
 				<CardWrapperShowcase>
 					<ButtonShowIconTrailing />
 				</CardWrapperShowcase>
 			</LinkWrapperShowcase>
-			<LinkWrapperShowcase exampleName={getExampleName('no-text')}>
+			<LinkWrapperShowcase exampleName="No Text">
 				<CardWrapperShowcase>
 					<ButtonNoText />
 				</CardWrapperShowcase>
 			</LinkWrapperShowcase>
-			<LinkWrapperShowcase exampleName={getExampleName('width')}>
+			<LinkWrapperShowcase exampleName="Width">
 				<CardWrapperShowcase>
 					<ButtonWidth />
 				</CardWrapperShowcase>
 			</LinkWrapperShowcase>
-			<LinkWrapperShowcase
-				exampleName={getExampleName('multi-line-text')}>
+			<LinkWrapperShowcase exampleName="Multi-line Text With Line Breaks">
 				<CardWrapperShowcase>
 					<ButtonMultiLineText />
 				</CardWrapperShowcase>

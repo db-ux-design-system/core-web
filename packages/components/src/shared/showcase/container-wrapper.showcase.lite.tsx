@@ -63,7 +63,7 @@ export default function ContainerWrapperShowcase(props: Props) {
 		<Fragment>
 			<div className="default-container">
 				<Show when={!hidden}>
-					<header className="component-header">
+					<header class="component-header">
 						<Show
 							when={props.isSubComponent}
 							else={<h1>{props.title}</h1>}>

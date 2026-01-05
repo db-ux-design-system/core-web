@@ -3,8 +3,8 @@
  */
 module.exports = {
 	files: [
-		'src/components/**/*.showcase.lite.tsx',
-		'src/components/**/*.example.lite.tsx'
+		'src/**/*.showcase.lite.tsx',
+		'src/**/*.example.lite.tsx'
 	],
 	targets: ['angular', 'vue', 'react', 'stencil'],
 	dest: '../../output',

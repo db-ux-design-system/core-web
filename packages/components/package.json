@@ -42,6 +42,7 @@
     "dev:vue": "nodemon --watch src --watch scripts --ext tsx,ts --exec \"npm run compile:vue\"",
     "generate:agent": "mitosis build --config=configs/mitosis.agent.config.cjs",
     "generate:showcase": "mitosis build --config=configs/mitosis.showcase.config.cjs",
+    "generate:storys": "mitosis build --config=configs/mitosis.storybook.config.cjs",
     "generate:component": "hygen mitosis new",
     "generate:docs": "hygen update-docs new",
     "prepack": "npm run copy-assets",

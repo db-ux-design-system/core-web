@@ -1,19 +1,28 @@
 import { Fragment, useMetadata } from '@builder.io/mitosis';
 import DBButton from '../button.lite';
+import { StorybookButtonArgTypes } from './storybook-button.arg.types';
 
 useMetadata({
-	storybookNames: ['Outlined', 'Filled', 'Ghost', 'Brand']
+	storybookTitle: 'Button Variant',
+	storybookNames: ['Outlined', 'Filled', 'Ghost', 'Brand'],
+	storybookArgTypes: StorybookButtonArgTypes
 });
 
 export default function ButtonVariant() {
 	return (
 		<Fragment>
-			<DBButton variant="outlined">
+			<DBButton onClick={() => {}} variant="outlined">
 				(Default) Outlined - Adaptive
 			</DBButton>
-			<DBButton variant="filled">Filled - Adaptive</DBButton>
-			<DBButton variant="ghost">Ghost - Adaptive</DBButton>
-			<DBButton variant="brand">Brand</DBButton>
+			<DBButton onClick={() => {}} variant="filled">
+				Filled - Adaptive
+			</DBButton>
+			<DBButton onClick={() => {}} variant="ghost">
+				Ghost - Adaptive
+			</DBButton>
+			<DBButton onClick={() => {}} variant="brand">
+				Brand
+			</DBButton>
 		</Fragment>
 	);
 }

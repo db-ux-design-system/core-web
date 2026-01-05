@@ -1,0 +1,41 @@
+---
+name: Build Stories
+
+permissions:
+  contents: read
+
+on:
+  workflow_call:
+
+jobs:
+  build-stories:
+    name: Build Stories
+    runs-on: ubuntu-24.04 # Use Ubuntu 24.04 explicitly
+    steps:
+      - name: ⏬ Checkout repo
+        uses: actions/checkout@v6
+
+      - name: 🔄 Init Cache
+        uses: ./.github/actions/npm-cache
+
+      - name: 🔨 Build Packages
+        run: |
+          npm run generate:storys --workspace=@db-ux/core-components
+
+      - name: ⏫ Upload angular stories
+        uses: actions/upload-artifact@v6
+        with:
+          name: angular-storybook-stories
+          path: storybooks/angular-storybook/src/components
+
+      - name: ⏫ Upload react stories
+        uses: actions/upload-artifact@v6
+        with:
+          name: react-storybook-stories
+          path: storybooks/react-storybook/src/components
+
+      - name: ⏫ Upload vue stories
+        uses: actions/upload-artifact@v6
+        with:
+          name: vue-storybook-stories
+          path: storybooks/vue-storybook/src/components
