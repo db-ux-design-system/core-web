@@ -10,7 +10,7 @@
   "license": "Apache-2.0",
   "private": true,
   "scripts": {
-    "agent": "npm-run-all -p agent:00_* -s agent:01_*",
+    "agent": "npm-run-all --parallel agent:00_* --sequential agent:01_*",
     "agent:00_extract-css": "tsx documentation/extract-css-vars.ts",
     "agent:00_mitosis-agent": "npm run generate:agent --workspace=@db-ux/core-components",
     "agent:01_merge_docs": "tsx documentation/merge-component-docs.ts",
