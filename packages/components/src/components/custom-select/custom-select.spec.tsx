@@ -237,6 +237,7 @@ const testAction = () => {
 
 		// Open the dropdown and focus first option
 		await page.keyboard.press('Tab');
+		await page.waitForTimeout(1000); // wait for checkboxes to load
 		await page.keyboard.press('ArrowDown');
 		await waitForFocusChange(page, 'G1:Option 1');
 
