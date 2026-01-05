@@ -16,7 +16,7 @@
     "CHANGELOG.md"
   ],
   "scripts": {
-    "build": "npm-run-all tsc && npm-run-all --parallel mv:*",
+    "build": "npm-run-all tsc --parallel mv:*",
     "mv:dist": "cpr dist ../../build-outputs/react/dist --overwrite",
     "mv:agent": "cpr agent ../../build-outputs/react/agent --overwrite",
     "mv:changelog": "cpr CHANGELOG.md ../../build-outputs/react/CHANGELOG.md --overwrite",

@@ -10,9 +10,10 @@
   "license": "Apache-2.0",
   "private": true,
   "scripts": {
-    "agent": "npm-run-all -p agent:00_* && tsx documentation/merge-component-docs.ts",
+    "agent": "npm-run-all -p agent:00_* -s agent:01_*",
     "agent:00_extract-css": "tsx documentation/extract-css-vars.ts",
     "agent:00_mitosis-agent": "npm run generate:agent --workspace=@db-ux/core-components",
+    "agent:01_merge_docs": "tsx documentation/merge-component-docs.ts",
     "agent:x00_typedoc": "typedoc --options typedoc.json --tsconfig tsconfig.typedoc.json",
     "build": "npm-run-all build:foundations build:components -p build:migration build:stylelint build:agent-cli",
     "build-outputs": "npm-run-all --parallel build-outputs:*",

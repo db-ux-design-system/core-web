@@ -5,7 +5,8 @@
   "private": true,
   "scripts": {
     "build": "npm-run-all compile build:*",
-    "build:app": "cpr ../../node_modules/iframe-resizer/js/ public/iframe-resizer -o && next build --webpack",
+    "build:_iframe_resizer": "cpr ../../node_modules/iframe-resizer/js/ public/iframe-resizer -o",
+    "build:app": "next build --webpack",
     "build:copy": "cpr out ../../build-showcases/patternhub -o",
     "compile": "npm-run-all compile:*",
     "compile:01_jsx": "node scripts/generate-example-jsx.js",

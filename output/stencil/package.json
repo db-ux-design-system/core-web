@@ -22,7 +22,8 @@
     "CHANGELOG.md"
   ],
   "scripts": {
-    "build": "stencil build && npm-run-all --parallel build:* --parallel mv:*",
+    "build": "npm-run-all build:* --parallel mv:*",
+    "build:_stencil": "stencil build",
     "build:cem": "cem analyze",
     "mv:dist": "cpr dist ../../build-outputs/wc-core-components/dist -o",
     "mv:agent": "cpr agent ../../build-outputs/wc-core-components/agent --overwrite",
