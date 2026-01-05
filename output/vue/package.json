@@ -28,7 +28,7 @@
     "CHANGELOG.md"
   ],
   "scripts": {
-    "build": "npm-run-all build:*",
+    "build": "npm-run-all --parallel build:* --parallel mv:*",
     "build:01_vite": "vite build",
     "build:02_types": "vue-tsc --declaration --emitDeclarationOnly",
     "mv:dist": "cpr dist ../../build-outputs/vue/dist --overwrite",
@@ -36,7 +36,6 @@
     "mv:changelog": "cpr CHANGELOG.md ../../build-outputs/vue/CHANGELOG.md --overwrite",
     "mv:package.json": "cpr package.json ../../build-outputs/vue/package.json --overwrite",
     "mv:readme": "cpr README.md ../../build-outputs/vue/README.md --overwrite",
-    "postbuild": "npm-run-all --parallel mv:*",
     "test:components": "playwright test --config playwright.config.ts",
     "test:components:ui": "playwright test --config playwright.config.ts --ui"
   },
