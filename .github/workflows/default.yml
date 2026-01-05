@@ -272,7 +272,7 @@ jobs:
     uses: ./.github/workflows/02-e2e-regenerate.yml
     with:
       version: ${{ needs.init.outputs.playwrightVersion }}
-      path: ${{ needs.build-showcase-patternhub.outputs.path }}
+      path: ${{ needs.init.outputs.baseUrl }}
       type: patternhub
     needs: [build-showcase-patternhub, test-showcase-patternhub, init]
 
