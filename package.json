@@ -64,7 +64,7 @@
     "lint-packages": "tsx scripts/lint-packages.ts publint",
     "lint:jscpd": "jscpd . --exitCode 1 --config .config/.jscpd.json",
     "lint:markdownlint": "markdownlint --config .config/.markdown-lint.yml **/*.md",
-    "lint:package-json": "npx npm-package-json-lint packages/*/package.json",
+    "lint:package-json": "npx --no npm-package-json-lint packages/*/package.json",
     "lint:stylelint": "stylelint **/*.{css,scss}",
     "lint:xo": "xo",
     "prepare": "husky",
