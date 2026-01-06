@@ -40,7 +40,7 @@
     "test:components:ui": "playwright test --config playwright.config.ts --ui"
   },
   "devDependencies": {
-    "@playwright/experimental-ct-vue": "1.56.1",
+    "@playwright/experimental-ct-vue": "1.57.0",
     "@vitejs/plugin-vue": "6.0.3",
     "replace-in-file": "8.3.0",
     "tsx": "4.21.0",
