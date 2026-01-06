@@ -4,10 +4,12 @@
   "type": "module",
   "private": true,
   "scripts": {
-    "build": "nuxt build",
-    "dev": "nuxt dev --open",
+    "build": "npm-run-all nuxt:prepare build:*",
+    "build:nuxt": "nuxt build",
+    "dev": "npm-run-all nuxt:prepare dev:*",
+    "dev:nuxt": "nuxt dev --open",
     "generate": "nuxt generate",
-    "postinstall": "nuxt prepare",
+    "nuxt:prepare": "nuxt prepare",
     "preview": "nuxt preview"
   },
   "dependencies": {
