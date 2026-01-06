@@ -63,15 +63,20 @@ export const waitForDBPage = async (page: Page) => {
 	await expect(page.locator('html')).toHaveCSS('overflow', 'hidden');
 };
 
+type GotoOptions = {
+	color?: string;
+	fixedHeight?: number;
+	density?: 'functional' | 'regular' | 'expressive';
+};
+
 const gotoPage = async (
 	page: Page,
 	path: string,
-	color: string,
-	fixedHeight?: number,
-	otherDensity?: 'functional' | 'regular' | 'expressive'
+	options: GotoOptions = {}
 ) => {
+	const { color = lvl1, fixedHeight, density: _density } = options;
 	await page.goto(
-		`./#/${path}?density=${otherDensity ?? density}&color=${color}`,
+		`./#/${path}?density=${_density ?? density}&color=${color}`,
 		{
 			waitUntil: 'domcontentloaded'
 		}
@@ -135,7 +140,7 @@ export const getDefaultScreenshotTest = ({
 			config.maxDiffPixels = 120;
 		}
 
-		await gotoPage(page, path, lvl1, fixedHeight);
+		await gotoPage(page, path, { color: lvl1, fixedHeight });
 
 		// Visual snapshots now compare the full page to align with baselines
 		// rather than masking headers. This reduces false positives from layout
@@ -188,11 +193,6 @@ export const getDefaultScreenshotTest = ({
 	});
 };
 
-const shouldSkipA11yTest = (project: FullProject): boolean =>
-	project.name === 'firefox' ||
-	project.name === 'webkit' ||
-	project.name.startsWith('mobile');
-
 export const runAxeCoreTest = ({
 	path,
 	fixedHeight,
@@ -216,7 +216,7 @@ export const runAxeCoreTest = ({
 			test.skip();
 		}
 
-		await gotoPage(page, path, color, fixedHeight, density);
+		await gotoPage(page, path, { color, fixedHeight, density });
 
 		// This is a workaround for axe for browsers using forcedColors
 		// see https://github.com/dequelabs/axe-core-npm/issues/1067
@@ -266,11 +266,14 @@ export const runAxeCoreTest = ({
 			return (
 				result.id === 'landmark-unique' &&
 				result.nodes.some((node) =>
-					node.target.some(
-						(target: string) =>
-							target.includes('db-breadcrumb') &&
-							target.includes('nav[aria-label="Breadcrumb"]')
-					)
+					node.target.some((target: string) => {
+						const lower = target.toLowerCase();
+						return (
+							lower.includes('db-breadcrumb') &&
+							// Accept generic breadcrumb labels like "Breadcrumb" or "Breadcrumb Navigation"
+							lower.includes('nav[aria-label="breadcrumb')
+						);
+					})
 				)
 			);
 		}
@@ -290,6 +293,11 @@ export const runAxeCoreTest = ({
 	});
 };
 
+const shouldSkipA11yTest = (project: FullProject): boolean =>
+	project.name === 'firefox' ||
+	project.name === 'webkit' ||
+	project.name.startsWith('mobile');
+
 export const runA11yCheckerTest = ({
 	path,
 	fixedHeight,
@@ -307,7 +315,7 @@ export const runA11yCheckerTest = ({
 
 		test.slow(); // Easy way to triple the default timeout
 
-		await gotoPage(page, path, lvl1, fixedHeight);
+		await gotoPage(page, path, { color: lvl1, fixedHeight });
 
 		if (preChecker) {
 			await preChecker(page);
@@ -338,6 +346,104 @@ export const runA11yCheckerTest = ({
 	});
 };
 
+// Breadcrumb snapshot helpers
+async function getBreadcrumbSnapshots(page: Page): Promise<string[]> {
+	const hosts = page.locator('db-breadcrumb');
+	const hostCount = await hosts.count();
+	const indices = Array.from({ length: hostCount }, (_, i) => i);
+	const snaps = await Promise.all(
+		indices.map(async (i) => {
+			const host = hosts.nth(i);
+			const navAncestor = host.locator('xpath=ancestor::nav[1]');
+			try {
+				return await navAncestor.ariaSnapshot();
+			} catch {
+				try {
+					return await host.ariaSnapshot();
+				} catch {
+					return null;
+				}
+			}
+		})
+	);
+	return [...new Set(snaps.filter(Boolean) as string[])];
+}
+
+function normalizeAriaSnapshot(input: string): string {
+	const lines = input.split('\n');
+	const includesUrl = '/url:';
+	const filteredLines: string[] = [];
+	let skipUntilIndent = -1;
+	let deindentAmount = 0;
+	let inBreadcrumbWrapper = false;
+
+	for (const line of lines) {
+		if (line.includes(includesUrl)) {
+			continue;
+		}
+
+		const currentIndent = line.length - line.trimStart().length;
+
+		if (skipUntilIndent >= 0 && currentIndent > skipUntilIndent) {
+			continue;
+		} else {
+			skipUntilIndent = -1;
+		}
+
+		if (deindentAmount > 0 && currentIndent < deindentAmount) {
+			deindentAmount = 0;
+			inBreadcrumbWrapper = false;
+		}
+
+		let processedLine = line;
+
+		if (/-\s+link:/.test(line)) {
+			processedLine = line.replace(/(-\s+link):/, '$1');
+		}
+
+		if (
+			!inBreadcrumbWrapper &&
+			line.trim() === '- list:' &&
+			currentIndent === 0
+		) {
+			deindentAmount = currentIndent + 2;
+			continue;
+		}
+
+		if (line.trim() === '- navigation:') {
+			continue;
+		}
+
+		if (
+			!inBreadcrumbWrapper &&
+			(line.includes('- navigation "Breadcrumb Navigation":') ||
+				(line.includes('- navigation "Breadcrumb":') &&
+					!line.includes('- navigation "Breadcrumb -')))
+		) {
+			inBreadcrumbWrapper = true;
+			deindentAmount = currentIndent + 4;
+			continue;
+		}
+
+		if (
+			inBreadcrumbWrapper &&
+			line.trim() === '- list:' &&
+			currentIndent === deindentAmount - 2
+		) {
+			continue;
+		}
+
+		if (deindentAmount > 0 && currentIndent >= deindentAmount) {
+			processedLine =
+				' '.repeat(currentIndent - deindentAmount) + line.trimStart();
+		}
+
+		filteredLines.push(processedLine);
+	}
+
+	return filteredLines.join('\n') + '\n';
+}
+
 export const runAriaSnapshotTest = ({
 	path,
 	fixedHeight,
@@ -353,7 +459,7 @@ export const runAriaSnapshotTest = ({
 			test.skip();
 		}
 
-		await gotoPage(page, path, lvl1, fixedHeight, density);
+		await gotoPage(page, path, { color: lvl1, fixedHeight, density });
 
 		if (preScreenShot) {
 			await preScreenShot(page, project);
@@ -361,22 +467,27 @@ export const runAriaSnapshotTest = ({
 
 		await page.waitForTimeout(1000); // We wait a little bit until everything loaded
 
-		// Prefer snapshotting only named breadcrumb navigation regions to avoid unlabeled landmarks
-		// This focuses snapshots on the breadcrumb component, reducing unrelated noise
-		// from page-level landmarks in different showcases.
+		// Prefer snapshotting breadcrumb regions anchored to the actual component host
+		// to avoid locale-specific aria-label assumptions.
 		let snapshot: string;
-		const navs = page.getByRole('navigation');
-		const count = await navs.count();
-		const indices = Array.from({ length: count }, (_, i) => i);
-		const labels = await Promise.all(
-			indices.map(async (i) => navs.nth(i).getAttribute('aria-label'))
-		);
-		const breadcrumbIndices = indices.filter((i) =>
-			labels[i]?.toLowerCase()?.includes('breadcrumb')
-		);
-		const parts = await Promise.all(
-			breadcrumbIndices.map(async (i) => navs.nth(i).ariaSnapshot())
-		);
+
+		let parts = await getBreadcrumbSnapshots(page);
+
+		if (parts.length === 0) {
+			// Fallback: named navigation landmarks containing "breadcrumb" (locale-insensitive)
+			const navs = page.getByRole('navigation');
+			const count = await navs.count();
+			const indices = Array.from({ length: count }, (_, i) => i);
+			const labels = await Promise.all(
+				indices.map(async (i) => navs.nth(i).getAttribute('aria-label'))
+			);
+			const breadcrumbIndices = indices.filter((i) =>
+				labels[i]?.toLowerCase()?.includes('breadcrumb')
+			);
+			parts = await Promise.all(
+				breadcrumbIndices.map(async (i) => navs.nth(i).ariaSnapshot())
+			);
+		}
 
 		if (parts.length > 0) {
 			// Join snapshots of all breadcrumb navigations in the page
@@ -428,8 +539,23 @@ export const runAriaSnapshotTest = ({
 
 			let processedLine = line;
 
-			if (line.includes('- link')) {
-				processedLine = line.replace(':', '');
+			// Normalize only the colon immediately following "- link" label,
+			// leaving any subsequent colons in text untouched.
+			if (/-\s+link:/.test(line)) {
+				processedLine = line.replace(/(-\s+link):/, '$1');
+			}
+
+			// Normalize top-level list containers that wrap a single navigation block.
+			// Playwright's ariaSnapshot may introduce a root-level `- list:` when
+			// snapshotting individual navigation landmarks. We skip this container
+			// and deindent its children to align with existing baselines.
+			if (
+				!inBreadcrumbWrapper &&
+				line.trim() === '- list:' &&
+				currentIndent === 0
+			) {
+				deindentAmount = currentIndent + 2;
+				continue;
 			}
 
 			// Drop unlabeled navigation landmarks appearing as just `- navigation:`
