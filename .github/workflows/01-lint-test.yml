@@ -24,7 +24,7 @@ jobs:
       - name: ⚡ Run Lint
         if: ${{ matrix.command == 'lint' }}
         run: |
-          npm run postinstall --workspace=nuxt-showcase
+          npm run nuxt:prepare --workspace=nuxt-showcase
           npm run build --workspace=@db-ux/core-stylelint
           npm run lint
 
