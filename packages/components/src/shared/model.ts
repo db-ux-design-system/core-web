@@ -573,8 +573,13 @@ export type LinkProps = {
 	role?: string;
 	/**
 	 * How much of the referrer to send when following the link.
+	 * @deprecated use `referrerPolicy` instead
 	 */
 	referrerpolicy?: LinkReferrerPolicyType;
+	/**
+	 * How much of the referrer to send when following the link.
+	 */
+	referrerPolicy?: LinkReferrerPolicyType;
 };
 
 export type TextProps = {

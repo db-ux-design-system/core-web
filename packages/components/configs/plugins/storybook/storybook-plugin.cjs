@@ -26,9 +26,7 @@ const getMetaObject = ({
 			title = metadata.storybookTitle;
 		}
 		if (metadata.storybookArgTypes) {
-			if (target === 'react') {
-				argTypes = metadata.storybookArgTypes;
-			} else {
+			if (target === 'angular') {
 				argTypes = Object.fromEntries(
 					Object.entries(argTypes).map(([key, value]) => {
 						if (key.startsWith('on') && value?.action) {
@@ -38,6 +36,8 @@ const getMetaObject = ({
 						return [key, value];
 					})
 				);
+			} else {
+				argTypes = metadata.storybookArgTypes;
 			}
 		}
 	}
@@ -57,8 +57,10 @@ const getMetaObject = ({
 		template: \`<db-${componentNameLowercase} ${argsToTemplateString}>${childrenString}</db-${componentNameLowercase}>\`
 	}),`;
 	} else if (target === 'vue') {
-		const childrenString = '${args.children}';
-		render = `render: (args) => ({
+		const childrenString = '${args.default}';
+		render = `
+		component: ${componentName},
+		render: (args) => ({
 		components: { ${componentName} },
 		setup() {
 			return { args };
@@ -71,16 +73,36 @@ const getMetaObject = ({
 	}),`;
 	}
 
+	let docs;
+
+	if (target === 'vue') {
+		docs = `
+		docs: {
+			source: {
+				transform: (code:string) => {
+					return code
+						.replace(/<(\\w+)/g, (match, tag) =>
+							tag === 'template' || tag === 'script' ? match : '<${componentName}'
+						)
+						.replace(/<\\/(\\w+)>/g, (match, tag) =>
+							tag === 'template' || tag === 'script' ? match : '</${componentName}>'
+						);
+				},
+			},
+		},`;
+	}
+
 	return `
-const meta: Meta = {
+const meta: Meta<typeof ${componentName}> = {
 	title: 'Components/${componentName}/${title}',
 	${render}
 	parameters: {
-		layout: 'centered'
+		layout: 'centered',
+		${docs}
 	},
 	tags: ['autodocs'],
 	argTypes: ${JSON.stringify(argTypes)}
-};
+} satisfies Meta<typeof ${componentName}>;
 
 export default meta;
 type Story = StoryObj;`;
@@ -114,7 +136,7 @@ const resolveImports = (imports, componentNameLowercase) => {
 	return { componentName, allImports };
 };
 
-const getStories = ({ target, name, fragment, meta }) => {
+const getStories = ({ target, name, fragment, meta, componentName }) => {
 	const { children: examples } = fragment;
 
 	let exampleNames;
@@ -128,20 +150,40 @@ const getStories = ({ target, name, fragment, meta }) => {
 			const exampleName =
 				(exampleNames && exampleNames[index]) || `${name}${index}`;
 			let args = [];
-
+			let decorators;
 			// Add text child
 			if (example.children.length === 1) {
-				const textChild = example.children[0];
-				if (textChild.name === 'div' && textChild.properties['_text']) {
+				let firstChild = example.children[0];
+				if (firstChild.name === componentName) {
+					// We have a wrapper like a div around the component
+					if (firstChild.bindings?.style) {
+						if (target === 'vue') {
+							const styles = firstChild.bindings?.style.code
+								.replaceAll('{', '')
+								.replaceAll('}', '')
+								.replaceAll('\n', '');
+							decorators = `decorators: [() => ({ template: '<div style="${styles}"><story /></div>' })],`;
+						}
+					}
+
+					example = firstChild;
+					firstChild = example.children[0];
+				}
+
+				if (
+					firstChild.name === 'div' &&
+					firstChild.properties['_text']
+				) {
+					const key = target === 'vue' ? 'default' : 'children';
 					args.push(
-						`children: "${textChild.properties['_text'].trim()}"`
+						`${key}: "${firstChild.properties['_text'].trim()}"`
 					);
 				}
 			}
 
 			// Add onClick etc. as property
 			if (example.bindings) {
-				for (const key of Object.keys(example.bindings)) {
+				for (const [key, value] of Object.entries(example.bindings)) {
 					if (key.startsWith('on')) {
 						let bindingKey = key;
 						if (target === 'angular') {
@@ -154,7 +196,7 @@ const getStories = ({ target, name, fragment, meta }) => {
 						}
 						args.push(`"${bindingKey}": fn()`);
 					} else {
-						// TODO: Handle bindings like disabled|style etc.
+						args.push(`"${key}": ${value.code}`);
 					}
 				}
 			}

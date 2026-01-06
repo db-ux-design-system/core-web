@@ -73,7 +73,7 @@ export default function ContainerWrapperShowcase(props: Props) {
 						<Show when={props.isPatternhub}>
 							<DBLink
 								target="_blank"
-								referrerpolicy="no-referrer"
+								referrerPolicy="no-referrer"
 								href={getGitHubSourceUrl()}
 								content="external">
 								View Source
