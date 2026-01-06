@@ -1,0 +1,167 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8" data-next-head=""/><meta name="viewport" content="width=device-width" data-next-head=""/><title data-next-head="">DB UX</title><link data-next-font="size-adjust" rel="preconnect" href="/" crossorigin="anonymous"/><link rel="preload" href="/core-web/review/test-Playwright-Simplify-maxDiffPixels-configuration-logic/_next/static/css/1de0f66354f5ad4f.css" as="style"/><link rel="stylesheet" href="/core-web/review/test-Playwright-Simplify-maxDiffPixels-configuration-logic/_next/static/css/1de0f66354f5ad4f.css" data-n-g=""/><noscript data-n-css=""></noscript><script defer="" nomodule="" src="/core-web/review/test-Playwright-Simplify-maxDiffPixels-configuration-logic/_next/static/chunks/polyfills-42372ed130431b0a.js"></script><script src="/core-web/review/test-Playwright-Simplify-maxDiffPixels-configuration-logic/_next/static/chunks/webpack-b851d4fd983a499c.js" defer=""></script><script src="/core-web/review/test-Playwright-Simplify-maxDiffPixels-configuration-logic/_next/static/chunks/framework-c528b96079bb3756.js" defer=""></script><script src="/core-web/review/test-Playwright-Simplify-maxDiffPixels-configuration-logic/_next/static/chunks/main-8ecdca03a93f6af7.js" defer=""></script><script src="/core-web/review/test-Playwright-Simplify-maxDiffPixels-configuration-logic/_next/static/chunks/pages/_app-b0d54b5573f0b061.js" defer=""></script><script src="/core-web/review/test-Playwright-Simplify-maxDiffPixels-configuration-logic/_next/static/chunks/pages/components/layout/header/docs/HTML-2ac8ed788aba0eb6.js" defer=""></script><script src="/core-web/review/test-Playwright-Simplify-maxDiffPixels-configuration-logic/_next/static/_kavm9mvY4JME7dFFlhe2/_buildManifest.js" defer=""></script><script src="/core-web/review/test-Playwright-Simplify-maxDiffPixels-configuration-logic/_next/static/_kavm9mvY4JME7dFFlhe2/_ssgManifest.js" defer=""></script></head><body><div id="__next"><h2 id="html">HTML<a class="header-link" href="/core-web/review/test-Playwright-Simplify-maxDiffPixels-configuration-logic/components/layout/header/docs/HTML?current=html"><span aria-hidden="true" class="db-icon" data-icon="paper_clip"></span>html<!-- --> anchor link</a></h2>
+<p>For general installation and configuration take a look at the <a target="_blank" referrerPolicy="no-referrer" href="https://www.npmjs.com/package/@db-ux/core-components">components</a> package.</p>
+<h3 id="use-component">Use component<a class="header-link" href="/core-web/review/test-Playwright-Simplify-maxDiffPixels-configuration-logic/components/layout/header/docs/HTML?current=use-component"><span aria-hidden="true" class="db-icon" data-icon="paper_clip"></span>use-component<!-- --> anchor link</a></h3>
+<pre><code class="language-html">&lt;!-- index.html --&gt;
+...
+&lt;body&gt;
+	&lt;header class=&quot;db-header&quot;&gt;
+		&lt;dialog class=&quot;db-drawer&quot;&gt;
+			&lt;article
+				class=&quot;db-drawer-container db-header-drawer&quot;
+				data-spacing=&quot;small&quot;
+				data-rounded=&quot;true&quot;
+			&gt;
+				&lt;header class=&quot;db-drawer-header&quot;&gt;
+					&lt;div class=&quot;db-drawer-header-text&quot;&gt;&lt;/div&gt;
+					&lt;button
+						class=&quot;db-button button-close-drawer is-icon-text-replace&quot;
+						data-icon=&quot;cross&quot;
+						data-variant=&quot;text&quot;
+					&gt;
+						Close Button
+					&lt;/button&gt;
+				&lt;/header&gt;
+				&lt;div class=&quot;db-drawer-content&quot;&gt;
+					&lt;div class=&quot;db-header-drawer-navigation&quot;&gt;
+						&lt;div class=&quot;db-header-navigation&quot;&gt;
+							&lt;nav class=&quot;db-main-navigation&quot;&gt;
+								&lt;menu&gt;
+									&lt;li
+										class=&quot;db-navigation-item&quot;
+										data-icon=&quot;x_placeholder&quot;
+									&gt;
+										&lt;a href=&quot;#&quot;&gt;Regular (Default)&lt;/a&gt;
+									&lt;/li&gt;
+									&lt;li
+										class=&quot;db-navigation-item&quot;
+										aria-disabled=&quot;true&quot;
+									&gt;
+										&lt;a href=&quot;#&quot;
+											&gt;Regular (Default) disabled&lt;/a
+										&gt;
+									&lt;/li&gt;
+								&lt;/menu&gt;
+							&lt;/nav&gt;
+						&lt;/div&gt;
+						&lt;div class=&quot;db-header-meta-navigation&quot;&gt;
+							&lt;a
+								class=&quot;db-link&quot;
+								href=&quot;#&quot;
+								tabindex=&quot;0&quot;
+								data-content=&quot;internal&quot;
+								&gt;Imprint&lt;/a
+							&gt;&lt;a
+								class=&quot;db-link&quot;
+								href=&quot;#&quot;
+								tabindex=&quot;0&quot;
+								data-content=&quot;internal&quot;
+								&gt;Help&lt;/a
+							&gt;
+						&lt;/div&gt;
+					&lt;/div&gt;
+					&lt;div class=&quot;db-header-secondary-action&quot;&gt;
+						&lt;button
+							class=&quot;db-button is-icon-text-replace&quot;
+							data-icon=&quot;x_placeholder&quot;
+							data-variant=&quot;text&quot;
+						&gt;
+							Profile&lt;/button
+						&gt;&lt;button
+							class=&quot;db-button is-icon-text-replace&quot;
+							data-icon=&quot;alert&quot;
+							data-variant=&quot;text&quot;
+						&gt;
+							Notification&lt;/button
+						&gt;&lt;button
+							class=&quot;db-button is-icon-text-replace&quot;
+							data-icon=&quot;help&quot;
+							data-variant=&quot;text&quot;
+						&gt;
+							Help
+						&lt;/button&gt;
+					&lt;/div&gt;
+				&lt;/div&gt;
+			&lt;/article&gt;
+		&lt;/dialog&gt;
+		&lt;div class=&quot;db-header-meta-navigation&quot;&gt;
+			&lt;a class=&quot;db-link&quot; href=&quot;#&quot; tabindex=&quot;0&quot; data-content=&quot;internal&quot;
+				&gt;Imprint&lt;/a
+			&gt;&lt;a class=&quot;db-link&quot; href=&quot;#&quot; tabindex=&quot;0&quot; data-content=&quot;internal&quot;
+				&gt;Help&lt;/a
+			&gt;
+		&lt;/div&gt;
+		&lt;div class=&quot;db-header-navigation-bar&quot;&gt;
+			&lt;div class=&quot;db-header-brand-container&quot;&gt;
+				&lt;div class=&quot;db-brand&quot;&gt;
+					&lt;a href=&quot;/&quot;
+						&gt;&lt;img
+							class=&quot;db-logo&quot;
+							src=&quot;https://design-system.deutschebahn.com/images/db_logo.svg&quot;
+							alt=&quot;&quot;
+							height=&quot;24&quot;
+							width=&quot;34&quot; /&gt;&lt;/a
+					&gt;DBHeader
+				&lt;/div&gt;
+			&lt;/div&gt;
+			&lt;div class=&quot;db-header-navigation-container&quot;&gt;
+				&lt;div class=&quot;db-header-navigation&quot;&gt;
+					&lt;nav class=&quot;db-navigation&quot;&gt;
+						&lt;menu&gt;
+							&lt;li
+								class=&quot;db-navigation-item&quot;
+								data-icon=&quot;x_placeholder&quot;
+							&gt;
+								&lt;a href=&quot;#&quot;&gt;Regular (Default)&lt;/a&gt;
+							&lt;/li&gt;
+							&lt;li class=&quot;db-navigation-item&quot; aria-disabled=&quot;true&quot;&gt;
+								&lt;a href=&quot;#&quot;&gt;Regular (Default) disabled&lt;/a&gt;
+							&lt;/li&gt;
+						&lt;/menu&gt;
+					&lt;/nav&gt;
+				&lt;/div&gt;
+				&lt;div class=&quot;db-header-primary-action&quot;&gt;
+					&lt;button
+						class=&quot;db-button is-icon-text-replace&quot;
+						data-icon=&quot;magnifying_glass&quot;
+						data-variant=&quot;text&quot;
+					&gt;
+						Search
+					&lt;/button&gt;
+				&lt;/div&gt;
+			&lt;/div&gt;
+			&lt;div class=&quot;db-header-action-container&quot;&gt;
+				&lt;div class=&quot;db-header-burger-menu-container&quot;&gt;
+					&lt;button
+						class=&quot;db-button is-icon-text-replace&quot;
+						data-icon=&quot;menu&quot;
+						data-variant=&quot;text&quot;
+					&gt;
+						BurgerMenu
+					&lt;/button&gt;
+				&lt;/div&gt;
+				&lt;div class=&quot;db-header-secondary-action&quot;&gt;
+					&lt;button
+						class=&quot;db-button is-icon-text-replace&quot;
+						data-icon=&quot;x_placeholder&quot;
+						data-variant=&quot;text&quot;
+					&gt;
+						Profile&lt;/button
+					&gt;&lt;button
+						class=&quot;db-button is-icon-text-replace&quot;
+						data-icon=&quot;alert&quot;
+						data-variant=&quot;text&quot;
+					&gt;
+						Notification&lt;/button
+					&gt;&lt;button
+						class=&quot;db-button is-icon-text-replace&quot;
+						data-icon=&quot;help&quot;
+						data-variant=&quot;text&quot;
+					&gt;
+						Help
+					&lt;/button&gt;
+				&lt;/div&gt;
+			&lt;/div&gt;
+		&lt;/div&gt;
+	&lt;/header&gt;
+&lt;/body&gt;
+</code></pre></div><script id="__NEXT_DATA__" type="application/json">{"props":{"pageProps":{}},"page":"/components/layout/header/docs/HTML","query":{},"buildId":"_kavm9mvY4JME7dFFlhe2","assetPrefix":"/core-web/review/test-Playwright-Simplify-maxDiffPixels-configuration-logic","nextExport":true,"autoExport":true,"isFallback":false,"scriptLoader":[]}</script></body></html>
