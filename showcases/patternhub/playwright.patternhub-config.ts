@@ -17,7 +17,7 @@ const patternHubConfig: PlaywrightTestConfig = {
 		}
 	],
 	webServer: {
-		command: `npx http-server ../../build-showcases${process.env.NEXT_PUBLIC_BASE_PATH ? '' : '/patternhub'}`,
+		command: `npx http-server --port 8080 ../../build-showcases${process.env.NEXT_PUBLIC_BASE_PATH ? '' : '/patternhub'}`,
 		port: 8080,
 		reuseExistingServer: !process.env.CI
 	},
