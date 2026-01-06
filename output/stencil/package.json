@@ -1,6 +1,6 @@
 {
   "name": "@db-ux/wc-core-components",
-  "version": "4.2.5",
+  "version": "4.2.6",
   "description": "Stencil components for @db-ux/core-components",
   "repository": {
     "type": "git",
@@ -22,14 +22,14 @@
     "CHANGELOG.md"
   ],
   "scripts": {
-    "build": "stencil build",
+    "build": "npm-run-all build:* --parallel mv:*",
+    "build:_stencil": "stencil build",
     "build:cem": "cem analyze",
     "mv:dist": "cpr dist ../../build-outputs/wc-core-components/dist -o",
     "mv:agent": "cpr agent ../../build-outputs/wc-core-components/agent --overwrite",
     "mv:changelog": "cpr CHANGELOG.md ../../build-outputs/wc-core-components/CHANGELOG.md --overwrite",
     "mv:package.json": "cpr package.json ../../build-outputs/wc-core-components/package.json -o",
     "mv:readme": "cpr README.md ../../build-outputs/wc-core-components/README.md -o",
-    "postbuild": "npm-run-all --parallel build:* --parallel mv:*",
     "start": "stencil build --watch"
   },
   "devDependencies": {
@@ -47,7 +47,7 @@
   "web-types": "./dist/web-types.json",
   "customElements": "dist/custom-elements.json",
   "dependencies": {
-    "@db-ux/core-components": "4.2.5",
-    "@db-ux/core-foundations": "4.2.5"
+    "@db-ux/core-components": "4.2.6",
+    "@db-ux/core-foundations": "4.2.6"
   }
 }

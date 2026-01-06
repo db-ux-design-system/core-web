@@ -1,6 +1,6 @@
 {
   "name": "@db-ux/core-foundations",
-  "version": "4.2.5",
+  "version": "4.2.6",
   "type": "module",
   "description": "Provides basic tokens and assets based on DB UX Design System (Version 3).",
   "repository": {
@@ -18,7 +18,7 @@
     "build"
   ],
   "scripts": {
-    "build": "npm-run-all build:*",
+    "build": "npm-run-all copy-prepare:* build:*",
     "build:01_normalize": "npm-run-all copy-prepare:*",
     "build:02_copy": "npm run copy:scss",
     "build:03_css": "sass --no-source-map --load-path=node_modules/ --load-path=../../node_modules/ build/styles  --fatal-deprecation=mixed-decls",
@@ -38,15 +38,14 @@
     "copy-prepare:icon-overview": "tsx scripts/local/generate-icon-overview.ts && prettier dev/icons.html --write",
     "copy-prepare:normalize": "cpr ../../node_modules/@csstools/normalize.css/normalize.css scss/_normalize.scss --overwrite",
     "copy:scss": "cpr scss build/styles --overwrite",
-    "dev": "vite --open",
+    "dev": "npm-run-all copy-prepare:* dev:*",
+    "dev:vite": "vite --open",
     "generate:fallback-icon-font": "tsx scripts/local/generate-fallback-icon-font.ts",
     "generate:fonts": "tsx assets/fonts/generate-eu-fonts.ts",
     "generate:icons": "tsx scripts/local/generate-icon-font.ts",
-    "prebuild": "npm-run-all copy-prepare:*",
-    "predev": "npm-run-all copy-prepare:*",
-    "prestart": "npm-run-all copy-prepare:*",
     "regenerate:screenshots": "npx playwright test --config ./test/playwright.config.js --update-snapshots",
-    "start": "nodemon --config nodemon.json",
+    "start": "npm-run-all copy-prepare:* start:*",
+    "start:nodemon": "nodemon --config nodemon.json",
     "test:e2e": "npx playwright test --config=./test/playwright.config.js"
   },
   "devDependencies": {
