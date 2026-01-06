@@ -1,33 +1,33 @@
 - main:
   - heading "DBButton" [level=1]
-  - link "Density"
+  - link "Density":
   - button "Functional"
   - button "(Default) Regular"
   - button "Expressive"
-  - link "Variant"
+  - link "Variant":
   - button "(Default) Outlined - Adaptive"
   - button "Filled - Adaptive"
   - button "Ghost - Adaptive"
   - button "Brand"
-  - link "Disabled"
+  - link "Disabled":
   - button "(Default) False"
   - button "True" [disabled]
-  - link "Size"
+  - link "Size":
   - button "(Default) Medium"
   - button "Small"
-  - link "Show Icon Leading"
+  - link "Show Icon Leading":
   - button "(Default) False"
   - button "True"
-  - link "Show Icon Trailing"
+  - link "Show Icon Trailing":
   - button "(Default) False"
   - button "True"
-  - link "No Text"
+  - link "No Text":
   - button "(Default) False"
   - button "True"
-  - link "Width"
+  - link "Width":
   - button "(Default) Auto"
   - button "Width"
-  - link "Multi-line Text With Line Breaks"
+  - link "Multi-line Text With Line Breaks":
   - button "Multi-line Text With Automatic Line Breaks"
   - button "Multi-line Text With Automatic Line Breaks and Icon"
   - button "Button Small Multi-line Text With Automatic Line Breaks"

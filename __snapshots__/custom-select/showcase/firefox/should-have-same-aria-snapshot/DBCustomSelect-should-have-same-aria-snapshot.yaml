@@ -1,6 +1,6 @@
 - main:
   - heading "DBCustomSelect" [level=1]
-  - link "Density"
+  - link "Density":
   - text: Functional
   - group:
     - article:
@@ -64,7 +64,7 @@
             - radio "Option 5"
             - text: Option 5
   - status
-  - link "Multiple"
+  - link "Multiple":
   - text: (Default) False
   - group:
     - article:
@@ -107,7 +107,7 @@
             - checkbox "Option 5"
             - text: Option 5
   - status
-  - link "Variant"
+  - link "Variant":
   - text: (Default) Above
   - group:
     - article:
@@ -150,7 +150,7 @@
             - radio "Option 5"
             - text: Option 5
   - status
-  - link "Show Label"
+  - link "Show Label":
   - text: (Default) True
   - group:
     - article:
@@ -193,7 +193,7 @@
             - radio "Option 5"
             - text: Option 5
   - status
-  - link "Show Message"
+  - link "Show Message":
   - text: (Default) False
   - group:
     - article:
@@ -237,7 +237,7 @@
             - text: Option 5
   - text: Helper Message
   - status
-  - link "Show Icon"
+  - link "Show Icon":
   - text: (Default) False
   - group:
     - article:
@@ -280,7 +280,7 @@
             - radio "Option 5"
             - text: Option 5
   - status
-  - link "Validation"
+  - link "Validation":
   - text: (Default) No Validation
   - group:
     - article:
@@ -346,7 +346,7 @@
             - text: Option 5
   - text: "TODO: Add a validMessage"
   - status
-  - link "Required"
+  - link "Required":
   - text: (Default) False
   - group:
     - article:
@@ -389,7 +389,7 @@
             - checkbox "Option 5"
             - text: Option 5
   - status
-  - link "Show Required Asterisk"
+  - link "Show Required Asterisk":
   - text: (Default) True
   - group:
     - article:
@@ -432,7 +432,7 @@
             - checkbox "Option 5"
             - text: Option 5
   - status
-  - link "Disabled"
+  - link "Disabled":
   - text: (Default) False
   - group:
     - article:
@@ -475,7 +475,7 @@
             - checkbox "Option 5"
             - text: Option 5
   - status
-  - link "Form Field Width"
+  - link "Form Field Width":
   - text: (Default) Full
   - group:
     - article:
@@ -518,7 +518,7 @@
             - radio "Option 5"
             - text: Option 5
   - status
-  - link "Dropdown Width"
+  - link "Dropdown Width":
   - text: "Form Field Width: Full (Default) Fixed"
   - group:
     - article:
@@ -645,7 +645,7 @@
             - radio "5"
             - text: "5"
   - status
-  - link "Placement"
+  - link "Placement":
   - text: "Form Field Width: Full (Default) Bottom"
   - group:
     - article:
@@ -772,7 +772,7 @@
             - radio "Option 5"
             - text: Option 5
   - status
-  - link "Selected type"
+  - link "Selected type":
   - text: (Default) Text
   - group:
     - article:
@@ -836,7 +836,7 @@
             - checkbox "Option 5"
             - text: Option 5
   - status
-  - link "Show No Result"
+  - link "Show No Result":
   - text: (Default) False
   - group:
     - article:
@@ -862,7 +862,7 @@
   - group:
     - article: Nothing found
   - status
-  - link "Show Loading"
+  - link "Show Loading":
   - text: (Default) False
   - group:
     - article:
@@ -888,7 +888,7 @@
   - group:
     - article: Loading
   - status
-  - link "Show Search"
+  - link "Show Search":
   - text: (Default) False
   - group:
     - article:
@@ -951,7 +951,7 @@
             - checkbox "Option 5"
             - text: Option 5
   - status
-  - link "Show Select All"
+  - link "Show Select All":
   - text: (Default) False
   - group:
     - article:
@@ -999,7 +999,7 @@
             - checkbox "Option 5"
             - text: Option 5
   - status
-  - link "Show Clear Selection"
+  - link "Show Clear Selection":
   - text: (Default) True
   - group:
     - article:
@@ -1042,7 +1042,7 @@
             - checkbox "Option 5"
             - text: Option 5
   - status
-  - link "Examples Single"
+  - link "Examples Single":
   - text: Icons
   - group:
     - article:
@@ -1189,7 +1189,7 @@
             - radio "Option 10"
             - text: Option 10
   - status
-  - link "Examples Multiple"
+  - link "Examples Multiple":
   - text: Less than 6
   - group:
     - article:
@@ -1319,7 +1319,7 @@
             - checkbox "Option 10 very long item with may break into a new line"
             - text: Option 10 very long item with may break into a new line
   - status
-  - link "Example tags"
+  - link "Example tags":
   - text: Tag grow
   - group:
     - article:
@@ -1442,7 +1442,7 @@
             - radio "Option 5"
             - text: Option 5
   - status
-  - link "Examples Floating label"
+  - link "Examples Floating label":
   - text: Floating
   - group:
     - article:
