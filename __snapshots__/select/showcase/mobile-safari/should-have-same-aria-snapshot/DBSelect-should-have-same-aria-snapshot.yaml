@@ -1,6 +1,6 @@
 - main:
   - heading "DBSelect" [level=1]
-  - link "Density"
+  - link "Density":
   - text: Label
   - combobox "Label":
     - option [selected]
@@ -31,7 +31,7 @@
     - option "Option 5"
   - text: Expressive
   - status
-  - link "Variant"
+  - link "Variant":
   - text: Label
   - combobox "Label":
     - option [selected]
@@ -48,7 +48,7 @@
     - option "Floating" [selected]
     - option "Option 2"
   - status
-  - link "Show Label"
+  - link "Show Label":
   - text: Label
   - combobox "Label":
     - option [selected]
@@ -69,7 +69,7 @@
     - option "Option 5"
   - text: "False"
   - status
-  - link "Show Message"
+  - link "Show Message":
   - text: Label
   - combobox "Label":
     - option [selected]
@@ -90,7 +90,7 @@
     - option "Option 5"
   - text: True Message
   - status
-  - link "State"
+  - link "State":
   - text: Label
   - combobox "Label":
     - option [selected]
@@ -107,7 +107,7 @@
     - option "Filled" [selected]
     - option "Option 2"
   - status
-  - link "Validation"
+  - link "Validation":
   - text: Label
   - combobox "Label":
     - option [selected]
@@ -135,7 +135,7 @@
     - option "Option 2"
   - text: Valid Valid message
   - status
-  - link "Disabled"
+  - link "Disabled":
   - text: Label
   - combobox "Label":
     - option [selected]
@@ -156,7 +156,7 @@
     - option "Option 5"
   - text: "True"
   - status
-  - link "Content"
+  - link "Content":
   - text: Label
   - combobox "Label":
     - option [selected]
@@ -177,7 +177,7 @@
     - option "Option 5"
   - text: Text - Leading Icon
   - status
-  - link "Required"
+  - link "Required":
   - text: Label
   - combobox "Label":
     - option [selected]
@@ -198,7 +198,7 @@
     - option "Option 5"
   - text: "True"
   - status
-  - link "Show Required Asterisk"
+  - link "Show Required Asterisk":
   - text: Label
   - combobox "Label":
     - option [selected]
@@ -219,7 +219,7 @@
     - option "Option 5"
   - text: "False"
   - status
-  - link "Option Groups"
+  - link "Option Groups":
   - text: Label
   - combobox "Label":
     - option [selected]
@@ -241,7 +241,7 @@
     - option "Another Single Option"
   - text: Mixed options and groups
   - status
-  - link "Examples Floating Label"
+  - link "Examples Floating Label":
   - text: Label
   - combobox "Label":
     - option [selected]

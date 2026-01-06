@@ -1,30 +1,30 @@
 - main:
   - heading "DBDrawer" [level=1]
-  - link "Density"
+  - link "Density":
   - 'button "Open: Functional"'
   - 'button "Open: (Default) Regular"'
   - 'button "Open: Expressive"'
-  - link "Size"
+  - link "Size":
   - 'button "Open: (Default) Medium"'
   - 'button "Open: Full"'
-  - link "Rounded"
+  - link "Rounded":
   - 'button "Open: (Default) False"'
   - 'button "Open: True"'
-  - link "Spacing"
+  - link "Spacing":
   - 'button "Open: (Default) Medium"'
   - 'button "Open: Small"'
   - 'button "Open: Large"'
   - 'button "Open: None"'
-  - link "Backdrop"
+  - link "Backdrop":
   - 'button "Open: (Default) Strong"'
   - 'button "Open: Weak"'
   - 'button "Open: Invisible"'
   - 'button "Open: No Backdrop"'
-  - link "Direction"
+  - link "Direction":
   - 'button "Open: (Default) Right"'
   - 'button "Open: Left"'
   - 'button "Open: Up"'
   - 'button "Open: Down"'
-  - link "Example"
+  - link "Example":
   - 'button "Open: (Default) As modal"'
   - 'button "Open: Inside"'

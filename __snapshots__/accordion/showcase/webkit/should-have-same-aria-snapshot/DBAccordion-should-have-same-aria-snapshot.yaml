@@ -1,6 +1,6 @@
 - main:
   - heading "DBAccordion" [level=1]
-  - link "Density"
+  - link "Density":
   - text: Functional
   - list:
     - listitem:
@@ -25,7 +25,7 @@
       - group: Item 2
     - listitem:
       - group: Item 3
-  - link "Variant"
+  - link "Variant":
   - text: (Default) Divider
   - list:
     - listitem:
@@ -42,7 +42,7 @@
       - group: Item 2
     - listitem:
       - group: Item 3
-  - link "Behavior"
+  - link "Behavior":
   - text: (Default) Multiple
   - list:
     - listitem:
