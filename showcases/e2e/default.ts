@@ -117,8 +117,7 @@ export const getDefaultScreenshotTest = ({
 		const isWebkit =
 			project.name === 'webkit' || project.name === 'mobile_safari';
 
-		if ((stencil && isWebkit) || shouldSkip(skip)) {
-			// There is an issue with Webkit and Stencil for new playwright version
+		if (shouldSkip(skip)) {
 			test.skip();
 		}
 
