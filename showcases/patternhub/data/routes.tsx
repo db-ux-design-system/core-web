@@ -27,13 +27,6 @@ import TabsComponent from '../../react-showcase/src/components/tabs';
 import TagComponent from '../../react-showcase/src/components/tag';
 import TextareaComponent from '../../react-showcase/src/components/textarea';
 import TooltipComponent from '../../react-showcase/src/components/tooltip';
-import * as brandCode from '../components/code-docs/brand';
-import * as customSelectCode from '../components/code-docs/custom-select';
-import * as infotextCode from '../components/code-docs/infotext';
-import * as linkCode from '../components/code-docs/link';
-import * as stackCode from '../components/code-docs/stack';
-import * as tagCode from '../components/code-docs/tag';
-import * as tooltipCode from '../components/code-docs/tooltip';
 import Components from './components.json';
 
 export type NavigationItem = {
@@ -46,15 +39,14 @@ export type NavigationItem = {
 };
 
 const nameComponentMap = {
-	'custom-select': <CustomSelectComponent slotCode={customSelectCode} />,
-	stack: <StackComponent slotCode={stackCode} />,
+	'custom-select': <CustomSelectComponent />,
+	stack: <StackComponent />,
 	button: <ButtonShowcase isPatternhub />,
-	link: <LinkComponent slotCode={linkCode} />,
-	brand: <BrandComponent slotCode={brandCode} />,
-	// Icon: <IconComponent slotCode={iconCode} />,
-	tooltip: <TooltipComponent slotCode={tooltipCode} />,
-	infotext: <InfotextComponent slotCode={infotextCode} />,
-	tag: <TagComponent slotCode={tagCode} />,
+	link: <LinkComponent />,
+	brand: <BrandComponent />,
+	tooltip: <TooltipComponent />,
+	infotext: <InfotextComponent />,
+	tag: <TagComponent />,
 	accordion: (
 		<AccordionComponent
 			subComponent={
