@@ -34,4 +34,4 @@ jobs:
 
       - name: ⚡ Run audit
         if: ${{ matrix.command == 'audit' }}
-        run: npm audit fix --omit=dev --audit-level=high'
+        run: npm audit fix --omit=dev --audit-level=high
