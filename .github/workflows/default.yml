@@ -22,6 +22,7 @@ concurrency:
   group: >-
     ${{
       github.event_name == 'release' &&
+      # Creates a unique concurrency group identifier for release events using the git reference
       format('release-{0}', github.ref) ||
       github.actor == 'dependabot[bot]' &&
       'dependabot' ||
