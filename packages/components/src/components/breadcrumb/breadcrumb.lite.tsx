@@ -6,6 +6,7 @@ import {
 	useStore
 } from '@builder.io/mitosis';
 import { cls } from '../../utils';
+import type { AriaCurrent } from '../breadcrumb-item/model';
 import { DBIcon } from '../icon';
 import type { DBBreadcrumbProps, DBBreadcrumbState } from './model';
 
@@ -38,6 +39,34 @@ export default function DBBreadcrumb(props: DBBreadcrumbProps) {
 		}
 	});
 
+	const renderItemContent = (
+		item: NonNullable<DBBreadcrumbProps['items']>[number],
+		ariaCurrent?: AriaCurrent
+	) => (
+		<>
+			<Show
+				when={item.href}
+				else={
+					<span aria-current={ariaCurrent}>
+						<Show when={item.icon}>
+							<DBIcon
+								weight={state.iconWeight()}
+								icon={item.icon}
+							/>
+						</Show>
+						{item.text}
+					</span>
+				}>
+				<a href={item.href} aria-current={ariaCurrent}>
+					<Show when={item.icon}>
+						<DBIcon weight={state.iconWeight()} icon={item.icon} />
+					</Show>
+					{item.text}
+				</a>
+			</Show>
+		</>
+	);
+
 	return (
 		<nav
 			ref={_ref}
@@ -61,73 +90,19 @@ export default function DBBreadcrumb(props: DBBreadcrumbProps) {
 							<>
 								{props.items!.map((item, index) => (
 									<li key={index}>
-										<Show
-											when={item.href}
-											else={
-												<span
-													aria-current={
-														index ===
-														props.items!.length - 1
-															? (item.ariaCurrent ??
-																'page')
-															: undefined
-													}>
-													<Show when={item.icon}>
-														<DBIcon
-															weight={state.iconWeight()}
-															icon={item.icon}
-														/>
-													</Show>
-													{item.text}
-												</span>
-											}>
-											<a
-												href={item.href}
-												aria-current={
-													index ===
-													props.items!.length - 1
-														? (item.ariaCurrent ??
-															'page')
-														: undefined
-												}>
-												<Show when={item.icon}>
-													<DBIcon
-														weight={state.iconWeight()}
-														icon={item.icon}
-													/>
-												</Show>
-												{item.text}
-											</a>
-										</Show>
+										{renderItemContent(
+											item,
+											index === props.items!.length - 1
+												? (item.ariaCurrent ?? 'page')
+												: undefined
+										)}
 									</li>
 								))}
 							</>
 						}>
 						<>
 							<li key={0}>
-								<Show
-									when={props.items![0].href}
-									else={
-										<span aria-current={undefined}>
-											<Show when={props.items![0].icon}>
-												<DBIcon
-													weight={state.iconWeight()}
-													icon={props.items![0].icon}
-												/>
-											</Show>
-											{props.items![0].text}
-										</span>
-									}>
-									<a href={props.items![0].href}>
-										<Show when={props.items![0].icon}>
-											<DBIcon
-												weight={state.iconWeight()}
-												icon={props.items![0].icon}
-											/>
-										</Show>
-										{props.items![0].text}
-									</a>
-								</Show>
+								{renderItemContent(props.items![0], undefined)}
 							</li>
 							<li key="ellipsis">
 								<button
@@ -155,44 +130,12 @@ export default function DBBreadcrumb(props: DBBreadcrumbProps) {
 								)
 								.map((item, index) => (
 									<li key={index + 1}>
-										<Show
-											when={item.href}
-											else={
-												<span
-													aria-current={
-														index ===
-														props.maxItems! - 2
-															? (item.ariaCurrent ??
-																'page')
-															: undefined
-													}>
-													<Show when={item.icon}>
-														<DBIcon
-															weight={state.iconWeight()}
-															icon={item.icon}
-														/>
-													</Show>
-													{item.text}
-												</span>
-											}>
-											<a
-												href={item.href}
-												aria-current={
-													index ===
-													props.maxItems! - 2
-														? (item.ariaCurrent ??
-															'page')
-														: undefined
-												}>
-												<Show when={item.icon}>
-													<DBIcon
-														weight={state.iconWeight()}
-														icon={item.icon}
-													/>
-												</Show>
-												{item.text}
-											</a>
-										</Show>
+										{renderItemContent(
+											item,
+											index === props.maxItems! - 2
+												? (item.ariaCurrent ?? 'page')
+												: undefined
+										)}
 									</li>
 								))}
 						</>
