@@ -1,30 +1,30 @@
 - main:
   - heading "DBNavigation" [level=1]
-  - link "Density"
+  - link "Density":
   - text: Functional
   - navigation "Functional":
     - list:
       - listitem:
         - button "Navi-Item 1"
       - listitem:
-        - link "Navi-Item 2"
+        - link "Navi-Item 2":
       - listitem:
-        - link "Navi-Item 3" [disabled]
+        - link "Navi-Item 3" [disabled]:
   - text: (Default) Regular
   - navigation "(Default) Regular":
     - list:
       - listitem:
         - button "Navi-Item 1"
       - listitem:
-        - link "Navi-Item 2"
+        - link "Navi-Item 2":
       - listitem:
-        - link "Navi-Item 3" [disabled]
+        - link "Navi-Item 3" [disabled]:
   - text: Expressive
   - navigation "Expressive":
     - list:
       - listitem:
         - button "Navi-Item 1"
       - listitem:
-        - link "Navi-Item 2"
+        - link "Navi-Item 2":
       - listitem:
-        - link "Navi-Item 3" [disabled]
+        - link "Navi-Item 3" [disabled]:

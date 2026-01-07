@@ -1,6 +1,6 @@
 - main:
   - heading "DBHeader" [level=1]
-  - link "Density"
+  - link "Density":
   - text: DBHeader
   - button "Search"
   - button "BurgerMenu"
@@ -10,7 +10,7 @@
   - text: DBHeader
   - button "Search"
   - button "BurgerMenu"
-  - link "Width"
+  - link "Width":
   - text: DBHeader
   - button "Search"
   - button "BurgerMenu"
@@ -20,14 +20,14 @@
   - text: DBHeader
   - button "Search"
   - button "BurgerMenu"
-  - link "Behavior"
+  - link "Behavior":
   - text: DBHeader
   - button "Search"
   - button "BurgerMenu"
   - text: DBHeader
   - button "Search"
   - button "BurgerMenu"
-  - link "Examples"
+  - link "Examples":
   - text: DBHeader
   - button "BurgerMenu"
   - text: DBHeader

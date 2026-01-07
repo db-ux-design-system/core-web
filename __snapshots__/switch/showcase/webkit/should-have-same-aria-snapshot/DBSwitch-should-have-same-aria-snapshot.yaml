@@ -1,6 +1,6 @@
 - main:
   - heading "DBSwitch" [level=1]
-  - link "Density"
+  - link "Density":
   - switch "functional"
   - text: functional
   - status
@@ -10,21 +10,21 @@
   - switch "expressive"
   - text: expressive
   - status
-  - link "Checked"
+  - link "Checked":
   - switch "(Default) False"
   - text: (Default) False
   - status
   - switch "True" [checked]
   - text: "True"
   - status
-  - link "Disabled"
+  - link "Disabled":
   - switch "(Default) False"
   - text: (Default) False
   - status
   - switch "True" [disabled]
   - text: "True"
   - status
-  - link "Visual Aid"
+  - link "Visual Aid":
   - switch "(Default) False (Unchecked)"
   - text: (Default) False (Unchecked)
   - status
@@ -37,21 +37,21 @@
   - switch "True (Checked)" [checked]
   - text: True (Checked)
   - status
-  - link "Size"
+  - link "Size":
   - switch "(Default) Medium"
   - text: (Default) Medium
   - status
   - switch "Small"
   - text: Small
   - status
-  - link "Variant"
+  - link "Variant":
   - switch "(Default) Trailing"
   - text: (Default) Trailing
   - status
   - switch "Leading"
   - text: Leading
   - status
-  - link "Show Label"
+  - link "Show Label":
   - switch "(Default) True"
   - text: (Default) True
   - status
@@ -59,21 +59,21 @@
   - text: "False"
   - status
   - text: "False"
-  - link "Required"
+  - link "Required":
   - switch "(Default) False"
   - text: (Default) False
   - status
   - switch "True"
   - text: "True"
   - status
-  - link "Show Required Asterisk"
+  - link "Show Required Asterisk":
   - switch "(Default) True"
   - text: (Default) True
   - status
   - switch "False"
   - text: "False"
   - status
-  - link "Validation"
+  - link "Validation":
   - switch "(Default) No validation"
   - text: (Default) No validation
   - status
@@ -83,14 +83,14 @@
   - switch "Valid" [checked]
   - text: Valid Valid message
   - status
-  - link "Show Message"
+  - link "Show Message":
   - switch "(Default) False"
   - text: (Default) False
   - status
   - switch "True"
   - text: True Message
   - status
-  - link "Examples"
+  - link "Examples":
   - switch "Custom Icons"
   - text: Custom Icons
   - status

@@ -1,52 +1,52 @@
 - main:
   - heading "DBTag" [level=1]
-  - link "Density"
+  - link "Density":
   - text: Functional (Default) Regular Expressive
-  - link "Emphasis"
+  - link "Emphasis":
   - text: (Default) Weak Strong
-  - link "Semantic"
+  - link "Semantic":
   - text: (Default) Adaptive Critical Informational Neutral Successful Warning Adaptive Strong Critical Strong Informational Strong Neutral Strong Successful Strong Warning Strong
-  - link "Behavior"
+  - link "Behavior":
   - group "Behavior":
     - text: (Default) Static Removable
     - button "Remove"
     - button "Interactive (Button)"
-    - link "Interactive (Link)"
+    - link "Interactive (Link)":
     - checkbox "Interactive (Checkbox)"
     - text: Interactive (Checkbox)
     - radio "Interactive (Radio)"
     - text: Interactive (Radio)
     - radio "Interactive Radio 2"
     - text: Interactive Radio 2
-  - link "Checked"
+  - link "Checked":
   - group "Checked":
     - checkbox "(Default) False"
     - text: (Default) False
     - checkbox "True" [checked]
     - text: "True"
-  - link "Disabled"
+  - link "Disabled":
   - group "Disabled":
     - checkbox "(Default) False"
     - text: (Default) False
     - checkbox "True" [disabled]
     - text: "True"
-  - link "Show Icon"
+  - link "Show Icon":
   - text: (Default) False True
-  - link "No Text"
+  - link "No Text":
   - text: (Default) False True
-  - link "Show Slot"
+  - link "Show Slot":
   - text: (Default) False Swap Slot True
-  - link "Show Check State"
+  - link "Show Check State":
   - checkbox "(Default) True"
   - text: (Default) True
   - checkbox "False"
   - text: "False"
-  - link "Overflow"
+  - link "Overflow":
   - text: (Default) False True - lorem ipsum dolor
-  - link "Example Strong"
+  - link "Example Strong":
   - group "Example Strong":
     - button "Interactive Strong Button with Icon"
-    - link "Interactive Strong Link with Icon"
+    - link "Interactive Strong Link with Icon":
     - checkbox "Interactive Strong Checkbox with Icon"
     - text: Interactive Strong Checkbox with Icon
     - radio "Interactive Strong Radio 1 with Icon"

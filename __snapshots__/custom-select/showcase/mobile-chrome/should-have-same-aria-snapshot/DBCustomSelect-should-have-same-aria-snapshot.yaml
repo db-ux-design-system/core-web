@@ -1,6 +1,6 @@
 - main:
   - heading "DBCustomSelect" [level=1]
-  - link "Density"
+  - link "Density":
   - text: Functional
   - group:
     - article:
@@ -67,7 +67,7 @@
             - text: Option 5
       - button "Close"
   - status
-  - link "Multiple"
+  - link "Multiple":
   - text: (Default) False
   - group:
     - article:
@@ -112,7 +112,7 @@
             - text: Option 5
       - button "Close"
   - status
-  - link "Variant"
+  - link "Variant":
   - text: (Default) Above
   - group:
     - article:
@@ -157,7 +157,7 @@
             - text: Option 5
       - button "Close"
   - status
-  - link "Show Label"
+  - link "Show Label":
   - text: (Default) True
   - group:
     - article:
@@ -202,7 +202,7 @@
             - text: Option 5
       - button "Close"
   - status
-  - link "Show Message"
+  - link "Show Message":
   - text: (Default) False
   - group:
     - article:
@@ -248,7 +248,7 @@
       - button "Close"
   - text: Helper Message
   - status
-  - link "Show Icon"
+  - link "Show Icon":
   - text: (Default) False
   - group:
     - article:
@@ -293,7 +293,7 @@
             - text: Option 5
       - button "Close"
   - status
-  - link "Validation"
+  - link "Validation":
   - text: (Default) No Validation
   - group:
     - article:
@@ -362,7 +362,7 @@
       - button "Close"
   - text: "TODO: Add a validMessage"
   - status
-  - link "Required"
+  - link "Required":
   - text: (Default) False
   - group:
     - article:
@@ -407,7 +407,7 @@
             - text: Option 5
       - button "Close"
   - status
-  - link "Show Required Asterisk"
+  - link "Show Required Asterisk":
   - text: (Default) True
   - group:
     - article:
@@ -452,7 +452,7 @@
             - text: Option 5
       - button "Close"
   - status
-  - link "Disabled"
+  - link "Disabled":
   - text: (Default) False
   - group:
     - article:
@@ -497,7 +497,7 @@
             - text: Option 5
       - button "Close"
   - status
-  - link "Form Field Width"
+  - link "Form Field Width":
   - text: (Default) Full
   - group:
     - article:
@@ -542,7 +542,7 @@
             - text: Option 5
       - button "Close"
   - status
-  - link "Dropdown Width"
+  - link "Dropdown Width":
   - text: "Form Field Width: Full (Default) Fixed"
   - group:
     - article:
@@ -675,7 +675,7 @@
             - text: "5"
       - button "Close"
   - status
-  - link "Placement"
+  - link "Placement":
   - text: "Form Field Width: Full (Default) Bottom"
   - group:
     - article:
@@ -808,7 +808,7 @@
             - text: Option 5
       - button "Close"
   - status
-  - link "Selected type"
+  - link "Selected type":
   - text: (Default) Text
   - group:
     - article:
@@ -875,7 +875,7 @@
             - text: Option 5
       - button "Close"
   - status
-  - link "Show No Result"
+  - link "Show No Result":
   - text: (Default) False
   - group:
     - article:
@@ -904,7 +904,7 @@
       - text: Nothing found
       - button "Close"
   - status
-  - link "Show Loading"
+  - link "Show Loading":
   - text: (Default) False
   - group:
     - article:
@@ -933,7 +933,7 @@
       - text: Loading
       - button "Close"
   - status
-  - link "Show Search"
+  - link "Show Search":
   - text: (Default) False
   - group:
     - article:
@@ -998,7 +998,7 @@
             - text: Option 5
       - button "Close"
   - status
-  - link "Show Select All"
+  - link "Show Select All":
   - text: (Default) False
   - group:
     - article:
@@ -1048,7 +1048,7 @@
             - text: Option 5
       - button "Close"
   - status
-  - link "Show Clear Selection"
+  - link "Show Clear Selection":
   - text: (Default) True
   - group:
     - article:
@@ -1093,7 +1093,7 @@
             - text: Option 5
       - button "Close"
   - status
-  - link "Examples Single"
+  - link "Examples Single":
   - text: Icons
   - group:
     - article:
@@ -1246,7 +1246,7 @@
             - text: Option 10
       - button "Close"
   - status
-  - link "Examples Multiple"
+  - link "Examples Multiple":
   - text: Less than 6
   - group:
     - article:
@@ -1381,7 +1381,7 @@
             - text: Option 10 very long item with may break into a new line
       - button "Close"
   - status
-  - link "Example tags"
+  - link "Example tags":
   - text: Tag grow
   - group:
     - article:
@@ -1510,7 +1510,7 @@
             - text: Option 5
       - button "Close"
   - status
-  - link "Examples Floating label"
+  - link "Examples Floating label":
   - text: Floating
   - group:
     - article:

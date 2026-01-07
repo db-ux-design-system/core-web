@@ -1,26 +1,26 @@
 - main:
   - heading "DBLink" [level=1]
-  - link "Density"
-  - link "Functional"
-  - link "(Default) Regular"
-  - link "Expressive"
-  - link "Variant"
-  - link "(Default) Adaptive"
-  - link "Brand"
-  - link "Disabled"
-  - link "(Default) False"
-  - link "True" [disabled]
-  - link "Size"
-  - link "(Default) Medium"
-  - link "Small"
-  - link "Content"
-  - link "(Default) Internal"
-  - link "External"
-  - link "Show Icon"
-  - link "(Default) True"
-  - link "False"
-  - link "Wrap"
-  - link "(Default) False"
-  - link "True [Multiline]"
-  - link "Examples"
-  - link "Variant Inline"
+  - link "Density":
+  - link "Functional":
+  - link "(Default) Regular":
+  - link "Expressive":
+  - link "Variant":
+  - link "(Default) Adaptive":
+  - link "Brand":
+  - link "Disabled":
+  - link "(Default) False":
+  - link "True" [disabled]:
+  - link "Size":
+  - link "(Default) Medium":
+  - link "Small":
+  - link "Content":
+  - link "(Default) Internal":
+  - link "External":
+  - link "Show Icon":
+  - link "(Default) True":
+  - link "False":
+  - link "Wrap":
+  - link "(Default) False":
+  - link "True [Multiline]":
+  - link "Examples":
+  - link "Variant Inline":

@@ -1,60 +1,60 @@
 - navigation "Breadcrumb - Small Size":
   - list:
     - listitem:
-      - link "Home"
+      - link "Home":
     - listitem:
-      - link "Category"
+      - link "Category":
     - listitem:
-      - link "Current Page"
+      - link "Current Page":
 - navigation "Breadcrumb - Medium Size":
   - list:
     - listitem:
-      - link "Home"
+      - link "Home":
     - listitem:
-      - link "Category"
+      - link "Category":
     - listitem: Current Page
 - navigation "Breadcrumb - Chevron Separator":
   - list:
     - listitem:
-      - link "Home"
+      - link "Home":
     - listitem:
-      - link "Category"
+      - link "Category":
     - listitem: Current Page
 - navigation "Breadcrumb - Slash Separator":
   - list:
     - listitem:
-      - link "Home"
+      - link "Home":
     - listitem:
       - text: /
-      - link "Category"
+      - link "Category":
     - listitem: / Current Page
 - navigation "Breadcrumb - Collapsed Navigation":
   - list:
     - listitem:
-      - link "Root"
+      - link "Root":
     - listitem:
       - button "Expand to show all breadcrumb items": …
     - listitem:
-      - link "Path 3"
+      - link "Path 3":
     - listitem:
-      - link "Current Page"
+      - link "Current Page":
 - navigation "Breadcrumb - With Icons Small Size":
   - list:
     - listitem:
-      - link "Root"
+      - link "Root":
     - listitem:
-      - link "Settings"
+      - link "Settings":
     - listitem:
-      - link "Profile"
+      - link "Profile":
     - listitem:
-      - link "Notifications"
+      - link "Notifications":
 - navigation "Breadcrumb - With Icons Medium Size":
   - list:
     - listitem:
-      - link "Root"
+      - link "Root":
     - listitem:
-      - link "Settings"
+      - link "Settings":
     - listitem:
-      - link "Profile"
+      - link "Profile":
     - listitem:
-      - link "Notifications"
+      - link "Notifications":
