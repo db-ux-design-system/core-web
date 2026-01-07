@@ -1,8 +1,4 @@
 // For more info, see https://github.com/storybookjs/eslint-plugin-storybook#configuration-flat-config-format
-import storybook from "eslint-plugin-storybook";
-
-// For more info, see https://github.com/storybookjs/storybook/tree/next/code/lib/eslint-plugin#configuration-eslintconfigcmjs
-// import storybook from "eslint-plugin-storybook";
 
 import js from '@eslint/js';
 import reactHooks from 'eslint-plugin-react-hooks';

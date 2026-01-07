@@ -22,37 +22,37 @@ jobs:
         run: npm run build
 
       - name: ⏫ Upload foundations build
-        uses: actions/upload-artifact@v5
+        uses: actions/upload-artifact@v6
         with:
           name: db-ux-foundations-build
           path: packages/foundations/build
 
       - name: ⏫ Upload output
-        uses: actions/upload-artifact@v5
+        uses: actions/upload-artifact@v6
         with:
           name: db-ux-output
           path: output
 
       - name: ⏫ Upload components build
-        uses: actions/upload-artifact@v5
+        uses: actions/upload-artifact@v6
         with:
           name: db-ux-components-build
           path: packages/components/build
 
       - name: ⏫ Upload migration build
-        uses: actions/upload-artifact@v5
+        uses: actions/upload-artifact@v6
         with:
           name: db-ux-migration-build
           path: packages/migration/build
 
       - name: ⏫ Upload stylelint build
-        uses: actions/upload-artifact@v5
+        uses: actions/upload-artifact@v6
         with:
           name: db-ux-stylelint-build
           path: packages/stylelint/build
 
       - name: ⏫ Upload agent-cli build
-        uses: actions/upload-artifact@v5
+        uses: actions/upload-artifact@v6
         with:
           name: db-ux-agent-cli-build
           path: packages/agent-cli/build

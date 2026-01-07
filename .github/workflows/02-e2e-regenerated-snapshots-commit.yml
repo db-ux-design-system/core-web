@@ -35,7 +35,7 @@ jobs:
           ref: ${{ github.head_ref }}
 
       - name: ⏬ Download components
-        uses: actions/download-artifact@v6
+        uses: actions/download-artifact@v7
         # Only download artifact if the artifact exists
         if: inputs.components
         with:
@@ -43,7 +43,7 @@ jobs:
           path: ./__snapshots__/
 
       - name: ⏬ Download foundations
-        uses: actions/download-artifact@v6
+        uses: actions/download-artifact@v7
         # Only download artifact if the artifact exists
         if: inputs.foundations
         with:
@@ -51,14 +51,14 @@ jobs:
           path: ./__snapshots__/foundations
 
       - name: ⏬ Download patternhub
-        uses: actions/download-artifact@v6
+        uses: actions/download-artifact@v7
         if: inputs.patternhub
         with:
           name: snapshots-patternhub
           path: ./__snapshots__/
 
       - name: ⏬ Download showcase
-        uses: actions/download-artifact@v6
+        uses: actions/download-artifact@v7
         if: inputs.showcases
         with:
           name: snapshots-showcases
