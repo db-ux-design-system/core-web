@@ -1,5 +1,16 @@
-import { Fragment } from '@builder.io/mitosis';
+import { Fragment, useMetadata } from '@builder.io/mitosis';
 import DBButton from '../button.lite';
+import { StorybookButtonArgTypes } from './_button.arg.types';
+
+useMetadata({
+	storybookTitle: 'Multi Line Text',
+	storybookNames: [
+		'Automatic Line Breaks',
+		'Automatic Line Breaks and Icon',
+		'Small Automatic Line Breaks'
+	],
+	storybookArgTypes: StorybookButtonArgTypes
+});
 
 export default function ButtonMultiLineText() {
 	return (

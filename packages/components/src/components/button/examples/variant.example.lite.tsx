@@ -1,9 +1,9 @@
 import { Fragment, useMetadata } from '@builder.io/mitosis';
 import DBButton from '../button.lite';
-import { StorybookButtonArgTypes } from './storybook-button.arg.types';
+import { StorybookButtonArgTypes } from './_button.arg.types';
 
 useMetadata({
-	storybookTitle: 'Button Variant',
+	storybookTitle: 'Variant',
 	storybookNames: ['Outlined', 'Filled', 'Ghost', 'Brand'],
 	storybookArgTypes: StorybookButtonArgTypes
 });

@@ -1,3 +1,4 @@
+import ButtonShowcase from '@components/components/button/showcase/button.showcase';
 import type { ReactElement } from 'react';
 import AccordionComponent from '../../react-showcase/src/components/accordion';
 import AccordionItemComponent from '../../react-showcase/src/components/accordion-item';
@@ -9,14 +10,12 @@ import CustomSelectComponent from '../../react-showcase/src/components/custom-se
 import DividerComponent from '../../react-showcase/src/components/divider';
 import DrawerComponent from '../../react-showcase/src/components/drawer';
 import HeaderComponent from '../../react-showcase/src/components/header';
-// Import IconComponent from '../../react-showcase/src/components/icon';
 import InfotextComponent from '../../react-showcase/src/components/infotext';
 import InputComponent from '../../react-showcase/src/components/input';
 import LinkComponent from '../../react-showcase/src/components/link';
 import NavigationComponent from '../../react-showcase/src/components/navigation';
 import NavigationItemComponent from '../../react-showcase/src/components/navigation-item';
 import NotificationComponent from '../../react-showcase/src/components/notification';
-// Import PageComponent from '../../react-showcase/src/components/page';
 import PopoverComponent from '../../react-showcase/src/components/popover';
 import RadioComponent from '../../react-showcase/src/components/radio';
 import SectionComponent from '../../react-showcase/src/components/section';
@@ -30,15 +29,12 @@ import TextareaComponent from '../../react-showcase/src/components/textarea';
 import TooltipComponent from '../../react-showcase/src/components/tooltip';
 import * as brandCode from '../components/code-docs/brand';
 import * as customSelectCode from '../components/code-docs/custom-select';
-// Import * as iconCode from '../components/code-docs/icon';
 import * as infotextCode from '../components/code-docs/infotext';
 import * as linkCode from '../components/code-docs/link';
-// Import * as pageCode from '../components/code-docs/page';
 import * as stackCode from '../components/code-docs/stack';
 import * as tagCode from '../components/code-docs/tag';
 import * as tooltipCode from '../components/code-docs/tooltip';
 import Components from './components.json';
-import ButtonShowcase from '@components/components/button/showcase/button.showcase';
 
 export type NavigationItem = {
 	label: string;

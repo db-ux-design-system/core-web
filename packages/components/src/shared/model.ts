@@ -601,6 +601,7 @@ export type ClickEventProps<T> = {
 	 * React specific onClick to pass to forward ref.
 	 */
 	onClick?: (event: ClickEvent<T>) => void;
+	click?: (event: ClickEvent<T>) => void;
 };
 
 export type ClickEventState<T> = {

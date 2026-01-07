@@ -27,14 +27,16 @@ const getMetaObject = ({
 		}
 		if (metadata.storybookArgTypes) {
 			if (target === 'angular') {
-				argTypes = Object.fromEntries(
-					Object.entries(argTypes).map(([key, value]) => {
+				Object.entries(metadata.storybookArgTypes).forEach(
+					([key, value]) => {
 						if (key.startsWith('on') && value?.action) {
 							const newKey = key.slice(2).toLowerCase();
-							return [newKey, { ...value, action: newKey }];
+
+							argTypes[newKey] = { ...value, action: newKey };
+						} else {
+							argTypes[key] = value;
 						}
-						return [key, value];
-					})
+					}
 				);
 			} else {
 				argTypes = metadata.storybookArgTypes;
@@ -51,7 +53,7 @@ const getMetaObject = ({
 	} else if (target === 'angular') {
 		const argsToTemplateString = '${argsToTemplate(args)}';
 		const childrenString = '${children}';
-		render = `	component: ${componentName},
+		render = `
 	render: ({ children, ...args }) => ({
 		props: args,
 		template: \`<db-${componentNameLowercase} ${argsToTemplateString}>${childrenString}</db-${componentNameLowercase}>\`
@@ -59,7 +61,6 @@ const getMetaObject = ({
 	} else if (target === 'vue') {
 		const childrenString = '${args.default}';
 		render = `
-		component: ${componentName},
 		render: (args) => ({
 		components: { ${componentName} },
 		setup() {
@@ -73,7 +74,7 @@ const getMetaObject = ({
 	}),`;
 	}
 
-	let docs;
+	let docs = '';
 
 	if (target === 'vue') {
 		docs = `
@@ -92,9 +93,15 @@ const getMetaObject = ({
 		},`;
 	}
 
+	const metaType =
+		target === 'angular'
+			? `${componentName}Props`
+			: `typeof ${componentName}`;
+
 	return `
-const meta: Meta<typeof ${componentName}> = {
+const meta: Meta<${metaType}> = {
 	title: 'Components/${componentName}/${title}',
+	component: ${componentName},
 	${render}
 	parameters: {
 		layout: 'centered',
@@ -102,7 +109,7 @@ const meta: Meta<typeof ${componentName}> = {
 	},
 	tags: ['autodocs'],
 	argTypes: ${JSON.stringify(argTypes)}
-} satisfies Meta<typeof ${componentName}>;
+} satisfies Meta<${metaType}>;
 
 export default meta;
 type Story = StoryObj;`;
@@ -142,7 +149,9 @@ const getStories = ({ target, name, fragment, meta, componentName }) => {
 	let exampleNames;
 
 	if (meta?.useMetadata?.storybookNames) {
-		exampleNames = meta.useMetadata.storybookNames;
+		exampleNames = meta.useMetadata.storybookNames.map((name) =>
+			name.replace(/[^a-zA-Z0-9]/g, '')
+		);
 	}
 
 	return examples
@@ -150,24 +159,34 @@ const getStories = ({ target, name, fragment, meta, componentName }) => {
 			const exampleName =
 				(exampleNames && exampleNames[index]) || `${name}${index}`;
 			let args = [];
-			let decorators;
+			let decorators = '';
 			// Add text child
 			if (example.children.length === 1) {
 				let firstChild = example.children[0];
 				if (firstChild.name === componentName) {
 					// We have a wrapper like a div around the component
-					if (firstChild.bindings?.style) {
+					if (example.bindings?.style) {
+						const nonReactStyles = example.bindings?.style?.code
+							.replaceAll('{', '')
+							.replaceAll('}', '')
+							.replaceAll("'", '')
+							.replaceAll('\n', '');
 						if (target === 'vue') {
-							const styles = firstChild.bindings?.style.code
-								.replaceAll('{', '')
-								.replaceAll('}', '')
-								.replaceAll('\n', '');
-							decorators = `decorators: [() => ({ template: '<div style="${styles}"><story /></div>' })],`;
+							decorators = `decorators: [() => ({ template: \`<div style="${nonReactStyles}"><story /></div>\` })],`;
+						} else if (target === 'angular') {
+							const storyString = '${story}';
+							decorators = `decorators: [componentWrapperDecorator((story) => \`<div style="${nonReactStyles}">${storyString}</div>\`)]`;
+						} else if (target === 'react') {
+							decorators = `decorators:[ (Story) => (
+      <div style={${example.bindings?.style?.code}}>
+        <Story />
+      </div>
+    )]`;
 						}
 					}
 
 					example = firstChild;
-					firstChild = example.children[0];
+					firstChild = firstChild.children[0];
 				}
 
 				if (
@@ -209,7 +228,8 @@ const getStories = ({ target, name, fragment, meta, componentName }) => {
 			return `export const ${exampleName}: Story = {
 	args: {
 	${args.join(',\n')}
-	}
+	},
+	${decorators}
 };`;
 		})
 		.join('\n');
@@ -243,9 +263,9 @@ module.exports = () => ({
 			return [
 				`import type { Meta, StoryObj } from '@storybook/${targetMapItem}';`,
 				target === 'angular'
-					? `import { argsToTemplate } from '@storybook/${targetMapItem}';`
+					? `import { argsToTemplate, componentWrapperDecorator } from '@storybook/${targetMapItem}';`
 					: '',
-				`import { ${allImports.join(',')} } from '@components';`,
+				`import { ${allImports.join(',')}, type ${componentName}Props } from '@components';`,
 				"import { fn } from 'storybook/test';",
 				getMetaObject({
 					target,
@@ -258,7 +278,8 @@ module.exports = () => ({
 					target,
 					fragment: children[0],
 					meta,
-					name
+					name,
+					componentName
 				})
 			].join('\n');
 		}

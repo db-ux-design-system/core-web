@@ -5,7 +5,7 @@ const storyBookPlugin = require('./plugins/storybook/storybook-plugin.cjs');
  */
 module.exports = {
 	files: ['src/**/*.example.lite.tsx'],
-	targets: ['vue'],
+	targets: ['angular', 'react', 'vue'],
 	dest: '../../storybooks',
 	getTargetPath: ({ target }) => {
 		return `${target}-storybook`;
