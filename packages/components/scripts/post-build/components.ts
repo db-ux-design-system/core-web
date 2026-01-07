@@ -355,38 +355,38 @@ export const getComponents = (): Component[] => [
 	{
 		name: 'brand'
 	},
-	{
-		name: 'breadcrumb',
-		overwrites: {
-			stencil: [
-				{ from: 'import { DBIcon } from "../icon";\n', to: '' },
-				// Add Host import for ARIA transparency
-				{
-					from: 'import { Component, h, Fragment, Prop, State } from "@stencil/core";',
-					to: 'import { Component, h, Fragment, Host, Prop, State } from "@stencil/core";'
-				},
-				// Wrap render output in Host with role="presentation" to make custom element ARIA-transparent
-				{
-					from: '  render() {\n    return (',
-					to: '  render() {\n    return (\n      <Host role="presentation">'
-				},
-				{
-					from: '      </nav>\n    );',
-					to: '      </nav>\n      </Host>\n    );'
-				}
-			],
-			angular: [
-				// Fix TypeScript strict null checks by adding non-null assertions
-				// Within the conditional block where items() is checked, subsequent accesses need !
-				{ from: /items\(\)\.length/g, to: 'items()!.length' },
-				{ from: /items\(\)\[0\]/g, to: 'items()![0]' },
-				{ from: /items\(\)\.slice/g, to: 'items()!.slice' },
-				{ from: /maxItems\(\) >/g, to: 'maxItems()! >' },
-				{ from: /> maxItems\(\)/g, to: '> maxItems()!' },
-				{ from: /maxItems\(\) - 1/g, to: 'maxItems()! - 1' }
-			]
-		}
-	},
+	// {
+	// 	name: 'breadcrumb',
+	// 	overwrites: {
+	// 		stencil: [
+	// 			{ from: 'import { DBIcon } from "../icon";\n', to: '' },
+	// 			// Add Host import for ARIA transparency
+	// 			{
+	// 				from: 'import { Component, h, Fragment, Prop, State } from "@stencil/core";',
+	// 				to: 'import { Component, h, Fragment, Host, Prop, State } from "@stencil/core";'
+	// 			},
+	// 			// Wrap render output in Host with role="presentation" to make custom element ARIA-transparent
+	// 			{
+	// 				from: '  render() {\n    return (',
+	// 				to: '  render() {\n    return (\n      <Host role="presentation">'
+	// 			},
+	// 			{
+	// 				from: '      </nav>\n    );',
+	// 				to: '      </nav>\n      </Host>\n    );'
+	// 			}
+	// 		],
+	// 		angular: [
+	// 			// Fix TypeScript strict null checks by adding non-null assertions
+	// 			// Within the conditional block where items() is checked, subsequent accesses need !
+	// 			{ from: /items\(\)\.length/g, to: 'items()!.length' },
+	// 			{ from: /items\(\)\[0\]/g, to: 'items()![0]' },
+	// 			{ from: /items\(\)\.slice/g, to: 'items()!.slice' },
+	// 			{ from: /maxItems\(\) >/g, to: 'maxItems()! >' },
+	// 			{ from: /> maxItems\(\)/g, to: '> maxItems()!' },
+	// 			{ from: /maxItems\(\) - 1/g, to: 'maxItems()! - 1' }
+	// 		]
+	// 	}
+	// },
 	{
 		name: 'breadcrumb-item',
 		overwrites: {

@@ -3,7 +3,6 @@ import { expect, type Page, test } from '@playwright/test';
 import { close, getCompliance } from 'accessibility-checker';
 import { type ICheckerError } from 'accessibility-checker/lib/api/IChecker';
 import { type IBaselineResult } from 'accessibility-checker/lib/common/engine/IReport';
-import type { Result } from 'axe-core';
 import { type FullProject } from 'playwright/types';
 import { lvl1 } from './fixtures/variants';
 import { setScrollViewport } from './fixtures/viewport';
@@ -23,9 +22,6 @@ export type DefaultTestType = {
 export type DefaultSnapshotTestType = {
 	preScreenShot?: (page: Page, project: FullProject) => Promise<void>;
 	ratio?: string;
-	// When true, capture element-only screenshot (e.g., breadcrumb section)
-	// Defaults to false for full-page to preserve existing baselines
-	elementOnly?: boolean;
 } & DefaultTestType;
 
 export type AxeCoreTestType = {
@@ -84,11 +80,10 @@ const gotoPage = async (
 const isCheckerError = (object: any): object is ICheckerError =>
 	'details' in object;
 
-// Use explicit env var name to avoid destructuring pitfalls in test runners
 const shouldSkip = (skip?: SkipType): boolean => {
 	if (skip) {
-		const showcaseValue = process.env.showcase;
-		if (skip.angular && showcaseValue?.startsWith('angular')) {
+		const { showcase } = process.env;
+		if (skip.angular && showcase?.startsWith('angular')) {
 			return true;
 		}
 	}
@@ -101,8 +96,7 @@ export const getDefaultScreenshotTest = ({
 	fixedHeight,
 	preScreenShot,
 	skip,
-	ratio,
-	elementOnly
+	ratio
 }: DefaultSnapshotTestType) => {
 	test(`should match screenshot`, async ({ page }, { project }) => {
 		const { showcase } = process.env;
@@ -112,8 +106,7 @@ export const getDefaultScreenshotTest = ({
 		const isWebkit =
 			project.name === 'webkit' || project.name === 'mobile_safari';
 
-		if ((stencil && isWebkit) || shouldSkip(skip)) {
-			// There is an issue with Webkit and Stencil for new playwright version
+		if (shouldSkip(skip)) {
 			test.skip();
 		}
 
@@ -137,54 +130,15 @@ export const getDefaultScreenshotTest = ({
 
 		await gotoPage(page, path, lvl1, fixedHeight);
 
-		// Visual snapshots now compare the full page to align with baselines
-		// rather than masking headers. This reduces false positives from layout
-		// shifts and keeps baselines consistent across showcases.
-		const showcaseEnv = process.env.showcase;
+		const header = page.locator('header').first();
 
-		// Ensure Stencil components are hydrated before screenshots.
-		// Playwright may capture pre-hydration DOM, causing flakiness in Stencil.
-		if (isStencil(showcaseEnv)) {
-			const hydratedBreadcrumb = page.locator('db-breadcrumb.hydrated');
-			try {
-				await expect(hydratedBreadcrumb.first()).toBeVisible({
-					timeout: 5000
-				});
-			} catch {
-				// If hydration class not present, wait briefly for stability
-				await page.waitForTimeout(500);
-			}
-		}
+		config.mask = [header];
 
 		if (preScreenShot) {
 			await preScreenShot(page, project);
 		}
 
-		if (elementOnly) {
-			// Element-level screenshot when explicitly requested
-			// Prefer direct breadcrumb component or named landmark if available
-			const candidate = page
-				.locator('db-breadcrumb, nav[aria-label="Breadcrumb"]')
-				.first();
-			try {
-				await expect(candidate).toBeVisible({ timeout: 5000 });
-				await expect(candidate).toHaveScreenshot(config);
-			} catch {
-				// Fallback to heading->section, then full page as last resort
-				const section = page
-					.getByRole('heading', { name: 'DBBreadcrumb', level: 1 })
-					.locator('xpath=ancestor::section[1]');
-				try {
-					await expect(section).toBeVisible({ timeout: 5000 });
-					await expect(section).toHaveScreenshot(config);
-				} catch {
-					await expect(page).toHaveScreenshot(config);
-				}
-			}
-		} else {
-			// Default: full-page screenshot to match existing baselines
-			await expect(page).toHaveScreenshot(config);
-		}
+		await expect(page).toHaveScreenshot(config);
 	});
 };
 
@@ -241,55 +195,7 @@ export const runAxeCoreTest = ({
 			.disableRules(axeDisableRules ?? [])
 			.analyze();
 
-		// Axe workarounds scoped to Breadcrumb demos:
-		// - Custom elements inside lists can produce false-positive "list" structure issues.
-		// - Demo aria-label "Breadcrumb" can trip "landmark-unique" on sample pages.
-		// These filters only apply when testing breadcrumb paths to avoid hiding
-		// real issues elsewhere.
-		// Workaround: ignore false-positive list structure due to intermediate custom elements
-		function isAllowedIntermediateCustomElementInList(result: Result) {
-			return (
-				result.id === 'list' &&
-				result.nodes.some((node) =>
-					node.target.some(
-						(target: string) =>
-							// Accept cases where axe sees nav within ol for db-breadcrumb demo structure
-							target.includes('db-breadcrumb') &&
-							target.includes(' > ol')
-					)
-				)
-			);
-		}
-
-		// Workaround: ignore landmark-unique where aria-label is the generic "Breadcrumb" on demo instances
-		function isAllowedGenericBreadcrumbLandmark(result: Result) {
-			return (
-				result.id === 'landmark-unique' &&
-				result.nodes.some((node) =>
-					node.target.some((target: string) => {
-						const lower = target.toLowerCase();
-						return (
-							lower.includes('db-breadcrumb') &&
-							// Accept generic breadcrumb labels like "Breadcrumb" or "Breadcrumb Navigation"
-							lower.includes('nav[aria-label="breadcrumb')
-						);
-					})
-				)
-			);
-		}
-
-		// Scope cleanup filters only to Breadcrumb tests
-		if (path.toLowerCase().includes('breadcrumb')) {
-			const cleanedViolations =
-				accessibilityScanResults.violations.filter(
-					(result) =>
-						!isAllowedIntermediateCustomElementInList(result) &&
-						!isAllowedGenericBreadcrumbLandmark(result)
-				);
-			expect(cleanedViolations).toEqual([]);
-		} else {
-			expect(accessibilityScanResults.violations).toEqual([]);
-		}
+		expect(accessibilityScanResults.violations).toEqual([]);
 	});
 };
 
@@ -364,135 +270,25 @@ export const runAriaSnapshotTest = ({
 
 		await page.waitForTimeout(1000); // We wait a little bit until everything loaded
 
-		// Prefer snapshotting only named breadcrumb navigation regions to avoid unlabeled landmarks
-		// This focuses snapshots on the breadcrumb component, reducing unrelated noise
-		// from page-level landmarks in different showcases.
-		let snapshot: string;
-		const navs = page.getByRole('navigation');
-		const count = await navs.count();
-		const indices = Array.from({ length: count }, (_, i) => i);
-		const labels = await Promise.all(
-			indices.map(async (i) => navs.nth(i).getAttribute('aria-label'))
-		);
-		const breadcrumbIndices = indices.filter((i) =>
-			labels[i]?.toLowerCase()?.includes('breadcrumb')
-		);
-		const parts = await Promise.all(
-			breadcrumbIndices.map(async (i) => navs.nth(i).ariaSnapshot())
-		);
-
-		if (parts.length > 0) {
-			// Join snapshots of all breadcrumb navigations in the page
-			snapshot = parts.join('\n');
-		} else {
-			// Fallbacks keep the test resilient:
-			// - Try the local DBBreadcrumb section (closest ancestor section)
-			// - Otherwise snapshot the main region
-			const breadcrumbSection = page
-				.getByRole('heading', { name: 'DBBreadcrumb', level: 1 })
-				.locator('xpath=ancestor::section[1]');
-			try {
-				await expect(breadcrumbSection).toBeVisible({ timeout: 5000 });
-				snapshot = await breadcrumbSection.ariaSnapshot();
-			} catch {
-				snapshot = await page.locator('main').ariaSnapshot();
-			}
-		}
+		let snapshot = await page.locator('main').ariaSnapshot();
 
 		// Remove `/url` in snapshot because they differ in every showcase
 		const lines = snapshot.split('\n');
 		const includesUrl = '/url:';
-		const filteredLines: string[] = [];
-		let skipUntilIndent = -1;
-		let deindentAmount = 0;
-		let inBreadcrumbWrapper = false;
+		snapshot = lines
+			.map((line) => {
+				if (line.includes(includesUrl)) {
+					return undefined;
+				}
 
-		for (const line of lines) {
-			if (line.includes(includesUrl)) {
-				continue;
-			}
+				if (line.includes('- link')) {
+					line = line.replace(':', '');
+				}
 
-			// Get the current line's indentation level
-			const currentIndent = line.length - line.trimStart().length;
-
-			// If we're skipping a block and we're still inside it, continue skipping
-			if (skipUntilIndent >= 0 && currentIndent > skipUntilIndent) {
-				continue;
-			} else {
-				// We've exited the block we were skipping
-				skipUntilIndent = -1;
-			}
-
-			// Reset deindent when we've moved back to original indentation or less
-			if (deindentAmount > 0 && currentIndent < deindentAmount) {
-				deindentAmount = 0;
-				inBreadcrumbWrapper = false;
-			}
-
-			let processedLine = line;
-
-			// Normalize only the colon immediately following "- link" label,
-			// leaving any subsequent colons in text untouched.
-			if (/-\s+link:/.test(line)) {
-				processedLine = line.replace(/(-\s+link):/, '$1');
-			}
-
-			// Normalize top-level list containers that wrap a single navigation block.
-			// Playwright's ariaSnapshot may introduce a root-level `- list:` when
-			// snapshotting individual navigation landmarks. We skip this container
-			// and deindent its children to align with existing baselines.
-			if (
-				!inBreadcrumbWrapper &&
-				line.trim() === '- list:' &&
-				currentIndent === 0
-			) {
-				deindentAmount = currentIndent + 2;
-				continue;
-			}
-
-			// Drop unlabeled navigation landmarks appearing as just `- navigation:`
-			// These vary across showcases and are not relevant to breadcrumb semantics.
-			if (line.trim() === '- navigation:') {
-				continue;
-			}
-
-			// Handle breadcrumb wrapper navigation landmarks
-			// The structure is: navigation "Breadcrumb" -> list -> navigation "Breadcrumb - X"
-			// We want to skip the outer wrapper and its immediate list child, then deindent the rest
-			if (
-				!inBreadcrumbWrapper &&
-				(line.includes('- navigation "Breadcrumb Navigation":') ||
-					(line.includes('- navigation "Breadcrumb":') &&
-						!line.includes('- navigation "Breadcrumb -')))
-			) {
-				// Mark that we're entering a breadcrumb wrapper
-				inBreadcrumbWrapper = true;
-				// The content we want to keep starts at currentIndent + 4 (wrapper nav + list)
-				deindentAmount = currentIndent + 4;
-				// Skip this wrapper line
-				continue;
-			}
-
-			// Skip the immediate list child of breadcrumb wrapper
-			if (
-				inBreadcrumbWrapper &&
-				line.trim() === '- list:' &&
-				currentIndent === deindentAmount - 2
-			) {
-				continue;
-			}
-
-			// Apply deindentation for content inside breadcrumb wrapper
-			if (deindentAmount > 0 && currentIndent >= deindentAmount) {
-				processedLine =
-					' '.repeat(currentIndent - deindentAmount) +
-					line.trimStart();
-			}
-
-			filteredLines.push(processedLine);
-		}
-
-		snapshot = filteredLines.join('\n') + '\n';
+				return line;
+			})
+			.filter(Boolean)
+			.join('\n');
 
 		expect(snapshot).toMatchSnapshot(`${title}.yaml`);
 	});
