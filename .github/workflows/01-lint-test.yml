@@ -13,7 +13,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        command: ["lint", "test"]
+        command: ["lint", "test", "audit"]
     steps:
       - name: ⏬️ Checkout repo
         uses: actions/checkout@v6
@@ -31,3 +31,7 @@ jobs:
       - name: ⚡ Run Test
         if: ${{ matrix.command == 'test' }}
         run: npm run test
+
+      - name: ⚡ Run audit
+        if: ${{ matrix.command == 'audit' }}
+        run: npm audit fix --omit=dev --audit-level=high'
