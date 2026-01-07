@@ -13,7 +13,7 @@ permissions:
 
 jobs:
   dependabot:
-    uses: ./.github/workflows/99-auto-merge.yml
+    uses: ./.github/workflows/99-auto-handle-dependabot.yml
 
   self-healing-dependabot-updates:
     uses: ./.github/workflows/99-self-healing-dependabot-updates.yml
