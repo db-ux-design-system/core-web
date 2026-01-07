@@ -1,6 +1,5 @@
 import {
 	BaseFormProps,
-	ClickEvent,
 	CloseEventState,
 	CustomFormProps,
 	DocumentScrollState,
@@ -276,10 +275,7 @@ export type DBCustomSelectDefaultState = {
 	searchEnabled: boolean;
 	amountOptions: number;
 	setDescById: (descId?: string) => void;
-	handleTagRemove: (
-		option: CustomSelectOptionType,
-		event?: ClickEvent<HTMLButtonElement> | void
-	) => void;
+	handleTagRemove: (option: CustomSelectOptionType, event?: any) => void;
 	handleSummaryFocus: () => void;
 	handleSelect: (value?: string) => void;
 	handleSelectAll: (event: any) => void;

@@ -70,6 +70,14 @@ export type DBBreadcrumbDefaultState = {
 	 * Toggle function for expanding/collapsing
 	 */
 	toggleExpanded: () => void;
+	/**
+	 * Returns icon weight based on breadcrumb size.
+	 */
+	iconWeight: () => '24' | '20';
+	/**
+	 * Determines if breadcrumb should render in collapsed state.
+	 */
+	isCollapsed: () => boolean;
 };
 
 export type DBBreadcrumbState = DBBreadcrumbDefaultState & GlobalState;

@@ -1,4 +1,5 @@
 import {
+	Show,
 	useDefaultProps,
 	useMetadata,
 	useRef,
@@ -20,8 +21,20 @@ export default function DBBreadcrumb(props: DBBreadcrumbProps) {
 	const _ref = useRef<HTMLElement | any>(null);
 	const state = useStore<DBBreadcrumbState>({
 		isExpanded: false,
-		toggleExpanded() {
+		toggleExpanded(): void {
 			state.isExpanded = !state.isExpanded;
+		},
+		iconWeight: (): '24' | '20' => {
+			return props.size === 'medium' ? '24' : '20';
+		},
+		isCollapsed: (): boolean => {
+			return (
+				!!props.items &&
+				!!props.maxItems &&
+				props.maxItems > 0 &&
+				props.items.length > props.maxItems! &&
+				!state.isExpanded
+			);
 		}
 	});
 
@@ -39,129 +52,35 @@ export default function DBBreadcrumb(props: DBBreadcrumbProps) {
 			<ol
 				class="db-breadcrumb-list"
 				id={props.id ? `${props.id}-list` : 'db-breadcrumb-list'}>
-				{props.items && props.items.length > 0 ? (
-					<>
-						{props.maxItems &&
-						props.maxItems > 0 &&
-						props.items.length > props.maxItems &&
-						!state.isExpanded ? (
+				<Show
+					when={props.items && props.items.length > 0}
+					else={props.children}>
+					<Show
+						when={state.isCollapsed()}
+						else={
 							<>
-								{/* Collapsed view: first item + ellipsis + last items */}
-								<li key={0}>
-									{props.items[0].href ? (
-										<a href={props.items[0].href}>
-											{props.items[0].icon && (
-												<DBIcon
-													weight={
-														props.size === 'medium'
-															? '24'
-															: '20'
-													}
-													icon={props.items[0].icon}
-												/>
-											)}
-											{props.items[0].text}
-										</a>
-									) : (
-										<span>
-											{props.items[0].icon && (
-												<DBIcon
-													weight={
-														props.size === 'medium'
-															? '24'
-															: '20'
-													}
-													icon={props.items[0].icon}
-												/>
-											)}
-											{props.items[0].text}
-										</span>
-									)}
-								</li>
-								{/* Ellipsis button */}
-								<li key="ellipsis">
-									<button
-										type="button"
-										class="db-breadcrumb-ellipsis"
-										aria-label={
-											props.ellipsisAriaLabel ??
-											'Expand to show all breadcrumb items'
-										}
-										aria-expanded={
-											state.isExpanded ? 'true' : 'false'
-										}
-										aria-controls={
-											props.id
-												? `${props.id}-list`
-												: 'db-breadcrumb-list'
-										}
-										onClick={() => state.toggleExpanded()}>
-										…
-									</button>
-								</li>
-								{/* Last (maxItems - 1) items */}
-								{props.items
-									.slice(
-										props.items.length -
-											(props.maxItems - 1)
-									)
-									.map((item, index) => (
-										<li key={index + 1}>
-											{item.href ? (
-												<a
-													href={item.href}
-													aria-current={
-														index ===
-														props.maxItems! - 2
-															? (item.ariaCurrent ??
-																'page')
-															: undefined
-													}>
-													{item.icon && (
-														<DBIcon
-															weight={
-																props.size ===
-																'medium'
-																	? '24'
-																	: '20'
-															}
-															icon={item.icon}
-														/>
-													)}
-													{item.text}
-												</a>
-											) : (
+								{props.items!.map((item, index) => (
+									<li key={index}>
+										<Show
+											when={item.href}
+											else={
 												<span
 													aria-current={
 														index ===
-														props.maxItems! - 2
+														props.items!.length - 1
 															? (item.ariaCurrent ??
 																'page')
 															: undefined
 													}>
-													{item.icon && (
+													<Show when={item.icon}>
 														<DBIcon
-															weight={
-																props.size ===
-																'medium'
-																	? '24'
-																	: '20'
-															}
+															weight={state.iconWeight()}
 															icon={item.icon}
 														/>
-													)}
+													</Show>
 													{item.text}
 												</span>
-											)}
-										</li>
-									))}
-							</>
-						) : (
-							<>
-								{/* All items (normal or expanded view) */}
-								{props.items.map((item, index) => (
-									<li key={index}>
-										{item.href ? (
+											}>
 											<a
 												href={item.href}
 												aria-current={
@@ -171,50 +90,114 @@ export default function DBBreadcrumb(props: DBBreadcrumbProps) {
 															'page')
 														: undefined
 												}>
-												{item.icon && (
+												<Show when={item.icon}>
 													<DBIcon
-														weight={
-															props.size ===
-															'medium'
-																? '24'
-																: '20'
-														}
+														weight={state.iconWeight()}
 														icon={item.icon}
 													/>
-												)}
+												</Show>
 												{item.text}
 											</a>
-										) : (
-											<span
+										</Show>
+									</li>
+								))}
+							</>
+						}>
+						<>
+							<li key={0}>
+								<Show
+									when={props.items![0].href}
+									else={
+										<span aria-current={undefined}>
+											<Show when={props.items![0].icon}>
+												<DBIcon
+													weight={state.iconWeight()}
+													icon={props.items![0].icon}
+												/>
+											</Show>
+											{props.items![0].text}
+										</span>
+									}>
+									<a href={props.items![0].href}>
+										<Show when={props.items![0].icon}>
+											<DBIcon
+												weight={state.iconWeight()}
+												icon={props.items![0].icon}
+											/>
+										</Show>
+										{props.items![0].text}
+									</a>
+								</Show>
+							</li>
+							<li key="ellipsis">
+								<button
+									type="button"
+									class="db-breadcrumb-ellipsis"
+									aria-label={
+										props.ellipsisAriaLabel ??
+										'Expand to show all breadcrumb items'
+									}
+									aria-expanded={
+										state.isExpanded ? 'true' : 'false'
+									}
+									aria-controls={
+										props.id
+											? `${props.id}-list`
+											: 'db-breadcrumb-list'
+									}
+									onClick={() => state.toggleExpanded()}>
+									…
+								</button>
+							</li>
+							{props
+								.items!.slice(
+									props.items!.length - (props.maxItems! - 1)
+								)
+								.map((item, index) => (
+									<li key={index + 1}>
+										<Show
+											when={item.href}
+											else={
+												<span
+													aria-current={
+														index ===
+														props.maxItems! - 2
+															? (item.ariaCurrent ??
+																'page')
+															: undefined
+													}>
+													<Show when={item.icon}>
+														<DBIcon
+															weight={state.iconWeight()}
+															icon={item.icon}
+														/>
+													</Show>
+													{item.text}
+												</span>
+											}>
+											<a
+												href={item.href}
 												aria-current={
 													index ===
-													props.items!.length - 1
+													props.maxItems! - 2
 														? (item.ariaCurrent ??
 															'page')
 														: undefined
 												}>
-												{item.icon && (
+												<Show when={item.icon}>
 													<DBIcon
-														weight={
-															props.size ===
-															'medium'
-																? '24'
-																: '20'
-														}
+														weight={state.iconWeight()}
 														icon={item.icon}
 													/>
-												)}
+												</Show>
 												{item.text}
-											</span>
-										)}
+											</a>
+										</Show>
 									</li>
 								))}
-							</>
-						)}
-					</>
-				) : (
-					<>{props.children}</>
-				)}
+						</>
+					</Show>
+				</Show>
 			</ol>
 		</nav>
 	);

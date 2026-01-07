@@ -1,4 +1,9 @@
-import { useDefaultProps, useMetadata, useRef } from '@builder.io/mitosis';
+import {
+	Show,
+	useDefaultProps,
+	useMetadata,
+	useRef
+} from '@builder.io/mitosis';
 import { cls } from '../../utils';
 import { DBIcon } from '../icon';
 import type { DBBreadcrumbItemProps } from './model';
@@ -12,17 +17,23 @@ export default function DBBreadcrumbItem(props: DBBreadcrumbItemProps) {
 
 	return (
 		<li ref={_ref} id={props.id} class={cls(props.className)}>
-			{props.href && !props.disabled ? (
+			<Show
+				when={props.href && !props.disabled}
+				else={
+					<span aria-current={props.ariaCurrent}>
+						<Show when={props.icon}>
+							<DBIcon icon={props.icon} />
+						</Show>
+						{props.text ? props.text : props.children}
+					</span>
+				}>
 				<a href={props.href} aria-current={props.ariaCurrent}>
-					{props.icon && <DBIcon icon={props.icon} />}
+					<Show when={props.icon}>
+						<DBIcon icon={props.icon} />
+					</Show>
 					{props.text ? props.text : props.children}
 				</a>
-			) : (
-				<span aria-current={props.ariaCurrent}>
-					{props.icon && <DBIcon icon={props.icon} />}
-					{props.text ? props.text : props.children}
-				</span>
-			)}
+			</Show>
 		</li>
 	);
 }
