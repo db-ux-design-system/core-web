@@ -49,8 +49,11 @@ db-card:is(.variants-card) > .db-card {
 	flex-wrap: wrap;
 	inline-size: 100%;
 	justify-content: center;
-	align-items: center;
 	gap: var(--db-spacing-fixed-md);
+}
+
+.variants-list > button {
+	align-self: center;
 }
 
 .variants-list > div {
