@@ -18,7 +18,9 @@ const config: StorybookConfig = {
 	addons: ['@storybook/addon-docs'],
 	framework: {
 		name: getAbsolutePath('@storybook/vue3-vite'),
-		options: {}
+		options: {
+			docgen: 'vue-component-meta',
+		}
 	},
 	async viteFinal(config) {
 		const { mergeConfig } = await import('vite');
