@@ -33,6 +33,10 @@ export type DBTabItemDefaultProps = {
 	 * Define the text next to the icon specified via the icon Property to get hidden.
 	 */
 	noText?: boolean | string;
+	/**
+	 * Handler for click events.
+	 */
+	onClick?: (event: any) => void;
 };
 
 export type DBTabItemProps = GlobalProps &
