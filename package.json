@@ -141,7 +141,7 @@
     "prettier-plugin-organize-imports": "4.3.0",
     "prettier-plugin-pkg": "0.21.2",
     "publint": "0.3.16",
-    "replace-in-file": "8.3.0",
+    "replace-in-file": "8.4.0",
     "rimraf": "6.1.2",
     "rxjs": "7.8.2",
     "stylelint": "16.26.1",
