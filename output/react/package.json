@@ -30,7 +30,7 @@
     "tsc": "tsc --project . --sourceMap false"
   },
   "devDependencies": {
-    "@playwright/experimental-ct-react": "1.57.0",
+    "@playwright/experimental-ct-react": "1.56.1",
     "@types/react": "19.2.7",
     "react": "19.2.3",
     "react-dom": "19.2.3"
