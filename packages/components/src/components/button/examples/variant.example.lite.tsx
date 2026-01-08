@@ -1,4 +1,5 @@
 import { Fragment, useMetadata } from '@builder.io/mitosis';
+import { fn } from '../../../shared/examples';
 import DBButton from '../button.lite';
 import { StorybookButtonArgTypes } from './_button.arg.types';
 
@@ -11,16 +12,16 @@ useMetadata({
 export default function ButtonVariant() {
 	return (
 		<Fragment>
-			<DBButton onClick={() => {}} variant="outlined">
+			<DBButton onClick={fn} variant="outlined">
 				(Default) Outlined - Adaptive
 			</DBButton>
-			<DBButton onClick={() => {}} variant="filled">
+			<DBButton onClick={fn} variant="filled">
 				Filled - Adaptive
 			</DBButton>
-			<DBButton onClick={() => {}} variant="ghost">
+			<DBButton onClick={fn} variant="ghost">
 				Ghost - Adaptive
 			</DBButton>
-			<DBButton onClick={() => {}} variant="brand">
+			<DBButton onClick={fn} variant="brand">
 				Brand
 			</DBButton>
 		</Fragment>

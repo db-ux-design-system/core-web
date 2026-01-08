@@ -2,6 +2,8 @@ import { Fragment, useMetadata } from '@builder.io/mitosis';
 import DBButton from '../button.lite';
 import { StorybookButtonArgTypes } from './_button.arg.types';
 
+import { fn } from '../../../shared/examples';
+
 useMetadata({
 	storybookTitle: 'Show Icon Trailing',
 	storybookNames: ['False', 'True'],
@@ -11,10 +13,16 @@ useMetadata({
 export default function ButtonShowIconTrailing() {
 	return (
 		<Fragment>
-			<DBButton iconTrailing="x_placeholder" showIconTrailing={false}>
+			<DBButton
+				onClick={fn}
+				iconTrailing="x_placeholder"
+				showIconTrailing={false}>
 				(Default) False
 			</DBButton>
-			<DBButton iconTrailing="x_placeholder" showIconTrailing={true}>
+			<DBButton
+				onClick={fn}
+				iconTrailing="x_placeholder"
+				showIconTrailing={true}>
 				True
 			</DBButton>
 		</Fragment>

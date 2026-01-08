@@ -2,6 +2,8 @@ import { Fragment, useMetadata } from '@builder.io/mitosis';
 import DBButton from '../button.lite';
 import { StorybookButtonArgTypes } from './_button.arg.types';
 
+import { fn } from '../../../shared/examples';
+
 useMetadata({
 	storybookTitle: 'Multi Line Text',
 	storybookNames: [
@@ -16,17 +18,17 @@ export default function ButtonMultiLineText() {
 	return (
 		<Fragment>
 			<div style={{ width: '300px' }}>
-				<DBButton width="full">
+				<DBButton onClick={fn} width="full">
 					Multi-line Text With Automatic Line Breaks
 				</DBButton>
 			</div>
 			<div style={{ width: '300px' }}>
-				<DBButton width="full" icon="x_placeholder">
+				<DBButton onClick={fn} width="full" icon="x_placeholder">
 					Multi-line Text With Automatic Line Breaks and Icon
 				</DBButton>
 			</div>
 			<div style={{ width: '300px' }}>
-				<DBButton size="small">
+				<DBButton onClick={fn} size="small">
 					Button Small Multi-line Text With Automatic Line Breaks
 				</DBButton>
 			</div>

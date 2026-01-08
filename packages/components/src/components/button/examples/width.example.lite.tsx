@@ -2,6 +2,8 @@ import { Fragment, useMetadata } from '@builder.io/mitosis';
 import DBButton from '../button.lite';
 import { StorybookButtonArgTypes } from './_button.arg.types';
 
+import { fn } from '../../../shared/examples';
+
 useMetadata({
 	storybookTitle: 'Width',
 	storybookNames: ['Auto', 'Full'],
@@ -11,9 +13,13 @@ useMetadata({
 export default function ButtonWidth() {
 	return (
 		<Fragment>
-			<DBButton width="auto">(Default) Auto</DBButton>
+			<DBButton onClick={fn} width="auto">
+				(Default) Auto
+			</DBButton>
 			<div style={{ width: '500px' }}>
-				<DBButton width="full">Full</DBButton>
+				<DBButton onClick={fn} width="full">
+					Full
+				</DBButton>
 			</div>
 		</Fragment>
 	);

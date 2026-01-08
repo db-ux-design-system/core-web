@@ -1,4 +1,5 @@
 import { Fragment, useMetadata } from '@builder.io/mitosis';
+import { fn } from '../../../shared/examples';
 import DBButton from '../button.lite';
 import { StorybookButtonArgTypes } from './_button.arg.types';
 
@@ -11,9 +12,15 @@ useMetadata({
 export default function ButtonDensity() {
 	return (
 		<Fragment>
-			<DBButton data-density="functional">Functional</DBButton>
-			<DBButton data-density="regular">(Default) Regular</DBButton>
-			<DBButton data-density="expressive">Expressive</DBButton>
+			<DBButton onClick={fn} data-density="functional">
+				Functional
+			</DBButton>
+			<DBButton onClick={fn} data-density="regular">
+				(Default) Regular
+			</DBButton>
+			<DBButton onClick={fn} data-density="expressive">
+				Expressive
+			</DBButton>
 		</Fragment>
 	);
 }

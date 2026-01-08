@@ -28,6 +28,7 @@
 		"noImplicitAny": false,
 		"skipLibCheck": true
 	},
+	"exclude": ["node_modules", "src/**/*.spec.ts", "src/**/*.example.ts", "src/**/*.showcase.ts"],
 	"angularCompilerOptions": {
 		"enableI18nLegacyMessageIdFormat": false,
 		"strictInjectionParameters": true,
