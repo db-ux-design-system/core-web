@@ -13,6 +13,7 @@ on:
       - "main"
 
 # We'd like to run the pipeline for Dependabot PRs sequentially, and all other PRs in parallel, but still only one action run for each PR.
+# TODO: We won't need this anymore as soon as we get Merge Groups and could remove the concurrency again, which currently brings us pain regarding unstarted, non-self-healing dependabot pipelines
 concurrency:
   group: >-
     ${{
@@ -271,7 +272,7 @@ jobs:
     uses: ./.github/workflows/02-e2e-regenerate.yml
     with:
       version: ${{ needs.init.outputs.playwrightVersion }}
-      path: ${{ needs.build-showcase-patternhub.outputs.path }}
+      path: ${{ needs.init.outputs.baseUrl }}
       type: patternhub
     needs: [build-showcase-patternhub, test-showcase-patternhub, init]
 
