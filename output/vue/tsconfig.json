@@ -25,7 +25,7 @@
 		"skipLibCheck": true
 	},
 	"include": ["src/**/*.ts", "src/**/*.vue"],
-	"exclude": ["node_modules", "src/**/*.scss", "src/**/*.spec.tsx", "src/**/*.example.vue", "src/**/*.showcase.vue"],
+	"exclude": ["node_modules", "src/**/*.scss", "src/**/*.spec.tsx", "src/**/*.example.vue", "src/**/*.showcase.vue", "src/**/*.arg.types.ts"],
 	"compileOnSave": false,
 	"buildOnSave": false
 }
