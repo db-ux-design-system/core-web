@@ -1,6 +1,6 @@
 - main:
   - heading "DBInput" [level=1]
-  - link "Density":
+  - link "Density"
   - text: Label
   - textbox "Label":
     - /placeholder: Functional
@@ -13,7 +13,7 @@
   - textbox "Label":
     - /placeholder: Expressive
   - status
-  - link "Variant":
+  - link "Variant"
   - text: Label
   - textbox "Label":
     - /placeholder: (Default) Above
@@ -23,7 +23,7 @@
     - /placeholder: Floating
     - text: Floating
   - status
-  - link "Show Label":
+  - link "Show Label"
   - text: Label
   - textbox "Label":
     - /placeholder: (Default) True
@@ -32,7 +32,7 @@
   - textbox "Label":
     - /placeholder: "False"
   - status
-  - link "Show Message":
+  - link "Show Message"
   - text: Label
   - textbox "Label":
     - /placeholder: (Default) False
@@ -42,7 +42,7 @@
     - /placeholder: "True"
   - text: Message
   - status
-  - link "State":
+  - link "State"
   - text: Label
   - textbox "Label":
     - /placeholder: (Default) Empty
@@ -52,7 +52,7 @@
     - /placeholder: Filled
     - text: Filled
   - status
-  - link "Disabled":
+  - link "Disabled"
   - text: Label
   - textbox "Label":
     - /placeholder: (Default) False
@@ -61,7 +61,7 @@
   - textbox "Label" [disabled]:
     - /placeholder: "True"
   - status
-  - link "Readonly":
+  - link "Readonly"
   - text: Label
   - textbox "Label":
     - /placeholder: (Default) False
@@ -70,7 +70,7 @@
   - textbox "Label":
     - /placeholder: "True"
   - status
-  - link "Validation":
+  - link "Validation"
   - text: Label
   - textbox "Label":
     - /placeholder: (Default) No validation
@@ -85,7 +85,7 @@
     - /placeholder: Valid
   - text: Valid message
   - status
-  - link "Required":
+  - link "Required"
   - text: Label
   - textbox "Label":
     - /placeholder: (Default) False
@@ -94,7 +94,7 @@
   - textbox "Label":
     - /placeholder: "True"
   - status
-  - link "Show Required Asterisk":
+  - link "Show Required Asterisk"
   - text: Label
   - textbox "Label":
     - /placeholder: (Default) True
@@ -103,7 +103,7 @@
   - textbox "Label":
     - /placeholder: "False"
   - status
-  - link "Show Icon Leading":
+  - link "Show Icon Leading"
   - text: "False"
   - textbox "False":
     - /placeholder: (Default) False
@@ -111,7 +111,7 @@
   - text: "True"
   - textbox "True"
   - status
-  - link "Show Icon Leading + Trailing":
+  - link "Show Icon Leading + Trailing"
   - text: "False"
   - textbox "False":
     - /placeholder: (Default) False
@@ -119,7 +119,7 @@
   - text: "True"
   - textbox "True"
   - status
-  - link "Show Icon Trailing":
+  - link "Show Icon Trailing"
   - text: "False"
   - textbox "False":
     - /placeholder: (Default) False
@@ -127,7 +127,7 @@
   - text: "True"
   - textbox "True"
   - status
-  - link "Example - Length":
+  - link "Example - Length"
   - text: Label
   - textbox "Label":
     - /placeholder: MinLength
@@ -140,7 +140,7 @@
   - textbox "Label":
     - /placeholder: MinMaxLength
   - status
-  - link "Example - Types with min and max":
+  - link "Example - Types with min and max"
   - text: Label
   - textbox "Label":
     - /placeholder: (Default) Text
@@ -184,7 +184,7 @@
   - textbox "Label":
     - /placeholder: Week
   - status
-  - link "Example Floating Label":
+  - link "Example Floating Label"
   - text: Label
   - textbox "Label":
     - /placeholder: (Default) Empty
@@ -208,7 +208,7 @@
     - /placeholder: Invalid
   - text: Invalid Message
   - status
-  - link "Example - Types - Floating Label":
+  - link "Example - Types - Floating Label"
   - text: Label
   - textbox "Label":
     - /placeholder: (Default) Text
@@ -258,7 +258,7 @@
   - text: Label
   - button "Label"
   - status
-  - link "Datalist / Typeahead Examples":
+  - link "Datalist / Typeahead Examples"
   - text: Search Cities
   - combobox "Search Cities"
   - status

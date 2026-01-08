@@ -1,4 +1,4 @@
 - main:
   - heading "DBIcon" [level=1]
-  - link "Density":
+  - link "Density"
   - text: Functional (Default) Regular Expressive

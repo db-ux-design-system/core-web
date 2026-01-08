@@ -1,8 +1,8 @@
 - main:
   - heading "DBSection" [level=1]
-  - link "Density":
+  - link "Density"
   - text: Functional Functional Functional Functional (Default) Regular (Default) Regular (Default) Regular (Default) Regular Expressive Expressive Expressive Expressive
-  - link "Width":
+  - link "Width"
   - text: (Default) Full (Default) Full (Default) Full (Default) Full Small Small Small Small Medium Medium Medium Medium Large Large Large Large
-  - link "Spacing":
+  - link "Spacing"
   - text: (Default) Medium (Default) Medium (Default) Medium (Default) Medium Large Large Large Large Small Small Small Small None None None None
