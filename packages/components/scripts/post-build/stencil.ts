@@ -79,6 +79,13 @@ export default (tmp?: boolean) => {
 			processor: (input: string) => changeFile(upperComponentName, input)
 		});
 
+		// Fix DBIcon imports for Stencil (uses default export)
+		replaceInFileSync({
+			files: [file],
+			from: /import \{ DBIcon \} from ['"]\.\.\/icon['"]/g,
+			to: 'import DBIcon from "../icon"'
+		});
+
 		const replacements: Overwrite[] = [{ from: 'for={', to: 'htmlFor={' }];
 		replaceIndexFile(indexFile, componentName, upperComponentName);
 		runReplacements(replacements, component, 'stencil', file);

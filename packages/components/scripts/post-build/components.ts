@@ -356,7 +356,24 @@ export const getComponents = (): Component[] => [
 		name: 'brand'
 	},
 	{
-		name: 'breadcrumb'
+		name: 'breadcrumb',
+		overwrites: {
+			angular: [
+				// Fix strict null checking for maxItems in Angular templates
+				{
+					from: /maxItems\(\) - 2/g,
+					to: 'maxItems()! - 2'
+				},
+				{
+					from: /items\(\)\.slice\(items\(\)!\.length - maxItems\(\)! \+ 1\)/g,
+					to: 'items()!.slice(items()!.length - maxItems()! + 1)'
+				},
+				{
+					from: /@if\(maxItems\(\) && items\(\) && items\(\)\.length > maxItems\(\)\)/g,
+					to: '@if(maxItems() && items() && items()!.length > maxItems()!)'
+				}
+			]
+		}
 		// 	,overwrites: {
 		// 		stencil: [
 		// 			{ from: 'import { DBIcon } from "../icon";\n', to: '' },
