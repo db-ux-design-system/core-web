@@ -1,4 +1,4 @@
-import { InputType } from 'storybook/internal/csf';
+import type { InputType } from 'storybook/internal/csf';
 import { StorybookIconsArgTypes } from '../../../shared/examples/_icons.arg.types';
 
 export const StorybookButtonArgTypes: Record<string, InputType> = {

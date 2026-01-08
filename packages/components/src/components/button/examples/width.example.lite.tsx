@@ -18,7 +18,7 @@ export default function ButtonWidth() {
 			</DBButton>
 			<div style={{ width: '500px' }}>
 				<DBButton onClick={fn} width="full">
-					Full
+					Width
 				</DBButton>
 			</div>
 		</Fragment>
