@@ -1,51 +1,51 @@
 - main:
   - heading "DBNavigationItem" [level=1]
-  - link "Density":
+  - link "Density"
   - list:
     - listitem:
-      - link "Functional":
+      - link "Functional"
   - list:
     - listitem:
-      - link "(Default) Regular":
+      - link "(Default) Regular"
   - list:
     - listitem:
-      - link "Expressive":
-  - link "Disabled":
+      - link "Expressive"
+  - link "Disabled"
   - list:
     - listitem:
-      - link "(Default) False":
+      - link "(Default) False"
   - list:
     - listitem:
-      - link "True" [disabled]:
-  - link "Active":
+      - link "True" [disabled]
+  - link "Active"
   - list:
     - listitem:
-      - link "(Default) False":
+      - link "(Default) False"
   - list:
     - listitem:
-      - link "True":
-  - link "Expanded":
+      - link "True"
+  - link "Expanded"
   - list:
     - listitem:
-      - link "(Default) False":
+      - link "(Default) False"
   - list:
     - listitem:
       - button "True"
-  - link "Show Icon":
+  - link "Show Icon"
   - list:
     - listitem:
-      - link "(Default) False":
+      - link "(Default) False"
   - list:
     - listitem:
-      - link "True":
-  - link "Width":
+      - link "True"
+  - link "Width"
   - list:
     - listitem:
-      - link "(Default) Auto":
+      - link "(Default) Auto"
   - list:
     - listitem:
-      - link "Full":
-  - link "Wrap":
+      - link "Full"
+  - link "Wrap"
   - list:
     - listitem:
       - button "No Wrap (Default)"

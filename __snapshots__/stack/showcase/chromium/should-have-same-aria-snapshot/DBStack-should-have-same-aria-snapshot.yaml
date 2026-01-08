@@ -1,94 +1,94 @@
 - main:
   - heading "DBStack" [level=1]
-  - link "Density":
+  - link "Density"
   - text: Functional
-  - link "Content 1":
+  - link "Content 1"
   - text: Content 2 Content 3 (Default) Regular
-  - link "Content 1":
+  - link "Content 1"
   - text: Content 2 Content 3 Expressive
-  - link "Content 1":
+  - link "Content 1"
   - text: Content 2 Content 3
-  - link "Variant":
+  - link "Variant"
   - text: (Default) Simple
-  - link "Content 1":
+  - link "Content 1"
   - text: Content 2 Content 3 Divider
-  - link "Content 1":
+  - link "Content 1"
   - text: Content 2 Content 3
-  - link "Gap":
+  - link "Gap"
   - text: none
-  - link "Content 1":
+  - link "Content 1"
   - text: Content 2 Content 3 3x-small
-  - link "Content 1":
+  - link "Content 1"
   - text: Content 2 Content 3 2x-small
-  - link "Content 1":
+  - link "Content 1"
   - text: Content 2 Content 3 x-small
-  - link "Content 1":
+  - link "Content 1"
   - text: Content 2 Content 3 (Default) small
-  - link "Content 1":
+  - link "Content 1"
   - text: Content 2 Content 3 medium
-  - link "Content 1":
+  - link "Content 1"
   - text: Content 2 Content 3 large
-  - link "Content 1":
+  - link "Content 1"
   - text: Content 2 Content 3 x-large
-  - link "Content 1":
+  - link "Content 1"
   - text: Content 2 Content 3 2x-large
-  - link "Content 1":
+  - link "Content 1"
   - text: Content 2 Content 3 3x-large
-  - link "Content 1":
+  - link "Content 1"
   - text: Content 2 Content 3
-  - link "Direction":
+  - link "Direction"
   - text: (Default) Column
-  - link "Content 1":
+  - link "Content 1"
   - text: Content 2 Content 3 Row
-  - link "Content 1":
+  - link "Content 1"
   - text: Content 2 Content 3
-  - link "Wrap":
+  - link "Wrap"
   - text: "(Default) No Wrap: Column"
-  - link "Content 1":
+  - link "Content 1"
   - text: "Content 2 Content 3 No Wrap: Row"
-  - link "Content 1":
+  - link "Content 1"
   - text: "Content 2 Content 3 Wrap: Column"
-  - link "Content 1":
+  - link "Content 1"
   - text: "Content 2 Content 3 Wrap: Row"
-  - link "Content 1":
+  - link "Content 1"
   - text: Content 2 Content 3
-  - link "Alignment Column":
+  - link "Alignment Column"
   - text: (Default) Stretch
-  - link "Content 1":
+  - link "Content 1"
   - text: Content 2 Content 3 Start
-  - link "Content 1":
+  - link "Content 1"
   - text: Content 2 Content 3 Center
-  - link "Content 1":
+  - link "Content 1"
   - text: Content 2 Content 3 End
-  - link "Content 1":
+  - link "Content 1"
   - text: Content 2 Content 3
-  - link "Alignment Row":
+  - link "Alignment Row"
   - text: (Default) Stretch
-  - link "Content 1":
+  - link "Content 1"
   - text: Content 2 Content 3 Start
-  - link "Content 1":
+  - link "Content 1"
   - text: Content 2 Content 3 Center
-  - link "Content 1":
+  - link "Content 1"
   - text: Content 2 Content 3 End
-  - link "Content 1":
+  - link "Content 1"
   - text: Content 2 Content 3
-  - link "Justify Content Column":
+  - link "Justify Content Column"
   - text: (Default) Start
-  - link "Content 1":
+  - link "Content 1"
   - text: Content 2 Content 3 Center
-  - link "Content 1":
+  - link "Content 1"
   - text: Content 2 Content 3 End
-  - link "Content 1":
+  - link "Content 1"
   - text: Content 2 Content 3 Space-Between
-  - link "Content 1":
+  - link "Content 1"
   - text: Content 2 Content 3
-  - link "Justify Content Row":
+  - link "Justify Content Row"
   - text: (Default) Start
-  - link "Content 1":
+  - link "Content 1"
   - text: Content 2 Content 3 Center
-  - link "Content 1":
+  - link "Content 1"
   - text: Content 2 Content 3 End
-  - link "Content 1":
+  - link "Content 1"
   - text: Content 2 Content 3 Space-Between
-  - link "Content 1":
+  - link "Content 1"
   - text: Content 2 Content 3

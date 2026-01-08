@@ -1,16 +1,16 @@
 - main:
   - heading "DBBadge" [level=1]
-  - link "Density":
+  - link "Density"
   - text: Functional (Default) Regular Expressive
-  - link "Emphasis":
+  - link "Emphasis"
   - text: (Default) Weak Strong
-  - link "Semantic":
+  - link "Semantic"
   - text: (Default) Adaptive Critical Informational Neutral Successful Warning Adaptive Strong Critical Strong Informational Strong Neutral Strong Successful Strong Warning Strong
-  - link "Size":
+  - link "Size"
   - text: (Default) Small Medium
-  - link "Content":
+  - link "Content"
   - text: (Default) Text Dot - Small Icon - Small
-  - link "Placement":
+  - link "Placement"
   - text: (Default) Inline Label
   - button "LABEL SHOULD BE SET Corner - Top - Left"
   - text: Corner - Top - Left
@@ -24,5 +24,5 @@
   - text: Corner - Center - Right
   - button "LABEL SHOULD BE SET Corner - Bottom- Right"
   - text: Corner - Bottom- Right
-  - link "Examples":
+  - link "Examples"
   - text: 9 12 123 9 12 123 Numbers (Default) Text - Medium Dot - Medium Icon - Medium
