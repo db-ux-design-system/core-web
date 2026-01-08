@@ -5,7 +5,7 @@ export interface DBTabsContextType {
 	activateTab: (index: number) => void;
 }
 
-export default createContext<DBTabsContextType>({
+export const DBTabsContext = createContext<DBTabsContextType>({
 	activeTabIndex: 0,
 	activateTab: () => {}
 });

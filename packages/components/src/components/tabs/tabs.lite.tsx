@@ -15,7 +15,7 @@ import DBTabItem from '../tab-item/tab-item.lite';
 import DBTabList from '../tab-list/tab-list.lite';
 import DBTabPanel from '../tab-panel/tab-panel.lite';
 import { DBSimpleTabProps, DBTabsProps, DBTabsState } from './model';
-import DBTabsContext from './tabs-context';
+import { DBTabsContext } from './tabs-context';
 
 useMetadata({});
 useDefaultProps<DBTabsProps>({});

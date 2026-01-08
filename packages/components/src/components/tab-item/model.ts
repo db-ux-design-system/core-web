@@ -1,26 +1,20 @@
 import {
 	ActiveProps,
-	ChangeEventProps,
-	ChangeEventState,
+	ClickEventProps,
 	GlobalProps,
 	GlobalState,
 	IconLeadingProps,
 	IconProps,
 	IconTrailingProps,
 	InitializedState,
-	NameProps,
-	NameState,
-	ShowIconLeadingProps,
-	ShowIconProps,
-	ShowIconTrailingProps
+	WidthProps
 } from '../../shared/model';
 
 export type DBTabItemDefaultProps = {
 	/**
-	 * To control the component
+	 * If the tab is currently active/selected.
 	 */
-	checked?: boolean | string;
-
+	active?: boolean;
 	/**
 	 * The disabled attribute can be set to keep a user from clicking on the tab-item.
 	 */
@@ -39,27 +33,13 @@ export type DBTabItemDefaultProps = {
 	onClick?: (event: any) => void;
 };
 
-export type DBTabItemProps = GlobalProps &
-	DBTabItemDefaultProps &
+export type DBTabItemProps = DBTabItemDefaultProps &
+	GlobalProps &
+	ClickEventProps<HTMLButtonElement> &
 	IconProps &
 	IconTrailingProps &
 	IconLeadingProps &
-	ShowIconLeadingProps &
-	ShowIconTrailingProps &
 	ActiveProps &
-	ChangeEventProps<HTMLInputElement> &
-	ShowIconProps &
-	NameProps;
+	WidthProps;
 
-export type DBTabItemDefaultState = {
-	_selected: boolean;
-	_listenerAdded: boolean;
-	boundSetSelectedOnChange?: (event: any) => void;
-	setSelectedOnChange: (event: any) => void;
-};
-
-export type DBTabItemState = DBTabItemDefaultState &
-	GlobalState &
-	ChangeEventState<HTMLInputElement> &
-	InitializedState &
-	NameState;
+export interface DBTabItemState extends GlobalState, InitializedState {}
