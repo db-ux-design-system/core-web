@@ -21,7 +21,6 @@ useDefaultProps<DBTabsProps>({});
 
 export default function DBTabs(props: DBTabsProps) {
 	const _ref = useRef<HTMLDivElement | any>(null);
-	// jscpd:ignore-start
 	const state = useStore<DBTabsState>({
 		_id: 'tabs-' + uuid(),
 		_name: '',
@@ -103,7 +102,7 @@ export default function DBTabs(props: DBTabsProps) {
 		},
 		initTabs() {
 			if (_ref) {
-				const tabItems = Array.from<Element>(
+				const tabItems = Array.from<HTMLElement>(
 					_ref.getElementsByClassName('db-tab-item')
 				);
 				const tabPanels = Array.from<Element>(
@@ -112,37 +111,94 @@ export default function DBTabs(props: DBTabsProps) {
 					)
 				);
 
-				// Set ids and link tabs to panels
-				tabItems.forEach((tabItem, index) => {
-					const button: HTMLElement | null =
-						tabItem.querySelector('[role="tab"]');
-					if (button) {
-						if (!button.id) {
-							button.id = `${state._name}-tab-${index}`;
-						}
-						if (tabPanels.length > index) {
-							const panelId =
-								tabPanels[index].id ||
-								`${state._name}-tab-panel-${index}`;
-							button.setAttribute('aria-controls', panelId);
-						}
+				const buttons: HTMLElement[] = tabItems
+					.map((item) => item.querySelector('[role="tab"]'))
+					.filter((b): b is HTMLElement => !!b);
 
-						const isActive = state.activeTabIndex === index;
-						const hasActiveSelection = state.activeTabIndex !== -1;
-						button.setAttribute('aria-selected', String(isActive));
-						const isFocusable = hasActiveSelection
-							? isActive
-							: index === 0;
-						button.setAttribute(
-							'tabindex',
-							isFocusable ? '0' : '-1'
-						);
-
-						button.onclick = (event) => {
-							event.preventDefault();
-							state.activateTab(index);
-						};
+				buttons.forEach((button, index) => {
+					if (!button.id) {
+						button.id = `${state._name}-tab-${index}`;
 					}
+					if (tabPanels.length > index) {
+						const panelId =
+							tabPanels[index].id ||
+							`${state._name}-tab-panel-${index}`;
+						button.setAttribute('aria-controls', panelId);
+					}
+
+					const isActive = state.activeTabIndex === index;
+					const hasActiveSelection = state.activeTabIndex !== -1;
+					button.setAttribute('aria-selected', String(isActive));
+					const isFocusable = hasActiveSelection
+						? isActive
+						: index === 0;
+					button.setAttribute('tabindex', isFocusable ? '0' : '-1');
+
+					button.onclick = (event) => {
+						event.preventDefault();
+						state.activateTab(index);
+					};
+
+					button.onkeydown = (event: KeyboardEvent) => {
+						const key = event.key;
+						let flag = false;
+						let nextIndex = index;
+
+						switch (key) {
+							case 'ArrowLeft':
+								nextIndex = index - 1;
+								flag = true;
+								break;
+							case 'ArrowRight':
+								nextIndex = index + 1;
+								flag = true;
+								break;
+							case 'ArrowUp':
+								if (props.orientation === 'vertical') {
+									nextIndex = index - 1;
+									flag = true;
+								}
+								break;
+							case 'ArrowDown':
+								if (props.orientation === 'vertical') {
+									nextIndex = index + 1;
+									flag = true;
+								}
+								break;
+							case 'Home':
+								nextIndex = 0;
+								flag = true;
+								break;
+							case 'End':
+								nextIndex = buttons.length - 1;
+								flag = true;
+								break;
+							default:
+								break;
+						}
+
+						if (flag) {
+							event.preventDefault();
+							event.stopPropagation();
+
+							if (nextIndex < 0) {
+								nextIndex = buttons.length - 1;
+							} else if (nextIndex >= buttons.length) {
+								nextIndex = 0;
+							}
+
+							const nextButton = buttons[nextIndex];
+							if (nextButton) {
+								button.setAttribute('tabindex', '-1');
+								nextButton.setAttribute('tabindex', '0');
+								nextButton.focus();
+
+								if (props.initialSelectedMode !== 'manually') {
+									state.activateTab(nextIndex);
+								}
+							}
+						}
+					};
 				});
 
 				// Set ids and link them back to tabs
@@ -150,8 +206,7 @@ export default function DBTabs(props: DBTabsProps) {
 					if (!panel.id) {
 						panel.id = `${state._name}-tab-panel-${index}`;
 					}
-					const tabButton =
-						tabItems[index]?.querySelector('[role="tab"]');
+					const tabButton = buttons[index];
 					if (tabButton && tabButton.id) {
 						panel.setAttribute('aria-labelledby', tabButton.id);
 					}
@@ -180,7 +235,6 @@ export default function DBTabs(props: DBTabsProps) {
 
 		state.initialized = true;
 	});
-	// jscpd:ignore-end
 
 	onUnMount(() => {
 		state._resizeObserver?.disconnect();
@@ -238,6 +292,11 @@ export default function DBTabs(props: DBTabsProps) {
 							<DBTabItem
 								key={props.name + 'tab-item' + index}
 								active={state.activeTabIndex === index}
+								tabIndex={
+									state.activeTabIndex === -1 && index === 0
+										? 0
+										: undefined
+								}
 								label={tab.label}
 								iconTrailing={tab.iconTrailing}
 								icon={tab.icon}
