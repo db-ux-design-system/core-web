@@ -36,7 +36,7 @@ export default function DBTabItem(props: DBTabItemProps) {
 				disabled={getBoolean(props.disabled)}
 				class="db-tab-button"
 				onClick={(event) => handleClick(event)}>
-				<Show when={props.icon}>
+				<Show when={props.icon && props.showIcon}>
 					<DBIcon icon={props.icon} />
 				</Show>
 				<Show when={!props.noText}>
@@ -44,7 +44,7 @@ export default function DBTabItem(props: DBTabItemProps) {
 						{props.label ?? props.children}
 					</span>
 				</Show>
-				<Show when={props.iconTrailing}>
+				<Show when={props.iconTrailing && props.showIconTrailing}>
 					<DBIcon icon={props.iconTrailing} />
 				</Show>
 			</button>
