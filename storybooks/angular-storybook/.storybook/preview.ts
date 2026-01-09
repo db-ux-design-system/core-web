@@ -32,7 +32,7 @@ const preview: Preview = {
 							})
 							.replaceAll(
 								`this['${key}']`,
-								`'${value.toString()}'`
+								`'${value}'`
 							);
 					}
 
