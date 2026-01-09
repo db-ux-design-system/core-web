@@ -27,11 +27,12 @@ $with-icon-padding-calc: calc(
 	.db-tab-button {
 		background-color: colors.$db-adaptive-bg-basic-transparent-full-default;
 		padding: variables.$db-spacing-fixed-xs;
-		align-items: center;
 
 		@include helpers.display(flex);
 
+		align-items: center;
 		justify-content: center;
+		gap: variables.$db-spacing-fixed-xs;
 		white-space: nowrap;
 		border: 0;
 		border-radius: variables.$db-border-radius-sm;
@@ -58,34 +59,11 @@ $with-icon-padding-calc: calc(
 			font-weight: 700;
 		}
 
-		&[data-icon] {
-			padding-inline-start: $with-icon-padding-calc;
-
-			&::before {
-				position: absolute;
-				transform: translateY(-50%);
-				inset-block-start: 50%;
-				inset-inline-start: calc(
-					0% + #{variables.$db-spacing-fixed-xs}
-				);
-			}
-		}
-
-		&[data-icon-trailing] {
-			padding-inline-end: $with-icon-padding-calc;
-
-			&::after {
-				position: absolute;
-				transform: translateY(-50%);
-				inset-block-start: 50%;
-				inset-inline-end: calc(0% + #{variables.$db-spacing-fixed-xs});
-			}
-		}
-
 		&:is([data-no-text], [data-no-text="true"]) {
 			@include icons.is-icon-text-replace;
 
 			padding: 0;
+			justify-content: center;
 			inline-size: calc(
 				#{$with-icon-padding-calc} - #{variables.$db-spacing-fixed-2xs}
 			);
@@ -93,10 +71,6 @@ $with-icon-padding-calc: calc(
 				#{form-components.$font-size-height} +
 					#{variables.$db-spacing-fixed-xs}
 			);
-
-			&::before {
-				margin-inline-end: 0;
-			}
 		}
 
 		&:focus-visible {
