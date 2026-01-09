@@ -1,0 +1,27 @@
+---
+import type { DefaultComponentExample } from '../../../../shared/default-component-data.ts';
+interface Props {
+	name: string;
+	examples: DefaultComponentExample[];
+	role?: string | null;
+}
+const { name, role, examples } = Astro.props;
+---
+
+<db-card class="variants-card">
+	<div role={role} aria-label={role ? name : undefined} class="variants-list">
+		{
+			examples.map((example, exampleIndex) => (
+				<div style={example.style} class={example.className} data-density={example.density}>
+					<Fragment
+						set:html={example.example({
+							...example.props,
+							id: example.props?.id ?? example.name,
+							children: example.props?.children ?? example.name,
+						})}
+					/>
+				</div>
+			))
+		}
+	</div>
+</db-card>

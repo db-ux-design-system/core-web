@@ -1,0 +1,17 @@
+---
+import FormWrapper from './FormWrapper.astro';
+---
+
+<FormWrapper value="true" id="checkbox">
+	<db-checkbox name="checkbox" data-id="checkbox" checked>Checkbox</db-checkbox>
+</FormWrapper>
+
+<script>
+	const checkbox = document.querySelector('[data-id="checkbox"]');
+	const valueDisplay = document.getElementById('checkbox-value-display');
+
+	checkbox?.addEventListener('change', (e: any) => {
+		console.log(e)
+		if (valueDisplay) valueDisplay.textContent = e.target.checked;
+	});
+</script>

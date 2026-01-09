@@ -1,0 +1,34 @@
+---
+import DefaultLayout from '../layouts/default/DefaultLayout.astro';
+import Form from '../components/form/Form.astro';
+import Input from '../components/form/Input.astro';
+import Textarea from '../components/form/Textarea.astro';
+import Select from '../components/form/Select.astro';
+import Checkbox from '../components/form/Checkbox.astro';
+import Radio from '../components/form/Radio.astro';
+import CustomSelect from '../components/form/CustomSelect.astro';
+import Switch from '../components/form/Switch.astro';
+---
+
+<DefaultLayout>
+	<db-tabs data-testid="tabs">
+		<db-tab-list>
+			<db-tab-item>All</db-tab-item>
+			<db-tab-item data-testid="tab-inputs">Input</db-tab-item>
+			<db-tab-item data-testid="tab-textareas">Textarea</db-tab-item>
+			<db-tab-item data-testid="tab-selects">Select</db-tab-item>
+			<db-tab-item data-testid="tab-checkboxes">Checkbox</db-tab-item>
+			<db-tab-item data-testid="tab-radios">Radios</db-tab-item>
+			<db-tab-item data-testid="tab-custom-selects"> Custom Selects </db-tab-item>
+			<db-tab-item data-testid="tab-switches">Switches</db-tab-item>
+		</db-tab-list>
+		<db-tab-panel><Form /></db-tab-panel>
+		<db-tab-panel><Input /></db-tab-panel>
+		<db-tab-panel><Textarea /></db-tab-panel>
+		<db-tab-panel><Select /></db-tab-panel>
+		<db-tab-panel><Checkbox /></db-tab-panel>
+		<db-tab-panel><Radio /></db-tab-panel>
+		<db-tab-panel><CustomSelect /></db-tab-panel>
+		<db-tab-panel><Switch /></db-tab-panel>
+	</db-tabs>
+</DefaultLayout>

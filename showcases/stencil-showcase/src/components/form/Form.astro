@@ -1,0 +1,229 @@
+<div class="form-container">
+	<div>
+		<form>
+			<db-textarea label="test" placeholder="fieldsizing" resize="none" field-sizing="content"
+			></db-textarea>
+
+			<db-custom-select id="form-container-custom-select" label="Test" required show-search multiple placeholder="Placeholder"
+			></db-custom-select>
+			<fieldset>
+				<p>Input:</p>
+				<db-input
+					label="Textinput"
+					placeholder="Placeholder"
+					message="Description"
+					icon="x_placeholder"
+					name="input-name"></db-input>
+				<p>Textarea:</p>
+				<db-textarea label="Textarea Controlled" value="default textarea"></db-textarea>
+				<db-input label="Date input" message="Description" name="input-date-name" type="date"
+				></db-input>
+				<db-textarea label="Textarea Default value" value="text area default value"></db-textarea>
+				<p>Radio:</p>
+				<ul>
+					{
+						['X', 'Y', 'Z'].map((radioName) => (
+							<li>
+								<db-radio name="radio-group" value={radioName}>
+									Radio {radioName}
+								</db-radio>
+							</li>
+						))
+					}
+				</ul>
+				<p>Tags:</p>
+				<ul>
+					{
+						['X', 'Y', 'Z'].map((tag, index) => (
+							<li>
+								<db-tag
+									semantic={index === 0 ? undefined : 'successful'}
+									emphasis={index === 2 ? 'strong' : undefined}
+								>
+									<db-checkbox>Tag {tag}</db-checkbox>
+								</db-tag>
+							</li>
+						))
+					}
+					{
+						['A', 'B', 'C'].map((tag, index) => (
+							<li>
+								<db-tag
+									semantic={index === 0 ? undefined : 'informational'}
+									emphasis={index === 2 ? 'strong' : undefined}
+								>
+									<label>
+										<input type="checkbox" />
+										Tag {tag}
+									</label>
+								</db-tag>
+							</li>
+						))
+					}
+				</ul>
+				<p>Checkbox:</p>
+				<db-checkbox name="checkbox" value="Checkbox checked" checked
+					>Checkbox Indeterminate</db-checkbox
+				>
+				<fieldset>
+					<db-checkbox name="checkbox-1" value="Checkbox checked" checked>Checkbox</db-checkbox>
+					<db-checkbox name="checkbox-2" value="Checkbox checked">Checkbox</db-checkbox>
+					<db-checkbox name="checkbox-3" value="Irgendwas">DefaultChecked</db-checkbox>
+				</fieldset>
+				<p>DBSelect:</p>
+				<db-select label="Label">
+					<option value="test1">Test1</option>
+					<option value="test2">Test2</option>
+				</db-select>
+				<p>Button:</p>
+				<db-button type="button">Reset and Toggle</db-button>
+				<db-button type="button" variant="brand">Hi from Showcase!</db-button>
+			</fieldset>
+		</form>
+	</div>
+	<div>
+		<h1>Output</h1>
+		<dl>
+			<dt>inputs value</dt>
+			<dd id="input-value">No Input set</dd>
+			<dt>date inputs value</dt>
+			<dd id="dateinput-value">No date input set</dd>
+			<dt>textarea values</dt>
+			<dd id="textarea-value">No Textarea set</dd>
+			<dd id="textarea-children-value">No Textarea set</dd>
+			<dt>radio value</dt>
+			<dd id="radio-value">No radio set</dd>
+			<dt>checkbox (indeterminate) value</dt>
+			<dd id="checkbox-value">checkbox checked</dd>
+			<dt>select value</dt>
+			<dd id="select-value">No select set</dd>
+			<dt>tags value</dt>
+			<dd id="tags-value">[]</dd>
+		</dl>
+
+		<db-divider></db-divider>
+
+		<p>
+			Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor
+			<db-link show-icon="false" href="#">invidunt</db-link>
+			ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo
+			dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit
+			amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor
+			<db-link show-icon="false" href="#"
+				>labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo
+				duo dolores et ea rebum. Stet</db-link
+			>
+			ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo
+			dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit
+			amet.
+		</p>
+
+		<db-button id="tabs-test-btn">TabsTest</db-button>
+
+
+		<db-divider></db-divider>
+
+		<db-accordion id="accordion"></db-accordion>
+
+		<db-select label="Label">
+			<option value="Test1">Test1</option>
+			<option value="Test2">Test2</option>
+		</db-select>
+
+		<h2>Validations</h2>
+		<db-button>
+			Test
+			<db-tooltip placement="bottom">Open above floating label</db-tooltip>
+		</db-button>
+		<db-input
+			variant="floating"
+			label="Input minlength validation"
+			placeholder="Placeholder"
+			invalid-message="Min. 3"
+			valid-message="😎"
+			min-length="3"></db-input>
+		<db-input
+			label="Input pattern validation"
+			placeholder="Placeholder"
+			pattern="\w{3,16}"
+			invalid-message="Pattern \w{3,16}"
+			valid-message="😎"></db-input>
+		<db-input
+			label="Input number"
+			placeholder="Placeholder"
+			invalid-message="Type=number"
+			valid-message="😎"
+			type="number"></db-input>
+		<db-input
+			label="Input number min"
+			placeholder="Placeholder"
+			invalid-message="Type=number min 3"
+			valid-message="😎"
+			type="number"
+			min="3"></db-input>
+		<db-textarea label="Textarea min 10" invalid-message="Min 10" valid-message="😎" min-length="10"
+		></db-textarea>
+
+		<db-tag semantic="neutral" emphasis="strong">
+			KUZ
+			<db-tooltip placement="right-end">Beschreibungstext</db-tooltip>
+		</db-tag>
+		<db-button>
+			KUZ
+			<db-tooltip placement="right-end">Beschreibungstext</db-tooltip>
+		</db-button>
+
+		<form id="custom-select-form">
+			<db-custom-select
+				name="input-multi"
+				label="Test"
+				placeholder="Test"
+				select-all-label="Select all"
+				search-label="Search"
+				no-results-text="No matching filter"></db-custom-select>
+			<db-button type="button" id="reset-custom-select">Reset CustomSelect</db-button>
+			<db-button type="submit">Submit</db-button>
+		</form>
+
+		<div>
+			<db-tag><db-button>Test</db-button></db-tag>
+			<db-tag><db-link>Test</db-link></db-tag>
+			<db-tag><db-radio>Test</db-radio></db-tag>
+			<db-tag><db-checkbox>Test</db-checkbox></db-tag>
+		</div>
+	</div>
+</div>
+
+<script>
+	const customSelect = document.querySelector('db-custom-select[id="form-container-custom-select"]') as any;
+	if (customSelect) {
+		customSelect.options = [
+			{ label: 'O1', value: 'o1' },
+			{ label: 'O2', value: 'o2' },
+			{ label: 'O3', value: 'o3' },
+			{ label: 'O4', value: 'o4' },
+			{ label: 'O5', value: 'o5' },
+			{ label: 'O6', value: 'o6' },
+		];
+		customSelect.values = ['o2'];
+	}
+
+	const accordion = document.getElementById('accordion') as any;
+	setTimeout(() => {
+		if (accordion) {
+			accordion.innerHTML = `
+				<db-accordion-item headline-plain="test1"><p>test1</p><db-custom-select label="Test" required show-search multiple placeholder="Placeholder"></db-custom-select></db-accordion-item>
+				<db-accordion-item headline-plain="test2"><p>test2</p><db-popover><db-button slot="trigger">Popover</db-button><ul><li>Content 1</li><li>Content 2</li><li>Content 3</li></ul></db-popover></db-accordion-item>
+				<db-accordion-item headline-plain="test3"><p>test3</p><db-button>Tooltip<db-tooltip>Tooltip</db-tooltip></db-button></db-accordion-item>
+			`;
+			const accordionCustomSelect = accordion.querySelector('db-custom-select') as any;
+			if (accordionCustomSelect) {
+				accordionCustomSelect.options = [{ value: 'Option 1' }, { value: 'Option 2' }];
+			}
+		}
+	}, 2000);
+
+	document.getElementById('reset-custom-select')?.addEventListener('click', () => {
+		if (customSelect) customSelect.values = [];
+	});
+</script>

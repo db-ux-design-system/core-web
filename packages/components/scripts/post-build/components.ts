@@ -209,6 +209,12 @@ export const getComponents = (): Component[] => [
 					from: 'onMouseMove={(event)',
 					to: 'onMouseMove={(event: any)'
 				}
+			],
+			stencil: [
+				{
+					from: '<slot>',
+					to: '<slot name="expandButton">'
+				}
 			]
 		},
 		config: {

@@ -1,0 +1,42 @@
+---
+import type { DefaultComponentVariants } from '../../../../shared/default-component-data.ts';
+import VariantList from './VariantList.astro';
+import { COLOR, DENSITY } from '@db-ux/ngx-core-components/src';
+interface Props {
+	title: string;
+	variants: DefaultComponentVariants[];
+}
+const { title, variants } = Astro.props;
+
+const getLink = (variantName: string) => {
+	let currentUrl = globalThis.location?.href;
+	if (!currentUrl?.includes('?')) {
+		currentUrl += '?';
+	}
+
+	return `${currentUrl}&page=${variantName.toLowerCase()}`;
+};
+---
+
+<div class="default-container">
+	<div class="component-header">
+		<h1>{title}</h1>
+	</div>
+	{
+		variants.map((variant, index) => (
+			<div>
+				<db-divider />
+				<db-link
+					class="link-headline"
+					content="external"
+					target="_blank"
+					rel="noopener noreferrer"
+					href={getLink(variant.name)}
+				>
+					{variant.name}
+				</db-link>
+				<VariantList {...variant} />
+			</div>
+		))
+	}
+</div>

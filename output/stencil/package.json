@@ -14,9 +14,14 @@
     ".": {
       "types": "./dist/loader/index.d.ts",
       "import": "./dist/loader/index.js"
+    },
+    "./bundle": {
+      "types": "./build/index.d.ts",
+      "import": "./build/index.js"
     }
   },
   "files": [
+    "build/",
     "dist/",
     "agent",
     "CHANGELOG.md"

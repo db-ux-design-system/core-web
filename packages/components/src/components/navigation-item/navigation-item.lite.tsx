@@ -109,13 +109,13 @@ export default function DBNavigationItem(props: DBNavigationItemProps) {
 			data-active={props.active}
 			data-wrap={getBooleanAsString(props.wrap)}
 			aria-disabled={getBooleanAsString(props.disabled)}>
-			<Show when={!state.hasSubNavigation}>
-				<Show when={props.text} else={props.children}>
-					{props.text}
-				</Show>
-			</Show>
-
-			<Show when={state.hasSubNavigation}>
+			<Show
+				when={state.hasSubNavigation}
+				else={
+					<Show when={props.text} else={props.children}>
+						{props.text}
+					</Show>
+				}>
 				<button
 					aria-haspopup={state.hasAreaPopup}
 					aria-expanded={state.isSubNavigationExpanded}
