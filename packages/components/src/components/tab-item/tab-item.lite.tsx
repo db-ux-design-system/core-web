@@ -14,6 +14,14 @@ useDefaultProps<DBTabItemProps>({});
 export default function DBTabItem(props: DBTabItemProps) {
 	const _ref = useRef<HTMLButtonElement | any>(null);
 
+	function handleClick(event: MouseEvent) {
+		if (!props.disabled) {
+			if (props.onClick) {
+				props.onClick(event);
+			}
+		}
+	}
+
 	return (
 		<li class={cls('db-tab-item', props.className)} role="presentation">
 			<button
@@ -27,13 +35,7 @@ export default function DBTabItem(props: DBTabItemProps) {
 				id={props.id}
 				disabled={getBoolean(props.disabled)}
 				class="db-tab-button"
-				onClick={(event) => {
-					if (!props.disabled) {
-						if (props.onClick) {
-							props.onClick(event);
-						}
-					}
-				}}>
+				onClick={(event) => handleClick(event)}>
 				<Show when={props.icon}>
 					<DBIcon icon={props.icon} />
 				</Show>
