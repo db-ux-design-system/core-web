@@ -180,6 +180,10 @@ export const ROUTES: NavigationItem[] = [
 					{
 						label: 'Color Modes',
 						path: '/foundations/colors/color-modes'
+					},
+					{
+						label: 'Color Usage Guide',
+						path: '/foundations/colors/color-usage-guide'
 					}
 				]
 			},
