@@ -106,9 +106,14 @@ export default function DBTabs(props: DBTabsProps) {
 		},
 		initTabs() {
 			if (_ref) {
-				const tabItems = Array.from<HTMLElement>(
-					_ref.getElementsByClassName('db-tab-item')
+				const tabListEl = _ref.querySelector(
+					'.db-tab-list > [role="tablist"]'
 				);
+				if (!tabListEl) return;
+
+				const tabItems = Array.from<HTMLElement>(
+					tabListEl.children
+				).filter((child) => child.classList.contains('db-tab-item'));
 				const tabPanels = Array.from<Element>(
 					_ref.querySelectorAll(
 						':is(:scope > .db-tab-panel, :scope > db-tab-panel > .db-tab-panel)'
