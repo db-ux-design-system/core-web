@@ -128,8 +128,15 @@ export default function DBTabs(props: DBTabsProps) {
 						}
 
 						const isActive = state.activeTabIndex === index;
+						const hasActiveSelection = state.activeTabIndex !== -1;
 						button.setAttribute('aria-selected', String(isActive));
-						button.setAttribute('tabindex', isActive ? '0' : '-1');
+						const isFocusable = hasActiveSelection
+							? isActive
+							: index === 0;
+						button.setAttribute(
+							'tabindex',
+							isFocusable ? '0' : '-1'
+						);
 
 						button.onclick = (event) => {
 							event.preventDefault();
@@ -167,6 +174,8 @@ export default function DBTabs(props: DBTabsProps) {
 		if (props.initialSelectedIndex !== undefined) {
 			const parsedIndex = Number(props.initialSelectedIndex);
 			state.activeTabIndex = isNaN(parsedIndex) ? 0 : parsedIndex;
+		} else if (props.initialSelectedMode === 'manually') {
+			state.activeTabIndex = -1;
 		}
 
 		state.initialized = true;
@@ -183,25 +192,22 @@ export default function DBTabs(props: DBTabsProps) {
 			state.initTabList();
 			state.initTabs();
 
-			const tabList = _ref.querySelector('.db-tab-list');
-			if (tabList) {
-				const observer = new MutationObserver((mutations) => {
-					mutations.forEach((mutation) => {
-						if (
-							mutation.removedNodes.length ||
-							mutation.addedNodes.length
-						) {
-							state.initTabList();
-							state.initTabs();
-						}
-					});
+			const observer = new MutationObserver((mutations) => {
+				mutations.forEach((mutation) => {
+					if (
+						mutation.removedNodes.length ||
+						mutation.addedNodes.length
+					) {
+						state.initTabList();
+						state.initTabs();
+					}
 				});
+			});
 
-				observer.observe(tabList, {
-					childList: true,
-					subtree: true
-				});
-			}
+			observer.observe(_ref, {
+				childList: true,
+				subtree: true
+			});
 		}
 	}, [_ref, state.initialized, state.activeTabIndex]);
 
