@@ -20,7 +20,7 @@ export default function DBTabItem(props: DBTabItemProps) {
 				ref={_ref}
 				type="button"
 				role="tab"
-				aria-selected={props.active}
+				aria-selected={getBoolean(props.active)}
 				aria-disabled={getBoolean(props.disabled)}
 				tabindex={props.active ? 0 : -1}
 				id={props.id}

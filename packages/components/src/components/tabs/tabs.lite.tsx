@@ -15,7 +15,6 @@ import DBTabItem from '../tab-item/tab-item.lite';
 import DBTabList from '../tab-list/tab-list.lite';
 import DBTabPanel from '../tab-panel/tab-panel.lite';
 import { DBSimpleTabProps, DBTabsProps, DBTabsState } from './model';
-import { DBTabsContext } from './tabs-context';
 
 useMetadata({});
 useDefaultProps<DBTabsProps>({});
@@ -200,62 +199,56 @@ export default function DBTabs(props: DBTabsProps) {
 			data-scroll-behavior={props.behavior}
 			data-alignment={props.alignment ?? 'start'}
 			data-width={props.width ?? 'auto'}>
-			<DBTabsContext.Provider
-				value={{
-					activeTabIndex: state.activeTabIndex,
-					activateTab: state.activateTab
-				}}>
-				<Show when={state.showScrollLeft}>
-					<DBButton
-						class="tabs-scroll-left"
-						variant="ghost"
-						icon="chevron_left"
-						type="button"
-						noText
-						onClick={() => state.scroll(true)}>
-						Scroll left
-					</DBButton>
-				</Show>
-				<Show when={props.tabs}>
-					<DBTabList>
-						<For each={state.convertTabs()}>
-							{(tab: DBSimpleTabProps, index: number) => (
-								<DBTabItem
-									key={props.name + 'tab-item' + index}
-									active={state.activeTabIndex === index}
-									label={tab.label}
-									iconTrailing={tab.iconTrailing}
-									icon={tab.icon}
-									noText={tab.noText}
-									onClick={() => state.activateTab(index)}
-								/>
-							)}
-						</For>
-					</DBTabList>
+			<Show when={state.showScrollLeft}>
+				<DBButton
+					class="tabs-scroll-left"
+					variant="ghost"
+					icon="chevron_left"
+					type="button"
+					noText
+					onClick={() => state.scroll(true)}>
+					Scroll left
+				</DBButton>
+			</Show>
+			<Show when={props.tabs}>
+				<DBTabList>
 					<For each={state.convertTabs()}>
 						{(tab: DBSimpleTabProps, index: number) => (
-							<DBTabPanel
-								key={props.name + 'tab-panel' + index}
-								content={tab.content}
-								hidden={state.activeTabIndex !== index}>
-								{tab.children}
-							</DBTabPanel>
+							<DBTabItem
+								key={props.name + 'tab-item' + index}
+								active={state.activeTabIndex === index}
+								label={tab.label}
+								iconTrailing={tab.iconTrailing}
+								icon={tab.icon}
+								noText={tab.noText}
+								onClick={() => state.activateTab(index)}
+							/>
 						)}
 					</For>
-				</Show>
-				<Show when={!props.tabs}>{props.children}</Show>
-				<Show when={state.showScrollRight}>
-					<DBButton
-						class="tabs-scroll-right"
-						variant="ghost"
-						icon="chevron_right"
-						type="button"
-						noText
-						onClick={() => state.scroll()}>
-						Scroll right
-					</DBButton>
-				</Show>
-			</DBTabsContext.Provider>
+				</DBTabList>
+				<For each={state.convertTabs()}>
+					{(tab: DBSimpleTabProps, index: number) => (
+						<DBTabPanel
+							key={props.name + 'tab-panel' + index}
+							content={tab.content}
+							hidden={state.activeTabIndex !== index}>
+							{tab.children}
+						</DBTabPanel>
+					)}
+				</For>
+			</Show>
+			<Show when={!props.tabs}>{props.children}</Show>
+			<Show when={state.showScrollRight}>
+				<DBButton
+					class="tabs-scroll-right"
+					variant="ghost"
+					icon="chevron_right"
+					type="button"
+					noText
+					onClick={() => state.scroll()}>
+					Scroll right
+				</DBButton>
+			</Show>
 		</div>
 	);
 }
