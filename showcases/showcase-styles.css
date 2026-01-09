@@ -52,6 +52,9 @@ db-card:is(.variants-card) > .db-card {
 	gap: var(--db-spacing-fixed-md);
 }
 
+.variants-list > db-popover > .db-popover > db-button > button,
+.variants-list > .db-popover > button,
+.variants-list db-button > button,
 .variants-list > button {
 	align-self: center;
 }
