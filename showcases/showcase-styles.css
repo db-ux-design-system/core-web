@@ -54,12 +54,11 @@ db-card:is(.variants-card) > .db-card {
 
 .variants-list > db-popover > .db-popover > db-button > button,
 .variants-list > .db-popover > button,
-.variants-list db-button > button,
 .variants-list > button {
 	align-self: center;
 }
 
-.variants-list div:has(> db-button) {
+.variants-list div[style]:has(> db-button) {
 	display: flex;
 	align-items: center;
 }
