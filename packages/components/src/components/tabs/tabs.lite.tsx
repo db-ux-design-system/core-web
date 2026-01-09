@@ -96,6 +96,10 @@ export default function DBTabs(props: DBTabsProps) {
 								state._resizeObserver = observer;
 							}
 						}
+
+						if (props.name) {
+							container.setAttribute('aria-label', props.name);
+						}
 					}
 				}
 			}

@@ -22,6 +22,7 @@ export default function DBTabItem(props: DBTabItemProps) {
 				role="tab"
 				aria-selected={getBoolean(props.active)}
 				aria-disabled={getBoolean(props.disabled)}
+				aria-label={getBoolean(props.noText) ? props.label : undefined}
 				tabIndex={props.active ? 0 : -1}
 				id={props.id}
 				disabled={getBoolean(props.disabled)}
