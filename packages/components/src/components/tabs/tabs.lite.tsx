@@ -36,6 +36,7 @@ export default function DBTabs(props: DBTabsProps) {
 			if (props.onIndexChange) {
 				props.onIndexChange(index);
 			}
+			state.initTabs();
 		},
 		convertTabs(): DBSimpleTabProps[] {
 			try {
@@ -113,7 +114,8 @@ export default function DBTabs(props: DBTabsProps) {
 
 				// Set ids and link tabs to panels
 				tabItems.forEach((tabItem, index) => {
-					const button = tabItem.querySelector('[role="tab"]');
+					const button: HTMLElement | null =
+						tabItem.querySelector('[role="tab"]');
 					if (button) {
 						if (!button.id) {
 							button.id = `${state._name}-tab-${index}`;
@@ -124,6 +126,15 @@ export default function DBTabs(props: DBTabsProps) {
 								`${state._name}-tab-panel-${index}`;
 							button.setAttribute('aria-controls', panelId);
 						}
+
+						const isActive = state.activeTabIndex === index;
+						button.setAttribute('aria-selected', String(isActive));
+						button.setAttribute('tabindex', isActive ? '0' : '-1');
+
+						button.onclick = (event) => {
+							event.preventDefault();
+							state.activateTab(index);
+						};
 					}
 				});
 
@@ -136,6 +147,12 @@ export default function DBTabs(props: DBTabsProps) {
 						tabItems[index]?.querySelector('[role="tab"]');
 					if (tabButton && tabButton.id) {
 						panel.setAttribute('aria-labelledby', tabButton.id);
+					}
+
+					if (state.activeTabIndex === index) {
+						panel.removeAttribute('hidden');
+					} else {
+						panel.setAttribute('hidden', '');
 					}
 				});
 			}
@@ -185,10 +202,8 @@ export default function DBTabs(props: DBTabsProps) {
 					subtree: true
 				});
 			}
-
-			state.initialized = false;
 		}
-	}, [_ref, state.initialized]);
+	}, [_ref, state.initialized, state.activeTabIndex]);
 
 	return (
 		<div
