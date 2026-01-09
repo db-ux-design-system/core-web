@@ -7,6 +7,9 @@ import {
 	IconProps,
 	IconTrailingProps,
 	InitializedState,
+	ShowIconLeadingProps,
+	ShowIconProps,
+	ShowIconTrailingProps,
 	WidthProps
 } from '../../shared/model';
 
@@ -33,8 +36,11 @@ export type DBTabItemProps = DBTabItemDefaultProps &
 	GlobalProps &
 	ClickEventProps<HTMLButtonElement> &
 	IconProps &
+	ShowIconProps &
 	IconTrailingProps &
 	IconLeadingProps &
+	ShowIconTrailingProps &
+	ShowIconLeadingProps &
 	ActiveProps &
 	WidthProps;
 
