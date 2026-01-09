@@ -27,12 +27,7 @@ import {
 	DEFAULT_VALID_MESSAGE,
 	DEFAULT_VALID_MESSAGE_ID_SUFFIX
 } from '../../shared/constants';
-import {
-	ClickEvent,
-	GeneralEvent,
-	InputEvent,
-	InteractionEvent
-} from '../../shared/model';
+import { GeneralEvent, InputEvent, InteractionEvent } from '../../shared/model';
 import {
 	cls,
 	delay,
@@ -258,10 +253,7 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 			// Fallback to default behavior
 			return `${DEFAULT_REMOVE} ${state.getOptionLabel(option)}`;
 		},
-		handleTagRemove: (
-			option: CustomSelectOptionType,
-			event?: ClickEvent<HTMLButtonElement> | void
-		) => {
+		handleTagRemove: (option: CustomSelectOptionType, event?: any) => {
 			if (event) {
 				event.stopPropagation();
 			}
@@ -994,9 +986,7 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 											removeButton={state.getTagRemoveLabel(
 												option
 											)}
-											onRemove={(
-												event?: ClickEvent<HTMLButtonElement> | void
-											) =>
+											onRemove={(event: any) =>
 												state.handleTagRemove(
 													option,
 													event
