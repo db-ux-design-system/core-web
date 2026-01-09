@@ -1,6 +1,6 @@
 // This file has been automatically migrated to valid ESM format by Storybook.
-import { createRequire } from "node:module";
 import type { StorybookConfig } from '@storybook/vue3-vite';
+import { createRequire } from 'node:module';
 import { dirname, join } from 'node:path';
 
 const require = createRequire(import.meta.url);
@@ -19,7 +19,7 @@ const config: StorybookConfig = {
 	framework: {
 		name: getAbsolutePath('@storybook/vue3-vite'),
 		options: {
-			docgen: 'vue-component-meta',
+			docgen: 'vue-component-meta'
 		}
 	},
 	async viteFinal(config) {

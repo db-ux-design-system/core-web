@@ -8,6 +8,12 @@ const preview: Preview = {
 				color: /(background|color)$/i,
 				date: /Date$/i
 			}
+		},
+		docs: {
+			toc: {
+				headingSelector: 'h1, h3',
+				title: 'Table of Contents',
+			},
 		}
 	}
 };
