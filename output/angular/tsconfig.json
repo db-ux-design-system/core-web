@@ -25,8 +25,7 @@
 		"declarationMap": false,
 		"allowSyntheticDefaultImports": true,
 		"useDefineForClassFields": false,
-		"noImplicitAny": false,
-		"skipLibCheck": true
+		"noImplicitAny": false
 	},
 	"angularCompilerOptions": {
 		"enableI18nLegacyMessageIdFormat": false,
