@@ -49,7 +49,8 @@
 						"index": false,
 						"polyfills": ["zone.js"],
 						"tsConfig": "tsconfig.app.json",
-						"inlineStyleLanguage": "scss"
+						"inlineStyleLanguage": "css",
+						"styles": ["src/global.css"]
 					},
 					"configurations": {
 						"production": {
@@ -80,8 +81,20 @@
 					"options": {
 						"configDir": ".storybook",
 						"browserTarget": "angular-latest:build",
-						"compodoc": false,
-						"port": 6006
+						"port": 6006,
+						"compodoc": true,
+						"compodocArgs": [
+							"-p",
+							"tsconfig.doc.json",
+							"-e",
+							"json",
+							"-d",
+							"./src/components",
+							"--disableLifeCycleHooks",
+							"--disableProtected",
+							"--disablePrivate",
+							"--minimal"
+						]
 					}
 				},
 				"build-storybook": {
@@ -89,8 +102,19 @@
 					"options": {
 						"configDir": ".storybook",
 						"browserTarget": "angular-latest:build",
-						"compodoc": false,
-						"outputDir": "../../build-storybooks/angular-storybook"
+						"outputDir": "../../build-storybooks/angular-storybook",
+						"compodoc": true,
+						"compodocArgs": [
+							"-p",
+							"tsconfig.doc.json",
+							"-e",
+							"json",
+							"-d",
+							"./src/components",
+							"--disableLifeCycleHooks",
+							"--disableProtected",
+							"--disablePrivate"
+						]
 					}
 				}
 			}

@@ -25,12 +25,13 @@
     "build": "npm-run-all build:* --parallel mv:*",
     "build:_stencil": "stencil build",
     "build:cem": "cem analyze",
-    "mv:dist": "cpr dist ../../build-outputs/wc-core-components/dist -o",
+    "dev-build": "stencil build --config stencil.config.dev.ts",
     "mv:agent": "cpr agent ../../build-outputs/wc-core-components/agent --overwrite",
     "mv:changelog": "cpr CHANGELOG.md ../../build-outputs/wc-core-components/CHANGELOG.md --overwrite",
+    "mv:dist": "cpr dist ../../build-outputs/wc-core-components/dist -o",
     "mv:package.json": "cpr package.json ../../build-outputs/wc-core-components/package.json -o",
     "mv:readme": "cpr README.md ../../build-outputs/wc-core-components/README.md -o",
-    "start": "stencil build --watch"
+    "start": "stencil build --watch --config stencil.config.dev.ts"
   },
   "devDependencies": {
     "@custom-elements-manifest/analyzer": "0.11.0",

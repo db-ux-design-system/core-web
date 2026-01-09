@@ -573,8 +573,13 @@ export type LinkProps = {
 	role?: string;
 	/**
 	 * How much of the referrer to send when following the link.
+	 * @deprecated use `referrerPolicy` instead
 	 */
 	referrerpolicy?: LinkReferrerPolicyType;
+	/**
+	 * How much of the referrer to send when following the link.
+	 */
+	referrerPolicy?: LinkReferrerPolicyType;
 };
 
 export type TextProps = {
@@ -596,6 +601,7 @@ export type ClickEventProps<T> = {
 	 * React specific onClick to pass to forward ref.
 	 */
 	onClick?: (event: ClickEvent<T>) => void;
+	click?: (event: ClickEvent<T>) => void;
 };
 
 export type ClickEventState<T> = {
@@ -723,3 +729,11 @@ export type PopoverState = {
 	handleEnter: (parent?: HTMLElement) => void;
 	handleLeave: (event?: any) => void;
 } & DocumentScrollState;
+
+// TODO: Remove this after we migrate to one-platform
+export interface PatternhubProps {
+	/**
+	 * Used for Patternhub
+	 */
+	isPatternhub?: boolean;
+}

@@ -1,6 +1,6 @@
 // This file has been automatically migrated to valid ESM format by Storybook.
-import { createRequire } from "node:module";
 import type { StorybookConfig } from '@storybook/vue3-vite';
+import { createRequire } from 'node:module';
 import { dirname, join } from 'node:path';
 
 const require = createRequire(import.meta.url);
@@ -15,10 +15,12 @@ function getAbsolutePath(value: string): any {
 
 const config: StorybookConfig = {
 	stories: ['../src/**/*.stories.@(js|jsx|mjs|ts|tsx)'],
-	addons: [],
+	addons: ['@storybook/addon-docs'],
 	framework: {
 		name: getAbsolutePath('@storybook/vue3-vite'),
-		options: {}
+		options: {
+			docgen: 'vue-component-meta'
+		}
 	},
 	async viteFinal(config) {
 		const { mergeConfig } = await import('vite');

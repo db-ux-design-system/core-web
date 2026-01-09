@@ -43,6 +43,13 @@ jobs:
           name: db-ux-components-build
           path: packages/components/build
 
+      - name: ⏫ Download stories
+        if: ${{ inputs.storybook != 'composition-storybook' }}
+        uses: actions/download-artifact@v7
+        with:
+          name: ${{ inputs.storybook }}-stories
+          path: storybooks/${{ inputs.storybook }}/src/components
+
       - name: 🔨 Build ${{ inputs.storybook }}
         env:
           BASE_URL: ${{ inputs.baseUrl }}

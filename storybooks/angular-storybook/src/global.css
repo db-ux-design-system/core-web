@@ -1,0 +1,6 @@
+@import '@db-ux/core-components/build/styles/webpack.css';
+@import '@db-ux/db-theme/build/styles/webpack.css';
+
+.docs-story {
+	background-color: var(--db-adaptive-bg-basic-level-1-default);
+}

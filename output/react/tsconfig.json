@@ -22,7 +22,7 @@
 		"skipLibCheck": true
 	},
 	"include": ["src/**/*.ts", "src/**/*.tsx"],
-	"exclude": ["node_modules", "src/**/*.spec.tsx"],
+	"exclude": ["node_modules", "src/**/*.spec.tsx", "src/**/*.example.tsx", "src/**/*.showcase.tsx", "src/**/*.arg.types.ts"],
 	"compileOnSave": false,
 	"buildOnSave": false
 }
