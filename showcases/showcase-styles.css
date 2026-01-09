@@ -59,6 +59,11 @@ db-card:is(.variants-card) > .db-card {
 	align-self: center;
 }
 
+.variants-list div:has(> db-button) {
+	display: flex;
+	align-items: center;
+}
+
 .variants-list > div {
 	align-items: center;
 	display: flex;
