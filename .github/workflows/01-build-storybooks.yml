@@ -47,7 +47,7 @@ jobs:
         if: ${{ inputs.storybook != 'composition-storybook' }}
         uses: actions/upload-artifact@v6
         with:
-          name: ${{ inputs.storybook }}
+          name: ${{ inputs.storybook }}-stories
           path: storybooks/${{ inputs.storybook }}/src/components
 
       - name: 🔨 Build ${{ inputs.storybook }}
