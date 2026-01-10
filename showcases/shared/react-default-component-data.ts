@@ -1,11 +1,11 @@
-import type { FunctionComponent, ReactElement } from 'react';
+import type { React, ReactElement } from 'react';
 import type {
 	DefaultComponentProps,
 	DefaultComponentVariants
 } from './default-component-data';
 
 export type ReactDefaultComponentVariants = DefaultComponentVariants & {
-	SlotCode?: FunctionComponent;
+	SlotCode?: React.ComponentType<any>;
 };
 
 export type ReactDefaultComponentProps = DefaultComponentProps & {
