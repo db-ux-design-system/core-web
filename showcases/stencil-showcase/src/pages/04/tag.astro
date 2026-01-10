@@ -1,0 +1,72 @@
+---
+import DefaultLayout from '../../layouts/default/DefaultLayout.astro';
+import DefaultComponent from '../../components/default/DefaultComponent.astro';
+import defaultComponentVariants from '../../../../shared/tag.json';
+import type { DBTagProps } from '@components';
+import { getPropsAsAttributes, getVariantsWithExamples } from '../../utils';
+
+const exampleFn = ({
+	semantic,
+	disabled,
+	children,
+	icon,
+	overflow,
+	noText,
+	behavior,
+	emphasis,
+	removeButton,
+	checked,
+	component,
+	identifier,
+	content,
+	showCheckState,
+	lineBreak,
+	showIcon,
+}: Omit<DBTagProps, 'disabled'> & {
+	disabled?: boolean;
+	checked?: boolean;
+	component?: string;
+	identifier?: string;
+	lineBreak?: boolean;
+}) => {
+	if (lineBreak) {
+		return '<i class="line-break"></i>';
+	}
+
+	const props = {
+		semantic,
+		icon,
+		'no-text': noText,
+		behavior,
+		emphasis,
+		overflow,
+		'remove-button': removeButton,
+		'show-check-state': showCheckState,
+		'show-icon': showIcon,
+	};
+
+	let innerContent = children;
+	if (component === 'button') {
+		innerContent = `<button>${children}</button>`;
+	} else if (component === 'link') {
+		innerContent = `<a href="#">${children}</a>`;
+	} else if (component === 'checkbox') {
+		innerContent = `<label><input type="checkbox" ${checked ? 'checked' : ''} ${disabled ? 'disabled' : ''} />${children}</label>`;
+	} else if (component === 'radio') {
+		innerContent = `<label><input type="radio" ${checked ? 'checked' : ''} name="${identifier}" />${children}</label>`;
+	} else if (overflow) {
+		innerContent = `<span>${children}</span>`;
+	}
+
+	const contentSlot = content
+		? '<div slot="content" class="default-content-slot">Swap Slot</div>'
+		: '';
+
+	return `<db-tag ${getPropsAsAttributes(props)} onremove="alert('${children}')">${contentSlot}${innerContent}</db-tag>`;
+};
+const variants = getVariantsWithExamples<DBTagProps>(defaultComponentVariants, exampleFn);
+---
+
+<DefaultLayout>
+	<DefaultComponent title="DBTag" variants={variants} />
+</DefaultLayout>

@@ -1,0 +1,42 @@
+---
+import DefaultLayout from '../../layouts/default/DefaultLayout.astro';
+import DefaultComponent from '../../components/default/DefaultComponent.astro';
+import defaultComponentVariants from '../../../../shared/popover.json';
+import type { DBPopoverProps } from '@components';
+import { getPropsAsAttributes, getVariantsWithExamples } from '../../utils';
+
+const exampleFn = ({
+	id,
+	children,
+	width,
+	gap,
+	spacing,
+	placement,
+	delay,
+	content,
+	animation,
+}: DBPopoverProps & { content?: string }) => {
+	const props = { id, width, gap, spacing, placement, delay, animation };
+
+	return `
+		<db-popover ${getPropsAsAttributes(props)}>
+			<db-button slot="trigger">${children}</db-button>
+			${
+				content ??
+				`
+				<ul class="popover-list">
+					<li>Popover Custom Item 1</li>
+					<li>Popover Custom Item 2</li>
+				</ul>
+				<db-button>Popover Custom Item 3</db-button>
+			`
+			}
+		</db-popover>
+	`;
+};
+const variants = getVariantsWithExamples<DBPopoverProps>(defaultComponentVariants, exampleFn);
+---
+
+<DefaultLayout>
+	<DefaultComponent title="DBPopover" variants={variants} />
+</DefaultLayout>

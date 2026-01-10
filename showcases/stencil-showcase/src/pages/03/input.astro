@@ -1,0 +1,80 @@
+---
+import DefaultLayout from '../../layouts/default/DefaultLayout.astro';
+import DefaultComponent from '../../components/default/DefaultComponent.astro';
+import defaultComponentVariants from '../../../../shared/input.json';
+import type { DBInputProps } from '@components';
+import { getPropsAsAttributes, getVariantsWithExamples } from '../../utils';
+
+const exampleFn = ({
+	label,
+	value,
+	type,
+	minLength,
+	required,
+	disabled,
+	iconTrailing,
+	showIcon,
+	showIconTrailing,
+	icon,
+	children,
+	message,
+	variant,
+	readOnly,
+	dataList,
+	showLabel,
+	showMessage,
+	validMessage,
+	validation,
+	invalidMessage,
+	showRequiredAsterisk,
+	maxLength,
+	max,
+	min,
+}: DBInputProps & { dataList?: boolean }) => {
+	const dataListValue = dataList
+		? variant === 'floating'
+			? JSON.stringify(['Test 1', 'Test 2'])
+			: JSON.stringify([
+					{ value: 'test1', label: 'Test 1' },
+					{ value: 'test2', label: 'Test 2' },
+				])
+		: undefined;
+
+	const props = {
+		label,
+		message,
+		placeholder: children,
+		variant,
+		'show-label': showLabel,
+		'show-required-asterisk': showRequiredAsterisk,
+		value,
+		type,
+		'min-length': minLength,
+		required,
+		disabled,
+		'read-only': readOnly,
+		'icon-trailing': iconTrailing,
+		'show-icon-trailing': showIconTrailing,
+		'max-length': maxLength,
+		max,
+		min,
+		icon,
+		'show-icon': showIcon,
+		'show-message': showMessage,
+		'invalid-message': invalidMessage,
+		'valid-message': validMessage,
+		validation,
+		'data-list': dataListValue,
+	};
+
+	return `<db-input ${getPropsAsAttributes(props)}></db-input>`;
+};
+const variants = getVariantsWithExamples<DBInputProps & { dataList?: boolean }>(
+	defaultComponentVariants,
+	exampleFn,
+);
+---
+
+<DefaultLayout>
+	<DefaultComponent title="DBInput" variants={variants} />
+</DefaultLayout>

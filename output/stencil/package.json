@@ -16,12 +16,12 @@
       "import": "./dist/loader/index.js"
     },
     "./bundle": {
-      "types": "./build/index.d.ts",
-      "import": "./build/index.js"
+      "types": "./bundle/index.d.ts",
+      "import": "./bundle/index.js"
     }
   },
   "files": [
-    "build/",
+    "bundle/",
     "dist/",
     "agent",
     "CHANGELOG.md"

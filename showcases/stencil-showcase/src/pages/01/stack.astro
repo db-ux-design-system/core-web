@@ -1,0 +1,42 @@
+---
+import DefaultLayout from '../../layouts/default/DefaultLayout.astro';
+import DefaultComponent from '../../components/default/DefaultComponent.astro';
+import defaultComponentVariants from '../../../../shared/stack.json';
+import type { DBStackProps } from '@components';
+import { getPropsAsAttributes, getVariantsWithExamples } from '../../utils';
+
+const exampleFn = ({
+	children,
+	gap,
+	alignment,
+	wrap,
+	variant,
+	direction,
+	justifyContent,
+}: DBStackProps) => {
+	const props = { gap, alignment, wrap, variant, direction, 'justify-content': justifyContent };
+	const showAlignment = justifyContent || alignment;
+
+	return `
+		<db-stack>
+			<db-infotext size="small" icon="none" semantic="informational">
+				${children}
+			</db-infotext>
+			<db-stack class="${showAlignment ? 'stack-container stack-show-alignment' : 'stack-container'}" ${getPropsAsAttributes(props)}>
+				<span class="dummy-component">
+					<a href="#">Content 1</a>
+				</span>
+				${variant === 'divider' ? '<db-divider></db-divider>' : ''}
+				<span class="dummy-component">Content 2</span>
+				${variant === 'divider' ? '<db-divider></db-divider>' : ''}
+				<span class="dummy-component">Content 3</span>
+			</db-stack>
+		</db-stack>
+	`;
+};
+const variants = getVariantsWithExamples<DBStackProps>(defaultComponentVariants, exampleFn);
+---
+
+<DefaultLayout>
+	<DefaultComponent title="DBStack" variants={variants} />
+</DefaultLayout>

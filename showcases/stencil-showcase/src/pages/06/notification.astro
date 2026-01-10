@@ -1,0 +1,54 @@
+---
+import DefaultLayout from '../../layouts/default/DefaultLayout.astro';
+import DefaultComponent from '../../components/default/DefaultComponent.astro';
+import defaultComponentVariants from '../../../../shared/notification.json';
+import type { DBNotificationProps } from '@components';
+import { getPropsAsAttributes, getVariantsWithExamples } from '../../utils';
+
+const exampleFn = ({
+	semantic,
+	icon,
+	headline,
+	variant,
+	children,
+	closeable,
+	link,
+	timestamp,
+	linkVariant,
+	img,
+	showIcon,
+	showHeadline,
+	showTimestamp,
+}: DBNotificationProps & { link: boolean; img: boolean }) => {
+	const props = {
+		semantic,
+		icon,
+		headline,
+		variant,
+		closeable,
+		'link-variant': linkVariant,
+		timestamp,
+		'show-icon': showIcon,
+		'show-headline': showHeadline,
+		'show-timestamp': showTimestamp,
+	};
+
+	const linkSlot = link ? '<db-link slot="link" href="#">Textlink</db-link>' : '';
+	const imgSlot = img
+		? '<img slot="image" src="/assets/images/placeholder.jpg" alt="this is a fancy placeholder" />'
+		: '';
+
+	return `
+		<db-notification ${getPropsAsAttributes(props)}>
+			${children}
+			${linkSlot}
+			${imgSlot}
+		</db-notification>
+	`;
+};
+const variants = getVariantsWithExamples<DBNotificationProps>(defaultComponentVariants, exampleFn);
+---
+
+<DefaultLayout>
+	<DefaultComponent title="DBNotification" variants={variants} />
+</DefaultLayout>

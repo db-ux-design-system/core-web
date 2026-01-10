@@ -1,0 +1,39 @@
+---
+import DefaultLayout from '../../layouts/default/DefaultLayout.astro';
+import DefaultComponent from '../../components/default/DefaultComponent.astro';
+import defaultComponentVariants from '../../../../shared/tab-item.json';
+import type { DBTabItemProps } from '@components';
+import { getPropsAsAttributes, getVariantsWithExamples } from '../../utils';
+
+const exampleFn = ({
+	children,
+	active,
+	noText,
+	icon,
+	iconTrailing,
+	showIconTrailing,
+	showIcon,
+	disabled,
+}: DBTabItemProps) => {
+	const props = {
+		active,
+		'no-text': noText,
+		icon,
+		'icon-trailing': iconTrailing,
+		'show-icon': showIcon,
+		'show-icon-trailing': showIconTrailing,
+		disabled,
+	};
+
+	return `
+		<db-tab-list>
+			<db-tab-item ${getPropsAsAttributes(props)}>${children}</db-tab-item>
+		</db-tab-list>
+	`;
+};
+const variants = getVariantsWithExamples<DBTabItemProps>(defaultComponentVariants, exampleFn);
+---
+
+<DefaultLayout>
+	<DefaultComponent title="DBTabItem" variants={variants} />
+</DefaultLayout>

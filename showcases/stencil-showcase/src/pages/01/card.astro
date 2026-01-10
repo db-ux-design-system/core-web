@@ -2,33 +2,25 @@
 import DefaultLayout from '../../layouts/default/DefaultLayout.astro';
 import DefaultComponent from '../../components/default/DefaultComponent.astro';
 import defaultComponentVariants from '../../../../shared/card.json';
-import type { DefaultComponentVariants } from '../../../../shared/default-component-data.ts';
 import type { DBCardProps } from '@components';
+import { getPropsAsAttributes, getVariantsWithExamples } from '../../utils';
 
-const variants = (defaultComponentVariants as DefaultComponentVariants[]).map((variant) => ({
-	...variant,
-	examples: variant.examples.map((ex) => ({
-		...ex,
-		example: ({ behavior, children, spacing, elevationLevel }: DBCardProps) => {
-			const props = { behavior, spacing, 'elevation-level': elevationLevel };
+const exampleFn = ({ behavior, children, spacing, elevationLevel }: DBCardProps) => {
+	const props = { behavior, spacing, 'elevation-level': elevationLevel };
 
-			const card = `
-				<db-card
-				${Object.entries(props)
-					.map(([key, value]) => (value ? `${key}="${value}"` : ''))
-					.join(' ')}>
+	const card = `
+				<db-card ${getPropsAsAttributes(props)}>
 				<strong>${children}</strong>
 				</db-card>
 `;
 
-			if (behavior === 'interactive') {
-				return `<button type="button">${card}</button>`;
-			} else {
-				return card;
-			}
-		},
-	})),
-}));
+	if (behavior === 'interactive') {
+		return `<button type="button">${card}</button>`;
+	} else {
+		return card;
+	}
+};
+const variants = getVariantsWithExamples<DBCardProps>(defaultComponentVariants, exampleFn);
 ---
 
 <DefaultLayout>

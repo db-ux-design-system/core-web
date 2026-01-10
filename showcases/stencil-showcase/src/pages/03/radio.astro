@@ -1,0 +1,54 @@
+---
+import DefaultLayout from '../../layouts/default/DefaultLayout.astro';
+import DefaultComponent from '../../components/default/DefaultComponent.astro';
+import defaultComponentVariants from '../../../../shared/radio.json';
+import type { DBRadioProps } from '@components';
+import { getPropsAsAttributes, getVariantsWithExamples } from '../../utils';
+
+const exampleFn = ({
+	label,
+	size,
+	name,
+	checked,
+	required,
+	children,
+	disabled,
+	value,
+	showLabel,
+	validation,
+	showRequiredAsterisk,
+}: DBRadioProps) => {
+	const props = {
+		label,
+		size,
+		name,
+		checked,
+		required,
+		disabled,
+		value,
+		'show-label': showLabel,
+		validation,
+		'show-required-asterisk': showRequiredAsterisk,
+	};
+
+	return `
+		<db-radio ${getPropsAsAttributes(props)}>
+			${children}
+		</db-radio>
+		${
+			showLabel !== undefined && !showLabel
+				? `
+			<db-infotext size="small" semantic="informational" show-icon="false">
+				${children}
+			</db-infotext>
+		`
+				: ''
+		}
+	`;
+};
+const variants = getVariantsWithExamples<DBRadioProps>(defaultComponentVariants, exampleFn);
+---
+
+<DefaultLayout>
+	<DefaultComponent title="DBRadio" variants={variants} />
+</DefaultLayout>

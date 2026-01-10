@@ -1,0 +1,68 @@
+---
+import DefaultLayout from '../../layouts/default/DefaultLayout.astro';
+import DefaultComponent from '../../components/default/DefaultComponent.astro';
+import defaultComponentVariants from '../../../../shared/switch.json';
+import type { DBSwitchProps } from '@components';
+import { getPropsAsAttributes, getVariantsWithExamples } from '../../utils';
+
+const exampleFn = ({
+	children,
+	checked,
+	visualAid,
+	disabled,
+	showLabel,
+	size,
+	icon,
+	iconTrailing,
+	iconLeading,
+	required,
+	showRequiredAsterisk,
+	validation,
+	invalidMessage,
+	validMessage,
+	message,
+	messageIcon,
+	showMessage,
+	variant,
+}: DBSwitchProps) => {
+	const props = {
+		'visual-aid': visualAid,
+		checked,
+		disabled,
+		'show-required-asterisk': showRequiredAsterisk,
+		'show-label': showLabel,
+		variant,
+		size,
+		icon,
+		'icon-trailing': iconTrailing,
+		'icon-leading': iconLeading,
+		required,
+		validation,
+		'invalid-message': invalidMessage,
+		'valid-message': validMessage,
+		message,
+		'message-icon': messageIcon,
+		'show-message': showMessage,
+	};
+
+	return `
+		<db-switch ${getPropsAsAttributes(props)}>
+			${children}
+		</db-switch>
+		${
+			showLabel !== undefined && !showLabel
+				? `
+			<db-infotext semantic="informational" icon="none">
+				${children}
+			</db-infotext>
+		`
+				: ''
+		}
+	`;
+};
+const variants = getVariantsWithExamples<DBSwitchProps>(defaultComponentVariants, exampleFn);
+---
+
+<DefaultLayout>
+	<DefaultComponent title="DBSwitch" variants={variants} />
+</DefaultLayout>

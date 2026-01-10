@@ -1,0 +1,46 @@
+---
+import DefaultLayout from '../../layouts/default/DefaultLayout.astro';
+import DefaultComponent from '../../components/default/DefaultComponent.astro';
+import defaultComponentVariants from '../../../../shared/navigation.json';
+import type { DBNavigationProps } from '@components';
+import { getPropsAsAttributes, getVariantsWithExamples } from '../../utils';
+
+const exampleFn = ({ children }: DBNavigationProps) => {
+	const labelID = `${children.replaceAll(/\W/g, '_').toLowerCase()}`;
+	return `
+		<db-infotext id="${labelID}" size="small" semantic="informational" icon="none">
+			${children}
+		</db-infotext>
+		<db-navigation aria-labelledby="${labelID}">
+			<db-navigation-item text="Navi-Item 1">
+				<div slot="subNavigation">
+					<db-navigation-item text="Sub-Navi-Item 1">
+						<div slot="subNavigation">
+							<db-navigation-item>
+								<a href="#" aria-current="page">Sub-Sub-Navi-Item 1</a>
+							</db-navigation-item>
+							<db-navigation-item>
+								<a href="#">Sub-Sub-Navi-Item 2</a>
+							</db-navigation-item>
+						</div>
+					</db-navigation-item>
+					<db-navigation-item>
+						<a href="#">Sub-Navi-Item 2</a>
+					</db-navigation-item>
+				</div>
+			</db-navigation-item>
+			<db-navigation-item icon="x_placeholder">
+				<a href="#">Navi-Item 2</a>
+			</db-navigation-item>
+			<db-navigation-item disabled>
+				<a href="#">Navi-Item 3</a>
+			</db-navigation-item>
+		</db-navigation>
+	`;
+};
+const variants = getVariantsWithExamples<DBNavigationProps>(defaultComponentVariants, exampleFn);
+---
+
+<DefaultLayout>
+	<DefaultComponent title="DBNavigation" variants={variants} />
+</DefaultLayout>

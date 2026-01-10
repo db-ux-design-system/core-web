@@ -1,0 +1,31 @@
+---
+import DefaultLayout from '../../layouts/default/DefaultLayout.astro';
+import DefaultComponent from '../../components/default/DefaultComponent.astro';
+import defaultComponentVariants from '../../../../shared/link.json';
+import type { DBLinkProps } from '@components';
+import { getPropsAsAttributes, getVariantsWithExamples } from '../../utils';
+
+const exampleFn = ({
+	href,
+	variant,
+	disabled,
+	size,
+	content,
+	children,
+	showIcon,
+	wrap,
+}: DBLinkProps) => {
+	const props = { href, variant, disabled, size, content, 'show-icon': showIcon, wrap };
+
+	return `
+		<db-link ${getPropsAsAttributes(props)}>
+			${children}
+		</db-link>
+	`;
+};
+const variants = getVariantsWithExamples<DBLinkProps>(defaultComponentVariants, exampleFn);
+---
+
+<DefaultLayout>
+	<DefaultComponent title="DBLink" variants={variants} />
+</DefaultLayout>

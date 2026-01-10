@@ -1,0 +1,23 @@
+---
+import DefaultLayout from '../../layouts/default/DefaultLayout.astro';
+import DefaultComponent from '../../components/default/DefaultComponent.astro';
+import defaultComponentVariants from '../../../../shared/accordion-item.json';
+import type { DBAccordionItemProps } from '@components';
+import { getPropsAsAttributes, getVariantsWithExamples } from '../../utils';
+
+const exampleFn = ({
+	children,
+	disabled,
+	open,
+	headlinePlain,
+}: DBAccordionItemProps & { open?: boolean }) => {
+	const props = { 'headline-plain': headlinePlain, disabled, open };
+
+	return `<db-accordion-item ${getPropsAsAttributes(props)}>${children}</db-accordion-item>`;
+};
+const variants = getVariantsWithExamples<DBAccordionItemProps>(defaultComponentVariants, exampleFn);
+---
+
+<DefaultLayout>
+	<DefaultComponent title="DBAccordionItem" variants={variants} />
+</DefaultLayout>

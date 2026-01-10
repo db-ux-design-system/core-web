@@ -11,7 +11,7 @@ const { name, role, examples } = Astro.props;
 <db-card class="variants-card">
 	<div role={role} aria-label={role ? name : undefined} class="variants-list">
 		{
-			examples.map((example, exampleIndex) => (
+			examples.map((example) => (
 				<div style={example.style} class={example.className} data-density={example.density}>
 					<Fragment
 						set:html={example.example({

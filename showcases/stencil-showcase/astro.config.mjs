@@ -14,6 +14,10 @@ export default defineConfig({
 						src: '../../output/stencil/bundle',
 						dest: './stencil',
 					},
+					{
+						src: './images',
+						dest: './assets',
+					},
 				],
 			}),
 		],

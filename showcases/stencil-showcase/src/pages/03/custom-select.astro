@@ -1,0 +1,97 @@
+---
+import DefaultLayout from '../../layouts/default/DefaultLayout.astro';
+import DefaultComponent from '../../components/default/DefaultComponent.astro';
+import defaultComponentVariants from '../../../../shared/custom-select.json';
+import type { DBCustomSelectProps } from '@components';
+import { getPropsAsAttributes, getVariantsWithExamples } from '../../utils';
+
+const exampleFn = ({
+	children,
+	message,
+	variant,
+	values,
+	required,
+	options,
+	placeholder,
+	selectedType,
+	formFieldWidth,
+	showLabel,
+	placement,
+	info,
+	showLoading,
+	showNoResults,
+	showSelectAll,
+	showClearSelection,
+	showSearch,
+	noResultsText,
+	loadingText,
+	multiple,
+	dropdownWidth,
+	icon,
+	showIcon,
+	showMessage,
+	disabled,
+	id,
+	searchValue,
+	selectedLabels,
+	validation,
+	invalidMessage,
+	validMessage,
+	showRequiredAsterisk,
+	lineBreak,
+}: DBCustomSelectProps & { info?: boolean; lineBreak?: boolean }) => {
+	if (info) {
+		return `<db-infotext size="small" semantic="informational">${children}</db-infotext>`;
+	}
+
+	if (lineBreak) {
+		return `<i class="line-break"></i>`;
+	}
+
+	const listLabel = `${id}-${children}`;
+
+	const props = {
+		label: children,
+		'list-label': listLabel,
+		message,
+		variant,
+		required,
+		placeholder,
+		'selected-type': selectedType,
+		'form-field-width': formFieldWidth,
+		'show-label': showLabel,
+		placement,
+		'show-loading': showLoading,
+		'show-no-results': showNoResults,
+		'show-select-all': showSelectAll,
+		'show-clear-selection': showClearSelection,
+		'show-search': showSearch,
+		'no-results-text': noResultsText,
+		'loading-text': loadingText,
+		multiple,
+		'dropdown-width': dropdownWidth,
+		icon,
+		'show-icon': showIcon,
+		'show-message': showMessage,
+		disabled,
+		id,
+		'search-value': searchValue,
+		'selected-labels': selectedLabels,
+		validation,
+		'invalid-message': invalidMessage,
+		'valid-message': validMessage,
+		'show-required-asterisk': showRequiredAsterisk,
+	};
+
+	return `<db-custom-select ${getPropsAsAttributes(props)}></db-custom-select>
+					<script>
+						document.querySelector('db-custom-select[list-label="${listLabel}"]').options = ${JSON.stringify(options)};
+						document.querySelector('db-custom-select[list-label="${listLabel}"]').values = ${values};
+					</script>`;
+};
+const variants = getVariantsWithExamples<DBCustomSelectProps>(defaultComponentVariants, exampleFn);
+---
+
+<DefaultLayout>
+	<DefaultComponent title="DBCustomSelect" variants={variants} />
+</DefaultLayout>

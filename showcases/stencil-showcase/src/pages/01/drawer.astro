@@ -1,0 +1,34 @@
+---
+import DefaultLayout from '../../layouts/default/DefaultLayout.astro';
+import DefaultComponent from '../../components/default/DefaultComponent.astro';
+import defaultComponentVariants from '../../../../shared/drawer.json';
+import type { DBDrawerProps } from '@components';
+import { getPropsAsAttributes, getVariantsWithExamples } from '../../utils';
+
+const exampleFn = ({
+	id,
+	width,
+	rounded,
+	spacing,
+	direction,
+	children,
+	backdrop,
+	variant,
+}: DBDrawerProps) => {
+	const props = { width, rounded, spacing, direction, backdrop, variant };
+
+	return `
+		<div>
+			<db-button onclick="document.getElementById('${id}').setAttribute('open', 'true')">Open: ${children}</db-button>
+			<db-drawer id="${id}" ${getPropsAsAttributes(props)} onclose="this.removeAttribute('open')">
+				${children}
+			</db-drawer>
+		</div>
+	`;
+};
+const variants = getVariantsWithExamples<DBDrawerProps>(defaultComponentVariants, exampleFn);
+---
+
+<DefaultLayout>
+	<DefaultComponent title="DBDrawer" variants={variants} />
+</DefaultLayout>

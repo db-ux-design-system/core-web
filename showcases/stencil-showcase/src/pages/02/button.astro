@@ -1,0 +1,43 @@
+---
+import DefaultLayout from '../../layouts/default/DefaultLayout.astro';
+import DefaultComponent from '../../components/default/DefaultComponent.astro';
+import defaultComponentVariants from '../../../../shared/button.json';
+import type { DBButtonProps } from '@components';
+import { getPropsAsAttributes, getVariantsWithExamples } from '../../utils';
+
+const exampleFn = ({
+	variant,
+	size,
+	noText,
+	icon,
+	width,
+	disabled,
+	children,
+	type,
+	showIcon,
+	showIconTrailing,
+	iconTrailing,
+}: DBButtonProps) => {
+	const props = {
+		variant,
+		size,
+		'no-text': noText,
+		icon,
+		width,
+		disabled,
+		type,
+		'show-icon': showIcon,
+		'icon-trailing': iconTrailing,
+		'show-icon-trailing': showIconTrailing,
+	};
+
+	return `
+		<db-button ${getPropsAsAttributes(props)}>${children}</db-button>
+	`;
+};
+const variants = getVariantsWithExamples<DBButtonProps>(defaultComponentVariants, exampleFn);
+---
+
+<DefaultLayout>
+	<DefaultComponent title="DBButton" variants={variants} />
+</DefaultLayout>

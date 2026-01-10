@@ -1,0 +1,80 @@
+---
+import DefaultLayout from '../../layouts/default/DefaultLayout.astro';
+import DefaultComponent from '../../components/default/DefaultComponent.astro';
+import defaultComponentVariants from '../../../../shared/badge.json';
+import type { DBBadgeProps } from '@components';
+import { getPropsAsAttributes, getVariantsWithExamples } from '../../utils';
+
+const exampleFn = ({
+	children,
+	semantic,
+	emphasis,
+	size,
+	placement,
+	example,
+	lineBreak,
+	noContent,
+}: DBBadgeProps & { noContent: boolean; example: string; lineBreak?: boolean }) => {
+	if (lineBreak) {
+		return '<i class="line-break" ></i>';
+	}
+
+	const props = { semantic, emphasis, size, placement };
+
+	if (!placement && !example) {
+		const badge = `<db-badge ${getPropsAsAttributes(props)}>${noContent ? '' : children}</db-badge>`;
+		const info = noContent
+			? `<db-infotext semantic="informational" size="small" icon="none">${children}</db-infotext>`
+			: '';
+		return badge + info;
+	}
+
+	if (placement && placement !== 'inline' && !example) {
+		return `
+			<db-button icon="x_placeholder" variant="outlined" no-text="true"><db-badge size="small" emphasis="strong" semantic="critical" placement="${placement}"></db-badge>${children}</db-button>
+			<db-infotext semantic="informational" size="small" icon="none">${children}</db-infotext>
+		`;
+	}
+
+	if (placement === 'inline') {
+		return `
+			<div class="badge-inline-container">
+				<db-icon icon="x_placeholder"></db-icon>
+				<span>${children}</span>
+				<db-badge size="small" emphasis="strong" semantic="critical">Label</db-badge>
+				<db-icon icon="error"></db-icon>
+			</div>
+		`;
+	}
+
+	if (example === 'icon') {
+		return `
+			<db-badge semantic="critical" emphasis="strong" size="${size}">
+				<db-icon icon="x_placeholder">${children}</db-icon>
+			</db-badge>
+			<db-infotext semantic="informational" size="small" icon="none">${children}</db-infotext>
+		`;
+	}
+
+	if (example === 'number') {
+		return `
+			<db-badge semantic="successful">9</db-badge>
+			<db-badge semantic="informational">12</db-badge>
+			<db-badge semantic="warning">123</db-badge>
+			<db-badge size="small" emphasis="strong" semantic="successful">9</db-badge>
+			<db-badge size="small" emphasis="strong" semantic="informational">12</db-badge>
+			<db-badge size="small" emphasis="strong" semantic="warning">123</db-badge>
+			<db-infotext semantic="informational" size="small" icon="none">${children}</db-infotext>
+		`;
+	}
+
+	return '';
+};
+const variants = getVariantsWithExamples<
+	DBBadgeProps & { noContent: boolean; example: string; lineBreak?: boolean }
+>(defaultComponentVariants, exampleFn);
+---
+
+<DefaultLayout>
+	<DefaultComponent title="DBBadge" variants={variants} />
+</DefaultLayout>

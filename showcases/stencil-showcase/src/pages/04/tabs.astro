@@ -1,0 +1,51 @@
+---
+import DefaultLayout from '../../layouts/default/DefaultLayout.astro';
+import DefaultComponent from '../../components/default/DefaultComponent.astro';
+import defaultComponentVariants from '../../../../shared/tabs.json';
+import type { DBTabsProps } from '@components';
+import { getPropsAsAttributes, getVariantsWithExamples } from '../../utils';
+
+const exampleFn = ({
+	children,
+	orientation,
+	width,
+	alignment,
+	overflow,
+	behavior,
+	initialSelectedMode,
+	initialSelectedIndex,
+}: DBTabsProps & { overflow?: boolean }) => {
+	const props = {
+		orientation,
+		width,
+		alignment,
+		behavior,
+		'initial-selected-mode': initialSelectedMode,
+		'initial-selected-index': initialSelectedIndex,
+		'arrow-scroll-distance': 75,
+	};
+
+	return `
+		<db-infotext icon="none" size="small" semantic="informational">
+			${children}:
+		</db-infotext>
+		<db-tabs ${getPropsAsAttributes(props)}>
+			<db-tab-list>
+				<db-tab-item>Test 1</db-tab-item>
+				<db-tab-item>Test 2</db-tab-item>
+				<db-tab-item>Test 3</db-tab-item>
+				${overflow ? '<db-tab-item>Test 4</db-tab-item><db-tab-item>Test 5</db-tab-item>' : ''}
+			</db-tab-list>
+			<db-tab-panel>Tab Panel 1</db-tab-panel>
+			<db-tab-panel>Tab Panel 2</db-tab-panel>
+			<db-tab-panel>Tab Panel 3</db-tab-panel>
+			${overflow ? '<db-tab-panel>Tab Panel 4</db-tab-panel><db-tab-panel>Tab Panel 5</db-tab-panel>' : ''}
+		</db-tabs>
+	`;
+};
+const variants = getVariantsWithExamples<DBTabsProps>(defaultComponentVariants, exampleFn);
+---
+
+<DefaultLayout>
+	<DefaultComponent title="DBTabs" variants={variants} />
+</DefaultLayout>

@@ -1,0 +1,21 @@
+---
+import DefaultLayout from '../../layouts/default/DefaultLayout.astro';
+import DefaultComponent from '../../components/default/DefaultComponent.astro';
+import defaultComponentVariants from '../../../../shared/icon.json';
+import type { DBIconProps } from '@components';
+import { getPropsAsAttributes, getVariantsWithExamples } from '../../utils';
+
+const exampleFn = ({ children }: DBIconProps) => {
+	return `
+		<db-infotext icon="none" size="small" semantic="informational">
+			${children}
+		</db-infotext>
+		<db-icon icon="x_placeholder">${children}</db-icon>
+	`;
+};
+const variants = getVariantsWithExamples<DBIconProps>(defaultComponentVariants, exampleFn);
+---
+
+<DefaultLayout>
+	<DefaultComponent title="DBIcon" variants={variants} />
+</DefaultLayout>

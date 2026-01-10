@@ -1,11 +1,5 @@
 ---
 import FormWrapper from './FormWrapper.astro';
-
-const options = [
-	{ value: 'combobox-0', id: 'combobox-0' },
-	{ value: 'combobox-1', id: 'combobox-1' },
-	{ value: 'combobox-2', id: 'combobox-2' },
-];
 ---
 
 <FormWrapper value="combobox-2" id="custom-select">
@@ -22,7 +16,7 @@ const options = [
 	const customSelect = document.querySelector('db-custom-select[id="custom-select"]') as any;
 	const valueDisplay = document.getElementById('custom-select-value-display');
 
-	console.log(customSelect, document.querySelector("db-custom-select"))
+	console.log(customSelect, document.querySelector('db-custom-select'));
 
 	if (customSelect) {
 		customSelect.options = options;
