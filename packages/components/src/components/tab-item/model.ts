@@ -1,26 +1,19 @@
 import {
 	ActiveProps,
-	ChangeEventProps,
-	ChangeEventState,
+	ClickEventProps,
 	GlobalProps,
 	GlobalState,
 	IconLeadingProps,
 	IconProps,
 	IconTrailingProps,
 	InitializedState,
-	NameProps,
-	NameState,
 	ShowIconLeadingProps,
 	ShowIconProps,
-	ShowIconTrailingProps
+	ShowIconTrailingProps,
+	WidthProps
 } from '../../shared/model';
 
 export type DBTabItemDefaultProps = {
-	/**
-	 * To control the component
-	 */
-	checked?: boolean | string;
-
 	/**
 	 * The disabled attribute can be set to keep a user from clicking on the tab-item.
 	 */
@@ -33,29 +26,22 @@ export type DBTabItemDefaultProps = {
 	 * Define the text next to the icon specified via the icon Property to get hidden.
 	 */
 	noText?: boolean | string;
+	/**
+	 * Set the tabIndex manually (internal use).
+	 */
+	tabIndex?: number;
 };
 
-export type DBTabItemProps = GlobalProps &
-	DBTabItemDefaultProps &
+export type DBTabItemProps = DBTabItemDefaultProps &
+	GlobalProps &
+	ClickEventProps<HTMLButtonElement> &
 	IconProps &
+	ShowIconProps &
 	IconTrailingProps &
 	IconLeadingProps &
-	ShowIconLeadingProps &
 	ShowIconTrailingProps &
+	ShowIconLeadingProps &
 	ActiveProps &
-	ChangeEventProps<HTMLInputElement> &
-	ShowIconProps &
-	NameProps;
+	WidthProps;
 
-export type DBTabItemDefaultState = {
-	_selected: boolean;
-	_listenerAdded: boolean;
-	boundSetSelectedOnChange?: (event: any) => void;
-	setSelectedOnChange: (event: any) => void;
-};
-
-export type DBTabItemState = DBTabItemDefaultState &
-	GlobalState &
-	ChangeEventState<HTMLInputElement> &
-	InitializedState &
-	NameState;
+export interface DBTabItemState extends GlobalState, InitializedState {}

@@ -7,10 +7,8 @@ import {
 	useDefaultProps,
 	useMetadata,
 	useRef,
-	useStore,
-	useTarget
+	useStore
 } from '@builder.io/mitosis';
-import { InputEvent } from '../../shared/model';
 import { cls, uuid } from '../../utils';
 import DBButton from '../button/button.lite';
 import DBTabItem from '../tab-item/tab-item.lite';
@@ -23,15 +21,22 @@ useDefaultProps<DBTabsProps>({});
 
 export default function DBTabs(props: DBTabsProps) {
 	const _ref = useRef<HTMLDivElement | any>(null);
-	// jscpd:ignore-start
 	const state = useStore<DBTabsState>({
 		_id: 'tabs-' + uuid(),
 		_name: '',
+		activeTabIndex: 0,
 		initialized: false,
 		showScrollLeft: false,
 		showScrollRight: false,
 		scrollContainer: null,
 		_resizeObserver: undefined,
+		activateTab(index: number) {
+			state.activeTabIndex = index;
+			if (props.onIndexChange) {
+				props.onIndexChange(index);
+			}
+			state.initTabs();
+		},
 		convertTabs(): DBSimpleTabProps[] {
 			try {
 				if (typeof props.tabs === 'string') {
@@ -91,98 +96,136 @@ export default function DBTabs(props: DBTabsProps) {
 								state._resizeObserver = observer;
 							}
 						}
+
+						if (props.name) {
+							container.setAttribute('aria-label', props.name);
+						}
 					}
 				}
 			}
 		},
-		initTabs(init?: boolean) {
+		initTabs() {
 			if (_ref) {
-				const tabItems = Array.from<Element>(
-					_ref.getElementsByClassName('db-tab-item')
+				const tabListEl = _ref.querySelector(
+					'.db-tab-list > [role="tablist"]'
 				);
+				if (!tabListEl) return;
+
+				const tabItems = Array.from<HTMLElement>(
+					tabListEl.children
+				).filter((child) => child.classList.contains('db-tab-item'));
 				const tabPanels = Array.from<Element>(
 					_ref.querySelectorAll(
 						':is(:scope > .db-tab-panel, :scope > db-tab-panel > .db-tab-panel)'
 					)
 				);
-				for (const tabItem of tabItems) {
-					const index: number = tabItems.indexOf(tabItem);
-					const label = tabItem.querySelector('label');
-					const input = tabItem.querySelector('input');
 
-					if (input && label) {
-						if (!input.id) {
-							const tabId = `${state._name}-tab-${index}`;
-							label.setAttribute('for', tabId);
-							input.id = tabId;
-							input.setAttribute('name', state._name);
-							if (tabPanels.length > index) {
-								input.setAttribute(
-									'aria-controls',
-									`${state._name}-tab-panel-${index}`
-								);
-							}
-						}
+				const buttons: HTMLElement[] = tabItems
+					.map((item) => item.querySelector('[role="tab"]'))
+					.filter((b): b is HTMLElement => !!b);
 
-						if (init) {
-							// Auto select
-							const autoSelect =
-								!props.initialSelectedMode ||
-								props.initialSelectedMode === 'auto';
-							const shouldAutoSelect =
-								(props.initialSelectedIndex == null &&
-									index === 0) ||
-								Number(props.initialSelectedIndex) === index;
-							if (autoSelect && shouldAutoSelect) {
-								input.click();
-							}
-						}
+				buttons.forEach((button, index) => {
+					if (!button.id) {
+						button.id = `${state._name}-tab-${index}`;
 					}
-				}
+					if (tabPanels.length > index) {
+						const panelId =
+							tabPanels[index].id ||
+							`${state._name}-tab-panel-${index}`;
+						button.setAttribute('aria-controls', panelId);
+					}
 
-				for (const panel of tabPanels) {
-					if (panel.id) continue;
-					const index: number = tabPanels.indexOf(panel);
-					panel.id = `${state._name}-tab-panel-${index}`;
-					panel.setAttribute(
-						'aria-labelledby',
-						`${state._name}-tab-${index}`
-					);
-				}
-			}
-		},
-		handleChange: (event: InputEvent<HTMLElement>) => {
-			event.stopPropagation();
+					const isActive = state.activeTabIndex === index;
+					const hasActiveSelection = state.activeTabIndex !== -1;
+					button.setAttribute('aria-selected', String(isActive));
+					const isFocusable = hasActiveSelection
+						? isActive
+						: index === 0;
+					button.setAttribute('tabindex', isFocusable ? '0' : '-1');
 
-			if (event.target) {
-				const target = event.target as HTMLElement;
-				const parent = target.parentElement;
-				if (
-					parent &&
-					parent.parentElement &&
-					parent.parentElement?.nodeName === 'LI'
-				) {
-					const tabItem = useTarget({
-						angular: parent.parentElement.parentElement,
-						stencil: parent.parentElement.parentElement,
-						default: parent.parentElement
-					});
-					if (tabItem) {
-						const list = tabItem.parentElement;
-						if (list) {
-							const tabIndex = Array.from(list.children).indexOf(
-								tabItem
-							);
-							if (props.onIndexChange) {
-								props.onIndexChange(tabIndex);
+					button.onclick = (event) => {
+						event.preventDefault();
+						state.activateTab(index);
+					};
+
+					button.onkeydown = (event: KeyboardEvent) => {
+						const key = event.key;
+						let flag = false;
+						let nextIndex = index;
+
+						switch (key) {
+							case 'ArrowLeft':
+								nextIndex = index - 1;
+								flag = true;
+								break;
+							case 'ArrowRight':
+								nextIndex = index + 1;
+								flag = true;
+								break;
+							case 'ArrowUp':
+								if (props.orientation === 'vertical') {
+									nextIndex = index - 1;
+									flag = true;
+								}
+								break;
+							case 'ArrowDown':
+								if (props.orientation === 'vertical') {
+									nextIndex = index + 1;
+									flag = true;
+								}
+								break;
+							case 'Home':
+								nextIndex = 0;
+								flag = true;
+								break;
+							case 'End':
+								nextIndex = buttons.length - 1;
+								flag = true;
+								break;
+							default:
+								break;
+						}
+
+						if (flag) {
+							event.preventDefault();
+							event.stopPropagation();
+
+							if (nextIndex < 0) {
+								nextIndex = buttons.length - 1;
+							} else if (nextIndex >= buttons.length) {
+								nextIndex = 0;
 							}
 
-							if (props.onTabSelect) {
-								props.onTabSelect(event);
+							const nextButton = buttons[nextIndex];
+							if (nextButton) {
+								button.setAttribute('tabindex', '-1');
+								nextButton.setAttribute('tabindex', '0');
+								nextButton.focus();
+
+								if (props.initialSelectedMode !== 'manually') {
+									state.activateTab(nextIndex);
+								}
 							}
 						}
+					};
+				});
+
+				// Set ids and link them back to tabs
+				tabPanels.forEach((panel, index) => {
+					if (!panel.id) {
+						panel.id = `${state._name}-tab-panel-${index}`;
 					}
-				}
+					const tabButton = buttons[index];
+					if (tabButton && tabButton.id) {
+						panel.setAttribute('aria-labelledby', tabButton.id);
+					}
+
+					if (state.activeTabIndex === index) {
+						panel.removeAttribute('hidden');
+					} else {
+						panel.setAttribute('hidden', '');
+					}
+				});
 			}
 		}
 	});
@@ -192,9 +235,15 @@ export default function DBTabs(props: DBTabsProps) {
 
 		state._name = `tabs-${props.name || uuid()}`;
 
+		if (props.initialSelectedIndex !== undefined) {
+			const parsedIndex = Number(props.initialSelectedIndex);
+			state.activeTabIndex = isNaN(parsedIndex) ? 0 : parsedIndex;
+		} else if (props.initialSelectedMode === 'manually') {
+			state.activeTabIndex = -1;
+		}
+
 		state.initialized = true;
 	});
-	// jscpd:ignore-end
 
 	onUnMount(() => {
 		state._resizeObserver?.disconnect();
@@ -204,31 +253,26 @@ export default function DBTabs(props: DBTabsProps) {
 	onUpdate(() => {
 		if (_ref && state.initialized) {
 			state.initTabList();
-			state.initTabs(true);
+			state.initTabs();
 
-			const tabList = _ref.querySelector('.db-tab-list');
-			if (tabList) {
-				const observer = new MutationObserver((mutations) => {
-					mutations.forEach((mutation) => {
-						if (
-							mutation.removedNodes.length ||
-							mutation.addedNodes.length
-						) {
-							state.initTabList();
-							state.initTabs();
-						}
-					});
+			const observer = new MutationObserver((mutations) => {
+				mutations.forEach((mutation) => {
+					if (
+						mutation.removedNodes.length ||
+						mutation.addedNodes.length
+					) {
+						state.initTabList();
+						state.initTabs();
+					}
 				});
+			});
 
-				observer.observe(tabList, {
-					childList: true,
-					subtree: true
-				});
-			}
-
-			state.initialized = false;
+			observer.observe(_ref, {
+				childList: true,
+				subtree: true
+			});
 		}
-	}, [_ref, state.initialized]);
+	}, [_ref, state.initialized, state.activeTabIndex]);
 
 	return (
 		<div
@@ -238,9 +282,7 @@ export default function DBTabs(props: DBTabsProps) {
 			data-orientation={props.orientation}
 			data-scroll-behavior={props.behavior}
 			data-alignment={props.alignment ?? 'start'}
-			data-width={props.width ?? 'auto'}
-			onInput={(event) => state.handleChange(event)}
-			onChange={(event) => state.handleChange(event)}>
+			data-width={props.width ?? 'auto'}>
 			<Show when={state.showScrollLeft}>
 				<DBButton
 					class="tabs-scroll-left"
@@ -258,11 +300,17 @@ export default function DBTabs(props: DBTabsProps) {
 						{(tab: DBSimpleTabProps, index: number) => (
 							<DBTabItem
 								key={props.name + 'tab-item' + index}
-								active={tab.active}
+								active={state.activeTabIndex === index}
+								tabIndex={
+									state.activeTabIndex === -1 && index === 0
+										? 0
+										: undefined
+								}
 								label={tab.label}
 								iconTrailing={tab.iconTrailing}
 								icon={tab.icon}
 								noText={tab.noText}
+								onClick={() => state.activateTab(index)}
 							/>
 						)}
 					</For>
@@ -271,12 +319,14 @@ export default function DBTabs(props: DBTabsProps) {
 					{(tab: DBSimpleTabProps, index: number) => (
 						<DBTabPanel
 							key={props.name + 'tab-panel' + index}
-							content={tab.content}>
+							content={tab.content}
+							hidden={state.activeTabIndex !== index}>
 							{tab.children}
 						</DBTabPanel>
 					)}
 				</For>
 			</Show>
+			<Show when={!props.tabs}>{props.children}</Show>
 			<Show when={state.showScrollRight}>
 				<DBButton
 					class="tabs-scroll-right"
@@ -288,8 +338,6 @@ export default function DBTabs(props: DBTabsProps) {
 					Scroll right
 				</DBButton>
 			</Show>
-
-			{props.children}
 		</div>
 	);
 }
