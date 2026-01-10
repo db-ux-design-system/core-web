@@ -43,7 +43,7 @@ export type DBTabItemProps = GlobalProps &
 	ShowIconLeadingProps &
 	ShowIconTrailingProps &
 	ActiveProps &
-	ChangeEventProps<HTMLInputElement> &
+	ChangeEventProps<HTMLDetailsElement> &
 	ShowIconProps &
 	NameProps;
 
@@ -52,10 +52,11 @@ export type DBTabItemDefaultState = {
 	_listenerAdded: boolean;
 	boundSetSelectedOnChange?: (event: any) => void;
 	setSelectedOnChange: (event: any) => void;
+	handleToggle: (event: any) => void;
 };
 
 export type DBTabItemState = DBTabItemDefaultState &
 	GlobalState &
-	ChangeEventState<HTMLInputElement> &
+	ChangeEventState<HTMLDetailsElement> &
 	InitializedState &
 	NameState;
