@@ -17,7 +17,7 @@ import DefaultComponent from "../DefaultComponent.vue";
 					:placement="exampleProps?.placement"
 					:animation="exampleProps?.animation"
 					:delay="exampleProps?.delay"
-					:variant="exampleProps?.variant"
+					:showArrow="exampleProps?.showArrow"
 				>
 					{{ exampleProps?.content }}
 				</DBTooltip>

@@ -7,20 +7,22 @@
 @use "../../styles/internal/form-components";
 
 %center-icon {
-	&::before {
-		--db-icon-margin-end: 0;
+	&:not([data-show-icon-leading="false"]) {
+		&::before {
+			--db-icon-margin-end: 0;
 
-		display: inline-flex;
-		align-items: center;
-		justify-content: center;
-		block-size: calc(
-			#{form-components.$font-size-height} - 2 *
-				#{variables.$db-border-width-3xs}
-		);
-		inline-size: calc(
-			#{form-components.$font-size-height} - 2 *
-				#{variables.$db-border-width-3xs}
-		);
+			display: inline-flex;
+			align-items: center;
+			justify-content: center;
+			block-size: calc(
+				#{form-components.$font-size-height} - 2 *
+					#{variables.$db-border-width-3xs}
+			);
+			inline-size: calc(
+				#{form-components.$font-size-height} - 2 *
+					#{variables.$db-border-width-3xs}
+			);
+		}
 	}
 }
 
