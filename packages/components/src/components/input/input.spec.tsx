@@ -76,7 +76,98 @@ const testAction = () => {
 		await expect(input).not.toHaveAttribute('enterkeyhint');
 		await expect(input).not.toHaveAttribute('inputmode');
 	});
+
+	test('should handle empty string value for date input without clearing', async ({
+		mount
+	}) => {
+		// Test with controlled value prop
+		let component = await mount(
+			<DBInput type="date" label="Date" value="2024-01-15" />
+		);
+		let input = component.locator('input');
+		await expect(input).toHaveValue('2024-01-15');
+
+		// Remount with empty string value - should accept empty string
+		await component.unmount();
+		component = await mount(<DBInput type="date" label="Date" value="" />);
+		input = component.locator('input');
+
+		// The internal input value should be empty string, not null
+		const internalValue = await input.evaluate(
+			(el: HTMLInputElement) => el.value
+		);
+		expect(internalValue).toBe('');
+	});
+
+	test('should distinguish between undefined, null, and empty string for date input', async ({
+		mount
+	}) => {
+		// Test with initial date value
+		let component = await mount(
+			<DBInput type="date" label="Date" value="2024-01-15" />
+		);
+		let input = component.locator('input');
+		await expect(input).toHaveValue('2024-01-15');
+
+		// Test empty string - should accept empty string as valid value
+		await component.unmount();
+		component = await mount(<DBInput type="date" label="Date" value="" />);
+		input = component.locator('input');
+		await expect(input).toHaveValue('');
+
+		// Test null - should also result in empty value
+		await component.unmount();
+		component = await mount(
+			<DBInput type="date" label="Date" value={null as any} />
+		);
+		input = component.locator('input');
+		await expect(input).toHaveValue('');
+
+		// Test undefined - should also result in empty value
+		await component.unmount();
+		component = await mount(
+			<DBInput type="date" label="Date" value={undefined} />
+		);
+		input = component.locator('input');
+		await expect(input).toHaveValue('');
+	});
+
+	test('should handle empty string for datetime-local input', async ({
+		mount
+	}) => {
+		// Test with initial datetime value
+		let component = await mount(
+			<DBInput
+				type="datetime-local"
+				label="DateTime"
+				value="2024-01-15T10:30"
+			/>
+		);
+		let input = component.locator('input');
+		await expect(input).toHaveValue('2024-01-15T10:30');
+
+		// Test empty string - should accept empty string as valid value
+		await component.unmount();
+		component = await mount(
+			<DBInput type="datetime-local" label="DateTime" value="" />
+		);
+		input = component.locator('input');
+
+		await expect(input).toHaveValue('');
+	});
 };
+
+test('should handle null as empty for datetime-local input', async ({ mount }) => {
+  const component = await mount(<DBInput type="datetime-local" label="DateTime" value={null as any} />);
+  const input = component.locator('input');
+  await expect(input).toHaveValue('');
+});
+
+test('should handle undefined as empty for datetime-local input', async ({ mount }) => {
+  const component = await mount(<DBInput type="datetime-local" label="DateTime" value={undefined} />);
+  const input = component.locator('input');
+  await expect(input).toHaveValue('');
+});
 
 test.describe('DBInput', () => {
 	test.use({ viewport: DEFAULT_VIEWPORT });
