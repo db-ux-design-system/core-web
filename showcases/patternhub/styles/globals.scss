@@ -172,9 +172,71 @@ div[class^="ch-"] {
 	> .db-card {
 		justify-content: center;
 		align-items: center;
+		position: relative;
 
 		.db-infotext {
 			word-break: break-word;
+		}
+
+		.db-button[aria-label^="Show code"] {
+			position: absolute;
+			inset-inline-end: variables.$db-spacing-fixed-xs;
+			inset-block-start: variables.$db-spacing-fixed-xs;
+		}
+	}
+}
+
+// Icon code snippet popover styles
+.icon-code-snippet-container {
+	@include display.display(flex);
+	flex-direction: column;
+	gap: variables.$db-spacing-fixed-sm;
+	min-inline-size: 300px;
+	max-inline-size: 500px;
+
+	.icon-code-snippet-header {
+		@include display.display(flex);
+		justify-content: space-between;
+		align-items: center;
+	}
+
+	.icon-code-snippet-content {
+		@include display.display(flex);
+		flex-direction: column;
+		gap: variables.$db-spacing-fixed-md;
+		max-block-size: 400px;
+		overflow-y: auto;
+
+		.snippet-item {
+			@include display.display(flex);
+			flex-direction: column;
+			gap: variables.$db-spacing-fixed-xs;
+
+			.snippet-title {
+				font-weight: bold;
+				@extend %db-overwrite-font-size-sm;
+			}
+
+			.snippet-code-container {
+				@include display.display(flex);
+				align-items: flex-start;
+				gap: variables.$db-spacing-fixed-xs;
+				padding: variables.$db-spacing-fixed-sm;
+				background-color: colors.$db-adaptive-bg-basic-transparent-semi-default;
+				border-radius: variables.$db-border-radius-sm;
+				position: relative;
+
+				.snippet-code {
+					flex: 1;
+					word-break: break-all;
+					white-space: pre-wrap;
+					@extend %db-overwrite-font-size-sm;
+				}
+
+				.db-button {
+					flex-shrink: 0;
+				}
+			}
 		}
 	}
 }
