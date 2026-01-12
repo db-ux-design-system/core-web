@@ -2,6 +2,12 @@
   "name": "react-showcase",
   "version": "0.0.0",
   "type": "module",
+  "description": "React showcase",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/db-ux-design-system/core-web.git"
+  },
+  "license": "Apache-2.0",
   "private": true,
   "scripts": {
     "build": "npm-run-all build:*",
@@ -24,7 +30,7 @@
   "dependencies": {
     "react": "19.2.3",
     "react-dom": "19.2.3",
-    "react-router-dom": "7.9.5",
+    "react-router-dom": "7.12.0",
     "sa11y": "4.3.5"
   },
   "devDependencies": {
@@ -33,6 +39,6 @@
     "@vitejs/plugin-react": "5.1.2",
     "cross-env": "10.1.0",
     "typescript": "5.9.3",
-    "vite": "7.3.0"
+    "vite": "7.3.1"
   }
 }
