@@ -166,7 +166,7 @@ export const stringPropVisible = (
 	if (showString === undefined) {
 		return !!givenString;
 	} else {
-		return Boolean(showString) && Boolean(givenString);
+		return showString === 'true' && Boolean(givenString);
 	}
 };
 

@@ -4,6 +4,7 @@ import { viteStaticCopy } from 'vite-plugin-static-copy';
 
 // https://astro.build/config
 export default defineConfig({
+	site: 'https://design-system.deutschebahn.com/core-web',
 	base: '/stencil-showcase/',
 	outDir: '../../build-showcases/stencil-showcase',
 	vite: {

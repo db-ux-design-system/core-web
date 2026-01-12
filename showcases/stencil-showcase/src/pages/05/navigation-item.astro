@@ -13,11 +13,19 @@ const exampleFn = ({
 	width,
 	showIcon,
 	wrap,
+	areaPopup,
 }: DBNavigationItemProps & { areaPopup: boolean }) => {
-	const props = { icon, disabled, active, width, 'show-icon': showIcon, wrap };
-	const areaPopup = children?.toString().includes('areaPopup');
+	const props = {
+		icon,
+		disabled,
+		active,
+		width,
+		'show-icon': showIcon,
+		wrap,
+		text: areaPopup ? children : undefined,
+	};
 
-	const subNav = areaPopup
+	const content = areaPopup
 		? `
 		<div slot="subNavigation">
 			<db-navigation-item ${getPropsAsAttributes({ icon, 'show-icon': showIcon })} text="Also a navigation item with longer label">
@@ -32,15 +40,12 @@ const exampleFn = ({
 			</db-navigation-item>
 		</div>
 	`
-		: '';
-
-	const anchor = `<a href="#">${children}</a>`;
+		: `<a href="#">${children}</a>`;
 
 	return `
 		<ul class="nav-item-list">
 			<db-navigation-item ${getPropsAsAttributes(props)}>
-				${areaPopup ? children : anchor}
-				${subNav}
+				${content}
 			</db-navigation-item>
 		</ul>
 	`;

@@ -26,21 +26,23 @@ const exampleFn = ({
 	};
 
 	return `
-		<db-infotext icon="none" size="small" semantic="informational">
-			${children}:
-		</db-infotext>
-		<db-tabs ${getPropsAsAttributes(props)}>
-			<db-tab-list>
-				<db-tab-item>Test 1</db-tab-item>
-				<db-tab-item>Test 2</db-tab-item>
-				<db-tab-item>Test 3</db-tab-item>
-				${overflow ? '<db-tab-item>Test 4</db-tab-item><db-tab-item>Test 5</db-tab-item>' : ''}
-			</db-tab-list>
-			<db-tab-panel>Tab Panel 1</db-tab-panel>
-			<db-tab-panel>Tab Panel 2</db-tab-panel>
-			<db-tab-panel>Tab Panel 3</db-tab-panel>
-			${overflow ? '<db-tab-panel>Tab Panel 4</db-tab-panel><db-tab-panel>Tab Panel 5</db-tab-panel>' : ''}
-		</db-tabs>
+		<div className="w-full">
+			<db-infotext icon="none" size="small" semantic="informational">
+				${children}:
+			</db-infotext>
+			<db-tabs ${getPropsAsAttributes(props)}>
+				<db-tab-list>
+					<db-tab-item>Test 1</db-tab-item>
+					<db-tab-item>Test 2</db-tab-item>
+					<db-tab-item>Test 3</db-tab-item>
+					${overflow ? '<db-tab-item>Test 4</db-tab-item><db-tab-item>Test 5</db-tab-item>' : ''}
+				</db-tab-list>
+				<db-tab-panel>Tab Panel 1</db-tab-panel>
+				<db-tab-panel>Tab Panel 2</db-tab-panel>
+				<db-tab-panel>Tab Panel 3</db-tab-panel>
+				${overflow ? '<db-tab-panel>Tab Panel 4</db-tab-panel><db-tab-panel>Tab Panel 5</db-tab-panel>' : ''}
+			</db-tabs>
+		</div>
 	`;
 };
 const variants = getVariantsWithExamples<DBTabsProps>(defaultComponentVariants, exampleFn);

@@ -506,7 +506,7 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 		},
 		handleSelect: (value?: string) => {
 			if (value) {
-				if (props.multiple) {
+				if (getBoolean(props.multiple, 'multiple')) {
 					if (state._values?.includes(value)) {
 						state.handleOptionSelected(
 							state._values!.filter((v: string) => v !== value)
@@ -726,7 +726,8 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 
 	onUpdate(() => {
 		state.selectAllEnabled = Boolean(
-			props.multiple && (props.showSelectAll ?? state.amountOptions > 5)
+			getBoolean(props.multiple, 'multiple') &&
+			(props.showSelectAll ?? state.amountOptions > 5)
 		);
 	}, [props.showSelectAll, state.amountOptions, props.multiple]);
 
@@ -901,14 +902,18 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 			data-variant={
 				props.variant === 'floating' &&
 				props.selectedType === 'tag' &&
-				props.multiple
+				getBoolean(props.multiple, 'multiple')
 					? 'above'
 					: props.variant
 			}
 			data-required={getBooleanAsString(props.required)}
 			data-hide-asterisk={getHideProp(props.showRequiredAsterisk)}
 			data-placement={props.placement}
-			data-selected-type={props.multiple ? props.selectedType : 'text'}
+			data-selected-type={
+				getBoolean(props.multiple, 'multiple')
+					? props.selectedType
+					: 'text'
+			}
 			data-hide-label={getHideProp(props.showLabel)}
 			data-icon={props.icon}
 			data-show-icon={getBooleanAsString(props.showIcon)}>
@@ -1090,7 +1095,10 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 														)
 													})}
 													type={
-														props.multiple
+														getBoolean(
+															props.multiple,
+															'multiple'
+														)
 															? 'checkbox'
 															: 'radio'
 													}

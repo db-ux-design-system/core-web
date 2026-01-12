@@ -15,15 +15,21 @@ const exampleFn = ({
 	backdrop,
 	variant,
 }: DBDrawerProps) => {
+	const buttonId = id || `button-${id}`;
 	const props = { width, rounded, spacing, direction, backdrop, variant };
 
 	return `
 		<div>
-			<db-button onclick="document.getElementById('${id}').setAttribute('open', 'true')">Open: ${children}</db-button>
+			<db-button id="${buttonId}">Open: ${children}</db-button>
 			<db-drawer id="${id}" ${getPropsAsAttributes(props)} onclose="this.removeAttribute('open')">
 				${children}
 			</db-drawer>
 		</div>
+		<script>
+			document.querySelector("${buttonId}").addEventListener("click", function() {
+				document.getElementById("${id}").setAttribute("open", "true");
+			});
+		</script>
 	`;
 };
 const variants = getVariantsWithExamples<DBDrawerProps>(defaultComponentVariants, exampleFn);

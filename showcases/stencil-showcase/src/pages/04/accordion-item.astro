@@ -11,11 +11,14 @@ const exampleFn = ({
 	open,
 	headlinePlain,
 }: DBAccordionItemProps & { open?: boolean }) => {
-	const props = { 'headline-plain': headlinePlain, disabled, open };
+	const props = { 'headline-plain': headlinePlain, disabled, 'default-open': open };
 
 	return `<db-accordion-item ${getPropsAsAttributes(props)}>${children}</db-accordion-item>`;
 };
-const variants = getVariantsWithExamples<DBAccordionItemProps>(defaultComponentVariants, exampleFn);
+const variants = getVariantsWithExamples<DBAccordionItemProps & { open?: boolean }>(
+	defaultComponentVariants,
+	exampleFn,
+);
 ---
 
 <DefaultLayout>

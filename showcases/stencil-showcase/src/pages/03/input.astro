@@ -31,16 +31,17 @@ const exampleFn = ({
 	max,
 	min,
 }: DBInputProps & { dataList?: boolean }) => {
-	const dataListValue = dataList
-		? variant === 'floating'
+	const id = Math.random().toString(36).substring(2, 15);
+	const dataListValue =
+		variant === 'floating'
 			? JSON.stringify(['Test 1', 'Test 2'])
 			: JSON.stringify([
 					{ value: 'test1', label: 'Test 1' },
 					{ value: 'test2', label: 'Test 2' },
-				])
-		: undefined;
+				]);
 
 	const props = {
+		id,
 		label,
 		message,
 		placeholder: children,
@@ -64,10 +65,17 @@ const exampleFn = ({
 		'invalid-message': invalidMessage,
 		'valid-message': validMessage,
 		validation,
-		'data-list': dataListValue,
 	};
 
-	return `<db-input ${getPropsAsAttributes(props)}></db-input>`;
+	const dataListScript = dataList
+		? `<script>
+		document.querySelector('db-input[id="${id}"]').dataList = ${dataListValue};
+</script>`
+		: '';
+
+	return `<db-input ${getPropsAsAttributes(props)}></db-input>
+${dataListScript}
+`;
 };
 const variants = getVariantsWithExamples<DBInputProps & { dataList?: boolean }>(
 	defaultComponentVariants,
