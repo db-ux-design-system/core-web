@@ -43,6 +43,7 @@ export type DefaultTestType = {
 export type RunTestType = {
 	page: Page;
 	retry: number;
+	browserName?: string;
 	nvda?: NVDAPlaywright;
 	voiceOver?: VoiceOverPlaywright;
 };
