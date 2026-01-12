@@ -15,9 +15,9 @@ import {
 
 export type DBTabItemDefaultProps = {
 	/**
-	 * The disabled attribute can be set to keep a user from clicking on the tab-item.
+	 * The isDisabled attribute can be set to keep a user from clicking on the tab-item.
 	 */
-	disabled?: boolean | string;
+	isDisabled?: boolean;
 	/**
 	 * The label of the tab-item, if you don't want to use children.
 	 */
@@ -44,4 +44,8 @@ export type DBTabItemProps = DBTabItemDefaultProps &
 	ActiveProps &
 	WidthProps;
 
-export interface DBTabItemState extends GlobalState, InitializedState {}
+export interface DBTabItemState extends GlobalState, InitializedState {
+	internalActive: boolean | undefined;
+	disabled: boolean | undefined;
+	_observer: MutationObserver | null | undefined;
+}
