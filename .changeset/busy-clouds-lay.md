@@ -10,4 +10,4 @@
 "@db-ux/core-stylelint": minor
 ---
 
-_version bump_
+_version bump_ (staying in sync with the Figma library)
