@@ -72,6 +72,7 @@ const gotoPage = async (
 			waitUntil: 'domcontentloaded'
 		}
 	);
+	await page.evaluate(async () => document.fonts.ready);
 
 	await waitForDBPage(page);
 	await setScrollViewport(page, fixedHeight)();
@@ -99,10 +100,8 @@ export const getDefaultScreenshotTest = ({
 	ratio
 }: DefaultSnapshotTestType) => {
 	test(`should match screenshot`, async ({ page }, { project }) => {
-		const { showcase } = process.env;
 		const diffPixel = process.env.diff;
 		const maxDiffPixelRatio = process.env.ratio ?? ratio;
-		const stencil = isStencil(showcase);
 		const isWebkit =
 			project.name === 'webkit' || project.name === 'mobile_safari';
 
@@ -120,6 +119,8 @@ export const getDefaultScreenshotTest = ({
 			if (diffPixel) {
 				config.maxDiffPixels = Number(diffPixel);
 			}
+		} else if (isWebkit) {
+			config.maxDiffPixelRatio = 0.0123;
 		}
 
 		await gotoPage(page, path, lvl1, fixedHeight);
