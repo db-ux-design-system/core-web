@@ -177,12 +177,11 @@ export default function DBNavigationItemGroup(
 			<menu
 				ref={_menuRef}
 				class="db-navigation-item-group-menu"
-				role="group"
 				data-force-close={getBooleanAsString(state.autoClose)}
 				id={props.menuId ?? state._itemGroupMenuId}
 				onScroll={() => state.onScroll()}
 				onClick={(event) => state.handleNavigationItemClick(event)}>
-				<div class="db-navigation-item-group-back-button">
+				<li class="db-navigation-item-group-back-button">
 					<DBButton
 						id={props.backButtonId}
 						icon="arrow_left"
@@ -192,7 +191,7 @@ export default function DBNavigationItemGroup(
 						}>
 						{props.backButtonText ?? DEFAULT_BACK}
 					</DBButton>
-				</div>
+				</li>
 				{props.children}
 			</menu>
 		</li>

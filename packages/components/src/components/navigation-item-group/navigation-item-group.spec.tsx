@@ -4,8 +4,23 @@ import { expect, test } from '@playwright/experimental-ct-react';
 import { DBNavigationItemGroup } from './index';
 // @ts-ignore - vue can only find it with .ts as file ending
 import { DEFAULT_VIEWPORT } from '../../shared/constants.ts';
+import { DBNavigationItem } from '../navigation-item';
 
-const comp: any = <DBNavigationItemGroup>Test</DBNavigationItemGroup>;
+const comp: any = (
+	<menu>
+		<DBNavigationItemGroup text="More">
+			<DBNavigationItem>
+				<a href="#">Test1</a>
+			</DBNavigationItem>
+			<DBNavigationItem>
+				<a href="#">Test2</a>
+			</DBNavigationItem>
+			<DBNavigationItem>
+				<a href="#">Test3</a>
+			</DBNavigationItem>
+		</DBNavigationItemGroup>
+	</menu>
+);
 
 const testComponent = () => {
 	test('should contain text', async ({ mount }) => {

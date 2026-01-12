@@ -56,7 +56,7 @@ export const waitForDBShell = async (page: Page) => {
 	});
 	await expect(dbShell).not.toHaveAttribute('data-fonts-loaded', 'false');
 	await expect(dbShell).toHaveCSS('opacity', '1');
-	await expect(page.locator('html')).toHaveCSS('overflow', 'hidden');
+	await expect(page.locator('body')).toHaveCSS('overflow', 'hidden');
 };
 
 const gotoPage = async (
