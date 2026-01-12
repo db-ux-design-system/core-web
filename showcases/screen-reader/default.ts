@@ -126,9 +126,9 @@ const nvdaNavigateToWebContent = async (
 	// Make sure NVDA is not in focus mode.
 	await screenRecorder.perform(screenRecorder.keyboardCommands.exitFocusMode);
 	let windowTitle = '';
-	let applicationSwitchRetryCount = 0;
-	while (applicationSwitchRetryCount < 10) {
-		applicationSwitchRetryCount++;
+	let switchRetryCount = 0;
+	while (switchRetryCount < 10) {
+		switchRetryCount++;
 		await screenRecorder.perform(SWITCH_APPLICATION);
 		await screenRecorder.perform(
 			screenRecorder.keyboardCommands.reportTitle
@@ -179,11 +179,11 @@ export const runTest = async ({
 	 * In windows:Chrome the cursor is on the middle element.
 	 * Therefore, we need to move back and delete the logs, and then start everything.
 	 */
-	if (nvda) {
-		await nvdaNavigateToWebContent(nvda, pageTitle);
-	} else {
-		await screenRecorder.navigateToWebContent();
-	}
+
+	await (nvda
+		? nvdaNavigateToWebContent(nvda, pageTitle)
+		: screenRecorder.navigateToWebContent());
+
 	await page.waitForTimeout(500);
 
 	await testFn?.(voiceOver, nvda);
