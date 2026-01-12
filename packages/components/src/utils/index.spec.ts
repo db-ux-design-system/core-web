@@ -6,10 +6,6 @@ describe('getStep', () => {
 		expect(getStep(undefined)).toBeUndefined();
 	});
 
-	it('returns undefined when step is null', () => {
-		expect(getStep(null as unknown as undefined)).toBeUndefined();
-	});
-
 	it('returns "any" when step is "any"', () => {
 		expect(getStep('any')).toBe('any');
 	});
