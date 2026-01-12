@@ -25,7 +25,7 @@ MD007:
   indent: 4 # Unordered list indentation
 MD010: false
 MD013:
-  line_length: 550 # Line length 80 is far too short
+  line_length: 600 # Line length 80 is far too short
 MD024: false #/no-duplicate-heading/no-duplicate-header
 MD026:
   punctuation: ".,;:!。，；:" # List of not allowed
@@ -36,6 +36,7 @@ MD033:
 MD036: false # Emphasis used instead of a heading
 MD041: false # h1 first line is not working in this monorepo
 MD049: false # emphasis-style Emphasis style should be consistent
+MD060: false # table-column-style is formatted by Prettier
 
 #################
 # Rules by tags #
