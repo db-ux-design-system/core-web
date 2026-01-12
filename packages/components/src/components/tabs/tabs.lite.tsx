@@ -30,6 +30,8 @@ export default function DBTabs(props: DBTabsProps) {
 		showScrollRight: false,
 		scrollContainer: null,
 		_resizeObserver: undefined,
+
+		// Activates a specific tab by index and triggers the change callback
 		activateTab(index: number) {
 			state.activeTabIndex = index;
 			if (props.onIndexChange) {
@@ -37,6 +39,8 @@ export default function DBTabs(props: DBTabsProps) {
 			}
 			state.initTabs();
 		},
+
+		// Parses the tabs prop to ensure the correct data structure
 		convertTabs(): DBSimpleTabProps[] {
 			try {
 				if (typeof props.tabs === 'string') {
@@ -50,6 +54,8 @@ export default function DBTabs(props: DBTabsProps) {
 
 			return [];
 		},
+
+		// Determines the visibility of scroll buttons based on the container's scroll position
 		evaluateScrollButtons(tList: Element) {
 			const needsScroll = tList.scrollWidth > tList.clientWidth;
 
@@ -58,6 +64,8 @@ export default function DBTabs(props: DBTabsProps) {
 				needsScroll &&
 				tList.scrollLeft < tList.scrollWidth - tList.clientWidth;
 		},
+
+		// Scrolls the tab list container horizontally by a specified distance
 		scroll(left?: boolean) {
 			let step = Number(props.arrowScrollDistance) || 100;
 			if (left) {
@@ -69,6 +77,8 @@ export default function DBTabs(props: DBTabsProps) {
 				behavior: 'smooth'
 			});
 		},
+
+		// Initializes the tab list container with ARIA attributes and scroll behavior logic
 		initTabList() {
 			if (_ref) {
 				const tabList = _ref.querySelector('.db-tab-list');
@@ -107,6 +117,8 @@ export default function DBTabs(props: DBTabsProps) {
 				}
 			}
 		},
+
+		// Initializes tab items and panels, setting up IDs, ARIA attributes and event listeners
 		initTabs() {
 			if (_ref) {
 				const tabListEl = _ref.querySelector(
@@ -114,18 +126,14 @@ export default function DBTabs(props: DBTabsProps) {
 				);
 				if (!tabListEl) return;
 
-				const tabItems = Array.from<HTMLElement>(
-					tabListEl.children
-				).filter((child) => child.classList.contains('db-tab-item'));
+				const buttons = Array.from<HTMLElement>(
+					tabListEl.querySelectorAll('[role="tab"]')
+				);
 				const tabPanels = Array.from<Element>(
 					_ref.querySelectorAll(
 						':is(:scope > .db-tab-panel, :scope > db-tab-panel > .db-tab-panel)'
 					)
 				);
-
-				const buttons: HTMLElement[] = tabItems
-					.map((item) => item.querySelector('[role="tab"]'))
-					.filter((b): b is HTMLElement => !!b);
 
 				buttons.forEach((button, index) => {
 					if (!button.id) {
@@ -233,6 +241,7 @@ export default function DBTabs(props: DBTabsProps) {
 		}
 	});
 
+	// Initialize unique IDs and determine the starting active tab index
 	onMount(() => {
 		state._id = props.id || state._id;
 
@@ -248,11 +257,13 @@ export default function DBTabs(props: DBTabsProps) {
 		state.initialized = true;
 	});
 
+	// Clean up the ResizeObserver to prevent memory leaks when the component unmounts
 	onUnMount(() => {
 		state._resizeObserver?.disconnect();
 		state._resizeObserver = undefined;
 	});
 
+	// Re-initialize tabs on updates and observe DOM mutations to handle added or removed tab elements
 	onUpdate(() => {
 		if (_ref && state.initialized) {
 			state.initTabList();
