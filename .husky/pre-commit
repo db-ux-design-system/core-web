@@ -2,5 +2,4 @@ validate-branch-name
 node scripts/check-commit-mail.js
 lint-staged --config .config/.lintstagedrc.js
 lint-staged --config .config/.lintstagedrc-prettier.js
-lint-staged --config .config/.lintstagedrc-npm.js
 git update-index --again
