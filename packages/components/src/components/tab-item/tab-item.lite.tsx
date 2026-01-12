@@ -1,8 +1,10 @@
 import {
 	Show,
+	Slot,
 	useDefaultProps,
 	useMetadata,
-	useRef
+	useRef,
+	useStore
 } from '@builder.io/mitosis';
 import { cls, getBoolean } from '../../utils';
 import DBIcon from '../icon/icon.lite';
@@ -14,13 +16,15 @@ useDefaultProps<DBTabItemProps>({});
 export default function DBTabItem(props: DBTabItemProps) {
 	const _ref = useRef<HTMLButtonElement | any>(null);
 
-	function handleClick(event: MouseEvent) {
-		if (!props.disabled) {
-			if (props.onClick) {
-				props.onClick(event);
+	const state = useStore({
+		handleClick: (event: any) => {
+			if (!props.disabled) {
+				if (props.onClick) {
+					props.onClick(event);
+				}
 			}
 		}
-	}
+	});
 
 	return (
 		<li class={cls('db-tab-item', props.className)} role="presentation">
@@ -35,13 +39,16 @@ export default function DBTabItem(props: DBTabItemProps) {
 				id={props.id}
 				disabled={getBoolean(props.disabled)}
 				class="db-tab-button"
-				onClick={(event) => handleClick(event)}>
+				onClick={(event) => state.handleClick(event)}>
 				<Show when={props.icon && props.showIcon}>
 					<DBIcon icon={props.icon} />
 				</Show>
 				<Show when={!props.noText}>
 					<span class="db-tab-label">
-						{props.label ?? props.children}
+						<Show when={props.label}>{props.label}</Show>
+						<Show when={!props.label}>
+							<Slot />
+						</Show>
 					</span>
 				</Show>
 				<Show when={props.iconTrailing && props.showIconTrailing}>

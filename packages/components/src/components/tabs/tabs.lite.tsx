@@ -98,7 +98,10 @@ export default function DBTabs(props: DBTabsProps) {
 						}
 
 						if (props.name) {
-							container.setAttribute('aria-label', props.name);
+							container.setAttribute(
+								'aria-label',
+								props.name ?? ''
+							);
 						}
 					}
 				}
