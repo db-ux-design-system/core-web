@@ -1,6 +1,12 @@
 {
   "name": "angular-ssr-showcase",
   "version": "0.0.0",
+  "description": "Angular SSR showcase",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/db-ux-design-system/core-web.git"
+  },
+  "license": "Apache-2.0",
   "private": true,
   "scripts": {
     "build": "ng build && cpr ./dist/angular-ssr-showcase/ ../../build-showcases/angular-ssr-showcase/ -d",
