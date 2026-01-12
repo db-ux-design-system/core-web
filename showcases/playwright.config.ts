@@ -9,8 +9,7 @@ const projects: Project[] = [
 	{
 		name: 'chromium',
 		use: {
-			...devices['Desktop Chrome'],
-			headless: false
+			...devices['Desktop Chrome']
 		}
 	},
 	{
