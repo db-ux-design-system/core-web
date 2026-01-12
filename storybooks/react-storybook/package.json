@@ -2,6 +2,12 @@
   "name": "react-storybook",
   "version": "0.0.0",
   "type": "module",
+  "description": "React storybook",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/db-ux-design-system/core-web.git"
+  },
+  "license": "Apache-2.0",
   "private": true,
   "scripts": {
     "build": "storybook build --output-dir ../../build-storybooks/react-storybook",
