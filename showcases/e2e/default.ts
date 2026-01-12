@@ -11,6 +11,7 @@ const density = 'regular';
 
 export type SkipType = {
 	angular?: boolean;
+	stencil?: boolean;
 };
 
 export type DefaultTestType = {
@@ -84,6 +85,10 @@ const shouldSkip = (skip?: SkipType): boolean => {
 	if (skip) {
 		const { showcase } = process.env;
 		if (skip.angular && showcase?.startsWith('angular')) {
+			return true;
+		}
+
+		if (skip.stencil && showcase?.startsWith('stencil')) {
 			return true;
 		}
 	}
