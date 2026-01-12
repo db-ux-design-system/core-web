@@ -48,7 +48,7 @@
 				"name": "disabled",
 				"props": {
 					"label": "active",
-					"disabled": true
+					"isDisabled": true
 				}
 			}
 		]
