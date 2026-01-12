@@ -84,8 +84,12 @@ body {
 
 html {
 	-webkit-tap-highlight-color: #{colors.$db-informational-bg-basic-transparent-semi-default};
+}
 
-	// Box sizing
+// Box sizing
+*,
+::before,
+::after {
 	box-sizing: var(--db-box-sizing, border-box);
 }
 
