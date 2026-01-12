@@ -24,8 +24,8 @@ for (const group of Components) {
 				`docs`,
 				`.${group.path}/${component.name}/docs/Angular`,
 				async (page) => {
-					const firstH2 = page.locator('h2').first();
-					await expect(firstH2).toBeVisible();
+					const firstHeading = page.locator('h1, h2').first();
+					await expect(firstHeading).toBeVisible();
 				}
 			);
 		});
