@@ -17,7 +17,7 @@ import DefaultComponent from "../DefaultComponent.vue";
 					:iconTrailing="exampleProps?.iconTrailing"
 					:showIcon="exampleProps?.showIcon"
 					:showIconTrailing="exampleProps?.showIconTrailing"
-					:disabled="exampleProps?.disabled"
+					:isDisabled="exampleProps?.disabled"
 				>
 					{{ exampleName }}
 				</DBTabItem>
