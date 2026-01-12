@@ -28,7 +28,7 @@
   },
   "dependencies": {
     "commander": "14.0.2",
-    "glob": "11.1.0",
+    "glob": "13.0.0",
     "replace-in-file": "8.4.0"
   },
   "devDependencies": {
