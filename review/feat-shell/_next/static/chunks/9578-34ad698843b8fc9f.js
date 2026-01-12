@@ -4724,13 +4724,13 @@ False
 False
 </DBCheckbox>`)},children:"Copy code"})]})]},t())})]})},tn=()=>{let[e,a]=(0,z.useState)(),{getFrameworkIndex:t}=(0,av.u)();return(0,z.useEffect)(()=>{e&&setTimeout(()=>a(""),1500)},[e]),(0,I.jsxs)(I.Fragment,{children:[(0,I.jsx)(R.A,{className:"tab-container",children:(0,I.jsxs)(ai.A,{initialSelectedIndex:t(),children:[(0,I.jsxs)(e6.A,{children:[(0,I.jsx)(ae.A,{children:"Angular"}),(0,I.jsx)(ae.A,{children:"HTML"}),(0,I.jsx)(ae.A,{children:"React"}),(0,I.jsx)(ae.A,{children:"Vue"})]}),(0,I.jsxs)(al.A,{children:[(0,I.jsx)(F.A,{content:"external",target:"_blank",href:"how-to-use?current=angular",children:"How to use this in angular"}),(0,I.jsx)("pre",{children:(0,I.jsx)("code",{className:"hljs language-html",children:"<db-control-panel-desktop> Functional </db-control-panel-desktop>"})}),(0,I.jsx)(ee.A,{className:"copy-button",noText:!0,icon:"<db-control-panel-desktop> Functional </db-control-panel-desktop>"===e?"check":"copy",variant:"ghost",onClick:()=>{a("<db-control-panel-desktop> Functional </db-control-panel-desktop>"),navigator.clipboard.writeText("<db-control-panel-desktop> Functional </db-control-panel-desktop>")},children:"Copy code"})]}),(0,I.jsxs)(al.A,{children:[(0,I.jsx)(F.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,I.jsx)("pre",{children:(0,I.jsx)("code",{className:"hljs language-html",children:`<header
   class="db-control-panel-desktop"
-  id="db-control-panel-desktop-8746149545462978"
+  id="db-control-panel-desktop-5824655627421547"
   data-open="true"
 >
   <div class="db-control-panel-desktop-scroll-container">Functional</div>
   <div class="db-control-panel-desktop-button">
     <button
-      aria-controls="db-control-panel-desktop-8746149545462978"
+      aria-controls="db-control-panel-desktop-5824655627421547"
       aria-expanded="true"
       class="db-button"
       type="button"
@@ -4753,13 +4753,13 @@ False
   </div>
 </header>`})}),(0,I.jsx)(ee.A,{className:"copy-button",noText:!0,icon:e===`<header
   class="db-control-panel-desktop"
-  id="db-control-panel-desktop-8746149545462978"
+  id="db-control-panel-desktop-5824655627421547"
   data-open="true"
 >
   <div class="db-control-panel-desktop-scroll-container">Functional</div>
   <div class="db-control-panel-desktop-button">
     <button
-      aria-controls="db-control-panel-desktop-8746149545462978"
+      aria-controls="db-control-panel-desktop-5824655627421547"
       aria-expanded="true"
       class="db-button"
       type="button"
@@ -4782,13 +4782,13 @@ False
   </div>
 </header>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<header
   class="db-control-panel-desktop"
-  id="db-control-panel-desktop-8746149545462978"
+  id="db-control-panel-desktop-5824655627421547"
   data-open="true"
 >
   <div class="db-control-panel-desktop-scroll-container">Functional</div>
   <div class="db-control-panel-desktop-button">
     <button
-      aria-controls="db-control-panel-desktop-8746149545462978"
+      aria-controls="db-control-panel-desktop-5824655627421547"
       aria-expanded="true"
       class="db-button"
       type="button"
@@ -4811,13 +4811,13 @@ False
   </div>
 </header>`),navigator.clipboard.writeText(`<header
   class="db-control-panel-desktop"
-  id="db-control-panel-desktop-8746149545462978"
+  id="db-control-panel-desktop-5824655627421547"
   data-open="true"
 >
   <div class="db-control-panel-desktop-scroll-container">Functional</div>
   <div class="db-control-panel-desktop-button">
     <button
-      aria-controls="db-control-panel-desktop-8746149545462978"
+      aria-controls="db-control-panel-desktop-5824655627421547"
       aria-expanded="true"
       class="db-button"
       type="button"
@@ -4848,13 +4848,13 @@ Functional
 Functional
 </DBControlPanelDesktop>`)},children:"Copy code"})]})]},t())}),(0,I.jsx)(R.A,{className:"tab-container",children:(0,I.jsxs)(ai.A,{initialSelectedIndex:t(),children:[(0,I.jsxs)(e6.A,{children:[(0,I.jsx)(ae.A,{children:"Angular"}),(0,I.jsx)(ae.A,{children:"HTML"}),(0,I.jsx)(ae.A,{children:"React"}),(0,I.jsx)(ae.A,{children:"Vue"})]}),(0,I.jsxs)(al.A,{children:[(0,I.jsx)(F.A,{content:"external",target:"_blank",href:"how-to-use?current=angular",children:"How to use this in angular"}),(0,I.jsx)("pre",{children:(0,I.jsx)("code",{className:"hljs language-html",children:"<db-control-panel-desktop> (Default) Regular </db-control-panel-desktop>"})}),(0,I.jsx)(ee.A,{className:"copy-button",noText:!0,icon:"<db-control-panel-desktop> (Default) Regular </db-control-panel-desktop>"===e?"check":"copy",variant:"ghost",onClick:()=>{a("<db-control-panel-desktop> (Default) Regular </db-control-panel-desktop>"),navigator.clipboard.writeText("<db-control-panel-desktop> (Default) Regular </db-control-panel-desktop>")},children:"Copy code"})]}),(0,I.jsxs)(al.A,{children:[(0,I.jsx)(F.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,I.jsx)("pre",{children:(0,I.jsx)("code",{className:"hljs language-html",children:`<header
   class="db-control-panel-desktop"
-  id="db-control-panel-desktop-9873001669938264"
+  id="db-control-panel-desktop-6222777868647347"
   data-open="true"
 >
   <div class="db-control-panel-desktop-scroll-container">(Default) Regular</div>
   <div class="db-control-panel-desktop-button">
     <button
-      aria-controls="db-control-panel-desktop-9873001669938264"
+      aria-controls="db-control-panel-desktop-6222777868647347"
       aria-expanded="true"
       class="db-button"
       type="button"
@@ -4877,13 +4877,13 @@ Functional
   </div>
 </header>`})}),(0,I.jsx)(ee.A,{className:"copy-button",noText:!0,icon:e===`<header
   class="db-control-panel-desktop"
-  id="db-control-panel-desktop-9873001669938264"
+  id="db-control-panel-desktop-6222777868647347"
   data-open="true"
 >
   <div class="db-control-panel-desktop-scroll-container">(Default) Regular</div>
   <div class="db-control-panel-desktop-button">
     <button
-      aria-controls="db-control-panel-desktop-9873001669938264"
+      aria-controls="db-control-panel-desktop-6222777868647347"
       aria-expanded="true"
       class="db-button"
       type="button"
@@ -4906,13 +4906,13 @@ Functional
   </div>
 </header>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<header
   class="db-control-panel-desktop"
-  id="db-control-panel-desktop-9873001669938264"
+  id="db-control-panel-desktop-6222777868647347"
   data-open="true"
 >
   <div class="db-control-panel-desktop-scroll-container">(Default) Regular</div>
   <div class="db-control-panel-desktop-button">
     <button
-      aria-controls="db-control-panel-desktop-9873001669938264"
+      aria-controls="db-control-panel-desktop-6222777868647347"
       aria-expanded="true"
       class="db-button"
       type="button"
@@ -4935,13 +4935,13 @@ Functional
   </div>
 </header>`),navigator.clipboard.writeText(`<header
   class="db-control-panel-desktop"
-  id="db-control-panel-desktop-9873001669938264"
+  id="db-control-panel-desktop-6222777868647347"
   data-open="true"
 >
   <div class="db-control-panel-desktop-scroll-container">(Default) Regular</div>
   <div class="db-control-panel-desktop-button">
     <button
-      aria-controls="db-control-panel-desktop-9873001669938264"
+      aria-controls="db-control-panel-desktop-6222777868647347"
       aria-expanded="true"
       class="db-button"
       type="button"
@@ -4972,13 +4972,13 @@ Functional
 (Default) Regular
 </DBControlPanelDesktop>`)},children:"Copy code"})]})]},t())}),(0,I.jsx)(R.A,{className:"tab-container",children:(0,I.jsxs)(ai.A,{initialSelectedIndex:t(),children:[(0,I.jsxs)(e6.A,{children:[(0,I.jsx)(ae.A,{children:"Angular"}),(0,I.jsx)(ae.A,{children:"HTML"}),(0,I.jsx)(ae.A,{children:"React"}),(0,I.jsx)(ae.A,{children:"Vue"})]}),(0,I.jsxs)(al.A,{children:[(0,I.jsx)(F.A,{content:"external",target:"_blank",href:"how-to-use?current=angular",children:"How to use this in angular"}),(0,I.jsx)("pre",{children:(0,I.jsx)("code",{className:"hljs language-html",children:"<db-control-panel-desktop> Expressive </db-control-panel-desktop>"})}),(0,I.jsx)(ee.A,{className:"copy-button",noText:!0,icon:"<db-control-panel-desktop> Expressive </db-control-panel-desktop>"===e?"check":"copy",variant:"ghost",onClick:()=>{a("<db-control-panel-desktop> Expressive </db-control-panel-desktop>"),navigator.clipboard.writeText("<db-control-panel-desktop> Expressive </db-control-panel-desktop>")},children:"Copy code"})]}),(0,I.jsxs)(al.A,{children:[(0,I.jsx)(F.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,I.jsx)("pre",{children:(0,I.jsx)("code",{className:"hljs language-html",children:`<header
   class="db-control-panel-desktop"
-  id="db-control-panel-desktop-7275503394664364"
+  id="db-control-panel-desktop-3845630177007956"
   data-open="true"
 >
   <div class="db-control-panel-desktop-scroll-container">Expressive</div>
   <div class="db-control-panel-desktop-button">
     <button
-      aria-controls="db-control-panel-desktop-7275503394664364"
+      aria-controls="db-control-panel-desktop-3845630177007956"
       aria-expanded="true"
       class="db-button"
       type="button"
@@ -5001,13 +5001,13 @@ Functional
   </div>
 </header>`})}),(0,I.jsx)(ee.A,{className:"copy-button",noText:!0,icon:e===`<header
   class="db-control-panel-desktop"
-  id="db-control-panel-desktop-7275503394664364"
+  id="db-control-panel-desktop-3845630177007956"
   data-open="true"
 >
   <div class="db-control-panel-desktop-scroll-container">Expressive</div>
   <div class="db-control-panel-desktop-button">
     <button
-      aria-controls="db-control-panel-desktop-7275503394664364"
+      aria-controls="db-control-panel-desktop-3845630177007956"
       aria-expanded="true"
       class="db-button"
       type="button"
@@ -5030,13 +5030,13 @@ Functional
   </div>
 </header>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<header
   class="db-control-panel-desktop"
-  id="db-control-panel-desktop-7275503394664364"
+  id="db-control-panel-desktop-3845630177007956"
   data-open="true"
 >
   <div class="db-control-panel-desktop-scroll-container">Expressive</div>
   <div class="db-control-panel-desktop-button">
     <button
-      aria-controls="db-control-panel-desktop-7275503394664364"
+      aria-controls="db-control-panel-desktop-3845630177007956"
       aria-expanded="true"
       class="db-button"
       type="button"
@@ -5059,13 +5059,13 @@ Functional
   </div>
 </header>`),navigator.clipboard.writeText(`<header
   class="db-control-panel-desktop"
-  id="db-control-panel-desktop-7275503394664364"
+  id="db-control-panel-desktop-3845630177007956"
   data-open="true"
 >
   <div class="db-control-panel-desktop-scroll-container">Expressive</div>
   <div class="db-control-panel-desktop-button">
     <button
-      aria-controls="db-control-panel-desktop-7275503394664364"
+      aria-controls="db-control-panel-desktop-3845630177007956"
       aria-expanded="true"
       class="db-button"
       type="button"
@@ -5096,13 +5096,13 @@ Expressive
 Expressive
 </DBControlPanelDesktop>`)},children:"Copy code"})]})]},t())})]})},ti=()=>{let[e,a]=(0,z.useState)(),{getFrameworkIndex:t}=(0,av.u)();return(0,z.useEffect)(()=>{e&&setTimeout(()=>a(""),1500)},[e]),(0,I.jsxs)(I.Fragment,{children:[(0,I.jsx)(R.A,{className:"tab-container",children:(0,I.jsxs)(ai.A,{initialSelectedIndex:t(),children:[(0,I.jsxs)(e6.A,{children:[(0,I.jsx)(ae.A,{children:"Angular"}),(0,I.jsx)(ae.A,{children:"HTML"}),(0,I.jsx)(ae.A,{children:"React"}),(0,I.jsx)(ae.A,{children:"Vue"})]}),(0,I.jsxs)(al.A,{children:[(0,I.jsx)(F.A,{content:"external",target:"_blank",href:"how-to-use?current=angular",children:"How to use this in angular"}),(0,I.jsx)("pre",{children:(0,I.jsx)("code",{className:"hljs language-html",children:"<db-control-panel-desktop> Full </db-control-panel-desktop>"})}),(0,I.jsx)(ee.A,{className:"copy-button",noText:!0,icon:"<db-control-panel-desktop> Full </db-control-panel-desktop>"===e?"check":"copy",variant:"ghost",onClick:()=>{a("<db-control-panel-desktop> Full </db-control-panel-desktop>"),navigator.clipboard.writeText("<db-control-panel-desktop> Full </db-control-panel-desktop>")},children:"Copy code"})]}),(0,I.jsxs)(al.A,{children:[(0,I.jsx)(F.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,I.jsx)("pre",{children:(0,I.jsx)("code",{className:"hljs language-html",children:`<header
   class="db-control-panel-desktop"
-  id="db-control-panel-desktop-01599887148707635"
+  id="db-control-panel-desktop-622673318882976"
   data-open="true"
 >
   <div class="db-control-panel-desktop-scroll-container">Full</div>
   <div class="db-control-panel-desktop-button">
     <button
-      aria-controls="db-control-panel-desktop-01599887148707635"
+      aria-controls="db-control-panel-desktop-622673318882976"
       aria-expanded="true"
       class="db-button"
       type="button"
@@ -5125,13 +5125,13 @@ Expressive
   </div>
 </header>`})}),(0,I.jsx)(ee.A,{className:"copy-button",noText:!0,icon:e===`<header
   class="db-control-panel-desktop"
-  id="db-control-panel-desktop-01599887148707635"
+  id="db-control-panel-desktop-622673318882976"
   data-open="true"
 >
   <div class="db-control-panel-desktop-scroll-container">Full</div>
   <div class="db-control-panel-desktop-button">
     <button
-      aria-controls="db-control-panel-desktop-01599887148707635"
+      aria-controls="db-control-panel-desktop-622673318882976"
       aria-expanded="true"
       class="db-button"
       type="button"
@@ -5154,13 +5154,13 @@ Expressive
   </div>
 </header>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<header
   class="db-control-panel-desktop"
-  id="db-control-panel-desktop-01599887148707635"
+  id="db-control-panel-desktop-622673318882976"
   data-open="true"
 >
   <div class="db-control-panel-desktop-scroll-container">Full</div>
   <div class="db-control-panel-desktop-button">
     <button
-      aria-controls="db-control-panel-desktop-01599887148707635"
+      aria-controls="db-control-panel-desktop-622673318882976"
       aria-expanded="true"
       class="db-button"
       type="button"
@@ -5183,13 +5183,13 @@ Expressive
   </div>
 </header>`),navigator.clipboard.writeText(`<header
   class="db-control-panel-desktop"
-  id="db-control-panel-desktop-01599887148707635"
+  id="db-control-panel-desktop-622673318882976"
   data-open="true"
 >
   <div class="db-control-panel-desktop-scroll-container">Full</div>
   <div class="db-control-panel-desktop-button">
     <button
-      aria-controls="db-control-panel-desktop-01599887148707635"
+      aria-controls="db-control-panel-desktop-622673318882976"
       aria-expanded="true"
       class="db-button"
       type="button"
@@ -5220,14 +5220,14 @@ Full
 Full
 </DBControlPanelDesktop>`)},children:"Copy code"})]})]},t())}),(0,I.jsx)(R.A,{className:"tab-container",children:(0,I.jsxs)(ai.A,{initialSelectedIndex:t(),children:[(0,I.jsxs)(e6.A,{children:[(0,I.jsx)(ae.A,{children:"Angular"}),(0,I.jsx)(ae.A,{children:"HTML"}),(0,I.jsx)(ae.A,{children:"React"}),(0,I.jsx)(ae.A,{children:"Vue"})]}),(0,I.jsxs)(al.A,{children:[(0,I.jsx)(F.A,{content:"external",target:"_blank",href:"how-to-use?current=angular",children:"How to use this in angular"}),(0,I.jsx)("pre",{children:(0,I.jsx)("code",{className:"hljs language-html",children:'<db-control-panel-desktop width="medium"> Medium </db-control-panel-desktop>'})}),(0,I.jsx)(ee.A,{className:"copy-button",noText:!0,icon:'<db-control-panel-desktop width="medium"> Medium </db-control-panel-desktop>'===e?"check":"copy",variant:"ghost",onClick:()=>{a('<db-control-panel-desktop width="medium"> Medium </db-control-panel-desktop>'),navigator.clipboard.writeText('<db-control-panel-desktop width="medium"> Medium </db-control-panel-desktop>')},children:"Copy code"})]}),(0,I.jsxs)(al.A,{children:[(0,I.jsx)(F.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,I.jsx)("pre",{children:(0,I.jsx)("code",{className:"hljs language-html",children:`<header
   class="db-control-panel-desktop"
-  id="db-control-panel-desktop-5022718006739587"
+  id="db-control-panel-desktop-24116644293888512"
   data-width="medium"
   data-open="true"
 >
   <div class="db-control-panel-desktop-scroll-container">Medium</div>
   <div class="db-control-panel-desktop-button">
     <button
-      aria-controls="db-control-panel-desktop-5022718006739587"
+      aria-controls="db-control-panel-desktop-24116644293888512"
       aria-expanded="true"
       class="db-button"
       type="button"
@@ -5250,14 +5250,14 @@ Full
   </div>
 </header>`})}),(0,I.jsx)(ee.A,{className:"copy-button",noText:!0,icon:e===`<header
   class="db-control-panel-desktop"
-  id="db-control-panel-desktop-5022718006739587"
+  id="db-control-panel-desktop-24116644293888512"
   data-width="medium"
   data-open="true"
 >
   <div class="db-control-panel-desktop-scroll-container">Medium</div>
   <div class="db-control-panel-desktop-button">
     <button
-      aria-controls="db-control-panel-desktop-5022718006739587"
+      aria-controls="db-control-panel-desktop-24116644293888512"
       aria-expanded="true"
       class="db-button"
       type="button"
@@ -5280,14 +5280,14 @@ Full
   </div>
 </header>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<header
   class="db-control-panel-desktop"
-  id="db-control-panel-desktop-5022718006739587"
+  id="db-control-panel-desktop-24116644293888512"
   data-width="medium"
   data-open="true"
 >
   <div class="db-control-panel-desktop-scroll-container">Medium</div>
   <div class="db-control-panel-desktop-button">
     <button
-      aria-controls="db-control-panel-desktop-5022718006739587"
+      aria-controls="db-control-panel-desktop-24116644293888512"
       aria-expanded="true"
       class="db-button"
       type="button"
@@ -5310,14 +5310,14 @@ Full
   </div>
 </header>`),navigator.clipboard.writeText(`<header
   class="db-control-panel-desktop"
-  id="db-control-panel-desktop-5022718006739587"
+  id="db-control-panel-desktop-24116644293888512"
   data-width="medium"
   data-open="true"
 >
   <div class="db-control-panel-desktop-scroll-container">Medium</div>
   <div class="db-control-panel-desktop-button">
     <button
-      aria-controls="db-control-panel-desktop-5022718006739587"
+      aria-controls="db-control-panel-desktop-24116644293888512"
       aria-expanded="true"
       class="db-button"
       type="button"
@@ -5348,14 +5348,14 @@ Medium
 Medium
 </DBControlPanelDesktop>`)},children:"Copy code"})]})]},t())}),(0,I.jsx)(R.A,{className:"tab-container",children:(0,I.jsxs)(ai.A,{initialSelectedIndex:t(),children:[(0,I.jsxs)(e6.A,{children:[(0,I.jsx)(ae.A,{children:"Angular"}),(0,I.jsx)(ae.A,{children:"HTML"}),(0,I.jsx)(ae.A,{children:"React"}),(0,I.jsx)(ae.A,{children:"Vue"})]}),(0,I.jsxs)(al.A,{children:[(0,I.jsx)(F.A,{content:"external",target:"_blank",href:"how-to-use?current=angular",children:"How to use this in angular"}),(0,I.jsx)("pre",{children:(0,I.jsx)("code",{className:"hljs language-html",children:'<db-control-panel-desktop width="large"> Large </db-control-panel-desktop>'})}),(0,I.jsx)(ee.A,{className:"copy-button",noText:!0,icon:'<db-control-panel-desktop width="large"> Large </db-control-panel-desktop>'===e?"check":"copy",variant:"ghost",onClick:()=>{a('<db-control-panel-desktop width="large"> Large </db-control-panel-desktop>'),navigator.clipboard.writeText('<db-control-panel-desktop width="large"> Large </db-control-panel-desktop>')},children:"Copy code"})]}),(0,I.jsxs)(al.A,{children:[(0,I.jsx)(F.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,I.jsx)("pre",{children:(0,I.jsx)("code",{className:"hljs language-html",children:`<header
   class="db-control-panel-desktop"
-  id="db-control-panel-desktop-20551594349775815"
+  id="db-control-panel-desktop-6667884627393491"
   data-width="large"
   data-open="true"
 >
   <div class="db-control-panel-desktop-scroll-container">Large</div>
   <div class="db-control-panel-desktop-button">
     <button
-      aria-controls="db-control-panel-desktop-20551594349775815"
+      aria-controls="db-control-panel-desktop-6667884627393491"
       aria-expanded="true"
       class="db-button"
       type="button"
@@ -5378,14 +5378,14 @@ Medium
   </div>
 </header>`})}),(0,I.jsx)(ee.A,{className:"copy-button",noText:!0,icon:e===`<header
   class="db-control-panel-desktop"
-  id="db-control-panel-desktop-20551594349775815"
+  id="db-control-panel-desktop-6667884627393491"
   data-width="large"
   data-open="true"
 >
   <div class="db-control-panel-desktop-scroll-container">Large</div>
   <div class="db-control-panel-desktop-button">
     <button
-      aria-controls="db-control-panel-desktop-20551594349775815"
+      aria-controls="db-control-panel-desktop-6667884627393491"
       aria-expanded="true"
       class="db-button"
       type="button"
@@ -5408,14 +5408,14 @@ Medium
   </div>
 </header>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<header
   class="db-control-panel-desktop"
-  id="db-control-panel-desktop-20551594349775815"
+  id="db-control-panel-desktop-6667884627393491"
   data-width="large"
   data-open="true"
 >
   <div class="db-control-panel-desktop-scroll-container">Large</div>
   <div class="db-control-panel-desktop-button">
     <button
-      aria-controls="db-control-panel-desktop-20551594349775815"
+      aria-controls="db-control-panel-desktop-6667884627393491"
       aria-expanded="true"
       class="db-button"
       type="button"
@@ -5438,14 +5438,14 @@ Medium
   </div>
 </header>`),navigator.clipboard.writeText(`<header
   class="db-control-panel-desktop"
-  id="db-control-panel-desktop-20551594349775815"
+  id="db-control-panel-desktop-6667884627393491"
   data-width="large"
   data-open="true"
 >
   <div class="db-control-panel-desktop-scroll-container">Large</div>
   <div class="db-control-panel-desktop-button">
     <button
-      aria-controls="db-control-panel-desktop-20551594349775815"
+      aria-controls="db-control-panel-desktop-6667884627393491"
       aria-expanded="true"
       class="db-button"
       type="button"
@@ -5476,7 +5476,7 @@ Large
 Large
 </DBControlPanelDesktop>`)},children:"Copy code"})]})]},t())})]})},tl=()=>{let[e,a]=(0,z.useState)(),{getFrameworkIndex:t}=(0,av.u)();return(0,z.useEffect)(()=>{e&&setTimeout(()=>a(""),1500)},[e]),(0,I.jsxs)(I.Fragment,{children:[(0,I.jsx)(R.A,{className:"tab-container",children:(0,I.jsxs)(ai.A,{initialSelectedIndex:t(),children:[(0,I.jsxs)(e6.A,{children:[(0,I.jsx)(ae.A,{children:"Angular"}),(0,I.jsx)(ae.A,{children:"HTML"}),(0,I.jsx)(ae.A,{children:"React"}),(0,I.jsx)(ae.A,{children:"Vue"})]}),(0,I.jsxs)(al.A,{children:[(0,I.jsx)(F.A,{content:"external",target:"_blank",href:"how-to-use?current=angular",children:"How to use this in angular"}),(0,I.jsx)("pre",{children:(0,I.jsx)("code",{className:"hljs language-html",children:"<db-control-panel-desktop> Horizontal (Default) </db-control-panel-desktop>"})}),(0,I.jsx)(ee.A,{className:"copy-button",noText:!0,icon:"<db-control-panel-desktop> Horizontal (Default) </db-control-panel-desktop>"===e?"check":"copy",variant:"ghost",onClick:()=>{a("<db-control-panel-desktop> Horizontal (Default) </db-control-panel-desktop>"),navigator.clipboard.writeText("<db-control-panel-desktop> Horizontal (Default) </db-control-panel-desktop>")},children:"Copy code"})]}),(0,I.jsxs)(al.A,{children:[(0,I.jsx)(F.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,I.jsx)("pre",{children:(0,I.jsx)("code",{className:"hljs language-html",children:`<header
   class="db-control-panel-desktop"
-  id="db-control-panel-desktop-2177588360919036"
+  id="db-control-panel-desktop-9589969378706298"
   data-open="true"
 >
   <div class="db-control-panel-desktop-scroll-container">
@@ -5484,7 +5484,7 @@ Large
   </div>
   <div class="db-control-panel-desktop-button">
     <button
-      aria-controls="db-control-panel-desktop-2177588360919036"
+      aria-controls="db-control-panel-desktop-9589969378706298"
       aria-expanded="true"
       class="db-button"
       type="button"
@@ -5507,7 +5507,7 @@ Large
   </div>
 </header>`})}),(0,I.jsx)(ee.A,{className:"copy-button",noText:!0,icon:e===`<header
   class="db-control-panel-desktop"
-  id="db-control-panel-desktop-2177588360919036"
+  id="db-control-panel-desktop-9589969378706298"
   data-open="true"
 >
   <div class="db-control-panel-desktop-scroll-container">
@@ -5515,7 +5515,7 @@ Large
   </div>
   <div class="db-control-panel-desktop-button">
     <button
-      aria-controls="db-control-panel-desktop-2177588360919036"
+      aria-controls="db-control-panel-desktop-9589969378706298"
       aria-expanded="true"
       class="db-button"
       type="button"
@@ -5538,7 +5538,7 @@ Large
   </div>
 </header>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<header
   class="db-control-panel-desktop"
-  id="db-control-panel-desktop-2177588360919036"
+  id="db-control-panel-desktop-9589969378706298"
   data-open="true"
 >
   <div class="db-control-panel-desktop-scroll-container">
@@ -5546,7 +5546,7 @@ Large
   </div>
   <div class="db-control-panel-desktop-button">
     <button
-      aria-controls="db-control-panel-desktop-2177588360919036"
+      aria-controls="db-control-panel-desktop-9589969378706298"
       aria-expanded="true"
       class="db-button"
       type="button"
@@ -5569,7 +5569,7 @@ Large
   </div>
 </header>`),navigator.clipboard.writeText(`<header
   class="db-control-panel-desktop"
-  id="db-control-panel-desktop-2177588360919036"
+  id="db-control-panel-desktop-9589969378706298"
   data-open="true"
 >
   <div class="db-control-panel-desktop-scroll-container">
@@ -5577,7 +5577,7 @@ Large
   </div>
   <div class="db-control-panel-desktop-button">
     <button
-      aria-controls="db-control-panel-desktop-2177588360919036"
+      aria-controls="db-control-panel-desktop-9589969378706298"
       aria-expanded="true"
       class="db-button"
       type="button"
@@ -5616,14 +5616,14 @@ Horizontal (Default)
   Vertical
 </db-control-panel-desktop>`)},children:"Copy code"})]}),(0,I.jsxs)(al.A,{children:[(0,I.jsx)(F.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,I.jsx)("pre",{children:(0,I.jsx)("code",{className:"hljs language-html",children:`<header
   class="db-control-panel-desktop"
-  id="db-control-panel-desktop-8420901096843374"
+  id="db-control-panel-desktop-6121912913127613"
   data-orientation="vertical"
   data-open="true"
 >
   <div class="db-control-panel-desktop-scroll-container">Vertical</div>
   <div class="db-control-panel-desktop-button">
     <button
-      aria-controls="db-control-panel-desktop-8420901096843374"
+      aria-controls="db-control-panel-desktop-6121912913127613"
       aria-expanded="true"
       class="db-button"
       type="button"
@@ -5646,14 +5646,14 @@ Horizontal (Default)
   </div>
 </header>`})}),(0,I.jsx)(ee.A,{className:"copy-button",noText:!0,icon:e===`<header
   class="db-control-panel-desktop"
-  id="db-control-panel-desktop-8420901096843374"
+  id="db-control-panel-desktop-6121912913127613"
   data-orientation="vertical"
   data-open="true"
 >
   <div class="db-control-panel-desktop-scroll-container">Vertical</div>
   <div class="db-control-panel-desktop-button">
     <button
-      aria-controls="db-control-panel-desktop-8420901096843374"
+      aria-controls="db-control-panel-desktop-6121912913127613"
       aria-expanded="true"
       class="db-button"
       type="button"
@@ -5676,14 +5676,14 @@ Horizontal (Default)
   </div>
 </header>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<header
   class="db-control-panel-desktop"
-  id="db-control-panel-desktop-8420901096843374"
+  id="db-control-panel-desktop-6121912913127613"
   data-orientation="vertical"
   data-open="true"
 >
   <div class="db-control-panel-desktop-scroll-container">Vertical</div>
   <div class="db-control-panel-desktop-button">
     <button
-      aria-controls="db-control-panel-desktop-8420901096843374"
+      aria-controls="db-control-panel-desktop-6121912913127613"
       aria-expanded="true"
       class="db-button"
       type="button"
@@ -5706,14 +5706,14 @@ Horizontal (Default)
   </div>
 </header>`),navigator.clipboard.writeText(`<header
   class="db-control-panel-desktop"
-  id="db-control-panel-desktop-8420901096843374"
+  id="db-control-panel-desktop-6121912913127613"
   data-orientation="vertical"
   data-open="true"
 >
   <div class="db-control-panel-desktop-scroll-container">Vertical</div>
   <div class="db-control-panel-desktop-button">
     <button
-      aria-controls="db-control-panel-desktop-8420901096843374"
+      aria-controls="db-control-panel-desktop-6121912913127613"
       aria-expanded="true"
       class="db-button"
       type="button"
@@ -5776,7 +5776,7 @@ Vertical
   With Application Name + Navigation
 </db-control-panel-desktop>`)},children:"Copy code"})]}),(0,I.jsxs)(al.A,{children:[(0,I.jsx)(F.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,I.jsx)("pre",{children:(0,I.jsx)("code",{className:"hljs language-html",children:`<header
   class="db-control-panel-desktop"
-  id="db-control-panel-desktop-2699360424718106"
+  id="db-control-panel-desktop-6627385320922234"
   data-open="true"
 >
   <div class="db-control-panel-desktop-scroll-container">
@@ -5784,7 +5784,7 @@ Vertical
   </div>
   <div class="db-control-panel-desktop-button">
     <button
-      aria-controls="db-control-panel-desktop-2699360424718106"
+      aria-controls="db-control-panel-desktop-6627385320922234"
       aria-expanded="true"
       class="db-button"
       type="button"
@@ -5807,7 +5807,7 @@ Vertical
   </div>
 </header>`})}),(0,I.jsx)(ee.A,{className:"copy-button",noText:!0,icon:e===`<header
   class="db-control-panel-desktop"
-  id="db-control-panel-desktop-2699360424718106"
+  id="db-control-panel-desktop-6627385320922234"
   data-open="true"
 >
   <div class="db-control-panel-desktop-scroll-container">
@@ -5815,7 +5815,7 @@ Vertical
   </div>
   <div class="db-control-panel-desktop-button">
     <button
-      aria-controls="db-control-panel-desktop-2699360424718106"
+      aria-controls="db-control-panel-desktop-6627385320922234"
       aria-expanded="true"
       class="db-button"
       type="button"
@@ -5838,7 +5838,7 @@ Vertical
   </div>
 </header>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<header
   class="db-control-panel-desktop"
-  id="db-control-panel-desktop-2699360424718106"
+  id="db-control-panel-desktop-6627385320922234"
   data-open="true"
 >
   <div class="db-control-panel-desktop-scroll-container">
@@ -5846,7 +5846,7 @@ Vertical
   </div>
   <div class="db-control-panel-desktop-button">
     <button
-      aria-controls="db-control-panel-desktop-2699360424718106"
+      aria-controls="db-control-panel-desktop-6627385320922234"
       aria-expanded="true"
       class="db-button"
       type="button"
@@ -5869,7 +5869,7 @@ Vertical
   </div>
 </header>`),navigator.clipboard.writeText(`<header
   class="db-control-panel-desktop"
-  id="db-control-panel-desktop-2699360424718106"
+  id="db-control-panel-desktop-6627385320922234"
   data-open="true"
 >
   <div class="db-control-panel-desktop-scroll-container">
@@ -5877,7 +5877,7 @@ Vertical
   </div>
   <div class="db-control-panel-desktop-button">
     <button
-      aria-controls="db-control-panel-desktop-2699360424718106"
+      aria-controls="db-control-panel-desktop-6627385320922234"
       aria-expanded="true"
       class="db-button"
       type="button"
@@ -5996,7 +5996,7 @@ With Application Name + Navigation
   Without Navigation
 </db-control-panel-desktop>`)},children:"Copy code"})]}),(0,I.jsxs)(al.A,{children:[(0,I.jsx)(F.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,I.jsx)("pre",{children:(0,I.jsx)("code",{className:"hljs language-html",children:`<header
   class="db-control-panel-desktop"
-  id="db-control-panel-desktop-13068791664632906"
+  id="db-control-panel-desktop-03403046617956462"
   data-open="true"
 >
   <div class="db-control-panel-desktop-scroll-container">
@@ -6004,7 +6004,7 @@ With Application Name + Navigation
   </div>
   <div class="db-control-panel-desktop-button">
     <button
-      aria-controls="db-control-panel-desktop-13068791664632906"
+      aria-controls="db-control-panel-desktop-03403046617956462"
       aria-expanded="true"
       class="db-button"
       type="button"
@@ -6027,7 +6027,7 @@ With Application Name + Navigation
   </div>
 </header>`})}),(0,I.jsx)(ee.A,{className:"copy-button",noText:!0,icon:e===`<header
   class="db-control-panel-desktop"
-  id="db-control-panel-desktop-13068791664632906"
+  id="db-control-panel-desktop-03403046617956462"
   data-open="true"
 >
   <div class="db-control-panel-desktop-scroll-container">
@@ -6035,7 +6035,7 @@ With Application Name + Navigation
   </div>
   <div class="db-control-panel-desktop-button">
     <button
-      aria-controls="db-control-panel-desktop-13068791664632906"
+      aria-controls="db-control-panel-desktop-03403046617956462"
       aria-expanded="true"
       class="db-button"
       type="button"
@@ -6058,7 +6058,7 @@ With Application Name + Navigation
   </div>
 </header>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<header
   class="db-control-panel-desktop"
-  id="db-control-panel-desktop-13068791664632906"
+  id="db-control-panel-desktop-03403046617956462"
   data-open="true"
 >
   <div class="db-control-panel-desktop-scroll-container">
@@ -6066,7 +6066,7 @@ With Application Name + Navigation
   </div>
   <div class="db-control-panel-desktop-button">
     <button
-      aria-controls="db-control-panel-desktop-13068791664632906"
+      aria-controls="db-control-panel-desktop-03403046617956462"
       aria-expanded="true"
       class="db-button"
       type="button"
@@ -6089,7 +6089,7 @@ With Application Name + Navigation
   </div>
 </header>`),navigator.clipboard.writeText(`<header
   class="db-control-panel-desktop"
-  id="db-control-panel-desktop-13068791664632906"
+  id="db-control-panel-desktop-03403046617956462"
   data-open="true"
 >
   <div class="db-control-panel-desktop-scroll-container">
@@ -6097,7 +6097,7 @@ With Application Name + Navigation
   </div>
   <div class="db-control-panel-desktop-button">
     <button
-      aria-controls="db-control-panel-desktop-13068791664632906"
+      aria-controls="db-control-panel-desktop-03403046617956462"
       aria-expanded="true"
       class="db-button"
       type="button"
@@ -6216,7 +6216,7 @@ Without Navigation
   Without Navigation + Primary + Secondary
 </db-control-panel-desktop>`)},children:"Copy code"})]}),(0,I.jsxs)(al.A,{children:[(0,I.jsx)(F.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,I.jsx)("pre",{children:(0,I.jsx)("code",{className:"hljs language-html",children:`<header
   class="db-control-panel-desktop"
-  id="db-control-panel-desktop-5552384752271405"
+  id="db-control-panel-desktop-20147020488524214"
   data-open="true"
 >
   <div class="db-control-panel-desktop-scroll-container">
@@ -6224,7 +6224,7 @@ Without Navigation
   </div>
   <div class="db-control-panel-desktop-button">
     <button
-      aria-controls="db-control-panel-desktop-5552384752271405"
+      aria-controls="db-control-panel-desktop-20147020488524214"
       aria-expanded="true"
       class="db-button"
       type="button"
@@ -6247,7 +6247,7 @@ Without Navigation
   </div>
 </header>`})}),(0,I.jsx)(ee.A,{className:"copy-button",noText:!0,icon:e===`<header
   class="db-control-panel-desktop"
-  id="db-control-panel-desktop-5552384752271405"
+  id="db-control-panel-desktop-20147020488524214"
   data-open="true"
 >
   <div class="db-control-panel-desktop-scroll-container">
@@ -6255,7 +6255,7 @@ Without Navigation
   </div>
   <div class="db-control-panel-desktop-button">
     <button
-      aria-controls="db-control-panel-desktop-5552384752271405"
+      aria-controls="db-control-panel-desktop-20147020488524214"
       aria-expanded="true"
       class="db-button"
       type="button"
@@ -6278,7 +6278,7 @@ Without Navigation
   </div>
 </header>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<header
   class="db-control-panel-desktop"
-  id="db-control-panel-desktop-5552384752271405"
+  id="db-control-panel-desktop-20147020488524214"
   data-open="true"
 >
   <div class="db-control-panel-desktop-scroll-container">
@@ -6286,7 +6286,7 @@ Without Navigation
   </div>
   <div class="db-control-panel-desktop-button">
     <button
-      aria-controls="db-control-panel-desktop-5552384752271405"
+      aria-controls="db-control-panel-desktop-20147020488524214"
       aria-expanded="true"
       class="db-button"
       type="button"
@@ -6309,7 +6309,7 @@ Without Navigation
   </div>
 </header>`),navigator.clipboard.writeText(`<header
   class="db-control-panel-desktop"
-  id="db-control-panel-desktop-5552384752271405"
+  id="db-control-panel-desktop-20147020488524214"
   data-open="true"
 >
   <div class="db-control-panel-desktop-scroll-container">
@@ -6317,7 +6317,7 @@ Without Navigation
   </div>
   <div class="db-control-panel-desktop-button">
     <button
-      aria-controls="db-control-panel-desktop-5552384752271405"
+      aria-controls="db-control-panel-desktop-20147020488524214"
       aria-expanded="true"
       class="db-button"
       type="button"
@@ -6436,7 +6436,7 @@ Without Navigation + Primary + Secondary
   Without Navigation + Primary
 </db-control-panel-desktop>`)},children:"Copy code"})]}),(0,I.jsxs)(al.A,{children:[(0,I.jsx)(F.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,I.jsx)("pre",{children:(0,I.jsx)("code",{className:"hljs language-html",children:`<header
   class="db-control-panel-desktop"
-  id="db-control-panel-desktop-069756835020785"
+  id="db-control-panel-desktop-7622070276308306"
   data-open="true"
 >
   <div class="db-control-panel-desktop-scroll-container">
@@ -6444,7 +6444,7 @@ Without Navigation + Primary + Secondary
   </div>
   <div class="db-control-panel-desktop-button">
     <button
-      aria-controls="db-control-panel-desktop-069756835020785"
+      aria-controls="db-control-panel-desktop-7622070276308306"
       aria-expanded="true"
       class="db-button"
       type="button"
@@ -6467,7 +6467,7 @@ Without Navigation + Primary + Secondary
   </div>
 </header>`})}),(0,I.jsx)(ee.A,{className:"copy-button",noText:!0,icon:e===`<header
   class="db-control-panel-desktop"
-  id="db-control-panel-desktop-069756835020785"
+  id="db-control-panel-desktop-7622070276308306"
   data-open="true"
 >
   <div class="db-control-panel-desktop-scroll-container">
@@ -6475,7 +6475,7 @@ Without Navigation + Primary + Secondary
   </div>
   <div class="db-control-panel-desktop-button">
     <button
-      aria-controls="db-control-panel-desktop-069756835020785"
+      aria-controls="db-control-panel-desktop-7622070276308306"
       aria-expanded="true"
       class="db-button"
       type="button"
@@ -6498,7 +6498,7 @@ Without Navigation + Primary + Secondary
   </div>
 </header>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<header
   class="db-control-panel-desktop"
-  id="db-control-panel-desktop-069756835020785"
+  id="db-control-panel-desktop-7622070276308306"
   data-open="true"
 >
   <div class="db-control-panel-desktop-scroll-container">
@@ -6506,7 +6506,7 @@ Without Navigation + Primary + Secondary
   </div>
   <div class="db-control-panel-desktop-button">
     <button
-      aria-controls="db-control-panel-desktop-069756835020785"
+      aria-controls="db-control-panel-desktop-7622070276308306"
       aria-expanded="true"
       class="db-button"
       type="button"
@@ -6529,7 +6529,7 @@ Without Navigation + Primary + Secondary
   </div>
 </header>`),navigator.clipboard.writeText(`<header
   class="db-control-panel-desktop"
-  id="db-control-panel-desktop-069756835020785"
+  id="db-control-panel-desktop-7622070276308306"
   data-open="true"
 >
   <div class="db-control-panel-desktop-scroll-container">
@@ -6537,7 +6537,7 @@ Without Navigation + Primary + Secondary
   </div>
   <div class="db-control-panel-desktop-button">
     <button
-      aria-controls="db-control-panel-desktop-069756835020785"
+      aria-controls="db-control-panel-desktop-7622070276308306"
       aria-expanded="true"
       class="db-button"
       type="button"
@@ -6656,7 +6656,7 @@ Without Navigation + Primary
   Without Navigation + Secondary
 </db-control-panel-desktop>`)},children:"Copy code"})]}),(0,I.jsxs)(al.A,{children:[(0,I.jsx)(F.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,I.jsx)("pre",{children:(0,I.jsx)("code",{className:"hljs language-html",children:`<header
   class="db-control-panel-desktop"
-  id="db-control-panel-desktop-8841715444119818"
+  id="db-control-panel-desktop-6048939723229868"
   data-open="true"
 >
   <div class="db-control-panel-desktop-scroll-container">
@@ -6664,7 +6664,7 @@ Without Navigation + Primary
   </div>
   <div class="db-control-panel-desktop-button">
     <button
-      aria-controls="db-control-panel-desktop-8841715444119818"
+      aria-controls="db-control-panel-desktop-6048939723229868"
       aria-expanded="true"
       class="db-button"
       type="button"
@@ -6687,7 +6687,7 @@ Without Navigation + Primary
   </div>
 </header>`})}),(0,I.jsx)(ee.A,{className:"copy-button",noText:!0,icon:e===`<header
   class="db-control-panel-desktop"
-  id="db-control-panel-desktop-8841715444119818"
+  id="db-control-panel-desktop-6048939723229868"
   data-open="true"
 >
   <div class="db-control-panel-desktop-scroll-container">
@@ -6695,7 +6695,7 @@ Without Navigation + Primary
   </div>
   <div class="db-control-panel-desktop-button">
     <button
-      aria-controls="db-control-panel-desktop-8841715444119818"
+      aria-controls="db-control-panel-desktop-6048939723229868"
       aria-expanded="true"
       class="db-button"
       type="button"
@@ -6718,7 +6718,7 @@ Without Navigation + Primary
   </div>
 </header>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<header
   class="db-control-panel-desktop"
-  id="db-control-panel-desktop-8841715444119818"
+  id="db-control-panel-desktop-6048939723229868"
   data-open="true"
 >
   <div class="db-control-panel-desktop-scroll-container">
@@ -6726,7 +6726,7 @@ Without Navigation + Primary
   </div>
   <div class="db-control-panel-desktop-button">
     <button
-      aria-controls="db-control-panel-desktop-8841715444119818"
+      aria-controls="db-control-panel-desktop-6048939723229868"
       aria-expanded="true"
       class="db-button"
       type="button"
@@ -6749,7 +6749,7 @@ Without Navigation + Primary
   </div>
 </header>`),navigator.clipboard.writeText(`<header
   class="db-control-panel-desktop"
-  id="db-control-panel-desktop-8841715444119818"
+  id="db-control-panel-desktop-6048939723229868"
   data-open="true"
 >
   <div class="db-control-panel-desktop-scroll-container">
@@ -6757,7 +6757,7 @@ Without Navigation + Primary
   </div>
   <div class="db-control-panel-desktop-button">
     <button
-      aria-controls="db-control-panel-desktop-8841715444119818"
+      aria-controls="db-control-panel-desktop-6048939723229868"
       aria-expanded="true"
       class="db-button"
       type="button"
@@ -6876,7 +6876,7 @@ Without Navigation + Secondary
   Without Application Name
 </db-control-panel-desktop>`)},children:"Copy code"})]}),(0,I.jsxs)(al.A,{children:[(0,I.jsx)(F.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,I.jsx)("pre",{children:(0,I.jsx)("code",{className:"hljs language-html",children:`<header
   class="db-control-panel-desktop"
-  id="db-control-panel-desktop-7652250753730393"
+  id="db-control-panel-desktop-3242185168100772"
   data-open="true"
 >
   <div class="db-control-panel-desktop-scroll-container">
@@ -6884,7 +6884,7 @@ Without Navigation + Secondary
   </div>
   <div class="db-control-panel-desktop-button">
     <button
-      aria-controls="db-control-panel-desktop-7652250753730393"
+      aria-controls="db-control-panel-desktop-3242185168100772"
       aria-expanded="true"
       class="db-button"
       type="button"
@@ -6907,7 +6907,7 @@ Without Navigation + Secondary
   </div>
 </header>`})}),(0,I.jsx)(ee.A,{className:"copy-button",noText:!0,icon:e===`<header
   class="db-control-panel-desktop"
-  id="db-control-panel-desktop-7652250753730393"
+  id="db-control-panel-desktop-3242185168100772"
   data-open="true"
 >
   <div class="db-control-panel-desktop-scroll-container">
@@ -6915,7 +6915,7 @@ Without Navigation + Secondary
   </div>
   <div class="db-control-panel-desktop-button">
     <button
-      aria-controls="db-control-panel-desktop-7652250753730393"
+      aria-controls="db-control-panel-desktop-3242185168100772"
       aria-expanded="true"
       class="db-button"
       type="button"
@@ -6938,7 +6938,7 @@ Without Navigation + Secondary
   </div>
 </header>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<header
   class="db-control-panel-desktop"
-  id="db-control-panel-desktop-7652250753730393"
+  id="db-control-panel-desktop-3242185168100772"
   data-open="true"
 >
   <div class="db-control-panel-desktop-scroll-container">
@@ -6946,7 +6946,7 @@ Without Navigation + Secondary
   </div>
   <div class="db-control-panel-desktop-button">
     <button
-      aria-controls="db-control-panel-desktop-7652250753730393"
+      aria-controls="db-control-panel-desktop-3242185168100772"
       aria-expanded="true"
       class="db-button"
       type="button"
@@ -6969,7 +6969,7 @@ Without Navigation + Secondary
   </div>
 </header>`),navigator.clipboard.writeText(`<header
   class="db-control-panel-desktop"
-  id="db-control-panel-desktop-7652250753730393"
+  id="db-control-panel-desktop-3242185168100772"
   data-open="true"
 >
   <div class="db-control-panel-desktop-scroll-container">
@@ -6977,7 +6977,7 @@ Without Navigation + Secondary
   </div>
   <div class="db-control-panel-desktop-button">
     <button
-      aria-controls="db-control-panel-desktop-7652250753730393"
+      aria-controls="db-control-panel-desktop-3242185168100772"
       aria-expanded="true"
       class="db-button"
       type="button"
@@ -7096,7 +7096,7 @@ Without Application Name
   Without Application Name + Navigation
 </db-control-panel-desktop>`)},children:"Copy code"})]}),(0,I.jsxs)(al.A,{children:[(0,I.jsx)(F.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,I.jsx)("pre",{children:(0,I.jsx)("code",{className:"hljs language-html",children:`<header
   class="db-control-panel-desktop"
-  id="db-control-panel-desktop-7729078402653878"
+  id="db-control-panel-desktop-23373269473116753"
   data-open="true"
 >
   <div class="db-control-panel-desktop-scroll-container">
@@ -7104,7 +7104,7 @@ Without Application Name
   </div>
   <div class="db-control-panel-desktop-button">
     <button
-      aria-controls="db-control-panel-desktop-7729078402653878"
+      aria-controls="db-control-panel-desktop-23373269473116753"
       aria-expanded="true"
       class="db-button"
       type="button"
@@ -7127,7 +7127,7 @@ Without Application Name
   </div>
 </header>`})}),(0,I.jsx)(ee.A,{className:"copy-button",noText:!0,icon:e===`<header
   class="db-control-panel-desktop"
-  id="db-control-panel-desktop-7729078402653878"
+  id="db-control-panel-desktop-23373269473116753"
   data-open="true"
 >
   <div class="db-control-panel-desktop-scroll-container">
@@ -7135,7 +7135,7 @@ Without Application Name
   </div>
   <div class="db-control-panel-desktop-button">
     <button
-      aria-controls="db-control-panel-desktop-7729078402653878"
+      aria-controls="db-control-panel-desktop-23373269473116753"
       aria-expanded="true"
       class="db-button"
       type="button"
@@ -7158,7 +7158,7 @@ Without Application Name
   </div>
 </header>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<header
   class="db-control-panel-desktop"
-  id="db-control-panel-desktop-7729078402653878"
+  id="db-control-panel-desktop-23373269473116753"
   data-open="true"
 >
   <div class="db-control-panel-desktop-scroll-container">
@@ -7166,7 +7166,7 @@ Without Application Name
   </div>
   <div class="db-control-panel-desktop-button">
     <button
-      aria-controls="db-control-panel-desktop-7729078402653878"
+      aria-controls="db-control-panel-desktop-23373269473116753"
       aria-expanded="true"
       class="db-button"
       type="button"
@@ -7189,7 +7189,7 @@ Without Application Name
   </div>
 </header>`),navigator.clipboard.writeText(`<header
   class="db-control-panel-desktop"
-  id="db-control-panel-desktop-7729078402653878"
+  id="db-control-panel-desktop-23373269473116753"
   data-open="true"
 >
   <div class="db-control-panel-desktop-scroll-container">
@@ -7197,7 +7197,7 @@ Without Application Name
   </div>
   <div class="db-control-panel-desktop-button">
     <button
-      aria-controls="db-control-panel-desktop-7729078402653878"
+      aria-controls="db-control-panel-desktop-23373269473116753"
       aria-expanded="true"
       class="db-button"
       type="button"
@@ -54751,7 +54751,7 @@ Centered
   <db-tab-panel> Tab Panel 2 </db-tab-panel>
   <db-tab-panel> Tab Panel 3 </db-tab-panel>
 </db-tabs>`)},children:"Copy code"})]}),(0,I.jsxs)(al.A,{children:[(0,I.jsx)(F.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,I.jsx)("pre",{children:(0,I.jsx)("code",{className:"hljs language-html",children:`<div
-  id="tabs-3660621610453517"
+  id="tabs-537840696953659"
   class="db-tabs"
   data-alignment="start"
   data-width="auto"
@@ -54779,7 +54779,7 @@ Centered
   <section role="tabpanel" class="db-tab-panel">Tab Panel 2</section>
   <section role="tabpanel" class="db-tab-panel">Tab Panel 3</section>
 </div>`})}),(0,I.jsx)(ee.A,{className:"copy-button",noText:!0,icon:e===`<div
-  id="tabs-3660621610453517"
+  id="tabs-537840696953659"
   class="db-tabs"
   data-alignment="start"
   data-width="auto"
@@ -54807,7 +54807,7 @@ Centered
   <section role="tabpanel" class="db-tab-panel">Tab Panel 2</section>
   <section role="tabpanel" class="db-tab-panel">Tab Panel 3</section>
 </div>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<div
-  id="tabs-3660621610453517"
+  id="tabs-537840696953659"
   class="db-tabs"
   data-alignment="start"
   data-width="auto"
@@ -54835,7 +54835,7 @@ Centered
   <section role="tabpanel" class="db-tab-panel">Tab Panel 2</section>
   <section role="tabpanel" class="db-tab-panel">Tab Panel 3</section>
 </div>`),navigator.clipboard.writeText(`<div
-  id="tabs-3660621610453517"
+  id="tabs-537840696953659"
   class="db-tabs"
   data-alignment="start"
   data-width="auto"
@@ -55019,7 +55019,7 @@ Tab Panel 3
   <db-tab-panel> Tab Panel 2 </db-tab-panel>
   <db-tab-panel> Tab Panel 3 </db-tab-panel>
 </db-tabs>`)},children:"Copy code"})]}),(0,I.jsxs)(al.A,{children:[(0,I.jsx)(F.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,I.jsx)("pre",{children:(0,I.jsx)("code",{className:"hljs language-html",children:`<div
-  id="tabs-23334183579875523"
+  id="tabs-6138898717084711"
   class="db-tabs"
   data-alignment="start"
   data-width="auto"
@@ -55047,7 +55047,7 @@ Tab Panel 3
   <section role="tabpanel" class="db-tab-panel">Tab Panel 2</section>
   <section role="tabpanel" class="db-tab-panel">Tab Panel 3</section>
 </div>`})}),(0,I.jsx)(ee.A,{className:"copy-button",noText:!0,icon:e===`<div
-  id="tabs-23334183579875523"
+  id="tabs-6138898717084711"
   class="db-tabs"
   data-alignment="start"
   data-width="auto"
@@ -55075,7 +55075,7 @@ Tab Panel 3
   <section role="tabpanel" class="db-tab-panel">Tab Panel 2</section>
   <section role="tabpanel" class="db-tab-panel">Tab Panel 3</section>
 </div>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<div
-  id="tabs-23334183579875523"
+  id="tabs-6138898717084711"
   class="db-tabs"
   data-alignment="start"
   data-width="auto"
@@ -55103,7 +55103,7 @@ Tab Panel 3
   <section role="tabpanel" class="db-tab-panel">Tab Panel 2</section>
   <section role="tabpanel" class="db-tab-panel">Tab Panel 3</section>
 </div>`),navigator.clipboard.writeText(`<div
-  id="tabs-23334183579875523"
+  id="tabs-6138898717084711"
   class="db-tabs"
   data-alignment="start"
   data-width="auto"
@@ -55287,7 +55287,7 @@ Tab Panel 3
   <db-tab-panel> Tab Panel 2 </db-tab-panel>
   <db-tab-panel> Tab Panel 3 </db-tab-panel>
 </db-tabs>`)},children:"Copy code"})]}),(0,I.jsxs)(al.A,{children:[(0,I.jsx)(F.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,I.jsx)("pre",{children:(0,I.jsx)("code",{className:"hljs language-html",children:`<div
-  id="tabs-8715794948322177"
+  id="tabs-0010159112472452048"
   class="db-tabs"
   data-alignment="start"
   data-width="auto"
@@ -55315,7 +55315,7 @@ Tab Panel 3
   <section role="tabpanel" class="db-tab-panel">Tab Panel 2</section>
   <section role="tabpanel" class="db-tab-panel">Tab Panel 3</section>
 </div>`})}),(0,I.jsx)(ee.A,{className:"copy-button",noText:!0,icon:e===`<div
-  id="tabs-8715794948322177"
+  id="tabs-0010159112472452048"
   class="db-tabs"
   data-alignment="start"
   data-width="auto"
@@ -55343,7 +55343,7 @@ Tab Panel 3
   <section role="tabpanel" class="db-tab-panel">Tab Panel 2</section>
   <section role="tabpanel" class="db-tab-panel">Tab Panel 3</section>
 </div>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<div
-  id="tabs-8715794948322177"
+  id="tabs-0010159112472452048"
   class="db-tabs"
   data-alignment="start"
   data-width="auto"
@@ -55371,7 +55371,7 @@ Tab Panel 3
   <section role="tabpanel" class="db-tab-panel">Tab Panel 2</section>
   <section role="tabpanel" class="db-tab-panel">Tab Panel 3</section>
 </div>`),navigator.clipboard.writeText(`<div
-  id="tabs-8715794948322177"
+  id="tabs-0010159112472452048"
   class="db-tabs"
   data-alignment="start"
   data-width="auto"
@@ -55555,7 +55555,7 @@ Tab Panel 3
   <db-tab-panel> Tab Panel 2 </db-tab-panel>
   <db-tab-panel> Tab Panel 3 </db-tab-panel>
 </db-tabs>`)},children:"Copy code"})]}),(0,I.jsxs)(al.A,{children:[(0,I.jsx)(F.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,I.jsx)("pre",{children:(0,I.jsx)("code",{className:"hljs language-html",children:`<div
-  id="tabs-3483307052226653"
+  id="tabs-2341358245274362"
   class="db-tabs"
   data-orientation="horizontal"
   data-alignment="start"
@@ -55584,7 +55584,7 @@ Tab Panel 3
   <section role="tabpanel" class="db-tab-panel">Tab Panel 2</section>
   <section role="tabpanel" class="db-tab-panel">Tab Panel 3</section>
 </div>`})}),(0,I.jsx)(ee.A,{className:"copy-button",noText:!0,icon:e===`<div
-  id="tabs-3483307052226653"
+  id="tabs-2341358245274362"
   class="db-tabs"
   data-orientation="horizontal"
   data-alignment="start"
@@ -55613,7 +55613,7 @@ Tab Panel 3
   <section role="tabpanel" class="db-tab-panel">Tab Panel 2</section>
   <section role="tabpanel" class="db-tab-panel">Tab Panel 3</section>
 </div>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<div
-  id="tabs-3483307052226653"
+  id="tabs-2341358245274362"
   class="db-tabs"
   data-orientation="horizontal"
   data-alignment="start"
@@ -55642,7 +55642,7 @@ Tab Panel 3
   <section role="tabpanel" class="db-tab-panel">Tab Panel 2</section>
   <section role="tabpanel" class="db-tab-panel">Tab Panel 3</section>
 </div>`),navigator.clipboard.writeText(`<div
-  id="tabs-3483307052226653"
+  id="tabs-2341358245274362"
   class="db-tabs"
   data-orientation="horizontal"
   data-alignment="start"
@@ -55827,7 +55827,7 @@ Tab Panel 3
   <db-tab-panel> Tab Panel 2 </db-tab-panel>
   <db-tab-panel> Tab Panel 3 </db-tab-panel>
 </db-tabs>`)},children:"Copy code"})]}),(0,I.jsxs)(al.A,{children:[(0,I.jsx)(F.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,I.jsx)("pre",{children:(0,I.jsx)("code",{className:"hljs language-html",children:`<div
-  id="tabs-0819119898579439"
+  id="tabs-22157704971980297"
   class="db-tabs"
   data-orientation="vertical"
   data-alignment="start"
@@ -55856,7 +55856,7 @@ Tab Panel 3
   <section role="tabpanel" class="db-tab-panel">Tab Panel 2</section>
   <section role="tabpanel" class="db-tab-panel">Tab Panel 3</section>
 </div>`})}),(0,I.jsx)(ee.A,{className:"copy-button",noText:!0,icon:e===`<div
-  id="tabs-0819119898579439"
+  id="tabs-22157704971980297"
   class="db-tabs"
   data-orientation="vertical"
   data-alignment="start"
@@ -55885,7 +55885,7 @@ Tab Panel 3
   <section role="tabpanel" class="db-tab-panel">Tab Panel 2</section>
   <section role="tabpanel" class="db-tab-panel">Tab Panel 3</section>
 </div>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<div
-  id="tabs-0819119898579439"
+  id="tabs-22157704971980297"
   class="db-tabs"
   data-orientation="vertical"
   data-alignment="start"
@@ -55914,7 +55914,7 @@ Tab Panel 3
   <section role="tabpanel" class="db-tab-panel">Tab Panel 2</section>
   <section role="tabpanel" class="db-tab-panel">Tab Panel 3</section>
 </div>`),navigator.clipboard.writeText(`<div
-  id="tabs-0819119898579439"
+  id="tabs-22157704971980297"
   class="db-tabs"
   data-orientation="vertical"
   data-alignment="start"
@@ -56099,7 +56099,7 @@ Tab Panel 3
   <db-tab-panel> Tab Panel 2 </db-tab-panel>
   <db-tab-panel> Tab Panel 3 </db-tab-panel>
 </db-tabs>`)},children:"Copy code"})]}),(0,I.jsxs)(al.A,{children:[(0,I.jsx)(F.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,I.jsx)("pre",{children:(0,I.jsx)("code",{className:"hljs language-html",children:`<div
-  id="tabs-7694935245267347"
+  id="tabs-9236252229814513"
   class="db-tabs"
   data-alignment="start"
   data-width="auto"
@@ -56127,7 +56127,7 @@ Tab Panel 3
   <section role="tabpanel" class="db-tab-panel">Tab Panel 2</section>
   <section role="tabpanel" class="db-tab-panel">Tab Panel 3</section>
 </div>`})}),(0,I.jsx)(ee.A,{className:"copy-button",noText:!0,icon:e===`<div
-  id="tabs-7694935245267347"
+  id="tabs-9236252229814513"
   class="db-tabs"
   data-alignment="start"
   data-width="auto"
@@ -56155,7 +56155,7 @@ Tab Panel 3
   <section role="tabpanel" class="db-tab-panel">Tab Panel 2</section>
   <section role="tabpanel" class="db-tab-panel">Tab Panel 3</section>
 </div>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<div
-  id="tabs-7694935245267347"
+  id="tabs-9236252229814513"
   class="db-tabs"
   data-alignment="start"
   data-width="auto"
@@ -56183,7 +56183,7 @@ Tab Panel 3
   <section role="tabpanel" class="db-tab-panel">Tab Panel 2</section>
   <section role="tabpanel" class="db-tab-panel">Tab Panel 3</section>
 </div>`),navigator.clipboard.writeText(`<div
-  id="tabs-7694935245267347"
+  id="tabs-9236252229814513"
   class="db-tabs"
   data-alignment="start"
   data-width="auto"
@@ -56367,7 +56367,7 @@ Tab Panel 3
   <db-tab-panel> Tab Panel 2 </db-tab-panel>
   <db-tab-panel> Tab Panel 3 </db-tab-panel>
 </db-tabs>`)},children:"Copy code"})]}),(0,I.jsxs)(al.A,{children:[(0,I.jsx)(F.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,I.jsx)("pre",{children:(0,I.jsx)("code",{className:"hljs language-html",children:`<div
-  id="tabs-8756946549552139"
+  id="tabs-22457622630153906"
   class="db-tabs"
   data-alignment="start"
   data-width="full"
@@ -56395,7 +56395,7 @@ Tab Panel 3
   <section role="tabpanel" class="db-tab-panel">Tab Panel 2</section>
   <section role="tabpanel" class="db-tab-panel">Tab Panel 3</section>
 </div>`})}),(0,I.jsx)(ee.A,{className:"copy-button",noText:!0,icon:e===`<div
-  id="tabs-8756946549552139"
+  id="tabs-22457622630153906"
   class="db-tabs"
   data-alignment="start"
   data-width="full"
@@ -56423,7 +56423,7 @@ Tab Panel 3
   <section role="tabpanel" class="db-tab-panel">Tab Panel 2</section>
   <section role="tabpanel" class="db-tab-panel">Tab Panel 3</section>
 </div>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<div
-  id="tabs-8756946549552139"
+  id="tabs-22457622630153906"
   class="db-tabs"
   data-alignment="start"
   data-width="full"
@@ -56451,7 +56451,7 @@ Tab Panel 3
   <section role="tabpanel" class="db-tab-panel">Tab Panel 2</section>
   <section role="tabpanel" class="db-tab-panel">Tab Panel 3</section>
 </div>`),navigator.clipboard.writeText(`<div
-  id="tabs-8756946549552139"
+  id="tabs-22457622630153906"
   class="db-tabs"
   data-alignment="start"
   data-width="full"
@@ -56635,7 +56635,7 @@ Tab Panel 3
   <db-tab-panel> Tab Panel 2 </db-tab-panel>
   <db-tab-panel> Tab Panel 3 </db-tab-panel>
 </db-tabs>`)},children:"Copy code"})]}),(0,I.jsxs)(al.A,{children:[(0,I.jsx)(F.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,I.jsx)("pre",{children:(0,I.jsx)("code",{className:"hljs language-html",children:`<div
-  id="tabs-4381838240601861"
+  id="tabs-5312076001176973"
   class="db-tabs"
   data-alignment="center"
   data-width="full"
@@ -56663,7 +56663,7 @@ Tab Panel 3
   <section role="tabpanel" class="db-tab-panel">Tab Panel 2</section>
   <section role="tabpanel" class="db-tab-panel">Tab Panel 3</section>
 </div>`})}),(0,I.jsx)(ee.A,{className:"copy-button",noText:!0,icon:e===`<div
-  id="tabs-4381838240601861"
+  id="tabs-5312076001176973"
   class="db-tabs"
   data-alignment="center"
   data-width="full"
@@ -56691,7 +56691,7 @@ Tab Panel 3
   <section role="tabpanel" class="db-tab-panel">Tab Panel 2</section>
   <section role="tabpanel" class="db-tab-panel">Tab Panel 3</section>
 </div>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<div
-  id="tabs-4381838240601861"
+  id="tabs-5312076001176973"
   class="db-tabs"
   data-alignment="center"
   data-width="full"
@@ -56719,7 +56719,7 @@ Tab Panel 3
   <section role="tabpanel" class="db-tab-panel">Tab Panel 2</section>
   <section role="tabpanel" class="db-tab-panel">Tab Panel 3</section>
 </div>`),navigator.clipboard.writeText(`<div
-  id="tabs-4381838240601861"
+  id="tabs-5312076001176973"
   class="db-tabs"
   data-alignment="center"
   data-width="full"
@@ -56903,7 +56903,7 @@ Tab Panel 3
   <db-tab-panel> Tab Panel 2 </db-tab-panel>
   <db-tab-panel> Tab Panel 3 </db-tab-panel>
 </db-tabs>`)},children:"Copy code"})]}),(0,I.jsxs)(al.A,{children:[(0,I.jsx)(F.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,I.jsx)("pre",{children:(0,I.jsx)("code",{className:"hljs language-html",children:`<div
-  id="tabs-6346924540015002"
+  id="tabs-8926188172811085"
   class="db-tabs"
   data-alignment="start"
   data-width="auto"
@@ -56931,7 +56931,7 @@ Tab Panel 3
   <section role="tabpanel" class="db-tab-panel">Tab Panel 2</section>
   <section role="tabpanel" class="db-tab-panel">Tab Panel 3</section>
 </div>`})}),(0,I.jsx)(ee.A,{className:"copy-button",noText:!0,icon:e===`<div
-  id="tabs-6346924540015002"
+  id="tabs-8926188172811085"
   class="db-tabs"
   data-alignment="start"
   data-width="auto"
@@ -56959,7 +56959,7 @@ Tab Panel 3
   <section role="tabpanel" class="db-tab-panel">Tab Panel 2</section>
   <section role="tabpanel" class="db-tab-panel">Tab Panel 3</section>
 </div>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<div
-  id="tabs-6346924540015002"
+  id="tabs-8926188172811085"
   class="db-tabs"
   data-alignment="start"
   data-width="auto"
@@ -56987,7 +56987,7 @@ Tab Panel 3
   <section role="tabpanel" class="db-tab-panel">Tab Panel 2</section>
   <section role="tabpanel" class="db-tab-panel">Tab Panel 3</section>
 </div>`),navigator.clipboard.writeText(`<div
-  id="tabs-6346924540015002"
+  id="tabs-8926188172811085"
   class="db-tabs"
   data-alignment="start"
   data-width="auto"
@@ -57171,7 +57171,7 @@ Tab Panel 3
   <db-tab-panel> Tab Panel 2 </db-tab-panel>
   <db-tab-panel> Tab Panel 3 </db-tab-panel>
 </db-tabs>`)},children:"Copy code"})]}),(0,I.jsxs)(al.A,{children:[(0,I.jsx)(F.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,I.jsx)("pre",{children:(0,I.jsx)("code",{className:"hljs language-html",children:`<div
-  id="tabs-1430350499185531"
+  id="tabs-6272964197739559"
   class="db-tabs"
   data-scroll-behavior="arrows"
   data-alignment="start"
@@ -57200,7 +57200,7 @@ Tab Panel 3
   <section role="tabpanel" class="db-tab-panel">Tab Panel 2</section>
   <section role="tabpanel" class="db-tab-panel">Tab Panel 3</section>
 </div>`})}),(0,I.jsx)(ee.A,{className:"copy-button",noText:!0,icon:e===`<div
-  id="tabs-1430350499185531"
+  id="tabs-6272964197739559"
   class="db-tabs"
   data-scroll-behavior="arrows"
   data-alignment="start"
@@ -57229,7 +57229,7 @@ Tab Panel 3
   <section role="tabpanel" class="db-tab-panel">Tab Panel 2</section>
   <section role="tabpanel" class="db-tab-panel">Tab Panel 3</section>
 </div>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<div
-  id="tabs-1430350499185531"
+  id="tabs-6272964197739559"
   class="db-tabs"
   data-scroll-behavior="arrows"
   data-alignment="start"
@@ -57258,7 +57258,7 @@ Tab Panel 3
   <section role="tabpanel" class="db-tab-panel">Tab Panel 2</section>
   <section role="tabpanel" class="db-tab-panel">Tab Panel 3</section>
 </div>`),navigator.clipboard.writeText(`<div
-  id="tabs-1430350499185531"
+  id="tabs-6272964197739559"
   class="db-tabs"
   data-scroll-behavior="arrows"
   data-alignment="start"
@@ -57443,7 +57443,7 @@ Tab Panel 3
   <db-tab-panel> Tab Panel 2 </db-tab-panel>
   <db-tab-panel> Tab Panel 3 </db-tab-panel>
 </db-tabs>`)},children:"Copy code"})]}),(0,I.jsxs)(al.A,{children:[(0,I.jsx)(F.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,I.jsx)("pre",{children:(0,I.jsx)("code",{className:"hljs language-html",children:`<div
-  id="tabs-7818080553589967"
+  id="tabs-3453825844881717"
   class="db-tabs"
   data-alignment="start"
   data-width="auto"
@@ -57471,7 +57471,7 @@ Tab Panel 3
   <section role="tabpanel" class="db-tab-panel">Tab Panel 2</section>
   <section role="tabpanel" class="db-tab-panel">Tab Panel 3</section>
 </div>`})}),(0,I.jsx)(ee.A,{className:"copy-button",noText:!0,icon:e===`<div
-  id="tabs-7818080553589967"
+  id="tabs-3453825844881717"
   class="db-tabs"
   data-alignment="start"
   data-width="auto"
@@ -57499,7 +57499,7 @@ Tab Panel 3
   <section role="tabpanel" class="db-tab-panel">Tab Panel 2</section>
   <section role="tabpanel" class="db-tab-panel">Tab Panel 3</section>
 </div>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<div
-  id="tabs-7818080553589967"
+  id="tabs-3453825844881717"
   class="db-tabs"
   data-alignment="start"
   data-width="auto"
@@ -57527,7 +57527,7 @@ Tab Panel 3
   <section role="tabpanel" class="db-tab-panel">Tab Panel 2</section>
   <section role="tabpanel" class="db-tab-panel">Tab Panel 3</section>
 </div>`),navigator.clipboard.writeText(`<div
-  id="tabs-7818080553589967"
+  id="tabs-3453825844881717"
   class="db-tabs"
   data-alignment="start"
   data-width="auto"
@@ -57711,7 +57711,7 @@ Tab Panel 3
   <db-tab-panel> Tab Panel 2 </db-tab-panel>
   <db-tab-panel> Tab Panel 3 </db-tab-panel>
 </db-tabs>`)},children:"Copy code"})]}),(0,I.jsxs)(al.A,{children:[(0,I.jsx)(F.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,I.jsx)("pre",{children:(0,I.jsx)("code",{className:"hljs language-html",children:`<div
-  id="tabs-745718517512598"
+  id="tabs-5212785590238068"
   class="db-tabs"
   data-alignment="start"
   data-width="auto"
@@ -57739,7 +57739,7 @@ Tab Panel 3
   <section role="tabpanel" class="db-tab-panel">Tab Panel 2</section>
   <section role="tabpanel" class="db-tab-panel">Tab Panel 3</section>
 </div>`})}),(0,I.jsx)(ee.A,{className:"copy-button",noText:!0,icon:e===`<div
-  id="tabs-745718517512598"
+  id="tabs-5212785590238068"
   class="db-tabs"
   data-alignment="start"
   data-width="auto"
@@ -57767,7 +57767,7 @@ Tab Panel 3
   <section role="tabpanel" class="db-tab-panel">Tab Panel 2</section>
   <section role="tabpanel" class="db-tab-panel">Tab Panel 3</section>
 </div>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<div
-  id="tabs-745718517512598"
+  id="tabs-5212785590238068"
   class="db-tabs"
   data-alignment="start"
   data-width="auto"
@@ -57795,7 +57795,7 @@ Tab Panel 3
   <section role="tabpanel" class="db-tab-panel">Tab Panel 2</section>
   <section role="tabpanel" class="db-tab-panel">Tab Panel 3</section>
 </div>`),navigator.clipboard.writeText(`<div
-  id="tabs-745718517512598"
+  id="tabs-5212785590238068"
   class="db-tabs"
   data-alignment="start"
   data-width="auto"
@@ -57979,7 +57979,7 @@ Tab Panel 3
   <db-tab-panel> Tab Panel 2 </db-tab-panel>
   <db-tab-panel> Tab Panel 3 </db-tab-panel>
 </db-tabs>`)},children:"Copy code"})]}),(0,I.jsxs)(al.A,{children:[(0,I.jsx)(F.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,I.jsx)("pre",{children:(0,I.jsx)("code",{className:"hljs language-html",children:`<div
-  id="tabs-2552657386310748"
+  id="tabs-0695409536519801"
   class="db-tabs"
   data-alignment="start"
   data-width="auto"
@@ -58007,7 +58007,7 @@ Tab Panel 3
   <section role="tabpanel" class="db-tab-panel">Tab Panel 2</section>
   <section role="tabpanel" class="db-tab-panel">Tab Panel 3</section>
 </div>`})}),(0,I.jsx)(ee.A,{className:"copy-button",noText:!0,icon:e===`<div
-  id="tabs-2552657386310748"
+  id="tabs-0695409536519801"
   class="db-tabs"
   data-alignment="start"
   data-width="auto"
@@ -58035,7 +58035,7 @@ Tab Panel 3
   <section role="tabpanel" class="db-tab-panel">Tab Panel 2</section>
   <section role="tabpanel" class="db-tab-panel">Tab Panel 3</section>
 </div>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<div
-  id="tabs-2552657386310748"
+  id="tabs-0695409536519801"
   class="db-tabs"
   data-alignment="start"
   data-width="auto"
@@ -58063,7 +58063,7 @@ Tab Panel 3
   <section role="tabpanel" class="db-tab-panel">Tab Panel 2</section>
   <section role="tabpanel" class="db-tab-panel">Tab Panel 3</section>
 </div>`),navigator.clipboard.writeText(`<div
-  id="tabs-2552657386310748"
+  id="tabs-0695409536519801"
   class="db-tabs"
   data-alignment="start"
   data-width="auto"
@@ -64650,4 +64650,4 @@ button
 button
 <DBTooltip >Tooltip</DBTooltip></DBButton>`),navigator.clipboard.writeText(`<DBButton>
 button
-<DBTooltip >Tooltip</DBTooltip></DBButton>`)},children:"Copy code"})]})]},t())})]})},i3=JSON.parse('[{"label":"Action","name":"action","path":"/components/action","subNavigation":[{"label":"DBButton","name":"button"},{"label":"DBLink","name":"link"}]},{"label":"Data-Display","path":"/components/data-display","name":"data-display","subNavigation":[{"label":"DBControlPanelBrand","name":"control-panel-brand"},{"label":"DBTooltip","name":"tooltip"},{"label":"DBInfotext","name":"infotext"},{"label":"DBTag","name":"tag"},{"label":"DBAccordion","name":"accordion","subNavigation":[{"label":"DBAccordionItem Properties","path":"/components/accordion-item/properties"}]},{"label":"DBAccordionItem","name":"accordion-item","isHiddenInMenu":true},{"label":"DBTabs","name":"tabs","subNavigation":[{"label":"DBTabItem Properties","path":"/components/tab-item/properties"}]},{"label":"DBTabItem","name":"tab-item","isHiddenInMenu":true}]},{"label":"Data-Input","path":"/components/data-input","name":"data-input","subNavigation":[{"label":"DBCheckbox","name":"checkbox"},{"label":"DBInput","name":"input"},{"label":"DBCustomSelect","name":"custom-select"},{"label":"DBRadio","name":"radio"},{"label":"DBSelect","name":"select"},{"label":"DBSwitch","name":"switch"},{"label":"DBTextarea","name":"textarea"}]},{"label":"Feedback","path":"/components/feedback","name":"feedback","subNavigation":[{"label":"DBNotification","name":"notification"},{"label":"DBBadge","name":"badge"}]},{"label":"Layout","path":"/components/layout","name":"layout","subNavigation":[{"label":"DBCard","name":"card"},{"label":"DBDivider","name":"divider"},{"label":"DBDrawer","name":"drawer"},{"label":"DBControlPanelDesktop","name":"control-panel-desktop"},{"label":"DBControlPanelMobile","name":"control-panel-mobile"},{"label":"DBSection","name":"section"},{"label":"DBStack","name":"stack"}]},{"label":"Navigation","path":"/components/navigation","name":"navigation","subNavigation":[{"label":"DBNavigation","name":"navigation","subNavigation":[{"label":"DBNavigationItem Properties","path":"/components/navigation-item/properties"}]},{"label":"DBNavigationItem","name":"navigation-item","isHiddenInMenu":true}]},{"label":"Utilities","path":"/components/utilities","name":"utilities","subNavigation":[{"label":"DBPopover","name":"popover"}]}]'),i4={"control-panel-mobile":(0,I.jsx)(e=>(0,I.jsx)($,{title:"DBControlPanelMobile",variants:P(aK,aZ)}),{slotCode:u}),"custom-select":(0,I.jsx)(e=>(0,I.jsx)($,{title:"DBCustomSelect",variants:P(ef,ey,e.slotCode)}),{slotCode:p}),stack:(0,I.jsx)(e=>(0,I.jsx)($,{title:"DBStack",variants:P(e4,e5,e.slotCode)}),{slotCode:y}),button:(0,I.jsx)(e=>(0,I.jsx)($,{title:"DBButton",variants:P(ei,el,e.slotCode)}),{slotCode:o}),link:(0,I.jsx)(e=>(0,I.jsx)($,{title:"DBLink",variants:P(e_,eH,e.slotCode)}),{slotCode:s}),tooltip:(0,I.jsx)(e=>(0,I.jsx)($,{title:"DBTooltip",variants:P(ax,am,e.slotCode)}),{slotCode:N}),infotext:(0,I.jsx)(e=>(0,I.jsx)($,{title:"DBInfotext",variants:P(eO,eN,e.slotCode)}),{slotCode:x}),tag:(0,I.jsx)(e=>(0,I.jsx)($,{title:"DBTag",variants:P(ar,ad,e.slotCode)}),{slotCode:C}),accordion:(0,I.jsx)(e=>(0,I.jsx)("div",{children:(0,I.jsx)($,{title:"DBAccordion",subComponent:e.subComponent,variants:P(H,Y,e.slotCode)})}),{slotCode:n,subComponent:(0,I.jsx)(Q,{isSubComponent:!0,componentName:"accordion-item",slotCode:i})}),"accordion-item":(0,I.jsx)(Q,{slotCode:i}),tabs:(0,I.jsx)(e=>(0,I.jsx)($,{title:"DBTabs",subComponent:e.subComponent,variants:P(ao,as,e.slotCode)}),{slotCode:k,subComponent:(0,I.jsx)(an,{isSubComponent:!0,componentName:"tab-item",slotCode:T})}),"tab-item":(0,I.jsx)(an,{slotCode:T}),checkbox:(0,I.jsx)(e=>(0,I.jsx)($,{title:"DBCheckbox",variants:P(ed,eu,e.slotCode)}),{slotCode:r}),input:(0,I.jsx)(e=>(0,I.jsx)($,{title:"DBInput",variants:P(eL,eS,e.slotCode)}),{slotCode:m}),radio:(0,I.jsx)(e=>(0,I.jsx)($,{title:"DBRadio",variants:P(eY,eK,e.slotCode)}),{slotCode:D}),select:(0,I.jsx)(e=>(0,I.jsx)($,{title:"DBSelect",variants:P(e1,e2,e.slotCode)}),{slotCode:f}),switch:(0,I.jsx)(e=>(0,I.jsx)($,{title:"DBSwitch",variants:P(e9,e7,e.slotCode)}),{slotCode:A}),textarea:(0,I.jsx)(e=>(0,I.jsx)(I.Fragment,{children:(0,I.jsx)($,{title:"DBTextarea",variants:P(ap,ah,e.slotCode)})}),{slotCode:O}),notification:(0,I.jsx)(e=>(0,I.jsx)($,{title:"DBNotification",variants:P(eV,eW,e.slotCode)}),{slotCode:j}),badge:(0,I.jsx)(e=>(0,I.jsx)($,{title:"DBBadge",variants:P(et,en,e.slotCode)}),{slotCode:l}),card:(0,I.jsx)(e=>(0,I.jsx)($,{title:"DBCard",variants:P(eo,es,e.slotCode)}),{slotCode:c}),divider:(0,I.jsx)(e=>(0,I.jsx)($,{title:"DBDivider",variants:P(eA,eT,e.slotCode)}),{slotCode:h}),drawer:(0,I.jsx)(e=>{let[a,t]=(0,z.useState)(void 0);return(0,I.jsx)($,{title:"DBDrawer",variants:P(eC,e=>(({id:e,width:a,rounded:t,spacing:n,openDrawer:i,setOpenDrawer:l,direction:o,children:s,backdrop:c,variant:r})=>(0,I.jsxs)("div",{children:[(0,I.jsxs)(ee.A,{onClick:()=>{l(e)},children:["Open: ",s]}),(0,I.jsx)(ek.A,{rounded:t,width:a,spacing:n,backdrop:c,direction:o,variant:r,open:i===e,onClose:()=>{l(void 0)},children:s})]}))({...e,openDrawer:a,setOpenDrawer:t}),e.slotCode)})},{slotCode:b}),"control-panel-desktop":(0,I.jsx)(e=>(0,I.jsx)($,{title:"DBControlPanelDesktop",variants:P(ew,eD,e.slotCode)}),{slotCode:d}),section:(0,I.jsx)(e=>(0,I.jsx)($,{title:"DBSection",variants:P(eQ,eX,e.slotCode)}),{slotCode:B}),navigation:(0,I.jsx)(e=>(0,I.jsx)($,{title:"DBNavigation",subComponent:e.subComponent,variants:P(ez,eR,e.slotCode)}),{slotCode:v,subComponent:(0,I.jsx)(eM,{isSubComponent:!0,componentName:"navigation-item",slotCode:g})}),"navigation-item":(0,I.jsx)(eM,{slotCode:g}),popover:(0,I.jsx)(e=>(0,I.jsx)($,{title:"DBPopover",variants:P(eG,eJ,e.slotCode)}),{slotCode:w})},i5=i3.map(e=>({...e,subNavigation:e.subNavigation?.map(e=>({...e,component:e.name?i4[e.name]:void 0}))})),i8=[{label:"Home",path:"/"},{label:"Foundations",path:"/foundations",subNavigation:[{label:"Readme",path:"/foundations/readme"},{label:"Colors",path:"/foundations/colors",subNavigation:[{label:"Readme",path:"/foundations/colors/readme"},{label:"Color Schemes",path:"/foundations/colors/color-schemes"},{label:"Color Modes",path:"/foundations/colors/color-modes"}]},{label:"Font Sizes",path:"/foundations/font-sizes",subNavigation:[{label:"Readme",path:"/foundations/font-sizes/readme"},{label:"Overview",path:"/foundations/font-sizes/overview"}]},{label:"Icons",path:"/foundations/icons",subNavigation:[{label:"Readme",path:"/foundations/icons/readme"},{label:"Custom Icons",path:"/foundations/icons/custom-icons"},{label:"Overview",path:"/foundations/icons/overview"}]},{label:"Densities",path:"/foundations/densities",subNavigation:[{label:"Readme",path:"/foundations/densities/readme"},{label:"Examples",path:"/foundations/densities/examples"}]},{label:"Variables",path:"/foundations/variables",subNavigation:[{label:"Readme",path:"/foundations/variables/readme"},{label:"Examples",path:"/foundations/variables/examples"}]},{label:"Testing Overview Table",path:"/foundations/test-table"},{label:"IDE Support",path:"/foundations/ide"},{label:"Performance",path:"/foundations/performance"},{label:"Browser Support",path:"/foundations/browser-support"}]},{label:"Components",path:"/components",subNavigation:[{label:"Readme",path:"/components/readme"},...i5.map(e=>({...e,subNavigation:e?.subNavigation?.map(a=>({label:a.label,path:`/components/${e.name}/${a.name}`,isHiddenInMenu:a.isHiddenInMenu,subNavigation:[{label:"Overview",path:`/components/${e.name}/${a.name}/overview`},{label:"Properties",path:`/components/${e.name}/${a.name}/properties`},{label:"How to use",path:`/components/${e.name}/${a.name}/how-to-use`},{label:"Migration",path:`/components/${e.name}/${a.name}/migration`},...a.subNavigation??[]]}))})),{label:"Misc",path:"/components/misc",subNavigation:[{label:"Router usage",path:"/components/misc/router-usage"},{label:"Creating custom Components",path:"/components/misc/custom-components"},{label:"Testing",path:"/components/misc/testing"},{label:"Validation",path:"/components/misc/validation"},{label:"Backdrop",path:"/components/misc/backdrop"}]}]},{label:"Playgrounds",path:"/foundations/playgrounds"}],i9=(e,a,t,n)=>{for(let i of e)a.push(t?i:{...i,label:n?`${n}:${i.label}`:i.label}),i.subNavigation&&i.subNavigation?.length>0&&i9(i.subNavigation,a,t,t?void 0:i.label)},i7=e=>{let a=[];return i9(i8,a,e),a},i6=e=>{let a=i7().filter(e=>!e.subNavigation),t=a.findIndex(a=>a.path===e);return{previous:0===t?void 0:a[t-1],next:t+1===a.length?void 0:a[t+1]}},le=e=>i7(!0).filter(a=>e.includes(a.path??"")).sort((e,a)=>(e.path?.length??0)-(a.path?.length??0)),la=()=>i5.filter(({name:e})=>!!e).map(({name:e})=>e)},37007:(e,a,t)=>{t.d(a,{A:()=>s});var n=t(6029),i=t(55729),l=t(68756),o=t(56179);let s=(0,i.forwardRef)(function(e,a){let t=a||(0,i.useRef)(void 0);return(0,n.jsx)("div",{ref:t,...(0,l.MD)(e,["data-icon-variant","data-icon-variant-before","data-icon-variant-after","data-icon-weight","data-icon-weight-before","data-icon-weight-after","data-interactive","data-force-mobile","data-color","data-container-color","data-bg-color","data-on-bg-color","data-color-scheme","data-font-size","data-headline-size","data-divider","data-focus","data-font"]),id:e.id,...(0,l.vC)(e,["data-icon-variant","data-icon-variant-before","data-icon-variant-after","data-icon-weight","data-icon-weight-before","data-icon-weight-after","data-interactive","data-force-mobile","data-color","data-container-color","data-bg-color","data-on-bg-color","data-color-scheme","data-font-size","data-headline-size","data-divider","data-focus","data-font"]),className:(0,o.xF)("db-control-panel-primary-actions",e.className),children:e.children})})},55111:(e,a,t)=>{t.d(a,{A:()=>s});var n=t(6029),i=t(55729),l=t(68756),o=t(56179);let s=(0,i.forwardRef)(function(e,a){let t=a||(0,i.useRef)(void 0);return(0,n.jsx)("div",{ref:t,...(0,l.MD)(e,["data-icon-variant","data-icon-variant-before","data-icon-variant-after","data-icon-weight","data-icon-weight-before","data-icon-weight-after","data-interactive","data-force-mobile","data-color","data-container-color","data-bg-color","data-on-bg-color","data-color-scheme","data-font-size","data-headline-size","data-divider","data-focus","data-font"]),id:e.id,...(0,l.vC)(e,["data-icon-variant","data-icon-variant-before","data-icon-variant-after","data-icon-weight","data-icon-weight-before","data-icon-weight-after","data-interactive","data-force-mobile","data-color","data-container-color","data-bg-color","data-on-bg-color","data-color-scheme","data-font-size","data-headline-size","data-divider","data-focus","data-font"]),className:(0,o.xF)("db-control-panel-secondary-actions",e.className),children:e.children})})},59745:(e,a,t)=>{t.d(a,{C:()=>n,z:()=>i});let n=[{value:"angular",label:"Angular"},{value:"html",label:"HTML"},{value:"react",label:"React"},{value:"vue",label:"Vue"}],i="react"},83239:(e,a,t)=>{t.d(a,{A:()=>d});var n=t(6029),i=t(55729),l=t(68756),o=t(15532),s=t(56179),c=t(89499),r=t(80357);let d=(0,i.forwardRef)(function(e,a){let t=a||(0,i.useRef)(void 0),d=(0,i.useRef)(void 0),u=(0,i.useRef)(void 0),[p,h]=(0,i.useState)(()=>!0),[b,x]=(0,i.useState)(()=>!1),[m,v]=(0,i.useState)(()=>!1),[g,j]=(0,i.useState)(()=>!1),[w,D]=(0,i.useState)(()=>!1),[B,f]=(0,i.useState)(()=>"db-navigation-item-group-menu-"+(0,s.uR)()),[y,A]=(0,i.useState)(()=>void 0);function T(){v(!0),(0,s.cb)(()=>{v(!1)},300)}return(0,i.useEffect)(()=>{D(!0)},[]),(0,i.useEffect)(()=>{void 0!==e.expanded&&x(!!(0,s.pW)(e.expanded,"subNavigationExpanded"))},[e.expanded]),(0,i.useEffect)(()=>{t.current&&w&&(D(!1),(0,s.cb)(()=>{let e=t.current.closest(".db-navigation");j(!e||!e.dataset.variant||"popover"===e.dataset.variant)},200))},[t.current,w]),(0,i.useEffect)(()=>{t.current&&u.current&&d.current&&g&&!y&&((0,s.cb)(()=>{A(new c.D1(t.current,d.current))},1),["mouseenter","focusin"].forEach(e=>{t.current.addEventListener(e,()=>(0,c.ej)(d.current))}))},[t.current,d.current,u.current,g]),(0,n.jsxs)("li",{ref:t,...(0,l.MD)(e,["data-icon-variant","data-icon-variant-before","data-icon-variant-after","data-icon-weight","data-icon-weight-before","data-icon-weight-after","data-interactive","data-force-mobile","data-color","data-container-color","data-bg-color","data-on-bg-color","data-color-scheme","data-font-size","data-headline-size","data-divider","data-focus","data-font"]),id:e.id,onMouseOver:e=>y?.enableFollow(),onMouseLeave:e=>y?.disableFollow(),onMouseMove:e=>y?.followByMouseEvent(e),onKeyDown:e=>{e&&"Escape"!==e.key||(T(),u.current.blur())},...(0,l.vC)(e,["data-icon-variant","data-icon-variant-before","data-icon-variant-after","data-icon-weight","data-icon-weight-before","data-icon-weight-after","data-interactive","data-force-mobile","data-color","data-container-color","data-bg-color","data-on-bg-color","data-color-scheme","data-font-size","data-headline-size","data-divider","data-focus","data-font"]),className:(0,s.xF)("db-navigation-item-group",e.className),"data-icon":e.icon,"data-hide-icon":(0,s.YA)(e.showIcon),"data-active":e.active,"aria-disabled":(0,s.EB)(e.disabled),children:[(0,n.jsxs)("button",{type:"button",className:"db-navigation-item-group-expand-button",ref:u,"aria-haspopup":(0,s.EB)(!!g||void 0),"aria-owns":g?void 0:e.menuId??B,"aria-expanded":(0,s.EB)(b),disabled:(0,s.pW)(e.disabled,"disabled"),onClick:a=>{e.onClick&&(a.stopPropagation(),e.onClick(a)),x(!b)},children:[e.text,(0,n.jsx)(n.Fragment,{children:e.additionalInformation})]}),(0,n.jsxs)("menu",{className:"db-navigation-item-group-menu",role:"group",ref:d,"data-force-close":(0,s.EB)(m),id:e.menuId??B,onScroll:e=>void(g&&(0,c.ej)(t.current)),onClick:e=>{e?.target?.nodeName==="A"&&T()},children:[(0,n.jsx)("div",{className:"db-navigation-item-group-back-button",children:(0,n.jsx)(r.A,{icon:"arrow_left",variant:"ghost",id:e.backButtonId,onClick:e=>{e.stopPropagation(),x(!1)},children:e.backButtonText??o.sR})}),e.children]})]})})},87184:(e,a,t)=>{t.d(a,{U:()=>r,u:()=>c});var n=t(6029),i=t(55729),l=t(59745);let o=(0,i.createContext)(void 0),s="db-ux-framework",c=()=>{let e=(0,i.useContext)(o);if(!e)throw Error("useFramework must be used within a FrameworkProvider");return e},r=({children:e})=>{let[a,t]=(0,i.useState)(l.z);return(0,i.useEffect)(()=>{if(void 0!==globalThis.window){let e=new URLSearchParams(globalThis.location.search).get("framework");if(e&&["angular","html","react","vue"].includes(e)){t(e),localStorage.setItem(s,e);return}let a=localStorage.getItem(s);a&&["angular","html","react","vue"].includes(a)&&t(a)}},[]),(0,n.jsx)(o.Provider,{value:{framework:a,setFramework:e=>{if(t(e),void 0!==globalThis.window){localStorage.setItem(s,e);let a=new URL(globalThis.location.href);a.searchParams.set("framework",e),globalThis.history.replaceState({},"",a.toString())}},getFrameworkIndex:()=>["angular","html","react","vue"].indexOf(a)},children:e})}}}]);
+<DBTooltip >Tooltip</DBTooltip></DBButton>`)},children:"Copy code"})]})]},t())})]})},i3=JSON.parse('[{"label":"Action","name":"action","path":"/components/action","subNavigation":[{"label":"DBButton","name":"button"},{"label":"DBLink","name":"link"}]},{"label":"Data-Display","path":"/components/data-display","name":"data-display","subNavigation":[{"label":"DBControlPanelBrand","name":"control-panel-brand"},{"label":"DBTooltip","name":"tooltip"},{"label":"DBInfotext","name":"infotext"},{"label":"DBTag","name":"tag"},{"label":"DBAccordion","name":"accordion","subNavigation":[{"label":"DBAccordionItem Properties","path":"/components/accordion-item/properties"}]},{"label":"DBAccordionItem","name":"accordion-item","isHiddenInMenu":true},{"label":"DBTabs","name":"tabs","subNavigation":[{"label":"DBTabItem Properties","path":"/components/tab-item/properties"}]},{"label":"DBTabItem","name":"tab-item","isHiddenInMenu":true}]},{"label":"Data-Input","path":"/components/data-input","name":"data-input","subNavigation":[{"label":"DBCheckbox","name":"checkbox"},{"label":"DBInput","name":"input"},{"label":"DBCustomSelect","name":"custom-select"},{"label":"DBRadio","name":"radio"},{"label":"DBSelect","name":"select"},{"label":"DBSwitch","name":"switch"},{"label":"DBTextarea","name":"textarea"}]},{"label":"Feedback","path":"/components/feedback","name":"feedback","subNavigation":[{"label":"DBNotification","name":"notification"},{"label":"DBBadge","name":"badge"}]},{"label":"Layout","path":"/components/layout","name":"layout","subNavigation":[{"label":"DBCard","name":"card"},{"label":"DBDivider","name":"divider"},{"label":"DBDrawer","name":"drawer"},{"label":"DBControlPanelDesktop","name":"control-panel-desktop"},{"label":"DBControlPanelMobile","name":"control-panel-mobile"},{"label":"DBSection","name":"section"},{"label":"DBStack","name":"stack"}]},{"label":"Navigation","path":"/components/navigation","name":"navigation","subNavigation":[{"label":"DBNavigation","name":"navigation","subNavigation":[{"label":"DBNavigationItem Properties","path":"/components/navigation-item/properties"}]},{"label":"DBNavigationItem","name":"navigation-item","isHiddenInMenu":true}]},{"label":"Utilities","path":"/components/utilities","name":"utilities","subNavigation":[{"label":"DBPopover","name":"popover"}]}]'),i4={"control-panel-mobile":(0,I.jsx)(e=>(0,I.jsx)($,{title:"DBControlPanelMobile",variants:P(aK,aZ)}),{slotCode:u}),"custom-select":(0,I.jsx)(e=>(0,I.jsx)($,{title:"DBCustomSelect",variants:P(ef,ey,e.slotCode)}),{slotCode:p}),stack:(0,I.jsx)(e=>(0,I.jsx)($,{title:"DBStack",variants:P(e4,e5,e.slotCode)}),{slotCode:y}),button:(0,I.jsx)(e=>(0,I.jsx)($,{title:"DBButton",variants:P(ei,el,e.slotCode)}),{slotCode:o}),link:(0,I.jsx)(e=>(0,I.jsx)($,{title:"DBLink",variants:P(e_,eH,e.slotCode)}),{slotCode:s}),tooltip:(0,I.jsx)(e=>(0,I.jsx)($,{title:"DBTooltip",variants:P(ax,am,e.slotCode)}),{slotCode:N}),infotext:(0,I.jsx)(e=>(0,I.jsx)($,{title:"DBInfotext",variants:P(eO,eN,e.slotCode)}),{slotCode:x}),tag:(0,I.jsx)(e=>(0,I.jsx)($,{title:"DBTag",variants:P(ar,ad,e.slotCode)}),{slotCode:C}),accordion:(0,I.jsx)(e=>(0,I.jsx)("div",{children:(0,I.jsx)($,{title:"DBAccordion",subComponent:e.subComponent,variants:P(H,Y,e.slotCode)})}),{slotCode:n,subComponent:(0,I.jsx)(Q,{isSubComponent:!0,componentName:"accordion-item",slotCode:i})}),"accordion-item":(0,I.jsx)(Q,{slotCode:i}),tabs:(0,I.jsx)(e=>(0,I.jsx)($,{title:"DBTabs",subComponent:e.subComponent,variants:P(ao,as,e.slotCode)}),{slotCode:k,subComponent:(0,I.jsx)(an,{isSubComponent:!0,componentName:"tab-item",slotCode:T})}),"tab-item":(0,I.jsx)(an,{slotCode:T}),checkbox:(0,I.jsx)(e=>(0,I.jsx)($,{title:"DBCheckbox",variants:P(ed,eu,e.slotCode)}),{slotCode:r}),input:(0,I.jsx)(e=>(0,I.jsx)($,{title:"DBInput",variants:P(eL,eS,e.slotCode)}),{slotCode:m}),radio:(0,I.jsx)(e=>(0,I.jsx)($,{title:"DBRadio",variants:P(eY,eK,e.slotCode)}),{slotCode:D}),select:(0,I.jsx)(e=>(0,I.jsx)($,{title:"DBSelect",variants:P(e1,e2,e.slotCode)}),{slotCode:f}),switch:(0,I.jsx)(e=>(0,I.jsx)($,{title:"DBSwitch",variants:P(e9,e7,e.slotCode)}),{slotCode:A}),textarea:(0,I.jsx)(e=>(0,I.jsx)(I.Fragment,{children:(0,I.jsx)($,{title:"DBTextarea",variants:P(ap,ah,e.slotCode)})}),{slotCode:O}),notification:(0,I.jsx)(e=>(0,I.jsx)($,{title:"DBNotification",variants:P(eV,eW,e.slotCode)}),{slotCode:j}),badge:(0,I.jsx)(e=>(0,I.jsx)($,{title:"DBBadge",variants:P(et,en,e.slotCode)}),{slotCode:l}),card:(0,I.jsx)(e=>(0,I.jsx)($,{title:"DBCard",variants:P(eo,es,e.slotCode)}),{slotCode:c}),divider:(0,I.jsx)(e=>(0,I.jsx)($,{title:"DBDivider",variants:P(eA,eT,e.slotCode)}),{slotCode:h}),drawer:(0,I.jsx)(e=>{let[a,t]=(0,z.useState)(void 0);return(0,I.jsx)($,{title:"DBDrawer",variants:P(eC,e=>(({id:e,width:a,rounded:t,spacing:n,openDrawer:i,setOpenDrawer:l,direction:o,children:s,backdrop:c,variant:r})=>(0,I.jsxs)("div",{children:[(0,I.jsxs)(ee.A,{onClick:()=>{l(e)},children:["Open: ",s]}),(0,I.jsx)(ek.A,{rounded:t,width:a,spacing:n,backdrop:c,direction:o,variant:r,open:i===e,onClose:()=>{l(void 0)},children:s})]}))({...e,openDrawer:a,setOpenDrawer:t}),e.slotCode)})},{slotCode:b}),"control-panel-desktop":(0,I.jsx)(e=>(0,I.jsx)($,{title:"DBControlPanelDesktop",variants:P(ew,eD,e.slotCode)}),{slotCode:d}),section:(0,I.jsx)(e=>(0,I.jsx)($,{title:"DBSection",variants:P(eQ,eX,e.slotCode)}),{slotCode:B}),navigation:(0,I.jsx)(e=>(0,I.jsx)($,{title:"DBNavigation",subComponent:e.subComponent,variants:P(ez,eR,e.slotCode)}),{slotCode:v,subComponent:(0,I.jsx)(eM,{isSubComponent:!0,componentName:"navigation-item",slotCode:g})}),"navigation-item":(0,I.jsx)(eM,{slotCode:g}),popover:(0,I.jsx)(e=>(0,I.jsx)($,{title:"DBPopover",variants:P(eG,eJ,e.slotCode)}),{slotCode:w})},i5=i3.map(e=>({...e,subNavigation:e.subNavigation?.map(e=>({...e,component:e.name?i4[e.name]:void 0}))})),i8=[{label:"Home",path:"/"},{label:"Foundations",path:"/foundations",subNavigation:[{label:"Readme",path:"/foundations/readme"},{label:"Colors",path:"/foundations/colors",subNavigation:[{label:"Readme",path:"/foundations/colors/readme"},{label:"Color Schemes",path:"/foundations/colors/color-schemes"},{label:"Color Modes",path:"/foundations/colors/color-modes"}]},{label:"Font Sizes",path:"/foundations/font-sizes",subNavigation:[{label:"Readme",path:"/foundations/font-sizes/readme"},{label:"Overview",path:"/foundations/font-sizes/overview"}]},{label:"Icons",path:"/foundations/icons",subNavigation:[{label:"Readme",path:"/foundations/icons/readme"},{label:"Custom Icons",path:"/foundations/icons/custom-icons"},{label:"Overview",path:"/foundations/icons/overview"}]},{label:"Densities",path:"/foundations/densities",subNavigation:[{label:"Readme",path:"/foundations/densities/readme"},{label:"Examples",path:"/foundations/densities/examples"}]},{label:"Variables",path:"/foundations/variables",subNavigation:[{label:"Readme",path:"/foundations/variables/readme"},{label:"Examples",path:"/foundations/variables/examples"}]},{label:"Testing Overview Table",path:"/foundations/test-table"},{label:"IDE Support",path:"/foundations/ide"},{label:"Performance",path:"/foundations/performance"},{label:"Browser Support",path:"/foundations/browser-support"}]},{label:"Components",path:"/components",subNavigation:[{label:"Readme",path:"/components/readme"},...i5.map(e=>({...e,subNavigation:e?.subNavigation?.map(a=>({label:a.label,path:`/components/${e.name}/${a.name}`,isHiddenInMenu:a.isHiddenInMenu,subNavigation:[{label:"Overview",path:`/components/${e.name}/${a.name}/overview`},{label:"Properties",path:`/components/${e.name}/${a.name}/properties`},{label:"How to use",path:`/components/${e.name}/${a.name}/how-to-use`},{label:"Migration",path:`/components/${e.name}/${a.name}/migration`},...a.subNavigation??[]]}))})),{label:"Misc",path:"/components/misc",subNavigation:[{label:"Router usage",path:"/components/misc/router-usage"},{label:"Creating custom Components",path:"/components/misc/custom-components"},{label:"Testing",path:"/components/misc/testing"},{label:"Validation",path:"/components/misc/validation"},{label:"Backdrop",path:"/components/misc/backdrop"}]}]},{label:"Playgrounds",path:"/foundations/playgrounds"}],i9=(e,a,t,n)=>{for(let i of e)a.push(t?i:{...i,label:n?`${n}:${i.label}`:i.label}),i.subNavigation&&i.subNavigation?.length>0&&i9(i.subNavigation,a,t,t?void 0:i.label)},i7=e=>{let a=[];return i9(i8,a,e),a},i6=e=>{let a=i7().filter(e=>!e.subNavigation),t=a.findIndex(a=>a.path===e);return{previous:0===t?void 0:a[t-1],next:t+1===a.length?void 0:a[t+1]}},le=e=>i7(!0).filter(a=>e.includes(a.path??"")).sort((e,a)=>(e.path?.length??0)-(a.path?.length??0)),la=()=>i5.filter(({name:e})=>!!e).map(({name:e})=>e)},37007:(e,a,t)=>{t.d(a,{A:()=>s});var n=t(6029),i=t(55729),l=t(68756),o=t(56179);let s=(0,i.forwardRef)(function(e,a){let t=a||(0,i.useRef)(void 0);return(0,n.jsx)("div",{ref:t,...(0,l.MD)(e,["data-icon-variant","data-icon-variant-before","data-icon-variant-after","data-icon-weight","data-icon-weight-before","data-icon-weight-after","data-interactive","data-force-mobile","data-color","data-container-color","data-bg-color","data-on-bg-color","data-color-scheme","data-font-size","data-headline-size","data-divider","data-focus","data-font"]),id:e.id,...(0,l.vC)(e,["data-icon-variant","data-icon-variant-before","data-icon-variant-after","data-icon-weight","data-icon-weight-before","data-icon-weight-after","data-interactive","data-force-mobile","data-color","data-container-color","data-bg-color","data-on-bg-color","data-color-scheme","data-font-size","data-headline-size","data-divider","data-focus","data-font"]),className:(0,o.xF)("db-control-panel-primary-actions",e.className),children:e.children})})},55111:(e,a,t)=>{t.d(a,{A:()=>s});var n=t(6029),i=t(55729),l=t(68756),o=t(56179);let s=(0,i.forwardRef)(function(e,a){let t=a||(0,i.useRef)(void 0);return(0,n.jsx)("div",{ref:t,...(0,l.MD)(e,["data-icon-variant","data-icon-variant-before","data-icon-variant-after","data-icon-weight","data-icon-weight-before","data-icon-weight-after","data-interactive","data-force-mobile","data-color","data-container-color","data-bg-color","data-on-bg-color","data-color-scheme","data-font-size","data-headline-size","data-divider","data-focus","data-font"]),id:e.id,...(0,l.vC)(e,["data-icon-variant","data-icon-variant-before","data-icon-variant-after","data-icon-weight","data-icon-weight-before","data-icon-weight-after","data-interactive","data-force-mobile","data-color","data-container-color","data-bg-color","data-on-bg-color","data-color-scheme","data-font-size","data-headline-size","data-divider","data-focus","data-font"]),className:(0,o.xF)("db-control-panel-secondary-actions",e.className),children:e.children})})},59745:(e,a,t)=>{t.d(a,{C:()=>n,z:()=>i});let n=[{value:"angular",label:"Angular"},{value:"html",label:"HTML"},{value:"react",label:"React"},{value:"vue",label:"Vue"}],i="react"},83239:(e,a,t)=>{t.d(a,{A:()=>d});var n=t(6029),i=t(55729),l=t(68756),o=t(15532),s=t(56179),c=t(89499),r=t(80357);let d=(0,i.forwardRef)(function(e,a){let t=a||(0,i.useRef)(void 0),d=(0,i.useRef)(void 0),u=(0,i.useRef)(void 0),[p,h]=(0,i.useState)(()=>!0),[b,x]=(0,i.useState)(()=>!1),[m,v]=(0,i.useState)(()=>!1),[g,j]=(0,i.useState)(()=>!1),[w,D]=(0,i.useState)(()=>!1),[B,f]=(0,i.useState)(()=>"db-navigation-item-group-menu-"+(0,s.uR)()),[y,A]=(0,i.useState)(()=>void 0);function T(){v(!0),(0,s.cb)(()=>{v(!1)},300)}return(0,i.useEffect)(()=>{D(!0)},[]),(0,i.useEffect)(()=>{void 0!==e.expanded&&x(!!(0,s.pW)(e.expanded,"subNavigationExpanded"))},[e.expanded]),(0,i.useEffect)(()=>{t.current&&w&&(D(!1),(0,s.cb)(()=>{let e=t.current.closest(".db-navigation");j(!e||!e.dataset.variant||"popover"===e.dataset.variant)},200))},[t.current,w]),(0,i.useEffect)(()=>{t.current&&u.current&&d.current&&g&&!y&&((0,s.cb)(()=>{A(new c.D1(t.current,d.current))},1),["mouseenter","focusin"].forEach(e=>{t.current.addEventListener(e,()=>(0,c.ej)(d.current))}))},[t.current,d.current,u.current,g]),(0,n.jsxs)("li",{ref:t,...(0,l.MD)(e,["data-icon-variant","data-icon-variant-before","data-icon-variant-after","data-icon-weight","data-icon-weight-before","data-icon-weight-after","data-interactive","data-force-mobile","data-color","data-container-color","data-bg-color","data-on-bg-color","data-color-scheme","data-font-size","data-headline-size","data-divider","data-focus","data-font"]),id:e.id,onMouseOver:e=>y?.enableFollow(),onMouseLeave:e=>y?.disableFollow(),onMouseMove:e=>y?.followByMouseEvent(e),onKeyDown:e=>{e&&"Escape"!==e.key||(T(),u.current.blur())},...(0,l.vC)(e,["data-icon-variant","data-icon-variant-before","data-icon-variant-after","data-icon-weight","data-icon-weight-before","data-icon-weight-after","data-interactive","data-force-mobile","data-color","data-container-color","data-bg-color","data-on-bg-color","data-color-scheme","data-font-size","data-headline-size","data-divider","data-focus","data-font"]),className:(0,s.xF)("db-navigation-item-group",e.className),"data-icon":e.icon,"data-hide-icon":(0,s.YA)(e.showIcon),"data-active":e.active,"aria-disabled":(0,s.EB)(e.disabled),children:[(0,n.jsxs)("button",{type:"button",className:"db-navigation-item-group-expand-button",ref:u,"aria-haspopup":(0,s.EB)(!!g||void 0),"aria-owns":g?void 0:e.menuId??B,"aria-expanded":(0,s.EB)(b),disabled:(0,s.pW)(e.disabled,"disabled"),onClick:a=>{e.onClick&&(a.stopPropagation(),e.onClick(a)),x(!b)},children:[e.text,(0,n.jsx)(n.Fragment,{children:e.additionalInformation})]}),(0,n.jsxs)("menu",{className:"db-navigation-item-group-menu",ref:d,"data-force-close":(0,s.EB)(m),id:e.menuId??B,onScroll:e=>void(g&&(0,c.ej)(t.current)),onClick:e=>{e?.target?.nodeName==="A"&&T()},children:[(0,n.jsx)("li",{className:"db-navigation-item-group-back-button",children:(0,n.jsx)(r.A,{icon:"arrow_left",variant:"ghost",id:e.backButtonId,onClick:e=>{e.stopPropagation(),x(!1)},children:e.backButtonText??o.sR})}),e.children]})]})})},87184:(e,a,t)=>{t.d(a,{U:()=>r,u:()=>c});var n=t(6029),i=t(55729),l=t(59745);let o=(0,i.createContext)(void 0),s="db-ux-framework",c=()=>{let e=(0,i.useContext)(o);if(!e)throw Error("useFramework must be used within a FrameworkProvider");return e},r=({children:e})=>{let[a,t]=(0,i.useState)(l.z);return(0,i.useEffect)(()=>{if(void 0!==globalThis.window){let e=new URLSearchParams(globalThis.location.search).get("framework");if(e&&["angular","html","react","vue"].includes(e)){t(e),localStorage.setItem(s,e);return}let a=localStorage.getItem(s);a&&["angular","html","react","vue"].includes(a)&&t(a)}},[]),(0,n.jsx)(o.Provider,{value:{framework:a,setFramework:e=>{if(t(e),void 0!==globalThis.window){localStorage.setItem(s,e);let a=new URL(globalThis.location.href);a.searchParams.set("framework",e),globalThis.history.replaceState({},"",a.toString())}},getFrameworkIndex:()=>["angular","html","react","vue"].indexOf(a)},children:e})}}}]);
