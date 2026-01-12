@@ -63,7 +63,8 @@
 		"showcases/react-showcase/src/components/radio/index.tsx",
 		"showcases/react-showcase/src/components/radio/index.tsx",
 		"showcases/shared/*.json",
-		"showcases/vue-showcase/src/components/form/Form.vue"
+		"showcases/vue-showcase/src/components/form/Form.vue",
+		"**/CHANGELOG.md"
 	],
 	"ignorePattern": ["<option value=\"test5\">Test5</option>"],
 	"absolute": true
