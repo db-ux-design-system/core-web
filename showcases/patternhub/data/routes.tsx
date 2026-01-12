@@ -1,24 +1,25 @@
 import { type ReactElement } from 'react';
 import AccordionComponent from '../../react-showcase/src/components/accordion';
 import AccordionItemComponent from '../../react-showcase/src/components/accordion-item';
-import ButtonComponent from '../../react-showcase/src/components/button';
-import LinkComponent from '../../react-showcase/src/components/link';
-// Import IconComponent from '../../react-showcase/src/components/icon';
 import BadgeComponent from '../../react-showcase/src/components/badge';
+import ButtonComponent from '../../react-showcase/src/components/button';
 import CardComponent from '../../react-showcase/src/components/card';
 import CheckboxComponent from '../../react-showcase/src/components/checkbox';
 import ControlPanelDesktop from '../../react-showcase/src/components/control-panel-desktop';
+import CustomSelectComponent from '../../react-showcase/src/components/custom-select';
 import DividerComponent from '../../react-showcase/src/components/divider';
 import DrawerComponent from '../../react-showcase/src/components/drawer';
 import InfotextComponent from '../../react-showcase/src/components/infotext';
 import InputComponent from '../../react-showcase/src/components/input';
 import NavigationComponent from '../../react-showcase/src/components/navigation';
 import NavigationItemComponent from '../../react-showcase/src/components/navigation-item';
+import LinkComponent from '../../react-showcase/src/components/link';
 import NotificationComponent from '../../react-showcase/src/components/notification';
 import PopoverComponent from '../../react-showcase/src/components/popover';
 import RadioComponent from '../../react-showcase/src/components/radio';
 import SectionComponent from '../../react-showcase/src/components/section';
 import SelectComponent from '../../react-showcase/src/components/select';
+import StackComponent from '../../react-showcase/src/components/stack';
 import SwitchComponent from '../../react-showcase/src/components/switch';
 import TabItemComponent from '../../react-showcase/src/components/tab-item';
 import TabsComponent from '../../react-showcase/src/components/tabs';
@@ -27,18 +28,16 @@ import TextareaComponent from '../../react-showcase/src/components/textarea';
 import TooltipComponent from '../../react-showcase/src/components/tooltip';
 import * as accordionCode from '../components/code-docs/accordion';
 import * as accordionItemCode from '../components/code-docs/accordion-item';
+import * as badgeCode from '../components/code-docs/badge';
 import * as buttonCode from '../components/code-docs/button';
 import * as linkCode from '../components/code-docs/link';
 // Import * as iconCode from '../components/code-docs/icon';
 import ControlPanelMobileComponent from '../../react-showcase/src/components/control-panel-mobile';
-import MutliSelectComponent from '../../react-showcase/src/components/custom-select';
-import StackComponent from '../../react-showcase/src/components/stack';
-import * as badgeCode from '../components/code-docs/badge';
 import * as cardCode from '../components/code-docs/card';
 import * as checkboxCode from '../components/code-docs/checkbox';
 import * as controlPanelDesktopCode from '../components/code-docs/control-panel-desktop';
 import * as ControlPanelMobileCode from '../components/code-docs/control-panel-mobile';
-import * as CustomSelectCode from '../components/code-docs/custom-select';
+import * as customSelectCode from '../components/code-docs/custom-select';
 import * as dividerCode from '../components/code-docs/divider';
 import * as drawerCode from '../components/code-docs/drawer';
 import * as infotextCode from '../components/code-docs/infotext';
@@ -50,7 +49,7 @@ import * as popoverCode from '../components/code-docs/popover';
 import * as radioCode from '../components/code-docs/radio';
 import * as sectionCode from '../components/code-docs/section';
 import * as selectCode from '../components/code-docs/select';
-import * as StackCode from '../components/code-docs/stack';
+import * as stackCode from '../components/code-docs/stack';
 import * as switchCode from '../components/code-docs/switch';
 import * as tabItemCode from '../components/code-docs/tab-item';
 import * as tabsCode from '../components/code-docs/tabs';
@@ -73,8 +72,8 @@ const nameComponentMap = {
 		<ControlPanelMobileComponent slotCode={ControlPanelMobileCode} />
 	),
 
-	'custom-select': <MutliSelectComponent slotCode={CustomSelectCode} />,
-	stack: <StackComponent slotCode={StackCode} />,
+	'custom-select': <CustomSelectComponent slotCode={customSelectCode} />,
+	stack: <StackComponent slotCode={stackCode} />,
 	button: <ButtonComponent slotCode={buttonCode} />,
 	link: <LinkComponent slotCode={linkCode} />,
 	// Icon: <IconComponent slotCode={iconCode} />,
@@ -182,10 +181,6 @@ export const ROUTES: NavigationItem[] = [
 					{
 						label: 'Color Modes',
 						path: '/foundations/colors/color-modes'
-					},
-					{
-						label: 'Color Usage Guide',
-						path: '/foundations/colors/color-usage-guide'
 					}
 				]
 			},
