@@ -48,4 +48,5 @@ export interface DBTabItemState extends GlobalState, InitializedState {
 	internalActive: boolean | undefined;
 	disabled: boolean | undefined;
 	_observer: MutationObserver | null | undefined;
+	handleClick: (event: any) => void;
 }
