@@ -102,6 +102,11 @@ export const getComponents = (): Component[] => [
 				{
 					from: 'attr.checked',
 					to: 'checked'
+				},
+				{
+					from: `
+      <select`,
+					to: '<select'
 				}
 			],
 			react: [
