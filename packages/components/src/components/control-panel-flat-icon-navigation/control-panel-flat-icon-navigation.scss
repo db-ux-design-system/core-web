@@ -1,0 +1,95 @@
+@use "sass:string";
+@use "@db-ux/core-foundations/build/styles/variables";
+@use "@db-ux/core-foundations/build/styles/fonts";
+@use "../../styles/internal/form-components";
+@use "../../styles/internal/navigation-item";
+@use "../../styles/internal/indicator";
+
+.db-control-panel-flat-icon-navigation {
+	display: none;
+
+	.db-navigation {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+
+		> menu {
+			display: flex;
+			flex-direction: row;
+			gap: variables.$db-spacing-fixed-sm;
+			justify-content: space-evenly;
+			inline-size: 100%;
+			max-inline-size: variables.$db-container-3xl;
+
+			.db-navigation-item {
+				justify-content: center;
+				align-items: center;
+
+				a {
+					@extend %indicator;
+
+					min-block-size: variables.$db-sizing-md;
+					min-inline-size: variables.$db-sizing-md;
+
+					@include indicator.set-indicator-horizontal;
+
+					@include navigation-item.active-navigation-item {
+						@include indicator.show-indicator-horizontal;
+					}
+				}
+			}
+		}
+
+		.db-navigation-item:not([data-icon]),
+		.db-navigation-item-group {
+			// we don't allow item groups for flat-icon variant or non icon navigation-items
+			display: none;
+		}
+	}
+
+	&[data-no-text="true"] {
+		.db-navigation {
+			.db-navigation-item {
+				--db-icon-passing-padding-inline-start: 0;
+
+				&::before {
+					--db-icon-passing-inset-inline-start: calc(50% - 0.5em);
+				}
+
+				a {
+					font-size: 0;
+					padding: 0;
+				}
+
+				.db-tooltip {
+					// We show tooltip for collapsed state
+					--db-show-popover-visibility: visible;
+				}
+			}
+		}
+	}
+
+	&:not([data-no-text="true"]) {
+		.db-navigation {
+			.db-navigation-item {
+				--db-icon-passing-padding-inline-start: #{variables.$db-spacing-fixed-3xs};
+				--nav-icon-size: #{form-components.$font-size-height};
+
+				&::before {
+					--db-icon-passing-inset-inline-start: calc(50% - 0.5em);
+					--db-icon-passing-inset-block-start: 0;
+				}
+
+				a {
+					@extend %db-overwrite-font-size-3xs;
+
+					// stylelint-disable-next-line db-ux/use-spacings
+					padding-block: var(--nav-icon-size) 0;
+					padding-inline-end: variables.$db-spacing-fixed-3xs;
+					inline-size: fit-content;
+					justify-content: center;
+				}
+			}
+		}
+	}
+}

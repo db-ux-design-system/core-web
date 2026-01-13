@@ -1,7 +1,8 @@
 @use "@db-ux/core-foundations/build/styles/variables";
 @use "@db-ux/core-foundations/build/styles/colors";
 @use "../../styles/internal/form-components";
-@use "../../styles/internal/db-puls";
+@use "../../styles/internal/indicator";
+@use "../../styles/internal/scrollbar";
 @use "@db-ux/core-foundations/build/styles/helpers";
 
 $max-tabs: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
@@ -20,12 +21,12 @@ $max-tabs: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 	}
 }
 
-%horizontal-pulse {
+%horizontal-indicator {
 	.db-tab-item {
-		@include db-puls.set-db-puls-horizontal;
+		@include indicator.set-indicator-horizontal;
 
 		&:has(input:checked) {
-			@include db-puls.show-db-puls-horizontal;
+			@include indicator.show-indicator-horizontal;
 
 			&::after {
 				inset-block-end: calc(
@@ -40,9 +41,9 @@ $max-tabs: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 	}
 }
 
-%vertical-pulse {
+%vertical-indicator {
 	.db-tab-item {
-		@include db-puls.set-db-puls-vertical;
+		@include indicator.set-indicator-vertical;
 
 		&::after {
 			inset-inline-start: 0;
@@ -50,29 +51,20 @@ $max-tabs: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 		}
 
 		&:has(input:checked) {
-			@include db-puls.show-db-puls-vertical;
+			@include indicator.show-indicator-vertical;
 		}
 	}
 }
 
-%pulse-track {
+%indicator-track {
 	background-color: colors.$db-adaptive-bg-basic-transparent-semi-default;
 	content: "";
 	border-radius: variables.$db-border-radius-xs;
 	position: absolute;
 }
 
-@mixin angular-button-workaround() {
-	> .db-button,
-	&:is(.db-button) {
-		@content;
-	}
-}
-
 .db-tabs {
 	$db-tabs-z-index-tab-list: 20;
-	$db-tabs-z-index-button-background: 21;
-	$db-tabs-z-index-button: 22;
 
 	@extend %angular-workaround;
 	@include helpers.display(flex);
@@ -97,7 +89,7 @@ $max-tabs: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 	}
 
 	.db-tab-item {
-		@extend %db-puls;
+		@extend %indicator;
 	}
 
 	/*
@@ -111,9 +103,9 @@ $max-tabs: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 		}
 
 		.db-tab-list {
-			/* horizontal track for pulse */
+			/* horizontal track for indicator */
 			&::before {
-				@extend %pulse-track;
+				@extend %indicator-track;
 
 				block-size: variables.$db-border-width-xs;
 				inset-inline: variables.$db-spacing-fixed-xs;
@@ -127,7 +119,7 @@ $max-tabs: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 			}
 
 			> ul {
-				@extend %horizontal-pulse;
+				@extend %horizontal-indicator;
 
 				overflow: auto hidden;
 				inline-size: 100%;
@@ -215,9 +207,9 @@ $max-tabs: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 				}
 			}
 
-			/* vertical track for pulse */
+			/* vertical track for indicator */
 			&::before {
-				@extend %pulse-track;
+				@extend %indicator-track;
 
 				inline-size: variables.$db-border-width-xs;
 				inset-block: variables.$db-spacing-fixed-xs;
@@ -225,7 +217,7 @@ $max-tabs: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 			}
 
 			> ul {
-				@extend %vertical-pulse;
+				@extend %vertical-indicator;
 
 				flex-direction: column;
 				block-size: 100%;
@@ -292,71 +284,34 @@ $max-tabs: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 	}
 
 	&[data-scroll-behavior="arrows"] {
+		@include scrollbar.set-overflow-scroll-buttons;
+
 		.db-tab-list {
 			> ul {
+				@supports (scrollbar-width: none) {
+					scrollbar-width: none;
+				}
+
 				&::-webkit-scrollbar {
 					display: none;
 				}
 			}
 		}
 
-		&:has(.tabs-scroll-left) {
+		&:has(.overflow-scroll-left-button) {
 			&::before {
 				content: "";
 			}
 		}
 
-		&:has(.tabs-scroll-right) {
+		&:has(.overflow-scroll-right-button) {
 			&::after {
 				content: "";
 			}
 		}
 
 		&:has(.db-button) {
-			&::before,
-			&::after {
-				position: absolute;
-				z-index: $db-tabs-z-index-button-background;
-				background-color: colors.$db-adaptive-bg-basic-level-1-default;
-				inline-size: variables.$db-sizing-md;
-				block-size: calc(
-					#{variables.$db-spacing-fixed-sm} +
-						#{variables.$db-sizing-md}
-				);
-				flex: 0 0 auto;
-			}
-
-			&::before {
-				inset-inline-start: 0;
-			}
-
-			&::after {
-				inset-inline-end: 0;
-			}
-		}
-
-		/*
-		 * Scroll left / right buttons
-		 */
-		.tabs-scroll-left {
-			@include angular-button-workaround {
-				inset-inline-start: 0;
-			}
-		}
-
-		.tabs-scroll-right {
-			@include angular-button-workaround {
-				inset-inline-end: 0;
-			}
-		}
-
-		.tabs-scroll-left,
-		.tabs-scroll-right {
-			@include angular-button-workaround {
-				position: absolute;
-				z-index: $db-tabs-z-index-button;
-				inset-block: variables.$db-spacing-fixed-xs;
-			}
+			@include scrollbar.set-overflow-scroll-button-backgrounds;
 		}
 	}
 }

@@ -1,9 +1,4 @@
-import {
-	DBButton,
-	DBCard,
-	DBInfotext,
-	DBInput
-} from '../../../../output/react/src';
+import { DBButton, DBCard, DBInfotext, DBInput } from '@components';
 
 const ValidationExample = () => {
 	return (

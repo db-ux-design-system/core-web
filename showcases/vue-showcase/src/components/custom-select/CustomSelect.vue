@@ -1,6 +1,6 @@
 <script setup lang="ts">
+import { DBCustomSelect, DBInfotext } from "@components";
 import { CustomSelectOptionType } from "@db-ux/core-components/src/components/custom-select/model";
-import { DBCustomSelect, DBInfotext } from "../../../../../output/vue/src";
 import defaultComponentVariants from "../../../../shared/custom-select.json";
 import DefaultComponent from "../DefaultComponent.vue";
 
@@ -43,7 +43,7 @@ const getSearchFilter = (option: CustomSelectOptionType, _: string): boolean =>
 
 			<DBCustomSelect
 				v-if="!exampleProps?.lineBreak && !exampleProps?.info"
-				:showRequiredAsterisk="exampleProps?.showRequiredAsterisk"
+				:ariaListLabel="getAriaLabel(exampleProps, exampleName)"
 				:listLabel="getAriaLabel(exampleProps, exampleName)"
 				:disabled="exampleProps?.disabled"
 				:icon="exampleProps?.icon"
@@ -68,9 +68,6 @@ const getSearchFilter = (option: CustomSelectOptionType, _: string): boolean =>
 				:placeholder="exampleProps?.placeholder"
 				:showLabel="exampleProps?.showLabel"
 				:placement="exampleProps?.placement"
-				:invalidMessage="exampleProps?.invalidMessage"
-				:validMessage="exampleProps?.validMessage"
-				:validation="exampleProps?.validation"
 				selectAllLabel="Select all"
 				searchLabel="Search"
 				:searchValue="exampleProps?.searchValue"

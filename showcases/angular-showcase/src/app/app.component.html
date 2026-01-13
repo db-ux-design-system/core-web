@@ -4,72 +4,83 @@
 	</div>
 }
 @if (!page) {
-	<db-page variant="fixed" documentOverflow="auto" [fadeIn]="true">
-		<db-header
-			header
-			[drawerOpen]="drawerOpen"
-			(toggle)="toggleDrawer($event)"
+	<db-shell
+		[fadeIn]="true"
+		[controlPanelDesktopPosition]="settings.controlPanelDesktopPosition"
+		[controlPanelMobilePosition]="settings.controlPanelMobilePosition"
+		[subNavigationDesktopPosition]="settings.subNavigationDesktopPosition"
+		[subNavigationMobilePosition]="settings.subNavigationMobilePosition"
+		[showSubNavigation]="settings.subNavigation === 'true'"
+	>
+		<db-shell-sub-navigation sub-navigation slot="subNavigation">
+			<db-navigation
+				aria-label="sub-navigation"
+				[variant]="settings.subNavigationVariant"
+			>
+				@for (item of navigationItems; track item.label) {
+					<app-nav-item [navItem]="item"> </app-nav-item>
+				}</db-navigation
+		></db-shell-sub-navigation>
+
+		<db-control-panel-desktop
+			control-panel-desktop
+			slot="controlPanelDesktop"
 		>
-			<db-brand brand>Showcase</db-brand>
-			<db-navigation *dbNavigation aria-label="main-navigation">
+			<db-control-panel-brand brand slot="brand">
+				Showcase
+			</db-control-panel-brand>
+			<app-meta-navigation meta-navigation slot="metaNavigation" />
+			<app-primary-actions
+				primary-actions
+				[density]="density"
+				[color]="color"
+				[settings]="settings"
+				slot="primaryActions"
+			></app-primary-actions>
+			<app-secondary-actions
+				secondary-actions
+				slot="secondaryActions"
+			></app-secondary-actions>
+			<db-navigation
+				aria-label="desktop-navigation"
+				[variant]="settings.navigationDesktopVariant"
+			>
 				@for (item of navigationItems; track item.label) {
 					<app-nav-item [navItem]="item"> </app-nav-item>
 				}
 			</db-navigation>
-			<ng-container *dbMetaNavigation>
-				@if (isWebComponents) {
-					<db-select variant="floating" label="Nothing">
-						<option>Nothing here for stencil</option>
-					</db-select>
-				} @else {
-					<db-select
-						variant="floating"
-						label="Density"
-						[(ngModel)]="density"
-						(change)="onChange($event)"
-					>
-						@for (t of densities; track t) {
-							<option>
-								{{ t }}
-							</option>
-						}
-					</db-select>
-					<db-select
-						variant="floating"
-						label="Color"
-						[(ngModel)]="color"
-						(change)="onChange($event)"
-					>
-						@for (c of colors; track c) {
-							<option>
-								{{ c }}
-							</option>
-						}
-					</db-select>
+		</db-control-panel-desktop>
+		<db-control-panel-mobile
+			control-panel-mobile
+			slot="controlPanelMobile"
+			drawerHeadlinePlain="Showcase"
+		>
+			<db-control-panel-brand brand slot="brand">
+				Showcase
+			</db-control-panel-brand>
+			<app-meta-navigation meta-navigation slot="metaNavigation" />
+			<app-primary-actions
+				primary-actions
+				[density]="density"
+				[color]="color"
+				[settings]="settings"
+				slot="primaryActions"
+			></app-primary-actions>
+			<app-secondary-actions
+				secondary-actions
+				slot="secondaryActions"
+			></app-secondary-actions>
+			<db-navigation
+				aria-label="mobile-navigation"
+				[variant]="settings.navigationMobileVariant"
+			>
+				@for (item of navigationItems; track item.label) {
+					<app-nav-item [navItem]="item"> </app-nav-item>
 				}
-			</ng-container>
-			<ng-container primary-action>
-				<db-button
-					icon="magnifying_glass"
-					variant="ghost"
-					[noText]="true"
-					>Search</db-button
-				>
-			</ng-container>
-			<ng-container *dbSecondaryAction>
-				<db-button icon="x_placeholder" variant="ghost" [noText]="true">
-					Profile
-				</db-button>
-				<db-button icon="x_placeholder" variant="ghost" [noText]="true">
-					Notification
-				</db-button>
-				<db-button icon="x_placeholder" variant="ghost" [noText]="true">
-					Help
-				</db-button>
-			</ng-container>
-		</db-header>
+			</db-navigation>
+		</db-control-panel-mobile>
 		<div [class]="getChangeableClasses()">
 			<router-outlet></router-outlet>
 		</div>
-	</db-page>
+	</db-shell>
 }

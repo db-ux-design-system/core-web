@@ -36,35 +36,56 @@ db-card:is(.variants-card) > .db-card {
 	padding: var(--db-spacing-fixed-sm);
 }
 
+.variants-list .db-select,
+.w-full {
+	inline-size: 100%;
+}
+
 .variants-list {
 	display: flex;
 	flex-wrap: wrap;
 	inline-size: 100%;
 	justify-content: center;
 	gap: var(--db-spacing-fixed-md);
-}
 
-.variants-list > div {
-	align-items: center;
-	display: flex;
-	gap: var(--db-spacing-fixed-md);
-}
+	> div {
+		align-items: center;
+		display: flex;
+		gap: var(--db-spacing-fixed-md);
+	}
 
-.variants-list .db-select,
-.w-full {
-	inline-size: 100%;
-}
+	.db-shell {
+		&:is(
+			:not([data-control-panel-desktop-position]),
+			[data-control-panel-desktop-position="top"]
+		) {
+			block-size: 200px;
+		}
 
-.variants-list .db-select,
-.variants-list .db-input,
-.variants-list .db-textarea {
-	margin-block-start: auto;
-}
+		&[data-control-panel-desktop-position="left"] {
+			block-size: 500px;
+		}
+	}
 
-.variants-list .db-select:has([placeholder="(Default) Basic"]),
-.variants-list .db-input:has([placeholder="(Default) Basic"]),
-.variants-list .db-textarea:has([placeholder="(Default) Basic"]) {
-	margin-block: 0 auto;
+	.db-select,
+	.db-input,
+	.db-textarea {
+		margin-block-start: auto;
+
+		&:has([placeholder="(Default) Basic"]) {
+			margin-block: 0 auto;
+		}
+	}
+
+	&:has(.db-shell) {
+		flex-direction: column;
+		align-items: center;
+
+		> div {
+			justify-content: center;
+			inline-size: 100%;
+		}
+	}
 }
 
 .html-code-container {
@@ -135,26 +156,13 @@ db-card:is(.variants-card) > .db-card {
 	margin-inline-start: var(--db-spacing-responsive-md);
 }
 
-.fixed-header-footer {
-	overflow: hidden;
-}
-
 .tab-hide-article article {
 	display: none !important;
 }
 
-.db-page.fixed-header-footer main {
+.db-main {
 	overflow-x: hidden;
 	overflow-inline: hidden;
-}
-
-:root:has(.db-page) {
-	block-size: 100%;
-	overflow: hidden;
-}
-
-main .db-header {
-	block-size: 100%;
 }
 
 .stack-container {
@@ -209,4 +217,33 @@ main .db-header {
 	background-color: var(--db-successful-bg-basic-level-1-default);
 	color: var(--db-successful-on-bg-basic-emphasis-100-default);
 	padding-inline: var(--db-spacing-fixed-xs);
+}
+
+.db-control-panel-primary-actions {
+	.db-drawer {
+		@media screen and (width < 768px) {
+			--db-drawer-max-width: 100%;
+			--db-drawer-min-width: 100%;
+		}
+
+		@media screen and (width >= 768px) {
+			--db-drawer-max-width: var(--db-container-xs);
+			--db-drawer-min-width: var(--db-container-xs);
+		}
+
+		.db-drawer-content {
+			display: flex;
+			flex-direction: column;
+			padding: var(--db-spacing-fixed-xs);
+			gap: var(--db-spacing-fixed-xs);
+		}
+	}
+}
+
+/* stylelint-disable  selector-type-no-unknown */
+app-meta-navigation,
+app-primary-actions,
+app-secondary-actions,
+app-nav-item {
+	display: contents;
 }

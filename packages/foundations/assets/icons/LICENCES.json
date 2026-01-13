@@ -18,6 +18,18 @@
 		"origin": "arrow-right"
 	},
 	{
+		"name": "house.svg",
+		"type": "lucide",
+		"licence": "https://lucide.dev/license#lucide-license",
+		"origin": "house"
+	},
+	{
+		"name": "intermediary_stop.svg",
+		"type": "lucide",
+		"licence": "https://lucide.dev/license#lucide-license",
+		"origin": "circle-small"
+	},
+	{
 		"name": "arrow_up.svg",
 		"type": "lucide",
 		"licence": "https://lucide.dev/license#lucide-license",
@@ -52,6 +64,18 @@
 		"type": "lucide",
 		"licence": "https://lucide.dev/license#lucide-license",
 		"origin": "chevron-up"
+	},
+	{
+		"name": "double_chevron_left.svg",
+		"type": "lucide",
+		"licence": "https://lucide.dev/license#lucide-license",
+		"origin": "chevrons_left"
+	},
+	{
+		"name": "double_chevron_right.svg",
+		"type": "lucide",
+		"licence": "https://lucide.dev/license#lucide-license",
+		"origin": "chevrons-right"
 	},
 	{
 		"name": "clock.svg",

@@ -1,10 +1,5 @@
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import {
-	DBBadge,
-	DBButton,
-	DBIcon,
-	DBInfotext
-} from '../../../../../../output/angular/src';
+import { DBBadge, DBButton, DBIcon, DBInfotext } from '@components';
 import defaultComponentVariants from '../../../../../shared/badge.json';
 import { environment } from '../../../environments/environment';
 import { DefaultComponent } from '../default.component';

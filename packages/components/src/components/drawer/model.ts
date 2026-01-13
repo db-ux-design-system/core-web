@@ -19,7 +19,13 @@ export const DrawerBackdropList = [
 ] as const;
 export type DrawerBackdropType = (typeof DrawerBackdropList)[number];
 
-export const DrawerDirectionList = ['left', 'right', 'up', 'down'] as const;
+export const DrawerDirectionList = [
+	'custom',
+	'left',
+	'right',
+	'up',
+	'down'
+] as const;
 export type DrawerDirectionType = (typeof DrawerDirectionList)[number];
 
 export const DrawerVariantList = ['modal', 'inside'] as const;
@@ -44,6 +50,11 @@ export type DBDrawerDefaultProps = {
 	 * Slot for changing the header of the drawer.
 	 */
 	drawerHeader?: any;
+
+	/**
+	 * Text for changing the header of the drawer.
+	 */
+	drawerHeaderPlain?: string;
 
 	/**
 	 * The open attribute opens or closes the drawer based on the state.

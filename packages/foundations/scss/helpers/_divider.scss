@@ -1,6 +1,15 @@
 @use "../colors";
 @use "../variables";
 
+@mixin forced-color {
+	// border is the better implementation, but border height changes in windows based on pixel density
+	// we use it as a fallback for color contrast
+	/* stylelint-disable-next-line db-ux/use-border-color */
+	@media (forced-colors: active) {
+		@content;
+	}
+}
+
 // Workaround until we get Relative Color Syntax
 // https://codepen.io/bramus/pen/VwMZOQK
 // https://bugs.chromium.org/p/chromium/issues/detail?id=1274133
@@ -23,28 +32,41 @@
 			block-size: variables.$db-border-width-3xs;
 			inset-block-start: 0;
 			inset-inline: 0;
+
+			@include forced-color {
+				border-block-start: variables.$db-border-width-3xs solid
+					var(--db-divider-bg-color);
+			}
 			/* stylelint-disable-next-line at-rule-empty-line-before */
 		} @else if $position == "bottom" {
 			block-size: variables.$db-border-width-3xs;
 			inset-block-end: 0;
 			inset-inline: 0;
+
+			@include forced-color {
+				border-block-end: variables.$db-border-width-3xs solid
+					var(--db-divider-bg-color);
+			}
 			/* stylelint-disable-next-line at-rule-empty-line-before */
 		} @else if $position == "left" {
 			inline-size: variables.$db-border-width-3xs;
 			inset-inline-start: 0;
 			inset-block: 0;
+
+			@include forced-color {
+				border-inline-start: variables.$db-border-width-3xs solid
+					var(--db-divider-bg-color);
+			}
 			/* stylelint-disable-next-line at-rule-empty-line-before */
 		} @else if $position == "right" {
 			inline-size: variables.$db-border-width-3xs;
 			inset-inline-end: 0;
 			inset-block: 0;
-		}
-	}
 
-	@media (forced-colors: active) {
-		// border is the better implementation, but border height changes in windows based on pixel density
-		// we use it as a fallback for color contrast
-		/* stylelint-disable-next-line no-invalid-position-declaration, db-ux/use-border-color */
-		border: variables.$db-border-width-3xs solid var(--db-divider-bg-color);
+			@include forced-color {
+				border-inline-end: variables.$db-border-width-3xs solid
+					var(--db-divider-bg-color);
+			}
+		}
 	}
 }

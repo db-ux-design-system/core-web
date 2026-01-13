@@ -1,5 +1,5 @@
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import { DBButton } from '../../../../../../output/angular/src';
+import { DBButton } from '@components';
 import defaultComponentVariants from '../../../../../shared/button.json';
 import { environment } from '../../../environments/environment';
 import { DefaultComponent } from '../default.component';

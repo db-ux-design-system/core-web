@@ -2,22 +2,19 @@ import { type ReactElement } from 'react';
 import AccordionComponent from '../../react-showcase/src/components/accordion';
 import AccordionItemComponent from '../../react-showcase/src/components/accordion-item';
 import BadgeComponent from '../../react-showcase/src/components/badge';
-import BrandComponent from '../../react-showcase/src/components/brand';
 import ButtonComponent from '../../react-showcase/src/components/button';
 import CardComponent from '../../react-showcase/src/components/card';
 import CheckboxComponent from '../../react-showcase/src/components/checkbox';
+import ControlPanelDesktop from '../../react-showcase/src/components/control-panel-desktop';
 import CustomSelectComponent from '../../react-showcase/src/components/custom-select';
 import DividerComponent from '../../react-showcase/src/components/divider';
 import DrawerComponent from '../../react-showcase/src/components/drawer';
-import HeaderComponent from '../../react-showcase/src/components/header';
-// Import IconComponent from '../../react-showcase/src/components/icon';
 import InfotextComponent from '../../react-showcase/src/components/infotext';
 import InputComponent from '../../react-showcase/src/components/input';
 import LinkComponent from '../../react-showcase/src/components/link';
 import NavigationComponent from '../../react-showcase/src/components/navigation';
 import NavigationItemComponent from '../../react-showcase/src/components/navigation-item';
 import NotificationComponent from '../../react-showcase/src/components/notification';
-// Import PageComponent from '../../react-showcase/src/components/page';
 import PopoverComponent from '../../react-showcase/src/components/popover';
 import RadioComponent from '../../react-showcase/src/components/radio';
 import SectionComponent from '../../react-showcase/src/components/section';
@@ -32,22 +29,22 @@ import TooltipComponent from '../../react-showcase/src/components/tooltip';
 import * as accordionCode from '../components/code-docs/accordion';
 import * as accordionItemCode from '../components/code-docs/accordion-item';
 import * as badgeCode from '../components/code-docs/badge';
-import * as brandCode from '../components/code-docs/brand';
 import * as buttonCode from '../components/code-docs/button';
+import * as linkCode from '../components/code-docs/link';
+// Import * as iconCode from '../components/code-docs/icon';
+import ControlPanelMobileComponent from '../../react-showcase/src/components/control-panel-mobile';
 import * as cardCode from '../components/code-docs/card';
 import * as checkboxCode from '../components/code-docs/checkbox';
+import * as controlPanelDesktopCode from '../components/code-docs/control-panel-desktop';
+import * as ControlPanelMobileCode from '../components/code-docs/control-panel-mobile';
 import * as customSelectCode from '../components/code-docs/custom-select';
 import * as dividerCode from '../components/code-docs/divider';
 import * as drawerCode from '../components/code-docs/drawer';
-import * as headerCode from '../components/code-docs/header';
-// Import * as iconCode from '../components/code-docs/icon';
 import * as infotextCode from '../components/code-docs/infotext';
 import * as inputCode from '../components/code-docs/input';
-import * as linkCode from '../components/code-docs/link';
 import * as navigationCode from '../components/code-docs/navigation';
 import * as navigationItemCode from '../components/code-docs/navigation-item';
 import * as notificationCode from '../components/code-docs/notification';
-// Import * as pageCode from '../components/code-docs/page';
 import * as popoverCode from '../components/code-docs/popover';
 import * as radioCode from '../components/code-docs/radio';
 import * as sectionCode from '../components/code-docs/section';
@@ -71,11 +68,14 @@ export type NavigationItem = {
 };
 
 const nameComponentMap = {
+	'control-panel-mobile': (
+		<ControlPanelMobileComponent slotCode={ControlPanelMobileCode} />
+	),
+
 	'custom-select': <CustomSelectComponent slotCode={customSelectCode} />,
 	stack: <StackComponent slotCode={stackCode} />,
 	button: <ButtonComponent slotCode={buttonCode} />,
 	link: <LinkComponent slotCode={linkCode} />,
-	brand: <BrandComponent slotCode={brandCode} />,
 	// Icon: <IconComponent slotCode={iconCode} />,
 	tooltip: <TooltipComponent slotCode={tooltipCode} />,
 	infotext: <InfotextComponent slotCode={infotextCode} />,
@@ -117,8 +117,9 @@ const nameComponentMap = {
 	card: <CardComponent slotCode={cardCode} />,
 	divider: <DividerComponent slotCode={dividerCode} />,
 	drawer: <DrawerComponent slotCode={drawerCode} />,
-	header: <HeaderComponent slotCode={headerCode} />,
-	// Page: <PageComponent slotCode={pageCode} />,
+	'control-panel-desktop': (
+		<ControlPanelDesktop slotCode={controlPanelDesktopCode} />
+	),
 	section: <SectionComponent slotCode={sectionCode} />,
 	navigation: (
 		<NavigationComponent

@@ -25,11 +25,7 @@
 	}
 
 	&:not([data-no-text="true"]) {
-		--db-padding-inline-start: #{variables.$db-spacing-fixed-2xs};
-
-		/* stylelint-disable-next-line db-ux/use-spacings */
-		padding-inline: var(--db-padding-inline-start)
-			#{variables.$db-spacing-fixed-2xs};
+		padding-inline: variables.$db-spacing-fixed-2xs;
 
 		&:has(.db-tab-remove-button) {
 			padding-inline-end: 0;

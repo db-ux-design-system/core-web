@@ -1,6 +1,6 @@
+import { DBNavigationItem, DBNavigationItemGroup } from '@components';
 import Link from 'next/link';
 import { type NextRouter, useRouter } from 'next/router';
-import { DBNavigationItem } from '../../../../output/react/src';
 import type { NavigationItem } from '../../data/routes';
 
 const isRouteActive = (
@@ -25,34 +25,30 @@ const NavItem = ({ navItem }: { navItem: NavigationItem }) => {
 
 	const isActive = isRouteActive(router.pathname, navItem, router);
 
+	if (navItem.subNavigation) {
+		return (
+			<DBNavigationItemGroup
+				text={navItem.label}
+				backButtonText={`Back to ${navItem.label}`}>
+				{navItem.subNavigation
+					.filter(({ isHiddenInMenu }) => isHiddenInMenu !== true)
+					.map((subItem: NavigationItem) => (
+						<NavItem
+							key={`router-path-${subItem.path}`}
+							navItem={subItem}></NavItem>
+					))}
+			</DBNavigationItemGroup>
+		);
+	}
+
 	return (
-		<DBNavigationItem
-			backButtonText={`Back to ${navItem.label}`}
-			subNavigation={
-				navItem.subNavigation && (
-					<>
-						{navItem?.subNavigation
-							.filter(
-								({ isHiddenInMenu }) => isHiddenInMenu !== true
-							)
-							.map((subItem: NavigationItem) => (
-								<NavItem
-									key={`router-path-${subItem.path}`}
-									navItem={subItem}></NavItem>
-							))}
-					</>
-				)
-			}>
-			{navItem.subNavigation ? (
-				navItem.label
-			) : (
-				<Link
-					key={`router-path-${navItem.path}`}
-					href={navItem.path ?? ''}
-					aria-current={isActive ? 'page' : undefined}>
-					{navItem.label}
-				</Link>
-			)}
+		<DBNavigationItem>
+			<Link
+				key={`router-path-${navItem.path}`}
+				href={navItem.path ?? ''}
+				aria-current={isActive ? 'page' : undefined}>
+				{navItem.label}
+			</Link>
 		</DBNavigationItem>
 	);
 };

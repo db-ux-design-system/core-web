@@ -1,0 +1,130 @@
+@use "sass:string";
+@use "@db-ux/core-foundations/build/styles/variables";
+@use "@db-ux/core-foundations/build/styles/helpers";
+@use "@db-ux/core-foundations/build/styles/colors";
+@use "./component";
+@use "./custom-elements";
+@use "../../components/drawer/drawer";
+
+@mixin has-empty-drawer {
+	&:has(.db-control-panel-mobile-drawer-scroll-container:empty):not(
+			:has(.db-control-panel-secondary-actions)
+		) {
+		@content;
+	}
+}
+
+%control-panel-mobile-position-top {
+	border-block-end: variables.$db-border-width-3xs solid
+		colors.$db-adaptive-on-bg-basic-emphasis-60-default;
+	grid-template-areas: var(
+		--db-control-panel-mobile-position-top-grid-areas,
+		"brand primary drawer-button"
+	);
+	grid-template-columns: var(
+		--db-control-panel-mobile-position-top-grid-columns,
+		[brand] 1fr [primary] min-content [drawer-button] min-content
+	);
+	justify-items: center;
+
+	.db-control-panel-primary-actions {
+		// fake divider margin
+		padding-inline-end: variables.$db-spacing-fixed-xs;
+
+		@include helpers.divider("right");
+
+		&::before {
+			margin-inline-start: variables.$db-spacing-fixed-xs;
+		}
+	}
+
+	.db-drawer {
+		> .db-drawer-container {
+			@extend %direction-right;
+
+			border-inline-start: component.$component-border;
+		}
+
+		&[open] {
+			.db-drawer-container {
+				@media screen and (prefers-reduced-motion: no-preference) {
+					animation: show-right-to-left
+						#{variables.$db-transition-straight-show};
+				}
+
+				&[hidden] {
+					@media screen and (prefers-reduced-motion: no-preference) {
+						animation: hide-right-to-left
+							#{variables.$db-transition-straight-hide};
+					}
+				}
+			}
+		}
+	}
+}
+
+%control-panel-mobile-position-bottom {
+	border-block-start: variables.$db-border-width-3xs solid
+		colors.$db-adaptive-on-bg-basic-emphasis-60-default;
+
+	.db-control-panel-brand {
+		font-size: 0;
+		gap: 0;
+		place-self: center;
+	}
+
+	> db-button > .db-control-panel-mobile-button,
+	> .db-control-panel-mobile-button {
+		place-self: center;
+	}
+
+	.db-drawer {
+		> .db-drawer-container {
+			@extend %direction-up;
+
+			border-block-start: component.$component-border;
+		}
+
+		&[open] {
+			.db-drawer-container {
+				@media screen and (prefers-reduced-motion: no-preference) {
+					animation: show-bottom-to-top
+						#{variables.$db-transition-straight-show};
+				}
+
+				&[hidden] {
+					@media screen and (prefers-reduced-motion: no-preference) {
+						animation: hide-bottom-to-top
+							#{variables.$db-transition-straight-hide};
+					}
+				}
+			}
+		}
+	}
+
+	&:not([data-variant="flat-icon"]) {
+		grid-template-areas: "brand drawer-button primary";
+		grid-template-columns: min-content 1fr minmax(
+				#{variables.$db-sizing-md},
+				min-content
+			);
+		justify-content: space-evenly;
+	}
+
+	// Flat icon variant
+	&[data-variant="flat-icon"] {
+		.db-drawer,
+		.db-control-panel-brand,
+		.db-control-panel-primary-actions,
+		.db-control-panel-secondary-actions,
+		.db-control-panel-mobile-button,
+		.overflow-scroll-right-button,
+		.overflow-scroll-left-button {
+			display: none;
+		}
+
+		.db-control-panel-flat-icon-navigation {
+			display: initial;
+		}
+	}
+}

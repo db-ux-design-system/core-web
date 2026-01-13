@@ -8,24 +8,16 @@
 @forward "@db-ux/core-components/build/styles/webpack";
 @forward "@db-ux/db-theme/build/styles/webpack";
 
-:root:not(:has(.db-page)) {
+:root:not(:has(.db-shell)) {
 	color-scheme: light;
 }
 
-body:not(:has(.db-page)) {
+body:not(:has(.db-shell)) {
 	padding-block-end: variables.$db-spacing-fixed-lg;
 }
 
 .db-main {
 	scroll-behavior: smooth;
-}
-
-#__next {
-	block-size: inherit;
-}
-
-#__next > div {
-	block-size: inherit;
 }
 
 db-mainnavigation {
@@ -121,7 +113,7 @@ table th {
 	max-inline-size: variables.$db-sizing-3xl;
 }
 
-/* Workaround for current db-page from db-ux-elements */
+/* Workaround for current db-shell from db-ux-elements */
 div[class^="ch-"] {
 	div,
 	span {

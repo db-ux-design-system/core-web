@@ -5,7 +5,7 @@ import {
 	DBTabList,
 	DBTabPanel,
 	DBTabs
-} from '../../../../../../output/angular/src';
+} from '@components';
 import defaultComponentVariants from '../../../../../shared/tabs.json';
 import { environment } from '../../../environments/environment';
 import { DefaultComponent } from '../default.component';

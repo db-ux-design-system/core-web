@@ -1,0 +1,8 @@
+@use "@db-ux/core-foundations/build/styles/variables";
+
+.db-control-panel-primary-actions {
+	grid-area: primary;
+	display: flex;
+	gap: variables.$db-spacing-fixed-xs;
+	align-items: center;
+}

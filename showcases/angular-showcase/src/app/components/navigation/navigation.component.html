@@ -20,44 +20,24 @@
 				{{ exampleName }}
 			</db-infotext>
 			<db-navigation [attr.aria-labelledby]="getId(exampleName)">
-				<db-navigation-item>
-					<ng-container *dbNavigationContent>
-						Navi-Item 1
-					</ng-container>
-					<ng-container sub-navigation>
-						<db-navigation-item>
-							<ng-container *dbNavigationContent>
-								Sub-Navi-Item 1
-							</ng-container>
-							<ng-container sub-navigation>
-								<db-navigation-item [active]="true">
-									<ng-container *dbNavigationContent>
-										<a href="#">Sub-Sub-Navi-Item 1</a>
-									</ng-container>
-								</db-navigation-item>
-								<db-navigation-item>
-									<ng-container *dbNavigationContent>
-										<a href="#">Sub-Sub-Navi-Item 2</a>
-									</ng-container>
-								</db-navigation-item>
-							</ng-container>
+				<db-navigation-item-group text="Navi-Item 1">
+					<db-navigation-item-group text="Sub-Navi-Item 1">
+						<db-navigation-item [active]="true">
+							<a href="#">Sub-Sub-Navi-Item 1</a>
 						</db-navigation-item>
 						<db-navigation-item>
-							<ng-container *dbNavigationContent>
-								<a href="#">Sub-Navi-Item 2</a>
-							</ng-container>
+							<a href="#">Sub-Sub-Navi-Item 2</a>
 						</db-navigation-item>
-					</ng-container>
-				</db-navigation-item>
+					</db-navigation-item-group>
+					<db-navigation-item>
+						<a href="#">Sub-Navi-Item 2</a>
+					</db-navigation-item>
+				</db-navigation-item-group>
 				<db-navigation-item icon="x_placeholder">
-					<ng-container *dbNavigationContent>
-						<a href="#">Navi-Item 2</a>
-					</ng-container>
+					<a href="#">Navi-Item 2</a>
 				</db-navigation-item>
 				<db-navigation-item [disabled]="true">
-					<ng-container *dbNavigationContent>
-						<a href="#">Navi-Item 3</a>
-					</ng-container>
+					<a href="#">Navi-Item 3</a>
 				</db-navigation-item>
 			</db-navigation>
 		</div>

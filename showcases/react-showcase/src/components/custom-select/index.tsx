@@ -1,7 +1,7 @@
+import { DBCustomSelect, DBInfotext } from '@components';
+import type { DBCustomSelectProps } from '@components/src/components/custom-select/model';
 import { type CustomSelectOptionType } from '@db-ux/core-components/src/components/custom-select/model';
 import { useState } from 'react';
-import { DBCustomSelect, DBInfotext } from '../../../../../output/react/src';
-import type { DBCustomSelectProps } from '../../../../../output/react/src/components/custom-select/model';
 import defaultComponentVariants from '../../../../shared/custom-select.json';
 import type { BaseComponentProps } from '../base-component-data';
 import { getVariants } from '../data';
@@ -39,10 +39,6 @@ const getCustomSelect = ({
 	selectedLabels,
 	transformSelectedLabels,
 	searchFilter,
-	validMessage,
-	validation,
-	invalidMessage,
-	showRequiredAsterisk,
 	removeTagsTexts
 }: DBCustomSelectProps & {
 	lineBreak?: boolean;
@@ -75,7 +71,6 @@ const getCustomSelect = ({
 
 	return (
 		<DBCustomSelect
-			showRequiredAsterisk={showRequiredAsterisk}
 			disabled={disabled}
 			icon={icon}
 			showMessage={showMessage}
@@ -106,9 +101,6 @@ const getCustomSelect = ({
 			searchValue={searchValue}
 			selectedLabels={selectedLabels}
 			selectedPrefix="Selected"
-			invalidMessage={invalidMessage}
-			validMessage={validMessage}
-			validation={validation}
 			transformSelectedLabels={
 				transformSelectedLabels ? getTransformSelectedLabels : undefined
 			}

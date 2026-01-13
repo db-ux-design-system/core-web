@@ -1,4 +1,3 @@
-import { useEffect, useState } from 'react';
 import {
 	DBAccordion,
 	DBAccordionItem,
@@ -17,14 +16,15 @@ import {
 	DBTabs,
 	DBTag,
 	DBTextarea,
-	DBTooltip
-} from '../../../../../output/react/src';
-import type {
-	ChangeEvent,
-	ValueLabelType
-} from '../../../../../output/react/src/shared/model';
+	DBTooltip,
+	type ChangeEvent,
+	type ValueLabelType
+} from '@components';
+import { useEffect, useId, useState } from 'react';
 
 const FormComponent = () => {
+	const tabsId = useId();
+	const tabsVerticalId = useId();
 	const [input, setInput] = useState('');
 	const [dateinput, setDateinput] = useState('');
 	const [textarea, setTextarea] = useState('default textarea');
@@ -312,9 +312,7 @@ const FormComponent = () => {
 					ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur
 					sadipscing elitr, sed diam nonumy eirmod tempor{' '}
 					<DBLink showIcon={false} href="#">
-						labore et dolore magna aliquyam erat, sed diam voluptua.
-						At vero eos et accusam et justo duo dolores et ea rebum.
-						Stet
+						labore et dolore magna
 					</DBLink>{' '}
 					ut labore et dolore magna aliquyam erat, sed diam voluptua.
 					At vero eos et accusam et justo duo dolores et ea rebum.
@@ -328,7 +326,7 @@ const FormComponent = () => {
 					}}>
 					TabsTest
 				</DBButton>
-				<DBTabs>
+				<DBTabs id={tabsId} name={tabsId}>
 					<DBTabList>
 						<DBTabItem>Test 1</DBTabItem>
 						<DBTabItem>Test 2</DBTabItem>
@@ -339,7 +337,10 @@ const FormComponent = () => {
 					{tabsTest && <DBTabPanel>Tab Panel 3</DBTabPanel>}
 				</DBTabs>
 
-				<DBTabs orientation="vertical">
+				<DBTabs
+					id={tabsVerticalId}
+					name={tabsVerticalId}
+					orientation="vertical">
 					<DBTabList>
 						<DBTabItem icon="x_placeholder">
 							Airplane Button

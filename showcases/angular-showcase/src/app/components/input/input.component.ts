@@ -1,9 +1,5 @@
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import {
-	DBInput,
-	LabelVariantType,
-	ValueLabelType
-} from '../../../../../../output/angular/src';
+import { DBInput, LabelVariantType, ValueLabelType } from '@components';
 import defaultComponentVariants from '../../../../../shared/input.json';
 import { environment } from '../../../environments/environment';
 import { DefaultComponent } from '../default.component';

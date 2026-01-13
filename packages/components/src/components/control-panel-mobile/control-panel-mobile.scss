@@ -1,0 +1,124 @@
+@use "sass:string";
+@use "@db-ux/core-foundations/build/styles/variables";
+@use "@db-ux/core-foundations/build/styles/screen-sizes";
+@use "@db-ux/core-foundations/build/styles/helpers";
+@use "@db-ux/core-foundations/build/styles/colors";
+@use "../../styles/internal/component";
+@use "../../styles/internal/custom-elements";
+@use "../../styles/internal/control-panel-mobile";
+@use "../../styles/internal/navigation-item";
+@use "../../styles/internal/indicator";
+
+.db-control-panel-mobile {
+	background-color: colors.$db-adaptive-bg-basic-level-1-default;
+	display: grid;
+	position: relative;
+	min-block-size: component.$min-mobile-header-height;
+	gap: variables.$db-spacing-fixed-xs;
+	padding: variables.$db-spacing-fixed-xs variables.$db-spacing-fixed-md;
+
+	&[data-position="top"] {
+		@extend %control-panel-mobile-position-top;
+	}
+
+	&[data-position="bottom"] {
+		@extend %control-panel-mobile-position-bottom;
+	}
+
+	.db-control-panel-brand {
+		justify-self: self-start;
+		inline-size: 100%;
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
+	}
+
+	.db-control-panel-mobile-button {
+		grid-area: drawer-button;
+	}
+
+	@include control-panel-mobile.has-empty-drawer {
+		--db-control-panel-mobile-position-top-grid-areas: "brand primary";
+		--db-control-panel-mobile-position-top-grid-columns: [brand] 1fr
+			[primary] min-content;
+
+		// If drawer is empty we hide burger button
+		.db-control-panel-mobile-button {
+			display: none;
+		}
+
+		// We don't show primary border in this case
+		.db-control-panel-primary-actions {
+			padding-inline-end: 0;
+
+			&::before {
+				display: none;
+			}
+		}
+	}
+
+	.db-drawer {
+		--db-drawer-content-padding-inline: 0;
+		--db-drawer-max-width: #{variables.$db-container-xs};
+		--db-drawer-max-height: 63vh;
+		--db-drawer-min-width: #{variables.$db-container-xs};
+		--db-drawer-min-height: 63vh;
+
+		> .db-drawer-container {
+			> .db-drawer-content {
+				display: flex;
+				flex-direction: column;
+				block-size: 100%;
+
+				.db-control-panel-secondary-actions {
+					flex-shrink: 0;
+					padding-inline: variables.$db-spacing-fixed-md;
+					padding-block-start: variables.$db-spacing-fixed-xs;
+
+					@include helpers.divider("top");
+				}
+
+				.db-control-panel-mobile-drawer-scroll-container {
+					display: flex;
+					flex-direction: column;
+					overflow-y: auto;
+					block-size: 100%;
+
+					.db-control-panel-meta-navigation {
+						padding: variables.$db-spacing-fixed-md;
+						margin-block-start: auto;
+
+						@include helpers.divider("top");
+					}
+
+					.db-navigation {
+						padding: variables.$db-spacing-fixed-md;
+
+						#{string.unquote(custom-elements.$overflow-scroll-left-button)},
+						#{string.unquote(custom-elements.$overflow-scroll-right-button)} {
+							display: none;
+						}
+
+						> menu {
+							@include navigation-item.direct-navigation-items {
+								@extend %indicator;
+								@include indicator.set-indicator-vertical;
+
+								@include navigation-item.active-navigation-item {
+									@include indicator.show-indicator-vertical;
+								}
+
+								@include navigation-item.direct-navigation-items {
+									/* Workaround for custom-elements */
+									&::after {
+										content: none;
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}

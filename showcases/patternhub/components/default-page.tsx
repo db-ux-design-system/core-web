@@ -1,3 +1,12 @@
+import {
+	DBCard,
+	DBControlPanelBrand,
+	DBControlPanelDesktop,
+	DBControlPanelMobile,
+	DBIcon,
+	DBSection,
+	DBShell
+} from '@components';
 import hljs from 'highlight.js';
 import dynamic from 'next/dynamic';
 import Link from 'next/link';
@@ -10,24 +19,15 @@ import {
 	useState
 } from 'react';
 import {
-	DBBrand,
-	DBCard,
-	DBHeader,
-	DBIcon,
-	DBPage,
-	DBSection,
-	DBSwitch,
-	DBTooltip
-} from '../../../output/react/src';
-import {
 	getBreadcrumb,
 	getNavigationList,
 	type NavigationItem
 } from '../data/routes';
+import PrimaryActions from './control-panel/primary-actions';
+import SecondaryActions from './control-panel/secondary-actions';
 import { FrameworkProvider } from './framework-context';
 import FrameworkSwitcher from './framework-switcher';
 import Navigation from './navigation';
-import VersionSwitcher from './version-switcher';
 
 const preferDark = '(prefers-color-scheme: dark)';
 const colorModeKey = 'db-ux-mode';
@@ -134,43 +134,47 @@ const DefaultPage = ({
 				</div>
 			)}
 			{router.isReady && !fullscreen && (
-				<DBPage
+				<DBShell
 					data-mode={mode ? 'dark' : 'light'}
 					fadeIn
-					variant="fixed"
-					header={
-						<DBHeader
-							drawerOpen={drawerOpen}
-							onToggle={setDrawerOpen}
+					controlPanelDesktop={
+						<DBControlPanelDesktop
 							brand={
-								<DBBrand>
+								<DBControlPanelBrand>
 									{process.env.NEXT_PUBLIC_APP_NAME}
-								</DBBrand>
+								</DBControlPanelBrand>
 							}
-							primaryAction={
-								<DBSwitch
-									checked={mode}
-									visualAid
-									icon="sun"
-									iconTrailing="moon"
-									showLabel={false}
-									onChange={() => {
-										setColorMode(!mode);
-									}}>
-									<DBTooltip>
-										Switch color scheme (light/dark)
-									</DBTooltip>
-									Switch color scheme (light/dark)
-								</DBSwitch>
+							primaryActions={
+								<PrimaryActions
+									mode={mode}
+									setColorMode={setColorMode}
+								/>
 							}
-							secondaryAction={
+							secondaryActions={
 								<>
 									<FrameworkSwitcher />
-									<VersionSwitcher />
+									<SecondaryActions />
 								</>
 							}>
 							<Navigation />
-						</DBHeader>
+						</DBControlPanelDesktop>
+					}
+					controlPanelMobile={
+						<DBControlPanelMobile
+							brand={
+								<DBControlPanelBrand>
+									{process.env.NEXT_PUBLIC_APP_NAME}
+								</DBControlPanelBrand>
+							}
+							primaryActions={
+								<PrimaryActions
+									mode={mode}
+									setColorMode={setColorMode}
+								/>
+							}
+							secondaryActions={<SecondaryActions />}>
+							<Navigation />
+						</DBControlPanelMobile>
 					}>
 					{breadcrumb && breadcrumb.length > 1 && (
 						<DBSection spacing="none" width="large">
@@ -237,7 +241,7 @@ const DefaultPage = ({
 								)}
 							</DBSection>
 						)}
-				</DBPage>
+				</DBShell>
 			)}
 		</FrameworkProvider>
 	);

@@ -1,0 +1,70 @@
+@use "@db-ux/core-foundations/build/styles/screen-sizes";
+@use "@db-ux/core-foundations/build/styles/variables";
+@use "@db-ux/core-foundations/build/styles/colors";
+@use "@db-ux/core-foundations/build/styles/fonts";
+@use "@db-ux/core-foundations/build/styles/helpers";
+@use "../../styles/internal/navigation-item";
+@use "navigation-item-group-menu-popover";
+@use "../../styles/internal/icon-passing";
+
+.db-navigation-item-group-menu {
+	&[data-variant="popover"] {
+		@extend %db-navigation-item-group-menu-popover;
+	}
+}
+
+.db-navigation-item-group {
+	@extend %navigation-item;
+
+	.db-navigation-item-group-expand-button {
+		@extend %navigation-item-interactive-element;
+
+		// Mobile
+		@include screen-sizes.screen-min-max(
+			(
+				max: "sm"
+			)
+		) {
+			&::after {
+				--db-icon-margin-start: auto;
+			}
+		}
+
+		// Desktop
+		@include screen-sizes.screen-min-max(
+			(
+				min: "sm"
+			)
+		) {
+			&::after {
+				--db-icon-margin-start: #{variables.$db-spacing-fixed-sm};
+			}
+		}
+	}
+
+	.db-navigation-item {
+		/* Hide tooltips for nested navigation items */
+		.db-tooltip {
+			display: none;
+		}
+	}
+
+	&::after {
+		// Mobile navigation item is always sizing-md
+		// We add this fixed block-size to avoid issues with tree navigation
+		--indicator-vertical-block-size: #{variables.$db-sizing-md};
+		--indicator-vertical-inset-block-start: calc(
+			#{variables.$db-sizing-md} / 2
+		);
+	}
+}
+
+.db-navigation-item-group-back-button {
+	display: flex;
+	font-weight: normal;
+	background-color: colors.$db-adaptive-bg-basic-level-1-default;
+	padding-block-end: variables.$db-spacing-fixed-md;
+	margin-block-end: variables.$db-spacing-fixed-md;
+
+	@include helpers.divider("bottom");
+}

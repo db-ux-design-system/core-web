@@ -147,7 +147,7 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 					DEFAULT_INVALID_MESSAGE;
 				if (hasVoiceOver()) {
 					state._voiceOverFallback = state._invalidMessage;
-					delay(() => (state._voiceOverFallback = ''), 1000);
+					void delay(() => (state._voiceOverFallback = ''), 1000);
 				}
 				if (state._userInteraction) {
 					state._validity = props.validation ?? 'invalid';
@@ -161,7 +161,7 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 				if (hasVoiceOver()) {
 					state._voiceOverFallback =
 						props.validMessage ?? DEFAULT_VALID_MESSAGE;
-					delay(() => (state._voiceOverFallback = ''), 1000);
+					void delay(() => (state._voiceOverFallback = ''), 1000);
 				}
 				state._validity = props.validation ?? 'valid';
 			} else if (stringPropVisible(props.message, props.showMessage)) {
@@ -260,7 +260,7 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 		},
 		handleTagRemove: (
 			option: CustomSelectOptionType,
-			event?: ClickEvent<HTMLButtonElement> | void
+			event?: ClickEvent<HTMLButtonElement> | void | any
 		) => {
 			if (event) {
 				event.stopPropagation();
@@ -274,7 +274,7 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 				const dropdown = detailsRef.querySelector('article');
 				if (dropdown) {
 					// This is a workaround for Angular
-					delay(() => {
+					void delay(() => {
 						handleFixedDropdown(
 							dropdown,
 							detailsRef,
@@ -355,7 +355,7 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 										const search =
 											getSearchInput(detailsRef);
 										if (search) {
-											delay(() => {
+											void delay(() => {
 												search.focus();
 											}, 100);
 										} else {
@@ -451,7 +451,7 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 						if (!detailsRef.contains(relatedTarget)) {
 							// We need to use delay here because the combination of `contains`
 							// and changing the DOM element causes a race condition inside browser
-							delay(() => (detailsRef.open = false), 1);
+							void delay(() => (detailsRef.open = false), 1);
 						}
 					}
 				}
@@ -566,7 +566,7 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 							: first;
 
 					if (checkbox) {
-						delay(() => {
+						void delay(() => {
 							// Takes some time until element can be focused
 							(checkbox as HTMLInputElement).focus();
 						}, 1);
@@ -579,7 +579,7 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 				// Focus search if possible
 				const search = getSearchInput(detailsRef);
 				if (search) {
-					delay(() => {
+					void delay(() => {
 						// Takes some time until element can be focused
 						search.focus();
 					}, 1);

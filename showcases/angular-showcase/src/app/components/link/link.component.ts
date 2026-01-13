@@ -1,5 +1,5 @@
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import { DBLink } from '../../../../../../output/angular/src';
+import { DBLink } from '@components';
 import defaultComponentVariants from '../../../../../shared/link.json';
 import { environment } from '../../../environments/environment';
 import { DefaultComponent } from '../default.component';

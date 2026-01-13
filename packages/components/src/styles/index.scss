@@ -4,9 +4,9 @@
 @forward "../components/divider/divider";
 @forward "../components/card/card";
 @forward "../components/input/input";
-@forward "../components/brand/brand";
-@forward "../components/header/header";
-@forward "../components/page/page";
+@forward "../components/control-panel-brand/control-panel-brand";
+@forward "../components/control-panel-desktop/control-panel-desktop";
+@forward "../components/shell/shell";
 @forward "../components/link/link";
 @forward "../components/section/section";
 @forward "../components/infotext/infotext";
@@ -35,3 +35,10 @@
 @forward "../components/custom-select-dropdown/custom-select-dropdown";
 @forward "../components/custom-select-list/custom-select-list";
 @forward "../components/custom-select-list-item/custom-select-list-item";
+@forward "../components/control-panel-mobile/control-panel-mobile";
+@forward "../components/control-panel-meta-navigation/control-panel-meta-navigation";
+@forward "../components/control-panel-primary-actions/control-panel-primary-actions";
+@forward "../components/control-panel-secondary-actions/control-panel-secondary-actions";
+@forward "../components/navigation-item-group/navigation-item-group";
+@forward "../components/shell-sub-navigation/shell-sub-navigation";
+@forward "../components/control-panel-flat-icon-navigation/control-panel-flat-icon-navigation";

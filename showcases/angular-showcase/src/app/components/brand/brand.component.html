@@ -10,7 +10,7 @@
 		let-exampleIndex="exampleIndex"
 		let-variantIndex="variantIndex"
 	>
-		<db-brand [hideLogo]="exampleProps?.hideLogo">
+		<db-control-panel-brand>
 			@if (exampleProps?.customLogo) {
 				<img
 					src="./assets/images/placeholder.jpg"
@@ -18,6 +18,6 @@
 				/>
 			}
 			{{ exampleName }}
-		</db-brand>
+		</db-control-panel-brand>
 	</ng-template>
 </app-default-component>

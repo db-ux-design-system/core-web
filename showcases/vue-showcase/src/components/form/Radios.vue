@@ -1,6 +1,6 @@
 <script setup lang="ts">
+import { DBRadio } from "@components";
 import { ref } from "vue";
-import { DBRadio } from "../../../../../output/vue/src";
 import FormWrapper from "./FormWrapper.vue";
 
 const plain = ref("");

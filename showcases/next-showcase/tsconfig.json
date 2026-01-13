@@ -14,7 +14,11 @@
 		"jsx": "react-jsx",
 		"strictNullChecks": true,
 		"downlevelIteration": true,
-		"target": "ES2017"
+		"target": "ES2017",
+		"paths": {
+			"@components": ["../../output/react/src"],
+			"@components/src/*": ["../../output/react/src/*"]
+		}
 	},
 	"include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
 	"exclude": ["node_modules"]

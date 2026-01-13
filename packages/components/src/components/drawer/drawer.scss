@@ -38,7 +38,7 @@
 			--db-drawer-min-height,
 			calc(100% - #{variables.$db-spacing-fixed-xl})
 		);
-		max-inline-size: none;
+		max-inline-size: 100vw;
 	}
 }
 
@@ -135,7 +135,6 @@ $spacings: (
 
 .db-drawer {
 	.db-drawer-container {
-		@extend %direction-right;
 		@extend %spacing-drawer;
 
 		display: flex;
@@ -191,6 +190,11 @@ $spacings: (
 			box-shadow: variables.$db-elevation-md;
 		}
 
+		&:not([data-direction]),
+		&[data-direction="right"] {
+			@extend %direction-right;
+		}
+
 		&[data-direction="left"] {
 			@extend %direction-left;
 		}
@@ -225,6 +229,7 @@ $spacings: (
 			&:has(.button-close-drawer),
 			&:has(:not(.db-drawer-header-text:empty)) {
 				display: flex;
+				gap: variables.$db-spacing-fixed-md;
 			}
 		}
 	}
@@ -249,13 +254,13 @@ $spacings: (
 
 		&[data-direction="left"],
 		&[data-direction="down"] {
-			align-items: start;
+			align-items: flex-start;
 		}
 
 		&:not([data-direction]),
 		&[data-direction="right"],
 		&[data-direction="up"] {
-			align-items: end;
+			align-items: flex-end;
 		}
 
 		.db-drawer-container {

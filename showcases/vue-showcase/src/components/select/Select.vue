@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { DBSelect } from "../../../../../output/vue/src";
+import { DBSelect } from "@components";
 import defaultComponentVariants from "../../../../shared/select.json";
 import DefaultComponent from "../DefaultComponent.vue";
 </script>
@@ -10,7 +10,6 @@ import DefaultComponent from "../DefaultComponent.vue";
 			#example="{ exampleIndex, variantIndex, exampleName, exampleProps }"
 		>
 			<DBSelect
-				:showRequiredAsterisk="exampleProps?.showRequiredAsterisk"
 				:label="exampleProps?.label"
 				:placeholder="exampleProps?.placeholder"
 				:variant="exampleProps?.variant"

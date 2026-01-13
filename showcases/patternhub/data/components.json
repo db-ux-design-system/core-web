@@ -20,8 +20,8 @@
 		"name": "data-display",
 		"subNavigation": [
 			{
-				"label": "DBBrand",
-				"name": "brand"
+				"label": "DBControlPanelBrand",
+				"name": "control-panel-brand"
 			},
 			{
 				"label": "DBTooltip",
@@ -135,8 +135,12 @@
 				"name": "drawer"
 			},
 			{
-				"label": "DBHeader",
-				"name": "header"
+				"label": "DBControlPanelDesktop",
+				"name": "control-panel-desktop"
+			},
+			{
+				"label": "DBControlPanelMobile",
+				"name": "control-panel-mobile"
 			},
 			{
 				"label": "DBSection",

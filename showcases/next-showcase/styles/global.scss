@@ -1,7 +1,2 @@
 @forward "@db-ux/core-components/build/styles/webpack";
 @forward "@db-ux/db-theme/build/styles/webpack";
-
-/* stylelint-disable-next-line selector-id-pattern, selector-max-id */
-#__next {
-	block-size: 100%;
-}

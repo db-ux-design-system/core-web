@@ -62,6 +62,15 @@ head {
 	color-scheme: dark;
 }
 
+[data-pride="true"] {
+	--db-pride-red: #{colors.$db-red-origin-default};
+	--db-pride-orange: #{colors.$db-orange-origin-default};
+	--db-pride-yellow: #{colors.$db-yellow-origin-default};
+	--db-pride-green: #{colors.$db-light-green-origin-default};
+	--db-pride-blue: #{colors.$db-blue-origin-default};
+	--db-pride-violet: #{colors.$db-violet-origin-default};
+}
+
 // *! this is an opionionated (especially based on "enhancing" normalize.css) version of minireset.css v0.0.4 | MIT License | github.com/jgthms/minireset.css
 html,
 body {
@@ -69,16 +78,12 @@ body {
 	padding: 0;
 }
 
-/* stylelint-disable selector-max-id */
-body,
-#root,
-#app {
-	block-size: inherit;
-}
-/* stylelint-enable selector-max-id */
-
 body {
 	font-family: var(--db-font-family-sans);
+}
+
+html {
+	-webkit-tap-highlight-color: #{colors.$db-informational-bg-basic-transparent-semi-default};
 }
 
 // Box sizing

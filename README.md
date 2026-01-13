@@ -159,7 +159,7 @@ Check our migration docs for breaking changes:
 
 > We've updated to the stable version of DB UX Design System (v3) version >= 1.x, and now the colors that were supposed to be red, are colored in blue (`514ec7`).
 
-Please have a look at the [migration guide from version 0.6.x to version 0.7.x](https://github.com/db-ux-design-system/core-web/blob/main/docs/migration/v0.6.x-to-v0.7.x.md#removed-brand-assets), you need to install and reference the DB Theme, if you're building a website or web application for Deutsche Bahn.
+Please have a look at the [migration guide from version 0.6.x to version 0.7.x](https://github.com/db-ux-design-system/core-web/blob/main/docs/migration/v0.6.x-to-v0.7.x.md#removed-control-panel-brand-assets), you need to install and reference the DB Theme, if you're building a website or web application for Deutsche Bahn.
 
 ## Things to keep in mind
 
@@ -187,7 +187,7 @@ Microsoft Teams (only available DB internally)</a>, or directly
 at [db-ux-designsystem@deutschebahn.com](mailto:db-ux-designsystem@deutschebahn.com). <!-- markdownlint-disable MD033 -->
 We're particularly keen to add as many examples to the behaviours as possible, to further clarify them.
 
-## Deutsche Bahn brand
+## Deutsche Bahn control-panel-brand
 
 To perfectly support our users and customers on their digital journey, the use of the Deutsche Bahn brand and trademarks is subject
 to clear guidelines and restrictions even when used with the code provided by this product. Deutsche Bahn fully reserves all
@@ -199,7 +199,7 @@ Marketingportal, you'll agree with
 the ["Allgemeine Nutzungsbedingungen für das DB-Marketingportal" (german)](https://marketingportal.extranet.deutschebahn.com/marketingportal/Nutzungsbedingungen-9702684#)
 in case of using them.
 
-For any usage outside of Deutsche Bahn websites and applications you aren't allowed to use any Deutsche Bahn brand and
+For any usage outside of Deutsche Bahn websites and applications you aren't allowed to use any Deutsche Bahn control-panel-brand and
 design assets as well as protected characteristics and trademarks, that for not including the DB Theme.
 
 ## Contributions

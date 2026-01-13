@@ -1,9 +1,5 @@
 <script setup lang="ts">
-import {
-	DBInput,
-	LabelVariantType,
-	ValueLabelType
-} from "../../../../../output/vue/src";
+import { DBInput, LabelVariantType, ValueLabelType } from "@components";
 import defaultComponentVariants from "../../../../shared/input.json";
 import DefaultComponent from "../DefaultComponent.vue";
 
@@ -27,7 +23,6 @@ const getDataList = (
 			#example="{ exampleIndex, variantIndex, exampleName, exampleProps }"
 		>
 			<DBInput
-				:showRequiredAsterisk="exampleProps?.showRequiredAsterisk"
 				:maxLength="exampleProps?.maxLength"
 				:max="exampleProps?.max"
 				:min="exampleProps?.min"

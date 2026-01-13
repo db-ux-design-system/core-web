@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { DBInfotext, DBRadio } from "../../../../../output/vue/src";
+import { DBInfotext, DBRadio } from "@components";
 import defaultComponentVariants from "../../../../shared/radio.json";
 import DefaultComponent from "../DefaultComponent.vue";
 </script>
@@ -10,7 +10,6 @@ import DefaultComponent from "../DefaultComponent.vue";
 			#example="{ exampleIndex, variantIndex, exampleName, exampleProps }"
 		>
 			<DBRadio
-				:showRequiredAsterisk="exampleProps?.showRequiredAsterisk"
 				:label="exampleProps?.label"
 				:size="exampleProps?.size"
 				:name="exampleProps?.name"
