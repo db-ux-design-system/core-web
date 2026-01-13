@@ -93,7 +93,6 @@
   },
   "devDependencies": {
     "@inquirer/prompts": "8.1.0",
-    "dotenv": "17.2.3",
     "find-versions": "6.0.0",
     "glob": "13.0.0",
     "inquirer": "13.1.0",

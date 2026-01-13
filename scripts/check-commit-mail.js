@@ -1,9 +1,17 @@
 #!/usr/bin/env node
-import * as dotenv from 'dotenv';
 import * as ChildProcess from 'node:child_process';
+import path from 'node:path';
 import * as process from 'node:process';
+import { fileURLToPath } from 'node:url';
 
-dotenv.config();
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+const envPath = path.join(__dirname, '..', '.env');
+
+try {
+	process.loadEnvFile(envPath);
+} catch {
+	// .env file doesn't exist, which is ok - we'll check for required vars below
+}
 
 const checkCommitMail = () => {
 	console.warn(`Check COMMIT_MAIL`);
