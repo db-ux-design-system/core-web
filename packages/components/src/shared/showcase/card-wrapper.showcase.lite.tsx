@@ -1,6 +1,14 @@
-import { Fragment, onMount, Show, Slot, useState } from '@builder.io/mitosis';
+import {
+	Fragment,
+	onMount,
+	Show,
+	Slot,
+	useState,
+	useTarget
+} from '@builder.io/mitosis';
 import DBCard from '../../components/card/card.lite';
 import DBLink from '../../components/link/link.lite';
+import { DB_UX_LOCAL_STORAGE_FRAMEWORK } from '../constants';
 
 type Props = {
 	role?: string;
@@ -12,13 +20,20 @@ export default function CardWrapperShowcase(props: Props) {
 	const [href, setHref] = useState<string | undefined>(undefined);
 
 	function updateHref() {
-		const framework = localStorage.getItem('db-ux-framework') || 'react';
-		const currentUrl = window.location.href;
-		const componentsIndex = currentUrl.indexOf('components');
-		if (componentsIndex !== -1) {
-			const baseUrl = currentUrl.substring(0, componentsIndex);
-			setHref(`${baseUrl}${framework}-storybook`);
-		}
+		useTarget({
+			react: () => {
+				// Only for patternhub
+				const framework =
+					localStorage.getItem(DB_UX_LOCAL_STORAGE_FRAMEWORK) ||
+					'react';
+				const currentUrl = window.location.href;
+				const componentsIndex = currentUrl.indexOf('components');
+				if (componentsIndex !== -1) {
+					const baseUrl = currentUrl.substring(0, componentsIndex);
+					setHref(`${baseUrl}${framework}-storybook`);
+				}
+			}
+		});
 	}
 
 	onMount(() => {

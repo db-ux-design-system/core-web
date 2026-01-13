@@ -25,7 +25,9 @@ module.exports = () => ({
 
 			// Validate component import
 			if (!componentName)
-				return `Miss component with ../${componentNameLowercase}.lite inside example`;
+				throw new Error(
+					`Miss component with ../${componentNameLowercase}.lite inside example`
+				);
 
 			// Validate Fragment wrapper
 			if (children.length !== 1 || children[0].name !== 'Fragment') {

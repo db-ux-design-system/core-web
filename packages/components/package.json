@@ -44,7 +44,7 @@
     "generate:component": "hygen mitosis new",
     "generate:docs": "hygen update-docs new",
     "generate:showcase": "mitosis build --config=configs/mitosis.showcase.config.cjs",
-    "generate:storys": "mitosis build --config=configs/mitosis.storybook.config.cjs",
+    "generate:stories": "mitosis build --config=configs/mitosis.storybook.config.cjs",
     "prepack": "npm run copy-assets",
     "start": "nodemon --watch src --watch scripts --watch scripts --ext js,tsx,ts,scss,json --exec \"npm run build\""
   },

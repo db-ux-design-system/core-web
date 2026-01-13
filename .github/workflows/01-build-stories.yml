@@ -20,7 +20,7 @@ jobs:
 
       - name: 🔨 Build Packages
         run: |
-          npm run generate:storys --workspace=@db-ux/core-components
+          npm run generate:stories --workspace=@db-ux/core-components
 
       - name: ⏫ Upload angular stories
         uses: actions/upload-artifact@v6
