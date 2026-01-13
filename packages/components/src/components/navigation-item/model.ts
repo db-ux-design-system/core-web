@@ -36,6 +36,11 @@ export type DBNavigationItemDefaultProps = {
 	 * This is for mobile navigation only, if it is set the sub-navigation is a static overlay
 	 */
 	subNavigationExpanded?: boolean | string;
+
+	/**
+	 * Force hide sub-navigation
+	 */
+	hideSubNavigation?: boolean;
 };
 
 export type DBNavigationItemProps = DBNavigationItemDefaultProps &

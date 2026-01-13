@@ -66,6 +66,16 @@ export default ${upperComponentName};`;
 	}
 };
 
+const deleteConnectedElement = () => {
+	return (
+		'if(document && this.rootElement.dataset.connect){\n' +
+		'const connectedElement = document.querySelector(`[data-connect-id="${this.rootElement.dataset.connect}"]`);\n' +
+		'if (connectedElement){\n' +
+		'connectedElement.remove();\n' +
+		'}\n}'
+	);
+};
+
 export default (tmp?: boolean) => {
 	const outputFolder = `${tmp ? 'output/tmp' : 'output'}`;
 	for (const component of components) {
@@ -79,7 +89,21 @@ export default (tmp?: boolean) => {
 			processor: (input: string) => changeFile(upperComponentName, input)
 		});
 
-		const replacements: Overwrite[] = [{ from: 'for={', to: 'htmlFor={' }];
+		const replacements: Overwrite[] = [
+			{ from: 'for={', to: 'htmlFor={' },
+			{
+				from: 'componentDidLoad() {',
+				to: `componentDidLoad() {${deleteConnectedElement()}\n`
+			},
+			{
+				from: '} from "@stencil/core"',
+				to: `, Element } from "@stencil/core"`
+			},
+			{
+				from: 'private _ref',
+				to: `@Element() rootElement: HTMLElement;\nprivate _ref`
+			}
+		];
 		replaceIndexFile(indexFile, componentName, upperComponentName);
 		runReplacements(replacements, component, 'stencil', file);
 	}

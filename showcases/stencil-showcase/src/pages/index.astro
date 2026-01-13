@@ -8,27 +8,28 @@ import Checkbox from '../components/form/Checkbox.astro';
 import Radio from '../components/form/Radio.astro';
 import CustomSelect from '../components/form/CustomSelect.astro';
 import Switch from '../components/form/Switch.astro';
+import { DBTabs, DBTabItem, DBTabList, DBTabPanel } from '@components';
 ---
 
 <DefaultLayout>
-	<db-tabs data-testid="tabs">
-		<db-tab-list>
-			<db-tab-item>All</db-tab-item>
-			<db-tab-item data-testid="tab-inputs">Input</db-tab-item>
-			<db-tab-item data-testid="tab-textareas">Textarea</db-tab-item>
-			<db-tab-item data-testid="tab-selects">Select</db-tab-item>
-			<db-tab-item data-testid="tab-checkboxes">Checkbox</db-tab-item>
-			<db-tab-item data-testid="tab-radios">Radios</db-tab-item>
-			<db-tab-item data-testid="tab-custom-selects"> Custom Selects </db-tab-item>
-			<db-tab-item data-testid="tab-switches">Switches</db-tab-item>
-		</db-tab-list>
-		<db-tab-panel><Form /></db-tab-panel>
-		<db-tab-panel><Input /></db-tab-panel>
-		<db-tab-panel><Textarea /></db-tab-panel>
-		<db-tab-panel><Select /></db-tab-panel>
-		<db-tab-panel><Checkbox /></db-tab-panel>
-		<db-tab-panel><Radio /></db-tab-panel>
-		<db-tab-panel><CustomSelect /></db-tab-panel>
-		<db-tab-panel><Switch /></db-tab-panel>
-	</db-tabs>
+	<DBTabs data-testid="tabs">
+		<DBTabList>
+			<DBTabItem>All</DBTabItem>
+			<DBTabItem data-testid="tab-inputs">Input</DBTabItem>
+			<DBTabItem data-testid="tab-textareas">Textarea</DBTabItem>
+			<DBTabItem data-testid="tab-selects">Select</DBTabItem>
+			<DBTabItem data-testid="tab-checkboxes">Checkbox</DBTabItem>
+			<DBTabItem data-testid="tab-radios">Radios</DBTabItem>
+			<DBTabItem data-testid="tab-custom-selects"> Custom Selects </DBTabItem>
+			<DBTabItem data-testid="tab-switches">Switches</DBTabItem>
+		</DBTabList>
+		<DBTabPanel><Form /></DBTabPanel>
+		<DBTabPanel><Input /></DBTabPanel>
+		<DBTabPanel><Textarea /></DBTabPanel>
+		<DBTabPanel><Select /></DBTabPanel>
+		<DBTabPanel><Checkbox /></DBTabPanel>
+		<DBTabPanel><Radio /></DBTabPanel>
+		<DBTabPanel><CustomSelect /></DBTabPanel>
+		<DBTabPanel><Switch /></DBTabPanel>
+	</DBTabs>
 </DefaultLayout>

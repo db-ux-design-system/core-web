@@ -16,8 +16,6 @@ import FormWrapper from './FormWrapper.astro';
 	const customSelect = document.querySelector('db-custom-select[id="custom-select"]') as any;
 	const valueDisplay = document.getElementById('custom-select-value-display');
 
-	console.log(customSelect, document.querySelector('db-custom-select'));
-
 	if (customSelect) {
 		customSelect.options = options;
 		customSelect.values = ['combobox-2'];

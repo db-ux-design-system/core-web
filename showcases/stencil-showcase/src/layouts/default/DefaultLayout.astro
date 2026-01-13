@@ -1,6 +1,8 @@
 ---
 import './../../../styles/global.css';
+import './../../../../../output/astro/styles/hydrate.css';
 import Navigation from '../../components/Navigation.astro';
+import { DBPage, DBHeader, DBBrand, DBSelect, DBNavigation, DBButton } from '@components';
 ---
 
 <!doctype html>
@@ -18,30 +20,30 @@ import Navigation from '../../components/Navigation.astro';
 		</script>
 	</head>
 	<body>
-		<db-page variant="fixed" documentOverflow="auto" fadeIn="true">
-			<db-header slot="header">
-				<db-brand slot="brand">Showcase</db-brand>
+		<DBPage variant="fixed" documentOverflow="auto" fadeIn="true">
+			<DBHeader slot="header">
+				<DBBrand slot="brand">Showcase</DBBrand>
 				<div slot="metaNavigation">
-					<db-select variant="floating" label="Nothing">
+					<DBSelect variant="floating" label="Nothing">
 						<option>Nothing here for stencil</option>
-					</db-select>
+					</DBSelect>
 				</div>
 				<div slot="primaryAction">
-					<db-button icon="magnifying_glass" variant="ghost" no-text="true"> Search </db-button>
+					<DBButton icon="magnifying_glass" variant="ghost" noText="true"> Search </DBButton>
 				</div>
 
 				<div slot="secondaryAction">
-					<db-button icon="x_placeholder" variant="ghost" no-text="true"> Profile </db-button>
-					<db-button icon="x_placeholder" variant="ghost" no-text="true"> Notification </db-button>
-					<db-button icon="x_placeholder" variant="ghost" no-text="true"> Help </db-button>
+					<DBButton icon="x_placeholder" variant="ghost" noText="true"> Profile </DBButton>
+					<DBButton icon="x_placeholder" variant="ghost" noText="true"> Notification </DBButton>
+					<DBButton icon="x_placeholder" variant="ghost" noText="true"> Help </DBButton>
 				</div>
-				<db-navigation aria-label="main-navigation">
+				<DBNavigation aria-label="main-navigation">
 					<Navigation />
-				</db-navigation>
-			</db-header>
+				</DBNavigation>
+			</DBHeader>
 			<div>
 				<slot />
 			</div>
-		</db-page>
+		</DBPage>
 	</body>
 </html>

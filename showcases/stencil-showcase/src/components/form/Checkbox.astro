@@ -1,9 +1,10 @@
 ---
+import { DBCheckbox } from '@components';
 import FormWrapper from './FormWrapper.astro';
 ---
 
 <FormWrapper value="true" id="checkbox">
-	<db-checkbox name="checkbox" data-id="checkbox" checked>Checkbox</db-checkbox>
+	<DBCheckbox name="checkbox" data-id="checkbox" checked={true}>Checkbox</DBCheckbox>
 </FormWrapper>
 
 <script>
@@ -11,7 +12,7 @@ import FormWrapper from './FormWrapper.astro';
 	const valueDisplay = document.getElementById('checkbox-value-display');
 
 	checkbox?.addEventListener('change', (e: any) => {
-		console.log(e)
+		console.log(e);
 		if (valueDisplay) valueDisplay.textContent = e.target.checked;
 	});
 </script>

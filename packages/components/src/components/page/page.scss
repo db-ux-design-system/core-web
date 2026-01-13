@@ -17,17 +17,19 @@
 }
 
 .db-page {
-	opacity: 0;
+	&[data-fade-in="true"] {
+		&:not([fadein="true"]) {
+			opacity: 0;
+		}
 
-	@media screen and (prefers-reduced-motion: no-preference) {
-		&[data-fade-in="true"] {
+		&:not([data-fonts-loaded]),
+		&[data-fonts-loaded="true"] {
+			opacity: 1;
+		}
+
+		@media screen and (prefers-reduced-motion: no-preference) {
 			transition: opacity variables.$db-transition-straight-emotional;
 		}
-	}
-
-	&:not([data-fonts-loaded]),
-	&[data-fonts-loaded="true"] {
-		opacity: 1;
 	}
 
 	&[data-variant="fixed"] {

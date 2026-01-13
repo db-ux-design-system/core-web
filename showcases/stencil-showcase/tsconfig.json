@@ -2,7 +2,7 @@
   "extends": "astro/tsconfigs/strict",
   "compilerOptions": {
     "paths": {
-      "@components": ["../../output/stencil/src"]
+      "@components": ["../../output/astro/src"]
     }
   },
   "include": [".astro/types.d.ts", "**/*"],

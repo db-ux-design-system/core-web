@@ -245,11 +245,11 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 		},
 		getTagRemoveLabel: (option: CustomSelectOptionType) => {
 			const removeTexts = props.removeTagsTexts;
-			const options = props.options;
-			if (removeTexts && options) {
+			const currentOptions = props.options;
+			if (removeTexts && currentOptions) {
 				// Find the index of the option in the original options array
-				const optionIndex = options.findIndex(
-					(opt) => opt.value === option.value
+				const optionIndex = currentOptions.findIndex(
+					(opt: CustomSelectOptionType) => opt.value === option.value
 				);
 				if (optionIndex >= 0 && optionIndex < removeTexts.length) {
 					return removeTexts[optionIndex];
@@ -982,7 +982,7 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 						</Show>
 						<Show when={props.selectedType === 'tag'}>
 							<div>
-								<For each={state._selectedOptions}>
+								<For each={state._selectedOptions!}>
 									{(
 										option: CustomSelectOptionType,
 										index: number
@@ -1081,7 +1081,7 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 											props.label ??
 											DEFAULT_LABEL
 										}>
-										<For each={state._options}>
+										<For each={state._options!}>
 											{(
 												option: CustomSelectOptionType
 											) => (

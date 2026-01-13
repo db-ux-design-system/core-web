@@ -110,7 +110,7 @@ export default function DBNavigationItem(props: DBNavigationItemProps) {
 			data-wrap={getBooleanAsString(props.wrap)}
 			aria-disabled={getBooleanAsString(props.disabled)}>
 			<Show
-				when={state.hasSubNavigation}
+				when={!props.hideSubNavigation && state.hasSubNavigation}
 				else={
 					<Show when={props.text} else={props.children}>
 						{props.text}

@@ -78,3 +78,4 @@ showcases/patternhub/public/iframe-resizer/*
 /build-storybooks/
 **/blob-report
 /output/stencil/bundle/
+/output/astro/styles/

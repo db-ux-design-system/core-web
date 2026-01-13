@@ -62,8 +62,8 @@ export default function DBDrawer(props: DBDrawerProps) {
 		},
 		handleDialogOpen: () => {
 			if (_ref) {
-				const open = Boolean(props.open);
-				if (open && !_ref.open) {
+				const dialogOpen = Boolean(props.open);
+				if (dialogOpen && !_ref.open) {
 					if (dialogContainerRef) {
 						dialogContainerRef.hidden = false;
 					}
@@ -77,7 +77,7 @@ export default function DBDrawer(props: DBDrawerProps) {
 						_ref.showModal();
 					}
 				}
-				if (!open && _ref.open) {
+				if (!dialogOpen && _ref.open) {
 					if (dialogContainerRef) {
 						dialogContainerRef.hidden = true;
 					}

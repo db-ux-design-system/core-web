@@ -22,7 +22,6 @@ export default function DBAccordion(props: DBAccordionProps) {
 	const _ref = useRef<HTMLUListElement | any>(null);
 	// jscpd:ignore-start
 	const state = useStore<DBAccordionState>({
-		_id: DEFAULT_ID,
 		_name: '',
 		initialized: false,
 		_initOpenIndexDone: false,
@@ -42,7 +41,6 @@ export default function DBAccordion(props: DBAccordionProps) {
 	});
 
 	onMount(() => {
-		state._id = props.id || 'accordion-' + uuid();
 		state.initialized = true;
 		state._initOpenIndexDone = true;
 	});
@@ -51,22 +49,20 @@ export default function DBAccordion(props: DBAccordionProps) {
 	onUpdate(() => {
 		// If we have a single behavior we first check for
 		// props.name otherwise for state_id
-		if (state.initialized) {
+		if (state.initialized && _ref) {
 			if (props.behavior === 'single') {
 				if (props.name) {
 					if (state._name !== props.name) {
 						state._name = props.name;
 					}
 				} else {
-					if (state._name !== state._id && state._id) {
-						state._name = state._id;
-					}
+					state._name = 'accordion-' + uuid();
 				}
 			} else {
 				state._name = '';
 			}
 		}
-	}, [state.initialized, props.name, props.behavior, state._id]);
+	}, [state.initialized, props.name, props.behavior]);
 
 	onUpdate(() => {
 		if (_ref) {
@@ -111,11 +107,10 @@ export default function DBAccordion(props: DBAccordionProps) {
 	return (
 		<ul
 			ref={_ref}
-			id={state._id}
+			id={props.id}
 			class={cls('db-accordion', props.className)}
 			data-variant={props.variant}>
-			<Show when={!props.items}>{props.children}</Show>
-			<Show when={props.items}>
+			<Show when={props.items} else={props.children}>
 				<For each={state.convertItems()}>
 					{(item: DBAccordionItemDefaultProps, index: number) => (
 						<DBAccordionItem
