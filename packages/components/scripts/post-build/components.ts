@@ -76,8 +76,11 @@ export const getComponents = (): Component[] => [
 					from: 'attr.checked',
 					to: 'checked'
 				},
-				{ from: `
-      <select`, to: '<select' }
+				{
+					from: `
+      <select`,
+					to: '<select'
+				}
 			],
 			react: [
 				{ from: 'key={uuid()}', to: 'key={getOptionLabel(option)}' }
