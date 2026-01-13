@@ -1,0 +1,32 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8" data-next-head=""/><meta name="viewport" content="width=device-width" data-next-head=""/><title data-next-head="">DB UX</title><link data-next-font="size-adjust" rel="preconnect" href="/" crossorigin="anonymous"/><link rel="preload" href="/core-web/review/feat-examples-plugins/_next/static/css/8ca46278cc06d1ae.css" as="style"/><link rel="stylesheet" href="/core-web/review/feat-examples-plugins/_next/static/css/8ca46278cc06d1ae.css" data-n-g=""/><noscript data-n-css=""></noscript><script defer="" noModule="" src="/core-web/review/feat-examples-plugins/_next/static/chunks/polyfills-42372ed130431b0a.js"></script><script src="/core-web/review/feat-examples-plugins/_next/static/chunks/webpack-e96745b2397a7e4f.js" defer=""></script><script src="/core-web/review/feat-examples-plugins/_next/static/chunks/framework-2ec761b5af9ac788.js" defer=""></script><script src="/core-web/review/feat-examples-plugins/_next/static/chunks/main-971d774d36427c8e.js" defer=""></script><script src="/core-web/review/feat-examples-plugins/_next/static/chunks/pages/_app-5dbb5c5cdcd71601.js" defer=""></script><script src="/core-web/review/feat-examples-plugins/_next/static/chunks/pages/components/data-input/checkbox/docs/Vue-157be192cafe5595.js" defer=""></script><script src="/core-web/review/feat-examples-plugins/_next/static/dqmmnqq1n6KWYsjV26PqZ/_buildManifest.js" defer=""></script><script src="/core-web/review/feat-examples-plugins/_next/static/dqmmnqq1n6KWYsjV26PqZ/_ssgManifest.js" defer=""></script></head><body><div id="__next"><h2 id="vue">Vue<a class="header-link" href="/core-web/review/feat-examples-plugins/components/data-input/checkbox/docs/Vue?current=vue"><span aria-hidden="true" class="db-icon" data-icon="paper_clip"></span>vue<!-- --> anchor link</a></h2>
+<p>For general installation and configuration take a look at the <a target="_blank" referrerPolicy="no-referrer" href="https://www.npmjs.com/package/@db-ux/v-core-components">v-core-components</a> package.</p>
+<h3 id="use-component">Use component<a class="header-link" href="/core-web/review/feat-examples-plugins/components/data-input/checkbox/docs/Vue?current=use-component"><span aria-hidden="true" class="db-icon" data-icon="paper_clip"></span>use-component<!-- --> anchor link</a></h3>
+<pre><code class="language-vue">&lt;!-- App.vue --&gt;
+&lt;script setup lang=&quot;ts&quot;&gt;
+import { DBCheckbox } from &quot;@db-ux/v-core-components&quot;;
+import { _ref } from &quot;vue&quot;;
+const checkbox = _ref(&quot;&quot;);
+&lt;/script&gt;
+
+&lt;template&gt;
+	&lt;DBCheckbox @change=&quot;checkbox = $event.target.checked&quot; name=&quot;checkbox&quot;&gt;
+		Checkbox
+	&lt;/DBCheckbox&gt;
+&lt;/template&gt;
+</code></pre>
+<h4 id="adding-formatted-infotext">Adding Formatted Infotext<a class="header-link" href="/core-web/review/feat-examples-plugins/components/data-input/checkbox/docs/Vue?current=adding-formatted-infotext"><span aria-hidden="true" class="db-icon" data-icon="paper_clip"></span>adding-formatted-infotext<!-- --> anchor link</a></h4>
+<p>The message prop of the DBCheckbox does not accept HTML content for security reasons (to prevent XSS attacks). To add a richly formatted description, use the DBInfotext component as a sibling element. You must link both components using the <a target="_blank" referrerPolicy="no-referrer" href="https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Reference/Attributes/aria-describedby"><code>aria-describedby</code></a>-HTML-attribute to ensure accessibility.</p>
+<pre><code class="language-vue">&lt;script setup lang=&quot;ts&quot;&gt;
+import { DBCheckbox, DBInfotext } from &quot;@db-ux/v-core-components&quot;;
+&lt;/script&gt;
+
+&lt;template&gt;
+	&lt;DBCheckbox aria-describedby=&quot;checkbox-message&quot;&gt;
+		Example Checkbox
+	&lt;/DBCheckbox&gt;
+
+	&lt;DBInfotext id=&quot;checkbox-message&quot;&gt;
+		Example &lt;strong&gt;Text&lt;/strong&gt;
+	&lt;/DBInfotext&gt;
+&lt;/template&gt;
+</code></pre></div><script id="__NEXT_DATA__" type="application/json">{"props":{"pageProps":{}},"page":"/components/data-input/checkbox/docs/Vue","query":{},"buildId":"dqmmnqq1n6KWYsjV26PqZ","assetPrefix":"/core-web/review/feat-examples-plugins","nextExport":true,"autoExport":true,"isFallback":false,"scriptLoader":[]}</script></body></html>
