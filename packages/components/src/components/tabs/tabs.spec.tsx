@@ -46,18 +46,13 @@ const testActions = () => {
 	test('should be clickable', async ({ mount }) => {
 		expect(activeTabIndex).toBe(undefined);
 		const component = await mount(comp);
-		await component
-			.getByTestId('test2')
-			// VUE: .getByRole('tab')
-			.click();
-		await expect(component.getByTestId('test')).toHaveAttribute(
-			'aria-selected',
-			'false'
-		);
-		await expect(component.getByTestId('test2')).toHaveAttribute(
-			'aria-selected',
-			'true'
-		);
+		await component.getByRole('tab', { name: 'Test 2' }).click();
+		await expect(
+			component.getByRole('tab', { name: 'Test 1' })
+		).toHaveAttribute('aria-selected', 'false');
+		await expect(
+			component.getByRole('tab', { name: 'Test 2' })
+		).toHaveAttribute('aria-selected', 'true');
 	});
 };
 
