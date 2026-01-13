@@ -125,6 +125,7 @@ export default function DBTabItem(props: DBTabItemProps) {
 				type="button"
 				role="tab"
 				aria-label={getBoolean(props.noText) ? props.label : undefined}
+				disabled={state.disabled}
 				id={props.id}
 				class={cls(
 					'db-tab-button',
