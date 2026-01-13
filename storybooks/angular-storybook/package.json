@@ -1,6 +1,12 @@
 {
   "name": "angular-storybook",
   "version": "0.0.0",
+  "description": "Angular storybook",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/db-ux-design-system/core-web.git"
+  },
+  "license": "Apache-2.0",
   "private": true,
   "scripts": {
     "build": "ng run angular-latest:build-storybook",
@@ -8,8 +14,8 @@
   },
   "devDependencies": {
     "@compodoc/compodoc": "^1.1.32",
+    "@storybook/addon-docs": "10.1.11",
     "@storybook/angular": "10.1.11",
-    "@storybook/addon-docs":"10.1.11",
     "eslint-plugin-storybook": "10.1.11"
   }
 }

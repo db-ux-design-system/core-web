@@ -9,5 +9,8 @@ export default {
 	// And elsewhere we don't, compare to https://github.com/stylelint/stylelint/pull/8009
 	'*.{css,scss}': 'stylelint --fix --allow-empty-input --no-validate',
 	'*.{js,ts,tsx,jsx,mjs,cjs}': 'xo --fix',
-	'**/package.json': 'npm run lint:package-json'
+	'**/package.json': [
+		() => 'npm install --package-lock-only --ignore-scripts',
+		'npm run lint:package-json'
+	]
 };

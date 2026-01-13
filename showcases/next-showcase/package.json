@@ -1,5 +1,12 @@
 {
   "name": "next-showcase",
+  "version": "0.0.0",
+  "description": "Next.js showcase",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/db-ux-design-system/core-web.git"
+  },
+  "license": "Apache-2.0",
   "private": true,
   "engines": {
     "node": ">=18"
@@ -17,7 +24,7 @@
     "react-dom": "19.2.3"
   },
   "devDependencies": {
-    "@types/node": "25.0.3",
+    "@types/node": "25.0.5",
     "@types/react": "19.2.7",
     "npm-run-all2": "8.0.4",
     "open-cli": "8.0.0",
