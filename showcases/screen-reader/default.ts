@@ -181,7 +181,8 @@ export const runTest = async ({
 	 */
 
 	await (nvda
-		? nvdaNavigateToWebContent(nvda, pageTitle)
+		? // We can revert this after https://github.com/guidepup/guidepup-playwright/pull/32 is released
+			nvdaNavigateToWebContent(nvda, pageTitle)
 		: screenRecorder.navigateToWebContent());
 
 	await page.waitForTimeout(500);
