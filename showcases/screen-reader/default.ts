@@ -125,20 +125,33 @@ const nvdaNavigateToWebContent = async (
 ) => {
 	// Make sure NVDA is not in focus mode.
 	await screenRecorder.perform(screenRecorder.keyboardCommands.exitFocusMode);
-	let windowTitle = '';
-	let switchRetryCount = 0;
-	while (switchRetryCount < 10) {
-		switchRetryCount++;
-		await screenRecorder.perform(SWITCH_APPLICATION);
-		await screenRecorder.perform(
-			screenRecorder.keyboardCommands.reportTitle
-		);
-		windowTitle = await screenRecorder.lastSpokenPhrase();
-		if (windowTitle.startsWith(pageTitle)) {
-			break;
+	let windowTitle: string;
+	await screenRecorder.perform(screenRecorder.keyboardCommands.reportTitle);
+	windowTitle = await screenRecorder.lastSpokenPhrase();
+	if (!windowTitle.startsWith(pageTitle)) {
+		let switchRetryCount = 0;
+		while (switchRetryCount < 10) {
+			switchRetryCount++;
+			await screenRecorder.perform(SWITCH_APPLICATION);
+			await screenRecorder.perform(
+				screenRecorder.keyboardCommands.reportTitle
+			);
+			windowTitle = await screenRecorder.lastSpokenPhrase();
+			if (windowTitle.startsWith(pageTitle)) {
+				break;
+			}
 		}
 	}
 
+	await screenRecorder.perform(
+		screenRecorder.keyboardCommands.readNextFocusableItem
+	);
+	await screenRecorder.perform(
+		screenRecorder.keyboardCommands.toggleBetweenBrowseAndFocusMode
+	);
+	await screenRecorder.perform(
+		screenRecorder.keyboardCommands.toggleBetweenBrowseAndFocusMode
+	);
 	await screenRecorder.perform(MOVE_TO_TOP);
 	// Clear out logs.
 	await screenRecorder.clearItemTextLog();
