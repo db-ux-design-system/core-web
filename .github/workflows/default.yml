@@ -288,6 +288,9 @@ jobs:
 
   # This job runs only if aria-snapshots were changed compared to main or if it runs on main branch
   test-screen-reader:
+    if: |
+      needs.init.outputs.test-ally == 'true' ||
+      github.event.pull_request == null
     uses: ./.github/workflows/02-e2e-screen-reader.yml
     needs: [test-showcase-react, init-playwright, init]
     with:
