@@ -5,7 +5,7 @@ import {
 	useRef,
 	useStore
 } from '@builder.io/mitosis';
-import { cls } from '../../utils';
+import { cls, uuid } from '../../utils';
 import { DBIcon } from '../icon';
 import type { DBBreadcrumbProps, DBBreadcrumbState } from './model';
 
@@ -20,6 +20,7 @@ useDefaultProps<DBBreadcrumbProps>({
 export default function DBBreadcrumb(props: DBBreadcrumbProps) {
 	const _ref = useRef<HTMLElement | any>(null);
 	const state = useStore<DBBreadcrumbState>({
+		uniqueId: uuid(),
 		isExpanded: false,
 		toggleExpanded(): void {
 			state.isExpanded = !state.isExpanded;
@@ -47,7 +48,9 @@ export default function DBBreadcrumb(props: DBBreadcrumbProps) {
 			data-separator={props.separator}
 			aria-label={
 				props.ariaLabel ??
-				(props.id ? `Breadcrumb (${props.id})` : 'Breadcrumb')
+				(props.id
+					? `Breadcrumb (${props.id})`
+					: `Breadcrumb (${state.uniqueId})`)
 			}>
 			<ol
 				class="db-breadcrumb-list"

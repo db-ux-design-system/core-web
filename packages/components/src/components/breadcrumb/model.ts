@@ -78,6 +78,10 @@ export type DBBreadcrumbDefaultState = {
 	 * Determines if breadcrumb should render in collapsed state.
 	 */
 	isCollapsed: () => boolean;
+	/**
+	 * Unique id per instance used for deterministic fallbacks.
+	 */
+	uniqueId: string;
 };
 
 export type DBBreadcrumbState = DBBreadcrumbDefaultState & GlobalState;

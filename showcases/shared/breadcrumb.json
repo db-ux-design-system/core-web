@@ -7,7 +7,7 @@
 				"className": "w-full",
 				"props": {
 					"id": "breadcrumb-size-small",
-					"ariaLabel": "Breadcrumb - Small Size",
+					"ariaLabel": "Breadcrumb size small",
 					"items": [
 						{ "href": "#", "text": "Home" },
 						{ "href": "#", "text": "Category" },
@@ -25,7 +25,7 @@
 				"props": {
 					"id": "breadcrumb-size-medium",
 					"size": "medium",
-					"ariaLabel": "Breadcrumb - Medium Size",
+					"ariaLabel": "Breadcrumb size medium",
 					"items": [
 						{ "href": "#", "text": "Home" },
 						{ "href": "#", "text": "Category" },
@@ -44,7 +44,7 @@
 				"props": {
 					"id": "breadcrumb-separator-chevron",
 					"separator": "chevron",
-					"ariaLabel": "Breadcrumb - Chevron Separator",
+					"ariaLabel": "Breadcrumb separator chevron",
 					"items": [
 						{ "href": "#", "text": "Home" },
 						{ "href": "#", "text": "Category" },
@@ -58,7 +58,7 @@
 				"props": {
 					"id": "breadcrumb-separator-slash",
 					"separator": "slash",
-					"ariaLabel": "Breadcrumb - Slash Separator",
+					"ariaLabel": "Breadcrumb separator slash",
 					"items": [
 						{ "href": "#", "text": "Home" },
 						{ "href": "#", "text": "Category" },
@@ -77,7 +77,7 @@
 				"props": {
 					"id": "breadcrumb-collapsed",
 					"maxItems": 3,
-					"ariaLabel": "Breadcrumb - Collapsed Navigation",
+					"ariaLabel": "Breadcrumb collapsed",
 					"ellipsisAriaLabel": "Expand to show all breadcrumb items",
 					"items": [
 						{ "href": "#", "text": "Root" },
@@ -102,7 +102,7 @@
 				"className": "w-full",
 				"props": {
 					"id": "breadcrumb-icons-small",
-					"ariaLabel": "Breadcrumb - With Icons Small Size",
+					"ariaLabel": "Breadcrumb icons small",
 					"items": [
 						{ "href": "#", "text": "Root", "icon": "house" },
 						{
@@ -120,7 +120,7 @@
 				"className": "w-full",
 				"props": {
 					"id": "breadcrumb-icons-medium",
-					"ariaLabel": "Breadcrumb - With Icons Medium Size",
+					"ariaLabel": "Breadcrumb icons medium",
 					"size": "medium",
 					"items": [
 						{ "href": "#", "text": "Root", "icon": "house" },
