@@ -1,0 +1,57 @@
+import { Fragment, useMetadata } from '@builder.io/mitosis';
+import DBInfotext from '../../infotext/infotext.lite';
+import DBStack from '../stack.lite';
+import { StorybookStackArgTypes } from './_stack.arg.types';
+
+useMetadata({
+	storybookTitle: 'Direction',
+	storybookNames: ['(Default) Column', 'Row'],
+	storybookArgTypes: StorybookStackArgTypes
+});
+
+export default function StackDirection() {
+	return (
+		<Fragment>
+			<div
+				style={{
+					display: 'flex',
+					flexDirection: 'column',
+					gap: 'var(--db-spacing-fixed-sm)',
+					width: '200px'
+				}}>
+				<DBInfotext size="small" icon="none" semantic="informational">
+					(Default) Column
+				</DBInfotext>
+				<DBStack className="stack-container">
+					<span className="dummy-component">
+						<a href="#">Content 1</a>
+					</span>
+
+					<span className="dummy-component">Content 2</span>
+
+					<span className="dummy-component">Content 3</span>
+				</DBStack>
+			</div>
+			<div
+				style={{
+					display: 'flex',
+					flexDirection: 'column',
+					gap: 'var(--db-spacing-fixed-sm)',
+					width: '200px'
+				}}>
+				<DBInfotext size="small" icon="none" semantic="informational">
+					Row
+				</DBInfotext>
+				<DBStack className="stack-container" direction="row">
+					<span className="dummy-component">
+						<a href="#">Content 1</a>
+					</span>
+
+					<span className="dummy-component">Content 2</span>
+
+					<span className="dummy-component">Content 3</span>
+				</DBStack>
+			</div>
+		</Fragment>
+	);
+}
