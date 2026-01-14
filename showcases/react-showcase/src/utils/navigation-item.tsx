@@ -30,6 +30,8 @@ import TagComponent from '../components/tag';
 import TextareaComponent from '../components/textarea';
 import TooltipComponent from '../components/tooltip';
 
+import ButtonShowcase from '@components/components/button/showcase/button.showcase';
+
 export type NavigationItem = {
 	path: string;
 	label: string;
@@ -152,7 +154,7 @@ export const NAVIGATION_ITEMS: NavigationItem[] = [
 		label: '02 Action',
 		subNavigation: getSortedNavigationItems([
 			{ path: 'link', label: 'Link', component: <LinkComponent /> },
-			{ path: 'button', label: 'Button', component: <ButtonComponent /> }
+			{ path: 'button', label: 'Button', component: <ButtonShowcase /> }
 		])
 	},
 	{

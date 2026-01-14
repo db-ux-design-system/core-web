@@ -253,7 +253,10 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 			// Fallback to default behavior
 			return `${DEFAULT_REMOVE} ${state.getOptionLabel(option)}`;
 		},
-		handleTagRemove: (option: CustomSelectOptionType, event?: any) => {
+		handleTagRemove: (
+			option: CustomSelectOptionType,
+			event?: ClickEvent<HTMLButtonElement> | void | any
+		) => {
 			if (event) {
 				event.stopPropagation();
 			}

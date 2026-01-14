@@ -76,6 +76,22 @@ const testAction = () => {
 		await expect(input).not.toHaveAttribute('enterkeyhint');
 		await expect(input).not.toHaveAttribute('inputmode');
 	});
+
+	test('should support step="any" for number input', async ({ mount }) => {
+		const component = await mount(
+			<DBInput label="Label" type="number" step="any" />
+		);
+		const input = component.getByRole('spinbutton');
+		await expect(input).toHaveAttribute('step', 'any');
+	});
+
+	test('should support numeric step for number input', async ({ mount }) => {
+		const component = await mount(
+			<DBInput label="Label" type="number" step={0.01} />
+		);
+		const input = component.getByRole('spinbutton');
+		await expect(input).toHaveAttribute('step', '0.01');
+	});
 };
 
 test.describe('DBInput', () => {
