@@ -6,8 +6,8 @@ import {
 	DBNavigation,
 	DBNavigationItem,
 	DBPage
-} from '../../../../../output/react/src';
-import { type DBPageProps } from '../../../../../output/react/src/components/page/model';
+} from '@components';
+import { type DBPageProps } from '@components/src/components/page/model';
 import defaultComponentVariants from '../../../../shared/page.json';
 import { type BaseComponentProps } from '../base-component-data';
 import { getVariants } from '../data';
