@@ -265,6 +265,19 @@ $spacings: (
 
 	&[open] {
 		.db-drawer-container {
+			@media screen and (prefers-reduced-motion: reduce) {
+				&:not([data-direction]),
+				&[data-direction="right"],
+				&[data-direction="left"] {
+					transform: translateX(0%);
+				}
+
+				&[data-direction="up"],
+				&[data-direction="down"] {
+					transform: translateY(0%);
+				}
+			}
+
 			@media screen and (prefers-reduced-motion: no-preference) {
 				&:not([data-direction]),
 				&[data-direction="right"] {
