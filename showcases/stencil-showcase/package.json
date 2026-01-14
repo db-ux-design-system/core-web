@@ -10,7 +10,7 @@
   "private": true,
   "scripts": {
     "build": "npm-run-all build:*",
-    "build:_stencil": "npm run build --workspace @db-ux/wc-core-components",
+    "build:_stencil": "npm run dev-build --workspace @db-ux/wc-core-components",
     "build:angular": "ng build",
     "dev": "npm-run-all --parallel dev:*",
     "dev:angular": "npm run start -- --open",

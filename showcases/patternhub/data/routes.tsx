@@ -1,23 +1,21 @@
-import { type ReactElement } from 'react';
+import ButtonShowcase from '@components/components/button/showcase/button.showcase';
+import type { ReactElement } from 'react';
 import AccordionComponent from '../../react-showcase/src/components/accordion';
 import AccordionItemComponent from '../../react-showcase/src/components/accordion-item';
 import BadgeComponent from '../../react-showcase/src/components/badge';
 import BrandComponent from '../../react-showcase/src/components/brand';
-import ButtonComponent from '../../react-showcase/src/components/button';
 import CardComponent from '../../react-showcase/src/components/card';
 import CheckboxComponent from '../../react-showcase/src/components/checkbox';
 import CustomSelectComponent from '../../react-showcase/src/components/custom-select';
 import DividerComponent from '../../react-showcase/src/components/divider';
 import DrawerComponent from '../../react-showcase/src/components/drawer';
 import HeaderComponent from '../../react-showcase/src/components/header';
-// Import IconComponent from '../../react-showcase/src/components/icon';
 import InfotextComponent from '../../react-showcase/src/components/infotext';
 import InputComponent from '../../react-showcase/src/components/input';
 import LinkComponent from '../../react-showcase/src/components/link';
 import NavigationComponent from '../../react-showcase/src/components/navigation';
 import NavigationItemComponent from '../../react-showcase/src/components/navigation-item';
 import NotificationComponent from '../../react-showcase/src/components/notification';
-// Import PageComponent from '../../react-showcase/src/components/page';
 import PopoverComponent from '../../react-showcase/src/components/popover';
 import RadioComponent from '../../react-showcase/src/components/radio';
 import SectionComponent from '../../react-showcase/src/components/section';
@@ -77,7 +75,7 @@ export type NavigationItem = {
 const nameComponentMap = {
 	'custom-select': <CustomSelectComponent slotCode={customSelectCode} />,
 	stack: <StackComponent slotCode={stackCode} />,
-	button: <ButtonComponent slotCode={buttonCode} />,
+	button: <ButtonShowcase isPatternhub />,
 	link: <LinkComponent slotCode={linkCode} />,
 	brand: <BrandComponent slotCode={brandCode} />,
 	// Icon: <IconComponent slotCode={iconCode} />,

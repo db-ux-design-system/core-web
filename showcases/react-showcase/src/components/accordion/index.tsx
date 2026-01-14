@@ -1,9 +1,5 @@
-import {
-	DBAccordion,
-	DBAccordionItem,
-	DBInfotext
-} from '../../../../../output/react/src';
-import type { DBAccordionProps } from '../../../../../output/react/src/components/accordion/model';
+import { DBAccordion, DBAccordionItem, DBInfotext } from '@components';
+import type { DBAccordionProps } from '@components/src/components/accordion/model';
 import defaultComponentVariants from '../../../../shared/accordion.json';
 import { type BaseComponentProps } from '../base-component-data';
 import { getVariants } from '../data';

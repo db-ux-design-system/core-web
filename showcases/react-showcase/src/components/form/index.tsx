@@ -1,4 +1,3 @@
-import { useEffect, useState } from 'react';
 import {
 	DBAccordion,
 	DBAccordionItem,
@@ -18,11 +17,9 @@ import {
 	DBTag,
 	DBTextarea,
 	DBTooltip
-} from '../../../../../output/react/src';
-import type {
-	ChangeEvent,
-	ValueLabelType
-} from '../../../../../output/react/src/shared/model';
+} from '@components';
+import type { ChangeEvent, ValueLabelType } from '@components/src/shared/model';
+import { useEffect, useState } from 'react';
 
 const FormComponent = () => {
 	const [input, setInput] = useState('');
