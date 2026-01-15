@@ -3,7 +3,6 @@ import AccordionItemComponent from '../components/accordion-item';
 import BadgeComponent from '../components/badge';
 import BrandComponent from '../components/brand';
 import BreadcrumbComponent from '../components/breadcrumb';
-import ButtonComponent from '../components/button';
 import CardComponent from '../components/card';
 import CheckboxComponent from '../components/checkbox';
 import CustomSelectComponent from '../components/custom-select';

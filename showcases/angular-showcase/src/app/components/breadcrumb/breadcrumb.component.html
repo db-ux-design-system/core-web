@@ -15,7 +15,18 @@
 			[separator]="exampleProps?.separator"
 			[maxItems]="exampleProps?.maxItems"
 			[items]="exampleProps?.items"
-			[ariaLabel]="exampleProps?.ariaLabel"
+			[ariaLabel]="
+				exampleProps?.ariaLabel ||
+				exampleName ||
+				exampleProps?.id ||
+				'Breadcrumb example ' + variantIndex + '-' + exampleIndex
+			"
+			[attr.aria-label]="
+				exampleProps?.ariaLabel ||
+				exampleName ||
+				exampleProps?.id ||
+				'Breadcrumb example ' + variantIndex + '-' + exampleIndex
+			"
 			[ellipsisAriaLabel]="exampleProps?.ellipsisAriaLabel"
 			[className]="exampleProps?.className"
 			[id]="exampleProps?.id"

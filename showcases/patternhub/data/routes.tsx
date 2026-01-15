@@ -35,7 +35,6 @@ import * as accordionItemCode from '../components/code-docs/accordion-item';
 import * as badgeCode from '../components/code-docs/badge';
 import * as brandCode from '../components/code-docs/brand';
 import * as breadcrumbCode from '../components/code-docs/breadcrumb';
-import * as buttonCode from '../components/code-docs/button';
 import * as cardCode from '../components/code-docs/card';
 import * as checkboxCode from '../components/code-docs/checkbox';
 import * as customSelectCode from '../components/code-docs/custom-select';
