@@ -27,7 +27,12 @@ import {
 	DEFAULT_VALID_MESSAGE,
 	DEFAULT_VALID_MESSAGE_ID_SUFFIX
 } from '../../shared/constants';
-import { GeneralEvent, InputEvent, InteractionEvent } from '../../shared/model';
+import {
+	ClickEvent,
+	GeneralEvent,
+	InputEvent,
+	InteractionEvent
+} from '../../shared/model';
 import {
 	cls,
 	delay,
@@ -989,7 +994,9 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 											removeButton={state.getTagRemoveLabel(
 												option
 											)}
-											onRemove={(event: any) =>
+											onRemove={(
+												event?: ClickEvent<HTMLButtonElement> | void
+											) =>
 												state.handleTagRemove(
 													option,
 													event
