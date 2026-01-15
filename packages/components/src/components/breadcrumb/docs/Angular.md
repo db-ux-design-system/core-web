@@ -20,3 +20,27 @@ import { Component } from "@angular/core";
 })
 export class AppComponent {}
 ```
+
+### Use component with items array
+
+```ts app.component.ts
+import { Component } from "@angular/core";
+
+@Component({
+	selector: "app-root",
+	template: `
+		<db-breadcrumb
+			[items]="items"
+			[maxItems]="3"
+			aria-label="Breadcrumb"
+		></db-breadcrumb>
+	`
+})
+export class AppComponent {
+	items = [
+		{ href: "#", text: "Home" },
+		{ href: "#", text: "Category" },
+		{ text: "Current Page", ariaCurrent: "page" as const }
+	];
+}
+```

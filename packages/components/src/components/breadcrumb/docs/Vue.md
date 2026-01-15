@@ -17,3 +17,21 @@ For general installation and configuration take a look at the [v-core-components
 import { DBBreadcrumb } from "@db-ux/v-core-components";
 </script>
 ```
+
+### Use component with items array
+
+```vue App.vue
+<template>
+	<DBBreadcrumb :items="items" :maxItems="3" aria-label="Breadcrumb" />
+</template>
+
+<script setup lang="ts">
+import { DBBreadcrumb } from "@db-ux/v-core-components";
+
+const items = [
+	{ href: "#", text: "Home" },
+	{ href: "#", text: "Category" },
+	{ text: "Current Page", ariaCurrent: "page" as const }
+];
+</script>
+```

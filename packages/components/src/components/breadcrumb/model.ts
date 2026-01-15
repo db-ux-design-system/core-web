@@ -1,5 +1,6 @@
 import { GlobalProps, GlobalState } from '../../shared/model';
-import type { DBBreadcrumbItemProps } from '../breadcrumb-item/model';
+import type { DBBreadcrumbItems } from '../breadcrumb-item/model';
+export type { DBBreadcrumbItems } from '../breadcrumb-item/model';
 
 /**
  * Available sizes for breadcrumb items
@@ -48,8 +49,11 @@ export type DBBreadcrumbDefaultProps = {
 	 * The breadcrumb items to render.
 	 *
 	 * Each item can represent a link or the current page.
+	 *
+	 * Supports passing a JSON string (for web component usage) or an array of
+	 * `DBBreadcrumbItems`.
 	 */
-	items?: DBBreadcrumbItemProps[];
+	items?: DBBreadcrumbItems[] | string;
 
 	/**
 	 * Aria label for the breadcrumb navigation landmark.
@@ -82,6 +86,10 @@ export type DBBreadcrumbDefaultState = {
 	 * Unique id per instance used for deterministic fallbacks.
 	 */
 	uniqueId: string;
+	/**
+	 * Normalized breadcrumb items derived from the `items` prop.
+	 */
+	items: () => DBBreadcrumbItems[];
 };
 
 export type DBBreadcrumbState = DBBreadcrumbDefaultState & GlobalState;

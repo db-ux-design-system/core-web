@@ -36,4 +36,4 @@ export type DBBreadcrumbItemDefaultProps = {
 	disabled?: boolean;
 };
 
-export type DBBreadcrumbItemProps = DBBreadcrumbItemDefaultProps & GlobalProps;
+export type DBBreadcrumbItems = DBBreadcrumbItemDefaultProps & GlobalProps;

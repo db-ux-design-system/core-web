@@ -1,6 +1,13 @@
 import { DBBreadcrumb } from '../index';
 
 export default function Breadcrumb() {
+	const items = [
+		{ href: '#', text: 'Home' },
+		{ href: '#', text: 'Category' },
+		{ href: '#', text: 'Subcategory' },
+		{ text: 'Current Page', ariaCurrent: 'page' as const }
+	];
+
 	return (
 		<>
 			<h1>DBBreadcrumb Documentation Examples</h1>
@@ -37,6 +44,9 @@ export default function Breadcrumb() {
 			<DBBreadcrumb>
 				<li aria-current="page">Current Page</li>
 			</DBBreadcrumb>
+
+			<h2>4. Items prop with collapse</h2>
+			<DBBreadcrumb items={items} maxItems={3} />
 		</>
 	);
 }

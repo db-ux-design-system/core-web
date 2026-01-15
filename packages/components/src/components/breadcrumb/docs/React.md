@@ -1,3 +1,4 @@
+````markdown
 ## React
 
 For general installation and configuration take a look at the [react-core-components](https://www.npmjs.com/package/@db-ux/react-core-components) package.
@@ -22,3 +23,22 @@ const App = () => (
 
 export default App;
 ```
+
+### Use component with items array
+
+```tsx App.tsx
+import { DBBreadcrumb } from "@db-ux/react-core-components";
+
+const items = [
+	{ href: "#", text: "Home" },
+	{ href: "#", text: "Category" },
+	{ text: "Current Page", ariaCurrent: "page" as const }
+];
+
+const App = () => (
+	<DBBreadcrumb items={items} maxItems={3} ariaLabel="Breadcrumb" />
+);
+
+export default App;
+```
+````

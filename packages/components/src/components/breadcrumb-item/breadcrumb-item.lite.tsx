@@ -6,13 +6,13 @@ import {
 } from '@builder.io/mitosis';
 import { cls } from '../../utils';
 import { DBIcon } from '../icon';
-import type { DBBreadcrumbItemProps } from './model';
+import type { DBBreadcrumbItems } from './model';
 
 useMetadata({});
 
-useDefaultProps<DBBreadcrumbItemProps>({});
+useDefaultProps<DBBreadcrumbItems>({});
 
-export default function DBBreadcrumbItem(props: DBBreadcrumbItemProps) {
+export default function DBBreadcrumbItem(props: DBBreadcrumbItems) {
 	const _ref = useRef<HTMLLIElement | any>(null);
 
 	return (

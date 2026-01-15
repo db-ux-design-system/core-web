@@ -7,7 +7,11 @@ import {
 } from '@builder.io/mitosis';
 import { cls, uuid } from '../../utils';
 import { DBIcon } from '../icon';
-import type { DBBreadcrumbProps, DBBreadcrumbState } from './model';
+import type {
+	DBBreadcrumbItems,
+	DBBreadcrumbProps,
+	DBBreadcrumbState
+} from './model';
 
 useMetadata({});
 
@@ -19,6 +23,29 @@ useDefaultProps<DBBreadcrumbProps>({
 
 export default function DBBreadcrumb(props: DBBreadcrumbProps) {
 	const _ref = useRef<HTMLElement | any>(null);
+
+	const parseItems = (): DBBreadcrumbItems[] => {
+		if (!props.items) {
+			return [];
+		}
+
+		if (Array.isArray(props.items)) {
+			return props.items;
+		}
+
+		if (typeof props.items === 'string') {
+			try {
+				const parsed = JSON.parse(props.items);
+
+				return Array.isArray(parsed) ? parsed : [];
+			} catch (error) {
+				return [];
+			}
+		}
+
+		return [];
+	};
+
 	const state = useStore<DBBreadcrumbState>({
 		uniqueId: uuid(),
 		isExpanded: false,
@@ -28,15 +55,77 @@ export default function DBBreadcrumb(props: DBBreadcrumbProps) {
 		iconWeight: (): '24' | '20' => {
 			return props.size === 'medium' ? '24' : '20';
 		},
+		items: (): DBBreadcrumbItems[] => {
+			return parseItems();
+		},
 		isCollapsed: (): boolean => {
+			const items = state.items();
+
 			return (
-				!!props.items &&
+				items.length > 0 &&
 				!!props.maxItems &&
 				props.maxItems! > 0 &&
-				props.items!.length > props.maxItems! &&
+				items.length > props.maxItems! &&
 				!state.isExpanded
 			);
 		}
+	});
+
+	const renderItem = (
+		item: DBBreadcrumbItems,
+		index: number,
+		isLast: boolean
+	) => (
+		<li key={index}>
+			<Show
+				when={item.href}
+				else={
+					<span
+						aria-current={
+							isLast ? (item.ariaCurrent ?? 'page') : undefined
+						}>
+						<Show when={item.icon}>
+							<DBIcon
+								weight={state.iconWeight()}
+								icon={item.icon}
+							/>
+						</Show>
+						{item.text}
+					</span>
+				}>
+				<a
+					href={item.href}
+					aria-current={
+						isLast ? (item.ariaCurrent ?? 'page') : undefined
+					}>
+					<Show when={item.icon}>
+						<DBIcon weight={state.iconWeight()} icon={item.icon} />
+					</Show>
+					{item.text}
+				</a>
+			</Show>
+		</li>
+	);
+
+	const items = state.items();
+	const shouldRenderItems = items.length > 0;
+	const collapsedTailCount =
+		props.maxItems && props.maxItems > 0 ? props.maxItems - 1 : 0;
+	const collapsedTailItems =
+		props.maxItems && collapsedTailCount > 0
+			? items.slice(items.length - collapsedTailCount)
+			: [];
+
+	const renderedItems = items.map((item, index) => {
+		return renderItem(item, index, index === items.length - 1);
+	});
+
+	const renderedCollapsedTail = collapsedTailItems.map((item, index) => {
+		return renderItem(
+			item,
+			index + 1,
+			index === collapsedTailItems.length - 1
+		);
 	});
 
 	return (
@@ -55,83 +144,10 @@ export default function DBBreadcrumb(props: DBBreadcrumbProps) {
 			<ol
 				class="db-breadcrumb-list"
 				id={props.id ? `${props.id}-list` : 'db-breadcrumb-list'}>
-				<Show
-					when={props.items && props.items!.length > 0}
-					else={props.children}>
-					<Show
-						when={state.isCollapsed()}
-						else={
-							<>
-								{props.items!.map((item, index) => (
-									<li key={index}>
-										<Show
-											when={item.href}
-											else={
-												<span
-													aria-current={
-														index ===
-														props.items!.length - 1
-															? (item.ariaCurrent ??
-																'page')
-															: undefined
-													}>
-													<Show when={item.icon}>
-														<DBIcon
-															weight={state.iconWeight()}
-															icon={item.icon}
-														/>
-													</Show>
-													{item.text}
-												</span>
-											}>
-											<a
-												href={item.href}
-												aria-current={
-													index ===
-													props.items!.length - 1
-														? (item.ariaCurrent ??
-															'page')
-														: undefined
-												}>
-												<Show when={item.icon}>
-													<DBIcon
-														weight={state.iconWeight()}
-														icon={item.icon}
-													/>
-												</Show>
-												{item.text}
-											</a>
-										</Show>
-									</li>
-								))}
-							</>
-						}>
+				{shouldRenderItems ? (
+					state.isCollapsed() ? (
 						<>
-							<li key={0}>
-								<Show
-									when={props.items![0].href}
-									else={
-										<span>
-											<Show when={props.items![0].icon}>
-												<DBIcon
-													weight={state.iconWeight()}
-													icon={props.items![0].icon}
-												/>
-											</Show>
-											{props.items![0].text}
-										</span>
-									}>
-									<a href={props.items![0].href}>
-										<Show when={props.items![0].icon}>
-											<DBIcon
-												weight={state.iconWeight()}
-												icon={props.items![0].icon}
-											/>
-										</Show>
-										{props.items![0].text}
-									</a>
-								</Show>
-							</li>
+							{renderItem(items[0], 0, items.length === 1)}
 							<li key="ellipsis">
 								<button
 									type="button"
@@ -152,59 +168,14 @@ export default function DBBreadcrumb(props: DBBreadcrumbProps) {
 									…
 								</button>
 							</li>
-							{props.maxItems &&
-								props.items &&
-								props
-									.items!.slice(
-										props.items!.length -
-											props.maxItems! +
-											1
-									)
-									.map((item, index) => (
-										<li key={index + 1}>
-											<Show
-												when={item.href}
-												else={
-													<span
-														aria-current={
-															index ===
-															props.maxItems! - 2
-																? (item.ariaCurrent ??
-																	'page')
-																: undefined
-														}>
-														<Show when={item.icon}>
-															<DBIcon
-																weight={state.iconWeight()}
-																icon={item.icon}
-															/>
-														</Show>
-														{item.text}
-													</span>
-												}>
-												<a
-													href={item.href}
-													aria-current={
-														index ===
-														props.maxItems! - 2
-															? (item.ariaCurrent ??
-																'page')
-															: undefined
-													}>
-													<Show when={item.icon}>
-														<DBIcon
-															weight={state.iconWeight()}
-															icon={item.icon}
-														/>
-													</Show>
-													{item.text}
-												</a>
-											</Show>
-										</li>
-									))}
+							{renderedCollapsedTail}
 						</>
-					</Show>
-				</Show>
+					) : (
+						<>{renderedItems}</>
+					)
+				) : (
+					<>{props.children}</>
+				)}
 			</ol>
 		</nav>
 	);

@@ -175,6 +175,18 @@ test.describe('DBBreadcrumb', () => {
 			await expect(ellipsisButton).not.toBeVisible();
 		});
 
+		test('should accept items as JSON string', async ({ mount }) => {
+			const jsonItems = JSON.stringify(breadcrumbItems);
+			const component = await mount(
+				(<DBBreadcrumb items={jsonItems} maxItems={3} />) as any
+			);
+
+			await expect(component.locator('li')).toHaveCount(4);
+			await expect(
+				component.getByRole('link', { name: 'Home', exact: true })
+			).toBeVisible();
+		});
+
 		test('should have correct aria-expanded attribute', async ({
 			mount
 		}) => {
