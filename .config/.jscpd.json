@@ -67,7 +67,6 @@
 		"**/showcases/shared/*.json",
 		"**/showcases/vue-showcase/src/components/form/Form.vue",
 		"**/CHANGELOG.md",
-		"**/packages/components/src/shared/examples/_icons.arg.types.ts",
 		"**/packages/components/src/shared/showcase/*-wrapper.showcase.lite.tsx"
 	],
 	"ignorePattern": ["<option value=\"test5\">Test5</option>"],
