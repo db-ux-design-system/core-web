@@ -85,11 +85,6 @@ export default function DBTabItem(props: DBTabItemProps) {
 	// Manually sync DOM attributes with internal state to prevent framework conflicts
 	onUpdate(() => {
 		if (_ref) {
-			const activeStr = state.internalActive ? 'true' : 'false';
-			if (_ref.getAttribute('aria-selected') !== activeStr) {
-				_ref.setAttribute('aria-selected', activeStr);
-			}
-
 			const tabIndexStr = state.internalActive ? '0' : '-1';
 			if (_ref.getAttribute('tabindex') !== tabIndexStr) {
 				_ref.setAttribute('tabindex', tabIndexStr);
@@ -125,6 +120,7 @@ export default function DBTabItem(props: DBTabItemProps) {
 				type="button"
 				role="tab"
 				aria-label={getBoolean(props.noText) ? props.label : undefined}
+				aria-selected={state.internalActive ? 'true' : 'false'}
 				disabled={state.disabled ? true : undefined}
 				id={props.id}
 				class={cls(
