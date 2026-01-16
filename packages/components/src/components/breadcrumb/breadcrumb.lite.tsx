@@ -46,6 +46,8 @@ export default function DBBreadcrumb(props: DBBreadcrumbProps) {
 		return [];
 	};
 
+	const items = parseItems();
+
 	const state = useStore<DBBreadcrumbState>({
 		uniqueId: uuid(),
 		isExpanded: false,
@@ -56,11 +58,9 @@ export default function DBBreadcrumb(props: DBBreadcrumbProps) {
 			return props.size === 'medium' ? '24' : '20';
 		},
 		items: (): DBBreadcrumbItems[] => {
-			return parseItems();
+			return items;
 		},
 		isCollapsed: (): boolean => {
-			const items = state.items();
-
 			return (
 				items.length > 0 &&
 				!!props.maxItems &&
@@ -107,7 +107,6 @@ export default function DBBreadcrumb(props: DBBreadcrumbProps) {
 		</li>
 	);
 
-	const items = state.items();
 	const shouldRenderItems = items.length > 0;
 	const collapsedTailCount =
 		props.maxItems && props.maxItems > 0 ? props.maxItems - 1 : 0;
