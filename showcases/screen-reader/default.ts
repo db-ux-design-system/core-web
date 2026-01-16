@@ -194,7 +194,7 @@ export const runTest = async ({
 	 */
 
 	await (nvda
-		? // We can revert this after https://github.com/guidepup/guidepup-playwright/pull/32 is released
+		? // TODO: We can revert this after https://github.com/guidepup/guidepup-playwright/pull/32 is released
 			nvdaNavigateToWebContent(nvda, pageTitle)
 		: screenRecorder.navigateToWebContent());
 
