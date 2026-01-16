@@ -70,6 +70,14 @@ After the Release PR is merged into `main` branch:
 
 You don’t have to run anything manually, it’s handled by CI.
 
+### 5. Re-start (optional)
+
+In case that the pipeline has been failing and you need to re-start the release process, you would need to re-start the release process via changesets:
+
+- Remove the [release](https://github.com/db-ux-design-system/core-web/releases) and afterwards the [tag](https://github.com/db-ux-design-system/core-web/tags) that have been created
+- Revert the commit out of the PR that has triggered the changesets release process.
+- Afterwards proceed by reviewing and approving the "chore(release): version packages" Pull request as usual.
+
 ---
 
 ## ✅ Best Practices
