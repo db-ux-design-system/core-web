@@ -23065,7 +23065,7 @@ Inside
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-7107878891994546"
+                    id="sub-navigation-2644167830525487"
                   ></menu>
                 </li>
                 <li
@@ -23084,7 +23084,7 @@ Inside
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-5466585199564036"
+                    id="sub-navigation-14003393820493693"
                   ></menu>
                 </li>
               </menu>
@@ -23144,7 +23144,7 @@ Inside
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-6667452550758519"
+                id="sub-navigation-42885661759679994"
               ></menu>
             </li>
             <li
@@ -23163,7 +23163,7 @@ Inside
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-216542850338183"
+                id="sub-navigation-7035571309037988"
               ></menu>
             </li>
           </menu>
@@ -23241,7 +23241,7 @@ Inside
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-7107878891994546"
+                    id="sub-navigation-2644167830525487"
                   ></menu>
                 </li>
                 <li
@@ -23260,7 +23260,7 @@ Inside
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-5466585199564036"
+                    id="sub-navigation-14003393820493693"
                   ></menu>
                 </li>
               </menu>
@@ -23320,7 +23320,7 @@ Inside
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-6667452550758519"
+                id="sub-navigation-42885661759679994"
               ></menu>
             </li>
             <li
@@ -23339,7 +23339,7 @@ Inside
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-216542850338183"
+                id="sub-navigation-7035571309037988"
               ></menu>
             </li>
           </menu>
@@ -23417,7 +23417,7 @@ Inside
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-7107878891994546"
+                    id="sub-navigation-2644167830525487"
                   ></menu>
                 </li>
                 <li
@@ -23436,7 +23436,7 @@ Inside
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-5466585199564036"
+                    id="sub-navigation-14003393820493693"
                   ></menu>
                 </li>
               </menu>
@@ -23496,7 +23496,7 @@ Inside
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-6667452550758519"
+                id="sub-navigation-42885661759679994"
               ></menu>
             </li>
             <li
@@ -23515,7 +23515,7 @@ Inside
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-216542850338183"
+                id="sub-navigation-7035571309037988"
               ></menu>
             </li>
           </menu>
@@ -23593,7 +23593,7 @@ Inside
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-7107878891994546"
+                    id="sub-navigation-2644167830525487"
                   ></menu>
                 </li>
                 <li
@@ -23612,7 +23612,7 @@ Inside
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-5466585199564036"
+                    id="sub-navigation-14003393820493693"
                   ></menu>
                 </li>
               </menu>
@@ -23672,7 +23672,7 @@ Inside
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-6667452550758519"
+                id="sub-navigation-42885661759679994"
               ></menu>
             </li>
             <li
@@ -23691,7 +23691,7 @@ Inside
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-216542850338183"
+                id="sub-navigation-7035571309037988"
               ></menu>
             </li>
           </menu>
@@ -24065,7 +24065,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-9028273200955618"
+                    id="sub-navigation-5713218802549686"
                   ></menu>
                 </li>
                 <li
@@ -24084,7 +24084,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-9929006315619412"
+                    id="sub-navigation-09552505526915012"
                   ></menu>
                 </li>
               </menu>
@@ -24144,7 +24144,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-8366756211059934"
+                id="sub-navigation-1750053944907728"
               ></menu>
             </li>
             <li
@@ -24163,7 +24163,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-6817914874247105"
+                id="sub-navigation-37655953544775256"
               ></menu>
             </li>
           </menu>
@@ -24241,7 +24241,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-9028273200955618"
+                    id="sub-navigation-5713218802549686"
                   ></menu>
                 </li>
                 <li
@@ -24260,7 +24260,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-9929006315619412"
+                    id="sub-navigation-09552505526915012"
                   ></menu>
                 </li>
               </menu>
@@ -24320,7 +24320,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-8366756211059934"
+                id="sub-navigation-1750053944907728"
               ></menu>
             </li>
             <li
@@ -24339,7 +24339,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-6817914874247105"
+                id="sub-navigation-37655953544775256"
               ></menu>
             </li>
           </menu>
@@ -24417,7 +24417,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-9028273200955618"
+                    id="sub-navigation-5713218802549686"
                   ></menu>
                 </li>
                 <li
@@ -24436,7 +24436,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-9929006315619412"
+                    id="sub-navigation-09552505526915012"
                   ></menu>
                 </li>
               </menu>
@@ -24496,7 +24496,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-8366756211059934"
+                id="sub-navigation-1750053944907728"
               ></menu>
             </li>
             <li
@@ -24515,7 +24515,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-6817914874247105"
+                id="sub-navigation-37655953544775256"
               ></menu>
             </li>
           </menu>
@@ -24593,7 +24593,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-9028273200955618"
+                    id="sub-navigation-5713218802549686"
                   ></menu>
                 </li>
                 <li
@@ -24612,7 +24612,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-9929006315619412"
+                    id="sub-navigation-09552505526915012"
                   ></menu>
                 </li>
               </menu>
@@ -24672,7 +24672,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-8366756211059934"
+                id="sub-navigation-1750053944907728"
               ></menu>
             </li>
             <li
@@ -24691,7 +24691,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-6817914874247105"
+                id="sub-navigation-37655953544775256"
               ></menu>
             </li>
           </menu>
@@ -25065,7 +25065,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-004544195515891247"
+                    id="sub-navigation-31892515581808967"
                   ></menu>
                 </li>
                 <li
@@ -25084,7 +25084,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-912354621192951"
+                    id="sub-navigation-6469535326423802"
                   ></menu>
                 </li>
               </menu>
@@ -25144,7 +25144,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-6570517125312747"
+                id="sub-navigation-2430406557618361"
               ></menu>
             </li>
             <li
@@ -25163,7 +25163,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-16847031308206883"
+                id="sub-navigation-7312240752373437"
               ></menu>
             </li>
           </menu>
@@ -25241,7 +25241,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-004544195515891247"
+                    id="sub-navigation-31892515581808967"
                   ></menu>
                 </li>
                 <li
@@ -25260,7 +25260,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-912354621192951"
+                    id="sub-navigation-6469535326423802"
                   ></menu>
                 </li>
               </menu>
@@ -25320,7 +25320,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-6570517125312747"
+                id="sub-navigation-2430406557618361"
               ></menu>
             </li>
             <li
@@ -25339,7 +25339,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-16847031308206883"
+                id="sub-navigation-7312240752373437"
               ></menu>
             </li>
           </menu>
@@ -25417,7 +25417,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-004544195515891247"
+                    id="sub-navigation-31892515581808967"
                   ></menu>
                 </li>
                 <li
@@ -25436,7 +25436,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-912354621192951"
+                    id="sub-navigation-6469535326423802"
                   ></menu>
                 </li>
               </menu>
@@ -25496,7 +25496,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-6570517125312747"
+                id="sub-navigation-2430406557618361"
               ></menu>
             </li>
             <li
@@ -25515,7 +25515,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-16847031308206883"
+                id="sub-navigation-7312240752373437"
               ></menu>
             </li>
           </menu>
@@ -25593,7 +25593,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-004544195515891247"
+                    id="sub-navigation-31892515581808967"
                   ></menu>
                 </li>
                 <li
@@ -25612,7 +25612,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-912354621192951"
+                    id="sub-navigation-6469535326423802"
                   ></menu>
                 </li>
               </menu>
@@ -25672,7 +25672,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-6570517125312747"
+                id="sub-navigation-2430406557618361"
               ></menu>
             </li>
             <li
@@ -25691,7 +25691,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-16847031308206883"
+                id="sub-navigation-7312240752373437"
               ></menu>
             </li>
           </menu>
@@ -26065,7 +26065,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-2588309949909041"
+                    id="sub-navigation-9108757284285334"
                   ></menu>
                 </li>
                 <li
@@ -26084,7 +26084,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-5725395660622752"
+                    id="sub-navigation-15359633662701289"
                   ></menu>
                 </li>
               </menu>
@@ -26144,7 +26144,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-843240264362494"
+                id="sub-navigation-9048042492287843"
               ></menu>
             </li>
             <li
@@ -26163,7 +26163,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-11844412754922373"
+                id="sub-navigation-6068524549074844"
               ></menu>
             </li>
           </menu>
@@ -26241,7 +26241,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-2588309949909041"
+                    id="sub-navigation-9108757284285334"
                   ></menu>
                 </li>
                 <li
@@ -26260,7 +26260,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-5725395660622752"
+                    id="sub-navigation-15359633662701289"
                   ></menu>
                 </li>
               </menu>
@@ -26320,7 +26320,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-843240264362494"
+                id="sub-navigation-9048042492287843"
               ></menu>
             </li>
             <li
@@ -26339,7 +26339,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-11844412754922373"
+                id="sub-navigation-6068524549074844"
               ></menu>
             </li>
           </menu>
@@ -26417,7 +26417,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-2588309949909041"
+                    id="sub-navigation-9108757284285334"
                   ></menu>
                 </li>
                 <li
@@ -26436,7 +26436,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-5725395660622752"
+                    id="sub-navigation-15359633662701289"
                   ></menu>
                 </li>
               </menu>
@@ -26496,7 +26496,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-843240264362494"
+                id="sub-navigation-9048042492287843"
               ></menu>
             </li>
             <li
@@ -26515,7 +26515,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-11844412754922373"
+                id="sub-navigation-6068524549074844"
               ></menu>
             </li>
           </menu>
@@ -26593,7 +26593,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-2588309949909041"
+                    id="sub-navigation-9108757284285334"
                   ></menu>
                 </li>
                 <li
@@ -26612,7 +26612,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-5725395660622752"
+                    id="sub-navigation-15359633662701289"
                   ></menu>
                 </li>
               </menu>
@@ -26672,7 +26672,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-843240264362494"
+                id="sub-navigation-9048042492287843"
               ></menu>
             </li>
             <li
@@ -26691,7 +26691,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-11844412754922373"
+                id="sub-navigation-6068524549074844"
               ></menu>
             </li>
           </menu>
@@ -27065,7 +27065,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-5907571756824465"
+                    id="sub-navigation-7456038902240978"
                   ></menu>
                 </li>
                 <li
@@ -27084,7 +27084,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-7983583533367953"
+                    id="sub-navigation-9063453439219292"
                   ></menu>
                 </li>
               </menu>
@@ -27144,7 +27144,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-6781047539598309"
+                id="sub-navigation-5080332555071925"
               ></menu>
             </li>
             <li
@@ -27163,7 +27163,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-7777338805041366"
+                id="sub-navigation-04512159597183418"
               ></menu>
             </li>
           </menu>
@@ -27241,7 +27241,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-5907571756824465"
+                    id="sub-navigation-7456038902240978"
                   ></menu>
                 </li>
                 <li
@@ -27260,7 +27260,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-7983583533367953"
+                    id="sub-navigation-9063453439219292"
                   ></menu>
                 </li>
               </menu>
@@ -27320,7 +27320,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-6781047539598309"
+                id="sub-navigation-5080332555071925"
               ></menu>
             </li>
             <li
@@ -27339,7 +27339,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-7777338805041366"
+                id="sub-navigation-04512159597183418"
               ></menu>
             </li>
           </menu>
@@ -27417,7 +27417,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-5907571756824465"
+                    id="sub-navigation-7456038902240978"
                   ></menu>
                 </li>
                 <li
@@ -27436,7 +27436,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-7983583533367953"
+                    id="sub-navigation-9063453439219292"
                   ></menu>
                 </li>
               </menu>
@@ -27496,7 +27496,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-6781047539598309"
+                id="sub-navigation-5080332555071925"
               ></menu>
             </li>
             <li
@@ -27515,7 +27515,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-7777338805041366"
+                id="sub-navigation-04512159597183418"
               ></menu>
             </li>
           </menu>
@@ -27593,7 +27593,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-5907571756824465"
+                    id="sub-navigation-7456038902240978"
                   ></menu>
                 </li>
                 <li
@@ -27612,7 +27612,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-7983583533367953"
+                    id="sub-navigation-9063453439219292"
                   ></menu>
                 </li>
               </menu>
@@ -27672,7 +27672,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-6781047539598309"
+                id="sub-navigation-5080332555071925"
               ></menu>
             </li>
             <li
@@ -27691,7 +27691,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-7777338805041366"
+                id="sub-navigation-04512159597183418"
               ></menu>
             </li>
           </menu>
@@ -28069,7 +28069,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-8912500807365887"
+                    id="sub-navigation-5676803704421161"
                   ></menu>
                 </li>
                 <li
@@ -28088,7 +28088,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-5894404304361174"
+                    id="sub-navigation-3200080148868677"
                   ></menu>
                 </li>
               </menu>
@@ -28148,7 +28148,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-4080705767156516"
+                id="sub-navigation-8652098317426168"
               ></menu>
             </li>
             <li
@@ -28167,7 +28167,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-5229987480879641"
+                id="sub-navigation-684967892142876"
               ></menu>
             </li>
           </menu>
@@ -28245,7 +28245,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-8912500807365887"
+                    id="sub-navigation-5676803704421161"
                   ></menu>
                 </li>
                 <li
@@ -28264,7 +28264,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-5894404304361174"
+                    id="sub-navigation-3200080148868677"
                   ></menu>
                 </li>
               </menu>
@@ -28324,7 +28324,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-4080705767156516"
+                id="sub-navigation-8652098317426168"
               ></menu>
             </li>
             <li
@@ -28343,7 +28343,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-5229987480879641"
+                id="sub-navigation-684967892142876"
               ></menu>
             </li>
           </menu>
@@ -28421,7 +28421,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-8912500807365887"
+                    id="sub-navigation-5676803704421161"
                   ></menu>
                 </li>
                 <li
@@ -28440,7 +28440,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-5894404304361174"
+                    id="sub-navigation-3200080148868677"
                   ></menu>
                 </li>
               </menu>
@@ -28500,7 +28500,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-4080705767156516"
+                id="sub-navigation-8652098317426168"
               ></menu>
             </li>
             <li
@@ -28519,7 +28519,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-5229987480879641"
+                id="sub-navigation-684967892142876"
               ></menu>
             </li>
           </menu>
@@ -28597,7 +28597,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-8912500807365887"
+                    id="sub-navigation-5676803704421161"
                   ></menu>
                 </li>
                 <li
@@ -28616,7 +28616,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-5894404304361174"
+                    id="sub-navigation-3200080148868677"
                   ></menu>
                 </li>
               </menu>
@@ -28676,7 +28676,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-4080705767156516"
+                id="sub-navigation-8652098317426168"
               ></menu>
             </li>
             <li
@@ -28695,7 +28695,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-5229987480879641"
+                id="sub-navigation-684967892142876"
               ></menu>
             </li>
           </menu>
@@ -29073,7 +29073,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-9648739223300858"
+                    id="sub-navigation-6596553153276044"
                   ></menu>
                 </li>
                 <li
@@ -29092,7 +29092,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-5453913181486206"
+                    id="sub-navigation-35900656710689294"
                   ></menu>
                 </li>
               </menu>
@@ -29152,7 +29152,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-9382920920269178"
+                id="sub-navigation-764321707454875"
               ></menu>
             </li>
             <li
@@ -29171,7 +29171,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-16114393758048806"
+                id="sub-navigation-29169485852164745"
               ></menu>
             </li>
           </menu>
@@ -29249,7 +29249,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-9648739223300858"
+                    id="sub-navigation-6596553153276044"
                   ></menu>
                 </li>
                 <li
@@ -29268,7 +29268,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-5453913181486206"
+                    id="sub-navigation-35900656710689294"
                   ></menu>
                 </li>
               </menu>
@@ -29328,7 +29328,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-9382920920269178"
+                id="sub-navigation-764321707454875"
               ></menu>
             </li>
             <li
@@ -29347,7 +29347,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-16114393758048806"
+                id="sub-navigation-29169485852164745"
               ></menu>
             </li>
           </menu>
@@ -29425,7 +29425,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-9648739223300858"
+                    id="sub-navigation-6596553153276044"
                   ></menu>
                 </li>
                 <li
@@ -29444,7 +29444,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-5453913181486206"
+                    id="sub-navigation-35900656710689294"
                   ></menu>
                 </li>
               </menu>
@@ -29504,7 +29504,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-9382920920269178"
+                id="sub-navigation-764321707454875"
               ></menu>
             </li>
             <li
@@ -29523,7 +29523,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-16114393758048806"
+                id="sub-navigation-29169485852164745"
               ></menu>
             </li>
           </menu>
@@ -29601,7 +29601,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-9648739223300858"
+                    id="sub-navigation-6596553153276044"
                   ></menu>
                 </li>
                 <li
@@ -29620,7 +29620,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-5453913181486206"
+                    id="sub-navigation-35900656710689294"
                   ></menu>
                 </li>
               </menu>
@@ -29680,7 +29680,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-9382920920269178"
+                id="sub-navigation-764321707454875"
               ></menu>
             </li>
             <li
@@ -29699,7 +29699,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-16114393758048806"
+                id="sub-navigation-29169485852164745"
               ></menu>
             </li>
           </menu>
@@ -30073,7 +30073,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-5884423627705329"
+                    id="sub-navigation-44945203980222903"
                   ></menu>
                 </li>
                 <li
@@ -30092,7 +30092,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-4281774547303334"
+                    id="sub-navigation-5711061561448061"
                   ></menu>
                 </li>
               </menu>
@@ -30152,7 +30152,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-2558327588614999"
+                id="sub-navigation-16305074492728644"
               ></menu>
             </li>
             <li
@@ -30171,7 +30171,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-5719549351069716"
+                id="sub-navigation-07015641521896299"
               ></menu>
             </li>
           </menu>
@@ -30249,7 +30249,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-5884423627705329"
+                    id="sub-navigation-44945203980222903"
                   ></menu>
                 </li>
                 <li
@@ -30268,7 +30268,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-4281774547303334"
+                    id="sub-navigation-5711061561448061"
                   ></menu>
                 </li>
               </menu>
@@ -30328,7 +30328,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-2558327588614999"
+                id="sub-navigation-16305074492728644"
               ></menu>
             </li>
             <li
@@ -30347,7 +30347,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-5719549351069716"
+                id="sub-navigation-07015641521896299"
               ></menu>
             </li>
           </menu>
@@ -30425,7 +30425,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-5884423627705329"
+                    id="sub-navigation-44945203980222903"
                   ></menu>
                 </li>
                 <li
@@ -30444,7 +30444,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-4281774547303334"
+                    id="sub-navigation-5711061561448061"
                   ></menu>
                 </li>
               </menu>
@@ -30504,7 +30504,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-2558327588614999"
+                id="sub-navigation-16305074492728644"
               ></menu>
             </li>
             <li
@@ -30523,7 +30523,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-5719549351069716"
+                id="sub-navigation-07015641521896299"
               ></menu>
             </li>
           </menu>
@@ -30601,7 +30601,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-5884423627705329"
+                    id="sub-navigation-44945203980222903"
                   ></menu>
                 </li>
                 <li
@@ -30620,7 +30620,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-4281774547303334"
+                    id="sub-navigation-5711061561448061"
                   ></menu>
                 </li>
               </menu>
@@ -30680,7 +30680,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-2558327588614999"
+                id="sub-navigation-16305074492728644"
               ></menu>
             </li>
             <li
@@ -30699,7 +30699,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-5719549351069716"
+                id="sub-navigation-07015641521896299"
               ></menu>
             </li>
           </menu>
@@ -31077,7 +31077,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-8026231669013952"
+                    id="sub-navigation-26514488256521007"
                   ></menu>
                 </li>
                 <li
@@ -31096,7 +31096,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-04498020772172362"
+                    id="sub-navigation-604416940678598"
                   ></menu>
                 </li>
               </menu>
@@ -31156,7 +31156,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-6822788009064114"
+                id="sub-navigation-0035549223885905645"
               ></menu>
             </li>
             <li
@@ -31175,7 +31175,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-7471335057315893"
+                id="sub-navigation-2715722172695557"
               ></menu>
             </li>
           </menu>
@@ -31253,7 +31253,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-8026231669013952"
+                    id="sub-navigation-26514488256521007"
                   ></menu>
                 </li>
                 <li
@@ -31272,7 +31272,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-04498020772172362"
+                    id="sub-navigation-604416940678598"
                   ></menu>
                 </li>
               </menu>
@@ -31332,7 +31332,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-6822788009064114"
+                id="sub-navigation-0035549223885905645"
               ></menu>
             </li>
             <li
@@ -31351,7 +31351,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-7471335057315893"
+                id="sub-navigation-2715722172695557"
               ></menu>
             </li>
           </menu>
@@ -31429,7 +31429,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-8026231669013952"
+                    id="sub-navigation-26514488256521007"
                   ></menu>
                 </li>
                 <li
@@ -31448,7 +31448,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-04498020772172362"
+                    id="sub-navigation-604416940678598"
                   ></menu>
                 </li>
               </menu>
@@ -31508,7 +31508,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-6822788009064114"
+                id="sub-navigation-0035549223885905645"
               ></menu>
             </li>
             <li
@@ -31527,7 +31527,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-7471335057315893"
+                id="sub-navigation-2715722172695557"
               ></menu>
             </li>
           </menu>
@@ -31605,7 +31605,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-8026231669013952"
+                    id="sub-navigation-26514488256521007"
                   ></menu>
                 </li>
                 <li
@@ -31624,7 +31624,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-04498020772172362"
+                    id="sub-navigation-604416940678598"
                   ></menu>
                 </li>
               </menu>
@@ -31684,7 +31684,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-6822788009064114"
+                id="sub-navigation-0035549223885905645"
               ></menu>
             </li>
             <li
@@ -31703,7 +31703,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-7471335057315893"
+                id="sub-navigation-2715722172695557"
               ></menu>
             </li>
           </menu>
@@ -32089,7 +32089,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-008099922908798574"
+                    id="sub-navigation-1053905932203213"
                   ></menu>
                 </li>
                 <li
@@ -32108,7 +32108,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-91361276279379"
+                    id="sub-navigation-4343320356264033"
                   ></menu>
                 </li>
               </menu>
@@ -32168,7 +32168,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-7382872509483738"
+                id="sub-navigation-00735347912145401"
               ></menu>
             </li>
             <li
@@ -32187,7 +32187,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-6199451435067104"
+                id="sub-navigation-20977811301005522"
               ></menu>
             </li>
           </menu>
@@ -32265,7 +32265,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-008099922908798574"
+                    id="sub-navigation-1053905932203213"
                   ></menu>
                 </li>
                 <li
@@ -32284,7 +32284,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-91361276279379"
+                    id="sub-navigation-4343320356264033"
                   ></menu>
                 </li>
               </menu>
@@ -32344,7 +32344,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-7382872509483738"
+                id="sub-navigation-00735347912145401"
               ></menu>
             </li>
             <li
@@ -32363,7 +32363,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-6199451435067104"
+                id="sub-navigation-20977811301005522"
               ></menu>
             </li>
           </menu>
@@ -32441,7 +32441,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-008099922908798574"
+                    id="sub-navigation-1053905932203213"
                   ></menu>
                 </li>
                 <li
@@ -32460,7 +32460,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-91361276279379"
+                    id="sub-navigation-4343320356264033"
                   ></menu>
                 </li>
               </menu>
@@ -32520,7 +32520,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-7382872509483738"
+                id="sub-navigation-00735347912145401"
               ></menu>
             </li>
             <li
@@ -32539,7 +32539,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-6199451435067104"
+                id="sub-navigation-20977811301005522"
               ></menu>
             </li>
           </menu>
@@ -32617,7 +32617,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-008099922908798574"
+                    id="sub-navigation-1053905932203213"
                   ></menu>
                 </li>
                 <li
@@ -32636,7 +32636,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-91361276279379"
+                    id="sub-navigation-4343320356264033"
                   ></menu>
                 </li>
               </menu>
@@ -32696,7 +32696,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-7382872509483738"
+                id="sub-navigation-00735347912145401"
               ></menu>
             </li>
             <li
@@ -32715,7 +32715,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-6199451435067104"
+                id="sub-navigation-20977811301005522"
               ></menu>
             </li>
           </menu>
@@ -33101,7 +33101,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-37436455319873285"
+                    id="sub-navigation-6759073256357004"
                   ></menu>
                 </li>
                 <li
@@ -33120,7 +33120,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-16050134992859522"
+                    id="sub-navigation-4823143350749334"
                   ></menu>
                 </li>
               </menu>
@@ -33180,7 +33180,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-8561434363596951"
+                id="sub-navigation-802345169283668"
               ></menu>
             </li>
             <li
@@ -33199,7 +33199,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-7670502916002689"
+                id="sub-navigation-4100107992574169"
               ></menu>
             </li>
           </menu>
@@ -33277,7 +33277,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-37436455319873285"
+                    id="sub-navigation-6759073256357004"
                   ></menu>
                 </li>
                 <li
@@ -33296,7 +33296,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-16050134992859522"
+                    id="sub-navigation-4823143350749334"
                   ></menu>
                 </li>
               </menu>
@@ -33356,7 +33356,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-8561434363596951"
+                id="sub-navigation-802345169283668"
               ></menu>
             </li>
             <li
@@ -33375,7 +33375,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-7670502916002689"
+                id="sub-navigation-4100107992574169"
               ></menu>
             </li>
           </menu>
@@ -33453,7 +33453,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-37436455319873285"
+                    id="sub-navigation-6759073256357004"
                   ></menu>
                 </li>
                 <li
@@ -33472,7 +33472,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-16050134992859522"
+                    id="sub-navigation-4823143350749334"
                   ></menu>
                 </li>
               </menu>
@@ -33532,7 +33532,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-8561434363596951"
+                id="sub-navigation-802345169283668"
               ></menu>
             </li>
             <li
@@ -33551,7 +33551,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-7670502916002689"
+                id="sub-navigation-4100107992574169"
               ></menu>
             </li>
           </menu>
@@ -33629,7 +33629,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-37436455319873285"
+                    id="sub-navigation-6759073256357004"
                   ></menu>
                 </li>
                 <li
@@ -33648,7 +33648,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-16050134992859522"
+                    id="sub-navigation-4823143350749334"
                   ></menu>
                 </li>
               </menu>
@@ -33708,7 +33708,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-8561434363596951"
+                id="sub-navigation-802345169283668"
               ></menu>
             </li>
             <li
@@ -33727,7 +33727,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-7670502916002689"
+                id="sub-navigation-4100107992574169"
               ></menu>
             </li>
           </menu>
@@ -34113,7 +34113,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-4730893850450175"
+                    id="sub-navigation-022610142990033166"
                   ></menu>
                 </li>
                 <li
@@ -34132,7 +34132,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-620721237571632"
+                    id="sub-navigation-8992669037722681"
                   ></menu>
                 </li>
               </menu>
@@ -34192,7 +34192,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-012436973317723199"
+                id="sub-navigation-2178842817532869"
               ></menu>
             </li>
             <li
@@ -34211,7 +34211,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-11700660001392582"
+                id="sub-navigation-051585777091147644"
               ></menu>
             </li>
           </menu>
@@ -34289,7 +34289,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-4730893850450175"
+                    id="sub-navigation-022610142990033166"
                   ></menu>
                 </li>
                 <li
@@ -34308,7 +34308,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-620721237571632"
+                    id="sub-navigation-8992669037722681"
                   ></menu>
                 </li>
               </menu>
@@ -34368,7 +34368,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-012436973317723199"
+                id="sub-navigation-2178842817532869"
               ></menu>
             </li>
             <li
@@ -34387,7 +34387,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-11700660001392582"
+                id="sub-navigation-051585777091147644"
               ></menu>
             </li>
           </menu>
@@ -34465,7 +34465,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-4730893850450175"
+                    id="sub-navigation-022610142990033166"
                   ></menu>
                 </li>
                 <li
@@ -34484,7 +34484,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-620721237571632"
+                    id="sub-navigation-8992669037722681"
                   ></menu>
                 </li>
               </menu>
@@ -34544,7 +34544,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-012436973317723199"
+                id="sub-navigation-2178842817532869"
               ></menu>
             </li>
             <li
@@ -34563,7 +34563,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-11700660001392582"
+                id="sub-navigation-051585777091147644"
               ></menu>
             </li>
           </menu>
@@ -34641,7 +34641,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-4730893850450175"
+                    id="sub-navigation-022610142990033166"
                   ></menu>
                 </li>
                 <li
@@ -34660,7 +34660,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-620721237571632"
+                    id="sub-navigation-8992669037722681"
                   ></menu>
                 </li>
               </menu>
@@ -34720,7 +34720,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-012436973317723199"
+                id="sub-navigation-2178842817532869"
               ></menu>
             </li>
             <li
@@ -34739,7 +34739,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-11700660001392582"
+                id="sub-navigation-051585777091147644"
               ></menu>
             </li>
           </menu>
@@ -39867,7 +39867,7 @@ Variant Inline
       <menu
         class="db-sub-navigation"
         data-force-close="false"
-        id="sub-navigation-5018680834352168"
+        id="sub-navigation-5987366008142357"
       >
         <li class="db-navigation-item">
           <button
@@ -39880,7 +39880,7 @@ Variant Inline
           <menu
             class="db-sub-navigation"
             data-force-close="false"
-            id="sub-navigation-11610835800685382"
+            id="sub-navigation-9158475985873488"
           >
             <li class="db-navigation-item" data-active="true">
               <button
@@ -39893,7 +39893,7 @@ Variant Inline
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-35990414111035807"
+                id="sub-navigation-7171588859740834"
               ></menu>
             </li>
           </menu>
@@ -39911,7 +39911,7 @@ Variant Inline
       <menu
         class="db-sub-navigation"
         data-force-close="false"
-        id="sub-navigation-859993054391988"
+        id="sub-navigation-9577105831411854"
       ></menu>
     </li>
   </menu>
@@ -39928,7 +39928,7 @@ Variant Inline
       <menu
         class="db-sub-navigation"
         data-force-close="false"
-        id="sub-navigation-5018680834352168"
+        id="sub-navigation-5987366008142357"
       >
         <li class="db-navigation-item">
           <button
@@ -39941,7 +39941,7 @@ Variant Inline
           <menu
             class="db-sub-navigation"
             data-force-close="false"
-            id="sub-navigation-11610835800685382"
+            id="sub-navigation-9158475985873488"
           >
             <li class="db-navigation-item" data-active="true">
               <button
@@ -39954,7 +39954,7 @@ Variant Inline
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-35990414111035807"
+                id="sub-navigation-7171588859740834"
               ></menu>
             </li>
           </menu>
@@ -39972,7 +39972,7 @@ Variant Inline
       <menu
         class="db-sub-navigation"
         data-force-close="false"
-        id="sub-navigation-859993054391988"
+        id="sub-navigation-9577105831411854"
       ></menu>
     </li>
   </menu>
@@ -39989,7 +39989,7 @@ Variant Inline
       <menu
         class="db-sub-navigation"
         data-force-close="false"
-        id="sub-navigation-5018680834352168"
+        id="sub-navigation-5987366008142357"
       >
         <li class="db-navigation-item">
           <button
@@ -40002,7 +40002,7 @@ Variant Inline
           <menu
             class="db-sub-navigation"
             data-force-close="false"
-            id="sub-navigation-11610835800685382"
+            id="sub-navigation-9158475985873488"
           >
             <li class="db-navigation-item" data-active="true">
               <button
@@ -40015,7 +40015,7 @@ Variant Inline
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-35990414111035807"
+                id="sub-navigation-7171588859740834"
               ></menu>
             </li>
           </menu>
@@ -40033,7 +40033,7 @@ Variant Inline
       <menu
         class="db-sub-navigation"
         data-force-close="false"
-        id="sub-navigation-859993054391988"
+        id="sub-navigation-9577105831411854"
       ></menu>
     </li>
   </menu>
@@ -40050,7 +40050,7 @@ Variant Inline
       <menu
         class="db-sub-navigation"
         data-force-close="false"
-        id="sub-navigation-5018680834352168"
+        id="sub-navigation-5987366008142357"
       >
         <li class="db-navigation-item">
           <button
@@ -40063,7 +40063,7 @@ Variant Inline
           <menu
             class="db-sub-navigation"
             data-force-close="false"
-            id="sub-navigation-11610835800685382"
+            id="sub-navigation-9158475985873488"
           >
             <li class="db-navigation-item" data-active="true">
               <button
@@ -40076,7 +40076,7 @@ Variant Inline
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-35990414111035807"
+                id="sub-navigation-7171588859740834"
               ></menu>
             </li>
           </menu>
@@ -40094,7 +40094,7 @@ Variant Inline
       <menu
         class="db-sub-navigation"
         data-force-close="false"
-        id="sub-navigation-859993054391988"
+        id="sub-navigation-9577105831411854"
       ></menu>
     </li>
   </menu>
@@ -40307,7 +40307,7 @@ Navi-Item 2
       <menu
         class="db-sub-navigation"
         data-force-close="false"
-        id="sub-navigation-5970208760630891"
+        id="sub-navigation-48871591671082915"
       >
         <li class="db-navigation-item">
           <button
@@ -40320,7 +40320,7 @@ Navi-Item 2
           <menu
             class="db-sub-navigation"
             data-force-close="false"
-            id="sub-navigation-6883180089269325"
+            id="sub-navigation-4916071844805483"
           >
             <li class="db-navigation-item" data-active="true">
               <button
@@ -40333,7 +40333,7 @@ Navi-Item 2
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-9269956078720017"
+                id="sub-navigation-17856433123949733"
               ></menu>
             </li>
           </menu>
@@ -40351,7 +40351,7 @@ Navi-Item 2
       <menu
         class="db-sub-navigation"
         data-force-close="false"
-        id="sub-navigation-736256227365467"
+        id="sub-navigation-8565817527256356"
       ></menu>
     </li>
   </menu>
@@ -40368,7 +40368,7 @@ Navi-Item 2
       <menu
         class="db-sub-navigation"
         data-force-close="false"
-        id="sub-navigation-5970208760630891"
+        id="sub-navigation-48871591671082915"
       >
         <li class="db-navigation-item">
           <button
@@ -40381,7 +40381,7 @@ Navi-Item 2
           <menu
             class="db-sub-navigation"
             data-force-close="false"
-            id="sub-navigation-6883180089269325"
+            id="sub-navigation-4916071844805483"
           >
             <li class="db-navigation-item" data-active="true">
               <button
@@ -40394,7 +40394,7 @@ Navi-Item 2
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-9269956078720017"
+                id="sub-navigation-17856433123949733"
               ></menu>
             </li>
           </menu>
@@ -40412,7 +40412,7 @@ Navi-Item 2
       <menu
         class="db-sub-navigation"
         data-force-close="false"
-        id="sub-navigation-736256227365467"
+        id="sub-navigation-8565817527256356"
       ></menu>
     </li>
   </menu>
@@ -40429,7 +40429,7 @@ Navi-Item 2
       <menu
         class="db-sub-navigation"
         data-force-close="false"
-        id="sub-navigation-5970208760630891"
+        id="sub-navigation-48871591671082915"
       >
         <li class="db-navigation-item">
           <button
@@ -40442,7 +40442,7 @@ Navi-Item 2
           <menu
             class="db-sub-navigation"
             data-force-close="false"
-            id="sub-navigation-6883180089269325"
+            id="sub-navigation-4916071844805483"
           >
             <li class="db-navigation-item" data-active="true">
               <button
@@ -40455,7 +40455,7 @@ Navi-Item 2
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-9269956078720017"
+                id="sub-navigation-17856433123949733"
               ></menu>
             </li>
           </menu>
@@ -40473,7 +40473,7 @@ Navi-Item 2
       <menu
         class="db-sub-navigation"
         data-force-close="false"
-        id="sub-navigation-736256227365467"
+        id="sub-navigation-8565817527256356"
       ></menu>
     </li>
   </menu>
@@ -40490,7 +40490,7 @@ Navi-Item 2
       <menu
         class="db-sub-navigation"
         data-force-close="false"
-        id="sub-navigation-5970208760630891"
+        id="sub-navigation-48871591671082915"
       >
         <li class="db-navigation-item">
           <button
@@ -40503,7 +40503,7 @@ Navi-Item 2
           <menu
             class="db-sub-navigation"
             data-force-close="false"
-            id="sub-navigation-6883180089269325"
+            id="sub-navigation-4916071844805483"
           >
             <li class="db-navigation-item" data-active="true">
               <button
@@ -40516,7 +40516,7 @@ Navi-Item 2
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-9269956078720017"
+                id="sub-navigation-17856433123949733"
               ></menu>
             </li>
           </menu>
@@ -40534,7 +40534,7 @@ Navi-Item 2
       <menu
         class="db-sub-navigation"
         data-force-close="false"
-        id="sub-navigation-736256227365467"
+        id="sub-navigation-8565817527256356"
       ></menu>
     </li>
   </menu>
@@ -40747,7 +40747,7 @@ Navi-Item 2
       <menu
         class="db-sub-navigation"
         data-force-close="false"
-        id="sub-navigation-6283425027213035"
+        id="sub-navigation-814748066677071"
       >
         <li class="db-navigation-item">
           <button
@@ -40760,7 +40760,7 @@ Navi-Item 2
           <menu
             class="db-sub-navigation"
             data-force-close="false"
-            id="sub-navigation-7932766488309536"
+            id="sub-navigation-04501879232335071"
           >
             <li class="db-navigation-item" data-active="true">
               <button
@@ -40773,7 +40773,7 @@ Navi-Item 2
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-21278624130034363"
+                id="sub-navigation-4770332132679479"
               ></menu>
             </li>
           </menu>
@@ -40791,7 +40791,7 @@ Navi-Item 2
       <menu
         class="db-sub-navigation"
         data-force-close="false"
-        id="sub-navigation-18634698672590866"
+        id="sub-navigation-13140515248869056"
       ></menu>
     </li>
   </menu>
@@ -40808,7 +40808,7 @@ Navi-Item 2
       <menu
         class="db-sub-navigation"
         data-force-close="false"
-        id="sub-navigation-6283425027213035"
+        id="sub-navigation-814748066677071"
       >
         <li class="db-navigation-item">
           <button
@@ -40821,7 +40821,7 @@ Navi-Item 2
           <menu
             class="db-sub-navigation"
             data-force-close="false"
-            id="sub-navigation-7932766488309536"
+            id="sub-navigation-04501879232335071"
           >
             <li class="db-navigation-item" data-active="true">
               <button
@@ -40834,7 +40834,7 @@ Navi-Item 2
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-21278624130034363"
+                id="sub-navigation-4770332132679479"
               ></menu>
             </li>
           </menu>
@@ -40852,7 +40852,7 @@ Navi-Item 2
       <menu
         class="db-sub-navigation"
         data-force-close="false"
-        id="sub-navigation-18634698672590866"
+        id="sub-navigation-13140515248869056"
       ></menu>
     </li>
   </menu>
@@ -40869,7 +40869,7 @@ Navi-Item 2
       <menu
         class="db-sub-navigation"
         data-force-close="false"
-        id="sub-navigation-6283425027213035"
+        id="sub-navigation-814748066677071"
       >
         <li class="db-navigation-item">
           <button
@@ -40882,7 +40882,7 @@ Navi-Item 2
           <menu
             class="db-sub-navigation"
             data-force-close="false"
-            id="sub-navigation-7932766488309536"
+            id="sub-navigation-04501879232335071"
           >
             <li class="db-navigation-item" data-active="true">
               <button
@@ -40895,7 +40895,7 @@ Navi-Item 2
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-21278624130034363"
+                id="sub-navigation-4770332132679479"
               ></menu>
             </li>
           </menu>
@@ -40913,7 +40913,7 @@ Navi-Item 2
       <menu
         class="db-sub-navigation"
         data-force-close="false"
-        id="sub-navigation-18634698672590866"
+        id="sub-navigation-13140515248869056"
       ></menu>
     </li>
   </menu>
@@ -40930,7 +40930,7 @@ Navi-Item 2
       <menu
         class="db-sub-navigation"
         data-force-close="false"
-        id="sub-navigation-6283425027213035"
+        id="sub-navigation-814748066677071"
       >
         <li class="db-navigation-item">
           <button
@@ -40943,7 +40943,7 @@ Navi-Item 2
           <menu
             class="db-sub-navigation"
             data-force-close="false"
-            id="sub-navigation-7932766488309536"
+            id="sub-navigation-04501879232335071"
           >
             <li class="db-navigation-item" data-active="true">
               <button
@@ -40956,7 +40956,7 @@ Navi-Item 2
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-21278624130034363"
+                id="sub-navigation-4770332132679479"
               ></menu>
             </li>
           </menu>
@@ -40974,7 +40974,7 @@ Navi-Item 2
       <menu
         class="db-sub-navigation"
         data-force-close="false"
-        id="sub-navigation-18634698672590866"
+        id="sub-navigation-13140515248869056"
       ></menu>
     </li>
   </menu>
@@ -41133,7 +41133,7 @@ Navi-Item 2
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-986508595419936"
+    id="sub-navigation-26094056360341267"
   ></menu>
 </li>`})}),(0,N.jsx)(q.A,{className:"copy-button",noText:!0,icon:e===`<li class="db-navigation-item">
   <button
@@ -41146,7 +41146,7 @@ Navi-Item 2
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-986508595419936"
+    id="sub-navigation-26094056360341267"
   ></menu>
 </li>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<li class="db-navigation-item">
   <button
@@ -41159,7 +41159,7 @@ Navi-Item 2
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-986508595419936"
+    id="sub-navigation-26094056360341267"
   ></menu>
 </li>`),navigator.clipboard.writeText(`<li class="db-navigation-item">
   <button
@@ -41172,7 +41172,7 @@ Navi-Item 2
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-986508595419936"
+    id="sub-navigation-26094056360341267"
   ></menu>
 </li>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=react",children:"How to use this in react"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-tsx",children:`<DBNavigationItem>
   <a href="#">Functional</a>
@@ -41217,7 +41217,7 @@ Functional
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-9347315116124669"
+    id="sub-navigation-7900290085556377"
   ></menu>
 </li>`})}),(0,N.jsx)(q.A,{className:"copy-button",noText:!0,icon:e===`<li class="db-navigation-item">
   <button
@@ -41230,7 +41230,7 @@ Functional
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-9347315116124669"
+    id="sub-navigation-7900290085556377"
   ></menu>
 </li>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<li class="db-navigation-item">
   <button
@@ -41243,7 +41243,7 @@ Functional
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-9347315116124669"
+    id="sub-navigation-7900290085556377"
   ></menu>
 </li>`),navigator.clipboard.writeText(`<li class="db-navigation-item">
   <button
@@ -41256,7 +41256,7 @@ Functional
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-9347315116124669"
+    id="sub-navigation-7900290085556377"
   ></menu>
 </li>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=react",children:"How to use this in react"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-tsx",children:`<DBNavigationItem>
   <a href="#">(Default) Regular</a>
@@ -41301,7 +41301,7 @@ Functional
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-7724857134759714"
+    id="sub-navigation-1262303183952047"
   ></menu>
 </li>`})}),(0,N.jsx)(q.A,{className:"copy-button",noText:!0,icon:e===`<li class="db-navigation-item">
   <button
@@ -41314,7 +41314,7 @@ Functional
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-7724857134759714"
+    id="sub-navigation-1262303183952047"
   ></menu>
 </li>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<li class="db-navigation-item">
   <button
@@ -41327,7 +41327,7 @@ Functional
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-7724857134759714"
+    id="sub-navigation-1262303183952047"
   ></menu>
 </li>`),navigator.clipboard.writeText(`<li class="db-navigation-item">
   <button
@@ -41340,7 +41340,7 @@ Functional
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-7724857134759714"
+    id="sub-navigation-1262303183952047"
   ></menu>
 </li>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=react",children:"How to use this in react"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-tsx",children:`<DBNavigationItem>
   <a href="#">Expressive</a>
@@ -41386,7 +41386,7 @@ Expressive
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-7324953754719807"
+    id="sub-navigation-9128232019744134"
   ></menu>
 </li>`})}),(0,N.jsx)(q.A,{className:"copy-button",noText:!0,icon:e===`<li class="db-navigation-item" aria-disabled="true">
   <button
@@ -41400,7 +41400,7 @@ Expressive
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-7324953754719807"
+    id="sub-navigation-9128232019744134"
   ></menu>
 </li>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<li class="db-navigation-item" aria-disabled="true">
   <button
@@ -41414,7 +41414,7 @@ Expressive
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-7324953754719807"
+    id="sub-navigation-9128232019744134"
   ></menu>
 </li>`),navigator.clipboard.writeText(`<li class="db-navigation-item" aria-disabled="true">
   <button
@@ -41428,7 +41428,7 @@ Expressive
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-7324953754719807"
+    id="sub-navigation-9128232019744134"
   ></menu>
 </li>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=react",children:"How to use this in react"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-tsx",children:`<DBNavigationItem disabled>
   <a href="#">(Default) False</a>
@@ -41474,7 +41474,7 @@ Expressive
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-4342411242856947"
+    id="sub-navigation-692965814834716"
   ></menu>
 </li>`})}),(0,N.jsx)(q.A,{className:"copy-button",noText:!0,icon:e===`<li class="db-navigation-item" aria-disabled="true">
   <button
@@ -41488,7 +41488,7 @@ Expressive
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-4342411242856947"
+    id="sub-navigation-692965814834716"
   ></menu>
 </li>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<li class="db-navigation-item" aria-disabled="true">
   <button
@@ -41502,7 +41502,7 @@ Expressive
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-4342411242856947"
+    id="sub-navigation-692965814834716"
   ></menu>
 </li>`),navigator.clipboard.writeText(`<li class="db-navigation-item" aria-disabled="true">
   <button
@@ -41516,7 +41516,7 @@ Expressive
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-4342411242856947"
+    id="sub-navigation-692965814834716"
   ></menu>
 </li>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=react",children:"How to use this in react"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-tsx",children:`<DBNavigationItem disabled>
   <a href="#">True</a>
@@ -41561,7 +41561,7 @@ True
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-8151972215956803"
+    id="sub-navigation-7549290535564168"
   ></menu>
 </li>`})}),(0,N.jsx)(q.A,{className:"copy-button",noText:!0,icon:e===`<li class="db-navigation-item" data-active="true">
   <button
@@ -41574,7 +41574,7 @@ True
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-8151972215956803"
+    id="sub-navigation-7549290535564168"
   ></menu>
 </li>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<li class="db-navigation-item" data-active="true">
   <button
@@ -41587,7 +41587,7 @@ True
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-8151972215956803"
+    id="sub-navigation-7549290535564168"
   ></menu>
 </li>`),navigator.clipboard.writeText(`<li class="db-navigation-item" data-active="true">
   <button
@@ -41600,7 +41600,7 @@ True
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-8151972215956803"
+    id="sub-navigation-7549290535564168"
   ></menu>
 </li>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=react",children:"How to use this in react"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-tsx",children:`<DBNavigationItem active>
   <a href="#">(Default) False</a>
@@ -41645,7 +41645,7 @@ True
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-1898676822927008"
+    id="sub-navigation-6607022103977264"
   ></menu>
 </li>`})}),(0,N.jsx)(q.A,{className:"copy-button",noText:!0,icon:e===`<li class="db-navigation-item" data-active="true">
   <button
@@ -41658,7 +41658,7 @@ True
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-1898676822927008"
+    id="sub-navigation-6607022103977264"
   ></menu>
 </li>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<li class="db-navigation-item" data-active="true">
   <button
@@ -41671,7 +41671,7 @@ True
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-1898676822927008"
+    id="sub-navigation-6607022103977264"
   ></menu>
 </li>`),navigator.clipboard.writeText(`<li class="db-navigation-item" data-active="true">
   <button
@@ -41684,7 +41684,7 @@ True
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-1898676822927008"
+    id="sub-navigation-6607022103977264"
   ></menu>
 </li>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=react",children:"How to use this in react"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-tsx",children:`<DBNavigationItem active>
   <a href="#">True</a>
@@ -41729,7 +41729,7 @@ True
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-9778595094077852"
+    id="sub-navigation-3788071910848205"
   ></menu>
 </li>`})}),(0,N.jsx)(q.A,{className:"copy-button",noText:!0,icon:e===`<li class="db-navigation-item">
   <button
@@ -41742,7 +41742,7 @@ True
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-9778595094077852"
+    id="sub-navigation-3788071910848205"
   ></menu>
 </li>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<li class="db-navigation-item">
   <button
@@ -41755,7 +41755,7 @@ True
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-9778595094077852"
+    id="sub-navigation-3788071910848205"
   ></menu>
 </li>`),navigator.clipboard.writeText(`<li class="db-navigation-item">
   <button
@@ -41768,7 +41768,7 @@ True
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-9778595094077852"
+    id="sub-navigation-3788071910848205"
   ></menu>
 </li>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=react",children:"How to use this in react"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-tsx",children:`<DBNavigationItem areaPopup>
   <a href="#">(Default) False</a>
@@ -41813,7 +41813,7 @@ True
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-8834333610266052"
+    id="sub-navigation-02697370165991786"
   ></menu>
 </li>`})}),(0,N.jsx)(q.A,{className:"copy-button",noText:!0,icon:e===`<li class="db-navigation-item">
   <button
@@ -41826,7 +41826,7 @@ True
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-8834333610266052"
+    id="sub-navigation-02697370165991786"
   ></menu>
 </li>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<li class="db-navigation-item">
   <button
@@ -41839,7 +41839,7 @@ True
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-8834333610266052"
+    id="sub-navigation-02697370165991786"
   ></menu>
 </li>`),navigator.clipboard.writeText(`<li class="db-navigation-item">
   <button
@@ -41852,7 +41852,7 @@ True
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-8834333610266052"
+    id="sub-navigation-02697370165991786"
   ></menu>
 </li>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=react",children:"How to use this in react"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-tsx",children:`<DBNavigationItem areaPopup>
   <a href="#">True</a>
@@ -41897,7 +41897,7 @@ True
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-15536621200527712"
+    id="sub-navigation-7371817653365668"
   ></menu>
 </li>`})}),(0,N.jsx)(q.A,{className:"copy-button",noText:!0,icon:e===`<li class="db-navigation-item" data-icon="x_placeholder" data-show-icon="true">
   <button
@@ -41910,7 +41910,7 @@ True
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-15536621200527712"
+    id="sub-navigation-7371817653365668"
   ></menu>
 </li>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<li class="db-navigation-item" data-icon="x_placeholder" data-show-icon="true">
   <button
@@ -41923,7 +41923,7 @@ True
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-15536621200527712"
+    id="sub-navigation-7371817653365668"
   ></menu>
 </li>`),navigator.clipboard.writeText(`<li class="db-navigation-item" data-icon="x_placeholder" data-show-icon="true">
   <button
@@ -41936,7 +41936,7 @@ True
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-15536621200527712"
+    id="sub-navigation-7371817653365668"
   ></menu>
 </li>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=react",children:"How to use this in react"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-tsx",children:`<DBNavigationItem icon="x_placeholder" showIcon>
   <a href="#">(Default) False</a>
@@ -41981,7 +41981,7 @@ True
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-9386734020120053"
+    id="sub-navigation-284931653472688"
   ></menu>
 </li>`})}),(0,N.jsx)(q.A,{className:"copy-button",noText:!0,icon:e===`<li class="db-navigation-item" data-icon="x_placeholder" data-show-icon="true">
   <button
@@ -41994,7 +41994,7 @@ True
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-9386734020120053"
+    id="sub-navigation-284931653472688"
   ></menu>
 </li>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<li class="db-navigation-item" data-icon="x_placeholder" data-show-icon="true">
   <button
@@ -42007,7 +42007,7 @@ True
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-9386734020120053"
+    id="sub-navigation-284931653472688"
   ></menu>
 </li>`),navigator.clipboard.writeText(`<li class="db-navigation-item" data-icon="x_placeholder" data-show-icon="true">
   <button
@@ -42020,7 +42020,7 @@ True
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-9386734020120053"
+    id="sub-navigation-284931653472688"
   ></menu>
 </li>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=react",children:"How to use this in react"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-tsx",children:`<DBNavigationItem icon="x_placeholder" showIcon>
   <a href="#">True</a>
@@ -42065,7 +42065,7 @@ True
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-7252916610562976"
+    id="sub-navigation-4263433932248639"
   ></menu>
 </li>`})}),(0,N.jsx)(q.A,{className:"copy-button",noText:!0,icon:e===`<li class="db-navigation-item">
   <button
@@ -42078,7 +42078,7 @@ True
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-7252916610562976"
+    id="sub-navigation-4263433932248639"
   ></menu>
 </li>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<li class="db-navigation-item">
   <button
@@ -42091,7 +42091,7 @@ True
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-7252916610562976"
+    id="sub-navigation-4263433932248639"
   ></menu>
 </li>`),navigator.clipboard.writeText(`<li class="db-navigation-item">
   <button
@@ -42104,7 +42104,7 @@ True
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-7252916610562976"
+    id="sub-navigation-4263433932248639"
   ></menu>
 </li>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=react",children:"How to use this in react"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-tsx",children:`<DBNavigationItem>
   <a href="#">(Default) Auto</a>
@@ -42149,7 +42149,7 @@ True
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-9943651815097142"
+    id="sub-navigation-2862719803172026"
   ></menu>
 </li>`})}),(0,N.jsx)(q.A,{className:"copy-button",noText:!0,icon:e===`<li class="db-navigation-item" data-width="full">
   <button
@@ -42162,7 +42162,7 @@ True
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-9943651815097142"
+    id="sub-navigation-2862719803172026"
   ></menu>
 </li>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<li class="db-navigation-item" data-width="full">
   <button
@@ -42175,7 +42175,7 @@ True
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-9943651815097142"
+    id="sub-navigation-2862719803172026"
   ></menu>
 </li>`),navigator.clipboard.writeText(`<li class="db-navigation-item" data-width="full">
   <button
@@ -42188,7 +42188,7 @@ True
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-9943651815097142"
+    id="sub-navigation-2862719803172026"
   ></menu>
 </li>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=react",children:"How to use this in react"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-tsx",children:`<DBNavigationItem width="full">
   <a href="#">Full</a>
@@ -42233,7 +42233,7 @@ Full
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-6284656411757923"
+    id="sub-navigation-0638206248319736"
   ></menu>
 </li>`})}),(0,N.jsx)(q.A,{className:"copy-button",noText:!0,icon:e===`<li class="db-navigation-item">
   <button
@@ -42246,7 +42246,7 @@ Full
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-6284656411757923"
+    id="sub-navigation-0638206248319736"
   ></menu>
 </li>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<li class="db-navigation-item">
   <button
@@ -42259,7 +42259,7 @@ Full
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-6284656411757923"
+    id="sub-navigation-0638206248319736"
   ></menu>
 </li>`),navigator.clipboard.writeText(`<li class="db-navigation-item">
   <button
@@ -42272,7 +42272,7 @@ Full
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-6284656411757923"
+    id="sub-navigation-0638206248319736"
   ></menu>
 </li>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=react",children:"How to use this in react"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-tsx",children:`<DBNavigationItem areaPopup>
   <a href="#">True</a>
@@ -42337,7 +42337,7 @@ True
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-2352593536843407"
+    id="sub-navigation-06877213702521923"
   ></menu>
 </li>`})}),(0,N.jsx)(q.A,{className:"copy-button",noText:!0,icon:e===`<li class="db-navigation-item" data-wrap="true">
   <button
@@ -42350,7 +42350,7 @@ True
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-2352593536843407"
+    id="sub-navigation-06877213702521923"
   ></menu>
 </li>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<li class="db-navigation-item" data-wrap="true">
   <button
@@ -42363,7 +42363,7 @@ True
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-2352593536843407"
+    id="sub-navigation-06877213702521923"
   ></menu>
 </li>`),navigator.clipboard.writeText(`<li class="db-navigation-item" data-wrap="true">
   <button
@@ -42376,7 +42376,7 @@ True
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-2352593536843407"
+    id="sub-navigation-06877213702521923"
   ></menu>
 </li>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=react",children:"How to use this in react"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-tsx",children:`<DBNavigationItem areaPopup icon="x_placeholder" showIcon wrap>
   <a href="#">Sub-Sub-Navi-Item 1</a>
@@ -42441,7 +42441,7 @@ Sub-Sub-Navi-Item 1
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-2352593536843407"
+    id="sub-navigation-06877213702521923"
   ></menu>
 </li>`})}),(0,N.jsx)(q.A,{className:"copy-button",noText:!0,icon:e===`<li class="db-navigation-item" data-wrap="true">
   <button
@@ -42454,7 +42454,7 @@ Sub-Sub-Navi-Item 1
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-2352593536843407"
+    id="sub-navigation-06877213702521923"
   ></menu>
 </li>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<li class="db-navigation-item" data-wrap="true">
   <button
@@ -42467,7 +42467,7 @@ Sub-Sub-Navi-Item 1
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-2352593536843407"
+    id="sub-navigation-06877213702521923"
   ></menu>
 </li>`),navigator.clipboard.writeText(`<li class="db-navigation-item" data-wrap="true">
   <button
@@ -42480,7 +42480,7 @@ Sub-Sub-Navi-Item 1
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-2352593536843407"
+    id="sub-navigation-06877213702521923"
   ></menu>
 </li>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=react",children:"How to use this in react"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-tsx",children:`<DBNavigationItem areaPopup wrap>
   <a href="#">True</a>
@@ -57811,19 +57811,19 @@ Required + Visual Aid
 </db-tab-item>`),navigator.clipboard.writeText(`<db-tab-item class="tab-hide-article" label="functional">
   Functional
 </db-tab-item>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-html",children:`<li role="presentation" class="db-tab-item tab-hide-article">
-  <button type="button" role="tab" class="db-tab-button">
+  <button type="button" role="tab" aria-selected="false" class="db-tab-button">
     <span class="db-tab-label">functional</span>
   </button>
 </li>`})}),(0,N.jsx)(q.A,{className:"copy-button",noText:!0,icon:e===`<li role="presentation" class="db-tab-item tab-hide-article">
-  <button type="button" role="tab" class="db-tab-button">
+  <button type="button" role="tab" aria-selected="false" class="db-tab-button">
     <span class="db-tab-label">functional</span>
   </button>
 </li>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<li role="presentation" class="db-tab-item tab-hide-article">
-  <button type="button" role="tab" class="db-tab-button">
+  <button type="button" role="tab" aria-selected="false" class="db-tab-button">
     <span class="db-tab-label">functional</span>
   </button>
 </li>`),navigator.clipboard.writeText(`<li role="presentation" class="db-tab-item tab-hide-article">
-  <button type="button" role="tab" class="db-tab-button">
+  <button type="button" role="tab" aria-selected="false" class="db-tab-button">
     <span class="db-tab-label">functional</span>
   </button>
 </li>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=react",children:"How to use this in react"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-tsx",children:`<DBTabItem className="tab-hide-article" label="functional">
@@ -57851,19 +57851,19 @@ Functional
 </db-tab-item>`),navigator.clipboard.writeText(`<db-tab-item class="tab-hide-article" label="(Default) Regular">
   (Default) Regular
 </db-tab-item>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-html",children:`<li role="presentation" class="db-tab-item tab-hide-article">
-  <button type="button" role="tab" class="db-tab-button">
+  <button type="button" role="tab" aria-selected="false" class="db-tab-button">
     <span class="db-tab-label">(Default) Regular</span>
   </button>
 </li>`})}),(0,N.jsx)(q.A,{className:"copy-button",noText:!0,icon:e===`<li role="presentation" class="db-tab-item tab-hide-article">
-  <button type="button" role="tab" class="db-tab-button">
+  <button type="button" role="tab" aria-selected="false" class="db-tab-button">
     <span class="db-tab-label">(Default) Regular</span>
   </button>
 </li>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<li role="presentation" class="db-tab-item tab-hide-article">
-  <button type="button" role="tab" class="db-tab-button">
+  <button type="button" role="tab" aria-selected="false" class="db-tab-button">
     <span class="db-tab-label">(Default) Regular</span>
   </button>
 </li>`),navigator.clipboard.writeText(`<li role="presentation" class="db-tab-item tab-hide-article">
-  <button type="button" role="tab" class="db-tab-button">
+  <button type="button" role="tab" aria-selected="false" class="db-tab-button">
     <span class="db-tab-label">(Default) Regular</span>
   </button>
 </li>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=react",children:"How to use this in react"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-tsx",children:`<DBTabItem className="tab-hide-article" label="(Default) Regular">
@@ -57891,19 +57891,19 @@ Functional
 </db-tab-item>`),navigator.clipboard.writeText(`<db-tab-item class="tab-hide-article" label="expressive">
   Expressive
 </db-tab-item>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-html",children:`<li role="presentation" class="db-tab-item tab-hide-article">
-  <button type="button" role="tab" class="db-tab-button">
+  <button type="button" role="tab" aria-selected="false" class="db-tab-button">
     <span class="db-tab-label">expressive</span>
   </button>
 </li>`})}),(0,N.jsx)(q.A,{className:"copy-button",noText:!0,icon:e===`<li role="presentation" class="db-tab-item tab-hide-article">
-  <button type="button" role="tab" class="db-tab-button">
+  <button type="button" role="tab" aria-selected="false" class="db-tab-button">
     <span class="db-tab-label">expressive</span>
   </button>
 </li>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<li role="presentation" class="db-tab-item tab-hide-article">
-  <button type="button" role="tab" class="db-tab-button">
+  <button type="button" role="tab" aria-selected="false" class="db-tab-button">
     <span class="db-tab-label">expressive</span>
   </button>
 </li>`),navigator.clipboard.writeText(`<li role="presentation" class="db-tab-item tab-hide-article">
-  <button type="button" role="tab" class="db-tab-button">
+  <button type="button" role="tab" aria-selected="false" class="db-tab-button">
     <span class="db-tab-label">expressive</span>
   </button>
 </li>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=react",children:"How to use this in react"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-tsx",children:`<DBTabItem className="tab-hide-article" label="expressive">
@@ -57923,19 +57923,19 @@ Expressive
 </DBTabItem>`),navigator.clipboard.writeText(`<DBTabItem class="tab-hide-article" label="expressive">
 Expressive
 </DBTabItem>`)},children:"Copy code"})]})]},t())})]})},ii=()=>{let[e,a]=(0,I.useState)(),{getFrameworkIndex:t}=(0,aA.u)();return(0,I.useEffect)(()=>{e&&setTimeout(()=>a(""),1500)},[e]),(0,N.jsxs)(N.Fragment,{children:[(0,N.jsx)(L.A,{className:"tab-container",children:(0,N.jsxs)(au.A,{initialSelectedIndex:t(),children:[(0,N.jsxs)(ao.A,{children:[(0,N.jsx)(as.A,{children:"Angular"}),(0,N.jsx)(as.A,{children:"HTML"}),(0,N.jsx)(as.A,{children:"React"}),(0,N.jsx)(as.A,{children:"Vue"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=angular",children:"How to use this in angular"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-html",children:'<db-tab-item label="(Default) Enabled"> (Default) Enabled </db-tab-item>'})}),(0,N.jsx)(q.A,{className:"copy-button",noText:!0,icon:'<db-tab-item label="(Default) Enabled"> (Default) Enabled </db-tab-item>'===e?"check":"copy",variant:"ghost",onClick:()=>{a('<db-tab-item label="(Default) Enabled"> (Default) Enabled </db-tab-item>'),navigator.clipboard.writeText('<db-tab-item label="(Default) Enabled"> (Default) Enabled </db-tab-item>')},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-html",children:`<li role="presentation" class="db-tab-item">
-  <button type="button" role="tab" class="db-tab-button">
+  <button type="button" role="tab" aria-selected="false" class="db-tab-button">
     <span class="db-tab-label">(Default) Enabled</span>
   </button>
 </li>`})}),(0,N.jsx)(q.A,{className:"copy-button",noText:!0,icon:e===`<li role="presentation" class="db-tab-item">
-  <button type="button" role="tab" class="db-tab-button">
+  <button type="button" role="tab" aria-selected="false" class="db-tab-button">
     <span class="db-tab-label">(Default) Enabled</span>
   </button>
 </li>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<li role="presentation" class="db-tab-item">
-  <button type="button" role="tab" class="db-tab-button">
+  <button type="button" role="tab" aria-selected="false" class="db-tab-button">
     <span class="db-tab-label">(Default) Enabled</span>
   </button>
 </li>`),navigator.clipboard.writeText(`<li role="presentation" class="db-tab-item">
-  <button type="button" role="tab" class="db-tab-button">
+  <button type="button" role="tab" aria-selected="false" class="db-tab-button">
     <span class="db-tab-label">(Default) Enabled</span>
   </button>
 </li>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=react",children:"How to use this in react"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-tsx",children:'<DBTabItem label="(Default) Enabled">(Default) Enabled</DBTabItem>'})}),(0,N.jsx)(q.A,{className:"copy-button",noText:!0,icon:'<DBTabItem label="(Default) Enabled">(Default) Enabled</DBTabItem>'===e?"check":"copy",variant:"ghost",onClick:()=>{a('<DBTabItem label="(Default) Enabled">(Default) Enabled</DBTabItem>'),navigator.clipboard.writeText('<DBTabItem label="(Default) Enabled">(Default) Enabled</DBTabItem>')},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=vue",children:"How to use this in vue"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-tsx",children:`<DBTabItem label="(Default) Enabled">
@@ -57947,19 +57947,19 @@ Expressive
 </DBTabItem>`),navigator.clipboard.writeText(`<DBTabItem label="(Default) Enabled">
 (Default) Enabled
 </DBTabItem>`)},children:"Copy code"})]})]},t())}),(0,N.jsx)(L.A,{className:"tab-container",children:(0,N.jsxs)(au.A,{initialSelectedIndex:t(),children:[(0,N.jsxs)(ao.A,{children:[(0,N.jsx)(as.A,{children:"Angular"}),(0,N.jsx)(as.A,{children:"HTML"}),(0,N.jsx)(as.A,{children:"React"}),(0,N.jsx)(as.A,{children:"Vue"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=angular",children:"How to use this in angular"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-html",children:'<db-tab-item label="active" [active]="true"> active </db-tab-item>'})}),(0,N.jsx)(q.A,{className:"copy-button",noText:!0,icon:'<db-tab-item label="active" [active]="true"> active </db-tab-item>'===e?"check":"copy",variant:"ghost",onClick:()=>{a('<db-tab-item label="active" [active]="true"> active </db-tab-item>'),navigator.clipboard.writeText('<db-tab-item label="active" [active]="true"> active </db-tab-item>')},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-html",children:`<li role="presentation" class="db-tab-item">
-  <button type="button" role="tab" class="db-tab-button">
+  <button type="button" role="tab" aria-selected="false" class="db-tab-button">
     <span class="db-tab-label">active</span>
   </button>
 </li>`})}),(0,N.jsx)(q.A,{className:"copy-button",noText:!0,icon:e===`<li role="presentation" class="db-tab-item">
-  <button type="button" role="tab" class="db-tab-button">
+  <button type="button" role="tab" aria-selected="false" class="db-tab-button">
     <span class="db-tab-label">active</span>
   </button>
 </li>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<li role="presentation" class="db-tab-item">
-  <button type="button" role="tab" class="db-tab-button">
+  <button type="button" role="tab" aria-selected="false" class="db-tab-button">
     <span class="db-tab-label">active</span>
   </button>
 </li>`),navigator.clipboard.writeText(`<li role="presentation" class="db-tab-item">
-  <button type="button" role="tab" class="db-tab-button">
+  <button type="button" role="tab" aria-selected="false" class="db-tab-button">
     <span class="db-tab-label">active</span>
   </button>
 </li>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=react",children:"How to use this in react"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-tsx",children:`<DBTabItem label="active" active>
@@ -57979,19 +57979,19 @@ active
 </DBTabItem>`),navigator.clipboard.writeText(`<DBTabItem label="active" :active="true">
 active
 </DBTabItem>`)},children:"Copy code"})]})]},t())}),(0,N.jsx)(L.A,{className:"tab-container",children:(0,N.jsxs)(au.A,{initialSelectedIndex:t(),children:[(0,N.jsxs)(ao.A,{children:[(0,N.jsx)(as.A,{children:"Angular"}),(0,N.jsx)(as.A,{children:"HTML"}),(0,N.jsx)(as.A,{children:"React"}),(0,N.jsx)(as.A,{children:"Vue"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=angular",children:"How to use this in angular"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-html",children:'<db-tab-item label="active" [isDisabled]="true"> disabled </db-tab-item>'})}),(0,N.jsx)(q.A,{className:"copy-button",noText:!0,icon:'<db-tab-item label="active" [isDisabled]="true"> disabled </db-tab-item>'===e?"check":"copy",variant:"ghost",onClick:()=>{a('<db-tab-item label="active" [isDisabled]="true"> disabled </db-tab-item>'),navigator.clipboard.writeText('<db-tab-item label="active" [isDisabled]="true"> disabled </db-tab-item>')},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-html",children:`<li role="presentation" class="db-tab-item">
-  <button type="button" role="tab" class="db-tab-button">
+  <button type="button" role="tab" aria-selected="false" class="db-tab-button">
     <span class="db-tab-label">active</span>
   </button>
 </li>`})}),(0,N.jsx)(q.A,{className:"copy-button",noText:!0,icon:e===`<li role="presentation" class="db-tab-item">
-  <button type="button" role="tab" class="db-tab-button">
+  <button type="button" role="tab" aria-selected="false" class="db-tab-button">
     <span class="db-tab-label">active</span>
   </button>
 </li>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<li role="presentation" class="db-tab-item">
-  <button type="button" role="tab" class="db-tab-button">
+  <button type="button" role="tab" aria-selected="false" class="db-tab-button">
     <span class="db-tab-label">active</span>
   </button>
 </li>`),navigator.clipboard.writeText(`<li role="presentation" class="db-tab-item">
-  <button type="button" role="tab" class="db-tab-button">
+  <button type="button" role="tab" aria-selected="false" class="db-tab-button">
     <span class="db-tab-label">active</span>
   </button>
 </li>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=react",children:"How to use this in react"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-tsx",children:`<DBTabItem label="active" isDisabled>
@@ -58019,22 +58019,22 @@ disabled
 </db-tab-item>`),navigator.clipboard.writeText(`<db-tab-item label="False" icon="x_placeholder" [showIcon]="false">
   (Default) False
 </db-tab-item>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-html",children:`<li role="presentation" class="db-tab-item">
-  <button type="button" role="tab" class="db-tab-button">
+  <button type="button" role="tab" aria-selected="false" class="db-tab-button">
     <span aria-hidden="true" class="db-icon" data-icon="x_placeholder"></span
     ><span class="db-tab-label">False</span>
   </button>
 </li>`})}),(0,N.jsx)(q.A,{className:"copy-button",noText:!0,icon:e===`<li role="presentation" class="db-tab-item">
-  <button type="button" role="tab" class="db-tab-button">
+  <button type="button" role="tab" aria-selected="false" class="db-tab-button">
     <span aria-hidden="true" class="db-icon" data-icon="x_placeholder"></span
     ><span class="db-tab-label">False</span>
   </button>
 </li>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<li role="presentation" class="db-tab-item">
-  <button type="button" role="tab" class="db-tab-button">
+  <button type="button" role="tab" aria-selected="false" class="db-tab-button">
     <span aria-hidden="true" class="db-icon" data-icon="x_placeholder"></span
     ><span class="db-tab-label">False</span>
   </button>
 </li>`),navigator.clipboard.writeText(`<li role="presentation" class="db-tab-item">
-  <button type="button" role="tab" class="db-tab-button">
+  <button type="button" role="tab" aria-selected="false" class="db-tab-button">
     <span aria-hidden="true" class="db-icon" data-icon="x_placeholder"></span
     ><span class="db-tab-label">False</span>
   </button>
@@ -58063,22 +58063,22 @@ disabled
 </db-tab-item>`),navigator.clipboard.writeText(`<db-tab-item label="True" icon="x_placeholder" [showIcon]="true">
   True
 </db-tab-item>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-html",children:`<li role="presentation" class="db-tab-item">
-  <button type="button" role="tab" class="db-tab-button">
+  <button type="button" role="tab" aria-selected="false" class="db-tab-button">
     <span aria-hidden="true" class="db-icon" data-icon="x_placeholder"></span
     ><span class="db-tab-label">True</span>
   </button>
 </li>`})}),(0,N.jsx)(q.A,{className:"copy-button",noText:!0,icon:e===`<li role="presentation" class="db-tab-item">
-  <button type="button" role="tab" class="db-tab-button">
+  <button type="button" role="tab" aria-selected="false" class="db-tab-button">
     <span aria-hidden="true" class="db-icon" data-icon="x_placeholder"></span
     ><span class="db-tab-label">True</span>
   </button>
 </li>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<li role="presentation" class="db-tab-item">
-  <button type="button" role="tab" class="db-tab-button">
+  <button type="button" role="tab" aria-selected="false" class="db-tab-button">
     <span aria-hidden="true" class="db-icon" data-icon="x_placeholder"></span
     ><span class="db-tab-label">True</span>
   </button>
 </li>`),navigator.clipboard.writeText(`<li role="presentation" class="db-tab-item">
-  <button type="button" role="tab" class="db-tab-button">
+  <button type="button" role="tab" aria-selected="false" class="db-tab-button">
     <span aria-hidden="true" class="db-icon" data-icon="x_placeholder"></span
     ><span class="db-tab-label">True</span>
   </button>
@@ -58131,25 +58131,25 @@ True
 >
   (Default) False
 </db-tab-item>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-html",children:`<li role="presentation" class="db-tab-item">
-  <button type="button" role="tab" class="db-tab-button">
+  <button type="button" role="tab" aria-selected="false" class="db-tab-button">
     <span aria-hidden="true" class="db-icon" data-icon="x_placeholder"></span
     ><span class="db-tab-label">False</span
     ><span aria-hidden="true" class="db-icon" data-icon="x_placeholder"></span>
   </button>
 </li>`})}),(0,N.jsx)(q.A,{className:"copy-button",noText:!0,icon:e===`<li role="presentation" class="db-tab-item">
-  <button type="button" role="tab" class="db-tab-button">
+  <button type="button" role="tab" aria-selected="false" class="db-tab-button">
     <span aria-hidden="true" class="db-icon" data-icon="x_placeholder"></span
     ><span class="db-tab-label">False</span
     ><span aria-hidden="true" class="db-icon" data-icon="x_placeholder"></span>
   </button>
 </li>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<li role="presentation" class="db-tab-item">
-  <button type="button" role="tab" class="db-tab-button">
+  <button type="button" role="tab" aria-selected="false" class="db-tab-button">
     <span aria-hidden="true" class="db-icon" data-icon="x_placeholder"></span
     ><span class="db-tab-label">False</span
     ><span aria-hidden="true" class="db-icon" data-icon="x_placeholder"></span>
   </button>
 </li>`),navigator.clipboard.writeText(`<li role="presentation" class="db-tab-item">
-  <button type="button" role="tab" class="db-tab-button">
+  <button type="button" role="tab" aria-selected="false" class="db-tab-button">
     <span aria-hidden="true" class="db-icon" data-icon="x_placeholder"></span
     ><span class="db-tab-label">False</span
     ><span aria-hidden="true" class="db-icon" data-icon="x_placeholder"></span>
@@ -58251,25 +58251,25 @@ True
 >
   True
 </db-tab-item>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-html",children:`<li role="presentation" class="db-tab-item">
-  <button type="button" role="tab" class="db-tab-button">
+  <button type="button" role="tab" aria-selected="false" class="db-tab-button">
     <span aria-hidden="true" class="db-icon" data-icon="x_placeholder"></span
     ><span class="db-tab-label">True</span
     ><span aria-hidden="true" class="db-icon" data-icon="x_placeholder"></span>
   </button>
 </li>`})}),(0,N.jsx)(q.A,{className:"copy-button",noText:!0,icon:e===`<li role="presentation" class="db-tab-item">
-  <button type="button" role="tab" class="db-tab-button">
+  <button type="button" role="tab" aria-selected="false" class="db-tab-button">
     <span aria-hidden="true" class="db-icon" data-icon="x_placeholder"></span
     ><span class="db-tab-label">True</span
     ><span aria-hidden="true" class="db-icon" data-icon="x_placeholder"></span>
   </button>
 </li>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<li role="presentation" class="db-tab-item">
-  <button type="button" role="tab" class="db-tab-button">
+  <button type="button" role="tab" aria-selected="false" class="db-tab-button">
     <span aria-hidden="true" class="db-icon" data-icon="x_placeholder"></span
     ><span class="db-tab-label">True</span
     ><span aria-hidden="true" class="db-icon" data-icon="x_placeholder"></span>
   </button>
 </li>`),navigator.clipboard.writeText(`<li role="presentation" class="db-tab-item">
-  <button type="button" role="tab" class="db-tab-button">
+  <button type="button" role="tab" aria-selected="false" class="db-tab-button">
     <span aria-hidden="true" class="db-icon" data-icon="x_placeholder"></span
     ><span class="db-tab-label">True</span
     ><span aria-hidden="true" class="db-icon" data-icon="x_placeholder"></span>
@@ -58339,19 +58339,19 @@ True
 >
 True
 </DBTabItem>`)},children:"Copy code"})]})]},t())})]})},is=()=>{let[e,a]=(0,I.useState)(),{getFrameworkIndex:t}=(0,aA.u)();return(0,I.useEffect)(()=>{e&&setTimeout(()=>a(""),1500)},[e]),(0,N.jsxs)(N.Fragment,{children:[(0,N.jsx)(L.A,{className:"tab-container",children:(0,N.jsxs)(au.A,{initialSelectedIndex:t(),children:[(0,N.jsxs)(ao.A,{children:[(0,N.jsx)(as.A,{children:"Angular"}),(0,N.jsx)(as.A,{children:"HTML"}),(0,N.jsx)(as.A,{children:"React"}),(0,N.jsx)(as.A,{children:"Vue"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=angular",children:"How to use this in angular"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-html",children:'<db-tab-item label="(Default) Auto Width"> (Default) Auto Width </db-tab-item>'})}),(0,N.jsx)(q.A,{className:"copy-button",noText:!0,icon:'<db-tab-item label="(Default) Auto Width"> (Default) Auto Width </db-tab-item>'===e?"check":"copy",variant:"ghost",onClick:()=>{a('<db-tab-item label="(Default) Auto Width"> (Default) Auto Width </db-tab-item>'),navigator.clipboard.writeText('<db-tab-item label="(Default) Auto Width"> (Default) Auto Width </db-tab-item>')},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-html",children:`<li role="presentation" class="db-tab-item">
-  <button type="button" role="tab" class="db-tab-button">
+  <button type="button" role="tab" aria-selected="false" class="db-tab-button">
     <span class="db-tab-label">(Default) Auto Width</span>
   </button>
 </li>`})}),(0,N.jsx)(q.A,{className:"copy-button",noText:!0,icon:e===`<li role="presentation" class="db-tab-item">
-  <button type="button" role="tab" class="db-tab-button">
+  <button type="button" role="tab" aria-selected="false" class="db-tab-button">
     <span class="db-tab-label">(Default) Auto Width</span>
   </button>
 </li>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<li role="presentation" class="db-tab-item">
-  <button type="button" role="tab" class="db-tab-button">
+  <button type="button" role="tab" aria-selected="false" class="db-tab-button">
     <span class="db-tab-label">(Default) Auto Width</span>
   </button>
 </li>`),navigator.clipboard.writeText(`<li role="presentation" class="db-tab-item">
-  <button type="button" role="tab" class="db-tab-button">
+  <button type="button" role="tab" aria-selected="false" class="db-tab-button">
     <span class="db-tab-label">(Default) Auto Width</span>
   </button>
 </li>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=react",children:"How to use this in react"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-tsx",children:'<DBTabItem label="(Default) Auto Width">(Default) Auto Width</DBTabItem>'})}),(0,N.jsx)(q.A,{className:"copy-button",noText:!0,icon:'<DBTabItem label="(Default) Auto Width">(Default) Auto Width</DBTabItem>'===e?"check":"copy",variant:"ghost",onClick:()=>{a('<DBTabItem label="(Default) Auto Width">(Default) Auto Width</DBTabItem>'),navigator.clipboard.writeText('<DBTabItem label="(Default) Auto Width">(Default) Auto Width</DBTabItem>')},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=vue",children:"How to use this in vue"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-tsx",children:`<DBTabItem label="(Default) Auto Width">
@@ -58363,19 +58363,19 @@ True
 </DBTabItem>`),navigator.clipboard.writeText(`<DBTabItem label="(Default) Auto Width">
 (Default) Auto Width
 </DBTabItem>`)},children:"Copy code"})]})]},t())}),(0,N.jsx)(L.A,{className:"tab-container",children:(0,N.jsxs)(au.A,{initialSelectedIndex:t(),children:[(0,N.jsxs)(ao.A,{children:[(0,N.jsx)(as.A,{children:"Angular"}),(0,N.jsx)(as.A,{children:"HTML"}),(0,N.jsx)(as.A,{children:"React"}),(0,N.jsx)(as.A,{children:"Vue"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=angular",children:"How to use this in angular"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-html",children:'<db-tab-item label="Width full" width="full"> Width full </db-tab-item>'})}),(0,N.jsx)(q.A,{className:"copy-button",noText:!0,icon:'<db-tab-item label="Width full" width="full"> Width full </db-tab-item>'===e?"check":"copy",variant:"ghost",onClick:()=>{a('<db-tab-item label="Width full" width="full"> Width full </db-tab-item>'),navigator.clipboard.writeText('<db-tab-item label="Width full" width="full"> Width full </db-tab-item>')},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-html",children:`<li role="presentation" class="db-tab-item">
-  <button type="button" role="tab" class="db-tab-button">
+  <button type="button" role="tab" aria-selected="false" class="db-tab-button">
     <span class="db-tab-label">Width full</span>
   </button>
 </li>`})}),(0,N.jsx)(q.A,{className:"copy-button",noText:!0,icon:e===`<li role="presentation" class="db-tab-item">
-  <button type="button" role="tab" class="db-tab-button">
+  <button type="button" role="tab" aria-selected="false" class="db-tab-button">
     <span class="db-tab-label">Width full</span>
   </button>
 </li>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<li role="presentation" class="db-tab-item">
-  <button type="button" role="tab" class="db-tab-button">
+  <button type="button" role="tab" aria-selected="false" class="db-tab-button">
     <span class="db-tab-label">Width full</span>
   </button>
 </li>`),navigator.clipboard.writeText(`<li role="presentation" class="db-tab-item">
-  <button type="button" role="tab" class="db-tab-button">
+  <button type="button" role="tab" aria-selected="false" class="db-tab-button">
     <span class="db-tab-label">Width full</span>
   </button>
 </li>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=react",children:"How to use this in react"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-tsx",children:`<DBTabItem label="Width full" width="full">
@@ -58395,19 +58395,19 @@ Width full
 </DBTabItem>`),navigator.clipboard.writeText(`<DBTabItem label="Width full" width="full">
 Width full
 </DBTabItem>`)},children:"Copy code"})]})]},t())})]})},ic=()=>{let[e,a]=(0,I.useState)(),{getFrameworkIndex:t}=(0,aA.u)();return(0,I.useEffect)(()=>{e&&setTimeout(()=>a(""),1500)},[e]),(0,N.jsxs)(N.Fragment,{children:[(0,N.jsx)(L.A,{className:"tab-container",children:(0,N.jsxs)(au.A,{initialSelectedIndex:t(),children:[(0,N.jsxs)(ao.A,{children:[(0,N.jsx)(as.A,{children:"Angular"}),(0,N.jsx)(as.A,{children:"HTML"}),(0,N.jsx)(as.A,{children:"React"}),(0,N.jsx)(as.A,{children:"Vue"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=angular",children:"How to use this in angular"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-html",children:'<db-tab-item label="Left" width="full"> Left </db-tab-item>'})}),(0,N.jsx)(q.A,{className:"copy-button",noText:!0,icon:'<db-tab-item label="Left" width="full"> Left </db-tab-item>'===e?"check":"copy",variant:"ghost",onClick:()=>{a('<db-tab-item label="Left" width="full"> Left </db-tab-item>'),navigator.clipboard.writeText('<db-tab-item label="Left" width="full"> Left </db-tab-item>')},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-html",children:`<li role="presentation" class="db-tab-item">
-  <button type="button" role="tab" class="db-tab-button">
+  <button type="button" role="tab" aria-selected="false" class="db-tab-button">
     <span class="db-tab-label">Left</span>
   </button>
 </li>`})}),(0,N.jsx)(q.A,{className:"copy-button",noText:!0,icon:e===`<li role="presentation" class="db-tab-item">
-  <button type="button" role="tab" class="db-tab-button">
+  <button type="button" role="tab" aria-selected="false" class="db-tab-button">
     <span class="db-tab-label">Left</span>
   </button>
 </li>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<li role="presentation" class="db-tab-item">
-  <button type="button" role="tab" class="db-tab-button">
+  <button type="button" role="tab" aria-selected="false" class="db-tab-button">
     <span class="db-tab-label">Left</span>
   </button>
 </li>`),navigator.clipboard.writeText(`<li role="presentation" class="db-tab-item">
-  <button type="button" role="tab" class="db-tab-button">
+  <button type="button" role="tab" aria-selected="false" class="db-tab-button">
     <span class="db-tab-label">Left</span>
   </button>
 </li>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=react",children:"How to use this in react"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-tsx",children:`<DBTabItem label="Left" width="full">
@@ -58435,19 +58435,19 @@ Left
 </db-tab-item>`),navigator.clipboard.writeText(`<db-tab-item label="Centered" width="full" alignment="center">
   Centered
 </db-tab-item>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-html",children:`<li role="presentation" class="db-tab-item">
-  <button type="button" role="tab" class="db-tab-button">
+  <button type="button" role="tab" aria-selected="false" class="db-tab-button">
     <span class="db-tab-label">Centered</span>
   </button>
 </li>`})}),(0,N.jsx)(q.A,{className:"copy-button",noText:!0,icon:e===`<li role="presentation" class="db-tab-item">
-  <button type="button" role="tab" class="db-tab-button">
+  <button type="button" role="tab" aria-selected="false" class="db-tab-button">
     <span class="db-tab-label">Centered</span>
   </button>
 </li>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<li role="presentation" class="db-tab-item">
-  <button type="button" role="tab" class="db-tab-button">
+  <button type="button" role="tab" aria-selected="false" class="db-tab-button">
     <span class="db-tab-label">Centered</span>
   </button>
 </li>`),navigator.clipboard.writeText(`<li role="presentation" class="db-tab-item">
-  <button type="button" role="tab" class="db-tab-button">
+  <button type="button" role="tab" aria-selected="false" class="db-tab-button">
     <span class="db-tab-label">Centered</span>
   </button>
 </li>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=react",children:"How to use this in react"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-tsx",children:`<DBTabItem label="Centered" width="full" alignment="center">
@@ -58503,25 +58503,40 @@ Centered
   <db-tab-panel> Func Panel 2 </db-tab-panel>
   <db-tab-panel> Func Panel 3 </db-tab-panel>
 </db-tabs>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-html",children:`<div
-  id="tabs-5565722233136413"
+  id="tabs-7563994327393521"
   class="db-tabs"
   data-alignment="start"
   data-width="auto"
 >
-  <div id="tab-list-17559426982403725" class="db-tab-list">
+  <div id="tab-list-49462072641846533" class="db-tab-list">
     <ul role="tablist">
       <li role="presentation" class="db-tab-item">
-        <button type="button" role="tab" class="db-tab-button">
+        <button
+          type="button"
+          role="tab"
+          aria-selected="false"
+          class="db-tab-button"
+        >
           <span class="db-tab-label">Func Tab 1</span>
         </button>
       </li>
       <li role="presentation" class="db-tab-item">
-        <button type="button" role="tab" class="db-tab-button">
+        <button
+          type="button"
+          role="tab"
+          aria-selected="false"
+          class="db-tab-button"
+        >
           <span class="db-tab-label">Func Tab 2</span>
         </button>
       </li>
       <li role="presentation" class="db-tab-item">
-        <button type="button" role="tab" class="db-tab-button">
+        <button
+          type="button"
+          role="tab"
+          aria-selected="false"
+          class="db-tab-button"
+        >
           <span class="db-tab-label">Func Tab 3</span>
         </button>
       </li>
@@ -58531,25 +58546,40 @@ Centered
   <section role="tabpanel" class="db-tab-panel">Func Panel 2</section>
   <section role="tabpanel" class="db-tab-panel">Func Panel 3</section>
 </div>`})}),(0,N.jsx)(q.A,{className:"copy-button",noText:!0,icon:e===`<div
-  id="tabs-5565722233136413"
+  id="tabs-7563994327393521"
   class="db-tabs"
   data-alignment="start"
   data-width="auto"
 >
-  <div id="tab-list-17559426982403725" class="db-tab-list">
+  <div id="tab-list-49462072641846533" class="db-tab-list">
     <ul role="tablist">
       <li role="presentation" class="db-tab-item">
-        <button type="button" role="tab" class="db-tab-button">
+        <button
+          type="button"
+          role="tab"
+          aria-selected="false"
+          class="db-tab-button"
+        >
           <span class="db-tab-label">Func Tab 1</span>
         </button>
       </li>
       <li role="presentation" class="db-tab-item">
-        <button type="button" role="tab" class="db-tab-button">
+        <button
+          type="button"
+          role="tab"
+          aria-selected="false"
+          class="db-tab-button"
+        >
           <span class="db-tab-label">Func Tab 2</span>
         </button>
       </li>
       <li role="presentation" class="db-tab-item">
-        <button type="button" role="tab" class="db-tab-button">
+        <button
+          type="button"
+          role="tab"
+          aria-selected="false"
+          class="db-tab-button"
+        >
           <span class="db-tab-label">Func Tab 3</span>
         </button>
       </li>
@@ -58559,25 +58589,40 @@ Centered
   <section role="tabpanel" class="db-tab-panel">Func Panel 2</section>
   <section role="tabpanel" class="db-tab-panel">Func Panel 3</section>
 </div>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<div
-  id="tabs-5565722233136413"
+  id="tabs-7563994327393521"
   class="db-tabs"
   data-alignment="start"
   data-width="auto"
 >
-  <div id="tab-list-17559426982403725" class="db-tab-list">
+  <div id="tab-list-49462072641846533" class="db-tab-list">
     <ul role="tablist">
       <li role="presentation" class="db-tab-item">
-        <button type="button" role="tab" class="db-tab-button">
+        <button
+          type="button"
+          role="tab"
+          aria-selected="false"
+          class="db-tab-button"
+        >
           <span class="db-tab-label">Func Tab 1</span>
         </button>
       </li>
       <li role="presentation" class="db-tab-item">
-        <button type="button" role="tab" class="db-tab-button">
+        <button
+          type="button"
+          role="tab"
+          aria-selected="false"
+          class="db-tab-button"
+        >
           <span class="db-tab-label">Func Tab 2</span>
         </button>
       </li>
       <li role="presentation" class="db-tab-item">
-        <button type="button" role="tab" class="db-tab-button">
+        <button
+          type="button"
+          role="tab"
+          aria-selected="false"
+          class="db-tab-button"
+        >
           <span class="db-tab-label">Func Tab 3</span>
         </button>
       </li>
@@ -58587,25 +58632,40 @@ Centered
   <section role="tabpanel" class="db-tab-panel">Func Panel 2</section>
   <section role="tabpanel" class="db-tab-panel">Func Panel 3</section>
 </div>`),navigator.clipboard.writeText(`<div
-  id="tabs-5565722233136413"
+  id="tabs-7563994327393521"
   class="db-tabs"
   data-alignment="start"
   data-width="auto"
 >
-  <div id="tab-list-17559426982403725" class="db-tab-list">
+  <div id="tab-list-49462072641846533" class="db-tab-list">
     <ul role="tablist">
       <li role="presentation" class="db-tab-item">
-        <button type="button" role="tab" class="db-tab-button">
+        <button
+          type="button"
+          role="tab"
+          aria-selected="false"
+          class="db-tab-button"
+        >
           <span class="db-tab-label">Func Tab 1</span>
         </button>
       </li>
       <li role="presentation" class="db-tab-item">
-        <button type="button" role="tab" class="db-tab-button">
+        <button
+          type="button"
+          role="tab"
+          aria-selected="false"
+          class="db-tab-button"
+        >
           <span class="db-tab-label">Func Tab 2</span>
         </button>
       </li>
       <li role="presentation" class="db-tab-item">
-        <button type="button" role="tab" class="db-tab-button">
+        <button
+          type="button"
+          role="tab"
+          aria-selected="false"
+          class="db-tab-button"
+        >
           <span class="db-tab-label">Func Tab 3</span>
         </button>
       </li>
@@ -58771,25 +58831,40 @@ Func Panel 3
   <db-tab-panel> Reg Panel 2 </db-tab-panel>
   <db-tab-panel> Reg Panel 3 </db-tab-panel>
 </db-tabs>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-html",children:`<div
-  id="tabs-7280117388992402"
+  id="tabs-8130090754076577"
   class="db-tabs"
   data-alignment="start"
   data-width="auto"
 >
-  <div id="tab-list-5297700246775149" class="db-tab-list">
+  <div id="tab-list-8001225452947671" class="db-tab-list">
     <ul role="tablist">
       <li role="presentation" class="db-tab-item">
-        <button type="button" role="tab" class="db-tab-button">
+        <button
+          type="button"
+          role="tab"
+          aria-selected="false"
+          class="db-tab-button"
+        >
           <span class="db-tab-label">Reg Tab 1</span>
         </button>
       </li>
       <li role="presentation" class="db-tab-item">
-        <button type="button" role="tab" class="db-tab-button">
+        <button
+          type="button"
+          role="tab"
+          aria-selected="false"
+          class="db-tab-button"
+        >
           <span class="db-tab-label">Reg Tab 2</span>
         </button>
       </li>
       <li role="presentation" class="db-tab-item">
-        <button type="button" role="tab" class="db-tab-button">
+        <button
+          type="button"
+          role="tab"
+          aria-selected="false"
+          class="db-tab-button"
+        >
           <span class="db-tab-label">Reg Tab 3</span>
         </button>
       </li>
@@ -58799,25 +58874,40 @@ Func Panel 3
   <section role="tabpanel" class="db-tab-panel">Reg Panel 2</section>
   <section role="tabpanel" class="db-tab-panel">Reg Panel 3</section>
 </div>`})}),(0,N.jsx)(q.A,{className:"copy-button",noText:!0,icon:e===`<div
-  id="tabs-7280117388992402"
+  id="tabs-8130090754076577"
   class="db-tabs"
   data-alignment="start"
   data-width="auto"
 >
-  <div id="tab-list-5297700246775149" class="db-tab-list">
+  <div id="tab-list-8001225452947671" class="db-tab-list">
     <ul role="tablist">
       <li role="presentation" class="db-tab-item">
-        <button type="button" role="tab" class="db-tab-button">
+        <button
+          type="button"
+          role="tab"
+          aria-selected="false"
+          class="db-tab-button"
+        >
           <span class="db-tab-label">Reg Tab 1</span>
         </button>
       </li>
       <li role="presentation" class="db-tab-item">
-        <button type="button" role="tab" class="db-tab-button">
+        <button
+          type="button"
+          role="tab"
+          aria-selected="false"
+          class="db-tab-button"
+        >
           <span class="db-tab-label">Reg Tab 2</span>
         </button>
       </li>
       <li role="presentation" class="db-tab-item">
-        <button type="button" role="tab" class="db-tab-button">
+        <button
+          type="button"
+          role="tab"
+          aria-selected="false"
+          class="db-tab-button"
+        >
           <span class="db-tab-label">Reg Tab 3</span>
         </button>
       </li>
@@ -58827,25 +58917,40 @@ Func Panel 3
   <section role="tabpanel" class="db-tab-panel">Reg Panel 2</section>
   <section role="tabpanel" class="db-tab-panel">Reg Panel 3</section>
 </div>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<div
-  id="tabs-7280117388992402"
+  id="tabs-8130090754076577"
   class="db-tabs"
   data-alignment="start"
   data-width="auto"
 >
-  <div id="tab-list-5297700246775149" class="db-tab-list">
+  <div id="tab-list-8001225452947671" class="db-tab-list">
     <ul role="tablist">
       <li role="presentation" class="db-tab-item">
-        <button type="button" role="tab" class="db-tab-button">
+        <button
+          type="button"
+          role="tab"
+          aria-selected="false"
+          class="db-tab-button"
+        >
           <span class="db-tab-label">Reg Tab 1</span>
         </button>
       </li>
       <li role="presentation" class="db-tab-item">
-        <button type="button" role="tab" class="db-tab-button">
+        <button
+          type="button"
+          role="tab"
+          aria-selected="false"
+          class="db-tab-button"
+        >
           <span class="db-tab-label">Reg Tab 2</span>
         </button>
       </li>
       <li role="presentation" class="db-tab-item">
-        <button type="button" role="tab" class="db-tab-button">
+        <button
+          type="button"
+          role="tab"
+          aria-selected="false"
+          class="db-tab-button"
+        >
           <span class="db-tab-label">Reg Tab 3</span>
         </button>
       </li>
@@ -58855,25 +58960,40 @@ Func Panel 3
   <section role="tabpanel" class="db-tab-panel">Reg Panel 2</section>
   <section role="tabpanel" class="db-tab-panel">Reg Panel 3</section>
 </div>`),navigator.clipboard.writeText(`<div
-  id="tabs-7280117388992402"
+  id="tabs-8130090754076577"
   class="db-tabs"
   data-alignment="start"
   data-width="auto"
 >
-  <div id="tab-list-5297700246775149" class="db-tab-list">
+  <div id="tab-list-8001225452947671" class="db-tab-list">
     <ul role="tablist">
       <li role="presentation" class="db-tab-item">
-        <button type="button" role="tab" class="db-tab-button">
+        <button
+          type="button"
+          role="tab"
+          aria-selected="false"
+          class="db-tab-button"
+        >
           <span class="db-tab-label">Reg Tab 1</span>
         </button>
       </li>
       <li role="presentation" class="db-tab-item">
-        <button type="button" role="tab" class="db-tab-button">
+        <button
+          type="button"
+          role="tab"
+          aria-selected="false"
+          class="db-tab-button"
+        >
           <span class="db-tab-label">Reg Tab 2</span>
         </button>
       </li>
       <li role="presentation" class="db-tab-item">
-        <button type="button" role="tab" class="db-tab-button">
+        <button
+          type="button"
+          role="tab"
+          aria-selected="false"
+          class="db-tab-button"
+        >
           <span class="db-tab-label">Reg Tab 3</span>
         </button>
       </li>
@@ -59039,25 +59159,40 @@ Reg Panel 3
   <db-tab-panel> Exp Panel 2 </db-tab-panel>
   <db-tab-panel> Exp Panel 3 </db-tab-panel>
 </db-tabs>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-html",children:`<div
-  id="tabs-07804765469888186"
+  id="tabs-3437910401102531"
   class="db-tabs"
   data-alignment="start"
   data-width="auto"
 >
-  <div id="tab-list-8743884915935131" class="db-tab-list">
+  <div id="tab-list-2096354521282069" class="db-tab-list">
     <ul role="tablist">
       <li role="presentation" class="db-tab-item">
-        <button type="button" role="tab" class="db-tab-button">
+        <button
+          type="button"
+          role="tab"
+          aria-selected="false"
+          class="db-tab-button"
+        >
           <span class="db-tab-label">Exp Tab 1</span>
         </button>
       </li>
       <li role="presentation" class="db-tab-item">
-        <button type="button" role="tab" class="db-tab-button">
+        <button
+          type="button"
+          role="tab"
+          aria-selected="false"
+          class="db-tab-button"
+        >
           <span class="db-tab-label">Exp Tab 2</span>
         </button>
       </li>
       <li role="presentation" class="db-tab-item">
-        <button type="button" role="tab" class="db-tab-button">
+        <button
+          type="button"
+          role="tab"
+          aria-selected="false"
+          class="db-tab-button"
+        >
           <span class="db-tab-label">Exp Tab 3</span>
         </button>
       </li>
@@ -59067,25 +59202,40 @@ Reg Panel 3
   <section role="tabpanel" class="db-tab-panel">Exp Panel 2</section>
   <section role="tabpanel" class="db-tab-panel">Exp Panel 3</section>
 </div>`})}),(0,N.jsx)(q.A,{className:"copy-button",noText:!0,icon:e===`<div
-  id="tabs-07804765469888186"
+  id="tabs-3437910401102531"
   class="db-tabs"
   data-alignment="start"
   data-width="auto"
 >
-  <div id="tab-list-8743884915935131" class="db-tab-list">
+  <div id="tab-list-2096354521282069" class="db-tab-list">
     <ul role="tablist">
       <li role="presentation" class="db-tab-item">
-        <button type="button" role="tab" class="db-tab-button">
+        <button
+          type="button"
+          role="tab"
+          aria-selected="false"
+          class="db-tab-button"
+        >
           <span class="db-tab-label">Exp Tab 1</span>
         </button>
       </li>
       <li role="presentation" class="db-tab-item">
-        <button type="button" role="tab" class="db-tab-button">
+        <button
+          type="button"
+          role="tab"
+          aria-selected="false"
+          class="db-tab-button"
+        >
           <span class="db-tab-label">Exp Tab 2</span>
         </button>
       </li>
       <li role="presentation" class="db-tab-item">
-        <button type="button" role="tab" class="db-tab-button">
+        <button
+          type="button"
+          role="tab"
+          aria-selected="false"
+          class="db-tab-button"
+        >
           <span class="db-tab-label">Exp Tab 3</span>
         </button>
       </li>
@@ -59095,25 +59245,40 @@ Reg Panel 3
   <section role="tabpanel" class="db-tab-panel">Exp Panel 2</section>
   <section role="tabpanel" class="db-tab-panel">Exp Panel 3</section>
 </div>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<div
-  id="tabs-07804765469888186"
+  id="tabs-3437910401102531"
   class="db-tabs"
   data-alignment="start"
   data-width="auto"
 >
-  <div id="tab-list-8743884915935131" class="db-tab-list">
+  <div id="tab-list-2096354521282069" class="db-tab-list">
     <ul role="tablist">
       <li role="presentation" class="db-tab-item">
-        <button type="button" role="tab" class="db-tab-button">
+        <button
+          type="button"
+          role="tab"
+          aria-selected="false"
+          class="db-tab-button"
+        >
           <span class="db-tab-label">Exp Tab 1</span>
         </button>
       </li>
       <li role="presentation" class="db-tab-item">
-        <button type="button" role="tab" class="db-tab-button">
+        <button
+          type="button"
+          role="tab"
+          aria-selected="false"
+          class="db-tab-button"
+        >
           <span class="db-tab-label">Exp Tab 2</span>
         </button>
       </li>
       <li role="presentation" class="db-tab-item">
-        <button type="button" role="tab" class="db-tab-button">
+        <button
+          type="button"
+          role="tab"
+          aria-selected="false"
+          class="db-tab-button"
+        >
           <span class="db-tab-label">Exp Tab 3</span>
         </button>
       </li>
@@ -59123,25 +59288,40 @@ Reg Panel 3
   <section role="tabpanel" class="db-tab-panel">Exp Panel 2</section>
   <section role="tabpanel" class="db-tab-panel">Exp Panel 3</section>
 </div>`),navigator.clipboard.writeText(`<div
-  id="tabs-07804765469888186"
+  id="tabs-3437910401102531"
   class="db-tabs"
   data-alignment="start"
   data-width="auto"
 >
-  <div id="tab-list-8743884915935131" class="db-tab-list">
+  <div id="tab-list-2096354521282069" class="db-tab-list">
     <ul role="tablist">
       <li role="presentation" class="db-tab-item">
-        <button type="button" role="tab" class="db-tab-button">
+        <button
+          type="button"
+          role="tab"
+          aria-selected="false"
+          class="db-tab-button"
+        >
           <span class="db-tab-label">Exp Tab 1</span>
         </button>
       </li>
       <li role="presentation" class="db-tab-item">
-        <button type="button" role="tab" class="db-tab-button">
+        <button
+          type="button"
+          role="tab"
+          aria-selected="false"
+          class="db-tab-button"
+        >
           <span class="db-tab-label">Exp Tab 2</span>
         </button>
       </li>
       <li role="presentation" class="db-tab-item">
-        <button type="button" role="tab" class="db-tab-button">
+        <button
+          type="button"
+          role="tab"
+          aria-selected="false"
+          class="db-tab-button"
+        >
           <span class="db-tab-label">Exp Tab 3</span>
         </button>
       </li>
@@ -59307,26 +59487,41 @@ Exp Panel 3
   <db-tab-panel> Hor Panel 2 </db-tab-panel>
   <db-tab-panel> Hor Panel 3 </db-tab-panel>
 </db-tabs>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-html",children:`<div
-  id="tabs-07093249169296689"
+  id="tabs-7882661392866506"
   class="db-tabs"
   data-orientation="horizontal"
   data-alignment="start"
   data-width="auto"
 >
-  <div id="tab-list-955547597903089" class="db-tab-list">
+  <div id="tab-list-5022930488764596" class="db-tab-list">
     <ul role="tablist">
       <li role="presentation" class="db-tab-item">
-        <button type="button" role="tab" class="db-tab-button">
+        <button
+          type="button"
+          role="tab"
+          aria-selected="false"
+          class="db-tab-button"
+        >
           <span class="db-tab-label">Hor Tab 1</span>
         </button>
       </li>
       <li role="presentation" class="db-tab-item">
-        <button type="button" role="tab" class="db-tab-button">
+        <button
+          type="button"
+          role="tab"
+          aria-selected="false"
+          class="db-tab-button"
+        >
           <span class="db-tab-label">Hor Tab 2</span>
         </button>
       </li>
       <li role="presentation" class="db-tab-item">
-        <button type="button" role="tab" class="db-tab-button">
+        <button
+          type="button"
+          role="tab"
+          aria-selected="false"
+          class="db-tab-button"
+        >
           <span class="db-tab-label">Hor Tab 3</span>
         </button>
       </li>
@@ -59336,26 +59531,41 @@ Exp Panel 3
   <section role="tabpanel" class="db-tab-panel">Hor Panel 2</section>
   <section role="tabpanel" class="db-tab-panel">Hor Panel 3</section>
 </div>`})}),(0,N.jsx)(q.A,{className:"copy-button",noText:!0,icon:e===`<div
-  id="tabs-07093249169296689"
+  id="tabs-7882661392866506"
   class="db-tabs"
   data-orientation="horizontal"
   data-alignment="start"
   data-width="auto"
 >
-  <div id="tab-list-955547597903089" class="db-tab-list">
+  <div id="tab-list-5022930488764596" class="db-tab-list">
     <ul role="tablist">
       <li role="presentation" class="db-tab-item">
-        <button type="button" role="tab" class="db-tab-button">
+        <button
+          type="button"
+          role="tab"
+          aria-selected="false"
+          class="db-tab-button"
+        >
           <span class="db-tab-label">Hor Tab 1</span>
         </button>
       </li>
       <li role="presentation" class="db-tab-item">
-        <button type="button" role="tab" class="db-tab-button">
+        <button
+          type="button"
+          role="tab"
+          aria-selected="false"
+          class="db-tab-button"
+        >
           <span class="db-tab-label">Hor Tab 2</span>
         </button>
       </li>
       <li role="presentation" class="db-tab-item">
-        <button type="button" role="tab" class="db-tab-button">
+        <button
+          type="button"
+          role="tab"
+          aria-selected="false"
+          class="db-tab-button"
+        >
           <span class="db-tab-label">Hor Tab 3</span>
         </button>
       </li>
@@ -59365,26 +59575,41 @@ Exp Panel 3
   <section role="tabpanel" class="db-tab-panel">Hor Panel 2</section>
   <section role="tabpanel" class="db-tab-panel">Hor Panel 3</section>
 </div>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<div
-  id="tabs-07093249169296689"
+  id="tabs-7882661392866506"
   class="db-tabs"
   data-orientation="horizontal"
   data-alignment="start"
   data-width="auto"
 >
-  <div id="tab-list-955547597903089" class="db-tab-list">
+  <div id="tab-list-5022930488764596" class="db-tab-list">
     <ul role="tablist">
       <li role="presentation" class="db-tab-item">
-        <button type="button" role="tab" class="db-tab-button">
+        <button
+          type="button"
+          role="tab"
+          aria-selected="false"
+          class="db-tab-button"
+        >
           <span class="db-tab-label">Hor Tab 1</span>
         </button>
       </li>
       <li role="presentation" class="db-tab-item">
-        <button type="button" role="tab" class="db-tab-button">
+        <button
+          type="button"
+          role="tab"
+          aria-selected="false"
+          class="db-tab-button"
+        >
           <span class="db-tab-label">Hor Tab 2</span>
         </button>
       </li>
       <li role="presentation" class="db-tab-item">
-        <button type="button" role="tab" class="db-tab-button">
+        <button
+          type="button"
+          role="tab"
+          aria-selected="false"
+          class="db-tab-button"
+        >
           <span class="db-tab-label">Hor Tab 3</span>
         </button>
       </li>
@@ -59394,26 +59619,41 @@ Exp Panel 3
   <section role="tabpanel" class="db-tab-panel">Hor Panel 2</section>
   <section role="tabpanel" class="db-tab-panel">Hor Panel 3</section>
 </div>`),navigator.clipboard.writeText(`<div
-  id="tabs-07093249169296689"
+  id="tabs-7882661392866506"
   class="db-tabs"
   data-orientation="horizontal"
   data-alignment="start"
   data-width="auto"
 >
-  <div id="tab-list-955547597903089" class="db-tab-list">
+  <div id="tab-list-5022930488764596" class="db-tab-list">
     <ul role="tablist">
       <li role="presentation" class="db-tab-item">
-        <button type="button" role="tab" class="db-tab-button">
+        <button
+          type="button"
+          role="tab"
+          aria-selected="false"
+          class="db-tab-button"
+        >
           <span class="db-tab-label">Hor Tab 1</span>
         </button>
       </li>
       <li role="presentation" class="db-tab-item">
-        <button type="button" role="tab" class="db-tab-button">
+        <button
+          type="button"
+          role="tab"
+          aria-selected="false"
+          class="db-tab-button"
+        >
           <span class="db-tab-label">Hor Tab 2</span>
         </button>
       </li>
       <li role="presentation" class="db-tab-item">
-        <button type="button" role="tab" class="db-tab-button">
+        <button
+          type="button"
+          role="tab"
+          aria-selected="false"
+          class="db-tab-button"
+        >
           <span class="db-tab-label">Hor Tab 3</span>
         </button>
       </li>
@@ -59579,26 +59819,41 @@ Hor Panel 3
   <db-tab-panel> Ver Panel 2 </db-tab-panel>
   <db-tab-panel> Ver Panel 3 </db-tab-panel>
 </db-tabs>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-html",children:`<div
-  id="tabs-5743493390011185"
+  id="tabs-09230928075744416"
   class="db-tabs"
   data-orientation="vertical"
   data-alignment="start"
   data-width="auto"
 >
-  <div id="tab-list-04141252350470148" class="db-tab-list">
+  <div id="tab-list-80565981242422" class="db-tab-list">
     <ul role="tablist">
       <li role="presentation" class="db-tab-item">
-        <button type="button" role="tab" class="db-tab-button">
+        <button
+          type="button"
+          role="tab"
+          aria-selected="false"
+          class="db-tab-button"
+        >
           <span class="db-tab-label">Ver Tab 1</span>
         </button>
       </li>
       <li role="presentation" class="db-tab-item">
-        <button type="button" role="tab" class="db-tab-button">
+        <button
+          type="button"
+          role="tab"
+          aria-selected="false"
+          class="db-tab-button"
+        >
           <span class="db-tab-label">Ver Tab 2</span>
         </button>
       </li>
       <li role="presentation" class="db-tab-item">
-        <button type="button" role="tab" class="db-tab-button">
+        <button
+          type="button"
+          role="tab"
+          aria-selected="false"
+          class="db-tab-button"
+        >
           <span class="db-tab-label">Ver Tab 3</span>
         </button>
       </li>
@@ -59608,26 +59863,41 @@ Hor Panel 3
   <section role="tabpanel" class="db-tab-panel">Ver Panel 2</section>
   <section role="tabpanel" class="db-tab-panel">Ver Panel 3</section>
 </div>`})}),(0,N.jsx)(q.A,{className:"copy-button",noText:!0,icon:e===`<div
-  id="tabs-5743493390011185"
+  id="tabs-09230928075744416"
   class="db-tabs"
   data-orientation="vertical"
   data-alignment="start"
   data-width="auto"
 >
-  <div id="tab-list-04141252350470148" class="db-tab-list">
+  <div id="tab-list-80565981242422" class="db-tab-list">
     <ul role="tablist">
       <li role="presentation" class="db-tab-item">
-        <button type="button" role="tab" class="db-tab-button">
+        <button
+          type="button"
+          role="tab"
+          aria-selected="false"
+          class="db-tab-button"
+        >
           <span class="db-tab-label">Ver Tab 1</span>
         </button>
       </li>
       <li role="presentation" class="db-tab-item">
-        <button type="button" role="tab" class="db-tab-button">
+        <button
+          type="button"
+          role="tab"
+          aria-selected="false"
+          class="db-tab-button"
+        >
           <span class="db-tab-label">Ver Tab 2</span>
         </button>
       </li>
       <li role="presentation" class="db-tab-item">
-        <button type="button" role="tab" class="db-tab-button">
+        <button
+          type="button"
+          role="tab"
+          aria-selected="false"
+          class="db-tab-button"
+        >
           <span class="db-tab-label">Ver Tab 3</span>
         </button>
       </li>
@@ -59637,26 +59907,41 @@ Hor Panel 3
   <section role="tabpanel" class="db-tab-panel">Ver Panel 2</section>
   <section role="tabpanel" class="db-tab-panel">Ver Panel 3</section>
 </div>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<div
-  id="tabs-5743493390011185"
+  id="tabs-09230928075744416"
   class="db-tabs"
   data-orientation="vertical"
   data-alignment="start"
   data-width="auto"
 >
-  <div id="tab-list-04141252350470148" class="db-tab-list">
+  <div id="tab-list-80565981242422" class="db-tab-list">
     <ul role="tablist">
       <li role="presentation" class="db-tab-item">
-        <button type="button" role="tab" class="db-tab-button">
+        <button
+          type="button"
+          role="tab"
+          aria-selected="false"
+          class="db-tab-button"
+        >
           <span class="db-tab-label">Ver Tab 1</span>
         </button>
       </li>
       <li role="presentation" class="db-tab-item">
-        <button type="button" role="tab" class="db-tab-button">
+        <button
+          type="button"
+          role="tab"
+          aria-selected="false"
+          class="db-tab-button"
+        >
           <span class="db-tab-label">Ver Tab 2</span>
         </button>
       </li>
       <li role="presentation" class="db-tab-item">
-        <button type="button" role="tab" class="db-tab-button">
+        <button
+          type="button"
+          role="tab"
+          aria-selected="false"
+          class="db-tab-button"
+        >
           <span class="db-tab-label">Ver Tab 3</span>
         </button>
       </li>
@@ -59666,26 +59951,41 @@ Hor Panel 3
   <section role="tabpanel" class="db-tab-panel">Ver Panel 2</section>
   <section role="tabpanel" class="db-tab-panel">Ver Panel 3</section>
 </div>`),navigator.clipboard.writeText(`<div
-  id="tabs-5743493390011185"
+  id="tabs-09230928075744416"
   class="db-tabs"
   data-orientation="vertical"
   data-alignment="start"
   data-width="auto"
 >
-  <div id="tab-list-04141252350470148" class="db-tab-list">
+  <div id="tab-list-80565981242422" class="db-tab-list">
     <ul role="tablist">
       <li role="presentation" class="db-tab-item">
-        <button type="button" role="tab" class="db-tab-button">
+        <button
+          type="button"
+          role="tab"
+          aria-selected="false"
+          class="db-tab-button"
+        >
           <span class="db-tab-label">Ver Tab 1</span>
         </button>
       </li>
       <li role="presentation" class="db-tab-item">
-        <button type="button" role="tab" class="db-tab-button">
+        <button
+          type="button"
+          role="tab"
+          aria-selected="false"
+          class="db-tab-button"
+        >
           <span class="db-tab-label">Ver Tab 2</span>
         </button>
       </li>
       <li role="presentation" class="db-tab-item">
-        <button type="button" role="tab" class="db-tab-button">
+        <button
+          type="button"
+          role="tab"
+          aria-selected="false"
+          class="db-tab-button"
+        >
           <span class="db-tab-label">Ver Tab 3</span>
         </button>
       </li>
@@ -59851,25 +60151,40 @@ Ver Panel 3
   <db-tab-panel> Auto Panel 2 </db-tab-panel>
   <db-tab-panel> Auto Panel 3 </db-tab-panel>
 </db-tabs>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-html",children:`<div
-  id="tabs-41755854499908984"
+  id="tabs-21448253815119622"
   class="db-tabs"
   data-alignment="start"
   data-width="auto"
 >
-  <div id="tab-list-3194568388730905" class="db-tab-list">
+  <div id="tab-list-19930920555357978" class="db-tab-list">
     <ul role="tablist">
       <li role="presentation" class="db-tab-item">
-        <button type="button" role="tab" class="db-tab-button">
+        <button
+          type="button"
+          role="tab"
+          aria-selected="false"
+          class="db-tab-button"
+        >
           <span class="db-tab-label">Auto Tab 1</span>
         </button>
       </li>
       <li role="presentation" class="db-tab-item">
-        <button type="button" role="tab" class="db-tab-button">
+        <button
+          type="button"
+          role="tab"
+          aria-selected="false"
+          class="db-tab-button"
+        >
           <span class="db-tab-label">Auto Tab 2</span>
         </button>
       </li>
       <li role="presentation" class="db-tab-item">
-        <button type="button" role="tab" class="db-tab-button">
+        <button
+          type="button"
+          role="tab"
+          aria-selected="false"
+          class="db-tab-button"
+        >
           <span class="db-tab-label">Auto Tab 3</span>
         </button>
       </li>
@@ -59879,25 +60194,40 @@ Ver Panel 3
   <section role="tabpanel" class="db-tab-panel">Auto Panel 2</section>
   <section role="tabpanel" class="db-tab-panel">Auto Panel 3</section>
 </div>`})}),(0,N.jsx)(q.A,{className:"copy-button",noText:!0,icon:e===`<div
-  id="tabs-41755854499908984"
+  id="tabs-21448253815119622"
   class="db-tabs"
   data-alignment="start"
   data-width="auto"
 >
-  <div id="tab-list-3194568388730905" class="db-tab-list">
+  <div id="tab-list-19930920555357978" class="db-tab-list">
     <ul role="tablist">
       <li role="presentation" class="db-tab-item">
-        <button type="button" role="tab" class="db-tab-button">
+        <button
+          type="button"
+          role="tab"
+          aria-selected="false"
+          class="db-tab-button"
+        >
           <span class="db-tab-label">Auto Tab 1</span>
         </button>
       </li>
       <li role="presentation" class="db-tab-item">
-        <button type="button" role="tab" class="db-tab-button">
+        <button
+          type="button"
+          role="tab"
+          aria-selected="false"
+          class="db-tab-button"
+        >
           <span class="db-tab-label">Auto Tab 2</span>
         </button>
       </li>
       <li role="presentation" class="db-tab-item">
-        <button type="button" role="tab" class="db-tab-button">
+        <button
+          type="button"
+          role="tab"
+          aria-selected="false"
+          class="db-tab-button"
+        >
           <span class="db-tab-label">Auto Tab 3</span>
         </button>
       </li>
@@ -59907,25 +60237,40 @@ Ver Panel 3
   <section role="tabpanel" class="db-tab-panel">Auto Panel 2</section>
   <section role="tabpanel" class="db-tab-panel">Auto Panel 3</section>
 </div>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<div
-  id="tabs-41755854499908984"
+  id="tabs-21448253815119622"
   class="db-tabs"
   data-alignment="start"
   data-width="auto"
 >
-  <div id="tab-list-3194568388730905" class="db-tab-list">
+  <div id="tab-list-19930920555357978" class="db-tab-list">
     <ul role="tablist">
       <li role="presentation" class="db-tab-item">
-        <button type="button" role="tab" class="db-tab-button">
+        <button
+          type="button"
+          role="tab"
+          aria-selected="false"
+          class="db-tab-button"
+        >
           <span class="db-tab-label">Auto Tab 1</span>
         </button>
       </li>
       <li role="presentation" class="db-tab-item">
-        <button type="button" role="tab" class="db-tab-button">
+        <button
+          type="button"
+          role="tab"
+          aria-selected="false"
+          class="db-tab-button"
+        >
           <span class="db-tab-label">Auto Tab 2</span>
         </button>
       </li>
       <li role="presentation" class="db-tab-item">
-        <button type="button" role="tab" class="db-tab-button">
+        <button
+          type="button"
+          role="tab"
+          aria-selected="false"
+          class="db-tab-button"
+        >
           <span class="db-tab-label">Auto Tab 3</span>
         </button>
       </li>
@@ -59935,25 +60280,40 @@ Ver Panel 3
   <section role="tabpanel" class="db-tab-panel">Auto Panel 2</section>
   <section role="tabpanel" class="db-tab-panel">Auto Panel 3</section>
 </div>`),navigator.clipboard.writeText(`<div
-  id="tabs-41755854499908984"
+  id="tabs-21448253815119622"
   class="db-tabs"
   data-alignment="start"
   data-width="auto"
 >
-  <div id="tab-list-3194568388730905" class="db-tab-list">
+  <div id="tab-list-19930920555357978" class="db-tab-list">
     <ul role="tablist">
       <li role="presentation" class="db-tab-item">
-        <button type="button" role="tab" class="db-tab-button">
+        <button
+          type="button"
+          role="tab"
+          aria-selected="false"
+          class="db-tab-button"
+        >
           <span class="db-tab-label">Auto Tab 1</span>
         </button>
       </li>
       <li role="presentation" class="db-tab-item">
-        <button type="button" role="tab" class="db-tab-button">
+        <button
+          type="button"
+          role="tab"
+          aria-selected="false"
+          class="db-tab-button"
+        >
           <span class="db-tab-label">Auto Tab 2</span>
         </button>
       </li>
       <li role="presentation" class="db-tab-item">
-        <button type="button" role="tab" class="db-tab-button">
+        <button
+          type="button"
+          role="tab"
+          aria-selected="false"
+          class="db-tab-button"
+        >
           <span class="db-tab-label">Auto Tab 3</span>
         </button>
       </li>
@@ -60119,25 +60479,40 @@ Auto Panel 3
   <db-tab-panel> FullS Panel 2 </db-tab-panel>
   <db-tab-panel> FullS Panel 3 </db-tab-panel>
 </db-tabs>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-html",children:`<div
-  id="tabs-8635797380436813"
+  id="tabs-21684672796795346"
   class="db-tabs"
   data-alignment="start"
   data-width="full"
 >
-  <div id="tab-list-6042828664184147" class="db-tab-list">
+  <div id="tab-list-003870846927424787" class="db-tab-list">
     <ul role="tablist">
       <li role="presentation" class="db-tab-item">
-        <button type="button" role="tab" class="db-tab-button">
+        <button
+          type="button"
+          role="tab"
+          aria-selected="false"
+          class="db-tab-button"
+        >
           <span class="db-tab-label">FullS Tab 1</span>
         </button>
       </li>
       <li role="presentation" class="db-tab-item">
-        <button type="button" role="tab" class="db-tab-button">
+        <button
+          type="button"
+          role="tab"
+          aria-selected="false"
+          class="db-tab-button"
+        >
           <span class="db-tab-label">FullS Tab 2</span>
         </button>
       </li>
       <li role="presentation" class="db-tab-item">
-        <button type="button" role="tab" class="db-tab-button">
+        <button
+          type="button"
+          role="tab"
+          aria-selected="false"
+          class="db-tab-button"
+        >
           <span class="db-tab-label">FullS Tab 3</span>
         </button>
       </li>
@@ -60147,25 +60522,40 @@ Auto Panel 3
   <section role="tabpanel" class="db-tab-panel">FullS Panel 2</section>
   <section role="tabpanel" class="db-tab-panel">FullS Panel 3</section>
 </div>`})}),(0,N.jsx)(q.A,{className:"copy-button",noText:!0,icon:e===`<div
-  id="tabs-8635797380436813"
+  id="tabs-21684672796795346"
   class="db-tabs"
   data-alignment="start"
   data-width="full"
 >
-  <div id="tab-list-6042828664184147" class="db-tab-list">
+  <div id="tab-list-003870846927424787" class="db-tab-list">
     <ul role="tablist">
       <li role="presentation" class="db-tab-item">
-        <button type="button" role="tab" class="db-tab-button">
+        <button
+          type="button"
+          role="tab"
+          aria-selected="false"
+          class="db-tab-button"
+        >
           <span class="db-tab-label">FullS Tab 1</span>
         </button>
       </li>
       <li role="presentation" class="db-tab-item">
-        <button type="button" role="tab" class="db-tab-button">
+        <button
+          type="button"
+          role="tab"
+          aria-selected="false"
+          class="db-tab-button"
+        >
           <span class="db-tab-label">FullS Tab 2</span>
         </button>
       </li>
       <li role="presentation" class="db-tab-item">
-        <button type="button" role="tab" class="db-tab-button">
+        <button
+          type="button"
+          role="tab"
+          aria-selected="false"
+          class="db-tab-button"
+        >
           <span class="db-tab-label">FullS Tab 3</span>
         </button>
       </li>
@@ -60175,25 +60565,40 @@ Auto Panel 3
   <section role="tabpanel" class="db-tab-panel">FullS Panel 2</section>
   <section role="tabpanel" class="db-tab-panel">FullS Panel 3</section>
 </div>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<div
-  id="tabs-8635797380436813"
+  id="tabs-21684672796795346"
   class="db-tabs"
   data-alignment="start"
   data-width="full"
 >
-  <div id="tab-list-6042828664184147" class="db-tab-list">
+  <div id="tab-list-003870846927424787" class="db-tab-list">
     <ul role="tablist">
       <li role="presentation" class="db-tab-item">
-        <button type="button" role="tab" class="db-tab-button">
+        <button
+          type="button"
+          role="tab"
+          aria-selected="false"
+          class="db-tab-button"
+        >
           <span class="db-tab-label">FullS Tab 1</span>
         </button>
       </li>
       <li role="presentation" class="db-tab-item">
-        <button type="button" role="tab" class="db-tab-button">
+        <button
+          type="button"
+          role="tab"
+          aria-selected="false"
+          class="db-tab-button"
+        >
           <span class="db-tab-label">FullS Tab 2</span>
         </button>
       </li>
       <li role="presentation" class="db-tab-item">
-        <button type="button" role="tab" class="db-tab-button">
+        <button
+          type="button"
+          role="tab"
+          aria-selected="false"
+          class="db-tab-button"
+        >
           <span class="db-tab-label">FullS Tab 3</span>
         </button>
       </li>
@@ -60203,25 +60608,40 @@ Auto Panel 3
   <section role="tabpanel" class="db-tab-panel">FullS Panel 2</section>
   <section role="tabpanel" class="db-tab-panel">FullS Panel 3</section>
 </div>`),navigator.clipboard.writeText(`<div
-  id="tabs-8635797380436813"
+  id="tabs-21684672796795346"
   class="db-tabs"
   data-alignment="start"
   data-width="full"
 >
-  <div id="tab-list-6042828664184147" class="db-tab-list">
+  <div id="tab-list-003870846927424787" class="db-tab-list">
     <ul role="tablist">
       <li role="presentation" class="db-tab-item">
-        <button type="button" role="tab" class="db-tab-button">
+        <button
+          type="button"
+          role="tab"
+          aria-selected="false"
+          class="db-tab-button"
+        >
           <span class="db-tab-label">FullS Tab 1</span>
         </button>
       </li>
       <li role="presentation" class="db-tab-item">
-        <button type="button" role="tab" class="db-tab-button">
+        <button
+          type="button"
+          role="tab"
+          aria-selected="false"
+          class="db-tab-button"
+        >
           <span class="db-tab-label">FullS Tab 2</span>
         </button>
       </li>
       <li role="presentation" class="db-tab-item">
-        <button type="button" role="tab" class="db-tab-button">
+        <button
+          type="button"
+          role="tab"
+          aria-selected="false"
+          class="db-tab-button"
+        >
           <span class="db-tab-label">FullS Tab 3</span>
         </button>
       </li>
@@ -60387,25 +60807,40 @@ FullS Panel 3
   <db-tab-panel> FullC Panel 2 </db-tab-panel>
   <db-tab-panel> FullC Panel 3 </db-tab-panel>
 </db-tabs>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-html",children:`<div
-  id="tabs-09858171577299868"
+  id="tabs-8850182098949266"
   class="db-tabs"
   data-alignment="center"
   data-width="full"
 >
-  <div id="tab-list-9035683147939124" class="db-tab-list">
+  <div id="tab-list-17368803085175832" class="db-tab-list">
     <ul role="tablist">
       <li role="presentation" class="db-tab-item">
-        <button type="button" role="tab" class="db-tab-button">
+        <button
+          type="button"
+          role="tab"
+          aria-selected="false"
+          class="db-tab-button"
+        >
           <span class="db-tab-label">FullC Tab 1</span>
         </button>
       </li>
       <li role="presentation" class="db-tab-item">
-        <button type="button" role="tab" class="db-tab-button">
+        <button
+          type="button"
+          role="tab"
+          aria-selected="false"
+          class="db-tab-button"
+        >
           <span class="db-tab-label">FullC Tab 2</span>
         </button>
       </li>
       <li role="presentation" class="db-tab-item">
-        <button type="button" role="tab" class="db-tab-button">
+        <button
+          type="button"
+          role="tab"
+          aria-selected="false"
+          class="db-tab-button"
+        >
           <span class="db-tab-label">FullC Tab 3</span>
         </button>
       </li>
@@ -60415,25 +60850,40 @@ FullS Panel 3
   <section role="tabpanel" class="db-tab-panel">FullC Panel 2</section>
   <section role="tabpanel" class="db-tab-panel">FullC Panel 3</section>
 </div>`})}),(0,N.jsx)(q.A,{className:"copy-button",noText:!0,icon:e===`<div
-  id="tabs-09858171577299868"
+  id="tabs-8850182098949266"
   class="db-tabs"
   data-alignment="center"
   data-width="full"
 >
-  <div id="tab-list-9035683147939124" class="db-tab-list">
+  <div id="tab-list-17368803085175832" class="db-tab-list">
     <ul role="tablist">
       <li role="presentation" class="db-tab-item">
-        <button type="button" role="tab" class="db-tab-button">
+        <button
+          type="button"
+          role="tab"
+          aria-selected="false"
+          class="db-tab-button"
+        >
           <span class="db-tab-label">FullC Tab 1</span>
         </button>
       </li>
       <li role="presentation" class="db-tab-item">
-        <button type="button" role="tab" class="db-tab-button">
+        <button
+          type="button"
+          role="tab"
+          aria-selected="false"
+          class="db-tab-button"
+        >
           <span class="db-tab-label">FullC Tab 2</span>
         </button>
       </li>
       <li role="presentation" class="db-tab-item">
-        <button type="button" role="tab" class="db-tab-button">
+        <button
+          type="button"
+          role="tab"
+          aria-selected="false"
+          class="db-tab-button"
+        >
           <span class="db-tab-label">FullC Tab 3</span>
         </button>
       </li>
@@ -60443,25 +60893,40 @@ FullS Panel 3
   <section role="tabpanel" class="db-tab-panel">FullC Panel 2</section>
   <section role="tabpanel" class="db-tab-panel">FullC Panel 3</section>
 </div>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<div
-  id="tabs-09858171577299868"
+  id="tabs-8850182098949266"
   class="db-tabs"
   data-alignment="center"
   data-width="full"
 >
-  <div id="tab-list-9035683147939124" class="db-tab-list">
+  <div id="tab-list-17368803085175832" class="db-tab-list">
     <ul role="tablist">
       <li role="presentation" class="db-tab-item">
-        <button type="button" role="tab" class="db-tab-button">
+        <button
+          type="button"
+          role="tab"
+          aria-selected="false"
+          class="db-tab-button"
+        >
           <span class="db-tab-label">FullC Tab 1</span>
         </button>
       </li>
       <li role="presentation" class="db-tab-item">
-        <button type="button" role="tab" class="db-tab-button">
+        <button
+          type="button"
+          role="tab"
+          aria-selected="false"
+          class="db-tab-button"
+        >
           <span class="db-tab-label">FullC Tab 2</span>
         </button>
       </li>
       <li role="presentation" class="db-tab-item">
-        <button type="button" role="tab" class="db-tab-button">
+        <button
+          type="button"
+          role="tab"
+          aria-selected="false"
+          class="db-tab-button"
+        >
           <span class="db-tab-label">FullC Tab 3</span>
         </button>
       </li>
@@ -60471,25 +60936,40 @@ FullS Panel 3
   <section role="tabpanel" class="db-tab-panel">FullC Panel 2</section>
   <section role="tabpanel" class="db-tab-panel">FullC Panel 3</section>
 </div>`),navigator.clipboard.writeText(`<div
-  id="tabs-09858171577299868"
+  id="tabs-8850182098949266"
   class="db-tabs"
   data-alignment="center"
   data-width="full"
 >
-  <div id="tab-list-9035683147939124" class="db-tab-list">
+  <div id="tab-list-17368803085175832" class="db-tab-list">
     <ul role="tablist">
       <li role="presentation" class="db-tab-item">
-        <button type="button" role="tab" class="db-tab-button">
+        <button
+          type="button"
+          role="tab"
+          aria-selected="false"
+          class="db-tab-button"
+        >
           <span class="db-tab-label">FullC Tab 1</span>
         </button>
       </li>
       <li role="presentation" class="db-tab-item">
-        <button type="button" role="tab" class="db-tab-button">
+        <button
+          type="button"
+          role="tab"
+          aria-selected="false"
+          class="db-tab-button"
+        >
           <span class="db-tab-label">FullC Tab 2</span>
         </button>
       </li>
       <li role="presentation" class="db-tab-item">
-        <button type="button" role="tab" class="db-tab-button">
+        <button
+          type="button"
+          role="tab"
+          aria-selected="false"
+          class="db-tab-button"
+        >
           <span class="db-tab-label">FullC Tab 3</span>
         </button>
       </li>
@@ -60655,25 +61135,40 @@ FullC Panel 3
   <db-tab-panel> NoOver Panel 2 </db-tab-panel>
   <db-tab-panel> NoOver Panel 3 </db-tab-panel>
 </db-tabs>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-html",children:`<div
-  id="tabs-7101270312677735"
+  id="tabs-16206442173863778"
   class="db-tabs"
   data-alignment="start"
   data-width="auto"
 >
-  <div id="tab-list-026558676891053623" class="db-tab-list">
+  <div id="tab-list-9743422253043487" class="db-tab-list">
     <ul role="tablist">
       <li role="presentation" class="db-tab-item">
-        <button type="button" role="tab" class="db-tab-button">
+        <button
+          type="button"
+          role="tab"
+          aria-selected="false"
+          class="db-tab-button"
+        >
           <span class="db-tab-label">NoOver Tab 1</span>
         </button>
       </li>
       <li role="presentation" class="db-tab-item">
-        <button type="button" role="tab" class="db-tab-button">
+        <button
+          type="button"
+          role="tab"
+          aria-selected="false"
+          class="db-tab-button"
+        >
           <span class="db-tab-label">NoOver Tab 2</span>
         </button>
       </li>
       <li role="presentation" class="db-tab-item">
-        <button type="button" role="tab" class="db-tab-button">
+        <button
+          type="button"
+          role="tab"
+          aria-selected="false"
+          class="db-tab-button"
+        >
           <span class="db-tab-label">NoOver Tab 3</span>
         </button>
       </li>
@@ -60683,25 +61178,40 @@ FullC Panel 3
   <section role="tabpanel" class="db-tab-panel">NoOver Panel 2</section>
   <section role="tabpanel" class="db-tab-panel">NoOver Panel 3</section>
 </div>`})}),(0,N.jsx)(q.A,{className:"copy-button",noText:!0,icon:e===`<div
-  id="tabs-7101270312677735"
+  id="tabs-16206442173863778"
   class="db-tabs"
   data-alignment="start"
   data-width="auto"
 >
-  <div id="tab-list-026558676891053623" class="db-tab-list">
+  <div id="tab-list-9743422253043487" class="db-tab-list">
     <ul role="tablist">
       <li role="presentation" class="db-tab-item">
-        <button type="button" role="tab" class="db-tab-button">
+        <button
+          type="button"
+          role="tab"
+          aria-selected="false"
+          class="db-tab-button"
+        >
           <span class="db-tab-label">NoOver Tab 1</span>
         </button>
       </li>
       <li role="presentation" class="db-tab-item">
-        <button type="button" role="tab" class="db-tab-button">
+        <button
+          type="button"
+          role="tab"
+          aria-selected="false"
+          class="db-tab-button"
+        >
           <span class="db-tab-label">NoOver Tab 2</span>
         </button>
       </li>
       <li role="presentation" class="db-tab-item">
-        <button type="button" role="tab" class="db-tab-button">
+        <button
+          type="button"
+          role="tab"
+          aria-selected="false"
+          class="db-tab-button"
+        >
           <span class="db-tab-label">NoOver Tab 3</span>
         </button>
       </li>
@@ -60711,25 +61221,40 @@ FullC Panel 3
   <section role="tabpanel" class="db-tab-panel">NoOver Panel 2</section>
   <section role="tabpanel" class="db-tab-panel">NoOver Panel 3</section>
 </div>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<div
-  id="tabs-7101270312677735"
+  id="tabs-16206442173863778"
   class="db-tabs"
   data-alignment="start"
   data-width="auto"
 >
-  <div id="tab-list-026558676891053623" class="db-tab-list">
+  <div id="tab-list-9743422253043487" class="db-tab-list">
     <ul role="tablist">
       <li role="presentation" class="db-tab-item">
-        <button type="button" role="tab" class="db-tab-button">
+        <button
+          type="button"
+          role="tab"
+          aria-selected="false"
+          class="db-tab-button"
+        >
           <span class="db-tab-label">NoOver Tab 1</span>
         </button>
       </li>
       <li role="presentation" class="db-tab-item">
-        <button type="button" role="tab" class="db-tab-button">
+        <button
+          type="button"
+          role="tab"
+          aria-selected="false"
+          class="db-tab-button"
+        >
           <span class="db-tab-label">NoOver Tab 2</span>
         </button>
       </li>
       <li role="presentation" class="db-tab-item">
-        <button type="button" role="tab" class="db-tab-button">
+        <button
+          type="button"
+          role="tab"
+          aria-selected="false"
+          class="db-tab-button"
+        >
           <span class="db-tab-label">NoOver Tab 3</span>
         </button>
       </li>
@@ -60739,25 +61264,40 @@ FullC Panel 3
   <section role="tabpanel" class="db-tab-panel">NoOver Panel 2</section>
   <section role="tabpanel" class="db-tab-panel">NoOver Panel 3</section>
 </div>`),navigator.clipboard.writeText(`<div
-  id="tabs-7101270312677735"
+  id="tabs-16206442173863778"
   class="db-tabs"
   data-alignment="start"
   data-width="auto"
 >
-  <div id="tab-list-026558676891053623" class="db-tab-list">
+  <div id="tab-list-9743422253043487" class="db-tab-list">
     <ul role="tablist">
       <li role="presentation" class="db-tab-item">
-        <button type="button" role="tab" class="db-tab-button">
+        <button
+          type="button"
+          role="tab"
+          aria-selected="false"
+          class="db-tab-button"
+        >
           <span class="db-tab-label">NoOver Tab 1</span>
         </button>
       </li>
       <li role="presentation" class="db-tab-item">
-        <button type="button" role="tab" class="db-tab-button">
+        <button
+          type="button"
+          role="tab"
+          aria-selected="false"
+          class="db-tab-button"
+        >
           <span class="db-tab-label">NoOver Tab 2</span>
         </button>
       </li>
       <li role="presentation" class="db-tab-item">
-        <button type="button" role="tab" class="db-tab-button">
+        <button
+          type="button"
+          role="tab"
+          aria-selected="false"
+          class="db-tab-button"
+        >
           <span class="db-tab-label">NoOver Tab 3</span>
         </button>
       </li>
@@ -60939,36 +61479,61 @@ NoOver Panel 3
   <db-tab-panel> Arr Panel 4 </db-tab-panel>
   <db-tab-panel> Arr Panel 5 </db-tab-panel>
 </db-tabs>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-html",children:`<div
-  id="tabs-2000268102615531"
+  id="tabs-8459397594499056"
   class="db-tabs"
   data-scroll-behavior="arrows"
   data-alignment="start"
   data-width="auto"
 >
-  <div id="tab-list-35504429745979504" class="db-tab-list">
+  <div id="tab-list-9104794007521572" class="db-tab-list">
     <ul role="tablist">
       <li role="presentation" class="db-tab-item">
-        <button type="button" role="tab" class="db-tab-button">
+        <button
+          type="button"
+          role="tab"
+          aria-selected="false"
+          class="db-tab-button"
+        >
           <span class="db-tab-label">Arr Tab 1</span>
         </button>
       </li>
       <li role="presentation" class="db-tab-item">
-        <button type="button" role="tab" class="db-tab-button">
+        <button
+          type="button"
+          role="tab"
+          aria-selected="false"
+          class="db-tab-button"
+        >
           <span class="db-tab-label">Arr Tab 2</span>
         </button>
       </li>
       <li role="presentation" class="db-tab-item">
-        <button type="button" role="tab" class="db-tab-button">
+        <button
+          type="button"
+          role="tab"
+          aria-selected="false"
+          class="db-tab-button"
+        >
           <span class="db-tab-label">Arr Tab 3</span>
         </button>
       </li>
       <li role="presentation" class="db-tab-item">
-        <button type="button" role="tab" class="db-tab-button">
+        <button
+          type="button"
+          role="tab"
+          aria-selected="false"
+          class="db-tab-button"
+        >
           <span class="db-tab-label">Arr Tab 4</span>
         </button>
       </li>
       <li role="presentation" class="db-tab-item">
-        <button type="button" role="tab" class="db-tab-button">
+        <button
+          type="button"
+          role="tab"
+          aria-selected="false"
+          class="db-tab-button"
+        >
           <span class="db-tab-label">Arr Tab 5</span>
         </button>
       </li>
@@ -60980,36 +61545,61 @@ NoOver Panel 3
   <section role="tabpanel" class="db-tab-panel">Arr Panel 4</section>
   <section role="tabpanel" class="db-tab-panel">Arr Panel 5</section>
 </div>`})}),(0,N.jsx)(q.A,{className:"copy-button",noText:!0,icon:e===`<div
-  id="tabs-2000268102615531"
+  id="tabs-8459397594499056"
   class="db-tabs"
   data-scroll-behavior="arrows"
   data-alignment="start"
   data-width="auto"
 >
-  <div id="tab-list-35504429745979504" class="db-tab-list">
+  <div id="tab-list-9104794007521572" class="db-tab-list">
     <ul role="tablist">
       <li role="presentation" class="db-tab-item">
-        <button type="button" role="tab" class="db-tab-button">
+        <button
+          type="button"
+          role="tab"
+          aria-selected="false"
+          class="db-tab-button"
+        >
           <span class="db-tab-label">Arr Tab 1</span>
         </button>
       </li>
       <li role="presentation" class="db-tab-item">
-        <button type="button" role="tab" class="db-tab-button">
+        <button
+          type="button"
+          role="tab"
+          aria-selected="false"
+          class="db-tab-button"
+        >
           <span class="db-tab-label">Arr Tab 2</span>
         </button>
       </li>
       <li role="presentation" class="db-tab-item">
-        <button type="button" role="tab" class="db-tab-button">
+        <button
+          type="button"
+          role="tab"
+          aria-selected="false"
+          class="db-tab-button"
+        >
           <span class="db-tab-label">Arr Tab 3</span>
         </button>
       </li>
       <li role="presentation" class="db-tab-item">
-        <button type="button" role="tab" class="db-tab-button">
+        <button
+          type="button"
+          role="tab"
+          aria-selected="false"
+          class="db-tab-button"
+        >
           <span class="db-tab-label">Arr Tab 4</span>
         </button>
       </li>
       <li role="presentation" class="db-tab-item">
-        <button type="button" role="tab" class="db-tab-button">
+        <button
+          type="button"
+          role="tab"
+          aria-selected="false"
+          class="db-tab-button"
+        >
           <span class="db-tab-label">Arr Tab 5</span>
         </button>
       </li>
@@ -61021,36 +61611,61 @@ NoOver Panel 3
   <section role="tabpanel" class="db-tab-panel">Arr Panel 4</section>
   <section role="tabpanel" class="db-tab-panel">Arr Panel 5</section>
 </div>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<div
-  id="tabs-2000268102615531"
+  id="tabs-8459397594499056"
   class="db-tabs"
   data-scroll-behavior="arrows"
   data-alignment="start"
   data-width="auto"
 >
-  <div id="tab-list-35504429745979504" class="db-tab-list">
+  <div id="tab-list-9104794007521572" class="db-tab-list">
     <ul role="tablist">
       <li role="presentation" class="db-tab-item">
-        <button type="button" role="tab" class="db-tab-button">
+        <button
+          type="button"
+          role="tab"
+          aria-selected="false"
+          class="db-tab-button"
+        >
           <span class="db-tab-label">Arr Tab 1</span>
         </button>
       </li>
       <li role="presentation" class="db-tab-item">
-        <button type="button" role="tab" class="db-tab-button">
+        <button
+          type="button"
+          role="tab"
+          aria-selected="false"
+          class="db-tab-button"
+        >
           <span class="db-tab-label">Arr Tab 2</span>
         </button>
       </li>
       <li role="presentation" class="db-tab-item">
-        <button type="button" role="tab" class="db-tab-button">
+        <button
+          type="button"
+          role="tab"
+          aria-selected="false"
+          class="db-tab-button"
+        >
           <span class="db-tab-label">Arr Tab 3</span>
         </button>
       </li>
       <li role="presentation" class="db-tab-item">
-        <button type="button" role="tab" class="db-tab-button">
+        <button
+          type="button"
+          role="tab"
+          aria-selected="false"
+          class="db-tab-button"
+        >
           <span class="db-tab-label">Arr Tab 4</span>
         </button>
       </li>
       <li role="presentation" class="db-tab-item">
-        <button type="button" role="tab" class="db-tab-button">
+        <button
+          type="button"
+          role="tab"
+          aria-selected="false"
+          class="db-tab-button"
+        >
           <span class="db-tab-label">Arr Tab 5</span>
         </button>
       </li>
@@ -61062,36 +61677,61 @@ NoOver Panel 3
   <section role="tabpanel" class="db-tab-panel">Arr Panel 4</section>
   <section role="tabpanel" class="db-tab-panel">Arr Panel 5</section>
 </div>`),navigator.clipboard.writeText(`<div
-  id="tabs-2000268102615531"
+  id="tabs-8459397594499056"
   class="db-tabs"
   data-scroll-behavior="arrows"
   data-alignment="start"
   data-width="auto"
 >
-  <div id="tab-list-35504429745979504" class="db-tab-list">
+  <div id="tab-list-9104794007521572" class="db-tab-list">
     <ul role="tablist">
       <li role="presentation" class="db-tab-item">
-        <button type="button" role="tab" class="db-tab-button">
+        <button
+          type="button"
+          role="tab"
+          aria-selected="false"
+          class="db-tab-button"
+        >
           <span class="db-tab-label">Arr Tab 1</span>
         </button>
       </li>
       <li role="presentation" class="db-tab-item">
-        <button type="button" role="tab" class="db-tab-button">
+        <button
+          type="button"
+          role="tab"
+          aria-selected="false"
+          class="db-tab-button"
+        >
           <span class="db-tab-label">Arr Tab 2</span>
         </button>
       </li>
       <li role="presentation" class="db-tab-item">
-        <button type="button" role="tab" class="db-tab-button">
+        <button
+          type="button"
+          role="tab"
+          aria-selected="false"
+          class="db-tab-button"
+        >
           <span class="db-tab-label">Arr Tab 3</span>
         </button>
       </li>
       <li role="presentation" class="db-tab-item">
-        <button type="button" role="tab" class="db-tab-button">
+        <button
+          type="button"
+          role="tab"
+          aria-selected="false"
+          class="db-tab-button"
+        >
           <span class="db-tab-label">Arr Tab 4</span>
         </button>
       </li>
       <li role="presentation" class="db-tab-item">
-        <button type="button" role="tab" class="db-tab-button">
+        <button
+          type="button"
+          role="tab"
+          aria-selected="false"
+          class="db-tab-button"
+        >
           <span class="db-tab-label">Arr Tab 5</span>
         </button>
       </li>
@@ -61339,35 +61979,60 @@ Arr Panel 5
   <db-tab-panel> Scroll Panel 4 </db-tab-panel>
   <db-tab-panel> Scroll Panel 5 </db-tab-panel>
 </db-tabs>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-html",children:`<div
-  id="tabs-6078213389460158"
+  id="tabs-9893355131491782"
   class="db-tabs"
   data-alignment="start"
   data-width="auto"
 >
-  <div id="tab-list-0030404039300870878" class="db-tab-list">
+  <div id="tab-list-6637377430352515" class="db-tab-list">
     <ul role="tablist">
       <li role="presentation" class="db-tab-item">
-        <button type="button" role="tab" class="db-tab-button">
+        <button
+          type="button"
+          role="tab"
+          aria-selected="false"
+          class="db-tab-button"
+        >
           <span class="db-tab-label">Scroll Tab 1</span>
         </button>
       </li>
       <li role="presentation" class="db-tab-item">
-        <button type="button" role="tab" class="db-tab-button">
+        <button
+          type="button"
+          role="tab"
+          aria-selected="false"
+          class="db-tab-button"
+        >
           <span class="db-tab-label">Scroll Tab 2</span>
         </button>
       </li>
       <li role="presentation" class="db-tab-item">
-        <button type="button" role="tab" class="db-tab-button">
+        <button
+          type="button"
+          role="tab"
+          aria-selected="false"
+          class="db-tab-button"
+        >
           <span class="db-tab-label">Scroll Tab 3</span>
         </button>
       </li>
       <li role="presentation" class="db-tab-item">
-        <button type="button" role="tab" class="db-tab-button">
+        <button
+          type="button"
+          role="tab"
+          aria-selected="false"
+          class="db-tab-button"
+        >
           <span class="db-tab-label">Scroll Tab 4</span>
         </button>
       </li>
       <li role="presentation" class="db-tab-item">
-        <button type="button" role="tab" class="db-tab-button">
+        <button
+          type="button"
+          role="tab"
+          aria-selected="false"
+          class="db-tab-button"
+        >
           <span class="db-tab-label">Scroll Tab 5</span>
         </button>
       </li>
@@ -61379,35 +62044,60 @@ Arr Panel 5
   <section role="tabpanel" class="db-tab-panel">Scroll Panel 4</section>
   <section role="tabpanel" class="db-tab-panel">Scroll Panel 5</section>
 </div>`})}),(0,N.jsx)(q.A,{className:"copy-button",noText:!0,icon:e===`<div
-  id="tabs-6078213389460158"
+  id="tabs-9893355131491782"
   class="db-tabs"
   data-alignment="start"
   data-width="auto"
 >
-  <div id="tab-list-0030404039300870878" class="db-tab-list">
+  <div id="tab-list-6637377430352515" class="db-tab-list">
     <ul role="tablist">
       <li role="presentation" class="db-tab-item">
-        <button type="button" role="tab" class="db-tab-button">
+        <button
+          type="button"
+          role="tab"
+          aria-selected="false"
+          class="db-tab-button"
+        >
           <span class="db-tab-label">Scroll Tab 1</span>
         </button>
       </li>
       <li role="presentation" class="db-tab-item">
-        <button type="button" role="tab" class="db-tab-button">
+        <button
+          type="button"
+          role="tab"
+          aria-selected="false"
+          class="db-tab-button"
+        >
           <span class="db-tab-label">Scroll Tab 2</span>
         </button>
       </li>
       <li role="presentation" class="db-tab-item">
-        <button type="button" role="tab" class="db-tab-button">
+        <button
+          type="button"
+          role="tab"
+          aria-selected="false"
+          class="db-tab-button"
+        >
           <span class="db-tab-label">Scroll Tab 3</span>
         </button>
       </li>
       <li role="presentation" class="db-tab-item">
-        <button type="button" role="tab" class="db-tab-button">
+        <button
+          type="button"
+          role="tab"
+          aria-selected="false"
+          class="db-tab-button"
+        >
           <span class="db-tab-label">Scroll Tab 4</span>
         </button>
       </li>
       <li role="presentation" class="db-tab-item">
-        <button type="button" role="tab" class="db-tab-button">
+        <button
+          type="button"
+          role="tab"
+          aria-selected="false"
+          class="db-tab-button"
+        >
           <span class="db-tab-label">Scroll Tab 5</span>
         </button>
       </li>
@@ -61419,35 +62109,60 @@ Arr Panel 5
   <section role="tabpanel" class="db-tab-panel">Scroll Panel 4</section>
   <section role="tabpanel" class="db-tab-panel">Scroll Panel 5</section>
 </div>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<div
-  id="tabs-6078213389460158"
+  id="tabs-9893355131491782"
   class="db-tabs"
   data-alignment="start"
   data-width="auto"
 >
-  <div id="tab-list-0030404039300870878" class="db-tab-list">
+  <div id="tab-list-6637377430352515" class="db-tab-list">
     <ul role="tablist">
       <li role="presentation" class="db-tab-item">
-        <button type="button" role="tab" class="db-tab-button">
+        <button
+          type="button"
+          role="tab"
+          aria-selected="false"
+          class="db-tab-button"
+        >
           <span class="db-tab-label">Scroll Tab 1</span>
         </button>
       </li>
       <li role="presentation" class="db-tab-item">
-        <button type="button" role="tab" class="db-tab-button">
+        <button
+          type="button"
+          role="tab"
+          aria-selected="false"
+          class="db-tab-button"
+        >
           <span class="db-tab-label">Scroll Tab 2</span>
         </button>
       </li>
       <li role="presentation" class="db-tab-item">
-        <button type="button" role="tab" class="db-tab-button">
+        <button
+          type="button"
+          role="tab"
+          aria-selected="false"
+          class="db-tab-button"
+        >
           <span class="db-tab-label">Scroll Tab 3</span>
         </button>
       </li>
       <li role="presentation" class="db-tab-item">
-        <button type="button" role="tab" class="db-tab-button">
+        <button
+          type="button"
+          role="tab"
+          aria-selected="false"
+          class="db-tab-button"
+        >
           <span class="db-tab-label">Scroll Tab 4</span>
         </button>
       </li>
       <li role="presentation" class="db-tab-item">
-        <button type="button" role="tab" class="db-tab-button">
+        <button
+          type="button"
+          role="tab"
+          aria-selected="false"
+          class="db-tab-button"
+        >
           <span class="db-tab-label">Scroll Tab 5</span>
         </button>
       </li>
@@ -61459,35 +62174,60 @@ Arr Panel 5
   <section role="tabpanel" class="db-tab-panel">Scroll Panel 4</section>
   <section role="tabpanel" class="db-tab-panel">Scroll Panel 5</section>
 </div>`),navigator.clipboard.writeText(`<div
-  id="tabs-6078213389460158"
+  id="tabs-9893355131491782"
   class="db-tabs"
   data-alignment="start"
   data-width="auto"
 >
-  <div id="tab-list-0030404039300870878" class="db-tab-list">
+  <div id="tab-list-6637377430352515" class="db-tab-list">
     <ul role="tablist">
       <li role="presentation" class="db-tab-item">
-        <button type="button" role="tab" class="db-tab-button">
+        <button
+          type="button"
+          role="tab"
+          aria-selected="false"
+          class="db-tab-button"
+        >
           <span class="db-tab-label">Scroll Tab 1</span>
         </button>
       </li>
       <li role="presentation" class="db-tab-item">
-        <button type="button" role="tab" class="db-tab-button">
+        <button
+          type="button"
+          role="tab"
+          aria-selected="false"
+          class="db-tab-button"
+        >
           <span class="db-tab-label">Scroll Tab 2</span>
         </button>
       </li>
       <li role="presentation" class="db-tab-item">
-        <button type="button" role="tab" class="db-tab-button">
+        <button
+          type="button"
+          role="tab"
+          aria-selected="false"
+          class="db-tab-button"
+        >
           <span class="db-tab-label">Scroll Tab 3</span>
         </button>
       </li>
       <li role="presentation" class="db-tab-item">
-        <button type="button" role="tab" class="db-tab-button">
+        <button
+          type="button"
+          role="tab"
+          aria-selected="false"
+          class="db-tab-button"
+        >
           <span class="db-tab-label">Scroll Tab 4</span>
         </button>
       </li>
       <li role="presentation" class="db-tab-item">
-        <button type="button" role="tab" class="db-tab-button">
+        <button
+          type="button"
+          role="tab"
+          aria-selected="false"
+          class="db-tab-button"
+        >
           <span class="db-tab-label">Scroll Tab 5</span>
         </button>
       </li>
@@ -61719,25 +62459,40 @@ Scroll Panel 5
   <db-tab-panel> Sel Panel 2 </db-tab-panel>
   <db-tab-panel> Sel Panel 3 </db-tab-panel>
 </db-tabs>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-html",children:`<div
-  id="tabs-23853846187917693"
+  id="tabs-27774597132127155"
   class="db-tabs"
   data-alignment="start"
   data-width="auto"
 >
-  <div id="tab-list-6394203446807941" class="db-tab-list">
+  <div id="tab-list-4167868514816123" class="db-tab-list">
     <ul role="tablist">
       <li role="presentation" class="db-tab-item">
-        <button type="button" role="tab" class="db-tab-button">
+        <button
+          type="button"
+          role="tab"
+          aria-selected="false"
+          class="db-tab-button"
+        >
           <span class="db-tab-label">Sel Tab 1</span>
         </button>
       </li>
       <li role="presentation" class="db-tab-item">
-        <button type="button" role="tab" class="db-tab-button">
+        <button
+          type="button"
+          role="tab"
+          aria-selected="false"
+          class="db-tab-button"
+        >
           <span class="db-tab-label">Sel Tab 2</span>
         </button>
       </li>
       <li role="presentation" class="db-tab-item">
-        <button type="button" role="tab" class="db-tab-button">
+        <button
+          type="button"
+          role="tab"
+          aria-selected="false"
+          class="db-tab-button"
+        >
           <span class="db-tab-label">Sel Tab 3</span>
         </button>
       </li>
@@ -61747,25 +62502,40 @@ Scroll Panel 5
   <section role="tabpanel" class="db-tab-panel">Sel Panel 2</section>
   <section role="tabpanel" class="db-tab-panel">Sel Panel 3</section>
 </div>`})}),(0,N.jsx)(q.A,{className:"copy-button",noText:!0,icon:e===`<div
-  id="tabs-23853846187917693"
+  id="tabs-27774597132127155"
   class="db-tabs"
   data-alignment="start"
   data-width="auto"
 >
-  <div id="tab-list-6394203446807941" class="db-tab-list">
+  <div id="tab-list-4167868514816123" class="db-tab-list">
     <ul role="tablist">
       <li role="presentation" class="db-tab-item">
-        <button type="button" role="tab" class="db-tab-button">
+        <button
+          type="button"
+          role="tab"
+          aria-selected="false"
+          class="db-tab-button"
+        >
           <span class="db-tab-label">Sel Tab 1</span>
         </button>
       </li>
       <li role="presentation" class="db-tab-item">
-        <button type="button" role="tab" class="db-tab-button">
+        <button
+          type="button"
+          role="tab"
+          aria-selected="false"
+          class="db-tab-button"
+        >
           <span class="db-tab-label">Sel Tab 2</span>
         </button>
       </li>
       <li role="presentation" class="db-tab-item">
-        <button type="button" role="tab" class="db-tab-button">
+        <button
+          type="button"
+          role="tab"
+          aria-selected="false"
+          class="db-tab-button"
+        >
           <span class="db-tab-label">Sel Tab 3</span>
         </button>
       </li>
@@ -61775,25 +62545,40 @@ Scroll Panel 5
   <section role="tabpanel" class="db-tab-panel">Sel Panel 2</section>
   <section role="tabpanel" class="db-tab-panel">Sel Panel 3</section>
 </div>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<div
-  id="tabs-23853846187917693"
+  id="tabs-27774597132127155"
   class="db-tabs"
   data-alignment="start"
   data-width="auto"
 >
-  <div id="tab-list-6394203446807941" class="db-tab-list">
+  <div id="tab-list-4167868514816123" class="db-tab-list">
     <ul role="tablist">
       <li role="presentation" class="db-tab-item">
-        <button type="button" role="tab" class="db-tab-button">
+        <button
+          type="button"
+          role="tab"
+          aria-selected="false"
+          class="db-tab-button"
+        >
           <span class="db-tab-label">Sel Tab 1</span>
         </button>
       </li>
       <li role="presentation" class="db-tab-item">
-        <button type="button" role="tab" class="db-tab-button">
+        <button
+          type="button"
+          role="tab"
+          aria-selected="false"
+          class="db-tab-button"
+        >
           <span class="db-tab-label">Sel Tab 2</span>
         </button>
       </li>
       <li role="presentation" class="db-tab-item">
-        <button type="button" role="tab" class="db-tab-button">
+        <button
+          type="button"
+          role="tab"
+          aria-selected="false"
+          class="db-tab-button"
+        >
           <span class="db-tab-label">Sel Tab 3</span>
         </button>
       </li>
@@ -61803,25 +62588,40 @@ Scroll Panel 5
   <section role="tabpanel" class="db-tab-panel">Sel Panel 2</section>
   <section role="tabpanel" class="db-tab-panel">Sel Panel 3</section>
 </div>`),navigator.clipboard.writeText(`<div
-  id="tabs-23853846187917693"
+  id="tabs-27774597132127155"
   class="db-tabs"
   data-alignment="start"
   data-width="auto"
 >
-  <div id="tab-list-6394203446807941" class="db-tab-list">
+  <div id="tab-list-4167868514816123" class="db-tab-list">
     <ul role="tablist">
       <li role="presentation" class="db-tab-item">
-        <button type="button" role="tab" class="db-tab-button">
+        <button
+          type="button"
+          role="tab"
+          aria-selected="false"
+          class="db-tab-button"
+        >
           <span class="db-tab-label">Sel Tab 1</span>
         </button>
       </li>
       <li role="presentation" class="db-tab-item">
-        <button type="button" role="tab" class="db-tab-button">
+        <button
+          type="button"
+          role="tab"
+          aria-selected="false"
+          class="db-tab-button"
+        >
           <span class="db-tab-label">Sel Tab 2</span>
         </button>
       </li>
       <li role="presentation" class="db-tab-item">
-        <button type="button" role="tab" class="db-tab-button">
+        <button
+          type="button"
+          role="tab"
+          aria-selected="false"
+          class="db-tab-button"
+        >
           <span class="db-tab-label">Sel Tab 3</span>
         </button>
       </li>
@@ -61987,25 +62787,40 @@ Sel Panel 3
   <db-tab-panel> None Panel 2 </db-tab-panel>
   <db-tab-panel> None Panel 3 </db-tab-panel>
 </db-tabs>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-html",children:`<div
-  id="tabs-057335443816669995"
+  id="tabs-5441499533583899"
   class="db-tabs"
   data-alignment="start"
   data-width="auto"
 >
-  <div id="tab-list-7913150077498327" class="db-tab-list">
+  <div id="tab-list-9818405037048356" class="db-tab-list">
     <ul role="tablist">
       <li role="presentation" class="db-tab-item">
-        <button type="button" role="tab" class="db-tab-button">
+        <button
+          type="button"
+          role="tab"
+          aria-selected="false"
+          class="db-tab-button"
+        >
           <span class="db-tab-label">None Tab 1</span>
         </button>
       </li>
       <li role="presentation" class="db-tab-item">
-        <button type="button" role="tab" class="db-tab-button">
+        <button
+          type="button"
+          role="tab"
+          aria-selected="false"
+          class="db-tab-button"
+        >
           <span class="db-tab-label">None Tab 2</span>
         </button>
       </li>
       <li role="presentation" class="db-tab-item">
-        <button type="button" role="tab" class="db-tab-button">
+        <button
+          type="button"
+          role="tab"
+          aria-selected="false"
+          class="db-tab-button"
+        >
           <span class="db-tab-label">None Tab 3</span>
         </button>
       </li>
@@ -62015,25 +62830,40 @@ Sel Panel 3
   <section role="tabpanel" class="db-tab-panel">None Panel 2</section>
   <section role="tabpanel" class="db-tab-panel">None Panel 3</section>
 </div>`})}),(0,N.jsx)(q.A,{className:"copy-button",noText:!0,icon:e===`<div
-  id="tabs-057335443816669995"
+  id="tabs-5441499533583899"
   class="db-tabs"
   data-alignment="start"
   data-width="auto"
 >
-  <div id="tab-list-7913150077498327" class="db-tab-list">
+  <div id="tab-list-9818405037048356" class="db-tab-list">
     <ul role="tablist">
       <li role="presentation" class="db-tab-item">
-        <button type="button" role="tab" class="db-tab-button">
+        <button
+          type="button"
+          role="tab"
+          aria-selected="false"
+          class="db-tab-button"
+        >
           <span class="db-tab-label">None Tab 1</span>
         </button>
       </li>
       <li role="presentation" class="db-tab-item">
-        <button type="button" role="tab" class="db-tab-button">
+        <button
+          type="button"
+          role="tab"
+          aria-selected="false"
+          class="db-tab-button"
+        >
           <span class="db-tab-label">None Tab 2</span>
         </button>
       </li>
       <li role="presentation" class="db-tab-item">
-        <button type="button" role="tab" class="db-tab-button">
+        <button
+          type="button"
+          role="tab"
+          aria-selected="false"
+          class="db-tab-button"
+        >
           <span class="db-tab-label">None Tab 3</span>
         </button>
       </li>
@@ -62043,25 +62873,40 @@ Sel Panel 3
   <section role="tabpanel" class="db-tab-panel">None Panel 2</section>
   <section role="tabpanel" class="db-tab-panel">None Panel 3</section>
 </div>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<div
-  id="tabs-057335443816669995"
+  id="tabs-5441499533583899"
   class="db-tabs"
   data-alignment="start"
   data-width="auto"
 >
-  <div id="tab-list-7913150077498327" class="db-tab-list">
+  <div id="tab-list-9818405037048356" class="db-tab-list">
     <ul role="tablist">
       <li role="presentation" class="db-tab-item">
-        <button type="button" role="tab" class="db-tab-button">
+        <button
+          type="button"
+          role="tab"
+          aria-selected="false"
+          class="db-tab-button"
+        >
           <span class="db-tab-label">None Tab 1</span>
         </button>
       </li>
       <li role="presentation" class="db-tab-item">
-        <button type="button" role="tab" class="db-tab-button">
+        <button
+          type="button"
+          role="tab"
+          aria-selected="false"
+          class="db-tab-button"
+        >
           <span class="db-tab-label">None Tab 2</span>
         </button>
       </li>
       <li role="presentation" class="db-tab-item">
-        <button type="button" role="tab" class="db-tab-button">
+        <button
+          type="button"
+          role="tab"
+          aria-selected="false"
+          class="db-tab-button"
+        >
           <span class="db-tab-label">None Tab 3</span>
         </button>
       </li>
@@ -62071,25 +62916,40 @@ Sel Panel 3
   <section role="tabpanel" class="db-tab-panel">None Panel 2</section>
   <section role="tabpanel" class="db-tab-panel">None Panel 3</section>
 </div>`),navigator.clipboard.writeText(`<div
-  id="tabs-057335443816669995"
+  id="tabs-5441499533583899"
   class="db-tabs"
   data-alignment="start"
   data-width="auto"
 >
-  <div id="tab-list-7913150077498327" class="db-tab-list">
+  <div id="tab-list-9818405037048356" class="db-tab-list">
     <ul role="tablist">
       <li role="presentation" class="db-tab-item">
-        <button type="button" role="tab" class="db-tab-button">
+        <button
+          type="button"
+          role="tab"
+          aria-selected="false"
+          class="db-tab-button"
+        >
           <span class="db-tab-label">None Tab 1</span>
         </button>
       </li>
       <li role="presentation" class="db-tab-item">
-        <button type="button" role="tab" class="db-tab-button">
+        <button
+          type="button"
+          role="tab"
+          aria-selected="false"
+          class="db-tab-button"
+        >
           <span class="db-tab-label">None Tab 2</span>
         </button>
       </li>
       <li role="presentation" class="db-tab-item">
-        <button type="button" role="tab" class="db-tab-button">
+        <button
+          type="button"
+          role="tab"
+          aria-selected="false"
+          class="db-tab-button"
+        >
           <span class="db-tab-label">None Tab 3</span>
         </button>
       </li>
