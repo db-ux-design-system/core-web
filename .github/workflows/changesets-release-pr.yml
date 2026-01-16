@@ -25,9 +25,7 @@ jobs:
     steps:
       # Work on the main branch that was just pushed
       - name: ⏬ Checkout main
-        uses: actions/checkout@v5
-        with:
-          fetch-depth: 0
+        uses: actions/checkout@v6
 
       - name: 🔄 Init Node & NPM cache
         uses: ./.github/actions/npm-cache

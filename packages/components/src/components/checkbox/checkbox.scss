@@ -7,68 +7,20 @@
 @use "../../styles/internal/form-components";
 
 %center-icon {
-	&::before {
-		--db-icon-margin-end: 0;
+	&:not([data-show-icon-leading="false"]) {
+		&::before {
+			--db-icon-margin-end: 0;
 
-		display: inline-flex;
-		align-items: center;
-		justify-content: center;
-		block-size: calc(
-			#{form-components.$font-size-height} - 2 *
-				#{variables.$db-border-width-3xs}
-		);
-		inline-size: calc(
-			#{form-components.$font-size-height} - 2 *
-				#{variables.$db-border-width-3xs}
-		);
-	}
-}
-
-@mixin get-validity-color-check($key: "valid") {
-	$variant: successful;
-
-	@if $key != "valid" {
-		$variant: critical;
-	}
-
-	--db-check-element-border-color: var(
-		--db-#{$variant}-on-bg-basic-emphasis-70-default
-	);
-	--db-adaptive-on-bg-basic-emphasis-100-default: var(
-		--db-#{$variant}-on-bg-basic-emphasis-80-default
-	);
-	--db-adaptive-on-bg-basic-emphasis-100-hovered: var(
-		--db-#{$variant}-on-bg-basic-emphasis-80-hovered
-	);
-	--db-adaptive-on-bg-basic-emphasis-100-pressed: var(
-		--db-#{$variant}-on-bg-basic-emphasis-80-pressed
-	);
-
-	@include form-components.get-validity-message($key);
-
-	input {
-		&:not(:checked) {
-			--db-adaptive-bg-basic-transparent-full-default: var(
-				--db-#{$variant}-bg-basic-transparent-full-default
+			display: inline-flex;
+			align-items: center;
+			justify-content: center;
+			block-size: calc(
+				#{form-components.$font-size-height} - 2 *
+					#{variables.$db-border-width-3xs}
 			);
-			--db-adaptive-bg-basic-transparent-full-hovered: var(
-				--db-#{$variant}-bg-basic-transparent-full-hovered
-			);
-			--db-adaptive-bg-basic-transparent-full-pressed: var(
-				--db-#{$variant}-bg-basic-transparent-full-pressed
-			);
-		}
-
-		&:checked {
-			--db-icon-color: var(--db-#{$variant}-on-bg-inverted-default);
-			--db-adaptive-bg-basic-transparent-full-default: var(
-				--db-#{$variant}-bg-inverted-contrast-high-default
-			);
-			--db-adaptive-bg-basic-transparent-full-hovered: var(
-				--db-#{$variant}-bg-inverted-contrast-high-hovered
-			);
-			--db-adaptive-bg-basic-transparent-full-pressed: var(
-				--db-#{$variant}-bg-inverted-contrast-high-pressed
+			inline-size: calc(
+				#{form-components.$font-size-height} - 2 *
+					#{variables.$db-border-width-3xs}
 			);
 		}
 	}
@@ -85,12 +37,12 @@
 
 	@include form-components.get-validity(check) {
 		&:has(.db-infotext[data-semantic="successful"]) {
-			@include get-validity-color-check("valid");
+			@include form-components.get-validity-color-checkbox("valid");
 		}
 	}
 
 	@include form-components.get-validity(check, "invalid") {
-		@include get-validity-color-check("invalid");
+		@include form-components.get-validity-color-checkbox("invalid");
 	}
 
 	input {

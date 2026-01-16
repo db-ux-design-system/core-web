@@ -13,6 +13,9 @@ jobs:
     name: Cancel Workflow
     runs-on: ubuntu-24.04 # Use Ubuntu 24.04 explicitly
     steps:
+      - name: ⏬ Checkout repo
+        uses: actions/checkout@v6
+
       - name: 💀 Killing me softly
         run: |
           gh run cancel ${{ github.run_id }}

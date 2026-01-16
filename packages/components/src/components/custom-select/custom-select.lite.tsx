@@ -2,6 +2,7 @@
 import {
 	For,
 	onMount,
+	onUnMount,
 	onUpdate,
 	Show,
 	useDefaultProps,
@@ -48,6 +49,7 @@ import { DocumentClickListener } from '../../utils/document-click-listener';
 import { DocumentScrollListener } from '../../utils/document-scroll-listener';
 import { handleFixedDropdown } from '../../utils/floating-components';
 import {
+	addResetEventListener,
 	handleFrameworkEventAngular,
 	handleFrameworkEventVue
 } from '../../utils/form-components';
@@ -103,6 +105,7 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 		_infoTextId: undefined,
 		_validity: 'no-validation',
 		_userInteraction: false,
+		abortController: undefined,
 		// Workaround for Vue output: TS for Vue would think that it could be a function, and by this we clarify that it's a string
 		_descByIds: undefined,
 		_selectedLabels: '',
@@ -137,7 +140,7 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 			}
 			/* For a11y reasons we need to map the correct message with the select */
 			if (!selectRef?.validity.valid || props.validation === 'invalid') {
-				state._descByIds = state._invalidMessageId;
+				state.setDescById(state._invalidMessageId);
 				state._invalidMessage =
 					props.invalidMessage ||
 					selectRef?.validationMessage ||
@@ -154,7 +157,7 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 				selectRef?.validity.valid &&
 				props.required
 			) {
-				state._descByIds = state._validMessageId;
+				state.setDescById(state._validMessageId);
 				if (hasVoiceOver()) {
 					state._voiceOverFallback =
 						props.validMessage ?? DEFAULT_VALID_MESSAGE;
@@ -162,10 +165,10 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 				}
 				state._validity = props.validation ?? 'valid';
 			} else if (stringPropVisible(props.message, props.showMessage)) {
-				state._descByIds = state._messageId;
+				state.setDescById(state._messageId);
 				state._validity = props.validation ?? 'no-validation';
 			} else {
-				state._descByIds = state._placeholderId;
+				state.setDescById(state._placeholderId);
 				state._validity = props.validation ?? 'no-validation';
 			}
 		},
@@ -751,6 +754,31 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 	}, [state._values, selectRef]);
 
 	onUpdate(() => {
+		if (selectRef) {
+			let controller = state.abortController;
+			if (!controller) {
+				controller = new AbortController();
+				state.abortController = controller;
+			}
+
+			const initialValues = props.values;
+			addResetEventListener(
+				selectRef,
+				() => {
+					const resetValue = initialValues
+						? initialValues
+						: selectRef.value
+							? [selectRef.value]
+							: [];
+					state.handleOptionSelected(resetValue);
+					state.handleValidation();
+				},
+				controller.signal
+			);
+		}
+	}, [selectRef]);
+
+	onUpdate(() => {
 		state._validity = props.validation;
 	}, [props.validation]);
 
@@ -853,6 +881,10 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 			DEFAULT_INVALID_MESSAGE;
 	}, [selectRef, props.invalidMessage]);
 
+	onUnMount(() => {
+		state.abortController?.abort();
+	});
+
 	function satisfyReact(event: any) {
 		// This is a function to satisfy React
 		event.stopPropagation();
@@ -935,6 +967,11 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 									props.selectedType === 'tag'
 								)}
 								id={state._selectedLabelsId}>
+								<Show when={props.selectedPrefix}>
+									<span data-visually-hidden="true">
+										{props.selectedPrefix}
+									</span>
+								</Show>
 								{state._selectedLabels}
 							</span>
 						</Show>
@@ -1035,7 +1072,7 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 											'multiple'
 										)}
 										label={
-											props.ariaListLabel ??
+											props.listLabel ??
 											props.label ??
 											DEFAULT_LABEL
 										}>

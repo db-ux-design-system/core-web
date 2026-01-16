@@ -47,20 +47,12 @@ updates:
     # https://github.com/dependabot/dependabot-core/issues/5226#issuecomment-1179434437
     versioning-strategy: increase
     groups:
-      # Automatically group all patch updates to reduce PR noise
-      patch-dependencies:
-        update-types:
-          - "patch"
-        patterns:
-          - "*"
       # Major framework dependencies - group by framework for better review
       angular:
         patterns:
           - "@angular*"
           - "@angular-devkit*"
           - "ng-packagr"
-        update-types:
-          - "minor"
       react:
         patterns:
           - "react"
@@ -101,7 +93,14 @@ updates:
       vite:
         patterns:
           - "vite*"
-          - "vitest*"
+        update-types:
+          - "minor"
+          - "major"
+      # Test tools
+      vitest:
+        patterns:
+          - "vitest"
+          - "@vitest*"
         update-types:
           - "minor"
           - "major"
@@ -125,6 +124,14 @@ updates:
       builder.io:
         patterns:
           - "@builder.io/mitosis*"
+        update-types:
+          - "minor"
+          - "major"
+      storybook:
+        patterns:
+          - "storybook"
+          - "@storybook*"
+          - "*-storybook"
         update-types:
           - "minor"
           - "major"
@@ -155,3 +162,9 @@ updates:
         update-types:
           - "minor"
           - "major"
+      # Automatically group all patch updates to reduce PR noise
+      patch-dependencies:
+        update-types:
+          - "patch"
+        patterns:
+          - "*"

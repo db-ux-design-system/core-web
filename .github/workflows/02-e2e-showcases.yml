@@ -9,16 +9,9 @@ on:
       showcase:
         required: true
         type: string
-    outputs:
-      aria-snapshots-changed:
-        description: "If aria snapshots changed in current PR"
-        value: ${{ jobs.playwright-showcases.outputs.aria-snapshots-changed }}
-      aria-snapshots-changed-to-main:
-        description: "If aria snapshots changed to main branch"
-        value: ${{ jobs.playwright-showcases.outputs.aria-snapshots-changed-to-main }}
-      visual-snapshots-changed:
-        description: "If visual snapshots changed"
-        value: ${{ jobs.playwright-showcases.outputs.visual-snapshots-changed }}
+      test-ally:
+        required: false
+        type: string
 
 permissions:
   actions: write
@@ -32,44 +25,39 @@ jobs:
       image: mcr.microsoft.com/playwright:v${{ inputs.version }}
       options: --user 1001
     strategy:
-      fail-fast: false
+      fail-fast: true
       matrix:
-        shardIndex: [1, 2, 3, 4]
-        shardTotal: [4]
-    outputs:
-      aria-snapshots-changed: ${{ steps.aria-snapshots.outputs.aria-snapshots-changed }}
-      aria-snapshots-changed-to-main: ${{ steps.aria-snapshots.outputs.aria-snapshots-changed-to-main }}
-      visual-snapshots-changed: ${{ steps.visual-snapshots.outputs.visual-snapshots-changed }}
+        shardIndex: [1, 2, 3, 4, 5]
+        shardTotal: [5]
     steps:
       - name: ⏬ Checkout repo
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
         with:
-          fetch-depth: 0 # fetch all history for all branches
-          fetch-tags: false
+          fetch-depth: 2
 
       - name: 🔄 Init Cache
         uses: ./.github/actions/npm-cache
 
       - name: ⏬ Download foundations build
-        uses: actions/download-artifact@v5
+        uses: actions/download-artifact@v7
         with:
           name: db-ux-foundations-build
           path: packages/foundations/build
 
       - name: ⏬ Download output
-        uses: actions/download-artifact@v5
+        uses: actions/download-artifact@v7
         with:
           name: db-ux-output
           path: output
 
       - name: ⏬ Download components styles build
-        uses: actions/download-artifact@v5
+        uses: actions/download-artifact@v7
         with:
           name: db-ux-components-build
           path: packages/components/build
 
       - name: ⏬ Download ${{ inputs.showcase }}
-        uses: actions/download-artifact@v5
+        uses: actions/download-artifact@v7
         with:
           name: db-ux-${{ inputs.showcase }}
           path: build-showcases/${{ inputs.showcase }}
@@ -77,8 +65,7 @@ jobs:
       # We test everything for patternhub and main branch
       - name: 👩‍🔬 Test showcase with Playwright 🎭
         shell: bash
-        # TODO: we need to find a more stable solution / https://github.com/db-ux-design-system/core-web/issues/4910
-        # if: github.event.pull_request == null
+        if: github.event.pull_request == null
         env:
           NEXT_PUBLIC_BASE_PATH: ${{ inputs.path }}
         run: |
@@ -90,11 +77,14 @@ jobs:
         shell: bash
         if: github.event.pull_request != null
         run: |
-          pnpm --filter=${{ inputs.showcase }} run test:aria-snapshots --shard=${{ matrix.shardIndex }}/${{ matrix.shardTotal }} --update-snapshots
-          OUTPUT=$(pnpm exec tsx scripts/github/snapshot-changes/check-aria.ts)
-          echo "aria-snapshots-changed=$OUTPUT" >> $GITHUB_OUTPUT
-          OUTPUT=$(pnpm exec tsx scripts/github/snapshot-changes/check-main-aria.ts)
-          echo "aria-snapshots-changed-to-main=$OUTPUT" >> $GITHUB_OUTPUT
+          pnpm --filter=${{ inputs.showcase }} run test:aria-snapshots --shard=${{ matrix.shardIndex }}/${{ matrix.shardTotal }}
+
+      - name: 👩‍🔬 Test visual-snapshots with Playwright 🎭
+        id: visual-snapshots
+        shell: bash
+        if: github.event.pull_request != null
+        run: |
+          pnpm --filter=${{ inputs.showcase }} run test:visual-snapshots --shard=${{ matrix.shardIndex }}/${{ matrix.shardTotal }}
 
       - name: 👩‍🔬 Test axe-core with Playwright 🎭
         shell: bash
@@ -102,20 +92,11 @@ jobs:
         run: |
           pnpm --filter=${{ inputs.showcase }} run test:axe-core --shard=${{ matrix.shardIndex }}/${{ matrix.shardTotal }}
 
-      - name: 👩‍🔬 Test visual-snapshots with Playwright 🎭
-        id: visual-snapshots
-        shell: bash
-        if: github.event.pull_request != null
-        run: |
-          pnpm --filter=${{ inputs.showcase }} run test:visual-snapshots --shard=${{ matrix.shardIndex }}/${{ matrix.shardTotal }} --update-snapshots
-          OUTPUT=$(pnpm exec tsx scripts/github/snapshot-changes/check-visual.ts)
-          echo "visual-snapshots-changed=$OUTPUT" >> $GITHUB_OUTPUT
-
       - name: 👩‍🔬 Test a11y-checker with Playwright 🎭
         shell: bash
         if: |
           github.event.pull_request != null &&
-          steps.aria-snapshots.outputs.aria-snapshots-changed-to-main=='true'
+          inputs.test-ally == 'true'
         run: |
           pnpm --filter=${{ inputs.showcase }} run test:a11y-checker --shard=${{ matrix.shardIndex }}/${{ matrix.shardTotal }}
 
@@ -126,8 +107,8 @@ jobs:
           pnpm exec playwright merge-reports --reporter github ./blob-report
 
       - name: 🆙 Upload test results
-        if: failure()
-        uses: actions/upload-artifact@v4
+        if: ${{ failure() }}
+        uses: actions/upload-artifact@v6
         with:
           name: ${{ inputs.showcase }}-playwright-results-${{ matrix.shardIndex }}
           path: ./showcases/${{ inputs.showcase }}/test-results

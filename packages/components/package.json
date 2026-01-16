@@ -1,16 +1,17 @@
 {
   "name": "@db-ux/core-components",
-  "version": "3.1.17",
+  "version": "4.3.0",
   "type": "module",
-  "description": "",
+  "description": "General technical components (styling, fonts and icons) out of DB UX Design System (Version 3)",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/db-ux-design-system/core-web.git"
   },
-  "author": "General technical components out of DB UX Design System (Version 3)",
+  "author": "DB Systel GmbH",
   "license": "Apache-2.0",
   "files": [
     "CHANGELOG.md",
+    "agent",
     "build"
   ],
   "scripts": {
@@ -28,6 +29,8 @@
     "compile:vue": "mitosis build --config configs/vue/mitosis.config.cjs && tsx scripts/exec/vue.ts && cpr ../../output/tmp/vue/src ../../output/vue/src --overwrite",
     "copy-assets": "cpr ../foundations/assets build/assets -o",
     "copy-output": "pnpm run '/^copy:[^:]*$/'",
+    "copy:agent": "cpr agent ../../build-outputs/components/agent --overwrite",
+    "copy:changelog": "cpr CHANGELOG.md ../../build-outputs/components/CHANGELOG.md --overwrite",
     "copy:outputs": "cpr build ../../build-outputs/components/build --overwrite",
     "copy:package.json": "cpr package.json ../../build-outputs/components/package.json --overwrite",
     "copy:readme": "cpr README.md ../../build-outputs/components/README.md --overwrite",
@@ -37,6 +40,7 @@
     "dev:scss": "pnpm run build-style:01_sass --watch --source-map",
     "dev:stencil": "nodemon --watch src --watch scripts --ext tsx,ts --exec \"pnpm run compile:stencil\"",
     "dev:vue": "nodemon --watch src --watch scripts --ext tsx,ts --exec \"pnpm run compile:vue\"",
+    "generate:agent": "mitosis build --config=configs/mitosis.agent.config.cjs",
     "generate:component": "hygen mitosis new",
     "generate:docs": "hygen update-docs new",
     "prepack": "pnpm run copy-assets",
@@ -49,13 +53,14 @@
     "@builder.io/eslint-plugin-mitosis": "0.0.17",
     "@builder.io/mitosis": "0.12.1",
     "@builder.io/mitosis-cli": "0.12.1",
-    "@typescript-eslint/eslint-plugin": "8.45.0",
+    "@typescript-eslint/eslint-plugin": "8.52.0",
     "cpr": "3.0.1",
-    "cssnano": "7.1.1",
+    "cssnano": "7.1.2",
     "hygen": "6.2.11",
-    "nodemon": "3.1.10",
-    "sass": "1.85.0",
-    "tsx": "4.20.6"
+    "nodemon": "3.1.11",
+    "sass": "1.85.1",
+    "sassdoc": "2.7.4",
+    "tsx": "4.21.0"
   },
   "publishConfig": {
     "registry": "https://registry.npmjs.org/",

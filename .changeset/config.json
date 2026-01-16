@@ -1,6 +1,9 @@
 {
 	"$schema": "https://unpkg.com/@changesets/config/schema.json",
-	"changelog": "@changesets/changelog-git",
+	"changelog": [
+		"scripts/github/changesets/create-changelog.js",
+		{ "owner": "db-ux-design-system", "repo": "core-web" }
+	],
 	"commit": false,
 	"fixed": [
 		[
@@ -11,12 +14,25 @@
 			"@db-ux/v-core-components",
 			"@db-ux/wc-core-components",
 			"@db-ux/core-stylelint",
-			"@db-ux/core-migration"
+			"@db-ux/core-migration",
+			"@db-ux/agent-cli"
 		]
 	],
-	"ignore": ["scripts"],
+	"ignore": [
+		"scripts",
+		"@db-ux/docs",
+		"@db-ux/e2e",
+		"angular-showcase",
+		"angular-ssr-showcase",
+		"next-showcase",
+		"nuxt-showcase",
+		"patternhub",
+		"react-showcase",
+		"stencil-showcase",
+		"vue-showcase"
+	],
 	"linked": [],
 	"access": "public",
-	"baseBranch": "main",
+	"baseBranch": "origin/main",
 	"updateInternalDependencies": "patch"
 }

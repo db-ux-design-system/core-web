@@ -2,7 +2,7 @@
   "name": "vue-showcase",
   "version": "0.0.0",
   "type": "module",
-  "description": "A Vue 3 Showcase for Sa11y",
+  "description": "Vue showcase",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/db-ux-design-system/core-web.git"
@@ -20,18 +20,19 @@
     "test:aria-snapshots": "cross-env showcase=vue-showcase pnpm exec playwright test --config=../playwright.aria-snapshots.ts",
     "test:axe-core": "cross-env showcase=vue-showcase pnpm exec playwright test --config=../playwright.axe-core.ts",
     "test:e2e": "cross-env showcase=vue-showcase pnpm exec playwright test --config=../playwright.config.ts",
+    "test:e2e:ui": "cross-env showcase=vue-showcase pnpm exec playwright test --config=../playwright.config.ts --ui",
     "test:visual-snapshots": "cross-env showcase=vue-showcase pnpm exec playwright test --config=../playwright.visual-snapshots.ts"
   },
   "dependencies": {
-    "sa11y": "4.3.2",
-    "vue": "3.5.22",
-    "vue-router": "4.5.1"
+    "sa11y": "4.4.1",
+    "vue": "3.5.26",
+    "vue-router": "4.6.4"
   },
   "devDependencies": {
-    "@vitejs/plugin-vue": "6.0.1",
+    "@vitejs/plugin-vue": "6.0.3",
     "cross-env": "10.1.0",
-    "typescript": "5.8.3",
-    "vite": "7.1.7",
-    "vue-tsc": "3.1.0"
+    "typescript": "5.9.3",
+    "vite": "7.3.1",
+    "vue-tsc": "3.2.2"
   }
 }

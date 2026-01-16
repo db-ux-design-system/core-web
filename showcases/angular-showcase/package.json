@@ -1,7 +1,7 @@
 {
   "name": "angular-showcase",
   "version": "0.0.0",
-  "description": "An Angular-based showcase for demonstrating UI components.",
+  "description": "Angular showcase",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/db-ux-design-system/core-web.git"
@@ -24,9 +24,9 @@
     "watch": "ng build --watch --configuration development"
   },
   "dependencies": {
-    "sa11y": "4.3.2"
+    "sa11y": "4.4.1"
   },
   "devDependencies": {
-    "typescript": "5.8.3"
+    "typescript": "5.9.3"
   }
 }

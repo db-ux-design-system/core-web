@@ -1,17 +1,20 @@
 import {
 	ChangeEventProps,
 	ChangeEventState,
-	EmphasisProps,
 	FocusEventProps,
 	FocusEventState,
 	FormCheckProps,
+	FormMessageProps,
 	FormProps,
 	FormState,
+	FromValidState,
+	GeneralKeyboardEvent,
 	GlobalProps,
 	GlobalState,
 	IconLeadingProps,
 	IconProps,
 	IconTrailingProps,
+	LabelVariantHorizontalType,
 	SizeProps
 } from '../../shared/model';
 
@@ -20,24 +23,32 @@ export type DBSwitchDefaultProps = {
 	 * Add additional icons to indicate active/inactive state.
 	 */
 	visualAid?: boolean | string;
+
+	/**
+	 * Change the variant of the label to `trailing` or `leading`. Defaults to `trailing`
+	 */
+	variant?: LabelVariantHorizontalType;
 };
 
-export type DBSwitchProps = DBSwitchDefaultProps &
-	GlobalProps &
+export type DBSwitchProps = GlobalProps &
 	ChangeEventProps<HTMLInputElement> &
 	FocusEventProps<HTMLInputElement> &
 	FormProps &
 	FormCheckProps &
-	EmphasisProps &
+	FormMessageProps &
 	SizeProps &
 	IconProps &
 	IconTrailingProps &
-	IconLeadingProps;
+	IconLeadingProps &
+	DBSwitchDefaultProps;
 
-export type DBSwitchDefaultState = {};
+export type DBSwitchDefaultState = {
+	handleKeyDown: (event: GeneralKeyboardEvent<HTMLInputElement>) => void;
+};
 
 export type DBSwitchState = DBSwitchDefaultState &
 	GlobalState &
 	ChangeEventState<HTMLInputElement> &
 	FocusEventState<HTMLInputElement> &
-	FormState;
+	FormState &
+	FromValidState;

@@ -99,7 +99,7 @@ export type DBCustomSelectDefaultProps = {
 	/**
 	 * Overwrite the default aria-label (props.label) for the custom-select-list
 	 */
-	ariaListLabel?: string;
+	listLabel?: string;
 
 	/**
 	 * Label for the clear selection button
@@ -190,6 +190,12 @@ export type DBCustomSelectDefaultProps = {
 	 * You need to define the empty state as well based on selected options.
 	 */
 	selectedLabels?: string;
+
+	/**
+	 * Optional: Prefix text announced by screen readers before the selection
+	 * (e.g., "Ausgewählt" or "Selected").
+	 */
+	selectedPrefix?: string;
 
 	/**
 	 * Change the selected type for values shown in multi select

@@ -92,7 +92,7 @@
 		"name": "Variant",
 		"examples": [
 			{
-				"name": "(Default) Label Above",
+				"name": "(Default) Above",
 				"style": {
 					"width": "300px"
 				},
@@ -115,7 +115,7 @@
 						}
 					],
 					"label": "Label",
-					"placeholder": "(Default) Label Above"
+					"placeholder": "(Default) Above"
 				}
 			},
 			{
@@ -126,7 +126,7 @@
 				"props": {
 					"options": [
 						{
-							"value": "Floating Label",
+							"value": "Floating",
 							"selected": true
 						},
 						{
@@ -135,8 +135,8 @@
 					],
 					"label": "Label",
 					"variant": "floating",
-					"value": "Floating Label",
-					"placeholder": "Floating Label"
+					"value": "Floating",
+					"placeholder": "Floating"
 				}
 			}
 		]
@@ -785,6 +785,36 @@
 					"variant": "floating",
 					"value": "Disabled",
 					"placeholder": "Disabled"
+				}
+			},
+			{
+				"name": "Invalid",
+				"style": {
+					"width": "300px"
+				},
+				"props": {
+					"options": [
+						{
+							"value": "Option 1"
+						},
+						{
+							"value": "Option 2"
+						},
+						{
+							"value": "Option 3"
+						},
+						{
+							"value": "Option 4"
+						},
+						{
+							"value": "Option 5"
+						}
+					],
+					"label": "Label",
+					"placeholder": "Invalid",
+					"variant": "floating",
+					"validation": "invalid",
+					"invalidMessage": "Invalid Message"
 				}
 			}
 		]

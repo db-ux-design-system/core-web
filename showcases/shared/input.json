@@ -29,17 +29,17 @@
 		"name": "Variant",
 		"examples": [
 			{
-				"name": "(Default) Label Above",
+				"name": "(Default) Above",
 				"props": {
 					"label": "Label"
 				}
 			},
 			{
-				"name": "Floating Label",
+				"name": "Floating",
 				"props": {
 					"label": "Label",
 					"variant": "floating",
-					"value": "Floating Label"
+					"value": "Floating"
 				}
 			}
 		]
@@ -426,6 +426,15 @@
 					"label": "Label",
 					"value": "Readonly - Filled",
 					"readOnly": true,
+					"variant": "floating"
+				}
+			},
+			{
+				"name": "Invalid",
+				"props": {
+					"label": "Label",
+					"validation": "invalid",
+					"invalidMessage": "Invalid Message",
 					"variant": "floating"
 				}
 			}

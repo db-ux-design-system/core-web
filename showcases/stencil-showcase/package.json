@@ -1,7 +1,7 @@
 {
   "name": "stencil-showcase",
   "version": "0.0.0",
-  "description": "Showcase for Stencil web components",
+  "description": "Stencil showcase",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/db-ux-design-system/core-web.git"
@@ -10,12 +10,13 @@
   "private": true,
   "files": [],
   "scripts": {
-    "build": "ng build",
+    "build": "pnpm run '/^build:[^:]*$/'",
+    "build:_stencil": "pnpm --filter @db-ux/wc-core-components run build",
+    "build:angular": "ng build",
     "dev": "pnpm --parallel run '/^dev:[^:]*$/'",
     "dev:angular": "pnpm run start --open",
-    "dev:stencil": "pnpm --filter=@db-ux/wc-core-components run start",
+    "dev:stencil": "pnpm --filter @db-ux/wc-core-components run start",
     "ng": "ng",
-    "prebuild": "pnpm --filter=@db-ux/wc-core-components run build",
     "preview": "pnpm exec http-server ../../build-showcases",
     "start": "ng serve --port 4202 --serve-path stencil-showcase",
     "test:a11y-checker": "cross-env showcase=stencil-showcase pnpm exec playwright test --config=../playwright.a11y-checker.ts",
@@ -27,11 +28,11 @@
     "watch": "ng build --watch --configuration development"
   },
   "dependencies": {
-    "@stencil/core": "4.37.1"
+    "@stencil/core": "4.41.1"
   },
   "devDependencies": {
     "npm-run-all2": "8.0.4",
-    "typescript": "5.8.3"
+    "typescript": "5.9.3"
   },
   "overrides": {
     "cross-spawn": "7.0.6"

@@ -55,6 +55,7 @@ import { environment } from '../../../environments/environment';
 export class FormComponent {
 	// DB Switch with Angular signals
 	checkedSignal = signal(false);
+	checkedNonSignal = false;
 
 	array = ['X', 'Y', 'Z'];
 	radio = '';
@@ -110,7 +111,7 @@ export class FormComponent {
 		this.model.checkbox2 = false;
 		this.form.get('input')?.setValue('reset');
 		this.form.get('textarea')?.setValue('reset');
-		this.form.get('dateinput')?.setValue('reset');
+		this.form.get('dateinput')?.setValue('');
 		this.form.get('checkbox')?.setValue(false);
 	}
 
@@ -158,6 +159,8 @@ export class FormComponent {
 	}
 
 	handleChange(event: any) {
+		console.log(event.currentTarget);
 		this.checkedSignal.set(event.target.checked);
+		this.checkedNonSignal = event.target.checked;
 	}
 }
