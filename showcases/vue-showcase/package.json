@@ -2,6 +2,12 @@
   "name": "vue-showcase",
   "version": "0.0.0",
   "type": "module",
+  "description": "Vue showcase",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/db-ux-design-system/core-web.git"
+  },
+  "license": "Apache-2.0",
   "private": true,
   "scripts": {
     "build": "npm-run-all build:*",
@@ -17,7 +23,7 @@
     "test:visual-snapshots": "cross-env showcase=vue-showcase npx playwright test --config=../playwright.visual-snapshots.ts"
   },
   "dependencies": {
-    "sa11y": "4.3.5",
+    "sa11y": "4.4.1",
     "vue": "3.5.26",
     "vue-router": "4.6.4"
   },
@@ -25,7 +31,7 @@
     "@vitejs/plugin-vue": "6.0.3",
     "cross-env": "10.1.0",
     "typescript": "5.9.3",
-    "vite": "7.3.0",
-    "vue-tsc": "3.1.8"
+    "vite": "7.3.1",
+    "vue-tsc": "3.2.2"
   }
 }
