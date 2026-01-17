@@ -4,8 +4,8 @@ import {
 	DBTabList,
 	DBTabPanel,
 	DBTabs
-} from '../../../../../output/react/src';
-import type { DBTabsProps } from '../../../../../output/react/src/components/tabs/model';
+} from '@components';
+import type { DBTabsProps } from '@components/src/components/tabs/model';
 import defaultComponentVariants from '../../../../shared/tabs.json';
 import { type BaseComponentProps } from '../base-component-data';
 import { getVariants } from '../data';
