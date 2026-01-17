@@ -1,5 +1,5 @@
-import { DBDivider, DBInfotext } from '../../../../../output/react/src';
-import { type DBDividerProps } from '../../../../../output/react/src/components/divider/model';
+import { DBDivider, DBInfotext } from '@components';
+import { type DBDividerProps } from '@components/src/components/divider/model';
 import defaultComponentVariants from '../../../../shared/divider.json';
 import { type BaseComponentProps } from '../base-component-data';
 import { getVariants } from '../data';
