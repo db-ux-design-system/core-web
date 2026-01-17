@@ -1,4 +1,3 @@
-import { useEffect, useState } from 'react';
 import {
 	DBAccordion,
 	DBAccordionItem,
@@ -18,11 +17,9 @@ import {
 	DBTag,
 	DBTextarea,
 	DBTooltip
-} from '../../../../../output/react/src';
-import type {
-	ChangeEvent,
-	ValueLabelType
-} from '../../../../../output/react/src/shared/model';
+} from '@components';
+import type { ChangeEvent, ValueLabelType } from '@components/src/shared/model';
+import { useEffect, useState } from 'react';
 
 const FormComponent = () => {
 	const [input, setInput] = useState('');
@@ -37,7 +34,7 @@ const FormComponent = () => {
 	const [accordionItems, setAccordionItems] = useState<ValueLabelType[]>();
 	const [tabsTest, setTabsTest] = useState<boolean>(false);
 
-	const [multiSelectValue, setMultiSelectValue] = useState<
+	const [customSelectValue, setCustomSelectValue] = useState<
 		string[] | undefined
 	>(['o2']);
 
@@ -527,16 +524,16 @@ const FormComponent = () => {
 						selectAllLabel="Select all"
 						searchLabel="Search"
 						noResultsText="No matching filter"
-						values={multiSelectValue}
+						values={customSelectValue}
 						onOptionSelected={(value) => {
-							setMultiSelectValue(value);
+							setCustomSelectValue(value);
 						}}
 					/>
 					<DBButton
 						onClick={() => {
-							setMultiSelectValue([]);
+							setCustomSelectValue([]);
 						}}>
-						Reset Multiselect
+						Reset CustomSelect
 					</DBButton>
 					<DBButton type="submit">Submit</DBButton>
 				</form>
