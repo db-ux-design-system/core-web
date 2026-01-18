@@ -264,3 +264,13 @@
     - option "Disabled" [selected]
     - option "Option 2"
   - status
+  - text: Label
+  - combobox "Label":
+    - option [selected]
+    - option "Option 1"
+    - option "Option 2"
+    - option "Option 3"
+    - option "Option 4"
+    - option "Option 5"
+  - text: Invalid Invalid Message
+  - status

@@ -129,7 +129,9 @@ updates:
           - "major"
       storybook:
         patterns:
+          - "storybook"
           - "@storybook*"
+          - "*-storybook"
         update-types:
           - "minor"
           - "major"

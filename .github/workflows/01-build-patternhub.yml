@@ -17,25 +17,25 @@ jobs:
     runs-on: ubuntu-24.04 # Use Ubuntu 24.04 explicitly
     steps:
       - name: ⏬ Checkout repo
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
 
       - name: 🔄 Init Cache
         uses: ./.github/actions/npm-cache
 
       - name: ⏬ Download foundations build
-        uses: actions/download-artifact@v6
+        uses: actions/download-artifact@v7
         with:
           name: db-ux-foundations-build
           path: packages/foundations/build
 
       - name: ⏬ Download output
-        uses: actions/download-artifact@v6
+        uses: actions/download-artifact@v7
         with:
           name: db-ux-output
           path: output
 
       - name: ⏬ Download components build
-        uses: actions/download-artifact@v6
+        uses: actions/download-artifact@v7
         with:
           name: db-ux-components-build
           path: packages/components/build
@@ -54,7 +54,7 @@ jobs:
           echo "path=${NEXT_PUBLIC_BASE_PATH}" >> $GITHUB_OUTPUT
 
       - name: ⏫ Upload Patternhub
-        uses: actions/upload-artifact@v5
+        uses: actions/upload-artifact@v6
         with:
           name: db-ux-patternhub
           path: build-showcases/patternhub
