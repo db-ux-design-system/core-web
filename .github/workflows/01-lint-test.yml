@@ -16,7 +16,7 @@ jobs:
         command: ["lint", "test"]
     steps:
       - name: ⏬️ Checkout repo
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
 
       - name: 🔄 Init Cache
         uses: ./.github/actions/npm-cache
@@ -24,7 +24,7 @@ jobs:
       - name: ⚡ Run Lint
         if: ${{ matrix.command == 'lint' }}
         run: |
-          npm run postinstall --workspace=nuxt-showcase
+          npm run nuxt:prepare --workspace=nuxt-showcase
           npm run build --workspace=@db-ux/core-stylelint
           npm run lint
 
