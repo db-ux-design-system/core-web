@@ -1,0 +1,6 @@
+# www.robotstxt.org/
+# https://github.com/h5bp/html5-boilerplate/blob/master/src/doc/misc.md#robotstxt
+
+# Allow crawling of all content
+User-agent: *
+Disallow: /
