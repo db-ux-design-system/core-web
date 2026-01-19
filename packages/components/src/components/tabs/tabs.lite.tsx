@@ -19,12 +19,21 @@ import { DBSimpleTabProps, DBTabsProps, DBTabsState } from './model';
 useMetadata({});
 useDefaultProps<DBTabsProps>({});
 
+const getInitialId = (id?: string) => {
+	return id || 'tabs-' + uuid();
+};
+
+const getInitialName = (name?: string) => {
+	return `tabs-${name || uuid()}`;
+};
+
 export default function DBTabs(props: DBTabsProps) {
 	const _ref = useRef<HTMLDivElement | any>(null);
 
 	const state = useStore<DBTabsState>({
-		_id: props.id || 'tabs-' + uuid(),
-		_name: `tabs-${props.name || uuid()}`,
+		_id: getInitialId(props.id),
+		_name: getInitialName(props.name),
+
 		activeTabIndex: 0,
 		initialized: false,
 		showScrollLeft: false,
@@ -212,6 +221,21 @@ export default function DBTabs(props: DBTabsProps) {
 
 		state.initialized = true;
 	});
+
+	onUpdate(() => {
+		if (props.id && state._id !== props.id) {
+			state._id = props.id;
+		}
+	}, [props.id]);
+
+	onUpdate(() => {
+		if (props.name) {
+			const newName = `tabs-${props.name}`;
+			if (state._name !== newName) {
+				state._name = newName;
+			}
+		}
+	}, [props.name]);
 
 	// Clean up the ResizeObserver to prevent memory leaks when the component unmounts
 	onUnMount(() => {
