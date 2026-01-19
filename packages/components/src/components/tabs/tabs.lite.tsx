@@ -23,8 +23,8 @@ export default function DBTabs(props: DBTabsProps) {
 	const _ref = useRef<HTMLDivElement | any>(null);
 
 	const state = useStore<DBTabsState>({
-		_id: props.id || 'tabs-' + uuid(),
-		_name: 'tabs-' + (props.name || uuid()),
+		_id: 'tabs-base-id',
+		_name: 'tabs-base-name',
 
 		activeTabIndex: 0,
 		initialized: false,
@@ -59,7 +59,6 @@ export default function DBTabs(props: DBTabsProps) {
 		// Determines the visibility of scroll buttons based on the container's scroll position
 		evaluateScrollButtons(tList: Element) {
 			const needsScroll = tList.scrollWidth > tList.clientWidth;
-
 			state.showScrollLeft = needsScroll && tList.scrollLeft > 1;
 			state.showScrollRight =
 				needsScroll &&
@@ -100,7 +99,6 @@ export default function DBTabs(props: DBTabsProps) {
 							container.addEventListener('scroll', () => {
 								state.evaluateScrollButtons(container);
 							});
-							// Use ResizeObserver to re-evaluate scroll buttons because it provides more accurate, container-specific resize detection than global window resize events.
 							if (!state._resizeObserver) {
 								const observer = new ResizeObserver(() => {
 									state.evaluateScrollButtons(container);
@@ -204,14 +202,9 @@ export default function DBTabs(props: DBTabsProps) {
 		}
 	});
 
-	// Initialize unique IDs and determine the starting active tab index
 	onMount(() => {
-		if (props.id) {
-			state._id = props.id;
-		}
-		if (props.name) {
-			state._name = `tabs-${props.name}`;
-		}
+		state._id = props.id || 'tabs-' + uuid();
+		state._name = 'tabs-' + (props.name || uuid());
 
 		if (props.initialSelectedIndex !== undefined) {
 			const parsedIndex = Number(props.initialSelectedIndex);
