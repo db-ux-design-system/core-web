@@ -12,5 +12,8 @@ export default {
 	'**/package.json': [
 		() => 'pnpm install --lockfile-only --ignore-scripts',
 		'pnpm run lint:package-json'
+	],
+	'*.{md,mdx,txt,yml,yaml,ts,tsx,js,jsx,html,css,scss,sass,vue}': [
+		() => 'pnpm run lint:codespell'
 	]
 };

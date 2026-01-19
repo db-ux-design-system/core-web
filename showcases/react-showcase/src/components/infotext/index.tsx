@@ -1,5 +1,5 @@
-import { DBInfotext } from '../../../../../output/react/src';
-import { type DBInfotextProps } from '../../../../../output/react/src/components/infotext/model';
+import { DBInfotext } from '@components';
+import { type DBInfotextProps } from '@components/src/components/infotext/model';
 import defaultComponentVariants from '../../../../shared/infotext.json';
 import { type BaseComponentProps } from '../base-component-data';
 import { getVariants } from '../data';

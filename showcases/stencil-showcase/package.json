@@ -11,7 +11,7 @@
   "files": [],
   "scripts": {
     "build": "pnpm run '/^build:[^:]*$/'",
-    "build:_stencil": "pnpm --filter @db-ux/wc-core-components run build",
+    "build:_stencil": "pnpm --filter @db-ux/wc-core-components run dev-build",
     "build:angular": "ng build",
     "dev": "pnpm --parallel run '/^dev:[^:]*$/'",
     "dev:angular": "pnpm run start --open",
@@ -28,7 +28,7 @@
     "watch": "ng build --watch --configuration development"
   },
   "dependencies": {
-    "@stencil/core": "4.41.1"
+    "@stencil/core": "4.41.2"
   },
   "devDependencies": {
     "npm-run-all2": "8.0.4",
