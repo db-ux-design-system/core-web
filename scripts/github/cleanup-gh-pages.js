@@ -44,6 +44,7 @@ const cleanUpPages = async ({ github, context }) => {
 	const branches = await github.rest.repos.listBranches({
 		owner,
 		repo,
+		// eslint-disable-next-line camelcase
 		per_page: 100
 	});
 	const tags = await github.rest.repos.listTags({
