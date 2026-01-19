@@ -63,7 +63,7 @@ export default function DBTabItem(props: DBTabItemProps) {
 		}
 	});
 
-	// Disconnect the oberserver
+	// Disconnect the observer
 	onUnMount(() => {
 		state._observer?.disconnect();
 	});
