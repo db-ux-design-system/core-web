@@ -54,7 +54,7 @@ jobs:
         env:
           BASE_URL: ${{ inputs.baseUrl }}
         run: |
-          pnpm --workspace=${{ inputs.storybook }} run build
+          pnpm --filter=${{ inputs.storybook }} run build
 
       - name: ⏫ Upload ${{ inputs.storybook }}
         uses: actions/upload-artifact@v6
