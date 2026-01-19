@@ -23,8 +23,8 @@ export default function DBTabs(props: DBTabsProps) {
 	const _ref = useRef<HTMLDivElement | any>(null);
 
 	const state = useStore<DBTabsState>({
-		_id: props.id || 'tabs-' + uuid(),
-		_name: 'tabs-' + (props.name || uuid()),
+		_id: 'tabs-' + uuid(),
+		_name: 'tabs-' + uuid(),
 
 		activeTabIndex: 0,
 		initialized: false,
@@ -204,6 +204,13 @@ export default function DBTabs(props: DBTabsProps) {
 
 	// Initialize unique IDs and determine the starting active tab index
 	onMount(() => {
+		if (props.id) {
+			state._id = props.id;
+		}
+		if (props.name) {
+			state._name = `tabs-${props.name}`;
+		}
+
 		if (props.initialSelectedIndex !== undefined) {
 			const parsedIndex = Number(props.initialSelectedIndex);
 			state.activeTabIndex = isNaN(parsedIndex) ? 0 : parsedIndex;
@@ -261,7 +268,7 @@ export default function DBTabs(props: DBTabsProps) {
 	return (
 		<div
 			ref={_ref}
-			id={state._id}
+			id={props.id ?? state._id}
 			class={cls('db-tabs', props.className)}
 			data-orientation={props.orientation}
 			data-scroll-behavior={props.behavior}
@@ -284,8 +291,8 @@ export default function DBTabs(props: DBTabsProps) {
 						{(tab: DBSimpleTabProps, index: number) => (
 							<DBTabItem
 								key={props.name + 'tab-item' + index}
-								id={`${state._name}-tab-${index}`}
-								ariaControls={`${state._name}-tab-panel-${index}`}
+								id={`${props.name ? `tabs-${props.name}` : state._name}-tab-${index}`}
+								ariaControls={`${props.name ? `tabs-${props.name}` : state._name}-tab-panel-${index}`}
 								active={state.activeTabIndex === index}
 								tabIndex={
 									state.activeTabIndex === index ||
@@ -306,8 +313,8 @@ export default function DBTabs(props: DBTabsProps) {
 					{(tab: DBSimpleTabProps, index: number) => (
 						<DBTabPanel
 							key={props.name + 'tab-panel' + index}
-							id={`${state._name}-tab-panel-${index}`}
-							ariaLabelledby={`${state._name}-tab-${index}`}
+							id={`${props.name ? `tabs-${props.name}` : state._name}-tab-panel-${index}`}
+							ariaLabelledby={`${props.name ? `tabs-${props.name}` : state._name}-tab-${index}`}
 							content={tab.content}
 							hidden={state.activeTabIndex !== index}>
 							{tab.children}
