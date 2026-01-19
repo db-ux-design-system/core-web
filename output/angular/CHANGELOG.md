@@ -1,5 +1,15 @@
 # @db-ux/ngx-core-components
 
+## 4.3.0
+
+### Minor Changes
+
+- _version bump_ (staying in sync with the Figma library) - [see commit 59ded0f](https://github.com/db-ux-design-system/core-web/commit/59ded0faa77d9840fe90e032a3ba8a6946206fab)
+
+### Patch Changes
+
+- fix(input): support `step`-HTML-attribute/-property with `"any"` value for `number` inputs - [see commit 748d1af](https://github.com/db-ux-design-system/core-web/commit/748d1af8ca38c8c10ea134ef23b2846e047186a6)
+
 ## 4.2.6
 
 ### Patch Changes

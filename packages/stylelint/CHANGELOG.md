@@ -1,9 +1,14 @@
 # @db-ux/core-stylelint
 
+## 4.3.0
+
+### Minor Changes
+
+- _version bump_ (staying in sync with the Figma library) - [see commit 59ded0f](https://github.com/db-ux-design-system/core-web/commit/59ded0faa77d9840fe90e032a3ba8a6946206fab)
+
 ## 4.2.6
 
 _version bump_
-
 
 ## 4.2.5
 
