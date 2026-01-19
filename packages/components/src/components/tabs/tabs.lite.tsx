@@ -23,7 +23,7 @@ export default function DBTabs(props: DBTabsProps) {
 	const _ref = useRef<HTMLDivElement | any>(null);
 
 	const state = useStore<DBTabsState>({
-		_id: 'tabs-base-id',
+		=_id: 'tabs-base-id',
 		_name: 'tabs-base-name',
 
 		activeTabIndex: 0,
@@ -32,16 +32,6 @@ export default function DBTabs(props: DBTabsProps) {
 		showScrollRight: false,
 		scrollContainer: null,
 		_resizeObserver: undefined,
-
-		getTabId(index: number) {
-			const prefix = props.name ? `tabs-${props.name}` : state._name;
-			return `${prefix}-tab-${index}`;
-		},
-
-		getPanelId(index: number) {
-			const prefix = props.name ? `tabs-${props.name}` : state._name;
-			return `${prefix}-tab-panel-${index}`;
-		},
 
 		activateTab(index: number) {
 			state.activeTabIndex = index;
@@ -212,6 +202,7 @@ export default function DBTabs(props: DBTabsProps) {
 	});
 
 	onMount(() => {
+		// Echte IDs zur Laufzeit setzen
 		state._id = props.id || 'tabs-' + uuid();
 		state._name = 'tabs-' + (props.name || uuid());
 
@@ -295,8 +286,8 @@ export default function DBTabs(props: DBTabsProps) {
 						{(tab: DBSimpleTabProps, index: number) => (
 							<DBTabItem
 								key={props.name + 'tab-item' + index}
-								id={state.getTabId(index)}
-								ariaControls={state.getPanelId(index)}
+								id={`${props.name ? 'tabs-' + props.name : state._name}-tab-${index}`}
+								ariaControls={`${props.name ? 'tabs-' + props.name : state._name}-tab-panel-${index}`}
 								active={state.activeTabIndex === index}
 								tabIndex={
 									state.activeTabIndex === index ||
@@ -317,8 +308,8 @@ export default function DBTabs(props: DBTabsProps) {
 					{(tab: DBSimpleTabProps, index: number) => (
 						<DBTabPanel
 							key={props.name + 'tab-panel' + index}
-							id={state.getPanelId(index)}
-							ariaLabelledby={state.getTabId(index)}
+							id={`${props.name ? 'tabs-' + props.name : state._name}-tab-panel-${index}`}
+							ariaLabelledby={`${props.name ? 'tabs-' + props.name : state._name}-tab-${index}`}
 							content={tab.content}
 							hidden={state.activeTabIndex !== index}>
 							{tab.children}
