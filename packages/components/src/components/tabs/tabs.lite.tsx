@@ -33,7 +33,16 @@ export default function DBTabs(props: DBTabsProps) {
 		scrollContainer: null,
 		_resizeObserver: undefined,
 
-		// Activates a specific tab by index and triggers the change callback
+		getTabId(index: number) {
+			const prefix = props.name ? `tabs-${props.name}` : state._name;
+			return `${prefix}-tab-${index}`;
+		},
+
+		getPanelId(index: number) {
+			const prefix = props.name ? `tabs-${props.name}` : state._name;
+			return `${prefix}-tab-panel-${index}`;
+		},
+
 		activateTab(index: number) {
 			state.activeTabIndex = index;
 			if (props.onIndexChange) {
@@ -286,8 +295,8 @@ export default function DBTabs(props: DBTabsProps) {
 						{(tab: DBSimpleTabProps, index: number) => (
 							<DBTabItem
 								key={props.name + 'tab-item' + index}
-								id={`${props.name ? `tabs-${props.name}` : state._name}-tab-${index}`}
-								ariaControls={`${props.name ? `tabs-${props.name}` : state._name}-tab-panel-${index}`}
+								id={state.getTabId(index)}
+								ariaControls={state.getPanelId(index)}
 								active={state.activeTabIndex === index}
 								tabIndex={
 									state.activeTabIndex === index ||
@@ -308,8 +317,8 @@ export default function DBTabs(props: DBTabsProps) {
 					{(tab: DBSimpleTabProps, index: number) => (
 						<DBTabPanel
 							key={props.name + 'tab-panel' + index}
-							id={`${props.name ? `tabs-${props.name}` : state._name}-tab-panel-${index}`}
-							ariaLabelledby={`${props.name ? `tabs-${props.name}` : state._name}-tab-${index}`}
+							id={state.getPanelId(index)}
+							ariaLabelledby={state.getTabId(index)}
 							content={tab.content}
 							hidden={state.activeTabIndex !== index}>
 							{tab.children}
