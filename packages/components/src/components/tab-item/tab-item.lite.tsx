@@ -20,7 +20,7 @@ export default function DBTabItem(props: DBTabItemProps) {
 	const _ref = useRef<HTMLButtonElement | any>(null);
 
 	const state = useStore<DBTabItemState>({
-		internalActive: false,
+		internalActive: getBoolean(props.active) || false,
 		disabled: false,
 		_observer: null,
 		handleClick: (event: any) => {
@@ -129,6 +129,7 @@ export default function DBTabItem(props: DBTabItemProps) {
 				aria-selected={state.internalActive ? 'true' : 'false'}
 				aria-controls={props.ariaControls}
 				disabled={state.disabled ? true : undefined}
+				tabIndex={props.tabIndex}
 				id={props.id}
 				class={cls(
 					'db-tab-button',
