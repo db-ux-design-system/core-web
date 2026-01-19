@@ -384,9 +384,9 @@ jobs:
 
           # For releases, test-screen-reader must be success; for non-releases, skipped is also acceptable
           if [[ $IS_RELEASE == "true" ]]; then
-            screenReaderOk=$([[ $resultTestScreenReader == "success" ]] && echo "true" || echo "false")
+            [[ $resultTestScreenReader == "success" ]] && screenReaderOk="true" || screenReaderOk="false"
           else
-            screenReaderOk=$([[ $resultTestScreenReader == "success" || $resultTestScreenReader == "skipped" ]] && echo "true" || echo "false")
+            [[ $resultTestScreenReader == "success" || $resultTestScreenReader == "skipped" ]] && screenReaderOk="true" || screenReaderOk="false"
           fi
 
           if [[ $resultBuildStorybookComposition == "success" ]] && \
