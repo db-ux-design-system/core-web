@@ -23,9 +23,9 @@ Starting with `packages/components/src/components/my-awesome-component/my-awesom
 
 1. The most important dependency are the `variables` included via `@use "@db-ux/core-foundations/build/styles/variables";`. They enable you to use e.g. `$db-spacing-fixed-md` for paddings, margins etc.
 2. A lot of times you have to force another `font-size` / `line-height`, you can do it with `@use "@db-ux/core-foundations/build/styles/density/font;` and the corresponding placeholder extend: `@extend %db-overwrite-font-size-sm;`.
-3. Some components have an 'adaptive' styling. We exclude it in an own file `@use "@db-ux/core-components/build/scss/styles/component";` so you might use this dependency. As a reference look at another component e.g. [`packages/components/src/components/button/button.scss`](../packages/components/src/components/button/button.scss).
+3. Some components have an 'adaptive' styling. We exclude it in an own file `@use "@db-ux/core-components/build/styles/internal/component";` so you might use this dependency. As a reference look at another component e.g. [`packages/components/src/components/button/button.scss`](../packages/components/src/components/button/button.scss).
 4. If you have to set a specific color (informational, warning, etc.) directly you can use `@use "@db-ux/core-foundations/build/styles/colors";`. You can take a look at the `notification` component for an example `packages/components/src/components/notification/notification.scss` you might use the `@each` to reduce the amount of code for color-variants.
-5. To set a fixed icon you might use `@use "@db-ux/core-foundations/build/styles/icon/icons.helpers" as icons;` as dependency and e.g. `@include icons.icon("arrow_forward"), "after");`. For a dynamic icon you could prefer integrating it in HTML code with the `data-icon` attribute.
+5. To set a fixed icon you might use `@use "@db-ux/core-foundations/build/styles/icons/icon-helpers" as icons;` as dependency and e.g. `@include icons.icon("arrow_forward", "after");`. For a dynamic icon you could prefer integrating it in HTML code with the `data-icon` attribute.
 
 ### Component structure with HTML
 
@@ -57,8 +57,8 @@ We use [Mitosis](https://github.com/BuilderIO/Mitosis/tree/main/docs) to develop
 
 ### Good to know
 
-1. You cannot use functions directly in a Mitosis component. A function has to be inside the `state`. So add your function to the `model.ts` `DBMyAwesomeComponentDefaultState`. Then you can define your component inside the `.tsx` file and use it in the `jsx` with `state.myAwsomeFunction()`.
-2. Try to enable multiple ways of data-binding: For example in `select` you are able to pass in a list of `<option>` via the `props.children` similiar to standard HTML composition, but we also give the developers the possibility to pass in a stripped down option list via another property: `options?: DBSelectOptionType[]`. We populate this with the internal `<For>` from Mitosis.
+1. You cannot use functions directly in a Mitosis component. A function has to be inside the `state`. So add your function to the `model.ts` `DBMyAwesomeComponentDefaultState`. Then you can define your component inside the `.tsx` file and use it in the `jsx` with `state.myAwesomeFunction()`.
+2. Try to enable multiple ways of data-binding: For example in `select` you are able to pass in a list of `<option>` via the `props.children` similar to standard HTML composition, but we also give the developers the possibility to pass in a stripped down option list via another property: `options?: DBSelectOptionType[]`. We populate this with the internal `<For>` from Mitosis.
    Why do we do this? We have multiple frameworks and all behave differently. With multiple ways of data-binding we try to provide a JS framework native experience as closely as we can.
 3. Try to parameterize a lot: For example if your component includes an icon button you should give it a text for accessibility. You should provide a default text, so it can't be empty, but you should also let the user change it with a property e.g. `iconButtonText`.
 4. To enable some native functionalities for Vue and Angular (`v-model` and `[(ng-model)]`) you might need to add some extra code to your component. At the generation process you might select `formValue` anyhow, but otherwise take a look at the `input` to see what you need to add to make this work.
@@ -94,13 +94,13 @@ Maybe you need to change the navigation to see the component: `showcases/angular
 
 ### React
 
-Go to `showcases/react-showcase/src/components/my-awesome-component/index.tsx` and update the properties inside the `getMyAwsomeComponent` function and inside the `tsx` component. Again check out some existing component to get a feeling for this.
+Go to `showcases/react-showcase/src/components/my-awesome-component/index.tsx` and update the properties inside the `getMyAwesomeComponent` function and inside the `tsx` component. Again check out some existing component to get a feeling for this.
 
 Maybe you need to change the navigation to see the component: `showcases/react-showcase/src/utils/navigation-item.tsx`
 
 ### Vue
 
-Go to `showcases/vue-showcase/src/components/my-awesome-component/MyAwesomeComponent.vue` and update the properties inside the `DBMyAwsomeComponent` with `exampleProps.xxx`. Again check out some existing component to get a feeling for this.
+Go to `showcases/vue-showcase/src/components/my-awesome-component/MyAwesomeComponent.vue` and update the properties inside the `DBMyAwesomeComponent` with `exampleProps.xxx`. Again check out some existing component to get a feeling for this.
 
 Maybe you need to change the navigation to see the component: `showcases/vue-showcase/src/utils/navigation-items.ts`
 

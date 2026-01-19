@@ -13,8 +13,8 @@ We want to ship our DB UX styles based on `css` and `scss` for common frameworks
 To achieve this we started with [Web Components](https://github.com/db-ui/elements).
 But we've encountered a number of problems with this approach:
 
-- No auto-complete in IDE: Without `.d.ts` files you aren't able to use Typescript properly
-- No specific framework solutions, for example Angulars [Reactive Forms](https://angular.io/guide/reactive-forms)
+- No auto-complete in IDE: Without `.d.ts` files you aren't able to use TypeScript properly
+- No specific framework solutions, for example Angular [Reactive Forms](https://angular.io/guide/reactive-forms)
 - Wrapping Components for React: Because of the virtual DOM Events need some wrapping, even [Lit](https://lit.dev/docs/frameworks/react/) needs this
 - Composition of nested Components (Accordion & AccordionItem etc.): Writing a components with Shadow DOM and nesting is complex and time-consuming
 
@@ -53,7 +53,7 @@ We still expect Web Components to be the perfect solution for the future, but es
 
 #### Evaluation
 
-- Generated artefacts are "native" to each framework
+- Generated artifacts are "native" to each framework
 - Flexible build system with plugins
 - Builder.io as maintainer
 - TypeScript (tsx)
@@ -63,7 +63,7 @@ We still expect Web Components to be the perfect solution for the future, but es
 
 #### Evaluation
 
-- Generated artefacts are only slightly larger than Vanilla JS
+- Generated artifacts are only slightly larger than Vanilla JS
 - Polyfills are handled automatically
 - Flexible build system
 - With Ionic, a larger project is behind it as a maintainer
