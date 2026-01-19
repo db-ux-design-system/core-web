@@ -12,19 +12,23 @@ useMetadata({
 export default function NotificationVisual() {
 	return (
 		<Fragment>
-			<DBNotification icon="information_circle" headline="Headline">
-				(Default) Icon
-			</DBNotification>
-			<DBNotification
-				image={
-					<img
-						src={`${getBasePath()}/assets/images/placeholder.jpg`}
-						alt="this is a fancy placeholder"
-					/>
-				}
-				headline="Headline">
-				Image
-			</DBNotification>
+			<div style={{ width: '300px' }}>
+				<DBNotification icon="information_circle" headline="Headline">
+					(Default) Icon
+				</DBNotification>
+			</div>
+			<div style={{ width: '300px' }}>
+				<DBNotification
+					image={
+						<img
+							src={`${getBasePath()}/assets/images/placeholder.jpg`}
+							alt="this is a fancy placeholder"
+						/>
+					}
+					headline="Headline">
+					Image
+				</DBNotification>
+			</div>
 		</Fragment>
 	);
 }

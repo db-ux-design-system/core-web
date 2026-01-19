@@ -11,14 +11,18 @@ useMetadata({
 export default function AccordionItemOpen() {
 	return (
 		<Fragment>
-			<DBAccordionItem
-				headlinePlain="(Default) False"
-				defaultOpen={false}>
-				(Default) False
-			</DBAccordionItem>
-			<DBAccordionItem headlinePlain="True" defaultOpen={true}>
-				True
-			</DBAccordionItem>
+			<ul>
+				<DBAccordionItem
+					headlinePlain="(Default) False"
+					defaultOpen={false}>
+					(Default) False
+				</DBAccordionItem>
+			</ul>
+			<ul>
+				<DBAccordionItem headlinePlain="True" defaultOpen={true}>
+					True
+				</DBAccordionItem>
+			</ul>
 		</Fragment>
 	);
 }

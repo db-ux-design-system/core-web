@@ -11,34 +11,36 @@ useMetadata({
 export default function CustomSelectShowLoading() {
 	return (
 		<Fragment>
-			<DBCustomSelect
-				options={[
-					{ value: 'Option 1', id: 'glkscvbn5' },
-					{ value: 'Option 2', id: '13cmgddkr' },
-					{ value: 'Option 3', id: '14cmgddkr' },
-					{ value: 'Option 4', id: '15cmgddkr' },
-					{ value: 'Option 5', id: '16cmgddkr' }
-				]}
-				showLoading={false}
-				loadingText="Loading"
-				multiple={true}
-				id="id-10252">
-				(Default) False
-			</DBCustomSelect>
-			<DBCustomSelect
-				options={[
-					{ value: 'Option 1', id: 'e6wvfkv27' },
-					{ value: 'Option 2', id: 'afg1mqolj' },
-					{ value: 'Option 3', id: 'afg2mqolj' },
-					{ value: 'Option 4', id: 'afg3mqolj' },
-					{ value: 'Option 5', id: 'afg4mqolj' }
-				]}
-				showLoading={true}
-				loadingText="Loading"
-				multiple={true}
-				id="id-10253">
-				True
-			</DBCustomSelect>
+			<div style={{ width: '200px' }}>
+				<DBCustomSelect
+					options={[
+						{ value: 'Option 1', id: 'glkscvbn5' },
+						{ value: 'Option 2', id: '13cmgddkr' },
+						{ value: 'Option 3', id: '14cmgddkr' },
+						{ value: 'Option 4', id: '15cmgddkr' },
+						{ value: 'Option 5', id: '16cmgddkr' }
+					]}
+					showLoading={false}
+					loadingText="Loading"
+					multiple={true}
+					id="id-10252"
+					label="(Default) False"></DBCustomSelect>
+			</div>
+			<div style={{ width: '200px' }}>
+				<DBCustomSelect
+					options={[
+						{ value: 'Option 1', id: 'e6wvfkv27' },
+						{ value: 'Option 2', id: 'afg1mqolj' },
+						{ value: 'Option 3', id: 'afg2mqolj' },
+						{ value: 'Option 4', id: 'afg3mqolj' },
+						{ value: 'Option 5', id: 'afg4mqolj' }
+					]}
+					showLoading={true}
+					loadingText="Loading"
+					multiple={true}
+					id="id-10253"
+					label="True"></DBCustomSelect>
+			</div>
 		</Fragment>
 	);
 }

@@ -1,4 +1,4 @@
-import { Fragment, useMetadata } from '@builder.io/mitosis';
+import { Fragment, useMetadata, useState } from '@builder.io/mitosis';
 import DBInput from '../input.lite';
 import { StorybookInputArgTypes } from './_input.arg.types';
 
@@ -13,11 +13,11 @@ useMetadata({
 });
 
 export default function InputDatalistTypeaheadExamples() {
-	const dataList = [
+	const [dataList] = useState([
 		{ value: 'test1', label: 'Test 1' },
 		{ value: 'test2', label: 'Test 2' }
-	];
-	const dataListFloating = ['Test 1', 'Test 2'];
+	]);
+	const [dataListFloating] = useState(['Test 1', 'Test 2']);
 
 	return (
 		<Fragment>
@@ -25,15 +25,11 @@ export default function InputDatalistTypeaheadExamples() {
 				label="Search Cities"
 				placeholder="Type to search..."
 				dataList={dataList}
-				variant="floating">
-				Simple String List
-			</DBInput>
+				variant="floating"></DBInput>
 			<DBInput
 				label="Search Products"
 				placeholder="Type to search..."
-				dataList={dataList}>
-				Regular Variant with Datalist
-			</DBInput>
+				dataList={dataList}></DBInput>
 			<DBInput
 				label="Search Stations"
 				placeholder="Type to search..."
@@ -41,9 +37,7 @@ export default function InputDatalistTypeaheadExamples() {
 				variant="floating"
 				type="search"
 				icon="magnifying_glass"
-				showIcon={true}>
-				With Search Icon
-			</DBInput>
+				showIcon={true}></DBInput>
 		</Fragment>
 	);
 }

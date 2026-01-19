@@ -13,19 +13,13 @@ export default function TabItemDensity() {
 	return (
 		<Fragment>
 			<DBTabList>
-				<DBTabItem data-density="functional" label="functional">
-					Functional
-				</DBTabItem>
+				<DBTabItem data-density="functional" label="Functional" />
 			</DBTabList>
 			<DBTabList>
-				<DBTabItem data-density="regular" label="(Default) Regular">
-					(Default) Regular
-				</DBTabItem>
+				<DBTabItem data-density="regular" label="(Default) Regular" />
 			</DBTabList>
 			<DBTabList>
-				<DBTabItem data-density="expressive" label="expressive">
-					Expressive
-				</DBTabItem>
+				<DBTabItem data-density="expressive" label="Expressive" />
 			</DBTabList>
 		</Fragment>
 	);

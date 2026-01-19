@@ -16,13 +16,13 @@ export default function CardExample() {
 	return (
 		<Fragment>
 			<DBCard elevationLevel="1" behavior="interactive">
-				Level 1 - Interactive
+				<strong>Level 1 - Interactive</strong>
 			</DBCard>
 			<DBCard elevationLevel="2" behavior="interactive">
-				Level 2 - Interactive
+				<strong>Level 2 - Interactive</strong>
 			</DBCard>
 			<DBCard elevationLevel="3" behavior="interactive">
-				Level 3 - Interactive
+				<strong>Level 3 - Interactive</strong>
 			</DBCard>
 		</Fragment>
 	);

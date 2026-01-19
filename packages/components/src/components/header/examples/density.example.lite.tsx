@@ -16,105 +16,156 @@ useMetadata({
 export default function HeaderDensity() {
 	return (
 		<Fragment>
-			<DBHeader
-				data-density="functional"
-				brand={<DBBrand>Brand</DBBrand>}
-				metaNavigation={
-					<>
-						<DBLink href="#">Imprint</DBLink>
-						<DBLink href="#">Help</DBLink>
-					</>
-				}
-				primaryAction={
-					<DBButton icon="magnifying_glass" variant="ghost" noText>
-						Search
-					</DBButton>
-				}
-				secondaryAction={
-					<>
-						<DBButton icon="x_placeholder" variant="ghost" noText>
-							Profile
+			<div style={{ width: '100%', display: 'block' }}>
+				<DBHeader
+					data-density="functional"
+					brand={<DBBrand>DBHeader</DBBrand>}
+					metaNavigation={
+						<>
+							<DBLink href="#">Imprint</DBLink>
+							<DBLink href="#">Help</DBLink>
+						</>
+					}
+					primaryAction={
+						<DBButton
+							icon="magnifying_glass"
+							variant="ghost"
+							noText>
+							Search
 						</DBButton>
-						<DBButton icon="x_placeholder" variant="ghost" noText>
-							Notification
+					}
+					secondaryAction={
+						<>
+							<DBButton
+								icon="x_placeholder"
+								variant="ghost"
+								noText>
+								Profile
+							</DBButton>
+							<DBButton
+								icon="x_placeholder"
+								variant="ghost"
+								noText>
+								Notification
+							</DBButton>
+							<DBButton
+								icon="x_placeholder"
+								variant="ghost"
+								noText>
+								Help
+							</DBButton>
+						</>
+					}>
+					<DBNavigation>
+						<DBNavigationItem icon="x_placeholder">
+							<a href="#">Functional</a>
+						</DBNavigationItem>
+						<DBNavigationItem disabled>
+							<a href="#">Functional disabled</a>
+						</DBNavigationItem>
+					</DBNavigation>
+				</DBHeader>
+			</div>
+			<div style={{ width: '100%', display: 'block' }}>
+				<DBHeader
+					data-density="regular"
+					brand={<DBBrand>DBHeader</DBBrand>}
+					metaNavigation={
+						<>
+							<DBLink href="#">Imprint</DBLink>
+							<DBLink href="#">Help</DBLink>
+						</>
+					}
+					primaryAction={
+						<DBButton
+							icon="magnifying_glass"
+							variant="ghost"
+							noText>
+							Search
 						</DBButton>
-						<DBButton icon="x_placeholder" variant="ghost" noText>
-							Help
+					}
+					secondaryAction={
+						<>
+							<DBButton
+								icon="x_placeholder"
+								variant="ghost"
+								noText>
+								Profile
+							</DBButton>
+							<DBButton
+								icon="x_placeholder"
+								variant="ghost"
+								noText>
+								Notification
+							</DBButton>
+							<DBButton
+								icon="x_placeholder"
+								variant="ghost"
+								noText>
+								Help
+							</DBButton>
+						</>
+					}>
+					<DBNavigation>
+						<DBNavigationItem icon="x_placeholder">
+							<a href="#">(Default) Regular</a>
+						</DBNavigationItem>
+						<DBNavigationItem disabled>
+							<a href="#">(Default) Regular disabled</a>
+						</DBNavigationItem>
+					</DBNavigation>
+				</DBHeader>
+			</div>
+			<div style={{ width: '100%', display: 'block' }}>
+				<DBHeader
+					data-density="expressive"
+					brand={<DBBrand>DBHeader</DBBrand>}
+					metaNavigation={
+						<>
+							<DBLink href="#">Imprint</DBLink>
+							<DBLink href="#">Help</DBLink>
+						</>
+					}
+					primaryAction={
+						<DBButton
+							icon="magnifying_glass"
+							variant="ghost"
+							noText>
+							Search
 						</DBButton>
-					</>
-				}>
-				<DBNavigation>
-					<DBNavigationItem>
-						<a href="#">Functional</a>
-					</DBNavigationItem>
-				</DBNavigation>
-			</DBHeader>
-			<DBHeader
-				data-density="regular"
-				brand={<DBBrand>Brand</DBBrand>}
-				metaNavigation={
-					<>
-						<DBLink href="#">Imprint</DBLink>
-						<DBLink href="#">Help</DBLink>
-					</>
-				}
-				primaryAction={
-					<DBButton icon="magnifying_glass" variant="ghost" noText>
-						Search
-					</DBButton>
-				}
-				secondaryAction={
-					<>
-						<DBButton icon="x_placeholder" variant="ghost" noText>
-							Profile
-						</DBButton>
-						<DBButton icon="x_placeholder" variant="ghost" noText>
-							Notification
-						</DBButton>
-						<DBButton icon="x_placeholder" variant="ghost" noText>
-							Help
-						</DBButton>
-					</>
-				}>
-				<DBNavigation>
-					<DBNavigationItem>
-						<a href="#">(Default) Regular</a>
-					</DBNavigationItem>
-				</DBNavigation>
-			</DBHeader>
-			<DBHeader
-				data-density="expressive"
-				brand={<DBBrand>Brand</DBBrand>}
-				metaNavigation={
-					<>
-						<DBLink href="#">Imprint</DBLink>
-						<DBLink href="#">Help</DBLink>
-					</>
-				}
-				primaryAction={
-					<DBButton icon="magnifying_glass" variant="ghost" noText>
-						Search
-					</DBButton>
-				}
-				secondaryAction={
-					<>
-						<DBButton icon="x_placeholder" variant="ghost" noText>
-							Profile
-						</DBButton>
-						<DBButton icon="x_placeholder" variant="ghost" noText>
-							Notification
-						</DBButton>
-						<DBButton icon="x_placeholder" variant="ghost" noText>
-							Help
-						</DBButton>
-					</>
-				}>
-				<DBNavigation>
-					<DBNavigationItem>
-						<a href="#">Expressive</a>
-					</DBNavigationItem>
-				</DBNavigation>
-			</DBHeader>
+					}
+					secondaryAction={
+						<>
+							<DBButton
+								icon="x_placeholder"
+								variant="ghost"
+								noText>
+								Profile
+							</DBButton>
+							<DBButton
+								icon="x_placeholder"
+								variant="ghost"
+								noText>
+								Notification
+							</DBButton>
+							<DBButton
+								icon="x_placeholder"
+								variant="ghost"
+								noText>
+								Help
+							</DBButton>
+						</>
+					}>
+					<DBNavigation>
+						<DBNavigationItem icon="x_placeholder">
+							<a href="#">Expressive</a>
+						</DBNavigationItem>
+						<DBNavigationItem disabled>
+							<a href="#">Expressive disabled</a>
+						</DBNavigationItem>
+					</DBNavigation>
+				</DBHeader>
+			</div>
 		</Fragment>
 	);
 }

@@ -11,10 +11,8 @@ useMetadata({
 export default function TextareaState() {
 	return (
 		<Fragment>
-			<DBTextarea label="Label">(Default) Empty</DBTextarea>
-			<DBTextarea label="Label" value="Filled">
-				Filled
-			</DBTextarea>
+			<DBTextarea label="Label" placeholder="(Default) Empty" />
+			<DBTextarea label="Label" value="Filled" placeholder="Filled" />
 		</Fragment>
 	);
 }

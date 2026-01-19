@@ -11,21 +11,20 @@ useMetadata({
 export default function InputValidation() {
 	return (
 		<Fragment>
-			<DBInput label="Label" validation="no-validation">
-				(Default) No validation
-			</DBInput>
+			<DBInput
+				label="Label"
+				validation="no-validation"
+				placeholder="(Default) No validation"></DBInput>
 			<DBInput
 				label="Label"
 				validation="invalid"
-				invalidMessage="Invalid Message">
-				Invalid
-			</DBInput>
+				invalidMessage="Invalid Message"
+				placeholder="Invalid"></DBInput>
 			<DBInput
 				label="Label"
 				validation="valid"
-				validMessage="Valid message">
-				Valid
-			</DBInput>
+				validMessage="Valid message"
+				placeholder="Valid"></DBInput>
 		</Fragment>
 	);
 }

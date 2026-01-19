@@ -1,4 +1,5 @@
 import { Fragment, useMetadata } from '@builder.io/mitosis';
+import DBInfotext from '../../infotext/infotext.lite';
 import DBTabItem from '../../tab-item/tab-item.lite';
 import DBTabList from '../../tab-list/tab-list.lite';
 import DBTabPanel from '../../tab-panel/tab-panel.lite';
@@ -18,44 +19,59 @@ useMetadata({
 export default function TabsOverflow() {
 	return (
 		<Fragment>
-			<DBTabs width="auto">
-				<DBTabList>
-					<DBTabItem>Test 1</DBTabItem>
-					<DBTabItem>Test 2</DBTabItem>
-					<DBTabItem>Test 3</DBTabItem>
-				</DBTabList>
-				<DBTabPanel>Test Panel 1</DBTabPanel>
-				<DBTabPanel>Test Panel 2</DBTabPanel>
-				<DBTabPanel>Test Panel 3</DBTabPanel>
-			</DBTabs>
-			<DBTabs behavior="arrows">
-				<DBTabList>
-					<DBTabItem>Test 1</DBTabItem>
-					<DBTabItem>Test 2</DBTabItem>
-					<DBTabItem>Test 3</DBTabItem>
-					<DBTabItem>Test 4</DBTabItem>
-					<DBTabItem>Test 5</DBTabItem>
-				</DBTabList>
-				<DBTabPanel>Test Panel 1</DBTabPanel>
-				<DBTabPanel>Test Panel 2</DBTabPanel>
-				<DBTabPanel>Test Panel 3</DBTabPanel>
-				<DBTabPanel>Test Panel 4</DBTabPanel>
-				<DBTabPanel>Test Panel 5</DBTabPanel>
-			</DBTabs>
-			<DBTabs>
-				<DBTabList>
-					<DBTabItem>Test 1</DBTabItem>
-					<DBTabItem>Test 2</DBTabItem>
-					<DBTabItem>Test 3</DBTabItem>
-					<DBTabItem>Test 4</DBTabItem>
-					<DBTabItem>Test 5</DBTabItem>
-				</DBTabList>
-				<DBTabPanel>Test Panel 1</DBTabPanel>
-				<DBTabPanel>Test Panel 2</DBTabPanel>
-				<DBTabPanel>Test Panel 3</DBTabPanel>
-				<DBTabPanel>Test Panel 4</DBTabPanel>
-				<DBTabPanel>Test Panel 5</DBTabPanel>
-			</DBTabs>
+			<div style={{ width: '300px' }} className="fit-content-container">
+				<DBInfotext icon="none" size="small" semantic="informational">
+					no overflow:
+				</DBInfotext>
+				<DBTabs width="auto">
+					<DBTabList>
+						<DBTabItem>Test 1</DBTabItem>
+						<DBTabItem>Test 2</DBTabItem>
+						<DBTabItem>Test 3</DBTabItem>
+					</DBTabList>
+					<DBTabPanel>Test Panel 1</DBTabPanel>
+					<DBTabPanel>Test Panel 2</DBTabPanel>
+					<DBTabPanel>Test Panel 3</DBTabPanel>
+				</DBTabs>
+			</div>
+			<div style={{ width: '300px' }} className="fit-content-container">
+				<DBInfotext icon="none" size="small" semantic="informational">
+					with overflow - behavior: arrows:
+				</DBInfotext>
+				<DBTabs behavior="arrows">
+					<DBTabList>
+						<DBTabItem>Test 1</DBTabItem>
+						<DBTabItem>Test 2</DBTabItem>
+						<DBTabItem>Test 3</DBTabItem>
+						<DBTabItem>Test 4</DBTabItem>
+						<DBTabItem>Test 5</DBTabItem>
+					</DBTabList>
+					<DBTabPanel>Test Panel 1</DBTabPanel>
+					<DBTabPanel>Test Panel 2</DBTabPanel>
+					<DBTabPanel>Test Panel 3</DBTabPanel>
+					<DBTabPanel>Test Panel 4</DBTabPanel>
+					<DBTabPanel>Test Panel 5</DBTabPanel>
+				</DBTabs>
+			</div>
+			<div style={{ width: '300px' }} className="fit-content-container">
+				<DBInfotext icon="none" size="small" semantic="informational">
+					with overflow - behavior: scrollbar:
+				</DBInfotext>
+				<DBTabs>
+					<DBTabList>
+						<DBTabItem>Test 1</DBTabItem>
+						<DBTabItem>Test 2</DBTabItem>
+						<DBTabItem>Test 3</DBTabItem>
+						<DBTabItem>Test 4</DBTabItem>
+						<DBTabItem>Test 5</DBTabItem>
+					</DBTabList>
+					<DBTabPanel>Test Panel 1</DBTabPanel>
+					<DBTabPanel>Test Panel 2</DBTabPanel>
+					<DBTabPanel>Test Panel 3</DBTabPanel>
+					<DBTabPanel>Test Panel 4</DBTabPanel>
+					<DBTabPanel>Test Panel 5</DBTabPanel>
+				</DBTabs>
+			</div>
 		</Fragment>
 	);
 }

@@ -19,10 +19,12 @@ export default function StackWrap() {
 		<Fragment>
 			<div
 				style={{
+					alignItems: 'flex-start',
 					display: 'flex',
 					flexDirection: 'column',
 					gap: 'var(--db-spacing-fixed-sm)',
-					width: '200px'
+					width: '160px',
+					height: '88px'
 				}}>
 				<DBInfotext size="small" icon="none" semantic="informational">
 					(Default) No Wrap: Column
@@ -39,10 +41,12 @@ export default function StackWrap() {
 			</div>
 			<div
 				style={{
+					alignItems: 'flex-start',
 					display: 'flex',
 					flexDirection: 'column',
 					gap: 'var(--db-spacing-fixed-sm)',
-					width: '200px'
+					width: '160px',
+					height: '88px'
 				}}>
 				<DBInfotext size="small" icon="none" semantic="informational">
 					No Wrap: Row
@@ -59,10 +63,12 @@ export default function StackWrap() {
 			</div>
 			<div
 				style={{
+					alignItems: 'flex-start',
 					display: 'flex',
 					flexDirection: 'column',
 					gap: 'var(--db-spacing-fixed-sm)',
-					width: '200px'
+					width: '160px',
+					height: '120px'
 				}}>
 				<DBInfotext size="small" icon="none" semantic="informational">
 					Wrap: Column
@@ -79,10 +85,12 @@ export default function StackWrap() {
 			</div>
 			<div
 				style={{
+					alignItems: 'flex-start',
 					display: 'flex',
 					flexDirection: 'column',
 					gap: 'var(--db-spacing-fixed-sm)',
-					width: '200px'
+					width: '180px',
+					height: '100px'
 				}}>
 				<DBInfotext size="small" icon="none" semantic="informational">
 					Wrap: Row

@@ -15,29 +15,73 @@ useMetadata({
 export default function NavigationItemWrap() {
 	return (
 		<Fragment>
-			<ul className="nav-item-list">
+			<ul>
 				<DBNavigationItem areaPopup={true}>
 					<a href="#">No Wrap (Default)</a>
 				</DBNavigationItem>
 			</ul>
-			<ul className="nav-item-list">
+			<ul
+				style={{
+					width: '200px'
+				}}>
 				<DBNavigationItem
-					areaPopup={true}
+					subNavigation={
+						<>
+							<DBNavigationItem
+								subNavigation={
+									<>
+										<DBNavigationItem>
+											<a href="#" aria-current="page">
+												Sub-Sub-Navi-Item 1
+											</a>
+										</DBNavigationItem>
+										<DBNavigationItem>
+											<a href="#">Sub-Sub-Navi-Item 2</a>
+										</DBNavigationItem>
+									</>
+								}>
+								Sub-Navi-Item 1
+							</DBNavigationItem>
+							<DBNavigationItem>
+								<a href="#">Sub-Navi-Item 2</a>
+							</DBNavigationItem>
+						</>
+					}
 					icon="x_placeholder"
 					showIcon={true}
 					wrap={true}>
-					<a href="#">
-						This is a very long text that is broken into multiple
-						lines.
-					</a>
+					This is a very long text that is broken into multiple lines.
 				</DBNavigationItem>
 			</ul>
-			<ul className="nav-item-list">
-				<DBNavigationItem areaPopup={true} wrap={true}>
-					<a href="#">
-						This is a very long text that is broken into multiple
-						lines.
-					</a>
+			<ul
+				style={{
+					width: '200px'
+				}}>
+				<DBNavigationItem
+					subNavigation={
+						<>
+							<DBNavigationItem
+								subNavigation={
+									<>
+										<DBNavigationItem>
+											<a href="#" aria-current="page">
+												Sub-Sub-Navi-Item 1
+											</a>
+										</DBNavigationItem>
+										<DBNavigationItem>
+											<a href="#">Sub-Sub-Navi-Item 2</a>
+										</DBNavigationItem>
+									</>
+								}>
+								Sub-Navi-Item 1
+							</DBNavigationItem>
+							<DBNavigationItem>
+								<a href="#">Sub-Navi-Item 2</a>
+							</DBNavigationItem>
+						</>
+					}
+					wrap={true}>
+					This is a very long text that is broken into multiple lines.
 				</DBNavigationItem>
 			</ul>
 		</Fragment>

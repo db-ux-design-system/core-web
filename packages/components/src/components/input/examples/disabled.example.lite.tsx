@@ -11,12 +11,11 @@ useMetadata({
 export default function InputDisabled() {
 	return (
 		<Fragment>
-			<DBInput label="Label" disabled={false}>
-				(Default) False
-			</DBInput>
-			<DBInput label="Label" disabled={true}>
-				True
-			</DBInput>
+			<DBInput
+				label="Label"
+				disabled={false}
+				placeholder="(Default) False"></DBInput>
+			<DBInput label="Label" disabled={true} placeholder="True"></DBInput>
 		</Fragment>
 	);
 }

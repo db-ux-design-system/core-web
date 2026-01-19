@@ -11,15 +11,21 @@ useMetadata({
 export default function TextareaDensity() {
 	return (
 		<Fragment>
-			<DBTextarea data-density="functional" label="Label">
-				Functional
-			</DBTextarea>
-			<DBTextarea data-density="regular" label="Label">
-				(Default) Regular
-			</DBTextarea>
-			<DBTextarea data-density="expressive" label="Label">
-				Expressive
-			</DBTextarea>
+			<DBTextarea
+				data-density="functional"
+				label="Label"
+				placeholder="Functional"
+			/>
+			<DBTextarea
+				data-density="regular"
+				label="Label"
+				placeholder="(Default) Regular"
+			/>
+			<DBTextarea
+				data-density="expressive"
+				label="Label"
+				placeholder="Expressive"
+			/>
 		</Fragment>
 	);
 }

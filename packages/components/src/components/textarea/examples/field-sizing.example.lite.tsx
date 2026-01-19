@@ -11,12 +11,20 @@ useMetadata({
 export default function TextareaFieldSizing() {
 	return (
 		<Fragment>
-			<DBTextarea label="Label" fieldSizing="fixed">
-				(Default) Fixed
-			</DBTextarea>
-			<DBTextarea label="Label" fieldSizing="content">
-				Content
-			</DBTextarea>
+			<div style={{ width: '300px' }}>
+				<DBTextarea
+					label="Label"
+					fieldSizing="fixed"
+					placeholder="(Default) Fixed"
+				/>
+			</div>
+			<div style={{ width: '300px' }}>
+				<DBTextarea
+					label="Label"
+					fieldSizing="content"
+					placeholder="Content"
+				/>
+			</div>
 		</Fragment>
 	);
 }

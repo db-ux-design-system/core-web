@@ -11,12 +11,18 @@ useMetadata({
 export default function TextareaReadonly() {
 	return (
 		<Fragment>
-			<DBTextarea label="Label" value="(Default) False" readOnly={false}>
-				(Default) False
-			</DBTextarea>
-			<DBTextarea label="Label" value="True" readOnly={true}>
-				True
-			</DBTextarea>
+			<DBTextarea
+				label="Label"
+				value="(Default) False"
+				readOnly={false}
+				placeholder="(Default) False"
+			/>
+			<DBTextarea
+				label="Label"
+				value="True"
+				readOnly={true}
+				placeholder="True"
+			/>
 		</Fragment>
 	);
 }

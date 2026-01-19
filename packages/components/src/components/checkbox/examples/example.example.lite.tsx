@@ -11,9 +11,11 @@ useMetadata({
 export default function CheckboxExample() {
 	return (
 		<Fragment>
-			<DBCheckbox checked={true} name="Example">
-				Long label
-			</DBCheckbox>
+			<div style={{ width: '100px' }}>
+				<DBCheckbox checked={true} name="Example">
+					Long label
+				</DBCheckbox>
+			</div>
 		</Fragment>
 	);
 }

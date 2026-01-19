@@ -14,24 +14,28 @@ export default function DrawerExample() {
 
 	return (
 		<Fragment>
-			<DBButton onClick={() => setOpenIndex(0)}>
-				Open
+			<div>
+				<DBButton onClick={() => setOpenIndex(0)}>
+					Open: (Default) As modal
+				</DBButton>
 				<DBDrawer
 					variant="modal"
 					open={openIndex === 0}
 					onClose={() => setOpenIndex(-1)}>
 					(Default) As modal
 				</DBDrawer>
-			</DBButton>
-			<DBButton onClick={() => setOpenIndex(1)}>
-				Open
+			</div>
+			<div>
+				<DBButton onClick={() => setOpenIndex(1)}>
+					Open: Inside
+				</DBButton>
 				<DBDrawer
 					variant="inside"
 					open={openIndex === 1}
 					onClose={() => setOpenIndex(-1)}>
 					Inside
 				</DBDrawer>
-			</DBButton>
+			</div>
 		</Fragment>
 	);
 }

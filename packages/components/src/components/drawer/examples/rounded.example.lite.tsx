@@ -14,24 +14,26 @@ export default function DrawerRounded() {
 
 	return (
 		<Fragment>
-			<DBButton onClick={() => setOpenIndex(0)}>
-				Open
+			<div>
+				<DBButton onClick={() => setOpenIndex(0)}>
+					Open: (Default) False
+				</DBButton>
 				<DBDrawer
 					rounded={false}
 					open={openIndex === 0}
 					onClose={() => setOpenIndex(-1)}>
 					(Default) False
 				</DBDrawer>
-			</DBButton>
-			<DBButton onClick={() => setOpenIndex(1)}>
-				Open
+			</div>
+			<div>
+				<DBButton onClick={() => setOpenIndex(1)}>Open: True</DBButton>
 				<DBDrawer
 					rounded={true}
 					open={openIndex === 1}
 					onClose={() => setOpenIndex(-1)}>
 					True
 				</DBDrawer>
-			</DBButton>
+			</div>
 		</Fragment>
 	);
 }

@@ -13,19 +13,13 @@ export default function TabItemStates() {
 	return (
 		<Fragment>
 			<DBTabList>
-				<DBTabItem label="(Default) Enabled">
-					(Default) Enabled
-				</DBTabItem>
+				<DBTabItem label="(Default) Enabled" />
 			</DBTabList>
 			<DBTabList>
-				<DBTabItem label="active" active={true}>
-					active
-				</DBTabItem>
+				<DBTabItem label="active" active={true} />
 			</DBTabList>
 			<DBTabList>
-				<DBTabItem label="active" disabled={true}>
-					disabled
-				</DBTabItem>
+				<DBTabItem label="disabled" disabled={true} />
 			</DBTabList>
 		</Fragment>
 	);

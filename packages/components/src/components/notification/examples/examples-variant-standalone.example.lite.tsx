@@ -22,59 +22,75 @@ useMetadata({
 export default function NotificationExamplesVariantStandalone() {
 	return (
 		<Fragment>
-			<DBNotification variant="standalone" headline="Headline">
-				Text
-			</DBNotification>
-			<DBNotification
-				icon="information_circle"
-				variant="standalone"
-				headline="Headline">
-				Text & Icon
-			</DBNotification>
-			<DBNotification
-				image={
-					<img
-						src={`${getBasePath()}/assets/images/placeholder.jpg`}
-						alt="this is a fancy placeholder"
-					/>
-				}
-				variant="standalone"
-				headline="Headline">
-				Text & Preview Image
-			</DBNotification>
-			<DBNotification headline="Headline" variant="standalone">
-				Text & Headline
-			</DBNotification>
-			<DBNotification
-				link={<DBLink href="#">Textlink</DBLink>}
-				variant="standalone"
-				headline="Headline">
-				Text & Textlink Block
-			</DBNotification>
-			<DBNotification
-				link={<DBLink href="#">Textlink</DBLink>}
-				linkVariant="inline"
-				variant="standalone"
-				headline="Headline">
-				Text & Textlink Inline
-			</DBNotification>
-			<DBNotification
-				headline="Headline"
-				link={<DBLink href="#">Textlink</DBLink>}
-				linkVariant="inline"
-				variant="standalone"
-				closeable={true}>
-				Text & Headline & Textlink Inline & Closeable
-			</DBNotification>
-			<DBNotification
-				icon="information_circle"
-				headline="Headline"
-				link={<DBLink href="#">Textlink</DBLink>}
-				linkVariant="inline"
-				variant="standalone"
-				closeable={true}>
-				Text & Icon & Headline & Textlink Inline & Closeable
-			</DBNotification>
+			<div style={{ width: '300px' }}>
+				<DBNotification variant="standalone" headline="Headline">
+					Text
+				</DBNotification>
+			</div>
+			<div style={{ width: '300px' }}>
+				<DBNotification
+					icon="information_circle"
+					variant="standalone"
+					headline="Headline">
+					Text & Icon
+				</DBNotification>
+			</div>
+			<div style={{ width: '300px' }}>
+				<DBNotification
+					image={
+						<img
+							src={`${getBasePath()}/assets/images/placeholder.jpg`}
+							alt="this is a fancy placeholder"
+						/>
+					}
+					variant="standalone"
+					headline="Headline">
+					Text & Preview Image
+				</DBNotification>
+			</div>
+			<div style={{ width: '300px' }}>
+				<DBNotification headline="Headline" variant="standalone">
+					Text & Headline
+				</DBNotification>
+			</div>
+			<div style={{ width: '300px' }}>
+				<DBNotification
+					link={<DBLink href="#">Textlink</DBLink>}
+					variant="standalone"
+					headline="Headline">
+					Text & Textlink Block
+				</DBNotification>
+			</div>
+			<div style={{ width: '300px' }}>
+				<DBNotification
+					link={<DBLink href="#">Textlink</DBLink>}
+					linkVariant="inline"
+					variant="standalone"
+					headline="Headline">
+					Text & Textlink Inline
+				</DBNotification>
+			</div>
+			<div style={{ width: '300px' }}>
+				<DBNotification
+					headline="Headline"
+					link={<DBLink href="#">Textlink</DBLink>}
+					linkVariant="inline"
+					variant="standalone"
+					closeable={true}>
+					Text & Headline & Textlink Inline & Closeable
+				</DBNotification>
+			</div>
+			<div style={{ width: '300px' }}>
+				<DBNotification
+					icon="information_circle"
+					headline="Headline"
+					link={<DBLink href="#">Textlink</DBLink>}
+					linkVariant="inline"
+					variant="standalone"
+					closeable={true}>
+					Text & Icon & Headline & Textlink Inline & Closeable
+				</DBNotification>
+			</div>
 		</Fragment>
 	);
 }

@@ -14,15 +14,13 @@ export default function InputShowIconTrailing() {
 			<DBInput
 				label="False"
 				iconTrailing="x_placeholder"
-				showIconTrailing={false}>
-				(Default) False
-			</DBInput>
+				showIconTrailing={false}
+				placeholder="(Default) False"></DBInput>
 			<DBInput
 				label="True"
 				iconTrailing="x_placeholder"
-				showIconTrailing={true}>
-				True
-			</DBInput>
+				showIconTrailing={true}
+				placeholder="True"></DBInput>
 		</Fragment>
 	);
 }

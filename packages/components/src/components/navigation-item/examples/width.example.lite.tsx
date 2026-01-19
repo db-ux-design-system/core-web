@@ -11,12 +11,12 @@ useMetadata({
 export default function NavigationItemWidth() {
 	return (
 		<Fragment>
-			<ul className="nav-item-list">
+			<ul style={{ width: '400px' }}>
 				<DBNavigationItem>
 					<a href="#">(Default) Auto</a>
 				</DBNavigationItem>
 			</ul>
-			<ul className="nav-item-list">
+			<ul style={{ width: '400px' }}>
 				<DBNavigationItem width="full">
 					<a href="#">Full</a>
 				</DBNavigationItem>

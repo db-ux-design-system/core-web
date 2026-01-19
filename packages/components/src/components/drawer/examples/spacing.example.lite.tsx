@@ -14,41 +14,43 @@ export default function DrawerSpacing() {
 
 	return (
 		<Fragment>
-			<DBButton onClick={() => setOpenIndex(0)}>
-				Open
+			<div>
+				<DBButton onClick={() => setOpenIndex(0)}>
+					Open: (Default) Medium
+				</DBButton>
 				<DBDrawer
 					open={openIndex === 0}
 					onClose={() => setOpenIndex(-1)}>
 					(Default) Medium
 				</DBDrawer>
-			</DBButton>
-			<DBButton onClick={() => setOpenIndex(1)}>
-				Open
+			</div>
+			<div>
+				<DBButton onClick={() => setOpenIndex(1)}>Open: Small</DBButton>
 				<DBDrawer
 					spacing="small"
 					open={openIndex === 1}
 					onClose={() => setOpenIndex(-1)}>
 					Small
 				</DBDrawer>
-			</DBButton>
-			<DBButton onClick={() => setOpenIndex(2)}>
-				Open
+			</div>
+			<div>
+				<DBButton onClick={() => setOpenIndex(2)}>Open: Large</DBButton>
 				<DBDrawer
 					spacing="large"
 					open={openIndex === 2}
 					onClose={() => setOpenIndex(-1)}>
 					Large
 				</DBDrawer>
-			</DBButton>
-			<DBButton onClick={() => setOpenIndex(3)}>
-				Open
+			</div>
+			<div>
+				<DBButton onClick={() => setOpenIndex(3)}>Open: None</DBButton>
 				<DBDrawer
 					spacing="none"
 					open={openIndex === 3}
 					onClose={() => setOpenIndex(-1)}>
 					None
 				</DBDrawer>
-			</DBButton>
+			</div>
 		</Fragment>
 	);
 }

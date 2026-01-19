@@ -14,12 +14,12 @@ export default function TabItemContentAlignmentFullWidth() {
 		<Fragment>
 			<div style={{ width: '500px' }}>
 				<DBTabList>
-					<DBTabItem label="Left">Left</DBTabItem>
+					<DBTabItem label="Left" />
 				</DBTabList>
 			</div>
 			<div style={{ width: '500px' }}>
 				<DBTabList>
-					<DBTabItem label="Centered">Centered</DBTabItem>
+					<DBTabItem label="Centered" />
 				</DBTabList>
 			</div>
 		</Fragment>

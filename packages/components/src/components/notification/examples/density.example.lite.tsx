@@ -11,24 +11,30 @@ useMetadata({
 export default function NotificationDensity() {
 	return (
 		<Fragment>
-			<DBNotification
-				data-density="functional"
-				headline="Headline"
-				icon="information_circle">
-				functional
-			</DBNotification>
-			<DBNotification
-				data-density="regular"
-				headline="Headline"
-				icon="information_circle">
-				regular (Default)
-			</DBNotification>
-			<DBNotification
-				data-density="expressive"
-				headline="Headline"
-				icon="information_circle">
-				expressive
-			</DBNotification>
+			<div style={{ width: '300px' }}>
+				<DBNotification
+					data-density="functional"
+					headline="Headline"
+					icon="information_circle">
+					functional
+				</DBNotification>
+			</div>
+			<div style={{ width: '300px' }}>
+				<DBNotification
+					data-density="regular"
+					headline="Headline"
+					icon="information_circle">
+					regular (Default)
+				</DBNotification>
+			</div>
+			<div style={{ width: '300px' }}>
+				<DBNotification
+					data-density="expressive"
+					headline="Headline"
+					icon="information_circle">
+					expressive
+				</DBNotification>
+			</div>
 		</Fragment>
 	);
 }

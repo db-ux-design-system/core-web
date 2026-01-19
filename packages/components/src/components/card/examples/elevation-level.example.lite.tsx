@@ -11,9 +11,15 @@ useMetadata({
 export default function CardElevationLevel() {
 	return (
 		<Fragment>
-			<DBCard elevationLevel="1">(Default) 1</DBCard>
-			<DBCard elevationLevel="2">2</DBCard>
-			<DBCard elevationLevel="3">3</DBCard>
+			<DBCard elevationLevel="1">
+				<strong>(Default) 1</strong>
+			</DBCard>
+			<DBCard elevationLevel="2">
+				<strong>2</strong>
+			</DBCard>
+			<DBCard elevationLevel="3">
+				<strong>3</strong>
+			</DBCard>
 		</Fragment>
 	);
 }

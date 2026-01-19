@@ -13,14 +13,14 @@ export default function TabItemShowIconLeading() {
 	return (
 		<Fragment>
 			<DBTabList>
-				<DBTabItem label="False" icon="x_placeholder" showIcon={false}>
-					(Default) False
-				</DBTabItem>
+				<DBTabItem
+					label="(Default) False"
+					icon="x_placeholder"
+					showIcon={false}
+				/>
 			</DBTabList>
 			<DBTabList>
-				<DBTabItem label="True" icon="x_placeholder" showIcon={true}>
-					True
-				</DBTabItem>
+				<DBTabItem label="True" icon="x_placeholder" showIcon={true} />
 			</DBTabList>
 		</Fragment>
 	);

@@ -11,12 +11,12 @@ useMetadata({
 export default function TextareaRequired() {
 	return (
 		<Fragment>
-			<DBTextarea label="Label" required={false}>
-				(Default) False
-			</DBTextarea>
-			<DBTextarea label="Label" required={true}>
-				True
-			</DBTextarea>
+			<DBTextarea
+				label="Label"
+				required={false}
+				placeholder="(Default) False"
+			/>
+			<DBTextarea label="Label" required={true} placeholder="True" />
 		</Fragment>
 	);
 }

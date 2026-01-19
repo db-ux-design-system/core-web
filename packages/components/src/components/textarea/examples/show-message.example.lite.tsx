@@ -11,12 +11,17 @@ useMetadata({
 export default function TextareaShowMessage() {
 	return (
 		<Fragment>
-			<DBTextarea label="Label" showMessage={false}>
-				(Default) False
-			</DBTextarea>
-			<DBTextarea label="Label" message="Message" showMessage={true}>
-				true
-			</DBTextarea>
+			<DBTextarea
+				label="Label"
+				showMessage={false}
+				placeholder="(Default) False"
+			/>
+			<DBTextarea
+				label="Label"
+				message="Message"
+				showMessage={true}
+				placeholder="true"
+			/>
 		</Fragment>
 	);
 }

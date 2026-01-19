@@ -14,41 +14,43 @@ export default function DrawerDirection() {
 
 	return (
 		<Fragment>
-			<DBButton onClick={() => setOpenIndex(0)}>
-				Open
+			<div>
+				<DBButton onClick={() => setOpenIndex(0)}>
+					Open: (Default) Right
+				</DBButton>
 				<DBDrawer
 					open={openIndex === 0}
 					onClose={() => setOpenIndex(-1)}>
 					(Default) Right
 				</DBDrawer>
-			</DBButton>
-			<DBButton onClick={() => setOpenIndex(1)}>
-				Open
+			</div>
+			<div>
+				<DBButton onClick={() => setOpenIndex(1)}>Open: Left</DBButton>
 				<DBDrawer
 					direction="left"
 					open={openIndex === 1}
 					onClose={() => setOpenIndex(-1)}>
 					Left
 				</DBDrawer>
-			</DBButton>
-			<DBButton onClick={() => setOpenIndex(2)}>
-				Open
+			</div>
+			<div>
+				<DBButton onClick={() => setOpenIndex(2)}>Open: Up</DBButton>
 				<DBDrawer
 					direction="up"
 					open={openIndex === 2}
 					onClose={() => setOpenIndex(-1)}>
 					Up
 				</DBDrawer>
-			</DBButton>
-			<DBButton onClick={() => setOpenIndex(3)}>
-				Open
+			</div>
+			<div>
+				<DBButton onClick={() => setOpenIndex(3)}>Open: Down</DBButton>
 				<DBDrawer
 					direction="down"
 					open={openIndex === 3}
 					onClose={() => setOpenIndex(-1)}>
 					Down
 				</DBDrawer>
-			</DBButton>
+			</div>
 		</Fragment>
 	);
 }

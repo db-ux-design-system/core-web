@@ -14,23 +14,25 @@ export default function DrawerSize() {
 
 	return (
 		<Fragment>
-			<DBButton onClick={() => setOpenIndex(0)}>
-				Open
+			<div>
+				<DBButton onClick={() => setOpenIndex(0)}>
+					Open: (Default) Medium
+				</DBButton>
 				<DBDrawer
 					open={openIndex === 0}
 					onClose={() => setOpenIndex(-1)}>
 					(Default) Medium
 				</DBDrawer>
-			</DBButton>
-			<DBButton onClick={() => setOpenIndex(1)}>
-				Open
+			</div>
+			<div>
+				<DBButton onClick={() => setOpenIndex(1)}>Open: Full</DBButton>
 				<DBDrawer
 					width="full"
 					open={openIndex === 1}
 					onClose={() => setOpenIndex(-1)}>
 					Full
 				</DBDrawer>
-			</DBButton>
+			</div>
 		</Fragment>
 	);
 }

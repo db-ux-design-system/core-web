@@ -11,15 +11,19 @@ useMetadata({
 export default function InputExampleLength() {
 	return (
 		<Fragment>
-			<DBInput label="Label" minLength={3}>
-				MinLength
-			</DBInput>
-			<DBInput label="Label" maxLength={5}>
-				MaxLength
-			</DBInput>
-			<DBInput label="Label" minLength={3} maxLength={5}>
-				MinMaxLength
-			</DBInput>
+			<DBInput
+				label="Label"
+				minLength={3}
+				placeholder="MinLength"></DBInput>
+			<DBInput
+				label="Label"
+				maxLength={5}
+				placeholder="MaxLength"></DBInput>
+			<DBInput
+				label="Label"
+				minLength={3}
+				maxLength={5}
+				placeholder="MinMaxLength"></DBInput>
 		</Fragment>
 	);
 }

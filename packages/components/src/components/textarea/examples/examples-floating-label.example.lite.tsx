@@ -16,22 +16,30 @@ useMetadata({
 export default function TextareaExamplesFloatingLabel() {
 	return (
 		<Fragment>
-			<DBTextarea label="Label" variant="floating">
-				(Default) Empty
-			</DBTextarea>
-			<DBTextarea label="Label" value="Filled" variant="floating">
-				Filled
-			</DBTextarea>
-			<DBTextarea label="Label" disabled={true} variant="floating">
-				Disabled
-			</DBTextarea>
+			<DBTextarea
+				label="Label"
+				variant="floating"
+				placeholder="(Default) Empty"
+			/>
+			<DBTextarea
+				label="Label"
+				value="Filled"
+				variant="floating"
+				placeholder="Filled"
+			/>
+			<DBTextarea
+				label="Label"
+				disabled={true}
+				variant="floating"
+				placeholder="Disabled"
+			/>
 			<DBTextarea
 				label="Label"
 				value="Readonly - Filled"
 				readOnly={true}
-				variant="floating">
-				Readonly - Filled
-			</DBTextarea>
+				variant="floating"
+				placeholder="Readonly - Filled"
+			/>
 		</Fragment>
 	);
 }

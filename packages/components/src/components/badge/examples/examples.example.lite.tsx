@@ -32,7 +32,7 @@ export default function BadgeExamples() {
 				Dot - Medium
 			</DBInfotext>
 			<DBBadge semantic="critical" emphasis="strong" size="medium">
-				<DBIcon>Icon - Medium</DBIcon>
+				<DBIcon icon="x_placeholder">Icon - Medium</DBIcon>
 			</DBBadge>
 			<DBInfotext semantic="informational" size="small" icon="none">
 				Icon - Medium

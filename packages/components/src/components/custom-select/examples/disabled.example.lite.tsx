@@ -11,32 +11,34 @@ useMetadata({
 export default function CustomSelectDisabled() {
 	return (
 		<Fragment>
-			<DBCustomSelect
-				options={[
-					{ value: 'Option 1', id: 'dlysh2quv' },
-					{ value: 'Option 2', id: 'ygm3c9msn' },
-					{ value: 'Option 3', id: 'ygm4c9msn' },
-					{ value: 'Option 4', id: 'ygm5c9msn' },
-					{ value: 'Option 5', id: 'ygm6c9msn' }
-				]}
-				multiple={true}
-				disabled={false}
-				id="id-10221">
-				(Default) False
-			</DBCustomSelect>
-			<DBCustomSelect
-				options={[
-					{ value: 'Option 1', id: 'z445a00hf' },
-					{ value: 'Option 2', id: 'wji97jfsg' },
-					{ value: 'Option 3', id: 'wji96jfsg' },
-					{ value: 'Option 4', id: 'wji95jfsg' },
-					{ value: 'Option 5', id: 'wji94jfsg' }
-				]}
-				disabled={true}
-				multiple={true}
-				id="id-10222">
-				True
-			</DBCustomSelect>
+			<div style={{ width: '200px' }}>
+				<DBCustomSelect
+					options={[
+						{ value: 'Option 1', id: 'dlysh2quv' },
+						{ value: 'Option 2', id: 'ygm3c9msn' },
+						{ value: 'Option 3', id: 'ygm4c9msn' },
+						{ value: 'Option 4', id: 'ygm5c9msn' },
+						{ value: 'Option 5', id: 'ygm6c9msn' }
+					]}
+					multiple={true}
+					disabled={false}
+					id="id-10221"
+					label="(Default) False"></DBCustomSelect>
+			</div>
+			<div style={{ width: '200px' }}>
+				<DBCustomSelect
+					options={[
+						{ value: 'Option 1', id: 'z445a00hf' },
+						{ value: 'Option 2', id: 'wji97jfsg' },
+						{ value: 'Option 3', id: 'wji96jfsg' },
+						{ value: 'Option 4', id: 'wji95jfsg' },
+						{ value: 'Option 5', id: 'wji94jfsg' }
+					]}
+					disabled={true}
+					multiple={true}
+					id="id-10222"
+					label="True"></DBCustomSelect>
+			</div>
 		</Fragment>
 	);
 }

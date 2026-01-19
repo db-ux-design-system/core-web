@@ -14,42 +14,48 @@ export default function DrawerBackdrop() {
 
 	return (
 		<Fragment>
-			<DBButton onClick={() => setOpenIndex(0)}>
-				Open
+			<div>
+				<DBButton onClick={() => setOpenIndex(0)}>
+					Open: (Default) Strong
+				</DBButton>
 				<DBDrawer
 					backdrop="strong"
 					open={openIndex === 0}
 					onClose={() => setOpenIndex(-1)}>
 					(Default) Strong
 				</DBDrawer>
-			</DBButton>
-			<DBButton onClick={() => setOpenIndex(1)}>
-				Open
+			</div>
+			<div>
+				<DBButton onClick={() => setOpenIndex(1)}>Open: Weak</DBButton>
 				<DBDrawer
 					backdrop="weak"
 					open={openIndex === 1}
 					onClose={() => setOpenIndex(-1)}>
 					Weak
 				</DBDrawer>
-			</DBButton>
-			<DBButton onClick={() => setOpenIndex(2)}>
-				Open
+			</div>
+			<div>
+				<DBButton onClick={() => setOpenIndex(2)}>
+					Open: Invisible
+				</DBButton>
 				<DBDrawer
 					backdrop="invisible"
 					open={openIndex === 2}
 					onClose={() => setOpenIndex(-1)}>
 					Invisible
 				</DBDrawer>
-			</DBButton>
-			<DBButton onClick={() => setOpenIndex(3)}>
-				Open
+			</div>
+			<div>
+				<DBButton onClick={() => setOpenIndex(3)}>
+					Open: No Backdrop
+				</DBButton>
 				<DBDrawer
 					backdrop="none"
 					open={openIndex === 3}
 					onClose={() => setOpenIndex(-1)}>
 					No Backdrop
 				</DBDrawer>
-			</DBButton>
+			</div>
 		</Fragment>
 	);
 }

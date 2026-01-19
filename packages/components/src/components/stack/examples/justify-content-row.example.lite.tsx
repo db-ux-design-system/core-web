@@ -14,10 +14,11 @@ export default function StackJustifyContentRow() {
 		<Fragment>
 			<div
 				style={{
+					alignItems: 'flex-start',
 					display: 'flex',
 					flexDirection: 'column',
 					gap: 'var(--db-spacing-fixed-sm)',
-					width: '200px'
+					width: '300px'
 				}}>
 				<DBInfotext size="small" icon="none" semantic="informational">
 					(Default) Start
@@ -37,10 +38,11 @@ export default function StackJustifyContentRow() {
 			</div>
 			<div
 				style={{
+					alignItems: 'flex-start',
 					display: 'flex',
 					flexDirection: 'column',
 					gap: 'var(--db-spacing-fixed-sm)',
-					width: '200px'
+					width: '300px'
 				}}>
 				<DBInfotext size="small" icon="none" semantic="informational">
 					Center
@@ -60,10 +62,11 @@ export default function StackJustifyContentRow() {
 			</div>
 			<div
 				style={{
+					alignItems: 'flex-start',
 					display: 'flex',
 					flexDirection: 'column',
 					gap: 'var(--db-spacing-fixed-sm)',
-					width: '200px'
+					width: '300px'
 				}}>
 				<DBInfotext size="small" icon="none" semantic="informational">
 					End
@@ -83,10 +86,11 @@ export default function StackJustifyContentRow() {
 			</div>
 			<div
 				style={{
+					alignItems: 'flex-start',
 					display: 'flex',
 					flexDirection: 'column',
 					gap: 'var(--db-spacing-fixed-sm)',
-					width: '200px'
+					width: '300px'
 				}}>
 				<DBInfotext size="small" icon="none" semantic="informational">
 					Space-Between

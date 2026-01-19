@@ -1,5 +1,6 @@
 import { Fragment, useMetadata } from '@builder.io/mitosis';
 import DBAccordionItem from '../../accordion-item/accordion-item.lite';
+import DBInfotext from '../../infotext/infotext.lite';
 import DBAccordion from '../accordion.lite';
 import { StorybookAccordionArgTypes } from './_accordion.arg.types';
 
@@ -12,6 +13,9 @@ useMetadata({
 export default function AccordionDensity() {
 	return (
 		<Fragment>
+			<DBInfotext size="small" semantic="informational" icon="none">
+				Functional
+			</DBInfotext>
 			<DBAccordion data-density="functional">
 				<DBAccordionItem headlinePlain="Item 1">
 					Content 1
@@ -23,6 +27,9 @@ export default function AccordionDensity() {
 					Content 3
 				</DBAccordionItem>
 			</DBAccordion>
+			<DBInfotext size="small" semantic="informational" icon="none">
+				Regular
+			</DBInfotext>
 			<DBAccordion data-density="regular">
 				<DBAccordionItem headlinePlain="Item 1">
 					Content 1
@@ -34,6 +41,9 @@ export default function AccordionDensity() {
 					Content 3
 				</DBAccordionItem>
 			</DBAccordion>
+			<DBInfotext size="small" semantic="informational" icon="none">
+				Expressive
+			</DBInfotext>
 			<DBAccordion data-density="expressive">
 				<DBAccordionItem headlinePlain="Item 1">
 					Content 1

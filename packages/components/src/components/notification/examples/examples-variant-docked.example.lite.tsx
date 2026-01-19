@@ -22,47 +22,65 @@ useMetadata({
 export default function NotificationExamplesVariantDocked() {
 	return (
 		<Fragment>
-			<DBNotification headline="Headline">Text</DBNotification>
-			<DBNotification icon="information_circle" headline="Headline">
-				Text & Icon
-			</DBNotification>
-			<DBNotification
-				image={
-					<img
-						src={`${getBasePath()}/assets/images/placeholder.jpg`}
-						alt="this is a fancy placeholder"
-					/>
-				}
-				headline="Headline">
-				Text & Preview Image
-			</DBNotification>
-			<DBNotification headline="Headline">Text & Headline</DBNotification>
-			<DBNotification
-				link={<DBLink href="#">Textlink</DBLink>}
-				headline="Headline">
-				Text & Textlink Block
-			</DBNotification>
-			<DBNotification
-				link={<DBLink href="#">Textlink</DBLink>}
-				linkVariant="inline"
-				headline="Headline">
-				Text & Textlink Inline
-			</DBNotification>
-			<DBNotification
-				headline="Headline"
-				link={<DBLink href="#">Textlink</DBLink>}
-				linkVariant="inline"
-				closeable={true}>
-				Text & Headline & Textlink Inline & Closeable
-			</DBNotification>
-			<DBNotification
-				icon="information_circle"
-				headline="Headline"
-				link={<DBLink href="#">Textlink</DBLink>}
-				linkVariant="inline"
-				closeable={true}>
-				Text & Icon & Headline & Textlink Inline & Closeable
-			</DBNotification>
+			<div style={{ width: '300px' }}>
+				<DBNotification headline="Headline">Text</DBNotification>
+			</div>
+			<div style={{ width: '300px' }}>
+				<DBNotification icon="information_circle" headline="Headline">
+					Text & Icon
+				</DBNotification>
+			</div>
+			<div style={{ width: '300px' }}>
+				<DBNotification
+					image={
+						<img
+							src={`${getBasePath()}/assets/images/placeholder.jpg`}
+							alt="this is a fancy placeholder"
+						/>
+					}
+					headline="Headline">
+					Text & Preview Image
+				</DBNotification>
+			</div>
+			<div style={{ width: '300px' }}>
+				<DBNotification headline="Headline">
+					Text & Headline
+				</DBNotification>
+			</div>
+			<div style={{ width: '300px' }}>
+				<DBNotification
+					link={<DBLink href="#">Textlink</DBLink>}
+					headline="Headline">
+					Text & Textlink Block
+				</DBNotification>
+			</div>
+			<div style={{ width: '300px' }}>
+				<DBNotification
+					link={<DBLink href="#">Textlink</DBLink>}
+					linkVariant="inline"
+					headline="Headline">
+					Text & Textlink Inline
+				</DBNotification>
+			</div>
+			<div style={{ width: '300px' }}>
+				<DBNotification
+					headline="Headline"
+					link={<DBLink href="#">Textlink</DBLink>}
+					linkVariant="inline"
+					closeable={true}>
+					Text & Headline & Textlink Inline & Closeable
+				</DBNotification>
+			</div>
+			<div style={{ width: '300px' }}>
+				<DBNotification
+					icon="information_circle"
+					headline="Headline"
+					link={<DBLink href="#">Textlink</DBLink>}
+					linkVariant="inline"
+					closeable={true}>
+					Text & Icon & Headline & Textlink Inline & Closeable
+				</DBNotification>
+			</div>
 		</Fragment>
 	);
 }

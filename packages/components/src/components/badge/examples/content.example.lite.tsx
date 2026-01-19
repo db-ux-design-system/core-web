@@ -19,7 +19,7 @@ export default function BadgeContent() {
 				Dot - Small
 			</DBInfotext>
 			<DBBadge semantic="critical" emphasis="strong">
-				<DBIcon>Icon - Small</DBIcon>
+				<DBIcon icon="x_placeholder">Icon - Small</DBIcon>
 			</DBBadge>
 			<DBInfotext semantic="informational" size="small" icon="none">
 				Icon - Small

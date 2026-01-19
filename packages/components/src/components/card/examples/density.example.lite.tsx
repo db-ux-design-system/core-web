@@ -11,9 +11,15 @@ useMetadata({
 export default function CardDensity() {
 	return (
 		<Fragment>
-			<DBCard data-density="functional">Functional</DBCard>
-			<DBCard data-density="regular">(Default) Regular</DBCard>
-			<DBCard data-density="expressive">Expressive</DBCard>
+			<DBCard data-density="functional">
+				<strong>Functional</strong>
+			</DBCard>
+			<DBCard data-density="regular">
+				<strong>(Default) Regular</strong>
+			</DBCard>
+			<DBCard data-density="expressive">
+				<strong>Expressive</strong>
+			</DBCard>
 		</Fragment>
 	);
 }

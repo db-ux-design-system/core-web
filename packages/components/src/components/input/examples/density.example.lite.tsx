@@ -11,15 +11,18 @@ useMetadata({
 export default function InputDensity() {
 	return (
 		<Fragment>
-			<DBInput data-density="functional" label="Label">
-				Functional
-			</DBInput>
-			<DBInput data-density="regular" label="Label">
-				(Default) Regular
-			</DBInput>
-			<DBInput data-density="expressive" label="Label">
-				Expressive
-			</DBInput>
+			<DBInput
+				data-density="functional"
+				label="Label"
+				placeholder="Functional"></DBInput>
+			<DBInput
+				data-density="regular"
+				label="Label"
+				placeholder="(Default) Regular"></DBInput>
+			<DBInput
+				data-density="expressive"
+				label="Label"
+				placeholder="Expressive"></DBInput>
 		</Fragment>
 	);
 }

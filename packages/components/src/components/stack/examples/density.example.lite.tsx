@@ -14,11 +14,13 @@ export default function StackDensity() {
 		<Fragment>
 			<div
 				style={{
+					alignItems: 'flex-start',
 					display: 'flex',
 					flexDirection: 'column',
 					gap: 'var(--db-spacing-fixed-sm)',
 					width: '200px'
-				}}>
+				}}
+				data-density="functional">
 				<DBInfotext size="small" icon="none" semantic="informational">
 					Functional
 				</DBInfotext>
@@ -34,6 +36,7 @@ export default function StackDensity() {
 			</div>
 			<div
 				style={{
+					alignItems: 'flex-start',
 					display: 'flex',
 					flexDirection: 'column',
 					gap: 'var(--db-spacing-fixed-sm)',
@@ -54,11 +57,13 @@ export default function StackDensity() {
 			</div>
 			<div
 				style={{
+					alignItems: 'flex-start',
 					display: 'flex',
 					flexDirection: 'column',
 					gap: 'var(--db-spacing-fixed-sm)',
 					width: '200px'
-				}}>
+				}}
+				data-density="expressive">
 				<DBInfotext size="small" icon="none" semantic="informational">
 					Expressive
 				</DBInfotext>

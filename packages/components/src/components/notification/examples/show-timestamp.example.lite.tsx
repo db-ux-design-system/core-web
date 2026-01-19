@@ -11,20 +11,24 @@ useMetadata({
 export default function NotificationShowTimestamp() {
 	return (
 		<Fragment>
-			<DBNotification
-				variant="overlay"
-				showTimestamp={false}
-				timestamp="10 min ago"
-				headline="Headline">
-				(Default) False
-			</DBNotification>
-			<DBNotification
-				variant="overlay"
-				showTimestamp={true}
-				timestamp="10 min ago"
-				headline="Headline">
-				True
-			</DBNotification>
+			<div style={{ width: '300px' }}>
+				<DBNotification
+					variant="overlay"
+					showTimestamp={false}
+					timestamp="10 min ago"
+					headline="Headline">
+					(Default) False
+				</DBNotification>
+			</div>
+			<div style={{ width: '300px' }}>
+				<DBNotification
+					variant="overlay"
+					showTimestamp={true}
+					timestamp="10 min ago"
+					headline="Headline">
+					True
+				</DBNotification>
+			</div>
 		</Fragment>
 	);
 }

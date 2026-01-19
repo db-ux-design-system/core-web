@@ -19,22 +19,38 @@ useMetadata({
 export default function HeaderExamples() {
 	return (
 		<Fragment>
-			<DBHeader brand={<DBBrand>Brand</DBBrand>}>
-				<DBNavigation>
-					<DBNavigationItem>
-						<a href="#">With Application Name + Navigation</a>
-					</DBNavigationItem>
-				</DBNavigation>
-			</DBHeader>
-			<DBHeader brand={<DBBrand>Brand</DBBrand>}></DBHeader>
-			<DBHeader brand={<DBBrand></DBBrand>}>
-				<DBNavigation>
-					<DBNavigationItem>
-						<a href="#">Without Application Name</a>
-					</DBNavigationItem>
-				</DBNavigation>
-			</DBHeader>
-			<DBHeader brand={<DBBrand></DBBrand>}></DBHeader>
+			<div style={{ width: '100%', display: 'block' }}>
+				<DBHeader brand={<DBBrand>DBHeader</DBBrand>}>
+					<DBNavigation>
+						<DBNavigationItem icon="x_placeholder">
+							<a href="#">With Application Name + Navigation</a>
+						</DBNavigationItem>
+						<DBNavigationItem disabled>
+							<a href="#">
+								With Application Name + Navigation disabled
+							</a>
+						</DBNavigationItem>
+					</DBNavigation>
+				</DBHeader>
+			</div>
+			<div style={{ width: '100%', display: 'block' }}>
+				<DBHeader brand={<DBBrand>DBHeader</DBBrand>}></DBHeader>
+			</div>
+			<div style={{ width: '100%', display: 'block' }}>
+				<DBHeader brand={<DBBrand></DBBrand>}>
+					<DBNavigation>
+						<DBNavigationItem icon="x_placeholder">
+							<a href="#">Without Application Name</a>
+						</DBNavigationItem>
+						<DBNavigationItem disabled>
+							<a href="#">Without Application Name disabled</a>
+						</DBNavigationItem>
+					</DBNavigation>
+				</DBHeader>
+			</div>
+			<div style={{ width: '100%', display: 'block' }}>
+				<DBHeader brand={<DBBrand></DBBrand>}></DBHeader>
+			</div>
 		</Fragment>
 	);
 }

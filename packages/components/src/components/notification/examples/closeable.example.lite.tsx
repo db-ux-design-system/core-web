@@ -11,12 +11,16 @@ useMetadata({
 export default function NotificationCloseable() {
 	return (
 		<Fragment>
-			<DBNotification closeable={false} headline="Headline">
-				(Default) False
-			</DBNotification>
-			<DBNotification closeable={true} headline="Headline">
-				True
-			</DBNotification>
+			<div style={{ width: '300px' }}>
+				<DBNotification closeable={false} headline="Headline">
+					(Default) False
+				</DBNotification>
+			</div>
+			<div style={{ width: '300px' }}>
+				<DBNotification closeable={true} headline="Headline">
+					True
+				</DBNotification>
+			</div>
 		</Fragment>
 	);
 }

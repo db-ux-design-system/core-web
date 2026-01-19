@@ -16,71 +16,105 @@ useMetadata({
 export default function HeaderBehavior() {
 	return (
 		<Fragment>
-			<DBHeader
-				brand={<DBBrand>Brand</DBBrand>}
-				metaNavigation={
-					<>
-						<DBLink href="#">Imprint</DBLink>
-						<DBLink href="#">Help</DBLink>
-					</>
-				}
-				primaryAction={
-					<DBButton icon="magnifying_glass" variant="ghost" noText>
-						Search
-					</DBButton>
-				}
-				secondaryAction={
-					<>
-						<DBButton icon="x_placeholder" variant="ghost" noText>
-							Profile
+			<div style={{ width: '100%', display: 'block' }}>
+				<DBHeader
+					brand={<DBBrand>DBHeader</DBBrand>}
+					metaNavigation={
+						<>
+							<DBLink href="#">Imprint</DBLink>
+							<DBLink href="#">Help</DBLink>
+						</>
+					}
+					primaryAction={
+						<DBButton
+							icon="magnifying_glass"
+							variant="ghost"
+							noText>
+							Search
 						</DBButton>
-						<DBButton icon="x_placeholder" variant="ghost" noText>
-							Notification
+					}
+					secondaryAction={
+						<>
+							<DBButton
+								icon="x_placeholder"
+								variant="ghost"
+								noText>
+								Profile
+							</DBButton>
+							<DBButton
+								icon="x_placeholder"
+								variant="ghost"
+								noText>
+								Notification
+							</DBButton>
+							<DBButton
+								icon="x_placeholder"
+								variant="ghost"
+								noText>
+								Help
+							</DBButton>
+						</>
+					}>
+					<DBNavigation>
+						<DBNavigationItem icon="x_placeholder">
+							<a href="#">Desktop (full width)</a>
+						</DBNavigationItem>
+						<DBNavigationItem disabled>
+							<a href="#">Desktop (full width) disabled</a>
+						</DBNavigationItem>
+					</DBNavigation>
+				</DBHeader>
+			</div>
+			<div style={{ width: '100%', display: 'block' }}>
+				<DBHeader
+					forceMobile="true"
+					brand={<DBBrand>DBHeader</DBBrand>}
+					metaNavigation={
+						<>
+							<DBLink href="#">Imprint</DBLink>
+							<DBLink href="#">Help</DBLink>
+						</>
+					}
+					primaryAction={
+						<DBButton
+							icon="magnifying_glass"
+							variant="ghost"
+							noText>
+							Search
 						</DBButton>
-						<DBButton icon="x_placeholder" variant="ghost" noText>
-							Help
-						</DBButton>
-					</>
-				}>
-				<DBNavigation>
-					<DBNavigationItem>
-						<a href="#">Desktop (full width)</a>
-					</DBNavigationItem>
-				</DBNavigation>
-			</DBHeader>
-			<DBHeader
-				forceMobile="true"
-				brand={<DBBrand>Brand</DBBrand>}
-				metaNavigation={
-					<>
-						<DBLink href="#">Imprint</DBLink>
-						<DBLink href="#">Help</DBLink>
-					</>
-				}
-				primaryAction={
-					<DBButton icon="magnifying_glass" variant="ghost" noText>
-						Search
-					</DBButton>
-				}
-				secondaryAction={
-					<>
-						<DBButton icon="x_placeholder" variant="ghost" noText>
-							Profile
-						</DBButton>
-						<DBButton icon="x_placeholder" variant="ghost" noText>
-							Notification
-						</DBButton>
-						<DBButton icon="x_placeholder" variant="ghost" noText>
-							Help
-						</DBButton>
-					</>
-				}>
-				<DBNavigation>
-					<DBNavigationItem>
-						<a href="#">Mobile</a>
-					</DBNavigationItem>
-				</DBNavigation>
-			</DBHeader>
+					}
+					secondaryAction={
+						<>
+							<DBButton
+								icon="x_placeholder"
+								variant="ghost"
+								noText>
+								Profile
+							</DBButton>
+							<DBButton
+								icon="x_placeholder"
+								variant="ghost"
+								noText>
+								Notification
+							</DBButton>
+							<DBButton
+								icon="x_placeholder"
+								variant="ghost"
+								noText>
+								Help
+							</DBButton>
+						</>
+					}>
+					<DBNavigation>
+						<DBNavigationItem icon="x_placeholder">
+							<a href="#">Mobile</a>
+						</DBNavigationItem>
+						<DBNavigationItem disabled>
+							<a href="#">Mobile disabled</a>
+						</DBNavigationItem>
+					</DBNavigation>
+				</DBHeader>
+			</div>
 		</Fragment>
 	);
 }

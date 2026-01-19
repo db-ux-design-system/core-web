@@ -49,6 +49,7 @@ db-card:is(.variants-card) > .db-card {
 	flex-wrap: wrap;
 	inline-size: 100%;
 	justify-content: center;
+	align-items: center;
 	gap: var(--db-spacing-fixed-md);
 }
 
@@ -64,7 +65,7 @@ db-card:is(.variants-card) > .db-card {
 	align-items: center;
 }
 
-.variants-list > div {
+.variants-list > div:not([class^="db-"]) {
 	align-items: center;
 	display: flex;
 	gap: var(--db-spacing-fixed-md);
@@ -157,6 +158,15 @@ db-card:is(.variants-card) > .db-card {
 
 .fixed-header-footer {
 	overflow: hidden;
+}
+
+.fit-content-container {
+	flex-direction: column;
+	inline-size: fit-content;
+
+	.db-infotext {
+		align-self: flex-start;
+	}
 }
 
 .tab-hide-article article {

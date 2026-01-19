@@ -14,15 +14,15 @@ export default function TextareaShowRequiredAsterisk() {
 			<DBTextarea
 				label="Label"
 				required={true}
-				showRequiredAsterisk={true}>
-				(Default) True
-			</DBTextarea>
+				showRequiredAsterisk={true}
+				placeholder="(Default) True"
+			/>
 			<DBTextarea
 				label="Label"
 				required={true}
-				showRequiredAsterisk={false}>
-				False
-			</DBTextarea>
+				showRequiredAsterisk={false}
+				placeholder="False"
+			/>
 		</Fragment>
 	);
 }

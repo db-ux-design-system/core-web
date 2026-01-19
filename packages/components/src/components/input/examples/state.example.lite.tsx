@@ -11,10 +11,8 @@ useMetadata({
 export default function InputState() {
 	return (
 		<Fragment>
-			<DBInput label="Label">(Default) Empty</DBInput>
-			<DBInput label="Label" value="Filled">
-				Filled
-			</DBInput>
+			<DBInput label="Label" placeholder="(Default) Empty"></DBInput>
+			<DBInput label="Label" value="Filled"></DBInput>
 		</Fragment>
 	);
 }

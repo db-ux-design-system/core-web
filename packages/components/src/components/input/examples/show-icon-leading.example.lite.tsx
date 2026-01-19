@@ -11,12 +11,16 @@ useMetadata({
 export default function InputShowIconLeading() {
 	return (
 		<Fragment>
-			<DBInput label="False" icon="x_placeholder" showIcon={false}>
-				(Default) False
-			</DBInput>
-			<DBInput label="True" icon="x_placeholder" showIcon={true}>
-				True
-			</DBInput>
+			<DBInput
+				label="False"
+				icon="x_placeholder"
+				showIcon={false}
+				placeholder="(Default) False"></DBInput>
+			<DBInput
+				label="True"
+				icon="x_placeholder"
+				showIcon={true}
+				placeholder="True"></DBInput>
 		</Fragment>
 	);
 }

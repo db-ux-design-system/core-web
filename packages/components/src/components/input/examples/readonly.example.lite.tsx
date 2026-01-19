@@ -11,12 +11,11 @@ useMetadata({
 export default function InputReadonly() {
 	return (
 		<Fragment>
-			<DBInput label="Label" readOnly={false}>
-				(Default) False
-			</DBInput>
-			<DBInput label="Label" readOnly={true}>
-				True
-			</DBInput>
+			<DBInput
+				label="Label"
+				readOnly={false}
+				placeholder="(Default) False"></DBInput>
+			<DBInput label="Label" readOnly={true} placeholder="True"></DBInput>
 		</Fragment>
 	);
 }

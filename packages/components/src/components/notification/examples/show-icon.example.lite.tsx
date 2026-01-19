@@ -11,12 +11,16 @@ useMetadata({
 export default function NotificationShowIcon() {
 	return (
 		<Fragment>
-			<DBNotification icon="information_circle" showIcon={true}>
-				(Default) True
-			</DBNotification>
-			<DBNotification icon="information_circle" showIcon={false}>
-				False
-			</DBNotification>
+			<div style={{ width: '300px' }}>
+				<DBNotification icon="information_circle" showIcon={true}>
+					(Default) True
+				</DBNotification>
+			</div>
+			<div style={{ width: '300px' }}>
+				<DBNotification icon="information_circle" showIcon={false}>
+					False
+				</DBNotification>
+			</div>
 		</Fragment>
 	);
 }

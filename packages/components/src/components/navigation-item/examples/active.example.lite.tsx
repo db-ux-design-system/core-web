@@ -11,12 +11,12 @@ useMetadata({
 export default function NavigationItemActive() {
 	return (
 		<Fragment>
-			<ul className="nav-item-list">
+			<ul>
 				<DBNavigationItem active={false}>
 					<a href="#">(Default) False</a>
 				</DBNavigationItem>
 			</ul>
-			<ul className="nav-item-list">
+			<ul>
 				<DBNavigationItem active={true}>
 					<a href="#">True</a>
 				</DBNavigationItem>

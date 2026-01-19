@@ -11,12 +11,16 @@ useMetadata({
 export default function NotificationShowHeadline() {
 	return (
 		<Fragment>
-			<DBNotification headline="Headline" showHeadline={true}>
-				(Default) True
-			</DBNotification>
-			<DBNotification headline="Headline" showHeadline={false}>
-				False
-			</DBNotification>
+			<div style={{ width: '300px' }}>
+				<DBNotification headline="Headline" showHeadline={true}>
+					(Default) True
+				</DBNotification>
+			</div>
+			<div style={{ width: '300px' }}>
+				<DBNotification headline="Headline" showHeadline={false}>
+					False
+				</DBNotification>
+			</div>
 		</Fragment>
 	);
 }

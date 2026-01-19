@@ -11,12 +11,11 @@ useMetadata({
 export default function InputRequired() {
 	return (
 		<Fragment>
-			<DBInput label="Label" required={false}>
-				(Default) False
-			</DBInput>
-			<DBInput label="Label" required={true}>
-				True
-			</DBInput>
+			<DBInput
+				label="Label"
+				required={false}
+				placeholder="(Default) False"></DBInput>
+			<DBInput label="Label" required={true} placeholder="True"></DBInput>
 		</Fragment>
 	);
 }

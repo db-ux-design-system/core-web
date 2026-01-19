@@ -11,12 +11,16 @@ useMetadata({
 export default function InputShowRequiredAsterisk() {
 	return (
 		<Fragment>
-			<DBInput label="Label" required={true} showRequiredAsterisk={true}>
-				(Default) True
-			</DBInput>
-			<DBInput label="Label" required={true} showRequiredAsterisk={false}>
-				False
-			</DBInput>
+			<DBInput
+				label="Label"
+				required={true}
+				showRequiredAsterisk={true}
+				placeholder="(Default) True"></DBInput>
+			<DBInput
+				label="Label"
+				required={true}
+				showRequiredAsterisk={false}
+				placeholder="False"></DBInput>
 		</Fragment>
 	);
 }

@@ -14,6 +14,7 @@ export default function StackDirection() {
 		<Fragment>
 			<div
 				style={{
+					alignItems: 'flex-start',
 					display: 'flex',
 					flexDirection: 'column',
 					gap: 'var(--db-spacing-fixed-sm)',
@@ -34,10 +35,11 @@ export default function StackDirection() {
 			</div>
 			<div
 				style={{
+					alignItems: 'flex-start',
 					display: 'flex',
 					flexDirection: 'column',
 					gap: 'var(--db-spacing-fixed-sm)',
-					width: '200px'
+					height: '100px'
 				}}>
 				<DBInfotext size="small" icon="none" semantic="informational">
 					Row

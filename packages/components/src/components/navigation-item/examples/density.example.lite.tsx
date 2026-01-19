@@ -11,17 +11,17 @@ useMetadata({
 export default function NavigationItemDensity() {
 	return (
 		<Fragment>
-			<ul className="nav-item-list">
+			<ul>
 				<DBNavigationItem data-density="functional">
 					<a href="#">Functional</a>
 				</DBNavigationItem>
 			</ul>
-			<ul className="nav-item-list">
+			<ul>
 				<DBNavigationItem data-density="regular">
 					<a href="#">(Default) Regular</a>
 				</DBNavigationItem>
 			</ul>
-			<ul className="nav-item-list">
+			<ul>
 				<DBNavigationItem data-density="expressive">
 					<a href="#">Expressive</a>
 				</DBNavigationItem>

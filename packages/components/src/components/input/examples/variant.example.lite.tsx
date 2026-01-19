@@ -11,10 +11,11 @@ useMetadata({
 export default function InputVariant() {
 	return (
 		<Fragment>
-			<DBInput label="Label">(Default) Above</DBInput>
-			<DBInput label="Label" variant="floating" value="Floating">
-				Floating
-			</DBInput>
+			<DBInput label="Label" placeholder="(Default) Above"></DBInput>
+			<DBInput
+				label="Label"
+				variant="floating"
+				value="Floating"></DBInput>
 		</Fragment>
 	);
 }

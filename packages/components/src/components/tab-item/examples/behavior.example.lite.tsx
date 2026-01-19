@@ -13,13 +13,11 @@ export default function TabItemBehavior() {
 	return (
 		<Fragment>
 			<DBTabList>
-				<DBTabItem label="(Default) Auto Width">
-					(Default) Auto Width
-				</DBTabItem>
+				<DBTabItem label="(Default) Auto Width" />
 			</DBTabList>
 			<div style={{ width: '500px' }}>
 				<DBTabList>
-					<DBTabItem label="Width full">Width full</DBTabItem>
+					<DBTabItem label="Width full" />
 				</DBTabList>
 			</div>
 		</Fragment>

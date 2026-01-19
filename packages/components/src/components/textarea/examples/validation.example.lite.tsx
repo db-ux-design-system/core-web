@@ -11,21 +11,23 @@ useMetadata({
 export default function TextareaValidation() {
 	return (
 		<Fragment>
-			<DBTextarea label="Label" validation="no-validation">
-				(Default) No validation
-			</DBTextarea>
+			<DBTextarea
+				label="Label"
+				validation="no-validation"
+				placeholder="(Default) No validation"
+			/>
 			<DBTextarea
 				label="Label"
 				validation="invalid"
-				invalidMessage="Invalid Message">
-				Invalid
-			</DBTextarea>
+				invalidMessage="Invalid Message"
+				placeholder="Invalid"
+			/>
 			<DBTextarea
 				label="Label"
 				validation="valid"
-				validMessage="Valid message">
-				Valid
-			</DBTextarea>
+				validMessage="Valid message"
+				placeholder="Valid"
+			/>
 		</Fragment>
 	);
 }

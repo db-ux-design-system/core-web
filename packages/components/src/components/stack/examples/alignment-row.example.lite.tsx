@@ -14,10 +14,11 @@ export default function StackAlignmentRow() {
 		<Fragment>
 			<div
 				style={{
+					alignItems: 'flex-start',
 					display: 'flex',
 					flexDirection: 'column',
 					gap: 'var(--db-spacing-fixed-sm)',
-					width: '200px'
+					height: '100px'
 				}}>
 				<DBInfotext size="small" icon="none" semantic="informational">
 					(Default) Stretch
@@ -37,10 +38,11 @@ export default function StackAlignmentRow() {
 			</div>
 			<div
 				style={{
+					alignItems: 'flex-start',
 					display: 'flex',
 					flexDirection: 'column',
 					gap: 'var(--db-spacing-fixed-sm)',
-					width: '200px'
+					height: '100px'
 				}}>
 				<DBInfotext size="small" icon="none" semantic="informational">
 					Start
@@ -60,10 +62,11 @@ export default function StackAlignmentRow() {
 			</div>
 			<div
 				style={{
+					alignItems: 'flex-start',
 					display: 'flex',
 					flexDirection: 'column',
 					gap: 'var(--db-spacing-fixed-sm)',
-					width: '200px'
+					height: '100px'
 				}}>
 				<DBInfotext size="small" icon="none" semantic="informational">
 					Center
@@ -83,10 +86,11 @@ export default function StackAlignmentRow() {
 			</div>
 			<div
 				style={{
+					alignItems: 'flex-start',
 					display: 'flex',
 					flexDirection: 'column',
 					gap: 'var(--db-spacing-fixed-sm)',
-					width: '200px'
+					height: '100px'
 				}}>
 				<DBInfotext size="small" icon="none" semantic="informational">
 					End

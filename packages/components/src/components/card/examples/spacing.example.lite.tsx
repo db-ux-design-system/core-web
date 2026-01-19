@@ -11,10 +11,18 @@ useMetadata({
 export default function CardSpacing() {
 	return (
 		<Fragment>
-			<DBCard spacing="small">(Default) Small</DBCard>
-			<DBCard spacing="medium">Medium</DBCard>
-			<DBCard spacing="large">Large</DBCard>
-			<DBCard spacing="none">None</DBCard>
+			<DBCard spacing="small">
+				<strong>(Default) Small</strong>
+			</DBCard>
+			<DBCard spacing="medium">
+				<strong>Medium</strong>
+			</DBCard>
+			<DBCard spacing="large">
+				<strong>Large</strong>
+			</DBCard>
+			<DBCard spacing="none">
+				<strong>None</strong>
+			</DBCard>
 		</Fragment>
 	);
 }

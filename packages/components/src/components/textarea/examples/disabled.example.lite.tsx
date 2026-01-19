@@ -11,12 +11,12 @@ useMetadata({
 export default function TextareaDisabled() {
 	return (
 		<Fragment>
-			<DBTextarea label="Label" disabled={false}>
-				(Default) False
-			</DBTextarea>
-			<DBTextarea label="Label" disabled={true}>
-				True
-			</DBTextarea>
+			<DBTextarea
+				label="Label"
+				disabled={false}
+				placeholder="(Default) False"
+			/>
+			<DBTextarea label="Label" disabled={true} placeholder="True" />
 		</Fragment>
 	);
 }

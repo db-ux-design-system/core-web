@@ -14,13 +14,12 @@ export default function TabItemShowIconTrailing() {
 		<Fragment>
 			<DBTabList>
 				<DBTabItem
-					label="False"
+					label="(Default) False"
 					icon="x_placeholder"
 					showIcon={false}
 					iconTrailing="x_placeholder"
-					showIconTrailing={false}>
-					(Default) False
-				</DBTabItem>
+					showIconTrailing={false}
+				/>
 			</DBTabList>
 			<DBTabList>
 				<DBTabItem
@@ -28,9 +27,8 @@ export default function TabItemShowIconTrailing() {
 					icon="x_placeholder"
 					showIcon={true}
 					iconTrailing="x_placeholder"
-					showIconTrailing={true}>
-					True
-				</DBTabItem>
+					showIconTrailing={true}
+				/>
 			</DBTabList>
 		</Fragment>
 	);

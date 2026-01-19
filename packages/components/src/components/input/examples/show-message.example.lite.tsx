@@ -11,12 +11,16 @@ useMetadata({
 export default function InputShowMessage() {
 	return (
 		<Fragment>
-			<DBInput label="Label" message="Message" showMessage={false}>
-				(Default) False
-			</DBInput>
-			<DBInput label="Label" message="Message" showMessage={true}>
-				True
-			</DBInput>
+			<DBInput
+				label="Label"
+				message="Message"
+				showMessage={false}
+				placeholder="(Default) False"></DBInput>
+			<DBInput
+				label="Label"
+				message="Message"
+				showMessage={true}
+				placeholder="True"></DBInput>
 		</Fragment>
 	);
 }

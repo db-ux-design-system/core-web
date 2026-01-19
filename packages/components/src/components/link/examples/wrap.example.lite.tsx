@@ -14,9 +14,11 @@ export default function LinkWrap() {
 			<DBLink href="#" wrap={false}>
 				(Default) False
 			</DBLink>
-			<DBLink href="#" wrap={true}>
-				True [Multiline]
-			</DBLink>
+			<div style={{ width: '2ch' }}>
+				<DBLink href="#" wrap={true}>
+					True [Multiline]
+				</DBLink>
+			</div>
 		</Fragment>
 	);
 }

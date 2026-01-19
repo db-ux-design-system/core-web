@@ -11,42 +11,48 @@ useMetadata({
 export default function SelectDensity() {
 	return (
 		<Fragment>
-			<DBSelect
-				data-density="functional"
-				options={[
-					{ value: 'Option 1' },
-					{ value: 'Option 2' },
-					{ value: 'Option 3' },
-					{ value: 'Option 4' },
-					{ value: 'Option 5' }
-				]}
-				label="Label"
-				placeholder="Functional"
-			/>
-			<DBSelect
-				data-density="regular"
-				options={[
-					{ value: 'Option 1' },
-					{ value: 'Option 2' },
-					{ value: 'Option 3' },
-					{ value: 'Option 4' },
-					{ value: 'Option 5' }
-				]}
-				label="Label"
-				placeholder="(Default) Regular"
-			/>
-			<DBSelect
-				data-density="expressive"
-				options={[
-					{ value: 'Option 1' },
-					{ value: 'Option 2' },
-					{ value: 'Option 3' },
-					{ value: 'Option 4' },
-					{ value: 'Option 5' }
-				]}
-				label="Label"
-				placeholder="Expressive"
-			/>
+			<div style={{ width: '300px' }}>
+				<DBSelect
+					data-density="functional"
+					options={[
+						{ value: 'Option 1' },
+						{ value: 'Option 2' },
+						{ value: 'Option 3' },
+						{ value: 'Option 4' },
+						{ value: 'Option 5' }
+					]}
+					label="Label"
+					placeholder="Functional"
+				/>
+			</div>
+			<div style={{ width: '300px' }}>
+				<DBSelect
+					data-density="regular"
+					options={[
+						{ value: 'Option 1' },
+						{ value: 'Option 2' },
+						{ value: 'Option 3' },
+						{ value: 'Option 4' },
+						{ value: 'Option 5' }
+					]}
+					label="Label"
+					placeholder="(Default) Regular"
+				/>
+			</div>
+			<div style={{ width: '300px' }}>
+				<DBSelect
+					data-density="expressive"
+					options={[
+						{ value: 'Option 1' },
+						{ value: 'Option 2' },
+						{ value: 'Option 3' },
+						{ value: 'Option 4' },
+						{ value: 'Option 5' }
+					]}
+					label="Label"
+					placeholder="Expressive"
+				/>
+			</div>
 		</Fragment>
 	);
 }

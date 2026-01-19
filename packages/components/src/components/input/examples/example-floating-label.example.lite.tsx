@@ -17,29 +17,27 @@ useMetadata({
 export default function InputExampleFloatingLabel() {
 	return (
 		<Fragment>
-			<DBInput label="Label" variant="floating">
-				(Default) Empty
-			</DBInput>
-			<DBInput label="Label" value="Filled" variant="floating">
-				Filled
-			</DBInput>
-			<DBInput label="Label" disabled={true} variant="floating">
-				Disabled
-			</DBInput>
+			<DBInput
+				label="Label"
+				variant="floating"
+				placeholder="(Default) Empty"></DBInput>
+			<DBInput label="Label" value="Filled" variant="floating"></DBInput>
+			<DBInput
+				label="Label"
+				disabled={true}
+				variant="floating"
+				placeholder="Disabled"></DBInput>
 			<DBInput
 				label="Label"
 				value="Readonly - Filled"
 				readOnly={true}
-				variant="floating">
-				Readonly - Filled
-			</DBInput>
+				variant="floating"></DBInput>
 			<DBInput
 				label="Label"
 				validation="invalid"
 				invalidMessage="Invalid Message"
-				variant="floating">
-				Invalid
-			</DBInput>
+				variant="floating"
+				placeholder="Invalid"></DBInput>
 		</Fragment>
 	);
 }

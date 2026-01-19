@@ -11,33 +11,35 @@ useMetadata({
 export default function CustomSelectExamplesFloatinglabel() {
 	return (
 		<Fragment>
-			<DBCustomSelect
-				options={[
-					{ value: 'Option 1', id: 'otbjunoyx' },
-					{ value: 'Option 2', id: 'ju53v02yg' },
-					{ value: 'Option 3', id: 'ju53v03yg' },
-					{ value: 'Option 4', id: 'ju53v04yg' },
-					{ value: 'Option 5', id: 'ju53v05yg' }
-				]}
-				variant="floating"
-				values={['Floating Label']}
-				id="id-10300">
-				Floating
-			</DBCustomSelect>
-			<DBCustomSelect
-				options={[
-					{ value: 'Option 1', id: 'otbjunoyx' },
-					{ value: 'Option 2', id: 'ju53v02yg' },
-					{ value: 'Option 3', id: 'ju53v03yg' },
-					{ value: 'Option 4', id: 'ju53v04yg' },
-					{ value: 'Option 5', id: 'ju53v05yg' }
-				]}
-				variant="floating"
-				id="id-10301"
-				validation="invalid"
-				invalidMessage="Invalid Message">
-				Floating
-			</DBCustomSelect>
+			<div style={{ width: '200px' }}>
+				<DBCustomSelect
+					options={[
+						{ value: 'Option 1', id: 'otbjunoyx' },
+						{ value: 'Option 2', id: 'ju53v02yg' },
+						{ value: 'Option 3', id: 'ju53v03yg' },
+						{ value: 'Option 4', id: 'ju53v04yg' },
+						{ value: 'Option 5', id: 'ju53v05yg' }
+					]}
+					variant="floating"
+					values={['Floating Label']}
+					id="id-10300"
+					label="Floating"></DBCustomSelect>
+			</div>
+			<div style={{ width: '200px' }}>
+				<DBCustomSelect
+					options={[
+						{ value: 'Option 1', id: 'otbjunoyx' },
+						{ value: 'Option 2', id: 'ju53v02yg' },
+						{ value: 'Option 3', id: 'ju53v03yg' },
+						{ value: 'Option 4', id: 'ju53v04yg' },
+						{ value: 'Option 5', id: 'ju53v05yg' }
+					]}
+					variant="floating"
+					id="id-10301"
+					validation="invalid"
+					invalidMessage="Invalid Message"
+					label="Floating"></DBCustomSelect>
+			</div>
 		</Fragment>
 	);
 }

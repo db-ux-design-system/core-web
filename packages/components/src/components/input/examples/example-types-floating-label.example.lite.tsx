@@ -1,4 +1,4 @@
-import { Fragment, useMetadata } from '@builder.io/mitosis';
+import { Fragment, useMetadata, useState } from '@builder.io/mitosis';
 import DBInput from '../input.lite';
 import { StorybookInputArgTypes } from './_input.arg.types';
 
@@ -23,51 +23,73 @@ useMetadata({
 });
 
 export default function InputExampleTypesFloatingLabel() {
-	const dataListFloating = ['Test 1', 'Test 2'];
+	const [dataListFloating] = useState(['Test 1', 'Test 2']);
 	return (
 		<Fragment>
-			<DBInput label="Label" variant="floating">
-				(Default) Text
-			</DBInput>
-			<DBInput label="Label" type="password" variant="floating">
-				Password
-			</DBInput>
-			<DBInput label="Label" type="search" variant="floating">
-				Search
-			</DBInput>
-			<DBInput label="Label" type="email" variant="floating">
-				E-Mail
-			</DBInput>
-			<DBInput label="Label" type="tel" variant="floating">
-				Tel
-			</DBInput>
-			<DBInput label="Label" type="url" variant="floating">
-				URL
-			</DBInput>
-			<DBInput label="Label" type="date" variant="floating">
-				Date
-			</DBInput>
-			<DBInput label="Label" type="datetime-local" variant="floating">
-				Datetime Local
-			</DBInput>
-			<DBInput label="Label" type="month" variant="floating">
-				Month
-			</DBInput>
-			<DBInput label="Label" type="time" variant="floating">
-				Time
-			</DBInput>
-			<DBInput label="Label" type="week" variant="floating">
-				Week
-			</DBInput>
 			<DBInput
 				label="Label"
 				variant="floating"
-				dataList={dataListFloating}>
-				Datalist
-			</DBInput>
-			<DBInput label="Label" type="file" variant="floating">
-				File
-			</DBInput>
+				placeholder="(Default) Text"></DBInput>
+			<DBInput
+				label="Label"
+				type="password"
+				variant="floating"
+				placeholder="Password"></DBInput>
+			<DBInput
+				label="Label"
+				type="search"
+				variant="floating"
+				placeholder="Search"></DBInput>
+			<DBInput
+				label="Label"
+				type="email"
+				variant="floating"
+				placeholder="E-Mail"></DBInput>
+			<DBInput
+				label="Label"
+				type="tel"
+				variant="floating"
+				placeholder="Tel"></DBInput>
+			<DBInput
+				label="Label"
+				type="url"
+				variant="floating"
+				placeholder="URL"></DBInput>
+			<DBInput
+				label="Label"
+				type="date"
+				variant="floating"
+				placeholder="Date"></DBInput>
+			<DBInput
+				label="Label"
+				type="datetime-local"
+				variant="floating"
+				placeholder="Datetime Local"></DBInput>
+			<DBInput
+				label="Label"
+				type="month"
+				variant="floating"
+				placeholder="Month"></DBInput>
+			<DBInput
+				label="Label"
+				type="time"
+				variant="floating"
+				placeholder="Time"></DBInput>
+			<DBInput
+				label="Label"
+				type="week"
+				variant="floating"
+				placeholder="Week"></DBInput>
+			<DBInput
+				label="Label"
+				variant="floating"
+				dataList={dataListFloating}
+				placeholder="Datalist"></DBInput>
+			<DBInput
+				label="Label"
+				type="file"
+				variant="floating"
+				placeholder="File"></DBInput>
 		</Fragment>
 	);
 }

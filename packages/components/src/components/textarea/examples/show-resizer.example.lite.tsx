@@ -11,12 +11,12 @@ useMetadata({
 export default function TextareaShowResizer() {
 	return (
 		<Fragment>
-			<DBTextarea label="Label" showResizer={true}>
-				(Default) True
-			</DBTextarea>
-			<DBTextarea label="Label" showResizer={false}>
-				False
-			</DBTextarea>
+			<DBTextarea
+				label="Label"
+				showResizer={true}
+				placeholder="(Default) True"
+			/>
+			<DBTextarea label="Label" showResizer={false} placeholder="False" />
 		</Fragment>
 	);
 }

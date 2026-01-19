@@ -11,10 +11,13 @@ useMetadata({
 export default function TextareaVariant() {
 	return (
 		<Fragment>
-			<DBTextarea label="Label">(Default) Above</DBTextarea>
-			<DBTextarea label="Label" variant="floating" value="Floating Label">
-				Floating
-			</DBTextarea>
+			<DBTextarea label="Label" placeholder="(Default) Above" />
+			<DBTextarea
+				label="Label"
+				variant="floating"
+				value="Floating Label"
+				placeholder="Floating"
+			/>
 		</Fragment>
 	);
 }
