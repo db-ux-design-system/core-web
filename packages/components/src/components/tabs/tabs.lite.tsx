@@ -36,16 +36,6 @@ export default function DBTabs(props: DBTabsProps) {
 		scrollContainer: null,
 		_resizeObserver: undefined,
 
-		getTabId(index: number) {
-			const name = props.name ? 'tabs-' + props.name : state._name;
-			return `${name}-tab-${index}`;
-		},
-
-		getPanelId(index: number) {
-			const name = props.name ? 'tabs-' + props.name : state._name;
-			return `${name}-tab-panel-${index}`;
-		},
-
 		activateTab(index: number) {
 			if (state.activeTabIndex !== index) {
 				state.activeTabIndex = index;
@@ -290,12 +280,13 @@ export default function DBTabs(props: DBTabsProps) {
 						{(tab: DBSimpleTabProps, index: number) => (
 							<DBTabItem
 								key={props.name + 'tab-item' + index}
-								id={state.getTabId(index)}
-								ariaControls={state.getPanelId(index)}
-								active={state.activeTabIndex === index}
+								id={`${props.name ? 'tabs-' + props.name : state._name}-tab-${index}`}
+								ariaControls={`${props.name ? 'tabs-' + props.name : state._name}-tab-panel-${index}`}
+								active={state.activeTabIndex === Number(index)}
 								tabIndex={
-									state.activeTabIndex === index ||
-									(state.activeTabIndex === -1 && index === 0)
+									state.activeTabIndex === Number(index) ||
+									(state.activeTabIndex === -1 &&
+										Number(index) === 0)
 										? 0
 										: -1
 								}
@@ -303,7 +294,6 @@ export default function DBTabs(props: DBTabsProps) {
 								iconTrailing={tab.iconTrailing}
 								icon={tab.icon}
 								noText={tab.noText}
-								onClick={() => state.activateTab(index)}
 							/>
 						)}
 					</For>
@@ -312,10 +302,10 @@ export default function DBTabs(props: DBTabsProps) {
 					{(tab: DBSimpleTabProps, index: number) => (
 						<DBTabPanel
 							key={props.name + 'tab-panel' + index}
-							id={state.getPanelId(index)}
-							ariaLabelledby={state.getTabId(index)}
+							id={`${props.name ? 'tabs-' + props.name : state._name}-tab-panel-${index}`}
+							ariaLabelledby={`${props.name ? 'tabs-' + props.name : state._name}-tab-${index}`}
 							content={tab.content}
-							hidden={state.activeTabIndex !== index}>
+							hidden={state.activeTabIndex !== Number(index)}>
 							{tab.children}
 						</DBTabPanel>
 					)}
