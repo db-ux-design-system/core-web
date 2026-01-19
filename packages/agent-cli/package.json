@@ -1,6 +1,6 @@
 {
   "name": "@db-ux/agent-cli",
-  "version": "4.0.1",
+  "version": "4.2.6",
   "type": "module",
   "description": "CLI for DB UX Design System generate AI agent instructions",
   "repository": {
@@ -24,15 +24,16 @@
     "copy-build:package.json": "cpr package.json ../../build-outputs/agent-cli/package.json --overwrite",
     "copy-build:readme": "cpr README.md ../../build-outputs/agent-cli/README.md --overwrite",
     "test": "vitest run --config vitest.config.ts",
-    "test:cli": "tsx src/cli.ts --help"
+    "test:cli": "tsx src/cli.ts --help",
+    "test:update": "vitest run --config vitest.config.ts --update"
   },
   "dependencies": {
-    "commander": "14.0.1"
+    "commander": "14.0.2"
   },
   "devDependencies": {
     "cpr": "3.0.1",
-    "esbuild": "0.25.10",
-    "tsx": "4.20.6",
+    "esbuild": "0.27.2",
+    "tsx": "4.21.0",
     "vitest": "3.2.4"
   },
   "publishConfig": {

@@ -15,7 +15,12 @@
 		"noUnusedParameters": false,
 		"lib": ["ESNext", "DOM"],
 		"skipLibCheck": true,
-		"noEmit": true
+		"noEmit": true,
+		"paths": {
+			"@components": ["../../output/vue/src"],
+			"@components/src/*": ["../../output/vue/src/*"],
+			"@components/components/*": ["../../output/vue/src/components/*"]
+		}
 	},
 	"include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue"],
 	"references": [{ "path": "./tsconfig.node.json" }]

@@ -18,7 +18,7 @@
 # misc
 .DS_Store
 
-# typescript
+# TypeScript
 next-env.d.ts
 
 # debug

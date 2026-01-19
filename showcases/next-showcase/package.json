@@ -1,24 +1,31 @@
 {
   "name": "next-showcase",
+  "version": "0.0.0",
+  "description": "Next.js showcase",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/db-ux-design-system/core-web.git"
+  },
+  "license": "Apache-2.0",
   "private": true,
   "engines": {
     "node": ">=18"
   },
   "scripts": {
-    "build": "next build",
+    "build": "next build --webpack",
     "dev": "npm-run-all open next:dev",
-    "next:dev": "next dev --port 5050",
+    "next:dev": "next dev --webpack --port 5050",
     "open": "open-cli http://localhost:5050/next-showcase",
     "start": "next start"
   },
   "dependencies": {
-    "next": "15.5.4",
-    "react": "18.3.1",
-    "react-dom": "18.3.1"
+    "next": "16.1.3",
+    "react": "19.2.3",
+    "react-dom": "19.2.3"
   },
   "devDependencies": {
-    "@types/node": "24.7.2",
-    "@types/react": "18.3.13",
+    "@types/node": "25.0.9",
+    "@types/react": "19.2.8",
     "npm-run-all2": "8.0.4",
     "open-cli": "8.0.0",
     "typescript": "5.9.3"

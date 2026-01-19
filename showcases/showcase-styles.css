@@ -8,7 +8,15 @@
 	display: flex;
 	flex-direction: column;
 	gap: var(--db-spacing-fixed-md);
-	padding: var(--db-spacing-fixed-md);
+
+	&:has(.component-header) {
+		padding: var(--db-spacing-fixed-md);
+	}
+}
+
+/* TODO: we're disabling the code link temporarily and need to reintegrate it afterwards */
+.show-code-link {
+	display: none;
 }
 
 .component-header {
@@ -42,6 +50,18 @@ db-card:is(.variants-card) > .db-card {
 	inline-size: 100%;
 	justify-content: center;
 	gap: var(--db-spacing-fixed-md);
+}
+
+.variants-list > db-popover > .db-popover > db-button > button,
+.variants-list > .db-popover > button,
+.variants-list > * > db-button > button,
+.variants-list > button {
+	align-self: center;
+}
+
+.variants-list div[style]:has(> db-button) {
+	display: flex;
+	align-items: center;
 }
 
 .variants-list > div {
@@ -125,6 +145,7 @@ db-card:is(.variants-card) > .db-card {
 
 .badge-inline-container {
 	display: flex;
+	align-items: center;
 	gap: var(--db-spacing-fixed-sm);
 	padding: var(--db-spacing-fixed-xs) var(--db-spacing-fixed-sm);
 	background-color: var(--db-adaptive-bg-basic-level-2-default);
@@ -132,7 +153,6 @@ db-card:is(.variants-card) > .db-card {
 
 .badge-inline-container .db-badge {
 	margin-inline-start: var(--db-spacing-responsive-md);
-	margin-block: auto;
 }
 
 .fixed-header-footer {

@@ -192,6 +192,12 @@ export type DBCustomSelectDefaultProps = {
 	selectedLabels?: string;
 
 	/**
+	 * Optional: Prefix text announced by screen readers before the selection
+	 * (e.g. "Selected").
+	 */
+	selectedPrefix?: string;
+
+	/**
 	 * Change the selected type for values shown in multi select
 	 */
 	selectedType?: SelectedTypeType;

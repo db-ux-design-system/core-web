@@ -2,7 +2,14 @@ import ignoreFolders from './.config/ignores.js';
 
 /** @type {import('xo').FlatXoConfig} */
 const xoConfig = [
-	{ ignores: [...ignoreFolders, '**/*.vue'] },
+	{
+		ignores: [
+			...ignoreFolders,
+			'**/*.vue',
+			// We don't need to check for stories - they will be generated
+			'storybooks/*/src/**'
+		]
+	},
 	{
 		prettier: true,
 		rules: {
@@ -61,7 +68,7 @@ const xoConfig = [
 		}
 	},
 	{
-		files: ['./**/*.spec.ts'],
+		files: ['./**/*.spec.ts', './showcases/screen-reader/default.ts'],
 		rules: {
 			// Playwright tests are async we shall use loops there
 			'no-await-in-loop': 0

@@ -428,6 +428,15 @@
 					"readOnly": true,
 					"variant": "floating"
 				}
+			},
+			{
+				"name": "Invalid",
+				"props": {
+					"label": "Label",
+					"validation": "invalid",
+					"invalidMessage": "Invalid Message",
+					"variant": "floating"
+				}
 			}
 		]
 	},
