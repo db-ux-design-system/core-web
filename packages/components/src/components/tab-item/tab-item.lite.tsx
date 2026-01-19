@@ -131,7 +131,7 @@ export default function DBTabItem(props: DBTabItemProps) {
 				disabled={state.disabled ? true : undefined}
 				tabIndex={
 					props.tabIndex !== undefined
-						? Number(props.tabIndex)
+						? +props.tabIndex
 						: state.internalActive
 							? 0
 							: -1
