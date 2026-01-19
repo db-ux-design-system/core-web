@@ -54,9 +54,7 @@ jobs:
         env:
           BASE_URL: ${{ inputs.baseUrl }}
         run: |
-          node node_modules/@db-ux/db-theme-fonts/build/scripts/index.js
-          node node_modules/@db-ux/db-theme-icons/build/scripts/index.js
-          npm run build --workspace=${{ inputs.storybook }}
+          pnpm --workspace=${{ inputs.storybook }} run build
 
       - name: ⏫ Upload ${{ inputs.storybook }}
         uses: actions/upload-artifact@v6

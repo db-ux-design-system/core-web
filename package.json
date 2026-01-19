@@ -52,7 +52,7 @@
     "commit:updated-snapshots": "git diff --name-only --diff-filter=M | xargs git add && git commit --message 'test: updated snapshots'",
     "dev": "pnpm --filter='./scripts' run dev",
     "generate:agent": "pnpm --filter=scripts run agent",
-    "generate:component": "npm --filter=@db-ux/core-components run generate:component",
+    "generate:component": "pnpm --filter=@db-ux/core-components run generate:component",
     "lint": "pnpm --parallel run '/^lint:[^:]*$/'",
     "lint-docs-file-references": "node scripts/check-docs.js",
     "lint-packages": "tsx scripts/lint-packages.ts publint",

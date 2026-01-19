@@ -64,8 +64,8 @@ jobs:
 
       - name: 📦 Validate Package Publishing
         run: |
-          npm run lint-packages
-          npm run lint-docs-file-references
+          pnpm run lint-packages
+          pnpm run lint-docs-file-references
 
       - name: ⏫ Upload outputs
         uses: actions/upload-artifact@v6
