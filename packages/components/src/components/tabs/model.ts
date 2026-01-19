@@ -86,7 +86,7 @@ export type DBTabsDefaultState = {
 	evaluateScrollButtons: (tabList: Element) => void;
 	convertTabs: () => DBSimpleTabProps[];
 	initTabList: () => void;
-	initTabs: (init?: boolean) => void;
+	initTabs: () => void;
 	_resizeObserver?: ResizeObserver;
 	activeTabIndex: number;
 	activateTab: (index: number) => void;

@@ -37,7 +37,6 @@ export default function DBTabPanel(props: DBTabPanelProps) {
 					}
 				});
 			});
-
 			observer.observe(_ref, {
 				attributes: true,
 				attributeFilter: ['hidden']
@@ -76,7 +75,8 @@ export default function DBTabPanel(props: DBTabPanelProps) {
 			ref={_ref}
 			class={cls('db-tab-panel', props.className)}
 			id={props.id}
-			role="tabpanel">
+			role="tabpanel"
+			aria-labelledby={props.ariaLabelledby}>
 			<Show when={props.content}> {props.content}</Show>
 			{props.children}
 		</section>

@@ -85,7 +85,13 @@ export default function DBTabItem(props: DBTabItemProps) {
 	// Manually sync DOM attributes with internal state to prevent framework conflicts
 	onUpdate(() => {
 		if (_ref) {
-			const tabIndexStr = state.internalActive ? '0' : '-1';
+			const tabIndexStr =
+				props.tabIndex !== undefined
+					? String(props.tabIndex)
+					: state.internalActive
+						? '0'
+						: '-1';
+
 			if (_ref.getAttribute('tabindex') !== tabIndexStr) {
 				_ref.setAttribute('tabindex', tabIndexStr);
 			}
@@ -105,7 +111,7 @@ export default function DBTabItem(props: DBTabItemProps) {
 				}
 			}
 		}
-	}, [state.internalActive, state.disabled]);
+	}, [state.internalActive, state.disabled, props.tabIndex]);
 
 	return (
 		<li
@@ -121,6 +127,7 @@ export default function DBTabItem(props: DBTabItemProps) {
 				role="tab"
 				aria-label={getBoolean(props.noText) ? props.label : undefined}
 				aria-selected={state.internalActive ? 'true' : 'false'}
+				aria-controls={props.ariaControls}
 				disabled={state.disabled ? true : undefined}
 				id={props.id}
 				class={cls(

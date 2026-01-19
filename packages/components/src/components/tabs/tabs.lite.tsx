@@ -37,7 +37,6 @@ export default function DBTabs(props: DBTabsProps) {
 			if (props.onIndexChange) {
 				props.onIndexChange(index);
 			}
-			state.initTabs();
 		},
 
 		// Parses the tabs prop to ensure the correct data structure
@@ -129,31 +128,8 @@ export default function DBTabs(props: DBTabsProps) {
 				const buttons = Array.from<HTMLElement>(
 					tabListEl.querySelectorAll('[role="tab"]')
 				);
-				const tabPanels = Array.from<Element>(
-					_ref.querySelectorAll(
-						':is(:scope > .db-tab-panel, :scope > db-tab-panel > .db-tab-panel)'
-					)
-				);
 
 				buttons.forEach((button, index) => {
-					if (!button.id) {
-						button.id = `${state._name}-tab-${index}`;
-					}
-					if (tabPanels.length > index) {
-						const panelId =
-							tabPanels[index].id ||
-							`${state._name}-tab-panel-${index}`;
-						button.setAttribute('aria-controls', panelId);
-					}
-
-					const isActive = state.activeTabIndex === index;
-					const hasActiveSelection = state.activeTabIndex !== -1;
-					button.setAttribute('aria-selected', String(isActive));
-					const isFocusable = hasActiveSelection
-						? isActive
-						: index === 0;
-					button.setAttribute('tabindex', isFocusable ? '0' : '-1');
-
 					button.onclick = (event) => {
 						event.preventDefault();
 						state.activateTab(index);
@@ -220,23 +196,6 @@ export default function DBTabs(props: DBTabsProps) {
 						}
 					};
 				});
-
-				// Set ids and link them back to tabs
-				tabPanels.forEach((panel, index) => {
-					if (!panel.id) {
-						panel.id = `${state._name}-tab-panel-${index}`;
-					}
-					const tabButton = buttons[index];
-					if (tabButton && tabButton.id) {
-						panel.setAttribute('aria-labelledby', tabButton.id);
-					}
-
-					if (state.activeTabIndex === index) {
-						panel.removeAttribute('hidden');
-					} else {
-						panel.setAttribute('hidden', '');
-					}
-				});
 			}
 		}
 	});
@@ -244,7 +203,6 @@ export default function DBTabs(props: DBTabsProps) {
 	// Initialize unique IDs and determine the starting active tab index
 	onMount(() => {
 		state._id = props.id || state._id;
-
 		state._name = `tabs-${props.name || uuid()}`;
 
 		if (props.initialSelectedIndex !== undefined) {
@@ -314,11 +272,14 @@ export default function DBTabs(props: DBTabsProps) {
 						{(tab: DBSimpleTabProps, index: number) => (
 							<DBTabItem
 								key={props.name + 'tab-item' + index}
+								id={`${state._name}-tab-${index}`}
+								ariaControls={`${state._name}-tab-panel-${index}`}
 								active={state.activeTabIndex === index}
 								tabIndex={
-									state.activeTabIndex === -1 && index === 0
+									state.activeTabIndex === index ||
+									(state.activeTabIndex === -1 && index === 0)
 										? 0
-										: undefined
+										: -1
 								}
 								label={tab.label}
 								iconTrailing={tab.iconTrailing}
@@ -333,6 +294,8 @@ export default function DBTabs(props: DBTabsProps) {
 					{(tab: DBSimpleTabProps, index: number) => (
 						<DBTabPanel
 							key={props.name + 'tab-panel' + index}
+							id={`${state._name}-tab-panel-${index}`}
+							ariaLabelledby={`${state._name}-tab-${index}`}
 							content={tab.content}
 							hidden={state.activeTabIndex !== index}>
 							{tab.children}

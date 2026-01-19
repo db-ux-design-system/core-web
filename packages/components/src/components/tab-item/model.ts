@@ -27,9 +27,13 @@ export type DBTabItemDefaultProps = {
 	 */
 	noText?: boolean | string;
 	/**
-	 * Set the tabIndex manually (internal use).
+	 * Set the tabIndex manually (internal use for roving tabindex).
 	 */
-	tabIndex?: number;
+	tabIndex?: number | string;
+	/**
+	 * The id of the panel this tab controls (WAI-ARIA).
+	 */
+	ariaControls?: string;
 };
 
 export type DBTabItemProps = DBTabItemDefaultProps &

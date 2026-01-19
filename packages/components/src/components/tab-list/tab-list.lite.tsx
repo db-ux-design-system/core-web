@@ -21,7 +21,12 @@ export default function DBTabList(props: DBTabListProps) {
 			ref={_ref}
 			id={state._id}
 			class={cls('db-tab-list', props.className)}>
-			<ul role="tablist">{props.children}</ul>
+			<ul
+				role="tablist"
+				aria-label={props.ariaLabel}
+				aria-labelledby={props.ariaLabelledby}>
+				{props.children}
+			</ul>
 		</div>
 	);
 }

@@ -9,6 +9,10 @@ export type DBTabPanelDefaultProps = {
 	 * If the panel is hidden.
 	 */
 	hidden?: boolean;
+	/**
+	 * The id of the tab that labels this panel (WAI-ARIA).
+	 */
+	ariaLabelledby?: string;
 };
 
 export type DBTabPanelProps = DBTabPanelDefaultProps & GlobalProps;
