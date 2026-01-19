@@ -17,7 +17,7 @@
 
 | Name                              | Description                                                                                              | Action |
 | --------------------------------- | -------------------------------------------------------------------------------------------------------- | ------ |
-| ❌ removed `style-dictonary`      | all variables will be generated in [theme-builder](https://github.com/db-ux-design-system/theme-builder) | ---    |
+| ❌ removed `style-dictionary`      | all variables will be generated in [theme-builder](https://github.com/db-ux-design-system/theme-builder) | ---    |
 | ❌ removed `zeplin-styleguide.js` | we use `Figma` in the future                                                                             | ---    |
 
 ## Components

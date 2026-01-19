@@ -23,15 +23,13 @@ jobs:
 
       # For now we keep this check in the codebase, even though that we already do the codespell check on git pre-commit hook. We might remove this check in the pipeline (even though that performance is not an issue, but it might be good for reducing external dependencies).
       - name: 📖 Check spelling
-        uses: codespell-project/actions-codespell@v2
-        with:
-          ignore_words_file: .config/.codespellignorewords
-          check_filenames: true
+        run: |
+          npm run lint:codespell
 
       - name: ⚡ Run Lint
         if: ${{ matrix.command == 'lint' }}
         run: |
-          npm run postinstall --workspace=nuxt-showcase
+          npm run nuxt:prepare --workspace=nuxt-showcase
           npm run build --workspace=@db-ux/core-stylelint
           npm run lint
 

@@ -53,9 +53,9 @@ const logAll = () => {
 };
 
 const reset = () => {
-	firstInput.value = "resetted"; // codespell:ignore resetted
-	textarea.value = "resetted"; // codespell:ignore resetted
-	textareavModel.value = "resetted"; // codespell:ignore resetted
+	firstInput.value = "reset";
+	textarea.value = "reset";
+	textareavModel.value = "reset";
 	checkbox.value = [true, false];
 	dateInput.value = "";
 };
