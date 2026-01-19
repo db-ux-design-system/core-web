@@ -117,7 +117,11 @@ export default function DBTabItem(props: DBTabItemProps) {
 		<li
 			class={cls(
 				'db-tab-item',
-				state.internalActive ? 'active' : '',
+				(props.active !== undefined
+					? getBoolean(props.active)
+					: state.internalActive)
+					? 'active'
+					: '',
 				props.className
 			)}
 			role="presentation">
@@ -126,14 +130,24 @@ export default function DBTabItem(props: DBTabItemProps) {
 				type="button"
 				role="tab"
 				aria-label={getBoolean(props.noText) ? props.label : undefined}
-				aria-selected={state.internalActive ? 'true' : 'false'}
+				aria-selected={
+					(props.active !== undefined
+						? getBoolean(props.active)
+						: state.internalActive)
+						? 'true'
+						: 'false'
+				}
 				aria-controls={props.ariaControls}
 				disabled={state.disabled ? true : undefined}
 				tabIndex={+(props.tabIndex ?? (state.internalActive ? 0 : -1))}
 				id={props.id}
 				class={cls(
 					'db-tab-button',
-					state.internalActive ? 'active' : ''
+					(props.active !== undefined
+						? getBoolean(props.active)
+						: state.internalActive)
+						? 'active'
+						: ''
 				)}
 				onClick={(event) => state.handleClick(event)}>
 				<Show when={props.icon && props.showIcon}>
