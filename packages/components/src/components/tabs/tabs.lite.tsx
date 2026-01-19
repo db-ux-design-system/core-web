@@ -22,7 +22,10 @@ useDefaultProps<DBTabsProps>({});
 export default function DBTabs(props: DBTabsProps) {
 	const _ref = useRef<HTMLDivElement | any>(null);
 
-	const state = useStore<DBTabsState>({
+	// We need to use 'any' here because we are adding helper methods (like handleClick, initTabs)
+	// to the state that are required for Angular and React for event delegation,
+	// but strictly typing them with DBTabsState would fail the React build because they are not part of the data interface.
+	const state = useStore<any>({
 		_id: 'tabs-base-id',
 		_name: 'tabs-base-name',
 
@@ -32,6 +35,16 @@ export default function DBTabs(props: DBTabsProps) {
 		showScrollRight: false,
 		scrollContainer: null,
 		_resizeObserver: undefined,
+
+		getTabId(index: number) {
+			const name = props.name ? 'tabs-' + props.name : state._name;
+			return `${name}-tab-${index}`;
+		},
+
+		getPanelId(index: number) {
+			const name = props.name ? 'tabs-' + props.name : state._name;
+			return `${name}-tab-panel-${index}`;
+		},
 
 		activateTab(index: number) {
 			if (state.activeTabIndex !== index) {
@@ -155,11 +168,23 @@ export default function DBTabs(props: DBTabsProps) {
 					const isSelected = state.activeTabIndex === index;
 					const panel = panels[index];
 
-					if (button.getAttribute('aria-selected') !== String(isSelected)) {
-						button.setAttribute('aria-selected', isSelected ? 'true' : 'false');
+					if (
+						button.getAttribute('aria-selected') !==
+						String(isSelected)
+					) {
+						button.setAttribute(
+							'aria-selected',
+							isSelected ? 'true' : 'false'
+						);
 					}
-					if (button.getAttribute('tabindex') !== (isSelected ? '0' : '-1')) {
-						button.setAttribute('tabindex', isSelected ? '0' : '-1');
+					if (
+						button.getAttribute('tabindex') !==
+						(isSelected ? '0' : '-1')
+					) {
+						button.setAttribute(
+							'tabindex',
+							isSelected ? '0' : '-1'
+						);
 					}
 
 					if (panel) {
@@ -265,8 +290,8 @@ export default function DBTabs(props: DBTabsProps) {
 						{(tab: DBSimpleTabProps, index: number) => (
 							<DBTabItem
 								key={props.name + 'tab-item' + index}
-								id={`${props.name ? 'tabs-' + props.name : state._name}-tab-${index}`}
-								ariaControls={`${props.name ? 'tabs-' + props.name : state._name}-tab-panel-${index}`}
+								id={state.getTabId(index)}
+								ariaControls={state.getPanelId(index)}
 								active={state.activeTabIndex === index}
 								tabIndex={
 									state.activeTabIndex === index ||
@@ -287,8 +312,8 @@ export default function DBTabs(props: DBTabsProps) {
 					{(tab: DBSimpleTabProps, index: number) => (
 						<DBTabPanel
 							key={props.name + 'tab-panel' + index}
-							id={`${props.name ? 'tabs-' + props.name : state._name}-tab-panel-${index}`}
-							ariaLabelledby={`${props.name ? 'tabs-' + props.name : state._name}-tab-${index}`}
+							id={state.getPanelId(index)}
+							ariaLabelledby={state.getTabId(index)}
 							content={tab.content}
 							hidden={state.activeTabIndex !== index}>
 							{tab.children}
