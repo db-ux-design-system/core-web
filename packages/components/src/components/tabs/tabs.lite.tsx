@@ -23,8 +23,8 @@ export default function DBTabs(props: DBTabsProps) {
 	const _ref = useRef<HTMLDivElement | any>(null);
 
 	const state = useStore<DBTabsState>({
-		_id: 'tabs-' + uuid(),
-		_name: 'tabs-' + uuid(),
+		_id: props.id || 'tabs-' + uuid(),
+		_name: 'tabs-' + (props.name || uuid()),
 
 		activeTabIndex: 0,
 		initialized: false,
@@ -91,6 +91,8 @@ export default function DBTabs(props: DBTabsProps) {
 							'aria-orientation',
 							props.orientation || 'horizontal'
 						);
+
+						container.setAttribute('tabindex', '0');
 
 						if (props.behavior === 'arrows') {
 							state.scrollContainer = container;
