@@ -1,7 +1,6 @@
 #!/usr/bin/env node
 import * as ChildProcess from 'node:child_process';
 import path from 'node:path';
-import * as process from 'node:process';
 import { fileURLToPath } from 'node:url';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
