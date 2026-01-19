@@ -129,7 +129,13 @@ export default function DBTabItem(props: DBTabItemProps) {
 				aria-selected={state.internalActive ? 'true' : 'false'}
 				aria-controls={props.ariaControls}
 				disabled={state.disabled ? true : undefined}
-				tabIndex={props.tabIndex}
+				tabIndex={
+					props.tabIndex !== undefined
+						? Number(props.tabIndex)
+						: state.internalActive
+							? 0
+							: -1
+				}
 				id={props.id}
 				class={cls(
 					'db-tab-button',
