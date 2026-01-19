@@ -269,46 +269,39 @@ $spacings: (
 			&[data-direction="right"] {
 				animation: show-right-to-left
 					#{variables.$db-transition-straight-show};
+				&[hidden] {
+					animation: hide-right-to-left
+						#{variables.$db-transition-straight-hide};
+				}
 			}
 
 			&[data-direction="left"] {
 				animation: show-left-to-right
 					#{variables.$db-transition-straight-show};
+				&[hidden] {
+					animation: hide-left-to-right
+						#{variables.$db-transition-straight-hide};
+				}
 			}
 
 			&[data-direction="up"] {
 				animation: show-bottom-to-top
 					#{variables.$db-transition-straight-show};
+				&[hidden] {
+					animation: hide-bottom-to-top
+						#{variables.$db-transition-straight-hide};
+				}
 			}
 
 			&[data-direction="down"] {
 				animation: show-top-to-bottom
 					#{variables.$db-transition-straight-show};
-			}
-
-			&[hidden] {
-				&:not([data-direction]),
-				&[data-direction="right"] {
-					animation: hide-right-to-left
-						#{variables.$db-transition-straight-hide};
-				}
-
-				&[data-direction="left"] {
-					animation: hide-left-to-right
-						#{variables.$db-transition-straight-hide};
-				}
-
-				&[data-direction="up"] {
-					animation: hide-bottom-to-top
-						#{variables.$db-transition-straight-hide};
-				}
-
-				&[data-direction="down"] {
+				&[hidden] {
 					animation: hide-top-to-bottom
 						#{variables.$db-transition-straight-hide};
 				}
 			}
-			
+
 			@media screen and (prefers-reduced-motion: reduce) {
 				animation-duration: 0s !important;
 			}
