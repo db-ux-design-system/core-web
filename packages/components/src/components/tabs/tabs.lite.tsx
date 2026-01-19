@@ -34,9 +34,28 @@ export default function DBTabs(props: DBTabsProps) {
 		_resizeObserver: undefined,
 
 		activateTab(index: number) {
-			state.activeTabIndex = index;
-			if (props.onIndexChange) {
-				props.onIndexChange(index);
+			if (state.activeTabIndex !== index) {
+				state.activeTabIndex = index;
+				if (props.onIndexChange) {
+					props.onIndexChange(index);
+				}
+				state.initTabs();
+			}
+		},
+
+		handleClick(event: any) {
+			const target = event.target as HTMLElement;
+			const button = target.closest('[role="tab"]');
+			if (!button || !_ref) return;
+
+			const tabList = _ref.querySelector('[role="tablist"]');
+			if (!tabList) return;
+			const buttons = Array.from(tabList.querySelectorAll('[role="tab"]'));
+			const index = buttons.indexOf(button as HTMLElement);
+
+			if (index !== -1) {
+				event.preventDefault();
+				state.activateTab(index);
 			}
 		},
 
@@ -46,12 +65,10 @@ export default function DBTabs(props: DBTabsProps) {
 				if (typeof props.tabs === 'string') {
 					return JSON.parse(props.tabs as string);
 				}
-
 				return props.tabs as DBSimpleTabProps[];
 			} catch (error) {
 				console.error(error);
 			}
-
 			return [];
 		},
 
@@ -124,6 +141,10 @@ export default function DBTabs(props: DBTabsProps) {
 				const tabListEl = _ref.querySelector(
 					'.db-tab-list > [role="tablist"]'
 				);
+				const panels = Array.from<HTMLElement>(
+					_ref.querySelectorAll('[role="tabpanel"]')
+				);
+
 				if (!tabListEl) return;
 
 				const buttons = Array.from<HTMLElement>(
@@ -131,71 +152,29 @@ export default function DBTabs(props: DBTabsProps) {
 				);
 
 				buttons.forEach((button, index) => {
-					button.onclick = (event) => {
-						event.preventDefault();
-						state.activateTab(index);
-					};
+					const isSelected = state.activeTabIndex === index;
+					const panel = panels[index];
 
-					button.onkeydown = (event: KeyboardEvent) => {
-						const key = event.key;
-						let flag = false;
-						let nextIndex = index;
+					if (button.getAttribute('aria-selected') !== String(isSelected)) {
+						button.setAttribute('aria-selected', isSelected ? 'true' : 'false');
+					}
+					if (button.getAttribute('tabindex') !== (isSelected ? '0' : '-1')) {
+						button.setAttribute('tabindex', isSelected ? '0' : '-1');
+					}
 
-						switch (key) {
-							case 'ArrowLeft':
-								nextIndex = index - 1;
-								flag = true;
-								break;
-							case 'ArrowRight':
-								nextIndex = index + 1;
-								flag = true;
-								break;
-							case 'ArrowUp':
-								if (props.orientation === 'vertical') {
-									nextIndex = index - 1;
-									flag = true;
-								}
-								break;
-							case 'ArrowDown':
-								if (props.orientation === 'vertical') {
-									nextIndex = index + 1;
-									flag = true;
-								}
-								break;
-							case 'Home':
-								nextIndex = 0;
-								flag = true;
-								break;
-							case 'End':
-								nextIndex = buttons.length - 1;
-								flag = true;
-								break;
-							default:
-								break;
-						}
-
-						if (flag) {
-							event.preventDefault();
-							event.stopPropagation();
-
-							if (nextIndex < 0) {
-								nextIndex = buttons.length - 1;
-							} else if (nextIndex >= buttons.length) {
-								nextIndex = 0;
+					if (panel) {
+						if (isSelected) {
+							if (panel.hasAttribute('hidden')) {
+								panel.removeAttribute('hidden');
 							}
-
-							const nextButton = buttons[nextIndex];
-							if (nextButton) {
-								button.setAttribute('tabindex', '-1');
-								nextButton.setAttribute('tabindex', '0');
-								nextButton.focus();
-
-								if (props.initialSelectedMode !== 'manually') {
-									state.activateTab(nextIndex);
-								}
+							panel.hidden = false;
+						} else {
+							if (!panel.hasAttribute('hidden')) {
+								panel.setAttribute('hidden', '');
 							}
+							panel.hidden = true;
 						}
-					};
+					}
 				});
 			}
 		}
@@ -267,7 +246,8 @@ export default function DBTabs(props: DBTabsProps) {
 			data-orientation={props.orientation}
 			data-scroll-behavior={props.behavior}
 			data-alignment={props.alignment ?? 'start'}
-			data-width={props.width ?? 'auto'}>
+			data-width={props.width ?? 'auto'}
+			onClick={(event) => state.handleClick(event)}>
 			<Show when={state.showScrollLeft}>
 				<DBButton
 					class="tabs-scroll-left"
