@@ -36,7 +36,7 @@
     "copy-build:readme": "cpr README.md ../../build-outputs/foundations/README.md --overwrite",
     "copy-build:web": "cpr build ../../build-outputs/foundations/build --overwrite",
     "copy-prepare:icon-overview": "tsx scripts/local/generate-icon-overview.ts && prettier dev/icons.html --write",
-    "copy-prepare:normalize": "cpr ../../node_modules/@csstools/normalize.css/normalize.css scss/_normalize.scss --overwrite",
+    "copy-prepare:normalize": "cpr node_modules/@csstools/normalize.css/normalize.css scss/_normalize.scss --overwrite",
     "copy:scss": "cpr scss build/styles --overwrite",
     "dev": "npm-run-all copy-prepare:* dev:*",
     "dev:vite": "vite --open",
