@@ -23065,7 +23065,7 @@ Inside
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-21641627146450393"
+                    id="sub-navigation-7750693234749156"
                   ></menu>
                 </li>
                 <li
@@ -23084,7 +23084,7 @@ Inside
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-6990268553259891"
+                    id="sub-navigation-6765760455179904"
                   ></menu>
                 </li>
               </menu>
@@ -23144,7 +23144,7 @@ Inside
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-37087879860662065"
+                id="sub-navigation-6587141472840514"
               ></menu>
             </li>
             <li
@@ -23163,7 +23163,7 @@ Inside
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-4022294930081233"
+                id="sub-navigation-6495468187456078"
               ></menu>
             </li>
           </menu>
@@ -23241,7 +23241,7 @@ Inside
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-21641627146450393"
+                    id="sub-navigation-7750693234749156"
                   ></menu>
                 </li>
                 <li
@@ -23260,7 +23260,7 @@ Inside
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-6990268553259891"
+                    id="sub-navigation-6765760455179904"
                   ></menu>
                 </li>
               </menu>
@@ -23320,7 +23320,7 @@ Inside
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-37087879860662065"
+                id="sub-navigation-6587141472840514"
               ></menu>
             </li>
             <li
@@ -23339,7 +23339,7 @@ Inside
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-4022294930081233"
+                id="sub-navigation-6495468187456078"
               ></menu>
             </li>
           </menu>
@@ -23417,7 +23417,7 @@ Inside
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-21641627146450393"
+                    id="sub-navigation-7750693234749156"
                   ></menu>
                 </li>
                 <li
@@ -23436,7 +23436,7 @@ Inside
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-6990268553259891"
+                    id="sub-navigation-6765760455179904"
                   ></menu>
                 </li>
               </menu>
@@ -23496,7 +23496,7 @@ Inside
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-37087879860662065"
+                id="sub-navigation-6587141472840514"
               ></menu>
             </li>
             <li
@@ -23515,7 +23515,7 @@ Inside
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-4022294930081233"
+                id="sub-navigation-6495468187456078"
               ></menu>
             </li>
           </menu>
@@ -23593,7 +23593,7 @@ Inside
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-21641627146450393"
+                    id="sub-navigation-7750693234749156"
                   ></menu>
                 </li>
                 <li
@@ -23612,7 +23612,7 @@ Inside
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-6990268553259891"
+                    id="sub-navigation-6765760455179904"
                   ></menu>
                 </li>
               </menu>
@@ -23672,7 +23672,7 @@ Inside
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-37087879860662065"
+                id="sub-navigation-6587141472840514"
               ></menu>
             </li>
             <li
@@ -23691,7 +23691,7 @@ Inside
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-4022294930081233"
+                id="sub-navigation-6495468187456078"
               ></menu>
             </li>
           </menu>
@@ -24065,7 +24065,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-15585233267579568"
+                    id="sub-navigation-9763382631800002"
                   ></menu>
                 </li>
                 <li
@@ -24084,7 +24084,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-3932066139321072"
+                    id="sub-navigation-3303520731426869"
                   ></menu>
                 </li>
               </menu>
@@ -24144,7 +24144,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-4242067559756718"
+                id="sub-navigation-4527611576646171"
               ></menu>
             </li>
             <li
@@ -24163,7 +24163,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-8670831722134674"
+                id="sub-navigation-9249484295445115"
               ></menu>
             </li>
           </menu>
@@ -24241,7 +24241,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-15585233267579568"
+                    id="sub-navigation-9763382631800002"
                   ></menu>
                 </li>
                 <li
@@ -24260,7 +24260,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-3932066139321072"
+                    id="sub-navigation-3303520731426869"
                   ></menu>
                 </li>
               </menu>
@@ -24320,7 +24320,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-4242067559756718"
+                id="sub-navigation-4527611576646171"
               ></menu>
             </li>
             <li
@@ -24339,7 +24339,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-8670831722134674"
+                id="sub-navigation-9249484295445115"
               ></menu>
             </li>
           </menu>
@@ -24417,7 +24417,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-15585233267579568"
+                    id="sub-navigation-9763382631800002"
                   ></menu>
                 </li>
                 <li
@@ -24436,7 +24436,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-3932066139321072"
+                    id="sub-navigation-3303520731426869"
                   ></menu>
                 </li>
               </menu>
@@ -24496,7 +24496,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-4242067559756718"
+                id="sub-navigation-4527611576646171"
               ></menu>
             </li>
             <li
@@ -24515,7 +24515,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-8670831722134674"
+                id="sub-navigation-9249484295445115"
               ></menu>
             </li>
           </menu>
@@ -24593,7 +24593,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-15585233267579568"
+                    id="sub-navigation-9763382631800002"
                   ></menu>
                 </li>
                 <li
@@ -24612,7 +24612,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-3932066139321072"
+                    id="sub-navigation-3303520731426869"
                   ></menu>
                 </li>
               </menu>
@@ -24672,7 +24672,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-4242067559756718"
+                id="sub-navigation-4527611576646171"
               ></menu>
             </li>
             <li
@@ -24691,7 +24691,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-8670831722134674"
+                id="sub-navigation-9249484295445115"
               ></menu>
             </li>
           </menu>
@@ -25065,7 +25065,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-955343517447133"
+                    id="sub-navigation-37820327279210975"
                   ></menu>
                 </li>
                 <li
@@ -25084,7 +25084,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-7187551937096155"
+                    id="sub-navigation-02382511366459572"
                   ></menu>
                 </li>
               </menu>
@@ -25144,7 +25144,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-5932946034939908"
+                id="sub-navigation-6130332919547532"
               ></menu>
             </li>
             <li
@@ -25163,7 +25163,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-5708360363499325"
+                id="sub-navigation-7087848407763451"
               ></menu>
             </li>
           </menu>
@@ -25241,7 +25241,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-955343517447133"
+                    id="sub-navigation-37820327279210975"
                   ></menu>
                 </li>
                 <li
@@ -25260,7 +25260,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-7187551937096155"
+                    id="sub-navigation-02382511366459572"
                   ></menu>
                 </li>
               </menu>
@@ -25320,7 +25320,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-5932946034939908"
+                id="sub-navigation-6130332919547532"
               ></menu>
             </li>
             <li
@@ -25339,7 +25339,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-5708360363499325"
+                id="sub-navigation-7087848407763451"
               ></menu>
             </li>
           </menu>
@@ -25417,7 +25417,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-955343517447133"
+                    id="sub-navigation-37820327279210975"
                   ></menu>
                 </li>
                 <li
@@ -25436,7 +25436,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-7187551937096155"
+                    id="sub-navigation-02382511366459572"
                   ></menu>
                 </li>
               </menu>
@@ -25496,7 +25496,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-5932946034939908"
+                id="sub-navigation-6130332919547532"
               ></menu>
             </li>
             <li
@@ -25515,7 +25515,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-5708360363499325"
+                id="sub-navigation-7087848407763451"
               ></menu>
             </li>
           </menu>
@@ -25593,7 +25593,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-955343517447133"
+                    id="sub-navigation-37820327279210975"
                   ></menu>
                 </li>
                 <li
@@ -25612,7 +25612,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-7187551937096155"
+                    id="sub-navigation-02382511366459572"
                   ></menu>
                 </li>
               </menu>
@@ -25672,7 +25672,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-5932946034939908"
+                id="sub-navigation-6130332919547532"
               ></menu>
             </li>
             <li
@@ -25691,7 +25691,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-5708360363499325"
+                id="sub-navigation-7087848407763451"
               ></menu>
             </li>
           </menu>
@@ -26065,7 +26065,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-925567377914503"
+                    id="sub-navigation-5768503817693061"
                   ></menu>
                 </li>
                 <li
@@ -26084,7 +26084,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-6768219264189977"
+                    id="sub-navigation-5887770282072253"
                   ></menu>
                 </li>
               </menu>
@@ -26144,7 +26144,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-403665918339007"
+                id="sub-navigation-9647809210828439"
               ></menu>
             </li>
             <li
@@ -26163,7 +26163,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-8199260365006239"
+                id="sub-navigation-3285446410778188"
               ></menu>
             </li>
           </menu>
@@ -26241,7 +26241,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-925567377914503"
+                    id="sub-navigation-5768503817693061"
                   ></menu>
                 </li>
                 <li
@@ -26260,7 +26260,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-6768219264189977"
+                    id="sub-navigation-5887770282072253"
                   ></menu>
                 </li>
               </menu>
@@ -26320,7 +26320,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-403665918339007"
+                id="sub-navigation-9647809210828439"
               ></menu>
             </li>
             <li
@@ -26339,7 +26339,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-8199260365006239"
+                id="sub-navigation-3285446410778188"
               ></menu>
             </li>
           </menu>
@@ -26417,7 +26417,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-925567377914503"
+                    id="sub-navigation-5768503817693061"
                   ></menu>
                 </li>
                 <li
@@ -26436,7 +26436,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-6768219264189977"
+                    id="sub-navigation-5887770282072253"
                   ></menu>
                 </li>
               </menu>
@@ -26496,7 +26496,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-403665918339007"
+                id="sub-navigation-9647809210828439"
               ></menu>
             </li>
             <li
@@ -26515,7 +26515,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-8199260365006239"
+                id="sub-navigation-3285446410778188"
               ></menu>
             </li>
           </menu>
@@ -26593,7 +26593,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-925567377914503"
+                    id="sub-navigation-5768503817693061"
                   ></menu>
                 </li>
                 <li
@@ -26612,7 +26612,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-6768219264189977"
+                    id="sub-navigation-5887770282072253"
                   ></menu>
                 </li>
               </menu>
@@ -26672,7 +26672,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-403665918339007"
+                id="sub-navigation-9647809210828439"
               ></menu>
             </li>
             <li
@@ -26691,7 +26691,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-8199260365006239"
+                id="sub-navigation-3285446410778188"
               ></menu>
             </li>
           </menu>
@@ -27065,7 +27065,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-2004444030462914"
+                    id="sub-navigation-28507231646346465"
                   ></menu>
                 </li>
                 <li
@@ -27084,7 +27084,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-9713897826651302"
+                    id="sub-navigation-12528231598015538"
                   ></menu>
                 </li>
               </menu>
@@ -27144,7 +27144,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-49561914294795584"
+                id="sub-navigation-9891825419978983"
               ></menu>
             </li>
             <li
@@ -27163,7 +27163,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-9172972946514103"
+                id="sub-navigation-6395917528238259"
               ></menu>
             </li>
           </menu>
@@ -27241,7 +27241,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-2004444030462914"
+                    id="sub-navigation-28507231646346465"
                   ></menu>
                 </li>
                 <li
@@ -27260,7 +27260,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-9713897826651302"
+                    id="sub-navigation-12528231598015538"
                   ></menu>
                 </li>
               </menu>
@@ -27320,7 +27320,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-49561914294795584"
+                id="sub-navigation-9891825419978983"
               ></menu>
             </li>
             <li
@@ -27339,7 +27339,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-9172972946514103"
+                id="sub-navigation-6395917528238259"
               ></menu>
             </li>
           </menu>
@@ -27417,7 +27417,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-2004444030462914"
+                    id="sub-navigation-28507231646346465"
                   ></menu>
                 </li>
                 <li
@@ -27436,7 +27436,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-9713897826651302"
+                    id="sub-navigation-12528231598015538"
                   ></menu>
                 </li>
               </menu>
@@ -27496,7 +27496,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-49561914294795584"
+                id="sub-navigation-9891825419978983"
               ></menu>
             </li>
             <li
@@ -27515,7 +27515,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-9172972946514103"
+                id="sub-navigation-6395917528238259"
               ></menu>
             </li>
           </menu>
@@ -27593,7 +27593,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-2004444030462914"
+                    id="sub-navigation-28507231646346465"
                   ></menu>
                 </li>
                 <li
@@ -27612,7 +27612,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-9713897826651302"
+                    id="sub-navigation-12528231598015538"
                   ></menu>
                 </li>
               </menu>
@@ -27672,7 +27672,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-49561914294795584"
+                id="sub-navigation-9891825419978983"
               ></menu>
             </li>
             <li
@@ -27691,7 +27691,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-9172972946514103"
+                id="sub-navigation-6395917528238259"
               ></menu>
             </li>
           </menu>
@@ -28069,7 +28069,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-15372856865281614"
+                    id="sub-navigation-7960928181633703"
                   ></menu>
                 </li>
                 <li
@@ -28088,7 +28088,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-07940803182518685"
+                    id="sub-navigation-7202623859409164"
                   ></menu>
                 </li>
               </menu>
@@ -28148,7 +28148,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-23060644046889867"
+                id="sub-navigation-5379363270943182"
               ></menu>
             </li>
             <li
@@ -28167,7 +28167,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-9456159906965789"
+                id="sub-navigation-5065480100312668"
               ></menu>
             </li>
           </menu>
@@ -28245,7 +28245,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-15372856865281614"
+                    id="sub-navigation-7960928181633703"
                   ></menu>
                 </li>
                 <li
@@ -28264,7 +28264,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-07940803182518685"
+                    id="sub-navigation-7202623859409164"
                   ></menu>
                 </li>
               </menu>
@@ -28324,7 +28324,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-23060644046889867"
+                id="sub-navigation-5379363270943182"
               ></menu>
             </li>
             <li
@@ -28343,7 +28343,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-9456159906965789"
+                id="sub-navigation-5065480100312668"
               ></menu>
             </li>
           </menu>
@@ -28421,7 +28421,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-15372856865281614"
+                    id="sub-navigation-7960928181633703"
                   ></menu>
                 </li>
                 <li
@@ -28440,7 +28440,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-07940803182518685"
+                    id="sub-navigation-7202623859409164"
                   ></menu>
                 </li>
               </menu>
@@ -28500,7 +28500,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-23060644046889867"
+                id="sub-navigation-5379363270943182"
               ></menu>
             </li>
             <li
@@ -28519,7 +28519,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-9456159906965789"
+                id="sub-navigation-5065480100312668"
               ></menu>
             </li>
           </menu>
@@ -28597,7 +28597,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-15372856865281614"
+                    id="sub-navigation-7960928181633703"
                   ></menu>
                 </li>
                 <li
@@ -28616,7 +28616,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-07940803182518685"
+                    id="sub-navigation-7202623859409164"
                   ></menu>
                 </li>
               </menu>
@@ -28676,7 +28676,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-23060644046889867"
+                id="sub-navigation-5379363270943182"
               ></menu>
             </li>
             <li
@@ -28695,7 +28695,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-9456159906965789"
+                id="sub-navigation-5065480100312668"
               ></menu>
             </li>
           </menu>
@@ -29073,7 +29073,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-4175314474738795"
+                    id="sub-navigation-8570997507521775"
                   ></menu>
                 </li>
                 <li
@@ -29092,7 +29092,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-6440890115118015"
+                    id="sub-navigation-7462381002525997"
                   ></menu>
                 </li>
               </menu>
@@ -29152,7 +29152,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-006816603124317533"
+                id="sub-navigation-8087765776588124"
               ></menu>
             </li>
             <li
@@ -29171,7 +29171,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-21565408371855044"
+                id="sub-navigation-8381218493697267"
               ></menu>
             </li>
           </menu>
@@ -29249,7 +29249,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-4175314474738795"
+                    id="sub-navigation-8570997507521775"
                   ></menu>
                 </li>
                 <li
@@ -29268,7 +29268,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-6440890115118015"
+                    id="sub-navigation-7462381002525997"
                   ></menu>
                 </li>
               </menu>
@@ -29328,7 +29328,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-006816603124317533"
+                id="sub-navigation-8087765776588124"
               ></menu>
             </li>
             <li
@@ -29347,7 +29347,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-21565408371855044"
+                id="sub-navigation-8381218493697267"
               ></menu>
             </li>
           </menu>
@@ -29425,7 +29425,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-4175314474738795"
+                    id="sub-navigation-8570997507521775"
                   ></menu>
                 </li>
                 <li
@@ -29444,7 +29444,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-6440890115118015"
+                    id="sub-navigation-7462381002525997"
                   ></menu>
                 </li>
               </menu>
@@ -29504,7 +29504,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-006816603124317533"
+                id="sub-navigation-8087765776588124"
               ></menu>
             </li>
             <li
@@ -29523,7 +29523,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-21565408371855044"
+                id="sub-navigation-8381218493697267"
               ></menu>
             </li>
           </menu>
@@ -29601,7 +29601,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-4175314474738795"
+                    id="sub-navigation-8570997507521775"
                   ></menu>
                 </li>
                 <li
@@ -29620,7 +29620,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-6440890115118015"
+                    id="sub-navigation-7462381002525997"
                   ></menu>
                 </li>
               </menu>
@@ -29680,7 +29680,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-006816603124317533"
+                id="sub-navigation-8087765776588124"
               ></menu>
             </li>
             <li
@@ -29699,7 +29699,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-21565408371855044"
+                id="sub-navigation-8381218493697267"
               ></menu>
             </li>
           </menu>
@@ -30073,7 +30073,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-9721354014880491"
+                    id="sub-navigation-97231303221873"
                   ></menu>
                 </li>
                 <li
@@ -30092,7 +30092,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-9275449675537232"
+                    id="sub-navigation-7556821029044184"
                   ></menu>
                 </li>
               </menu>
@@ -30152,7 +30152,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-9835805810974911"
+                id="sub-navigation-656048371658854"
               ></menu>
             </li>
             <li
@@ -30171,7 +30171,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-1219735189840414"
+                id="sub-navigation-9735682754496701"
               ></menu>
             </li>
           </menu>
@@ -30249,7 +30249,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-9721354014880491"
+                    id="sub-navigation-97231303221873"
                   ></menu>
                 </li>
                 <li
@@ -30268,7 +30268,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-9275449675537232"
+                    id="sub-navigation-7556821029044184"
                   ></menu>
                 </li>
               </menu>
@@ -30328,7 +30328,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-9835805810974911"
+                id="sub-navigation-656048371658854"
               ></menu>
             </li>
             <li
@@ -30347,7 +30347,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-1219735189840414"
+                id="sub-navigation-9735682754496701"
               ></menu>
             </li>
           </menu>
@@ -30425,7 +30425,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-9721354014880491"
+                    id="sub-navigation-97231303221873"
                   ></menu>
                 </li>
                 <li
@@ -30444,7 +30444,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-9275449675537232"
+                    id="sub-navigation-7556821029044184"
                   ></menu>
                 </li>
               </menu>
@@ -30504,7 +30504,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-9835805810974911"
+                id="sub-navigation-656048371658854"
               ></menu>
             </li>
             <li
@@ -30523,7 +30523,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-1219735189840414"
+                id="sub-navigation-9735682754496701"
               ></menu>
             </li>
           </menu>
@@ -30601,7 +30601,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-9721354014880491"
+                    id="sub-navigation-97231303221873"
                   ></menu>
                 </li>
                 <li
@@ -30620,7 +30620,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-9275449675537232"
+                    id="sub-navigation-7556821029044184"
                   ></menu>
                 </li>
               </menu>
@@ -30680,7 +30680,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-9835805810974911"
+                id="sub-navigation-656048371658854"
               ></menu>
             </li>
             <li
@@ -30699,7 +30699,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-1219735189840414"
+                id="sub-navigation-9735682754496701"
               ></menu>
             </li>
           </menu>
@@ -31077,7 +31077,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-6183333968386738"
+                    id="sub-navigation-22722093988344882"
                   ></menu>
                 </li>
                 <li
@@ -31096,7 +31096,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-9654461696437308"
+                    id="sub-navigation-042379473237615706"
                   ></menu>
                 </li>
               </menu>
@@ -31156,7 +31156,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-13255659142200216"
+                id="sub-navigation-7236383602467114"
               ></menu>
             </li>
             <li
@@ -31175,7 +31175,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-5187749052534351"
+                id="sub-navigation-4753317582475557"
               ></menu>
             </li>
           </menu>
@@ -31253,7 +31253,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-6183333968386738"
+                    id="sub-navigation-22722093988344882"
                   ></menu>
                 </li>
                 <li
@@ -31272,7 +31272,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-9654461696437308"
+                    id="sub-navigation-042379473237615706"
                   ></menu>
                 </li>
               </menu>
@@ -31332,7 +31332,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-13255659142200216"
+                id="sub-navigation-7236383602467114"
               ></menu>
             </li>
             <li
@@ -31351,7 +31351,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-5187749052534351"
+                id="sub-navigation-4753317582475557"
               ></menu>
             </li>
           </menu>
@@ -31429,7 +31429,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-6183333968386738"
+                    id="sub-navigation-22722093988344882"
                   ></menu>
                 </li>
                 <li
@@ -31448,7 +31448,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-9654461696437308"
+                    id="sub-navigation-042379473237615706"
                   ></menu>
                 </li>
               </menu>
@@ -31508,7 +31508,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-13255659142200216"
+                id="sub-navigation-7236383602467114"
               ></menu>
             </li>
             <li
@@ -31527,7 +31527,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-5187749052534351"
+                id="sub-navigation-4753317582475557"
               ></menu>
             </li>
           </menu>
@@ -31605,7 +31605,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-6183333968386738"
+                    id="sub-navigation-22722093988344882"
                   ></menu>
                 </li>
                 <li
@@ -31624,7 +31624,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-9654461696437308"
+                    id="sub-navigation-042379473237615706"
                   ></menu>
                 </li>
               </menu>
@@ -31684,7 +31684,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-13255659142200216"
+                id="sub-navigation-7236383602467114"
               ></menu>
             </li>
             <li
@@ -31703,7 +31703,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-5187749052534351"
+                id="sub-navigation-4753317582475557"
               ></menu>
             </li>
           </menu>
@@ -32089,7 +32089,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-25422309535091825"
+                    id="sub-navigation-46269294182344467"
                   ></menu>
                 </li>
                 <li
@@ -32108,7 +32108,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-3976852447167176"
+                    id="sub-navigation-8517253202570645"
                   ></menu>
                 </li>
               </menu>
@@ -32168,7 +32168,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-12576592197058967"
+                id="sub-navigation-48625955731125303"
               ></menu>
             </li>
             <li
@@ -32187,7 +32187,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-36054075960559506"
+                id="sub-navigation-30388676176332985"
               ></menu>
             </li>
           </menu>
@@ -32265,7 +32265,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-25422309535091825"
+                    id="sub-navigation-46269294182344467"
                   ></menu>
                 </li>
                 <li
@@ -32284,7 +32284,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-3976852447167176"
+                    id="sub-navigation-8517253202570645"
                   ></menu>
                 </li>
               </menu>
@@ -32344,7 +32344,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-12576592197058967"
+                id="sub-navigation-48625955731125303"
               ></menu>
             </li>
             <li
@@ -32363,7 +32363,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-36054075960559506"
+                id="sub-navigation-30388676176332985"
               ></menu>
             </li>
           </menu>
@@ -32441,7 +32441,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-25422309535091825"
+                    id="sub-navigation-46269294182344467"
                   ></menu>
                 </li>
                 <li
@@ -32460,7 +32460,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-3976852447167176"
+                    id="sub-navigation-8517253202570645"
                   ></menu>
                 </li>
               </menu>
@@ -32520,7 +32520,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-12576592197058967"
+                id="sub-navigation-48625955731125303"
               ></menu>
             </li>
             <li
@@ -32539,7 +32539,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-36054075960559506"
+                id="sub-navigation-30388676176332985"
               ></menu>
             </li>
           </menu>
@@ -32617,7 +32617,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-25422309535091825"
+                    id="sub-navigation-46269294182344467"
                   ></menu>
                 </li>
                 <li
@@ -32636,7 +32636,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-3976852447167176"
+                    id="sub-navigation-8517253202570645"
                   ></menu>
                 </li>
               </menu>
@@ -32696,7 +32696,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-12576592197058967"
+                id="sub-navigation-48625955731125303"
               ></menu>
             </li>
             <li
@@ -32715,7 +32715,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-36054075960559506"
+                id="sub-navigation-30388676176332985"
               ></menu>
             </li>
           </menu>
@@ -33101,7 +33101,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-970435561641559"
+                    id="sub-navigation-47167638366195896"
                   ></menu>
                 </li>
                 <li
@@ -33120,7 +33120,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-604744940506545"
+                    id="sub-navigation-04539099285268555"
                   ></menu>
                 </li>
               </menu>
@@ -33180,7 +33180,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-8503194726370074"
+                id="sub-navigation-2583118905348919"
               ></menu>
             </li>
             <li
@@ -33199,7 +33199,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-792114560358169"
+                id="sub-navigation-8122538953648463"
               ></menu>
             </li>
           </menu>
@@ -33277,7 +33277,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-970435561641559"
+                    id="sub-navigation-47167638366195896"
                   ></menu>
                 </li>
                 <li
@@ -33296,7 +33296,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-604744940506545"
+                    id="sub-navigation-04539099285268555"
                   ></menu>
                 </li>
               </menu>
@@ -33356,7 +33356,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-8503194726370074"
+                id="sub-navigation-2583118905348919"
               ></menu>
             </li>
             <li
@@ -33375,7 +33375,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-792114560358169"
+                id="sub-navigation-8122538953648463"
               ></menu>
             </li>
           </menu>
@@ -33453,7 +33453,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-970435561641559"
+                    id="sub-navigation-47167638366195896"
                   ></menu>
                 </li>
                 <li
@@ -33472,7 +33472,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-604744940506545"
+                    id="sub-navigation-04539099285268555"
                   ></menu>
                 </li>
               </menu>
@@ -33532,7 +33532,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-8503194726370074"
+                id="sub-navigation-2583118905348919"
               ></menu>
             </li>
             <li
@@ -33551,7 +33551,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-792114560358169"
+                id="sub-navigation-8122538953648463"
               ></menu>
             </li>
           </menu>
@@ -33629,7 +33629,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-970435561641559"
+                    id="sub-navigation-47167638366195896"
                   ></menu>
                 </li>
                 <li
@@ -33648,7 +33648,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-604744940506545"
+                    id="sub-navigation-04539099285268555"
                   ></menu>
                 </li>
               </menu>
@@ -33708,7 +33708,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-8503194726370074"
+                id="sub-navigation-2583118905348919"
               ></menu>
             </li>
             <li
@@ -33727,7 +33727,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-792114560358169"
+                id="sub-navigation-8122538953648463"
               ></menu>
             </li>
           </menu>
@@ -34113,7 +34113,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-3221873348163299"
+                    id="sub-navigation-5960385898849805"
                   ></menu>
                 </li>
                 <li
@@ -34132,7 +34132,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-45822702999574016"
+                    id="sub-navigation-29663039584909623"
                   ></menu>
                 </li>
               </menu>
@@ -34192,7 +34192,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-9932173311097857"
+                id="sub-navigation-5571147640684943"
               ></menu>
             </li>
             <li
@@ -34211,7 +34211,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-043214380794756924"
+                id="sub-navigation-014970991130522138"
               ></menu>
             </li>
           </menu>
@@ -34289,7 +34289,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-3221873348163299"
+                    id="sub-navigation-5960385898849805"
                   ></menu>
                 </li>
                 <li
@@ -34308,7 +34308,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-45822702999574016"
+                    id="sub-navigation-29663039584909623"
                   ></menu>
                 </li>
               </menu>
@@ -34368,7 +34368,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-9932173311097857"
+                id="sub-navigation-5571147640684943"
               ></menu>
             </li>
             <li
@@ -34387,7 +34387,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-043214380794756924"
+                id="sub-navigation-014970991130522138"
               ></menu>
             </li>
           </menu>
@@ -34465,7 +34465,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-3221873348163299"
+                    id="sub-navigation-5960385898849805"
                   ></menu>
                 </li>
                 <li
@@ -34484,7 +34484,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-45822702999574016"
+                    id="sub-navigation-29663039584909623"
                   ></menu>
                 </li>
               </menu>
@@ -34544,7 +34544,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-9932173311097857"
+                id="sub-navigation-5571147640684943"
               ></menu>
             </li>
             <li
@@ -34563,7 +34563,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-043214380794756924"
+                id="sub-navigation-014970991130522138"
               ></menu>
             </li>
           </menu>
@@ -34641,7 +34641,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-3221873348163299"
+                    id="sub-navigation-5960385898849805"
                   ></menu>
                 </li>
                 <li
@@ -34660,7 +34660,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-45822702999574016"
+                    id="sub-navigation-29663039584909623"
                   ></menu>
                 </li>
               </menu>
@@ -34720,7 +34720,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-9932173311097857"
+                id="sub-navigation-5571147640684943"
               ></menu>
             </li>
             <li
@@ -34739,7 +34739,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-043214380794756924"
+                id="sub-navigation-014970991130522138"
               ></menu>
             </li>
           </menu>
@@ -39867,7 +39867,7 @@ Variant Inline
       <menu
         class="db-sub-navigation"
         data-force-close="false"
-        id="sub-navigation-5167128374238599"
+        id="sub-navigation-36017439583898314"
       >
         <li class="db-navigation-item">
           <button
@@ -39880,7 +39880,7 @@ Variant Inline
           <menu
             class="db-sub-navigation"
             data-force-close="false"
-            id="sub-navigation-06975646249449119"
+            id="sub-navigation-32234848169174635"
           >
             <li class="db-navigation-item" data-active="true">
               <button
@@ -39893,7 +39893,7 @@ Variant Inline
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-6084091730230841"
+                id="sub-navigation-90111636003443"
               ></menu>
             </li>
           </menu>
@@ -39911,7 +39911,7 @@ Variant Inline
       <menu
         class="db-sub-navigation"
         data-force-close="false"
-        id="sub-navigation-7402159233564901"
+        id="sub-navigation-004878486079267552"
       ></menu>
     </li>
   </menu>
@@ -39928,7 +39928,7 @@ Variant Inline
       <menu
         class="db-sub-navigation"
         data-force-close="false"
-        id="sub-navigation-5167128374238599"
+        id="sub-navigation-36017439583898314"
       >
         <li class="db-navigation-item">
           <button
@@ -39941,7 +39941,7 @@ Variant Inline
           <menu
             class="db-sub-navigation"
             data-force-close="false"
-            id="sub-navigation-06975646249449119"
+            id="sub-navigation-32234848169174635"
           >
             <li class="db-navigation-item" data-active="true">
               <button
@@ -39954,7 +39954,7 @@ Variant Inline
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-6084091730230841"
+                id="sub-navigation-90111636003443"
               ></menu>
             </li>
           </menu>
@@ -39972,7 +39972,7 @@ Variant Inline
       <menu
         class="db-sub-navigation"
         data-force-close="false"
-        id="sub-navigation-7402159233564901"
+        id="sub-navigation-004878486079267552"
       ></menu>
     </li>
   </menu>
@@ -39989,7 +39989,7 @@ Variant Inline
       <menu
         class="db-sub-navigation"
         data-force-close="false"
-        id="sub-navigation-5167128374238599"
+        id="sub-navigation-36017439583898314"
       >
         <li class="db-navigation-item">
           <button
@@ -40002,7 +40002,7 @@ Variant Inline
           <menu
             class="db-sub-navigation"
             data-force-close="false"
-            id="sub-navigation-06975646249449119"
+            id="sub-navigation-32234848169174635"
           >
             <li class="db-navigation-item" data-active="true">
               <button
@@ -40015,7 +40015,7 @@ Variant Inline
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-6084091730230841"
+                id="sub-navigation-90111636003443"
               ></menu>
             </li>
           </menu>
@@ -40033,7 +40033,7 @@ Variant Inline
       <menu
         class="db-sub-navigation"
         data-force-close="false"
-        id="sub-navigation-7402159233564901"
+        id="sub-navigation-004878486079267552"
       ></menu>
     </li>
   </menu>
@@ -40050,7 +40050,7 @@ Variant Inline
       <menu
         class="db-sub-navigation"
         data-force-close="false"
-        id="sub-navigation-5167128374238599"
+        id="sub-navigation-36017439583898314"
       >
         <li class="db-navigation-item">
           <button
@@ -40063,7 +40063,7 @@ Variant Inline
           <menu
             class="db-sub-navigation"
             data-force-close="false"
-            id="sub-navigation-06975646249449119"
+            id="sub-navigation-32234848169174635"
           >
             <li class="db-navigation-item" data-active="true">
               <button
@@ -40076,7 +40076,7 @@ Variant Inline
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-6084091730230841"
+                id="sub-navigation-90111636003443"
               ></menu>
             </li>
           </menu>
@@ -40094,7 +40094,7 @@ Variant Inline
       <menu
         class="db-sub-navigation"
         data-force-close="false"
-        id="sub-navigation-7402159233564901"
+        id="sub-navigation-004878486079267552"
       ></menu>
     </li>
   </menu>
@@ -40307,7 +40307,7 @@ Navi-Item 2
       <menu
         class="db-sub-navigation"
         data-force-close="false"
-        id="sub-navigation-9563710477283865"
+        id="sub-navigation-7017617617800898"
       >
         <li class="db-navigation-item">
           <button
@@ -40320,7 +40320,7 @@ Navi-Item 2
           <menu
             class="db-sub-navigation"
             data-force-close="false"
-            id="sub-navigation-2646126794133835"
+            id="sub-navigation-5141804447486233"
           >
             <li class="db-navigation-item" data-active="true">
               <button
@@ -40333,7 +40333,7 @@ Navi-Item 2
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-38338206210047854"
+                id="sub-navigation-6852649000545755"
               ></menu>
             </li>
           </menu>
@@ -40351,7 +40351,7 @@ Navi-Item 2
       <menu
         class="db-sub-navigation"
         data-force-close="false"
-        id="sub-navigation-6384695185885677"
+        id="sub-navigation-3748970568222486"
       ></menu>
     </li>
   </menu>
@@ -40368,7 +40368,7 @@ Navi-Item 2
       <menu
         class="db-sub-navigation"
         data-force-close="false"
-        id="sub-navigation-9563710477283865"
+        id="sub-navigation-7017617617800898"
       >
         <li class="db-navigation-item">
           <button
@@ -40381,7 +40381,7 @@ Navi-Item 2
           <menu
             class="db-sub-navigation"
             data-force-close="false"
-            id="sub-navigation-2646126794133835"
+            id="sub-navigation-5141804447486233"
           >
             <li class="db-navigation-item" data-active="true">
               <button
@@ -40394,7 +40394,7 @@ Navi-Item 2
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-38338206210047854"
+                id="sub-navigation-6852649000545755"
               ></menu>
             </li>
           </menu>
@@ -40412,7 +40412,7 @@ Navi-Item 2
       <menu
         class="db-sub-navigation"
         data-force-close="false"
-        id="sub-navigation-6384695185885677"
+        id="sub-navigation-3748970568222486"
       ></menu>
     </li>
   </menu>
@@ -40429,7 +40429,7 @@ Navi-Item 2
       <menu
         class="db-sub-navigation"
         data-force-close="false"
-        id="sub-navigation-9563710477283865"
+        id="sub-navigation-7017617617800898"
       >
         <li class="db-navigation-item">
           <button
@@ -40442,7 +40442,7 @@ Navi-Item 2
           <menu
             class="db-sub-navigation"
             data-force-close="false"
-            id="sub-navigation-2646126794133835"
+            id="sub-navigation-5141804447486233"
           >
             <li class="db-navigation-item" data-active="true">
               <button
@@ -40455,7 +40455,7 @@ Navi-Item 2
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-38338206210047854"
+                id="sub-navigation-6852649000545755"
               ></menu>
             </li>
           </menu>
@@ -40473,7 +40473,7 @@ Navi-Item 2
       <menu
         class="db-sub-navigation"
         data-force-close="false"
-        id="sub-navigation-6384695185885677"
+        id="sub-navigation-3748970568222486"
       ></menu>
     </li>
   </menu>
@@ -40490,7 +40490,7 @@ Navi-Item 2
       <menu
         class="db-sub-navigation"
         data-force-close="false"
-        id="sub-navigation-9563710477283865"
+        id="sub-navigation-7017617617800898"
       >
         <li class="db-navigation-item">
           <button
@@ -40503,7 +40503,7 @@ Navi-Item 2
           <menu
             class="db-sub-navigation"
             data-force-close="false"
-            id="sub-navigation-2646126794133835"
+            id="sub-navigation-5141804447486233"
           >
             <li class="db-navigation-item" data-active="true">
               <button
@@ -40516,7 +40516,7 @@ Navi-Item 2
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-38338206210047854"
+                id="sub-navigation-6852649000545755"
               ></menu>
             </li>
           </menu>
@@ -40534,7 +40534,7 @@ Navi-Item 2
       <menu
         class="db-sub-navigation"
         data-force-close="false"
-        id="sub-navigation-6384695185885677"
+        id="sub-navigation-3748970568222486"
       ></menu>
     </li>
   </menu>
@@ -40747,7 +40747,7 @@ Navi-Item 2
       <menu
         class="db-sub-navigation"
         data-force-close="false"
-        id="sub-navigation-39499469301120904"
+        id="sub-navigation-5615894195233258"
       >
         <li class="db-navigation-item">
           <button
@@ -40760,7 +40760,7 @@ Navi-Item 2
           <menu
             class="db-sub-navigation"
             data-force-close="false"
-            id="sub-navigation-3063519634335168"
+            id="sub-navigation-1080637926196153"
           >
             <li class="db-navigation-item" data-active="true">
               <button
@@ -40773,7 +40773,7 @@ Navi-Item 2
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-36285811271064794"
+                id="sub-navigation-287156685221027"
               ></menu>
             </li>
           </menu>
@@ -40791,7 +40791,7 @@ Navi-Item 2
       <menu
         class="db-sub-navigation"
         data-force-close="false"
-        id="sub-navigation-1671173834500682"
+        id="sub-navigation-705260503401994"
       ></menu>
     </li>
   </menu>
@@ -40808,7 +40808,7 @@ Navi-Item 2
       <menu
         class="db-sub-navigation"
         data-force-close="false"
-        id="sub-navigation-39499469301120904"
+        id="sub-navigation-5615894195233258"
       >
         <li class="db-navigation-item">
           <button
@@ -40821,7 +40821,7 @@ Navi-Item 2
           <menu
             class="db-sub-navigation"
             data-force-close="false"
-            id="sub-navigation-3063519634335168"
+            id="sub-navigation-1080637926196153"
           >
             <li class="db-navigation-item" data-active="true">
               <button
@@ -40834,7 +40834,7 @@ Navi-Item 2
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-36285811271064794"
+                id="sub-navigation-287156685221027"
               ></menu>
             </li>
           </menu>
@@ -40852,7 +40852,7 @@ Navi-Item 2
       <menu
         class="db-sub-navigation"
         data-force-close="false"
-        id="sub-navigation-1671173834500682"
+        id="sub-navigation-705260503401994"
       ></menu>
     </li>
   </menu>
@@ -40869,7 +40869,7 @@ Navi-Item 2
       <menu
         class="db-sub-navigation"
         data-force-close="false"
-        id="sub-navigation-39499469301120904"
+        id="sub-navigation-5615894195233258"
       >
         <li class="db-navigation-item">
           <button
@@ -40882,7 +40882,7 @@ Navi-Item 2
           <menu
             class="db-sub-navigation"
             data-force-close="false"
-            id="sub-navigation-3063519634335168"
+            id="sub-navigation-1080637926196153"
           >
             <li class="db-navigation-item" data-active="true">
               <button
@@ -40895,7 +40895,7 @@ Navi-Item 2
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-36285811271064794"
+                id="sub-navigation-287156685221027"
               ></menu>
             </li>
           </menu>
@@ -40913,7 +40913,7 @@ Navi-Item 2
       <menu
         class="db-sub-navigation"
         data-force-close="false"
-        id="sub-navigation-1671173834500682"
+        id="sub-navigation-705260503401994"
       ></menu>
     </li>
   </menu>
@@ -40930,7 +40930,7 @@ Navi-Item 2
       <menu
         class="db-sub-navigation"
         data-force-close="false"
-        id="sub-navigation-39499469301120904"
+        id="sub-navigation-5615894195233258"
       >
         <li class="db-navigation-item">
           <button
@@ -40943,7 +40943,7 @@ Navi-Item 2
           <menu
             class="db-sub-navigation"
             data-force-close="false"
-            id="sub-navigation-3063519634335168"
+            id="sub-navigation-1080637926196153"
           >
             <li class="db-navigation-item" data-active="true">
               <button
@@ -40956,7 +40956,7 @@ Navi-Item 2
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-36285811271064794"
+                id="sub-navigation-287156685221027"
               ></menu>
             </li>
           </menu>
@@ -40974,7 +40974,7 @@ Navi-Item 2
       <menu
         class="db-sub-navigation"
         data-force-close="false"
-        id="sub-navigation-1671173834500682"
+        id="sub-navigation-705260503401994"
       ></menu>
     </li>
   </menu>
@@ -41133,7 +41133,7 @@ Navi-Item 2
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-4649330382991472"
+    id="sub-navigation-32312961653232364"
   ></menu>
 </li>`})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:e===`<li class="db-navigation-item">
   <button
@@ -41146,7 +41146,7 @@ Navi-Item 2
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-4649330382991472"
+    id="sub-navigation-32312961653232364"
   ></menu>
 </li>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<li class="db-navigation-item">
   <button
@@ -41159,7 +41159,7 @@ Navi-Item 2
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-4649330382991472"
+    id="sub-navigation-32312961653232364"
   ></menu>
 </li>`),navigator.clipboard.writeText(`<li class="db-navigation-item">
   <button
@@ -41172,7 +41172,7 @@ Navi-Item 2
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-4649330382991472"
+    id="sub-navigation-32312961653232364"
   ></menu>
 </li>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=react",children:"How to use this in react"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-tsx",children:`<DBNavigationItem>
   <a href="#">Functional</a>
@@ -41217,7 +41217,7 @@ Functional
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-16261130032424642"
+    id="sub-navigation-5591956866345335"
   ></menu>
 </li>`})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:e===`<li class="db-navigation-item">
   <button
@@ -41230,7 +41230,7 @@ Functional
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-16261130032424642"
+    id="sub-navigation-5591956866345335"
   ></menu>
 </li>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<li class="db-navigation-item">
   <button
@@ -41243,7 +41243,7 @@ Functional
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-16261130032424642"
+    id="sub-navigation-5591956866345335"
   ></menu>
 </li>`),navigator.clipboard.writeText(`<li class="db-navigation-item">
   <button
@@ -41256,7 +41256,7 @@ Functional
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-16261130032424642"
+    id="sub-navigation-5591956866345335"
   ></menu>
 </li>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=react",children:"How to use this in react"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-tsx",children:`<DBNavigationItem>
   <a href="#">(Default) Regular</a>
@@ -41301,7 +41301,7 @@ Functional
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-453313132124591"
+    id="sub-navigation-05793116395046216"
   ></menu>
 </li>`})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:e===`<li class="db-navigation-item">
   <button
@@ -41314,7 +41314,7 @@ Functional
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-453313132124591"
+    id="sub-navigation-05793116395046216"
   ></menu>
 </li>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<li class="db-navigation-item">
   <button
@@ -41327,7 +41327,7 @@ Functional
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-453313132124591"
+    id="sub-navigation-05793116395046216"
   ></menu>
 </li>`),navigator.clipboard.writeText(`<li class="db-navigation-item">
   <button
@@ -41340,7 +41340,7 @@ Functional
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-453313132124591"
+    id="sub-navigation-05793116395046216"
   ></menu>
 </li>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=react",children:"How to use this in react"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-tsx",children:`<DBNavigationItem>
   <a href="#">Expressive</a>
@@ -41386,7 +41386,7 @@ Expressive
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-21897368395405248"
+    id="sub-navigation-3863743409070557"
   ></menu>
 </li>`})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:e===`<li class="db-navigation-item" aria-disabled="true">
   <button
@@ -41400,7 +41400,7 @@ Expressive
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-21897368395405248"
+    id="sub-navigation-3863743409070557"
   ></menu>
 </li>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<li class="db-navigation-item" aria-disabled="true">
   <button
@@ -41414,7 +41414,7 @@ Expressive
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-21897368395405248"
+    id="sub-navigation-3863743409070557"
   ></menu>
 </li>`),navigator.clipboard.writeText(`<li class="db-navigation-item" aria-disabled="true">
   <button
@@ -41428,7 +41428,7 @@ Expressive
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-21897368395405248"
+    id="sub-navigation-3863743409070557"
   ></menu>
 </li>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=react",children:"How to use this in react"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-tsx",children:`<DBNavigationItem disabled>
   <a href="#">(Default) False</a>
@@ -41474,7 +41474,7 @@ Expressive
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-02883260954843836"
+    id="sub-navigation-7934477631546626"
   ></menu>
 </li>`})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:e===`<li class="db-navigation-item" aria-disabled="true">
   <button
@@ -41488,7 +41488,7 @@ Expressive
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-02883260954843836"
+    id="sub-navigation-7934477631546626"
   ></menu>
 </li>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<li class="db-navigation-item" aria-disabled="true">
   <button
@@ -41502,7 +41502,7 @@ Expressive
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-02883260954843836"
+    id="sub-navigation-7934477631546626"
   ></menu>
 </li>`),navigator.clipboard.writeText(`<li class="db-navigation-item" aria-disabled="true">
   <button
@@ -41516,7 +41516,7 @@ Expressive
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-02883260954843836"
+    id="sub-navigation-7934477631546626"
   ></menu>
 </li>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=react",children:"How to use this in react"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-tsx",children:`<DBNavigationItem disabled>
   <a href="#">True</a>
@@ -41561,7 +41561,7 @@ True
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-6168474724882789"
+    id="sub-navigation-899823202767782"
   ></menu>
 </li>`})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:e===`<li class="db-navigation-item" data-active="true">
   <button
@@ -41574,7 +41574,7 @@ True
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-6168474724882789"
+    id="sub-navigation-899823202767782"
   ></menu>
 </li>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<li class="db-navigation-item" data-active="true">
   <button
@@ -41587,7 +41587,7 @@ True
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-6168474724882789"
+    id="sub-navigation-899823202767782"
   ></menu>
 </li>`),navigator.clipboard.writeText(`<li class="db-navigation-item" data-active="true">
   <button
@@ -41600,7 +41600,7 @@ True
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-6168474724882789"
+    id="sub-navigation-899823202767782"
   ></menu>
 </li>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=react",children:"How to use this in react"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-tsx",children:`<DBNavigationItem active>
   <a href="#">(Default) False</a>
@@ -41645,7 +41645,7 @@ True
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-28123782457143043"
+    id="sub-navigation-5406711880001425"
   ></menu>
 </li>`})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:e===`<li class="db-navigation-item" data-active="true">
   <button
@@ -41658,7 +41658,7 @@ True
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-28123782457143043"
+    id="sub-navigation-5406711880001425"
   ></menu>
 </li>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<li class="db-navigation-item" data-active="true">
   <button
@@ -41671,7 +41671,7 @@ True
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-28123782457143043"
+    id="sub-navigation-5406711880001425"
   ></menu>
 </li>`),navigator.clipboard.writeText(`<li class="db-navigation-item" data-active="true">
   <button
@@ -41684,7 +41684,7 @@ True
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-28123782457143043"
+    id="sub-navigation-5406711880001425"
   ></menu>
 </li>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=react",children:"How to use this in react"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-tsx",children:`<DBNavigationItem active>
   <a href="#">True</a>
@@ -41729,7 +41729,7 @@ True
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-9316388612661193"
+    id="sub-navigation-8656131856466243"
   ></menu>
 </li>`})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:e===`<li class="db-navigation-item">
   <button
@@ -41742,7 +41742,7 @@ True
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-9316388612661193"
+    id="sub-navigation-8656131856466243"
   ></menu>
 </li>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<li class="db-navigation-item">
   <button
@@ -41755,7 +41755,7 @@ True
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-9316388612661193"
+    id="sub-navigation-8656131856466243"
   ></menu>
 </li>`),navigator.clipboard.writeText(`<li class="db-navigation-item">
   <button
@@ -41768,7 +41768,7 @@ True
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-9316388612661193"
+    id="sub-navigation-8656131856466243"
   ></menu>
 </li>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=react",children:"How to use this in react"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-tsx",children:`<DBNavigationItem areaPopup>
   <a href="#">(Default) False</a>
@@ -41813,7 +41813,7 @@ True
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-35460876826100785"
+    id="sub-navigation-3970585103747163"
   ></menu>
 </li>`})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:e===`<li class="db-navigation-item">
   <button
@@ -41826,7 +41826,7 @@ True
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-35460876826100785"
+    id="sub-navigation-3970585103747163"
   ></menu>
 </li>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<li class="db-navigation-item">
   <button
@@ -41839,7 +41839,7 @@ True
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-35460876826100785"
+    id="sub-navigation-3970585103747163"
   ></menu>
 </li>`),navigator.clipboard.writeText(`<li class="db-navigation-item">
   <button
@@ -41852,7 +41852,7 @@ True
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-35460876826100785"
+    id="sub-navigation-3970585103747163"
   ></menu>
 </li>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=react",children:"How to use this in react"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-tsx",children:`<DBNavigationItem areaPopup>
   <a href="#">True</a>
@@ -41897,7 +41897,7 @@ True
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-32514118008185755"
+    id="sub-navigation-9075426237715876"
   ></menu>
 </li>`})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:e===`<li class="db-navigation-item" data-icon="x_placeholder" data-show-icon="true">
   <button
@@ -41910,7 +41910,7 @@ True
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-32514118008185755"
+    id="sub-navigation-9075426237715876"
   ></menu>
 </li>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<li class="db-navigation-item" data-icon="x_placeholder" data-show-icon="true">
   <button
@@ -41923,7 +41923,7 @@ True
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-32514118008185755"
+    id="sub-navigation-9075426237715876"
   ></menu>
 </li>`),navigator.clipboard.writeText(`<li class="db-navigation-item" data-icon="x_placeholder" data-show-icon="true">
   <button
@@ -41936,7 +41936,7 @@ True
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-32514118008185755"
+    id="sub-navigation-9075426237715876"
   ></menu>
 </li>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=react",children:"How to use this in react"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-tsx",children:`<DBNavigationItem icon="x_placeholder" showIcon>
   <a href="#">(Default) False</a>
@@ -41981,7 +41981,7 @@ True
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-13826205330940822"
+    id="sub-navigation-18453855942922281"
   ></menu>
 </li>`})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:e===`<li class="db-navigation-item" data-icon="x_placeholder" data-show-icon="true">
   <button
@@ -41994,7 +41994,7 @@ True
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-13826205330940822"
+    id="sub-navigation-18453855942922281"
   ></menu>
 </li>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<li class="db-navigation-item" data-icon="x_placeholder" data-show-icon="true">
   <button
@@ -42007,7 +42007,7 @@ True
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-13826205330940822"
+    id="sub-navigation-18453855942922281"
   ></menu>
 </li>`),navigator.clipboard.writeText(`<li class="db-navigation-item" data-icon="x_placeholder" data-show-icon="true">
   <button
@@ -42020,7 +42020,7 @@ True
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-13826205330940822"
+    id="sub-navigation-18453855942922281"
   ></menu>
 </li>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=react",children:"How to use this in react"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-tsx",children:`<DBNavigationItem icon="x_placeholder" showIcon>
   <a href="#">True</a>
@@ -42065,7 +42065,7 @@ True
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-43128944849300055"
+    id="sub-navigation-4247126187270357"
   ></menu>
 </li>`})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:e===`<li class="db-navigation-item">
   <button
@@ -42078,7 +42078,7 @@ True
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-43128944849300055"
+    id="sub-navigation-4247126187270357"
   ></menu>
 </li>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<li class="db-navigation-item">
   <button
@@ -42091,7 +42091,7 @@ True
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-43128944849300055"
+    id="sub-navigation-4247126187270357"
   ></menu>
 </li>`),navigator.clipboard.writeText(`<li class="db-navigation-item">
   <button
@@ -42104,7 +42104,7 @@ True
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-43128944849300055"
+    id="sub-navigation-4247126187270357"
   ></menu>
 </li>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=react",children:"How to use this in react"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-tsx",children:`<DBNavigationItem>
   <a href="#">(Default) Auto</a>
@@ -42149,7 +42149,7 @@ True
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-970539058312636"
+    id="sub-navigation-5821497247161346"
   ></menu>
 </li>`})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:e===`<li class="db-navigation-item" data-width="full">
   <button
@@ -42162,7 +42162,7 @@ True
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-970539058312636"
+    id="sub-navigation-5821497247161346"
   ></menu>
 </li>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<li class="db-navigation-item" data-width="full">
   <button
@@ -42175,7 +42175,7 @@ True
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-970539058312636"
+    id="sub-navigation-5821497247161346"
   ></menu>
 </li>`),navigator.clipboard.writeText(`<li class="db-navigation-item" data-width="full">
   <button
@@ -42188,7 +42188,7 @@ True
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-970539058312636"
+    id="sub-navigation-5821497247161346"
   ></menu>
 </li>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=react",children:"How to use this in react"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-tsx",children:`<DBNavigationItem width="full">
   <a href="#">Full</a>
@@ -42233,7 +42233,7 @@ Full
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-5804007065174543"
+    id="sub-navigation-43222088697131633"
   ></menu>
 </li>`})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:e===`<li class="db-navigation-item">
   <button
@@ -42246,7 +42246,7 @@ Full
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-5804007065174543"
+    id="sub-navigation-43222088697131633"
   ></menu>
 </li>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<li class="db-navigation-item">
   <button
@@ -42259,7 +42259,7 @@ Full
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-5804007065174543"
+    id="sub-navigation-43222088697131633"
   ></menu>
 </li>`),navigator.clipboard.writeText(`<li class="db-navigation-item">
   <button
@@ -42272,7 +42272,7 @@ Full
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-5804007065174543"
+    id="sub-navigation-43222088697131633"
   ></menu>
 </li>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=react",children:"How to use this in react"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-tsx",children:`<DBNavigationItem areaPopup>
   <a href="#">True</a>
@@ -42337,7 +42337,7 @@ True
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-8208618554059416"
+    id="sub-navigation-30930931906470427"
   ></menu>
 </li>`})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:e===`<li class="db-navigation-item" data-wrap="true">
   <button
@@ -42350,7 +42350,7 @@ True
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-8208618554059416"
+    id="sub-navigation-30930931906470427"
   ></menu>
 </li>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<li class="db-navigation-item" data-wrap="true">
   <button
@@ -42363,7 +42363,7 @@ True
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-8208618554059416"
+    id="sub-navigation-30930931906470427"
   ></menu>
 </li>`),navigator.clipboard.writeText(`<li class="db-navigation-item" data-wrap="true">
   <button
@@ -42376,7 +42376,7 @@ True
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-8208618554059416"
+    id="sub-navigation-30930931906470427"
   ></menu>
 </li>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=react",children:"How to use this in react"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-tsx",children:`<DBNavigationItem areaPopup icon="x_placeholder" showIcon wrap>
   <a href="#">Sub-Sub-Navi-Item 1</a>
@@ -42441,7 +42441,7 @@ Sub-Sub-Navi-Item 1
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-8208618554059416"
+    id="sub-navigation-30930931906470427"
   ></menu>
 </li>`})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:e===`<li class="db-navigation-item" data-wrap="true">
   <button
@@ -42454,7 +42454,7 @@ Sub-Sub-Navi-Item 1
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-8208618554059416"
+    id="sub-navigation-30930931906470427"
   ></menu>
 </li>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<li class="db-navigation-item" data-wrap="true">
   <button
@@ -42467,7 +42467,7 @@ Sub-Sub-Navi-Item 1
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-8208618554059416"
+    id="sub-navigation-30930931906470427"
   ></menu>
 </li>`),navigator.clipboard.writeText(`<li class="db-navigation-item" data-wrap="true">
   <button
@@ -42480,7 +42480,7 @@ Sub-Sub-Navi-Item 1
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-8208618554059416"
+    id="sub-navigation-30930931906470427"
   ></menu>
 </li>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=react",children:"How to use this in react"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-tsx",children:`<DBNavigationItem areaPopup wrap>
   <a href="#">True</a>
@@ -57811,19 +57811,43 @@ Required + Visual Aid
 </db-tab-item>`),navigator.clipboard.writeText(`<db-tab-item class="tab-hide-article" label="functional">
   Functional
 </db-tab-item>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-html",children:`<li role="presentation" class="db-tab-item tab-hide-article">
-  <button type="button" role="tab" aria-selected="false" class="db-tab-button">
+  <button
+    type="button"
+    role="tab"
+    aria-selected="false"
+    tabindex="-1"
+    class="db-tab-button"
+  >
     <span class="db-tab-label">functional</span>
   </button>
 </li>`})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:e===`<li role="presentation" class="db-tab-item tab-hide-article">
-  <button type="button" role="tab" aria-selected="false" class="db-tab-button">
+  <button
+    type="button"
+    role="tab"
+    aria-selected="false"
+    tabindex="-1"
+    class="db-tab-button"
+  >
     <span class="db-tab-label">functional</span>
   </button>
 </li>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<li role="presentation" class="db-tab-item tab-hide-article">
-  <button type="button" role="tab" aria-selected="false" class="db-tab-button">
+  <button
+    type="button"
+    role="tab"
+    aria-selected="false"
+    tabindex="-1"
+    class="db-tab-button"
+  >
     <span class="db-tab-label">functional</span>
   </button>
 </li>`),navigator.clipboard.writeText(`<li role="presentation" class="db-tab-item tab-hide-article">
-  <button type="button" role="tab" aria-selected="false" class="db-tab-button">
+  <button
+    type="button"
+    role="tab"
+    aria-selected="false"
+    tabindex="-1"
+    class="db-tab-button"
+  >
     <span class="db-tab-label">functional</span>
   </button>
 </li>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=react",children:"How to use this in react"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-tsx",children:`<DBTabItem className="tab-hide-article" label="functional">
@@ -57851,19 +57875,43 @@ Functional
 </db-tab-item>`),navigator.clipboard.writeText(`<db-tab-item class="tab-hide-article" label="(Default) Regular">
   (Default) Regular
 </db-tab-item>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-html",children:`<li role="presentation" class="db-tab-item tab-hide-article">
-  <button type="button" role="tab" aria-selected="false" class="db-tab-button">
+  <button
+    type="button"
+    role="tab"
+    aria-selected="false"
+    tabindex="-1"
+    class="db-tab-button"
+  >
     <span class="db-tab-label">(Default) Regular</span>
   </button>
 </li>`})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:e===`<li role="presentation" class="db-tab-item tab-hide-article">
-  <button type="button" role="tab" aria-selected="false" class="db-tab-button">
+  <button
+    type="button"
+    role="tab"
+    aria-selected="false"
+    tabindex="-1"
+    class="db-tab-button"
+  >
     <span class="db-tab-label">(Default) Regular</span>
   </button>
 </li>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<li role="presentation" class="db-tab-item tab-hide-article">
-  <button type="button" role="tab" aria-selected="false" class="db-tab-button">
+  <button
+    type="button"
+    role="tab"
+    aria-selected="false"
+    tabindex="-1"
+    class="db-tab-button"
+  >
     <span class="db-tab-label">(Default) Regular</span>
   </button>
 </li>`),navigator.clipboard.writeText(`<li role="presentation" class="db-tab-item tab-hide-article">
-  <button type="button" role="tab" aria-selected="false" class="db-tab-button">
+  <button
+    type="button"
+    role="tab"
+    aria-selected="false"
+    tabindex="-1"
+    class="db-tab-button"
+  >
     <span class="db-tab-label">(Default) Regular</span>
   </button>
 </li>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=react",children:"How to use this in react"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-tsx",children:`<DBTabItem className="tab-hide-article" label="(Default) Regular">
@@ -57891,19 +57939,43 @@ Functional
 </db-tab-item>`),navigator.clipboard.writeText(`<db-tab-item class="tab-hide-article" label="expressive">
   Expressive
 </db-tab-item>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-html",children:`<li role="presentation" class="db-tab-item tab-hide-article">
-  <button type="button" role="tab" aria-selected="false" class="db-tab-button">
+  <button
+    type="button"
+    role="tab"
+    aria-selected="false"
+    tabindex="-1"
+    class="db-tab-button"
+  >
     <span class="db-tab-label">expressive</span>
   </button>
 </li>`})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:e===`<li role="presentation" class="db-tab-item tab-hide-article">
-  <button type="button" role="tab" aria-selected="false" class="db-tab-button">
+  <button
+    type="button"
+    role="tab"
+    aria-selected="false"
+    tabindex="-1"
+    class="db-tab-button"
+  >
     <span class="db-tab-label">expressive</span>
   </button>
 </li>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<li role="presentation" class="db-tab-item tab-hide-article">
-  <button type="button" role="tab" aria-selected="false" class="db-tab-button">
+  <button
+    type="button"
+    role="tab"
+    aria-selected="false"
+    tabindex="-1"
+    class="db-tab-button"
+  >
     <span class="db-tab-label">expressive</span>
   </button>
 </li>`),navigator.clipboard.writeText(`<li role="presentation" class="db-tab-item tab-hide-article">
-  <button type="button" role="tab" aria-selected="false" class="db-tab-button">
+  <button
+    type="button"
+    role="tab"
+    aria-selected="false"
+    tabindex="-1"
+    class="db-tab-button"
+  >
     <span class="db-tab-label">expressive</span>
   </button>
 </li>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=react",children:"How to use this in react"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-tsx",children:`<DBTabItem className="tab-hide-article" label="expressive">
@@ -57923,19 +57995,43 @@ Expressive
 </DBTabItem>`),navigator.clipboard.writeText(`<DBTabItem class="tab-hide-article" label="expressive">
 Expressive
 </DBTabItem>`)},children:"Copy code"})]})]},t())})]})},ii=()=>{let[e,a]=(0,I.useState)(),{getFrameworkIndex:t}=(0,aA.u)();return(0,I.useEffect)(()=>{e&&setTimeout(()=>a(""),1500)},[e]),(0,N.jsxs)(N.Fragment,{children:[(0,N.jsx)(L.A,{className:"tab-container",children:(0,N.jsxs)(au.A,{initialSelectedIndex:t(),children:[(0,N.jsxs)(ao.A,{children:[(0,N.jsx)(as.A,{children:"Angular"}),(0,N.jsx)(as.A,{children:"HTML"}),(0,N.jsx)(as.A,{children:"React"}),(0,N.jsx)(as.A,{children:"Vue"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=angular",children:"How to use this in angular"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-html",children:'<db-tab-item label="(Default) Enabled"> (Default) Enabled </db-tab-item>'})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:'<db-tab-item label="(Default) Enabled"> (Default) Enabled </db-tab-item>'===e?"check":"copy",variant:"ghost",onClick:()=>{a('<db-tab-item label="(Default) Enabled"> (Default) Enabled </db-tab-item>'),navigator.clipboard.writeText('<db-tab-item label="(Default) Enabled"> (Default) Enabled </db-tab-item>')},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-html",children:`<li role="presentation" class="db-tab-item">
-  <button type="button" role="tab" aria-selected="false" class="db-tab-button">
+  <button
+    type="button"
+    role="tab"
+    aria-selected="false"
+    tabindex="-1"
+    class="db-tab-button"
+  >
     <span class="db-tab-label">(Default) Enabled</span>
   </button>
 </li>`})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:e===`<li role="presentation" class="db-tab-item">
-  <button type="button" role="tab" aria-selected="false" class="db-tab-button">
+  <button
+    type="button"
+    role="tab"
+    aria-selected="false"
+    tabindex="-1"
+    class="db-tab-button"
+  >
     <span class="db-tab-label">(Default) Enabled</span>
   </button>
 </li>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<li role="presentation" class="db-tab-item">
-  <button type="button" role="tab" aria-selected="false" class="db-tab-button">
+  <button
+    type="button"
+    role="tab"
+    aria-selected="false"
+    tabindex="-1"
+    class="db-tab-button"
+  >
     <span class="db-tab-label">(Default) Enabled</span>
   </button>
 </li>`),navigator.clipboard.writeText(`<li role="presentation" class="db-tab-item">
-  <button type="button" role="tab" aria-selected="false" class="db-tab-button">
+  <button
+    type="button"
+    role="tab"
+    aria-selected="false"
+    tabindex="-1"
+    class="db-tab-button"
+  >
     <span class="db-tab-label">(Default) Enabled</span>
   </button>
 </li>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=react",children:"How to use this in react"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-tsx",children:'<DBTabItem label="(Default) Enabled">(Default) Enabled</DBTabItem>'})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:'<DBTabItem label="(Default) Enabled">(Default) Enabled</DBTabItem>'===e?"check":"copy",variant:"ghost",onClick:()=>{a('<DBTabItem label="(Default) Enabled">(Default) Enabled</DBTabItem>'),navigator.clipboard.writeText('<DBTabItem label="(Default) Enabled">(Default) Enabled</DBTabItem>')},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=vue",children:"How to use this in vue"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-tsx",children:`<DBTabItem label="(Default) Enabled">
@@ -57946,20 +58042,44 @@ Expressive
 (Default) Enabled
 </DBTabItem>`),navigator.clipboard.writeText(`<DBTabItem label="(Default) Enabled">
 (Default) Enabled
-</DBTabItem>`)},children:"Copy code"})]})]},t())}),(0,N.jsx)(L.A,{className:"tab-container",children:(0,N.jsxs)(au.A,{initialSelectedIndex:t(),children:[(0,N.jsxs)(ao.A,{children:[(0,N.jsx)(as.A,{children:"Angular"}),(0,N.jsx)(as.A,{children:"HTML"}),(0,N.jsx)(as.A,{children:"React"}),(0,N.jsx)(as.A,{children:"Vue"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=angular",children:"How to use this in angular"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-html",children:'<db-tab-item label="active" [active]="true"> active </db-tab-item>'})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:'<db-tab-item label="active" [active]="true"> active </db-tab-item>'===e?"check":"copy",variant:"ghost",onClick:()=>{a('<db-tab-item label="active" [active]="true"> active </db-tab-item>'),navigator.clipboard.writeText('<db-tab-item label="active" [active]="true"> active </db-tab-item>')},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-html",children:`<li role="presentation" class="db-tab-item">
-  <button type="button" role="tab" aria-selected="false" class="db-tab-button">
+</DBTabItem>`)},children:"Copy code"})]})]},t())}),(0,N.jsx)(L.A,{className:"tab-container",children:(0,N.jsxs)(au.A,{initialSelectedIndex:t(),children:[(0,N.jsxs)(ao.A,{children:[(0,N.jsx)(as.A,{children:"Angular"}),(0,N.jsx)(as.A,{children:"HTML"}),(0,N.jsx)(as.A,{children:"React"}),(0,N.jsx)(as.A,{children:"Vue"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=angular",children:"How to use this in angular"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-html",children:'<db-tab-item label="active" [active]="true"> active </db-tab-item>'})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:'<db-tab-item label="active" [active]="true"> active </db-tab-item>'===e?"check":"copy",variant:"ghost",onClick:()=>{a('<db-tab-item label="active" [active]="true"> active </db-tab-item>'),navigator.clipboard.writeText('<db-tab-item label="active" [active]="true"> active </db-tab-item>')},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-html",children:`<li role="presentation" class="db-tab-item active">
+  <button
+    type="button"
+    role="tab"
+    aria-selected="true"
+    tabindex="0"
+    class="db-tab-button active"
+  >
     <span class="db-tab-label">active</span>
   </button>
-</li>`})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:e===`<li role="presentation" class="db-tab-item">
-  <button type="button" role="tab" aria-selected="false" class="db-tab-button">
+</li>`})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:e===`<li role="presentation" class="db-tab-item active">
+  <button
+    type="button"
+    role="tab"
+    aria-selected="true"
+    tabindex="0"
+    class="db-tab-button active"
+  >
     <span class="db-tab-label">active</span>
   </button>
-</li>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<li role="presentation" class="db-tab-item">
-  <button type="button" role="tab" aria-selected="false" class="db-tab-button">
+</li>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<li role="presentation" class="db-tab-item active">
+  <button
+    type="button"
+    role="tab"
+    aria-selected="true"
+    tabindex="0"
+    class="db-tab-button active"
+  >
     <span class="db-tab-label">active</span>
   </button>
-</li>`),navigator.clipboard.writeText(`<li role="presentation" class="db-tab-item">
-  <button type="button" role="tab" aria-selected="false" class="db-tab-button">
+</li>`),navigator.clipboard.writeText(`<li role="presentation" class="db-tab-item active">
+  <button
+    type="button"
+    role="tab"
+    aria-selected="true"
+    tabindex="0"
+    class="db-tab-button active"
+  >
     <span class="db-tab-label">active</span>
   </button>
 </li>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=react",children:"How to use this in react"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-tsx",children:`<DBTabItem label="active" active>
@@ -57979,19 +58099,43 @@ active
 </DBTabItem>`),navigator.clipboard.writeText(`<DBTabItem label="active" :active="true">
 active
 </DBTabItem>`)},children:"Copy code"})]})]},t())}),(0,N.jsx)(L.A,{className:"tab-container",children:(0,N.jsxs)(au.A,{initialSelectedIndex:t(),children:[(0,N.jsxs)(ao.A,{children:[(0,N.jsx)(as.A,{children:"Angular"}),(0,N.jsx)(as.A,{children:"HTML"}),(0,N.jsx)(as.A,{children:"React"}),(0,N.jsx)(as.A,{children:"Vue"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=angular",children:"How to use this in angular"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-html",children:'<db-tab-item label="active" [isDisabled]="true"> disabled </db-tab-item>'})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:'<db-tab-item label="active" [isDisabled]="true"> disabled </db-tab-item>'===e?"check":"copy",variant:"ghost",onClick:()=>{a('<db-tab-item label="active" [isDisabled]="true"> disabled </db-tab-item>'),navigator.clipboard.writeText('<db-tab-item label="active" [isDisabled]="true"> disabled </db-tab-item>')},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-html",children:`<li role="presentation" class="db-tab-item">
-  <button type="button" role="tab" aria-selected="false" class="db-tab-button">
+  <button
+    type="button"
+    role="tab"
+    aria-selected="false"
+    tabindex="-1"
+    class="db-tab-button"
+  >
     <span class="db-tab-label">active</span>
   </button>
 </li>`})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:e===`<li role="presentation" class="db-tab-item">
-  <button type="button" role="tab" aria-selected="false" class="db-tab-button">
+  <button
+    type="button"
+    role="tab"
+    aria-selected="false"
+    tabindex="-1"
+    class="db-tab-button"
+  >
     <span class="db-tab-label">active</span>
   </button>
 </li>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<li role="presentation" class="db-tab-item">
-  <button type="button" role="tab" aria-selected="false" class="db-tab-button">
+  <button
+    type="button"
+    role="tab"
+    aria-selected="false"
+    tabindex="-1"
+    class="db-tab-button"
+  >
     <span class="db-tab-label">active</span>
   </button>
 </li>`),navigator.clipboard.writeText(`<li role="presentation" class="db-tab-item">
-  <button type="button" role="tab" aria-selected="false" class="db-tab-button">
+  <button
+    type="button"
+    role="tab"
+    aria-selected="false"
+    tabindex="-1"
+    class="db-tab-button"
+  >
     <span class="db-tab-label">active</span>
   </button>
 </li>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=react",children:"How to use this in react"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-tsx",children:`<DBTabItem label="active" isDisabled>
@@ -58019,22 +58163,46 @@ disabled
 </db-tab-item>`),navigator.clipboard.writeText(`<db-tab-item label="False" icon="x_placeholder" [showIcon]="false">
   (Default) False
 </db-tab-item>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-html",children:`<li role="presentation" class="db-tab-item">
-  <button type="button" role="tab" aria-selected="false" class="db-tab-button">
+  <button
+    type="button"
+    role="tab"
+    aria-selected="false"
+    tabindex="-1"
+    class="db-tab-button"
+  >
     <span aria-hidden="true" class="db-icon" data-icon="x_placeholder"></span
     ><span class="db-tab-label">False</span>
   </button>
 </li>`})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:e===`<li role="presentation" class="db-tab-item">
-  <button type="button" role="tab" aria-selected="false" class="db-tab-button">
+  <button
+    type="button"
+    role="tab"
+    aria-selected="false"
+    tabindex="-1"
+    class="db-tab-button"
+  >
     <span aria-hidden="true" class="db-icon" data-icon="x_placeholder"></span
     ><span class="db-tab-label">False</span>
   </button>
 </li>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<li role="presentation" class="db-tab-item">
-  <button type="button" role="tab" aria-selected="false" class="db-tab-button">
+  <button
+    type="button"
+    role="tab"
+    aria-selected="false"
+    tabindex="-1"
+    class="db-tab-button"
+  >
     <span aria-hidden="true" class="db-icon" data-icon="x_placeholder"></span
     ><span class="db-tab-label">False</span>
   </button>
 </li>`),navigator.clipboard.writeText(`<li role="presentation" class="db-tab-item">
-  <button type="button" role="tab" aria-selected="false" class="db-tab-button">
+  <button
+    type="button"
+    role="tab"
+    aria-selected="false"
+    tabindex="-1"
+    class="db-tab-button"
+  >
     <span aria-hidden="true" class="db-icon" data-icon="x_placeholder"></span
     ><span class="db-tab-label">False</span>
   </button>
@@ -58063,22 +58231,46 @@ disabled
 </db-tab-item>`),navigator.clipboard.writeText(`<db-tab-item label="True" icon="x_placeholder" [showIcon]="true">
   True
 </db-tab-item>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-html",children:`<li role="presentation" class="db-tab-item">
-  <button type="button" role="tab" aria-selected="false" class="db-tab-button">
+  <button
+    type="button"
+    role="tab"
+    aria-selected="false"
+    tabindex="-1"
+    class="db-tab-button"
+  >
     <span aria-hidden="true" class="db-icon" data-icon="x_placeholder"></span
     ><span class="db-tab-label">True</span>
   </button>
 </li>`})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:e===`<li role="presentation" class="db-tab-item">
-  <button type="button" role="tab" aria-selected="false" class="db-tab-button">
+  <button
+    type="button"
+    role="tab"
+    aria-selected="false"
+    tabindex="-1"
+    class="db-tab-button"
+  >
     <span aria-hidden="true" class="db-icon" data-icon="x_placeholder"></span
     ><span class="db-tab-label">True</span>
   </button>
 </li>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<li role="presentation" class="db-tab-item">
-  <button type="button" role="tab" aria-selected="false" class="db-tab-button">
+  <button
+    type="button"
+    role="tab"
+    aria-selected="false"
+    tabindex="-1"
+    class="db-tab-button"
+  >
     <span aria-hidden="true" class="db-icon" data-icon="x_placeholder"></span
     ><span class="db-tab-label">True</span>
   </button>
 </li>`),navigator.clipboard.writeText(`<li role="presentation" class="db-tab-item">
-  <button type="button" role="tab" aria-selected="false" class="db-tab-button">
+  <button
+    type="button"
+    role="tab"
+    aria-selected="false"
+    tabindex="-1"
+    class="db-tab-button"
+  >
     <span aria-hidden="true" class="db-icon" data-icon="x_placeholder"></span
     ><span class="db-tab-label">True</span>
   </button>
@@ -58131,25 +58323,49 @@ True
 >
   (Default) False
 </db-tab-item>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-html",children:`<li role="presentation" class="db-tab-item">
-  <button type="button" role="tab" aria-selected="false" class="db-tab-button">
+  <button
+    type="button"
+    role="tab"
+    aria-selected="false"
+    tabindex="-1"
+    class="db-tab-button"
+  >
     <span aria-hidden="true" class="db-icon" data-icon="x_placeholder"></span
     ><span class="db-tab-label">False</span
     ><span aria-hidden="true" class="db-icon" data-icon="x_placeholder"></span>
   </button>
 </li>`})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:e===`<li role="presentation" class="db-tab-item">
-  <button type="button" role="tab" aria-selected="false" class="db-tab-button">
+  <button
+    type="button"
+    role="tab"
+    aria-selected="false"
+    tabindex="-1"
+    class="db-tab-button"
+  >
     <span aria-hidden="true" class="db-icon" data-icon="x_placeholder"></span
     ><span class="db-tab-label">False</span
     ><span aria-hidden="true" class="db-icon" data-icon="x_placeholder"></span>
   </button>
 </li>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<li role="presentation" class="db-tab-item">
-  <button type="button" role="tab" aria-selected="false" class="db-tab-button">
+  <button
+    type="button"
+    role="tab"
+    aria-selected="false"
+    tabindex="-1"
+    class="db-tab-button"
+  >
     <span aria-hidden="true" class="db-icon" data-icon="x_placeholder"></span
     ><span class="db-tab-label">False</span
     ><span aria-hidden="true" class="db-icon" data-icon="x_placeholder"></span>
   </button>
 </li>`),navigator.clipboard.writeText(`<li role="presentation" class="db-tab-item">
-  <button type="button" role="tab" aria-selected="false" class="db-tab-button">
+  <button
+    type="button"
+    role="tab"
+    aria-selected="false"
+    tabindex="-1"
+    class="db-tab-button"
+  >
     <span aria-hidden="true" class="db-icon" data-icon="x_placeholder"></span
     ><span class="db-tab-label">False</span
     ><span aria-hidden="true" class="db-icon" data-icon="x_placeholder"></span>
@@ -58251,25 +58467,49 @@ True
 >
   True
 </db-tab-item>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-html",children:`<li role="presentation" class="db-tab-item">
-  <button type="button" role="tab" aria-selected="false" class="db-tab-button">
+  <button
+    type="button"
+    role="tab"
+    aria-selected="false"
+    tabindex="-1"
+    class="db-tab-button"
+  >
     <span aria-hidden="true" class="db-icon" data-icon="x_placeholder"></span
     ><span class="db-tab-label">True</span
     ><span aria-hidden="true" class="db-icon" data-icon="x_placeholder"></span>
   </button>
 </li>`})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:e===`<li role="presentation" class="db-tab-item">
-  <button type="button" role="tab" aria-selected="false" class="db-tab-button">
+  <button
+    type="button"
+    role="tab"
+    aria-selected="false"
+    tabindex="-1"
+    class="db-tab-button"
+  >
     <span aria-hidden="true" class="db-icon" data-icon="x_placeholder"></span
     ><span class="db-tab-label">True</span
     ><span aria-hidden="true" class="db-icon" data-icon="x_placeholder"></span>
   </button>
 </li>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<li role="presentation" class="db-tab-item">
-  <button type="button" role="tab" aria-selected="false" class="db-tab-button">
+  <button
+    type="button"
+    role="tab"
+    aria-selected="false"
+    tabindex="-1"
+    class="db-tab-button"
+  >
     <span aria-hidden="true" class="db-icon" data-icon="x_placeholder"></span
     ><span class="db-tab-label">True</span
     ><span aria-hidden="true" class="db-icon" data-icon="x_placeholder"></span>
   </button>
 </li>`),navigator.clipboard.writeText(`<li role="presentation" class="db-tab-item">
-  <button type="button" role="tab" aria-selected="false" class="db-tab-button">
+  <button
+    type="button"
+    role="tab"
+    aria-selected="false"
+    tabindex="-1"
+    class="db-tab-button"
+  >
     <span aria-hidden="true" class="db-icon" data-icon="x_placeholder"></span
     ><span class="db-tab-label">True</span
     ><span aria-hidden="true" class="db-icon" data-icon="x_placeholder"></span>
@@ -58339,19 +58579,43 @@ True
 >
 True
 </DBTabItem>`)},children:"Copy code"})]})]},t())})]})},is=()=>{let[e,a]=(0,I.useState)(),{getFrameworkIndex:t}=(0,aA.u)();return(0,I.useEffect)(()=>{e&&setTimeout(()=>a(""),1500)},[e]),(0,N.jsxs)(N.Fragment,{children:[(0,N.jsx)(L.A,{className:"tab-container",children:(0,N.jsxs)(au.A,{initialSelectedIndex:t(),children:[(0,N.jsxs)(ao.A,{children:[(0,N.jsx)(as.A,{children:"Angular"}),(0,N.jsx)(as.A,{children:"HTML"}),(0,N.jsx)(as.A,{children:"React"}),(0,N.jsx)(as.A,{children:"Vue"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=angular",children:"How to use this in angular"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-html",children:'<db-tab-item label="(Default) Auto Width"> (Default) Auto Width </db-tab-item>'})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:'<db-tab-item label="(Default) Auto Width"> (Default) Auto Width </db-tab-item>'===e?"check":"copy",variant:"ghost",onClick:()=>{a('<db-tab-item label="(Default) Auto Width"> (Default) Auto Width </db-tab-item>'),navigator.clipboard.writeText('<db-tab-item label="(Default) Auto Width"> (Default) Auto Width </db-tab-item>')},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-html",children:`<li role="presentation" class="db-tab-item">
-  <button type="button" role="tab" aria-selected="false" class="db-tab-button">
+  <button
+    type="button"
+    role="tab"
+    aria-selected="false"
+    tabindex="-1"
+    class="db-tab-button"
+  >
     <span class="db-tab-label">(Default) Auto Width</span>
   </button>
 </li>`})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:e===`<li role="presentation" class="db-tab-item">
-  <button type="button" role="tab" aria-selected="false" class="db-tab-button">
+  <button
+    type="button"
+    role="tab"
+    aria-selected="false"
+    tabindex="-1"
+    class="db-tab-button"
+  >
     <span class="db-tab-label">(Default) Auto Width</span>
   </button>
 </li>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<li role="presentation" class="db-tab-item">
-  <button type="button" role="tab" aria-selected="false" class="db-tab-button">
+  <button
+    type="button"
+    role="tab"
+    aria-selected="false"
+    tabindex="-1"
+    class="db-tab-button"
+  >
     <span class="db-tab-label">(Default) Auto Width</span>
   </button>
 </li>`),navigator.clipboard.writeText(`<li role="presentation" class="db-tab-item">
-  <button type="button" role="tab" aria-selected="false" class="db-tab-button">
+  <button
+    type="button"
+    role="tab"
+    aria-selected="false"
+    tabindex="-1"
+    class="db-tab-button"
+  >
     <span class="db-tab-label">(Default) Auto Width</span>
   </button>
 </li>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=react",children:"How to use this in react"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-tsx",children:'<DBTabItem label="(Default) Auto Width">(Default) Auto Width</DBTabItem>'})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:'<DBTabItem label="(Default) Auto Width">(Default) Auto Width</DBTabItem>'===e?"check":"copy",variant:"ghost",onClick:()=>{a('<DBTabItem label="(Default) Auto Width">(Default) Auto Width</DBTabItem>'),navigator.clipboard.writeText('<DBTabItem label="(Default) Auto Width">(Default) Auto Width</DBTabItem>')},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=vue",children:"How to use this in vue"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-tsx",children:`<DBTabItem label="(Default) Auto Width">
@@ -58363,19 +58627,43 @@ True
 </DBTabItem>`),navigator.clipboard.writeText(`<DBTabItem label="(Default) Auto Width">
 (Default) Auto Width
 </DBTabItem>`)},children:"Copy code"})]})]},t())}),(0,N.jsx)(L.A,{className:"tab-container",children:(0,N.jsxs)(au.A,{initialSelectedIndex:t(),children:[(0,N.jsxs)(ao.A,{children:[(0,N.jsx)(as.A,{children:"Angular"}),(0,N.jsx)(as.A,{children:"HTML"}),(0,N.jsx)(as.A,{children:"React"}),(0,N.jsx)(as.A,{children:"Vue"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=angular",children:"How to use this in angular"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-html",children:'<db-tab-item label="Width full" width="full"> Width full </db-tab-item>'})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:'<db-tab-item label="Width full" width="full"> Width full </db-tab-item>'===e?"check":"copy",variant:"ghost",onClick:()=>{a('<db-tab-item label="Width full" width="full"> Width full </db-tab-item>'),navigator.clipboard.writeText('<db-tab-item label="Width full" width="full"> Width full </db-tab-item>')},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-html",children:`<li role="presentation" class="db-tab-item">
-  <button type="button" role="tab" aria-selected="false" class="db-tab-button">
+  <button
+    type="button"
+    role="tab"
+    aria-selected="false"
+    tabindex="-1"
+    class="db-tab-button"
+  >
     <span class="db-tab-label">Width full</span>
   </button>
 </li>`})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:e===`<li role="presentation" class="db-tab-item">
-  <button type="button" role="tab" aria-selected="false" class="db-tab-button">
+  <button
+    type="button"
+    role="tab"
+    aria-selected="false"
+    tabindex="-1"
+    class="db-tab-button"
+  >
     <span class="db-tab-label">Width full</span>
   </button>
 </li>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<li role="presentation" class="db-tab-item">
-  <button type="button" role="tab" aria-selected="false" class="db-tab-button">
+  <button
+    type="button"
+    role="tab"
+    aria-selected="false"
+    tabindex="-1"
+    class="db-tab-button"
+  >
     <span class="db-tab-label">Width full</span>
   </button>
 </li>`),navigator.clipboard.writeText(`<li role="presentation" class="db-tab-item">
-  <button type="button" role="tab" aria-selected="false" class="db-tab-button">
+  <button
+    type="button"
+    role="tab"
+    aria-selected="false"
+    tabindex="-1"
+    class="db-tab-button"
+  >
     <span class="db-tab-label">Width full</span>
   </button>
 </li>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=react",children:"How to use this in react"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-tsx",children:`<DBTabItem label="Width full" width="full">
@@ -58395,19 +58683,43 @@ Width full
 </DBTabItem>`),navigator.clipboard.writeText(`<DBTabItem label="Width full" width="full">
 Width full
 </DBTabItem>`)},children:"Copy code"})]})]},t())})]})},ic=()=>{let[e,a]=(0,I.useState)(),{getFrameworkIndex:t}=(0,aA.u)();return(0,I.useEffect)(()=>{e&&setTimeout(()=>a(""),1500)},[e]),(0,N.jsxs)(N.Fragment,{children:[(0,N.jsx)(L.A,{className:"tab-container",children:(0,N.jsxs)(au.A,{initialSelectedIndex:t(),children:[(0,N.jsxs)(ao.A,{children:[(0,N.jsx)(as.A,{children:"Angular"}),(0,N.jsx)(as.A,{children:"HTML"}),(0,N.jsx)(as.A,{children:"React"}),(0,N.jsx)(as.A,{children:"Vue"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=angular",children:"How to use this in angular"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-html",children:'<db-tab-item label="Left" width="full"> Left </db-tab-item>'})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:'<db-tab-item label="Left" width="full"> Left </db-tab-item>'===e?"check":"copy",variant:"ghost",onClick:()=>{a('<db-tab-item label="Left" width="full"> Left </db-tab-item>'),navigator.clipboard.writeText('<db-tab-item label="Left" width="full"> Left </db-tab-item>')},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-html",children:`<li role="presentation" class="db-tab-item">
-  <button type="button" role="tab" aria-selected="false" class="db-tab-button">
+  <button
+    type="button"
+    role="tab"
+    aria-selected="false"
+    tabindex="-1"
+    class="db-tab-button"
+  >
     <span class="db-tab-label">Left</span>
   </button>
 </li>`})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:e===`<li role="presentation" class="db-tab-item">
-  <button type="button" role="tab" aria-selected="false" class="db-tab-button">
+  <button
+    type="button"
+    role="tab"
+    aria-selected="false"
+    tabindex="-1"
+    class="db-tab-button"
+  >
     <span class="db-tab-label">Left</span>
   </button>
 </li>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<li role="presentation" class="db-tab-item">
-  <button type="button" role="tab" aria-selected="false" class="db-tab-button">
+  <button
+    type="button"
+    role="tab"
+    aria-selected="false"
+    tabindex="-1"
+    class="db-tab-button"
+  >
     <span class="db-tab-label">Left</span>
   </button>
 </li>`),navigator.clipboard.writeText(`<li role="presentation" class="db-tab-item">
-  <button type="button" role="tab" aria-selected="false" class="db-tab-button">
+  <button
+    type="button"
+    role="tab"
+    aria-selected="false"
+    tabindex="-1"
+    class="db-tab-button"
+  >
     <span class="db-tab-label">Left</span>
   </button>
 </li>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=react",children:"How to use this in react"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-tsx",children:`<DBTabItem label="Left" width="full">
@@ -58435,19 +58747,43 @@ Left
 </db-tab-item>`),navigator.clipboard.writeText(`<db-tab-item label="Centered" width="full" alignment="center">
   Centered
 </db-tab-item>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-html",children:`<li role="presentation" class="db-tab-item">
-  <button type="button" role="tab" aria-selected="false" class="db-tab-button">
+  <button
+    type="button"
+    role="tab"
+    aria-selected="false"
+    tabindex="-1"
+    class="db-tab-button"
+  >
     <span class="db-tab-label">Centered</span>
   </button>
 </li>`})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:e===`<li role="presentation" class="db-tab-item">
-  <button type="button" role="tab" aria-selected="false" class="db-tab-button">
+  <button
+    type="button"
+    role="tab"
+    aria-selected="false"
+    tabindex="-1"
+    class="db-tab-button"
+  >
     <span class="db-tab-label">Centered</span>
   </button>
 </li>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<li role="presentation" class="db-tab-item">
-  <button type="button" role="tab" aria-selected="false" class="db-tab-button">
+  <button
+    type="button"
+    role="tab"
+    aria-selected="false"
+    tabindex="-1"
+    class="db-tab-button"
+  >
     <span class="db-tab-label">Centered</span>
   </button>
 </li>`),navigator.clipboard.writeText(`<li role="presentation" class="db-tab-item">
-  <button type="button" role="tab" aria-selected="false" class="db-tab-button">
+  <button
+    type="button"
+    role="tab"
+    aria-selected="false"
+    tabindex="-1"
+    class="db-tab-button"
+  >
     <span class="db-tab-label">Centered</span>
   </button>
 </li>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=react",children:"How to use this in react"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-tsx",children:`<DBTabItem label="Centered" width="full" alignment="center">
@@ -58503,18 +58839,19 @@ Centered
   <db-tab-panel> Func Panel 2 </db-tab-panel>
   <db-tab-panel> Func Panel 3 </db-tab-panel>
 </db-tabs>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-html",children:`<div
-  id="tabs-20754480965009292"
+  id="tabs-12077378598480137"
   class="db-tabs"
   data-alignment="start"
   data-width="auto"
 >
-  <div id="tab-list-6389233456481113" class="db-tab-list">
+  <div id="tab-list-049244970337983696" class="db-tab-list">
     <ul role="tablist">
       <li role="presentation" class="db-tab-item">
         <button
           type="button"
           role="tab"
           aria-selected="false"
+          tabindex="-1"
           class="db-tab-button"
         >
           <span class="db-tab-label">Func Tab 1</span>
@@ -58525,6 +58862,7 @@ Centered
           type="button"
           role="tab"
           aria-selected="false"
+          tabindex="-1"
           class="db-tab-button"
         >
           <span class="db-tab-label">Func Tab 2</span>
@@ -58535,6 +58873,7 @@ Centered
           type="button"
           role="tab"
           aria-selected="false"
+          tabindex="-1"
           class="db-tab-button"
         >
           <span class="db-tab-label">Func Tab 3</span>
@@ -58546,18 +58885,19 @@ Centered
   <section role="tabpanel" class="db-tab-panel">Func Panel 2</section>
   <section role="tabpanel" class="db-tab-panel">Func Panel 3</section>
 </div>`})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:e===`<div
-  id="tabs-20754480965009292"
+  id="tabs-12077378598480137"
   class="db-tabs"
   data-alignment="start"
   data-width="auto"
 >
-  <div id="tab-list-6389233456481113" class="db-tab-list">
+  <div id="tab-list-049244970337983696" class="db-tab-list">
     <ul role="tablist">
       <li role="presentation" class="db-tab-item">
         <button
           type="button"
           role="tab"
           aria-selected="false"
+          tabindex="-1"
           class="db-tab-button"
         >
           <span class="db-tab-label">Func Tab 1</span>
@@ -58568,6 +58908,7 @@ Centered
           type="button"
           role="tab"
           aria-selected="false"
+          tabindex="-1"
           class="db-tab-button"
         >
           <span class="db-tab-label">Func Tab 2</span>
@@ -58578,6 +58919,7 @@ Centered
           type="button"
           role="tab"
           aria-selected="false"
+          tabindex="-1"
           class="db-tab-button"
         >
           <span class="db-tab-label">Func Tab 3</span>
@@ -58589,18 +58931,19 @@ Centered
   <section role="tabpanel" class="db-tab-panel">Func Panel 2</section>
   <section role="tabpanel" class="db-tab-panel">Func Panel 3</section>
 </div>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<div
-  id="tabs-20754480965009292"
+  id="tabs-12077378598480137"
   class="db-tabs"
   data-alignment="start"
   data-width="auto"
 >
-  <div id="tab-list-6389233456481113" class="db-tab-list">
+  <div id="tab-list-049244970337983696" class="db-tab-list">
     <ul role="tablist">
       <li role="presentation" class="db-tab-item">
         <button
           type="button"
           role="tab"
           aria-selected="false"
+          tabindex="-1"
           class="db-tab-button"
         >
           <span class="db-tab-label">Func Tab 1</span>
@@ -58611,6 +58954,7 @@ Centered
           type="button"
           role="tab"
           aria-selected="false"
+          tabindex="-1"
           class="db-tab-button"
         >
           <span class="db-tab-label">Func Tab 2</span>
@@ -58621,6 +58965,7 @@ Centered
           type="button"
           role="tab"
           aria-selected="false"
+          tabindex="-1"
           class="db-tab-button"
         >
           <span class="db-tab-label">Func Tab 3</span>
@@ -58632,18 +58977,19 @@ Centered
   <section role="tabpanel" class="db-tab-panel">Func Panel 2</section>
   <section role="tabpanel" class="db-tab-panel">Func Panel 3</section>
 </div>`),navigator.clipboard.writeText(`<div
-  id="tabs-20754480965009292"
+  id="tabs-12077378598480137"
   class="db-tabs"
   data-alignment="start"
   data-width="auto"
 >
-  <div id="tab-list-6389233456481113" class="db-tab-list">
+  <div id="tab-list-049244970337983696" class="db-tab-list">
     <ul role="tablist">
       <li role="presentation" class="db-tab-item">
         <button
           type="button"
           role="tab"
           aria-selected="false"
+          tabindex="-1"
           class="db-tab-button"
         >
           <span class="db-tab-label">Func Tab 1</span>
@@ -58654,6 +59000,7 @@ Centered
           type="button"
           role="tab"
           aria-selected="false"
+          tabindex="-1"
           class="db-tab-button"
         >
           <span class="db-tab-label">Func Tab 2</span>
@@ -58664,6 +59011,7 @@ Centered
           type="button"
           role="tab"
           aria-selected="false"
+          tabindex="-1"
           class="db-tab-button"
         >
           <span class="db-tab-label">Func Tab 3</span>
@@ -58831,18 +59179,19 @@ Func Panel 3
   <db-tab-panel> Reg Panel 2 </db-tab-panel>
   <db-tab-panel> Reg Panel 3 </db-tab-panel>
 </db-tabs>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-html",children:`<div
-  id="tabs-9416434055857746"
+  id="tabs-07249486492828339"
   class="db-tabs"
   data-alignment="start"
   data-width="auto"
 >
-  <div id="tab-list-05342821739510817" class="db-tab-list">
+  <div id="tab-list-3824700713118321" class="db-tab-list">
     <ul role="tablist">
       <li role="presentation" class="db-tab-item">
         <button
           type="button"
           role="tab"
           aria-selected="false"
+          tabindex="-1"
           class="db-tab-button"
         >
           <span class="db-tab-label">Reg Tab 1</span>
@@ -58853,6 +59202,7 @@ Func Panel 3
           type="button"
           role="tab"
           aria-selected="false"
+          tabindex="-1"
           class="db-tab-button"
         >
           <span class="db-tab-label">Reg Tab 2</span>
@@ -58863,6 +59213,7 @@ Func Panel 3
           type="button"
           role="tab"
           aria-selected="false"
+          tabindex="-1"
           class="db-tab-button"
         >
           <span class="db-tab-label">Reg Tab 3</span>
@@ -58874,18 +59225,19 @@ Func Panel 3
   <section role="tabpanel" class="db-tab-panel">Reg Panel 2</section>
   <section role="tabpanel" class="db-tab-panel">Reg Panel 3</section>
 </div>`})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:e===`<div
-  id="tabs-9416434055857746"
+  id="tabs-07249486492828339"
   class="db-tabs"
   data-alignment="start"
   data-width="auto"
 >
-  <div id="tab-list-05342821739510817" class="db-tab-list">
+  <div id="tab-list-3824700713118321" class="db-tab-list">
     <ul role="tablist">
       <li role="presentation" class="db-tab-item">
         <button
           type="button"
           role="tab"
           aria-selected="false"
+          tabindex="-1"
           class="db-tab-button"
         >
           <span class="db-tab-label">Reg Tab 1</span>
@@ -58896,6 +59248,7 @@ Func Panel 3
           type="button"
           role="tab"
           aria-selected="false"
+          tabindex="-1"
           class="db-tab-button"
         >
           <span class="db-tab-label">Reg Tab 2</span>
@@ -58906,6 +59259,7 @@ Func Panel 3
           type="button"
           role="tab"
           aria-selected="false"
+          tabindex="-1"
           class="db-tab-button"
         >
           <span class="db-tab-label">Reg Tab 3</span>
@@ -58917,18 +59271,19 @@ Func Panel 3
   <section role="tabpanel" class="db-tab-panel">Reg Panel 2</section>
   <section role="tabpanel" class="db-tab-panel">Reg Panel 3</section>
 </div>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<div
-  id="tabs-9416434055857746"
+  id="tabs-07249486492828339"
   class="db-tabs"
   data-alignment="start"
   data-width="auto"
 >
-  <div id="tab-list-05342821739510817" class="db-tab-list">
+  <div id="tab-list-3824700713118321" class="db-tab-list">
     <ul role="tablist">
       <li role="presentation" class="db-tab-item">
         <button
           type="button"
           role="tab"
           aria-selected="false"
+          tabindex="-1"
           class="db-tab-button"
         >
           <span class="db-tab-label">Reg Tab 1</span>
@@ -58939,6 +59294,7 @@ Func Panel 3
           type="button"
           role="tab"
           aria-selected="false"
+          tabindex="-1"
           class="db-tab-button"
         >
           <span class="db-tab-label">Reg Tab 2</span>
@@ -58949,6 +59305,7 @@ Func Panel 3
           type="button"
           role="tab"
           aria-selected="false"
+          tabindex="-1"
           class="db-tab-button"
         >
           <span class="db-tab-label">Reg Tab 3</span>
@@ -58960,18 +59317,19 @@ Func Panel 3
   <section role="tabpanel" class="db-tab-panel">Reg Panel 2</section>
   <section role="tabpanel" class="db-tab-panel">Reg Panel 3</section>
 </div>`),navigator.clipboard.writeText(`<div
-  id="tabs-9416434055857746"
+  id="tabs-07249486492828339"
   class="db-tabs"
   data-alignment="start"
   data-width="auto"
 >
-  <div id="tab-list-05342821739510817" class="db-tab-list">
+  <div id="tab-list-3824700713118321" class="db-tab-list">
     <ul role="tablist">
       <li role="presentation" class="db-tab-item">
         <button
           type="button"
           role="tab"
           aria-selected="false"
+          tabindex="-1"
           class="db-tab-button"
         >
           <span class="db-tab-label">Reg Tab 1</span>
@@ -58982,6 +59340,7 @@ Func Panel 3
           type="button"
           role="tab"
           aria-selected="false"
+          tabindex="-1"
           class="db-tab-button"
         >
           <span class="db-tab-label">Reg Tab 2</span>
@@ -58992,6 +59351,7 @@ Func Panel 3
           type="button"
           role="tab"
           aria-selected="false"
+          tabindex="-1"
           class="db-tab-button"
         >
           <span class="db-tab-label">Reg Tab 3</span>
@@ -59159,18 +59519,19 @@ Reg Panel 3
   <db-tab-panel> Exp Panel 2 </db-tab-panel>
   <db-tab-panel> Exp Panel 3 </db-tab-panel>
 </db-tabs>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-html",children:`<div
-  id="tabs-32167967361435135"
+  id="tabs-02070396680650588"
   class="db-tabs"
   data-alignment="start"
   data-width="auto"
 >
-  <div id="tab-list-14055317456863003" class="db-tab-list">
+  <div id="tab-list-03068261011451423" class="db-tab-list">
     <ul role="tablist">
       <li role="presentation" class="db-tab-item">
         <button
           type="button"
           role="tab"
           aria-selected="false"
+          tabindex="-1"
           class="db-tab-button"
         >
           <span class="db-tab-label">Exp Tab 1</span>
@@ -59181,6 +59542,7 @@ Reg Panel 3
           type="button"
           role="tab"
           aria-selected="false"
+          tabindex="-1"
           class="db-tab-button"
         >
           <span class="db-tab-label">Exp Tab 2</span>
@@ -59191,6 +59553,7 @@ Reg Panel 3
           type="button"
           role="tab"
           aria-selected="false"
+          tabindex="-1"
           class="db-tab-button"
         >
           <span class="db-tab-label">Exp Tab 3</span>
@@ -59202,18 +59565,19 @@ Reg Panel 3
   <section role="tabpanel" class="db-tab-panel">Exp Panel 2</section>
   <section role="tabpanel" class="db-tab-panel">Exp Panel 3</section>
 </div>`})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:e===`<div
-  id="tabs-32167967361435135"
+  id="tabs-02070396680650588"
   class="db-tabs"
   data-alignment="start"
   data-width="auto"
 >
-  <div id="tab-list-14055317456863003" class="db-tab-list">
+  <div id="tab-list-03068261011451423" class="db-tab-list">
     <ul role="tablist">
       <li role="presentation" class="db-tab-item">
         <button
           type="button"
           role="tab"
           aria-selected="false"
+          tabindex="-1"
           class="db-tab-button"
         >
           <span class="db-tab-label">Exp Tab 1</span>
@@ -59224,6 +59588,7 @@ Reg Panel 3
           type="button"
           role="tab"
           aria-selected="false"
+          tabindex="-1"
           class="db-tab-button"
         >
           <span class="db-tab-label">Exp Tab 2</span>
@@ -59234,6 +59599,7 @@ Reg Panel 3
           type="button"
           role="tab"
           aria-selected="false"
+          tabindex="-1"
           class="db-tab-button"
         >
           <span class="db-tab-label">Exp Tab 3</span>
@@ -59245,18 +59611,19 @@ Reg Panel 3
   <section role="tabpanel" class="db-tab-panel">Exp Panel 2</section>
   <section role="tabpanel" class="db-tab-panel">Exp Panel 3</section>
 </div>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<div
-  id="tabs-32167967361435135"
+  id="tabs-02070396680650588"
   class="db-tabs"
   data-alignment="start"
   data-width="auto"
 >
-  <div id="tab-list-14055317456863003" class="db-tab-list">
+  <div id="tab-list-03068261011451423" class="db-tab-list">
     <ul role="tablist">
       <li role="presentation" class="db-tab-item">
         <button
           type="button"
           role="tab"
           aria-selected="false"
+          tabindex="-1"
           class="db-tab-button"
         >
           <span class="db-tab-label">Exp Tab 1</span>
@@ -59267,6 +59634,7 @@ Reg Panel 3
           type="button"
           role="tab"
           aria-selected="false"
+          tabindex="-1"
           class="db-tab-button"
         >
           <span class="db-tab-label">Exp Tab 2</span>
@@ -59277,6 +59645,7 @@ Reg Panel 3
           type="button"
           role="tab"
           aria-selected="false"
+          tabindex="-1"
           class="db-tab-button"
         >
           <span class="db-tab-label">Exp Tab 3</span>
@@ -59288,18 +59657,19 @@ Reg Panel 3
   <section role="tabpanel" class="db-tab-panel">Exp Panel 2</section>
   <section role="tabpanel" class="db-tab-panel">Exp Panel 3</section>
 </div>`),navigator.clipboard.writeText(`<div
-  id="tabs-32167967361435135"
+  id="tabs-02070396680650588"
   class="db-tabs"
   data-alignment="start"
   data-width="auto"
 >
-  <div id="tab-list-14055317456863003" class="db-tab-list">
+  <div id="tab-list-03068261011451423" class="db-tab-list">
     <ul role="tablist">
       <li role="presentation" class="db-tab-item">
         <button
           type="button"
           role="tab"
           aria-selected="false"
+          tabindex="-1"
           class="db-tab-button"
         >
           <span class="db-tab-label">Exp Tab 1</span>
@@ -59310,6 +59680,7 @@ Reg Panel 3
           type="button"
           role="tab"
           aria-selected="false"
+          tabindex="-1"
           class="db-tab-button"
         >
           <span class="db-tab-label">Exp Tab 2</span>
@@ -59320,6 +59691,7 @@ Reg Panel 3
           type="button"
           role="tab"
           aria-selected="false"
+          tabindex="-1"
           class="db-tab-button"
         >
           <span class="db-tab-label">Exp Tab 3</span>
@@ -59487,19 +59859,20 @@ Exp Panel 3
   <db-tab-panel> Hor Panel 2 </db-tab-panel>
   <db-tab-panel> Hor Panel 3 </db-tab-panel>
 </db-tabs>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-html",children:`<div
-  id="tabs-16217498115776008"
+  id="tabs-1646092127591543"
   class="db-tabs"
   data-orientation="horizontal"
   data-alignment="start"
   data-width="auto"
 >
-  <div id="tab-list-33335821291613676" class="db-tab-list">
+  <div id="tab-list-6924796834342384" class="db-tab-list">
     <ul role="tablist">
       <li role="presentation" class="db-tab-item">
         <button
           type="button"
           role="tab"
           aria-selected="false"
+          tabindex="-1"
           class="db-tab-button"
         >
           <span class="db-tab-label">Hor Tab 1</span>
@@ -59510,6 +59883,7 @@ Exp Panel 3
           type="button"
           role="tab"
           aria-selected="false"
+          tabindex="-1"
           class="db-tab-button"
         >
           <span class="db-tab-label">Hor Tab 2</span>
@@ -59520,6 +59894,7 @@ Exp Panel 3
           type="button"
           role="tab"
           aria-selected="false"
+          tabindex="-1"
           class="db-tab-button"
         >
           <span class="db-tab-label">Hor Tab 3</span>
@@ -59531,19 +59906,20 @@ Exp Panel 3
   <section role="tabpanel" class="db-tab-panel">Hor Panel 2</section>
   <section role="tabpanel" class="db-tab-panel">Hor Panel 3</section>
 </div>`})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:e===`<div
-  id="tabs-16217498115776008"
+  id="tabs-1646092127591543"
   class="db-tabs"
   data-orientation="horizontal"
   data-alignment="start"
   data-width="auto"
 >
-  <div id="tab-list-33335821291613676" class="db-tab-list">
+  <div id="tab-list-6924796834342384" class="db-tab-list">
     <ul role="tablist">
       <li role="presentation" class="db-tab-item">
         <button
           type="button"
           role="tab"
           aria-selected="false"
+          tabindex="-1"
           class="db-tab-button"
         >
           <span class="db-tab-label">Hor Tab 1</span>
@@ -59554,6 +59930,7 @@ Exp Panel 3
           type="button"
           role="tab"
           aria-selected="false"
+          tabindex="-1"
           class="db-tab-button"
         >
           <span class="db-tab-label">Hor Tab 2</span>
@@ -59564,6 +59941,7 @@ Exp Panel 3
           type="button"
           role="tab"
           aria-selected="false"
+          tabindex="-1"
           class="db-tab-button"
         >
           <span class="db-tab-label">Hor Tab 3</span>
@@ -59575,19 +59953,20 @@ Exp Panel 3
   <section role="tabpanel" class="db-tab-panel">Hor Panel 2</section>
   <section role="tabpanel" class="db-tab-panel">Hor Panel 3</section>
 </div>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<div
-  id="tabs-16217498115776008"
+  id="tabs-1646092127591543"
   class="db-tabs"
   data-orientation="horizontal"
   data-alignment="start"
   data-width="auto"
 >
-  <div id="tab-list-33335821291613676" class="db-tab-list">
+  <div id="tab-list-6924796834342384" class="db-tab-list">
     <ul role="tablist">
       <li role="presentation" class="db-tab-item">
         <button
           type="button"
           role="tab"
           aria-selected="false"
+          tabindex="-1"
           class="db-tab-button"
         >
           <span class="db-tab-label">Hor Tab 1</span>
@@ -59598,6 +59977,7 @@ Exp Panel 3
           type="button"
           role="tab"
           aria-selected="false"
+          tabindex="-1"
           class="db-tab-button"
         >
           <span class="db-tab-label">Hor Tab 2</span>
@@ -59608,6 +59988,7 @@ Exp Panel 3
           type="button"
           role="tab"
           aria-selected="false"
+          tabindex="-1"
           class="db-tab-button"
         >
           <span class="db-tab-label">Hor Tab 3</span>
@@ -59619,19 +60000,20 @@ Exp Panel 3
   <section role="tabpanel" class="db-tab-panel">Hor Panel 2</section>
   <section role="tabpanel" class="db-tab-panel">Hor Panel 3</section>
 </div>`),navigator.clipboard.writeText(`<div
-  id="tabs-16217498115776008"
+  id="tabs-1646092127591543"
   class="db-tabs"
   data-orientation="horizontal"
   data-alignment="start"
   data-width="auto"
 >
-  <div id="tab-list-33335821291613676" class="db-tab-list">
+  <div id="tab-list-6924796834342384" class="db-tab-list">
     <ul role="tablist">
       <li role="presentation" class="db-tab-item">
         <button
           type="button"
           role="tab"
           aria-selected="false"
+          tabindex="-1"
           class="db-tab-button"
         >
           <span class="db-tab-label">Hor Tab 1</span>
@@ -59642,6 +60024,7 @@ Exp Panel 3
           type="button"
           role="tab"
           aria-selected="false"
+          tabindex="-1"
           class="db-tab-button"
         >
           <span class="db-tab-label">Hor Tab 2</span>
@@ -59652,6 +60035,7 @@ Exp Panel 3
           type="button"
           role="tab"
           aria-selected="false"
+          tabindex="-1"
           class="db-tab-button"
         >
           <span class="db-tab-label">Hor Tab 3</span>
@@ -59819,19 +60203,20 @@ Hor Panel 3
   <db-tab-panel> Ver Panel 2 </db-tab-panel>
   <db-tab-panel> Ver Panel 3 </db-tab-panel>
 </db-tabs>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-html",children:`<div
-  id="tabs-4099133108439925"
+  id="tabs-5774632732816577"
   class="db-tabs"
   data-orientation="vertical"
   data-alignment="start"
   data-width="auto"
 >
-  <div id="tab-list-4639022701388795" class="db-tab-list">
+  <div id="tab-list-30210917432473106" class="db-tab-list">
     <ul role="tablist">
       <li role="presentation" class="db-tab-item">
         <button
           type="button"
           role="tab"
           aria-selected="false"
+          tabindex="-1"
           class="db-tab-button"
         >
           <span class="db-tab-label">Ver Tab 1</span>
@@ -59842,6 +60227,7 @@ Hor Panel 3
           type="button"
           role="tab"
           aria-selected="false"
+          tabindex="-1"
           class="db-tab-button"
         >
           <span class="db-tab-label">Ver Tab 2</span>
@@ -59852,6 +60238,7 @@ Hor Panel 3
           type="button"
           role="tab"
           aria-selected="false"
+          tabindex="-1"
           class="db-tab-button"
         >
           <span class="db-tab-label">Ver Tab 3</span>
@@ -59863,19 +60250,20 @@ Hor Panel 3
   <section role="tabpanel" class="db-tab-panel">Ver Panel 2</section>
   <section role="tabpanel" class="db-tab-panel">Ver Panel 3</section>
 </div>`})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:e===`<div
-  id="tabs-4099133108439925"
+  id="tabs-5774632732816577"
   class="db-tabs"
   data-orientation="vertical"
   data-alignment="start"
   data-width="auto"
 >
-  <div id="tab-list-4639022701388795" class="db-tab-list">
+  <div id="tab-list-30210917432473106" class="db-tab-list">
     <ul role="tablist">
       <li role="presentation" class="db-tab-item">
         <button
           type="button"
           role="tab"
           aria-selected="false"
+          tabindex="-1"
           class="db-tab-button"
         >
           <span class="db-tab-label">Ver Tab 1</span>
@@ -59886,6 +60274,7 @@ Hor Panel 3
           type="button"
           role="tab"
           aria-selected="false"
+          tabindex="-1"
           class="db-tab-button"
         >
           <span class="db-tab-label">Ver Tab 2</span>
@@ -59896,6 +60285,7 @@ Hor Panel 3
           type="button"
           role="tab"
           aria-selected="false"
+          tabindex="-1"
           class="db-tab-button"
         >
           <span class="db-tab-label">Ver Tab 3</span>
@@ -59907,19 +60297,20 @@ Hor Panel 3
   <section role="tabpanel" class="db-tab-panel">Ver Panel 2</section>
   <section role="tabpanel" class="db-tab-panel">Ver Panel 3</section>
 </div>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<div
-  id="tabs-4099133108439925"
+  id="tabs-5774632732816577"
   class="db-tabs"
   data-orientation="vertical"
   data-alignment="start"
   data-width="auto"
 >
-  <div id="tab-list-4639022701388795" class="db-tab-list">
+  <div id="tab-list-30210917432473106" class="db-tab-list">
     <ul role="tablist">
       <li role="presentation" class="db-tab-item">
         <button
           type="button"
           role="tab"
           aria-selected="false"
+          tabindex="-1"
           class="db-tab-button"
         >
           <span class="db-tab-label">Ver Tab 1</span>
@@ -59930,6 +60321,7 @@ Hor Panel 3
           type="button"
           role="tab"
           aria-selected="false"
+          tabindex="-1"
           class="db-tab-button"
         >
           <span class="db-tab-label">Ver Tab 2</span>
@@ -59940,6 +60332,7 @@ Hor Panel 3
           type="button"
           role="tab"
           aria-selected="false"
+          tabindex="-1"
           class="db-tab-button"
         >
           <span class="db-tab-label">Ver Tab 3</span>
@@ -59951,19 +60344,20 @@ Hor Panel 3
   <section role="tabpanel" class="db-tab-panel">Ver Panel 2</section>
   <section role="tabpanel" class="db-tab-panel">Ver Panel 3</section>
 </div>`),navigator.clipboard.writeText(`<div
-  id="tabs-4099133108439925"
+  id="tabs-5774632732816577"
   class="db-tabs"
   data-orientation="vertical"
   data-alignment="start"
   data-width="auto"
 >
-  <div id="tab-list-4639022701388795" class="db-tab-list">
+  <div id="tab-list-30210917432473106" class="db-tab-list">
     <ul role="tablist">
       <li role="presentation" class="db-tab-item">
         <button
           type="button"
           role="tab"
           aria-selected="false"
+          tabindex="-1"
           class="db-tab-button"
         >
           <span class="db-tab-label">Ver Tab 1</span>
@@ -59974,6 +60368,7 @@ Hor Panel 3
           type="button"
           role="tab"
           aria-selected="false"
+          tabindex="-1"
           class="db-tab-button"
         >
           <span class="db-tab-label">Ver Tab 2</span>
@@ -59984,6 +60379,7 @@ Hor Panel 3
           type="button"
           role="tab"
           aria-selected="false"
+          tabindex="-1"
           class="db-tab-button"
         >
           <span class="db-tab-label">Ver Tab 3</span>
@@ -60151,18 +60547,19 @@ Ver Panel 3
   <db-tab-panel> Auto Panel 2 </db-tab-panel>
   <db-tab-panel> Auto Panel 3 </db-tab-panel>
 </db-tabs>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-html",children:`<div
-  id="tabs-005314841600974174"
+  id="tabs-783649574089464"
   class="db-tabs"
   data-alignment="start"
   data-width="auto"
 >
-  <div id="tab-list-5440866932465597" class="db-tab-list">
+  <div id="tab-list-6959268114920028" class="db-tab-list">
     <ul role="tablist">
       <li role="presentation" class="db-tab-item">
         <button
           type="button"
           role="tab"
           aria-selected="false"
+          tabindex="-1"
           class="db-tab-button"
         >
           <span class="db-tab-label">Auto Tab 1</span>
@@ -60173,6 +60570,7 @@ Ver Panel 3
           type="button"
           role="tab"
           aria-selected="false"
+          tabindex="-1"
           class="db-tab-button"
         >
           <span class="db-tab-label">Auto Tab 2</span>
@@ -60183,6 +60581,7 @@ Ver Panel 3
           type="button"
           role="tab"
           aria-selected="false"
+          tabindex="-1"
           class="db-tab-button"
         >
           <span class="db-tab-label">Auto Tab 3</span>
@@ -60194,18 +60593,19 @@ Ver Panel 3
   <section role="tabpanel" class="db-tab-panel">Auto Panel 2</section>
   <section role="tabpanel" class="db-tab-panel">Auto Panel 3</section>
 </div>`})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:e===`<div
-  id="tabs-005314841600974174"
+  id="tabs-783649574089464"
   class="db-tabs"
   data-alignment="start"
   data-width="auto"
 >
-  <div id="tab-list-5440866932465597" class="db-tab-list">
+  <div id="tab-list-6959268114920028" class="db-tab-list">
     <ul role="tablist">
       <li role="presentation" class="db-tab-item">
         <button
           type="button"
           role="tab"
           aria-selected="false"
+          tabindex="-1"
           class="db-tab-button"
         >
           <span class="db-tab-label">Auto Tab 1</span>
@@ -60216,6 +60616,7 @@ Ver Panel 3
           type="button"
           role="tab"
           aria-selected="false"
+          tabindex="-1"
           class="db-tab-button"
         >
           <span class="db-tab-label">Auto Tab 2</span>
@@ -60226,6 +60627,7 @@ Ver Panel 3
           type="button"
           role="tab"
           aria-selected="false"
+          tabindex="-1"
           class="db-tab-button"
         >
           <span class="db-tab-label">Auto Tab 3</span>
@@ -60237,18 +60639,19 @@ Ver Panel 3
   <section role="tabpanel" class="db-tab-panel">Auto Panel 2</section>
   <section role="tabpanel" class="db-tab-panel">Auto Panel 3</section>
 </div>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<div
-  id="tabs-005314841600974174"
+  id="tabs-783649574089464"
   class="db-tabs"
   data-alignment="start"
   data-width="auto"
 >
-  <div id="tab-list-5440866932465597" class="db-tab-list">
+  <div id="tab-list-6959268114920028" class="db-tab-list">
     <ul role="tablist">
       <li role="presentation" class="db-tab-item">
         <button
           type="button"
           role="tab"
           aria-selected="false"
+          tabindex="-1"
           class="db-tab-button"
         >
           <span class="db-tab-label">Auto Tab 1</span>
@@ -60259,6 +60662,7 @@ Ver Panel 3
           type="button"
           role="tab"
           aria-selected="false"
+          tabindex="-1"
           class="db-tab-button"
         >
           <span class="db-tab-label">Auto Tab 2</span>
@@ -60269,6 +60673,7 @@ Ver Panel 3
           type="button"
           role="tab"
           aria-selected="false"
+          tabindex="-1"
           class="db-tab-button"
         >
           <span class="db-tab-label">Auto Tab 3</span>
@@ -60280,18 +60685,19 @@ Ver Panel 3
   <section role="tabpanel" class="db-tab-panel">Auto Panel 2</section>
   <section role="tabpanel" class="db-tab-panel">Auto Panel 3</section>
 </div>`),navigator.clipboard.writeText(`<div
-  id="tabs-005314841600974174"
+  id="tabs-783649574089464"
   class="db-tabs"
   data-alignment="start"
   data-width="auto"
 >
-  <div id="tab-list-5440866932465597" class="db-tab-list">
+  <div id="tab-list-6959268114920028" class="db-tab-list">
     <ul role="tablist">
       <li role="presentation" class="db-tab-item">
         <button
           type="button"
           role="tab"
           aria-selected="false"
+          tabindex="-1"
           class="db-tab-button"
         >
           <span class="db-tab-label">Auto Tab 1</span>
@@ -60302,6 +60708,7 @@ Ver Panel 3
           type="button"
           role="tab"
           aria-selected="false"
+          tabindex="-1"
           class="db-tab-button"
         >
           <span class="db-tab-label">Auto Tab 2</span>
@@ -60312,6 +60719,7 @@ Ver Panel 3
           type="button"
           role="tab"
           aria-selected="false"
+          tabindex="-1"
           class="db-tab-button"
         >
           <span class="db-tab-label">Auto Tab 3</span>
@@ -60479,18 +60887,19 @@ Auto Panel 3
   <db-tab-panel> FullS Panel 2 </db-tab-panel>
   <db-tab-panel> FullS Panel 3 </db-tab-panel>
 </db-tabs>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-html",children:`<div
-  id="tabs-6813415458767668"
+  id="tabs-5254663211267768"
   class="db-tabs"
   data-alignment="start"
   data-width="full"
 >
-  <div id="tab-list-822295065803437" class="db-tab-list">
+  <div id="tab-list-8220829846553256" class="db-tab-list">
     <ul role="tablist">
       <li role="presentation" class="db-tab-item">
         <button
           type="button"
           role="tab"
           aria-selected="false"
+          tabindex="-1"
           class="db-tab-button"
         >
           <span class="db-tab-label">FullS Tab 1</span>
@@ -60501,6 +60910,7 @@ Auto Panel 3
           type="button"
           role="tab"
           aria-selected="false"
+          tabindex="-1"
           class="db-tab-button"
         >
           <span class="db-tab-label">FullS Tab 2</span>
@@ -60511,6 +60921,7 @@ Auto Panel 3
           type="button"
           role="tab"
           aria-selected="false"
+          tabindex="-1"
           class="db-tab-button"
         >
           <span class="db-tab-label">FullS Tab 3</span>
@@ -60522,18 +60933,19 @@ Auto Panel 3
   <section role="tabpanel" class="db-tab-panel">FullS Panel 2</section>
   <section role="tabpanel" class="db-tab-panel">FullS Panel 3</section>
 </div>`})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:e===`<div
-  id="tabs-6813415458767668"
+  id="tabs-5254663211267768"
   class="db-tabs"
   data-alignment="start"
   data-width="full"
 >
-  <div id="tab-list-822295065803437" class="db-tab-list">
+  <div id="tab-list-8220829846553256" class="db-tab-list">
     <ul role="tablist">
       <li role="presentation" class="db-tab-item">
         <button
           type="button"
           role="tab"
           aria-selected="false"
+          tabindex="-1"
           class="db-tab-button"
         >
           <span class="db-tab-label">FullS Tab 1</span>
@@ -60544,6 +60956,7 @@ Auto Panel 3
           type="button"
           role="tab"
           aria-selected="false"
+          tabindex="-1"
           class="db-tab-button"
         >
           <span class="db-tab-label">FullS Tab 2</span>
@@ -60554,6 +60967,7 @@ Auto Panel 3
           type="button"
           role="tab"
           aria-selected="false"
+          tabindex="-1"
           class="db-tab-button"
         >
           <span class="db-tab-label">FullS Tab 3</span>
@@ -60565,18 +60979,19 @@ Auto Panel 3
   <section role="tabpanel" class="db-tab-panel">FullS Panel 2</section>
   <section role="tabpanel" class="db-tab-panel">FullS Panel 3</section>
 </div>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<div
-  id="tabs-6813415458767668"
+  id="tabs-5254663211267768"
   class="db-tabs"
   data-alignment="start"
   data-width="full"
 >
-  <div id="tab-list-822295065803437" class="db-tab-list">
+  <div id="tab-list-8220829846553256" class="db-tab-list">
     <ul role="tablist">
       <li role="presentation" class="db-tab-item">
         <button
           type="button"
           role="tab"
           aria-selected="false"
+          tabindex="-1"
           class="db-tab-button"
         >
           <span class="db-tab-label">FullS Tab 1</span>
@@ -60587,6 +61002,7 @@ Auto Panel 3
           type="button"
           role="tab"
           aria-selected="false"
+          tabindex="-1"
           class="db-tab-button"
         >
           <span class="db-tab-label">FullS Tab 2</span>
@@ -60597,6 +61013,7 @@ Auto Panel 3
           type="button"
           role="tab"
           aria-selected="false"
+          tabindex="-1"
           class="db-tab-button"
         >
           <span class="db-tab-label">FullS Tab 3</span>
@@ -60608,18 +61025,19 @@ Auto Panel 3
   <section role="tabpanel" class="db-tab-panel">FullS Panel 2</section>
   <section role="tabpanel" class="db-tab-panel">FullS Panel 3</section>
 </div>`),navigator.clipboard.writeText(`<div
-  id="tabs-6813415458767668"
+  id="tabs-5254663211267768"
   class="db-tabs"
   data-alignment="start"
   data-width="full"
 >
-  <div id="tab-list-822295065803437" class="db-tab-list">
+  <div id="tab-list-8220829846553256" class="db-tab-list">
     <ul role="tablist">
       <li role="presentation" class="db-tab-item">
         <button
           type="button"
           role="tab"
           aria-selected="false"
+          tabindex="-1"
           class="db-tab-button"
         >
           <span class="db-tab-label">FullS Tab 1</span>
@@ -60630,6 +61048,7 @@ Auto Panel 3
           type="button"
           role="tab"
           aria-selected="false"
+          tabindex="-1"
           class="db-tab-button"
         >
           <span class="db-tab-label">FullS Tab 2</span>
@@ -60640,6 +61059,7 @@ Auto Panel 3
           type="button"
           role="tab"
           aria-selected="false"
+          tabindex="-1"
           class="db-tab-button"
         >
           <span class="db-tab-label">FullS Tab 3</span>
@@ -60807,18 +61227,19 @@ FullS Panel 3
   <db-tab-panel> FullC Panel 2 </db-tab-panel>
   <db-tab-panel> FullC Panel 3 </db-tab-panel>
 </db-tabs>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-html",children:`<div
-  id="tabs-7837540750800723"
+  id="tabs-2537024114326152"
   class="db-tabs"
   data-alignment="center"
   data-width="full"
 >
-  <div id="tab-list-6711371773460454" class="db-tab-list">
+  <div id="tab-list-4162601195692962" class="db-tab-list">
     <ul role="tablist">
       <li role="presentation" class="db-tab-item">
         <button
           type="button"
           role="tab"
           aria-selected="false"
+          tabindex="-1"
           class="db-tab-button"
         >
           <span class="db-tab-label">FullC Tab 1</span>
@@ -60829,6 +61250,7 @@ FullS Panel 3
           type="button"
           role="tab"
           aria-selected="false"
+          tabindex="-1"
           class="db-tab-button"
         >
           <span class="db-tab-label">FullC Tab 2</span>
@@ -60839,6 +61261,7 @@ FullS Panel 3
           type="button"
           role="tab"
           aria-selected="false"
+          tabindex="-1"
           class="db-tab-button"
         >
           <span class="db-tab-label">FullC Tab 3</span>
@@ -60850,18 +61273,19 @@ FullS Panel 3
   <section role="tabpanel" class="db-tab-panel">FullC Panel 2</section>
   <section role="tabpanel" class="db-tab-panel">FullC Panel 3</section>
 </div>`})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:e===`<div
-  id="tabs-7837540750800723"
+  id="tabs-2537024114326152"
   class="db-tabs"
   data-alignment="center"
   data-width="full"
 >
-  <div id="tab-list-6711371773460454" class="db-tab-list">
+  <div id="tab-list-4162601195692962" class="db-tab-list">
     <ul role="tablist">
       <li role="presentation" class="db-tab-item">
         <button
           type="button"
           role="tab"
           aria-selected="false"
+          tabindex="-1"
           class="db-tab-button"
         >
           <span class="db-tab-label">FullC Tab 1</span>
@@ -60872,6 +61296,7 @@ FullS Panel 3
           type="button"
           role="tab"
           aria-selected="false"
+          tabindex="-1"
           class="db-tab-button"
         >
           <span class="db-tab-label">FullC Tab 2</span>
@@ -60882,6 +61307,7 @@ FullS Panel 3
           type="button"
           role="tab"
           aria-selected="false"
+          tabindex="-1"
           class="db-tab-button"
         >
           <span class="db-tab-label">FullC Tab 3</span>
@@ -60893,18 +61319,19 @@ FullS Panel 3
   <section role="tabpanel" class="db-tab-panel">FullC Panel 2</section>
   <section role="tabpanel" class="db-tab-panel">FullC Panel 3</section>
 </div>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<div
-  id="tabs-7837540750800723"
+  id="tabs-2537024114326152"
   class="db-tabs"
   data-alignment="center"
   data-width="full"
 >
-  <div id="tab-list-6711371773460454" class="db-tab-list">
+  <div id="tab-list-4162601195692962" class="db-tab-list">
     <ul role="tablist">
       <li role="presentation" class="db-tab-item">
         <button
           type="button"
           role="tab"
           aria-selected="false"
+          tabindex="-1"
           class="db-tab-button"
         >
           <span class="db-tab-label">FullC Tab 1</span>
@@ -60915,6 +61342,7 @@ FullS Panel 3
           type="button"
           role="tab"
           aria-selected="false"
+          tabindex="-1"
           class="db-tab-button"
         >
           <span class="db-tab-label">FullC Tab 2</span>
@@ -60925,6 +61353,7 @@ FullS Panel 3
           type="button"
           role="tab"
           aria-selected="false"
+          tabindex="-1"
           class="db-tab-button"
         >
           <span class="db-tab-label">FullC Tab 3</span>
@@ -60936,18 +61365,19 @@ FullS Panel 3
   <section role="tabpanel" class="db-tab-panel">FullC Panel 2</section>
   <section role="tabpanel" class="db-tab-panel">FullC Panel 3</section>
 </div>`),navigator.clipboard.writeText(`<div
-  id="tabs-7837540750800723"
+  id="tabs-2537024114326152"
   class="db-tabs"
   data-alignment="center"
   data-width="full"
 >
-  <div id="tab-list-6711371773460454" class="db-tab-list">
+  <div id="tab-list-4162601195692962" class="db-tab-list">
     <ul role="tablist">
       <li role="presentation" class="db-tab-item">
         <button
           type="button"
           role="tab"
           aria-selected="false"
+          tabindex="-1"
           class="db-tab-button"
         >
           <span class="db-tab-label">FullC Tab 1</span>
@@ -60958,6 +61388,7 @@ FullS Panel 3
           type="button"
           role="tab"
           aria-selected="false"
+          tabindex="-1"
           class="db-tab-button"
         >
           <span class="db-tab-label">FullC Tab 2</span>
@@ -60968,6 +61399,7 @@ FullS Panel 3
           type="button"
           role="tab"
           aria-selected="false"
+          tabindex="-1"
           class="db-tab-button"
         >
           <span class="db-tab-label">FullC Tab 3</span>
@@ -61135,18 +61567,19 @@ FullC Panel 3
   <db-tab-panel> NoOver Panel 2 </db-tab-panel>
   <db-tab-panel> NoOver Panel 3 </db-tab-panel>
 </db-tabs>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-html",children:`<div
-  id="tabs-3352536217874016"
+  id="tabs-9906518272945232"
   class="db-tabs"
   data-alignment="start"
   data-width="auto"
 >
-  <div id="tab-list-22494003527640127" class="db-tab-list">
+  <div id="tab-list-4543919429853682" class="db-tab-list">
     <ul role="tablist">
       <li role="presentation" class="db-tab-item">
         <button
           type="button"
           role="tab"
           aria-selected="false"
+          tabindex="-1"
           class="db-tab-button"
         >
           <span class="db-tab-label">NoOver Tab 1</span>
@@ -61157,6 +61590,7 @@ FullC Panel 3
           type="button"
           role="tab"
           aria-selected="false"
+          tabindex="-1"
           class="db-tab-button"
         >
           <span class="db-tab-label">NoOver Tab 2</span>
@@ -61167,6 +61601,7 @@ FullC Panel 3
           type="button"
           role="tab"
           aria-selected="false"
+          tabindex="-1"
           class="db-tab-button"
         >
           <span class="db-tab-label">NoOver Tab 3</span>
@@ -61178,18 +61613,19 @@ FullC Panel 3
   <section role="tabpanel" class="db-tab-panel">NoOver Panel 2</section>
   <section role="tabpanel" class="db-tab-panel">NoOver Panel 3</section>
 </div>`})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:e===`<div
-  id="tabs-3352536217874016"
+  id="tabs-9906518272945232"
   class="db-tabs"
   data-alignment="start"
   data-width="auto"
 >
-  <div id="tab-list-22494003527640127" class="db-tab-list">
+  <div id="tab-list-4543919429853682" class="db-tab-list">
     <ul role="tablist">
       <li role="presentation" class="db-tab-item">
         <button
           type="button"
           role="tab"
           aria-selected="false"
+          tabindex="-1"
           class="db-tab-button"
         >
           <span class="db-tab-label">NoOver Tab 1</span>
@@ -61200,6 +61636,7 @@ FullC Panel 3
           type="button"
           role="tab"
           aria-selected="false"
+          tabindex="-1"
           class="db-tab-button"
         >
           <span class="db-tab-label">NoOver Tab 2</span>
@@ -61210,6 +61647,7 @@ FullC Panel 3
           type="button"
           role="tab"
           aria-selected="false"
+          tabindex="-1"
           class="db-tab-button"
         >
           <span class="db-tab-label">NoOver Tab 3</span>
@@ -61221,18 +61659,19 @@ FullC Panel 3
   <section role="tabpanel" class="db-tab-panel">NoOver Panel 2</section>
   <section role="tabpanel" class="db-tab-panel">NoOver Panel 3</section>
 </div>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<div
-  id="tabs-3352536217874016"
+  id="tabs-9906518272945232"
   class="db-tabs"
   data-alignment="start"
   data-width="auto"
 >
-  <div id="tab-list-22494003527640127" class="db-tab-list">
+  <div id="tab-list-4543919429853682" class="db-tab-list">
     <ul role="tablist">
       <li role="presentation" class="db-tab-item">
         <button
           type="button"
           role="tab"
           aria-selected="false"
+          tabindex="-1"
           class="db-tab-button"
         >
           <span class="db-tab-label">NoOver Tab 1</span>
@@ -61243,6 +61682,7 @@ FullC Panel 3
           type="button"
           role="tab"
           aria-selected="false"
+          tabindex="-1"
           class="db-tab-button"
         >
           <span class="db-tab-label">NoOver Tab 2</span>
@@ -61253,6 +61693,7 @@ FullC Panel 3
           type="button"
           role="tab"
           aria-selected="false"
+          tabindex="-1"
           class="db-tab-button"
         >
           <span class="db-tab-label">NoOver Tab 3</span>
@@ -61264,18 +61705,19 @@ FullC Panel 3
   <section role="tabpanel" class="db-tab-panel">NoOver Panel 2</section>
   <section role="tabpanel" class="db-tab-panel">NoOver Panel 3</section>
 </div>`),navigator.clipboard.writeText(`<div
-  id="tabs-3352536217874016"
+  id="tabs-9906518272945232"
   class="db-tabs"
   data-alignment="start"
   data-width="auto"
 >
-  <div id="tab-list-22494003527640127" class="db-tab-list">
+  <div id="tab-list-4543919429853682" class="db-tab-list">
     <ul role="tablist">
       <li role="presentation" class="db-tab-item">
         <button
           type="button"
           role="tab"
           aria-selected="false"
+          tabindex="-1"
           class="db-tab-button"
         >
           <span class="db-tab-label">NoOver Tab 1</span>
@@ -61286,6 +61728,7 @@ FullC Panel 3
           type="button"
           role="tab"
           aria-selected="false"
+          tabindex="-1"
           class="db-tab-button"
         >
           <span class="db-tab-label">NoOver Tab 2</span>
@@ -61296,6 +61739,7 @@ FullC Panel 3
           type="button"
           role="tab"
           aria-selected="false"
+          tabindex="-1"
           class="db-tab-button"
         >
           <span class="db-tab-label">NoOver Tab 3</span>
@@ -61479,19 +61923,20 @@ NoOver Panel 3
   <db-tab-panel> Arr Panel 4 </db-tab-panel>
   <db-tab-panel> Arr Panel 5 </db-tab-panel>
 </db-tabs>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-html",children:`<div
-  id="tabs-9108206655022909"
+  id="tabs-03594404504788118"
   class="db-tabs"
   data-scroll-behavior="arrows"
   data-alignment="start"
   data-width="auto"
 >
-  <div id="tab-list-6682915071349816" class="db-tab-list">
+  <div id="tab-list-14934699021070763" class="db-tab-list">
     <ul role="tablist">
       <li role="presentation" class="db-tab-item">
         <button
           type="button"
           role="tab"
           aria-selected="false"
+          tabindex="-1"
           class="db-tab-button"
         >
           <span class="db-tab-label">Arr Tab 1</span>
@@ -61502,6 +61947,7 @@ NoOver Panel 3
           type="button"
           role="tab"
           aria-selected="false"
+          tabindex="-1"
           class="db-tab-button"
         >
           <span class="db-tab-label">Arr Tab 2</span>
@@ -61512,6 +61958,7 @@ NoOver Panel 3
           type="button"
           role="tab"
           aria-selected="false"
+          tabindex="-1"
           class="db-tab-button"
         >
           <span class="db-tab-label">Arr Tab 3</span>
@@ -61522,6 +61969,7 @@ NoOver Panel 3
           type="button"
           role="tab"
           aria-selected="false"
+          tabindex="-1"
           class="db-tab-button"
         >
           <span class="db-tab-label">Arr Tab 4</span>
@@ -61532,6 +61980,7 @@ NoOver Panel 3
           type="button"
           role="tab"
           aria-selected="false"
+          tabindex="-1"
           class="db-tab-button"
         >
           <span class="db-tab-label">Arr Tab 5</span>
@@ -61545,19 +61994,20 @@ NoOver Panel 3
   <section role="tabpanel" class="db-tab-panel">Arr Panel 4</section>
   <section role="tabpanel" class="db-tab-panel">Arr Panel 5</section>
 </div>`})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:e===`<div
-  id="tabs-9108206655022909"
+  id="tabs-03594404504788118"
   class="db-tabs"
   data-scroll-behavior="arrows"
   data-alignment="start"
   data-width="auto"
 >
-  <div id="tab-list-6682915071349816" class="db-tab-list">
+  <div id="tab-list-14934699021070763" class="db-tab-list">
     <ul role="tablist">
       <li role="presentation" class="db-tab-item">
         <button
           type="button"
           role="tab"
           aria-selected="false"
+          tabindex="-1"
           class="db-tab-button"
         >
           <span class="db-tab-label">Arr Tab 1</span>
@@ -61568,6 +62018,7 @@ NoOver Panel 3
           type="button"
           role="tab"
           aria-selected="false"
+          tabindex="-1"
           class="db-tab-button"
         >
           <span class="db-tab-label">Arr Tab 2</span>
@@ -61578,6 +62029,7 @@ NoOver Panel 3
           type="button"
           role="tab"
           aria-selected="false"
+          tabindex="-1"
           class="db-tab-button"
         >
           <span class="db-tab-label">Arr Tab 3</span>
@@ -61588,6 +62040,7 @@ NoOver Panel 3
           type="button"
           role="tab"
           aria-selected="false"
+          tabindex="-1"
           class="db-tab-button"
         >
           <span class="db-tab-label">Arr Tab 4</span>
@@ -61598,6 +62051,7 @@ NoOver Panel 3
           type="button"
           role="tab"
           aria-selected="false"
+          tabindex="-1"
           class="db-tab-button"
         >
           <span class="db-tab-label">Arr Tab 5</span>
@@ -61611,19 +62065,20 @@ NoOver Panel 3
   <section role="tabpanel" class="db-tab-panel">Arr Panel 4</section>
   <section role="tabpanel" class="db-tab-panel">Arr Panel 5</section>
 </div>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<div
-  id="tabs-9108206655022909"
+  id="tabs-03594404504788118"
   class="db-tabs"
   data-scroll-behavior="arrows"
   data-alignment="start"
   data-width="auto"
 >
-  <div id="tab-list-6682915071349816" class="db-tab-list">
+  <div id="tab-list-14934699021070763" class="db-tab-list">
     <ul role="tablist">
       <li role="presentation" class="db-tab-item">
         <button
           type="button"
           role="tab"
           aria-selected="false"
+          tabindex="-1"
           class="db-tab-button"
         >
           <span class="db-tab-label">Arr Tab 1</span>
@@ -61634,6 +62089,7 @@ NoOver Panel 3
           type="button"
           role="tab"
           aria-selected="false"
+          tabindex="-1"
           class="db-tab-button"
         >
           <span class="db-tab-label">Arr Tab 2</span>
@@ -61644,6 +62100,7 @@ NoOver Panel 3
           type="button"
           role="tab"
           aria-selected="false"
+          tabindex="-1"
           class="db-tab-button"
         >
           <span class="db-tab-label">Arr Tab 3</span>
@@ -61654,6 +62111,7 @@ NoOver Panel 3
           type="button"
           role="tab"
           aria-selected="false"
+          tabindex="-1"
           class="db-tab-button"
         >
           <span class="db-tab-label">Arr Tab 4</span>
@@ -61664,6 +62122,7 @@ NoOver Panel 3
           type="button"
           role="tab"
           aria-selected="false"
+          tabindex="-1"
           class="db-tab-button"
         >
           <span class="db-tab-label">Arr Tab 5</span>
@@ -61677,19 +62136,20 @@ NoOver Panel 3
   <section role="tabpanel" class="db-tab-panel">Arr Panel 4</section>
   <section role="tabpanel" class="db-tab-panel">Arr Panel 5</section>
 </div>`),navigator.clipboard.writeText(`<div
-  id="tabs-9108206655022909"
+  id="tabs-03594404504788118"
   class="db-tabs"
   data-scroll-behavior="arrows"
   data-alignment="start"
   data-width="auto"
 >
-  <div id="tab-list-6682915071349816" class="db-tab-list">
+  <div id="tab-list-14934699021070763" class="db-tab-list">
     <ul role="tablist">
       <li role="presentation" class="db-tab-item">
         <button
           type="button"
           role="tab"
           aria-selected="false"
+          tabindex="-1"
           class="db-tab-button"
         >
           <span class="db-tab-label">Arr Tab 1</span>
@@ -61700,6 +62160,7 @@ NoOver Panel 3
           type="button"
           role="tab"
           aria-selected="false"
+          tabindex="-1"
           class="db-tab-button"
         >
           <span class="db-tab-label">Arr Tab 2</span>
@@ -61710,6 +62171,7 @@ NoOver Panel 3
           type="button"
           role="tab"
           aria-selected="false"
+          tabindex="-1"
           class="db-tab-button"
         >
           <span class="db-tab-label">Arr Tab 3</span>
@@ -61720,6 +62182,7 @@ NoOver Panel 3
           type="button"
           role="tab"
           aria-selected="false"
+          tabindex="-1"
           class="db-tab-button"
         >
           <span class="db-tab-label">Arr Tab 4</span>
@@ -61730,6 +62193,7 @@ NoOver Panel 3
           type="button"
           role="tab"
           aria-selected="false"
+          tabindex="-1"
           class="db-tab-button"
         >
           <span class="db-tab-label">Arr Tab 5</span>
@@ -61979,18 +62443,19 @@ Arr Panel 5
   <db-tab-panel> Scroll Panel 4 </db-tab-panel>
   <db-tab-panel> Scroll Panel 5 </db-tab-panel>
 </db-tabs>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-html",children:`<div
-  id="tabs-13096313351752575"
+  id="tabs-4182268698219125"
   class="db-tabs"
   data-alignment="start"
   data-width="auto"
 >
-  <div id="tab-list-7514880052516154" class="db-tab-list">
+  <div id="tab-list-7218878222173923" class="db-tab-list">
     <ul role="tablist">
       <li role="presentation" class="db-tab-item">
         <button
           type="button"
           role="tab"
           aria-selected="false"
+          tabindex="-1"
           class="db-tab-button"
         >
           <span class="db-tab-label">Scroll Tab 1</span>
@@ -62001,6 +62466,7 @@ Arr Panel 5
           type="button"
           role="tab"
           aria-selected="false"
+          tabindex="-1"
           class="db-tab-button"
         >
           <span class="db-tab-label">Scroll Tab 2</span>
@@ -62011,6 +62477,7 @@ Arr Panel 5
           type="button"
           role="tab"
           aria-selected="false"
+          tabindex="-1"
           class="db-tab-button"
         >
           <span class="db-tab-label">Scroll Tab 3</span>
@@ -62021,6 +62488,7 @@ Arr Panel 5
           type="button"
           role="tab"
           aria-selected="false"
+          tabindex="-1"
           class="db-tab-button"
         >
           <span class="db-tab-label">Scroll Tab 4</span>
@@ -62031,6 +62499,7 @@ Arr Panel 5
           type="button"
           role="tab"
           aria-selected="false"
+          tabindex="-1"
           class="db-tab-button"
         >
           <span class="db-tab-label">Scroll Tab 5</span>
@@ -62044,18 +62513,19 @@ Arr Panel 5
   <section role="tabpanel" class="db-tab-panel">Scroll Panel 4</section>
   <section role="tabpanel" class="db-tab-panel">Scroll Panel 5</section>
 </div>`})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:e===`<div
-  id="tabs-13096313351752575"
+  id="tabs-4182268698219125"
   class="db-tabs"
   data-alignment="start"
   data-width="auto"
 >
-  <div id="tab-list-7514880052516154" class="db-tab-list">
+  <div id="tab-list-7218878222173923" class="db-tab-list">
     <ul role="tablist">
       <li role="presentation" class="db-tab-item">
         <button
           type="button"
           role="tab"
           aria-selected="false"
+          tabindex="-1"
           class="db-tab-button"
         >
           <span class="db-tab-label">Scroll Tab 1</span>
@@ -62066,6 +62536,7 @@ Arr Panel 5
           type="button"
           role="tab"
           aria-selected="false"
+          tabindex="-1"
           class="db-tab-button"
         >
           <span class="db-tab-label">Scroll Tab 2</span>
@@ -62076,6 +62547,7 @@ Arr Panel 5
           type="button"
           role="tab"
           aria-selected="false"
+          tabindex="-1"
           class="db-tab-button"
         >
           <span class="db-tab-label">Scroll Tab 3</span>
@@ -62086,6 +62558,7 @@ Arr Panel 5
           type="button"
           role="tab"
           aria-selected="false"
+          tabindex="-1"
           class="db-tab-button"
         >
           <span class="db-tab-label">Scroll Tab 4</span>
@@ -62096,6 +62569,7 @@ Arr Panel 5
           type="button"
           role="tab"
           aria-selected="false"
+          tabindex="-1"
           class="db-tab-button"
         >
           <span class="db-tab-label">Scroll Tab 5</span>
@@ -62109,18 +62583,19 @@ Arr Panel 5
   <section role="tabpanel" class="db-tab-panel">Scroll Panel 4</section>
   <section role="tabpanel" class="db-tab-panel">Scroll Panel 5</section>
 </div>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<div
-  id="tabs-13096313351752575"
+  id="tabs-4182268698219125"
   class="db-tabs"
   data-alignment="start"
   data-width="auto"
 >
-  <div id="tab-list-7514880052516154" class="db-tab-list">
+  <div id="tab-list-7218878222173923" class="db-tab-list">
     <ul role="tablist">
       <li role="presentation" class="db-tab-item">
         <button
           type="button"
           role="tab"
           aria-selected="false"
+          tabindex="-1"
           class="db-tab-button"
         >
           <span class="db-tab-label">Scroll Tab 1</span>
@@ -62131,6 +62606,7 @@ Arr Panel 5
           type="button"
           role="tab"
           aria-selected="false"
+          tabindex="-1"
           class="db-tab-button"
         >
           <span class="db-tab-label">Scroll Tab 2</span>
@@ -62141,6 +62617,7 @@ Arr Panel 5
           type="button"
           role="tab"
           aria-selected="false"
+          tabindex="-1"
           class="db-tab-button"
         >
           <span class="db-tab-label">Scroll Tab 3</span>
@@ -62151,6 +62628,7 @@ Arr Panel 5
           type="button"
           role="tab"
           aria-selected="false"
+          tabindex="-1"
           class="db-tab-button"
         >
           <span class="db-tab-label">Scroll Tab 4</span>
@@ -62161,6 +62639,7 @@ Arr Panel 5
           type="button"
           role="tab"
           aria-selected="false"
+          tabindex="-1"
           class="db-tab-button"
         >
           <span class="db-tab-label">Scroll Tab 5</span>
@@ -62174,18 +62653,19 @@ Arr Panel 5
   <section role="tabpanel" class="db-tab-panel">Scroll Panel 4</section>
   <section role="tabpanel" class="db-tab-panel">Scroll Panel 5</section>
 </div>`),navigator.clipboard.writeText(`<div
-  id="tabs-13096313351752575"
+  id="tabs-4182268698219125"
   class="db-tabs"
   data-alignment="start"
   data-width="auto"
 >
-  <div id="tab-list-7514880052516154" class="db-tab-list">
+  <div id="tab-list-7218878222173923" class="db-tab-list">
     <ul role="tablist">
       <li role="presentation" class="db-tab-item">
         <button
           type="button"
           role="tab"
           aria-selected="false"
+          tabindex="-1"
           class="db-tab-button"
         >
           <span class="db-tab-label">Scroll Tab 1</span>
@@ -62196,6 +62676,7 @@ Arr Panel 5
           type="button"
           role="tab"
           aria-selected="false"
+          tabindex="-1"
           class="db-tab-button"
         >
           <span class="db-tab-label">Scroll Tab 2</span>
@@ -62206,6 +62687,7 @@ Arr Panel 5
           type="button"
           role="tab"
           aria-selected="false"
+          tabindex="-1"
           class="db-tab-button"
         >
           <span class="db-tab-label">Scroll Tab 3</span>
@@ -62216,6 +62698,7 @@ Arr Panel 5
           type="button"
           role="tab"
           aria-selected="false"
+          tabindex="-1"
           class="db-tab-button"
         >
           <span class="db-tab-label">Scroll Tab 4</span>
@@ -62226,6 +62709,7 @@ Arr Panel 5
           type="button"
           role="tab"
           aria-selected="false"
+          tabindex="-1"
           class="db-tab-button"
         >
           <span class="db-tab-label">Scroll Tab 5</span>
@@ -62459,18 +62943,19 @@ Scroll Panel 5
   <db-tab-panel> Sel Panel 2 </db-tab-panel>
   <db-tab-panel> Sel Panel 3 </db-tab-panel>
 </db-tabs>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-html",children:`<div
-  id="tabs-2174572750454845"
+  id="tabs-13774203537865937"
   class="db-tabs"
   data-alignment="start"
   data-width="auto"
 >
-  <div id="tab-list-688876185363429" class="db-tab-list">
+  <div id="tab-list-12946197142180926" class="db-tab-list">
     <ul role="tablist">
       <li role="presentation" class="db-tab-item">
         <button
           type="button"
           role="tab"
           aria-selected="false"
+          tabindex="-1"
           class="db-tab-button"
         >
           <span class="db-tab-label">Sel Tab 1</span>
@@ -62481,6 +62966,7 @@ Scroll Panel 5
           type="button"
           role="tab"
           aria-selected="false"
+          tabindex="-1"
           class="db-tab-button"
         >
           <span class="db-tab-label">Sel Tab 2</span>
@@ -62491,6 +62977,7 @@ Scroll Panel 5
           type="button"
           role="tab"
           aria-selected="false"
+          tabindex="-1"
           class="db-tab-button"
         >
           <span class="db-tab-label">Sel Tab 3</span>
@@ -62502,18 +62989,19 @@ Scroll Panel 5
   <section role="tabpanel" class="db-tab-panel">Sel Panel 2</section>
   <section role="tabpanel" class="db-tab-panel">Sel Panel 3</section>
 </div>`})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:e===`<div
-  id="tabs-2174572750454845"
+  id="tabs-13774203537865937"
   class="db-tabs"
   data-alignment="start"
   data-width="auto"
 >
-  <div id="tab-list-688876185363429" class="db-tab-list">
+  <div id="tab-list-12946197142180926" class="db-tab-list">
     <ul role="tablist">
       <li role="presentation" class="db-tab-item">
         <button
           type="button"
           role="tab"
           aria-selected="false"
+          tabindex="-1"
           class="db-tab-button"
         >
           <span class="db-tab-label">Sel Tab 1</span>
@@ -62524,6 +63012,7 @@ Scroll Panel 5
           type="button"
           role="tab"
           aria-selected="false"
+          tabindex="-1"
           class="db-tab-button"
         >
           <span class="db-tab-label">Sel Tab 2</span>
@@ -62534,6 +63023,7 @@ Scroll Panel 5
           type="button"
           role="tab"
           aria-selected="false"
+          tabindex="-1"
           class="db-tab-button"
         >
           <span class="db-tab-label">Sel Tab 3</span>
@@ -62545,18 +63035,19 @@ Scroll Panel 5
   <section role="tabpanel" class="db-tab-panel">Sel Panel 2</section>
   <section role="tabpanel" class="db-tab-panel">Sel Panel 3</section>
 </div>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<div
-  id="tabs-2174572750454845"
+  id="tabs-13774203537865937"
   class="db-tabs"
   data-alignment="start"
   data-width="auto"
 >
-  <div id="tab-list-688876185363429" class="db-tab-list">
+  <div id="tab-list-12946197142180926" class="db-tab-list">
     <ul role="tablist">
       <li role="presentation" class="db-tab-item">
         <button
           type="button"
           role="tab"
           aria-selected="false"
+          tabindex="-1"
           class="db-tab-button"
         >
           <span class="db-tab-label">Sel Tab 1</span>
@@ -62567,6 +63058,7 @@ Scroll Panel 5
           type="button"
           role="tab"
           aria-selected="false"
+          tabindex="-1"
           class="db-tab-button"
         >
           <span class="db-tab-label">Sel Tab 2</span>
@@ -62577,6 +63069,7 @@ Scroll Panel 5
           type="button"
           role="tab"
           aria-selected="false"
+          tabindex="-1"
           class="db-tab-button"
         >
           <span class="db-tab-label">Sel Tab 3</span>
@@ -62588,18 +63081,19 @@ Scroll Panel 5
   <section role="tabpanel" class="db-tab-panel">Sel Panel 2</section>
   <section role="tabpanel" class="db-tab-panel">Sel Panel 3</section>
 </div>`),navigator.clipboard.writeText(`<div
-  id="tabs-2174572750454845"
+  id="tabs-13774203537865937"
   class="db-tabs"
   data-alignment="start"
   data-width="auto"
 >
-  <div id="tab-list-688876185363429" class="db-tab-list">
+  <div id="tab-list-12946197142180926" class="db-tab-list">
     <ul role="tablist">
       <li role="presentation" class="db-tab-item">
         <button
           type="button"
           role="tab"
           aria-selected="false"
+          tabindex="-1"
           class="db-tab-button"
         >
           <span class="db-tab-label">Sel Tab 1</span>
@@ -62610,6 +63104,7 @@ Scroll Panel 5
           type="button"
           role="tab"
           aria-selected="false"
+          tabindex="-1"
           class="db-tab-button"
         >
           <span class="db-tab-label">Sel Tab 2</span>
@@ -62620,6 +63115,7 @@ Scroll Panel 5
           type="button"
           role="tab"
           aria-selected="false"
+          tabindex="-1"
           class="db-tab-button"
         >
           <span class="db-tab-label">Sel Tab 3</span>
@@ -62787,18 +63283,19 @@ Sel Panel 3
   <db-tab-panel> None Panel 2 </db-tab-panel>
   <db-tab-panel> None Panel 3 </db-tab-panel>
 </db-tabs>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-html",children:`<div
-  id="tabs-6388430765256085"
+  id="tabs-4124817159008918"
   class="db-tabs"
   data-alignment="start"
   data-width="auto"
 >
-  <div id="tab-list-5741025810882691" class="db-tab-list">
+  <div id="tab-list-9126599585146994" class="db-tab-list">
     <ul role="tablist">
       <li role="presentation" class="db-tab-item">
         <button
           type="button"
           role="tab"
           aria-selected="false"
+          tabindex="-1"
           class="db-tab-button"
         >
           <span class="db-tab-label">None Tab 1</span>
@@ -62809,6 +63306,7 @@ Sel Panel 3
           type="button"
           role="tab"
           aria-selected="false"
+          tabindex="-1"
           class="db-tab-button"
         >
           <span class="db-tab-label">None Tab 2</span>
@@ -62819,6 +63317,7 @@ Sel Panel 3
           type="button"
           role="tab"
           aria-selected="false"
+          tabindex="-1"
           class="db-tab-button"
         >
           <span class="db-tab-label">None Tab 3</span>
@@ -62830,18 +63329,19 @@ Sel Panel 3
   <section role="tabpanel" class="db-tab-panel">None Panel 2</section>
   <section role="tabpanel" class="db-tab-panel">None Panel 3</section>
 </div>`})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:e===`<div
-  id="tabs-6388430765256085"
+  id="tabs-4124817159008918"
   class="db-tabs"
   data-alignment="start"
   data-width="auto"
 >
-  <div id="tab-list-5741025810882691" class="db-tab-list">
+  <div id="tab-list-9126599585146994" class="db-tab-list">
     <ul role="tablist">
       <li role="presentation" class="db-tab-item">
         <button
           type="button"
           role="tab"
           aria-selected="false"
+          tabindex="-1"
           class="db-tab-button"
         >
           <span class="db-tab-label">None Tab 1</span>
@@ -62852,6 +63352,7 @@ Sel Panel 3
           type="button"
           role="tab"
           aria-selected="false"
+          tabindex="-1"
           class="db-tab-button"
         >
           <span class="db-tab-label">None Tab 2</span>
@@ -62862,6 +63363,7 @@ Sel Panel 3
           type="button"
           role="tab"
           aria-selected="false"
+          tabindex="-1"
           class="db-tab-button"
         >
           <span class="db-tab-label">None Tab 3</span>
@@ -62873,18 +63375,19 @@ Sel Panel 3
   <section role="tabpanel" class="db-tab-panel">None Panel 2</section>
   <section role="tabpanel" class="db-tab-panel">None Panel 3</section>
 </div>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<div
-  id="tabs-6388430765256085"
+  id="tabs-4124817159008918"
   class="db-tabs"
   data-alignment="start"
   data-width="auto"
 >
-  <div id="tab-list-5741025810882691" class="db-tab-list">
+  <div id="tab-list-9126599585146994" class="db-tab-list">
     <ul role="tablist">
       <li role="presentation" class="db-tab-item">
         <button
           type="button"
           role="tab"
           aria-selected="false"
+          tabindex="-1"
           class="db-tab-button"
         >
           <span class="db-tab-label">None Tab 1</span>
@@ -62895,6 +63398,7 @@ Sel Panel 3
           type="button"
           role="tab"
           aria-selected="false"
+          tabindex="-1"
           class="db-tab-button"
         >
           <span class="db-tab-label">None Tab 2</span>
@@ -62905,6 +63409,7 @@ Sel Panel 3
           type="button"
           role="tab"
           aria-selected="false"
+          tabindex="-1"
           class="db-tab-button"
         >
           <span class="db-tab-label">None Tab 3</span>
@@ -62916,18 +63421,19 @@ Sel Panel 3
   <section role="tabpanel" class="db-tab-panel">None Panel 2</section>
   <section role="tabpanel" class="db-tab-panel">None Panel 3</section>
 </div>`),navigator.clipboard.writeText(`<div
-  id="tabs-6388430765256085"
+  id="tabs-4124817159008918"
   class="db-tabs"
   data-alignment="start"
   data-width="auto"
 >
-  <div id="tab-list-5741025810882691" class="db-tab-list">
+  <div id="tab-list-9126599585146994" class="db-tab-list">
     <ul role="tablist">
       <li role="presentation" class="db-tab-item">
         <button
           type="button"
           role="tab"
           aria-selected="false"
+          tabindex="-1"
           class="db-tab-button"
         >
           <span class="db-tab-label">None Tab 1</span>
@@ -62938,6 +63444,7 @@ Sel Panel 3
           type="button"
           role="tab"
           aria-selected="false"
+          tabindex="-1"
           class="db-tab-button"
         >
           <span class="db-tab-label">None Tab 2</span>
@@ -62948,6 +63455,7 @@ Sel Panel 3
           type="button"
           role="tab"
           aria-selected="false"
+          tabindex="-1"
           class="db-tab-button"
         >
           <span class="db-tab-label">None Tab 3</span>
