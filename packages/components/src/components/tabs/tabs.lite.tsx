@@ -19,20 +19,12 @@ import { DBSimpleTabProps, DBTabsProps, DBTabsState } from './model';
 useMetadata({});
 useDefaultProps<DBTabsProps>({});
 
-const getInitialId = (id?: string) => {
-	return id || 'tabs-' + uuid();
-};
-
-const getInitialName = (name?: string) => {
-	return `tabs-${name || uuid()}`;
-};
-
 export default function DBTabs(props: DBTabsProps) {
 	const _ref = useRef<HTMLDivElement | any>(null);
 
 	const state = useStore<DBTabsState>({
-		_id: getInitialId(props.id),
-		_name: getInitialName(props.name),
+		_id: props.id || 'tabs-' + uuid(),
+		_name: 'tabs-' + (props.name || uuid()),
 
 		activeTabIndex: 0,
 		initialized: false,
@@ -222,6 +214,11 @@ export default function DBTabs(props: DBTabsProps) {
 		state.initialized = true;
 	});
 
+	onUnMount(() => {
+		state._resizeObserver?.disconnect();
+		state._resizeObserver = undefined;
+	});
+
 	onUpdate(() => {
 		if (props.id && state._id !== props.id) {
 			state._id = props.id;
@@ -237,13 +234,6 @@ export default function DBTabs(props: DBTabsProps) {
 		}
 	}, [props.name]);
 
-	// Clean up the ResizeObserver to prevent memory leaks when the component unmounts
-	onUnMount(() => {
-		state._resizeObserver?.disconnect();
-		state._resizeObserver = undefined;
-	});
-
-	// Re-initialize tabs on updates and observe DOM mutations to handle added or removed tab elements
 	onUpdate(() => {
 		if (_ref && state.initialized) {
 			state.initTabList();
