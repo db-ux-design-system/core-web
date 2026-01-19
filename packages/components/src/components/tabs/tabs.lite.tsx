@@ -202,7 +202,6 @@ export default function DBTabs(props: DBTabsProps) {
 	});
 
 	onMount(() => {
-		// Echte IDs zur Laufzeit setzen
 		state._id = props.id || 'tabs-' + uuid();
 		state._name = 'tabs-' + (props.name || uuid());
 
