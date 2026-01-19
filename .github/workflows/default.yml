@@ -382,13 +382,6 @@ jobs:
           resultTestShowcasePatternhub="${{ needs.test-showcase-patternhub.result }}"
           resultTestScreenReader="${{ needs.test-screen-reader.result }}"
 
-          # For releases, test-screen-reader must be success; for non-releases, skipped is also acceptable
-          if [[ $IS_RELEASE == "true" ]]; then
-            [[ $resultTestScreenReader == "success" ]] && screenReaderOk="true" || screenReaderOk="false"
-          else
-            [[ $resultTestScreenReader == "success" || $resultTestScreenReader == "skipped" ]] && screenReaderOk="true" || screenReaderOk="false"
-          fi
-
           if [[ $resultBuildStorybookComposition == "success" ]] && \
              [[ $resultBuildStorybookAngular == "success" ]] && \
              [[ $resultBuildStorybookReact == "success" ]] && \
