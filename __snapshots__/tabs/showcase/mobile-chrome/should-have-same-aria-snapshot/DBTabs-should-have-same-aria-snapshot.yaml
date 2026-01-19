@@ -3,95 +3,126 @@
   - link "Density Functional"
   - text: "Functional:"
   - tablist:
-    - tab "Test 1" [selected]
+    - tab "Test 1"
     - tab "Test 2"
     - tab "Test 3"
-  - tabpanel "Test 1": Tab Panel 1
+  - tabpanel: Tab Panel 1
+  - tabpanel: Tab Panel 2
+  - tabpanel: Tab Panel 3
   - link "Density Regular"
   - text: "(Default) Regular:"
   - tablist:
-    - tab "Test 1" [selected]
+    - tab "Test 1"
     - tab "Test 2"
     - tab "Test 3"
-  - tabpanel "Test 1": Tab Panel 1
+  - tabpanel: Tab Panel 1
+  - tabpanel: Tab Panel 2
+  - tabpanel: Tab Panel 3
   - link "Density Expressive"
   - text: "Expressive:"
   - tablist:
-    - tab "Test 1" [selected]
+    - tab "Test 1"
     - tab "Test 2"
     - tab "Test 3"
-  - tabpanel "Test 1": Tab Panel 1
+  - tabpanel: Tab Panel 1
+  - tabpanel: Tab Panel 2
+  - tabpanel: Tab Panel 3
   - link "Orientation Horizontal"
   - text: "horizontal:"
   - tablist:
-    - tab "Test 1" [selected]
+    - tab "Test 1"
     - tab "Test 2"
     - tab "Test 3"
-  - tabpanel "Test 1": Tab Panel 1
+  - tabpanel: Tab Panel 1
+  - tabpanel: Tab Panel 2
+  - tabpanel: Tab Panel 3
   - link "Orientation Vertical"
   - text: "vertical:"
   - tablist:
-    - tab "Test 1" [selected]
+    - tab "Test 1"
     - tab "Test 2"
     - tab "Test 3"
-  - tabpanel "Test 1": Tab Panel 1
+  - tabpanel: Tab Panel 1
+  - tabpanel: Tab Panel 2
+  - tabpanel: Tab Panel 3
   - link "Width Auto"
   - text: "auto:"
   - tablist:
-    - tab "Test 1" [selected]
+    - tab "Test 1"
     - tab "Test 2"
     - tab "Test 3"
-  - tabpanel "Test 1": Tab Panel 1
+  - tabpanel: Tab Panel 1
+  - tabpanel: Tab Panel 2
+  - tabpanel: Tab Panel 3
   - link "Width Full Start"
   - text: "full - alignment: start:"
   - tablist:
-    - tab "Test 1" [selected]
+    - tab "Test 1"
     - tab "Test 2"
     - tab "Test 3"
-  - tabpanel "Test 1": Tab Panel 1
+  - tabpanel: Tab Panel 1
+  - tabpanel: Tab Panel 2
+  - tabpanel: Tab Panel 3
   - link "Width Full Center"
   - text: "full - alignment: center:"
   - tablist:
-    - tab "Test 1" [selected]
+    - tab "Test 1"
     - tab "Test 2"
     - tab "Test 3"
-  - tabpanel "Test 1": Tab Panel 1
+  - tabpanel: Tab Panel 1
+  - tabpanel: Tab Panel 2
+  - tabpanel: Tab Panel 3
   - link "Overflow None"
   - text: "no overflow:"
   - tablist:
-    - tab "Test 1" [selected]
+    - tab "Test 1"
     - tab "Test 2"
     - tab "Test 3"
-  - tabpanel "Test 1": Tab Panel 1
+  - tabpanel: Tab Panel 1
+  - tabpanel: Tab Panel 2
+  - tabpanel: Tab Panel 3
   - link "Overflow Arrows"
   - text: "with overflow - behavior: arrows:"
   - tablist:
-    - tab "Test 1" [selected]
+    - tab "Test 1"
     - tab "Test 2"
     - tab "Test 3"
     - tab "Test 4"
     - tab "Test 5"
-  - tabpanel "Test 1": Tab Panel 1
+  - tabpanel: Tab Panel 1
+  - tabpanel: Tab Panel 2
+  - tabpanel: Tab Panel 3
+  - tabpanel: Tab Panel 4
+  - tabpanel: Tab Panel 5
   - button "Scroll right"
   - link "Overflow Scrollbar"
   - text: "with overflow - behavior: scrollbar:"
   - tablist:
-    - tab "Test 1" [selected]
+    - tab "Test 1"
     - tab "Test 2"
     - tab "Test 3"
     - tab "Test 4"
     - tab "Test 5"
-  - tabpanel "Test 1": Tab Panel 1
+  - tabpanel: Tab Panel 1
+  - tabpanel: Tab Panel 2
+  - tabpanel: Tab Panel 3
+  - tabpanel: Tab Panel 4
+  - tabpanel: Tab Panel 5
   - link "Examples Selected"
   - text: "2nd tab selected:"
   - tablist:
     - tab "Test 1"
-    - tab "Test 2" [selected]
+    - tab "Test 2"
     - tab "Test 3"
-  - tabpanel "Test 2": Tab Panel 2
+  - tabpanel: Tab Panel 1
+  - tabpanel: Tab Panel 2
+  - tabpanel: Tab Panel 3
   - link "Examples None"
   - text: "nothing selected:"
   - tablist:
     - tab "Test 1"
     - tab "Test 2"
     - tab "Test 3"
+  - tabpanel: Tab Panel 1
+  - tabpanel: Tab Panel 2
+  - tabpanel: Tab Panel 3
