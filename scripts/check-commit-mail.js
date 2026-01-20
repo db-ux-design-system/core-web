@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 import { execSync } from 'node:child_process';
+// eslint-disable-next-line unicorn/import-style
 import { dirname, join } from 'node:path';
 import { env, exit, loadEnvFile } from 'node:process';
 import { fileURLToPath } from 'node:url';
