@@ -17,13 +17,12 @@ useMetadata({});
 useDefaultProps<DBTabItemProps>({});
 
 export default function DBTabItem(props: DBTabItemProps) {
-	const _ref = useRef<HTMLButtonElement | any>(null);
-
+	const _ref = useRef<HTMLButtonElement>(null);
 	const state = useStore<DBTabItemState>({
 		internalActive: getBoolean(props.active) || false,
 		disabled: false,
 		_observer: null,
-		handleClick: (event: any) => {
+		handleClick: (event: MouseEvent) => {
 			if (event && event.preventDefault) {
 				event.preventDefault();
 			}

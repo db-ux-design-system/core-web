@@ -19,13 +19,17 @@ import { DBSimpleTabProps, DBTabsProps, DBTabsState } from './model';
 useMetadata({});
 useDefaultProps<DBTabsProps>({});
 
-export default function DBTabs(props: DBTabsProps) {
-	const _ref = useRef<HTMLDivElement | any>(null);
+interface DBTabsLocalState extends DBTabsState {
+	getTabId: (index: number | string) => string;
+	getPanelId: (index: number | string) => string;
+	handleClick: (event: MouseEvent) => void;
+	isIndexActive: (index: number | string) => boolean;
+	getTabItemTabIndex: (index: number | string) => 0 | -1;
+}
 
-	// We need to use 'any' here because we are adding helper methods (like handleClick, initTabs)
-	// to the state that are required for Angular and React for event delegation,
-	// but strictly typing them with DBTabsState would fail the React build because they are not part of the data interface.
-	const state = useStore<any>({
+export default function DBTabs(props: DBTabsProps) {
+	const _ref = useRef<HTMLDivElement>(null);
+	const state = useStore<DBTabsLocalState>({
 		_id: 'tabs-base-id',
 		_name: 'tabs-base-name',
 
@@ -56,7 +60,7 @@ export default function DBTabs(props: DBTabsProps) {
 			}
 		},
 
-		handleClick(event: any) {
+		handleClick(event: MouseEvent) {
 			const target = event.target as HTMLElement;
 			const button = target.closest('[role="tab"]');
 			if (!button || !_ref) return;

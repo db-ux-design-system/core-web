@@ -15,7 +15,7 @@ useMetadata({});
 useDefaultProps<DBTabPanelProps>({});
 
 export default function DBTabPanel(props: DBTabPanelProps) {
-	const _ref = useRef<HTMLDivElement | any>(null);
+	const _ref = useRef<HTMLDivElement>(null);
 
 	const state = useStore<DBTabPanelState>({
 		internalHidden: props.hidden,
