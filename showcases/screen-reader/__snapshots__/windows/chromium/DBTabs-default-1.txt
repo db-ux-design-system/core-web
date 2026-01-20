@@ -1,1 +1,1 @@
-["tab, Test 2","selected","tab, Test 3","Tab Panel 2"]
+["","Showcase, document. blank","clickable, tab, selected, Functional Tab 1","tab, Functional Tab 2"]
