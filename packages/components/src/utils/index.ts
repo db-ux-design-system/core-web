@@ -133,9 +133,7 @@ export const getNumber = (
  * @param step - The step value, which can be a number, string, or undefined.
  * @returns The step value as a number or the string "any", or undefined.
  */
-export const getStep = (
-	step?: number | string
-): number | 'any' | undefined => {
+export const getStep = (step?: number | string): number | 'any' | undefined => {
 	if (step === undefined || step === null) {
 		return;
 	}
