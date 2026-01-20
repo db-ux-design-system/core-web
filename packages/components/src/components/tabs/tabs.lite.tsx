@@ -28,7 +28,7 @@ interface DBTabsLocalState extends DBTabsState {
 }
 
 export default function DBTabs(props: DBTabsProps) {
-	const _ref = useRef<HTMLDivElement>(null);
+	const _ref = useRef<HTMLDivElement | null>(null);
 
 	const state = useStore<DBTabsLocalState>({
 		_id: 'tabs-base-id',

@@ -11,7 +11,7 @@ useMetadata({});
 useDefaultProps<DBTabListProps>({});
 
 export default function DBTabList(props: DBTabListProps) {
-	const _ref = useRef<HTMLDivElement | any>(null);
+	const _ref = useRef<HTMLDivElement | null>(null);
 	const state = useStore<DBTabListState>({
 		_id: props.id || 'tab-list-' + uuid()
 	});
