@@ -30,7 +30,7 @@ export default function DBTabPanel(props: DBTabPanelProps) {
 			const observer = new MutationObserver((mutations) => {
 				mutations.forEach((mutation) => {
 					if (mutation.attributeName === 'hidden') {
-						const isHidden = _ref.hasAttribute('hidden');
+						const isHidden = _ref?.hasAttribute('hidden');
 						if (state.internalHidden !== isHidden) {
 							state.internalHidden = isHidden;
 						}
@@ -59,12 +59,12 @@ export default function DBTabPanel(props: DBTabPanelProps) {
 		if (_ref) {
 			// Manually update the DOM 'hidden' attribute to match the internal state
 			if (state.internalHidden) {
-				if (!_ref.hasAttribute('hidden')) {
-					_ref.setAttribute('hidden', '');
+				if (!_ref?.hasAttribute('hidden')) {
+					_ref?.setAttribute('hidden', '');
 				}
 			} else {
-				if (_ref.hasAttribute('hidden')) {
-					_ref.removeAttribute('hidden');
+				if (_ref?.hasAttribute('hidden')) {
+					_ref?.removeAttribute('hidden');
 				}
 			}
 		}
