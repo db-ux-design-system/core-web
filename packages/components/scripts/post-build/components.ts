@@ -360,6 +360,9 @@ export const getComponents = (): Component[] => [
 	{
 		name: 'brand'
 	},
+	{
+		name: 'breadcrumb-item'
+	},
 	// Added Angular post-build overwrites for breadcrumb to enforce strict-null-safe maxItems/items usage in generated templates
 	{
 		name: 'breadcrumb',

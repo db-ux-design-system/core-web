@@ -1,11 +1,12 @@
 import {
+	For,
 	Show,
 	useDefaultProps,
 	useMetadata,
 	useRef,
 	useStore
 } from '@builder.io/mitosis';
-import { cls, uuid } from '../../utils';
+import { cls, getBooleanAsString, uuid } from '../../utils';
 import { DBIcon } from '../icon';
 import type {
 	DBBreadcrumbItems,
@@ -24,30 +25,6 @@ useDefaultProps<DBBreadcrumbProps>({
 export default function DBBreadcrumb(props: DBBreadcrumbProps) {
 	const _ref = useRef<HTMLElement | any>(null);
 
-	const parseItems = (): DBBreadcrumbItems[] => {
-		if (!props.items) {
-			return [];
-		}
-
-		if (Array.isArray(props.items)) {
-			return props.items;
-		}
-
-		if (typeof props.items === 'string') {
-			try {
-				const parsed = JSON.parse(props.items);
-
-				return Array.isArray(parsed) ? parsed : [];
-			} catch (error) {
-				return [];
-			}
-		}
-
-		return [];
-	};
-
-	const items = parseItems();
-
 	const state = useStore<DBBreadcrumbState>({
 		uniqueId: uuid(),
 		isExpanded: false,
@@ -57,74 +34,52 @@ export default function DBBreadcrumb(props: DBBreadcrumbProps) {
 		iconWeight: (): '24' | '20' => {
 			return props.size === 'medium' ? '24' : '20';
 		},
-		items: (): DBBreadcrumbItems[] => {
-			return items;
+		parseItems(): DBBreadcrumbItems[] {
+			const value = props.items;
+			if (!value) {
+				return [];
+			}
+
+			if (Array.isArray(value)) {
+				return value;
+			}
+
+			if (typeof value === 'string') {
+				try {
+					const parsed = JSON.parse(value);
+					return Array.isArray(parsed) ? parsed : [];
+				} catch (error) {
+					return [];
+				}
+			}
+
+			return [];
 		},
-		isCollapsed: (): boolean => {
+		normalizedItems(): DBBreadcrumbItems[] {
+			return state.parseItems();
+		},
+		isCollapsed(): boolean {
+			const normalized = state.normalizedItems();
+			const maxItems = props.maxItems ?? 0;
 			return (
-				items.length > 0 &&
-				!!props.maxItems &&
-				props.maxItems! > 0 &&
-				items.length > props.maxItems! &&
+				normalized.length > 0 &&
+				maxItems > 0 &&
+				normalized.length > maxItems &&
 				!state.isExpanded
 			);
+		},
+		collapsedTailItems(): DBBreadcrumbItems[] {
+			const normalized = state.normalizedItems();
+			const maxItems = props.maxItems ?? 0;
+			const collapsedTailCount = maxItems > 0 ? maxItems - 1 : 0;
+
+			return collapsedTailCount > 0
+				? normalized.slice(normalized.length - collapsedTailCount)
+				: [];
+		},
+		ariaCurrent(item: DBBreadcrumbItems, isLast: boolean) {
+			return isLast ? (item.ariaCurrent ?? 'page') : undefined;
 		}
-	});
-
-	const renderItem = (
-		item: DBBreadcrumbItems,
-		index: number,
-		isLast: boolean
-	) => (
-		<li key={index}>
-			<Show
-				when={item.href}
-				else={
-					<span
-						aria-current={
-							isLast ? (item.ariaCurrent ?? 'page') : undefined
-						}>
-						<Show when={item.icon}>
-							<DBIcon
-								weight={state.iconWeight()}
-								icon={item.icon}
-							/>
-						</Show>
-						{item.text}
-					</span>
-				}>
-				<a
-					href={item.href}
-					aria-current={
-						isLast ? (item.ariaCurrent ?? 'page') : undefined
-					}>
-					<Show when={item.icon}>
-						<DBIcon weight={state.iconWeight()} icon={item.icon} />
-					</Show>
-					{item.text}
-				</a>
-			</Show>
-		</li>
-	);
-
-	const shouldRenderItems = items.length > 0;
-	const collapsedTailCount =
-		props.maxItems && props.maxItems > 0 ? props.maxItems - 1 : 0;
-	const collapsedTailItems =
-		props.maxItems && collapsedTailCount > 0
-			? items.slice(items.length - collapsedTailCount)
-			: [];
-
-	const renderedItems = items.map((item, index) => {
-		return renderItem(item, index, index === items.length - 1);
-	});
-
-	const renderedCollapsedTail = collapsedTailItems.map((item, index) => {
-		return renderItem(
-			item,
-			index + 1,
-			index === collapsedTailItems.length - 1
-		);
 	});
 
 	return (
@@ -143,10 +98,117 @@ export default function DBBreadcrumb(props: DBBreadcrumbProps) {
 			<ol
 				class="db-breadcrumb-list"
 				id={props.id ? `${props.id}-list` : 'db-breadcrumb-list'}>
-				{shouldRenderItems ? (
-					state.isCollapsed() ? (
+				<Show
+					when={state.normalizedItems().length > 0}
+					else={<>{props.children}</>}>
+					{/* jscpd:ignore-start */}
+					<Show
+						when={state.isCollapsed()}
+						else={
+							<For each={state.normalizedItems()}>
+								{(item, index) => (
+									<li>
+										<Show
+											when={item.href}
+											else={
+												<span
+													aria-current={state.ariaCurrent(
+														item,
+														index ===
+															state.normalizedItems()
+																.length -
+																1
+													)}>
+													<Show when={item.icon}>
+														<DBIcon
+															weight={state.iconWeight()}
+															icon={item.icon}
+														/>
+													</Show>
+													{item.text}
+												</span>
+											}>
+											<a
+												href={item.href}
+												aria-current={state.ariaCurrent(
+													item,
+													index ===
+														state.normalizedItems()
+															.length -
+															1
+												)}>
+												<Show when={item.icon}>
+													<DBIcon
+														weight={state.iconWeight()}
+														icon={item.icon}
+													/>
+												</Show>
+												{item.text}
+											</a>
+										</Show>
+									</li>
+								)}
+							</For>
+						}>
 						<>
-							{renderItem(items[0], 0, items.length === 1)}
+							{/* jscpd:ignore-end */}
+							<Show when={state.normalizedItems()[0]}>
+								<li key={0}>
+									<Show
+										when={state.normalizedItems()[0].href}
+										else={
+											<span
+												aria-current={state.ariaCurrent(
+													state.normalizedItems()[0],
+													state.normalizedItems()
+														.length === 1
+												)}>
+												<Show
+													when={
+														state.normalizedItems()[0]
+															.icon
+													}>
+													<DBIcon
+														weight={state.iconWeight()}
+														icon={
+															state.normalizedItems()[0]
+																.icon
+														}
+													/>
+												</Show>
+												{
+													state.normalizedItems()[0]
+														.text
+												}
+											</span>
+										}>
+										<a
+											href={
+												state.normalizedItems()[0].href
+											}
+											aria-current={state.ariaCurrent(
+												state.normalizedItems()[0],
+												state.normalizedItems()
+													.length === 1
+											)}>
+											<Show
+												when={
+													state.normalizedItems()[0]
+														.icon
+												}>
+												<DBIcon
+													weight={state.iconWeight()}
+													icon={
+														state.normalizedItems()[0]
+															.icon
+													}
+												/>
+											</Show>
+											{state.normalizedItems()[0].text}
+										</a>
+									</Show>
+								</li>
+							</Show>
 							<li key="ellipsis">
 								<button
 									type="button"
@@ -155,9 +217,9 @@ export default function DBBreadcrumb(props: DBBreadcrumbProps) {
 										props.ellipsisAriaLabel ??
 										'Expand to show all breadcrumb items'
 									}
-									aria-expanded={
-										state.isExpanded ? 'true' : 'false'
-									}
+									aria-expanded={getBooleanAsString(
+										state.isExpanded
+									)}
 									aria-controls={
 										props.id
 											? `${props.id}-list`
@@ -167,14 +229,53 @@ export default function DBBreadcrumb(props: DBBreadcrumbProps) {
 									…
 								</button>
 							</li>
-							{renderedCollapsedTail}
+							<For each={state.collapsedTailItems()}>
+								{(item, index) => (
+									<li>
+										<Show
+											when={item.href}
+											else={
+												<span
+													aria-current={state.ariaCurrent(
+														item,
+														index ===
+															state.collapsedTailItems()
+																.length -
+																1
+													)}>
+													<Show when={item.icon}>
+														<DBIcon
+															weight={state.iconWeight()}
+															icon={item.icon}
+														/>
+													</Show>
+													{item.text}
+												</span>
+											}>
+											<a
+												href={item.href}
+												aria-current={state.ariaCurrent(
+													item,
+													index ===
+														state.collapsedTailItems()
+															.length -
+															1
+												)}>
+												<Show when={item.icon}>
+													<DBIcon
+														weight={state.iconWeight()}
+														icon={item.icon}
+													/>
+												</Show>
+												{item.text}
+											</a>
+										</Show>
+									</li>
+								)}
+							</For>
 						</>
-					) : (
-						<>{renderedItems}</>
-					)
-				) : (
-					<>{props.children}</>
-				)}
+					</Show>
+				</Show>
 			</ol>
 		</nav>
 	);

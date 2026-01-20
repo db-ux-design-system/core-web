@@ -79,9 +79,24 @@ export type DBBreadcrumbDefaultState = {
 	 */
 	iconWeight: () => '24' | '20';
 	/**
+	 * Normalizes incoming items prop to an array.
+	 */
+	parseItems: () => DBBreadcrumbItems[];
+	/**
 	 * Determines if breadcrumb should render in collapsed state.
 	 */
 	isCollapsed: () => boolean;
+	/**
+	 * Items that render after the ellipsis when collapsed.
+	 */
+	collapsedTailItems: () => DBBreadcrumbItems[];
+	/**
+	 * aria-current value for a breadcrumb item.
+	 */
+	ariaCurrent: (
+		item: DBBreadcrumbItems,
+		isLast: boolean
+	) => DBBreadcrumbItems['ariaCurrent'] | undefined;
 	/**
 	 * Unique id per instance used for deterministic fallbacks.
 	 */
@@ -89,7 +104,7 @@ export type DBBreadcrumbDefaultState = {
 	/**
 	 * Normalized breadcrumb items derived from the `items` prop.
 	 */
-	items: () => DBBreadcrumbItems[];
+	normalizedItems: () => DBBreadcrumbItems[];
 };
 
 export type DBBreadcrumbState = DBBreadcrumbDefaultState & GlobalState;

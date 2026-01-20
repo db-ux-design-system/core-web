@@ -37,3 +37,4 @@ export type DBBreadcrumbItemDefaultProps = {
 };
 
 export type DBBreadcrumbItems = DBBreadcrumbItemDefaultProps & GlobalProps;
+export type DBBreadcrumbItemProps = DBBreadcrumbItems;
