@@ -50,7 +50,7 @@ describe('build-gh-page', () => {
 		}
 
 		expect(result.toString().trim()).toEqual(
-			'Command failed: npx --no tsx github/get-release.ts\nDependabot has no permission to publish!'
+			'Command failed: pnpm exec tsx github/get-release.ts\nDependabot has no permission to publish!'
 		);
 	});
 });

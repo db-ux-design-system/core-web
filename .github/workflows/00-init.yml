@@ -98,14 +98,14 @@ jobs:
       - name: 🪁 Get playwright version
         id: version
         run: |
-          OUTPUT=$(npx --no tsx scripts/github/get-playwright-version.ts)
+          OUTPUT=$(pnpm exec tsx scripts/github/get-playwright-version.ts)
           echo "version=$OUTPUT" >> $GITHUB_OUTPUT
 
       - name: 👩 Should Test a11y
         id: ally
         shell: bash
         run: |
-          ARIA_MAIN=$(npx --no tsx scripts/github/snapshot-changes/check-main-aria.ts)
+          ARIA_MAIN=$(pnpm exec tsx scripts/github/snapshot-changes/check-main-aria.ts)
           echo "test-ally=$ARIA_MAIN"
           echo "test-ally=$ARIA_MAIN" >> $GITHUB_OUTPUT
 
@@ -127,7 +127,7 @@ jobs:
       - name: 💃🕺 Check if release or prerelease
         id: releaseCheck
         run: |
-          OUTPUT=$(npx --no tsx scripts/github/get-release.ts)
+          OUTPUT=$(pnpm exec tsx scripts/github/get-release.ts)
           if [[ $OUTPUT == "RELEASE" ]];
           then
             echo "release=true" >> $GITHUB_OUTPUT
@@ -153,7 +153,7 @@ jobs:
           PRE_RELEASE: ${{ steps.releaseCheck.outputs.preRelease }}
           TAG: ${{ steps.extractTag.outputs.tag }}
         run: |
-          OUTPUT=$(npx --no tsx scripts/github/package-version.ts)
+          OUTPUT=$(pnpm exec tsx scripts/github/package-version.ts)
           echo "version=$OUTPUT" >> $GITHUB_OUTPUT
 
       - name: 🌳 Log Valid Version
