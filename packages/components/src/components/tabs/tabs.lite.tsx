@@ -66,7 +66,7 @@ export default function DBTabs(props: DBTabsProps) {
 			const button = target.closest('[role="tab"]');
 			if (!button || !_ref) return;
 
-			const tabList = _ref.querySelector('[role="tablist"]');
+			const tabList = _ref?.querySelector('[role="tablist"]');
 			if (!tabList) return;
 			const buttons = Array.from(tabList.querySelectorAll('[role="tab"]'));
 			const index = buttons.indexOf(button as HTMLElement);
@@ -127,7 +127,7 @@ export default function DBTabs(props: DBTabsProps) {
 		// Initializes the tab list container with ARIA attributes and scroll behavior logic
 		initTabList() {
 			if (_ref) {
-				const tabList = _ref.querySelector('.db-tab-list');
+				const tabList = _ref?.querySelector('.db-tab-list');
 				if (tabList) {
 					const container: HTMLElement | null =
 						tabList.querySelector('[role="tablist"]');
@@ -168,11 +168,11 @@ export default function DBTabs(props: DBTabsProps) {
 		// Initializes tab items and panels, setting up IDs, ARIA attributes and event listeners
 		initTabs() {
 			if (_ref) {
-				const tabListEl = _ref.querySelector(
+				const tabListEl = _ref?.querySelector(
 					'.db-tab-list > [role="tablist"]'
 				);
 				const panels = Array.from<HTMLElement>(
-					_ref.querySelectorAll('[role="tabpanel"]')
+					_ref?.querySelectorAll('[role="tabpanel"]') ?? []
 				);
 
 				if (!tabListEl) return;

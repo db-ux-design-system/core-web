@@ -17,7 +17,7 @@ useMetadata({});
 useDefaultProps<DBTabItemProps>({});
 
 export default function DBTabItem(props: DBTabItemProps) {
-	const _ref = useRef<HTMLButtonElement>(null);
+	const _ref = useRef<HTMLButtonElement | null>(null);
 
 	const state = useStore<DBTabItemState>({
 		internalActive: getBoolean(props.active) || false,
@@ -47,7 +47,7 @@ export default function DBTabItem(props: DBTabItemProps) {
 				mutations.forEach((mutation) => {
 					if (mutation.attributeName === 'aria-selected') {
 						const isSelected =
-							_ref.getAttribute('aria-selected') === 'true';
+							_ref?.getAttribute('aria-selected') === 'true';
 						if (state.internalActive !== isSelected) {
 							state.internalActive = isSelected;
 						}
@@ -92,22 +92,22 @@ export default function DBTabItem(props: DBTabItemProps) {
 						? '0'
 						: '-1';
 
-			if (_ref.getAttribute('tabindex') !== tabIndexStr) {
-				_ref.setAttribute('tabindex', tabIndexStr);
+			if (_ref?.getAttribute('tabindex') !== tabIndexStr) {
+				_ref?.setAttribute('tabindex', tabIndexStr);
 			}
 
 			const disabledStr = state.disabled ? 'true' : 'false';
-			if (_ref.getAttribute('aria-disabled') !== disabledStr) {
-				_ref.setAttribute('aria-disabled', disabledStr);
+			if (_ref?.getAttribute('aria-disabled') !== disabledStr) {
+				_ref?.setAttribute('aria-disabled', disabledStr);
 			}
 
 			if (state.disabled) {
-				if (!_ref.hasAttribute('disabled')) {
-					_ref.setAttribute('disabled', '');
+				if (!_ref?.hasAttribute('disabled')) {
+					_ref?.setAttribute('disabled', '');
 				}
 			} else {
-				if (_ref.hasAttribute('disabled')) {
-					_ref.removeAttribute('disabled');
+				if (_ref?.hasAttribute('disabled')) {
+					_ref?.removeAttribute('disabled');
 				}
 			}
 		}
