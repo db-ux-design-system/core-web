@@ -1,4 +1,4 @@
-export type ProgrammOptionsType = {
+export type ProgramOptionsType = {
 	name: string;
 	short?: string;
 	long?: string;
