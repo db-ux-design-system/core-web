@@ -32,6 +32,7 @@
 }
 
 .variants-card,
+.variants-card > db-card > .db-card,
 .variants-card > .db-card {
 	min-block-size: var(--db-sizing-3xl);
 	align-items: center;
@@ -40,6 +41,7 @@
 	padding-block-end: calc(var(--db-spacing-fixed-xl) + var(--db-sizing-sm));
 }
 
+db-card:is(.variants-card) > db-card > .db-card,
 db-card:is(.variants-card) > .db-card {
 	padding: var(--db-spacing-fixed-sm);
 }

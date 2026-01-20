@@ -2,3 +2,9 @@
 @import "../../showcase-styles.css";
 @import "sa11y/dist/css/sa11y.min.css";
 @import "@db-ux/db-theme/build/styles/rollup.css";
+
+.variants-list > * > div:not([class^="db-"]) {
+	align-items: center;
+	display: flex;
+	gap: var(--db-spacing-fixed-md);
+}

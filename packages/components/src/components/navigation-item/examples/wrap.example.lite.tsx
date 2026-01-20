@@ -16,7 +16,7 @@ export default function NavigationItemWrap() {
 	return (
 		<Fragment>
 			<ul>
-				<DBNavigationItem areaPopup={true}>
+				<DBNavigationItem>
 					<a href="#">No Wrap (Default)</a>
 				</DBNavigationItem>
 			</ul>

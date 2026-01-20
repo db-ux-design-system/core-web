@@ -1,4 +1,4 @@
-import { Fragment, useMetadata } from '@builder.io/mitosis';
+import { Fragment, useMetadata, useTarget } from '@builder.io/mitosis';
 import DBCustomSelect from '../custom-select.lite';
 import type { CustomSelectOptionType } from '../model';
 import { StorybookCustomSelectArgTypes } from './_custom-select.arg.types';
@@ -62,11 +62,15 @@ export default function CustomSelectExampleOtherConfiguration() {
 						{ value: 'Option 4', id: '72n9ccsddc14' },
 						{ value: 'Option 5', id: '71n9ccsddc14' }
 					]}
-					transformSelectedLabels={(selectedOptions) =>
-						getTransformSelectedLabels(selectedOptions)
-					}
 					id="id-10aasds4"
-					label="Transform Selected Label"></DBCustomSelect>
+					label="Transform Selected Label"
+					{...useTarget({
+						angular: { transformSelectedLabels: undefined },
+						default: {
+							transformSelectedLabels: (selectedOptions: any) =>
+								getTransformSelectedLabels(selectedOptions)
+						}
+					})}></DBCustomSelect>
 			</div>
 			<div style={{ width: '200px' }}>
 				<DBCustomSelect
@@ -77,10 +81,15 @@ export default function CustomSelectExampleOtherConfiguration() {
 						{ value: 'Option 4', id: '72n9ccsddc14' },
 						{ value: 'Option 5', id: '71n9ccsddc14' }
 					]}
-					searchFilter={(option) => getSearchFilter(option)}
-					showSearch={true}
 					id="id-10aasds4"
-					label="Custom Search Filter"></DBCustomSelect>
+					label="Custom Search Filter"
+					{...useTarget({
+						angular: { searchFilter: undefined },
+						default: {
+							searchFilter: (option: any) =>
+								getSearchFilter(option)
+						}
+					})}></DBCustomSelect>
 			</div>
 		</Fragment>
 	);

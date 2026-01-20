@@ -7,21 +7,14 @@
 const processNode = (node) => {
 	if (!node || node['@type'] !== '@builder.io/mitosis/node') return;
 
-	if (node.slots) {
-		for (const [key, binding] of Object.entries(node.slots)) {
-			const slotNode = {
-				'@type': '@builder.io/mitosis/node',
-				name: 'template',
-				meta: {},
-				scope: {},
-				bindings: {},
-				children: binding,
-				properties: {
-					'v-slot': key.replace(/([A-Z])/g, '-$1').toLowerCase()
-				}
-			};
-			node.children.push(slotNode);
-			delete node.bindings[key];
+	if (node.name.startsWith('DB')) {
+		if (node.bindings['class']) {
+			node.bindings['className'] = node.bindings['class'];
+			delete node.bindings['class'];
+		}
+		if (node.properties['class']) {
+			node.properties['className'] = node.properties['class'];
+			delete node.properties['class'];
 		}
 	}
 
@@ -36,11 +29,6 @@ module.exports = () => ({
 		post: (json) => {
 			json.children?.forEach(processNode);
 			return json;
-		}
-	},
-	code: {
-		post: (code) => {
-			return code.replace(/v-slot="([^"]+)"/g, 'v-slot:$1');
 		}
 	}
 });
