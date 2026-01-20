@@ -2,4 +2,4 @@
   - tab "Test 1" [selected]
   - tab "Test 2"
   - tab "Test 3"
-- tabpanel: TestPanel 1
+- tabpanel "Test 1": TestPanel 1
