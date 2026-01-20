@@ -22,13 +22,14 @@ useDefaultProps<DBTabsProps>({});
 interface DBTabsLocalState extends DBTabsState {
 	getTabId: (index: number | string) => string;
 	getPanelId: (index: number | string) => string;
-	handleClick: (event: MouseEvent) => void;
+	handleClick: (event: any) => void;
 	isIndexActive: (index: number | string) => boolean;
 	getTabItemTabIndex: (index: number | string) => 0 | -1;
 }
 
 export default function DBTabs(props: DBTabsProps) {
 	const _ref = useRef<HTMLDivElement>(null);
+
 	const state = useStore<DBTabsLocalState>({
 		_id: 'tabs-base-id',
 		_name: 'tabs-base-name',
@@ -60,7 +61,7 @@ export default function DBTabs(props: DBTabsProps) {
 			}
 		},
 
-		handleClick(event: MouseEvent) {
+		handleClick(event: any) {
 			const target = event.target as HTMLElement;
 			const button = target.closest('[role="tab"]');
 			if (!button || !_ref) return;

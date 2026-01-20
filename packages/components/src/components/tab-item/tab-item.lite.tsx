@@ -18,11 +18,12 @@ useDefaultProps<DBTabItemProps>({});
 
 export default function DBTabItem(props: DBTabItemProps) {
 	const _ref = useRef<HTMLButtonElement>(null);
+
 	const state = useStore<DBTabItemState>({
 		internalActive: getBoolean(props.active) || false,
 		disabled: false,
 		_observer: null,
-		handleClick: (event: MouseEvent) => {
+		handleClick: (event: any) => {
 			if (event && event.preventDefault) {
 				event.preventDefault();
 			}
