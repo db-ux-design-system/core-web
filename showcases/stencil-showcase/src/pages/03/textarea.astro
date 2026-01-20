@@ -3,55 +3,21 @@ import DefaultLayout from '../../layouts/default/DefaultLayout.astro';
 import DefaultComponent from '../../components/default/DefaultComponent.astro';
 import defaultComponentVariants from '../../../../shared/textarea.json';
 import type { DBTextareaProps } from '@components';
-import { getPropsAsAttributes, getVariantsWithExamples } from '../../utils';
-
-const exampleFn = ({
-	cols,
-	disabled,
-	message,
-	label,
-	placeholder,
-	rows,
-	value,
-	readOnly,
-	required,
-	children,
-	variant,
-	showLabel,
-	showMessage,
-	validMessage,
-	validation,
-	invalidMessage,
-	fieldSizing,
-	showResizer,
-	showRequiredAsterisk,
-}: DBTextareaProps) => {
-	const props = {
-		cols,
-		'show-required-asterisk': showRequiredAsterisk,
-		disabled,
-		'show-label': showLabel,
-		message,
-		label,
-		variant,
-		'read-only': readOnly,
-		required,
-		placeholder: placeholder ?? children,
-		rows,
-		value,
-		'show-message': showMessage,
-		'invalid-message': invalidMessage,
-		'valid-message': validMessage,
-		validation,
-		'show-resizer': showResizer,
-		'field-sizing': fieldSizing,
-	};
-
-	return `<db-textarea ${getPropsAsAttributes(props)}></db-textarea>`;
-};
-const variants = getVariantsWithExamples<DBTextareaProps>(defaultComponentVariants, exampleFn);
+import VariantList from '../../components/default/VariantList.astro';
+import type { DefaultComponentVariants } from '../../../../shared/default-component-data.ts';
+import { DBTextarea } from '@components';
 ---
 
 <DefaultLayout>
-	<DefaultComponent title="DBTextarea" variants={variants} />
+	<DefaultComponent title="DBTextarea" variants={defaultComponentVariants}
+		>{
+			(variant: DefaultComponentVariants) => (
+				<VariantList {...variant}>
+					{({ children, placeholder, ...props }: DBTextareaProps) => (
+						<DBTextarea placeholder={placeholder ?? children} {...props} />
+					)}
+				</VariantList>
+			)
+		}</DefaultComponent
+	>
 </DefaultLayout>

@@ -1,6 +1,6 @@
 ---
 import type { DefaultComponentVariants } from '../../../../shared/default-component-data.ts';
-import VariantList from './VariantList.astro';
+import { DBDivider, DBLink } from '@components';
 import { COLOR, DENSITY } from '@db-ux/ngx-core-components/src';
 interface Props {
 	title: string;
@@ -23,19 +23,19 @@ const getLink = (variantName: string) => {
 		<h1>{title}</h1>
 	</div>
 	{
-		variants.map((variant, index) => (
+		variants.map((variant) => (
 			<div>
-				<db-divider />
-				<db-link
-					class="link-headline"
+				<DBDivider />
+				<DBLink
+					className="link-headline"
 					content="external"
 					target="_blank"
 					rel="noopener noreferrer"
 					href={getLink(variant.name)}
 				>
 					{variant.name}
-				</db-link>
-				<VariantList {...variant} />
+				</DBLink>
+				<Fragment set:html={Astro.slots.render('default', [variant])} />
 			</div>
 		))
 	}

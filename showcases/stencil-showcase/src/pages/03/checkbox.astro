@@ -3,58 +3,30 @@ import DefaultLayout from '../../layouts/default/DefaultLayout.astro';
 import DefaultComponent from '../../components/default/DefaultComponent.astro';
 import defaultComponentVariants from '../../../../shared/checkbox.json';
 import type { DBCheckboxProps } from '@components';
-import { getPropsAsAttributes, getVariantsWithExamples } from '../../utils';
-
-const exampleFn = ({
-	label,
-	size,
-	name,
-	checked,
-	required,
-	children,
-	disabled,
-	indeterminate,
-	variant,
-	showLabel,
-	validation,
-	invalidMessage,
-	validMessage,
-	showRequiredAsterisk,
-}: DBCheckboxProps) => {
-	const props = {
-		label,
-		size,
-		name,
-		checked,
-		required,
-		disabled,
-		indeterminate,
-		variant,
-		'show-label': showLabel,
-		validation,
-		'invalid-message': invalidMessage,
-		'valid-message': validMessage,
-		'show-required-asterisk': showRequiredAsterisk,
-	};
-
-	return `
-		<db-checkbox ${getPropsAsAttributes(props)}>
-			${children}
-		</db-checkbox>
-		${
-			showLabel !== undefined && !showLabel
-				? `
-			<db-infotext size="small" semantic="informational" show-icon="false">
-				${children}
-			</db-infotext>
-		`
-				: ''
-		}
-	`;
-};
-const variants = getVariantsWithExamples<DBCheckboxProps>(defaultComponentVariants, exampleFn);
+import VariantList from '../../components/default/VariantList.astro';
+import type { DefaultComponentVariants } from '../../../../shared/default-component-data.ts';
+import { DBCheckbox, DBInfotext } from '@components';
 ---
 
 <DefaultLayout>
-	<DefaultComponent title="DBCheckbox" variants={variants} />
+	<DefaultComponent title="DBCheckbox" variants={defaultComponentVariants}
+		>{
+			(variant: DefaultComponentVariants) => (
+				<VariantList {...variant}>
+					{({ children, showLabel, ...props }: DBCheckboxProps) => (
+						<>
+							<DBCheckbox showLabel={showLabel} {...props}>
+								{children}
+							</DBCheckbox>
+							{showLabel !== undefined && !showLabel && (
+								<DBInfotext size="small" semantic="informational" showIcon={false}>
+									{children}
+								</DBInfotext>
+							)}
+						</>
+					)}
+				</VariantList>
+			)
+		}</DefaultComponent
+	>
 </DefaultLayout>

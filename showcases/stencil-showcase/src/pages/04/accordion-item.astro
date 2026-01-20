@@ -3,24 +3,21 @@ import DefaultLayout from '../../layouts/default/DefaultLayout.astro';
 import DefaultComponent from '../../components/default/DefaultComponent.astro';
 import defaultComponentVariants from '../../../../shared/accordion-item.json';
 import type { DBAccordionItemProps } from '@components';
-import { getPropsAsAttributes, getVariantsWithExamples } from '../../utils';
-
-const exampleFn = ({
-	children,
-	disabled,
-	open,
-	headlinePlain,
-}: DBAccordionItemProps & { open?: boolean }) => {
-	const props = { 'headline-plain': headlinePlain, disabled, 'default-open': open };
-
-	return `<db-accordion-item ${getPropsAsAttributes(props)}>${children}</db-accordion-item>`;
-};
-const variants = getVariantsWithExamples<DBAccordionItemProps & { open?: boolean }>(
-	defaultComponentVariants,
-	exampleFn,
-);
+import VariantList from '../../components/default/VariantList.astro';
+import type { DefaultComponentVariants } from '../../../../shared/default-component-data.ts';
+import { DBAccordionItem } from '@components';
 ---
 
 <DefaultLayout>
-	<DefaultComponent title="DBAccordionItem" variants={variants} />
+	<DefaultComponent title="DBAccordionItem" variants={defaultComponentVariants}
+		>{
+			(variant: DefaultComponentVariants) => (
+				<VariantList {...variant}>
+					{({ children, open, ...props }: DBAccordionItemProps & { open?: boolean }) => (
+						<DBAccordionItem defaultOpen={open} {...props}>{children}</DBAccordionItem>
+					)}
+				</VariantList>
+			)
+		}</DefaultComponent
+	>
 </DefaultLayout>

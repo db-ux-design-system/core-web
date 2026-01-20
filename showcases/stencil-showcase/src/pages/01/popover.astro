@@ -3,40 +3,34 @@ import DefaultLayout from '../../layouts/default/DefaultLayout.astro';
 import DefaultComponent from '../../components/default/DefaultComponent.astro';
 import defaultComponentVariants from '../../../../shared/popover.json';
 import type { DBPopoverProps } from '@components';
-import { getPropsAsAttributes, getVariantsWithExamples } from '../../utils';
-
-const exampleFn = ({
-	id,
-	children,
-	width,
-	gap,
-	spacing,
-	placement,
-	delay,
-	content,
-	animation,
-}: DBPopoverProps & { content?: string }) => {
-	const props = { id, width, gap, spacing, placement, delay, animation };
-
-	return `
-		<db-popover ${getPropsAsAttributes(props)}>
-			<db-button slot="trigger">${children}</db-button>
-			${
-				content ??
-				`
-				<ul class="popover-list">
-					<li>Popover Custom Item 1</li>
-					<li>Popover Custom Item 2</li>
-				</ul>
-				<db-button>Popover Custom Item 3</db-button>
-			`
-			}
-		</db-popover>
-	`;
-};
-const variants = getVariantsWithExamples<DBPopoverProps>(defaultComponentVariants, exampleFn);
+import VariantList from '../../components/default/VariantList.astro';
+import type { DefaultComponentVariants } from '../../../../shared/default-component-data.ts';
+import { DBPopover, DBButton } from '@components';
 ---
 
 <DefaultLayout>
-	<DefaultComponent title="DBPopover" variants={variants} />
+	<DefaultComponent title="DBPopover" variants={defaultComponentVariants}
+		>{
+			(variant: DefaultComponentVariants) => (
+				<VariantList {...variant}>
+					{({ children, content, ...props }: DBPopoverProps & { content?: string }) => (
+						<DBPopover {...props}>
+							<DBButton slot="trigger">{children}</DBButton>
+							{content ? (
+								content
+							) : (
+								<>
+									<ul class="popover-list">
+										<li>Popover Custom Item 1</li>
+										<li>Popover Custom Item 2</li>
+									</ul>
+									<DBButton>Popover Custom Item 3</DBButton>
+								</>
+							)}
+						</DBPopover>
+					)}
+				</VariantList>
+			)
+		}</DefaultComponent
+	>
 </DefaultLayout>

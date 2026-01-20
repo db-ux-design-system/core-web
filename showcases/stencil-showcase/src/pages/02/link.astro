@@ -3,29 +3,21 @@ import DefaultLayout from '../../layouts/default/DefaultLayout.astro';
 import DefaultComponent from '../../components/default/DefaultComponent.astro';
 import defaultComponentVariants from '../../../../shared/link.json';
 import type { DBLinkProps } from '@components';
-import { getPropsAsAttributes, getVariantsWithExamples } from '../../utils';
-
-const exampleFn = ({
-	href,
-	variant,
-	disabled,
-	size,
-	content,
-	children,
-	showIcon,
-	wrap,
-}: DBLinkProps) => {
-	const props = { href, variant, disabled, size, content, 'show-icon': showIcon, wrap };
-
-	return `
-		<db-link ${getPropsAsAttributes(props)}>
-			${children}
-		</db-link>
-	`;
-};
-const variants = getVariantsWithExamples<DBLinkProps>(defaultComponentVariants, exampleFn);
+import VariantList from '../../components/default/VariantList.astro';
+import type { DefaultComponentVariants } from '../../../../shared/default-component-data.ts';
+import { DBLink } from '@components';
 ---
 
 <DefaultLayout>
-	<DefaultComponent title="DBLink" variants={variants} />
+	<DefaultComponent title="DBLink" variants={defaultComponentVariants}
+		>{
+			(variant: DefaultComponentVariants) => (
+				<VariantList {...variant}>
+					{({ children, ...props }: DBLinkProps) => (
+						<DBLink {...props}>{children}</DBLink>
+					)}
+				</VariantList>
+			)
+		}</DefaultComponent
+	>
 </DefaultLayout>

@@ -3,86 +3,40 @@ import DefaultLayout from '../../layouts/default/DefaultLayout.astro';
 import DefaultComponent from '../../components/default/DefaultComponent.astro';
 import defaultComponentVariants from '../../../../shared/input.json';
 import type { DBInputProps } from '@components';
-import { getPropsAsAttributes, getVariantsWithExamples } from '../../utils';
-
-const exampleFn = ({
-	label,
-	value,
-	type,
-	minLength,
-	required,
-	disabled,
-	iconTrailing,
-	showIcon,
-	showIconTrailing,
-	icon,
-	children,
-	message,
-	variant,
-	readOnly,
-	dataList,
-	showLabel,
-	showMessage,
-	validMessage,
-	validation,
-	invalidMessage,
-	showRequiredAsterisk,
-	maxLength,
-	max,
-	min,
-}: DBInputProps & { dataList?: boolean }) => {
-	const id = Math.random().toString(36).substring(2, 15);
-	const dataListValue =
-		variant === 'floating'
-			? JSON.stringify(['Test 1', 'Test 2'])
-			: JSON.stringify([
-					{ value: 'test1', label: 'Test 1' },
-					{ value: 'test2', label: 'Test 2' },
-				]);
-
-	const props = {
-		id,
-		label,
-		message,
-		placeholder: children,
-		variant,
-		'show-label': showLabel,
-		'show-required-asterisk': showRequiredAsterisk,
-		value,
-		type,
-		'min-length': minLength,
-		required,
-		disabled,
-		'read-only': readOnly,
-		'icon-trailing': iconTrailing,
-		'show-icon-trailing': showIconTrailing,
-		'max-length': maxLength,
-		max,
-		min,
-		icon,
-		'show-icon': showIcon,
-		'show-message': showMessage,
-		'invalid-message': invalidMessage,
-		'valid-message': validMessage,
-		validation,
-	};
-
-	const dataListScript = dataList
-		? `<script>
-		document.querySelector('db-input[id="${id}"]').dataList = ${dataListValue};
-</script>`
-		: '';
-
-	return `<db-input ${getPropsAsAttributes(props)}></db-input>
-${dataListScript}
-`;
-};
-const variants = getVariantsWithExamples<DBInputProps & { dataList?: boolean }>(
-	defaultComponentVariants,
-	exampleFn,
-);
+import VariantList from '../../components/default/VariantList.astro';
+import type { DefaultComponentVariants } from '../../../../shared/default-component-data.ts';
+import { DBInput } from '@components';
 ---
 
 <DefaultLayout>
-	<DefaultComponent title="DBInput" variants={variants} />
+	<DefaultComponent title="DBInput" variants={defaultComponentVariants}
+		>{
+			(variant: DefaultComponentVariants) => (
+				<VariantList {...variant}>
+					{({ children, dataList, variant, ...props }: DBInputProps & { dataList?: boolean }) => {
+						const id = Math.random().toString(36).substring(2, 15);
+						const dataListValue =
+							variant === 'floating'
+								? JSON.stringify(['Test 1', 'Test 2'])
+								: JSON.stringify([
+										{ value: 'test1', label: 'Test 1' },
+										{ value: 'test2', label: 'Test 2' },
+								  ]);
+						return (
+							<>
+								<DBInput id={id} placeholder={children} variant={variant} {...props} />
+								{dataList && (
+									<script define:vars={{ id, dataListValue }} is:inline>
+										document.addEventListener('DOMContentLoaded', () => {
+											document.querySelector(`db-input[id="${id}"]`).dataList = JSON.parse(dataListValue);
+										});
+									</script>
+								)}
+							</>
+						);
+					}}
+				</VariantList>
+			)
+		}</DefaultComponent
+	>
 </DefaultLayout>

@@ -3,30 +3,24 @@ import DefaultLayout from '../../layouts/default/DefaultLayout.astro';
 import DefaultComponent from '../../components/default/DefaultComponent.astro';
 import defaultComponentVariants from '../../../../shared/tooltip.json';
 import type { DBTooltipProps } from '@components';
-import { getPropsAsAttributes, getVariantsWithExamples } from '../../utils';
-
-const exampleFn = ({
-	children,
-	width,
-	emphasis,
-	placement,
-	delay,
-	content,
-	animation,
-	showArrow,
-}: DBTooltipProps & { content?: string }) => {
-	const props = { width, emphasis, placement, delay, animation, 'show-arrow': showArrow };
-
-	return `
-		<db-button>${children}<db-tooltip ${getPropsAsAttributes(props)}>
-				${content}
-			</db-tooltip>
-		</db-button>
-	`;
-};
-const variants = getVariantsWithExamples<DBTooltipProps>(defaultComponentVariants, exampleFn);
+import VariantList from '../../components/default/VariantList.astro';
+import type { DefaultComponentVariants } from '../../../../shared/default-component-data.ts';
+import { DBButton, DBTooltip } from '@components';
 ---
 
 <DefaultLayout>
-	<DefaultComponent title="DBTooltip" variants={variants} />
+	<DefaultComponent title="DBTooltip" variants={defaultComponentVariants}
+		>{
+			(variant: DefaultComponentVariants) => (
+				<VariantList {...variant}>
+					{({ children, content, ...props }: DBTooltipProps & { content?: string }) => (
+						<DBButton>
+							{children}
+							<DBTooltip {...props}>{content}</DBTooltip>
+						</DBButton>
+					)}
+				</VariantList>
+			)
+		}</DefaultComponent
+	>
 </DefaultLayout>

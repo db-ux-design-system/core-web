@@ -67,6 +67,31 @@ export default function DBHeader(props: DBHeaderProps) {
 			id={props.id}
 			data-width={props.width}
 			data-on-forcing-mobile={props.forceMobile && !state.forcedToMobile}>
+			<DBDrawer
+				class="db-header-drawer"
+				rounded
+				spacing="small"
+				closeButtonId={props.closeButtonId}
+				closeButtonText={props.closeButtonText}
+				open={getBoolean(props.drawerOpen)}
+				onClose={() => state.handleToggle()}>
+				<div class="db-header-drawer-navigation">
+					<div
+						class="db-header-navigation"
+						onClick={(event) =>
+							state.handleNavigationItemClick(event)
+						}>
+						{props.children}
+					</div>
+					<div class="db-header-meta-navigation">
+						<Slot name="metaNavigation" />
+					</div>
+				</div>
+				<div class="db-header-secondary-action">
+					<Slot name="secondaryAction" />
+				</div>
+			</DBDrawer>
+
 			<div class="db-header-meta-navigation">
 				<Slot name="metaNavigation" />
 			</div>
@@ -95,31 +120,6 @@ export default function DBHeader(props: DBHeaderProps) {
 					</div>
 				</div>
 			</div>
-
-			<DBDrawer
-				class="db-header-drawer"
-				rounded
-				spacing="small"
-				closeButtonId={props.closeButtonId}
-				closeButtonText={props.closeButtonText}
-				open={getBoolean(props.drawerOpen)}
-				onClose={() => state.handleToggle()}>
-				<div class="db-header-drawer-navigation">
-					<div
-						class="db-header-navigation"
-						onClick={(event) =>
-							state.handleNavigationItemClick(event)
-						}>
-						{props.children}
-					</div>
-					<div class="db-header-meta-navigation">
-						<Slot name="metaNavigation" />
-					</div>
-				</div>
-				<div class="db-header-secondary-action">
-					<Slot name="secondaryAction" />
-				</div>
-			</DBDrawer>
 		</header>
 	);
 }

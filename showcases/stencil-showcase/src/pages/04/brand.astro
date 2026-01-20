@@ -3,21 +3,24 @@ import DefaultLayout from '../../layouts/default/DefaultLayout.astro';
 import DefaultComponent from '../../components/default/DefaultComponent.astro';
 import defaultComponentVariants from '../../../../shared/brand.json';
 import type { DBBrandProps } from '@components';
-import { getPropsAsAttributes, getVariantsWithExamples } from '../../utils';
-
-const exampleFn = ({ children, hideLogo, customLogo }: DBBrandProps & { customLogo?: boolean }) => {
-	const props = { 'hide-logo': hideLogo };
-
-	return `
-		<db-brand ${getPropsAsAttributes(props)}>
-			${customLogo ? '<img src="/assets/images/placeholder.jpg" alt="this is a fancy placeholder logo" />' : ''}
-			${children}
-		</db-brand>
-	`;
-};
-const variants = getVariantsWithExamples<DBBrandProps>(defaultComponentVariants, exampleFn);
+import VariantList from '../../components/default/VariantList.astro';
+import type { DefaultComponentVariants } from '../../../../shared/default-component-data.ts';
+import { DBBrand } from '@components';
 ---
 
 <DefaultLayout>
-	<DefaultComponent title="DBBrand" variants={variants} />
+	<DefaultComponent title="DBBrand" variants={defaultComponentVariants}
+		>{
+			(variant: DefaultComponentVariants) => (
+				<VariantList {...variant}>
+					{({ children, customLogo, ...props }: DBBrandProps & { customLogo?: boolean }) => (
+						<DBBrand {...props}>
+							{customLogo && <img src="/assets/images/placeholder.jpg" alt="this is a fancy placeholder logo" />}
+							{children}
+						</DBBrand>
+					)}
+				</VariantList>
+			)
+		}</DefaultComponent
+	>
 </DefaultLayout>

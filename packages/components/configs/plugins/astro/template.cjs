@@ -63,8 +63,9 @@ const getAstroTemplate = (json) => {
 		? `interface Props {
 		${props.map((prop) => `${prop}?: ${propsTypeRef ? `${propsTypeRef}["${prop}"]` : 'any'};`).join('\n\t')}
 		wc?: boolean;
+		[key: string]: any; // Allow everything else
 		}`
-		: 'interface Props { wc?: boolean; }';
+		: 'interface Props { wc?: boolean; \n		[key: string]: any; // Allow everything else}';
 
 	let stateType = 'any';
 	if (state && Object.keys(state).length > 0) {

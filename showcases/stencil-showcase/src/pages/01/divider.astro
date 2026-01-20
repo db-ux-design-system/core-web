@@ -3,21 +3,26 @@ import DefaultLayout from '../../layouts/default/DefaultLayout.astro';
 import DefaultComponent from '../../components/default/DefaultComponent.astro';
 import defaultComponentVariants from '../../../../shared/divider.json';
 import type { DBDividerProps } from '@components';
-import { getPropsAsAttributes, getVariantsWithExamples } from '../../utils';
-
-const exampleFn = ({ variant, emphasis, children, width }: DBDividerProps) => {
-	const props = { variant, emphasis, width };
-
-	return `
-		<db-infotext size="small" semantic="informational">
-			${children}
-		</db-infotext>
-		<db-divider ${getPropsAsAttributes(props)}></db-divider>
-	`;
-};
-const variants = getVariantsWithExamples<DBDividerProps>(defaultComponentVariants, exampleFn);
+import VariantList from '../../components/default/VariantList.astro';
+import type { DefaultComponentVariants } from '../../../../shared/default-component-data.ts';
+import { DBDivider, DBInfotext } from '@components';
 ---
 
 <DefaultLayout>
-	<DefaultComponent title="DBDivider" variants={variants} />
+	<DefaultComponent title="DBDivider" variants={defaultComponentVariants}
+		>{
+			(variant: DefaultComponentVariants) => (
+				<VariantList {...variant}>
+					{({ children, ...rest }: DBDividerProps) => (
+						<>
+							<DBInfotext size="small" semantic="informational">
+								{children}
+							</DBInfotext>
+							<DBDivider {...rest} />
+						</>
+					)}
+				</VariantList>
+			)
+		}</DefaultComponent
+	>
 </DefaultLayout>

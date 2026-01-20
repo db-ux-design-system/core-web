@@ -3,23 +3,29 @@ import DefaultLayout from '../../layouts/default/DefaultLayout.astro';
 import DefaultComponent from '../../components/default/DefaultComponent.astro';
 import defaultComponentVariants from '../../../../shared/section.json';
 import type { DBSectionProps } from '@components';
-import { getPropsAsAttributes, getVariantsWithExamples } from '../../utils';
-
-const exampleFn = ({ width, spacing, children, id }: DBSectionProps) => {
-	const props = { width, spacing, id };
-
-	return `
-		<db-section class="db-color-informational db-bg-color-basic-level-2 section-card-container" ${getPropsAsAttributes(props)}>
-			<db-card>${children}</db-card>
-			<db-card>${children}</db-card>
-			<db-card>${children}</db-card>
-			<db-card>${children}</db-card>
-		</db-section>
-	`;
-};
-const variants = getVariantsWithExamples<DBSectionProps>(defaultComponentVariants, exampleFn);
+import VariantList from '../../components/default/VariantList.astro';
+import type { DefaultComponentVariants } from '../../../../shared/default-component-data.ts';
+import { DBSection, DBCard } from '@components';
 ---
 
 <DefaultLayout>
-	<DefaultComponent title="DBSection" variants={variants} />
+	<DefaultComponent title="DBSection" variants={defaultComponentVariants}
+		>{
+			(variant: DefaultComponentVariants) => (
+				<VariantList {...variant}>
+					{({ children, ...props }: DBSectionProps) => (
+						<DBSection
+							className="db-color-informational db-bg-color-basic-level-2 section-card-container"
+							{...props}
+						>
+							<DBCard>{children}</DBCard>
+							<DBCard>{children}</DBCard>
+							<DBCard>{children}</DBCard>
+							<DBCard>{children}</DBCard>
+						</DBSection>
+					)}
+				</VariantList>
+			)
+		}</DefaultComponent
+	>
 </DefaultLayout>

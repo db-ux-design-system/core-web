@@ -3,59 +3,46 @@ import DefaultLayout from '../../layouts/default/DefaultLayout.astro';
 import DefaultComponent from '../../components/default/DefaultComponent.astro';
 import defaultComponentVariants from '../../../../shared/navigation-item.json';
 import type { DBNavigationItemProps } from '@components';
-import { getPropsAsAttributes, getVariantsWithExamples } from '../../utils';
-
-const exampleFn = ({
-	children,
-	icon,
-	disabled,
-	active,
-	width,
-	showIcon,
-	wrap,
-	areaPopup,
-}: DBNavigationItemProps & { areaPopup: boolean }) => {
-	const props = {
-		icon,
-		disabled,
-		active,
-		width,
-		'show-icon': showIcon,
-		wrap,
-		text: areaPopup ? children : undefined,
-	};
-
-	const content = areaPopup
-		? `
-		<div slot="subNavigation">
-			<db-navigation-item ${getPropsAsAttributes({ icon, 'show-icon': showIcon })} text="Also a navigation item with longer label">
-				<div slot="subNavigation">
-					<db-navigation-item ${getPropsAsAttributes({ icon, 'show-icon': showIcon })}>
-						<a href="#">Navigation-Item 2</a>
-					</db-navigation-item>
-				</div>
-			</db-navigation-item>
-			<db-navigation-item ${getPropsAsAttributes({ icon, 'show-icon': showIcon })}>
-				<a href="#">Navigation-Item 1</a>
-			</db-navigation-item>
-		</div>
-	`
-		: `<a href="#">${children}</a>`;
-
-	return `
-		<ul class="nav-item-list">
-			<db-navigation-item ${getPropsAsAttributes(props)}>
-				${content}
-			</db-navigation-item>
-		</ul>
-	`;
-};
-const variants = getVariantsWithExamples<DBNavigationItemProps & { areaPopup: boolean }>(
-	defaultComponentVariants,
-	exampleFn,
-);
+import VariantList from '../../components/default/VariantList.astro';
+import type { DefaultComponentVariants } from '../../../../shared/default-component-data.ts';
+import { DBNavigationItem } from '@components';
 ---
 
 <DefaultLayout>
-	<DefaultComponent title="DBNavigationItem" variants={variants} />
+	<DefaultComponent title="DBNavigationItem" variants={defaultComponentVariants}>
+		{
+			(variant: DefaultComponentVariants) => (
+				<VariantList {...variant}>
+					{({ children, areaPopup, ...props }: DBNavigationItemProps & { areaPopup: boolean }) => {
+						return (
+							<ul class="nav-item-list">
+								<DBNavigationItem
+									hideSubNavigation={!areaPopup}
+									text={areaPopup ? children : undefined}
+									{...props}
+								>
+									{areaPopup ? (
+										<div slot="subNavigation">
+											<DBNavigationItem text="Also a navigation item with longer label">
+												<div slot="subNavigation">
+													<DBNavigationItem>
+														<a href="#">Navigation-Item 2</a>
+													</DBNavigationItem>
+												</div>
+											</DBNavigationItem>
+											<DBNavigationItem>
+												<a href="#">Navigation-Item 1</a>
+											</DBNavigationItem>
+										</div>
+									) : (
+										<a href="#">${children}</a>
+									)}
+								</DBNavigationItem>
+							</ul>
+						);
+					}}
+				</VariantList>
+			)
+		}
+	</DefaultComponent>
 </DefaultLayout>

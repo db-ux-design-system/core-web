@@ -3,25 +3,30 @@ import DefaultLayout from '../../layouts/default/DefaultLayout.astro';
 import DefaultComponent from '../../components/default/DefaultComponent.astro';
 import defaultComponentVariants from '../../../../shared/accordion.json';
 import type { DBAccordionProps } from '@components';
-import { getPropsAsAttributes, getVariantsWithExamples } from '../../utils';
-
-const exampleFn = ({ behavior, children, variant }: DBAccordionProps) => {
-	const props = { behavior, variant };
-
-	return `
-		<db-infotext size="small" semantic="informational" icon="none">
-			${children}
-		</db-infotext>
-		<db-accordion ${getPropsAsAttributes(props)}>
-			<db-accordion-item headline-plain="Item 1">Content 1</db-accordion-item>
-			<db-accordion-item headline-plain="Item 2">Content 2</db-accordion-item>
-			<db-accordion-item headline-plain="Item 3">Content 3</db-accordion-item>
-		</db-accordion>
-	`;
-};
-const variants = getVariantsWithExamples<DBAccordionProps>(defaultComponentVariants, exampleFn);
+import VariantList from '../../components/default/VariantList.astro';
+import type { DefaultComponentVariants } from '../../../../shared/default-component-data.ts';
+import { DBAccordion, DBAccordionItem, DBInfotext } from '@components';
 ---
 
 <DefaultLayout>
-	<DefaultComponent title="DBAccordion" variants={variants} />
+	<DefaultComponent title="DBAccordion" variants={defaultComponentVariants}
+		>{
+			(variant: DefaultComponentVariants) => (
+				<VariantList {...variant}>
+					{({ children, ...props }: DBAccordionProps) => (
+						<>
+							<DBInfotext size="small" semantic="informational" icon="none">
+								{children}
+							</DBInfotext>
+							<DBAccordion {...props}>
+								<DBAccordionItem headlinePlain="Item 1">Content 1</DBAccordionItem>
+								<DBAccordionItem headlinePlain="Item 2">Content 2</DBAccordionItem>
+								<DBAccordionItem headlinePlain="Item 3">Content 3</DBAccordionItem>
+							</DBAccordion>
+						</>
+					)}
+				</VariantList>
+			)
+		}</DefaultComponent
+	>
 </DefaultLayout>

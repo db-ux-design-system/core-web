@@ -3,59 +3,71 @@ import DefaultLayout from '../../layouts/default/DefaultLayout.astro';
 import DefaultComponent from '../../components/default/DefaultComponent.astro';
 import defaultComponentVariants from '../../../../shared/header.json';
 import type { DBHeaderProps } from '@components';
-import { getPropsAsAttributes, getVariantsWithExamples } from '../../utils';
-
-const exampleFn = ({
-	width,
-	forceMobile,
-	children,
-	example,
-	withName,
-	withNavigation,
-}: DBHeaderProps & { example?: boolean; withName?: boolean; withNavigation?: boolean }) => {
-	const props = { width, 'force-mobile': forceMobile };
-
-	return `
-		<db-header ${getPropsAsAttributes(props)}>
-			<db-brand slot="brand" title="DBHeader">
-				${!example || withName ? 'DBHeader' : ''}
-			</db-brand>
-			${
-				!example
-					? `
-				<div slot="metaNavigation">
-								<db-link href="#">Imprint</db-link>
-								<db-link href="#">Help</db-link>
-				</div>
-				<db-button slot="primaryAction" icon="magnifying_glass" variant="ghost" no-text="true">Search</db-button>
-				<div slot="secondaryAction">
-					<db-button icon="x_placeholder" variant="ghost" no-text="true">Profile</db-button>
-					<db-button icon="x_placeholder" variant="ghost" no-text="true">Notification</db-button>
-					<db-button icon="x_placeholder" variant="ghost" no-text="true">Help</db-button>
-				</div>
-			`
-					: ''
-			}
-			${
-				!example || withNavigation
-					? `
-				<db-navigation aria-label="${children}">
-					<db-navigation-item icon="x_placeholder">
-						<a href="#">${children}</a>
-					</db-navigation-item>
-					<db-navigation-item disabled>
-						<a href="#">${children} disabled</a>
-					</db-navigation-item>
-				</db-navigation>
-			`
-					: ''
-			}
-		</db-header>
-	`;
-};
-const variants = getVariantsWithExamples<DBHeaderProps>(defaultComponentVariants, exampleFn);
+import VariantList from '../../components/default/VariantList.astro';
+import type { DefaultComponentVariants } from '../../../../shared/default-component-data.ts';
+import { DBHeader, DBBrand, DBLink, DBButton, DBNavigation, DBNavigationItem } from '@components';
 ---
 
 <DefaultLayout>
-	<DefaultComponent title="DBHeader" variants={variants} />
+	<DefaultComponent title="DBHeader" variants={defaultComponentVariants}
+		>{
+			(variant: DefaultComponentVariants) => (
+				<VariantList {...variant}>
+					{({
+						example,
+						withName,
+						withNavigation,
+						...props
+					}: DBHeaderProps & {
+						example?: boolean;
+						withName?: boolean;
+						withNavigation?: boolean;
+					}) => (
+						<DBHeader {...props}>
+							<DBBrand slot="brand" title="DBHeader">
+								{!example || withName ? 'DBHeader' : ''}
+							</DBBrand>
+							{!example && (
+								<>
+									<div slot="metaNavigation">
+										<DBLink href="#">Imprint</DBLink>
+										<DBLink href="#">Help</DBLink>
+									</div>
+									<DBButton
+										slot="primaryAction"
+										icon="magnifying_glass"
+										variant="ghost"
+										noText={true}
+									>
+										Search
+									</DBButton>
+									<div slot="secondaryAction">
+										<DBButton icon="x_placeholder" variant="ghost" noText={true}>
+											Profile
+										</DBButton>
+										<DBButton icon="x_placeholder" variant="ghost" noText={true}>
+											Notification
+										</DBButton>
+										<DBButton icon="x_placeholder" variant="ghost" noText={true}>
+											Help
+										</DBButton>
+									</div>
+								</>
+							)}
+							{(!example || withNavigation) && (
+								<DBNavigation aria-label="Navigation">
+									<DBNavigationItem icon="x_placeholder">
+										<a href="#">Link</a>
+									</DBNavigationItem>
+									<DBNavigationItem disabled={true}>
+										<a href="#">Link disabled</a>
+									</DBNavigationItem>
+								</DBNavigation>
+							)}
+						</DBHeader>
+					)}
+				</VariantList>
+			)
+		}</DefaultComponent
+	>
 </DefaultLayout>

@@ -3,52 +3,31 @@ import DefaultLayout from '../../layouts/default/DefaultLayout.astro';
 import DefaultComponent from '../../components/default/DefaultComponent.astro';
 import defaultComponentVariants from '../../../../shared/select.json';
 import { type DBSelectProps } from '@components';
-import { getPropsAsAttributes, getVariantsWithExamples } from '../../utils';
-
-const exampleFn = ({
-	placeholder,
-	label,
-	options,
-	icon,
-	message,
-	disabled,
-	value,
-	required,
-	variant,
-	showLabel,
-	showMessage,
-	invalidMessage,
-	validMessage,
-	validation,
-	showRequiredAsterisk,
-}: DBSelectProps) => {
-	const id = `${Math.random().toString().substring(2)}`;
-	const props = {
-		id,
-		label,
-		placeholder,
-		icon,
-		message,
-		disabled,
-		value,
-		required,
-		variant,
-		'show-label': showLabel,
-		'show-message': showMessage,
-		'invalid-message': invalidMessage,
-		'valid-message': validMessage,
-		validation,
-		'show-required-asterisk': showRequiredAsterisk,
-	};
-
-	return `<db-select ${getPropsAsAttributes(props)}></db-select>
-					<script>
-						document.querySelector('db-select[id="${id}"]').options = ${JSON.stringify(options)};
-					</script>`;
-};
-const variants = getVariantsWithExamples<DBSelectProps>(defaultComponentVariants, exampleFn);
+import VariantList from '../../components/default/VariantList.astro';
+import type { DefaultComponentVariants } from '../../../../shared/default-component-data.ts';
+import { DBSelect } from '@components';
 ---
 
 <DefaultLayout>
-	<DefaultComponent title="DBSelect" variants={variants} />
+	<DefaultComponent title="DBSelect" variants={defaultComponentVariants}
+		>{
+			(variant: DefaultComponentVariants) => (
+				<VariantList {...variant}>
+					{({ options,id, ...props }: DBSelectProps) => {
+						const randomId = `${Math.random().toString().substring(2)}`;
+						return (
+							<>
+								<DBSelect id={randomId} {...props} />
+								<script define:vars={{ id: randomId, options }} is:inline>
+									document.addEventListener('DOMContentLoaded', () => {
+										document.querySelector(`db-select[id="${id}"]`).options = options;
+									});
+								</script>
+							</>
+						);
+					}}
+				</VariantList>
+			)
+		}</DefaultComponent
+	>
 </DefaultLayout>

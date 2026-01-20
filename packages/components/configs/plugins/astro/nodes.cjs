@@ -88,6 +88,7 @@ const handleNode = (node, props, root) => {
 	});
 	const isDbComponent = name.startsWith('DB');
 
+	// TODO: Those should be on the _ref
 	const rootProps = getRootProps(props);
 	const componentProps = Object.entries(properties)
 		.map(([key, value]) => {
