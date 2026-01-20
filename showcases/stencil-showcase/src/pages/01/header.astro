@@ -56,10 +56,10 @@ import { DBHeader, DBBrand, DBLink, DBButton, DBNavigation, DBNavigationItem } f
 							)}
 							{(!example || withNavigation) && (
 								<DBNavigation aria-label="Navigation">
-									<DBNavigationItem icon="x_placeholder">
+									<DBNavigationItem hideSubNavigation={true} icon="x_placeholder">
 										<a href="#">Link</a>
 									</DBNavigationItem>
-									<DBNavigationItem disabled={true}>
+									<DBNavigationItem  hideSubNavigation={true} disabled={true}>
 										<a href="#">Link disabled</a>
 									</DBNavigationItem>
 								</DBNavigation>

@@ -8,16 +8,21 @@ const toDashedLowerCase = (input) => {
 		.toLowerCase();
 };
 
-const getWCTemplate = (componentName, props, allSlots) =>
+const getWCTemplate = (componentName, props, allSlots, metaData) =>
 	`
 {wc && (
 	<db-${componentName}
 		data-connect={connectId}
 		${props
-			.filter((prop) => !isEvent(prop))
+			.filter(
+				(prop) =>
+					!isEvent(prop) &&
+					(!metaData.ignoreProperties ||
+						!metaData.ignoreProperties.includes(prop))
+			)
 			.map((prop) => `${toDashedLowerCase(prop)}={${prop}}`)
 			.join('\n\t\t')}
-		{...Astro.props}
+		{...rest}
 	>
 	${allSlots.map((slotName) => `<Fragment set:html={slots.${slotName}} />`).join('\n')}
 		<slot />
@@ -30,8 +35,10 @@ const getWCTemplate = (componentName, props, allSlots) =>
  * @returns {string}
  */
 const getAstroTemplate = (json) => {
-	const { children, propsTypeRef, imports, state, refs } = json;
+	const { children, propsTypeRef, imports, state, refs, meta } = json;
 	const allSlots = findAllSlots(children);
+
+	const metaData = meta?.useMetadata?.['astro'] ?? {};
 
 	let props;
 	if (json.props) {
@@ -44,6 +51,12 @@ const getAstroTemplate = (json) => {
 	} else {
 		props = [];
 	}
+
+	imports.forEach((imp) => {
+		if (imp.path === '../../utils') {
+			imp.imports['uuid'] = 'uuid';
+		}
+	});
 
 	const importsString = imports
 		.map(({ imports: imps, path }) => {
@@ -112,7 +125,7 @@ import { uuid } from '../../utils';
 ${importsString}
 ${propsInterface}
 
-const { ${props.join(', ')}${props.length ? ', ' : ''}wc = ${requiresJavaScript} } = Astro.props;
+const { ${props.join(', ')}${props.length ? ', ' : ''}wc = ${requiresJavaScript}, ...rest } = Astro.props;
 
 ${refsString}
 ${stateString}
@@ -124,7 +137,7 @@ ${namedSlotsString}
 ---
 
 ${getChildren(json.children, props, true)}
-${getWCTemplate(toDashedLowerCase(json.name.slice(2, json.name.length)), props, allSlots)}`;
+${getWCTemplate(toDashedLowerCase(json.name.slice(2, json.name.length)), props, allSlots, metaData)}`;
 };
 
 module.exports = { getAstroTemplate, toDashedLowerCase };

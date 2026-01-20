@@ -14,14 +14,10 @@ import { DBNavigationItem } from '@components';
 			(variant: DefaultComponentVariants) => (
 				<VariantList {...variant}>
 					{({ children, areaPopup, ...props }: DBNavigationItemProps & { areaPopup: boolean }) => {
-						return (
-							<ul class="nav-item-list">
-								<DBNavigationItem
-									hideSubNavigation={!areaPopup}
-									text={areaPopup ? children : undefined}
-									{...props}
-								>
-									{areaPopup ? (
+						if (areaPopup) {
+							return (
+								<ul class="nav-item-list">
+									<DBNavigationItem text={children} {...props}>
 										<div slot="subNavigation">
 											<DBNavigationItem text="Also a navigation item with longer label">
 												<div slot="subNavigation">
@@ -34,9 +30,15 @@ import { DBNavigationItem } from '@components';
 												<a href="#">Navigation-Item 1</a>
 											</DBNavigationItem>
 										</div>
-									) : (
-										<a href="#">${children}</a>
-									)}
+									</DBNavigationItem>
+								</ul>
+							);
+						}
+
+						return (
+							<ul class="nav-item-list">
+								<DBNavigationItem hideSubNavigation={true} {...props}>
+									<a href="#">{children}</a>
 								</DBNavigationItem>
 							</ul>
 						);

@@ -27,7 +27,7 @@ import {
 	DEFAULT_VALID_MESSAGE,
 	DEFAULT_VALID_MESSAGE_ID_SUFFIX
 } from '../../shared/constants';
-import {
+import type {
 	ClickEvent,
 	GeneralEvent,
 	InputEvent,
@@ -61,7 +61,7 @@ import DBInfotext from '../infotext/infotext.lite';
 import DBInput from '../input/input.lite';
 import DBTag from '../tag/tag.lite';
 import DBTooltip from '../tooltip/tooltip.lite';
-import {
+import type {
 	CustomSelectOptionType,
 	DBCustomSelectProps,
 	DBCustomSelectState
@@ -73,6 +73,9 @@ useMetadata({
 		signals: {
 			writeable: ['disabled', 'values']
 		}
+	},
+	astro: {
+		ignoreProperties: ['options']
 	}
 });
 
@@ -966,7 +969,7 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 						class="db-custom-select-form-field"
 						aria-disabled={getBooleanAsString(props.disabled)}
 						aria-labelledby={state._labelId}>
-						<Show when={state._selectedLabels?.length}>
+						<Show when={Boolean(state._selectedLabels?.length)}>
 							<span
 								data-visually-hidden={getBooleanAsString(
 									props.selectedType === 'tag'
@@ -1172,7 +1175,8 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 
 			<Show
 				when={
-					(props.showClearSelection ?? true) && state._values?.length
+					Boolean(props.showClearSelection ?? true) &&
+					Boolean(state._values?.length)
 				}>
 				<DBButton
 					icon="cross"

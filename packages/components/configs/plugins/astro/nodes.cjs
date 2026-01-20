@@ -28,7 +28,7 @@ const handleForNode = (node) => {
 
 	if (!each) return '';
 
-	return `{${each}.map((${scope.forName}) => (
+	return `{${replacePropsInCode(each)}.map((${scope.forName}) => (
 		${getChildren(children)}
 	))}`;
 };
@@ -66,7 +66,7 @@ const handleSlotNode = (node) => {
  * @returns {string}
  */
 const handleNode = (node, props, root) => {
-	const { name, children, bindings, properties } = node;
+	const { name, children, bindings, properties} = node;
 
 	if (bindings._text) {
 		return handleTextNode(node);
@@ -91,6 +91,7 @@ const handleNode = (node, props, root) => {
 	// TODO: Those should be on the _ref
 	const rootProps = getRootProps(props);
 	const componentProps = Object.entries(properties)
+		.filter(([key]) => key !== 'key')
 		.map(([key, value]) => {
 			if (isDbComponent && key === 'class') {
 				key = 'className';
@@ -102,6 +103,11 @@ const handleNode = (node, props, root) => {
 	const bindingProps = Object.entries(bindings)
 		.map(([key, value]) => {
 			const code = replacePropsInCode(value.code);
+
+			if (key === 'tabIndex') {
+				key = 'tabindex';
+			}
+
 			return `${key}={${code}}`;
 		})
 		.join(' ');
@@ -114,9 +120,7 @@ const handleNode = (node, props, root) => {
 	const connectIdString = root
 		? ' data-connect-id={wc ? connectId: undefined} '
 		: '';
-	return `<${tag}${connectIdString}${allProps ? ' ' + allProps : ''}>
-	${getChildren(children)}
-</${tag}>`;
+	return `<${tag}${connectIdString}${allProps ? ' ' + allProps : ''}>${getChildren(children)}</${tag}>`;
 };
 
 /**
