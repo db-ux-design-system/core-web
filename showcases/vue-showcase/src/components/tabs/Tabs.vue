@@ -29,20 +29,21 @@ import DefaultComponent from "../DefaultComponent.vue";
 					:arrowScrollDistance="75"
 				>
 					<DBTabList>
-						<DBTabItem> Test 1 </DBTabItem>
-						<DBTabItem> Test 2 </DBTabItem>
-						<DBTabItem> Test 3 </DBTabItem>
+						<DBTabItem> {{ exampleName }} Tab 1 </DBTabItem>
+						<DBTabItem> {{ exampleName }} Tab 2 </DBTabItem>
+						<DBTabItem> {{ exampleName }} Tab 3 </DBTabItem>
 						<template v-if="exampleProps?.overflow">
-							<DBTabItem> Test 4 </DBTabItem>
-							<DBTabItem> Test 5 </DBTabItem>
+							<DBTabItem> {{ exampleName }} Tab 4 </DBTabItem>
+							<DBTabItem> {{ exampleName }} Tab 5 </DBTabItem>
 						</template>
 					</DBTabList>
-					<DBTabPanel> Tab Panel 1 </DBTabPanel>
-					<DBTabPanel> Tab Panel 2 </DBTabPanel>
-					<DBTabPanel> Tab Panel 3 </DBTabPanel>
+
+					<DBTabPanel> {{ exampleName }} Panel 1 </DBTabPanel>
+					<DBTabPanel> {{ exampleName }} Panel 2 </DBTabPanel>
+					<DBTabPanel> {{ exampleName }} Panel 3 </DBTabPanel>
 					<template v-if="exampleProps?.overflow">
-						<DBTabPanel> Tab Panel 4 </DBTabPanel>
-						<DBTabPanel> Tab Panel 5 </DBTabPanel>
+						<DBTabPanel> {{ exampleName }} Panel 4 </DBTabPanel>
+						<DBTabPanel> {{ exampleName }} Panel 5 </DBTabPanel>
 					</template>
 				</DBTabs>
 			</div>
