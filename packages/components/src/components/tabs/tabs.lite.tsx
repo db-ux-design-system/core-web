@@ -36,12 +36,12 @@ export default function DBTabs(props: DBTabsProps) {
 		scrollContainer: null,
 		_resizeObserver: undefined,
 
-		getTabId(index: number) {
+		getTabId(index: number | string) {
 			const name = props.name ? 'tabs-' + props.name : state._name;
 			return `${name}-tab-${index}`;
 		},
 
-		getPanelId(index: number) {
+		getPanelId(index: number | string) {
 			const name = props.name ? 'tabs-' + props.name : state._name;
 			return `${name}-tab-panel-${index}`;
 		},
