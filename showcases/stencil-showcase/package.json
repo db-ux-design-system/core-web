@@ -10,7 +10,7 @@
   "private": true,
   "files": [],
   "scripts": {
-    "build": "npm-run-all run build:*",
+    "build": "npm-run-all build:*",
     "build:_stencil": "pnpm --filter @db-ux/wc-core-components run dev-build",
     "build:angular": "ng build",
     "dev": "npm-run-all --parallel run dev:*",

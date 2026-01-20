@@ -28,7 +28,7 @@
     "compile:stencil": "mitosis build --config configs/stencil/mitosis.config.cjs && tsx scripts/exec/stencil.ts && cpr ../../output/tmp/stencil/src ../../output/stencil/src --overwrite",
     "compile:vue": "mitosis build --config configs/vue/mitosis.config.cjs && tsx scripts/exec/vue.ts && cpr ../../output/tmp/vue/src ../../output/vue/src --overwrite",
     "copy-assets": "cpr ../foundations/assets build/assets -o",
-    "copy-output": "npm-run-all run copy:*",
+    "copy-output": "npm-run-all copy:*",
     "copy:agent": "cpr agent ../../build-outputs/components/agent --overwrite",
     "copy:changelog": "cpr CHANGELOG.md ../../build-outputs/components/CHANGELOG.md --overwrite",
     "copy:outputs": "cpr build ../../build-outputs/components/build --overwrite",
