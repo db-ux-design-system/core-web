@@ -3,6 +3,7 @@ import AccordionItemComponent from '../components/accordion-item';
 import BadgeComponent from '../components/badge';
 import BrandComponent from '../components/brand';
 import BreadcrumbComponent from '../components/breadcrumb';
+import BreadcrumbItemComponent from '../components/breadcrumb-item';
 import CardComponent from '../components/card';
 import CheckboxComponent from '../components/checkbox';
 import CustomSelectComponent from '../components/custom-select';
@@ -66,6 +67,11 @@ export const NAVIGATION_ITEMS: NavigationItem[] = [
 				path: 'breadcrumb',
 				label: 'Breadcrumb',
 				component: <BreadcrumbComponent />
+			},
+			{
+				path: 'breadcrumb-item',
+				label: 'BreadcrumbItem',
+				component: <BreadcrumbItemComponent />
 			},
 			{
 				path: 'navigation-item',

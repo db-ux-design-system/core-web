@@ -173,10 +173,15 @@
 				"name": "breadcrumb",
 				"subNavigation": [
 					{
-						"label": "DBBreadcrumb Properties",
-						"path": "/components/breadcrumb/properties"
+						"label": "DBBreadcrumbItem Properties",
+						"path": "/components/breadcrumb-item/properties"
 					}
 				]
+			},
+			{
+				"label": "DBBreadcrumbItem",
+				"name": "breadcrumb-item",
+				"isHiddenInMenu": true
 			}
 		]
 	},
