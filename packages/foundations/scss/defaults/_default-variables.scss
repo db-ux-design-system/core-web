@@ -496,14 +496,12 @@
 	--db-transition-duration-medium: 0.3s;
 	--db-transition-duration-fast: 0.15s;
 	--db-transition-duration-extra-fast: 0.075s;
-	--db-transition-timing-show: cubic-bezier(0.49, 0.1, 0.16, 1) normal both;
-	--db-transition-timing-hide: cubic-bezier(0.49, 0.1, 0.16, 1) normal both;
+	--db-transition-timing-show: cubic-bezier(0.49, 0.1, 0.16, 1);
+	--db-transition-timing-hide: cubic-bezier(0.49, 0.1, 0.16, 1);
 	--db-transition-timing-emotional: cubic-bezier(0.27, 0.05, 0.4, 0.95);
 	--db-transition-timing-functional: cubic-bezier(0.15, 0, 0.45, 1);
-	--db-transition-straight-show: 0.5s cubic-bezier(0.49, 0.1, 0.16, 1) normal
-		both;
-	--db-transition-straight-hide: 0.4s cubic-bezier(0.49, 0.1, 0.16, 1) normal
-		both;
+	--db-transition-straight-show: 0.5s cubic-bezier(0.49, 0.1, 0.16, 1);
+	--db-transition-straight-hide: 0.4s cubic-bezier(0.49, 0.1, 0.16, 1);
 	--db-transition-straight-emotional: 0.3s cubic-bezier(0.27, 0.05, 0.4, 0.95);
 	--db-transition-straight-functional: 0.3s cubic-bezier(0.15, 0, 0.45, 1);
 	--db-opacity-3xs: 0.08;

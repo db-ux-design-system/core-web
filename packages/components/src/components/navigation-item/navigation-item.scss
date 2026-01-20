@@ -24,11 +24,13 @@
 	&[aria-expanded="true"] {
 		~ .db-sub-navigation {
 			visibility: visible;
+			transform: translateX(0%);
 
 			@media screen and (prefers-reduced-motion: no-preference) {
-				transition: visibility 0ms linear 0ms;
-				animation: show-right-to-left
-					#{variables.$db-transition-straight-show};
+				transition:
+					visibility 0ms linear 0ms,
+					transform #{variables.$db-transition-duration-extra-slow}
+						#{variables.$db-transition-timing-emotional};
 			}
 
 			.db-sub-navigation {
@@ -38,11 +40,16 @@
 	}
 
 	&:not(&[aria-expanded="true"]) {
+		~ .db-sub-navigation {
+			transform: translateX(110%);
+		}
+
 		@media screen and (prefers-reduced-motion: no-preference) {
 			~ .db-sub-navigation {
-				transition: visibility 0ms linear 410ms; // hide animation is 0.4s
-				animation: hide-right-to-left
-					#{variables.$db-transition-straight-hide};
+				transition:
+					visibility 0ms linear 410ms,
+					transform #{variables.$db-transition-duration-slow}
+						#{variables.$db-transition-timing-emotional}; // hide animation is 0.4s
 			}
 		}
 	}
