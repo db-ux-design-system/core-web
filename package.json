@@ -53,7 +53,7 @@
     "dev": "pnpm --filter='./scripts' run dev",
     "generate:agent": "pnpm --filter=scripts run agent",
     "generate:component": "pnpm --filter=@db-ux/core-components run generate:component",
-    "lint": "npm-run-all --parallel run lint:*",
+    "lint": "npm-run-all --parallel lint:*",
     "lint-docs-file-references": "node scripts/check-docs.js",
     "lint-packages": "tsx scripts/lint-packages.ts publint",
     "lint:codespell": "cspell . --config .config/cspell.config.ts",

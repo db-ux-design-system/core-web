@@ -15,12 +15,12 @@
     "output/*"
   ],
   "scripts": {
-    "regenerate": "npm-run-all --parallel run regenerate:*",
+    "regenerate": "npm-run-all --parallel regenerate:*",
     "regenerate:components": "pnpm --filter=@db-ux/react-core-components run regenerate:screenshots",
     "regenerate:foundations": "pnpm --filter=@db-ux/core-foundations run regenerate:screenshots",
     "regenerate:showcases": "pnpm --filter=react-showcase run regenerate:screenshots",
     "start": "pnpm exec http-server build-showcases",
-    "test": "npm-run-all --parallel run test:*",
+    "test": "npm-run-all --parallel test:*",
     "test:angular-showcase": "pnpm --filter=angular-showcase run test:e2e",
     "test:foundations": "pnpm --filter=@db-ux/core-foundations run test:e2e",
     "test:react": "pnpm --filter=@db-ux/react-core-components run test:components",
