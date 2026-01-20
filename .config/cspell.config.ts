@@ -31,7 +31,8 @@ export default defineConfig({
 		// Examples
 		'showcases/react-showcase/src/components/form/index.tsx',
 		'showcases/patternhub/pages/foundations/densities/examples.tsx',
-		'showcases/angular-showcase/src/app/components/form/form.component.ts'
+		'showcases/angular-showcase/src/app/components/form/form.component.ts',
+		'scripts/public'
 	],
 	dictionaries: [
 		'custom-words',
