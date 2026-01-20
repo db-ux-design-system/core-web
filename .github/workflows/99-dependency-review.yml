@@ -2,7 +2,7 @@
 name: "Dependency Review"
 
 permissions:
-  contents: write
+  contents: read
   pull-requests: write
 
 on:
