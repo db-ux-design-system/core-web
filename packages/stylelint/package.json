@@ -24,7 +24,7 @@
   ],
   "scripts": {
     "build": "tsc",
-    "copy-output": "pnpm run '/^copy:[^:]*$/'",
+    "copy-output": "npm-run-all run copy:*",
     "copy:changelog": "cpr CHANGELOG.md ../../build-outputs/stylelint/CHANGELOG.md --overwrite",
     "copy:outputs": "cpr build ../../build-outputs/stylelint/build -o",
     "copy:package.json": "cpr package.json ../../build-outputs/stylelint/package.json -o",

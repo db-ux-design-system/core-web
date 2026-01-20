@@ -11,7 +11,7 @@
   "private": true,
   "files": [],
   "scripts": {
-    "build": "pnpm run '/^build:[^:]*$/'",
+    "build": "npm-run-all run build:*",
     "build:01_tsc": "tsc",
     "build:02_vite": "vite build",
     "dev": "vite --open",

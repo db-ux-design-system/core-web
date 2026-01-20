@@ -19,7 +19,7 @@
   ],
   "scripts": {
     "build": "npm-run-all copy-prepare:* build:*",
-    "build:01_normalize": "pnpm run '/^copy-prepare:[^:]*$/'",
+    "build:01_normalize": "npm-run-all run copy-prepare:*",
     "build:02_copy": "pnpm run copy:scss",
     "build:03_css": "sass --no-source-map --load-path=node_modules/ --load-path=../../node_modules/ build/styles  --fatal-deprecation=mixed-decls",
     "build:04_tailwind": "cpr tailwind build/tailwind --overwrite",
@@ -28,7 +28,7 @@
     "build:06_ide": "cpr ide build/ide --overwrite",
     "build:06_ts": "tsc",
     "clean": "rm --recursive --force build",
-    "copy-build": "pnpm run '/^copy-build:[^:]*$/'",
+    "copy-build": "npm-run-all run copy-build:*",
     "copy-build:agent": "cpr agent ../../build-outputs/foundations/agent --overwrite",
     "copy-build:assets": "cpr assets ../../build-outputs/foundations/assets --overwrite",
     "copy-build:changelog": "cpr CHANGELOG.md ../../build-outputs/foundations/CHANGELOG.md --overwrite",

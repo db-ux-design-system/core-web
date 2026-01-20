@@ -15,7 +15,7 @@
     "build:_iframe_resizer": "cpr ../../node_modules/iframe-resizer/js/ public/iframe-resizer -o",
     "build:app": "next build --webpack",
     "build:copy": "cpr out ../../build-showcases/patternhub -o",
-    "compile": "pnpm run '/^compile:[^:]*$/'",
+    "compile": "npm-run-all run compile:*",
     "compile:01_jsx": "node scripts/generate-example-jsx.js",
     "compile:02_copy-docs": "cpr ../../docs ./public/docs -o",
     "compile:03_components": "node scripts/esbuild-generate.mjs",
