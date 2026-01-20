@@ -4,12 +4,16 @@ import Components from '../data/components.json' with { type: 'json' };
 const getDefaultScreenshotTest = async (
 	name: string,
 	type: string,
-	path: string
+	path: string,
+	validation?: (page: any) => Promise<void>
 ) => {
 	test(`${type} should match screenshot`, async ({ page }) => {
 		await page.goto(path, {
 			waitUntil: 'domcontentloaded'
 		});
+		if (validation) {
+			await validation(page);
+		}
 		await expect(page).toHaveScreenshot([name, 'patternhub.png']);
 	});
 };
@@ -27,7 +31,11 @@ for (const group of Components) {
 			await getDefaultScreenshotTest(
 				component.name,
 				`overview`,
-				`${group.path}/${component.name}/overview.html?fullscreen=true`
+				`.${group.path}/${component.name}/overview?fullscreen=true`,
+				async (page) => {
+					const firstH1 = page.locator('h1').first();
+					await expect(firstH1).toBeVisible();
+				}
 			);
 		});
 		test.describe(component.name, async () => {

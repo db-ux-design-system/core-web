@@ -4,7 +4,6 @@ import AccordionItem from '../components/accordion-item/AccordionItem.vue';
 import Accordion from '../components/accordion/Accordion.vue';
 import Badge from '../components/badge/Badge.vue';
 import Brand from '../components/brand/Brand.vue';
-import Button from '../components/button/Button.vue';
 import Card from '../components/card/Card.vue';
 import Checkbox from '../components/checkbox/Checkbox.vue';
 import CustomSelect from '../components/custom-select/CustomSelect.vue';
@@ -31,6 +30,8 @@ import Tabs from '../components/tabs/Tabs.vue';
 import Tag from '../components/tag/Tag.vue';
 import Textarea from '../components/textarea/Textarea.vue';
 import Tooltip from '../components/tooltip/Tooltip.vue';
+
+import ButtonShowcase from '@components/components/button/showcase/button.showcase.vue';
 
 export type NavItem = {
 	path: string;
@@ -149,7 +150,11 @@ export const navigationItems: NavItem[] = [
 		label: '02 Action',
 		subNavigation: getSortedNavigationItems([
 			{ path: '/02/link', label: 'Link', component: markRaw(Link) },
-			{ path: '/02/button', label: 'Button', component: markRaw(Button) }
+			{
+				path: '/02/button',
+				label: 'Button',
+				component: markRaw(ButtonShowcase)
+			}
 		])
 	},
 	{

@@ -35,6 +35,7 @@ import {
 	getHideProp,
 	getInputValue,
 	getNumber,
+	getStep,
 	hasVoiceOver,
 	isArrayOfStrings,
 	isIOSSafari,
@@ -283,7 +284,7 @@ export default function DBInput(props: DBInputProps) {
 				placeholder={props.placeholder ?? DEFAULT_PLACEHOLDER}
 				disabled={getBoolean(props.disabled, 'disabled')}
 				required={getBoolean(props.required, 'required')}
-				step={getNumber(props.step)}
+				step={getStep(props.step)}
 				value={props.value ?? state._value}
 				maxLength={getNumber(props.maxLength, props.maxlength)}
 				minLength={getNumber(props.minLength, props.minlength)}

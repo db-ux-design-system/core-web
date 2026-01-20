@@ -1,5 +1,21 @@
 # @db-ux/v-core-components
 
+## 4.3.0
+
+### Minor Changes
+
+- _version bump_ (staying in sync with the Figma library) - [see commit 9e03702](https://github.com/db-ux-design-system/core-web/commit/9e0370266511fa99085ff837e430ad83f28856ec)
+
+### Patch Changes
+
+- fix(input): support `step`-HTML-attribute/-property with `"any"` value for `number` inputs - [see commit 748d1af](https://github.com/db-ux-design-system/core-web/commit/748d1af8ca38c8c10ea134ef23b2846e047186a6)
+
+## 4.2.6
+
+### Patch Changes
+
+- fix(switch): not displaying the `forced-colors` content on regular display mode - [see commit 3b18938](https://github.com/db-ux-design-system/core-web/commit/3b189383324edd2a30b2d60b45fe1130ae5b8478)
+
 ## 4.2.5
 
 ### Patch Changes
