@@ -62,6 +62,18 @@ export default function DBTabs(props: DBTabsProps) {
 			}
 		},
 
+		isIndexActive(index: number | string) {
+			return state.activeTabIndex === Number(index);
+		},
+
+		getTabItemTabIndex(index: number | string) {
+			const i = Number(index);
+			return state.activeTabIndex === i ||
+				(state.activeTabIndex === -1 && i === 0)
+				? 0
+				: -1;
+		},
+
 		// Parses the tabs prop to ensure the correct data structure
 		convertTabs(): DBSimpleTabProps[] {
 			try {
@@ -282,14 +294,8 @@ export default function DBTabs(props: DBTabsProps) {
 								key={props.name + 'tab-item' + index}
 								id={`${props.name ? 'tabs-' + props.name : state._name}-tab-${index}`}
 								ariaControls={`${props.name ? 'tabs-' + props.name : state._name}-tab-panel-${index}`}
-								active={state.activeTabIndex === Number(index)}
-								tabIndex={
-									state.activeTabIndex === Number(index) ||
-									(state.activeTabIndex === -1 &&
-										Number(index) === 0)
-										? 0
-										: -1
-								}
+								active={state.isIndexActive(index)}
+								tabIndex={state.getTabItemTabIndex(index)}
 								label={tab.label}
 								iconTrailing={tab.iconTrailing}
 								icon={tab.icon}
@@ -305,7 +311,7 @@ export default function DBTabs(props: DBTabsProps) {
 							id={`${props.name ? 'tabs-' + props.name : state._name}-tab-panel-${index}`}
 							ariaLabelledby={`${props.name ? 'tabs-' + props.name : state._name}-tab-${index}`}
 							content={tab.content}
-							hidden={state.activeTabIndex !== Number(index)}>
+							hidden={!state.isIndexActive(index)}>
 							{tab.children}
 						</DBTabPanel>
 					)}
