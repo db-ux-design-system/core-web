@@ -96,7 +96,11 @@ const getMetaObject = ({
 }) => {
 	const { title, argTypes } = extractMetadata(target, name, meta);
 
-	const render = getRenderFunction(target, componentName, componentNameLowercase);
+	const render = getRenderFunction(
+		target,
+		componentName,
+		componentNameLowercase
+	);
 
 	const metaType =
 		target === 'angular'
