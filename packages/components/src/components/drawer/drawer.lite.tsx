@@ -66,7 +66,7 @@ export default function DBDrawer(props: DBDrawerProps) {
 				if (open && !_ref.open) {
 					if (dialogContainerRef) {
 						(dialogContainerRef as HTMLDivElement).removeAttribute(
-							'data-open'
+							'data-transition'
 						);
 					}
 					if (
@@ -81,15 +81,15 @@ export default function DBDrawer(props: DBDrawerProps) {
 					void delay(() => {
 						if (dialogContainerRef) {
 							(dialogContainerRef as HTMLDivElement).dataset[
-								'open'
-							] = 'true';
+								'transition'
+							] = 'open';
 						}
 					}, 1);
 				}
 				if (!open && _ref.open) {
 					if (dialogContainerRef) {
-						(dialogContainerRef as HTMLDivElement).dataset['open'] =
-							'false';
+						(dialogContainerRef as HTMLDivElement).dataset['transition'] =
+							'close';
 					}
 					void delay(() => {
 						_ref?.close();
