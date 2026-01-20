@@ -24,25 +24,26 @@ export default (tmp?: boolean) => {
 				to: `vue`
 			});
 
-			// Transform React props syntax to Vue slots object for footer component
+			// Transform React props syntax to Vue slot wrapper for footer component
+			// Playwright Vue CT expects slots to be passed as children with v-slot directives
 			if (componentName === 'footer') {
-				// Handle footer with both main and meta slots
+				// Handle footer with both main and meta slots - wrap in parentheses and use proper slot syntax
 				replaceInFileSync({
 					files: `../../${outputFolder}/vue/src/components/${componentName}/${componentName}.spec.tsx`,
-					from: /main=\{(<div>.*?<\/div>)\}\s*meta=\{(<div>.*?<\/div>)\}/gs,
-					to: '{...{ slots: { main: () => $1, meta: () => $2 } }}'
+					from: /<DBFooter\s+main=\{(<div>.*?<\/div>)\}\s*meta=\{(<div>.*?<\/div>)\}\s*\/>/gs,
+					to: '<DBFooter><template v-slot:main>$1</template><template v-slot:meta>$2</template></DBFooter>'
 				});
-				// Handle footer with only meta slot (for compOnlyMeta)
+				// Handle footer with props and both slots
 				replaceInFileSync({
 					files: `../../${outputFolder}/vue/src/components/${componentName}/${componentName}.spec.tsx`,
-					from: /(\s+)meta=\{(<div>.*?<\/div>)\}(\s*\/?>\s*)/gs,
-					to: '$1{...{ slots: { meta: () => $2 } }}$3'
+					from: /<DBFooter\s+([\s\S]*?)\s+main=\{(<div>.*?<\/div>)\}\s*meta=\{(<div>.*?<\/div>)\}\s*\/>/gs,
+					to: '<DBFooter $1><template v-slot:main>$2</template><template v-slot:meta>$3</template></DBFooter>'
 				});
-				// Handle footer with only main slot
+				// Handle footer with only meta slot
 				replaceInFileSync({
 					files: `../../${outputFolder}/vue/src/components/${componentName}/${componentName}.spec.tsx`,
-					from: /(\s+)main=\{(<div>.*?<\/div>)\}(\s*\/?>\s*)/gs,
-					to: '$1{...{ slots: { main: () => $2 } }}$3'
+					from: /<DBFooter\s+([\s\S]*?)\s+meta=\{(<div>.*?<\/div>)\}\s*\/>/gs,
+					to: '<DBFooter $1><template v-slot:meta>$2</template></DBFooter>'
 				});
 			}
 
