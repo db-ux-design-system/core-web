@@ -23,14 +23,14 @@ export default function StackDirection() {
 				<DBInfotext size="small" icon="none" semantic="informational">
 					(Default) Column
 				</DBInfotext>
-				<DBStack className="stack-container">
-					<span className="dummy-component">
+				<DBStack class="stack-container">
+					<span class="dummy-component">
 						<a href="#">Content 1</a>
 					</span>
 
-					<span className="dummy-component">Content 2</span>
+					<span class="dummy-component">Content 2</span>
 
-					<span className="dummy-component">Content 3</span>
+					<span class="dummy-component">Content 3</span>
 				</DBStack>
 			</div>
 			<div
@@ -44,14 +44,14 @@ export default function StackDirection() {
 				<DBInfotext size="small" icon="none" semantic="informational">
 					Row
 				</DBInfotext>
-				<DBStack className="stack-container" direction="row">
-					<span className="dummy-component">
+				<DBStack class="stack-container" direction="row">
+					<span class="dummy-component">
 						<a href="#">Content 1</a>
 					</span>
 
-					<span className="dummy-component">Content 2</span>
+					<span class="dummy-component">Content 2</span>
 
-					<span className="dummy-component">Content 3</span>
+					<span class="dummy-component">Content 3</span>
 				</DBStack>
 			</div>
 		</Fragment>

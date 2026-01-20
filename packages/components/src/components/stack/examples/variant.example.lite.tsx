@@ -24,14 +24,14 @@ export default function StackVariant() {
 				<DBInfotext size="small" icon="none" semantic="informational">
 					(Default) Simple
 				</DBInfotext>
-				<DBStack className="stack-container">
-					<span className="dummy-component">
+				<DBStack class="stack-container">
+					<span class="dummy-component">
 						<a href="#">Content 1</a>
 					</span>
 
-					<span className="dummy-component">Content 2</span>
+					<span class="dummy-component">Content 2</span>
 
-					<span className="dummy-component">Content 3</span>
+					<span class="dummy-component">Content 3</span>
 				</DBStack>
 			</div>
 			<div
@@ -45,16 +45,16 @@ export default function StackVariant() {
 				<DBInfotext size="small" icon="none" semantic="informational">
 					Divider
 				</DBInfotext>
-				<DBStack className="stack-container" variant="divider">
-					<span className="dummy-component">
+				<DBStack class="stack-container" variant="divider">
+					<span class="dummy-component">
 						<a href="#">Content 1</a>
 					</span>
 					<DBDivider />
 
-					<span className="dummy-component">Content 2</span>
+					<span class="dummy-component">Content 2</span>
 					<DBDivider />
 
-					<span className="dummy-component">Content 3</span>
+					<span class="dummy-component">Content 3</span>
 				</DBStack>
 			</div>
 		</Fragment>

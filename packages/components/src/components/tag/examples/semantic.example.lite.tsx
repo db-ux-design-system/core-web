@@ -31,9 +31,9 @@ export default function TagSemantic() {
 			<DBTag semantic="successful">Successful</DBTag>
 			<DBTag semantic="warning">Warning</DBTag>
 
-			<i className="line-break" />
+			<i class="line-break" />
 
-			<i className="line-break" />
+			<i class="line-break" />
 			<DBTag emphasis="strong">Adaptive Strong</DBTag>
 			<DBTag semantic="critical" emphasis="strong">
 				Critical Strong

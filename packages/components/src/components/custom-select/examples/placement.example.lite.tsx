@@ -22,7 +22,7 @@ export default function CustomSelectPlacement() {
 			<DBInfotext size="small" semantic="informational">
 				Form Field Width: Full
 			</DBInfotext>
-			<i className="line-break" />
+			<i class="line-break" />
 			<div style={{ width: '200px' }}>
 				<DBCustomSelect
 					options={[
@@ -52,13 +52,13 @@ export default function CustomSelectPlacement() {
 					id="id-10239"></DBCustomSelect>
 			</div>
 
-			<i className="line-break" />
+			<i class="line-break" />
 
 			<DBInfotext size="small" semantic="informational">
 				Form Field Width: Auto
 			</DBInfotext>
 
-			<i className="line-break" />
+			<i class="line-break" />
 			<div style={{ width: '200px' }}>
 				<DBCustomSelect
 					options={[

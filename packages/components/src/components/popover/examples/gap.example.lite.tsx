@@ -17,7 +17,7 @@ export default function PopoverGap() {
 				id="popover-11"
 				trigger={<DBButton>(Default) False</DBButton>}>
 				<>
-					<ul className="popover-list">
+					<ul class="popover-list">
 						<li>Popover Custom Item 1</li>
 						<li>Popover Custom Item 2</li>
 					</ul>
@@ -29,7 +29,7 @@ export default function PopoverGap() {
 				id="popover-12"
 				trigger={<DBButton>True</DBButton>}>
 				<>
-					<ul className="popover-list">
+					<ul class="popover-list">
 						<li>Popover Custom Item 1</li>
 						<li>Popover Custom Item 2</li>
 					</ul>

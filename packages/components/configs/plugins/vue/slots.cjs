@@ -1,4 +1,4 @@
-// TODO: Move this into Mitosis directly
+// TODO: Remove this when https://github.com/BuilderIO/mitosis/pull/1789 is merged
 
 /**
  *

@@ -17,7 +17,7 @@ export default function PopoverSpacing() {
 				id="popover-04"
 				trigger={<DBButton>(Default) Small</DBButton>}>
 				<>
-					<ul className="popover-list">
+					<ul class="popover-list">
 						<li>Popover Custom Item 1</li>
 						<li>Popover Custom Item 2</li>
 					</ul>
@@ -29,7 +29,7 @@ export default function PopoverSpacing() {
 				id="popover-05"
 				trigger={<DBButton>Medium</DBButton>}>
 				<>
-					<ul className="popover-list">
+					<ul class="popover-list">
 						<li>Popover Custom Item 1</li>
 						<li>Popover Custom Item 2</li>
 					</ul>
@@ -41,7 +41,7 @@ export default function PopoverSpacing() {
 				id="popover-055"
 				trigger={<DBButton>Large</DBButton>}>
 				<>
-					<ul className="popover-list">
+					<ul class="popover-list">
 						<li>Popover Custom Item 1</li>
 						<li>Popover Custom Item 2</li>
 					</ul>
@@ -53,7 +53,7 @@ export default function PopoverSpacing() {
 				id="popover-06"
 				trigger={<DBButton>None</DBButton>}>
 				<>
-					<ul className="popover-list">
+					<ul class="popover-list">
 						<li>Popover Custom Item 1</li>
 						<li>Popover Custom Item 2</li>
 					</ul>

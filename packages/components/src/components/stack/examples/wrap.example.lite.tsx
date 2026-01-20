@@ -29,14 +29,14 @@ export default function StackWrap() {
 				<DBInfotext size="small" icon="none" semantic="informational">
 					(Default) No Wrap: Column
 				</DBInfotext>
-				<DBStack className="stack-container">
-					<span className="dummy-component">
+				<DBStack class="stack-container">
+					<span class="dummy-component">
 						<a href="#">Content 1</a>
 					</span>
 
-					<span className="dummy-component">Content 2</span>
+					<span class="dummy-component">Content 2</span>
 
-					<span className="dummy-component">Content 3</span>
+					<span class="dummy-component">Content 3</span>
 				</DBStack>
 			</div>
 			<div
@@ -51,14 +51,14 @@ export default function StackWrap() {
 				<DBInfotext size="small" icon="none" semantic="informational">
 					No Wrap: Row
 				</DBInfotext>
-				<DBStack className="stack-container" direction="row">
-					<span className="dummy-component">
+				<DBStack class="stack-container" direction="row">
+					<span class="dummy-component">
 						<a href="#">Content 1</a>
 					</span>
 
-					<span className="dummy-component">Content 2</span>
+					<span class="dummy-component">Content 2</span>
 
-					<span className="dummy-component">Content 3</span>
+					<span class="dummy-component">Content 3</span>
 				</DBStack>
 			</div>
 			<div
@@ -73,14 +73,14 @@ export default function StackWrap() {
 				<DBInfotext size="small" icon="none" semantic="informational">
 					Wrap: Column
 				</DBInfotext>
-				<DBStack className="stack-container" wrap={true}>
-					<span className="dummy-component">
+				<DBStack class="stack-container" wrap={true}>
+					<span class="dummy-component">
 						<a href="#">Content 1</a>
 					</span>
 
-					<span className="dummy-component">Content 2</span>
+					<span class="dummy-component">Content 2</span>
 
-					<span className="dummy-component">Content 3</span>
+					<span class="dummy-component">Content 3</span>
 				</DBStack>
 			</div>
 			<div
@@ -95,17 +95,14 @@ export default function StackWrap() {
 				<DBInfotext size="small" icon="none" semantic="informational">
 					Wrap: Row
 				</DBInfotext>
-				<DBStack
-					className="stack-container"
-					direction="row"
-					wrap={true}>
-					<span className="dummy-component">
+				<DBStack class="stack-container" direction="row" wrap={true}>
+					<span class="dummy-component">
 						<a href="#">Content 1</a>
 					</span>
 
-					<span className="dummy-component">Content 2</span>
+					<span class="dummy-component">Content 2</span>
 
-					<span className="dummy-component">Content 3</span>
+					<span class="dummy-component">Content 3</span>
 				</DBStack>
 			</div>
 		</Fragment>

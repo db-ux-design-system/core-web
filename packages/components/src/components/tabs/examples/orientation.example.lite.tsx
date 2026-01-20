@@ -15,7 +15,7 @@ useMetadata({
 export default function TabsOrientation() {
 	return (
 		<Fragment>
-			<div className="fit-content-container">
+			<div class="fit-content-container">
 				<DBInfotext icon="none" size="small" semantic="informational">
 					horizontal:
 				</DBInfotext>
@@ -30,7 +30,7 @@ export default function TabsOrientation() {
 					<DBTabPanel>Test Panel 3</DBTabPanel>
 				</DBTabs>
 			</div>
-			<div className="fit-content-container">
+			<div class="fit-content-container">
 				<DBInfotext icon="none" size="small" semantic="informational">
 					vertical:
 				</DBInfotext>

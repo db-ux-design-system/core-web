@@ -19,7 +19,7 @@ useMetadata({
 export default function TabsWidth() {
 	return (
 		<Fragment>
-			<div style={{ width: '100%' }} className="fit-content-container">
+			<div style={{ width: '100%' }} class="fit-content-container">
 				<DBInfotext icon="none" size="small" semantic="informational">
 					auto:
 				</DBInfotext>
@@ -34,7 +34,7 @@ export default function TabsWidth() {
 					<DBTabPanel>Test Panel 3</DBTabPanel>
 				</DBTabs>
 			</div>
-			<div style={{ width: '100%' }} className="fit-content-container">
+			<div style={{ width: '100%' }} class="fit-content-container">
 				<DBInfotext icon="none" size="small" semantic="informational">
 					full - alignment: start:
 				</DBInfotext>
@@ -49,7 +49,7 @@ export default function TabsWidth() {
 					<DBTabPanel>Test Panel 3</DBTabPanel>
 				</DBTabs>
 			</div>
-			<div style={{ width: '100%' }} className="fit-content-container">
+			<div style={{ width: '100%' }} class="fit-content-container">
 				<DBInfotext icon="none" size="small" semantic="informational">
 					full - alignment: center:
 				</DBInfotext>

@@ -15,7 +15,7 @@ useMetadata({
 export default function TabsExamples() {
 	return (
 		<Fragment>
-			<div className="fit-content-container">
+			<div class="fit-content-container">
 				<DBInfotext icon="none" size="small" semantic="informational">
 					2nd Test selected:
 				</DBInfotext>
@@ -30,7 +30,7 @@ export default function TabsExamples() {
 					<DBTabPanel>Test Panel 3</DBTabPanel>
 				</DBTabs>
 			</div>
-			<div className="fit-content-container">
+			<div class="fit-content-container">
 				<DBInfotext icon="none" size="small" semantic="informational">
 					nothing selected:
 				</DBInfotext>

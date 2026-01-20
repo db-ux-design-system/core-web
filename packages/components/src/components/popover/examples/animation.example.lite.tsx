@@ -17,7 +17,7 @@ export default function PopoverAnimation() {
 				animation={true}
 				trigger={<DBButton>(Default) True</DBButton>}>
 				<>
-					<ul className="popover-list">
+					<ul class="popover-list">
 						<li>Popover Custom Item 1</li>
 						<li>Popover Custom Item 2</li>
 					</ul>
@@ -29,7 +29,7 @@ export default function PopoverAnimation() {
 				id="popover-16"
 				trigger={<DBButton>False</DBButton>}>
 				<>
-					<ul className="popover-list">
+					<ul class="popover-list">
 						<li>Popover Custom Item 1</li>
 						<li>Popover Custom Item 2</li>
 					</ul>

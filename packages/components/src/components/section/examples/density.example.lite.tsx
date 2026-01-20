@@ -13,7 +13,7 @@ export default function SectionDensity() {
 	return (
 		<Fragment>
 			<DBSection
-				className="db-color-informational db-bg-color-basic-level-2 section-card-container"
+				class="db-color-informational db-bg-color-basic-level-2 section-card-container"
 				data-density="functional"
 				id="test-id-123">
 				<DBCard>Functional</DBCard>
@@ -22,7 +22,7 @@ export default function SectionDensity() {
 				<DBCard>Functional</DBCard>
 			</DBSection>
 			<DBSection
-				className="db-color-informational db-bg-color-basic-level-2 section-card-container"
+				class="db-color-informational db-bg-color-basic-level-2 section-card-container"
 				data-density="regular">
 				<DBCard>(Default) Regular</DBCard>
 				<DBCard>(Default) Regular</DBCard>
@@ -30,7 +30,7 @@ export default function SectionDensity() {
 				<DBCard>(Default) Regular</DBCard>
 			</DBSection>
 			<DBSection
-				className="db-color-informational db-bg-color-basic-level-2 section-card-container"
+				class="db-color-informational db-bg-color-basic-level-2 section-card-container"
 				data-density="expressive">
 				<DBCard>Expressive</DBCard>
 				<DBCard>Expressive</DBCard>

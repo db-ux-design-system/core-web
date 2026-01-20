@@ -34,14 +34,14 @@ export default function StackGap() {
 				<DBInfotext size="small" icon="none" semantic="informational">
 					none
 				</DBInfotext>
-				<DBStack className="stack-container" gap="none">
-					<span className="dummy-component">
+				<DBStack class="stack-container" gap="none">
+					<span class="dummy-component">
 						<a href="#">Content 1</a>
 					</span>
 
-					<span className="dummy-component">Content 2</span>
+					<span class="dummy-component">Content 2</span>
 
-					<span className="dummy-component">Content 3</span>
+					<span class="dummy-component">Content 3</span>
 				</DBStack>
 			</div>
 			<div
@@ -55,14 +55,14 @@ export default function StackGap() {
 				<DBInfotext size="small" icon="none" semantic="informational">
 					3x-small
 				</DBInfotext>
-				<DBStack className="stack-container" gap="3x-small">
-					<span className="dummy-component">
+				<DBStack class="stack-container" gap="3x-small">
+					<span class="dummy-component">
 						<a href="#">Content 1</a>
 					</span>
 
-					<span className="dummy-component">Content 2</span>
+					<span class="dummy-component">Content 2</span>
 
-					<span className="dummy-component">Content 3</span>
+					<span class="dummy-component">Content 3</span>
 				</DBStack>
 			</div>
 			<div
@@ -76,14 +76,14 @@ export default function StackGap() {
 				<DBInfotext size="small" icon="none" semantic="informational">
 					2x-small
 				</DBInfotext>
-				<DBStack className="stack-container" gap="2x-small">
-					<span className="dummy-component">
+				<DBStack class="stack-container" gap="2x-small">
+					<span class="dummy-component">
 						<a href="#">Content 1</a>
 					</span>
 
-					<span className="dummy-component">Content 2</span>
+					<span class="dummy-component">Content 2</span>
 
-					<span className="dummy-component">Content 3</span>
+					<span class="dummy-component">Content 3</span>
 				</DBStack>
 			</div>
 			<div
@@ -97,14 +97,14 @@ export default function StackGap() {
 				<DBInfotext size="small" icon="none" semantic="informational">
 					x-small
 				</DBInfotext>
-				<DBStack className="stack-container" gap="x-small">
-					<span className="dummy-component">
+				<DBStack class="stack-container" gap="x-small">
+					<span class="dummy-component">
 						<a href="#">Content 1</a>
 					</span>
 
-					<span className="dummy-component">Content 2</span>
+					<span class="dummy-component">Content 2</span>
 
-					<span className="dummy-component">Content 3</span>
+					<span class="dummy-component">Content 3</span>
 				</DBStack>
 			</div>
 			<div
@@ -118,14 +118,14 @@ export default function StackGap() {
 				<DBInfotext size="small" icon="none" semantic="informational">
 					(Default) small
 				</DBInfotext>
-				<DBStack className="stack-container" gap="small">
-					<span className="dummy-component">
+				<DBStack class="stack-container" gap="small">
+					<span class="dummy-component">
 						<a href="#">Content 1</a>
 					</span>
 
-					<span className="dummy-component">Content 2</span>
+					<span class="dummy-component">Content 2</span>
 
-					<span className="dummy-component">Content 3</span>
+					<span class="dummy-component">Content 3</span>
 				</DBStack>
 			</div>
 			<div
@@ -139,14 +139,14 @@ export default function StackGap() {
 				<DBInfotext size="small" icon="none" semantic="informational">
 					medium
 				</DBInfotext>
-				<DBStack className="stack-container" gap="medium">
-					<span className="dummy-component">
+				<DBStack class="stack-container" gap="medium">
+					<span class="dummy-component">
 						<a href="#">Content 1</a>
 					</span>
 
-					<span className="dummy-component">Content 2</span>
+					<span class="dummy-component">Content 2</span>
 
-					<span className="dummy-component">Content 3</span>
+					<span class="dummy-component">Content 3</span>
 				</DBStack>
 			</div>
 			<div
@@ -160,14 +160,14 @@ export default function StackGap() {
 				<DBInfotext size="small" icon="none" semantic="informational">
 					large
 				</DBInfotext>
-				<DBStack className="stack-container" gap="large">
-					<span className="dummy-component">
+				<DBStack class="stack-container" gap="large">
+					<span class="dummy-component">
 						<a href="#">Content 1</a>
 					</span>
 
-					<span className="dummy-component">Content 2</span>
+					<span class="dummy-component">Content 2</span>
 
-					<span className="dummy-component">Content 3</span>
+					<span class="dummy-component">Content 3</span>
 				</DBStack>
 			</div>
 			<div
@@ -181,14 +181,14 @@ export default function StackGap() {
 				<DBInfotext size="small" icon="none" semantic="informational">
 					x-large
 				</DBInfotext>
-				<DBStack className="stack-container" gap="x-large">
-					<span className="dummy-component">
+				<DBStack class="stack-container" gap="x-large">
+					<span class="dummy-component">
 						<a href="#">Content 1</a>
 					</span>
 
-					<span className="dummy-component">Content 2</span>
+					<span class="dummy-component">Content 2</span>
 
-					<span className="dummy-component">Content 3</span>
+					<span class="dummy-component">Content 3</span>
 				</DBStack>
 			</div>
 			<div
@@ -202,14 +202,14 @@ export default function StackGap() {
 				<DBInfotext size="small" icon="none" semantic="informational">
 					2x-large
 				</DBInfotext>
-				<DBStack className="stack-container" gap="2x-large">
-					<span className="dummy-component">
+				<DBStack class="stack-container" gap="2x-large">
+					<span class="dummy-component">
 						<a href="#">Content 1</a>
 					</span>
 
-					<span className="dummy-component">Content 2</span>
+					<span class="dummy-component">Content 2</span>
 
-					<span className="dummy-component">Content 3</span>
+					<span class="dummy-component">Content 3</span>
 				</DBStack>
 			</div>
 			<div
@@ -223,14 +223,14 @@ export default function StackGap() {
 				<DBInfotext size="small" icon="none" semantic="informational">
 					3x-large
 				</DBInfotext>
-				<DBStack className="stack-container" gap="3x-large">
-					<span className="dummy-component">
+				<DBStack class="stack-container" gap="3x-large">
+					<span class="dummy-component">
 						<a href="#">Content 1</a>
 					</span>
 
-					<span className="dummy-component">Content 2</span>
+					<span class="dummy-component">Content 2</span>
 
-					<span className="dummy-component">Content 3</span>
+					<span class="dummy-component">Content 3</span>
 				</DBStack>
 			</div>
 		</Fragment>

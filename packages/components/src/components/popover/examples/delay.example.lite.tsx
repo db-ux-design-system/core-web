@@ -17,7 +17,7 @@ export default function PopoverDelay() {
 				delay="none"
 				trigger={<DBButton>(Default) None</DBButton>}>
 				<>
-					<ul className="popover-list">
+					<ul class="popover-list">
 						<li>Popover Custom Item 1</li>
 						<li>Popover Custom Item 2</li>
 					</ul>
@@ -29,7 +29,7 @@ export default function PopoverDelay() {
 				id="popover-14"
 				trigger={<DBButton>Slow</DBButton>}>
 				<>
-					<ul className="popover-list">
+					<ul class="popover-list">
 						<li>Popover Custom Item 1</li>
 						<li>Popover Custom Item 2</li>
 					</ul>
@@ -41,7 +41,7 @@ export default function PopoverDelay() {
 				id="popover-15"
 				trigger={<DBButton>Fast</DBButton>}>
 				<>
-					<ul className="popover-list">
+					<ul class="popover-list">
 						<li>Popover Custom Item 1</li>
 						<li>Popover Custom Item 2</li>
 					</ul>

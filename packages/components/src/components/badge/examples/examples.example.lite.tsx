@@ -25,7 +25,7 @@ export default function BadgeExamples() {
 			<DBInfotext semantic="informational" size="small" icon="none">
 				Numbers
 			</DBInfotext>
-			<i className="line-break" />
+			<i class="line-break" />
 			<DBBadge size="medium">(Default) Text - Medium</DBBadge>
 			<DBBadge size="medium" />
 			<DBInfotext semantic="informational" size="small" icon="none">

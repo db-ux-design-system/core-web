@@ -24,14 +24,14 @@ export default function StackDensity() {
 				<DBInfotext size="small" icon="none" semantic="informational">
 					Functional
 				</DBInfotext>
-				<DBStack className="stack-container" data-density="functional">
-					<span className="dummy-component">
+				<DBStack class="stack-container" data-density="functional">
+					<span class="dummy-component">
 						<a href="#">Content 1</a>
 					</span>
 
-					<span className="dummy-component">Content 2</span>
+					<span class="dummy-component">Content 2</span>
 
-					<span className="dummy-component">Content 3</span>
+					<span class="dummy-component">Content 3</span>
 				</DBStack>
 			</div>
 			<div
@@ -45,14 +45,14 @@ export default function StackDensity() {
 				<DBInfotext size="small" icon="none" semantic="informational">
 					(Default) Regular
 				</DBInfotext>
-				<DBStack className="stack-container" data-density="regular">
-					<span className="dummy-component">
+				<DBStack class="stack-container" data-density="regular">
+					<span class="dummy-component">
 						<a href="#">Content 1</a>
 					</span>
 
-					<span className="dummy-component">Content 2</span>
+					<span class="dummy-component">Content 2</span>
 
-					<span className="dummy-component">Content 3</span>
+					<span class="dummy-component">Content 3</span>
 				</DBStack>
 			</div>
 			<div
@@ -67,14 +67,14 @@ export default function StackDensity() {
 				<DBInfotext size="small" icon="none" semantic="informational">
 					Expressive
 				</DBInfotext>
-				<DBStack className="stack-container" data-density="expressive">
-					<span className="dummy-component">
+				<DBStack class="stack-container" data-density="expressive">
+					<span class="dummy-component">
 						<a href="#">Content 1</a>
 					</span>
 
-					<span className="dummy-component">Content 2</span>
+					<span class="dummy-component">Content 2</span>
 
-					<span className="dummy-component">Content 3</span>
+					<span class="dummy-component">Content 3</span>
 				</DBStack>
 			</div>
 		</Fragment>

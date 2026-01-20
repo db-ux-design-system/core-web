@@ -22,7 +22,7 @@ useMetadata({
 export default function BadgePlacement() {
 	return (
 		<Fragment>
-			<div className="badge-inline-container">
+			<div class="badge-inline-container">
 				<DBIcon icon="x_placeholder" />
 				<span>(Default) Inline</span>
 				<DBBadge size="small" emphasis="strong" semantic="critical">

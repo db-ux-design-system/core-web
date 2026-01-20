@@ -24,16 +24,16 @@ export default function StackAlignmentRow() {
 					(Default) Stretch
 				</DBInfotext>
 				<DBStack
-					className="stack-container stack-show-alignment"
+					class="stack-container stack-show-alignment"
 					alignment="stretch"
 					direction="row">
-					<span className="dummy-component">
+					<span class="dummy-component">
 						<a href="#">Content 1</a>
 					</span>
 
-					<span className="dummy-component">Content 2</span>
+					<span class="dummy-component">Content 2</span>
 
-					<span className="dummy-component">Content 3</span>
+					<span class="dummy-component">Content 3</span>
 				</DBStack>
 			</div>
 			<div
@@ -48,16 +48,16 @@ export default function StackAlignmentRow() {
 					Start
 				</DBInfotext>
 				<DBStack
-					className="stack-container stack-show-alignment"
+					class="stack-container stack-show-alignment"
 					alignment="start"
 					direction="row">
-					<span className="dummy-component">
+					<span class="dummy-component">
 						<a href="#">Content 1</a>
 					</span>
 
-					<span className="dummy-component">Content 2</span>
+					<span class="dummy-component">Content 2</span>
 
-					<span className="dummy-component">Content 3</span>
+					<span class="dummy-component">Content 3</span>
 				</DBStack>
 			</div>
 			<div
@@ -72,16 +72,16 @@ export default function StackAlignmentRow() {
 					Center
 				</DBInfotext>
 				<DBStack
-					className="stack-container stack-show-alignment"
+					class="stack-container stack-show-alignment"
 					alignment="center"
 					direction="row">
-					<span className="dummy-component">
+					<span class="dummy-component">
 						<a href="#">Content 1</a>
 					</span>
 
-					<span className="dummy-component">Content 2</span>
+					<span class="dummy-component">Content 2</span>
 
-					<span className="dummy-component">Content 3</span>
+					<span class="dummy-component">Content 3</span>
 				</DBStack>
 			</div>
 			<div
@@ -96,16 +96,16 @@ export default function StackAlignmentRow() {
 					End
 				</DBInfotext>
 				<DBStack
-					className="stack-container stack-show-alignment"
+					class="stack-container stack-show-alignment"
 					alignment="end"
 					direction="row">
-					<span className="dummy-component">
+					<span class="dummy-component">
 						<a href="#">Content 1</a>
 					</span>
 
-					<span className="dummy-component">Content 2</span>
+					<span class="dummy-component">Content 2</span>
 
-					<span className="dummy-component">Content 3</span>
+					<span class="dummy-component">Content 3</span>
 				</DBStack>
 			</div>
 		</Fragment>

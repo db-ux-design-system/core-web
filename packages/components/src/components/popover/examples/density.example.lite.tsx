@@ -17,7 +17,7 @@ export default function PopoverDensity() {
 				id="popover-01"
 				trigger={<DBButton>Functional</DBButton>}>
 				<>
-					<ul className="popover-list">
+					<ul class="popover-list">
 						<li>Popover Custom Item 1</li>
 						<li>Popover Custom Item 2</li>
 					</ul>
@@ -29,7 +29,7 @@ export default function PopoverDensity() {
 				id="popover-02"
 				trigger={<DBButton>(Default) Regular</DBButton>}>
 				<>
-					<ul className="popover-list">
+					<ul class="popover-list">
 						<li>Popover Custom Item 1</li>
 						<li>Popover Custom Item 2</li>
 					</ul>
@@ -41,7 +41,7 @@ export default function PopoverDensity() {
 				id="popover-03"
 				trigger={<DBButton>Expressive</DBButton>}>
 				<>
-					<ul className="popover-list">
+					<ul class="popover-list">
 						<li>Popover Custom Item 1</li>
 						<li>Popover Custom Item 2</li>
 					</ul>

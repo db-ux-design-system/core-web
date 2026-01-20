@@ -22,7 +22,7 @@ export default function TagBehavior() {
 			<DBTag>(Default) Static</DBTag>
 			<DBTag behavior="removable">Removable</DBTag>
 
-			<i className="line-break" />
+			<i class="line-break" />
 			<DBTag>
 				<button>Interactive (Button)</button>
 			</DBTag>
@@ -30,7 +30,7 @@ export default function TagBehavior() {
 				<a href="#">Interactive (Link)</a>
 			</DBTag>
 
-			<i className="line-break" />
+			<i class="line-break" />
 			<DBTag>
 				<label>
 					<input type="checkbox" />

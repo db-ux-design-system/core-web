@@ -15,7 +15,7 @@ useMetadata({
 export default function TabsDensity() {
 	return (
 		<Fragment>
-			<div className="fit-content-container">
+			<div class="fit-content-container">
 				<DBInfotext icon="none" size="small" semantic="informational">
 					Functional:
 				</DBInfotext>
@@ -30,7 +30,7 @@ export default function TabsDensity() {
 					<DBTabPanel>Test Panel 3</DBTabPanel>
 				</DBTabs>
 			</div>
-			<div className="fit-content-container">
+			<div class="fit-content-container">
 				<DBInfotext icon="none" size="small" semantic="informational">
 					(Default) Regular:
 				</DBInfotext>
@@ -45,7 +45,7 @@ export default function TabsDensity() {
 					<DBTabPanel>Test Panel 3</DBTabPanel>
 				</DBTabs>
 			</div>
-			<div className="fit-content-container">
+			<div class="fit-content-container">
 				<DBInfotext icon="none" size="small" semantic="informational">
 					Expressive:
 				</DBInfotext>

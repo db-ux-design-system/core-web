@@ -19,7 +19,7 @@ useMetadata({
 export default function TabsOverflow() {
 	return (
 		<Fragment>
-			<div style={{ width: '300px' }} className="fit-content-container">
+			<div style={{ width: '300px' }} class="fit-content-container">
 				<DBInfotext icon="none" size="small" semantic="informational">
 					no overflow:
 				</DBInfotext>
@@ -34,7 +34,7 @@ export default function TabsOverflow() {
 					<DBTabPanel>Test Panel 3</DBTabPanel>
 				</DBTabs>
 			</div>
-			<div style={{ width: '300px' }} className="fit-content-container">
+			<div style={{ width: '300px' }} class="fit-content-container">
 				<DBInfotext icon="none" size="small" semantic="informational">
 					with overflow - behavior: arrows:
 				</DBInfotext>
@@ -53,7 +53,7 @@ export default function TabsOverflow() {
 					<DBTabPanel>Test Panel 5</DBTabPanel>
 				</DBTabs>
 			</div>
-			<div style={{ width: '300px' }} className="fit-content-container">
+			<div style={{ width: '300px' }} class="fit-content-container">
 				<DBInfotext icon="none" size="small" semantic="informational">
 					with overflow - behavior: scrollbar:
 				</DBInfotext>

@@ -30,7 +30,7 @@ export default function BadgeSemantic() {
 			<DBBadge semantic="neutral">Neutral</DBBadge>
 			<DBBadge semantic="successful">Successful</DBBadge>
 			<DBBadge semantic="warning">Warning</DBBadge>
-			<i className="line-break" />
+			<i class="line-break" />
 			<DBBadge emphasis="strong">Adaptive Strong</DBBadge>
 			<DBBadge semantic="critical" emphasis="strong">
 				Critical Strong
