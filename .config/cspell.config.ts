@@ -3,8 +3,7 @@ import { defineConfig } from 'cspell';
 export default defineConfig({
 	version: '0.2',
 	ignorePaths: [
-		'*.lock',
-		'package-lock.json',
+		'pnpm-lock.yaml',
 		'node_modules',
 		'.git',
 		'__snapshots__',
