@@ -3,28 +3,22 @@ import path from 'node:path';
 
 function findAllNodeModulesDirectories(
 	directory: string,
-	found: string[] = [],
-	visited: Set<string> = new Set()
-): string[] {
+	found: Set<string> = new Set()
+): Set<string> {
 	if (!fs.existsSync(directory)) {
 		return found;
 	}
-
-	const realPath = fs.realpathSync(directory);
-	if (visited.has(realPath)) {
-		return found;
-	}
-	visited.add(realPath);
 
 	const entries = fs
 		.readdirSync(directory, { withFileTypes: true })
 		.sort((a, b) => a.name.localeCompare(b.name, 'en'));
 	for (const entry of entries) {
-		const fullPath = path.join(directory, entry.name);
+		const fullPath = path.resolve(directory, entry.name);
 		// Use statSync to follow symlinks (important for pnpm compatibility)
 		let isDirectory = false;
 		try {
-			isDirectory = fs.statSync(fullPath).isDirectory();
+			const stats = fs.statSync(fullPath);
+			isDirectory = stats.isDirectory();
 		} catch {
 			// Skip entries that can't be accessed
 			continue;
@@ -32,11 +26,9 @@ function findAllNodeModulesDirectories(
 
 		if (isDirectory) {
 			if (entry.name === 'node_modules') {
-				const path = fs.realpathSync(fullPath);
-				found.push(path);
-				visited.add(path);
-			} else {
-				findAllNodeModulesDirectories(fullPath, found, visited);
+				found.add(fs.realpathSync(fullPath));
+			} else if (!entry.name.startsWith('.')){
+				findAllNodeModulesDirectories(fullPath, found);
 			}
 		}
 	}
@@ -46,7 +38,7 @@ function findAllNodeModulesDirectories(
 
 export const getInstructions = (rootPath: string): string => {
 	const nodeModulesDirectories = findAllNodeModulesDirectories(rootPath);
-	if (nodeModulesDirectories.length === 0) {
+	if (nodeModulesDirectories.size === 0) {
 		return 'No node_modules folders found.';
 	}
 
@@ -67,11 +59,22 @@ export const getInstructions = (rootPath: string): string => {
 				withFileTypes: true
 			});
 			for (const package_ of packages) {
-				const packagePath = path.join(databaseUxPath, package_.name);
+				let packagePath = path.resolve(databaseUxPath, package_.name);
 				// Use statSync to follow symlinks (important for pnpm compatibility)
 				let isDirectory = false;
 				try {
-					isDirectory = fs.statSync(packagePath).isDirectory();
+					const stats = fs.statSync(packagePath);
+					isDirectory = stats.isDirectory();
+					if (!isDirectory && stats.isFile()) {
+						const content = fs.readFileSync(packagePath, 'utf8').trim();
+						if (!content.includes('\n')) {
+							const targetPath = path.resolve(path.dirname(packagePath), content);
+							if (fs.existsSync(targetPath) && fs.statSync(targetPath).isDirectory()) {
+								isDirectory = true;
+								packagePath = targetPath;
+							}
+						}
+					}
 				} catch {
 					// Skip entries that can't be accessed
 					continue;
