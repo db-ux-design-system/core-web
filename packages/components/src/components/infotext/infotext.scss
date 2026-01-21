@@ -51,11 +51,12 @@
 			content: none;
 		}
 	}
-}
 
-// Wraps the content to preserve whitespace around inline elements (e.g. <b>, <code>).
-// Without this, the text nodes would become anonymous flex items, causing whitespace collapsing issues.
-.db-infotext-content {
-	min-inline-size: 0; // prevents flex overflow.
-	flex-grow: 1;
+	// Wraps the content to preserve whitespace around inline elements (e.g. <b>, <code>).
+	// Without this, the text nodes would become anonymous flex items, causing whitespace collapsing issues.
+	&-content {
+		display: block;
+		min-inline-size: 0;
+		flex-grow: 1;
+	}
 }
