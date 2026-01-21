@@ -32,7 +32,7 @@
     "copy-build:agent": "cpr agent ../../build-outputs/foundations/agent --overwrite",
     "copy-build:assets": "cpr assets ../../build-outputs/foundations/assets --overwrite",
     "copy-build:changelog": "cpr CHANGELOG.md ../../build-outputs/foundations/CHANGELOG.md --overwrite",
-    "copy-build:package.json": "cpr package.json ../../build-outputs/foundations/package.json --overwrite && pnpm publish ../../build-outputs/foundations/ --dry-run",
+    "copy-build:package.json": "cpr package.json ../../build-outputs/foundations/package.json --overwrite",
     "copy-build:readme": "cpr README.md ../../build-outputs/foundations/README.md --overwrite",
     "copy-build:web": "cpr build ../../build-outputs/foundations/build --overwrite",
     "copy-prepare:icon-overview": "tsx scripts/local/generate-icon-overview.ts && prettier dev/icons.html --write",
