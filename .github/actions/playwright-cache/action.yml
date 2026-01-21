@@ -49,3 +49,8 @@ runs:
       shell: bash
       if: steps.playwright-cache.outputs.cache-hit != 'true'
       run: npx --no -- playwright install --with-deps ${{ env.BROWSERS }}
+
+    - name: ⏬ Install Playwright system dependencies (cache hit)
+      shell: bash
+      if: steps.playwright-cache.outputs.cache-hit == 'true' && runner.os == 'Linux'
+      run: npx --no -- playwright install-deps ${{ env.BROWSERS }}
