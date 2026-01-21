@@ -12,19 +12,6 @@ export const uuid = () => {
 	return Math.random().toString().substring(2);
 };
 
-/**
- * Generates a unique component ID using framework-specific useId hooks when available.
- * This function is designed to be used with useTarget to ensure SSR compatibility.
- * 
- * @param componentPrefix - The component prefix for the ID (e.g., 'textarea')
- * @param useIdFn - Framework-specific useId function
- * @returns A unique ID string
- */
-export const generateComponentId = (componentPrefix: string, useIdFn?: () => string): string => {
-	const id = useIdFn ? useIdFn() : uuid();
-	return `${componentPrefix}-${id}`;
-};
-
 export const addAttributeToChildren = (
 	element: Element,
 	attribute: { key: string; value: string }
