@@ -11,8 +11,6 @@
 	@extend %db-overwrite-font-size-sm;
 	@include display.display(flex);
 
-	white-space: pre-wrap;
-
 	@include icons.has-no-icon {
 		@include icons.to-filled-icon;
 		@include icons.set-icon("information_circle");
@@ -53,4 +51,11 @@
 			content: none;
 		}
 	}
+}
+
+// Wraps the content to preserve whitespace around inline elements (e.g. <b>, <code>).
+// Without this, the text nodes would become anonymous flex items, causing whitespace collapsing issues.
+.db-infotext-content {
+	min-inline-size: 0; // prevents flex overflow.
+	flex-grow: 1;
 }
