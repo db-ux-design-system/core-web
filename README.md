@@ -6,7 +6,7 @@
 # DB UX Design System v3 🚂💖
 
 ![Part of DB UX Design System (Version 3)](https://img.shields.io/badge/Part%20of-DB%20UX%20Design%20System%20v3-d7dce1.svg)
-![Main pipeline](https://github.com/db-ux-design-system/core-web/actions/workflows/default.yml/badge.svg)
+[![Default Pipeline](https://github.com/db-ux-design-system/core-web/actions/workflows/default.yml/badge.svg)](https://github.com/db-ux-design-system/core-web/actions/workflows/default.yml)
 ![Apache 2.0 license badge](https://img.shields.io/badge/License-Apache_2.0-blue.svg)
 [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
 [![XO code style](https://img.shields.io/badge/code_style-XO-5ed9c7.svg)](https://github.com/xojs/xo)
@@ -134,7 +134,7 @@ As [DB UX Design System](https://marketingportal.extranet.deutschebahn.com/marke
 ### From DB UI Core or DB UI Elements to DB UX Design System Core
 
 We're providing a detailed migration for each component next to the documentation of each component, like e.g.
-<https://design-system.deutschebahn.com/core-web/review/main/components/action/button/migration>
+[Button migration](https://design-system.deutschebahn.com/core-web/review/main/components/action/button/migration).
 
 For a comprehensive overview of all DB-UI components and their migration status, including components that don't have direct equivalents in DB-UX Design System v3, see our [DB-UI to DB-UX Design System v3 Component Migration Guide](https://github.com/db-ux-design-system/core-web/blob/main/docs/migration/db-ui-to-db-ux-dsv3.md).
 
@@ -142,6 +142,7 @@ For a comprehensive overview of all DB-UI components and their migration status,
 
 Check our migration docs for breaking changes:
 
+- [v3.x ➡ v4.0](https://github.com/db-ux-design-system/core-web/blob/main/docs/migration/v3.x.x-to-v4.0.0.md)
 - [v2.x ➡ v3.0](https://github.com/db-ux-design-system/core-web/blob/main/docs/migration/v2.x.x-to-v3.0.0.md)
 - [v1.x ➡ v2.0](https://github.com/db-ux-design-system/core-web/blob/main/docs/migration/v1.x.x-to-v2.0.0.md)
 - [v0.7 ➡ v1.0](https://github.com/db-ux-design-system/core-web/blob/main/docs/migration/v0.7.x-to-v1.0.0.md)
@@ -192,7 +193,7 @@ To perfectly support our users and customers on their digital journey, the use o
 to clear guidelines and restrictions even when used with the code provided by this product. Deutsche Bahn fully reserves all
 rights and ownership regarding the Deutsche Bahn brand, even though we provide the code for DB UX Design System products free of
 charge under the Apache 2.0 license.
-Please refer to our brand portal at <https://marketingportal.extranet.deutschebahn.com/> for further questions
+Please refer to our [brand portal](https://marketingportal.extranet.deutschebahn.com/) for further questions
 contact details regarding brand issues. As these assets and visual guidelines are retrieved from our Deutsche Bahn
 Marketingportal, you'll agree with
 the ["Allgemeine Nutzungsbedingungen für das DB-Marketingportal" (german)](https://marketingportal.extranet.deutschebahn.com/marketingportal/Nutzungsbedingungen-9702684#)

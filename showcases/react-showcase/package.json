@@ -2,6 +2,12 @@
   "name": "react-showcase",
   "version": "0.0.0",
   "type": "module",
+  "description": "React showcase",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/db-ux-design-system/core-web.git"
+  },
+  "license": "Apache-2.0",
   "private": true,
   "scripts": {
     "build": "npm-run-all build:*",
@@ -22,17 +28,17 @@
     "test:visual-snapshots": "cross-env showcase=react-showcase npx playwright test --config=../playwright.visual-snapshots.ts"
   },
   "dependencies": {
-    "react": "18.3.1",
-    "react-dom": "18.3.1",
-    "react-router-dom": "7.9.5",
-    "sa11y": "4.3.5"
+    "react": "19.2.3",
+    "react-dom": "19.2.3",
+    "react-router-dom": "7.12.0",
+    "sa11y": "4.4.1"
   },
   "devDependencies": {
-    "@types/react": "18.3.13",
-    "@types/react-dom": "18.3.1",
-    "@vitejs/plugin-react": "5.0.4",
+    "@types/react": "19.2.8",
+    "@types/react-dom": "19.2.3",
+    "@vitejs/plugin-react": "5.1.2",
     "cross-env": "10.1.0",
     "typescript": "5.9.3",
-    "vite": "7.2.4"
+    "vite": "7.3.1"
   }
 }
