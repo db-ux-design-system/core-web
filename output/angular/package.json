@@ -13,7 +13,7 @@
   "types": "index.d.ts",
   "scripts": {
     "build": "npm-run-all build:* --parallel mv:*",
-    "build:angular": "ng build",
+    "build:angular": "ng build && pnpm publish ../../build-outputs/angular/ --dry-run",
     "mv:agent": "cpr agent ../../build-outputs/angular/agent --overwrite",
     "mv:changelog": "cpr CHANGELOG.md ../../build-outputs/angular/CHANGELOG.md --overwrite",
     "ng": "ng",
