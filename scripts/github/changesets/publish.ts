@@ -46,7 +46,7 @@ function getFirstHeadline(changelog: string): string {
 
 function getReleaseNotes(): string {
 	const repoRoot = path.resolve(__dirname, '../../../');
-	const changelogFiles = findChangelogFiles(repoRoot, ['output/**']);
+	const changelogFiles = findChangelogFiles(repoRoot);
 	const notes: string[] = [];
 	for (const file of changelogFiles) {
 		const changelog = fs.readFileSync(file, 'utf8');
@@ -54,7 +54,16 @@ function getReleaseNotes(): string {
 		if (section) {
 			const headline =
 				getFirstHeadline(changelog) || path.relative(repoRoot, file);
-			notes.push(`# ${headline}\n${section}`);
+			const entry = `# ${headline}\n${section}`;
+			// Ensure a logical sequence, packages with Release notes first, packages that are only getting version bumped last
+			const isVersionBump = /^\s*[-*+]?\s*_version bump_\s*$/m.test(
+				section
+			);
+			if (isVersionBump) {
+				notes.push(entry);
+			} else {
+				notes.unshift(entry);
+			}
 		}
 	}
 

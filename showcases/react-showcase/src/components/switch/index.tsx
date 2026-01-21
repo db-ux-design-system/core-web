@@ -1,9 +1,5 @@
-import {
-	DBInfotext,
-	DBSwitch,
-	getBoolean
-} from '../../../../../output/react/src';
-import type { DBSwitchProps } from '../../../../../output/react/src/components/switch/model';
+import { DBInfotext, DBSwitch, getBoolean } from '@components';
+import type { DBSwitchProps } from '@db-ux/react-core-components/src';
 import defaultComponentVariants from '../../../../shared/switch.json';
 import { type BaseComponentProps } from '../base-component-data';
 import { getVariants } from '../data';
@@ -15,12 +11,19 @@ const getSwitch = ({
 	visualAid,
 	disabled,
 	showLabel,
-	emphasis,
 	size,
 	icon,
 	iconTrailing,
+	iconLeading,
 	required,
-	showRequiredAsterisk
+	showRequiredAsterisk,
+	validation,
+	invalidMessage,
+	validMessage,
+	message,
+	messageIcon,
+	showMessage,
+	variant
 }: DBSwitchProps) => (
 	<>
 		<DBSwitch
@@ -29,11 +32,18 @@ const getSwitch = ({
 			disabled={disabled}
 			showRequiredAsterisk={showRequiredAsterisk}
 			showLabel={showLabel}
+			variant={variant}
 			size={size}
-			emphasis={emphasis}
 			icon={icon}
 			iconTrailing={iconTrailing}
-			required={required}>
+			iconLeading={iconLeading}
+			required={required}
+			validation={validation}
+			invalidMessage={invalidMessage}
+			validMessage={validMessage}
+			message={message}
+			messageIcon={messageIcon}
+			showMessage={showMessage}>
 			{children}
 		</DBSwitch>
 		{showLabel !== undefined && !showLabel && (

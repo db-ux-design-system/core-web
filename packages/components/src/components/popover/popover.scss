@@ -1,12 +1,12 @@
 @use "@db-ux/core-foundations/build/styles/variables";
-@use "@db-ux/core-foundations/build/styles/helpers/display";
+@use "@db-ux/core-foundations/build/styles/helpers";
 @use "../../styles/internal/popover-component";
 @use "../../styles/internal/component";
 
 .db-popover {
 	position: relative;
 
-	@include display.display(flex);
+	@include helpers.display(flex);
 
 	block-size: fit-content;
 	inline-size: fit-content;

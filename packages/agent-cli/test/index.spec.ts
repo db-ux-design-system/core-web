@@ -1,31 +1,41 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { describe, expect, test } from 'vitest';
-import { generateCopilot } from '../src/copilot';
+import { action } from '../src';
+
+const checkExpectations = (copilotFile: string, amazonqFile: string) => {
+	const copilotContent = fs.readFileSync(copilotFile).toString();
+	expect(copilotContent.length).toBeGreaterThan(0);
+	expect(copilotContent).toMatchSnapshot();
+	const amazonqContent = fs.readFileSync(amazonqFile).toString();
+	expect(amazonqContent.length).toBeGreaterThan(0);
+	expect(amazonqContent).toMatchSnapshot();
+};
 
 describe('default', () => {
 	test('check if docs are created', async () => {
 		const copilotFile = path.resolve(
 			'test/frontend/.github/copilot-instructions.md'
 		);
-		generateCopilot('test/frontend');
+		const amazonqFile = path.resolve(
+			'test/frontend/.amazonq/rules/db-ux.md'
+		);
 
-		expect(fs.readFileSync(copilotFile).toString()).toMatchSnapshot();
+		await action('test/frontend');
+
+		checkExpectations(copilotFile, amazonqFile);
 	});
 
 	test('check if docs are created from pnpm symlinked packages', async () => {
 		const copilotFile = path.resolve(
 			'test/pnpm-test/.github/copilot-instructions.md'
 		);
-		generateCopilot('test/pnpm-test');
-
-		const content = fs.readFileSync(copilotFile).toString();
-
-		// Verify that the symlinked package was detected and processed
-		expect(content).toContain('test-symlink-package');
-		expect(content).toContain('Symlinked Package Instructions');
-		expect(content).toContain(
-			'This is a test package accessed via symlink'
+		const amazonqFile = path.resolve(
+			'test/pnpm-test/.amazonq/rules/db-ux.md'
 		);
+		await action('test/pnpm-test');
+
+
+		checkExpectations(copilotFile, amazonqFile);
 	});
 });

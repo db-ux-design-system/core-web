@@ -1,6 +1,7 @@
 import {
 	For,
 	onMount,
+	onUnMount,
 	onUpdate,
 	Show,
 	useDefaultProps,
@@ -34,12 +35,15 @@ import {
 	getHideProp,
 	getInputValue,
 	getNumber,
+	getStep,
 	hasVoiceOver,
 	isArrayOfStrings,
+	isIOSSafari,
 	stringPropVisible,
 	uuid
 } from '../../utils';
 import {
+	addValueResetEventListener,
 	handleFrameworkEventAngular,
 	handleFrameworkEventVue
 } from '../../utils/form-components';
@@ -70,6 +74,7 @@ export default function DBInput(props: DBInputProps) {
 		_descByIds: undefined,
 		_value: undefined,
 		_voiceOverFallback: '',
+		abortController: undefined,
 		hasValidState: () => {
 			return !!(props.validMessage ?? props.validation === 'valid');
 		},
@@ -105,8 +110,15 @@ export default function DBInput(props: DBInputProps) {
 				state._descByIds = undefined;
 			}
 		},
-		handleInput: (event: InputEvent<HTMLInputElement>) => {
+		handleInput: (event: InputEvent<HTMLInputElement>, reset?: boolean) => {
 			useTarget({
+				angular: () => {
+					if (props.onInput) {
+						if (reset) {
+							props.onInput(event);
+						}
+					}
+				},
 				vue: () => {
 					if (props.input) {
 						props.input(event);
@@ -128,10 +140,25 @@ export default function DBInput(props: DBInputProps) {
 			});
 			state.handleValidation();
 		},
-		handleChange: (event: ChangeEvent<HTMLInputElement>) => {
-			if (props.onChange) {
-				props.onChange(event);
-			}
+		handleChange: (
+			event: ChangeEvent<HTMLInputElement>,
+			reset?: boolean
+		) => {
+			useTarget({
+				angular: () => {
+					if (props.onChange) {
+						// We need to split the if statements for generation
+						if (reset) {
+							props.onChange(event);
+						}
+					}
+				},
+				default: () => {
+					if (props.onChange) {
+						props.onChange(event);
+					}
+				}
+			});
 
 			useTarget({
 				angular: () => handleFrameworkEventAngular(state, event),
@@ -201,6 +228,35 @@ export default function DBInput(props: DBInputProps) {
 		state._value = props.value;
 	}, [props.value]);
 
+	onUpdate(() => {
+		if (_ref) {
+			const defaultValue = useTarget({
+				react: (props as any).defaultValue,
+				default: undefined
+			});
+
+			let controller = state.abortController;
+			if (!controller) {
+				controller = new AbortController();
+				state.abortController = controller;
+			}
+
+			addValueResetEventListener(
+				_ref,
+				{ value: props.value, defaultValue },
+				(event) => {
+					state.handleChange(event, true);
+					state.handleInput(event, true);
+				},
+				controller.signal
+			);
+		}
+	}, [_ref]);
+
+	onUnMount(() => {
+		state.abortController?.abort();
+	});
+
 	return (
 		<div
 			class={cls('db-input', props.className)}
@@ -228,7 +284,7 @@ export default function DBInput(props: DBInputProps) {
 				placeholder={props.placeholder ?? DEFAULT_PLACEHOLDER}
 				disabled={getBoolean(props.disabled, 'disabled')}
 				required={getBoolean(props.required, 'required')}
-				step={getNumber(props.step)}
+				step={getStep(props.step)}
 				value={props.value ?? state._value}
 				maxLength={getNumber(props.maxLength, props.maxlength)}
 				minLength={getNumber(props.minLength, props.minlength)}
@@ -260,6 +316,20 @@ export default function DBInput(props: DBInputProps) {
 				}
 				list={props.dataList && state._dataListId}
 				aria-describedby={props.ariaDescribedBy ?? state._descByIds}
+				// iOS Safari VoiceOver input:is([type="date"], [type="datetime-local"], [type="time"], [type="week"], [type="month"], [type="color"]) hack
+				// TODO: We could remove this one again, after https://bugs.webkit.org/show_bug.cgi?id=294649 (mentioned in https://github.com/facebook/react/issues/33541) has been resolved.
+				role={
+					[
+						'datetime-local',
+						'date',
+						'time',
+						'week',
+						'month',
+						'color'
+					].includes(props.type ?? '') && isIOSSafari()
+						? 'textbox'
+						: undefined
+				}
 			/>
 			<Show when={props.dataList}>
 				<datalist id={state._dataListId}>

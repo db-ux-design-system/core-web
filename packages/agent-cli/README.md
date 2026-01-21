@@ -46,7 +46,7 @@ This is useful in monorepo setups where your DB UX packages might be installed i
 
 ### Best practices
 
-We've had the best experience with GitHub Copilot when using the following settings:
+We've had the best experience with GitHub Copilot and Amazon Q when using the following settings:
 
 - Agent mode works best for code generation and may also offer the best developer experience.
 - Regarding the provided models, GPT-4o seemed to strike the best balance between "used tokens" and performance, although "Claude Sonnet 4" is still better. However, you run out of tokens quite quickly with this model.

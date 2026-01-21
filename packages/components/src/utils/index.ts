@@ -57,6 +57,27 @@ export const hasVoiceOver = (): boolean =>
 	typeof window !== 'undefined' &&
 	appleOs.some((os) => window.navigator.userAgent.includes(os));
 
+/**
+ * Determines if the current browser is Safari running on an iOS device.
+ *
+ * This function checks the user agent string to verify both iOS platform
+ * (iPad, iPhone, or iPod) and Safari browser, excluding other browsers
+ * such as Chrome, Firefox, Opera, and Edge on iOS.
+ *
+ * @returns {boolean} `true` if the browser is Safari on iOS, otherwise `false`.
+ */
+export const isIOSSafari = (): boolean => {
+	if (typeof window === 'undefined' || typeof navigator === 'undefined')
+		return false;
+	const ua = navigator.userAgent;
+	// iOS detection
+	const isIOS = /iP(ad|hone|od)/.test(ua);
+	// Safari detection (not Chrome or Firefox on iOS)
+	const isSafari =
+		!!ua.match(/Safari/) && !ua.match(/CriOS|FxiOS|OPiOS|EdgiOS/);
+	return isIOS && isSafari;
+};
+
 export const delay = (fn: () => void, ms: number) =>
 	new Promise(() => setTimeout(fn, ms));
 
@@ -101,6 +122,27 @@ export const getNumber = (
 	}
 
 	return Number(originNumber ?? alternativeNumber);
+};
+
+/**
+ * Retrieves the step value for an input element.
+ *
+ * The step attribute can be a number or the special string "any".
+ * https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/step
+ *
+ * @param step - The step value, which can be a number, string, or undefined.
+ * @returns The step value as a number or the string "any", or undefined.
+ */
+export const getStep = (step?: number | string): number | 'any' | undefined => {
+	if (step === undefined || step === null) {
+		return;
+	}
+
+	if (step === 'any') {
+		return 'any';
+	}
+
+	return Number(step);
 };
 
 /**

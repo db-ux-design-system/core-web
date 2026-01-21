@@ -25,13 +25,13 @@ jobs:
       contents: write
     steps:
       - name: ⏬ Checkout repo
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
 
       - name: 🔄 Init Cache
         uses: ./.github/actions/npm-cache
 
       - name: ⏬ Download outputs
-        uses: actions/download-artifact@v5
+        uses: actions/download-artifact@v7
         with:
           name: db-ux-outputs
           path: build-outputs
@@ -43,4 +43,3 @@ jobs:
           RELEASE: ${{ inputs.release }}
           PRE_RELEASE: ${{ inputs.preRelease }}
           VALID_SEMVER_VERSION: ${{ inputs.version }}
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}

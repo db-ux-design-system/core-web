@@ -50,7 +50,9 @@ const testAction = () => {
 		expect(test).toEqual('test');
 	});
 
-	test('should have enterkeyhint attribute when provided', async ({ mount }) => {
+	test('should have enterkeyhint attribute when provided', async ({
+		mount
+	}) => {
 		const component = await mount(
 			<DBInput label="Label" enterkeyhint="done" />
 		);
@@ -66,15 +68,29 @@ const testAction = () => {
 		await expect(input).toHaveAttribute('inputmode', 'numeric');
 	});
 
-
-
-	test('should not have enterkeyhint or inputmode when not provided', async ({ mount }) => {
-		const component = await mount(
-			<DBInput label="Label" type="text" />
-		);
+	test('should not have enterkeyhint or inputmode when not provided', async ({
+		mount
+	}) => {
+		const component = await mount(<DBInput label="Label" type="text" />);
 		const input = component.getByRole('textbox');
 		await expect(input).not.toHaveAttribute('enterkeyhint');
 		await expect(input).not.toHaveAttribute('inputmode');
+	});
+
+	test('should support step="any" for number input', async ({ mount }) => {
+		const component = await mount(
+			<DBInput label="Label" type="number" step="any" />
+		);
+		const input = component.getByRole('spinbutton');
+		await expect(input).toHaveAttribute('step', 'any');
+	});
+
+	test('should support numeric step for number input', async ({ mount }) => {
+		const component = await mount(
+			<DBInput label="Label" type="number" step={0.01} />
+		);
+		const input = component.getByRole('spinbutton');
+		await expect(input).toHaveAttribute('step', '0.01');
 	});
 };
 
