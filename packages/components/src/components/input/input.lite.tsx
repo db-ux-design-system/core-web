@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import {
 	For,
 	onMount,
@@ -21,12 +22,7 @@ import {
 	DEFAULT_VALID_MESSAGE,
 	DEFAULT_VALID_MESSAGE_ID_SUFFIX
 } from '../../shared/constants';
-import {
-	ChangeEvent,
-	InputEvent,
-	InteractionEvent,
-	ValueLabelType
-} from '../../shared/model';
+import { InteractionEvent, ValueLabelType } from '../../shared/model';
 import {
 	cls,
 	delay,
@@ -110,7 +106,7 @@ export default function DBInput(props: DBInputProps) {
 				state._descByIds = undefined;
 			}
 		},
-		handleInput: (event: InputEvent<HTMLInputElement>, reset?: boolean) => {
+		handleInput: (event: any, reset?: boolean) => {
 			useTarget({
 				angular: () => {
 					if (props.onInput) {
@@ -140,10 +136,7 @@ export default function DBInput(props: DBInputProps) {
 			});
 			state.handleValidation();
 		},
-		handleChange: (
-			event: ChangeEvent<HTMLInputElement>,
-			reset?: boolean
-		) => {
+		handleChange: (event: any, reset?: boolean) => {
 			useTarget({
 				angular: () => {
 					if (props.onChange) {
@@ -302,12 +295,8 @@ export default function DBInput(props: DBInputProps) {
 				autoFocus={getBoolean(props.autofocus, 'autofocus')}
 				enterKeyHint={props.enterkeyhint}
 				inputMode={props.inputmode}
-				onInput={(event: InputEvent<HTMLInputElement>) =>
-					state.handleInput(event as any)
-				}
-				onChange={(event: ChangeEvent<HTMLInputElement>) =>
-					state.handleChange(event as any)
-				}
+				onInput={(event: any) => state.handleInput(event)}
+				onChange={(event: any) => state.handleChange(event)}
 				onBlur={(event: InteractionEvent<HTMLInputElement>) =>
 					state.handleBlur(event)
 				}

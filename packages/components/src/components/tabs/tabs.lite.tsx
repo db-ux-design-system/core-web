@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import {
 	For,
 	onMount,
@@ -10,7 +11,6 @@ import {
 	useStore,
 	useTarget
 } from '@builder.io/mitosis';
-import { InputEvent } from '../../shared/model';
 import { cls, uuid } from '../../utils';
 import DBButton from '../button/button.lite';
 import DBTabItem from '../tab-item/tab-item.lite';
@@ -151,7 +151,7 @@ export default function DBTabs(props: DBTabsProps) {
 				}
 			}
 		},
-		handleChange: (event: InputEvent<HTMLElement>) => {
+		handleChange: (event: any) => {
 			event.stopPropagation();
 
 			if (event.target) {
@@ -239,8 +239,8 @@ export default function DBTabs(props: DBTabsProps) {
 			data-scroll-behavior={props.behavior}
 			data-alignment={props.alignment ?? 'start'}
 			data-width={props.width ?? 'auto'}
-			onInput={(event) => state.handleChange(event)}
-			onChange={(event) => state.handleChange(event)}>
+			onInput={(event: any) => state.handleChange(event)}
+			onChange={(event: any) => state.handleChange(event)}>
 			<Show when={state.showScrollLeft}>
 				<DBButton
 					class="tabs-scroll-left"

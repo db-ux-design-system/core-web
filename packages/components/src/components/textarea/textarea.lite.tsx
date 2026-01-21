@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import {
 	onMount,
 	onUnMount,
@@ -19,7 +20,7 @@ import {
 	DEFAULT_VALID_MESSAGE,
 	DEFAULT_VALID_MESSAGE_ID_SUFFIX
 } from '../../shared/constants';
-import { ChangeEvent, InputEvent, InteractionEvent } from '../../shared/model';
+import { InteractionEvent } from '../../shared/model';
 import {
 	cls,
 	delay,
@@ -94,10 +95,7 @@ export default function DBTextarea(props: DBTextareaProps) {
 				state._descByIds = undefined;
 			}
 		},
-		handleInput: (
-			event: InputEvent<HTMLTextAreaElement>,
-			reset?: boolean
-		) => {
+		handleInput: (event: any, reset?: boolean) => {
 			useTarget({
 				angular: () => {
 					if (props.onInput) {
@@ -126,10 +124,7 @@ export default function DBTextarea(props: DBTextareaProps) {
 			});
 			state.handleValidation();
 		},
-		handleChange: (
-			event: ChangeEvent<HTMLTextAreaElement>,
-			reset?: boolean
-		) => {
+		handleChange: (event: any, reset?: boolean) => {
 			useTarget({
 				angular: () => {
 					if (props.onChange) {
@@ -257,12 +252,8 @@ export default function DBTextarea(props: DBTextareaProps) {
 				wrap={props.wrap}
 				spellcheck={props.spellCheck}
 				autocomplete={props.autocomplete}
-				onInput={(event: ChangeEvent<HTMLTextAreaElement>) =>
-					state.handleInput(event)
-				}
-				onChange={(event: ChangeEvent<HTMLTextAreaElement>) =>
-					state.handleChange(event)
-				}
+				onInput={(event: any) => state.handleInput(event)}
+				onChange={(event: any) => state.handleChange(event)}
 				onBlur={(event: InteractionEvent<HTMLTextAreaElement>) =>
 					state.handleBlur(event)
 				}
