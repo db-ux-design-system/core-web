@@ -1,24 +1,32 @@
 - main:
   - heading "DBNotification" [level=1]
   - link "Density"
-  - text: Headline
-  - paragraph: functional
-  - text: Headline
-  - paragraph: regular (Default)
-  - text: Headline
-  - paragraph: expressive
+  - article:
+    - text: Headline
+    - paragraph: functional
+  - article:
+    - text: Headline
+    - paragraph: regular (Default)
+  - article:
+    - text: Headline
+    - paragraph: expressive
   - link "Variant"
-  - text: Headline
-  - paragraph: (Default) Docked
-  - text: Headline
-  - paragraph: Standalone
-  - text: Headline
-  - paragraph: Overlay
+  - article:
+    - text: Headline
+    - paragraph: (Default) Docked
+  - article:
+    - text: Headline
+    - paragraph: Standalone
+  - article:
+    - text: Headline
+    - paragraph: Overlay
   - link "Semantic"
-  - text: Headline
-  - paragraph: (Default) Adaptive
-  - text: Headline
-  - paragraph: Neutral
+  - article:
+    - text: Headline
+    - paragraph: (Default) Adaptive
+  - article:
+    - text: Headline
+    - paragraph: Neutral
   - alert:
     - text: Headline
     - paragraph: Critical
@@ -32,99 +40,140 @@
     - text: Headline
     - paragraph: Warning
   - link "Closeable"
-  - paragraph: (Default) False
-  - paragraph: "True"
-  - button "Close"
+  - article:
+    - paragraph: (Default) False
+  - article:
+    - paragraph: "True"
+    - button "Close"
   - link "Visual"
-  - paragraph: (Default) Icon
-  - img "this is a fancy placeholder"
-  - paragraph: Image
+  - article:
+    - paragraph: (Default) Icon
+  - article:
+    - img "this is a fancy placeholder"
+    - paragraph: Image
   - link "Show Icon"
-  - paragraph: (Default) True
-  - paragraph: "False"
+  - article:
+    - paragraph: (Default) True
+  - article:
+    - paragraph: "False"
   - link "Link Variant"
-  - paragraph: (Default) Block
-  - link "Textlink"
-  - paragraph: Inline
-  - link "Textlink"
+  - article:
+    - paragraph: (Default) Block
+    - link "Textlink"
+  - article:
+    - paragraph: Inline
+    - link "Textlink"
   - link "Show Headline"
-  - text: Headline
-  - paragraph: (Default) True
-  - paragraph: "False"
+  - article:
+    - text: Headline
+    - paragraph: (Default) True
+  - article:
+    - paragraph: "False"
   - link "Show Timestamp"
-  - paragraph: (Default) False
-  - paragraph: "True"
-  - text: 10 min ago
+  - article:
+    - paragraph: (Default) False
+  - article:
+    - paragraph: "True"
+    - text: 10 min ago
   - link "Examples - VariantDocked":
-  - paragraph: Text
-  - paragraph: Text & Icon
-  - img "this is a fancy placeholder"
-  - paragraph: Text & Preview Image
-  - text: Headline
-  - paragraph: Text & Headline
-  - paragraph: Text & Textlink Block
-  - link "Textlink"
-  - paragraph: Text & Textlink Inline
-  - link "Textlink"
-  - text: Headline
-  - paragraph: Text & Headline & Textlink Inline & Closeable
-  - link "Textlink"
-  - button "Close"
-  - text: Headline
-  - paragraph: Text & Icon & Headline & Textlink Inline & Closeable
-  - link "Textlink"
-  - button "Close"
+  - article:
+    - paragraph: Text
+  - article:
+    - paragraph: Text & Icon
+  - article:
+    - img "this is a fancy placeholder"
+    - paragraph: Text & Preview Image
+  - article:
+    - text: Headline
+    - paragraph: Text & Headline
+  - article:
+    - paragraph: Text & Textlink Block
+    - link "Textlink"
+  - article:
+    - paragraph: Text & Textlink Inline
+    - link "Textlink"
+  - article:
+    - text: Headline
+    - paragraph: Text & Headline & Textlink Inline & Closeable
+    - link "Textlink"
+    - button "Close"
+  - article:
+    - text: Headline
+    - paragraph: Text & Icon & Headline & Textlink Inline & Closeable
+    - link "Textlink"
+    - button "Close"
   - link "Examples - VariantStandalone":
-  - paragraph: Text
-  - paragraph: Text & Icon
-  - img "this is a fancy placeholder"
-  - paragraph: Text & Preview Image
-  - text: Headline
-  - paragraph: Text & Headline
-  - paragraph: Text & Textlink Block
-  - link "Textlink"
-  - paragraph: Text & Textlink Inline
-  - link "Textlink"
-  - text: Headline
-  - paragraph: Text & Headline & Textlink Inline & Closeable
-  - link "Textlink"
-  - button "Close"
-  - text: Headline
-  - paragraph: Text & Icon & Headline & Textlink Inline & Closeable
-  - link "Textlink"
-  - button "Close"
+  - article:
+    - paragraph: Text
+  - article:
+    - paragraph: Text & Icon
+  - article:
+    - img "this is a fancy placeholder"
+    - paragraph: Text & Preview Image
+  - article:
+    - text: Headline
+    - paragraph: Text & Headline
+  - article:
+    - paragraph: Text & Textlink Block
+    - link "Textlink"
+  - article:
+    - paragraph: Text & Textlink Inline
+    - link "Textlink"
+  - article:
+    - text: Headline
+    - paragraph: Text & Headline & Textlink Inline & Closeable
+    - link "Textlink"
+    - button "Close"
+  - article:
+    - text: Headline
+    - paragraph: Text & Icon & Headline & Textlink Inline & Closeable
+    - link "Textlink"
+    - button "Close"
   - link "Examples - VariantOverlay":
-  - paragraph: Text
-  - paragraph: Text & Icon
-  - img "this is a fancy placeholder"
-  - paragraph: Text & Preview Image
-  - text: Headline
-  - paragraph: Text & Headline
-  - paragraph: Text & Textlink Inline
-  - link "Textlink"
-  - paragraph: Text & Textlink Block
-  - link "Textlink"
-  - paragraph: Text & Textlink Block & Timed
-  - text: 10 min ago
-  - link "Textlink"
-  - text: Headline
-  - paragraph: Text & Headline & Textlink Inline & Closeable
-  - link "Textlink"
-  - button "Close"
-  - text: Headline
-  - paragraph: Text & Icon & Headline & Textlink Inline & Closeable
-  - link "Textlink"
-  - button "Close"
-  - paragraph: Text & Timed
-  - text: 10 min ago
-  - paragraph: Text & Timed & Closeable
-  - text: 10 min ago
-  - button "Close"
-  - text: Headline
-  - paragraph: Text & Headline & Timed & Closeable
-  - text: 10 min ago
-  - button "Close"
-  - text: Headline
-  - paragraph: Text & Icon & Headline & Timed & Closeable
-  - text: 10 min ago
-  - button "Close"
+  - article:
+    - paragraph: Text
+  - article:
+    - paragraph: Text & Icon
+  - article:
+    - img "this is a fancy placeholder"
+    - paragraph: Text & Preview Image
+  - article:
+    - text: Headline
+    - paragraph: Text & Headline
+  - article:
+    - paragraph: Text & Textlink Inline
+    - link "Textlink"
+  - article:
+    - paragraph: Text & Textlink Block
+    - link "Textlink"
+  - article:
+    - paragraph: Text & Textlink Block & Timed
+    - text: 10 min ago
+    - link "Textlink"
+  - article:
+    - text: Headline
+    - paragraph: Text & Headline & Textlink Inline & Closeable
+    - link "Textlink"
+    - button "Close"
+  - article:
+    - text: Headline
+    - paragraph: Text & Icon & Headline & Textlink Inline & Closeable
+    - link "Textlink"
+    - button "Close"
+  - article:
+    - paragraph: Text & Timed
+    - text: 10 min ago
+  - article:
+    - paragraph: Text & Timed & Closeable
+    - text: 10 min ago
+    - button "Close"
+  - article:
+    - text: Headline
+    - paragraph: Text & Headline & Timed & Closeable
+    - text: 10 min ago
+    - button "Close"
+  - article:
+    - text: Headline
+    - paragraph: Text & Icon & Headline & Timed & Closeable
+    - text: 10 min ago
+    - button "Close"
