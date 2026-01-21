@@ -1,0 +1,89 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8" data-next-head=""/><meta name="viewport" content="width=device-width" data-next-head=""/><title data-next-head="">DB UX</title><link data-next-font="size-adjust" rel="preconnect" href="/" crossorigin="anonymous"/><link rel="preload" href="/core-web/review/1493-erstellung-einer-mvp-breadcrumb-komponente/_next/static/css/4de904bba7f2eeee.css" as="style"/><link rel="stylesheet" href="/core-web/review/1493-erstellung-einer-mvp-breadcrumb-komponente/_next/static/css/4de904bba7f2eeee.css" data-n-g=""/><noscript data-n-css=""></noscript><script defer="" noModule="" src="/core-web/review/1493-erstellung-einer-mvp-breadcrumb-komponente/_next/static/chunks/polyfills-42372ed130431b0a.js"></script><script src="/core-web/review/1493-erstellung-einer-mvp-breadcrumb-komponente/_next/static/chunks/webpack-4ac3fbd8607c8a78.js" defer=""></script><script src="/core-web/review/1493-erstellung-einer-mvp-breadcrumb-komponente/_next/static/chunks/framework-52047f770f349cc2.js" defer=""></script><script src="/core-web/review/1493-erstellung-einer-mvp-breadcrumb-komponente/_next/static/chunks/main-01420750fd1ff9f5.js" defer=""></script><script src="/core-web/review/1493-erstellung-einer-mvp-breadcrumb-komponente/_next/static/chunks/pages/_app-6d95fd15dc7bb7d6.js" defer=""></script><script src="/core-web/review/1493-erstellung-einer-mvp-breadcrumb-komponente/_next/static/chunks/pages/components/navigation/breadcrumb-item/docs/Vue-5b6145f59b5589a9.js" defer=""></script><script src="/core-web/review/1493-erstellung-einer-mvp-breadcrumb-komponente/_next/static/nkcW9TqcWncbggYo_rcSG/_buildManifest.js" defer=""></script><script src="/core-web/review/1493-erstellung-einer-mvp-breadcrumb-komponente/_next/static/nkcW9TqcWncbggYo_rcSG/_ssgManifest.js" defer=""></script></head><body><div id="__next"><h2 id="vue">Vue<a class="header-link" href="/core-web/review/1493-erstellung-einer-mvp-breadcrumb-komponente/components/navigation/breadcrumb-item/docs/Vue?current=vue"><span aria-hidden="true" class="db-icon" data-icon="paper_clip"></span>vue<!-- --> anchor link</a></h2>
+<p>For general installation and configuration take a look at the <a target="_blank" referrerPolicy="no-referrer" href="https://www.npmjs.com/package/@db-ux/v-core-components">v-core-components</a> package.</p>
+<h3 id="overview">Overview<a class="header-link" href="/core-web/review/1493-erstellung-einer-mvp-breadcrumb-komponente/components/navigation/breadcrumb-item/docs/Vue?current=overview"><span aria-hidden="true" class="db-icon" data-icon="paper_clip"></span>overview<!-- --> anchor link</a></h3>
+<p><code>DBBreadcrumbItem</code> is used as a child component of <code>DBBreadcrumb</code> to create individual breadcrumb items. This provides more flexibility than using the <code>items</code> prop, especially when you need custom content or dynamic behavior.</p>
+<p><strong>Note</strong>: For most use cases, using the <code>items</code> prop on <code>DBBreadcrumb</code> is simpler and supports all features including collapse functionality. Use child components when you need more control over rendering.</p>
+<h3 id="basic-usage">Basic Usage<a class="header-link" href="/core-web/review/1493-erstellung-einer-mvp-breadcrumb-komponente/components/navigation/breadcrumb-item/docs/Vue?current=basic-usage"><span aria-hidden="true" class="db-icon" data-icon="paper_clip"></span>basic-usage<!-- --> anchor link</a></h3>
+<pre><code class="language-vue">&lt;script setup lang=&quot;ts&quot;&gt;
+import { DBBreadcrumb, DBBreadcrumbItem } from &quot;@db-ux/v-core-components&quot;;
+&lt;/script&gt;
+
+&lt;template&gt;
+	&lt;DBBreadcrumb&gt;
+		&lt;DBBreadcrumbItem href=&quot;/&quot;&gt;Home&lt;/DBBreadcrumbItem&gt;
+		&lt;DBBreadcrumbItem href=&quot;/category&quot;&gt;Category&lt;/DBBreadcrumbItem&gt;
+		&lt;DBBreadcrumbItem aria-current=&quot;page&quot;&gt; Current Page &lt;/DBBreadcrumbItem&gt;
+	&lt;/DBBreadcrumb&gt;
+&lt;/template&gt;
+</code></pre>
+<h3 id="with-text-property">With Text Property<a class="header-link" href="/core-web/review/1493-erstellung-einer-mvp-breadcrumb-komponente/components/navigation/breadcrumb-item/docs/Vue?current=with-text-property"><span aria-hidden="true" class="db-icon" data-icon="paper_clip"></span>with-text-property<!-- --> anchor link</a></h3>
+<p>You can use the <code>text</code> property instead of child content:</p>
+<pre><code class="language-vue">&lt;template&gt;
+	&lt;DBBreadcrumb&gt;
+		&lt;DBBreadcrumbItem href=&quot;/&quot; text=&quot;Home&quot; /&gt;
+		&lt;DBBreadcrumbItem href=&quot;/category&quot; text=&quot;Category&quot; /&gt;
+		&lt;DBBreadcrumbItem text=&quot;Current Page&quot; aria-current=&quot;page&quot; /&gt;
+	&lt;/DBBreadcrumb&gt;
+&lt;/template&gt;
+</code></pre>
+<h3 id="with-icons">With Icons<a class="header-link" href="/core-web/review/1493-erstellung-einer-mvp-breadcrumb-komponente/components/navigation/breadcrumb-item/docs/Vue?current=with-icons"><span aria-hidden="true" class="db-icon" data-icon="paper_clip"></span>with-icons<!-- --> anchor link</a></h3>
+<p>Add icons to breadcrumb items:</p>
+<pre><code class="language-vue">&lt;template&gt;
+	&lt;DBBreadcrumb&gt;
+		&lt;DBBreadcrumbItem href=&quot;/&quot; icon=&quot;home&quot;&gt;Home&lt;/DBBreadcrumbItem&gt;
+		&lt;DBBreadcrumbItem href=&quot;/category&quot; icon=&quot;folder&quot;&gt;
+			Category
+		&lt;/DBBreadcrumbItem&gt;
+		&lt;DBBreadcrumbItem aria-current=&quot;page&quot;&gt; Current Page &lt;/DBBreadcrumbItem&gt;
+	&lt;/DBBreadcrumb&gt;
+&lt;/template&gt;
+</code></pre>
+<h3 id="disabled-item">Disabled Item<a class="header-link" href="/core-web/review/1493-erstellung-einer-mvp-breadcrumb-komponente/components/navigation/breadcrumb-item/docs/Vue?current=disabled-item"><span aria-hidden="true" class="db-icon" data-icon="paper_clip"></span>disabled-item<!-- --> anchor link</a></h3>
+<p>Disable breadcrumb items to render them as spans instead of links:</p>
+<pre><code class="language-vue">&lt;template&gt;
+	&lt;DBBreadcrumb&gt;
+		&lt;DBBreadcrumbItem href=&quot;/&quot;&gt;Home&lt;/DBBreadcrumbItem&gt;
+		&lt;DBBreadcrumbItem :disabled=&quot;true&quot;&gt;Disabled Item&lt;/DBBreadcrumbItem&gt;
+		&lt;DBBreadcrumbItem aria-current=&quot;page&quot;&gt; Current Page &lt;/DBBreadcrumbItem&gt;
+	&lt;/DBBreadcrumb&gt;
+&lt;/template&gt;
+</code></pre>
+<h3 id="dynamic-content">Dynamic Content<a class="header-link" href="/core-web/review/1493-erstellung-einer-mvp-breadcrumb-komponente/components/navigation/breadcrumb-item/docs/Vue?current=dynamic-content"><span aria-hidden="true" class="db-icon" data-icon="paper_clip"></span>dynamic-content<!-- --> anchor link</a></h3>
+<p>Use child components for dynamic or complex content:</p>
+<pre><code class="language-vue">&lt;script setup lang=&quot;ts&quot;&gt;
+import { DBBreadcrumb, DBBreadcrumbItem } from &quot;@db-ux/v-core-components&quot;;
+
+const breadcrumbPath = [
+	{ url: &quot;/products&quot;, label: &quot;Products&quot; },
+	{ url: &quot;/products/electronics&quot;, label: &quot;Electronics&quot; }
+];
+
+const currentPage = &quot;Laptops&quot;;
+&lt;/script&gt;
+
+&lt;template&gt;
+	&lt;DBBreadcrumb&gt;
+		&lt;DBBreadcrumbItem href=&quot;/&quot;&gt;Home&lt;/DBBreadcrumbItem&gt;
+		&lt;DBBreadcrumbItem
+			v-for=&quot;item in breadcrumbPath&quot;
+			:key=&quot;item.url&quot;
+			:href=&quot;item.url&quot;
+		&gt;
+			{{ item.label }}
+		&lt;/DBBreadcrumbItem&gt;
+		&lt;DBBreadcrumbItem aria-current=&quot;page&quot;&gt;
+			{{ currentPage }}
+		&lt;/DBBreadcrumbItem&gt;
+	&lt;/DBBreadcrumb&gt;
+&lt;/template&gt;
+</code></pre>
+<h3 id="all-available-properties">All Available Properties<a class="header-link" href="/core-web/review/1493-erstellung-einer-mvp-breadcrumb-komponente/components/navigation/breadcrumb-item/docs/Vue?current=all-available-properties"><span aria-hidden="true" class="db-icon" data-icon="paper_clip"></span>all-available-properties<!-- --> anchor link</a></h3>
+<ul>
+<li><strong>href</strong>: The URL the breadcrumb item links to</li>
+<li><strong>text</strong>: The text content of the breadcrumb item (alternative to using slot content)</li>
+<li><strong>icon</strong>: Icon name from DB UX icon library</li>
+<li><strong>ariaCurrent</strong> / <strong>aria-current</strong>: Indicates the current page (typically <code>&quot;page&quot;</code> for the last item)</li>
+<li><strong>disabled</strong>: When <code>true</code>, renders as a span instead of a link</li>
+<li><strong>id</strong>: Custom ID for the element</li>
+<li><strong>className</strong>: Additional CSS classes</li>
+</ul></div><script id="__NEXT_DATA__" type="application/json">{"props":{"pageProps":{}},"page":"/components/navigation/breadcrumb-item/docs/Vue","query":{},"buildId":"nkcW9TqcWncbggYo_rcSG","assetPrefix":"/core-web/review/1493-erstellung-einer-mvp-breadcrumb-komponente","nextExport":true,"autoExport":true,"isFallback":false,"scriptLoader":[]}</script></body></html>

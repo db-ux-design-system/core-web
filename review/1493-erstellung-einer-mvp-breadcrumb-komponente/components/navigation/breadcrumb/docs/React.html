@@ -1,43 +1,89 @@
-<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8" data-next-head=""/><meta name="viewport" content="width=device-width" data-next-head=""/><title data-next-head="">DB UX</title><link data-next-font="size-adjust" rel="preconnect" href="/" crossorigin="anonymous"/><link rel="preload" href="/core-web/review/1493-erstellung-einer-mvp-breadcrumb-komponente/_next/static/css/4de904bba7f2eeee.css" as="style"/><link rel="stylesheet" href="/core-web/review/1493-erstellung-einer-mvp-breadcrumb-komponente/_next/static/css/4de904bba7f2eeee.css" data-n-g=""/><noscript data-n-css=""></noscript><script defer="" noModule="" src="/core-web/review/1493-erstellung-einer-mvp-breadcrumb-komponente/_next/static/chunks/polyfills-42372ed130431b0a.js"></script><script src="/core-web/review/1493-erstellung-einer-mvp-breadcrumb-komponente/_next/static/chunks/webpack-4ac3fbd8607c8a78.js" defer=""></script><script src="/core-web/review/1493-erstellung-einer-mvp-breadcrumb-komponente/_next/static/chunks/framework-52047f770f349cc2.js" defer=""></script><script src="/core-web/review/1493-erstellung-einer-mvp-breadcrumb-komponente/_next/static/chunks/main-01420750fd1ff9f5.js" defer=""></script><script src="/core-web/review/1493-erstellung-einer-mvp-breadcrumb-komponente/_next/static/chunks/pages/_app-6d95fd15dc7bb7d6.js" defer=""></script><script src="/core-web/review/1493-erstellung-einer-mvp-breadcrumb-komponente/_next/static/chunks/pages/components/navigation/breadcrumb/docs/React-39313dd8c9aa1cea.js" defer=""></script><script src="/core-web/review/1493-erstellung-einer-mvp-breadcrumb-komponente/_next/static/m-tsP-oZH7Z6wtTTWVuMI/_buildManifest.js" defer=""></script><script src="/core-web/review/1493-erstellung-einer-mvp-breadcrumb-komponente/_next/static/m-tsP-oZH7Z6wtTTWVuMI/_ssgManifest.js" defer=""></script></head><body><div id="__next"><pre><code class="language-markdown">## React
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8" data-next-head=""/><meta name="viewport" content="width=device-width" data-next-head=""/><title data-next-head="">DB UX</title><link data-next-font="size-adjust" rel="preconnect" href="/" crossorigin="anonymous"/><link rel="preload" href="/core-web/review/1493-erstellung-einer-mvp-breadcrumb-komponente/_next/static/css/4de904bba7f2eeee.css" as="style"/><link rel="stylesheet" href="/core-web/review/1493-erstellung-einer-mvp-breadcrumb-komponente/_next/static/css/4de904bba7f2eeee.css" data-n-g=""/><noscript data-n-css=""></noscript><script defer="" noModule="" src="/core-web/review/1493-erstellung-einer-mvp-breadcrumb-komponente/_next/static/chunks/polyfills-42372ed130431b0a.js"></script><script src="/core-web/review/1493-erstellung-einer-mvp-breadcrumb-komponente/_next/static/chunks/webpack-4ac3fbd8607c8a78.js" defer=""></script><script src="/core-web/review/1493-erstellung-einer-mvp-breadcrumb-komponente/_next/static/chunks/framework-52047f770f349cc2.js" defer=""></script><script src="/core-web/review/1493-erstellung-einer-mvp-breadcrumb-komponente/_next/static/chunks/main-01420750fd1ff9f5.js" defer=""></script><script src="/core-web/review/1493-erstellung-einer-mvp-breadcrumb-komponente/_next/static/chunks/pages/_app-6d95fd15dc7bb7d6.js" defer=""></script><script src="/core-web/review/1493-erstellung-einer-mvp-breadcrumb-komponente/_next/static/chunks/pages/components/navigation/breadcrumb/docs/React-ba67b0e218024a46.js" defer=""></script><script src="/core-web/review/1493-erstellung-einer-mvp-breadcrumb-komponente/_next/static/nkcW9TqcWncbggYo_rcSG/_buildManifest.js" defer=""></script><script src="/core-web/review/1493-erstellung-einer-mvp-breadcrumb-komponente/_next/static/nkcW9TqcWncbggYo_rcSG/_ssgManifest.js" defer=""></script></head><body><div id="__next"><h2 id="react">React<a class="header-link" href="/core-web/review/1493-erstellung-einer-mvp-breadcrumb-komponente/components/navigation/breadcrumb/docs/React?current=react"><span aria-hidden="true" class="db-icon" data-icon="paper_clip"></span>react<!-- --> anchor link</a></h2>
+<p>For general installation and configuration take a look at the <a target="_blank" referrerPolicy="no-referrer" href="https://www.npmjs.com/package/@db-ux/react-core-components">react-core-components</a> package.</p>
+<h3 id="usage-patterns">Usage Patterns<a class="header-link" href="/core-web/review/1493-erstellung-einer-mvp-breadcrumb-komponente/components/navigation/breadcrumb/docs/React?current=usage-patterns"><span aria-hidden="true" class="db-icon" data-icon="paper_clip"></span>usage-patterns<!-- --> anchor link</a></h3>
+<p>There are two ways to use the breadcrumb component:</p>
+<ol>
+<li><strong>Using the <code>items</code> prop</strong> (recommended): Pass an array of breadcrumb items</li>
+<li><strong>Using child components</strong>: Use <code>&lt;DBBreadcrumbItem&gt;</code> components as children</li>
+</ol>
+<h3 id="basic-usage-with-items-array-recommended">Basic Usage with Items Array (Recommended)<a class="header-link" href="/core-web/review/1493-erstellung-einer-mvp-breadcrumb-komponente/components/navigation/breadcrumb/docs/React?current=basic-usage-with-items-array-recommended"><span aria-hidden="true" class="db-icon" data-icon="paper_clip"></span>basic-usage-with-items-array-recommended<!-- --> anchor link</a></h3>
+<p>The <code>items</code> prop provides a declarative way to define breadcrumbs and supports all features including collapse functionality.</p>
+<pre><code class="language-tsx">import { DBBreadcrumb } from &quot;@db-ux/react-core-components&quot;;
 
-For general installation and configuration take a look at the [react-core-components](https://www.npmjs.com/package/@db-ux/react-core-components) package.
+const items = [
+	{ href: &quot;/&quot;, text: &quot;Home&quot; },
+	{ href: &quot;/category&quot;, text: &quot;Category&quot; },
+	{ text: &quot;Current Page&quot;, ariaCurrent: &quot;page&quot; as const }
+];
 
-### Use component
+const App = () =&gt; &lt;DBBreadcrumb items={items} ariaLabel=&quot;Breadcrumb&quot; /&gt;;
 
-```tsx App.tsx
-// App.tsx
-import { DBBreadcrumb } from &quot;@db-ux/react-core-components&quot;;
+export default App;
+</code></pre>
+<h3 id="using-child-components">Using Child Components<a class="header-link" href="/core-web/review/1493-erstellung-einer-mvp-breadcrumb-komponente/components/navigation/breadcrumb/docs/React?current=using-child-components"><span aria-hidden="true" class="db-icon" data-icon="paper_clip"></span>using-child-components<!-- --> anchor link</a></h3>
+<p>Alternatively, use <code>&lt;DBBreadcrumbItem&gt;</code> components for more flexibility:</p>
+<pre><code class="language-tsx">import { DBBreadcrumb, DBBreadcrumbItem } from &quot;@db-ux/react-core-components&quot;;
 
 const App = () =&gt; (
 	&lt;DBBreadcrumb&gt;
-		&lt;li&gt;
-			&lt;a href=&quot;#&quot;&gt;Home&lt;/a&gt;
-		&lt;/li&gt;
-		&lt;li&gt;
-			&lt;a href=&quot;#&quot;&gt;Category&lt;/a&gt;
-		&lt;/li&gt;
-		&lt;li aria-current=&quot;page&quot;&gt;Current Page&lt;/li&gt;
+		&lt;DBBreadcrumbItem href=&quot;/&quot;&gt;Home&lt;/DBBreadcrumbItem&gt;
+		&lt;DBBreadcrumbItem href=&quot;/category&quot;&gt;Category&lt;/DBBreadcrumbItem&gt;
+		&lt;DBBreadcrumbItem ariaCurrent=&quot;page&quot;&gt;Current Page&lt;/DBBreadcrumbItem&gt;
 	&lt;/DBBreadcrumb&gt;
 );
 
 export default App;
-```
-
-### Use component with items array
-
-```tsx App.tsx
-import { DBBreadcrumb } from &quot;@db-ux/react-core-components&quot;;
-
-const items = [
-	{ href: &quot;#&quot;, text: &quot;Home&quot; },
-	{ href: &quot;#&quot;, text: &quot;Category&quot; },
+</code></pre>
+<h3 id="with-icons">With Icons<a class="header-link" href="/core-web/review/1493-erstellung-einer-mvp-breadcrumb-komponente/components/navigation/breadcrumb/docs/React?current=with-icons"><span aria-hidden="true" class="db-icon" data-icon="paper_clip"></span>with-icons<!-- --> anchor link</a></h3>
+<p>Add icons to breadcrumb items using the <code>icon</code> property:</p>
+<pre><code class="language-tsx">const items = [
+	{ href: &quot;/&quot;, text: &quot;Home&quot;, icon: &quot;home&quot; },
+	{ href: &quot;/category&quot;, text: &quot;Category&quot;, icon: &quot;folder&quot; },
 	{ text: &quot;Current Page&quot;, ariaCurrent: &quot;page&quot; as const }
 ];
 
-const App = () =&gt; (
-	&lt;DBBreadcrumb items={items} maxItems={3} ariaLabel=&quot;Breadcrumb&quot; /&gt;
-);
+&lt;DBBreadcrumb items={items} /&gt;;
+</code></pre>
+<h3 id="size-options">Size Options<a class="header-link" href="/core-web/review/1493-erstellung-einer-mvp-breadcrumb-komponente/components/navigation/breadcrumb/docs/React?current=size-options"><span aria-hidden="true" class="db-icon" data-icon="paper_clip"></span>size-options<!-- --> anchor link</a></h3>
+<p>Control the size of breadcrumb items:</p>
+<pre><code class="language-tsx">{
+	/* Small size (default) */
+}
+&lt;DBBreadcrumb items={items} size=&quot;small&quot; /&gt;;
 
-export default App;
-```
-</code></pre></div><script id="__NEXT_DATA__" type="application/json">{"props":{"pageProps":{}},"page":"/components/navigation/breadcrumb/docs/React","query":{},"buildId":"m-tsP-oZH7Z6wtTTWVuMI","assetPrefix":"/core-web/review/1493-erstellung-einer-mvp-breadcrumb-komponente","nextExport":true,"autoExport":true,"isFallback":false,"scriptLoader":[]}</script></body></html>
+{
+	/* Medium size */
+}
+&lt;DBBreadcrumb items={items} size=&quot;medium&quot; /&gt;;
+</code></pre>
+<h3 id="separator-options">Separator Options<a class="header-link" href="/core-web/review/1493-erstellung-einer-mvp-breadcrumb-komponente/components/navigation/breadcrumb/docs/React?current=separator-options"><span aria-hidden="true" class="db-icon" data-icon="paper_clip"></span>separator-options<!-- --> anchor link</a></h3>
+<p>Choose between different separators:</p>
+<pre><code class="language-tsx">{
+	/* Chevron separator (default) */
+}
+&lt;DBBreadcrumb items={items} separator=&quot;chevron&quot; /&gt;;
+
+{
+	/* Slash separator */
+}
+&lt;DBBreadcrumb items={items} separator=&quot;slash&quot; /&gt;;
+</code></pre>
+<h3 id="collapse-long-breadcrumbs">Collapse Long Breadcrumbs<a class="header-link" href="/core-web/review/1493-erstellung-einer-mvp-breadcrumb-komponente/components/navigation/breadcrumb/docs/React?current=collapse-long-breadcrumbs"><span aria-hidden="true" class="db-icon" data-icon="paper_clip"></span>collapse-long-breadcrumbs<!-- --> anchor link</a></h3>
+<p>Use <code>maxItems</code> to collapse breadcrumbs when they exceed a certain length. The first item and last items are shown, with an ellipsis button in between:</p>
+<pre><code class="language-tsx">const items = [
+	{ href: &quot;/&quot;, text: &quot;Home&quot; },
+	{ href: &quot;/level1&quot;, text: &quot;Level 1&quot; },
+	{ href: &quot;/level2&quot;, text: &quot;Level 2&quot; },
+	{ href: &quot;/level3&quot;, text: &quot;Level 3&quot; },
+	{ href: &quot;/level4&quot;, text: &quot;Level 4&quot; },
+	{ text: &quot;Current Page&quot;, ariaCurrent: &quot;page&quot; as const }
+];
+
+// Shows: Home &gt; … &gt; Level 4 &gt; Current Page
+// Clicking the ellipsis expands to show all items
+&lt;DBBreadcrumb
+	items={items}
+	maxItems={3}
+	ellipsisAriaLabel=&quot;Expand to show all breadcrumb items&quot;
+/&gt;;
+</code></pre></div><script id="__NEXT_DATA__" type="application/json">{"props":{"pageProps":{}},"page":"/components/navigation/breadcrumb/docs/React","query":{},"buildId":"nkcW9TqcWncbggYo_rcSG","assetPrefix":"/core-web/review/1493-erstellung-einer-mvp-breadcrumb-komponente","nextExport":true,"autoExport":true,"isFallback":false,"scriptLoader":[]}</script></body></html>

@@ -1,13 +1,89 @@
-<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8" data-next-head=""/><meta name="viewport" content="width=device-width" data-next-head=""/><title data-next-head="">DB UX</title><link data-next-font="size-adjust" rel="preconnect" href="/" crossorigin="anonymous"/><link rel="preload" href="/core-web/review/1493-erstellung-einer-mvp-breadcrumb-komponente/_next/static/css/4de904bba7f2eeee.css" as="style"/><link rel="stylesheet" href="/core-web/review/1493-erstellung-einer-mvp-breadcrumb-komponente/_next/static/css/4de904bba7f2eeee.css" data-n-g=""/><noscript data-n-css=""></noscript><script defer="" noModule="" src="/core-web/review/1493-erstellung-einer-mvp-breadcrumb-komponente/_next/static/chunks/polyfills-42372ed130431b0a.js"></script><script src="/core-web/review/1493-erstellung-einer-mvp-breadcrumb-komponente/_next/static/chunks/webpack-4ac3fbd8607c8a78.js" defer=""></script><script src="/core-web/review/1493-erstellung-einer-mvp-breadcrumb-komponente/_next/static/chunks/framework-52047f770f349cc2.js" defer=""></script><script src="/core-web/review/1493-erstellung-einer-mvp-breadcrumb-komponente/_next/static/chunks/main-01420750fd1ff9f5.js" defer=""></script><script src="/core-web/review/1493-erstellung-einer-mvp-breadcrumb-komponente/_next/static/chunks/pages/_app-6d95fd15dc7bb7d6.js" defer=""></script><script src="/core-web/review/1493-erstellung-einer-mvp-breadcrumb-komponente/_next/static/chunks/pages/components/navigation/breadcrumb/docs/HTML-f18d98203af808ee.js" defer=""></script><script src="/core-web/review/1493-erstellung-einer-mvp-breadcrumb-komponente/_next/static/m-tsP-oZH7Z6wtTTWVuMI/_buildManifest.js" defer=""></script><script src="/core-web/review/1493-erstellung-einer-mvp-breadcrumb-komponente/_next/static/m-tsP-oZH7Z6wtTTWVuMI/_ssgManifest.js" defer=""></script></head><body><div id="__next"><h2 id="html">HTML<a class="header-link" href="/core-web/review/1493-erstellung-einer-mvp-breadcrumb-komponente/components/navigation/breadcrumb/docs/HTML?current=html"><span aria-hidden="true" class="db-icon" data-icon="paper_clip"></span>html<!-- --> anchor link</a></h2>
-<h3 id="use-component">Use component<a class="header-link" href="/core-web/review/1493-erstellung-einer-mvp-breadcrumb-komponente/components/navigation/breadcrumb/docs/HTML?current=use-component"><span aria-hidden="true" class="db-icon" data-icon="paper_clip"></span>use-component<!-- --> anchor link</a></h3>
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8" data-next-head=""/><meta name="viewport" content="width=device-width" data-next-head=""/><title data-next-head="">DB UX</title><link data-next-font="size-adjust" rel="preconnect" href="/" crossorigin="anonymous"/><link rel="preload" href="/core-web/review/1493-erstellung-einer-mvp-breadcrumb-komponente/_next/static/css/4de904bba7f2eeee.css" as="style"/><link rel="stylesheet" href="/core-web/review/1493-erstellung-einer-mvp-breadcrumb-komponente/_next/static/css/4de904bba7f2eeee.css" data-n-g=""/><noscript data-n-css=""></noscript><script defer="" noModule="" src="/core-web/review/1493-erstellung-einer-mvp-breadcrumb-komponente/_next/static/chunks/polyfills-42372ed130431b0a.js"></script><script src="/core-web/review/1493-erstellung-einer-mvp-breadcrumb-komponente/_next/static/chunks/webpack-4ac3fbd8607c8a78.js" defer=""></script><script src="/core-web/review/1493-erstellung-einer-mvp-breadcrumb-komponente/_next/static/chunks/framework-52047f770f349cc2.js" defer=""></script><script src="/core-web/review/1493-erstellung-einer-mvp-breadcrumb-komponente/_next/static/chunks/main-01420750fd1ff9f5.js" defer=""></script><script src="/core-web/review/1493-erstellung-einer-mvp-breadcrumb-komponente/_next/static/chunks/pages/_app-6d95fd15dc7bb7d6.js" defer=""></script><script src="/core-web/review/1493-erstellung-einer-mvp-breadcrumb-komponente/_next/static/chunks/pages/components/navigation/breadcrumb/docs/HTML-45cbfda7f1fa7f43.js" defer=""></script><script src="/core-web/review/1493-erstellung-einer-mvp-breadcrumb-komponente/_next/static/nkcW9TqcWncbggYo_rcSG/_buildManifest.js" defer=""></script><script src="/core-web/review/1493-erstellung-einer-mvp-breadcrumb-komponente/_next/static/nkcW9TqcWncbggYo_rcSG/_ssgManifest.js" defer=""></script></head><body><div id="__next"><h2 id="html">HTML<a class="header-link" href="/core-web/review/1493-erstellung-einer-mvp-breadcrumb-komponente/components/navigation/breadcrumb/docs/HTML?current=html"><span aria-hidden="true" class="db-icon" data-icon="paper_clip"></span>html<!-- --> anchor link</a></h2>
+<p>For general installation and configuration take a look at the <a target="_blank" referrerPolicy="no-referrer" href="https://www.npmjs.com/package/@db-ux/wc-core-components">wc-core-components</a> package.</p>
+<h3 id="usage-patterns">Usage Patterns<a class="header-link" href="/core-web/review/1493-erstellung-einer-mvp-breadcrumb-komponente/components/navigation/breadcrumb/docs/HTML?current=usage-patterns"><span aria-hidden="true" class="db-icon" data-icon="paper_clip"></span>usage-patterns<!-- --> anchor link</a></h3>
+<p>There are two ways to use the breadcrumb component:</p>
+<ol>
+<li><strong>Using the <code>items</code> attribute</strong> (recommended): Pass a JSON array of breadcrumb items</li>
+<li><strong>Using child components</strong>: Use <code>&lt;db-breadcrumb-item&gt;</code> elements as children</li>
+</ol>
+<h3 id="basic-usage-with-items-attribute-recommended">Basic Usage with Items Attribute (Recommended)<a class="header-link" href="/core-web/review/1493-erstellung-einer-mvp-breadcrumb-komponente/components/navigation/breadcrumb/docs/HTML?current=basic-usage-with-items-attribute-recommended"><span aria-hidden="true" class="db-icon" data-icon="paper_clip"></span>basic-usage-with-items-attribute-recommended<!-- --> anchor link</a></h3>
+<p>The <code>items</code> attribute provides a declarative way to define breadcrumbs and supports all features including collapse functionality.</p>
+<pre><code class="language-html">&lt;!doctype html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+	&lt;head&gt;
+		&lt;meta charset=&quot;utf-8&quot; /&gt;
+		&lt;title&gt;DBBreadcrumb&lt;/title&gt;
+		&lt;script
+			type=&quot;module&quot;
+			src=&quot;https://unpkg.com/@db-ux/wc-core-components@latest/dist/db-ux/db-ux.esm.js&quot;
+		&gt;&lt;/script&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;db-breadcrumb
+			items=&#x27;[{&quot;href&quot;:&quot;/&quot;,&quot;text&quot;:&quot;Home&quot;},{&quot;href&quot;:&quot;/category&quot;,&quot;text&quot;:&quot;Category&quot;},{&quot;text&quot;:&quot;Current Page&quot;,&quot;ariaCurrent&quot;:&quot;page&quot;}]&#x27;
+			aria-label=&quot;Breadcrumb&quot;
+		&gt;&lt;/db-breadcrumb&gt;
+	&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<h3 id="using-child-components">Using Child Components<a class="header-link" href="/core-web/review/1493-erstellung-einer-mvp-breadcrumb-komponente/components/navigation/breadcrumb/docs/HTML?current=using-child-components"><span aria-hidden="true" class="db-icon" data-icon="paper_clip"></span>using-child-components<!-- --> anchor link</a></h3>
+<p>Alternatively, use <code>&lt;db-breadcrumb-item&gt;</code> elements for more flexibility:</p>
+<pre><code class="language-html">&lt;db-breadcrumb&gt;
+	&lt;db-breadcrumb-item href=&quot;/&quot;&gt;Home&lt;/db-breadcrumb-item&gt;
+	&lt;db-breadcrumb-item href=&quot;/category&quot;&gt;Category&lt;/db-breadcrumb-item&gt;
+	&lt;db-breadcrumb-item aria-current=&quot;page&quot;&gt; Current Page &lt;/db-breadcrumb-item&gt;
+&lt;/db-breadcrumb&gt;
+</code></pre>
+<h3 id="with-icons">With Icons<a class="header-link" href="/core-web/review/1493-erstellung-einer-mvp-breadcrumb-komponente/components/navigation/breadcrumb/docs/HTML?current=with-icons"><span aria-hidden="true" class="db-icon" data-icon="paper_clip"></span>with-icons<!-- --> anchor link</a></h3>
+<p>Add icons to breadcrumb items using the <code>icon</code> property:</p>
+<pre><code class="language-html">&lt;db-breadcrumb
+	items=&#x27;[{&quot;href&quot;:&quot;/&quot;,&quot;text&quot;:&quot;Home&quot;,&quot;icon&quot;:&quot;home&quot;},{&quot;href&quot;:&quot;/category&quot;,&quot;text&quot;:&quot;Category&quot;,&quot;icon&quot;:&quot;folder&quot;},{&quot;text&quot;:&quot;Current Page&quot;,&quot;ariaCurrent&quot;:&quot;page&quot;}]&#x27;
+&gt;&lt;/db-breadcrumb&gt;
+</code></pre>
+<p>Or with child components:</p>
+<pre><code class="language-html">&lt;db-breadcrumb&gt;
+	&lt;db-breadcrumb-item href=&quot;/&quot; icon=&quot;home&quot;&gt;Home&lt;/db-breadcrumb-item&gt;
+	&lt;db-breadcrumb-item href=&quot;/category&quot; icon=&quot;folder&quot;&gt;
+		Category
+	&lt;/db-breadcrumb-item&gt;
+	&lt;db-breadcrumb-item aria-current=&quot;page&quot;&gt;Current Page&lt;/db-breadcrumb-item&gt;
+&lt;/db-breadcrumb&gt;
+</code></pre>
+<h3 id="size-options">Size Options<a class="header-link" href="/core-web/review/1493-erstellung-einer-mvp-breadcrumb-komponente/components/navigation/breadcrumb/docs/HTML?current=size-options"><span aria-hidden="true" class="db-icon" data-icon="paper_clip"></span>size-options<!-- --> anchor link</a></h3>
+<p>Control the size of breadcrumb items:</p>
+<pre><code class="language-html">&lt;!-- Small size (default) --&gt;
+&lt;db-breadcrumb items=&quot;[...]&quot; size=&quot;small&quot;&gt;&lt;/db-breadcrumb&gt;
+
+&lt;!-- Medium size --&gt;
+&lt;db-breadcrumb items=&quot;[...]&quot; size=&quot;medium&quot;&gt;&lt;/db-breadcrumb&gt;
+</code></pre>
+<h3 id="separator-options">Separator Options<a class="header-link" href="/core-web/review/1493-erstellung-einer-mvp-breadcrumb-komponente/components/navigation/breadcrumb/docs/HTML?current=separator-options"><span aria-hidden="true" class="db-icon" data-icon="paper_clip"></span>separator-options<!-- --> anchor link</a></h3>
+<p>Choose between different separators:</p>
+<pre><code class="language-html">&lt;!-- Chevron separator (default) --&gt;
+&lt;db-breadcrumb items=&quot;[...]&quot; separator=&quot;chevron&quot;&gt;&lt;/db-breadcrumb&gt;
+
+&lt;!-- Slash separator --&gt;
+&lt;db-breadcrumb items=&quot;[...]&quot; separator=&quot;slash&quot;&gt;&lt;/db-breadcrumb&gt;
+</code></pre>
+<h3 id="collapse-long-breadcrumbs">Collapse Long Breadcrumbs<a class="header-link" href="/core-web/review/1493-erstellung-einer-mvp-breadcrumb-komponente/components/navigation/breadcrumb/docs/HTML?current=collapse-long-breadcrumbs"><span aria-hidden="true" class="db-icon" data-icon="paper_clip"></span>collapse-long-breadcrumbs<!-- --> anchor link</a></h3>
+<p>Use <code>max-items</code> to collapse breadcrumbs when they exceed a certain length. The first item and last items are shown, with an ellipsis button in between:</p>
+<pre><code class="language-html">&lt;!-- Shows: Home &gt; … &gt; Level 4 &gt; Current Page --&gt;
+&lt;!-- Clicking the ellipsis expands to show all items --&gt;
+&lt;db-breadcrumb
+	items=&#x27;[{&quot;href&quot;:&quot;/&quot;,&quot;text&quot;:&quot;Home&quot;},{&quot;href&quot;:&quot;/level1&quot;,&quot;text&quot;:&quot;Level 1&quot;},{&quot;href&quot;:&quot;/level2&quot;,&quot;text&quot;:&quot;Level 2&quot;},{&quot;href&quot;:&quot;/level3&quot;,&quot;text&quot;:&quot;Level 3&quot;},{&quot;href&quot;:&quot;/level4&quot;,&quot;text&quot;:&quot;Level 4&quot;},{&quot;text&quot;:&quot;Current Page&quot;,&quot;ariaCurrent&quot;:&quot;page&quot;}]&#x27;
+	max-items=&quot;3&quot;
+	ellipsis-aria-label=&quot;Expand to show all breadcrumb items&quot;
+&gt;&lt;/db-breadcrumb&gt;
+</code></pre>
+<h3 id="using-plain-htmlcss">Using Plain HTML/CSS<a class="header-link" href="/core-web/review/1493-erstellung-einer-mvp-breadcrumb-komponente/components/navigation/breadcrumb/docs/HTML?current=using-plain-htmlcss"><span aria-hidden="true" class="db-icon" data-icon="paper_clip"></span>using-plain-htmlcss<!-- --> anchor link</a></h3>
+<p>If you prefer not to use web components, you can use the plain CSS classes:</p>
 <pre><code class="language-html">&lt;nav class=&quot;db-breadcrumb&quot; aria-label=&quot;breadcrumb&quot;&gt;
 	&lt;ol class=&quot;db-breadcrumb-list&quot;&gt;
-		&lt;li&gt;&lt;a href=&quot;#&quot;&gt;Home&lt;/a&gt;&lt;/li&gt;
-		&lt;li&gt;&lt;a href=&quot;#&quot;&gt;Category&lt;/a&gt;&lt;/li&gt;
+		&lt;li&gt;&lt;a href=&quot;/&quot;&gt;Home&lt;/a&gt;&lt;/li&gt;
+		&lt;li&gt;&lt;a href=&quot;/category&quot;&gt;Category&lt;/a&gt;&lt;/li&gt;
 		&lt;li aria-current=&quot;page&quot;&gt;Current Page&lt;/li&gt;
 	&lt;/ol&gt;
 &lt;/nav&gt;
 </code></pre>
-<h3 id="import-styles">Import styles<a class="header-link" href="/core-web/review/1493-erstellung-einer-mvp-breadcrumb-komponente/components/navigation/breadcrumb/docs/HTML?current=import-styles"><span aria-hidden="true" class="db-icon" data-icon="paper_clip"></span>import-styles<!-- --> anchor link</a></h3>
 <pre><code class="language-scss">@forward &quot;@db-ux/core-components/build/styles/relative&quot;;
-</code></pre></div><script id="__NEXT_DATA__" type="application/json">{"props":{"pageProps":{}},"page":"/components/navigation/breadcrumb/docs/HTML","query":{},"buildId":"m-tsP-oZH7Z6wtTTWVuMI","assetPrefix":"/core-web/review/1493-erstellung-einer-mvp-breadcrumb-komponente","nextExport":true,"autoExport":true,"isFallback":false,"scriptLoader":[]}</script></body></html>
+</code></pre></div><script id="__NEXT_DATA__" type="application/json">{"props":{"pageProps":{}},"page":"/components/navigation/breadcrumb/docs/HTML","query":{},"buildId":"nkcW9TqcWncbggYo_rcSG","assetPrefix":"/core-web/review/1493-erstellung-einer-mvp-breadcrumb-komponente","nextExport":true,"autoExport":true,"isFallback":false,"scriptLoader":[]}</script></body></html>
