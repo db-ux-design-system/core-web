@@ -38,11 +38,15 @@ export default function DBNotification(props: DBNotificationProps) {
 	// jscpd:ignore-end
 
 	return (
-		<div
+		<article
 			ref={_ref}
 			id={props.id}
 			class={cls('db-notification', props.className)}
-			role={getNotificationRole(props.semantic)}
+			role={
+				!props.role && !props.ariaLive
+					? getNotificationRole(props.semantic)
+					: props.role
+			}
 			aria-live={props.ariaLive}
 			data-semantic={props.semantic}
 			data-variant={props.variant}
@@ -83,6 +87,6 @@ export default function DBNotification(props: DBNotificationProps) {
 					{props.closeButtonText ?? DEFAULT_CLOSE_BUTTON}
 				</DBButton>
 			</Show>
-		</div>
+		</article>
 	);
 }
