@@ -12,6 +12,15 @@ importers:
 
   .:
     dependencies:
+      '@db-ux/db-theme-fonts':
+        specifier: 2.0.5
+        version: 2.0.5
+      '@db-ux/db-theme-icons':
+        specifier: 3.4.0
+        version: 3.4.0
+      '@db-ux/db-theme-illustrative-icons':
+        specifier: 3.0.0
+        version: 3.0.0
       fast-glob:
         specifier: 3.3.3
         version: 3.3.3
@@ -124,9 +133,6 @@ importers:
       cspell:
         specifier: 9.6.0
         version: 9.6.0
-      dotenv:
-        specifier: 17.2.3
-        version: 17.2.3
       eslint:
         specifier: 9.39.2
         version: 9.39.2(jiti@2.6.1)
@@ -259,9 +265,6 @@ importers:
       cross-env:
         specifier: 10.1.0
         version: 10.1.0
-      dotenv:
-        specifier: 17.2.3
-        version: 17.2.3
       http-server:
         specifier: 14.1.1
         version: 14.1.1
@@ -278,11 +281,11 @@ importers:
   output/angular:
     dependencies:
       '@db-ux/core-components':
-        specifier: 4.3.0
-        version: 4.3.0
+        specifier: workspace:*
+        version: link:../../packages/components
       '@db-ux/core-foundations':
-        specifier: 4.3.0
-        version: 4.3.0
+        specifier: workspace:*
+        version: link:../../packages/foundations
     devDependencies:
       typescript:
         specifier: 5.9.3
@@ -291,11 +294,11 @@ importers:
   output/react:
     dependencies:
       '@db-ux/core-components':
-        specifier: 4.3.0
-        version: 4.3.0
+        specifier: workspace:*
+        version: link:../../packages/components
       '@db-ux/core-foundations':
-        specifier: 4.3.0
-        version: 4.3.0
+        specifier: workspace:*
+        version: link:../../packages/foundations
     devDependencies:
       '@playwright/experimental-ct-react':
         specifier: 1.57.0
@@ -313,11 +316,11 @@ importers:
   output/stencil:
     dependencies:
       '@db-ux/core-components':
-        specifier: 4.3.0
-        version: 4.3.0
+        specifier: workspace:*
+        version: link:../../packages/components
       '@db-ux/core-foundations':
-        specifier: 4.3.0
-        version: 4.3.0
+        specifier: workspace:*
+        version: link:../../packages/foundations
     devDependencies:
       '@custom-elements-manifest/analyzer':
         specifier: 0.11.0
@@ -341,11 +344,11 @@ importers:
   output/vue:
     dependencies:
       '@db-ux/core-components':
-        specifier: 4.3.0
-        version: 4.3.0
+        specifier: workspace:*
+        version: link:../../packages/components
       '@db-ux/core-foundations':
-        specifier: 4.3.0
-        version: 4.3.0
+        specifier: workspace:*
+        version: link:../../packages/foundations
     devDependencies:
       '@playwright/experimental-ct-vue':
         specifier: 1.57.0
@@ -451,9 +454,6 @@ importers:
       cssnano:
         specifier: 7.1.2
         version: 7.1.2(postcss@8.5.6)
-      dotenv:
-        specifier: 17.2.3
-        version: 17.2.3
       glob:
         specifier: 13.0.0
         version: 13.0.0
@@ -538,9 +538,6 @@ importers:
       '@inquirer/prompts':
         specifier: 8.2.0
         version: 8.2.0(@types/node@25.0.9)
-      dotenv:
-        specifier: 17.2.3
-        version: 17.2.3
       find-versions:
         specifier: 6.0.0
         version: 6.0.0
@@ -2220,12 +2217,6 @@ packages:
 
   '@custom-elements-manifest/find-dependencies@0.0.7':
     resolution: {integrity: sha512-icHEBPHcOXSrpDOFkQhvM7vljEbqrEReW251RBxSzDctXzYWIL0Hk2yMDINn3d6mZ4KSsqLZlaFiGFp/2nn9rA==}
-
-  '@db-ux/core-components@4.3.0':
-    resolution: {integrity: sha512-SmDcN9DNra8WD5xS0B6dCIa10+lZsCMM5jViC5jM1+pof52gKMaO/+9lHWpuUVub7RMmZ+HPlCCqgTK9ASz/DQ==}
-
-  '@db-ux/core-foundations@4.3.0':
-    resolution: {integrity: sha512-dtMTmdzppWb2dghgkKpV/ZNmSclAV1xAjBZ9ntn/XFVWGFAlP4tes6uNBVtR+joBVz7vnXWZ8BZXdaeqfmRXdA==}
 
   '@db-ux/db-theme-fonts@2.0.5':
     resolution: {integrity: sha512-wtYxHGApW6tmjt/dOoNQL0MzlQ6w6YLHy0fIBQm3Ao6gQJ4DbTpInArzQI1/ctYm/nhCBwvPUIe14vhxqmnz4Q==}
@@ -17223,12 +17214,6 @@ snapshots:
       oxc-resolver: 11.16.3
       rs-module-lexer: 2.6.0
 
-  '@db-ux/core-components@4.3.0':
-    dependencies:
-      '@db-ux/core-foundations': 4.3.0
-
-  '@db-ux/core-foundations@4.3.0': {}
-
   '@db-ux/db-theme-fonts@2.0.5': {}
 
   '@db-ux/db-theme-icons@3.4.0': {}
@@ -30295,7 +30280,7 @@ snapshots:
 
   term-size@2.2.1: {}
 
-  terser-webpack-plugin@5.3.14(esbuild@0.27.2)(webpack@5.101.2(esbuild@0.27.2)):
+  terser-webpack-plugin@5.3.14(esbuild@0.27.2)(webpack@5.101.2):
     dependencies:
       '@jridgewell/trace-mapping': 0.3.29
       jest-worker: 27.5.1
@@ -31462,7 +31447,7 @@ snapshots:
       neo-async: 2.6.2
       schema-utils: 4.3.2
       tapable: 2.2.2
-      terser-webpack-plugin: 5.3.14(esbuild@0.27.2)(webpack@5.101.2(esbuild@0.27.2))
+      terser-webpack-plugin: 5.3.14(esbuild@0.27.2)(webpack@5.101.2)
       watchpack: 2.4.4
       webpack-sources: 3.3.3
     transitivePeerDependencies:
