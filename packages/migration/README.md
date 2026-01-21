@@ -10,7 +10,7 @@
 We provide a cli tool to auto migrate your source code. Use this command in your repository:
 
 ```shell
-pnpm exec @db-ux/core-migration --type=v005_v006 --src=./src
+npx @db-ux/core-migration --type=v005_v006 --src=./src
 ```
 
 ## Deutsche Bahn brand
