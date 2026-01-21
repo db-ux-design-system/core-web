@@ -12,15 +12,6 @@ importers:
 
   .:
     dependencies:
-      '@db-ux/db-theme-fonts':
-        specifier: 2.0.5
-        version: 2.0.5
-      '@db-ux/db-theme-icons':
-        specifier: 3.4.0
-        version: 3.4.0
-      '@db-ux/db-theme-illustrative-icons':
-        specifier: 3.0.0
-        version: 3.0.0
       fast-glob:
         specifier: 3.3.3
         version: 3.3.3
@@ -88,6 +79,15 @@ importers:
       '@db-ux/db-theme':
         specifier: 5.3.0
         version: 5.3.0
+      '@db-ux/db-theme-fonts':
+        specifier: 2.0.5
+        version: 2.0.5
+      '@db-ux/db-theme-icons':
+        specifier: 3.4.0
+        version: 3.4.0
+      '@db-ux/db-theme-illustrative-icons':
+        specifier: 3.0.0
+        version: 3.0.0
       '@double-great/stylelint-a11y':
         specifier: 3.4.1
         version: 3.4.1(stylelint@16.26.1(typescript@5.9.3))
@@ -760,6 +760,9 @@ importers:
 
   showcases/vue-showcase:
     dependencies:
+      '@db-ux/core-components':
+        specifier: workspace:*
+        version: link:../../packages/components
       sa11y:
         specifier: 4.4.1
         version: 4.4.1
@@ -770,6 +773,18 @@ importers:
         specifier: 4.6.4
         version: 4.6.4(vue@3.5.26(typescript@5.9.3))
     devDependencies:
+      '@db-ux/db-theme':
+        specifier: 5.3.0
+        version: 5.3.0
+      '@db-ux/db-theme-fonts':
+        specifier: 2.0.5
+        version: 2.0.5
+      '@db-ux/db-theme-icons':
+        specifier: 3.4.0
+        version: 3.4.0
+      '@db-ux/db-theme-illustrative-icons':
+        specifier: 3.0.0
+        version: 3.0.0
       '@vitejs/plugin-vue':
         specifier: 6.0.3
         version: 6.0.3(vite@7.3.1(@types/node@25.0.9)(jiti@2.6.1)(less@4.4.0)(sass@1.90.0)(terser@5.43.1)(tsx@4.21.0)(yaml@2.8.2))(vue@3.5.26(typescript@5.9.3))
@@ -30280,7 +30295,7 @@ snapshots:
 
   term-size@2.2.1: {}
 
-  terser-webpack-plugin@5.3.14(esbuild@0.27.2)(webpack@5.101.2):
+  terser-webpack-plugin@5.3.14(esbuild@0.27.2)(webpack@5.101.2(esbuild@0.27.2)):
     dependencies:
       '@jridgewell/trace-mapping': 0.3.29
       jest-worker: 27.5.1
@@ -31447,7 +31462,7 @@ snapshots:
       neo-async: 2.6.2
       schema-utils: 4.3.2
       tapable: 2.2.2
-      terser-webpack-plugin: 5.3.14(esbuild@0.27.2)(webpack@5.101.2)
+      terser-webpack-plugin: 5.3.14(esbuild@0.27.2)(webpack@5.101.2(esbuild@0.27.2))
       watchpack: 2.4.4
       webpack-sources: 3.3.3
     transitivePeerDependencies:
