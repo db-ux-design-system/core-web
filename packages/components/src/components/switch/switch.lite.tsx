@@ -265,7 +265,8 @@ export default function DBSwitch(props: DBSwitchProps) {
 					{props.validMessage ?? DEFAULT_VALID_MESSAGE}
 				</DBInfotext>
 			</Show>
-			<Show when={!_ref?.validity?.valid || props.validation === 'invalid'}>
+			<Show
+				when={!_ref?.validity?.valid || props.validation === 'invalid'}>
 				<DBInfotext
 					id={state._invalidMessageId}
 					size="small"

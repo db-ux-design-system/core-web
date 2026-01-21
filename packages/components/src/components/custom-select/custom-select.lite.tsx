@@ -1205,7 +1205,11 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 				</DBInfotext>
 			</Show>
 
-			<Show when={!selectRef?.validity?.valid || props.validation === 'invalid'}>
+			<Show
+				when={
+					!selectRef?.validity?.valid ||
+					props.validation === 'invalid'
+				}>
 				<DBInfotext
 					id={state._invalidMessageId}
 					size="small"

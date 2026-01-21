@@ -276,7 +276,8 @@ export default function DBCheckbox(props: DBCheckboxProps) {
 				</DBInfotext>
 			</Show>
 
-			<Show when={!_ref?.validity?.valid || props.validation === 'invalid'}>
+			<Show
+				when={!_ref?.validity?.valid || props.validation === 'invalid'}>
 				<DBInfotext
 					id={state._invalidMessageId}
 					size="small"

@@ -293,7 +293,8 @@ export default function DBTextarea(props: DBTextareaProps) {
 				</DBInfotext>
 			</Show>
 
-			<Show when={!_ref?.validity?.valid || props.validation === 'invalid'}>
+			<Show
+				when={!_ref?.validity?.valid || props.validation === 'invalid'}>
 				<DBInfotext
 					id={state._invalidMessageId}
 					size="small"
