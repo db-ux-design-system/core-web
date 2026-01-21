@@ -10,10 +10,10 @@ export default {
 	'*.{css,scss}': 'stylelint --fix --allow-empty-input --no-validate',
 	'*.{js,ts,tsx,jsx,mjs,cjs}': 'xo --fix',
 	'**/package.json': [
-		() => 'npm install --package-lock-only --ignore-scripts',
-		'npm run lint:package-json'
+		() => 'pnpm install --lockfile-only --ignore-scripts',
+		'pnpm run lint:package-json'
 	],
 	'*.{md,mdx,txt,yml,yaml,ts,tsx,js,jsx,html,css,scss,sass,vue}': [
-		() => 'npm run lint:codespell'
+		() => 'pnpm run lint:codespell'
 	]
 };

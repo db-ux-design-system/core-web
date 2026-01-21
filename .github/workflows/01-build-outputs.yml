@@ -54,15 +54,18 @@ jobs:
           name: db-ux-output
           path: output
 
+      - name: 📥 Install output dependencies
+        run: pnpm install
+
       - name: 🔨 Build outputs
         run: |
-          npm run generate:agent
-          npm run build-outputs
+          pnpm run generate:agent
+          pnpm run build-outputs
 
       - name: 📦 Validate Package Publishing
         run: |
-          npm run lint-packages
-          npm run lint-docs-file-references
+          pnpm run lint-packages
+          pnpm run lint-docs-file-references
 
       - name: ⏫ Upload outputs
         uses: actions/upload-artifact@v6

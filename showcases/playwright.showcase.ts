@@ -13,7 +13,7 @@ const showcaseConfig: PlaywrightTestConfig = {
 		trace: process.env.CI ? 'on-first-retry' : 'on'
 	},
 	webServer: {
-		command: `cd ${process.env.showcase} && npm run preview`,
+		command: `cd ${process.env.showcase} && pnpm run preview`,
 		port: 8080,
 		reuseExistingServer: !process.env.CI
 	},

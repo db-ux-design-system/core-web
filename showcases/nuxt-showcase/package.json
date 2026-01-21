@@ -9,6 +9,7 @@
   },
   "license": "Apache-2.0",
   "private": true,
+  "files": [],
   "scripts": {
     "build": "npm-run-all nuxt:prepare build:*",
     "build:nuxt": "nuxt build",

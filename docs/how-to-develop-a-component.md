@@ -2,7 +2,7 @@
 
 ## Generate all required files
 
-1. Run `npm run generate:component` in a terminal.
+1. Run `pnpm run generate:component` in a terminal.
 
 2. Enter the name of your new component (e.g. my-awesome-component) and answer all prompts with "yes".
 
@@ -15,7 +15,7 @@
 
 - Your main work for the component will be inside `packages/components/src/components/my-awesome-component`.
 
-- To start developing your component, run `npm run dev`, which will present you with several options to choose from. When you begin "scribbling" (html+scss) with a component you can select `plain-html`. _Advanced users_ can skip this step and develop directly for a specific framework (HTML, SCSS, and TypeScript); see [Test Frameworks with Showcases](#test-frameworks-with-showcases).
+- To start developing your component, run `pnpm run dev`, which will present you with several options to choose from. When you begin "scribbling" (html+scss) with a component you can select `plain-html`. _Advanced users_ can skip this step and develop directly for a specific framework (HTML, SCSS, and TypeScript); see [Test Frameworks with Showcases](#test-frameworks-with-showcases).
 
 ### Styling with SCSS
 

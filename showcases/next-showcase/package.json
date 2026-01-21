@@ -11,6 +11,7 @@
   "engines": {
     "node": ">=18"
   },
+  "files": [],
   "scripts": {
     "build": "next build --webpack",
     "dev": "npm-run-all open next:dev",
