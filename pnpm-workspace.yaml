@@ -1,7 +1,10 @@
 packages:
-  - 'packages/*'
-  - 'output/*'
-  - 'showcases/*'
-  - 'docs'
-  - 'scripts'
-  - 'e2e'
+  - "packages/*"
+  - "output/*"
+  - "showcases/*"
+  - "docs"
+  - "scripts"
+  - "e2e"
+# TODO: remove this before merging to main
+publish-branch:
+  - refactor-migrated-package-manager-to-pnpm
