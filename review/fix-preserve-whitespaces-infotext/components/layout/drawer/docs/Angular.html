@@ -1,0 +1,32 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8" data-next-head=""/><meta name="viewport" content="width=device-width" data-next-head=""/><title data-next-head="">DB UX</title><link data-next-font="size-adjust" rel="preconnect" href="/" crossorigin="anonymous"/><link rel="preload" href="/core-web/review/fix-preserve-whitespaces-infotext/_next/static/css/edc9dabf141bd06a.css" as="style"/><link rel="stylesheet" href="/core-web/review/fix-preserve-whitespaces-infotext/_next/static/css/edc9dabf141bd06a.css" data-n-g=""/><noscript data-n-css=""></noscript><script defer="" noModule="" src="/core-web/review/fix-preserve-whitespaces-infotext/_next/static/chunks/polyfills-42372ed130431b0a.js"></script><script src="/core-web/review/fix-preserve-whitespaces-infotext/_next/static/chunks/webpack-3f4486472483e850.js" defer=""></script><script src="/core-web/review/fix-preserve-whitespaces-infotext/_next/static/chunks/framework-52047f770f349cc2.js" defer=""></script><script src="/core-web/review/fix-preserve-whitespaces-infotext/_next/static/chunks/main-efdf9dc94554ee81.js" defer=""></script><script src="/core-web/review/fix-preserve-whitespaces-infotext/_next/static/chunks/pages/_app-69602706fd67ed0f.js" defer=""></script><script src="/core-web/review/fix-preserve-whitespaces-infotext/_next/static/chunks/pages/components/layout/drawer/docs/Angular-4975e8c19c5b15ed.js" defer=""></script><script src="/core-web/review/fix-preserve-whitespaces-infotext/_next/static/IINc6AfCUDBC8kMY7ap6k/_buildManifest.js" defer=""></script><script src="/core-web/review/fix-preserve-whitespaces-infotext/_next/static/IINc6AfCUDBC8kMY7ap6k/_ssgManifest.js" defer=""></script></head><body><div id="__next"><h2 id="angular">Angular<a class="header-link" href="/core-web/review/fix-preserve-whitespaces-infotext/components/layout/drawer/docs/Angular?current=angular"><span aria-hidden="true" class="db-icon" data-icon="paper_clip"></span>angular<!-- --> anchor link</a></h2>
+<p>For general installation and configuration take a look at the <a target="_blank" referrerPolicy="no-referrer" href="https://www.npmjs.com/package/@db-ux/ngx-core-components">ngx-core-components</a> package.</p>
+<h3 id="general">General<a class="header-link" href="/core-web/review/fix-preserve-whitespaces-infotext/components/layout/drawer/docs/Angular?current=general"><span aria-hidden="true" class="db-icon" data-icon="paper_clip"></span>general<!-- --> anchor link</a></h3>
+<p>If you use <code>width !== full</code> you are able to overwrite the <code>max-width</code> with <code>--db-drawer-max-width:</code> CSS variable.</p>
+<h3 id="load-component">Load component<a class="header-link" href="/core-web/review/fix-preserve-whitespaces-infotext/components/layout/drawer/docs/Angular?current=load-component"><span aria-hidden="true" class="db-icon" data-icon="paper_clip"></span>load-component<!-- --> anchor link</a></h3>
+<pre><code class="language-ts">// app.component.ts
+import { DBDrawer } from &#x27;@db-ux/ngx-core-components&#x27;;
+
+@Component({
+  // ...
+  standalone: true,
+  imports: [..., DBDrawer],
+  // ...
+})
+</code></pre>
+<h3 id="use-component">Use component<a class="header-link" href="/core-web/review/fix-preserve-whitespaces-infotext/components/layout/drawer/docs/Angular?current=use-component"><span aria-hidden="true" class="db-icon" data-icon="paper_clip"></span>use-component<!-- --> anchor link</a></h3>
+<pre><code class="language-html">&lt;!-- app.component.html --&gt;
+
+&lt;db-button (click)=&quot;toggleDrawer(true)&quot;&gt; Open me &lt;/db-button&gt;
+&lt;db-drawer [open]=&quot;openDrawer&quot; (onClose)=&quot;toggleDrawer(false)&quot;&gt;
+	&lt;header drawer-header&gt;Optional drawer header&lt;/header&gt;
+	My Drawer content
+&lt;/db-drawer&gt;
+</code></pre>
+<pre><code class="language-ts">// app.component.ts
+export class AppComponent {
+	openDrawer: boolean = false;
+	toggleDrawer = (open: boolean) =&gt; {
+		this.openDrawer = open;
+	};
+}
+</code></pre></div><script id="__NEXT_DATA__" type="application/json">{"props":{"pageProps":{}},"page":"/components/layout/drawer/docs/Angular","query":{},"buildId":"IINc6AfCUDBC8kMY7ap6k","assetPrefix":"/core-web/review/fix-preserve-whitespaces-infotext","nextExport":true,"autoExport":true,"isFallback":false,"scriptLoader":[]}</script></body></html>
