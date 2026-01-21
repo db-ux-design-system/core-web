@@ -20,6 +20,10 @@ runs:
           echo "CACHE_PATH=C:\Users\runneradmin\AppData\Local\ms-playwright" >> "$GITHUB_ENV"
           echo "BROWSERS=chromium firefox" >> "$GITHUB_ENV"
           echo "OS=windows" >> "$GITHUB_ENV"
+        elif [[ $OS == "Linux" ]]; then
+          echo "CACHE_PATH=~/.cache/ms-playwright" >> "$GITHUB_ENV"
+          echo "BROWSERS=webkit chromium firefox msedge" >> "$GITHUB_ENV"
+          echo "OS=linux" >> "$GITHUB_ENV"
         else
           echo "CACHE_PATH=~/Library/Caches/ms-playwright" >> "$GITHUB_ENV"
           echo "BROWSERS=webkit chromium firefox" >> "$GITHUB_ENV"
