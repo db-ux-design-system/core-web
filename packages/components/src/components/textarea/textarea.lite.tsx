@@ -40,7 +40,7 @@ import { DBTextareaProps, DBTextareaState } from './model';
 
 useMetadata({
 	angular: {
-		nativeAttributes: ['disabled', 'required'],
+		nativeAttributes: ['disabled', 'required', 'value'],
 		signals: {
 			writeable: ['disabled', 'value']
 		}
@@ -196,11 +196,20 @@ export default function DBTextarea(props: DBTextareaProps) {
 	}, [state._id]);
 
 	onUpdate(() => {
-		state._value = props.value;
+		if (props.value !== undefined) {
+			state._value = props.value;
+		}
 	}, [props.value]);
 
 	onUpdate(() => {
-		if (_ref) {
+		// If angular uses ngModel value and _value are null
+		// then the value will be set afterward and the _ref will be refreshed
+		const addResetListener = useTarget({
+			angular: !(props.value === null && state._value === null),
+			default: true
+		});
+
+		if (_ref && addResetListener) {
 			const defaultValue = useTarget({
 				react: (props as any).defaultValue,
 				default: undefined
