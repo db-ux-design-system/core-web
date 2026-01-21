@@ -42,11 +42,11 @@ export default function DBNotification(props: DBNotificationProps) {
 			ref={_ref}
 			id={props.id}
 			class={cls('db-notification', props.className)}
-			role={
-				!props.role && !props.ariaLive
-					? getNotificationRole(props.semantic)
-					: props.role
-			}
+			role={getNotificationRole({
+				semantic: props.semantic,
+				role: props.role,
+				ariaLive: props.ariaLive
+			})}
 			aria-live={props.ariaLive}
 			data-semantic={props.semantic}
 			data-variant={props.variant}
