@@ -31,10 +31,7 @@ export default defineConfig({
 		'**/test/**',
 		'packages/migration/**',
 		'output/**',
-		'showcases/patternhub/out/**',
-		'showcases/patternhub/public/**',
-		'showcases/patternhub/pages/**/*.md',
-		'showcases/patternhub/pages/**/*.mdx',
+		'showcases/patternhub/**',
 		// Examples
 		'showcases/react-showcase/src/components/form/index.tsx',
 		'showcases/patternhub/pages/foundations/densities/examples.tsx',
