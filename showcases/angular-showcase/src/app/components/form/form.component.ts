@@ -111,7 +111,7 @@ export class FormComponent {
 		this.model.checkbox2 = false;
 		this.form.get('input')?.setValue('reset');
 		this.form.get('textarea')?.setValue('reset');
-		this.form.get('dateinput')?.setValue('reset');
+		this.form.get('dateinput')?.setValue('');
 		this.form.get('checkbox')?.setValue(false);
 	}
 

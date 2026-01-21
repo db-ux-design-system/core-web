@@ -36,7 +36,9 @@ test.describe('DBSwitch', () => {
 
 	test('should toggle on ENTER key press', async ({ mount, page }) => {
 		const component = await mount(<DBSwitch>Test Switch</DBSwitch>);
-		const input = component.locator('input[type="checkbox"][role="switch"]');
+		const input = component.locator(
+			'input[type="checkbox"][role="switch"]'
+		);
 
 		// Initially unchecked
 		await expect(input).not.toBeChecked();
