@@ -32,7 +32,7 @@
     "copy:agent": "cpr agent ../../build-outputs/components/agent --overwrite",
     "copy:changelog": "cpr CHANGELOG.md ../../build-outputs/components/CHANGELOG.md --overwrite",
     "copy:outputs": "cpr build ../../build-outputs/components/build --overwrite",
-    "copy:package.json": "cpr package.json ../../build-outputs/components/package.json --overwrite && pnpm publish ../../build-outputs/components/ --dry-run",
+    "copy:package.json": "cpr package.json ../../build-outputs/components/package.json --overwrite && pnpm publish ../../build-outputs/components/ --dry-run --publish-branch=refactor-migrated-package-manager-to-pnpm",
     "copy:readme": "cpr README.md ../../build-outputs/components/README.md --overwrite",
     "dev:angular": "nodemon --watch src --watch scripts --ext tsx,ts --exec \"pnpm run compile:angular\"",
     "dev:html": "pnpm run copy-assets && pnpm run build-assets && pnpm run build-style:01_sass && vite --open",
