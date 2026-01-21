@@ -5,4 +5,4 @@
 "@db-ux/v-core-components": minor
 ---
 
-feat(SSR-compatibility): Implement framework-specific `useId` for uuid generation in React and Vue outputs
+feat(SSR-compatibility): Implement framework-specific `useId` for UUID generation in React and Vue outputs
