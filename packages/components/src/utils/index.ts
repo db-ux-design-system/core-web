@@ -214,6 +214,6 @@ export const getNotificationRole = (semantic?: string): string | undefined => {
 		case 'successful':
 			return 'status';
 		default:
-			return undefined;
+			return 'article';
 	}
 };
