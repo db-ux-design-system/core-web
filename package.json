@@ -154,6 +154,7 @@
   },
   "pnpm": {
     "onlyBuiltDependencies": [
+      "@db-ux/db-theme",
       "@db-ux/db-theme-fonts",
       "@db-ux/db-theme-icons",
       "@db-ux/db-theme-illustrative-icons"

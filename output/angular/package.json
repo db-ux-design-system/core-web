@@ -27,7 +27,7 @@
     "access": "public"
   },
   "dependencies": {
-    "@db-ux/core-components": "4.3.0",
-    "@db-ux/core-foundations": "4.3.0"
+    "@db-ux/core-components": "workspace:*",
+    "@db-ux/core-foundations": "workspace:*"
   }
 }
