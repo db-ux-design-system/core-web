@@ -6,4 +6,4 @@
 "@db-ux/v-core-components": patch
 ---
 
-fix(angular): issue with form-components not applying value changes because of [attr.value] insead of native [value] binding
+fix(angular): issue with form-components not applying value changes because of [attr.value] instead of native [value] binding
