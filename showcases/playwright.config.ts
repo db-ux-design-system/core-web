@@ -49,8 +49,7 @@ if (!process.env.showcase?.startsWith('stencil')) {
 		name: 'mobile_safari',
 		use: {
 			...devices['iPhone 12'],
-			isMobile: true,
-			deviceScaleFactor: 2
+			isMobile: true
 		}
 	});
 }
