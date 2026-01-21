@@ -1,6 +1,6 @@
 /* Styles for the showcases */
 .desktop-navigation ul {
-	list-style-type: none;
+	list-style-type: "";
 	display: flex;
 }
 
@@ -8,15 +8,7 @@
 	display: flex;
 	flex-direction: column;
 	gap: var(--db-spacing-fixed-md);
-
-	&:has(.component-header) {
-		padding: var(--db-spacing-fixed-md);
-	}
-}
-
-/* TODO: we're disabling the code link temporarily and need to reintegrate it afterwards */
-.show-code-link {
-	display: none;
+	padding: var(--db-spacing-fixed-md);
 }
 
 .component-header {
@@ -52,33 +44,10 @@ db-card:is(.variants-card) > .db-card {
 	gap: var(--db-spacing-fixed-md);
 }
 
-.variants-list > db-popover > .db-popover > db-button > button,
-.variants-list > .db-popover > button,
-.variants-list > * > db-button > button,
-.variants-list > button {
-	align-self: center;
-}
-
-.variants-list div[style]:has(> db-button) {
-	display: flex;
-	align-items: center;
-}
-
 .variants-list > div {
 	align-items: center;
 	display: flex;
 	gap: var(--db-spacing-fixed-md);
-}
-
-/* Ensure footer examples take full width within variant lists */
-.variants-list > div:has(.db-footer),
-.variants-list > div:has(db-footer) {
-	inline-size: 100%;
-}
-
-.variants-list .db-footer,
-.variants-list db-footer {
-	inline-size: 100%;
 }
 
 .variants-list .db-select,
@@ -209,27 +178,26 @@ main .db-header {
 	align-items: center;
 	font: var(--db-type-body-2xs);
 	font-weight: 700;
-	white-space: nowrap;
-}
 
-.dummy-component a {
-	text-decoration: none;
+	a {
+		text-decoration: none;
+	}
+
+	text-wrap: nowrap;
 }
 
 .section-card-container {
 	display: grid;
 	gap: var(--db-spacing-fixed-sm);
 	grid-template-columns: repeat(1, minmax(0, 1fr));
-}
 
-@media screen and (width >= 768px) {
-	.section-card-container {
+	@media screen and (width >= 768px) {
 		grid-template-columns: repeat(2, minmax(0, 1fr));
 	}
-}
 
-.section-card-container .db-card {
-	inline-size: 100%;
+	.db-card {
+		inline-size: 100%;
+	}
 }
 
 .nav-item-list {
