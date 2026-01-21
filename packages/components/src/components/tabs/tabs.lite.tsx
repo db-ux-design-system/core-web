@@ -68,7 +68,9 @@ export default function DBTabs(props: DBTabsProps) {
 
 			const tabList = _ref?.querySelector('[role="tablist"]');
 			if (!tabList) return;
-			const buttons = Array.from(tabList.querySelectorAll('[role="tab"]'));
+			const buttons = Array.from(
+				tabList.querySelectorAll('[role="tab"]')
+			);
 			const index = buttons.indexOf(button as HTMLElement);
 
 			if (index !== -1) {
@@ -248,6 +250,19 @@ export default function DBTabs(props: DBTabsProps) {
 			state.activeTabIndex = isNaN(parsedIndex) ? 0 : parsedIndex;
 		} else if (props.initialSelectedMode === 'manually') {
 			state.activeTabIndex = -1;
+		}
+
+		if (typeof window !== 'undefined' && window.location.hash) {
+			const hashId = window.location.hash.substring(1);
+			const currentTabs = state.convertTabs();
+			const foundIndex = currentTabs.findIndex(
+				(_: DBSimpleTabProps, index: number) => {
+					return state.getTabId(index) === hashId;
+				}
+			);
+			if (foundIndex !== -1) {
+				state.activeTabIndex = foundIndex;
+			}
 		}
 
 		state.initialized = true;
