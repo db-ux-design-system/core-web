@@ -15,7 +15,7 @@ const getTabs = ({
 	children,
 	orientation,
 	width,
-	alignment,
+	contentAlignment,
 	overflow,
 	behavior,
 	initialSelectedMode,
@@ -28,7 +28,7 @@ const getTabs = ({
 		<DBTabs
 			orientation={orientation}
 			width={width}
-			alignment={alignment}
+			contentAlignment={contentAlignment}
 			behavior={behavior}
 			initialSelectedIndex={initialSelectedIndex}
 			initialSelectedMode={initialSelectedMode}

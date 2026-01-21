@@ -75,6 +75,18 @@ const testA11y = () => {
 	});
 };
 
+test('should accept content alignment prop', async ({ mount }) => {
+		const component = await mount(
+			<DBTabs contentAlignment="center">
+				<DBTabList>
+					<DBTabItem>Test 1</DBTabItem>
+				</DBTabList>
+				<DBTabPanel>Content 1</DBTabPanel>
+			</DBTabs>
+		);
+		await expect(component).toHaveAttribute('data-content-alignment', 'center');
+	});
+
 test.describe('DBTabs', () => {
 	test.use({ viewport: DEFAULT_VIEWPORT });
 	testComponent();

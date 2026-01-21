@@ -118,23 +118,23 @@
 		]
 	},
 	{
-		"name": "Width Full Start",
+		"name": "Width Full Left",
 		"children": [
 			{
 				"name": "tab-list",
 				"children": [
-					{ "name": "tab-item", "content": "FullS Tab 1" },
-					{ "name": "tab-item", "content": "FullS Tab 2" },
-					{ "name": "tab-item", "content": "FullS Tab 3" }
+					{ "name": "tab-item", "content": "FullL Tab 1" },
+					{ "name": "tab-item", "content": "FullL Tab 2" },
+					{ "name": "tab-item", "content": "FullL Tab 3" }
 				]
 			},
-			{ "name": "tab-panel", "content": "FullS Panel 1" },
-			{ "name": "tab-panel", "content": "FullS Panel 2" },
-			{ "name": "tab-panel", "content": "FullS Panel 3" }
+			{ "name": "tab-panel", "content": "FullL Panel 1" },
+			{ "name": "tab-panel", "content": "FullL Panel 2" },
+			{ "name": "tab-panel", "content": "FullL Panel 3" }
 		],
 		"examples": [
 			{
-				"name": "full - alignment: start",
+				"name": "full - content alignment: left",
 				"style": { "width": "100%" },
 				"props": { "width": "full" }
 			}
@@ -157,9 +157,9 @@
 		],
 		"examples": [
 			{
-				"name": "full - alignment: center",
+				"name": "full - content alignment: center",
 				"style": { "width": "100%" },
-				"props": { "width": "full", "alignment": "center" }
+				"props": { "width": "full", "contentAlignment": "center" }
 			}
 		]
 	},

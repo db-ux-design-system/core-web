@@ -304,7 +304,7 @@ export default function DBTabs(props: DBTabsProps) {
 			class={cls('db-tabs', props.className)}
 			data-orientation={props.orientation}
 			data-scroll-behavior={props.behavior}
-			data-alignment={props.alignment ?? 'start'}
+			data-content-alignment={props.contentAlignment ?? 'left'}
 			data-width={props.width ?? 'auto'}
 			onClick={(event) => state.handleClick(event)}>
 			<Show when={state.showScrollLeft}>
