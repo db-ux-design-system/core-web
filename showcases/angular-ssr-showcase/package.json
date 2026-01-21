@@ -1,6 +1,12 @@
 {
   "name": "angular-ssr-showcase",
   "version": "0.0.0",
+  "description": "Angular SSR showcase",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/db-ux-design-system/core-web.git"
+  },
+  "license": "Apache-2.0",
   "private": true,
   "scripts": {
     "build": "ng build && cpr ./dist/angular-ssr-showcase/ ../../build-showcases/angular-ssr-showcase/ -d",
@@ -16,7 +22,7 @@
   },
   "devDependencies": {
     "@types/express": "5.0.6",
-    "@types/node": "24.10.0",
+    "@types/node": "25.0.9",
     "cpr": "3.0.1",
     "typescript": "5.9.3"
   }

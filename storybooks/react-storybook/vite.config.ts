@@ -12,7 +12,9 @@ export default defineConfig({
 	resolve: {
 		alias: {
 			// Wired issue with storybook vite-builder inside monorepo
-			vue: path.resolve(__dirname, '../../node_modules/vue')
+			vue: path.resolve(__dirname, '../../node_modules/vue'),
+			// eslint-disable-next-line @typescript-eslint/naming-convention
+			'@components': path.resolve(__dirname, '../../output/react/src')
 		}
 	}
 });
