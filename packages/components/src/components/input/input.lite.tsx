@@ -302,11 +302,11 @@ export default function DBInput(props: DBInputProps) {
 				autoFocus={getBoolean(props.autofocus, 'autofocus')}
 				enterKeyHint={props.enterkeyhint}
 				inputMode={props.inputmode}
-				onInput={(event: ChangeEvent<HTMLInputElement>) =>
-					state.handleInput(event)
+				onInput={(event: InputEvent<HTMLInputElement>) =>
+					state.handleInput(event as any)
 				}
 				onChange={(event: ChangeEvent<HTMLInputElement>) =>
-					state.handleChange(event)
+					state.handleChange(event as any)
 				}
 				onBlur={(event: InteractionEvent<HTMLInputElement>) =>
 					state.handleBlur(event)
