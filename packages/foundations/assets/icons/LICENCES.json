@@ -84,6 +84,78 @@
 		"origin": "plus"
 	},
 	{
+		"name": "eye.svg",
+		"type": "lucide",
+		"licence": "https://lucide.dev/license#lucide-license",
+		"origin": "eye"
+	},
+	{
+		"name": "eye_disabled.svg",
+		"type": "lucide",
+		"licence": "https://lucide.dev/license#lucide-license",
+		"origin": "eye-off"
+	},
+	{
+		"name": "double_chevron_down.svg",
+		"type": "lucide",
+		"licence": "https://lucide.dev/license#lucide-license",
+		"origin": "chevrons-down"
+	},
+	{
+		"name": "double_chevron_up.svg",
+		"type": "lucide",
+		"licence": "https://lucide.dev/license#lucide-license",
+		"origin": "chevrons-up"
+	},
+	{
+		"name": "double_chevron_left.svg",
+		"type": "lucide",
+		"licence": "https://lucide.dev/license#lucide-license",
+		"origin": "chevrons-left"
+	},
+	{
+		"name": "double_chevron_right.svg",
+		"type": "lucide",
+		"licence": "https://lucide.dev/license#lucide-license",
+		"origin": "chevrons-right"
+	},
+	{
+		"name": "copy.svg",
+		"type": "lucide",
+		"licence": "https://lucide.dev/license#lucide-license",
+		"origin": "copy"
+	},
+	{
+		"name": "house.svg",
+		"type": "lucide",
+		"licence": "https://lucide.dev/license#lucide-license",
+		"origin": "house"
+	},
+	{
+		"name": "circle_small.svg",
+		"type": "lucide",
+		"licence": "https://lucide.dev/license#lucide-license",
+		"origin": "circle-small"
+	},
+	{
+		"name": "chat.svg",
+		"type": "lucide",
+		"licence": "https://lucide.dev/license#lucide-license",
+		"origin": "message-square-text"
+	},
+	{
+		"name": "sun.svg",
+		"type": "lucide",
+		"licence": "https://lucide.dev/license#lucide-license",
+		"origin": "sun"
+	},
+	{
+		"name": "moon.svg",
+		"type": "lucide",
+		"licence": "https://lucide.dev/license#lucide-license",
+		"origin": "moon"
+	},
+	{
 		"name": "minus.svg",
 		"type": "lucide",
 		"licence": "https://lucide.dev/license#lucide-license",
