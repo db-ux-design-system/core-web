@@ -54,7 +54,6 @@
     "@playwright/test": "1.57.0",
     "cpr": "3.0.1",
     "cssnano": "7.1.2",
-    "dotenv": "17.2.3",
     "glob": "13.0.0",
     "nodemon": "3.1.11",
     "prettier": "3.8.0",
