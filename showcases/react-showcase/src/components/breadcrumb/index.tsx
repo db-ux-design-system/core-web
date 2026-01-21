@@ -1,5 +1,6 @@
 import { DBBreadcrumb } from '../../../../../output/react/src';
 import defaultComponentVariants from '../../../../shared/breadcrumb.json';
+import { type BaseComponentProps } from '../base-component-data';
 import { getVariants } from '../data';
 import DefaultComponent from '../default-component';
 
@@ -43,13 +44,10 @@ const getBreadcrumb = ({
 	/>
 );
 
-type BreadcrumbComponentProps = {
-	slotCode?: Record<string, React.FC>;
-};
-
-const BreadcrumbComponent = (props: BreadcrumbComponentProps) => (
+const BreadcrumbComponent = (props: BaseComponentProps) => (
 	<DefaultComponent
 		title="DBBreadcrumb"
+		subComponent={props.subComponent}
 		variants={getVariants(
 			defaultComponentVariants,
 			getBreadcrumb,
