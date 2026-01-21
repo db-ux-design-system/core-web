@@ -648,7 +648,7 @@ export type ActiveProps = {
 	active?: boolean | string;
 };
 
-export type InputEvent<T> = Event;
+export type InputEvent<T> = globalThis.InputEvent;
 export type InputEventProps<T> = {
 	input?: (event: InputEvent<T>) => void;
 	onInput?: (event: InputEvent<T>) => void;
