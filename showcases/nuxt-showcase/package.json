@@ -2,17 +2,25 @@
   "name": "nuxt-showcase",
   "version": "0.0.0",
   "type": "module",
+  "description": "Nuxt showcase",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/db-ux-design-system/core-web.git"
+  },
+  "license": "Apache-2.0",
   "private": true,
   "scripts": {
-    "build": "nuxt build",
-    "dev": "nuxt dev --open",
+    "build": "npm-run-all nuxt:prepare build:*",
+    "build:nuxt": "nuxt build",
+    "dev": "npm-run-all nuxt:prepare dev:*",
+    "dev:nuxt": "nuxt dev --open",
     "generate": "nuxt generate",
-    "postinstall": "nuxt prepare",
+    "nuxt:prepare": "nuxt prepare",
     "preview": "nuxt preview"
   },
   "dependencies": {
     "nuxt": "4.2.2",
-    "vue": "3.5.25",
+    "vue": "3.5.26",
     "vue-router": "4.6.4"
   }
 }
