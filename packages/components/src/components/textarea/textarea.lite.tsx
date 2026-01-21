@@ -293,12 +293,14 @@ export default function DBTextarea(props: DBTextareaProps) {
 				</DBInfotext>
 			</Show>
 
-			<DBInfotext
-				id={state._invalidMessageId}
-				size="small"
-				semantic="critical">
-				{state._invalidMessage}
-			</DBInfotext>
+			<Show when={!_ref?.validity?.valid || props.validation === 'invalid'}>
+				<DBInfotext
+					id={state._invalidMessageId}
+					size="small"
+					semantic="critical">
+					{state._invalidMessage}
+				</DBInfotext>
+			</Show>
 
 			{/* * https://www.davidmacd.com/blog/test-aria-describedby-errormessage-aria-live.html
 			 * Currently VoiceOver isn't supporting changes from aria-describedby.
