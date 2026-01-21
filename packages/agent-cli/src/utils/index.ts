@@ -32,7 +32,9 @@ function findAllNodeModulesDirectories(
 
 		if (isDirectory) {
 			if (entry.name === 'node_modules') {
-				found.push(fs.realpathSync(fullPath));
+				const path = fs.realpathSync(fullPath);
+				found.push(path);
+				visited.add(path);
 			} else {
 				findAllNodeModulesDirectories(fullPath, found, visited);
 			}
