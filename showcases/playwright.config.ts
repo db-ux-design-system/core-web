@@ -48,7 +48,7 @@ if (!process.env.showcase?.startsWith('stencil')) {
 	projects.push({
 		name: 'mobile_safari',
 		use: {
-			...devices['iPhone 12'],
+			...devices['iPhone 12 Pro Max'],
 			isMobile: true
 		}
 	});
