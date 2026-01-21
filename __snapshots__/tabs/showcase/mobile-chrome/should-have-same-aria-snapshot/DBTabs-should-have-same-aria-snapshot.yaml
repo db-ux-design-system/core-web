@@ -42,20 +42,20 @@
     - tab "auto Tab 2"
     - tab "auto Tab 3"
   - tabpanel "auto Tab 1": auto Panel 1
-  - link "Width Full Start"
-  - text: "full - alignment: start:"
+  - link "Width Full Left"
+  - text: "full - content alignment: left:"
   - tablist:
-    - 'tab "full - alignment: start Tab 1" [selected]'
-    - 'tab "full - alignment: start Tab 2"'
-    - 'tab "full - alignment: start Tab 3"'
-  - 'tabpanel "full - alignment: start Tab 1"': "full - alignment: start Panel 1"
+    - 'tab "full - content alignment: left Tab 1" [selected]'
+    - 'tab "full - content alignment: left Tab 2"'
+    - 'tab "full - content alignment: left Tab 3"'
+  - 'tabpanel "full - content alignment: left Tab 1"': "full - content alignment: left Panel 1"
   - link "Width Full Center"
-  - text: "full - alignment: center:"
+  - text: "full - content alignment: center:"
   - tablist:
-    - 'tab "full - alignment: center Tab 1" [selected]'
-    - 'tab "full - alignment: center Tab 2"'
-    - 'tab "full - alignment: center Tab 3"'
-  - 'tabpanel "full - alignment: center Tab 1"': "full - alignment: center Panel 1"
+    - 'tab "full - content alignment: center Tab 1" [selected]'
+    - 'tab "full - content alignment: center Tab 2"'
+    - 'tab "full - content alignment: center Tab 3"'
+  - 'tabpanel "full - content alignment: center Tab 1"': "full - content alignment: center Panel 1"
   - link "Overflow None"
   - text: "no overflow:"
   - tablist:
