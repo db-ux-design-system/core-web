@@ -19,9 +19,3 @@
 /* Optional: Add components */
 @import "@db-ux/core-components/build/components/button/button.css";
 @import "@db-ux/core-components/build/components/input/input.css";
-
-/* Test page layout optimization with contain-intrinsic-size */
-body {
-	contain: layout;
-	contain-intrinsic-size: 1200px 800px;
-}
