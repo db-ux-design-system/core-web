@@ -1,4 +1,9 @@
-import { Fragment, useMetadata, useTarget } from '@builder.io/mitosis';
+import {
+	Fragment,
+	useMetadata,
+	useStore,
+	useTarget
+} from '@builder.io/mitosis';
 import DBCustomSelect from '../custom-select.lite';
 import type { CustomSelectOptionType } from '../model';
 import { StorybookCustomSelectArgTypes } from './_custom-select.arg.types';
@@ -15,14 +20,17 @@ useMetadata({
 });
 
 export default function CustomSelectExampleOtherConfiguration() {
-	const getTransformSelectedLabels = (selectedOptions?: any): string => {
-		return selectedOptions
-			.map((option: any) => option.value.at(-1))
-			.join(', ');
-	};
+	const state = useStore({
+		getTransformSelectedLabels: (selectedOptions?: any): string => {
+			return selectedOptions
+				.map((option: any) => option.value.at(-1))
+				.join(', ');
+		},
+		getSearchFilter: (option: CustomSelectOptionType): boolean => {
+			return option.value === 'Option 1';
+		}
+	});
 
-	const getSearchFilter = (option: CustomSelectOptionType): boolean =>
-		option.value === 'Option 1';
 	return (
 		<Fragment>
 			<div style={{ width: '200px' }}>
@@ -68,7 +76,9 @@ export default function CustomSelectExampleOtherConfiguration() {
 						angular: { transformSelectedLabels: undefined },
 						default: {
 							transformSelectedLabels: (selectedOptions: any) =>
-								getTransformSelectedLabels(selectedOptions)
+								state.getTransformSelectedLabels(
+									selectedOptions
+								)
 						}
 					})}></DBCustomSelect>
 			</div>
@@ -87,7 +97,7 @@ export default function CustomSelectExampleOtherConfiguration() {
 						angular: { searchFilter: undefined },
 						default: {
 							searchFilter: (option: any) =>
-								getSearchFilter(option)
+								state.getSearchFilter(option)
 						}
 					})}></DBCustomSelect>
 			</div>

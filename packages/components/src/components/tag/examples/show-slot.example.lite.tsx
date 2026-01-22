@@ -12,7 +12,9 @@ export default function TagShowSlot() {
 	return (
 		<Fragment>
 			<DBTag>(Default) False</DBTag>
-			<DBTag icon="x_placeholder" content="true">
+			<DBTag
+				icon="x_placeholder"
+				content={<div class="default-content-slot">Swap Slot</div>}>
 				True
 			</DBTag>
 		</Fragment>
