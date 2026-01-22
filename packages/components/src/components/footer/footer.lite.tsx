@@ -1,4 +1,9 @@
-import { Slot, useDefaultProps, useMetadata } from '@builder.io/mitosis';
+import {
+	Slot,
+	useDefaultProps,
+	useMetadata,
+	useRef
+} from '@builder.io/mitosis';
 import { cls, getBoolean } from '../../utils';
 import { DBFooterProps } from './model';
 
@@ -10,8 +15,12 @@ useDefaultProps<DBFooterProps>({
 });
 
 export default function DBFooter(props: DBFooterProps) {
+	// This is used as forwardRef
+	const _ref = useRef<HTMLDivElement | any>(null);
+
 	return (
 		<footer
+			ref={_ref}
 			id={props.id}
 			class={cls('db-footer', props.className)}
 			data-width={props.width}>
