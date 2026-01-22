@@ -75,7 +75,7 @@ $with-icon-padding-calc: calc(
 			position: absolute !important;
 			inset: 50% auto auto 100% !important;
 			transform: translate(8px, -50%) !important;
-			width: max-content;
+			inline-size: max-content;
 		}
 
 		&:is([data-no-text], [data-no-text="true"]) {
