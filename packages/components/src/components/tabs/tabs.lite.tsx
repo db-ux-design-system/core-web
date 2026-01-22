@@ -252,18 +252,22 @@ export default function DBTabs(props: DBTabsProps) {
 			state.activeTabIndex = -1;
 		}
 
-		if (typeof window !== 'undefined' && window.location.hash) {
-			const hashId = window.location.hash.substring(1);
-			const currentTabs = state.convertTabs();
-			const foundIndex = currentTabs.findIndex(
-				(_: DBSimpleTabProps, index: number) => {
-					return state.getTabId(index) === hashId;
+		// Prevents race conditions where window.location might not be ready yet
+		setTimeout(() => {
+			if (typeof window !== 'undefined' && window.location.hash) {
+				const hashId = window.location.hash.substring(1);
+				const currentTabs = state.convertTabs();
+				const foundIndex = currentTabs.findIndex(
+					(_: any, index: number) => {
+						return state.getTabId(index) === hashId;
+					}
+				);
+
+				if (foundIndex !== -1) {
+					state.activeTabIndex = foundIndex;
 				}
-			);
-			if (foundIndex !== -1) {
-				state.activeTabIndex = foundIndex;
 			}
-		}
+		}, 0);
 
 		state.initialized = true;
 	});
