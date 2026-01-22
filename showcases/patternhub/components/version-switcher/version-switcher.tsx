@@ -2,7 +2,7 @@ import DOMPurify from 'dompurify';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import { DBSelect } from '../../../../output/react/src';
-import { type BranchGroup, type GithubResponse } from './data';
+import { type BranchGroup, type GithubResponse, sanitizeName } from './data';
 
 const fetchFromGitHubApi = async (url: string): Promise<GithubResponse[]> => {
 	try {
@@ -26,7 +26,7 @@ const VersionSwitcher = () => {
 	const setCurrentBranch = (branchNames: string[]) => {
 		const currentUrl = router.basePath;
 		const foundBranch = branchNames.find((branch) =>
-			currentUrl.includes(branch)
+			currentUrl.includes(sanitizeName(branch))
 		);
 		if (foundBranch) {
 			setBranch(foundBranch);
@@ -110,9 +110,10 @@ const VersionSwitcher = () => {
 		const isTag =
 			(branch.split('.').length === 3 && branch.startsWith('v')) ||
 			branch === 'latest';
+		const sanitizedBranch = sanitizeName(branch);
 		globalThis.location.assign(
 			DOMPurify.sanitize(
-				`https://${owner}.github.io/${repo}${isTag ? '/version' : '/review'}/${branch}${lastPath}`
+				`https://${owner}.github.io/${repo}${isTag ? '/version' : '/review'}/${sanitizedBranch}${lastPath}`
 			)
 		);
 	};
