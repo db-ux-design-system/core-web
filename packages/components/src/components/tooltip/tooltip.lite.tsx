@@ -74,7 +74,7 @@ export default function DBTooltip(props: DBTooltipProps) {
 				state.handleAutoPlacement(parent);
 			}
 		},
-		handleLeave(): void {
+		handleLeave(_event?: any): void {
 			if (state._documentScrollListenerCallbackId) {
 				new DocumentScrollListener().removeCallback(
 					state._documentScrollListenerCallbackId!
