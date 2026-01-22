@@ -24,9 +24,7 @@ const compOnlyMeta: any = (
 	<DBFooter showMain={false} meta={<div>Meta Links Only</div>} />
 );
 
-const compEmpty: any = (
-	<DBFooter showMain={false} showMeta={false} />
-);
+const compEmpty: any = <DBFooter showMain={false} showMeta={false} />;
 
 const compWithWidth: any = (
 	<DBFooter
@@ -74,9 +72,7 @@ const testComponent = () => {
 		await expect(component).toHaveScreenshot();
 	});
 
-	test('should match screenshot with custom className', async ({
-		mount
-	}) => {
+	test('should match screenshot with custom className', async ({ mount }) => {
 		const component = await mount(compWithClassName);
 		await expect(component).toHaveScreenshot();
 	});

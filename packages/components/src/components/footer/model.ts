@@ -1,7 +1,4 @@
-import {
-	ContainerWidthProps,
-	GlobalProps
-} from '../../shared/model';
+import { ContainerWidthProps, GlobalProps } from '../../shared/model';
 
 export type DBFooterDefaultProps = {
 	/**

@@ -1,8 +1,4 @@
-import {
-	Slot,
-	useDefaultProps,
-	useMetadata
-} from '@builder.io/mitosis';
+import { Slot, useDefaultProps, useMetadata } from '@builder.io/mitosis';
 import { cls, getBoolean } from '../../utils';
 import { DBFooterProps } from './model';
 
