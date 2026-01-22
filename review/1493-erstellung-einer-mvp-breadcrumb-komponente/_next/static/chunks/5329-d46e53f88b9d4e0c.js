@@ -1,4 +1,4 @@
-"use strict";(self.webpackChunk_N_E=self.webpackChunk_N_E||[]).push([[5329],{59745:(e,a,t)=>{t.d(a,{C:()=>n,z:()=>i});let n=[{value:"angular",label:"Angular"},{value:"html",label:"HTML"},{value:"react",label:"React"},{value:"vue",label:"Vue"}],i="react"},65329:(e,a,t)=>{t.d(a,{bw:()=>li,ll:()=>ln,sr:()=>ld,g9:()=>lo,Oj:()=>lc,Pb:()=>ls});var n={};t.r(n),t.d(n,{Behavior:()=>aP,Density:()=>aH,Variant:()=>az});var i={};t.r(i),t.d(i,{Density:()=>aR,Disabled:()=>aF,Open:()=>aE});var l={};t.r(l),t.d(l,{Content:()=>aU,Density:()=>aq,Emphasis:()=>aM,Examples:()=>a$,Placement:()=>aG,Semantic:()=>aV,Size:()=>aW});var o={};t.r(o),t.d(o,{Density:()=>aJ,Variants:()=>aZ});var s={};t.r(s),t.d(s,{Collapsed:()=>aQ,Icons:()=>aX,Separator:()=>aK,Size:()=>aY});var c={};t.r(c),t.d(c,{Basic:()=>a0,Disabled:()=>a2,WithIcon:()=>a1});var d={};t.r(d),t.d(d,{Behavior:()=>a8,Density:()=>a3,ElevationLevel:()=>a4,Example:()=>a7,Spacing:()=>a5});var r={};t.r(r),t.d(r,{Checked:()=>te,Density:()=>a9,Disabled:()=>a6,Example:()=>to,Indeterminate:()=>ta,Required:()=>ti,ShowLabel:()=>tl,ShowRequiredAsterisk:()=>ts,Size:()=>tn,Validation:()=>tt});var u={};t.r(u),t.d(u,{Density:()=>tc,Disabled:()=>tm,DropdownWidth:()=>tj,ExampleOtherconfiguration:()=>tN,ExamplesFloatinglabel:()=>tI,ExamplesMultiple:()=>tC,ExamplesSingle:()=>tk,Exampletags:()=>tO,FormFieldWidth:()=>tg,Multiple:()=>td,Placement:()=>tD,Required:()=>tx,Selectedtype:()=>tB,ShowClearSelection:()=>tA,ShowIcon:()=>th,ShowLabel:()=>tu,ShowLoading:()=>tw,ShowMessage:()=>tp,ShowNoResult:()=>tf,ShowRequiredAsterisk:()=>tv,ShowSearch:()=>ty,ShowSelectAll:()=>tT,Validation:()=>tb,Variant:()=>tr});var p={};t.r(p),t.d(p,{Density:()=>tL,Emphasis:()=>t_,Variant:()=>tS});var h={};t.r(h),t.d(h,{Backdrop:()=>tF,Density:()=>tH,Direction:()=>tE,Example:()=>tq,Rounded:()=>tP,Size:()=>tz,Spacing:()=>tR});var b={};t.r(b),t.d(b,{Behavior:()=>tW,Density:()=>tM,Examples:()=>tU,Width:()=>tV});var x={};t.r(x),t.d(x,{Density:()=>tG,Semantic:()=>t$,ShowIcon:()=>tZ,Size:()=>tJ});var v={};t.r(v),t.d(v,{DatalistTypeaheadExamples:()=>nn,Density:()=>tY,Disabled:()=>t1,ExampleFloatingLabel:()=>na,ExampleLength:()=>t6,ExampleTypesFloatingLabel:()=>nt,ExampleTypeswithminandmax:()=>ne,Readonly:()=>t2,Required:()=>t4,ShowIconLeading:()=>t8,ShowIconLeadingTrailing:()=>t7,ShowIconTrailing:()=>t9,ShowLabel:()=>tQ,ShowMessage:()=>tX,ShowRequiredAsterisk:()=>t5,State:()=>t0,Validation:()=>t3,Variant:()=>tK});var m={};t.r(m),t.d(m,{Content:()=>nc,Density:()=>ni,Disabled:()=>no,Examples:()=>nu,ShowIcon:()=>nd,Size:()=>ns,Variant:()=>nl,Wrap:()=>nr});var g={};t.r(g),t.d(g,{Density:()=>np});var j={};t.r(j),t.d(j,{Active:()=>nx,Density:()=>nh,Disabled:()=>nb,Expanded:()=>nv,ShowIcon:()=>nm,Width:()=>ng,Wrap:()=>nj});var D={};t.r(D),t.d(D,{Closeable:()=>nw,Density:()=>nD,ExamplesVariantDocked:()=>nO,ExamplesVariantOverlay:()=>nI,ExamplesVariantStandalone:()=>nN,LinkVariant:()=>nA,Semantic:()=>nf,ShowHeadline:()=>nk,ShowIcon:()=>nT,ShowTimestamp:()=>nC,Variant:()=>nB,Visual:()=>ny});var B={};t.r(B),t.d(B,{Animation:()=>nz,Delay:()=>nP,Density:()=>nL,Gap:()=>nH,Placement:()=>n_,Spacing:()=>nS,Width:()=>nR});var f={};t.r(f),t.d(f,{Checked:()=>nq,Density:()=>nF,Disabled:()=>nE,Required:()=>nW,ShowLabel:()=>nU,ShowRequiredAsterisk:()=>nG,Size:()=>nV,Validation:()=>nM});var w={};t.r(w),t.d(w,{Density:()=>n$,Spacing:()=>nZ,Width:()=>nJ});var y={};t.r(y),t.d(y,{Content:()=>n3,Density:()=>nY,Disabled:()=>n2,ExamplesFloatingLabel:()=>n7,OptionGroups:()=>n8,Required:()=>n4,ShowLabel:()=>nQ,ShowMessage:()=>nX,ShowRequiredAsterisk:()=>n5,State:()=>n0,Validation:()=>n1,Variant:()=>nK});var T={};t.r(T),t.d(T,{AlignmentColumn:()=>ii,AlignmentRow:()=>il,Density:()=>n9,Direction:()=>ia,Gap:()=>ie,JustifyContentColumn:()=>io,JustifyContentRow:()=>is,Variant:()=>n6,Wrap:()=>it});var A={};t.r(A),t.d(A,{Checked:()=>id,Density:()=>ic,Disabled:()=>ir,Examples:()=>ij,Required:()=>ix,ShowLabel:()=>ib,ShowMessage:()=>ig,ShowRequiredAsterisk:()=>iv,Size:()=>ip,Validation:()=>im,Variant:()=>ih,VisualAid:()=>iu});var k={};t.r(k),t.d(k,{Behavior:()=>iT,ContentAlignmentFullWidth:()=>iA,Density:()=>iD,ShowIconLeading:()=>iw,ShowIconTrailing:()=>iy,States:()=>iB});var C={};t.r(C),t.d(C,{Density:()=>ik,Examples:()=>iI,Orientation:()=>iC,Overflow:()=>iN,Width:()=>iO});var O={};t.r(O),t.d(O,{Behavior:()=>iH,Checked:()=>iz,Density:()=>iL,Disabled:()=>iP,Emphasis:()=>iS,ExampleStrong:()=>iV,NoText:()=>iF,Overflow:()=>iM,Semantic:()=>i_,ShowCheckState:()=>iq,ShowIcon:()=>iR,ShowSlot:()=>iE});var N={};t.r(N),t.d(N,{Density:()=>iW,Disabled:()=>iZ,ExamplesFloatingLabel:()=>i3,FieldSizing:()=>i2,Readonly:()=>iY,Required:()=>iQ,Rows:()=>i0,ShowLabel:()=>iG,ShowMessage:()=>i$,ShowRequiredAsterisk:()=>iX,ShowResizer:()=>i1,State:()=>iJ,Validation:()=>iK,Variant:()=>iU});var I={};t.r(I),t.d(I,{Animation:()=>i6,Delay:()=>le,Density:()=>i4,Emphasis:()=>i8,Placement:()=>i7,ShowArrow:()=>i5,Width:()=>i9});var L=t(6029),S=t(55729),_=t(72389),H=t(92737),z=t(15532);let P=function(e){let[a,t]=(0,S.useState)(()=>void 0);return(0,S.useEffect)(()=>{localStorage&&function(){let e=localStorage.getItem(z.q0)||"react",a=window.location.href,n=a.indexOf("components");if(-1!==n){let i=a.substring(0,n);t(`${i}${e}-storybook`)}}()},[]),(0,L.jsxs)(L.Fragment,{children:[(0,L.jsx)(_.A,{className:"variants-card db-code-docs",children:(0,L.jsx)("div",{className:"variants-list",role:e.role,"aria-label":e.role?e.label:void 0,children:(0,L.jsx)(L.Fragment,{children:e.children})})}),a?(0,L.jsx)(H.A,{size:"small",content:"external",className:"show-code-link",target:"_blank",referrerpolicy:"no-referrer",href:a,children:"Show Code"}):null]})};var R=t(56179),F=t(29143);let E=function(e){let[a,t]=(0,S.useState)(()=>!1);return(0,S.useEffect)(()=>{(0,R.cb)(()=>{let e=window.location.hash,a=e.includes("?")?e.split("?")[1]:"";t(!!new URLSearchParams(window.location.search||a).get("page"))},1)},[]),(0,L.jsxs)(L.Fragment,{children:[(0,L.jsxs)("div",{className:"default-container",children:[a?null:(0,L.jsxs)("header",{className:"component-header",children:[e.isSubComponent?(0,L.jsx)("h2",{children:e.title}):(0,L.jsx)("h1",{children:e.title}),e.isPatternhub?(0,L.jsx)(H.A,{target:"_blank",referrerPolicy:"no-referrer",content:"external",href:function(){let a=function(){if(!e.title)return;let a=e.title?.replace(/^DB/,"").replaceAll(/([A-Z])/g,(e,a,t)=>t>0?`-${a.toLowerCase()}`:a.toLowerCase());if(a&&/^[a-z]+(-[a-z]+)*$/.test(a))return`packages/components/src/components/${a}/${a}.lite.tsx`}();if(!a)return;let t=F.env.GITHUB_BRANCH??F.env.BRANCH_NAME??"main";return`https://github.com/db-ux-design-system/core-web/blob/${t}/${a}`}(),children:"View Source"}):null]}),(0,L.jsx)(L.Fragment,{children:e.children})]}),e.isPatternhub?(0,L.jsx)(L.Fragment,{children:e.subComponent}):null]})};var q=t(22055);let M=function(e){let a,t;function n(){return e.exampleName?.replaceAll(" ","+").toLowerCase()}let[i,l]=(0,S.useState)(()=>null);return(0,S.useEffect)(()=>{(0,R.cb)(()=>{let e=window.location.hash,a=e.includes("?")?e.split("?")[1]:"",t=new URLSearchParams(window.location.search||a).get("page");l(t?t.replaceAll(" ","+").toLowerCase():null)},1)},[]),(0,L.jsx)(L.Fragment,{children:null===i||i===n()?(0,L.jsx)(L.Fragment,{children:(0,L.jsxs)("div",{children:[null===i?(0,L.jsxs)(L.Fragment,{children:[(0,L.jsx)(q.A,{}),(0,L.jsx)(H.A,{content:"external",className:"link-headline",target:"_blank",href:(t=(a=window.location.hash).includes("?")?a.split("?")[0]:a,`${t}?page=${n()}`),children:e.exampleName})]}):null,(0,L.jsx)(L.Fragment,{children:e.children})]})}):null})},V=()=>{};var W=t(80357);let U=function(e){return(0,L.jsxs)(L.Fragment,{children:[(0,L.jsx)(W.A,{"data-density":"functional",onClick:e=>V(),children:"Functional"}),(0,L.jsx)(W.A,{"data-density":"regular",onClick:e=>V(),children:"(Default) Regular"}),(0,L.jsx)(W.A,{"data-density":"expressive",onClick:e=>V(),children:"Expressive"})]})},G=function(e){return(0,L.jsxs)(L.Fragment,{children:[(0,L.jsx)(W.A,{onClick:e=>V(),disabled:!1,children:"(Default) False"}),(0,L.jsx)(W.A,{onClick:e=>V(),disabled:!0,children:"True"})]})},$=function(e){return(0,L.jsxs)(L.Fragment,{children:[(0,L.jsx)("div",{style:{width:"300px"},children:(0,L.jsx)(W.A,{width:"full",onClick:e=>V(),children:"Multi-line Text With Automatic Line Breaks"})}),(0,L.jsx)("div",{style:{width:"300px"},children:(0,L.jsx)(W.A,{width:"full",icon:"x_placeholder",onClick:e=>V(),children:"Multi-line Text With Automatic Line Breaks and Icon"})}),(0,L.jsx)("div",{style:{width:"300px"},children:(0,L.jsx)(W.A,{size:"small",onClick:e=>V(),children:"Button Small Multi-line Text With Automatic Line Breaks"})})]})},J=function(e){return(0,L.jsxs)(L.Fragment,{children:[(0,L.jsx)(W.A,{icon:"x_placeholder",onClick:e=>V(),children:"(Default) False"}),(0,L.jsx)(W.A,{icon:"x_placeholder",onClick:e=>V(),noText:!0,children:"True"})]})},Z=function(e){return(0,L.jsxs)(L.Fragment,{children:[(0,L.jsx)(W.A,{icon:"x_placeholder",onClick:e=>V(),showIcon:!1,children:"(Default) False"}),(0,L.jsx)(W.A,{icon:"x_placeholder",onClick:e=>V(),showIcon:!0,children:"True"})]})},Y=function(e){return(0,L.jsxs)(L.Fragment,{children:[(0,L.jsx)(W.A,{iconTrailing:"x_placeholder",onClick:e=>V(),showIconTrailing:!1,children:"(Default) False"}),(0,L.jsx)(W.A,{iconTrailing:"x_placeholder",onClick:e=>V(),showIconTrailing:!0,children:"True"})]})},K=function(e){return(0,L.jsxs)(L.Fragment,{children:[(0,L.jsx)(W.A,{size:"medium",onClick:e=>V(),children:"(Default) Medium"}),(0,L.jsx)(W.A,{size:"small",onClick:e=>V(),children:"Small"})]})},Q=function(e){return(0,L.jsxs)(L.Fragment,{children:[(0,L.jsx)(W.A,{variant:"outlined",onClick:e=>V(),children:"(Default) Outlined - Adaptive"}),(0,L.jsx)(W.A,{variant:"filled",onClick:e=>V(),children:"Filled - Adaptive"}),(0,L.jsx)(W.A,{variant:"ghost",onClick:e=>V(),children:"Ghost - Adaptive"}),(0,L.jsx)(W.A,{variant:"brand",onClick:e=>V(),children:"Brand"})]})},X=function(e){return(0,L.jsxs)(L.Fragment,{children:[(0,L.jsx)(W.A,{width:"auto",onClick:e=>V(),children:"(Default) Auto"}),(0,L.jsx)("div",{style:{width:"500px"},children:(0,L.jsx)(W.A,{width:"full",onClick:e=>V(),children:"Width"})})]})};var ee=t(70159),ea=t(13375),et=t(64297);let en=JSON.parse('[{"name":"Density","children":[{"name":"accordion-item","text":"Content 1","props":{"headline":"Item 1"}},{"name":"accordion-item","text":"Content 2","props":{"headline":"Item 2"}},{"name":"accordion-item","text":"Content 3","props":{"headline":"Item 3"}}],"examples":[{"name":"Functional","density":"functional","props":{}},{"name":"(Default) Regular","density":"regular","props":{}},{"name":"Expressive","density":"expressive","props":{}}]},{"name":"Variant","children":[{"name":"accordion-item","text":"Content 1","props":{"headline":"Item 1"}},{"name":"accordion-item","text":"Content 2","props":{"headline":"Item 2"}},{"name":"accordion-item","text":"Content 3","props":{"headline":"Item 3"}}],"examples":[{"name":"(Default) Divider","props":{"variant":"divider"}},{"name":"Card","props":{"variant":"card"}}]},{"name":"Behavior","children":[{"name":"accordion-item","text":"Content 1","props":{"headline":"Item 1"}},{"name":"accordion-item","text":"Content 2","props":{"headline":"Item 2"}},{"name":"accordion-item","text":"Content 3","props":{"headline":"Item 3"}}],"examples":[{"name":"(Default) Multiple","props":{"behavior":"multiple"}},{"name":"Single","props":{"behavior":"single"}}]}]'),ei=(e,a,t)=>e.map((e,n)=>({...e,SlotCode:t?.[e.codeFileName??e.name.replaceAll(" ","")],examples:e.examples.map((e,t)=>({...e,className:e.className??e.props?.className,example:a({...e.props,id:e.props?.id??e.name,children:e.props?.children??e.name})}))}));var el=t(45601),eo=t(52229);let es=(e=!0)=>{let[a,t]=(()=>{let e=(0,eo.useRouter)(),a=(0,eo.usePathname)(),[t,n]=[(0,eo.useSearchParams)()];return[t,t=>{if(void 0!==globalThis.window&&void 0!==globalThis.location){let e=new URLSearchParams(globalThis.location.search||"");e.sort();let a=new URLSearchParams(t);if(a.sort(),e.toString()===a.toString())return}n?n(t):a&&e?.push(`${a}?${new URLSearchParams(t).toString()}`)}]})(),[n,i]=(0,S.useState)(a.get(el.HI)??el.fY.REGULAR),[l,o]=(0,S.useState)(a.get(el.wr)??el.o$.NEUTRAL_BG_LEVEL_1),[s,c]=(0,S.useState)(void 0),[d,r]=(0,S.useState)(!1),[u,p]=(0,S.useState)(!1);return(0,S.useEffect)(()=>{for(let[e,t]of a.entries())t&&(e===el.HI&&n!==t&&i(t),e===el.wr&&l!==t&&o(t),"page"===e&&s!==t.toLowerCase()&&c(t.toLowerCase()),"fullscreen"===e&&!!t!==d&&r(!!t));p(!0)},[a]),(0,S.useEffect)(()=>{if(u){let a={density:n,color:l};s&&(a.page=s),d&&(a.fullscreen=!0),e&&t(a)}},[l,n,s,d,u]),[n,i,l,o,s,d]};var ec=t(29143);let ed=({name:e,examples:a,color:t,role:n,SlotCode:i})=>{let l=(0,S.useCallback)(()=>t?.includes("3")?"3":t?.includes("2")?"2":"1",[t]),[o,s]=(0,S.useState)(),c=a.filter(e=>!e.experimental);return(0,L.jsxs)(_.A,{className:"variants-card db-code-docs",elevationLevel:l(),children:[(0,L.jsx)("div",{role:n,"aria-label":n?e:void 0,className:"variants-list",children:c.map((e,a)=>(0,L.jsx)("div",{style:e.style,className:e.className,"data-density":e.density,children:e.example},`${e.name}-${a}`))}),i&&(0,L.jsxs)("details",{className:"code-details",onToggle:()=>{s(!o)},children:[(0,L.jsx)("summary",{className:"db-button code-button","data-size":"small","data-variant":"filled",children:o?"Hide code":"Show code"}),(0,L.jsxs)("div",{"data-density":"functional",children:[(0,L.jsx)("div",{className:"backdrop"}),(0,L.jsx)(_.A,{className:"code",spacing:"small",children:(0,L.jsx)(i,{})})]})]})]})},er=({title:e,variants:a,subComponent:t,isSubComponent:n,componentName:i})=>{let l=es(!1)[4],o=es(!1)[2];if(l){let e=a.find(e=>e.name.toLowerCase()===l);if(e)return(0,L.jsx)(ed,{...e,color:o})}let s=((e,a)=>{let t=(e=>{let a=e.replace(/^DB/,"").replaceAll(/([A-Z])/g,(e,a,t)=>t>0?`-${a.toLowerCase()}`:a.toLowerCase());if(a&&/^[a-z]+(-[a-z]+)*$/.test(a))return`packages/components/src/components/${a}/${a}.lite.tsx`})(e);if(!t)return;let n=(void 0)??ec.env.GITHUB_BRANCH??ec.env.BRANCH_NAME??"main";return`https://github.com/db-ux-design-system/core-web/blob/${n}/${t}`})(e);return(0,L.jsxs)(L.Fragment,{children:[(0,L.jsxs)("div",{className:"default-container",children:[(0,L.jsxs)("div",{className:"component-header",children:[(0,L.jsx)(n?"h2":"h1",{children:e}),s&&!n&&(0,L.jsx)(H.A,{target:"_blank",referrerPolicy:"no-referrer",href:s,content:"external",children:"View Source"})]}),a?.filter(e=>e.examples.find(e=>!e.experimental)).map((e,a)=>(0,L.jsxs)("div",{children:[(0,L.jsx)(q.A,{}),(0,L.jsx)(H.A,{className:"link-headline",content:"external",target:"_blank",rel:"noopener noreferrer",href:(e=>{if(void 0===globalThis.window||void 0===globalThis.location)return`?page=${encodeURIComponent(e.toLowerCase())}`;let[a,t=""]=globalThis.location.href.split("?"),n=new URLSearchParams(t);return(n.set("page",e.toLowerCase()),i)?`${a.replace(/\/[a-z\d\-_]*\/overview/,`/${i}/overview`)}?${n.toString()}`:`${a}?${n.toString()}`})(e.name),children:e.name}),(0,L.jsx)(ed,{...e,color:o})]},`${e.name}-${a}`))]}),t]})},eu=({behavior:e,children:a,variant:t})=>(0,L.jsxs)(L.Fragment,{children:[(0,L.jsx)(ee.A,{size:"small",semantic:"informational",icon:"none",children:a}),(0,L.jsxs)(ea.A,{behavior:e,variant:t,children:[(0,L.jsx)(et.A,{headlinePlain:"Item 1",text:"Content 1"}),(0,L.jsx)(et.A,{headlinePlain:"Item 2",text:"Content 2"}),(0,L.jsx)(et.A,{headlinePlain:"Item 3",text:"Content 3"})]})]}),ep=JSON.parse('[{"name":"Density","examples":[{"name":"Functional","density":"functional","props":{"headlinePlain":"Functional"}},{"name":"(Default) Regular","density":"regular","props":{"headlinePlain":"(Default) Regular"}},{"name":"Expressive","density":"expressive","props":{"headlinePlain":"Expressive"}}]},{"name":"Disabled","examples":[{"name":"(Default) False","props":{"headlinePlain":"(Default) False","disabled":false}},{"name":"True","props":{"headlinePlain":"True","disabled":true}}]},{"name":"Open","examples":[{"name":"(Default) False","props":{"headlinePlain":"(Default) False","open":false}},{"name":"True","props":{"headlinePlain":"True","open":true}}]}]'),eh=({children:e,disabled:a,open:t,headlinePlain:n})=>(0,L.jsx)(et.A,{headlinePlain:n,disabled:a,defaultOpen:t,children:e}),eb=e=>(0,L.jsx)(er,{title:"DBAccordionItem",isSubComponent:e.isSubComponent,componentName:e.componentName,variants:ei(ep,eh,e.slotCode)});var ex=t(23487),ev=t(90271);let em=JSON.parse('[{"name":"Density","examples":[{"name":"Functional","density":"functional","props":{}},{"name":"(Default) Regular","density":"regular","props":{}},{"name":"Expressive","density":"expressive","props":{}}]},{"name":"Emphasis","examples":[{"name":"(Default) Weak"},{"name":"Strong","props":{"emphasis":"strong"}}]},{"name":"Semantic","examples":[{"name":"(Default) Adaptive"},{"name":"Critical","props":{"semantic":"critical"}},{"name":"Informational","props":{"semantic":"informational"}},{"name":"Neutral","props":{"semantic":"neutral"}},{"name":"Successful","props":{"semantic":"successful"}},{"name":"Warning","props":{"semantic":"warning"}},{"name":"Line Break","props":{"lineBreak":true}},{"name":"Adaptive Strong","props":{"emphasis":"strong"}},{"name":"Critical Strong","props":{"semantic":"critical","emphasis":"strong"}},{"name":"Informational Strong","props":{"semantic":"informational","emphasis":"strong"}},{"name":"Neutral Strong","props":{"semantic":"neutral","emphasis":"strong"}},{"name":"Successful Strong","props":{"semantic":"successful","emphasis":"strong"}},{"name":"Warning Strong","props":{"semantic":"warning","emphasis":"strong"}}]},{"name":"Size","examples":[{"name":"(Default) Small"},{"name":"Medium","props":{"size":"medium"}}]},{"name":"Content","examples":[{"name":"(Default) Text"},{"name":"Dot - Small","content":"","props":{"noContent":true}},{"name":"Icon - Small","props":{"example":"icon"}}]},{"name":"Placement","examples":[{"name":"(Default) Inline","props":{"placement":"inline"}},{"name":"Corner - Top - Left","content":"","props":{"placement":"corner-top-left"}},{"name":"Corner - Center - Left","content":"","props":{"placement":"corner-center-left"}},{"name":"Corner - Bottom- Left","content":"","props":{"placement":"corner-bottom-left"}},{"name":"Corner - Top - Right","content":"","props":{"placement":"corner-top-right"}},{"name":"Corner - Center - Right","content":"","props":{"placement":"corner-center-right"}},{"name":"Corner - Bottom- Right","content":"","props":{"placement":"corner-bottom-right"}}]},{"name":"Examples","examples":[{"name":"Numbers","props":{"example":"number"}},{"name":"Line Break","props":{"lineBreak":true}},{"name":"(Default) Text - Medium","props":{"size":"medium"}},{"name":"Dot - Medium","content":"","props":{"noContent":true,"size":"medium"}},{"name":"Icon - Medium","props":{"example":"icon","size":"medium"}}]}]'),eg=({children:e,semantic:a,emphasis:t,noContent:n,size:i,placement:l,example:o,lineBreak:s})=>s?(0,L.jsx)("i",{className:"line-break"}):(0,L.jsxs)(L.Fragment,{children:[!l&&!o&&(0,L.jsxs)(L.Fragment,{children:[(0,L.jsx)(ex.A,{semantic:a,emphasis:t,size:i,children:n?"":e}),n&&(0,L.jsx)(ee.A,{semantic:"informational",size:"small",icon:"none",children:e})]}),l&&"inline"!==l&&!o&&(0,L.jsxs)(L.Fragment,{children:[(0,L.jsxs)(W.A,{icon:"x_placeholder",variant:"outlined",noText:!0,children:[(0,L.jsx)(ex.A,{size:"small",emphasis:"strong",semantic:"critical",placement:l}),e]}),(0,L.jsx)(ee.A,{semantic:"informational",size:"small",icon:"none",children:e})]}),"inline"===l&&(0,L.jsx)(L.Fragment,{children:(0,L.jsxs)("div",{className:"badge-inline-container",children:[(0,L.jsx)(ev.A,{icon:"x_placeholder"}),(0,L.jsx)("span",{children:e}),(0,L.jsx)(ex.A,{size:"small",emphasis:"strong",semantic:"critical",children:"Label"}),(0,L.jsx)(ev.A,{icon:"error"})]})}),"icon"===o&&(0,L.jsxs)(L.Fragment,{children:[(0,L.jsx)(ex.A,{semantic:"critical",emphasis:"strong",size:i,children:(0,L.jsx)(ev.A,{icon:"x_placeholder",children:e})}),(0,L.jsx)(ee.A,{semantic:"informational",size:"small",icon:"none",children:e})]}),"number"===o&&(0,L.jsxs)(L.Fragment,{children:[(0,L.jsx)(ex.A,{semantic:"successful",children:"9"}),(0,L.jsx)(ex.A,{semantic:"informational",children:"12"}),(0,L.jsx)(ex.A,{semantic:"warning",children:"123"}),(0,L.jsx)(ex.A,{size:"small",emphasis:"strong",semantic:"successful",children:"9"}),(0,L.jsx)(ex.A,{size:"small",emphasis:"strong",semantic:"informational",children:"12"}),(0,L.jsx)(ex.A,{size:"small",emphasis:"strong",semantic:"warning",children:"123"}),(0,L.jsx)(ee.A,{semantic:"informational",size:"small",icon:"none",children:e})]})]});var ej=t(18627);let eD=JSON.parse('[{"name":"Density","examples":[{"name":"Functional","density":"functional","props":{}},{"name":"(Default) Regular","density":"regular","props":{}},{"name":"Expressive","density":"expressive","props":{}}]},{"name":"Variants","examples":[{"name":"(Default) With Logo"},{"name":"No Logo","props":{"hideLogo":true}},{"name":"Custom Logo","props":{"hideLogo":true,"customLogo":true}}]}]'),eB=({children:e,hideLogo:a,customLogo:t})=>(0,L.jsxs)(ej.A,{hideLogo:a,children:[t&&(0,L.jsx)("img",{src:"/core-web/review/1493-erstellung-einer-mvp-breadcrumb-komponente/assets/images/placeholder.jpg",alt:"this is a fancy placeholder logo"}),e]}),ef=JSON.parse('[{"name":"Density","examples":[{"name":"Functional","density":"functional","props":{}},{"name":"(Default) Regular","density":"regular","props":{}},{"name":"Expressive","density":"expressive","props":{}}]},{"name":"Elevation Level","examples":[{"name":"(Default) 1","props":{"elevationLevel":"1"}},{"name":"2","props":{"elevationLevel":"2"}},{"name":"3","props":{"elevationLevel":"3"}}]},{"name":"Spacing","examples":[{"name":"(Default) Small","props":{"spacing":"small"}},{"name":"Medium","props":{"spacing":"medium"}},{"name":"Large","props":{"spacing":"large"}},{"name":"None","props":{"spacing":"none"}}]},{"name":"Behavior","examples":[{"name":"(Default) Static","props":{"behavior":"static"}},{"name":"Interactive","props":{"behavior":"interactive"}}]},{"name":"Example","examples":[{"name":"Level 1 - Interactive","props":{"elevationLevel":"1","behavior":"interactive"}},{"name":"Level 2 - Interactive","props":{"elevationLevel":"2","behavior":"interactive"}},{"name":"Level 3 - Interactive","props":{"elevationLevel":"3","behavior":"interactive"}}]}]'),ew=({behavior:e,children:a,spacing:t,elevationLevel:n})=>{let i=(0,L.jsx)(_.A,{behavior:e,spacing:t,elevationLevel:n,children:(0,L.jsx)("strong",{children:a})});return"interactive"===e?(0,L.jsx)("button",{type:"button",children:i}):i};var ey=t(9839);let eT=JSON.parse('[{"name":"Density","role":"group","examples":[{"name":"Functional","density":"functional","props":{"name":"Density"}},{"name":"(Default) Regular","density":"regular","props":{"name":"Density"}},{"name":"Expressive","density":"expressive","props":{"name":"Density"}}]},{"name":"Disabled","role":"group","examples":[{"name":"(Default) False","props":{"name":"Disabled","disabled":false}},{"name":"True","props":{"name":"Disabled","disabled":true}}]},{"name":"Checked","role":"group","examples":[{"name":"(Default) False","props":{"name":"State","checked":false}},{"name":"True","props":{"name":"State","checked":true}}]},{"name":"Indeterminate","role":"group","examples":[{"name":"(Default) False","props":{"name":"Indeterminate","indeterminate":false}},{"name":"True","props":{"name":"Indeterminate","indeterminate":true}}]},{"name":"Validation","role":"group","examples":[{"name":"(Default) No validation","props":{"name":"Validation","validation":"no-validation"}},{"name":"Invalid","props":{"name":"Validation","validation":"invalid","invalidMessage":"Invalid Message"}},{"name":"Valid","props":{"name":"Validation","validation":"valid","validMessage":"Valid message"}}]},{"name":"Size","role":"group","examples":[{"name":"(Default) Medium","props":{"name":"Size"}},{"name":"Small","props":{"name":"Size","size":"small"}}]},{"name":"Required","role":"group","examples":[{"name":"(Default) False","props":{"name":"Requirement","required":false}},{"name":"True","props":{"name":"Requirement","required":true}}]},{"name":"Show Label","role":"group","examples":[{"name":"(Default) True","props":{"name":"Label","showLabel":true}},{"name":"False","props":{"name":"Label","showLabel":false}}]},{"name":"Example","role":"group","examples":[{"name":"Long label","style":{"width":"100px"},"props":{"checked":true,"name":"Example"}}]},{"name":"Show Required Asterisk","role":"group","examples":[{"name":"(Default) True","props":{"name":"Asterisk","required":true,"showRequiredAsterisk":true}},{"name":"False","props":{"name":"Asterisk","required":true,"showRequiredAsterisk":false}}]}]'),eA=({label:e,size:a,name:t,checked:n,required:i,children:l,disabled:o,indeterminate:s,variant:c,showLabel:d,validation:r,invalidMessage:u,validMessage:p,showRequiredAsterisk:h})=>(0,L.jsxs)(L.Fragment,{children:[(0,L.jsx)(ey.A,{label:e,size:a,name:t,defaultChecked:(0,R.pW)(n),invalidMessage:u,validMessage:p,showRequiredAsterisk:h,required:i,disabled:o,variant:c,showLabel:d,indeterminate:s,validation:r,children:l}),void 0!==d&&!d&&(0,L.jsx)(ee.A,{size:"small",semantic:"informational",showIcon:!1,children:l})]});var ek=t(94369);let eC=JSON.parse('[{"name":"Density","examples":[{"name":"Functional","style":{"width":"200px"},"density":"functional","props":{"options":[{"value":"Option 1","id":"miouzc0ec"},{"value":"Option 2","id":"10dqnhil2"},{"value":"Option 3","id":"10dqnhil3"},{"value":"Option 4","id":"10dqnhil4"},{"value":"Option 5","id":"10dqnhil5"}],"label":"Label","placeholder":"Placeholder","id":"id-10206"},"children":[]},{"name":"(Default) Regular","style":{"width":"200px"},"density":"regular","props":{"options":[{"value":"Option 1","id":"ok5olto18"},{"value":"Option 2","id":"mzepnlbp4"},{"value":"Option 3","id":"10dqnhil3"},{"value":"Option 4","id":"10dqnhil2"},{"value":"Option 5","id":"10dqnhil1"}],"label":"Label","placeholder":"Placeholder","id":"id-10207"},"children":[]},{"name":"Expressive","style":{"width":"200px"},"density":"expressive","props":{"options":[{"value":"Option 1","id":"ixtyk8z9j"},{"value":"Option 2","id":"k8kvx3fm8"},{"value":"Option 3","id":"k8kvx3fm5"},{"value":"Option 4","id":"k8kvx3fm6"},{"value":"Option 5","id":"k8kvx3fm7"}],"label":"Label","placeholder":"Placeholder","id":"id-10208"},"children":[]}]},{"name":"Multiple","examples":[{"name":"(Default) False","style":{"width":"200px"},"props":{"options":[{"value":"Option 1","id":"ykzqfs8oa"},{"value":"Option 2","id":"kcndx1xog"},{"value":"Option 3","id":"kcndx2xog"},{"value":"Option 4","id":"kcndx3xog"},{"value":"Option 5","id":"kcndx4xog"}],"label":"Label","multiple":false,"id":"id-10209"},"children":[]},{"name":"True","style":{"width":"200px"},"props":{"options":[{"value":"Option 1","id":"34540enzm"},{"value":"Option 2","id":"3a4ml34c8"},{"value":"Option 3","id":"3a4ml34c7"},{"value":"Option 4","id":"3a4ml34c6"},{"value":"Option 5","id":"3a4ml34c5"}],"label":"Label","multiple":true,"id":"id-10210"},"children":[]}]},{"name":"Variant","examples":[{"name":"(Default) Above","style":{"width":"200px"},"props":{"options":[{"value":"Option 1","id":"4lj8zr5b1"},{"value":"Option 2","id":"uurfm7y2y"},{"value":"Option 3","id":"uurfm7y3y"},{"value":"Option 4","id":"uurfm7y4y"},{"value":"Option 5","id":"uurfm7y5y"}],"label":"Label","id":"id-10211"},"children":[]},{"name":"Floating","style":{"width":"200px"},"props":{"options":[{"value":"Option 1","id":"otbjunoyx"},{"value":"Option 2","id":"ju53v02yg"},{"value":"Option 3","id":"ju53v03yg"},{"value":"Option 4","id":"ju53v04yg"},{"value":"Option 5","id":"ju53v05yg"}],"label":"Label","variant":"floating","value":["Floating Label"],"id":"id-10212"},"children":[]}]},{"name":"Show Label","examples":[{"name":"(Default) True","style":{"width":"200px"},"props":{"options":[{"value":"Option 1","id":"09a47p13k"},{"value":"Option 2","id":"ya0ahf4od"},{"value":"Option 3","id":"ya0ahf3od"},{"value":"Option 4","id":"ya0ahf2od"},{"value":"Option 5","id":"ya0ahf1od"}],"label":"Label","showLabel":true,"id":"id-10213"},"children":[]},{"name":"False","style":{"width":"200px"},"props":{"options":[{"value":"Option 1","id":"h8apm2qse"},{"value":"Option 2","id":"vop8vkb8q"},{"value":"Option 3","id":"vop8vkb7q"},{"value":"Option 4","id":"vop8vkb6q"},{"value":"Option 5","id":"vop8vkb5q"}],"label":"Label","showLabel":false,"id":"id-10214"},"children":[]}]},{"name":"Show Message","examples":[{"name":"(Default) False","style":{"width":"200px"},"props":{"options":[{"value":"Option 1","id":"m88qjifb3"},{"value":"Option 2","id":"4et40d885"},{"value":"Option 3","id":"4et40d884"},{"value":"Option 4","id":"4et40d883"},{"value":"Option 5","id":"4et40d882"}],"label":"Label","message":"Helper Message","showMessage":false,"id":"id-10215"},"children":[]},{"name":"True","style":{"width":"200px"},"props":{"options":[{"value":"Option 1","id":"tm65in30k"},{"value":"Option 2","id":"hujnrn5vk"},{"value":"Option 3","id":"hujnrn4vk"},{"value":"Option 4","id":"hujnrn3vk"},{"value":"Option 5","id":"hujnrn2vk"}],"label":"Label","message":"Helper Message","showMessage":true,"id":"id-10216"},"children":[]}]},{"name":"Show Icon","examples":[{"name":"(Default) False","style":{"width":"200px"},"props":{"options":[{"value":"Option 1","id":"637sjglg5"},{"value":"Option 2","id":"s529jnpj0"},{"value":"Option 3","id":"s429jnpj0"},{"value":"Option 4","id":"s329jnpj0"},{"value":"Option 5","id":"s229jnpj0"}],"label":"Label","icon":"x_placeholder","showIcon":false,"id":"id-10217"},"children":[]},{"name":"True","style":{"width":"200px"},"props":{"options":[{"value":"Option 1","id":"0b998bbgw"},{"value":"Option 2","id":"a37n10lfh"},{"value":"Option 3","id":"a47n10lfh"},{"value":"Option 4","id":"a57n10lfh"},{"value":"Option 5","id":"a67n10lfh"}],"label":"Label","icon":"x_placeholder","showIcon":true,"id":"id-10218"},"children":[]}]},{"name":"Validation","examples":[{"name":"(Default) No Validation","style":{"width":"200px"},"props":{"options":[{"value":"Option 1","id":"miouzc0ec"},{"value":"Option 2","id":"10dqnhil5"},{"value":"Option 3","id":"10dqnhil4"},{"value":"Option 4","id":"10dqnhil3"},{"value":"Option 5","id":"10dqnhil2"}],"label":"Label","id":"id-102061","validation":"no-validation"},"children":[]},{"name":"Invalid","style":{"width":"200px"},"props":{"options":[{"value":"Option 1","id":"miouzc0ec"},{"value":"Option 2","id":"10dqnhil5"},{"value":"Option 3","id":"10dqnhil4"},{"value":"Option 4","id":"10dqnhil3"},{"value":"Option 5","id":"10dqnhil2"}],"label":"Label","id":"id-102062","validation":"invalid","invalidMessage":"Invalid Message"},"children":[]},{"name":"Valid","style":{"width":"200px"},"props":{"options":[{"value":"Option 1","id":"miouzc0ec"},{"value":"Option 2","id":"10dqnhil5"},{"value":"Option 3","id":"10dqnhil4"},{"value":"Option 4","id":"10dqnhil3"},{"value":"Option 5","id":"10dqnhil2"}],"label":"Label","id":"id-102063","validation":"valid","invalidMessage":"Valid Message"},"children":[]}]},{"name":"Required","examples":[{"name":"(Default) False","style":{"width":"200px"},"props":{"options":[{"value":"Option 1","id":"drpx8im88"},{"value":"Option 2","id":"211e6zox5"},{"value":"Option 3","id":"211e6zox4"},{"value":"Option 4","id":"211e6zox3"},{"value":"Option 5","id":"211e6zox2"}],"label":"Label","multiple":true,"required":false,"id":"id-10219"},"children":[]},{"name":"True","style":{"width":"200px"},"props":{"options":[{"value":"Option 1","id":"2v0zw8afc"},{"value":"Option 2","id":"308308w5z"},{"value":"Option 3","id":"308308w4z"},{"value":"Option 4","id":"308308w3z"},{"value":"Option 5","id":"308308w2z"}],"label":"Label","required":true,"multiple":true,"id":"id-10220"},"children":[]}]},{"name":"Show Required Asterisk","examples":[{"name":"(Default) True","style":{"width":"200px"},"props":{"options":[{"value":"Option 1","id":"drpxs8im88"},{"value":"Option 2","id":"211ed6zox5"},{"value":"Option 3","id":"211ed6zox4"},{"value":"Option 4","id":"211ed6zox3"},{"value":"Option 5","id":"211ed6zox2"}],"label":"Label","multiple":true,"required":true,"showRequiredAsterisk":true,"id":"id-1021s9"},"children":[]},{"name":"False","style":{"width":"200px"},"props":{"options":[{"value":"Option 1","id":"2v0zfw8afc"},{"value":"Option 2","id":"30830f8w5z"},{"value":"Option 3","id":"30830f8w4z"},{"value":"Option 4","id":"30830f8w3z"},{"value":"Option 5","id":"30830f8w2z"}],"label":"Label","required":true,"showRequiredAsterisk":false,"multiple":true,"id":"id-10s220"},"children":[]}]},{"name":"Disabled","examples":[{"name":"(Default) False","style":{"width":"200px"},"props":{"options":[{"value":"Option 1","id":"dlysh2quv"},{"value":"Option 2","id":"ygm3c9msn"},{"value":"Option 3","id":"ygm4c9msn"},{"value":"Option 4","id":"ygm5c9msn"},{"value":"Option 5","id":"ygm6c9msn"}],"label":"Label","multiple":true,"disabled":false,"id":"id-10221"},"children":[]},{"name":"True","style":{"width":"200px"},"props":{"options":[{"value":"Option 1","id":"z445a00hf"},{"value":"Option 2","id":"wji97jfsg"},{"value":"Option 3","id":"wji96jfsg"},{"value":"Option 4","id":"wji95jfsg"},{"value":"Option 5","id":"wji94jfsg"}],"label":"Label","disabled":true,"multiple":true,"id":"id-10222"},"children":[]}]},{"name":"Form Field Width","examples":[{"name":"(Default) Full","style":{"width":"400px"},"props":{"options":[{"value":"Option 1","id":"z0ispy7ls"},{"value":"Option 2","id":"ngl1p4pxn"},{"value":"Option 3","id":"ngl1p3pxn"},{"value":"Option 4","id":"ngl1p2pxn"},{"value":"Option 5","id":"ngl1p1pxn"}],"label":"Full","formFieldWidth":"full","id":"id-10223"},"children":[]},{"name":"Auto","style":{"width":"400px"},"props":{"options":[{"value":"Option 1","id":"klxyvobwn"},{"value":"Option 2","id":"7oag2a4fj"},{"value":"Option 3","id":"7oag2a3fj"},{"value":"Option 4","id":"7oag2a2fj"},{"value":"Option 5","id":"7oag2a1fj"}],"label":"Auto","formFieldWidth":"auto","id":"id-10224"},"children":[]}]},{"name":"Dropdown Width","examples":[{"name":"Form Field Width: Full","props":{"info":true,"id":"id-10225"},"children":[]},{"name":"Line Break","props":{"lineBreak":true,"id":"id-10226"},"children":[]},{"name":"(Default) Fixed","style":{"width":"400px"},"props":{"options":[{"value":"Option 1","id":"99pgkheyw"},{"value":"Option 2","id":"qc908rx6z"},{"value":"Option 3","id":"qc908rx5z"},{"value":"Option 4","id":"qc908rx4z"},{"value":"Option 5","id":"qc908rx3z"}],"label":"Fixed","formFieldWidth":"full","dropdownWidth":"fixed","id":"id-10227"},"children":[]},{"name":"Auto","style":{"width":"400px"},"props":{"options":[{"value":"1","id":"2smv303zl"},{"value":"2","id":"dstvsee1m"},{"value":"3","id":"dstvsee2m"},{"value":"4","id":"dstvsee3m"},{"value":"5","id":"dstvsee4m"}],"label":"Auto","formFieldWidth":"full","dropdownWidth":"auto","id":"id-10228"},"children":[]},{"name":"Full","style":{"width":"400px"},"props":{"options":[{"value":"1","id":"8fb4evl87"},{"value":"2","id":"0iiu59zbg"},{"value":"3","id":"0iiu69zbg"},{"value":"4","id":"0iiu79zbg"},{"value":"5","id":"0iiu89zbg"}],"label":"Full","formFieldWidth":"full","dropdownWidth":"full","id":"id-10229"},"children":[]},{"name":"Line Break","props":{"lineBreak":true,"id":"id-10230"},"children":[]},{"name":"Form Field Width: Auto","props":{"info":true,"id":"id-10231"},"children":[]},{"name":"Line Break","props":{"lineBreak":true,"id":"id-10232"},"children":[]},{"name":"(Default) Fixed","style":{"width":"400px"},"props":{"options":[{"value":"Option 1","id":"gniy079gw"},{"value":"Option 2","id":"kr0v4jgxl"},{"value":"Option 3","id":"kr0v3jgxl"},{"value":"Option 4","id":"kr0v2jgxl"},{"value":"Option 5","id":"kr0v1jgxl"}],"label":"Fixed","formFieldWidth":"auto","dropdownWidth":"fixed","id":"id-10233"},"children":[]},{"name":"Auto","style":{"width":"400px"},"props":{"options":[{"value":"1","id":"mmc6lfzsy"},{"value":"2","id":"wr6elxyf4"},{"value":"3","id":"wr6elxyf5"},{"value":"4","id":"wr6elxyf6"},{"value":"5","id":"wr6elxyf7"}],"label":"Auto","formFieldWidth":"auto","dropdownWidth":"auto","id":"id-10234"},"children":[]},{"name":"Full","style":{"width":"400px"},"props":{"options":[{"value":"1","id":"q0iyxp9kq"},{"value":"2","id":"mzo80txs4"},{"value":"3","id":"mzo80txs5"},{"value":"4","id":"mzo80txs6"},{"value":"5","id":"mzo80txs7"}],"label":"Full","formFieldWidth":"auto","dropdownWidth":"full","id":"id-10235"},"children":[]}]},{"name":"Placement","examples":[{"name":"Form Field Width: Full","props":{"info":true,"id":"id-10236"},"children":[]},{"name":"Line Break","props":{"lineBreak":true,"id":"id-10237"},"children":[]},{"name":"(Default) Bottom","style":{"width":"200px"},"props":{"options":[{"value":"Option 1","id":"aryeycu23"},{"value":"Option 2","id":"qrf3x6gdq"},{"value":"Option 3","id":"qrf4x6gdq"},{"value":"Option 4","id":"qrf5x6gdq"},{"value":"Option 5","id":"qrf6x6gdq"}],"label":"Bottom","formFieldWidth":"full","placement":"bottom","id":"id-10238"},"children":[]},{"name":"Top","style":{"width":"200px"},"props":{"options":[{"value":"Option 1","id":"mmfg4zco7"},{"value":"Option 2","id":"52zkxb05u"},{"value":"Option 3","id":"52zkxb04u"},{"value":"Option 4","id":"52zkxb03u"},{"value":"Option 5","id":"52zkxb02u"}],"label":"Top","formFieldWidth":"full","placement":"top","id":"id-10239"},"children":[]},{"name":"Line Break","props":{"lineBreak":true,"id":"id-10240"},"children":[]},{"name":"Form Field Width: Auto","props":{"info":true,"id":"id-10241"},"children":[]},{"name":"Line Break","props":{"lineBreak":true,"id":"id-10242"},"children":[]},{"name":"(Default) Bottom-Start","style":{"width":"200px"},"props":{"options":[{"value":"Option 1","id":"fhczoz28b"},{"value":"Option 2","id":"k8zcxfb4x"},{"value":"Option 3","id":"k8zcxfb3x"},{"value":"Option 4","id":"k8zcxfb2x"},{"value":"Option 5","id":"k8zcxfb1x"}],"label":"Bottom","formFieldWidth":"auto","placement":"bottom-start","id":"id-10243"},"children":[]},{"name":"Bottom-End","style":{"width":"200px"},"props":{"options":[{"value":"Option 1","id":"ukchupevr"},{"value":"Option 2","id":"ts0jwdqxj"},{"value":"Option 3","id":"ts1jwdqxj"},{"value":"Option 4","id":"ts2jwdqxj"},{"value":"Option 5","id":"ts3jwdqxj"}],"label":"Bottom","formFieldWidth":"auto","placement":"bottom-end","id":"id-10244"},"children":[]},{"name":"Top-Start","style":{"width":"200px"},"props":{"options":[{"value":"Option 1","id":"zhuaneo1w"},{"value":"Option 2","id":"5mwz7pmcr"},{"value":"Option 3","id":"4mwz7pmcr"},{"value":"Option 4","id":"3mwz7pmcr"},{"value":"Option 5","id":"2mwz7pmcr"}],"label":"Top","formFieldWidth":"auto","placement":"top-start","id":"id-10245"},"children":[]},{"name":"Top-End","style":{"width":"200px"},"props":{"options":[{"value":"Option 1","id":"6uq8tv3e8"},{"value":"Option 2","id":"iz30t1pce"},{"value":"Option 3","id":"iz40t1pce"},{"value":"Option 4","id":"iz50t1pce"},{"value":"Option 5","id":"iz60t1pce"}],"label":"Top","formFieldWidth":"auto","placement":"top-end","id":"id-10246"},"children":[]}]},{"name":"Selected type","examples":[{"name":"(Default) Text","style":{"width":"200px"},"props":{"options":[{"value":"Option 1","id":"d9n3d2z13"},{"value":"Option 2","id":"vq1c6xw05"},{"value":"Option 3","id":"73eppj8rp"},{"value":"Option 4","id":"yy82mda4v"},{"value":"Option 5","id":"yy82mda5v"}],"label":"Label","multiple":true,"id":"id-10247"},"children":[]},{"name":"Amount","style":{"width":"200px"},"props":{"options":[{"value":"Option 1","id":"la3wbcr7z"},{"value":"Option 2","id":"wz2u3a4q1"},{"value":"Option 3","id":"fcd4tiqlr"},{"value":"Option 4","id":"riz9ea0ox"},{"value":"Option 5","id":"riz9ea1ox"}],"label":"Label","selectedType":"amount","multiple":true,"id":"id-10248"},"children":[]},{"name":"Tag","style":{"width":"200px"},"props":{"options":[{"value":"Option 1","id":"q23x2uflo"},{"value":"Option 2","id":"au07iy2il"},{"value":"Option 3","id":"ig0l3rruj"},{"value":"Option 4","id":"4m2gbzu2q"},{"value":"Option 5","id":"4m2gbzu3q"}],"label":"Label","selectedType":"tag","multiple":true,"id":"id-10249"},"children":[]}]},{"name":"Show No Result","examples":[{"name":"(Default) False","style":{"width":"200px"},"props":{"options":[{"value":"Option 1","id":"wc5wcgjam"},{"value":"Option 2","id":"lx4cydggt"},{"value":"Option 3","id":"lx3cydggt"},{"value":"Option 4","id":"lx2cydggt"},{"value":"Option 5","id":"lx1cydggt"}],"label":"Label","showNoResults":false,"noResultsText":"Nothing found","multiple":true,"id":"id-10250"},"children":[]},{"name":"True","style":{"width":"200px"},"props":{"options":[{"value":"Option 1","id":"waa0gfjab"},{"value":"Option 2","id":"v48umf0qp"},{"value":"Option 3","id":"v58umf0qp"},{"value":"Option 4","id":"v68umf0qp"},{"value":"Option 5","id":"v78umf0qp"}],"label":"Label","showNoResults":true,"noResultsText":"Nothing found","multiple":true,"id":"id-10251"},"children":[]}]},{"name":"Show Loading","examples":[{"name":"(Default) False","style":{"width":"200px"},"props":{"options":[{"value":"Option 1","id":"glkscvbn5"},{"value":"Option 2","id":"13cmgddkr"},{"value":"Option 3","id":"14cmgddkr"},{"value":"Option 4","id":"15cmgddkr"},{"value":"Option 5","id":"16cmgddkr"}],"label":"Label","showLoading":false,"loadingText":"Loading","multiple":true,"id":"id-10252"},"children":[]},{"name":"True","style":{"width":"200px"},"props":{"options":[{"value":"Option 1","id":"e6wvfkv27"},{"value":"Option 2","id":"afg1mqolj"},{"value":"Option 3","id":"afg2mqolj"},{"value":"Option 4","id":"afg3mqolj"},{"value":"Option 5","id":"afg4mqolj"}],"label":"Label","showLoading":true,"loadingText":"Loading","multiple":true,"id":"id-10253"},"children":[]}]},{"name":"Show Search","examples":[{"name":"(Default) False","style":{"width":"200px"},"props":{"options":[{"value":"Option 1","id":"09nure8co"},{"value":"Option 2","id":"74n91hp14"},{"value":"Option 3","id":"74n91hp15"},{"value":"Option 4","id":"74n91hp16"},{"value":"Option 5","id":"74n91hp17"},{"value":"Option 6","id":"74n91hp18"},{"value":"Option 7","id":"74n91hp19"},{"value":"Option 8","id":"74n91hp24"},{"value":"Option 9","id":"74n91hp34"},{"value":"Option 10","id":"74n91hp44"}],"label":"Label","showSearch":false,"multiple":true,"id":"id-10254"},"children":[]},{"name":"True","style":{"width":"200px"},"props":{"options":[{"value":"Option 1","id":"ktmbve0k2"},{"value":"Option 2","id":"uf9wakkc1"},{"value":"Option 3","id":"uf9wakkc2"},{"value":"Option 4","id":"uf9wakkc3"},{"value":"Option 5","id":"uf9wakkc4"}],"label":"Label","showSearch":true,"multiple":true,"id":"id-10255"},"children":[]}]},{"name":"Show Select All","examples":[{"name":"(Default) False","style":{"width":"200px"},"props":{"options":[{"value":"Option 1","id":"p6l2dpiea"},{"value":"Option 2","id":"jh7pczno4"},{"value":"Option 3","id":"jh7pczno5"},{"value":"Option 4","id":"jh7pczno6"},{"value":"Option 5","id":"jh7pczno7"},{"value":"Option 6","id":"jh7pczno8"}],"label":"Label","showSelectAll":false,"multiple":true,"id":"id-10256"},"children":[]},{"name":"True","style":{"width":"200px"},"props":{"options":[{"value":"Option 1","id":"zcim85pqg"},{"value":"Option 2","id":"kg6gvbwru"},{"value":"Option 3","id":"kg5gvbwru"},{"value":"Option 4","id":"kg4gvbwru"},{"value":"Option 5","id":"kg3gvbwru"}],"label":"Label","showSelectAll":true,"multiple":true,"id":"id-10257"},"children":[]}]},{"name":"Show Clear Selection","examples":[{"name":"(Default) True","style":{"width":"200px"},"props":{"options":[{"value":"Option 1","id":"9zfvu9noy"},{"value":"Option 2","id":"cox90a0q8"},{"value":"Option 3","id":"cox80a0q8"},{"value":"Option 4","id":"cox70a0q8"},{"value":"Option 5","id":"cox60a0q8"}],"label":"Label","showClearSelection":true,"multiple":true,"id":"id-10258"},"children":[]},{"name":"False","style":{"width":"200px"},"props":{"options":[{"value":"Option 1","id":"ln9ms4fjy"},{"value":"Option 2","id":"dta90rteq"},{"value":"Option 3","id":"dta80rteq"},{"value":"Option 4","id":"dta70rteq"},{"value":"Option 5","id":"dta60rteq"}],"label":"Label","showClearSelection":false,"multiple":true,"id":"id-10259"},"children":[]}]},{"name":"Examples Single","examples":[{"name":"Icons","style":{"width":"200px"},"props":{"options":[{"value":"Option 1","icon":"x_placeholder","id":"fvdhawk3a"},{"value":"Option 2","icon":"x_placeholder","id":"i0pey2syc"},{"value":"Option 3","icon":"x_placeholder","id":"i0pey3syc"},{"value":"Option 4","icon":"x_placeholder","id":"i0pey4syc"},{"value":"Option 5","icon":"x_placeholder","id":"i0pey5syc"}],"placeholder":"Placeholder","id":"id-10260"},"children":[]},{"name":"Less than 6","style":{"width":"200px"},"props":{"options":[{"value":"Option 1","id":"6zthubswi"},{"value":"Option 2","id":"fh93iyp7w"},{"value":"Option 3","id":"1cbtid79q"},{"value":"Option 4","id":"5w9s57s9k"},{"value":"Option 5","id":"ixclh8p8n"}],"placeholder":"Placeholder","id":"id-10261"},"children":[]},{"name":"Option Group Title","style":{"width":"200px"},"props":{"options":[{"label":"Option group 1","isGroupTitle":true,"id":"f48zp673q"},{"value":"G1:Option 1","id":"8291mu3qc"},{"value":"G1:Option 2","id":"4duvelxc8"},{"label":"Option group 2","isGroupTitle":true,"id":"g4ti9lrc7"},{"value":"G2:Option 1","id":"gqhv3u61k"},{"value":"G2:Option 2","id":"8yx3v6yii"}],"placeholder":"Placeholder","id":"id-10262"},"children":[]},{"name":"Option Groups","style":{"width":"200px"},"props":{"options":[{"value":"G1:Option 1","id":"q4h9435ye"},{"value":"G1:Option 2","showDivider":true,"id":"7tzwcbeln"},{"value":"G2:Option 1","id":"zjmir6142"},{"value":"G2:Option 2","showDivider":true,"id":"hwqps1347"}],"placeholder":"Placeholder","id":"id-10263"},"children":[]},{"name":"More than 6","style":{"width":"200px"},"props":{"options":[{"value":"Option 1","id":"ghsxrti0t"},{"value":"Option 2","id":"5hj8rz3h6"},{"value":"Option 3","id":"kvyjps1ai"},{"value":"Option 4","id":"31ncem9lt"},{"value":"Option 5","id":"0fwgqufql"},{"value":"Option 6","id":"okz955pi7"},{"value":"Option 7","id":"ihbjcr0lo"}],"placeholder":"Placeholder","id":"id-10264"},"children":[]},{"name":"More than 10","style":{"width":"200px"},"props":{"options":[{"value":"Option 1","id":"o9docf7sw"},{"value":"Option 2","id":"ttwfqxw26"},{"value":"Option 3","id":"0c5sgzfag"},{"value":"Option 4","id":"c8knaskj6"},{"value":"Option 5","id":"2z5uhqdmr"},{"value":"Option 6","id":"y2tlf2fnf"},{"value":"Option 7","id":"q9hdifmw7"},{"value":"Option 8","id":"vqz28zphb"},{"value":"Option 9","id":"j2amckmwh"},{"value":"Option 10","id":"zdi31d2lu"}],"placeholder":"Placeholder","id":"id-10265"},"children":[]}]},{"name":"Examples Multiple","examples":[{"name":"Less than 6","style":{"width":"200px"},"props":{"options":[{"value":"Option 1","id":"20twpdi3j"},{"value":"Option 2","id":"0uwpufkvw"},{"value":"Option 3","id":"xmvmr8dws"},{"value":"Option 4","id":"yv5v4q9ew"},{"value":"Option 5","id":"6bjfubtz4"}],"placeholder":"Placeholder","multiple":true,"id":"id-10266"},"children":[]},{"name":"Option Group Title","style":{"width":"200px"},"props":{"options":[{"label":"Option group 1","isGroupTitle":true,"id":"qcvwaejkk"},{"value":"G1:Option 1","id":"jgnlzpm6q"},{"value":"G1:Option 2","id":"n75b2qd9t"},{"label":"Option group 2","isGroupTitle":true,"id":"bcx8u0ke9"},{"value":"G2:Option 1","id":"zgmc2tyn4"},{"value":"G2:Option 2","id":"sw7l6jpoj"}],"placeholder":"Placeholder","multiple":true,"id":"id-10267"},"children":[]},{"name":"Option Groups","style":{"width":"200px"},"props":{"options":[{"value":"G1:Option 1","id":"y5iukyovr"},{"value":"G1:Option 2","showDivider":true,"id":"0ton8ii8v"},{"value":"G2:Option 1","id":"9c4cgirv2"},{"value":"G2:Option 2","showDivider":true,"id":"740m4a61n"}],"placeholder":"Placeholder","multiple":true,"id":"id-10268"},"children":[]},{"name":"More than 6","style":{"width":"200px"},"props":{"options":[{"value":"Option 1","id":"3zjiay7k4"},{"value":"Option 2","id":"s52x89xrz"},{"value":"Option 3","id":"2u5nocjfo"},{"value":"Option 4","id":"0ibok60su"},{"value":"Option 5","id":"kdd8w27oh"},{"value":"Option 6","id":"1qn5w4113"},{"value":"Option 7","id":"eopg7tn9q"}],"placeholder":"Placeholder","multiple":true,"id":"id-10269"},"children":[]},{"name":"More than 10","style":{"width":"200px"},"props":{"options":[{"value":"Option 1","id":"wg5f7ycm8"},{"value":"Option 2","id":"3viv9gxlp"},{"value":"Option 3","id":"4wtnn5nwh"},{"value":"Option 4","id":"r4amvgigg"},{"value":"Option 5","id":"pcmqabmuy"},{"value":"Option 6","id":"u8nify3n9"},{"value":"Option 7","id":"rcmpselej"},{"value":"Option 8","id":"ln43k984l"},{"value":"Option 9","id":"j8squjd5i"},{"value":"Option 10 very long item with may break into a new line","id":"b84ie8otk"}],"placeholder":"Placeholder","multiple":true,"id":"id-10270"},"children":[]}]},{"name":"Example tags","examples":[{"name":"Tag grow","style":{"width":"400px"},"props":{"options":[{"value":"Option 1","id":"53xbfd1o6"},{"value":"Option 2","id":"fq8ypeiz2"},{"value":"Option 3","id":"jtd3wevz2"},{"value":"Option 4","id":"srr1toi8f"},{"value":"Option 5","id":"srr1toi7f"}],"label":"Label","selectedType":"tag","multiple":true,"id":"id-10271","removeTagsTexts":["Remove Option entry 1","Remove Option entry 2","Remove Option entry 3","Remove Option entry 4"]},"children":[]},{"name":"Tag grow + auto","style":{"width":"400px"},"props":{"options":[{"value":"Option 1","id":"jn3s5kl9t"},{"value":"Option 2","id":"iesayujhy"},{"value":"Option 3","id":"55kavoeem"},{"value":"Option 4","id":"xi4qhrdg8"},{"value":"Option 5","id":"xi4qhrdg7"}],"label":"Label","selectedType":"tag","formFieldWidth":"auto","multiple":true,"id":"id-10272"},"children":[]}]},{"name":"Example: Other configuration","examples":[{"name":"Search Value","style":{"width":"200px"},"props":{"options":[{"value":"Option 1","id":"09nursdao"},{"value":"Option 2","id":"74n9csdc14"},{"value":"Option 3","id":"64n9csdc14"},{"value":"Option 4","id":"54n9csdc14"},{"value":"Option 5","id":"44n9csdc14"}],"label":"Label","searchValue":"1","showSearch":true,"multiple":true,"id":"id-10as4"},"children":[]},{"name":"Custom Selected Label","style":{"width":"200px"},"props":{"options":[{"value":"Option 1","id":"09nurdscsdao"},{"value":"Option 2","id":"74n9ccsddc14"},{"value":"Option 3","id":"73n9ccsddc14"},{"value":"Option 4","id":"72n9ccsddc14"},{"value":"Option 5","id":"71n9ccsddc14"}],"label":"Label","selectedLabels":"Label controlled","id":"id-10aasds4"},"children":[]},{"name":"Transform Selected Label","style":{"width":"200px"},"props":{"options":[{"value":"Option 1","id":"09nurdscsdao"},{"value":"Option 2","id":"74n9ccsddc14"},{"value":"Option 3","id":"73n9ccsddc14"},{"value":"Option 4","id":"72n9ccsddc14"},{"value":"Option 5","id":"71n9ccsddc14"}],"label":"Label","transformSelectedLabels":true,"id":"id-10aasds4"},"children":[]},{"name":"Custom Search Filter","style":{"width":"200px"},"props":{"options":[{"value":"Option 1","id":"09nurdscsdao"},{"value":"Option 2","id":"74n9ccsddc14"},{"value":"Option 3","id":"73n9ccsddc14"},{"value":"Option 4","id":"72n9ccsddc14"},{"value":"Option 5","id":"71n9ccsddc14"}],"label":"Label","searchFilter":true,"showSearch":true,"id":"id-10aasds4"},"children":[]}]},{"name":"Examples Floating label","examples":[{"name":"Floating","style":{"width":"200px"},"props":{"options":[{"value":"Option 1","id":"otbjunoyx"},{"value":"Option 2","id":"ju53v02yg"},{"value":"Option 3","id":"ju53v03yg"},{"value":"Option 4","id":"ju53v04yg"},{"value":"Option 5","id":"ju53v05yg"}],"label":"Label","variant":"floating","value":["Floating Label"],"id":"id-10300"},"children":[]},{"name":"Floating","style":{"width":"200px"},"props":{"options":[{"value":"Option 1","id":"otbjunoyx"},{"value":"Option 2","id":"ju53v02yg"},{"value":"Option 3","id":"ju53v03yg"},{"value":"Option 4","id":"ju53v04yg"},{"value":"Option 5","id":"ju53v05yg"}],"label":"Label","variant":"floating","id":"id-10301","validation":"invalid","invalidMessage":"Invalid Message"},"children":[]}]}]'),eO=({children:e,message:a,variant:t,values:n,required:i,options:l,placeholder:o,selectedType:s,formFieldWidth:c,showLabel:d,placement:r,lineBreak:u,info:p,showLoading:h,showNoResults:b,showSelectAll:x,showClearSelection:v,showSearch:m,noResultsText:g,loadingText:j,multiple:D,dropdownWidth:B,icon:f,showIcon:w,showMessage:y,disabled:T,id:A,searchValue:k,selectedLabels:C,transformSelectedLabels:O,searchFilter:N,validMessage:I,validation:_,invalidMessage:H,showRequiredAsterisk:z,removeTagsTexts:P})=>{let[R,F]=(0,S.useState)(n);return p?(0,L.jsx)(ee.A,{size:"small",semantic:"informational",children:e}):u?(0,L.jsx)("i",{className:"line-break"}):(0,L.jsx)(ek.A,{showRequiredAsterisk:z,disabled:T,icon:f,showMessage:y,showIcon:w,dropdownWidth:B,showClearSelection:v,showSelectAll:x,showSearch:m,showLoading:h,showNoResults:b,multiple:D,label:e,listLabel:`${A}-${e}`,options:l,variant:t,message:a,required:i,placeholder:o,showLabel:d,placement:r,selectAllLabel:"Select all",searchLabel:"Search",selectedType:s,formFieldWidth:c,loadingText:j,noResultsText:g??"No matching filter",values:R,searchValue:k,selectedLabels:C,selectedPrefix:"Selected",invalidMessage:H,validMessage:I,validation:_,transformSelectedLabels:O?e=>e.map(e=>e.value.at(-1)).join(", "):void 0,searchFilter:N?(e,a)=>"Option 1"===e.value:void 0,onOptionSelected:e=>{F(e)},removeTagsTexts:P})},eN=JSON.parse('[{"name":"Density","examples":[{"name":"Functional","style":{"width":"200px"},"content":"","density":"functional","props":{"width":"full"}},{"name":"(Default) Regular","style":{"width":"200px"},"content":"","density":"regular","props":{"width":"full"}},{"name":"Expressive","style":{"width":"200px"},"content":"","density":"expressive","props":{"width":"full"}}]},{"name":"Variant","examples":[{"name":"(Default) Adaptive - Horizontal","style":{"width":"200px"},"content":"","props":{"width":"full"}},{"name":"Adaptive - Vertical","style":{"height":"100px"},"content":"","props":{"variant":"vertical","width":"full"}}]},{"name":"Emphasis","examples":[{"name":"(Default) Weak","style":{"width":"200px"},"content":"","props":{"width":"full"}},{"name":"Strong","style":{"width":"200px"},"content":"","props":{"emphasis":"strong","width":"full"}}]}]'),eI=({variant:e,emphasis:a,children:t,width:n})=>(0,L.jsxs)(L.Fragment,{children:[(0,L.jsx)(ee.A,{size:"small",semantic:"informational",children:t}),(0,L.jsx)(q.A,{variant:e,emphasis:a,width:n})]});var eL=t(19831);let eS=JSON.parse('[{"name":"Density","examples":[{"name":"Functional","density":"functional","props":{"open":"open","onClose":"toggleDrawer(false)"}},{"name":"(Default) Regular","density":"regular","props":{"open":"open","onClose":"toggleDrawer(false)"}},{"name":"Expressive","density":"expressive","props":{"open":"open","onClose":"toggleDrawer(false)"}}]},{"name":"Size","examples":[{"name":"(Default) Medium","props":{"open":"open","onClose":"toggleDrawer(false)"}},{"name":"Full","props":{"width":"full","open":"open","onClose":"toggleDrawer(false)"}}]},{"name":"Rounded","examples":[{"name":"(Default) False","props":{"rounded":false,"open":"open","onClose":"toggleDrawer(false)"}},{"name":"True","props":{"rounded":true,"open":"open","onClose":"toggleDrawer(false)"}}]},{"name":"Spacing","examples":[{"name":"(Default) Medium","props":{"open":"open","onClose":"toggleDrawer(false)"}},{"name":"Small","props":{"spacing":"small","open":"open","onClose":"toggleDrawer(false)"}},{"name":"Large","props":{"spacing":"large","open":"open","onClose":"toggleDrawer(false)"}},{"name":"None","props":{"spacing":"none","open":"open","onClose":"toggleDrawer(false)"}}]},{"name":"Backdrop","examples":[{"name":"(Default) Strong","props":{"backdrop":"strong","open":"open","onClose":"toggleDrawer(false)"}},{"name":"Weak","props":{"backdrop":"weak","open":"open","onClose":"toggleDrawer(false)"}},{"name":"Invisible","props":{"backdrop":"invisible","open":"open","onClose":"toggleDrawer(false)"}},{"name":"No Backdrop","props":{"backdrop":"none","open":"open","onClose":"toggleDrawer(false)"}}]},{"name":"Direction","examples":[{"name":"(Default) Right","props":{"open":"open","onClose":"toggleDrawer(false)"}},{"name":"Left","props":{"direction":"left","open":"open","onClose":"toggleDrawer(false)"}},{"name":"Up","props":{"direction":"up","open":"open","onClose":"toggleDrawer(false)"}},{"name":"Down","props":{"direction":"down","open":"open","onClose":"toggleDrawer(false)"}}]},{"name":"Example","examples":[{"name":"(Default) As modal","props":{"variant":"modal","open":"open","onClose":"toggleDrawer(false)"}},{"name":"Inside","props":{"variant":"inside","open":"open","onClose":"toggleDrawer(false)"}}]}]');var e_=t(37975),eH=t(90137),ez=t(99279);let eP=JSON.parse('[{"name":"Density","children":[{"name":"brand","slot":"brand","content":"DBHeader"},{"name":"link","slot":"meta-navigation","angularDirective":true,"content":"Imprint","props":{"href":"#"}},{"name":"button","slot":"primary-action","content":"Search","props":{"icon":"magnifying_glass","variant":"ghost","noText":true}},{"name":"button","slot":"secondary-action","angularDirective":true,"content":"Profile","props":{"icon":"x_placeholder","variant":"ghost","noText":true}},{"name":"navigation","slot":"Navigation","angularDirective":true,"children":[{"name":"navigation-item","props":{"icon":"x_placeholder"},"children":[{"name":"a","native":true,"slot":"NavigationContent","angularDirective":true,"content":"Link","props":{"href":"#"}}]},{"name":"navigation-item","props":{"icon":"x_placeholder","disabled":true},"children":[{"name":"a","native":true,"slot":"NavigationContent","angularDirective":true,"content":"Link disabled","props":{"href":"#"}}]}]}],"examples":[{"name":"Functional","density":"functional","props":{},"style":{"width":"100%","display":"block"}},{"name":"(Default) Regular","density":"regular","props":{},"style":{"width":"100%","display":"block"}},{"name":"Expressive","density":"expressive","props":{},"style":{"width":"100%","display":"block"}}]},{"name":"Width","children":[{"name":"brand","slot":"brand","content":"DBHeader"},{"name":"link","slot":"meta-navigation","angularDirective":true,"content":"Imprint","props":{"href":"#"}},{"name":"button","slot":"primary-action","content":"Search","props":{"icon":"magnifying_glass","variant":"ghost","noText":true}},{"name":"button","slot":"secondary-action","angularDirective":true,"content":"Profile","props":{"icon":"x_placeholder","variant":"ghost","noText":true}},{"name":"navigation","slot":"Navigation","angularDirective":true,"children":[{"name":"navigation-item","props":{"icon":"x_placeholder"},"children":[{"name":"a","native":true,"slot":"NavigationContent","angularDirective":true,"content":"Link","props":{"href":"#"}}]},{"name":"navigation-item","props":{"icon":"x_placeholder","disabled":true},"children":[{"name":"a","native":true,"slot":"NavigationContent","angularDirective":true,"content":"Link disabled","props":{"href":"#"}}]}]}],"examples":[{"name":"Full","style":{"width":"100%","display":"block"}},{"name":"Medium","style":{"width":"100%","display":"block"},"props":{"width":"medium"}},{"name":"Large","style":{"width":"100%","display":"block"},"props":{"width":"large"}}]},{"name":"Behavior","children":[{"name":"brand","slot":"brand","content":"DBHeader"},{"name":"link","slot":"meta-navigation","angularDirective":true,"content":"Imprint","props":{"href":"#"}},{"name":"button","slot":"primary-action","content":"Search","props":{"icon":"magnifying_glass","variant":"ghost","noText":true}},{"name":"button","slot":"secondary-action","angularDirective":true,"content":"Profile","props":{"icon":"x_placeholder","variant":"ghost","noText":true}},{"name":"navigation","slot":"Navigation","angularDirective":true,"children":[{"name":"navigation-item","props":{"icon":"x_placeholder"},"children":[{"name":"a","native":true,"slot":"NavigationContent","angularDirective":true,"content":"Link","props":{"href":"#"}}]},{"name":"navigation-item","props":{"icon":"x_placeholder","disabled":true},"children":[{"name":"a","native":true,"slot":"NavigationContent","angularDirective":true,"content":"Link disabled","props":{"href":"#"}}]}]}],"examples":[{"name":"Desktop (full width)","style":{"width":"100%","display":"block"}},{"name":"Mobile","style":{"width":"100%","display":"block"},"props":{"forceMobile":"true"}}]},{"name":"Examples","children":[{"name":"brand","slot":"brand","content":"DBHeader"},{"name":"link","slot":"meta-navigation","angularDirective":true,"content":"Imprint","props":{"href":"#"}},{"name":"button","slot":"primary-action","content":"Search","props":{"icon":"magnifying_glass","variant":"ghost","noText":true}},{"name":"button","slot":"secondary-action","angularDirective":true,"content":"Profile","props":{"icon":"x_placeholder","variant":"ghost","noText":true}},{"name":"navigation","slot":"Navigation","angularDirective":true,"children":[{"name":"navigation-item","props":{"icon":"x_placeholder"},"children":[{"name":"a","native":true,"slot":"NavigationContent","angularDirective":true,"content":"Link","props":{"href":"#"}}]},{"name":"navigation-item","props":{"icon":"x_placeholder","disabled":true},"children":[{"name":"a","native":true,"slot":"NavigationContent","angularDirective":true,"content":"Link disabled","props":{"href":"#"}}]}]}],"examples":[{"name":"With Application Name + Navigation","style":{"width":"100%","display":"block"},"props":{"example":true,"withName":true,"withNavigation":true}},{"name":"Without Navigation","style":{"width":"100%","display":"block"},"props":{"example":true,"withName":true,"withNavigation":false}},{"name":"Without Application Name","style":{"width":"100%","display":"block"},"props":{"example":true,"withName":false,"withNavigation":true}},{"name":"Without Application Name + Navigation","style":{"width":"100%","display":"block"},"props":{"example":true,"withName":false,"withNavigation":false}}]}]'),eR=({drawerOpen:e,forceMobile:a,burgerMenuLabel:t,children:n,className:i,id:l,onToggle:o,width:s,example:c,withNavigation:d,withName:r})=>(0,L.jsx)(e_.A,{width:s,brand:(0,L.jsx)(ej.A,{title:"DBHeader",children:(!c||r)&&"DBHeader"}),metaNavigation:!c&&(0,L.jsxs)(L.Fragment,{children:[(0,L.jsx)(H.A,{href:"#",children:"Imprint"}),(0,L.jsx)(H.A,{href:"#",children:"Help"})]}),primaryAction:!c&&(0,L.jsx)(W.A,{icon:"magnifying_glass",variant:"ghost",noText:!0,children:"Search"}),secondaryAction:!c&&(0,L.jsxs)(L.Fragment,{children:[(0,L.jsx)(W.A,{icon:"x_placeholder",variant:"ghost",noText:!0,children:"Profile"}),(0,L.jsx)(W.A,{icon:"x_placeholder",variant:"ghost",noText:!0,children:"Notification"}),(0,L.jsx)(W.A,{icon:"x_placeholder",variant:"ghost",noText:!0,children:"Help"})]}),drawerOpen:e,forceMobile:a,burgerMenuLabel:t,className:i,id:l,onToggle:o,children:(!c||d)&&(0,L.jsxs)(eH.A,{"aria-label":n,children:[(0,L.jsx)(ez.A,{icon:"x_placeholder",children:(0,L.jsx)("a",{href:"#",children:n})}),(0,L.jsx)(ez.A,{disabled:!0,children:(0,L.jsxs)("a",{href:"#",children:[n," disabled"]})})]})}),eF=JSON.parse('[{"name":"Density","examples":[{"name":"Functional","density":"functional","props":{}},{"name":"(Default) Regular","density":"regular","props":{}},{"name":"Expressive","density":"expressive","props":{}}]},{"name":"Semantic","examples":[{"name":"(Default) Adaptive"},{"name":"Neutral","props":{"semantic":"neutral"}},{"name":"Critical","props":{"semantic":"critical"}},{"name":"Informational","props":{"semantic":"informational"}},{"name":"Successful","props":{"semantic":"successful"}},{"name":"Warning","props":{"semantic":"warning"}}]},{"name":"Size","examples":[{"name":"(Default) Medium"},{"name":"Small","props":{"size":"small"}}]},{"name":"Show Icon","examples":[{"name":"(Default) True","props":{"showIcon":true}},{"name":"False","props":{"showIcon":false}}]}]'),eE=({semantic:e,size:a,icon:t,children:n,showIcon:i})=>(0,L.jsx)(ee.A,{semantic:e,size:a,icon:t,showIcon:i,children:n});var eq=t(78815);let eM=JSON.parse('[{"name":"Density","examples":[{"name":"Functional","density":"functional","props":{"label":"Label"}},{"name":"(Default) Regular","density":"regular","props":{"label":"Label"}},{"name":"Expressive","density":"expressive","props":{"label":"Label"}}]},{"name":"Variant","examples":[{"name":"(Default) Above","props":{"label":"Label"}},{"name":"Floating","props":{"label":"Label","variant":"floating","value":"Floating"}}]},{"name":"Show Label","examples":[{"name":"(Default) True","props":{"label":"Label","showLabel":true}},{"name":"False","props":{"label":"Label","showLabel":false}}]},{"name":"Show Message","examples":[{"name":"(Default) False","props":{"label":"Label","message":"Message","showMessage":false}},{"name":"True","props":{"label":"Label","message":"Message","showMessage":true}}]},{"name":"State","examples":[{"name":"(Default) Empty","props":{"label":"Label"}},{"name":"Filled","props":{"label":"Label","value":"Filled"}}]},{"name":"Disabled","examples":[{"name":"(Default) False","props":{"label":"Label","disabled":false}},{"name":"True","props":{"label":"Label","disabled":true}}]},{"name":"Readonly","examples":[{"name":"(Default) False","props":{"label":"Label","readOnly":false}},{"name":"True","props":{"label":"Label","readOnly":true}}]},{"name":"Validation","examples":[{"name":"(Default) No validation","props":{"label":"Label","validation":"no-validation"}},{"name":"Invalid","props":{"label":"Label","validation":"invalid","invalidMessage":"Invalid Message"}},{"name":"Valid","props":{"label":"Label","validation":"valid","validMessage":"Valid message"}}]},{"name":"Required","examples":[{"name":"(Default) False","props":{"label":"Label","required":false}},{"name":"True","props":{"label":"Label","required":true}}]},{"name":"Show Required Asterisk","examples":[{"name":"(Default) True","props":{"label":"Label","required":true,"showRequiredAsterisk":true}},{"name":"False","props":{"label":"Label","required":true,"showRequiredAsterisk":false}}]},{"name":"Show Icon Leading","examples":[{"name":"(Default) False","props":{"label":"False","icon":"x_placeholder","showIcon":false}},{"name":"True","props":{"label":"True","icon":"x_placeholder","showIcon":true}}]},{"name":"Show Icon Leading + Trailing","examples":[{"name":"(Default) False","props":{"label":"False","icon":"x_placeholder","showIcon":false,"iconTrailing":"x_placeholder","showIconTrailing":false}},{"name":"True","props":{"label":"True","icon":"x_placeholder","showIcon":true,"iconTrailing":"x_placeholder","showIconTrailing":true}}]},{"name":"Show Icon Trailing","examples":[{"name":"(Default) False","props":{"label":"False","iconTrailing":"x_placeholder","showIconTrailing":false}},{"name":"True","props":{"label":"True","iconTrailing":"x_placeholder","showIconTrailing":true}}]},{"name":"Example - Length","examples":[{"name":"MinLength","props":{"label":"Label","minLength":3}},{"name":"MaxLength","props":{"label":"Label","maxLength":5}},{"name":"MinMaxLength","props":{"label":"Label","minLength":3,"maxLength":5}}]},{"name":"Example - Types with min and max","codeFileName":"ExampleTypes","examples":[{"name":"(Default) Text","props":{"label":"Label"}},{"name":"Password","props":{"label":"Label","type":"password"}},{"name":"Search","props":{"label":"Label","type":"search"}},{"name":"E-Mail","props":{"label":"Label","type":"email"}},{"name":"Tel","props":{"label":"Label","type":"tel"}},{"name":"URL","props":{"label":"Label","type":"url"}},{"name":"Date","props":{"label":"Label","type":"date","min":"2023-01-01","max":"2030-12-31"}},{"name":"Datetime Local","props":{"label":"Label","type":"datetime-local","min":"2023-01-01T00:00","max":"2030-12-31T23:59"}},{"name":"Month","props":{"label":"Label","type":"month","min":"2023-01","max":"2030-12"}},{"name":"Time","props":{"label":"Label","type":"time","min":"00:00","max":"23:59"}},{"name":"Week","props":{"label":"Label","type":"week","min":"2023-W01","max":"2030-W52"}}]},{"name":"Example Floating Label","examples":[{"name":"(Default) Empty","props":{"label":"Label","variant":"floating"}},{"name":"Filled","props":{"label":"Label","value":"Filled","variant":"floating"}},{"name":"Disabled","props":{"label":"Label","disabled":true,"variant":"floating"}},{"name":"Readonly - Filled","props":{"label":"Label","value":"Readonly - Filled","readOnly":true,"variant":"floating"}},{"name":"Invalid","props":{"label":"Label","validation":"invalid","invalidMessage":"Invalid Message","variant":"floating"}}]},{"name":"Example - Types - Floating Label","codeFileName":"ExampleTypesFloatingLabel","examples":[{"name":"(Default) Text","props":{"label":"Label","variant":"floating"}},{"name":"Password","props":{"label":"Label","type":"password","variant":"floating"}},{"name":"Search","props":{"label":"Label","type":"search","variant":"floating"}},{"name":"E-Mail","props":{"label":"Label","type":"email","variant":"floating"}},{"name":"Tel","props":{"label":"Label","type":"tel","variant":"floating"}},{"name":"URL","props":{"label":"Label","type":"url","variant":"floating"}},{"name":"Date","props":{"label":"Label","type":"date","variant":"floating"}},{"name":"Datetime Local","props":{"label":"Label","type":"datetime-local","variant":"floating"}},{"name":"Month","props":{"label":"Label","type":"month","variant":"floating"}},{"name":"Time","props":{"label":"Label","type":"time","variant":"floating"}},{"name":"Week","props":{"label":"Label","type":"week","variant":"floating"}},{"name":"Datalist","props":{"label":"Label","variant":"floating","dataList":true}},{"name":"File","experimental":true,"props":{"label":"Label","type":"file","variant":"floating"}}]},{"name":"Datalist / Typeahead Examples","codeFileName":"DatalistExamples","examples":[{"name":"Simple String List","props":{"label":"Search Cities","placeholder":"Type to search...","dataList":true,"variant":"floating"}},{"name":"Regular Variant with Datalist","props":{"label":"Search Products","placeholder":"Type to search...","dataList":true}},{"name":"With Search Icon","props":{"label":"Search Stations","placeholder":"Type to search...","dataList":true,"variant":"floating","type":"search","icon":"magnifying_glass","showIcon":true}}]}]'),eV=({label:e,value:a,type:t,minLength:n,required:i,disabled:l,iconTrailing:o,showIcon:s,showIconTrailing:c,icon:d,children:r,message:u,variant:p,readOnly:h,dataList:b,showLabel:x,showMessage:v,validMessage:m,validation:g,invalidMessage:j,showRequiredAsterisk:D,maxLength:B,max:f,min:w})=>(0,L.jsx)(eq.A,{label:e,message:u,placeholder:r,variant:p,showLabel:x,showRequiredAsterisk:D,defaultValue:a,type:t,minLength:n,required:i,disabled:l,readOnly:h,iconTrailing:o,showIconTrailing:c,maxLength:B,max:f,min:w,icon:d,showIcon:s,showMessage:v,invalidMessage:j,validMessage:m,validation:g,dataList:b?"floating"===p?["Test 1","Test 2"]:[{value:"test1",label:"Test 1"},{value:"test2",label:"Test 2"}]:void 0}),eW=JSON.parse('[{"name":"Density","examples":[{"name":"Functional","density":"functional","props":{"href":"#"}},{"name":"(Default) Regular","density":"regular","props":{"href":"#"}},{"name":"Expressive","density":"expressive","props":{"href":"#"}}]},{"name":"Variant","examples":[{"name":"(Default) Adaptive","props":{"href":"#"}},{"name":"Brand","props":{"href":"#","variant":"brand"}}]},{"name":"Disabled","examples":[{"name":"(Default) False","props":{"href":"#","disabled":false}},{"name":"True","props":{"href":"#","disabled":true}}]},{"name":"Size","examples":[{"name":"(Default) Medium","props":{"href":"#"}},{"name":"Small","props":{"href":"#","size":"small"}}]},{"name":"Content","examples":[{"name":"(Default) Internal","props":{"href":"#"}},{"name":"External","props":{"href":"#","content":"external"}}]},{"name":"Show Icon","examples":[{"name":"(Default) True","props":{"href":"#","showIcon":true}},{"name":"False","props":{"href":"#","showIcon":false}}]},{"name":"Wrap","examples":[{"name":"(Default) False","props":{"href":"#","wrap":false}},{"name":"True [Multiline]","style":{"width":"2ch"},"props":{"href":"#","wrap":true}}]},{"name":"Examples","examples":[{"name":"Variant Inline","props":{"href":"#","variant":"inline"}}]}]'),eU=({href:e,variant:a,disabled:t,size:n,content:i,children:l,showIcon:o,wrap:s})=>(0,L.jsx)(H.A,{href:e,variant:a,disabled:t,size:n,content:i,showIcon:o,wrap:s,children:l}),eG=JSON.parse('[{"name":"Density","children":[{"name":"navigation-item","content":"Navi-Item 1","children":[{"name":"navigation-item","content":"Sub-Navi-Item 1","slot":"sub-navigation","children":[{"name":"navigation-item","slot":"sub-navigation","props":{"active":true},"children":[{"name":"a","native":true,"content":"Sub-Sub-Navi-Item 1","props":{"href":"#"}}]}]}]},{"name":"navigation-item","children":[{"name":"a","native":true,"content":"Navi-Item 2","props":{"href":"#"}}]}],"examples":[{"name":"Functional","density":"functional","props":{}},{"name":"(Default) Regular","density":"regular","props":{}},{"name":"Expressive","density":"expressive","props":{}}]}]'),e$=({children:e})=>{let a=`${e.replaceAll(/\W/g,"_").toLowerCase()}`;return(0,L.jsxs)("div",{children:[(0,L.jsx)(ee.A,{id:a,size:"small",semantic:"informational",icon:"none",children:e}),(0,L.jsxs)(eH.A,{"aria-labelledby":a,children:[(0,L.jsx)(ez.A,{subNavigation:(0,L.jsxs)(L.Fragment,{children:[(0,L.jsx)(ez.A,{subNavigation:(0,L.jsxs)(L.Fragment,{children:[(0,L.jsx)(ez.A,{children:(0,L.jsx)("a",{href:"#","aria-current":"page",children:"Sub-Sub-Navi-Item 1"})}),(0,L.jsx)(ez.A,{children:(0,L.jsx)("a",{href:"#",children:"Sub-Sub-Navi-Item 2"})})]}),children:"Sub-Navi-Item 1"}),(0,L.jsx)(ez.A,{children:(0,L.jsx)("a",{href:"#",children:"Sub-Navi-Item 2"})})]}),children:"Navi-Item 1"}),(0,L.jsx)(ez.A,{icon:"x_placeholder",children:(0,L.jsx)("a",{href:"#",children:"Navi-Item 2"})}),(0,L.jsx)(ez.A,{disabled:!0,children:(0,L.jsx)("a",{href:"#",children:"Navi-Item 3"})})]})]})},eJ=JSON.parse('[{"name":"Density","examples":[{"name":"Functional","density":"functional","props":{},"children":[{"name":"a","native":true,"props":{"href":"#"},"content":"Functional"}]},{"name":"(Default) Regular","density":"regular","props":{},"children":[{"name":"a","native":true,"props":{"href":"#"},"content":"(Default) Regular"}]},{"name":"Expressive","density":"expressive","props":{},"children":[{"name":"a","native":true,"props":{"href":"#"},"content":"Expressive"}]}]},{"name":"Disabled","examples":[{"name":"(Default) False","props":{"disabled":false},"children":[{"name":"a","native":true,"props":{"href":"#"},"content":"(Default) False"}]},{"name":"True","props":{"disabled":true},"children":[{"name":"a","native":true,"props":{"href":"#"},"content":"True"}]}]},{"name":"Active","examples":[{"name":"(Default) False","props":{"active":false},"children":[{"name":"a","native":true,"props":{"href":"#"},"content":"(Default) False"}]},{"name":"True","props":{"active":true},"children":[{"name":"a","native":true,"props":{"href":"#"},"content":"True"}]}]},{"name":"Expanded","examples":[{"name":"(Default) False","props":{"areaPopup":false},"children":[{"name":"a","native":true,"props":{"href":"#"},"content":"(Default) False"}]},{"name":"True","props":{"areaPopup":true},"children":[{"name":"a","native":true,"props":{"href":"#"},"content":"True"}]}]},{"name":"Show Icon","examples":[{"name":"(Default) False","props":{"icon":"x_placeholder","showIcon":false},"children":[{"name":"a","native":true,"props":{"href":"#"},"content":"(Default) False"}]},{"name":"True","props":{"icon":"x_placeholder","showIcon":true},"children":[{"name":"a","native":true,"props":{"href":"#"},"content":"True"}]}]},{"name":"Width","examples":[{"name":"(Default) Auto","style":{"width":"400px"},"children":[{"name":"a","native":true,"props":{"href":"#"},"content":"(Default) Auto"}]},{"name":"Full","style":{"width":"400px"},"props":{"width":"full"},"children":[{"name":"a","native":true,"props":{"href":"#"},"content":"Full"}]}]},{"name":"Wrap","examples":[{"name":"No Wrap (Default)","props":{"areaPopup":true},"children":[{"name":"a","native":true,"props":{"href":"#"},"content":"True"}]},{"name":"This is a very long text that is broken into multiple lines.","props":{"areaPopup":true,"icon":"x_placeholder","showIcon":true,"wrap":true},"style":{"width":"200px"},"children":[{"name":"a","native":true,"content":"Sub-Sub-Navi-Item 1","props":{"href":"#"}}]},{"name":"This is a very long text that is broken into multiple lines.","props":{"areaPopup":true,"wrap":true},"style":{"width":"200px"},"slot":"sub-navigation","children":[{"name":"a","native":true,"props":{"href":"#"},"content":"True"}]}]}]'),eZ=({children:e,icon:a,disabled:t,active:n,width:i,areaPopup:l,showIcon:o,wrap:s})=>(0,L.jsx)("ul",{className:"nav-item-list",children:(0,L.jsx)(ez.A,{icon:a,disabled:t,active:n,width:i,onClick:()=>{alert(e.toString())},showIcon:o,wrap:s,subNavigation:l&&(0,L.jsxs)(L.Fragment,{children:[(0,L.jsx)(ez.A,{icon:a,showIcon:o,subNavigation:(0,L.jsx)(L.Fragment,{children:(0,L.jsx)(ez.A,{icon:a,showIcon:o,children:(0,L.jsx)("a",{href:"#",children:"Navigation-Item 2"})})}),children:"Also a navigation item with longer label"}),(0,L.jsx)(ez.A,{icon:a,showIcon:o,children:(0,L.jsx)("a",{href:"#",children:"Navigation-Item 1"})})]}),children:l?e:(0,L.jsx)("a",{href:"#",children:e})})}),eY=e=>(0,L.jsx)(er,{title:"DBNavigationItem",isSubComponent:e.isSubComponent,componentName:e.componentName,variants:ei(eJ,eZ,e.slotCode)});var eK=t(57319);let eQ=JSON.parse('[{"name":"Density","examples":[{"name":"functional","density":"functional","style":{"width":"300px"},"props":{"headline":"Headline","icon":"information_circle"}},{"name":"regular (Default)","density":"regular","style":{"width":"300px"},"props":{"headline":"Headline","icon":"information_circle"}},{"name":"expressive","density":"expressive","style":{"width":"300px"},"props":{"headline":"Headline","icon":"information_circle"}}]},{"name":"Variant","examples":[{"name":"(Default) Docked","style":{"width":"300px"},"props":{"variant":"docked","headline":"Headline","icon":"information_circle"}},{"name":"Standalone","style":{"width":"300px"},"props":{"variant":"standalone","headline":"Headline","icon":"information_circle"}},{"name":"Overlay","style":{"width":"300px"},"props":{"variant":"overlay","headline":"Headline","icon":"information_circle"}}]},{"name":"Semantic","examples":[{"name":"(Default) Adaptive","style":{"width":"300px"},"props":{"headline":"Headline"}},{"name":"Neutral","style":{"width":"300px"},"props":{"semantic":"neutral","headline":"Headline"}},{"name":"Critical","style":{"width":"300px"},"props":{"semantic":"critical","headline":"Headline"}},{"name":"Informational","style":{"width":"300px"},"props":{"semantic":"informational","headline":"Headline"}},{"name":"Successful","style":{"width":"300px"},"props":{"semantic":"successful","headline":"Headline"}},{"name":"Warning","style":{"width":"300px"},"props":{"semantic":"warning","headline":"Headline"}}]},{"name":"Closeable","examples":[{"name":"(Default) False","style":{"width":"300px"},"props":{"closeable":false}},{"name":"True","style":{"width":"300px"},"props":{"closeable":true}}]},{"name":"Visual","examples":[{"name":"(Default) Icon","style":{"width":"300px"},"props":{"icon":"information_circle"}},{"name":"Image","style":{"width":"300px"},"props":{"img":true}}]},{"name":"Show Icon","examples":[{"name":"(Default) True","style":{"width":"300px"},"props":{"icon":"information_circle","showIcon":true}},{"name":"False","style":{"width":"300px"},"props":{"icon":"information_circle","showIcon":false}}]},{"name":"Link Variant","examples":[{"name":"(Default) Block","style":{"width":"300px"},"props":{"link":true,"linkVariant":"block"}},{"name":"Inline","style":{"width":"300px"},"props":{"link":true,"linkVariant":"inline"}}]},{"name":"Show Headline","examples":[{"name":"(Default) True","style":{"width":"300px"},"props":{"headline":"Headline","showHeadline":true}},{"name":"False","style":{"width":"300px"},"props":{"headline":"Headline","showHeadline":false}}]},{"name":"Show Timestamp","examples":[{"name":"(Default) False","style":{"width":"300px"},"props":{"variant":"overlay","showTimestamp":false,"timestamp":"10 min ago"}},{"name":"True","style":{"width":"300px"},"props":{"variant":"overlay","showTimestamp":true,"timestamp":"10 min ago"}}]},{"name":"Examples - Variant:Docked","codeFileName":"ContentVariantDocked","examples":[{"name":"Text","style":{"width":"300px"},"props":{"behavior":"permanent"}},{"name":"Text & Icon","style":{"width":"300px"},"props":{"icon":"information_circle","behavior":"permanent"}},{"name":"Text & Preview Image","style":{"width":"300px"},"props":{"img":true,"behavior":"permanent"},"children":[{"name":"img","native":true,"slot":"image","content":"","props":{"src":"/assets/images/placeholder.jpg","alt":""}}]},{"name":"Text & Headline","style":{"width":"300px"},"props":{"headline":"Headline","behavior":"permanent"}},{"name":"Text & Textlink Block","style":{"width":"300px"},"props":{"link":true,"behavior":"permanent"},"children":[{"name":"link","slot":"link","content":"Textlink","props":{"href":"#"}}]},{"name":"Text & Textlink Inline","style":{"width":"300px"},"props":{"link":true,"linkVariant":"inline","behavior":"permanent"},"children":[{"name":"link","slot":"link","content":"Textlink","props":{"href":"#"}}]},{"name":"Text & Headline & Textlink Inline & Closeable","style":{"width":"300px"},"props":{"headline":"Headline","link":true,"linkVariant":"inline","closeable":true},"children":[{"name":"link","slot":"link","content":"Textlink","props":{"href":"#"}}]},{"name":"Text & Icon & Headline & Textlink Inline & Closeable","style":{"width":"300px"},"props":{"icon":"information_circle","headline":"Headline","link":true,"linkVariant":"inline","closeable":true},"children":[{"name":"link","slot":"link","content":"Textlink","props":{"href":"#"}}]}]},{"name":"Examples - Variant:Standalone","codeFileName":"ContentVariantStandalone","examples":[{"name":"Text","style":{"width":"300px"},"props":{"variant":"standalone","behavior":"permanent"}},{"name":"Text & Icon","style":{"width":"300px"},"props":{"icon":"information_circle","variant":"standalone","behavior":"permanent"}},{"name":"Text & Preview Image","style":{"width":"300px"},"props":{"img":true,"variant":"standalone","behavior":"permanent"},"children":[{"name":"img","native":true,"slot":"image","content":"","props":{"src":"/assets/images/placeholder.jpg","alt":""}}]},{"name":"Text & Headline","style":{"width":"300px"},"props":{"headline":"Headline","variant":"standalone","behavior":"permanent"}},{"name":"Text & Textlink Block","style":{"width":"300px"},"props":{"link":true,"variant":"standalone","behavior":"permanent"},"children":[{"name":"link","slot":"link","content":"Textlink","props":{"href":"#"}}]},{"name":"Text & Textlink Inline","style":{"width":"300px"},"props":{"link":true,"linkVariant":"inline","variant":"standalone","behavior":"permanent"},"children":[{"name":"link","slot":"link","content":"Textlink","props":{"href":"#"}}]},{"name":"Text & Headline & Textlink Inline & Closeable","style":{"width":"300px"},"props":{"headline":"Headline","link":true,"linkVariant":"inline","variant":"standalone","closeable":true},"children":[{"name":"link","slot":"link","content":"Textlink","props":{"href":"#"}}]},{"name":"Text & Icon & Headline & Textlink Inline & Closeable","style":{"width":"300px"},"props":{"icon":"information_circle","headline":"Headline","link":true,"linkVariant":"inline","variant":"standalone","closeable":true},"children":[{"name":"link","slot":"link","content":"Textlink","props":{"href":"#"}}]}]},{"name":"Examples - Variant:Overlay","codeFileName":"ContentVariantOverlay","examples":[{"name":"Text","style":{"width":"300px"},"props":{"variant":"overlay","behavior":"permanent"}},{"name":"Text & Icon","style":{"width":"300px"},"props":{"icon":"information_circle","variant":"overlay","behavior":"permanent"}},{"name":"Text & Preview Image","style":{"width":"300px"},"props":{"img":true,"variant":"overlay","behavior":"permanent"},"children":[{"name":"img","native":true,"slot":"image","content":"","props":{"src":"/assets/images/placeholder.jpg","alt":""}}]},{"name":"Text & Headline","style":{"width":"300px"},"props":{"headline":"Headline","variant":"overlay","behavior":"permanent"}},{"name":"Text & Textlink Inline","style":{"width":"300px"},"props":{"link":true,"variant":"overlay","behavior":"permanent","linkVariant":"inline"}},{"name":"Text & Textlink Block","style":{"width":"300px"},"props":{"link":true,"variant":"overlay","behavior":"permanent","linkVariant":"block"},"children":[{"name":"link","slot":"link","content":"Textlink","props":{"href":"#"}}]},{"name":"Text & Textlink Block & Timed","style":{"width":"300px"},"props":{"link":true,"variant":"overlay","behavior":"permanent","linkVariant":"block","showTimestamp":true,"timestamp":"10 min ago"},"children":[{"name":"link","slot":"link","content":"Textlink","props":{"href":"#"}}]},{"name":"Text & Headline & Textlink Inline & Closeable","style":{"width":"300px"},"props":{"headline":"Headline","link":true,"variant":"overlay","closeable":true,"linkVariant":"inline"}},{"name":"Text & Icon & Headline & Textlink Inline & Closeable","style":{"width":"300px"},"props":{"icon":"information_circle","headline":"Headline","link":true,"variant":"overlay","closeable":true,"linkVariant":"inline"}},{"name":"Text & Timed","style":{"width":"300px"},"props":{"variant":"overlay","behavior":"permanent","showTimestamp":true,"timestamp":"10 min ago"}},{"name":"Text & Timed & Closeable","style":{"width":"300px"},"props":{"variant":"overlay","closeable":true,"showTimestamp":true,"timestamp":"10 min ago"}},{"name":"Text & Headline & Timed & Closeable","style":{"width":"300px"},"props":{"headline":"Headline","variant":"overlay","closeable":true,"showTimestamp":true,"timestamp":"10 min ago"}},{"name":"Text & Icon & Headline & Timed & Closeable","style":{"width":"300px"},"props":{"icon":"information_circle","headline":"Headline","variant":"overlay","closeable":true,"showTimestamp":true,"timestamp":"10 min ago"}}]}]'),eX=({semantic:e,icon:a,headline:t,variant:n,children:i,closeable:l,link:o,timestamp:s,linkVariant:c,img:d,showIcon:r,showHeadline:u,showTimestamp:p})=>(0,L.jsx)(eK.A,{semantic:e,icon:a,headline:t,link:o?(0,L.jsx)(H.A,{href:"#",children:"Textlink"}):void 0,image:d?(0,L.jsx)("img",{src:"/core-web/review/1493-erstellung-einer-mvp-breadcrumb-komponente/assets/images/placeholder.jpg",alt:"this is a fancy placeholder"}):void 0,variant:n,closeable:l,linkVariant:c,timestamp:s,showTimestamp:p,onClose:()=>{alert(i.toString())},showIcon:r,showHeadline:u,children:i});var e0=t(70631);let e1=JSON.parse('[{"name":"Density","children":[{"name":"button","slot":"trigger"},{"name":"button","content":"Inside Popover"}],"examples":[{"name":"Functional","density":"functional","props":{"id":"popover-01"}},{"name":"(Default) Regular","density":"regular","props":{"id":"popover-02"}},{"name":"Expressive","density":"expressive","props":{"id":"popover-03"}}]},{"name":"Spacing","children":[{"name":"button","slot":"trigger"},{"name":"button","content":"Inside Popover"}],"examples":[{"name":"(Default) Small","props":{"spacing":"small","id":"popover-04"}},{"name":"Medium","props":{"spacing":"medium","id":"popover-05"}},{"name":"Large","props":{"spacing":"large","id":"popover-055"}},{"name":"None","props":{"spacing":"none","id":"popover-06"}}]},{"name":"Placement","children":[{"name":"button","slot":"trigger"},{"name":"button","content":"Inside Popover"}],"examples":[{"name":"bottom-start","props":{"placement":"bottom-start","id":"popover-07-start"}},{"name":"(Default) bottom","props":{"placement":"bottom","id":"popover-07"}},{"name":"bottom-end","props":{"placement":"bottom-end","id":"popover-07-end"}},{"name":"left-start","props":{"placement":"left-start","id":"popover-09-start"}},{"name":"left","props":{"placement":"left","id":"popover-09"}},{"name":"left-end","props":{"placement":"left-end","id":"popover-09-end"}},{"name":"right-start","props":{"placement":"right-start","id":"popover-10-start"}},{"name":"right","props":{"placement":"right","id":"popover-10"}},{"name":"right-end","props":{"placement":"right-end","id":"popover-10-end"}},{"name":"top-start","props":{"placement":"top-start","id":"popover-08-start"}},{"name":"top","props":{"placement":"top","id":"popover-08"}},{"name":"top-end","props":{"placement":"top-end","id":"popover-08-end"}}]},{"name":"Gap","children":[{"name":"button","slot":"trigger"},{"name":"button","content":"Inside Popover"}],"examples":[{"name":"(Default) False","props":{"gap":false,"id":"popover-11"}},{"name":"True","props":{"gap":true,"id":"popover-12"}}]},{"name":"Animation","children":[{"name":"button","slot":"trigger"},{"name":"button","content":"Inside Popover"}],"examples":[{"name":"(Default) True","props":{"id":"popover-13","animation":true}},{"name":"False","props":{"animation":false,"id":"popover-16"}}]},{"name":"Delay","children":[{"name":"button","slot":"trigger"},{"name":"button","content":"Inside Popover"}],"examples":[{"name":"(Default) None","props":{"id":"popover-133","delay":"none"}},{"name":"Slow","props":{"delay":"slow","id":"popover-14"}},{"name":"Fast","props":{"delay":"fast","id":"popover-15"}}]},{"name":"Width","children":[{"name":"button","slot":"trigger"},{"name":"button","content":"Inside Popover"}],"examples":[{"name":"(Default) Auto","props":{"content":"Max width, lorem ipsum dolor sit amet, consetetur sadipscing","id":"popover-17"}},{"name":"Fixed","props":{"content":"Max width, lorem ipsum dolor sit amet, consetetur sadipscing","width":"fixed","id":"popover-18"}}]}]'),e2=({id:e,children:a,width:t,gap:n,spacing:i,placement:l,delay:o,content:s,animation:c})=>(0,L.jsx)(e0.A,{trigger:(0,L.jsx)(W.A,{children:a}),width:t,gap:n,spacing:i,placement:l,animation:c,delay:o,id:e,children:s??(0,L.jsxs)(L.Fragment,{children:[(0,L.jsxs)("ul",{className:"popover-list",children:[(0,L.jsx)("li",{children:"Popover Custom Item 1"}),(0,L.jsx)("li",{children:"Popover Custom Item 2"})]}),(0,L.jsx)(W.A,{children:"Popover Custom Item 3"})]})});var e3=t(71031);let e4=JSON.parse('[{"name":"Density","role":"radiogroup","examples":[{"name":"Functional","density":"functional","props":{"name":"Density","value":"functional"}},{"name":"(Default) Regular","density":"regular","props":{"name":"Density","value":"regular"}},{"name":"Expressive","density":"expressive","props":{"name":"Density","value":"expressive"}}]},{"name":"Disabled","role":"radiogroup","examples":[{"name":"(Default) False","props":{"name":"Disabled","disabled":false}},{"name":"True","props":{"name":"Disabled","disabled":true}}]},{"name":"Checked","role":"radiogroup","examples":[{"name":"(Default) False","props":{"name":"Checked"}},{"name":"True","props":{"name":"Checked","checked":true}}]},{"name":"Validation","role":"radiogroup","examples":[{"name":"(Default) No validation","props":{"name":"No validation","validation":"no-validation"}},{"name":"Invalid","props":{"name":"invalid","validation":"invalid","invalidMessage":"Invalid Message"}},{"name":"Valid","props":{"name":"valid","validation":"valid","validMessage":"Valid message","checked":true}}]},{"name":"Size","role":"radiogroup","examples":[{"name":"(Default) Medium","props":{"name":"Size"}},{"name":"Small","props":{"name":"Size","size":"small"}}]},{"name":"Required","role":"radiogroup","examples":[{"name":"(Default) False","props":{"name":"Requirement","required":false}},{"name":"True","props":{"name":"Requirement","required":true}}]},{"name":"Show Label","role":"radiogroup","examples":[{"name":"(Default) True","props":{"name":"Content","showLabel":true}},{"name":"False","props":{"name":"Content","showLabel":false}}]},{"name":"Show Required Asterisk","role":"radiogroup","examples":[{"name":"(Default) True","props":{"name":"Asterisk","required":true,"showRequiredAsterisk":true}},{"name":"False","props":{"name":"Asterisk","required":true,"showRequiredAsterisk":false}}]}]'),e5=({label:e,size:a,name:t,checked:n,required:i,children:l,disabled:o,value:s,showLabel:c,validation:d,showRequiredAsterisk:r})=>(0,L.jsxs)(L.Fragment,{children:[(0,L.jsx)(e3.A,{showRequiredAsterisk:r,label:e,size:a,name:t,defaultChecked:(0,R.pW)(n),required:i,disabled:o,showLabel:c,value:s,validation:d,children:l}),void 0!==c&&!c&&(0,L.jsx)(ee.A,{size:"small",semantic:"informational",showIcon:!1,children:l})]});var e8=t(77383);let e7=JSON.parse('[{"name":"Density","examples":[{"name":"Functional","density":"functional","props":{"id":"test-id-123"}},{"name":"(Default) Regular","density":"regular","props":{}},{"name":"Expressive","density":"expressive","props":{}}]},{"name":"Width","examples":[{"name":"(Default) Full","style":{"width":"100%","display":"block"}},{"name":"Small","style":{"width":"100%","display":"block"},"props":{"width":"small"}},{"name":"Medium","style":{"width":"100%","display":"block"},"props":{"width":"medium"}},{"name":"Large","style":{"width":"100%","display":"block"},"props":{"width":"large"}}]},{"name":"Spacing","examples":[{"name":"(Default) Medium","props":{"spacing":"medium"}},{"name":"Large","props":{"spacing":"large"}},{"name":"Small","props":{"spacing":"small"}},{"name":"None","props":{"spacing":"none"}}]}]'),e9=({width:e,spacing:a,children:t,id:n})=>(0,L.jsxs)(e8.A,{className:"db-color-informational db-bg-color-basic-level-2  section-card-container",spacing:a,width:e,id:n,children:[(0,L.jsx)(_.A,{children:t}),(0,L.jsx)(_.A,{children:t}),(0,L.jsx)(_.A,{children:t}),(0,L.jsx)(_.A,{children:t})]});var e6=t(24845);let ae=JSON.parse('[{"name":"Density","examples":[{"name":"Functional","density":"functional","style":{"width":"300px"},"props":{"options":[{"value":"Option 1"},{"value":"Option 2"},{"value":"Option 3"},{"value":"Option 4"},{"value":"Option 5"}],"label":"Label","placeholder":"Functional"}},{"name":"(Default) Regular","density":"regular","style":{"width":"300px"},"props":{"options":[{"value":"Option 1"},{"value":"Option 2"},{"value":"Option 3"},{"value":"Option 4"},{"value":"Option 5"}],"label":"Label","placeholder":"(Default) Regular"}},{"name":"Expressive","density":"expressive","style":{"width":"300px"},"props":{"options":[{"value":"Option 1"},{"value":"Option 2"},{"value":"Option 3"},{"value":"Option 4"},{"value":"Option 5"}],"label":"Label","placeholder":"Expressive"}}]},{"name":"Variant","examples":[{"name":"(Default) Above","style":{"width":"300px"},"props":{"options":[{"value":"Option 1"},{"value":"Option 2"},{"value":"Option 3"},{"value":"Option 4"},{"value":"Option 5"}],"label":"Label","placeholder":"(Default) Above"}},{"name":"Floating Label","style":{"width":"300px"},"props":{"options":[{"value":"Floating","selected":true},{"value":"Option 2"}],"label":"Label","variant":"floating","value":"Floating","placeholder":"Floating"}}]},{"name":"Show Label","examples":[{"name":"(Default) True","style":{"width":"300px"},"props":{"options":[{"value":"Option 1"},{"value":"Option 2"},{"value":"Option 3"},{"value":"Option 4"},{"value":"Option 5"}],"label":"Label","showLabel":true,"placeholder":"(Default) True"}},{"name":"False","style":{"width":"300px"},"props":{"options":[{"value":"Option 1"},{"value":"Option 2"},{"value":"Option 3"},{"value":"Option 4"},{"value":"Option 5"}],"label":"Label","showLabel":false,"placeholder":"False"}}]},{"name":"Show Message","examples":[{"name":"(Default) False","style":{"width":"300px"},"props":{"options":[{"value":"Option 1"},{"value":"Option 2"},{"value":"Option 3"},{"value":"Option 4"},{"value":"Option 5"}],"label":"Label","message":"Message","showMessage":false,"placeholder":"(Default) False"}},{"name":"True","style":{"width":"300px"},"props":{"options":[{"value":"Option 1"},{"value":"Option 2"},{"value":"Option 3"},{"value":"Option 4"},{"value":"Option 5"}],"label":"Label","message":"Message","showMessage":true,"placeholder":"True"}}]},{"name":"State","examples":[{"name":"(Default) Empty","style":{"width":"300px"},"props":{"options":[{"value":"Option 1"},{"value":"Option 2"},{"value":"Option 3"},{"value":"Option 4"},{"value":"Option 5"}],"label":"Label","placeholder":"(Default) Empty"}},{"name":"Filled","style":{"width":"300px"},"props":{"options":[{"value":"Filled","selected":true},{"value":"Option 2"}],"label":"Label","value":"Filled","placeholder":"Filled"}}]},{"name":"Validation","examples":[{"name":"(Default) No validation","style":{"width":"300px"},"props":{"options":[{"value":"Option 1"},{"value":"Option 2"},{"value":"Option 3"},{"value":"Option 4"},{"value":"Option 5"}],"label":"Label","validation":"no-validation","placeholder":"(Default) No validation"}},{"name":"Invalid","style":{"width":"300px"},"props":{"options":[{"value":"Option 1"},{"value":"Option 2"},{"value":"Option 3"},{"value":"Option 4"},{"value":"Option 5"}],"label":"Label","validation":"invalid","invalidMessage":"Invalid Message","placeholder":"Invalid"}},{"name":"Valid","style":{"width":"300px"},"props":{"options":[{"value":"Valid","selected":true},{"value":"Option 2"}],"label":"Label","validation":"valid","validMessage":"Valid message","placeholder":"Valid"}}]},{"name":"Disabled","examples":[{"name":"(Default) False","style":{"width":"300px"},"props":{"options":[{"value":"Option 1"},{"value":"Option 2"},{"value":"Option 3"},{"value":"Option 4"},{"value":"Option 5"}],"label":"Label","disabled":false,"placeholder":"(Default) False"}},{"name":"True","style":{"width":"300px"},"props":{"options":[{"value":"Option 1"},{"value":"Option 2"},{"value":"Option 3"},{"value":"Option 4"},{"value":"Option 5"}],"label":"Label","disabled":true,"placeholder":"True"}}]},{"name":"Content","examples":[{"name":"(Default) Text","style":{"width":"300px"},"props":{"options":[{"value":"Option 1"},{"value":"Option 2"},{"value":"Option 3"},{"value":"Option 4"},{"value":"Option 5"}],"label":"Label","placeholder":"(Default) Text"}},{"name":"Text - Leading Icon","style":{"width":"300px"},"props":{"options":[{"value":"Option 1"},{"value":"Option 2"},{"value":"Option 3"},{"value":"Option 4"},{"value":"Option 5"}],"label":"Label","icon":"x_placeholder","placeholder":"Text - Leading Icon"}}]},{"name":"Required","examples":[{"name":"(Default) False","style":{"width":"300px"},"props":{"options":[{"value":"Option 1"},{"value":"Option 2"},{"value":"Option 3"},{"value":"Option 4"},{"value":"Option 5"}],"label":"Label","required":false,"placeholder":"(Default) False"}},{"name":"True","style":{"width":"300px"},"props":{"options":[{"value":"Option 1"},{"value":"Option 2"},{"value":"Option 3"},{"value":"Option 4"},{"value":"Option 5"}],"label":"Label","required":true,"placeholder":"True"}}]},{"name":"Show Required Asterisk","examples":[{"name":"(Default) True","style":{"width":"300px"},"props":{"options":[{"value":"Option 1"},{"value":"Option 2"},{"value":"Option 3"},{"value":"Option 4"},{"value":"Option 5"}],"label":"Label","required":true,"showRequiredAsterisk":true,"placeholder":"(Default) True"}},{"name":"False","style":{"width":"300px"},"props":{"options":[{"value":"Option 1"},{"value":"Option 2"},{"value":"Option 3"},{"value":"Option 4"},{"value":"Option 5"}],"label":"Label","required":true,"showRequiredAsterisk":false,"placeholder":"False"}}]},{"name":"Option Groups","examples":[{"name":"Using optgroups","style":{"width":"300px"},"props":{"options":[{"label":"Group 1","options":[{"value":"Option 1"},{"value":"Option 2"}]},{"label":"Group 2","options":[{"value":"Option 3"},{"value":"Option 4"}]}],"label":"Label","placeholder":"Using optgroups"}},{"name":"Mixed options and groups","style":{"width":"300px"},"props":{"options":[{"value":"Single Option"},{"label":"Grouped Options","options":[{"value":"Group Option 1"},{"value":"Group Option 2"}]},{"value":"Another Single Option"}],"label":"Label","placeholder":"Mixed options and groups"}}]},{"name":"Examples Floating Label","examples":[{"name":"(Default) Empty","style":{"width":"300px"},"props":{"options":[{"value":"Option 1"},{"value":"Option 2"},{"value":"Option 3"},{"value":"Option 4"},{"value":"Option 5"}],"label":"Label","variant":"floating","placeholder":"(Default) Empty"}},{"name":"Filled","style":{"width":"300px"},"props":{"options":[{"value":"Filled","selected":true},{"value":"Option 2"}],"label":"Label","value":"Filled","variant":"floating","placeholder":"Filled"}},{"name":"Disabled","style":{"width":"300px"},"props":{"options":[{"value":"Disabled","selected":true},{"value":"Option 2"}],"label":"Label","disabled":true,"variant":"floating","value":"Disabled","placeholder":"Disabled"}},{"name":"Invalid","style":{"width":"300px"},"props":{"options":[{"value":"Option 1"},{"value":"Option 2"},{"value":"Option 3"},{"value":"Option 4"},{"value":"Option 5"}],"label":"Label","placeholder":"Invalid","variant":"floating","validation":"invalid","invalidMessage":"Invalid Message"}}]}]'),aa=({placeholder:e,label:a,options:t,icon:n,message:i,disabled:l,value:o,required:s,variant:c,showLabel:d,showMessage:r,invalidMessage:u,validMessage:p,validation:h,showRequiredAsterisk:b})=>{let[x,v]=(0,S.useState)(o);return(0,L.jsx)(e6.A,{label:a,placeholder:e,options:t,disabled:l,variant:c,showLabel:d,icon:n,value:x,showRequiredAsterisk:b,onChange:e=>{v(e.target.value)},message:i,required:s,showMessage:r,invalidMessage:u,validMessage:p,validation:h})};var at=t(84471);let an=JSON.parse('[{"name":"Density","children":[{"name":"span","content":"Content 1","native":true},{"name":"span","content":"Content 2","native":true},{"name":"span","content":"Content 3","native":true}],"examples":[{"name":"Functional","density":"functional","props":{},"style":{"width":"200px"}},{"name":"(Default) Regular","density":"regular","props":{},"style":{"width":"200px"}},{"name":"Expressive","density":"expressive","props":{},"style":{"width":"200px"}}]},{"name":"Variant","examples":[{"name":"(Default) Simple","props":{},"style":{"width":"200px"},"children":[{"name":"span","content":"Content 1","native":true},{"name":"span","content":"Content 2","native":true},{"name":"span","content":"Content 3","native":true}]},{"name":"Divider","props":{"variant":"divider"},"style":{"width":"200px"},"children":[{"name":"span","content":"Content 1","native":true},{"name":"divider","content":""},{"name":"span","content":"Content 2","native":true},{"name":"divider","content":""},{"name":"span","content":"Content 3","native":true}]}]},{"name":"Gap","children":[{"name":"span","content":"Content 1","native":true},{"name":"span","content":"Content 2","native":true},{"name":"span","content":"Content 3","native":true}],"examples":[{"name":"none","props":{"gap":"none"},"style":{"width":"200px"}},{"name":"3x-small","props":{"gap":"3x-small"},"style":{"width":"200px"}},{"name":"2x-small","props":{"gap":"2x-small"},"style":{"width":"200px"}},{"name":"x-small","props":{"gap":"x-small"},"style":{"width":"200px"}},{"name":"(Default) small","props":{"gap":"small"},"style":{"width":"200px"}},{"name":"medium","props":{"gap":"medium"},"style":{"width":"200px"}},{"name":"large","props":{"gap":"large"},"style":{"width":"200px"}},{"name":"x-large","props":{"gap":"x-large"},"style":{"width":"200px"}},{"name":"2x-large","props":{"gap":"2x-large"},"style":{"width":"200px"}},{"name":"3x-large","props":{"gap":"3x-large"},"style":{"width":"200px"}}]},{"name":"Direction","children":[{"name":"span","content":"Content 1","native":true},{"name":"span","content":"Content 2","native":true},{"name":"span","content":"Content 3","native":true}],"examples":[{"name":"(Default) Column","props":{},"style":{"width":"200px"}},{"name":"Row","style":{"height":"100px"},"props":{"direction":"row"}}]},{"name":"Wrap","children":[{"name":"span","content":"Content 1","native":true},{"name":"span","content":"Content 2","native":true},{"name":"span","content":"Content 3","native":true}],"examples":[{"name":"(Default) No Wrap: Column","style":{"width":"160px","height":"88px"},"props":{}},{"name":"No Wrap: Row","style":{"width":"160px","height":"88px"},"props":{"direction":"row"}},{"name":"Wrap: Column","style":{"width":"160px","height":"120px"},"props":{"wrap":true}},{"name":"Wrap: Row","style":{"width":"180px","height":"100px"},"props":{"direction":"row","wrap":true}}]},{"name":"Alignment Column","children":[{"name":"span","content":"Content 1","native":true},{"name":"span","content":"Content 2","native":true},{"name":"span","content":"Content 3","native":true}],"examples":[{"name":"(Default) Stretch","style":{"width":"200px"},"props":{"alignment":"stretch"}},{"name":"Start","style":{"width":"200px"},"props":{"alignment":"start"}},{"name":"Center","style":{"width":"200px"},"props":{"alignment":"center"}},{"name":"End","style":{"width":"200px"},"props":{"alignment":"end"}}]},{"name":"Alignment Row","children":[{"name":"span","content":"Content 1","native":true},{"name":"span","content":"Content 2","native":true},{"name":"span","content":"Content 3","native":true}],"examples":[{"name":"(Default) Stretch","style":{"height":"100px"},"props":{"alignment":"stretch","direction":"row"}},{"name":"Start","style":{"height":"100px"},"props":{"alignment":"start","direction":"row"}},{"name":"Center","style":{"height":"100px"},"props":{"alignment":"center","direction":"row"}},{"name":"End","style":{"height":"100px"},"props":{"alignment":"end","direction":"row"}}]},{"name":"Justify Content Column","children":[{"name":"span","content":"Content 1","native":true},{"name":"span","content":"Content 2","native":true},{"name":"span","content":"Content 3","native":true}],"examples":[{"name":"(Default) Start","style":{"width":"200px","height":"200px"},"props":{"justifyContent":"start"}},{"name":"Center","style":{"width":"200px","height":"200px"},"props":{"justifyContent":"center"}},{"name":"End","style":{"width":"200px","height":"200px"},"props":{"justifyContent":"end"}},{"name":"Space-Between","style":{"width":"200px","height":"200px"},"props":{"justifyContent":"space-between"}}]},{"name":"Justify Content Row","children":[{"name":"span","content":"Content 1","native":true},{"name":"span","content":"Content 2","native":true},{"name":"span","content":"Content 3","native":true}],"examples":[{"name":"(Default) Start","style":{"width":"300px"},"props":{"justifyContent":"start","direction":"row"}},{"name":"Center","style":{"width":"300px"},"props":{"justifyContent":"center","direction":"row"}},{"name":"End","style":{"width":"300px"},"props":{"justifyContent":"end","direction":"row"}},{"name":"Space-Between","style":{"width":"300px"},"props":{"justifyContent":"space-between","direction":"row"}}]}]'),ai=({children:e,gap:a,alignment:t,wrap:n,variant:i,direction:l,justifyContent:o})=>(0,L.jsxs)(at.A,{children:[(0,L.jsx)(ee.A,{size:"small",icon:"none",semantic:"informational",children:e}),(0,L.jsxs)(at.A,{className:o??t?"stack-container stack-show-alignment":"stack-container",gap:a,alignment:t,wrap:n,variant:i,direction:l,justifyContent:o,children:[(0,L.jsx)("span",{className:"dummy-component",children:(0,L.jsx)("a",{href:"#",children:"Content 1"})}),"divider"===i&&(0,L.jsx)(q.A,{}),(0,L.jsx)("span",{className:"dummy-component",children:"Content 2"}),"divider"===i&&(0,L.jsx)(q.A,{}),(0,L.jsx)("span",{className:"dummy-component",children:"Content 3"})]})]});var al=t(31509);let ao=JSON.parse('[{"name":"Density","examples":[{"name":"functional","density":"functional","props":{}},{"name":"regular (Default)","density":"regular","props":{}},{"name":"expressive","density":"expressive","props":{}}]},{"name":"Checked","examples":[{"name":"(Default) False","props":{"checked":false}},{"name":"True","props":{"checked":true}}]},{"name":"Disabled","examples":[{"name":"(Default) False","props":{"disabled":false}},{"name":"True","props":{"disabled":true}}]},{"name":"Visual Aid","examples":[{"name":"(Default) False (Unchecked)","props":{"visualAid":false}},{"name":"(Default) False (Checked)","props":{"visualAid":false,"checked":true}},{"name":"True (Unchecked)","props":{"visualAid":true,"iconLeading":"moon","iconTrailing":"sun"}},{"name":"True (Checked)","props":{"visualAid":true,"checked":true,"iconLeading":"moon","iconTrailing":"sun"}}]},{"name":"Size","examples":[{"name":"(Default) Medium"},{"name":"Small","props":{"size":"small"}}]},{"name":"Variant","examples":[{"name":"(Default) Trailing","props":{"label":"(Default) Trailing"}},{"name":"Leading","props":{"label":"Leading","variant":"leading"}}]},{"name":"Show Label","examples":[{"name":"(Default) True","props":{"showLabel":true}},{"name":"False","props":{"showLabel":false}}]},{"name":"Required","examples":[{"name":"(Default) False","props":{"required":false}},{"name":"True","props":{"required":true}}]},{"name":"Show Required Asterisk","examples":[{"name":"(Default) True","props":{"required":true,"showRequiredAsterisk":true}},{"name":"False","props":{"required":true,"showRequiredAsterisk":false}}]},{"name":"Validation","examples":[{"name":"(Default) No validation","props":{}},{"name":"Invalid","props":{"validation":"invalid","invalidMessage":"Invalid Message"}},{"name":"Valid","props":{"validation":"valid","validMessage":"Valid message","checked":true}}]},{"name":"Show Message","examples":[{"name":"(Default) False","props":{}},{"name":"True","props":{"showMessage":true,"message":"Message"}}]},{"name":"Examples","examples":[{"name":"Custom Icons","props":{"visualAid":true,"icon":"cross_circle","iconTrailing":"clock"}},{"name":"Required + Visual Aid","props":{"visualAid":true,"required":true,"validMessage":"Valid"}}]}]'),as=({children:e,checked:a,visualAid:t,disabled:n,showLabel:i,size:l,icon:o,iconTrailing:s,iconLeading:c,required:d,showRequiredAsterisk:r,validation:u,invalidMessage:p,validMessage:h,message:b,messageIcon:x,showMessage:v,variant:m})=>(0,L.jsxs)(L.Fragment,{children:[(0,L.jsx)(al.A,{visualAid:t,defaultChecked:(0,R.pW)(a),disabled:n,showRequiredAsterisk:r,showLabel:i,variant:m,size:l,icon:o,iconTrailing:s,iconLeading:c,required:d,validation:u,invalidMessage:p,validMessage:h,message:b,messageIcon:x,showMessage:v,children:e}),void 0!==i&&!i&&(0,L.jsx)(ee.A,{semantic:"informational",icon:"none",children:e})]});var ac=t(65269),ad=t(99687);let ar=JSON.parse('[{"name":"Density","examples":[{"name":"Functional","density":"functional","className":"tab-hide-article","props":{"label":"functional"}},{"name":"(Default) Regular","density":"regular","className":"tab-hide-article","props":{"label":"(Default) Regular"}},{"name":"Expressive","density":"expressive","className":"tab-hide-article","props":{"label":"expressive"}}]},{"name":"States","examples":[{"name":"(Default) Enabled","props":{"label":"(Default) Enabled"}},{"name":"active","props":{"label":"active","active":true}},{"name":"disabled","props":{"label":"active","disabled":true}}]},{"name":"Show Icon Leading","examples":[{"name":"(Default) False","props":{"label":"False","icon":"x_placeholder","showIcon":false}},{"name":"True","props":{"label":"True","icon":"x_placeholder","showIcon":true}}]},{"name":"Show Icon Trailing","examples":[{"name":"(Default) False","props":{"label":"False","icon":"x_placeholder","showIcon":false,"iconTrailing":"x_placeholder","showIconTrailing":false}},{"name":"True","props":{"label":"True","icon":"x_placeholder","showIcon":true,"iconTrailing":"x_placeholder","showIconTrailing":true}}]},{"name":"Behavior","examples":[{"name":"(Default) Auto Width","props":{"label":"(Default) Auto Width"}},{"name":"Width full","style":{"width":"500px"},"props":{"label":"Width full","width":"full"}}]},{"name":"Content Alignment Full Width","examples":[{"name":"Left","style":{"width":"500px"},"props":{"label":"Left","width":"full"}},{"name":"Centered","style":{"width":"500px"},"props":{"label":"Centered","width":"full","alignment":"center"}}]}]'),au=({children:e,active:a,noText:t,icon:n,iconTrailing:i,showIconTrailing:l,showIcon:o,disabled:s})=>(0,L.jsx)(ac.A,{children:(0,L.jsx)(ad.A,{active:a,noText:t,icon:n,iconTrailing:i,showIcon:o,showIconTrailing:l,disabled:s,children:e})}),ap=e=>(0,L.jsx)(er,{title:"DBTabItem",isSubComponent:e.isSubComponent,componentName:e.componentName,variants:ei(ar,au,e.slotCode)});var ah=t(4913),ab=t(45023);let ax=JSON.parse('[{"name":"Density","children":[{"name":"tab-list","children":[{"name":"tab-item","content":"Tab 1"},{"name":"tab-item","content":"Tab 2"},{"name":"tab-item","content":"Tab 3"}]},{"name":"tab-panel","content":"Tab Panel 1"},{"name":"tab-panel","content":"Tab Panel 2"},{"name":"tab-panel","content":"Tab Panel 3"}],"examples":[{"name":"Functional","density":"functional","props":{}},{"name":"(Default) Regular","density":"regular","props":{}},{"name":"Expressive","density":"expressive","props":{}}]},{"name":"Orientation","children":[{"name":"tab-list","children":[{"name":"tab-item","content":"Tab 1"},{"name":"tab-item","content":"Tab 2"},{"name":"tab-item","content":"Tab 3"}]},{"name":"tab-panel","content":"Tab Panel 1"},{"name":"tab-panel","content":"Tab Panel 2"},{"name":"tab-panel","content":"Tab Panel 3"}],"examples":[{"name":"horizontal","props":{"orientation":"horizontal"}},{"name":"vertical","props":{"orientation":"vertical"}}]},{"name":"Width","children":[{"name":"tab-list","children":[{"name":"tab-item","content":"Tab 1"},{"name":"tab-item","content":"Tab 2"},{"name":"tab-item","content":"Tab 3"}]},{"name":"tab-panel","content":"Tab Panel 1"},{"name":"tab-panel","content":"Tab Panel 2"},{"name":"tab-panel","content":"Tab Panel 3"}],"examples":[{"name":"auto","style":{"width":"100%"},"props":{"width":"auto"}},{"name":"full - alignment: start","style":{"width":"100%"},"props":{"width":"full"}},{"name":"full - alignment: center","style":{"width":"100%"},"props":{"width":"full","alignment":"center"}}]},{"name":"Overflow","children":[{"name":"tab-list","children":[{"name":"tab-item","content":"Tab 1"},{"name":"tab-item","content":"Tab 2"},{"name":"tab-item","content":"Tab 3"}]},{"name":"tab-panel","content":"Tab Panel 1"},{"name":"tab-panel","content":"Tab Panel 2"},{"name":"tab-panel","content":"Tab Panel 3"}],"examples":[{"name":"no overflow","style":{"width":"300px"},"props":{"width":"auto"}},{"name":"with overflow - behavior: arrows","style":{"width":"300px"},"props":{"overflow":true,"behavior":"arrows"}},{"name":"with overflow - behavior: scrollbar","style":{"width":"300px"},"props":{"overflow":true}}]},{"name":"Examples","children":[{"name":"tab-list","children":[{"name":"tab-item","content":"Tab 1"},{"name":"tab-item","content":"Tab 2"},{"name":"tab-item","content":"Tab 3"}]},{"name":"tab-panel","content":"Tab Panel 1"},{"name":"tab-panel","content":"Tab Panel 2"},{"name":"tab-panel","content":"Tab Panel 3"}],"examples":[{"name":"2nd tab selected","props":{"initialSelectedIndex":1}},{"name":"nothing selected","props":{"initialSelectedMode":"manually"}}]}]'),av=({children:e,orientation:a,width:t,alignment:n,overflow:i,behavior:l,initialSelectedMode:o,initialSelectedIndex:s})=>(0,L.jsxs)("div",{className:"w-full",children:[(0,L.jsxs)(ee.A,{icon:"none",size:"small",semantic:"informational",children:[e,":"]}),(0,L.jsxs)(ah.A,{orientation:a,width:t,alignment:n,behavior:l,initialSelectedIndex:s,initialSelectedMode:o,arrowScrollDistance:75,children:[(0,L.jsxs)(ac.A,{children:[(0,L.jsx)(ad.A,{children:"Test 1"}),(0,L.jsx)(ad.A,{children:"Test 2"}),(0,L.jsx)(ad.A,{children:"Test 3"}),i&&(0,L.jsxs)(L.Fragment,{children:[(0,L.jsx)(ad.A,{children:"Test 4"}),(0,L.jsx)(ad.A,{children:"Test 5"})]})]}),(0,L.jsx)(ab.A,{children:"Tab Panel 1"}),(0,L.jsx)(ab.A,{children:"Tab Panel 2"}),(0,L.jsx)(ab.A,{children:"Tab Panel 3"}),i&&(0,L.jsxs)(L.Fragment,{children:[(0,L.jsx)(ab.A,{children:"Tab Panel 4"}),(0,L.jsx)(ab.A,{children:"Tab Panel 5"})]})]})]});var am=t(78147);let ag=JSON.parse('[{"name":"Density","examples":[{"name":"Functional","density":"functional","props":{}},{"name":"(Default) Regular","density":"regular","props":{}},{"name":"Expressive","density":"expressive","props":{}}]},{"name":"Emphasis","examples":[{"name":"(Default) Weak"},{"name":"Strong","props":{"emphasis":"strong"}}]},{"name":"Semantic","examples":[{"name":"(Default) Adaptive"},{"name":"Critical","props":{"semantic":"critical"}},{"name":"Informational","props":{"semantic":"informational"}},{"name":"Neutral","props":{"semantic":"neutral"}},{"name":"Successful","props":{"semantic":"successful"}},{"name":"Warning","props":{"semantic":"warning"}},{"name":"Line Break","props":{"lineBreak":true}},{"name":"Line Break","props":{"lineBreak":true}},{"name":"Adaptive Strong","props":{"emphasis":"strong"}},{"name":"Critical Strong","props":{"semantic":"critical","emphasis":"strong"}},{"name":"Informational Strong","props":{"semantic":"informational","emphasis":"strong"}},{"name":"Neutral Strong","props":{"semantic":"neutral","emphasis":"strong"}},{"name":"Successful Strong","props":{"semantic":"successful","emphasis":"strong"}},{"name":"Warning Strong","props":{"semantic":"warning","emphasis":"strong"}}]},{"name":"Behavior","role":"group","examples":[{"name":"(Default) Static"},{"name":"Removable","props":{"behavior":"removable"}},{"name":"Line Break","props":{"lineBreak":true}},{"name":"Interactive (Button)","props":{"component":"button"},"children":[{"name":"button","native":true,"content":"Interactive Button"}]},{"name":"Interactive (Link)","props":{"component":"link"},"children":[{"name":"a","native":true,"content":"Interactive Link","props":{"href":"#"}}]},{"name":"Line Break","props":{"lineBreak":true}},{"name":"Interactive (Checkbox)","props":{"component":"checkbox"},"children":[{"name":"label","native":true,"content":"Interactive Checkbox","props":{"for":"checkbox01"},"children":[{"name":"input","native":true,"props":{"id":"checkbox01","type":"checkbox"}}]}]},{"name":"Interactive (Radio)","props":{"component":"radio","identifier":"radio01"},"children":[{"name":"label","native":true,"content":"Interactive Radio 1","props":{"for":"radio01"},"children":[{"name":"input","native":true,"props":{"name":"radio01","id":"radio01","type":"radio"}}]}]},{"name":"Interactive Radio 2","props":{"component":"radio","identifier":"radio01"},"children":[{"name":"label","native":true,"content":"Interactive Radio 2","props":{"for":"radio02"},"children":[{"name":"input","native":true,"props":{"name":"radio02","id":"radio02","type":"radio"}}]}]}]},{"name":"Checked","role":"group","examples":[{"name":"(Default) False","props":{"component":"checkbox"},"children":[{"name":"label","native":true,"content":"Interactive Checkbox","props":{"for":"checkbox02"},"children":[{"name":"input","native":true,"props":{"id":"checkbox02","type":"checkbox"}}]}]},{"name":"True","props":{"component":"checkbox","checked":true},"children":[{"name":"label","native":true,"content":"Interactive Checkbox","props":{"for":"checkbox03"},"children":[{"name":"input","native":true,"props":{"checked":true,"id":"checkbox03","type":"checkbox"}}]}]}]},{"name":"Disabled","role":"group","examples":[{"name":"(Default) False","props":{"component":"checkbox"},"children":[{"name":"label","native":true,"content":"Interactive Checkbox","props":{"for":"checkbox02"},"children":[{"name":"input","native":true,"props":{"id":"checkbox02","type":"checkbox"}}]}]},{"name":"True","props":{"component":"checkbox","disabled":true},"children":[{"name":"label","native":true,"content":"Interactive Checkbox","props":{"for":"checkbox04"},"children":[{"name":"input","native":true,"props":{"checked":true,"disabled":true,"id":"checkbox04","type":"checkbox"}}]}]}]},{"name":"Show Icon","examples":[{"name":"(Default) False","props":{"icon":"x_placeholder","showIcon":false}},{"name":"True","props":{"icon":"x_placeholder","showIcon":true}}]},{"name":"No Text","examples":[{"name":"(Default) False","props":{"icon":"x_placeholder"}},{"name":"True","props":{"icon":"x_placeholder","noText":true}}]},{"name":"Show Slot","examples":[{"name":"(Default) False"},{"name":"True","props":{"icon":"x_placeholder","content":"true"}}]},{"name":"Show Check State","examples":[{"name":"(Default) True","props":{"component":"checkbox","showCheckState":true},"children":[{"name":"label","native":true,"content":"Interactive Checkbox","props":{"for":"checkbox099"},"children":[{"name":"input","native":true,"id":"checkbox099","type":"checkbox"}]}]},{"name":"False","props":{"component":"checkbox","showCheckState":false},"children":[{"name":"label","native":true,"content":"Interactive Checkbox","props":{"for":"checkbox099"},"children":[{"name":"input","native":true,"id":"checkbox099","type":"checkbox"}]}]}]},{"name":"Overflow","examples":[{"name":"(Default) False"},{"name":"True - lorem ipsum dolor","props":{"overflow":true}}]},{"name":"Example Strong","role":"group","examples":[{"name":"Interactive Strong Button with Icon","props":{"component":"button","emphasis":"strong","icon":"x_placeholder","behavior":"removable"},"children":[{"name":"button","native":true,"content":"Interactive Button"}]},{"name":"Interactive Strong Link with Icon","props":{"component":"link","emphasis":"strong","icon":"x_placeholder"},"children":[{"name":"a","native":true,"content":"Interactive Link","props":{"href":"#"}}]},{"name":"Interactive Strong Checkbox with Icon","props":{"component":"checkbox","emphasis":"strong","icon":"x_placeholder"},"children":[{"name":"label","native":true,"content":"Interactive Checkbox","props":{"for":"checkbox05"},"children":[{"name":"input","native":true,"id":"checkbox05","type":"checkbox"}]}]},{"name":"Interactive Strong Radio 1 with Icon","props":{"component":"radio","emphasis":"strong","icon":"x_placeholder","identifier":"radio03"},"children":[{"name":"label","native":true,"content":"Interactive Radio 3","props":{"for":"radio03"},"children":[{"name":"input","native":true,"props":{"name":"radio03","id":"radio03","type":"radio"}}]}]},{"name":"Interactive Strong Radio 2 with Icon","props":{"component":"radio","emphasis":"strong","icon":"x_placeholder","identifier":"radio03"},"children":[{"name":"label","native":true,"content":"Interactive Radio 4","props":{"for":"radio04"},"children":[{"name":"input","native":true,"props":{"name":"radio03","id":"radio04","type":"radio"}}]}]}]}]'),aj=({semantic:e,disabled:a,children:t,icon:n,overflow:i,noText:l,behavior:o,emphasis:s,removeButton:c,checked:d,component:r,identifier:u,content:p,showCheckState:h,lineBreak:b,showIcon:x})=>{let[v,m]=(0,S.useState)(d??!1);return b?(0,L.jsx)("i",{className:"line-break"}):(0,L.jsxs)(am.A,{semantic:e,icon:n,noText:l,behavior:o,emphasis:s,overflow:i,removeButton:c,showCheckState:h,showIcon:x,content:p?(0,L.jsx)("div",{className:"default-content-slot",children:"Swap Slot"}):void 0,onRemove:()=>{alert(t.toString())},children:["button"===r&&(0,L.jsx)("button",{children:t}),"link"===r&&(0,L.jsx)("a",{href:"#",children:t}),"checkbox"===r&&(0,L.jsxs)("label",{children:[(0,L.jsx)("input",{type:"checkbox",checked:v,disabled:(0,R.pW)(a),onChange:e=>{m(e.target.checked)}}),t]}),"radio"===r&&(0,L.jsxs)("label",{children:[(0,L.jsx)("input",{type:"radio",checked:d,name:u}),t]}),!r&&!i&&(0,L.jsx)(L.Fragment,{children:t}),!r&&i&&(0,L.jsx)("span",{children:t})]})};var aD=t(14529);let aB=JSON.parse('[{"name":"Density","examples":[{"name":"Functional","density":"functional","props":{"label":"Label"}},{"name":"(Default) Regular","density":"regular","props":{"label":"Label"}},{"name":"Expressive","density":"expressive","props":{"label":"Label"}}]},{"name":"Variant","examples":[{"name":"(Default) Above","props":{"label":"Label"}},{"name":"Floating","props":{"label":"Label","variant":"floating","value":"Floating Label"}}]},{"name":"Show Label","examples":[{"name":"(Default) True","props":{"label":"Label","showLabel":true}},{"name":"False","props":{"label":"Label","showLabel":false}}]},{"name":"Show Message","examples":[{"name":"(Default) False","props":{"label":"Label","showMessage":false}},{"name":"true","props":{"label":"Label","message":"Message","showMessage":true}}]},{"name":"State","examples":[{"name":"(Default) Empty","props":{"label":"Label"}},{"name":"Filled","props":{"label":"Label","value":"Filled"}}]},{"name":"Disabled","examples":[{"name":"(Default) False","props":{"label":"Label","disabled":false}},{"name":"True","props":{"label":"Label","disabled":true}}]},{"name":"Readonly","examples":[{"name":"(Default) False","props":{"label":"Label","value":"(Default) False","readOnly":false}},{"name":"True","props":{"label":"Label","value":"True","readOnly":true}}]},{"name":"Validation","examples":[{"name":"(Default) No validation","props":{"label":"Label","validation":"no-validation"}},{"name":"Invalid","props":{"label":"Label","validation":"invalid","invalidMessage":"Invalid Message"}},{"name":"Valid","props":{"label":"Label","validation":"valid","validMessage":"Valid message"}}]},{"name":"Required","examples":[{"name":"(Default) False","props":{"label":"Label","required":false}},{"name":"True","props":{"label":"Label","required":true}}]},{"name":"Show Required Asterisk","examples":[{"name":"(Default) True","props":{"label":"Label","required":true,"showRequiredAsterisk":true}},{"name":"False","props":{"label":"Label","required":true,"showRequiredAsterisk":false}}]},{"name":"Rows","examples":[{"name":"(Default) 4 Rows","style":{"width":"328px"},"props":{"label":"(Default) 4 Rows","value":"Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua."}},{"name":"Custom","style":{"width":"328px"},"props":{"label":"Custom Example 8 Rows","rows":8,"value":"Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua."}}]},{"name":"Show Resizer","examples":[{"name":"(Default) True","props":{"label":"Label","showResizer":true}},{"name":"False","props":{"label":"Label","showResizer":false}}]},{"name":"Field Sizing","examples":[{"name":"(Default) Fixed","style":{"width":"300px"},"props":{"label":"Label","fieldSizing":"fixed"}},{"name":"Content","style":{"width":"300px"},"props":{"label":"Label","fieldSizing":"content"}}]},{"name":"Examples Floating Label","examples":[{"name":"(Default) Empty","props":{"label":"Label","variant":"floating"}},{"name":"Filled","props":{"label":"Label","value":"Filled","variant":"floating"}},{"name":"Disabled","props":{"label":"Label","disabled":true,"variant":"floating"}},{"name":"Readonly - Filled","props":{"label":"Label","value":"Readonly - Filled","readOnly":true,"variant":"floating"}}]}]'),af=({cols:e,disabled:a,message:t,label:n,placeholder:i,rows:l,value:o,readOnly:s,required:c,children:d,variant:r,showLabel:u,showMessage:p,validMessage:h,validation:b,invalidMessage:x,fieldSizing:v,showResizer:m,showRequiredAsterisk:g})=>{let[j,D]=(0,S.useState)(o);return(0,L.jsx)(aD.A,{cols:e,showRequiredAsterisk:g,disabled:a,showLabel:u,message:t,label:n,variant:r,readOnly:s,onChange:e=>{D(e.target.value)},required:c,placeholder:i??d,rows:l,value:j,showMessage:p,invalidMessage:x,validMessage:h,validation:b,showResizer:m,fieldSizing:v})};var aw=t(33791);let ay=JSON.parse('[{"name":"Density","children":[{"name":"button"}],"examples":[{"name":"Functional","density":"functional","props":{"content":"Tooltip","id":"tooltip-01"}},{"name":"(Default) Regular","density":"regular","props":{"content":"Tooltip","id":"tooltip-02"}},{"name":"Expressive","density":"expressive","props":{"content":"Tooltip","id":"tooltip-03"}}]},{"name":"Show Arrow","children":[{"name":"button"}],"examples":[{"name":"(Default) True","props":{"content":"Tooltip","id":"tooltip-04","showArrow":true}},{"name":"False","props":{"content":"Tooltip","showArrow":false,"id":"tooltip-05"}}]},{"name":"Emphasis","children":[{"name":"button"}],"examples":[{"name":"(Default) Weak","props":{"content":"Tooltip","id":"tooltip-06"}},{"name":"Strong","props":{"content":"Tooltip","emphasis":"strong","id":"tooltip-07"}}]},{"name":"Placement","children":[{"name":"button"}],"examples":[{"name":"bottom-start","props":{"content":"Tooltip","placement":"bottom-start","id":"tooltip-08-start"}},{"name":"(Default) bottom","props":{"content":"Tooltip","placement":"bottom","id":"tooltip-08"}},{"name":"bottom-end","props":{"content":"Tooltip","placement":"bottom-end","id":"tooltip-08-end"}},{"name":"left-start","props":{"content":"Tooltip","placement":"left-start","id":"tooltip-10-start"}},{"name":"left","props":{"content":"Tooltip","placement":"left","id":"tooltip-10"}},{"name":"left-end","props":{"content":"Tooltip","placement":"left-end","id":"tooltip-10-end"}},{"name":"right-start","props":{"content":"Tooltip","placement":"right-start","id":"tooltip-11-start"}},{"name":"right","props":{"content":"Tooltip","placement":"right","id":"tooltip-11"}},{"name":"right-end","props":{"content":"Tooltip","placement":"right-end","id":"tooltip-11-end"}},{"name":"top-start","props":{"content":"Tooltip","placement":"top-start","id":"tooltip-09-start"}},{"name":"top","props":{"content":"Tooltip","placement":"top","id":"tooltip-09"}},{"name":"top-end","props":{"content":"Tooltip","placement":"top-end","id":"tooltip-09-end"}}]},{"name":"Width","children":[{"name":"button"}],"examples":[{"name":"(Default) Auto","props":{"content":"Max width, lorem ipsum dolor sit amet, consetetur sadipscing","id":"tooltip-12"}},{"name":"Fixed","props":{"content":"Max width, lorem ipsum dolor sit amet, consetetur sadipscing","width":"fixed","id":"tooltip-13"}}]},{"name":"Animation","children":[{"name":"button"}],"examples":[{"name":"(Default) True","props":{"content":"Tooltip","id":"tooltip-14","animation":true}},{"name":"False","props":{"content":"Tooltip","animation":false,"id":"tooltip-17"}}]},{"name":"Delay","children":[{"name":"button"}],"examples":[{"name":"(Default) None","props":{"content":"Tooltip","id":"tooltip-144","delay":"none"}},{"name":"Slow","props":{"content":"Tooltip","delay":"slow","id":"tooltip-15"}},{"name":"Fast","props":{"content":"Tooltip","delay":"fast","id":"tooltip-16"}}]}]'),aT=({children:e,width:a,emphasis:t,placement:n,delay:i,content:l,animation:o,showArrow:s})=>(0,L.jsxs)(W.A,{children:[e,(0,L.jsx)(aw.A,{width:a,emphasis:t,placement:n,animation:o,delay:i,showArrow:s,children:l})]});var aA=t(68756);let ak=(0,S.forwardRef)(function(e,a){let t,n;e={size:"small",separator:"chevron",ellipsisAriaLabel:"Expand to show all breadcrumb items",...e};let i=a||(0,S.useRef)(a),[l,o]=(0,S.useState)(()=>(0,R.uR)()),[s,c]=(0,S.useState)(()=>!1);function d(){return"medium"===e.size?"24":"20"}function r(){let a=e.items;if(!a)return[];if(Array.isArray(a))return a;if("string"==typeof a)try{let e=JSON.parse(a);return Array.isArray(e)?e:[]}catch(e){}return[]}function u(){let a=r(),t=e.maxItems??0,n=t>0?t-1:0;return n>0?a.slice(a.length-n):[]}function p(e,a){return a?e.ariaCurrent??"page":void 0}return(0,L.jsx)("nav",{ref:i,...(0,aA.MD)(e,["data-icon-variant","data-icon-variant-before","data-icon-variant-after","data-icon-weight","data-icon-weight-before","data-icon-weight-after","data-interactive","data-force-mobile","data-color","data-container-color","data-bg-color","data-on-bg-color","data-color-scheme","data-font-size","data-headline-size","data-divider","data-focus","data-font"]),id:e.id,...(0,aA.vC)(e,["data-icon-variant","data-icon-variant-before","data-icon-variant-after","data-icon-weight","data-icon-weight-before","data-icon-weight-after","data-interactive","data-force-mobile","data-color","data-container-color","data-bg-color","data-on-bg-color","data-color-scheme","data-font-size","data-headline-size","data-divider","data-focus","data-font"]),className:(0,R.xF)("db-breadcrumb",e.className),"data-size":e.size,"data-separator":e.separator,"aria-label":e.ariaLabel??(e.id?`Breadcrumb (${e.id})`:`Breadcrumb (${l})`),children:(0,L.jsx)("ol",{className:"db-breadcrumb-list",id:e.id?`${e.id}-list`:"db-breadcrumb-list",children:r().length>0?(0,L.jsx)(L.Fragment,{children:(t=r(),n=e.maxItems??0,t.length>0&&n>0&&t.length>n&&!s)?(0,L.jsxs)(L.Fragment,{children:[r()[0]?(0,L.jsx)("li",{children:r()[0].href?(0,L.jsxs)("a",{href:r()[0].href,"aria-current":p(r()[0],1===r().length),children:[r()[0].icon?(0,L.jsx)(ev.A,{weight:d(),icon:r()[0].icon}):null,r()[0].text]}):(0,L.jsx)(L.Fragment,{children:(0,L.jsxs)("span",{"aria-current":p(r()[0],1===r().length),children:[r()[0].icon?(0,L.jsx)(ev.A,{weight:d(),icon:r()[0].icon}):null,r()[0].text]})})},0):null,(0,L.jsx)("li",{children:(0,L.jsx)("button",{type:"button",className:"db-breadcrumb-ellipsis","aria-label":e.ellipsisAriaLabel??"Expand to show all breadcrumb items","aria-expanded":(0,R.EB)(s),"aria-controls":e.id?`${e.id}-list`:"db-breadcrumb-list",onClick:e=>void c(!s),children:"…"})},"ellipsis"),u()?.map((e,a)=>(0,L.jsx)("li",{children:e.href?(0,L.jsxs)("a",{href:e.href,"aria-current":p(e,a===u().length-1),children:[e.icon?(0,L.jsx)(ev.A,{weight:d(),icon:e.icon}):null,e.text]}):(0,L.jsx)(L.Fragment,{children:(0,L.jsxs)("span",{"aria-current":p(e,a===u().length-1),children:[e.icon?(0,L.jsx)(ev.A,{weight:d(),icon:e.icon}):null,e.text]})})}))]}):(0,L.jsx)(L.Fragment,{children:r()?.map((e,a)=>(0,L.jsx)("li",{children:e.href?(0,L.jsxs)("a",{href:e.href,"aria-current":p(e,a===r().length-1),children:[e.icon?(0,L.jsx)(ev.A,{weight:d(),icon:e.icon}):null,e.text]}):(0,L.jsx)(L.Fragment,{children:(0,L.jsxs)("span",{"aria-current":p(e,a===r().length-1),children:[e.icon?(0,L.jsx)(ev.A,{weight:d(),icon:e.icon}):null,e.text]})})}))})}):(0,L.jsx)(L.Fragment,{children:e.children})})})}),aC=JSON.parse('[{"name":"Size","examples":[{"name":"(Default) Small","className":"w-full","props":{"id":"breadcrumb-size-small","ariaLabel":"Breadcrumb size small","items":[{"href":"#","text":"Home"},{"href":"#","text":"Category"},{"text":"Current Page","ariaCurrent":"page","href":"#"}]}},{"name":"Medium","className":"w-full","props":{"id":"breadcrumb-size-medium","size":"medium","ariaLabel":"Breadcrumb size medium","items":[{"href":"#","text":"Home"},{"href":"#","text":"Category"},{"text":"Current Page","ariaCurrent":"page"}]}}]},{"name":"Separator","examples":[{"name":"Chevron","className":"w-full","props":{"id":"breadcrumb-separator-chevron","separator":"chevron","ariaLabel":"Breadcrumb separator chevron","items":[{"href":"#","text":"Home"},{"href":"#","text":"Category"},{"text":"Current Page","ariaCurrent":"page"}]}},{"name":"Slash","className":"w-full","props":{"id":"breadcrumb-separator-slash","separator":"slash","ariaLabel":"Breadcrumb separator slash","items":[{"href":"#","text":"Home"},{"href":"#","text":"Category"},{"text":"Current Page","ariaCurrent":"page"}]}}]},{"name":"Collapsed","examples":[{"name":"Collapsed (maxItems=3)","className":"w-full","props":{"id":"breadcrumb-collapsed","maxItems":3,"ariaLabel":"Breadcrumb collapsed","ellipsisAriaLabel":"Expand to show all breadcrumb items","items":[{"href":"#","text":"Root"},{"href":"#","text":"Path 1"},{"href":"#","text":"Path 2"},{"href":"#","text":"Path 3"},{"text":"Current Page","ariaCurrent":"page","href":"#"}]}}]},{"name":"Icons","examples":[{"name":"With Icons (Small)","className":"w-full","props":{"id":"breadcrumb-icons-small","ariaLabel":"Breadcrumb icons small","items":[{"href":"#","text":"Root","icon":"house"},{"href":"#","text":"Settings","icon":"gear_wheel"},{"href":"#","text":"Profile","icon":"person"},{"href":"#","text":"Notifications","icon":"bell"}]}},{"name":"With Icons (Medium)","className":"w-full","props":{"id":"breadcrumb-icons-medium","ariaLabel":"Breadcrumb icons medium","size":"medium","items":[{"href":"#","text":"Root","icon":"house"},{"href":"#","text":"Settings","icon":"gear_wheel"},{"href":"#","text":"Profile","icon":"person"},{"href":"#","text":"Notifications","icon":"bell"}]}}]}]'),aO=({items:e,size:a,className:t,separator:n,maxItems:i,ariaLabel:l,ellipsisAriaLabel:o,id:s})=>(0,L.jsx)(ak,{size:a,className:t,separator:n,maxItems:i,items:e,ariaLabel:l,ellipsisAriaLabel:o,id:s}),aN=(0,S.forwardRef)(function(e,a){let t=a||(0,S.useRef)(a);return(0,L.jsx)("li",{ref:t,...(0,aA.MD)(e,["data-icon-variant","data-icon-variant-before","data-icon-variant-after","data-icon-weight","data-icon-weight-before","data-icon-weight-after","data-interactive","data-force-mobile","data-color","data-container-color","data-bg-color","data-on-bg-color","data-color-scheme","data-font-size","data-headline-size","data-divider","data-focus","data-font"]),id:e.id,...(0,aA.vC)(e,["data-icon-variant","data-icon-variant-before","data-icon-variant-after","data-icon-weight","data-icon-weight-before","data-icon-weight-after","data-interactive","data-force-mobile","data-color","data-container-color","data-bg-color","data-on-bg-color","data-color-scheme","data-font-size","data-headline-size","data-divider","data-focus","data-font"]),className:(0,R.xF)(e.className),children:e.href&&!e.disabled?(0,L.jsxs)("a",{href:e.href,"aria-current":e.ariaCurrent,children:[e.icon?(0,L.jsx)(ev.A,{icon:e.icon}):null,e.text?(0,L.jsx)(L.Fragment,{children:e.text}):(0,L.jsx)(L.Fragment,{children:e.children})]}):(0,L.jsx)(L.Fragment,{children:(0,L.jsxs)("span",{"aria-current":e.ariaCurrent,children:[e.icon?(0,L.jsx)(ev.A,{icon:e.icon}):null,e.text?(0,L.jsx)(L.Fragment,{children:e.text}):(0,L.jsx)(L.Fragment,{children:e.children})]})})})}),aI=JSON.parse('[{"name":"Basic","examples":[{"name":"Link","props":{"href":"#","text":"Home"}},{"name":"Current Page","props":{"ariaCurrent":"page","text":"Current Page"}}]},{"name":"With Icon","examples":[{"name":"Home Icon","props":{"href":"#","icon":"house","text":"Home"}},{"name":"Folder Icon","props":{"href":"#","icon":"folder","text":"Category"}}]},{"name":"Disabled","examples":[{"name":"(Default) False","props":{"href":"#","disabled":false,"text":"Enabled Item"}},{"name":"True","props":{"href":"#","disabled":true,"text":"Disabled Item"}}]}]'),aL=({href:e,text:a,icon:t,ariaCurrent:n,disabled:i,className:l,id:o})=>(0,L.jsx)("nav",{className:"db-breadcrumb","aria-label":"Breadcrumb",children:(0,L.jsx)("ol",{children:(0,L.jsx)(aN,{href:e,text:a,icon:t,ariaCurrent:n,disabled:i,className:l,id:o})})}),aS=e=>(0,L.jsx)(er,{title:"DBBreadcrumbItem",isSubComponent:e.isSubComponent,componentName:e.componentName,variants:ei(aI,aL,e.slotCode)});var a_=t(87184);let aH=()=>{let[e,a]=(0,S.useState)(),{getFrameworkIndex:t}=(0,a_.u)();return(0,S.useEffect)(()=>{e&&setTimeout(()=>a(""),1500)},[e]),(0,L.jsxs)(L.Fragment,{children:[(0,L.jsx)(_.A,{className:"tab-container",children:(0,L.jsxs)(ah.A,{initialSelectedIndex:t(),children:[(0,L.jsxs)(ac.A,{children:[(0,L.jsx)(ad.A,{children:"Angular"}),(0,L.jsx)(ad.A,{children:"HTML"}),(0,L.jsx)(ad.A,{children:"React"}),(0,L.jsx)(ad.A,{children:"Vue"})]}),(0,L.jsxs)(ab.A,{children:[(0,L.jsx)(H.A,{content:"external",target:"_blank",href:"how-to-use?current=angular",children:"How to use this in angular"}),(0,L.jsx)("pre",{children:(0,L.jsx)("code",{className:"hljs language-html",children:`<db-accordion>
+"use strict";(self.webpackChunk_N_E=self.webpackChunk_N_E||[]).push([[5329],{59745:(e,a,t)=>{t.d(a,{C:()=>n,z:()=>i});let n=[{value:"angular",label:"Angular"},{value:"html",label:"HTML"},{value:"react",label:"React"},{value:"vue",label:"Vue"}],i="react"},65329:(e,a,t)=>{t.d(a,{bw:()=>li,ll:()=>ln,sr:()=>ld,g9:()=>lo,Oj:()=>lc,Pb:()=>ls});var n={};t.r(n),t.d(n,{Behavior:()=>aP,Density:()=>aH,Variant:()=>az});var i={};t.r(i),t.d(i,{Density:()=>aR,Disabled:()=>aF,Open:()=>aE});var l={};t.r(l),t.d(l,{Content:()=>aU,Density:()=>aq,Emphasis:()=>aM,Examples:()=>a$,Placement:()=>aG,Semantic:()=>aV,Size:()=>aW});var o={};t.r(o),t.d(o,{Density:()=>aJ,Variants:()=>aZ});var s={};t.r(s),t.d(s,{Collapsed:()=>aQ,Icons:()=>aX,Separator:()=>aK,Size:()=>aY});var c={};t.r(c),t.d(c,{Basic:()=>a0,Disabled:()=>a2,WithIcon:()=>a1});var d={};t.r(d),t.d(d,{Behavior:()=>a8,Density:()=>a3,ElevationLevel:()=>a4,Example:()=>a9,Spacing:()=>a5});var r={};t.r(r),t.d(r,{Checked:()=>te,Density:()=>a7,Disabled:()=>a6,Example:()=>to,Indeterminate:()=>ta,Required:()=>ti,ShowLabel:()=>tl,ShowRequiredAsterisk:()=>ts,Size:()=>tn,Validation:()=>tt});var u={};t.r(u),t.d(u,{Density:()=>tc,Disabled:()=>tm,DropdownWidth:()=>tj,ExampleOtherconfiguration:()=>tN,ExamplesFloatinglabel:()=>tI,ExamplesMultiple:()=>tC,ExamplesSingle:()=>tk,Exampletags:()=>tO,FormFieldWidth:()=>tg,Multiple:()=>td,Placement:()=>tD,Required:()=>tx,Selectedtype:()=>tB,ShowClearSelection:()=>tA,ShowIcon:()=>th,ShowLabel:()=>tu,ShowLoading:()=>tw,ShowMessage:()=>tp,ShowNoResult:()=>tf,ShowRequiredAsterisk:()=>tv,ShowSearch:()=>ty,ShowSelectAll:()=>tT,Validation:()=>tb,Variant:()=>tr});var p={};t.r(p),t.d(p,{Density:()=>tL,Emphasis:()=>t_,Variant:()=>tS});var h={};t.r(h),t.d(h,{Backdrop:()=>tF,Density:()=>tH,Direction:()=>tE,Example:()=>tq,Rounded:()=>tP,Size:()=>tz,Spacing:()=>tR});var b={};t.r(b),t.d(b,{Behavior:()=>tW,Density:()=>tM,Examples:()=>tU,Width:()=>tV});var x={};t.r(x),t.d(x,{Density:()=>tG,Semantic:()=>t$,ShowIcon:()=>tZ,Size:()=>tJ});var v={};t.r(v),t.d(v,{DatalistTypeaheadExamples:()=>nn,Density:()=>tY,Disabled:()=>t1,ExampleFloatingLabel:()=>na,ExampleLength:()=>t6,ExampleTypesFloatingLabel:()=>nt,ExampleTypeswithminandmax:()=>ne,Readonly:()=>t2,Required:()=>t4,ShowIconLeading:()=>t8,ShowIconLeadingTrailing:()=>t9,ShowIconTrailing:()=>t7,ShowLabel:()=>tQ,ShowMessage:()=>tX,ShowRequiredAsterisk:()=>t5,State:()=>t0,Validation:()=>t3,Variant:()=>tK});var m={};t.r(m),t.d(m,{Content:()=>nc,Density:()=>ni,Disabled:()=>no,Examples:()=>nu,ShowIcon:()=>nd,Size:()=>ns,Variant:()=>nl,Wrap:()=>nr});var g={};t.r(g),t.d(g,{Density:()=>np});var j={};t.r(j),t.d(j,{Active:()=>nx,Density:()=>nh,Disabled:()=>nb,Expanded:()=>nv,ShowIcon:()=>nm,Width:()=>ng,Wrap:()=>nj});var D={};t.r(D),t.d(D,{Closeable:()=>nw,Density:()=>nD,ExamplesVariantDocked:()=>nO,ExamplesVariantOverlay:()=>nI,ExamplesVariantStandalone:()=>nN,LinkVariant:()=>nA,Semantic:()=>nf,ShowHeadline:()=>nk,ShowIcon:()=>nT,ShowTimestamp:()=>nC,Variant:()=>nB,Visual:()=>ny});var B={};t.r(B),t.d(B,{Animation:()=>nz,Delay:()=>nP,Density:()=>nL,Gap:()=>nH,Placement:()=>n_,Spacing:()=>nS,Width:()=>nR});var f={};t.r(f),t.d(f,{Checked:()=>nq,Density:()=>nF,Disabled:()=>nE,Required:()=>nW,ShowLabel:()=>nU,ShowRequiredAsterisk:()=>nG,Size:()=>nV,Validation:()=>nM});var w={};t.r(w),t.d(w,{Density:()=>n$,Spacing:()=>nZ,Width:()=>nJ});var y={};t.r(y),t.d(y,{Content:()=>n3,Density:()=>nY,Disabled:()=>n2,ExamplesFloatingLabel:()=>n9,OptionGroups:()=>n8,Required:()=>n4,ShowLabel:()=>nQ,ShowMessage:()=>nX,ShowRequiredAsterisk:()=>n5,State:()=>n0,Validation:()=>n1,Variant:()=>nK});var T={};t.r(T),t.d(T,{AlignmentColumn:()=>ii,AlignmentRow:()=>il,Density:()=>n7,Direction:()=>ia,Gap:()=>ie,JustifyContentColumn:()=>io,JustifyContentRow:()=>is,Variant:()=>n6,Wrap:()=>it});var A={};t.r(A),t.d(A,{Checked:()=>id,Density:()=>ic,Disabled:()=>ir,Examples:()=>ij,Required:()=>ix,ShowLabel:()=>ib,ShowMessage:()=>ig,ShowRequiredAsterisk:()=>iv,Size:()=>ip,Validation:()=>im,Variant:()=>ih,VisualAid:()=>iu});var k={};t.r(k),t.d(k,{Behavior:()=>iT,ContentAlignmentFullWidth:()=>iA,Density:()=>iD,ShowIconLeading:()=>iw,ShowIconTrailing:()=>iy,States:()=>iB});var C={};t.r(C),t.d(C,{Density:()=>ik,Examples:()=>iI,Orientation:()=>iC,Overflow:()=>iN,Width:()=>iO});var O={};t.r(O),t.d(O,{Behavior:()=>iH,Checked:()=>iz,Density:()=>iL,Disabled:()=>iP,Emphasis:()=>iS,ExampleStrong:()=>iV,NoText:()=>iF,Overflow:()=>iM,Semantic:()=>i_,ShowCheckState:()=>iq,ShowIcon:()=>iR,ShowSlot:()=>iE});var N={};t.r(N),t.d(N,{Density:()=>iW,Disabled:()=>iZ,ExamplesFloatingLabel:()=>i3,FieldSizing:()=>i2,Readonly:()=>iY,Required:()=>iQ,Rows:()=>i0,ShowLabel:()=>iG,ShowMessage:()=>i$,ShowRequiredAsterisk:()=>iX,ShowResizer:()=>i1,State:()=>iJ,Validation:()=>iK,Variant:()=>iU});var I={};t.r(I),t.d(I,{Animation:()=>i6,Delay:()=>le,Density:()=>i4,Emphasis:()=>i8,Placement:()=>i9,ShowArrow:()=>i5,Width:()=>i7});var L=t(6029),S=t(55729),_=t(72389),H=t(92737),z=t(15532);let P=function(e){let[a,t]=(0,S.useState)(()=>void 0);return(0,S.useEffect)(()=>{localStorage&&function(){let e=localStorage.getItem(z.q0)||"react",a=window.location.href,n=a.indexOf("components");if(-1!==n){let i=a.substring(0,n);t(`${i}${e}-storybook`)}}()},[]),(0,L.jsxs)(L.Fragment,{children:[(0,L.jsx)(_.A,{className:"variants-card db-code-docs",children:(0,L.jsx)("div",{className:"variants-list",role:e.role,"aria-label":e.role?e.label:void 0,children:(0,L.jsx)(L.Fragment,{children:e.children})})}),a?(0,L.jsx)(H.A,{size:"small",content:"external",className:"show-code-link",target:"_blank",referrerpolicy:"no-referrer",href:a,children:"Show Code"}):null]})};var R=t(56179),F=t(29143);let E=function(e){let[a,t]=(0,S.useState)(()=>!1);return(0,S.useEffect)(()=>{(0,R.cb)(()=>{let e=window.location.hash,a=e.includes("?")?e.split("?")[1]:"";t(!!new URLSearchParams(window.location.search||a).get("page"))},1)},[]),(0,L.jsxs)(L.Fragment,{children:[(0,L.jsxs)("div",{className:"default-container",children:[a?null:(0,L.jsxs)("header",{className:"component-header",children:[e.isSubComponent?(0,L.jsx)("h2",{children:e.title}):(0,L.jsx)("h1",{children:e.title}),e.isPatternhub?(0,L.jsx)(H.A,{target:"_blank",referrerPolicy:"no-referrer",content:"external",href:function(){let a=function(){if(!e.title)return;let a=e.title?.replace(/^DB/,"").replaceAll(/([A-Z])/g,(e,a,t)=>t>0?`-${a.toLowerCase()}`:a.toLowerCase());if(a&&/^[a-z]+(-[a-z]+)*$/.test(a))return`packages/components/src/components/${a}/${a}.lite.tsx`}();if(!a)return;let t=F.env.GITHUB_BRANCH??F.env.BRANCH_NAME??"main";return`https://github.com/db-ux-design-system/core-web/blob/${t}/${a}`}(),children:"View Source"}):null]}),(0,L.jsx)(L.Fragment,{children:e.children})]}),e.isPatternhub?(0,L.jsx)(L.Fragment,{children:e.subComponent}):null]})};var q=t(22055);let M=function(e){let a,t;function n(){return e.exampleName?.replaceAll(" ","+").toLowerCase()}let[i,l]=(0,S.useState)(()=>null);return(0,S.useEffect)(()=>{(0,R.cb)(()=>{let e=window.location.hash,a=e.includes("?")?e.split("?")[1]:"",t=new URLSearchParams(window.location.search||a).get("page");l(t?t.replaceAll(" ","+").toLowerCase():null)},1)},[]),(0,L.jsx)(L.Fragment,{children:null===i||i===n()?(0,L.jsx)(L.Fragment,{children:(0,L.jsxs)("div",{children:[null===i?(0,L.jsxs)(L.Fragment,{children:[(0,L.jsx)(q.A,{}),(0,L.jsx)(H.A,{content:"external",className:"link-headline",target:"_blank",href:(t=(a=window.location.hash).includes("?")?a.split("?")[0]:a,`${t}?page=${n()}`),children:e.exampleName})]}):null,(0,L.jsx)(L.Fragment,{children:e.children})]})}):null})},V=()=>{};var W=t(80357);let U=function(e){return(0,L.jsxs)(L.Fragment,{children:[(0,L.jsx)(W.A,{"data-density":"functional",onClick:e=>V(),children:"Functional"}),(0,L.jsx)(W.A,{"data-density":"regular",onClick:e=>V(),children:"(Default) Regular"}),(0,L.jsx)(W.A,{"data-density":"expressive",onClick:e=>V(),children:"Expressive"})]})},G=function(e){return(0,L.jsxs)(L.Fragment,{children:[(0,L.jsx)(W.A,{onClick:e=>V(),disabled:!1,children:"(Default) False"}),(0,L.jsx)(W.A,{onClick:e=>V(),disabled:!0,children:"True"})]})},$=function(e){return(0,L.jsxs)(L.Fragment,{children:[(0,L.jsx)("div",{style:{width:"300px"},children:(0,L.jsx)(W.A,{width:"full",onClick:e=>V(),children:"Multi-line Text With Automatic Line Breaks"})}),(0,L.jsx)("div",{style:{width:"300px"},children:(0,L.jsx)(W.A,{width:"full",icon:"x_placeholder",onClick:e=>V(),children:"Multi-line Text With Automatic Line Breaks and Icon"})}),(0,L.jsx)("div",{style:{width:"300px"},children:(0,L.jsx)(W.A,{size:"small",onClick:e=>V(),children:"Button Small Multi-line Text With Automatic Line Breaks"})})]})},J=function(e){return(0,L.jsxs)(L.Fragment,{children:[(0,L.jsx)(W.A,{icon:"x_placeholder",onClick:e=>V(),children:"(Default) False"}),(0,L.jsx)(W.A,{icon:"x_placeholder",onClick:e=>V(),noText:!0,children:"True"})]})},Z=function(e){return(0,L.jsxs)(L.Fragment,{children:[(0,L.jsx)(W.A,{icon:"x_placeholder",onClick:e=>V(),showIcon:!1,children:"(Default) False"}),(0,L.jsx)(W.A,{icon:"x_placeholder",onClick:e=>V(),showIcon:!0,children:"True"})]})},Y=function(e){return(0,L.jsxs)(L.Fragment,{children:[(0,L.jsx)(W.A,{iconTrailing:"x_placeholder",onClick:e=>V(),showIconTrailing:!1,children:"(Default) False"}),(0,L.jsx)(W.A,{iconTrailing:"x_placeholder",onClick:e=>V(),showIconTrailing:!0,children:"True"})]})},K=function(e){return(0,L.jsxs)(L.Fragment,{children:[(0,L.jsx)(W.A,{size:"medium",onClick:e=>V(),children:"(Default) Medium"}),(0,L.jsx)(W.A,{size:"small",onClick:e=>V(),children:"Small"})]})},Q=function(e){return(0,L.jsxs)(L.Fragment,{children:[(0,L.jsx)(W.A,{variant:"outlined",onClick:e=>V(),children:"(Default) Outlined - Adaptive"}),(0,L.jsx)(W.A,{variant:"filled",onClick:e=>V(),children:"Filled - Adaptive"}),(0,L.jsx)(W.A,{variant:"ghost",onClick:e=>V(),children:"Ghost - Adaptive"}),(0,L.jsx)(W.A,{variant:"brand",onClick:e=>V(),children:"Brand"})]})},X=function(e){return(0,L.jsxs)(L.Fragment,{children:[(0,L.jsx)(W.A,{width:"auto",onClick:e=>V(),children:"(Default) Auto"}),(0,L.jsx)("div",{style:{width:"500px"},children:(0,L.jsx)(W.A,{width:"full",onClick:e=>V(),children:"Width"})})]})};var ee=t(70159),ea=t(13375),et=t(64297);let en=JSON.parse('[{"name":"Density","children":[{"name":"accordion-item","text":"Content 1","props":{"headline":"Item 1"}},{"name":"accordion-item","text":"Content 2","props":{"headline":"Item 2"}},{"name":"accordion-item","text":"Content 3","props":{"headline":"Item 3"}}],"examples":[{"name":"Functional","density":"functional","props":{}},{"name":"(Default) Regular","density":"regular","props":{}},{"name":"Expressive","density":"expressive","props":{}}]},{"name":"Variant","children":[{"name":"accordion-item","text":"Content 1","props":{"headline":"Item 1"}},{"name":"accordion-item","text":"Content 2","props":{"headline":"Item 2"}},{"name":"accordion-item","text":"Content 3","props":{"headline":"Item 3"}}],"examples":[{"name":"(Default) Divider","props":{"variant":"divider"}},{"name":"Card","props":{"variant":"card"}}]},{"name":"Behavior","children":[{"name":"accordion-item","text":"Content 1","props":{"headline":"Item 1"}},{"name":"accordion-item","text":"Content 2","props":{"headline":"Item 2"}},{"name":"accordion-item","text":"Content 3","props":{"headline":"Item 3"}}],"examples":[{"name":"(Default) Multiple","props":{"behavior":"multiple"}},{"name":"Single","props":{"behavior":"single"}}]}]'),ei=(e,a,t)=>e.map((e,n)=>({...e,SlotCode:t?.[e.codeFileName??e.name.replaceAll(" ","")],examples:e.examples.map((e,t)=>({...e,className:e.className??e.props?.className,example:a({...e.props,id:e.props?.id??e.name,children:e.props?.children??e.name})}))}));var el=t(45601),eo=t(52229);let es=(e=!0)=>{let[a,t]=(()=>{let e=(0,eo.useRouter)(),a=(0,eo.usePathname)(),[t,n]=[(0,eo.useSearchParams)()];return[t,t=>{if(void 0!==globalThis.window&&void 0!==globalThis.location){let e=new URLSearchParams(globalThis.location.search||"");e.sort();let a=new URLSearchParams(t);if(a.sort(),e.toString()===a.toString())return}n?n(t):a&&e?.push(`${a}?${new URLSearchParams(t).toString()}`)}]})(),[n,i]=(0,S.useState)(a.get(el.HI)??el.fY.REGULAR),[l,o]=(0,S.useState)(a.get(el.wr)??el.o$.NEUTRAL_BG_LEVEL_1),[s,c]=(0,S.useState)(void 0),[d,r]=(0,S.useState)(!1),[u,p]=(0,S.useState)(!1);return(0,S.useEffect)(()=>{for(let[e,t]of a.entries())t&&(e===el.HI&&n!==t&&i(t),e===el.wr&&l!==t&&o(t),"page"===e&&s!==t.toLowerCase()&&c(t.toLowerCase()),"fullscreen"===e&&!!t!==d&&r(!!t));p(!0)},[a]),(0,S.useEffect)(()=>{if(u){let a={density:n,color:l};s&&(a.page=s),d&&(a.fullscreen=!0),e&&t(a)}},[l,n,s,d,u]),[n,i,l,o,s,d]};var ec=t(29143);let ed=({name:e,examples:a,color:t,role:n,SlotCode:i})=>{let l=(0,S.useCallback)(()=>t?.includes("3")?"3":t?.includes("2")?"2":"1",[t]),[o,s]=(0,S.useState)(),c=a.filter(e=>!e.experimental);return(0,L.jsxs)(_.A,{className:"variants-card db-code-docs",elevationLevel:l(),children:[(0,L.jsx)("div",{role:n,"aria-label":n?e:void 0,className:"variants-list",children:c.map((e,a)=>(0,L.jsx)("div",{style:e.style,className:e.className,"data-density":e.density,children:e.example},`${e.name}-${a}`))}),i&&(0,L.jsxs)("details",{className:"code-details",onToggle:()=>{s(!o)},children:[(0,L.jsx)("summary",{className:"db-button code-button","data-size":"small","data-variant":"filled",children:o?"Hide code":"Show code"}),(0,L.jsxs)("div",{"data-density":"functional",children:[(0,L.jsx)("div",{className:"backdrop"}),(0,L.jsx)(_.A,{className:"code",spacing:"small",children:(0,L.jsx)(i,{})})]})]})]})},er=({title:e,variants:a,subComponent:t,isSubComponent:n,componentName:i})=>{let l=es(!1)[4],o=es(!1)[2];if(l){let e=a.find(e=>e.name.toLowerCase()===l);if(e)return(0,L.jsx)(ed,{...e,color:o})}let s=((e,a)=>{let t=(e=>{let a=e.replace(/^DB/,"").replaceAll(/([A-Z])/g,(e,a,t)=>t>0?`-${a.toLowerCase()}`:a.toLowerCase());if(a&&/^[a-z]+(-[a-z]+)*$/.test(a))return`packages/components/src/components/${a}/${a}.lite.tsx`})(e);if(!t)return;let n=(void 0)??ec.env.GITHUB_BRANCH??ec.env.BRANCH_NAME??"main";return`https://github.com/db-ux-design-system/core-web/blob/${n}/${t}`})(e);return(0,L.jsxs)(L.Fragment,{children:[(0,L.jsxs)("div",{className:"default-container",children:[(0,L.jsxs)("div",{className:"component-header",children:[(0,L.jsx)(n?"h2":"h1",{children:e}),s&&!n&&(0,L.jsx)(H.A,{target:"_blank",referrerPolicy:"no-referrer",href:s,content:"external",children:"View Source"})]}),a?.filter(e=>e.examples.find(e=>!e.experimental)).map((e,a)=>(0,L.jsxs)("div",{children:[(0,L.jsx)(q.A,{}),(0,L.jsx)(H.A,{className:"link-headline",content:"external",target:"_blank",rel:"noopener noreferrer",href:(e=>{if(void 0===globalThis.window||void 0===globalThis.location)return`?page=${encodeURIComponent(e.toLowerCase())}`;let[a,t=""]=globalThis.location.href.split("?"),n=new URLSearchParams(t);return(n.set("page",e.toLowerCase()),i)?`${a.replace(/\/[a-z\d\-_]*\/overview/,`/${i}/overview`)}?${n.toString()}`:`${a}?${n.toString()}`})(e.name),children:e.name}),(0,L.jsx)(ed,{...e,color:o})]},`${e.name}-${a}`))]}),t]})},eu=({behavior:e,children:a,variant:t})=>(0,L.jsxs)(L.Fragment,{children:[(0,L.jsx)(ee.A,{size:"small",semantic:"informational",icon:"none",children:a}),(0,L.jsxs)(ea.A,{behavior:e,variant:t,children:[(0,L.jsx)(et.A,{headlinePlain:"Item 1",text:"Content 1"}),(0,L.jsx)(et.A,{headlinePlain:"Item 2",text:"Content 2"}),(0,L.jsx)(et.A,{headlinePlain:"Item 3",text:"Content 3"})]})]}),ep=JSON.parse('[{"name":"Density","examples":[{"name":"Functional","density":"functional","props":{"headlinePlain":"Functional"}},{"name":"(Default) Regular","density":"regular","props":{"headlinePlain":"(Default) Regular"}},{"name":"Expressive","density":"expressive","props":{"headlinePlain":"Expressive"}}]},{"name":"Disabled","examples":[{"name":"(Default) False","props":{"headlinePlain":"(Default) False","disabled":false}},{"name":"True","props":{"headlinePlain":"True","disabled":true}}]},{"name":"Open","examples":[{"name":"(Default) False","props":{"headlinePlain":"(Default) False","open":false}},{"name":"True","props":{"headlinePlain":"True","open":true}}]}]'),eh=({children:e,disabled:a,open:t,headlinePlain:n})=>(0,L.jsx)(et.A,{headlinePlain:n,disabled:a,defaultOpen:t,children:e}),eb=e=>(0,L.jsx)(er,{title:"DBAccordionItem",isSubComponent:e.isSubComponent,componentName:e.componentName,variants:ei(ep,eh,e.slotCode)});var ex=t(23487),ev=t(90271);let em=JSON.parse('[{"name":"Density","examples":[{"name":"Functional","density":"functional","props":{}},{"name":"(Default) Regular","density":"regular","props":{}},{"name":"Expressive","density":"expressive","props":{}}]},{"name":"Emphasis","examples":[{"name":"(Default) Weak"},{"name":"Strong","props":{"emphasis":"strong"}}]},{"name":"Semantic","examples":[{"name":"(Default) Adaptive"},{"name":"Critical","props":{"semantic":"critical"}},{"name":"Informational","props":{"semantic":"informational"}},{"name":"Neutral","props":{"semantic":"neutral"}},{"name":"Successful","props":{"semantic":"successful"}},{"name":"Warning","props":{"semantic":"warning"}},{"name":"Line Break","props":{"lineBreak":true}},{"name":"Adaptive Strong","props":{"emphasis":"strong"}},{"name":"Critical Strong","props":{"semantic":"critical","emphasis":"strong"}},{"name":"Informational Strong","props":{"semantic":"informational","emphasis":"strong"}},{"name":"Neutral Strong","props":{"semantic":"neutral","emphasis":"strong"}},{"name":"Successful Strong","props":{"semantic":"successful","emphasis":"strong"}},{"name":"Warning Strong","props":{"semantic":"warning","emphasis":"strong"}}]},{"name":"Size","examples":[{"name":"(Default) Small"},{"name":"Medium","props":{"size":"medium"}}]},{"name":"Content","examples":[{"name":"(Default) Text"},{"name":"Dot - Small","content":"","props":{"noContent":true}},{"name":"Icon - Small","props":{"example":"icon"}}]},{"name":"Placement","examples":[{"name":"(Default) Inline","props":{"placement":"inline"}},{"name":"Corner - Top - Left","content":"","props":{"placement":"corner-top-left"}},{"name":"Corner - Center - Left","content":"","props":{"placement":"corner-center-left"}},{"name":"Corner - Bottom- Left","content":"","props":{"placement":"corner-bottom-left"}},{"name":"Corner - Top - Right","content":"","props":{"placement":"corner-top-right"}},{"name":"Corner - Center - Right","content":"","props":{"placement":"corner-center-right"}},{"name":"Corner - Bottom- Right","content":"","props":{"placement":"corner-bottom-right"}}]},{"name":"Examples","examples":[{"name":"Numbers","props":{"example":"number"}},{"name":"Line Break","props":{"lineBreak":true}},{"name":"(Default) Text - Medium","props":{"size":"medium"}},{"name":"Dot - Medium","content":"","props":{"noContent":true,"size":"medium"}},{"name":"Icon - Medium","props":{"example":"icon","size":"medium"}}]}]'),eg=({children:e,semantic:a,emphasis:t,noContent:n,size:i,placement:l,example:o,lineBreak:s})=>s?(0,L.jsx)("i",{className:"line-break"}):(0,L.jsxs)(L.Fragment,{children:[!l&&!o&&(0,L.jsxs)(L.Fragment,{children:[(0,L.jsx)(ex.A,{semantic:a,emphasis:t,size:i,children:n?"":e}),n&&(0,L.jsx)(ee.A,{semantic:"informational",size:"small",icon:"none",children:e})]}),l&&"inline"!==l&&!o&&(0,L.jsxs)(L.Fragment,{children:[(0,L.jsxs)(W.A,{icon:"x_placeholder",variant:"outlined",noText:!0,children:[(0,L.jsx)(ex.A,{size:"small",emphasis:"strong",semantic:"critical",placement:l}),e]}),(0,L.jsx)(ee.A,{semantic:"informational",size:"small",icon:"none",children:e})]}),"inline"===l&&(0,L.jsx)(L.Fragment,{children:(0,L.jsxs)("div",{className:"badge-inline-container",children:[(0,L.jsx)(ev.A,{icon:"x_placeholder"}),(0,L.jsx)("span",{children:e}),(0,L.jsx)(ex.A,{size:"small",emphasis:"strong",semantic:"critical",children:"Label"}),(0,L.jsx)(ev.A,{icon:"error"})]})}),"icon"===o&&(0,L.jsxs)(L.Fragment,{children:[(0,L.jsx)(ex.A,{semantic:"critical",emphasis:"strong",size:i,children:(0,L.jsx)(ev.A,{icon:"x_placeholder",children:e})}),(0,L.jsx)(ee.A,{semantic:"informational",size:"small",icon:"none",children:e})]}),"number"===o&&(0,L.jsxs)(L.Fragment,{children:[(0,L.jsx)(ex.A,{semantic:"successful",children:"9"}),(0,L.jsx)(ex.A,{semantic:"informational",children:"12"}),(0,L.jsx)(ex.A,{semantic:"warning",children:"123"}),(0,L.jsx)(ex.A,{size:"small",emphasis:"strong",semantic:"successful",children:"9"}),(0,L.jsx)(ex.A,{size:"small",emphasis:"strong",semantic:"informational",children:"12"}),(0,L.jsx)(ex.A,{size:"small",emphasis:"strong",semantic:"warning",children:"123"}),(0,L.jsx)(ee.A,{semantic:"informational",size:"small",icon:"none",children:e})]})]});var ej=t(18627);let eD=JSON.parse('[{"name":"Density","examples":[{"name":"Functional","density":"functional","props":{}},{"name":"(Default) Regular","density":"regular","props":{}},{"name":"Expressive","density":"expressive","props":{}}]},{"name":"Variants","examples":[{"name":"(Default) With Logo"},{"name":"No Logo","props":{"hideLogo":true}},{"name":"Custom Logo","props":{"hideLogo":true,"customLogo":true}}]}]'),eB=({children:e,hideLogo:a,customLogo:t})=>(0,L.jsxs)(ej.A,{hideLogo:a,children:[t&&(0,L.jsx)("img",{src:"/core-web/review/1493-erstellung-einer-mvp-breadcrumb-komponente/assets/images/placeholder.jpg",alt:"this is a fancy placeholder logo"}),e]}),ef=JSON.parse('[{"name":"Density","examples":[{"name":"Functional","density":"functional","props":{}},{"name":"(Default) Regular","density":"regular","props":{}},{"name":"Expressive","density":"expressive","props":{}}]},{"name":"Elevation Level","examples":[{"name":"(Default) 1","props":{"elevationLevel":"1"}},{"name":"2","props":{"elevationLevel":"2"}},{"name":"3","props":{"elevationLevel":"3"}}]},{"name":"Spacing","examples":[{"name":"(Default) Small","props":{"spacing":"small"}},{"name":"Medium","props":{"spacing":"medium"}},{"name":"Large","props":{"spacing":"large"}},{"name":"None","props":{"spacing":"none"}}]},{"name":"Behavior","examples":[{"name":"(Default) Static","props":{"behavior":"static"}},{"name":"Interactive","props":{"behavior":"interactive"}}]},{"name":"Example","examples":[{"name":"Level 1 - Interactive","props":{"elevationLevel":"1","behavior":"interactive"}},{"name":"Level 2 - Interactive","props":{"elevationLevel":"2","behavior":"interactive"}},{"name":"Level 3 - Interactive","props":{"elevationLevel":"3","behavior":"interactive"}}]}]'),ew=({behavior:e,children:a,spacing:t,elevationLevel:n})=>{let i=(0,L.jsx)(_.A,{behavior:e,spacing:t,elevationLevel:n,children:(0,L.jsx)("strong",{children:a})});return"interactive"===e?(0,L.jsx)("button",{type:"button",children:i}):i};var ey=t(9839);let eT=JSON.parse('[{"name":"Density","role":"group","examples":[{"name":"Functional","density":"functional","props":{"name":"Density"}},{"name":"(Default) Regular","density":"regular","props":{"name":"Density"}},{"name":"Expressive","density":"expressive","props":{"name":"Density"}}]},{"name":"Disabled","role":"group","examples":[{"name":"(Default) False","props":{"name":"Disabled","disabled":false}},{"name":"True","props":{"name":"Disabled","disabled":true}}]},{"name":"Checked","role":"group","examples":[{"name":"(Default) False","props":{"name":"State","checked":false}},{"name":"True","props":{"name":"State","checked":true}}]},{"name":"Indeterminate","role":"group","examples":[{"name":"(Default) False","props":{"name":"Indeterminate","indeterminate":false}},{"name":"True","props":{"name":"Indeterminate","indeterminate":true}}]},{"name":"Validation","role":"group","examples":[{"name":"(Default) No validation","props":{"name":"Validation","validation":"no-validation"}},{"name":"Invalid","props":{"name":"Validation","validation":"invalid","invalidMessage":"Invalid Message"}},{"name":"Valid","props":{"name":"Validation","validation":"valid","validMessage":"Valid message"}}]},{"name":"Size","role":"group","examples":[{"name":"(Default) Medium","props":{"name":"Size"}},{"name":"Small","props":{"name":"Size","size":"small"}}]},{"name":"Required","role":"group","examples":[{"name":"(Default) False","props":{"name":"Requirement","required":false}},{"name":"True","props":{"name":"Requirement","required":true}}]},{"name":"Show Label","role":"group","examples":[{"name":"(Default) True","props":{"name":"Label","showLabel":true}},{"name":"False","props":{"name":"Label","showLabel":false}}]},{"name":"Example","role":"group","examples":[{"name":"Long label","style":{"width":"100px"},"props":{"checked":true,"name":"Example"}}]},{"name":"Show Required Asterisk","role":"group","examples":[{"name":"(Default) True","props":{"name":"Asterisk","required":true,"showRequiredAsterisk":true}},{"name":"False","props":{"name":"Asterisk","required":true,"showRequiredAsterisk":false}}]}]'),eA=({label:e,size:a,name:t,checked:n,required:i,children:l,disabled:o,indeterminate:s,variant:c,showLabel:d,validation:r,invalidMessage:u,validMessage:p,showRequiredAsterisk:h})=>(0,L.jsxs)(L.Fragment,{children:[(0,L.jsx)(ey.A,{label:e,size:a,name:t,defaultChecked:(0,R.pW)(n),invalidMessage:u,validMessage:p,showRequiredAsterisk:h,required:i,disabled:o,variant:c,showLabel:d,indeterminate:s,validation:r,children:l}),void 0!==d&&!d&&(0,L.jsx)(ee.A,{size:"small",semantic:"informational",showIcon:!1,children:l})]});var ek=t(94369);let eC=JSON.parse('[{"name":"Density","examples":[{"name":"Functional","style":{"width":"200px"},"density":"functional","props":{"options":[{"value":"Option 1","id":"miouzc0ec"},{"value":"Option 2","id":"10dqnhil2"},{"value":"Option 3","id":"10dqnhil3"},{"value":"Option 4","id":"10dqnhil4"},{"value":"Option 5","id":"10dqnhil5"}],"label":"Label","placeholder":"Placeholder","id":"id-10206"},"children":[]},{"name":"(Default) Regular","style":{"width":"200px"},"density":"regular","props":{"options":[{"value":"Option 1","id":"ok5olto18"},{"value":"Option 2","id":"mzepnlbp4"},{"value":"Option 3","id":"10dqnhil3"},{"value":"Option 4","id":"10dqnhil2"},{"value":"Option 5","id":"10dqnhil1"}],"label":"Label","placeholder":"Placeholder","id":"id-10207"},"children":[]},{"name":"Expressive","style":{"width":"200px"},"density":"expressive","props":{"options":[{"value":"Option 1","id":"ixtyk8z9j"},{"value":"Option 2","id":"k8kvx3fm8"},{"value":"Option 3","id":"k8kvx3fm5"},{"value":"Option 4","id":"k8kvx3fm6"},{"value":"Option 5","id":"k8kvx3fm7"}],"label":"Label","placeholder":"Placeholder","id":"id-10208"},"children":[]}]},{"name":"Multiple","examples":[{"name":"(Default) False","style":{"width":"200px"},"props":{"options":[{"value":"Option 1","id":"ykzqfs8oa"},{"value":"Option 2","id":"kcndx1xog"},{"value":"Option 3","id":"kcndx2xog"},{"value":"Option 4","id":"kcndx3xog"},{"value":"Option 5","id":"kcndx4xog"}],"label":"Label","multiple":false,"id":"id-10209"},"children":[]},{"name":"True","style":{"width":"200px"},"props":{"options":[{"value":"Option 1","id":"34540enzm"},{"value":"Option 2","id":"3a4ml34c8"},{"value":"Option 3","id":"3a4ml34c7"},{"value":"Option 4","id":"3a4ml34c6"},{"value":"Option 5","id":"3a4ml34c5"}],"label":"Label","multiple":true,"id":"id-10210"},"children":[]}]},{"name":"Variant","examples":[{"name":"(Default) Above","style":{"width":"200px"},"props":{"options":[{"value":"Option 1","id":"4lj8zr5b1"},{"value":"Option 2","id":"uurfm7y2y"},{"value":"Option 3","id":"uurfm7y3y"},{"value":"Option 4","id":"uurfm7y4y"},{"value":"Option 5","id":"uurfm7y5y"}],"label":"Label","id":"id-10211"},"children":[]},{"name":"Floating","style":{"width":"200px"},"props":{"options":[{"value":"Option 1","id":"otbjunoyx"},{"value":"Option 2","id":"ju53v02yg"},{"value":"Option 3","id":"ju53v03yg"},{"value":"Option 4","id":"ju53v04yg"},{"value":"Option 5","id":"ju53v05yg"}],"label":"Label","variant":"floating","value":["Floating Label"],"id":"id-10212"},"children":[]}]},{"name":"Show Label","examples":[{"name":"(Default) True","style":{"width":"200px"},"props":{"options":[{"value":"Option 1","id":"09a47p13k"},{"value":"Option 2","id":"ya0ahf4od"},{"value":"Option 3","id":"ya0ahf3od"},{"value":"Option 4","id":"ya0ahf2od"},{"value":"Option 5","id":"ya0ahf1od"}],"label":"Label","showLabel":true,"id":"id-10213"},"children":[]},{"name":"False","style":{"width":"200px"},"props":{"options":[{"value":"Option 1","id":"h8apm2qse"},{"value":"Option 2","id":"vop8vkb8q"},{"value":"Option 3","id":"vop8vkb7q"},{"value":"Option 4","id":"vop8vkb6q"},{"value":"Option 5","id":"vop8vkb5q"}],"label":"Label","showLabel":false,"id":"id-10214"},"children":[]}]},{"name":"Show Message","examples":[{"name":"(Default) False","style":{"width":"200px"},"props":{"options":[{"value":"Option 1","id":"m88qjifb3"},{"value":"Option 2","id":"4et40d885"},{"value":"Option 3","id":"4et40d884"},{"value":"Option 4","id":"4et40d883"},{"value":"Option 5","id":"4et40d882"}],"label":"Label","message":"Helper Message","showMessage":false,"id":"id-10215"},"children":[]},{"name":"True","style":{"width":"200px"},"props":{"options":[{"value":"Option 1","id":"tm65in30k"},{"value":"Option 2","id":"hujnrn5vk"},{"value":"Option 3","id":"hujnrn4vk"},{"value":"Option 4","id":"hujnrn3vk"},{"value":"Option 5","id":"hujnrn2vk"}],"label":"Label","message":"Helper Message","showMessage":true,"id":"id-10216"},"children":[]}]},{"name":"Show Icon","examples":[{"name":"(Default) False","style":{"width":"200px"},"props":{"options":[{"value":"Option 1","id":"637sjglg5"},{"value":"Option 2","id":"s529jnpj0"},{"value":"Option 3","id":"s429jnpj0"},{"value":"Option 4","id":"s329jnpj0"},{"value":"Option 5","id":"s229jnpj0"}],"label":"Label","icon":"x_placeholder","showIcon":false,"id":"id-10217"},"children":[]},{"name":"True","style":{"width":"200px"},"props":{"options":[{"value":"Option 1","id":"0b998bbgw"},{"value":"Option 2","id":"a37n10lfh"},{"value":"Option 3","id":"a47n10lfh"},{"value":"Option 4","id":"a57n10lfh"},{"value":"Option 5","id":"a67n10lfh"}],"label":"Label","icon":"x_placeholder","showIcon":true,"id":"id-10218"},"children":[]}]},{"name":"Validation","examples":[{"name":"(Default) No Validation","style":{"width":"200px"},"props":{"options":[{"value":"Option 1","id":"miouzc0ec"},{"value":"Option 2","id":"10dqnhil5"},{"value":"Option 3","id":"10dqnhil4"},{"value":"Option 4","id":"10dqnhil3"},{"value":"Option 5","id":"10dqnhil2"}],"label":"Label","id":"id-102061","validation":"no-validation"},"children":[]},{"name":"Invalid","style":{"width":"200px"},"props":{"options":[{"value":"Option 1","id":"miouzc0ec"},{"value":"Option 2","id":"10dqnhil5"},{"value":"Option 3","id":"10dqnhil4"},{"value":"Option 4","id":"10dqnhil3"},{"value":"Option 5","id":"10dqnhil2"}],"label":"Label","id":"id-102062","validation":"invalid","invalidMessage":"Invalid Message"},"children":[]},{"name":"Valid","style":{"width":"200px"},"props":{"options":[{"value":"Option 1","id":"miouzc0ec"},{"value":"Option 2","id":"10dqnhil5"},{"value":"Option 3","id":"10dqnhil4"},{"value":"Option 4","id":"10dqnhil3"},{"value":"Option 5","id":"10dqnhil2"}],"label":"Label","id":"id-102063","validation":"valid","invalidMessage":"Valid Message"},"children":[]}]},{"name":"Required","examples":[{"name":"(Default) False","style":{"width":"200px"},"props":{"options":[{"value":"Option 1","id":"drpx8im88"},{"value":"Option 2","id":"211e6zox5"},{"value":"Option 3","id":"211e6zox4"},{"value":"Option 4","id":"211e6zox3"},{"value":"Option 5","id":"211e6zox2"}],"label":"Label","multiple":true,"required":false,"id":"id-10219"},"children":[]},{"name":"True","style":{"width":"200px"},"props":{"options":[{"value":"Option 1","id":"2v0zw8afc"},{"value":"Option 2","id":"308308w5z"},{"value":"Option 3","id":"308308w4z"},{"value":"Option 4","id":"308308w3z"},{"value":"Option 5","id":"308308w2z"}],"label":"Label","required":true,"multiple":true,"id":"id-10220"},"children":[]}]},{"name":"Show Required Asterisk","examples":[{"name":"(Default) True","style":{"width":"200px"},"props":{"options":[{"value":"Option 1","id":"drpxs8im88"},{"value":"Option 2","id":"211ed6zox5"},{"value":"Option 3","id":"211ed6zox4"},{"value":"Option 4","id":"211ed6zox3"},{"value":"Option 5","id":"211ed6zox2"}],"label":"Label","multiple":true,"required":true,"showRequiredAsterisk":true,"id":"id-1021s9"},"children":[]},{"name":"False","style":{"width":"200px"},"props":{"options":[{"value":"Option 1","id":"2v0zfw8afc"},{"value":"Option 2","id":"30830f8w5z"},{"value":"Option 3","id":"30830f8w4z"},{"value":"Option 4","id":"30830f8w3z"},{"value":"Option 5","id":"30830f8w2z"}],"label":"Label","required":true,"showRequiredAsterisk":false,"multiple":true,"id":"id-10s220"},"children":[]}]},{"name":"Disabled","examples":[{"name":"(Default) False","style":{"width":"200px"},"props":{"options":[{"value":"Option 1","id":"dlysh2quv"},{"value":"Option 2","id":"ygm3c9msn"},{"value":"Option 3","id":"ygm4c9msn"},{"value":"Option 4","id":"ygm5c9msn"},{"value":"Option 5","id":"ygm6c9msn"}],"label":"Label","multiple":true,"disabled":false,"id":"id-10221"},"children":[]},{"name":"True","style":{"width":"200px"},"props":{"options":[{"value":"Option 1","id":"z445a00hf"},{"value":"Option 2","id":"wji97jfsg"},{"value":"Option 3","id":"wji96jfsg"},{"value":"Option 4","id":"wji95jfsg"},{"value":"Option 5","id":"wji94jfsg"}],"label":"Label","disabled":true,"multiple":true,"id":"id-10222"},"children":[]}]},{"name":"Form Field Width","examples":[{"name":"(Default) Full","style":{"width":"400px"},"props":{"options":[{"value":"Option 1","id":"z0ispy7ls"},{"value":"Option 2","id":"ngl1p4pxn"},{"value":"Option 3","id":"ngl1p3pxn"},{"value":"Option 4","id":"ngl1p2pxn"},{"value":"Option 5","id":"ngl1p1pxn"}],"label":"Full","formFieldWidth":"full","id":"id-10223"},"children":[]},{"name":"Auto","style":{"width":"400px"},"props":{"options":[{"value":"Option 1","id":"klxyvobwn"},{"value":"Option 2","id":"7oag2a4fj"},{"value":"Option 3","id":"7oag2a3fj"},{"value":"Option 4","id":"7oag2a2fj"},{"value":"Option 5","id":"7oag2a1fj"}],"label":"Auto","formFieldWidth":"auto","id":"id-10224"},"children":[]}]},{"name":"Dropdown Width","examples":[{"name":"Form Field Width: Full","props":{"info":true,"id":"id-10225"},"children":[]},{"name":"Line Break","props":{"lineBreak":true,"id":"id-10226"},"children":[]},{"name":"(Default) Fixed","style":{"width":"400px"},"props":{"options":[{"value":"Option 1","id":"99pgkheyw"},{"value":"Option 2","id":"qc908rx6z"},{"value":"Option 3","id":"qc908rx5z"},{"value":"Option 4","id":"qc908rx4z"},{"value":"Option 5","id":"qc908rx3z"}],"label":"Fixed","formFieldWidth":"full","dropdownWidth":"fixed","id":"id-10227"},"children":[]},{"name":"Auto","style":{"width":"400px"},"props":{"options":[{"value":"1","id":"2smv303zl"},{"value":"2","id":"dstvsee1m"},{"value":"3","id":"dstvsee2m"},{"value":"4","id":"dstvsee3m"},{"value":"5","id":"dstvsee4m"}],"label":"Auto","formFieldWidth":"full","dropdownWidth":"auto","id":"id-10228"},"children":[]},{"name":"Full","style":{"width":"400px"},"props":{"options":[{"value":"1","id":"8fb4evl87"},{"value":"2","id":"0iiu59zbg"},{"value":"3","id":"0iiu69zbg"},{"value":"4","id":"0iiu79zbg"},{"value":"5","id":"0iiu89zbg"}],"label":"Full","formFieldWidth":"full","dropdownWidth":"full","id":"id-10229"},"children":[]},{"name":"Line Break","props":{"lineBreak":true,"id":"id-10230"},"children":[]},{"name":"Form Field Width: Auto","props":{"info":true,"id":"id-10231"},"children":[]},{"name":"Line Break","props":{"lineBreak":true,"id":"id-10232"},"children":[]},{"name":"(Default) Fixed","style":{"width":"400px"},"props":{"options":[{"value":"Option 1","id":"gniy079gw"},{"value":"Option 2","id":"kr0v4jgxl"},{"value":"Option 3","id":"kr0v3jgxl"},{"value":"Option 4","id":"kr0v2jgxl"},{"value":"Option 5","id":"kr0v1jgxl"}],"label":"Fixed","formFieldWidth":"auto","dropdownWidth":"fixed","id":"id-10233"},"children":[]},{"name":"Auto","style":{"width":"400px"},"props":{"options":[{"value":"1","id":"mmc6lfzsy"},{"value":"2","id":"wr6elxyf4"},{"value":"3","id":"wr6elxyf5"},{"value":"4","id":"wr6elxyf6"},{"value":"5","id":"wr6elxyf7"}],"label":"Auto","formFieldWidth":"auto","dropdownWidth":"auto","id":"id-10234"},"children":[]},{"name":"Full","style":{"width":"400px"},"props":{"options":[{"value":"1","id":"q0iyxp9kq"},{"value":"2","id":"mzo80txs4"},{"value":"3","id":"mzo80txs5"},{"value":"4","id":"mzo80txs6"},{"value":"5","id":"mzo80txs7"}],"label":"Full","formFieldWidth":"auto","dropdownWidth":"full","id":"id-10235"},"children":[]}]},{"name":"Placement","examples":[{"name":"Form Field Width: Full","props":{"info":true,"id":"id-10236"},"children":[]},{"name":"Line Break","props":{"lineBreak":true,"id":"id-10237"},"children":[]},{"name":"(Default) Bottom","style":{"width":"200px"},"props":{"options":[{"value":"Option 1","id":"aryeycu23"},{"value":"Option 2","id":"qrf3x6gdq"},{"value":"Option 3","id":"qrf4x6gdq"},{"value":"Option 4","id":"qrf5x6gdq"},{"value":"Option 5","id":"qrf6x6gdq"}],"label":"Bottom","formFieldWidth":"full","placement":"bottom","id":"id-10238"},"children":[]},{"name":"Top","style":{"width":"200px"},"props":{"options":[{"value":"Option 1","id":"mmfg4zco7"},{"value":"Option 2","id":"52zkxb05u"},{"value":"Option 3","id":"52zkxb04u"},{"value":"Option 4","id":"52zkxb03u"},{"value":"Option 5","id":"52zkxb02u"}],"label":"Top","formFieldWidth":"full","placement":"top","id":"id-10239"},"children":[]},{"name":"Line Break","props":{"lineBreak":true,"id":"id-10240"},"children":[]},{"name":"Form Field Width: Auto","props":{"info":true,"id":"id-10241"},"children":[]},{"name":"Line Break","props":{"lineBreak":true,"id":"id-10242"},"children":[]},{"name":"(Default) Bottom-Start","style":{"width":"200px"},"props":{"options":[{"value":"Option 1","id":"fhczoz28b"},{"value":"Option 2","id":"k8zcxfb4x"},{"value":"Option 3","id":"k8zcxfb3x"},{"value":"Option 4","id":"k8zcxfb2x"},{"value":"Option 5","id":"k8zcxfb1x"}],"label":"Bottom","formFieldWidth":"auto","placement":"bottom-start","id":"id-10243"},"children":[]},{"name":"Bottom-End","style":{"width":"200px"},"props":{"options":[{"value":"Option 1","id":"ukchupevr"},{"value":"Option 2","id":"ts0jwdqxj"},{"value":"Option 3","id":"ts1jwdqxj"},{"value":"Option 4","id":"ts2jwdqxj"},{"value":"Option 5","id":"ts3jwdqxj"}],"label":"Bottom","formFieldWidth":"auto","placement":"bottom-end","id":"id-10244"},"children":[]},{"name":"Top-Start","style":{"width":"200px"},"props":{"options":[{"value":"Option 1","id":"zhuaneo1w"},{"value":"Option 2","id":"5mwz7pmcr"},{"value":"Option 3","id":"4mwz7pmcr"},{"value":"Option 4","id":"3mwz7pmcr"},{"value":"Option 5","id":"2mwz7pmcr"}],"label":"Top","formFieldWidth":"auto","placement":"top-start","id":"id-10245"},"children":[]},{"name":"Top-End","style":{"width":"200px"},"props":{"options":[{"value":"Option 1","id":"6uq8tv3e8"},{"value":"Option 2","id":"iz30t1pce"},{"value":"Option 3","id":"iz40t1pce"},{"value":"Option 4","id":"iz50t1pce"},{"value":"Option 5","id":"iz60t1pce"}],"label":"Top","formFieldWidth":"auto","placement":"top-end","id":"id-10246"},"children":[]}]},{"name":"Selected type","examples":[{"name":"(Default) Text","style":{"width":"200px"},"props":{"options":[{"value":"Option 1","id":"d9n3d2z13"},{"value":"Option 2","id":"vq1c6xw05"},{"value":"Option 3","id":"73eppj8rp"},{"value":"Option 4","id":"yy82mda4v"},{"value":"Option 5","id":"yy82mda5v"}],"label":"Label","multiple":true,"id":"id-10247"},"children":[]},{"name":"Amount","style":{"width":"200px"},"props":{"options":[{"value":"Option 1","id":"la3wbcr7z"},{"value":"Option 2","id":"wz2u3a4q1"},{"value":"Option 3","id":"fcd4tiqlr"},{"value":"Option 4","id":"riz9ea0ox"},{"value":"Option 5","id":"riz9ea1ox"}],"label":"Label","selectedType":"amount","multiple":true,"id":"id-10248"},"children":[]},{"name":"Tag","style":{"width":"200px"},"props":{"options":[{"value":"Option 1","id":"q23x2uflo"},{"value":"Option 2","id":"au07iy2il"},{"value":"Option 3","id":"ig0l3rruj"},{"value":"Option 4","id":"4m2gbzu2q"},{"value":"Option 5","id":"4m2gbzu3q"}],"label":"Label","selectedType":"tag","multiple":true,"id":"id-10249"},"children":[]}]},{"name":"Show No Result","examples":[{"name":"(Default) False","style":{"width":"200px"},"props":{"options":[{"value":"Option 1","id":"wc5wcgjam"},{"value":"Option 2","id":"lx4cydggt"},{"value":"Option 3","id":"lx3cydggt"},{"value":"Option 4","id":"lx2cydggt"},{"value":"Option 5","id":"lx1cydggt"}],"label":"Label","showNoResults":false,"noResultsText":"Nothing found","multiple":true,"id":"id-10250"},"children":[]},{"name":"True","style":{"width":"200px"},"props":{"options":[{"value":"Option 1","id":"waa0gfjab"},{"value":"Option 2","id":"v48umf0qp"},{"value":"Option 3","id":"v58umf0qp"},{"value":"Option 4","id":"v68umf0qp"},{"value":"Option 5","id":"v78umf0qp"}],"label":"Label","showNoResults":true,"noResultsText":"Nothing found","multiple":true,"id":"id-10251"},"children":[]}]},{"name":"Show Loading","examples":[{"name":"(Default) False","style":{"width":"200px"},"props":{"options":[{"value":"Option 1","id":"glkscvbn5"},{"value":"Option 2","id":"13cmgddkr"},{"value":"Option 3","id":"14cmgddkr"},{"value":"Option 4","id":"15cmgddkr"},{"value":"Option 5","id":"16cmgddkr"}],"label":"Label","showLoading":false,"loadingText":"Loading","multiple":true,"id":"id-10252"},"children":[]},{"name":"True","style":{"width":"200px"},"props":{"options":[{"value":"Option 1","id":"e6wvfkv27"},{"value":"Option 2","id":"afg1mqolj"},{"value":"Option 3","id":"afg2mqolj"},{"value":"Option 4","id":"afg3mqolj"},{"value":"Option 5","id":"afg4mqolj"}],"label":"Label","showLoading":true,"loadingText":"Loading","multiple":true,"id":"id-10253"},"children":[]}]},{"name":"Show Search","examples":[{"name":"(Default) False","style":{"width":"200px"},"props":{"options":[{"value":"Option 1","id":"09nure8co"},{"value":"Option 2","id":"74n91hp14"},{"value":"Option 3","id":"74n91hp15"},{"value":"Option 4","id":"74n91hp16"},{"value":"Option 5","id":"74n91hp17"},{"value":"Option 6","id":"74n91hp18"},{"value":"Option 7","id":"74n91hp19"},{"value":"Option 8","id":"74n91hp24"},{"value":"Option 9","id":"74n91hp34"},{"value":"Option 10","id":"74n91hp44"}],"label":"Label","showSearch":false,"multiple":true,"id":"id-10254"},"children":[]},{"name":"True","style":{"width":"200px"},"props":{"options":[{"value":"Option 1","id":"ktmbve0k2"},{"value":"Option 2","id":"uf9wakkc1"},{"value":"Option 3","id":"uf9wakkc2"},{"value":"Option 4","id":"uf9wakkc3"},{"value":"Option 5","id":"uf9wakkc4"}],"label":"Label","showSearch":true,"multiple":true,"id":"id-10255"},"children":[]}]},{"name":"Show Select All","examples":[{"name":"(Default) False","style":{"width":"200px"},"props":{"options":[{"value":"Option 1","id":"p6l2dpiea"},{"value":"Option 2","id":"jh7pczno4"},{"value":"Option 3","id":"jh7pczno5"},{"value":"Option 4","id":"jh7pczno6"},{"value":"Option 5","id":"jh7pczno7"},{"value":"Option 6","id":"jh7pczno8"}],"label":"Label","showSelectAll":false,"multiple":true,"id":"id-10256"},"children":[]},{"name":"True","style":{"width":"200px"},"props":{"options":[{"value":"Option 1","id":"zcim85pqg"},{"value":"Option 2","id":"kg6gvbwru"},{"value":"Option 3","id":"kg5gvbwru"},{"value":"Option 4","id":"kg4gvbwru"},{"value":"Option 5","id":"kg3gvbwru"}],"label":"Label","showSelectAll":true,"multiple":true,"id":"id-10257"},"children":[]}]},{"name":"Show Clear Selection","examples":[{"name":"(Default) True","style":{"width":"200px"},"props":{"options":[{"value":"Option 1","id":"9zfvu9noy"},{"value":"Option 2","id":"cox90a0q8"},{"value":"Option 3","id":"cox80a0q8"},{"value":"Option 4","id":"cox70a0q8"},{"value":"Option 5","id":"cox60a0q8"}],"label":"Label","showClearSelection":true,"multiple":true,"id":"id-10258"},"children":[]},{"name":"False","style":{"width":"200px"},"props":{"options":[{"value":"Option 1","id":"ln9ms4fjy"},{"value":"Option 2","id":"dta90rteq"},{"value":"Option 3","id":"dta80rteq"},{"value":"Option 4","id":"dta70rteq"},{"value":"Option 5","id":"dta60rteq"}],"label":"Label","showClearSelection":false,"multiple":true,"id":"id-10259"},"children":[]}]},{"name":"Examples Single","examples":[{"name":"Icons","style":{"width":"200px"},"props":{"options":[{"value":"Option 1","icon":"x_placeholder","id":"fvdhawk3a"},{"value":"Option 2","icon":"x_placeholder","id":"i0pey2syc"},{"value":"Option 3","icon":"x_placeholder","id":"i0pey3syc"},{"value":"Option 4","icon":"x_placeholder","id":"i0pey4syc"},{"value":"Option 5","icon":"x_placeholder","id":"i0pey5syc"}],"placeholder":"Placeholder","id":"id-10260"},"children":[]},{"name":"Less than 6","style":{"width":"200px"},"props":{"options":[{"value":"Option 1","id":"6zthubswi"},{"value":"Option 2","id":"fh93iyp7w"},{"value":"Option 3","id":"1cbtid79q"},{"value":"Option 4","id":"5w9s57s9k"},{"value":"Option 5","id":"ixclh8p8n"}],"placeholder":"Placeholder","id":"id-10261"},"children":[]},{"name":"Option Group Title","style":{"width":"200px"},"props":{"options":[{"label":"Option group 1","isGroupTitle":true,"id":"f48zp673q"},{"value":"G1:Option 1","id":"8291mu3qc"},{"value":"G1:Option 2","id":"4duvelxc8"},{"label":"Option group 2","isGroupTitle":true,"id":"g4ti9lrc7"},{"value":"G2:Option 1","id":"gqhv3u61k"},{"value":"G2:Option 2","id":"8yx3v6yii"}],"placeholder":"Placeholder","id":"id-10262"},"children":[]},{"name":"Option Groups","style":{"width":"200px"},"props":{"options":[{"value":"G1:Option 1","id":"q4h9435ye"},{"value":"G1:Option 2","showDivider":true,"id":"7tzwcbeln"},{"value":"G2:Option 1","id":"zjmir6142"},{"value":"G2:Option 2","showDivider":true,"id":"hwqps1347"}],"placeholder":"Placeholder","id":"id-10263"},"children":[]},{"name":"More than 6","style":{"width":"200px"},"props":{"options":[{"value":"Option 1","id":"ghsxrti0t"},{"value":"Option 2","id":"5hj8rz3h6"},{"value":"Option 3","id":"kvyjps1ai"},{"value":"Option 4","id":"31ncem9lt"},{"value":"Option 5","id":"0fwgqufql"},{"value":"Option 6","id":"okz955pi7"},{"value":"Option 7","id":"ihbjcr0lo"}],"placeholder":"Placeholder","id":"id-10264"},"children":[]},{"name":"More than 10","style":{"width":"200px"},"props":{"options":[{"value":"Option 1","id":"o9docf7sw"},{"value":"Option 2","id":"ttwfqxw26"},{"value":"Option 3","id":"0c5sgzfag"},{"value":"Option 4","id":"c8knaskj6"},{"value":"Option 5","id":"2z5uhqdmr"},{"value":"Option 6","id":"y2tlf2fnf"},{"value":"Option 7","id":"q9hdifmw7"},{"value":"Option 8","id":"vqz28zphb"},{"value":"Option 9","id":"j2amckmwh"},{"value":"Option 10","id":"zdi31d2lu"}],"placeholder":"Placeholder","id":"id-10265"},"children":[]}]},{"name":"Examples Multiple","examples":[{"name":"Less than 6","style":{"width":"200px"},"props":{"options":[{"value":"Option 1","id":"20twpdi3j"},{"value":"Option 2","id":"0uwpufkvw"},{"value":"Option 3","id":"xmvmr8dws"},{"value":"Option 4","id":"yv5v4q9ew"},{"value":"Option 5","id":"6bjfubtz4"}],"placeholder":"Placeholder","multiple":true,"id":"id-10266"},"children":[]},{"name":"Option Group Title","style":{"width":"200px"},"props":{"options":[{"label":"Option group 1","isGroupTitle":true,"id":"qcvwaejkk"},{"value":"G1:Option 1","id":"jgnlzpm6q"},{"value":"G1:Option 2","id":"n75b2qd9t"},{"label":"Option group 2","isGroupTitle":true,"id":"bcx8u0ke9"},{"value":"G2:Option 1","id":"zgmc2tyn4"},{"value":"G2:Option 2","id":"sw7l6jpoj"}],"placeholder":"Placeholder","multiple":true,"id":"id-10267"},"children":[]},{"name":"Option Groups","style":{"width":"200px"},"props":{"options":[{"value":"G1:Option 1","id":"y5iukyovr"},{"value":"G1:Option 2","showDivider":true,"id":"0ton8ii8v"},{"value":"G2:Option 1","id":"9c4cgirv2"},{"value":"G2:Option 2","showDivider":true,"id":"740m4a61n"}],"placeholder":"Placeholder","multiple":true,"id":"id-10268"},"children":[]},{"name":"More than 6","style":{"width":"200px"},"props":{"options":[{"value":"Option 1","id":"3zjiay7k4"},{"value":"Option 2","id":"s52x89xrz"},{"value":"Option 3","id":"2u5nocjfo"},{"value":"Option 4","id":"0ibok60su"},{"value":"Option 5","id":"kdd8w27oh"},{"value":"Option 6","id":"1qn5w4113"},{"value":"Option 7","id":"eopg7tn9q"}],"placeholder":"Placeholder","multiple":true,"id":"id-10269"},"children":[]},{"name":"More than 10","style":{"width":"200px"},"props":{"options":[{"value":"Option 1","id":"wg5f7ycm8"},{"value":"Option 2","id":"3viv9gxlp"},{"value":"Option 3","id":"4wtnn5nwh"},{"value":"Option 4","id":"r4amvgigg"},{"value":"Option 5","id":"pcmqabmuy"},{"value":"Option 6","id":"u8nify3n9"},{"value":"Option 7","id":"rcmpselej"},{"value":"Option 8","id":"ln43k984l"},{"value":"Option 9","id":"j8squjd5i"},{"value":"Option 10 very long item with may break into a new line","id":"b84ie8otk"}],"placeholder":"Placeholder","multiple":true,"id":"id-10270"},"children":[]}]},{"name":"Example tags","examples":[{"name":"Tag grow","style":{"width":"400px"},"props":{"options":[{"value":"Option 1","id":"53xbfd1o6"},{"value":"Option 2","id":"fq8ypeiz2"},{"value":"Option 3","id":"jtd3wevz2"},{"value":"Option 4","id":"srr1toi8f"},{"value":"Option 5","id":"srr1toi7f"}],"label":"Label","selectedType":"tag","multiple":true,"id":"id-10271","removeTagsTexts":["Remove Option entry 1","Remove Option entry 2","Remove Option entry 3","Remove Option entry 4"]},"children":[]},{"name":"Tag grow + auto","style":{"width":"400px"},"props":{"options":[{"value":"Option 1","id":"jn3s5kl9t"},{"value":"Option 2","id":"iesayujhy"},{"value":"Option 3","id":"55kavoeem"},{"value":"Option 4","id":"xi4qhrdg8"},{"value":"Option 5","id":"xi4qhrdg7"}],"label":"Label","selectedType":"tag","formFieldWidth":"auto","multiple":true,"id":"id-10272"},"children":[]}]},{"name":"Example: Other configuration","examples":[{"name":"Search Value","style":{"width":"200px"},"props":{"options":[{"value":"Option 1","id":"09nursdao"},{"value":"Option 2","id":"74n9csdc14"},{"value":"Option 3","id":"64n9csdc14"},{"value":"Option 4","id":"54n9csdc14"},{"value":"Option 5","id":"44n9csdc14"}],"label":"Label","searchValue":"1","showSearch":true,"multiple":true,"id":"id-10as4"},"children":[]},{"name":"Custom Selected Label","style":{"width":"200px"},"props":{"options":[{"value":"Option 1","id":"09nurdscsdao"},{"value":"Option 2","id":"74n9ccsddc14"},{"value":"Option 3","id":"73n9ccsddc14"},{"value":"Option 4","id":"72n9ccsddc14"},{"value":"Option 5","id":"71n9ccsddc14"}],"label":"Label","selectedLabels":"Label controlled","id":"id-10aasds4"},"children":[]},{"name":"Transform Selected Label","style":{"width":"200px"},"props":{"options":[{"value":"Option 1","id":"09nurdscsdao"},{"value":"Option 2","id":"74n9ccsddc14"},{"value":"Option 3","id":"73n9ccsddc14"},{"value":"Option 4","id":"72n9ccsddc14"},{"value":"Option 5","id":"71n9ccsddc14"}],"label":"Label","transformSelectedLabels":true,"id":"id-10aasds4"},"children":[]},{"name":"Custom Search Filter","style":{"width":"200px"},"props":{"options":[{"value":"Option 1","id":"09nurdscsdao"},{"value":"Option 2","id":"74n9ccsddc14"},{"value":"Option 3","id":"73n9ccsddc14"},{"value":"Option 4","id":"72n9ccsddc14"},{"value":"Option 5","id":"71n9ccsddc14"}],"label":"Label","searchFilter":true,"showSearch":true,"id":"id-10aasds4"},"children":[]}]},{"name":"Examples Floating label","examples":[{"name":"Floating","style":{"width":"200px"},"props":{"options":[{"value":"Option 1","id":"otbjunoyx"},{"value":"Option 2","id":"ju53v02yg"},{"value":"Option 3","id":"ju53v03yg"},{"value":"Option 4","id":"ju53v04yg"},{"value":"Option 5","id":"ju53v05yg"}],"label":"Label","variant":"floating","value":["Floating Label"],"id":"id-10300"},"children":[]},{"name":"Floating","style":{"width":"200px"},"props":{"options":[{"value":"Option 1","id":"otbjunoyx"},{"value":"Option 2","id":"ju53v02yg"},{"value":"Option 3","id":"ju53v03yg"},{"value":"Option 4","id":"ju53v04yg"},{"value":"Option 5","id":"ju53v05yg"}],"label":"Label","variant":"floating","id":"id-10301","validation":"invalid","invalidMessage":"Invalid Message"},"children":[]}]}]'),eO=({children:e,message:a,variant:t,values:n,required:i,options:l,placeholder:o,selectedType:s,formFieldWidth:c,showLabel:d,placement:r,lineBreak:u,info:p,showLoading:h,showNoResults:b,showSelectAll:x,showClearSelection:v,showSearch:m,noResultsText:g,loadingText:j,multiple:D,dropdownWidth:B,icon:f,showIcon:w,showMessage:y,disabled:T,id:A,searchValue:k,selectedLabels:C,transformSelectedLabels:O,searchFilter:N,validMessage:I,validation:_,invalidMessage:H,showRequiredAsterisk:z,removeTagsTexts:P})=>{let[R,F]=(0,S.useState)(n);return p?(0,L.jsx)(ee.A,{size:"small",semantic:"informational",children:e}):u?(0,L.jsx)("i",{className:"line-break"}):(0,L.jsx)(ek.A,{showRequiredAsterisk:z,disabled:T,icon:f,showMessage:y,showIcon:w,dropdownWidth:B,showClearSelection:v,showSelectAll:x,showSearch:m,showLoading:h,showNoResults:b,multiple:D,label:e,listLabel:`${A}-${e}`,options:l,variant:t,message:a,required:i,placeholder:o,showLabel:d,placement:r,selectAllLabel:"Select all",searchLabel:"Search",selectedType:s,formFieldWidth:c,loadingText:j,noResultsText:g??"No matching filter",values:R,searchValue:k,selectedLabels:C,selectedPrefix:"Selected",invalidMessage:H,validMessage:I,validation:_,transformSelectedLabels:O?e=>e.map(e=>e.value.at(-1)).join(", "):void 0,searchFilter:N?(e,a)=>"Option 1"===e.value:void 0,onOptionSelected:e=>{F(e)},removeTagsTexts:P})},eN=JSON.parse('[{"name":"Density","examples":[{"name":"Functional","style":{"width":"200px"},"content":"","density":"functional","props":{"width":"full"}},{"name":"(Default) Regular","style":{"width":"200px"},"content":"","density":"regular","props":{"width":"full"}},{"name":"Expressive","style":{"width":"200px"},"content":"","density":"expressive","props":{"width":"full"}}]},{"name":"Variant","examples":[{"name":"(Default) Adaptive - Horizontal","style":{"width":"200px"},"content":"","props":{"width":"full"}},{"name":"Adaptive - Vertical","style":{"height":"100px"},"content":"","props":{"variant":"vertical","width":"full"}}]},{"name":"Emphasis","examples":[{"name":"(Default) Weak","style":{"width":"200px"},"content":"","props":{"width":"full"}},{"name":"Strong","style":{"width":"200px"},"content":"","props":{"emphasis":"strong","width":"full"}}]}]'),eI=({variant:e,emphasis:a,children:t,width:n})=>(0,L.jsxs)(L.Fragment,{children:[(0,L.jsx)(ee.A,{size:"small",semantic:"informational",children:t}),(0,L.jsx)(q.A,{variant:e,emphasis:a,width:n})]});var eL=t(19831);let eS=JSON.parse('[{"name":"Density","examples":[{"name":"Functional","density":"functional","props":{"open":"open","onClose":"toggleDrawer(false)"}},{"name":"(Default) Regular","density":"regular","props":{"open":"open","onClose":"toggleDrawer(false)"}},{"name":"Expressive","density":"expressive","props":{"open":"open","onClose":"toggleDrawer(false)"}}]},{"name":"Size","examples":[{"name":"(Default) Medium","props":{"open":"open","onClose":"toggleDrawer(false)"}},{"name":"Full","props":{"width":"full","open":"open","onClose":"toggleDrawer(false)"}}]},{"name":"Rounded","examples":[{"name":"(Default) False","props":{"rounded":false,"open":"open","onClose":"toggleDrawer(false)"}},{"name":"True","props":{"rounded":true,"open":"open","onClose":"toggleDrawer(false)"}}]},{"name":"Spacing","examples":[{"name":"(Default) Medium","props":{"open":"open","onClose":"toggleDrawer(false)"}},{"name":"Small","props":{"spacing":"small","open":"open","onClose":"toggleDrawer(false)"}},{"name":"Large","props":{"spacing":"large","open":"open","onClose":"toggleDrawer(false)"}},{"name":"None","props":{"spacing":"none","open":"open","onClose":"toggleDrawer(false)"}}]},{"name":"Backdrop","examples":[{"name":"(Default) Strong","props":{"backdrop":"strong","open":"open","onClose":"toggleDrawer(false)"}},{"name":"Weak","props":{"backdrop":"weak","open":"open","onClose":"toggleDrawer(false)"}},{"name":"Invisible","props":{"backdrop":"invisible","open":"open","onClose":"toggleDrawer(false)"}},{"name":"No Backdrop","props":{"backdrop":"none","open":"open","onClose":"toggleDrawer(false)"}}]},{"name":"Direction","examples":[{"name":"(Default) Right","props":{"open":"open","onClose":"toggleDrawer(false)"}},{"name":"Left","props":{"direction":"left","open":"open","onClose":"toggleDrawer(false)"}},{"name":"Up","props":{"direction":"up","open":"open","onClose":"toggleDrawer(false)"}},{"name":"Down","props":{"direction":"down","open":"open","onClose":"toggleDrawer(false)"}}]},{"name":"Example","examples":[{"name":"(Default) As modal","props":{"variant":"modal","open":"open","onClose":"toggleDrawer(false)"}},{"name":"Inside","props":{"variant":"inside","open":"open","onClose":"toggleDrawer(false)"}}]}]');var e_=t(37975),eH=t(90137),ez=t(99279);let eP=JSON.parse('[{"name":"Density","children":[{"name":"brand","slot":"brand","content":"DBHeader"},{"name":"link","slot":"meta-navigation","angularDirective":true,"content":"Imprint","props":{"href":"#"}},{"name":"button","slot":"primary-action","content":"Search","props":{"icon":"magnifying_glass","variant":"ghost","noText":true}},{"name":"button","slot":"secondary-action","angularDirective":true,"content":"Profile","props":{"icon":"x_placeholder","variant":"ghost","noText":true}},{"name":"navigation","slot":"Navigation","angularDirective":true,"children":[{"name":"navigation-item","props":{"icon":"x_placeholder"},"children":[{"name":"a","native":true,"slot":"NavigationContent","angularDirective":true,"content":"Link","props":{"href":"#"}}]},{"name":"navigation-item","props":{"icon":"x_placeholder","disabled":true},"children":[{"name":"a","native":true,"slot":"NavigationContent","angularDirective":true,"content":"Link disabled","props":{"href":"#"}}]}]}],"examples":[{"name":"Functional","density":"functional","props":{},"style":{"width":"100%","display":"block"}},{"name":"(Default) Regular","density":"regular","props":{},"style":{"width":"100%","display":"block"}},{"name":"Expressive","density":"expressive","props":{},"style":{"width":"100%","display":"block"}}]},{"name":"Width","children":[{"name":"brand","slot":"brand","content":"DBHeader"},{"name":"link","slot":"meta-navigation","angularDirective":true,"content":"Imprint","props":{"href":"#"}},{"name":"button","slot":"primary-action","content":"Search","props":{"icon":"magnifying_glass","variant":"ghost","noText":true}},{"name":"button","slot":"secondary-action","angularDirective":true,"content":"Profile","props":{"icon":"x_placeholder","variant":"ghost","noText":true}},{"name":"navigation","slot":"Navigation","angularDirective":true,"children":[{"name":"navigation-item","props":{"icon":"x_placeholder"},"children":[{"name":"a","native":true,"slot":"NavigationContent","angularDirective":true,"content":"Link","props":{"href":"#"}}]},{"name":"navigation-item","props":{"icon":"x_placeholder","disabled":true},"children":[{"name":"a","native":true,"slot":"NavigationContent","angularDirective":true,"content":"Link disabled","props":{"href":"#"}}]}]}],"examples":[{"name":"Full","style":{"width":"100%","display":"block"}},{"name":"Medium","style":{"width":"100%","display":"block"},"props":{"width":"medium"}},{"name":"Large","style":{"width":"100%","display":"block"},"props":{"width":"large"}}]},{"name":"Behavior","children":[{"name":"brand","slot":"brand","content":"DBHeader"},{"name":"link","slot":"meta-navigation","angularDirective":true,"content":"Imprint","props":{"href":"#"}},{"name":"button","slot":"primary-action","content":"Search","props":{"icon":"magnifying_glass","variant":"ghost","noText":true}},{"name":"button","slot":"secondary-action","angularDirective":true,"content":"Profile","props":{"icon":"x_placeholder","variant":"ghost","noText":true}},{"name":"navigation","slot":"Navigation","angularDirective":true,"children":[{"name":"navigation-item","props":{"icon":"x_placeholder"},"children":[{"name":"a","native":true,"slot":"NavigationContent","angularDirective":true,"content":"Link","props":{"href":"#"}}]},{"name":"navigation-item","props":{"icon":"x_placeholder","disabled":true},"children":[{"name":"a","native":true,"slot":"NavigationContent","angularDirective":true,"content":"Link disabled","props":{"href":"#"}}]}]}],"examples":[{"name":"Desktop (full width)","style":{"width":"100%","display":"block"}},{"name":"Mobile","style":{"width":"100%","display":"block"},"props":{"forceMobile":"true"}}]},{"name":"Examples","children":[{"name":"brand","slot":"brand","content":"DBHeader"},{"name":"link","slot":"meta-navigation","angularDirective":true,"content":"Imprint","props":{"href":"#"}},{"name":"button","slot":"primary-action","content":"Search","props":{"icon":"magnifying_glass","variant":"ghost","noText":true}},{"name":"button","slot":"secondary-action","angularDirective":true,"content":"Profile","props":{"icon":"x_placeholder","variant":"ghost","noText":true}},{"name":"navigation","slot":"Navigation","angularDirective":true,"children":[{"name":"navigation-item","props":{"icon":"x_placeholder"},"children":[{"name":"a","native":true,"slot":"NavigationContent","angularDirective":true,"content":"Link","props":{"href":"#"}}]},{"name":"navigation-item","props":{"icon":"x_placeholder","disabled":true},"children":[{"name":"a","native":true,"slot":"NavigationContent","angularDirective":true,"content":"Link disabled","props":{"href":"#"}}]}]}],"examples":[{"name":"With Application Name + Navigation","style":{"width":"100%","display":"block"},"props":{"example":true,"withName":true,"withNavigation":true}},{"name":"Without Navigation","style":{"width":"100%","display":"block"},"props":{"example":true,"withName":true,"withNavigation":false}},{"name":"Without Application Name","style":{"width":"100%","display":"block"},"props":{"example":true,"withName":false,"withNavigation":true}},{"name":"Without Application Name + Navigation","style":{"width":"100%","display":"block"},"props":{"example":true,"withName":false,"withNavigation":false}}]}]'),eR=({drawerOpen:e,forceMobile:a,burgerMenuLabel:t,children:n,className:i,id:l,onToggle:o,width:s,example:c,withNavigation:d,withName:r})=>(0,L.jsx)(e_.A,{width:s,brand:(0,L.jsx)(ej.A,{title:"DBHeader",children:(!c||r)&&"DBHeader"}),metaNavigation:!c&&(0,L.jsxs)(L.Fragment,{children:[(0,L.jsx)(H.A,{href:"#",children:"Imprint"}),(0,L.jsx)(H.A,{href:"#",children:"Help"})]}),primaryAction:!c&&(0,L.jsx)(W.A,{icon:"magnifying_glass",variant:"ghost",noText:!0,children:"Search"}),secondaryAction:!c&&(0,L.jsxs)(L.Fragment,{children:[(0,L.jsx)(W.A,{icon:"x_placeholder",variant:"ghost",noText:!0,children:"Profile"}),(0,L.jsx)(W.A,{icon:"x_placeholder",variant:"ghost",noText:!0,children:"Notification"}),(0,L.jsx)(W.A,{icon:"x_placeholder",variant:"ghost",noText:!0,children:"Help"})]}),drawerOpen:e,forceMobile:a,burgerMenuLabel:t,className:i,id:l,onToggle:o,children:(!c||d)&&(0,L.jsxs)(eH.A,{"aria-label":n,children:[(0,L.jsx)(ez.A,{icon:"x_placeholder",children:(0,L.jsx)("a",{href:"#",children:n})}),(0,L.jsx)(ez.A,{disabled:!0,children:(0,L.jsxs)("a",{href:"#",children:[n," disabled"]})})]})}),eF=JSON.parse('[{"name":"Density","examples":[{"name":"Functional","density":"functional","props":{}},{"name":"(Default) Regular","density":"regular","props":{}},{"name":"Expressive","density":"expressive","props":{}}]},{"name":"Semantic","examples":[{"name":"(Default) Adaptive"},{"name":"Neutral","props":{"semantic":"neutral"}},{"name":"Critical","props":{"semantic":"critical"}},{"name":"Informational","props":{"semantic":"informational"}},{"name":"Successful","props":{"semantic":"successful"}},{"name":"Warning","props":{"semantic":"warning"}}]},{"name":"Size","examples":[{"name":"(Default) Medium"},{"name":"Small","props":{"size":"small"}}]},{"name":"Show Icon","examples":[{"name":"(Default) True","props":{"showIcon":true}},{"name":"False","props":{"showIcon":false}}]}]'),eE=({semantic:e,size:a,icon:t,children:n,showIcon:i})=>(0,L.jsx)(ee.A,{semantic:e,size:a,icon:t,showIcon:i,children:n});var eq=t(78815);let eM=JSON.parse('[{"name":"Density","examples":[{"name":"Functional","density":"functional","props":{"label":"Label"}},{"name":"(Default) Regular","density":"regular","props":{"label":"Label"}},{"name":"Expressive","density":"expressive","props":{"label":"Label"}}]},{"name":"Variant","examples":[{"name":"(Default) Above","props":{"label":"Label"}},{"name":"Floating","props":{"label":"Label","variant":"floating","value":"Floating"}}]},{"name":"Show Label","examples":[{"name":"(Default) True","props":{"label":"Label","showLabel":true}},{"name":"False","props":{"label":"Label","showLabel":false}}]},{"name":"Show Message","examples":[{"name":"(Default) False","props":{"label":"Label","message":"Message","showMessage":false}},{"name":"True","props":{"label":"Label","message":"Message","showMessage":true}}]},{"name":"State","examples":[{"name":"(Default) Empty","props":{"label":"Label"}},{"name":"Filled","props":{"label":"Label","value":"Filled"}}]},{"name":"Disabled","examples":[{"name":"(Default) False","props":{"label":"Label","disabled":false}},{"name":"True","props":{"label":"Label","disabled":true}}]},{"name":"Readonly","examples":[{"name":"(Default) False","props":{"label":"Label","readOnly":false}},{"name":"True","props":{"label":"Label","readOnly":true}}]},{"name":"Validation","examples":[{"name":"(Default) No validation","props":{"label":"Label","validation":"no-validation"}},{"name":"Invalid","props":{"label":"Label","validation":"invalid","invalidMessage":"Invalid Message"}},{"name":"Valid","props":{"label":"Label","validation":"valid","validMessage":"Valid message"}}]},{"name":"Required","examples":[{"name":"(Default) False","props":{"label":"Label","required":false}},{"name":"True","props":{"label":"Label","required":true}}]},{"name":"Show Required Asterisk","examples":[{"name":"(Default) True","props":{"label":"Label","required":true,"showRequiredAsterisk":true}},{"name":"False","props":{"label":"Label","required":true,"showRequiredAsterisk":false}}]},{"name":"Show Icon Leading","examples":[{"name":"(Default) False","props":{"label":"False","icon":"x_placeholder","showIcon":false}},{"name":"True","props":{"label":"True","icon":"x_placeholder","showIcon":true}}]},{"name":"Show Icon Leading + Trailing","examples":[{"name":"(Default) False","props":{"label":"False","icon":"x_placeholder","showIcon":false,"iconTrailing":"x_placeholder","showIconTrailing":false}},{"name":"True","props":{"label":"True","icon":"x_placeholder","showIcon":true,"iconTrailing":"x_placeholder","showIconTrailing":true}}]},{"name":"Show Icon Trailing","examples":[{"name":"(Default) False","props":{"label":"False","iconTrailing":"x_placeholder","showIconTrailing":false}},{"name":"True","props":{"label":"True","iconTrailing":"x_placeholder","showIconTrailing":true}}]},{"name":"Example - Length","examples":[{"name":"MinLength","props":{"label":"Label","minLength":3}},{"name":"MaxLength","props":{"label":"Label","maxLength":5}},{"name":"MinMaxLength","props":{"label":"Label","minLength":3,"maxLength":5}}]},{"name":"Example - Types with min and max","codeFileName":"ExampleTypes","examples":[{"name":"(Default) Text","props":{"label":"Label"}},{"name":"Password","props":{"label":"Label","type":"password"}},{"name":"Search","props":{"label":"Label","type":"search"}},{"name":"E-Mail","props":{"label":"Label","type":"email"}},{"name":"Tel","props":{"label":"Label","type":"tel"}},{"name":"URL","props":{"label":"Label","type":"url"}},{"name":"Date","props":{"label":"Label","type":"date","min":"2023-01-01","max":"2030-12-31"}},{"name":"Datetime Local","props":{"label":"Label","type":"datetime-local","min":"2023-01-01T00:00","max":"2030-12-31T23:59"}},{"name":"Month","props":{"label":"Label","type":"month","min":"2023-01","max":"2030-12"}},{"name":"Time","props":{"label":"Label","type":"time","min":"00:00","max":"23:59"}},{"name":"Week","props":{"label":"Label","type":"week","min":"2023-W01","max":"2030-W52"}}]},{"name":"Example Floating Label","examples":[{"name":"(Default) Empty","props":{"label":"Label","variant":"floating"}},{"name":"Filled","props":{"label":"Label","value":"Filled","variant":"floating"}},{"name":"Disabled","props":{"label":"Label","disabled":true,"variant":"floating"}},{"name":"Readonly - Filled","props":{"label":"Label","value":"Readonly - Filled","readOnly":true,"variant":"floating"}},{"name":"Invalid","props":{"label":"Label","validation":"invalid","invalidMessage":"Invalid Message","variant":"floating"}}]},{"name":"Example - Types - Floating Label","codeFileName":"ExampleTypesFloatingLabel","examples":[{"name":"(Default) Text","props":{"label":"Label","variant":"floating"}},{"name":"Password","props":{"label":"Label","type":"password","variant":"floating"}},{"name":"Search","props":{"label":"Label","type":"search","variant":"floating"}},{"name":"E-Mail","props":{"label":"Label","type":"email","variant":"floating"}},{"name":"Tel","props":{"label":"Label","type":"tel","variant":"floating"}},{"name":"URL","props":{"label":"Label","type":"url","variant":"floating"}},{"name":"Date","props":{"label":"Label","type":"date","variant":"floating"}},{"name":"Datetime Local","props":{"label":"Label","type":"datetime-local","variant":"floating"}},{"name":"Month","props":{"label":"Label","type":"month","variant":"floating"}},{"name":"Time","props":{"label":"Label","type":"time","variant":"floating"}},{"name":"Week","props":{"label":"Label","type":"week","variant":"floating"}},{"name":"Datalist","props":{"label":"Label","variant":"floating","dataList":true}},{"name":"File","experimental":true,"props":{"label":"Label","type":"file","variant":"floating"}}]},{"name":"Datalist / Typeahead Examples","codeFileName":"DatalistExamples","examples":[{"name":"Simple String List","props":{"label":"Search Cities","placeholder":"Type to search...","dataList":true,"variant":"floating"}},{"name":"Regular Variant with Datalist","props":{"label":"Search Products","placeholder":"Type to search...","dataList":true}},{"name":"With Search Icon","props":{"label":"Search Stations","placeholder":"Type to search...","dataList":true,"variant":"floating","type":"search","icon":"magnifying_glass","showIcon":true}}]}]'),eV=({label:e,value:a,type:t,minLength:n,required:i,disabled:l,iconTrailing:o,showIcon:s,showIconTrailing:c,icon:d,children:r,message:u,variant:p,readOnly:h,dataList:b,showLabel:x,showMessage:v,validMessage:m,validation:g,invalidMessage:j,showRequiredAsterisk:D,maxLength:B,max:f,min:w})=>(0,L.jsx)(eq.A,{label:e,message:u,placeholder:r,variant:p,showLabel:x,showRequiredAsterisk:D,defaultValue:a,type:t,minLength:n,required:i,disabled:l,readOnly:h,iconTrailing:o,showIconTrailing:c,maxLength:B,max:f,min:w,icon:d,showIcon:s,showMessage:v,invalidMessage:j,validMessage:m,validation:g,dataList:b?"floating"===p?["Test 1","Test 2"]:[{value:"test1",label:"Test 1"},{value:"test2",label:"Test 2"}]:void 0}),eW=JSON.parse('[{"name":"Density","examples":[{"name":"Functional","density":"functional","props":{"href":"#"}},{"name":"(Default) Regular","density":"regular","props":{"href":"#"}},{"name":"Expressive","density":"expressive","props":{"href":"#"}}]},{"name":"Variant","examples":[{"name":"(Default) Adaptive","props":{"href":"#"}},{"name":"Brand","props":{"href":"#","variant":"brand"}}]},{"name":"Disabled","examples":[{"name":"(Default) False","props":{"href":"#","disabled":false}},{"name":"True","props":{"href":"#","disabled":true}}]},{"name":"Size","examples":[{"name":"(Default) Medium","props":{"href":"#"}},{"name":"Small","props":{"href":"#","size":"small"}}]},{"name":"Content","examples":[{"name":"(Default) Internal","props":{"href":"#"}},{"name":"External","props":{"href":"#","content":"external"}}]},{"name":"Show Icon","examples":[{"name":"(Default) True","props":{"href":"#","showIcon":true}},{"name":"False","props":{"href":"#","showIcon":false}}]},{"name":"Wrap","examples":[{"name":"(Default) False","props":{"href":"#","wrap":false}},{"name":"True [Multiline]","style":{"width":"2ch"},"props":{"href":"#","wrap":true}}]},{"name":"Examples","examples":[{"name":"Variant Inline","props":{"href":"#","variant":"inline"}}]}]'),eU=({href:e,variant:a,disabled:t,size:n,content:i,children:l,showIcon:o,wrap:s})=>(0,L.jsx)(H.A,{href:e,variant:a,disabled:t,size:n,content:i,showIcon:o,wrap:s,children:l}),eG=JSON.parse('[{"name":"Density","children":[{"name":"navigation-item","content":"Navi-Item 1","children":[{"name":"navigation-item","content":"Sub-Navi-Item 1","slot":"sub-navigation","children":[{"name":"navigation-item","slot":"sub-navigation","props":{"active":true},"children":[{"name":"a","native":true,"content":"Sub-Sub-Navi-Item 1","props":{"href":"#"}}]}]}]},{"name":"navigation-item","children":[{"name":"a","native":true,"content":"Navi-Item 2","props":{"href":"#"}}]}],"examples":[{"name":"Functional","density":"functional","props":{}},{"name":"(Default) Regular","density":"regular","props":{}},{"name":"Expressive","density":"expressive","props":{}}]}]'),e$=({children:e})=>{let a=`${e.replaceAll(/\W/g,"_").toLowerCase()}`;return(0,L.jsxs)("div",{children:[(0,L.jsx)(ee.A,{id:a,size:"small",semantic:"informational",icon:"none",children:e}),(0,L.jsxs)(eH.A,{"aria-labelledby":a,children:[(0,L.jsx)(ez.A,{subNavigation:(0,L.jsxs)(L.Fragment,{children:[(0,L.jsx)(ez.A,{subNavigation:(0,L.jsxs)(L.Fragment,{children:[(0,L.jsx)(ez.A,{children:(0,L.jsx)("a",{href:"#","aria-current":"page",children:"Sub-Sub-Navi-Item 1"})}),(0,L.jsx)(ez.A,{children:(0,L.jsx)("a",{href:"#",children:"Sub-Sub-Navi-Item 2"})})]}),children:"Sub-Navi-Item 1"}),(0,L.jsx)(ez.A,{children:(0,L.jsx)("a",{href:"#",children:"Sub-Navi-Item 2"})})]}),children:"Navi-Item 1"}),(0,L.jsx)(ez.A,{icon:"x_placeholder",children:(0,L.jsx)("a",{href:"#",children:"Navi-Item 2"})}),(0,L.jsx)(ez.A,{disabled:!0,children:(0,L.jsx)("a",{href:"#",children:"Navi-Item 3"})})]})]})},eJ=JSON.parse('[{"name":"Density","examples":[{"name":"Functional","density":"functional","props":{},"children":[{"name":"a","native":true,"props":{"href":"#"},"content":"Functional"}]},{"name":"(Default) Regular","density":"regular","props":{},"children":[{"name":"a","native":true,"props":{"href":"#"},"content":"(Default) Regular"}]},{"name":"Expressive","density":"expressive","props":{},"children":[{"name":"a","native":true,"props":{"href":"#"},"content":"Expressive"}]}]},{"name":"Disabled","examples":[{"name":"(Default) False","props":{"disabled":false},"children":[{"name":"a","native":true,"props":{"href":"#"},"content":"(Default) False"}]},{"name":"True","props":{"disabled":true},"children":[{"name":"a","native":true,"props":{"href":"#"},"content":"True"}]}]},{"name":"Active","examples":[{"name":"(Default) False","props":{"active":false},"children":[{"name":"a","native":true,"props":{"href":"#"},"content":"(Default) False"}]},{"name":"True","props":{"active":true},"children":[{"name":"a","native":true,"props":{"href":"#"},"content":"True"}]}]},{"name":"Expanded","examples":[{"name":"(Default) False","props":{"areaPopup":false},"children":[{"name":"a","native":true,"props":{"href":"#"},"content":"(Default) False"}]},{"name":"True","props":{"areaPopup":true},"children":[{"name":"a","native":true,"props":{"href":"#"},"content":"True"}]}]},{"name":"Show Icon","examples":[{"name":"(Default) False","props":{"icon":"x_placeholder","showIcon":false},"children":[{"name":"a","native":true,"props":{"href":"#"},"content":"(Default) False"}]},{"name":"True","props":{"icon":"x_placeholder","showIcon":true},"children":[{"name":"a","native":true,"props":{"href":"#"},"content":"True"}]}]},{"name":"Width","examples":[{"name":"(Default) Auto","style":{"width":"400px"},"children":[{"name":"a","native":true,"props":{"href":"#"},"content":"(Default) Auto"}]},{"name":"Full","style":{"width":"400px"},"props":{"width":"full"},"children":[{"name":"a","native":true,"props":{"href":"#"},"content":"Full"}]}]},{"name":"Wrap","examples":[{"name":"No Wrap (Default)","props":{"areaPopup":true},"children":[{"name":"a","native":true,"props":{"href":"#"},"content":"True"}]},{"name":"This is a very long text that is broken into multiple lines.","props":{"areaPopup":true,"icon":"x_placeholder","showIcon":true,"wrap":true},"style":{"width":"200px"},"children":[{"name":"a","native":true,"content":"Sub-Sub-Navi-Item 1","props":{"href":"#"}}]},{"name":"This is a very long text that is broken into multiple lines.","props":{"areaPopup":true,"wrap":true},"style":{"width":"200px"},"slot":"sub-navigation","children":[{"name":"a","native":true,"props":{"href":"#"},"content":"True"}]}]}]'),eZ=({children:e,icon:a,disabled:t,active:n,width:i,areaPopup:l,showIcon:o,wrap:s})=>(0,L.jsx)("ul",{className:"nav-item-list",children:(0,L.jsx)(ez.A,{icon:a,disabled:t,active:n,width:i,onClick:()=>{alert(e.toString())},showIcon:o,wrap:s,subNavigation:l&&(0,L.jsxs)(L.Fragment,{children:[(0,L.jsx)(ez.A,{icon:a,showIcon:o,subNavigation:(0,L.jsx)(L.Fragment,{children:(0,L.jsx)(ez.A,{icon:a,showIcon:o,children:(0,L.jsx)("a",{href:"#",children:"Navigation-Item 2"})})}),children:"Also a navigation item with longer label"}),(0,L.jsx)(ez.A,{icon:a,showIcon:o,children:(0,L.jsx)("a",{href:"#",children:"Navigation-Item 1"})})]}),children:l?e:(0,L.jsx)("a",{href:"#",children:e})})}),eY=e=>(0,L.jsx)(er,{title:"DBNavigationItem",isSubComponent:e.isSubComponent,componentName:e.componentName,variants:ei(eJ,eZ,e.slotCode)});var eK=t(57319);let eQ=JSON.parse('[{"name":"Density","examples":[{"name":"functional","density":"functional","style":{"width":"300px"},"props":{"headline":"Headline","icon":"information_circle"}},{"name":"regular (Default)","density":"regular","style":{"width":"300px"},"props":{"headline":"Headline","icon":"information_circle"}},{"name":"expressive","density":"expressive","style":{"width":"300px"},"props":{"headline":"Headline","icon":"information_circle"}}]},{"name":"Variant","examples":[{"name":"(Default) Docked","style":{"width":"300px"},"props":{"variant":"docked","headline":"Headline","icon":"information_circle"}},{"name":"Standalone","style":{"width":"300px"},"props":{"variant":"standalone","headline":"Headline","icon":"information_circle"}},{"name":"Overlay","style":{"width":"300px"},"props":{"variant":"overlay","headline":"Headline","icon":"information_circle"}}]},{"name":"Semantic","examples":[{"name":"(Default) Adaptive","style":{"width":"300px"},"props":{"headline":"Headline"}},{"name":"Neutral","style":{"width":"300px"},"props":{"semantic":"neutral","headline":"Headline"}},{"name":"Critical","style":{"width":"300px"},"props":{"semantic":"critical","headline":"Headline"}},{"name":"Informational","style":{"width":"300px"},"props":{"semantic":"informational","headline":"Headline"}},{"name":"Successful","style":{"width":"300px"},"props":{"semantic":"successful","headline":"Headline"}},{"name":"Warning","style":{"width":"300px"},"props":{"semantic":"warning","headline":"Headline"}}]},{"name":"Closeable","examples":[{"name":"(Default) False","style":{"width":"300px"},"props":{"closeable":false}},{"name":"True","style":{"width":"300px"},"props":{"closeable":true}}]},{"name":"Visual","examples":[{"name":"(Default) Icon","style":{"width":"300px"},"props":{"icon":"information_circle"}},{"name":"Image","style":{"width":"300px"},"props":{"img":true}}]},{"name":"Show Icon","examples":[{"name":"(Default) True","style":{"width":"300px"},"props":{"icon":"information_circle","showIcon":true}},{"name":"False","style":{"width":"300px"},"props":{"icon":"information_circle","showIcon":false}}]},{"name":"Link Variant","examples":[{"name":"(Default) Block","style":{"width":"300px"},"props":{"link":true,"linkVariant":"block"}},{"name":"Inline","style":{"width":"300px"},"props":{"link":true,"linkVariant":"inline"}}]},{"name":"Show Headline","examples":[{"name":"(Default) True","style":{"width":"300px"},"props":{"headline":"Headline","showHeadline":true}},{"name":"False","style":{"width":"300px"},"props":{"headline":"Headline","showHeadline":false}}]},{"name":"Show Timestamp","examples":[{"name":"(Default) False","style":{"width":"300px"},"props":{"variant":"overlay","showTimestamp":false,"timestamp":"10 min ago"}},{"name":"True","style":{"width":"300px"},"props":{"variant":"overlay","showTimestamp":true,"timestamp":"10 min ago"}}]},{"name":"Examples - Variant:Docked","codeFileName":"ContentVariantDocked","examples":[{"name":"Text","style":{"width":"300px"},"props":{"behavior":"permanent"}},{"name":"Text & Icon","style":{"width":"300px"},"props":{"icon":"information_circle","behavior":"permanent"}},{"name":"Text & Preview Image","style":{"width":"300px"},"props":{"img":true,"behavior":"permanent"},"children":[{"name":"img","native":true,"slot":"image","content":"","props":{"src":"/assets/images/placeholder.jpg","alt":""}}]},{"name":"Text & Headline","style":{"width":"300px"},"props":{"headline":"Headline","behavior":"permanent"}},{"name":"Text & Textlink Block","style":{"width":"300px"},"props":{"link":true,"behavior":"permanent"},"children":[{"name":"link","slot":"link","content":"Textlink","props":{"href":"#"}}]},{"name":"Text & Textlink Inline","style":{"width":"300px"},"props":{"link":true,"linkVariant":"inline","behavior":"permanent"},"children":[{"name":"link","slot":"link","content":"Textlink","props":{"href":"#"}}]},{"name":"Text & Headline & Textlink Inline & Closeable","style":{"width":"300px"},"props":{"headline":"Headline","link":true,"linkVariant":"inline","closeable":true},"children":[{"name":"link","slot":"link","content":"Textlink","props":{"href":"#"}}]},{"name":"Text & Icon & Headline & Textlink Inline & Closeable","style":{"width":"300px"},"props":{"icon":"information_circle","headline":"Headline","link":true,"linkVariant":"inline","closeable":true},"children":[{"name":"link","slot":"link","content":"Textlink","props":{"href":"#"}}]}]},{"name":"Examples - Variant:Standalone","codeFileName":"ContentVariantStandalone","examples":[{"name":"Text","style":{"width":"300px"},"props":{"variant":"standalone","behavior":"permanent"}},{"name":"Text & Icon","style":{"width":"300px"},"props":{"icon":"information_circle","variant":"standalone","behavior":"permanent"}},{"name":"Text & Preview Image","style":{"width":"300px"},"props":{"img":true,"variant":"standalone","behavior":"permanent"},"children":[{"name":"img","native":true,"slot":"image","content":"","props":{"src":"/assets/images/placeholder.jpg","alt":""}}]},{"name":"Text & Headline","style":{"width":"300px"},"props":{"headline":"Headline","variant":"standalone","behavior":"permanent"}},{"name":"Text & Textlink Block","style":{"width":"300px"},"props":{"link":true,"variant":"standalone","behavior":"permanent"},"children":[{"name":"link","slot":"link","content":"Textlink","props":{"href":"#"}}]},{"name":"Text & Textlink Inline","style":{"width":"300px"},"props":{"link":true,"linkVariant":"inline","variant":"standalone","behavior":"permanent"},"children":[{"name":"link","slot":"link","content":"Textlink","props":{"href":"#"}}]},{"name":"Text & Headline & Textlink Inline & Closeable","style":{"width":"300px"},"props":{"headline":"Headline","link":true,"linkVariant":"inline","variant":"standalone","closeable":true},"children":[{"name":"link","slot":"link","content":"Textlink","props":{"href":"#"}}]},{"name":"Text & Icon & Headline & Textlink Inline & Closeable","style":{"width":"300px"},"props":{"icon":"information_circle","headline":"Headline","link":true,"linkVariant":"inline","variant":"standalone","closeable":true},"children":[{"name":"link","slot":"link","content":"Textlink","props":{"href":"#"}}]}]},{"name":"Examples - Variant:Overlay","codeFileName":"ContentVariantOverlay","examples":[{"name":"Text","style":{"width":"300px"},"props":{"variant":"overlay","behavior":"permanent"}},{"name":"Text & Icon","style":{"width":"300px"},"props":{"icon":"information_circle","variant":"overlay","behavior":"permanent"}},{"name":"Text & Preview Image","style":{"width":"300px"},"props":{"img":true,"variant":"overlay","behavior":"permanent"},"children":[{"name":"img","native":true,"slot":"image","content":"","props":{"src":"/assets/images/placeholder.jpg","alt":""}}]},{"name":"Text & Headline","style":{"width":"300px"},"props":{"headline":"Headline","variant":"overlay","behavior":"permanent"}},{"name":"Text & Textlink Inline","style":{"width":"300px"},"props":{"link":true,"variant":"overlay","behavior":"permanent","linkVariant":"inline"}},{"name":"Text & Textlink Block","style":{"width":"300px"},"props":{"link":true,"variant":"overlay","behavior":"permanent","linkVariant":"block"},"children":[{"name":"link","slot":"link","content":"Textlink","props":{"href":"#"}}]},{"name":"Text & Textlink Block & Timed","style":{"width":"300px"},"props":{"link":true,"variant":"overlay","behavior":"permanent","linkVariant":"block","showTimestamp":true,"timestamp":"10 min ago"},"children":[{"name":"link","slot":"link","content":"Textlink","props":{"href":"#"}}]},{"name":"Text & Headline & Textlink Inline & Closeable","style":{"width":"300px"},"props":{"headline":"Headline","link":true,"variant":"overlay","closeable":true,"linkVariant":"inline"}},{"name":"Text & Icon & Headline & Textlink Inline & Closeable","style":{"width":"300px"},"props":{"icon":"information_circle","headline":"Headline","link":true,"variant":"overlay","closeable":true,"linkVariant":"inline"}},{"name":"Text & Timed","style":{"width":"300px"},"props":{"variant":"overlay","behavior":"permanent","showTimestamp":true,"timestamp":"10 min ago"}},{"name":"Text & Timed & Closeable","style":{"width":"300px"},"props":{"variant":"overlay","closeable":true,"showTimestamp":true,"timestamp":"10 min ago"}},{"name":"Text & Headline & Timed & Closeable","style":{"width":"300px"},"props":{"headline":"Headline","variant":"overlay","closeable":true,"showTimestamp":true,"timestamp":"10 min ago"}},{"name":"Text & Icon & Headline & Timed & Closeable","style":{"width":"300px"},"props":{"icon":"information_circle","headline":"Headline","variant":"overlay","closeable":true,"showTimestamp":true,"timestamp":"10 min ago"}}]}]'),eX=({semantic:e,icon:a,headline:t,variant:n,children:i,closeable:l,link:o,timestamp:s,linkVariant:c,img:d,showIcon:r,showHeadline:u,showTimestamp:p})=>(0,L.jsx)(eK.A,{semantic:e,icon:a,headline:t,link:o?(0,L.jsx)(H.A,{href:"#",children:"Textlink"}):void 0,image:d?(0,L.jsx)("img",{src:"/core-web/review/1493-erstellung-einer-mvp-breadcrumb-komponente/assets/images/placeholder.jpg",alt:"this is a fancy placeholder"}):void 0,variant:n,closeable:l,linkVariant:c,timestamp:s,showTimestamp:p,onClose:()=>{alert(i.toString())},showIcon:r,showHeadline:u,children:i});var e0=t(70631);let e1=JSON.parse('[{"name":"Density","children":[{"name":"button","slot":"trigger"},{"name":"button","content":"Inside Popover"}],"examples":[{"name":"Functional","density":"functional","props":{"id":"popover-01"}},{"name":"(Default) Regular","density":"regular","props":{"id":"popover-02"}},{"name":"Expressive","density":"expressive","props":{"id":"popover-03"}}]},{"name":"Spacing","children":[{"name":"button","slot":"trigger"},{"name":"button","content":"Inside Popover"}],"examples":[{"name":"(Default) Small","props":{"spacing":"small","id":"popover-04"}},{"name":"Medium","props":{"spacing":"medium","id":"popover-05"}},{"name":"Large","props":{"spacing":"large","id":"popover-055"}},{"name":"None","props":{"spacing":"none","id":"popover-06"}}]},{"name":"Placement","children":[{"name":"button","slot":"trigger"},{"name":"button","content":"Inside Popover"}],"examples":[{"name":"bottom-start","props":{"placement":"bottom-start","id":"popover-07-start"}},{"name":"(Default) bottom","props":{"placement":"bottom","id":"popover-07"}},{"name":"bottom-end","props":{"placement":"bottom-end","id":"popover-07-end"}},{"name":"left-start","props":{"placement":"left-start","id":"popover-09-start"}},{"name":"left","props":{"placement":"left","id":"popover-09"}},{"name":"left-end","props":{"placement":"left-end","id":"popover-09-end"}},{"name":"right-start","props":{"placement":"right-start","id":"popover-10-start"}},{"name":"right","props":{"placement":"right","id":"popover-10"}},{"name":"right-end","props":{"placement":"right-end","id":"popover-10-end"}},{"name":"top-start","props":{"placement":"top-start","id":"popover-08-start"}},{"name":"top","props":{"placement":"top","id":"popover-08"}},{"name":"top-end","props":{"placement":"top-end","id":"popover-08-end"}}]},{"name":"Gap","children":[{"name":"button","slot":"trigger"},{"name":"button","content":"Inside Popover"}],"examples":[{"name":"(Default) False","props":{"gap":false,"id":"popover-11"}},{"name":"True","props":{"gap":true,"id":"popover-12"}}]},{"name":"Animation","children":[{"name":"button","slot":"trigger"},{"name":"button","content":"Inside Popover"}],"examples":[{"name":"(Default) True","props":{"id":"popover-13","animation":true}},{"name":"False","props":{"animation":false,"id":"popover-16"}}]},{"name":"Delay","children":[{"name":"button","slot":"trigger"},{"name":"button","content":"Inside Popover"}],"examples":[{"name":"(Default) None","props":{"id":"popover-133","delay":"none"}},{"name":"Slow","props":{"delay":"slow","id":"popover-14"}},{"name":"Fast","props":{"delay":"fast","id":"popover-15"}}]},{"name":"Width","children":[{"name":"button","slot":"trigger"},{"name":"button","content":"Inside Popover"}],"examples":[{"name":"(Default) Auto","props":{"content":"Max width, lorem ipsum dolor sit amet, consetetur sadipscing","id":"popover-17"}},{"name":"Fixed","props":{"content":"Max width, lorem ipsum dolor sit amet, consetetur sadipscing","width":"fixed","id":"popover-18"}}]}]'),e2=({id:e,children:a,width:t,gap:n,spacing:i,placement:l,delay:o,content:s,animation:c})=>(0,L.jsx)(e0.A,{trigger:(0,L.jsx)(W.A,{children:a}),width:t,gap:n,spacing:i,placement:l,animation:c,delay:o,id:e,children:s??(0,L.jsxs)(L.Fragment,{children:[(0,L.jsxs)("ul",{className:"popover-list",children:[(0,L.jsx)("li",{children:"Popover Custom Item 1"}),(0,L.jsx)("li",{children:"Popover Custom Item 2"})]}),(0,L.jsx)(W.A,{children:"Popover Custom Item 3"})]})});var e3=t(71031);let e4=JSON.parse('[{"name":"Density","role":"radiogroup","examples":[{"name":"Functional","density":"functional","props":{"name":"Density","value":"functional"}},{"name":"(Default) Regular","density":"regular","props":{"name":"Density","value":"regular"}},{"name":"Expressive","density":"expressive","props":{"name":"Density","value":"expressive"}}]},{"name":"Disabled","role":"radiogroup","examples":[{"name":"(Default) False","props":{"name":"Disabled","disabled":false}},{"name":"True","props":{"name":"Disabled","disabled":true}}]},{"name":"Checked","role":"radiogroup","examples":[{"name":"(Default) False","props":{"name":"Checked"}},{"name":"True","props":{"name":"Checked","checked":true}}]},{"name":"Validation","role":"radiogroup","examples":[{"name":"(Default) No validation","props":{"name":"No validation","validation":"no-validation"}},{"name":"Invalid","props":{"name":"invalid","validation":"invalid","invalidMessage":"Invalid Message"}},{"name":"Valid","props":{"name":"valid","validation":"valid","validMessage":"Valid message","checked":true}}]},{"name":"Size","role":"radiogroup","examples":[{"name":"(Default) Medium","props":{"name":"Size"}},{"name":"Small","props":{"name":"Size","size":"small"}}]},{"name":"Required","role":"radiogroup","examples":[{"name":"(Default) False","props":{"name":"Requirement","required":false}},{"name":"True","props":{"name":"Requirement","required":true}}]},{"name":"Show Label","role":"radiogroup","examples":[{"name":"(Default) True","props":{"name":"Content","showLabel":true}},{"name":"False","props":{"name":"Content","showLabel":false}}]},{"name":"Show Required Asterisk","role":"radiogroup","examples":[{"name":"(Default) True","props":{"name":"Asterisk","required":true,"showRequiredAsterisk":true}},{"name":"False","props":{"name":"Asterisk","required":true,"showRequiredAsterisk":false}}]}]'),e5=({label:e,size:a,name:t,checked:n,required:i,children:l,disabled:o,value:s,showLabel:c,validation:d,showRequiredAsterisk:r})=>(0,L.jsxs)(L.Fragment,{children:[(0,L.jsx)(e3.A,{showRequiredAsterisk:r,label:e,size:a,name:t,defaultChecked:(0,R.pW)(n),required:i,disabled:o,showLabel:c,value:s,validation:d,children:l}),void 0!==c&&!c&&(0,L.jsx)(ee.A,{size:"small",semantic:"informational",showIcon:!1,children:l})]});var e8=t(77383);let e9=JSON.parse('[{"name":"Density","examples":[{"name":"Functional","density":"functional","props":{"id":"test-id-123"}},{"name":"(Default) Regular","density":"regular","props":{}},{"name":"Expressive","density":"expressive","props":{}}]},{"name":"Width","examples":[{"name":"(Default) Full","style":{"width":"100%","display":"block"}},{"name":"Small","style":{"width":"100%","display":"block"},"props":{"width":"small"}},{"name":"Medium","style":{"width":"100%","display":"block"},"props":{"width":"medium"}},{"name":"Large","style":{"width":"100%","display":"block"},"props":{"width":"large"}}]},{"name":"Spacing","examples":[{"name":"(Default) Medium","props":{"spacing":"medium"}},{"name":"Large","props":{"spacing":"large"}},{"name":"Small","props":{"spacing":"small"}},{"name":"None","props":{"spacing":"none"}}]}]'),e7=({width:e,spacing:a,children:t,id:n})=>(0,L.jsxs)(e8.A,{className:"db-color-informational db-bg-color-basic-level-2  section-card-container",spacing:a,width:e,id:n,children:[(0,L.jsx)(_.A,{children:t}),(0,L.jsx)(_.A,{children:t}),(0,L.jsx)(_.A,{children:t}),(0,L.jsx)(_.A,{children:t})]});var e6=t(24845);let ae=JSON.parse('[{"name":"Density","examples":[{"name":"Functional","density":"functional","style":{"width":"300px"},"props":{"options":[{"value":"Option 1"},{"value":"Option 2"},{"value":"Option 3"},{"value":"Option 4"},{"value":"Option 5"}],"label":"Label","placeholder":"Functional"}},{"name":"(Default) Regular","density":"regular","style":{"width":"300px"},"props":{"options":[{"value":"Option 1"},{"value":"Option 2"},{"value":"Option 3"},{"value":"Option 4"},{"value":"Option 5"}],"label":"Label","placeholder":"(Default) Regular"}},{"name":"Expressive","density":"expressive","style":{"width":"300px"},"props":{"options":[{"value":"Option 1"},{"value":"Option 2"},{"value":"Option 3"},{"value":"Option 4"},{"value":"Option 5"}],"label":"Label","placeholder":"Expressive"}}]},{"name":"Variant","examples":[{"name":"(Default) Above","style":{"width":"300px"},"props":{"options":[{"value":"Option 1"},{"value":"Option 2"},{"value":"Option 3"},{"value":"Option 4"},{"value":"Option 5"}],"label":"Label","placeholder":"(Default) Above"}},{"name":"Floating Label","style":{"width":"300px"},"props":{"options":[{"value":"Floating","selected":true},{"value":"Option 2"}],"label":"Label","variant":"floating","value":"Floating","placeholder":"Floating"}}]},{"name":"Show Label","examples":[{"name":"(Default) True","style":{"width":"300px"},"props":{"options":[{"value":"Option 1"},{"value":"Option 2"},{"value":"Option 3"},{"value":"Option 4"},{"value":"Option 5"}],"label":"Label","showLabel":true,"placeholder":"(Default) True"}},{"name":"False","style":{"width":"300px"},"props":{"options":[{"value":"Option 1"},{"value":"Option 2"},{"value":"Option 3"},{"value":"Option 4"},{"value":"Option 5"}],"label":"Label","showLabel":false,"placeholder":"False"}}]},{"name":"Show Message","examples":[{"name":"(Default) False","style":{"width":"300px"},"props":{"options":[{"value":"Option 1"},{"value":"Option 2"},{"value":"Option 3"},{"value":"Option 4"},{"value":"Option 5"}],"label":"Label","message":"Message","showMessage":false,"placeholder":"(Default) False"}},{"name":"True","style":{"width":"300px"},"props":{"options":[{"value":"Option 1"},{"value":"Option 2"},{"value":"Option 3"},{"value":"Option 4"},{"value":"Option 5"}],"label":"Label","message":"Message","showMessage":true,"placeholder":"True"}}]},{"name":"State","examples":[{"name":"(Default) Empty","style":{"width":"300px"},"props":{"options":[{"value":"Option 1"},{"value":"Option 2"},{"value":"Option 3"},{"value":"Option 4"},{"value":"Option 5"}],"label":"Label","placeholder":"(Default) Empty"}},{"name":"Filled","style":{"width":"300px"},"props":{"options":[{"value":"Filled","selected":true},{"value":"Option 2"}],"label":"Label","value":"Filled","placeholder":"Filled"}}]},{"name":"Validation","examples":[{"name":"(Default) No validation","style":{"width":"300px"},"props":{"options":[{"value":"Option 1"},{"value":"Option 2"},{"value":"Option 3"},{"value":"Option 4"},{"value":"Option 5"}],"label":"Label","validation":"no-validation","placeholder":"(Default) No validation"}},{"name":"Invalid","style":{"width":"300px"},"props":{"options":[{"value":"Option 1"},{"value":"Option 2"},{"value":"Option 3"},{"value":"Option 4"},{"value":"Option 5"}],"label":"Label","validation":"invalid","invalidMessage":"Invalid Message","placeholder":"Invalid"}},{"name":"Valid","style":{"width":"300px"},"props":{"options":[{"value":"Valid","selected":true},{"value":"Option 2"}],"label":"Label","validation":"valid","validMessage":"Valid message","placeholder":"Valid"}}]},{"name":"Disabled","examples":[{"name":"(Default) False","style":{"width":"300px"},"props":{"options":[{"value":"Option 1"},{"value":"Option 2"},{"value":"Option 3"},{"value":"Option 4"},{"value":"Option 5"}],"label":"Label","disabled":false,"placeholder":"(Default) False"}},{"name":"True","style":{"width":"300px"},"props":{"options":[{"value":"Option 1"},{"value":"Option 2"},{"value":"Option 3"},{"value":"Option 4"},{"value":"Option 5"}],"label":"Label","disabled":true,"placeholder":"True"}}]},{"name":"Content","examples":[{"name":"(Default) Text","style":{"width":"300px"},"props":{"options":[{"value":"Option 1"},{"value":"Option 2"},{"value":"Option 3"},{"value":"Option 4"},{"value":"Option 5"}],"label":"Label","placeholder":"(Default) Text"}},{"name":"Text - Leading Icon","style":{"width":"300px"},"props":{"options":[{"value":"Option 1"},{"value":"Option 2"},{"value":"Option 3"},{"value":"Option 4"},{"value":"Option 5"}],"label":"Label","icon":"x_placeholder","placeholder":"Text - Leading Icon"}}]},{"name":"Required","examples":[{"name":"(Default) False","style":{"width":"300px"},"props":{"options":[{"value":"Option 1"},{"value":"Option 2"},{"value":"Option 3"},{"value":"Option 4"},{"value":"Option 5"}],"label":"Label","required":false,"placeholder":"(Default) False"}},{"name":"True","style":{"width":"300px"},"props":{"options":[{"value":"Option 1"},{"value":"Option 2"},{"value":"Option 3"},{"value":"Option 4"},{"value":"Option 5"}],"label":"Label","required":true,"placeholder":"True"}}]},{"name":"Show Required Asterisk","examples":[{"name":"(Default) True","style":{"width":"300px"},"props":{"options":[{"value":"Option 1"},{"value":"Option 2"},{"value":"Option 3"},{"value":"Option 4"},{"value":"Option 5"}],"label":"Label","required":true,"showRequiredAsterisk":true,"placeholder":"(Default) True"}},{"name":"False","style":{"width":"300px"},"props":{"options":[{"value":"Option 1"},{"value":"Option 2"},{"value":"Option 3"},{"value":"Option 4"},{"value":"Option 5"}],"label":"Label","required":true,"showRequiredAsterisk":false,"placeholder":"False"}}]},{"name":"Option Groups","examples":[{"name":"Using optgroups","style":{"width":"300px"},"props":{"options":[{"label":"Group 1","options":[{"value":"Option 1"},{"value":"Option 2"}]},{"label":"Group 2","options":[{"value":"Option 3"},{"value":"Option 4"}]}],"label":"Label","placeholder":"Using optgroups"}},{"name":"Mixed options and groups","style":{"width":"300px"},"props":{"options":[{"value":"Single Option"},{"label":"Grouped Options","options":[{"value":"Group Option 1"},{"value":"Group Option 2"}]},{"value":"Another Single Option"}],"label":"Label","placeholder":"Mixed options and groups"}}]},{"name":"Examples Floating Label","examples":[{"name":"(Default) Empty","style":{"width":"300px"},"props":{"options":[{"value":"Option 1"},{"value":"Option 2"},{"value":"Option 3"},{"value":"Option 4"},{"value":"Option 5"}],"label":"Label","variant":"floating","placeholder":"(Default) Empty"}},{"name":"Filled","style":{"width":"300px"},"props":{"options":[{"value":"Filled","selected":true},{"value":"Option 2"}],"label":"Label","value":"Filled","variant":"floating","placeholder":"Filled"}},{"name":"Disabled","style":{"width":"300px"},"props":{"options":[{"value":"Disabled","selected":true},{"value":"Option 2"}],"label":"Label","disabled":true,"variant":"floating","value":"Disabled","placeholder":"Disabled"}},{"name":"Invalid","style":{"width":"300px"},"props":{"options":[{"value":"Option 1"},{"value":"Option 2"},{"value":"Option 3"},{"value":"Option 4"},{"value":"Option 5"}],"label":"Label","placeholder":"Invalid","variant":"floating","validation":"invalid","invalidMessage":"Invalid Message"}}]}]'),aa=({placeholder:e,label:a,options:t,icon:n,message:i,disabled:l,value:o,required:s,variant:c,showLabel:d,showMessage:r,invalidMessage:u,validMessage:p,validation:h,showRequiredAsterisk:b})=>{let[x,v]=(0,S.useState)(o);return(0,L.jsx)(e6.A,{label:a,placeholder:e,options:t,disabled:l,variant:c,showLabel:d,icon:n,value:x,showRequiredAsterisk:b,onChange:e=>{v(e.target.value)},message:i,required:s,showMessage:r,invalidMessage:u,validMessage:p,validation:h})};var at=t(84471);let an=JSON.parse('[{"name":"Density","children":[{"name":"span","content":"Content 1","native":true},{"name":"span","content":"Content 2","native":true},{"name":"span","content":"Content 3","native":true}],"examples":[{"name":"Functional","density":"functional","props":{},"style":{"width":"200px"}},{"name":"(Default) Regular","density":"regular","props":{},"style":{"width":"200px"}},{"name":"Expressive","density":"expressive","props":{},"style":{"width":"200px"}}]},{"name":"Variant","examples":[{"name":"(Default) Simple","props":{},"style":{"width":"200px"},"children":[{"name":"span","content":"Content 1","native":true},{"name":"span","content":"Content 2","native":true},{"name":"span","content":"Content 3","native":true}]},{"name":"Divider","props":{"variant":"divider"},"style":{"width":"200px"},"children":[{"name":"span","content":"Content 1","native":true},{"name":"divider","content":""},{"name":"span","content":"Content 2","native":true},{"name":"divider","content":""},{"name":"span","content":"Content 3","native":true}]}]},{"name":"Gap","children":[{"name":"span","content":"Content 1","native":true},{"name":"span","content":"Content 2","native":true},{"name":"span","content":"Content 3","native":true}],"examples":[{"name":"none","props":{"gap":"none"},"style":{"width":"200px"}},{"name":"3x-small","props":{"gap":"3x-small"},"style":{"width":"200px"}},{"name":"2x-small","props":{"gap":"2x-small"},"style":{"width":"200px"}},{"name":"x-small","props":{"gap":"x-small"},"style":{"width":"200px"}},{"name":"(Default) small","props":{"gap":"small"},"style":{"width":"200px"}},{"name":"medium","props":{"gap":"medium"},"style":{"width":"200px"}},{"name":"large","props":{"gap":"large"},"style":{"width":"200px"}},{"name":"x-large","props":{"gap":"x-large"},"style":{"width":"200px"}},{"name":"2x-large","props":{"gap":"2x-large"},"style":{"width":"200px"}},{"name":"3x-large","props":{"gap":"3x-large"},"style":{"width":"200px"}}]},{"name":"Direction","children":[{"name":"span","content":"Content 1","native":true},{"name":"span","content":"Content 2","native":true},{"name":"span","content":"Content 3","native":true}],"examples":[{"name":"(Default) Column","props":{},"style":{"width":"200px"}},{"name":"Row","style":{"height":"100px"},"props":{"direction":"row"}}]},{"name":"Wrap","children":[{"name":"span","content":"Content 1","native":true},{"name":"span","content":"Content 2","native":true},{"name":"span","content":"Content 3","native":true}],"examples":[{"name":"(Default) No Wrap: Column","style":{"width":"160px","height":"88px"},"props":{}},{"name":"No Wrap: Row","style":{"width":"160px","height":"88px"},"props":{"direction":"row"}},{"name":"Wrap: Column","style":{"width":"160px","height":"120px"},"props":{"wrap":true}},{"name":"Wrap: Row","style":{"width":"180px","height":"100px"},"props":{"direction":"row","wrap":true}}]},{"name":"Alignment Column","children":[{"name":"span","content":"Content 1","native":true},{"name":"span","content":"Content 2","native":true},{"name":"span","content":"Content 3","native":true}],"examples":[{"name":"(Default) Stretch","style":{"width":"200px"},"props":{"alignment":"stretch"}},{"name":"Start","style":{"width":"200px"},"props":{"alignment":"start"}},{"name":"Center","style":{"width":"200px"},"props":{"alignment":"center"}},{"name":"End","style":{"width":"200px"},"props":{"alignment":"end"}}]},{"name":"Alignment Row","children":[{"name":"span","content":"Content 1","native":true},{"name":"span","content":"Content 2","native":true},{"name":"span","content":"Content 3","native":true}],"examples":[{"name":"(Default) Stretch","style":{"height":"100px"},"props":{"alignment":"stretch","direction":"row"}},{"name":"Start","style":{"height":"100px"},"props":{"alignment":"start","direction":"row"}},{"name":"Center","style":{"height":"100px"},"props":{"alignment":"center","direction":"row"}},{"name":"End","style":{"height":"100px"},"props":{"alignment":"end","direction":"row"}}]},{"name":"Justify Content Column","children":[{"name":"span","content":"Content 1","native":true},{"name":"span","content":"Content 2","native":true},{"name":"span","content":"Content 3","native":true}],"examples":[{"name":"(Default) Start","style":{"width":"200px","height":"200px"},"props":{"justifyContent":"start"}},{"name":"Center","style":{"width":"200px","height":"200px"},"props":{"justifyContent":"center"}},{"name":"End","style":{"width":"200px","height":"200px"},"props":{"justifyContent":"end"}},{"name":"Space-Between","style":{"width":"200px","height":"200px"},"props":{"justifyContent":"space-between"}}]},{"name":"Justify Content Row","children":[{"name":"span","content":"Content 1","native":true},{"name":"span","content":"Content 2","native":true},{"name":"span","content":"Content 3","native":true}],"examples":[{"name":"(Default) Start","style":{"width":"300px"},"props":{"justifyContent":"start","direction":"row"}},{"name":"Center","style":{"width":"300px"},"props":{"justifyContent":"center","direction":"row"}},{"name":"End","style":{"width":"300px"},"props":{"justifyContent":"end","direction":"row"}},{"name":"Space-Between","style":{"width":"300px"},"props":{"justifyContent":"space-between","direction":"row"}}]}]'),ai=({children:e,gap:a,alignment:t,wrap:n,variant:i,direction:l,justifyContent:o})=>(0,L.jsxs)(at.A,{children:[(0,L.jsx)(ee.A,{size:"small",icon:"none",semantic:"informational",children:e}),(0,L.jsxs)(at.A,{className:o??t?"stack-container stack-show-alignment":"stack-container",gap:a,alignment:t,wrap:n,variant:i,direction:l,justifyContent:o,children:[(0,L.jsx)("span",{className:"dummy-component",children:(0,L.jsx)("a",{href:"#",children:"Content 1"})}),"divider"===i&&(0,L.jsx)(q.A,{}),(0,L.jsx)("span",{className:"dummy-component",children:"Content 2"}),"divider"===i&&(0,L.jsx)(q.A,{}),(0,L.jsx)("span",{className:"dummy-component",children:"Content 3"})]})]});var al=t(31509);let ao=JSON.parse('[{"name":"Density","examples":[{"name":"functional","density":"functional","props":{}},{"name":"regular (Default)","density":"regular","props":{}},{"name":"expressive","density":"expressive","props":{}}]},{"name":"Checked","examples":[{"name":"(Default) False","props":{"checked":false}},{"name":"True","props":{"checked":true}}]},{"name":"Disabled","examples":[{"name":"(Default) False","props":{"disabled":false}},{"name":"True","props":{"disabled":true}}]},{"name":"Visual Aid","examples":[{"name":"(Default) False (Unchecked)","props":{"visualAid":false}},{"name":"(Default) False (Checked)","props":{"visualAid":false,"checked":true}},{"name":"True (Unchecked)","props":{"visualAid":true,"iconLeading":"moon","iconTrailing":"sun"}},{"name":"True (Checked)","props":{"visualAid":true,"checked":true,"iconLeading":"moon","iconTrailing":"sun"}}]},{"name":"Size","examples":[{"name":"(Default) Medium"},{"name":"Small","props":{"size":"small"}}]},{"name":"Variant","examples":[{"name":"(Default) Trailing","props":{"label":"(Default) Trailing"}},{"name":"Leading","props":{"label":"Leading","variant":"leading"}}]},{"name":"Show Label","examples":[{"name":"(Default) True","props":{"showLabel":true}},{"name":"False","props":{"showLabel":false}}]},{"name":"Required","examples":[{"name":"(Default) False","props":{"required":false}},{"name":"True","props":{"required":true}}]},{"name":"Show Required Asterisk","examples":[{"name":"(Default) True","props":{"required":true,"showRequiredAsterisk":true}},{"name":"False","props":{"required":true,"showRequiredAsterisk":false}}]},{"name":"Validation","examples":[{"name":"(Default) No validation","props":{}},{"name":"Invalid","props":{"validation":"invalid","invalidMessage":"Invalid Message"}},{"name":"Valid","props":{"validation":"valid","validMessage":"Valid message","checked":true}}]},{"name":"Show Message","examples":[{"name":"(Default) False","props":{}},{"name":"True","props":{"showMessage":true,"message":"Message"}}]},{"name":"Examples","examples":[{"name":"Custom Icons","props":{"visualAid":true,"icon":"cross_circle","iconTrailing":"clock"}},{"name":"Required + Visual Aid","props":{"visualAid":true,"required":true,"validMessage":"Valid"}}]}]'),as=({children:e,checked:a,visualAid:t,disabled:n,showLabel:i,size:l,icon:o,iconTrailing:s,iconLeading:c,required:d,showRequiredAsterisk:r,validation:u,invalidMessage:p,validMessage:h,message:b,messageIcon:x,showMessage:v,variant:m})=>(0,L.jsxs)(L.Fragment,{children:[(0,L.jsx)(al.A,{visualAid:t,defaultChecked:(0,R.pW)(a),disabled:n,showRequiredAsterisk:r,showLabel:i,variant:m,size:l,icon:o,iconTrailing:s,iconLeading:c,required:d,validation:u,invalidMessage:p,validMessage:h,message:b,messageIcon:x,showMessage:v,children:e}),void 0!==i&&!i&&(0,L.jsx)(ee.A,{semantic:"informational",icon:"none",children:e})]});var ac=t(65269),ad=t(99687);let ar=JSON.parse('[{"name":"Density","examples":[{"name":"Functional","density":"functional","className":"tab-hide-article","props":{"label":"functional"}},{"name":"(Default) Regular","density":"regular","className":"tab-hide-article","props":{"label":"(Default) Regular"}},{"name":"Expressive","density":"expressive","className":"tab-hide-article","props":{"label":"expressive"}}]},{"name":"States","examples":[{"name":"(Default) Enabled","props":{"label":"(Default) Enabled"}},{"name":"active","props":{"label":"active","active":true}},{"name":"disabled","props":{"label":"active","disabled":true}}]},{"name":"Show Icon Leading","examples":[{"name":"(Default) False","props":{"label":"False","icon":"x_placeholder","showIcon":false}},{"name":"True","props":{"label":"True","icon":"x_placeholder","showIcon":true}}]},{"name":"Show Icon Trailing","examples":[{"name":"(Default) False","props":{"label":"False","icon":"x_placeholder","showIcon":false,"iconTrailing":"x_placeholder","showIconTrailing":false}},{"name":"True","props":{"label":"True","icon":"x_placeholder","showIcon":true,"iconTrailing":"x_placeholder","showIconTrailing":true}}]},{"name":"Behavior","examples":[{"name":"(Default) Auto Width","props":{"label":"(Default) Auto Width"}},{"name":"Width full","style":{"width":"500px"},"props":{"label":"Width full","width":"full"}}]},{"name":"Content Alignment Full Width","examples":[{"name":"Left","style":{"width":"500px"},"props":{"label":"Left","width":"full"}},{"name":"Centered","style":{"width":"500px"},"props":{"label":"Centered","width":"full","alignment":"center"}}]}]'),au=({children:e,active:a,noText:t,icon:n,iconTrailing:i,showIconTrailing:l,showIcon:o,disabled:s})=>(0,L.jsx)(ac.A,{children:(0,L.jsx)(ad.A,{active:a,noText:t,icon:n,iconTrailing:i,showIcon:o,showIconTrailing:l,disabled:s,children:e})}),ap=e=>(0,L.jsx)(er,{title:"DBTabItem",isSubComponent:e.isSubComponent,componentName:e.componentName,variants:ei(ar,au,e.slotCode)});var ah=t(4913),ab=t(45023);let ax=JSON.parse('[{"name":"Density","children":[{"name":"tab-list","children":[{"name":"tab-item","content":"Tab 1"},{"name":"tab-item","content":"Tab 2"},{"name":"tab-item","content":"Tab 3"}]},{"name":"tab-panel","content":"Tab Panel 1"},{"name":"tab-panel","content":"Tab Panel 2"},{"name":"tab-panel","content":"Tab Panel 3"}],"examples":[{"name":"Functional","density":"functional","props":{}},{"name":"(Default) Regular","density":"regular","props":{}},{"name":"Expressive","density":"expressive","props":{}}]},{"name":"Orientation","children":[{"name":"tab-list","children":[{"name":"tab-item","content":"Tab 1"},{"name":"tab-item","content":"Tab 2"},{"name":"tab-item","content":"Tab 3"}]},{"name":"tab-panel","content":"Tab Panel 1"},{"name":"tab-panel","content":"Tab Panel 2"},{"name":"tab-panel","content":"Tab Panel 3"}],"examples":[{"name":"horizontal","props":{"orientation":"horizontal"}},{"name":"vertical","props":{"orientation":"vertical"}}]},{"name":"Width","children":[{"name":"tab-list","children":[{"name":"tab-item","content":"Tab 1"},{"name":"tab-item","content":"Tab 2"},{"name":"tab-item","content":"Tab 3"}]},{"name":"tab-panel","content":"Tab Panel 1"},{"name":"tab-panel","content":"Tab Panel 2"},{"name":"tab-panel","content":"Tab Panel 3"}],"examples":[{"name":"auto","style":{"width":"100%"},"props":{"width":"auto"}},{"name":"full - alignment: start","style":{"width":"100%"},"props":{"width":"full"}},{"name":"full - alignment: center","style":{"width":"100%"},"props":{"width":"full","alignment":"center"}}]},{"name":"Overflow","children":[{"name":"tab-list","children":[{"name":"tab-item","content":"Tab 1"},{"name":"tab-item","content":"Tab 2"},{"name":"tab-item","content":"Tab 3"}]},{"name":"tab-panel","content":"Tab Panel 1"},{"name":"tab-panel","content":"Tab Panel 2"},{"name":"tab-panel","content":"Tab Panel 3"}],"examples":[{"name":"no overflow","style":{"width":"300px"},"props":{"width":"auto"}},{"name":"with overflow - behavior: arrows","style":{"width":"300px"},"props":{"overflow":true,"behavior":"arrows"}},{"name":"with overflow - behavior: scrollbar","style":{"width":"300px"},"props":{"overflow":true}}]},{"name":"Examples","children":[{"name":"tab-list","children":[{"name":"tab-item","content":"Tab 1"},{"name":"tab-item","content":"Tab 2"},{"name":"tab-item","content":"Tab 3"}]},{"name":"tab-panel","content":"Tab Panel 1"},{"name":"tab-panel","content":"Tab Panel 2"},{"name":"tab-panel","content":"Tab Panel 3"}],"examples":[{"name":"2nd tab selected","props":{"initialSelectedIndex":1}},{"name":"nothing selected","props":{"initialSelectedMode":"manually"}}]}]'),av=({children:e,orientation:a,width:t,alignment:n,overflow:i,behavior:l,initialSelectedMode:o,initialSelectedIndex:s})=>(0,L.jsxs)("div",{className:"w-full",children:[(0,L.jsxs)(ee.A,{icon:"none",size:"small",semantic:"informational",children:[e,":"]}),(0,L.jsxs)(ah.A,{orientation:a,width:t,alignment:n,behavior:l,initialSelectedIndex:s,initialSelectedMode:o,arrowScrollDistance:75,children:[(0,L.jsxs)(ac.A,{children:[(0,L.jsx)(ad.A,{children:"Test 1"}),(0,L.jsx)(ad.A,{children:"Test 2"}),(0,L.jsx)(ad.A,{children:"Test 3"}),i&&(0,L.jsxs)(L.Fragment,{children:[(0,L.jsx)(ad.A,{children:"Test 4"}),(0,L.jsx)(ad.A,{children:"Test 5"})]})]}),(0,L.jsx)(ab.A,{children:"Tab Panel 1"}),(0,L.jsx)(ab.A,{children:"Tab Panel 2"}),(0,L.jsx)(ab.A,{children:"Tab Panel 3"}),i&&(0,L.jsxs)(L.Fragment,{children:[(0,L.jsx)(ab.A,{children:"Tab Panel 4"}),(0,L.jsx)(ab.A,{children:"Tab Panel 5"})]})]})]});var am=t(78147);let ag=JSON.parse('[{"name":"Density","examples":[{"name":"Functional","density":"functional","props":{}},{"name":"(Default) Regular","density":"regular","props":{}},{"name":"Expressive","density":"expressive","props":{}}]},{"name":"Emphasis","examples":[{"name":"(Default) Weak"},{"name":"Strong","props":{"emphasis":"strong"}}]},{"name":"Semantic","examples":[{"name":"(Default) Adaptive"},{"name":"Critical","props":{"semantic":"critical"}},{"name":"Informational","props":{"semantic":"informational"}},{"name":"Neutral","props":{"semantic":"neutral"}},{"name":"Successful","props":{"semantic":"successful"}},{"name":"Warning","props":{"semantic":"warning"}},{"name":"Line Break","props":{"lineBreak":true}},{"name":"Line Break","props":{"lineBreak":true}},{"name":"Adaptive Strong","props":{"emphasis":"strong"}},{"name":"Critical Strong","props":{"semantic":"critical","emphasis":"strong"}},{"name":"Informational Strong","props":{"semantic":"informational","emphasis":"strong"}},{"name":"Neutral Strong","props":{"semantic":"neutral","emphasis":"strong"}},{"name":"Successful Strong","props":{"semantic":"successful","emphasis":"strong"}},{"name":"Warning Strong","props":{"semantic":"warning","emphasis":"strong"}}]},{"name":"Behavior","role":"group","examples":[{"name":"(Default) Static"},{"name":"Removable","props":{"behavior":"removable"}},{"name":"Line Break","props":{"lineBreak":true}},{"name":"Interactive (Button)","props":{"component":"button"},"children":[{"name":"button","native":true,"content":"Interactive Button"}]},{"name":"Interactive (Link)","props":{"component":"link"},"children":[{"name":"a","native":true,"content":"Interactive Link","props":{"href":"#"}}]},{"name":"Line Break","props":{"lineBreak":true}},{"name":"Interactive (Checkbox)","props":{"component":"checkbox"},"children":[{"name":"label","native":true,"content":"Interactive Checkbox","props":{"for":"checkbox01"},"children":[{"name":"input","native":true,"props":{"id":"checkbox01","type":"checkbox"}}]}]},{"name":"Interactive (Radio)","props":{"component":"radio","identifier":"radio01"},"children":[{"name":"label","native":true,"content":"Interactive Radio 1","props":{"for":"radio01"},"children":[{"name":"input","native":true,"props":{"name":"radio01","id":"radio01","type":"radio"}}]}]},{"name":"Interactive Radio 2","props":{"component":"radio","identifier":"radio01"},"children":[{"name":"label","native":true,"content":"Interactive Radio 2","props":{"for":"radio02"},"children":[{"name":"input","native":true,"props":{"name":"radio02","id":"radio02","type":"radio"}}]}]}]},{"name":"Checked","role":"group","examples":[{"name":"(Default) False","props":{"component":"checkbox"},"children":[{"name":"label","native":true,"content":"Interactive Checkbox","props":{"for":"checkbox02"},"children":[{"name":"input","native":true,"props":{"id":"checkbox02","type":"checkbox"}}]}]},{"name":"True","props":{"component":"checkbox","checked":true},"children":[{"name":"label","native":true,"content":"Interactive Checkbox","props":{"for":"checkbox03"},"children":[{"name":"input","native":true,"props":{"checked":true,"id":"checkbox03","type":"checkbox"}}]}]}]},{"name":"Disabled","role":"group","examples":[{"name":"(Default) False","props":{"component":"checkbox"},"children":[{"name":"label","native":true,"content":"Interactive Checkbox","props":{"for":"checkbox02"},"children":[{"name":"input","native":true,"props":{"id":"checkbox02","type":"checkbox"}}]}]},{"name":"True","props":{"component":"checkbox","disabled":true},"children":[{"name":"label","native":true,"content":"Interactive Checkbox","props":{"for":"checkbox04"},"children":[{"name":"input","native":true,"props":{"checked":true,"disabled":true,"id":"checkbox04","type":"checkbox"}}]}]}]},{"name":"Show Icon","examples":[{"name":"(Default) False","props":{"icon":"x_placeholder","showIcon":false}},{"name":"True","props":{"icon":"x_placeholder","showIcon":true}}]},{"name":"No Text","examples":[{"name":"(Default) False","props":{"icon":"x_placeholder"}},{"name":"True","props":{"icon":"x_placeholder","noText":true}}]},{"name":"Show Slot","examples":[{"name":"(Default) False"},{"name":"True","props":{"icon":"x_placeholder","content":"true"}}]},{"name":"Show Check State","examples":[{"name":"(Default) True","props":{"component":"checkbox","showCheckState":true},"children":[{"name":"label","native":true,"content":"Interactive Checkbox","props":{"for":"checkbox099"},"children":[{"name":"input","native":true,"id":"checkbox099","type":"checkbox"}]}]},{"name":"False","props":{"component":"checkbox","showCheckState":false},"children":[{"name":"label","native":true,"content":"Interactive Checkbox","props":{"for":"checkbox099"},"children":[{"name":"input","native":true,"id":"checkbox099","type":"checkbox"}]}]}]},{"name":"Overflow","examples":[{"name":"(Default) False"},{"name":"True - lorem ipsum dolor","props":{"overflow":true}}]},{"name":"Example Strong","role":"group","examples":[{"name":"Interactive Strong Button with Icon","props":{"component":"button","emphasis":"strong","icon":"x_placeholder","behavior":"removable"},"children":[{"name":"button","native":true,"content":"Interactive Button"}]},{"name":"Interactive Strong Link with Icon","props":{"component":"link","emphasis":"strong","icon":"x_placeholder"},"children":[{"name":"a","native":true,"content":"Interactive Link","props":{"href":"#"}}]},{"name":"Interactive Strong Checkbox with Icon","props":{"component":"checkbox","emphasis":"strong","icon":"x_placeholder"},"children":[{"name":"label","native":true,"content":"Interactive Checkbox","props":{"for":"checkbox05"},"children":[{"name":"input","native":true,"id":"checkbox05","type":"checkbox"}]}]},{"name":"Interactive Strong Radio 1 with Icon","props":{"component":"radio","emphasis":"strong","icon":"x_placeholder","identifier":"radio03"},"children":[{"name":"label","native":true,"content":"Interactive Radio 3","props":{"for":"radio03"},"children":[{"name":"input","native":true,"props":{"name":"radio03","id":"radio03","type":"radio"}}]}]},{"name":"Interactive Strong Radio 2 with Icon","props":{"component":"radio","emphasis":"strong","icon":"x_placeholder","identifier":"radio03"},"children":[{"name":"label","native":true,"content":"Interactive Radio 4","props":{"for":"radio04"},"children":[{"name":"input","native":true,"props":{"name":"radio03","id":"radio04","type":"radio"}}]}]}]}]'),aj=({semantic:e,disabled:a,children:t,icon:n,overflow:i,noText:l,behavior:o,emphasis:s,removeButton:c,checked:d,component:r,identifier:u,content:p,showCheckState:h,lineBreak:b,showIcon:x})=>{let[v,m]=(0,S.useState)(d??!1);return b?(0,L.jsx)("i",{className:"line-break"}):(0,L.jsxs)(am.A,{semantic:e,icon:n,noText:l,behavior:o,emphasis:s,overflow:i,removeButton:c,showCheckState:h,showIcon:x,content:p?(0,L.jsx)("div",{className:"default-content-slot",children:"Swap Slot"}):void 0,onRemove:()=>{alert(t.toString())},children:["button"===r&&(0,L.jsx)("button",{children:t}),"link"===r&&(0,L.jsx)("a",{href:"#",children:t}),"checkbox"===r&&(0,L.jsxs)("label",{children:[(0,L.jsx)("input",{type:"checkbox",checked:v,disabled:(0,R.pW)(a),onChange:e=>{m(e.target.checked)}}),t]}),"radio"===r&&(0,L.jsxs)("label",{children:[(0,L.jsx)("input",{type:"radio",checked:d,name:u}),t]}),!r&&!i&&(0,L.jsx)(L.Fragment,{children:t}),!r&&i&&(0,L.jsx)("span",{children:t})]})};var aD=t(14529);let aB=JSON.parse('[{"name":"Density","examples":[{"name":"Functional","density":"functional","props":{"label":"Label"}},{"name":"(Default) Regular","density":"regular","props":{"label":"Label"}},{"name":"Expressive","density":"expressive","props":{"label":"Label"}}]},{"name":"Variant","examples":[{"name":"(Default) Above","props":{"label":"Label"}},{"name":"Floating","props":{"label":"Label","variant":"floating","value":"Floating Label"}}]},{"name":"Show Label","examples":[{"name":"(Default) True","props":{"label":"Label","showLabel":true}},{"name":"False","props":{"label":"Label","showLabel":false}}]},{"name":"Show Message","examples":[{"name":"(Default) False","props":{"label":"Label","showMessage":false}},{"name":"true","props":{"label":"Label","message":"Message","showMessage":true}}]},{"name":"State","examples":[{"name":"(Default) Empty","props":{"label":"Label"}},{"name":"Filled","props":{"label":"Label","value":"Filled"}}]},{"name":"Disabled","examples":[{"name":"(Default) False","props":{"label":"Label","disabled":false}},{"name":"True","props":{"label":"Label","disabled":true}}]},{"name":"Readonly","examples":[{"name":"(Default) False","props":{"label":"Label","value":"(Default) False","readOnly":false}},{"name":"True","props":{"label":"Label","value":"True","readOnly":true}}]},{"name":"Validation","examples":[{"name":"(Default) No validation","props":{"label":"Label","validation":"no-validation"}},{"name":"Invalid","props":{"label":"Label","validation":"invalid","invalidMessage":"Invalid Message"}},{"name":"Valid","props":{"label":"Label","validation":"valid","validMessage":"Valid message"}}]},{"name":"Required","examples":[{"name":"(Default) False","props":{"label":"Label","required":false}},{"name":"True","props":{"label":"Label","required":true}}]},{"name":"Show Required Asterisk","examples":[{"name":"(Default) True","props":{"label":"Label","required":true,"showRequiredAsterisk":true}},{"name":"False","props":{"label":"Label","required":true,"showRequiredAsterisk":false}}]},{"name":"Rows","examples":[{"name":"(Default) 4 Rows","style":{"width":"328px"},"props":{"label":"(Default) 4 Rows","value":"Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua."}},{"name":"Custom","style":{"width":"328px"},"props":{"label":"Custom Example 8 Rows","rows":8,"value":"Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua."}}]},{"name":"Show Resizer","examples":[{"name":"(Default) True","props":{"label":"Label","showResizer":true}},{"name":"False","props":{"label":"Label","showResizer":false}}]},{"name":"Field Sizing","examples":[{"name":"(Default) Fixed","style":{"width":"300px"},"props":{"label":"Label","fieldSizing":"fixed"}},{"name":"Content","style":{"width":"300px"},"props":{"label":"Label","fieldSizing":"content"}}]},{"name":"Examples Floating Label","examples":[{"name":"(Default) Empty","props":{"label":"Label","variant":"floating"}},{"name":"Filled","props":{"label":"Label","value":"Filled","variant":"floating"}},{"name":"Disabled","props":{"label":"Label","disabled":true,"variant":"floating"}},{"name":"Readonly - Filled","props":{"label":"Label","value":"Readonly - Filled","readOnly":true,"variant":"floating"}}]}]'),af=({cols:e,disabled:a,message:t,label:n,placeholder:i,rows:l,value:o,readOnly:s,required:c,children:d,variant:r,showLabel:u,showMessage:p,validMessage:h,validation:b,invalidMessage:x,fieldSizing:v,showResizer:m,showRequiredAsterisk:g})=>{let[j,D]=(0,S.useState)(o);return(0,L.jsx)(aD.A,{cols:e,showRequiredAsterisk:g,disabled:a,showLabel:u,message:t,label:n,variant:r,readOnly:s,onChange:e=>{D(e.target.value)},required:c,placeholder:i??d,rows:l,value:j,showMessage:p,invalidMessage:x,validMessage:h,validation:b,showResizer:m,fieldSizing:v})};var aw=t(33791);let ay=JSON.parse('[{"name":"Density","children":[{"name":"button"}],"examples":[{"name":"Functional","density":"functional","props":{"content":"Tooltip","id":"tooltip-01"}},{"name":"(Default) Regular","density":"regular","props":{"content":"Tooltip","id":"tooltip-02"}},{"name":"Expressive","density":"expressive","props":{"content":"Tooltip","id":"tooltip-03"}}]},{"name":"Show Arrow","children":[{"name":"button"}],"examples":[{"name":"(Default) True","props":{"content":"Tooltip","id":"tooltip-04","showArrow":true}},{"name":"False","props":{"content":"Tooltip","showArrow":false,"id":"tooltip-05"}}]},{"name":"Emphasis","children":[{"name":"button"}],"examples":[{"name":"(Default) Weak","props":{"content":"Tooltip","id":"tooltip-06"}},{"name":"Strong","props":{"content":"Tooltip","emphasis":"strong","id":"tooltip-07"}}]},{"name":"Placement","children":[{"name":"button"}],"examples":[{"name":"bottom-start","props":{"content":"Tooltip","placement":"bottom-start","id":"tooltip-08-start"}},{"name":"(Default) bottom","props":{"content":"Tooltip","placement":"bottom","id":"tooltip-08"}},{"name":"bottom-end","props":{"content":"Tooltip","placement":"bottom-end","id":"tooltip-08-end"}},{"name":"left-start","props":{"content":"Tooltip","placement":"left-start","id":"tooltip-10-start"}},{"name":"left","props":{"content":"Tooltip","placement":"left","id":"tooltip-10"}},{"name":"left-end","props":{"content":"Tooltip","placement":"left-end","id":"tooltip-10-end"}},{"name":"right-start","props":{"content":"Tooltip","placement":"right-start","id":"tooltip-11-start"}},{"name":"right","props":{"content":"Tooltip","placement":"right","id":"tooltip-11"}},{"name":"right-end","props":{"content":"Tooltip","placement":"right-end","id":"tooltip-11-end"}},{"name":"top-start","props":{"content":"Tooltip","placement":"top-start","id":"tooltip-09-start"}},{"name":"top","props":{"content":"Tooltip","placement":"top","id":"tooltip-09"}},{"name":"top-end","props":{"content":"Tooltip","placement":"top-end","id":"tooltip-09-end"}}]},{"name":"Width","children":[{"name":"button"}],"examples":[{"name":"(Default) Auto","props":{"content":"Max width, lorem ipsum dolor sit amet, consetetur sadipscing","id":"tooltip-12"}},{"name":"Fixed","props":{"content":"Max width, lorem ipsum dolor sit amet, consetetur sadipscing","width":"fixed","id":"tooltip-13"}}]},{"name":"Animation","children":[{"name":"button"}],"examples":[{"name":"(Default) True","props":{"content":"Tooltip","id":"tooltip-14","animation":true}},{"name":"False","props":{"content":"Tooltip","animation":false,"id":"tooltip-17"}}]},{"name":"Delay","children":[{"name":"button"}],"examples":[{"name":"(Default) None","props":{"content":"Tooltip","id":"tooltip-144","delay":"none"}},{"name":"Slow","props":{"content":"Tooltip","delay":"slow","id":"tooltip-15"}},{"name":"Fast","props":{"content":"Tooltip","delay":"fast","id":"tooltip-16"}}]}]'),aT=({children:e,width:a,emphasis:t,placement:n,delay:i,content:l,animation:o,showArrow:s})=>(0,L.jsxs)(W.A,{children:[e,(0,L.jsx)(aw.A,{width:a,emphasis:t,placement:n,animation:o,delay:i,showArrow:s,children:l})]});var aA=t(68756);let ak=(0,S.forwardRef)(function(e,a){let t,n;e={size:"small",separator:"chevron",ellipsisAriaLabel:"Expand to show all breadcrumb items",...e};let i=a||(0,S.useRef)(a),[l,o]=(0,S.useState)(()=>(0,R.uR)()),[s,c]=(0,S.useState)(()=>!1);function d(){return"medium"===e.size?"24":"20"}function r(){let a=e.items;if(!a)return[];if(Array.isArray(a))return a;if("string"==typeof a)try{let e=JSON.parse(a);return Array.isArray(e)?e:[]}catch(e){}return[]}function u(){let a=r(),t=e.maxItems??0,n=t>0?t-1:0;return n>0?a.slice(a.length-n):[]}function p(e,a){return a?e.ariaCurrent??"page":void 0}return(0,L.jsx)("nav",{ref:i,...(0,aA.MD)(e,["data-icon-variant","data-icon-variant-before","data-icon-variant-after","data-icon-weight","data-icon-weight-before","data-icon-weight-after","data-interactive","data-force-mobile","data-color","data-container-color","data-bg-color","data-on-bg-color","data-color-scheme","data-font-size","data-headline-size","data-divider","data-focus","data-font"]),id:e.id,...(0,aA.vC)(e,["data-icon-variant","data-icon-variant-before","data-icon-variant-after","data-icon-weight","data-icon-weight-before","data-icon-weight-after","data-interactive","data-force-mobile","data-color","data-container-color","data-bg-color","data-on-bg-color","data-color-scheme","data-font-size","data-headline-size","data-divider","data-focus","data-font"]),className:(0,R.xF)("db-breadcrumb",e.className),"data-size":e.size,"data-separator":e.separator,"aria-label":e.ariaLabel??(e.id?`Breadcrumb (${e.id})`:`Breadcrumb (${l})`),children:(0,L.jsx)("ol",{className:"db-breadcrumb-list",id:e.id?`${e.id}-list`:"db-breadcrumb-list",children:r().length>0?(0,L.jsx)(L.Fragment,{children:(t=r(),n=e.maxItems??0,t.length>0&&n>0&&t.length>n&&!s)?(0,L.jsxs)(L.Fragment,{children:[r()[0]?(0,L.jsx)("li",{children:r()[0].href?(0,L.jsxs)("a",{href:r()[0].href,"aria-current":p(r()[0],1===r().length),children:[r()[0].icon?(0,L.jsx)(ev.A,{weight:d(),icon:r()[0].icon}):null,r()[0].text]}):(0,L.jsx)(L.Fragment,{children:(0,L.jsxs)("span",{"aria-current":p(r()[0],1===r().length),children:[r()[0].icon?(0,L.jsx)(ev.A,{weight:d(),icon:r()[0].icon}):null,r()[0].text]})})},0):null,(0,L.jsx)("li",{children:(0,L.jsx)("button",{type:"button",className:"db-breadcrumb-ellipsis","aria-label":e.ellipsisAriaLabel??"Expand to show all breadcrumb items","aria-expanded":(0,R.EB)(s),"aria-controls":e.id?`${e.id}-list`:"db-breadcrumb-list",onClick:e=>void c(!s),children:"…"})},"ellipsis"),u()?.map((e,a)=>(0,L.jsx)("li",{children:e.href?(0,L.jsxs)("a",{href:e.href,"aria-current":p(e,a===u().length-1),children:[e.icon?(0,L.jsx)(ev.A,{weight:d(),icon:e.icon}):null,e.text]}):(0,L.jsx)(L.Fragment,{children:(0,L.jsxs)("span",{"aria-current":p(e,a===u().length-1),children:[e.icon?(0,L.jsx)(ev.A,{weight:d(),icon:e.icon}):null,e.text]})})}))]}):(0,L.jsx)(L.Fragment,{children:r()?.map((e,a)=>(0,L.jsx)("li",{children:e.href?(0,L.jsxs)("a",{href:e.href,"aria-current":p(e,a===r().length-1),children:[e.icon?(0,L.jsx)(ev.A,{weight:d(),icon:e.icon}):null,e.text]}):(0,L.jsx)(L.Fragment,{children:(0,L.jsxs)("span",{"aria-current":p(e,a===r().length-1),children:[e.icon?(0,L.jsx)(ev.A,{weight:d(),icon:e.icon}):null,e.text]})})}))})}):(0,L.jsx)(L.Fragment,{children:e.children})})})}),aC=JSON.parse('[{"name":"Size","examples":[{"name":"(Default) Small","className":"w-full","props":{"id":"breadcrumb-size-small","ariaLabel":"Breadcrumb size small","items":[{"href":"#","text":"Home"},{"href":"#","text":"Category"},{"text":"Current Page","ariaCurrent":"page","href":"#"}]}},{"name":"Medium","className":"w-full","props":{"id":"breadcrumb-size-medium","size":"medium","ariaLabel":"Breadcrumb size medium","items":[{"href":"#","text":"Home"},{"href":"#","text":"Category"},{"text":"Current Page","ariaCurrent":"page"}]}}]},{"name":"Separator","examples":[{"name":"Chevron","className":"w-full","props":{"id":"breadcrumb-separator-chevron","separator":"chevron","ariaLabel":"Breadcrumb separator chevron","items":[{"href":"#","text":"Home"},{"href":"#","text":"Category"},{"text":"Current Page","ariaCurrent":"page"}]}},{"name":"Slash","className":"w-full","props":{"id":"breadcrumb-separator-slash","separator":"slash","ariaLabel":"Breadcrumb separator slash","items":[{"href":"#","text":"Home"},{"href":"#","text":"Category"},{"text":"Current Page","ariaCurrent":"page"}]}}]},{"name":"Collapsed","examples":[{"name":"Collapsed (maxItems=3)","className":"w-full","props":{"id":"breadcrumb-collapsed","maxItems":3,"ariaLabel":"Breadcrumb collapsed","ellipsisAriaLabel":"Expand to show all breadcrumb items","items":[{"href":"#","text":"Root"},{"href":"#","text":"Path 1"},{"href":"#","text":"Path 2"},{"href":"#","text":"Path 3"},{"text":"Current Page","ariaCurrent":"page","href":"#"}]}}]},{"name":"Icons","examples":[{"name":"With Icons (Small)","className":"w-full","props":{"id":"breadcrumb-icons-small","ariaLabel":"Breadcrumb icons small","items":[{"href":"#","text":"Root","icon":"house"},{"href":"#","text":"Settings","icon":"gear_wheel"},{"href":"#","text":"Profile","icon":"person"},{"href":"#","text":"Notifications","icon":"bell"}]}},{"name":"With Icons (Medium)","className":"w-full","props":{"id":"breadcrumb-icons-medium","ariaLabel":"Breadcrumb icons medium","size":"medium","items":[{"href":"#","text":"Root","icon":"house"},{"href":"#","text":"Settings","icon":"gear_wheel"},{"href":"#","text":"Profile","icon":"person"},{"href":"#","text":"Notifications","icon":"bell"}]}}]}]'),aO=({items:e,size:a,className:t,separator:n,maxItems:i,ariaLabel:l,ellipsisAriaLabel:o,id:s})=>(0,L.jsx)(ak,{size:a,className:t,separator:n,maxItems:i,items:e,ariaLabel:l,ellipsisAriaLabel:o,id:s}),aN=(0,S.forwardRef)(function(e,a){let t=a||(0,S.useRef)(a);return(0,L.jsx)("li",{ref:t,...(0,aA.MD)(e,["data-icon-variant","data-icon-variant-before","data-icon-variant-after","data-icon-weight","data-icon-weight-before","data-icon-weight-after","data-interactive","data-force-mobile","data-color","data-container-color","data-bg-color","data-on-bg-color","data-color-scheme","data-font-size","data-headline-size","data-divider","data-focus","data-font"]),id:e.id,...(0,aA.vC)(e,["data-icon-variant","data-icon-variant-before","data-icon-variant-after","data-icon-weight","data-icon-weight-before","data-icon-weight-after","data-interactive","data-force-mobile","data-color","data-container-color","data-bg-color","data-on-bg-color","data-color-scheme","data-font-size","data-headline-size","data-divider","data-focus","data-font"]),className:(0,R.xF)(e.className),children:e.href&&!e.disabled?(0,L.jsxs)("a",{href:e.href,"aria-current":e.ariaCurrent,children:[e.icon?(0,L.jsx)(ev.A,{icon:e.icon}):null,e.text?(0,L.jsx)(L.Fragment,{children:e.text}):(0,L.jsx)(L.Fragment,{children:e.children})]}):(0,L.jsx)(L.Fragment,{children:(0,L.jsxs)("span",{"aria-current":e.ariaCurrent,children:[e.icon?(0,L.jsx)(ev.A,{icon:e.icon}):null,e.text?(0,L.jsx)(L.Fragment,{children:e.text}):(0,L.jsx)(L.Fragment,{children:e.children})]})})})}),aI=JSON.parse('[{"name":"Basic","examples":[{"name":"Link","props":{"href":"#","text":"Home"}},{"name":"Current Page","props":{"ariaCurrent":"page","text":"Current Page"}}]},{"name":"With Icon","examples":[{"name":"Home Icon","props":{"href":"#","icon":"house","text":"Home"}},{"name":"Folder Icon","props":{"href":"#","icon":"folder","text":"Category"}}]},{"name":"Disabled","examples":[{"name":"(Default) False","props":{"href":"#","disabled":false,"text":"Enabled Item"}},{"name":"True","props":{"href":"#","disabled":true,"text":"Disabled Item"}}]}]'),aL=({href:e,text:a,icon:t,ariaCurrent:n,disabled:i,className:l,id:o})=>(0,L.jsx)("nav",{className:"db-breadcrumb","aria-label":"Breadcrumb",children:(0,L.jsx)("ol",{children:(0,L.jsx)(aN,{href:e,text:a,icon:t,ariaCurrent:n,disabled:i,className:l,id:o})})}),aS=e=>(0,L.jsx)(er,{title:"DBBreadcrumbItem",isSubComponent:e.isSubComponent,componentName:e.componentName,variants:ei(aI,aL,e.slotCode)});var a_=t(87184);let aH=()=>{let[e,a]=(0,S.useState)(),{getFrameworkIndex:t}=(0,a_.u)();return(0,S.useEffect)(()=>{e&&setTimeout(()=>a(""),1500)},[e]),(0,L.jsxs)(L.Fragment,{children:[(0,L.jsx)(_.A,{className:"tab-container",children:(0,L.jsxs)(ah.A,{initialSelectedIndex:t(),children:[(0,L.jsxs)(ac.A,{children:[(0,L.jsx)(ad.A,{children:"Angular"}),(0,L.jsx)(ad.A,{children:"HTML"}),(0,L.jsx)(ad.A,{children:"React"}),(0,L.jsx)(ad.A,{children:"Vue"})]}),(0,L.jsxs)(ab.A,{children:[(0,L.jsx)(H.A,{content:"external",target:"_blank",href:"how-to-use?current=angular",children:"How to use this in angular"}),(0,L.jsx)("pre",{children:(0,L.jsx)("code",{className:"hljs language-html",children:`<db-accordion>
   <db-accordion-item headline="Item 1"> accordion-item </db-accordion-item>
   <db-accordion-item headline="Item 2"> accordion-item </db-accordion-item>
   <db-accordion-item headline="Item 3"> accordion-item </db-accordion-item>
@@ -3302,7 +3302,7 @@ Interactive
 Interactive
 </DBCard>`),navigator.clipboard.writeText(`<DBCard behavior="interactive">
 Interactive
-</DBCard>`)},children:"Copy code"})]})]},t())})]})},a7=()=>{let[e,a]=(0,S.useState)(),{getFrameworkIndex:t}=(0,a_.u)();return(0,S.useEffect)(()=>{e&&setTimeout(()=>a(""),1500)},[e]),(0,L.jsxs)(L.Fragment,{children:[(0,L.jsx)(_.A,{className:"tab-container",children:(0,L.jsxs)(ah.A,{initialSelectedIndex:t(),children:[(0,L.jsxs)(ac.A,{children:[(0,L.jsx)(ad.A,{children:"Angular"}),(0,L.jsx)(ad.A,{children:"HTML"}),(0,L.jsx)(ad.A,{children:"React"}),(0,L.jsx)(ad.A,{children:"Vue"})]}),(0,L.jsxs)(ab.A,{children:[(0,L.jsx)(H.A,{content:"external",target:"_blank",href:"how-to-use?current=angular",children:"How to use this in angular"}),(0,L.jsx)("pre",{children:(0,L.jsx)("code",{className:"hljs language-html",children:`<db-card elevationLevel="1" behavior="interactive">
+</DBCard>`)},children:"Copy code"})]})]},t())})]})},a9=()=>{let[e,a]=(0,S.useState)(),{getFrameworkIndex:t}=(0,a_.u)();return(0,S.useEffect)(()=>{e&&setTimeout(()=>a(""),1500)},[e]),(0,L.jsxs)(L.Fragment,{children:[(0,L.jsx)(_.A,{className:"tab-container",children:(0,L.jsxs)(ah.A,{initialSelectedIndex:t(),children:[(0,L.jsxs)(ac.A,{children:[(0,L.jsx)(ad.A,{children:"Angular"}),(0,L.jsx)(ad.A,{children:"HTML"}),(0,L.jsx)(ad.A,{children:"React"}),(0,L.jsx)(ad.A,{children:"Vue"})]}),(0,L.jsxs)(ab.A,{children:[(0,L.jsx)(H.A,{content:"external",target:"_blank",href:"how-to-use?current=angular",children:"How to use this in angular"}),(0,L.jsx)("pre",{children:(0,L.jsx)("code",{className:"hljs language-html",children:`<db-card elevationLevel="1" behavior="interactive">
   Level 1 - Interactive
 </db-card>`})}),(0,L.jsx)(W.A,{className:"copy-button",noText:!0,icon:e===`<db-card elevationLevel="1" behavior="interactive">
   Level 1 - Interactive
@@ -3398,7 +3398,7 @@ Level 3 - Interactive
 Level 3 - Interactive
 </DBCard>`),navigator.clipboard.writeText(`<DBCard elevationLevel="3" behavior="interactive">
 Level 3 - Interactive
-</DBCard>`)},children:"Copy code"})]})]},t())})]})},a9=()=>{let[e,a]=(0,S.useState)(),{getFrameworkIndex:t}=(0,a_.u)();return(0,S.useEffect)(()=>{e&&setTimeout(()=>a(""),1500)},[e]),(0,L.jsxs)(L.Fragment,{children:[(0,L.jsx)(_.A,{className:"tab-container",children:(0,L.jsxs)(ah.A,{initialSelectedIndex:t(),children:[(0,L.jsxs)(ac.A,{children:[(0,L.jsx)(ad.A,{children:"Angular"}),(0,L.jsx)(ad.A,{children:"HTML"}),(0,L.jsx)(ad.A,{children:"React"}),(0,L.jsx)(ad.A,{children:"Vue"})]}),(0,L.jsxs)(ab.A,{children:[(0,L.jsx)(H.A,{content:"external",target:"_blank",href:"how-to-use?current=angular",children:"How to use this in angular"}),(0,L.jsx)("pre",{children:(0,L.jsx)("code",{className:"hljs language-html",children:'<db-checkbox name="Density"> Functional </db-checkbox>'})}),(0,L.jsx)(W.A,{className:"copy-button",noText:!0,icon:'<db-checkbox name="Density"> Functional </db-checkbox>'===e?"check":"copy",variant:"ghost",onClick:()=>{a('<db-checkbox name="Density"> Functional </db-checkbox>'),navigator.clipboard.writeText('<db-checkbox name="Density"> Functional </db-checkbox>')},children:"Copy code"})]}),(0,L.jsxs)(ab.A,{children:[(0,L.jsx)(H.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,L.jsx)("pre",{children:(0,L.jsx)("code",{className:"hljs language-html",children:`<div class="db-checkbox">
+</DBCard>`)},children:"Copy code"})]})]},t())})]})},a7=()=>{let[e,a]=(0,S.useState)(),{getFrameworkIndex:t}=(0,a_.u)();return(0,S.useEffect)(()=>{e&&setTimeout(()=>a(""),1500)},[e]),(0,L.jsxs)(L.Fragment,{children:[(0,L.jsx)(_.A,{className:"tab-container",children:(0,L.jsxs)(ah.A,{initialSelectedIndex:t(),children:[(0,L.jsxs)(ac.A,{children:[(0,L.jsx)(ad.A,{children:"Angular"}),(0,L.jsx)(ad.A,{children:"HTML"}),(0,L.jsx)(ad.A,{children:"React"}),(0,L.jsx)(ad.A,{children:"Vue"})]}),(0,L.jsxs)(ab.A,{children:[(0,L.jsx)(H.A,{content:"external",target:"_blank",href:"how-to-use?current=angular",children:"How to use this in angular"}),(0,L.jsx)("pre",{children:(0,L.jsx)("code",{className:"hljs language-html",children:'<db-checkbox name="Density"> Functional </db-checkbox>'})}),(0,L.jsx)(W.A,{className:"copy-button",noText:!0,icon:'<db-checkbox name="Density"> Functional </db-checkbox>'===e?"check":"copy",variant:"ghost",onClick:()=>{a('<db-checkbox name="Density"> Functional </db-checkbox>'),navigator.clipboard.writeText('<db-checkbox name="Density"> Functional </db-checkbox>')},children:"Copy code"})]}),(0,L.jsxs)(ab.A,{children:[(0,L.jsx)(H.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,L.jsx)("pre",{children:(0,L.jsx)("code",{className:"hljs language-html",children:`<div class="db-checkbox">
   <label
     ><input
       type="checkbox"
@@ -24433,7 +24433,7 @@ Inside
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-5084543531915803"
+                    id="sub-navigation-5310981702347073"
                   ></menu>
                 </li>
                 <li
@@ -24452,7 +24452,7 @@ Inside
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-32793996205942877"
+                    id="sub-navigation-2343754973191997"
                   ></menu>
                 </li>
               </menu>
@@ -24512,7 +24512,7 @@ Inside
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-19509111352245279"
+                id="sub-navigation-8163766167278353"
               ></menu>
             </li>
             <li
@@ -24531,7 +24531,7 @@ Inside
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-8831339478920366"
+                id="sub-navigation-3337676197110946"
               ></menu>
             </li>
           </menu>
@@ -24609,7 +24609,7 @@ Inside
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-5084543531915803"
+                    id="sub-navigation-5310981702347073"
                   ></menu>
                 </li>
                 <li
@@ -24628,7 +24628,7 @@ Inside
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-32793996205942877"
+                    id="sub-navigation-2343754973191997"
                   ></menu>
                 </li>
               </menu>
@@ -24688,7 +24688,7 @@ Inside
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-19509111352245279"
+                id="sub-navigation-8163766167278353"
               ></menu>
             </li>
             <li
@@ -24707,7 +24707,7 @@ Inside
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-8831339478920366"
+                id="sub-navigation-3337676197110946"
               ></menu>
             </li>
           </menu>
@@ -24785,7 +24785,7 @@ Inside
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-5084543531915803"
+                    id="sub-navigation-5310981702347073"
                   ></menu>
                 </li>
                 <li
@@ -24804,7 +24804,7 @@ Inside
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-32793996205942877"
+                    id="sub-navigation-2343754973191997"
                   ></menu>
                 </li>
               </menu>
@@ -24864,7 +24864,7 @@ Inside
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-19509111352245279"
+                id="sub-navigation-8163766167278353"
               ></menu>
             </li>
             <li
@@ -24883,7 +24883,7 @@ Inside
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-8831339478920366"
+                id="sub-navigation-3337676197110946"
               ></menu>
             </li>
           </menu>
@@ -24961,7 +24961,7 @@ Inside
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-5084543531915803"
+                    id="sub-navigation-5310981702347073"
                   ></menu>
                 </li>
                 <li
@@ -24980,7 +24980,7 @@ Inside
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-32793996205942877"
+                    id="sub-navigation-2343754973191997"
                   ></menu>
                 </li>
               </menu>
@@ -25040,7 +25040,7 @@ Inside
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-19509111352245279"
+                id="sub-navigation-8163766167278353"
               ></menu>
             </li>
             <li
@@ -25059,7 +25059,7 @@ Inside
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-8831339478920366"
+                id="sub-navigation-3337676197110946"
               ></menu>
             </li>
           </menu>
@@ -25433,7 +25433,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-13313662351215005"
+                    id="sub-navigation-25539490810121623"
                   ></menu>
                 </li>
                 <li
@@ -25452,7 +25452,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-36872740015070227"
+                    id="sub-navigation-4121583092846357"
                   ></menu>
                 </li>
               </menu>
@@ -25512,7 +25512,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-12524168030039307"
+                id="sub-navigation-632476632038234"
               ></menu>
             </li>
             <li
@@ -25531,7 +25531,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-6885194546372101"
+                id="sub-navigation-4140591181738579"
               ></menu>
             </li>
           </menu>
@@ -25609,7 +25609,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-13313662351215005"
+                    id="sub-navigation-25539490810121623"
                   ></menu>
                 </li>
                 <li
@@ -25628,7 +25628,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-36872740015070227"
+                    id="sub-navigation-4121583092846357"
                   ></menu>
                 </li>
               </menu>
@@ -25688,7 +25688,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-12524168030039307"
+                id="sub-navigation-632476632038234"
               ></menu>
             </li>
             <li
@@ -25707,7 +25707,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-6885194546372101"
+                id="sub-navigation-4140591181738579"
               ></menu>
             </li>
           </menu>
@@ -25785,7 +25785,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-13313662351215005"
+                    id="sub-navigation-25539490810121623"
                   ></menu>
                 </li>
                 <li
@@ -25804,7 +25804,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-36872740015070227"
+                    id="sub-navigation-4121583092846357"
                   ></menu>
                 </li>
               </menu>
@@ -25864,7 +25864,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-12524168030039307"
+                id="sub-navigation-632476632038234"
               ></menu>
             </li>
             <li
@@ -25883,7 +25883,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-6885194546372101"
+                id="sub-navigation-4140591181738579"
               ></menu>
             </li>
           </menu>
@@ -25961,7 +25961,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-13313662351215005"
+                    id="sub-navigation-25539490810121623"
                   ></menu>
                 </li>
                 <li
@@ -25980,7 +25980,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-36872740015070227"
+                    id="sub-navigation-4121583092846357"
                   ></menu>
                 </li>
               </menu>
@@ -26040,7 +26040,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-12524168030039307"
+                id="sub-navigation-632476632038234"
               ></menu>
             </li>
             <li
@@ -26059,7 +26059,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-6885194546372101"
+                id="sub-navigation-4140591181738579"
               ></menu>
             </li>
           </menu>
@@ -26433,7 +26433,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-5423116807826396"
+                    id="sub-navigation-812256697518594"
                   ></menu>
                 </li>
                 <li
@@ -26452,7 +26452,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-3685245983097192"
+                    id="sub-navigation-11027142135780144"
                   ></menu>
                 </li>
               </menu>
@@ -26512,7 +26512,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-3258289731652272"
+                id="sub-navigation-9428994817044786"
               ></menu>
             </li>
             <li
@@ -26531,7 +26531,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-7443731667901556"
+                id="sub-navigation-049593434627598576"
               ></menu>
             </li>
           </menu>
@@ -26609,7 +26609,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-5423116807826396"
+                    id="sub-navigation-812256697518594"
                   ></menu>
                 </li>
                 <li
@@ -26628,7 +26628,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-3685245983097192"
+                    id="sub-navigation-11027142135780144"
                   ></menu>
                 </li>
               </menu>
@@ -26688,7 +26688,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-3258289731652272"
+                id="sub-navigation-9428994817044786"
               ></menu>
             </li>
             <li
@@ -26707,7 +26707,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-7443731667901556"
+                id="sub-navigation-049593434627598576"
               ></menu>
             </li>
           </menu>
@@ -26785,7 +26785,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-5423116807826396"
+                    id="sub-navigation-812256697518594"
                   ></menu>
                 </li>
                 <li
@@ -26804,7 +26804,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-3685245983097192"
+                    id="sub-navigation-11027142135780144"
                   ></menu>
                 </li>
               </menu>
@@ -26864,7 +26864,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-3258289731652272"
+                id="sub-navigation-9428994817044786"
               ></menu>
             </li>
             <li
@@ -26883,7 +26883,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-7443731667901556"
+                id="sub-navigation-049593434627598576"
               ></menu>
             </li>
           </menu>
@@ -26961,7 +26961,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-5423116807826396"
+                    id="sub-navigation-812256697518594"
                   ></menu>
                 </li>
                 <li
@@ -26980,7 +26980,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-3685245983097192"
+                    id="sub-navigation-11027142135780144"
                   ></menu>
                 </li>
               </menu>
@@ -27040,7 +27040,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-3258289731652272"
+                id="sub-navigation-9428994817044786"
               ></menu>
             </li>
             <li
@@ -27059,7 +27059,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-7443731667901556"
+                id="sub-navigation-049593434627598576"
               ></menu>
             </li>
           </menu>
@@ -27433,7 +27433,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-1571488109696818"
+                    id="sub-navigation-8956096286804706"
                   ></menu>
                 </li>
                 <li
@@ -27452,7 +27452,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-22306951120575658"
+                    id="sub-navigation-0935629597065798"
                   ></menu>
                 </li>
               </menu>
@@ -27512,7 +27512,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-7672332326339975"
+                id="sub-navigation-8808870404986401"
               ></menu>
             </li>
             <li
@@ -27531,7 +27531,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-6362137047925156"
+                id="sub-navigation-7690677878339808"
               ></menu>
             </li>
           </menu>
@@ -27609,7 +27609,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-1571488109696818"
+                    id="sub-navigation-8956096286804706"
                   ></menu>
                 </li>
                 <li
@@ -27628,7 +27628,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-22306951120575658"
+                    id="sub-navigation-0935629597065798"
                   ></menu>
                 </li>
               </menu>
@@ -27688,7 +27688,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-7672332326339975"
+                id="sub-navigation-8808870404986401"
               ></menu>
             </li>
             <li
@@ -27707,7 +27707,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-6362137047925156"
+                id="sub-navigation-7690677878339808"
               ></menu>
             </li>
           </menu>
@@ -27785,7 +27785,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-1571488109696818"
+                    id="sub-navigation-8956096286804706"
                   ></menu>
                 </li>
                 <li
@@ -27804,7 +27804,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-22306951120575658"
+                    id="sub-navigation-0935629597065798"
                   ></menu>
                 </li>
               </menu>
@@ -27864,7 +27864,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-7672332326339975"
+                id="sub-navigation-8808870404986401"
               ></menu>
             </li>
             <li
@@ -27883,7 +27883,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-6362137047925156"
+                id="sub-navigation-7690677878339808"
               ></menu>
             </li>
           </menu>
@@ -27961,7 +27961,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-1571488109696818"
+                    id="sub-navigation-8956096286804706"
                   ></menu>
                 </li>
                 <li
@@ -27980,7 +27980,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-22306951120575658"
+                    id="sub-navigation-0935629597065798"
                   ></menu>
                 </li>
               </menu>
@@ -28040,7 +28040,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-7672332326339975"
+                id="sub-navigation-8808870404986401"
               ></menu>
             </li>
             <li
@@ -28059,7 +28059,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-6362137047925156"
+                id="sub-navigation-7690677878339808"
               ></menu>
             </li>
           </menu>
@@ -28433,7 +28433,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-48386396347122484"
+                    id="sub-navigation-06207897258726247"
                   ></menu>
                 </li>
                 <li
@@ -28452,7 +28452,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-8415033884462845"
+                    id="sub-navigation-6345282092040447"
                   ></menu>
                 </li>
               </menu>
@@ -28512,7 +28512,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-7456762876076114"
+                id="sub-navigation-763009003714165"
               ></menu>
             </li>
             <li
@@ -28531,7 +28531,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-03975372186158721"
+                id="sub-navigation-5488306198474749"
               ></menu>
             </li>
           </menu>
@@ -28609,7 +28609,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-48386396347122484"
+                    id="sub-navigation-06207897258726247"
                   ></menu>
                 </li>
                 <li
@@ -28628,7 +28628,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-8415033884462845"
+                    id="sub-navigation-6345282092040447"
                   ></menu>
                 </li>
               </menu>
@@ -28688,7 +28688,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-7456762876076114"
+                id="sub-navigation-763009003714165"
               ></menu>
             </li>
             <li
@@ -28707,7 +28707,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-03975372186158721"
+                id="sub-navigation-5488306198474749"
               ></menu>
             </li>
           </menu>
@@ -28785,7 +28785,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-48386396347122484"
+                    id="sub-navigation-06207897258726247"
                   ></menu>
                 </li>
                 <li
@@ -28804,7 +28804,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-8415033884462845"
+                    id="sub-navigation-6345282092040447"
                   ></menu>
                 </li>
               </menu>
@@ -28864,7 +28864,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-7456762876076114"
+                id="sub-navigation-763009003714165"
               ></menu>
             </li>
             <li
@@ -28883,7 +28883,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-03975372186158721"
+                id="sub-navigation-5488306198474749"
               ></menu>
             </li>
           </menu>
@@ -28961,7 +28961,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-48386396347122484"
+                    id="sub-navigation-06207897258726247"
                   ></menu>
                 </li>
                 <li
@@ -28980,7 +28980,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-8415033884462845"
+                    id="sub-navigation-6345282092040447"
                   ></menu>
                 </li>
               </menu>
@@ -29040,7 +29040,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-7456762876076114"
+                id="sub-navigation-763009003714165"
               ></menu>
             </li>
             <li
@@ -29059,7 +29059,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-03975372186158721"
+                id="sub-navigation-5488306198474749"
               ></menu>
             </li>
           </menu>
@@ -29437,7 +29437,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-6938871170480393"
+                    id="sub-navigation-6546031126064314"
                   ></menu>
                 </li>
                 <li
@@ -29456,7 +29456,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-7625713910536535"
+                    id="sub-navigation-8192512964276258"
                   ></menu>
                 </li>
               </menu>
@@ -29516,7 +29516,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-15969185273001474"
+                id="sub-navigation-7222152719282391"
               ></menu>
             </li>
             <li
@@ -29535,7 +29535,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-8418106121660277"
+                id="sub-navigation-6744476286435725"
               ></menu>
             </li>
           </menu>
@@ -29613,7 +29613,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-6938871170480393"
+                    id="sub-navigation-6546031126064314"
                   ></menu>
                 </li>
                 <li
@@ -29632,7 +29632,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-7625713910536535"
+                    id="sub-navigation-8192512964276258"
                   ></menu>
                 </li>
               </menu>
@@ -29692,7 +29692,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-15969185273001474"
+                id="sub-navigation-7222152719282391"
               ></menu>
             </li>
             <li
@@ -29711,7 +29711,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-8418106121660277"
+                id="sub-navigation-6744476286435725"
               ></menu>
             </li>
           </menu>
@@ -29789,7 +29789,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-6938871170480393"
+                    id="sub-navigation-6546031126064314"
                   ></menu>
                 </li>
                 <li
@@ -29808,7 +29808,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-7625713910536535"
+                    id="sub-navigation-8192512964276258"
                   ></menu>
                 </li>
               </menu>
@@ -29868,7 +29868,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-15969185273001474"
+                id="sub-navigation-7222152719282391"
               ></menu>
             </li>
             <li
@@ -29887,7 +29887,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-8418106121660277"
+                id="sub-navigation-6744476286435725"
               ></menu>
             </li>
           </menu>
@@ -29965,7 +29965,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-6938871170480393"
+                    id="sub-navigation-6546031126064314"
                   ></menu>
                 </li>
                 <li
@@ -29984,7 +29984,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-7625713910536535"
+                    id="sub-navigation-8192512964276258"
                   ></menu>
                 </li>
               </menu>
@@ -30044,7 +30044,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-15969185273001474"
+                id="sub-navigation-7222152719282391"
               ></menu>
             </li>
             <li
@@ -30063,7 +30063,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-8418106121660277"
+                id="sub-navigation-6744476286435725"
               ></menu>
             </li>
           </menu>
@@ -30441,7 +30441,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-42557878213792166"
+                    id="sub-navigation-434106407414354"
                   ></menu>
                 </li>
                 <li
@@ -30460,7 +30460,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-09402425745061094"
+                    id="sub-navigation-5772771016946621"
                   ></menu>
                 </li>
               </menu>
@@ -30520,7 +30520,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-7891241008900451"
+                id="sub-navigation-6858268172869701"
               ></menu>
             </li>
             <li
@@ -30539,7 +30539,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-7677393064933055"
+                id="sub-navigation-9687460417145927"
               ></menu>
             </li>
           </menu>
@@ -30617,7 +30617,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-42557878213792166"
+                    id="sub-navigation-434106407414354"
                   ></menu>
                 </li>
                 <li
@@ -30636,7 +30636,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-09402425745061094"
+                    id="sub-navigation-5772771016946621"
                   ></menu>
                 </li>
               </menu>
@@ -30696,7 +30696,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-7891241008900451"
+                id="sub-navigation-6858268172869701"
               ></menu>
             </li>
             <li
@@ -30715,7 +30715,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-7677393064933055"
+                id="sub-navigation-9687460417145927"
               ></menu>
             </li>
           </menu>
@@ -30793,7 +30793,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-42557878213792166"
+                    id="sub-navigation-434106407414354"
                   ></menu>
                 </li>
                 <li
@@ -30812,7 +30812,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-09402425745061094"
+                    id="sub-navigation-5772771016946621"
                   ></menu>
                 </li>
               </menu>
@@ -30872,7 +30872,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-7891241008900451"
+                id="sub-navigation-6858268172869701"
               ></menu>
             </li>
             <li
@@ -30891,7 +30891,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-7677393064933055"
+                id="sub-navigation-9687460417145927"
               ></menu>
             </li>
           </menu>
@@ -30969,7 +30969,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-42557878213792166"
+                    id="sub-navigation-434106407414354"
                   ></menu>
                 </li>
                 <li
@@ -30988,7 +30988,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-09402425745061094"
+                    id="sub-navigation-5772771016946621"
                   ></menu>
                 </li>
               </menu>
@@ -31048,7 +31048,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-7891241008900451"
+                id="sub-navigation-6858268172869701"
               ></menu>
             </li>
             <li
@@ -31067,7 +31067,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-7677393064933055"
+                id="sub-navigation-9687460417145927"
               ></menu>
             </li>
           </menu>
@@ -31441,7 +31441,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-9308699223982152"
+                    id="sub-navigation-8246071988046152"
                   ></menu>
                 </li>
                 <li
@@ -31460,7 +31460,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-3237124048631036"
+                    id="sub-navigation-04054524681116756"
                   ></menu>
                 </li>
               </menu>
@@ -31520,7 +31520,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-2944446764655204"
+                id="sub-navigation-06729743269228827"
               ></menu>
             </li>
             <li
@@ -31539,7 +31539,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-29058293433218874"
+                id="sub-navigation-6398806239384461"
               ></menu>
             </li>
           </menu>
@@ -31617,7 +31617,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-9308699223982152"
+                    id="sub-navigation-8246071988046152"
                   ></menu>
                 </li>
                 <li
@@ -31636,7 +31636,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-3237124048631036"
+                    id="sub-navigation-04054524681116756"
                   ></menu>
                 </li>
               </menu>
@@ -31696,7 +31696,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-2944446764655204"
+                id="sub-navigation-06729743269228827"
               ></menu>
             </li>
             <li
@@ -31715,7 +31715,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-29058293433218874"
+                id="sub-navigation-6398806239384461"
               ></menu>
             </li>
           </menu>
@@ -31793,7 +31793,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-9308699223982152"
+                    id="sub-navigation-8246071988046152"
                   ></menu>
                 </li>
                 <li
@@ -31812,7 +31812,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-3237124048631036"
+                    id="sub-navigation-04054524681116756"
                   ></menu>
                 </li>
               </menu>
@@ -31872,7 +31872,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-2944446764655204"
+                id="sub-navigation-06729743269228827"
               ></menu>
             </li>
             <li
@@ -31891,7 +31891,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-29058293433218874"
+                id="sub-navigation-6398806239384461"
               ></menu>
             </li>
           </menu>
@@ -31969,7 +31969,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-9308699223982152"
+                    id="sub-navigation-8246071988046152"
                   ></menu>
                 </li>
                 <li
@@ -31988,7 +31988,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-3237124048631036"
+                    id="sub-navigation-04054524681116756"
                   ></menu>
                 </li>
               </menu>
@@ -32048,7 +32048,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-2944446764655204"
+                id="sub-navigation-06729743269228827"
               ></menu>
             </li>
             <li
@@ -32067,7 +32067,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-29058293433218874"
+                id="sub-navigation-6398806239384461"
               ></menu>
             </li>
           </menu>
@@ -32445,7 +32445,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-20683410295175753"
+                    id="sub-navigation-8719349418573288"
                   ></menu>
                 </li>
                 <li
@@ -32464,7 +32464,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-7274708471578037"
+                    id="sub-navigation-5693844469406331"
                   ></menu>
                 </li>
               </menu>
@@ -32524,7 +32524,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-4386720650438415"
+                id="sub-navigation-9052918745239754"
               ></menu>
             </li>
             <li
@@ -32543,7 +32543,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-30340499051975456"
+                id="sub-navigation-49830925910476953"
               ></menu>
             </li>
           </menu>
@@ -32621,7 +32621,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-20683410295175753"
+                    id="sub-navigation-8719349418573288"
                   ></menu>
                 </li>
                 <li
@@ -32640,7 +32640,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-7274708471578037"
+                    id="sub-navigation-5693844469406331"
                   ></menu>
                 </li>
               </menu>
@@ -32700,7 +32700,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-4386720650438415"
+                id="sub-navigation-9052918745239754"
               ></menu>
             </li>
             <li
@@ -32719,7 +32719,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-30340499051975456"
+                id="sub-navigation-49830925910476953"
               ></menu>
             </li>
           </menu>
@@ -32797,7 +32797,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-20683410295175753"
+                    id="sub-navigation-8719349418573288"
                   ></menu>
                 </li>
                 <li
@@ -32816,7 +32816,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-7274708471578037"
+                    id="sub-navigation-5693844469406331"
                   ></menu>
                 </li>
               </menu>
@@ -32876,7 +32876,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-4386720650438415"
+                id="sub-navigation-9052918745239754"
               ></menu>
             </li>
             <li
@@ -32895,7 +32895,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-30340499051975456"
+                id="sub-navigation-49830925910476953"
               ></menu>
             </li>
           </menu>
@@ -32973,7 +32973,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-20683410295175753"
+                    id="sub-navigation-8719349418573288"
                   ></menu>
                 </li>
                 <li
@@ -32992,7 +32992,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-7274708471578037"
+                    id="sub-navigation-5693844469406331"
                   ></menu>
                 </li>
               </menu>
@@ -33052,7 +33052,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-4386720650438415"
+                id="sub-navigation-9052918745239754"
               ></menu>
             </li>
             <li
@@ -33071,7 +33071,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-30340499051975456"
+                id="sub-navigation-49830925910476953"
               ></menu>
             </li>
           </menu>
@@ -33457,7 +33457,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-7887285892161342"
+                    id="sub-navigation-517742051209931"
                   ></menu>
                 </li>
                 <li
@@ -33476,7 +33476,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-3231422710102787"
+                    id="sub-navigation-39406032859337414"
                   ></menu>
                 </li>
               </menu>
@@ -33536,7 +33536,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-08687323957281645"
+                id="sub-navigation-9229071196901457"
               ></menu>
             </li>
             <li
@@ -33555,7 +33555,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-7672917251060904"
+                id="sub-navigation-06622309625024403"
               ></menu>
             </li>
           </menu>
@@ -33633,7 +33633,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-7887285892161342"
+                    id="sub-navigation-517742051209931"
                   ></menu>
                 </li>
                 <li
@@ -33652,7 +33652,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-3231422710102787"
+                    id="sub-navigation-39406032859337414"
                   ></menu>
                 </li>
               </menu>
@@ -33712,7 +33712,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-08687323957281645"
+                id="sub-navigation-9229071196901457"
               ></menu>
             </li>
             <li
@@ -33731,7 +33731,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-7672917251060904"
+                id="sub-navigation-06622309625024403"
               ></menu>
             </li>
           </menu>
@@ -33809,7 +33809,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-7887285892161342"
+                    id="sub-navigation-517742051209931"
                   ></menu>
                 </li>
                 <li
@@ -33828,7 +33828,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-3231422710102787"
+                    id="sub-navigation-39406032859337414"
                   ></menu>
                 </li>
               </menu>
@@ -33888,7 +33888,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-08687323957281645"
+                id="sub-navigation-9229071196901457"
               ></menu>
             </li>
             <li
@@ -33907,7 +33907,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-7672917251060904"
+                id="sub-navigation-06622309625024403"
               ></menu>
             </li>
           </menu>
@@ -33985,7 +33985,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-7887285892161342"
+                    id="sub-navigation-517742051209931"
                   ></menu>
                 </li>
                 <li
@@ -34004,7 +34004,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-3231422710102787"
+                    id="sub-navigation-39406032859337414"
                   ></menu>
                 </li>
               </menu>
@@ -34064,7 +34064,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-08687323957281645"
+                id="sub-navigation-9229071196901457"
               ></menu>
             </li>
             <li
@@ -34083,7 +34083,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-7672917251060904"
+                id="sub-navigation-06622309625024403"
               ></menu>
             </li>
           </menu>
@@ -34469,7 +34469,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-15748500544747623"
+                    id="sub-navigation-537440473747833"
                   ></menu>
                 </li>
                 <li
@@ -34488,7 +34488,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-7601404407272606"
+                    id="sub-navigation-5718964389558278"
                   ></menu>
                 </li>
               </menu>
@@ -34548,7 +34548,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-0383412703389554"
+                id="sub-navigation-21412040904926832"
               ></menu>
             </li>
             <li
@@ -34567,7 +34567,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-06047186451061537"
+                id="sub-navigation-44223354268106396"
               ></menu>
             </li>
           </menu>
@@ -34645,7 +34645,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-15748500544747623"
+                    id="sub-navigation-537440473747833"
                   ></menu>
                 </li>
                 <li
@@ -34664,7 +34664,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-7601404407272606"
+                    id="sub-navigation-5718964389558278"
                   ></menu>
                 </li>
               </menu>
@@ -34724,7 +34724,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-0383412703389554"
+                id="sub-navigation-21412040904926832"
               ></menu>
             </li>
             <li
@@ -34743,7 +34743,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-06047186451061537"
+                id="sub-navigation-44223354268106396"
               ></menu>
             </li>
           </menu>
@@ -34821,7 +34821,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-15748500544747623"
+                    id="sub-navigation-537440473747833"
                   ></menu>
                 </li>
                 <li
@@ -34840,7 +34840,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-7601404407272606"
+                    id="sub-navigation-5718964389558278"
                   ></menu>
                 </li>
               </menu>
@@ -34900,7 +34900,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-0383412703389554"
+                id="sub-navigation-21412040904926832"
               ></menu>
             </li>
             <li
@@ -34919,7 +34919,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-06047186451061537"
+                id="sub-navigation-44223354268106396"
               ></menu>
             </li>
           </menu>
@@ -34997,7 +34997,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-15748500544747623"
+                    id="sub-navigation-537440473747833"
                   ></menu>
                 </li>
                 <li
@@ -35016,7 +35016,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-7601404407272606"
+                    id="sub-navigation-5718964389558278"
                   ></menu>
                 </li>
               </menu>
@@ -35076,7 +35076,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-0383412703389554"
+                id="sub-navigation-21412040904926832"
               ></menu>
             </li>
             <li
@@ -35095,7 +35095,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-06047186451061537"
+                id="sub-navigation-44223354268106396"
               ></menu>
             </li>
           </menu>
@@ -35481,7 +35481,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-6200277321359959"
+                    id="sub-navigation-619527322007085"
                   ></menu>
                 </li>
                 <li
@@ -35500,7 +35500,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-7244253348081754"
+                    id="sub-navigation-3301725067016762"
                   ></menu>
                 </li>
               </menu>
@@ -35560,7 +35560,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-04420592477405405"
+                id="sub-navigation-5457732983210332"
               ></menu>
             </li>
             <li
@@ -35579,7 +35579,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-43719504671525034"
+                id="sub-navigation-2069215680408234"
               ></menu>
             </li>
           </menu>
@@ -35657,7 +35657,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-6200277321359959"
+                    id="sub-navigation-619527322007085"
                   ></menu>
                 </li>
                 <li
@@ -35676,7 +35676,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-7244253348081754"
+                    id="sub-navigation-3301725067016762"
                   ></menu>
                 </li>
               </menu>
@@ -35736,7 +35736,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-04420592477405405"
+                id="sub-navigation-5457732983210332"
               ></menu>
             </li>
             <li
@@ -35755,7 +35755,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-43719504671525034"
+                id="sub-navigation-2069215680408234"
               ></menu>
             </li>
           </menu>
@@ -35833,7 +35833,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-6200277321359959"
+                    id="sub-navigation-619527322007085"
                   ></menu>
                 </li>
                 <li
@@ -35852,7 +35852,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-7244253348081754"
+                    id="sub-navigation-3301725067016762"
                   ></menu>
                 </li>
               </menu>
@@ -35912,7 +35912,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-04420592477405405"
+                id="sub-navigation-5457732983210332"
               ></menu>
             </li>
             <li
@@ -35931,7 +35931,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-43719504671525034"
+                id="sub-navigation-2069215680408234"
               ></menu>
             </li>
           </menu>
@@ -36009,7 +36009,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-6200277321359959"
+                    id="sub-navigation-619527322007085"
                   ></menu>
                 </li>
                 <li
@@ -36028,7 +36028,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-7244253348081754"
+                    id="sub-navigation-3301725067016762"
                   ></menu>
                 </li>
               </menu>
@@ -36088,7 +36088,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-04420592477405405"
+                id="sub-navigation-5457732983210332"
               ></menu>
             </li>
             <li
@@ -36107,7 +36107,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-43719504671525034"
+                id="sub-navigation-2069215680408234"
               ></menu>
             </li>
           </menu>
@@ -37798,7 +37798,7 @@ False
 
 </DBInput>`),navigator.clipboard.writeText(`<DBInput label="True" icon="x_placeholder" :showIcon="true">
 
-</DBInput>`)},children:"Copy code"})]})]},t())})]})},t7=()=>{let[e,a]=(0,S.useState)(),{getFrameworkIndex:t}=(0,a_.u)();return(0,S.useEffect)(()=>{e&&setTimeout(()=>a(""),1500)},[e]),(0,L.jsxs)(L.Fragment,{children:[(0,L.jsx)(_.A,{className:"tab-container",children:(0,L.jsxs)(ah.A,{initialSelectedIndex:t(),children:[(0,L.jsxs)(ac.A,{children:[(0,L.jsx)(ad.A,{children:"Angular"}),(0,L.jsx)(ad.A,{children:"HTML"}),(0,L.jsx)(ad.A,{children:"React"}),(0,L.jsx)(ad.A,{children:"Vue"})]}),(0,L.jsxs)(ab.A,{children:[(0,L.jsx)(H.A,{content:"external",target:"_blank",href:"how-to-use?current=angular",children:"How to use this in angular"}),(0,L.jsx)("pre",{children:(0,L.jsx)("code",{className:"hljs language-html",children:`<db-input
+</DBInput>`)},children:"Copy code"})]})]},t())})]})},t9=()=>{let[e,a]=(0,S.useState)(),{getFrameworkIndex:t}=(0,a_.u)();return(0,S.useEffect)(()=>{e&&setTimeout(()=>a(""),1500)},[e]),(0,L.jsxs)(L.Fragment,{children:[(0,L.jsx)(_.A,{className:"tab-container",children:(0,L.jsxs)(ah.A,{initialSelectedIndex:t(),children:[(0,L.jsxs)(ac.A,{children:[(0,L.jsx)(ad.A,{children:"Angular"}),(0,L.jsx)(ad.A,{children:"HTML"}),(0,L.jsx)(ad.A,{children:"React"}),(0,L.jsx)(ad.A,{children:"Vue"})]}),(0,L.jsxs)(ab.A,{children:[(0,L.jsx)(H.A,{content:"external",target:"_blank",href:"how-to-use?current=angular",children:"How to use this in angular"}),(0,L.jsx)("pre",{children:(0,L.jsx)("code",{className:"hljs language-html",children:`<db-input
   label="False"
   icon="x_placeholder"
   [showIcon]="false"
@@ -38086,7 +38086,7 @@ False
   :showIconTrailing="true"
 >
 
-</DBInput>`)},children:"Copy code"})]})]},t())})]})},t9=()=>{let[e,a]=(0,S.useState)(),{getFrameworkIndex:t}=(0,a_.u)();return(0,S.useEffect)(()=>{e&&setTimeout(()=>a(""),1500)},[e]),(0,L.jsxs)(L.Fragment,{children:[(0,L.jsx)(_.A,{className:"tab-container",children:(0,L.jsxs)(ah.A,{initialSelectedIndex:t(),children:[(0,L.jsxs)(ac.A,{children:[(0,L.jsx)(ad.A,{children:"Angular"}),(0,L.jsx)(ad.A,{children:"HTML"}),(0,L.jsx)(ad.A,{children:"React"}),(0,L.jsx)(ad.A,{children:"Vue"})]}),(0,L.jsxs)(ab.A,{children:[(0,L.jsx)(H.A,{content:"external",target:"_blank",href:"how-to-use?current=angular",children:"How to use this in angular"}),(0,L.jsx)("pre",{children:(0,L.jsx)("code",{className:"hljs language-html",children:`<db-input label="False" iconTrailing="x_placeholder" [showIconTrailing]="false">
+</DBInput>`)},children:"Copy code"})]})]},t())})]})},t7=()=>{let[e,a]=(0,S.useState)(),{getFrameworkIndex:t}=(0,a_.u)();return(0,S.useEffect)(()=>{e&&setTimeout(()=>a(""),1500)},[e]),(0,L.jsxs)(L.Fragment,{children:[(0,L.jsx)(_.A,{className:"tab-container",children:(0,L.jsxs)(ah.A,{initialSelectedIndex:t(),children:[(0,L.jsxs)(ac.A,{children:[(0,L.jsx)(ad.A,{children:"Angular"}),(0,L.jsx)(ad.A,{children:"HTML"}),(0,L.jsx)(ad.A,{children:"React"}),(0,L.jsx)(ad.A,{children:"Vue"})]}),(0,L.jsxs)(ab.A,{children:[(0,L.jsx)(H.A,{content:"external",target:"_blank",href:"how-to-use?current=angular",children:"How to use this in angular"}),(0,L.jsx)("pre",{children:(0,L.jsx)("code",{className:"hljs language-html",children:`<db-input label="False" iconTrailing="x_placeholder" [showIconTrailing]="false">
 </db-input>`})}),(0,L.jsx)(W.A,{className:"copy-button",noText:!0,icon:e===`<db-input label="False" iconTrailing="x_placeholder" [showIconTrailing]="false">
 </db-input>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<db-input label="False" iconTrailing="x_placeholder" [showIconTrailing]="false">
 </db-input>`),navigator.clipboard.writeText(`<db-input label="False" iconTrailing="x_placeholder" [showIconTrailing]="false">
@@ -41235,7 +41235,7 @@ Variant Inline
       <menu
         class="db-sub-navigation"
         data-force-close="false"
-        id="sub-navigation-36332168884021476"
+        id="sub-navigation-5840783318443858"
       >
         <li class="db-navigation-item">
           <button
@@ -41248,7 +41248,7 @@ Variant Inline
           <menu
             class="db-sub-navigation"
             data-force-close="false"
-            id="sub-navigation-6417769895156448"
+            id="sub-navigation-21401996524346745"
           >
             <li class="db-navigation-item" data-active="true">
               <button
@@ -41261,7 +41261,7 @@ Variant Inline
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-7049445273562134"
+                id="sub-navigation-6006554637732836"
               ></menu>
             </li>
           </menu>
@@ -41279,7 +41279,7 @@ Variant Inline
       <menu
         class="db-sub-navigation"
         data-force-close="false"
-        id="sub-navigation-8611540553554143"
+        id="sub-navigation-06611952180525915"
       ></menu>
     </li>
   </menu>
@@ -41296,7 +41296,7 @@ Variant Inline
       <menu
         class="db-sub-navigation"
         data-force-close="false"
-        id="sub-navigation-36332168884021476"
+        id="sub-navigation-5840783318443858"
       >
         <li class="db-navigation-item">
           <button
@@ -41309,7 +41309,7 @@ Variant Inline
           <menu
             class="db-sub-navigation"
             data-force-close="false"
-            id="sub-navigation-6417769895156448"
+            id="sub-navigation-21401996524346745"
           >
             <li class="db-navigation-item" data-active="true">
               <button
@@ -41322,7 +41322,7 @@ Variant Inline
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-7049445273562134"
+                id="sub-navigation-6006554637732836"
               ></menu>
             </li>
           </menu>
@@ -41340,7 +41340,7 @@ Variant Inline
       <menu
         class="db-sub-navigation"
         data-force-close="false"
-        id="sub-navigation-8611540553554143"
+        id="sub-navigation-06611952180525915"
       ></menu>
     </li>
   </menu>
@@ -41357,7 +41357,7 @@ Variant Inline
       <menu
         class="db-sub-navigation"
         data-force-close="false"
-        id="sub-navigation-36332168884021476"
+        id="sub-navigation-5840783318443858"
       >
         <li class="db-navigation-item">
           <button
@@ -41370,7 +41370,7 @@ Variant Inline
           <menu
             class="db-sub-navigation"
             data-force-close="false"
-            id="sub-navigation-6417769895156448"
+            id="sub-navigation-21401996524346745"
           >
             <li class="db-navigation-item" data-active="true">
               <button
@@ -41383,7 +41383,7 @@ Variant Inline
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-7049445273562134"
+                id="sub-navigation-6006554637732836"
               ></menu>
             </li>
           </menu>
@@ -41401,7 +41401,7 @@ Variant Inline
       <menu
         class="db-sub-navigation"
         data-force-close="false"
-        id="sub-navigation-8611540553554143"
+        id="sub-navigation-06611952180525915"
       ></menu>
     </li>
   </menu>
@@ -41418,7 +41418,7 @@ Variant Inline
       <menu
         class="db-sub-navigation"
         data-force-close="false"
-        id="sub-navigation-36332168884021476"
+        id="sub-navigation-5840783318443858"
       >
         <li class="db-navigation-item">
           <button
@@ -41431,7 +41431,7 @@ Variant Inline
           <menu
             class="db-sub-navigation"
             data-force-close="false"
-            id="sub-navigation-6417769895156448"
+            id="sub-navigation-21401996524346745"
           >
             <li class="db-navigation-item" data-active="true">
               <button
@@ -41444,7 +41444,7 @@ Variant Inline
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-7049445273562134"
+                id="sub-navigation-6006554637732836"
               ></menu>
             </li>
           </menu>
@@ -41462,7 +41462,7 @@ Variant Inline
       <menu
         class="db-sub-navigation"
         data-force-close="false"
-        id="sub-navigation-8611540553554143"
+        id="sub-navigation-06611952180525915"
       ></menu>
     </li>
   </menu>
@@ -41675,7 +41675,7 @@ Navi-Item 2
       <menu
         class="db-sub-navigation"
         data-force-close="false"
-        id="sub-navigation-6522259483969794"
+        id="sub-navigation-7574675421940003"
       >
         <li class="db-navigation-item">
           <button
@@ -41688,7 +41688,7 @@ Navi-Item 2
           <menu
             class="db-sub-navigation"
             data-force-close="false"
-            id="sub-navigation-7245213705879715"
+            id="sub-navigation-959346192226001"
           >
             <li class="db-navigation-item" data-active="true">
               <button
@@ -41701,7 +41701,7 @@ Navi-Item 2
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-8150981437215024"
+                id="sub-navigation-3984392073449817"
               ></menu>
             </li>
           </menu>
@@ -41719,7 +41719,7 @@ Navi-Item 2
       <menu
         class="db-sub-navigation"
         data-force-close="false"
-        id="sub-navigation-6547405488333407"
+        id="sub-navigation-5264732936940894"
       ></menu>
     </li>
   </menu>
@@ -41736,7 +41736,7 @@ Navi-Item 2
       <menu
         class="db-sub-navigation"
         data-force-close="false"
-        id="sub-navigation-6522259483969794"
+        id="sub-navigation-7574675421940003"
       >
         <li class="db-navigation-item">
           <button
@@ -41749,7 +41749,7 @@ Navi-Item 2
           <menu
             class="db-sub-navigation"
             data-force-close="false"
-            id="sub-navigation-7245213705879715"
+            id="sub-navigation-959346192226001"
           >
             <li class="db-navigation-item" data-active="true">
               <button
@@ -41762,7 +41762,7 @@ Navi-Item 2
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-8150981437215024"
+                id="sub-navigation-3984392073449817"
               ></menu>
             </li>
           </menu>
@@ -41780,7 +41780,7 @@ Navi-Item 2
       <menu
         class="db-sub-navigation"
         data-force-close="false"
-        id="sub-navigation-6547405488333407"
+        id="sub-navigation-5264732936940894"
       ></menu>
     </li>
   </menu>
@@ -41797,7 +41797,7 @@ Navi-Item 2
       <menu
         class="db-sub-navigation"
         data-force-close="false"
-        id="sub-navigation-6522259483969794"
+        id="sub-navigation-7574675421940003"
       >
         <li class="db-navigation-item">
           <button
@@ -41810,7 +41810,7 @@ Navi-Item 2
           <menu
             class="db-sub-navigation"
             data-force-close="false"
-            id="sub-navigation-7245213705879715"
+            id="sub-navigation-959346192226001"
           >
             <li class="db-navigation-item" data-active="true">
               <button
@@ -41823,7 +41823,7 @@ Navi-Item 2
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-8150981437215024"
+                id="sub-navigation-3984392073449817"
               ></menu>
             </li>
           </menu>
@@ -41841,7 +41841,7 @@ Navi-Item 2
       <menu
         class="db-sub-navigation"
         data-force-close="false"
-        id="sub-navigation-6547405488333407"
+        id="sub-navigation-5264732936940894"
       ></menu>
     </li>
   </menu>
@@ -41858,7 +41858,7 @@ Navi-Item 2
       <menu
         class="db-sub-navigation"
         data-force-close="false"
-        id="sub-navigation-6522259483969794"
+        id="sub-navigation-7574675421940003"
       >
         <li class="db-navigation-item">
           <button
@@ -41871,7 +41871,7 @@ Navi-Item 2
           <menu
             class="db-sub-navigation"
             data-force-close="false"
-            id="sub-navigation-7245213705879715"
+            id="sub-navigation-959346192226001"
           >
             <li class="db-navigation-item" data-active="true">
               <button
@@ -41884,7 +41884,7 @@ Navi-Item 2
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-8150981437215024"
+                id="sub-navigation-3984392073449817"
               ></menu>
             </li>
           </menu>
@@ -41902,7 +41902,7 @@ Navi-Item 2
       <menu
         class="db-sub-navigation"
         data-force-close="false"
-        id="sub-navigation-6547405488333407"
+        id="sub-navigation-5264732936940894"
       ></menu>
     </li>
   </menu>
@@ -42115,7 +42115,7 @@ Navi-Item 2
       <menu
         class="db-sub-navigation"
         data-force-close="false"
-        id="sub-navigation-11269836683392065"
+        id="sub-navigation-8979448103804001"
       >
         <li class="db-navigation-item">
           <button
@@ -42128,7 +42128,7 @@ Navi-Item 2
           <menu
             class="db-sub-navigation"
             data-force-close="false"
-            id="sub-navigation-6056362595187434"
+            id="sub-navigation-582447489001938"
           >
             <li class="db-navigation-item" data-active="true">
               <button
@@ -42141,7 +42141,7 @@ Navi-Item 2
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-9741724511535332"
+                id="sub-navigation-7698632263424205"
               ></menu>
             </li>
           </menu>
@@ -42159,7 +42159,7 @@ Navi-Item 2
       <menu
         class="db-sub-navigation"
         data-force-close="false"
-        id="sub-navigation-21284679513466875"
+        id="sub-navigation-9561957888210026"
       ></menu>
     </li>
   </menu>
@@ -42176,7 +42176,7 @@ Navi-Item 2
       <menu
         class="db-sub-navigation"
         data-force-close="false"
-        id="sub-navigation-11269836683392065"
+        id="sub-navigation-8979448103804001"
       >
         <li class="db-navigation-item">
           <button
@@ -42189,7 +42189,7 @@ Navi-Item 2
           <menu
             class="db-sub-navigation"
             data-force-close="false"
-            id="sub-navigation-6056362595187434"
+            id="sub-navigation-582447489001938"
           >
             <li class="db-navigation-item" data-active="true">
               <button
@@ -42202,7 +42202,7 @@ Navi-Item 2
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-9741724511535332"
+                id="sub-navigation-7698632263424205"
               ></menu>
             </li>
           </menu>
@@ -42220,7 +42220,7 @@ Navi-Item 2
       <menu
         class="db-sub-navigation"
         data-force-close="false"
-        id="sub-navigation-21284679513466875"
+        id="sub-navigation-9561957888210026"
       ></menu>
     </li>
   </menu>
@@ -42237,7 +42237,7 @@ Navi-Item 2
       <menu
         class="db-sub-navigation"
         data-force-close="false"
-        id="sub-navigation-11269836683392065"
+        id="sub-navigation-8979448103804001"
       >
         <li class="db-navigation-item">
           <button
@@ -42250,7 +42250,7 @@ Navi-Item 2
           <menu
             class="db-sub-navigation"
             data-force-close="false"
-            id="sub-navigation-6056362595187434"
+            id="sub-navigation-582447489001938"
           >
             <li class="db-navigation-item" data-active="true">
               <button
@@ -42263,7 +42263,7 @@ Navi-Item 2
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-9741724511535332"
+                id="sub-navigation-7698632263424205"
               ></menu>
             </li>
           </menu>
@@ -42281,7 +42281,7 @@ Navi-Item 2
       <menu
         class="db-sub-navigation"
         data-force-close="false"
-        id="sub-navigation-21284679513466875"
+        id="sub-navigation-9561957888210026"
       ></menu>
     </li>
   </menu>
@@ -42298,7 +42298,7 @@ Navi-Item 2
       <menu
         class="db-sub-navigation"
         data-force-close="false"
-        id="sub-navigation-11269836683392065"
+        id="sub-navigation-8979448103804001"
       >
         <li class="db-navigation-item">
           <button
@@ -42311,7 +42311,7 @@ Navi-Item 2
           <menu
             class="db-sub-navigation"
             data-force-close="false"
-            id="sub-navigation-6056362595187434"
+            id="sub-navigation-582447489001938"
           >
             <li class="db-navigation-item" data-active="true">
               <button
@@ -42324,7 +42324,7 @@ Navi-Item 2
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-9741724511535332"
+                id="sub-navigation-7698632263424205"
               ></menu>
             </li>
           </menu>
@@ -42342,7 +42342,7 @@ Navi-Item 2
       <menu
         class="db-sub-navigation"
         data-force-close="false"
-        id="sub-navigation-21284679513466875"
+        id="sub-navigation-9561957888210026"
       ></menu>
     </li>
   </menu>
@@ -42501,7 +42501,7 @@ Navi-Item 2
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-4187321235296917"
+    id="sub-navigation-8796472330221377"
   ></menu>
 </li>`})}),(0,L.jsx)(W.A,{className:"copy-button",noText:!0,icon:e===`<li class="db-navigation-item">
   <button
@@ -42514,7 +42514,7 @@ Navi-Item 2
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-4187321235296917"
+    id="sub-navigation-8796472330221377"
   ></menu>
 </li>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<li class="db-navigation-item">
   <button
@@ -42527,7 +42527,7 @@ Navi-Item 2
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-4187321235296917"
+    id="sub-navigation-8796472330221377"
   ></menu>
 </li>`),navigator.clipboard.writeText(`<li class="db-navigation-item">
   <button
@@ -42540,7 +42540,7 @@ Navi-Item 2
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-4187321235296917"
+    id="sub-navigation-8796472330221377"
   ></menu>
 </li>`)},children:"Copy code"})]}),(0,L.jsxs)(ab.A,{children:[(0,L.jsx)(H.A,{content:"external",target:"_blank",href:"how-to-use?current=react",children:"How to use this in react"}),(0,L.jsx)("pre",{children:(0,L.jsx)("code",{className:"hljs language-tsx",children:`<DBNavigationItem>
   <a href="#">Functional</a>
@@ -42585,7 +42585,7 @@ Functional
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-9205048936005098"
+    id="sub-navigation-41176372606584855"
   ></menu>
 </li>`})}),(0,L.jsx)(W.A,{className:"copy-button",noText:!0,icon:e===`<li class="db-navigation-item">
   <button
@@ -42598,7 +42598,7 @@ Functional
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-9205048936005098"
+    id="sub-navigation-41176372606584855"
   ></menu>
 </li>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<li class="db-navigation-item">
   <button
@@ -42611,7 +42611,7 @@ Functional
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-9205048936005098"
+    id="sub-navigation-41176372606584855"
   ></menu>
 </li>`),navigator.clipboard.writeText(`<li class="db-navigation-item">
   <button
@@ -42624,7 +42624,7 @@ Functional
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-9205048936005098"
+    id="sub-navigation-41176372606584855"
   ></menu>
 </li>`)},children:"Copy code"})]}),(0,L.jsxs)(ab.A,{children:[(0,L.jsx)(H.A,{content:"external",target:"_blank",href:"how-to-use?current=react",children:"How to use this in react"}),(0,L.jsx)("pre",{children:(0,L.jsx)("code",{className:"hljs language-tsx",children:`<DBNavigationItem>
   <a href="#">(Default) Regular</a>
@@ -42669,7 +42669,7 @@ Functional
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-6858444432872519"
+    id="sub-navigation-8559060484498942"
   ></menu>
 </li>`})}),(0,L.jsx)(W.A,{className:"copy-button",noText:!0,icon:e===`<li class="db-navigation-item">
   <button
@@ -42682,7 +42682,7 @@ Functional
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-6858444432872519"
+    id="sub-navigation-8559060484498942"
   ></menu>
 </li>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<li class="db-navigation-item">
   <button
@@ -42695,7 +42695,7 @@ Functional
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-6858444432872519"
+    id="sub-navigation-8559060484498942"
   ></menu>
 </li>`),navigator.clipboard.writeText(`<li class="db-navigation-item">
   <button
@@ -42708,7 +42708,7 @@ Functional
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-6858444432872519"
+    id="sub-navigation-8559060484498942"
   ></menu>
 </li>`)},children:"Copy code"})]}),(0,L.jsxs)(ab.A,{children:[(0,L.jsx)(H.A,{content:"external",target:"_blank",href:"how-to-use?current=react",children:"How to use this in react"}),(0,L.jsx)("pre",{children:(0,L.jsx)("code",{className:"hljs language-tsx",children:`<DBNavigationItem>
   <a href="#">Expressive</a>
@@ -42754,7 +42754,7 @@ Expressive
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-5124002430115876"
+    id="sub-navigation-4073020043749188"
   ></menu>
 </li>`})}),(0,L.jsx)(W.A,{className:"copy-button",noText:!0,icon:e===`<li class="db-navigation-item" aria-disabled="true">
   <button
@@ -42768,7 +42768,7 @@ Expressive
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-5124002430115876"
+    id="sub-navigation-4073020043749188"
   ></menu>
 </li>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<li class="db-navigation-item" aria-disabled="true">
   <button
@@ -42782,7 +42782,7 @@ Expressive
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-5124002430115876"
+    id="sub-navigation-4073020043749188"
   ></menu>
 </li>`),navigator.clipboard.writeText(`<li class="db-navigation-item" aria-disabled="true">
   <button
@@ -42796,7 +42796,7 @@ Expressive
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-5124002430115876"
+    id="sub-navigation-4073020043749188"
   ></menu>
 </li>`)},children:"Copy code"})]}),(0,L.jsxs)(ab.A,{children:[(0,L.jsx)(H.A,{content:"external",target:"_blank",href:"how-to-use?current=react",children:"How to use this in react"}),(0,L.jsx)("pre",{children:(0,L.jsx)("code",{className:"hljs language-tsx",children:`<DBNavigationItem disabled>
   <a href="#">(Default) False</a>
@@ -42842,7 +42842,7 @@ Expressive
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-8010071374918825"
+    id="sub-navigation-9484074421103809"
   ></menu>
 </li>`})}),(0,L.jsx)(W.A,{className:"copy-button",noText:!0,icon:e===`<li class="db-navigation-item" aria-disabled="true">
   <button
@@ -42856,7 +42856,7 @@ Expressive
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-8010071374918825"
+    id="sub-navigation-9484074421103809"
   ></menu>
 </li>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<li class="db-navigation-item" aria-disabled="true">
   <button
@@ -42870,7 +42870,7 @@ Expressive
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-8010071374918825"
+    id="sub-navigation-9484074421103809"
   ></menu>
 </li>`),navigator.clipboard.writeText(`<li class="db-navigation-item" aria-disabled="true">
   <button
@@ -42884,7 +42884,7 @@ Expressive
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-8010071374918825"
+    id="sub-navigation-9484074421103809"
   ></menu>
 </li>`)},children:"Copy code"})]}),(0,L.jsxs)(ab.A,{children:[(0,L.jsx)(H.A,{content:"external",target:"_blank",href:"how-to-use?current=react",children:"How to use this in react"}),(0,L.jsx)("pre",{children:(0,L.jsx)("code",{className:"hljs language-tsx",children:`<DBNavigationItem disabled>
   <a href="#">True</a>
@@ -42929,7 +42929,7 @@ True
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-7015846957098019"
+    id="sub-navigation-05052072851780576"
   ></menu>
 </li>`})}),(0,L.jsx)(W.A,{className:"copy-button",noText:!0,icon:e===`<li class="db-navigation-item" data-active="true">
   <button
@@ -42942,7 +42942,7 @@ True
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-7015846957098019"
+    id="sub-navigation-05052072851780576"
   ></menu>
 </li>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<li class="db-navigation-item" data-active="true">
   <button
@@ -42955,7 +42955,7 @@ True
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-7015846957098019"
+    id="sub-navigation-05052072851780576"
   ></menu>
 </li>`),navigator.clipboard.writeText(`<li class="db-navigation-item" data-active="true">
   <button
@@ -42968,7 +42968,7 @@ True
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-7015846957098019"
+    id="sub-navigation-05052072851780576"
   ></menu>
 </li>`)},children:"Copy code"})]}),(0,L.jsxs)(ab.A,{children:[(0,L.jsx)(H.A,{content:"external",target:"_blank",href:"how-to-use?current=react",children:"How to use this in react"}),(0,L.jsx)("pre",{children:(0,L.jsx)("code",{className:"hljs language-tsx",children:`<DBNavigationItem active>
   <a href="#">(Default) False</a>
@@ -43013,7 +43013,7 @@ True
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-6992448333554276"
+    id="sub-navigation-06226956184516552"
   ></menu>
 </li>`})}),(0,L.jsx)(W.A,{className:"copy-button",noText:!0,icon:e===`<li class="db-navigation-item" data-active="true">
   <button
@@ -43026,7 +43026,7 @@ True
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-6992448333554276"
+    id="sub-navigation-06226956184516552"
   ></menu>
 </li>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<li class="db-navigation-item" data-active="true">
   <button
@@ -43039,7 +43039,7 @@ True
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-6992448333554276"
+    id="sub-navigation-06226956184516552"
   ></menu>
 </li>`),navigator.clipboard.writeText(`<li class="db-navigation-item" data-active="true">
   <button
@@ -43052,7 +43052,7 @@ True
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-6992448333554276"
+    id="sub-navigation-06226956184516552"
   ></menu>
 </li>`)},children:"Copy code"})]}),(0,L.jsxs)(ab.A,{children:[(0,L.jsx)(H.A,{content:"external",target:"_blank",href:"how-to-use?current=react",children:"How to use this in react"}),(0,L.jsx)("pre",{children:(0,L.jsx)("code",{className:"hljs language-tsx",children:`<DBNavigationItem active>
   <a href="#">True</a>
@@ -43097,7 +43097,7 @@ True
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-2879530532190029"
+    id="sub-navigation-5639135331196768"
   ></menu>
 </li>`})}),(0,L.jsx)(W.A,{className:"copy-button",noText:!0,icon:e===`<li class="db-navigation-item">
   <button
@@ -43110,7 +43110,7 @@ True
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-2879530532190029"
+    id="sub-navigation-5639135331196768"
   ></menu>
 </li>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<li class="db-navigation-item">
   <button
@@ -43123,7 +43123,7 @@ True
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-2879530532190029"
+    id="sub-navigation-5639135331196768"
   ></menu>
 </li>`),navigator.clipboard.writeText(`<li class="db-navigation-item">
   <button
@@ -43136,7 +43136,7 @@ True
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-2879530532190029"
+    id="sub-navigation-5639135331196768"
   ></menu>
 </li>`)},children:"Copy code"})]}),(0,L.jsxs)(ab.A,{children:[(0,L.jsx)(H.A,{content:"external",target:"_blank",href:"how-to-use?current=react",children:"How to use this in react"}),(0,L.jsx)("pre",{children:(0,L.jsx)("code",{className:"hljs language-tsx",children:`<DBNavigationItem areaPopup>
   <a href="#">(Default) False</a>
@@ -43181,7 +43181,7 @@ True
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-3244936064084034"
+    id="sub-navigation-3029762292932259"
   ></menu>
 </li>`})}),(0,L.jsx)(W.A,{className:"copy-button",noText:!0,icon:e===`<li class="db-navigation-item">
   <button
@@ -43194,7 +43194,7 @@ True
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-3244936064084034"
+    id="sub-navigation-3029762292932259"
   ></menu>
 </li>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<li class="db-navigation-item">
   <button
@@ -43207,7 +43207,7 @@ True
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-3244936064084034"
+    id="sub-navigation-3029762292932259"
   ></menu>
 </li>`),navigator.clipboard.writeText(`<li class="db-navigation-item">
   <button
@@ -43220,7 +43220,7 @@ True
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-3244936064084034"
+    id="sub-navigation-3029762292932259"
   ></menu>
 </li>`)},children:"Copy code"})]}),(0,L.jsxs)(ab.A,{children:[(0,L.jsx)(H.A,{content:"external",target:"_blank",href:"how-to-use?current=react",children:"How to use this in react"}),(0,L.jsx)("pre",{children:(0,L.jsx)("code",{className:"hljs language-tsx",children:`<DBNavigationItem areaPopup>
   <a href="#">True</a>
@@ -43265,7 +43265,7 @@ True
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-2613958531575392"
+    id="sub-navigation-02276299521486025"
   ></menu>
 </li>`})}),(0,L.jsx)(W.A,{className:"copy-button",noText:!0,icon:e===`<li class="db-navigation-item" data-icon="x_placeholder" data-show-icon="true">
   <button
@@ -43278,7 +43278,7 @@ True
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-2613958531575392"
+    id="sub-navigation-02276299521486025"
   ></menu>
 </li>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<li class="db-navigation-item" data-icon="x_placeholder" data-show-icon="true">
   <button
@@ -43291,7 +43291,7 @@ True
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-2613958531575392"
+    id="sub-navigation-02276299521486025"
   ></menu>
 </li>`),navigator.clipboard.writeText(`<li class="db-navigation-item" data-icon="x_placeholder" data-show-icon="true">
   <button
@@ -43304,7 +43304,7 @@ True
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-2613958531575392"
+    id="sub-navigation-02276299521486025"
   ></menu>
 </li>`)},children:"Copy code"})]}),(0,L.jsxs)(ab.A,{children:[(0,L.jsx)(H.A,{content:"external",target:"_blank",href:"how-to-use?current=react",children:"How to use this in react"}),(0,L.jsx)("pre",{children:(0,L.jsx)("code",{className:"hljs language-tsx",children:`<DBNavigationItem icon="x_placeholder" showIcon>
   <a href="#">(Default) False</a>
@@ -43349,7 +43349,7 @@ True
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-559758617871084"
+    id="sub-navigation-1498956000500079"
   ></menu>
 </li>`})}),(0,L.jsx)(W.A,{className:"copy-button",noText:!0,icon:e===`<li class="db-navigation-item" data-icon="x_placeholder" data-show-icon="true">
   <button
@@ -43362,7 +43362,7 @@ True
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-559758617871084"
+    id="sub-navigation-1498956000500079"
   ></menu>
 </li>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<li class="db-navigation-item" data-icon="x_placeholder" data-show-icon="true">
   <button
@@ -43375,7 +43375,7 @@ True
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-559758617871084"
+    id="sub-navigation-1498956000500079"
   ></menu>
 </li>`),navigator.clipboard.writeText(`<li class="db-navigation-item" data-icon="x_placeholder" data-show-icon="true">
   <button
@@ -43388,7 +43388,7 @@ True
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-559758617871084"
+    id="sub-navigation-1498956000500079"
   ></menu>
 </li>`)},children:"Copy code"})]}),(0,L.jsxs)(ab.A,{children:[(0,L.jsx)(H.A,{content:"external",target:"_blank",href:"how-to-use?current=react",children:"How to use this in react"}),(0,L.jsx)("pre",{children:(0,L.jsx)("code",{className:"hljs language-tsx",children:`<DBNavigationItem icon="x_placeholder" showIcon>
   <a href="#">True</a>
@@ -43433,7 +43433,7 @@ True
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-6593081231377319"
+    id="sub-navigation-4979883865171224"
   ></menu>
 </li>`})}),(0,L.jsx)(W.A,{className:"copy-button",noText:!0,icon:e===`<li class="db-navigation-item">
   <button
@@ -43446,7 +43446,7 @@ True
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-6593081231377319"
+    id="sub-navigation-4979883865171224"
   ></menu>
 </li>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<li class="db-navigation-item">
   <button
@@ -43459,7 +43459,7 @@ True
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-6593081231377319"
+    id="sub-navigation-4979883865171224"
   ></menu>
 </li>`),navigator.clipboard.writeText(`<li class="db-navigation-item">
   <button
@@ -43472,7 +43472,7 @@ True
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-6593081231377319"
+    id="sub-navigation-4979883865171224"
   ></menu>
 </li>`)},children:"Copy code"})]}),(0,L.jsxs)(ab.A,{children:[(0,L.jsx)(H.A,{content:"external",target:"_blank",href:"how-to-use?current=react",children:"How to use this in react"}),(0,L.jsx)("pre",{children:(0,L.jsx)("code",{className:"hljs language-tsx",children:`<DBNavigationItem>
   <a href="#">(Default) Auto</a>
@@ -43517,7 +43517,7 @@ True
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-703893849492127"
+    id="sub-navigation-5250121202638619"
   ></menu>
 </li>`})}),(0,L.jsx)(W.A,{className:"copy-button",noText:!0,icon:e===`<li class="db-navigation-item" data-width="full">
   <button
@@ -43530,7 +43530,7 @@ True
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-703893849492127"
+    id="sub-navigation-5250121202638619"
   ></menu>
 </li>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<li class="db-navigation-item" data-width="full">
   <button
@@ -43543,7 +43543,7 @@ True
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-703893849492127"
+    id="sub-navigation-5250121202638619"
   ></menu>
 </li>`),navigator.clipboard.writeText(`<li class="db-navigation-item" data-width="full">
   <button
@@ -43556,7 +43556,7 @@ True
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-703893849492127"
+    id="sub-navigation-5250121202638619"
   ></menu>
 </li>`)},children:"Copy code"})]}),(0,L.jsxs)(ab.A,{children:[(0,L.jsx)(H.A,{content:"external",target:"_blank",href:"how-to-use?current=react",children:"How to use this in react"}),(0,L.jsx)("pre",{children:(0,L.jsx)("code",{className:"hljs language-tsx",children:`<DBNavigationItem width="full">
   <a href="#">Full</a>
@@ -43601,7 +43601,7 @@ Full
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-0007383957461365442"
+    id="sub-navigation-9715564258741243"
   ></menu>
 </li>`})}),(0,L.jsx)(W.A,{className:"copy-button",noText:!0,icon:e===`<li class="db-navigation-item">
   <button
@@ -43614,7 +43614,7 @@ Full
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-0007383957461365442"
+    id="sub-navigation-9715564258741243"
   ></menu>
 </li>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<li class="db-navigation-item">
   <button
@@ -43627,7 +43627,7 @@ Full
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-0007383957461365442"
+    id="sub-navigation-9715564258741243"
   ></menu>
 </li>`),navigator.clipboard.writeText(`<li class="db-navigation-item">
   <button
@@ -43640,7 +43640,7 @@ Full
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-0007383957461365442"
+    id="sub-navigation-9715564258741243"
   ></menu>
 </li>`)},children:"Copy code"})]}),(0,L.jsxs)(ab.A,{children:[(0,L.jsx)(H.A,{content:"external",target:"_blank",href:"how-to-use?current=react",children:"How to use this in react"}),(0,L.jsx)("pre",{children:(0,L.jsx)("code",{className:"hljs language-tsx",children:`<DBNavigationItem areaPopup>
   <a href="#">True</a>
@@ -43705,7 +43705,7 @@ True
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-5069915488106805"
+    id="sub-navigation-7655396458071869"
   ></menu>
 </li>`})}),(0,L.jsx)(W.A,{className:"copy-button",noText:!0,icon:e===`<li class="db-navigation-item" data-wrap="true">
   <button
@@ -43718,7 +43718,7 @@ True
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-5069915488106805"
+    id="sub-navigation-7655396458071869"
   ></menu>
 </li>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<li class="db-navigation-item" data-wrap="true">
   <button
@@ -43731,7 +43731,7 @@ True
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-5069915488106805"
+    id="sub-navigation-7655396458071869"
   ></menu>
 </li>`),navigator.clipboard.writeText(`<li class="db-navigation-item" data-wrap="true">
   <button
@@ -43744,7 +43744,7 @@ True
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-5069915488106805"
+    id="sub-navigation-7655396458071869"
   ></menu>
 </li>`)},children:"Copy code"})]}),(0,L.jsxs)(ab.A,{children:[(0,L.jsx)(H.A,{content:"external",target:"_blank",href:"how-to-use?current=react",children:"How to use this in react"}),(0,L.jsx)("pre",{children:(0,L.jsx)("code",{className:"hljs language-tsx",children:`<DBNavigationItem areaPopup icon="x_placeholder" showIcon wrap>
   <a href="#">Sub-Sub-Navi-Item 1</a>
@@ -43809,7 +43809,7 @@ Sub-Sub-Navi-Item 1
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-5069915488106805"
+    id="sub-navigation-7655396458071869"
   ></menu>
 </li>`})}),(0,L.jsx)(W.A,{className:"copy-button",noText:!0,icon:e===`<li class="db-navigation-item" data-wrap="true">
   <button
@@ -43822,7 +43822,7 @@ Sub-Sub-Navi-Item 1
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-5069915488106805"
+    id="sub-navigation-7655396458071869"
   ></menu>
 </li>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<li class="db-navigation-item" data-wrap="true">
   <button
@@ -43835,7 +43835,7 @@ Sub-Sub-Navi-Item 1
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-5069915488106805"
+    id="sub-navigation-7655396458071869"
   ></menu>
 </li>`),navigator.clipboard.writeText(`<li class="db-navigation-item" data-wrap="true">
   <button
@@ -43848,7 +43848,7 @@ Sub-Sub-Navi-Item 1
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-5069915488106805"
+    id="sub-navigation-7655396458071869"
   ></menu>
 </li>`)},children:"Copy code"})]}),(0,L.jsxs)(ab.A,{children:[(0,L.jsx)(H.A,{content:"external",target:"_blank",href:"how-to-use?current=react",children:"How to use this in react"}),(0,L.jsx)("pre",{children:(0,L.jsx)("code",{className:"hljs language-tsx",children:`<DBNavigationItem areaPopup wrap>
   <a href="#">True</a>
@@ -54082,7 +54082,7 @@ None
 
 </DBSelect>`),navigator.clipboard.writeText(`<DBSelect :options="[{"value":"Single Option"},{"label":"Grouped Options","options":[{"value":"Group Option 1"},{"value":"Group Option 2"}]},{"value":"Another Single Option"}]" label="Label" placeholder="Mixed options and groups">
 
-</DBSelect>`)},children:"Copy code"})]})]},t())})]})},n7=()=>{let[e,a]=(0,S.useState)(),{getFrameworkIndex:t}=(0,a_.u)();return(0,S.useEffect)(()=>{e&&setTimeout(()=>a(""),1500)},[e]),(0,L.jsxs)(L.Fragment,{children:[(0,L.jsx)(_.A,{className:"tab-container",children:(0,L.jsxs)(ah.A,{initialSelectedIndex:t(),children:[(0,L.jsxs)(ac.A,{children:[(0,L.jsx)(ad.A,{children:"Angular"}),(0,L.jsx)(ad.A,{children:"HTML"}),(0,L.jsx)(ad.A,{children:"React"}),(0,L.jsx)(ad.A,{children:"Vue"})]}),(0,L.jsxs)(ab.A,{children:[(0,L.jsx)(H.A,{content:"external",target:"_blank",href:"how-to-use?current=angular",children:"How to use this in angular"}),(0,L.jsx)("pre",{children:(0,L.jsx)("code",{className:"hljs language-html",children:`<db-select [options]="[{"value":"Option 1"},{"value":"Option 2"},{"value":"Option 3"},{"value":"Option 4"},{"value":"Option 5"}]" label="Label" variant="floating" placeholder="(Default) Empty">
+</DBSelect>`)},children:"Copy code"})]})]},t())})]})},n9=()=>{let[e,a]=(0,S.useState)(),{getFrameworkIndex:t}=(0,a_.u)();return(0,S.useEffect)(()=>{e&&setTimeout(()=>a(""),1500)},[e]),(0,L.jsxs)(L.Fragment,{children:[(0,L.jsx)(_.A,{className:"tab-container",children:(0,L.jsxs)(ah.A,{initialSelectedIndex:t(),children:[(0,L.jsxs)(ac.A,{children:[(0,L.jsx)(ad.A,{children:"Angular"}),(0,L.jsx)(ad.A,{children:"HTML"}),(0,L.jsx)(ad.A,{children:"React"}),(0,L.jsx)(ad.A,{children:"Vue"})]}),(0,L.jsxs)(ab.A,{children:[(0,L.jsx)(H.A,{content:"external",target:"_blank",href:"how-to-use?current=angular",children:"How to use this in angular"}),(0,L.jsx)("pre",{children:(0,L.jsx)("code",{className:"hljs language-html",children:`<db-select [options]="[{"value":"Option 1"},{"value":"Option 2"},{"value":"Option 3"},{"value":"Option 4"},{"value":"Option 5"}]" label="Label" variant="floating" placeholder="(Default) Empty">
 
 </db-select>`})}),(0,L.jsx)(W.A,{className:"copy-button",noText:!0,icon:e===`<db-select [options]="[{"value":"Option 1"},{"value":"Option 2"},{"value":"Option 3"},{"value":"Option 4"},{"value":"Option 5"}]" label="Label" variant="floating" placeholder="(Default) Empty">
 
@@ -54542,7 +54542,7 @@ None
 
 </DBSelect>`),navigator.clipboard.writeText(`<DBSelect :options="[{"value":"Option 1"},{"value":"Option 2"},{"value":"Option 3"},{"value":"Option 4"},{"value":"Option 5"}]" label="Label" placeholder="Invalid" variant="floating" validation="invalid" invalidMessage="Invalid Message">
 
-</DBSelect>`)},children:"Copy code"})]})]},t())})]})},n9=()=>{let[e,a]=(0,S.useState)(),{getFrameworkIndex:t}=(0,a_.u)();return(0,S.useEffect)(()=>{e&&setTimeout(()=>a(""),1500)},[e]),(0,L.jsxs)(L.Fragment,{children:[(0,L.jsx)(_.A,{className:"tab-container",children:(0,L.jsxs)(ah.A,{initialSelectedIndex:t(),children:[(0,L.jsxs)(ac.A,{children:[(0,L.jsx)(ad.A,{children:"Angular"}),(0,L.jsx)(ad.A,{children:"HTML"}),(0,L.jsx)(ad.A,{children:"React"}),(0,L.jsx)(ad.A,{children:"Vue"})]}),(0,L.jsxs)(ab.A,{children:[(0,L.jsx)(H.A,{content:"external",target:"_blank",href:"how-to-use?current=angular",children:"How to use this in angular"}),(0,L.jsx)("pre",{children:(0,L.jsx)("code",{className:"hljs language-html",children:`<db-stack>
+</DBSelect>`)},children:"Copy code"})]})]},t())})]})},n7=()=>{let[e,a]=(0,S.useState)(),{getFrameworkIndex:t}=(0,a_.u)();return(0,S.useEffect)(()=>{e&&setTimeout(()=>a(""),1500)},[e]),(0,L.jsxs)(L.Fragment,{children:[(0,L.jsx)(_.A,{className:"tab-container",children:(0,L.jsxs)(ah.A,{initialSelectedIndex:t(),children:[(0,L.jsxs)(ac.A,{children:[(0,L.jsx)(ad.A,{children:"Angular"}),(0,L.jsx)(ad.A,{children:"HTML"}),(0,L.jsx)(ad.A,{children:"React"}),(0,L.jsx)(ad.A,{children:"Vue"})]}),(0,L.jsxs)(ab.A,{children:[(0,L.jsx)(H.A,{content:"external",target:"_blank",href:"how-to-use?current=angular",children:"How to use this in angular"}),(0,L.jsx)("pre",{children:(0,L.jsx)("code",{className:"hljs language-html",children:`<db-stack>
   <span> Content 1 </span>
   <span> Content 2 </span>
   <span> Content 3 </span>
@@ -60059,7 +60059,7 @@ Centered
   <db-tab-panel> Tab Panel 2 </db-tab-panel>
   <db-tab-panel> Tab Panel 3 </db-tab-panel>
 </db-tabs>`)},children:"Copy code"})]}),(0,L.jsxs)(ab.A,{children:[(0,L.jsx)(H.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,L.jsx)("pre",{children:(0,L.jsx)("code",{className:"hljs language-html",children:`<div
-  id="tabs-9439034018087683"
+  id="tabs-9837893395696771"
   class="db-tabs"
   data-alignment="start"
   data-width="auto"
@@ -60087,7 +60087,7 @@ Centered
   <section role="tabpanel" class="db-tab-panel">Tab Panel 2</section>
   <section role="tabpanel" class="db-tab-panel">Tab Panel 3</section>
 </div>`})}),(0,L.jsx)(W.A,{className:"copy-button",noText:!0,icon:e===`<div
-  id="tabs-9439034018087683"
+  id="tabs-9837893395696771"
   class="db-tabs"
   data-alignment="start"
   data-width="auto"
@@ -60115,7 +60115,7 @@ Centered
   <section role="tabpanel" class="db-tab-panel">Tab Panel 2</section>
   <section role="tabpanel" class="db-tab-panel">Tab Panel 3</section>
 </div>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<div
-  id="tabs-9439034018087683"
+  id="tabs-9837893395696771"
   class="db-tabs"
   data-alignment="start"
   data-width="auto"
@@ -60143,7 +60143,7 @@ Centered
   <section role="tabpanel" class="db-tab-panel">Tab Panel 2</section>
   <section role="tabpanel" class="db-tab-panel">Tab Panel 3</section>
 </div>`),navigator.clipboard.writeText(`<div
-  id="tabs-9439034018087683"
+  id="tabs-9837893395696771"
   class="db-tabs"
   data-alignment="start"
   data-width="auto"
@@ -60327,7 +60327,7 @@ Tab Panel 3
   <db-tab-panel> Tab Panel 2 </db-tab-panel>
   <db-tab-panel> Tab Panel 3 </db-tab-panel>
 </db-tabs>`)},children:"Copy code"})]}),(0,L.jsxs)(ab.A,{children:[(0,L.jsx)(H.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,L.jsx)("pre",{children:(0,L.jsx)("code",{className:"hljs language-html",children:`<div
-  id="tabs-6470111877407975"
+  id="tabs-10962254589849463"
   class="db-tabs"
   data-alignment="start"
   data-width="auto"
@@ -60355,7 +60355,7 @@ Tab Panel 3
   <section role="tabpanel" class="db-tab-panel">Tab Panel 2</section>
   <section role="tabpanel" class="db-tab-panel">Tab Panel 3</section>
 </div>`})}),(0,L.jsx)(W.A,{className:"copy-button",noText:!0,icon:e===`<div
-  id="tabs-6470111877407975"
+  id="tabs-10962254589849463"
   class="db-tabs"
   data-alignment="start"
   data-width="auto"
@@ -60383,7 +60383,7 @@ Tab Panel 3
   <section role="tabpanel" class="db-tab-panel">Tab Panel 2</section>
   <section role="tabpanel" class="db-tab-panel">Tab Panel 3</section>
 </div>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<div
-  id="tabs-6470111877407975"
+  id="tabs-10962254589849463"
   class="db-tabs"
   data-alignment="start"
   data-width="auto"
@@ -60411,7 +60411,7 @@ Tab Panel 3
   <section role="tabpanel" class="db-tab-panel">Tab Panel 2</section>
   <section role="tabpanel" class="db-tab-panel">Tab Panel 3</section>
 </div>`),navigator.clipboard.writeText(`<div
-  id="tabs-6470111877407975"
+  id="tabs-10962254589849463"
   class="db-tabs"
   data-alignment="start"
   data-width="auto"
@@ -60595,7 +60595,7 @@ Tab Panel 3
   <db-tab-panel> Tab Panel 2 </db-tab-panel>
   <db-tab-panel> Tab Panel 3 </db-tab-panel>
 </db-tabs>`)},children:"Copy code"})]}),(0,L.jsxs)(ab.A,{children:[(0,L.jsx)(H.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,L.jsx)("pre",{children:(0,L.jsx)("code",{className:"hljs language-html",children:`<div
-  id="tabs-445758837326674"
+  id="tabs-45209104775479025"
   class="db-tabs"
   data-alignment="start"
   data-width="auto"
@@ -60623,7 +60623,7 @@ Tab Panel 3
   <section role="tabpanel" class="db-tab-panel">Tab Panel 2</section>
   <section role="tabpanel" class="db-tab-panel">Tab Panel 3</section>
 </div>`})}),(0,L.jsx)(W.A,{className:"copy-button",noText:!0,icon:e===`<div
-  id="tabs-445758837326674"
+  id="tabs-45209104775479025"
   class="db-tabs"
   data-alignment="start"
   data-width="auto"
@@ -60651,7 +60651,7 @@ Tab Panel 3
   <section role="tabpanel" class="db-tab-panel">Tab Panel 2</section>
   <section role="tabpanel" class="db-tab-panel">Tab Panel 3</section>
 </div>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<div
-  id="tabs-445758837326674"
+  id="tabs-45209104775479025"
   class="db-tabs"
   data-alignment="start"
   data-width="auto"
@@ -60679,7 +60679,7 @@ Tab Panel 3
   <section role="tabpanel" class="db-tab-panel">Tab Panel 2</section>
   <section role="tabpanel" class="db-tab-panel">Tab Panel 3</section>
 </div>`),navigator.clipboard.writeText(`<div
-  id="tabs-445758837326674"
+  id="tabs-45209104775479025"
   class="db-tabs"
   data-alignment="start"
   data-width="auto"
@@ -60863,7 +60863,7 @@ Tab Panel 3
   <db-tab-panel> Tab Panel 2 </db-tab-panel>
   <db-tab-panel> Tab Panel 3 </db-tab-panel>
 </db-tabs>`)},children:"Copy code"})]}),(0,L.jsxs)(ab.A,{children:[(0,L.jsx)(H.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,L.jsx)("pre",{children:(0,L.jsx)("code",{className:"hljs language-html",children:`<div
-  id="tabs-7002852433257175"
+  id="tabs-6372954605794259"
   class="db-tabs"
   data-orientation="horizontal"
   data-alignment="start"
@@ -60892,7 +60892,7 @@ Tab Panel 3
   <section role="tabpanel" class="db-tab-panel">Tab Panel 2</section>
   <section role="tabpanel" class="db-tab-panel">Tab Panel 3</section>
 </div>`})}),(0,L.jsx)(W.A,{className:"copy-button",noText:!0,icon:e===`<div
-  id="tabs-7002852433257175"
+  id="tabs-6372954605794259"
   class="db-tabs"
   data-orientation="horizontal"
   data-alignment="start"
@@ -60921,7 +60921,7 @@ Tab Panel 3
   <section role="tabpanel" class="db-tab-panel">Tab Panel 2</section>
   <section role="tabpanel" class="db-tab-panel">Tab Panel 3</section>
 </div>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<div
-  id="tabs-7002852433257175"
+  id="tabs-6372954605794259"
   class="db-tabs"
   data-orientation="horizontal"
   data-alignment="start"
@@ -60950,7 +60950,7 @@ Tab Panel 3
   <section role="tabpanel" class="db-tab-panel">Tab Panel 2</section>
   <section role="tabpanel" class="db-tab-panel">Tab Panel 3</section>
 </div>`),navigator.clipboard.writeText(`<div
-  id="tabs-7002852433257175"
+  id="tabs-6372954605794259"
   class="db-tabs"
   data-orientation="horizontal"
   data-alignment="start"
@@ -61135,7 +61135,7 @@ Tab Panel 3
   <db-tab-panel> Tab Panel 2 </db-tab-panel>
   <db-tab-panel> Tab Panel 3 </db-tab-panel>
 </db-tabs>`)},children:"Copy code"})]}),(0,L.jsxs)(ab.A,{children:[(0,L.jsx)(H.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,L.jsx)("pre",{children:(0,L.jsx)("code",{className:"hljs language-html",children:`<div
-  id="tabs-0688321370512287"
+  id="tabs-48425312870243076"
   class="db-tabs"
   data-orientation="vertical"
   data-alignment="start"
@@ -61164,7 +61164,7 @@ Tab Panel 3
   <section role="tabpanel" class="db-tab-panel">Tab Panel 2</section>
   <section role="tabpanel" class="db-tab-panel">Tab Panel 3</section>
 </div>`})}),(0,L.jsx)(W.A,{className:"copy-button",noText:!0,icon:e===`<div
-  id="tabs-0688321370512287"
+  id="tabs-48425312870243076"
   class="db-tabs"
   data-orientation="vertical"
   data-alignment="start"
@@ -61193,7 +61193,7 @@ Tab Panel 3
   <section role="tabpanel" class="db-tab-panel">Tab Panel 2</section>
   <section role="tabpanel" class="db-tab-panel">Tab Panel 3</section>
 </div>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<div
-  id="tabs-0688321370512287"
+  id="tabs-48425312870243076"
   class="db-tabs"
   data-orientation="vertical"
   data-alignment="start"
@@ -61222,7 +61222,7 @@ Tab Panel 3
   <section role="tabpanel" class="db-tab-panel">Tab Panel 2</section>
   <section role="tabpanel" class="db-tab-panel">Tab Panel 3</section>
 </div>`),navigator.clipboard.writeText(`<div
-  id="tabs-0688321370512287"
+  id="tabs-48425312870243076"
   class="db-tabs"
   data-orientation="vertical"
   data-alignment="start"
@@ -61407,7 +61407,7 @@ Tab Panel 3
   <db-tab-panel> Tab Panel 2 </db-tab-panel>
   <db-tab-panel> Tab Panel 3 </db-tab-panel>
 </db-tabs>`)},children:"Copy code"})]}),(0,L.jsxs)(ab.A,{children:[(0,L.jsx)(H.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,L.jsx)("pre",{children:(0,L.jsx)("code",{className:"hljs language-html",children:`<div
-  id="tabs-4047493661181074"
+  id="tabs-6289128632593751"
   class="db-tabs"
   data-alignment="start"
   data-width="auto"
@@ -61435,7 +61435,7 @@ Tab Panel 3
   <section role="tabpanel" class="db-tab-panel">Tab Panel 2</section>
   <section role="tabpanel" class="db-tab-panel">Tab Panel 3</section>
 </div>`})}),(0,L.jsx)(W.A,{className:"copy-button",noText:!0,icon:e===`<div
-  id="tabs-4047493661181074"
+  id="tabs-6289128632593751"
   class="db-tabs"
   data-alignment="start"
   data-width="auto"
@@ -61463,7 +61463,7 @@ Tab Panel 3
   <section role="tabpanel" class="db-tab-panel">Tab Panel 2</section>
   <section role="tabpanel" class="db-tab-panel">Tab Panel 3</section>
 </div>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<div
-  id="tabs-4047493661181074"
+  id="tabs-6289128632593751"
   class="db-tabs"
   data-alignment="start"
   data-width="auto"
@@ -61491,7 +61491,7 @@ Tab Panel 3
   <section role="tabpanel" class="db-tab-panel">Tab Panel 2</section>
   <section role="tabpanel" class="db-tab-panel">Tab Panel 3</section>
 </div>`),navigator.clipboard.writeText(`<div
-  id="tabs-4047493661181074"
+  id="tabs-6289128632593751"
   class="db-tabs"
   data-alignment="start"
   data-width="auto"
@@ -61675,7 +61675,7 @@ Tab Panel 3
   <db-tab-panel> Tab Panel 2 </db-tab-panel>
   <db-tab-panel> Tab Panel 3 </db-tab-panel>
 </db-tabs>`)},children:"Copy code"})]}),(0,L.jsxs)(ab.A,{children:[(0,L.jsx)(H.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,L.jsx)("pre",{children:(0,L.jsx)("code",{className:"hljs language-html",children:`<div
-  id="tabs-9151883853095202"
+  id="tabs-5546173262471709"
   class="db-tabs"
   data-alignment="start"
   data-width="full"
@@ -61703,7 +61703,7 @@ Tab Panel 3
   <section role="tabpanel" class="db-tab-panel">Tab Panel 2</section>
   <section role="tabpanel" class="db-tab-panel">Tab Panel 3</section>
 </div>`})}),(0,L.jsx)(W.A,{className:"copy-button",noText:!0,icon:e===`<div
-  id="tabs-9151883853095202"
+  id="tabs-5546173262471709"
   class="db-tabs"
   data-alignment="start"
   data-width="full"
@@ -61731,7 +61731,7 @@ Tab Panel 3
   <section role="tabpanel" class="db-tab-panel">Tab Panel 2</section>
   <section role="tabpanel" class="db-tab-panel">Tab Panel 3</section>
 </div>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<div
-  id="tabs-9151883853095202"
+  id="tabs-5546173262471709"
   class="db-tabs"
   data-alignment="start"
   data-width="full"
@@ -61759,7 +61759,7 @@ Tab Panel 3
   <section role="tabpanel" class="db-tab-panel">Tab Panel 2</section>
   <section role="tabpanel" class="db-tab-panel">Tab Panel 3</section>
 </div>`),navigator.clipboard.writeText(`<div
-  id="tabs-9151883853095202"
+  id="tabs-5546173262471709"
   class="db-tabs"
   data-alignment="start"
   data-width="full"
@@ -61943,7 +61943,7 @@ Tab Panel 3
   <db-tab-panel> Tab Panel 2 </db-tab-panel>
   <db-tab-panel> Tab Panel 3 </db-tab-panel>
 </db-tabs>`)},children:"Copy code"})]}),(0,L.jsxs)(ab.A,{children:[(0,L.jsx)(H.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,L.jsx)("pre",{children:(0,L.jsx)("code",{className:"hljs language-html",children:`<div
-  id="tabs-7370804778282007"
+  id="tabs-1545656972639341"
   class="db-tabs"
   data-alignment="center"
   data-width="full"
@@ -61971,7 +61971,7 @@ Tab Panel 3
   <section role="tabpanel" class="db-tab-panel">Tab Panel 2</section>
   <section role="tabpanel" class="db-tab-panel">Tab Panel 3</section>
 </div>`})}),(0,L.jsx)(W.A,{className:"copy-button",noText:!0,icon:e===`<div
-  id="tabs-7370804778282007"
+  id="tabs-1545656972639341"
   class="db-tabs"
   data-alignment="center"
   data-width="full"
@@ -61999,7 +61999,7 @@ Tab Panel 3
   <section role="tabpanel" class="db-tab-panel">Tab Panel 2</section>
   <section role="tabpanel" class="db-tab-panel">Tab Panel 3</section>
 </div>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<div
-  id="tabs-7370804778282007"
+  id="tabs-1545656972639341"
   class="db-tabs"
   data-alignment="center"
   data-width="full"
@@ -62027,7 +62027,7 @@ Tab Panel 3
   <section role="tabpanel" class="db-tab-panel">Tab Panel 2</section>
   <section role="tabpanel" class="db-tab-panel">Tab Panel 3</section>
 </div>`),navigator.clipboard.writeText(`<div
-  id="tabs-7370804778282007"
+  id="tabs-1545656972639341"
   class="db-tabs"
   data-alignment="center"
   data-width="full"
@@ -62211,7 +62211,7 @@ Tab Panel 3
   <db-tab-panel> Tab Panel 2 </db-tab-panel>
   <db-tab-panel> Tab Panel 3 </db-tab-panel>
 </db-tabs>`)},children:"Copy code"})]}),(0,L.jsxs)(ab.A,{children:[(0,L.jsx)(H.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,L.jsx)("pre",{children:(0,L.jsx)("code",{className:"hljs language-html",children:`<div
-  id="tabs-5828256326724638"
+  id="tabs-12612301583286412"
   class="db-tabs"
   data-alignment="start"
   data-width="auto"
@@ -62239,7 +62239,7 @@ Tab Panel 3
   <section role="tabpanel" class="db-tab-panel">Tab Panel 2</section>
   <section role="tabpanel" class="db-tab-panel">Tab Panel 3</section>
 </div>`})}),(0,L.jsx)(W.A,{className:"copy-button",noText:!0,icon:e===`<div
-  id="tabs-5828256326724638"
+  id="tabs-12612301583286412"
   class="db-tabs"
   data-alignment="start"
   data-width="auto"
@@ -62267,7 +62267,7 @@ Tab Panel 3
   <section role="tabpanel" class="db-tab-panel">Tab Panel 2</section>
   <section role="tabpanel" class="db-tab-panel">Tab Panel 3</section>
 </div>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<div
-  id="tabs-5828256326724638"
+  id="tabs-12612301583286412"
   class="db-tabs"
   data-alignment="start"
   data-width="auto"
@@ -62295,7 +62295,7 @@ Tab Panel 3
   <section role="tabpanel" class="db-tab-panel">Tab Panel 2</section>
   <section role="tabpanel" class="db-tab-panel">Tab Panel 3</section>
 </div>`),navigator.clipboard.writeText(`<div
-  id="tabs-5828256326724638"
+  id="tabs-12612301583286412"
   class="db-tabs"
   data-alignment="start"
   data-width="auto"
@@ -62479,7 +62479,7 @@ Tab Panel 3
   <db-tab-panel> Tab Panel 2 </db-tab-panel>
   <db-tab-panel> Tab Panel 3 </db-tab-panel>
 </db-tabs>`)},children:"Copy code"})]}),(0,L.jsxs)(ab.A,{children:[(0,L.jsx)(H.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,L.jsx)("pre",{children:(0,L.jsx)("code",{className:"hljs language-html",children:`<div
-  id="tabs-755181420985116"
+  id="tabs-4665104675609514"
   class="db-tabs"
   data-scroll-behavior="arrows"
   data-alignment="start"
@@ -62508,7 +62508,7 @@ Tab Panel 3
   <section role="tabpanel" class="db-tab-panel">Tab Panel 2</section>
   <section role="tabpanel" class="db-tab-panel">Tab Panel 3</section>
 </div>`})}),(0,L.jsx)(W.A,{className:"copy-button",noText:!0,icon:e===`<div
-  id="tabs-755181420985116"
+  id="tabs-4665104675609514"
   class="db-tabs"
   data-scroll-behavior="arrows"
   data-alignment="start"
@@ -62537,7 +62537,7 @@ Tab Panel 3
   <section role="tabpanel" class="db-tab-panel">Tab Panel 2</section>
   <section role="tabpanel" class="db-tab-panel">Tab Panel 3</section>
 </div>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<div
-  id="tabs-755181420985116"
+  id="tabs-4665104675609514"
   class="db-tabs"
   data-scroll-behavior="arrows"
   data-alignment="start"
@@ -62566,7 +62566,7 @@ Tab Panel 3
   <section role="tabpanel" class="db-tab-panel">Tab Panel 2</section>
   <section role="tabpanel" class="db-tab-panel">Tab Panel 3</section>
 </div>`),navigator.clipboard.writeText(`<div
-  id="tabs-755181420985116"
+  id="tabs-4665104675609514"
   class="db-tabs"
   data-scroll-behavior="arrows"
   data-alignment="start"
@@ -62751,7 +62751,7 @@ Tab Panel 3
   <db-tab-panel> Tab Panel 2 </db-tab-panel>
   <db-tab-panel> Tab Panel 3 </db-tab-panel>
 </db-tabs>`)},children:"Copy code"})]}),(0,L.jsxs)(ab.A,{children:[(0,L.jsx)(H.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,L.jsx)("pre",{children:(0,L.jsx)("code",{className:"hljs language-html",children:`<div
-  id="tabs-4773400045619385"
+  id="tabs-8510815569988167"
   class="db-tabs"
   data-alignment="start"
   data-width="auto"
@@ -62779,7 +62779,7 @@ Tab Panel 3
   <section role="tabpanel" class="db-tab-panel">Tab Panel 2</section>
   <section role="tabpanel" class="db-tab-panel">Tab Panel 3</section>
 </div>`})}),(0,L.jsx)(W.A,{className:"copy-button",noText:!0,icon:e===`<div
-  id="tabs-4773400045619385"
+  id="tabs-8510815569988167"
   class="db-tabs"
   data-alignment="start"
   data-width="auto"
@@ -62807,7 +62807,7 @@ Tab Panel 3
   <section role="tabpanel" class="db-tab-panel">Tab Panel 2</section>
   <section role="tabpanel" class="db-tab-panel">Tab Panel 3</section>
 </div>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<div
-  id="tabs-4773400045619385"
+  id="tabs-8510815569988167"
   class="db-tabs"
   data-alignment="start"
   data-width="auto"
@@ -62835,7 +62835,7 @@ Tab Panel 3
   <section role="tabpanel" class="db-tab-panel">Tab Panel 2</section>
   <section role="tabpanel" class="db-tab-panel">Tab Panel 3</section>
 </div>`),navigator.clipboard.writeText(`<div
-  id="tabs-4773400045619385"
+  id="tabs-8510815569988167"
   class="db-tabs"
   data-alignment="start"
   data-width="auto"
@@ -63019,7 +63019,7 @@ Tab Panel 3
   <db-tab-panel> Tab Panel 2 </db-tab-panel>
   <db-tab-panel> Tab Panel 3 </db-tab-panel>
 </db-tabs>`)},children:"Copy code"})]}),(0,L.jsxs)(ab.A,{children:[(0,L.jsx)(H.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,L.jsx)("pre",{children:(0,L.jsx)("code",{className:"hljs language-html",children:`<div
-  id="tabs-8781801889150712"
+  id="tabs-4186472620956537"
   class="db-tabs"
   data-alignment="start"
   data-width="auto"
@@ -63047,7 +63047,7 @@ Tab Panel 3
   <section role="tabpanel" class="db-tab-panel">Tab Panel 2</section>
   <section role="tabpanel" class="db-tab-panel">Tab Panel 3</section>
 </div>`})}),(0,L.jsx)(W.A,{className:"copy-button",noText:!0,icon:e===`<div
-  id="tabs-8781801889150712"
+  id="tabs-4186472620956537"
   class="db-tabs"
   data-alignment="start"
   data-width="auto"
@@ -63075,7 +63075,7 @@ Tab Panel 3
   <section role="tabpanel" class="db-tab-panel">Tab Panel 2</section>
   <section role="tabpanel" class="db-tab-panel">Tab Panel 3</section>
 </div>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<div
-  id="tabs-8781801889150712"
+  id="tabs-4186472620956537"
   class="db-tabs"
   data-alignment="start"
   data-width="auto"
@@ -63103,7 +63103,7 @@ Tab Panel 3
   <section role="tabpanel" class="db-tab-panel">Tab Panel 2</section>
   <section role="tabpanel" class="db-tab-panel">Tab Panel 3</section>
 </div>`),navigator.clipboard.writeText(`<div
-  id="tabs-8781801889150712"
+  id="tabs-4186472620956537"
   class="db-tabs"
   data-alignment="start"
   data-width="auto"
@@ -63287,7 +63287,7 @@ Tab Panel 3
   <db-tab-panel> Tab Panel 2 </db-tab-panel>
   <db-tab-panel> Tab Panel 3 </db-tab-panel>
 </db-tabs>`)},children:"Copy code"})]}),(0,L.jsxs)(ab.A,{children:[(0,L.jsx)(H.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,L.jsx)("pre",{children:(0,L.jsx)("code",{className:"hljs language-html",children:`<div
-  id="tabs-9875662802732522"
+  id="tabs-2890770401802889"
   class="db-tabs"
   data-alignment="start"
   data-width="auto"
@@ -63315,7 +63315,7 @@ Tab Panel 3
   <section role="tabpanel" class="db-tab-panel">Tab Panel 2</section>
   <section role="tabpanel" class="db-tab-panel">Tab Panel 3</section>
 </div>`})}),(0,L.jsx)(W.A,{className:"copy-button",noText:!0,icon:e===`<div
-  id="tabs-9875662802732522"
+  id="tabs-2890770401802889"
   class="db-tabs"
   data-alignment="start"
   data-width="auto"
@@ -63343,7 +63343,7 @@ Tab Panel 3
   <section role="tabpanel" class="db-tab-panel">Tab Panel 2</section>
   <section role="tabpanel" class="db-tab-panel">Tab Panel 3</section>
 </div>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<div
-  id="tabs-9875662802732522"
+  id="tabs-2890770401802889"
   class="db-tabs"
   data-alignment="start"
   data-width="auto"
@@ -63371,7 +63371,7 @@ Tab Panel 3
   <section role="tabpanel" class="db-tab-panel">Tab Panel 2</section>
   <section role="tabpanel" class="db-tab-panel">Tab Panel 3</section>
 </div>`),navigator.clipboard.writeText(`<div
-  id="tabs-9875662802732522"
+  id="tabs-2890770401802889"
   class="db-tabs"
   data-alignment="start"
   data-width="auto"
@@ -68482,919 +68482,919 @@ button
 button
 <DBTooltip >Tooltip</DBTooltip></DBButton>`),navigator.clipboard.writeText(`<DBButton>
 button
-<DBTooltip >Tooltip</DBTooltip></DBButton>`)},children:"Copy code"})]})]},t())})]})},i7=()=>{let[e,a]=(0,S.useState)(),{getFrameworkIndex:t}=(0,a_.u)();return(0,S.useEffect)(()=>{e&&setTimeout(()=>a(""),1500)},[e]),(0,L.jsxs)(L.Fragment,{children:[(0,L.jsx)(_.A,{className:"tab-container",children:(0,L.jsxs)(ah.A,{initialSelectedIndex:t(),children:[(0,L.jsxs)(ac.A,{children:[(0,L.jsx)(ad.A,{children:"Angular"}),(0,L.jsx)(ad.A,{children:"HTML"}),(0,L.jsx)(ad.A,{children:"React"}),(0,L.jsx)(ad.A,{children:"Vue"})]}),(0,L.jsxs)(ab.A,{children:[(0,L.jsx)(H.A,{content:"external",target:"_blank",href:"how-to-use?current=angular",children:"How to use this in angular"}),(0,L.jsx)("pre",{children:(0,L.jsx)("code",{className:"hljs language-html",children:`<db-button>
-  button
-  <db-tooltip>Tooltip</db-tooltip></db-button
->`})}),(0,L.jsx)(W.A,{className:"copy-button",noText:!0,icon:e===`<db-button>
-  button
-  <db-tooltip>Tooltip</db-tooltip></db-button
->`?"check":"copy",variant:"ghost",onClick:()=>{a(`<db-button>
-  button
-  <db-tooltip>Tooltip</db-tooltip></db-button
->`),navigator.clipboard.writeText(`<db-button>
-  button
-  <db-tooltip>Tooltip</db-tooltip></db-button
->`)},children:"Copy code"})]}),(0,L.jsxs)(ab.A,{children:[(0,L.jsx)(H.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,L.jsx)("pre",{children:(0,L.jsx)("code",{className:"hljs language-html",children:`<button class="db-button" type="submit">
-  button<i
-    role="tooltip"
-    aria-hidden="true"
-    data-gap="true"
-    class="db-tooltip"
-    id="OVERWRITE_DEFAULT_ID"
-    data-animation="true"
-    data-show-arrow="true"
-    >Tooltip</i
-  >
-</button>`})}),(0,L.jsx)(W.A,{className:"copy-button",noText:!0,icon:e===`<button class="db-button" type="submit">
-  button<i
-    role="tooltip"
-    aria-hidden="true"
-    data-gap="true"
-    class="db-tooltip"
-    id="OVERWRITE_DEFAULT_ID"
-    data-animation="true"
-    data-show-arrow="true"
-    >Tooltip</i
-  >
-</button>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<button class="db-button" type="submit">
-  button<i
-    role="tooltip"
-    aria-hidden="true"
-    data-gap="true"
-    class="db-tooltip"
-    id="OVERWRITE_DEFAULT_ID"
-    data-animation="true"
-    data-show-arrow="true"
-    >Tooltip</i
-  >
-</button>`),navigator.clipboard.writeText(`<button class="db-button" type="submit">
-  button<i
-    role="tooltip"
-    aria-hidden="true"
-    data-gap="true"
-    class="db-tooltip"
-    id="OVERWRITE_DEFAULT_ID"
-    data-animation="true"
-    data-show-arrow="true"
-    >Tooltip</i
-  >
-</button>`)},children:"Copy code"})]}),(0,L.jsxs)(ab.A,{children:[(0,L.jsx)(H.A,{content:"external",target:"_blank",href:"how-to-use?current=react",children:"How to use this in react"}),(0,L.jsx)("pre",{children:(0,L.jsx)("code",{className:"hljs language-tsx",children:`<DBButton>
-  button
-  <DBTooltip>Tooltip</DBTooltip>
-</DBButton>`})}),(0,L.jsx)(W.A,{className:"copy-button",noText:!0,icon:e===`<DBButton>
-  button
-  <DBTooltip>Tooltip</DBTooltip>
-</DBButton>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<DBButton>
-  button
-  <DBTooltip>Tooltip</DBTooltip>
-</DBButton>`),navigator.clipboard.writeText(`<DBButton>
-  button
-  <DBTooltip>Tooltip</DBTooltip>
-</DBButton>`)},children:"Copy code"})]}),(0,L.jsxs)(ab.A,{children:[(0,L.jsx)(H.A,{content:"external",target:"_blank",href:"how-to-use?current=vue",children:"How to use this in vue"}),(0,L.jsx)("pre",{children:(0,L.jsx)("code",{className:"hljs language-tsx",children:`<DBButton>
-button
-<DBTooltip >Tooltip</DBTooltip></DBButton>`})}),(0,L.jsx)(W.A,{className:"copy-button",noText:!0,icon:e===`<DBButton>
-button
-<DBTooltip >Tooltip</DBTooltip></DBButton>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<DBButton>
-button
-<DBTooltip >Tooltip</DBTooltip></DBButton>`),navigator.clipboard.writeText(`<DBButton>
-button
-<DBTooltip >Tooltip</DBTooltip></DBButton>`)},children:"Copy code"})]})]},t())}),(0,L.jsx)(_.A,{className:"tab-container",children:(0,L.jsxs)(ah.A,{initialSelectedIndex:t(),children:[(0,L.jsxs)(ac.A,{children:[(0,L.jsx)(ad.A,{children:"Angular"}),(0,L.jsx)(ad.A,{children:"HTML"}),(0,L.jsx)(ad.A,{children:"React"}),(0,L.jsx)(ad.A,{children:"Vue"})]}),(0,L.jsxs)(ab.A,{children:[(0,L.jsx)(H.A,{content:"external",target:"_blank",href:"how-to-use?current=angular",children:"How to use this in angular"}),(0,L.jsx)("pre",{children:(0,L.jsx)("code",{className:"hljs language-html",children:`<db-button>
-  button
-  <db-tooltip>Tooltip</db-tooltip></db-button
->`})}),(0,L.jsx)(W.A,{className:"copy-button",noText:!0,icon:e===`<db-button>
-  button
-  <db-tooltip>Tooltip</db-tooltip></db-button
->`?"check":"copy",variant:"ghost",onClick:()=>{a(`<db-button>
-  button
-  <db-tooltip>Tooltip</db-tooltip></db-button
->`),navigator.clipboard.writeText(`<db-button>
-  button
-  <db-tooltip>Tooltip</db-tooltip></db-button
->`)},children:"Copy code"})]}),(0,L.jsxs)(ab.A,{children:[(0,L.jsx)(H.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,L.jsx)("pre",{children:(0,L.jsx)("code",{className:"hljs language-html",children:`<button class="db-button" type="submit">
-  button<i
-    role="tooltip"
-    aria-hidden="true"
-    data-gap="true"
-    class="db-tooltip"
-    id="OVERWRITE_DEFAULT_ID"
-    data-animation="true"
-    data-show-arrow="true"
-    >Tooltip</i
-  >
-</button>`})}),(0,L.jsx)(W.A,{className:"copy-button",noText:!0,icon:e===`<button class="db-button" type="submit">
-  button<i
-    role="tooltip"
-    aria-hidden="true"
-    data-gap="true"
-    class="db-tooltip"
-    id="OVERWRITE_DEFAULT_ID"
-    data-animation="true"
-    data-show-arrow="true"
-    >Tooltip</i
-  >
-</button>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<button class="db-button" type="submit">
-  button<i
-    role="tooltip"
-    aria-hidden="true"
-    data-gap="true"
-    class="db-tooltip"
-    id="OVERWRITE_DEFAULT_ID"
-    data-animation="true"
-    data-show-arrow="true"
-    >Tooltip</i
-  >
-</button>`),navigator.clipboard.writeText(`<button class="db-button" type="submit">
-  button<i
-    role="tooltip"
-    aria-hidden="true"
-    data-gap="true"
-    class="db-tooltip"
-    id="OVERWRITE_DEFAULT_ID"
-    data-animation="true"
-    data-show-arrow="true"
-    >Tooltip</i
-  >
-</button>`)},children:"Copy code"})]}),(0,L.jsxs)(ab.A,{children:[(0,L.jsx)(H.A,{content:"external",target:"_blank",href:"how-to-use?current=react",children:"How to use this in react"}),(0,L.jsx)("pre",{children:(0,L.jsx)("code",{className:"hljs language-tsx",children:`<DBButton>
-  button
-  <DBTooltip>Tooltip</DBTooltip>
-</DBButton>`})}),(0,L.jsx)(W.A,{className:"copy-button",noText:!0,icon:e===`<DBButton>
-  button
-  <DBTooltip>Tooltip</DBTooltip>
-</DBButton>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<DBButton>
-  button
-  <DBTooltip>Tooltip</DBTooltip>
-</DBButton>`),navigator.clipboard.writeText(`<DBButton>
-  button
-  <DBTooltip>Tooltip</DBTooltip>
-</DBButton>`)},children:"Copy code"})]}),(0,L.jsxs)(ab.A,{children:[(0,L.jsx)(H.A,{content:"external",target:"_blank",href:"how-to-use?current=vue",children:"How to use this in vue"}),(0,L.jsx)("pre",{children:(0,L.jsx)("code",{className:"hljs language-tsx",children:`<DBButton>
-button
-<DBTooltip >Tooltip</DBTooltip></DBButton>`})}),(0,L.jsx)(W.A,{className:"copy-button",noText:!0,icon:e===`<DBButton>
-button
-<DBTooltip >Tooltip</DBTooltip></DBButton>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<DBButton>
-button
-<DBTooltip >Tooltip</DBTooltip></DBButton>`),navigator.clipboard.writeText(`<DBButton>
-button
-<DBTooltip >Tooltip</DBTooltip></DBButton>`)},children:"Copy code"})]})]},t())}),(0,L.jsx)(_.A,{className:"tab-container",children:(0,L.jsxs)(ah.A,{initialSelectedIndex:t(),children:[(0,L.jsxs)(ac.A,{children:[(0,L.jsx)(ad.A,{children:"Angular"}),(0,L.jsx)(ad.A,{children:"HTML"}),(0,L.jsx)(ad.A,{children:"React"}),(0,L.jsx)(ad.A,{children:"Vue"})]}),(0,L.jsxs)(ab.A,{children:[(0,L.jsx)(H.A,{content:"external",target:"_blank",href:"how-to-use?current=angular",children:"How to use this in angular"}),(0,L.jsx)("pre",{children:(0,L.jsx)("code",{className:"hljs language-html",children:`<db-button>
-  button
-  <db-tooltip>Tooltip</db-tooltip></db-button
->`})}),(0,L.jsx)(W.A,{className:"copy-button",noText:!0,icon:e===`<db-button>
-  button
-  <db-tooltip>Tooltip</db-tooltip></db-button
->`?"check":"copy",variant:"ghost",onClick:()=>{a(`<db-button>
-  button
-  <db-tooltip>Tooltip</db-tooltip></db-button
->`),navigator.clipboard.writeText(`<db-button>
-  button
-  <db-tooltip>Tooltip</db-tooltip></db-button
->`)},children:"Copy code"})]}),(0,L.jsxs)(ab.A,{children:[(0,L.jsx)(H.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,L.jsx)("pre",{children:(0,L.jsx)("code",{className:"hljs language-html",children:`<button class="db-button" type="submit">
-  button<i
-    role="tooltip"
-    aria-hidden="true"
-    data-gap="true"
-    class="db-tooltip"
-    id="OVERWRITE_DEFAULT_ID"
-    data-animation="true"
-    data-show-arrow="true"
-    >Tooltip</i
-  >
-</button>`})}),(0,L.jsx)(W.A,{className:"copy-button",noText:!0,icon:e===`<button class="db-button" type="submit">
-  button<i
-    role="tooltip"
-    aria-hidden="true"
-    data-gap="true"
-    class="db-tooltip"
-    id="OVERWRITE_DEFAULT_ID"
-    data-animation="true"
-    data-show-arrow="true"
-    >Tooltip</i
-  >
-</button>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<button class="db-button" type="submit">
-  button<i
-    role="tooltip"
-    aria-hidden="true"
-    data-gap="true"
-    class="db-tooltip"
-    id="OVERWRITE_DEFAULT_ID"
-    data-animation="true"
-    data-show-arrow="true"
-    >Tooltip</i
-  >
-</button>`),navigator.clipboard.writeText(`<button class="db-button" type="submit">
-  button<i
-    role="tooltip"
-    aria-hidden="true"
-    data-gap="true"
-    class="db-tooltip"
-    id="OVERWRITE_DEFAULT_ID"
-    data-animation="true"
-    data-show-arrow="true"
-    >Tooltip</i
-  >
-</button>`)},children:"Copy code"})]}),(0,L.jsxs)(ab.A,{children:[(0,L.jsx)(H.A,{content:"external",target:"_blank",href:"how-to-use?current=react",children:"How to use this in react"}),(0,L.jsx)("pre",{children:(0,L.jsx)("code",{className:"hljs language-tsx",children:`<DBButton>
-  button
-  <DBTooltip>Tooltip</DBTooltip>
-</DBButton>`})}),(0,L.jsx)(W.A,{className:"copy-button",noText:!0,icon:e===`<DBButton>
-  button
-  <DBTooltip>Tooltip</DBTooltip>
-</DBButton>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<DBButton>
-  button
-  <DBTooltip>Tooltip</DBTooltip>
-</DBButton>`),navigator.clipboard.writeText(`<DBButton>
-  button
-  <DBTooltip>Tooltip</DBTooltip>
-</DBButton>`)},children:"Copy code"})]}),(0,L.jsxs)(ab.A,{children:[(0,L.jsx)(H.A,{content:"external",target:"_blank",href:"how-to-use?current=vue",children:"How to use this in vue"}),(0,L.jsx)("pre",{children:(0,L.jsx)("code",{className:"hljs language-tsx",children:`<DBButton>
-button
-<DBTooltip >Tooltip</DBTooltip></DBButton>`})}),(0,L.jsx)(W.A,{className:"copy-button",noText:!0,icon:e===`<DBButton>
-button
-<DBTooltip >Tooltip</DBTooltip></DBButton>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<DBButton>
-button
-<DBTooltip >Tooltip</DBTooltip></DBButton>`),navigator.clipboard.writeText(`<DBButton>
-button
-<DBTooltip >Tooltip</DBTooltip></DBButton>`)},children:"Copy code"})]})]},t())}),(0,L.jsx)(_.A,{className:"tab-container",children:(0,L.jsxs)(ah.A,{initialSelectedIndex:t(),children:[(0,L.jsxs)(ac.A,{children:[(0,L.jsx)(ad.A,{children:"Angular"}),(0,L.jsx)(ad.A,{children:"HTML"}),(0,L.jsx)(ad.A,{children:"React"}),(0,L.jsx)(ad.A,{children:"Vue"})]}),(0,L.jsxs)(ab.A,{children:[(0,L.jsx)(H.A,{content:"external",target:"_blank",href:"how-to-use?current=angular",children:"How to use this in angular"}),(0,L.jsx)("pre",{children:(0,L.jsx)("code",{className:"hljs language-html",children:`<db-button>
-  button
-  <db-tooltip>Tooltip</db-tooltip></db-button
->`})}),(0,L.jsx)(W.A,{className:"copy-button",noText:!0,icon:e===`<db-button>
-  button
-  <db-tooltip>Tooltip</db-tooltip></db-button
->`?"check":"copy",variant:"ghost",onClick:()=>{a(`<db-button>
-  button
-  <db-tooltip>Tooltip</db-tooltip></db-button
->`),navigator.clipboard.writeText(`<db-button>
-  button
-  <db-tooltip>Tooltip</db-tooltip></db-button
->`)},children:"Copy code"})]}),(0,L.jsxs)(ab.A,{children:[(0,L.jsx)(H.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,L.jsx)("pre",{children:(0,L.jsx)("code",{className:"hljs language-html",children:`<button class="db-button" type="submit">
-  button<i
-    role="tooltip"
-    aria-hidden="true"
-    data-gap="true"
-    class="db-tooltip"
-    id="OVERWRITE_DEFAULT_ID"
-    data-animation="true"
-    data-show-arrow="true"
-    >Tooltip</i
-  >
-</button>`})}),(0,L.jsx)(W.A,{className:"copy-button",noText:!0,icon:e===`<button class="db-button" type="submit">
-  button<i
-    role="tooltip"
-    aria-hidden="true"
-    data-gap="true"
-    class="db-tooltip"
-    id="OVERWRITE_DEFAULT_ID"
-    data-animation="true"
-    data-show-arrow="true"
-    >Tooltip</i
-  >
-</button>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<button class="db-button" type="submit">
-  button<i
-    role="tooltip"
-    aria-hidden="true"
-    data-gap="true"
-    class="db-tooltip"
-    id="OVERWRITE_DEFAULT_ID"
-    data-animation="true"
-    data-show-arrow="true"
-    >Tooltip</i
-  >
-</button>`),navigator.clipboard.writeText(`<button class="db-button" type="submit">
-  button<i
-    role="tooltip"
-    aria-hidden="true"
-    data-gap="true"
-    class="db-tooltip"
-    id="OVERWRITE_DEFAULT_ID"
-    data-animation="true"
-    data-show-arrow="true"
-    >Tooltip</i
-  >
-</button>`)},children:"Copy code"})]}),(0,L.jsxs)(ab.A,{children:[(0,L.jsx)(H.A,{content:"external",target:"_blank",href:"how-to-use?current=react",children:"How to use this in react"}),(0,L.jsx)("pre",{children:(0,L.jsx)("code",{className:"hljs language-tsx",children:`<DBButton>
-  button
-  <DBTooltip>Tooltip</DBTooltip>
-</DBButton>`})}),(0,L.jsx)(W.A,{className:"copy-button",noText:!0,icon:e===`<DBButton>
-  button
-  <DBTooltip>Tooltip</DBTooltip>
-</DBButton>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<DBButton>
-  button
-  <DBTooltip>Tooltip</DBTooltip>
-</DBButton>`),navigator.clipboard.writeText(`<DBButton>
-  button
-  <DBTooltip>Tooltip</DBTooltip>
-</DBButton>`)},children:"Copy code"})]}),(0,L.jsxs)(ab.A,{children:[(0,L.jsx)(H.A,{content:"external",target:"_blank",href:"how-to-use?current=vue",children:"How to use this in vue"}),(0,L.jsx)("pre",{children:(0,L.jsx)("code",{className:"hljs language-tsx",children:`<DBButton>
-button
-<DBTooltip >Tooltip</DBTooltip></DBButton>`})}),(0,L.jsx)(W.A,{className:"copy-button",noText:!0,icon:e===`<DBButton>
-button
-<DBTooltip >Tooltip</DBTooltip></DBButton>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<DBButton>
-button
-<DBTooltip >Tooltip</DBTooltip></DBButton>`),navigator.clipboard.writeText(`<DBButton>
-button
-<DBTooltip >Tooltip</DBTooltip></DBButton>`)},children:"Copy code"})]})]},t())}),(0,L.jsx)(_.A,{className:"tab-container",children:(0,L.jsxs)(ah.A,{initialSelectedIndex:t(),children:[(0,L.jsxs)(ac.A,{children:[(0,L.jsx)(ad.A,{children:"Angular"}),(0,L.jsx)(ad.A,{children:"HTML"}),(0,L.jsx)(ad.A,{children:"React"}),(0,L.jsx)(ad.A,{children:"Vue"})]}),(0,L.jsxs)(ab.A,{children:[(0,L.jsx)(H.A,{content:"external",target:"_blank",href:"how-to-use?current=angular",children:"How to use this in angular"}),(0,L.jsx)("pre",{children:(0,L.jsx)("code",{className:"hljs language-html",children:`<db-button>
-  button
-  <db-tooltip>Tooltip</db-tooltip></db-button
->`})}),(0,L.jsx)(W.A,{className:"copy-button",noText:!0,icon:e===`<db-button>
-  button
-  <db-tooltip>Tooltip</db-tooltip></db-button
->`?"check":"copy",variant:"ghost",onClick:()=>{a(`<db-button>
-  button
-  <db-tooltip>Tooltip</db-tooltip></db-button
->`),navigator.clipboard.writeText(`<db-button>
-  button
-  <db-tooltip>Tooltip</db-tooltip></db-button
->`)},children:"Copy code"})]}),(0,L.jsxs)(ab.A,{children:[(0,L.jsx)(H.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,L.jsx)("pre",{children:(0,L.jsx)("code",{className:"hljs language-html",children:`<button class="db-button" type="submit">
-  button<i
-    role="tooltip"
-    aria-hidden="true"
-    data-gap="true"
-    class="db-tooltip"
-    id="OVERWRITE_DEFAULT_ID"
-    data-animation="true"
-    data-show-arrow="true"
-    >Tooltip</i
-  >
-</button>`})}),(0,L.jsx)(W.A,{className:"copy-button",noText:!0,icon:e===`<button class="db-button" type="submit">
-  button<i
-    role="tooltip"
-    aria-hidden="true"
-    data-gap="true"
-    class="db-tooltip"
-    id="OVERWRITE_DEFAULT_ID"
-    data-animation="true"
-    data-show-arrow="true"
-    >Tooltip</i
-  >
-</button>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<button class="db-button" type="submit">
-  button<i
-    role="tooltip"
-    aria-hidden="true"
-    data-gap="true"
-    class="db-tooltip"
-    id="OVERWRITE_DEFAULT_ID"
-    data-animation="true"
-    data-show-arrow="true"
-    >Tooltip</i
-  >
-</button>`),navigator.clipboard.writeText(`<button class="db-button" type="submit">
-  button<i
-    role="tooltip"
-    aria-hidden="true"
-    data-gap="true"
-    class="db-tooltip"
-    id="OVERWRITE_DEFAULT_ID"
-    data-animation="true"
-    data-show-arrow="true"
-    >Tooltip</i
-  >
-</button>`)},children:"Copy code"})]}),(0,L.jsxs)(ab.A,{children:[(0,L.jsx)(H.A,{content:"external",target:"_blank",href:"how-to-use?current=react",children:"How to use this in react"}),(0,L.jsx)("pre",{children:(0,L.jsx)("code",{className:"hljs language-tsx",children:`<DBButton>
-  button
-  <DBTooltip>Tooltip</DBTooltip>
-</DBButton>`})}),(0,L.jsx)(W.A,{className:"copy-button",noText:!0,icon:e===`<DBButton>
-  button
-  <DBTooltip>Tooltip</DBTooltip>
-</DBButton>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<DBButton>
-  button
-  <DBTooltip>Tooltip</DBTooltip>
-</DBButton>`),navigator.clipboard.writeText(`<DBButton>
-  button
-  <DBTooltip>Tooltip</DBTooltip>
-</DBButton>`)},children:"Copy code"})]}),(0,L.jsxs)(ab.A,{children:[(0,L.jsx)(H.A,{content:"external",target:"_blank",href:"how-to-use?current=vue",children:"How to use this in vue"}),(0,L.jsx)("pre",{children:(0,L.jsx)("code",{className:"hljs language-tsx",children:`<DBButton>
-button
-<DBTooltip >Tooltip</DBTooltip></DBButton>`})}),(0,L.jsx)(W.A,{className:"copy-button",noText:!0,icon:e===`<DBButton>
-button
-<DBTooltip >Tooltip</DBTooltip></DBButton>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<DBButton>
-button
-<DBTooltip >Tooltip</DBTooltip></DBButton>`),navigator.clipboard.writeText(`<DBButton>
-button
-<DBTooltip >Tooltip</DBTooltip></DBButton>`)},children:"Copy code"})]})]},t())}),(0,L.jsx)(_.A,{className:"tab-container",children:(0,L.jsxs)(ah.A,{initialSelectedIndex:t(),children:[(0,L.jsxs)(ac.A,{children:[(0,L.jsx)(ad.A,{children:"Angular"}),(0,L.jsx)(ad.A,{children:"HTML"}),(0,L.jsx)(ad.A,{children:"React"}),(0,L.jsx)(ad.A,{children:"Vue"})]}),(0,L.jsxs)(ab.A,{children:[(0,L.jsx)(H.A,{content:"external",target:"_blank",href:"how-to-use?current=angular",children:"How to use this in angular"}),(0,L.jsx)("pre",{children:(0,L.jsx)("code",{className:"hljs language-html",children:`<db-button>
-  button
-  <db-tooltip>Tooltip</db-tooltip></db-button
->`})}),(0,L.jsx)(W.A,{className:"copy-button",noText:!0,icon:e===`<db-button>
-  button
-  <db-tooltip>Tooltip</db-tooltip></db-button
->`?"check":"copy",variant:"ghost",onClick:()=>{a(`<db-button>
-  button
-  <db-tooltip>Tooltip</db-tooltip></db-button
->`),navigator.clipboard.writeText(`<db-button>
-  button
-  <db-tooltip>Tooltip</db-tooltip></db-button
->`)},children:"Copy code"})]}),(0,L.jsxs)(ab.A,{children:[(0,L.jsx)(H.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,L.jsx)("pre",{children:(0,L.jsx)("code",{className:"hljs language-html",children:`<button class="db-button" type="submit">
-  button<i
-    role="tooltip"
-    aria-hidden="true"
-    data-gap="true"
-    class="db-tooltip"
-    id="OVERWRITE_DEFAULT_ID"
-    data-animation="true"
-    data-show-arrow="true"
-    >Tooltip</i
-  >
-</button>`})}),(0,L.jsx)(W.A,{className:"copy-button",noText:!0,icon:e===`<button class="db-button" type="submit">
-  button<i
-    role="tooltip"
-    aria-hidden="true"
-    data-gap="true"
-    class="db-tooltip"
-    id="OVERWRITE_DEFAULT_ID"
-    data-animation="true"
-    data-show-arrow="true"
-    >Tooltip</i
-  >
-</button>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<button class="db-button" type="submit">
-  button<i
-    role="tooltip"
-    aria-hidden="true"
-    data-gap="true"
-    class="db-tooltip"
-    id="OVERWRITE_DEFAULT_ID"
-    data-animation="true"
-    data-show-arrow="true"
-    >Tooltip</i
-  >
-</button>`),navigator.clipboard.writeText(`<button class="db-button" type="submit">
-  button<i
-    role="tooltip"
-    aria-hidden="true"
-    data-gap="true"
-    class="db-tooltip"
-    id="OVERWRITE_DEFAULT_ID"
-    data-animation="true"
-    data-show-arrow="true"
-    >Tooltip</i
-  >
-</button>`)},children:"Copy code"})]}),(0,L.jsxs)(ab.A,{children:[(0,L.jsx)(H.A,{content:"external",target:"_blank",href:"how-to-use?current=react",children:"How to use this in react"}),(0,L.jsx)("pre",{children:(0,L.jsx)("code",{className:"hljs language-tsx",children:`<DBButton>
-  button
-  <DBTooltip>Tooltip</DBTooltip>
-</DBButton>`})}),(0,L.jsx)(W.A,{className:"copy-button",noText:!0,icon:e===`<DBButton>
-  button
-  <DBTooltip>Tooltip</DBTooltip>
-</DBButton>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<DBButton>
-  button
-  <DBTooltip>Tooltip</DBTooltip>
-</DBButton>`),navigator.clipboard.writeText(`<DBButton>
-  button
-  <DBTooltip>Tooltip</DBTooltip>
-</DBButton>`)},children:"Copy code"})]}),(0,L.jsxs)(ab.A,{children:[(0,L.jsx)(H.A,{content:"external",target:"_blank",href:"how-to-use?current=vue",children:"How to use this in vue"}),(0,L.jsx)("pre",{children:(0,L.jsx)("code",{className:"hljs language-tsx",children:`<DBButton>
-button
-<DBTooltip >Tooltip</DBTooltip></DBButton>`})}),(0,L.jsx)(W.A,{className:"copy-button",noText:!0,icon:e===`<DBButton>
-button
-<DBTooltip >Tooltip</DBTooltip></DBButton>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<DBButton>
-button
-<DBTooltip >Tooltip</DBTooltip></DBButton>`),navigator.clipboard.writeText(`<DBButton>
-button
-<DBTooltip >Tooltip</DBTooltip></DBButton>`)},children:"Copy code"})]})]},t())}),(0,L.jsx)(_.A,{className:"tab-container",children:(0,L.jsxs)(ah.A,{initialSelectedIndex:t(),children:[(0,L.jsxs)(ac.A,{children:[(0,L.jsx)(ad.A,{children:"Angular"}),(0,L.jsx)(ad.A,{children:"HTML"}),(0,L.jsx)(ad.A,{children:"React"}),(0,L.jsx)(ad.A,{children:"Vue"})]}),(0,L.jsxs)(ab.A,{children:[(0,L.jsx)(H.A,{content:"external",target:"_blank",href:"how-to-use?current=angular",children:"How to use this in angular"}),(0,L.jsx)("pre",{children:(0,L.jsx)("code",{className:"hljs language-html",children:`<db-button>
-  button
-  <db-tooltip>Tooltip</db-tooltip></db-button
->`})}),(0,L.jsx)(W.A,{className:"copy-button",noText:!0,icon:e===`<db-button>
-  button
-  <db-tooltip>Tooltip</db-tooltip></db-button
->`?"check":"copy",variant:"ghost",onClick:()=>{a(`<db-button>
-  button
-  <db-tooltip>Tooltip</db-tooltip></db-button
->`),navigator.clipboard.writeText(`<db-button>
-  button
-  <db-tooltip>Tooltip</db-tooltip></db-button
->`)},children:"Copy code"})]}),(0,L.jsxs)(ab.A,{children:[(0,L.jsx)(H.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,L.jsx)("pre",{children:(0,L.jsx)("code",{className:"hljs language-html",children:`<button class="db-button" type="submit">
-  button<i
-    role="tooltip"
-    aria-hidden="true"
-    data-gap="true"
-    class="db-tooltip"
-    id="OVERWRITE_DEFAULT_ID"
-    data-animation="true"
-    data-show-arrow="true"
-    >Tooltip</i
-  >
-</button>`})}),(0,L.jsx)(W.A,{className:"copy-button",noText:!0,icon:e===`<button class="db-button" type="submit">
-  button<i
-    role="tooltip"
-    aria-hidden="true"
-    data-gap="true"
-    class="db-tooltip"
-    id="OVERWRITE_DEFAULT_ID"
-    data-animation="true"
-    data-show-arrow="true"
-    >Tooltip</i
-  >
-</button>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<button class="db-button" type="submit">
-  button<i
-    role="tooltip"
-    aria-hidden="true"
-    data-gap="true"
-    class="db-tooltip"
-    id="OVERWRITE_DEFAULT_ID"
-    data-animation="true"
-    data-show-arrow="true"
-    >Tooltip</i
-  >
-</button>`),navigator.clipboard.writeText(`<button class="db-button" type="submit">
-  button<i
-    role="tooltip"
-    aria-hidden="true"
-    data-gap="true"
-    class="db-tooltip"
-    id="OVERWRITE_DEFAULT_ID"
-    data-animation="true"
-    data-show-arrow="true"
-    >Tooltip</i
-  >
-</button>`)},children:"Copy code"})]}),(0,L.jsxs)(ab.A,{children:[(0,L.jsx)(H.A,{content:"external",target:"_blank",href:"how-to-use?current=react",children:"How to use this in react"}),(0,L.jsx)("pre",{children:(0,L.jsx)("code",{className:"hljs language-tsx",children:`<DBButton>
-  button
-  <DBTooltip>Tooltip</DBTooltip>
-</DBButton>`})}),(0,L.jsx)(W.A,{className:"copy-button",noText:!0,icon:e===`<DBButton>
-  button
-  <DBTooltip>Tooltip</DBTooltip>
-</DBButton>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<DBButton>
-  button
-  <DBTooltip>Tooltip</DBTooltip>
-</DBButton>`),navigator.clipboard.writeText(`<DBButton>
-  button
-  <DBTooltip>Tooltip</DBTooltip>
-</DBButton>`)},children:"Copy code"})]}),(0,L.jsxs)(ab.A,{children:[(0,L.jsx)(H.A,{content:"external",target:"_blank",href:"how-to-use?current=vue",children:"How to use this in vue"}),(0,L.jsx)("pre",{children:(0,L.jsx)("code",{className:"hljs language-tsx",children:`<DBButton>
-button
-<DBTooltip >Tooltip</DBTooltip></DBButton>`})}),(0,L.jsx)(W.A,{className:"copy-button",noText:!0,icon:e===`<DBButton>
-button
-<DBTooltip >Tooltip</DBTooltip></DBButton>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<DBButton>
-button
-<DBTooltip >Tooltip</DBTooltip></DBButton>`),navigator.clipboard.writeText(`<DBButton>
-button
-<DBTooltip >Tooltip</DBTooltip></DBButton>`)},children:"Copy code"})]})]},t())}),(0,L.jsx)(_.A,{className:"tab-container",children:(0,L.jsxs)(ah.A,{initialSelectedIndex:t(),children:[(0,L.jsxs)(ac.A,{children:[(0,L.jsx)(ad.A,{children:"Angular"}),(0,L.jsx)(ad.A,{children:"HTML"}),(0,L.jsx)(ad.A,{children:"React"}),(0,L.jsx)(ad.A,{children:"Vue"})]}),(0,L.jsxs)(ab.A,{children:[(0,L.jsx)(H.A,{content:"external",target:"_blank",href:"how-to-use?current=angular",children:"How to use this in angular"}),(0,L.jsx)("pre",{children:(0,L.jsx)("code",{className:"hljs language-html",children:`<db-button>
-  button
-  <db-tooltip>Tooltip</db-tooltip></db-button
->`})}),(0,L.jsx)(W.A,{className:"copy-button",noText:!0,icon:e===`<db-button>
-  button
-  <db-tooltip>Tooltip</db-tooltip></db-button
->`?"check":"copy",variant:"ghost",onClick:()=>{a(`<db-button>
-  button
-  <db-tooltip>Tooltip</db-tooltip></db-button
->`),navigator.clipboard.writeText(`<db-button>
-  button
-  <db-tooltip>Tooltip</db-tooltip></db-button
->`)},children:"Copy code"})]}),(0,L.jsxs)(ab.A,{children:[(0,L.jsx)(H.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,L.jsx)("pre",{children:(0,L.jsx)("code",{className:"hljs language-html",children:`<button class="db-button" type="submit">
-  button<i
-    role="tooltip"
-    aria-hidden="true"
-    data-gap="true"
-    class="db-tooltip"
-    id="OVERWRITE_DEFAULT_ID"
-    data-animation="true"
-    data-show-arrow="true"
-    >Tooltip</i
-  >
-</button>`})}),(0,L.jsx)(W.A,{className:"copy-button",noText:!0,icon:e===`<button class="db-button" type="submit">
-  button<i
-    role="tooltip"
-    aria-hidden="true"
-    data-gap="true"
-    class="db-tooltip"
-    id="OVERWRITE_DEFAULT_ID"
-    data-animation="true"
-    data-show-arrow="true"
-    >Tooltip</i
-  >
-</button>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<button class="db-button" type="submit">
-  button<i
-    role="tooltip"
-    aria-hidden="true"
-    data-gap="true"
-    class="db-tooltip"
-    id="OVERWRITE_DEFAULT_ID"
-    data-animation="true"
-    data-show-arrow="true"
-    >Tooltip</i
-  >
-</button>`),navigator.clipboard.writeText(`<button class="db-button" type="submit">
-  button<i
-    role="tooltip"
-    aria-hidden="true"
-    data-gap="true"
-    class="db-tooltip"
-    id="OVERWRITE_DEFAULT_ID"
-    data-animation="true"
-    data-show-arrow="true"
-    >Tooltip</i
-  >
-</button>`)},children:"Copy code"})]}),(0,L.jsxs)(ab.A,{children:[(0,L.jsx)(H.A,{content:"external",target:"_blank",href:"how-to-use?current=react",children:"How to use this in react"}),(0,L.jsx)("pre",{children:(0,L.jsx)("code",{className:"hljs language-tsx",children:`<DBButton>
-  button
-  <DBTooltip>Tooltip</DBTooltip>
-</DBButton>`})}),(0,L.jsx)(W.A,{className:"copy-button",noText:!0,icon:e===`<DBButton>
-  button
-  <DBTooltip>Tooltip</DBTooltip>
-</DBButton>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<DBButton>
-  button
-  <DBTooltip>Tooltip</DBTooltip>
-</DBButton>`),navigator.clipboard.writeText(`<DBButton>
-  button
-  <DBTooltip>Tooltip</DBTooltip>
-</DBButton>`)},children:"Copy code"})]}),(0,L.jsxs)(ab.A,{children:[(0,L.jsx)(H.A,{content:"external",target:"_blank",href:"how-to-use?current=vue",children:"How to use this in vue"}),(0,L.jsx)("pre",{children:(0,L.jsx)("code",{className:"hljs language-tsx",children:`<DBButton>
-button
-<DBTooltip >Tooltip</DBTooltip></DBButton>`})}),(0,L.jsx)(W.A,{className:"copy-button",noText:!0,icon:e===`<DBButton>
-button
-<DBTooltip >Tooltip</DBTooltip></DBButton>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<DBButton>
-button
-<DBTooltip >Tooltip</DBTooltip></DBButton>`),navigator.clipboard.writeText(`<DBButton>
-button
-<DBTooltip >Tooltip</DBTooltip></DBButton>`)},children:"Copy code"})]})]},t())}),(0,L.jsx)(_.A,{className:"tab-container",children:(0,L.jsxs)(ah.A,{initialSelectedIndex:t(),children:[(0,L.jsxs)(ac.A,{children:[(0,L.jsx)(ad.A,{children:"Angular"}),(0,L.jsx)(ad.A,{children:"HTML"}),(0,L.jsx)(ad.A,{children:"React"}),(0,L.jsx)(ad.A,{children:"Vue"})]}),(0,L.jsxs)(ab.A,{children:[(0,L.jsx)(H.A,{content:"external",target:"_blank",href:"how-to-use?current=angular",children:"How to use this in angular"}),(0,L.jsx)("pre",{children:(0,L.jsx)("code",{className:"hljs language-html",children:`<db-button>
-  button
-  <db-tooltip>Tooltip</db-tooltip></db-button
->`})}),(0,L.jsx)(W.A,{className:"copy-button",noText:!0,icon:e===`<db-button>
-  button
-  <db-tooltip>Tooltip</db-tooltip></db-button
->`?"check":"copy",variant:"ghost",onClick:()=>{a(`<db-button>
-  button
-  <db-tooltip>Tooltip</db-tooltip></db-button
->`),navigator.clipboard.writeText(`<db-button>
-  button
-  <db-tooltip>Tooltip</db-tooltip></db-button
->`)},children:"Copy code"})]}),(0,L.jsxs)(ab.A,{children:[(0,L.jsx)(H.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,L.jsx)("pre",{children:(0,L.jsx)("code",{className:"hljs language-html",children:`<button class="db-button" type="submit">
-  button<i
-    role="tooltip"
-    aria-hidden="true"
-    data-gap="true"
-    class="db-tooltip"
-    id="OVERWRITE_DEFAULT_ID"
-    data-animation="true"
-    data-show-arrow="true"
-    >Tooltip</i
-  >
-</button>`})}),(0,L.jsx)(W.A,{className:"copy-button",noText:!0,icon:e===`<button class="db-button" type="submit">
-  button<i
-    role="tooltip"
-    aria-hidden="true"
-    data-gap="true"
-    class="db-tooltip"
-    id="OVERWRITE_DEFAULT_ID"
-    data-animation="true"
-    data-show-arrow="true"
-    >Tooltip</i
-  >
-</button>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<button class="db-button" type="submit">
-  button<i
-    role="tooltip"
-    aria-hidden="true"
-    data-gap="true"
-    class="db-tooltip"
-    id="OVERWRITE_DEFAULT_ID"
-    data-animation="true"
-    data-show-arrow="true"
-    >Tooltip</i
-  >
-</button>`),navigator.clipboard.writeText(`<button class="db-button" type="submit">
-  button<i
-    role="tooltip"
-    aria-hidden="true"
-    data-gap="true"
-    class="db-tooltip"
-    id="OVERWRITE_DEFAULT_ID"
-    data-animation="true"
-    data-show-arrow="true"
-    >Tooltip</i
-  >
-</button>`)},children:"Copy code"})]}),(0,L.jsxs)(ab.A,{children:[(0,L.jsx)(H.A,{content:"external",target:"_blank",href:"how-to-use?current=react",children:"How to use this in react"}),(0,L.jsx)("pre",{children:(0,L.jsx)("code",{className:"hljs language-tsx",children:`<DBButton>
-  button
-  <DBTooltip>Tooltip</DBTooltip>
-</DBButton>`})}),(0,L.jsx)(W.A,{className:"copy-button",noText:!0,icon:e===`<DBButton>
-  button
-  <DBTooltip>Tooltip</DBTooltip>
-</DBButton>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<DBButton>
-  button
-  <DBTooltip>Tooltip</DBTooltip>
-</DBButton>`),navigator.clipboard.writeText(`<DBButton>
-  button
-  <DBTooltip>Tooltip</DBTooltip>
-</DBButton>`)},children:"Copy code"})]}),(0,L.jsxs)(ab.A,{children:[(0,L.jsx)(H.A,{content:"external",target:"_blank",href:"how-to-use?current=vue",children:"How to use this in vue"}),(0,L.jsx)("pre",{children:(0,L.jsx)("code",{className:"hljs language-tsx",children:`<DBButton>
-button
-<DBTooltip >Tooltip</DBTooltip></DBButton>`})}),(0,L.jsx)(W.A,{className:"copy-button",noText:!0,icon:e===`<DBButton>
-button
-<DBTooltip >Tooltip</DBTooltip></DBButton>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<DBButton>
-button
-<DBTooltip >Tooltip</DBTooltip></DBButton>`),navigator.clipboard.writeText(`<DBButton>
-button
-<DBTooltip >Tooltip</DBTooltip></DBButton>`)},children:"Copy code"})]})]},t())}),(0,L.jsx)(_.A,{className:"tab-container",children:(0,L.jsxs)(ah.A,{initialSelectedIndex:t(),children:[(0,L.jsxs)(ac.A,{children:[(0,L.jsx)(ad.A,{children:"Angular"}),(0,L.jsx)(ad.A,{children:"HTML"}),(0,L.jsx)(ad.A,{children:"React"}),(0,L.jsx)(ad.A,{children:"Vue"})]}),(0,L.jsxs)(ab.A,{children:[(0,L.jsx)(H.A,{content:"external",target:"_blank",href:"how-to-use?current=angular",children:"How to use this in angular"}),(0,L.jsx)("pre",{children:(0,L.jsx)("code",{className:"hljs language-html",children:`<db-button>
-  button
-  <db-tooltip>Tooltip</db-tooltip></db-button
->`})}),(0,L.jsx)(W.A,{className:"copy-button",noText:!0,icon:e===`<db-button>
-  button
-  <db-tooltip>Tooltip</db-tooltip></db-button
->`?"check":"copy",variant:"ghost",onClick:()=>{a(`<db-button>
-  button
-  <db-tooltip>Tooltip</db-tooltip></db-button
->`),navigator.clipboard.writeText(`<db-button>
-  button
-  <db-tooltip>Tooltip</db-tooltip></db-button
->`)},children:"Copy code"})]}),(0,L.jsxs)(ab.A,{children:[(0,L.jsx)(H.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,L.jsx)("pre",{children:(0,L.jsx)("code",{className:"hljs language-html",children:`<button class="db-button" type="submit">
-  button<i
-    role="tooltip"
-    aria-hidden="true"
-    data-gap="true"
-    class="db-tooltip"
-    id="OVERWRITE_DEFAULT_ID"
-    data-animation="true"
-    data-show-arrow="true"
-    >Tooltip</i
-  >
-</button>`})}),(0,L.jsx)(W.A,{className:"copy-button",noText:!0,icon:e===`<button class="db-button" type="submit">
-  button<i
-    role="tooltip"
-    aria-hidden="true"
-    data-gap="true"
-    class="db-tooltip"
-    id="OVERWRITE_DEFAULT_ID"
-    data-animation="true"
-    data-show-arrow="true"
-    >Tooltip</i
-  >
-</button>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<button class="db-button" type="submit">
-  button<i
-    role="tooltip"
-    aria-hidden="true"
-    data-gap="true"
-    class="db-tooltip"
-    id="OVERWRITE_DEFAULT_ID"
-    data-animation="true"
-    data-show-arrow="true"
-    >Tooltip</i
-  >
-</button>`),navigator.clipboard.writeText(`<button class="db-button" type="submit">
-  button<i
-    role="tooltip"
-    aria-hidden="true"
-    data-gap="true"
-    class="db-tooltip"
-    id="OVERWRITE_DEFAULT_ID"
-    data-animation="true"
-    data-show-arrow="true"
-    >Tooltip</i
-  >
-</button>`)},children:"Copy code"})]}),(0,L.jsxs)(ab.A,{children:[(0,L.jsx)(H.A,{content:"external",target:"_blank",href:"how-to-use?current=react",children:"How to use this in react"}),(0,L.jsx)("pre",{children:(0,L.jsx)("code",{className:"hljs language-tsx",children:`<DBButton>
-  button
-  <DBTooltip>Tooltip</DBTooltip>
-</DBButton>`})}),(0,L.jsx)(W.A,{className:"copy-button",noText:!0,icon:e===`<DBButton>
-  button
-  <DBTooltip>Tooltip</DBTooltip>
-</DBButton>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<DBButton>
-  button
-  <DBTooltip>Tooltip</DBTooltip>
-</DBButton>`),navigator.clipboard.writeText(`<DBButton>
-  button
-  <DBTooltip>Tooltip</DBTooltip>
-</DBButton>`)},children:"Copy code"})]}),(0,L.jsxs)(ab.A,{children:[(0,L.jsx)(H.A,{content:"external",target:"_blank",href:"how-to-use?current=vue",children:"How to use this in vue"}),(0,L.jsx)("pre",{children:(0,L.jsx)("code",{className:"hljs language-tsx",children:`<DBButton>
-button
-<DBTooltip >Tooltip</DBTooltip></DBButton>`})}),(0,L.jsx)(W.A,{className:"copy-button",noText:!0,icon:e===`<DBButton>
-button
-<DBTooltip >Tooltip</DBTooltip></DBButton>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<DBButton>
-button
-<DBTooltip >Tooltip</DBTooltip></DBButton>`),navigator.clipboard.writeText(`<DBButton>
-button
-<DBTooltip >Tooltip</DBTooltip></DBButton>`)},children:"Copy code"})]})]},t())}),(0,L.jsx)(_.A,{className:"tab-container",children:(0,L.jsxs)(ah.A,{initialSelectedIndex:t(),children:[(0,L.jsxs)(ac.A,{children:[(0,L.jsx)(ad.A,{children:"Angular"}),(0,L.jsx)(ad.A,{children:"HTML"}),(0,L.jsx)(ad.A,{children:"React"}),(0,L.jsx)(ad.A,{children:"Vue"})]}),(0,L.jsxs)(ab.A,{children:[(0,L.jsx)(H.A,{content:"external",target:"_blank",href:"how-to-use?current=angular",children:"How to use this in angular"}),(0,L.jsx)("pre",{children:(0,L.jsx)("code",{className:"hljs language-html",children:`<db-button>
-  button
-  <db-tooltip>Tooltip</db-tooltip></db-button
->`})}),(0,L.jsx)(W.A,{className:"copy-button",noText:!0,icon:e===`<db-button>
-  button
-  <db-tooltip>Tooltip</db-tooltip></db-button
->`?"check":"copy",variant:"ghost",onClick:()=>{a(`<db-button>
-  button
-  <db-tooltip>Tooltip</db-tooltip></db-button
->`),navigator.clipboard.writeText(`<db-button>
-  button
-  <db-tooltip>Tooltip</db-tooltip></db-button
->`)},children:"Copy code"})]}),(0,L.jsxs)(ab.A,{children:[(0,L.jsx)(H.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,L.jsx)("pre",{children:(0,L.jsx)("code",{className:"hljs language-html",children:`<button class="db-button" type="submit">
-  button<i
-    role="tooltip"
-    aria-hidden="true"
-    data-gap="true"
-    class="db-tooltip"
-    id="OVERWRITE_DEFAULT_ID"
-    data-animation="true"
-    data-show-arrow="true"
-    >Tooltip</i
-  >
-</button>`})}),(0,L.jsx)(W.A,{className:"copy-button",noText:!0,icon:e===`<button class="db-button" type="submit">
-  button<i
-    role="tooltip"
-    aria-hidden="true"
-    data-gap="true"
-    class="db-tooltip"
-    id="OVERWRITE_DEFAULT_ID"
-    data-animation="true"
-    data-show-arrow="true"
-    >Tooltip</i
-  >
-</button>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<button class="db-button" type="submit">
-  button<i
-    role="tooltip"
-    aria-hidden="true"
-    data-gap="true"
-    class="db-tooltip"
-    id="OVERWRITE_DEFAULT_ID"
-    data-animation="true"
-    data-show-arrow="true"
-    >Tooltip</i
-  >
-</button>`),navigator.clipboard.writeText(`<button class="db-button" type="submit">
-  button<i
-    role="tooltip"
-    aria-hidden="true"
-    data-gap="true"
-    class="db-tooltip"
-    id="OVERWRITE_DEFAULT_ID"
-    data-animation="true"
-    data-show-arrow="true"
-    >Tooltip</i
-  >
-</button>`)},children:"Copy code"})]}),(0,L.jsxs)(ab.A,{children:[(0,L.jsx)(H.A,{content:"external",target:"_blank",href:"how-to-use?current=react",children:"How to use this in react"}),(0,L.jsx)("pre",{children:(0,L.jsx)("code",{className:"hljs language-tsx",children:`<DBButton>
-  button
-  <DBTooltip>Tooltip</DBTooltip>
-</DBButton>`})}),(0,L.jsx)(W.A,{className:"copy-button",noText:!0,icon:e===`<DBButton>
-  button
-  <DBTooltip>Tooltip</DBTooltip>
-</DBButton>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<DBButton>
-  button
-  <DBTooltip>Tooltip</DBTooltip>
-</DBButton>`),navigator.clipboard.writeText(`<DBButton>
-  button
-  <DBTooltip>Tooltip</DBTooltip>
-</DBButton>`)},children:"Copy code"})]}),(0,L.jsxs)(ab.A,{children:[(0,L.jsx)(H.A,{content:"external",target:"_blank",href:"how-to-use?current=vue",children:"How to use this in vue"}),(0,L.jsx)("pre",{children:(0,L.jsx)("code",{className:"hljs language-tsx",children:`<DBButton>
-button
-<DBTooltip >Tooltip</DBTooltip></DBButton>`})}),(0,L.jsx)(W.A,{className:"copy-button",noText:!0,icon:e===`<DBButton>
-button
-<DBTooltip >Tooltip</DBTooltip></DBButton>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<DBButton>
-button
-<DBTooltip >Tooltip</DBTooltip></DBButton>`),navigator.clipboard.writeText(`<DBButton>
-button
-<DBTooltip >Tooltip</DBTooltip></DBButton>`)},children:"Copy code"})]})]},t())}),(0,L.jsx)(_.A,{className:"tab-container",children:(0,L.jsxs)(ah.A,{initialSelectedIndex:t(),children:[(0,L.jsxs)(ac.A,{children:[(0,L.jsx)(ad.A,{children:"Angular"}),(0,L.jsx)(ad.A,{children:"HTML"}),(0,L.jsx)(ad.A,{children:"React"}),(0,L.jsx)(ad.A,{children:"Vue"})]}),(0,L.jsxs)(ab.A,{children:[(0,L.jsx)(H.A,{content:"external",target:"_blank",href:"how-to-use?current=angular",children:"How to use this in angular"}),(0,L.jsx)("pre",{children:(0,L.jsx)("code",{className:"hljs language-html",children:`<db-button>
-  button
-  <db-tooltip>Tooltip</db-tooltip></db-button
->`})}),(0,L.jsx)(W.A,{className:"copy-button",noText:!0,icon:e===`<db-button>
-  button
-  <db-tooltip>Tooltip</db-tooltip></db-button
->`?"check":"copy",variant:"ghost",onClick:()=>{a(`<db-button>
-  button
-  <db-tooltip>Tooltip</db-tooltip></db-button
->`),navigator.clipboard.writeText(`<db-button>
-  button
-  <db-tooltip>Tooltip</db-tooltip></db-button
->`)},children:"Copy code"})]}),(0,L.jsxs)(ab.A,{children:[(0,L.jsx)(H.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,L.jsx)("pre",{children:(0,L.jsx)("code",{className:"hljs language-html",children:`<button class="db-button" type="submit">
-  button<i
-    role="tooltip"
-    aria-hidden="true"
-    data-gap="true"
-    class="db-tooltip"
-    id="OVERWRITE_DEFAULT_ID"
-    data-animation="true"
-    data-show-arrow="true"
-    >Tooltip</i
-  >
-</button>`})}),(0,L.jsx)(W.A,{className:"copy-button",noText:!0,icon:e===`<button class="db-button" type="submit">
-  button<i
-    role="tooltip"
-    aria-hidden="true"
-    data-gap="true"
-    class="db-tooltip"
-    id="OVERWRITE_DEFAULT_ID"
-    data-animation="true"
-    data-show-arrow="true"
-    >Tooltip</i
-  >
-</button>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<button class="db-button" type="submit">
-  button<i
-    role="tooltip"
-    aria-hidden="true"
-    data-gap="true"
-    class="db-tooltip"
-    id="OVERWRITE_DEFAULT_ID"
-    data-animation="true"
-    data-show-arrow="true"
-    >Tooltip</i
-  >
-</button>`),navigator.clipboard.writeText(`<button class="db-button" type="submit">
-  button<i
-    role="tooltip"
-    aria-hidden="true"
-    data-gap="true"
-    class="db-tooltip"
-    id="OVERWRITE_DEFAULT_ID"
-    data-animation="true"
-    data-show-arrow="true"
-    >Tooltip</i
-  >
-</button>`)},children:"Copy code"})]}),(0,L.jsxs)(ab.A,{children:[(0,L.jsx)(H.A,{content:"external",target:"_blank",href:"how-to-use?current=react",children:"How to use this in react"}),(0,L.jsx)("pre",{children:(0,L.jsx)("code",{className:"hljs language-tsx",children:`<DBButton>
-  button
-  <DBTooltip>Tooltip</DBTooltip>
-</DBButton>`})}),(0,L.jsx)(W.A,{className:"copy-button",noText:!0,icon:e===`<DBButton>
-  button
-  <DBTooltip>Tooltip</DBTooltip>
-</DBButton>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<DBButton>
-  button
-  <DBTooltip>Tooltip</DBTooltip>
-</DBButton>`),navigator.clipboard.writeText(`<DBButton>
-  button
-  <DBTooltip>Tooltip</DBTooltip>
-</DBButton>`)},children:"Copy code"})]}),(0,L.jsxs)(ab.A,{children:[(0,L.jsx)(H.A,{content:"external",target:"_blank",href:"how-to-use?current=vue",children:"How to use this in vue"}),(0,L.jsx)("pre",{children:(0,L.jsx)("code",{className:"hljs language-tsx",children:`<DBButton>
-button
-<DBTooltip >Tooltip</DBTooltip></DBButton>`})}),(0,L.jsx)(W.A,{className:"copy-button",noText:!0,icon:e===`<DBButton>
-button
-<DBTooltip >Tooltip</DBTooltip></DBButton>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<DBButton>
-button
-<DBTooltip >Tooltip</DBTooltip></DBButton>`),navigator.clipboard.writeText(`<DBButton>
-button
 <DBTooltip >Tooltip</DBTooltip></DBButton>`)},children:"Copy code"})]})]},t())})]})},i9=()=>{let[e,a]=(0,S.useState)(),{getFrameworkIndex:t}=(0,a_.u)();return(0,S.useEffect)(()=>{e&&setTimeout(()=>a(""),1500)},[e]),(0,L.jsxs)(L.Fragment,{children:[(0,L.jsx)(_.A,{className:"tab-container",children:(0,L.jsxs)(ah.A,{initialSelectedIndex:t(),children:[(0,L.jsxs)(ac.A,{children:[(0,L.jsx)(ad.A,{children:"Angular"}),(0,L.jsx)(ad.A,{children:"HTML"}),(0,L.jsx)(ad.A,{children:"React"}),(0,L.jsx)(ad.A,{children:"Vue"})]}),(0,L.jsxs)(ab.A,{children:[(0,L.jsx)(H.A,{content:"external",target:"_blank",href:"how-to-use?current=angular",children:"How to use this in angular"}),(0,L.jsx)("pre",{children:(0,L.jsx)("code",{className:"hljs language-html",children:`<db-button>
+  button
+  <db-tooltip>Tooltip</db-tooltip></db-button
+>`})}),(0,L.jsx)(W.A,{className:"copy-button",noText:!0,icon:e===`<db-button>
+  button
+  <db-tooltip>Tooltip</db-tooltip></db-button
+>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<db-button>
+  button
+  <db-tooltip>Tooltip</db-tooltip></db-button
+>`),navigator.clipboard.writeText(`<db-button>
+  button
+  <db-tooltip>Tooltip</db-tooltip></db-button
+>`)},children:"Copy code"})]}),(0,L.jsxs)(ab.A,{children:[(0,L.jsx)(H.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,L.jsx)("pre",{children:(0,L.jsx)("code",{className:"hljs language-html",children:`<button class="db-button" type="submit">
+  button<i
+    role="tooltip"
+    aria-hidden="true"
+    data-gap="true"
+    class="db-tooltip"
+    id="OVERWRITE_DEFAULT_ID"
+    data-animation="true"
+    data-show-arrow="true"
+    >Tooltip</i
+  >
+</button>`})}),(0,L.jsx)(W.A,{className:"copy-button",noText:!0,icon:e===`<button class="db-button" type="submit">
+  button<i
+    role="tooltip"
+    aria-hidden="true"
+    data-gap="true"
+    class="db-tooltip"
+    id="OVERWRITE_DEFAULT_ID"
+    data-animation="true"
+    data-show-arrow="true"
+    >Tooltip</i
+  >
+</button>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<button class="db-button" type="submit">
+  button<i
+    role="tooltip"
+    aria-hidden="true"
+    data-gap="true"
+    class="db-tooltip"
+    id="OVERWRITE_DEFAULT_ID"
+    data-animation="true"
+    data-show-arrow="true"
+    >Tooltip</i
+  >
+</button>`),navigator.clipboard.writeText(`<button class="db-button" type="submit">
+  button<i
+    role="tooltip"
+    aria-hidden="true"
+    data-gap="true"
+    class="db-tooltip"
+    id="OVERWRITE_DEFAULT_ID"
+    data-animation="true"
+    data-show-arrow="true"
+    >Tooltip</i
+  >
+</button>`)},children:"Copy code"})]}),(0,L.jsxs)(ab.A,{children:[(0,L.jsx)(H.A,{content:"external",target:"_blank",href:"how-to-use?current=react",children:"How to use this in react"}),(0,L.jsx)("pre",{children:(0,L.jsx)("code",{className:"hljs language-tsx",children:`<DBButton>
+  button
+  <DBTooltip>Tooltip</DBTooltip>
+</DBButton>`})}),(0,L.jsx)(W.A,{className:"copy-button",noText:!0,icon:e===`<DBButton>
+  button
+  <DBTooltip>Tooltip</DBTooltip>
+</DBButton>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<DBButton>
+  button
+  <DBTooltip>Tooltip</DBTooltip>
+</DBButton>`),navigator.clipboard.writeText(`<DBButton>
+  button
+  <DBTooltip>Tooltip</DBTooltip>
+</DBButton>`)},children:"Copy code"})]}),(0,L.jsxs)(ab.A,{children:[(0,L.jsx)(H.A,{content:"external",target:"_blank",href:"how-to-use?current=vue",children:"How to use this in vue"}),(0,L.jsx)("pre",{children:(0,L.jsx)("code",{className:"hljs language-tsx",children:`<DBButton>
+button
+<DBTooltip >Tooltip</DBTooltip></DBButton>`})}),(0,L.jsx)(W.A,{className:"copy-button",noText:!0,icon:e===`<DBButton>
+button
+<DBTooltip >Tooltip</DBTooltip></DBButton>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<DBButton>
+button
+<DBTooltip >Tooltip</DBTooltip></DBButton>`),navigator.clipboard.writeText(`<DBButton>
+button
+<DBTooltip >Tooltip</DBTooltip></DBButton>`)},children:"Copy code"})]})]},t())}),(0,L.jsx)(_.A,{className:"tab-container",children:(0,L.jsxs)(ah.A,{initialSelectedIndex:t(),children:[(0,L.jsxs)(ac.A,{children:[(0,L.jsx)(ad.A,{children:"Angular"}),(0,L.jsx)(ad.A,{children:"HTML"}),(0,L.jsx)(ad.A,{children:"React"}),(0,L.jsx)(ad.A,{children:"Vue"})]}),(0,L.jsxs)(ab.A,{children:[(0,L.jsx)(H.A,{content:"external",target:"_blank",href:"how-to-use?current=angular",children:"How to use this in angular"}),(0,L.jsx)("pre",{children:(0,L.jsx)("code",{className:"hljs language-html",children:`<db-button>
+  button
+  <db-tooltip>Tooltip</db-tooltip></db-button
+>`})}),(0,L.jsx)(W.A,{className:"copy-button",noText:!0,icon:e===`<db-button>
+  button
+  <db-tooltip>Tooltip</db-tooltip></db-button
+>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<db-button>
+  button
+  <db-tooltip>Tooltip</db-tooltip></db-button
+>`),navigator.clipboard.writeText(`<db-button>
+  button
+  <db-tooltip>Tooltip</db-tooltip></db-button
+>`)},children:"Copy code"})]}),(0,L.jsxs)(ab.A,{children:[(0,L.jsx)(H.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,L.jsx)("pre",{children:(0,L.jsx)("code",{className:"hljs language-html",children:`<button class="db-button" type="submit">
+  button<i
+    role="tooltip"
+    aria-hidden="true"
+    data-gap="true"
+    class="db-tooltip"
+    id="OVERWRITE_DEFAULT_ID"
+    data-animation="true"
+    data-show-arrow="true"
+    >Tooltip</i
+  >
+</button>`})}),(0,L.jsx)(W.A,{className:"copy-button",noText:!0,icon:e===`<button class="db-button" type="submit">
+  button<i
+    role="tooltip"
+    aria-hidden="true"
+    data-gap="true"
+    class="db-tooltip"
+    id="OVERWRITE_DEFAULT_ID"
+    data-animation="true"
+    data-show-arrow="true"
+    >Tooltip</i
+  >
+</button>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<button class="db-button" type="submit">
+  button<i
+    role="tooltip"
+    aria-hidden="true"
+    data-gap="true"
+    class="db-tooltip"
+    id="OVERWRITE_DEFAULT_ID"
+    data-animation="true"
+    data-show-arrow="true"
+    >Tooltip</i
+  >
+</button>`),navigator.clipboard.writeText(`<button class="db-button" type="submit">
+  button<i
+    role="tooltip"
+    aria-hidden="true"
+    data-gap="true"
+    class="db-tooltip"
+    id="OVERWRITE_DEFAULT_ID"
+    data-animation="true"
+    data-show-arrow="true"
+    >Tooltip</i
+  >
+</button>`)},children:"Copy code"})]}),(0,L.jsxs)(ab.A,{children:[(0,L.jsx)(H.A,{content:"external",target:"_blank",href:"how-to-use?current=react",children:"How to use this in react"}),(0,L.jsx)("pre",{children:(0,L.jsx)("code",{className:"hljs language-tsx",children:`<DBButton>
+  button
+  <DBTooltip>Tooltip</DBTooltip>
+</DBButton>`})}),(0,L.jsx)(W.A,{className:"copy-button",noText:!0,icon:e===`<DBButton>
+  button
+  <DBTooltip>Tooltip</DBTooltip>
+</DBButton>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<DBButton>
+  button
+  <DBTooltip>Tooltip</DBTooltip>
+</DBButton>`),navigator.clipboard.writeText(`<DBButton>
+  button
+  <DBTooltip>Tooltip</DBTooltip>
+</DBButton>`)},children:"Copy code"})]}),(0,L.jsxs)(ab.A,{children:[(0,L.jsx)(H.A,{content:"external",target:"_blank",href:"how-to-use?current=vue",children:"How to use this in vue"}),(0,L.jsx)("pre",{children:(0,L.jsx)("code",{className:"hljs language-tsx",children:`<DBButton>
+button
+<DBTooltip >Tooltip</DBTooltip></DBButton>`})}),(0,L.jsx)(W.A,{className:"copy-button",noText:!0,icon:e===`<DBButton>
+button
+<DBTooltip >Tooltip</DBTooltip></DBButton>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<DBButton>
+button
+<DBTooltip >Tooltip</DBTooltip></DBButton>`),navigator.clipboard.writeText(`<DBButton>
+button
+<DBTooltip >Tooltip</DBTooltip></DBButton>`)},children:"Copy code"})]})]},t())}),(0,L.jsx)(_.A,{className:"tab-container",children:(0,L.jsxs)(ah.A,{initialSelectedIndex:t(),children:[(0,L.jsxs)(ac.A,{children:[(0,L.jsx)(ad.A,{children:"Angular"}),(0,L.jsx)(ad.A,{children:"HTML"}),(0,L.jsx)(ad.A,{children:"React"}),(0,L.jsx)(ad.A,{children:"Vue"})]}),(0,L.jsxs)(ab.A,{children:[(0,L.jsx)(H.A,{content:"external",target:"_blank",href:"how-to-use?current=angular",children:"How to use this in angular"}),(0,L.jsx)("pre",{children:(0,L.jsx)("code",{className:"hljs language-html",children:`<db-button>
+  button
+  <db-tooltip>Tooltip</db-tooltip></db-button
+>`})}),(0,L.jsx)(W.A,{className:"copy-button",noText:!0,icon:e===`<db-button>
+  button
+  <db-tooltip>Tooltip</db-tooltip></db-button
+>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<db-button>
+  button
+  <db-tooltip>Tooltip</db-tooltip></db-button
+>`),navigator.clipboard.writeText(`<db-button>
+  button
+  <db-tooltip>Tooltip</db-tooltip></db-button
+>`)},children:"Copy code"})]}),(0,L.jsxs)(ab.A,{children:[(0,L.jsx)(H.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,L.jsx)("pre",{children:(0,L.jsx)("code",{className:"hljs language-html",children:`<button class="db-button" type="submit">
+  button<i
+    role="tooltip"
+    aria-hidden="true"
+    data-gap="true"
+    class="db-tooltip"
+    id="OVERWRITE_DEFAULT_ID"
+    data-animation="true"
+    data-show-arrow="true"
+    >Tooltip</i
+  >
+</button>`})}),(0,L.jsx)(W.A,{className:"copy-button",noText:!0,icon:e===`<button class="db-button" type="submit">
+  button<i
+    role="tooltip"
+    aria-hidden="true"
+    data-gap="true"
+    class="db-tooltip"
+    id="OVERWRITE_DEFAULT_ID"
+    data-animation="true"
+    data-show-arrow="true"
+    >Tooltip</i
+  >
+</button>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<button class="db-button" type="submit">
+  button<i
+    role="tooltip"
+    aria-hidden="true"
+    data-gap="true"
+    class="db-tooltip"
+    id="OVERWRITE_DEFAULT_ID"
+    data-animation="true"
+    data-show-arrow="true"
+    >Tooltip</i
+  >
+</button>`),navigator.clipboard.writeText(`<button class="db-button" type="submit">
+  button<i
+    role="tooltip"
+    aria-hidden="true"
+    data-gap="true"
+    class="db-tooltip"
+    id="OVERWRITE_DEFAULT_ID"
+    data-animation="true"
+    data-show-arrow="true"
+    >Tooltip</i
+  >
+</button>`)},children:"Copy code"})]}),(0,L.jsxs)(ab.A,{children:[(0,L.jsx)(H.A,{content:"external",target:"_blank",href:"how-to-use?current=react",children:"How to use this in react"}),(0,L.jsx)("pre",{children:(0,L.jsx)("code",{className:"hljs language-tsx",children:`<DBButton>
+  button
+  <DBTooltip>Tooltip</DBTooltip>
+</DBButton>`})}),(0,L.jsx)(W.A,{className:"copy-button",noText:!0,icon:e===`<DBButton>
+  button
+  <DBTooltip>Tooltip</DBTooltip>
+</DBButton>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<DBButton>
+  button
+  <DBTooltip>Tooltip</DBTooltip>
+</DBButton>`),navigator.clipboard.writeText(`<DBButton>
+  button
+  <DBTooltip>Tooltip</DBTooltip>
+</DBButton>`)},children:"Copy code"})]}),(0,L.jsxs)(ab.A,{children:[(0,L.jsx)(H.A,{content:"external",target:"_blank",href:"how-to-use?current=vue",children:"How to use this in vue"}),(0,L.jsx)("pre",{children:(0,L.jsx)("code",{className:"hljs language-tsx",children:`<DBButton>
+button
+<DBTooltip >Tooltip</DBTooltip></DBButton>`})}),(0,L.jsx)(W.A,{className:"copy-button",noText:!0,icon:e===`<DBButton>
+button
+<DBTooltip >Tooltip</DBTooltip></DBButton>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<DBButton>
+button
+<DBTooltip >Tooltip</DBTooltip></DBButton>`),navigator.clipboard.writeText(`<DBButton>
+button
+<DBTooltip >Tooltip</DBTooltip></DBButton>`)},children:"Copy code"})]})]},t())}),(0,L.jsx)(_.A,{className:"tab-container",children:(0,L.jsxs)(ah.A,{initialSelectedIndex:t(),children:[(0,L.jsxs)(ac.A,{children:[(0,L.jsx)(ad.A,{children:"Angular"}),(0,L.jsx)(ad.A,{children:"HTML"}),(0,L.jsx)(ad.A,{children:"React"}),(0,L.jsx)(ad.A,{children:"Vue"})]}),(0,L.jsxs)(ab.A,{children:[(0,L.jsx)(H.A,{content:"external",target:"_blank",href:"how-to-use?current=angular",children:"How to use this in angular"}),(0,L.jsx)("pre",{children:(0,L.jsx)("code",{className:"hljs language-html",children:`<db-button>
+  button
+  <db-tooltip>Tooltip</db-tooltip></db-button
+>`})}),(0,L.jsx)(W.A,{className:"copy-button",noText:!0,icon:e===`<db-button>
+  button
+  <db-tooltip>Tooltip</db-tooltip></db-button
+>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<db-button>
+  button
+  <db-tooltip>Tooltip</db-tooltip></db-button
+>`),navigator.clipboard.writeText(`<db-button>
+  button
+  <db-tooltip>Tooltip</db-tooltip></db-button
+>`)},children:"Copy code"})]}),(0,L.jsxs)(ab.A,{children:[(0,L.jsx)(H.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,L.jsx)("pre",{children:(0,L.jsx)("code",{className:"hljs language-html",children:`<button class="db-button" type="submit">
+  button<i
+    role="tooltip"
+    aria-hidden="true"
+    data-gap="true"
+    class="db-tooltip"
+    id="OVERWRITE_DEFAULT_ID"
+    data-animation="true"
+    data-show-arrow="true"
+    >Tooltip</i
+  >
+</button>`})}),(0,L.jsx)(W.A,{className:"copy-button",noText:!0,icon:e===`<button class="db-button" type="submit">
+  button<i
+    role="tooltip"
+    aria-hidden="true"
+    data-gap="true"
+    class="db-tooltip"
+    id="OVERWRITE_DEFAULT_ID"
+    data-animation="true"
+    data-show-arrow="true"
+    >Tooltip</i
+  >
+</button>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<button class="db-button" type="submit">
+  button<i
+    role="tooltip"
+    aria-hidden="true"
+    data-gap="true"
+    class="db-tooltip"
+    id="OVERWRITE_DEFAULT_ID"
+    data-animation="true"
+    data-show-arrow="true"
+    >Tooltip</i
+  >
+</button>`),navigator.clipboard.writeText(`<button class="db-button" type="submit">
+  button<i
+    role="tooltip"
+    aria-hidden="true"
+    data-gap="true"
+    class="db-tooltip"
+    id="OVERWRITE_DEFAULT_ID"
+    data-animation="true"
+    data-show-arrow="true"
+    >Tooltip</i
+  >
+</button>`)},children:"Copy code"})]}),(0,L.jsxs)(ab.A,{children:[(0,L.jsx)(H.A,{content:"external",target:"_blank",href:"how-to-use?current=react",children:"How to use this in react"}),(0,L.jsx)("pre",{children:(0,L.jsx)("code",{className:"hljs language-tsx",children:`<DBButton>
+  button
+  <DBTooltip>Tooltip</DBTooltip>
+</DBButton>`})}),(0,L.jsx)(W.A,{className:"copy-button",noText:!0,icon:e===`<DBButton>
+  button
+  <DBTooltip>Tooltip</DBTooltip>
+</DBButton>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<DBButton>
+  button
+  <DBTooltip>Tooltip</DBTooltip>
+</DBButton>`),navigator.clipboard.writeText(`<DBButton>
+  button
+  <DBTooltip>Tooltip</DBTooltip>
+</DBButton>`)},children:"Copy code"})]}),(0,L.jsxs)(ab.A,{children:[(0,L.jsx)(H.A,{content:"external",target:"_blank",href:"how-to-use?current=vue",children:"How to use this in vue"}),(0,L.jsx)("pre",{children:(0,L.jsx)("code",{className:"hljs language-tsx",children:`<DBButton>
+button
+<DBTooltip >Tooltip</DBTooltip></DBButton>`})}),(0,L.jsx)(W.A,{className:"copy-button",noText:!0,icon:e===`<DBButton>
+button
+<DBTooltip >Tooltip</DBTooltip></DBButton>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<DBButton>
+button
+<DBTooltip >Tooltip</DBTooltip></DBButton>`),navigator.clipboard.writeText(`<DBButton>
+button
+<DBTooltip >Tooltip</DBTooltip></DBButton>`)},children:"Copy code"})]})]},t())}),(0,L.jsx)(_.A,{className:"tab-container",children:(0,L.jsxs)(ah.A,{initialSelectedIndex:t(),children:[(0,L.jsxs)(ac.A,{children:[(0,L.jsx)(ad.A,{children:"Angular"}),(0,L.jsx)(ad.A,{children:"HTML"}),(0,L.jsx)(ad.A,{children:"React"}),(0,L.jsx)(ad.A,{children:"Vue"})]}),(0,L.jsxs)(ab.A,{children:[(0,L.jsx)(H.A,{content:"external",target:"_blank",href:"how-to-use?current=angular",children:"How to use this in angular"}),(0,L.jsx)("pre",{children:(0,L.jsx)("code",{className:"hljs language-html",children:`<db-button>
+  button
+  <db-tooltip>Tooltip</db-tooltip></db-button
+>`})}),(0,L.jsx)(W.A,{className:"copy-button",noText:!0,icon:e===`<db-button>
+  button
+  <db-tooltip>Tooltip</db-tooltip></db-button
+>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<db-button>
+  button
+  <db-tooltip>Tooltip</db-tooltip></db-button
+>`),navigator.clipboard.writeText(`<db-button>
+  button
+  <db-tooltip>Tooltip</db-tooltip></db-button
+>`)},children:"Copy code"})]}),(0,L.jsxs)(ab.A,{children:[(0,L.jsx)(H.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,L.jsx)("pre",{children:(0,L.jsx)("code",{className:"hljs language-html",children:`<button class="db-button" type="submit">
+  button<i
+    role="tooltip"
+    aria-hidden="true"
+    data-gap="true"
+    class="db-tooltip"
+    id="OVERWRITE_DEFAULT_ID"
+    data-animation="true"
+    data-show-arrow="true"
+    >Tooltip</i
+  >
+</button>`})}),(0,L.jsx)(W.A,{className:"copy-button",noText:!0,icon:e===`<button class="db-button" type="submit">
+  button<i
+    role="tooltip"
+    aria-hidden="true"
+    data-gap="true"
+    class="db-tooltip"
+    id="OVERWRITE_DEFAULT_ID"
+    data-animation="true"
+    data-show-arrow="true"
+    >Tooltip</i
+  >
+</button>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<button class="db-button" type="submit">
+  button<i
+    role="tooltip"
+    aria-hidden="true"
+    data-gap="true"
+    class="db-tooltip"
+    id="OVERWRITE_DEFAULT_ID"
+    data-animation="true"
+    data-show-arrow="true"
+    >Tooltip</i
+  >
+</button>`),navigator.clipboard.writeText(`<button class="db-button" type="submit">
+  button<i
+    role="tooltip"
+    aria-hidden="true"
+    data-gap="true"
+    class="db-tooltip"
+    id="OVERWRITE_DEFAULT_ID"
+    data-animation="true"
+    data-show-arrow="true"
+    >Tooltip</i
+  >
+</button>`)},children:"Copy code"})]}),(0,L.jsxs)(ab.A,{children:[(0,L.jsx)(H.A,{content:"external",target:"_blank",href:"how-to-use?current=react",children:"How to use this in react"}),(0,L.jsx)("pre",{children:(0,L.jsx)("code",{className:"hljs language-tsx",children:`<DBButton>
+  button
+  <DBTooltip>Tooltip</DBTooltip>
+</DBButton>`})}),(0,L.jsx)(W.A,{className:"copy-button",noText:!0,icon:e===`<DBButton>
+  button
+  <DBTooltip>Tooltip</DBTooltip>
+</DBButton>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<DBButton>
+  button
+  <DBTooltip>Tooltip</DBTooltip>
+</DBButton>`),navigator.clipboard.writeText(`<DBButton>
+  button
+  <DBTooltip>Tooltip</DBTooltip>
+</DBButton>`)},children:"Copy code"})]}),(0,L.jsxs)(ab.A,{children:[(0,L.jsx)(H.A,{content:"external",target:"_blank",href:"how-to-use?current=vue",children:"How to use this in vue"}),(0,L.jsx)("pre",{children:(0,L.jsx)("code",{className:"hljs language-tsx",children:`<DBButton>
+button
+<DBTooltip >Tooltip</DBTooltip></DBButton>`})}),(0,L.jsx)(W.A,{className:"copy-button",noText:!0,icon:e===`<DBButton>
+button
+<DBTooltip >Tooltip</DBTooltip></DBButton>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<DBButton>
+button
+<DBTooltip >Tooltip</DBTooltip></DBButton>`),navigator.clipboard.writeText(`<DBButton>
+button
+<DBTooltip >Tooltip</DBTooltip></DBButton>`)},children:"Copy code"})]})]},t())}),(0,L.jsx)(_.A,{className:"tab-container",children:(0,L.jsxs)(ah.A,{initialSelectedIndex:t(),children:[(0,L.jsxs)(ac.A,{children:[(0,L.jsx)(ad.A,{children:"Angular"}),(0,L.jsx)(ad.A,{children:"HTML"}),(0,L.jsx)(ad.A,{children:"React"}),(0,L.jsx)(ad.A,{children:"Vue"})]}),(0,L.jsxs)(ab.A,{children:[(0,L.jsx)(H.A,{content:"external",target:"_blank",href:"how-to-use?current=angular",children:"How to use this in angular"}),(0,L.jsx)("pre",{children:(0,L.jsx)("code",{className:"hljs language-html",children:`<db-button>
+  button
+  <db-tooltip>Tooltip</db-tooltip></db-button
+>`})}),(0,L.jsx)(W.A,{className:"copy-button",noText:!0,icon:e===`<db-button>
+  button
+  <db-tooltip>Tooltip</db-tooltip></db-button
+>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<db-button>
+  button
+  <db-tooltip>Tooltip</db-tooltip></db-button
+>`),navigator.clipboard.writeText(`<db-button>
+  button
+  <db-tooltip>Tooltip</db-tooltip></db-button
+>`)},children:"Copy code"})]}),(0,L.jsxs)(ab.A,{children:[(0,L.jsx)(H.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,L.jsx)("pre",{children:(0,L.jsx)("code",{className:"hljs language-html",children:`<button class="db-button" type="submit">
+  button<i
+    role="tooltip"
+    aria-hidden="true"
+    data-gap="true"
+    class="db-tooltip"
+    id="OVERWRITE_DEFAULT_ID"
+    data-animation="true"
+    data-show-arrow="true"
+    >Tooltip</i
+  >
+</button>`})}),(0,L.jsx)(W.A,{className:"copy-button",noText:!0,icon:e===`<button class="db-button" type="submit">
+  button<i
+    role="tooltip"
+    aria-hidden="true"
+    data-gap="true"
+    class="db-tooltip"
+    id="OVERWRITE_DEFAULT_ID"
+    data-animation="true"
+    data-show-arrow="true"
+    >Tooltip</i
+  >
+</button>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<button class="db-button" type="submit">
+  button<i
+    role="tooltip"
+    aria-hidden="true"
+    data-gap="true"
+    class="db-tooltip"
+    id="OVERWRITE_DEFAULT_ID"
+    data-animation="true"
+    data-show-arrow="true"
+    >Tooltip</i
+  >
+</button>`),navigator.clipboard.writeText(`<button class="db-button" type="submit">
+  button<i
+    role="tooltip"
+    aria-hidden="true"
+    data-gap="true"
+    class="db-tooltip"
+    id="OVERWRITE_DEFAULT_ID"
+    data-animation="true"
+    data-show-arrow="true"
+    >Tooltip</i
+  >
+</button>`)},children:"Copy code"})]}),(0,L.jsxs)(ab.A,{children:[(0,L.jsx)(H.A,{content:"external",target:"_blank",href:"how-to-use?current=react",children:"How to use this in react"}),(0,L.jsx)("pre",{children:(0,L.jsx)("code",{className:"hljs language-tsx",children:`<DBButton>
+  button
+  <DBTooltip>Tooltip</DBTooltip>
+</DBButton>`})}),(0,L.jsx)(W.A,{className:"copy-button",noText:!0,icon:e===`<DBButton>
+  button
+  <DBTooltip>Tooltip</DBTooltip>
+</DBButton>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<DBButton>
+  button
+  <DBTooltip>Tooltip</DBTooltip>
+</DBButton>`),navigator.clipboard.writeText(`<DBButton>
+  button
+  <DBTooltip>Tooltip</DBTooltip>
+</DBButton>`)},children:"Copy code"})]}),(0,L.jsxs)(ab.A,{children:[(0,L.jsx)(H.A,{content:"external",target:"_blank",href:"how-to-use?current=vue",children:"How to use this in vue"}),(0,L.jsx)("pre",{children:(0,L.jsx)("code",{className:"hljs language-tsx",children:`<DBButton>
+button
+<DBTooltip >Tooltip</DBTooltip></DBButton>`})}),(0,L.jsx)(W.A,{className:"copy-button",noText:!0,icon:e===`<DBButton>
+button
+<DBTooltip >Tooltip</DBTooltip></DBButton>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<DBButton>
+button
+<DBTooltip >Tooltip</DBTooltip></DBButton>`),navigator.clipboard.writeText(`<DBButton>
+button
+<DBTooltip >Tooltip</DBTooltip></DBButton>`)},children:"Copy code"})]})]},t())}),(0,L.jsx)(_.A,{className:"tab-container",children:(0,L.jsxs)(ah.A,{initialSelectedIndex:t(),children:[(0,L.jsxs)(ac.A,{children:[(0,L.jsx)(ad.A,{children:"Angular"}),(0,L.jsx)(ad.A,{children:"HTML"}),(0,L.jsx)(ad.A,{children:"React"}),(0,L.jsx)(ad.A,{children:"Vue"})]}),(0,L.jsxs)(ab.A,{children:[(0,L.jsx)(H.A,{content:"external",target:"_blank",href:"how-to-use?current=angular",children:"How to use this in angular"}),(0,L.jsx)("pre",{children:(0,L.jsx)("code",{className:"hljs language-html",children:`<db-button>
+  button
+  <db-tooltip>Tooltip</db-tooltip></db-button
+>`})}),(0,L.jsx)(W.A,{className:"copy-button",noText:!0,icon:e===`<db-button>
+  button
+  <db-tooltip>Tooltip</db-tooltip></db-button
+>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<db-button>
+  button
+  <db-tooltip>Tooltip</db-tooltip></db-button
+>`),navigator.clipboard.writeText(`<db-button>
+  button
+  <db-tooltip>Tooltip</db-tooltip></db-button
+>`)},children:"Copy code"})]}),(0,L.jsxs)(ab.A,{children:[(0,L.jsx)(H.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,L.jsx)("pre",{children:(0,L.jsx)("code",{className:"hljs language-html",children:`<button class="db-button" type="submit">
+  button<i
+    role="tooltip"
+    aria-hidden="true"
+    data-gap="true"
+    class="db-tooltip"
+    id="OVERWRITE_DEFAULT_ID"
+    data-animation="true"
+    data-show-arrow="true"
+    >Tooltip</i
+  >
+</button>`})}),(0,L.jsx)(W.A,{className:"copy-button",noText:!0,icon:e===`<button class="db-button" type="submit">
+  button<i
+    role="tooltip"
+    aria-hidden="true"
+    data-gap="true"
+    class="db-tooltip"
+    id="OVERWRITE_DEFAULT_ID"
+    data-animation="true"
+    data-show-arrow="true"
+    >Tooltip</i
+  >
+</button>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<button class="db-button" type="submit">
+  button<i
+    role="tooltip"
+    aria-hidden="true"
+    data-gap="true"
+    class="db-tooltip"
+    id="OVERWRITE_DEFAULT_ID"
+    data-animation="true"
+    data-show-arrow="true"
+    >Tooltip</i
+  >
+</button>`),navigator.clipboard.writeText(`<button class="db-button" type="submit">
+  button<i
+    role="tooltip"
+    aria-hidden="true"
+    data-gap="true"
+    class="db-tooltip"
+    id="OVERWRITE_DEFAULT_ID"
+    data-animation="true"
+    data-show-arrow="true"
+    >Tooltip</i
+  >
+</button>`)},children:"Copy code"})]}),(0,L.jsxs)(ab.A,{children:[(0,L.jsx)(H.A,{content:"external",target:"_blank",href:"how-to-use?current=react",children:"How to use this in react"}),(0,L.jsx)("pre",{children:(0,L.jsx)("code",{className:"hljs language-tsx",children:`<DBButton>
+  button
+  <DBTooltip>Tooltip</DBTooltip>
+</DBButton>`})}),(0,L.jsx)(W.A,{className:"copy-button",noText:!0,icon:e===`<DBButton>
+  button
+  <DBTooltip>Tooltip</DBTooltip>
+</DBButton>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<DBButton>
+  button
+  <DBTooltip>Tooltip</DBTooltip>
+</DBButton>`),navigator.clipboard.writeText(`<DBButton>
+  button
+  <DBTooltip>Tooltip</DBTooltip>
+</DBButton>`)},children:"Copy code"})]}),(0,L.jsxs)(ab.A,{children:[(0,L.jsx)(H.A,{content:"external",target:"_blank",href:"how-to-use?current=vue",children:"How to use this in vue"}),(0,L.jsx)("pre",{children:(0,L.jsx)("code",{className:"hljs language-tsx",children:`<DBButton>
+button
+<DBTooltip >Tooltip</DBTooltip></DBButton>`})}),(0,L.jsx)(W.A,{className:"copy-button",noText:!0,icon:e===`<DBButton>
+button
+<DBTooltip >Tooltip</DBTooltip></DBButton>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<DBButton>
+button
+<DBTooltip >Tooltip</DBTooltip></DBButton>`),navigator.clipboard.writeText(`<DBButton>
+button
+<DBTooltip >Tooltip</DBTooltip></DBButton>`)},children:"Copy code"})]})]},t())}),(0,L.jsx)(_.A,{className:"tab-container",children:(0,L.jsxs)(ah.A,{initialSelectedIndex:t(),children:[(0,L.jsxs)(ac.A,{children:[(0,L.jsx)(ad.A,{children:"Angular"}),(0,L.jsx)(ad.A,{children:"HTML"}),(0,L.jsx)(ad.A,{children:"React"}),(0,L.jsx)(ad.A,{children:"Vue"})]}),(0,L.jsxs)(ab.A,{children:[(0,L.jsx)(H.A,{content:"external",target:"_blank",href:"how-to-use?current=angular",children:"How to use this in angular"}),(0,L.jsx)("pre",{children:(0,L.jsx)("code",{className:"hljs language-html",children:`<db-button>
+  button
+  <db-tooltip>Tooltip</db-tooltip></db-button
+>`})}),(0,L.jsx)(W.A,{className:"copy-button",noText:!0,icon:e===`<db-button>
+  button
+  <db-tooltip>Tooltip</db-tooltip></db-button
+>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<db-button>
+  button
+  <db-tooltip>Tooltip</db-tooltip></db-button
+>`),navigator.clipboard.writeText(`<db-button>
+  button
+  <db-tooltip>Tooltip</db-tooltip></db-button
+>`)},children:"Copy code"})]}),(0,L.jsxs)(ab.A,{children:[(0,L.jsx)(H.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,L.jsx)("pre",{children:(0,L.jsx)("code",{className:"hljs language-html",children:`<button class="db-button" type="submit">
+  button<i
+    role="tooltip"
+    aria-hidden="true"
+    data-gap="true"
+    class="db-tooltip"
+    id="OVERWRITE_DEFAULT_ID"
+    data-animation="true"
+    data-show-arrow="true"
+    >Tooltip</i
+  >
+</button>`})}),(0,L.jsx)(W.A,{className:"copy-button",noText:!0,icon:e===`<button class="db-button" type="submit">
+  button<i
+    role="tooltip"
+    aria-hidden="true"
+    data-gap="true"
+    class="db-tooltip"
+    id="OVERWRITE_DEFAULT_ID"
+    data-animation="true"
+    data-show-arrow="true"
+    >Tooltip</i
+  >
+</button>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<button class="db-button" type="submit">
+  button<i
+    role="tooltip"
+    aria-hidden="true"
+    data-gap="true"
+    class="db-tooltip"
+    id="OVERWRITE_DEFAULT_ID"
+    data-animation="true"
+    data-show-arrow="true"
+    >Tooltip</i
+  >
+</button>`),navigator.clipboard.writeText(`<button class="db-button" type="submit">
+  button<i
+    role="tooltip"
+    aria-hidden="true"
+    data-gap="true"
+    class="db-tooltip"
+    id="OVERWRITE_DEFAULT_ID"
+    data-animation="true"
+    data-show-arrow="true"
+    >Tooltip</i
+  >
+</button>`)},children:"Copy code"})]}),(0,L.jsxs)(ab.A,{children:[(0,L.jsx)(H.A,{content:"external",target:"_blank",href:"how-to-use?current=react",children:"How to use this in react"}),(0,L.jsx)("pre",{children:(0,L.jsx)("code",{className:"hljs language-tsx",children:`<DBButton>
+  button
+  <DBTooltip>Tooltip</DBTooltip>
+</DBButton>`})}),(0,L.jsx)(W.A,{className:"copy-button",noText:!0,icon:e===`<DBButton>
+  button
+  <DBTooltip>Tooltip</DBTooltip>
+</DBButton>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<DBButton>
+  button
+  <DBTooltip>Tooltip</DBTooltip>
+</DBButton>`),navigator.clipboard.writeText(`<DBButton>
+  button
+  <DBTooltip>Tooltip</DBTooltip>
+</DBButton>`)},children:"Copy code"})]}),(0,L.jsxs)(ab.A,{children:[(0,L.jsx)(H.A,{content:"external",target:"_blank",href:"how-to-use?current=vue",children:"How to use this in vue"}),(0,L.jsx)("pre",{children:(0,L.jsx)("code",{className:"hljs language-tsx",children:`<DBButton>
+button
+<DBTooltip >Tooltip</DBTooltip></DBButton>`})}),(0,L.jsx)(W.A,{className:"copy-button",noText:!0,icon:e===`<DBButton>
+button
+<DBTooltip >Tooltip</DBTooltip></DBButton>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<DBButton>
+button
+<DBTooltip >Tooltip</DBTooltip></DBButton>`),navigator.clipboard.writeText(`<DBButton>
+button
+<DBTooltip >Tooltip</DBTooltip></DBButton>`)},children:"Copy code"})]})]},t())}),(0,L.jsx)(_.A,{className:"tab-container",children:(0,L.jsxs)(ah.A,{initialSelectedIndex:t(),children:[(0,L.jsxs)(ac.A,{children:[(0,L.jsx)(ad.A,{children:"Angular"}),(0,L.jsx)(ad.A,{children:"HTML"}),(0,L.jsx)(ad.A,{children:"React"}),(0,L.jsx)(ad.A,{children:"Vue"})]}),(0,L.jsxs)(ab.A,{children:[(0,L.jsx)(H.A,{content:"external",target:"_blank",href:"how-to-use?current=angular",children:"How to use this in angular"}),(0,L.jsx)("pre",{children:(0,L.jsx)("code",{className:"hljs language-html",children:`<db-button>
+  button
+  <db-tooltip>Tooltip</db-tooltip></db-button
+>`})}),(0,L.jsx)(W.A,{className:"copy-button",noText:!0,icon:e===`<db-button>
+  button
+  <db-tooltip>Tooltip</db-tooltip></db-button
+>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<db-button>
+  button
+  <db-tooltip>Tooltip</db-tooltip></db-button
+>`),navigator.clipboard.writeText(`<db-button>
+  button
+  <db-tooltip>Tooltip</db-tooltip></db-button
+>`)},children:"Copy code"})]}),(0,L.jsxs)(ab.A,{children:[(0,L.jsx)(H.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,L.jsx)("pre",{children:(0,L.jsx)("code",{className:"hljs language-html",children:`<button class="db-button" type="submit">
+  button<i
+    role="tooltip"
+    aria-hidden="true"
+    data-gap="true"
+    class="db-tooltip"
+    id="OVERWRITE_DEFAULT_ID"
+    data-animation="true"
+    data-show-arrow="true"
+    >Tooltip</i
+  >
+</button>`})}),(0,L.jsx)(W.A,{className:"copy-button",noText:!0,icon:e===`<button class="db-button" type="submit">
+  button<i
+    role="tooltip"
+    aria-hidden="true"
+    data-gap="true"
+    class="db-tooltip"
+    id="OVERWRITE_DEFAULT_ID"
+    data-animation="true"
+    data-show-arrow="true"
+    >Tooltip</i
+  >
+</button>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<button class="db-button" type="submit">
+  button<i
+    role="tooltip"
+    aria-hidden="true"
+    data-gap="true"
+    class="db-tooltip"
+    id="OVERWRITE_DEFAULT_ID"
+    data-animation="true"
+    data-show-arrow="true"
+    >Tooltip</i
+  >
+</button>`),navigator.clipboard.writeText(`<button class="db-button" type="submit">
+  button<i
+    role="tooltip"
+    aria-hidden="true"
+    data-gap="true"
+    class="db-tooltip"
+    id="OVERWRITE_DEFAULT_ID"
+    data-animation="true"
+    data-show-arrow="true"
+    >Tooltip</i
+  >
+</button>`)},children:"Copy code"})]}),(0,L.jsxs)(ab.A,{children:[(0,L.jsx)(H.A,{content:"external",target:"_blank",href:"how-to-use?current=react",children:"How to use this in react"}),(0,L.jsx)("pre",{children:(0,L.jsx)("code",{className:"hljs language-tsx",children:`<DBButton>
+  button
+  <DBTooltip>Tooltip</DBTooltip>
+</DBButton>`})}),(0,L.jsx)(W.A,{className:"copy-button",noText:!0,icon:e===`<DBButton>
+  button
+  <DBTooltip>Tooltip</DBTooltip>
+</DBButton>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<DBButton>
+  button
+  <DBTooltip>Tooltip</DBTooltip>
+</DBButton>`),navigator.clipboard.writeText(`<DBButton>
+  button
+  <DBTooltip>Tooltip</DBTooltip>
+</DBButton>`)},children:"Copy code"})]}),(0,L.jsxs)(ab.A,{children:[(0,L.jsx)(H.A,{content:"external",target:"_blank",href:"how-to-use?current=vue",children:"How to use this in vue"}),(0,L.jsx)("pre",{children:(0,L.jsx)("code",{className:"hljs language-tsx",children:`<DBButton>
+button
+<DBTooltip >Tooltip</DBTooltip></DBButton>`})}),(0,L.jsx)(W.A,{className:"copy-button",noText:!0,icon:e===`<DBButton>
+button
+<DBTooltip >Tooltip</DBTooltip></DBButton>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<DBButton>
+button
+<DBTooltip >Tooltip</DBTooltip></DBButton>`),navigator.clipboard.writeText(`<DBButton>
+button
+<DBTooltip >Tooltip</DBTooltip></DBButton>`)},children:"Copy code"})]})]},t())}),(0,L.jsx)(_.A,{className:"tab-container",children:(0,L.jsxs)(ah.A,{initialSelectedIndex:t(),children:[(0,L.jsxs)(ac.A,{children:[(0,L.jsx)(ad.A,{children:"Angular"}),(0,L.jsx)(ad.A,{children:"HTML"}),(0,L.jsx)(ad.A,{children:"React"}),(0,L.jsx)(ad.A,{children:"Vue"})]}),(0,L.jsxs)(ab.A,{children:[(0,L.jsx)(H.A,{content:"external",target:"_blank",href:"how-to-use?current=angular",children:"How to use this in angular"}),(0,L.jsx)("pre",{children:(0,L.jsx)("code",{className:"hljs language-html",children:`<db-button>
+  button
+  <db-tooltip>Tooltip</db-tooltip></db-button
+>`})}),(0,L.jsx)(W.A,{className:"copy-button",noText:!0,icon:e===`<db-button>
+  button
+  <db-tooltip>Tooltip</db-tooltip></db-button
+>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<db-button>
+  button
+  <db-tooltip>Tooltip</db-tooltip></db-button
+>`),navigator.clipboard.writeText(`<db-button>
+  button
+  <db-tooltip>Tooltip</db-tooltip></db-button
+>`)},children:"Copy code"})]}),(0,L.jsxs)(ab.A,{children:[(0,L.jsx)(H.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,L.jsx)("pre",{children:(0,L.jsx)("code",{className:"hljs language-html",children:`<button class="db-button" type="submit">
+  button<i
+    role="tooltip"
+    aria-hidden="true"
+    data-gap="true"
+    class="db-tooltip"
+    id="OVERWRITE_DEFAULT_ID"
+    data-animation="true"
+    data-show-arrow="true"
+    >Tooltip</i
+  >
+</button>`})}),(0,L.jsx)(W.A,{className:"copy-button",noText:!0,icon:e===`<button class="db-button" type="submit">
+  button<i
+    role="tooltip"
+    aria-hidden="true"
+    data-gap="true"
+    class="db-tooltip"
+    id="OVERWRITE_DEFAULT_ID"
+    data-animation="true"
+    data-show-arrow="true"
+    >Tooltip</i
+  >
+</button>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<button class="db-button" type="submit">
+  button<i
+    role="tooltip"
+    aria-hidden="true"
+    data-gap="true"
+    class="db-tooltip"
+    id="OVERWRITE_DEFAULT_ID"
+    data-animation="true"
+    data-show-arrow="true"
+    >Tooltip</i
+  >
+</button>`),navigator.clipboard.writeText(`<button class="db-button" type="submit">
+  button<i
+    role="tooltip"
+    aria-hidden="true"
+    data-gap="true"
+    class="db-tooltip"
+    id="OVERWRITE_DEFAULT_ID"
+    data-animation="true"
+    data-show-arrow="true"
+    >Tooltip</i
+  >
+</button>`)},children:"Copy code"})]}),(0,L.jsxs)(ab.A,{children:[(0,L.jsx)(H.A,{content:"external",target:"_blank",href:"how-to-use?current=react",children:"How to use this in react"}),(0,L.jsx)("pre",{children:(0,L.jsx)("code",{className:"hljs language-tsx",children:`<DBButton>
+  button
+  <DBTooltip>Tooltip</DBTooltip>
+</DBButton>`})}),(0,L.jsx)(W.A,{className:"copy-button",noText:!0,icon:e===`<DBButton>
+  button
+  <DBTooltip>Tooltip</DBTooltip>
+</DBButton>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<DBButton>
+  button
+  <DBTooltip>Tooltip</DBTooltip>
+</DBButton>`),navigator.clipboard.writeText(`<DBButton>
+  button
+  <DBTooltip>Tooltip</DBTooltip>
+</DBButton>`)},children:"Copy code"})]}),(0,L.jsxs)(ab.A,{children:[(0,L.jsx)(H.A,{content:"external",target:"_blank",href:"how-to-use?current=vue",children:"How to use this in vue"}),(0,L.jsx)("pre",{children:(0,L.jsx)("code",{className:"hljs language-tsx",children:`<DBButton>
+button
+<DBTooltip >Tooltip</DBTooltip></DBButton>`})}),(0,L.jsx)(W.A,{className:"copy-button",noText:!0,icon:e===`<DBButton>
+button
+<DBTooltip >Tooltip</DBTooltip></DBButton>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<DBButton>
+button
+<DBTooltip >Tooltip</DBTooltip></DBButton>`),navigator.clipboard.writeText(`<DBButton>
+button
+<DBTooltip >Tooltip</DBTooltip></DBButton>`)},children:"Copy code"})]})]},t())}),(0,L.jsx)(_.A,{className:"tab-container",children:(0,L.jsxs)(ah.A,{initialSelectedIndex:t(),children:[(0,L.jsxs)(ac.A,{children:[(0,L.jsx)(ad.A,{children:"Angular"}),(0,L.jsx)(ad.A,{children:"HTML"}),(0,L.jsx)(ad.A,{children:"React"}),(0,L.jsx)(ad.A,{children:"Vue"})]}),(0,L.jsxs)(ab.A,{children:[(0,L.jsx)(H.A,{content:"external",target:"_blank",href:"how-to-use?current=angular",children:"How to use this in angular"}),(0,L.jsx)("pre",{children:(0,L.jsx)("code",{className:"hljs language-html",children:`<db-button>
+  button
+  <db-tooltip>Tooltip</db-tooltip></db-button
+>`})}),(0,L.jsx)(W.A,{className:"copy-button",noText:!0,icon:e===`<db-button>
+  button
+  <db-tooltip>Tooltip</db-tooltip></db-button
+>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<db-button>
+  button
+  <db-tooltip>Tooltip</db-tooltip></db-button
+>`),navigator.clipboard.writeText(`<db-button>
+  button
+  <db-tooltip>Tooltip</db-tooltip></db-button
+>`)},children:"Copy code"})]}),(0,L.jsxs)(ab.A,{children:[(0,L.jsx)(H.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,L.jsx)("pre",{children:(0,L.jsx)("code",{className:"hljs language-html",children:`<button class="db-button" type="submit">
+  button<i
+    role="tooltip"
+    aria-hidden="true"
+    data-gap="true"
+    class="db-tooltip"
+    id="OVERWRITE_DEFAULT_ID"
+    data-animation="true"
+    data-show-arrow="true"
+    >Tooltip</i
+  >
+</button>`})}),(0,L.jsx)(W.A,{className:"copy-button",noText:!0,icon:e===`<button class="db-button" type="submit">
+  button<i
+    role="tooltip"
+    aria-hidden="true"
+    data-gap="true"
+    class="db-tooltip"
+    id="OVERWRITE_DEFAULT_ID"
+    data-animation="true"
+    data-show-arrow="true"
+    >Tooltip</i
+  >
+</button>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<button class="db-button" type="submit">
+  button<i
+    role="tooltip"
+    aria-hidden="true"
+    data-gap="true"
+    class="db-tooltip"
+    id="OVERWRITE_DEFAULT_ID"
+    data-animation="true"
+    data-show-arrow="true"
+    >Tooltip</i
+  >
+</button>`),navigator.clipboard.writeText(`<button class="db-button" type="submit">
+  button<i
+    role="tooltip"
+    aria-hidden="true"
+    data-gap="true"
+    class="db-tooltip"
+    id="OVERWRITE_DEFAULT_ID"
+    data-animation="true"
+    data-show-arrow="true"
+    >Tooltip</i
+  >
+</button>`)},children:"Copy code"})]}),(0,L.jsxs)(ab.A,{children:[(0,L.jsx)(H.A,{content:"external",target:"_blank",href:"how-to-use?current=react",children:"How to use this in react"}),(0,L.jsx)("pre",{children:(0,L.jsx)("code",{className:"hljs language-tsx",children:`<DBButton>
+  button
+  <DBTooltip>Tooltip</DBTooltip>
+</DBButton>`})}),(0,L.jsx)(W.A,{className:"copy-button",noText:!0,icon:e===`<DBButton>
+  button
+  <DBTooltip>Tooltip</DBTooltip>
+</DBButton>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<DBButton>
+  button
+  <DBTooltip>Tooltip</DBTooltip>
+</DBButton>`),navigator.clipboard.writeText(`<DBButton>
+  button
+  <DBTooltip>Tooltip</DBTooltip>
+</DBButton>`)},children:"Copy code"})]}),(0,L.jsxs)(ab.A,{children:[(0,L.jsx)(H.A,{content:"external",target:"_blank",href:"how-to-use?current=vue",children:"How to use this in vue"}),(0,L.jsx)("pre",{children:(0,L.jsx)("code",{className:"hljs language-tsx",children:`<DBButton>
+button
+<DBTooltip >Tooltip</DBTooltip></DBButton>`})}),(0,L.jsx)(W.A,{className:"copy-button",noText:!0,icon:e===`<DBButton>
+button
+<DBTooltip >Tooltip</DBTooltip></DBButton>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<DBButton>
+button
+<DBTooltip >Tooltip</DBTooltip></DBButton>`),navigator.clipboard.writeText(`<DBButton>
+button
+<DBTooltip >Tooltip</DBTooltip></DBButton>`)},children:"Copy code"})]})]},t())}),(0,L.jsx)(_.A,{className:"tab-container",children:(0,L.jsxs)(ah.A,{initialSelectedIndex:t(),children:[(0,L.jsxs)(ac.A,{children:[(0,L.jsx)(ad.A,{children:"Angular"}),(0,L.jsx)(ad.A,{children:"HTML"}),(0,L.jsx)(ad.A,{children:"React"}),(0,L.jsx)(ad.A,{children:"Vue"})]}),(0,L.jsxs)(ab.A,{children:[(0,L.jsx)(H.A,{content:"external",target:"_blank",href:"how-to-use?current=angular",children:"How to use this in angular"}),(0,L.jsx)("pre",{children:(0,L.jsx)("code",{className:"hljs language-html",children:`<db-button>
+  button
+  <db-tooltip>Tooltip</db-tooltip></db-button
+>`})}),(0,L.jsx)(W.A,{className:"copy-button",noText:!0,icon:e===`<db-button>
+  button
+  <db-tooltip>Tooltip</db-tooltip></db-button
+>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<db-button>
+  button
+  <db-tooltip>Tooltip</db-tooltip></db-button
+>`),navigator.clipboard.writeText(`<db-button>
+  button
+  <db-tooltip>Tooltip</db-tooltip></db-button
+>`)},children:"Copy code"})]}),(0,L.jsxs)(ab.A,{children:[(0,L.jsx)(H.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,L.jsx)("pre",{children:(0,L.jsx)("code",{className:"hljs language-html",children:`<button class="db-button" type="submit">
+  button<i
+    role="tooltip"
+    aria-hidden="true"
+    data-gap="true"
+    class="db-tooltip"
+    id="OVERWRITE_DEFAULT_ID"
+    data-animation="true"
+    data-show-arrow="true"
+    >Tooltip</i
+  >
+</button>`})}),(0,L.jsx)(W.A,{className:"copy-button",noText:!0,icon:e===`<button class="db-button" type="submit">
+  button<i
+    role="tooltip"
+    aria-hidden="true"
+    data-gap="true"
+    class="db-tooltip"
+    id="OVERWRITE_DEFAULT_ID"
+    data-animation="true"
+    data-show-arrow="true"
+    >Tooltip</i
+  >
+</button>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<button class="db-button" type="submit">
+  button<i
+    role="tooltip"
+    aria-hidden="true"
+    data-gap="true"
+    class="db-tooltip"
+    id="OVERWRITE_DEFAULT_ID"
+    data-animation="true"
+    data-show-arrow="true"
+    >Tooltip</i
+  >
+</button>`),navigator.clipboard.writeText(`<button class="db-button" type="submit">
+  button<i
+    role="tooltip"
+    aria-hidden="true"
+    data-gap="true"
+    class="db-tooltip"
+    id="OVERWRITE_DEFAULT_ID"
+    data-animation="true"
+    data-show-arrow="true"
+    >Tooltip</i
+  >
+</button>`)},children:"Copy code"})]}),(0,L.jsxs)(ab.A,{children:[(0,L.jsx)(H.A,{content:"external",target:"_blank",href:"how-to-use?current=react",children:"How to use this in react"}),(0,L.jsx)("pre",{children:(0,L.jsx)("code",{className:"hljs language-tsx",children:`<DBButton>
+  button
+  <DBTooltip>Tooltip</DBTooltip>
+</DBButton>`})}),(0,L.jsx)(W.A,{className:"copy-button",noText:!0,icon:e===`<DBButton>
+  button
+  <DBTooltip>Tooltip</DBTooltip>
+</DBButton>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<DBButton>
+  button
+  <DBTooltip>Tooltip</DBTooltip>
+</DBButton>`),navigator.clipboard.writeText(`<DBButton>
+  button
+  <DBTooltip>Tooltip</DBTooltip>
+</DBButton>`)},children:"Copy code"})]}),(0,L.jsxs)(ab.A,{children:[(0,L.jsx)(H.A,{content:"external",target:"_blank",href:"how-to-use?current=vue",children:"How to use this in vue"}),(0,L.jsx)("pre",{children:(0,L.jsx)("code",{className:"hljs language-tsx",children:`<DBButton>
+button
+<DBTooltip >Tooltip</DBTooltip></DBButton>`})}),(0,L.jsx)(W.A,{className:"copy-button",noText:!0,icon:e===`<DBButton>
+button
+<DBTooltip >Tooltip</DBTooltip></DBButton>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<DBButton>
+button
+<DBTooltip >Tooltip</DBTooltip></DBButton>`),navigator.clipboard.writeText(`<DBButton>
+button
+<DBTooltip >Tooltip</DBTooltip></DBButton>`)},children:"Copy code"})]})]},t())})]})},i7=()=>{let[e,a]=(0,S.useState)(),{getFrameworkIndex:t}=(0,a_.u)();return(0,S.useEffect)(()=>{e&&setTimeout(()=>a(""),1500)},[e]),(0,L.jsxs)(L.Fragment,{children:[(0,L.jsx)(_.A,{className:"tab-container",children:(0,L.jsxs)(ah.A,{initialSelectedIndex:t(),children:[(0,L.jsxs)(ac.A,{children:[(0,L.jsx)(ad.A,{children:"Angular"}),(0,L.jsx)(ad.A,{children:"HTML"}),(0,L.jsx)(ad.A,{children:"React"}),(0,L.jsx)(ad.A,{children:"Vue"})]}),(0,L.jsxs)(ab.A,{children:[(0,L.jsx)(H.A,{content:"external",target:"_blank",href:"how-to-use?current=angular",children:"How to use this in angular"}),(0,L.jsx)("pre",{children:(0,L.jsx)("code",{className:"hljs language-html",children:`<db-button>
   button
   <db-tooltip
     >Max width, lorem ipsum dolor sit amet, consetetur sadipscing</db-tooltip
@@ -69958,4 +69958,4 @@ button
 button
 <DBTooltip >Tooltip</DBTooltip></DBButton>`),navigator.clipboard.writeText(`<DBButton>
 button
-<DBTooltip >Tooltip</DBTooltip></DBButton>`)},children:"Copy code"})]})]},t())})]})},la=JSON.parse('[{"label":"Action","name":"action","path":"/components/action","subNavigation":[{"label":"DBButton","name":"button"},{"label":"DBLink","name":"link"}]},{"label":"Data-Display","path":"/components/data-display","name":"data-display","subNavigation":[{"label":"DBBrand","name":"brand"},{"label":"DBTooltip","name":"tooltip"},{"label":"DBInfotext","name":"infotext"},{"label":"DBTag","name":"tag"},{"label":"DBAccordion","name":"accordion","subNavigation":[{"label":"DBAccordionItem Properties","path":"/components/accordion-item/properties"}]},{"label":"DBAccordionItem","name":"accordion-item","isHiddenInMenu":true},{"label":"DBTabs","name":"tabs","subNavigation":[{"label":"DBTabItem Properties","path":"/components/tab-item/properties"}]},{"label":"DBTabItem","name":"tab-item","isHiddenInMenu":true}]},{"label":"Data-Input","path":"/components/data-input","name":"data-input","subNavigation":[{"label":"DBCheckbox","name":"checkbox"},{"label":"DBInput","name":"input"},{"label":"DBCustomSelect","name":"custom-select"},{"label":"DBRadio","name":"radio"},{"label":"DBSelect","name":"select"},{"label":"DBSwitch","name":"switch"},{"label":"DBTextarea","name":"textarea"}]},{"label":"Feedback","path":"/components/feedback","name":"feedback","subNavigation":[{"label":"DBNotification","name":"notification"},{"label":"DBBadge","name":"badge"}]},{"label":"Layout","path":"/components/layout","name":"layout","subNavigation":[{"label":"DBCard","name":"card"},{"label":"DBDivider","name":"divider"},{"label":"DBDrawer","name":"drawer"},{"label":"DBHeader","name":"header"},{"label":"DBSection","name":"section"},{"label":"DBStack","name":"stack"}]},{"label":"Navigation","path":"/components/navigation","name":"navigation","subNavigation":[{"label":"DBNavigation","name":"navigation","subNavigation":[{"label":"DBNavigationItem Properties","path":"/components/navigation-item/properties"}]},{"label":"DBNavigationItem","name":"navigation-item","isHiddenInMenu":true},{"label":"DBBreadcrumb","name":"breadcrumb","subNavigation":[{"label":"DBBreadcrumbItem Properties","path":"/components/breadcrumb-item/properties"}]},{"label":"DBBreadcrumbItem","name":"breadcrumb-item","isHiddenInMenu":true}]},{"label":"Utilities","path":"/components/utilities","name":"utilities","subNavigation":[{"label":"DBPopover","name":"popover"}]}]'),lt={"custom-select":(0,L.jsx)(e=>(0,L.jsx)(er,{title:"DBCustomSelect",variants:ei(eC,eO,e.slotCode)}),{slotCode:u}),stack:(0,L.jsx)(e=>(0,L.jsx)(er,{title:"DBStack",variants:ei(an,ai,e.slotCode)}),{slotCode:T}),button:(0,L.jsx)(function(e){return(0,L.jsxs)(E,{title:"DBButton",isPatternhub:e.isPatternhub,children:[(0,L.jsx)(M,{exampleName:"Density",children:(0,L.jsx)(P,{children:(0,L.jsx)(U,{})})}),(0,L.jsx)(M,{exampleName:"Variant",children:(0,L.jsx)(P,{children:(0,L.jsx)(Q,{})})}),(0,L.jsx)(M,{exampleName:"Disabled",children:(0,L.jsx)(P,{children:(0,L.jsx)(G,{})})}),(0,L.jsx)(M,{exampleName:"Size",children:(0,L.jsx)(P,{children:(0,L.jsx)(K,{})})}),(0,L.jsx)(M,{exampleName:"Show Icon Leading",children:(0,L.jsx)(P,{children:(0,L.jsx)(Z,{})})}),(0,L.jsx)(M,{exampleName:"Show Icon Trailing",children:(0,L.jsx)(P,{children:(0,L.jsx)(Y,{})})}),(0,L.jsx)(M,{exampleName:"No Text",children:(0,L.jsx)(P,{children:(0,L.jsx)(J,{})})}),(0,L.jsx)(M,{exampleName:"Width",children:(0,L.jsx)(P,{children:(0,L.jsx)(X,{})})}),(0,L.jsx)(M,{exampleName:"Multi-line Text With Line Breaks",children:(0,L.jsx)(P,{children:(0,L.jsx)($,{})})})]})},{isPatternhub:!0}),link:(0,L.jsx)(e=>(0,L.jsx)(er,{title:"DBLink",variants:ei(eW,eU,e.slotCode)}),{slotCode:m}),brand:(0,L.jsx)(e=>(0,L.jsx)(er,{title:"DBBrand",variants:ei(eD,eB,e.slotCode)}),{slotCode:o}),tooltip:(0,L.jsx)(e=>(0,L.jsx)(er,{title:"DBTooltip",variants:ei(ay,aT,e.slotCode)}),{slotCode:I}),infotext:(0,L.jsx)(e=>(0,L.jsx)(er,{title:"DBInfotext",variants:ei(eF,eE,e.slotCode)}),{slotCode:x}),tag:(0,L.jsx)(e=>(0,L.jsx)(er,{title:"DBTag",variants:ei(ag,aj,e.slotCode)}),{slotCode:O}),accordion:(0,L.jsx)(e=>(0,L.jsx)("div",{children:(0,L.jsx)(er,{title:"DBAccordion",subComponent:e.subComponent,variants:ei(en,eu,e.slotCode)})}),{slotCode:n,subComponent:(0,L.jsx)(eb,{isSubComponent:!0,componentName:"accordion-item",slotCode:i})}),"accordion-item":(0,L.jsx)(eb,{slotCode:i}),tabs:(0,L.jsx)(e=>(0,L.jsx)(er,{title:"DBTabs",subComponent:e.subComponent,variants:ei(ax,av,e.slotCode)}),{slotCode:C,subComponent:(0,L.jsx)(ap,{isSubComponent:!0,componentName:"tab-item",slotCode:k})}),"tab-item":(0,L.jsx)(ap,{slotCode:k}),checkbox:(0,L.jsx)(e=>(0,L.jsx)(er,{title:"DBCheckbox",variants:ei(eT,eA,e.slotCode)}),{slotCode:r}),input:(0,L.jsx)(e=>(0,L.jsx)(er,{title:"DBInput",variants:ei(eM,eV,e.slotCode)}),{slotCode:v}),radio:(0,L.jsx)(e=>(0,L.jsx)(er,{title:"DBRadio",variants:ei(e4,e5,e.slotCode)}),{slotCode:f}),select:(0,L.jsx)(e=>(0,L.jsx)(er,{title:"DBSelect",variants:ei(ae,aa,e.slotCode)}),{slotCode:y}),switch:(0,L.jsx)(e=>(0,L.jsx)(er,{title:"DBSwitch",variants:ei(ao,as,e.slotCode)}),{slotCode:A}),textarea:(0,L.jsx)(e=>(0,L.jsx)(L.Fragment,{children:(0,L.jsx)(er,{title:"DBTextarea",variants:ei(aB,af,e.slotCode)})}),{slotCode:N}),notification:(0,L.jsx)(e=>(0,L.jsx)(er,{title:"DBNotification",variants:ei(eQ,eX,e.slotCode)}),{slotCode:D}),badge:(0,L.jsx)(e=>(0,L.jsx)(er,{title:"DBBadge",variants:ei(em,eg,e.slotCode)}),{slotCode:l}),card:(0,L.jsx)(e=>(0,L.jsx)(er,{title:"DBCard",variants:ei(ef,ew,e.slotCode)}),{slotCode:d}),divider:(0,L.jsx)(e=>(0,L.jsx)(er,{title:"DBDivider",variants:ei(eN,eI,e.slotCode)}),{slotCode:p}),drawer:(0,L.jsx)(e=>{let[a,t]=(0,S.useState)(void 0);return(0,L.jsx)(er,{title:"DBDrawer",variants:ei(eS,e=>(({id:e,width:a,rounded:t,spacing:n,openDrawer:i,setOpenDrawer:l,direction:o,children:s,backdrop:c,variant:d})=>(0,L.jsxs)("div",{children:[(0,L.jsxs)(W.A,{onClick:()=>{l(e)},children:["Open: ",s]}),(0,L.jsx)(eL.A,{rounded:t,width:a,spacing:n,backdrop:c,direction:o,variant:d,open:i===e,onClose:()=>{l(void 0)},children:s})]}))({...e,openDrawer:a,setOpenDrawer:t}),e.slotCode)})},{slotCode:h}),header:(0,L.jsx)(e=>(0,L.jsx)(er,{title:"DBHeader",variants:ei(eP,eR,e.slotCode)}),{slotCode:b}),section:(0,L.jsx)(e=>(0,L.jsx)(er,{title:"DBSection",variants:ei(e7,e9,e.slotCode)}),{slotCode:w}),navigation:(0,L.jsx)(e=>(0,L.jsx)(er,{title:"DBNavigation",subComponent:e.subComponent,variants:ei(eG,e$,e.slotCode)}),{slotCode:g,subComponent:(0,L.jsx)(eY,{isSubComponent:!0,componentName:"navigation-item",slotCode:j})}),"navigation-item":(0,L.jsx)(eY,{slotCode:j}),popover:(0,L.jsx)(e=>(0,L.jsx)(er,{title:"DBPopover",variants:ei(e1,e2,e.slotCode)}),{slotCode:B}),breadcrumb:(0,L.jsx)(e=>(0,L.jsx)(er,{title:"DBBreadcrumb",subComponent:e.subComponent,variants:ei(aC,aO,e.slotCode)}),{slotCode:s,subComponent:(0,L.jsx)(aS,{isSubComponent:!0,componentName:"breadcrumb-item",slotCode:c})}),"breadcrumb-item":(0,L.jsx)(aS,{slotCode:c})},ln=la.map(e=>({...e,subNavigation:e.subNavigation?.map(e=>({...e,component:e.name?lt[e.name]:void 0}))})),li=[{label:"Home",path:"/"},{label:"Foundations",path:"/foundations",subNavigation:[{label:"Readme",path:"/foundations/readme"},{label:"Colors",path:"/foundations/colors",subNavigation:[{label:"Readme",path:"/foundations/colors/readme"},{label:"Color Schemes",path:"/foundations/colors/color-schemes"},{label:"Color Modes",path:"/foundations/colors/color-modes"}]},{label:"Font Sizes",path:"/foundations/font-sizes",subNavigation:[{label:"Readme",path:"/foundations/font-sizes/readme"},{label:"Overview",path:"/foundations/font-sizes/overview"}]},{label:"Icons",path:"/foundations/icons",subNavigation:[{label:"Readme",path:"/foundations/icons/readme"},{label:"Custom Icons",path:"/foundations/icons/custom-icons"},{label:"Overview",path:"/foundations/icons/overview"}]},{label:"Densities",path:"/foundations/densities",subNavigation:[{label:"Readme",path:"/foundations/densities/readme"},{label:"Examples",path:"/foundations/densities/examples"}]},{label:"Variables",path:"/foundations/variables",subNavigation:[{label:"Readme",path:"/foundations/variables/readme"},{label:"Examples",path:"/foundations/variables/examples"}]},{label:"Testing Overview Table",path:"/foundations/test-table"},{label:"IDE Support",path:"/foundations/ide"},{label:"Performance",path:"/foundations/performance"},{label:"Browser Support",path:"/foundations/browser-support"}]},{label:"Components",path:"/components",subNavigation:[{label:"Readme",path:"/components/readme"},...ln.map(e=>({...e,subNavigation:e?.subNavigation?.map(a=>({label:a.label,path:`/components/${e.name}/${a.name}`,isHiddenInMenu:a.isHiddenInMenu,subNavigation:[{label:"Overview",path:`/components/${e.name}/${a.name}/overview`},{label:"Properties",path:`/components/${e.name}/${a.name}/properties`},{label:"How to use",path:`/components/${e.name}/${a.name}/how-to-use`},{label:"Migration",path:`/components/${e.name}/${a.name}/migration`},...a.subNavigation??[]]}))})),{label:"Misc",path:"/components/misc",subNavigation:[{label:"Router usage",path:"/components/misc/router-usage"},{label:"Creating custom Components",path:"/components/misc/custom-components"},{label:"Testing",path:"/components/misc/testing"},{label:"Validation",path:"/components/misc/validation"},{label:"Backdrop",path:"/components/misc/backdrop"}]}]},{label:"Playgrounds",path:"/foundations/playgrounds"}],ll=(e,a,t,n)=>{for(let i of e)a.push(t?i:{...i,label:n?`${n}:${i.label}`:i.label}),i.subNavigation&&i.subNavigation?.length>0&&ll(i.subNavigation,a,t,t?void 0:i.label)},lo=e=>{let a=[];return ll(li,a,e),a},ls=e=>{let a=lo().filter(e=>!e.subNavigation),t=a.findIndex(a=>a.path===e);return{previous:0===t?void 0:a[t-1],next:t+1===a.length?void 0:a[t+1]}},lc=e=>lo(!0).filter(a=>e.includes(a.path??"")).sort((e,a)=>(e.path?.length??0)-(a.path?.length??0)),ld=()=>ln.filter(({name:e})=>!!e).map(({name:e})=>e)},87184:(e,a,t)=>{t.d(a,{U:()=>d,u:()=>c});var n=t(6029),i=t(55729),l=t(59745);let o=(0,i.createContext)(void 0),s="db-ux-framework",c=()=>{let e=(0,i.useContext)(o);if(!e)throw Error("useFramework must be used within a FrameworkProvider");return e},d=({children:e})=>{let[a,t]=(0,i.useState)(l.z);return(0,i.useEffect)(()=>{if(void 0!==globalThis.window){let e=new URLSearchParams(globalThis.location.search).get("framework");if(e&&["angular","html","react","vue"].includes(e)){t(e),localStorage.setItem(s,e);return}let a=localStorage.getItem(s);a&&["angular","html","react","vue"].includes(a)&&t(a)}},[]),(0,n.jsx)(o.Provider,{value:{framework:a,setFramework:e=>{if(t(e),void 0!==globalThis.window){localStorage.setItem(s,e);let a=new URL(globalThis.location.href);a.searchParams.set("framework",e),globalThis.history.replaceState({},"",a.toString())}},getFrameworkIndex:()=>["angular","html","react","vue"].indexOf(a)},children:e})}}}]);
+<DBTooltip >Tooltip</DBTooltip></DBButton>`)},children:"Copy code"})]})]},t())})]})},la=JSON.parse('[{"label":"Action","name":"action","path":"/components/action","subNavigation":[{"label":"DBButton","name":"button"},{"label":"DBLink","name":"link"}]},{"label":"Data-Display","path":"/components/data-display","name":"data-display","subNavigation":[{"label":"DBBrand","name":"brand"},{"label":"DBTooltip","name":"tooltip"},{"label":"DBInfotext","name":"infotext"},{"label":"DBTag","name":"tag"},{"label":"DBAccordion","name":"accordion","subNavigation":[{"label":"DBAccordionItem Properties","path":"/components/accordion-item/properties"}]},{"label":"DBAccordionItem","name":"accordion-item","isHiddenInMenu":true},{"label":"DBTabs","name":"tabs","subNavigation":[{"label":"DBTabItem Properties","path":"/components/tab-item/properties"}]},{"label":"DBTabItem","name":"tab-item","isHiddenInMenu":true}]},{"label":"Data-Input","path":"/components/data-input","name":"data-input","subNavigation":[{"label":"DBCheckbox","name":"checkbox"},{"label":"DBInput","name":"input"},{"label":"DBCustomSelect","name":"custom-select"},{"label":"DBRadio","name":"radio"},{"label":"DBSelect","name":"select"},{"label":"DBSwitch","name":"switch"},{"label":"DBTextarea","name":"textarea"}]},{"label":"Feedback","path":"/components/feedback","name":"feedback","subNavigation":[{"label":"DBNotification","name":"notification"},{"label":"DBBadge","name":"badge"}]},{"label":"Layout","path":"/components/layout","name":"layout","subNavigation":[{"label":"DBCard","name":"card"},{"label":"DBDivider","name":"divider"},{"label":"DBDrawer","name":"drawer"},{"label":"DBHeader","name":"header"},{"label":"DBSection","name":"section"},{"label":"DBStack","name":"stack"}]},{"label":"Navigation","path":"/components/navigation","name":"navigation","subNavigation":[{"label":"DBNavigation","name":"navigation","subNavigation":[{"label":"DBNavigationItem Properties","path":"/components/navigation-item/properties"}]},{"label":"DBNavigationItem","name":"navigation-item","isHiddenInMenu":true},{"label":"DBBreadcrumb","name":"breadcrumb","subNavigation":[{"label":"DBBreadcrumbItem Properties","path":"/components/breadcrumb-item/properties"}]},{"label":"DBBreadcrumbItem","name":"breadcrumb-item","isHiddenInMenu":true}]},{"label":"Utilities","path":"/components/utilities","name":"utilities","subNavigation":[{"label":"DBPopover","name":"popover"}]}]'),lt={"custom-select":(0,L.jsx)(e=>(0,L.jsx)(er,{title:"DBCustomSelect",variants:ei(eC,eO,e.slotCode)}),{slotCode:u}),stack:(0,L.jsx)(e=>(0,L.jsx)(er,{title:"DBStack",variants:ei(an,ai,e.slotCode)}),{slotCode:T}),button:(0,L.jsx)(function(e){return(0,L.jsxs)(E,{title:"DBButton",isPatternhub:e.isPatternhub,children:[(0,L.jsx)(M,{exampleName:"Density",children:(0,L.jsx)(P,{children:(0,L.jsx)(U,{})})}),(0,L.jsx)(M,{exampleName:"Variant",children:(0,L.jsx)(P,{children:(0,L.jsx)(Q,{})})}),(0,L.jsx)(M,{exampleName:"Disabled",children:(0,L.jsx)(P,{children:(0,L.jsx)(G,{})})}),(0,L.jsx)(M,{exampleName:"Size",children:(0,L.jsx)(P,{children:(0,L.jsx)(K,{})})}),(0,L.jsx)(M,{exampleName:"Show Icon Leading",children:(0,L.jsx)(P,{children:(0,L.jsx)(Z,{})})}),(0,L.jsx)(M,{exampleName:"Show Icon Trailing",children:(0,L.jsx)(P,{children:(0,L.jsx)(Y,{})})}),(0,L.jsx)(M,{exampleName:"No Text",children:(0,L.jsx)(P,{children:(0,L.jsx)(J,{})})}),(0,L.jsx)(M,{exampleName:"Width",children:(0,L.jsx)(P,{children:(0,L.jsx)(X,{})})}),(0,L.jsx)(M,{exampleName:"Multi-line Text With Line Breaks",children:(0,L.jsx)(P,{children:(0,L.jsx)($,{})})})]})},{isPatternhub:!0}),link:(0,L.jsx)(e=>(0,L.jsx)(er,{title:"DBLink",variants:ei(eW,eU,e.slotCode)}),{slotCode:m}),brand:(0,L.jsx)(e=>(0,L.jsx)(er,{title:"DBBrand",variants:ei(eD,eB,e.slotCode)}),{slotCode:o}),tooltip:(0,L.jsx)(e=>(0,L.jsx)(er,{title:"DBTooltip",variants:ei(ay,aT,e.slotCode)}),{slotCode:I}),infotext:(0,L.jsx)(e=>(0,L.jsx)(er,{title:"DBInfotext",variants:ei(eF,eE,e.slotCode)}),{slotCode:x}),tag:(0,L.jsx)(e=>(0,L.jsx)(er,{title:"DBTag",variants:ei(ag,aj,e.slotCode)}),{slotCode:O}),accordion:(0,L.jsx)(e=>(0,L.jsx)("div",{children:(0,L.jsx)(er,{title:"DBAccordion",subComponent:e.subComponent,variants:ei(en,eu,e.slotCode)})}),{slotCode:n,subComponent:(0,L.jsx)(eb,{isSubComponent:!0,componentName:"accordion-item",slotCode:i})}),"accordion-item":(0,L.jsx)(eb,{slotCode:i}),tabs:(0,L.jsx)(e=>(0,L.jsx)(er,{title:"DBTabs",subComponent:e.subComponent,variants:ei(ax,av,e.slotCode)}),{slotCode:C,subComponent:(0,L.jsx)(ap,{isSubComponent:!0,componentName:"tab-item",slotCode:k})}),"tab-item":(0,L.jsx)(ap,{slotCode:k}),checkbox:(0,L.jsx)(e=>(0,L.jsx)(er,{title:"DBCheckbox",variants:ei(eT,eA,e.slotCode)}),{slotCode:r}),input:(0,L.jsx)(e=>(0,L.jsx)(er,{title:"DBInput",variants:ei(eM,eV,e.slotCode)}),{slotCode:v}),radio:(0,L.jsx)(e=>(0,L.jsx)(er,{title:"DBRadio",variants:ei(e4,e5,e.slotCode)}),{slotCode:f}),select:(0,L.jsx)(e=>(0,L.jsx)(er,{title:"DBSelect",variants:ei(ae,aa,e.slotCode)}),{slotCode:y}),switch:(0,L.jsx)(e=>(0,L.jsx)(er,{title:"DBSwitch",variants:ei(ao,as,e.slotCode)}),{slotCode:A}),textarea:(0,L.jsx)(e=>(0,L.jsx)(L.Fragment,{children:(0,L.jsx)(er,{title:"DBTextarea",variants:ei(aB,af,e.slotCode)})}),{slotCode:N}),notification:(0,L.jsx)(e=>(0,L.jsx)(er,{title:"DBNotification",variants:ei(eQ,eX,e.slotCode)}),{slotCode:D}),badge:(0,L.jsx)(e=>(0,L.jsx)(er,{title:"DBBadge",variants:ei(em,eg,e.slotCode)}),{slotCode:l}),card:(0,L.jsx)(e=>(0,L.jsx)(er,{title:"DBCard",variants:ei(ef,ew,e.slotCode)}),{slotCode:d}),divider:(0,L.jsx)(e=>(0,L.jsx)(er,{title:"DBDivider",variants:ei(eN,eI,e.slotCode)}),{slotCode:p}),drawer:(0,L.jsx)(e=>{let[a,t]=(0,S.useState)(void 0);return(0,L.jsx)(er,{title:"DBDrawer",variants:ei(eS,e=>(({id:e,width:a,rounded:t,spacing:n,openDrawer:i,setOpenDrawer:l,direction:o,children:s,backdrop:c,variant:d})=>(0,L.jsxs)("div",{children:[(0,L.jsxs)(W.A,{onClick:()=>{l(e)},children:["Open: ",s]}),(0,L.jsx)(eL.A,{rounded:t,width:a,spacing:n,backdrop:c,direction:o,variant:d,open:i===e,onClose:()=>{l(void 0)},children:s})]}))({...e,openDrawer:a,setOpenDrawer:t}),e.slotCode)})},{slotCode:h}),header:(0,L.jsx)(e=>(0,L.jsx)(er,{title:"DBHeader",variants:ei(eP,eR,e.slotCode)}),{slotCode:b}),section:(0,L.jsx)(e=>(0,L.jsx)(er,{title:"DBSection",variants:ei(e9,e7,e.slotCode)}),{slotCode:w}),navigation:(0,L.jsx)(e=>(0,L.jsx)(er,{title:"DBNavigation",subComponent:e.subComponent,variants:ei(eG,e$,e.slotCode)}),{slotCode:g,subComponent:(0,L.jsx)(eY,{isSubComponent:!0,componentName:"navigation-item",slotCode:j})}),"navigation-item":(0,L.jsx)(eY,{slotCode:j}),popover:(0,L.jsx)(e=>(0,L.jsx)(er,{title:"DBPopover",variants:ei(e1,e2,e.slotCode)}),{slotCode:B}),breadcrumb:(0,L.jsx)(e=>(0,L.jsx)(er,{title:"DBBreadcrumb",subComponent:e.subComponent,variants:ei(aC,aO,e.slotCode)}),{slotCode:s,subComponent:(0,L.jsx)(aS,{isSubComponent:!0,componentName:"breadcrumb-item",slotCode:c})}),"breadcrumb-item":(0,L.jsx)(aS,{slotCode:c})},ln=la.map(e=>({...e,subNavigation:e.subNavigation?.map(e=>({...e,component:e.name?lt[e.name]:void 0}))})),li=[{label:"Home",path:"/"},{label:"Foundations",path:"/foundations",subNavigation:[{label:"Readme",path:"/foundations/readme"},{label:"Colors",path:"/foundations/colors",subNavigation:[{label:"Readme",path:"/foundations/colors/readme"},{label:"Color Schemes",path:"/foundations/colors/color-schemes"},{label:"Color Modes",path:"/foundations/colors/color-modes"}]},{label:"Font Sizes",path:"/foundations/font-sizes",subNavigation:[{label:"Readme",path:"/foundations/font-sizes/readme"},{label:"Overview",path:"/foundations/font-sizes/overview"}]},{label:"Icons",path:"/foundations/icons",subNavigation:[{label:"Readme",path:"/foundations/icons/readme"},{label:"Custom Icons",path:"/foundations/icons/custom-icons"},{label:"Overview",path:"/foundations/icons/overview"}]},{label:"Densities",path:"/foundations/densities",subNavigation:[{label:"Readme",path:"/foundations/densities/readme"},{label:"Examples",path:"/foundations/densities/examples"}]},{label:"Variables",path:"/foundations/variables",subNavigation:[{label:"Readme",path:"/foundations/variables/readme"},{label:"Examples",path:"/foundations/variables/examples"}]},{label:"Testing Overview Table",path:"/foundations/test-table"},{label:"IDE Support",path:"/foundations/ide"},{label:"Performance",path:"/foundations/performance"},{label:"Browser Support",path:"/foundations/browser-support"}]},{label:"Components",path:"/components",subNavigation:[{label:"Readme",path:"/components/readme"},...ln.map(e=>({...e,subNavigation:e?.subNavigation?.map(a=>({label:a.label,path:`/components/${e.name}/${a.name}`,isHiddenInMenu:a.isHiddenInMenu,subNavigation:[{label:"Overview",path:`/components/${e.name}/${a.name}/overview`},{label:"Properties",path:`/components/${e.name}/${a.name}/properties`},{label:"How to use",path:`/components/${e.name}/${a.name}/how-to-use`},{label:"Migration",path:`/components/${e.name}/${a.name}/migration`},...a.subNavigation??[]]}))})),{label:"Misc",path:"/components/misc",subNavigation:[{label:"Router usage",path:"/components/misc/router-usage"},{label:"Creating custom Components",path:"/components/misc/custom-components"},{label:"Testing",path:"/components/misc/testing"},{label:"Validation",path:"/components/misc/validation"},{label:"Backdrop",path:"/components/misc/backdrop"}]}]},{label:"Playgrounds",path:"/foundations/playgrounds"}],ll=(e,a,t,n)=>{for(let i of e)a.push(t?i:{...i,label:n?`${n}:${i.label}`:i.label}),i.subNavigation&&i.subNavigation?.length>0&&ll(i.subNavigation,a,t,t?void 0:i.label)},lo=e=>{let a=[];return ll(li,a,e),a},ls=e=>{let a=lo().filter(e=>!e.subNavigation),t=a.findIndex(a=>a.path===e);return{previous:0===t?void 0:a[t-1],next:t+1===a.length?void 0:a[t+1]}},lc=e=>lo(!0).filter(a=>e.includes(a.path??"")).sort((e,a)=>(e.path?.length??0)-(a.path?.length??0)),ld=()=>ln.filter(({name:e})=>!!e).map(({name:e})=>e)},87184:(e,a,t)=>{t.d(a,{U:()=>d,u:()=>c});var n=t(6029),i=t(55729),l=t(59745);let o=(0,i.createContext)(void 0),s="db-ux-framework",c=()=>{let e=(0,i.useContext)(o);if(!e)throw Error("useFramework must be used within a FrameworkProvider");return e},d=({children:e})=>{let[a,t]=(0,i.useState)(l.z);return(0,i.useEffect)(()=>{if(void 0!==globalThis.window){let e=new URLSearchParams(globalThis.location.search).get("framework");if(e&&["angular","html","react","vue"].includes(e)){t(e),localStorage.setItem(s,e);return}let a=localStorage.getItem(s);a&&["angular","html","react","vue"].includes(a)&&t(a)}},[]),(0,n.jsx)(o.Provider,{value:{framework:a,setFramework:e=>{if(t(e),void 0!==globalThis.window){localStorage.setItem(s,e);let a=new URL(globalThis.location.href);a.searchParams.set("framework",e),globalThis.history.replaceState({},"",a.toString())}},getFrameworkIndex:()=>["angular","html","react","vue"].indexOf(a)},children:e})}}}]);
