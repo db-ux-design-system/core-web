@@ -75,46 +75,50 @@ const testA11y = () => {
 	});
 };
 
-test('should accept content alignment prop', async ({ mount }) => {
-	const component = await mount(
-		<DBTabs contentAlignment="center">
-			<DBTabList>
-				<DBTabItem>Test 1</DBTabItem>
-			</DBTabList>
-			<DBTabPanel>Content 1</DBTabPanel>
-		</DBTabs>
-	);
-	await expect(component).toHaveAttribute('data-content-alignment', 'center');
-});
-
-test('should activate tab based on URL hash', async ({ mount, page }) => {
-	await page.setViewportSize({ width: 1920, height: 1080 });
-	await page.evaluate(() => {
-		window.location.hash = '#tabs-my-deep-link-tab-1';
+const testProps = () => {
+	test('should accept content alignment prop', async ({ mount }) => {
+		const component = await mount(
+			<DBTabs contentAlignment="center">
+				<DBTabList>
+					<DBTabItem>Test 1</DBTabItem>
+				</DBTabList>
+				<DBTabPanel>Content 1</DBTabPanel>
+			</DBTabs>
+		);
+		await expect(component).toHaveAttribute(
+			'data-content-alignment',
+			'center'
+		);
 	});
-	const component = await mount(
-		<DBTabs name="my-deep-link">
-			<DBTabList>
-				<DBTabItem>Tab 0</DBTabItem>
-				<DBTabItem>Tab 1</DBTabItem>
-			</DBTabList>
-			<DBTabPanel>Panel 0</DBTabPanel>
-			<DBTabPanel>Panel 1</DBTabPanel>
-		</DBTabs>
-	);
-	await expect(component.getByRole('tab', { name: 'Tab 1' })).toHaveAttribute(
-		'aria-selected',
-		'true'
-	);
-	await expect(component.getByRole('tab', { name: 'Tab 0' })).toHaveAttribute(
-		'aria-selected',
-		'false'
-	);
-});
+
+	test('should activate tab based on URL hash', async ({ mount, page }) => {
+		await page.setViewportSize({ width: 1920, height: 1080 });
+		await page.evaluate(() => {
+			window.location.hash = '#tabs-my-deep-link-tab-1';
+		});
+		const component = await mount(
+			<DBTabs name="my-deep-link">
+				<DBTabList>
+					<DBTabItem>Tab 0</DBTabItem>
+					<DBTabItem>Tab 1</DBTabItem>
+				</DBTabList>
+				<DBTabPanel>Panel 0</DBTabPanel>
+				<DBTabPanel>Panel 1</DBTabPanel>
+			</DBTabs>
+		);
+		await expect(
+			component.getByRole('tab', { name: 'Tab 1' })
+		).toHaveAttribute('aria-selected', 'true');
+		await expect(
+			component.getByRole('tab', { name: 'Tab 0' })
+		).toHaveAttribute('aria-selected', 'false');
+	});
+};
 
 test.describe('DBTabs', () => {
 	test.use({ viewport: DEFAULT_VIEWPORT });
 	testComponent();
 	testA11y();
 	testActions();
+	testProps();
 });
