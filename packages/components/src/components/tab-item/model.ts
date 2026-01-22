@@ -52,5 +52,9 @@ export interface DBTabItemState extends GlobalState, InitializedState {
 	internalActive: boolean | undefined;
 	disabled: boolean | undefined;
 	_observer: MutationObserver | null | undefined;
+	_resizeObserver: ResizeObserver | null | undefined;
 	handleClick: (event: any) => void;
+	isTruncated: boolean;
+	checkTruncation: () => void;
+	tooltipText: string;
 }
