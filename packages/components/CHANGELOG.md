@@ -1,5 +1,17 @@
 # @db-ux/core-components
 
+## 4.3.1
+
+### Patch Changes
+
+- fix(angular): issue with form-components not applying value changes because of [attr.value] instead of native [value] binding - [see commit 61ab4a3](https://github.com/db-ux-design-system/core-web/commit/61ab4a3e9a781459b829c74cf23624a23edd9e3f)
+
+## 4.3.0
+
+### Minor Changes
+
+- _version bump_ (staying in sync with the Figma library) - [see commit 9e03702](https://github.com/db-ux-design-system/core-web/commit/9e0370266511fa99085ff837e430ad83f28856ec)
+
 ## 4.2.6
 
 ### Patch Changes

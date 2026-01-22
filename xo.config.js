@@ -7,7 +7,9 @@ const xoConfig = [
 			...ignoreFolders,
 			'**/*.vue',
 			// We don't need to check for stories - they will be generated
-			'storybooks/*/src/**'
+			'storybooks/*/src/**',
+			// We don't check astro+stencil
+			'showcases/stencil-showcase/**'
 		]
 	},
 	{
@@ -68,7 +70,7 @@ const xoConfig = [
 		}
 	},
 	{
-		files: ['./**/*.spec.ts'],
+		files: ['./**/*.spec.ts', './showcases/screen-reader/default.ts'],
 		rules: {
 			// Playwright tests are async we shall use loops there
 			'no-await-in-loop': 0

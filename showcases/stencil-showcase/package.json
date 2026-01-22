@@ -1,12 +1,18 @@
 {
   "name": "stencil-showcase",
   "version": "0.0.0",
+  "description": "Stencil showcase",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/db-ux-design-system/core-web.git"
+  },
+  "license": "Apache-2.0",
   "private": true,
   "type": "module",
   "scripts": {
     "astro": "astro",
     "build": "npm-run-all build:*",
-    "build:_stencil": "npm run build --workspace @db-ux/wc-core-components",
+    "build:_stencil": "npm run dev-build --workspace @db-ux/wc-core-components",
     "build:astro": "astro build",
     "dev": "npm-run-all --parallel dev:*",
     "dev:astro": "astro dev --open",

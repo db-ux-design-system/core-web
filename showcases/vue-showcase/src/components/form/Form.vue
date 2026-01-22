@@ -53,9 +53,9 @@ const logAll = () => {
 };
 
 const reset = () => {
-	firstInput.value = "resetted";
-	textarea.value = "resetted";
-	textareavModel.value = "resetted";
+	firstInput.value = "reset";
+	textarea.value = "reset";
+	textareavModel.value = "reset";
 	checkbox.value = [true, false];
 	dateInput.value = "";
 };

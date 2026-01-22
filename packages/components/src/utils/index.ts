@@ -125,6 +125,27 @@ export const getNumber = (
 };
 
 /**
+ * Retrieves the step value for an input element.
+ *
+ * The step attribute can be a number or the special string "any".
+ * https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/step
+ *
+ * @param step - The step value, which can be a number, string, or undefined.
+ * @returns The step value as a number or the string "any", or undefined.
+ */
+export const getStep = (step?: number | string): number | 'any' | undefined => {
+	if (step === undefined || step === null) {
+		return;
+	}
+
+	if (step === 'any') {
+		return 'any';
+	}
+
+	return Number(step);
+};
+
+/**
  * Retrieves the input value based on the provided value and input type.
  *
  * If the input type is "number" or "range", the value is processed as a number.
