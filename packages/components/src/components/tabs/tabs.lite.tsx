@@ -267,7 +267,7 @@ export default function DBTabs(props: DBTabsProps) {
 					state.activeTabIndex = foundIndex;
 				}
 			}
-		}, 0);
+		}, 50);
 
 		state.initialized = true;
 	});
