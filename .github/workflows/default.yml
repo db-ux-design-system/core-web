@@ -96,6 +96,7 @@ jobs:
     with:
       storybook: composition-storybook
       baseUrl: ${{ needs.init.outputs.baseUrl }}
+    secrets: inherit
 
   build-storybook-angular:
     uses: ./.github/workflows/01-build-storybooks.yml
@@ -103,6 +104,7 @@ jobs:
     with:
       storybook: angular-storybook
       baseUrl: ${{ needs.init.outputs.baseUrl }}
+    secrets: inherit
 
   build-storybook-react:
     uses: ./.github/workflows/01-build-storybooks.yml
@@ -110,6 +112,7 @@ jobs:
     with:
       storybook: react-storybook
       baseUrl: ${{ needs.init.outputs.baseUrl }}
+    secrets: inherit
 
   build-storybook-vue:
     uses: ./.github/workflows/01-build-storybooks.yml
@@ -117,6 +120,7 @@ jobs:
     with:
       storybook: vue-storybook
       baseUrl: ${{ needs.init.outputs.baseUrl }}
+    secrets: inherit
 
   build-showcase-stencil:
     uses: ./.github/workflows/01-build-showcases.yml
