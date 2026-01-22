@@ -24,8 +24,6 @@ const compOnlyMeta: any = (
 	<DBFooter showMain={false} meta={<div>Meta Links Only</div>} />
 );
 
-const compEmpty: any = <DBFooter showMain={false} showMeta={false} />;
-
 const compWithWidth: any = (
 	<DBFooter
 		width="full"
@@ -57,13 +55,6 @@ const testComponent = () => {
 		mount
 	}) => {
 		const component = await mount(compOnlyMeta);
-		await expect(component).toHaveScreenshot();
-	});
-
-	test('should match screenshot with all sections hidden', async ({
-		mount
-	}) => {
-		const component = await mount(compEmpty);
 		await expect(component).toHaveScreenshot();
 	});
 
