@@ -92,6 +92,33 @@ const testAction = () => {
 		const input = component.getByRole('spinbutton');
 		await expect(input).toHaveAttribute('step', '0.01');
 	});
+
+	test('should have accept attribute when provided for file input', async ({
+		mount
+	}) => {
+		const component = await mount(
+			<DBInput label="Label" type="file" accept=".pdf" />
+		);
+		const input = component.locator('input[type="file"]');
+		await expect(input).toHaveAttribute('accept', '.pdf');
+	});
+
+	test('should support multiple file types in accept attribute', async ({
+		mount
+	}) => {
+		const component = await mount(
+			<DBInput
+				label="Label"
+				type="file"
+				accept=".pdf,.doc,.docx,image/*"
+			/>
+		);
+		const input = component.locator('input[type="file"]');
+		await expect(input).toHaveAttribute(
+			'accept',
+			'.pdf,.doc,.docx,image/*'
+		);
+	});
 };
 
 test.describe('DBInput', () => {
