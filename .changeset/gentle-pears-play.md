@@ -5,4 +5,4 @@
 "@db-ux/v-core-components": patch
 ---
 
-fix(input): support `step`-HTML-attribute/-property with `"any"` value for `number` inputs
+fix(input): add missing `accept` attribute for file inputs

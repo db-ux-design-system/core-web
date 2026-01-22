@@ -13,15 +13,15 @@
 
 ### variants
 
-| Before            | Status | After           | Description                                                                                           |
-| ----------------- | :----: | --------------- | ----------------------------------------------------------------------------------------------------- |
-| `semitransparent` |   ❌   | ❌              | old variants are removed a semi-transparent look is the default, new variants are chaniging the color |
-| `white`           |   ❌   | ❌              |                                                                                                       |
-| `solid`           |   ❌   | ❌              |                                                                                                       |
-| `outline`         |   ❌   | ❌              |                                                                                                       |
-|                   |   🆕   | `adaptive`      |                                                                                                       |
-|                   |   🆕   | `neutral`       |                                                                                                       |
-|                   |   🆕   | `critical`      |                                                                                                       |
-|                   |   🆕   | `informational` |                                                                                                       |
-|                   |   🆕   | `warning`       |                                                                                                       |
-|                   |   🆕   | `successful`    |                                                                                                       |
+| Before            | Status | After           | Description                                                                                          |
+| ----------------- | :----: | --------------- | ---------------------------------------------------------------------------------------------------- |
+| `semitransparent` |   ❌   | ❌              | old variants are removed a semi-transparent look is the default, new variants are changing the color |
+| `white`           |   ❌   | ❌              |                                                                                                      |
+| `solid`           |   ❌   | ❌              |                                                                                                      |
+| `outline`         |   ❌   | ❌              |                                                                                                      |
+|                   |   🆕   | `adaptive`      |                                                                                                      |
+|                   |   🆕   | `neutral`       |                                                                                                      |
+|                   |   🆕   | `critical`      |                                                                                                      |
+|                   |   🆕   | `informational` |                                                                                                      |
+|                   |   🆕   | `warning`       |                                                                                                      |
+|                   |   🆕   | `successful`    |                                                                                                      |
