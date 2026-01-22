@@ -104,7 +104,6 @@ export const getDefaultScreenshotTest = ({
 		const { showcase } = process.env;
 		const diffPixel = process.env.diff;
 		const maxDiffPixelRatio = process.env.ratio ?? ratio;
-		const stencil = isStencil(showcase);
 		const isWebkit =
 			project.name === 'webkit' || project.name === 'mobile_safari';
 

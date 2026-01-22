@@ -29,10 +29,12 @@ import { DBHeader, DBBrand, DBLink, DBButton, DBNavigation, DBNavigationItem } f
 							</DBBrand>
 							{!example && (
 								<>
-									<div slot="metaNavigation">
-										<DBLink href="#">Imprint</DBLink>
-										<DBLink href="#">Help</DBLink>
-									</div>
+									<DBLink href="#" slot="metaNavigation">
+										Imprint
+									</DBLink>
+									<DBLink href="#" slot="metaNavigation">
+										Help
+									</DBLink>
 									<DBButton
 										slot="primaryAction"
 										icon="magnifying_glass"
@@ -41,17 +43,30 @@ import { DBHeader, DBBrand, DBLink, DBButton, DBNavigation, DBNavigationItem } f
 									>
 										Search
 									</DBButton>
-									<div slot="secondaryAction">
-										<DBButton icon="x_placeholder" variant="ghost" noText={true}>
-											Profile
-										</DBButton>
-										<DBButton icon="x_placeholder" variant="ghost" noText={true}>
-											Notification
-										</DBButton>
-										<DBButton icon="x_placeholder" variant="ghost" noText={true}>
-											Help
-										</DBButton>
-									</div>
+									<DBButton
+										slot="secondaryAction"
+										icon="x_placeholder"
+										variant="ghost"
+										noText={true}
+									>
+										Profile
+									</DBButton>
+									<DBButton
+										slot="secondaryAction"
+										icon="x_placeholder"
+										variant="ghost"
+										noText={true}
+									>
+										Notification
+									</DBButton>
+									<DBButton
+										slot="secondaryAction"
+										icon="x_placeholder"
+										variant="ghost"
+										noText={true}
+									>
+										Help
+									</DBButton>
 								</>
 							)}
 							{(!example || withNavigation) && (
@@ -59,7 +74,7 @@ import { DBHeader, DBBrand, DBLink, DBButton, DBNavigation, DBNavigationItem } f
 									<DBNavigationItem hideSubNavigation={true} icon="x_placeholder">
 										<a href="#">Link</a>
 									</DBNavigationItem>
-									<DBNavigationItem  hideSubNavigation={true} disabled={true}>
+									<DBNavigationItem hideSubNavigation={true} disabled={true}>
 										<a href="#">Link disabled</a>
 									</DBNavigationItem>
 								</DBNavigation>

@@ -18,18 +18,17 @@ import { DBNavigationItem } from '@components';
 							return (
 								<ul class="nav-item-list">
 									<DBNavigationItem text={children} {...props}>
-										<div slot="subNavigation">
-											<DBNavigationItem text="Also a navigation item with longer label">
-												<div slot="subNavigation">
-													<DBNavigationItem>
-														<a href="#">Navigation-Item 2</a>
-													</DBNavigationItem>
-												</div>
+										<DBNavigationItem
+											slot="subNavigation"
+											text="Also a navigation item with longer label"
+										>
+											<DBNavigationItem slot="subNavigation">
+												<a href="#">Navigation-Item 2</a>
 											</DBNavigationItem>
-											<DBNavigationItem>
-												<a href="#">Navigation-Item 1</a>
-											</DBNavigationItem>
-										</div>
+										</DBNavigationItem>
+										<DBNavigationItem slot="subNavigation">
+											<a href="#">Navigation-Item 1</a>
+										</DBNavigationItem>
 									</DBNavigationItem>
 								</ul>
 							);

@@ -1,6 +1,5 @@
 ---
 import './../../../styles/global.css';
-import './../../../../../output/astro/styles/hydrate.css';
 import Navigation from '../../components/Navigation.astro';
 import { DBPage, DBHeader, DBBrand, DBSelect, DBNavigation, DBButton } from '@components';
 ---
@@ -23,20 +22,21 @@ import { DBPage, DBHeader, DBBrand, DBSelect, DBNavigation, DBButton } from '@co
 		<DBPage variant="fixed" documentOverflow="auto">
 			<DBHeader slot="header">
 				<DBBrand slot="brand">Showcase</DBBrand>
-				<div slot="metaNavigation">
-					<DBSelect variant="floating" label="Nothing">
-						<option>Nothing here for stencil</option>
-					</DBSelect>
-				</div>
-				<div slot="primaryAction">
-					<DBButton icon="magnifying_glass" variant="ghost" noText="true"> Search </DBButton>
-				</div>
+				<DBSelect slot="metaNavigation" variant="floating" label="Nothing" />
+				<DBButton slot="primaryAction" icon="magnifying_glass" variant="ghost" noText="true">
+					Search
+				</DBButton>
 
-				<div slot="secondaryAction">
-					<DBButton icon="x_placeholder" variant="ghost" noText="true"> Profile </DBButton>
-					<DBButton icon="x_placeholder" variant="ghost" noText="true"> Notification </DBButton>
-					<DBButton icon="x_placeholder" variant="ghost" noText="true"> Help </DBButton>
-				</div>
+				<DBButton slot="secondaryAction" icon="x_placeholder" variant="ghost" noText="true">
+					Profile
+				</DBButton>
+				<DBButton slot="secondaryAction" icon="x_placeholder" variant="ghost" noText="true">
+					Notification
+				</DBButton>
+				<DBButton slot="secondaryAction" icon="x_placeholder" variant="ghost" noText="true">
+					Help
+				</DBButton>
+
 				<DBNavigation aria-label="main-navigation">
 					<Navigation />
 				</DBNavigation>
