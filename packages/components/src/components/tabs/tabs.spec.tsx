@@ -90,7 +90,7 @@ test('should accept content alignment prop', async ({ mount }) => {
 test('should activate tab based on URL hash', async ({ mount, page }) => {
 	await page.setViewportSize({ width: 1920, height: 1080 });
 	await page.evaluate(() => {
-		window.location.hash = '#my-deep-link-tab-1';
+		window.location.hash = '#tabs-my-deep-link-tab-1';
 	});
 	const component = await mount(
 		<DBTabs name="my-deep-link">
