@@ -2,6 +2,7 @@
  * Fetches all branches and deletes all review-branches in github pages
  */
 import FS from 'node:fs';
+import { sanitizeName } from './extract-name-and-base-url.js';
 
 const TAG = 'cleanup-gh-pages:';
 
@@ -12,8 +13,11 @@ const removeOldFromPath = (isTag, data) => {
 		data?.filter((branch) => branch.name).length > 0
 	) {
 		const dirsToDelete = FS.readdirSync(path)
-			// eslint-disable-next-line unicorn/prefer-array-some
-			.filter((file) => !data.find((branch) => branch.name === file))
+			.filter(
+				(file) =>
+					// eslint-disable-next-line unicorn/prefer-array-some
+					!data.find((branch) => sanitizeName(branch.name) === file)
+			)
 			// Let's not clean up specific folders
 			.filter((file) => !['main', 'latest'].includes(file));
 		if (dirsToDelete?.length > 0) {
