@@ -66,8 +66,11 @@ export default function DBSwitch(props: DBSwitchProps) {
 		hasValidState: () => {
 			return !!(props.validMessage ?? props.validation === 'valid');
 		},
+		hasInvalidState: () => {
+			return !_ref?.validity?.valid || props.validation === 'invalid';
+		},
 		handleValidation: () => {
-			if (!_ref?.validity?.valid || props.validation === 'invalid') {
+			if (state.hasInvalidState()) {
 				state._descByIds = state._invalidMessageId!;
 				state._invalidMessage =
 					props.invalidMessage ||
@@ -266,7 +269,7 @@ export default function DBSwitch(props: DBSwitchProps) {
 				</DBInfotext>
 			</Show>
 			<Show
-				when={!_ref?.validity?.valid || props.validation === 'invalid'}>
+				when={state.hasInvalidState()}>
 				<DBInfotext
 					id={state._invalidMessageId}
 					size="small"

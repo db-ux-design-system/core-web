@@ -65,9 +65,12 @@ export default function DBTextarea(props: DBTextareaProps) {
 		hasValidState: () => {
 			return !!(props.validMessage ?? props.validation === 'valid');
 		},
+		hasInvalidState: () => {
+			return !_ref?.validity?.valid || props.validation === 'invalid';
+		},
 		handleValidation: () => {
 			/* For a11y reasons we need to map the correct message with the textarea */
-			if (!_ref?.validity.valid || props.validation === 'invalid') {
+			if (state.hasInvalidState()) {
 				state._descByIds = state._invalidMessageId;
 				state._invalidMessage =
 					props.invalidMessage ||
@@ -294,7 +297,7 @@ export default function DBTextarea(props: DBTextareaProps) {
 			</Show>
 
 			<Show
-				when={!_ref?.validity?.valid || props.validation === 'invalid'}>
+				when={state.hasInvalidState()}>
 				<DBInfotext
 					id={state._invalidMessageId}
 					size="small"
