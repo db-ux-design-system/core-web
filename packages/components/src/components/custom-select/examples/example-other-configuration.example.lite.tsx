@@ -74,11 +74,11 @@ export default function CustomSelectExampleOtherConfiguration() {
 					label="Transform Selected Label"
 					{...useTarget({
 						angular: { transformSelectedLabels: undefined },
+						stencil: { transformSelectedLabels: undefined },
 						default: {
 							transformSelectedLabels: (selectedOptions: any) =>
-								state.getTransformSelectedLabels(
-									selectedOptions
-								)
+								// @ts-ignore
+								getTransformSelectedLabels(selectedOptions)
 						}
 					})}></DBCustomSelect>
 			</div>
@@ -95,9 +95,11 @@ export default function CustomSelectExampleOtherConfiguration() {
 					label="Custom Search Filter"
 					{...useTarget({
 						angular: { searchFilter: undefined },
+						stencil: { searchFilter: undefined },
 						default: {
 							searchFilter: (option: any) =>
-								state.getSearchFilter(option)
+								// @ts-ignore
+								getSearchFilter(option)
 						}
 					})}></DBCustomSelect>
 			</div>

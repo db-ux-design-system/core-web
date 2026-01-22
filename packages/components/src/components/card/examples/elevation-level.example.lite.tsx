@@ -4,7 +4,7 @@ import { StorybookCardArgTypes } from './_card.arg.types';
 
 useMetadata({
 	storybookTitle: 'Elevation Level',
-	storybookNames: ['(Default) 1', '2', '3'],
+	storybookNames: ['(Default) Level  1', 'Level 2', 'Level 3'],
 	storybookArgTypes: StorybookCardArgTypes
 });
 
