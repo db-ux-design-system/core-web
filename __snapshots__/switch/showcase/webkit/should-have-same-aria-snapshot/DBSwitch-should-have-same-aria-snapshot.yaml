@@ -58,7 +58,6 @@
   - switch "False"
   - text: "False"
   - status
-  - text: "False"
   - link "Required"
   - switch "(Default) False"
   - text: (Default) False

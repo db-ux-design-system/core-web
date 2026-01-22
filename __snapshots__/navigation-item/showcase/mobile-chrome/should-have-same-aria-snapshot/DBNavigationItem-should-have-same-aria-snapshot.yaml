@@ -30,7 +30,8 @@
       - link "(Default) False"
   - list:
     - listitem:
-      - button "True"
+      - button "True":
+        - link "True"
   - link "Show Icon"
   - list:
     - listitem:
@@ -48,7 +49,7 @@
   - link "Wrap"
   - list:
     - listitem:
-      - button "No Wrap (Default)"
+      - link "No Wrap (Default)"
   - list:
     - listitem:
       - button "This is a very long text that is broken into multiple lines."
