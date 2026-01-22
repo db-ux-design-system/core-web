@@ -57,6 +57,7 @@ export default function DBTabs(props: DBTabsProps) {
 				if (props.onIndexChange) {
 					props.onIndexChange(index);
 				}
+				// re-initialize tabs to update aria-selected and hidden attributes immediately
 				state.initTabs();
 			}
 		},
@@ -85,6 +86,7 @@ export default function DBTabs(props: DBTabsProps) {
 
 		getTabItemTabIndex(index: number | string) {
 			const i = Number(index);
+			// only the active tab should be reachable via Tab key
 			return state.activeTabIndex === i ||
 				(state.activeTabIndex === -1 && i === 0)
 				? 0
@@ -108,6 +110,7 @@ export default function DBTabs(props: DBTabsProps) {
 		evaluateScrollButtons(tList: Element) {
 			const needsScroll = tList.scrollWidth > tList.clientWidth;
 			state.showScrollLeft = needsScroll && tList.scrollLeft > 1;
+			// check if we are at the end of the scrollable area
 			state.showScrollRight =
 				needsScroll &&
 				tList.scrollLeft < tList.scrollWidth - tList.clientWidth;
@@ -134,6 +137,7 @@ export default function DBTabs(props: DBTabsProps) {
 					const container: HTMLElement | null =
 						tabList.querySelector('[role="tablist"]');
 					if (container) {
+						// explicitly set aria-orientation for screen readers to understand navigation direction
 						container.setAttribute(
 							'aria-orientation',
 							props.orientation || 'horizontal'
@@ -147,6 +151,7 @@ export default function DBTabs(props: DBTabsProps) {
 							container.addEventListener('scroll', () => {
 								state.evaluateScrollButtons(container);
 							});
+							// resizeObserver ensures scroll arrows appear/disappear when the window size changes
 							if (!state._resizeObserver) {
 								const observer = new ResizeObserver(() => {
 									state.evaluateScrollButtons(container);
@@ -197,6 +202,7 @@ export default function DBTabs(props: DBTabsProps) {
 						button.setAttribute('aria-controls', panelId);
 					}
 
+					// toggle selection State
 					if (
 						button.getAttribute('aria-selected') !==
 						String(isSelected)
@@ -206,6 +212,7 @@ export default function DBTabs(props: DBTabsProps) {
 							isSelected ? 'true' : 'false'
 						);
 					}
+					// manage focus
 					if (
 						button.getAttribute('tabindex') !==
 						(isSelected ? '0' : '-1')
@@ -224,6 +231,7 @@ export default function DBTabs(props: DBTabsProps) {
 							panel.setAttribute('aria-labelledby', tabId);
 						}
 
+						// toggle visibility
 						if (isSelected) {
 							if (panel.hasAttribute('hidden')) {
 								panel.removeAttribute('hidden');
@@ -252,6 +260,7 @@ export default function DBTabs(props: DBTabsProps) {
 			state.activeTabIndex = -1;
 		}
 
+		// if the URL contains a hash, the tab is selected automatically
 		if (typeof window !== 'undefined') {
 			requestAnimationFrame(() => {
 				if (window.location.hash) {
@@ -302,6 +311,7 @@ export default function DBTabs(props: DBTabsProps) {
 			state.initTabList();
 			state.initTabs();
 
+			// necessary for angular that render children asynchronously or conditionally
 			const observer = new MutationObserver((mutations) => {
 				mutations.forEach((mutation) => {
 					if (

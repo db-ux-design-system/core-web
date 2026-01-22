@@ -1,5 +1,7 @@
 import {
 	onMount,
+	onUnMount,
+	onUpdate,
 	Show,
 	Slot,
 	useDefaultProps,
@@ -61,6 +63,7 @@ export default function DBTabItem(props: DBTabItemProps) {
 
 	onMount(() => {
 		state.internalActive = getBoolean(props.active) || false;
+		// map 'isDisabled' prop to 'disabled' state to avoid native attribute conflicts
 		state.disabled = getBoolean(props.isDisabled) || false;
 
 		if (typeof window !== 'undefined') {
@@ -85,6 +88,7 @@ export default function DBTabItem(props: DBTabItemProps) {
 					if (mutation.attributeName === 'aria-selected') {
 						const isSelected =
 							_ref?.getAttribute('aria-selected') === 'true';
+						// sync internal state if the DOM attribute is changed externally
 						if (state.internalActive !== isSelected) {
 							state.internalActive = isSelected;
 						}
@@ -103,6 +107,7 @@ export default function DBTabItem(props: DBTabItemProps) {
 	// Disconnect the observer
 	onUnMount(() => {
 		state._observer?.disconnect();
+		state._resizeObserver?.disconnect();
 	});
 
 	// Update internal active state when the active prop changes
@@ -138,6 +143,7 @@ export default function DBTabItem(props: DBTabItemProps) {
 				_ref?.setAttribute('aria-disabled', disabledStr);
 			}
 
+			// manual sync of the disabled attribute to prevent framework interference.
 			if (state.disabled) {
 				if (!_ref?.hasAttribute('disabled')) {
 					_ref?.setAttribute('disabled', '');
@@ -163,11 +169,13 @@ export default function DBTabItem(props: DBTabItemProps) {
 					: '',
 				props.className
 			)}
+			// ensures screen readers ignore the list item semantics and focus directly on the button (role="tab") for simpler navigation
 			role="presentation">
 			<button
 				ref={_ref}
 				type="button"
 				role="tab"
+				// suppresses native browser tooltips inherited from parent elements
 				title=""
 				aria-label={getBoolean(props.noText) ? props.label : undefined}
 				aria-selected={
@@ -198,6 +206,7 @@ export default function DBTabItem(props: DBTabItemProps) {
 					<DBIcon icon={props.icon} />
 				</Show>
 				<Show when={!props.noText}>
+					{/* wrapper needed for accurate width measurement via refs */}
 					<span ref={_labelRef} class="db-tab-label">
 						<Show when={props.label}>{props.label}</Show>
 						<Show when={!props.label}>

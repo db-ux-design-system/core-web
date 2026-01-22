@@ -18,11 +18,13 @@ export default function DBTabPanel(props: DBTabPanelProps) {
 	const _ref = useRef<HTMLDivElement | null>(null);
 
 	const state = useStore<DBTabPanelState>({
+		initialized: false,
 		internalHidden: props.hidden,
 		_observer: null
 	});
 
 	onMount(() => {
+		state.initialized = true;
 		state.internalHidden = props.hidden;
 
 		// Update internal state when the 'hidden' attribute is modified externally
