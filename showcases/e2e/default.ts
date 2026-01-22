@@ -22,6 +22,7 @@ export type DefaultTestType = {
 export type DefaultSnapshotTestType = {
 	preScreenShot?: (page: Page, project: FullProject) => Promise<void>;
 	ratio?: string;
+	diff?: string;
 } & DefaultTestType;
 
 export type AxeCoreTestType = {
@@ -42,7 +43,10 @@ export const isStencil = (showcase?: string): boolean =>
 	Boolean(showcase?.startsWith('stencil'));
 export const isAngular = (showcase?: string): boolean =>
 	Boolean(showcase?.startsWith('angular'));
-export const isVue = (showcase: string): boolean => showcase.startsWith('vue');
+export const isVue = (showcase?: string): boolean =>
+	Boolean(showcase.startsWith('vue'));
+export const isReact = (showcase?: string): boolean =>
+	Boolean(showcase.startsWith('react'));
 
 export const hasWebComponentSyntax = (showcase?: string): boolean => {
 	return isAngular(showcase) || isStencil(showcase);
@@ -97,10 +101,11 @@ export const getDefaultScreenshotTest = ({
 	fixedHeight,
 	preScreenShot,
 	skip,
-	ratio
+	ratio,
+	diff
 }: DefaultSnapshotTestType) => {
 	test(`should match screenshot`, async ({ page }, { project }) => {
-		const diffPixel = process.env.diff;
+		const diffPixel = process.env.diff ?? diff;
 		const maxDiffPixelRatio = process.env.ratio ?? ratio;
 		const isWebkit =
 			project.name === 'webkit' || project.name === 'mobile_safari';
