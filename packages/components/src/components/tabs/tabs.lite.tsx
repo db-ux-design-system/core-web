@@ -252,23 +252,27 @@ export default function DBTabs(props: DBTabsProps) {
 			state.activeTabIndex = -1;
 		}
 
-		// Prevents race conditions where window.location might not be ready yet
-		setTimeout(() => {
-			if (typeof window !== 'undefined' && window.location.hash) {
-				const hashId = window.location.hash.substring(1);
-				const name = props.name ? 'tabs-' + props.name : state._name;
-				const prefix = `${name}-tab-`;
+		if (typeof window !== 'undefined') {
+			requestAnimationFrame(() => {
+				if (window.location.hash) {
+					const hashId = window.location.hash.substring(1);
+					const name = props.name
+						? 'tabs-' + props.name
+						: state._name;
+					const prefix = `${name}-tab-`;
 
-				if (hashId.startsWith(prefix)) {
-					const indexStr = hashId.replace(prefix, '');
-					const index = parseInt(indexStr, 10);
+					if (hashId.startsWith(prefix)) {
+						const indexStr = hashId.replace(prefix, '');
+						const index = parseInt(indexStr, 10);
 
-					if (!isNaN(index)) {
-						state.activeTabIndex = index;
+						if (!isNaN(index)) {
+							state.activeTabIndex = index;
+							state.initTabs();
+						}
 					}
 				}
-			}
-		}, 50);
+			});
+		}
 
 		state.initialized = true;
 	});
