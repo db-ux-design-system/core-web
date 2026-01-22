@@ -2,4 +2,4 @@
 "@db-ux/core-components": patch
 ---
 
-5806 dbcustomselect ergebnis mit enter bestaetigen
+fix(customselect): select last remaining result with enter key
