@@ -14,13 +14,11 @@
   - strong: Large
   - strong: None
   - link "Behavior"
-  - strong: (Default) Static
+  - button "(Default) Static":
+    - strong: (Default) Static
   - button "Interactive":
     - strong: Interactive
   - link "Example"
-  - button "Level 1 - Interactive":
-    - strong: Level 1 - Interactive
-  - button "Level 2 - Interactive":
-    - strong: Level 2 - Interactive
-  - button "Level 3 - Interactive":
-    - strong: Level 3 - Interactive
+  - strong: Level 1 - Interactive
+  - strong: Level 2 - Interactive
+  - strong: Level 3 - Interactive
