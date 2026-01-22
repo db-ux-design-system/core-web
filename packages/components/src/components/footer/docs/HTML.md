@@ -1,54 +1,48 @@
 ## HTML
 
-For general installation and configuration take a look at the [wc-core-components](https://www.npmjs.com/package/@db-ux/wc-core-components) package.
+For general installation and configuration take a look at the [components](https://www.npmjs.com/package/@db-ux/core-components) package.
 
 ### Use component
 
-#### Simple
+```html index.html
+<!-- index.html -->
+...
+<body>
+	<footer class="db-footer">
+		<section class="db-footer-main" data-name="Main Container (Section)">
+			<div
+				class="db-footer-content-container"
+				data-name="Content Container"
+			>
+				<div class="db-footer-main-inner">
+					<div>
+						<a class="db-link" href="#">About Us</a>
+						<a class="db-link" href="#">Contact</a>
+						<a class="db-link" href="#">Careers</a>
+					</div>
+				</div>
+			</div>
+		</section>
 
-```html
-<db-footer>
-	<div slot="main">Footer Navigation</div>
-	<div slot="meta">Legal Links</div>
-</db-footer>
+		<section class="db-footer-meta" data-name="Meta Container (Section)">
+			<div
+				class="db-footer-content-container"
+				data-name="Content Container"
+			>
+				<div class="db-footer-meta-inner">
+					<p class="db-footer-copyright">© Deutsche Bahn AG</p>
+					<div>
+						<a class="db-link" href="#">Privacy Policy</a>
+						<a class="db-link" href="#">Terms of Service</a>
+						<a class="db-link" href="#">Imprint</a>
+					</div>
+				</div>
+			</div>
+		</section>
+	</footer>
+</body>
 ```
 
-#### With custom content
-
-```html
-<db-footer>
-	<div slot="main">
-		<db-link href="#">About Us</db-link>
-		<db-link href="#">Contact</db-link>
-		<db-link href="#">Careers</db-link>
-	</div>
-	<div slot="meta">
-		<db-link href="#">Privacy Policy</db-link>
-		<db-link href="#">Terms of Service</db-link>
-		<db-link href="#">Imprint</db-link>
-	</div>
-</db-footer>
-```
-
-#### Without copyright
-
-```html
-<db-footer show-copyright="false">
-	<div slot="main">Footer Content</div>
-	<div slot="meta">
-		<db-link href="#">Privacy</db-link>
-		<db-link href="#">Legal</db-link>
-	</div>
-</db-footer>
-```
-
-#### Only meta section
-
-```html
-<db-footer show-main="false">
-	<div slot="meta">
-		<db-link href="#">Privacy</db-link>
-		<db-link href="#">Imprint</db-link>
-	</div>
-</db-footer>
-```
+- Remove the `db-footer-main` section to hide the main area.
+- Remove the `db-footer-meta` section to hide the meta area.
+- Remove the `db-footer-copyright` paragraph to hide the copyright line.
