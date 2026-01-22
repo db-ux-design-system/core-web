@@ -59,10 +59,6 @@ $db-min-inline-size: var(
 	> db-infotext > .db-infotext,
 	> .db-infotext {
 		margin-block-start: variables.$db-spacing-fixed-2xs;
-
-		&:is([data-semantic="successful"], [data-semantic="critical"]) {
-			@include helpers.display(none);
-		}
 	}
 }
 
@@ -194,26 +190,6 @@ $db-min-inline-size: var(
 	}
 }
 
-@mixin get-validity-message($key: "valid") {
-	> db-infotext > .db-infotext,
-	> .db-infotext {
-		@if $key == "valid" {
-			&[data-semantic="successful"] {
-				@include helpers.display(flex);
-			}
-			/* stylelint-disable-next-line at-rule-empty-line-before */
-		} @else {
-			&[data-semantic="critical"] {
-				@include helpers.display(flex);
-			}
-		}
-
-		&:not([data-semantic]) {
-			@include helpers.display(none);
-		}
-	}
-}
-
 @mixin get-validity-color($selector, $key: "valid") {
 	$variant: "successful";
 
@@ -268,8 +244,6 @@ $db-min-inline-size: var(
 			border-color: var(--db-#{$variant}-on-bg-basic-emphasis-70-default);
 		}
 	}
-
-	@include get-validity-message($key);
 }
 
 // This doesn't contain text, search and password, because they don't have an auto-validation
@@ -567,8 +541,6 @@ $input-valid-types:
 	--db-adaptive-on-bg-inverted-default: var(
 		--db-#{$variant}-on-bg-inverted-default
 	);
-
-	@include get-validity-message($key);
 
 	input {
 		&:not(:checked) {

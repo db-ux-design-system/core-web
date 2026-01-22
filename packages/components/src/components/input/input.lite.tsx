@@ -199,15 +199,7 @@ export default function DBInput(props: DBInputProps) {
 		state._validMessageId = mId + DEFAULT_VALID_MESSAGE_ID_SUFFIX;
 		state._invalidMessageId = mId + DEFAULT_INVALID_MESSAGE_ID_SUFFIX;
 		state._dataListId = mId + DEFAULT_DATALIST_ID_SUFFIX;
-		state._invalidMessage = props.invalidMessage || DEFAULT_INVALID_MESSAGE;
 	});
-
-	onUpdate(() => {
-		state._invalidMessage =
-			props.invalidMessage ||
-			_ref?.validationMessage ||
-			DEFAULT_INVALID_MESSAGE;
-	}, [_ref, props.invalidMessage]);
 
 	onUpdate(() => {
 		if (state._id) {
