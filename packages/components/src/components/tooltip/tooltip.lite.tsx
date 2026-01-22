@@ -1,5 +1,6 @@
 import {
 	onMount,
+	onUnMount,
 	onUpdate,
 	useDefaultProps,
 	useMetadata,
@@ -29,6 +30,7 @@ export default function DBTooltip(props: DBTooltipProps) {
 		initialized: false,
 		_documentScrollListenerCallbackId: undefined,
 		_observer: undefined,
+		cleanupFn: undefined,
 		handleClick: (event: ClickEvent<HTMLElement>) => {
 			event.stopPropagation();
 		},
@@ -100,17 +102,32 @@ export default function DBTooltip(props: DBTooltipProps) {
 		if (_ref && state.initialized && state._id) {
 			const parent = state.getParent();
 			if (parent) {
+				if (state.cleanupFn) {
+					state.cleanupFn();
+				}
+
+				const handleEnter = () => state.handleEnter(parent);
+				const handleLeave = () => state.handleLeave();
+				const handleEscape = (event: any) => state.handleEscape(event);
+
 				['mouseenter', 'focusin'].forEach((event) => {
-					parent.addEventListener(event, () =>
-						state.handleEnter(parent)
-					);
+					parent.addEventListener(event, handleEnter);
 				});
-				parent.addEventListener('keydown', (event) =>
-					state.handleEscape(event)
-				);
+				parent.addEventListener('keydown', handleEscape);
 				['mouseleave', 'focusout'].forEach((event) => {
-					parent.addEventListener(event, () => state.handleLeave());
+					parent.addEventListener(event, handleLeave);
 				});
+
+				state.cleanupFn = () => {
+					['mouseenter', 'focusin'].forEach((event) => {
+						parent.removeEventListener(event, handleEnter);
+					});
+					parent.removeEventListener('keydown', handleEscape);
+					['mouseleave', 'focusout'].forEach((event) => {
+						parent.removeEventListener(event, handleLeave);
+					});
+				};
+
 				parent.dataset['hasTooltip'] = 'true';
 
 				if (props.variant === 'label') {
@@ -137,6 +154,14 @@ export default function DBTooltip(props: DBTooltipProps) {
 			state.initialized = false;
 		}
 	}, [_ref, state.initialized]);
+
+	// disconnect the observer and cleanup listeners
+	onUnMount(() => {
+		if (state.cleanupFn) {
+			state.cleanupFn();
+		}
+		state._observer?.disconnect();
+	});
 
 	// jscpd:ignore-end
 
