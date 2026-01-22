@@ -59,6 +59,13 @@ $with-icon-padding-calc: calc(
 			font-weight: 700;
 		}
 
+		.db-tab-label {
+			overflow: hidden;
+			text-overflow: ellipsis;
+			white-space: nowrap;
+			min-inline-size: 0;
+		}
+
 		&:is([data-no-text], [data-no-text="true"]) {
 			@include icons.is-icon-text-replace;
 
