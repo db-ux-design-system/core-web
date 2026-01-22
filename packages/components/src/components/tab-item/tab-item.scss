@@ -73,17 +73,9 @@ $with-icon-padding-calc: calc(
 			/* We need !important to override the inline styles set by the tooltip's JavaScript. This forces the
 			   tooltip to align relative to the button instead of using the incorrect JS-calculated position. */
 			position: absolute !important;
-			top: 50% !important;
-			left: 100% !important;
-			right: auto !important;
-			bottom: auto !important;
+			inset: 50% auto auto 100% !important;
 			transform: translate(8px, -50%) !important;
-			margin: 0 !important;
 			width: max-content;
-			max-width: 250px;
-			white-space: normal;
-			z-index: 1000;
-			pointer-events: none;
 		}
 
 		&:is([data-no-text], [data-no-text="true"]) {
