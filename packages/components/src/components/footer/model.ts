@@ -1,7 +1,6 @@
 import {
 	ContainerWidthProps,
-	GlobalProps,
-	GlobalState
+	GlobalProps
 } from '../../shared/model';
 
 export type DBFooterDefaultProps = {
@@ -36,7 +35,3 @@ export type DBFooterDefaultProps = {
 export type DBFooterProps = DBFooterDefaultProps &
 	GlobalProps &
 	ContainerWidthProps;
-
-export type DBFooterDefaultState = {};
-
-export type DBFooterState = DBFooterDefaultState & GlobalState;

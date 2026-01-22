@@ -24,6 +24,26 @@ const compOnlyMeta: any = (
 	<DBFooter showMain={false} meta={<div>Meta Links Only</div>} />
 );
 
+const compEmpty: any = (
+	<DBFooter showMain={false} showMeta={false} />
+);
+
+const compWithWidth: any = (
+	<DBFooter
+		width="full"
+		main={<div>Full Width Content</div>}
+		meta={<div>Meta Links</div>}
+	/>
+);
+
+const compWithClassName: any = (
+	<DBFooter
+		className="custom-footer"
+		main={<div>Custom Footer</div>}
+		meta={<div>Meta</div>}
+	/>
+);
+
 const testComponent = () => {
 	test('should match screenshot', async ({ mount }) => {
 		const component = await mount(comp);
@@ -39,6 +59,25 @@ const testComponent = () => {
 		mount
 	}) => {
 		const component = await mount(compOnlyMeta);
+		await expect(component).toHaveScreenshot();
+	});
+
+	test('should match screenshot with all sections hidden', async ({
+		mount
+	}) => {
+		const component = await mount(compEmpty);
+		await expect(component).toHaveScreenshot();
+	});
+
+	test('should match screenshot with full width', async ({ mount }) => {
+		const component = await mount(compWithWidth);
+		await expect(component).toHaveScreenshot();
+	});
+
+	test('should match screenshot with custom className', async ({
+		mount
+	}) => {
+		const component = await mount(compWithClassName);
 		await expect(component).toHaveScreenshot();
 	});
 };

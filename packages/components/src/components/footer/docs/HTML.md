@@ -9,11 +9,8 @@ For general installation and configuration take a look at the [components](https
 ...
 <body>
 	<footer class="db-footer">
-		<section class="db-footer-main" data-name="Main Container (Section)">
-			<div
-				class="db-footer-content-container"
-				data-name="Content Container"
-			>
+		<section class="db-footer-main">
+			<div class="db-footer-content-container">
 				<div class="db-footer-main-inner">
 					<div>
 						<a class="db-link" href="#">About Us</a>
@@ -24,11 +21,8 @@ For general installation and configuration take a look at the [components](https
 			</div>
 		</section>
 
-		<section class="db-footer-meta" data-name="Meta Container (Section)">
-			<div
-				class="db-footer-content-container"
-				data-name="Content Container"
-			>
+		<section class="db-footer-meta">
+			<div class="db-footer-content-container">
 				<div class="db-footer-meta-inner">
 					<p class="db-footer-copyright">© Deutsche Bahn AG</p>
 					<div>
