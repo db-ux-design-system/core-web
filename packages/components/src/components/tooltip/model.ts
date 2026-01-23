@@ -35,14 +35,14 @@ export type DBTooltipProps = DBTooltipDefaultProps &
 export type DBTooltipDefaultState = {
 	getParent: () => HTMLElement;
 	cleanupFn?: () => void;
-	handleLeave: (event?: any) => void;
+	handleLeave: () => void;
+	handleEnter: () => void;
 	handleEscape: (event?: any) => void;
-	handleEnter: (parent?: HTMLElement) => void;
 };
 
 export type DBTooltipState = DBTooltipDefaultState &
 	GlobalState &
 	ClickEventState<HTMLElement> &
-	Omit<PopoverState, 'handleEnter' | 'handleLeave' | 'handleEscape'> &
+	Omit<PopoverState, 'handleEscape'> &
 	InitializedState &
 	DocumentScrollState;

@@ -34,7 +34,7 @@ export default function DBTooltip(props: DBTooltipProps) {
 		handleClick: (event: ClickEvent<HTMLElement>) => {
 			event.stopPropagation();
 		},
-		handleEscape: (event?: any) => {
+		handleEscape: (event: any) => {
 			if (
 				(!event || event.key === 'Escape') &&
 				_ref &&
@@ -74,7 +74,7 @@ export default function DBTooltip(props: DBTooltipProps) {
 				state.handleAutoPlacement(parent);
 			}
 		},
-		handleLeave(_event?: any): void {
+		handleLeave(): void {
 			if (state._documentScrollListenerCallbackId) {
 				new DocumentScrollListener().removeCallback(
 					state._documentScrollListenerCallbackId!
@@ -83,13 +83,14 @@ export default function DBTooltip(props: DBTooltipProps) {
 
 			state._observer?.unobserve(state.getParent());
 		},
-		handleEnter(parent?: HTMLElement): void {
+		handleEnter(): void {
+			const parent = state.getParent();
 			state._documentScrollListenerCallbackId =
 				new DocumentScrollListener().addCallback((event) =>
 					state.handleDocumentScroll(event, parent)
 				);
 			state.handleAutoPlacement(parent);
-			state._observer?.observe(state.getParent());
+			state._observer?.observe(parent);
 		}
 	});
 
@@ -106,25 +107,25 @@ export default function DBTooltip(props: DBTooltipProps) {
 					state.cleanupFn();
 				}
 
-				const handleEnter = () => state.handleEnter(parent);
-				const handleLeave = (e: any) => state.handleLeave(e);
-				const handleEscape = (e: any) => state.handleEscape(e);
+				const enterListener = () => state.handleEnter();
+				const leaveListener = () => state.handleLeave();
+				const escapeListener = (e: any) => state.handleEscape(e);
 
 				['mouseenter', 'focusin'].forEach((event) => {
-					parent.addEventListener(event, handleEnter);
+					parent.addEventListener(event, enterListener);
 				});
-				parent.addEventListener('keydown', handleEscape);
+				parent.addEventListener('keydown', escapeListener);
 				['mouseleave', 'focusout'].forEach((event) => {
-					parent.addEventListener(event, handleLeave);
+					parent.addEventListener(event, leaveListener);
 				});
 
 				state.cleanupFn = () => {
 					['mouseenter', 'focusin'].forEach((event) => {
-						parent.removeEventListener(event, handleEnter);
+						parent.removeEventListener(event, enterListener);
 					});
-					parent.removeEventListener('keydown', handleEscape);
+					parent.removeEventListener('keydown', escapeListener);
 					['mouseleave', 'focusout'].forEach((event) => {
-						parent.removeEventListener(event, handleLeave);
+						parent.removeEventListener(event, leaveListener);
 					});
 				};
 
