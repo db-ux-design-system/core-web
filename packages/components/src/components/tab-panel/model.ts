@@ -1,4 +1,4 @@
-import { GlobalProps, GlobalState, InitializedState } from '../../shared/model';
+import { GlobalProps, GlobalState } from '../../shared/model';
 
 export type DBTabPanelDefaultProps = {
 	/**
@@ -17,7 +17,4 @@ export type DBTabPanelDefaultProps = {
 
 export type DBTabPanelProps = DBTabPanelDefaultProps & GlobalProps;
 
-export interface DBTabPanelState extends GlobalState, InitializedState {
-	internalHidden: boolean | undefined;
-	_observer: MutationObserver | null | undefined;
-}
+export interface DBTabPanelState extends GlobalState {}
