@@ -1,6 +1,5 @@
 import {
 	onMount,
-	onUnMount,
 	onUpdate,
 	useDefaultProps,
 	useMetadata,
@@ -30,7 +29,6 @@ export default function DBTooltip(props: DBTooltipProps) {
 		initialized: false,
 		_documentScrollListenerCallbackId: undefined,
 		_observer: undefined,
-		cleanupFn: undefined,
 		handleClick: (event: ClickEvent<HTMLElement>) => {
 			event.stopPropagation();
 		},
@@ -83,14 +81,13 @@ export default function DBTooltip(props: DBTooltipProps) {
 
 			state._observer?.unobserve(state.getParent());
 		},
-		handleEnter(): void {
-			const parent = state.getParent();
+		handleEnter(parent?: HTMLElement): void {
 			state._documentScrollListenerCallbackId =
 				new DocumentScrollListener().addCallback((event) =>
 					state.handleDocumentScroll(event, parent)
 				);
 			state.handleAutoPlacement(parent);
-			state._observer?.observe(parent);
+			state._observer?.observe(state.getParent());
 		}
 	});
 
@@ -103,32 +100,17 @@ export default function DBTooltip(props: DBTooltipProps) {
 		if (_ref && state.initialized && state._id) {
 			const parent = state.getParent();
 			if (parent) {
-				if (state.cleanupFn) {
-					state.cleanupFn();
-				}
-
-				const enterListener = () => state.handleEnter();
-				const leaveListener = () => state.handleLeave();
-				const escapeListener = (e: any) => state.handleEscape(e);
-
 				['mouseenter', 'focusin'].forEach((event) => {
-					parent.addEventListener(event, enterListener);
+					parent.addEventListener(event, () =>
+						state.handleEnter(parent)
+					);
 				});
-				parent.addEventListener('keydown', escapeListener);
+				parent.addEventListener('keydown', (event) =>
+					state.handleEscape(event)
+				);
 				['mouseleave', 'focusout'].forEach((event) => {
-					parent.addEventListener(event, leaveListener);
+					parent.addEventListener(event, () => state.handleLeave());
 				});
-
-				state.cleanupFn = () => {
-					['mouseenter', 'focusin'].forEach((event) => {
-						parent.removeEventListener(event, enterListener);
-					});
-					parent.removeEventListener('keydown', escapeListener);
-					['mouseleave', 'focusout'].forEach((event) => {
-						parent.removeEventListener(event, leaveListener);
-					});
-				};
-
 				parent.dataset['hasTooltip'] = 'true';
 
 				if (props.variant === 'label') {
@@ -155,14 +137,6 @@ export default function DBTooltip(props: DBTooltipProps) {
 			state.initialized = false;
 		}
 	}, [_ref, state.initialized]);
-
-	// disconnect the observer and cleanup listeners
-	onUnMount(() => {
-		if (state.cleanupFn) {
-			state.cleanupFn();
-		}
-		state._observer?.disconnect();
-	});
 
 	// jscpd:ignore-end
 
