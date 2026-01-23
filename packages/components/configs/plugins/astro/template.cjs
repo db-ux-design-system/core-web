@@ -33,7 +33,7 @@ const getStyle = (componentName) => {
 	return `<style>
 	db-${componentName}{
 		&:not(.hydrated),
-		&:is(.hydrated) + .db-${componentName} {
+		&:is(.hydrated) + .db-${componentName}[data-connect-id] {
 			display: none;
 		}
 	}
@@ -129,26 +129,41 @@ const getAstroTemplate = (json) => {
 	// ========================================================================
 	// Determine if component requires JavaScript
 	// ========================================================================
-	const requiresJavaScript =
+	const requiresWebComponent =
 		json.hooks.onMount.length > 0 ||
 		(json.hooks.onUpdate ? json.hooks.onUpdate?.length > 0 : false);
 
 	// ========================================================================
 	// Generate TypeScript Props interface
 	// ========================================================================
+
+	const requiresWebComponentPropertyString = `
+		/**
+	 * Removes the margin of the divider.
+	 */
+	 requiresWebComponent?: boolean;
+	 `;
+
 	const propsInterface = props.length
 		? `interface Props {
 		${props.map((prop) => `${prop}?: ${propsTypeRef ? `${propsTypeRef}["${prop}"]` : 'any'};`).join('\n	')}
-		wc?: boolean;
+		${requiresWebComponentPropertyString}
 		[key: string]: any; // Allow everything else
 		}`
-		: 'interface Props { wc?: boolean; \n		[key: string]: any; // Allow everything else}';
+		: `
+		interface Props { ${requiresWebComponentPropertyString}
+		[key: string]: any; // Allow everything else}
+`;
 
 	// ========================================================================
 	// Generate state object
 	// ========================================================================
 	let stateType = 'any';
-	if (state && Object.keys(state).length > 0) {
+	if (
+		state &&
+		Object.keys(state).length > 0 &&
+		Object.values(state)[0].typeParameter
+	) {
 		stateType = Object.values(state)[0].typeParameter.split('[')[0];
 	}
 	const stateString = // TODO: Add proper TS typing
@@ -187,12 +202,12 @@ const getAstroTemplate = (json) => {
 	// ========================================================================
 	return `---
 // This file is auto-generated. Do not edit it directly.
-${requiresJavaScript ? '// !!! This component requires JavaScript to run with all functions you should enable the wc property. !!!' : ''}
+${requiresWebComponent ? '// !!! This component requires JavaScript to run with all functions you should enable the requiresWebComponent property. !!!' : ''}
 
 ${importsString}
 ${propsInterface}
 
-const { ${props.join(', ')}${props.length ? ', ' : ''}wc = ${requiresJavaScript}, ...rest } = Astro.props;
+const { ${props.join(', ')}${props.length ? ', ' : ''}requiresWebComponent = ${requiresWebComponent}, ...rest } = Astro.props;
 
 ${refsString}
 ${stateString}

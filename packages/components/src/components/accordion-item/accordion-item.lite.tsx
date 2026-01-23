@@ -9,9 +9,8 @@ import {
 	useStore,
 	useTarget
 } from '@builder.io/mitosis';
-import { DEFAULT_ID } from '../../shared/constants';
 import { ClickEvent } from '../../shared/model';
-import { cls, getBooleanAsString, uuid } from '../../utils';
+import { cls, getBooleanAsString } from '../../utils';
 import { DBAccordionItemProps, DBAccordionItemState } from './model';
 
 useMetadata({
@@ -47,7 +46,9 @@ export default function DBAccordionItem(props: DBAccordionItemProps) {
 			if (props.onToggle) {
 				props.onToggle(newStateOpen);
 			}
-			state._open = newStateOpen;
+			if (props.open === undefined) {
+				state._open = newStateOpen;
+			}
 		}
 	});
 

@@ -8,7 +8,6 @@ import {
 	useRef,
 	useStore
 } from '@builder.io/mitosis';
-import { DEFAULT_ID } from '../../shared/constants';
 import { cls, uuid } from '../../utils';
 import DBAccordionItem from '../accordion-item/accordion-item.lite';
 import { DBAccordionItemDefaultProps } from '../accordion-item/model';
@@ -22,6 +21,7 @@ export default function DBAccordion(props: DBAccordionProps) {
 	const _ref = useRef<HTMLUListElement | any>(null);
 	// jscpd:ignore-start
 	const state = useStore<DBAccordionState>({
+		_id: uuid(),
 		_name: '',
 		initialized: false,
 		_initOpenIndexDone: false,
@@ -56,7 +56,7 @@ export default function DBAccordion(props: DBAccordionProps) {
 						state._name = props.name;
 					}
 				} else {
-					state._name = 'accordion-' + uuid();
+					state._name = 'accordion-' + state._id;
 				}
 			} else {
 				state._name = '';
