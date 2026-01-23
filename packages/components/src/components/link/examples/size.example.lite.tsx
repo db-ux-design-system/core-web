@@ -11,10 +11,8 @@ useMetadata({
 export default function LinkSize() {
 	return (
 		<Fragment>
-			<DBLink href="#">(Default) Medium</DBLink>
-			<DBLink href="#" size="small">
-				Small
-			</DBLink>
+			<DBLink href="#" text="(Default) Medium" />
+			<DBLink href="#" size="small" text="Small" />
 		</Fragment>
 	);
 }

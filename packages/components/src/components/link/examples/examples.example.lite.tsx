@@ -11,9 +11,7 @@ useMetadata({
 export default function LinkExamples() {
 	return (
 		<Fragment>
-			<DBLink href="#" variant="inline">
-				Variant Inline
-			</DBLink>
+			<DBLink href="#" variant="inline" text="Variant Inline" />
 		</Fragment>
 	);
 }

@@ -11,12 +11,8 @@ useMetadata({
 export default function LinkShowIcon() {
 	return (
 		<Fragment>
-			<DBLink href="#" showIcon={true}>
-				(Default) True
-			</DBLink>
-			<DBLink href="#" showIcon={false}>
-				False
-			</DBLink>
+			<DBLink href="#" showIcon={true} text="(Default) True" />
+			<DBLink href="#" showIcon={false} text="False" />
 		</Fragment>
 	);
 }

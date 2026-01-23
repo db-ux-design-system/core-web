@@ -11,13 +11,9 @@ useMetadata({
 export default function LinkWrap() {
 	return (
 		<Fragment>
-			<DBLink href="#" wrap={false}>
-				(Default) False
-			</DBLink>
+			<DBLink href="#" wrap={false} text="(Default) False" />
 			<div style={{ width: '2ch' }}>
-				<DBLink href="#" wrap={true}>
-					True [Multiline]
-				</DBLink>
+				<DBLink href="#" wrap={true} text="True [Multiline]" />
 			</div>
 		</Fragment>
 	);

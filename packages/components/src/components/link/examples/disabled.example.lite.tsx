@@ -11,12 +11,8 @@ useMetadata({
 export default function LinkDisabled() {
 	return (
 		<Fragment>
-			<DBLink href="#" disabled={false}>
-				(Default) False
-			</DBLink>
-			<DBLink href="#" disabled={true}>
-				True
-			</DBLink>
+			<DBLink href="#" disabled={false} text="(Default) False" />
+			<DBLink href="#" disabled={true} text="True" />
 		</Fragment>
 	);
 }

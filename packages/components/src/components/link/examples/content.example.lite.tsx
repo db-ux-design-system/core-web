@@ -11,10 +11,8 @@ useMetadata({
 export default function LinkContent() {
 	return (
 		<Fragment>
-			<DBLink href="#">(Default) Internal</DBLink>
-			<DBLink href="#" content="external">
-				External
-			</DBLink>
+			<DBLink href="#" text="(Default) Internal" />
+			<DBLink href="#" content="external" text="External" />
 		</Fragment>
 	);
 }

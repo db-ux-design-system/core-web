@@ -1,4 +1,4 @@
-import { Fragment, useMetadata } from '@builder.io/mitosis';
+import { Fragment, useMetadata, useTarget } from '@builder.io/mitosis';
 import DBInfotext from '../../infotext/infotext.lite';
 import DBNavigationItem from '../../navigation-item/navigation-item.lite';
 import DBNavigation from '../navigation.lite';
@@ -23,7 +23,12 @@ export default function NavigationDensity() {
 				</DBInfotext>
 				<DBNavigation
 					data-density="functional"
-					aria-x="workaround-angular"
+					{...useTarget({
+						angular: {
+							'data-x': 'workaround-angular'
+						},
+						default: {}
+					})}
 					aria-labelledby="functional">
 					<DBNavigationItem
 						subNavigation={
@@ -70,7 +75,12 @@ export default function NavigationDensity() {
 				</DBInfotext>
 				<DBNavigation
 					data-density="regular"
-					aria-x="workaround-angular"
+					{...useTarget({
+						angular: {
+							'data-x': 'workaround-angular'
+						},
+						default: {}
+					})}
 					aria-labelledby="_default__regular">
 					<DBNavigationItem
 						subNavigation={
@@ -117,7 +127,12 @@ export default function NavigationDensity() {
 				</DBInfotext>
 				<DBNavigation
 					data-density="expressive"
-					aria-x="workaround-angular"
+					{...useTarget({
+						angular: {
+							'data-x': 'workaround-angular'
+						},
+						default: {}
+					})}
 					aria-labelledby="expressive">
 					<DBNavigationItem
 						subNavigation={

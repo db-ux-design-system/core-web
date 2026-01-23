@@ -11,15 +11,9 @@ useMetadata({
 export default function LinkDensity() {
 	return (
 		<Fragment>
-			<DBLink data-density="functional" href="#">
-				Functional
-			</DBLink>
-			<DBLink data-density="regular" href="#">
-				(Default) Regular
-			</DBLink>
-			<DBLink data-density="expressive" href="#">
-				Expressive
-			</DBLink>
+			<DBLink data-density="functional" href="#" text="Functional" />
+			<DBLink data-density="regular" href="#" text="(Default) Regular" />
+			<DBLink data-density="expressive" href="#" text="Expressive" />
 		</Fragment>
 	);
 }

@@ -11,10 +11,8 @@ useMetadata({
 export default function LinkVariant() {
 	return (
 		<Fragment>
-			<DBLink href="#">(Default) Adaptive</DBLink>
-			<DBLink href="#" variant="brand">
-				Brand
-			</DBLink>
+			<DBLink href="#" text="(Default) Adaptive" />
+			<DBLink href="#" variant="brand" text="Brand" />
 		</Fragment>
 	);
 }

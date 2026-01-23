@@ -35,7 +35,7 @@ export default function NavigationItemExpanded() {
 							</DBNavigationItem>
 						</>
 					}>
-					<a href="#">True</a>
+					True
 				</DBNavigationItem>
 			</ul>
 		</Fragment>
