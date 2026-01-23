@@ -41,13 +41,13 @@ jobs:
 
   test-components:
     uses: ./.github/workflows/02-e2e.yml
-    needs: [build-packages, init]
+    needs: [build-packages, init-playwright, init]
     with:
       version: ${{ needs.init.outputs.playwrightVersion }}
 
   test-foundations:
     uses: ./.github/workflows/02-e2e-foundations.yml
-    needs: [build-packages, init]
+    needs: [build-packages, init-playwright, init]
     with:
       version: ${{ needs.init.outputs.playwrightVersion }}
 
@@ -141,35 +141,35 @@ jobs:
 
   test-showcase-stencil:
     uses: ./.github/workflows/02-e2e-showcases.yml
-    needs: [build-showcase-stencil, init]
+    needs: [build-showcase-stencil, init-playwright, init]
     with:
       version: ${{ needs.init.outputs.playwrightVersion }}
       showcase: stencil-showcase
 
   test-showcase-angular:
     uses: ./.github/workflows/02-e2e-showcases.yml
-    needs: [build-showcase-angular, init]
+    needs: [build-showcase-angular, init-playwright, init]
     with:
       version: ${{ needs.init.outputs.playwrightVersion }}
       showcase: angular-showcase
 
   test-showcase-react:
     uses: ./.github/workflows/02-e2e-showcases.yml
-    needs: [build-showcase-react, init]
+    needs: [build-showcase-react, init-playwright, init]
     with:
       version: ${{ needs.init.outputs.playwrightVersion }}
       showcase: react-showcase
 
   test-showcase-vue:
     uses: ./.github/workflows/02-e2e-showcases.yml
-    needs: [build-showcase-vue, init]
+    needs: [build-showcase-vue, init-playwright, init]
     with:
       version: ${{ needs.init.outputs.playwrightVersion }}
       showcase: vue-showcase
 
   test-showcase-patternhub:
     uses: ./.github/workflows/02-e2e-patternhub.yml
-    needs: [build-showcase-patternhub, init, init]
+    needs: [build-showcase-patternhub, init-playwright, init]
     with:
       version: ${{ needs.init.outputs.playwrightVersion }}
       baseUrl: ${{ needs.init.outputs.baseUrl }}

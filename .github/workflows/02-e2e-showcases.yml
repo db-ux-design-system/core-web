@@ -21,14 +21,11 @@ jobs:
   playwright-showcases:
     name: 🧪🎭 - ${{ inputs.showcase }}:${{ matrix.shardIndex }}/${{ matrix.shardTotal }}
     runs-on: ubuntu-24.04 # Use Ubuntu 24.04 explicitly
-    container:
-      image: mcr.microsoft.com/playwright:v${{ inputs.version }}
-      options: --user 1001
     strategy:
       fail-fast: true
       matrix:
-        shardIndex: [1, 2, 3, 4, 5]
-        shardTotal: [5]
+        shardIndex: [1, 2, 3, 4, 5, 6]
+        shardTotal: [6]
     steps:
       - name: ⏬ Checkout repo
         uses: actions/checkout@v6
@@ -37,6 +34,12 @@ jobs:
 
       - name: 🔄 Init Cache
         uses: ./.github/actions/npm-cache
+
+      - name: 🔄 Init Playwright Cache
+        uses: ./.github/actions/playwright-cache
+        with:
+          os: ubuntu-24.04
+          version: ${{ inputs.version }}
 
       - name: ⏬ Download foundations build
         uses: actions/download-artifact@v7
