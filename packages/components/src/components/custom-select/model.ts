@@ -193,7 +193,7 @@ export type DBCustomSelectDefaultProps = {
 
 	/**
 	 * Optional: Prefix text announced by screen readers before the selection
-	 * (e.g., "Ausgewählt" or "Selected").
+	 * (e.g. "Selected").
 	 */
 	selectedPrefix?: string;
 
