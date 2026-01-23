@@ -23,6 +23,7 @@ interface DBTabsLocalState extends DBTabsState {
 	getTabId: (index: number | string) => string;
 	getPanelId: (index: number | string) => string;
 	handleClick: (event: any) => void;
+	handleKeyDown: (event: any) => void;
 	isIndexActive: (index: number | string) => boolean;
 	getTabItemTabIndex: (index: number | string) => 0 | -1;
 }
@@ -63,6 +64,10 @@ export default function DBTabs(props: DBTabsProps) {
 		},
 
 		handleClick(event: any) {
+			if (props.tabs) {
+				return;
+			}
+
 			const target = event.target as HTMLElement;
 			const button = target.closest('[role="tab"]');
 			if (!button || !_ref) return;
@@ -77,6 +82,81 @@ export default function DBTabs(props: DBTabsProps) {
 			if (index !== -1) {
 				event.preventDefault();
 				state.activateTab(index);
+			}
+		},
+
+		handleKeyDown(event: any) {
+			if (!_ref) return;
+
+			const key = event.key;
+			const navigationKeys = [
+				'ArrowRight',
+				'ArrowDown',
+				'ArrowLeft',
+				'ArrowUp',
+				'Home',
+				'End',
+				'Enter',
+				' '
+			];
+
+			if (!navigationKeys.includes(key)) {
+				return;
+			}
+
+			const tabList = _ref.querySelector('[role="tablist"]');
+			if (!tabList) return;
+			const buttons = Array.from(
+				tabList.querySelectorAll('[role="tab"]')
+			);
+
+			// find currently focused element within the buttons list
+			let currentIndex = -1;
+			if (typeof document !== 'undefined' && document.activeElement) {
+				const focusedButton = (
+					document.activeElement as HTMLElement
+				).closest('[role="tab"]');
+				if (focusedButton) {
+					currentIndex = buttons.indexOf(
+						focusedButton as HTMLElement
+					);
+				}
+			}
+
+			if (currentIndex === -1) {
+				currentIndex = state.activeTabIndex;
+			}
+
+			if (buttons.length > 0) {
+				// handle activation (enter / space) -> change panel
+				if (key === 'Enter' || key === ' ') {
+					event.preventDefault();
+					state.activateTab(currentIndex);
+					return;
+				}
+
+				// handle navigation (arrows) -> moves focus
+				let nextIndex: number | undefined;
+				const length = buttons.length;
+
+				if (key === 'ArrowRight' || key === 'ArrowDown') {
+					nextIndex = (currentIndex + 1) % length;
+				} else if (key === 'ArrowLeft' || key === 'ArrowUp') {
+					nextIndex = (currentIndex - 1 + length) % length;
+				} else if (key === 'Home') {
+					nextIndex = 0;
+				} else if (key === 'End') {
+					nextIndex = length - 1;
+				}
+
+				if (nextIndex !== undefined) {
+					event.preventDefault();
+					// do not activateTab here for manual activation, just move the focus
+					const nextButton = buttons[nextIndex] as HTMLElement;
+					if (nextButton) {
+						nextButton.focus();
+					}
+				}
 			}
 		},
 
@@ -340,7 +420,8 @@ export default function DBTabs(props: DBTabsProps) {
 			data-scroll-behavior={props.behavior}
 			data-content-alignment={props.contentAlignment ?? 'left'}
 			data-width={props.width ?? 'auto'}
-			onClick={(event) => state.handleClick(event)}>
+			onClick={(event) => state.handleClick(event)}
+			onKeyDown={(event) => state.handleKeyDown(event)}>
 			<Show when={state.showScrollLeft}>
 				<DBButton
 					class="tabs-scroll-left"
@@ -366,6 +447,7 @@ export default function DBTabs(props: DBTabsProps) {
 								iconTrailing={tab.iconTrailing}
 								icon={tab.icon}
 								noText={tab.noText}
+								onClick={() => state.activateTab(index)}
 							/>
 						)}
 					</For>
