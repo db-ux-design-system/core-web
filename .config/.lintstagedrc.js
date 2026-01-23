@@ -13,6 +13,6 @@ export default {
 		() => 'npm install --package-lock-only --ignore-scripts',
 		'npm run lint:package-json'
 	],
-	'*.{md,mdx,txt,yml,yaml,ts,tsx,js,jsx,html,css,scss,sass,vue}':
+	'*':
 		'cspell --config .config/cspell.config.ts'
 };
