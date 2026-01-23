@@ -35,7 +35,7 @@ export type DBTooltipProps = DBTooltipDefaultProps &
 export type DBTooltipDefaultState = {
 	getParent: () => HTMLElement;
 	cleanupFn?: () => void;
-	handleLeave: (event?: any) => void;
+	handleLeave: () => void;
 };
 
 export type DBTooltipState = DBTooltipDefaultState &

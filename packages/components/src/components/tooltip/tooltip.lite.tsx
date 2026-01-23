@@ -74,7 +74,7 @@ export default function DBTooltip(props: DBTooltipProps) {
 				state.handleAutoPlacement(parent);
 			}
 		},
-		handleLeave(_event?: any): void {
+		handleLeave(): void {
 			if (state._documentScrollListenerCallbackId) {
 				new DocumentScrollListener().removeCallback(
 					state._documentScrollListenerCallbackId!
@@ -107,7 +107,7 @@ export default function DBTooltip(props: DBTooltipProps) {
 				}
 
 				const handleEnter = () => state.handleEnter(parent);
-				const handleLeave = () => state.handleLeave();
+				const handleLeave = (e: any) => state.handleLeave();
 				const handleEscape = (event: any) => state.handleEscape(event);
 
 				['mouseenter', 'focusin'].forEach((event) => {
