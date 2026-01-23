@@ -64,14 +64,14 @@
   - text: (Default) False
   - status
   - switch "True"
-  - text: "True"
+  - text: True Select this checkbox
   - status
   - link "Show Required Asterisk"
   - switch "(Default) True"
-  - text: (Default) True
+  - text: (Default) True Select this checkbox
   - status
   - switch "False"
-  - text: "False"
+  - text: False Select this checkbox
   - status
   - link "Validation"
   - switch "(Default) No validation"
@@ -95,5 +95,5 @@
   - text: Custom Icons
   - status
   - switch "Required + Visual Aid"
-  - text: Required + Visual Aid
+  - text: Required + Visual Aid Valid Select this checkbox
   - status

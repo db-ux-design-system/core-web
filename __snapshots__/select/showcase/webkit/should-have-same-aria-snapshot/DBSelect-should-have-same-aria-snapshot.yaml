@@ -196,7 +196,7 @@
     - option "Option 3"
     - option "Option 4"
     - option "Option 5"
-  - text: "True"
+  - text: True Select an item in the list
   - status
   - link "Show Required Asterisk"
   - text: Label
@@ -207,7 +207,7 @@
     - option "Option 3"
     - option "Option 4"
     - option "Option 5"
-  - text: (Default) True
+  - text: (Default) True Select an item in the list
   - status
   - text: Label
   - combobox "Label":
@@ -217,7 +217,7 @@
     - option "Option 3"
     - option "Option 4"
     - option "Option 5"
-  - text: "False"
+  - text: False Select an item in the list
   - status
   - link "Option Groups"
   - text: Label
