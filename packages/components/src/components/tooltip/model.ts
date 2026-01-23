@@ -43,6 +43,6 @@ export type DBTooltipDefaultState = {
 export type DBTooltipState = DBTooltipDefaultState &
 	GlobalState &
 	ClickEventState<HTMLElement> &
-	PopoverState &
+	Omit<PopoverState, 'handleEnter' | 'handleLeave' | 'handleEscape'> &
 	InitializedState &
 	DocumentScrollState;
