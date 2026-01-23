@@ -1,5 +1,11 @@
 # @db-ux/core-components
 
+## 4.3.2
+
+### Patch Changes
+
+- fix: rendering issue with drawer and sub-navigation when user has `prefers-reduced-motion: reduce` - [see commit cd23ff2](https://github.com/db-ux-design-system/core-web/commit/cd23ff2da5fa8a11121c3195467b4b4c0ab2ebb6)
+
 ## 4.3.1
 
 ### Patch Changes
