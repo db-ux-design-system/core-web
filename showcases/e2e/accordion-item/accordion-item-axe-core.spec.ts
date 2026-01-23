@@ -4,7 +4,7 @@ import { lvl3 } from '../fixtures/variants';
 
 // Showcase uses <li> outside of <ul> in this case
 // TODO: Let's investigate whether we could prevent this deactivation later on
-const axeDisableRules = ['listitem', 'only-listitems'];
+const axeDisableRules = ['listitem'];
 
 test.describe('DBAccordionItem', () => {
 	runAxeCoreTest({ path: '04/accordion-item', axeDisableRules });

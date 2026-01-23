@@ -11,18 +11,12 @@ useMetadata({
 export default function AccordionItemDisabled() {
 	return (
 		<Fragment>
-			<ul>
-				<DBAccordionItem
-					headlinePlain="(Default) False"
-					disabled={false}>
-					(Default) False
-				</DBAccordionItem>
-			</ul>
-			<ul>
-				<DBAccordionItem headlinePlain="True" disabled={true}>
-					True
-				</DBAccordionItem>
-			</ul>
+			<DBAccordionItem headlinePlain="(Default) False" disabled={false}>
+				(Default) False
+			</DBAccordionItem>
+			<DBAccordionItem headlinePlain="True" disabled={true}>
+				True
+			</DBAccordionItem>
 		</Fragment>
 	);
 }
