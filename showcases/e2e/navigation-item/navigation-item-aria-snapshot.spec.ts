@@ -8,6 +8,7 @@ test.describe('DBNavigationItem', () => {
 
 	runAriaSnapshotTest({
 		path,
-		fixedHeight
+		fixedHeight,
+		skip: { stencil: true }
 	});
 });

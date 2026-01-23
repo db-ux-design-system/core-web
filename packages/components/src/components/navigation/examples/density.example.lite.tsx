@@ -23,6 +23,7 @@ export default function NavigationDensity() {
 				</DBInfotext>
 				<DBNavigation
 					data-density="functional"
+					aria-x="workaround-angular"
 					aria-labelledby="functional">
 					<DBNavigationItem
 						subNavigation={
@@ -69,6 +70,7 @@ export default function NavigationDensity() {
 				</DBInfotext>
 				<DBNavigation
 					data-density="regular"
+					aria-x="workaround-angular"
 					aria-labelledby="_default__regular">
 					<DBNavigationItem
 						subNavigation={
@@ -115,6 +117,7 @@ export default function NavigationDensity() {
 				</DBInfotext>
 				<DBNavigation
 					data-density="expressive"
+					aria-x="workaround-angular"
 					aria-labelledby="expressive">
 					<DBNavigationItem
 						subNavigation={

@@ -24,7 +24,7 @@ module.exports = {
 		// 'src/components/navigation/examples/*.example.lite.tsx',
 		// 'src/components/navigation-item/examples/*.example.lite.tsx',
 		// 'src/components/notification/examples/*.example.lite.tsx',
-		'src/components/popover/examples/*.example.lite.tsx',
+		// 'src/components/popover/examples/*.example.lite.tsx',
 		'src/components/radio/examples/*.example.lite.tsx',
 		// 'src/components/section/examples/*.example.lite.tsx',
 		'src/components/select/examples/*.example.lite.tsx',

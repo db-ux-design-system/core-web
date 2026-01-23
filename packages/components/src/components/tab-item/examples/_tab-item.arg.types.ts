@@ -7,7 +7,5 @@ export const StorybookTabItemArgTypes: Record<string, InputType> = {
 	icon: { control: 'text' },
 	showIcon: { control: 'boolean' },
 	iconTrailing: { control: 'text' },
-	showIconTrailing: { control: 'boolean' },
-	width: { control: 'text' },
-	alignment: { control: 'text' }
+	showIconTrailing: { control: 'boolean' }
 };

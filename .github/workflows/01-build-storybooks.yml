@@ -65,9 +65,3 @@ jobs:
         with:
           name: db-ux-${{ inputs.storybook }}
           path: build-storybooks/${{ inputs.storybook }}
-
-      - name: 💀 Killing me softly
-        uses: ./.github/actions/cancel-workflow
-        if: failure()
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}

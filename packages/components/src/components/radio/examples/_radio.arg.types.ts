@@ -6,8 +6,6 @@ export const StorybookRadioArgTypes: Record<string, InputType> = {
 	disabled: { control: 'boolean' },
 	checked: { control: 'boolean' },
 	validation: { control: 'text' },
-	invalidMessage: { control: 'text' },
-	validMessage: { control: 'text' },
 	size: { control: 'text' },
 	required: { control: 'boolean' },
 	showLabel: { control: 'boolean' },

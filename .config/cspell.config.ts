@@ -35,6 +35,7 @@ export default defineConfig({
 		'packages/migration/**',
 		'output/**',
 		'showcases/patternhub/**',
+		'storybooks/angular-storybook/src/components/documentation.json',
 		// Examples
 		'showcases/react-showcase/src/components/form/index.tsx',
 		'showcases/patternhub/pages/foundations/densities/examples.tsx',
