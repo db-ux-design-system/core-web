@@ -9,7 +9,7 @@ const nextConfig = {
 		BASE_PATH: '/next-showcase'
 	},
 	sassOptions: {
-		includePaths: ['node_modules']
+		includePaths: ['../../node_modules']
 	}
 };
 

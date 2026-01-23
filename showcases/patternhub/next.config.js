@@ -33,7 +33,7 @@ const config = {
 		NEXT_PUBLIC_GITHUB_REPO: 'core-web'
 	},
 	sassOptions: {
-		includePaths: ['node_modules']
+		includePaths: ['../../node_modules']
 	}
 };
 
