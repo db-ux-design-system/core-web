@@ -93,15 +93,18 @@
   - text: Label
   - textbox "Label":
     - /placeholder: "True"
+  - text: Please fill out this field.
   - status
   - link "Show Required Asterisk"
   - text: Label
   - textbox "Label":
     - /placeholder: (Default) True
+  - text: Please fill out this field.
   - status
   - text: Label
   - textbox "Label":
     - /placeholder: "False"
+  - text: Please fill out this field.
   - status
   - link "Show Icon Leading"
   - text: "False"

@@ -388,6 +388,7 @@
           - listitem:
             - checkbox "Option 5"
             - text: Option 5
+  - text: Select an item in the list
   - status
   - link "Show Required Asterisk"
   - text: (Default) True
@@ -410,6 +411,7 @@
           - listitem:
             - checkbox "Option 5"
             - text: Option 5
+  - text: Select an item in the list
   - status
   - text: "False"
   - group:
@@ -431,6 +433,7 @@
           - listitem:
             - checkbox "Option 5"
             - text: Option 5
+  - text: Select an item in the list
   - status
   - link "Disabled"
   - text: (Default) False
