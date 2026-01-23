@@ -50,7 +50,7 @@ const getStyle = (componentName) => {
  */
 const getWCTemplate = (componentName, props, allSlots, metaData) =>
 	`
-{wc && (
+{requiresWebComponent && (
 	<db-${componentName}
 		data-connect={connectId}
 		${props

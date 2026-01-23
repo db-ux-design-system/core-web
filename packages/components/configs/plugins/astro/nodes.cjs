@@ -151,7 +151,7 @@ const handleNode = (node, props, root) => {
 
 	// Add connect-id for root elements with web components
 	const connectIdString = root
-		? ' data-connect-id={wc ? connectId: undefined} '
+		? ' data-connect-id={requiresWebComponent ? connectId: undefined} '
 		: '';
 
 	return `<${tag}${connectIdString}${allProps ? ' ' + allProps : ''}>${getChildren(children)}</${tag}>`;

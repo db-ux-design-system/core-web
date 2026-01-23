@@ -980,7 +980,11 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 						class="db-custom-select-form-field"
 						aria-disabled={getBooleanAsString(props.disabled)}
 						aria-labelledby={state._labelId}>
-						<Show when={Boolean(state._selectedLabels?.length)}>
+						<Show
+							when={
+								state._selectedLabels &&
+								state._selectedLabels?.length
+							}>
 							<span
 								data-visually-hidden={getBooleanAsString(
 									props.selectedType === 'tag'

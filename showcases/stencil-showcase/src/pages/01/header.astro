@@ -14,6 +14,7 @@ import { DBHeader, DBBrand, DBLink, DBButton, DBNavigation, DBNavigationItem } f
 			(variant: DefaultComponentVariants) => (
 				<VariantList {...variant}>
 					{({
+						children,
 						example,
 						withName,
 						withNavigation,
@@ -27,55 +28,44 @@ import { DBHeader, DBBrand, DBLink, DBButton, DBNavigation, DBNavigationItem } f
 							<DBBrand slot="brand" title="DBHeader">
 								{!example || withName ? 'DBHeader' : ''}
 							</DBBrand>
+							{!example &&
+								// prettier-ignore
+								<DBLink href="#" slot="metaNavigation">Imprint</DBLink>}
+							{!example &&
+								// prettier-ignore
+								<DBLink href="#" slot="metaNavigation">Help</DBLink>}
 							{!example && (
-								<>
-									<DBLink href="#" slot="metaNavigation">
-										Imprint
-									</DBLink>
-									<DBLink href="#" slot="metaNavigation">
-										Help
-									</DBLink>
-									<DBButton
-										slot="primaryAction"
-										icon="magnifying_glass"
-										variant="ghost"
-										noText={true}
-									>
-										Search
-									</DBButton>
-									<DBButton
-										slot="secondaryAction"
-										icon="x_placeholder"
-										variant="ghost"
-										noText={true}
-									>
-										Profile
-									</DBButton>
-									<DBButton
-										slot="secondaryAction"
-										icon="x_placeholder"
-										variant="ghost"
-										noText={true}
-									>
-										Notification
-									</DBButton>
-									<DBButton
-										slot="secondaryAction"
-										icon="x_placeholder"
-										variant="ghost"
-										noText={true}
-									>
-										Help
-									</DBButton>
-								</>
+								<DBButton
+									slot="primaryAction"
+									icon="magnifying_glass"
+									variant="ghost"
+									noText={true}
+								>
+									Search
+								</DBButton>
+							)}
+							{!example && (
+								<DBButton slot="secondaryAction" icon="x_placeholder" variant="ghost" noText={true}>
+									Profile
+								</DBButton>
+							)}
+							{!example && (
+								<DBButton slot="secondaryAction" icon="x_placeholder" variant="ghost" noText={true}>
+									Notification
+								</DBButton>
+							)}
+							{!example && (
+								<DBButton slot="secondaryAction" icon="x_placeholder" variant="ghost" noText={true}>
+									Help
+								</DBButton>
 							)}
 							{(!example || withNavigation) && (
 								<DBNavigation aria-label="Navigation">
 									<DBNavigationItem hideSubNavigation={true} icon="x_placeholder">
-										<a href="#">Link</a>
+										<a href="#">{children}</a>
 									</DBNavigationItem>
 									<DBNavigationItem hideSubNavigation={true} disabled={true}>
-										<a href="#">Link disabled</a>
+										<a href="#">{children} disabled</a>
 									</DBNavigationItem>
 								</DBNavigation>
 							)}
