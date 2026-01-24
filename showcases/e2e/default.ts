@@ -72,6 +72,7 @@ const gotoPage = async (
 			waitUntil: 'domcontentloaded'
 		}
 	);
+	await page.evaluate(async () => document.fonts.ready);
 
 	await waitForDBPage(page);
 	await setScrollViewport(page, fixedHeight)();
@@ -99,15 +100,12 @@ export const getDefaultScreenshotTest = ({
 	ratio
 }: DefaultSnapshotTestType) => {
 	test(`should match screenshot`, async ({ page }, { project }) => {
-		const { showcase } = process.env;
 		const diffPixel = process.env.diff;
 		const maxDiffPixelRatio = process.env.ratio ?? ratio;
-		const stencil = isStencil(showcase);
 		const isWebkit =
 			project.name === 'webkit' || project.name === 'mobile_safari';
 
-		if ((stencil && isWebkit) || shouldSkip(skip)) {
-			// There is an issue with Webkit and Stencil for new playwright version
+		if (shouldSkip(skip)) {
 			test.skip();
 		}
 
@@ -122,11 +120,7 @@ export const getDefaultScreenshotTest = ({
 				config.maxDiffPixels = Number(diffPixel);
 			}
 		} else if (isWebkit) {
-			config.maxDiffPixelRatio = 0.033;
-		} else if (isAngular(showcase)) {
-			config.maxDiffPixels = 1000;
-		} else {
-			config.maxDiffPixels = 120;
+			config.maxDiffPixelRatio = 0.0123;
 		}
 
 		await gotoPage(page, path, lvl1, fixedHeight);

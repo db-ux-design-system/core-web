@@ -7,7 +7,7 @@ import { v006_v007 } from './migration/v0.0.6-v0.0.7';
 import { v007_v100 } from './migration/v0.0.7-v1.0.0';
 import { v100_v200 } from './migration/v1.0.0-v2.0.0';
 import { v200_v300 } from './migration/v2.0.0-v3.0.0';
-import type { ProgrammOptionsType } from './types';
+import type { ProgramOptionsType } from './types';
 
 export const migrationTypes: Record<string, ReplaceInFileConfig[]> = {
 	colorQ32024,
@@ -20,7 +20,7 @@ export const migrationTypes: Record<string, ReplaceInFileConfig[]> = {
 	v200_v300
 };
 
-export const options: ProgrammOptionsType[] = [
+export const options: ProgramOptionsType[] = [
 	{
 		name: 'type',
 		description: `Type of migration (${Object.keys(migrationTypes).join(', ')})`,

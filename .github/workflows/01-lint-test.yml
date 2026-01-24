@@ -13,7 +13,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        command: ["lint", "test"]
+        command: ["lint", "test", "codespell"]
     steps:
       - name: ⏬️ Checkout repo
         uses: actions/checkout@v6
@@ -21,10 +21,15 @@ jobs:
       - name: 🔄 Init Cache
         uses: ./.github/actions/npm-cache
 
+      - name: 📖 Check spelling
+        if: ${{ matrix.command == 'codespell' }}
+        run: |
+          npm run lint:codespell
+
       - name: ⚡ Run Lint
         if: ${{ matrix.command == 'lint' }}
         run: |
-          npm run postinstall --workspace=nuxt-showcase
+          npm run nuxt:prepare --workspace=nuxt-showcase
           npm run build --workspace=@db-ux/core-stylelint
           npm run lint
 

@@ -1,5 +1,37 @@
 # @db-ux/react-core-components
 
+## 4.3.2
+
+### Patch Changes
+
+- fix(input): add missing `accept` attribute for file inputs - [see commit d74707d](https://github.com/db-ux-design-system/core-web/commit/d74707d17045a0efb182856e9a3db192a4d6e2fa)
+
+- fix: rendering issue with drawer and sub-navigation when user has `prefers-reduced-motion: reduce` - [see commit cd23ff2](https://github.com/db-ux-design-system/core-web/commit/cd23ff2da5fa8a11121c3195467b4b4c0ab2ebb6)
+
+- fix(customselect): select last remaining result with enter key - [see commit cc6a445](https://github.com/db-ux-design-system/core-web/commit/cc6a445c523cc196b9c93584c62772ba9864996f)
+
+## 4.3.1
+
+### Patch Changes
+
+- fix(angular): issue with form-components not applying value changes because of [attr.value] instead of native [value] binding - [see commit 61ab4a3](https://github.com/db-ux-design-system/core-web/commit/61ab4a3e9a781459b829c74cf23624a23edd9e3f)
+
+## 4.3.0
+
+### Minor Changes
+
+- _version bump_ (staying in sync with the Figma library) - [see commit 9e03702](https://github.com/db-ux-design-system/core-web/commit/9e0370266511fa99085ff837e430ad83f28856ec)
+
+### Patch Changes
+
+- fix(input): support `step`-HTML-attribute/-property with `"any"` value for `number` inputs - [see commit 748d1af](https://github.com/db-ux-design-system/core-web/commit/748d1af8ca38c8c10ea134ef23b2846e047186a6)
+
+## 4.2.6
+
+### Patch Changes
+
+- fix(switch): not displaying the `forced-colors` content on regular display mode - [see commit 3b18938](https://github.com/db-ux-design-system/core-web/commit/3b189383324edd2a30b2d60b45fe1130ae5b8478)
+
 ## 4.2.5
 
 ### Patch Changes

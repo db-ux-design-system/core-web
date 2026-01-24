@@ -76,6 +76,49 @@ const testAction = () => {
 		await expect(input).not.toHaveAttribute('enterkeyhint');
 		await expect(input).not.toHaveAttribute('inputmode');
 	});
+
+	test('should support step="any" for number input', async ({ mount }) => {
+		const component = await mount(
+			<DBInput label="Label" type="number" step="any" />
+		);
+		const input = component.getByRole('spinbutton');
+		await expect(input).toHaveAttribute('step', 'any');
+	});
+
+	test('should support numeric step for number input', async ({ mount }) => {
+		const component = await mount(
+			<DBInput label="Label" type="number" step={0.01} />
+		);
+		const input = component.getByRole('spinbutton');
+		await expect(input).toHaveAttribute('step', '0.01');
+	});
+
+	test('should have accept attribute when provided for file input', async ({
+		mount
+	}) => {
+		const component = await mount(
+			<DBInput label="Label" type="file" accept=".pdf" />
+		);
+		const input = component.locator('input[type="file"]');
+		await expect(input).toHaveAttribute('accept', '.pdf');
+	});
+
+	test('should support multiple file types in accept attribute', async ({
+		mount
+	}) => {
+		const component = await mount(
+			<DBInput
+				label="Label"
+				type="file"
+				accept=".pdf,.doc,.docx,image/*"
+			/>
+		);
+		const input = component.locator('input[type="file"]');
+		await expect(input).toHaveAttribute(
+			'accept',
+			'.pdf,.doc,.docx,image/*'
+		);
+	});
 };
 
 test.describe('DBInput', () => {

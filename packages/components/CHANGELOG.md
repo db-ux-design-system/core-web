@@ -1,5 +1,29 @@
 # @db-ux/core-components
 
+## 4.3.2
+
+### Patch Changes
+
+- fix: rendering issue with drawer and sub-navigation when user has `prefers-reduced-motion: reduce` - [see commit cd23ff2](https://github.com/db-ux-design-system/core-web/commit/cd23ff2da5fa8a11121c3195467b4b4c0ab2ebb6)
+
+## 4.3.1
+
+### Patch Changes
+
+- fix(angular): issue with form-components not applying value changes because of [attr.value] instead of native [value] binding - [see commit 61ab4a3](https://github.com/db-ux-design-system/core-web/commit/61ab4a3e9a781459b829c74cf23624a23edd9e3f)
+
+## 4.3.0
+
+### Minor Changes
+
+- _version bump_ (staying in sync with the Figma library) - [see commit 9e03702](https://github.com/db-ux-design-system/core-web/commit/9e0370266511fa99085ff837e430ad83f28856ec)
+
+## 4.2.6
+
+### Patch Changes
+
+- fix(switch): not displaying the `forced-colors` content on regular display mode - [see commit 3b18938](https://github.com/db-ux-design-system/core-web/commit/3b189383324edd2a30b2d60b45fe1130ae5b8478)
+
 ## 4.2.5
 
 ### Patch Changes
