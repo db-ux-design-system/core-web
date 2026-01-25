@@ -1,23 +1,8 @@
 ---
 import DefaultLayout from '../../layouts/default/DefaultLayout.astro';
-import DefaultComponent from '../../components/default/DefaultComponent.astro';
-import defaultComponentVariants from '../../../../shared/button.json';
-import type { DBButtonProps } from '@components';
-import VariantList from '../../components/default/VariantList.astro';
-import type { DefaultComponentVariants } from '../../../../shared/default-component-data.ts';
-import { DBButton } from '@components';
+import ButtonShowcase from '@components/components/button/showcase/button.showcase.astro';
 ---
 
 <DefaultLayout>
-	<DefaultComponent title="DBButton" variants={defaultComponentVariants}
-		>{
-			(variant: DefaultComponentVariants) => (
-				<VariantList {...variant}>
-					{({ children, ...props }: DBButtonProps) => (
-						<DBButton {...props}>{children}</DBButton>
-					)}
-				</VariantList>
-			)
-		}</DefaultComponent
-	>
+	<ButtonShowcase />
 </DefaultLayout>

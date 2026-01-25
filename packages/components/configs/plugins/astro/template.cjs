@@ -2,23 +2,7 @@
 // Dependencies
 // ============================================================================
 const { getChildren } = require('./nodes.cjs');
-const { findAllSlots, isEvent } = require('./utils.cjs');
-
-// ============================================================================
-// Utility Functions
-// ============================================================================
-
-/**
- * Converts a string to dashed lowercase format (camelCase -> camel-case)
- * @param {string} input - The input string to convert
- * @returns {string} The converted string in dashed lowercase format
- */
-const toDashedLowerCase = (input) => {
-	return input
-		.replace(/([a-z])([A-Z])/g, '$1-$2') // Insert dash between lowercase and uppercase
-		.replace(/\s+/g, '-') // Replace spaces with dashes
-		.toLowerCase(); // Convert to lowercase
-};
+const { findAllSlots, isEvent, toDashedLowerCase } = require('./utils.cjs');
 
 // ============================================================================
 // Template Generation Functions
@@ -100,11 +84,28 @@ const getAstroTemplate = (json) => {
 	// ========================================================================
 	// Process imports - ensure uuid is imported and convert paths
 	// ========================================================================
+	let foundUtils = false;
 	imports.forEach((imp) => {
 		if (imp.path === '../../utils') {
 			imp.imports['uuid'] = 'uuid'; // Ensure uuid is imported
+			foundUtils = true;
 		}
 	});
+
+	if (!foundUtils) {
+		const relativeUtils =
+			json.pluginData.path.replaceAll('\\', '/').split('/').length - 2;
+		const importPath =
+			Array.from({ length: relativeUtils })
+				.map(() => '..')
+				.join('/') + '/utils';
+		imports.push({
+			imports: {
+				uuid: 'uuid'
+			},
+			path: importPath
+		});
+	}
 
 	const importsString = imports
 		.map(({ imports: imps, path }) => {
@@ -152,7 +153,8 @@ const getAstroTemplate = (json) => {
 		}`
 		: `
 		interface Props { ${requiresWebComponentPropertyString}
-		[key: string]: any; // Allow everything else}
+		[key: string]: any; // Allow everything else
+		}
 `;
 
 	// ========================================================================
@@ -194,7 +196,9 @@ const getAstroTemplate = (json) => {
 	// ========================================================================
 	const uuidString = '${uuid()}';
 	const lowerCaseComponentName = toDashedLowerCase(
-		json.name.slice(2, json.name.length) // Remove 'DB' prefix
+		json.name.startsWith('DB')
+			? json.name.slice(2, json.name.length)
+			: json.name // Remove 'DB' prefix
 	);
 
 	// ========================================================================
@@ -217,7 +221,7 @@ const connectId = \`connect-${uuidString}\`;
 ---
 ${getStyle(lowerCaseComponentName)}
 ${getWCTemplate(lowerCaseComponentName, props, allSlots, metaData)}
-${getChildren(json.children, props, true)}`;
+${getChildren(json, json.children, props, true)}`;
 };
 
 // ============================================================================

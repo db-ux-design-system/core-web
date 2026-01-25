@@ -65,6 +65,18 @@ const isEvent = (prop) =>
 	prop.startsWith('on') && // Starts with 'on'
 	prop[2] === prop[2].toUpperCase(); // Third character is uppercase
 
+/**
+ * Converts a string to dashed lowercase format (camelCase -> camel-case)
+ * @param {string} input - The input string to convert
+ * @returns {string} The converted string in dashed lowercase format
+ */
+const toDashedLowerCase = (input) => {
+	return input
+		.replace(/([a-z])([A-Z])/g, '$1-$2') // Insert dash between lowercase and uppercase
+		.replace(/\s+/g, '-') // Replace spaces with dashes
+		.toLowerCase(); // Convert to lowercase
+};
+
 // ============================================================================
 // Exports
 // ============================================================================
@@ -73,5 +85,6 @@ module.exports = {
 	astroDirPath,
 	findAllSlots,
 	getRootProps,
-	isEvent
+	isEvent,
+	toDashedLowerCase
 };
