@@ -32,7 +32,7 @@ export type DBSelectDefaultProps = {
 	options?: DBSelectOptionType[];
 
 	/**
-	 * Controls whether the empty placeholder option is shown in the dropdown.
+	 * Controls whether the empty placeholder option is shown in the dropdown after users selection of another option.
 	 * By default, it is shown for non-required selects and hidden for required selects.
 	 * Set to `true` to always show or `false` to always hide the empty option.
 	 */
