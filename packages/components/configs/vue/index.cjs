@@ -1,5 +1,6 @@
 const onClickPlugin = require('../plugins/on-click.cjs');
 const defineOptionsPlugin = require('../plugins/vue/define-options.cjs');
+const useIdPlugin = require('../plugins/useId.cjs');
 
 /**
  * @type {import('@builder.io/mitosis').ToVueOptions}
@@ -7,5 +8,5 @@ const defineOptionsPlugin = require('../plugins/vue/define-options.cjs');
 module.exports = {
 	typescript: true,
 	api: 'composition',
-	plugins: [onClickPlugin, defineOptionsPlugin]
+	plugins: [useIdPlugin, onClickPlugin, defineOptionsPlugin]
 };

@@ -10,7 +10,7 @@ import {
 } from '@builder.io/mitosis';
 import { DEFAULT_BACK } from '../../shared/constants';
 import { ClickEvent } from '../../shared/model';
-import { cls, delay, getBoolean, getBooleanAsString, uuid } from '../../utils';
+import { cls, delay, getBoolean, getBooleanAsString } from '../../utils';
 import { NavigationItemSafeTriangle } from '../../utils/navigation';
 import DBButton from '../button/button.lite';
 import { DBNavigationItemProps, DBNavigationItemState } from './model';
@@ -29,7 +29,6 @@ export default function DBNavigationItem(props: DBNavigationItemProps) {
 		hasSubNavigation: true,
 		isSubNavigationExpanded: false,
 		autoClose: false,
-		subNavigationId: 'sub-navigation-' + uuid(),
 		navigationItemSafeTriangle: undefined,
 		handleNavigationItemClick: (event: any) => {
 			if (event?.target?.nodeName === 'A') {
@@ -133,7 +132,6 @@ export default function DBNavigationItem(props: DBNavigationItemProps) {
 				<menu
 					class="db-sub-navigation"
 					data-force-close={state.autoClose}
-					id={state.subNavigationId}
 					onClick={(event) => state.handleNavigationItemClick(event)}>
 					<Show when={state.hasAreaPopup}>
 						<div class="db-mobile-navigation-back">
