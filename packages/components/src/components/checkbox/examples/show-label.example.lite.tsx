@@ -11,12 +11,14 @@ useMetadata({
 export default function CheckboxShowLabel() {
 	return (
 		<Fragment>
-			<DBCheckbox name="Label" showLabel={true}>
-				(Default) True
-			</DBCheckbox>
-			<DBCheckbox name="Label" showLabel={false}>
-				False
-			</DBCheckbox>
+			<div role="group">
+				<DBCheckbox name="Label" showLabel={true}>
+					(Default) True
+				</DBCheckbox>
+				<DBCheckbox name="Label" showLabel={false}>
+					False
+				</DBCheckbox>
+			</div>
 		</Fragment>
 	);
 }

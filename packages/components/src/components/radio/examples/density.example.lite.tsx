@@ -11,21 +11,23 @@ useMetadata({
 export default function RadioDensity() {
 	return (
 		<Fragment>
-			<DBRadio
-				data-density="functional"
-				name="Density"
-				value="functional">
-				Functional
-			</DBRadio>
-			<DBRadio data-density="regular" name="Density" value="regular">
-				(Default) Regular
-			</DBRadio>
-			<DBRadio
-				data-density="expressive"
-				name="Density"
-				value="expressive">
-				Expressive
-			</DBRadio>
+			<div role="radiogroup">
+				<DBRadio
+					data-density="functional"
+					name="Density"
+					value="functional">
+					Functional
+				</DBRadio>
+				<DBRadio data-density="regular" name="Density" value="regular">
+					(Default) Regular
+				</DBRadio>
+				<DBRadio
+					data-density="expressive"
+					name="Density"
+					value="expressive">
+					Expressive
+				</DBRadio>
+			</div>
 		</Fragment>
 	);
 }

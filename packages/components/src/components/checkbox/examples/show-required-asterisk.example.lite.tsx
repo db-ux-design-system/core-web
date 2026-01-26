@@ -11,18 +11,20 @@ useMetadata({
 export default function CheckboxShowRequiredAsterisk() {
 	return (
 		<Fragment>
-			<DBCheckbox
-				name="Asterisk"
-				required={true}
-				showRequiredAsterisk={true}>
-				(Default) True
-			</DBCheckbox>
-			<DBCheckbox
-				name="Asterisk"
-				required={true}
-				showRequiredAsterisk={false}>
-				False
-			</DBCheckbox>
+			<div role="group">
+				<DBCheckbox
+					name="Asterisk"
+					required={true}
+					showRequiredAsterisk={true}>
+					(Default) True
+				</DBCheckbox>
+				<DBCheckbox
+					name="Asterisk"
+					required={true}
+					showRequiredAsterisk={false}>
+					False
+				</DBCheckbox>
+			</div>
 		</Fragment>
 	);
 }

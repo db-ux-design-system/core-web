@@ -11,10 +11,12 @@ useMetadata({
 export default function RadioSize() {
 	return (
 		<Fragment>
-			<DBRadio name="Size">(Default) Medium</DBRadio>
-			<DBRadio name="Size" size="small">
-				Small
-			</DBRadio>
+			<div role="radiogroup">
+				<DBRadio name="Size">(Default) Medium</DBRadio>
+				<DBRadio name="Size" size="small">
+					Small
+				</DBRadio>
+			</div>
 		</Fragment>
 	);
 }

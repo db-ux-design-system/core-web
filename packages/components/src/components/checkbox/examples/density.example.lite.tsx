@@ -11,15 +11,17 @@ useMetadata({
 export default function CheckboxDensity() {
 	return (
 		<Fragment>
-			<DBCheckbox data-density="functional" name="Density">
-				Functional
-			</DBCheckbox>
-			<DBCheckbox data-density="regular" name="Density">
-				(Default) Regular
-			</DBCheckbox>
-			<DBCheckbox data-density="expressive" name="Density">
-				Expressive
-			</DBCheckbox>
+			<div role="group">
+				<DBCheckbox data-density="functional" name="Density">
+					Functional
+				</DBCheckbox>
+				<DBCheckbox data-density="regular" name="Density">
+					(Default) Regular
+				</DBCheckbox>
+				<DBCheckbox data-density="expressive" name="Density">
+					Expressive
+				</DBCheckbox>
+			</div>
 		</Fragment>
 	);
 }

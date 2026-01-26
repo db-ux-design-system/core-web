@@ -11,12 +11,14 @@ useMetadata({
 export default function RadioDisabled() {
 	return (
 		<Fragment>
-			<DBRadio name="Disabled" disabled={false}>
-				(Default) False
-			</DBRadio>
-			<DBRadio name="Disabled" disabled={true}>
-				True
-			</DBRadio>
+			<div role="radiogroup">
+				<DBRadio name="Disabled" disabled={false}>
+					(Default) False
+				</DBRadio>
+				<DBRadio name="Disabled" disabled={true}>
+					True
+				</DBRadio>
+			</div>
 		</Fragment>
 	);
 }

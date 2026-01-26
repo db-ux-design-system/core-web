@@ -11,10 +11,12 @@ useMetadata({
 export default function RadioChecked() {
 	return (
 		<Fragment>
-			<DBRadio name="Checked">(Default) False</DBRadio>
-			<DBRadio name="Checked" checked={true}>
-				True
-			</DBRadio>
+			<div role="radiogroup">
+				<DBRadio name="Checked">(Default) False</DBRadio>
+				<DBRadio name="Checked" checked={true}>
+					True
+				</DBRadio>
+			</div>
 		</Fragment>
 	);
 }

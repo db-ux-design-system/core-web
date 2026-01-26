@@ -11,12 +11,14 @@ useMetadata({
 export default function CheckboxChecked() {
 	return (
 		<Fragment>
-			<DBCheckbox name="State" checked={false}>
-				(Default) False
-			</DBCheckbox>
-			<DBCheckbox name="State" checked={true}>
-				True
-			</DBCheckbox>
+			<div role="group">
+				<DBCheckbox name="State" checked={false}>
+					(Default) False
+				</DBCheckbox>
+				<DBCheckbox name="State" checked={true}>
+					True
+				</DBCheckbox>
+			</div>
 		</Fragment>
 	);
 }

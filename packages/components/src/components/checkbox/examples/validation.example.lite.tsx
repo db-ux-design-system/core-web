@@ -11,21 +11,23 @@ useMetadata({
 export default function CheckboxValidation() {
 	return (
 		<Fragment>
-			<DBCheckbox name="Validation" validation="no-validation">
-				(Default) No validation
-			</DBCheckbox>
-			<DBCheckbox
-				name="Validation"
-				validation="invalid"
-				invalidMessage="Invalid Message">
-				Invalid
-			</DBCheckbox>
-			<DBCheckbox
-				name="Validation"
-				validation="valid"
-				validMessage="Valid message">
-				Valid
-			</DBCheckbox>
+			<div role="group">
+				<DBCheckbox name="Validation" validation="no-validation">
+					(Default) No validation
+				</DBCheckbox>
+				<DBCheckbox
+					name="Validation"
+					validation="invalid"
+					invalidMessage="Invalid Message">
+					Invalid
+				</DBCheckbox>
+				<DBCheckbox
+					name="Validation"
+					validation="valid"
+					validMessage="Valid message">
+					Valid
+				</DBCheckbox>
+			</div>
 		</Fragment>
 	);
 }

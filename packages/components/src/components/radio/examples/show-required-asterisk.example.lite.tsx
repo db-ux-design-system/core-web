@@ -11,18 +11,20 @@ useMetadata({
 export default function RadioShowRequiredAsterisk() {
 	return (
 		<Fragment>
-			<DBRadio
-				name="Asterisk"
-				required={true}
-				showRequiredAsterisk={true}>
-				(Default) True
-			</DBRadio>
-			<DBRadio
-				name="Asterisk"
-				required={true}
-				showRequiredAsterisk={false}>
-				False
-			</DBRadio>
+			<div role="radiogroup">
+				<DBRadio
+					name="Asterisk"
+					required={true}
+					showRequiredAsterisk={true}>
+					(Default) True
+				</DBRadio>
+				<DBRadio
+					name="Asterisk"
+					required={true}
+					showRequiredAsterisk={false}>
+					False
+				</DBRadio>
+			</div>
 		</Fragment>
 	);
 }

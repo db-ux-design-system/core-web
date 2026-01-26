@@ -11,12 +11,14 @@ useMetadata({
 export default function RadioShowLabel() {
 	return (
 		<Fragment>
-			<DBRadio name="Content" showLabel={true}>
-				(Default) True
-			</DBRadio>
-			<DBRadio name="Content" showLabel={false}>
-				False
-			</DBRadio>
+			<div role="radiogroup">
+				<DBRadio name="Content" showLabel={true}>
+					(Default) True
+				</DBRadio>
+				<DBRadio name="Content" showLabel={false}>
+					False
+				</DBRadio>
+			</div>
 		</Fragment>
 	);
 }

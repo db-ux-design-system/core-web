@@ -11,12 +11,14 @@ useMetadata({
 export default function CheckboxIndeterminate() {
 	return (
 		<Fragment>
-			<DBCheckbox name="Indeterminate" indeterminate={false}>
-				(Default) False
-			</DBCheckbox>
-			<DBCheckbox name="Indeterminate" indeterminate={true}>
-				True
-			</DBCheckbox>
+			<div role="group">
+				<DBCheckbox name="Indeterminate" indeterminate={false}>
+					(Default) False
+				</DBCheckbox>
+				<DBCheckbox name="Indeterminate" indeterminate={true}>
+					True
+				</DBCheckbox>
+			</div>
 		</Fragment>
 	);
 }

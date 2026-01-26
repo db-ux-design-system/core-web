@@ -11,10 +11,12 @@ useMetadata({
 export default function CheckboxSize() {
 	return (
 		<Fragment>
-			<DBCheckbox name="Size">(Default) Medium</DBCheckbox>
-			<DBCheckbox name="Size" size="small">
-				Small
-			</DBCheckbox>
+			<div role="group">
+				<DBCheckbox name="Size">(Default) Medium</DBCheckbox>
+				<DBCheckbox name="Size" size="small">
+					Small
+				</DBCheckbox>
+			</div>
 		</Fragment>
 	);
 }

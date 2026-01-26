@@ -11,12 +11,14 @@ useMetadata({
 export default function RadioRequired() {
 	return (
 		<Fragment>
-			<DBRadio name="Requirement" required={false}>
-				(Default) False
-			</DBRadio>
-			<DBRadio name="Requirement" required={true}>
-				True
-			</DBRadio>
+			<div role="radiogroup">
+				<DBRadio name="Requirement" required={false}>
+					(Default) False
+				</DBRadio>
+				<DBRadio name="Requirement" required={true}>
+					True
+				</DBRadio>
+			</div>
 		</Fragment>
 	);
 }
