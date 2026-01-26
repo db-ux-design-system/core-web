@@ -23065,7 +23065,7 @@ Inside
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-5268897227695806"
+                    id="sub-navigation-8192796112962005"
                   ></menu>
                 </li>
                 <li
@@ -23084,7 +23084,7 @@ Inside
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-39532680418692523"
+                    id="sub-navigation-8742156641636292"
                   ></menu>
                 </li>
               </menu>
@@ -23144,7 +23144,7 @@ Inside
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-3986908820351649"
+                id="sub-navigation-29857006767957406"
               ></menu>
             </li>
             <li
@@ -23163,7 +23163,7 @@ Inside
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-01320934308212196"
+                id="sub-navigation-18011626496422095"
               ></menu>
             </li>
           </menu>
@@ -23241,7 +23241,7 @@ Inside
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-5268897227695806"
+                    id="sub-navigation-8192796112962005"
                   ></menu>
                 </li>
                 <li
@@ -23260,7 +23260,7 @@ Inside
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-39532680418692523"
+                    id="sub-navigation-8742156641636292"
                   ></menu>
                 </li>
               </menu>
@@ -23320,7 +23320,7 @@ Inside
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-3986908820351649"
+                id="sub-navigation-29857006767957406"
               ></menu>
             </li>
             <li
@@ -23339,7 +23339,7 @@ Inside
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-01320934308212196"
+                id="sub-navigation-18011626496422095"
               ></menu>
             </li>
           </menu>
@@ -23417,7 +23417,7 @@ Inside
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-5268897227695806"
+                    id="sub-navigation-8192796112962005"
                   ></menu>
                 </li>
                 <li
@@ -23436,7 +23436,7 @@ Inside
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-39532680418692523"
+                    id="sub-navigation-8742156641636292"
                   ></menu>
                 </li>
               </menu>
@@ -23496,7 +23496,7 @@ Inside
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-3986908820351649"
+                id="sub-navigation-29857006767957406"
               ></menu>
             </li>
             <li
@@ -23515,7 +23515,7 @@ Inside
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-01320934308212196"
+                id="sub-navigation-18011626496422095"
               ></menu>
             </li>
           </menu>
@@ -23593,7 +23593,7 @@ Inside
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-5268897227695806"
+                    id="sub-navigation-8192796112962005"
                   ></menu>
                 </li>
                 <li
@@ -23612,7 +23612,7 @@ Inside
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-39532680418692523"
+                    id="sub-navigation-8742156641636292"
                   ></menu>
                 </li>
               </menu>
@@ -23672,7 +23672,7 @@ Inside
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-3986908820351649"
+                id="sub-navigation-29857006767957406"
               ></menu>
             </li>
             <li
@@ -23691,7 +23691,7 @@ Inside
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-01320934308212196"
+                id="sub-navigation-18011626496422095"
               ></menu>
             </li>
           </menu>
@@ -24065,7 +24065,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-7416952665346628"
+                    id="sub-navigation-3868612057893358"
                   ></menu>
                 </li>
                 <li
@@ -24084,7 +24084,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-8853602838219847"
+                    id="sub-navigation-3668640931130638"
                   ></menu>
                 </li>
               </menu>
@@ -24144,7 +24144,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-005948587780396419"
+                id="sub-navigation-2915611808426183"
               ></menu>
             </li>
             <li
@@ -24163,7 +24163,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-024735915224073035"
+                id="sub-navigation-4971048124339722"
               ></menu>
             </li>
           </menu>
@@ -24241,7 +24241,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-7416952665346628"
+                    id="sub-navigation-3868612057893358"
                   ></menu>
                 </li>
                 <li
@@ -24260,7 +24260,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-8853602838219847"
+                    id="sub-navigation-3668640931130638"
                   ></menu>
                 </li>
               </menu>
@@ -24320,7 +24320,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-005948587780396419"
+                id="sub-navigation-2915611808426183"
               ></menu>
             </li>
             <li
@@ -24339,7 +24339,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-024735915224073035"
+                id="sub-navigation-4971048124339722"
               ></menu>
             </li>
           </menu>
@@ -24417,7 +24417,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-7416952665346628"
+                    id="sub-navigation-3868612057893358"
                   ></menu>
                 </li>
                 <li
@@ -24436,7 +24436,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-8853602838219847"
+                    id="sub-navigation-3668640931130638"
                   ></menu>
                 </li>
               </menu>
@@ -24496,7 +24496,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-005948587780396419"
+                id="sub-navigation-2915611808426183"
               ></menu>
             </li>
             <li
@@ -24515,7 +24515,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-024735915224073035"
+                id="sub-navigation-4971048124339722"
               ></menu>
             </li>
           </menu>
@@ -24593,7 +24593,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-7416952665346628"
+                    id="sub-navigation-3868612057893358"
                   ></menu>
                 </li>
                 <li
@@ -24612,7 +24612,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-8853602838219847"
+                    id="sub-navigation-3668640931130638"
                   ></menu>
                 </li>
               </menu>
@@ -24672,7 +24672,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-005948587780396419"
+                id="sub-navigation-2915611808426183"
               ></menu>
             </li>
             <li
@@ -24691,7 +24691,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-024735915224073035"
+                id="sub-navigation-4971048124339722"
               ></menu>
             </li>
           </menu>
@@ -25065,7 +25065,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-874564986770005"
+                    id="sub-navigation-5127318755912549"
                   ></menu>
                 </li>
                 <li
@@ -25084,7 +25084,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-24880193454644473"
+                    id="sub-navigation-8569607918062858"
                   ></menu>
                 </li>
               </menu>
@@ -25144,7 +25144,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-11106896225366558"
+                id="sub-navigation-9759076395832001"
               ></menu>
             </li>
             <li
@@ -25163,7 +25163,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-020736116247686898"
+                id="sub-navigation-6863470734110524"
               ></menu>
             </li>
           </menu>
@@ -25241,7 +25241,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-874564986770005"
+                    id="sub-navigation-5127318755912549"
                   ></menu>
                 </li>
                 <li
@@ -25260,7 +25260,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-24880193454644473"
+                    id="sub-navigation-8569607918062858"
                   ></menu>
                 </li>
               </menu>
@@ -25320,7 +25320,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-11106896225366558"
+                id="sub-navigation-9759076395832001"
               ></menu>
             </li>
             <li
@@ -25339,7 +25339,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-020736116247686898"
+                id="sub-navigation-6863470734110524"
               ></menu>
             </li>
           </menu>
@@ -25417,7 +25417,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-874564986770005"
+                    id="sub-navigation-5127318755912549"
                   ></menu>
                 </li>
                 <li
@@ -25436,7 +25436,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-24880193454644473"
+                    id="sub-navigation-8569607918062858"
                   ></menu>
                 </li>
               </menu>
@@ -25496,7 +25496,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-11106896225366558"
+                id="sub-navigation-9759076395832001"
               ></menu>
             </li>
             <li
@@ -25515,7 +25515,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-020736116247686898"
+                id="sub-navigation-6863470734110524"
               ></menu>
             </li>
           </menu>
@@ -25593,7 +25593,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-874564986770005"
+                    id="sub-navigation-5127318755912549"
                   ></menu>
                 </li>
                 <li
@@ -25612,7 +25612,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-24880193454644473"
+                    id="sub-navigation-8569607918062858"
                   ></menu>
                 </li>
               </menu>
@@ -25672,7 +25672,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-11106896225366558"
+                id="sub-navigation-9759076395832001"
               ></menu>
             </li>
             <li
@@ -25691,7 +25691,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-020736116247686898"
+                id="sub-navigation-6863470734110524"
               ></menu>
             </li>
           </menu>
@@ -26065,7 +26065,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-40932875215410836"
+                    id="sub-navigation-15785938409720568"
                   ></menu>
                 </li>
                 <li
@@ -26084,7 +26084,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-8557741300083357"
+                    id="sub-navigation-2276525188247367"
                   ></menu>
                 </li>
               </menu>
@@ -26144,7 +26144,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-12249668525770863"
+                id="sub-navigation-11719167799737218"
               ></menu>
             </li>
             <li
@@ -26163,7 +26163,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-3419534656092309"
+                id="sub-navigation-9665431767505543"
               ></menu>
             </li>
           </menu>
@@ -26241,7 +26241,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-40932875215410836"
+                    id="sub-navigation-15785938409720568"
                   ></menu>
                 </li>
                 <li
@@ -26260,7 +26260,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-8557741300083357"
+                    id="sub-navigation-2276525188247367"
                   ></menu>
                 </li>
               </menu>
@@ -26320,7 +26320,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-12249668525770863"
+                id="sub-navigation-11719167799737218"
               ></menu>
             </li>
             <li
@@ -26339,7 +26339,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-3419534656092309"
+                id="sub-navigation-9665431767505543"
               ></menu>
             </li>
           </menu>
@@ -26417,7 +26417,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-40932875215410836"
+                    id="sub-navigation-15785938409720568"
                   ></menu>
                 </li>
                 <li
@@ -26436,7 +26436,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-8557741300083357"
+                    id="sub-navigation-2276525188247367"
                   ></menu>
                 </li>
               </menu>
@@ -26496,7 +26496,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-12249668525770863"
+                id="sub-navigation-11719167799737218"
               ></menu>
             </li>
             <li
@@ -26515,7 +26515,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-3419534656092309"
+                id="sub-navigation-9665431767505543"
               ></menu>
             </li>
           </menu>
@@ -26593,7 +26593,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-40932875215410836"
+                    id="sub-navigation-15785938409720568"
                   ></menu>
                 </li>
                 <li
@@ -26612,7 +26612,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-8557741300083357"
+                    id="sub-navigation-2276525188247367"
                   ></menu>
                 </li>
               </menu>
@@ -26672,7 +26672,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-12249668525770863"
+                id="sub-navigation-11719167799737218"
               ></menu>
             </li>
             <li
@@ -26691,7 +26691,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-3419534656092309"
+                id="sub-navigation-9665431767505543"
               ></menu>
             </li>
           </menu>
@@ -27065,7 +27065,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-06452767193960574"
+                    id="sub-navigation-2148089257877539"
                   ></menu>
                 </li>
                 <li
@@ -27084,7 +27084,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-18101482528526536"
+                    id="sub-navigation-3138536893716263"
                   ></menu>
                 </li>
               </menu>
@@ -27144,7 +27144,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-34620790483874797"
+                id="sub-navigation-01924841212216044"
               ></menu>
             </li>
             <li
@@ -27163,7 +27163,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-4545139086782616"
+                id="sub-navigation-06075005010776402"
               ></menu>
             </li>
           </menu>
@@ -27241,7 +27241,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-06452767193960574"
+                    id="sub-navigation-2148089257877539"
                   ></menu>
                 </li>
                 <li
@@ -27260,7 +27260,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-18101482528526536"
+                    id="sub-navigation-3138536893716263"
                   ></menu>
                 </li>
               </menu>
@@ -27320,7 +27320,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-34620790483874797"
+                id="sub-navigation-01924841212216044"
               ></menu>
             </li>
             <li
@@ -27339,7 +27339,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-4545139086782616"
+                id="sub-navigation-06075005010776402"
               ></menu>
             </li>
           </menu>
@@ -27417,7 +27417,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-06452767193960574"
+                    id="sub-navigation-2148089257877539"
                   ></menu>
                 </li>
                 <li
@@ -27436,7 +27436,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-18101482528526536"
+                    id="sub-navigation-3138536893716263"
                   ></menu>
                 </li>
               </menu>
@@ -27496,7 +27496,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-34620790483874797"
+                id="sub-navigation-01924841212216044"
               ></menu>
             </li>
             <li
@@ -27515,7 +27515,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-4545139086782616"
+                id="sub-navigation-06075005010776402"
               ></menu>
             </li>
           </menu>
@@ -27593,7 +27593,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-06452767193960574"
+                    id="sub-navigation-2148089257877539"
                   ></menu>
                 </li>
                 <li
@@ -27612,7 +27612,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-18101482528526536"
+                    id="sub-navigation-3138536893716263"
                   ></menu>
                 </li>
               </menu>
@@ -27672,7 +27672,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-34620790483874797"
+                id="sub-navigation-01924841212216044"
               ></menu>
             </li>
             <li
@@ -27691,7 +27691,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-4545139086782616"
+                id="sub-navigation-06075005010776402"
               ></menu>
             </li>
           </menu>
@@ -28069,7 +28069,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-4386491015053058"
+                    id="sub-navigation-7848705963940877"
                   ></menu>
                 </li>
                 <li
@@ -28088,7 +28088,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-03547037254040708"
+                    id="sub-navigation-17839335407799262"
                   ></menu>
                 </li>
               </menu>
@@ -28148,7 +28148,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-5838453677297922"
+                id="sub-navigation-657859718978929"
               ></menu>
             </li>
             <li
@@ -28167,7 +28167,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-23370035351026242"
+                id="sub-navigation-712202215365223"
               ></menu>
             </li>
           </menu>
@@ -28245,7 +28245,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-4386491015053058"
+                    id="sub-navigation-7848705963940877"
                   ></menu>
                 </li>
                 <li
@@ -28264,7 +28264,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-03547037254040708"
+                    id="sub-navigation-17839335407799262"
                   ></menu>
                 </li>
               </menu>
@@ -28324,7 +28324,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-5838453677297922"
+                id="sub-navigation-657859718978929"
               ></menu>
             </li>
             <li
@@ -28343,7 +28343,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-23370035351026242"
+                id="sub-navigation-712202215365223"
               ></menu>
             </li>
           </menu>
@@ -28421,7 +28421,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-4386491015053058"
+                    id="sub-navigation-7848705963940877"
                   ></menu>
                 </li>
                 <li
@@ -28440,7 +28440,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-03547037254040708"
+                    id="sub-navigation-17839335407799262"
                   ></menu>
                 </li>
               </menu>
@@ -28500,7 +28500,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-5838453677297922"
+                id="sub-navigation-657859718978929"
               ></menu>
             </li>
             <li
@@ -28519,7 +28519,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-23370035351026242"
+                id="sub-navigation-712202215365223"
               ></menu>
             </li>
           </menu>
@@ -28597,7 +28597,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-4386491015053058"
+                    id="sub-navigation-7848705963940877"
                   ></menu>
                 </li>
                 <li
@@ -28616,7 +28616,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-03547037254040708"
+                    id="sub-navigation-17839335407799262"
                   ></menu>
                 </li>
               </menu>
@@ -28676,7 +28676,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-5838453677297922"
+                id="sub-navigation-657859718978929"
               ></menu>
             </li>
             <li
@@ -28695,7 +28695,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-23370035351026242"
+                id="sub-navigation-712202215365223"
               ></menu>
             </li>
           </menu>
@@ -29073,7 +29073,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-0914613873746839"
+                    id="sub-navigation-7312265210971028"
                   ></menu>
                 </li>
                 <li
@@ -29092,7 +29092,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-5024267044624738"
+                    id="sub-navigation-724351847566729"
                   ></menu>
                 </li>
               </menu>
@@ -29152,7 +29152,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-07383293149899095"
+                id="sub-navigation-1657936760161891"
               ></menu>
             </li>
             <li
@@ -29171,7 +29171,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-9443297850783642"
+                id="sub-navigation-8952743365345008"
               ></menu>
             </li>
           </menu>
@@ -29249,7 +29249,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-0914613873746839"
+                    id="sub-navigation-7312265210971028"
                   ></menu>
                 </li>
                 <li
@@ -29268,7 +29268,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-5024267044624738"
+                    id="sub-navigation-724351847566729"
                   ></menu>
                 </li>
               </menu>
@@ -29328,7 +29328,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-07383293149899095"
+                id="sub-navigation-1657936760161891"
               ></menu>
             </li>
             <li
@@ -29347,7 +29347,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-9443297850783642"
+                id="sub-navigation-8952743365345008"
               ></menu>
             </li>
           </menu>
@@ -29425,7 +29425,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-0914613873746839"
+                    id="sub-navigation-7312265210971028"
                   ></menu>
                 </li>
                 <li
@@ -29444,7 +29444,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-5024267044624738"
+                    id="sub-navigation-724351847566729"
                   ></menu>
                 </li>
               </menu>
@@ -29504,7 +29504,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-07383293149899095"
+                id="sub-navigation-1657936760161891"
               ></menu>
             </li>
             <li
@@ -29523,7 +29523,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-9443297850783642"
+                id="sub-navigation-8952743365345008"
               ></menu>
             </li>
           </menu>
@@ -29601,7 +29601,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-0914613873746839"
+                    id="sub-navigation-7312265210971028"
                   ></menu>
                 </li>
                 <li
@@ -29620,7 +29620,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-5024267044624738"
+                    id="sub-navigation-724351847566729"
                   ></menu>
                 </li>
               </menu>
@@ -29680,7 +29680,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-07383293149899095"
+                id="sub-navigation-1657936760161891"
               ></menu>
             </li>
             <li
@@ -29699,7 +29699,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-9443297850783642"
+                id="sub-navigation-8952743365345008"
               ></menu>
             </li>
           </menu>
@@ -30073,7 +30073,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-27930660771742366"
+                    id="sub-navigation-3199833178292415"
                   ></menu>
                 </li>
                 <li
@@ -30092,7 +30092,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-5772098479708829"
+                    id="sub-navigation-5699347431031745"
                   ></menu>
                 </li>
               </menu>
@@ -30152,7 +30152,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-2783826082029046"
+                id="sub-navigation-7914689828476558"
               ></menu>
             </li>
             <li
@@ -30171,7 +30171,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-9339070597578802"
+                id="sub-navigation-5891471866798119"
               ></menu>
             </li>
           </menu>
@@ -30249,7 +30249,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-27930660771742366"
+                    id="sub-navigation-3199833178292415"
                   ></menu>
                 </li>
                 <li
@@ -30268,7 +30268,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-5772098479708829"
+                    id="sub-navigation-5699347431031745"
                   ></menu>
                 </li>
               </menu>
@@ -30328,7 +30328,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-2783826082029046"
+                id="sub-navigation-7914689828476558"
               ></menu>
             </li>
             <li
@@ -30347,7 +30347,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-9339070597578802"
+                id="sub-navigation-5891471866798119"
               ></menu>
             </li>
           </menu>
@@ -30425,7 +30425,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-27930660771742366"
+                    id="sub-navigation-3199833178292415"
                   ></menu>
                 </li>
                 <li
@@ -30444,7 +30444,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-5772098479708829"
+                    id="sub-navigation-5699347431031745"
                   ></menu>
                 </li>
               </menu>
@@ -30504,7 +30504,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-2783826082029046"
+                id="sub-navigation-7914689828476558"
               ></menu>
             </li>
             <li
@@ -30523,7 +30523,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-9339070597578802"
+                id="sub-navigation-5891471866798119"
               ></menu>
             </li>
           </menu>
@@ -30601,7 +30601,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-27930660771742366"
+                    id="sub-navigation-3199833178292415"
                   ></menu>
                 </li>
                 <li
@@ -30620,7 +30620,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-5772098479708829"
+                    id="sub-navigation-5699347431031745"
                   ></menu>
                 </li>
               </menu>
@@ -30680,7 +30680,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-2783826082029046"
+                id="sub-navigation-7914689828476558"
               ></menu>
             </li>
             <li
@@ -30699,7 +30699,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-9339070597578802"
+                id="sub-navigation-5891471866798119"
               ></menu>
             </li>
           </menu>
@@ -31077,7 +31077,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-4206030089342986"
+                    id="sub-navigation-011551901106608309"
                   ></menu>
                 </li>
                 <li
@@ -31096,7 +31096,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-37977670389479445"
+                    id="sub-navigation-10636908519519861"
                   ></menu>
                 </li>
               </menu>
@@ -31156,7 +31156,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-6618921327834524"
+                id="sub-navigation-4606246259743585"
               ></menu>
             </li>
             <li
@@ -31175,7 +31175,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-9648776349105573"
+                id="sub-navigation-40517676314973006"
               ></menu>
             </li>
           </menu>
@@ -31253,7 +31253,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-4206030089342986"
+                    id="sub-navigation-011551901106608309"
                   ></menu>
                 </li>
                 <li
@@ -31272,7 +31272,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-37977670389479445"
+                    id="sub-navigation-10636908519519861"
                   ></menu>
                 </li>
               </menu>
@@ -31332,7 +31332,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-6618921327834524"
+                id="sub-navigation-4606246259743585"
               ></menu>
             </li>
             <li
@@ -31351,7 +31351,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-9648776349105573"
+                id="sub-navigation-40517676314973006"
               ></menu>
             </li>
           </menu>
@@ -31429,7 +31429,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-4206030089342986"
+                    id="sub-navigation-011551901106608309"
                   ></menu>
                 </li>
                 <li
@@ -31448,7 +31448,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-37977670389479445"
+                    id="sub-navigation-10636908519519861"
                   ></menu>
                 </li>
               </menu>
@@ -31508,7 +31508,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-6618921327834524"
+                id="sub-navigation-4606246259743585"
               ></menu>
             </li>
             <li
@@ -31527,7 +31527,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-9648776349105573"
+                id="sub-navigation-40517676314973006"
               ></menu>
             </li>
           </menu>
@@ -31605,7 +31605,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-4206030089342986"
+                    id="sub-navigation-011551901106608309"
                   ></menu>
                 </li>
                 <li
@@ -31624,7 +31624,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-37977670389479445"
+                    id="sub-navigation-10636908519519861"
                   ></menu>
                 </li>
               </menu>
@@ -31684,7 +31684,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-6618921327834524"
+                id="sub-navigation-4606246259743585"
               ></menu>
             </li>
             <li
@@ -31703,7 +31703,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-9648776349105573"
+                id="sub-navigation-40517676314973006"
               ></menu>
             </li>
           </menu>
@@ -32089,7 +32089,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-23123400158137708"
+                    id="sub-navigation-5658850085729553"
                   ></menu>
                 </li>
                 <li
@@ -32108,7 +32108,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-6600524656410756"
+                    id="sub-navigation-8419449482711538"
                   ></menu>
                 </li>
               </menu>
@@ -32168,7 +32168,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-5289602375754462"
+                id="sub-navigation-06919817202055223"
               ></menu>
             </li>
             <li
@@ -32187,7 +32187,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-25796215869396955"
+                id="sub-navigation-06608627309498405"
               ></menu>
             </li>
           </menu>
@@ -32265,7 +32265,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-23123400158137708"
+                    id="sub-navigation-5658850085729553"
                   ></menu>
                 </li>
                 <li
@@ -32284,7 +32284,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-6600524656410756"
+                    id="sub-navigation-8419449482711538"
                   ></menu>
                 </li>
               </menu>
@@ -32344,7 +32344,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-5289602375754462"
+                id="sub-navigation-06919817202055223"
               ></menu>
             </li>
             <li
@@ -32363,7 +32363,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-25796215869396955"
+                id="sub-navigation-06608627309498405"
               ></menu>
             </li>
           </menu>
@@ -32441,7 +32441,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-23123400158137708"
+                    id="sub-navigation-5658850085729553"
                   ></menu>
                 </li>
                 <li
@@ -32460,7 +32460,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-6600524656410756"
+                    id="sub-navigation-8419449482711538"
                   ></menu>
                 </li>
               </menu>
@@ -32520,7 +32520,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-5289602375754462"
+                id="sub-navigation-06919817202055223"
               ></menu>
             </li>
             <li
@@ -32539,7 +32539,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-25796215869396955"
+                id="sub-navigation-06608627309498405"
               ></menu>
             </li>
           </menu>
@@ -32617,7 +32617,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-23123400158137708"
+                    id="sub-navigation-5658850085729553"
                   ></menu>
                 </li>
                 <li
@@ -32636,7 +32636,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-6600524656410756"
+                    id="sub-navigation-8419449482711538"
                   ></menu>
                 </li>
               </menu>
@@ -32696,7 +32696,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-5289602375754462"
+                id="sub-navigation-06919817202055223"
               ></menu>
             </li>
             <li
@@ -32715,7 +32715,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-25796215869396955"
+                id="sub-navigation-06608627309498405"
               ></menu>
             </li>
           </menu>
@@ -33101,7 +33101,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-25416225401678605"
+                    id="sub-navigation-9280227333349162"
                   ></menu>
                 </li>
                 <li
@@ -33120,7 +33120,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-9464685848557485"
+                    id="sub-navigation-7423028068116256"
                   ></menu>
                 </li>
               </menu>
@@ -33180,7 +33180,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-14097089660565365"
+                id="sub-navigation-6783040753509174"
               ></menu>
             </li>
             <li
@@ -33199,7 +33199,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-10168180444965769"
+                id="sub-navigation-5235613089367892"
               ></menu>
             </li>
           </menu>
@@ -33277,7 +33277,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-25416225401678605"
+                    id="sub-navigation-9280227333349162"
                   ></menu>
                 </li>
                 <li
@@ -33296,7 +33296,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-9464685848557485"
+                    id="sub-navigation-7423028068116256"
                   ></menu>
                 </li>
               </menu>
@@ -33356,7 +33356,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-14097089660565365"
+                id="sub-navigation-6783040753509174"
               ></menu>
             </li>
             <li
@@ -33375,7 +33375,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-10168180444965769"
+                id="sub-navigation-5235613089367892"
               ></menu>
             </li>
           </menu>
@@ -33453,7 +33453,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-25416225401678605"
+                    id="sub-navigation-9280227333349162"
                   ></menu>
                 </li>
                 <li
@@ -33472,7 +33472,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-9464685848557485"
+                    id="sub-navigation-7423028068116256"
                   ></menu>
                 </li>
               </menu>
@@ -33532,7 +33532,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-14097089660565365"
+                id="sub-navigation-6783040753509174"
               ></menu>
             </li>
             <li
@@ -33551,7 +33551,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-10168180444965769"
+                id="sub-navigation-5235613089367892"
               ></menu>
             </li>
           </menu>
@@ -33629,7 +33629,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-25416225401678605"
+                    id="sub-navigation-9280227333349162"
                   ></menu>
                 </li>
                 <li
@@ -33648,7 +33648,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-9464685848557485"
+                    id="sub-navigation-7423028068116256"
                   ></menu>
                 </li>
               </menu>
@@ -33708,7 +33708,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-14097089660565365"
+                id="sub-navigation-6783040753509174"
               ></menu>
             </li>
             <li
@@ -33727,7 +33727,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-10168180444965769"
+                id="sub-navigation-5235613089367892"
               ></menu>
             </li>
           </menu>
@@ -34113,7 +34113,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-9191716710914766"
+                    id="sub-navigation-11239328580372854"
                   ></menu>
                 </li>
                 <li
@@ -34132,7 +34132,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-25737281919705735"
+                    id="sub-navigation-5772429746787978"
                   ></menu>
                 </li>
               </menu>
@@ -34192,7 +34192,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-8644263110593711"
+                id="sub-navigation-764754569516862"
               ></menu>
             </li>
             <li
@@ -34211,7 +34211,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-17452665419418556"
+                id="sub-navigation-6112020967836083"
               ></menu>
             </li>
           </menu>
@@ -34289,7 +34289,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-9191716710914766"
+                    id="sub-navigation-11239328580372854"
                   ></menu>
                 </li>
                 <li
@@ -34308,7 +34308,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-25737281919705735"
+                    id="sub-navigation-5772429746787978"
                   ></menu>
                 </li>
               </menu>
@@ -34368,7 +34368,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-8644263110593711"
+                id="sub-navigation-764754569516862"
               ></menu>
             </li>
             <li
@@ -34387,7 +34387,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-17452665419418556"
+                id="sub-navigation-6112020967836083"
               ></menu>
             </li>
           </menu>
@@ -34465,7 +34465,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-9191716710914766"
+                    id="sub-navigation-11239328580372854"
                   ></menu>
                 </li>
                 <li
@@ -34484,7 +34484,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-25737281919705735"
+                    id="sub-navigation-5772429746787978"
                   ></menu>
                 </li>
               </menu>
@@ -34544,7 +34544,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-8644263110593711"
+                id="sub-navigation-764754569516862"
               ></menu>
             </li>
             <li
@@ -34563,7 +34563,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-17452665419418556"
+                id="sub-navigation-6112020967836083"
               ></menu>
             </li>
           </menu>
@@ -34641,7 +34641,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-9191716710914766"
+                    id="sub-navigation-11239328580372854"
                   ></menu>
                 </li>
                 <li
@@ -34660,7 +34660,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-25737281919705735"
+                    id="sub-navigation-5772429746787978"
                   ></menu>
                 </li>
               </menu>
@@ -34720,7 +34720,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-8644263110593711"
+                id="sub-navigation-764754569516862"
               ></menu>
             </li>
             <li
@@ -34739,7 +34739,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-17452665419418556"
+                id="sub-navigation-6112020967836083"
               ></menu>
             </li>
           </menu>
@@ -39867,7 +39867,7 @@ Variant Inline
       <menu
         class="db-sub-navigation"
         data-force-close="false"
-        id="sub-navigation-24012527457384836"
+        id="sub-navigation-06941906290754485"
       >
         <li class="db-navigation-item">
           <button
@@ -39880,7 +39880,7 @@ Variant Inline
           <menu
             class="db-sub-navigation"
             data-force-close="false"
-            id="sub-navigation-17138352712729277"
+            id="sub-navigation-8063024598438869"
           >
             <li class="db-navigation-item" data-active="true">
               <button
@@ -39893,7 +39893,7 @@ Variant Inline
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-1353795770831202"
+                id="sub-navigation-011581762395154738"
               ></menu>
             </li>
           </menu>
@@ -39911,7 +39911,7 @@ Variant Inline
       <menu
         class="db-sub-navigation"
         data-force-close="false"
-        id="sub-navigation-16044081765964024"
+        id="sub-navigation-9990859270813891"
       ></menu>
     </li>
   </menu>
@@ -39928,7 +39928,7 @@ Variant Inline
       <menu
         class="db-sub-navigation"
         data-force-close="false"
-        id="sub-navigation-24012527457384836"
+        id="sub-navigation-06941906290754485"
       >
         <li class="db-navigation-item">
           <button
@@ -39941,7 +39941,7 @@ Variant Inline
           <menu
             class="db-sub-navigation"
             data-force-close="false"
-            id="sub-navigation-17138352712729277"
+            id="sub-navigation-8063024598438869"
           >
             <li class="db-navigation-item" data-active="true">
               <button
@@ -39954,7 +39954,7 @@ Variant Inline
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-1353795770831202"
+                id="sub-navigation-011581762395154738"
               ></menu>
             </li>
           </menu>
@@ -39972,7 +39972,7 @@ Variant Inline
       <menu
         class="db-sub-navigation"
         data-force-close="false"
-        id="sub-navigation-16044081765964024"
+        id="sub-navigation-9990859270813891"
       ></menu>
     </li>
   </menu>
@@ -39989,7 +39989,7 @@ Variant Inline
       <menu
         class="db-sub-navigation"
         data-force-close="false"
-        id="sub-navigation-24012527457384836"
+        id="sub-navigation-06941906290754485"
       >
         <li class="db-navigation-item">
           <button
@@ -40002,7 +40002,7 @@ Variant Inline
           <menu
             class="db-sub-navigation"
             data-force-close="false"
-            id="sub-navigation-17138352712729277"
+            id="sub-navigation-8063024598438869"
           >
             <li class="db-navigation-item" data-active="true">
               <button
@@ -40015,7 +40015,7 @@ Variant Inline
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-1353795770831202"
+                id="sub-navigation-011581762395154738"
               ></menu>
             </li>
           </menu>
@@ -40033,7 +40033,7 @@ Variant Inline
       <menu
         class="db-sub-navigation"
         data-force-close="false"
-        id="sub-navigation-16044081765964024"
+        id="sub-navigation-9990859270813891"
       ></menu>
     </li>
   </menu>
@@ -40050,7 +40050,7 @@ Variant Inline
       <menu
         class="db-sub-navigation"
         data-force-close="false"
-        id="sub-navigation-24012527457384836"
+        id="sub-navigation-06941906290754485"
       >
         <li class="db-navigation-item">
           <button
@@ -40063,7 +40063,7 @@ Variant Inline
           <menu
             class="db-sub-navigation"
             data-force-close="false"
-            id="sub-navigation-17138352712729277"
+            id="sub-navigation-8063024598438869"
           >
             <li class="db-navigation-item" data-active="true">
               <button
@@ -40076,7 +40076,7 @@ Variant Inline
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-1353795770831202"
+                id="sub-navigation-011581762395154738"
               ></menu>
             </li>
           </menu>
@@ -40094,7 +40094,7 @@ Variant Inline
       <menu
         class="db-sub-navigation"
         data-force-close="false"
-        id="sub-navigation-16044081765964024"
+        id="sub-navigation-9990859270813891"
       ></menu>
     </li>
   </menu>
@@ -40307,7 +40307,7 @@ Navi-Item 2
       <menu
         class="db-sub-navigation"
         data-force-close="false"
-        id="sub-navigation-44629317241716426"
+        id="sub-navigation-14874826145977804"
       >
         <li class="db-navigation-item">
           <button
@@ -40320,7 +40320,7 @@ Navi-Item 2
           <menu
             class="db-sub-navigation"
             data-force-close="false"
-            id="sub-navigation-7490888706352535"
+            id="sub-navigation-3573492181805321"
           >
             <li class="db-navigation-item" data-active="true">
               <button
@@ -40333,7 +40333,7 @@ Navi-Item 2
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-7225195716371305"
+                id="sub-navigation-5825934299710536"
               ></menu>
             </li>
           </menu>
@@ -40351,7 +40351,7 @@ Navi-Item 2
       <menu
         class="db-sub-navigation"
         data-force-close="false"
-        id="sub-navigation-564230154854412"
+        id="sub-navigation-3058584332815205"
       ></menu>
     </li>
   </menu>
@@ -40368,7 +40368,7 @@ Navi-Item 2
       <menu
         class="db-sub-navigation"
         data-force-close="false"
-        id="sub-navigation-44629317241716426"
+        id="sub-navigation-14874826145977804"
       >
         <li class="db-navigation-item">
           <button
@@ -40381,7 +40381,7 @@ Navi-Item 2
           <menu
             class="db-sub-navigation"
             data-force-close="false"
-            id="sub-navigation-7490888706352535"
+            id="sub-navigation-3573492181805321"
           >
             <li class="db-navigation-item" data-active="true">
               <button
@@ -40394,7 +40394,7 @@ Navi-Item 2
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-7225195716371305"
+                id="sub-navigation-5825934299710536"
               ></menu>
             </li>
           </menu>
@@ -40412,7 +40412,7 @@ Navi-Item 2
       <menu
         class="db-sub-navigation"
         data-force-close="false"
-        id="sub-navigation-564230154854412"
+        id="sub-navigation-3058584332815205"
       ></menu>
     </li>
   </menu>
@@ -40429,7 +40429,7 @@ Navi-Item 2
       <menu
         class="db-sub-navigation"
         data-force-close="false"
-        id="sub-navigation-44629317241716426"
+        id="sub-navigation-14874826145977804"
       >
         <li class="db-navigation-item">
           <button
@@ -40442,7 +40442,7 @@ Navi-Item 2
           <menu
             class="db-sub-navigation"
             data-force-close="false"
-            id="sub-navigation-7490888706352535"
+            id="sub-navigation-3573492181805321"
           >
             <li class="db-navigation-item" data-active="true">
               <button
@@ -40455,7 +40455,7 @@ Navi-Item 2
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-7225195716371305"
+                id="sub-navigation-5825934299710536"
               ></menu>
             </li>
           </menu>
@@ -40473,7 +40473,7 @@ Navi-Item 2
       <menu
         class="db-sub-navigation"
         data-force-close="false"
-        id="sub-navigation-564230154854412"
+        id="sub-navigation-3058584332815205"
       ></menu>
     </li>
   </menu>
@@ -40490,7 +40490,7 @@ Navi-Item 2
       <menu
         class="db-sub-navigation"
         data-force-close="false"
-        id="sub-navigation-44629317241716426"
+        id="sub-navigation-14874826145977804"
       >
         <li class="db-navigation-item">
           <button
@@ -40503,7 +40503,7 @@ Navi-Item 2
           <menu
             class="db-sub-navigation"
             data-force-close="false"
-            id="sub-navigation-7490888706352535"
+            id="sub-navigation-3573492181805321"
           >
             <li class="db-navigation-item" data-active="true">
               <button
@@ -40516,7 +40516,7 @@ Navi-Item 2
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-7225195716371305"
+                id="sub-navigation-5825934299710536"
               ></menu>
             </li>
           </menu>
@@ -40534,7 +40534,7 @@ Navi-Item 2
       <menu
         class="db-sub-navigation"
         data-force-close="false"
-        id="sub-navigation-564230154854412"
+        id="sub-navigation-3058584332815205"
       ></menu>
     </li>
   </menu>
@@ -40747,7 +40747,7 @@ Navi-Item 2
       <menu
         class="db-sub-navigation"
         data-force-close="false"
-        id="sub-navigation-8764035445010889"
+        id="sub-navigation-851767779046806"
       >
         <li class="db-navigation-item">
           <button
@@ -40760,7 +40760,7 @@ Navi-Item 2
           <menu
             class="db-sub-navigation"
             data-force-close="false"
-            id="sub-navigation-04356187351457941"
+            id="sub-navigation-11990231784949401"
           >
             <li class="db-navigation-item" data-active="true">
               <button
@@ -40773,7 +40773,7 @@ Navi-Item 2
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-23030886870553124"
+                id="sub-navigation-7180333675022841"
               ></menu>
             </li>
           </menu>
@@ -40791,7 +40791,7 @@ Navi-Item 2
       <menu
         class="db-sub-navigation"
         data-force-close="false"
-        id="sub-navigation-4923737421040014"
+        id="sub-navigation-5875292117869368"
       ></menu>
     </li>
   </menu>
@@ -40808,7 +40808,7 @@ Navi-Item 2
       <menu
         class="db-sub-navigation"
         data-force-close="false"
-        id="sub-navigation-8764035445010889"
+        id="sub-navigation-851767779046806"
       >
         <li class="db-navigation-item">
           <button
@@ -40821,7 +40821,7 @@ Navi-Item 2
           <menu
             class="db-sub-navigation"
             data-force-close="false"
-            id="sub-navigation-04356187351457941"
+            id="sub-navigation-11990231784949401"
           >
             <li class="db-navigation-item" data-active="true">
               <button
@@ -40834,7 +40834,7 @@ Navi-Item 2
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-23030886870553124"
+                id="sub-navigation-7180333675022841"
               ></menu>
             </li>
           </menu>
@@ -40852,7 +40852,7 @@ Navi-Item 2
       <menu
         class="db-sub-navigation"
         data-force-close="false"
-        id="sub-navigation-4923737421040014"
+        id="sub-navigation-5875292117869368"
       ></menu>
     </li>
   </menu>
@@ -40869,7 +40869,7 @@ Navi-Item 2
       <menu
         class="db-sub-navigation"
         data-force-close="false"
-        id="sub-navigation-8764035445010889"
+        id="sub-navigation-851767779046806"
       >
         <li class="db-navigation-item">
           <button
@@ -40882,7 +40882,7 @@ Navi-Item 2
           <menu
             class="db-sub-navigation"
             data-force-close="false"
-            id="sub-navigation-04356187351457941"
+            id="sub-navigation-11990231784949401"
           >
             <li class="db-navigation-item" data-active="true">
               <button
@@ -40895,7 +40895,7 @@ Navi-Item 2
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-23030886870553124"
+                id="sub-navigation-7180333675022841"
               ></menu>
             </li>
           </menu>
@@ -40913,7 +40913,7 @@ Navi-Item 2
       <menu
         class="db-sub-navigation"
         data-force-close="false"
-        id="sub-navigation-4923737421040014"
+        id="sub-navigation-5875292117869368"
       ></menu>
     </li>
   </menu>
@@ -40930,7 +40930,7 @@ Navi-Item 2
       <menu
         class="db-sub-navigation"
         data-force-close="false"
-        id="sub-navigation-8764035445010889"
+        id="sub-navigation-851767779046806"
       >
         <li class="db-navigation-item">
           <button
@@ -40943,7 +40943,7 @@ Navi-Item 2
           <menu
             class="db-sub-navigation"
             data-force-close="false"
-            id="sub-navigation-04356187351457941"
+            id="sub-navigation-11990231784949401"
           >
             <li class="db-navigation-item" data-active="true">
               <button
@@ -40956,7 +40956,7 @@ Navi-Item 2
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-23030886870553124"
+                id="sub-navigation-7180333675022841"
               ></menu>
             </li>
           </menu>
@@ -40974,7 +40974,7 @@ Navi-Item 2
       <menu
         class="db-sub-navigation"
         data-force-close="false"
-        id="sub-navigation-4923737421040014"
+        id="sub-navigation-5875292117869368"
       ></menu>
     </li>
   </menu>
@@ -41133,7 +41133,7 @@ Navi-Item 2
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-45678903909301904"
+    id="sub-navigation-4548535746434992"
   ></menu>
 </li>`})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:e===`<li class="db-navigation-item">
   <button
@@ -41146,7 +41146,7 @@ Navi-Item 2
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-45678903909301904"
+    id="sub-navigation-4548535746434992"
   ></menu>
 </li>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<li class="db-navigation-item">
   <button
@@ -41159,7 +41159,7 @@ Navi-Item 2
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-45678903909301904"
+    id="sub-navigation-4548535746434992"
   ></menu>
 </li>`),navigator.clipboard.writeText(`<li class="db-navigation-item">
   <button
@@ -41172,7 +41172,7 @@ Navi-Item 2
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-45678903909301904"
+    id="sub-navigation-4548535746434992"
   ></menu>
 </li>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=react",children:"How to use this in react"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-tsx",children:`<DBNavigationItem>
   <a href="#">Functional</a>
@@ -41217,7 +41217,7 @@ Functional
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-34653798597474306"
+    id="sub-navigation-8864072565684166"
   ></menu>
 </li>`})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:e===`<li class="db-navigation-item">
   <button
@@ -41230,7 +41230,7 @@ Functional
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-34653798597474306"
+    id="sub-navigation-8864072565684166"
   ></menu>
 </li>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<li class="db-navigation-item">
   <button
@@ -41243,7 +41243,7 @@ Functional
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-34653798597474306"
+    id="sub-navigation-8864072565684166"
   ></menu>
 </li>`),navigator.clipboard.writeText(`<li class="db-navigation-item">
   <button
@@ -41256,7 +41256,7 @@ Functional
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-34653798597474306"
+    id="sub-navigation-8864072565684166"
   ></menu>
 </li>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=react",children:"How to use this in react"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-tsx",children:`<DBNavigationItem>
   <a href="#">(Default) Regular</a>
@@ -41301,7 +41301,7 @@ Functional
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-0018462148700468806"
+    id="sub-navigation-43037318844012995"
   ></menu>
 </li>`})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:e===`<li class="db-navigation-item">
   <button
@@ -41314,7 +41314,7 @@ Functional
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-0018462148700468806"
+    id="sub-navigation-43037318844012995"
   ></menu>
 </li>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<li class="db-navigation-item">
   <button
@@ -41327,7 +41327,7 @@ Functional
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-0018462148700468806"
+    id="sub-navigation-43037318844012995"
   ></menu>
 </li>`),navigator.clipboard.writeText(`<li class="db-navigation-item">
   <button
@@ -41340,7 +41340,7 @@ Functional
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-0018462148700468806"
+    id="sub-navigation-43037318844012995"
   ></menu>
 </li>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=react",children:"How to use this in react"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-tsx",children:`<DBNavigationItem>
   <a href="#">Expressive</a>
@@ -41386,7 +41386,7 @@ Expressive
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-25339914488836723"
+    id="sub-navigation-3191417294810477"
   ></menu>
 </li>`})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:e===`<li class="db-navigation-item" aria-disabled="true">
   <button
@@ -41400,7 +41400,7 @@ Expressive
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-25339914488836723"
+    id="sub-navigation-3191417294810477"
   ></menu>
 </li>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<li class="db-navigation-item" aria-disabled="true">
   <button
@@ -41414,7 +41414,7 @@ Expressive
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-25339914488836723"
+    id="sub-navigation-3191417294810477"
   ></menu>
 </li>`),navigator.clipboard.writeText(`<li class="db-navigation-item" aria-disabled="true">
   <button
@@ -41428,7 +41428,7 @@ Expressive
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-25339914488836723"
+    id="sub-navigation-3191417294810477"
   ></menu>
 </li>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=react",children:"How to use this in react"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-tsx",children:`<DBNavigationItem disabled>
   <a href="#">(Default) False</a>
@@ -41474,7 +41474,7 @@ Expressive
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-7380627222435653"
+    id="sub-navigation-9506760434516577"
   ></menu>
 </li>`})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:e===`<li class="db-navigation-item" aria-disabled="true">
   <button
@@ -41488,7 +41488,7 @@ Expressive
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-7380627222435653"
+    id="sub-navigation-9506760434516577"
   ></menu>
 </li>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<li class="db-navigation-item" aria-disabled="true">
   <button
@@ -41502,7 +41502,7 @@ Expressive
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-7380627222435653"
+    id="sub-navigation-9506760434516577"
   ></menu>
 </li>`),navigator.clipboard.writeText(`<li class="db-navigation-item" aria-disabled="true">
   <button
@@ -41516,7 +41516,7 @@ Expressive
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-7380627222435653"
+    id="sub-navigation-9506760434516577"
   ></menu>
 </li>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=react",children:"How to use this in react"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-tsx",children:`<DBNavigationItem disabled>
   <a href="#">True</a>
@@ -41561,7 +41561,7 @@ True
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-6615348592595967"
+    id="sub-navigation-6598879638338835"
   ></menu>
 </li>`})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:e===`<li class="db-navigation-item" data-active="true">
   <button
@@ -41574,7 +41574,7 @@ True
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-6615348592595967"
+    id="sub-navigation-6598879638338835"
   ></menu>
 </li>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<li class="db-navigation-item" data-active="true">
   <button
@@ -41587,7 +41587,7 @@ True
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-6615348592595967"
+    id="sub-navigation-6598879638338835"
   ></menu>
 </li>`),navigator.clipboard.writeText(`<li class="db-navigation-item" data-active="true">
   <button
@@ -41600,7 +41600,7 @@ True
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-6615348592595967"
+    id="sub-navigation-6598879638338835"
   ></menu>
 </li>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=react",children:"How to use this in react"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-tsx",children:`<DBNavigationItem active>
   <a href="#">(Default) False</a>
@@ -41645,7 +41645,7 @@ True
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-5513156170654501"
+    id="sub-navigation-3321785995366209"
   ></menu>
 </li>`})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:e===`<li class="db-navigation-item" data-active="true">
   <button
@@ -41658,7 +41658,7 @@ True
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-5513156170654501"
+    id="sub-navigation-3321785995366209"
   ></menu>
 </li>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<li class="db-navigation-item" data-active="true">
   <button
@@ -41671,7 +41671,7 @@ True
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-5513156170654501"
+    id="sub-navigation-3321785995366209"
   ></menu>
 </li>`),navigator.clipboard.writeText(`<li class="db-navigation-item" data-active="true">
   <button
@@ -41684,7 +41684,7 @@ True
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-5513156170654501"
+    id="sub-navigation-3321785995366209"
   ></menu>
 </li>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=react",children:"How to use this in react"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-tsx",children:`<DBNavigationItem active>
   <a href="#">True</a>
@@ -41729,7 +41729,7 @@ True
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-6971871359338964"
+    id="sub-navigation-9401896062044558"
   ></menu>
 </li>`})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:e===`<li class="db-navigation-item">
   <button
@@ -41742,7 +41742,7 @@ True
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-6971871359338964"
+    id="sub-navigation-9401896062044558"
   ></menu>
 </li>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<li class="db-navigation-item">
   <button
@@ -41755,7 +41755,7 @@ True
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-6971871359338964"
+    id="sub-navigation-9401896062044558"
   ></menu>
 </li>`),navigator.clipboard.writeText(`<li class="db-navigation-item">
   <button
@@ -41768,7 +41768,7 @@ True
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-6971871359338964"
+    id="sub-navigation-9401896062044558"
   ></menu>
 </li>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=react",children:"How to use this in react"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-tsx",children:`<DBNavigationItem areaPopup>
   <a href="#">(Default) False</a>
@@ -41813,7 +41813,7 @@ True
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-8249294666881203"
+    id="sub-navigation-3618560997331818"
   ></menu>
 </li>`})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:e===`<li class="db-navigation-item">
   <button
@@ -41826,7 +41826,7 @@ True
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-8249294666881203"
+    id="sub-navigation-3618560997331818"
   ></menu>
 </li>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<li class="db-navigation-item">
   <button
@@ -41839,7 +41839,7 @@ True
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-8249294666881203"
+    id="sub-navigation-3618560997331818"
   ></menu>
 </li>`),navigator.clipboard.writeText(`<li class="db-navigation-item">
   <button
@@ -41852,7 +41852,7 @@ True
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-8249294666881203"
+    id="sub-navigation-3618560997331818"
   ></menu>
 </li>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=react",children:"How to use this in react"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-tsx",children:`<DBNavigationItem areaPopup>
   <a href="#">True</a>
@@ -41897,7 +41897,7 @@ True
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-5839610044678203"
+    id="sub-navigation-6216312885257023"
   ></menu>
 </li>`})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:e===`<li class="db-navigation-item" data-icon="x_placeholder" data-show-icon="true">
   <button
@@ -41910,7 +41910,7 @@ True
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-5839610044678203"
+    id="sub-navigation-6216312885257023"
   ></menu>
 </li>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<li class="db-navigation-item" data-icon="x_placeholder" data-show-icon="true">
   <button
@@ -41923,7 +41923,7 @@ True
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-5839610044678203"
+    id="sub-navigation-6216312885257023"
   ></menu>
 </li>`),navigator.clipboard.writeText(`<li class="db-navigation-item" data-icon="x_placeholder" data-show-icon="true">
   <button
@@ -41936,7 +41936,7 @@ True
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-5839610044678203"
+    id="sub-navigation-6216312885257023"
   ></menu>
 </li>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=react",children:"How to use this in react"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-tsx",children:`<DBNavigationItem icon="x_placeholder" showIcon>
   <a href="#">(Default) False</a>
@@ -41981,7 +41981,7 @@ True
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-9576394201560301"
+    id="sub-navigation-44147011010122894"
   ></menu>
 </li>`})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:e===`<li class="db-navigation-item" data-icon="x_placeholder" data-show-icon="true">
   <button
@@ -41994,7 +41994,7 @@ True
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-9576394201560301"
+    id="sub-navigation-44147011010122894"
   ></menu>
 </li>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<li class="db-navigation-item" data-icon="x_placeholder" data-show-icon="true">
   <button
@@ -42007,7 +42007,7 @@ True
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-9576394201560301"
+    id="sub-navigation-44147011010122894"
   ></menu>
 </li>`),navigator.clipboard.writeText(`<li class="db-navigation-item" data-icon="x_placeholder" data-show-icon="true">
   <button
@@ -42020,7 +42020,7 @@ True
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-9576394201560301"
+    id="sub-navigation-44147011010122894"
   ></menu>
 </li>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=react",children:"How to use this in react"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-tsx",children:`<DBNavigationItem icon="x_placeholder" showIcon>
   <a href="#">True</a>
@@ -42065,7 +42065,7 @@ True
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-5724346576363322"
+    id="sub-navigation-8061137350634503"
   ></menu>
 </li>`})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:e===`<li class="db-navigation-item">
   <button
@@ -42078,7 +42078,7 @@ True
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-5724346576363322"
+    id="sub-navigation-8061137350634503"
   ></menu>
 </li>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<li class="db-navigation-item">
   <button
@@ -42091,7 +42091,7 @@ True
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-5724346576363322"
+    id="sub-navigation-8061137350634503"
   ></menu>
 </li>`),navigator.clipboard.writeText(`<li class="db-navigation-item">
   <button
@@ -42104,7 +42104,7 @@ True
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-5724346576363322"
+    id="sub-navigation-8061137350634503"
   ></menu>
 </li>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=react",children:"How to use this in react"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-tsx",children:`<DBNavigationItem>
   <a href="#">(Default) Auto</a>
@@ -42149,7 +42149,7 @@ True
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-26293696690695767"
+    id="sub-navigation-5886305765770239"
   ></menu>
 </li>`})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:e===`<li class="db-navigation-item" data-width="full">
   <button
@@ -42162,7 +42162,7 @@ True
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-26293696690695767"
+    id="sub-navigation-5886305765770239"
   ></menu>
 </li>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<li class="db-navigation-item" data-width="full">
   <button
@@ -42175,7 +42175,7 @@ True
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-26293696690695767"
+    id="sub-navigation-5886305765770239"
   ></menu>
 </li>`),navigator.clipboard.writeText(`<li class="db-navigation-item" data-width="full">
   <button
@@ -42188,7 +42188,7 @@ True
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-26293696690695767"
+    id="sub-navigation-5886305765770239"
   ></menu>
 </li>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=react",children:"How to use this in react"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-tsx",children:`<DBNavigationItem width="full">
   <a href="#">Full</a>
@@ -42233,7 +42233,7 @@ Full
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-9045011057929684"
+    id="sub-navigation-7989860272054117"
   ></menu>
 </li>`})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:e===`<li class="db-navigation-item">
   <button
@@ -42246,7 +42246,7 @@ Full
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-9045011057929684"
+    id="sub-navigation-7989860272054117"
   ></menu>
 </li>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<li class="db-navigation-item">
   <button
@@ -42259,7 +42259,7 @@ Full
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-9045011057929684"
+    id="sub-navigation-7989860272054117"
   ></menu>
 </li>`),navigator.clipboard.writeText(`<li class="db-navigation-item">
   <button
@@ -42272,7 +42272,7 @@ Full
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-9045011057929684"
+    id="sub-navigation-7989860272054117"
   ></menu>
 </li>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=react",children:"How to use this in react"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-tsx",children:`<DBNavigationItem areaPopup>
   <a href="#">True</a>
@@ -42337,7 +42337,7 @@ True
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-44662470584143976"
+    id="sub-navigation-8228230008474715"
   ></menu>
 </li>`})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:e===`<li class="db-navigation-item" data-wrap="true">
   <button
@@ -42350,7 +42350,7 @@ True
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-44662470584143976"
+    id="sub-navigation-8228230008474715"
   ></menu>
 </li>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<li class="db-navigation-item" data-wrap="true">
   <button
@@ -42363,7 +42363,7 @@ True
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-44662470584143976"
+    id="sub-navigation-8228230008474715"
   ></menu>
 </li>`),navigator.clipboard.writeText(`<li class="db-navigation-item" data-wrap="true">
   <button
@@ -42376,7 +42376,7 @@ True
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-44662470584143976"
+    id="sub-navigation-8228230008474715"
   ></menu>
 </li>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=react",children:"How to use this in react"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-tsx",children:`<DBNavigationItem areaPopup icon="x_placeholder" showIcon wrap>
   <a href="#">Sub-Sub-Navi-Item 1</a>
@@ -42441,7 +42441,7 @@ Sub-Sub-Navi-Item 1
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-44662470584143976"
+    id="sub-navigation-8228230008474715"
   ></menu>
 </li>`})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:e===`<li class="db-navigation-item" data-wrap="true">
   <button
@@ -42454,7 +42454,7 @@ Sub-Sub-Navi-Item 1
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-44662470584143976"
+    id="sub-navigation-8228230008474715"
   ></menu>
 </li>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<li class="db-navigation-item" data-wrap="true">
   <button
@@ -42467,7 +42467,7 @@ Sub-Sub-Navi-Item 1
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-44662470584143976"
+    id="sub-navigation-8228230008474715"
   ></menu>
 </li>`),navigator.clipboard.writeText(`<li class="db-navigation-item" data-wrap="true">
   <button
@@ -42480,7 +42480,7 @@ Sub-Sub-Navi-Item 1
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-44662470584143976"
+    id="sub-navigation-8228230008474715"
   ></menu>
 </li>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=react",children:"How to use this in react"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-tsx",children:`<DBNavigationItem areaPopup wrap>
   <a href="#">True</a>
@@ -42514,19 +42514,19 @@ True
   functional
 </db-notification>`),navigator.clipboard.writeText(`<db-notification headline="Headline" icon="information_circle">
   functional
-</db-notification>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-html",children:`<article class="db-notification" data-icon="information_circle">
+</db-notification>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-html",children:`<div class="db-notification" role="article" data-icon="information_circle">
   <header>Headline</header>
   <p>functional</p>
-</article>`})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:e===`<article class="db-notification" data-icon="information_circle">
+</div>`})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:e===`<div class="db-notification" role="article" data-icon="information_circle">
   <header>Headline</header>
   <p>functional</p>
-</article>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<article class="db-notification" data-icon="information_circle">
+</div>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<div class="db-notification" role="article" data-icon="information_circle">
   <header>Headline</header>
   <p>functional</p>
-</article>`),navigator.clipboard.writeText(`<article class="db-notification" data-icon="information_circle">
+</div>`),navigator.clipboard.writeText(`<div class="db-notification" role="article" data-icon="information_circle">
   <header>Headline</header>
   <p>functional</p>
-</article>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=react",children:"How to use this in react"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-tsx",children:`<DBNotification headline="Headline" icon="information_circle">
+</div>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=react",children:"How to use this in react"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-tsx",children:`<DBNotification headline="Headline" icon="information_circle">
   functional
 </DBNotification>`})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:e===`<DBNotification headline="Headline" icon="information_circle">
   functional
@@ -42550,19 +42550,19 @@ functional
   regular (Default)
 </db-notification>`),navigator.clipboard.writeText(`<db-notification headline="Headline" icon="information_circle">
   regular (Default)
-</db-notification>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-html",children:`<article class="db-notification" data-icon="information_circle">
+</db-notification>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-html",children:`<div class="db-notification" role="article" data-icon="information_circle">
   <header>Headline</header>
   <p>regular (Default)</p>
-</article>`})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:e===`<article class="db-notification" data-icon="information_circle">
+</div>`})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:e===`<div class="db-notification" role="article" data-icon="information_circle">
   <header>Headline</header>
   <p>regular (Default)</p>
-</article>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<article class="db-notification" data-icon="information_circle">
+</div>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<div class="db-notification" role="article" data-icon="information_circle">
   <header>Headline</header>
   <p>regular (Default)</p>
-</article>`),navigator.clipboard.writeText(`<article class="db-notification" data-icon="information_circle">
+</div>`),navigator.clipboard.writeText(`<div class="db-notification" role="article" data-icon="information_circle">
   <header>Headline</header>
   <p>regular (Default)</p>
-</article>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=react",children:"How to use this in react"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-tsx",children:`<DBNotification headline="Headline" icon="information_circle">
+</div>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=react",children:"How to use this in react"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-tsx",children:`<DBNotification headline="Headline" icon="information_circle">
   regular (Default)
 </DBNotification>`})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:e===`<DBNotification headline="Headline" icon="information_circle">
   regular (Default)
@@ -42586,19 +42586,19 @@ regular (Default)
   expressive
 </db-notification>`),navigator.clipboard.writeText(`<db-notification headline="Headline" icon="information_circle">
   expressive
-</db-notification>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-html",children:`<article class="db-notification" data-icon="information_circle">
+</db-notification>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-html",children:`<div class="db-notification" role="article" data-icon="information_circle">
   <header>Headline</header>
   <p>expressive</p>
-</article>`})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:e===`<article class="db-notification" data-icon="information_circle">
+</div>`})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:e===`<div class="db-notification" role="article" data-icon="information_circle">
   <header>Headline</header>
   <p>expressive</p>
-</article>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<article class="db-notification" data-icon="information_circle">
+</div>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<div class="db-notification" role="article" data-icon="information_circle">
   <header>Headline</header>
   <p>expressive</p>
-</article>`),navigator.clipboard.writeText(`<article class="db-notification" data-icon="information_circle">
+</div>`),navigator.clipboard.writeText(`<div class="db-notification" role="article" data-icon="information_circle">
   <header>Headline</header>
   <p>expressive</p>
-</article>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=react",children:"How to use this in react"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-tsx",children:`<DBNotification headline="Headline" icon="information_circle">
+</div>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=react",children:"How to use this in react"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-tsx",children:`<DBNotification headline="Headline" icon="information_circle">
   expressive
 </DBNotification>`})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:e===`<DBNotification headline="Headline" icon="information_circle">
   expressive
@@ -42622,35 +42622,39 @@ expressive
   (Default) Docked
 </db-notification>`),navigator.clipboard.writeText(`<db-notification variant="docked" headline="Headline" icon="information_circle">
   (Default) Docked
-</db-notification>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-html",children:`<article
+</db-notification>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-html",children:`<div
   class="db-notification"
+  role="article"
   data-variant="docked"
   data-icon="information_circle"
 >
   <header>Headline</header>
   <p>(Default) Docked</p>
-</article>`})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:e===`<article
+</div>`})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:e===`<div
   class="db-notification"
+  role="article"
   data-variant="docked"
   data-icon="information_circle"
 >
   <header>Headline</header>
   <p>(Default) Docked</p>
-</article>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<article
+</div>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<div
   class="db-notification"
+  role="article"
   data-variant="docked"
   data-icon="information_circle"
 >
   <header>Headline</header>
   <p>(Default) Docked</p>
-</article>`),navigator.clipboard.writeText(`<article
+</div>`),navigator.clipboard.writeText(`<div
   class="db-notification"
+  role="article"
   data-variant="docked"
   data-icon="information_circle"
 >
   <header>Headline</header>
   <p>(Default) Docked</p>
-</article>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=react",children:"How to use this in react"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-tsx",children:`<DBNotification variant="docked" headline="Headline" icon="information_circle">
+</div>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=react",children:"How to use this in react"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-tsx",children:`<DBNotification variant="docked" headline="Headline" icon="information_circle">
   (Default) Docked
 </DBNotification>`})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:e===`<DBNotification variant="docked" headline="Headline" icon="information_circle">
   (Default) Docked
@@ -42690,35 +42694,39 @@ expressive
   icon="information_circle"
 >
   Standalone
-</db-notification>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-html",children:`<article
+</db-notification>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-html",children:`<div
   class="db-notification"
+  role="article"
   data-variant="standalone"
   data-icon="information_circle"
 >
   <header>Headline</header>
   <p>Standalone</p>
-</article>`})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:e===`<article
+</div>`})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:e===`<div
   class="db-notification"
+  role="article"
   data-variant="standalone"
   data-icon="information_circle"
 >
   <header>Headline</header>
   <p>Standalone</p>
-</article>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<article
+</div>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<div
   class="db-notification"
+  role="article"
   data-variant="standalone"
   data-icon="information_circle"
 >
   <header>Headline</header>
   <p>Standalone</p>
-</article>`),navigator.clipboard.writeText(`<article
+</div>`),navigator.clipboard.writeText(`<div
   class="db-notification"
+  role="article"
   data-variant="standalone"
   data-icon="information_circle"
 >
   <header>Headline</header>
   <p>Standalone</p>
-</article>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=react",children:"How to use this in react"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-tsx",children:`<DBNotification
+</div>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=react",children:"How to use this in react"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-tsx",children:`<DBNotification
   variant="standalone"
   headline="Headline"
   icon="information_circle"
@@ -42790,35 +42798,39 @@ Standalone
   icon="information_circle"
 >
   Overlay
-</db-notification>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-html",children:`<article
+</db-notification>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-html",children:`<div
   class="db-notification"
+  role="article"
   data-variant="overlay"
   data-icon="information_circle"
 >
   <header>Headline</header>
   <p>Overlay</p>
-</article>`})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:e===`<article
+</div>`})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:e===`<div
   class="db-notification"
+  role="article"
   data-variant="overlay"
   data-icon="information_circle"
 >
   <header>Headline</header>
   <p>Overlay</p>
-</article>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<article
+</div>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<div
   class="db-notification"
+  role="article"
   data-variant="overlay"
   data-icon="information_circle"
 >
   <header>Headline</header>
   <p>Overlay</p>
-</article>`),navigator.clipboard.writeText(`<article
+</div>`),navigator.clipboard.writeText(`<div
   class="db-notification"
+  role="article"
   data-variant="overlay"
   data-icon="information_circle"
 >
   <header>Headline</header>
   <p>Overlay</p>
-</article>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=react",children:"How to use this in react"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-tsx",children:`<DBNotification variant="overlay" headline="Headline" icon="information_circle">
+</div>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=react",children:"How to use this in react"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-tsx",children:`<DBNotification variant="overlay" headline="Headline" icon="information_circle">
   Overlay
 </DBNotification>`})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:e===`<DBNotification variant="overlay" headline="Headline" icon="information_circle">
   Overlay
@@ -42834,19 +42846,19 @@ Overlay
 Overlay
 </DBNotification>`),navigator.clipboard.writeText(`<DBNotification variant="overlay" headline="Headline" icon="information_circle">
 Overlay
-</DBNotification>`)},children:"Copy code"})]})]},t())})]})},nl=()=>{let[e,a]=(0,I.useState)(),{getFrameworkIndex:t}=(0,ay.u)();return(0,I.useEffect)(()=>{e&&setTimeout(()=>a(""),1500)},[e]),(0,N.jsxs)(N.Fragment,{children:[(0,N.jsx)(L.A,{className:"tab-container",children:(0,N.jsxs)(au.A,{initialSelectedIndex:t(),children:[(0,N.jsxs)(ao.A,{children:[(0,N.jsx)(as.A,{children:"Angular"}),(0,N.jsx)(as.A,{children:"HTML"}),(0,N.jsx)(as.A,{children:"React"}),(0,N.jsx)(as.A,{children:"Vue"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=angular",children:"How to use this in angular"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-html",children:'<db-notification headline="Headline"> (Default) Adaptive </db-notification>'})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:'<db-notification headline="Headline"> (Default) Adaptive </db-notification>'===e?"check":"copy",variant:"ghost",onClick:()=>{a('<db-notification headline="Headline"> (Default) Adaptive </db-notification>'),navigator.clipboard.writeText('<db-notification headline="Headline"> (Default) Adaptive </db-notification>')},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-html",children:`<article class="db-notification">
+</DBNotification>`)},children:"Copy code"})]})]},t())})]})},nl=()=>{let[e,a]=(0,I.useState)(),{getFrameworkIndex:t}=(0,ay.u)();return(0,I.useEffect)(()=>{e&&setTimeout(()=>a(""),1500)},[e]),(0,N.jsxs)(N.Fragment,{children:[(0,N.jsx)(L.A,{className:"tab-container",children:(0,N.jsxs)(au.A,{initialSelectedIndex:t(),children:[(0,N.jsxs)(ao.A,{children:[(0,N.jsx)(as.A,{children:"Angular"}),(0,N.jsx)(as.A,{children:"HTML"}),(0,N.jsx)(as.A,{children:"React"}),(0,N.jsx)(as.A,{children:"Vue"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=angular",children:"How to use this in angular"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-html",children:'<db-notification headline="Headline"> (Default) Adaptive </db-notification>'})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:'<db-notification headline="Headline"> (Default) Adaptive </db-notification>'===e?"check":"copy",variant:"ghost",onClick:()=>{a('<db-notification headline="Headline"> (Default) Adaptive </db-notification>'),navigator.clipboard.writeText('<db-notification headline="Headline"> (Default) Adaptive </db-notification>')},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-html",children:`<div class="db-notification" role="article">
   <header>Headline</header>
   <p>(Default) Adaptive</p>
-</article>`})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:e===`<article class="db-notification">
+</div>`})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:e===`<div class="db-notification" role="article">
   <header>Headline</header>
   <p>(Default) Adaptive</p>
-</article>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<article class="db-notification">
+</div>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<div class="db-notification" role="article">
   <header>Headline</header>
   <p>(Default) Adaptive</p>
-</article>`),navigator.clipboard.writeText(`<article class="db-notification">
+</div>`),navigator.clipboard.writeText(`<div class="db-notification" role="article">
   <header>Headline</header>
   <p>(Default) Adaptive</p>
-</article>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=react",children:"How to use this in react"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-tsx",children:'<DBNotification headline="Headline">(Default) Adaptive</DBNotification>'})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:'<DBNotification headline="Headline">(Default) Adaptive</DBNotification>'===e?"check":"copy",variant:"ghost",onClick:()=>{a('<DBNotification headline="Headline">(Default) Adaptive</DBNotification>'),navigator.clipboard.writeText('<DBNotification headline="Headline">(Default) Adaptive</DBNotification>')},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=vue",children:"How to use this in vue"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-tsx",children:`<DBNotification headline="Headline">
+</div>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=react",children:"How to use this in react"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-tsx",children:'<DBNotification headline="Headline">(Default) Adaptive</DBNotification>'})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:'<DBNotification headline="Headline">(Default) Adaptive</DBNotification>'===e?"check":"copy",variant:"ghost",onClick:()=>{a('<DBNotification headline="Headline">(Default) Adaptive</DBNotification>'),navigator.clipboard.writeText('<DBNotification headline="Headline">(Default) Adaptive</DBNotification>')},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=vue",children:"How to use this in vue"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-tsx",children:`<DBNotification headline="Headline">
 (Default) Adaptive
 </DBNotification>`})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:e===`<DBNotification headline="Headline">
 (Default) Adaptive
@@ -42862,19 +42874,19 @@ Overlay
   Neutral
 </db-notification>`),navigator.clipboard.writeText(`<db-notification semantic="neutral" headline="Headline">
   Neutral
-</db-notification>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-html",children:`<article class="db-notification" data-semantic="neutral">
+</db-notification>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-html",children:`<div class="db-notification" role="article" data-semantic="neutral">
   <header>Headline</header>
   <p>Neutral</p>
-</article>`})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:e===`<article class="db-notification" data-semantic="neutral">
+</div>`})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:e===`<div class="db-notification" role="article" data-semantic="neutral">
   <header>Headline</header>
   <p>Neutral</p>
-</article>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<article class="db-notification" data-semantic="neutral">
+</div>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<div class="db-notification" role="article" data-semantic="neutral">
   <header>Headline</header>
   <p>Neutral</p>
-</article>`),navigator.clipboard.writeText(`<article class="db-notification" data-semantic="neutral">
+</div>`),navigator.clipboard.writeText(`<div class="db-notification" role="article" data-semantic="neutral">
   <header>Headline</header>
   <p>Neutral</p>
-</article>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=react",children:"How to use this in react"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-tsx",children:`<DBNotification semantic="neutral" headline="Headline">
+</div>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=react",children:"How to use this in react"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-tsx",children:`<DBNotification semantic="neutral" headline="Headline">
   Neutral
 </DBNotification>`})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:e===`<DBNotification semantic="neutral" headline="Headline">
   Neutral
@@ -42898,19 +42910,19 @@ Neutral
   Critical
 </db-notification>`),navigator.clipboard.writeText(`<db-notification semantic="critical" headline="Headline">
   Critical
-</db-notification>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-html",children:`<article class="db-notification" data-semantic="critical">
+</db-notification>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-html",children:`<div class="db-notification" role="alert" data-semantic="critical">
   <header>Headline</header>
   <p>Critical</p>
-</article>`})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:e===`<article class="db-notification" data-semantic="critical">
+</div>`})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:e===`<div class="db-notification" role="alert" data-semantic="critical">
   <header>Headline</header>
   <p>Critical</p>
-</article>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<article class="db-notification" data-semantic="critical">
+</div>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<div class="db-notification" role="alert" data-semantic="critical">
   <header>Headline</header>
   <p>Critical</p>
-</article>`),navigator.clipboard.writeText(`<article class="db-notification" data-semantic="critical">
+</div>`),navigator.clipboard.writeText(`<div class="db-notification" role="alert" data-semantic="critical">
   <header>Headline</header>
   <p>Critical</p>
-</article>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=react",children:"How to use this in react"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-tsx",children:`<DBNotification semantic="critical" headline="Headline">
+</div>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=react",children:"How to use this in react"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-tsx",children:`<DBNotification semantic="critical" headline="Headline">
   Critical
 </DBNotification>`})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:e===`<DBNotification semantic="critical" headline="Headline">
   Critical
@@ -42934,19 +42946,19 @@ Critical
   Informational
 </db-notification>`),navigator.clipboard.writeText(`<db-notification semantic="informational" headline="Headline">
   Informational
-</db-notification>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-html",children:`<article class="db-notification" data-semantic="informational">
+</db-notification>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-html",children:`<div class="db-notification" role="status" data-semantic="informational">
   <header>Headline</header>
   <p>Informational</p>
-</article>`})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:e===`<article class="db-notification" data-semantic="informational">
+</div>`})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:e===`<div class="db-notification" role="status" data-semantic="informational">
   <header>Headline</header>
   <p>Informational</p>
-</article>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<article class="db-notification" data-semantic="informational">
+</div>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<div class="db-notification" role="status" data-semantic="informational">
   <header>Headline</header>
   <p>Informational</p>
-</article>`),navigator.clipboard.writeText(`<article class="db-notification" data-semantic="informational">
+</div>`),navigator.clipboard.writeText(`<div class="db-notification" role="status" data-semantic="informational">
   <header>Headline</header>
   <p>Informational</p>
-</article>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=react",children:"How to use this in react"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-tsx",children:`<DBNotification semantic="informational" headline="Headline">
+</div>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=react",children:"How to use this in react"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-tsx",children:`<DBNotification semantic="informational" headline="Headline">
   Informational
 </DBNotification>`})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:e===`<DBNotification semantic="informational" headline="Headline">
   Informational
@@ -42970,19 +42982,19 @@ Informational
   Successful
 </db-notification>`),navigator.clipboard.writeText(`<db-notification semantic="successful" headline="Headline">
   Successful
-</db-notification>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-html",children:`<article class="db-notification" data-semantic="successful">
+</db-notification>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-html",children:`<div class="db-notification" role="status" data-semantic="successful">
   <header>Headline</header>
   <p>Successful</p>
-</article>`})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:e===`<article class="db-notification" data-semantic="successful">
+</div>`})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:e===`<div class="db-notification" role="status" data-semantic="successful">
   <header>Headline</header>
   <p>Successful</p>
-</article>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<article class="db-notification" data-semantic="successful">
+</div>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<div class="db-notification" role="status" data-semantic="successful">
   <header>Headline</header>
   <p>Successful</p>
-</article>`),navigator.clipboard.writeText(`<article class="db-notification" data-semantic="successful">
+</div>`),navigator.clipboard.writeText(`<div class="db-notification" role="status" data-semantic="successful">
   <header>Headline</header>
   <p>Successful</p>
-</article>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=react",children:"How to use this in react"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-tsx",children:`<DBNotification semantic="successful" headline="Headline">
+</div>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=react",children:"How to use this in react"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-tsx",children:`<DBNotification semantic="successful" headline="Headline">
   Successful
 </DBNotification>`})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:e===`<DBNotification semantic="successful" headline="Headline">
   Successful
@@ -43006,19 +43018,19 @@ Successful
   Warning
 </db-notification>`),navigator.clipboard.writeText(`<db-notification semantic="warning" headline="Headline">
   Warning
-</db-notification>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-html",children:`<article class="db-notification" data-semantic="warning">
+</db-notification>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-html",children:`<div class="db-notification" role="alert" data-semantic="warning">
   <header>Headline</header>
   <p>Warning</p>
-</article>`})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:e===`<article class="db-notification" data-semantic="warning">
+</div>`})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:e===`<div class="db-notification" role="alert" data-semantic="warning">
   <header>Headline</header>
   <p>Warning</p>
-</article>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<article class="db-notification" data-semantic="warning">
+</div>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<div class="db-notification" role="alert" data-semantic="warning">
   <header>Headline</header>
   <p>Warning</p>
-</article>`),navigator.clipboard.writeText(`<article class="db-notification" data-semantic="warning">
+</div>`),navigator.clipboard.writeText(`<div class="db-notification" role="alert" data-semantic="warning">
   <header>Headline</header>
   <p>Warning</p>
-</article>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=react",children:"How to use this in react"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-tsx",children:`<DBNotification semantic="warning" headline="Headline">
+</div>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=react",children:"How to use this in react"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-tsx",children:`<DBNotification semantic="warning" headline="Headline">
   Warning
 </DBNotification>`})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:e===`<DBNotification semantic="warning" headline="Headline">
   Warning
@@ -43034,7 +43046,7 @@ Warning
 Warning
 </DBNotification>`),navigator.clipboard.writeText(`<DBNotification semantic="warning" headline="Headline">
 Warning
-</DBNotification>`)},children:"Copy code"})]})]},t())})]})},no=()=>{let[e,a]=(0,I.useState)(),{getFrameworkIndex:t}=(0,ay.u)();return(0,I.useEffect)(()=>{e&&setTimeout(()=>a(""),1500)},[e]),(0,N.jsxs)(N.Fragment,{children:[(0,N.jsx)(L.A,{className:"tab-container",children:(0,N.jsxs)(au.A,{initialSelectedIndex:t(),children:[(0,N.jsxs)(ao.A,{children:[(0,N.jsx)(as.A,{children:"Angular"}),(0,N.jsx)(as.A,{children:"HTML"}),(0,N.jsx)(as.A,{children:"React"}),(0,N.jsx)(as.A,{children:"Vue"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=angular",children:"How to use this in angular"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-html",children:'<db-notification [closeable]="false"> (Default) False </db-notification>'})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:'<db-notification [closeable]="false"> (Default) False </db-notification>'===e?"check":"copy",variant:"ghost",onClick:()=>{a('<db-notification [closeable]="false"> (Default) False </db-notification>'),navigator.clipboard.writeText('<db-notification [closeable]="false"> (Default) False </db-notification>')},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-html",children:`<article class="db-notification">
+</DBNotification>`)},children:"Copy code"})]})]},t())})]})},no=()=>{let[e,a]=(0,I.useState)(),{getFrameworkIndex:t}=(0,ay.u)();return(0,I.useEffect)(()=>{e&&setTimeout(()=>a(""),1500)},[e]),(0,N.jsxs)(N.Fragment,{children:[(0,N.jsx)(L.A,{className:"tab-container",children:(0,N.jsxs)(au.A,{initialSelectedIndex:t(),children:[(0,N.jsxs)(ao.A,{children:[(0,N.jsx)(as.A,{children:"Angular"}),(0,N.jsx)(as.A,{children:"HTML"}),(0,N.jsx)(as.A,{children:"React"}),(0,N.jsx)(as.A,{children:"Vue"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=angular",children:"How to use this in angular"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-html",children:'<db-notification [closeable]="false"> (Default) False </db-notification>'})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:'<db-notification [closeable]="false"> (Default) False </db-notification>'===e?"check":"copy",variant:"ghost",onClick:()=>{a('<db-notification [closeable]="false"> (Default) False </db-notification>'),navigator.clipboard.writeText('<db-notification [closeable]="false"> (Default) False </db-notification>')},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-html",children:`<div class="db-notification" role="article">
   <p>(Default) False</p>
   <button
     class="db-button"
@@ -43046,7 +43058,7 @@ Warning
   >
     Close
   </button>
-</article>`})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:e===`<article class="db-notification">
+</div>`})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:e===`<div class="db-notification" role="article">
   <p>(Default) False</p>
   <button
     class="db-button"
@@ -43058,7 +43070,7 @@ Warning
   >
     Close
   </button>
-</article>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<article class="db-notification">
+</div>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<div class="db-notification" role="article">
   <p>(Default) False</p>
   <button
     class="db-button"
@@ -43070,7 +43082,7 @@ Warning
   >
     Close
   </button>
-</article>`),navigator.clipboard.writeText(`<article class="db-notification">
+</div>`),navigator.clipboard.writeText(`<div class="db-notification" role="article">
   <p>(Default) False</p>
   <button
     class="db-button"
@@ -43082,7 +43094,7 @@ Warning
   >
     Close
   </button>
-</article>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=react",children:"How to use this in react"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-tsx",children:"<DBNotification closeable>(Default) False</DBNotification>"})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:"<DBNotification closeable>(Default) False</DBNotification>"===e?"check":"copy",variant:"ghost",onClick:()=>{a("<DBNotification closeable>(Default) False</DBNotification>"),navigator.clipboard.writeText("<DBNotification closeable>(Default) False</DBNotification>")},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=vue",children:"How to use this in vue"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-tsx",children:`<DBNotification :closeable="false">
+</div>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=react",children:"How to use this in react"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-tsx",children:"<DBNotification closeable>(Default) False</DBNotification>"})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:"<DBNotification closeable>(Default) False</DBNotification>"===e?"check":"copy",variant:"ghost",onClick:()=>{a("<DBNotification closeable>(Default) False</DBNotification>"),navigator.clipboard.writeText("<DBNotification closeable>(Default) False</DBNotification>")},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=vue",children:"How to use this in vue"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-tsx",children:`<DBNotification :closeable="false">
 (Default) False
 </DBNotification>`})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:e===`<DBNotification :closeable="false">
 (Default) False
@@ -43090,7 +43102,7 @@ Warning
 (Default) False
 </DBNotification>`),navigator.clipboard.writeText(`<DBNotification :closeable="false">
 (Default) False
-</DBNotification>`)},children:"Copy code"})]})]},t())}),(0,N.jsx)(L.A,{className:"tab-container",children:(0,N.jsxs)(au.A,{initialSelectedIndex:t(),children:[(0,N.jsxs)(ao.A,{children:[(0,N.jsx)(as.A,{children:"Angular"}),(0,N.jsx)(as.A,{children:"HTML"}),(0,N.jsx)(as.A,{children:"React"}),(0,N.jsx)(as.A,{children:"Vue"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=angular",children:"How to use this in angular"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-html",children:'<db-notification [closeable]="true"> True </db-notification>'})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:'<db-notification [closeable]="true"> True </db-notification>'===e?"check":"copy",variant:"ghost",onClick:()=>{a('<db-notification [closeable]="true"> True </db-notification>'),navigator.clipboard.writeText('<db-notification [closeable]="true"> True </db-notification>')},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-html",children:`<article class="db-notification">
+</DBNotification>`)},children:"Copy code"})]})]},t())}),(0,N.jsx)(L.A,{className:"tab-container",children:(0,N.jsxs)(au.A,{initialSelectedIndex:t(),children:[(0,N.jsxs)(ao.A,{children:[(0,N.jsx)(as.A,{children:"Angular"}),(0,N.jsx)(as.A,{children:"HTML"}),(0,N.jsx)(as.A,{children:"React"}),(0,N.jsx)(as.A,{children:"Vue"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=angular",children:"How to use this in angular"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-html",children:'<db-notification [closeable]="true"> True </db-notification>'})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:'<db-notification [closeable]="true"> True </db-notification>'===e?"check":"copy",variant:"ghost",onClick:()=>{a('<db-notification [closeable]="true"> True </db-notification>'),navigator.clipboard.writeText('<db-notification [closeable]="true"> True </db-notification>')},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-html",children:`<div class="db-notification" role="article">
   <p>True</p>
   <button
     class="db-button"
@@ -43102,7 +43114,7 @@ Warning
   >
     Close
   </button>
-</article>`})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:e===`<article class="db-notification">
+</div>`})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:e===`<div class="db-notification" role="article">
   <p>True</p>
   <button
     class="db-button"
@@ -43114,7 +43126,7 @@ Warning
   >
     Close
   </button>
-</article>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<article class="db-notification">
+</div>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<div class="db-notification" role="article">
   <p>True</p>
   <button
     class="db-button"
@@ -43126,7 +43138,7 @@ Warning
   >
     Close
   </button>
-</article>`),navigator.clipboard.writeText(`<article class="db-notification">
+</div>`),navigator.clipboard.writeText(`<div class="db-notification" role="article">
   <p>True</p>
   <button
     class="db-button"
@@ -43138,7 +43150,7 @@ Warning
   >
     Close
   </button>
-</article>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=react",children:"How to use this in react"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-tsx",children:"<DBNotification closeable>True</DBNotification>"})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:"<DBNotification closeable>True</DBNotification>"===e?"check":"copy",variant:"ghost",onClick:()=>{a("<DBNotification closeable>True</DBNotification>"),navigator.clipboard.writeText("<DBNotification closeable>True</DBNotification>")},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=vue",children:"How to use this in vue"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-tsx",children:`<DBNotification :closeable="true">
+</div>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=react",children:"How to use this in react"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-tsx",children:"<DBNotification closeable>True</DBNotification>"})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:"<DBNotification closeable>True</DBNotification>"===e?"check":"copy",variant:"ghost",onClick:()=>{a("<DBNotification closeable>True</DBNotification>"),navigator.clipboard.writeText("<DBNotification closeable>True</DBNotification>")},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=vue",children:"How to use this in vue"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-tsx",children:`<DBNotification :closeable="true">
 True
 </DBNotification>`})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:e===`<DBNotification :closeable="true">
 True
@@ -43146,15 +43158,15 @@ True
 True
 </DBNotification>`),navigator.clipboard.writeText(`<DBNotification :closeable="true">
 True
-</DBNotification>`)},children:"Copy code"})]})]},t())})]})},ns=()=>{let[e,a]=(0,I.useState)(),{getFrameworkIndex:t}=(0,ay.u)();return(0,I.useEffect)(()=>{e&&setTimeout(()=>a(""),1500)},[e]),(0,N.jsxs)(N.Fragment,{children:[(0,N.jsx)(L.A,{className:"tab-container",children:(0,N.jsxs)(au.A,{initialSelectedIndex:t(),children:[(0,N.jsxs)(ao.A,{children:[(0,N.jsx)(as.A,{children:"Angular"}),(0,N.jsx)(as.A,{children:"HTML"}),(0,N.jsx)(as.A,{children:"React"}),(0,N.jsx)(as.A,{children:"Vue"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=angular",children:"How to use this in angular"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-html",children:'<db-notification icon="information_circle"> (Default) Icon </db-notification>'})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:'<db-notification icon="information_circle"> (Default) Icon </db-notification>'===e?"check":"copy",variant:"ghost",onClick:()=>{a('<db-notification icon="information_circle"> (Default) Icon </db-notification>'),navigator.clipboard.writeText('<db-notification icon="information_circle"> (Default) Icon </db-notification>')},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-html",children:`<article class="db-notification" data-icon="information_circle">
+</DBNotification>`)},children:"Copy code"})]})]},t())})]})},ns=()=>{let[e,a]=(0,I.useState)(),{getFrameworkIndex:t}=(0,ay.u)();return(0,I.useEffect)(()=>{e&&setTimeout(()=>a(""),1500)},[e]),(0,N.jsxs)(N.Fragment,{children:[(0,N.jsx)(L.A,{className:"tab-container",children:(0,N.jsxs)(au.A,{initialSelectedIndex:t(),children:[(0,N.jsxs)(ao.A,{children:[(0,N.jsx)(as.A,{children:"Angular"}),(0,N.jsx)(as.A,{children:"HTML"}),(0,N.jsx)(as.A,{children:"React"}),(0,N.jsx)(as.A,{children:"Vue"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=angular",children:"How to use this in angular"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-html",children:'<db-notification icon="information_circle"> (Default) Icon </db-notification>'})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:'<db-notification icon="information_circle"> (Default) Icon </db-notification>'===e?"check":"copy",variant:"ghost",onClick:()=>{a('<db-notification icon="information_circle"> (Default) Icon </db-notification>'),navigator.clipboard.writeText('<db-notification icon="information_circle"> (Default) Icon </db-notification>')},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-html",children:`<div class="db-notification" role="article" data-icon="information_circle">
   <p>(Default) Icon</p>
-</article>`})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:e===`<article class="db-notification" data-icon="information_circle">
+</div>`})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:e===`<div class="db-notification" role="article" data-icon="information_circle">
   <p>(Default) Icon</p>
-</article>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<article class="db-notification" data-icon="information_circle">
+</div>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<div class="db-notification" role="article" data-icon="information_circle">
   <p>(Default) Icon</p>
-</article>`),navigator.clipboard.writeText(`<article class="db-notification" data-icon="information_circle">
+</div>`),navigator.clipboard.writeText(`<div class="db-notification" role="article" data-icon="information_circle">
   <p>(Default) Icon</p>
-</article>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=react",children:"How to use this in react"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-tsx",children:'<DBNotification icon="information_circle">(Default) Icon</DBNotification>'})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:'<DBNotification icon="information_circle">(Default) Icon</DBNotification>'===e?"check":"copy",variant:"ghost",onClick:()=>{a('<DBNotification icon="information_circle">(Default) Icon</DBNotification>'),navigator.clipboard.writeText('<DBNotification icon="information_circle">(Default) Icon</DBNotification>')},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=vue",children:"How to use this in vue"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-tsx",children:`<DBNotification icon="information_circle">
+</div>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=react",children:"How to use this in react"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-tsx",children:'<DBNotification icon="information_circle">(Default) Icon</DBNotification>'})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:'<DBNotification icon="information_circle">(Default) Icon</DBNotification>'===e?"check":"copy",variant:"ghost",onClick:()=>{a('<DBNotification icon="information_circle">(Default) Icon</DBNotification>'),navigator.clipboard.writeText('<DBNotification icon="information_circle">(Default) Icon</DBNotification>')},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=vue",children:"How to use this in vue"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-tsx",children:`<DBNotification icon="information_circle">
 (Default) Icon
 </DBNotification>`})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:e===`<DBNotification icon="information_circle">
 (Default) Icon
@@ -43162,7 +43174,7 @@ True
 (Default) Icon
 </DBNotification>`),navigator.clipboard.writeText(`<DBNotification icon="information_circle">
 (Default) Icon
-</DBNotification>`)},children:"Copy code"})]})]},t())}),(0,N.jsx)(L.A,{className:"tab-container",children:(0,N.jsxs)(au.A,{initialSelectedIndex:t(),children:[(0,N.jsxs)(ao.A,{children:[(0,N.jsx)(as.A,{children:"Angular"}),(0,N.jsx)(as.A,{children:"HTML"}),(0,N.jsx)(as.A,{children:"React"}),(0,N.jsx)(as.A,{children:"Vue"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=angular",children:"How to use this in angular"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-html",children:"<db-notification> Image </db-notification>"})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:"<db-notification> Image </db-notification>"===e?"check":"copy",variant:"ghost",onClick:()=>{a("<db-notification> Image </db-notification>"),navigator.clipboard.writeText("<db-notification> Image </db-notification>")},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-html",children:'<article class="db-notification"><p>Image</p></article>'})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:'<article class="db-notification"><p>Image</p></article>'===e?"check":"copy",variant:"ghost",onClick:()=>{a('<article class="db-notification"><p>Image</p></article>'),navigator.clipboard.writeText('<article class="db-notification"><p>Image</p></article>')},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=react",children:"How to use this in react"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-tsx",children:"<DBNotification>Image</DBNotification>"})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:"<DBNotification>Image</DBNotification>"===e?"check":"copy",variant:"ghost",onClick:()=>{a("<DBNotification>Image</DBNotification>"),navigator.clipboard.writeText("<DBNotification>Image</DBNotification>")},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=vue",children:"How to use this in vue"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-tsx",children:`<DBNotification>
+</DBNotification>`)},children:"Copy code"})]})]},t())}),(0,N.jsx)(L.A,{className:"tab-container",children:(0,N.jsxs)(au.A,{initialSelectedIndex:t(),children:[(0,N.jsxs)(ao.A,{children:[(0,N.jsx)(as.A,{children:"Angular"}),(0,N.jsx)(as.A,{children:"HTML"}),(0,N.jsx)(as.A,{children:"React"}),(0,N.jsx)(as.A,{children:"Vue"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=angular",children:"How to use this in angular"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-html",children:"<db-notification> Image </db-notification>"})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:"<db-notification> Image </db-notification>"===e?"check":"copy",variant:"ghost",onClick:()=>{a("<db-notification> Image </db-notification>"),navigator.clipboard.writeText("<db-notification> Image </db-notification>")},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-html",children:'<div class="db-notification" role="article"><p>Image</p></div>'})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:'<div class="db-notification" role="article"><p>Image</p></div>'===e?"check":"copy",variant:"ghost",onClick:()=>{a('<div class="db-notification" role="article"><p>Image</p></div>'),navigator.clipboard.writeText('<div class="db-notification" role="article"><p>Image</p></div>')},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=react",children:"How to use this in react"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-tsx",children:"<DBNotification>Image</DBNotification>"})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:"<DBNotification>Image</DBNotification>"===e?"check":"copy",variant:"ghost",onClick:()=>{a("<DBNotification>Image</DBNotification>"),navigator.clipboard.writeText("<DBNotification>Image</DBNotification>")},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=vue",children:"How to use this in vue"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-tsx",children:`<DBNotification>
 Image
 </DBNotification>`})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:e===`<DBNotification>
 Image
@@ -43178,31 +43190,35 @@ Image
   (Default) True
 </db-notification>`),navigator.clipboard.writeText(`<db-notification icon="information_circle" [showIcon]="true">
   (Default) True
-</db-notification>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-html",children:`<article
+</db-notification>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-html",children:`<div
   class="db-notification"
+  role="article"
   data-icon="information_circle"
   data-show-icon="true"
 >
   <p>(Default) True</p>
-</article>`})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:e===`<article
+</div>`})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:e===`<div
   class="db-notification"
+  role="article"
   data-icon="information_circle"
   data-show-icon="true"
 >
   <p>(Default) True</p>
-</article>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<article
+</div>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<div
   class="db-notification"
+  role="article"
   data-icon="information_circle"
   data-show-icon="true"
 >
   <p>(Default) True</p>
-</article>`),navigator.clipboard.writeText(`<article
+</div>`),navigator.clipboard.writeText(`<div
   class="db-notification"
+  role="article"
   data-icon="information_circle"
   data-show-icon="true"
 >
   <p>(Default) True</p>
-</article>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=react",children:"How to use this in react"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-tsx",children:`<DBNotification icon="information_circle" showIcon>
+</div>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=react",children:"How to use this in react"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-tsx",children:`<DBNotification icon="information_circle" showIcon>
   (Default) True
 </DBNotification>`})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:e===`<DBNotification icon="information_circle" showIcon>
   (Default) True
@@ -43226,31 +43242,35 @@ Image
   False
 </db-notification>`),navigator.clipboard.writeText(`<db-notification icon="information_circle" [showIcon]="false">
   False
-</db-notification>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-html",children:`<article
+</db-notification>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-html",children:`<div
   class="db-notification"
+  role="article"
   data-icon="information_circle"
   data-show-icon="true"
 >
   <p>False</p>
-</article>`})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:e===`<article
+</div>`})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:e===`<div
   class="db-notification"
+  role="article"
   data-icon="information_circle"
   data-show-icon="true"
 >
   <p>False</p>
-</article>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<article
+</div>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<div
   class="db-notification"
+  role="article"
   data-icon="information_circle"
   data-show-icon="true"
 >
   <p>False</p>
-</article>`),navigator.clipboard.writeText(`<article
+</div>`),navigator.clipboard.writeText(`<div
   class="db-notification"
+  role="article"
   data-icon="information_circle"
   data-show-icon="true"
 >
   <p>False</p>
-</article>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=react",children:"How to use this in react"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-tsx",children:`<DBNotification icon="information_circle" showIcon>
+</div>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=react",children:"How to use this in react"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-tsx",children:`<DBNotification icon="information_circle" showIcon>
   False
 </DBNotification>`})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:e===`<DBNotification icon="information_circle" showIcon>
   False
@@ -43266,15 +43286,15 @@ False
 False
 </DBNotification>`),navigator.clipboard.writeText(`<DBNotification icon="information_circle" :showIcon="false">
 False
-</DBNotification>`)},children:"Copy code"})]})]},t())})]})},nd=()=>{let[e,a]=(0,I.useState)(),{getFrameworkIndex:t}=(0,ay.u)();return(0,I.useEffect)(()=>{e&&setTimeout(()=>a(""),1500)},[e]),(0,N.jsxs)(N.Fragment,{children:[(0,N.jsx)(L.A,{className:"tab-container",children:(0,N.jsxs)(au.A,{initialSelectedIndex:t(),children:[(0,N.jsxs)(ao.A,{children:[(0,N.jsx)(as.A,{children:"Angular"}),(0,N.jsx)(as.A,{children:"HTML"}),(0,N.jsx)(as.A,{children:"React"}),(0,N.jsx)(as.A,{children:"Vue"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=angular",children:"How to use this in angular"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-html",children:'<db-notification linkVariant="block"> (Default) Block </db-notification>'})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:'<db-notification linkVariant="block"> (Default) Block </db-notification>'===e?"check":"copy",variant:"ghost",onClick:()=>{a('<db-notification linkVariant="block"> (Default) Block </db-notification>'),navigator.clipboard.writeText('<db-notification linkVariant="block"> (Default) Block </db-notification>')},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-html",children:`<article class="db-notification" data-link-variant="block">
+</DBNotification>`)},children:"Copy code"})]})]},t())})]})},nd=()=>{let[e,a]=(0,I.useState)(),{getFrameworkIndex:t}=(0,ay.u)();return(0,I.useEffect)(()=>{e&&setTimeout(()=>a(""),1500)},[e]),(0,N.jsxs)(N.Fragment,{children:[(0,N.jsx)(L.A,{className:"tab-container",children:(0,N.jsxs)(au.A,{initialSelectedIndex:t(),children:[(0,N.jsxs)(ao.A,{children:[(0,N.jsx)(as.A,{children:"Angular"}),(0,N.jsx)(as.A,{children:"HTML"}),(0,N.jsx)(as.A,{children:"React"}),(0,N.jsx)(as.A,{children:"Vue"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=angular",children:"How to use this in angular"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-html",children:'<db-notification linkVariant="block"> (Default) Block </db-notification>'})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:'<db-notification linkVariant="block"> (Default) Block </db-notification>'===e?"check":"copy",variant:"ghost",onClick:()=>{a('<db-notification linkVariant="block"> (Default) Block </db-notification>'),navigator.clipboard.writeText('<db-notification linkVariant="block"> (Default) Block </db-notification>')},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-html",children:`<div class="db-notification" role="article" data-link-variant="block">
   <p>(Default) Block</p>
-</article>`})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:e===`<article class="db-notification" data-link-variant="block">
+</div>`})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:e===`<div class="db-notification" role="article" data-link-variant="block">
   <p>(Default) Block</p>
-</article>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<article class="db-notification" data-link-variant="block">
+</div>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<div class="db-notification" role="article" data-link-variant="block">
   <p>(Default) Block</p>
-</article>`),navigator.clipboard.writeText(`<article class="db-notification" data-link-variant="block">
+</div>`),navigator.clipboard.writeText(`<div class="db-notification" role="article" data-link-variant="block">
   <p>(Default) Block</p>
-</article>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=react",children:"How to use this in react"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-tsx",children:'<DBNotification linkVariant="block">(Default) Block</DBNotification>'})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:'<DBNotification linkVariant="block">(Default) Block</DBNotification>'===e?"check":"copy",variant:"ghost",onClick:()=>{a('<DBNotification linkVariant="block">(Default) Block</DBNotification>'),navigator.clipboard.writeText('<DBNotification linkVariant="block">(Default) Block</DBNotification>')},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=vue",children:"How to use this in vue"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-tsx",children:`<DBNotification linkVariant="block">
+</div>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=react",children:"How to use this in react"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-tsx",children:'<DBNotification linkVariant="block">(Default) Block</DBNotification>'})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:'<DBNotification linkVariant="block">(Default) Block</DBNotification>'===e?"check":"copy",variant:"ghost",onClick:()=>{a('<DBNotification linkVariant="block">(Default) Block</DBNotification>'),navigator.clipboard.writeText('<DBNotification linkVariant="block">(Default) Block</DBNotification>')},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=vue",children:"How to use this in vue"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-tsx",children:`<DBNotification linkVariant="block">
 (Default) Block
 </DBNotification>`})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:e===`<DBNotification linkVariant="block">
 (Default) Block
@@ -43282,15 +43302,15 @@ False
 (Default) Block
 </DBNotification>`),navigator.clipboard.writeText(`<DBNotification linkVariant="block">
 (Default) Block
-</DBNotification>`)},children:"Copy code"})]})]},t())}),(0,N.jsx)(L.A,{className:"tab-container",children:(0,N.jsxs)(au.A,{initialSelectedIndex:t(),children:[(0,N.jsxs)(ao.A,{children:[(0,N.jsx)(as.A,{children:"Angular"}),(0,N.jsx)(as.A,{children:"HTML"}),(0,N.jsx)(as.A,{children:"React"}),(0,N.jsx)(as.A,{children:"Vue"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=angular",children:"How to use this in angular"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-html",children:'<db-notification linkVariant="inline"> Inline </db-notification>'})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:'<db-notification linkVariant="inline"> Inline </db-notification>'===e?"check":"copy",variant:"ghost",onClick:()=>{a('<db-notification linkVariant="inline"> Inline </db-notification>'),navigator.clipboard.writeText('<db-notification linkVariant="inline"> Inline </db-notification>')},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-html",children:`<article class="db-notification" data-link-variant="inline">
+</DBNotification>`)},children:"Copy code"})]})]},t())}),(0,N.jsx)(L.A,{className:"tab-container",children:(0,N.jsxs)(au.A,{initialSelectedIndex:t(),children:[(0,N.jsxs)(ao.A,{children:[(0,N.jsx)(as.A,{children:"Angular"}),(0,N.jsx)(as.A,{children:"HTML"}),(0,N.jsx)(as.A,{children:"React"}),(0,N.jsx)(as.A,{children:"Vue"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=angular",children:"How to use this in angular"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-html",children:'<db-notification linkVariant="inline"> Inline </db-notification>'})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:'<db-notification linkVariant="inline"> Inline </db-notification>'===e?"check":"copy",variant:"ghost",onClick:()=>{a('<db-notification linkVariant="inline"> Inline </db-notification>'),navigator.clipboard.writeText('<db-notification linkVariant="inline"> Inline </db-notification>')},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-html",children:`<div class="db-notification" role="article" data-link-variant="inline">
   <p>Inline</p>
-</article>`})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:e===`<article class="db-notification" data-link-variant="inline">
+</div>`})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:e===`<div class="db-notification" role="article" data-link-variant="inline">
   <p>Inline</p>
-</article>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<article class="db-notification" data-link-variant="inline">
+</div>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<div class="db-notification" role="article" data-link-variant="inline">
   <p>Inline</p>
-</article>`),navigator.clipboard.writeText(`<article class="db-notification" data-link-variant="inline">
+</div>`),navigator.clipboard.writeText(`<div class="db-notification" role="article" data-link-variant="inline">
   <p>Inline</p>
-</article>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=react",children:"How to use this in react"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-tsx",children:'<DBNotification linkVariant="inline">Inline</DBNotification>'})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:'<DBNotification linkVariant="inline">Inline</DBNotification>'===e?"check":"copy",variant:"ghost",onClick:()=>{a('<DBNotification linkVariant="inline">Inline</DBNotification>'),navigator.clipboard.writeText('<DBNotification linkVariant="inline">Inline</DBNotification>')},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=vue",children:"How to use this in vue"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-tsx",children:`<DBNotification linkVariant="inline">
+</div>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=react",children:"How to use this in react"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-tsx",children:'<DBNotification linkVariant="inline">Inline</DBNotification>'})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:'<DBNotification linkVariant="inline">Inline</DBNotification>'===e?"check":"copy",variant:"ghost",onClick:()=>{a('<DBNotification linkVariant="inline">Inline</DBNotification>'),navigator.clipboard.writeText('<DBNotification linkVariant="inline">Inline</DBNotification>')},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=vue",children:"How to use this in vue"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-tsx",children:`<DBNotification linkVariant="inline">
 Inline
 </DBNotification>`})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:e===`<DBNotification linkVariant="inline">
 Inline
@@ -43306,19 +43326,19 @@ Inline
   (Default) True
 </db-notification>`),navigator.clipboard.writeText(`<db-notification headline="Headline" [showHeadline]="true">
   (Default) True
-</db-notification>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-html",children:`<article class="db-notification">
+</db-notification>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-html",children:`<div class="db-notification" role="article">
   <header>Headline</header>
   <p>(Default) True</p>
-</article>`})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:e===`<article class="db-notification">
+</div>`})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:e===`<div class="db-notification" role="article">
   <header>Headline</header>
   <p>(Default) True</p>
-</article>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<article class="db-notification">
+</div>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<div class="db-notification" role="article">
   <header>Headline</header>
   <p>(Default) True</p>
-</article>`),navigator.clipboard.writeText(`<article class="db-notification">
+</div>`),navigator.clipboard.writeText(`<div class="db-notification" role="article">
   <header>Headline</header>
   <p>(Default) True</p>
-</article>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=react",children:"How to use this in react"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-tsx",children:`<DBNotification headline="Headline" showHeadline>
+</div>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=react",children:"How to use this in react"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-tsx",children:`<DBNotification headline="Headline" showHeadline>
   (Default) True
 </DBNotification>`})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:e===`<DBNotification headline="Headline" showHeadline>
   (Default) True
@@ -43342,19 +43362,19 @@ Inline
   False
 </db-notification>`),navigator.clipboard.writeText(`<db-notification headline="Headline" [showHeadline]="false">
   False
-</db-notification>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-html",children:`<article class="db-notification">
+</db-notification>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-html",children:`<div class="db-notification" role="article">
   <header>Headline</header>
   <p>False</p>
-</article>`})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:e===`<article class="db-notification">
+</div>`})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:e===`<div class="db-notification" role="article">
   <header>Headline</header>
   <p>False</p>
-</article>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<article class="db-notification">
+</div>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<div class="db-notification" role="article">
   <header>Headline</header>
   <p>False</p>
-</article>`),navigator.clipboard.writeText(`<article class="db-notification">
+</div>`),navigator.clipboard.writeText(`<div class="db-notification" role="article">
   <header>Headline</header>
   <p>False</p>
-</article>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=react",children:"How to use this in react"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-tsx",children:`<DBNotification headline="Headline" showHeadline>
+</div>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=react",children:"How to use this in react"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-tsx",children:`<DBNotification headline="Headline" showHeadline>
   False
 </DBNotification>`})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:e===`<DBNotification headline="Headline" showHeadline>
   False
@@ -43394,19 +43414,19 @@ False
   timestamp="10 min ago"
 >
   (Default) False
-</db-notification>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-html",children:`<article class="db-notification" data-variant="overlay">
+</db-notification>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-html",children:`<div class="db-notification" role="article" data-variant="overlay">
   <p>(Default) False</p>
   <span>10 min ago</span>
-</article>`})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:e===`<article class="db-notification" data-variant="overlay">
+</div>`})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:e===`<div class="db-notification" role="article" data-variant="overlay">
   <p>(Default) False</p>
   <span>10 min ago</span>
-</article>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<article class="db-notification" data-variant="overlay">
+</div>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<div class="db-notification" role="article" data-variant="overlay">
   <p>(Default) False</p>
   <span>10 min ago</span>
-</article>`),navigator.clipboard.writeText(`<article class="db-notification" data-variant="overlay">
+</div>`),navigator.clipboard.writeText(`<div class="db-notification" role="article" data-variant="overlay">
   <p>(Default) False</p>
   <span>10 min ago</span>
-</article>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=react",children:"How to use this in react"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-tsx",children:`<DBNotification variant="overlay" showTimestamp timestamp="10 min ago">
+</div>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=react",children:"How to use this in react"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-tsx",children:`<DBNotification variant="overlay" showTimestamp timestamp="10 min ago">
   (Default) False
 </DBNotification>`})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:e===`<DBNotification variant="overlay" showTimestamp timestamp="10 min ago">
   (Default) False
@@ -43446,19 +43466,19 @@ False
   timestamp="10 min ago"
 >
   True
-</db-notification>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-html",children:`<article class="db-notification" data-variant="overlay">
+</db-notification>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-html",children:`<div class="db-notification" role="article" data-variant="overlay">
   <p>True</p>
   <span>10 min ago</span>
-</article>`})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:e===`<article class="db-notification" data-variant="overlay">
+</div>`})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:e===`<div class="db-notification" role="article" data-variant="overlay">
   <p>True</p>
   <span>10 min ago</span>
-</article>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<article class="db-notification" data-variant="overlay">
+</div>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<div class="db-notification" role="article" data-variant="overlay">
   <p>True</p>
   <span>10 min ago</span>
-</article>`),navigator.clipboard.writeText(`<article class="db-notification" data-variant="overlay">
+</div>`),navigator.clipboard.writeText(`<div class="db-notification" role="article" data-variant="overlay">
   <p>True</p>
   <span>10 min ago</span>
-</article>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=react",children:"How to use this in react"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-tsx",children:`<DBNotification variant="overlay" showTimestamp timestamp="10 min ago">
+</div>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=react",children:"How to use this in react"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-tsx",children:`<DBNotification variant="overlay" showTimestamp timestamp="10 min ago">
   True
 </DBNotification>`})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:e===`<DBNotification variant="overlay" showTimestamp timestamp="10 min ago">
   True
@@ -43474,7 +43494,7 @@ True
 True
 </DBNotification>`),navigator.clipboard.writeText(`<DBNotification variant="overlay" :showTimestamp="true" timestamp="10 min ago">
 True
-</DBNotification>`)},children:"Copy code"})]})]},t())})]})},np=()=>{let[e,a]=(0,I.useState)(),{getFrameworkIndex:t}=(0,ay.u)();return(0,I.useEffect)(()=>{e&&setTimeout(()=>a(""),1500)},[e]),(0,N.jsxs)(N.Fragment,{children:[(0,N.jsx)(L.A,{className:"tab-container",children:(0,N.jsxs)(au.A,{initialSelectedIndex:t(),children:[(0,N.jsxs)(ao.A,{children:[(0,N.jsx)(as.A,{children:"Angular"}),(0,N.jsx)(as.A,{children:"HTML"}),(0,N.jsx)(as.A,{children:"React"}),(0,N.jsx)(as.A,{children:"Vue"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=angular",children:"How to use this in angular"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-html",children:'<db-notification behavior="permanent"> Text </db-notification>'})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:'<db-notification behavior="permanent"> Text </db-notification>'===e?"check":"copy",variant:"ghost",onClick:()=>{a('<db-notification behavior="permanent"> Text </db-notification>'),navigator.clipboard.writeText('<db-notification behavior="permanent"> Text </db-notification>')},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-html",children:'<article class="db-notification"><p>Text</p></article>'})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:'<article class="db-notification"><p>Text</p></article>'===e?"check":"copy",variant:"ghost",onClick:()=>{a('<article class="db-notification"><p>Text</p></article>'),navigator.clipboard.writeText('<article class="db-notification"><p>Text</p></article>')},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=react",children:"How to use this in react"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-tsx",children:'<DBNotification behavior="permanent">Text</DBNotification>'})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:'<DBNotification behavior="permanent">Text</DBNotification>'===e?"check":"copy",variant:"ghost",onClick:()=>{a('<DBNotification behavior="permanent">Text</DBNotification>'),navigator.clipboard.writeText('<DBNotification behavior="permanent">Text</DBNotification>')},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=vue",children:"How to use this in vue"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-tsx",children:`<DBNotification behavior="permanent">
+</DBNotification>`)},children:"Copy code"})]})]},t())})]})},np=()=>{let[e,a]=(0,I.useState)(),{getFrameworkIndex:t}=(0,ay.u)();return(0,I.useEffect)(()=>{e&&setTimeout(()=>a(""),1500)},[e]),(0,N.jsxs)(N.Fragment,{children:[(0,N.jsx)(L.A,{className:"tab-container",children:(0,N.jsxs)(au.A,{initialSelectedIndex:t(),children:[(0,N.jsxs)(ao.A,{children:[(0,N.jsx)(as.A,{children:"Angular"}),(0,N.jsx)(as.A,{children:"HTML"}),(0,N.jsx)(as.A,{children:"React"}),(0,N.jsx)(as.A,{children:"Vue"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=angular",children:"How to use this in angular"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-html",children:'<db-notification behavior="permanent"> Text </db-notification>'})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:'<db-notification behavior="permanent"> Text </db-notification>'===e?"check":"copy",variant:"ghost",onClick:()=>{a('<db-notification behavior="permanent"> Text </db-notification>'),navigator.clipboard.writeText('<db-notification behavior="permanent"> Text </db-notification>')},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-html",children:'<div class="db-notification" role="article"><p>Text</p></div>'})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:'<div class="db-notification" role="article"><p>Text</p></div>'===e?"check":"copy",variant:"ghost",onClick:()=>{a('<div class="db-notification" role="article"><p>Text</p></div>'),navigator.clipboard.writeText('<div class="db-notification" role="article"><p>Text</p></div>')},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=react",children:"How to use this in react"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-tsx",children:'<DBNotification behavior="permanent">Text</DBNotification>'})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:'<DBNotification behavior="permanent">Text</DBNotification>'===e?"check":"copy",variant:"ghost",onClick:()=>{a('<DBNotification behavior="permanent">Text</DBNotification>'),navigator.clipboard.writeText('<DBNotification behavior="permanent">Text</DBNotification>')},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=vue",children:"How to use this in vue"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-tsx",children:`<DBNotification behavior="permanent">
 Text
 </DBNotification>`})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:e===`<DBNotification behavior="permanent">
 Text
@@ -43490,15 +43510,15 @@ Text
   Text & Icon
 </db-notification>`),navigator.clipboard.writeText(`<db-notification icon="information_circle" behavior="permanent">
   Text & Icon
-</db-notification>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-html",children:`<article class="db-notification" data-icon="information_circle">
+</db-notification>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-html",children:`<div class="db-notification" role="article" data-icon="information_circle">
   <p>Text &amp Icon</p>
-</article>`})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:e===`<article class="db-notification" data-icon="information_circle">
+</div>`})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:e===`<div class="db-notification" role="article" data-icon="information_circle">
   <p>Text &amp Icon</p>
-</article>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<article class="db-notification" data-icon="information_circle">
+</div>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<div class="db-notification" role="article" data-icon="information_circle">
   <p>Text &amp Icon</p>
-</article>`),navigator.clipboard.writeText(`<article class="db-notification" data-icon="information_circle">
+</div>`),navigator.clipboard.writeText(`<div class="db-notification" role="article" data-icon="information_circle">
   <p>Text &amp Icon</p>
-</article>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=react",children:"How to use this in react"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-tsx",children:`<DBNotification icon="information_circle" behavior="permanent">
+</div>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=react",children:"How to use this in react"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-tsx",children:`<DBNotification icon="information_circle" behavior="permanent">
   Text & Icon
 </DBNotification>`})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:e===`<DBNotification icon="information_circle" behavior="permanent">
   Text & Icon
@@ -43531,22 +43551,22 @@ Text & Icon
 
 </img></ng-container>Text & Preview Image
 </db-notification>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-html",children:`<link rel="preload" as="image" href="/assets/images/placeholder.jpg" />
-<article class="db-notification">
+<div class="db-notification" role="article">
   <img src="/assets/images/placeholder.jpg" alt="" />
   <p>Text &amp Preview Image</p>
-</article>`})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:e===`<link rel="preload" as="image" href="/assets/images/placeholder.jpg" />
-<article class="db-notification">
+</div>`})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:e===`<link rel="preload" as="image" href="/assets/images/placeholder.jpg" />
+<div class="db-notification" role="article">
   <img src="/assets/images/placeholder.jpg" alt="" />
   <p>Text &amp Preview Image</p>
-</article>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<link rel="preload" as="image" href="/assets/images/placeholder.jpg" />
-<article class="db-notification">
+</div>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<link rel="preload" as="image" href="/assets/images/placeholder.jpg" />
+<div class="db-notification" role="article">
   <img src="/assets/images/placeholder.jpg" alt="" />
   <p>Text &amp Preview Image</p>
-</article>`),navigator.clipboard.writeText(`<link rel="preload" as="image" href="/assets/images/placeholder.jpg" />
-<article class="db-notification">
+</div>`),navigator.clipboard.writeText(`<link rel="preload" as="image" href="/assets/images/placeholder.jpg" />
+<div class="db-notification" role="article">
   <img src="/assets/images/placeholder.jpg" alt="" />
   <p>Text &amp Preview Image</p>
-</article>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=react",children:"How to use this in react"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-tsx",children:`<DBNotification
+</div>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=react",children:"How to use this in react"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-tsx",children:`<DBNotification
   behavior="permanent"
   image={<img src="/assets/images/placeholder.jpg" alt=""></img>}
 >
@@ -43590,19 +43610,19 @@ Text & Icon
   Text & Headline
 </db-notification>`),navigator.clipboard.writeText(`<db-notification headline="Headline" behavior="permanent">
   Text & Headline
-</db-notification>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-html",children:`<article class="db-notification">
+</db-notification>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-html",children:`<div class="db-notification" role="article">
   <header>Headline</header>
   <p>Text &amp Headline</p>
-</article>`})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:e===`<article class="db-notification">
+</div>`})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:e===`<div class="db-notification" role="article">
   <header>Headline</header>
   <p>Text &amp Headline</p>
-</article>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<article class="db-notification">
+</div>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<div class="db-notification" role="article">
   <header>Headline</header>
   <p>Text &amp Headline</p>
-</article>`),navigator.clipboard.writeText(`<article class="db-notification">
+</div>`),navigator.clipboard.writeText(`<div class="db-notification" role="article">
   <header>Headline</header>
   <p>Text &amp Headline</p>
-</article>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=react",children:"How to use this in react"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-tsx",children:`<DBNotification headline="Headline" behavior="permanent">
+</div>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=react",children:"How to use this in react"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-tsx",children:`<DBNotification headline="Headline" behavior="permanent">
   Text & Headline
 </DBNotification>`})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:e===`<DBNotification headline="Headline" behavior="permanent">
   Text & Headline
@@ -43630,7 +43650,7 @@ Text & Headline
 </db-notification>`),navigator.clipboard.writeText(`<db-notification behavior="permanent">
   <ng-container link><db-link href="#"> Textlink </db-link></ng-container>Text &
   Textlink Block
-</db-notification>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-html",children:`<article class="db-notification">
+</db-notification>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-html",children:`<div class="db-notification" role="article">
   <p>Text &amp Textlink Block</p>
   <a
     class="db-link"
@@ -43640,7 +43660,7 @@ Text & Headline
     data-content="internal"
     >Textlink</a
   >
-</article>`})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:e===`<article class="db-notification">
+</div>`})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:e===`<div class="db-notification" role="article">
   <p>Text &amp Textlink Block</p>
   <a
     class="db-link"
@@ -43650,7 +43670,7 @@ Text & Headline
     data-content="internal"
     >Textlink</a
   >
-</article>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<article class="db-notification">
+</div>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<div class="db-notification" role="article">
   <p>Text &amp Textlink Block</p>
   <a
     class="db-link"
@@ -43660,7 +43680,7 @@ Text & Headline
     data-content="internal"
     >Textlink</a
   >
-</article>`),navigator.clipboard.writeText(`<article class="db-notification">
+</div>`),navigator.clipboard.writeText(`<div class="db-notification" role="article">
   <p>Text &amp Textlink Block</p>
   <a
     class="db-link"
@@ -43670,7 +43690,7 @@ Text & Headline
     data-content="internal"
     >Textlink</a
   >
-</article>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=react",children:"How to use this in react"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-tsx",children:`<DBNotification behavior="permanent" link={<DBLink href="#">Textlink</DBLink>}>
+</div>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=react",children:"How to use this in react"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-tsx",children:`<DBNotification behavior="permanent" link={<DBLink href="#">Textlink</DBLink>}>
   Text & Textlink Block
 </DBNotification>`})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:e===`<DBNotification behavior="permanent" link={<DBLink href="#">Textlink</DBLink>}>
   Text & Textlink Block
@@ -43706,7 +43726,7 @@ Textlink
 </db-notification>`),navigator.clipboard.writeText(`<db-notification linkVariant="inline" behavior="permanent">
   <ng-container link><db-link href="#"> Textlink </db-link></ng-container>Text &
   Textlink Inline
-</db-notification>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-html",children:`<article class="db-notification" data-link-variant="inline">
+</db-notification>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-html",children:`<div class="db-notification" role="article" data-link-variant="inline">
   <p>Text &amp Textlink Inline</p>
   <a
     class="db-link"
@@ -43716,7 +43736,7 @@ Textlink
     data-content="internal"
     >Textlink</a
   >
-</article>`})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:e===`<article class="db-notification" data-link-variant="inline">
+</div>`})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:e===`<div class="db-notification" role="article" data-link-variant="inline">
   <p>Text &amp Textlink Inline</p>
   <a
     class="db-link"
@@ -43726,7 +43746,7 @@ Textlink
     data-content="internal"
     >Textlink</a
   >
-</article>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<article class="db-notification" data-link-variant="inline">
+</div>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<div class="db-notification" role="article" data-link-variant="inline">
   <p>Text &amp Textlink Inline</p>
   <a
     class="db-link"
@@ -43736,7 +43756,7 @@ Textlink
     data-content="internal"
     >Textlink</a
   >
-</article>`),navigator.clipboard.writeText(`<article class="db-notification" data-link-variant="inline">
+</div>`),navigator.clipboard.writeText(`<div class="db-notification" role="article" data-link-variant="inline">
   <p>Text &amp Textlink Inline</p>
   <a
     class="db-link"
@@ -43746,7 +43766,7 @@ Textlink
     data-content="internal"
     >Textlink</a
   >
-</article>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=react",children:"How to use this in react"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-tsx",children:`<DBNotification
+</div>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=react",children:"How to use this in react"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-tsx",children:`<DBNotification
   linkVariant="inline"
   behavior="permanent"
   link={<DBLink href="#">Textlink</DBLink>}
@@ -43798,7 +43818,7 @@ Textlink
 </db-notification>`),navigator.clipboard.writeText(`<db-notification headline="Headline" linkVariant="inline" [closeable]="true">
   <ng-container link><db-link href="#"> Textlink </db-link></ng-container>Text &
   Headline & Textlink Inline & Closeable
-</db-notification>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-html",children:`<article class="db-notification" data-link-variant="inline">
+</db-notification>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-html",children:`<div class="db-notification" role="article" data-link-variant="inline">
   <header>Headline</header>
   <p>Text &amp Headline &amp Textlink Inline &amp Closeable</p>
   <a
@@ -43818,7 +43838,7 @@ Textlink
   >
     Close
   </button>
-</article>`})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:e===`<article class="db-notification" data-link-variant="inline">
+</div>`})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:e===`<div class="db-notification" role="article" data-link-variant="inline">
   <header>Headline</header>
   <p>Text &amp Headline &amp Textlink Inline &amp Closeable</p>
   <a
@@ -43838,7 +43858,7 @@ Textlink
   >
     Close
   </button>
-</article>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<article class="db-notification" data-link-variant="inline">
+</div>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<div class="db-notification" role="article" data-link-variant="inline">
   <header>Headline</header>
   <p>Text &amp Headline &amp Textlink Inline &amp Closeable</p>
   <a
@@ -43858,7 +43878,7 @@ Textlink
   >
     Close
   </button>
-</article>`),navigator.clipboard.writeText(`<article class="db-notification" data-link-variant="inline">
+</div>`),navigator.clipboard.writeText(`<div class="db-notification" role="article" data-link-variant="inline">
   <header>Headline</header>
   <p>Text &amp Headline &amp Textlink Inline &amp Closeable</p>
   <a
@@ -43878,7 +43898,7 @@ Textlink
   >
     Close
   </button>
-</article>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=react",children:"How to use this in react"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-tsx",children:`<DBNotification
+</div>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=react",children:"How to use this in react"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-tsx",children:`<DBNotification
   headline="Headline"
   linkVariant="inline"
   closeable
@@ -43954,8 +43974,9 @@ Textlink
 >
   <ng-container link><db-link href="#"> Textlink </db-link></ng-container>Text &
   Icon & Headline & Textlink Inline & Closeable
-</db-notification>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-html",children:`<article
+</db-notification>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-html",children:`<div
   class="db-notification"
+  role="article"
   data-icon="information_circle"
   data-link-variant="inline"
 >
@@ -43978,8 +43999,9 @@ Textlink
   >
     Close
   </button>
-</article>`})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:e===`<article
+</div>`})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:e===`<div
   class="db-notification"
+  role="article"
   data-icon="information_circle"
   data-link-variant="inline"
 >
@@ -44002,8 +44024,9 @@ Textlink
   >
     Close
   </button>
-</article>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<article
+</div>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<div
   class="db-notification"
+  role="article"
   data-icon="information_circle"
   data-link-variant="inline"
 >
@@ -44026,8 +44049,9 @@ Textlink
   >
     Close
   </button>
-</article>`),navigator.clipboard.writeText(`<article
+</div>`),navigator.clipboard.writeText(`<div
   class="db-notification"
+  role="article"
   data-icon="information_circle"
   data-link-variant="inline"
 >
@@ -44050,7 +44074,7 @@ Textlink
   >
     Close
   </button>
-</article>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=react",children:"How to use this in react"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-tsx",children:`<DBNotification
+</div>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=react",children:"How to use this in react"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-tsx",children:`<DBNotification
   icon="information_circle"
   headline="Headline"
   linkVariant="inline"
@@ -44126,7 +44150,15 @@ Textlink
   Text
 </db-notification>`),navigator.clipboard.writeText(`<db-notification variant="standalone" behavior="permanent">
   Text
-</db-notification>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-html",children:'<article class="db-notification" data-variant="standalone"><p>Text</p></article>'})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:'<article class="db-notification" data-variant="standalone"><p>Text</p></article>'===e?"check":"copy",variant:"ghost",onClick:()=>{a('<article class="db-notification" data-variant="standalone"><p>Text</p></article>'),navigator.clipboard.writeText('<article class="db-notification" data-variant="standalone"><p>Text</p></article>')},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=react",children:"How to use this in react"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-tsx",children:`<DBNotification variant="standalone" behavior="permanent">
+</db-notification>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-html",children:`<div class="db-notification" role="article" data-variant="standalone">
+  <p>Text</p>
+</div>`})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:e===`<div class="db-notification" role="article" data-variant="standalone">
+  <p>Text</p>
+</div>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<div class="db-notification" role="article" data-variant="standalone">
+  <p>Text</p>
+</div>`),navigator.clipboard.writeText(`<div class="db-notification" role="article" data-variant="standalone">
+  <p>Text</p>
+</div>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=react",children:"How to use this in react"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-tsx",children:`<DBNotification variant="standalone" behavior="permanent">
   Text
 </DBNotification>`})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:e===`<DBNotification variant="standalone" behavior="permanent">
   Text
@@ -44166,31 +44198,35 @@ Text
   behavior="permanent"
 >
   Text & Icon
-</db-notification>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-html",children:`<article
+</db-notification>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-html",children:`<div
   class="db-notification"
+  role="article"
   data-variant="standalone"
   data-icon="information_circle"
 >
   <p>Text &amp Icon</p>
-</article>`})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:e===`<article
+</div>`})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:e===`<div
   class="db-notification"
+  role="article"
   data-variant="standalone"
   data-icon="information_circle"
 >
   <p>Text &amp Icon</p>
-</article>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<article
+</div>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<div
   class="db-notification"
+  role="article"
   data-variant="standalone"
   data-icon="information_circle"
 >
   <p>Text &amp Icon</p>
-</article>`),navigator.clipboard.writeText(`<article
+</div>`),navigator.clipboard.writeText(`<div
   class="db-notification"
+  role="article"
   data-variant="standalone"
   data-icon="information_circle"
 >
   <p>Text &amp Icon</p>
-</article>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=react",children:"How to use this in react"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-tsx",children:`<DBNotification
+</div>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=react",children:"How to use this in react"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-tsx",children:`<DBNotification
   icon="information_circle"
   variant="standalone"
   behavior="permanent"
@@ -44255,22 +44291,22 @@ Text & Icon
 
 </img></ng-container>Text & Preview Image
 </db-notification>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-html",children:`<link rel="preload" as="image" href="/assets/images/placeholder.jpg" />
-<article class="db-notification" data-variant="standalone">
+<div class="db-notification" role="article" data-variant="standalone">
   <img src="/assets/images/placeholder.jpg" alt="" />
   <p>Text &amp Preview Image</p>
-</article>`})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:e===`<link rel="preload" as="image" href="/assets/images/placeholder.jpg" />
-<article class="db-notification" data-variant="standalone">
+</div>`})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:e===`<link rel="preload" as="image" href="/assets/images/placeholder.jpg" />
+<div class="db-notification" role="article" data-variant="standalone">
   <img src="/assets/images/placeholder.jpg" alt="" />
   <p>Text &amp Preview Image</p>
-</article>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<link rel="preload" as="image" href="/assets/images/placeholder.jpg" />
-<article class="db-notification" data-variant="standalone">
+</div>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<link rel="preload" as="image" href="/assets/images/placeholder.jpg" />
+<div class="db-notification" role="article" data-variant="standalone">
   <img src="/assets/images/placeholder.jpg" alt="" />
   <p>Text &amp Preview Image</p>
-</article>`),navigator.clipboard.writeText(`<link rel="preload" as="image" href="/assets/images/placeholder.jpg" />
-<article class="db-notification" data-variant="standalone">
+</div>`),navigator.clipboard.writeText(`<link rel="preload" as="image" href="/assets/images/placeholder.jpg" />
+<div class="db-notification" role="article" data-variant="standalone">
   <img src="/assets/images/placeholder.jpg" alt="" />
   <p>Text &amp Preview Image</p>
-</article>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=react",children:"How to use this in react"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-tsx",children:`<DBNotification
+</div>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=react",children:"How to use this in react"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-tsx",children:`<DBNotification
   variant="standalone"
   behavior="permanent"
   image={<img src="/assets/images/placeholder.jpg" alt=""></img>}
@@ -44318,19 +44354,19 @@ Text & Icon
   Text & Headline
 </db-notification>`),navigator.clipboard.writeText(`<db-notification headline="Headline" variant="standalone" behavior="permanent">
   Text & Headline
-</db-notification>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-html",children:`<article class="db-notification" data-variant="standalone">
+</db-notification>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-html",children:`<div class="db-notification" role="article" data-variant="standalone">
   <header>Headline</header>
   <p>Text &amp Headline</p>
-</article>`})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:e===`<article class="db-notification" data-variant="standalone">
+</div>`})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:e===`<div class="db-notification" role="article" data-variant="standalone">
   <header>Headline</header>
   <p>Text &amp Headline</p>
-</article>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<article class="db-notification" data-variant="standalone">
+</div>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<div class="db-notification" role="article" data-variant="standalone">
   <header>Headline</header>
   <p>Text &amp Headline</p>
-</article>`),navigator.clipboard.writeText(`<article class="db-notification" data-variant="standalone">
+</div>`),navigator.clipboard.writeText(`<div class="db-notification" role="article" data-variant="standalone">
   <header>Headline</header>
   <p>Text &amp Headline</p>
-</article>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=react",children:"How to use this in react"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-tsx",children:`<DBNotification headline="Headline" variant="standalone" behavior="permanent">
+</div>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=react",children:"How to use this in react"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-tsx",children:`<DBNotification headline="Headline" variant="standalone" behavior="permanent">
   Text & Headline
 </DBNotification>`})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:e===`<DBNotification headline="Headline" variant="standalone" behavior="permanent">
   Text & Headline
@@ -44358,7 +44394,7 @@ Text & Headline
 </db-notification>`),navigator.clipboard.writeText(`<db-notification variant="standalone" behavior="permanent">
   <ng-container link><db-link href="#"> Textlink </db-link></ng-container>Text &
   Textlink Block
-</db-notification>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-html",children:`<article class="db-notification" data-variant="standalone">
+</db-notification>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-html",children:`<div class="db-notification" role="article" data-variant="standalone">
   <p>Text &amp Textlink Block</p>
   <a
     class="db-link"
@@ -44368,7 +44404,7 @@ Text & Headline
     data-content="internal"
     >Textlink</a
   >
-</article>`})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:e===`<article class="db-notification" data-variant="standalone">
+</div>`})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:e===`<div class="db-notification" role="article" data-variant="standalone">
   <p>Text &amp Textlink Block</p>
   <a
     class="db-link"
@@ -44378,7 +44414,7 @@ Text & Headline
     data-content="internal"
     >Textlink</a
   >
-</article>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<article class="db-notification" data-variant="standalone">
+</div>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<div class="db-notification" role="article" data-variant="standalone">
   <p>Text &amp Textlink Block</p>
   <a
     class="db-link"
@@ -44388,7 +44424,7 @@ Text & Headline
     data-content="internal"
     >Textlink</a
   >
-</article>`),navigator.clipboard.writeText(`<article class="db-notification" data-variant="standalone">
+</div>`),navigator.clipboard.writeText(`<div class="db-notification" role="article" data-variant="standalone">
   <p>Text &amp Textlink Block</p>
   <a
     class="db-link"
@@ -44398,7 +44434,7 @@ Text & Headline
     data-content="internal"
     >Textlink</a
   >
-</article>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=react",children:"How to use this in react"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-tsx",children:`<DBNotification
+</div>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=react",children:"How to use this in react"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-tsx",children:`<DBNotification
   variant="standalone"
   behavior="permanent"
   link={<DBLink href="#">Textlink</DBLink>}
@@ -44450,8 +44486,9 @@ Textlink
 </db-notification>`),navigator.clipboard.writeText(`<db-notification linkVariant="inline" variant="standalone" behavior="permanent">
   <ng-container link><db-link href="#"> Textlink </db-link></ng-container>Text &
   Textlink Inline
-</db-notification>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-html",children:`<article
+</db-notification>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-html",children:`<div
   class="db-notification"
+  role="article"
   data-variant="standalone"
   data-link-variant="inline"
 >
@@ -44464,8 +44501,9 @@ Textlink
     data-content="internal"
     >Textlink</a
   >
-</article>`})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:e===`<article
+</div>`})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:e===`<div
   class="db-notification"
+  role="article"
   data-variant="standalone"
   data-link-variant="inline"
 >
@@ -44478,8 +44516,9 @@ Textlink
     data-content="internal"
     >Textlink</a
   >
-</article>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<article
+</div>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<div
   class="db-notification"
+  role="article"
   data-variant="standalone"
   data-link-variant="inline"
 >
@@ -44492,8 +44531,9 @@ Textlink
     data-content="internal"
     >Textlink</a
   >
-</article>`),navigator.clipboard.writeText(`<article
+</div>`),navigator.clipboard.writeText(`<div
   class="db-notification"
+  role="article"
   data-variant="standalone"
   data-link-variant="inline"
 >
@@ -44506,7 +44546,7 @@ Textlink
     data-content="internal"
     >Textlink</a
   >
-</article>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=react",children:"How to use this in react"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-tsx",children:`<DBNotification
+</div>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=react",children:"How to use this in react"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-tsx",children:`<DBNotification
   linkVariant="inline"
   variant="standalone"
   behavior="permanent"
@@ -44582,8 +44622,9 @@ Textlink
 >
   <ng-container link><db-link href="#"> Textlink </db-link></ng-container>Text &
   Headline & Textlink Inline & Closeable
-</db-notification>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-html",children:`<article
+</db-notification>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-html",children:`<div
   class="db-notification"
+  role="article"
   data-variant="standalone"
   data-link-variant="inline"
 >
@@ -44606,8 +44647,9 @@ Textlink
   >
     Close
   </button>
-</article>`})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:e===`<article
+</div>`})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:e===`<div
   class="db-notification"
+  role="article"
   data-variant="standalone"
   data-link-variant="inline"
 >
@@ -44630,8 +44672,9 @@ Textlink
   >
     Close
   </button>
-</article>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<article
+</div>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<div
   class="db-notification"
+  role="article"
   data-variant="standalone"
   data-link-variant="inline"
 >
@@ -44654,8 +44697,9 @@ Textlink
   >
     Close
   </button>
-</article>`),navigator.clipboard.writeText(`<article
+</div>`),navigator.clipboard.writeText(`<div
   class="db-notification"
+  role="article"
   data-variant="standalone"
   data-link-variant="inline"
 >
@@ -44678,7 +44722,7 @@ Textlink
   >
     Close
   </button>
-</article>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=react",children:"How to use this in react"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-tsx",children:`<DBNotification
+</div>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=react",children:"How to use this in react"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-tsx",children:`<DBNotification
   headline="Headline"
   linkVariant="inline"
   variant="standalone"
@@ -44782,8 +44826,9 @@ Textlink
 >
   <ng-container link><db-link href="#"> Textlink </db-link></ng-container>Text &
   Icon & Headline & Textlink Inline & Closeable
-</db-notification>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-html",children:`<article
+</db-notification>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-html",children:`<div
   class="db-notification"
+  role="article"
   data-variant="standalone"
   data-icon="information_circle"
   data-link-variant="inline"
@@ -44807,8 +44852,9 @@ Textlink
   >
     Close
   </button>
-</article>`})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:e===`<article
+</div>`})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:e===`<div
   class="db-notification"
+  role="article"
   data-variant="standalone"
   data-icon="information_circle"
   data-link-variant="inline"
@@ -44832,8 +44878,9 @@ Textlink
   >
     Close
   </button>
-</article>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<article
+</div>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<div
   class="db-notification"
+  role="article"
   data-variant="standalone"
   data-icon="information_circle"
   data-link-variant="inline"
@@ -44857,8 +44904,9 @@ Textlink
   >
     Close
   </button>
-</article>`),navigator.clipboard.writeText(`<article
+</div>`),navigator.clipboard.writeText(`<div
   class="db-notification"
+  role="article"
   data-variant="standalone"
   data-icon="information_circle"
   data-link-variant="inline"
@@ -44882,7 +44930,7 @@ Textlink
   >
     Close
   </button>
-</article>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=react",children:"How to use this in react"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-tsx",children:`<DBNotification
+</div>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=react",children:"How to use this in react"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-tsx",children:`<DBNotification
   icon="information_circle"
   headline="Headline"
   linkVariant="inline"
@@ -44958,7 +45006,15 @@ Textlink
  <template v-slot:link><DBLink href="#">
 Textlink
 </DBLink></template>Text & Icon & Headline & Textlink Inline & Closeable
-</DBNotification>`)},children:"Copy code"})]})]},t())})]})},nb=()=>{let[e,a]=(0,I.useState)(),{getFrameworkIndex:t}=(0,ay.u)();return(0,I.useEffect)(()=>{e&&setTimeout(()=>a(""),1500)},[e]),(0,N.jsxs)(N.Fragment,{children:[(0,N.jsx)(L.A,{className:"tab-container",children:(0,N.jsxs)(au.A,{initialSelectedIndex:t(),children:[(0,N.jsxs)(ao.A,{children:[(0,N.jsx)(as.A,{children:"Angular"}),(0,N.jsx)(as.A,{children:"HTML"}),(0,N.jsx)(as.A,{children:"React"}),(0,N.jsx)(as.A,{children:"Vue"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=angular",children:"How to use this in angular"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-html",children:'<db-notification variant="overlay" behavior="permanent"> Text </db-notification>'})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:'<db-notification variant="overlay" behavior="permanent"> Text </db-notification>'===e?"check":"copy",variant:"ghost",onClick:()=>{a('<db-notification variant="overlay" behavior="permanent"> Text </db-notification>'),navigator.clipboard.writeText('<db-notification variant="overlay" behavior="permanent"> Text </db-notification>')},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-html",children:'<article class="db-notification" data-variant="overlay"><p>Text</p></article>'})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:'<article class="db-notification" data-variant="overlay"><p>Text</p></article>'===e?"check":"copy",variant:"ghost",onClick:()=>{a('<article class="db-notification" data-variant="overlay"><p>Text</p></article>'),navigator.clipboard.writeText('<article class="db-notification" data-variant="overlay"><p>Text</p></article>')},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=react",children:"How to use this in react"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-tsx",children:`<DBNotification variant="overlay" behavior="permanent">
+</DBNotification>`)},children:"Copy code"})]})]},t())})]})},nb=()=>{let[e,a]=(0,I.useState)(),{getFrameworkIndex:t}=(0,ay.u)();return(0,I.useEffect)(()=>{e&&setTimeout(()=>a(""),1500)},[e]),(0,N.jsxs)(N.Fragment,{children:[(0,N.jsx)(L.A,{className:"tab-container",children:(0,N.jsxs)(au.A,{initialSelectedIndex:t(),children:[(0,N.jsxs)(ao.A,{children:[(0,N.jsx)(as.A,{children:"Angular"}),(0,N.jsx)(as.A,{children:"HTML"}),(0,N.jsx)(as.A,{children:"React"}),(0,N.jsx)(as.A,{children:"Vue"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=angular",children:"How to use this in angular"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-html",children:'<db-notification variant="overlay" behavior="permanent"> Text </db-notification>'})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:'<db-notification variant="overlay" behavior="permanent"> Text </db-notification>'===e?"check":"copy",variant:"ghost",onClick:()=>{a('<db-notification variant="overlay" behavior="permanent"> Text </db-notification>'),navigator.clipboard.writeText('<db-notification variant="overlay" behavior="permanent"> Text </db-notification>')},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-html",children:`<div class="db-notification" role="article" data-variant="overlay">
+  <p>Text</p>
+</div>`})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:e===`<div class="db-notification" role="article" data-variant="overlay">
+  <p>Text</p>
+</div>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<div class="db-notification" role="article" data-variant="overlay">
+  <p>Text</p>
+</div>`),navigator.clipboard.writeText(`<div class="db-notification" role="article" data-variant="overlay">
+  <p>Text</p>
+</div>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=react",children:"How to use this in react"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-tsx",children:`<DBNotification variant="overlay" behavior="permanent">
   Text
 </DBNotification>`})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:e===`<DBNotification variant="overlay" behavior="permanent">
   Text
@@ -44998,31 +45054,35 @@ Text
   behavior="permanent"
 >
   Text & Icon
-</db-notification>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-html",children:`<article
+</db-notification>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-html",children:`<div
   class="db-notification"
+  role="article"
   data-variant="overlay"
   data-icon="information_circle"
 >
   <p>Text &amp Icon</p>
-</article>`})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:e===`<article
+</div>`})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:e===`<div
   class="db-notification"
+  role="article"
   data-variant="overlay"
   data-icon="information_circle"
 >
   <p>Text &amp Icon</p>
-</article>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<article
+</div>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<div
   class="db-notification"
+  role="article"
   data-variant="overlay"
   data-icon="information_circle"
 >
   <p>Text &amp Icon</p>
-</article>`),navigator.clipboard.writeText(`<article
+</div>`),navigator.clipboard.writeText(`<div
   class="db-notification"
+  role="article"
   data-variant="overlay"
   data-icon="information_circle"
 >
   <p>Text &amp Icon</p>
-</article>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=react",children:"How to use this in react"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-tsx",children:`<DBNotification
+</div>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=react",children:"How to use this in react"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-tsx",children:`<DBNotification
   icon="information_circle"
   variant="overlay"
   behavior="permanent"
@@ -45087,22 +45147,22 @@ Text & Icon
 
 </img></ng-container>Text & Preview Image
 </db-notification>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-html",children:`<link rel="preload" as="image" href="/assets/images/placeholder.jpg" />
-<article class="db-notification" data-variant="overlay">
+<div class="db-notification" role="article" data-variant="overlay">
   <img src="/assets/images/placeholder.jpg" alt="" />
   <p>Text &amp Preview Image</p>
-</article>`})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:e===`<link rel="preload" as="image" href="/assets/images/placeholder.jpg" />
-<article class="db-notification" data-variant="overlay">
+</div>`})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:e===`<link rel="preload" as="image" href="/assets/images/placeholder.jpg" />
+<div class="db-notification" role="article" data-variant="overlay">
   <img src="/assets/images/placeholder.jpg" alt="" />
   <p>Text &amp Preview Image</p>
-</article>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<link rel="preload" as="image" href="/assets/images/placeholder.jpg" />
-<article class="db-notification" data-variant="overlay">
+</div>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<link rel="preload" as="image" href="/assets/images/placeholder.jpg" />
+<div class="db-notification" role="article" data-variant="overlay">
   <img src="/assets/images/placeholder.jpg" alt="" />
   <p>Text &amp Preview Image</p>
-</article>`),navigator.clipboard.writeText(`<link rel="preload" as="image" href="/assets/images/placeholder.jpg" />
-<article class="db-notification" data-variant="overlay">
+</div>`),navigator.clipboard.writeText(`<link rel="preload" as="image" href="/assets/images/placeholder.jpg" />
+<div class="db-notification" role="article" data-variant="overlay">
   <img src="/assets/images/placeholder.jpg" alt="" />
   <p>Text &amp Preview Image</p>
-</article>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=react",children:"How to use this in react"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-tsx",children:`<DBNotification
+</div>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=react",children:"How to use this in react"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-tsx",children:`<DBNotification
   variant="overlay"
   behavior="permanent"
   image={<img src="/assets/images/placeholder.jpg" alt=""></img>}
@@ -45150,19 +45210,19 @@ Text & Icon
   Text & Headline
 </db-notification>`),navigator.clipboard.writeText(`<db-notification headline="Headline" variant="overlay" behavior="permanent">
   Text & Headline
-</db-notification>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-html",children:`<article class="db-notification" data-variant="overlay">
+</db-notification>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-html",children:`<div class="db-notification" role="article" data-variant="overlay">
   <header>Headline</header>
   <p>Text &amp Headline</p>
-</article>`})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:e===`<article class="db-notification" data-variant="overlay">
+</div>`})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:e===`<div class="db-notification" role="article" data-variant="overlay">
   <header>Headline</header>
   <p>Text &amp Headline</p>
-</article>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<article class="db-notification" data-variant="overlay">
+</div>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<div class="db-notification" role="article" data-variant="overlay">
   <header>Headline</header>
   <p>Text &amp Headline</p>
-</article>`),navigator.clipboard.writeText(`<article class="db-notification" data-variant="overlay">
+</div>`),navigator.clipboard.writeText(`<div class="db-notification" role="article" data-variant="overlay">
   <header>Headline</header>
   <p>Text &amp Headline</p>
-</article>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=react",children:"How to use this in react"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-tsx",children:`<DBNotification headline="Headline" variant="overlay" behavior="permanent">
+</div>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=react",children:"How to use this in react"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-tsx",children:`<DBNotification headline="Headline" variant="overlay" behavior="permanent">
   Text & Headline
 </DBNotification>`})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:e===`<DBNotification headline="Headline" variant="overlay" behavior="permanent">
   Text & Headline
@@ -45186,31 +45246,35 @@ Text & Headline
   Text & Textlink Inline
 </db-notification>`),navigator.clipboard.writeText(`<db-notification variant="overlay" behavior="permanent" linkVariant="inline">
   Text & Textlink Inline
-</db-notification>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-html",children:`<article
+</db-notification>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-html",children:`<div
   class="db-notification"
+  role="article"
   data-variant="overlay"
   data-link-variant="inline"
 >
   <p>Text &amp Textlink Inline</p>
-</article>`})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:e===`<article
+</div>`})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:e===`<div
   class="db-notification"
+  role="article"
   data-variant="overlay"
   data-link-variant="inline"
 >
   <p>Text &amp Textlink Inline</p>
-</article>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<article
+</div>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<div
   class="db-notification"
+  role="article"
   data-variant="overlay"
   data-link-variant="inline"
 >
   <p>Text &amp Textlink Inline</p>
-</article>`),navigator.clipboard.writeText(`<article
+</div>`),navigator.clipboard.writeText(`<div
   class="db-notification"
+  role="article"
   data-variant="overlay"
   data-link-variant="inline"
 >
   <p>Text &amp Textlink Inline</p>
-</article>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=react",children:"How to use this in react"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-tsx",children:`<DBNotification variant="overlay" behavior="permanent" linkVariant="inline">
+</div>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=react",children:"How to use this in react"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-tsx",children:`<DBNotification variant="overlay" behavior="permanent" linkVariant="inline">
   Text & Textlink Inline
 </DBNotification>`})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:e===`<DBNotification variant="overlay" behavior="permanent" linkVariant="inline">
   Text & Textlink Inline
@@ -45238,8 +45302,9 @@ Text & Textlink Inline
 </db-notification>`),navigator.clipboard.writeText(`<db-notification variant="overlay" behavior="permanent" linkVariant="block">
   <ng-container link><db-link href="#"> Textlink </db-link></ng-container>Text &
   Textlink Block
-</db-notification>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-html",children:`<article
+</db-notification>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-html",children:`<div
   class="db-notification"
+  role="article"
   data-variant="overlay"
   data-link-variant="block"
 >
@@ -45252,8 +45317,9 @@ Text & Textlink Inline
     data-content="internal"
     >Textlink</a
   >
-</article>`})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:e===`<article
+</div>`})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:e===`<div
   class="db-notification"
+  role="article"
   data-variant="overlay"
   data-link-variant="block"
 >
@@ -45266,8 +45332,9 @@ Text & Textlink Inline
     data-content="internal"
     >Textlink</a
   >
-</article>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<article
+</div>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<div
   class="db-notification"
+  role="article"
   data-variant="overlay"
   data-link-variant="block"
 >
@@ -45280,8 +45347,9 @@ Text & Textlink Inline
     data-content="internal"
     >Textlink</a
   >
-</article>`),navigator.clipboard.writeText(`<article
+</div>`),navigator.clipboard.writeText(`<div
   class="db-notification"
+  role="article"
   data-variant="overlay"
   data-link-variant="block"
 >
@@ -45294,7 +45362,7 @@ Text & Textlink Inline
     data-content="internal"
     >Textlink</a
   >
-</article>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=react",children:"How to use this in react"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-tsx",children:`<DBNotification
+</div>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=react",children:"How to use this in react"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-tsx",children:`<DBNotification
   variant="overlay"
   behavior="permanent"
   linkVariant="block"
@@ -45374,8 +45442,9 @@ Textlink
 >
   <ng-container link><db-link href="#"> Textlink </db-link></ng-container>Text &
   Textlink Block & Timed
-</db-notification>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-html",children:`<article
+</db-notification>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-html",children:`<div
   class="db-notification"
+  role="article"
   data-variant="overlay"
   data-link-variant="block"
 >
@@ -45389,8 +45458,9 @@ Textlink
     data-content="internal"
     >Textlink</a
   >
-</article>`})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:e===`<article
+</div>`})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:e===`<div
   class="db-notification"
+  role="article"
   data-variant="overlay"
   data-link-variant="block"
 >
@@ -45404,8 +45474,9 @@ Textlink
     data-content="internal"
     >Textlink</a
   >
-</article>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<article
+</div>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<div
   class="db-notification"
+  role="article"
   data-variant="overlay"
   data-link-variant="block"
 >
@@ -45419,8 +45490,9 @@ Textlink
     data-content="internal"
     >Textlink</a
   >
-</article>`),navigator.clipboard.writeText(`<article
+</div>`),navigator.clipboard.writeText(`<div
   class="db-notification"
+  role="article"
   data-variant="overlay"
   data-link-variant="block"
 >
@@ -45434,7 +45506,7 @@ Textlink
     data-content="internal"
     >Textlink</a
   >
-</article>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=react",children:"How to use this in react"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-tsx",children:`<DBNotification
+</div>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=react",children:"How to use this in react"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-tsx",children:`<DBNotification
   variant="overlay"
   behavior="permanent"
   linkVariant="block"
@@ -45538,8 +45610,9 @@ Textlink
   linkVariant="inline"
 >
   Text & Headline & Textlink Inline & Closeable
-</db-notification>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-html",children:`<article
+</db-notification>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-html",children:`<div
   class="db-notification"
+  role="article"
   data-variant="overlay"
   data-link-variant="inline"
 >
@@ -45555,8 +45628,9 @@ Textlink
   >
     Close
   </button>
-</article>`})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:e===`<article
+</div>`})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:e===`<div
   class="db-notification"
+  role="article"
   data-variant="overlay"
   data-link-variant="inline"
 >
@@ -45572,8 +45646,9 @@ Textlink
   >
     Close
   </button>
-</article>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<article
+</div>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<div
   class="db-notification"
+  role="article"
   data-variant="overlay"
   data-link-variant="inline"
 >
@@ -45589,8 +45664,9 @@ Textlink
   >
     Close
   </button>
-</article>`),navigator.clipboard.writeText(`<article
+</div>`),navigator.clipboard.writeText(`<div
   class="db-notification"
+  role="article"
   data-variant="overlay"
   data-link-variant="inline"
 >
@@ -45606,7 +45682,7 @@ Textlink
   >
     Close
   </button>
-</article>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=react",children:"How to use this in react"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-tsx",children:`<DBNotification
+</div>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=react",children:"How to use this in react"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-tsx",children:`<DBNotification
   headline="Headline"
   variant="overlay"
   closeable
@@ -45694,8 +45770,9 @@ Text & Headline & Textlink Inline & Closeable
   linkVariant="inline"
 >
   Text & Icon & Headline & Textlink Inline & Closeable
-</db-notification>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-html",children:`<article
+</db-notification>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-html",children:`<div
   class="db-notification"
+  role="article"
   data-variant="overlay"
   data-icon="information_circle"
   data-link-variant="inline"
@@ -45712,8 +45789,9 @@ Text & Headline & Textlink Inline & Closeable
   >
     Close
   </button>
-</article>`})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:e===`<article
+</div>`})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:e===`<div
   class="db-notification"
+  role="article"
   data-variant="overlay"
   data-icon="information_circle"
   data-link-variant="inline"
@@ -45730,8 +45808,9 @@ Text & Headline & Textlink Inline & Closeable
   >
     Close
   </button>
-</article>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<article
+</div>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<div
   class="db-notification"
+  role="article"
   data-variant="overlay"
   data-icon="information_circle"
   data-link-variant="inline"
@@ -45748,8 +45827,9 @@ Text & Headline & Textlink Inline & Closeable
   >
     Close
   </button>
-</article>`),navigator.clipboard.writeText(`<article
+</div>`),navigator.clipboard.writeText(`<div
   class="db-notification"
+  role="article"
   data-variant="overlay"
   data-icon="information_circle"
   data-link-variant="inline"
@@ -45766,7 +45846,7 @@ Text & Headline & Textlink Inline & Closeable
   >
     Close
   </button>
-</article>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=react",children:"How to use this in react"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-tsx",children:`<DBNotification
+</div>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=react",children:"How to use this in react"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-tsx",children:`<DBNotification
   icon="information_circle"
   headline="Headline"
   variant="overlay"
@@ -45858,19 +45938,19 @@ Text & Icon & Headline & Textlink Inline & Closeable
   timestamp="10 min ago"
 >
   Text & Timed
-</db-notification>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-html",children:`<article class="db-notification" data-variant="overlay">
+</db-notification>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-html",children:`<div class="db-notification" role="article" data-variant="overlay">
   <p>Text &amp Timed</p>
   <span>10 min ago</span>
-</article>`})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:e===`<article class="db-notification" data-variant="overlay">
+</div>`})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:e===`<div class="db-notification" role="article" data-variant="overlay">
   <p>Text &amp Timed</p>
   <span>10 min ago</span>
-</article>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<article class="db-notification" data-variant="overlay">
+</div>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<div class="db-notification" role="article" data-variant="overlay">
   <p>Text &amp Timed</p>
   <span>10 min ago</span>
-</article>`),navigator.clipboard.writeText(`<article class="db-notification" data-variant="overlay">
+</div>`),navigator.clipboard.writeText(`<div class="db-notification" role="article" data-variant="overlay">
   <p>Text &amp Timed</p>
   <span>10 min ago</span>
-</article>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=react",children:"How to use this in react"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-tsx",children:`<DBNotification
+</div>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=react",children:"How to use this in react"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-tsx",children:`<DBNotification
   variant="overlay"
   behavior="permanent"
   showTimestamp
@@ -45954,7 +46034,7 @@ Text & Timed
   timestamp="10 min ago"
 >
   Text & Timed & Closeable
-</db-notification>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-html",children:`<article class="db-notification" data-variant="overlay">
+</db-notification>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-html",children:`<div class="db-notification" role="article" data-variant="overlay">
   <p>Text &amp Timed &amp Closeable</p>
   <span>10 min ago</span
   ><button
@@ -45967,7 +46047,7 @@ Text & Timed
   >
     Close
   </button>
-</article>`})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:e===`<article class="db-notification" data-variant="overlay">
+</div>`})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:e===`<div class="db-notification" role="article" data-variant="overlay">
   <p>Text &amp Timed &amp Closeable</p>
   <span>10 min ago</span
   ><button
@@ -45980,7 +46060,7 @@ Text & Timed
   >
     Close
   </button>
-</article>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<article class="db-notification" data-variant="overlay">
+</div>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<div class="db-notification" role="article" data-variant="overlay">
   <p>Text &amp Timed &amp Closeable</p>
   <span>10 min ago</span
   ><button
@@ -45993,7 +46073,7 @@ Text & Timed
   >
     Close
   </button>
-</article>`),navigator.clipboard.writeText(`<article class="db-notification" data-variant="overlay">
+</div>`),navigator.clipboard.writeText(`<div class="db-notification" role="article" data-variant="overlay">
   <p>Text &amp Timed &amp Closeable</p>
   <span>10 min ago</span
   ><button
@@ -46006,7 +46086,7 @@ Text & Timed
   >
     Close
   </button>
-</article>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=react",children:"How to use this in react"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-tsx",children:`<DBNotification
+</div>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=react",children:"How to use this in react"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-tsx",children:`<DBNotification
   variant="overlay"
   closeable
   showTimestamp
@@ -46094,7 +46174,7 @@ Text & Timed & Closeable
   timestamp="10 min ago"
 >
   Text & Headline & Timed & Closeable
-</db-notification>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-html",children:`<article class="db-notification" data-variant="overlay">
+</db-notification>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-html",children:`<div class="db-notification" role="article" data-variant="overlay">
   <header>Headline</header>
   <p>Text &amp Headline &amp Timed &amp Closeable</p>
   <span>10 min ago</span
@@ -46108,7 +46188,7 @@ Text & Timed & Closeable
   >
     Close
   </button>
-</article>`})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:e===`<article class="db-notification" data-variant="overlay">
+</div>`})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:e===`<div class="db-notification" role="article" data-variant="overlay">
   <header>Headline</header>
   <p>Text &amp Headline &amp Timed &amp Closeable</p>
   <span>10 min ago</span
@@ -46122,7 +46202,7 @@ Text & Timed & Closeable
   >
     Close
   </button>
-</article>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<article class="db-notification" data-variant="overlay">
+</div>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<div class="db-notification" role="article" data-variant="overlay">
   <header>Headline</header>
   <p>Text &amp Headline &amp Timed &amp Closeable</p>
   <span>10 min ago</span
@@ -46136,7 +46216,7 @@ Text & Timed & Closeable
   >
     Close
   </button>
-</article>`),navigator.clipboard.writeText(`<article class="db-notification" data-variant="overlay">
+</div>`),navigator.clipboard.writeText(`<div class="db-notification" role="article" data-variant="overlay">
   <header>Headline</header>
   <p>Text &amp Headline &amp Timed &amp Closeable</p>
   <span>10 min ago</span
@@ -46150,7 +46230,7 @@ Text & Timed & Closeable
   >
     Close
   </button>
-</article>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=react",children:"How to use this in react"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-tsx",children:`<DBNotification
+</div>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=react",children:"How to use this in react"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-tsx",children:`<DBNotification
   headline="Headline"
   variant="overlay"
   closeable
@@ -46250,8 +46330,9 @@ Text & Headline & Timed & Closeable
   timestamp="10 min ago"
 >
   Text & Icon & Headline & Timed & Closeable
-</db-notification>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-html",children:`<article
+</db-notification>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-html",children:`<div
   class="db-notification"
+  role="article"
   data-variant="overlay"
   data-icon="information_circle"
 >
@@ -46268,8 +46349,9 @@ Text & Headline & Timed & Closeable
   >
     Close
   </button>
-</article>`})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:e===`<article
+</div>`})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:e===`<div
   class="db-notification"
+  role="article"
   data-variant="overlay"
   data-icon="information_circle"
 >
@@ -46286,8 +46368,9 @@ Text & Headline & Timed & Closeable
   >
     Close
   </button>
-</article>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<article
+</div>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<div
   class="db-notification"
+  role="article"
   data-variant="overlay"
   data-icon="information_circle"
 >
@@ -46304,8 +46387,9 @@ Text & Headline & Timed & Closeable
   >
     Close
   </button>
-</article>`),navigator.clipboard.writeText(`<article
+</div>`),navigator.clipboard.writeText(`<div
   class="db-notification"
+  role="article"
   data-variant="overlay"
   data-icon="information_circle"
 >
@@ -46322,7 +46406,7 @@ Text & Headline & Timed & Closeable
   >
     Close
   </button>
-</article>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=react",children:"How to use this in react"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-tsx",children:`<DBNotification
+</div>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=react",children:"How to use this in react"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-tsx",children:`<DBNotification
   icon="information_circle"
   headline="Headline"
   variant="overlay"
@@ -58691,7 +58775,7 @@ Centered
   <db-tab-panel> Tab Panel 2 </db-tab-panel>
   <db-tab-panel> Tab Panel 3 </db-tab-panel>
 </db-tabs>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-html",children:`<div
-  id="tabs-15944387989346365"
+  id="tabs-6383866604374385"
   class="db-tabs"
   data-alignment="start"
   data-width="auto"
@@ -58719,7 +58803,7 @@ Centered
   <section role="tabpanel" class="db-tab-panel">Tab Panel 2</section>
   <section role="tabpanel" class="db-tab-panel">Tab Panel 3</section>
 </div>`})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:e===`<div
-  id="tabs-15944387989346365"
+  id="tabs-6383866604374385"
   class="db-tabs"
   data-alignment="start"
   data-width="auto"
@@ -58747,7 +58831,7 @@ Centered
   <section role="tabpanel" class="db-tab-panel">Tab Panel 2</section>
   <section role="tabpanel" class="db-tab-panel">Tab Panel 3</section>
 </div>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<div
-  id="tabs-15944387989346365"
+  id="tabs-6383866604374385"
   class="db-tabs"
   data-alignment="start"
   data-width="auto"
@@ -58775,7 +58859,7 @@ Centered
   <section role="tabpanel" class="db-tab-panel">Tab Panel 2</section>
   <section role="tabpanel" class="db-tab-panel">Tab Panel 3</section>
 </div>`),navigator.clipboard.writeText(`<div
-  id="tabs-15944387989346365"
+  id="tabs-6383866604374385"
   class="db-tabs"
   data-alignment="start"
   data-width="auto"
@@ -58959,7 +59043,7 @@ Tab Panel 3
   <db-tab-panel> Tab Panel 2 </db-tab-panel>
   <db-tab-panel> Tab Panel 3 </db-tab-panel>
 </db-tabs>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-html",children:`<div
-  id="tabs-1721578946479223"
+  id="tabs-13696171808013835"
   class="db-tabs"
   data-alignment="start"
   data-width="auto"
@@ -58987,7 +59071,7 @@ Tab Panel 3
   <section role="tabpanel" class="db-tab-panel">Tab Panel 2</section>
   <section role="tabpanel" class="db-tab-panel">Tab Panel 3</section>
 </div>`})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:e===`<div
-  id="tabs-1721578946479223"
+  id="tabs-13696171808013835"
   class="db-tabs"
   data-alignment="start"
   data-width="auto"
@@ -59015,7 +59099,7 @@ Tab Panel 3
   <section role="tabpanel" class="db-tab-panel">Tab Panel 2</section>
   <section role="tabpanel" class="db-tab-panel">Tab Panel 3</section>
 </div>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<div
-  id="tabs-1721578946479223"
+  id="tabs-13696171808013835"
   class="db-tabs"
   data-alignment="start"
   data-width="auto"
@@ -59043,7 +59127,7 @@ Tab Panel 3
   <section role="tabpanel" class="db-tab-panel">Tab Panel 2</section>
   <section role="tabpanel" class="db-tab-panel">Tab Panel 3</section>
 </div>`),navigator.clipboard.writeText(`<div
-  id="tabs-1721578946479223"
+  id="tabs-13696171808013835"
   class="db-tabs"
   data-alignment="start"
   data-width="auto"
@@ -59227,7 +59311,7 @@ Tab Panel 3
   <db-tab-panel> Tab Panel 2 </db-tab-panel>
   <db-tab-panel> Tab Panel 3 </db-tab-panel>
 </db-tabs>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-html",children:`<div
-  id="tabs-5311489716309066"
+  id="tabs-08591265492712552"
   class="db-tabs"
   data-alignment="start"
   data-width="auto"
@@ -59255,7 +59339,7 @@ Tab Panel 3
   <section role="tabpanel" class="db-tab-panel">Tab Panel 2</section>
   <section role="tabpanel" class="db-tab-panel">Tab Panel 3</section>
 </div>`})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:e===`<div
-  id="tabs-5311489716309066"
+  id="tabs-08591265492712552"
   class="db-tabs"
   data-alignment="start"
   data-width="auto"
@@ -59283,7 +59367,7 @@ Tab Panel 3
   <section role="tabpanel" class="db-tab-panel">Tab Panel 2</section>
   <section role="tabpanel" class="db-tab-panel">Tab Panel 3</section>
 </div>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<div
-  id="tabs-5311489716309066"
+  id="tabs-08591265492712552"
   class="db-tabs"
   data-alignment="start"
   data-width="auto"
@@ -59311,7 +59395,7 @@ Tab Panel 3
   <section role="tabpanel" class="db-tab-panel">Tab Panel 2</section>
   <section role="tabpanel" class="db-tab-panel">Tab Panel 3</section>
 </div>`),navigator.clipboard.writeText(`<div
-  id="tabs-5311489716309066"
+  id="tabs-08591265492712552"
   class="db-tabs"
   data-alignment="start"
   data-width="auto"
@@ -59495,7 +59579,7 @@ Tab Panel 3
   <db-tab-panel> Tab Panel 2 </db-tab-panel>
   <db-tab-panel> Tab Panel 3 </db-tab-panel>
 </db-tabs>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-html",children:`<div
-  id="tabs-07704147339111633"
+  id="tabs-1288563115760024"
   class="db-tabs"
   data-orientation="horizontal"
   data-alignment="start"
@@ -59524,7 +59608,7 @@ Tab Panel 3
   <section role="tabpanel" class="db-tab-panel">Tab Panel 2</section>
   <section role="tabpanel" class="db-tab-panel">Tab Panel 3</section>
 </div>`})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:e===`<div
-  id="tabs-07704147339111633"
+  id="tabs-1288563115760024"
   class="db-tabs"
   data-orientation="horizontal"
   data-alignment="start"
@@ -59553,7 +59637,7 @@ Tab Panel 3
   <section role="tabpanel" class="db-tab-panel">Tab Panel 2</section>
   <section role="tabpanel" class="db-tab-panel">Tab Panel 3</section>
 </div>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<div
-  id="tabs-07704147339111633"
+  id="tabs-1288563115760024"
   class="db-tabs"
   data-orientation="horizontal"
   data-alignment="start"
@@ -59582,7 +59666,7 @@ Tab Panel 3
   <section role="tabpanel" class="db-tab-panel">Tab Panel 2</section>
   <section role="tabpanel" class="db-tab-panel">Tab Panel 3</section>
 </div>`),navigator.clipboard.writeText(`<div
-  id="tabs-07704147339111633"
+  id="tabs-1288563115760024"
   class="db-tabs"
   data-orientation="horizontal"
   data-alignment="start"
@@ -59767,7 +59851,7 @@ Tab Panel 3
   <db-tab-panel> Tab Panel 2 </db-tab-panel>
   <db-tab-panel> Tab Panel 3 </db-tab-panel>
 </db-tabs>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-html",children:`<div
-  id="tabs-38701486183471256"
+  id="tabs-35500936949957884"
   class="db-tabs"
   data-orientation="vertical"
   data-alignment="start"
@@ -59796,7 +59880,7 @@ Tab Panel 3
   <section role="tabpanel" class="db-tab-panel">Tab Panel 2</section>
   <section role="tabpanel" class="db-tab-panel">Tab Panel 3</section>
 </div>`})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:e===`<div
-  id="tabs-38701486183471256"
+  id="tabs-35500936949957884"
   class="db-tabs"
   data-orientation="vertical"
   data-alignment="start"
@@ -59825,7 +59909,7 @@ Tab Panel 3
   <section role="tabpanel" class="db-tab-panel">Tab Panel 2</section>
   <section role="tabpanel" class="db-tab-panel">Tab Panel 3</section>
 </div>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<div
-  id="tabs-38701486183471256"
+  id="tabs-35500936949957884"
   class="db-tabs"
   data-orientation="vertical"
   data-alignment="start"
@@ -59854,7 +59938,7 @@ Tab Panel 3
   <section role="tabpanel" class="db-tab-panel">Tab Panel 2</section>
   <section role="tabpanel" class="db-tab-panel">Tab Panel 3</section>
 </div>`),navigator.clipboard.writeText(`<div
-  id="tabs-38701486183471256"
+  id="tabs-35500936949957884"
   class="db-tabs"
   data-orientation="vertical"
   data-alignment="start"
@@ -60039,7 +60123,7 @@ Tab Panel 3
   <db-tab-panel> Tab Panel 2 </db-tab-panel>
   <db-tab-panel> Tab Panel 3 </db-tab-panel>
 </db-tabs>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-html",children:`<div
-  id="tabs-11672263466273614"
+  id="tabs-018862544925121072"
   class="db-tabs"
   data-alignment="start"
   data-width="auto"
@@ -60067,7 +60151,7 @@ Tab Panel 3
   <section role="tabpanel" class="db-tab-panel">Tab Panel 2</section>
   <section role="tabpanel" class="db-tab-panel">Tab Panel 3</section>
 </div>`})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:e===`<div
-  id="tabs-11672263466273614"
+  id="tabs-018862544925121072"
   class="db-tabs"
   data-alignment="start"
   data-width="auto"
@@ -60095,7 +60179,7 @@ Tab Panel 3
   <section role="tabpanel" class="db-tab-panel">Tab Panel 2</section>
   <section role="tabpanel" class="db-tab-panel">Tab Panel 3</section>
 </div>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<div
-  id="tabs-11672263466273614"
+  id="tabs-018862544925121072"
   class="db-tabs"
   data-alignment="start"
   data-width="auto"
@@ -60123,7 +60207,7 @@ Tab Panel 3
   <section role="tabpanel" class="db-tab-panel">Tab Panel 2</section>
   <section role="tabpanel" class="db-tab-panel">Tab Panel 3</section>
 </div>`),navigator.clipboard.writeText(`<div
-  id="tabs-11672263466273614"
+  id="tabs-018862544925121072"
   class="db-tabs"
   data-alignment="start"
   data-width="auto"
@@ -60307,7 +60391,7 @@ Tab Panel 3
   <db-tab-panel> Tab Panel 2 </db-tab-panel>
   <db-tab-panel> Tab Panel 3 </db-tab-panel>
 </db-tabs>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-html",children:`<div
-  id="tabs-28365948350841663"
+  id="tabs-11162522558629273"
   class="db-tabs"
   data-alignment="start"
   data-width="full"
@@ -60335,7 +60419,7 @@ Tab Panel 3
   <section role="tabpanel" class="db-tab-panel">Tab Panel 2</section>
   <section role="tabpanel" class="db-tab-panel">Tab Panel 3</section>
 </div>`})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:e===`<div
-  id="tabs-28365948350841663"
+  id="tabs-11162522558629273"
   class="db-tabs"
   data-alignment="start"
   data-width="full"
@@ -60363,7 +60447,7 @@ Tab Panel 3
   <section role="tabpanel" class="db-tab-panel">Tab Panel 2</section>
   <section role="tabpanel" class="db-tab-panel">Tab Panel 3</section>
 </div>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<div
-  id="tabs-28365948350841663"
+  id="tabs-11162522558629273"
   class="db-tabs"
   data-alignment="start"
   data-width="full"
@@ -60391,7 +60475,7 @@ Tab Panel 3
   <section role="tabpanel" class="db-tab-panel">Tab Panel 2</section>
   <section role="tabpanel" class="db-tab-panel">Tab Panel 3</section>
 </div>`),navigator.clipboard.writeText(`<div
-  id="tabs-28365948350841663"
+  id="tabs-11162522558629273"
   class="db-tabs"
   data-alignment="start"
   data-width="full"
@@ -60575,7 +60659,7 @@ Tab Panel 3
   <db-tab-panel> Tab Panel 2 </db-tab-panel>
   <db-tab-panel> Tab Panel 3 </db-tab-panel>
 </db-tabs>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-html",children:`<div
-  id="tabs-5005094806495669"
+  id="tabs-3813200564353044"
   class="db-tabs"
   data-alignment="center"
   data-width="full"
@@ -60603,7 +60687,7 @@ Tab Panel 3
   <section role="tabpanel" class="db-tab-panel">Tab Panel 2</section>
   <section role="tabpanel" class="db-tab-panel">Tab Panel 3</section>
 </div>`})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:e===`<div
-  id="tabs-5005094806495669"
+  id="tabs-3813200564353044"
   class="db-tabs"
   data-alignment="center"
   data-width="full"
@@ -60631,7 +60715,7 @@ Tab Panel 3
   <section role="tabpanel" class="db-tab-panel">Tab Panel 2</section>
   <section role="tabpanel" class="db-tab-panel">Tab Panel 3</section>
 </div>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<div
-  id="tabs-5005094806495669"
+  id="tabs-3813200564353044"
   class="db-tabs"
   data-alignment="center"
   data-width="full"
@@ -60659,7 +60743,7 @@ Tab Panel 3
   <section role="tabpanel" class="db-tab-panel">Tab Panel 2</section>
   <section role="tabpanel" class="db-tab-panel">Tab Panel 3</section>
 </div>`),navigator.clipboard.writeText(`<div
-  id="tabs-5005094806495669"
+  id="tabs-3813200564353044"
   class="db-tabs"
   data-alignment="center"
   data-width="full"
@@ -60843,7 +60927,7 @@ Tab Panel 3
   <db-tab-panel> Tab Panel 2 </db-tab-panel>
   <db-tab-panel> Tab Panel 3 </db-tab-panel>
 </db-tabs>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-html",children:`<div
-  id="tabs-9000394562391697"
+  id="tabs-5462721543536518"
   class="db-tabs"
   data-alignment="start"
   data-width="auto"
@@ -60871,7 +60955,7 @@ Tab Panel 3
   <section role="tabpanel" class="db-tab-panel">Tab Panel 2</section>
   <section role="tabpanel" class="db-tab-panel">Tab Panel 3</section>
 </div>`})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:e===`<div
-  id="tabs-9000394562391697"
+  id="tabs-5462721543536518"
   class="db-tabs"
   data-alignment="start"
   data-width="auto"
@@ -60899,7 +60983,7 @@ Tab Panel 3
   <section role="tabpanel" class="db-tab-panel">Tab Panel 2</section>
   <section role="tabpanel" class="db-tab-panel">Tab Panel 3</section>
 </div>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<div
-  id="tabs-9000394562391697"
+  id="tabs-5462721543536518"
   class="db-tabs"
   data-alignment="start"
   data-width="auto"
@@ -60927,7 +61011,7 @@ Tab Panel 3
   <section role="tabpanel" class="db-tab-panel">Tab Panel 2</section>
   <section role="tabpanel" class="db-tab-panel">Tab Panel 3</section>
 </div>`),navigator.clipboard.writeText(`<div
-  id="tabs-9000394562391697"
+  id="tabs-5462721543536518"
   class="db-tabs"
   data-alignment="start"
   data-width="auto"
@@ -61111,7 +61195,7 @@ Tab Panel 3
   <db-tab-panel> Tab Panel 2 </db-tab-panel>
   <db-tab-panel> Tab Panel 3 </db-tab-panel>
 </db-tabs>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-html",children:`<div
-  id="tabs-7181885026268395"
+  id="tabs-06264233324222279"
   class="db-tabs"
   data-scroll-behavior="arrows"
   data-alignment="start"
@@ -61140,7 +61224,7 @@ Tab Panel 3
   <section role="tabpanel" class="db-tab-panel">Tab Panel 2</section>
   <section role="tabpanel" class="db-tab-panel">Tab Panel 3</section>
 </div>`})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:e===`<div
-  id="tabs-7181885026268395"
+  id="tabs-06264233324222279"
   class="db-tabs"
   data-scroll-behavior="arrows"
   data-alignment="start"
@@ -61169,7 +61253,7 @@ Tab Panel 3
   <section role="tabpanel" class="db-tab-panel">Tab Panel 2</section>
   <section role="tabpanel" class="db-tab-panel">Tab Panel 3</section>
 </div>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<div
-  id="tabs-7181885026268395"
+  id="tabs-06264233324222279"
   class="db-tabs"
   data-scroll-behavior="arrows"
   data-alignment="start"
@@ -61198,7 +61282,7 @@ Tab Panel 3
   <section role="tabpanel" class="db-tab-panel">Tab Panel 2</section>
   <section role="tabpanel" class="db-tab-panel">Tab Panel 3</section>
 </div>`),navigator.clipboard.writeText(`<div
-  id="tabs-7181885026268395"
+  id="tabs-06264233324222279"
   class="db-tabs"
   data-scroll-behavior="arrows"
   data-alignment="start"
@@ -61383,7 +61467,7 @@ Tab Panel 3
   <db-tab-panel> Tab Panel 2 </db-tab-panel>
   <db-tab-panel> Tab Panel 3 </db-tab-panel>
 </db-tabs>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-html",children:`<div
-  id="tabs-9127778672121314"
+  id="tabs-60065198041633"
   class="db-tabs"
   data-alignment="start"
   data-width="auto"
@@ -61411,7 +61495,7 @@ Tab Panel 3
   <section role="tabpanel" class="db-tab-panel">Tab Panel 2</section>
   <section role="tabpanel" class="db-tab-panel">Tab Panel 3</section>
 </div>`})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:e===`<div
-  id="tabs-9127778672121314"
+  id="tabs-60065198041633"
   class="db-tabs"
   data-alignment="start"
   data-width="auto"
@@ -61439,7 +61523,7 @@ Tab Panel 3
   <section role="tabpanel" class="db-tab-panel">Tab Panel 2</section>
   <section role="tabpanel" class="db-tab-panel">Tab Panel 3</section>
 </div>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<div
-  id="tabs-9127778672121314"
+  id="tabs-60065198041633"
   class="db-tabs"
   data-alignment="start"
   data-width="auto"
@@ -61467,7 +61551,7 @@ Tab Panel 3
   <section role="tabpanel" class="db-tab-panel">Tab Panel 2</section>
   <section role="tabpanel" class="db-tab-panel">Tab Panel 3</section>
 </div>`),navigator.clipboard.writeText(`<div
-  id="tabs-9127778672121314"
+  id="tabs-60065198041633"
   class="db-tabs"
   data-alignment="start"
   data-width="auto"
@@ -61651,7 +61735,7 @@ Tab Panel 3
   <db-tab-panel> Tab Panel 2 </db-tab-panel>
   <db-tab-panel> Tab Panel 3 </db-tab-panel>
 </db-tabs>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-html",children:`<div
-  id="tabs-9798570445986641"
+  id="tabs-31390152573040453"
   class="db-tabs"
   data-alignment="start"
   data-width="auto"
@@ -61679,7 +61763,7 @@ Tab Panel 3
   <section role="tabpanel" class="db-tab-panel">Tab Panel 2</section>
   <section role="tabpanel" class="db-tab-panel">Tab Panel 3</section>
 </div>`})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:e===`<div
-  id="tabs-9798570445986641"
+  id="tabs-31390152573040453"
   class="db-tabs"
   data-alignment="start"
   data-width="auto"
@@ -61707,7 +61791,7 @@ Tab Panel 3
   <section role="tabpanel" class="db-tab-panel">Tab Panel 2</section>
   <section role="tabpanel" class="db-tab-panel">Tab Panel 3</section>
 </div>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<div
-  id="tabs-9798570445986641"
+  id="tabs-31390152573040453"
   class="db-tabs"
   data-alignment="start"
   data-width="auto"
@@ -61735,7 +61819,7 @@ Tab Panel 3
   <section role="tabpanel" class="db-tab-panel">Tab Panel 2</section>
   <section role="tabpanel" class="db-tab-panel">Tab Panel 3</section>
 </div>`),navigator.clipboard.writeText(`<div
-  id="tabs-9798570445986641"
+  id="tabs-31390152573040453"
   class="db-tabs"
   data-alignment="start"
   data-width="auto"
@@ -61919,7 +62003,7 @@ Tab Panel 3
   <db-tab-panel> Tab Panel 2 </db-tab-panel>
   <db-tab-panel> Tab Panel 3 </db-tab-panel>
 </db-tabs>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-html",children:`<div
-  id="tabs-07017028450083085"
+  id="tabs-7541334668950234"
   class="db-tabs"
   data-alignment="start"
   data-width="auto"
@@ -61947,7 +62031,7 @@ Tab Panel 3
   <section role="tabpanel" class="db-tab-panel">Tab Panel 2</section>
   <section role="tabpanel" class="db-tab-panel">Tab Panel 3</section>
 </div>`})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:e===`<div
-  id="tabs-07017028450083085"
+  id="tabs-7541334668950234"
   class="db-tabs"
   data-alignment="start"
   data-width="auto"
@@ -61975,7 +62059,7 @@ Tab Panel 3
   <section role="tabpanel" class="db-tab-panel">Tab Panel 2</section>
   <section role="tabpanel" class="db-tab-panel">Tab Panel 3</section>
 </div>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<div
-  id="tabs-07017028450083085"
+  id="tabs-7541334668950234"
   class="db-tabs"
   data-alignment="start"
   data-width="auto"
@@ -62003,7 +62087,7 @@ Tab Panel 3
   <section role="tabpanel" class="db-tab-panel">Tab Panel 2</section>
   <section role="tabpanel" class="db-tab-panel">Tab Panel 3</section>
 </div>`),navigator.clipboard.writeText(`<div
-  id="tabs-07017028450083085"
+  id="tabs-7541334668950234"
   class="db-tabs"
   data-alignment="start"
   data-width="auto"
