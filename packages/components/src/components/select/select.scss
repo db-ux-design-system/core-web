@@ -45,7 +45,10 @@
 	}
 
 	&:has(> select option:checked:not(.placeholder)) {
-		[id$="-placeholder"] {
+		[id$="-placeholder"],
+		// Hide placeholder option in dropdown for required selects after a selection has been made
+		// This prevents users from selecting an invalid empty option when the field is required
+		option[data-show-empty-option="false"] {
 			display: none;
 		}
 	}

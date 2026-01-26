@@ -568,13 +568,21 @@ export type LinkProps = {
 	 */
 	rel?: string;
 	/**
-	 * Sets aria role based on [`aria-role`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles).
+	 * How much of the referrer to send when following the link.
+	 * @deprecated use `referrerPolicy` instead
 	 */
-	role?: string;
+	referrerpolicy?: LinkReferrerPolicyType;
 	/**
 	 * How much of the referrer to send when following the link.
 	 */
-	referrerpolicy?: LinkReferrerPolicyType;
+	referrerPolicy?: LinkReferrerPolicyType;
+};
+
+export type RoleProps = {
+	/**
+	 * Sets aria role based on [`aria-role`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles).
+	 */
+	role?: string;
 };
 
 export type TextProps = {
@@ -596,6 +604,7 @@ export type ClickEventProps<T> = {
 	 * React specific onClick to pass to forward ref.
 	 */
 	onClick?: (event: ClickEvent<T>) => void;
+	click?: (event: ClickEvent<T>) => void;
 };
 
 export type ClickEventState<T> = {
@@ -723,3 +732,11 @@ export type PopoverState = {
 	handleEnter: (parent?: HTMLElement) => void;
 	handleLeave: (event?: any) => void;
 } & DocumentScrollState;
+
+// TODO: Remove this after we migrate to one-platform
+export interface PatternhubProps {
+	/**
+	 * Used for Patternhub
+	 */
+	isPatternhub?: boolean;
+}

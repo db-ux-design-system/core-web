@@ -1,4 +1,4 @@
-import type { FunctionComponent, ReactElement } from 'react';
+import type { FunctionComponent } from 'react';
 import type {
 	DefaultComponentProps,
 	DefaultComponentVariants
@@ -11,6 +11,6 @@ export type ReactDefaultComponentVariants = DefaultComponentVariants & {
 export type ReactDefaultComponentProps = DefaultComponentProps & {
 	variants: ReactDefaultComponentVariants[];
 	isSubComponent?: boolean;
-	subComponent?: ReactElement;
+	subComponent?: any;
 	componentName?: string;
 };

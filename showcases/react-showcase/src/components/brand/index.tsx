@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-deprecated */
 
-import { DBBrand } from '../../../../../output/react/src';
-import { type DBBrandProps } from '../../../../../output/react/src/components/brand/model';
+import { DBBrand } from '@components';
+import { type DBBrandProps } from '@components/src/components/brand/model';
 import defaultComponentVariants from '../../../../shared/brand.json';
 import { type BaseComponentProps } from '../base-component-data';
 import { getVariants } from '../data';

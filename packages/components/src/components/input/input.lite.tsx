@@ -35,6 +35,7 @@ import {
 	getHideProp,
 	getInputValue,
 	getNumber,
+	getStep,
 	hasVoiceOver,
 	isArrayOfStrings,
 	isIOSSafari,
@@ -51,7 +52,7 @@ import { DBInputProps, DBInputState } from './model';
 
 useMetadata({
 	angular: {
-		nativeAttributes: ['disabled', 'required'],
+		nativeAttributes: ['disabled', 'required', 'value'],
 		signals: {
 			writeable: ['disabled', 'value']
 		}
@@ -71,7 +72,7 @@ export default function DBInput(props: DBInputProps) {
 		_invalidMessage: undefined,
 		_dataListId: undefined,
 		_descByIds: undefined,
-		_value: undefined,
+		_value: '',
 		_voiceOverFallback: '',
 		abortController: undefined,
 		hasValidState: () => {
@@ -224,11 +225,20 @@ export default function DBInput(props: DBInputProps) {
 	}, [state._id]);
 
 	onUpdate(() => {
-		state._value = props.value;
+		if (props.value !== undefined) {
+			state._value = props.value;
+		}
 	}, [props.value]);
 
 	onUpdate(() => {
-		if (_ref) {
+		// If angular uses ngModel value and _value are null
+		// then the value will be set afterward and the _ref will be refreshed
+		const addResetListener = useTarget({
+			angular: !(props.value === null && state._value === null),
+			default: true
+		});
+
+		if (_ref && addResetListener) {
 			const defaultValue = useTarget({
 				react: (props as any).defaultValue,
 				default: undefined
@@ -280,10 +290,11 @@ export default function DBInput(props: DBInputProps) {
 				name={props.name}
 				type={props.type || 'text'}
 				multiple={getBoolean(props.multiple, 'multiple')}
+				accept={props.accept}
 				placeholder={props.placeholder ?? DEFAULT_PLACEHOLDER}
 				disabled={getBoolean(props.disabled, 'disabled')}
 				required={getBoolean(props.required, 'required')}
-				step={getNumber(props.step)}
+				step={getStep(props.step)}
 				value={props.value ?? state._value}
 				maxLength={getNumber(props.maxLength, props.maxlength)}
 				minLength={getNumber(props.minLength, props.minlength)}

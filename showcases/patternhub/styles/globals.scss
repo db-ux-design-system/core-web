@@ -417,6 +417,11 @@ h6 {
 	}
 }
 
+.show-code-link:is(.db-link):not([hidden]) {
+	display: flex;
+	margin-inline-start: auto;
+}
+
 .db-code-docs {
 	min-block-size: max(#{variables.$db-sizing-3xl}, 50vh);
 	align-items: center;
@@ -640,4 +645,11 @@ h6 {
 	> .db-tooltip {
 		min-inline-size: variables.$db-sizing-2xl;
 	}
+}
+
+.variants-card,
+.variants-card > .db-card {
+	min-block-size: var(--db-sizing-3xl);
+	contain: initial;
+	contain-intrinsic-size: initial;
 }

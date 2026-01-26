@@ -260,7 +260,7 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 		},
 		handleTagRemove: (
 			option: CustomSelectOptionType,
-			event?: ClickEvent<HTMLButtonElement> | void
+			event?: ClickEvent<HTMLButtonElement> | void | any
 		) => {
 			if (event) {
 				event.stopPropagation();
@@ -425,6 +425,17 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 						activeElement.click();
 
 						event.preventDefault();
+					} else if (
+						activeElement.getAttribute('type') === 'search'
+					) {
+						// When Enter is pressed in search field, select the first available option
+						const firstOption = state._options?.find(
+							(opt) => !opt.isGroupTitle && !opt.disabled
+						);
+						if (firstOption?.value) {
+							state.handleSelect(firstOption.value);
+							event.preventDefault();
+						}
 					}
 				}
 			} else if (
