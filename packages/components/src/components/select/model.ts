@@ -30,6 +30,13 @@ export type DBSelectDefaultProps = {
 	 * If you don't/can't use children/slots you can pass in the options as an array.
 	 */
 	options?: DBSelectOptionType[];
+
+	/**
+	 * Controls whether the empty placeholder option is shown in the dropdown.
+	 * By default, it is shown for non-required selects and hidden for required selects.
+	 * Set to `true` to always show or `false` to always hide the empty option.
+	 */
+	showEmptyOption?: boolean;
 };
 
 export type DBSelectOptionType = {
@@ -79,6 +86,7 @@ export type DBSelectProps = GlobalProps &
 export type DBSelectDefaultState = {
 	_placeholderId: string;
 	getOptionLabel: (option: DBSelectOptionType) => string;
+	shouldShowEmptyOption: () => boolean;
 };
 
 export type DBSelectState = DBSelectDefaultState &
