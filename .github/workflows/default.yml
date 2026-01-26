@@ -37,6 +37,13 @@ concurrency:
 
 jobs:
   init:
+    # Skip the entire pipeline for changeset release PRs as they only contain version bumps
+    if: |
+      !(
+        github.event_name == 'pull_request' &&
+        github.event.pull_request.title == 'chore(release): version packages' &&
+        startsWith(github.head_ref, 'changeset-release/')
+      )
     uses: ./.github/workflows/00-init.yml
     secrets: inherit
     with:
