@@ -41,7 +41,6 @@ jobs:
     if: |
       !(
         github.event_name == 'pull_request' &&
-        github.event.pull_request.title == 'chore(release): version packages' &&
         startsWith(github.head_ref, 'changeset-release/') &&
         github.event.pull_request.head.repo.full_name == github.repository &&
         github.event.pull_request.user.login == 'dbux-auto-merge-pr[bot]'
