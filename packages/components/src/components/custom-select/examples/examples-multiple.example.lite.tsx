@@ -108,6 +108,9 @@ export default function CustomSelectExamplesMultiple() {
 							id: 'b84ie8otk'
 						}
 					]}
+					selectAllLabel="Select All"
+					searchLabel="Search"
+					searchPlaceholder="Search"
 					placeholder="Placeholder"
 					multiple={true}
 					label="More than 10"
