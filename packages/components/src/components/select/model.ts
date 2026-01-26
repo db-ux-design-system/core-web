@@ -35,6 +35,9 @@ export type DBSelectDefaultProps = {
 	 * Controls whether the empty placeholder option is shown in the dropdown after the user's selection of another option.
 	 * By default, it is shown for non-required selects and hidden for required selects.
 	 * Set to `true` to always show or `false` to always hide the empty option.
+	 *
+	 * Note: The empty option is only rendered when `variant === 'floating'` or a `placeholder` is set.
+	 * Setting `showEmptyOption` alone has no effect if neither of these conditions is met.
 	 */
 	showEmptyOption?: boolean;
 };
