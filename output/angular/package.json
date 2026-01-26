@@ -1,6 +1,6 @@
 {
   "name": "@db-ux/ngx-core-components",
-  "version": "4.3.1",
+  "version": "4.3.2",
   "description": "Angular components @db-ux/core-components",
   "type": "module",
   "repository": {
@@ -27,7 +27,7 @@
     "access": "public"
   },
   "dependencies": {
-    "@db-ux/core-components": "4.3.1",
-    "@db-ux/core-foundations": "4.3.1"
+    "@db-ux/core-components": "4.3.2",
+    "@db-ux/core-foundations": "4.3.2"
   }
 }
