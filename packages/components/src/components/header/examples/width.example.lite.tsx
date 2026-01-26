@@ -1,4 +1,4 @@
-import { Fragment, useMetadata } from '@builder.io/mitosis';
+import { Fragment, useMetadata, useTarget } from '@builder.io/mitosis';
 import DBBrand from '../../brand/brand.lite';
 import DBButton from '../../button/button.lite';
 import DBLink from '../../link/link.lite';
@@ -55,7 +55,14 @@ export default function HeaderWidth() {
 							</DBButton>
 						</>
 					}>
-					<DBNavigation>
+					<DBNavigation
+						{...useTarget({
+							angular: {
+								'data-x': 'workaround-angular'
+							},
+							default: {}
+						})}
+						aria-label="full width">
 						<DBNavigationItem icon="x_placeholder">
 							<a href="#">Full</a>
 						</DBNavigationItem>
@@ -105,7 +112,14 @@ export default function HeaderWidth() {
 							</DBButton>
 						</>
 					}>
-					<DBNavigation>
+					<DBNavigation
+						{...useTarget({
+							angular: {
+								'data-x': 'workaround-angular'
+							},
+							default: {}
+						})}
+						aria-label="medium width">
 						<DBNavigationItem icon="x_placeholder">
 							<a href="#">Medium</a>
 						</DBNavigationItem>
@@ -155,7 +169,14 @@ export default function HeaderWidth() {
 							</DBButton>
 						</>
 					}>
-					<DBNavigation>
+					<DBNavigation
+						{...useTarget({
+							angular: {
+								'data-x': 'workaround-angular'
+							},
+							default: {}
+						})}
+						aria-label="large width">
 						<DBNavigationItem icon="x_placeholder">
 							<a href="#">Large</a>
 						</DBNavigationItem>

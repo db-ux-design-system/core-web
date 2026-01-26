@@ -1,4 +1,4 @@
-import { Fragment, useMetadata } from '@builder.io/mitosis';
+import { Fragment, useMetadata, useTarget } from '@builder.io/mitosis';
 import DBBrand from '../../brand/brand.lite';
 import DBNavigationItem from '../../navigation-item/navigation-item.lite';
 import DBNavigation from '../../navigation/navigation.lite';
@@ -21,7 +21,14 @@ export default function HeaderExamples() {
 		<Fragment>
 			<div style={{ width: '100%', display: 'block' }}>
 				<DBHeader brand={<DBBrand>DBHeader</DBBrand>}>
-					<DBNavigation>
+					<DBNavigation
+						{...useTarget({
+							angular: {
+								'data-x': 'workaround-angular'
+							},
+							default: {}
+						})}
+						aria-label="with application name and navigation">
 						<DBNavigationItem icon="x_placeholder">
 							<a href="#">With Application Name + Navigation</a>
 						</DBNavigationItem>
@@ -38,7 +45,14 @@ export default function HeaderExamples() {
 			</div>
 			<div style={{ width: '100%', display: 'block' }}>
 				<DBHeader brand={<DBBrand></DBBrand>}>
-					<DBNavigation>
+					<DBNavigation
+						{...useTarget({
+							angular: {
+								'data-x': 'workaround-angular'
+							},
+							default: {}
+						})}
+						aria-label="without application name">
 						<DBNavigationItem icon="x_placeholder">
 							<a href="#">Without Application Name</a>
 						</DBNavigationItem>

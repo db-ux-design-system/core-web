@@ -1,4 +1,4 @@
-import { Fragment, useMetadata } from '@builder.io/mitosis';
+import { Fragment, useMetadata, useTarget } from '@builder.io/mitosis';
 import DBBrand from '../../brand/brand.lite';
 import DBButton from '../../button/button.lite';
 import DBLink from '../../link/link.lite';
@@ -55,7 +55,14 @@ export default function HeaderBehavior() {
 							</DBButton>
 						</>
 					}>
-					<DBNavigation>
+					<DBNavigation
+						{...useTarget({
+							angular: {
+								'data-x': 'workaround-angular'
+							},
+							default: {}
+						})}
+						aria-label="desktop full with">
 						<DBNavigationItem icon="x_placeholder">
 							<a href="#">Desktop (full width)</a>
 						</DBNavigationItem>
@@ -105,7 +112,14 @@ export default function HeaderBehavior() {
 							</DBButton>
 						</>
 					}>
-					<DBNavigation>
+					<DBNavigation
+						{...useTarget({
+							angular: {
+								'data-x': 'workaround-angular'
+							},
+							default: {}
+						})}
+						aria-label="mobile">
 						<DBNavigationItem icon="x_placeholder">
 							<a href="#">Mobile</a>
 						</DBNavigationItem>
