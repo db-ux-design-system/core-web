@@ -1,0 +1,18 @@
+import{j as n}from"./jsx-runtime-u17CrQMm.js";import{D as r}from"./switch-Cmfhk3l_.js";import"./index-B7G67QUq.js";import"./iframe-C_W4KvoT.js";import"./preload-helper-D8o24SmT.js";import"./constants-Cg50toCJ.js";import"./form-components-CNqjE7Ko.js";import"./infotext-wasaGmnv.js";const{fn:p}=__STORYBOOK_MODULE_TEST__,u={title:"Components/DBSwitch/Validation",component:r,render:t=>n.jsx(r,{...t,children:t.children}),parameters:{layout:"centered"},tags:["autodocs"],argTypes:{checked:{control:"boolean"},disabled:{control:"boolean"},visualAid:{control:"text"},iconLeading:{control:"text"},iconTrailing:{control:"text"},size:{control:"text"},label:{control:"text"},variant:{control:"text"},showLabel:{control:"boolean"},required:{control:"boolean"},showRequiredAsterisk:{control:"boolean"},validation:{control:"text"},invalidMessage:{control:"text"},validMessage:{control:"text"},showMessage:{control:"boolean"},message:{control:"text"},icon:{control:"text"}}},e={args:{children:"(Default) No validation"}},a={args:{children:"Invalid",validation:"invalid",invalidMessage:"Invalid Message"}},o={args:{children:"Valid",checked:!0,validation:"valid",validMessage:"Valid message"}};e.parameters={...e.parameters,docs:{...e.parameters?.docs,source:{originalSource:`{
+  args: {
+    children: "(Default) No validation"
+  }
+}`,...e.parameters?.docs?.source}}};a.parameters={...a.parameters,docs:{...a.parameters?.docs,source:{originalSource:`{
+  args: {
+    children: "Invalid",
+    "validation": "invalid",
+    "invalidMessage": "Invalid Message"
+  }
+}`,...a.parameters?.docs?.source}}};o.parameters={...o.parameters,docs:{...o.parameters?.docs,source:{originalSource:`{
+  args: {
+    children: "Valid",
+    "checked": true,
+    "validation": "valid",
+    "validMessage": "Valid message"
+  }
+}`,...o.parameters?.docs?.source}}};const h=["DefaultNovalidation","Invalid","Valid"];export{e as DefaultNovalidation,a as Invalid,o as Valid,h as __namedExportsOrder,u as default};
