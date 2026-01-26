@@ -1,0 +1,21 @@
+import{_ as r}from"./tab-item-B9-PUXyV.js";import"./iframe-CgwUe40S.js";import"./preload-helper-_n2GBM2K.js";import"./index-CeOJJTBm.js";import"./form-components-DH866HtI.js";const{fn:i}=__STORYBOOK_MODULE_TEST__,p={title:"Components/DBTabItem/Show Icon Trailing",component:r,render:a=>({components:{DBTabItem:r},setup(){return{args:a}},template:`
+      <DBTabItem v-bind="args">
+      ${a.default}
+      </DBTabItem>
+    `}),parameters:{layout:"centered"},tags:["autodocs"],argTypes:{label:{control:"text"},active:{control:"text"},disabled:{control:"boolean"},icon:{control:"text"},showIcon:{control:"boolean"},iconTrailing:{control:"text"},showIconTrailing:{control:"boolean"}}},e={args:{showIcon:!1,showIconTrailing:!1,label:"(Default) False",icon:"x_placeholder",iconTrailing:"x_placeholder"}},o={args:{showIcon:!0,showIconTrailing:!0,label:"True",icon:"x_placeholder",iconTrailing:"x_placeholder"}};e.parameters={...e.parameters,docs:{...e.parameters?.docs,source:{originalSource:`{
+  args: {
+    "showIcon": false,
+    "showIconTrailing": false,
+    "label": "(Default) False",
+    "icon": "x_placeholder",
+    "iconTrailing": "x_placeholder"
+  }
+}`,...e.parameters?.docs?.source}}};o.parameters={...o.parameters,docs:{...o.parameters?.docs,source:{originalSource:`{
+  args: {
+    "showIcon": true,
+    "showIconTrailing": true,
+    "label": "True",
+    "icon": "x_placeholder",
+    "iconTrailing": "x_placeholder"
+  }
+}`,...o.parameters?.docs?.source}}};const m=["DefaultFalse","True"];export{e as DefaultFalse,o as True,m as __namedExportsOrder,p as default};
