@@ -318,11 +318,14 @@ export default function DBSelect(props: DBSelectProps) {
 				onFocus={(event: InteractionEvent<HTMLSelectElement>) =>
 					state.handleFocus(event)
 				}
-				aria-describedby={props.ariaDescribedBy ?? state._descByIds}
-				data-show-empty-option={state.shouldShowEmptyOption()}>
+				aria-describedby={props.ariaDescribedBy ?? state._descByIds}>
 				{/* Empty option for floating label and placeholder */}
-				<Show when={props.variant === 'floating' || !!props.placeholder}>
-					<option class="placeholder" value=""></option>
+				<Show
+					when={props.variant === 'floating' || !!props.placeholder}>
+					<option
+						class="placeholder"
+						value=""
+						data-show-empty-option={state.shouldShowEmptyOption()}></option>
 				</Show>
 				<Show when={props.options?.length} else={props.children}>
 					<For each={props.options}>
