@@ -22,7 +22,6 @@ export default function CustomSelectShowMessage() {
 					]}
 					message="Helper Message"
 					showMessage={false}
-					id="id-10215"
 					label="(Default) False"
 					listLabel="id-10215-(Default) False"></DBCustomSelect>
 			</div>
@@ -37,7 +36,6 @@ export default function CustomSelectShowMessage() {
 					]}
 					message="Helper Message"
 					showMessage={true}
-					id="id-10216"
 					label="True"
 					listLabel="id-10216-True"></DBCustomSelect>
 			</div>

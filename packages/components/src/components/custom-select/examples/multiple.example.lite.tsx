@@ -21,7 +21,6 @@ export default function CustomSelectMultiple() {
 						{ value: 'Option 5', id: 'kcndx4xog' }
 					]}
 					multiple={false}
-					id="id-10209"
 					label="(Default) False"
 					listLabel="id-10209-(Default) False"></DBCustomSelect>
 			</div>
@@ -35,7 +34,6 @@ export default function CustomSelectMultiple() {
 						{ value: 'Option 5', id: '3a4ml34c5' }
 					]}
 					multiple={true}
-					id="id-10210"
 					label="True"
 					listLabel="id-10210-True"></DBCustomSelect>
 			</div>

@@ -22,7 +22,6 @@ export default function CustomSelectExampletags() {
 					]}
 					selectedType="tag"
 					multiple={true}
-					id="id-10271"
 					removeTagsTexts={[
 						'Remove Option entry 1',
 						'Remove Option entry 2',
@@ -44,7 +43,6 @@ export default function CustomSelectExampletags() {
 					selectedType="tag"
 					formFieldWidth="auto"
 					multiple={true}
-					id="id-10272"
 					label="Tag grow + auto"
 					listLabel="id-10272-Tag grow + auto"></DBCustomSelect>
 			</div>

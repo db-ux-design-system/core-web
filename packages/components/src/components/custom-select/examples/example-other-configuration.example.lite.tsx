@@ -45,7 +45,6 @@ export default function CustomSelectExampleOtherConfiguration() {
 					searchValue="1"
 					showSearch={true}
 					multiple={true}
-					id="id-10as4"
 					label="Search Value"
 					listLabel="id-10as4-Search Value"></DBCustomSelect>
 			</div>
@@ -59,7 +58,6 @@ export default function CustomSelectExampleOtherConfiguration() {
 						{ value: 'Option 5', id: '71n9ccsddc14' }
 					]}
 					selectedLabels="Label controlled"
-					id="id-10aasds4"
 					label="Custom Selected Label"
 					listLabel="id-10aasds4-Custom Selected Label"></DBCustomSelect>
 			</div>
@@ -72,7 +70,6 @@ export default function CustomSelectExampleOtherConfiguration() {
 						{ value: 'Option 4', id: '72n9ccsddc14' },
 						{ value: 'Option 5', id: '71n9ccsddc14' }
 					]}
-					id="id-10aasds4"
 					label="Transform Selected Label"
 					listLabel="id-10aasds4-Transform Selected Label"
 					{...useTarget({
@@ -94,7 +91,6 @@ export default function CustomSelectExampleOtherConfiguration() {
 						{ value: 'Option 4', id: '72n9ccsddc14' },
 						{ value: 'Option 5', id: '71n9ccsddc14' }
 					]}
-					id="id-10aasds4"
 					label="Custom Search Filter"
 					listLabel="id-10aasds4-Custom Search Filter"
 					{...useTarget({

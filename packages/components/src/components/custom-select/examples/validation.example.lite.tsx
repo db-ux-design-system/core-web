@@ -20,7 +20,6 @@ export default function CustomSelectValidation() {
 						{ value: 'Option 4', id: '10dqnhil3' },
 						{ value: 'Option 5', id: '10dqnhil2' }
 					]}
-					id="id-102061"
 					validation="no-validation"
 					label="(Default) No Validation"
 					listLabel="id-102061-(Default) No Validation"></DBCustomSelect>
@@ -34,7 +33,6 @@ export default function CustomSelectValidation() {
 						{ value: 'Option 4', id: '10dqnhil3' },
 						{ value: 'Option 5', id: '10dqnhil2' }
 					]}
-					id="id-102062"
 					validation="invalid"
 					invalidMessage="Invalid Message"
 					label="Invalid"
@@ -49,7 +47,6 @@ export default function CustomSelectValidation() {
 						{ value: 'Option 4', id: '10dqnhil3' },
 						{ value: 'Option 5', id: '10dqnhil2' }
 					]}
-					id="id-102063"
 					validation="valid"
 					invalidMessage="Valid Message"
 					label="Valid"

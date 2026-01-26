@@ -21,7 +21,6 @@ export default function CustomSelectSelectedtype() {
 						{ value: 'Option 5', id: 'yy82mda5v' }
 					]}
 					multiple={true}
-					id="id-10247"
 					label="(Default) Text"
 					listLabel="id-10247-(Default) Text"></DBCustomSelect>
 			</div>
@@ -36,7 +35,6 @@ export default function CustomSelectSelectedtype() {
 					]}
 					selectedType="amount"
 					multiple={true}
-					id="id-10248"
 					label="Amount"
 					listLabel="id-10248-Amount"></DBCustomSelect>
 			</div>
@@ -51,7 +49,6 @@ export default function CustomSelectSelectedtype() {
 					]}
 					selectedType="tag"
 					multiple={true}
-					id="id-10249"
 					label="Tag"
 					listLabel="id-10249-Tag"></DBCustomSelect>
 			</div>

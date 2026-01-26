@@ -37,7 +37,6 @@ export default function CustomSelectDropdownWidth() {
 					label="Fixed"
 					formFieldWidth="full"
 					dropdownWidth="fixed"
-					id="id-10227"
 					listLabel="id-10227-Fixed"></DBCustomSelect>
 			</div>
 			<div style={{ width: '400px' }}>
@@ -52,7 +51,6 @@ export default function CustomSelectDropdownWidth() {
 					label="Auto"
 					formFieldWidth="full"
 					dropdownWidth="auto"
-					id="id-10228"
 					listLabel="id-10228-Auto"></DBCustomSelect>
 			</div>
 			<div style={{ width: '400px' }}>
@@ -67,7 +65,6 @@ export default function CustomSelectDropdownWidth() {
 					label="Full"
 					formFieldWidth="full"
 					dropdownWidth="full"
-					id="id-10229"
 					listLabel="id-10229-Full"></DBCustomSelect>
 			</div>
 
@@ -89,7 +86,6 @@ export default function CustomSelectDropdownWidth() {
 					label="Fixed"
 					formFieldWidth="auto"
 					dropdownWidth="fixed"
-					id="id-10233"
 					listLabel="id-10233-Fixed"></DBCustomSelect>
 			</div>
 			<div style={{ width: '400px' }}>
@@ -104,7 +100,6 @@ export default function CustomSelectDropdownWidth() {
 					label="Auto"
 					formFieldWidth="auto"
 					dropdownWidth="auto"
-					id="id-10234"
 					listLabel="id-10234-Auto"></DBCustomSelect>
 			</div>
 			<div style={{ width: '400px' }}>
@@ -119,7 +114,6 @@ export default function CustomSelectDropdownWidth() {
 					label="Full"
 					formFieldWidth="auto"
 					dropdownWidth="full"
-					id="id-10235"
 					listLabel="id-10235-Full"></DBCustomSelect>
 			</div>
 		</Fragment>

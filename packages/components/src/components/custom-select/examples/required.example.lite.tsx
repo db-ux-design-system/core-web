@@ -22,7 +22,6 @@ export default function CustomSelectRequired() {
 					]}
 					multiple={true}
 					required={false}
-					id="id-10219"
 					label="(Default) False"
 					listLabel="id-10219-(Default) False"></DBCustomSelect>
 			</div>
@@ -37,7 +36,6 @@ export default function CustomSelectRequired() {
 					]}
 					required={true}
 					multiple={true}
-					id="id-10220"
 					label="True"
 					listLabel="id-10220-True"></DBCustomSelect>
 			</div>

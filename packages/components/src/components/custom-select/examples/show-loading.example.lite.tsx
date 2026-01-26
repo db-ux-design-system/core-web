@@ -23,7 +23,6 @@ export default function CustomSelectShowLoading() {
 					showLoading={false}
 					loadingText="Loading"
 					multiple={true}
-					id="id-10252"
 					label="(Default) False"
 					listLabel="id-10252-(Default) False"></DBCustomSelect>
 			</div>
@@ -39,7 +38,6 @@ export default function CustomSelectShowLoading() {
 					showLoading={true}
 					loadingText="Loading"
 					multiple={true}
-					id="id-10253"
 					label="True"
 					listLabel="id-10253-True"></DBCustomSelect>
 			</div>

@@ -22,7 +22,6 @@ export default function CustomSelectShowClearSelection() {
 					]}
 					showClearSelection={true}
 					multiple={true}
-					id="id-10258"
 					label="(Default) True"
 					listLabel="id-10258-(Default) True"></DBCustomSelect>
 			</div>
@@ -37,7 +36,6 @@ export default function CustomSelectShowClearSelection() {
 					]}
 					showClearSelection={false}
 					multiple={true}
-					id="id-10259"
 					label="False"
 					listLabel="id-10259-False"></DBCustomSelect>
 			</div>

@@ -21,7 +21,6 @@ export default function CustomSelectShowLabel() {
 						{ value: 'Option 5', id: 'ya0ahf1od' }
 					]}
 					showLabel={true}
-					id="id-10213"
 					label="(Default) True"
 					listLabel="id-10213-(Default) True"></DBCustomSelect>
 			</div>
@@ -35,7 +34,6 @@ export default function CustomSelectShowLabel() {
 						{ value: 'Option 5', id: 'vop8vkb5q' }
 					]}
 					showLabel={false}
-					id="id-10214"
 					label="False"
 					listLabel="id-10214-False"></DBCustomSelect>
 			</div>

@@ -48,7 +48,6 @@ export default function CustomSelectExamplesSingle() {
 						}
 					]}
 					placeholder="Placeholder"
-					id="id-10260"
 					label="Icons"
 					listLabel="id-10260-Icons"></DBCustomSelect>
 			</div>
@@ -62,7 +61,6 @@ export default function CustomSelectExamplesSingle() {
 						{ value: 'Option 5', id: 'ixclh8p8n' }
 					]}
 					placeholder="Placeholder"
-					id="id-10261"
 					label="Less than 6"
 					listLabel="id-10261-Less than 6"></DBCustomSelect>
 			</div>
@@ -85,7 +83,6 @@ export default function CustomSelectExamplesSingle() {
 						{ value: 'G2:Option 2', id: '8yx3v6yii' }
 					]}
 					placeholder="Placeholder"
-					id="id-10262"
 					label="Option Group Title"
 					listLabel="id-10262-Option Group Title"></DBCustomSelect>
 			</div>
@@ -106,7 +103,6 @@ export default function CustomSelectExamplesSingle() {
 						}
 					]}
 					placeholder="Placeholder"
-					id="id-10263"
 					label="Option Groups"
 					listLabel="id-10263-Option Groups"></DBCustomSelect>
 			</div>
@@ -122,7 +118,6 @@ export default function CustomSelectExamplesSingle() {
 						{ value: 'Option 7', id: 'ihbjcr0lo' }
 					]}
 					placeholder="Placeholder"
-					id="id-10264"
 					label="More than 6"
 					listLabel="id-10264-More than 6"></DBCustomSelect>
 			</div>
@@ -141,7 +136,6 @@ export default function CustomSelectExamplesSingle() {
 						{ value: 'Option 10', id: 'zdi31d2lu' }
 					]}
 					placeholder="Placeholder"
-					id="id-10265"
 					label="More than 10"
 					listLabel="id-10265-More than 10"></DBCustomSelect>
 			</div>

@@ -23,7 +23,6 @@ export default function CustomSelectShowNoResult() {
 					showNoResults={false}
 					noResultsText="Nothing found"
 					multiple={true}
-					id="id-10250"
 					label="(Default) False"
 					listLabel="id-10250-(Default) False"></DBCustomSelect>
 			</div>
@@ -39,7 +38,6 @@ export default function CustomSelectShowNoResult() {
 					showNoResults={true}
 					noResultsText="Nothing found"
 					multiple={true}
-					id="id-10251"
 					label="True"
 					listLabel="id-10251-True"></DBCustomSelect>
 			</div>

@@ -27,7 +27,6 @@ export default function CustomSelectShowSearch() {
 					]}
 					showSearch={false}
 					multiple={true}
-					id="id-10254"
 					label="(Default) False"
 					listLabel="id-10254-(Default) False"></DBCustomSelect>
 			</div>
@@ -42,7 +41,6 @@ export default function CustomSelectShowSearch() {
 					]}
 					showSearch={true}
 					multiple={true}
-					id="id-10255"
 					label="True"
 					listLabel="id-10255-True"></DBCustomSelect>
 			</div>

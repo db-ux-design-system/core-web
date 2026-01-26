@@ -22,7 +22,6 @@ export default function CustomSelectShowIcon() {
 					]}
 					icon="x_placeholder"
 					showIcon={false}
-					id="id-10217"
 					label="(Default) False"
 					listLabel="id-10217-(Default) False"></DBCustomSelect>
 			</div>
@@ -37,7 +36,6 @@ export default function CustomSelectShowIcon() {
 					]}
 					icon="x_placeholder"
 					showIcon={true}
-					id="id-10218"
 					label="True"
 					listLabel="id-10218-True"></DBCustomSelect>
 			</div>
