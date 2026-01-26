@@ -96,8 +96,8 @@ module.exports = () => ({
 					${headerDirectives.join('Directive,')}Directive,`
 					)
 					.replaceAll(
-						'<db-navigation\n',
-						'<db-navigation *dbNavigation\n'
+						'<db-navigation aria-label',
+						'<db-navigation *dbNavigation aria-label'
 					);
 			}
 			if (
