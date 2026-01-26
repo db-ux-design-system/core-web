@@ -2943,13 +2943,13 @@
 
 @property --db-transition-timing-show {
 	syntax: "*";
-	initial-value: cubic-bezier(0.49, 0.1, 0.16, 1) normal both;
+	initial-value: cubic-bezier(0.49, 0.1, 0.16, 1);
 	inherits: true;
 }
 
 @property --db-transition-timing-hide {
 	syntax: "*";
-	initial-value: cubic-bezier(0.49, 0.1, 0.16, 1) normal both;
+	initial-value: cubic-bezier(0.49, 0.1, 0.16, 1);
 	inherits: true;
 }
 
@@ -2967,13 +2967,13 @@
 
 @property --db-transition-straight-show {
 	syntax: "*";
-	initial-value: 0.5s cubic-bezier(0.49, 0.1, 0.16, 1) normal both;
+	initial-value: 0.5s cubic-bezier(0.49, 0.1, 0.16, 1);
 	inherits: true;
 }
 
 @property --db-transition-straight-hide {
 	syntax: "*";
-	initial-value: 0.4s cubic-bezier(0.49, 0.1, 0.16, 1) normal both;
+	initial-value: 0.4s cubic-bezier(0.49, 0.1, 0.16, 1);
 	inherits: true;
 }
 
