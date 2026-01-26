@@ -6,4 +6,4 @@
 "@db-ux/v-core-components": minor
 ---
 
-refactor(DBSelect): hide empty first option in `required` elements with placeholder after first selection by the user
+feat(DBSelect): hide empty first option in `required` selects with placeholder after the first user selection, and add `showEmptyOption` prop to overwrite this

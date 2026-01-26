@@ -818,5 +818,106 @@
 				}
 			}
 		]
+	},
+	{
+		"name": "Show Empty Option",
+		"examples": [
+			{
+				"name": "Required with showEmptyOption=true",
+				"style": {
+					"width": "300px"
+				},
+				"props": {
+					"options": [
+						{
+							"value": "Option 1"
+						},
+						{
+							"value": "Option 2"
+						},
+						{
+							"value": "Option 3"
+						}
+					],
+					"label": "Label",
+					"required": true,
+					"showEmptyOption": true,
+					"placeholder": "Required with showEmptyOption=true",
+					"value": "Option 1"
+				}
+			},
+			{
+				"name": "Required with showEmptyOption=false (Default)",
+				"style": {
+					"width": "300px"
+				},
+				"props": {
+					"options": [
+						{
+							"value": "Option 1"
+						},
+						{
+							"value": "Option 2"
+						},
+						{
+							"value": "Option 3"
+						}
+					],
+					"label": "Label",
+					"required": true,
+					"showEmptyOption": false,
+					"placeholder": "Required with showEmptyOption=false",
+					"value": "Option 1"
+				}
+			},
+			{
+				"name": "Optional with showEmptyOption=true (Default)",
+				"style": {
+					"width": "300px"
+				},
+				"props": {
+					"options": [
+						{
+							"value": "Option 1"
+						},
+						{
+							"value": "Option 2"
+						},
+						{
+							"value": "Option 3"
+						}
+					],
+					"label": "Label",
+					"required": false,
+					"showEmptyOption": true,
+					"placeholder": "Optional with showEmptyOption=true",
+					"value": "Option 1"
+				}
+			},
+			{
+				"name": "Optional with showEmptyOption=false",
+				"style": {
+					"width": "300px"
+				},
+				"props": {
+					"options": [
+						{
+							"value": "Option 1"
+						},
+						{
+							"value": "Option 2"
+						},
+						{
+							"value": "Option 3"
+						}
+					],
+					"label": "Label",
+					"required": false,
+					"showEmptyOption": false,
+					"placeholder": "Optional with showEmptyOption=false",
+					"value": "Option 1"
+				}
+			}
+		]
 	}
 ]

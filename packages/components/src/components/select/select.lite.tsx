@@ -325,7 +325,9 @@ export default function DBSelect(props: DBSelectProps) {
 					<option
 						class="placeholder"
 						value=""
-						data-show-empty-option={state.shouldShowEmptyOption()}></option>
+						data-show-empty-option={getBooleanAsString(
+							state.shouldShowEmptyOption()
+						)}></option>
 				</Show>
 				<Show when={props.options?.length} else={props.children}>
 					<For each={props.options}>
