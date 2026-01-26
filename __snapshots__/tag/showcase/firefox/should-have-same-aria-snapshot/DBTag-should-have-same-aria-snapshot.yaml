@@ -11,7 +11,7 @@
   - button "Remove"
   - button "Interactive (Button)"
   - link "Interactive (Link)"
-  - group:
+  - group "Behavior":
     - checkbox "Interactive (Checkbox)"
     - text: Interactive (Checkbox)
     - radio "Interactive (Radio)"
@@ -19,13 +19,13 @@
     - radio "Interactive Radio 2"
     - text: Interactive Radio 2
   - link "Checked"
-  - group:
+  - group "Checked":
     - checkbox "(Default) False"
     - text: (Default) False
     - checkbox "True" [checked]
     - text: "True"
   - link "Disabled"
-  - group:
+  - group "Disabled":
     - checkbox "(Default) False"
     - text: (Default) False
     - checkbox "True" [disabled]
@@ -46,7 +46,7 @@
   - link "Example Strong"
   - button "Interactive Strong Button with Icon"
   - link "Interactive Strong Link with Icon"
-  - group:
+  - group "Example Strong":
     - checkbox "Interactive Strong Checkbox with Icon"
     - text: Interactive Strong Checkbox with Icon
     - radio "Interactive Strong Radio 1 with Icon"
