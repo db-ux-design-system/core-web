@@ -31,7 +31,7 @@ export default function TagBehavior() {
 			</DBTag>
 
 			<i class="line-break" />
-			<div role="group">
+			<div role="group" aria-label="Behavior">
 				<DBTag>
 					<label>
 						<input type="checkbox" />

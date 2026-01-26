@@ -11,7 +11,7 @@ useMetadata({
 export default function CheckboxDensity() {
 	return (
 		<Fragment>
-			<div role="group">
+			<div role="group" aria-label="Density">
 				<DBCheckbox data-density="functional" name="Density">
 					Functional
 				</DBCheckbox>

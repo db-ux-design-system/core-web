@@ -11,7 +11,7 @@ useMetadata({
 export default function CheckboxShowRequiredAsterisk() {
 	return (
 		<Fragment>
-			<div role="group">
+			<div role="group" aria-label="Show Required Asterisk">
 				<DBCheckbox
 					name="Asterisk"
 					required={true}

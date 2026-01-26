@@ -23,7 +23,7 @@ export default function TagExampleStrong() {
 			<DBTag emphasis="strong" icon="x_placeholder">
 				<a href="#">Interactive Strong Link with Icon</a>
 			</DBTag>
-			<div role="group">
+			<div role="group" aria-label="Example Strong">
 				<DBTag emphasis="strong" icon="x_placeholder">
 					<label>
 						<input type="checkbox" />

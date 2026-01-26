@@ -11,7 +11,7 @@ useMetadata({
 export default function RadioValidation() {
 	return (
 		<Fragment>
-			<div role="radiogroup">
+			<div role="radiogroup" aria-label="Validation">
 				<DBRadio name="No validation" validation="no-validation">
 					(Default) No validation
 				</DBRadio>

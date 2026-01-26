@@ -22,7 +22,6 @@ export default function CustomSelectDensity() {
 						{ value: 'Option 5', id: '10dqnhil5' }
 					]}
 					placeholder="Placeholder"
-					id="id-10206"
 					label="Functional"
 					listLabel="id-10206-Functional"></DBCustomSelect>
 			</div>
@@ -37,7 +36,6 @@ export default function CustomSelectDensity() {
 						{ value: 'Option 5', id: '10dqnhil1' }
 					]}
 					placeholder="Placeholder"
-					id="id-10207"
 					label="(Default) Regular"
 					listLabel="id-10207-(Default) Regular"></DBCustomSelect>
 			</div>
@@ -52,7 +50,6 @@ export default function CustomSelectDensity() {
 						{ value: 'Option 5', id: 'k8kvx3fm7' }
 					]}
 					placeholder="Placeholder"
-					id="id-10208"
 					label="Expressive"
 					listLabel="id-10208-Expressive"></DBCustomSelect>
 			</div>

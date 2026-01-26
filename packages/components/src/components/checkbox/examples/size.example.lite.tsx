@@ -11,7 +11,7 @@ useMetadata({
 export default function CheckboxSize() {
 	return (
 		<Fragment>
-			<div role="group">
+			<div role="group" aria-label="Size">
 				<DBCheckbox name="Size">(Default) Medium</DBCheckbox>
 				<DBCheckbox name="Size" size="small">
 					Small

@@ -11,7 +11,7 @@ useMetadata({
 export default function CheckboxIndeterminate() {
 	return (
 		<Fragment>
-			<div role="group">
+			<div role="group" aria-label="Indeterminate">
 				<DBCheckbox name="Indeterminate" indeterminate={false}>
 					(Default) False
 				</DBCheckbox>

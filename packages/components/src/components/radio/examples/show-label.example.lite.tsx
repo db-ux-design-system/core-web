@@ -11,7 +11,7 @@ useMetadata({
 export default function RadioShowLabel() {
 	return (
 		<Fragment>
-			<div role="radiogroup">
+			<div role="radiogroup" aria-label="Show Label">
 				<DBRadio name="Content" showLabel={true}>
 					(Default) True
 				</DBRadio>

@@ -11,7 +11,7 @@ useMetadata({
 export default function CheckboxChecked() {
 	return (
 		<Fragment>
-			<div role="group">
+			<div role="group" aria-label="Checked">
 				<DBCheckbox name="State" checked={false}>
 					(Default) False
 				</DBCheckbox>

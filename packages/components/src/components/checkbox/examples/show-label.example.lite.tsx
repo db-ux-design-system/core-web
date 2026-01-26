@@ -11,7 +11,7 @@ useMetadata({
 export default function CheckboxShowLabel() {
 	return (
 		<Fragment>
-			<div role="group">
+			<div role="group" aria-label="Show Label">
 				<DBCheckbox name="Label" showLabel={true}>
 					(Default) True
 				</DBCheckbox>

@@ -11,7 +11,7 @@ useMetadata({
 export default function RadioDisabled() {
 	return (
 		<Fragment>
-			<div role="radiogroup">
+			<div role="radiogroup" aria-label="Disabled">
 				<DBRadio name="Disabled" disabled={false}>
 					(Default) False
 				</DBRadio>

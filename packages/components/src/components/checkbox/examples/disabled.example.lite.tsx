@@ -11,7 +11,7 @@ useMetadata({
 export default function CheckboxDisabled() {
 	return (
 		<Fragment>
-			<div role="group">
+			<div role="group" aria-label="Disabled">
 				<DBCheckbox name="Disabled" disabled={false}>
 					(Default) False
 				</DBCheckbox>

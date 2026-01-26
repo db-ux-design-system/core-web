@@ -11,7 +11,7 @@ useMetadata({
 export default function RadioRequired() {
 	return (
 		<Fragment>
-			<div role="radiogroup">
+			<div role="radiogroup" aria-label="Required">
 				<DBRadio name="Requirement" required={false}>
 					(Default) False
 				</DBRadio>

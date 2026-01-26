@@ -11,7 +11,7 @@ useMetadata({
 export default function RadioChecked() {
 	return (
 		<Fragment>
-			<div role="radiogroup">
+			<div role="radiogroup" aria-label="Checked">
 				<DBRadio name="Checked">(Default) False</DBRadio>
 				<DBRadio name="Checked" checked={true}>
 					True

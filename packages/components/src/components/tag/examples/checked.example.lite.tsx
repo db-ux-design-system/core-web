@@ -11,7 +11,7 @@ useMetadata({
 export default function TagChecked() {
 	return (
 		<Fragment>
-			<div role="group">
+			<div role="group" aria-label="Checked">
 				<DBTag>
 					<label>
 						<input type="checkbox" />

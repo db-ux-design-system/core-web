@@ -11,7 +11,7 @@ useMetadata({
 export default function RadioDensity() {
 	return (
 		<Fragment>
-			<div role="radiogroup">
+			<div role="radiogroup" aria-label="Density">
 				<DBRadio
 					data-density="functional"
 					name="Density"

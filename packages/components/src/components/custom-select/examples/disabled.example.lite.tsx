@@ -22,7 +22,6 @@ export default function CustomSelectDisabled() {
 					]}
 					multiple={true}
 					disabled={false}
-					id="id-10221"
 					label="(Default) False"
 					listLabel="id-10221-(Default) False"></DBCustomSelect>
 			</div>
@@ -37,7 +36,6 @@ export default function CustomSelectDisabled() {
 					]}
 					disabled={true}
 					multiple={true}
-					id="id-10222"
 					label="True"
 					listLabel="id-10222-True"></DBCustomSelect>
 			</div>

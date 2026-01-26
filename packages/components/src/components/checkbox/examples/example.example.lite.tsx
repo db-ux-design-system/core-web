@@ -11,7 +11,7 @@ useMetadata({
 export default function CheckboxExample() {
 	return (
 		<Fragment>
-			<div role="group">
+			<div role="group" aria-label="Example">
 				<div style={{ width: '100px' }}>
 					<DBCheckbox checked={true} name="Example">
 						Long label

@@ -11,7 +11,7 @@ useMetadata({
 export default function RadioSize() {
 	return (
 		<Fragment>
-			<div role="radiogroup">
+			<div role="radiogroup" aria-label="Size">
 				<DBRadio name="Size">(Default) Medium</DBRadio>
 				<DBRadio name="Size" size="small">
 					Small

@@ -11,7 +11,7 @@ useMetadata({
 export default function CheckboxValidation() {
 	return (
 		<Fragment>
-			<div role="group">
+			<div role="group" aria-label="Validation">
 				<DBCheckbox name="Validation" validation="no-validation">
 					(Default) No validation
 				</DBCheckbox>
