@@ -6,4 +6,4 @@
 "@db-ux/v-core-components": patch
 ---
 
-refactor: hide empty option in select[required] elements with placeholder after selection
+refactor: hide empty option in `select[required]` elements with placeholder after selection
