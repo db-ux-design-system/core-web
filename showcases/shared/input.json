@@ -5,17 +5,23 @@
 			{
 				"name": "Functional",
 				"density": "functional",
-				"props": {}
+				"props": {
+					"label": "Label"
+				}
 			},
 			{
 				"name": "(Default) Regular",
 				"density": "regular",
-				"props": {}
+				"props": {
+					"label": "Label"
+				}
 			},
 			{
 				"name": "Expressive",
 				"density": "expressive",
-				"props": {}
+				"props": {
+					"label": "Label"
+				}
 			}
 		]
 	},
@@ -24,11 +30,14 @@
 		"examples": [
 			{
 				"name": "(Default) Above",
-				"props": {}
+				"props": {
+					"label": "Label"
+				}
 			},
 			{
 				"name": "Floating",
 				"props": {
+					"label": "Label",
 					"variant": "floating",
 					"value": "Floating"
 				}
@@ -41,12 +50,14 @@
 			{
 				"name": "(Default) True",
 				"props": {
+					"label": "Label",
 					"showLabel": true
 				}
 			},
 			{
 				"name": "False",
 				"props": {
+					"label": "Label",
 					"showLabel": false
 				}
 			}
@@ -58,6 +69,7 @@
 			{
 				"name": "(Default) False",
 				"props": {
+					"label": "Label",
 					"message": "Message",
 					"showMessage": false
 				}
@@ -65,6 +77,7 @@
 			{
 				"name": "True",
 				"props": {
+					"label": "Label",
 					"message": "Message",
 					"showMessage": true
 				}
@@ -76,11 +89,14 @@
 		"examples": [
 			{
 				"name": "(Default) Empty",
-				"props": {}
+				"props": {
+					"label": "Label"
+				}
 			},
 			{
 				"name": "Filled",
 				"props": {
+					"label": "Label",
 					"value": "Filled"
 				}
 			}
@@ -92,12 +108,14 @@
 			{
 				"name": "(Default) False",
 				"props": {
+					"label": "Label",
 					"disabled": false
 				}
 			},
 			{
 				"name": "True",
 				"props": {
+					"label": "Label",
 					"disabled": true
 				}
 			}
@@ -109,12 +127,14 @@
 			{
 				"name": "(Default) False",
 				"props": {
+					"label": "Label",
 					"readOnly": false
 				}
 			},
 			{
 				"name": "True",
 				"props": {
+					"label": "Label",
 					"readOnly": true
 				}
 			}
@@ -126,12 +146,14 @@
 			{
 				"name": "(Default) No validation",
 				"props": {
+					"label": "Label",
 					"validation": "no-validation"
 				}
 			},
 			{
 				"name": "Invalid",
 				"props": {
+					"label": "Label",
 					"validation": "invalid",
 					"invalidMessage": "Invalid Message"
 				}
@@ -139,6 +161,7 @@
 			{
 				"name": "Valid",
 				"props": {
+					"label": "Label",
 					"validation": "valid",
 					"validMessage": "Valid message"
 				}
@@ -151,12 +174,14 @@
 			{
 				"name": "(Default) False",
 				"props": {
+					"label": "Label",
 					"required": false
 				}
 			},
 			{
 				"name": "True",
 				"props": {
+					"label": "Label",
 					"required": true
 				}
 			}
@@ -168,6 +193,7 @@
 			{
 				"name": "(Default) True",
 				"props": {
+					"label": "Label",
 					"required": true,
 					"showRequiredAsterisk": true
 				}
@@ -175,6 +201,7 @@
 			{
 				"name": "False",
 				"props": {
+					"label": "Label",
 					"required": true,
 					"showRequiredAsterisk": false
 				}
@@ -254,18 +281,21 @@
 			{
 				"name": "MinLength",
 				"props": {
+					"label": "Label",
 					"minLength": 3
 				}
 			},
 			{
 				"name": "MaxLength",
 				"props": {
+					"label": "Label",
 					"maxLength": 5
 				}
 			},
 			{
 				"name": "MinMaxLength",
 				"props": {
+					"label": "Label",
 					"minLength": 3,
 					"maxLength": 5
 				}
@@ -278,41 +308,49 @@
 		"examples": [
 			{
 				"name": "(Default) Text",
-				"props": {}
+				"props": {
+					"label": "Label"
+				}
 			},
 			{
 				"name": "Password",
 				"props": {
+					"label": "Label",
 					"type": "password"
 				}
 			},
 			{
 				"name": "Search",
 				"props": {
+					"label": "Label",
 					"type": "search"
 				}
 			},
 			{
 				"name": "E-Mail",
 				"props": {
+					"label": "Label",
 					"type": "email"
 				}
 			},
 			{
 				"name": "Tel",
 				"props": {
+					"label": "Label",
 					"type": "tel"
 				}
 			},
 			{
 				"name": "URL",
 				"props": {
+					"label": "Label",
 					"type": "url"
 				}
 			},
 			{
 				"name": "Date",
 				"props": {
+					"label": "Label",
 					"type": "date",
 					"min": "2023-01-01",
 					"max": "2030-12-31"
@@ -321,6 +359,7 @@
 			{
 				"name": "Datetime Local",
 				"props": {
+					"label": "Label",
 					"type": "datetime-local",
 					"min": "2023-01-01T00:00",
 					"max": "2030-12-31T23:59"
@@ -329,6 +368,7 @@
 			{
 				"name": "Month",
 				"props": {
+					"label": "Label",
 					"type": "month",
 					"min": "2023-01",
 					"max": "2030-12"
@@ -337,6 +377,7 @@
 			{
 				"name": "Time",
 				"props": {
+					"label": "Label",
 					"type": "time",
 					"min": "00:00",
 					"max": "23:59"
@@ -345,6 +386,7 @@
 			{
 				"name": "Week",
 				"props": {
+					"label": "Label",
 					"type": "week",
 					"min": "2023-W01",
 					"max": "2030-W52"
@@ -358,12 +400,14 @@
 			{
 				"name": "(Default) Empty",
 				"props": {
+					"label": "Label",
 					"variant": "floating"
 				}
 			},
 			{
 				"name": "Filled",
 				"props": {
+					"label": "Label",
 					"value": "Filled",
 					"variant": "floating"
 				}
@@ -371,6 +415,7 @@
 			{
 				"name": "Disabled",
 				"props": {
+					"label": "Label",
 					"disabled": true,
 					"variant": "floating"
 				}
@@ -378,6 +423,7 @@
 			{
 				"name": "Readonly - Filled",
 				"props": {
+					"label": "Label",
 					"value": "Readonly - Filled",
 					"readOnly": true,
 					"variant": "floating"
@@ -386,6 +432,7 @@
 			{
 				"name": "Invalid",
 				"props": {
+					"label": "Label",
 					"validation": "invalid",
 					"invalidMessage": "Invalid Message",
 					"variant": "floating"
@@ -400,12 +447,14 @@
 			{
 				"name": "(Default) Text",
 				"props": {
+					"label": "Label",
 					"variant": "floating"
 				}
 			},
 			{
 				"name": "Password",
 				"props": {
+					"label": "Label",
 					"type": "password",
 					"variant": "floating"
 				}
@@ -413,6 +462,7 @@
 			{
 				"name": "Search",
 				"props": {
+					"label": "Label",
 					"type": "search",
 					"variant": "floating"
 				}
@@ -420,6 +470,7 @@
 			{
 				"name": "E-Mail",
 				"props": {
+					"label": "Label",
 					"type": "email",
 					"variant": "floating"
 				}
@@ -427,6 +478,7 @@
 			{
 				"name": "Tel",
 				"props": {
+					"label": "Label",
 					"type": "tel",
 					"variant": "floating"
 				}
@@ -434,6 +486,7 @@
 			{
 				"name": "URL",
 				"props": {
+					"label": "Label",
 					"type": "url",
 					"variant": "floating"
 				}
@@ -441,6 +494,7 @@
 			{
 				"name": "Date",
 				"props": {
+					"label": "Label",
 					"type": "date",
 					"variant": "floating"
 				}
@@ -448,6 +502,7 @@
 			{
 				"name": "Datetime Local",
 				"props": {
+					"label": "Label",
 					"type": "datetime-local",
 					"variant": "floating"
 				}
@@ -455,6 +510,7 @@
 			{
 				"name": "Month",
 				"props": {
+					"label": "Label",
 					"type": "month",
 					"variant": "floating"
 				}
@@ -462,6 +518,7 @@
 			{
 				"name": "Time",
 				"props": {
+					"label": "Label",
 					"type": "time",
 					"variant": "floating"
 				}
@@ -469,6 +526,7 @@
 			{
 				"name": "Week",
 				"props": {
+					"label": "Label",
 					"type": "week",
 					"variant": "floating"
 				}
@@ -476,6 +534,7 @@
 			{
 				"name": "Datalist",
 				"props": {
+					"label": "Label",
 					"variant": "floating",
 					"dataList": true
 				}
@@ -484,6 +543,7 @@
 				"name": "File",
 				"experimental": true,
 				"props": {
+					"label": "Label",
 					"type": "file",
 					"variant": "floating"
 				}
