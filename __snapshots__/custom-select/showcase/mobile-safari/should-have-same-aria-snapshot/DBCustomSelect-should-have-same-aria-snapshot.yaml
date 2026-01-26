@@ -1342,11 +1342,11 @@
   - text: More than 10
   - group:
     - article:
-      - text: LABEL SHOULD BE SET
-      - searchbox "LABEL SHOULD BE SET"
+      - text: Search
+      - searchbox "Search"
       - status
-      - checkbox "LABEL SHOULD BE SET"
-      - text: LABEL SHOULD BE SET
+      - checkbox "Select All"
+      - text: Select All
       - group "id-10270-More than 10":
         - list:
           - listitem:
