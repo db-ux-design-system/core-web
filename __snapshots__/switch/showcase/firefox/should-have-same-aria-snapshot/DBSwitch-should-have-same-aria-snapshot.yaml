@@ -88,7 +88,7 @@
   - text: (Default) False
   - status
   - switch "True"
-  - text: "True"
+  - text: True Message
   - status
   - link "Examples"
   - switch "Custom Icons"

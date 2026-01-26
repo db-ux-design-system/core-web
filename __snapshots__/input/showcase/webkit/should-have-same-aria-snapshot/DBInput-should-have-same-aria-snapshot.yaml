@@ -40,6 +40,7 @@
   - text: Label
   - textbox "Label":
     - /placeholder: "True"
+  - text: Message
   - status
   - link "State"
   - text: Label

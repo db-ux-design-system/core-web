@@ -235,6 +235,7 @@
           - listitem:
             - radio "Option 5"
             - text: Option 5
+  - text: Helper Message
   - status
   - link "Show Icon"
   - text: (Default) False

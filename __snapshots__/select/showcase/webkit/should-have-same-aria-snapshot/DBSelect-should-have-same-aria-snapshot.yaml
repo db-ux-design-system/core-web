@@ -88,7 +88,7 @@
     - option "Option 3"
     - option "Option 4"
     - option "Option 5"
-  - text: "True"
+  - text: True Message
   - status
   - link "State"
   - text: Label

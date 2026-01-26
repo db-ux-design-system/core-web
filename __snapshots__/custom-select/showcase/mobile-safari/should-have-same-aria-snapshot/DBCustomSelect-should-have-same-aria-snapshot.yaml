@@ -246,6 +246,7 @@
             - radio "Option 5"
             - text: Option 5
       - button "Close"
+  - text: Helper Message
   - status
   - link "Show Icon"
   - text: (Default) False

@@ -187,7 +187,14 @@ export const stringPropVisible = (
 	if (showString === undefined) {
 		return !!givenString;
 	} else {
-		return showString === 'true' && Boolean(givenString);
+		let _show;
+		if (typeof showString === 'string') {
+			_show = showString === 'true';
+		} else {
+			_show = showString;
+		}
+
+		return _show && Boolean(givenString);
 	}
 };
 

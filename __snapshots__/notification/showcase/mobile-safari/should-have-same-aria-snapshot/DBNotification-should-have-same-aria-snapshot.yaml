@@ -65,6 +65,7 @@
     - link "Textlink"
   - link "Show Headline"
   - article:
+    - text: Headline
     - paragraph: (Default) True
   - article:
     - paragraph: "False"
@@ -73,6 +74,7 @@
     - paragraph: (Default) False
   - article:
     - paragraph: "True"
+    - text: 10 min ago
   - link "Examples - VariantDocked":
   - article:
     - paragraph: Text
@@ -146,6 +148,7 @@
     - link "Textlink"
   - article:
     - paragraph: Text & Textlink Block & Timed
+    - text: 10 min ago
     - link "Textlink"
   - article:
     - text: Headline
@@ -159,14 +162,18 @@
     - button "Close"
   - article:
     - paragraph: Text & Timed
+    - text: 10 min ago
   - article:
     - paragraph: Text & Timed & Closeable
+    - text: 10 min ago
     - button "Close"
   - article:
     - text: Headline
     - paragraph: Text & Headline & Timed & Closeable
+    - text: 10 min ago
     - button "Close"
   - article:
     - text: Headline
     - paragraph: Text & Icon & Headline & Timed & Closeable
+    - text: 10 min ago
     - button "Close"
