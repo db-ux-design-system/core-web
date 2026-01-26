@@ -41,7 +41,7 @@
     "vitest": "3.2.4"
   },
   "peerDependencies": {
-    "stylelint": "^14.0.0 || ^15.0.0 || ^16.0.0"
+    "stylelint": "^14.0.0 || ^15.0.0 || ^16.0.0 || ^17.0.0"
   },
   "publishConfig": {
     "registry": "https://registry.npmjs.org/",
