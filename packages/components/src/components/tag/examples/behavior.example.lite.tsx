@@ -31,24 +31,26 @@ export default function TagBehavior() {
 			</DBTag>
 
 			<i class="line-break" />
-			<DBTag>
-				<label>
-					<input type="checkbox" />
-					Interactive (Checkbox)
-				</label>
-			</DBTag>
-			<DBTag>
-				<label>
-					<input type="radio" name="radio01" />
-					Interactive (Radio)
-				</label>
-			</DBTag>
-			<DBTag>
-				<label>
-					<input type="radio" name="radio01" />
-					Interactive Radio 2
-				</label>
-			</DBTag>
+			<div role="group">
+				<DBTag>
+					<label>
+						<input type="checkbox" />
+						Interactive (Checkbox)
+					</label>
+				</DBTag>
+				<DBTag>
+					<label>
+						<input type="radio" name="radio01" />
+						Interactive (Radio)
+					</label>
+				</DBTag>
+				<DBTag>
+					<label>
+						<input type="radio" name="radio01" />
+						Interactive Radio 2
+					</label>
+				</DBTag>
+			</div>
 		</Fragment>
 	);
 }

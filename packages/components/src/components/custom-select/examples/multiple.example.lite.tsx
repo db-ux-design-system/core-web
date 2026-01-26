@@ -22,7 +22,8 @@ export default function CustomSelectMultiple() {
 					]}
 					multiple={false}
 					id="id-10209"
-					label="(Default) False"></DBCustomSelect>
+					label="(Default) False"
+					listLabel="id-10209-(Default) False"></DBCustomSelect>
 			</div>
 			<div style={{ width: '200px' }}>
 				<DBCustomSelect
@@ -35,7 +36,8 @@ export default function CustomSelectMultiple() {
 					]}
 					multiple={true}
 					id="id-10210"
-					label="True"></DBCustomSelect>
+					label="True"
+					listLabel="id-10210-True"></DBCustomSelect>
 			</div>
 		</Fragment>
 	);

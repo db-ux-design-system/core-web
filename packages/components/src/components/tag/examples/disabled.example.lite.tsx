@@ -11,18 +11,20 @@ useMetadata({
 export default function TagDisabled() {
 	return (
 		<Fragment>
-			<DBTag>
-				<label>
-					<input type="checkbox" />
-					(Default) False
-				</label>
-			</DBTag>
-			<DBTag>
-				<label>
-					<input type="checkbox" disabled={true} />
-					True
-				</label>
-			</DBTag>
+			<div role="group">
+				<DBTag>
+					<label>
+						<input type="checkbox" />
+						(Default) False
+					</label>
+				</DBTag>
+				<DBTag>
+					<label>
+						<input type="checkbox" disabled={true} />
+						True
+					</label>
+				</DBTag>
+			</div>
 		</Fragment>
 	);
 }

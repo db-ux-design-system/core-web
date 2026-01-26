@@ -1,4 +1,5 @@
 const onClickPlugin = require('../plugins/on-click.cjs');
+const angularPlugin = require('../plugins/angular/index.cjs');
 const angularSlotsPlugin = require('../plugins/angular/slots.cjs');
 const classNamePlugin = require('../plugins/angular/className.cjs');
 const attributePassingPlugin = require('../plugins/attribute-passing/index.cjs');
@@ -17,6 +18,7 @@ module.exports = {
 		attributePassingPlugin,
 		angularSlotsPlugin,
 		classNamePlugin,
-		onClickPlugin
+		onClickPlugin,
+		angularPlugin
 	]
 };

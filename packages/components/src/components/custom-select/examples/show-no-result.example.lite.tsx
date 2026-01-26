@@ -24,7 +24,8 @@ export default function CustomSelectShowNoResult() {
 					noResultsText="Nothing found"
 					multiple={true}
 					id="id-10250"
-					label="(Default) False"></DBCustomSelect>
+					label="(Default) False"
+					listLabel="id-10250-(Default) False"></DBCustomSelect>
 			</div>
 			<div style={{ width: '200px' }}>
 				<DBCustomSelect
@@ -39,7 +40,8 @@ export default function CustomSelectShowNoResult() {
 					noResultsText="Nothing found"
 					multiple={true}
 					id="id-10251"
-					label="True"></DBCustomSelect>
+					label="True"
+					listLabel="id-10251-True"></DBCustomSelect>
 			</div>
 		</Fragment>
 	);

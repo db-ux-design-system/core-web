@@ -24,7 +24,8 @@ export default function CustomSelectShowRequiredAsterisk() {
 					required={true}
 					showRequiredAsterisk={true}
 					id="id-1021s9"
-					label="(Default) True"></DBCustomSelect>
+					label="(Default) True"
+					listLabel="id-1021s9-(Default) True"></DBCustomSelect>
 			</div>
 			<div style={{ width: '200px' }}>
 				<DBCustomSelect
@@ -39,7 +40,8 @@ export default function CustomSelectShowRequiredAsterisk() {
 					showRequiredAsterisk={false}
 					multiple={true}
 					id="id-10s220"
-					label="False"></DBCustomSelect>
+					label="False"
+					listLabel="id-10s220-False"></DBCustomSelect>
 			</div>
 		</Fragment>
 	);

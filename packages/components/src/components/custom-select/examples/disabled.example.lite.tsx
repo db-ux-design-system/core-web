@@ -23,7 +23,8 @@ export default function CustomSelectDisabled() {
 					multiple={true}
 					disabled={false}
 					id="id-10221"
-					label="(Default) False"></DBCustomSelect>
+					label="(Default) False"
+					listLabel="id-10221-(Default) False"></DBCustomSelect>
 			</div>
 			<div style={{ width: '200px' }}>
 				<DBCustomSelect
@@ -37,7 +38,8 @@ export default function CustomSelectDisabled() {
 					disabled={true}
 					multiple={true}
 					id="id-10222"
-					label="True"></DBCustomSelect>
+					label="True"
+					listLabel="id-10222-True"></DBCustomSelect>
 			</div>
 		</Fragment>
 	);

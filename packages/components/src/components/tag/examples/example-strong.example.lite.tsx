@@ -23,24 +23,26 @@ export default function TagExampleStrong() {
 			<DBTag emphasis="strong" icon="x_placeholder">
 				<a href="#">Interactive Strong Link with Icon</a>
 			</DBTag>
-			<DBTag emphasis="strong" icon="x_placeholder">
-				<label>
-					<input type="checkbox" />
-					Interactive Strong Checkbox with Icon
-				</label>
-			</DBTag>
-			<DBTag emphasis="strong" icon="x_placeholder">
-				<label>
-					<input type="radio" name="radio03" />
-					Interactive Strong Radio 1 with Icon
-				</label>
-			</DBTag>
-			<DBTag emphasis="strong" icon="x_placeholder">
-				<label>
-					<input type="radio" name="radio03" />
-					Interactive Strong Radio 2 with Icon
-				</label>
-			</DBTag>
+			<div role="group">
+				<DBTag emphasis="strong" icon="x_placeholder">
+					<label>
+						<input type="checkbox" />
+						Interactive Strong Checkbox with Icon
+					</label>
+				</DBTag>
+				<DBTag emphasis="strong" icon="x_placeholder">
+					<label>
+						<input type="radio" name="radio03" />
+						Interactive Strong Radio 1 with Icon
+					</label>
+				</DBTag>
+				<DBTag emphasis="strong" icon="x_placeholder">
+					<label>
+						<input type="radio" name="radio03" />
+						Interactive Strong Radio 2 with Icon
+					</label>
+				</DBTag>
+			</div>
 		</Fragment>
 	);
 }

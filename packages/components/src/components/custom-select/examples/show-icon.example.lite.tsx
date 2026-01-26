@@ -23,7 +23,8 @@ export default function CustomSelectShowIcon() {
 					icon="x_placeholder"
 					showIcon={false}
 					id="id-10217"
-					label="(Default) False"></DBCustomSelect>
+					label="(Default) False"
+					listLabel="id-10217-(Default) False"></DBCustomSelect>
 			</div>
 			<div style={{ width: '200px' }}>
 				<DBCustomSelect
@@ -37,7 +38,8 @@ export default function CustomSelectShowIcon() {
 					icon="x_placeholder"
 					showIcon={true}
 					id="id-10218"
-					label="True"></DBCustomSelect>
+					label="True"
+					listLabel="id-10218-True"></DBCustomSelect>
 			</div>
 		</Fragment>
 	);

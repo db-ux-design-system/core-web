@@ -24,7 +24,8 @@ export default function CustomSelectShowLoading() {
 					loadingText="Loading"
 					multiple={true}
 					id="id-10252"
-					label="(Default) False"></DBCustomSelect>
+					label="(Default) False"
+					listLabel="id-10252-(Default) False"></DBCustomSelect>
 			</div>
 			<div style={{ width: '200px' }}>
 				<DBCustomSelect
@@ -39,7 +40,8 @@ export default function CustomSelectShowLoading() {
 					loadingText="Loading"
 					multiple={true}
 					id="id-10253"
-					label="True"></DBCustomSelect>
+					label="True"
+					listLabel="id-10253-True"></DBCustomSelect>
 			</div>
 		</Fragment>
 	);

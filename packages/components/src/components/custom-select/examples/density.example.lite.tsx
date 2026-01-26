@@ -23,7 +23,8 @@ export default function CustomSelectDensity() {
 					]}
 					placeholder="Placeholder"
 					id="id-10206"
-					label="Functional"></DBCustomSelect>
+					label="Functional"
+					listLabel="id-10206-Functional"></DBCustomSelect>
 			</div>
 			<div style={{ width: '200px' }}>
 				<DBCustomSelect
@@ -37,7 +38,8 @@ export default function CustomSelectDensity() {
 					]}
 					placeholder="Placeholder"
 					id="id-10207"
-					label="(Default) Regular"></DBCustomSelect>
+					label="(Default) Regular"
+					listLabel="id-10207-(Default) Regular"></DBCustomSelect>
 			</div>
 			<div style={{ width: '200px' }}>
 				<DBCustomSelect
@@ -51,7 +53,8 @@ export default function CustomSelectDensity() {
 					]}
 					placeholder="Placeholder"
 					id="id-10208"
-					label="Expressive"></DBCustomSelect>
+					label="Expressive"
+					listLabel="id-10208-Expressive"></DBCustomSelect>
 			</div>
 		</Fragment>
 	);

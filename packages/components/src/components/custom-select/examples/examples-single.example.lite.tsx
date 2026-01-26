@@ -49,7 +49,8 @@ export default function CustomSelectExamplesSingle() {
 					]}
 					placeholder="Placeholder"
 					id="id-10260"
-					label="Icons"></DBCustomSelect>
+					label="Icons"
+					listLabel="id-10260-Icons"></DBCustomSelect>
 			</div>
 			<div style={{ width: '200px' }}>
 				<DBCustomSelect
@@ -62,7 +63,8 @@ export default function CustomSelectExamplesSingle() {
 					]}
 					placeholder="Placeholder"
 					id="id-10261"
-					label="Less than 6"></DBCustomSelect>
+					label="Less than 6"
+					listLabel="id-10261-Less than 6"></DBCustomSelect>
 			</div>
 			<div style={{ width: '200px' }}>
 				<DBCustomSelect
@@ -84,7 +86,8 @@ export default function CustomSelectExamplesSingle() {
 					]}
 					placeholder="Placeholder"
 					id="id-10262"
-					label="Option Group Title"></DBCustomSelect>
+					label="Option Group Title"
+					listLabel="id-10262-Option Group Title"></DBCustomSelect>
 			</div>
 			<div style={{ width: '200px' }}>
 				<DBCustomSelect
@@ -104,7 +107,8 @@ export default function CustomSelectExamplesSingle() {
 					]}
 					placeholder="Placeholder"
 					id="id-10263"
-					label="Option Groups"></DBCustomSelect>
+					label="Option Groups"
+					listLabel="id-10263-Option Groups"></DBCustomSelect>
 			</div>
 			<div style={{ width: '200px' }}>
 				<DBCustomSelect
@@ -119,7 +123,8 @@ export default function CustomSelectExamplesSingle() {
 					]}
 					placeholder="Placeholder"
 					id="id-10264"
-					label="More than 6"></DBCustomSelect>
+					label="More than 6"
+					listLabel="id-10264-More than 6"></DBCustomSelect>
 			</div>
 			<div style={{ width: '200px' }}>
 				<DBCustomSelect
@@ -137,7 +142,8 @@ export default function CustomSelectExamplesSingle() {
 					]}
 					placeholder="Placeholder"
 					id="id-10265"
-					label="More than 10"></DBCustomSelect>
+					label="More than 10"
+					listLabel="id-10265-More than 10"></DBCustomSelect>
 			</div>
 		</Fragment>
 	);

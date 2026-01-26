@@ -29,7 +29,8 @@ export default function CustomSelectExampletags() {
 						'Remove Option entry 3',
 						'Remove Option entry 4'
 					]}
-					label="Tag grow"></DBCustomSelect>
+					label="Tag grow"
+					listLabel="id-10271-Tag grow"></DBCustomSelect>
 			</div>
 			<div style={{ width: '200px' }}>
 				<DBCustomSelect
@@ -44,7 +45,8 @@ export default function CustomSelectExampletags() {
 					formFieldWidth="auto"
 					multiple={true}
 					id="id-10272"
-					label="Tag grow + auto"></DBCustomSelect>
+					label="Tag grow + auto"
+					listLabel="id-10272-Tag grow + auto"></DBCustomSelect>
 			</div>
 		</Fragment>
 	);

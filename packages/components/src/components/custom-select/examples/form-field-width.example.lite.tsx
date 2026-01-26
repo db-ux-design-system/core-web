@@ -22,7 +22,8 @@ export default function CustomSelectFormFieldWidth() {
 					]}
 					label="Full"
 					formFieldWidth="full"
-					id="id-10223"></DBCustomSelect>
+					id="id-10223"
+					listLabel="id-10223-Full"></DBCustomSelect>
 			</div>
 			<div style={{ width: '400px' }}>
 				<DBCustomSelect
@@ -35,7 +36,8 @@ export default function CustomSelectFormFieldWidth() {
 					]}
 					label="Auto"
 					formFieldWidth="auto"
-					id="id-10224"></DBCustomSelect>
+					id="id-10224"
+					listLabel="id-10224-Auto"></DBCustomSelect>
 			</div>
 		</Fragment>
 	);

@@ -24,7 +24,8 @@ export default function CustomSelectShowSelectAll() {
 					showSelectAll={false}
 					multiple={true}
 					id="id-10256"
-					label="(Default) False"></DBCustomSelect>
+					label="(Default) False"
+					listLabel="id-10256-(Default) False"></DBCustomSelect>
 			</div>
 			<div style={{ width: '200px' }}>
 				<DBCustomSelect
@@ -38,7 +39,8 @@ export default function CustomSelectShowSelectAll() {
 					showSelectAll={true}
 					multiple={true}
 					id="id-10257"
-					label="True"></DBCustomSelect>
+					label="True"
+					listLabel="id-10257-True"></DBCustomSelect>
 			</div>
 		</Fragment>
 	);

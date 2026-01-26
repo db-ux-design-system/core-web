@@ -35,7 +35,8 @@ export default function CustomSelectPlacement() {
 					label="Bottom"
 					formFieldWidth="full"
 					placement="bottom"
-					id="id-10238"></DBCustomSelect>
+					id="id-10238"
+					listLabel="id-10238-Bottom"></DBCustomSelect>
 			</div>
 			<div style={{ width: '200px' }}>
 				<DBCustomSelect
@@ -49,7 +50,8 @@ export default function CustomSelectPlacement() {
 					label="Top"
 					formFieldWidth="full"
 					placement="top"
-					id="id-10239"></DBCustomSelect>
+					id="id-10239"
+					listLabel="id-10239-Top"></DBCustomSelect>
 			</div>
 
 			<i class="line-break" />
@@ -71,7 +73,8 @@ export default function CustomSelectPlacement() {
 					label="Bottom"
 					formFieldWidth="auto"
 					placement="bottom-start"
-					id="id-10243"></DBCustomSelect>
+					id="id-10243"
+					listLabel="id-10243-Bottom"></DBCustomSelect>
 			</div>
 			<div style={{ width: '200px' }}>
 				<DBCustomSelect
@@ -85,7 +88,8 @@ export default function CustomSelectPlacement() {
 					label="Bottom"
 					formFieldWidth="auto"
 					placement="bottom-end"
-					id="id-10244"></DBCustomSelect>
+					id="id-10244"
+					listLabel="id-10244-Bottom"></DBCustomSelect>
 			</div>
 			<div style={{ width: '200px' }}>
 				<DBCustomSelect
@@ -99,7 +103,8 @@ export default function CustomSelectPlacement() {
 					label="Top"
 					formFieldWidth="auto"
 					placement="top-start"
-					id="id-10245"></DBCustomSelect>
+					id="id-10245"
+					listLabel="id-10245-Top"></DBCustomSelect>
 			</div>
 			<div style={{ width: '200px' }}>
 				<DBCustomSelect
@@ -113,7 +118,8 @@ export default function CustomSelectPlacement() {
 					label="Top"
 					formFieldWidth="auto"
 					placement="top-end"
-					id="id-10246"></DBCustomSelect>
+					id="id-10246"
+					listLabel="id-10246-Top"></DBCustomSelect>
 			</div>
 		</Fragment>
 	);

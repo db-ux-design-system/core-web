@@ -22,7 +22,8 @@ export default function CustomSelectValidation() {
 					]}
 					id="id-102061"
 					validation="no-validation"
-					label="(Default) No Validation"></DBCustomSelect>
+					label="(Default) No Validation"
+					listLabel="id-102061-(Default) No Validation"></DBCustomSelect>
 			</div>
 			<div style={{ width: '200px' }}>
 				<DBCustomSelect
@@ -36,7 +37,8 @@ export default function CustomSelectValidation() {
 					id="id-102062"
 					validation="invalid"
 					invalidMessage="Invalid Message"
-					label="Invalid"></DBCustomSelect>
+					label="Invalid"
+					listLabel="id-102062-Invalid"></DBCustomSelect>
 			</div>
 			<div style={{ width: '200px' }}>
 				<DBCustomSelect
@@ -50,7 +52,8 @@ export default function CustomSelectValidation() {
 					id="id-102063"
 					validation="valid"
 					invalidMessage="Valid Message"
-					label="Valid"></DBCustomSelect>
+					label="Valid"
+					listLabel="id-102063-Valid"></DBCustomSelect>
 			</div>
 		</Fragment>
 	);

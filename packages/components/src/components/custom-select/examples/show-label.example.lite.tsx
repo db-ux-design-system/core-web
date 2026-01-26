@@ -22,7 +22,8 @@ export default function CustomSelectShowLabel() {
 					]}
 					showLabel={true}
 					id="id-10213"
-					label="(Default) True"></DBCustomSelect>
+					label="(Default) True"
+					listLabel="id-10213-(Default) True"></DBCustomSelect>
 			</div>
 			<div style={{ width: '200px' }}>
 				<DBCustomSelect
@@ -35,7 +36,8 @@ export default function CustomSelectShowLabel() {
 					]}
 					showLabel={false}
 					id="id-10214"
-					label="False"></DBCustomSelect>
+					label="False"
+					listLabel="id-10214-False"></DBCustomSelect>
 			</div>
 		</Fragment>
 	);

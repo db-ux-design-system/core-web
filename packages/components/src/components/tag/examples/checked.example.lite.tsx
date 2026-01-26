@@ -11,18 +11,20 @@ useMetadata({
 export default function TagChecked() {
 	return (
 		<Fragment>
-			<DBTag>
-				<label>
-					<input type="checkbox" />
-					(Default) False
-				</label>
-			</DBTag>
-			<DBTag>
-				<label>
-					<input type="checkbox" checked={true} />
-					True
-				</label>
-			</DBTag>
+			<div role="group">
+				<DBTag>
+					<label>
+						<input type="checkbox" />
+						(Default) False
+					</label>
+				</DBTag>
+				<DBTag>
+					<label>
+						<input type="checkbox" checked={true} />
+						True
+					</label>
+				</DBTag>
+			</div>
 		</Fragment>
 	);
 }

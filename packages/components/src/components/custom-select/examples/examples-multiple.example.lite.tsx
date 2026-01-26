@@ -29,7 +29,8 @@ export default function CustomSelectExamplesMultiple() {
 					placeholder="Placeholder"
 					multiple={true}
 					id="id-10266"
-					label="Less than 6"></DBCustomSelect>
+					label="Less than 6"
+					listLabel="id-10266-Less than 6"></DBCustomSelect>
 			</div>
 			<div style={{ width: '200px' }}>
 				<DBCustomSelect
@@ -52,7 +53,8 @@ export default function CustomSelectExamplesMultiple() {
 					placeholder="Placeholder"
 					multiple={true}
 					id="id-10267"
-					label="Option Group Title"></DBCustomSelect>
+					label="Option Group Title"
+					listLabel="id-10267-Option Group Title"></DBCustomSelect>
 			</div>
 			<div style={{ width: '200px' }}>
 				<DBCustomSelect
@@ -73,7 +75,8 @@ export default function CustomSelectExamplesMultiple() {
 					placeholder="Placeholder"
 					multiple={true}
 					id="id-10268"
-					label="Option Groups"></DBCustomSelect>
+					label="Option Groups"
+					listLabel="id-10268-Option Groups"></DBCustomSelect>
 			</div>
 			<div style={{ width: '200px' }}>
 				<DBCustomSelect
@@ -89,7 +92,8 @@ export default function CustomSelectExamplesMultiple() {
 					placeholder="Placeholder"
 					multiple={true}
 					id="id-10269"
-					label="More than 6"></DBCustomSelect>
+					label="More than 6"
+					listLabel="id-10269-More than 6"></DBCustomSelect>
 			</div>
 			<div style={{ width: '200px' }}>
 				<DBCustomSelect
@@ -111,7 +115,8 @@ export default function CustomSelectExamplesMultiple() {
 					placeholder="Placeholder"
 					multiple={true}
 					id="id-10270"
-					label="More than 10"></DBCustomSelect>
+					label="More than 10"
+					listLabel="id-10270-More than 10"></DBCustomSelect>
 			</div>
 		</Fragment>
 	);

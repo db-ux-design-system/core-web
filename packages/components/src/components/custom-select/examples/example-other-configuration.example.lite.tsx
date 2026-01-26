@@ -46,7 +46,8 @@ export default function CustomSelectExampleOtherConfiguration() {
 					showSearch={true}
 					multiple={true}
 					id="id-10as4"
-					label="Search Value"></DBCustomSelect>
+					label="Search Value"
+					listLabel="id-10as4-Search Value"></DBCustomSelect>
 			</div>
 			<div style={{ width: '200px' }}>
 				<DBCustomSelect
@@ -59,7 +60,8 @@ export default function CustomSelectExampleOtherConfiguration() {
 					]}
 					selectedLabels="Label controlled"
 					id="id-10aasds4"
-					label="Custom Selected Label"></DBCustomSelect>
+					label="Custom Selected Label"
+					listLabel="id-10aasds4-Custom Selected Label"></DBCustomSelect>
 			</div>
 			<div style={{ width: '200px' }}>
 				<DBCustomSelect
@@ -72,6 +74,7 @@ export default function CustomSelectExampleOtherConfiguration() {
 					]}
 					id="id-10aasds4"
 					label="Transform Selected Label"
+					listLabel="id-10aasds4-Transform Selected Label"
 					{...useTarget({
 						angular: { transformSelectedLabels: undefined },
 						stencil: { transformSelectedLabels: undefined },
@@ -93,6 +96,7 @@ export default function CustomSelectExampleOtherConfiguration() {
 					]}
 					id="id-10aasds4"
 					label="Custom Search Filter"
+					listLabel="id-10aasds4-Custom Search Filter"
 					{...useTarget({
 						angular: { searchFilter: undefined },
 						stencil: { searchFilter: undefined },

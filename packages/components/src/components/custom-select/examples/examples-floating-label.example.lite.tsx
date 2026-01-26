@@ -23,7 +23,8 @@ export default function CustomSelectExamplesFloatinglabel() {
 					variant="floating"
 					values={['Floating Label']}
 					id="id-10300"
-					label="Floating"></DBCustomSelect>
+					label="Floating"
+					listLabel="id-10300-Floating"></DBCustomSelect>
 			</div>
 			<div style={{ width: '200px' }}>
 				<DBCustomSelect
@@ -38,7 +39,8 @@ export default function CustomSelectExamplesFloatinglabel() {
 					id="id-10301"
 					validation="invalid"
 					invalidMessage="Invalid Message"
-					label="Floating"></DBCustomSelect>
+					label="Floating"
+					listLabel="id-10301-Floating"></DBCustomSelect>
 			</div>
 		</Fragment>
 	);

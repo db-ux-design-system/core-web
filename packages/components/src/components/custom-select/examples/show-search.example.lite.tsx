@@ -28,7 +28,8 @@ export default function CustomSelectShowSearch() {
 					showSearch={false}
 					multiple={true}
 					id="id-10254"
-					label="(Default) False"></DBCustomSelect>
+					label="(Default) False"
+					listLabel="id-10254-(Default) False"></DBCustomSelect>
 			</div>
 			<div style={{ width: '200px' }}>
 				<DBCustomSelect
@@ -42,7 +43,8 @@ export default function CustomSelectShowSearch() {
 					showSearch={true}
 					multiple={true}
 					id="id-10255"
-					label="True"></DBCustomSelect>
+					label="True"
+					listLabel="id-10255-True"></DBCustomSelect>
 			</div>
 		</Fragment>
 	);

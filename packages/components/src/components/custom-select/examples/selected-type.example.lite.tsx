@@ -22,7 +22,8 @@ export default function CustomSelectSelectedtype() {
 					]}
 					multiple={true}
 					id="id-10247"
-					label="(Default) Text"></DBCustomSelect>
+					label="(Default) Text"
+					listLabel="id-10247-(Default) Text"></DBCustomSelect>
 			</div>
 			<div style={{ width: '200px' }}>
 				<DBCustomSelect
@@ -36,7 +37,8 @@ export default function CustomSelectSelectedtype() {
 					selectedType="amount"
 					multiple={true}
 					id="id-10248"
-					label="Amount"></DBCustomSelect>
+					label="Amount"
+					listLabel="id-10248-Amount"></DBCustomSelect>
 			</div>
 			<div style={{ width: '200px' }}>
 				<DBCustomSelect
@@ -50,7 +52,8 @@ export default function CustomSelectSelectedtype() {
 					selectedType="tag"
 					multiple={true}
 					id="id-10249"
-					label="Tag"></DBCustomSelect>
+					label="Tag"
+					listLabel="id-10249-Tag"></DBCustomSelect>
 			</div>
 		</Fragment>
 	);

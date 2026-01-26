@@ -23,7 +23,8 @@ export default function CustomSelectShowMessage() {
 					message="Helper Message"
 					showMessage={false}
 					id="id-10215"
-					label="(Default) False"></DBCustomSelect>
+					label="(Default) False"
+					listLabel="id-10215-(Default) False"></DBCustomSelect>
 			</div>
 			<div style={{ width: '200px' }}>
 				<DBCustomSelect
@@ -37,7 +38,8 @@ export default function CustomSelectShowMessage() {
 					message="Helper Message"
 					showMessage={true}
 					id="id-10216"
-					label="True"></DBCustomSelect>
+					label="True"
+					listLabel="id-10216-True"></DBCustomSelect>
 			</div>
 		</Fragment>
 	);

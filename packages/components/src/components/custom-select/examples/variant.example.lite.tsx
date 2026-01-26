@@ -21,7 +21,8 @@ export default function CustomSelectVariant() {
 						{ value: 'Option 5', id: 'uurfm7y5y' }
 					]}
 					id="id-10211"
-					label="(Default) Above"></DBCustomSelect>
+					label="(Default) Above"
+					listLabel="id-10211-(Default) Above"></DBCustomSelect>
 			</div>
 			<div style={{ width: '200px' }}>
 				<DBCustomSelect
@@ -34,7 +35,8 @@ export default function CustomSelectVariant() {
 					]}
 					variant="floating"
 					id="id-10212"
-					label="Floating"></DBCustomSelect>
+					label="Floating"
+					listLabel="id-10212-Floating"></DBCustomSelect>
 			</div>
 		</Fragment>
 	);
