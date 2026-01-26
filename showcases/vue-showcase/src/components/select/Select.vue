@@ -25,7 +25,6 @@ import DefaultComponent from "../DefaultComponent.vue";
 				:invalidMessage="exampleProps?.invalidMessage"
 				:validMessage="exampleProps?.validMessage"
 				:validation="exampleProps?.validation"
-				:showEmptyOption="exampleProps?.showEmptyOption"
 			/>
 		</template>
 	</DefaultComponent>
