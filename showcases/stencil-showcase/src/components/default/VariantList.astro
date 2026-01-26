@@ -18,7 +18,7 @@ const { name, role, examples } = Astro.props;
 						set:html={Astro.slots.render('default', [
 							{
 								...example.props,
-								id: example.props?.id ?? example.name,
+								id: example.props?.id,
 								children: example.name,
 							},
 						])}

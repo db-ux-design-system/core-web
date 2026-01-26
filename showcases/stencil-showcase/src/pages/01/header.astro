@@ -60,7 +60,7 @@ import { DBHeader, DBBrand, DBLink, DBButton, DBNavigation, DBNavigationItem } f
 								</DBButton>
 							)}
 							{(!example || withNavigation) && (
-								<DBNavigation aria-label="Navigation">
+								<DBNavigation aria-label={children}>
 									<DBNavigationItem hideSubNavigation={true} icon="x_placeholder">
 										<a href="#">{children}</a>
 									</DBNavigationItem>

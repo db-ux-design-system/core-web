@@ -14,7 +14,7 @@ import { DBTabs, DBTabList, DBTabItem, DBTabPanel, DBInfotext } from '@component
 			(variant: DefaultComponentVariants) => (
 				<VariantList {...variant}>
 					{({ children, overflow, ...props }: DBTabsProps & { overflow?: boolean }) => (
-						<div className="w-full">
+						<div class="w-full">
 							<DBInfotext icon="none" size="small" semantic="informational">
 								{children}:
 							</DBInfotext>

@@ -14,7 +14,7 @@ import { DBSelect } from '@components';
 			(variant: DefaultComponentVariants) => (
 				<VariantList {...variant}>
 					{({ options,id, ...props }: DBSelectProps) => {
-						const randomId = `${Math.random().toString().substring(2)}`;
+						const randomId = `select-${Math.random().toString().substring(2)}`;
 						return (
 							<>
 								<DBSelect id={randomId} {...props} />
