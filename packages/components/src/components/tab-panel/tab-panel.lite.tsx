@@ -1,5 +1,4 @@
 import {
-	onMount,
 	Show,
 	useDefaultProps,
 	useMetadata,
@@ -13,20 +12,18 @@ useMetadata({});
 useDefaultProps<DBTabPanelProps>({});
 
 export default function DBTabPanel(props: DBTabPanelProps) {
-	// This is used as forwardRef
-	const _ref = useRef<HTMLDivElement | any>(null);
-	// jscpd:ignore-start
-	const state = useStore<DBTabPanelState>({});
+	const _ref = useRef<HTMLDivElement | null>(null);
 
-	onMount(() => {});
-	// jscpd:ignore-end
+	const state = useStore<DBTabPanelState>({});
 
 	return (
 		<section
 			ref={_ref}
 			class={cls('db-tab-panel', props.className)}
 			id={props.id}
-			role="tabpanel">
+			role="tabpanel"
+			hidden={props.hidden}
+			aria-labelledby={props.ariaLabelledby}>
 			<Show when={props.content}> {props.content}</Show>
 			{props.children}
 		</section>

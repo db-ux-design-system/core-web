@@ -1,5 +1,5 @@
 import {
-	AlignmentProps,
+	ContentAlignmentProps,
 	GlobalProps,
 	GlobalState,
 	InitializedState,
@@ -74,7 +74,7 @@ export type DBTabsProps = DBTabsDefaultProps &
 	GlobalProps &
 	OrientationProps &
 	WidthProps &
-	AlignmentProps &
+	ContentAlignmentProps &
 	DBTabsEventProps;
 
 export type DBTabsDefaultState = {
@@ -86,9 +86,10 @@ export type DBTabsDefaultState = {
 	evaluateScrollButtons: (tabList: Element) => void;
 	convertTabs: () => DBSimpleTabProps[];
 	initTabList: () => void;
-	initTabs: (init?: boolean) => void;
-	handleChange: (event: InputEvent<HTMLElement>) => void;
+	initTabs: () => void;
 	_resizeObserver?: ResizeObserver;
+	activeTabIndex: number;
+	activateTab: (index: number) => void;
 };
 
 export type DBTabsState = DBTabsDefaultState & GlobalState & InitializedState;

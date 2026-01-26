@@ -13,7 +13,7 @@ const getTab = ({
 	iconTrailing,
 	showIconTrailing,
 	showIcon,
-	disabled
+	isDisabled
 }: DBTabItemProps) => (
 	<DBTabList>
 		<DBTabItem
@@ -23,7 +23,7 @@ const getTab = ({
 			iconTrailing={iconTrailing}
 			showIcon={showIcon}
 			showIconTrailing={showIconTrailing}
-			disabled={disabled}>
+			isDisabled={isDisabled}>
 			{children}
 		</DBTabItem>
 	</DBTabList>

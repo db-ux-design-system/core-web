@@ -635,13 +635,13 @@ export type CloseEventState<T> = {
 	handleClose: (event?: T | void, forceClose?: boolean) => void;
 };
 
-export const AlignmentList = ['start', 'center'] as const;
-export type AlignmentType = (typeof AlignmentList)[number];
-export type AlignmentProps = {
+export const ContentAlignmentList = ['left', 'center'] as const;
+export type ContentAlignmentType = (typeof ContentAlignmentList)[number];
+export type ContentAlignmentProps = {
 	/**
 	 * Define the content alignment in full width
 	 */
-	alignment?: AlignmentType | string;
+	contentAlignment?: ContentAlignmentType | string;
 };
 
 export type ActiveProps = {

@@ -3,169 +3,224 @@ import {
 	onUnMount,
 	onUpdate,
 	Show,
+	Slot,
 	useDefaultProps,
 	useMetadata,
 	useRef,
-	useStore,
-	useTarget
+	useStore
 } from '@builder.io/mitosis';
-import { cls, getBoolean, getBooleanAsString } from '../../utils';
-import {
-	handleFrameworkEventAngular,
-	handleFrameworkEventVue
-} from '../../utils/form-components';
+import { cls, getBoolean } from '../../utils';
+import DBIcon from '../icon/icon.lite';
+import DBTooltip from '../tooltip/tooltip.lite';
 import type { DBTabItemProps, DBTabItemState } from './model';
 
-useMetadata({
-	angular: {
-		nativeAttributes: ['disabled'],
-		signals: {
-			writeable: ['disabled', 'checked']
-		}
-	}
-});
+useMetadata({});
 useDefaultProps<DBTabItemProps>({});
 
 export default function DBTabItem(props: DBTabItemProps) {
-	const _ref = useRef<HTMLInputElement | any>(null);
+	const _ref = useRef<HTMLButtonElement | null>(null);
+	const _labelRef = useRef<HTMLSpanElement | null>(null);
 
-	// jscpd:ignore-start
 	const state = useStore<DBTabItemState>({
-		_selected: false,
-		_name: undefined,
 		initialized: false,
-		_listenerAdded: false,
-		boundSetSelectedOnChange: undefined,
-		setSelectedOnChange: (event: any) => {
-			event.stopPropagation();
-			useTarget({
-				stencil: () => {
-					state._selected = getBooleanAsString(event.target === _ref);
-				},
-				default: () => {
-					state._selected = event.target === _ref;
-				}
-			});
-		},
-		handleNameAttribute: () => {
-			if (_ref) {
-				const setAttribute = _ref.setAttribute;
-				_ref.setAttribute = (attribute: string, value: string) => {
-					setAttribute.call(_ref, attribute, value);
-					if (attribute === 'name') {
-						state._name = value;
-					}
-				};
-			}
-		},
-		handleChange: (event: any) => {
-			if (props.onChange) {
-				props.onChange(event);
+		internalActive: getBoolean(props.active) || false,
+		disabled: false,
+		isTruncated: false,
+		tooltipText: '',
+		_observer: null,
+		_resizeObserver: null,
+		handleClick: (event: any) => {
+			if (event && event.preventDefault) {
+				event.preventDefault();
 			}
 
-			useTarget({
-				angular: () =>
-					handleFrameworkEventAngular(state, event, 'checked'),
-				vue: () => handleFrameworkEventVue(() => {}, event, 'checked')
-			});
+			if (!state.disabled) {
+				state.internalActive = true;
+				if (props.onClick) {
+					props.onClick(event);
+				}
+			}
+		},
+		checkTruncation: () => {
+			if (_labelRef) {
+				const scrollWidth = Math.ceil(_labelRef.scrollWidth);
+				const clientWidth = Math.ceil(_labelRef.clientWidth);
+				const truncated = scrollWidth > clientWidth + 1;
+
+				if (state.isTruncated !== truncated) {
+					state.isTruncated = truncated;
+				}
+
+				if (truncated && !props.label) {
+					state.tooltipText =
+						_labelRef.innerText || _labelRef.textContent || '';
+				} else if (props.label) {
+					state.tooltipText = props.label || '';
+				}
+			}
 		}
 	});
 
-	// Set up event listener to react on any change (select & deselect) in tab list
-	// Default: Most framework can just pass the state function to the parents event listener.
-	// Stencil: Bind the function to maintain correct 'this' context in class components
-	// React: Wrap in arrow function so setState doesn't treat it as a state updater
 	onMount(() => {
-		useTarget({
-			stencil: () => {
-				state.boundSetSelectedOnChange =
-					state.setSelectedOnChange.bind(state);
-			},
-			react: () => {
-				state.boundSetSelectedOnChange = () =>
-					state.setSelectedOnChange;
-			},
-			default: () => {
-				state.boundSetSelectedOnChange = state.setSelectedOnChange;
-			}
-		});
-		state.initialized = true;
-	});
-	// jscpd:ignore-end
+		state.internalActive = getBoolean(props.active) || false;
+		// map 'isDisabled' prop to 'disabled' state to avoid native attribute conflicts
+		state.disabled = getBoolean(props.isDisabled) || false;
 
-	onUpdate(() => {
-		if (_ref && state.initialized && state.boundSetSelectedOnChange) {
-			useTarget({ react: () => state.handleNameAttribute() });
-			state.initialized = false;
+		if (typeof window !== 'undefined') {
+			requestAnimationFrame(() => {
+				state.checkTruncation();
+			});
+		}
 
-			// deselect this tab when another tab in tablist is selected
-			if (!state._listenerAdded) {
-				_ref.closest('[role=tablist]')?.addEventListener(
-					'change',
-					state.boundSetSelectedOnChange
-				);
-				state._listenerAdded = true;
-			}
+		if (_labelRef) {
+			const resizeObserver = new ResizeObserver(() => {
+				requestAnimationFrame(() => {
+					state.checkTruncation();
+				});
+			});
+			resizeObserver.observe(_labelRef);
+			state._resizeObserver = resizeObserver;
+		}
 
-			// Initialize selected state from either active prop (set by parent) or checked attribute
-			if (props.active || _ref.checked) {
-				useTarget({
-					stencil: () => {
-						state._selected = getBooleanAsString(true);
-					},
-					default: () => {
-						state._selected = true;
+		if (_ref) {
+			const observer = new MutationObserver((mutations) => {
+				mutations.forEach((mutation) => {
+					if (mutation.attributeName === 'aria-selected') {
+						const isSelected =
+							_ref?.getAttribute('aria-selected') === 'true';
+						// sync internal state if the DOM attribute is changed externally
+						if (state.internalActive !== isSelected) {
+							state.internalActive = isSelected;
+						}
 					}
 				});
-				_ref.click();
-			}
-		}
-	}, [_ref, state.initialized, state.boundSetSelectedOnChange]);
+			});
 
-	onUpdate(() => {
-		if (props.name) {
-			state._name = props.name;
-		}
-	}, [props.name]);
-
-	onUnMount(() => {
-		if (state._listenerAdded && _ref && state.boundSetSelectedOnChange) {
-			_ref.closest('[role=tablist]')?.removeEventListener(
-				'change',
-				state.boundSetSelectedOnChange
-			);
-			state._listenerAdded = false;
+			observer.observe(_ref, {
+				attributes: true,
+				attributeFilter: ['aria-selected']
+			});
+			state._observer = observer;
 		}
 	});
 
-	return (
-		<li class={cls('db-tab-item', props.className)} role="none">
-			<label
-				htmlFor={props.id}
-				data-icon={props.iconLeading ?? props.icon}
-				data-icon-trailing={props.iconTrailing}
-				data-show-icon={getBooleanAsString(
-					props.showIconLeading ?? props.showIcon
-				)}
-				data-show-icon-trailing={getBooleanAsString(
-					props.showIconTrailing
-				)}
-				data-no-text={getBooleanAsString(props.noText)}>
-				<input
-					disabled={getBoolean(props.disabled, 'disabled')}
-					aria-selected={state._selected}
-					checked={getBoolean(props.checked, 'checked')}
-					ref={_ref}
-					type="radio"
-					role="tab"
-					name={state._name}
-					id={props.id}
-					onInput={(event: any) => state.handleChange(event)}
-				/>
+	// Disconnect the observer
+	onUnMount(() => {
+		state._observer?.disconnect();
+		state._resizeObserver?.disconnect();
+	});
 
-				<Show when={props.label}>{props.label}</Show>
-				{props.children}
-			</label>
+	// Update internal active state when the active prop changes
+	onUpdate(() => {
+		if (props.active !== undefined) {
+			state.internalActive = getBoolean(props.active) || false;
+		}
+	}, [props.active]);
+
+	// Update disabled state when the isDisabled prop changes
+	onUpdate(() => {
+		if (props.isDisabled !== undefined) {
+			state.disabled = getBoolean(props.isDisabled) || false;
+		}
+	}, [props.isDisabled]);
+
+	// Manually sync DOM attributes with internal state to prevent framework conflicts
+	onUpdate(() => {
+		if (_ref) {
+			const tabIndexStr =
+				props.tabIndex !== undefined
+					? String(props.tabIndex)
+					: state.internalActive
+						? '0'
+						: '-1';
+
+			if (_ref?.getAttribute('tabindex') !== tabIndexStr) {
+				_ref?.setAttribute('tabindex', tabIndexStr);
+			}
+
+			const disabledStr = state.disabled ? 'true' : 'false';
+			if (_ref?.getAttribute('aria-disabled') !== disabledStr) {
+				_ref?.setAttribute('aria-disabled', disabledStr);
+			}
+
+			// manual sync of the disabled attribute to prevent framework interference.
+			if (state.disabled) {
+				if (!_ref?.hasAttribute('disabled')) {
+					_ref?.setAttribute('disabled', '');
+				}
+			} else {
+				if (_ref?.hasAttribute('disabled')) {
+					_ref?.removeAttribute('disabled');
+				}
+			}
+		}
+	}, [state.internalActive, state.disabled, props.tabIndex]);
+
+	return (
+		<li
+			class={cls(
+				'db-tab-item',
+				(
+					props.active !== undefined
+						? getBoolean(props.active)
+						: state.internalActive
+				)
+					? 'active'
+					: '',
+				props.className
+			)}
+			// ensures screen readers ignore the list item semantics and focus directly on the button (role="tab") for simpler navigation
+			role="presentation">
+			<button
+				ref={_ref}
+				type="button"
+				role="tab"
+				// suppresses native browser tooltips inherited from parent elements
+				title=""
+				aria-label={getBoolean(props.noText) ? props.label : undefined}
+				aria-selected={
+					(
+						props.active !== undefined
+							? getBoolean(props.active)
+							: state.internalActive
+					)
+						? 'true'
+						: 'false'
+				}
+				aria-controls={props.ariaControls}
+				disabled={state.disabled ? true : undefined}
+				tabIndex={+(props.tabIndex ?? (state.internalActive ? 0 : -1))}
+				id={props.id}
+				class={cls(
+					'db-tab-button',
+					(
+						props.active !== undefined
+							? getBoolean(props.active)
+							: state.internalActive
+					)
+						? 'active'
+						: ''
+				)}
+				onClick={(event) => state.handleClick(event)}>
+				<Show when={props.icon && props.showIcon}>
+					<DBIcon icon={props.icon} />
+				</Show>
+				<Show when={!props.noText}>
+					{/* wrapper needed for accurate width measurement via refs */}
+					<span ref={_labelRef} class="db-tab-label">
+						<Show when={props.label}>{props.label}</Show>
+						<Show when={!props.label}>
+							<Slot />
+						</Show>
+					</span>
+				</Show>
+				<Show when={props.iconTrailing && props.showIconTrailing}>
+					<DBIcon icon={props.iconTrailing} />
+				</Show>
+				<Show when={state.isTruncated && state.tooltipText}>
+					<DBTooltip placement="right">{state.tooltipText}</DBTooltip>
+				</Show>
+			</button>
 		</li>
 	);
 }

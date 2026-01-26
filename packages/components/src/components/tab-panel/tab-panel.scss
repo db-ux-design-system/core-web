@@ -2,5 +2,9 @@
 @use "@db-ux/core-foundations/build/styles/helpers";
 
 .db-tab-panel {
-	@include helpers.display(none);
+	&[hidden] {
+		display: none;
+	}
+
+	display: block;
 }
