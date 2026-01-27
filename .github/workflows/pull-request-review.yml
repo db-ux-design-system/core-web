@@ -1,0 +1,11 @@
+---
+name: PR review set
+
+on:
+  pull_request_target:
+    types: [review_requested]
+
+jobs:
+  auto-set-in-review:
+    uses: ./.github/workflows/99-auto-set-in-review.yml
+    secrets: inherit

@@ -1,0 +1,26 @@
+---
+name: 🗿 Auto set project status
+
+permissions:
+  pull-requests: write
+
+on:
+  workflow_call:
+
+jobs:
+  set-status:
+    runs-on: ubuntu-24.04
+    if: ${{ github.actor != 'dependabot[bot]' }}
+    steps:
+      - name: 🗿 Set project status
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          ITEM_ID=$(gh project item-list 6 --owner db-ux-design-system --format json | jq -r --arg pr_url "${{ github.event.pull_request.html_url }}" '.items[] | select(.content.url == $pr_url) | .id')
+          if [ "${{ github.event.pull_request.draft }}" = "true" ]; then
+            gh project item-edit --id "$ITEM_ID" --project-number 6 --owner db-ux-design-system --field-name "Status" --text "🏗️ In progress"
+            gh pr edit "${{ github.event.pull_request.html_url }}" --remove-reviewer @*
+          else
+            gh project item-edit --id "$ITEM_ID" --project-number 6 --owner db-ux-design-system --field-name "Status" --text "🎁 Ready for review"
+          fi
+        continue-on-error: true
