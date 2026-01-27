@@ -7,9 +7,6 @@ const nextConfig = {
 	env: {
 		NEXT_SHOWCASE_VARIANT: 'next',
 		BASE_PATH: '/next-showcase'
-	},
-	sassOptions: {
-		includePaths: ['../../node_modules']
 	}
 };
 

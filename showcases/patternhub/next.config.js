@@ -31,9 +31,6 @@ const config = {
 		NEXT_PUBLIC_GITHUB_VERSION_SWITCHER: 'true',
 		NEXT_PUBLIC_GITHUB_OWNER: 'db-ux-design-system',
 		NEXT_PUBLIC_GITHUB_REPO: 'core-web'
-	},
-	sassOptions: {
-		includePaths: ['../../node_modules']
 	}
 };
 

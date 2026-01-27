@@ -1,0 +1,33 @@
+@import "@db-ux/core-components/build/styles/rollup.css";
+@import "@db-ux/db-theme/build/styles/rollup.css";
+
+/* stylelint-disable-next-line selector-id-pattern, selector-max-id */
+#__next {
+	block-size: 100%;
+}
+
+html {
+	--lightningcss-light: initial;
+	--lightningcss-dark: ;
+
+	color-scheme: light dark;
+
+	@media (prefers-color-scheme: dark) {
+		--lightningcss-light: ;
+		--lightningcss-dark: initial;
+	}
+
+	&[data-theme="light"] {
+		--lightningcss-light: initial;
+		--lightningcss-dark: ;
+
+		color-scheme: light;
+	}
+
+	&[data-theme="dark"] {
+		--lightningcss-light: ;
+		--lightningcss-dark: initial;
+
+		color-scheme: dark;
+	}
+}
