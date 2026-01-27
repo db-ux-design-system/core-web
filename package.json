@@ -79,9 +79,6 @@
     "test:vue-components": "playwright test --config output/vue/playwright.config.ts --ui",
     "update:dependency:playwright": "node scripts/github/update-playwright.js"
   },
-  "dependencies": {
-    "fast-glob": "3.3.3"
-  },
   "devDependencies": {
     "@angular-devkit/build-angular": "20.3.15",
     "@angular/animations": "20.3.16",
@@ -157,6 +154,9 @@
     "vitest": "3.2.4",
     "xo": "1.2.3",
     "zone.js": "0.15.1"
+  },
+"dependencies": {
+    "fast-glob": "3.3.3"
   },
   "overrides": {
     "cross-spawn": "7.0.6",
