@@ -1,10 +1,6 @@
 ---
 name: 🗿 Auto set project status
 
-permissions:
-  pull-requests: write
-  repository-projects: write
-
 on:
   workflow_call:
 
@@ -12,10 +8,21 @@ jobs:
   set-status:
     runs-on: ubuntu-24.04
     if: ${{ github.actor != 'dependabot[bot]' }}
+    permissions:
+      pull-requests: write
+      repository-projects: write
     steps:
+      # https://docs.github.com/en/apps/creating-github-apps/authenticating-with-a-github-app/making-authenticated-api-requests-with-a-github-app-in-a-github-actions-workflow
+      - name: 🧬 Generate a token
+        id: generate-token
+        uses: actions/create-github-app-token@v2
+        with:
+          app-id: ${{ vars.AUTO_MERGE_APP_ID }}
+          private-key: ${{ secrets.AUTO_MERGE_PRIVATE_KEY }}
+
       - name: 🗿 Set project status
         env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ steps.generate-token.outputs.token }}
         run: |
           ITEM_ID=$(gh project item-list 6 --owner db-ux-design-system --format json | jq -r --arg pr_url "${{ github.event.pull_request.html_url }}" '.items[] | select(.content.url == $pr_url) | .id')
           FIELD_ID=$(gh project field-list 6 --owner db-ux-design-system --format json | jq -r '.fields[] | select(.name == "Status") | .id')
