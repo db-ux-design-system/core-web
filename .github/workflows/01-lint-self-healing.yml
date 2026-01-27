@@ -28,7 +28,6 @@ jobs:
     runs-on: ubuntu-24.04 # Use Ubuntu 24.04 explicitly
     permissions:
       contents: write
-      pull-requests: write
     steps:
       - name: ⏬️ Checkout repo
         uses: actions/checkout@v5
