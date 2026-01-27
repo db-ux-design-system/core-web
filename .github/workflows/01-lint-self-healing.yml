@@ -42,7 +42,7 @@ jobs:
         id: lint_check
         run: |
           # Pre-build stylelint package if needed
-          npm run build --workspace=nuxt-showcase
+          npm run nuxt:prepare --workspace=nuxt-showcase
           npm run build --workspace=@db-ux/core-stylelint
 
           # Run lint and capture exit code
