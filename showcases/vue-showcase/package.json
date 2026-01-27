@@ -24,7 +24,7 @@
   },
   "dependencies": {
     "sa11y": "4.4.1",
-    "vue": "3.5.26",
+    "vue": "3.5.27",
     "vue-router": "4.6.4"
   },
   "devDependencies": {
@@ -32,6 +32,6 @@
     "cross-env": "10.1.0",
     "typescript": "5.9.3",
     "vite": "7.3.1",
-    "vue-tsc": "3.2.2"
+    "vue-tsc": "3.2.4"
   }
 }
