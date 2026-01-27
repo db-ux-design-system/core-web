@@ -7,6 +7,7 @@ import {
 	IconProps,
 	InnerCloseButtonProps,
 	PopoverProps,
+	RoleProps,
 	SemanticProps,
 	ShowIconProps,
 	TextProps
@@ -86,6 +87,7 @@ export type DBNotificationDefaultProps = {
 
 export type DBNotificationProps = DBNotificationDefaultProps &
 	GlobalProps &
+	RoleProps &
 	CloseEventProps<ClickEvent<HTMLButtonElement>> &
 	IconProps &
 	SemanticProps &
