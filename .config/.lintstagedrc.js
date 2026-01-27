@@ -12,5 +12,6 @@ export default {
 	'**/package.json': [
 		() => 'npm install --package-lock-only --ignore-scripts',
 		'npm run lint:package-json'
-	]
+	],
+	'*': 'cspell --config .config/cspell.config.ts'
 };

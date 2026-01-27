@@ -12,6 +12,7 @@ import {
 	cls,
 	getBoolean,
 	getBooleanAsString,
+	getNotificationRole,
 	stringPropVisible
 } from '../../utils';
 import DBButton from '../button/button.lite';
@@ -37,10 +38,15 @@ export default function DBNotification(props: DBNotificationProps) {
 	// jscpd:ignore-end
 
 	return (
-		<article
+		<div
 			ref={_ref}
 			id={props.id}
 			class={cls('db-notification', props.className)}
+			role={getNotificationRole({
+				semantic: props.semantic,
+				role: props.role,
+				ariaLive: props.ariaLive
+			})}
 			aria-live={props.ariaLive}
 			data-semantic={props.semantic}
 			data-variant={props.variant}
@@ -81,6 +87,6 @@ export default function DBNotification(props: DBNotificationProps) {
 					{props.closeButtonText ?? DEFAULT_CLOSE_BUTTON}
 				</DBButton>
 			</Show>
-		</article>
+		</div>
 	);
 }
