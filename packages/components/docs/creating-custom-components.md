@@ -567,7 +567,7 @@ withDefaults(defineProps<Props>(), {
 
 ```typescript
 import { Component, Input, Output, EventEmitter } from "@angular/core";
-import { DBButton } from "@db-ux/ngx-core-compoennts";
+import { DBButton } from "@db-ux/ngx-core-components";
 
 @Component({
 	selector: "app-custom-card",
