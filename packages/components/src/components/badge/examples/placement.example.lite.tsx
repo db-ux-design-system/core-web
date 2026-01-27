@@ -23,8 +23,7 @@ export default function BadgePlacement() {
 	return (
 		<Fragment>
 			<div class="badge-inline-container">
-				<DBIcon icon="x_placeholder" />
-				<span>(Default) Inline</span>
+				<span data-icon="x_placeholder">(Default) Inline</span>
 				<DBBadge size="small" emphasis="strong" semantic="critical">
 					Label
 				</DBBadge>

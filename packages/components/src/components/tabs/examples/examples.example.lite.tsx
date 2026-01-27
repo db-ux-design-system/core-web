@@ -17,7 +17,7 @@ export default function TabsExamples() {
 		<Fragment>
 			<div class="fit-content-container">
 				<DBInfotext icon="none" size="small" semantic="informational">
-					2nd Test selected:
+					2nd tab selected:
 				</DBInfotext>
 				<DBTabs initialSelectedIndex={1}>
 					<DBTabList>

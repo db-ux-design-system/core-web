@@ -66,6 +66,7 @@ db-card:is(.variants-card) > .db-card {
 	align-items: center;
 }
 
+.variants-list > div[role] > div,
 .variants-list > div:not([class^="db-"]) {
 	align-items: center;
 	display: flex;
@@ -77,10 +78,10 @@ db-card:is(.variants-card) > .db-card {
 	inline-size: 100%;
 }
 
-.variants-list .db-select,
-.variants-list .db-input,
-.variants-list .db-textarea {
-	margin-block-start: auto;
+.variants-list div > .db-select,
+.variants-list div > .db-input,
+.variants-list div > .db-textarea {
+	align-self: flex-end;
 }
 
 .variants-list .db-select:has([placeholder="(Default) Basic"]),

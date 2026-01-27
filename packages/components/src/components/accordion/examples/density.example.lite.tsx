@@ -13,48 +13,55 @@ useMetadata({
 export default function AccordionDensity() {
 	return (
 		<Fragment>
-			<DBInfotext size="small" semantic="informational" icon="none">
-				Functional
-			</DBInfotext>
-			<DBAccordion data-density="functional">
-				<DBAccordionItem headlinePlain="Item 1">
-					Content 1
-				</DBAccordionItem>
-				<DBAccordionItem headlinePlain="Item 2">
-					Content 2
-				</DBAccordionItem>
-				<DBAccordionItem headlinePlain="Item 3">
-					Content 3
-				</DBAccordionItem>
-			</DBAccordion>
-			<DBInfotext size="small" semantic="informational" icon="none">
-				(Default) Regular
-			</DBInfotext>
-			<DBAccordion data-density="regular">
-				<DBAccordionItem headlinePlain="Item 1">
-					Content 1
-				</DBAccordionItem>
-				<DBAccordionItem headlinePlain="Item 2">
-					Content 2
-				</DBAccordionItem>
-				<DBAccordionItem headlinePlain="Item 3">
-					Content 3
-				</DBAccordionItem>
-			</DBAccordion>
-			<DBInfotext size="small" semantic="informational" icon="none">
-				Expressive
-			</DBInfotext>
-			<DBAccordion data-density="expressive">
-				<DBAccordionItem headlinePlain="Item 1">
-					Content 1
-				</DBAccordionItem>
-				<DBAccordionItem headlinePlain="Item 2">
-					Content 2
-				</DBAccordionItem>
-				<DBAccordionItem headlinePlain="Item 3">
-					Content 3
-				</DBAccordionItem>
-			</DBAccordion>
+			<div data-density="functional">
+				<DBInfotext size="small" semantic="informational" icon="none">
+					Functional
+				</DBInfotext>
+				<DBAccordion data-density="functional">
+					<DBAccordionItem headlinePlain="Item 1">
+						Content 1
+					</DBAccordionItem>
+					<DBAccordionItem headlinePlain="Item 2">
+						Content 2
+					</DBAccordionItem>
+					<DBAccordionItem headlinePlain="Item 3">
+						Content 3
+					</DBAccordionItem>
+				</DBAccordion>
+			</div>
+			<div data-density="regular">
+				<DBInfotext size="small" semantic="informational" icon="none">
+					(Default) Regular
+				</DBInfotext>
+				<DBAccordion data-density="regular">
+					<DBAccordionItem headlinePlain="Item 1">
+						Content 1
+					</DBAccordionItem>
+					<DBAccordionItem headlinePlain="Item 2">
+						Content 2
+					</DBAccordionItem>
+					<DBAccordionItem headlinePlain="Item 3">
+						Content 3
+					</DBAccordionItem>
+				</DBAccordion>
+			</div>
+
+			<div data-density="expressive">
+				<DBInfotext size="small" semantic="informational" icon="none">
+					Expressive
+				</DBInfotext>
+				<DBAccordion data-density="expressive">
+					<DBAccordionItem headlinePlain="Item 1">
+						Content 1
+					</DBAccordionItem>
+					<DBAccordionItem headlinePlain="Item 2">
+						Content 2
+					</DBAccordionItem>
+					<DBAccordionItem headlinePlain="Item 3">
+						Content 3
+					</DBAccordionItem>
+				</DBAccordion>
+			</div>
 		</Fragment>
 	);
 }

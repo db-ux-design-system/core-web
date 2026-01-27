@@ -31,9 +31,7 @@ export default function NavigationItemWrap() {
 								subNavigation={
 									<>
 										<DBNavigationItem>
-											<a href="#" aria-current="page">
-												Sub-Sub-Navi-Item 1
-											</a>
+											<a href="#">Sub-Sub-Navi-Item 1</a>
 										</DBNavigationItem>
 										<DBNavigationItem>
 											<a href="#">Sub-Sub-Navi-Item 2</a>
@@ -64,9 +62,7 @@ export default function NavigationItemWrap() {
 								subNavigation={
 									<>
 										<DBNavigationItem>
-											<a href="#" aria-current="page">
-												Sub-Sub-Navi-Item 1
-											</a>
+											<a href="#">Sub-Sub-Navi-Item 1</a>
 										</DBNavigationItem>
 										<DBNavigationItem>
 											<a href="#">Sub-Sub-Navi-Item 2</a>

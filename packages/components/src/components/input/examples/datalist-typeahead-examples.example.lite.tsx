@@ -28,7 +28,7 @@ export default function InputDatalistTypeaheadExamples() {
 				variant="floating"></DBInput>
 			<DBInput
 				label="Search Products"
-				placeholder="Type to search..."
+				placeholder="Regular Variant with Datalist"
 				dataList={dataList}></DBInput>
 			<DBInput
 				label="Search Stations"

@@ -33,7 +33,7 @@ export default function NotificationVisual() {
 	return (
 		<Fragment>
 			<div style={{ width: '300px' }}>
-				<DBNotification icon="information_circle" headline="Headline">
+				<DBNotification icon="information_circle">
 					(Default) Icon
 				</DBNotification>
 			</div>
@@ -44,8 +44,7 @@ export default function NotificationVisual() {
 							src={state.getImage()}
 							alt="this is a fancy placeholder"
 						/>
-					}
-					headline="Headline">
+					}>
 					Image
 				</DBNotification>
 			</div>
