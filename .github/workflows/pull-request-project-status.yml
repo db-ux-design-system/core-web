@@ -4,6 +4,7 @@ name: PR project status
 permissions:
   contents: read
   pull-requests: write
+  repository-projects: write
 
 on:
   pull_request:

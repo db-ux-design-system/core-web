@@ -3,6 +3,7 @@ name: 🗿 Auto set project status
 
 permissions:
   pull-requests: write
+  repository-projects: write
 
 on:
   workflow_call:
