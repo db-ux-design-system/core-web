@@ -28,13 +28,13 @@ jobs:
           FIELD_ID=$(gh project field-list 6 --owner db-ux-design-system --format json | jq -r '.fields[] | select(.name == "Status") | .id')
           if [ "${{ github.event.action }}" = "review_requested" ]; then
             OPTION_ID=$(gh project field-list 6 --owner db-ux-design-system --format json | jq -r '.fields[] | select(.name == "Status") | .options[] | select(.name == "👀 Actively In Review") | .id')
-            gh project item-edit --project-id 6 --id "$ITEM_ID" --field-id "$FIELD_ID" --single-select-option-id "$OPTION_ID"
+            gh project item-edit --id "$ITEM_ID" --field-id "$FIELD_ID" --single-select-option-id "$OPTION_ID"
           elif [ "${{ github.event.pull_request.draft }}" = "true" ]; then
             OPTION_ID=$(gh project field-list 6 --owner db-ux-design-system --format json | jq -r '.fields[] | select(.name == "Status") | .options[] | select(.name == "🏗️ In progress") | .id')
-            gh project item-edit --project-id 6 --id "$ITEM_ID" --field-id "$FIELD_ID" --single-select-option-id "$OPTION_ID"
+            gh project item-edit --id "$ITEM_ID" --field-id "$FIELD_ID" --single-select-option-id "$OPTION_ID"
             gh pr edit "${{ github.event.pull_request.html_url }}" --remove-reviewer @*
           else
             OPTION_ID=$(gh project field-list 6 --owner db-ux-design-system --format json | jq -r '.fields[] | select(.name == "Status") | .options[] | select(.name == "🎁 Ready for review") | .id')
-            gh project item-edit --project-id 6 --id "$ITEM_ID" --field-id "$FIELD_ID" --single-select-option-id "$OPTION_ID"
+            gh project item-edit --id "$ITEM_ID" --field-id "$FIELD_ID" --single-select-option-id "$OPTION_ID"
           fi
         continue-on-error: true
