@@ -12,6 +12,7 @@ export type OptionsType = {
 	src: string;
 	type: (
 		| string
+		| 'sass_to_postcss'
 		| 'colorQ32024'
 		| 'iconQ32024'
 		| 'v005_v006'
