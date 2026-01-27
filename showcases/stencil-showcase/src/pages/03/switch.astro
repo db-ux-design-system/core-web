@@ -1,0 +1,32 @@
+---
+import DefaultLayout from '../../layouts/default/DefaultLayout.astro';
+import DefaultComponent from '../../components/default/DefaultComponent.astro';
+import defaultComponentVariants from '../../../../shared/switch.json';
+import type { DBSwitchProps } from '@components';
+import VariantList from '../../components/default/VariantList.astro';
+import type { DefaultComponentVariants } from '../../../../shared/default-component-data.ts';
+import { DBSwitch, DBInfotext } from '@components';
+---
+
+<DefaultLayout>
+	<DefaultComponent title="DBSwitch" variants={defaultComponentVariants}
+		>{
+			(variant: DefaultComponentVariants) => (
+				<VariantList {...variant}>
+					{({ children, showLabel, ...props }: DBSwitchProps) => (
+						<>
+							<DBSwitch showLabel={showLabel} {...props}>
+								{children}
+							</DBSwitch>
+							{showLabel !== undefined && !showLabel && (
+								<DBInfotext semantic="informational" icon="none">
+									{children}
+								</DBInfotext>
+							)}
+						</>
+					)}
+				</VariantList>
+			)
+		}</DefaultComponent
+	>
+</DefaultLayout>

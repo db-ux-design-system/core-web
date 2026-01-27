@@ -73,6 +73,9 @@ useMetadata({
 		signals: {
 			writeable: ['disabled', 'values']
 		}
+	},
+	astro: {
+		ignoreProperties: ['options', 'values']
 	}
 });
 
@@ -245,10 +248,10 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 		},
 		getTagRemoveLabel: (option: CustomSelectOptionType) => {
 			const removeTexts = props.removeTagsTexts;
-			const options = props.options;
-			if (removeTexts && options) {
+			const currentOptions = props.options;
+			if (removeTexts && currentOptions) {
 				// Find the index of the option in the original options array
-				const optionIndex = options.findIndex(
+				const optionIndex = currentOptions.findIndex(
 					(opt) => opt.value === option.value
 				);
 				if (optionIndex >= 0 && optionIndex < removeTexts.length) {
@@ -517,7 +520,7 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 		},
 		handleSelect: (value?: string) => {
 			if (value) {
-				if (props.multiple) {
+				if (getBoolean(props.multiple, 'multiple')) {
 					if (state._values?.includes(value)) {
 						state.handleOptionSelected(
 							state._values!.filter((v: string) => v !== value)
@@ -737,7 +740,8 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 
 	onUpdate(() => {
 		state.selectAllEnabled = Boolean(
-			props.multiple && (props.showSelectAll ?? state.amountOptions > 5)
+			getBoolean(props.multiple, 'multiple') &&
+			(props.showSelectAll ?? state.amountOptions > 5)
 		);
 	}, [props.showSelectAll, state.amountOptions, props.multiple]);
 
@@ -912,14 +916,18 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 			data-variant={
 				props.variant === 'floating' &&
 				props.selectedType === 'tag' &&
-				props.multiple
+				getBoolean(props.multiple, 'multiple')
 					? 'above'
 					: props.variant
 			}
 			data-required={getBooleanAsString(props.required)}
 			data-hide-asterisk={getHideProp(props.showRequiredAsterisk)}
 			data-placement={props.placement}
-			data-selected-type={props.multiple ? props.selectedType : 'text'}
+			data-selected-type={
+				getBoolean(props.multiple, 'multiple')
+					? props.selectedType
+					: 'text'
+			}
 			data-hide-label={getHideProp(props.showLabel)}
 			data-icon={props.icon}
 			data-show-icon={getBooleanAsString(props.showIcon)}>
@@ -972,7 +980,11 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 						class="db-custom-select-form-field"
 						aria-disabled={getBooleanAsString(props.disabled)}
 						aria-labelledby={state._labelId}>
-						<Show when={state._selectedLabels?.length}>
+						<Show
+							when={
+								state._selectedLabels &&
+								state._selectedLabels?.length
+							}>
 							<span
 								data-visually-hidden={getBooleanAsString(
 									props.selectedType === 'tag'
@@ -988,7 +1000,7 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 						</Show>
 						<Show when={props.selectedType === 'tag'}>
 							<div>
-								<For each={state._selectedOptions}>
+								<For each={state._selectedOptions!}>
 									{(
 										option: CustomSelectOptionType,
 										index: number
@@ -1087,52 +1099,60 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 											props.label ??
 											DEFAULT_LABEL
 										}>
-										<For each={state._options}>
-											{(
-												option: CustomSelectOptionType
-											) => (
-												<DBCustomSelectListItem
-													key={useTarget({
-														vue: undefined,
-														stencil: undefined,
-														default: getOptionKey(
-															option,
-															'custom-select-list-item-'
-														)
-													})}
-													type={
-														props.multiple
-															? 'checkbox'
-															: 'radio'
-													}
-													showDivider={
-														option.showDivider
-													}
-													icon={option.icon}
-													isGroupTitle={
-														option.isGroupTitle
-													}
-													groupTitle={state.getOptionLabel(
-														option
-													)}
-													name={state._id}
-													checked={state.getOptionChecked(
-														option.value
-													)}
-													disabled={option.disabled}
-													value={option.value}
-													onChange={() =>
-														state.handleSelect(
-															option.value
-														)
-													}>
-													{!option.isGroupTitle &&
-														state.getOptionLabel(
+										<Show when={state._options}>
+											<For each={state._options}>
+												{(
+													option: CustomSelectOptionType
+												) => (
+													<DBCustomSelectListItem
+														key={useTarget({
+															vue: undefined,
+															stencil: undefined,
+															default:
+																getOptionKey(
+																	option,
+																	'custom-select-list-item-'
+																)
+														})}
+														type={
+															getBoolean(
+																props.multiple,
+																'multiple'
+															)
+																? 'checkbox'
+																: 'radio'
+														}
+														showDivider={
+															option.showDivider
+														}
+														icon={option.icon}
+														isGroupTitle={
+															option.isGroupTitle
+														}
+														groupTitle={state.getOptionLabel(
 															option
 														)}
-												</DBCustomSelectListItem>
-											)}
-										</For>
+														name={state._id}
+														checked={state.getOptionChecked(
+															option.value
+														)}
+														disabled={
+															option.disabled
+														}
+														value={option.value}
+														onChange={() =>
+															state.handleSelect(
+																option.value
+															)
+														}>
+														{!option.isGroupTitle &&
+															state.getOptionLabel(
+																option
+															)}
+													</DBCustomSelectListItem>
+												)}
+											</For>
+										</Show>
 									</DBCustomSelectList>
 								</>
 							}>
@@ -1175,7 +1195,11 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 
 			<Show
 				when={
-					(props.showClearSelection ?? true) && state._values?.length
+					!(
+						!props.showClearSelection ||
+						!state._values ||
+						state._values?.length === 0
+					)
 				}>
 				<DBButton
 					icon="cross"

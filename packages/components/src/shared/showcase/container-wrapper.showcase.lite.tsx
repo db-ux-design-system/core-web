@@ -1,24 +1,40 @@
-import { Fragment, onMount, Show, Slot, useState } from '@builder.io/mitosis';
+import { Fragment, onMount, Show, Slot, useStore } from '@builder.io/mitosis';
 import DBLink from '../../components/link/link.lite';
 import { delay } from '../../utils';
-import { PatternhubProps } from '../model';
+import { ContainerWrapperProps, ContainerWrapperState } from './model';
 
-type Props = {
-	title?: string;
-	/**
-	 * Slot for subcomponents - used for Patternhub
-	 */
-	subComponent?: any;
-	/**
-	 * Changes header level - used for Patternhub
-	 */
-	isSubComponent?: boolean;
+export default function ContainerWrapperShowcase(props: ContainerWrapperProps) {
+	const state = useStore<ContainerWrapperState>({
+		hidden: false,
+		getSourceFilePath: (): string | undefined => {
+			if (!props.title) return;
 
-	children?: any;
-} & PatternhubProps;
+			const componentName = props.title
+				?.replace(/^DB/, '')
+				.replaceAll(/([A-Z])/g, (match, letter, index) =>
+					index > 0
+						? `-${letter.toLowerCase()}`
+						: letter.toLowerCase()
+				);
 
-export default function ContainerWrapperShowcase(props: Props) {
-	const [hidden, setHidden] = useState<boolean>(false);
+			if (componentName && /^[a-z]+(-[a-z]+)*$/.test(componentName)) {
+				return `packages/components/src/components/${componentName}/${componentName}.lite.tsx`;
+			}
+
+			return;
+		},
+		getGitHubSourceUrl: (): string | undefined => {
+			const filePath = state.getSourceFilePath();
+			if (!filePath) return;
+
+			const targetBranch =
+				process.env['GITHUB_BRANCH'] ??
+				process.env['BRANCH_NAME'] ??
+				'main';
+
+			return `https://github.com/db-ux-design-system/core-web/blob/${targetBranch}/${filePath}`;
+		}
+	});
 
 	onMount(() => {
 		if (typeof window !== 'undefined') {
@@ -31,43 +47,15 @@ export default function ContainerWrapperShowcase(props: Props) {
 					window.location.search || queryString
 				);
 
-				setHidden(Boolean(params.get('page')));
+				state.hidden = Boolean(params.get('page'));
 			}, 1);
 		}
 	});
 
-	function getSourceFilePath(): string | undefined {
-		if (!props.title) return;
-
-		const componentName = props.title
-			?.replace(/^DB/, '')
-			.replaceAll(/([A-Z])/g, (match, letter, index) =>
-				index > 0 ? `-${letter.toLowerCase()}` : letter.toLowerCase()
-			);
-
-		if (componentName && /^[a-z]+(-[a-z]+)*$/.test(componentName)) {
-			return `packages/components/src/components/${componentName}/${componentName}.lite.tsx`;
-		}
-
-		return;
-	}
-
-	function getGitHubSourceUrl(): string | undefined {
-		const filePath = getSourceFilePath();
-		if (!filePath) return;
-
-		const targetBranch =
-			process.env['GITHUB_BRANCH'] ??
-			process.env['BRANCH_NAME'] ??
-			'main';
-
-		return `https://github.com/db-ux-design-system/core-web/blob/${targetBranch}/${filePath}`;
-	}
-
 	return (
 		<Fragment>
 			<div className="default-container">
-				<Show when={!hidden}>
+				<Show when={!state.hidden}>
 					<header class="component-header">
 						<Show
 							when={props.isSubComponent}
@@ -79,7 +67,7 @@ export default function ContainerWrapperShowcase(props: Props) {
 							<DBLink
 								target="_blank"
 								referrerPolicy="no-referrer"
-								href={getGitHubSourceUrl()}
+								href={state.getGitHubSourceUrl()}
 								content="external">
 								View Source
 							</DBLink>

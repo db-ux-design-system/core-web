@@ -1,0 +1,117 @@
+---
+import DefaultLayout from '../../layouts/default/DefaultLayout.astro';
+import DefaultComponent from '../../components/default/DefaultComponent.astro';
+import defaultComponentVariants from '../../../../shared/badge.json';
+import type { DBBadgeProps } from '@components';
+import VariantList from '../../components/default/VariantList.astro';
+import type { DefaultComponentVariants } from '../../../../shared/default-component-data.ts';
+import { DBBadge, DBButton, DBIcon, DBInfotext } from '@components';
+---
+
+<DefaultLayout>
+	<DefaultComponent title="DBBadge" variants={defaultComponentVariants}>
+		{
+			(variant: DefaultComponentVariants) => (
+				<VariantList {...variant}>
+					{({
+						children,
+						noContent,
+						example,
+						lineBreak,
+						placement,
+						size,
+						...props
+					}: DBBadgeProps & { noContent: boolean; example: string; lineBreak?: boolean }) => {
+						if (lineBreak) {
+							return <i class="line-break" />;
+						}
+
+						if (!placement && !example) {
+							return (
+								<>
+									<DBBadge size={size} placement={placement} {...props}>
+										{noContent ? '' : children}
+									</DBBadge>
+									{noContent && (
+										<DBInfotext semantic="informational" size="small" icon="none">
+											{children}
+										</DBInfotext>
+									)}
+								</>
+							);
+						}
+
+						if (placement && placement !== 'inline' && !example) {
+							return (
+								<>
+									<DBButton icon="x_placeholder" variant="outlined" noText={true}>
+										<DBBadge
+											size="small"
+											emphasis="strong"
+											semantic="critical"
+											placement={placement}
+										/>
+										{children}
+									</DBButton>
+									<DBInfotext semantic="informational" size="small" icon="none">
+										{children}
+									</DBInfotext>
+								</>
+							);
+						}
+
+						if (placement === 'inline') {
+							return (
+								<div class="badge-inline-container">
+									<DBIcon icon="x_placeholder" />
+									<span>{children}</span>
+									<DBBadge size="small" emphasis="strong" semantic="critical">
+										<>Label</>
+									</DBBadge>
+									<DBIcon icon="error" />
+								</div>
+							);
+						}
+
+						if (example === 'icon') {
+							return (
+								<>
+									<DBBadge semantic="critical" emphasis="strong" size={size}>
+										<DBIcon icon="x_placeholder">{children}</DBIcon>
+									</DBBadge>
+									<DBInfotext semantic="informational" size="small" icon="none">
+										{children}
+									</DBInfotext>
+								</>
+							);
+						}
+
+						if (example === 'number') {
+							return (
+								<>
+									<DBBadge semantic="successful">9</DBBadge>
+									<DBBadge semantic="informational">12</DBBadge>
+									<DBBadge semantic="warning">123</DBBadge>
+									<DBBadge size="small" emphasis="strong" semantic="successful">
+										<>9</>
+									</DBBadge>
+									<DBBadge size="small" emphasis="strong" semantic="informational">
+										<>12</>
+									</DBBadge>
+									<DBBadge size="small" emphasis="strong" semantic="warning">
+										<>123</>
+									</DBBadge>
+									<DBInfotext semantic="informational" size="small" icon="none">
+										{children}
+									</DBInfotext>
+								</>
+							);
+						}
+
+						return null;
+					}}
+				</VariantList>
+			)
+		}
+	</DefaultComponent>
+</DefaultLayout>

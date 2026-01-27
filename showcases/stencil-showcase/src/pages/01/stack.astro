@@ -1,0 +1,45 @@
+---
+import DefaultLayout from '../../layouts/default/DefaultLayout.astro';
+import DefaultComponent from '../../components/default/DefaultComponent.astro';
+import defaultComponentVariants from '../../../../shared/stack.json';
+import type { DBStackProps } from '@components';
+import VariantList from '../../components/default/VariantList.astro';
+import type { DefaultComponentVariants } from '../../../../shared/default-component-data.ts';
+import { DBStack, DBInfotext, DBDivider } from '@components';
+---
+
+<DefaultLayout>
+	<DefaultComponent title="DBStack" variants={defaultComponentVariants}
+		>{
+			(variant: DefaultComponentVariants) => (
+				<VariantList {...variant}>
+					{({ children, justifyContent, alignment, variant, ...props }: DBStackProps) => {
+						const showAlignment = justifyContent || alignment;
+						return (
+							<DBStack>
+								<DBInfotext size="small" icon="none" semantic="informational">
+									{children}
+								</DBInfotext>
+								<DBStack
+									className={showAlignment ? 'stack-container stack-show-alignment' : 'stack-container'}
+									justifyContent={justifyContent}
+									alignment={alignment}
+									variant={variant}
+									{...props}
+								>
+									<span class="dummy-component">
+										<a href="#">Content 1</a>
+									</span>
+									{variant === 'divider' && <DBDivider />}
+									<span class="dummy-component">Content 2</span>
+									{variant === 'divider' && <DBDivider />}
+									<span class="dummy-component">Content 3</span>
+								</DBStack>
+							</DBStack>
+						);
+					}}
+				</VariantList>
+			)
+		}</DefaultComponent
+	>
+</DefaultLayout>

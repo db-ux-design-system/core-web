@@ -1,0 +1,49 @@
+---
+import './../../../styles/global.css';
+import Navigation from '../../components/Navigation.astro';
+import { DBPage, DBHeader, DBBrand, DBSelect, DBNavigation, DBButton } from '@components';
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="generator" content={Astro.generator} />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<base href={import.meta.env.BASE_URL} />
+		<title>Showcase</title>
+		<script type="module" is:inline>
+			import { defineCustomElements } from './stencil/bundle/index.js';
+
+			defineCustomElements();
+		</script>
+	</head>
+	<body>
+		<DBPage variant="fixed" documentOverflow="auto">
+			<DBHeader slot="header">
+				<DBBrand slot="brand">Showcase</DBBrand>
+				<DBSelect slot="metaNavigation" variant="floating" label="Nothing" />
+				<DBButton slot="primaryAction" icon="magnifying_glass" variant="ghost" noText="true">
+					Search
+				</DBButton>
+
+				<DBButton slot="secondaryAction" icon="x_placeholder" variant="ghost" noText="true">
+					Profile
+				</DBButton>
+				<DBButton slot="secondaryAction" icon="x_placeholder" variant="ghost" noText="true">
+					Notification
+				</DBButton>
+				<DBButton slot="secondaryAction" icon="x_placeholder" variant="ghost" noText="true">
+					Help
+				</DBButton>
+
+				<DBNavigation aria-label="main-navigation">
+					<Navigation />
+				</DBNavigation>
+			</DBHeader>
+			<div>
+				<slot />
+			</div>
+		</DBPage>
+	</body>
+</html>

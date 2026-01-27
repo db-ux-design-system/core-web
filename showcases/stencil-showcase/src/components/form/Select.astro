@@ -1,0 +1,20 @@
+---
+import FormWrapper from './FormWrapper.astro';
+---
+
+<FormWrapper value="combobox-2" id="select">
+	<db-select value="combobox-2" label="Select" data-id="select">
+		<option value="combobox-0">combobox-0</option>
+		<option value="combobox-1">combobox-1</option>
+		<option value="combobox-2">combobox-2</option>
+	</db-select>
+</FormWrapper>
+
+<script>
+	const select = document.querySelector('[data-id="select"]');
+	const valueDisplay = document.getElementById('select-value-display');
+
+	select?.addEventListener('change', (e: any) => {
+		if (valueDisplay) valueDisplay.textContent = e.target.value;
+	});
+</script>

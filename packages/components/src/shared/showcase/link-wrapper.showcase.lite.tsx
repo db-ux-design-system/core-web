@@ -1,29 +1,25 @@
-import { onMount, Show, Slot, useState } from '@builder.io/mitosis';
+import { Fragment, onMount, Show, Slot, useStore } from '@builder.io/mitosis';
 import DBDivider from '../../components/divider/divider.lite';
 import DBLink from '../../components/link/link.lite';
 import { delay } from '../../utils';
+import { LinkWrapperProps, LinkWrapperState } from './model';
 
-interface Props {
-	exampleName?: string;
-	children?: any;
-}
+export default function LinkWrapperShowcase(props: LinkWrapperProps) {
+	const state = useStore<LinkWrapperState>({
+		pageParam: null,
+		getPage: (): string | undefined => {
+			return props.exampleName?.replaceAll(' ', '+').toLowerCase();
+		},
+		getHref: (): string => {
+			if (typeof window !== 'undefined') {
+				const hash = window.location.hash;
+				const basePath = hash.includes('?') ? hash.split('?')[0] : hash;
+				return `${basePath}?page=${state.getPage()}`;
+			}
 
-export default function LinkWrapperShowcase(props: Props) {
-	function getPage(): string | undefined {
-		return props.exampleName?.replaceAll(' ', '+').toLowerCase();
-	}
-
-	function getHref(): string {
-		if (typeof window !== 'undefined') {
-			const hash = window.location.hash;
-			const basePath = hash.includes('?') ? hash.split('?')[0] : hash;
-			return `${basePath}?page=${getPage()}`;
+			return '';
 		}
-
-		return '';
-	}
-
-	const [pageParam, setPageParam] = useState<string | null>(null);
+	});
 
 	onMount(() => {
 		if (typeof window !== 'undefined') {
@@ -38,30 +34,34 @@ export default function LinkWrapperShowcase(props: Props) {
 
 				const rawPage = params.get('page');
 
-				const normalizedPage = rawPage
+				state.pageParam = rawPage
 					? rawPage.replaceAll(' ', '+').toLowerCase()
 					: null;
-
-				setPageParam(normalizedPage);
 			}, 1);
 		}
 	});
 
 	return (
-		<Show when={pageParam === null || pageParam === getPage()}>
-			<div>
-				<Show when={pageParam === null}>
-					<DBDivider></DBDivider>
-					<DBLink
-						content="external"
-						class="link-headline"
-						target="_blank"
-						href={getHref()}>
-						{props.exampleName}
-					</DBLink>
-				</Show>
-				<Slot />
-			</div>
-		</Show>
+		<Fragment>
+			<Show
+				when={
+					state.pageParam === null ||
+					state.pageParam === state.getPage()
+				}>
+				<div>
+					<Show when={state.pageParam === null}>
+						<DBDivider></DBDivider>
+						<DBLink
+							content="external"
+							class="link-headline"
+							target="_blank"
+							href={state.getHref()}>
+							{props.exampleName}
+						</DBLink>
+					</Show>
+					<Slot />
+				</div>
+			</Show>
+		</Fragment>
 	);
 }

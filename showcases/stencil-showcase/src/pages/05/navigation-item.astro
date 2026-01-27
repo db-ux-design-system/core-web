@@ -1,0 +1,49 @@
+---
+import DefaultLayout from '../../layouts/default/DefaultLayout.astro';
+import DefaultComponent from '../../components/default/DefaultComponent.astro';
+import defaultComponentVariants from '../../../../shared/navigation-item.json';
+import type { DBNavigationItemProps } from '@components';
+import VariantList from '../../components/default/VariantList.astro';
+import type { DefaultComponentVariants } from '../../../../shared/default-component-data.ts';
+import { DBNavigationItem } from '@components';
+---
+
+<DefaultLayout>
+	<DefaultComponent title="DBNavigationItem" variants={defaultComponentVariants}>
+		{
+			(variant: DefaultComponentVariants) => (
+				<VariantList {...variant}>
+					{({ children, areaPopup, ...props }: DBNavigationItemProps & { areaPopup: boolean }) => {
+						if (areaPopup) {
+							return (
+								<ul class="nav-item-list">
+									<DBNavigationItem text={children} {...props}>
+										<DBNavigationItem
+											slot="subNavigation"
+											text="Also a navigation item with longer label"
+										>
+											<DBNavigationItem slot="subNavigation">
+												<a href="#">Navigation-Item 2</a>
+											</DBNavigationItem>
+										</DBNavigationItem>
+										<DBNavigationItem slot="subNavigation">
+											<a href="#">Navigation-Item 1</a>
+										</DBNavigationItem>
+									</DBNavigationItem>
+								</ul>
+							);
+						}
+
+						return (
+							<ul class="nav-item-list">
+								<DBNavigationItem hideSubNavigation={true} {...props}>
+									<a href="#">{children}</a>
+								</DBNavigationItem>
+							</ul>
+						);
+					}}
+				</VariantList>
+			)
+		}
+	</DefaultComponent>
+</DefaultLayout>

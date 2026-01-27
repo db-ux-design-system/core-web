@@ -3,42 +3,41 @@ import {
 	onMount,
 	Show,
 	Slot,
-	useState,
+	useStore,
 	useTarget
 } from '@builder.io/mitosis';
 import DBCard from '../../components/card/card.lite';
 import DBLink from '../../components/link/link.lite';
 import { DB_UX_LOCAL_STORAGE_FRAMEWORK } from '../constants';
+import { CardWrapperProps, CardWrapperState } from './model';
 
-type Props = {
-	role?: string;
-	label?: string;
-	children?: any;
-};
-
-export default function CardWrapperShowcase(props: Props) {
-	const [href, setHref] = useState<string | undefined>(undefined);
-
-	function updateHref() {
-		useTarget({
-			react: () => {
-				// Only for patternhub
-				const framework =
-					localStorage.getItem(DB_UX_LOCAL_STORAGE_FRAMEWORK) ||
-					'react';
-				const currentUrl = window.location.href;
-				const componentsIndex = currentUrl.indexOf('components');
-				if (componentsIndex !== -1) {
-					const baseUrl = currentUrl.substring(0, componentsIndex);
-					setHref(`${baseUrl}${framework}-storybook`);
+export default function CardWrapperShowcase(props: CardWrapperProps) {
+	const state = useStore<CardWrapperState>({
+		href: undefined,
+		updateHref: () => {
+			useTarget({
+				react: () => {
+					// Only for patternhub
+					const framework =
+						localStorage.getItem(DB_UX_LOCAL_STORAGE_FRAMEWORK) ||
+						'react';
+					const currentUrl = window.location.href;
+					const componentsIndex = currentUrl.indexOf('components');
+					if (componentsIndex !== -1) {
+						const baseUrl = currentUrl.substring(
+							0,
+							componentsIndex
+						);
+						state.href = `${baseUrl}${framework}-storybook`;
+					}
 				}
-			}
-		});
-	}
+			});
+		}
+	});
 
 	onMount(() => {
 		if (typeof window !== 'undefined' && localStorage) {
-			updateHref();
+			state.updateHref();
 		}
 	});
 
@@ -52,13 +51,13 @@ export default function CardWrapperShowcase(props: Props) {
 					<Slot />
 				</div>
 			</DBCard>
-			<Show when={href}>
+			<Show when={state.href}>
 				<DBLink
 					size="small"
 					content="external"
 					className="show-code-link"
 					target="_blank"
-					href={href}
+					href={state.href}
 					referrerpolicy="no-referrer">
 					Show Code
 				</DBLink>

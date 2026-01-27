@@ -1,0 +1,16 @@
+---
+const { value, id } = Astro.props;
+---
+
+<div class="form-container">
+	<form>
+		<fieldset>
+			<slot />
+		</fieldset>
+		<db-button type="reset" data-testid="reset-button">Reset</db-button>
+	</form>
+	<dl data-testid="data-list">
+		<dt>Value:</dt>
+		<dd id={`${id}-value-display`}>{value}</dd>
+	</dl>
+</div>

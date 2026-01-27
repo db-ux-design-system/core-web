@@ -1,0 +1,16 @@
+---
+import FormWrapper from './FormWrapper.astro';
+---
+
+<FormWrapper value="test1" id="textarea">
+	<db-textarea label="Textarea" value="test1" data-id="textarea"></db-textarea>
+</FormWrapper>
+
+<script>
+	const textarea = document.querySelector('[data-id="textarea"]');
+	const valueDisplay = document.getElementById('textarea-value-display');
+
+	textarea?.addEventListener('input', (e: any) => {
+		if (valueDisplay) valueDisplay.textContent = e.target.value;
+	});
+</script>

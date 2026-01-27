@@ -6,6 +6,12 @@ export const config: Config = {
 	tsconfig: "./tsconfig.dev.json",
 	outputTargets: [
 		{
+			type: 'dist-custom-elements',
+			"dir": 'bundle',
+			externalRuntime: false,
+			customElementsExportBehavior: "bundle"
+		},
+		{
 			type: 'dist'
 		}
 	]

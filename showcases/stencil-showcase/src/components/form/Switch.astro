@@ -1,0 +1,16 @@
+---
+import FormWrapper from './FormWrapper.astro';
+---
+
+<FormWrapper value="true" id="switch">
+	<db-switch name="switch" checked data-id="switch">Switch</db-switch>
+</FormWrapper>
+
+<script>
+	const switchEl = document.querySelector('[data-id="switch"]');
+	const valueDisplay = document.getElementById('switch-value-display');
+
+	switchEl?.addEventListener('change', (e: any) => {
+		if (valueDisplay) valueDisplay.textContent = e.target.checked;
+	});
+</script>

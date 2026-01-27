@@ -1,5 +1,5 @@
 import { useDefaultProps, useMetadata, useRef } from '@builder.io/mitosis';
-import { cls } from '../../utils';
+import { cls, getBoolean } from '../../utils';
 import { DBCustomSelectListProps } from './model';
 
 useMetadata({});
@@ -12,7 +12,9 @@ export default function DBCustomSelectList(props: DBCustomSelectListProps) {
 
 	return (
 		<div
-			role={props.multiple ? 'group' : 'radiogroup'}
+			role={
+				getBoolean(props.multiple, 'multiple') ? 'group' : 'radiogroup'
+			}
 			aria-label={props.label}
 			ref={_ref}
 			id={props.id}

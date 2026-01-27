@@ -1,0 +1,28 @@
+---
+import DefaultLayout from '../../layouts/default/DefaultLayout.astro';
+import DefaultComponent from '../../components/default/DefaultComponent.astro';
+import defaultComponentVariants from '../../../../shared/divider.json';
+import type { DBDividerProps } from '@components';
+import VariantList from '../../components/default/VariantList.astro';
+import type { DefaultComponentVariants } from '../../../../shared/default-component-data.ts';
+import { DBDivider, DBInfotext } from '@components';
+---
+
+<DefaultLayout>
+	<DefaultComponent title="DBDivider" variants={defaultComponentVariants}
+		>{
+			(variant: DefaultComponentVariants) => (
+				<VariantList {...variant}>
+					{({ children, ...rest }: DBDividerProps) => (
+						<>
+							<DBInfotext size="small" semantic="informational">
+								{children}
+							</DBInfotext>
+							<DBDivider {...rest} />
+						</>
+					)}
+				</VariantList>
+			)
+		}</DefaultComponent
+	>
+</DefaultLayout>

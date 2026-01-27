@@ -3,6 +3,8 @@
 @use "../../styles/internal/component";
 
 @mixin accordion-subsequent-item-selector() {
+	// astro workaround
+	.db-accordion-item + db-accordion-item + .db-accordion-item,
 	// angular workaround
 	db-accordion-item + db-accordion-item .db-accordion-item,
 	.db-accordion-item + .db-accordion-item {
