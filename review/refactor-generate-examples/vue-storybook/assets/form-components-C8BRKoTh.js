@@ -1,1 +1,0 @@
-import{d as n}from"./index-CeOJJTBm.js";const i=(e,t,a="value")=>{e(`update:${a}`,t.target[a])},v=(e,t,a)=>{e.form&&!e._dbFormResetListenerAdded&&(e.form.addEventListener("reset",r=>{t(r)},{signal:a}),e._dbFormResetListenerAdded=!0)},c=(e,t,a,r)=>{v(e,d=>{n(()=>{const s=t.value?t.value:e.value,o={...d,target:{...d.target,value:s}};a(o)},1)},r)};export{c as a,i as h};
