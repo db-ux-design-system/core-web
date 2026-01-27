@@ -24,18 +24,24 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ steps.generate-token.outputs.token }}
         run: |
-          PROJECT_ID=$(gh project list --owner db-ux-design-system --format json | jq -r 'map(select(.number == 6)) | .[0].id')
+          PROJECT_ID=$(gh project list --owner db-ux-design-system --format json | jq -r '.projects[] | select(.number == 6) | .id')
           ITEM_ID=$(gh project item-list 6 --owner db-ux-design-system --format json | jq -r --arg pr_url "${{ github.event.pull_request.html_url }}" '.items[] | select(.content.url == $pr_url) | .id')
           FIELD_ID=$(gh project field-list 6 --owner db-ux-design-system --format json | jq -r '.fields[] | select(.name == "Status") | .id')
+          echo "PROJECT_ID: $PROJECT_ID"
+          echo "ITEM_ID: $ITEM_ID"
+          echo "FIELD_ID: $FIELD_ID"
           if [ "${{ github.event.action }}" = "review_requested" ]; then
             OPTION_ID=$(gh project field-list 6 --owner db-ux-design-system --format json | jq -r '.fields[] | select(.name == "Status") | .options[] | select(.name == "👀 Actively In Review") | .id')
+            echo "OPTION_ID: $OPTION_ID"
             gh project item-edit --project-id "$PROJECT_ID" --id "$ITEM_ID" --field-id "$FIELD_ID" --single-select-option-id "$OPTION_ID"
           elif [ "${{ github.event.pull_request.draft }}" = "true" ]; then
             OPTION_ID=$(gh project field-list 6 --owner db-ux-design-system --format json | jq -r '.fields[] | select(.name == "Status") | .options[] | select(.name == "🏗️ In progress") | .id')
+            echo "OPTION_ID: $OPTION_ID"
             gh project item-edit --project-id "$PROJECT_ID" --id "$ITEM_ID" --field-id "$FIELD_ID" --single-select-option-id "$OPTION_ID"
             gh pr edit "${{ github.event.pull_request.html_url }}" --remove-reviewer @*
           else
             OPTION_ID=$(gh project field-list 6 --owner db-ux-design-system --format json | jq -r '.fields[] | select(.name == "Status") | .options[] | select(.name == "🎁 Ready for review") | .id')
+            echo "OPTION_ID: $OPTION_ID"
             gh project item-edit --project-id "$PROJECT_ID" --id "$ITEM_ID" --field-id "$FIELD_ID" --single-select-option-id "$OPTION_ID"
           fi
         continue-on-error: true
