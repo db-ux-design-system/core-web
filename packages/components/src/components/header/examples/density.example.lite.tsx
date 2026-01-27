@@ -63,7 +63,7 @@ export default function HeaderDensity() {
 							},
 							default: {}
 						})}
-						aria-label="functional">
+						aria-label="Functional">
 						<DBNavigationItem icon="x_placeholder">
 							<a href="#">Functional</a>
 						</DBNavigationItem>
@@ -120,7 +120,7 @@ export default function HeaderDensity() {
 							},
 							default: {}
 						})}
-						aria-label="regular">
+						aria-label="(Default) Regular">
 						<DBNavigationItem icon="x_placeholder">
 							<a href="#">(Default) Regular</a>
 						</DBNavigationItem>
@@ -177,7 +177,7 @@ export default function HeaderDensity() {
 							},
 							default: {}
 						})}
-						aria-label="expressive">
+						aria-label="Expressive">
 						<DBNavigationItem icon="x_placeholder">
 							<a href="#">Expressive</a>
 						</DBNavigationItem>

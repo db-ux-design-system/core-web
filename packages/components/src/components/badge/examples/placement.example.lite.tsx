@@ -30,72 +30,84 @@ export default function BadgePlacement() {
 				</DBBadge>
 				<DBIcon icon="error" />
 			</div>
-			<DBButton icon="x_placeholder" variant="outlined" noText>
-				<DBBadge
-					size="small"
-					emphasis="strong"
-					semantic="critical"
-					placement="corner-top-left"></DBBadge>
-				Corner - Top - Left
-			</DBButton>
-			<DBInfotext semantic="informational" size="small" icon="none">
-				Corner - Top - Left
-			</DBInfotext>
-			<DBButton icon="x_placeholder" variant="outlined" noText>
-				<DBBadge
-					size="small"
-					emphasis="strong"
-					semantic="critical"
-					placement="corner-center-left"></DBBadge>
-				Corner - Center - Left
-			</DBButton>
-			<DBInfotext semantic="informational" size="small" icon="none">
-				Corner - Center - Left
-			</DBInfotext>
-			<DBButton icon="x_placeholder" variant="outlined" noText>
-				<DBBadge
-					size="small"
-					emphasis="strong"
-					semantic="critical"
-					placement="corner-bottom-left"></DBBadge>
-				Corner - Bottom- Left
-			</DBButton>
-			<DBInfotext semantic="informational" size="small" icon="none">
-				Corner - Bottom- Left
-			</DBInfotext>
-			<DBButton icon="x_placeholder" variant="outlined" noText>
-				<DBBadge
-					size="small"
-					emphasis="strong"
-					semantic="critical"
-					placement="corner-top-right"></DBBadge>
-				Corner - Top - Right
-			</DBButton>
-			<DBInfotext semantic="informational" size="small" icon="none">
-				Corner - Top - Right
-			</DBInfotext>
-			<DBButton icon="x_placeholder" variant="outlined" noText>
-				<DBBadge
-					size="small"
-					emphasis="strong"
-					semantic="critical"
-					placement="corner-center-right"></DBBadge>
-				Corner - Center - Right
-			</DBButton>
-			<DBInfotext semantic="informational" size="small" icon="none">
-				Corner - Center - Right
-			</DBInfotext>
-			<DBButton icon="x_placeholder" variant="outlined" noText>
-				<DBBadge
-					size="small"
-					emphasis="strong"
-					semantic="critical"
-					placement="corner-bottom-right"></DBBadge>
-				Corner - Bottom- Right
-			</DBButton>
-			<DBInfotext semantic="informational" size="small" icon="none">
-				Corner - Bottom- Right
-			</DBInfotext>
+			<div>
+				<DBButton icon="x_placeholder" variant="outlined" noText>
+					<DBBadge
+						size="small"
+						emphasis="strong"
+						semantic="critical"
+						placement="corner-top-left"></DBBadge>
+					Corner - Top - Left
+				</DBButton>
+				<DBInfotext semantic="informational" size="small" icon="none">
+					Corner - Top - Left
+				</DBInfotext>
+			</div>
+			<div>
+				<DBButton icon="x_placeholder" variant="outlined" noText>
+					<DBBadge
+						size="small"
+						emphasis="strong"
+						semantic="critical"
+						placement="corner-center-left"></DBBadge>
+					Corner - Center - Left
+				</DBButton>
+				<DBInfotext semantic="informational" size="small" icon="none">
+					Corner - Center - Left
+				</DBInfotext>
+			</div>
+			<div>
+				<DBButton icon="x_placeholder" variant="outlined" noText>
+					<DBBadge
+						size="small"
+						emphasis="strong"
+						semantic="critical"
+						placement="corner-bottom-left"></DBBadge>
+					Corner - Bottom- Left
+				</DBButton>
+				<DBInfotext semantic="informational" size="small" icon="none">
+					Corner - Bottom- Left
+				</DBInfotext>
+			</div>
+			<div>
+				<DBButton icon="x_placeholder" variant="outlined" noText>
+					<DBBadge
+						size="small"
+						emphasis="strong"
+						semantic="critical"
+						placement="corner-top-right"></DBBadge>
+					Corner - Top - Right
+				</DBButton>
+				<DBInfotext semantic="informational" size="small" icon="none">
+					Corner - Top - Right
+				</DBInfotext>
+			</div>
+			<div>
+				<DBButton icon="x_placeholder" variant="outlined" noText>
+					<DBBadge
+						size="small"
+						emphasis="strong"
+						semantic="critical"
+						placement="corner-center-right"></DBBadge>
+					Corner - Center - Right
+				</DBButton>
+				<DBInfotext semantic="informational" size="small" icon="none">
+					Corner - Center - Right
+				</DBInfotext>
+			</div>
+			<div>
+				<DBButton icon="x_placeholder" variant="outlined" noText>
+					<DBBadge
+						size="small"
+						emphasis="strong"
+						semantic="critical"
+						placement="corner-bottom-right"></DBBadge>
+					Corner - Bottom- Right
+				</DBButton>
+				<DBInfotext semantic="informational" size="small" icon="none">
+					Corner - Bottom- Right
+				</DBInfotext>
+			</div>
 		</Fragment>
 	);
 }

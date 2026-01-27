@@ -43,15 +43,10 @@ export default function NotificationExamplesVariantStandalone() {
 	return (
 		<Fragment>
 			<div style={{ width: '300px' }}>
-				<DBNotification variant="standalone" headline="Headline">
-					Text
-				</DBNotification>
+				<DBNotification variant="standalone">Text</DBNotification>
 			</div>
 			<div style={{ width: '300px' }}>
-				<DBNotification
-					icon="information_circle"
-					variant="standalone"
-					headline="Headline">
+				<DBNotification icon="information_circle" variant="standalone">
 					Text & Icon
 				</DBNotification>
 			</div>
@@ -63,8 +58,7 @@ export default function NotificationExamplesVariantStandalone() {
 							alt="this is a fancy placeholder"
 						/>
 					}
-					variant="standalone"
-					headline="Headline">
+					variant="standalone">
 					Text & Preview Image
 				</DBNotification>
 			</div>
@@ -76,8 +70,7 @@ export default function NotificationExamplesVariantStandalone() {
 			<div style={{ width: '300px' }}>
 				<DBNotification
 					link={<DBLink href="#">Textlink</DBLink>}
-					variant="standalone"
-					headline="Headline">
+					variant="standalone">
 					Text & Textlink Block
 				</DBNotification>
 			</div>
@@ -85,8 +78,7 @@ export default function NotificationExamplesVariantStandalone() {
 				<DBNotification
 					link={<DBLink href="#">Textlink</DBLink>}
 					linkVariant="inline"
-					variant="standalone"
-					headline="Headline">
+					variant="standalone">
 					Text & Textlink Inline
 				</DBNotification>
 			</div>

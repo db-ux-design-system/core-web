@@ -88,6 +88,7 @@ export default function CustomSelectExamplesMultiple() {
 					]}
 					placeholder="Placeholder"
 					multiple={true}
+					selectAllLabel="Select all"
 					label="More than 6"
 					listLabel="id-10269-More than 6"></DBCustomSelect>
 			</div>
@@ -108,7 +109,7 @@ export default function CustomSelectExamplesMultiple() {
 							id: 'b84ie8otk'
 						}
 					]}
-					selectAllLabel="Select All"
+					selectAllLabel="Select all"
 					searchLabel="Search"
 					searchPlaceholder="Search"
 					placeholder="Placeholder"

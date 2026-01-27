@@ -15,16 +15,14 @@ export default function NotificationLinkVariant() {
 			<div style={{ width: '300px' }}>
 				<DBNotification
 					link={<DBLink href="#">Textlink</DBLink>}
-					linkVariant="block"
-					headline="Headline">
+					linkVariant="block">
 					(Default) Block
 				</DBNotification>
 			</div>
 			<div style={{ width: '300px' }}>
 				<DBNotification
 					link={<DBLink href="#">Textlink</DBLink>}
-					linkVariant="inline"
-					headline="Headline">
+					linkVariant="inline">
 					Inline
 				</DBNotification>
 			</div>

@@ -43,10 +43,10 @@ export default function NotificationExamplesVariantDocked() {
 	return (
 		<Fragment>
 			<div style={{ width: '300px' }}>
-				<DBNotification headline="Headline">Text</DBNotification>
+				<DBNotification>Text</DBNotification>
 			</div>
 			<div style={{ width: '300px' }}>
-				<DBNotification icon="information_circle" headline="Headline">
+				<DBNotification icon="information_circle">
 					Text & Icon
 				</DBNotification>
 			</div>
@@ -57,8 +57,7 @@ export default function NotificationExamplesVariantDocked() {
 							src={state.getImage()}
 							alt="this is a fancy placeholder"
 						/>
-					}
-					headline="Headline">
+					}>
 					Text & Preview Image
 				</DBNotification>
 			</div>
@@ -68,17 +67,14 @@ export default function NotificationExamplesVariantDocked() {
 				</DBNotification>
 			</div>
 			<div style={{ width: '300px' }}>
-				<DBNotification
-					link={<DBLink href="#">Textlink</DBLink>}
-					headline="Headline">
+				<DBNotification link={<DBLink href="#">Textlink</DBLink>}>
 					Text & Textlink Block
 				</DBNotification>
 			</div>
 			<div style={{ width: '300px' }}>
 				<DBNotification
 					link={<DBLink href="#">Textlink</DBLink>}
-					linkVariant="inline"
-					headline="Headline">
+					linkVariant="inline">
 					Text & Textlink Inline
 				</DBNotification>
 			</div>

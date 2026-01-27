@@ -20,9 +20,9 @@ export default function CustomSelectFormFieldWidth() {
 						{ value: 'Option 4', id: 'ngl1p2pxn' },
 						{ value: 'Option 5', id: 'ngl1p1pxn' }
 					]}
-					label="Full"
+					label="(Default) Full"
 					formFieldWidth="full"
-					listLabel="id-10223-Full"></DBCustomSelect>
+					listLabel="id-10223-(Default) Full"></DBCustomSelect>
 			</div>
 			<div style={{ width: '400px' }}>
 				<DBCustomSelect

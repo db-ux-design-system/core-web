@@ -11,23 +11,29 @@ useMetadata({
 export default function AccordionItemDensity() {
 	return (
 		<Fragment>
-			<DBAccordionItem
-				data-density="functional"
-				headlinePlain="Functional">
-				Functional
-			</DBAccordionItem>
+			<div>
+				<DBAccordionItem
+					data-density="functional"
+					headlinePlain="Functional">
+					Functional
+				</DBAccordionItem>
+			</div>
 
-			<DBAccordionItem
-				data-density="regular"
-				headlinePlain="(Default) Regular">
-				(Default) Regular
-			</DBAccordionItem>
+			<div>
+				<DBAccordionItem
+					data-density="regular"
+					headlinePlain="(Default) Regular">
+					(Default) Regular
+				</DBAccordionItem>
+			</div>
 
-			<DBAccordionItem
-				data-density="expressive"
-				headlinePlain="Expressive">
-				Expressive
-			</DBAccordionItem>
+			<div>
+				<DBAccordionItem
+					data-density="expressive"
+					headlinePlain="Expressive">
+					Expressive
+				</DBAccordionItem>
+			</div>
 		</Fragment>
 	);
 }

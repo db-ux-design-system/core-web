@@ -12,14 +12,12 @@ export default function NotificationCloseable() {
 	return (
 		<Fragment>
 			<div style={{ width: '300px' }}>
-				<DBNotification closeable={false} headline="Headline">
+				<DBNotification closeable={false}>
 					(Default) False
 				</DBNotification>
 			</div>
 			<div style={{ width: '300px' }}>
-				<DBNotification closeable={true} headline="Headline">
-					True
-				</DBNotification>
+				<DBNotification closeable={true}>True</DBNotification>
 			</div>
 		</Fragment>
 	);

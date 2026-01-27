@@ -14,7 +14,7 @@ export default function AccordionVariant() {
 	return (
 		<Fragment>
 			<DBInfotext size="small" semantic="informational" icon="none">
-				Divider
+				(Default) Divider
 			</DBInfotext>
 			<DBAccordion variant="divider">
 				<DBAccordionItem headlinePlain="Item 1">

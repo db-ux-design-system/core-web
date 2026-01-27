@@ -11,11 +11,9 @@ useMetadata({
 export default function CardBehavior() {
 	return (
 		<Fragment>
-			<button type="button">
-				<DBCard behavior="static">
-					<strong>(Default) Static</strong>
-				</DBCard>
-			</button>
+			<DBCard behavior="static">
+				<strong>(Default) Static</strong>
+			</DBCard>
 			<button type="button">
 				<DBCard behavior="interactive">
 					<strong>Interactive</strong>

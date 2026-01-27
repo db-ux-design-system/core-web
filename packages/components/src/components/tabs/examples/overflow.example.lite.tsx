@@ -29,9 +29,9 @@ export default function TabsOverflow() {
 						<DBTabItem>Test 2</DBTabItem>
 						<DBTabItem>Test 3</DBTabItem>
 					</DBTabList>
-					<DBTabPanel>Test Panel 1</DBTabPanel>
-					<DBTabPanel>Test Panel 2</DBTabPanel>
-					<DBTabPanel>Test Panel 3</DBTabPanel>
+					<DBTabPanel>Tab Panel 1</DBTabPanel>
+					<DBTabPanel>Tab Panel 2</DBTabPanel>
+					<DBTabPanel>Tab Panel 3</DBTabPanel>
 				</DBTabs>
 			</div>
 			<div style={{ width: '300px' }} class="fit-content-container">
@@ -46,11 +46,11 @@ export default function TabsOverflow() {
 						<DBTabItem>Test 4</DBTabItem>
 						<DBTabItem>Test 5</DBTabItem>
 					</DBTabList>
-					<DBTabPanel>Test Panel 1</DBTabPanel>
-					<DBTabPanel>Test Panel 2</DBTabPanel>
-					<DBTabPanel>Test Panel 3</DBTabPanel>
-					<DBTabPanel>Test Panel 4</DBTabPanel>
-					<DBTabPanel>Test Panel 5</DBTabPanel>
+					<DBTabPanel>Tab Panel 1</DBTabPanel>
+					<DBTabPanel>Tab Panel 2</DBTabPanel>
+					<DBTabPanel>Tab Panel 3</DBTabPanel>
+					<DBTabPanel>Tab Panel 4</DBTabPanel>
+					<DBTabPanel>Tab Panel 5</DBTabPanel>
 				</DBTabs>
 			</div>
 			<div style={{ width: '300px' }} class="fit-content-container">
@@ -65,11 +65,11 @@ export default function TabsOverflow() {
 						<DBTabItem>Test 4</DBTabItem>
 						<DBTabItem>Test 5</DBTabItem>
 					</DBTabList>
-					<DBTabPanel>Test Panel 1</DBTabPanel>
-					<DBTabPanel>Test Panel 2</DBTabPanel>
-					<DBTabPanel>Test Panel 3</DBTabPanel>
-					<DBTabPanel>Test Panel 4</DBTabPanel>
-					<DBTabPanel>Test Panel 5</DBTabPanel>
+					<DBTabPanel>Tab Panel 1</DBTabPanel>
+					<DBTabPanel>Tab Panel 2</DBTabPanel>
+					<DBTabPanel>Tab Panel 3</DBTabPanel>
+					<DBTabPanel>Tab Panel 4</DBTabPanel>
+					<DBTabPanel>Tab Panel 5</DBTabPanel>
 				</DBTabs>
 			</div>
 		</Fragment>

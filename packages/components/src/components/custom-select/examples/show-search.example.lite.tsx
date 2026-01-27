@@ -28,6 +28,8 @@ export default function CustomSelectShowSearch() {
 					showSearch={false}
 					multiple={true}
 					label="(Default) False"
+					selectAllLabel="Select all"
+					searchLabel="Search"
 					listLabel="id-10254-(Default) False"></DBCustomSelect>
 			</div>
 			<div style={{ width: '200px' }}>
@@ -41,6 +43,8 @@ export default function CustomSelectShowSearch() {
 					]}
 					showSearch={true}
 					multiple={true}
+					selectAllLabel="Select all"
+					searchLabel="Search"
 					label="True"
 					listLabel="id-10255-True"></DBCustomSelect>
 			</div>

@@ -14,7 +14,7 @@ export default function AccordionBehavior() {
 	return (
 		<Fragment>
 			<DBInfotext size="small" semantic="informational" icon="none">
-				Multiple
+				(Default) Multiple
 			</DBInfotext>
 			<DBAccordion behavior="multiple">
 				<DBAccordionItem headlinePlain="Item 1">

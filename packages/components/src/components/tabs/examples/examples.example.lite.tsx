@@ -25,9 +25,9 @@ export default function TabsExamples() {
 						<DBTabItem>Test 2</DBTabItem>
 						<DBTabItem>Test 3</DBTabItem>
 					</DBTabList>
-					<DBTabPanel>Test Panel 1</DBTabPanel>
-					<DBTabPanel>Test Panel 2</DBTabPanel>
-					<DBTabPanel>Test Panel 3</DBTabPanel>
+					<DBTabPanel>Tab Panel 1</DBTabPanel>
+					<DBTabPanel>Tab Panel 2</DBTabPanel>
+					<DBTabPanel>Tab Panel 3</DBTabPanel>
 				</DBTabs>
 			</div>
 			<div class="fit-content-container">
@@ -40,9 +40,9 @@ export default function TabsExamples() {
 						<DBTabItem>Test 2</DBTabItem>
 						<DBTabItem>Test 3</DBTabItem>
 					</DBTabList>
-					<DBTabPanel>Test Panel 1</DBTabPanel>
-					<DBTabPanel>Test Panel 2</DBTabPanel>
-					<DBTabPanel>Test Panel 3</DBTabPanel>
+					<DBTabPanel>Tab Panel 1</DBTabPanel>
+					<DBTabPanel>Tab Panel 2</DBTabPanel>
+					<DBTabPanel>Tab Panel 3</DBTabPanel>
 				</DBTabs>
 			</div>
 		</Fragment>

@@ -32,10 +32,10 @@ export default function CustomSelectPlacement() {
 						{ value: 'Option 4', id: 'qrf5x6gdq' },
 						{ value: 'Option 5', id: 'qrf6x6gdq' }
 					]}
-					label="Bottom"
+					label="(Default) Bottom"
 					formFieldWidth="full"
 					placement="bottom"
-					listLabel="id-10238-Bottom"></DBCustomSelect>
+					listLabel="id-10238-(Default) Bottom"></DBCustomSelect>
 			</div>
 			<div style={{ width: '200px' }}>
 				<DBCustomSelect
@@ -68,10 +68,10 @@ export default function CustomSelectPlacement() {
 						{ value: 'Option 4', id: 'k8zcxfb2x' },
 						{ value: 'Option 5', id: 'k8zcxfb1x' }
 					]}
-					label="Bottom"
+					label="(Default) Bottom-Start"
 					formFieldWidth="auto"
 					placement="bottom-start"
-					listLabel="id-10243-Bottom"></DBCustomSelect>
+					listLabel="id-10243-(Default) Bottom-Start"></DBCustomSelect>
 			</div>
 			<div style={{ width: '200px' }}>
 				<DBCustomSelect
@@ -82,10 +82,10 @@ export default function CustomSelectPlacement() {
 						{ value: 'Option 4', id: 'ts2jwdqxj' },
 						{ value: 'Option 5', id: 'ts3jwdqxj' }
 					]}
-					label="Bottom"
+					label="Bottom-End"
 					formFieldWidth="auto"
 					placement="bottom-end"
-					listLabel="id-10244-Bottom"></DBCustomSelect>
+					listLabel="id-10244-Bottom-End"></DBCustomSelect>
 			</div>
 			<div style={{ width: '200px' }}>
 				<DBCustomSelect
@@ -96,10 +96,10 @@ export default function CustomSelectPlacement() {
 						{ value: 'Option 4', id: '3mwz7pmcr' },
 						{ value: 'Option 5', id: '2mwz7pmcr' }
 					]}
-					label="Top"
+					label="Top-Start"
 					formFieldWidth="auto"
 					placement="top-start"
-					listLabel="id-10245-Top"></DBCustomSelect>
+					listLabel="id-10245-Top-Start"></DBCustomSelect>
 			</div>
 			<div style={{ width: '200px' }}>
 				<DBCustomSelect
@@ -110,10 +110,10 @@ export default function CustomSelectPlacement() {
 						{ value: 'Option 4', id: 'iz50t1pce' },
 						{ value: 'Option 5', id: 'iz60t1pce' }
 					]}
-					label="Top"
+					label="Top-End"
 					formFieldWidth="auto"
 					placement="top-end"
-					listLabel="id-10246-Top"></DBCustomSelect>
+					listLabel="id-10246-Top-End"></DBCustomSelect>
 			</div>
 		</Fragment>
 	);

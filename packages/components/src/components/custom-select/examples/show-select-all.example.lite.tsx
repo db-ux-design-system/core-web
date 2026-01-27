@@ -23,6 +23,7 @@ export default function CustomSelectShowSelectAll() {
 					]}
 					showSelectAll={false}
 					multiple={true}
+					selectAllLabel="Select all"
 					label="(Default) False"
 					listLabel="id-10256-(Default) False"></DBCustomSelect>
 			</div>
@@ -37,6 +38,7 @@ export default function CustomSelectShowSelectAll() {
 					]}
 					showSelectAll={true}
 					multiple={true}
+					selectAllLabel="Select all"
 					label="True"
 					listLabel="id-10257-True"></DBCustomSelect>
 			</div>

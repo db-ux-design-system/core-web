@@ -62,7 +62,7 @@ export default function HeaderWidth() {
 							},
 							default: {}
 						})}
-						aria-label="full width">
+						aria-label="Full">
 						<DBNavigationItem icon="x_placeholder">
 							<a href="#">Full</a>
 						</DBNavigationItem>
@@ -119,7 +119,7 @@ export default function HeaderWidth() {
 							},
 							default: {}
 						})}
-						aria-label="medium width">
+						aria-label="Medium">
 						<DBNavigationItem icon="x_placeholder">
 							<a href="#">Medium</a>
 						</DBNavigationItem>
@@ -176,7 +176,7 @@ export default function HeaderWidth() {
 							},
 							default: {}
 						})}
-						aria-label="large width">
+						aria-label="Large">
 						<DBNavigationItem icon="x_placeholder">
 							<a href="#">Large</a>
 						</DBNavigationItem>

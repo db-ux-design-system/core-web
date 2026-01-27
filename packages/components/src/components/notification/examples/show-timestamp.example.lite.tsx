@@ -15,8 +15,7 @@ export default function NotificationShowTimestamp() {
 				<DBNotification
 					variant="overlay"
 					showTimestamp={false}
-					timestamp="10 min ago"
-					headline="Headline">
+					timestamp="10 min ago">
 					(Default) False
 				</DBNotification>
 			</div>
@@ -24,8 +23,7 @@ export default function NotificationShowTimestamp() {
 				<DBNotification
 					variant="overlay"
 					showTimestamp={true}
-					timestamp="10 min ago"
-					headline="Headline">
+					timestamp="10 min ago">
 					True
 				</DBNotification>
 			</div>

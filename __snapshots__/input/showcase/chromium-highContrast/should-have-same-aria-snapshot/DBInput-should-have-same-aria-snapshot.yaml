@@ -20,7 +20,7 @@
   - status
   - text: Label
   - textbox "Label":
-    - /placeholder: " "
+    - /placeholder: Floating
     - text: Floating
   - status
   - link "Show Label"
@@ -49,7 +49,7 @@
   - status
   - text: Label
   - textbox "Label":
-    - /placeholder: " "
+    - /placeholder: Filled
     - text: Filled
   - status
   - link "Disabled"
@@ -191,7 +191,7 @@
   - status
   - text: Label
   - textbox "Label":
-    - /placeholder: " "
+    - /placeholder: Filled
     - text: Filled
   - status
   - text: Label
@@ -200,7 +200,7 @@
   - status
   - text: Label
   - textbox "Label":
-    - /placeholder: " "
+    - /placeholder: Readonly - Filled
     - text: Readonly - Filled
   - status
   - text: Label

@@ -45,6 +45,7 @@ export default function CustomSelectExampleOtherConfiguration() {
 					searchValue="1"
 					showSearch={true}
 					multiple={true}
+					searchLabel="Search"
 					label="Search Value"
 					listLabel="id-10as4-Search Value"></DBCustomSelect>
 			</div>
@@ -57,7 +58,7 @@ export default function CustomSelectExampleOtherConfiguration() {
 						{ value: 'Option 4', id: '72n9ccsddc14' },
 						{ value: 'Option 5', id: '71n9ccsddc14' }
 					]}
-					selectedLabels="Label controlled"
+					selectedLabels="Selected: Label controlled"
 					label="Custom Selected Label"
 					listLabel="id-10aasds4-Custom Selected Label"></DBCustomSelect>
 			</div>

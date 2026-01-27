@@ -1,4 +1,5 @@
 import { Fragment, useMetadata } from '@builder.io/mitosis';
+import DBInfotext from '../../infotext/infotext.lite';
 import DBRadio from '../radio.lite';
 import { StorybookRadioArgTypes } from './_radio.arg.types';
 
@@ -15,9 +16,17 @@ export default function RadioShowLabel() {
 				<DBRadio name="Content" showLabel={true}>
 					(Default) True
 				</DBRadio>
-				<DBRadio name="Content" showLabel={false}>
-					False
-				</DBRadio>
+				<div>
+					<DBRadio name="Content" showLabel={false}>
+						False
+					</DBRadio>
+					<DBInfotext
+						semantic="informational"
+						size="small"
+						icon="none">
+						False
+					</DBInfotext>
+				</div>
 			</div>
 		</Fragment>
 	);

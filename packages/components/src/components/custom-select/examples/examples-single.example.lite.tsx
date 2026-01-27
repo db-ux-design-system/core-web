@@ -136,6 +136,7 @@ export default function CustomSelectExamplesSingle() {
 						{ value: 'Option 10', id: 'zdi31d2lu' }
 					]}
 					placeholder="Placeholder"
+					searchLabel="Search"
 					label="More than 10"
 					listLabel="id-10265-More than 10"></DBCustomSelect>
 			</div>

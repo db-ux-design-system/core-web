@@ -1,4 +1,5 @@
 import { Fragment, useMetadata } from '@builder.io/mitosis';
+import DBInfotext from '../../infotext/infotext.lite';
 import DBCheckbox from '../checkbox.lite';
 import { StorybookCheckboxArgTypes } from './_checkbox.arg.types';
 
@@ -15,9 +16,17 @@ export default function CheckboxShowLabel() {
 				<DBCheckbox name="Label" showLabel={true}>
 					(Default) True
 				</DBCheckbox>
-				<DBCheckbox name="Label" showLabel={false}>
-					False
-				</DBCheckbox>
+				<div>
+					<DBCheckbox name="Label" showLabel={false}>
+						False
+					</DBCheckbox>
+					<DBInfotext
+						semantic="informational"
+						size="small"
+						icon="none">
+						False
+					</DBInfotext>
+				</div>
 			</div>
 		</Fragment>
 	);

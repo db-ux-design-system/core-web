@@ -21,7 +21,11 @@ export default function InputExampleFloatingLabel() {
 				label="Label"
 				variant="floating"
 				placeholder="(Default) Empty"></DBInput>
-			<DBInput label="Label" value="Filled" variant="floating"></DBInput>
+			<DBInput
+				label="Label"
+				value="Filled"
+				variant="floating"
+				placeholder="Filled"></DBInput>
 			<DBInput
 				label="Label"
 				disabled={true}
@@ -31,7 +35,8 @@ export default function InputExampleFloatingLabel() {
 				label="Label"
 				value="Readonly - Filled"
 				readOnly={true}
-				variant="floating"></DBInput>
+				variant="floating"
+				placeholder="Readonly - Filled"></DBInput>
 			<DBInput
 				label="Label"
 				validation="invalid"

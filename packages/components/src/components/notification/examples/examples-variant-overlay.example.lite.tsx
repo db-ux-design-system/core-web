@@ -48,15 +48,10 @@ export default function NotificationExamplesVariantOverlay() {
 	return (
 		<Fragment>
 			<div style={{ width: '300px' }}>
-				<DBNotification variant="overlay" headline="Headline">
-					Text
-				</DBNotification>
+				<DBNotification variant="overlay">Text</DBNotification>
 			</div>
 			<div style={{ width: '300px' }}>
-				<DBNotification
-					icon="information_circle"
-					variant="overlay"
-					headline="Headline">
+				<DBNotification icon="information_circle" variant="overlay">
 					Text & Icon
 				</DBNotification>
 			</div>
@@ -68,8 +63,7 @@ export default function NotificationExamplesVariantOverlay() {
 							alt="this is a fancy placeholder"
 						/>
 					}
-					variant="overlay"
-					headline="Headline">
+					variant="overlay">
 					Text & Preview Image
 				</DBNotification>
 			</div>
@@ -82,8 +76,7 @@ export default function NotificationExamplesVariantOverlay() {
 				<DBNotification
 					link={<DBLink href="#">Textlink</DBLink>}
 					variant="overlay"
-					linkVariant="inline"
-					headline="Headline">
+					linkVariant="inline">
 					Text & Textlink Inline
 				</DBNotification>
 			</div>
@@ -91,8 +84,7 @@ export default function NotificationExamplesVariantOverlay() {
 				<DBNotification
 					link={<DBLink href="#">Textlink</DBLink>}
 					variant="overlay"
-					linkVariant="block"
-					headline="Headline">
+					linkVariant="block">
 					Text & Textlink Block
 				</DBNotification>
 			</div>
@@ -102,8 +94,7 @@ export default function NotificationExamplesVariantOverlay() {
 					variant="overlay"
 					linkVariant="block"
 					showTimestamp={true}
-					timestamp="10 min ago"
-					headline="Headline">
+					timestamp="10 min ago">
 					Text & Textlink Block & Timed
 				</DBNotification>
 			</div>
@@ -132,8 +123,7 @@ export default function NotificationExamplesVariantOverlay() {
 				<DBNotification
 					variant="overlay"
 					showTimestamp={true}
-					timestamp="10 min ago"
-					headline="Headline">
+					timestamp="10 min ago">
 					Text & Timed
 				</DBNotification>
 			</div>
@@ -142,8 +132,7 @@ export default function NotificationExamplesVariantOverlay() {
 					variant="overlay"
 					closeable={true}
 					showTimestamp={true}
-					timestamp="10 min ago"
-					headline="Headline">
+					timestamp="10 min ago">
 					Text & Timed & Closeable
 				</DBNotification>
 			</div>

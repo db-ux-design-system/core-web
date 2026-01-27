@@ -34,6 +34,7 @@ export default function CustomSelectMultiple() {
 						{ value: 'Option 5', id: '3a4ml34c5' }
 					]}
 					multiple={true}
+					searchLabel="Search"
 					label="True"
 					listLabel="id-10210-True"></DBCustomSelect>
 			</div>

@@ -21,7 +21,6 @@ export default function CustomSelectExamplesFloatinglabel() {
 						{ value: 'Option 5', id: 'ju53v05yg' }
 					]}
 					variant="floating"
-					values={['Floating Label']}
 					label="Floating"
 					listLabel="id-10300-Floating"></DBCustomSelect>
 			</div>

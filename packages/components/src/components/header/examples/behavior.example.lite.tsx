@@ -62,7 +62,7 @@ export default function HeaderBehavior() {
 							},
 							default: {}
 						})}
-						aria-label="desktop full with">
+						aria-label="Desktop (full width)">
 						<DBNavigationItem icon="x_placeholder">
 							<a href="#">Desktop (full width)</a>
 						</DBNavigationItem>
@@ -119,7 +119,7 @@ export default function HeaderBehavior() {
 							},
 							default: {}
 						})}
-						aria-label="mobile">
+						aria-label="Mobile">
 						<DBNavigationItem icon="x_placeholder">
 							<a href="#">Mobile</a>
 						</DBNavigationItem>

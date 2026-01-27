@@ -34,10 +34,10 @@ export default function CustomSelectDropdownWidth() {
 						{ value: 'Option 4', id: 'qc908rx4z' },
 						{ value: 'Option 5', id: 'qc908rx3z' }
 					]}
-					label="Fixed"
+					label="(Default) Fixed"
 					formFieldWidth="full"
 					dropdownWidth="fixed"
-					listLabel="id-10227-Fixed"></DBCustomSelect>
+					listLabel="id-10227-(Default) Fixed"></DBCustomSelect>
 			</div>
 			<div style={{ width: '400px' }}>
 				<DBCustomSelect
@@ -83,10 +83,10 @@ export default function CustomSelectDropdownWidth() {
 						{ value: 'Option 4', id: 'kr0v2jgxl' },
 						{ value: 'Option 5', id: 'kr0v1jgxl' }
 					]}
-					label="Fixed"
+					label="(Default) Fixed"
 					formFieldWidth="auto"
 					dropdownWidth="fixed"
-					listLabel="id-10233-Fixed"></DBCustomSelect>
+					listLabel="id-10233-(Default) Fixed"></DBCustomSelect>
 			</div>
 			<div style={{ width: '400px' }}>
 				<DBCustomSelect

@@ -15,6 +15,7 @@ export default function InputVariant() {
 			<DBInput
 				label="Label"
 				variant="floating"
+				placeholder="Floating"
 				value="Floating"></DBInput>
 		</Fragment>
 	);

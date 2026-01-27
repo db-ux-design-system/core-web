@@ -28,7 +28,7 @@ export default function AccordionDensity() {
 				</DBAccordionItem>
 			</DBAccordion>
 			<DBInfotext size="small" semantic="informational" icon="none">
-				Regular
+				(Default) Regular
 			</DBInfotext>
 			<DBAccordion data-density="regular">
 				<DBAccordionItem headlinePlain="Item 1">

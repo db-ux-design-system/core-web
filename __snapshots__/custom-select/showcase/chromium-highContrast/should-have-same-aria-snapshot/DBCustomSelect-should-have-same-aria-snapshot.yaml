@@ -476,10 +476,10 @@
             - text: Option 5
   - status
   - link "Form Field Width"
-  - text: Full
+  - text: (Default) Full
   - group:
     - article:
-      - radiogroup "id-10223-Full":
+      - radiogroup "id-10223-(Default) Full":
         - list:
           - listitem:
             - radio "Option 1"
@@ -519,10 +519,10 @@
             - text: Option 5
   - status
   - link "Dropdown Width"
-  - text: "Form Field Width: Full Fixed"
+  - text: "Form Field Width: Full (Default) Fixed"
   - group:
     - article:
-      - radiogroup "id-10227-Fixed":
+      - radiogroup "id-10227-(Default) Fixed":
         - list:
           - listitem:
             - radio "Option 1"
@@ -582,10 +582,10 @@
             - radio "5"
             - text: "5"
   - status
-  - text: "Form Field Width: Auto Fixed"
+  - text: "Form Field Width: Auto (Default) Fixed"
   - group:
     - article:
-      - radiogroup "id-10233-Fixed":
+      - radiogroup "id-10233-(Default) Fixed":
         - list:
           - listitem:
             - radio "Option 1"
@@ -646,10 +646,10 @@
             - text: "5"
   - status
   - link "Placement"
-  - text: "Form Field Width: Full Bottom"
+  - text: "Form Field Width: Full (Default) Bottom"
   - group:
     - article:
-      - radiogroup "id-10238-Bottom":
+      - radiogroup "id-10238-(Default) Bottom":
         - list:
           - listitem:
             - radio "Option 1"
@@ -688,10 +688,10 @@
             - radio "Option 5"
             - text: Option 5
   - status
-  - text: "Form Field Width: Auto Bottom"
+  - text: "Form Field Width: Auto (Default) Bottom-Start"
   - group:
     - article:
-      - radiogroup "id-10243-Bottom":
+      - radiogroup "id-10243-(Default) Bottom-Start":
         - list:
           - listitem:
             - radio "Option 1"
@@ -709,10 +709,10 @@
             - radio "Option 5"
             - text: Option 5
   - status
-  - text: Bottom
+  - text: Bottom-End
   - group:
     - article:
-      - radiogroup "id-10244-Bottom":
+      - radiogroup "id-10244-Bottom-End":
         - list:
           - listitem:
             - radio "Option 1"
@@ -730,10 +730,10 @@
             - radio "Option 5"
             - text: Option 5
   - status
-  - text: Top
+  - text: Top-Start
   - group:
     - article:
-      - radiogroup "id-10245-Top":
+      - radiogroup "id-10245-Top-Start":
         - list:
           - listitem:
             - radio "Option 1"
@@ -751,10 +751,10 @@
             - radio "Option 5"
             - text: Option 5
   - status
-  - text: Top
+  - text: Top-End
   - group:
     - article:
-      - radiogroup "id-10246-Top":
+      - radiogroup "id-10246-Top-End":
         - list:
           - listitem:
             - radio "Option 1"
@@ -892,8 +892,8 @@
   - text: (Default) False
   - group:
     - article:
-      - checkbox "LABEL SHOULD BE SET"
-      - text: LABEL SHOULD BE SET
+      - checkbox "Select all"
+      - text: Select all
       - group "id-10254-(Default) False":
         - list:
           - listitem:
@@ -930,8 +930,8 @@
   - text: "True"
   - group:
     - article:
-      - text: LABEL SHOULD BE SET
-      - searchbox "LABEL SHOULD BE SET"
+      - text: Search
+      - searchbox "Search"
       - status
       - group "id-10255-True":
         - list:
@@ -979,8 +979,8 @@
   - text: "True"
   - group:
     - article:
-      - checkbox "LABEL SHOULD BE SET"
-      - text: LABEL SHOULD BE SET
+      - checkbox "Select all"
+      - text: Select all
       - group "id-10257-True":
         - list:
           - listitem:
@@ -1153,8 +1153,8 @@
   - text: More than 10
   - group:
     - article:
-      - text: LABEL SHOULD BE SET
-      - searchbox "LABEL SHOULD BE SET"
+      - text: Search
+      - searchbox "Search"
       - status
       - radiogroup "id-10265-More than 10":
         - list:
@@ -1252,8 +1252,8 @@
   - text: More than 6
   - group:
     - article:
-      - checkbox "LABEL SHOULD BE SET"
-      - text: LABEL SHOULD BE SET
+      - checkbox "Select all"
+      - text: Select all
       - group "id-10269-More than 6":
         - list:
           - listitem:
@@ -1284,8 +1284,8 @@
       - text: Search
       - searchbox "Search"
       - status
-      - checkbox "Select All"
-      - text: Select All
+      - checkbox "Select all"
+      - text: Select all
       - group "id-10270-More than 10":
         - list:
           - listitem:
@@ -1366,8 +1366,8 @@
   - text: Search Value
   - group:
     - article:
-      - text: LABEL SHOULD BE SET
-      - searchbox "LABEL SHOULD BE SET": "1"
+      - text: Search
+      - searchbox "Search": "1"
       - status
       - group "id-10as4-Search Value":
         - list:
@@ -1377,7 +1377,7 @@
   - status
   - text: Custom Selected Label
   - group:
-    - text: Label controlled
+    - text: "Selected: Label controlled"
     - article:
       - radiogroup "id-10aasds4-Custom Selected Label":
         - list:
@@ -1421,6 +1421,9 @@
   - text: Custom Search Filter
   - group:
     - article:
+      - text: Search
+      - searchbox "Search"
+      - status
       - radiogroup "id-10aasds4-Custom Search Filter":
         - list:
           - listitem:
@@ -1460,7 +1463,6 @@
           - listitem:
             - radio "Option 5"
             - text: Option 5
-  - button "Clear selection"
   - status
   - text: Floating
   - group:
