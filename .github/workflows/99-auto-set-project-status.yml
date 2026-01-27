@@ -24,7 +24,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ steps.generate-token.outputs.token }}
         run: |
-          PROJECT_ID=$(gh project list --owner db-ux-design-system --format json --limit 1 | jq -r '.[0].id')
+          PROJECT_ID=$(gh project list --owner db-ux-design-system --format json | jq -r '.[] | select(.number == 6) | .id')
           ITEM_ID=$(gh project item-list 6 --owner db-ux-design-system --format json | jq -r --arg pr_url "${{ github.event.pull_request.html_url }}" '.items[] | select(.content.url == $pr_url) | .id')
           FIELD_ID=$(gh project field-list 6 --owner db-ux-design-system --format json | jq -r '.fields[] | select(.name == "Status") | .id')
           if [ "${{ github.event.action }}" = "review_requested" ]; then
