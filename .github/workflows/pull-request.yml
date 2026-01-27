@@ -15,10 +15,6 @@ jobs:
   dependabot:
     uses: ./.github/workflows/99-auto-handle-dependabot.yml
 
-  auto-set-project-status:
-    uses: ./.github/workflows/99-auto-set-project-status.yml
-    secrets: inherit
-
   self-healing-dependabot-updates:
     uses: ./.github/workflows/99-self-healing-dependabot-updates.yml
     secrets: inherit
