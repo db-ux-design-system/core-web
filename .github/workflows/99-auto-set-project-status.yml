@@ -24,14 +24,8 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ steps.generate-token.outputs.token }}
         run: |
-          echo "GitHub Context:"
-          echo "Action: ${{ github.event.action }}"
-          echo "PR: ${{ toJSON(github) }}"
-          echo "PR Draft: ${{ github.event.pull_request.draft }}"
-          echo "Actor: ${{ github.actor }}"
-
           PROJECT_ID=$(gh project list --owner db-ux-design-system --format json | jq -r '.projects[] | select(.number == 6) | .id')
-          ITEM_ID=$(gh project item-list 6 --owner db-ux-design-system --format json | jq -r --arg pr_url "${{ github.event.pull_request.html_url }}" '.items[] | select(.content.url == $pr_url) | .id')
+          ITEM_ID=$(gh project item-list 6 --owner db-ux-design-system --limit 5000 --format json | jq -r --arg pr_url "${{ github.event.pull_request.html_url }}" '.items[] | select(.content.url == $pr_url) | .id')
           FIELD_ID=$(gh project field-list 6 --owner db-ux-design-system --format json | jq -r '.fields[] | select(.name == "Status") | .id')
           echo "PROJECT_ID: $PROJECT_ID"
           echo "ITEM_ID: $ITEM_ID"
