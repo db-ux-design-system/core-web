@@ -12,9 +12,9 @@
     "node": ">=18"
   },
   "scripts": {
-    "build": "next build --webpack",
+    "build": "next build --turbopack",
     "dev": "npm-run-all open next:dev",
-    "next:dev": "next dev --webpack --port 5050",
+    "next:dev": "next dev --turbopack --port 5050",
     "open": "open-cli http://localhost:5050/next-showcase",
     "start": "next start"
   },
