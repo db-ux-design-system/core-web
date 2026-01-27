@@ -190,6 +190,26 @@ $db-min-inline-size: var(
 	}
 }
 
+@mixin get-validity-message($key: "valid") {
+	> db-infotext > .db-infotext,
+	> .db-infotext {
+		@if $key == "valid" {
+			&[data-semantic="successful"] {
+				@include helpers.display(flex);
+			}
+			/* stylelint-disable-next-line at-rule-empty-line-before */
+		} @else {
+			&[data-semantic="critical"] {
+				@include helpers.display(flex);
+			}
+		}
+
+		&:not([data-semantic]) {
+			@include helpers.display(none);
+		}
+	}
+}
+
 @mixin get-validity-color($selector, $key: "valid") {
 	$variant: "successful";
 

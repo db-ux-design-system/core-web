@@ -163,6 +163,13 @@ export default function DBCheckbox(props: DBCheckboxProps) {
 	}, [state._id]);
 
 	onUpdate(() => {
+		state._invalidMessage =
+			props.invalidMessage ||
+			_ref?.validationMessage ||
+			DEFAULT_INVALID_MESSAGE;
+	}, [props.invalidMessage, _ref?.validationMessage]);
+
+	onUpdate(() => {
 		if (_ref) {
 			useTarget({
 				angular: () => {
