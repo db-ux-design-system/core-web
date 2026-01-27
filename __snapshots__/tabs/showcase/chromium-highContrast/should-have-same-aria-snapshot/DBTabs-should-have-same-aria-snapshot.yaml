@@ -113,7 +113,7 @@
     - text: Test 5
   - tabpanel "Test 1": Tab Panel 1
   - link "Examples"
-  - text: "2nd tab selected:"
+  - text: "2nd Test selected:"
   - tablist:
     - tab "Test 1"
     - text: Test 1

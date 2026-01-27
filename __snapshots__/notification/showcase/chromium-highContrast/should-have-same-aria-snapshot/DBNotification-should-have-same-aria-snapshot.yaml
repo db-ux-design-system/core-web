@@ -47,9 +47,11 @@
     - button "Close"
   - link "Visual"
   - article:
+    - text: Headline
     - paragraph: (Default) Icon
   - article:
     - img "this is a fancy placeholder"
+    - text: Headline
     - paragraph: Image
   - link "Show Icon"
   - article:
