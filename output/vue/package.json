@@ -1,6 +1,6 @@
 {
   "name": "@db-ux/v-core-components",
-  "version": "4.3.1",
+  "version": "4.4.0",
   "type": "module",
   "description": "Vue components for @db-ux/core-components",
   "repository": {
@@ -47,7 +47,7 @@
     "typescript": "5.9.3",
     "vite": "7.3.1",
     "vue": "3.5.27",
-    "vue-tsc": "3.2.2"
+    "vue-tsc": "3.2.4"
   },
   "publishConfig": {
     "registry": "https://registry.npmjs.org/",
@@ -56,7 +56,7 @@
   "sideEffects": false,
   "source": "src/index.ts",
   "dependencies": {
-    "@db-ux/core-components": "4.3.1",
-    "@db-ux/core-foundations": "4.3.1"
+    "@db-ux/core-components": "4.4.0",
+    "@db-ux/core-foundations": "4.4.0"
   }
 }

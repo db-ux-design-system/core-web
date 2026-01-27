@@ -182,6 +182,18 @@ export default function DBSelect(props: DBSelectProps) {
 		},
 		getOptionLabel: (option: DBSelectOptionType) => {
 			return option.label ?? option.value?.toString();
+		},
+		shouldShowEmptyOption: () => {
+			const hasPlaceholderOrFloating =
+				props.variant === 'floating' || !!props.placeholder;
+			if (!hasPlaceholderOrFloating) {
+				return false;
+			}
+			if (props.showEmptyOption !== undefined) {
+				return props.showEmptyOption;
+			}
+			// Default: show empty option for non-required selects
+			return !props.required;
 		}
 	});
 
@@ -303,8 +315,14 @@ export default function DBSelect(props: DBSelectProps) {
 				}
 				aria-describedby={props.ariaDescribedBy ?? state._descByIds}>
 				{/* Empty option for floating label and placeholder */}
-				<Show when={props.variant === 'floating' || props.placeholder}>
-					<option class="placeholder" value=""></option>
+				<Show
+					when={props.variant === 'floating' || !!props.placeholder}>
+					<option
+						class="placeholder"
+						value=""
+						data-show-empty-option={getBooleanAsString(
+							state.shouldShowEmptyOption()
+						)}></option>
 				</Show>
 				<Show when={props.options?.length} else={props.children}>
 					<For each={props.options}>

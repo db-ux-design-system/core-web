@@ -569,10 +569,6 @@ export type LinkProps = {
 	 */
 	rel?: string;
 	/**
-	 * Sets aria role based on [`aria-role`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles).
-	 */
-	role?: string;
-	/**
 	 * How much of the referrer to send when following the link.
 	 * @deprecated use `referrerPolicy` instead
 	 */
@@ -581,6 +577,13 @@ export type LinkProps = {
 	 * How much of the referrer to send when following the link.
 	 */
 	referrerPolicy?: LinkReferrerPolicyType;
+};
+
+export type RoleProps = {
+	/**
+	 * Sets aria role based on [`aria-role`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles).
+	 */
+	role?: string;
 };
 
 export type TextProps = {
