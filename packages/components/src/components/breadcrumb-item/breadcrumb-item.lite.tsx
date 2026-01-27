@@ -20,10 +20,7 @@ export default function DBBreadcrumbItem(props: DBBreadcrumbItemProps) {
 			<Show
 				when={props.href && !props.disabled}
 				else={
-					<span aria-current={props.ariaCurrent}>
-						<Show when={props.icon}>
-							<DBIcon icon={props.icon} />
-						</Show>
+					<span aria-current={props.ariaCurrent} data-icon={props.icon}>
 						{props.text ? props.text : props.children}
 					</span>
 				}>
