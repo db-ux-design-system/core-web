@@ -29,7 +29,7 @@ module.exports = {
 		// 'src/components/section/examples/*.example.lite.tsx',
 		'src/components/select/examples/*.example.lite.tsx',
 		// 'src/components/stack/examples/*.example.lite.tsx',
-		'src/components/switch/examples/*.example.lite.tsx',
+		// 'src/components/switch/examples/*.example.lite.tsx',
 		'src/components/tab-item/examples/*.example.lite.tsx'
 		// 'src/components/tabs/examples/*.example.lite.tsx',
 		// 'src/components/tag/examples/*.example.lite.tsx',
