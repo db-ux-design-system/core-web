@@ -65,9 +65,12 @@ export default function DBTextarea(props: DBTextareaProps) {
 		hasValidState: () => {
 			return !!(props.validMessage ?? props.validation === 'valid');
 		},
+		hasInvalidState: () => {
+			return !_ref?.validity?.valid || props.validation === 'invalid';
+		},
 		handleValidation: () => {
 			/* For a11y reasons we need to map the correct message with the textarea */
-			if (!_ref?.validity.valid || props.validation === 'invalid') {
+			if (state.hasInvalidState()) {
 				state._descByIds = state._invalidMessageId;
 				state._invalidMessage =
 					props.invalidMessage ||
@@ -170,15 +173,7 @@ export default function DBTextarea(props: DBTextareaProps) {
 		state._messageId = mId + DEFAULT_MESSAGE_ID_SUFFIX;
 		state._validMessageId = mId + DEFAULT_VALID_MESSAGE_ID_SUFFIX;
 		state._invalidMessageId = mId + DEFAULT_INVALID_MESSAGE_ID_SUFFIX;
-		state._invalidMessage = props.invalidMessage || DEFAULT_INVALID_MESSAGE;
 	});
-
-	onUpdate(() => {
-		state._invalidMessage =
-			props.invalidMessage ||
-			_ref?.validationMessage ||
-			DEFAULT_INVALID_MESSAGE;
-	}, [_ref, props.invalidMessage]);
 
 	onUpdate(() => {
 		if (state._id) {
@@ -302,12 +297,14 @@ export default function DBTextarea(props: DBTextareaProps) {
 				</DBInfotext>
 			</Show>
 
-			<DBInfotext
-				id={state._invalidMessageId}
-				size="small"
-				semantic="critical">
-				{state._invalidMessage}
-			</DBInfotext>
+			<Show when={state.hasInvalidState()}>
+				<DBInfotext
+					id={state._invalidMessageId}
+					size="small"
+					semantic="critical">
+					{state._invalidMessage}
+				</DBInfotext>
+			</Show>
 
 			{/* * https://www.davidmacd.com/blog/test-aria-describedby-errormessage-aria-live.html
 			 * Currently VoiceOver isn't supporting changes from aria-describedby.
