@@ -1,5 +1,13 @@
 # @db-ux/react-core-components
 
+## 4.4.0
+
+### Minor Changes
+
+- feat: add `role` property to DBNotification & automatically add role based on semantic if no `role` or `ariaLive` is provided to increase UX for screen-reader users - [see commit 177d71e](https://github.com/db-ux-design-system/core-web/commit/177d71e287a64a6491ba446e7812d0adbda1717e)
+
+- feat(DBSelect): hide empty first option in `required` selects with placeholder after the first user selection, and add `showEmptyOption` prop to overwrite this - [see commit 4280bc4](https://github.com/db-ux-design-system/core-web/commit/4280bc47538d6983d6bb5575f012b6c6b25b40e8)
+
 ## 4.3.2
 
 ### Patch Changes
