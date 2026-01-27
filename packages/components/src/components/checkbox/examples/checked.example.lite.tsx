@@ -1,4 +1,9 @@
-import { Fragment, useMetadata, useState } from '@builder.io/mitosis';
+import {
+	Fragment,
+	useMetadata,
+	useState,
+	useTarget
+} from '@builder.io/mitosis';
 import DBCheckbox from '../checkbox.lite';
 import { StorybookCheckboxArgTypes } from './_checkbox.arg.types';
 
@@ -19,9 +24,15 @@ export default function CheckboxChecked() {
 				<DBCheckbox
 					name="State"
 					checked={checked}
-					onChange={(event) =>
-						setChecked((event.target as HTMLInputElement).checked)
-					}>
+					{...useTarget({
+						react: {
+							onChange: (event: any) =>
+								setChecked(
+									(event.target as HTMLInputElement).checked
+								)
+						},
+						default: {}
+					})}>
 					True
 				</DBCheckbox>
 			</div>

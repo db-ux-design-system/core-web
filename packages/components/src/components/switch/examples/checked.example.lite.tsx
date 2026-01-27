@@ -1,4 +1,9 @@
-import { Fragment, useMetadata, useState } from '@builder.io/mitosis';
+import {
+	Fragment,
+	useMetadata,
+	useState,
+	useTarget
+} from '@builder.io/mitosis';
 import DBSwitch from '../switch.lite';
 import { StorybookSwitchArgTypes } from './_switch.arg.types';
 
@@ -15,9 +20,15 @@ export default function SwitchChecked() {
 			<DBSwitch checked={false}>(Default) False</DBSwitch>
 			<DBSwitch
 				checked={checked}
-				onChange={(event) =>
-					setChecked((event.target as HTMLInputElement).checked)
-				}>
+				{...useTarget({
+					react: {
+						onChange: (event: any) =>
+							setChecked(
+								(event.target as HTMLInputElement).checked
+							)
+					},
+					default: {}
+				})}>
 				True
 			</DBSwitch>
 		</Fragment>
