@@ -24,10 +24,7 @@ export default function DBBreadcrumbItem(props: DBBreadcrumbItemProps) {
 						{props.text ? props.text : props.children}
 					</span>
 				}>
-				<a href={props.href} aria-current={props.ariaCurrent}>
-					<Show when={props.icon}>
-						<DBIcon icon={props.icon} />
-					</Show>
+				<a href={props.href} aria-current={props.ariaCurrent} data-icon={props.icon}>
 					{props.text ? props.text : props.children}
 				</a>
 			</Show>
