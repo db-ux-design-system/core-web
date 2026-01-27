@@ -7,7 +7,6 @@ import {
 	useStore
 } from '@builder.io/mitosis';
 import { cls, getBooleanAsString, uuid } from '../../utils';
-import { DBIcon } from '../icon';
 import type {
 	DBBreadcrumbItems,
 	DBBreadcrumbProps,
