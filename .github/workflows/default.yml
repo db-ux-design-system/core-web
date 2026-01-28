@@ -111,6 +111,7 @@ jobs:
     if: ${{ github.event_name != 'release'}}
     uses: ./.github/workflows/02-test-figma-code-connect.yml
     needs: [build-figma-code-connect, init]
+    secrets: inherit
 
   test-components:
     uses: ./.github/workflows/02-e2e.yml

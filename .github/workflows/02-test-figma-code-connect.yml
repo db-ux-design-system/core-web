@@ -28,7 +28,7 @@ jobs:
           name: figma-code-connect
           path: figma-code-connect
 
-      - name: 🖌️🔌 Publish
+      - name: ⚡ Run Test
         env:
           FIGMA_ACCESS_TOKEN: ${{ secrets.FIGMA_ACCESS_TOKEN }}
         run: |
