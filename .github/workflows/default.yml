@@ -482,9 +482,9 @@ jobs:
       repoOwner: ${{ needs.init.outputs.repoOwner }}
 
   publish-figma-code-connect:
-    if: ${{ github.event_name != 'release' }}
+    if: ${{ !cancelled() && github.event_name != 'release' }}
     uses: ./.github/workflows/03-publish-figma-code-connect.yml
-    needs: [init, checks-done, build-figma-code-connect]
+    needs: [checks-done, test-figma-code-connect]
     secrets: inherit
 
   preview-url-pr-description:
