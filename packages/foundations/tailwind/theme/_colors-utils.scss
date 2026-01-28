@@ -1,0 +1,167 @@
+@mixin get-color($color-name, $adaptive-name) {
+	/* Basic-Level */
+	--color-#{$adaptive-name}-bg-basic-level-1-default: var(
+		--db-#{$color-name}-bg-basic-level-1-default
+	);
+	--color-#{$adaptive-name}-bg-basic-level-1-hovered: var(
+		--db-#{$color-name}-bg-basic-level-1-hovered
+	);
+	--color-#{$adaptive-name}-bg-basic-level-1-pressed: var(
+		--db-#{$color-name}-bg-basic-level-1-pressed
+	);
+	--color-#{$adaptive-name}-bg-basic-level-2-default: var(
+		--db-#{$color-name}-bg-basic-level-2-default
+	);
+	--color-#{$adaptive-name}-bg-basic-level-2-hovered: var(
+		--db-#{$color-name}-bg-basic-level-2-hovered
+	);
+	--color-#{$adaptive-name}-bg-basic-level-2-pressed: var(
+		--db-#{$color-name}-bg-basic-level-2-pressed
+	);
+	--color-#{$adaptive-name}-bg-basic-level-3-default: var(
+		--db-#{$color-name}-bg-basic-level-3-default
+	);
+	--color-#{$adaptive-name}-bg-basic-level-3-hovered: var(
+		--db-#{$color-name}-bg-basic-level-3-hovered
+	);
+	--color-#{$adaptive-name}-bg-basic-level-3-pressed: var(
+		--db-#{$color-name}-bg-basic-level-3-pressed
+	);
+
+	/* Transparent */
+	--color-#{$adaptive-name}-bg-basic-transparent-full-default: var(
+		--db-#{$color-name}-bg-basic-transparent-full-default
+	);
+	--color-#{$adaptive-name}-bg-basic-transparent-semi-default: var(
+		--db-#{$color-name}-bg-basic-transparent-semi-default
+	);
+	--color-#{$adaptive-name}-bg-basic-transparent-full-hovered: var(
+		--db-#{$color-name}-bg-basic-transparent-full-hovered
+	);
+	--color-#{$adaptive-name}-bg-basic-transparent-full-pressed: var(
+		--db-#{$color-name}-bg-basic-transparent-full-pressed
+	);
+	--color-#{$adaptive-name}-bg-basic-transparent-semi-hovered: var(
+		--db-#{$color-name}-bg-basic-transparent-semi-hovered
+	);
+	--color-#{$adaptive-name}-bg-basic-transparent-semi-pressed: var(
+		--db-#{$color-name}-bg-basic-transparent-semi-pressed
+	);
+
+	/* Inverted */
+	--color-#{$adaptive-name}-bg-inverted-contrast-max-default: var(
+		--db-#{$color-name}-bg-inverted-contrast-max-default
+	);
+	--color-#{$adaptive-name}-bg-inverted-contrast-max-hovered: var(
+		--db-#{$color-name}-bg-inverted-contrast-max-hovered
+	);
+	--color-#{$adaptive-name}-bg-inverted-contrast-max-pressed: var(
+		--db-#{$color-name}-bg-inverted-contrast-max-pressed
+	);
+	--color-#{$adaptive-name}-bg-inverted-contrast-high-default: var(
+		--db-#{$color-name}-bg-inverted-contrast-high-default
+	);
+	--color-#{$adaptive-name}-bg-inverted-contrast-high-hovered: var(
+		--db-#{$color-name}-bg-inverted-contrast-high-hovered
+	);
+	--color-#{$adaptive-name}-bg-inverted-contrast-high-pressed: var(
+		--db-#{$color-name}-bg-inverted-contrast-high-pressed
+	);
+	--color-#{$adaptive-name}-bg-inverted-contrast-low-default: var(
+		--db-#{$color-name}-bg-inverted-contrast-low-default
+	);
+	--color-#{$adaptive-name}-bg-inverted-contrast-low-hovered: var(
+		--db-#{$color-name}-bg-inverted-contrast-low-hovered
+	);
+	--color-#{$adaptive-name}-bg-inverted-contrast-low-pressed: var(
+		--db-#{$color-name}-bg-inverted-contrast-low-pressed
+	);
+
+	/* On Colors */
+
+	--color-#{$adaptive-name}-on-bg-basic-emphasis-100-default: var(
+		--db-#{$color-name}-on-bg-basic-emphasis-100-default
+	);
+	--color-#{$adaptive-name}-on-bg-basic-emphasis-100-hovered: var(
+		--db-#{$color-name}-on-bg-basic-emphasis-100-hovered
+	);
+	--color-#{$adaptive-name}-on-bg-basic-emphasis-100-pressed: var(
+		--db-#{$color-name}-on-bg-basic-emphasis-100-pressed
+	);
+	--color-#{$adaptive-name}-on-bg-basic-emphasis-90-default: var(
+		--db-#{$color-name}-on-bg-basic-emphasis-90-default
+	);
+	--color-#{$adaptive-name}-on-bg-basic-emphasis-90-hovered: var(
+		--db-#{$color-name}-on-bg-basic-emphasis-90-hovered
+	);
+	--color-#{$adaptive-name}-on-bg-basic-emphasis-90-pressed: var(
+		--db-#{$color-name}-on-bg-basic-emphasis-90-pressed
+	);
+	--color-#{$adaptive-name}-on-bg-basic-emphasis-80-default: var(
+		--db-#{$color-name}-on-bg-basic-emphasis-80-default
+	);
+	--color-#{$adaptive-name}-on-bg-basic-emphasis-80-hovered: var(
+		--db-#{$color-name}-on-bg-basic-emphasis-80-hovered
+	);
+	--color-#{$adaptive-name}-on-bg-basic-emphasis-80-pressed: var(
+		--db-#{$color-name}-on-bg-basic-emphasis-80-pressed
+	);
+	--color-#{$adaptive-name}-on-bg-basic-emphasis-70-default: var(
+		--db-#{$color-name}-on-bg-basic-emphasis-70-default
+	);
+	--color-#{$adaptive-name}-on-bg-basic-emphasis-70-hovered: var(
+		--db-#{$color-name}-on-bg-basic-emphasis-70-hovered
+	);
+	--color-#{$adaptive-name}-on-bg-basic-emphasis-70-pressed: var(
+		--db-#{$color-name}-on-bg-basic-emphasis-70-pressed
+	);
+	--color-#{$adaptive-name}-on-bg-basic-emphasis-60-default: var(
+		--db-#{$color-name}-on-bg-basic-emphasis-60-default
+	);
+	--color-#{$adaptive-name}-on-bg-basic-emphasis-60-hovered: var(
+		--db-#{$color-name}-on-bg-basic-emphasis-60-hovered
+	);
+	--color-#{$adaptive-name}-on-bg-basic-emphasis-60-pressed: var(
+		--db-#{$color-name}-on-bg-basic-emphasis-60-pressed
+	);
+	--color-#{$adaptive-name}-on-bg-basic-emphasis-50-default: var(
+		--db-#{$color-name}-on-bg-basic-emphasis-50-default
+	);
+	--color-#{$adaptive-name}-on-bg-basic-emphasis-50-hovered: var(
+		--db-#{$color-name}-on-bg-basic-emphasis-50-hovered
+	);
+	--color-#{$adaptive-name}-on-bg-basic-emphasis-50-pressed: var(
+		--db-#{$color-name}-on-bg-basic-emphasis-50-pressed
+	);
+
+	/* On Inverted */
+	--color-#{$adaptive-name}-on-bg-inverted-default: var(
+		--db-#{$color-name}-on-bg-inverted-default
+	);
+	--color-#{$adaptive-name}-on-bg-inverted-hovered: var(
+		--db-#{$color-name}-on-bg-inverted-hovered
+	);
+	--color-#{$adaptive-name}-on-bg-inverted-pressed: var(
+		--db-#{$color-name}-on-bg-inverted-pressed
+	);
+
+	/* On Origin */
+	--color-#{$adaptive-name}-on-origin-default: var(
+		--db-#{$color-name}-on-origin-default
+	);
+	--color-#{$adaptive-name}-on-origin-hovered: var(
+		--db-#{$color-name}-on-origin-hovered
+	);
+	--color-#{$adaptive-name}-on-origin-pressed: var(
+		--db-#{$color-name}-on-origin-pressed
+	);
+	--color-#{$adaptive-name}-origin-default: var(
+		--db-#{$color-name}-origin-default
+	);
+	--color-#{$adaptive-name}-origin-hovered: var(
+		--db-#{$color-name}-origin-hovered
+	);
+	--color-#{$adaptive-name}-origin-pressed: var(
+		--db-#{$color-name}-origin-pressed
+	);
+}
