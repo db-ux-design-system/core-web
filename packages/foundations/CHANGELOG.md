@@ -1,9 +1,17 @@
 # @db-ux/core-foundations
 
-## 4.3.1
+## 4.4.0
 
 _version bump_
 
+
+## 4.3.2
+
+_version bump_
+
+## 4.3.1
+
+_version bump_
 
 ## 4.3.0
 

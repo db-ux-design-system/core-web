@@ -33,8 +33,6 @@
 
 .variants-card,
 .variants-card > .db-card {
-	contain: layout;
-	contain-intrinsic-size: var(--db-sizing-3xl) var(--db-sizing-3xl);
 	align-items: center;
 	justify-content: center;
 	padding: var(--db-spacing-fixed-xl);
