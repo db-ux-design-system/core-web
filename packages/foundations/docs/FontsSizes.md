@@ -1,7 +1,7 @@
 # DB Font Sizes
 
 The font sizes of foundations consist of [two different sets](./overview) (9 sizes each) for general texts (**Body Font Sizes**) and headlines (**Headline Font Sizes**).
-All sizes of both sets are automatically adjusted by the selected [density](./../densities/readme).
+All sizes of both sets are automatically adjusted by the selected [density](./../densities/README.md).
 
 ## Body Font Sizes
 
