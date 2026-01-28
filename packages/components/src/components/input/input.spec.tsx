@@ -120,7 +120,15 @@ const testAction = () => {
 		);
 	});
 
-	test('should support time input with dataList', async ({ mount }) => {
+	test('should support time input with dataList', async ({
+		mount,
+		browserName
+	}) => {
+		if (browserName === 'firefox') {
+			// Firefox doesn't support [type=time]
+			test.skip();
+		}
+
 		const component = await mount(
 			<DBInput label="Label" type="time" dataList={['00:00', '00:15']} />
 		);
