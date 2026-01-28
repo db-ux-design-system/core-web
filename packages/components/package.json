@@ -43,6 +43,7 @@
     "generate:agent": "mitosis build --config=configs/mitosis.agent.config.cjs",
     "generate:component": "hygen mitosis new",
     "generate:docs": "hygen update-docs new",
+    "generate:figma": "mitosis build --config=configs/mitosis.figma.config.cjs",
     "generate:showcase": "mitosis build --config=configs/mitosis.showcase.config.cjs",
     "generate:stories": "mitosis build --config=configs/mitosis.storybook.config.cjs",
     "prepack": "npm run copy-assets",

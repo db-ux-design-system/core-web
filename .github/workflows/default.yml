@@ -70,6 +70,17 @@ jobs:
     secrets: inherit
     needs: [build-packages]
 
+  build-figma-code-connect:
+    if: ${{ github.event_name != 'release'}}
+    uses: ./.github/workflows/01-build-figma-code-connect.yml
+    needs: [init]
+
+  cancel-on-failure-figma-code-connect:
+    if: ${{ github.event_name != 'release' && !cancelled() && needs.build-figma-code-connect.result == 'failure' }}
+    uses: ./.github/workflows/00-cancel-workflow.yml
+    secrets: inherit
+    needs: [build-figma-code-connect]
+
   build-stories:
     uses: ./.github/workflows/01-build-stories.yml
     needs: [init]
@@ -95,6 +106,11 @@ jobs:
     uses: ./.github/workflows/00-cancel-workflow.yml
     secrets: inherit
     needs: [build-outputs]
+
+  test-figma-code-connect:
+    if: ${{ github.event_name != 'release'}}
+    uses: ./.github/workflows/02-test-figma-code-connect.yml
+    needs: [build-figma-code-connect, init]
 
   test-components:
     uses: ./.github/workflows/02-e2e.yml
@@ -393,13 +409,15 @@ jobs:
           resultTestShowcaseVue="${{ needs.test-showcase-vue.result }}"
           resultTestShowcasePatternhub="${{ needs.test-showcase-patternhub.result }}"
           resultTestScreenReader="${{ needs.test-screen-reader.result }}"
+          resultTestFigmaCodeConnect="${{ needs.test-figma-code-connect.result }}"
 
           if [[ $resultBuildStorybookComposition == "success" ]] && \
              [[ $resultBuildStorybookAngular == "success" ]] && \
              [[ $resultBuildStorybookReact == "success" ]] && \
              [[ $resultBuildStorybookVue == "success" ]] && \
              [[ $resultTestFoundations == "success" ]] && \
-            [[ $resultTestScreenReader == "success" || (github.event_name != 'release' && $resultTestScreenReader == "skipped") ]] && \
+             [[ $resultTestFigmaCodeConnect == "success" || (github.event_name == 'release' && $resultTestFigmaCodeConnect == "skipped") ]] && \
+             [[ $resultTestScreenReader == "success" || (github.event_name != 'release' && $resultTestScreenReader == "skipped") ]] && \
              [[ $resultTestShowcaseStencil == "success" ]] && \
              [[ $resultTestShowcaseAngular == "success" ]] && \
              [[ $resultTestShowcaseReact == "success" ]] && \
@@ -436,6 +454,7 @@ jobs:
         build-showcase-nuxt,
         build-showcase-patternhub,
         build-outputs,
+        test-figma-code-connect,
         test-components,
         test-showcase-stencil,
         test-showcase-angular,
@@ -460,6 +479,12 @@ jobs:
       name: ${{ needs.init.outputs.branchName }}
       repoName: ${{ needs.init.outputs.repoName }}
       repoOwner: ${{ needs.init.outputs.repoOwner }}
+
+  publish-figma-code-connect:
+    if: ${{ github.event_name != 'release' }}
+    uses: ./.github/workflows/03-publish-figma-code-connect.yml
+    needs: [init, checks-done, build-figma-code-connect]
+    secrets: inherit
 
   preview-url-pr-description:
     if: ${{ !cancelled() && github.event.pull_request != null }}

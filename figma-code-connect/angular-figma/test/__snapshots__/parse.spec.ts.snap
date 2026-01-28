@@ -1,0 +1,630 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`figma > check if parse has same snapshot 1`] = `
+"[
+  {
+    "figmaNode": "https://www.figma.com/design/DId8Cd14lKtNiuRRysiCbH/testing-branch?node-id=14436-13065&m=dev",
+    "label": "Angular",
+    "language": "html",
+    "source": "",
+    "sourceLocation": {
+      "line": -1
+    },
+    "template": "function _fcc_templateString($value) {\\n    return {\\n        $value,\\n        $type: 'template-string',\\n    };\\n}\\nfunction _fcc_object($value) {\\n    return {\\n        $value,\\n        $type: 'object',\\n        ...$value,\\n    };\\n}\\nfunction _fcc_renderHtmlValue(value) {\\n    // If the value is an array, then it's an array of objects representing React\\n    // children (either of type INSTANCE for pills, or CODE for inline code). The\\n    // template string handler in the template API handles extracting the instance\\n    // objects in a way the UI can handle.\\n    const isComponentArray = Array.isArray(value);\\n    if (isComponentArray) {\\n        return figma.html \`\${value}\`;\\n    }\\n    if (typeof value === 'object') {\\n        return JSON.stringify(value);\\n    }\\n    else if (typeof value === 'undefined') {\\n        return '';\\n    }\\n    else {\\n        return value.toString();\\n    }\\n}\\nfunction _fcc_renderHtmlAttribute(name, value) {\\n    // figma.boolean returns undefined instead of false in some cases\\n    if (typeof value === 'undefined') {\\n        return '';\\n    }\\n    else if (typeof value === 'boolean') {\\n        if (value) {\\n            return name;\\n        }\\n        else {\\n            return '';\\n        }\\n    }\\n    else if (typeof value === 'string' || typeof value === 'number' || typeof value === 'bigint') {\\n        return \`\${name}=\\"\${value.toString().replaceAll('\\\\n', '\\\\\\\\n').replaceAll('\\"', '\\\\\\\\\\"')}\\"\`;\\n    }\\n    else if (value.$type === 'identifier') {\\n        return \`\${name}=\\"\${value.$value}\\"\`;\\n    }\\n    else {\\n        // TODO make this show a proper error in the UI\\n        return \`\${name}=\\"Code Connect Error: Unsupported type '\${typeof value}' for attribute\\"\`;\\n    }\\n}\\nfunction _fcc_identifier($value) {\\n    return {\\n        $value,\\n        $type: 'identifier',\\n    };\\n}\\n\\nconst figma = require('figma')\\n\\nconst disabled = figma.currentLayer.__properties__.enum('Disabled', {\\n\\"False\\": false,\\n\\"True\\": true})\\nconst noText = figma.currentLayer.__properties__.enum('💻 No Text', {\\n\\"False\\": false,\\n\\"True\\": true})\\nconst size = figma.currentLayer.__properties__.enum('Size', {\\n\\"Small\\": 'small',\\n\\"(Def) Medium\\": 'medium'})\\nconst text = figma.currentLayer.__properties__.string('✏️ Text')\\nconst variant = figma.currentLayer.__properties__.enum('💻 Variant', {\\n\\"Brand\\": 'brand',\\n\\"Ghost\\": 'ghost',\\n\\"Filled\\": 'filled',\\n\\"Outlined\\": 'outlined'})\\nconst width = figma.currentLayer.__properties__.enum('Width', {\\n\\"(Def) Auto\\": 'auto',\\n\\"Full\\": 'full'})\\nconst showIconLeading = figma.currentLayer.__properties__.boolean('Show Icon Leading')\\nconst showIconTrailing = figma.currentLayer.__properties__.boolean('Show Icon Trailing')\\nconst iconLeading = figma.currentLayer.__properties__.enum('Size', {\\n\\"Small\\": figma.currentLayer.__properties__.instance('🔄 Icon Leading Small'),\\n\\"(Def) Medium\\": figma.currentLayer.__properties__.instance('🔄 Icon Leading Medium')})\\nconst iconTrailing = figma.currentLayer.__properties__.enum('Size', {\\n\\"Small\\": figma.currentLayer.__properties__.instance('🔄 Icon Trailing Small'),\\n\\"(Def) Medium\\": figma.currentLayer.__properties__.instance('🔄 Icon Trailing Medium')})\\nconst __props = {}\\nif (disabled && disabled.type !== 'ERROR') {\\n  __props[\\"disabled\\"] = disabled\\n}\\nif (noText && noText.type !== 'ERROR') {\\n  __props[\\"noText\\"] = noText\\n}\\nif (size && size.type !== 'ERROR') {\\n  __props[\\"size\\"] = size\\n}\\nif (text && text.type !== 'ERROR') {\\n  __props[\\"text\\"] = text\\n}\\nif (variant && variant.type !== 'ERROR') {\\n  __props[\\"variant\\"] = variant\\n}\\nif (width && width.type !== 'ERROR') {\\n  __props[\\"width\\"] = width\\n}\\nif (showIconLeading && showIconLeading.type !== 'ERROR') {\\n  __props[\\"showIconLeading\\"] = showIconLeading\\n}\\nif (showIconTrailing && showIconTrailing.type !== 'ERROR') {\\n  __props[\\"showIconTrailing\\"] = showIconTrailing\\n}\\nif (iconLeading && iconLeading.type !== 'ERROR') {\\n  __props[\\"iconLeading\\"] = iconLeading\\n}\\nif (iconTrailing && iconTrailing.type !== 'ERROR') {\\n  __props[\\"iconTrailing\\"] = iconTrailing\\n}\\n\\nexport default figma.html\`<db-button\\n    type=\\"button\\"\\n    \${_fcc_renderHtmlAttribute('disabled', disabled)}\\n    \${_fcc_renderHtmlAttribute('noText', noText)}\\n    \${_fcc_renderHtmlAttribute('[icon]', iconLeading)}\\n    \${_fcc_renderHtmlAttribute('iconTrailing', iconTrailing)}\\n    \${_fcc_renderHtmlAttribute('[showIcon]', showIconLeading)}\\n    \${_fcc_renderHtmlAttribute('showIconTrailing', showIconTrailing)}\\n    \${_fcc_renderHtmlAttribute('width', width)}\\n    \${_fcc_renderHtmlAttribute('size', size)}\\n    \${_fcc_renderHtmlAttribute('variant', variant)}\\n    \${_fcc_renderHtmlAttribute('showIconLeading', showIconLeading)}\\n    >\${_fcc_renderHtmlValue(text)}</db-button\\n  >\`\\n",
+    "templateData": {
+      "props": {
+        "disabled": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "Disabled",
+            "valueMapping": {
+              "False": false,
+              "True": true
+            }
+          }
+        },
+        "noText": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "💻 No Text",
+            "valueMapping": {
+              "False": false,
+              "True": true
+            }
+          }
+        },
+        "size": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "Size",
+            "valueMapping": {
+              "Small": "small",
+              "(Def) Medium": "medium"
+            }
+          }
+        },
+        "text": {
+          "kind": "string",
+          "args": {
+            "figmaPropName": "✏️ Text"
+          }
+        },
+        "variant": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "💻 Variant",
+            "valueMapping": {
+              "Brand": "brand",
+              "Ghost": "ghost",
+              "Filled": "filled",
+              "Outlined": "outlined"
+            }
+          }
+        },
+        "width": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "Width",
+            "valueMapping": {
+              "(Def) Auto": "auto",
+              "Full": "full"
+            }
+          }
+        },
+        "showIconLeading": {
+          "kind": "boolean",
+          "args": {
+            "figmaPropName": "Show Icon Leading"
+          }
+        },
+        "showIconTrailing": {
+          "kind": "boolean",
+          "args": {
+            "figmaPropName": "Show Icon Trailing"
+          }
+        },
+        "iconLeading": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "Size",
+            "valueMapping": {
+              "Small": {
+                "kind": "instance",
+                "args": {
+                  "figmaPropName": "🔄 Icon Leading Small"
+                }
+              },
+              "(Def) Medium": {
+                "kind": "instance",
+                "args": {
+                  "figmaPropName": "🔄 Icon Leading Medium"
+                }
+              }
+            }
+          }
+        },
+        "iconTrailing": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "Size",
+            "valueMapping": {
+              "Small": {
+                "kind": "instance",
+                "args": {
+                  "figmaPropName": "🔄 Icon Trailing Small"
+                }
+              },
+              "(Def) Medium": {
+                "kind": "instance",
+                "args": {
+                  "figmaPropName": "🔄 Icon Trailing Medium"
+                }
+              }
+            }
+          }
+        }
+      },
+      "imports": [
+        "import { DBButton } from '@db-ux/ngx-core-components'"
+      ],
+      "nestable": true
+    },
+    "metadata": {
+      "cliVersion": "1.3.12"
+    }
+  },
+  {
+    "figmaNode": "https://www.figma.com/design/DId8Cd14lKtNiuRRysiCbH/testing-branch?node-id=14436-13355&m=dev",
+    "label": "Angular",
+    "language": "html",
+    "source": "",
+    "sourceLocation": {
+      "line": -1
+    },
+    "template": "function _fcc_templateString($value) {\\n    return {\\n        $value,\\n        $type: 'template-string',\\n    };\\n}\\nfunction _fcc_object($value) {\\n    return {\\n        $value,\\n        $type: 'object',\\n        ...$value,\\n    };\\n}\\nfunction _fcc_renderHtmlValue(value) {\\n    // If the value is an array, then it's an array of objects representing React\\n    // children (either of type INSTANCE for pills, or CODE for inline code). The\\n    // template string handler in the template API handles extracting the instance\\n    // objects in a way the UI can handle.\\n    const isComponentArray = Array.isArray(value);\\n    if (isComponentArray) {\\n        return figma.html \`\${value}\`;\\n    }\\n    if (typeof value === 'object') {\\n        return JSON.stringify(value);\\n    }\\n    else if (typeof value === 'undefined') {\\n        return '';\\n    }\\n    else {\\n        return value.toString();\\n    }\\n}\\nfunction _fcc_renderHtmlAttribute(name, value) {\\n    // figma.boolean returns undefined instead of false in some cases\\n    if (typeof value === 'undefined') {\\n        return '';\\n    }\\n    else if (typeof value === 'boolean') {\\n        if (value) {\\n            return name;\\n        }\\n        else {\\n            return '';\\n        }\\n    }\\n    else if (typeof value === 'string' || typeof value === 'number' || typeof value === 'bigint') {\\n        return \`\${name}=\\"\${value.toString().replaceAll('\\\\n', '\\\\\\\\n').replaceAll('\\"', '\\\\\\\\\\"')}\\"\`;\\n    }\\n    else if (value.$type === 'identifier') {\\n        return \`\${name}=\\"\${value.$value}\\"\`;\\n    }\\n    else {\\n        // TODO make this show a proper error in the UI\\n        return \`\${name}=\\"Code Connect Error: Unsupported type '\${typeof value}' for attribute\\"\`;\\n    }\\n}\\nfunction _fcc_identifier($value) {\\n    return {\\n        $value,\\n        $type: 'identifier',\\n    };\\n}\\n\\nconst figma = require('figma')\\n\\nconst disabled = figma.currentLayer.__properties__.enum('Disabled', {\\n\\"False\\": false,\\n\\"True\\": true})\\nconst noText = figma.currentLayer.__properties__.enum('💻 No Text', {\\n\\"False\\": false,\\n\\"True\\": true})\\nconst size = figma.currentLayer.__properties__.enum('Size', {\\n\\"Small\\": 'small',\\n\\"(Def) Medium\\": 'medium'})\\nconst text = figma.currentLayer.__properties__.string('✏️ Text')\\nconst variant = figma.currentLayer.__properties__.enum('💻 Variant', {\\n\\"Brand\\": 'brand',\\n\\"Ghost\\": 'ghost',\\n\\"Filled\\": 'filled',\\n\\"Outlined\\": 'outlined'})\\nconst width = figma.currentLayer.__properties__.enum('Width', {\\n\\"(Def) Auto\\": 'auto',\\n\\"Full\\": 'full'})\\nconst showIconLeading = figma.currentLayer.__properties__.boolean('Show Icon Leading')\\nconst showIconTrailing = figma.currentLayer.__properties__.boolean('Show Icon Trailing')\\nconst iconLeading = figma.currentLayer.__properties__.enum('Size', {\\n\\"Small\\": figma.currentLayer.__properties__.instance('🔄 Icon Leading Small'),\\n\\"(Def) Medium\\": figma.currentLayer.__properties__.instance('🔄 Icon Leading Medium')})\\nconst iconTrailing = figma.currentLayer.__properties__.enum('Size', {\\n\\"Small\\": figma.currentLayer.__properties__.instance('🔄 Icon Trailing Small'),\\n\\"(Def) Medium\\": figma.currentLayer.__properties__.instance('🔄 Icon Trailing Medium')})\\nconst __props = {}\\nif (disabled && disabled.type !== 'ERROR') {\\n  __props[\\"disabled\\"] = disabled\\n}\\nif (noText && noText.type !== 'ERROR') {\\n  __props[\\"noText\\"] = noText\\n}\\nif (size && size.type !== 'ERROR') {\\n  __props[\\"size\\"] = size\\n}\\nif (text && text.type !== 'ERROR') {\\n  __props[\\"text\\"] = text\\n}\\nif (variant && variant.type !== 'ERROR') {\\n  __props[\\"variant\\"] = variant\\n}\\nif (width && width.type !== 'ERROR') {\\n  __props[\\"width\\"] = width\\n}\\nif (showIconLeading && showIconLeading.type !== 'ERROR') {\\n  __props[\\"showIconLeading\\"] = showIconLeading\\n}\\nif (showIconTrailing && showIconTrailing.type !== 'ERROR') {\\n  __props[\\"showIconTrailing\\"] = showIconTrailing\\n}\\nif (iconLeading && iconLeading.type !== 'ERROR') {\\n  __props[\\"iconLeading\\"] = iconLeading\\n}\\nif (iconTrailing && iconTrailing.type !== 'ERROR') {\\n  __props[\\"iconTrailing\\"] = iconTrailing\\n}\\n\\nexport default figma.html\`<db-button\\n    type=\\"button\\"\\n    \${_fcc_renderHtmlAttribute('disabled', disabled)}\\n    \${_fcc_renderHtmlAttribute('noText', noText)}\\n    \${_fcc_renderHtmlAttribute('[icon]', iconLeading)}\\n    \${_fcc_renderHtmlAttribute('iconTrailing', iconTrailing)}\\n    \${_fcc_renderHtmlAttribute('[showIcon]', showIconLeading)}\\n    \${_fcc_renderHtmlAttribute('showIconTrailing', showIconTrailing)}\\n    \${_fcc_renderHtmlAttribute('width', width)}\\n    \${_fcc_renderHtmlAttribute('size', size)}\\n    \${_fcc_renderHtmlAttribute('variant', variant)}\\n    \${_fcc_renderHtmlAttribute('showIconLeading', showIconLeading)}\\n    >\${_fcc_renderHtmlValue(text)}</db-button\\n  >\`\\n",
+    "templateData": {
+      "props": {
+        "disabled": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "Disabled",
+            "valueMapping": {
+              "False": false,
+              "True": true
+            }
+          }
+        },
+        "noText": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "💻 No Text",
+            "valueMapping": {
+              "False": false,
+              "True": true
+            }
+          }
+        },
+        "size": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "Size",
+            "valueMapping": {
+              "Small": "small",
+              "(Def) Medium": "medium"
+            }
+          }
+        },
+        "text": {
+          "kind": "string",
+          "args": {
+            "figmaPropName": "✏️ Text"
+          }
+        },
+        "variant": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "💻 Variant",
+            "valueMapping": {
+              "Brand": "brand",
+              "Ghost": "ghost",
+              "Filled": "filled",
+              "Outlined": "outlined"
+            }
+          }
+        },
+        "width": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "Width",
+            "valueMapping": {
+              "(Def) Auto": "auto",
+              "Full": "full"
+            }
+          }
+        },
+        "showIconLeading": {
+          "kind": "boolean",
+          "args": {
+            "figmaPropName": "Show Icon Leading"
+          }
+        },
+        "showIconTrailing": {
+          "kind": "boolean",
+          "args": {
+            "figmaPropName": "Show Icon Trailing"
+          }
+        },
+        "iconLeading": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "Size",
+            "valueMapping": {
+              "Small": {
+                "kind": "instance",
+                "args": {
+                  "figmaPropName": "🔄 Icon Leading Small"
+                }
+              },
+              "(Def) Medium": {
+                "kind": "instance",
+                "args": {
+                  "figmaPropName": "🔄 Icon Leading Medium"
+                }
+              }
+            }
+          }
+        },
+        "iconTrailing": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "Size",
+            "valueMapping": {
+              "Small": {
+                "kind": "instance",
+                "args": {
+                  "figmaPropName": "🔄 Icon Trailing Small"
+                }
+              },
+              "(Def) Medium": {
+                "kind": "instance",
+                "args": {
+                  "figmaPropName": "🔄 Icon Trailing Medium"
+                }
+              }
+            }
+          }
+        }
+      },
+      "imports": [
+        "import { DBButton } from '@db-ux/ngx-core-components'"
+      ],
+      "nestable": true
+    },
+    "metadata": {
+      "cliVersion": "1.3.12"
+    }
+  },
+  {
+    "figmaNode": "https://www.figma.com/design/DId8Cd14lKtNiuRRysiCbH/testing-branch?node-id=14436-13645&m=dev",
+    "label": "Angular",
+    "language": "html",
+    "source": "",
+    "sourceLocation": {
+      "line": -1
+    },
+    "template": "function _fcc_templateString($value) {\\n    return {\\n        $value,\\n        $type: 'template-string',\\n    };\\n}\\nfunction _fcc_object($value) {\\n    return {\\n        $value,\\n        $type: 'object',\\n        ...$value,\\n    };\\n}\\nfunction _fcc_renderHtmlValue(value) {\\n    // If the value is an array, then it's an array of objects representing React\\n    // children (either of type INSTANCE for pills, or CODE for inline code). The\\n    // template string handler in the template API handles extracting the instance\\n    // objects in a way the UI can handle.\\n    const isComponentArray = Array.isArray(value);\\n    if (isComponentArray) {\\n        return figma.html \`\${value}\`;\\n    }\\n    if (typeof value === 'object') {\\n        return JSON.stringify(value);\\n    }\\n    else if (typeof value === 'undefined') {\\n        return '';\\n    }\\n    else {\\n        return value.toString();\\n    }\\n}\\nfunction _fcc_renderHtmlAttribute(name, value) {\\n    // figma.boolean returns undefined instead of false in some cases\\n    if (typeof value === 'undefined') {\\n        return '';\\n    }\\n    else if (typeof value === 'boolean') {\\n        if (value) {\\n            return name;\\n        }\\n        else {\\n            return '';\\n        }\\n    }\\n    else if (typeof value === 'string' || typeof value === 'number' || typeof value === 'bigint') {\\n        return \`\${name}=\\"\${value.toString().replaceAll('\\\\n', '\\\\\\\\n').replaceAll('\\"', '\\\\\\\\\\"')}\\"\`;\\n    }\\n    else if (value.$type === 'identifier') {\\n        return \`\${name}=\\"\${value.$value}\\"\`;\\n    }\\n    else {\\n        // TODO make this show a proper error in the UI\\n        return \`\${name}=\\"Code Connect Error: Unsupported type '\${typeof value}' for attribute\\"\`;\\n    }\\n}\\nfunction _fcc_identifier($value) {\\n    return {\\n        $value,\\n        $type: 'identifier',\\n    };\\n}\\n\\nconst figma = require('figma')\\n\\nconst disabled = figma.currentLayer.__properties__.enum('Disabled', {\\n\\"False\\": false,\\n\\"True\\": true})\\nconst noText = figma.currentLayer.__properties__.enum('💻 No Text', {\\n\\"False\\": false,\\n\\"True\\": true})\\nconst size = figma.currentLayer.__properties__.enum('Size', {\\n\\"Small\\": 'small',\\n\\"(Def) Medium\\": 'medium'})\\nconst text = figma.currentLayer.__properties__.string('✏️ Text')\\nconst variant = figma.currentLayer.__properties__.enum('💻 Variant', {\\n\\"Brand\\": 'brand',\\n\\"Ghost\\": 'ghost',\\n\\"Filled\\": 'filled',\\n\\"Outlined\\": 'outlined'})\\nconst width = figma.currentLayer.__properties__.enum('Width', {\\n\\"(Def) Auto\\": 'auto',\\n\\"Full\\": 'full'})\\nconst showIconLeading = figma.currentLayer.__properties__.boolean('Show Icon Leading')\\nconst showIconTrailing = figma.currentLayer.__properties__.boolean('Show Icon Trailing')\\nconst iconLeading = figma.currentLayer.__properties__.enum('Size', {\\n\\"Small\\": figma.currentLayer.__properties__.instance('🔄 Icon Leading Small'),\\n\\"(Def) Medium\\": figma.currentLayer.__properties__.instance('🔄 Icon Leading Medium')})\\nconst iconTrailing = figma.currentLayer.__properties__.enum('Size', {\\n\\"Small\\": figma.currentLayer.__properties__.instance('🔄 Icon Trailing Small'),\\n\\"(Def) Medium\\": figma.currentLayer.__properties__.instance('🔄 Icon Trailing Medium')})\\nconst __props = {}\\nif (disabled && disabled.type !== 'ERROR') {\\n  __props[\\"disabled\\"] = disabled\\n}\\nif (noText && noText.type !== 'ERROR') {\\n  __props[\\"noText\\"] = noText\\n}\\nif (size && size.type !== 'ERROR') {\\n  __props[\\"size\\"] = size\\n}\\nif (text && text.type !== 'ERROR') {\\n  __props[\\"text\\"] = text\\n}\\nif (variant && variant.type !== 'ERROR') {\\n  __props[\\"variant\\"] = variant\\n}\\nif (width && width.type !== 'ERROR') {\\n  __props[\\"width\\"] = width\\n}\\nif (showIconLeading && showIconLeading.type !== 'ERROR') {\\n  __props[\\"showIconLeading\\"] = showIconLeading\\n}\\nif (showIconTrailing && showIconTrailing.type !== 'ERROR') {\\n  __props[\\"showIconTrailing\\"] = showIconTrailing\\n}\\nif (iconLeading && iconLeading.type !== 'ERROR') {\\n  __props[\\"iconLeading\\"] = iconLeading\\n}\\nif (iconTrailing && iconTrailing.type !== 'ERROR') {\\n  __props[\\"iconTrailing\\"] = iconTrailing\\n}\\n\\nexport default figma.html\`<db-button\\n    type=\\"button\\"\\n    \${_fcc_renderHtmlAttribute('disabled', disabled)}\\n    \${_fcc_renderHtmlAttribute('noText', noText)}\\n    \${_fcc_renderHtmlAttribute('[icon]', iconLeading)}\\n    \${_fcc_renderHtmlAttribute('iconTrailing', iconTrailing)}\\n    \${_fcc_renderHtmlAttribute('[showIcon]', showIconLeading)}\\n    \${_fcc_renderHtmlAttribute('showIconTrailing', showIconTrailing)}\\n    \${_fcc_renderHtmlAttribute('width', width)}\\n    \${_fcc_renderHtmlAttribute('size', size)}\\n    \${_fcc_renderHtmlAttribute('variant', variant)}\\n    \${_fcc_renderHtmlAttribute('showIconLeading', showIconLeading)}\\n    >\${_fcc_renderHtmlValue(text)}</db-button\\n  >\`\\n",
+    "templateData": {
+      "props": {
+        "disabled": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "Disabled",
+            "valueMapping": {
+              "False": false,
+              "True": true
+            }
+          }
+        },
+        "noText": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "💻 No Text",
+            "valueMapping": {
+              "False": false,
+              "True": true
+            }
+          }
+        },
+        "size": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "Size",
+            "valueMapping": {
+              "Small": "small",
+              "(Def) Medium": "medium"
+            }
+          }
+        },
+        "text": {
+          "kind": "string",
+          "args": {
+            "figmaPropName": "✏️ Text"
+          }
+        },
+        "variant": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "💻 Variant",
+            "valueMapping": {
+              "Brand": "brand",
+              "Ghost": "ghost",
+              "Filled": "filled",
+              "Outlined": "outlined"
+            }
+          }
+        },
+        "width": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "Width",
+            "valueMapping": {
+              "(Def) Auto": "auto",
+              "Full": "full"
+            }
+          }
+        },
+        "showIconLeading": {
+          "kind": "boolean",
+          "args": {
+            "figmaPropName": "Show Icon Leading"
+          }
+        },
+        "showIconTrailing": {
+          "kind": "boolean",
+          "args": {
+            "figmaPropName": "Show Icon Trailing"
+          }
+        },
+        "iconLeading": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "Size",
+            "valueMapping": {
+              "Small": {
+                "kind": "instance",
+                "args": {
+                  "figmaPropName": "🔄 Icon Leading Small"
+                }
+              },
+              "(Def) Medium": {
+                "kind": "instance",
+                "args": {
+                  "figmaPropName": "🔄 Icon Leading Medium"
+                }
+              }
+            }
+          }
+        },
+        "iconTrailing": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "Size",
+            "valueMapping": {
+              "Small": {
+                "kind": "instance",
+                "args": {
+                  "figmaPropName": "🔄 Icon Trailing Small"
+                }
+              },
+              "(Def) Medium": {
+                "kind": "instance",
+                "args": {
+                  "figmaPropName": "🔄 Icon Trailing Medium"
+                }
+              }
+            }
+          }
+        }
+      },
+      "imports": [
+        "import { DBButton } from '@db-ux/ngx-core-components'"
+      ],
+      "nestable": true
+    },
+    "metadata": {
+      "cliVersion": "1.3.12"
+    }
+  },
+  {
+    "figmaNode": "https://www.figma.com/design/DId8Cd14lKtNiuRRysiCbH/testing-branch?node-id=14436-13935&m=dev",
+    "label": "Angular",
+    "language": "html",
+    "source": "",
+    "sourceLocation": {
+      "line": -1
+    },
+    "template": "function _fcc_templateString($value) {\\n    return {\\n        $value,\\n        $type: 'template-string',\\n    };\\n}\\nfunction _fcc_object($value) {\\n    return {\\n        $value,\\n        $type: 'object',\\n        ...$value,\\n    };\\n}\\nfunction _fcc_renderHtmlValue(value) {\\n    // If the value is an array, then it's an array of objects representing React\\n    // children (either of type INSTANCE for pills, or CODE for inline code). The\\n    // template string handler in the template API handles extracting the instance\\n    // objects in a way the UI can handle.\\n    const isComponentArray = Array.isArray(value);\\n    if (isComponentArray) {\\n        return figma.html \`\${value}\`;\\n    }\\n    if (typeof value === 'object') {\\n        return JSON.stringify(value);\\n    }\\n    else if (typeof value === 'undefined') {\\n        return '';\\n    }\\n    else {\\n        return value.toString();\\n    }\\n}\\nfunction _fcc_renderHtmlAttribute(name, value) {\\n    // figma.boolean returns undefined instead of false in some cases\\n    if (typeof value === 'undefined') {\\n        return '';\\n    }\\n    else if (typeof value === 'boolean') {\\n        if (value) {\\n            return name;\\n        }\\n        else {\\n            return '';\\n        }\\n    }\\n    else if (typeof value === 'string' || typeof value === 'number' || typeof value === 'bigint') {\\n        return \`\${name}=\\"\${value.toString().replaceAll('\\\\n', '\\\\\\\\n').replaceAll('\\"', '\\\\\\\\\\"')}\\"\`;\\n    }\\n    else if (value.$type === 'identifier') {\\n        return \`\${name}=\\"\${value.$value}\\"\`;\\n    }\\n    else {\\n        // TODO make this show a proper error in the UI\\n        return \`\${name}=\\"Code Connect Error: Unsupported type '\${typeof value}' for attribute\\"\`;\\n    }\\n}\\nfunction _fcc_identifier($value) {\\n    return {\\n        $value,\\n        $type: 'identifier',\\n    };\\n}\\n\\nconst figma = require('figma')\\n\\nconst disabled = figma.currentLayer.__properties__.enum('Disabled', {\\n\\"False\\": false,\\n\\"True\\": true})\\nconst noText = figma.currentLayer.__properties__.enum('💻 No Text', {\\n\\"False\\": false,\\n\\"True\\": true})\\nconst size = figma.currentLayer.__properties__.enum('Size', {\\n\\"Small\\": 'small',\\n\\"(Def) Medium\\": 'medium'})\\nconst text = figma.currentLayer.__properties__.string('✏️ Text')\\nconst variant = figma.currentLayer.__properties__.enum('💻 Variant', {\\n\\"Brand\\": 'brand',\\n\\"Ghost\\": 'ghost',\\n\\"Filled\\": 'filled',\\n\\"Outlined\\": 'outlined'})\\nconst width = figma.currentLayer.__properties__.enum('Width', {\\n\\"(Def) Auto\\": 'auto',\\n\\"Full\\": 'full'})\\nconst showIconLeading = figma.currentLayer.__properties__.boolean('Show Icon Leading')\\nconst showIconTrailing = figma.currentLayer.__properties__.boolean('Show Icon Trailing')\\nconst iconLeading = figma.currentLayer.__properties__.enum('Size', {\\n\\"Small\\": figma.currentLayer.__properties__.instance('🔄 Icon Leading Small'),\\n\\"(Def) Medium\\": figma.currentLayer.__properties__.instance('🔄 Icon Leading Medium')})\\nconst iconTrailing = figma.currentLayer.__properties__.enum('Size', {\\n\\"Small\\": figma.currentLayer.__properties__.instance('🔄 Icon Trailing Small'),\\n\\"(Def) Medium\\": figma.currentLayer.__properties__.instance('🔄 Icon Trailing Medium')})\\nconst __props = {}\\nif (disabled && disabled.type !== 'ERROR') {\\n  __props[\\"disabled\\"] = disabled\\n}\\nif (noText && noText.type !== 'ERROR') {\\n  __props[\\"noText\\"] = noText\\n}\\nif (size && size.type !== 'ERROR') {\\n  __props[\\"size\\"] = size\\n}\\nif (text && text.type !== 'ERROR') {\\n  __props[\\"text\\"] = text\\n}\\nif (variant && variant.type !== 'ERROR') {\\n  __props[\\"variant\\"] = variant\\n}\\nif (width && width.type !== 'ERROR') {\\n  __props[\\"width\\"] = width\\n}\\nif (showIconLeading && showIconLeading.type !== 'ERROR') {\\n  __props[\\"showIconLeading\\"] = showIconLeading\\n}\\nif (showIconTrailing && showIconTrailing.type !== 'ERROR') {\\n  __props[\\"showIconTrailing\\"] = showIconTrailing\\n}\\nif (iconLeading && iconLeading.type !== 'ERROR') {\\n  __props[\\"iconLeading\\"] = iconLeading\\n}\\nif (iconTrailing && iconTrailing.type !== 'ERROR') {\\n  __props[\\"iconTrailing\\"] = iconTrailing\\n}\\n\\nexport default figma.html\`<db-button\\n    type=\\"button\\"\\n    \${_fcc_renderHtmlAttribute('disabled', disabled)}\\n    \${_fcc_renderHtmlAttribute('noText', noText)}\\n    \${_fcc_renderHtmlAttribute('[icon]', iconLeading)}\\n    \${_fcc_renderHtmlAttribute('iconTrailing', iconTrailing)}\\n    \${_fcc_renderHtmlAttribute('[showIcon]', showIconLeading)}\\n    \${_fcc_renderHtmlAttribute('showIconTrailing', showIconTrailing)}\\n    \${_fcc_renderHtmlAttribute('width', width)}\\n    \${_fcc_renderHtmlAttribute('size', size)}\\n    \${_fcc_renderHtmlAttribute('variant', variant)}\\n    \${_fcc_renderHtmlAttribute('showIconLeading', showIconLeading)}\\n    >\${_fcc_renderHtmlValue(text)}</db-button\\n  >\`\\n",
+    "templateData": {
+      "props": {
+        "disabled": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "Disabled",
+            "valueMapping": {
+              "False": false,
+              "True": true
+            }
+          }
+        },
+        "noText": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "💻 No Text",
+            "valueMapping": {
+              "False": false,
+              "True": true
+            }
+          }
+        },
+        "size": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "Size",
+            "valueMapping": {
+              "Small": "small",
+              "(Def) Medium": "medium"
+            }
+          }
+        },
+        "text": {
+          "kind": "string",
+          "args": {
+            "figmaPropName": "✏️ Text"
+          }
+        },
+        "variant": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "💻 Variant",
+            "valueMapping": {
+              "Brand": "brand",
+              "Ghost": "ghost",
+              "Filled": "filled",
+              "Outlined": "outlined"
+            }
+          }
+        },
+        "width": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "Width",
+            "valueMapping": {
+              "(Def) Auto": "auto",
+              "Full": "full"
+            }
+          }
+        },
+        "showIconLeading": {
+          "kind": "boolean",
+          "args": {
+            "figmaPropName": "Show Icon Leading"
+          }
+        },
+        "showIconTrailing": {
+          "kind": "boolean",
+          "args": {
+            "figmaPropName": "Show Icon Trailing"
+          }
+        },
+        "iconLeading": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "Size",
+            "valueMapping": {
+              "Small": {
+                "kind": "instance",
+                "args": {
+                  "figmaPropName": "🔄 Icon Leading Small"
+                }
+              },
+              "(Def) Medium": {
+                "kind": "instance",
+                "args": {
+                  "figmaPropName": "🔄 Icon Leading Medium"
+                }
+              }
+            }
+          }
+        },
+        "iconTrailing": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "Size",
+            "valueMapping": {
+              "Small": {
+                "kind": "instance",
+                "args": {
+                  "figmaPropName": "🔄 Icon Trailing Small"
+                }
+              },
+              "(Def) Medium": {
+                "kind": "instance",
+                "args": {
+                  "figmaPropName": "🔄 Icon Trailing Medium"
+                }
+              }
+            }
+          }
+        }
+      },
+      "imports": [
+        "import { DBButton } from '@db-ux/ngx-core-components'"
+      ],
+      "nestable": true
+    },
+    "metadata": {
+      "cliVersion": "1.3.12"
+    }
+  },
+  {
+    "figmaNode": "https://www.figma.com/design/DId8Cd14lKtNiuRRysiCbH/testing-branch?node-id=14436-13210&m=dev",
+    "label": "Angular",
+    "language": "html",
+    "source": "",
+    "sourceLocation": {
+      "line": -1
+    },
+    "template": "function _fcc_templateString($value) {\\n    return {\\n        $value,\\n        $type: 'template-string',\\n    };\\n}\\nfunction _fcc_object($value) {\\n    return {\\n        $value,\\n        $type: 'object',\\n        ...$value,\\n    };\\n}\\nfunction _fcc_renderHtmlValue(value) {\\n    // If the value is an array, then it's an array of objects representing React\\n    // children (either of type INSTANCE for pills, or CODE for inline code). The\\n    // template string handler in the template API handles extracting the instance\\n    // objects in a way the UI can handle.\\n    const isComponentArray = Array.isArray(value);\\n    if (isComponentArray) {\\n        return figma.html \`\${value}\`;\\n    }\\n    if (typeof value === 'object') {\\n        return JSON.stringify(value);\\n    }\\n    else if (typeof value === 'undefined') {\\n        return '';\\n    }\\n    else {\\n        return value.toString();\\n    }\\n}\\nfunction _fcc_renderHtmlAttribute(name, value) {\\n    // figma.boolean returns undefined instead of false in some cases\\n    if (typeof value === 'undefined') {\\n        return '';\\n    }\\n    else if (typeof value === 'boolean') {\\n        if (value) {\\n            return name;\\n        }\\n        else {\\n            return '';\\n        }\\n    }\\n    else if (typeof value === 'string' || typeof value === 'number' || typeof value === 'bigint') {\\n        return \`\${name}=\\"\${value.toString().replaceAll('\\\\n', '\\\\\\\\n').replaceAll('\\"', '\\\\\\\\\\"')}\\"\`;\\n    }\\n    else if (value.$type === 'identifier') {\\n        return \`\${name}=\\"\${value.$value}\\"\`;\\n    }\\n    else {\\n        // TODO make this show a proper error in the UI\\n        return \`\${name}=\\"Code Connect Error: Unsupported type '\${typeof value}' for attribute\\"\`;\\n    }\\n}\\nfunction _fcc_identifier($value) {\\n    return {\\n        $value,\\n        $type: 'identifier',\\n    };\\n}\\n\\nconst figma = require('figma')\\n\\nconst disabled = figma.currentLayer.__properties__.enum('Disabled', {\\n\\"False\\": false,\\n\\"True\\": true})\\nconst noText = figma.currentLayer.__properties__.enum('💻 No Text', {\\n\\"False\\": false,\\n\\"True\\": true})\\nconst size = figma.currentLayer.__properties__.enum('Size', {\\n\\"Small\\": 'small',\\n\\"(Def) Medium\\": 'medium'})\\nconst text = figma.currentLayer.__properties__.string('✏️ Text')\\nconst variant = figma.currentLayer.__properties__.enum('💻 Variant', {\\n\\"Brand\\": 'brand',\\n\\"Ghost\\": 'ghost',\\n\\"Filled\\": 'filled',\\n\\"Outlined\\": 'outlined'})\\nconst width = figma.currentLayer.__properties__.enum('Width', {\\n\\"(Def) Auto\\": 'auto',\\n\\"Full\\": 'full'})\\nconst icon = figma.currentLayer.__properties__.enum('Size', {\\n\\"Small\\": figma.currentLayer.__properties__.instance('🔄 Icon Small'),\\n\\"(Def) Medium\\": figma.currentLayer.__properties__.instance('🔄 Icon Medium')})\\nconst __props = {}\\nif (disabled && disabled.type !== 'ERROR') {\\n  __props[\\"disabled\\"] = disabled\\n}\\nif (noText && noText.type !== 'ERROR') {\\n  __props[\\"noText\\"] = noText\\n}\\nif (size && size.type !== 'ERROR') {\\n  __props[\\"size\\"] = size\\n}\\nif (text && text.type !== 'ERROR') {\\n  __props[\\"text\\"] = text\\n}\\nif (variant && variant.type !== 'ERROR') {\\n  __props[\\"variant\\"] = variant\\n}\\nif (width && width.type !== 'ERROR') {\\n  __props[\\"width\\"] = width\\n}\\nif (icon && icon.type !== 'ERROR') {\\n  __props[\\"icon\\"] = icon\\n}\\n\\nexport default figma.html\`<db-button\\n    type=\\"button\\"\\n    \${_fcc_renderHtmlAttribute('disabled', disabled)}\\n    \${_fcc_renderHtmlAttribute('noText', noText)}\\n    \${_fcc_renderHtmlAttribute('icon', icon)}\\n    \${_fcc_renderHtmlAttribute('width', width)}\\n    \${_fcc_renderHtmlAttribute('size', size)}\\n    \${_fcc_renderHtmlAttribute('variant', variant)}\\n    >\${_fcc_renderHtmlValue(text)}</db-button\\n  >\`\\n",
+    "templateData": {
+      "props": {
+        "disabled": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "Disabled",
+            "valueMapping": {
+              "False": false,
+              "True": true
+            }
+          }
+        },
+        "noText": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "💻 No Text",
+            "valueMapping": {
+              "False": false,
+              "True": true
+            }
+          }
+        },
+        "size": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "Size",
+            "valueMapping": {
+              "Small": "small",
+              "(Def) Medium": "medium"
+            }
+          }
+        },
+        "text": {
+          "kind": "string",
+          "args": {
+            "figmaPropName": "✏️ Text"
+          }
+        },
+        "variant": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "💻 Variant",
+            "valueMapping": {
+              "Brand": "brand",
+              "Ghost": "ghost",
+              "Filled": "filled",
+              "Outlined": "outlined"
+            }
+          }
+        },
+        "width": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "Width",
+            "valueMapping": {
+              "(Def) Auto": "auto",
+              "Full": "full"
+            }
+          }
+        },
+        "icon": {
+          "kind": "enum",
+          "args": {
+            "figmaPropName": "Size",
+            "valueMapping": {
+              "Small": {
+                "kind": "instance",
+                "args": {
+                  "figmaPropName": "🔄 Icon Small"
+                }
+              },
+              "(Def) Medium": {
+                "kind": "instance",
+                "args": {
+                  "figmaPropName": "🔄 Icon Medium"
+                }
+              }
+            }
+          }
+        }
+      },
+      "imports": [
+        "import { DBButton } from '@db-ux/ngx-core-components'"
+      ],
+      "nestable": true
+    },
+    "metadata": {
+      "cliVersion": "1.3.12"
+    }
+  }
+]
+"
+`;
