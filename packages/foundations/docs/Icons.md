@@ -7,7 +7,7 @@
 
 ## How to include icons
 
-For **CSS**, **SCSS** and **Tailwind** you don't have to include a specific file, just follow the documentation for [foundations](../../foundations/README.md).
+For **CSS**, **SCSS** and **Tailwind** you don't have to include a specific file, just follow the documentation for [foundations](../README.md).
 
 ### How to use
 
