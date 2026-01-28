@@ -7,7 +7,6 @@ on:
 jobs:
   set-status:
     runs-on: ubuntu-24.04
-    if: ${{ github.actor != 'dependabot[bot]' }}
     permissions:
       pull-requests: write
       repository-projects: write
