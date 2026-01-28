@@ -1,1 +1,0 @@
-(self.webpackChunk_N_E=self.webpackChunk_N_E||[]).push([[8609],{24724:(_,n,s)=>{"use strict";s.r(n),s.d(n,{default:()=>t});var u=s(6029),e=s(57407);let t=()=>(0,u.jsx)(e.A,{})},88868:(_,n,s)=>{(window.__NEXT_P=window.__NEXT_P||[]).push(["/foundations/icons",function(){return s(24724)}])}},_=>{_.O(0,[5714,310,6897,9108,7407,636,6593,8792],()=>_(_.s=88868)),_N_E=_.O()}]);
