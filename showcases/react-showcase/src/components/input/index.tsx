@@ -1,5 +1,6 @@
 import {
 	DBInput,
+	type InputTypeType,
 	type LabelVariantType,
 	type ValueLabelType
 } from '@components';
@@ -10,8 +11,17 @@ import { getVariants } from '../data';
 import DefaultComponent from '../default-component';
 
 const getDataList = (
-	variant?: LabelVariantType
+	variant?: LabelVariantType,
+	type?: InputTypeType | string
 ): string[] | ValueLabelType[] => {
+	if (type === 'time') {
+		return ['00:00', '12:00', '18:00', '23:59'];
+	}
+
+	if (type === 'color') {
+		return ['#EC0016'];
+	}
+
 	if (variant === 'floating') {
 		return ['Test 1', 'Test 2'];
 	}
@@ -73,7 +83,7 @@ const getInput = ({
 			invalidMessage={invalidMessage}
 			validMessage={validMessage}
 			validation={validation}
-			dataList={dataList ? getDataList(variant) : undefined}
+			dataList={dataList ? getDataList(variant, type) : undefined}
 		/>
 	);
 };

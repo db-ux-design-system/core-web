@@ -268,3 +268,12 @@
   - text: Search Stations
   - combobox "Search Stations"
   - status
+  - text: Set time
+  - textbox "Set time":
+    - /placeholder: With type time
+  - status
+  - text: Set color
+  - textbox "Set color":
+    - /placeholder: With type color
+    - text: "#000000"
+  - status

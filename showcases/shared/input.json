@@ -582,6 +582,22 @@
 					"icon": "magnifying_glass",
 					"showIcon": true
 				}
+			},
+			{
+				"name": "With type time",
+				"props": {
+					"label": "Set time",
+					"dataList": true,
+					"type": "time"
+				}
+			},
+			{
+				"name": "With type color",
+				"props": {
+					"label": "Set color",
+					"dataList": true,
+					"type": "color"
+				}
 			}
 		]
 	}

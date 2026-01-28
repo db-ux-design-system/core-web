@@ -122,13 +122,23 @@ $icon-padding: calc(
 	input {
 		position: relative;
 
+		&::-webkit-color-swatch-wrapper {
+			block-size: icons.$default-icon-font-size;
+			aspect-ratio: 2/1;
+		}
+
 		&::-webkit-calendar-picker-indicator,
 		&::-webkit-search-cancel-button {
 			@extend %db-overwrite-font-size-sm;
 
 			background-image: none;
-			inline-size: icons.$default-icon-font-size;
-			block-size: icons.$default-icon-font-size;
+			position: absolute;
+			inset-inline-end: var(--db-spacing-fixed-sm);
+
+			// Those are set by browser on element directly
+			display: block !important;
+			inline-size: icons.$default-icon-font-size !important;
+			block-size: icons.$default-icon-font-size !important;
 			padding: 0;
 			cursor: pointer;
 			/* stylelint-disable-next-line db-ux/use-spacings */
@@ -173,11 +183,5 @@ $icon-padding: calc(
 
 	&:has(datalist) {
 		@extend %dropdown-icon;
-
-		input {
-			&::-webkit-calendar-picker-indicator {
-				display: none !important;
-			}
-		}
 	}
 }
