@@ -1,4 +1,4 @@
-import { GlobalProps } from '../../shared/model';
+import { GlobalProps, LinkProps } from '../../shared/model';
 
 export type AriaCurrent =
 	| 'page'
@@ -9,12 +9,7 @@ export type AriaCurrent =
 	| 'true'
 	| 'false';
 
-export type DBBreadcrumbItemDefaultProps = {
-	/**
-	 * The URL the breadcrumb item links to
-	 */
-	href?: string;
-
+export type DBBreadcrumbItemDefaultProps = LinkProps & {
 	/**
 	 * The text content of the breadcrumb item
 	 */
@@ -31,9 +26,9 @@ export type DBBreadcrumbItemDefaultProps = {
 	ariaCurrent?: AriaCurrent;
 
 	/**
-	 * Whether this item is disabled (renders as span instead of link)
+	 * Size of the breadcrumb item
 	 */
-	disabled?: boolean;
+	size?: 'small' | 'medium';
 };
 
 export type DBBreadcrumbItems = DBBreadcrumbItemDefaultProps & GlobalProps;

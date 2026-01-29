@@ -1,4 +1,112 @@
 @charset "utf-8";
+@use "@db-ux/core-foundations/build/styles/fonts";
+@use "@db-ux/core-foundations/build/styles/variables";
+@use "@db-ux/core-foundations/build/styles/colors";
+@use "@db-ux/core-foundations/build/styles/helpers";
+@use "@db-ux/core-foundations/build/styles/icons";
 
-// Breadcrumb item styling is handled by the parent breadcrumb component
-// This file exists to maintain the component structure
+// Breadcrumb item component styling
+// This file defines styles for the db-breadcrumb-item component (li element)
+// Styles apply both when used within breadcrumb component and as standalone
+
+// Base breadcrumb item styling (applies to all breadcrumb items)
+.db-breadcrumb-item {
+	display: flex;
+	align-items: center;
+
+	// Link and text styling (small - default)
+	a,
+	> span:not(.db-icon) {
+		display: flex;
+		align-items: center;
+		gap: variables.$db-spacing-fixed-2xs; // small: spacing between icon and text per Figma
+		padding: variables.$db-spacing-fixed-3xs variables.$db-spacing-fixed-2xs; // 2px 4px (small per Figma)
+		border-radius: variables.$db-border-radius-xs; // 4px
+		background-color: colors.$db-adaptive-bg-basic-transparent-full-default;
+		color: colors.$db-adaptive-on-bg-basic-emphasis-100-default;
+		font-family: var(
+			--db-type-body-font-family,
+			var(--db-font-family-sans)
+		);
+		font-size: var(--db-type-body-font-size-sm, 0.875rem); // 14px (small)
+		font-weight: 400;
+		line-height: var(--db-type-body-line-height-sm, 1.25rem); // 20px
+		text-decoration: none;
+		white-space: nowrap;
+		transition: background-color 0.2s ease;
+
+		// Current page (with aria-current="page")
+		&[aria-current="page"] {
+			font-weight: 700; // Bold for current item
+			cursor: default;
+			pointer-events: none;
+
+			&:hover,
+			&:focus {
+				background-color: colors.$db-adaptive-bg-basic-transparent-full-default;
+				text-decoration: none;
+			}
+		}
+
+		&:hover,
+		&:focus {
+			background-color: colors.$db-adaptive-bg-basic-transparent-semi-default;
+		}
+
+		&:active {
+			background-color: colors.$db-adaptive-bg-basic-transparent-full-pressed;
+		}
+
+		@media screen and (prefers-reduced-motion: reduce) {
+			transition: none;
+		}
+	}
+
+	// Accessibility: ensure links show a clear focus indicator
+	a:focus-visible {
+		outline: 2px solid colors.$db-adaptive-on-bg-basic-emphasis-100-default;
+		outline-offset: 2px;
+	}
+
+	// Remove hover effect for icons within breadcrumb items
+	a:hover .db-icon,
+	a:focus .db-icon,
+	a:active .db-icon {
+		color: colors.$db-adaptive-on-bg-basic-emphasis-100-default;
+		background: none;
+	}
+
+	// Medium size variant
+	&[data-size="medium"] {
+		a,
+		> span:not(.db-icon) {
+			gap: variables.$db-spacing-fixed-xs; // medium: spacing between icon and text per Figma
+			padding: variables.$db-spacing-fixed-2xs
+				variables.$db-spacing-fixed-xs; // 4px 8px (medium)
+
+			font-size: var(--db-type-body-font-size-md, 1rem); // 16px (medium)
+
+			line-height: var(--db-type-body-line-height-md, 1.5rem); // 24px
+		}
+	}
+
+	// Ensure icon size matches weight attribute for small size (20px)
+	.db-icon[data-icon-weight="20"]::before {
+		--db-icon-font-size: 1.25rem; // 20px
+	}
+
+	// Ensure icon size matches weight attribute for medium size (24px)
+	.db-icon[data-icon-weight="24"]::before {
+		--db-icon-font-size: 1.5rem; // 24px
+	}
+}
+
+// When used within breadcrumb list, add separator spacing
+.db-breadcrumb-list .db-breadcrumb-item {
+	gap: variables.$db-spacing-fixed-3xs; // small: spacing before/after separator per Figma
+
+	// Medium size variant spacing within breadcrumb list
+	&[data-size="medium"] {
+		gap: variables.$db-spacing-fixed-2xs; // medium: spacing before/after separator per Figma
+	}
+}

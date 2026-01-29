@@ -106,7 +106,13 @@ export default function DBBreadcrumb(props: DBBreadcrumbProps) {
 						else={
 							<For each={state.normalizedItems()}>
 								{(item, index) => (
-									<li>
+									<li
+										key={index}
+										class={cls(
+											'db-breadcrumb-item',
+											item.className
+										)}
+										data-size={props.size}>
 										<Show
 											when={item.href}
 											else={
@@ -152,7 +158,13 @@ export default function DBBreadcrumb(props: DBBreadcrumbProps) {
 						<>
 							{/* jscpd:ignore-end */}
 							<Show when={state.normalizedItems()[0]}>
-								<li key={0}>
+								<li
+									key={0}
+									class={cls(
+										'db-breadcrumb-item',
+										state.normalizedItems()[0].className
+									)}
+									data-size={props.size}>
 									<Show
 										when={state.normalizedItems()[0].href}
 										else={
@@ -230,7 +242,13 @@ export default function DBBreadcrumb(props: DBBreadcrumbProps) {
 							</li>
 							<For each={state.collapsedTailItems()}>
 								{(item, index) => (
-									<li>
+									<li
+										key={index}
+										class={cls(
+											'db-breadcrumb-item',
+											item.className
+										)}
+										data-size={props.size}>
 										<Show
 											when={item.href}
 											else={
