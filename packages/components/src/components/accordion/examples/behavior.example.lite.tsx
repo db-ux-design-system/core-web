@@ -13,34 +13,38 @@ useMetadata({
 export default function AccordionBehavior() {
 	return (
 		<Fragment>
-			<DBInfotext size="small" semantic="informational" icon="none">
-				(Default) Multiple
-			</DBInfotext>
-			<DBAccordion behavior="multiple">
-				<DBAccordionItem headlinePlain="Item 1">
-					Content 1
-				</DBAccordionItem>
-				<DBAccordionItem headlinePlain="Item 2">
-					Content 2
-				</DBAccordionItem>
-				<DBAccordionItem headlinePlain="Item 3">
-					Content 3
-				</DBAccordionItem>
-			</DBAccordion>
-			<DBInfotext size="small" semantic="informational" icon="none">
-				Single
-			</DBInfotext>
-			<DBAccordion behavior="single">
-				<DBAccordionItem headlinePlain="Item 1">
-					Content 1
-				</DBAccordionItem>
-				<DBAccordionItem headlinePlain="Item 2">
-					Content 2
-				</DBAccordionItem>
-				<DBAccordionItem headlinePlain="Item 3">
-					Content 3
-				</DBAccordionItem>
-			</DBAccordion>
+			<div>
+				<DBInfotext size="small" semantic="informational" icon="none">
+					(Default) Multiple
+				</DBInfotext>
+				<DBAccordion behavior="multiple">
+					<DBAccordionItem headlinePlain="Item 1">
+						Content 1
+					</DBAccordionItem>
+					<DBAccordionItem headlinePlain="Item 2">
+						Content 2
+					</DBAccordionItem>
+					<DBAccordionItem headlinePlain="Item 3">
+						Content 3
+					</DBAccordionItem>
+				</DBAccordion>
+			</div>
+			<div>
+				<DBInfotext size="small" semantic="informational" icon="none">
+					Single
+				</DBInfotext>
+				<DBAccordion behavior="single">
+					<DBAccordionItem headlinePlain="Item 1">
+						Content 1
+					</DBAccordionItem>
+					<DBAccordionItem headlinePlain="Item 2">
+						Content 2
+					</DBAccordionItem>
+					<DBAccordionItem headlinePlain="Item 3">
+						Content 3
+					</DBAccordionItem>
+				</DBAccordion>
+			</div>
 		</Fragment>
 	);
 }

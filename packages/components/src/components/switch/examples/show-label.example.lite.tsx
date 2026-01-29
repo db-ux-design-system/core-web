@@ -15,7 +15,7 @@ export default function SwitchShowLabel() {
 			<DBSwitch showLabel={true}>(Default) True</DBSwitch>
 			<div>
 				<DBSwitch showLabel={false}>False</DBSwitch>
-				<DBInfotext semantic="informational" size="small" icon="none">
+				<DBInfotext semantic="informational" icon="none">
 					False
 				</DBInfotext>
 			</div>

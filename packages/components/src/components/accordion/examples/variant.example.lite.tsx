@@ -13,34 +13,38 @@ useMetadata({
 export default function AccordionVariant() {
 	return (
 		<Fragment>
-			<DBInfotext size="small" semantic="informational" icon="none">
-				(Default) Divider
-			</DBInfotext>
-			<DBAccordion variant="divider">
-				<DBAccordionItem headlinePlain="Item 1">
-					Content 1
-				</DBAccordionItem>
-				<DBAccordionItem headlinePlain="Item 2">
-					Content 2
-				</DBAccordionItem>
-				<DBAccordionItem headlinePlain="Item 3">
-					Content 3
-				</DBAccordionItem>
-			</DBAccordion>
-			<DBInfotext size="small" semantic="informational" icon="none">
-				Card
-			</DBInfotext>
-			<DBAccordion variant="card">
-				<DBAccordionItem headlinePlain="Item 1">
-					Content 1
-				</DBAccordionItem>
-				<DBAccordionItem headlinePlain="Item 2">
-					Content 2
-				</DBAccordionItem>
-				<DBAccordionItem headlinePlain="Item 3">
-					Content 3
-				</DBAccordionItem>
-			</DBAccordion>
+			<div>
+				<DBInfotext size="small" semantic="informational" icon="none">
+					(Default) Divider
+				</DBInfotext>
+				<DBAccordion variant="divider">
+					<DBAccordionItem headlinePlain="Item 1">
+						Content 1
+					</DBAccordionItem>
+					<DBAccordionItem headlinePlain="Item 2">
+						Content 2
+					</DBAccordionItem>
+					<DBAccordionItem headlinePlain="Item 3">
+						Content 3
+					</DBAccordionItem>
+				</DBAccordion>
+			</div>
+			<div>
+				<DBInfotext size="small" semantic="informational" icon="none">
+					Card
+				</DBInfotext>
+				<DBAccordion variant="card">
+					<DBAccordionItem headlinePlain="Item 1">
+						Content 1
+					</DBAccordionItem>
+					<DBAccordionItem headlinePlain="Item 2">
+						Content 2
+					</DBAccordionItem>
+					<DBAccordionItem headlinePlain="Item 3">
+						Content 3
+					</DBAccordionItem>
+				</DBAccordion>
+			</div>
 		</Fragment>
 	);
 }

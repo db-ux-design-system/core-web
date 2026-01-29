@@ -54,22 +54,12 @@ db-card:is(.variants-card) > .db-card {
 	gap: var(--db-spacing-fixed-md);
 }
 
-.variants-list > db-popover > .db-popover > db-button > button,
-.variants-list > .db-popover > button,
-.variants-list > * > db-button > button,
-.variants-list > button {
-	align-self: center;
-}
-
-.variants-list div[style]:has(> db-button) {
-	display: flex;
-	align-items: center;
-}
-
 .variants-list div[role] > div:not([class^="db-"]),
 .variants-list > div:not([class^="db-"]) {
 	align-items: center;
 	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
 	gap: var(--db-spacing-fixed-md);
 }
 
@@ -78,6 +68,13 @@ db-card:is(.variants-card) > .db-card {
 	inline-size: 100%;
 }
 
+.variants-list > db-popover > .db-popover > db-button > button,
+.variants-list > .db-popover > button,
+.variants-list > * > db-button > button,
+.variants-list > button,
+.variants-list > .db-select,
+.variants-list > .db-input,
+.variants-list > .db-textarea,
 .variants-list div > .db-select,
 .variants-list div > .db-input,
 .variants-list div > .db-textarea {

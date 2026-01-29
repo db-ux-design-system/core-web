@@ -15,6 +15,7 @@ export default function StackAlignmentColumn() {
 			<div
 				style={{
 					alignItems: 'flex-start',
+					alignSelf: 'flex-start',
 					display: 'flex',
 					flexDirection: 'column',
 					gap: 'var(--db-spacing-fixed-sm)',
@@ -38,6 +39,7 @@ export default function StackAlignmentColumn() {
 			<div
 				style={{
 					alignItems: 'flex-start',
+					alignSelf: 'flex-start',
 					display: 'flex',
 					flexDirection: 'column',
 					gap: 'var(--db-spacing-fixed-sm)',
@@ -61,6 +63,7 @@ export default function StackAlignmentColumn() {
 			<div
 				style={{
 					alignItems: 'flex-start',
+					alignSelf: 'flex-start',
 					display: 'flex',
 					flexDirection: 'column',
 					gap: 'var(--db-spacing-fixed-sm)',
@@ -84,6 +87,7 @@ export default function StackAlignmentColumn() {
 			<div
 				style={{
 					alignItems: 'flex-start',
+					alignSelf: 'flex-start',
 					display: 'flex',
 					flexDirection: 'column',
 					gap: 'var(--db-spacing-fixed-sm)',
