@@ -1,0 +1,41 @@
+@use "./default.assets-paths" as assets-paths;
+
+@mixin get-images-light {
+	--db-textarea-resizer-image: var(
+		--db-textarea-resizer-image-light,
+		url("#{assets-paths.$images-path}light/resize_handle_corner.svg")
+	);
+	--db-textarea-scrollbar-button-decrement: var(
+		--db-textarea-scrollbar-button-decrement-light,
+		url("#{assets-paths.$images-path}light/chevron_down.svg")
+	);
+	--db-textarea-scrollbar-button-increment: var(
+		--db-textarea-scrollbar-button-increment-light,
+		url("#{assets-paths.$images-path}light/chevron_up.svg")
+	);
+	--db-logo-aspect-ratio: var(--db-logo-aspect-ratio-light, 1);
+	--db-logo: var(
+		--db-logo-url-light,
+		var(--db-logo-url, url("#{assets-paths.$images-path}light/logo.svg"))
+	);
+}
+
+@mixin get-images-dark {
+	--db-textarea-resizer-image: var(
+		--db-textarea-resizer-image-dark,
+		url("#{assets-paths.$images-path}dark/resize_handle_corner.svg")
+	);
+	--db-textarea-scrollbar-button-decrement: var(
+		--db-textarea-scrollbar-button-decrement-dark,
+		url("#{assets-paths.$images-path}dark/chevron_down.svg")
+	);
+	--db-textarea-scrollbar-button-increment: var(
+		--db-textarea-scrollbar-button-increment-dark,
+		url("#{assets-paths.$images-path}dark/chevron_up.svg")
+	);
+	--db-logo-aspect-ratio: var(--db-logo-aspect-ratio-dark, 1);
+	--db-logo: var(
+		--db-logo-url-dark,
+		var(--db-logo-url, url("#{assets-paths.$images-path}dark/logo.svg"))
+	);
+}

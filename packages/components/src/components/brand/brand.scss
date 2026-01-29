@@ -11,10 +11,15 @@
 	align-items: center;
 	font-weight: 700;
 
-	&::before {
-		--db-icon-font-size: #{variables.$db-sizing-md};
-		--db-icon-margin-end: 0;
-		--db-icon-color: #{colors.$db-brand-origin-default};
+	&:not(:has(img)) {
+		&::before {
+			content: "";
+			block-size: #{variables.$db-sizing-md};
+			aspect-ratio: var(--db-logo-aspect-ratio);
+			background-image: var(--db-logo);
+			background-repeat: no-repeat;
+			background-size: auto #{variables.$db-sizing-md};
+		}
 	}
 
 	img {

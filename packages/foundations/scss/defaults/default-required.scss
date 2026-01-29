@@ -5,7 +5,7 @@
 @use "../helpers";
 @use "../fonts";
 @use "../screen-sizes";
-@use "../colors/default-color-icons";
+@use "../default-images";
 @forward "../colors/default-color-mappings";
 @forward "../normalize";
 @include screen-sizes.get-breakpoint-properties;
@@ -17,18 +17,18 @@
 		@extend %db-font-size-md;
 
 		/* COLORS */
-		@include default-color-icons.get-color-icons-light;
+		@include default-images.get-images-light;
 
 		@media (prefers-color-scheme: dark) {
-			@include default-color-icons.get-color-icons-dark;
+			@include default-images.get-images-dark;
 		}
 
 		[data-mode="dark"] {
-			@include default-color-icons.get-color-icons-dark;
+			@include default-images.get-images-dark;
 		}
 
 		[data-mode="light"] {
-			@include default-color-icons.get-color-icons-light;
+			@include default-images.get-images-light;
 		}
 	}
 }

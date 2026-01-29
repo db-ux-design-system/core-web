@@ -26,12 +26,6 @@
 				"name": "(Default) With Logo"
 			},
 			{
-				"name": "No Logo",
-				"props": {
-					"hideLogo": true
-				}
-			},
-			{
 				"name": "Custom Logo",
 				"props": {
 					"hideLogo": true,

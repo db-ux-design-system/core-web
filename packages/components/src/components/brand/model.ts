@@ -1,23 +1,8 @@
-import {
-	GlobalProps,
-	GlobalState,
-	IconProps,
-	ShowIconProps,
-	TextProps
-} from '../../shared/model';
+import { GlobalProps, GlobalState, TextProps } from '../../shared/model';
 
-export type DBBrandDefaultProps = {
-	/**
-	 * @deprecated: Disable the default logo svg to pass in a custom `img`
-	 */
-	hideLogo?: boolean;
-};
+export type DBBrandDefaultProps = {};
 
-export type DBBrandProps = DBBrandDefaultProps &
-	GlobalProps &
-	IconProps &
-	ShowIconProps &
-	TextProps;
+export type DBBrandProps = DBBrandDefaultProps & GlobalProps & TextProps;
 
 export type DBBrandDefaultState = {};
 
