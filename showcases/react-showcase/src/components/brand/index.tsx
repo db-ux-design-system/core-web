@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/no-deprecated */
-
 import { DBBrand } from '@components';
 import { type DBBrandProps } from '@components/src/components/brand/model';
 import defaultComponentVariants from '../../../../shared/brand.json';

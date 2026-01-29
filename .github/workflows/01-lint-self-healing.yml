@@ -1,0 +1,154 @@
+# Self-Healing Lint Workflow
+#
+# This workflow runs linting and automatically fixes code style issues when possible.
+# Behavior:
+# - For pull requests (non-dependabot): Attempts to auto-fix style issues and commits changes
+# - For dependabot PRs: Only attempts fixes but doesn't commit (dedicated workflow handles this)
+# - For main branch pushes: Only attempts fixes but doesn't commit (manual intervention required)
+# - For unfixable issues: Fails the workflow as before
+#
+# Auto-fixable issues include:
+# - prettier/xo formatting issues
+# - stylelint CSS/SCSS formatting issues  
+# - markdownlint markdown formatting issues
+#
+# Non-fixable issues include:
+# - jscpd code duplication
+# - structural code issues (unused variables, etc.)
+# - custom lint rule violations
+
+name: Self-Healing Lint
+
+on:
+  workflow_call:
+
+jobs:
+  lint:
+    name: Self-Healing Lint
+    runs-on: ubuntu-24.04 # Use Ubuntu 24.04 explicitly
+    permissions:
+      contents: write
+      pull-requests: write
+    steps:
+      - name: ⏬️ Checkout repo
+        uses: actions/checkout@v5
+        with:
+          ref: ${{ github.head_ref }}
+
+      - name: 🔄 Init Cache
+        uses: ./.github/actions/npm-cache
+
+      - name: 🔍 Check lint status (attempt 1)
+        id: lint_check
+        run: |
+          # Pre-build stylelint package if needed
+          npm run nuxt:prepare --workspace=nuxt-showcase
+          npm run build --workspace=@db-ux/core-stylelint
+
+          # Run lint and capture exit code
+          set +e
+          npm run lint
+          LINT_EXIT_CODE=$?
+          set -e
+
+          if [ $LINT_EXIT_CODE -eq 0 ]; then
+            echo "✅ Lint passed on first attempt"
+            echo "lint_passed=true" >> $GITHUB_ENV
+            echo "needs_fixing=false" >> $GITHUB_ENV
+          else
+            echo "❌ Lint failed on first attempt"
+            echo "lint_passed=false" >> $GITHUB_ENV
+            echo "needs_fixing=true" >> $GITHUB_ENV
+          fi
+
+      - name: 🔧 Attempt auto-fix for style issues
+        if: env.needs_fixing == 'true'
+        run: |
+          echo "🔧 Attempting to auto-fix lint issues..."
+
+          # Check for changes before fixing
+          echo "📋 Files before fixing:"
+          git status --porcelain
+
+          # Run formatters with --fix flags
+          echo "🎨 Running prettier/xo fix..."
+          npm run lint:xo -- --fix || true
+
+          echo "🎨 Running stylelint fix..."
+          npm run lint:stylelint -- --fix || true
+
+          echo "📝 Running markdownlint fix..."
+          npm run lint:markdownlint -- --fix || true
+
+          # Check if any changes were made
+          if [[ -n "$(git status --porcelain)" ]]; then
+            echo "✅ Auto-fix made changes to files"
+            echo "changes_made=true" >> $GITHUB_ENV
+          else
+            echo "ℹ️ No changes made by auto-fix"
+            echo "changes_made=false" >> $GITHUB_ENV
+          fi
+
+          # For dependabot PRs, we don't auto-commit here as they have their own workflow
+          if [[ "${{ github.actor }}" == "dependabot[bot]" ]]; then
+            echo "ℹ️ Dependabot PR detected - skipping auto-commit (handled by dedicated workflow)"
+          fi
+
+      - name: 🔍 Check lint status after fixes (attempt 2)
+        if: env.needs_fixing == 'true'
+        id: lint_recheck
+        run: |
+          # Run lint again and capture exit code
+          set +e
+          npm run lint
+          LINT_EXIT_CODE=$?
+          set -e
+
+          if [ $LINT_EXIT_CODE -eq 0 ]; then
+            echo "✅ Lint passed after auto-fix"
+            echo "fixes_successful=true" >> $GITHUB_ENV
+          else
+            echo "❌ Lint still failing after auto-fix"
+            echo "fixes_successful=false" >> $GITHUB_ENV
+          fi
+
+      - name: 🚘 Auto commit style fixes
+        if: env.needs_fixing == 'true' && env.fixes_successful == 'true' && env.changes_made == 'true' && github.event.pull_request != null && github.actor != 'dependabot[bot]'
+        uses: ./.github/actions/auto-commit
+        with:
+          branch-name: "${{ github.head_ref }}-codestyle-fixes"
+          commit-message: "style: auto-fix codestyle issues"
+          commit-files: "."
+          auto-merge-app-id: ${{ vars.AUTO_MERGE_APP_ID }}
+          auto-merge-private-key: ${{ secrets.AUTO_MERGE_PRIVATE_KEY }}
+          gh-token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: ❌ Fail if lint issues remain unfixable
+        if: env.needs_fixing == 'true' && env.fixes_successful == 'false'
+        run: |
+          echo "❌ Lint issues remain after auto-fix attempt."
+          echo "These may be structural issues that require manual intervention."
+          echo "Please review the lint output and fix remaining issues manually."
+          exit 1
+
+      - name: ℹ️ Report self-healing results
+        if: env.needs_fixing == 'true'
+        run: |
+          if [[ "${{ env.fixes_successful }}" == "true" ]]; then
+            if [[ "${{ env.changes_made }}" == "true" ]]; then
+              if [[ "${{ github.event.pull_request }}" != "null" && "${{ github.actor }}" != "dependabot[bot]" ]]; then
+                echo "🎉 Self-healing successful! Codestyle issues have been auto-fixed and committed."
+              else
+                echo "✅ Codestyle issues were auto-fixed but not committed (main branch or dependabot)."
+                echo "Please commit the changes manually."
+              fi
+            else
+              echo "✅ Lint passed after running formatters, but no file changes were needed."
+            fi
+          fi
+
+      - name: 💀 Killing me softly
+        uses: ./.github/actions/cancel-workflow
+        if: failure()
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
