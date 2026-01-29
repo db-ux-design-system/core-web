@@ -1,0 +1,35 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8" data-next-head=""/><meta name="viewport" content="width=device-width" data-next-head=""/><title data-next-head="">DB UX</title><link data-next-font="size-adjust" rel="preconnect" href="/" crossorigin="anonymous"/><link rel="preload" href="/core-web/version/v4.4.1-footer/_next/static/css/2faf8772c7139dd7.css" as="style"/><link rel="stylesheet" href="/core-web/version/v4.4.1-footer/_next/static/css/2faf8772c7139dd7.css" data-n-g=""/><noscript data-n-css=""></noscript><script defer="" noModule="" src="/core-web/version/v4.4.1-footer/_next/static/chunks/polyfills-42372ed130431b0a.js"></script><script src="/core-web/version/v4.4.1-footer/_next/static/chunks/webpack-929f6f1b32ce033a.js" defer=""></script><script src="/core-web/version/v4.4.1-footer/_next/static/chunks/framework-52047f770f349cc2.js" defer=""></script><script src="/core-web/version/v4.4.1-footer/_next/static/chunks/main-e7632eec3973aab6.js" defer=""></script><script src="/core-web/version/v4.4.1-footer/_next/static/chunks/pages/_app-e3edc7e11d057edd.js" defer=""></script><script src="/core-web/version/v4.4.1-footer/_next/static/chunks/pages/components/layout/footer/docs/Migration-653e74445d393a17.js" defer=""></script><script src="/core-web/version/v4.4.1-footer/_next/static/UfLNkiA6B3VY6sQkpYEHd/_buildManifest.js" defer=""></script><script src="/core-web/version/v4.4.1-footer/_next/static/UfLNkiA6B3VY6sQkpYEHd/_ssgManifest.js" defer=""></script></head><body><div id="__next"><h2 id="migration">Migration<a class="header-link" href="/core-web/version/v4.4.1-footer/components/layout/footer/docs/Migration?current=migration"><span aria-hidden="true" class="db-icon" data-icon="paper_clip"></span>migration<!-- --> anchor link</a></h2>
+<h3 id="migrating-from-v2-to-v3">Migrating from v2 to v3<a class="header-link" href="/core-web/version/v4.4.1-footer/components/layout/footer/docs/Migration?current=migrating-from-v2-to-v3"><span aria-hidden="true" class="db-icon" data-icon="paper_clip"></span>migrating-from-v2-to-v3<!-- --> anchor link</a></h3>
+<p>The Footer component is new in v3. If you previously used custom footer implementations, consider migrating to the new DBFooter component for consistency.</p>
+<h4 id="key-features">Key features<a class="header-link" href="/core-web/version/v4.4.1-footer/components/layout/footer/docs/Migration?current=key-features"><span aria-hidden="true" class="db-icon" data-icon="paper_clip"></span>key-features<!-- --> anchor link</a></h4>
+<ul>
+<li>Standardized footer layout with main and meta sections</li>
+<li>Built-in copyright text support</li>
+<li>Responsive width variants (full, small, medium, large)</li>
+<li>Consistent styling with the DB UX Design System</li>
+</ul>
+<h4 id="example-migration">Example migration<a class="header-link" href="/core-web/version/v4.4.1-footer/components/layout/footer/docs/Migration?current=example-migration"><span aria-hidden="true" class="db-icon" data-icon="paper_clip"></span>example-migration<!-- --> anchor link</a></h4>
+<p><strong>Before (custom implementation):</strong></p>
+<pre><code class="language-html">&lt;footer class=&quot;custom-footer&quot;&gt;
+	&lt;div class=&quot;footer-content&quot;&gt;
+		&lt;!-- Custom footer content --&gt;
+	&lt;/div&gt;
+	&lt;div class=&quot;footer-legal&quot;&gt;
+		&lt;p&gt;© Deutsche Bahn AG&lt;/p&gt;
+		&lt;!-- Legal links --&gt;
+	&lt;/div&gt;
+&lt;/footer&gt;
+</code></pre>
+<p><strong>After (DBFooter component):</strong></p>
+<pre><code class="language-tsx">import { DBFooter, DBLink } from &quot;@db-ux/react-core-components&quot;;
+
+&lt;DBFooter
+	main={&lt;div&gt;Footer Navigation&lt;/div&gt;}
+	meta={
+		&lt;&gt;
+			&lt;DBLink href=&quot;#&quot;&gt;Privacy&lt;/DBLink&gt;
+			&lt;DBLink href=&quot;#&quot;&gt;Imprint&lt;/DBLink&gt;
+		&lt;/&gt;
+	}
+/&gt;;
+</code></pre></div><script id="__NEXT_DATA__" type="application/json">{"props":{"pageProps":{}},"page":"/components/layout/footer/docs/Migration","query":{},"buildId":"UfLNkiA6B3VY6sQkpYEHd","assetPrefix":"/core-web/version/v4.4.1-footer","nextExport":true,"autoExport":true,"isFallback":false,"scriptLoader":[]}</script></body></html>
