@@ -13,7 +13,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        command: ["lint", "test"]
+        command: ["lint", "test", "codespell"]
     steps:
       - name: ⏬️ Checkout repo
         uses: actions/checkout@v6
@@ -21,8 +21,8 @@ jobs:
       - name: 🔄 Init Cache
         uses: ./.github/actions/npm-cache
 
-      # For now we keep this check in the codebase, even though that we already do the codespell check on git pre-commit hook. We might remove this check in the pipeline (even though that performance is not an issue, but it might be good for reducing external dependencies).
       - name: 📖 Check spelling
+        if: ${{ matrix.command == 'codespell' }}
         run: |
           npm run lint:codespell
 
