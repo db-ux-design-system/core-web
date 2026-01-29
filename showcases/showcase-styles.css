@@ -75,9 +75,9 @@ db-card:is(.variants-card) > .db-card {
 .variants-list > .db-select,
 .variants-list > .db-input,
 .variants-list > .db-textarea,
-.variants-list div > .db-select,
-.variants-list div > .db-input,
-.variants-list div > .db-textarea {
+.variants-list * > .db-select,
+.variants-list * > .db-input,
+.variants-list * > .db-textarea {
 	align-self: flex-end;
 }
 
