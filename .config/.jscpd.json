@@ -67,7 +67,11 @@
 		"**/showcases/shared/*.json",
 		"**/showcases/vue-showcase/src/components/form/Form.vue",
 		"**/CHANGELOG.md",
-		"**/packages/components/src/shared/showcase/*-wrapper.showcase.lite.tsx"
+		"**/packages/components/src/shared/showcase/*-wrapper.showcase.lite.tsx",
+		"**/showcases/react-showcase/src/app.tsx",
+		"**/showcases/react-showcase/src/utils/navigation-item.tsx",
+		"**/playwright-report/**/*",
+		"**/*.example.lite.tsx"
 	],
 	"ignorePattern": ["<option value=\"test5\">Test5</option>"],
 	"absolute": true
