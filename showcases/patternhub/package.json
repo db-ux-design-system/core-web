@@ -48,7 +48,7 @@
     "esbuild": "0.27.2",
     "eslint": "9.39.2",
     "eslint-config-next": "16.1.4",
-    "iframe-resizer": "5.5.7",
+    "iframe-resizer": "5.5.8",
     "open-cli": "8.0.0",
     "prettier": "3.8.1",
     "sass": "1.85.1",
