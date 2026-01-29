@@ -1,0 +1,7 @@
+{
+	"codeConnect": {
+		"include": ["/**/*.ts"],
+		"label": "Angular",
+		"parser": "html"
+	}
+}

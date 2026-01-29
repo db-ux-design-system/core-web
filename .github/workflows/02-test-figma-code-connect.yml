@@ -1,0 +1,35 @@
+---
+name: Test figma code-connect
+
+permissions:
+  contents: read
+
+on:
+  workflow_call:
+
+jobs:
+  deploy:
+    name: Test figma code-connect
+    runs-on: ubuntu-24.04 # Use Ubuntu 24.04 explicitly
+    strategy:
+      fail-fast: false
+      matrix:
+        target: [angular, react, vue]
+    steps:
+      - name: ⏬ Checkout repo
+        uses: actions/checkout@v6
+
+      - name: 🔄 Init Cache
+        uses: ./.github/actions/npm-cache
+
+      - name: ⏬ Download figma code connect
+        uses: actions/download-artifact@v7
+        with:
+          name: figma-code-connect
+          path: figma-code-connect
+
+      - name: ⚡ Run Test
+        env:
+          FIGMA_ACCESS_TOKEN: ${{ secrets.FIGMA_ACCESS_TOKEN }}
+        run: |
+          npm run test --workspace=${{ matrix.target }}-figma

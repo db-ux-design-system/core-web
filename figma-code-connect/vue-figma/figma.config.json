@@ -1,0 +1,7 @@
+{
+	"codeConnect": {
+		"include": ["/**/*.ts"],
+		"label": "Vue",
+		"parser": "html"
+	}
+}
