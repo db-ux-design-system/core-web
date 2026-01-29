@@ -1,0 +1,122 @@
+[
+	{
+		"name": "Content Width - Full",
+		"examples": [
+			{
+				"name": "Full",
+				"content": "full - Default Footer with showCopyright, showMain and showMeta enabled",
+				"props": {
+					"width": "full",
+					"showMeta": true,
+					"showMain": true,
+					"showCopyright": true
+				}
+			}
+		]
+	},
+	{
+		"name": "Content Width - Large (1440px)",
+		"examples": [
+			{
+				"name": "Large",
+				"content": "large - Default Footer with showCopyright, showMain and showMeta enabled",
+				"props": {
+					"width": "large",
+					"showMeta": true,
+					"showMain": true,
+					"showCopyright": true
+				}
+			}
+		]
+	},
+	{
+		"name": "Content Width - Small (1024px)",
+		"examples": [
+			{
+				"name": "Small",
+				"content": "small - Default Footer with showCopyright, showMain and showMeta enabled",
+				"props": {
+					"width": "large",
+					"showMeta": true,
+					"showMain": true,
+					"showCopyright": true
+				}
+			}
+		]
+	},
+	{
+		"name": "Show Copyright",
+		"examples": [
+			{
+				"name": "True",
+				"content": "",
+				"props": {
+					"width": "full",
+					"showMeta": true,
+					"showMain": true,
+					"showCopyright": true
+				}
+			},
+			{
+				"name": "False",
+				"content": "",
+				"props": {
+					"width": "full",
+					"showMeta": true,
+					"showMain": true,
+					"showCopyright": false
+				}
+			}
+		]
+	},
+	{
+		"name": "Show Main",
+		"examples": [
+			{
+				"name": "True",
+				"content": "",
+				"props": {
+					"width": "full",
+					"showMeta": true,
+					"showMain": true,
+					"showCopyright": true
+				}
+			},
+			{
+				"name": "False",
+				"content": "",
+				"props": {
+					"width": "full",
+					"showMeta": true,
+					"showMain": false,
+					"showCopyright": true
+				}
+			}
+		]
+	},
+	{
+		"name": "Show Meta",
+		"examples": [
+			{
+				"name": "True",
+				"content": "",
+				"props": {
+					"width": "full",
+					"showMeta": true,
+					"showMain": true,
+					"showCopyright": true
+				}
+			},
+			{
+				"name": "False",
+				"content": "",
+				"props": {
+					"width": "full",
+					"showMeta": false,
+					"showMain": true,
+					"showCopyright": true
+				}
+			}
+		]
+	}
+]

@@ -26,6 +26,8 @@ export * from './components/divider';
 export * from './components/divider/model';
 export * from './components/drawer';
 export * from './components/drawer/model';
+export * from './components/footer';
+export * from './components/footer/model';
 export * from './components/header';
 export * from './components/header/model';
 export * from './components/icon';

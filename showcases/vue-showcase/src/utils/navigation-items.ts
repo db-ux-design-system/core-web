@@ -9,6 +9,7 @@ import Checkbox from '../components/checkbox/Checkbox.vue';
 import CustomSelect from '../components/custom-select/CustomSelect.vue';
 import Divider from '../components/divider/Divider.vue';
 import Drawer from '../components/drawer/Drawer.vue';
+import Footer from '../components/footer/Footer.vue';
 import Header from '../components/header/Header.vue';
 import Home from '../components/home/Home.vue';
 import Icon from '../components/icon/Icon.vue';
@@ -182,6 +183,11 @@ export const navigationItems: NavItem[] = [
 				path: '/01/header',
 				label: 'Header',
 				component: markRaw(Header)
+			},
+			{
+				path: '/01/footer',
+				label: 'Footer',
+				component: markRaw(Footer)
 			}
 		])
 	},

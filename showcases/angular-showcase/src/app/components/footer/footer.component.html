@@ -1,0 +1,27 @@
+<app-default-component
+	title="DBFooter"
+	[variants]="variants"
+	[exampleTemplate]="exampleTemplate"
+>
+	<ng-template
+		#exampleTemplate
+		let-exampleProps="exampleProps"
+		let-exampleName="exampleName"
+		let-exampleContent="exampleContent"
+		let-exampleIndex="exampleIndex"
+		let-variantIndex="variantIndex"
+	>
+		<db-footer
+			[showCopyright]="exampleProps?.showCopyright ?? true"
+			[showMain]="exampleProps?.showMain ?? true"
+			[showMeta]="exampleProps?.showMeta ?? true"
+			[width]="exampleProps?.width"
+		>
+			<div main>
+				{{ exampleContent ?? exampleName }}
+			</div>
+			<div meta>
+			</div>
+		</db-footer>
+	</ng-template>
+</app-default-component>

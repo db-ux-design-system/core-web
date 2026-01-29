@@ -9,6 +9,7 @@ import CheckboxComponent from '../../react-showcase/src/components/checkbox';
 import CustomSelectComponent from '../../react-showcase/src/components/custom-select';
 import DividerComponent from '../../react-showcase/src/components/divider';
 import DrawerComponent from '../../react-showcase/src/components/drawer';
+import FooterComponent from '../../react-showcase/src/components/footer';
 import HeaderComponent from '../../react-showcase/src/components/header';
 import InfotextComponent from '../../react-showcase/src/components/infotext';
 import InputComponent from '../../react-showcase/src/components/input';
@@ -36,6 +37,7 @@ import * as checkboxCode from '../components/code-docs/checkbox';
 import * as customSelectCode from '../components/code-docs/custom-select';
 import * as dividerCode from '../components/code-docs/divider';
 import * as drawerCode from '../components/code-docs/drawer';
+import * as footerCode from '../components/code-docs/footer';
 import * as headerCode from '../components/code-docs/header';
 // Import * as iconCode from '../components/code-docs/icon';
 import * as infotextCode from '../components/code-docs/infotext';
@@ -115,6 +117,7 @@ const nameComponentMap = {
 	divider: <DividerComponent slotCode={dividerCode} />,
 	drawer: <DrawerComponent slotCode={drawerCode} />,
 	header: <HeaderComponent slotCode={headerCode} />,
+	footer: <FooterComponent slotCode={footerCode} />,
 	// Page: <PageComponent slotCode={pageCode} />,
 	section: <SectionComponent slotCode={sectionCode} />,
 	navigation: (
