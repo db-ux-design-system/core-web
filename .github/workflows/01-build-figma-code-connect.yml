@@ -1,0 +1,30 @@
+---
+name: Build Figma Code Connect
+
+permissions:
+  contents: read
+
+on:
+  workflow_call:
+
+jobs:
+  build-figma-code-connect:
+    name: Build Figma Code Connect
+    runs-on: ubuntu-24.04
+    steps:
+      - name: ⏬ Checkout repo
+        uses: actions/checkout@v6
+
+      - name: 🔄 Init Cache
+        uses: ./.github/actions/npm-cache
+
+      - name: 🔨 Generate Figma Code Connect
+        env:
+          FIGMA_FILE: ${{ github.event_name == 'pull_request' && vars.FIGMA_FILE_DEV || vars.FIGMA_FILE_MAIN }}
+        run: npm run generate:figma --workspace=@db-ux/core-components
+
+      - name: ⏫ Upload figma-code-connect
+        uses: actions/upload-artifact@v6
+        with:
+          name: figma-code-connect
+          path: figma-code-connect
