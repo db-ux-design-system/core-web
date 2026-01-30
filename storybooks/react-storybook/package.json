@@ -14,22 +14,22 @@
     "storybook": "storybook dev -p 6005"
   },
   "dependencies": {
-    "react": "19.2.3",
-    "react-dom": "19.2.3"
+    "react": "19.2.4",
+    "react-dom": "19.2.4"
   },
   "devDependencies": {
     "@eslint/js": "9.39.2",
-    "@storybook/addon-docs": "10.2.0",
-    "@storybook/react-vite": "10.2.0",
-    "@types/react": "19.2.9",
+    "@storybook/addon-docs": "10.2.1",
+    "@storybook/react-vite": "10.2.1",
+    "@types/react": "19.2.10",
     "@types/react-dom": "19.2.3",
     "@vitejs/plugin-react": "5.1.2",
     "eslint": "9.39.2",
     "eslint-plugin-react-hooks": "7.0.1",
     "eslint-plugin-react-refresh": "0.4.26",
-    "eslint-plugin-storybook": "10.2.0",
+    "eslint-plugin-storybook": "10.2.1",
     "globals": "17.1.0",
-    "storybook": "10.2.0",
+    "storybook": "10.2.1",
     "typescript": "~5.9.3",
     "typescript-eslint": "8.53.1",
     "vite": "7.3.1"
