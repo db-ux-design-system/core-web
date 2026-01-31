@@ -88,8 +88,9 @@ export default function DBDrawer(props: DBDrawerProps) {
 				}
 				if (!open && _ref.open) {
 					if (dialogContainerRef) {
-						(dialogContainerRef as HTMLDivElement).dataset['transition'] =
-							'close';
+						(dialogContainerRef as HTMLDivElement).dataset[
+							'transition'
+						] = 'close';
 					}
 					void delay(() => {
 						_ref?.close();
@@ -128,7 +129,14 @@ export default function DBDrawer(props: DBDrawerProps) {
 			data-position={props.position}
 			data-backdrop={props.backdrop}
 			data-direction={props.direction}
-			data-variant={props.variant}>
+			data-variant={props.variant}
+			closedby={
+				props.position === 'absolute' ||
+				props.backdrop === 'none' ||
+				props.variant === 'inside'
+					? undefined
+					: 'closerequest'
+			}>
 			<article
 				ref={dialogContainerRef}
 				class={cls('db-drawer-container', props.className)}
