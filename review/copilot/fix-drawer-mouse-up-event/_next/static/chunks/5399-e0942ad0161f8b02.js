@@ -21078,7 +21078,7 @@ False
   Functional
 </db-drawer>`),navigator.clipboard.writeText(`<db-drawer [open]="open" (onClose)="toggleDrawer(false)">
   Functional
-</db-drawer>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-html",children:`<dialog class="db-drawer" closedby="closerequest">
+</db-drawer>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-html",children:`<dialog class="db-drawer" closedby="any">
   <article class="db-drawer-container">
     <header class="db-drawer-header">
       <div class="db-drawer-header-text"></div>
@@ -21094,7 +21094,7 @@ False
     </header>
     <div class="db-drawer-content">Functional</div>
   </article>
-</dialog>`})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:e===`<dialog class="db-drawer" closedby="closerequest">
+</dialog>`})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:e===`<dialog class="db-drawer" closedby="any">
   <article class="db-drawer-container">
     <header class="db-drawer-header">
       <div class="db-drawer-header-text"></div>
@@ -21110,7 +21110,7 @@ False
     </header>
     <div class="db-drawer-content">Functional</div>
   </article>
-</dialog>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<dialog class="db-drawer" closedby="closerequest">
+</dialog>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<dialog class="db-drawer" closedby="any">
   <article class="db-drawer-container">
     <header class="db-drawer-header">
       <div class="db-drawer-header-text"></div>
@@ -21126,7 +21126,7 @@ False
     </header>
     <div class="db-drawer-content">Functional</div>
   </article>
-</dialog>`),navigator.clipboard.writeText(`<dialog class="db-drawer" closedby="closerequest">
+</dialog>`),navigator.clipboard.writeText(`<dialog class="db-drawer" closedby="any">
   <article class="db-drawer-container">
     <header class="db-drawer-header">
       <div class="db-drawer-header-text"></div>
@@ -21166,7 +21166,7 @@ Functional
   (Default) Regular
 </db-drawer>`),navigator.clipboard.writeText(`<db-drawer [open]="open" (onClose)="toggleDrawer(false)">
   (Default) Regular
-</db-drawer>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-html",children:`<dialog class="db-drawer" closedby="closerequest">
+</db-drawer>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-html",children:`<dialog class="db-drawer" closedby="any">
   <article class="db-drawer-container">
     <header class="db-drawer-header">
       <div class="db-drawer-header-text"></div>
@@ -21182,7 +21182,7 @@ Functional
     </header>
     <div class="db-drawer-content">(Default) Regular</div>
   </article>
-</dialog>`})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:e===`<dialog class="db-drawer" closedby="closerequest">
+</dialog>`})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:e===`<dialog class="db-drawer" closedby="any">
   <article class="db-drawer-container">
     <header class="db-drawer-header">
       <div class="db-drawer-header-text"></div>
@@ -21198,7 +21198,7 @@ Functional
     </header>
     <div class="db-drawer-content">(Default) Regular</div>
   </article>
-</dialog>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<dialog class="db-drawer" closedby="closerequest">
+</dialog>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<dialog class="db-drawer" closedby="any">
   <article class="db-drawer-container">
     <header class="db-drawer-header">
       <div class="db-drawer-header-text"></div>
@@ -21214,7 +21214,7 @@ Functional
     </header>
     <div class="db-drawer-content">(Default) Regular</div>
   </article>
-</dialog>`),navigator.clipboard.writeText(`<dialog class="db-drawer" closedby="closerequest">
+</dialog>`),navigator.clipboard.writeText(`<dialog class="db-drawer" closedby="any">
   <article class="db-drawer-container">
     <header class="db-drawer-header">
       <div class="db-drawer-header-text"></div>
@@ -21254,7 +21254,7 @@ Functional
   Expressive
 </db-drawer>`),navigator.clipboard.writeText(`<db-drawer [open]="open" (onClose)="toggleDrawer(false)">
   Expressive
-</db-drawer>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-html",children:`<dialog class="db-drawer" closedby="closerequest">
+</db-drawer>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-html",children:`<dialog class="db-drawer" closedby="any">
   <article class="db-drawer-container">
     <header class="db-drawer-header">
       <div class="db-drawer-header-text"></div>
@@ -21270,7 +21270,7 @@ Functional
     </header>
     <div class="db-drawer-content">Expressive</div>
   </article>
-</dialog>`})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:e===`<dialog class="db-drawer" closedby="closerequest">
+</dialog>`})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:e===`<dialog class="db-drawer" closedby="any">
   <article class="db-drawer-container">
     <header class="db-drawer-header">
       <div class="db-drawer-header-text"></div>
@@ -21286,7 +21286,7 @@ Functional
     </header>
     <div class="db-drawer-content">Expressive</div>
   </article>
-</dialog>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<dialog class="db-drawer" closedby="closerequest">
+</dialog>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<dialog class="db-drawer" closedby="any">
   <article class="db-drawer-container">
     <header class="db-drawer-header">
       <div class="db-drawer-header-text"></div>
@@ -21302,7 +21302,7 @@ Functional
     </header>
     <div class="db-drawer-content">Expressive</div>
   </article>
-</dialog>`),navigator.clipboard.writeText(`<dialog class="db-drawer" closedby="closerequest">
+</dialog>`),navigator.clipboard.writeText(`<dialog class="db-drawer" closedby="any">
   <article class="db-drawer-container">
     <header class="db-drawer-header">
       <div class="db-drawer-header-text"></div>
@@ -21342,7 +21342,7 @@ Expressive
   (Default) Medium
 </db-drawer>`),navigator.clipboard.writeText(`<db-drawer [open]="open" (onClose)="toggleDrawer(false)">
   (Default) Medium
-</db-drawer>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-html",children:`<dialog class="db-drawer" closedby="closerequest">
+</db-drawer>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-html",children:`<dialog class="db-drawer" closedby="any">
   <article class="db-drawer-container">
     <header class="db-drawer-header">
       <div class="db-drawer-header-text"></div>
@@ -21358,7 +21358,7 @@ Expressive
     </header>
     <div class="db-drawer-content">(Default) Medium</div>
   </article>
-</dialog>`})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:e===`<dialog class="db-drawer" closedby="closerequest">
+</dialog>`})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:e===`<dialog class="db-drawer" closedby="any">
   <article class="db-drawer-container">
     <header class="db-drawer-header">
       <div class="db-drawer-header-text"></div>
@@ -21374,7 +21374,7 @@ Expressive
     </header>
     <div class="db-drawer-content">(Default) Medium</div>
   </article>
-</dialog>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<dialog class="db-drawer" closedby="closerequest">
+</dialog>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<dialog class="db-drawer" closedby="any">
   <article class="db-drawer-container">
     <header class="db-drawer-header">
       <div class="db-drawer-header-text"></div>
@@ -21390,7 +21390,7 @@ Expressive
     </header>
     <div class="db-drawer-content">(Default) Medium</div>
   </article>
-</dialog>`),navigator.clipboard.writeText(`<dialog class="db-drawer" closedby="closerequest">
+</dialog>`),navigator.clipboard.writeText(`<dialog class="db-drawer" closedby="any">
   <article class="db-drawer-container">
     <header class="db-drawer-header">
       <div class="db-drawer-header-text"></div>
@@ -21430,7 +21430,7 @@ Expressive
   Full
 </db-drawer>`),navigator.clipboard.writeText(`<db-drawer width="full" [open]="open" (onClose)="toggleDrawer(false)">
   Full
-</db-drawer>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-html",children:`<dialog class="db-drawer" closedby="closerequest">
+</db-drawer>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-html",children:`<dialog class="db-drawer" closedby="any">
   <article class="db-drawer-container" data-width="full">
     <header class="db-drawer-header">
       <div class="db-drawer-header-text"></div>
@@ -21446,7 +21446,7 @@ Expressive
     </header>
     <div class="db-drawer-content">Full</div>
   </article>
-</dialog>`})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:e===`<dialog class="db-drawer" closedby="closerequest">
+</dialog>`})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:e===`<dialog class="db-drawer" closedby="any">
   <article class="db-drawer-container" data-width="full">
     <header class="db-drawer-header">
       <div class="db-drawer-header-text"></div>
@@ -21462,7 +21462,7 @@ Expressive
     </header>
     <div class="db-drawer-content">Full</div>
   </article>
-</dialog>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<dialog class="db-drawer" closedby="closerequest">
+</dialog>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<dialog class="db-drawer" closedby="any">
   <article class="db-drawer-container" data-width="full">
     <header class="db-drawer-header">
       <div class="db-drawer-header-text"></div>
@@ -21478,7 +21478,7 @@ Expressive
     </header>
     <div class="db-drawer-content">Full</div>
   </article>
-</dialog>`),navigator.clipboard.writeText(`<dialog class="db-drawer" closedby="closerequest">
+</dialog>`),navigator.clipboard.writeText(`<dialog class="db-drawer" closedby="any">
   <article class="db-drawer-container" data-width="full">
     <header class="db-drawer-header">
       <div class="db-drawer-header-text"></div>
@@ -21518,7 +21518,7 @@ Full
   (Default) False
 </db-drawer>`),navigator.clipboard.writeText(`<db-drawer [rounded]="false" [open]="open" (onClose)="toggleDrawer(false)">
   (Default) False
-</db-drawer>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-html",children:`<dialog class="db-drawer" closedby="closerequest">
+</db-drawer>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-html",children:`<dialog class="db-drawer" closedby="any">
   <article class="db-drawer-container" data-rounded="true">
     <header class="db-drawer-header">
       <div class="db-drawer-header-text"></div>
@@ -21534,7 +21534,7 @@ Full
     </header>
     <div class="db-drawer-content">(Default) False</div>
   </article>
-</dialog>`})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:e===`<dialog class="db-drawer" closedby="closerequest">
+</dialog>`})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:e===`<dialog class="db-drawer" closedby="any">
   <article class="db-drawer-container" data-rounded="true">
     <header class="db-drawer-header">
       <div class="db-drawer-header-text"></div>
@@ -21550,7 +21550,7 @@ Full
     </header>
     <div class="db-drawer-content">(Default) False</div>
   </article>
-</dialog>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<dialog class="db-drawer" closedby="closerequest">
+</dialog>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<dialog class="db-drawer" closedby="any">
   <article class="db-drawer-container" data-rounded="true">
     <header class="db-drawer-header">
       <div class="db-drawer-header-text"></div>
@@ -21566,7 +21566,7 @@ Full
     </header>
     <div class="db-drawer-content">(Default) False</div>
   </article>
-</dialog>`),navigator.clipboard.writeText(`<dialog class="db-drawer" closedby="closerequest">
+</dialog>`),navigator.clipboard.writeText(`<dialog class="db-drawer" closedby="any">
   <article class="db-drawer-container" data-rounded="true">
     <header class="db-drawer-header">
       <div class="db-drawer-header-text"></div>
@@ -21606,7 +21606,7 @@ Full
   True
 </db-drawer>`),navigator.clipboard.writeText(`<db-drawer [rounded]="true" [open]="open" (onClose)="toggleDrawer(false)">
   True
-</db-drawer>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-html",children:`<dialog class="db-drawer" closedby="closerequest">
+</db-drawer>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-html",children:`<dialog class="db-drawer" closedby="any">
   <article class="db-drawer-container" data-rounded="true">
     <header class="db-drawer-header">
       <div class="db-drawer-header-text"></div>
@@ -21622,7 +21622,7 @@ Full
     </header>
     <div class="db-drawer-content">True</div>
   </article>
-</dialog>`})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:e===`<dialog class="db-drawer" closedby="closerequest">
+</dialog>`})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:e===`<dialog class="db-drawer" closedby="any">
   <article class="db-drawer-container" data-rounded="true">
     <header class="db-drawer-header">
       <div class="db-drawer-header-text"></div>
@@ -21638,7 +21638,7 @@ Full
     </header>
     <div class="db-drawer-content">True</div>
   </article>
-</dialog>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<dialog class="db-drawer" closedby="closerequest">
+</dialog>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<dialog class="db-drawer" closedby="any">
   <article class="db-drawer-container" data-rounded="true">
     <header class="db-drawer-header">
       <div class="db-drawer-header-text"></div>
@@ -21654,7 +21654,7 @@ Full
     </header>
     <div class="db-drawer-content">True</div>
   </article>
-</dialog>`),navigator.clipboard.writeText(`<dialog class="db-drawer" closedby="closerequest">
+</dialog>`),navigator.clipboard.writeText(`<dialog class="db-drawer" closedby="any">
   <article class="db-drawer-container" data-rounded="true">
     <header class="db-drawer-header">
       <div class="db-drawer-header-text"></div>
@@ -21694,7 +21694,7 @@ True
   (Default) Medium
 </db-drawer>`),navigator.clipboard.writeText(`<db-drawer [open]="open" (onClose)="toggleDrawer(false)">
   (Default) Medium
-</db-drawer>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-html",children:`<dialog class="db-drawer" closedby="closerequest">
+</db-drawer>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-html",children:`<dialog class="db-drawer" closedby="any">
   <article class="db-drawer-container">
     <header class="db-drawer-header">
       <div class="db-drawer-header-text"></div>
@@ -21710,7 +21710,7 @@ True
     </header>
     <div class="db-drawer-content">(Default) Medium</div>
   </article>
-</dialog>`})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:e===`<dialog class="db-drawer" closedby="closerequest">
+</dialog>`})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:e===`<dialog class="db-drawer" closedby="any">
   <article class="db-drawer-container">
     <header class="db-drawer-header">
       <div class="db-drawer-header-text"></div>
@@ -21726,7 +21726,7 @@ True
     </header>
     <div class="db-drawer-content">(Default) Medium</div>
   </article>
-</dialog>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<dialog class="db-drawer" closedby="closerequest">
+</dialog>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<dialog class="db-drawer" closedby="any">
   <article class="db-drawer-container">
     <header class="db-drawer-header">
       <div class="db-drawer-header-text"></div>
@@ -21742,7 +21742,7 @@ True
     </header>
     <div class="db-drawer-content">(Default) Medium</div>
   </article>
-</dialog>`),navigator.clipboard.writeText(`<dialog class="db-drawer" closedby="closerequest">
+</dialog>`),navigator.clipboard.writeText(`<dialog class="db-drawer" closedby="any">
   <article class="db-drawer-container">
     <header class="db-drawer-header">
       <div class="db-drawer-header-text"></div>
@@ -21782,7 +21782,7 @@ True
   Small
 </db-drawer>`),navigator.clipboard.writeText(`<db-drawer spacing="small" [open]="open" (onClose)="toggleDrawer(false)">
   Small
-</db-drawer>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-html",children:`<dialog class="db-drawer" closedby="closerequest">
+</db-drawer>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-html",children:`<dialog class="db-drawer" closedby="any">
   <article class="db-drawer-container" data-spacing="small">
     <header class="db-drawer-header">
       <div class="db-drawer-header-text"></div>
@@ -21798,7 +21798,7 @@ True
     </header>
     <div class="db-drawer-content">Small</div>
   </article>
-</dialog>`})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:e===`<dialog class="db-drawer" closedby="closerequest">
+</dialog>`})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:e===`<dialog class="db-drawer" closedby="any">
   <article class="db-drawer-container" data-spacing="small">
     <header class="db-drawer-header">
       <div class="db-drawer-header-text"></div>
@@ -21814,7 +21814,7 @@ True
     </header>
     <div class="db-drawer-content">Small</div>
   </article>
-</dialog>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<dialog class="db-drawer" closedby="closerequest">
+</dialog>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<dialog class="db-drawer" closedby="any">
   <article class="db-drawer-container" data-spacing="small">
     <header class="db-drawer-header">
       <div class="db-drawer-header-text"></div>
@@ -21830,7 +21830,7 @@ True
     </header>
     <div class="db-drawer-content">Small</div>
   </article>
-</dialog>`),navigator.clipboard.writeText(`<dialog class="db-drawer" closedby="closerequest">
+</dialog>`),navigator.clipboard.writeText(`<dialog class="db-drawer" closedby="any">
   <article class="db-drawer-container" data-spacing="small">
     <header class="db-drawer-header">
       <div class="db-drawer-header-text"></div>
@@ -21870,7 +21870,7 @@ Small
   Large
 </db-drawer>`),navigator.clipboard.writeText(`<db-drawer spacing="large" [open]="open" (onClose)="toggleDrawer(false)">
   Large
-</db-drawer>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-html",children:`<dialog class="db-drawer" closedby="closerequest">
+</db-drawer>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-html",children:`<dialog class="db-drawer" closedby="any">
   <article class="db-drawer-container" data-spacing="large">
     <header class="db-drawer-header">
       <div class="db-drawer-header-text"></div>
@@ -21886,7 +21886,7 @@ Small
     </header>
     <div class="db-drawer-content">Large</div>
   </article>
-</dialog>`})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:e===`<dialog class="db-drawer" closedby="closerequest">
+</dialog>`})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:e===`<dialog class="db-drawer" closedby="any">
   <article class="db-drawer-container" data-spacing="large">
     <header class="db-drawer-header">
       <div class="db-drawer-header-text"></div>
@@ -21902,7 +21902,7 @@ Small
     </header>
     <div class="db-drawer-content">Large</div>
   </article>
-</dialog>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<dialog class="db-drawer" closedby="closerequest">
+</dialog>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<dialog class="db-drawer" closedby="any">
   <article class="db-drawer-container" data-spacing="large">
     <header class="db-drawer-header">
       <div class="db-drawer-header-text"></div>
@@ -21918,7 +21918,7 @@ Small
     </header>
     <div class="db-drawer-content">Large</div>
   </article>
-</dialog>`),navigator.clipboard.writeText(`<dialog class="db-drawer" closedby="closerequest">
+</dialog>`),navigator.clipboard.writeText(`<dialog class="db-drawer" closedby="any">
   <article class="db-drawer-container" data-spacing="large">
     <header class="db-drawer-header">
       <div class="db-drawer-header-text"></div>
@@ -21958,7 +21958,7 @@ Large
   None
 </db-drawer>`),navigator.clipboard.writeText(`<db-drawer spacing="none" [open]="open" (onClose)="toggleDrawer(false)">
   None
-</db-drawer>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-html",children:`<dialog class="db-drawer" closedby="closerequest">
+</db-drawer>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-html",children:`<dialog class="db-drawer" closedby="any">
   <article class="db-drawer-container" data-spacing="none">
     <header class="db-drawer-header">
       <div class="db-drawer-header-text"></div>
@@ -21974,7 +21974,7 @@ Large
     </header>
     <div class="db-drawer-content">None</div>
   </article>
-</dialog>`})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:e===`<dialog class="db-drawer" closedby="closerequest">
+</dialog>`})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:e===`<dialog class="db-drawer" closedby="any">
   <article class="db-drawer-container" data-spacing="none">
     <header class="db-drawer-header">
       <div class="db-drawer-header-text"></div>
@@ -21990,7 +21990,7 @@ Large
     </header>
     <div class="db-drawer-content">None</div>
   </article>
-</dialog>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<dialog class="db-drawer" closedby="closerequest">
+</dialog>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<dialog class="db-drawer" closedby="any">
   <article class="db-drawer-container" data-spacing="none">
     <header class="db-drawer-header">
       <div class="db-drawer-header-text"></div>
@@ -22006,7 +22006,7 @@ Large
     </header>
     <div class="db-drawer-content">None</div>
   </article>
-</dialog>`),navigator.clipboard.writeText(`<dialog class="db-drawer" closedby="closerequest">
+</dialog>`),navigator.clipboard.writeText(`<dialog class="db-drawer" closedby="any">
   <article class="db-drawer-container" data-spacing="none">
     <header class="db-drawer-header">
       <div class="db-drawer-header-text"></div>
@@ -22046,7 +22046,7 @@ None
   (Default) Strong
 </db-drawer>`),navigator.clipboard.writeText(`<db-drawer backdrop="strong" [open]="open" (onClose)="toggleDrawer(false)">
   (Default) Strong
-</db-drawer>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-html",children:`<dialog class="db-drawer" data-backdrop="strong" closedby="closerequest">
+</db-drawer>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-html",children:`<dialog class="db-drawer" data-backdrop="strong" closedby="any">
   <article class="db-drawer-container">
     <header class="db-drawer-header">
       <div class="db-drawer-header-text"></div>
@@ -22062,7 +22062,7 @@ None
     </header>
     <div class="db-drawer-content">(Default) Strong</div>
   </article>
-</dialog>`})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:e===`<dialog class="db-drawer" data-backdrop="strong" closedby="closerequest">
+</dialog>`})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:e===`<dialog class="db-drawer" data-backdrop="strong" closedby="any">
   <article class="db-drawer-container">
     <header class="db-drawer-header">
       <div class="db-drawer-header-text"></div>
@@ -22078,7 +22078,7 @@ None
     </header>
     <div class="db-drawer-content">(Default) Strong</div>
   </article>
-</dialog>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<dialog class="db-drawer" data-backdrop="strong" closedby="closerequest">
+</dialog>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<dialog class="db-drawer" data-backdrop="strong" closedby="any">
   <article class="db-drawer-container">
     <header class="db-drawer-header">
       <div class="db-drawer-header-text"></div>
@@ -22094,7 +22094,7 @@ None
     </header>
     <div class="db-drawer-content">(Default) Strong</div>
   </article>
-</dialog>`),navigator.clipboard.writeText(`<dialog class="db-drawer" data-backdrop="strong" closedby="closerequest">
+</dialog>`),navigator.clipboard.writeText(`<dialog class="db-drawer" data-backdrop="strong" closedby="any">
   <article class="db-drawer-container">
     <header class="db-drawer-header">
       <div class="db-drawer-header-text"></div>
@@ -22134,7 +22134,7 @@ None
   Weak
 </db-drawer>`),navigator.clipboard.writeText(`<db-drawer backdrop="weak" [open]="open" (onClose)="toggleDrawer(false)">
   Weak
-</db-drawer>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-html",children:`<dialog class="db-drawer" data-backdrop="weak" closedby="closerequest">
+</db-drawer>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-html",children:`<dialog class="db-drawer" data-backdrop="weak" closedby="any">
   <article class="db-drawer-container">
     <header class="db-drawer-header">
       <div class="db-drawer-header-text"></div>
@@ -22150,7 +22150,7 @@ None
     </header>
     <div class="db-drawer-content">Weak</div>
   </article>
-</dialog>`})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:e===`<dialog class="db-drawer" data-backdrop="weak" closedby="closerequest">
+</dialog>`})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:e===`<dialog class="db-drawer" data-backdrop="weak" closedby="any">
   <article class="db-drawer-container">
     <header class="db-drawer-header">
       <div class="db-drawer-header-text"></div>
@@ -22166,7 +22166,7 @@ None
     </header>
     <div class="db-drawer-content">Weak</div>
   </article>
-</dialog>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<dialog class="db-drawer" data-backdrop="weak" closedby="closerequest">
+</dialog>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<dialog class="db-drawer" data-backdrop="weak" closedby="any">
   <article class="db-drawer-container">
     <header class="db-drawer-header">
       <div class="db-drawer-header-text"></div>
@@ -22182,7 +22182,7 @@ None
     </header>
     <div class="db-drawer-content">Weak</div>
   </article>
-</dialog>`),navigator.clipboard.writeText(`<dialog class="db-drawer" data-backdrop="weak" closedby="closerequest">
+</dialog>`),navigator.clipboard.writeText(`<dialog class="db-drawer" data-backdrop="weak" closedby="any">
   <article class="db-drawer-container">
     <header class="db-drawer-header">
       <div class="db-drawer-header-text"></div>
@@ -22222,7 +22222,7 @@ Weak
   Invisible
 </db-drawer>`),navigator.clipboard.writeText(`<db-drawer backdrop="invisible" [open]="open" (onClose)="toggleDrawer(false)">
   Invisible
-</db-drawer>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-html",children:`<dialog class="db-drawer" data-backdrop="invisible" closedby="closerequest">
+</db-drawer>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-html",children:`<dialog class="db-drawer" data-backdrop="invisible" closedby="any">
   <article class="db-drawer-container">
     <header class="db-drawer-header">
       <div class="db-drawer-header-text"></div>
@@ -22238,7 +22238,7 @@ Weak
     </header>
     <div class="db-drawer-content">Invisible</div>
   </article>
-</dialog>`})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:e===`<dialog class="db-drawer" data-backdrop="invisible" closedby="closerequest">
+</dialog>`})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:e===`<dialog class="db-drawer" data-backdrop="invisible" closedby="any">
   <article class="db-drawer-container">
     <header class="db-drawer-header">
       <div class="db-drawer-header-text"></div>
@@ -22254,7 +22254,7 @@ Weak
     </header>
     <div class="db-drawer-content">Invisible</div>
   </article>
-</dialog>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<dialog class="db-drawer" data-backdrop="invisible" closedby="closerequest">
+</dialog>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<dialog class="db-drawer" data-backdrop="invisible" closedby="any">
   <article class="db-drawer-container">
     <header class="db-drawer-header">
       <div class="db-drawer-header-text"></div>
@@ -22270,7 +22270,7 @@ Weak
     </header>
     <div class="db-drawer-content">Invisible</div>
   </article>
-</dialog>`),navigator.clipboard.writeText(`<dialog class="db-drawer" data-backdrop="invisible" closedby="closerequest">
+</dialog>`),navigator.clipboard.writeText(`<dialog class="db-drawer" data-backdrop="invisible" closedby="any">
   <article class="db-drawer-container">
     <header class="db-drawer-header">
       <div class="db-drawer-header-text"></div>
@@ -22398,7 +22398,7 @@ No Backdrop
   (Default) Right
 </db-drawer>`),navigator.clipboard.writeText(`<db-drawer [open]="open" (onClose)="toggleDrawer(false)">
   (Default) Right
-</db-drawer>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-html",children:`<dialog class="db-drawer" closedby="closerequest">
+</db-drawer>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-html",children:`<dialog class="db-drawer" closedby="any">
   <article class="db-drawer-container">
     <header class="db-drawer-header">
       <div class="db-drawer-header-text"></div>
@@ -22414,7 +22414,7 @@ No Backdrop
     </header>
     <div class="db-drawer-content">(Default) Right</div>
   </article>
-</dialog>`})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:e===`<dialog class="db-drawer" closedby="closerequest">
+</dialog>`})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:e===`<dialog class="db-drawer" closedby="any">
   <article class="db-drawer-container">
     <header class="db-drawer-header">
       <div class="db-drawer-header-text"></div>
@@ -22430,7 +22430,7 @@ No Backdrop
     </header>
     <div class="db-drawer-content">(Default) Right</div>
   </article>
-</dialog>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<dialog class="db-drawer" closedby="closerequest">
+</dialog>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<dialog class="db-drawer" closedby="any">
   <article class="db-drawer-container">
     <header class="db-drawer-header">
       <div class="db-drawer-header-text"></div>
@@ -22446,7 +22446,7 @@ No Backdrop
     </header>
     <div class="db-drawer-content">(Default) Right</div>
   </article>
-</dialog>`),navigator.clipboard.writeText(`<dialog class="db-drawer" closedby="closerequest">
+</dialog>`),navigator.clipboard.writeText(`<dialog class="db-drawer" closedby="any">
   <article class="db-drawer-container">
     <header class="db-drawer-header">
       <div class="db-drawer-header-text"></div>
@@ -22486,7 +22486,7 @@ No Backdrop
   Left
 </db-drawer>`),navigator.clipboard.writeText(`<db-drawer direction="left" [open]="open" (onClose)="toggleDrawer(false)">
   Left
-</db-drawer>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-html",children:`<dialog class="db-drawer" data-direction="left" closedby="closerequest">
+</db-drawer>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-html",children:`<dialog class="db-drawer" data-direction="left" closedby="any">
   <article class="db-drawer-container" data-direction="left">
     <header class="db-drawer-header">
       <div class="db-drawer-header-text"></div>
@@ -22502,7 +22502,7 @@ No Backdrop
     </header>
     <div class="db-drawer-content">Left</div>
   </article>
-</dialog>`})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:e===`<dialog class="db-drawer" data-direction="left" closedby="closerequest">
+</dialog>`})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:e===`<dialog class="db-drawer" data-direction="left" closedby="any">
   <article class="db-drawer-container" data-direction="left">
     <header class="db-drawer-header">
       <div class="db-drawer-header-text"></div>
@@ -22518,7 +22518,7 @@ No Backdrop
     </header>
     <div class="db-drawer-content">Left</div>
   </article>
-</dialog>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<dialog class="db-drawer" data-direction="left" closedby="closerequest">
+</dialog>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<dialog class="db-drawer" data-direction="left" closedby="any">
   <article class="db-drawer-container" data-direction="left">
     <header class="db-drawer-header">
       <div class="db-drawer-header-text"></div>
@@ -22534,7 +22534,7 @@ No Backdrop
     </header>
     <div class="db-drawer-content">Left</div>
   </article>
-</dialog>`),navigator.clipboard.writeText(`<dialog class="db-drawer" data-direction="left" closedby="closerequest">
+</dialog>`),navigator.clipboard.writeText(`<dialog class="db-drawer" data-direction="left" closedby="any">
   <article class="db-drawer-container" data-direction="left">
     <header class="db-drawer-header">
       <div class="db-drawer-header-text"></div>
@@ -22574,7 +22574,7 @@ Left
   Up
 </db-drawer>`),navigator.clipboard.writeText(`<db-drawer direction="up" [open]="open" (onClose)="toggleDrawer(false)">
   Up
-</db-drawer>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-html",children:`<dialog class="db-drawer" data-direction="up" closedby="closerequest">
+</db-drawer>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-html",children:`<dialog class="db-drawer" data-direction="up" closedby="any">
   <article class="db-drawer-container" data-direction="up">
     <header class="db-drawer-header">
       <div class="db-drawer-header-text"></div>
@@ -22590,7 +22590,7 @@ Left
     </header>
     <div class="db-drawer-content">Up</div>
   </article>
-</dialog>`})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:e===`<dialog class="db-drawer" data-direction="up" closedby="closerequest">
+</dialog>`})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:e===`<dialog class="db-drawer" data-direction="up" closedby="any">
   <article class="db-drawer-container" data-direction="up">
     <header class="db-drawer-header">
       <div class="db-drawer-header-text"></div>
@@ -22606,7 +22606,7 @@ Left
     </header>
     <div class="db-drawer-content">Up</div>
   </article>
-</dialog>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<dialog class="db-drawer" data-direction="up" closedby="closerequest">
+</dialog>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<dialog class="db-drawer" data-direction="up" closedby="any">
   <article class="db-drawer-container" data-direction="up">
     <header class="db-drawer-header">
       <div class="db-drawer-header-text"></div>
@@ -22622,7 +22622,7 @@ Left
     </header>
     <div class="db-drawer-content">Up</div>
   </article>
-</dialog>`),navigator.clipboard.writeText(`<dialog class="db-drawer" data-direction="up" closedby="closerequest">
+</dialog>`),navigator.clipboard.writeText(`<dialog class="db-drawer" data-direction="up" closedby="any">
   <article class="db-drawer-container" data-direction="up">
     <header class="db-drawer-header">
       <div class="db-drawer-header-text"></div>
@@ -22662,7 +22662,7 @@ Up
   Down
 </db-drawer>`),navigator.clipboard.writeText(`<db-drawer direction="down" [open]="open" (onClose)="toggleDrawer(false)">
   Down
-</db-drawer>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-html",children:`<dialog class="db-drawer" data-direction="down" closedby="closerequest">
+</db-drawer>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-html",children:`<dialog class="db-drawer" data-direction="down" closedby="any">
   <article class="db-drawer-container" data-direction="down">
     <header class="db-drawer-header">
       <div class="db-drawer-header-text"></div>
@@ -22678,7 +22678,7 @@ Up
     </header>
     <div class="db-drawer-content">Down</div>
   </article>
-</dialog>`})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:e===`<dialog class="db-drawer" data-direction="down" closedby="closerequest">
+</dialog>`})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:e===`<dialog class="db-drawer" data-direction="down" closedby="any">
   <article class="db-drawer-container" data-direction="down">
     <header class="db-drawer-header">
       <div class="db-drawer-header-text"></div>
@@ -22694,7 +22694,7 @@ Up
     </header>
     <div class="db-drawer-content">Down</div>
   </article>
-</dialog>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<dialog class="db-drawer" data-direction="down" closedby="closerequest">
+</dialog>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<dialog class="db-drawer" data-direction="down" closedby="any">
   <article class="db-drawer-container" data-direction="down">
     <header class="db-drawer-header">
       <div class="db-drawer-header-text"></div>
@@ -22710,7 +22710,7 @@ Up
     </header>
     <div class="db-drawer-content">Down</div>
   </article>
-</dialog>`),navigator.clipboard.writeText(`<dialog class="db-drawer" data-direction="down" closedby="closerequest">
+</dialog>`),navigator.clipboard.writeText(`<dialog class="db-drawer" data-direction="down" closedby="any">
   <article class="db-drawer-container" data-direction="down">
     <header class="db-drawer-header">
       <div class="db-drawer-header-text"></div>
@@ -22750,7 +22750,7 @@ Down
   (Default) As modal
 </db-drawer>`),navigator.clipboard.writeText(`<db-drawer variant="modal" [open]="open" (onClose)="toggleDrawer(false)">
   (Default) As modal
-</db-drawer>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-html",children:`<dialog class="db-drawer" data-variant="modal" closedby="closerequest">
+</db-drawer>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-html",children:`<dialog class="db-drawer" data-variant="modal" closedby="any">
   <article class="db-drawer-container">
     <header class="db-drawer-header">
       <div class="db-drawer-header-text"></div>
@@ -22766,7 +22766,7 @@ Down
     </header>
     <div class="db-drawer-content">(Default) As modal</div>
   </article>
-</dialog>`})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:e===`<dialog class="db-drawer" data-variant="modal" closedby="closerequest">
+</dialog>`})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:e===`<dialog class="db-drawer" data-variant="modal" closedby="any">
   <article class="db-drawer-container">
     <header class="db-drawer-header">
       <div class="db-drawer-header-text"></div>
@@ -22782,7 +22782,7 @@ Down
     </header>
     <div class="db-drawer-content">(Default) As modal</div>
   </article>
-</dialog>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<dialog class="db-drawer" data-variant="modal" closedby="closerequest">
+</dialog>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<dialog class="db-drawer" data-variant="modal" closedby="any">
   <article class="db-drawer-container">
     <header class="db-drawer-header">
       <div class="db-drawer-header-text"></div>
@@ -22798,7 +22798,7 @@ Down
     </header>
     <div class="db-drawer-content">(Default) As modal</div>
   </article>
-</dialog>`),navigator.clipboard.writeText(`<dialog class="db-drawer" data-variant="modal" closedby="closerequest">
+</dialog>`),navigator.clipboard.writeText(`<dialog class="db-drawer" data-variant="modal" closedby="any">
   <article class="db-drawer-container">
     <header class="db-drawer-header">
       <div class="db-drawer-header-text"></div>
@@ -23031,7 +23031,7 @@ Inside
     </db-navigation></ng-container
   >Functional
 </db-header>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-html",children:`<header class="db-header">
-  <dialog class="db-drawer" closedby="closerequest">
+  <dialog class="db-drawer" closedby="any">
     <article
       class="db-drawer-container db-header-drawer"
       data-spacing="small"
@@ -23065,7 +23065,7 @@ Inside
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-2943355700753012"
+                    id="sub-navigation-18948788285453189"
                   ></menu>
                 </li>
                 <li
@@ -23084,7 +23084,7 @@ Inside
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-5012357558678008"
+                    id="sub-navigation-9168516366470706"
                   ></menu>
                 </li>
               </menu>
@@ -23144,7 +23144,7 @@ Inside
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-7131341088224781"
+                id="sub-navigation-44585283477416215"
               ></menu>
             </li>
             <li
@@ -23163,7 +23163,7 @@ Inside
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-6670380365614081"
+                id="sub-navigation-9843408332238694"
               ></menu>
             </li>
           </menu>
@@ -23207,7 +23207,7 @@ Inside
     </div>
   </div>
 </header>`})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:e===`<header class="db-header">
-  <dialog class="db-drawer" closedby="closerequest">
+  <dialog class="db-drawer" closedby="any">
     <article
       class="db-drawer-container db-header-drawer"
       data-spacing="small"
@@ -23241,7 +23241,7 @@ Inside
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-2943355700753012"
+                    id="sub-navigation-18948788285453189"
                   ></menu>
                 </li>
                 <li
@@ -23260,7 +23260,7 @@ Inside
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-5012357558678008"
+                    id="sub-navigation-9168516366470706"
                   ></menu>
                 </li>
               </menu>
@@ -23320,7 +23320,7 @@ Inside
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-7131341088224781"
+                id="sub-navigation-44585283477416215"
               ></menu>
             </li>
             <li
@@ -23339,7 +23339,7 @@ Inside
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-6670380365614081"
+                id="sub-navigation-9843408332238694"
               ></menu>
             </li>
           </menu>
@@ -23383,7 +23383,7 @@ Inside
     </div>
   </div>
 </header>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<header class="db-header">
-  <dialog class="db-drawer" closedby="closerequest">
+  <dialog class="db-drawer" closedby="any">
     <article
       class="db-drawer-container db-header-drawer"
       data-spacing="small"
@@ -23417,7 +23417,7 @@ Inside
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-2943355700753012"
+                    id="sub-navigation-18948788285453189"
                   ></menu>
                 </li>
                 <li
@@ -23436,7 +23436,7 @@ Inside
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-5012357558678008"
+                    id="sub-navigation-9168516366470706"
                   ></menu>
                 </li>
               </menu>
@@ -23496,7 +23496,7 @@ Inside
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-7131341088224781"
+                id="sub-navigation-44585283477416215"
               ></menu>
             </li>
             <li
@@ -23515,7 +23515,7 @@ Inside
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-6670380365614081"
+                id="sub-navigation-9843408332238694"
               ></menu>
             </li>
           </menu>
@@ -23559,7 +23559,7 @@ Inside
     </div>
   </div>
 </header>`),navigator.clipboard.writeText(`<header class="db-header">
-  <dialog class="db-drawer" closedby="closerequest">
+  <dialog class="db-drawer" closedby="any">
     <article
       class="db-drawer-container db-header-drawer"
       data-spacing="small"
@@ -23593,7 +23593,7 @@ Inside
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-2943355700753012"
+                    id="sub-navigation-18948788285453189"
                   ></menu>
                 </li>
                 <li
@@ -23612,7 +23612,7 @@ Inside
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-5012357558678008"
+                    id="sub-navigation-9168516366470706"
                   ></menu>
                 </li>
               </menu>
@@ -23672,7 +23672,7 @@ Inside
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-7131341088224781"
+                id="sub-navigation-44585283477416215"
               ></menu>
             </li>
             <li
@@ -23691,7 +23691,7 @@ Inside
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-6670380365614081"
+                id="sub-navigation-9843408332238694"
               ></menu>
             </li>
           </menu>
@@ -24031,7 +24031,7 @@ Link disabled
     </db-navigation></ng-container
   >(Default) Regular
 </db-header>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-html",children:`<header class="db-header">
-  <dialog class="db-drawer" closedby="closerequest">
+  <dialog class="db-drawer" closedby="any">
     <article
       class="db-drawer-container db-header-drawer"
       data-spacing="small"
@@ -24065,7 +24065,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-31127194496275057"
+                    id="sub-navigation-6296178293128852"
                   ></menu>
                 </li>
                 <li
@@ -24084,7 +24084,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-8082144463184265"
+                    id="sub-navigation-8644875919494754"
                   ></menu>
                 </li>
               </menu>
@@ -24144,7 +24144,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-08597094905202085"
+                id="sub-navigation-9365870448049839"
               ></menu>
             </li>
             <li
@@ -24163,7 +24163,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-5348052159197868"
+                id="sub-navigation-7326216143668082"
               ></menu>
             </li>
           </menu>
@@ -24207,7 +24207,7 @@ Link disabled
     </div>
   </div>
 </header>`})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:e===`<header class="db-header">
-  <dialog class="db-drawer" closedby="closerequest">
+  <dialog class="db-drawer" closedby="any">
     <article
       class="db-drawer-container db-header-drawer"
       data-spacing="small"
@@ -24241,7 +24241,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-31127194496275057"
+                    id="sub-navigation-6296178293128852"
                   ></menu>
                 </li>
                 <li
@@ -24260,7 +24260,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-8082144463184265"
+                    id="sub-navigation-8644875919494754"
                   ></menu>
                 </li>
               </menu>
@@ -24320,7 +24320,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-08597094905202085"
+                id="sub-navigation-9365870448049839"
               ></menu>
             </li>
             <li
@@ -24339,7 +24339,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-5348052159197868"
+                id="sub-navigation-7326216143668082"
               ></menu>
             </li>
           </menu>
@@ -24383,7 +24383,7 @@ Link disabled
     </div>
   </div>
 </header>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<header class="db-header">
-  <dialog class="db-drawer" closedby="closerequest">
+  <dialog class="db-drawer" closedby="any">
     <article
       class="db-drawer-container db-header-drawer"
       data-spacing="small"
@@ -24417,7 +24417,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-31127194496275057"
+                    id="sub-navigation-6296178293128852"
                   ></menu>
                 </li>
                 <li
@@ -24436,7 +24436,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-8082144463184265"
+                    id="sub-navigation-8644875919494754"
                   ></menu>
                 </li>
               </menu>
@@ -24496,7 +24496,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-08597094905202085"
+                id="sub-navigation-9365870448049839"
               ></menu>
             </li>
             <li
@@ -24515,7 +24515,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-5348052159197868"
+                id="sub-navigation-7326216143668082"
               ></menu>
             </li>
           </menu>
@@ -24559,7 +24559,7 @@ Link disabled
     </div>
   </div>
 </header>`),navigator.clipboard.writeText(`<header class="db-header">
-  <dialog class="db-drawer" closedby="closerequest">
+  <dialog class="db-drawer" closedby="any">
     <article
       class="db-drawer-container db-header-drawer"
       data-spacing="small"
@@ -24593,7 +24593,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-31127194496275057"
+                    id="sub-navigation-6296178293128852"
                   ></menu>
                 </li>
                 <li
@@ -24612,7 +24612,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-8082144463184265"
+                    id="sub-navigation-8644875919494754"
                   ></menu>
                 </li>
               </menu>
@@ -24672,7 +24672,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-08597094905202085"
+                id="sub-navigation-9365870448049839"
               ></menu>
             </li>
             <li
@@ -24691,7 +24691,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-5348052159197868"
+                id="sub-navigation-7326216143668082"
               ></menu>
             </li>
           </menu>
@@ -25031,7 +25031,7 @@ Link disabled
     </db-navigation></ng-container
   >Expressive
 </db-header>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-html",children:`<header class="db-header">
-  <dialog class="db-drawer" closedby="closerequest">
+  <dialog class="db-drawer" closedby="any">
     <article
       class="db-drawer-container db-header-drawer"
       data-spacing="small"
@@ -25065,7 +25065,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-33243939836438086"
+                    id="sub-navigation-7582574590710398"
                   ></menu>
                 </li>
                 <li
@@ -25084,7 +25084,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-7979692303153596"
+                    id="sub-navigation-9052774451270265"
                   ></menu>
                 </li>
               </menu>
@@ -25144,7 +25144,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-07659334446153021"
+                id="sub-navigation-9126929996914964"
               ></menu>
             </li>
             <li
@@ -25163,7 +25163,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-1515885559252238"
+                id="sub-navigation-8270693858442689"
               ></menu>
             </li>
           </menu>
@@ -25207,7 +25207,7 @@ Link disabled
     </div>
   </div>
 </header>`})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:e===`<header class="db-header">
-  <dialog class="db-drawer" closedby="closerequest">
+  <dialog class="db-drawer" closedby="any">
     <article
       class="db-drawer-container db-header-drawer"
       data-spacing="small"
@@ -25241,7 +25241,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-33243939836438086"
+                    id="sub-navigation-7582574590710398"
                   ></menu>
                 </li>
                 <li
@@ -25260,7 +25260,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-7979692303153596"
+                    id="sub-navigation-9052774451270265"
                   ></menu>
                 </li>
               </menu>
@@ -25320,7 +25320,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-07659334446153021"
+                id="sub-navigation-9126929996914964"
               ></menu>
             </li>
             <li
@@ -25339,7 +25339,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-1515885559252238"
+                id="sub-navigation-8270693858442689"
               ></menu>
             </li>
           </menu>
@@ -25383,7 +25383,7 @@ Link disabled
     </div>
   </div>
 </header>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<header class="db-header">
-  <dialog class="db-drawer" closedby="closerequest">
+  <dialog class="db-drawer" closedby="any">
     <article
       class="db-drawer-container db-header-drawer"
       data-spacing="small"
@@ -25417,7 +25417,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-33243939836438086"
+                    id="sub-navigation-7582574590710398"
                   ></menu>
                 </li>
                 <li
@@ -25436,7 +25436,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-7979692303153596"
+                    id="sub-navigation-9052774451270265"
                   ></menu>
                 </li>
               </menu>
@@ -25496,7 +25496,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-07659334446153021"
+                id="sub-navigation-9126929996914964"
               ></menu>
             </li>
             <li
@@ -25515,7 +25515,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-1515885559252238"
+                id="sub-navigation-8270693858442689"
               ></menu>
             </li>
           </menu>
@@ -25559,7 +25559,7 @@ Link disabled
     </div>
   </div>
 </header>`),navigator.clipboard.writeText(`<header class="db-header">
-  <dialog class="db-drawer" closedby="closerequest">
+  <dialog class="db-drawer" closedby="any">
     <article
       class="db-drawer-container db-header-drawer"
       data-spacing="small"
@@ -25593,7 +25593,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-33243939836438086"
+                    id="sub-navigation-7582574590710398"
                   ></menu>
                 </li>
                 <li
@@ -25612,7 +25612,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-7979692303153596"
+                    id="sub-navigation-9052774451270265"
                   ></menu>
                 </li>
               </menu>
@@ -25672,7 +25672,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-07659334446153021"
+                id="sub-navigation-9126929996914964"
               ></menu>
             </li>
             <li
@@ -25691,7 +25691,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-1515885559252238"
+                id="sub-navigation-8270693858442689"
               ></menu>
             </li>
           </menu>
@@ -26031,7 +26031,7 @@ Link disabled
     </db-navigation></ng-container
   >Full
 </db-header>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-html",children:`<header class="db-header">
-  <dialog class="db-drawer" closedby="closerequest">
+  <dialog class="db-drawer" closedby="any">
     <article
       class="db-drawer-container db-header-drawer"
       data-spacing="small"
@@ -26065,7 +26065,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-07161094574277649"
+                    id="sub-navigation-19854367189544342"
                   ></menu>
                 </li>
                 <li
@@ -26084,7 +26084,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-4635891030598418"
+                    id="sub-navigation-5091326698891964"
                   ></menu>
                 </li>
               </menu>
@@ -26144,7 +26144,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-5726036980900863"
+                id="sub-navigation-4666779972561359"
               ></menu>
             </li>
             <li
@@ -26163,7 +26163,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-07238089606857112"
+                id="sub-navigation-3620405986448145"
               ></menu>
             </li>
           </menu>
@@ -26207,7 +26207,7 @@ Link disabled
     </div>
   </div>
 </header>`})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:e===`<header class="db-header">
-  <dialog class="db-drawer" closedby="closerequest">
+  <dialog class="db-drawer" closedby="any">
     <article
       class="db-drawer-container db-header-drawer"
       data-spacing="small"
@@ -26241,7 +26241,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-07161094574277649"
+                    id="sub-navigation-19854367189544342"
                   ></menu>
                 </li>
                 <li
@@ -26260,7 +26260,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-4635891030598418"
+                    id="sub-navigation-5091326698891964"
                   ></menu>
                 </li>
               </menu>
@@ -26320,7 +26320,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-5726036980900863"
+                id="sub-navigation-4666779972561359"
               ></menu>
             </li>
             <li
@@ -26339,7 +26339,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-07238089606857112"
+                id="sub-navigation-3620405986448145"
               ></menu>
             </li>
           </menu>
@@ -26383,7 +26383,7 @@ Link disabled
     </div>
   </div>
 </header>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<header class="db-header">
-  <dialog class="db-drawer" closedby="closerequest">
+  <dialog class="db-drawer" closedby="any">
     <article
       class="db-drawer-container db-header-drawer"
       data-spacing="small"
@@ -26417,7 +26417,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-07161094574277649"
+                    id="sub-navigation-19854367189544342"
                   ></menu>
                 </li>
                 <li
@@ -26436,7 +26436,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-4635891030598418"
+                    id="sub-navigation-5091326698891964"
                   ></menu>
                 </li>
               </menu>
@@ -26496,7 +26496,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-5726036980900863"
+                id="sub-navigation-4666779972561359"
               ></menu>
             </li>
             <li
@@ -26515,7 +26515,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-07238089606857112"
+                id="sub-navigation-3620405986448145"
               ></menu>
             </li>
           </menu>
@@ -26559,7 +26559,7 @@ Link disabled
     </div>
   </div>
 </header>`),navigator.clipboard.writeText(`<header class="db-header">
-  <dialog class="db-drawer" closedby="closerequest">
+  <dialog class="db-drawer" closedby="any">
     <article
       class="db-drawer-container db-header-drawer"
       data-spacing="small"
@@ -26593,7 +26593,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-07161094574277649"
+                    id="sub-navigation-19854367189544342"
                   ></menu>
                 </li>
                 <li
@@ -26612,7 +26612,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-4635891030598418"
+                    id="sub-navigation-5091326698891964"
                   ></menu>
                 </li>
               </menu>
@@ -26672,7 +26672,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-5726036980900863"
+                id="sub-navigation-4666779972561359"
               ></menu>
             </li>
             <li
@@ -26691,7 +26691,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-07238089606857112"
+                id="sub-navigation-3620405986448145"
               ></menu>
             </li>
           </menu>
@@ -27031,7 +27031,7 @@ Link disabled
     </db-navigation></ng-container
   >Medium
 </db-header>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-html",children:`<header class="db-header" data-width="medium">
-  <dialog class="db-drawer" closedby="closerequest">
+  <dialog class="db-drawer" closedby="any">
     <article
       class="db-drawer-container db-header-drawer"
       data-spacing="small"
@@ -27065,7 +27065,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-1091850529817806"
+                    id="sub-navigation-40830031191728466"
                   ></menu>
                 </li>
                 <li
@@ -27084,7 +27084,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-8833821915637947"
+                    id="sub-navigation-8359182932586584"
                   ></menu>
                 </li>
               </menu>
@@ -27144,7 +27144,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-6842759060565456"
+                id="sub-navigation-8668803426324064"
               ></menu>
             </li>
             <li
@@ -27163,7 +27163,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-9607833293196296"
+                id="sub-navigation-09935713628169018"
               ></menu>
             </li>
           </menu>
@@ -27207,7 +27207,7 @@ Link disabled
     </div>
   </div>
 </header>`})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:e===`<header class="db-header" data-width="medium">
-  <dialog class="db-drawer" closedby="closerequest">
+  <dialog class="db-drawer" closedby="any">
     <article
       class="db-drawer-container db-header-drawer"
       data-spacing="small"
@@ -27241,7 +27241,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-1091850529817806"
+                    id="sub-navigation-40830031191728466"
                   ></menu>
                 </li>
                 <li
@@ -27260,7 +27260,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-8833821915637947"
+                    id="sub-navigation-8359182932586584"
                   ></menu>
                 </li>
               </menu>
@@ -27320,7 +27320,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-6842759060565456"
+                id="sub-navigation-8668803426324064"
               ></menu>
             </li>
             <li
@@ -27339,7 +27339,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-9607833293196296"
+                id="sub-navigation-09935713628169018"
               ></menu>
             </li>
           </menu>
@@ -27383,7 +27383,7 @@ Link disabled
     </div>
   </div>
 </header>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<header class="db-header" data-width="medium">
-  <dialog class="db-drawer" closedby="closerequest">
+  <dialog class="db-drawer" closedby="any">
     <article
       class="db-drawer-container db-header-drawer"
       data-spacing="small"
@@ -27417,7 +27417,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-1091850529817806"
+                    id="sub-navigation-40830031191728466"
                   ></menu>
                 </li>
                 <li
@@ -27436,7 +27436,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-8833821915637947"
+                    id="sub-navigation-8359182932586584"
                   ></menu>
                 </li>
               </menu>
@@ -27496,7 +27496,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-6842759060565456"
+                id="sub-navigation-8668803426324064"
               ></menu>
             </li>
             <li
@@ -27515,7 +27515,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-9607833293196296"
+                id="sub-navigation-09935713628169018"
               ></menu>
             </li>
           </menu>
@@ -27559,7 +27559,7 @@ Link disabled
     </div>
   </div>
 </header>`),navigator.clipboard.writeText(`<header class="db-header" data-width="medium">
-  <dialog class="db-drawer" closedby="closerequest">
+  <dialog class="db-drawer" closedby="any">
     <article
       class="db-drawer-container db-header-drawer"
       data-spacing="small"
@@ -27593,7 +27593,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-1091850529817806"
+                    id="sub-navigation-40830031191728466"
                   ></menu>
                 </li>
                 <li
@@ -27612,7 +27612,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-8833821915637947"
+                    id="sub-navigation-8359182932586584"
                   ></menu>
                 </li>
               </menu>
@@ -27672,7 +27672,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-6842759060565456"
+                id="sub-navigation-8668803426324064"
               ></menu>
             </li>
             <li
@@ -27691,7 +27691,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-9607833293196296"
+                id="sub-navigation-09935713628169018"
               ></menu>
             </li>
           </menu>
@@ -28035,7 +28035,7 @@ Link disabled
     </db-navigation></ng-container
   >Large
 </db-header>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-html",children:`<header class="db-header" data-width="large">
-  <dialog class="db-drawer" closedby="closerequest">
+  <dialog class="db-drawer" closedby="any">
     <article
       class="db-drawer-container db-header-drawer"
       data-spacing="small"
@@ -28069,7 +28069,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-9362421880740462"
+                    id="sub-navigation-8766859941728947"
                   ></menu>
                 </li>
                 <li
@@ -28088,7 +28088,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-6993717743653062"
+                    id="sub-navigation-9899427911398024"
                   ></menu>
                 </li>
               </menu>
@@ -28148,7 +28148,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-23813979342414282"
+                id="sub-navigation-8566906183596603"
               ></menu>
             </li>
             <li
@@ -28167,7 +28167,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-08716638091655193"
+                id="sub-navigation-030850664641895675"
               ></menu>
             </li>
           </menu>
@@ -28211,7 +28211,7 @@ Link disabled
     </div>
   </div>
 </header>`})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:e===`<header class="db-header" data-width="large">
-  <dialog class="db-drawer" closedby="closerequest">
+  <dialog class="db-drawer" closedby="any">
     <article
       class="db-drawer-container db-header-drawer"
       data-spacing="small"
@@ -28245,7 +28245,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-9362421880740462"
+                    id="sub-navigation-8766859941728947"
                   ></menu>
                 </li>
                 <li
@@ -28264,7 +28264,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-6993717743653062"
+                    id="sub-navigation-9899427911398024"
                   ></menu>
                 </li>
               </menu>
@@ -28324,7 +28324,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-23813979342414282"
+                id="sub-navigation-8566906183596603"
               ></menu>
             </li>
             <li
@@ -28343,7 +28343,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-08716638091655193"
+                id="sub-navigation-030850664641895675"
               ></menu>
             </li>
           </menu>
@@ -28387,7 +28387,7 @@ Link disabled
     </div>
   </div>
 </header>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<header class="db-header" data-width="large">
-  <dialog class="db-drawer" closedby="closerequest">
+  <dialog class="db-drawer" closedby="any">
     <article
       class="db-drawer-container db-header-drawer"
       data-spacing="small"
@@ -28421,7 +28421,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-9362421880740462"
+                    id="sub-navigation-8766859941728947"
                   ></menu>
                 </li>
                 <li
@@ -28440,7 +28440,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-6993717743653062"
+                    id="sub-navigation-9899427911398024"
                   ></menu>
                 </li>
               </menu>
@@ -28500,7 +28500,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-23813979342414282"
+                id="sub-navigation-8566906183596603"
               ></menu>
             </li>
             <li
@@ -28519,7 +28519,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-08716638091655193"
+                id="sub-navigation-030850664641895675"
               ></menu>
             </li>
           </menu>
@@ -28563,7 +28563,7 @@ Link disabled
     </div>
   </div>
 </header>`),navigator.clipboard.writeText(`<header class="db-header" data-width="large">
-  <dialog class="db-drawer" closedby="closerequest">
+  <dialog class="db-drawer" closedby="any">
     <article
       class="db-drawer-container db-header-drawer"
       data-spacing="small"
@@ -28597,7 +28597,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-9362421880740462"
+                    id="sub-navigation-8766859941728947"
                   ></menu>
                 </li>
                 <li
@@ -28616,7 +28616,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-6993717743653062"
+                    id="sub-navigation-9899427911398024"
                   ></menu>
                 </li>
               </menu>
@@ -28676,7 +28676,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-23813979342414282"
+                id="sub-navigation-8566906183596603"
               ></menu>
             </li>
             <li
@@ -28695,7 +28695,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-08716638091655193"
+                id="sub-navigation-030850664641895675"
               ></menu>
             </li>
           </menu>
@@ -29039,7 +29039,7 @@ Link disabled
     </db-navigation></ng-container
   >Desktop (full width)
 </db-header>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-html",children:`<header class="db-header">
-  <dialog class="db-drawer" closedby="closerequest">
+  <dialog class="db-drawer" closedby="any">
     <article
       class="db-drawer-container db-header-drawer"
       data-spacing="small"
@@ -29073,7 +29073,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-6851910975793322"
+                    id="sub-navigation-10793695183457497"
                   ></menu>
                 </li>
                 <li
@@ -29092,7 +29092,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-582961460583738"
+                    id="sub-navigation-6455613044228883"
                   ></menu>
                 </li>
               </menu>
@@ -29152,7 +29152,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-322002936261104"
+                id="sub-navigation-7044289161993595"
               ></menu>
             </li>
             <li
@@ -29171,7 +29171,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-2667127265978322"
+                id="sub-navigation-018521438198489948"
               ></menu>
             </li>
           </menu>
@@ -29215,7 +29215,7 @@ Link disabled
     </div>
   </div>
 </header>`})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:e===`<header class="db-header">
-  <dialog class="db-drawer" closedby="closerequest">
+  <dialog class="db-drawer" closedby="any">
     <article
       class="db-drawer-container db-header-drawer"
       data-spacing="small"
@@ -29249,7 +29249,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-6851910975793322"
+                    id="sub-navigation-10793695183457497"
                   ></menu>
                 </li>
                 <li
@@ -29268,7 +29268,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-582961460583738"
+                    id="sub-navigation-6455613044228883"
                   ></menu>
                 </li>
               </menu>
@@ -29328,7 +29328,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-322002936261104"
+                id="sub-navigation-7044289161993595"
               ></menu>
             </li>
             <li
@@ -29347,7 +29347,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-2667127265978322"
+                id="sub-navigation-018521438198489948"
               ></menu>
             </li>
           </menu>
@@ -29391,7 +29391,7 @@ Link disabled
     </div>
   </div>
 </header>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<header class="db-header">
-  <dialog class="db-drawer" closedby="closerequest">
+  <dialog class="db-drawer" closedby="any">
     <article
       class="db-drawer-container db-header-drawer"
       data-spacing="small"
@@ -29425,7 +29425,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-6851910975793322"
+                    id="sub-navigation-10793695183457497"
                   ></menu>
                 </li>
                 <li
@@ -29444,7 +29444,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-582961460583738"
+                    id="sub-navigation-6455613044228883"
                   ></menu>
                 </li>
               </menu>
@@ -29504,7 +29504,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-322002936261104"
+                id="sub-navigation-7044289161993595"
               ></menu>
             </li>
             <li
@@ -29523,7 +29523,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-2667127265978322"
+                id="sub-navigation-018521438198489948"
               ></menu>
             </li>
           </menu>
@@ -29567,7 +29567,7 @@ Link disabled
     </div>
   </div>
 </header>`),navigator.clipboard.writeText(`<header class="db-header">
-  <dialog class="db-drawer" closedby="closerequest">
+  <dialog class="db-drawer" closedby="any">
     <article
       class="db-drawer-container db-header-drawer"
       data-spacing="small"
@@ -29601,7 +29601,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-6851910975793322"
+                    id="sub-navigation-10793695183457497"
                   ></menu>
                 </li>
                 <li
@@ -29620,7 +29620,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-582961460583738"
+                    id="sub-navigation-6455613044228883"
                   ></menu>
                 </li>
               </menu>
@@ -29680,7 +29680,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-322002936261104"
+                id="sub-navigation-7044289161993595"
               ></menu>
             </li>
             <li
@@ -29699,7 +29699,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-2667127265978322"
+                id="sub-navigation-018521438198489948"
               ></menu>
             </li>
           </menu>
@@ -30039,7 +30039,7 @@ Link disabled
     </db-navigation></ng-container
   >Mobile
 </db-header>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-html",children:`<header class="db-header" data-on-forcing-mobile="true">
-  <dialog class="db-drawer" closedby="closerequest">
+  <dialog class="db-drawer" closedby="any">
     <article
       class="db-drawer-container db-header-drawer"
       data-spacing="small"
@@ -30073,7 +30073,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-7550058175720941"
+                    id="sub-navigation-9661838150335368"
                   ></menu>
                 </li>
                 <li
@@ -30092,7 +30092,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-18773766839984385"
+                    id="sub-navigation-38453454598972525"
                   ></menu>
                 </li>
               </menu>
@@ -30152,7 +30152,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-5633677698192134"
+                id="sub-navigation-1231860568193226"
               ></menu>
             </li>
             <li
@@ -30171,7 +30171,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-524063962566429"
+                id="sub-navigation-47710919745838076"
               ></menu>
             </li>
           </menu>
@@ -30215,7 +30215,7 @@ Link disabled
     </div>
   </div>
 </header>`})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:e===`<header class="db-header" data-on-forcing-mobile="true">
-  <dialog class="db-drawer" closedby="closerequest">
+  <dialog class="db-drawer" closedby="any">
     <article
       class="db-drawer-container db-header-drawer"
       data-spacing="small"
@@ -30249,7 +30249,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-7550058175720941"
+                    id="sub-navigation-9661838150335368"
                   ></menu>
                 </li>
                 <li
@@ -30268,7 +30268,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-18773766839984385"
+                    id="sub-navigation-38453454598972525"
                   ></menu>
                 </li>
               </menu>
@@ -30328,7 +30328,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-5633677698192134"
+                id="sub-navigation-1231860568193226"
               ></menu>
             </li>
             <li
@@ -30347,7 +30347,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-524063962566429"
+                id="sub-navigation-47710919745838076"
               ></menu>
             </li>
           </menu>
@@ -30391,7 +30391,7 @@ Link disabled
     </div>
   </div>
 </header>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<header class="db-header" data-on-forcing-mobile="true">
-  <dialog class="db-drawer" closedby="closerequest">
+  <dialog class="db-drawer" closedby="any">
     <article
       class="db-drawer-container db-header-drawer"
       data-spacing="small"
@@ -30425,7 +30425,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-7550058175720941"
+                    id="sub-navigation-9661838150335368"
                   ></menu>
                 </li>
                 <li
@@ -30444,7 +30444,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-18773766839984385"
+                    id="sub-navigation-38453454598972525"
                   ></menu>
                 </li>
               </menu>
@@ -30504,7 +30504,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-5633677698192134"
+                id="sub-navigation-1231860568193226"
               ></menu>
             </li>
             <li
@@ -30523,7 +30523,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-524063962566429"
+                id="sub-navigation-47710919745838076"
               ></menu>
             </li>
           </menu>
@@ -30567,7 +30567,7 @@ Link disabled
     </div>
   </div>
 </header>`),navigator.clipboard.writeText(`<header class="db-header" data-on-forcing-mobile="true">
-  <dialog class="db-drawer" closedby="closerequest">
+  <dialog class="db-drawer" closedby="any">
     <article
       class="db-drawer-container db-header-drawer"
       data-spacing="small"
@@ -30601,7 +30601,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-7550058175720941"
+                    id="sub-navigation-9661838150335368"
                   ></menu>
                 </li>
                 <li
@@ -30620,7 +30620,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-18773766839984385"
+                    id="sub-navigation-38453454598972525"
                   ></menu>
                 </li>
               </menu>
@@ -30680,7 +30680,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-5633677698192134"
+                id="sub-navigation-1231860568193226"
               ></menu>
             </li>
             <li
@@ -30699,7 +30699,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-524063962566429"
+                id="sub-navigation-47710919745838076"
               ></menu>
             </li>
           </menu>
@@ -31043,7 +31043,7 @@ Link disabled
     </db-navigation></ng-container
   >With Application Name + Navigation
 </db-header>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-html",children:`<header class="db-header">
-  <dialog class="db-drawer" closedby="closerequest">
+  <dialog class="db-drawer" closedby="any">
     <article
       class="db-drawer-container db-header-drawer"
       data-spacing="small"
@@ -31077,7 +31077,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-4257771349191537"
+                    id="sub-navigation-586738938288336"
                   ></menu>
                 </li>
                 <li
@@ -31096,7 +31096,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-8211130168687626"
+                    id="sub-navigation-9748890500149224"
                   ></menu>
                 </li>
               </menu>
@@ -31156,7 +31156,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-9290160327662806"
+                id="sub-navigation-9547678957702393"
               ></menu>
             </li>
             <li
@@ -31175,7 +31175,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-8396447790244309"
+                id="sub-navigation-5132983394987374"
               ></menu>
             </li>
           </menu>
@@ -31219,7 +31219,7 @@ Link disabled
     </div>
   </div>
 </header>`})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:e===`<header class="db-header">
-  <dialog class="db-drawer" closedby="closerequest">
+  <dialog class="db-drawer" closedby="any">
     <article
       class="db-drawer-container db-header-drawer"
       data-spacing="small"
@@ -31253,7 +31253,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-4257771349191537"
+                    id="sub-navigation-586738938288336"
                   ></menu>
                 </li>
                 <li
@@ -31272,7 +31272,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-8211130168687626"
+                    id="sub-navigation-9748890500149224"
                   ></menu>
                 </li>
               </menu>
@@ -31332,7 +31332,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-9290160327662806"
+                id="sub-navigation-9547678957702393"
               ></menu>
             </li>
             <li
@@ -31351,7 +31351,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-8396447790244309"
+                id="sub-navigation-5132983394987374"
               ></menu>
             </li>
           </menu>
@@ -31395,7 +31395,7 @@ Link disabled
     </div>
   </div>
 </header>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<header class="db-header">
-  <dialog class="db-drawer" closedby="closerequest">
+  <dialog class="db-drawer" closedby="any">
     <article
       class="db-drawer-container db-header-drawer"
       data-spacing="small"
@@ -31429,7 +31429,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-4257771349191537"
+                    id="sub-navigation-586738938288336"
                   ></menu>
                 </li>
                 <li
@@ -31448,7 +31448,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-8211130168687626"
+                    id="sub-navigation-9748890500149224"
                   ></menu>
                 </li>
               </menu>
@@ -31508,7 +31508,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-9290160327662806"
+                id="sub-navigation-9547678957702393"
               ></menu>
             </li>
             <li
@@ -31527,7 +31527,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-8396447790244309"
+                id="sub-navigation-5132983394987374"
               ></menu>
             </li>
           </menu>
@@ -31571,7 +31571,7 @@ Link disabled
     </div>
   </div>
 </header>`),navigator.clipboard.writeText(`<header class="db-header">
-  <dialog class="db-drawer" closedby="closerequest">
+  <dialog class="db-drawer" closedby="any">
     <article
       class="db-drawer-container db-header-drawer"
       data-spacing="small"
@@ -31605,7 +31605,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-4257771349191537"
+                    id="sub-navigation-586738938288336"
                   ></menu>
                 </li>
                 <li
@@ -31624,7 +31624,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-8211130168687626"
+                    id="sub-navigation-9748890500149224"
                   ></menu>
                 </li>
               </menu>
@@ -31684,7 +31684,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-9290160327662806"
+                id="sub-navigation-9547678957702393"
               ></menu>
             </li>
             <li
@@ -31703,7 +31703,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-8396447790244309"
+                id="sub-navigation-5132983394987374"
               ></menu>
             </li>
           </menu>
@@ -32055,7 +32055,7 @@ Link disabled
     </db-navigation></ng-container
   >Without Navigation
 </db-header>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-html",children:`<header class="db-header">
-  <dialog class="db-drawer" closedby="closerequest">
+  <dialog class="db-drawer" closedby="any">
     <article
       class="db-drawer-container db-header-drawer"
       data-spacing="small"
@@ -32089,7 +32089,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-9537803898781853"
+                    id="sub-navigation-5203432972650888"
                   ></menu>
                 </li>
                 <li
@@ -32108,7 +32108,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-949429132899004"
+                    id="sub-navigation-9999994010090916"
                   ></menu>
                 </li>
               </menu>
@@ -32168,7 +32168,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-9404773674398718"
+                id="sub-navigation-012614545383795916"
               ></menu>
             </li>
             <li
@@ -32187,7 +32187,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-6892038228133894"
+                id="sub-navigation-5069922791135582"
               ></menu>
             </li>
           </menu>
@@ -32231,7 +32231,7 @@ Link disabled
     </div>
   </div>
 </header>`})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:e===`<header class="db-header">
-  <dialog class="db-drawer" closedby="closerequest">
+  <dialog class="db-drawer" closedby="any">
     <article
       class="db-drawer-container db-header-drawer"
       data-spacing="small"
@@ -32265,7 +32265,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-9537803898781853"
+                    id="sub-navigation-5203432972650888"
                   ></menu>
                 </li>
                 <li
@@ -32284,7 +32284,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-949429132899004"
+                    id="sub-navigation-9999994010090916"
                   ></menu>
                 </li>
               </menu>
@@ -32344,7 +32344,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-9404773674398718"
+                id="sub-navigation-012614545383795916"
               ></menu>
             </li>
             <li
@@ -32363,7 +32363,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-6892038228133894"
+                id="sub-navigation-5069922791135582"
               ></menu>
             </li>
           </menu>
@@ -32407,7 +32407,7 @@ Link disabled
     </div>
   </div>
 </header>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<header class="db-header">
-  <dialog class="db-drawer" closedby="closerequest">
+  <dialog class="db-drawer" closedby="any">
     <article
       class="db-drawer-container db-header-drawer"
       data-spacing="small"
@@ -32441,7 +32441,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-9537803898781853"
+                    id="sub-navigation-5203432972650888"
                   ></menu>
                 </li>
                 <li
@@ -32460,7 +32460,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-949429132899004"
+                    id="sub-navigation-9999994010090916"
                   ></menu>
                 </li>
               </menu>
@@ -32520,7 +32520,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-9404773674398718"
+                id="sub-navigation-012614545383795916"
               ></menu>
             </li>
             <li
@@ -32539,7 +32539,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-6892038228133894"
+                id="sub-navigation-5069922791135582"
               ></menu>
             </li>
           </menu>
@@ -32583,7 +32583,7 @@ Link disabled
     </div>
   </div>
 </header>`),navigator.clipboard.writeText(`<header class="db-header">
-  <dialog class="db-drawer" closedby="closerequest">
+  <dialog class="db-drawer" closedby="any">
     <article
       class="db-drawer-container db-header-drawer"
       data-spacing="small"
@@ -32617,7 +32617,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-9537803898781853"
+                    id="sub-navigation-5203432972650888"
                   ></menu>
                 </li>
                 <li
@@ -32636,7 +32636,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-949429132899004"
+                    id="sub-navigation-9999994010090916"
                   ></menu>
                 </li>
               </menu>
@@ -32696,7 +32696,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-9404773674398718"
+                id="sub-navigation-012614545383795916"
               ></menu>
             </li>
             <li
@@ -32715,7 +32715,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-6892038228133894"
+                id="sub-navigation-5069922791135582"
               ></menu>
             </li>
           </menu>
@@ -33067,7 +33067,7 @@ Link disabled
     </db-navigation></ng-container
   >Without Application Name
 </db-header>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-html",children:`<header class="db-header">
-  <dialog class="db-drawer" closedby="closerequest">
+  <dialog class="db-drawer" closedby="any">
     <article
       class="db-drawer-container db-header-drawer"
       data-spacing="small"
@@ -33101,7 +33101,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-6966710029911459"
+                    id="sub-navigation-9210979236483574"
                   ></menu>
                 </li>
                 <li
@@ -33120,7 +33120,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-9704750749654227"
+                    id="sub-navigation-8801521711697974"
                   ></menu>
                 </li>
               </menu>
@@ -33180,7 +33180,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-8058349510594964"
+                id="sub-navigation-7337388625801382"
               ></menu>
             </li>
             <li
@@ -33199,7 +33199,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-5619893939668588"
+                id="sub-navigation-930523598888715"
               ></menu>
             </li>
           </menu>
@@ -33243,7 +33243,7 @@ Link disabled
     </div>
   </div>
 </header>`})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:e===`<header class="db-header">
-  <dialog class="db-drawer" closedby="closerequest">
+  <dialog class="db-drawer" closedby="any">
     <article
       class="db-drawer-container db-header-drawer"
       data-spacing="small"
@@ -33277,7 +33277,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-6966710029911459"
+                    id="sub-navigation-9210979236483574"
                   ></menu>
                 </li>
                 <li
@@ -33296,7 +33296,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-9704750749654227"
+                    id="sub-navigation-8801521711697974"
                   ></menu>
                 </li>
               </menu>
@@ -33356,7 +33356,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-8058349510594964"
+                id="sub-navigation-7337388625801382"
               ></menu>
             </li>
             <li
@@ -33375,7 +33375,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-5619893939668588"
+                id="sub-navigation-930523598888715"
               ></menu>
             </li>
           </menu>
@@ -33419,7 +33419,7 @@ Link disabled
     </div>
   </div>
 </header>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<header class="db-header">
-  <dialog class="db-drawer" closedby="closerequest">
+  <dialog class="db-drawer" closedby="any">
     <article
       class="db-drawer-container db-header-drawer"
       data-spacing="small"
@@ -33453,7 +33453,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-6966710029911459"
+                    id="sub-navigation-9210979236483574"
                   ></menu>
                 </li>
                 <li
@@ -33472,7 +33472,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-9704750749654227"
+                    id="sub-navigation-8801521711697974"
                   ></menu>
                 </li>
               </menu>
@@ -33532,7 +33532,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-8058349510594964"
+                id="sub-navigation-7337388625801382"
               ></menu>
             </li>
             <li
@@ -33551,7 +33551,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-5619893939668588"
+                id="sub-navigation-930523598888715"
               ></menu>
             </li>
           </menu>
@@ -33595,7 +33595,7 @@ Link disabled
     </div>
   </div>
 </header>`),navigator.clipboard.writeText(`<header class="db-header">
-  <dialog class="db-drawer" closedby="closerequest">
+  <dialog class="db-drawer" closedby="any">
     <article
       class="db-drawer-container db-header-drawer"
       data-spacing="small"
@@ -33629,7 +33629,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-6966710029911459"
+                    id="sub-navigation-9210979236483574"
                   ></menu>
                 </li>
                 <li
@@ -33648,7 +33648,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-9704750749654227"
+                    id="sub-navigation-8801521711697974"
                   ></menu>
                 </li>
               </menu>
@@ -33708,7 +33708,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-8058349510594964"
+                id="sub-navigation-7337388625801382"
               ></menu>
             </li>
             <li
@@ -33727,7 +33727,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-5619893939668588"
+                id="sub-navigation-930523598888715"
               ></menu>
             </li>
           </menu>
@@ -34079,7 +34079,7 @@ Link disabled
     </db-navigation></ng-container
   >Without Application Name + Navigation
 </db-header>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-html",children:`<header class="db-header">
-  <dialog class="db-drawer" closedby="closerequest">
+  <dialog class="db-drawer" closedby="any">
     <article
       class="db-drawer-container db-header-drawer"
       data-spacing="small"
@@ -34113,7 +34113,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-563817956375297"
+                    id="sub-navigation-33898103384098566"
                   ></menu>
                 </li>
                 <li
@@ -34132,7 +34132,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-699370822172898"
+                    id="sub-navigation-3092476091609976"
                   ></menu>
                 </li>
               </menu>
@@ -34192,7 +34192,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-4575683281228452"
+                id="sub-navigation-5347535093464456"
               ></menu>
             </li>
             <li
@@ -34211,7 +34211,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-9380127443205066"
+                id="sub-navigation-5683832570479243"
               ></menu>
             </li>
           </menu>
@@ -34255,7 +34255,7 @@ Link disabled
     </div>
   </div>
 </header>`})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:e===`<header class="db-header">
-  <dialog class="db-drawer" closedby="closerequest">
+  <dialog class="db-drawer" closedby="any">
     <article
       class="db-drawer-container db-header-drawer"
       data-spacing="small"
@@ -34289,7 +34289,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-563817956375297"
+                    id="sub-navigation-33898103384098566"
                   ></menu>
                 </li>
                 <li
@@ -34308,7 +34308,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-699370822172898"
+                    id="sub-navigation-3092476091609976"
                   ></menu>
                 </li>
               </menu>
@@ -34368,7 +34368,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-4575683281228452"
+                id="sub-navigation-5347535093464456"
               ></menu>
             </li>
             <li
@@ -34387,7 +34387,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-9380127443205066"
+                id="sub-navigation-5683832570479243"
               ></menu>
             </li>
           </menu>
@@ -34431,7 +34431,7 @@ Link disabled
     </div>
   </div>
 </header>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<header class="db-header">
-  <dialog class="db-drawer" closedby="closerequest">
+  <dialog class="db-drawer" closedby="any">
     <article
       class="db-drawer-container db-header-drawer"
       data-spacing="small"
@@ -34465,7 +34465,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-563817956375297"
+                    id="sub-navigation-33898103384098566"
                   ></menu>
                 </li>
                 <li
@@ -34484,7 +34484,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-699370822172898"
+                    id="sub-navigation-3092476091609976"
                   ></menu>
                 </li>
               </menu>
@@ -34544,7 +34544,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-4575683281228452"
+                id="sub-navigation-5347535093464456"
               ></menu>
             </li>
             <li
@@ -34563,7 +34563,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-9380127443205066"
+                id="sub-navigation-5683832570479243"
               ></menu>
             </li>
           </menu>
@@ -34607,7 +34607,7 @@ Link disabled
     </div>
   </div>
 </header>`),navigator.clipboard.writeText(`<header class="db-header">
-  <dialog class="db-drawer" closedby="closerequest">
+  <dialog class="db-drawer" closedby="any">
     <article
       class="db-drawer-container db-header-drawer"
       data-spacing="small"
@@ -34641,7 +34641,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-563817956375297"
+                    id="sub-navigation-33898103384098566"
                   ></menu>
                 </li>
                 <li
@@ -34660,7 +34660,7 @@ Link disabled
                   <menu
                     class="db-sub-navigation"
                     data-force-close="false"
-                    id="sub-navigation-699370822172898"
+                    id="sub-navigation-3092476091609976"
                   ></menu>
                 </li>
               </menu>
@@ -34720,7 +34720,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-4575683281228452"
+                id="sub-navigation-5347535093464456"
               ></menu>
             </li>
             <li
@@ -34739,7 +34739,7 @@ Link disabled
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-9380127443205066"
+                id="sub-navigation-5683832570479243"
               ></menu>
             </li>
           </menu>
@@ -39867,7 +39867,7 @@ Variant Inline
       <menu
         class="db-sub-navigation"
         data-force-close="false"
-        id="sub-navigation-050875727096094336"
+        id="sub-navigation-2781674109028077"
       >
         <li class="db-navigation-item">
           <button
@@ -39880,7 +39880,7 @@ Variant Inline
           <menu
             class="db-sub-navigation"
             data-force-close="false"
-            id="sub-navigation-44868559389370644"
+            id="sub-navigation-6816580855323029"
           >
             <li class="db-navigation-item" data-active="true">
               <button
@@ -39893,7 +39893,7 @@ Variant Inline
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-40373409935295823"
+                id="sub-navigation-3450122707983202"
               ></menu>
             </li>
           </menu>
@@ -39911,7 +39911,7 @@ Variant Inline
       <menu
         class="db-sub-navigation"
         data-force-close="false"
-        id="sub-navigation-09012985349701763"
+        id="sub-navigation-6418111709032976"
       ></menu>
     </li>
   </menu>
@@ -39928,7 +39928,7 @@ Variant Inline
       <menu
         class="db-sub-navigation"
         data-force-close="false"
-        id="sub-navigation-050875727096094336"
+        id="sub-navigation-2781674109028077"
       >
         <li class="db-navigation-item">
           <button
@@ -39941,7 +39941,7 @@ Variant Inline
           <menu
             class="db-sub-navigation"
             data-force-close="false"
-            id="sub-navigation-44868559389370644"
+            id="sub-navigation-6816580855323029"
           >
             <li class="db-navigation-item" data-active="true">
               <button
@@ -39954,7 +39954,7 @@ Variant Inline
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-40373409935295823"
+                id="sub-navigation-3450122707983202"
               ></menu>
             </li>
           </menu>
@@ -39972,7 +39972,7 @@ Variant Inline
       <menu
         class="db-sub-navigation"
         data-force-close="false"
-        id="sub-navigation-09012985349701763"
+        id="sub-navigation-6418111709032976"
       ></menu>
     </li>
   </menu>
@@ -39989,7 +39989,7 @@ Variant Inline
       <menu
         class="db-sub-navigation"
         data-force-close="false"
-        id="sub-navigation-050875727096094336"
+        id="sub-navigation-2781674109028077"
       >
         <li class="db-navigation-item">
           <button
@@ -40002,7 +40002,7 @@ Variant Inline
           <menu
             class="db-sub-navigation"
             data-force-close="false"
-            id="sub-navigation-44868559389370644"
+            id="sub-navigation-6816580855323029"
           >
             <li class="db-navigation-item" data-active="true">
               <button
@@ -40015,7 +40015,7 @@ Variant Inline
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-40373409935295823"
+                id="sub-navigation-3450122707983202"
               ></menu>
             </li>
           </menu>
@@ -40033,7 +40033,7 @@ Variant Inline
       <menu
         class="db-sub-navigation"
         data-force-close="false"
-        id="sub-navigation-09012985349701763"
+        id="sub-navigation-6418111709032976"
       ></menu>
     </li>
   </menu>
@@ -40050,7 +40050,7 @@ Variant Inline
       <menu
         class="db-sub-navigation"
         data-force-close="false"
-        id="sub-navigation-050875727096094336"
+        id="sub-navigation-2781674109028077"
       >
         <li class="db-navigation-item">
           <button
@@ -40063,7 +40063,7 @@ Variant Inline
           <menu
             class="db-sub-navigation"
             data-force-close="false"
-            id="sub-navigation-44868559389370644"
+            id="sub-navigation-6816580855323029"
           >
             <li class="db-navigation-item" data-active="true">
               <button
@@ -40076,7 +40076,7 @@ Variant Inline
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-40373409935295823"
+                id="sub-navigation-3450122707983202"
               ></menu>
             </li>
           </menu>
@@ -40094,7 +40094,7 @@ Variant Inline
       <menu
         class="db-sub-navigation"
         data-force-close="false"
-        id="sub-navigation-09012985349701763"
+        id="sub-navigation-6418111709032976"
       ></menu>
     </li>
   </menu>
@@ -40307,7 +40307,7 @@ Navi-Item 2
       <menu
         class="db-sub-navigation"
         data-force-close="false"
-        id="sub-navigation-7742385521953101"
+        id="sub-navigation-024978515916743604"
       >
         <li class="db-navigation-item">
           <button
@@ -40320,7 +40320,7 @@ Navi-Item 2
           <menu
             class="db-sub-navigation"
             data-force-close="false"
-            id="sub-navigation-8771615259674921"
+            id="sub-navigation-9168321232365516"
           >
             <li class="db-navigation-item" data-active="true">
               <button
@@ -40333,7 +40333,7 @@ Navi-Item 2
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-564137305516006"
+                id="sub-navigation-7594967106113686"
               ></menu>
             </li>
           </menu>
@@ -40351,7 +40351,7 @@ Navi-Item 2
       <menu
         class="db-sub-navigation"
         data-force-close="false"
-        id="sub-navigation-42713285877523344"
+        id="sub-navigation-6202109708061981"
       ></menu>
     </li>
   </menu>
@@ -40368,7 +40368,7 @@ Navi-Item 2
       <menu
         class="db-sub-navigation"
         data-force-close="false"
-        id="sub-navigation-7742385521953101"
+        id="sub-navigation-024978515916743604"
       >
         <li class="db-navigation-item">
           <button
@@ -40381,7 +40381,7 @@ Navi-Item 2
           <menu
             class="db-sub-navigation"
             data-force-close="false"
-            id="sub-navigation-8771615259674921"
+            id="sub-navigation-9168321232365516"
           >
             <li class="db-navigation-item" data-active="true">
               <button
@@ -40394,7 +40394,7 @@ Navi-Item 2
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-564137305516006"
+                id="sub-navigation-7594967106113686"
               ></menu>
             </li>
           </menu>
@@ -40412,7 +40412,7 @@ Navi-Item 2
       <menu
         class="db-sub-navigation"
         data-force-close="false"
-        id="sub-navigation-42713285877523344"
+        id="sub-navigation-6202109708061981"
       ></menu>
     </li>
   </menu>
@@ -40429,7 +40429,7 @@ Navi-Item 2
       <menu
         class="db-sub-navigation"
         data-force-close="false"
-        id="sub-navigation-7742385521953101"
+        id="sub-navigation-024978515916743604"
       >
         <li class="db-navigation-item">
           <button
@@ -40442,7 +40442,7 @@ Navi-Item 2
           <menu
             class="db-sub-navigation"
             data-force-close="false"
-            id="sub-navigation-8771615259674921"
+            id="sub-navigation-9168321232365516"
           >
             <li class="db-navigation-item" data-active="true">
               <button
@@ -40455,7 +40455,7 @@ Navi-Item 2
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-564137305516006"
+                id="sub-navigation-7594967106113686"
               ></menu>
             </li>
           </menu>
@@ -40473,7 +40473,7 @@ Navi-Item 2
       <menu
         class="db-sub-navigation"
         data-force-close="false"
-        id="sub-navigation-42713285877523344"
+        id="sub-navigation-6202109708061981"
       ></menu>
     </li>
   </menu>
@@ -40490,7 +40490,7 @@ Navi-Item 2
       <menu
         class="db-sub-navigation"
         data-force-close="false"
-        id="sub-navigation-7742385521953101"
+        id="sub-navigation-024978515916743604"
       >
         <li class="db-navigation-item">
           <button
@@ -40503,7 +40503,7 @@ Navi-Item 2
           <menu
             class="db-sub-navigation"
             data-force-close="false"
-            id="sub-navigation-8771615259674921"
+            id="sub-navigation-9168321232365516"
           >
             <li class="db-navigation-item" data-active="true">
               <button
@@ -40516,7 +40516,7 @@ Navi-Item 2
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-564137305516006"
+                id="sub-navigation-7594967106113686"
               ></menu>
             </li>
           </menu>
@@ -40534,7 +40534,7 @@ Navi-Item 2
       <menu
         class="db-sub-navigation"
         data-force-close="false"
-        id="sub-navigation-42713285877523344"
+        id="sub-navigation-6202109708061981"
       ></menu>
     </li>
   </menu>
@@ -40747,7 +40747,7 @@ Navi-Item 2
       <menu
         class="db-sub-navigation"
         data-force-close="false"
-        id="sub-navigation-926677711325112"
+        id="sub-navigation-7221988310528682"
       >
         <li class="db-navigation-item">
           <button
@@ -40760,7 +40760,7 @@ Navi-Item 2
           <menu
             class="db-sub-navigation"
             data-force-close="false"
-            id="sub-navigation-8942894211835639"
+            id="sub-navigation-11145260681971025"
           >
             <li class="db-navigation-item" data-active="true">
               <button
@@ -40773,7 +40773,7 @@ Navi-Item 2
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-27616111164500023"
+                id="sub-navigation-6765506311059227"
               ></menu>
             </li>
           </menu>
@@ -40791,7 +40791,7 @@ Navi-Item 2
       <menu
         class="db-sub-navigation"
         data-force-close="false"
-        id="sub-navigation-18163592193326739"
+        id="sub-navigation-2081258916252977"
       ></menu>
     </li>
   </menu>
@@ -40808,7 +40808,7 @@ Navi-Item 2
       <menu
         class="db-sub-navigation"
         data-force-close="false"
-        id="sub-navigation-926677711325112"
+        id="sub-navigation-7221988310528682"
       >
         <li class="db-navigation-item">
           <button
@@ -40821,7 +40821,7 @@ Navi-Item 2
           <menu
             class="db-sub-navigation"
             data-force-close="false"
-            id="sub-navigation-8942894211835639"
+            id="sub-navigation-11145260681971025"
           >
             <li class="db-navigation-item" data-active="true">
               <button
@@ -40834,7 +40834,7 @@ Navi-Item 2
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-27616111164500023"
+                id="sub-navigation-6765506311059227"
               ></menu>
             </li>
           </menu>
@@ -40852,7 +40852,7 @@ Navi-Item 2
       <menu
         class="db-sub-navigation"
         data-force-close="false"
-        id="sub-navigation-18163592193326739"
+        id="sub-navigation-2081258916252977"
       ></menu>
     </li>
   </menu>
@@ -40869,7 +40869,7 @@ Navi-Item 2
       <menu
         class="db-sub-navigation"
         data-force-close="false"
-        id="sub-navigation-926677711325112"
+        id="sub-navigation-7221988310528682"
       >
         <li class="db-navigation-item">
           <button
@@ -40882,7 +40882,7 @@ Navi-Item 2
           <menu
             class="db-sub-navigation"
             data-force-close="false"
-            id="sub-navigation-8942894211835639"
+            id="sub-navigation-11145260681971025"
           >
             <li class="db-navigation-item" data-active="true">
               <button
@@ -40895,7 +40895,7 @@ Navi-Item 2
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-27616111164500023"
+                id="sub-navigation-6765506311059227"
               ></menu>
             </li>
           </menu>
@@ -40913,7 +40913,7 @@ Navi-Item 2
       <menu
         class="db-sub-navigation"
         data-force-close="false"
-        id="sub-navigation-18163592193326739"
+        id="sub-navigation-2081258916252977"
       ></menu>
     </li>
   </menu>
@@ -40930,7 +40930,7 @@ Navi-Item 2
       <menu
         class="db-sub-navigation"
         data-force-close="false"
-        id="sub-navigation-926677711325112"
+        id="sub-navigation-7221988310528682"
       >
         <li class="db-navigation-item">
           <button
@@ -40943,7 +40943,7 @@ Navi-Item 2
           <menu
             class="db-sub-navigation"
             data-force-close="false"
-            id="sub-navigation-8942894211835639"
+            id="sub-navigation-11145260681971025"
           >
             <li class="db-navigation-item" data-active="true">
               <button
@@ -40956,7 +40956,7 @@ Navi-Item 2
               <menu
                 class="db-sub-navigation"
                 data-force-close="false"
-                id="sub-navigation-27616111164500023"
+                id="sub-navigation-6765506311059227"
               ></menu>
             </li>
           </menu>
@@ -40974,7 +40974,7 @@ Navi-Item 2
       <menu
         class="db-sub-navigation"
         data-force-close="false"
-        id="sub-navigation-18163592193326739"
+        id="sub-navigation-2081258916252977"
       ></menu>
     </li>
   </menu>
@@ -41133,7 +41133,7 @@ Navi-Item 2
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-6091625631086689"
+    id="sub-navigation-2758152330903738"
   ></menu>
 </li>`})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:e===`<li class="db-navigation-item">
   <button
@@ -41146,7 +41146,7 @@ Navi-Item 2
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-6091625631086689"
+    id="sub-navigation-2758152330903738"
   ></menu>
 </li>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<li class="db-navigation-item">
   <button
@@ -41159,7 +41159,7 @@ Navi-Item 2
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-6091625631086689"
+    id="sub-navigation-2758152330903738"
   ></menu>
 </li>`),navigator.clipboard.writeText(`<li class="db-navigation-item">
   <button
@@ -41172,7 +41172,7 @@ Navi-Item 2
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-6091625631086689"
+    id="sub-navigation-2758152330903738"
   ></menu>
 </li>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=react",children:"How to use this in react"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-tsx",children:`<DBNavigationItem>
   <a href="#">Functional</a>
@@ -41217,7 +41217,7 @@ Functional
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-4888561706326694"
+    id="sub-navigation-11000924555588354"
   ></menu>
 </li>`})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:e===`<li class="db-navigation-item">
   <button
@@ -41230,7 +41230,7 @@ Functional
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-4888561706326694"
+    id="sub-navigation-11000924555588354"
   ></menu>
 </li>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<li class="db-navigation-item">
   <button
@@ -41243,7 +41243,7 @@ Functional
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-4888561706326694"
+    id="sub-navigation-11000924555588354"
   ></menu>
 </li>`),navigator.clipboard.writeText(`<li class="db-navigation-item">
   <button
@@ -41256,7 +41256,7 @@ Functional
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-4888561706326694"
+    id="sub-navigation-11000924555588354"
   ></menu>
 </li>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=react",children:"How to use this in react"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-tsx",children:`<DBNavigationItem>
   <a href="#">(Default) Regular</a>
@@ -41301,7 +41301,7 @@ Functional
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-060318340385100644"
+    id="sub-navigation-2915054634549116"
   ></menu>
 </li>`})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:e===`<li class="db-navigation-item">
   <button
@@ -41314,7 +41314,7 @@ Functional
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-060318340385100644"
+    id="sub-navigation-2915054634549116"
   ></menu>
 </li>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<li class="db-navigation-item">
   <button
@@ -41327,7 +41327,7 @@ Functional
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-060318340385100644"
+    id="sub-navigation-2915054634549116"
   ></menu>
 </li>`),navigator.clipboard.writeText(`<li class="db-navigation-item">
   <button
@@ -41340,7 +41340,7 @@ Functional
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-060318340385100644"
+    id="sub-navigation-2915054634549116"
   ></menu>
 </li>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=react",children:"How to use this in react"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-tsx",children:`<DBNavigationItem>
   <a href="#">Expressive</a>
@@ -41386,7 +41386,7 @@ Expressive
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-2668718351144933"
+    id="sub-navigation-8225323576932242"
   ></menu>
 </li>`})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:e===`<li class="db-navigation-item" aria-disabled="true">
   <button
@@ -41400,7 +41400,7 @@ Expressive
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-2668718351144933"
+    id="sub-navigation-8225323576932242"
   ></menu>
 </li>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<li class="db-navigation-item" aria-disabled="true">
   <button
@@ -41414,7 +41414,7 @@ Expressive
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-2668718351144933"
+    id="sub-navigation-8225323576932242"
   ></menu>
 </li>`),navigator.clipboard.writeText(`<li class="db-navigation-item" aria-disabled="true">
   <button
@@ -41428,7 +41428,7 @@ Expressive
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-2668718351144933"
+    id="sub-navigation-8225323576932242"
   ></menu>
 </li>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=react",children:"How to use this in react"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-tsx",children:`<DBNavigationItem disabled>
   <a href="#">(Default) False</a>
@@ -41474,7 +41474,7 @@ Expressive
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-7879333100953737"
+    id="sub-navigation-4924472610071001"
   ></menu>
 </li>`})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:e===`<li class="db-navigation-item" aria-disabled="true">
   <button
@@ -41488,7 +41488,7 @@ Expressive
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-7879333100953737"
+    id="sub-navigation-4924472610071001"
   ></menu>
 </li>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<li class="db-navigation-item" aria-disabled="true">
   <button
@@ -41502,7 +41502,7 @@ Expressive
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-7879333100953737"
+    id="sub-navigation-4924472610071001"
   ></menu>
 </li>`),navigator.clipboard.writeText(`<li class="db-navigation-item" aria-disabled="true">
   <button
@@ -41516,7 +41516,7 @@ Expressive
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-7879333100953737"
+    id="sub-navigation-4924472610071001"
   ></menu>
 </li>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=react",children:"How to use this in react"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-tsx",children:`<DBNavigationItem disabled>
   <a href="#">True</a>
@@ -41561,7 +41561,7 @@ True
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-9158889133569528"
+    id="sub-navigation-938489167665185"
   ></menu>
 </li>`})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:e===`<li class="db-navigation-item" data-active="true">
   <button
@@ -41574,7 +41574,7 @@ True
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-9158889133569528"
+    id="sub-navigation-938489167665185"
   ></menu>
 </li>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<li class="db-navigation-item" data-active="true">
   <button
@@ -41587,7 +41587,7 @@ True
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-9158889133569528"
+    id="sub-navigation-938489167665185"
   ></menu>
 </li>`),navigator.clipboard.writeText(`<li class="db-navigation-item" data-active="true">
   <button
@@ -41600,7 +41600,7 @@ True
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-9158889133569528"
+    id="sub-navigation-938489167665185"
   ></menu>
 </li>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=react",children:"How to use this in react"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-tsx",children:`<DBNavigationItem active>
   <a href="#">(Default) False</a>
@@ -41645,7 +41645,7 @@ True
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-5771712884364021"
+    id="sub-navigation-6679315737783483"
   ></menu>
 </li>`})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:e===`<li class="db-navigation-item" data-active="true">
   <button
@@ -41658,7 +41658,7 @@ True
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-5771712884364021"
+    id="sub-navigation-6679315737783483"
   ></menu>
 </li>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<li class="db-navigation-item" data-active="true">
   <button
@@ -41671,7 +41671,7 @@ True
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-5771712884364021"
+    id="sub-navigation-6679315737783483"
   ></menu>
 </li>`),navigator.clipboard.writeText(`<li class="db-navigation-item" data-active="true">
   <button
@@ -41684,7 +41684,7 @@ True
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-5771712884364021"
+    id="sub-navigation-6679315737783483"
   ></menu>
 </li>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=react",children:"How to use this in react"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-tsx",children:`<DBNavigationItem active>
   <a href="#">True</a>
@@ -41729,7 +41729,7 @@ True
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-39903821031054676"
+    id="sub-navigation-676812645046039"
   ></menu>
 </li>`})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:e===`<li class="db-navigation-item">
   <button
@@ -41742,7 +41742,7 @@ True
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-39903821031054676"
+    id="sub-navigation-676812645046039"
   ></menu>
 </li>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<li class="db-navigation-item">
   <button
@@ -41755,7 +41755,7 @@ True
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-39903821031054676"
+    id="sub-navigation-676812645046039"
   ></menu>
 </li>`),navigator.clipboard.writeText(`<li class="db-navigation-item">
   <button
@@ -41768,7 +41768,7 @@ True
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-39903821031054676"
+    id="sub-navigation-676812645046039"
   ></menu>
 </li>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=react",children:"How to use this in react"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-tsx",children:`<DBNavigationItem areaPopup>
   <a href="#">(Default) False</a>
@@ -41813,7 +41813,7 @@ True
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-3530054910675837"
+    id="sub-navigation-7569671601352032"
   ></menu>
 </li>`})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:e===`<li class="db-navigation-item">
   <button
@@ -41826,7 +41826,7 @@ True
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-3530054910675837"
+    id="sub-navigation-7569671601352032"
   ></menu>
 </li>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<li class="db-navigation-item">
   <button
@@ -41839,7 +41839,7 @@ True
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-3530054910675837"
+    id="sub-navigation-7569671601352032"
   ></menu>
 </li>`),navigator.clipboard.writeText(`<li class="db-navigation-item">
   <button
@@ -41852,7 +41852,7 @@ True
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-3530054910675837"
+    id="sub-navigation-7569671601352032"
   ></menu>
 </li>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=react",children:"How to use this in react"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-tsx",children:`<DBNavigationItem areaPopup>
   <a href="#">True</a>
@@ -41897,7 +41897,7 @@ True
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-4877693954179405"
+    id="sub-navigation-10887211157423571"
   ></menu>
 </li>`})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:e===`<li class="db-navigation-item" data-icon="x_placeholder" data-show-icon="true">
   <button
@@ -41910,7 +41910,7 @@ True
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-4877693954179405"
+    id="sub-navigation-10887211157423571"
   ></menu>
 </li>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<li class="db-navigation-item" data-icon="x_placeholder" data-show-icon="true">
   <button
@@ -41923,7 +41923,7 @@ True
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-4877693954179405"
+    id="sub-navigation-10887211157423571"
   ></menu>
 </li>`),navigator.clipboard.writeText(`<li class="db-navigation-item" data-icon="x_placeholder" data-show-icon="true">
   <button
@@ -41936,7 +41936,7 @@ True
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-4877693954179405"
+    id="sub-navigation-10887211157423571"
   ></menu>
 </li>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=react",children:"How to use this in react"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-tsx",children:`<DBNavigationItem icon="x_placeholder" showIcon>
   <a href="#">(Default) False</a>
@@ -41981,7 +41981,7 @@ True
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-5650095595710946"
+    id="sub-navigation-2257182467134673"
   ></menu>
 </li>`})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:e===`<li class="db-navigation-item" data-icon="x_placeholder" data-show-icon="true">
   <button
@@ -41994,7 +41994,7 @@ True
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-5650095595710946"
+    id="sub-navigation-2257182467134673"
   ></menu>
 </li>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<li class="db-navigation-item" data-icon="x_placeholder" data-show-icon="true">
   <button
@@ -42007,7 +42007,7 @@ True
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-5650095595710946"
+    id="sub-navigation-2257182467134673"
   ></menu>
 </li>`),navigator.clipboard.writeText(`<li class="db-navigation-item" data-icon="x_placeholder" data-show-icon="true">
   <button
@@ -42020,7 +42020,7 @@ True
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-5650095595710946"
+    id="sub-navigation-2257182467134673"
   ></menu>
 </li>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=react",children:"How to use this in react"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-tsx",children:`<DBNavigationItem icon="x_placeholder" showIcon>
   <a href="#">True</a>
@@ -42065,7 +42065,7 @@ True
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-9420949357287881"
+    id="sub-navigation-7187276584613259"
   ></menu>
 </li>`})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:e===`<li class="db-navigation-item">
   <button
@@ -42078,7 +42078,7 @@ True
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-9420949357287881"
+    id="sub-navigation-7187276584613259"
   ></menu>
 </li>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<li class="db-navigation-item">
   <button
@@ -42091,7 +42091,7 @@ True
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-9420949357287881"
+    id="sub-navigation-7187276584613259"
   ></menu>
 </li>`),navigator.clipboard.writeText(`<li class="db-navigation-item">
   <button
@@ -42104,7 +42104,7 @@ True
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-9420949357287881"
+    id="sub-navigation-7187276584613259"
   ></menu>
 </li>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=react",children:"How to use this in react"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-tsx",children:`<DBNavigationItem>
   <a href="#">(Default) Auto</a>
@@ -42149,7 +42149,7 @@ True
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-27799965750382594"
+    id="sub-navigation-9459180217559942"
   ></menu>
 </li>`})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:e===`<li class="db-navigation-item" data-width="full">
   <button
@@ -42162,7 +42162,7 @@ True
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-27799965750382594"
+    id="sub-navigation-9459180217559942"
   ></menu>
 </li>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<li class="db-navigation-item" data-width="full">
   <button
@@ -42175,7 +42175,7 @@ True
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-27799965750382594"
+    id="sub-navigation-9459180217559942"
   ></menu>
 </li>`),navigator.clipboard.writeText(`<li class="db-navigation-item" data-width="full">
   <button
@@ -42188,7 +42188,7 @@ True
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-27799965750382594"
+    id="sub-navigation-9459180217559942"
   ></menu>
 </li>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=react",children:"How to use this in react"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-tsx",children:`<DBNavigationItem width="full">
   <a href="#">Full</a>
@@ -42233,7 +42233,7 @@ Full
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-4174812868723795"
+    id="sub-navigation-2734643238814486"
   ></menu>
 </li>`})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:e===`<li class="db-navigation-item">
   <button
@@ -42246,7 +42246,7 @@ Full
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-4174812868723795"
+    id="sub-navigation-2734643238814486"
   ></menu>
 </li>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<li class="db-navigation-item">
   <button
@@ -42259,7 +42259,7 @@ Full
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-4174812868723795"
+    id="sub-navigation-2734643238814486"
   ></menu>
 </li>`),navigator.clipboard.writeText(`<li class="db-navigation-item">
   <button
@@ -42272,7 +42272,7 @@ Full
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-4174812868723795"
+    id="sub-navigation-2734643238814486"
   ></menu>
 </li>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=react",children:"How to use this in react"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-tsx",children:`<DBNavigationItem areaPopup>
   <a href="#">True</a>
@@ -42337,7 +42337,7 @@ True
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-7589441745420088"
+    id="sub-navigation-43499200873624766"
   ></menu>
 </li>`})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:e===`<li class="db-navigation-item" data-wrap="true">
   <button
@@ -42350,7 +42350,7 @@ True
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-7589441745420088"
+    id="sub-navigation-43499200873624766"
   ></menu>
 </li>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<li class="db-navigation-item" data-wrap="true">
   <button
@@ -42363,7 +42363,7 @@ True
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-7589441745420088"
+    id="sub-navigation-43499200873624766"
   ></menu>
 </li>`),navigator.clipboard.writeText(`<li class="db-navigation-item" data-wrap="true">
   <button
@@ -42376,7 +42376,7 @@ True
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-7589441745420088"
+    id="sub-navigation-43499200873624766"
   ></menu>
 </li>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=react",children:"How to use this in react"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-tsx",children:`<DBNavigationItem areaPopup icon="x_placeholder" showIcon wrap>
   <a href="#">Sub-Sub-Navi-Item 1</a>
@@ -42441,7 +42441,7 @@ Sub-Sub-Navi-Item 1
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-7589441745420088"
+    id="sub-navigation-43499200873624766"
   ></menu>
 </li>`})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:e===`<li class="db-navigation-item" data-wrap="true">
   <button
@@ -42454,7 +42454,7 @@ Sub-Sub-Navi-Item 1
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-7589441745420088"
+    id="sub-navigation-43499200873624766"
   ></menu>
 </li>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<li class="db-navigation-item" data-wrap="true">
   <button
@@ -42467,7 +42467,7 @@ Sub-Sub-Navi-Item 1
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-7589441745420088"
+    id="sub-navigation-43499200873624766"
   ></menu>
 </li>`),navigator.clipboard.writeText(`<li class="db-navigation-item" data-wrap="true">
   <button
@@ -42480,7 +42480,7 @@ Sub-Sub-Navi-Item 1
   <menu
     class="db-sub-navigation"
     data-force-close="false"
-    id="sub-navigation-7589441745420088"
+    id="sub-navigation-43499200873624766"
   ></menu>
 </li>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=react",children:"How to use this in react"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-tsx",children:`<DBNavigationItem areaPopup wrap>
   <a href="#">True</a>
@@ -58839,7 +58839,7 @@ Centered
   <db-tab-panel> Tab Panel 2 </db-tab-panel>
   <db-tab-panel> Tab Panel 3 </db-tab-panel>
 </db-tabs>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-html",children:`<div
-  id="tabs-806677418678047"
+  id="tabs-022726643290628568"
   class="db-tabs"
   data-alignment="start"
   data-width="auto"
@@ -58867,7 +58867,7 @@ Centered
   <section role="tabpanel" class="db-tab-panel">Tab Panel 2</section>
   <section role="tabpanel" class="db-tab-panel">Tab Panel 3</section>
 </div>`})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:e===`<div
-  id="tabs-806677418678047"
+  id="tabs-022726643290628568"
   class="db-tabs"
   data-alignment="start"
   data-width="auto"
@@ -58895,7 +58895,7 @@ Centered
   <section role="tabpanel" class="db-tab-panel">Tab Panel 2</section>
   <section role="tabpanel" class="db-tab-panel">Tab Panel 3</section>
 </div>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<div
-  id="tabs-806677418678047"
+  id="tabs-022726643290628568"
   class="db-tabs"
   data-alignment="start"
   data-width="auto"
@@ -58923,7 +58923,7 @@ Centered
   <section role="tabpanel" class="db-tab-panel">Tab Panel 2</section>
   <section role="tabpanel" class="db-tab-panel">Tab Panel 3</section>
 </div>`),navigator.clipboard.writeText(`<div
-  id="tabs-806677418678047"
+  id="tabs-022726643290628568"
   class="db-tabs"
   data-alignment="start"
   data-width="auto"
@@ -59107,7 +59107,7 @@ Tab Panel 3
   <db-tab-panel> Tab Panel 2 </db-tab-panel>
   <db-tab-panel> Tab Panel 3 </db-tab-panel>
 </db-tabs>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-html",children:`<div
-  id="tabs-342107176704721"
+  id="tabs-21726766192760272"
   class="db-tabs"
   data-alignment="start"
   data-width="auto"
@@ -59135,7 +59135,7 @@ Tab Panel 3
   <section role="tabpanel" class="db-tab-panel">Tab Panel 2</section>
   <section role="tabpanel" class="db-tab-panel">Tab Panel 3</section>
 </div>`})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:e===`<div
-  id="tabs-342107176704721"
+  id="tabs-21726766192760272"
   class="db-tabs"
   data-alignment="start"
   data-width="auto"
@@ -59163,7 +59163,7 @@ Tab Panel 3
   <section role="tabpanel" class="db-tab-panel">Tab Panel 2</section>
   <section role="tabpanel" class="db-tab-panel">Tab Panel 3</section>
 </div>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<div
-  id="tabs-342107176704721"
+  id="tabs-21726766192760272"
   class="db-tabs"
   data-alignment="start"
   data-width="auto"
@@ -59191,7 +59191,7 @@ Tab Panel 3
   <section role="tabpanel" class="db-tab-panel">Tab Panel 2</section>
   <section role="tabpanel" class="db-tab-panel">Tab Panel 3</section>
 </div>`),navigator.clipboard.writeText(`<div
-  id="tabs-342107176704721"
+  id="tabs-21726766192760272"
   class="db-tabs"
   data-alignment="start"
   data-width="auto"
@@ -59375,7 +59375,7 @@ Tab Panel 3
   <db-tab-panel> Tab Panel 2 </db-tab-panel>
   <db-tab-panel> Tab Panel 3 </db-tab-panel>
 </db-tabs>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-html",children:`<div
-  id="tabs-2191143785631866"
+  id="tabs-03935172798332265"
   class="db-tabs"
   data-alignment="start"
   data-width="auto"
@@ -59403,7 +59403,7 @@ Tab Panel 3
   <section role="tabpanel" class="db-tab-panel">Tab Panel 2</section>
   <section role="tabpanel" class="db-tab-panel">Tab Panel 3</section>
 </div>`})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:e===`<div
-  id="tabs-2191143785631866"
+  id="tabs-03935172798332265"
   class="db-tabs"
   data-alignment="start"
   data-width="auto"
@@ -59431,7 +59431,7 @@ Tab Panel 3
   <section role="tabpanel" class="db-tab-panel">Tab Panel 2</section>
   <section role="tabpanel" class="db-tab-panel">Tab Panel 3</section>
 </div>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<div
-  id="tabs-2191143785631866"
+  id="tabs-03935172798332265"
   class="db-tabs"
   data-alignment="start"
   data-width="auto"
@@ -59459,7 +59459,7 @@ Tab Panel 3
   <section role="tabpanel" class="db-tab-panel">Tab Panel 2</section>
   <section role="tabpanel" class="db-tab-panel">Tab Panel 3</section>
 </div>`),navigator.clipboard.writeText(`<div
-  id="tabs-2191143785631866"
+  id="tabs-03935172798332265"
   class="db-tabs"
   data-alignment="start"
   data-width="auto"
@@ -59643,7 +59643,7 @@ Tab Panel 3
   <db-tab-panel> Tab Panel 2 </db-tab-panel>
   <db-tab-panel> Tab Panel 3 </db-tab-panel>
 </db-tabs>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-html",children:`<div
-  id="tabs-3251118942735831"
+  id="tabs-5462579384252396"
   class="db-tabs"
   data-orientation="horizontal"
   data-alignment="start"
@@ -59672,7 +59672,7 @@ Tab Panel 3
   <section role="tabpanel" class="db-tab-panel">Tab Panel 2</section>
   <section role="tabpanel" class="db-tab-panel">Tab Panel 3</section>
 </div>`})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:e===`<div
-  id="tabs-3251118942735831"
+  id="tabs-5462579384252396"
   class="db-tabs"
   data-orientation="horizontal"
   data-alignment="start"
@@ -59701,7 +59701,7 @@ Tab Panel 3
   <section role="tabpanel" class="db-tab-panel">Tab Panel 2</section>
   <section role="tabpanel" class="db-tab-panel">Tab Panel 3</section>
 </div>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<div
-  id="tabs-3251118942735831"
+  id="tabs-5462579384252396"
   class="db-tabs"
   data-orientation="horizontal"
   data-alignment="start"
@@ -59730,7 +59730,7 @@ Tab Panel 3
   <section role="tabpanel" class="db-tab-panel">Tab Panel 2</section>
   <section role="tabpanel" class="db-tab-panel">Tab Panel 3</section>
 </div>`),navigator.clipboard.writeText(`<div
-  id="tabs-3251118942735831"
+  id="tabs-5462579384252396"
   class="db-tabs"
   data-orientation="horizontal"
   data-alignment="start"
@@ -59915,7 +59915,7 @@ Tab Panel 3
   <db-tab-panel> Tab Panel 2 </db-tab-panel>
   <db-tab-panel> Tab Panel 3 </db-tab-panel>
 </db-tabs>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-html",children:`<div
-  id="tabs-6403232555628986"
+  id="tabs-6967599632260411"
   class="db-tabs"
   data-orientation="vertical"
   data-alignment="start"
@@ -59944,7 +59944,7 @@ Tab Panel 3
   <section role="tabpanel" class="db-tab-panel">Tab Panel 2</section>
   <section role="tabpanel" class="db-tab-panel">Tab Panel 3</section>
 </div>`})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:e===`<div
-  id="tabs-6403232555628986"
+  id="tabs-6967599632260411"
   class="db-tabs"
   data-orientation="vertical"
   data-alignment="start"
@@ -59973,7 +59973,7 @@ Tab Panel 3
   <section role="tabpanel" class="db-tab-panel">Tab Panel 2</section>
   <section role="tabpanel" class="db-tab-panel">Tab Panel 3</section>
 </div>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<div
-  id="tabs-6403232555628986"
+  id="tabs-6967599632260411"
   class="db-tabs"
   data-orientation="vertical"
   data-alignment="start"
@@ -60002,7 +60002,7 @@ Tab Panel 3
   <section role="tabpanel" class="db-tab-panel">Tab Panel 2</section>
   <section role="tabpanel" class="db-tab-panel">Tab Panel 3</section>
 </div>`),navigator.clipboard.writeText(`<div
-  id="tabs-6403232555628986"
+  id="tabs-6967599632260411"
   class="db-tabs"
   data-orientation="vertical"
   data-alignment="start"
@@ -60187,7 +60187,7 @@ Tab Panel 3
   <db-tab-panel> Tab Panel 2 </db-tab-panel>
   <db-tab-panel> Tab Panel 3 </db-tab-panel>
 </db-tabs>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-html",children:`<div
-  id="tabs-751412056637973"
+  id="tabs-4644730460986145"
   class="db-tabs"
   data-alignment="start"
   data-width="auto"
@@ -60215,7 +60215,7 @@ Tab Panel 3
   <section role="tabpanel" class="db-tab-panel">Tab Panel 2</section>
   <section role="tabpanel" class="db-tab-panel">Tab Panel 3</section>
 </div>`})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:e===`<div
-  id="tabs-751412056637973"
+  id="tabs-4644730460986145"
   class="db-tabs"
   data-alignment="start"
   data-width="auto"
@@ -60243,7 +60243,7 @@ Tab Panel 3
   <section role="tabpanel" class="db-tab-panel">Tab Panel 2</section>
   <section role="tabpanel" class="db-tab-panel">Tab Panel 3</section>
 </div>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<div
-  id="tabs-751412056637973"
+  id="tabs-4644730460986145"
   class="db-tabs"
   data-alignment="start"
   data-width="auto"
@@ -60271,7 +60271,7 @@ Tab Panel 3
   <section role="tabpanel" class="db-tab-panel">Tab Panel 2</section>
   <section role="tabpanel" class="db-tab-panel">Tab Panel 3</section>
 </div>`),navigator.clipboard.writeText(`<div
-  id="tabs-751412056637973"
+  id="tabs-4644730460986145"
   class="db-tabs"
   data-alignment="start"
   data-width="auto"
@@ -60455,7 +60455,7 @@ Tab Panel 3
   <db-tab-panel> Tab Panel 2 </db-tab-panel>
   <db-tab-panel> Tab Panel 3 </db-tab-panel>
 </db-tabs>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-html",children:`<div
-  id="tabs-6278373911217273"
+  id="tabs-6599282530515067"
   class="db-tabs"
   data-alignment="start"
   data-width="full"
@@ -60483,7 +60483,7 @@ Tab Panel 3
   <section role="tabpanel" class="db-tab-panel">Tab Panel 2</section>
   <section role="tabpanel" class="db-tab-panel">Tab Panel 3</section>
 </div>`})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:e===`<div
-  id="tabs-6278373911217273"
+  id="tabs-6599282530515067"
   class="db-tabs"
   data-alignment="start"
   data-width="full"
@@ -60511,7 +60511,7 @@ Tab Panel 3
   <section role="tabpanel" class="db-tab-panel">Tab Panel 2</section>
   <section role="tabpanel" class="db-tab-panel">Tab Panel 3</section>
 </div>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<div
-  id="tabs-6278373911217273"
+  id="tabs-6599282530515067"
   class="db-tabs"
   data-alignment="start"
   data-width="full"
@@ -60539,7 +60539,7 @@ Tab Panel 3
   <section role="tabpanel" class="db-tab-panel">Tab Panel 2</section>
   <section role="tabpanel" class="db-tab-panel">Tab Panel 3</section>
 </div>`),navigator.clipboard.writeText(`<div
-  id="tabs-6278373911217273"
+  id="tabs-6599282530515067"
   class="db-tabs"
   data-alignment="start"
   data-width="full"
@@ -60723,7 +60723,7 @@ Tab Panel 3
   <db-tab-panel> Tab Panel 2 </db-tab-panel>
   <db-tab-panel> Tab Panel 3 </db-tab-panel>
 </db-tabs>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-html",children:`<div
-  id="tabs-11545437454176455"
+  id="tabs-9292956832514889"
   class="db-tabs"
   data-alignment="center"
   data-width="full"
@@ -60751,7 +60751,7 @@ Tab Panel 3
   <section role="tabpanel" class="db-tab-panel">Tab Panel 2</section>
   <section role="tabpanel" class="db-tab-panel">Tab Panel 3</section>
 </div>`})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:e===`<div
-  id="tabs-11545437454176455"
+  id="tabs-9292956832514889"
   class="db-tabs"
   data-alignment="center"
   data-width="full"
@@ -60779,7 +60779,7 @@ Tab Panel 3
   <section role="tabpanel" class="db-tab-panel">Tab Panel 2</section>
   <section role="tabpanel" class="db-tab-panel">Tab Panel 3</section>
 </div>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<div
-  id="tabs-11545437454176455"
+  id="tabs-9292956832514889"
   class="db-tabs"
   data-alignment="center"
   data-width="full"
@@ -60807,7 +60807,7 @@ Tab Panel 3
   <section role="tabpanel" class="db-tab-panel">Tab Panel 2</section>
   <section role="tabpanel" class="db-tab-panel">Tab Panel 3</section>
 </div>`),navigator.clipboard.writeText(`<div
-  id="tabs-11545437454176455"
+  id="tabs-9292956832514889"
   class="db-tabs"
   data-alignment="center"
   data-width="full"
@@ -60991,7 +60991,7 @@ Tab Panel 3
   <db-tab-panel> Tab Panel 2 </db-tab-panel>
   <db-tab-panel> Tab Panel 3 </db-tab-panel>
 </db-tabs>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-html",children:`<div
-  id="tabs-5269336979015945"
+  id="tabs-13327722579022883"
   class="db-tabs"
   data-alignment="start"
   data-width="auto"
@@ -61019,7 +61019,7 @@ Tab Panel 3
   <section role="tabpanel" class="db-tab-panel">Tab Panel 2</section>
   <section role="tabpanel" class="db-tab-panel">Tab Panel 3</section>
 </div>`})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:e===`<div
-  id="tabs-5269336979015945"
+  id="tabs-13327722579022883"
   class="db-tabs"
   data-alignment="start"
   data-width="auto"
@@ -61047,7 +61047,7 @@ Tab Panel 3
   <section role="tabpanel" class="db-tab-panel">Tab Panel 2</section>
   <section role="tabpanel" class="db-tab-panel">Tab Panel 3</section>
 </div>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<div
-  id="tabs-5269336979015945"
+  id="tabs-13327722579022883"
   class="db-tabs"
   data-alignment="start"
   data-width="auto"
@@ -61075,7 +61075,7 @@ Tab Panel 3
   <section role="tabpanel" class="db-tab-panel">Tab Panel 2</section>
   <section role="tabpanel" class="db-tab-panel">Tab Panel 3</section>
 </div>`),navigator.clipboard.writeText(`<div
-  id="tabs-5269336979015945"
+  id="tabs-13327722579022883"
   class="db-tabs"
   data-alignment="start"
   data-width="auto"
@@ -61259,7 +61259,7 @@ Tab Panel 3
   <db-tab-panel> Tab Panel 2 </db-tab-panel>
   <db-tab-panel> Tab Panel 3 </db-tab-panel>
 </db-tabs>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-html",children:`<div
-  id="tabs-3193608274062182"
+  id="tabs-4046872446230342"
   class="db-tabs"
   data-scroll-behavior="arrows"
   data-alignment="start"
@@ -61288,7 +61288,7 @@ Tab Panel 3
   <section role="tabpanel" class="db-tab-panel">Tab Panel 2</section>
   <section role="tabpanel" class="db-tab-panel">Tab Panel 3</section>
 </div>`})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:e===`<div
-  id="tabs-3193608274062182"
+  id="tabs-4046872446230342"
   class="db-tabs"
   data-scroll-behavior="arrows"
   data-alignment="start"
@@ -61317,7 +61317,7 @@ Tab Panel 3
   <section role="tabpanel" class="db-tab-panel">Tab Panel 2</section>
   <section role="tabpanel" class="db-tab-panel">Tab Panel 3</section>
 </div>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<div
-  id="tabs-3193608274062182"
+  id="tabs-4046872446230342"
   class="db-tabs"
   data-scroll-behavior="arrows"
   data-alignment="start"
@@ -61346,7 +61346,7 @@ Tab Panel 3
   <section role="tabpanel" class="db-tab-panel">Tab Panel 2</section>
   <section role="tabpanel" class="db-tab-panel">Tab Panel 3</section>
 </div>`),navigator.clipboard.writeText(`<div
-  id="tabs-3193608274062182"
+  id="tabs-4046872446230342"
   class="db-tabs"
   data-scroll-behavior="arrows"
   data-alignment="start"
@@ -61531,7 +61531,7 @@ Tab Panel 3
   <db-tab-panel> Tab Panel 2 </db-tab-panel>
   <db-tab-panel> Tab Panel 3 </db-tab-panel>
 </db-tabs>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-html",children:`<div
-  id="tabs-9347957635366987"
+  id="tabs-305522804937008"
   class="db-tabs"
   data-alignment="start"
   data-width="auto"
@@ -61559,7 +61559,7 @@ Tab Panel 3
   <section role="tabpanel" class="db-tab-panel">Tab Panel 2</section>
   <section role="tabpanel" class="db-tab-panel">Tab Panel 3</section>
 </div>`})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:e===`<div
-  id="tabs-9347957635366987"
+  id="tabs-305522804937008"
   class="db-tabs"
   data-alignment="start"
   data-width="auto"
@@ -61587,7 +61587,7 @@ Tab Panel 3
   <section role="tabpanel" class="db-tab-panel">Tab Panel 2</section>
   <section role="tabpanel" class="db-tab-panel">Tab Panel 3</section>
 </div>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<div
-  id="tabs-9347957635366987"
+  id="tabs-305522804937008"
   class="db-tabs"
   data-alignment="start"
   data-width="auto"
@@ -61615,7 +61615,7 @@ Tab Panel 3
   <section role="tabpanel" class="db-tab-panel">Tab Panel 2</section>
   <section role="tabpanel" class="db-tab-panel">Tab Panel 3</section>
 </div>`),navigator.clipboard.writeText(`<div
-  id="tabs-9347957635366987"
+  id="tabs-305522804937008"
   class="db-tabs"
   data-alignment="start"
   data-width="auto"
@@ -61799,7 +61799,7 @@ Tab Panel 3
   <db-tab-panel> Tab Panel 2 </db-tab-panel>
   <db-tab-panel> Tab Panel 3 </db-tab-panel>
 </db-tabs>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-html",children:`<div
-  id="tabs-8775451621803835"
+  id="tabs-8143101901980461"
   class="db-tabs"
   data-alignment="start"
   data-width="auto"
@@ -61827,7 +61827,7 @@ Tab Panel 3
   <section role="tabpanel" class="db-tab-panel">Tab Panel 2</section>
   <section role="tabpanel" class="db-tab-panel">Tab Panel 3</section>
 </div>`})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:e===`<div
-  id="tabs-8775451621803835"
+  id="tabs-8143101901980461"
   class="db-tabs"
   data-alignment="start"
   data-width="auto"
@@ -61855,7 +61855,7 @@ Tab Panel 3
   <section role="tabpanel" class="db-tab-panel">Tab Panel 2</section>
   <section role="tabpanel" class="db-tab-panel">Tab Panel 3</section>
 </div>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<div
-  id="tabs-8775451621803835"
+  id="tabs-8143101901980461"
   class="db-tabs"
   data-alignment="start"
   data-width="auto"
@@ -61883,7 +61883,7 @@ Tab Panel 3
   <section role="tabpanel" class="db-tab-panel">Tab Panel 2</section>
   <section role="tabpanel" class="db-tab-panel">Tab Panel 3</section>
 </div>`),navigator.clipboard.writeText(`<div
-  id="tabs-8775451621803835"
+  id="tabs-8143101901980461"
   class="db-tabs"
   data-alignment="start"
   data-width="auto"
@@ -62067,7 +62067,7 @@ Tab Panel 3
   <db-tab-panel> Tab Panel 2 </db-tab-panel>
   <db-tab-panel> Tab Panel 3 </db-tab-panel>
 </db-tabs>`)},children:"Copy code"})]}),(0,N.jsxs)(ap.A,{children:[(0,N.jsx)(S.A,{content:"external",target:"_blank",href:"how-to-use?current=html",children:"How to use this in html"}),(0,N.jsx)("pre",{children:(0,N.jsx)("code",{className:"hljs language-html",children:`<div
-  id="tabs-2879531711210003"
+  id="tabs-45437406472327624"
   class="db-tabs"
   data-alignment="start"
   data-width="auto"
@@ -62095,7 +62095,7 @@ Tab Panel 3
   <section role="tabpanel" class="db-tab-panel">Tab Panel 2</section>
   <section role="tabpanel" class="db-tab-panel">Tab Panel 3</section>
 </div>`})}),(0,N.jsx)(M.A,{className:"copy-button",noText:!0,icon:e===`<div
-  id="tabs-2879531711210003"
+  id="tabs-45437406472327624"
   class="db-tabs"
   data-alignment="start"
   data-width="auto"
@@ -62123,7 +62123,7 @@ Tab Panel 3
   <section role="tabpanel" class="db-tab-panel">Tab Panel 2</section>
   <section role="tabpanel" class="db-tab-panel">Tab Panel 3</section>
 </div>`?"check":"copy",variant:"ghost",onClick:()=>{a(`<div
-  id="tabs-2879531711210003"
+  id="tabs-45437406472327624"
   class="db-tabs"
   data-alignment="start"
   data-width="auto"
@@ -62151,7 +62151,7 @@ Tab Panel 3
   <section role="tabpanel" class="db-tab-panel">Tab Panel 2</section>
   <section role="tabpanel" class="db-tab-panel">Tab Panel 3</section>
 </div>`),navigator.clipboard.writeText(`<div
-  id="tabs-2879531711210003"
+  id="tabs-45437406472327624"
   class="db-tabs"
   data-alignment="start"
   data-width="auto"
