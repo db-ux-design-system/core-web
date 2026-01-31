@@ -93,7 +93,14 @@ export default function DBDrawer(props: DBDrawerProps) {
 						] = 'close';
 					}
 					void delay(() => {
-						// _ref?.close();
+						if (
+							!('closedBy' in HTMLDialogElement.prototype) ||
+							props.position === 'absolute' ||
+							props.backdrop === 'none' ||
+							props.variant === 'inside'
+						) {
+							_ref?.close();
+						}
 					}, 401);
 				}
 			}
@@ -135,7 +142,7 @@ export default function DBDrawer(props: DBDrawerProps) {
 				props.backdrop === 'none' ||
 				props.variant === 'inside'
 					? undefined
-					: 'closerequest'
+					: 'any'
 			}>
 			<article
 				ref={dialogContainerRef}
