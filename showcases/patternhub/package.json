@@ -42,7 +42,7 @@
     "@mdx-js/react": "3.1.1",
     "@next/mdx": "16.1.6",
     "@types/dompurify": "3.2.0",
-    "@types/node": "25.0.10",
+    "@types/node": "25.1.0",
     "@types/react": "19.2.10",
     "@types/react-dom": "19.2.3",
     "esbuild": "0.27.2",
