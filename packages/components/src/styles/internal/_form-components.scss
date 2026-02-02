@@ -159,8 +159,10 @@ $db-min-inline-size: var(
 				padding-block-start: var(--db-base-body-icon-font-size-2xs);
 			}
 		}
+
 		$focus-within-selector: $selector;
-		@if ($selector == summary) {
+
+		@if $selector == summary {
 			$focus-within-selector: "";
 		}
 		&:has(
