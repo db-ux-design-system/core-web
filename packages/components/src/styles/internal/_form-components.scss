@@ -165,6 +165,7 @@ $db-min-inline-size: var(
 		@if $selector == summary {
 			$focus-within-selector: "";
 		}
+
 		&:has(
 			#{$focus-within-selector}:focus-within,
 			#{$selector}:is(input, textarea):not(:placeholder-shown),
