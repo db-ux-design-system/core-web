@@ -72,6 +72,12 @@ updates:
         patterns:
           - "eslint*"
           - "@eslint*"
+        update-types:
+          - "minor"
+          - "major"
+      typescript-eslint:
+        patterns:
+          - "@typescript-eslint/eslint-plugin"
           - "@typescript-eslint*"
         update-types:
           - "minor"
