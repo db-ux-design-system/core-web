@@ -27,7 +27,7 @@
     "eslint": "9.39.2",
     "eslint-plugin-react-hooks": "7.0.1",
     "eslint-plugin-react-refresh": "0.4.26",
-    "eslint-plugin-storybook": "10.2.1",
+    "eslint-plugin-storybook": "10.2.2",
     "globals": "17.2.0",
     "storybook": "10.2.1",
     "typescript": "~5.9.3",
