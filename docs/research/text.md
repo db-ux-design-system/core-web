@@ -1,0 +1,34 @@
+# DEV Research text
+
+## Overview
+
+| Design System                                                                           |                                           Component                                           | Comment                                                                                                                                                              |
+| --------------------------------------------------------------------------------------- | :-------------------------------------------------------------------------------------------: | -------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| [Atlassian Design System](https://bitbucket.org/atlassian/atlaskit/src/master/)         |             [text](https://atlassian.design/components/primitives/text/examples)              | `as` with `span (default)`, `p`, `strong`, `em`                                                                                                                      |
+| [Bootstrap](https://github.com/twbs/bootstrap)                                          |                   [text](https://getbootstrap.com/docs/4.3/utilities/text/)                   | only classes                                                                                                                                                         |
+| [GitHub Primer](https://github.com/primer/css)                                          |                     [text](https://primer.style/product/components/text/)                     | `as` with `span (default)` + all React.Elements, `whiteSpace` property                                                                                               |
+| [GitLab Pajamas](https://gitlab.com/gitlab-org/gitlab-services/design.gitlab.com)       |         [typography](https://design.gitlab.com/product-foundations/type-fundamentals)         | no direct component                                                                                                                                                  |
+| [HP Enterprise Grommet](https://github.com/grommet/grommet)                             |                              [text](https://v2.grommet.io/text)                               | `tag`` with`div (default)`,`skeleton`property,`truncate` property                                                                                                    |
+| [IBM Carbon](https://github.com/carbon-design-system/carbon)                            |          [typography](https://carbondesignsystem.com/elements/typography/overview/)           | no direct component                                                                                                                                                  |
+| [Material UI](https://github.com/mui/material-ui)                                       |                                              ❌                                               | --                                                                                                                                                                   |
+| [MongoDB.design](https://github.com/mongodb/design)                                     |          [typography](https://www.mongodb.design/component/typography/live-example)           | no direct component                                                                                                                                                  |
+| [Porsche Design System](https://github.com/porsche-design-system/porsche-design-system) |    [typography](https://designsystem.porsche.com/v3/tailwindcss/typography/examples/#text)    | only classes                                                                                                                                                         |
+| [SBB Lyne](https://github.com/lyne-design-system/lyne-components)                       |      [typography](https://lyne-storybook.app.sbb.ch/?path=/docs/styles-typography--docs)      | only classes                                                                                                                                                         |
+| [Shopify Polaris](https://github.com/Shopify/polaris)                                   |             [text](https://polaris-react.shopify.com/components/typography/text)              | `<Text variant="bodyLg" as="p">` variant + `as 'dt', 'dd' , 'h1' , 'h2' , 'h3' , 'h4' , 'h5' , 'h6' , 'p' , 'span' , 'strong' , 'legend'`, `visuallyHidden` property |
+| [SNCF Design System](https://gitlab.com/SNCF/wcs)                                       |            [text](https://designmetier-bootstrap.sncf.fr/docs/4.3/utilities/text/)            | only classes                                                                                                                                                         |
+| [Telefonica Mistica](https://github.com/Telefonica/mistica-web)                         | [typography](https://brandfactory.telefonica.com/d/iSp7b1DkYygv/n-a#/fundamentals/typography) | no direct component                                                                                                                                                  |
+| [Telekom Scale](https://github.com/telekom/scale)                                       |     [typography](https://telekom.github.io/scale/?path=/docs/guidelines-typography--page)     | no direct component                                                                                                                                                  |
+| [Washington Post Design System](https://build.washingtonpost.com/)                      |            [typography](https://build.washingtonpost.com/foundations/typography/)             | no direct component                                                                                                                                                  |
+
+## Conclusion
+
+- We should use `as` property with a default `span` or `p`
+- We need to check which HTML tags makes sense to control with the `<Text>` component:
+    - [del](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/del)??
+    - [dt](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/dt)??
+    - [dd](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/dd)??
+    - [ins](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/ins)??
+    - [legend](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/legend)??
+    - etc.
+- `visuallyHidden` as dev property might be a good idea
+- shall we use [`code`](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/code) as well??
