@@ -128,7 +128,7 @@
     "glob": "13.0.0",
     "http-server": "14.1.1",
     "husky": "9.1.7",
-    "jscpd": "4.0.7",
+    "jscpd": "4.0.8",
     "lint-staged": "16.2.7",
     "markdownlint-cli": "0.47.0",
     "ng-packagr": "20.3.2",
