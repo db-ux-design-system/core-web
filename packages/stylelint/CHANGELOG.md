@@ -1,9 +1,18 @@
 # @db-ux/core-stylelint
 
-## 4.3.1
+## 4.4.0
+
+### Patch Changes
+
+- refactor: extending `peerDependency` range to Stylelint 17 - [see commit 5a53df7](https://github.com/db-ux-design-system/core-web/commit/5a53df7cf6ff4862b95281befb58d46a76362dd4)
+
+## 4.3.2
 
 _version bump_
 
+## 4.3.1
+
+_version bump_
 
 ## 4.3.0
 
