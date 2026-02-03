@@ -1,0 +1,35 @@
+<app-default-component
+	title="DBBreadcrumb"
+	[variants]="variants"
+	[exampleTemplate]="exampleTemplate"
+>
+	<ng-template
+		#exampleTemplate
+		let-exampleProps="exampleProps"
+		let-exampleName="exampleName"
+		let-exampleIndex="exampleIndex"
+		let-variantIndex="variantIndex"
+	>
+		<db-breadcrumb
+			[size]="exampleProps?.size"
+			[separator]="exampleProps?.separator"
+			[maxItems]="exampleProps?.maxItems"
+			[items]="exampleProps?.items"
+			[ariaLabel]="
+				exampleProps?.ariaLabel ||
+				exampleName ||
+				exampleProps?.id ||
+				'Breadcrumb example ' + variantIndex + '-' + exampleIndex
+			"
+			[attr.aria-label]="
+				exampleProps?.ariaLabel ||
+				exampleName ||
+				exampleProps?.id ||
+				'Breadcrumb example ' + variantIndex + '-' + exampleIndex
+			"
+			[ellipsisAriaLabel]="exampleProps?.ellipsisAriaLabel"
+			[className]="exampleProps?.className"
+			[id]="exampleProps?.id"
+		></db-breadcrumb>
+	</ng-template>
+</app-default-component>

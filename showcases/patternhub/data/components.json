@@ -167,6 +167,21 @@
 				"label": "DBNavigationItem",
 				"name": "navigation-item",
 				"isHiddenInMenu": true
+			},
+			{
+				"label": "DBBreadcrumb",
+				"name": "breadcrumb",
+				"subNavigation": [
+					{
+						"label": "DBBreadcrumbItem Properties",
+						"path": "/components/breadcrumb-item/properties"
+					}
+				]
+			},
+			{
+				"label": "DBBreadcrumbItem",
+				"name": "breadcrumb-item",
+				"isHiddenInMenu": true
 			}
 		]
 	},

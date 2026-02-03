@@ -1,10 +1,17 @@
 <!-- TODO: Content Projection not working for nested components? -> Had to copy paste variant-cards... -->
 @if (variantRef) {
 	<db-card class="variants-card" [elevationLevel]="getElevation()">
+		<!-- Breadcrumb renders its own <nav>; suppress wrapper landmarks to avoid duplicates -->
 		<div
 			class="variants-list"
-			[attr.aria-label]="variantRef.role ? variantRef.name : undefined"
-			[attr.role]="variantRef.role"
+			[attr.aria-label]="
+				title === 'DBBreadcrumb'
+					? undefined
+					: variantRef.role
+						? variantRef.name
+						: undefined
+			"
+			[attr.role]="title === 'DBBreadcrumb' ? undefined : variantRef.role"
 		>
 			@for (
 				example of variantRef.examples;
@@ -55,12 +62,19 @@
 					class="variants-card"
 					[elevationLevel]="getElevation()"
 				>
+					<!-- Breadcrumb renders its own <nav>; suppress wrapper landmarks to avoid duplicates -->
 					<div
 						class="variants-list"
 						[attr.aria-label]="
-							variant.role ? variant.name : undefined
+							title === 'DBBreadcrumb'
+								? undefined
+								: variant.role
+									? variant.name
+									: undefined
 						"
-						[attr.role]="variant.role"
+						[attr.role]="
+							title === 'DBBreadcrumb' ? undefined : variant.role
+						"
 					>
 						@for (
 							example of variant.examples;

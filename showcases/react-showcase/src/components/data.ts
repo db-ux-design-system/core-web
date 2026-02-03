@@ -13,6 +13,8 @@ export const getVariants = (
 			],
 		examples: variant.examples.map((example, exampleIndex) => ({
 			...example,
+			// Ensure className from props is available on the example object
+			className: example.className ?? example.props?.className,
 			example: getExample({
 				...example.props,
 				id: example.props?.id ?? example.name,

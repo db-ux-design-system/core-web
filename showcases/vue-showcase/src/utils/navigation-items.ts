@@ -4,6 +4,8 @@ import AccordionItem from '../components/accordion-item/AccordionItem.vue';
 import Accordion from '../components/accordion/Accordion.vue';
 import Badge from '../components/badge/Badge.vue';
 import Brand from '../components/brand/Brand.vue';
+import BreadcrumbItem from '../components/breadcrumb-item/BreadcrumbItem.vue';
+import Breadcrumb from '../components/breadcrumb/breadcrumb.vue';
 import Card from '../components/card/Card.vue';
 import Checkbox from '../components/checkbox/Checkbox.vue';
 import CustomSelect from '../components/custom-select/CustomSelect.vue';
@@ -62,6 +64,16 @@ export const navigationItems: NavItem[] = [
 		path: '/05',
 		label: '05 Navigation',
 		subNavigation: getSortedNavigationItems([
+			{
+				path: '/05/breadcrumb',
+				label: 'Breadcrumb',
+				component: markRaw(Breadcrumb)
+			},
+			{
+				path: '/05/breadcrumb-item',
+				label: 'BreadcrumbItem',
+				component: markRaw(BreadcrumbItem)
+			},
 			{
 				path: '/05/navigation-item',
 				label: 'NavigationItem',

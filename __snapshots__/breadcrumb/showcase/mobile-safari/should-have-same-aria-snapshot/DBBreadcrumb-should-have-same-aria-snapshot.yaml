@@ -1,0 +1,66 @@
+- main:
+  - heading "DBBreadcrumb" [level=1]
+  - link "Size"
+  - navigation "Breadcrumb size small":
+    - list:
+      - listitem:
+        - link "Home"
+      - listitem:
+        - link "Category"
+      - listitem:
+        - link "Current Page"
+  - navigation "Breadcrumb size medium":
+    - list:
+      - listitem:
+        - link "Home"
+      - listitem:
+        - link "Category"
+      - listitem: Current Page
+  - link "Separator"
+  - navigation "Breadcrumb separator chevron":
+    - list:
+      - listitem:
+        - link "Home"
+      - listitem:
+        - link "Category"
+      - listitem: Current Page
+  - navigation "Breadcrumb separator slash":
+    - list:
+      - listitem:
+        - link "Home"
+      - listitem:
+        - text: /
+        - link "Category"
+      - listitem: / Current Page
+  - link "Collapsed"
+  - navigation "Breadcrumb collapsed":
+    - list:
+      - listitem:
+        - link "Root"
+      - listitem:
+        - button "Expand to show all breadcrumb items": …
+      - listitem:
+        - link "Path 3"
+      - listitem:
+        - link "Current Page"
+  - link "Icons"
+  - navigation "Breadcrumb icons small":
+    - list:
+      - listitem:
+        - link "Root"
+      - listitem:
+        - link "Settings"
+      - listitem:
+        - link "Profile"
+      - listitem:
+        - link "Notifications"
+  - navigation "Breadcrumb icons medium":
+    - list:
+      - listitem:
+        - link "Root"
+      - listitem:
+        - link "Settings"
+      - listitem:
+        - link "Profile"
+      - listitem:
+        - link "Notifications"
