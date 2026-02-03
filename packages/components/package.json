@@ -55,14 +55,14 @@
     "@builder.io/eslint-plugin-mitosis": "0.0.17",
     "@builder.io/mitosis": "0.13.0",
     "@builder.io/mitosis-cli": "0.13.0",
-    "@typescript-eslint/eslint-plugin": "8.53.1",
+    "@typescript-eslint/eslint-plugin": "8.54.0",
     "cpr": "3.0.1",
     "cssnano": "7.1.2",
     "hygen": "6.2.11",
     "nodemon": "3.1.11",
     "sass": "1.85.1",
     "sassdoc": "2.7.4",
-    "storybook": "10.2.0",
+    "storybook": "10.2.4",
     "tsx": "4.21.0"
   },
   "publishConfig": {
