@@ -57,6 +57,15 @@ export const waitForDBPage = async (page: Page) => {
 	await expect(dbPage).not.toHaveAttribute('data-fonts-loaded', 'false');
 	await expect(dbPage).toHaveCSS('opacity', '1');
 	await expect(page.locator('html')).toHaveCSS('overflow', 'hidden');
+
+	// Force Arial font for all elements to ensure consistent rendering across environments
+	await page.addStyleTag({
+		content: `
+			* {
+				font-family: Arial, sans-serif !important;
+			}
+		`
+	});
 };
 
 const gotoPage = async (
