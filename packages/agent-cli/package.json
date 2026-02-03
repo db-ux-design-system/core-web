@@ -28,7 +28,7 @@
     "test:update": "vitest run --config vitest.config.ts --update"
   },
   "dependencies": {
-    "commander": "14.0.2"
+    "commander": "14.0.3"
   },
   "devDependencies": {
     "cpr": "3.0.1",
