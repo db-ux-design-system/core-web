@@ -24,10 +24,6 @@
 
 - We should use a `<DBHeading>` component with `as` property and use a `<Show when={props.as === "h1"}><h1>{children}</h1></Show>`
 
-### Questions for dev
-
-- How to handle DB Pulse??
-- Shall we add auto-spacing as dev property (h1+h2, add margin)??
 
 ### Questions for design
 
