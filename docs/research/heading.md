@@ -25,7 +25,3 @@
 - We should use a `<DBHeading>` component with `as` property and use a `<Show when={props.as === "h1"}><h1>{children}</h1></Show>`
 
 
-### Questions for design
-
-- Shall we really add the margins as property or use stack?
-- Fluid Styles might be a cool feature?
