@@ -4,11 +4,11 @@
 
 | Design System                                                                           |                                              Component                                               | Comment                                                                |
 | --------------------------------------------------------------------------------------- | :--------------------------------------------------------------------------------------------------: | ---------------------------------------------------------------------- |
-| [Atlassian Design System](https://bitbucket.org/atlassian/atlaskit/src/master/)         |                   [heading](https://atlassian.design/components/heading/examples)                    | `<h1-h6>` based on `as`, arrangement with other text styles with stack |
+| [Atlassian Design System](https://bitbucket.org/atlassian/atlaskit/src/master/)         |                   [heading](https://atlassian.design/components/heading/examples)                    | `<h1-h6>` based on `as` property, arrangement with other text styles with stack |
 | [Bootstrap](https://github.com/twbs/bootstrap)                                          |              [headings](https://getbootstrap.com/docs/4.3/content/typography/#headings)              | no extra component, only class to change visual                        |
-| [GitHub Primer](https://github.com/primer/css)                                          |                     [heading](https://primer.style/product/components/heading/)                      | `<h1-h6>` based on `as`                                                |
+| [GitHub Primer](https://github.com/primer/css)                                          |                     [heading](https://primer.style/product/components/heading/)                      | `<h1-h6>` based on `as` property                                       |
 | [GitLab Pajamas](https://gitlab.com/gitlab-org/gitlab-services/design.gitlab.com)       |             [type-headings](https://design.gitlab.com/product-foundations/type-headings)             | no extra component, only class to change visual                        |
-| [HP Enterprise Grommet](https://github.com/grommet/grommet)                             |                               [heading](https://v2.grommet.io/heading)                               | `<h1-h6>` based on `as`                                                |
+| [HP Enterprise Grommet](https://github.com/grommet/grommet)                             |                               [heading](https://v2.grommet.io/heading)                               | `<h1-h6>` based on `as` property                                                |
 | [IBM Carbon](https://github.com/carbon-design-system/carbon)                            | [heading-styles](https://carbondesignsystem.com/elements/typography/type-sets/#fixed-heading-styles) | no extra component, breakpoint based size changes (fluid styles)       |
 | [Material UI](https://github.com/mui/material-ui)                                       |                  [Typography](https://mui.com/material-ui/react-typography/#usage)                   | `<h1-h6>` based on `variant`                                           |
 | [MongoDB.design](https://github.com/mongodb/design)                                     |              [typography](https://www.mongodb.design/component/typography/live-example)              | no extra component                                                     |
@@ -22,7 +22,7 @@
 
 ## Conclusion
 
-- We should use a `<DBHeading>` component with `as` and use a `<Show when={props.as === "h1"}><h1>{children}</h1></Show>`
+- We should use a `<DBHeading>` component with `as` property and use a `<Show when={props.as === "h1"}><h1>{children}</h1></Show>`
 
 ### Questions for dev
 
