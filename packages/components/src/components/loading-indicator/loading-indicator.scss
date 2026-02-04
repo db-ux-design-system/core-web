@@ -1,0 +1,452 @@
+@use "@db-ux/core-foundations/build/styles/animation";
+@use "@db-ux/core-foundations/build/styles/variables";
+@use "@db-ux/core-foundations/build/styles/colors";
+@use "@db-ux/core-foundations/build/styles/fonts";
+@use "@db-ux/core-foundations/build/styles/icons";
+@use "../../styles/dialog-init";
+
+$stroke-dasharray: calc(
+	var(--circle) * 2 + var(--stroke-width) + var(--radius)
+);
+$stroke-segment-length: calc(
+	#{$stroke-dasharray} - (var(--circle) / 2 - var(--stroke-width))
+);
+
+%text-container {
+	div {
+		display: flex;
+
+		> label {
+			@extend %db-overwrite-font-size-xs;
+
+			color: colors.$db-adaptive-on-bg-basic-emphasis-80-default;
+			display: inline-flex;
+			align-items: center;
+
+			> progress {
+				display: none;
+			}
+		}
+
+		> span {
+			@extend %db-overwrite-font-size-2xs;
+
+			color: colors.$db-adaptive-on-bg-basic-emphasis-90-default;
+		}
+	}
+
+	&:not([data-variant]),
+	&[data-variant="inline"] {
+		flex-direction: row;
+
+		div {
+			flex-direction: column;
+		}
+	}
+
+	&[data-variant="progress-bar"],
+	&[data-variant="onsite"] {
+		flex-direction: column;
+	}
+
+	&[data-variant="onsite"] {
+		div {
+			> span {
+				position: absolute;
+				inset-block-start: calc(
+					var(--db-loading-indicator-spinner-inline-size) / 2
+				);
+				inset-inline-start: calc(
+					var(--db-loading-indicator-spinner-inline-size) / 2
+				);
+				transform: translate(-50%, -50%);
+			}
+		}
+	}
+
+	[data-show-label="false"],
+	[data-show-progress-text="false"] {
+		display: none;
+	}
+}
+
+%spinner {
+	&:not([data-state]),
+	&[data-state="active"] {
+		&:not([data-indeterminate]),
+		&[data-indeterminate="true"] {
+			svg {
+				@media screen and (prefers-reduced-motion: no-preference) {
+					animation: rotate 1.5s linear 0s infinite normal none
+						running;
+				}
+			}
+
+			.db-loading-indicator-circle-segment {
+				stroke-dasharray: $stroke-dasharray;
+				stroke-dashoffset: $stroke-segment-length;
+			}
+		}
+
+		&[data-indeterminate="false"] {
+			.db-loading-indicator-circle-segment {
+				stroke-dasharray: $stroke-dasharray;
+				stroke-dashoffset: calc(
+					-1 *
+						var(--db-loading-indicator-circle-segment-offset, 100) *
+						#{$stroke-dasharray}
+				);
+			}
+		}
+	}
+
+	&[data-indeterminate="false"] {
+		svg {
+			transform: rotate(-90deg);
+		}
+	}
+
+	svg {
+		aspect-ratio: 1;
+		inline-size: var(--db-loading-indicator-spinner-inline-size, 1lh);
+	}
+
+	&:not([data-variant]),
+	&[data-variant="inline"] {
+		svg {
+			--radius: 6px; // This is the size based on the viewBox of the <svg>
+			--circle: 20px; // This is the size based on the viewBox of the <svg>
+			--stroke-width: 4px;
+		}
+
+		&[data-size="small"] {
+			svg {
+				@extend %db-overwrite-font-size-sm;
+			}
+
+			div > label::before {
+				@extend %db-overwrite-font-size-xs;
+			}
+		}
+
+		&:not([data-size]),
+		&[data-size="medium"] {
+			svg {
+				@extend %db-overwrite-font-size-md;
+			}
+
+			div > label::before {
+				@extend %db-overwrite-font-size-sm;
+			}
+		}
+	}
+
+	&[data-variant="onsite"] {
+		svg {
+			--radius: 27px; // This is the size based on the viewBox of the <svg>
+			--circle: 64px; // This is the size based on the viewBox of the <svg>
+			--stroke-width: 10px;
+		}
+
+		&[data-size="small"] {
+			--db-loading-indicator-spinner-inline-size: #{variables.$db-sizing-md};
+		}
+
+		&:not([data-size]),
+		&[data-size="medium"] {
+			--db-loading-indicator-spinner-inline-size: #{variables.$db-sizing-lg};
+		}
+	}
+
+	circle {
+		cx: var(--circle);
+		cy: var(--circle);
+		r: var(--radius);
+		stroke-width: var(--stroke-width);
+		stroke-linecap: round;
+		fill: none;
+	}
+
+	.db-loading-indicator-circle-track {
+		stroke: var(--db-loading-indicator-track-color);
+	}
+
+	.db-loading-indicator-circle-segment {
+		stroke: var(--db-loading-indicator-segment-color);
+	}
+}
+
+@keyframes wobbling {
+	50% {
+		inset-inline-start: 100%;
+		transform: translateX(calc(-100% - 2px));
+	}
+}
+
+%progress-bar {
+	inline-size: 100%;
+
+	&[data-size="small"] {
+		div {
+			&::before,
+			&::after {
+				--db-loading-indicator-progress-bar-track-block-size: #{variables.$db-sizing-3xs};
+			}
+		}
+	}
+
+	&:not([data-size]),
+	&[data-size="medium"] {
+		div {
+			&::before,
+			&::after {
+				--db-loading-indicator-progress-bar-track-block-size: #{variables.$db-sizing-2xs};
+			}
+		}
+	}
+
+	div {
+		&::before,
+		&::after {
+			content: "";
+			border-radius: variables.$db-border-radius-sm;
+			position: absolute;
+			inset-inline-start: 0;
+		}
+		&::before {
+			inline-size: 100%;
+			min-inline-size: variables.$db-sizing-md;
+			inset-block-start: 0;
+			block-size: var(
+				--db-loading-indicator-progress-bar-track-block-size
+			);
+			background-color: var(--db-loading-indicator-track-color);
+		}
+		&::after {
+			--db-loading-indicator-progress-bar-segment-padding: 2px;
+			z-index: 1;
+			inline-size: 25%;
+			inset-block-start: var(
+				--db-loading-indicator-progress-bar-segment-padding
+			);
+			block-size: calc(
+				var(--db-loading-indicator-progress-bar-track-block-size) - 2 *
+					var(--db-loading-indicator-progress-bar-segment-padding)
+			);
+			background-color: var(--db-loading-indicator-segment-color);
+			animation: wobbling 2.5s infinite linear;
+		}
+
+		// Provide space for the progress bar because it is absolute
+		padding-block-start: calc(
+			#{variables.$db-sizing-2xs} + var(--db-indicator-gap)
+		);
+
+		position: relative;
+		flex-direction: row;
+		justify-content: space-between;
+		gap: variables.$db-spacing-fixed-md;
+		inline-size: 100%;
+		align-items: center;
+
+		> label {
+			align-self: flex-start;
+		}
+	}
+}
+
+@mixin get-state-icon($name) {
+	@include icons.to-filled-icon;
+	@include icons.set-icon($name);
+	@include icons.variant-icons($name);
+
+	&::before {
+		--db-icon-color: var(--db-#{$name}-on-bg-basic-emphasis-70-default);
+	}
+}
+
+%states {
+	&:not([data-state="successful"], [data-state="critical"]) {
+		--db-loading-indicator-track-color: #{colors.$db-adaptive-bg-basic-transparent-semi-default};
+		--db-loading-indicator-segment-color: #{colors.$db-adaptive-on-bg-basic-emphasis-70-default};
+
+		--db-loading-indicator-track-color-overlay: #{colors.$db-adaptive-bg-basic-level-1-default};
+		--db-loading-indicator-segment-color-overlay: #{colors.$db-adaptive-on-bg-basic-emphasis-100-default};
+	}
+
+	&[data-state="inactive"] {
+		&:not([data-variant]),
+		&[data-variant="inline"],
+		&[data-variant="onsite"] {
+			.db-loading-indicator-circle-segment {
+				display: none;
+			}
+		}
+	}
+
+	@each $name in (successful, critical) {
+		&[data-state="#{$name}"] {
+			--db-loading-indicator-track-color: var(
+				--db-#{$name}-bg-basic-transparent-semi-default
+			);
+			--db-loading-indicator-segment-color: var(
+				--db-#{$name}-on-bg-basic-emphasis-70-default
+			);
+
+			&:not([data-variant]),
+			&[data-variant="inline"] {
+				svg {
+					display: none;
+				}
+			}
+
+			div {
+				> label {
+					@include get-state-icon($name);
+					color: var(--db-#{$name}-on-bg-basic-emphasis-90-default);
+
+					&::before {
+						--db-icon-margin-end: var(--db-indicator-gap);
+					}
+				}
+			}
+		}
+	}
+}
+
+@mixin overwrite-loading-colors($overlay: true) {
+	$overwrite: "";
+
+	@if ($overlay) {
+		$overwrite: "-overlay";
+	}
+
+	.db-loading-indicator-circle-track {
+		stroke: var(--db-loading-indicator-track-color#{$overwrite});
+	}
+
+	.db-loading-indicator-circle-segment {
+		stroke: var(--db-loading-indicator-segment-color#{$overwrite});
+	}
+}
+
+%hide-label-and-progress-text {
+	div {
+		label,
+		span {
+			display: none;
+		}
+	}
+}
+
+%overlay {
+	&:not([data-overlay="true"]) {
+		position: relative;
+		block-size: fit-content;
+	}
+
+	&[data-overlay="true"] {
+		// Hide label and progress when overlay
+		@extend %hide-label-and-progress-text;
+		position: absolute;
+		inset: 0;
+		border-radius: inherit;
+		@include overwrite-loading-colors();
+
+		&::before {
+			content: "";
+			position: absolute;
+			inset: 0;
+			border-radius: inherit;
+			background-color: dialog-init.$backdrop-color-strong;
+		}
+	}
+}
+
+*:has(
+	> .db-loading-indicator[data-overlay="true"],
+	> db-loading-indicator > .db-loading-indicator[data-overlay="true"]
+) {
+	position: relative;
+
+	&:is(button) {
+		.db-loading-indicator:not(
+			[data-variant="progress-bar"],
+			[data-variant="onsite"]
+		) {
+			&::before {
+				z-index: 1;
+				background-color: inherit;
+			}
+
+			&::after {
+				z-index: 0;
+				content: "";
+				position: absolute;
+				inset: 0;
+				border-radius: inherit;
+				background-color: colors.$db-adaptive-bg-basic-level-1-default;
+			}
+
+			svg {
+				z-index: 2;
+			}
+
+			@include overwrite-loading-colors(false);
+		}
+	}
+}
+
+:is(button):has(
+	> .db-loading-indicator:not([data-overlay="true"]):not(
+			[data-variant="progress-bar"],
+			[data-variant="onsite"]
+		),
+	> db-loading-indicator
+		> .db-loading-indicator:not([data-overlay="true"]):not(
+			[data-variant="progress-bar"],
+			[data-variant="onsite"]
+		)
+) {
+	&[data-icon],
+	&[data-icon-before] {
+		&::before {
+			display: none;
+		}
+	}
+	&[data-icon-after] {
+		&::after {
+			display: none;
+		}
+	}
+
+	.db-loading-indicator:not(
+		[data-variant="progress-bar"],
+		[data-variant="onsite"]
+	) {
+		// Hide label and progress inside a button
+		@extend %hide-label-and-progress-text;
+		margin-inline-end: variables.$db-spacing-fixed-xs; // same margin like a icon
+	}
+}
+
+.db-loading-indicator {
+	--db-indicator-gap: #{variables.$db-spacing-fixed-2xs};
+	@extend %text-container;
+	@extend %states;
+	@extend %overlay;
+	display: flex;
+	gap: var(--db-indicator-gap);
+	align-items: center;
+	justify-content: center;
+
+	&:not([data-variant]),
+	&[data-variant="inline"],
+	&[data-variant="onsite"] {
+		@extend %spinner;
+	}
+
+	&[data-variant="progress-bar"] {
+		@extend %progress-bar;
+	}
+}

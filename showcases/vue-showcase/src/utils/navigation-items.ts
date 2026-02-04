@@ -1,3 +1,5 @@
+import LoadingIndicator from '../components/loading-indicator/LoadingIndicator.vue';
+
 import { markRaw } from 'vue';
 import type { RouteRecordRaw } from 'vue-router';
 import AccordionItem from '../components/accordion-item/AccordionItem.vue';
@@ -45,6 +47,12 @@ export const getSortedNavigationItems = (navigationItems: NavItem[]): any[] =>
 	);
 
 export const navigationItems: NavItem[] = [
+	{
+		path: '/loading-indicator',
+		label: 'LoadingIndicator',
+		component: LoadingIndicator
+	},
+
 	{
 		path: '/06',
 		label: '06 Feedback',

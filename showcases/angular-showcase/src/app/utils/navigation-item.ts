@@ -1,3 +1,5 @@
+import { LoadingIndicatorComponent } from '../components/loading-indicator/loading-indicator.component';
+
 import { Routes } from '@angular/router';
 import { AccordionItemComponent } from '../components/accordion-item/accordion-item.component';
 import { AccordionComponent } from '../components/accordion/accordion.component';
@@ -43,6 +45,8 @@ export const getSortedNavigationItems = (navigationItems: NavItem[]): any[] =>
 	);
 
 export const NAVIGATION_ITEMS: NavItem[] = [
+{ path: 'loading-indicator', label: 'LoadingIndicator', component: LoadingIndicatorComponent },
+
 	{
 		path: '06',
 		label: '06 Feedback',

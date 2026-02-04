@@ -1,0 +1,160 @@
+[
+	{
+		"name": "Density",
+		"examples": [
+			{
+				"name": "Functional",
+				"density": "functional",
+				"props": {}
+			},
+			{
+				"name": "(Default) Regular",
+				"density": "regular",
+				"props": {}
+			},
+			{
+				"name": "Expressive",
+				"density": "expressive",
+				"props": {}
+			}
+		]
+	},
+	{
+		"name": "Indeterminate",
+		"examples": [
+			{
+				"name": "(Default) True",
+				"props": {
+					"indeterminate": true
+				}
+			},
+			{
+				"name": "False",
+				"props": {
+					"indeterminate": false,
+					"value": 10,
+					"max": 42,
+					"state": "active"
+				}
+			}
+		]
+	},
+	{
+		"name": "Size",
+		"examples": [
+			{
+				"name": "Small",
+				"props": {
+					"size": "small"
+				}
+			},
+			{
+				"name": "(Default) Medium",
+				"props": {
+					"size": "medium"
+				}
+			}
+		]
+	},
+	{
+		"name": "State",
+		"examples": [
+			{
+				"name": "Inactive",
+				"props": {
+					"state": "inactive"
+				}
+			},
+			{
+				"name": "Active",
+				"props": {
+					"state": "active"
+				}
+			},
+			{
+				"name": "Successful",
+				"props": {
+					"state": "successful"
+				}
+			},
+			{
+				"name": "Critical",
+				"props": {
+					"state": "critical"
+				}
+			}
+		]
+	},
+	{
+		"name": "Show Label",
+		"examples": [
+			{
+				"name": "(Default) True",
+				"props": {
+					"showLabel": true
+				}
+			},
+			{
+				"name": "False",
+				"props": {
+					"showLabel": false
+				}
+			}
+		]
+	},
+	{
+		"name": "Show Progress Text",
+		"examples": [
+			{
+				"name": "(Default) True",
+				"props": {
+					"showProgressText": true,
+					"indeterminate": false
+				}
+			},
+			{
+				"name": "False",
+				"props": {
+					"showProgressText": false,
+					"indeterminate": false
+				}
+			}
+		]
+	},
+	{
+		"name": "Overlay",
+		"examples": [
+			{
+				"name": "(Default) False",
+				"props": {
+					"overlay": false
+				}
+			},
+			{
+				"name": "True",
+				"props": {
+					"overlay": true
+				}
+			}
+		]
+	},
+	{
+		"name": "Examples: Button",
+		"examples": [
+			{
+				"name": "Without overlay",
+				"props": {
+					"overlay": false,
+					"example": "button"
+				}
+			},
+			{
+				"name": "With overlay",
+				"props": {
+					"overlay": true,
+					"example": "button"
+				}
+			}
+		]
+	}
+]

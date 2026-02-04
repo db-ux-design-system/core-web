@@ -29,6 +29,10 @@ export type Component = {
 };
 
 export const getComponents = (): Component[] => [
+  {
+    name: "loading-indicator"
+  },
+
 	{
 		name: 'stack'
 	},

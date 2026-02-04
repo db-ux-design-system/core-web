@@ -1,3 +1,5 @@
+import { DBLoadingIndicator } from '../../../../output/react/src/index';
+
 import { useEffect, useState } from 'react';
 import {
 	DBAccordion,
@@ -345,6 +347,14 @@ const ComponentSwitch = ({
 			<DBCustomSelect className={className} {...props}>
 				{resolvedContent}
 			</DBCustomSelect>
+		);
+	}
+
+	if (type === 'loading-indicator') {
+		return (
+			<DBLoadingIndicator className={className} {...props}>
+				{resolvedContent}
+			</DBLoadingIndicator>
 		);
 	}
 

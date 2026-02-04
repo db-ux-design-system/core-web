@@ -1,3 +1,5 @@
+import LoadingIndicatorComponent from '../components/loading-indicator';
+
 import AccordionComponent from '../components/accordion';
 import AccordionItemComponent from '../components/accordion-item';
 import BadgeComponent from '../components/badge';
@@ -53,7 +55,12 @@ export const NAVIGATION_ITEMS: NavigationItem[] = [
 				label: 'Notification',
 				component: <NotificationComponent />
 			},
-			{ path: 'badge', label: 'Badge', component: <BadgeComponent /> }
+			{ path: 'badge', label: 'Badge', component: <BadgeComponent /> },
+			{
+				path: 'loading-indicator',
+				label: 'LoadingIndicator',
+				component: <LoadingIndicatorComponent />
+			}
 		])
 	},
 

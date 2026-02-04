@@ -1,5 +1,10 @@
 [
 	{
+		"label": "TODO: Add to specific category; DBLoadingIndicator",
+		"name": "loading-indicator",
+	},
+
+	{
 		"label": "Action",
 		"name": "action",
 		"path": "/components/action",

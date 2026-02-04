@@ -229,3 +229,11 @@ main .db-header {
 	color: var(--db-successful-on-bg-basic-emphasis-100-default);
 	padding-inline: var(--db-spacing-fixed-xs);
 }
+
+.loading-indicator-grid {
+	overflow: hidden;
+	display: grid;
+	justify-items: center;
+	grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+	gap: var(--db-spacing-fixed-md);
+}
