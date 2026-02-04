@@ -1,4 +1,5 @@
 import {
+	DelayProps,
 	GlobalProps,
 	GlobalState,
 	ShowLabelProps,
@@ -32,7 +33,7 @@ export type DBLoadingIndicatorDefaultProps = {
 	 * Enables/disables the visibility of the progressText
 	 */
 	showProgressText?: boolean | string;
-	value?: string | string[] | number;
+	value?: string | number;
 
 	overlay?: boolean | string;
 
@@ -44,15 +45,20 @@ export type DBLoadingIndicatorDefaultProps = {
 	 * Disable the parent component (e.g. a DBButton) when loading indicator is inside it
 	 */
 	autoDisable?: boolean | string;
+
+	role?: 'alert' | 'status' | 'none';
 };
 
 export type DBLoadingIndicatorProps = DBLoadingIndicatorDefaultProps &
 	GlobalProps &
 	SizeProps &
-	ShowLabelProps;
+	ShowLabelProps &
+	DelayProps;
 
 export type DBLoadingIndicatorDefaultState = {
+	getPercentage: () => string | undefined;
 	getState: () => LoadingIndicatorStateType;
+	getRole: () => string | undefined;
 };
 
 export type DBLoadingIndicatorState = DBLoadingIndicatorDefaultState &

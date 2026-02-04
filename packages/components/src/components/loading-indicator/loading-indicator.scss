@@ -4,12 +4,17 @@
 @use "@db-ux/core-foundations/build/styles/fonts";
 @use "@db-ux/core-foundations/build/styles/icons";
 @use "../../styles/dialog-init";
+@use "../../styles/internal/loading";
 
-$stroke-dasharray: calc(
+$stroke-dasharray-inline: calc(var(--circle) * 2 - var(--stroke-width));
+$stroke-dasharray-onsite: calc(
 	var(--circle) * 2 + var(--stroke-width) + var(--radius)
 );
-$stroke-segment-length: calc(
-	#{$stroke-dasharray} - (var(--circle) / 2 - var(--stroke-width))
+$stroke-segment-length: calc((var(--circle) / 2 - var(--stroke-width)));
+
+$db-loading-indicator-track-color: color(
+	from var(--db-loading-indicator-segment-color) srgb r g b /
+		#{variables.$db-opacity-2xs}
 );
 
 %text-container {
@@ -53,6 +58,7 @@ $stroke-segment-length: calc(
 		div {
 			> span {
 				position: absolute;
+				// Center the progress text inside the spinner
 				inset-block-start: calc(
 					var(--db-loading-indicator-spinner-inline-size) / 2
 				);
@@ -82,20 +88,42 @@ $stroke-segment-length: calc(
 				}
 			}
 
-			.db-loading-indicator-circle-segment {
-				stroke-dasharray: $stroke-dasharray;
-				stroke-dashoffset: $stroke-segment-length;
+			&:not([data-variant]),
+			&[data-variant="inline"] {
+				.db-loading-indicator-circle-segment {
+					stroke-dashoffset: calc(
+						#{$stroke-dasharray-inline} - #{$stroke-segment-length}
+					);
+				}
+			}
+
+			&[data-variant="onsite"] {
+				.db-loading-indicator-circle-segment {
+					stroke-dashoffset: calc(
+						#{$stroke-dasharray-onsite} - #{$stroke-segment-length}
+					);
+				}
 			}
 		}
 
 		&[data-indeterminate="false"] {
-			.db-loading-indicator-circle-segment {
-				stroke-dasharray: $stroke-dasharray;
-				stroke-dashoffset: calc(
-					-1 *
-						var(--db-loading-indicator-circle-segment-offset, 100) *
-						#{$stroke-dasharray}
-				);
+			&:not([data-variant]),
+			&[data-variant="inline"] {
+				.db-loading-indicator-circle-segment {
+					stroke-dashoffset: calc(
+						(1 - var(--db-loading-indicator-percentage, 0)) *
+							#{$stroke-dasharray-inline}
+					);
+				}
+			}
+
+			&[data-variant="onsite"] {
+				.db-loading-indicator-circle-segment {
+					stroke-dashoffset: calc(
+						(1 - var(--db-loading-indicator-percentage, 0)) *
+							#{$stroke-dasharray-onsite}
+					);
+				}
 			}
 		}
 	}
@@ -117,6 +145,10 @@ $stroke-segment-length: calc(
 			--radius: 6px; // This is the size based on the viewBox of the <svg>
 			--circle: 20px; // This is the size based on the viewBox of the <svg>
 			--stroke-width: 4px;
+		}
+
+		.db-loading-indicator-circle-segment {
+			stroke-dasharray: $stroke-dasharray-inline;
 		}
 
 		&[data-size="small"] {
@@ -142,6 +174,10 @@ $stroke-segment-length: calc(
 	}
 
 	&[data-variant="onsite"] {
+		.db-loading-indicator-circle-segment {
+			stroke-dasharray: $stroke-dasharray-onsite;
+		}
+
 		svg {
 			--radius: 27px; // This is the size based on the viewBox of the <svg>
 			--circle: 64px; // This is the size based on the viewBox of the <svg>
@@ -150,6 +186,13 @@ $stroke-segment-length: calc(
 
 		&[data-size="small"] {
 			--db-loading-indicator-spinner-inline-size: #{variables.$db-sizing-md};
+
+			div {
+				> span {
+					// Hide progress text for onsite spinner, as it is centered inside the spinner and can overlap with the segment
+					display: none;
+				}
+			}
 		}
 
 		&:not([data-size]),
@@ -168,7 +211,7 @@ $stroke-segment-length: calc(
 	}
 
 	.db-loading-indicator-circle-track {
-		stroke: var(--db-loading-indicator-track-color);
+		stroke: $db-loading-indicator-track-color;
 	}
 
 	.db-loading-indicator-circle-segment {
@@ -176,12 +219,9 @@ $stroke-segment-length: calc(
 	}
 }
 
-@keyframes wobbling {
-	50% {
-		inset-inline-start: 100%;
-		transform: translateX(calc(-100% - 2px));
-	}
-}
+$progress-bar-full-segment-inline-size: calc(
+	100% - var(--db-loading-indicator-progress-bar-segment-padding) * 2
+);
 
 %progress-bar {
 	inline-size: 100%;
@@ -205,28 +245,74 @@ $stroke-segment-length: calc(
 		}
 	}
 
+	&:not([data-state]),
+	&[data-state="inactive"] {
+		div {
+			&::after {
+				inline-size: 0;
+			}
+		}
+	}
+
+	&[data-state="active"] {
+		&:not([data-indeterminate]),
+		&[data-indeterminate="true"] {
+			div {
+				&::after {
+					inline-size: 25%;
+
+					@media screen and (prefers-reduced-motion: no-preference) {
+						animation: wobbling 2.5s infinite linear;
+					}
+				}
+			}
+		}
+
+		&[data-indeterminate="false"] {
+			div {
+				&::after {
+					inline-size: calc(
+						var(--db-loading-indicator-percentage, 0) *
+							#{$progress-bar-full-segment-inline-size}
+					);
+				}
+			}
+		}
+	}
+
+	&[data-state="successful"],
+	&[data-state="critical"] {
+		div {
+			&::after {
+				inline-size: $progress-bar-full-segment-inline-size;
+			}
+		}
+	}
+
 	div {
 		&::before,
 		&::after {
 			content: "";
 			border-radius: variables.$db-border-radius-sm;
 			position: absolute;
-			inset-inline-start: 0;
 		}
 		&::before {
 			inline-size: 100%;
 			min-inline-size: variables.$db-sizing-md;
 			inset-block-start: 0;
+			inset-inline-start: 0;
 			block-size: var(
 				--db-loading-indicator-progress-bar-track-block-size
 			);
-			background-color: var(--db-loading-indicator-track-color);
+			background-color: $db-loading-indicator-track-color;
 		}
 		&::after {
 			--db-loading-indicator-progress-bar-segment-padding: 2px;
 			z-index: 1;
-			inline-size: 25%;
 			inset-block-start: var(
+				--db-loading-indicator-progress-bar-segment-padding
+			);
+			inset-inline: var(
 				--db-loading-indicator-progress-bar-segment-padding
 			);
 			block-size: calc(
@@ -234,7 +320,6 @@ $stroke-segment-length: calc(
 					var(--db-loading-indicator-progress-bar-segment-padding)
 			);
 			background-color: var(--db-loading-indicator-segment-color);
-			animation: wobbling 2.5s infinite linear;
 		}
 
 		// Provide space for the progress bar because it is absolute
@@ -252,6 +337,10 @@ $stroke-segment-length: calc(
 		> label {
 			align-self: flex-start;
 		}
+
+		> span {
+			align-self: flex-end;
+		}
 	}
 }
 
@@ -267,11 +356,8 @@ $stroke-segment-length: calc(
 
 %states {
 	&:not([data-state="successful"], [data-state="critical"]) {
-		--db-loading-indicator-track-color: #{colors.$db-adaptive-bg-basic-transparent-semi-default};
 		--db-loading-indicator-segment-color: #{colors.$db-adaptive-on-bg-basic-emphasis-70-default};
-
-		--db-loading-indicator-track-color-overlay: #{colors.$db-adaptive-bg-basic-level-1-default};
-		--db-loading-indicator-segment-color-overlay: #{colors.$db-adaptive-on-bg-basic-emphasis-100-default};
+		--db-loading-indicator-segment-color-overlay: #{colors.$db-adaptive-on-bg-inverted-default};
 	}
 
 	&[data-state="inactive"] {
@@ -286,9 +372,6 @@ $stroke-segment-length: calc(
 
 	@each $name in (successful, critical) {
 		&[data-state="#{$name}"] {
-			--db-loading-indicator-track-color: var(
-				--db-#{$name}-bg-basic-transparent-semi-default
-			);
 			--db-loading-indicator-segment-color: var(
 				--db-#{$name}-on-bg-basic-emphasis-70-default
 			);
@@ -314,31 +397,6 @@ $stroke-segment-length: calc(
 	}
 }
 
-@mixin overwrite-loading-colors($overlay: true) {
-	$overwrite: "";
-
-	@if ($overlay) {
-		$overwrite: "-overlay";
-	}
-
-	.db-loading-indicator-circle-track {
-		stroke: var(--db-loading-indicator-track-color#{$overwrite});
-	}
-
-	.db-loading-indicator-circle-segment {
-		stroke: var(--db-loading-indicator-segment-color#{$overwrite});
-	}
-}
-
-%hide-label-and-progress-text {
-	div {
-		label,
-		span {
-			display: none;
-		}
-	}
-}
-
 %overlay {
 	&:not([data-overlay="true"]) {
 		position: relative;
@@ -351,7 +409,6 @@ $stroke-segment-length: calc(
 		position: absolute;
 		inset: 0;
 		border-radius: inherit;
-		@include overwrite-loading-colors();
 
 		&::before {
 			content: "";
@@ -359,6 +416,12 @@ $stroke-segment-length: calc(
 			inset: 0;
 			border-radius: inherit;
 			background-color: dialog-init.$backdrop-color-strong;
+		}
+
+		&[data-variant="progress-bar"] {
+			div {
+				max-inline-size: calc(100% - #{variables.$db-spacing-fixed-md});
+			}
 		}
 	}
 }
@@ -369,64 +432,10 @@ $stroke-segment-length: calc(
 ) {
 	position: relative;
 
-	&:is(button) {
-		.db-loading-indicator:not(
-			[data-variant="progress-bar"],
-			[data-variant="onsite"]
-		) {
-			&::before {
-				z-index: 1;
-				background-color: inherit;
-			}
-
-			&::after {
-				z-index: 0;
-				content: "";
-				position: absolute;
-				inset: 0;
-				border-radius: inherit;
-				background-color: colors.$db-adaptive-bg-basic-level-1-default;
-			}
-
-			svg {
-				z-index: 2;
-			}
-
-			@include overwrite-loading-colors(false);
-		}
-	}
-}
-
-:is(button):has(
-	> .db-loading-indicator:not([data-overlay="true"]):not(
-			[data-variant="progress-bar"],
-			[data-variant="onsite"]
-		),
-	> db-loading-indicator
-		> .db-loading-indicator:not([data-overlay="true"]):not(
-			[data-variant="progress-bar"],
-			[data-variant="onsite"]
-		)
-) {
-	&[data-icon],
-	&[data-icon-before] {
-		&::before {
-			display: none;
-		}
-	}
-	&[data-icon-after] {
-		&::after {
-			display: none;
-		}
-	}
-
-	.db-loading-indicator:not(
-		[data-variant="progress-bar"],
-		[data-variant="onsite"]
-	) {
-		// Hide label and progress inside a button
-		@extend %hide-label-and-progress-text;
-		margin-inline-end: variables.$db-spacing-fixed-xs; // same margin like a icon
+	.db-loading-indicator {
+		--db-loading-indicator-segment-color: var(
+			--db-loading-indicator-segment-color-overlay
+		);
 	}
 }
 
@@ -448,5 +457,10 @@ $stroke-segment-length: calc(
 
 	&[data-variant="progress-bar"] {
 		@extend %progress-bar;
+	}
+
+	&[data-delay="slow"],
+	&[data-delay="fast"] {
+		display: none;
 	}
 }

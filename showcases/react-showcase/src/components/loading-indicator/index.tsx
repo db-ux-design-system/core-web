@@ -19,8 +19,8 @@ const indicators: {
 }[] = [
 	{
 		variant: 'inline',
-		progressText: '0 of 42',
-		progressTextState: '42 of 42',
+		progressText: '42 of 100',
+		progressTextState: '100 of 100',
 		label: 'Inline'
 	},
 	{
@@ -31,8 +31,8 @@ const indicators: {
 	},
 	{
 		variant: 'progress-bar',
-		progressText: '0 of 42',
-		progressTextState: '42 of 42',
+		progressText: '42 of 100',
+		progressTextState: '100 of 100',
 		label: 'Progress'
 	}
 ];
@@ -43,12 +43,14 @@ const getLoadingIndicator = ({
 	example,
 	state,
 	...props
-}: DBLoadingIndicatorProps & { example: 'button' }) => {
-	if (example === 'button') {
+}: DBLoadingIndicatorProps & { example: 'button' | 'brand' }) => {
+	if (example === 'button' || example === 'brand') {
 		return (
-			<DBButton icon="x_placeholder">
+			<DBButton
+				icon="x_placeholder"
+				variant={example === 'brand' ? 'brand' : undefined}>
 				<DBLoadingIndicator
-					progressText="0 of 42"
+					progressText="0 of 100"
 					overlay={overlay}
 					state={state}
 					{...props}>

@@ -32,8 +32,8 @@
 				"name": "False",
 				"props": {
 					"indeterminate": false,
-					"value": 10,
-					"max": 42,
+					"value": 42,
+					"max": 100,
 					"state": "active"
 				}
 			}
@@ -109,14 +109,20 @@
 				"name": "(Default) True",
 				"props": {
 					"showProgressText": true,
-					"indeterminate": false
+					"indeterminate": false,
+					"value": 42,
+					"max": 100,
+					"state": "active"
 				}
 			},
 			{
 				"name": "False",
 				"props": {
 					"showProgressText": false,
-					"indeterminate": false
+					"indeterminate": false,
+					"value": 42,
+					"max": 100,
+					"state": "active"
 				}
 			}
 		]
@@ -139,6 +145,29 @@
 		]
 	},
 	{
+		"name": "Delay",
+		"examples": [
+			{
+				"name": "(Default) None",
+				"props": {
+					"delay": "none"
+				}
+			},
+			{
+				"name": "Slow",
+				"props": {
+					"delay": "slow"
+				}
+			},
+			{
+				"name": "Fast",
+				"props": {
+					"delay": "fast"
+				}
+			}
+		]
+	},
+	{
 		"name": "Examples: Button",
 		"examples": [
 			{
@@ -153,6 +182,45 @@
 				"props": {
 					"overlay": true,
 					"example": "button"
+				}
+			},
+			{
+				"name": "Without overlay (Brand)",
+				"props": {
+					"overlay": false,
+					"example": "brand"
+				}
+			},
+			{
+				"name": "With overlay (Brand)",
+				"props": {
+					"overlay": true,
+					"example": "brand"
+				}
+			}
+		]
+	},
+	{
+		"name": "Example: Size Determinate",
+		"examples": [
+			{
+				"name": "Small",
+				"props": {
+					"size": "small",
+					"indeterminate": false,
+					"value": 42,
+					"max": 100,
+					"state": "active"
+				}
+			},
+			{
+				"name": "(Default) Medium",
+				"props": {
+					"size": "medium",
+					"indeterminate": false,
+					"value": 42,
+					"max": 100,
+					"state": "active"
 				}
 			}
 		]

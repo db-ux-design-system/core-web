@@ -21,3 +21,17 @@
 		transform: rotate(1turn);
 	}
 }
+
+@keyframes wobbling {
+	50% {
+		inset-inline-start: 100%;
+		transform: translateX(
+			calc(
+				-100% - var(
+						--db-loading-indicator-progress-bar-segment-padding,
+						2px
+					)
+			)
+		);
+	}
+}

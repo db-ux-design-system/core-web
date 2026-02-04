@@ -6,11 +6,15 @@
 @use "@db-ux/core-foundations/build/styles/helpers";
 @use "../../styles/internal/component";
 @use "../../styles/internal/button-components";
+@use "../../styles/internal/loading";
 
 // generic styles can be found in _button-components.scss
 .db-button {
+
+
 	@extend %default-interactive-component;
 	@extend %default-button;
+	@extend %interactive-element-with-loading;
 	@extend %db-overwrite-font-size-md;
 
 	max-inline-size: 100%;
@@ -62,6 +66,8 @@
 	}
 
 	&[data-variant="brand"] {
+		--db-loading-indicator-button-overlay-color: #{colors.$db-brand-origin-default};
+
 		background-color: colors.$db-brand-origin-default;
 		color: colors.$db-brand-on-origin-default;
 		border-color: colors.$db-brand-on-bg-basic-emphasis-70-default;
