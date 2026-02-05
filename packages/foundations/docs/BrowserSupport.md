@@ -4,6 +4,18 @@ We're [testing our components with playwright](../../foundations/test-table) on 
 
 This may leave some older browser versions behind. If you need to take care of these older browsers, you may not want to migrate to DB UX Design System v3 right now, but stay with DB UI Core or Elements for a little longer. In particular, the following features we use may be related to an evaluation of your browser strategy:
 
+## Stable in evergreen browsers
+
+These are the features that we use or plan to integrate, which are stable in the Stable channel, including the ESR versions of Evergreen browsers.
+
+| Web Feature                                                                                                                                     | Google Chrome    | Mozilla Firefox  | Apple Safari      |
+| ----------------------------------------------------------------------------------------------------------------------------------------------- | ---------------- | ---------------- | ----------------- |
+| [Multiple named disclosure boxes](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/details#multiple_named_disclosure_boxes) | 120 (05.12.2023) | 130 (03.09.2024) | 17.2 (11.12.2023) |
+| [`scrollbar-color`](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/scrollbar-color) (planned)                            | 121 (13.01.2024) | 64 (11.12.2018)  | 26.2 (12.12.2025) |
+| [Popover](https://caniuse.com/mdn-api_htmlelement_popover) (planned)                                                                            | 114 (30.05.2023) | 125 (16.04.2024) | 17 (26.09.2023)   |
+
+Popover is loosely depending on Anchor Positioning.
+
 ## Progressive enhancement
 
 | Web Feature                                                                                                                             | Google Chrome    | Mozilla Firefox  | Apple Safari                                                                        |
@@ -30,15 +42,3 @@ The following functionality relies on JavaScript for support in browsers that do
 | [CSS Custom Functions](https://www.bram.us/2025/02/09/css-custom-functions-teaser/) (planned)                                                                                            | 139 (30.07.2025) | tbd              | tbd                                                                                 |
 | [CSS `sibling-count()` and `sibling-index()`](https://caniuse.com/wf-sibling-count) (planned)                                                                                            | 138 (24.06.2025) | tbd              | [26.2 (12.12.2025)](https://webkit.org/blog/17640/webkit-features-for-safari-26-2/) |
 | [CSS `@scope`](https://caniuse.com/css-cascade-scope) (planned)                                                                                                                          | 118 (10.10.2023) | 146 (09.12.2025) | 17.4 (05.03.2024)                                                                   |
-
-## Stable in evergreen browsers
-
-These are the features that we use or plan to integrate, which are stable in the Stable channel, including the ESR versions of Evergreen browsers.
-
-| Web Feature                                                                                                                                     | Google Chrome    | Mozilla Firefox  | Apple Safari      |
-| ----------------------------------------------------------------------------------------------------------------------------------------------- | ---------------- | ---------------- | ----------------- |
-| [Multiple named disclosure boxes](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/details#multiple_named_disclosure_boxes) | 120 (05.12.2023) | 130 (03.09.2024) | 17.2 (11.12.2023) |
-| [`scrollbar-color`](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/scrollbar-color) (planned)                            | 121 (13.01.2024) | 64 (11.12.2018)  | 26.2 (12.12.2025) |
-| [Popover](https://caniuse.com/mdn-api_htmlelement_popover) (planned)                                                                            | 114 (30.05.2023) | 125 (16.04.2024) | 17 (26.09.2023)   |
-
-Popover is loosely depending on Anchor Positioning.
