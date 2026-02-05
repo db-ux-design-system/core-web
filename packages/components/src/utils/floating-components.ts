@@ -1,4 +1,31 @@
-// TODO: We should reevaluate this as soon as CSS Anchor Positioning is supported in all relevant browsers
+/**
+ * Check if the browser supports CSS Anchor Positioning.
+ * This is used to determine whether to use JavaScript positioning or let CSS handle it.
+ */
+export const supportsCSSAnchorPositioning = (): boolean => {
+	if (typeof window === 'undefined' || typeof CSS === 'undefined') {
+		return false;
+	}
+
+	return CSS.supports('anchor-name', '--db-popover-anchor');
+};
+
+// Cached result for CSS Anchor Positioning support to avoid repeated checks
+let _cssAnchorPositioningSupported: boolean | undefined;
+
+/**
+ * Get cached result for CSS Anchor Positioning support.
+ * Uses memoization to avoid repeated CSS.supports() calls.
+ */
+const getCSSAnchorPositioningSupport = (): boolean => {
+	if (_cssAnchorPositioningSupported === undefined) {
+		_cssAnchorPositioningSupported = supportsCSSAnchorPositioning();
+	}
+	return _cssAnchorPositioningSupported;
+};
+
+// The JavaScript positioning code below is only used for browsers that don't support CSS Anchor Positioning.
+// Modern browsers will use CSS Anchor Positioning with automatic collision detection via position-try-fallbacks.
 const isInView = (el: HTMLElement) => {
 	const { top, bottom, left, right } = el.getBoundingClientRect();
 	const { innerHeight, innerWidth } = window;
@@ -75,6 +102,12 @@ export const handleFixedDropdown = (
 	parent: HTMLElement,
 	placement: string
 ) => {
+	// Skip JavaScript positioning if CSS Anchor Positioning is supported
+	// CSS will handle positioning and collision detection automatically
+	if (getCSSAnchorPositioningSupport()) {
+		return;
+	}
+
 	// We skip this if we are in mobile it's already fixed
 	if (getComputedStyle(element).zIndex === '9999') return;
 
@@ -265,6 +298,12 @@ export const handleFixedPopover = (
 	parent: HTMLElement,
 	placement: string
 ) => {
+	// Skip JavaScript positioning if CSS Anchor Positioning is supported
+	// CSS will handle positioning and collision detection automatically
+	if (getCSSAnchorPositioningSupport()) {
+		return;
+	}
+
 	const distance =
 		getComputedStyle(element).getPropertyValue('--db-popover-distance') ??
 		'0px';

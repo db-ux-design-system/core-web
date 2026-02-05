@@ -153,6 +153,145 @@ $popover-gap-inset: calc(-1 * #{$popover-gap-size});
 			}
 		}
 	}
+
+	// CSS Anchor Positioning with automatic collision detection
+	// This is progressively enhanced - only applied when the browser supports it
+	// stylelint-disable no-invalid-position-declaration
+	@supports (anchor-name: --db-popover-anchor) {
+		position: fixed;
+		position-anchor: --db-popover-anchor;
+		inset: unset;
+		// stylelint-disable-next-line db-ux/use-spacings
+		margin: var(--db-popover-distance);
+
+		// The pseudo element for bridging the gap is not needed with anchor positioning
+		&::before {
+			display: none;
+		}
+
+		// Default placement (bottom center) with fallbacks
+		&:not([data-placement]) {
+			position-area: block-end center;
+			// stylelint-disable-next-line property-no-unknown
+			position-try-fallbacks:
+				flip-block,
+				flip-inline,
+				flip-block flip-inline;
+		}
+
+		// Bottom placements
+		&[data-placement="bottom"] {
+			position-area: block-end center;
+			// stylelint-disable-next-line property-no-unknown
+			position-try-fallbacks:
+				flip-block,
+				flip-inline,
+				flip-block flip-inline;
+		}
+
+		&[data-placement="bottom-start"] {
+			position-area: block-end start;
+			// stylelint-disable-next-line property-no-unknown
+			position-try-fallbacks:
+				flip-block,
+				flip-inline,
+				flip-block flip-inline;
+		}
+
+		&[data-placement="bottom-end"] {
+			position-area: block-end end;
+			// stylelint-disable-next-line property-no-unknown
+			position-try-fallbacks:
+				flip-block,
+				flip-inline,
+				flip-block flip-inline;
+		}
+
+		// Top placements
+		&[data-placement="top"] {
+			position-area: block-start center;
+			// stylelint-disable-next-line property-no-unknown
+			position-try-fallbacks:
+				flip-block,
+				flip-inline,
+				flip-block flip-inline;
+		}
+
+		&[data-placement="top-start"] {
+			position-area: block-start start;
+			// stylelint-disable-next-line property-no-unknown
+			position-try-fallbacks:
+				flip-block,
+				flip-inline,
+				flip-block flip-inline;
+		}
+
+		&[data-placement="top-end"] {
+			position-area: block-start end;
+			// stylelint-disable-next-line property-no-unknown
+			position-try-fallbacks:
+				flip-block,
+				flip-inline,
+				flip-block flip-inline;
+		}
+
+		// Left placements
+		&[data-placement="left"] {
+			position-area: center inline-start;
+			// stylelint-disable-next-line property-no-unknown
+			position-try-fallbacks:
+				flip-inline,
+				flip-block,
+				flip-block flip-inline;
+		}
+
+		&[data-placement="left-start"] {
+			position-area: start inline-start;
+			// stylelint-disable-next-line property-no-unknown
+			position-try-fallbacks:
+				flip-inline,
+				flip-block,
+				flip-block flip-inline;
+		}
+
+		&[data-placement="left-end"] {
+			position-area: end inline-start;
+			// stylelint-disable-next-line property-no-unknown
+			position-try-fallbacks:
+				flip-inline,
+				flip-block,
+				flip-block flip-inline;
+		}
+
+		// Right placements
+		&[data-placement="right"] {
+			position-area: center inline-end;
+			// stylelint-disable-next-line property-no-unknown
+			position-try-fallbacks:
+				flip-inline,
+				flip-block,
+				flip-block flip-inline;
+		}
+
+		&[data-placement="right-start"] {
+			position-area: start inline-end;
+			// stylelint-disable-next-line property-no-unknown
+			position-try-fallbacks:
+				flip-inline,
+				flip-block,
+				flip-block flip-inline;
+		}
+
+		&[data-placement="right-end"] {
+			position-area: end inline-end;
+			// stylelint-disable-next-line property-no-unknown
+			position-try-fallbacks:
+				flip-inline,
+				flip-block,
+				flip-block flip-inline;
+		}
+	}
+	// stylelint-enable no-invalid-position-declaration
 }
 
 @mixin get-popover-show() {
