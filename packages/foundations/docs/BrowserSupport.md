@@ -13,7 +13,6 @@ This may leave some older browser versions behind. If you need to take care of t
 | [`dialog[closedby="closerequest"]`](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/dialog#closerequest) (planned) | 134 (19.03.2024) | 141 (22.07.2025) | tbd                                                                                 |
 | [Customizable select elements](https://caniuse.com/selectlist) (planned)                                                                | 134 (19.03.2024) | tbd              | tbd                                                                                 |
 | [`select[multiple][size="1"]` UI optimization on Desktop browsers](https://chromestatus.com/feature/5412736871825408) (planned)         | 142 (28.10.2025) | tbd              | tbd                                                                                 |
-| [`scrollbar-color`](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/scrollbar-color) (planned)                    | 121 (13.01.2024) | 64 (11.12.2018)  | 26.2 (12.12.2025)                                                                   |
 
 ## Without graceful degradation
 
@@ -40,6 +39,7 @@ These are the features that we use or plan to integrate, which are stable in the
 | Web Feature                                                                                                                                     | Google Chrome    | Mozilla Firefox  | Apple Safari      |
 | ----------------------------------------------------------------------------------------------------------------------------------------------- | ---------------- | ---------------- | ----------------- |
 | [Multiple named disclosure boxes](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/details#multiple_named_disclosure_boxes) | 120 (05.12.2023) | 130 (03.09.2024) | 17.2 (11.12.2023) |
+| [`scrollbar-color`](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/scrollbar-color) (planned)                    | 121 (13.01.2024) | 64 (11.12.2018)  | 26.2 (12.12.2025)                                                                   |
 | [Popover](https://caniuse.com/mdn-api_htmlelement_popover) (planned)                                                                            | 114 (30.05.2023) | 125 (16.04.2024) | 17 (26.09.2023)   |
 
 Popover is loosely depending on Anchor Positioning.
