@@ -1,5 +1,3 @@
-import LoadingIndicator from '../components/loading-indicator/LoadingIndicator.vue';
-
 import { markRaw } from 'vue';
 import type { RouteRecordRaw } from 'vue-router';
 import AccordionItem from '../components/accordion-item/AccordionItem.vue';
@@ -33,6 +31,7 @@ import Textarea from '../components/textarea/Textarea.vue';
 import Tooltip from '../components/tooltip/Tooltip.vue';
 
 import ButtonShowcase from '@components/components/button/showcase/button.showcase.vue';
+import LoadingIndicatorShowcase from '@components/components/loading-indicator/showcase/loading-indicator.showcase.vue';
 
 export type NavItem = {
 	path: string;
@@ -48,12 +47,6 @@ export const getSortedNavigationItems = (navigationItems: NavItem[]): any[] =>
 
 export const navigationItems: NavItem[] = [
 	{
-		path: '/loading-indicator',
-		label: 'LoadingIndicator',
-		component: LoadingIndicator
-	},
-
-	{
 		path: '/06',
 		label: '06 Feedback',
 		subNavigation: getSortedNavigationItems([
@@ -62,7 +55,12 @@ export const navigationItems: NavItem[] = [
 				label: 'Notification',
 				component: markRaw(Notification)
 			},
-			{ path: '/06/badge', label: 'Badge', component: Badge }
+			{ path: '/06/badge', label: 'Badge', component: Badge },
+			{
+				path: '/06/loading-indicator',
+				label: 'LoadingIndicator',
+				component: LoadingIndicatorShowcase
+			}
 		])
 	},
 

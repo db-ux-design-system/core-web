@@ -63,7 +63,7 @@ db-card:is(.variants-card) > .db-card {
 	align-items: center;
 }
 
-.variants-list > div {
+.variants-list > div:not(.loading-indicator-grid) {
 	align-items: center;
 	display: flex;
 	gap: var(--db-spacing-fixed-md);

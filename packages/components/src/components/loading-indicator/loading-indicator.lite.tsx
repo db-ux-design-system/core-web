@@ -1,4 +1,6 @@
 import {
+	onMount,
+	onUnMount,
 	onUpdate,
 	Show,
 	useDefaultProps,
@@ -6,12 +8,9 @@ import {
 	useRef,
 	useStore
 } from '@builder.io/mitosis';
-import { cls, delay, getBooleanAsString } from '../../utils';
-import {
-	DBLoadingIndicatorProps,
-	DBLoadingIndicatorState,
-	LoadingIndicatorStateType
-} from './model';
+import { DEFAULT_ID } from '../../shared/constants';
+import { cls, delay, getBooleanAsString, uuid } from '../../utils';
+import { DBLoadingIndicatorProps, DBLoadingIndicatorState } from './model';
 
 useMetadata({});
 
@@ -27,17 +26,9 @@ export default function DBLoadingIndicator(props: DBLoadingIndicatorProps) {
 	const _ref = useRef<HTMLDivElement | any>(undefined);
 	// jscpd:ignore-start
 	const state = useStore<DBLoadingIndicatorState>({
-		getState: (): LoadingIndicatorStateType => {
-			if (props.state) {
-				return props.state;
-			}
-
-			if (props.indeterminate === undefined || props.indeterminate) {
-				return 'active';
-			}
-
-			return 'inactive';
-		},
+		_id: DEFAULT_ID,
+		_loadingState: 'inactive',
+		_previousLoadingState: undefined,
 		getPercentage: () => {
 			if (props.indeterminate || !props.value || !props.max) {
 				return;
@@ -54,25 +45,119 @@ export default function DBLoadingIndicator(props: DBLoadingIndicatorProps) {
 				return props.role;
 			}
 
-			// TODO: Shall we have different default role for determinate vs indeterminate loading indicator?
-			return 'alert';
+			return 'status';
+		},
+		handleParentDisabled: () => {
+			if (_ref && props.autoDisable) {
+				let parent = (_ref as HTMLDivElement).parentElement;
+				if (parent && parent.localName === 'db-loading-indicator') {
+					parent = parent.parentElement;
+				}
+
+				if (parent && 'disabled' in parent) {
+					parent.disabled = state._loadingState !== 'inactive';
+				}
+			}
+		},
+		handleParentAria: (remove: boolean) => {
+			if (_ref && state._id) {
+				let parent = (_ref as HTMLDivElement).parentElement;
+				if (parent && parent.localName === 'db-loading-indicator') {
+					parent = parent.parentElement;
+				}
+
+				if (!parent) return;
+
+				const isButton = parent?.localName === 'button';
+
+				if (!(isButton || props.overlay)) return;
+
+				const ariaAttribute = isButton
+					? 'aria-labelledby'
+					: 'aria-describedby';
+
+				const ariaLabelledBy = parent.getAttribute(ariaAttribute);
+				let labelledByElements = ariaLabelledBy
+					? ariaLabelledBy.split(',')
+					: [];
+				if (remove || state._loadingState === 'inactive') {
+					if (labelledByElements.includes(state._id)) {
+						labelledByElements = labelledByElements.filter(
+							(elementId) => elementId !== state._id
+						);
+
+						if (!isButton) {
+							parent.ariaBusy = null;
+						}
+					} else {
+						return;
+					}
+				} else {
+					if (!labelledByElements.includes(state._id)) {
+						labelledByElements.push(state._id);
+					}
+
+					if (!isButton) {
+						parent.ariaBusy =
+							state._loadingState === 'active' ? 'true' : null;
+					}
+				}
+
+				if (labelledByElements.length) {
+					parent.setAttribute(
+						ariaAttribute,
+						labelledByElements.join(',')
+					);
+				} else {
+					parent.removeAttribute(ariaAttribute);
+				}
+			}
 		}
 	});
 
 	// jscpd:ignore-end
 
-	onUpdate(() => {
-		if (_ref && props.autoDisable) {
-			let parent = (_ref as HTMLDivElement).parentElement;
-			if (parent && parent.tagName === 'db-loading-indicator') {
-				parent = parent.parentElement;
-			}
+	onMount(() => {
+		state._id = props.id || 'loading-indicator-' + uuid();
+	});
 
-			if (parent && 'disabled' in parent) {
-				parent.disabled = state.getState() === 'active';
-			}
+	onUpdate(() => {
+		state.handleParentDisabled();
+	}, [_ref, props.autoDisable, state._loadingState]);
+
+	onUpdate(() => {
+		state.handleParentAria(false);
+	}, [_ref, state._loadingState, props.overlay, state._id]);
+
+	onUpdate(() => {
+		if (
+			props.onTimeout &&
+			state._loadingState !== 'inactive' &&
+			state._loadingState !== state._previousLoadingState
+		) {
+			state._previousLoadingState = state._loadingState;
+			void delay(
+				() => {
+					if (props.onTimeout) {
+						props.onTimeout();
+					}
+				},
+				state._loadingState === 'active' ? 5000 : 2000
+			);
 		}
-	}, [_ref, props.autoDisable, props.state]);
+	}, [state._loadingState, props.onTimeout]);
+
+	onUpdate(() => {
+		if (state._loadingState === props.state) return;
+
+		if (props.state) {
+			state._loadingState = props.state;
+		} else if (props.indeterminate === undefined || props.indeterminate) {
+			state._loadingState = 'active';
+		} else {
+			state._loadingState = 'inactive';
+		}
+	}, [props.state]);
 
 	onUpdate(() => {
 		if (_ref) {
@@ -89,11 +174,10 @@ export default function DBLoadingIndicator(props: DBLoadingIndicatorProps) {
 		}
 	}, [_ref, props.delay]);
 
-	// TODO: Add aria-labelledby/describedby for button purpose - save previous aria-label if set e.g. by tooltip
-	// TODO: Add aria-busy + aria-describedby for overlay case non button
-	// TODO: Add onTimeout function after 5 secondes of active state it should inform user, after 2 seconds of successful inform user - reset the state to initial state
-	// TODO: Switch loading inside DBCustomSelect
-	// TODO: Fix issues with DBButton
+	onUnMount(() => {
+		state.handleParentAria(true);
+		state.handleParentDisabled();
+	});
 
 	return (
 		<div
@@ -107,7 +191,7 @@ export default function DBLoadingIndicator(props: DBLoadingIndicatorProps) {
 			data-size={props.size}
 			data-variant={props.variant}
 			data-delay={props.delay}
-			data-state={state.getState()}
+			data-state={state._loadingState}
 			data-overlay={getBooleanAsString(props.overlay)}>
 			<Show when={props.variant !== 'progress-bar'}>
 				<svg
@@ -126,7 +210,8 @@ export default function DBLoadingIndicator(props: DBLoadingIndicatorProps) {
 			<div>
 				<label
 					data-show-label={getBooleanAsString(props.showLabel)}
-					id={props.id}>
+					id={state._id}
+					role={state.getRole()}>
 					<Show when={props.label} else={props.children}>
 						{props.label}
 					</Show>
@@ -136,8 +221,7 @@ export default function DBLoadingIndicator(props: DBLoadingIndicatorProps) {
 						}
 						max={
 							props.indeterminate ? undefined : (props.max ?? 100)
-						}
-						role={state.getRole()}>
+						}>
 						{props.indeterminate ? undefined : props.progressText}
 					</progress>
 				</label>

@@ -27,6 +27,12 @@
 		}
 	}
 
+	&:has(.db-loading-indicator[data-state="inactive"]) {
+		.db-loading-indicator {
+			display: none;
+		}
+	}
+
 	.db-loading-indicator {
 		&:not([data-state="successful"], [data-state="critical"]) {
 			--db-loading-indicator-segment-color: currentcolor;
@@ -61,7 +67,8 @@
 				background-color: colors.$db-adaptive-bg-basic-level-1-default;
 			}
 
-			svg {
+			svg,
+			div {
 				z-index: 2;
 			}
 		}

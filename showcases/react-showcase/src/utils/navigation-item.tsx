@@ -1,5 +1,3 @@
-import LoadingIndicatorComponent from '../components/loading-indicator';
-
 import AccordionComponent from '../components/accordion';
 import AccordionItemComponent from '../components/accordion-item';
 import BadgeComponent from '../components/badge';
@@ -31,6 +29,7 @@ import TextareaComponent from '../components/textarea';
 import TooltipComponent from '../components/tooltip';
 
 import ButtonShowcase from '@components/components/button/showcase/button.showcase';
+import LoadingIndicatorShowcase from '@components/components/loading-indicator/showcase/loading-indicator.showcase';
 
 export type NavigationItem = {
 	path: string;
@@ -59,7 +58,7 @@ export const NAVIGATION_ITEMS: NavigationItem[] = [
 			{
 				path: 'loading-indicator',
 				label: 'LoadingIndicator',
-				component: <LoadingIndicatorComponent />
+				component: <LoadingIndicatorShowcase />
 			}
 		])
 	},

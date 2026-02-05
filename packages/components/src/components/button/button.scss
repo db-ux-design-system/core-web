@@ -10,8 +10,6 @@
 
 // generic styles can be found in _button-components.scss
 .db-button {
-
-
 	@extend %default-interactive-component;
 	@extend %default-button;
 	@extend %interactive-element-with-loading;

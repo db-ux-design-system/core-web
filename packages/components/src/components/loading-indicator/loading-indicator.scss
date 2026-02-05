@@ -11,7 +11,6 @@ $stroke-dasharray-onsite: calc(
 	var(--circle) * 2 + var(--stroke-width) + var(--radius)
 );
 $stroke-segment-length: calc((var(--circle) / 2 - var(--stroke-width)));
-
 $db-loading-indicator-track-color: color(
 	from var(--db-loading-indicator-segment-color) srgb r g b /
 		#{variables.$db-opacity-2xs}
@@ -22,9 +21,6 @@ $db-loading-indicator-track-color: color(
 		display: flex;
 
 		> label {
-			@extend %db-overwrite-font-size-xs;
-
-			color: colors.$db-adaptive-on-bg-basic-emphasis-80-default;
 			display: inline-flex;
 			align-items: center;
 
@@ -33,10 +29,11 @@ $db-loading-indicator-track-color: color(
 			}
 		}
 
-		> span {
-			@extend %db-overwrite-font-size-2xs;
+		> span,
+		> label {
+			@extend %db-overwrite-font-size-xs;
 
-			color: colors.$db-adaptive-on-bg-basic-emphasis-90-default;
+			color: colors.$db-adaptive-on-bg-basic-emphasis-80-default;
 		}
 	}
 
@@ -58,6 +55,7 @@ $db-loading-indicator-track-color: color(
 		div {
 			> span {
 				position: absolute;
+
 				// Center the progress text inside the spinner
 				inset-block-start: calc(
 					var(--db-loading-indicator-spinner-inline-size) / 2
@@ -296,6 +294,7 @@ $progress-bar-full-segment-inline-size: calc(
 			border-radius: variables.$db-border-radius-sm;
 			position: absolute;
 		}
+
 		&::before {
 			inline-size: 100%;
 			min-inline-size: variables.$db-sizing-md;
@@ -306,8 +305,10 @@ $progress-bar-full-segment-inline-size: calc(
 			);
 			background-color: $db-loading-indicator-track-color;
 		}
+
 		&::after {
 			--db-loading-indicator-progress-bar-segment-padding: 2px;
+
 			z-index: 1;
 			inset-block-start: var(
 				--db-loading-indicator-progress-bar-segment-padding
@@ -326,7 +327,6 @@ $progress-bar-full-segment-inline-size: calc(
 		padding-block-start: calc(
 			#{variables.$db-sizing-2xs} + var(--db-indicator-gap)
 		);
-
 		position: relative;
 		flex-direction: row;
 		justify-content: space-between;
@@ -381,16 +381,59 @@ $progress-bar-full-segment-inline-size: calc(
 				svg {
 					display: none;
 				}
-			}
 
-			div {
-				> label {
+				div {
 					@include get-state-icon($name);
-					color: var(--db-#{$name}-on-bg-basic-emphasis-90-default);
+
+					display: grid;
+					grid-template-columns: min-content 1fr;
+
+					&:has(> label) {
+						grid-template-areas: "icon label";
+					}
+
+					&:has(> span) {
+						grid-template-areas: "icon progress";
+
+						&:has(> label) {
+							grid-template-areas: "icon label" "icon progress";
+						}
+					}
 
 					&::before {
 						--db-icon-margin-end: var(--db-indicator-gap);
+
+						grid-area: icon;
+						align-self: center;
 					}
+
+					> label {
+						grid-area: label;
+					}
+
+					> span {
+						grid-area: progress;
+					}
+				}
+			}
+
+			&[data-variant="progress-bar"],
+			&[data-variant="onsite"] {
+				div {
+					> label {
+						@include get-state-icon($name);
+
+						&::before {
+							--db-icon-margin-end: var(--db-indicator-gap);
+						}
+					}
+				}
+			}
+
+			div {
+				> label,
+				> span {
+					color: var(--db-#{$name}-on-bg-basic-emphasis-80-default);
 				}
 			}
 		}
@@ -406,6 +449,7 @@ $progress-bar-full-segment-inline-size: calc(
 	&[data-overlay="true"] {
 		// Hide label and progress when overlay
 		@extend %hide-label-and-progress-text;
+
 		position: absolute;
 		inset: 0;
 		border-radius: inherit;
@@ -441,10 +485,13 @@ $progress-bar-full-segment-inline-size: calc(
 
 .db-loading-indicator {
 	--db-indicator-gap: #{variables.$db-spacing-fixed-2xs};
+
 	@extend %text-container;
 	@extend %states;
 	@extend %overlay;
+
 	display: flex;
+	/* stylelint-disable-next-line db-ux/use-spacings */
 	gap: var(--db-indicator-gap);
 	align-items: center;
 	justify-content: center;
