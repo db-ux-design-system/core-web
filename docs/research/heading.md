@@ -43,8 +43,8 @@
       Heading 2
     </DBHeading>
     <DBStack variant="paragraph" gap="md">
-     	<DBText>ABCD</DBText>
-     	<DBText>ABCD</DBText>
+      <DBText>ABCD</DBText>
+      <DBText>ABCD</DBText>
     </DBStack>
     ```
 - Fluid Styles might be a cool feature?
