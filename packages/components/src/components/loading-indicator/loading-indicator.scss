@@ -80,9 +80,10 @@ $db-loading-indicator-track-color: color(
 		&:not([data-indeterminate]),
 		&[data-indeterminate="true"] {
 			svg {
-				@media screen and (prefers-reduced-motion: no-preference) {
-					animation: rotate 1.5s linear 0s infinite normal none
-						running;
+				animation: rotate 1.5s linear 0s infinite normal none running;
+
+				@media screen and (prefers-reduced-motion: reduce) {
+					animation-duration: 5s;
 				}
 			}
 
@@ -258,9 +259,10 @@ $progress-bar-full-segment-inline-size: calc(
 			div {
 				&::after {
 					inline-size: 25%;
+					animation: wobbling 2.5s infinite linear;
 
-					@media screen and (prefers-reduced-motion: no-preference) {
-						animation: wobbling 2.5s infinite linear;
+					@media screen and (prefers-reduced-motion: reduce) {
+						animation-duration: 5s;
 					}
 				}
 			}
