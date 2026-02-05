@@ -17,7 +17,7 @@ import {
 	MetaNavigationDirective,
 	NavigationDirective,
 	SecondaryActionDirective
-} from '../../../../output/angular/src';
+} from '@components';
 import { environment } from '../environments/environment';
 import { NavItemComponent } from './nav-item/nav-item.component';
 import {

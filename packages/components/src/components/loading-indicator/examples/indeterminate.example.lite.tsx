@@ -1,4 +1,4 @@
-import { For, Fragment, useMetadata } from '@builder.io/mitosis';
+import { For, Fragment, useMetadata, useTarget } from '@builder.io/mitosis';
 import DBInfotext from '../../infotext/infotext.lite';
 import DBLoadingIndicator from '../loading-indicator.lite';
 import { indeterminateArray, indicators } from './_indicators.data';
@@ -27,7 +27,10 @@ export default function LoadingIndicatorIndeterminate() {
 						<For each={indicators}>
 							{(indicator) => (
 								<DBLoadingIndicator
-									key={`indeterminate-${item.name}-${indicator.label}`}
+									key={useTarget({
+										react: `indeterminate-${item.name}-${indicator.label}`,
+										default: undefined
+									})}
 									indeterminate={item.value}
 									value={item.value ? undefined : 42}
 									max={item.value ? undefined : 100}

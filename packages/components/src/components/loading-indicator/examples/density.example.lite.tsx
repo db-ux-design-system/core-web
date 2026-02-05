@@ -1,4 +1,4 @@
-import { For, Fragment, useMetadata } from '@builder.io/mitosis';
+import { For, Fragment, useMetadata, useTarget } from '@builder.io/mitosis';
 import DBInfotext from '../../infotext/infotext.lite';
 import DBLoadingIndicator from '../loading-indicator.lite';
 import { densities, indicators } from './_indicators.data';
@@ -27,7 +27,10 @@ export default function LoadingIndicatorDensity() {
 						<For each={indicators}>
 							{(indicator) => (
 								<DBLoadingIndicator
-									key={`density-${density.name}-${indicator.label}`}
+									key={useTarget({
+										react: `density-${density.name}-${indicator.label}`,
+										default: undefined
+									})}
 									data-density={density.value}
 									variant={indicator.variant}
 									progressText={indicator.progressText}>

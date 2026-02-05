@@ -9,7 +9,7 @@ import {
 	useStore
 } from '@builder.io/mitosis';
 import { DEFAULT_ID } from '../../shared/constants';
-import { cls, delay, getBooleanAsString, uuid } from '../../utils';
+import { cls, delay as delayFn, getBooleanAsString, uuid } from '../../utils';
 import { DBLoadingIndicatorProps, DBLoadingIndicatorState } from './model';
 
 useMetadata({});
@@ -29,6 +29,8 @@ export default function DBLoadingIndicator(props: DBLoadingIndicatorProps) {
 		_id: DEFAULT_ID,
 		_loadingState: 'inactive',
 		_previousLoadingState: undefined,
+		_style: {},
+		initialized: false,
 		getPercentage: () => {
 			if (props.indeterminate || !props.value || !props.max) {
 				return;
@@ -48,7 +50,7 @@ export default function DBLoadingIndicator(props: DBLoadingIndicatorProps) {
 			return 'status';
 		},
 		handleParentDisabled: () => {
-			if (_ref && props.autoDisable) {
+			if (_ref && props.autoDisable && state.initialized) {
 				let parent = (_ref as HTMLDivElement).parentElement;
 				if (parent && parent.localName === 'db-loading-indicator') {
 					parent = parent.parentElement;
@@ -60,7 +62,7 @@ export default function DBLoadingIndicator(props: DBLoadingIndicatorProps) {
 			}
 		},
 		handleParentAria: (remove: boolean) => {
-			if (_ref && state._id) {
+			if (_ref && state._id && state.initialized) {
 				let parent = (_ref as HTMLDivElement).parentElement;
 				if (parent && parent.localName === 'db-loading-indicator') {
 					parent = parent.parentElement;
@@ -81,7 +83,7 @@ export default function DBLoadingIndicator(props: DBLoadingIndicatorProps) {
 					? ariaLabelledBy.split(',')
 					: [];
 				if (remove || state._loadingState === 'inactive') {
-					if (labelledByElements.includes(state._id)) {
+					if (labelledByElements.includes(state._id!)) {
 						labelledByElements = labelledByElements.filter(
 							(elementId) => elementId !== state._id
 						);
@@ -93,8 +95,8 @@ export default function DBLoadingIndicator(props: DBLoadingIndicatorProps) {
 						return;
 					}
 				} else {
-					if (!labelledByElements.includes(state._id)) {
-						labelledByElements.push(state._id);
+					if (!labelledByElements.includes(state._id!)) {
+						labelledByElements.push(state._id!);
 					}
 
 					if (!isButton) {
@@ -119,31 +121,40 @@ export default function DBLoadingIndicator(props: DBLoadingIndicatorProps) {
 
 	onMount(() => {
 		state._id = props.id || 'loading-indicator-' + uuid();
+		state.initialized = true;
 	});
 
 	onUpdate(() => {
 		state.handleParentDisabled();
-	}, [_ref, props.autoDisable, state._loadingState]);
+	}, [_ref, state.initialized, props.autoDisable, state._loadingState]);
 
 	onUpdate(() => {
 		state.handleParentAria(false);
-	}, [_ref, state._loadingState, props.overlay, state._id]);
+	}, [
+		_ref,
+		state.initialized,
+		state._loadingState,
+		props.overlay,
+		state._id
+	]);
 
 	onUpdate(() => {
-		if (
-			props.onTimeout &&
-			state._loadingState !== 'inactive' &&
-			state._loadingState !== state._previousLoadingState
-		) {
-			state._previousLoadingState = state._loadingState;
-			void delay(
-				() => {
-					if (props.onTimeout) {
-						props.onTimeout();
-					}
-				},
-				state._loadingState === 'active' ? 5000 : 2000
-			);
+		if (props.onTimeout) {
+			// Not merged if as workaround for angular
+			if (
+				state._loadingState !== 'inactive' &&
+				state._loadingState !== state._previousLoadingState
+			) {
+				state._previousLoadingState = state._loadingState;
+				void delayFn(
+					() => {
+						if (props.onTimeout) {
+							props.onTimeout(state._loadingState);
+						}
+					},
+					state._loadingState === 'active' ? 5000 : 2000
+				);
+			}
 		}
 	}, [state._loadingState, props.onTimeout]);
 
@@ -162,7 +173,7 @@ export default function DBLoadingIndicator(props: DBLoadingIndicatorProps) {
 	onUpdate(() => {
 		if (_ref) {
 			if (props.delay === 'slow' || props.delay === 'fast') {
-				void delay(
+				void delayFn(
 					() => {
 						if (_ref) {
 							(_ref as HTMLDivElement).dataset['delay'] = '';
@@ -174,6 +185,12 @@ export default function DBLoadingIndicator(props: DBLoadingIndicatorProps) {
 		}
 	}, [_ref, props.delay]);
 
+	onUpdate(() => {
+		state._style = {
+			'--db-loading-indicator-percentage': state.getPercentage()
+		};
+	}, [props.indeterminate, props.value, props.max]);
+
 	onUnMount(() => {
 		state.handleParentAria(true);
 		state.handleParentDisabled();
@@ -183,11 +200,8 @@ export default function DBLoadingIndicator(props: DBLoadingIndicatorProps) {
 		<div
 			ref={_ref}
 			class={cls('db-loading-indicator', props.className)}
-			style={{
-				// @ts-ignore
-				'--db-loading-indicator-percentage': state.getPercentage()
-			}}
-			data-indeterminate={props.indeterminate}
+			style={state._style}
+			data-indeterminate={getBooleanAsString(props.indeterminate)}
 			data-size={props.size}
 			data-variant={props.variant}
 			data-delay={props.delay}
@@ -207,11 +221,10 @@ export default function DBLoadingIndicator(props: DBLoadingIndicatorProps) {
 				</svg>
 			</Show>
 
-			<div>
+			<div role={state.getRole()}>
 				<label
 					data-show-label={getBooleanAsString(props.showLabel)}
-					id={state._id}
-					role={state.getRole()}>
+					id={state._id}>
 					<Show when={props.label} else={props.children}>
 						{props.label}
 					</Show>
@@ -228,7 +241,9 @@ export default function DBLoadingIndicator(props: DBLoadingIndicatorProps) {
 				<Show when={!props.indeterminate}>
 					<span
 						aria-hidden="true"
-						data-show-progress-text={props.showProgressText}>
+						data-show-progress-text={getBooleanAsString(
+							props.showProgressText
+						)}>
 						{props.progressText}
 					</span>
 				</Show>

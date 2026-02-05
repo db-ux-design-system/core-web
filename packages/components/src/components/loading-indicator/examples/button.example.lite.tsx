@@ -1,4 +1,4 @@
-import { For, Fragment, useMetadata } from '@builder.io/mitosis';
+import { For, Fragment, useMetadata, useTarget } from '@builder.io/mitosis';
 import DBButton from '../../button/button.lite';
 import { ButtonVariantList } from '../../button/model';
 import DBInfotext from '../../infotext/infotext.lite';
@@ -29,7 +29,10 @@ export default function LoadingIndicatorButton() {
 						<For each={ButtonVariantList}>
 							{(variant) => (
 								<DBButton
-									key={`${example.name}-${variant}`}
+									key={useTarget({
+										react: `${example.name}-${variant}`,
+										default: undefined
+									})}
 									icon="x_placeholder"
 									variant={variant}>
 									<DBLoadingIndicator

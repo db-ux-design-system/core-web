@@ -1,4 +1,4 @@
-import { For, Fragment, useMetadata } from '@builder.io/mitosis';
+import { For, Fragment, useMetadata, useTarget } from '@builder.io/mitosis';
 import DBInfotext from '../../infotext/infotext.lite';
 import DBLoadingIndicator from '../loading-indicator.lite';
 import { indicators, statesArray } from './_indicators.data';
@@ -28,7 +28,10 @@ export default function LoadingIndicatorStateDeterminate() {
 						<For each={indicators}>
 							{(indicator) => (
 								<DBLoadingIndicator
-									key={`state-determinate-${item.name}-${indicator.label}`}
+									key={useTarget({
+										react: `state-determinate-${item.name}-${indicator.label}`,
+										default: undefined
+									})}
 									state={item.value}
 									variant={indicator.variant}
 									indeterminate={false}

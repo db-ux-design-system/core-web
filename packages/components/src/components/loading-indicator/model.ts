@@ -2,6 +2,7 @@ import {
 	DelayProps,
 	GlobalProps,
 	GlobalState,
+	InitializedState,
 	ShowLabelProps,
 	SizeProps
 } from '../../shared/model';
@@ -39,7 +40,7 @@ export type DBLoadingIndicatorDefaultProps = {
 
 	variant?: LoadingIndicatorVariantType;
 
-	state?: LoadingIndicatorStateType;
+	state?: LoadingIndicatorStateType | string;
 
 	/**
 	 * Disable the parent component (e.g. a DBButton) when loading indicator is inside it
@@ -51,7 +52,7 @@ export type DBLoadingIndicatorDefaultProps = {
 	/**
 	 * Triggers after a timeout. For "active" after 5 seconds, for "successful" and "critical" after 2 seconds
 	 */
-	onTimeout?: () => void;
+	onTimeout?: (state?: LoadingIndicatorStateType | string) => void;
 };
 
 export type DBLoadingIndicatorProps = DBLoadingIndicatorDefaultProps &
@@ -61,8 +62,9 @@ export type DBLoadingIndicatorProps = DBLoadingIndicatorDefaultProps &
 	DelayProps;
 
 export type DBLoadingIndicatorDefaultState = {
-	_loadingState?: LoadingIndicatorStateType;
-	_previousLoadingState?: LoadingIndicatorStateType;
+	_loadingState?: LoadingIndicatorStateType | string;
+	_previousLoadingState?: LoadingIndicatorStateType | string;
+	_style: any;
 	getPercentage: () => string | undefined;
 	getRole: () => string | undefined;
 	handleParentAria: (remove: boolean) => void;
@@ -70,4 +72,5 @@ export type DBLoadingIndicatorDefaultState = {
 };
 
 export type DBLoadingIndicatorState = DBLoadingIndicatorDefaultState &
-	GlobalState;
+	GlobalState &
+	InitializedState;

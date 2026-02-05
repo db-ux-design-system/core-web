@@ -1,4 +1,4 @@
-import { For, Fragment, useMetadata } from '@builder.io/mitosis';
+import { For, Fragment, useMetadata, useTarget } from '@builder.io/mitosis';
 import DBInfotext from '../../infotext/infotext.lite';
 import DBLoadingIndicator from '../loading-indicator.lite';
 import { indicators, sizes } from './_indicators.data';
@@ -27,7 +27,10 @@ export default function LoadingIndicatorSize() {
 						<For each={indicators}>
 							{(indicator) => (
 								<DBLoadingIndicator
-									key={`size-${size.name}-${indicator.label}`}
+									key={useTarget({
+										react: `size-${size.name}-${indicator.label}`,
+										default: undefined
+									})}
 									size={size.value}
 									variant={indicator.variant}
 									progressText={indicator.progressText}>

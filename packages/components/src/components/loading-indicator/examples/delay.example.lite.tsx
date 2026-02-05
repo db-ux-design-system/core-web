@@ -1,4 +1,4 @@
-import { For, Fragment, useMetadata } from '@builder.io/mitosis';
+import { For, Fragment, useMetadata, useTarget } from '@builder.io/mitosis';
 import DBInfotext from '../../infotext/infotext.lite';
 import DBLoadingIndicator from '../loading-indicator.lite';
 import { delays, indicators } from './_indicators.data';
@@ -27,7 +27,10 @@ export default function LoadingIndicatorDelay() {
 						<For each={indicators}>
 							{(indicator) => (
 								<DBLoadingIndicator
-									key={`delay-${delay.name}-${indicator.label}`}
+									key={useTarget({
+										react: `delay-${delay.name}-${indicator.label}`,
+										default: undefined
+									})}
 									delay={delay.value}
 									variant={indicator.variant}
 									progressText={indicator.progressText}>

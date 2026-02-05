@@ -1,4 +1,4 @@
-import { For, Fragment, useMetadata } from '@builder.io/mitosis';
+import { For, Fragment, useMetadata, useTarget } from '@builder.io/mitosis';
 import DBInfotext from '../../infotext/infotext.lite';
 import DBLoadingIndicator from '../loading-indicator.lite';
 import { indicators, showProgressTexts } from './_indicators.data';
@@ -27,7 +27,10 @@ export default function LoadingIndicatorShowProgressText() {
 						<For each={indicators}>
 							{(indicator) => (
 								<DBLoadingIndicator
-									key={`showProgressText-${item.name}-${indicator.label}`}
+									key={useTarget({
+										react: `showProgressText-${item.name}-${indicator.label}`,
+										default: undefined
+									})}
 									showProgressText={item.value}
 									indeterminate={false}
 									value={42}

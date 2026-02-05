@@ -1,4 +1,4 @@
-import { For, Fragment, useMetadata } from '@builder.io/mitosis';
+import { For, Fragment, useMetadata, useTarget } from '@builder.io/mitosis';
 import DBCard from '../../card/card.lite';
 import DBInfotext from '../../infotext/infotext.lite';
 import DBLoadingIndicator from '../loading-indicator.lite';
@@ -29,7 +29,10 @@ export default function LoadingIndicatorOverlay() {
 							{(indicator) =>
 								item.value ? (
 									<DBCard
-										key={`overlay-${item.name}-${indicator.label}`}>
+										key={useTarget({
+											react: `overlay-${item.name}-${indicator.label}`,
+											default: undefined
+										})}>
 										<DBLoadingIndicator
 											overlay={item.value}
 											variant={indicator.variant}
@@ -44,7 +47,10 @@ export default function LoadingIndicatorOverlay() {
 									</DBCard>
 								) : (
 									<DBLoadingIndicator
-										key={`overlay-${item.name}-${indicator.label}`}
+										key={useTarget({
+											react: `overlay-${item.name}-${indicator.label}`,
+											default: undefined
+										})}
 										overlay={item.value}
 										variant={indicator.variant}
 										progressText={indicator.progressText}>
