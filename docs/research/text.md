@@ -32,3 +32,4 @@
     - etc.
 - `visuallyHidden` as dev property might be a good idea
 - shall we use [`code`](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/code) as well??
+- [`text-wrap`](https://developer.chrome.com/docs/css-ui/css-text-wrap-balance)-CSS-property (especially with the value `"pretty"`) would be a relevant aspect to think about
