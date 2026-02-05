@@ -43,9 +43,10 @@
       Heading 2
     </DBHeading>
     <DBStack variant="paragraph" gap="md">
-     	<DBText>ABCD</DBText>
-     	<DBText>ABCD</DBText>
+      <DBText>ABCD</DBText>
+      <DBText>ABCD</DBText>
     </DBStack>
     ```
 - Fluid Styles might be a cool feature?
     - We already have this feature because of our responsive typography
+- [`text-wrap`](https://developer.chrome.com/docs/css-ui/css-text-wrap-balance)-CSS-property (especially with the value `"balance"`) would be a relevant aspect to think about
