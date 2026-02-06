@@ -4,3 +4,4 @@ packages:
   - "docs"
   - "scripts"
   - "e2e"
+  - "storybooks/*"
