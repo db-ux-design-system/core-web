@@ -1,5 +1,10 @@
 # @db-ux/core-stylelint
 
+## 4.4.1
+
+_version bump_
+
+
 ## 4.4.0
 
 ### Patch Changes

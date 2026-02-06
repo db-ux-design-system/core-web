@@ -1,5 +1,13 @@
 # @db-ux/react-core-components
 
+## 4.4.1
+
+### Patch Changes
+
+- fix: issue with tailwind not reflecting adaptive color changes with `[data-color="xxx"]` - [see commit 936638d](https://github.com/db-ux-design-system/core-web/commit/936638d672bbb6c0f8a0ecf77bf41fafa0e31656)
+
+- DBCustomSelect: Prevent floating label from flickering during initial render - [see commit e5ceff8](https://github.com/db-ux-design-system/core-web/commit/e5ceff861534186cf86d1f5f0a876e04aeac9e41)
+
 ## 4.4.0
 
 ### Minor Changes
