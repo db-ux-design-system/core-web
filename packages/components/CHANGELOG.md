@@ -1,5 +1,11 @@
 # @db-ux/core-components
 
+## 4.4.1
+
+### Patch Changes
+
+- DBCustomSelect: Prevent floating label from flickering during initial render - [see commit e5ceff8](https://github.com/db-ux-design-system/core-web/commit/e5ceff861534186cf86d1f5f0a876e04aeac9e41)
+
 ## 4.4.0
 
 ### Minor Changes
