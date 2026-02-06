@@ -259,17 +259,37 @@ export const getFloatingProps = (
 		innerHeight
 	};
 };
+const getAncestorHasCorrectedPlacement = (
+	element: HTMLElement
+): HTMLElement | null => {
+	let current = element.parentElement;
+	let anchor = 0;
+	while (current && anchor < 10) {
+		if (current.dataset['correctedPlacement']) return current;
+		current = current.parentElement;
+		anchor += 1;
+	}
+	return null;
+};
 
 export const handleFixedPopover = (
 	element: HTMLElement,
 	parent: HTMLElement,
 	placement: string
 ) => {
+	const parentComputedStyles = getComputedStyle(parent);
+	const parentHasFloatingPosition = ['absolute', 'fixed'].includes(
+		parentComputedStyles.position
+	);
+	const ancestorWithCorrectedPlacement =
+		getAncestorHasCorrectedPlacement(element);
+	const noFloatingAncestor =
+		!ancestorWithCorrectedPlacement && !parentHasFloatingPosition;
+
 	const distance =
 		getComputedStyle(element).getPropertyValue('--db-popover-distance') ??
 		'0px';
-
-	const {
+	let {
 		top,
 		height,
 		width,
@@ -282,6 +302,31 @@ export const handleFixedPopover = (
 		innerWidth,
 		innerHeight
 	} = getFloatingProps(element, parent, placement);
+
+	if (ancestorWithCorrectedPlacement) {
+		const ancestorRect =
+			ancestorWithCorrectedPlacement.getBoundingClientRect();
+
+		left = Math.abs(left - ancestorRect.left);
+		right = (width + Math.abs(right - ancestorRect.right)) * 1.5; // We add a transform -50% later
+		top = Math.abs(top - ancestorRect.top);
+		bottom = (height + Math.abs(bottom - ancestorRect.bottom)) * 1.5; // We add a transform -50% later
+	}
+
+	if (parentHasFloatingPosition) {
+		/*
+		 * If we have a floating element inside an element with position:absolute/fixed
+		 * we need to calculate with relative values
+		 * */
+		left = 0;
+		right = width;
+		top = 0;
+		bottom = height;
+		if (['auto', 'inherit', '0'].includes(parentComputedStyles.zIndex)) {
+			// We need the default zIndex for floating elements on the parent
+			parent.style.zIndex = '1';
+		}
+	}
 
 	// Tooltip arrow position
 
@@ -301,6 +346,8 @@ export const handleFixedPopover = (
 				'--db-tooltip-arrow-inline-start',
 				`${100 - diff}%`
 			);
+		} else {
+			element.style.setProperty('--db-tooltip-arrow-inline-start', `50%`);
 		}
 	}
 	if (
@@ -319,6 +366,8 @@ export const handleFixedPopover = (
 				'--db-tooltip-arrow-block-start',
 				`${100 - diff}%`
 			);
+		} else {
+			element.style.setProperty('--db-tooltip-arrow-block-start', `50%`);
 		}
 	}
 
@@ -333,13 +382,13 @@ export const handleFixedPopover = (
 	) {
 		const end = top + childHeight;
 		element.style.insetBlockStart = `${top}px`;
-		element.style.insetBlockEnd = `${end > innerHeight ? innerHeight : end}px`;
+		element.style.insetBlockEnd = `${!parentHasFloatingPosition && end > innerHeight ? innerHeight : end}px`;
 	} else if (
 		correctedPlacement === 'right-end' ||
 		correctedPlacement === 'left-end'
 	) {
 		const start = bottom - childHeight;
-		element.style.insetBlockStart = `${start < 0 ? 0 : start}px`;
+		element.style.insetBlockStart = `${!parentHasFloatingPosition && start < 0 ? 0 : start}px`;
 		element.style.insetBlockEnd = `${bottom}px`;
 	} else if (
 		correctedPlacement === 'top' ||
@@ -353,32 +402,32 @@ export const handleFixedPopover = (
 	) {
 		const end = left + childWidth;
 		element.style.insetInlineStart = `${left}px`;
-		element.style.insetInlineEnd = `${end > innerWidth ? innerWidth : end}px`;
+		element.style.insetInlineEnd = `${!parentHasFloatingPosition && end > innerWidth ? innerWidth : end}px`;
 	} else if (
 		correctedPlacement === 'top-end' ||
 		correctedPlacement === 'bottom-end'
 	) {
-		const start = left - childWidth;
-		element.style.insetInlineStart = `${right - childWidth}px`;
-		element.style.insetInlineEnd = `${start < 0 ? 0 : start}px`;
+		const start = right - childWidth;
+		element.style.insetInlineStart = `${!parentHasFloatingPosition && start < 0 ? 0 : start}px`;
+		element.style.insetInlineEnd = `${right}px`;
 	}
 
 	if (correctedPlacement?.startsWith('right')) {
 		const end = right + childWidth;
 		element.style.insetInlineStart = `calc(${right}px + ${distance})`;
-		element.style.insetInlineEnd = `calc(${end > innerWidth ? innerWidth : end}px + ${distance})`;
+		element.style.insetInlineEnd = `calc(${noFloatingAncestor && end > innerWidth ? innerWidth : end}px + ${distance})`;
 	} else if (correctedPlacement?.startsWith('left')) {
 		const start = left - childWidth;
-		element.style.insetInlineStart = `calc(${start < 0 ? 0 : start}px - ${distance})`;
+		element.style.insetInlineStart = `calc(${noFloatingAncestor && start < 0 ? 0 : start}px - ${distance})`;
 		element.style.insetInlineEnd = `calc(${right}px - ${distance})`;
 	} else if (correctedPlacement?.startsWith('top')) {
 		const start = top - childHeight;
-		element.style.insetBlockStart = `calc(${start < 0 ? 0 : start}px - ${distance})`;
-		element.style.insetBlockEnd = `calc(${bottom}px - ${distance})`;
+		element.style.insetBlockStart = `calc(${noFloatingAncestor && start < 0 ? 0 : start}px - ${distance})`;
+		element.style.insetBlockEnd = `calc(${parentHasFloatingPosition ? start : bottom}px - ${distance})`;
 	} else if (correctedPlacement?.startsWith('bottom')) {
 		const end = bottom + childHeight;
-		element.style.insetBlockStart = `calc(${bottom}px + ${distance})`;
-		element.style.insetBlockEnd = `calc(${end > innerHeight ? innerHeight : end}px + ${distance})`;
+		element.style.insetBlockStart = `calc(${parentHasFloatingPosition ? end : bottom}px + ${distance})`;
+		element.style.insetBlockEnd = `calc(${noFloatingAncestor && end > innerHeight ? innerHeight : end}px + ${distance})`;
 	}
 
 	element.style.position = 'fixed';

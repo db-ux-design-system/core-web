@@ -36,7 +36,7 @@ export default function DBPopover(props: DBPopoverProps) {
 			const article = _ref.querySelector('article');
 			if (article) {
 				// This is a workaround for angular
-				utilsDelay(() => {
+				void utilsDelay(() => {
 					handleFixedPopover(
 						article,
 						_ref,
