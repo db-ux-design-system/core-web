@@ -406,6 +406,7 @@
             - checkbox "Option 5"
             - text: Option 5
       - button "Close"
+  - text: Please select an item in the list.
   - status
   - link "Show Required Asterisk"
   - text: (Default) True
@@ -429,6 +430,7 @@
             - checkbox "Option 5"
             - text: Option 5
       - button "Close"
+  - text: Please select an item in the list.
   - status
   - text: "False"
   - group:
@@ -451,6 +453,7 @@
             - checkbox "Option 5"
             - text: Option 5
       - button "Close"
+  - text: Please select an item in the list.
   - status
   - link "Disabled"
   - text: (Default) False

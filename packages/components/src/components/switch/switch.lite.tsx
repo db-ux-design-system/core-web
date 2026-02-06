@@ -72,8 +72,11 @@ export default function DBSwitch(props: DBSwitchProps) {
 		hasValidState: () => {
 			return !!(props.validMessage ?? props.validation === 'valid');
 		},
+		hasInvalidState: () => {
+			return !_ref?.validity?.valid || props.validation === 'invalid';
+		},
 		handleValidation: () => {
-			if (!_ref?.validity?.valid || props.validation === 'invalid') {
+			if (state.hasInvalidState()) {
 				state._descByIds = state._invalidMessageId!;
 				state._invalidMessage =
 					props.invalidMessage ||
@@ -271,14 +274,16 @@ export default function DBSwitch(props: DBSwitchProps) {
 					{props.validMessage ?? DEFAULT_VALID_MESSAGE}
 				</DBInfotext>
 			</Show>
-			<DBInfotext
-				id={state._invalidMessageId}
-				size="small"
-				semantic="critical">
-				{state._invalidMessage ??
-					props.invalidMessage ??
-					DEFAULT_INVALID_MESSAGE}
-			</DBInfotext>
+			<Show when={state.hasInvalidState()}>
+				<DBInfotext
+					id={state._invalidMessageId}
+					size="small"
+					semantic="critical">
+					{state._invalidMessage ??
+						props.invalidMessage ??
+						DEFAULT_INVALID_MESSAGE}
+				</DBInfotext>
+			</Show>
 			<span data-visually-hidden="true" role="status">
 				{state._voiceOverFallback}
 			</span>
