@@ -4,7 +4,7 @@ import { readFileSync, readdirSync } from 'node:fs';
 import path from 'node:path';
 import process from 'node:process';
 
-const packages = readdirSync('build-outputs', {
+const packages = readdirSync('packages', {
 	withFileTypes: true
 });
 

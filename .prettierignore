@@ -3,8 +3,6 @@ public/
 pnpm-lock.yaml
 build/
 node_modules
-output
-build-outputs
 build-showcases
 packages/foundations/scripts/generate-icon-fonts/styles/**
 **/__snapshots__
