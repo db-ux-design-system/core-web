@@ -930,7 +930,7 @@
   - text: "True"
   - group:
     - article:
-      - text: Loading
+      - status: Loading
       - button "Close"
   - status
   - link "Show Search"

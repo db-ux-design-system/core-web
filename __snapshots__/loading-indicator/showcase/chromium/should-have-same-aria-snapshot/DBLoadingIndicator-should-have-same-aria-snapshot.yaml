@@ -1,0 +1,145 @@
+- main:
+  - heading "DBLoadingIndicator" [level=1]
+  - link "Density"
+  - text: Functional
+  - status: Inline
+  - status: Onsite
+  - status: Progress
+  - text: (Default) Regular
+  - status: Inline
+  - status: Onsite
+  - status: Progress
+  - text: Expressive
+  - status: Inline
+  - status: Onsite
+  - status: Progress
+  - link "Indeterminate"
+  - text: (Default) True
+  - status: Inline
+  - status: Onsite
+  - status: Progress
+  - text: "False"
+  - status: Inline
+  - status: Onsite
+  - status: Progress
+  - link "Size"
+  - text: Small
+  - status: Inline
+  - status: Onsite
+  - status: Progress
+  - text: (Default) Medium
+  - status: Inline
+  - status: Onsite
+  - status: Progress
+  - link "State"
+  - text: Inactive
+  - status: Inline
+  - status: Onsite
+  - status: Progress
+  - text: Active
+  - status: Inline
+  - status: Onsite
+  - status: Progress
+  - text: Successful
+  - status: Inline
+  - status: Onsite
+  - status: Progress
+  - text: Critical
+  - status: Inline
+  - status: Onsite
+  - status: Progress
+  - 'link "State: Determinate"':
+  - text: Inactive
+  - status: Inline
+  - status: Onsite
+  - status: Progress
+  - text: Active
+  - status: Inline
+  - status: Onsite
+  - status: Progress
+  - text: Successful
+  - status: Inline
+  - status: Onsite
+  - status: Progress
+  - text: Critical
+  - status: Inline
+  - status: Onsite
+  - status: Progress
+  - link "Show Label"
+  - text: (Default) True
+  - status: Inline
+  - status: Onsite
+  - status: Progress
+  - text: "False"
+  - status
+  - status
+  - status
+  - link "Show Progress Text"
+  - text: (Default) True
+  - status: Inline
+  - status: Onsite
+  - status: Progress
+  - text: "False"
+  - status: Inline
+  - status: Onsite
+  - status: Progress
+  - link "Overlay"
+  - text: (Default) False
+  - status: Inline
+  - status: Onsite
+  - status: Progress
+  - text: "True"
+  - status
+  - paragraph: Content 1
+  - paragraph: Content 2
+  - paragraph: Content 3
+  - status
+  - paragraph: Content 1
+  - paragraph: Content 2
+  - paragraph: Content 3
+  - status
+  - paragraph: Content 1
+  - paragraph: Content 2
+  - paragraph: Content 3
+  - link "Delay"
+  - text: (Default) None
+  - status: Inline
+  - status: Onsite
+  - status: Progress
+  - text: Slow
+  - status: Inline
+  - status: Onsite
+  - status: Progress
+  - text: Fast
+  - status: Inline
+  - status: Onsite
+  - status: Progress
+  - 'link "Examples: Button"':
+  - text: Without overlay
+  - button "Loading" [disabled]:
+    - status
+    - text: Button
+  - button "Loading" [disabled]:
+    - status
+    - text: Button
+  - button "Loading" [disabled]:
+    - status
+    - text: Button
+  - button "Loading" [disabled]:
+    - status
+    - text: Button
+  - text: With overlay
+  - button "Loading" [disabled]:
+    - status
+    - text: Button
+  - button "Loading" [disabled]:
+    - status
+    - text: Button
+  - button "Loading" [disabled]:
+    - status
+    - text: Button
+  - button "Loading" [disabled]:
+    - status
+    - text: Button
+  - 'link "Example: Timeout"':
+  - button "Start Timeout"
