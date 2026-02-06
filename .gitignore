@@ -57,12 +57,6 @@ packages/components/src/**/*.css.map
 /packages/wc-core-components/agent
 !/packages/wc-core-components/agent/.gitkeep
 
-# Legacy output folder (can be removed once migration is complete)
-/output/**/src
-/output/**/dist
-/output/**/playwright*
-/output/**/test-results
-
 /showcases/**/results
 
 /build-showcases/
