@@ -1,6 +1,6 @@
 {
   "name": "@db-ux/core-components",
-  "version": "4.4.0",
+  "version": "4.4.1",
   "type": "module",
   "description": "General technical components (styling, fonts and icons) out of DB UX Design System (Version 3)",
   "repository": {
