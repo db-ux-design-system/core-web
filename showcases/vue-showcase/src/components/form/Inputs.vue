@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref } from "vue";
-import { DBInput } from "../../../../../output/vue/src";
+import { DBInput } from "../../../../../packages/v-core-components/src";
 import FormWrapper from "./FormWrapper.vue";
 
 const plain = ref("test1");

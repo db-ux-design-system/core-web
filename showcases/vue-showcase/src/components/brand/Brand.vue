@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { DBBrand } from "../../../../../output/vue/src";
+import { DBBrand } from "../../../../../packages/v-core-components/src";
 import defaultComponentVariants from "../../../../shared/brand.json";
 import DefaultComponent from "../DefaultComponent.vue";
 import imageUrl from "/assets/images/placeholder.jpg";

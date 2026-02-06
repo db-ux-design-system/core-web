@@ -20,8 +20,21 @@ if (!RELEASE && !PRE_RELEASE) {
 console.log('🛠 Forge all packages version numbers');
 console.log(`which package version ?: ${VALID_SEMVER_VERSION}`);
 
-console.log('goto build-outputs');
-process.chdir('build-outputs');
+console.log('goto packages');
+process.chdir('packages');
+
+// Map package names to their directory names
+const packageDirs = {
+	'core-foundations': 'foundations',
+	'core-components': 'components',
+	'ngx-core-components': 'ngx-core-components',
+	'react-core-components': 'react-core-components',
+	'v-core-components': 'v-core-components',
+	'wc-core-components': 'wc-core-components',
+	'core-migration': 'migration',
+	'core-stylelint': 'stylelint',
+	'agent-cli': 'agent-cli'
+};
 
 const packages = [
 	'core-foundations',
@@ -36,14 +49,14 @@ const packages = [
 ];
 
 for (const PACKAGE of packages) {
-	console.log(`Start ${PACKAGE} bundle:`);
+	const dir = packageDirs[PACKAGE];
+	console.log(`Start ${PACKAGE} bundle (in ${dir}):`);
+	process.chdir(dir);
 
 	if (PRE_RELEASE) {
 		// Only update versions for pre-releases
 		console.log('🆚 Update Version');
-		execSync(
-			`pnpm --filter=@db-ux/${PACKAGE} version --no-git-tag-version ${VALID_SEMVER_VERSION}`
-		);
+		execSync(`pnpm version --no-git-tag-version ${VALID_SEMVER_VERSION}`);
 
 		if (
 			PACKAGE !== 'core-foundations' &&
@@ -53,18 +66,19 @@ for (const PACKAGE of packages) {
 		) {
 			console.log('🕵️‍ Set foundations dependency');
 			execSync(
-				`pnpm --filter=@db-ux/${PACKAGE} pkg set dependencies.@db-ux/core-components=${VALID_SEMVER_VERSION}`
+				`pnpm pkg set dependencies.@db-ux/core-foundations=${VALID_SEMVER_VERSION}`
 			);
 			if (PACKAGE !== 'core-components') {
 				execSync(
-					`pnpm --filter=@db-ux/${PACKAGE} pkg set dependencies.@db-ux/core-components=${VALID_SEMVER_VERSION}`
+					`pnpm pkg set dependencies.@db-ux/core-components=${VALID_SEMVER_VERSION}`
 				);
 			}
 		}
 	}
 
 	console.log('📦 Create npm package');
-	execSync(`pnpm --filter=@db-ux/${PACKAGE} pack --quiet`);
+	execSync(`pnpm pack --quiet`);
+	process.chdir('..');
 }
 
 let TAG = 'latest';
@@ -90,12 +104,13 @@ for (const REGISTRY of registries) {
 
 	for (const step of ['dry-run', 'provenance']) {
 		for (const PACKAGE of packages) {
+			const dir = packageDirs[PACKAGE];
 			console.log(
 				`⤴ (${step}) Publish ${PACKAGE} with tag ${TAG} to ${REGISTRY}`
 			);
 			try {
 				execSync(
-					`pnpm publish --tag ${TAG} db-ux-${PACKAGE}-${VALID_SEMVER_VERSION}.tgz --${step}`
+					`pnpm publish --tag ${TAG} ${dir}/db-ux-${PACKAGE}-${VALID_SEMVER_VERSION}.tgz --${step}`
 				);
 			} catch (error) {
 				console.error(

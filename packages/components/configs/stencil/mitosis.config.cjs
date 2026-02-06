@@ -6,7 +6,7 @@ module.exports = {
 	files: 'src/**/*.{lite.tsx,ts}',
 	exclude: ['src/**/*.agent.lite.tsx'],
 	targets: ['stencil'],
-	dest: '../../output/tmp',
+	dest: '../wc-core-components/tmp',
 	options: {
 		stencil
 	}

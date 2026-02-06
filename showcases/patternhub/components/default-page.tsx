@@ -18,7 +18,7 @@ import {
 	DBSection,
 	DBSwitch,
 	DBTooltip
-} from '../../../output/react/src';
+} from '../../../packages/react-core-components/src';
 import {
 	getBreadcrumb,
 	getNavigationList,

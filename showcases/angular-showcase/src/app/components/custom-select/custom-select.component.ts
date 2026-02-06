@@ -3,7 +3,7 @@ import { CustomSelectOptionType } from '@db-ux/core-components/src/components/cu
 import {
 	DBCustomSelect,
 	DBInfotext
-} from '../../../../../../output/angular/src';
+} from '../../../../../../packages/ngx-core-components/src';
 import defaultComponentVariants from '../../../../../shared/custom-select.json';
 import { environment } from '../../../environments/environment';
 import { DefaultComponent } from '../default.component';

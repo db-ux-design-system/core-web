@@ -2,7 +2,7 @@ import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import {
 	DBNavigationItem,
 	NavigationContentDirective
-} from '../../../../../../output/angular/src';
+} from '../../../../../../packages/ngx-core-components/src';
 import defaultComponentVariants from '../../../../../shared/navigation-item.json';
 import { environment } from '../../../environments/environment';
 import { DefaultComponent } from '../default.component';

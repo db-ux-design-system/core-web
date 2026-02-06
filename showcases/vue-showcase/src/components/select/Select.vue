@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { DBSelect } from "../../../../../output/vue/src";
+import { DBSelect } from "../../../../../packages/v-core-components/src";
 import defaultComponentVariants from "../../../../shared/select.json";
 import DefaultComponent from "../DefaultComponent.vue";
 </script>

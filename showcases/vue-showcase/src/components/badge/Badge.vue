@@ -4,7 +4,7 @@ import {
 	DBButton,
 	DBIcon,
 	DBInfotext
-} from "../../../../../output/vue/src";
+} from "../../../../../packages/v-core-components/src";
 import defaultComponentVariants from "../../../../shared/badge.json";
 import DefaultComponent from "../DefaultComponent.vue";
 </script>

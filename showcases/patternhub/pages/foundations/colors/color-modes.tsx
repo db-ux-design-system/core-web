@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { DBButton, DBCard, DBTag } from '../../../../../output/react/src';
+import { DBButton, DBCard, DBTag } from '../../../../../packages/react-core-components/src';
 import { SEMANTICS } from '../../../../../packages/components/src/shared/constants';
 import DefaultPage from '../../../components/default-page';
 

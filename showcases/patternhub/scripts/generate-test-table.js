@@ -9,7 +9,7 @@ const unlistedComponents = new Set([
 ]);
 const unlistedSubComponentsPrefixes = new Set(['-list', '-panel', '-item']);
 
-const webTypesPath = './../../output/stencil/dist/web-types.json';
+const webTypesPath = './../../packages/wc-core-components/dist/web-types.json';
 
 const generateTestTable = () => {
 	let elements = [];

@@ -3,7 +3,7 @@ import {
 	DBAccordion,
 	DBAccordionItem,
 	DBInfotext
-} from "../../../../../output/vue/src";
+} from "../../../../../packages/v-core-components/src";
 import defaultComponentVariants from "../../../../shared/accordion.json";
 import DefaultComponent from "../DefaultComponent.vue";
 </script>

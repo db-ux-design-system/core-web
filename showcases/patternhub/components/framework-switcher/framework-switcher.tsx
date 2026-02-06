@@ -1,4 +1,4 @@
-import { DBSelect } from '../../../../output/react/src';
+import { DBSelect } from '../../../../packages/react-core-components/src';
 import { useFramework } from '../framework-context';
 import { type Framework, FRAMEWORK_OPTIONS } from './data';
 

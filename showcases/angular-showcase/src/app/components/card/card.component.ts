@@ -1,5 +1,5 @@
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import { DBCard } from '../../../../../../output/angular/src';
+import { DBCard } from '../../../../../../packages/ngx-core-components/src';
 import defaultComponentVariants from '../../../../../shared/card.json';
 import { environment } from '../../../environments/environment';
 import { DefaultComponent } from '../default.component';

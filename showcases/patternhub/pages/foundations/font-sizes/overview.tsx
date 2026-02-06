@@ -4,7 +4,7 @@ import {
 	DBInfotext,
 	DBSection,
 	DBSwitch
-} from '../../../../../output/react/src';
+} from '../../../../../packages/react-core-components/src';
 import DefaultPage from '../../../components/default-page';
 import IntrinsicElements = React.JSX.IntrinsicElements;
 

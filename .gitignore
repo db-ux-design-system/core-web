@@ -26,6 +26,38 @@ ctags.tmp
 packages/components/src/**/*.css
 packages/components/src/**/*.css.map
 
+# Framework packages generated sources
+/packages/ngx-core-components/src
+/packages/ngx-core-components/tmp
+/packages/ngx-core-components/dist
+/packages/ngx-core-components/playwright*
+/packages/ngx-core-components/test-results
+/packages/ngx-core-components/agent
+!/packages/ngx-core-components/agent/.gitkeep
+/packages/react-core-components/src
+/packages/react-core-components/tmp
+/packages/react-core-components/dist
+/packages/react-core-components/playwright*
+/packages/react-core-components/test-results
+/packages/react-core-components/agent
+!/packages/react-core-components/agent/.gitkeep
+/packages/v-core-components/src
+/packages/v-core-components/tmp
+/packages/v-core-components/dist
+/packages/v-core-components/playwright*
+/packages/v-core-components/test-results
+/packages/v-core-components/agent
+!/packages/v-core-components/agent/.gitkeep
+/packages/wc-core-components/src
+/packages/wc-core-components/tmp
+/packages/wc-core-components/dist
+/packages/wc-core-components/.stencil
+/packages/wc-core-components/loader
+/packages/wc-core-components/www
+/packages/wc-core-components/agent
+!/packages/wc-core-components/agent/.gitkeep
+
+# Legacy output folder (can be removed once migration is complete)
 /output/**/src
 /output/**/dist
 /output/**/playwright*
@@ -34,8 +66,6 @@ packages/components/src/**/*.css.map
 /showcases/**/results
 
 /build-showcases/
-/build-outputs/
-!/build-outputs/package.json
 
 .cache
 **/playwright-report
@@ -63,15 +93,10 @@ showcases/patternhub/public/iframe-resizer/*
 /packages/foundations/assets/icons/fonts/**/*.json
 /packages/foundations/assets/icons/functional/**
 
-/output/stencil/.stencil
-/output/stencil/loader
-/output/stencil/www
 **/.angular
 /scripts/public/
 /scripts/gh-pages.tar.gz
 !/scripts/tests/fixtures/out
-/output/**/docs/
-/output/**/agent/
 /packages/agent-cli/test/.github/copilot-instructions.md
 /packages/agent-cli/test/.amazonq/rules/db-ux.md
 /core-web.iml

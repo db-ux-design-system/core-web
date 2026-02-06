@@ -7,7 +7,7 @@ import {
 } from './utils.js';
 
 const sharedPath = '../shared';
-const webTypesPath = './../../output/stencil/dist/web-types.json';
+const webTypesPath = './../../packages/wc-core-components/dist/web-types.json';
 
 const generateExampleJSX = () => {
 	let elements = [];
@@ -60,7 +60,7 @@ const generateExampleJSX = () => {
 		`./scripts/generated/index.jsx`,
 		"import { renderToString } from 'react-dom/server';\n" +
 			"import React from 'react';\n" +
-			`import {${imports.join(',')}} from '../../../../output/react/src';\n\n` +
+			`import {${imports.join(',')}} from '../../../../packages/react-core-components/src';\n\n` +
 			`export const allExamples = {${examples.join(',\n')}}`
 	);
 };

@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { DBInfotext, type SemanticType } from '../../../../output/react/src';
+import { DBInfotext, type SemanticType } from '../../../../packages/react-core-components/src';
 
 export type AccessibilityReviewInfoType = {
 	name: string;

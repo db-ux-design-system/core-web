@@ -1,5 +1,8 @@
 <script setup lang="ts">
-import { DBDivider, DBInfotext } from "../../../../../output/vue/src";
+import {
+	DBDivider,
+	DBInfotext
+} from "../../../../../packages/v-core-components/src";
 import defaultComponentVariants from "../../../../shared/divider.json";
 import DefaultComponent from "../DefaultComponent.vue";
 </script>

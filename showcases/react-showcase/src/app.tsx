@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Outlet } from 'react-router-dom';
-import { DBBrand, DBButton, DBHeader, DBPage } from '../../../output/react/src';
+import { DBBrand, DBButton, DBHeader, DBPage } from '../../../packages/react-core-components/src';
 import useQuery from './hooks/use-query';
 import MetaNavigation from './meta-navigation';
 import Navigation from './navigation';

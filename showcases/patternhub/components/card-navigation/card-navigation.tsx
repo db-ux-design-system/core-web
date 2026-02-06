@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import { DBCard, DBIcon } from '../../../../output/react/src';
+import { DBCard, DBIcon } from '../../../../packages/react-core-components/src';
 import { getAllNavigationItems } from '../../data/routes';
 import DefaultPage from '../default-page';
 

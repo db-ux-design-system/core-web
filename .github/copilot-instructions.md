@@ -129,7 +129,7 @@ docker-compose --file ./e2e/docker-compose.yml up
 
 - **Generate new component**: `npm run generate:component`
 - **Component build location**: `packages/components/build/`
-- **Framework outputs**: `output/react/`, `output/vue/`, `output/angular/`, `output/stencil/`
+- **Framework outputs**: `packages/react-core-components/`, `packages/v-core-components/`, `packages/ngx-core-components/`, `packages/wc-core-components/`
 
 ### Working with Styles
 
@@ -144,12 +144,11 @@ docker-compose --file ./e2e/docker-compose.yml up
 │   ├── foundations/        # Base CSS/SCSS styles and design tokens
 │   ├── components/         # Component CSS and build definitions
 │   ├── migration/          # Migration utilities between versions
-│   └── stylelint/          # DB UX Design System Stylelint plugin for QS
-├── output/                 # Framework-specific generated code
-│   ├── angular/            # Angular components (@db-ux/ngx-core-components)
-│   ├── react/              # React components (@db-ux/react-core-components)
-│   ├── vue/                # Vue 3 components (@db-ux/v-core-components)
-│   └── stencil/            # Web Components (@db-ux/wc-core-components)
+│   ├── stylelint/          # DB UX Design System Stylelint plugin for QS
+│   ├── ngx-core-components/  # Angular components (@db-ux/ngx-core-components)
+│   ├── react-core-components/ # React components (@db-ux/react-core-components)
+│   ├── v-core-components/    # Vue 3 components (@db-ux/v-core-components)
+│   └── wc-core-components/   # Web Components (@db-ux/wc-core-components)
 ├── showcases/              # Example applications for each framework
 ├── e2e/                    # End-to-end testing with Playwright
 └── docs/                   # Documentation files

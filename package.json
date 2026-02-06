@@ -69,8 +69,8 @@
     "rm:builds": "pnpm --filter='./scripts' run rm:builds",
     "start": "pnpm --filter=patternhub run start",
     "test": "pnpm --filter='./scripts' run test",
-    "test:react-core-components": "playwright test --config output/react/playwright.config.ts --ui",
-    "test:vue-components": "playwright test --config output/vue/playwright.config.ts --ui",
+    "test:react-core-components": "playwright test --config packages/react-core-components/playwright.config.ts --ui",
+    "test:vue-components": "playwright test --config packages/v-core-components/playwright.config.ts --ui",
     "update:dependency:playwright": "node scripts/github/update-playwright.js"
   },
   "dependencies": {

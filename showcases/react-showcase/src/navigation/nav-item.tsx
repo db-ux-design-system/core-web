@@ -2,7 +2,7 @@ import NextLink from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { DBNavigationItem } from '../../../../output/react/src';
+import { DBNavigationItem } from '../../../../packages/react-core-components/src';
 import type { NavigationItem } from '../utils/navigation-item';
 
 const NavItem = ({ navItem }: { navItem: NavigationItem }) => {

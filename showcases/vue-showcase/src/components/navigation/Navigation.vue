@@ -3,7 +3,7 @@ import {
 	DBInfotext,
 	DBNavigation,
 	DBNavigationItem
-} from "../../../../../output/vue/src";
+} from "../../../../../packages/v-core-components/src";
 import defaultComponentVariants from "../../../../shared/navigation.json";
 import DefaultComponent from "../DefaultComponent.vue";
 

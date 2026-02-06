@@ -8,7 +8,7 @@ import getPropertiesFile from './get-properties-file.js';
 import { getComponentGroup, getComponentName } from './utils.js';
 
 const componentsPath = './pages/components';
-const webTypesPath = './../../output/stencil/dist/web-types.json';
+const webTypesPath = './../../packages/wc-core-components/dist/web-types.json';
 
 const getRedirectOldFiles = (
 	importPath

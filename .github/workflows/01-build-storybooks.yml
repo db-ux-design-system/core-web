@@ -31,11 +31,11 @@ jobs:
           name: db-ux-foundations-build
           path: packages/foundations/build
 
-      - name: ⏬ Download output
+      - name: ⏬ Download framework sources
         uses: actions/download-artifact@v7
         with:
-          name: db-ux-output
-          path: output
+          name: db-ux-framework-sources
+          path: packages
 
       - name: ⏬ Download components build
         uses: actions/download-artifact@v7

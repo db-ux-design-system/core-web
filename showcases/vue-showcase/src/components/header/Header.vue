@@ -6,7 +6,7 @@ import {
 	DBLink,
 	DBNavigation,
 	DBNavigationItem
-} from "../../../../../output/vue/src";
+} from "../../../../../packages/v-core-components/src";
 import defaultComponentVariants from "../../../../shared/header.json";
 import DefaultComponent from "../DefaultComponent.vue";
 </script>

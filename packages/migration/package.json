@@ -18,11 +18,6 @@
   ],
   "scripts": {
     "build": "node esbuild.js",
-    "copy-build": "npm-run-all copy-build:*",
-    "copy-build:build": "cpr build ../../build-outputs/migration/build -o",
-    "copy-build:changelog": "cpr CHANGELOG.md ../../build-outputs/migration/CHANGELOG.md --overwrite",
-    "copy-build:package.json": "cpr package.json ../../build-outputs/migration/package.json -o",
-    "copy-build:readme": "cpr README.md ../../build-outputs/migration/README.md -o",
     "test": "vitest run --config vitest.config.ts",
     "test:migration": "tsx src/cli.ts migration --type v005_v006 --src=./scss --dryRun=true"
   },

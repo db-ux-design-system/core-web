@@ -1,5 +1,8 @@
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import { DBButton, DBTooltip } from '../../../../../../output/angular/src';
+import {
+	DBButton,
+	DBTooltip
+} from '../../../../../../packages/ngx-core-components/src';
 import defaultComponentVariants from '../../../../../shared/tooltip.json';
 import { environment } from '../../../environments/environment';
 import { DefaultComponent } from '../default.component';

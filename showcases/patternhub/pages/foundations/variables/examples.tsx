@@ -3,7 +3,7 @@ import {
 	DBCard,
 	DBIcon,
 	DBInfotext
-} from '../../../../../output/react/src';
+} from '../../../../../packages/react-core-components/src';
 import DefaultPage from '../../../components/default-page';
 
 const Example = () => {

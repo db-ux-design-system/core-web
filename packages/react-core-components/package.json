@@ -8,26 +8,24 @@
   },
   "license": "Apache-2.0",
   "main": "./dist/index.js",
-  "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
+  "module": "./dist/index.js",
   "files": [
-    "dist/",
+    "CHANGELOG.md",
     "agent",
-    "CHANGELOG.md"
+    "dist/"
   ],
   "scripts": {
-    "build": "npm-run-all tsc --parallel mv:*",
-    "mv:dist": "cpr dist ../../build-outputs/react/dist --overwrite",
-    "mv:agent": "cpr agent ../../build-outputs/react/agent --overwrite",
-    "mv:changelog": "cpr CHANGELOG.md ../../build-outputs/react/CHANGELOG.md --overwrite",
-    "mv:package.json": "cpr package.json ../../build-outputs/react/package.json --overwrite",
-    "mv:readme": "cpr README.md ../../build-outputs/react/README.md --overwrite",
+    "build": "tsc --project . --sourceMap false",
     "open:report": "npx playwright show-report",
     "regenerate:screenshots": "playwright test --config playwright.config.ts --update-snapshots",
     "test:components": "playwright test --config playwright.config.ts",
-    "test:windows": "playwright test --config playwright.screen-reader.win.ts",
     "test:components:ui": "playwright test --config playwright.config.ts --ui",
-    "tsc": "tsc --project . --sourceMap false"
+    "test:windows": "playwright test --config playwright.screen-reader.win.ts"
+  },
+  "dependencies": {
+    "@db-ux/core-components": "workspace:*",
+    "@db-ux/core-foundations": "workspace:*"
   },
   "devDependencies": {
     "@playwright/experimental-ct-react": "1.57.0",
@@ -39,9 +37,5 @@
     "registry": "https://registry.npmjs.org/",
     "access": "public"
   },
-  "sideEffects": false,
-  "dependencies": {
-    "@db-ux/core-components": "workspace:*",
-    "@db-ux/core-foundations": "workspace:*"
-  }
+  "sideEffects": false
 }

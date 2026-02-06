@@ -7,7 +7,7 @@ import {
 	DBSelect,
 	DBTag,
 	DBTextarea
-} from "../../../../../output/vue/src";
+} from "../../../../../packages/v-core-components/src";
 
 import { ref } from "vue";
 const input = ref("");

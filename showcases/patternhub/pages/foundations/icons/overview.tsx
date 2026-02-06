@@ -6,7 +6,7 @@ import {
 	DBInfotext,
 	DBInput,
 	DBSelect
-} from '../../../../../output/react/src';
+} from '../../../../../packages/react-core-components/src';
 import DefaultPage from '../../../components/default-page';
 
 // Import root package.json for theme version

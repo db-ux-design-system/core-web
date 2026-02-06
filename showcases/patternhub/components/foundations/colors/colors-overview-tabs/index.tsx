@@ -5,7 +5,7 @@ import {
 	DBTabList,
 	DBTabPanel,
 	DBTabs
-} from '../../../../../../output/react/src';
+} from '../../../../../../packages/react-core-components/src';
 import ColorsGrid from '../colors-grid';
 import { type ColorValue } from '../data';
 

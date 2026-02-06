@@ -27,11 +27,15 @@ jobs:
           name: db-ux-foundations-build
           path: packages/foundations/build
 
-      - name: ⏫ Upload output
+      - name: ⏫ Upload framework sources
         uses: actions/upload-artifact@v6
         with:
-          name: db-ux-output
-          path: output
+          name: db-ux-framework-sources
+          path: |
+            packages/ngx-core-components/src
+            packages/react-core-components/src
+            packages/v-core-components/src
+            packages/wc-core-components/src
 
       - name: ⏫ Upload components build
         uses: actions/upload-artifact@v6

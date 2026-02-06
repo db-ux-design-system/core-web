@@ -1,5 +1,5 @@
 import { useCallback, useState } from 'react';
-import { DBCard, DBDivider, DBLink } from '../../../../output/react/src';
+import { DBCard, DBDivider, DBLink } from '../../../../packages/react-core-components/src';
 import type {
 	ReactDefaultComponentProps,
 	ReactDefaultComponentVariants
