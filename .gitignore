@@ -61,10 +61,12 @@ packages/components/src/**/*.css.map
 
 /build-showcases/
 
+# Mitosis output directory (deprecated, use packages/* directly)
+/output/
+
 .cache
 **/playwright-report
 /.parcel-cache/
-/output/docs.json
 showcases/patternhub/public/iframe-resizer/*
 
 **/test-results/
