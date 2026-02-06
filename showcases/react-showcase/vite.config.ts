@@ -34,7 +34,10 @@ export default defineConfig({
 	},
 	resolve: {
 		alias: {
-			'@components': path.resolve(__dirname, '../../packages/react-core-components/src')
+			'@components': path.resolve(
+				__dirname,
+				'../../packages/react-core-components/src'
+			)
 		}
 	},
 	css: {
