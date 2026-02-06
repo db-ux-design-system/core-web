@@ -1,5 +1,29 @@
 # @db-ux/ngx-core-components
 
+## 4.4.0
+
+### Minor Changes
+
+- feat: add `role` property to DBNotification & automatically add role based on semantic if no `role` or `ariaLive` is provided to increase UX for screen-reader users - [see commit 177d71e](https://github.com/db-ux-design-system/core-web/commit/177d71e287a64a6491ba446e7812d0adbda1717e)
+
+- feat(DBSelect): hide empty first option in `required` selects with placeholder after the first user selection, and add `showEmptyOption` prop to overwrite this - [see commit 4280bc4](https://github.com/db-ux-design-system/core-web/commit/4280bc47538d6983d6bb5575f012b6c6b25b40e8)
+
+## 4.3.2
+
+### Patch Changes
+
+- fix(input): add missing `accept` attribute for file inputs - [see commit d74707d](https://github.com/db-ux-design-system/core-web/commit/d74707d17045a0efb182856e9a3db192a4d6e2fa)
+
+- fix: rendering issue with drawer and sub-navigation when user has `prefers-reduced-motion: reduce` - [see commit cd23ff2](https://github.com/db-ux-design-system/core-web/commit/cd23ff2da5fa8a11121c3195467b4b4c0ab2ebb6)
+
+- fix(customselect): select last remaining result with enter key - [see commit cc6a445](https://github.com/db-ux-design-system/core-web/commit/cc6a445c523cc196b9c93584c62772ba9864996f)
+
+## 4.3.1
+
+### Patch Changes
+
+- fix(angular): issue with form-components not applying value changes because of [attr.value] instead of native [value] binding - [see commit 61ab4a3](https://github.com/db-ux-design-system/core-web/commit/61ab4a3e9a781459b829c74cf23624a23edd9e3f)
+
 ## 4.3.0
 
 ### Minor Changes

@@ -20,7 +20,13 @@ import { DBRadioProps, DBRadioState } from './model';
 
 useMetadata({
 	angular: {
-		nativeAttributes: ['disabled', 'required', 'checked', 'indeterminate'],
+		nativeAttributes: [
+			'disabled',
+			'required',
+			'checked',
+			'indeterminate',
+			'value'
+		],
 		signals: {
 			writeable: ['disabled', 'value']
 		}

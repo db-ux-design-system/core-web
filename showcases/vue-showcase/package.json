@@ -26,18 +26,18 @@
   "dependencies": {
     "@db-ux/core-components": "workspace:*",
     "sa11y": "4.4.1",
-    "vue": "3.5.26",
-    "vue-router": "4.6.4"
+    "vue": "3.5.27",
+    "vue-router": "5.0.2"
   },
   "devDependencies": {
     "@db-ux/db-theme": "5.3.0",
     "@db-ux/db-theme-fonts": "2.0.5",
     "@db-ux/db-theme-icons": "3.4.0",
     "@db-ux/db-theme-illustrative-icons": "3.0.0",
-    "@vitejs/plugin-vue": "6.0.3",
+    "@vitejs/plugin-vue": "6.0.4",
     "cross-env": "10.1.0",
     "typescript": "5.9.3",
     "vite": "7.3.1",
-    "vue-tsc": "3.2.2"
+    "vue-tsc": "3.2.4"
   }
 }

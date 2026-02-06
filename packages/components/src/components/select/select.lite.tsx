@@ -179,6 +179,18 @@ export default function DBSelect(props: DBSelectProps) {
 		},
 		getOptionLabel: (option: DBSelectOptionType) => {
 			return option.label ?? option.value?.toString();
+		},
+		shouldShowEmptyOption: () => {
+			const hasPlaceholderOrFloating =
+				props.variant === 'floating' || !!props.placeholder;
+			if (!hasPlaceholderOrFloating) {
+				return false;
+			}
+			if (props.showEmptyOption !== undefined) {
+				return props.showEmptyOption;
+			}
+			// Default: show empty option for non-required selects
+			return !props.required;
 		}
 	});
 
@@ -235,7 +247,14 @@ export default function DBSelect(props: DBSelectProps) {
 	}, [props.value]);
 
 	onUpdate(() => {
-		if (_ref) {
+		// If angular uses ngModel value and _value are null
+		// then the value will be set afterward and the _ref will be refreshed
+		const addResetListener = useTarget({
+			angular: !(props.value === null && state._value === null),
+			default: true
+		});
+
+		if (_ref && addResetListener) {
 			const defaultValue = useTarget({
 				react: (props as any).defaultValue,
 				default: undefined
@@ -301,8 +320,14 @@ export default function DBSelect(props: DBSelectProps) {
 				}
 				aria-describedby={props.ariaDescribedBy ?? state._descByIds}>
 				{/* Empty option for floating label and placeholder */}
-				<Show when={props.variant === 'floating' || props.placeholder}>
-					<option class="placeholder" value=""></option>
+				<Show
+					when={props.variant === 'floating' || !!props.placeholder}>
+					<option
+						class="placeholder"
+						value=""
+						data-show-empty-option={getBooleanAsString(
+							state.shouldShowEmptyOption()
+						)}></option>
 				</Show>
 				<Show when={props.options?.length} else={props.children}>
 					<For each={props.options}>
