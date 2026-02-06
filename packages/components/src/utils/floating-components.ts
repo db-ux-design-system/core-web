@@ -259,16 +259,29 @@ export const getFloatingProps = (
 		innerHeight
 	};
 };
+
+const MAX_ANCESTOR_DEPTH = 10;
+const ancestorCache = new WeakMap<HTMLElement, HTMLElement | null>();
+
 const getAncestorHasCorrectedPlacement = (
 	element: HTMLElement
 ): HTMLElement | null => {
+	if (ancestorCache.has(element)) {
+		return ancestorCache.get(element)!;
+	}
+
 	let current = element.parentElement;
 	let anchor = 0;
-	while (current && anchor < 10) {
-		if (current.dataset['correctedPlacement']) return current;
+	while (current && anchor < MAX_ANCESTOR_DEPTH) {
+		if (current.dataset['correctedPlacement']) {
+			ancestorCache.set(element, current);
+			return current;
+		}
 		current = current.parentElement;
 		anchor += 1;
 	}
+
+	ancestorCache.set(element, null);
 	return null;
 };
 
@@ -287,7 +300,7 @@ export const handleFixedPopover = (
 		!ancestorWithCorrectedPlacement && !parentHasFloatingPosition;
 
 	const distance =
-		getComputedStyle(element).getPropertyValue('--db-popover-distance') ??
+		getComputedStyle(element)?.getPropertyValue('--db-popover-distance') ??
 		'0px';
 	let {
 		top,
