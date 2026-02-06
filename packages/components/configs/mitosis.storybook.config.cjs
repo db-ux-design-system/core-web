@@ -4,7 +4,10 @@ const storyBookPlugin = require('./plugins/storybook/storybook-plugin.cjs');
  * @type {import('@builder.io/mitosis').MitosisConfig}
  */
 module.exports = {
-	files: ['src/**/*.example.lite.tsx'],
+	files: [
+		'src/components/button/examples/*.example.lite.tsx'
+		// 'src/components/loading-indicator/examples/*.example.lite.tsx'
+	],
 	targets: ['angular', 'react', 'vue'],
 	dest: '../../storybooks',
 	getTargetPath: ({ target }) => {

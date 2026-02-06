@@ -5,7 +5,7 @@
  * @param {Array} args - Args array to populate
  */
 const processBindings = (example, target, args) => {
-	if (!example.bindings) return;
+	if (!example?.bindings) return;
 
 	for (const [key, value] of Object.entries(example.bindings)) {
 		if (key.startsWith('on')) {
@@ -62,7 +62,11 @@ const processChildren = (example, target, componentName, args) => {
 	}
 
 	// Extract text content
-	if (firstChild.name === 'div' && firstChild.properties['_text']) {
+	if (
+		firstChild &&
+		firstChild.name === 'div' &&
+		firstChild.properties['_text']
+	) {
 		const key = target === 'vue' ? 'default' : 'children';
 		args.push(`${key}: "${firstChild.properties['_text'].trim()}"`);
 	}
@@ -102,6 +106,10 @@ const getStories = ({ target, name, fragment, meta, componentName }) => {
 				args
 			);
 			example = changedExample;
+			if (!example) {
+				throw Error(`somethings wrong with: ${name}`);
+			}
+
 			processBindings(example, target, args);
 
 			// Add other properties

@@ -1,5 +1,3 @@
-import { DBLoadingIndicator } from '../../../../output/react/src/index';
-
 import { useEffect, useState } from 'react';
 import {
 	DBAccordion,
@@ -16,6 +14,7 @@ import {
 	DBInfotext,
 	DBInput,
 	DBLink,
+	DBLoadingIndicator,
 	DBNavigation,
 	DBNavigationItem,
 	DBNotification,
