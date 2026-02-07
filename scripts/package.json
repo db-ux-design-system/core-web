@@ -89,7 +89,7 @@
   "devDependencies": {
     "@inquirer/prompts": "8.2.0",
     "find-versions": "6.0.0",
-    "glob": "13.0.0",
+    "glob": "13.0.1",
     "inquirer": "13.2.2",
     "replace-in-file": "8.4.0",
     "sassdoc": "2.7.4",

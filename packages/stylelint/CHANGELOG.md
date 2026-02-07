@@ -4,7 +4,6 @@
 
 _version bump_
 
-
 ## 4.4.0
 
 ### Patch Changes
