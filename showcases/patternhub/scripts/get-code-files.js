@@ -38,7 +38,7 @@ const getExamplesAsMDX = async (componentName, variant) => {
 		'DBTabList,\n' +
 		'DBTabPanel,\n' +
 		'DBTabs\n' +
-		"} from '../../../../../packages/react-core-components/src';\n" +
+		"} from '@db-ux/react-core-components/src';\n" +
 		"import { useFramework } from '../../framework-context';\n" +
 		`const ${variant.name} = () => {
 			const [copied, setCopied] = useState<string>();

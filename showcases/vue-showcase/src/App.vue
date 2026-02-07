@@ -1,16 +1,16 @@
 <script setup lang="ts">
 import {
-	COLORS,
-	DENSITIES
-} from "../../../packages/components/src/shared/constants";
-import {
 	DBBrand,
 	DBButton,
 	DBHeader,
 	DBNavigation,
 	DBPage,
 	DBSelect
-} from "../../../packages/v-core-components/src";
+} from "@db-ux/v-core-components/src";
+import {
+	COLORS,
+	DENSITIES
+} from "../../../packages/components/src/shared/constants";
 import NavItemComponent from "./NavItemComponent.vue";
 
 import { useLayout } from "./composables/use-layout";

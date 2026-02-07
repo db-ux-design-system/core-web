@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { DBLink } from "../../../../../packages/v-core-components/src";
+import { DBLink } from "@db-ux/v-core-components/src";
 import defaultComponentVariants from "../../../../shared/link.json";
 import DefaultComponent from "../DefaultComponent.vue";
 </script>

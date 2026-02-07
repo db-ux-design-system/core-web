@@ -1,8 +1,4 @@
-import {
-	DBButton,
-	DBCard,
-	DBInput
-} from '../../../../../packages/react-core-components/src';
+import { DBButton, DBCard, DBInput } from '@db-ux/react-core-components/src';
 import DefaultPage from '../../../components/default-page';
 
 const densities = ['functional', 'regular', 'expressive'];

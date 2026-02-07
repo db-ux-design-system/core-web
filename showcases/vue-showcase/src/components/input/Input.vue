@@ -3,7 +3,7 @@ import {
 	DBInput,
 	LabelVariantType,
 	ValueLabelType
-} from "../../../../../packages/v-core-components/src";
+} from "@db-ux/v-core-components/src";
 import defaultComponentVariants from "../../../../shared/input.json";
 import DefaultComponent from "../DefaultComponent.vue";
 

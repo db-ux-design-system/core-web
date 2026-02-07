@@ -3,7 +3,7 @@ import {
 	DBInput,
 	LabelVariantType,
 	ValueLabelType
-} from '../../../../../../packages/ngx-core-components/src';
+} from '@db-ux/ngx-core-components/src';
 import defaultComponentVariants from '../../../../../shared/input.json';
 import { environment } from '../../../environments/environment';
 import { DefaultComponent } from '../default.component';

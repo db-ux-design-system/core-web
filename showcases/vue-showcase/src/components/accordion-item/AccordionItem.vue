@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { DBAccordionItem } from "../../../../../packages/v-core-components/src";
+import { DBAccordionItem } from "@db-ux/v-core-components/src";
 import defaultComponentVariants from "../../../../shared/accordion-item.json";
 import DefaultComponent from "../DefaultComponent.vue";
 </script>

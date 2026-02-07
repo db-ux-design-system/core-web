@@ -1,9 +1,6 @@
 import { Component } from '@angular/core';
 import { CustomSelectOptionType } from '@db-ux/core-components/src/components/custom-select/model';
-import {
-	DBCustomSelect,
-	DBInfotext
-} from '../../../../../../packages/ngx-core-components/src';
+import { DBCustomSelect, DBInfotext } from '@db-ux/ngx-core-components/src';
 import defaultComponentVariants from '../../../../../shared/custom-select.json';
 import { environment } from '../../../environments/environment';
 import { DefaultComponent } from '../default.component';

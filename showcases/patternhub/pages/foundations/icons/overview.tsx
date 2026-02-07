@@ -1,12 +1,12 @@
 import { ALL_ICONS } from '@db-ux/db-theme-icons';
-import { useState } from 'react';
 import {
 	DBCard,
 	DBIcon,
 	DBInfotext,
 	DBInput,
 	DBSelect
-} from '../../../../../packages/react-core-components/src';
+} from '@db-ux/react-core-components/src';
+import { useState } from 'react';
 import DefaultPage from '../../../components/default-page';
 
 // Import root package.json for theme version

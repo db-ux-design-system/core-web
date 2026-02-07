@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { DBTextarea } from "../../../../../packages/v-core-components/src";
+import { DBTextarea } from "@db-ux/v-core-components/src";
 import defaultComponentVariants from "../../../../shared/textarea.json";
 import DefaultComponent from "../DefaultComponent.vue";
 </script>

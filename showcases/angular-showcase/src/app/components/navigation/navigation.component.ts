@@ -4,7 +4,7 @@ import {
 	DBNavigation,
 	DBNavigationItem,
 	NavigationContentDirective
-} from '../../../../../../packages/ngx-core-components/src';
+} from '@db-ux/ngx-core-components/src';
 import defaultComponentVariants from '../../../../../shared/navigation.json';
 import { environment } from '../../../environments/environment';
 import { DefaultComponent } from '../default.component';

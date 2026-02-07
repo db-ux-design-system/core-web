@@ -3,7 +3,7 @@ import {
 	DBCard,
 	DBInfotext,
 	DBInput
-} from '../../../../packages/react-core-components/src';
+} from '@db-ux/react-core-components/src';
 
 const ValidationExample = () => {
 	return (

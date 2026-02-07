@@ -28,6 +28,7 @@
     "watch": "ng build --watch --configuration development"
   },
   "dependencies": {
+    "@db-ux/core-components": "workspace:*",
     "@stencil/core": "4.42.0"
   },
   "devDependencies": {

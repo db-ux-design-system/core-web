@@ -4,7 +4,7 @@ import {
 	DBTabList,
 	DBTabPanel,
 	DBTabs
-} from "../../../../../packages/v-core-components/src";
+} from "@db-ux/v-core-components/src";
 import Checkboxes from "../form/Checkboxes.vue";
 import CustomSelects from "../form/Custom-Selects.vue";
 import Form from "../form/Form.vue";

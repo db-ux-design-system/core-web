@@ -1,8 +1,5 @@
 <script setup lang="ts">
-import {
-	DBIcon,
-	DBInfotext
-} from "../../../../../packages/v-core-components/src";
+import { DBIcon, DBInfotext } from "@db-ux/v-core-components/src";
 import defaultComponentVariants from "../../../../shared/icon.json";
 import DefaultComponent from "../DefaultComponent.vue";
 </script>

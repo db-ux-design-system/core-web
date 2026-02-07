@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { DBNavigationItem } from "../../../../../packages/v-core-components/src";
+import { DBNavigationItem } from "@db-ux/v-core-components/src";
 import defaultComponentVariants from "../../../../shared/navigation-item.json";
 import DefaultComponent from "../DefaultComponent.vue";
 

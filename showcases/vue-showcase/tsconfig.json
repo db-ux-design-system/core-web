@@ -17,7 +17,7 @@
 		"skipLibCheck": true,
 		"noEmit": true,
 		"paths": {
-			"@components": ["../../packages/v-core-components/src"],
+			"@components": ["@db-ux/v-core-components/src"],
 			"@components/src/*": ["../../packages/v-core-components/src/*"],
 			"@components/components/*": [
 				"../../packages/v-core-components/src/components/*"

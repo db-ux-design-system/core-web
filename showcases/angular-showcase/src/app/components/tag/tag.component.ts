@@ -1,5 +1,5 @@
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import { DBTag } from '../../../../../../packages/ngx-core-components/src';
+import { DBTag } from '@db-ux/ngx-core-components/src';
 import defaultComponentVariants from '../../../../../shared/tag.json';
 import { environment } from '../../../environments/environment';
 import { DefaultComponent } from '../default.component';

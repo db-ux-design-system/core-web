@@ -1,8 +1,5 @@
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import {
-	DBLink,
-	DBNotification
-} from '../../../../../../packages/ngx-core-components/src';
+import { DBLink, DBNotification } from '@db-ux/ngx-core-components/src';
 import defaultComponentVariants from '../../../../../shared/notification.json';
 import { environment } from '../../../environments/environment';
 import { DefaultComponent } from '../default.component';

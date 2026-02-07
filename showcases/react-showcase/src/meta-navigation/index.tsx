@@ -1,3 +1,4 @@
+import { DBSelect } from '@db-ux/react-core-components/src';
 import { useEffect, useState } from 'react';
 import {
 	COLOR,
@@ -7,7 +8,6 @@ import {
 	DENSITY,
 	DENSITY_CONST
 } from '../../../../packages/components/src/shared/constants';
-import { DBSelect } from '../../../../packages/react-core-components/src';
 import useUniversalSearchParameters from '../hooks/use-universal-search-parameters';
 
 export type MetaNavigationProps = {

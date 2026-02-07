@@ -1,8 +1,5 @@
 <script setup lang="ts">
-import {
-	DBInfotext,
-	DBSwitch
-} from "../../../../../packages/v-core-components/src";
+import { DBInfotext, DBSwitch } from "@db-ux/v-core-components/src";
 import defaultComponentVariants from "../../../../shared/switch.json";
 import DefaultComponent from "../DefaultComponent.vue";
 </script>

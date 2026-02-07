@@ -1,5 +1,5 @@
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import { DBAccordionItem } from '../../../../../../packages/ngx-core-components/src';
+import { DBAccordionItem } from '@db-ux/ngx-core-components/src';
 import defaultComponentVariants from '../../../../../shared/accordion-item.json';
 import { environment } from '../../../environments/environment';
 import { DefaultComponent } from '../default.component';

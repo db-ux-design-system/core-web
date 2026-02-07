@@ -1,6 +1,6 @@
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import { DBInfotext } from '../../../../../../packages/ngx-core-components/src/components/infotext';
-import { DBSwitch } from '../../../../../../packages/ngx-core-components/src/components/switch';
+import { DBInfotext } from '@db-ux/ngx-core-components/src/components/infotext';
+import { DBSwitch } from '@db-ux/ngx-core-components/src/components/switch';
 import defaultComponentVariants from '../../../../../shared/switch.json';
 import { environment } from '../../../environments/environment';
 import { DefaultComponent } from '../default.component';

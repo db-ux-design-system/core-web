@@ -1,11 +1,11 @@
-import type { AppProps } from 'next/app';
-import { useState } from 'react';
 import {
 	DBBrand,
 	DBButton,
 	DBHeader,
 	DBPage
-} from '../../../packages/react-core-components/src';
+} from '@db-ux/react-core-components/src';
+import type { AppProps } from 'next/app';
+import { useState } from 'react';
 import useQuery from '../../react-showcase/src/hooks/use-query';
 import MetaNavigation from '../../react-showcase/src/meta-navigation';
 import Navigation from '../../react-showcase/src/navigation';

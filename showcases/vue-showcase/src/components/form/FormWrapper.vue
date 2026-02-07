@@ -1,6 +1,6 @@
 <script setup lang="ts">
 const props = defineProps(["plain", "vmodel"]);
-import { DBButton } from "../../../../../packages/v-core-components/src";
+import { DBButton } from "@db-ux/v-core-components/src";
 </script>
 
 <template>

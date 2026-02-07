@@ -1,8 +1,5 @@
 <script setup lang="ts">
-import {
-	DBCheckbox,
-	DBInfotext
-} from "../../../../../packages/v-core-components/src";
+import { DBCheckbox, DBInfotext } from "@db-ux/v-core-components/src";
 import defaultComponentVariants from "../../../../shared/checkbox.json";
 import DefaultComponent from "../DefaultComponent.vue";
 </script>

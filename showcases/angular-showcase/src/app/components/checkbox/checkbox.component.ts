@@ -1,8 +1,5 @@
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import {
-	DBCheckbox,
-	DBInfotext
-} from '../../../../../../packages/ngx-core-components/src';
+import { DBCheckbox, DBInfotext } from '@db-ux/ngx-core-components/src';
 import defaultComponentVariants from '../../../../../shared/checkbox.json';
 import { environment } from '../../../environments/environment';
 import { DefaultComponent } from '../default.component';

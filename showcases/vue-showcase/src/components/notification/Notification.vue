@@ -1,8 +1,5 @@
 <script setup lang="ts">
-import {
-	DBLink,
-	DBNotification
-} from "../../../../../packages/v-core-components/src";
+import { DBLink, DBNotification } from "@db-ux/v-core-components/src";
 import defaultComponentVariants from "../../../../shared/notification.json";
 import DefaultComponent from "../DefaultComponent.vue";
 

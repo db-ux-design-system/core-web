@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { DBCard, DBDivider, DBLink } from "@db-ux/v-core-components/src";
 import { inject, type Ref, ref, watch } from "vue";
 import { useRoute } from "vue-router";
 import {
@@ -7,11 +8,6 @@ import {
 	DENSITY,
 	DENSITY_CONST
 } from "../../../../packages/components/src/shared/constants";
-import {
-	DBCard,
-	DBDivider,
-	DBLink
-} from "../../../../packages/v-core-components/src";
 import type {
 	DefaultComponentExample,
 	DefaultComponentProps,

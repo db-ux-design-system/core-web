@@ -1,10 +1,6 @@
+import { DBButton, DBCard, DBTag } from '@db-ux/react-core-components/src';
 import { useState } from 'react';
 import { SEMANTICS } from '../../../../../packages/components/src/shared/constants';
-import {
-	DBButton,
-	DBCard,
-	DBTag
-} from '../../../../../packages/react-core-components/src';
 import DefaultPage from '../../../components/default-page';
 
 const colors = ['neutral', ...SEMANTICS];

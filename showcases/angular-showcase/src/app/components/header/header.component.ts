@@ -10,7 +10,7 @@ import {
 	NavigationContentDirective,
 	NavigationDirective,
 	SecondaryActionDirective
-} from '../../../../../../packages/ngx-core-components/src';
+} from '@db-ux/ngx-core-components/src';
 import defaultComponentVariants from '../../../../../shared/header.json';
 import { environment } from '../../../environments/environment';
 import { DefaultComponent } from '../default.component';

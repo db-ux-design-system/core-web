@@ -1,8 +1,5 @@
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import {
-	DBTabItem,
-	DBTabList
-} from '../../../../../../packages/ngx-core-components/src';
+import { DBTabItem, DBTabList } from '@db-ux/ngx-core-components/src';
 import defaultComponentVariants from '../../../../../shared/tab-item.json';
 import { environment } from '../../../environments/environment';
 import { DefaultComponent } from '../default.component';
