@@ -1,6 +1,5 @@
 {
   "name": "@db-ux/docs",
-  "private": true,
   "version": "0.0.0",
   "type": "module",
   "description": "Docs folder for DB UX Design System (Version 3).",
@@ -9,6 +8,7 @@
     "url": "git+https://github.com/db-ux-design-system/core-web.git"
   },
   "license": "Apache-2.0",
+  "private": true,
   "scripts": {
     "generate:component-research": "node scripts/component-research/generate-component-research.js"
   },

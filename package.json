@@ -1,6 +1,5 @@
 {
   "name": "@db-ux/core-web",
-  "private": true,
   "version": "0.0.0",
   "type": "module",
   "description": "DB UX Design System",
@@ -14,6 +13,7 @@
   },
   "author": "DB Systel GmbH",
   "license": "Apache-2.0",
+  "private": true,
   "workspaces": [
     "packages/*",
     "output/*",
