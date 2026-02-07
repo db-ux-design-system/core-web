@@ -9,6 +9,7 @@
   },
   "license": "Apache-2.0",
   "private": true,
+  "files": [],
   "scripts": {
     "build": "npm-run-all compile build:*",
     "build:_iframe_resizer": "cpr ../../node_modules/iframe-resizer/js/ public/iframe-resizer -o",
@@ -24,9 +25,9 @@
     "lint": "next lint",
     "next:dev": "next dev --webpack",
     "open": "open-cli http://localhost:3000/core-web/sub",
-    "regenerate:screenshots": "npx playwright test --config=./playwright.patternhub-config.ts --update-snapshots",
+    "regenerate:screenshots": "pnpm exec playwright test --config=./playwright.patternhub-config.ts --update-snapshots",
     "start": "cross-env NEXT_PUBLIC_BASE_PATH=/core-web/sub npm-run-all compile next:dev",
-    "test:e2e": "npx playwright test --config=./playwright.patternhub-config.ts"
+    "test:e2e": "pnpm exec playwright test --config=./playwright.patternhub-config.ts"
   },
   "dependencies": {
     "dompurify": "3.3.1",
@@ -38,6 +39,7 @@
     "remark-gfm": "4.0.1"
   },
   "devDependencies": {
+    "@db-ux/react-core-components": "workspace:*",
     "@mdx-js/loader": "3.1.1",
     "@mdx-js/react": "3.1.1",
     "@next/mdx": "16.1.6",

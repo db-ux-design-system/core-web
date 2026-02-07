@@ -1,5 +1,8 @@
 import { type MouseEvent, type ReactNode, useEffect, useState } from 'react';
-import { DBButton, DBTooltip } from '../../../../output/react/src/index';
+import {
+	DBButton,
+	DBTooltip
+} from '../../../../packages/react-core-components/src/index';
 
 export type CopyClipboardButtonProps = {
 	name: string;

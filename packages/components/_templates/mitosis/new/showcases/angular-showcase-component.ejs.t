@@ -5,7 +5,7 @@ import { Component } from '@angular/core';
 
 import { DefaultComponent } from '../default.component';
 import defaultComponentVariants from '../../../../../shared/<%= name %>.json';
-import { DB<%= h.changeCase.pascal(name) %> } from '../../../../../../output/angular/src/components/<%= name %>';
+import { DB<%= h.changeCase.pascal(name) %> } from '@db-ux/ngx-core-components/src/components/<%= name %>';
 
 @Component({
 	selector: 'app-<%= name %>',

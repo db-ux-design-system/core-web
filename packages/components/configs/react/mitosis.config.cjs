@@ -6,7 +6,7 @@ module.exports = {
 	files: 'src/**/*.{lite.tsx,ts}',
 	exclude: ['src/**/*.agent.lite.tsx'],
 	targets: ['react'],
-	dest: '../../output/tmp',
+	dest: '../react-core-components',
 	options: {
 		react
 	}

@@ -3,9 +3,11 @@
 	"extends": "./.nuxt/tsconfig.json",
 	"compilerOptions": {
 		"paths": {
-			"@components": ["../../output/vue/src"],
-			"@components/src/*": ["../../output/vue/src/*"],
-			"@components/components/*": ["../../output/vue/src/components/*"]
+			"@components": ["../../packages/v-core-components/src"],
+			"@components/src/*": ["../../packages/v-core-components/src/*"],
+			"@components/components/*": [
+				"../../packages/v-core-components/src/components/*"
+			]
 		}
 	}
 }

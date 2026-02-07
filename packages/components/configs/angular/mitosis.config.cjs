@@ -6,7 +6,7 @@ module.exports = {
 	files: 'src/**/*.{lite.tsx,ts}',
 	exclude: ['src/**/*.agent.lite.tsx'],
 	targets: ['angular'],
-	dest: '../../output/tmp',
+	dest: '../ngx-core-components',
 	options: {
 		angular
 	}

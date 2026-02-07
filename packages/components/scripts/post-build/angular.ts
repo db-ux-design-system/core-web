@@ -94,7 +94,7 @@ const setControlValueAccessorReplacements = (
  */
 const setDirectiveReplacements = (
 	replacements: Overwrite[],
-	outputFolder: string,
+	basePath: string,
 	componentName: string,
 	upperComponentName: string,
 	directives: { name: string; ngContentName?: string }[]
@@ -123,7 +123,7 @@ const setDirectiveReplacements = (
 		});
 
 		writeFileSync(
-			`../../output/angular/src/components/${componentName}/${directive.name}.directive.ts`,
+			`${basePath}/src/components/${componentName}/${directive.name}.directive.ts`,
 			'/* Angular cannot handle multiple slots with the same name, we need to use Directives for this. */\n' +
 				"import { Directive } from '@angular/core';" +
 				`
@@ -148,19 +148,20 @@ export class ${directive.name}Directive {}
 		)
 		.join('\n');
 	replaceInFileSync({
-		files: `../../${outputFolder}/angular/src/index.ts`,
+		files: `${basePath}/src/index.ts`,
 		from: `export * from './components/${componentName}';`,
 		to: `export * from './components/${componentName}';\n${directiveExports}`
 	});
 };
 
 export default (tmp?: boolean) => {
-	const outputFolder = `${tmp ? 'output/tmp' : 'output'}`;
+	const outputFolder = tmp ? 'tmp/angular' : '';
+	const basePath = `../ngx-core-components${outputFolder ? '/' + outputFolder : ''}`;
 	for (const component of components) {
 		const componentName = component.name;
 		const upperComponentName = `DB${transformToUpperComponentName(component.name)}`;
-		const file = `../../${outputFolder}/angular/src/components/${componentName}/${componentName}.ts`;
-		const indexFile = `../../${outputFolder}/angular/src/components/${componentName}/index.ts`;
+		const file = `${basePath}/src/components/${componentName}/${componentName}.ts`;
+		const indexFile = `${basePath}/src/components/${componentName}/index.ts`;
 
 		replaceInFileSync({
 			files: indexFile,
@@ -190,7 +191,7 @@ export default (tmp?: boolean) => {
 		) {
 			setDirectiveReplacements(
 				replacements,
-				outputFolder,
+				basePath,
 				componentName,
 				upperComponentName,
 				component.config.angular.directives

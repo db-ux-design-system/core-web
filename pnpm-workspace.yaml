@@ -1,0 +1,7 @@
+packages:
+  - "packages/*"
+  - "showcases/*"
+  - "storybooks/*"
+  - "docs"
+  - "scripts"
+  - "e2e"

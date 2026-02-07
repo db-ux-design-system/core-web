@@ -16,7 +16,7 @@ import {
 	DBLink,
 	DENSITY,
 	DENSITY_CONST
-} from '../../../../../output/angular/src';
+} from '../../../../../packages/ngx-core-components/src';
 import type {
 	DefaultComponentProps,
 	DefaultComponentVariants

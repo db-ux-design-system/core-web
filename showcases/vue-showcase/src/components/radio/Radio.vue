@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { DBInfotext, DBRadio } from "../../../../../output/vue/src";
+import { DBInfotext, DBRadio } from "@db-ux/v-core-components/src";
 import defaultComponentVariants from "../../../../shared/radio.json";
 import DefaultComponent from "../DefaultComponent.vue";
 </script>

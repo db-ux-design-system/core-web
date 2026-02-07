@@ -9,6 +9,7 @@
   },
   "license": "Apache-2.0",
   "private": true,
+  "files": [],
   "scripts": {
     "build": "npm-run-all nuxt:prepare build:*",
     "build:nuxt": "nuxt build",
@@ -19,6 +20,7 @@
     "preview": "nuxt preview"
   },
   "dependencies": {
+    "@db-ux/v-core-components": "workspace:*",
     "nuxt": "4.3.0",
     "vue": "3.5.27",
     "vue-router": "5.0.2"

@@ -48,24 +48,35 @@ jobs:
           name: db-ux-agent-cli-build
           path: packages/agent-cli/build
 
-      - name: ⏬ Download output
+      - name: ⏬ Download framework sources
         uses: actions/download-artifact@v7
         with:
-          name: db-ux-output
-          path: output
+          name: db-ux-framework-sources
+          path: packages
+
+      - name: 📥 Install output dependencies
+        run: pnpm install
 
       - name: 🔨 Build outputs
         run: |
-          npm run generate:agent
-          npm run build-outputs
+          pnpm run generate:agent
+          pnpm run build-outputs
 
       - name: 📦 Validate Package Publishing
         run: |
-          npm run lint-packages
-          npm run lint-docs-file-references
+          pnpm run lint-packages
+          pnpm run lint-docs-file-references
 
-      - name: ⏫ Upload outputs
+      - name: ⏫ Upload framework outputs
         uses: actions/upload-artifact@v6
         with:
-          name: db-ux-outputs
-          path: build-outputs
+          name: db-ux-framework-outputs
+          path: |
+            packages/ngx-core-components/dist
+            packages/ngx-core-components/agent
+            packages/react-core-components/dist
+            packages/react-core-components/agent
+            packages/v-core-components/dist
+            packages/v-core-components/agent
+            packages/wc-core-components/dist
+            packages/wc-core-components/agent

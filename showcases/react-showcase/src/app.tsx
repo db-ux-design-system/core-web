@@ -1,6 +1,11 @@
+import {
+	DBBrand,
+	DBButton,
+	DBHeader,
+	DBPage
+} from '@db-ux/react-core-components/src';
 import { useState } from 'react';
 import { Outlet } from 'react-router-dom';
-import { DBBrand, DBButton, DBHeader, DBPage } from '../../../output/react/src';
 import useQuery from './hooks/use-query';
 import MetaNavigation from './meta-navigation';
 import Navigation from './navigation';

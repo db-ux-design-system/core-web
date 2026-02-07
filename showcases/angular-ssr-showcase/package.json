@@ -8,10 +8,11 @@
   },
   "license": "Apache-2.0",
   "private": true,
+  "files": [],
   "scripts": {
     "build": "ng build && cpr ./dist/angular-ssr-showcase/ ../../build-showcases/angular-ssr-showcase/ -d",
     "build:debug": "ng build --optimization=false",
-    "dev": "npm run start -- --open",
+    "dev": "pnpm run start --open",
     "ng": "ng",
     "serve:ssr:angular-ssr-showcase": "node dist/angular-ssr-showcase/server/server.mjs",
     "start": "ng serve --serve-path angular-ssr-showcase --port 4401",
@@ -21,6 +22,7 @@
     "express": "5.2.1"
   },
   "devDependencies": {
+    "@db-ux/core-components": "workspace:*",
     "@types/express": "5.0.6",
     "@types/node": "25.2.0",
     "cpr": "3.0.1",

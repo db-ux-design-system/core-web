@@ -88,7 +88,7 @@ jobs:
           REPO_NAME: ${{ inputs.repoName }}
           OWNER_NAME: ${{ inputs.repoOwner }}
         run: |
-          npx --no tsx scripts/github/build-gh-page.ts
+          pnpm exec tsx scripts/github/build-gh-page.ts
 
       - name: 🥅 Deploy to GH-Pages
         uses: peaceiris/actions-gh-pages@v4

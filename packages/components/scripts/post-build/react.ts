@@ -6,7 +6,7 @@ import { replaceInFileSync } from 'replace-in-file';
 import { runReplacements, transformToUpperComponentName } from '../utils';
 
 const overwriteEvents = (tmp?: boolean) => {
-	const modelFilePath = `../../${tmp ? 'output/tmp' : 'output'}/react/src/shared/model.ts`;
+	const modelFilePath = `../react-core-components/${tmp ? 'tmp/react/' : ''}src/shared/model.ts`;
 	let modelFileContent = readFileSync(modelFilePath).toString('utf-8');
 	modelFileContent = 'import * as React from "react";\n' + modelFileContent;
 	modelFileContent = modelFileContent.replace(
@@ -97,7 +97,7 @@ export default (tmp?: boolean) => {
 				component.name
 			);
 
-			const tsxFile = `../../${tmp ? 'output/tmp' : 'output'}/react/src/components/${component.name}/${component.name}.tsx`;
+			const tsxFile = `../react-core-components/${tmp ? 'tmp/react/' : ''}src/components/${component.name}/${component.name}.tsx`;
 
 			const tsxFileContent = readFileSync(tsxFile).toString('utf-8');
 			const htmlElements = tsxFileContent.match('(?<=useRef<)(.*?)(?=>)');

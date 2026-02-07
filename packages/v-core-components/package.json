@@ -23,21 +23,20 @@
     }
   },
   "files": [
-    "dist/",
+    "CHANGELOG.md",
     "agent",
-    "CHANGELOG.md"
+    "dist/"
   ],
   "scripts": {
-    "build": "npm-run-all --parallel build:* --parallel mv:*",
+    "build": "npm-run-all --parallel build:*",
     "build:01_vite": "vite build",
     "build:02_types": "vue-tsc --declaration --emitDeclarationOnly",
-    "mv:dist": "cpr dist ../../build-outputs/vue/dist --overwrite",
-    "mv:agent": "cpr agent ../../build-outputs/vue/agent --overwrite",
-    "mv:changelog": "cpr CHANGELOG.md ../../build-outputs/vue/CHANGELOG.md --overwrite",
-    "mv:package.json": "cpr package.json ../../build-outputs/vue/package.json --overwrite",
-    "mv:readme": "cpr README.md ../../build-outputs/vue/README.md --overwrite",
     "test:components": "playwright test --config playwright.config.ts",
     "test:components:ui": "playwright test --config playwright.config.ts --ui"
+  },
+  "dependencies": {
+    "@db-ux/core-components": "workspace:*",
+    "@db-ux/core-foundations": "workspace:*"
   },
   "devDependencies": {
     "@playwright/experimental-ct-vue": "1.57.0",
@@ -54,9 +53,5 @@
     "access": "public"
   },
   "sideEffects": false,
-  "source": "src/index.ts",
-  "dependencies": {
-    "@db-ux/core-components": "4.4.1",
-    "@db-ux/core-foundations": "4.4.1"
-  }
+  "source": "src/index.ts"
 }

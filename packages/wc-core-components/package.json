@@ -1,12 +1,12 @@
 {
   "name": "@db-ux/wc-core-components",
   "version": "4.4.1",
+  "type": "module",
   "description": "Stencil components for @db-ux/core-components",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/db-ux-design-system/core-web.git"
   },
-  "type": "module",
   "license": "Apache-2.0",
   "main": "./dist/index.js",
   "module": "./dist/index.js",
@@ -17,21 +17,20 @@
     }
   },
   "files": [
-    "dist/",
+    "CHANGELOG.md",
     "agent",
-    "CHANGELOG.md"
+    "dist/"
   ],
   "scripts": {
-    "build": "npm-run-all build:* --parallel mv:*",
+    "build": "npm-run-all build:*",
     "build:_stencil": "stencil build",
     "build:cem": "cem analyze",
     "dev-build": "stencil build --config stencil.config.dev.ts",
-    "mv:agent": "cpr agent ../../build-outputs/wc-core-components/agent --overwrite",
-    "mv:changelog": "cpr CHANGELOG.md ../../build-outputs/wc-core-components/CHANGELOG.md --overwrite",
-    "mv:dist": "cpr dist ../../build-outputs/wc-core-components/dist -o",
-    "mv:package.json": "cpr package.json ../../build-outputs/wc-core-components/package.json -o",
-    "mv:readme": "cpr README.md ../../build-outputs/wc-core-components/README.md -o",
     "start": "stencil build --watch --config stencil.config.dev.ts"
+  },
+  "dependencies": {
+    "@db-ux/core-components": "workspace:*",
+    "@db-ux/core-foundations": "workspace:*"
   },
   "devDependencies": {
     "@custom-elements-manifest/analyzer": "0.11.0",
@@ -45,10 +44,6 @@
     "registry": "https://registry.npmjs.org/",
     "access": "public"
   },
-  "web-types": "./dist/web-types.json",
   "customElements": "dist/custom-elements.json",
-  "dependencies": {
-    "@db-ux/core-components": "4.4.1",
-    "@db-ux/core-foundations": "4.4.1"
-  }
+  "web-types": "./dist/web-types.json"
 }

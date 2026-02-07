@@ -67,11 +67,11 @@ export default ${upperComponentName};`;
 };
 
 export default (tmp?: boolean) => {
-	const outputFolder = `${tmp ? 'output/tmp' : 'output'}`;
+	const outputFolder = tmp ? 'tmp/stencil/' : '';
 	for (const component of components) {
 		const componentName = component.name;
-		const file = `../../${outputFolder}/stencil/src/components/${componentName}/${componentName}.tsx`;
-		const indexFile = `../../${outputFolder}/stencil/src/components/${componentName}/index.ts`;
+		const file = `../wc-core-components/${outputFolder}src/components/${componentName}/${componentName}.tsx`;
+		const indexFile = `../wc-core-components/${outputFolder}src/components/${componentName}/index.ts`;
 		const upperComponentName = `DB${transformToUpperComponentName(component.name)}`;
 
 		replaceInFileSync({

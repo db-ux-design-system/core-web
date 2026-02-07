@@ -9,18 +9,19 @@
   },
   "license": "Apache-2.0",
   "private": true,
+  "files": [],
   "scripts": {
     "build": "npm-run-all build:*",
     "build:01_vite": "vite build",
     "dev": "vite --open",
-    "preview": "npx http-server ../../build-showcases",
+    "preview": "pnpm exec http-server ../../build-showcases",
     "start": "vite",
-    "test:a11y-checker": "cross-env showcase=vue-showcase npx playwright test --config=../playwright.a11y-checker.ts",
-    "test:aria-snapshots": "cross-env showcase=vue-showcase npx playwright test --config=../playwright.aria-snapshots.ts",
-    "test:axe-core": "cross-env showcase=vue-showcase npx playwright test --config=../playwright.axe-core.ts",
-    "test:e2e": "cross-env showcase=vue-showcase npx playwright test --config=../playwright.config.ts",
-    "test:ui": "cross-env showcase=vue-showcase npx playwright test --config=../playwright.config.ts --ui",
-    "test:visual-snapshots": "cross-env showcase=vue-showcase npx playwright test --config=../playwright.visual-snapshots.ts"
+    "test:a11y-checker": "cross-env showcase=vue-showcase pnpm exec playwright test --config=../playwright.a11y-checker.ts",
+    "test:aria-snapshots": "cross-env showcase=vue-showcase pnpm exec playwright test --config=../playwright.aria-snapshots.ts",
+    "test:axe-core": "cross-env showcase=vue-showcase pnpm exec playwright test --config=../playwright.axe-core.ts",
+    "test:e2e": "cross-env showcase=vue-showcase pnpm exec playwright test --config=../playwright.config.ts",
+    "test:e2e:ui": "cross-env showcase=vue-showcase pnpm exec playwright test --config=../playwright.config.ts --ui",
+    "test:visual-snapshots": "cross-env showcase=vue-showcase pnpm exec playwright test --config=../playwright.visual-snapshots.ts"
   },
   "dependencies": {
     "sa11y": "4.4.1",
@@ -28,6 +29,11 @@
     "vue-router": "5.0.2"
   },
   "devDependencies": {
+    "@db-ux/db-theme": "5.3.0",
+    "@db-ux/db-theme-fonts": "2.0.5",
+    "@db-ux/db-theme-icons": "3.4.0",
+    "@db-ux/db-theme-illustrative-icons": "3.0.0",
+    "@db-ux/v-core-components": "workspace:*",
     "@vitejs/plugin-vue": "6.0.4",
     "cross-env": "10.1.0",
     "typescript": "5.9.3",

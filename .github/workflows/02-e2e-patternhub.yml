@@ -34,11 +34,11 @@ jobs:
           name: db-ux-foundations-build
           path: packages/foundations/build
 
-      - name: ⏬ Download output
+      - name: ⏬ Download framework sources
         uses: actions/download-artifact@v7
         with:
-          name: db-ux-output
-          path: output
+          name: db-ux-framework-sources
+          path: packages
 
       - name: ⏬ Download components styles build
         uses: actions/download-artifact@v7
@@ -60,13 +60,13 @@ jobs:
         run: |
           mkdir -p ./build-showcases${{ inputs.baseUrl }}
           cp -RT ./build-showcases/patternhub ./build-showcases${{ inputs.baseUrl }}
-          npm run test:e2e --workspace=patternhub
+          pnpm --filter=patternhub run test:e2e
 
       - name: 🔣 Print GitHub Report
         if: failure()
         shell: bash
         run: |
-          npx playwright merge-reports --reporter github ./blob-report
+          pnpm exec playwright merge-reports --reporter github ./blob-report
 
       - name: 🆙 Upload test results
         if: failure()

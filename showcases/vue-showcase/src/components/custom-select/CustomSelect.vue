@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { CustomSelectOptionType } from "@db-ux/core-components/src/components/custom-select/model";
-import { DBCustomSelect, DBInfotext } from "../../../../../output/vue/src";
+import { DBCustomSelect, DBInfotext } from "@db-ux/v-core-components/src";
 import defaultComponentVariants from "../../../../shared/custom-select.json";
 import DefaultComponent from "../DefaultComponent.vue";
 

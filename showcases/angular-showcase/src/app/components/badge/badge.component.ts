@@ -4,7 +4,7 @@ import {
 	DBButton,
 	DBIcon,
 	DBInfotext
-} from '../../../../../../output/angular/src';
+} from '@db-ux/ngx-core-components/src';
 import defaultComponentVariants from '../../../../../shared/badge.json';
 import { environment } from '../../../environments/environment';
 import { DefaultComponent } from '../default.component';

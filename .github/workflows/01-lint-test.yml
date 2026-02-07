@@ -24,15 +24,15 @@ jobs:
       - name: 📖 Check spelling
         if: ${{ matrix.command == 'codespell' }}
         run: |
-          npm run lint:codespell
+          pnpm run lint:codespell
 
       - name: ⚡ Run Lint
         if: ${{ matrix.command == 'lint' }}
         run: |
-          npm run nuxt:prepare --workspace=nuxt-showcase
-          npm run build --workspace=@db-ux/core-stylelint
-          npm run lint
+          pnpm --filter=nuxt-showcase run nuxt:prepare
+          pnpm --filter=@db-ux/core-stylelint run build
+          pnpm run lint
 
       - name: ⚡ Run Test
         if: ${{ matrix.command == 'test' }}
-        run: npm run test
+        run: pnpm run test

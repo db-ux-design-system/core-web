@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { DBButton, DBTooltip } from "../../../../../output/vue/src";
+import { DBButton, DBTooltip } from "@db-ux/v-core-components/src";
 import defaultComponentVariants from "../../../../shared/tooltip.json";
 import DefaultComponent from "../DefaultComponent.vue";
 </script>

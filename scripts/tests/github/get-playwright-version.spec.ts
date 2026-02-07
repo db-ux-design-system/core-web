@@ -1,7 +1,7 @@
 import { execSync } from 'node:child_process';
 import { describe, expect, test } from 'vitest';
 
-const command = 'npx --no tsx github/get-playwright-version.ts';
+const command = 'pnpm exec tsx github/get-playwright-version.ts';
 
 describe('get-playwright-version', () => {
 	test('default', async () => {

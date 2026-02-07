@@ -1,11 +1,11 @@
-import { useState } from 'react';
 import {
 	DBSwitch,
 	DBTabItem,
 	DBTabList,
 	DBTabPanel,
 	DBTabs
-} from '../../../../../../output/react/src';
+} from '@db-ux/react-core-components/src';
+import { useState } from 'react';
 import ColorsGrid from '../colors-grid';
 import { type ColorValue } from '../data';
 

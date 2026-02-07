@@ -114,7 +114,7 @@ const resolveAllUnions = (resolvedData, resolvedProps, resolvedUnions) => {
 		let resolvedValues = [];
 		const unresolvedUnions = [];
 		for (const type of obj.values) {
-			if (type.type){
+			if (type.type) {
 				resolvedValues.push(type);
 				continue;
 			}
@@ -126,7 +126,7 @@ const resolveAllUnions = (resolvedData, resolvedProps, resolvedUnions) => {
 				const foundData = resolvedData[type];
 				if (foundData) {
 					resolvedValues.push({ ...foundData, name: type });
-				} else if (type !== "Omit"){
+				} else if (type !== 'Omit') {
 					unresolvedUnions.push(type);
 				}
 			}

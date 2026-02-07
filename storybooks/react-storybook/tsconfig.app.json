@@ -24,8 +24,8 @@
 		"noFallthroughCasesInSwitch": true,
 		"noUncheckedSideEffectImports": true,
 		"paths": {
-			"@components": ["../../output/react/src"],
-			"@components/src/*": ["../../output/react/src/*"]
+			"@components": ["../../packages/react-core-components/src"],
+			"@components/src/*": ["../../packages/react-core-components/src/*"]
 		}
 	},
 	"include": ["src"]

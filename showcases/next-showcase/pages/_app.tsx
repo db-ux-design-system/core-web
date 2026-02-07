@@ -1,6 +1,11 @@
+import {
+	DBBrand,
+	DBButton,
+	DBHeader,
+	DBPage
+} from '@db-ux/react-core-components/src';
 import type { AppProps } from 'next/app';
 import { useState } from 'react';
-import { DBBrand, DBButton, DBHeader, DBPage } from '../../../output/react/src';
 import useQuery from '../../react-showcase/src/hooks/use-query';
 import MetaNavigation from '../../react-showcase/src/meta-navigation';
 import Navigation from '../../react-showcase/src/navigation';

@@ -31,11 +31,11 @@ jobs:
           name: db-ux-foundations-build
           path: packages/foundations/build
 
-      - name: ⏬ Download output
+      - name: ⏬ Download framework sources
         uses: actions/download-artifact@v7
         with:
-          name: db-ux-output
-          path: output
+          name: db-ux-framework-sources
+          path: packages
 
       - name: ⏬ Download components build
         uses: actions/download-artifact@v7
@@ -56,9 +56,7 @@ jobs:
           ASSET_PASSWORD: ${{ secrets.ASSET_PASSWORD }}
           BASE_URL: ${{ inputs.baseUrl }}
         run: |
-          node node_modules/@db-ux/db-theme-fonts/build/scripts/index.js
-          node node_modules/@db-ux/db-theme-icons/build/scripts/index.js
-          npm run build --workspace=${{ inputs.storybook }}
+          pnpm --filter=${{ inputs.storybook }} run build
 
       - name: ⏫ Upload ${{ inputs.storybook }}
         uses: actions/upload-artifact@v6

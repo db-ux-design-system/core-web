@@ -1,21 +1,26 @@
 ---
-name: "NPM Cache Action"
-description: "Initialize NPM Cache"
+name: "PNPM Cache Action"
+description: "Initialize PNPM Cache"
 inputs:
   nodeModulesPath:
     description: "Path for node_modules"
     required: false
     default: "**/node_modules"
   packageLockPath:
-    description: "Path for package-lock.json"
+    description: "Path for pnpm-lock.yaml"
     required: false
-    default: "**/package-lock.json"
+    default: "**/pnpm-lock.yaml"
   nodeVersion:
     description: "Node version"
     required: false
 runs:
   using: "composite"
   steps:
+    - name: Install pnpm
+      uses: pnpm/action-setup@v4
+      with:
+        run_install: false
+
     - name: 🆙 Setup node
       # pick the Node version to use and install it
       # https://github.com/actions/setup-node
@@ -24,12 +29,13 @@ runs:
         # If node-version and node-version-file are both provided the action will use version from node-version.
         node-version: ${{ inputs.nodeVersion }}
         node-version-file: ".nvmrc"
+        cache: "pnpm"
 
-    - name: 🖼️ Display node and npm version
+    - name: 🖼️ Display node and pnpm version
       shell: bash
       run: |
         node --version
-        npm --version
+        pnpm --version
 
     - name: 🆒 Init Cache
       uses: actions/cache@v4
@@ -46,8 +52,8 @@ runs:
         HIT: ${{ steps.cache.outputs.cache-hit }}
       run: echo $HIT
 
-    - name: ⏬ NPM ci
+    - name: ⏬ PNPM install
       shell: bash
       if: steps.cache.outputs.cache-hit != 'true'
       run: |
-        npm ci
+        pnpm install

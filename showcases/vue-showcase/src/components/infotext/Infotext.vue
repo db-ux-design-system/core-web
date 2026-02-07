@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { DBInfotext } from "../../../../../output/vue/src";
+import { DBInfotext } from "@db-ux/v-core-components/src";
 import defaultComponentVariants from "../../../../shared/infotext.json";
 import DefaultComponent from "../DefaultComponent.vue";
 </script>

@@ -1,23 +1,24 @@
 {
   "name": "@db-ux/ngx-core-components",
   "version": "4.4.1",
-  "description": "Angular components @db-ux/core-components",
   "type": "module",
+  "description": "Angular components @db-ux/core-components",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/db-ux-design-system/core-web.git"
   },
   "license": "Apache-2.0",
   "main": "fesm2022/db-ux-ngx-core-components.mjs",
-  "module": "fesm2022/db-ux-ngx-core-components.mjs",
   "types": "index.d.ts",
+  "module": "fesm2022/db-ux-ngx-core-components.mjs",
   "scripts": {
-    "build": "npm-run-all build:* --parallel mv:*",
-    "build:angular": "ng build",
-    "mv:agent": "cpr agent ../../build-outputs/angular/agent --overwrite",
-    "mv:changelog": "cpr CHANGELOG.md ../../build-outputs/angular/CHANGELOG.md --overwrite",
+    "build": "pnpm publish --dry-run --force --no-git-checks && ng build",
     "ng": "ng",
     "start": "ng serve"
+  },
+  "dependencies": {
+    "@db-ux/core-components": "workspace:*",
+    "@db-ux/core-foundations": "workspace:*"
   },
   "devDependencies": {
     "typescript": "5.9.3"
@@ -25,9 +26,5 @@
   "publishConfig": {
     "registry": "https://registry.npmjs.org/",
     "access": "public"
-  },
-  "dependencies": {
-    "@db-ux/core-components": "4.4.1",
-    "@db-ux/core-foundations": "4.4.1"
   }
 }

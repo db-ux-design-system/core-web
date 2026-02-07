@@ -4,7 +4,7 @@ import { readFileSync, readdirSync } from 'node:fs';
 import path from 'node:path';
 import process from 'node:process';
 
-const packages = readdirSync('build-outputs', {
+const packages = readdirSync('packages', {
 	withFileTypes: true
 });
 
@@ -35,7 +35,7 @@ for (const { name, parentPath } of packages) {
 
 		if (mode === 'publint') {
 			try {
-				execSync(`npx publint ${packagePath}`, {
+				execSync(`pnpm exec publint ${packagePath}`, {
 					stdio: 'inherit',
 					cwd: process.cwd()
 				});

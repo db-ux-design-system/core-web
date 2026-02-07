@@ -11,6 +11,7 @@
   "engines": {
     "node": ">=18"
   },
+  "files": [],
   "scripts": {
     "build": "next build --webpack",
     "dev": "npm-run-all open next:dev",
@@ -24,6 +25,7 @@
     "react-dom": "19.2.4"
   },
   "devDependencies": {
+    "@db-ux/react-core-components": "workspace:*",
     "@types/node": "25.2.0",
     "@types/react": "19.2.10",
     "npm-run-all2": "8.0.4",

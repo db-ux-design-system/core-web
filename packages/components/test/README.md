@@ -1,11 +1,11 @@
 # How to test components
 
-1. Edit a test file inside `src/components/xxx/xxx.spec.tsx` (after the build from 2. you can edit it also in `output/react/src/components/xxx/xxx.spec.tsx` directly and copy it back to skip 2.)
-2. Call `npm run build`, this generates `react` and `vue` tests inside `output/react/src/components/xxx/xxx.spec.tsx`/`output/vue/vue3/src/components/xxx/xxx.spec.tsx`
+1. Edit a test file inside `src/components/xxx/xxx.spec.tsx` (after the build from 2. you can edit it also in `packages/react-core-components/src/components/xxx/xxx.spec.tsx` directly and copy it back to skip 2.)
+2. Call `npm run build`, this generates `react` and `vue` tests inside `packages/react-core-components/src/components/xxx/xxx.spec.tsx`/`packages/v-core-components/src/components/xxx/xxx.spec.tsx`
 3. Run the playwright test with your IDE or via [console](https://playwright.dev/docs/running-tests) or with the ui:
 
 ```shell
-npx playwright test --config output/react/playwright.config.ts --ui
+pnpm exec playwright test --config packages/react-core-components/playwright.config.ts --ui
 ```
 
 ## React vs. Vue

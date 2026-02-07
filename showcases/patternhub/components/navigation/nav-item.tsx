@@ -1,6 +1,6 @@
+import { DBNavigationItem } from '@db-ux/react-core-components/src';
 import Link from 'next/link';
 import { type NextRouter, useRouter } from 'next/router';
-import { DBNavigationItem } from '../../../../output/react/src';
 import type { NavigationItem } from '../../data/routes';
 
 const isRouteActive = (

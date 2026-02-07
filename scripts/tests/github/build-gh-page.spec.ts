@@ -2,7 +2,7 @@ import { execSync } from 'node:child_process';
 import { existsSync } from 'node:fs';
 import { describe, expect, test } from 'vitest';
 
-const command = 'npx --no tsx github/build-gh-page.ts';
+const command = 'pnpm exec tsx github/build-gh-page.ts';
 
 describe('build-gh-page', () => {
 	process.env.NAME = 'test-branch';

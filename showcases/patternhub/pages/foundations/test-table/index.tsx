@@ -1,4 +1,4 @@
-import { DBInfotext } from '../../../../../output/react/src';
+import { DBInfotext } from '@db-ux/react-core-components/src';
 import AccessibilityReviewInfo from '../../../components/accessibility-review-info/accessibility-review-info'; // This file will be generated at runtime
 import DefaultPage from '../../../components/default-page';
 import { testTableData } from '../../../data/testing-table'; // This file will be generated at runtime by /showcases/patternhub/scripts/generate-test-table.js

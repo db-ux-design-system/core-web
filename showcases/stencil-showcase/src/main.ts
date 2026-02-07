@@ -1,6 +1,6 @@
 import { bootstrapApplication } from '@angular/platform-browser';
 import { provideRouter, withHashLocation } from '@angular/router';
-import { defineCustomElements } from '../../../output/stencil/dist/loader';
+import { defineCustomElements } from '../../../packages/wc-core-components/dist/loader';
 import { AppComponent } from '../../angular-showcase/src/app/app.component';
 import { getRoutes } from '../../angular-showcase/src/app/utils/navigation-item';
 

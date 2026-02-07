@@ -37,11 +37,11 @@ jobs:
           name: db-ux-foundations-build
           path: packages/foundations/build
 
-      - name: ⏬ Download output
+      - name: ⏬ Download framework sources
         uses: actions/download-artifact@v7
         with:
-          name: db-ux-output
-          path: output
+          name: db-ux-framework-sources
+          path: packages
 
       - name: ⏬ Download components styles build
         uses: actions/download-artifact@v7
@@ -52,23 +52,28 @@ jobs:
       - name: 🚋 Get working directory
         id: workingDirectory
         shell: bash
-        run: echo "dir=${{ matrix.framework }}" >> $GITHUB_OUTPUT
+        run: |
+          case "${{ matrix.framework }}" in
+            "react") echo "dir=react-core-components" >> $GITHUB_OUTPUT ;;
+            "vue") echo "dir=v-core-components" >> $GITHUB_OUTPUT ;;
+            *) echo "dir=${{ matrix.framework }}" >> $GITHUB_OUTPUT ;;
+          esac
 
       - name: 👩‍🔬 Test with Playwright 🎭
-        working-directory: ./output/${{ steps.workingDirectory.outputs.dir }}
-        run: npx playwright test --shard=${{ matrix.shardIndex }}/${{ matrix.shardTotal }}
+        working-directory: ./packages/${{ steps.workingDirectory.outputs.dir }}
+        run: pnpm exec playwright test --shard=${{ matrix.shardIndex }}/${{ matrix.shardTotal }}
 
       - name: 🔣 Print GitHub Report
         if: failure()
-        working-directory: ./output/${{ steps.workingDirectory.outputs.dir }}
+        working-directory: ./packages/${{ steps.workingDirectory.outputs.dir }}
         shell: bash
         run: |
-          npx playwright merge-reports --reporter github ./blob-report
+          pnpm exec playwright merge-reports --reporter github ./blob-report
 
       - name: 🆙 Upload test results
         if: failure()
         uses: actions/upload-artifact@v6
         with:
           name: ${{ matrix.framework }}-components-playwright-results-${{ matrix.shardIndex }}
-          path: ./output/${{ steps.workingDirectory.outputs.dir }}/test-results
+          path: ./packages/${{ steps.workingDirectory.outputs.dir }}/test-results
           retention-days: 30

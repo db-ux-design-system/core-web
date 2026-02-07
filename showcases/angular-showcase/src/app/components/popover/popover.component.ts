@@ -1,5 +1,5 @@
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import { DBButton, DBPopover } from '../../../../../../output/angular/src';
+import { DBButton, DBPopover } from '@db-ux/ngx-core-components/src';
 import defaultComponentVariants from '../../../../../shared/popover.json';
 import { environment } from '../../../environments/environment';
 import { DefaultComponent } from '../default.component';
