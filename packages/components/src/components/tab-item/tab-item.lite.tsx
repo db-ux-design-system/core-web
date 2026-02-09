@@ -23,7 +23,7 @@ export default function DBTabItem(props: DBTabItemProps) {
 	const state = useStore<DBTabItemState>({
 		initialized: false,
 		internalActive: getBoolean(props.active) || false,
-		disabled: false,
+		internalDisabled: false,
 		isTruncated: false,
 		tooltipText: '',
 		_observer: null,
@@ -33,7 +33,7 @@ export default function DBTabItem(props: DBTabItemProps) {
 				event.preventDefault();
 			}
 
-			if (!state.disabled) {
+			if (!state.internalDisabled) {
 				state.internalActive = true;
 				if (props.onClick) {
 					props.onClick(event);
@@ -62,8 +62,7 @@ export default function DBTabItem(props: DBTabItemProps) {
 
 	onMount(() => {
 		state.internalActive = getBoolean(props.active) || false;
-		// map 'isDisabled' prop to 'disabled' state to avoid native attribute conflicts
-		state.disabled = getBoolean(props.isDisabled) || false;
+		state.internalDisabled = getBoolean(props.disabled) || false;
 
 		if (typeof window !== 'undefined') {
 			requestAnimationFrame(() => {
@@ -116,12 +115,12 @@ export default function DBTabItem(props: DBTabItemProps) {
 		}
 	}, [props.active]);
 
-	// Update disabled state when the isDisabled prop changes
+	// Update disabled state when the disabled prop changes
 	onUpdate(() => {
-		if (props.isDisabled !== undefined) {
-			state.disabled = getBoolean(props.isDisabled) || false;
+		if (props.disabled !== undefined) {
+			state.internalDisabled = getBoolean(props.disabled) || false;
 		}
-	}, [props.isDisabled]);
+	}, [props.disabled]);
 
 	// Manually sync DOM attributes with internal state to prevent framework conflicts
 	onUpdate(() => {
@@ -137,13 +136,13 @@ export default function DBTabItem(props: DBTabItemProps) {
 				_ref?.setAttribute('tabindex', tabIndexStr);
 			}
 
-			const disabledStr = state.disabled ? 'true' : 'false';
+			const disabledStr = state.internalDisabled ? 'true' : 'false';
 			if (_ref?.getAttribute('aria-disabled') !== disabledStr) {
 				_ref?.setAttribute('aria-disabled', disabledStr);
 			}
 
 			// manual sync of the disabled attribute to prevent framework interference.
-			if (state.disabled) {
+			if (state.internalDisabled) {
 				if (!_ref?.hasAttribute('disabled')) {
 					_ref?.setAttribute('disabled', '');
 				}
@@ -153,7 +152,7 @@ export default function DBTabItem(props: DBTabItemProps) {
 				}
 			}
 		}
-	}, [state.internalActive, state.disabled, props.tabIndex]);
+	}, [state.internalActive, state.internalDisabled, props.tabIndex]);
 
 	return (
 		<li
@@ -177,7 +176,7 @@ export default function DBTabItem(props: DBTabItemProps) {
 						: 'false'
 				}
 				aria-controls={props.ariaControls}
-				disabled={state.disabled ? true : undefined}
+				disabled={state.internalDisabled ? true : undefined}
 				tabIndex={+(props.tabIndex ?? (state.internalActive ? 0 : -1))}
 				id={props.id}
 				class="db-tab-button"
