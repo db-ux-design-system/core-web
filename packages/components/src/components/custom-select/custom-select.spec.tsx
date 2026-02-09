@@ -382,6 +382,42 @@ const testAction = () => {
 		const secondTooltip = secondRemoveButton.locator('.db-tooltip');
 		await expect(secondTooltip).toContainText('Remove Green Color');
 	});
+
+	test('disabled custom select should not be keyboard operable', async ({
+		page,
+		mount
+	}) => {
+		const component = await mount(
+			<DBCustomSelect
+				options={[
+					{ value: 'Option 1' },
+					{ value: 'Option 2' },
+					{ value: 'Option 3' }
+				]}
+				label="Test"
+				disabled={true}
+				placeholder="Placeholder"
+			/>
+		);
+
+		// Find the summary element
+		const summary = component.locator('summary');
+
+		// Verify aria-disabled is set
+		await expect(summary).toHaveAttribute('aria-disabled', 'true');
+
+		// Verify tabindex is set to -1
+		await expect(summary).toHaveAttribute('tabindex', '-1');
+
+		// Try to tab to the element - it should be skipped
+		await page.keyboard.press('Tab');
+		const focused = await page.evaluate(
+			() => document.activeElement?.tagName
+		);
+
+		// The summary element should not be the focused element
+		expect(focused).not.toBe('SUMMARY');
+	});
 };
 
 const testValuesReset = () => {
