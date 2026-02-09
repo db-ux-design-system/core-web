@@ -30,6 +30,15 @@ const popoverTest: any = (
 					variant="ghost"
 				/>
 			}>
+			{/*<template v-slot:trigger>
+				<DBButton
+					data-testid="popover-button"
+					icon="x_placeholder"
+					type="button"
+					noText
+					variant="ghost"
+					>Button</DBButton>
+			</template>*/}
 			<DBButton aria-describedby="tooltip" data-testid="button">
 				Button
 				<DBTooltip
