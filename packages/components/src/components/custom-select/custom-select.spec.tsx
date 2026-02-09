@@ -388,16 +388,20 @@ const testAction = () => {
 		mount
 	}) => {
 		const component = await mount(
-			<DBCustomSelect
-				options={[
-					{ value: 'Option 1' },
-					{ value: 'Option 2' },
-					{ value: 'Option 3' }
-				]}
-				label="Test"
-				disabled={true}
-				placeholder="Placeholder"
-			/>
+			<>
+				<button id="before">Before</button>
+				<DBCustomSelect
+					options={[
+						{ value: 'Option 1' },
+						{ value: 'Option 2' },
+						{ value: 'Option 3' }
+					]}
+					label="Test"
+					disabled={true}
+					placeholder="Placeholder"
+				/>
+				<button id="after">After</button>
+			</>
 		);
 
 		// Find the summary element
@@ -409,14 +413,18 @@ const testAction = () => {
 		// Verify tabindex is set to -1
 		await expect(summary).toHaveAttribute('tabindex', '-1');
 
-		// Try to tab to the element - it should be skipped
-		await page.keyboard.press('Tab');
-		const focused = await page.evaluate(
-			() => document.activeElement?.tagName
-		);
+		// Focus on the "before" button
+		const beforeButton = page.locator('#before');
+		await beforeButton.focus();
+		await expect(beforeButton).toBeFocused();
 
-		// The summary element should not be the focused element
-		expect(focused).not.toBe('SUMMARY');
+		// Press Tab - should skip the disabled select and go to "after" button
+		await page.keyboard.press('Tab');
+		const afterButton = page.locator('#after');
+		await expect(afterButton).toBeFocused();
+
+		// Verify the summary element was skipped
+		await expect(summary).not.toBeFocused();
 	});
 };
 
