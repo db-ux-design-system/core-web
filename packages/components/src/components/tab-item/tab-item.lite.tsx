@@ -158,17 +158,7 @@ export default function DBTabItem(props: DBTabItemProps) {
 
 	return (
 		<li
-			class={cls(
-				'db-tab-item',
-				(
-					props.active !== undefined
-						? getBoolean(props.active)
-						: state.internalActive
-				)
-					? 'active'
-					: '',
-				props.className
-			)}
+			class={cls('db-tab-item', props.className)}
 			// ensures screen readers ignore the list item semantics and focus directly on the button (role="tab") for simpler navigation
 			role="presentation">
 			<button
@@ -191,16 +181,12 @@ export default function DBTabItem(props: DBTabItemProps) {
 				disabled={state.disabled ? true : undefined}
 				tabIndex={+(props.tabIndex ?? (state.internalActive ? 0 : -1))}
 				id={props.id}
-				class={cls(
-					'db-tab-button',
-					(
-						props.active !== undefined
-							? getBoolean(props.active)
-							: state.internalActive
-					)
-						? 'active'
-						: ''
-				)}
+				class="db-tab-button"
+				data-active={
+					props.active !== undefined
+						? getBoolean(props.active)
+						: state.internalActive
+				}
 				onClick={(event) => state.handleClick(event)}>
 				<Show when={props.icon && props.showIcon}>
 					<DBIcon icon={props.icon} />

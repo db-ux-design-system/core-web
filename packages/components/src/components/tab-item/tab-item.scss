@@ -56,7 +56,8 @@ $with-icon-padding-calc: calc(
 			}
 		}
 
-		&[aria-selected="true"] {
+		&[aria-selected="true"],
+		&[data-active="true"] {
 			font-weight: 700;
 		}
 
