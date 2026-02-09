@@ -19,19 +19,10 @@ import { DBSimpleTabProps, DBTabsProps, DBTabsState } from './model';
 useMetadata({});
 useDefaultProps<DBTabsProps>({});
 
-interface DBTabsLocalState extends DBTabsState {
-	getTabId: (index: number | string) => string;
-	getPanelId: (index: number | string) => string;
-	handleClick: (event: any) => void;
-	handleKeyDown: (event: any) => void;
-	isIndexActive: (index: number | string) => boolean;
-	getTabItemTabIndex: (index: number | string) => 0 | -1;
-}
-
 export default function DBTabs(props: DBTabsProps) {
 	const _ref = useRef<HTMLDivElement | null>(null);
 
-	const state = useStore<DBTabsLocalState>({
+	const state = useStore<DBTabsState>({
 		_id: 'tabs-base-id',
 		_name: 'tabs-base-name',
 
@@ -209,44 +200,37 @@ export default function DBTabs(props: DBTabsProps) {
 			});
 		},
 
-		// Initializes the tab list container with ARIA attributes and scroll behavior logic
 		initTabList() {
 			if (_ref) {
-				const tabList = _ref?.querySelector('.db-tab-list');
-				if (tabList) {
-					const container: HTMLElement | null =
-						tabList.querySelector('[role="tablist"]');
-					if (container) {
-						// explicitly set aria-orientation for screen readers to understand navigation direction
-						container.setAttribute(
-							'aria-orientation',
-							props.orientation || 'horizontal'
-						);
+				const container: HTMLElement | null =
+					_ref.querySelector('[role="tablist"]');
 
-						container.setAttribute('tabindex', '0');
+				if (container) {
+					container.setAttribute(
+						'aria-orientation',
+						props.orientation || 'horizontal'
+					);
 
-						if (props.behavior === 'arrows') {
-							state.scrollContainer = container;
+					container.setAttribute('tabindex', '0');
+
+					if (props.behavior === 'arrows') {
+						state.scrollContainer = container;
+						state.evaluateScrollButtons(container);
+						container.addEventListener('scroll', () => {
 							state.evaluateScrollButtons(container);
-							container.addEventListener('scroll', () => {
+						});
+
+						if (!state._resizeObserver) {
+							const observer = new ResizeObserver(() => {
 								state.evaluateScrollButtons(container);
 							});
-							// resizeObserver ensures scroll arrows appear/disappear when the window size changes
-							if (!state._resizeObserver) {
-								const observer = new ResizeObserver(() => {
-									state.evaluateScrollButtons(container);
-								});
-								observer.observe(container);
-								state._resizeObserver = observer;
-							}
+							observer.observe(container);
+							state._resizeObserver = observer;
 						}
+					}
 
-						if (props.name) {
-							container.setAttribute(
-								'aria-label',
-								props.name ?? ''
-							);
-						}
+					if (props.name) {
+						container.setAttribute('aria-label', props.name ?? '');
 					}
 				}
 			}
@@ -255,9 +239,7 @@ export default function DBTabs(props: DBTabsProps) {
 		// Initializes tab items and panels, setting up IDs, ARIA attributes and event listeners
 		initTabs() {
 			if (_ref) {
-				const tabListEl = _ref?.querySelector(
-					'.db-tab-list > [role="tablist"]'
-				);
+				const tabListEl = _ref.querySelector('[role="tablist"]');
 				const panels = Array.from<HTMLElement>(
 					_ref?.querySelectorAll('[role="tabpanel"]') ?? []
 				);
