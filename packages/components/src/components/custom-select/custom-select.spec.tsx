@@ -115,7 +115,7 @@ const tagSelectWithCustomRemoveTexts: any = (
 
 const disabled: any = (
 	<>
-		<button id="before">Before</button>
+		<button id="before" type="button">Before</button>
 		<DBCustomSelect
 			options={[
 				{ value: 'Option 1' },
@@ -127,7 +127,7 @@ const disabled: any = (
 			label="Test"
 			disabled={true}
 			placeholder="Placeholder"></DBCustomSelect>
-		<button id="after">After</button>
+		<button id="after" type="button">After</button>
 	</>
 );
 
