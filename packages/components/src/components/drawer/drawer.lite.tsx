@@ -88,8 +88,9 @@ export default function DBDrawer(props: DBDrawerProps) {
 				}
 				if (!open && _ref.open) {
 					if (dialogContainerRef) {
-						(dialogContainerRef as HTMLDivElement).dataset['transition'] =
-							'close';
+						(dialogContainerRef as HTMLDivElement).dataset[
+							'transition'
+						] = 'close';
 					}
 					void delay(() => {
 						_ref?.close();
