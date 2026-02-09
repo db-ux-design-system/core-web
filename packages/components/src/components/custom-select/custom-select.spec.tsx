@@ -113,6 +113,24 @@ const tagSelectWithCustomRemoveTexts: any = (
 		placeholder="Select colors"></DBCustomSelect>
 );
 
+const disabled: any = (
+	<>
+		<button id="before">Before</button>
+		<DBCustomSelect
+			options={[
+				{ value: 'Option 1' },
+				{ value: 'Option 2' },
+				{ value: 'Option 3' },
+				{ value: 'Option 4' },
+				{ value: 'Option 5' }
+			]}
+			label="Test"
+			disabled={true}
+			placeholder="Placeholder"></DBCustomSelect>
+		<button id="after">After</button>
+	</>
+);
+
 const testComponent = () => {
 	test('should contain text', async ({ mount }) => {
 		const component = await mount(comp);
@@ -387,22 +405,7 @@ const testAction = () => {
 		page,
 		mount
 	}) => {
-		const component = await mount(
-			<>
-				<button id="before">Before</button>
-				<DBCustomSelect
-					options={[
-						{ value: 'Option 1' },
-						{ value: 'Option 2' },
-						{ value: 'Option 3' }
-					]}
-					label="Test"
-					disabled={true}
-					placeholder="Placeholder"
-				/>
-				<button id="after">After</button>
-			</>
-		);
+		const component = await mount(disabled);
 
 		// Find the summary element
 		const summary = component.locator('summary');
