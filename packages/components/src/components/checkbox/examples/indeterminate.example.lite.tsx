@@ -1,4 +1,4 @@
-import { Fragment, useMetadata } from '@builder.io/mitosis';
+import { useMetadata } from '@builder.io/mitosis';
 import DBCheckbox from '../checkbox.lite';
 import { StorybookCheckboxArgTypes } from './_checkbox.arg.types';
 
@@ -10,15 +10,13 @@ useMetadata({
 
 export default function CheckboxIndeterminate() {
 	return (
-		<Fragment>
-			<div role="group" aria-label="Indeterminate">
-				<DBCheckbox name="Indeterminate" indeterminate={false}>
-					(Default) False
-				</DBCheckbox>
-				<DBCheckbox name="Indeterminate" indeterminate={true}>
-					True
-				</DBCheckbox>
-			</div>
-		</Fragment>
+		<div role="group" aria-label="Indeterminate">
+			<DBCheckbox name="Indeterminate" indeterminate={false}>
+				(Default) False
+			</DBCheckbox>
+			<DBCheckbox name="Indeterminate" indeterminate={true}>
+				True
+			</DBCheckbox>
+		</div>
 	);
 }

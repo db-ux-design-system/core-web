@@ -6,14 +6,12 @@ import { StorybookCustomSelectArgTypes } from './_custom-select.arg.types';
 useMetadata({
 	storybookTitle: 'Dropdown Width',
 	storybookNames: [
-		'Form Field Width: Full',
-		'(Default) Fixed',
-		'Auto',
-		'Full',
-		'Form Field Width: Auto',
-		'(Default) Fixed',
-		'Auto',
-		'Full'
+		'Form Field Width: Full - (Default) Fixed',
+		'Form Field Width: Full - Auto',
+		'Form Field Width: Full - Full',
+		'Form Field Width: Auto - (Default) Fixed',
+		'Form Field Width: Auto - Auto',
+		'Form Field Width: Auto - Full'
 	],
 	storybookArgTypes: StorybookCustomSelectArgTypes
 });
@@ -21,7 +19,10 @@ useMetadata({
 export default function CustomSelectDropdownWidth() {
 	return (
 		<Fragment>
-			<DBInfotext size="small" semantic="informational">
+			<DBInfotext
+				data-sb-ignore="true"
+				size="small"
+				semantic="informational">
 				Form Field Width: Full
 			</DBInfotext>
 			<i class="line-break" />
@@ -69,7 +70,10 @@ export default function CustomSelectDropdownWidth() {
 			</div>
 
 			<i class="line-break" />
-			<DBInfotext size="small" semantic="informational">
+			<DBInfotext
+				data-sb-ignore="true"
+				size="small"
+				semantic="informational">
 				Form Field Width: Auto
 			</DBInfotext>
 

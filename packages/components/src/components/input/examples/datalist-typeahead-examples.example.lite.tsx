@@ -3,7 +3,7 @@ import DBInput from '../input.lite';
 import { StorybookInputArgTypes } from './_input.arg.types';
 
 useMetadata({
-	storybookTitle: 'Datalist / Typeahead Examples',
+	storybookTitle: 'Datalist and Typeahead Examples',
 	storybookNames: [
 		'Simple String List',
 		'Regular Variant with Datalist',
@@ -25,11 +25,13 @@ export default function InputDatalistTypeaheadExamples() {
 				label="Search Cities"
 				placeholder="Type to search..."
 				dataList={dataList}
-				variant="floating"></DBInput>
+				variant="floating"
+			/>
 			<DBInput
 				label="Search Products"
 				placeholder="Regular Variant with Datalist"
-				dataList={dataList}></DBInput>
+				dataList={dataList}
+			/>
 			<DBInput
 				label="Search Stations"
 				placeholder="Type to search..."
@@ -37,7 +39,8 @@ export default function InputDatalistTypeaheadExamples() {
 				variant="floating"
 				type="search"
 				icon="magnifying_glass"
-				showIcon={true}></DBInput>
+				showIcon={true}
+			/>
 		</Fragment>
 	);
 }

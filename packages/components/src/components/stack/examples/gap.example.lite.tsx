@@ -6,16 +6,16 @@ import { StorybookStackArgTypes } from './_stack.arg.types';
 useMetadata({
 	storybookTitle: 'Gap',
 	storybookNames: [
-		'none',
-		'3x-small',
-		'2x-small',
-		'x-small',
-		'(Default) small',
-		'medium',
-		'large',
-		'x-large',
-		'2x-large',
-		'3x-large'
+		'Gap: none',
+		'Gap: 3x-small',
+		'Gap: 2x-small',
+		'Gap: x-small',
+		'Gap: (Default) small',
+		'Gap: medium',
+		'Gap: large',
+		'Gap: x-large',
+		'Gap: 2x-large',
+		'Gap: 3x-large'
 	],
 	storybookArgTypes: StorybookStackArgTypes
 });

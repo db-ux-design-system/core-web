@@ -4,7 +4,7 @@ import { StorybookTextareaArgTypes } from './_textarea.arg.types';
 
 useMetadata({
 	storybookTitle: 'Show Message',
-	storybookNames: ['(Default) False', 'true'],
+	storybookNames: ['(Default) False', 'True'],
 	storybookArgTypes: StorybookTextareaArgTypes
 });
 

@@ -11,6 +11,5 @@ export const StorybookAccordionArgTypes: Record<string, InputType> = {
 	},
 	initOpenIndex: { control: 'object' },
 	name: { control: 'text' },
-	id: { control: 'text' },
-	onChange: { action: 'onChange' }
+	id: { control: 'text' }
 };

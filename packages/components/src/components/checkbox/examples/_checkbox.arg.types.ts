@@ -4,7 +4,7 @@ export const StorybookCheckboxArgTypes: Record<string, InputType> = {
 	name: { control: 'text' },
 	disabled: { control: 'boolean' },
 	checked: { control: 'boolean' },
-	indeterminate: { control: 'text' },
+	indeterminate: { control: 'boolean' },
 	validation: { control: 'text' },
 	invalidMessage: { control: 'text' },
 	validMessage: { control: 'text' },

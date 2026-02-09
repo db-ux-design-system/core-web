@@ -3,7 +3,7 @@ import type { InputType } from 'storybook/internal/csf';
 export const StorybookSwitchArgTypes: Record<string, InputType> = {
 	checked: { control: 'boolean' },
 	disabled: { control: 'boolean' },
-	visualAid: { control: 'text' },
+	visualAid: { control: 'boolean' },
 	iconLeading: { control: 'text' },
 	iconTrailing: { control: 'text' },
 	size: { control: 'text' },

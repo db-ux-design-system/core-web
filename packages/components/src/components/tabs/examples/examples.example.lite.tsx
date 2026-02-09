@@ -8,7 +8,7 @@ import { StorybookTabsArgTypes } from './_tabs.arg.types';
 
 useMetadata({
 	storybookTitle: 'Examples',
-	storybookNames: ['2nd Test selected', 'nothing selected'],
+	storybookNames: ['Second Test selected', 'nothing selected'],
 	storybookArgTypes: StorybookTabsArgTypes
 });
 

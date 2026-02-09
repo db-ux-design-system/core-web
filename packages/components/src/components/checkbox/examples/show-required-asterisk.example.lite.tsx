@@ -1,4 +1,4 @@
-import { Fragment, useMetadata } from '@builder.io/mitosis';
+import { useMetadata } from '@builder.io/mitosis';
 import DBCheckbox from '../checkbox.lite';
 import { StorybookCheckboxArgTypes } from './_checkbox.arg.types';
 
@@ -10,21 +10,19 @@ useMetadata({
 
 export default function CheckboxShowRequiredAsterisk() {
 	return (
-		<Fragment>
-			<div role="group" aria-label="Show Required Asterisk">
-				<DBCheckbox
-					name="Asterisk"
-					required={true}
-					showRequiredAsterisk={true}>
-					(Default) True
-				</DBCheckbox>
-				<DBCheckbox
-					name="Asterisk"
-					required={true}
-					showRequiredAsterisk={false}>
-					False
-				</DBCheckbox>
-			</div>
-		</Fragment>
+		<div role="group" aria-label="Show Required Asterisk">
+			<DBCheckbox
+				name="Asterisk"
+				required={true}
+				showRequiredAsterisk={true}>
+				(Default) True
+			</DBCheckbox>
+			<DBCheckbox
+				name="Asterisk"
+				required={true}
+				showRequiredAsterisk={false}>
+				False
+			</DBCheckbox>
+		</div>
 	);
 }

@@ -2,6 +2,7 @@ const { targetMapping } = require('./target-mapping.cjs');
 const { resolveImports } = require('./resolve-imports.cjs');
 const { getMetaObject } = require('./get-meta-object.cjs');
 const { getStories } = require('./get-stories.cjs');
+const { toPascalCase } = require('../utils.cjs');
 
 /**
  * Mitosis plugin for generating Storybook stories
@@ -17,11 +18,11 @@ module.exports = () => ({
 			const targetMapItem = targetMapping[target].storyBookLib;
 
 			const componentNameLowercase = path.split('/')[2];
+			const componentName =
+				meta?.useMetadata?.storybookComponentName ??
+				`DB${toPascalCase(componentNameLowercase)}`;
 
-			const { componentName, allImports } = resolveImports(
-				imports,
-				componentNameLowercase
-			);
+			const { allImports } = resolveImports(imports);
 
 			// Validate component import
 			if (!componentName)
@@ -30,15 +31,20 @@ module.exports = () => ({
 				);
 
 			// Validate Fragment wrapper
-			if (children.length !== 1 || children[0].name !== 'Fragment') {
-				return `You need to wrap your example with a mitosis <Fragment>`;
+			if (
+				children.length !== 1 &&
+				(children[0].name === 'Fragment' || children[0].name === 'div')
+			) {
+				throw Error(
+					`You need to wrap your example with a mitosis <Fragment> or a wrapping <div>`
+				);
 			}
 
 			// Generate Storybook file content
 			return [
 				`import type { Meta, StoryObj } from '@storybook/${targetMapItem}';`,
 				target === 'angular'
-					? `import { argsToTemplate, componentWrapperDecorator } from '@storybook/${targetMapItem}';`
+					? `import { argsToTemplate, moduleMetadata, componentWrapperDecorator } from '@storybook/${targetMapItem}';`
 					: '',
 				`import { ${allImports.join(',')}, type ${componentName}Props } from '@components';`,
 				"import { fn } from 'storybook/test';",
@@ -47,14 +53,18 @@ module.exports = () => ({
 					componentNameLowercase,
 					componentName,
 					name,
-					meta
+					meta,
+					allImports
 				}),
 				getStories({
+					json,
 					target,
-					fragment: children[0],
+					wrappingContainer: children[0],
 					meta,
 					name,
-					componentName
+					componentNameLowercase,
+					componentName,
+					code
 				})
 			].join('\n');
 		}

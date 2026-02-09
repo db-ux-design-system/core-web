@@ -1,4 +1,4 @@
-import { Fragment, useMetadata } from '@builder.io/mitosis';
+import { useMetadata } from '@builder.io/mitosis';
 import DBRadio from '../radio.lite';
 import { StorybookRadioArgTypes } from './_radio.arg.types';
 
@@ -10,15 +10,13 @@ useMetadata({
 
 export default function RadioDisabled() {
 	return (
-		<Fragment>
-			<div role="radiogroup" aria-label="Disabled">
-				<DBRadio name="Disabled" disabled={false}>
-					(Default) False
-				</DBRadio>
-				<DBRadio name="Disabled" disabled={true}>
-					True
-				</DBRadio>
-			</div>
-		</Fragment>
+		<div role="radiogroup" aria-label="Disabled">
+			<DBRadio name="Disabled" disabled={false}>
+				(Default) False
+			</DBRadio>
+			<DBRadio name="Disabled" disabled={true}>
+				True
+			</DBRadio>
+		</div>
 	);
 }

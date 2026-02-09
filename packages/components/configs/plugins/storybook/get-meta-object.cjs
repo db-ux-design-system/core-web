@@ -41,9 +41,15 @@ const extractMetadata = (target, name, meta) => {
  * @param {string} target - Target framework (react, angular, vue)
  * @param {string} componentName - Component name
  * @param {string} componentNameLowercase - Lowercase component name
+ * @param {Array<string>} filteredImports - All imports
  * @returns {string} Render function code
  */
-const getRenderFunction = (target, componentName, componentNameLowercase) => {
+const getRenderFunction = (
+	target,
+	componentName,
+	componentNameLowercase,
+	filteredImports
+) => {
 	if (target === 'react') {
 		return `render: (properties) => (
 		<${componentName} {...properties}>{properties.children}</${componentName}>
@@ -62,9 +68,16 @@ const getRenderFunction = (target, componentName, componentNameLowercase) => {
 
 	if (target === 'vue') {
 		const childrenString = '${args.default}';
+
+		let components = componentName;
+
+		if (filteredImports.length) {
+			components += `, ${filteredImports.join(',')}`;
+		}
+
 		return `
 		render: (args) => ({
-		components: { ${componentName} },
+		components: { ${components} },
 		setup() {
 			return { args };
 		},
@@ -85,6 +98,7 @@ const getRenderFunction = (target, componentName, componentNameLowercase) => {
  * @param {string} params.componentName - Component name
  * @param {string} params.name - Story name
  * @param {Object} params.meta - Metadata object
+ * @param {Array<string>} params.allImports - All imports
  * @returns {string} Generated meta object code
  */
 const getMetaObject = ({
@@ -92,14 +106,17 @@ const getMetaObject = ({
 	componentNameLowercase,
 	componentName,
 	name,
-	meta
+	meta,
+	allImports
 }) => {
 	const { title, argTypes } = extractMetadata(target, name, meta);
+	const filteredImports = allImports?.filter((imp) => imp !== componentName);
 
 	const render = getRenderFunction(
 		target,
 		componentName,
-		componentNameLowercase
+		componentNameLowercase,
+		filteredImports
 	);
 
 	const metaType =
@@ -107,10 +124,22 @@ const getMetaObject = ({
 			? `${componentName}Props`
 			: `typeof ${componentName}`;
 
+	let decorators = '';
+
+	if (target === 'angular' && filteredImports.length) {
+		decorators = `
+	decorators: [
+		moduleMetadata({
+			imports: [${filteredImports.join(',')}],
+		}),
+	],`;
+	}
+
 	return `
 const meta: Meta<${metaType}> = {
 	title: 'Components/${componentName}/${title}',
 	component: ${componentName},
+	${decorators}
 	${render}
 	parameters: {
 		layout: 'centered'

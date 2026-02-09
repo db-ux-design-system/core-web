@@ -4,7 +4,7 @@ import { StorybookCustomSelectArgTypes } from './_custom-select.arg.types';
 
 useMetadata({
 	storybookTitle: 'Examples Floating label',
-	storybookNames: ['Floating', 'Floating'],
+	storybookNames: ['Floating', 'Floating - Invalid Message'],
 	storybookArgTypes: StorybookCustomSelectArgTypes
 });
 

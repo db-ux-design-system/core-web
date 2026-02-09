@@ -19,7 +19,10 @@ useMetadata({
 export default function CustomSelectPlacement() {
 	return (
 		<Fragment>
-			<DBInfotext size="small" semantic="informational">
+			<DBInfotext
+				data-sb-ignore="true"
+				size="small"
+				semantic="informational">
 				Form Field Width: Full
 			</DBInfotext>
 			<i class="line-break" />
@@ -54,7 +57,10 @@ export default function CustomSelectPlacement() {
 
 			<i class="line-break" />
 
-			<DBInfotext size="small" semantic="informational">
+			<DBInfotext
+				data-sb-ignore="true"
+				size="small"
+				semantic="informational">
 				Form Field Width: Auto
 			</DBInfotext>
 

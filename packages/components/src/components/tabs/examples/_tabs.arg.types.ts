@@ -4,7 +4,6 @@ export const StorybookTabsArgTypes: Record<string, InputType> = {
 	orientation: { control: 'text' },
 	width: { control: 'text' },
 	alignment: { control: 'text' },
-	overflow: { control: 'text' },
 	behavior: { control: 'text' },
 	initialSelectedIndex: { control: 'text' },
 	initialSelectedMode: { control: 'text' }

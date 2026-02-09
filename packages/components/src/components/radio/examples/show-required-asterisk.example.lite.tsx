@@ -1,4 +1,4 @@
-import { Fragment, useMetadata } from '@builder.io/mitosis';
+import { useMetadata } from '@builder.io/mitosis';
 import DBRadio from '../radio.lite';
 import { StorybookRadioArgTypes } from './_radio.arg.types';
 
@@ -10,21 +10,19 @@ useMetadata({
 
 export default function RadioShowRequiredAsterisk() {
 	return (
-		<Fragment>
-			<div role="radiogroup" aria-label="Show Required Asterisk">
-				<DBRadio
-					name="Asterisk"
-					required={true}
-					showRequiredAsterisk={true}>
-					(Default) True
-				</DBRadio>
-				<DBRadio
-					name="Asterisk"
-					required={true}
-					showRequiredAsterisk={false}>
-					False
-				</DBRadio>
-			</div>
-		</Fragment>
+		<div role="radiogroup" aria-label="Show Required Asterisk">
+			<DBRadio
+				name="Asterisk"
+				required={true}
+				showRequiredAsterisk={true}>
+				(Default) True
+			</DBRadio>
+			<DBRadio
+				name="Asterisk"
+				required={true}
+				showRequiredAsterisk={false}>
+				False
+			</DBRadio>
+		</div>
 	);
 }

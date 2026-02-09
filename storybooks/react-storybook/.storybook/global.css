@@ -6,3 +6,26 @@
 .docs-story {
 	background-color: var(--db-adaptive-bg-basic-level-1-default);
 }
+
+.stack-container {
+	padding: var(--db-spacing-fixed-xs);
+}
+
+.stack-show-alignment {
+	border: var(--db-border-width-3xs) dashed
+		var(--db-adaptive-on-bg-basic-emphasis-60-default);
+}
+
+.section-card-container {
+	display: grid;
+	gap: var(--db-spacing-fixed-sm);
+	grid-template-columns: repeat(1, minmax(0, 1fr));
+
+	@media screen and (width >= 768px) {
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+	}
+
+	.db-card {
+		inline-size: 100%;
+	}
+}
