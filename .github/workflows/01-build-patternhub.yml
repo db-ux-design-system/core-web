@@ -47,6 +47,7 @@ jobs:
           ASSET_PASSWORD: ${{ secrets.ASSET_PASSWORD }}
           NEXT_PUBLIC_BASE_PATH: ${{ inputs.baseUrl }}
         run: |
+          node node_modules/@db-ux/db-theme/build/scripts/index.js
           node node_modules/@db-ux/db-theme-fonts/build/scripts/index.js
           node node_modules/@db-ux/db-theme-icons/build/scripts/index.js
           npx --no tsx scripts/md-resolve-svg.ts
