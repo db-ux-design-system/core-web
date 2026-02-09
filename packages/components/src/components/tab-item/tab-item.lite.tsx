@@ -13,7 +13,15 @@ import { cls, getBoolean } from '../../utils';
 import DBTooltip from '../tooltip/tooltip.lite';
 import type { DBTabItemProps, DBTabItemState } from './model';
 
-useMetadata({});
+useMetadata({
+	angular: {
+		nativeAttributes: ['disabled', 'tabindex'],
+		signals: {
+			writeable: ['disabled']
+		}
+	}
+});
+
 useDefaultProps<DBTabItemProps>({});
 
 export default function DBTabItem(props: DBTabItemProps) {
@@ -23,7 +31,6 @@ export default function DBTabItem(props: DBTabItemProps) {
 	const state = useStore<DBTabItemState>({
 		initialized: false,
 		internalActive: getBoolean(props.active) || false,
-		internalDisabled: false,
 		isTruncated: false,
 		tooltipText: '',
 		_observer: null,
@@ -33,7 +40,7 @@ export default function DBTabItem(props: DBTabItemProps) {
 				event.preventDefault();
 			}
 
-			if (!state.internalDisabled) {
+			if (!getBoolean(props.disabled)) {
 				state.internalActive = true;
 				if (props.onClick) {
 					props.onClick(event);
@@ -62,7 +69,6 @@ export default function DBTabItem(props: DBTabItemProps) {
 
 	onMount(() => {
 		state.internalActive = getBoolean(props.active) || false;
-		state.internalDisabled = getBoolean(props.disabled) || false;
 
 		if (typeof window !== 'undefined') {
 			requestAnimationFrame(() => {
@@ -115,14 +121,7 @@ export default function DBTabItem(props: DBTabItemProps) {
 		}
 	}, [props.active]);
 
-	// Update disabled state when the disabled prop changes
-	onUpdate(() => {
-		if (props.disabled !== undefined) {
-			state.internalDisabled = getBoolean(props.disabled) || false;
-		}
-	}, [props.disabled]);
-
-	// Manually sync DOM attributes with internal state to prevent framework conflicts
+	// Manually sync DOM attributes
 	onUpdate(() => {
 		if (_ref) {
 			const tabIndexStr =
@@ -136,13 +135,14 @@ export default function DBTabItem(props: DBTabItemProps) {
 				_ref?.setAttribute('tabindex', tabIndexStr);
 			}
 
-			const disabledStr = state.internalDisabled ? 'true' : 'false';
+			const isDisabled = getBoolean(props.disabled);
+			const disabledStr = isDisabled ? 'true' : 'false';
+
 			if (_ref?.getAttribute('aria-disabled') !== disabledStr) {
 				_ref?.setAttribute('aria-disabled', disabledStr);
 			}
 
-			// manual sync of the disabled attribute to prevent framework interference.
-			if (state.internalDisabled) {
+			if (isDisabled) {
 				if (!_ref?.hasAttribute('disabled')) {
 					_ref?.setAttribute('disabled', '');
 				}
@@ -152,13 +152,10 @@ export default function DBTabItem(props: DBTabItemProps) {
 				}
 			}
 		}
-	}, [state.internalActive, state.internalDisabled, props.tabIndex]);
+	}, [state.internalActive, props.disabled, props.tabIndex]);
 
 	return (
-		<li
-			class={cls('db-tab-item', props.className)}
-			// ensures screen readers ignore the list item semantics and focus directly on the button (role="tab") for simpler navigation
-			role="presentation">
+		<li class={cls('db-tab-item', props.className)} role="presentation">
 			<button
 				ref={_ref}
 				type="button"
@@ -176,7 +173,7 @@ export default function DBTabItem(props: DBTabItemProps) {
 						: 'false'
 				}
 				aria-controls={props.ariaControls}
-				disabled={state.internalDisabled ? true : undefined}
+				disabled={getBoolean(props.disabled) ? true : undefined}
 				tabIndex={+(props.tabIndex ?? (state.internalActive ? 0 : -1))}
 				id={props.id}
 				class="db-tab-button"

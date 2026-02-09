@@ -50,8 +50,6 @@ export type DBTabItemProps = DBTabItemDefaultProps &
 
 export type DBTabItemDefaultState = {
 	internalActive: boolean | undefined;
-	// renamed to avoid collision with 'disabled' prop
-	internalDisabled: boolean | undefined;
 	_observer: MutationObserver | null | undefined;
 	_resizeObserver: ResizeObserver | null | undefined;
 	handleClick: (event: any) => void;
