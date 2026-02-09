@@ -1,5 +1,6 @@
 // TODO: Remove this when https://github.com/BuilderIO/mitosis/pull/1789 is merged
 
+const { getSlotKey } = require('../utils.cjs');
 /**
  *
  * @param node {import('@builder.io/mitosis').MitosisNode}
@@ -22,13 +23,12 @@ const processNode = (node) => {
 						...bind,
 						properties: {
 							...bind.properties,
-							slot: key.replace(/([A-Z])/g, '-$1').toLowerCase()
+							slot: getSlotKey(key)
 						}
 					}))
 				);
 			});
 
-			node.children.push();
 			delete node.bindings[key];
 		}
 	}

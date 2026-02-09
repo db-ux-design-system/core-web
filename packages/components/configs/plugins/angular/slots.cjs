@@ -1,6 +1,7 @@
 // TODO: Remove some of this when https://github.com/BuilderIO/mitosis/pull/1789 is merged
 // TODO: Remove the rest when https://github.com/db-ux-design-system/core-web/pull/4639 is merged
 
+const { getSlotKey } = require('../utils.cjs');
 /**
  *
  * @param node {import('@builder.io/mitosis').MitosisNode}
@@ -38,7 +39,7 @@ const processNode = (node) => {
 				bindings: {},
 				children: binding,
 				properties: {
-					SLOT: key.replace(/([A-Z])/g, '-$1').toLowerCase()
+					SLOT: getSlotKey(key)
 				}
 			};
 			node.children.push(slotNode);

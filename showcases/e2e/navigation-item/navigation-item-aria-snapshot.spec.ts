@@ -9,6 +9,6 @@ test.describe('DBNavigationItem', () => {
 	runAriaSnapshotTest({
 		path,
 		fixedHeight,
-		skip: { stencil: true }
+		skip: { stencil: true } // Navigation isn't working properly for stencil will be fixed with https://github.com/db-ux-design-system/core-web/tree/feat-shell
 	});
 });

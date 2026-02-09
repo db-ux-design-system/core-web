@@ -105,10 +105,12 @@ const getStories = ({ target, name, fragment, meta, componentName }) => {
 				componentName,
 				args
 			);
-			example = changedExample;
-			if (!example) {
-				throw Error(`somethings wrong with: ${name}`);
+
+			if (!changedExample) {
+				throw Error(`something is wrong with: ${name}`);
 			}
+
+			example = changedExample;
 
 			processBindings(example, target, args);
 
