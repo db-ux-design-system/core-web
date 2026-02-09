@@ -10,7 +10,6 @@ import {
 	useStore
 } from '@builder.io/mitosis';
 import { cls, getBoolean } from '../../utils';
-import DBIcon from '../icon/icon.lite';
 import DBTooltip from '../tooltip/tooltip.lite';
 import type { DBTabItemProps, DBTabItemState } from './model';
 
@@ -187,10 +186,11 @@ export default function DBTabItem(props: DBTabItemProps) {
 						? getBoolean(props.active)
 						: state.internalActive
 				}
+				data-icon={props.showIcon ? props.icon : undefined}
+				data-icon-after={
+					props.showIconTrailing ? props.iconTrailing : undefined
+				}
 				onClick={(event) => state.handleClick(event)}>
-				<Show when={props.icon && props.showIcon}>
-					<DBIcon icon={props.icon} />
-				</Show>
 				<Show when={!props.noText}>
 					{/* wrapper needed for accurate width measurement via refs */}
 					<span ref={_labelRef} class="db-tab-label">
@@ -199,9 +199,6 @@ export default function DBTabItem(props: DBTabItemProps) {
 							<Slot />
 						</Show>
 					</span>
-				</Show>
-				<Show when={props.iconTrailing && props.showIconTrailing}>
-					<DBIcon icon={props.iconTrailing} />
 				</Show>
 				<Show when={state.isTruncated && state.tooltipText}>
 					<DBTooltip placement="right">{state.tooltipText}</DBTooltip>
