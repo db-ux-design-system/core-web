@@ -48,7 +48,7 @@ export type DBTabItemProps = DBTabItemDefaultProps &
 	ActiveProps &
 	WidthProps;
 
-export interface DBTabItemState extends GlobalState, InitializedState {
+export type DBTabItemDefaultState = {
 	internalActive: boolean | undefined;
 	disabled: boolean | undefined;
 	_observer: MutationObserver | null | undefined;
@@ -57,4 +57,8 @@ export interface DBTabItemState extends GlobalState, InitializedState {
 	isTruncated: boolean;
 	checkTruncation: () => void;
 	tooltipText: string;
-}
+};
+
+export type DBTabItemState = DBTabItemDefaultState &
+	GlobalState &
+	InitializedState;
