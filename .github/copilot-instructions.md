@@ -30,10 +30,7 @@ DB UX Design System v3 Core Web is a monorepo containing CSS/SCSS styles, compon
 
 3. **Decode DB Theme assets** (optional for basic development):
     ```bash
-    node node_modules/@db-ux/db-theme/build/scripts/index.js
-    node node_modules/@db-ux/db-theme-fonts/build/scripts/index.js
-    node node_modules/@db-ux/db-theme-icons/build/scripts/index.js
-    node node_modules/@db-ux/db-theme-illustrative-icons/build/scripts/index.js
+    npm run decode-db-theme-assets
     ```
     **NOTE**: These will fail with placeholder credentials in `.env` but are not required for basic development.
 

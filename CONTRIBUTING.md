@@ -12,10 +12,7 @@ Get credentials for public usage from [Marketingportal](https://marketingportal.
 npm install
 # it should run postinstall tasks from @db-ux/db-theme* by default, if not:
 # execute this tasks manually to decode the assets using the previously made setup:
-node node_modules/@db-ux/db-theme/build/scripts/index.js
-node node_modules/@db-ux/db-theme-fonts/build/scripts/index.js
-node node_modules/@db-ux/db-theme-icons/build/scripts/index.js
-node node_modules/@db-ux/db-theme-illustrative-icons/build/scripts/index.js
+npm run decode-db-theme-assets
 ```
 
 If you're contributing from a fork in your user space, please also set up those credentials from the Marketing portal in your fork repository as repository secrets. You need these credentials for the pipeline to decrypt the brand assets correctly.
