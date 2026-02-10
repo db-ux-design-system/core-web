@@ -14,7 +14,7 @@ export default function DrawerDensity() {
 
 	return (
 		<Fragment>
-			<div data-density="functional">
+			<div data-density="functional" data-sb-decorator="true">
 				<DBButton onClick={() => setOpenIndex(0)}>
 					Open: Functional
 				</DBButton>
@@ -25,7 +25,7 @@ export default function DrawerDensity() {
 					Functional
 				</DBDrawer>
 			</div>
-			<div data-density="regular">
+			<div data-density="regular" data-sb-decorator="true">
 				<DBButton onClick={() => setOpenIndex(1)}>
 					Open: (Default) Regular
 				</DBButton>
@@ -36,7 +36,7 @@ export default function DrawerDensity() {
 					(Default) Regular
 				</DBDrawer>
 			</div>
-			<div data-density="expressive">
+			<div data-density="expressive" data-sb-decorator="true">
 				<DBButton onClick={() => setOpenIndex(2)}>
 					Open: Expressive
 				</DBButton>

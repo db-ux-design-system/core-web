@@ -1,4 +1,4 @@
-import { Fragment, useMetadata } from '@builder.io/mitosis';
+import { useMetadata } from '@builder.io/mitosis';
 import DBTag from '../tag.lite';
 import { StorybookTagArgTypes } from './_tag.arg.types';
 
@@ -18,7 +18,7 @@ useMetadata({
 
 export default function TagBehavior() {
 	return (
-		<Fragment>
+		<div role="group" aria-label="Behavior">
 			<DBTag>(Default) Static</DBTag>
 			<DBTag behavior="removable">Removable</DBTag>
 
@@ -31,26 +31,24 @@ export default function TagBehavior() {
 			</DBTag>
 
 			<i class="line-break" />
-			<div role="group" aria-label="Behavior">
-				<DBTag>
-					<label>
-						<input type="checkbox" />
-						Interactive (Checkbox)
-					</label>
-				</DBTag>
-				<DBTag>
-					<label>
-						<input type="radio" name="radio01" />
-						Interactive (Radio)
-					</label>
-				</DBTag>
-				<DBTag>
-					<label>
-						<input type="radio" name="radio01" />
-						Interactive Radio 2
-					</label>
-				</DBTag>
-			</div>
-		</Fragment>
+			<DBTag>
+				<label>
+					<input type="checkbox" />
+					Interactive (Checkbox)
+				</label>
+			</DBTag>
+			<DBTag>
+				<label>
+					<input type="radio" name="radio01" />
+					Interactive (Radio)
+				</label>
+			</DBTag>
+			<DBTag>
+				<label>
+					<input type="radio" name="radio01" />
+					Interactive Radio 2
+				</label>
+			</DBTag>
+		</div>
 	);
 }

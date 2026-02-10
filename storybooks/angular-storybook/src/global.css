@@ -1,5 +1,5 @@
-@import "@db-ux/core-components/build/styles/webpack.css";
-@import "@db-ux/db-theme/build/styles/webpack.css";
+@import "@db-ux/core-components/build/styles/rollup.css";
+@import "@db-ux/db-theme/build/styles/rollup.css";
 
 .docs-story {
 	background-color: var(--db-adaptive-bg-basic-level-1-default);

@@ -14,7 +14,7 @@ export default function DrawerExample() {
 
 	return (
 		<Fragment>
-			<div>
+			<div data-sb-decorator="true">
 				<DBButton onClick={() => setOpenIndex(0)}>
 					Open: (Default) As modal
 				</DBButton>
@@ -25,7 +25,7 @@ export default function DrawerExample() {
 					(Default) As modal
 				</DBDrawer>
 			</div>
-			<div>
+			<div data-sb-decorator="true">
 				<DBButton onClick={() => setOpenIndex(1)}>
 					Open: Inside
 				</DBButton>

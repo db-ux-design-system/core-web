@@ -5,13 +5,11 @@ export const StorybookNotificationArgTypes: Record<string, InputType> = {
 	icon: { control: 'text' },
 	variant: { control: 'text' },
 	semantic: { control: 'text' },
-	closeable: { control: 'text' },
-	img: { control: 'text' },
+	closeable: { control: 'boolean' },
 	showIcon: { control: 'boolean' },
 	link: { control: 'text' },
 	linkVariant: { control: 'text' },
 	showHeadline: { control: 'boolean' },
 	showTimestamp: { control: 'boolean' },
-	timestamp: { control: 'text' },
-	behavior: { control: 'text' }
+	timestamp: { control: 'text' }
 };

@@ -5,7 +5,8 @@ export const StorybookPopoverArgTypes: Record<string, InputType> = {
 	spacing: { control: 'text' },
 	placement: { control: 'text' },
 	gap: { control: 'text' },
-	animation: { control: 'text' },
+	animation: { control: 'boolean' },
 	delay: { control: 'text' },
-	width: { control: 'text' }
+	width: { control: 'text' },
+	open: { control: 'boolean' }
 };

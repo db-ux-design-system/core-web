@@ -4,7 +4,7 @@ import { StorybookTagArgTypes } from './_tag.arg.types';
 
 useMetadata({
 	storybookTitle: 'Overflow',
-	storybookNames: ['(Default) False', 'True - lorem ipsum dolor'],
+	storybookNames: ['(Default) False', 'True'],
 	storybookArgTypes: StorybookTagArgTypes
 });
 

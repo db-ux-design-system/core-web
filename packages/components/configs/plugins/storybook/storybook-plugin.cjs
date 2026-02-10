@@ -24,6 +24,16 @@ module.exports = () => ({
 
 			const { allImports } = resolveImports(imports);
 
+			if (target === 'angular') {
+				// Add directive imports for navigation, just for simplicity
+				allImports.push(
+					"MetaNavigationDirective",
+					"NavigationDirective",
+					"NavigationContentDirective",
+					"SecondaryActionDirective"
+				);
+			}
+
 			// Validate component import
 			if (!componentName)
 				throw new Error(

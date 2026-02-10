@@ -15,13 +15,21 @@ export default function BadgeContent() {
 		<Fragment>
 			<DBBadge>(Default) Text</DBBadge>
 			<DBBadge />
-			<DBInfotext semantic="informational" size="small" icon="none">
+			<DBInfotext
+				data-sb-ignore="true"
+				semantic="informational"
+				size="small"
+				icon="none">
 				Dot - Small
 			</DBInfotext>
 			<DBBadge semantic="critical" emphasis="strong">
 				<DBIcon icon="x_placeholder">Icon - Small</DBIcon>
 			</DBBadge>
-			<DBInfotext semantic="informational" size="small" icon="none">
+			<DBInfotext
+				data-sb-ignore="true"
+				semantic="informational"
+				size="small"
+				icon="none">
 				Icon - Small
 			</DBInfotext>
 		</Fragment>

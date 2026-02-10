@@ -1,22 +1,14 @@
 const storyBookPlugin = require('./plugins/storybook/storybook-plugin.cjs');
+const angular = require('./angular/index.cjs');
+const react = require('./react/index.cjs');
+const vue = require('./vue/index.cjs');
 
 /**
  * @type {import('@builder.io/mitosis').MitosisConfig}
  */
 module.exports = {
-	// TODO: use all examples if we fix the storybook plugin
 	files: [
-		// TODO: Complex examples
-		//'src/components/drawer/examples/*.example.lite.tsx',
-		// 'src/components/header/examples/*.example.lite.tsx',
-		// 'src/components/navigation/examples/*.example.lite.tsx',
-		// 'src/components/popover/examples/*.example.lite.tsx',
-		// 'src/components/tooltip/examples/*.example.lite.tsx'
-
-		// TODO: Those have encoded quotes
-		// 'src/components/navigation-item/examples/*.example.lite.tsx',
-		// 'src/components/notification/examples/*.example.lite.tsx',
-		// 'src/components/tag/examples/*.example.lite.tsx',
+		// 'src/components/drawer/examples/*.example.lite.tsx',
 
 		'src/components/accordion/examples/*.example.lite.tsx',
 		'src/components/accordion-item/examples/*.example.lite.tsx',
@@ -38,7 +30,14 @@ module.exports = {
 		'src/components/stack/examples/*.example.lite.tsx',
 		'src/components/switch/examples/*.example.lite.tsx',
 		'src/components/textarea/examples/*.example.lite.tsx',
-		'src/components/tabs/examples/*.example.lite.tsx'
+		'src/components/tabs/examples/*.example.lite.tsx',
+		'src/components/tag/examples/*.example.lite.tsx',
+		'src/components/notification/examples/*.example.lite.tsx',
+		'src/components/navigation-item/examples/*.example.lite.tsx',
+		'src/components/popover/examples/*.example.lite.tsx',
+		'src/components/navigation/examples/*.example.lite.tsx',
+		'src/components/header/examples/*.example.lite.tsx',
+		'src/components/tooltip/examples/*.example.lite.tsx',
 	],
 	targets: ['angular', 'react', 'vue'],
 	dest: '../../storybooks',
@@ -47,16 +46,13 @@ module.exports = {
 	},
 	options: {
 		react: {
+			...react,
 			explicitBuildFileExtensions: {
 				'.stories.tsx': /.*(example\.lite\.tsx)$/g
 			}
 		},
-		angular: {
-			api: 'signals'
-		},
-		vue: {
-			api: 'composition'
-		}
+		angular,
+		vue
 	},
 	commonOptions: {
 		typescript: true,

@@ -15,11 +15,9 @@ export default function TabItemBehavior() {
 			<DBTabList>
 				<DBTabItem label="(Default) Auto Width" />
 			</DBTabList>
-			<div style={{ width: '500px' }}>
-				<DBTabList>
-					<DBTabItem label="Width full" />
-				</DBTabList>
-			</div>
+			<DBTabList className="w-full">
+				<DBTabItem label="Width full" />
+			</DBTabList>
 		</Fragment>
 	);
 }

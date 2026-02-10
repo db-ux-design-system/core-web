@@ -14,7 +14,7 @@ export default function DrawerSpacing() {
 
 	return (
 		<Fragment>
-			<div>
+			<div data-sb-decorator="true">
 				<DBButton onClick={() => setOpenIndex(0)}>
 					Open: (Default) Medium
 				</DBButton>
@@ -24,7 +24,7 @@ export default function DrawerSpacing() {
 					(Default) Medium
 				</DBDrawer>
 			</div>
-			<div>
+			<div data-sb-decorator="true">
 				<DBButton onClick={() => setOpenIndex(1)}>Open: Small</DBButton>
 				<DBDrawer
 					spacing="small"
@@ -33,7 +33,7 @@ export default function DrawerSpacing() {
 					Small
 				</DBDrawer>
 			</div>
-			<div>
+			<div data-sb-decorator="true">
 				<DBButton onClick={() => setOpenIndex(2)}>Open: Large</DBButton>
 				<DBDrawer
 					spacing="large"
@@ -42,7 +42,7 @@ export default function DrawerSpacing() {
 					Large
 				</DBDrawer>
 			</div>
-			<div>
+			<div data-sb-decorator="true">
 				<DBButton onClick={() => setOpenIndex(3)}>Open: None</DBButton>
 				<DBDrawer
 					spacing="none"

@@ -14,7 +14,7 @@ export default function DrawerRounded() {
 
 	return (
 		<Fragment>
-			<div>
+			<div data-sb-decorator="true">
 				<DBButton onClick={() => setOpenIndex(0)}>
 					Open: (Default) False
 				</DBButton>
@@ -25,7 +25,7 @@ export default function DrawerRounded() {
 					(Default) False
 				</DBDrawer>
 			</div>
-			<div>
+			<div data-sb-decorator="true">
 				<DBButton onClick={() => setOpenIndex(1)}>Open: True</DBButton>
 				<DBDrawer
 					rounded={true}

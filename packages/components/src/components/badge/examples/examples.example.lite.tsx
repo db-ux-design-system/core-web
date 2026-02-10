@@ -22,19 +22,31 @@ export default function BadgeExamples() {
 			<DBBadge size="small" emphasis="strong" semantic="warning">
 				123
 			</DBBadge>
-			<DBInfotext semantic="informational" size="small" icon="none">
+			<DBInfotext
+				data-sb-ignore="true"
+				semantic="informational"
+				size="small"
+				icon="none">
 				Numbers
 			</DBInfotext>
 			<i class="line-break" />
 			<DBBadge size="medium">(Default) Text - Medium</DBBadge>
 			<DBBadge size="medium" />
-			<DBInfotext semantic="informational" size="small" icon="none">
+			<DBInfotext
+				data-sb-ignore="true"
+				semantic="informational"
+				size="small"
+				icon="none">
 				Dot - Medium
 			</DBInfotext>
 			<DBBadge semantic="critical" emphasis="strong" size="medium">
 				<DBIcon icon="x_placeholder">Icon - Medium</DBIcon>
 			</DBBadge>
-			<DBInfotext semantic="informational" size="small" icon="none">
+			<DBInfotext
+				data-sb-ignore="true"
+				semantic="informational"
+				size="small"
+				icon="none">
 				Icon - Medium
 			</DBInfotext>
 		</Fragment>
