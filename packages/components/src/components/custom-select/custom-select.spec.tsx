@@ -429,7 +429,7 @@ const testAction = () => {
 // 		// Verify the summary element was skipped
 // 		await expect(summary).not.toBeFocused();
 // 	});
-// };
+};
 
 const testValuesReset = () => {
 	test('should clear tags when values prop is set to null', async ({
