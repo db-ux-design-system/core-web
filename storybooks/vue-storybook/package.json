@@ -21,7 +21,7 @@
     "@storybook/addon-a11y": "10.2.4",
     "@storybook/addon-docs": "10.2.4",
     "@storybook/addon-vitest": "10.2.4",
-    "@storybook/vue3-vite": "10.2.4",
+    "@storybook/vue3-vite": "10.2.7",
     "@vitejs/plugin-vue": "6.0.4",
     "@vue/tsconfig": "0.8.1",
     "eslint-plugin-storybook": "10.2.4",
