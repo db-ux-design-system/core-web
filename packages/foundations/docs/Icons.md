@@ -147,4 +147,4 @@ You need to import the correct `.css` file (or move it to your project). There a
 - `rollup.css`: vite, rollup
 - `webpack.css`: webpack
 
-**Important for non-bundlers:** If you're moving `relative.css` CSS file to your project, you need to copy the `fonts` folder from `node_modules/@db-ux/db-theme-icons/build/fonts` to the same directory next to the folder where you store the `relative.css` file (e.g., next to your `styles` folder), because we're using the reference to e.g. `src: url("../fonts/default_12/db.woff2")` out of the `relative.css` CSS file.
+**Important for non-bundlers usage:** If you're moving `relative.css` CSS file to your project, you need to copy the `fonts` folder from `node_modules/@db-ux/db-theme-icons/build/fonts` to the same directory next to the folder where you store the `relative.css` file (e.g., next to your `styles` folder), because we're using the reference to e.g. `src: url("../fonts/default_12/db.woff2")` out of the `relative.css` CSS file.
