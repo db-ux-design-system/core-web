@@ -32,10 +32,12 @@
 		/// @propertyname max-block-size
 		/// @cssprop --db-drawer-max-height
 		/// @default calc(100% - #{variables.$db-spacing-fixed-xl})
+		/* stylelint-disable-next-line db-ux/use-sizing */
 		max-block-size: var(
 			--db-drawer-max-height,
 			calc(100% - #{variables.$db-spacing-fixed-xl})
 		);
+		/* stylelint-disable-next-line db-ux/use-sizing */
 		min-block-size: var(
 			--db-drawer-min-height,
 			calc(100% - #{variables.$db-spacing-fixed-xl})
@@ -163,10 +165,12 @@ $spacings: (
 			///   <div class="db-drawer db-drawer-wide">
 			///     <!-- wide drawer -->
 			///   </div>
+			/* stylelint-disable-next-line db-ux/use-sizing */
 			max-inline-size: var(
 				--db-drawer-max-width,
 				calc(100% - #{variables.$db-spacing-fixed-xl})
 			);
+			/* stylelint-disable-next-line db-ux/use-sizing */
 			min-inline-size: var(
 				--db-drawer-min-width,
 				calc(100% - #{variables.$db-spacing-fixed-xl})

@@ -17,6 +17,7 @@
 
 	&:not([data-width]),
 	&[data-width="fixed"] {
+		/* stylelint-disable-next-line db-ux/use-sizing */
 		inline-size: var(
 			--db-custom-select-dropdown-fixed-inline-size,
 			#{variables.$db-sizing-3xl}

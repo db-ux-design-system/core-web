@@ -7,6 +7,7 @@
 	background: colors.$db-adaptive-bg-basic-level-1-default;
 	border: 1px solid $white;
 	height: 100%;
+	width: 200px;
 	padding: functions.to-rem(20px);
 
 	&__aa {

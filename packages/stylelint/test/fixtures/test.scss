@@ -12,6 +12,10 @@
 	margin: 20px;
 	border-radius: 4px;
 	border: 1px solid red;
+	width: 100px;
+	height: 50px;
+	block-size: 200px;
+	inline-size: 300px;
 }
 
 .right {
@@ -19,6 +23,10 @@
 	border-radius: var(--db-border-radius-md);
 	border: var(--db-border-width-md) solid
 		var(--db-adaptive-on-bg-basic-emphasis-70);
+	width: var(--db-sizing-md);
+	height: 100%;
+	block-size: var(--db-screen-sm);
+	inline-size: var(--db-container-lg);
 }
 
 .no-variables {
@@ -28,6 +36,7 @@
 	border-top-right-radius: var(--custom-radius);
 	border: var(--custom-border) solid
 		var(--db-adaptive-on-bg-basic-emphasis-70);
+	width: $custom-width;
 }
 
 .map {

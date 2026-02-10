@@ -21,6 +21,21 @@
 				}
 			}
 		],
+		"db-ux/use-sizing": [
+			true,
+			{
+				"allowCalc": true,
+				"allow": {
+					"includes": ["$db-", "$font-size-height"],
+					"startsWith": [
+						"icons.$",
+						"component.$",
+						"form-components.$"
+					],
+					"exact": ["$popover-gap-size", "$scrollbar-width"]
+				}
+			}
+		],
 		"db-ux/use-border-width": [true],
 		"db-ux/use-border-radius": [true],
 		"db-ux/use-border-color": [true],

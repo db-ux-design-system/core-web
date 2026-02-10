@@ -44,7 +44,7 @@ $popover-gap-inset: calc(-1 * #{$popover-gap-size});
 		&::before {
 			inset-block-end: 100%;
 			inset-inline: 0;
-			block-size: var(--db-popover-distance);
+			block-size: $popover-gap-size;
 		}
 	}
 
@@ -53,7 +53,7 @@ $popover-gap-inset: calc(-1 * #{$popover-gap-size});
 		&::before {
 			inset-block-start: 100%;
 			inset-inline: 0;
-			block-size: var(--db-popover-distance);
+			block-size: $popover-gap-size;
 		}
 	}
 
@@ -62,7 +62,7 @@ $popover-gap-inset: calc(-1 * #{$popover-gap-size});
 		&::before {
 			inset-inline-end: 100%;
 			inset-block: 0;
-			inline-size: var(--db-popover-distance);
+			inline-size: $popover-gap-size;
 		}
 	}
 
@@ -71,7 +71,7 @@ $popover-gap-inset: calc(-1 * #{$popover-gap-size});
 		&::before {
 			inset-inline-start: 100%;
 			inset-block: 0;
-			inline-size: var(--db-popover-distance);
+			inline-size: $popover-gap-size;
 		}
 	}
 
