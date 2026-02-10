@@ -125,7 +125,7 @@ const testAction = () => {
 		browserName
 	}) => {
 		if (browserName === 'firefox') {
-			// Firefox doesn't support [type=time]
+			// Firefox doesn't support [type=time] in combination with <datalist>
 			test.skip();
 		}
 
