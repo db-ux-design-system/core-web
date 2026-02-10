@@ -36,7 +36,7 @@
 			[validation]="exampleProps?.validation"
 			[dataList]="
 				exampleProps?.dataList
-					? getDataList(exampleProps?.variant)
+					? getDataList(exampleProps?.variant, exampleProps?.type)
 					: undefined
 			"
 		></db-input>

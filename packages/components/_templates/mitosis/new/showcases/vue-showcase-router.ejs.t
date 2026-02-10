@@ -6,5 +6,5 @@ after: "export const navigationItems: NavItem\\[\\] = \\["
 	{
 		path: '/<%= name %>',
 		label: '<%= h.changeCase.pascal(name) %>',
-		component: <%= h.changeCase.pascal(name) %>
+		component: markRaw(<%= h.changeCase.pascal(name) %>Showcase)
 	},
