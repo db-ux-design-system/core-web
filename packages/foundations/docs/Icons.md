@@ -137,7 +137,7 @@ If you want to use only the icons from this library without including the comple
 
 ```css
 @import "node_modules/@db-ux/core-foundations/build/styles/defaults/default-icons.css";
-@import "node_modules/@db-ux-inner-source/db-theme-icons/build/styles/relative.css";
+@import "node_modules/@db-ux/db-theme-icons/build/styles/relative.css";
 ```
 
 You need to import the correct `.css` file (or move it to your project). There are multiple files depending on the bundler you use:
