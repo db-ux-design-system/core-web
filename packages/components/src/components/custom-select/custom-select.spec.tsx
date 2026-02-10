@@ -401,34 +401,34 @@ const testAction = () => {
 		await expect(secondTooltip).toContainText('Remove Green Color');
 	});
 
-// 	test('disabled custom select should not be keyboard operable', async ({
-// 		page,
-// 		mount
-// 	}) => {
-// 		const component = await mount(disabled);
+ 	test('disabled custom select should not be keyboard operable', async ({
+ 		page,
+ 		mount
+ 	}) => {
+ 		const component = await mount(disabled);
 
-// 		// Find the summary element
-// 		const summary = component.locator('summary');
+ 		// Find the summary element
+ 		const summary = component.locator('summary');
 
-// 		// Verify aria-disabled is set
-// 		await expect(summary).toHaveAttribute('aria-disabled', 'true');
+ 		// Verify aria-disabled is set
+ 		await expect(summary).toHaveAttribute('aria-disabled', 'true');
 
-// 		// Verify tabindex is set to -1
-// 		await expect(summary).toHaveAttribute('tabindex', '-1');
+ 		// Verify tabindex is set to -1
+ 		await expect(summary).toHaveAttribute('tabindex', '-1');
 
-// 		// Focus on the "before" button
-// 		const beforeButton = page.locator('#before');
-// 		await beforeButton.focus();
-// 		await expect(beforeButton).toBeFocused();
+ 		// Focus on the "before" button
+ 		const beforeButton = page.locator('#before');
+ 		await beforeButton.focus();
+ 		await expect(beforeButton).toBeFocused();
 
-// 		// Press Tab - should skip the disabled select and go to "after" button
-// 		await page.keyboard.press('Tab');
-// 		const afterButton = page.locator('#after');
-// 		await expect(afterButton).toBeFocused();
+ 		// Press Tab - should skip the disabled select and go to "after" button
+ 		await page.keyboard.press('Tab');
+ 		const afterButton = page.locator('#after');
+ 		await expect(afterButton).toBeFocused();
 
-// 		// Verify the summary element was skipped
-// 		await expect(summary).not.toBeFocused();
-// 	});
+ 		// Verify the summary element was skipped
+ 		await expect(summary).not.toBeFocused();
+ 	});
 };
 
 const testValuesReset = () => {
