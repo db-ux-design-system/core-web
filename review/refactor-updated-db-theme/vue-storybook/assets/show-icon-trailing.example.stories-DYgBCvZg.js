@@ -1,4 +1,4 @@
-import{_ as c}from"./button-Ck4CMY_k.js";import"./iframe-DO9oqKyM.js";import"./preload-helper-B3Xt2jgA.js";const{fn:n}=__STORYBOOK_MODULE_TEST__,i={title:"Components/DBButton/Show Icon Trailing",component:c,render:e=>({components:{DBButton:c},setup(){return{args:e}},template:`
+import{_ as c}from"./button-CP85ZDaN.js";import"./iframe-DVsF0Zyu.js";import"./preload-helper-B3Xt2jgA.js";const{fn:n}=__STORYBOOK_MODULE_TEST__,i={title:"Components/DBButton/Show Icon Trailing",component:c,render:e=>({components:{DBButton:c},setup(){return{args:e}},template:`
       <DBButton v-bind="args">
       ${e.default}
       </DBButton>
