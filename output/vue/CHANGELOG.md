@@ -1,5 +1,29 @@
 # @db-ux/v-core-components
 
+## 4.4.2
+
+### Patch Changes
+
+- fix(SSR-compatibility): Implement framework-specific `useId` for UUID generation in React and Vue outputs - [see commit 1073c46](https://github.com/db-ux-design-system/core-web/commit/1073c469a20bf1346f150c00364ee1aeab7643d0)
+
+- fix: issue with DBInput not working properly with `datalist` and `type="time"` - [see commit 72ccb09](https://github.com/db-ux-design-system/core-web/commit/72ccb09d1304aec894b4fde27624f90029efec9d)
+
+## 4.4.1
+
+### Patch Changes
+
+- fix: issue with tailwind not reflecting adaptive color changes with `[data-color="xxx"]` - [see commit 936638d](https://github.com/db-ux-design-system/core-web/commit/936638d672bbb6c0f8a0ecf77bf41fafa0e31656)
+
+- DBCustomSelect: Prevent floating label from flickering during initial render - [see commit e5ceff8](https://github.com/db-ux-design-system/core-web/commit/e5ceff861534186cf86d1f5f0a876e04aeac9e41)
+
+## 4.4.0
+
+### Minor Changes
+
+- feat: add `role` property to DBNotification & automatically add role based on semantic if no `role` or `ariaLive` is provided to increase UX for screen-reader users - [see commit 177d71e](https://github.com/db-ux-design-system/core-web/commit/177d71e287a64a6491ba446e7812d0adbda1717e)
+
+- feat(DBSelect): hide empty first option in `required` selects with placeholder after the first user selection, and add `showEmptyOption` prop to overwrite this - [see commit 4280bc4](https://github.com/db-ux-design-system/core-web/commit/4280bc47538d6983d6bb5575f012b6c6b25b40e8)
+
 ## 4.3.2
 
 ### Patch Changes
