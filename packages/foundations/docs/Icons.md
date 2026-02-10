@@ -9,7 +9,8 @@
 
 For **CSS**, **SCSS** and **Tailwind** you don't have to include a specific file, just follow the documentation for [foundations](../../foundations/readme).
 
-### Edge case: Using only icons without the full CSS
+<details>
+<summary>Edge case: Using only icons without the full CSS</summary>
 
 If you want to use only the icons from this library without including the complete CSS, you can import just the icon-related files:
 
@@ -18,7 +19,16 @@ If you want to use only the icons from this library without including the comple
 @import "node_modules/@db-ux-inner-source/db-theme-icons/build/styles/relative.css";
 ```
 
-**Important:** After importing `relative.css`, you need to copy the fonts folder from `node_modules/@db-ux-inner-source/db-theme-icons/build/fonts` to the same directory where you store the `relative.css` file (e.g., next to your `styles` folder). We're using the reference to e.g. `src: url("../fonts/default_12/db.woff2")` out of this CSS.
+You need to import the correct `.css` file (or move it to your project). There are multiple files depending on the bundler you use:
+
+- `relative.css`: No bundler (as shown in the previous code block)
+- `absolute.css`: No bundler
+- `rollup.css`: vite, rollup
+- `webpack.css`: webpack
+
+**Important for non-bundlers:** If you're moving `relative.css` CSS file to your project, you need to copy the `fonts` folder from `node_modules/@db-ux-inner-source/db-theme-icons/build/fonts` to the same directory next to the folder where you store the `relative.css` file (e.g., next to your `styles` folder), because we're using the reference to e.g. `src: url("../fonts/default_12/db.woff2")` out of the `relative.css` CSS file.
+
+</details>
 
 ### How to use
 
