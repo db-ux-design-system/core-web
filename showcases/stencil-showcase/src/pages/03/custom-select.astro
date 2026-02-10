@@ -24,7 +24,7 @@ import { DBCustomSelect, DBInfotext } from '@components';
 						return (
 							<>
 								<DBCustomSelect
-									id={id}
+									{...props}
 									label={children}
 									listLabel={listLabel}
 									selectAllLabel="Select all"
@@ -32,7 +32,6 @@ import { DBCustomSelect, DBInfotext } from '@components';
 									selectedPrefix="Selected"
 									noResultsText={noResultsText ?? 'No matching filter'}
 									options={options}
-									{...props}
 								/>
 								<script define:vars={{ listLabel, options, values }} is:inline>
 									document.addEventListener('DOMContentLoaded', () => {

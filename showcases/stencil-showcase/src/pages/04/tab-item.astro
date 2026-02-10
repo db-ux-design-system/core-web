@@ -13,7 +13,7 @@ import { DBTabList, DBTabItem } from '@components';
 		>{
 			(variant: DefaultComponentVariants) => (
 				<VariantList {...variant}>
-					{({ children, ...props }: DBTabItemProps) => (
+					{({ children, label, ...props }: DBTabItemProps) => (
 						<DBTabList>
 							<DBTabItem {...props}>{children}</DBTabItem>
 						</DBTabList>

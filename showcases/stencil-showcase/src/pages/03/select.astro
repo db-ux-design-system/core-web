@@ -17,10 +17,11 @@ import { DBSelect } from '@components';
 						const randomId = `select-${Math.random().toString().substring(2)}`;
 						return (
 							<>
-								<DBSelect id={randomId} {...props} />
+								<DBSelect name={randomId} {...props} />
 								<script define:vars={{ id: randomId, options }} is:inline>
 									document.addEventListener('DOMContentLoaded', () => {
-										document.querySelector(`db-select[id="${id}"]`).options = options;
+										const select = document.querySelector(`db-select[name="${id}"]`);
+										select.options = options;
 									});
 								</script>
 							</>

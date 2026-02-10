@@ -819,7 +819,10 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 		state._searchValue = props.searchValue;
 		if (props.searchValue) {
 			const sValue = props.searchValue!; // <- workaround for Angular
-			state.handleSearch(sValue);
+			// Delay as workaround for web components
+			void delay(() => {
+				state.handleSearch(sValue);
+			}, 1);
 		}
 	}, [props.searchValue]);
 

@@ -24,11 +24,11 @@ import { DBInput } from '@components';
 								  ]);
 						return (
 							<>
-								<DBInput id={id} placeholder={children} variant={variant} {...props} />
+								<DBInput name={id} placeholder={children} variant={variant} {...props} />
 								{dataList && (
 									<script define:vars={{ id, dataListValue }} is:inline>
 										document.addEventListener('DOMContentLoaded', () => {
-											document.querySelector(`db-input[id="${id}"]`).dataList = JSON.parse(dataListValue);
+											document.querySelector(`db-input[name="${id}"]`).dataList = JSON.parse(dataListValue);
 										});
 									</script>
 								)}

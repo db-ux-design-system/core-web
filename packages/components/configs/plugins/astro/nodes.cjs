@@ -26,11 +26,20 @@ const replacePropsInCode = (code) => code.replaceAll(/props\.(\w+)/g, '$1');
 const handleTextNode = (node) => {
 	const { bindings, properties } = node;
 	const code = bindings._text?.code ?? properties._text;
-	return code === 'props.children'
-		? '<slot />' // Convert children to default slot
-		: code.includes('props.')
-			? `{${replacePropsInCode(code)}}` // Convert props to variables
-			: code.replaceAll('\n', '').replaceAll('\t', ''); // Return as-is
+
+	if (code === 'props.children') {
+		return '<slot />';
+	}
+
+	if (code.includes('props.')) {
+		return `{${replacePropsInCode(code)}}`;
+	}
+
+	if (code.includes('state.')) {
+		return `{${code}}`;
+	}
+
+	return code.replaceAll('\n', '').replaceAll('\t', '');
 };
 
 /**
