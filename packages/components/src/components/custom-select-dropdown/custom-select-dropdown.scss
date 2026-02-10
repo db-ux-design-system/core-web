@@ -2,7 +2,6 @@
 @use "@db-ux/core-foundations/build/styles/colors";
 @use "@db-ux/core-foundations/build/styles/screen-sizes";
 @use "@db-ux/core-foundations/build/styles/helpers";
-@use "@db-ux/core-foundations/build/styles/animation";
 @use "../../styles/internal/form-components";
 
 .db-custom-select-dropdown {
@@ -69,18 +68,11 @@
 		}
 	}
 
+	> db-loading-indicator > .db-loading-indicator,
+	> .db-loading-indicator,
 	> db-infotext > .db-infotext,
 	> .db-infotext {
 		padding: variables.$db-spacing-fixed-lg variables.$db-spacing-fixed-md;
 		margin: auto;
-
-		&[data-icon="circular_arrows"] {
-			&::before {
-				@media screen and (prefers-reduced-motion: no-preference) {
-					animation: rotate 1.5s linear 0s infinite normal none
-						running;
-				}
-			}
-		}
 	}
 }

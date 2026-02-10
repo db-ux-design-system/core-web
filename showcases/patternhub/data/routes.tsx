@@ -56,6 +56,8 @@ import * as tabsCode from '../components/code-docs/tabs';
 import * as tagCode from '../components/code-docs/tag';
 import * as textareaCode from '../components/code-docs/textarea';
 import * as tooltipCode from '../components/code-docs/tooltip';
+
+import LoadingIndicatorShowcase from '@components/components/loading-indicator/showcase/loading-indicator.showcase';
 import Components from './components.json';
 
 export type NavigationItem = {
@@ -68,6 +70,8 @@ export type NavigationItem = {
 };
 
 const nameComponentMap = {
+	'loading-indicator': <LoadingIndicatorShowcase isPatternhub />,
+
 	'custom-select': <CustomSelectComponent slotCode={customSelectCode} />,
 	stack: <StackComponent slotCode={stackCode} />,
 	button: <ButtonShowcase isPatternhub />,

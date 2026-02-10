@@ -4,6 +4,7 @@
 @each $custom-element in custom-elements.$custom-elements {
 	#{$custom-element} {
 		display: contents;
+		border-radius: inherit; // We need this for overlay loading-indicator
 	}
 }
 

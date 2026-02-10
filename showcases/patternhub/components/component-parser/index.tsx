@@ -14,6 +14,7 @@ import {
 	DBInfotext,
 	DBInput,
 	DBLink,
+	DBLoadingIndicator,
 	DBNavigation,
 	DBNavigationItem,
 	DBNotification,
@@ -345,6 +346,14 @@ const ComponentSwitch = ({
 			<DBCustomSelect className={className} {...props}>
 				{resolvedContent}
 			</DBCustomSelect>
+		);
+	}
+
+	if (type === 'loading-indicator') {
+		return (
+			<DBLoadingIndicator className={className} {...props}>
+				{resolvedContent}
+			</DBLoadingIndicator>
 		);
 	}
 

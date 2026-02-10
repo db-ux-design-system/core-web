@@ -77,3 +77,6 @@ export * from './utils/document-scroll-listener';
 export * from './utils/floating-components';
 export * from './utils/index';
 export * from './utils/navigation';
+export * from "./components/loading-indicator";
+export * from "./components/loading-indicator/model";
+

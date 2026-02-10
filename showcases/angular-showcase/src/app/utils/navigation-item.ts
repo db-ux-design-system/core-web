@@ -15,6 +15,7 @@ import { IconComponent } from '../components/icon/icon.component';
 import { InfotextComponent } from '../components/infotext/infotext.component';
 import { InputComponent } from '../components/input/input.component';
 import { LinkComponent } from '../components/link/link.component';
+import { LoadingIndicatorComponent } from '../components/loading-indicator.component';
 import { NavigationItemComponent } from '../components/navigation-item/navigation-item.component';
 import { NavigationComponent } from '../components/navigation/navigation.component';
 import { NotificationComponent } from '../components/notification/notification.component';
@@ -52,7 +53,12 @@ export const NAVIGATION_ITEMS: NavItem[] = [
 				label: 'Notification',
 				component: NotificationComponent
 			},
-			{ path: '06/badge', label: 'Badge', component: BadgeComponent }
+			{ path: '06/badge', label: 'Badge', component: BadgeComponent },
+			{
+				path: '06/loading-indicator',
+				label: 'LoadingIndicator',
+				component: LoadingIndicatorComponent
+			}
 		])
 	},
 

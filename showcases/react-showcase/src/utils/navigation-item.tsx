@@ -29,6 +29,7 @@ import TextareaComponent from '../components/textarea';
 import TooltipComponent from '../components/tooltip';
 
 import ButtonShowcase from '@components/components/button/showcase/button.showcase';
+import LoadingIndicatorShowcase from '@components/components/loading-indicator/showcase/loading-indicator.showcase';
 
 export type NavigationItem = {
 	path: string;
@@ -53,7 +54,12 @@ export const NAVIGATION_ITEMS: NavigationItem[] = [
 				label: 'Notification',
 				component: <NotificationComponent />
 			},
-			{ path: 'badge', label: 'Badge', component: <BadgeComponent /> }
+			{ path: 'badge', label: 'Badge', component: <BadgeComponent /> },
+			{
+				path: 'loading-indicator',
+				label: 'LoadingIndicator',
+				component: <LoadingIndicatorShowcase />
+			}
 		])
 	},
 

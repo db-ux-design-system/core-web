@@ -1,0 +1,76 @@
+@use "@db-ux/core-foundations/build/styles/variables";
+@use "@db-ux/core-foundations/build/styles/colors";
+
+%hide-label-and-progress-text {
+	div {
+		label,
+		span {
+			display: none;
+		}
+	}
+}
+
+%interactive-element-with-loading {
+	&:has(.db-loading-indicator:not([data-overlay="true"])) {
+		// Hide icon inside button when loading indicator is present
+		&[data-icon],
+		&[data-icon-before] {
+			&::before {
+				display: none;
+			}
+		}
+
+		&[data-icon-after] {
+			&::after {
+				display: none;
+			}
+		}
+	}
+
+	&:has(.db-loading-indicator[data-state="inactive"]) {
+		.db-loading-indicator {
+			display: none;
+		}
+	}
+
+	.db-loading-indicator {
+		&:not([data-state="successful"], [data-state="critical"]) {
+			--db-loading-indicator-segment-color: currentcolor;
+			--db-loading-indicator-segment-color-overlay: currentcolor;
+		}
+
+		&:not([data-overlay]),
+		&:not([data-overlay="true"]) {
+			// Hide label and progress inside a button
+			@extend %hide-label-and-progress-text;
+
+			margin-inline-end: variables.$db-spacing-fixed-xs; // same margin like a icon
+		}
+
+		&[data-overlay="true"] {
+			background-color: transparent;
+
+			&::before {
+				z-index: 1;
+				background-color: var(
+					--db-loading-indicator-button-overlay-color,
+					inherit
+				);
+			}
+
+			&::after {
+				z-index: 0;
+				content: "";
+				position: absolute;
+				inset: 0;
+				border-radius: inherit;
+				background-color: colors.$db-adaptive-bg-basic-level-1-default;
+			}
+
+			svg,
+			div {
+				z-index: 2;
+			}
+		}
+	}
+}

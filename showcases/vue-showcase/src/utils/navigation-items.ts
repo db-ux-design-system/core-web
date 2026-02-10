@@ -31,6 +31,7 @@ import Textarea from '../components/textarea/Textarea.vue';
 import Tooltip from '../components/tooltip/Tooltip.vue';
 
 import ButtonShowcase from '@components/components/button/showcase/button.showcase.vue';
+import LoadingIndicatorShowcase from '@components/components/loading-indicator/showcase/loading-indicator.showcase.vue';
 
 export type NavItem = {
 	path: string;
@@ -54,7 +55,12 @@ export const navigationItems: NavItem[] = [
 				label: 'Notification',
 				component: markRaw(Notification)
 			},
-			{ path: '/06/badge', label: 'Badge', component: Badge }
+			{ path: '/06/badge', label: 'Badge', component: Badge },
+			{
+				path: '/06/loading-indicator',
+				label: 'LoadingIndicator',
+				component: LoadingIndicatorShowcase
+			}
 		])
 	},
 
