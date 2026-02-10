@@ -1,4 +1,4 @@
-import{_ as t}from"./button-BWoNOh_F.js";import"./iframe-B3m8CN_y.js";import"./preload-helper-Cogb-lJ0.js";const{fn:a}=__STORYBOOK_MODULE_TEST__,d={title:"Components/DBButton/Variant",component:t,render:c=>({components:{DBButton:t},setup(){return{args:c}},template:`
+import{_ as t}from"./button-8udqBniX.js";import"./iframe-DFWijs8o.js";import"./preload-helper-Cogb-lJ0.js";const{fn:a}=__STORYBOOK_MODULE_TEST__,d={title:"Components/DBButton/Variant",component:t,render:c=>({components:{DBButton:t},setup(){return{args:c}},template:`
       <DBButton v-bind="args">
       ${c.default}
       </DBButton>
