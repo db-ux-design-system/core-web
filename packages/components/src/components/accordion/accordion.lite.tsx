@@ -21,7 +21,6 @@ export default function DBAccordion(props: DBAccordionProps) {
 	const _ref = useRef<HTMLUListElement | any>(null);
 	// jscpd:ignore-start
 	const state = useStore<DBAccordionState>({
-		_id: uuid(),
 		_name: '',
 		initialized: false,
 		_initOpenIndexDone: false,
@@ -56,7 +55,7 @@ export default function DBAccordion(props: DBAccordionProps) {
 						state._name = props.name;
 					}
 				} else {
-					state._name = 'accordion-' + state._id;
+					state._name = `accordion-${uuid()}`;
 				}
 			} else {
 				state._name = '';
