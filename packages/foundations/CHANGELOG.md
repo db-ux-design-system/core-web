@@ -1,5 +1,23 @@
 # @db-ux/core-foundations
 
+## 4.4.1
+
+### Patch Changes
+
+- fix: issue with tailwind not reflecting adaptive color changes with `[data-color="xxx"]` - [see commit 936638d](https://github.com/db-ux-design-system/core-web/commit/936638d672bbb6c0f8a0ecf77bf41fafa0e31656)
+
+## 4.4.0
+
+_version bump_
+
+## 4.3.2
+
+_version bump_
+
+## 4.3.1
+
+_version bump_
+
 ## 4.3.0
 
 ### Minor Changes
