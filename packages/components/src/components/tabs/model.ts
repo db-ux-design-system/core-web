@@ -1,7 +1,6 @@
 import {
 	AlignmentProps,
 	GlobalProps,
-	GlobalState,
 	InitializedState,
 	InputEvent,
 	OrientationProps,
@@ -91,4 +90,4 @@ export type DBTabsDefaultState = {
 	_resizeObserver?: ResizeObserver;
 };
 
-export type DBTabsState = DBTabsDefaultState & GlobalState & InitializedState;
+export type DBTabsState = DBTabsDefaultState & InitializedState;
