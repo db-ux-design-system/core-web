@@ -1,6 +1,5 @@
 {
   "name": "@db-ux/e2e",
-  "private": true,
   "version": "0.0.0",
   "type": "module",
   "description": "",
@@ -9,6 +8,7 @@
     "url": "git+https://github.com/db-ux-design-system/core-web.git"
   },
   "license": "Apache-2.0",
+  "private": true,
   "workspaces": [
     "showcases/*",
     "packages/*",
@@ -29,7 +29,7 @@
     "test:vue-showcase": "npm run test:e2e --workspace=vue-showcase"
   },
   "devDependencies": {
-    "@playwright/test": "1.57.0",
+    "@playwright/test": "1.58.2",
     "cpr": "3.0.1",
     "cross-env": "10.1.0",
     "http-server": "14.1.1",

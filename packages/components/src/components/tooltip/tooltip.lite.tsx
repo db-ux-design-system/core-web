@@ -97,6 +97,12 @@ export default function DBTooltip(props: DBTooltipProps) {
 	});
 
 	onUpdate(() => {
+		if (props.id) {
+			state._id = props.id;
+		}
+	}, [props.id]);
+
+	onUpdate(() => {
 		if (_ref && state.initialized && state._id) {
 			const parent = state.getParent();
 			if (parent) {
@@ -137,7 +143,7 @@ export default function DBTooltip(props: DBTooltipProps) {
 
 			state.initialized = false;
 		}
-	}, [_ref, state.initialized]);
+	}, [_ref, state.initialized, state._id]);
 
 	// jscpd:ignore-end
 
