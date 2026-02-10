@@ -112,7 +112,7 @@
     "@playwright/experimental-ct-core": "1.58.1",
     "@playwright/experimental-ct-react": "1.58.1",
     "@playwright/experimental-ct-vue": "1.58.1",
-    "@playwright/test": "1.58.1",
+    "@playwright/test": "1.58.2",
     "accessibility-checker": "4.0.10",
     "adm-zip": "0.5.16",
     "commander": "14.0.3",
