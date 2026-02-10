@@ -9,6 +9,17 @@
 
 For **CSS**, **SCSS** and **Tailwind** you don't have to include a specific file, just follow the documentation for [foundations](../../foundations/readme).
 
+### Edge case: Using only icons without the full CSS
+
+If you want to use only the icons from this library without including the complete CSS, you can import just the icon-related files:
+
+```css
+@import "node_modules/@db-ux/core-foundations/build/styles/defaults/default-icons.css";
+@import "node_modules/@db-ux-inner-source/db-theme-icons/build/styles/relative.css";
+```
+
+**Important:** After importing `relative.css`, you need to copy the fonts folder from `node_modules/@db-ux-inner-source/db-theme-icons/build/fonts` to the same directory where you store the `relative.css` file (e.g., next to your `styles` folder). We're using the reference to e.g. `src: url("../fonts/default_12/db.woff2")` out of this CSS.
+
 ### How to use
 
 We're providing an [overview for all of our icons](./overview).
