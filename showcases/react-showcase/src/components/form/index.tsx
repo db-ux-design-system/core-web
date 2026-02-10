@@ -68,6 +68,10 @@ const FormComponent = () => {
 	return (
 		<div className="form-container">
 			<div>
+				<DBButton icon="x_placeholder" noText={true} type="button">
+					ABC
+					<DBTooltip>Describe action</DBTooltip>
+				</DBButton>
 				<form>
 					<DBTextarea
 						label="test"
@@ -259,7 +263,7 @@ const FormComponent = () => {
 						<DBButton
 							type="button"
 							variant="brand"
-							onClick={(clickEvent) => {
+							onClick={() => {
 								// eslint-disable-next-line no-alert
 								alert(
 									JSON.stringify({
@@ -322,7 +326,8 @@ const FormComponent = () => {
 				<DBButton
 					onClick={() => {
 						setTabsTest(!tabsTest);
-					}}>
+					}}
+					type="button">
 					TabsTest
 				</DBButton>
 				<DBTabs>
@@ -415,7 +420,11 @@ const FormComponent = () => {
 							)}
 							{index === 1 && (
 								<DBPopover
-									trigger={<DBButton>Popover</DBButton>}>
+									trigger={
+										<DBButton type="submit">
+											Popover
+										</DBButton>
+									}>
 									<ul>
 										<li>Content 1</li>
 										<li>Content 2</li>
@@ -424,7 +433,7 @@ const FormComponent = () => {
 								</DBPopover>
 							)}
 							{index === 2 && (
-								<DBButton>
+								<DBButton type="submit">
 									Tooltip
 									<DBTooltip>Tooltip</DBTooltip>
 								</DBButton>
@@ -447,7 +456,7 @@ const FormComponent = () => {
 				/>
 
 				<h2>Validations</h2>
-				<DBButton>
+				<DBButton type="submit">
 					Test
 					<DBTooltip placement="bottom">
 						Open above floating label
@@ -496,7 +505,7 @@ const FormComponent = () => {
 						Text
 					</DBTooltip>
 				</DBTag>
-				<DBButton>
+				<DBButton type="submit">
 					KUZ
 					<DBTooltip id="tooltip-01" placement="right-end">
 						Text
@@ -532,7 +541,8 @@ const FormComponent = () => {
 					<DBButton
 						onClick={() => {
 							setCustomSelectValue([]);
-						}}>
+						}}
+						type="button">
 						Reset CustomSelect
 					</DBButton>
 					<DBButton type="submit">Submit</DBButton>
@@ -540,7 +550,7 @@ const FormComponent = () => {
 
 				<div>
 					<DBTag>
-						<DBButton>Test</DBButton>
+						<DBButton type="submit">Test</DBButton>
 					</DBTag>
 					<DBTag>
 						<DBLink>Test</DBLink>

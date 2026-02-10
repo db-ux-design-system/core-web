@@ -174,9 +174,7 @@ const reset = () => {
 						<option value="test5">Test5</option>
 					</DBSelect>
 					<p>Button:</p>
-					<DBButton type="button" @click="reset()">
-						Reset Form
-					</DBButton>
+					<DBButton @click="reset()"> Reset Form </DBButton>
 					<DBButton type="button" variant="brand" @click="logAll()">
 						Hi from Showcase!
 					</DBButton>

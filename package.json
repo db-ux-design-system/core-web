@@ -85,6 +85,7 @@
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "20.3.16",
+    "@angular-eslint/template-parser": "20.3.0",
     "@angular/animations": "20.3.16",
     "@angular/build": "20.3.16",
     "@angular/cli": "20.3.16",
@@ -105,6 +106,7 @@
     "@commitlint/cli": "20.4.1",
     "@commitlint/config-conventional": "20.4.1",
     "@db-ux/db-theme": "5.4.2",
+    "@db-ux/eslint-plugin": "*",
     "@double-great/stylelint-a11y": "3.4.1",
     "@guidepup/guidepup": "0.24.1",
     "@guidepup/playwright": "0.15.0",
@@ -114,6 +116,8 @@
     "@playwright/experimental-ct-react": "1.58.2",
     "@playwright/experimental-ct-vue": "1.58.2",
     "@playwright/test": "1.58.2",
+    "@typescript-eslint/eslint-plugin": "8.54.0",
+    "@typescript-eslint/parser": "8.54.0",
     "accessibility-checker": "4.0.12",
     "adm-zip": "0.5.16",
     "commander": "14.0.3",
@@ -156,6 +160,7 @@
     "vite": "7.3.1",
     "vite-plugin-devtools-json": "1.0.0",
     "vitest": "3.2.4",
+    "vue-eslint-parser": "9.4.3",
     "xo": "1.2.3",
     "zone.js": "0.15.1"
   },
