@@ -46,7 +46,7 @@
     "@types/react": "19.2.13",
     "@types/react-dom": "19.2.3",
     "esbuild": "0.27.3",
-    "eslint": "9.39.2",
+    "eslint": "10.0.0",
     "eslint-config-next": "16.1.6",
     "iframe-resizer": "5.5.9",
     "open-cli": "8.0.0",

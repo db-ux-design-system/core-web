@@ -119,7 +119,7 @@
     "cpr": "3.0.1",
     "cross-env": "10.1.0",
     "cspell": "9.6.4",
-    "eslint": "9.39.2",
+    "eslint": "10.0.0",
     "eslint-config-prettier": "10.1.8",
     "eslint-config-xo": "0.49.0",
     "eslint-plugin-package-json": "0.88.2",
