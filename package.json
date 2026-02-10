@@ -111,7 +111,7 @@
     "@guidepup/setup": "0.21.0",
     "@playwright/experimental-ct-core": "1.58.1",
     "@playwright/experimental-ct-react": "1.58.1",
-    "@playwright/experimental-ct-vue": "1.58.1",
+    "@playwright/experimental-ct-vue": "1.58.2",
     "@playwright/test": "1.58.1",
     "accessibility-checker": "4.0.10",
     "adm-zip": "0.5.16",
