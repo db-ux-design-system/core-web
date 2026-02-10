@@ -4,27 +4,11 @@
 @use "../../styles/internal/db-puls";
 @use "@db-ux/core-foundations/build/styles/helpers";
 
-$max-tabs: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-
-%angular-workaround {
-	db-tab-list,
-	dbtablist {
-		@each $index in $max-tabs {
-			&:has([id$="-tab-#{$index}"]:checked) {
-				~ dbtabpanel > [id$="-tab-panel-#{$index}"],
-				~ db-tab-panel > [id$="-tab-panel-#{$index}"] {
-					@include helpers.display(block);
-				}
-			}
-		}
-	}
-}
-
 %horizontal-pulse {
 	.db-tab-item {
 		@include db-puls.set-db-puls-horizontal;
 
-		&:has(input:checked) {
+		&:has([aria-selected="true"]) {
 			@include db-puls.show-db-puls-horizontal;
 
 			&::after {
@@ -49,7 +33,7 @@ $max-tabs: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 			z-index: -2;
 		}
 
-		&:has(input:checked) {
+		&:has([aria-selected="true"]) {
 			@include db-puls.show-db-puls-vertical;
 		}
 	}
@@ -74,7 +58,6 @@ $max-tabs: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 	$db-tabs-z-index-button-background: 21;
 	$db-tabs-z-index-button: 22;
 
-	@extend %angular-workaround;
 	@include helpers.display(flex);
 
 	inline-size: 100%;
@@ -87,13 +70,6 @@ $max-tabs: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 	.db-tab-list {
 		max-inline-size: 100%;
 		z-index: $db-tabs-z-index-tab-list;
-
-		@each $index in $max-tabs {
-			&:has([id$="-tab-#{$index}"]:checked)
-				~ [id$="-tab-panel-#{$index}"] {
-				@include helpers.display(block);
-			}
-		}
 	}
 
 	.db-tab-item {
@@ -142,16 +118,12 @@ $max-tabs: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
 				db-tab-item,
 				dbtabitem {
-					&:first-of-type {
-						.db-tab-item {
-							margin-inline-start: variables.$db-spacing-fixed-xs;
-						}
+					&:first-of-type .db-tab-item {
+						margin-inline-start: variables.$db-spacing-fixed-xs;
 					}
 
-					&:last-of-type {
-						.db-tab-item {
-							margin-inline-end: variables.$db-spacing-fixed-xs;
-						}
+					&:last-of-type .db-tab-item {
+						margin-inline-end: variables.$db-spacing-fixed-xs;
 					}
 				}
 
@@ -178,6 +150,7 @@ $max-tabs: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
 		.db-tab-panel {
 			padding: variables.$db-spacing-fixed-xs 0;
+			flex-grow: 1;
 		}
 
 		.db-tab-list {
@@ -200,22 +173,6 @@ $max-tabs: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 			/* ensures that tab-list (track) is only as high as all the tab-items together if open tab-panel is higher */
 			margin-block-end: auto;
 
-			.db-tab-item {
-				label {
-					position: relative;
-				}
-
-				&:has(input:focus-visible),
-				&:hover {
-					inline-size: fit-content;
-
-					label {
-						overflow: visible;
-					}
-				}
-			}
-
-			/* vertical track for pulse */
 			&::before {
 				@extend %pulse-track;
 
@@ -229,6 +186,7 @@ $max-tabs: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
 				flex-direction: column;
 				block-size: 100%;
+				align-items: flex-start;
 
 				&:not(:has(db-tab-item, dbtabitem)) {
 					.db-tab-item {
@@ -242,6 +200,18 @@ $max-tabs: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 					}
 				}
 			}
+
+			.db-tab-item {
+				inline-size: 100%;
+				max-inline-size: 100%;
+
+				.db-tab-button {
+					position: relative;
+					text-align: start;
+					justify-content: flex-start;
+					inline-size: 100%;
+				}
+			}
 		}
 
 		.db-tab-item {
@@ -251,24 +221,16 @@ $max-tabs: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 			);
 
 			padding-inline-start: $padding-start-calc;
-
-			input {
-				padding-inline-start: $padding-start-calc;
-			}
 		}
 
 		db-tab-item,
 		dbtabitem {
-			&:first-of-type {
-				.db-tab-item {
-					margin-block-start: variables.$db-spacing-fixed-xs;
-				}
+			&:first-of-type .db-tab-item {
+				margin-block-start: variables.$db-spacing-fixed-xs;
 			}
 
-			&:last-of-type {
-				.db-tab-item {
-					margin-block-end: variables.$db-spacing-fixed-xs;
-				}
+			&:last-of-type .db-tab-item {
+				margin-block-end: variables.$db-spacing-fixed-xs;
 			}
 		}
 	}
@@ -279,12 +241,12 @@ $max-tabs: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 		}
 
 		.db-tab-item,
-		.db-tab-item label {
+		.db-tab-item .db-tab-button {
 			inline-size: 100%;
 		}
 
-		&[data-alignment="center"] {
-			.db-tab-item label {
+		&[data-content-alignment="center"] {
+			.db-tab-item .db-tab-button {
 				text-align: center;
 				justify-content: center;
 			}
@@ -292,47 +254,36 @@ $max-tabs: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 	}
 
 	&[data-scroll-behavior="arrows"] {
-		.db-tab-list {
-			> ul {
-				&::-webkit-scrollbar {
-					display: none;
-				}
-			}
+		.db-tab-list > ul::-webkit-scrollbar {
+			display: none;
 		}
 
-		&:has(.tabs-scroll-left) {
-			&::before {
-				content: "";
-			}
+		&:has(.tabs-scroll-left)::before {
+			content: "";
 		}
 
-		&:has(.tabs-scroll-right) {
-			&::after {
-				content: "";
-			}
+		&:has(.tabs-scroll-right)::after {
+			content: "";
 		}
 
-		&:has(.db-button) {
-			&::before,
-			&::after {
-				position: absolute;
-				z-index: $db-tabs-z-index-button-background;
-				background-color: colors.$db-adaptive-bg-basic-level-1-default;
-				inline-size: variables.$db-sizing-md;
-				block-size: calc(
-					#{variables.$db-spacing-fixed-sm} +
-						#{variables.$db-sizing-md}
-				);
-				flex: 0 0 auto;
-			}
+		&:has(.db-button)::before,
+		&:has(.db-button)::after {
+			position: absolute;
+			z-index: $db-tabs-z-index-button-background;
+			background-color: colors.$db-adaptive-bg-basic-level-1-default;
+			inline-size: variables.$db-sizing-md;
+			block-size: calc(
+				#{variables.$db-spacing-fixed-sm} + #{variables.$db-sizing-md}
+			);
+			flex: 0 0 auto;
+		}
 
-			&::before {
-				inset-inline-start: 0;
-			}
+		&:has(.db-button)::before {
+			inset-inline-start: 0;
+		}
 
-			&::after {
-				inset-inline-end: 0;
-			}
+		&:has(.db-button)::after {
+			inset-inline-end: 0;
 		}
 
 		/*

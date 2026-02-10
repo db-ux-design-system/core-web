@@ -117,7 +117,7 @@ export const getComponents = (): Component[] => [
 				vModel: [{ modelValue: 'checked', binding: ':checked' }]
 			},
 			angular: {
-				controlValueAccessor: 'checked'
+				controlValueAccessor: 'internalActive'
 			}
 		}
 	},

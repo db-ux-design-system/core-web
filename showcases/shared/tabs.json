@@ -1,263 +1,323 @@
 [
 	{
-		"name": "Density",
+		"name": "Density Functional",
 		"children": [
 			{
 				"name": "tab-list",
 				"children": [
-					{
-						"name": "tab-item",
-						"content": "Tab 1"
-					},
-					{
-						"name": "tab-item",
-						"content": "Tab 2"
-					},
-					{
-						"name": "tab-item",
-						"content": "Tab 3"
-					}
+					{ "name": "tab-item", "content": "Tab 1" },
+					{ "name": "tab-item", "content": "Tab 2" },
+					{ "name": "tab-item", "content": "Tab 3" }
 				]
 			},
-			{
-				"name": "tab-panel",
-				"content": "Tab Panel 1"
-			},
-			{
-				"name": "tab-panel",
-				"content": "Tab Panel 2"
-			},
-			{
-				"name": "tab-panel",
-				"content": "Tab Panel 3"
-			}
+			{ "name": "tab-panel", "content": "Panel 1" },
+			{ "name": "tab-panel", "content": "Panel 2" },
+			{ "name": "tab-panel", "content": "Panel 3" }
 		],
 		"examples": [
 			{
 				"name": "Functional",
 				"density": "functional",
-				"props": {}
-			},
-			{
-				"name": "(Default) Regular",
-				"density": "regular",
-				"props": {}
-			},
-			{
-				"name": "Expressive",
-				"density": "expressive",
-				"props": {}
+				"props": { "name": "density-functional" }
 			}
 		]
 	},
 	{
-		"name": "Orientation",
+		"name": "Density Regular",
 		"children": [
 			{
 				"name": "tab-list",
 				"children": [
-					{
-						"name": "tab-item",
-						"content": "Tab 1"
-					},
-					{
-						"name": "tab-item",
-						"content": "Tab 2"
-					},
-					{
-						"name": "tab-item",
-						"content": "Tab 3"
-					}
+					{ "name": "tab-item", "content": "Tab 1" },
+					{ "name": "tab-item", "content": "Tab 2" },
+					{ "name": "tab-item", "content": "Tab 3" }
 				]
 			},
+			{ "name": "tab-panel", "content": "Panel 1" },
+			{ "name": "tab-panel", "content": "Panel 2" },
+			{ "name": "tab-panel", "content": "Panel 3" }
+		],
+		"examples": [
 			{
-				"name": "tab-panel",
-				"content": "Tab Panel 1"
-			},
-			{
-				"name": "tab-panel",
-				"content": "Tab Panel 2"
-			},
-			{
-				"name": "tab-panel",
-				"content": "Tab Panel 3"
+				"name": "(Default) Regular",
+				"density": "regular",
+				"props": { "name": "density-regular" }
 			}
+		]
+	},
+	{
+		"name": "Density Expressive",
+		"children": [
+			{
+				"name": "tab-list",
+				"children": [
+					{ "name": "tab-item", "content": "Tab 1" },
+					{ "name": "tab-item", "content": "Tab 2" },
+					{ "name": "tab-item", "content": "Tab 3" }
+				]
+			},
+			{ "name": "tab-panel", "content": "Panel 1" },
+			{ "name": "tab-panel", "content": "Panel 2" },
+			{ "name": "tab-panel", "content": "Panel 3" }
+		],
+		"examples": [
+			{
+				"name": "Expressive",
+				"density": "expressive",
+				"props": { "name": "density-expressive" }
+			}
+		]
+	},
+	{
+		"name": "Orientation Horizontal",
+		"children": [
+			{
+				"name": "tab-list",
+				"children": [
+					{ "name": "tab-item", "content": "Tab 1" },
+					{ "name": "tab-item", "content": "Tab 2" },
+					{ "name": "tab-item", "content": "Tab 3" }
+				]
+			},
+			{ "name": "tab-panel", "content": "Panel 1" },
+			{ "name": "tab-panel", "content": "Panel 2" },
+			{ "name": "tab-panel", "content": "Panel 3" }
 		],
 		"examples": [
 			{
 				"name": "horizontal",
 				"props": {
-					"orientation": "horizontal"
-				}
-			},
-			{
-				"name": "vertical",
-				"props": {
-					"orientation": "vertical"
+					"orientation": "horizontal",
+					"name": "orientation-horizontal"
 				}
 			}
 		]
 	},
 	{
-		"name": "Width",
+		"name": "Orientation Vertical",
 		"children": [
 			{
 				"name": "tab-list",
 				"children": [
-					{
-						"name": "tab-item",
-						"content": "Tab 1"
-					},
-					{
-						"name": "tab-item",
-						"content": "Tab 2"
-					},
-					{
-						"name": "tab-item",
-						"content": "Tab 3"
-					}
+					{ "name": "tab-item", "content": "Tab 1" },
+					{ "name": "tab-item", "content": "Tab 2" },
+					{ "name": "tab-item", "content": "Tab 3" }
 				]
 			},
+			{ "name": "tab-panel", "content": "Panel 1" },
+			{ "name": "tab-panel", "content": "Panel 2" },
+			{ "name": "tab-panel", "content": "Panel 3" }
+		],
+		"examples": [
 			{
-				"name": "tab-panel",
-				"content": "Tab Panel 1"
-			},
-			{
-				"name": "tab-panel",
-				"content": "Tab Panel 2"
-			},
-			{
-				"name": "tab-panel",
-				"content": "Tab Panel 3"
+				"name": "vertical",
+				"props": {
+					"orientation": "vertical",
+					"name": "orientation-vertical"
+				}
 			}
+		]
+	},
+	{
+		"name": "Width Auto",
+		"children": [
+			{
+				"name": "tab-list",
+				"children": [
+					{ "name": "tab-item", "content": "Tab 1" },
+					{ "name": "tab-item", "content": "Tab 2" },
+					{ "name": "tab-item", "content": "Tab 3" }
+				]
+			},
+			{ "name": "tab-panel", "content": "Panel 1" },
+			{ "name": "tab-panel", "content": "Panel 2" },
+			{ "name": "tab-panel", "content": "Panel 3" }
 		],
 		"examples": [
 			{
 				"name": "auto",
 				"style": { "width": "100%" },
-				"props": {
-					"width": "auto"
-				}
-			},
+				"props": { "width": "auto", "name": "width-auto" }
+			}
+		]
+	},
+	{
+		"name": "Width Full Left",
+		"children": [
 			{
-				"name": "full - alignment: start",
+				"name": "tab-list",
+				"children": [
+					{ "name": "tab-item", "content": "Tab 1" },
+					{ "name": "tab-item", "content": "Tab 2" },
+					{ "name": "tab-item", "content": "Tab 3" }
+				]
+			},
+			{ "name": "tab-panel", "content": "Panel 1" },
+			{ "name": "tab-panel", "content": "Panel 2" },
+			{ "name": "tab-panel", "content": "Panel 3" }
+		],
+		"examples": [
+			{
+				"name": "full - content alignment: left",
 				"style": { "width": "100%" },
-				"props": {
-					"width": "full"
-				}
-			},
+				"props": { "width": "full", "name": "width-full-left" }
+			}
+		]
+	},
+	{
+		"name": "Width Full Center",
+		"children": [
 			{
-				"name": "full - alignment: center",
+				"name": "tab-list",
+				"children": [
+					{ "name": "tab-item", "content": "Tab 1" },
+					{ "name": "tab-item", "content": "Tab 2" },
+					{ "name": "tab-item", "content": "Tab 3" }
+				]
+			},
+			{ "name": "tab-panel", "content": "Panel 1" },
+			{ "name": "tab-panel", "content": "Panel 2" },
+			{ "name": "tab-panel", "content": "Panel 3" }
+		],
+		"examples": [
+			{
+				"name": "full - content alignment: center",
 				"style": { "width": "100%" },
 				"props": {
 					"width": "full",
-					"alignment": "center"
+					"contentAlignment": "center",
+					"name": "width-full-center"
 				}
 			}
 		]
 	},
 	{
-		"name": "Overflow",
+		"name": "Overflow None",
 		"children": [
 			{
 				"name": "tab-list",
 				"children": [
-					{
-						"name": "tab-item",
-						"content": "Tab 1"
-					},
-					{
-						"name": "tab-item",
-						"content": "Tab 2"
-					},
-					{
-						"name": "tab-item",
-						"content": "Tab 3"
-					}
+					{ "name": "tab-item", "content": "Tab 1" },
+					{ "name": "tab-item", "content": "Tab 2" },
+					{ "name": "tab-item", "content": "Tab 3" }
 				]
 			},
-			{
-				"name": "tab-panel",
-				"content": "Tab Panel 1"
-			},
-			{
-				"name": "tab-panel",
-				"content": "Tab Panel 2"
-			},
-			{
-				"name": "tab-panel",
-				"content": "Tab Panel 3"
-			}
+			{ "name": "tab-panel", "content": "Panel 1" },
+			{ "name": "tab-panel", "content": "Panel 2" },
+			{ "name": "tab-panel", "content": "Panel 3" }
 		],
 		"examples": [
 			{
 				"name": "no overflow",
 				"style": { "width": "300px" },
-				"props": {
-					"width": "auto"
-				}
+				"props": { "width": "auto", "name": "overflow-none" }
+			}
+		]
+	},
+	{
+		"name": "Overflow Arrows",
+		"children": [
+			{
+				"name": "tab-list",
+				"children": [
+					{ "name": "tab-item", "content": "Tab 1" },
+					{ "name": "tab-item", "content": "Tab 2" },
+					{ "name": "tab-item", "content": "Tab 3" },
+					{ "name": "tab-item", "content": "Tab 4" },
+					{ "name": "tab-item", "content": "Tab 5" }
+				]
 			},
+			{ "name": "tab-panel", "content": "Panel 1" },
+			{ "name": "tab-panel", "content": "Panel 2" },
+			{ "name": "tab-panel", "content": "Panel 3" },
+			{ "name": "tab-panel", "content": "Panel 4" },
+			{ "name": "tab-panel", "content": "Panel 5" }
+		],
+		"examples": [
 			{
 				"name": "with overflow - behavior: arrows",
 				"style": { "width": "300px" },
 				"props": {
 					"overflow": true,
-					"behavior": "arrows"
-				}
-			},
-			{
-				"name": "with overflow - behavior: scrollbar",
-				"style": { "width": "300px" },
-				"props": {
-					"overflow": true
+					"behavior": "arrows",
+					"name": "overflow-arrows"
 				}
 			}
 		]
 	},
 	{
-		"name": "Examples",
+		"name": "Overflow Scrollbar",
 		"children": [
 			{
 				"name": "tab-list",
 				"children": [
-					{
-						"name": "tab-item",
-						"content": "Tab 1"
-					},
-					{
-						"name": "tab-item",
-						"content": "Tab 2"
-					},
-					{
-						"name": "tab-item",
-						"content": "Tab 3"
-					}
+					{ "name": "tab-item", "content": "Tab 1" },
+					{ "name": "tab-item", "content": "Tab 2" },
+					{ "name": "tab-item", "content": "Tab 3" },
+					{ "name": "tab-item", "content": "Tab 4" },
+					{ "name": "tab-item", "content": "Tab 5" }
 				]
 			},
+			{ "name": "tab-panel", "content": "Panel 1" },
+			{ "name": "tab-panel", "content": "Panel 2" },
+			{ "name": "tab-panel", "content": "Panel 3" },
+			{ "name": "tab-panel", "content": "Panel 4" },
+			{ "name": "tab-panel", "content": "Panel 5" }
+		],
+		"examples": [
 			{
-				"name": "tab-panel",
-				"content": "Tab Panel 1"
-			},
-			{
-				"name": "tab-panel",
-				"content": "Tab Panel 2"
-			},
-			{
-				"name": "tab-panel",
-				"content": "Tab Panel 3"
+				"name": "with overflow - behavior: scrollbar",
+				"style": { "width": "300px" },
+				"props": { "overflow": true, "name": "overflow-scrollbar" }
 			}
+		]
+	},
+	{
+		"name": "Examples Selected",
+		"children": [
+			{
+				"name": "tab-list",
+				"children": [
+					{ "name": "tab-item", "content": "Tab 1" },
+					{ "name": "tab-item", "content": "Tab 2" },
+					{ "name": "tab-item", "content": "Tab 3" }
+				]
+			},
+			{ "name": "tab-panel", "content": "Panel 1" },
+			{ "name": "tab-panel", "content": "Panel 2" },
+			{ "name": "tab-panel", "content": "Panel 3" }
 		],
 		"examples": [
 			{
 				"name": "2nd tab selected",
 				"props": {
-					"initialSelectedIndex": 1
+					"initialSelectedIndex": 1,
+					"name": "examples-selected"
 				}
+			}
+		]
+	},
+	{
+		"name": "Examples None",
+		"children": [
+			{
+				"name": "tab-list",
+				"children": [
+					{ "name": "tab-item", "content": "Tab 1" },
+					{ "name": "tab-item", "content": "Tab 2" },
+					{ "name": "tab-item", "content": "Tab 3" }
+				]
 			},
+			{ "name": "tab-panel", "content": "Panel 1" },
+			{ "name": "tab-panel", "content": "Panel 2" },
+			{ "name": "tab-panel", "content": "Panel 3" }
+		],
+		"examples": [
 			{
 				"name": "nothing selected",
 				"props": {
-					"initialSelectedMode": "manually"
+					"initialSelectedMode": "manually",
+					"name": "examples-none"
 				}
 			}
 		]

@@ -17,28 +17,28 @@
 			<db-tabs
 				[orientation]="exampleProps?.orientation"
 				[width]="exampleProps?.width"
-				[alignment]="exampleProps?.alignment"
+				[contentAlignment]="exampleProps?.contentAlignment"
 				[behavior]="exampleProps?.behavior"
 				[initialSelectedIndex]="exampleProps?.initialSelectedIndex"
 				[initialSelectedMode]="exampleProps?.initialSelectedMode"
 				[arrowScrollDistance]="75"
 			>
 				<db-tab-list>
-					<db-tab-item>Test 1</db-tab-item>
-					<db-tab-item>Test 2</db-tab-item>
-					<db-tab-item>Test 3</db-tab-item>
+					<db-tab-item>{{ exampleName }} Tab 1</db-tab-item>
+					<db-tab-item>{{ exampleName }} Tab 2</db-tab-item>
+					<db-tab-item>{{ exampleName }} Tab 3</db-tab-item>
 					@if (exampleProps?.overflow) {
-						<db-tab-item>Test 4</db-tab-item>
-						<db-tab-item>Test 5</db-tab-item>
+					<db-tab-item>{{ exampleName }} Tab 4</db-tab-item>
+					<db-tab-item>{{ exampleName }} Tab 5</db-tab-item>
 					}
 				</db-tab-list>
-				<db-tab-panel> Tab Panel 1 </db-tab-panel>
-				<db-tab-panel> Tab Panel 2 </db-tab-panel>
-				<db-tab-panel> Tab Panel 3 </db-tab-panel>
+				<db-tab-panel> {{ exampleName }} Panel 1 </db-tab-panel>
+				<db-tab-panel> {{ exampleName }} Panel 2 </db-tab-panel>
+				<db-tab-panel> {{ exampleName }} Panel 3 </db-tab-panel>
 
 				@if (exampleProps?.overflow) {
-					<db-tab-panel> Tab Panel 4 </db-tab-panel>
-					<db-tab-panel> Tab Panel 5 </db-tab-panel>
+				<db-tab-panel> {{ exampleName }} Panel 4 </db-tab-panel>
+				<db-tab-panel> {{ exampleName }} Panel 5 </db-tab-panel>
 				}
 			</db-tabs>
 		</div>
