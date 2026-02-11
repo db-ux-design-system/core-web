@@ -22,6 +22,13 @@ export default function DBDrawer(props: DBDrawerProps) {
 	const dialogContainerRef = useRef<HTMLDivElement | any>(null);
 	const state = useStore<DBDrawerState>({
 		initialized: false,
+		isNotModal: () => {
+			return (
+				props.position === 'absolute' ||
+				props.backdrop === 'none' ||
+				props.variant === 'inside'
+			);
+		},
 		// eslint-disable-next-line @typescript-eslint/no-explicit-any
 		handleClose: (
 			event?:
@@ -69,11 +76,7 @@ export default function DBDrawer(props: DBDrawerProps) {
 							'data-transition'
 						);
 					}
-					if (
-						props.position === 'absolute' ||
-						props.backdrop === 'none' ||
-						props.variant === 'inside'
-					) {
+					if (state.isNotModal()) {
 						_ref.show();
 					} else {
 						_ref.showModal();
@@ -93,7 +96,12 @@ export default function DBDrawer(props: DBDrawerProps) {
 						] = 'close';
 					}
 					void delay(() => {
-						_ref?.close();
+						if (
+							!('closedBy' in HTMLDialogElement.prototype) ||
+							state.isNotModal()
+						) {
+							_ref?.close();
+						}
 					}, 401);
 				}
 			}
@@ -129,7 +137,8 @@ export default function DBDrawer(props: DBDrawerProps) {
 			data-position={props.position}
 			data-backdrop={props.backdrop}
 			data-direction={props.direction}
-			data-variant={props.variant}>
+			data-variant={props.variant}
+			closedby={state.isNotModal() ? undefined : 'any'}>
 			<article
 				ref={dialogContainerRef}
 				class={cls('db-drawer-container', props.className)}
@@ -147,7 +156,9 @@ export default function DBDrawer(props: DBDrawerProps) {
 						icon="cross"
 						variant="ghost"
 						noText
-						onClick={(event) => state.handleClose(event, true)}>
+						onClick={(event) => state.handleClose(event, true)}
+						commandfor={props.id}
+						command="close">
 						{props.closeButtonText ?? DEFAULT_CLOSE_BUTTON}
 					</DBButton>
 				</header>

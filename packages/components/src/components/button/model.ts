@@ -59,6 +59,16 @@ export type DBButtonDefaultProps = {
 	 * Variant of the button. Use only 1 primary button on a page as CTA otherwise use one of the adaptive buttons.
 	 */
 	variant?: ButtonVariantType | string;
+
+	/**
+	 * Invoker Commands: `commandfor` attribute
+	 */
+	commandfor?: string;
+
+	/**
+	 * Invoker Commands: `command` attribute
+	 */
+	command?: string;
 };
 
 export type DBButtonProps = DBButtonDefaultProps &

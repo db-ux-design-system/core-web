@@ -139,4 +139,5 @@ dbtabpanel
 dbtablist
 unstarted
 publishpackages
+commandfor
 cooldown
