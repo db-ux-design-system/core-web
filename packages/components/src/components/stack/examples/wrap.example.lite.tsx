@@ -30,7 +30,7 @@ export default function StackWrap() {
 				<DBInfotext size="small" icon="none" semantic="informational">
 					(Default) No Wrap: Column
 				</DBInfotext>
-				<DBStack class="stack-container">
+				<DBStack style={{ padding: 'var(--db-spacing-fixed-xs)' }}>
 					<span class="dummy-component">
 						<a href="#">Content 1</a>
 					</span>
@@ -53,7 +53,9 @@ export default function StackWrap() {
 				<DBInfotext size="small" icon="none" semantic="informational">
 					No Wrap: Row
 				</DBInfotext>
-				<DBStack class="stack-container" direction="row">
+				<DBStack
+					style={{ padding: 'var(--db-spacing-fixed-xs)' }}
+					direction="row">
 					<span class="dummy-component">
 						<a href="#">Content 1</a>
 					</span>
@@ -76,7 +78,9 @@ export default function StackWrap() {
 				<DBInfotext size="small" icon="none" semantic="informational">
 					Wrap: Column
 				</DBInfotext>
-				<DBStack class="stack-container" wrap={true}>
+				<DBStack
+					style={{ padding: 'var(--db-spacing-fixed-xs)' }}
+					wrap={true}>
 					<span class="dummy-component">
 						<a href="#">Content 1</a>
 					</span>
@@ -99,7 +103,10 @@ export default function StackWrap() {
 				<DBInfotext size="small" icon="none" semantic="informational">
 					Wrap: Row
 				</DBInfotext>
-				<DBStack class="stack-container" direction="row" wrap={true}>
+				<DBStack
+					style={{ padding: 'var(--db-spacing-fixed-xs)' }}
+					direction="row"
+					wrap={true}>
 					<span class="dummy-component">
 						<a href="#">Content 1</a>
 					</span>

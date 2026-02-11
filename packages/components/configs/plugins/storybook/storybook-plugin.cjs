@@ -27,10 +27,10 @@ module.exports = () => ({
 			if (target === 'angular') {
 				// Add directive imports for navigation, just for simplicity
 				allImports.push(
-					"MetaNavigationDirective",
-					"NavigationDirective",
-					"NavigationContentDirective",
-					"SecondaryActionDirective"
+					'MetaNavigationDirective',
+					'NavigationDirective',
+					'NavigationContentDirective',
+					'SecondaryActionDirective'
 				);
 			}
 
@@ -50,6 +50,11 @@ module.exports = () => ({
 				);
 			}
 
+			const examples = children[0].children.filter(
+				(example) =>
+					!example.properties || !example.properties['data-sb-ignore']
+			);
+
 			// Generate Storybook file content
 			return [
 				`import type { Meta, StoryObj } from '@storybook/${targetMapItem}';`,
@@ -60,7 +65,6 @@ module.exports = () => ({
 				"import { fn } from 'storybook/test';",
 				getMetaObject({
 					target,
-					componentNameLowercase,
 					componentName,
 					name,
 					meta,
@@ -69,12 +73,13 @@ module.exports = () => ({
 				getStories({
 					json,
 					target,
-					wrappingContainer: children[0],
+					examples,
 					meta,
 					name,
 					componentNameLowercase,
 					componentName,
-					code
+					code,
+					allImports
 				})
 			].join('\n');
 		}

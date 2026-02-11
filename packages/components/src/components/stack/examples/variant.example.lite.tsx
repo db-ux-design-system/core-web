@@ -25,7 +25,7 @@ export default function StackVariant() {
 				<DBInfotext size="small" icon="none" semantic="informational">
 					(Default) Simple
 				</DBInfotext>
-				<DBStack class="stack-container">
+				<DBStack style={{ padding: 'var(--db-spacing-fixed-xs)' }}>
 					<span class="dummy-component">
 						<a href="#">Content 1</a>
 					</span>
@@ -47,7 +47,9 @@ export default function StackVariant() {
 				<DBInfotext size="small" icon="none" semantic="informational">
 					Divider
 				</DBInfotext>
-				<DBStack class="stack-container" variant="divider">
+				<DBStack
+					style={{ padding: 'var(--db-spacing-fixed-xs)' }}
+					variant="divider">
 					<span class="dummy-component">
 						<a href="#">Content 1</a>
 					</span>

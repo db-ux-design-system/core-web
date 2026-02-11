@@ -13,29 +13,52 @@ export default function SectionDensity() {
 	return (
 		<Fragment>
 			<DBSection
-				class="db-color-informational db-bg-color-basic-level-2 section-card-container"
+				class="db-color-informational db-bg-color-basic-level-2"
+				style={{
+					display: 'grid',
+					gap: 'var(--db-spacing-fixed-sm)',
+					gridTemplateColumns: 'repeat(2, minmax(0, 1fr))'
+				}}
 				data-density="functional"
 				id="test-id-123">
-				<DBCard>Functional</DBCard>
-				<DBCard>Functional</DBCard>
-				<DBCard>Functional</DBCard>
-				<DBCard>Functional</DBCard>
+				<DBCard style={{ inlineSize: '100%' }}>Functional</DBCard>
+				<DBCard style={{ inlineSize: '100%' }}>Functional</DBCard>
+				<DBCard style={{ inlineSize: '100%' }}>Functional</DBCard>
+				<DBCard style={{ inlineSize: '100%' }}>Functional</DBCard>
 			</DBSection>
 			<DBSection
-				class="db-color-informational db-bg-color-basic-level-2 section-card-container"
+				class="db-color-informational db-bg-color-basic-level-2"
+				style={{
+					display: 'grid',
+					gap: 'var(--db-spacing-fixed-sm)',
+					gridTemplateColumns: 'repeat(2, minmax(0, 1fr))'
+				}}
 				data-density="regular">
-				<DBCard>(Default) Regular</DBCard>
-				<DBCard>(Default) Regular</DBCard>
-				<DBCard>(Default) Regular</DBCard>
-				<DBCard>(Default) Regular</DBCard>
+				<DBCard style={{ inlineSize: '100%' }}>
+					(Default) Regular
+				</DBCard>
+				<DBCard style={{ inlineSize: '100%' }}>
+					(Default) Regular
+				</DBCard>
+				<DBCard style={{ inlineSize: '100%' }}>
+					(Default) Regular
+				</DBCard>
+				<DBCard style={{ inlineSize: '100%' }}>
+					(Default) Regular
+				</DBCard>
 			</DBSection>
 			<DBSection
-				class="db-color-informational db-bg-color-basic-level-2 section-card-container"
+				class="db-color-informational db-bg-color-basic-level-2"
+				style={{
+					display: 'grid',
+					gap: 'var(--db-spacing-fixed-sm)',
+					gridTemplateColumns: 'repeat(2, minmax(0, 1fr))'
+				}}
 				data-density="expressive">
-				<DBCard>Expressive</DBCard>
-				<DBCard>Expressive</DBCard>
-				<DBCard>Expressive</DBCard>
-				<DBCard>Expressive</DBCard>
+				<DBCard style={{ inlineSize: '100%' }}>Expressive</DBCard>
+				<DBCard style={{ inlineSize: '100%' }}>Expressive</DBCard>
+				<DBCard style={{ inlineSize: '100%' }}>Expressive</DBCard>
+				<DBCard style={{ inlineSize: '100%' }}>Expressive</DBCard>
 			</DBSection>
 		</Fragment>
 	);

@@ -9,17 +9,16 @@ const vue = require('./vue/index.cjs');
 module.exports = {
 	files: [
 		// 'src/components/drawer/examples/*.example.lite.tsx',
-
+		'src/components/button/examples/*.example.lite.tsx',
+		'src/components/checkbox/examples/*.example.lite.tsx',
 		'src/components/accordion/examples/*.example.lite.tsx',
 		'src/components/accordion-item/examples/*.example.lite.tsx',
 		'src/components/badge/examples/*.example.lite.tsx',
 		'src/components/brand/examples/*.example.lite.tsx',
-		'src/components/button/examples/*.example.lite.tsx',
 		'src/components/card/examples/*.example.lite.tsx',
 		'src/components/infotext/examples/*.example.lite.tsx',
 		'src/components/select/examples/*.example.lite.tsx',
 		'src/components/tab-item/examples/*.example.lite.tsx',
-		'src/components/checkbox/examples/*.example.lite.tsx',
 		'src/components/custom-select/examples/*.example.lite.tsx',
 		'src/components/divider/examples/*.example.lite.tsx',
 		'src/components/icon/examples/*.example.lite.tsx',
@@ -37,7 +36,7 @@ module.exports = {
 		'src/components/popover/examples/*.example.lite.tsx',
 		'src/components/navigation/examples/*.example.lite.tsx',
 		'src/components/header/examples/*.example.lite.tsx',
-		'src/components/tooltip/examples/*.example.lite.tsx',
+		'src/components/tooltip/examples/*.example.lite.tsx'
 	],
 	targets: ['angular', 'react', 'vue'],
 	dest: '../../storybooks',

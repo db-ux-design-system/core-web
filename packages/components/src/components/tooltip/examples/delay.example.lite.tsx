@@ -12,19 +12,19 @@ useMetadata({
 export default function TooltipDelay() {
 	return (
 		<Fragment>
-			<DBButton data-sb-decorator="true">
+			<DBButton>
 				(Default) None
 				<DBTooltip id="tooltip-144" delay="none">
 					Tooltip
 				</DBTooltip>
 			</DBButton>
-			<DBButton data-sb-decorator="true">
+			<DBButton>
 				Slow
 				<DBTooltip delay="slow" id="tooltip-15">
 					Tooltip
 				</DBTooltip>
 			</DBButton>
-			<DBButton data-sb-decorator="true">
+			<DBButton>
 				Fast
 				<DBTooltip delay="fast" id="tooltip-16">
 					Tooltip

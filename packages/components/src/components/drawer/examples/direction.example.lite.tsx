@@ -14,7 +14,7 @@ export default function DrawerDirection() {
 
 	return (
 		<Fragment>
-			<div data-sb-decorator="true">
+			<div>
 				<DBButton onClick={() => setOpenIndex(0)}>
 					Open: (Default) Right
 				</DBButton>
@@ -24,7 +24,7 @@ export default function DrawerDirection() {
 					(Default) Right
 				</DBDrawer>
 			</div>
-			<div data-sb-decorator="true">
+			<div>
 				<DBButton onClick={() => setOpenIndex(1)}>Open: Left</DBButton>
 				<DBDrawer
 					direction="left"
@@ -33,7 +33,7 @@ export default function DrawerDirection() {
 					Left
 				</DBDrawer>
 			</div>
-			<div data-sb-decorator="true">
+			<div>
 				<DBButton onClick={() => setOpenIndex(2)}>Open: Up</DBButton>
 				<DBDrawer
 					direction="up"
@@ -42,7 +42,7 @@ export default function DrawerDirection() {
 					Up
 				</DBDrawer>
 			</div>
-			<div data-sb-decorator="true">
+			<div>
 				<DBButton onClick={() => setOpenIndex(3)}>Open: Down</DBButton>
 				<DBDrawer
 					direction="down"

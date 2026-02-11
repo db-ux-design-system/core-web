@@ -25,7 +25,7 @@ export default function CustomSelectDropdownWidth() {
 				semantic="informational">
 				Form Field Width: Full
 			</DBInfotext>
-			<i class="line-break" />
+			<i class="line-break" data-sb-ignore="true" />
 			<div style={{ width: '400px' }}>
 				<DBCustomSelect
 					options={[
@@ -69,7 +69,7 @@ export default function CustomSelectDropdownWidth() {
 					listLabel="id-10229-Full"></DBCustomSelect>
 			</div>
 
-			<i class="line-break" />
+			<i class="line-break" data-sb-ignore="true" />
 			<DBInfotext
 				data-sb-ignore="true"
 				size="small"
@@ -77,7 +77,7 @@ export default function CustomSelectDropdownWidth() {
 				Form Field Width: Auto
 			</DBInfotext>
 
-			<i class="line-break" />
+			<i class="line-break" data-sb-ignore="true" />
 			<div style={{ width: '400px' }}>
 				<DBCustomSelect
 					options={[

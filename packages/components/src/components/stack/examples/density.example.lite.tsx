@@ -25,7 +25,9 @@ export default function StackDensity() {
 				<DBInfotext size="small" icon="none" semantic="informational">
 					Functional
 				</DBInfotext>
-				<DBStack class="stack-container" data-density="functional">
+				<DBStack
+					style={{ padding: 'var(--db-spacing-fixed-xs)' }}
+					data-density="functional">
 					<span class="dummy-component">
 						<a href="#">Content 1</a>
 					</span>
@@ -47,7 +49,9 @@ export default function StackDensity() {
 				<DBInfotext size="small" icon="none" semantic="informational">
 					(Default) Regular
 				</DBInfotext>
-				<DBStack class="stack-container" data-density="regular">
+				<DBStack
+					style={{ padding: 'var(--db-spacing-fixed-xs)' }}
+					data-density="regular">
 					<span class="dummy-component">
 						<a href="#">Content 1</a>
 					</span>
@@ -70,7 +74,9 @@ export default function StackDensity() {
 				<DBInfotext size="small" icon="none" semantic="informational">
 					Expressive
 				</DBInfotext>
-				<DBStack class="stack-container" data-density="expressive">
+				<DBStack
+					style={{ padding: 'var(--db-spacing-fixed-xs)' }}
+					data-density="expressive">
 					<span class="dummy-component">
 						<a href="#">Content 1</a>
 					</span>

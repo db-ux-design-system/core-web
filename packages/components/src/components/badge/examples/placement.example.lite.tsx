@@ -21,14 +21,17 @@ useMetadata({
 export default function BadgePlacement() {
 	return (
 		<Fragment>
-			<div data-sb-decorator="true" class="badge-inline-container">
+			<div class="badge-inline-container">
 				<span data-icon="x_placeholder">(Default) Inline</span>
 				<DBBadge size="small" emphasis="strong" semantic="critical">
 					Label
 				</DBBadge>
 				<DBIcon icon="error" />
 			</div>
-			<DBButton data-sb-decorator="true" icon="x_placeholder" variant="outlined">
+			<DBButton
+				data-sb-decorator="true"
+				icon="x_placeholder"
+				variant="outlined">
 				<DBBadge
 					size="small"
 					emphasis="strong"
@@ -36,7 +39,10 @@ export default function BadgePlacement() {
 					placement="corner-top-left"></DBBadge>
 				Corner - Top - Left
 			</DBButton>
-			<DBButton data-sb-decorator="true" icon="x_placeholder" variant="outlined">
+			<DBButton
+				data-sb-decorator="true"
+				icon="x_placeholder"
+				variant="outlined">
 				<DBBadge
 					size="small"
 					emphasis="strong"
@@ -44,7 +50,10 @@ export default function BadgePlacement() {
 					placement="corner-center-left"></DBBadge>
 				Corner - Center - Left
 			</DBButton>
-			<DBButton data-sb-decorator="true" icon="x_placeholder" variant="outlined">
+			<DBButton
+				data-sb-decorator="true"
+				icon="x_placeholder"
+				variant="outlined">
 				<DBBadge
 					size="small"
 					emphasis="strong"
@@ -52,7 +61,10 @@ export default function BadgePlacement() {
 					placement="corner-bottom-left"></DBBadge>
 				Corner - Bottom- Left
 			</DBButton>
-			<DBButton data-sb-decorator="true" icon="x_placeholder" variant="outlined">
+			<DBButton
+				data-sb-decorator="true"
+				icon="x_placeholder"
+				variant="outlined">
 				<DBBadge
 					size="small"
 					emphasis="strong"
@@ -60,7 +72,10 @@ export default function BadgePlacement() {
 					placement="corner-top-right"></DBBadge>
 				Corner - Top - Right
 			</DBButton>
-			<DBButton data-sb-decorator="true" icon="x_placeholder" variant="outlined">
+			<DBButton
+				data-sb-decorator="true"
+				icon="x_placeholder"
+				variant="outlined">
 				<DBBadge
 					size="small"
 					emphasis="strong"
@@ -68,7 +83,10 @@ export default function BadgePlacement() {
 					placement="corner-center-right"></DBBadge>
 				Corner - Center - Right
 			</DBButton>
-			<DBButton data-sb-decorator="true" icon="x_placeholder" variant="outlined">
+			<DBButton
+				data-sb-decorator="true"
+				icon="x_placeholder"
+				variant="outlined">
 				<DBBadge
 					size="small"
 					emphasis="strong"

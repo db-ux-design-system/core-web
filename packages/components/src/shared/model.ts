@@ -2,7 +2,7 @@
 
 import { IconTypes } from '@db-ux/core-foundations';
 
-export type GlobalProps = {
+export interface GlobalProps {
 	/**
 	 * default slot
 	 */
@@ -28,7 +28,7 @@ export type GlobalProps = {
 	 * Before using please check for the [accessibility concerns](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/autofocus#accessibility_concerns)
 	 */
 	autofocus?: boolean | string;
-};
+}
 
 export type GlobalState = {
 	_id?: string;

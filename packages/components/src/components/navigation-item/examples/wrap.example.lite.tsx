@@ -4,10 +4,7 @@ import { StorybookNavigationItemArgTypes } from './_navigation-item.arg.types';
 
 useMetadata({
 	storybookTitle: 'Wrap',
-	storybookNames: [
-		'(Default) False',
-		'True'
-	],
+	storybookNames: ['(Default) False', 'True'],
 	storybookArgTypes: StorybookNavigationItemArgTypes
 });
 

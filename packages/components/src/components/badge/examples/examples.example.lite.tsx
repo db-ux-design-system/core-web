@@ -29,7 +29,7 @@ export default function BadgeExamples() {
 				icon="none">
 				Numbers
 			</DBInfotext>
-			<i class="line-break" />
+			<i class="line-break" data-sb-ignore="true" />
 			<DBBadge size="medium">(Default) Text - Medium</DBBadge>
 			<DBBadge size="medium" />
 			<DBInfotext

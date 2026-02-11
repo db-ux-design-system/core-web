@@ -24,7 +24,7 @@ export default function StackDirection() {
 				<DBInfotext size="small" icon="none" semantic="informational">
 					(Default) Column
 				</DBInfotext>
-				<DBStack class="stack-container">
+				<DBStack style={{ padding: 'var(--db-spacing-fixed-xs)' }}>
 					<span class="dummy-component">
 						<a href="#">Content 1</a>
 					</span>
@@ -46,7 +46,9 @@ export default function StackDirection() {
 				<DBInfotext size="small" icon="none" semantic="informational">
 					Row
 				</DBInfotext>
-				<DBStack class="stack-container" direction="row">
+				<DBStack
+					style={{ padding: 'var(--db-spacing-fixed-xs)' }}
+					direction="row">
 					<span class="dummy-component">
 						<a href="#">Content 1</a>
 					</span>

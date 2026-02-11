@@ -14,7 +14,7 @@ export default function DrawerBackdrop() {
 
 	return (
 		<Fragment>
-			<div data-sb-decorator="true">
+			<div>
 				<DBButton onClick={() => setOpenIndex(0)}>
 					Open: (Default) Strong
 				</DBButton>
@@ -25,7 +25,7 @@ export default function DrawerBackdrop() {
 					(Default) Strong
 				</DBDrawer>
 			</div>
-			<div data-sb-decorator="true">
+			<div>
 				<DBButton onClick={() => setOpenIndex(1)}>Open: Weak</DBButton>
 				<DBDrawer
 					backdrop="weak"
@@ -34,7 +34,7 @@ export default function DrawerBackdrop() {
 					Weak
 				</DBDrawer>
 			</div>
-			<div data-sb-decorator="true">
+			<div>
 				<DBButton onClick={() => setOpenIndex(2)}>
 					Open: Invisible
 				</DBButton>
@@ -45,7 +45,7 @@ export default function DrawerBackdrop() {
 					Invisible
 				</DBDrawer>
 			</div>
-			<div data-sb-decorator="true">
+			<div>
 				<DBButton onClick={() => setOpenIndex(3)}>
 					Open: No Backdrop
 				</DBButton>

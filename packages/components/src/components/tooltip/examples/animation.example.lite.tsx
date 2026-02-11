@@ -12,13 +12,13 @@ useMetadata({
 export default function TooltipAnimation() {
 	return (
 		<Fragment>
-			<DBButton data-sb-decorator="true">
+			<DBButton>
 				(Default) True
 				<DBTooltip id="tooltip-14" animation={true}>
 					Tooltip
 				</DBTooltip>
 			</DBButton>
-			<DBButton data-sb-decorator="true">
+			<DBButton>
 				False
 				<DBTooltip animation={false} id="tooltip-17">
 					Tooltip

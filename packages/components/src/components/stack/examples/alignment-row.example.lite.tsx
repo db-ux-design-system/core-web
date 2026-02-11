@@ -25,7 +25,10 @@ export default function StackAlignmentRow() {
 					(Default) Stretch
 				</DBInfotext>
 				<DBStack
-					class="stack-container stack-show-alignment"
+					style={{
+						padding: 'var(--db-spacing-fixed-xs)',
+						border: 'var(--db-border-width-3xs) dashed var(--db-adaptive-on-bg-basic-emphasis-60-default)'
+					}}
 					alignment="stretch"
 					direction="row">
 					<span class="dummy-component">
@@ -50,7 +53,10 @@ export default function StackAlignmentRow() {
 					Start
 				</DBInfotext>
 				<DBStack
-					class="stack-container stack-show-alignment"
+					style={{
+						padding: 'var(--db-spacing-fixed-xs)',
+						border: 'var(--db-border-width-3xs) dashed var(--db-adaptive-on-bg-basic-emphasis-60-default)'
+					}}
 					alignment="start"
 					direction="row">
 					<span class="dummy-component">
@@ -75,7 +81,10 @@ export default function StackAlignmentRow() {
 					Center
 				</DBInfotext>
 				<DBStack
-					class="stack-container stack-show-alignment"
+					style={{
+						padding: 'var(--db-spacing-fixed-xs)',
+						border: 'var(--db-border-width-3xs) dashed var(--db-adaptive-on-bg-basic-emphasis-60-default)'
+					}}
 					alignment="center"
 					direction="row">
 					<span class="dummy-component">
@@ -100,7 +109,10 @@ export default function StackAlignmentRow() {
 					End
 				</DBInfotext>
 				<DBStack
-					class="stack-container stack-show-alignment"
+					style={{
+						padding: 'var(--db-spacing-fixed-xs)',
+						border: 'var(--db-border-width-3xs) dashed var(--db-adaptive-on-bg-basic-emphasis-60-default)'
+					}}
 					alignment="end"
 					direction="row">
 					<span class="dummy-component">

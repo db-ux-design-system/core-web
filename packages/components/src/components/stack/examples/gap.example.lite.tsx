@@ -35,7 +35,9 @@ export default function StackGap() {
 				<DBInfotext size="small" icon="none" semantic="informational">
 					none
 				</DBInfotext>
-				<DBStack class="stack-container" gap="none">
+				<DBStack
+					style={{ padding: 'var(--db-spacing-fixed-xs)' }}
+					gap="none">
 					<span class="dummy-component">
 						<a href="#">Content 1</a>
 					</span>
@@ -57,7 +59,9 @@ export default function StackGap() {
 				<DBInfotext size="small" icon="none" semantic="informational">
 					3x-small
 				</DBInfotext>
-				<DBStack class="stack-container" gap="3x-small">
+				<DBStack
+					style={{ padding: 'var(--db-spacing-fixed-xs)' }}
+					gap="3x-small">
 					<span class="dummy-component">
 						<a href="#">Content 1</a>
 					</span>
@@ -79,7 +83,9 @@ export default function StackGap() {
 				<DBInfotext size="small" icon="none" semantic="informational">
 					2x-small
 				</DBInfotext>
-				<DBStack class="stack-container" gap="2x-small">
+				<DBStack
+					style={{ padding: 'var(--db-spacing-fixed-xs)' }}
+					gap="2x-small">
 					<span class="dummy-component">
 						<a href="#">Content 1</a>
 					</span>
@@ -101,7 +107,9 @@ export default function StackGap() {
 				<DBInfotext size="small" icon="none" semantic="informational">
 					x-small
 				</DBInfotext>
-				<DBStack class="stack-container" gap="x-small">
+				<DBStack
+					style={{ padding: 'var(--db-spacing-fixed-xs)' }}
+					gap="x-small">
 					<span class="dummy-component">
 						<a href="#">Content 1</a>
 					</span>
@@ -123,7 +131,9 @@ export default function StackGap() {
 				<DBInfotext size="small" icon="none" semantic="informational">
 					(Default) small
 				</DBInfotext>
-				<DBStack class="stack-container" gap="small">
+				<DBStack
+					style={{ padding: 'var(--db-spacing-fixed-xs)' }}
+					gap="small">
 					<span class="dummy-component">
 						<a href="#">Content 1</a>
 					</span>
@@ -145,7 +155,9 @@ export default function StackGap() {
 				<DBInfotext size="small" icon="none" semantic="informational">
 					medium
 				</DBInfotext>
-				<DBStack class="stack-container" gap="medium">
+				<DBStack
+					style={{ padding: 'var(--db-spacing-fixed-xs)' }}
+					gap="medium">
 					<span class="dummy-component">
 						<a href="#">Content 1</a>
 					</span>
@@ -167,7 +179,9 @@ export default function StackGap() {
 				<DBInfotext size="small" icon="none" semantic="informational">
 					large
 				</DBInfotext>
-				<DBStack class="stack-container" gap="large">
+				<DBStack
+					style={{ padding: 'var(--db-spacing-fixed-xs)' }}
+					gap="large">
 					<span class="dummy-component">
 						<a href="#">Content 1</a>
 					</span>
@@ -189,7 +203,9 @@ export default function StackGap() {
 				<DBInfotext size="small" icon="none" semantic="informational">
 					x-large
 				</DBInfotext>
-				<DBStack class="stack-container" gap="x-large">
+				<DBStack
+					style={{ padding: 'var(--db-spacing-fixed-xs)' }}
+					gap="x-large">
 					<span class="dummy-component">
 						<a href="#">Content 1</a>
 					</span>
@@ -211,7 +227,9 @@ export default function StackGap() {
 				<DBInfotext size="small" icon="none" semantic="informational">
 					2x-large
 				</DBInfotext>
-				<DBStack class="stack-container" gap="2x-large">
+				<DBStack
+					style={{ padding: 'var(--db-spacing-fixed-xs)' }}
+					gap="2x-large">
 					<span class="dummy-component">
 						<a href="#">Content 1</a>
 					</span>
@@ -233,7 +251,9 @@ export default function StackGap() {
 				<DBInfotext size="small" icon="none" semantic="informational">
 					3x-large
 				</DBInfotext>
-				<DBStack class="stack-container" gap="3x-large">
+				<DBStack
+					style={{ padding: 'var(--db-spacing-fixed-xs)' }}
+					gap="3x-large">
 					<span class="dummy-component">
 						<a href="#">Content 1</a>
 					</span>

@@ -25,7 +25,10 @@ export default function StackJustifyContentRow() {
 					(Default) Start
 				</DBInfotext>
 				<DBStack
-					class="stack-container stack-show-alignment"
+					style={{
+						padding: 'var(--db-spacing-fixed-xs)',
+						border: 'var(--db-border-width-3xs) dashed var(--db-adaptive-on-bg-basic-emphasis-60-default)'
+					}}
 					justifyContent="start"
 					direction="row">
 					<span class="dummy-component">
@@ -50,7 +53,10 @@ export default function StackJustifyContentRow() {
 					Center
 				</DBInfotext>
 				<DBStack
-					class="stack-container stack-show-alignment"
+					style={{
+						padding: 'var(--db-spacing-fixed-xs)',
+						border: 'var(--db-border-width-3xs) dashed var(--db-adaptive-on-bg-basic-emphasis-60-default)'
+					}}
 					justifyContent="center"
 					direction="row">
 					<span class="dummy-component">
@@ -75,7 +81,10 @@ export default function StackJustifyContentRow() {
 					End
 				</DBInfotext>
 				<DBStack
-					class="stack-container stack-show-alignment"
+					style={{
+						padding: 'var(--db-spacing-fixed-xs)',
+						border: 'var(--db-border-width-3xs) dashed var(--db-adaptive-on-bg-basic-emphasis-60-default)'
+					}}
 					justifyContent="end"
 					direction="row">
 					<span class="dummy-component">
@@ -100,7 +109,10 @@ export default function StackJustifyContentRow() {
 					Space-Between
 				</DBInfotext>
 				<DBStack
-					class="stack-container stack-show-alignment"
+					style={{
+						padding: 'var(--db-spacing-fixed-xs)',
+						border: 'var(--db-border-width-3xs) dashed var(--db-adaptive-on-bg-basic-emphasis-60-default)'
+					}}
 					justifyContent="space-between"
 					direction="row">
 					<span class="dummy-component">

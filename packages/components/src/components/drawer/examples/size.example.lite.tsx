@@ -14,7 +14,7 @@ export default function DrawerSize() {
 
 	return (
 		<Fragment>
-			<div data-sb-decorator="true">
+			<div>
 				<DBButton onClick={() => setOpenIndex(0)}>
 					Open: (Default) Medium
 				</DBButton>
@@ -24,7 +24,7 @@ export default function DrawerSize() {
 					(Default) Medium
 				</DBDrawer>
 			</div>
-			<div data-sb-decorator="true">
+			<div>
 				<DBButton onClick={() => setOpenIndex(1)}>Open: Full</DBButton>
 				<DBDrawer
 					width="full"

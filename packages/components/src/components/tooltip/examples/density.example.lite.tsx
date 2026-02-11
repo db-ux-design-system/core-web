@@ -12,19 +12,19 @@ useMetadata({
 export default function TooltipDensity() {
 	return (
 		<Fragment>
-			<DBButton data-density="functional" data-sb-decorator="true">
+			<DBButton data-density="functional">
 				Functional
 				<DBTooltip data-density="functional" id="tooltip-01">
 					Tooltip
 				</DBTooltip>
 			</DBButton>
-			<DBButton data-density="regular" data-sb-decorator="true">
+			<DBButton data-density="regular">
 				(Default) Regular
 				<DBTooltip data-density="regular" id="tooltip-02">
 					Tooltip
 				</DBTooltip>
 			</DBButton>
-			<DBButton data-density="expressive" data-sb-decorator="true">
+			<DBButton data-density="expressive">
 				Expressive
 				<DBTooltip data-density="expressive" id="tooltip-03">
 					Tooltip

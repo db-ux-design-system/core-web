@@ -25,73 +25,73 @@ useMetadata({
 export default function TooltipPlacement() {
 	return (
 		<Fragment>
-			<DBButton data-sb-decorator="true">
+			<DBButton>
 				bottom-start
 				<DBTooltip placement="bottom-start" id="tooltip-08-start">
 					Tooltip
 				</DBTooltip>
 			</DBButton>
-			<DBButton data-sb-decorator="true">
+			<DBButton>
 				(Default) bottom
 				<DBTooltip placement="bottom" id="tooltip-08">
 					Tooltip
 				</DBTooltip>
 			</DBButton>
-			<DBButton data-sb-decorator="true">
+			<DBButton>
 				bottom-end
 				<DBTooltip placement="bottom-end" id="tooltip-08-end">
 					Tooltip
 				</DBTooltip>
 			</DBButton>
-			<DBButton data-sb-decorator="true">
+			<DBButton>
 				left-start
 				<DBTooltip placement="left-start" id="tooltip-10-start">
 					Tooltip
 				</DBTooltip>
 			</DBButton>
-			<DBButton data-sb-decorator="true">
+			<DBButton>
 				left
 				<DBTooltip placement="left" id="tooltip-10">
 					Tooltip
 				</DBTooltip>
 			</DBButton>
-			<DBButton data-sb-decorator="true">
+			<DBButton>
 				left-end
 				<DBTooltip placement="left-end" id="tooltip-10-end">
 					Tooltip
 				</DBTooltip>
 			</DBButton>
-			<DBButton data-sb-decorator="true">
+			<DBButton>
 				right-start
 				<DBTooltip placement="right-start" id="tooltip-11-start">
 					Tooltip
 				</DBTooltip>
 			</DBButton>
-			<DBButton data-sb-decorator="true">
+			<DBButton>
 				right
 				<DBTooltip placement="right" id="tooltip-11">
 					Tooltip
 				</DBTooltip>
 			</DBButton>
-			<DBButton data-sb-decorator="true">
+			<DBButton>
 				right-end
 				<DBTooltip placement="right-end" id="tooltip-11-end">
 					Tooltip
 				</DBTooltip>
 			</DBButton>
-			<DBButton data-sb-decorator="true">
+			<DBButton>
 				top-start
 				<DBTooltip placement="top-start" id="tooltip-09-start">
 					Tooltip
 				</DBTooltip>
 			</DBButton>
-			<DBButton data-sb-decorator="true">
+			<DBButton>
 				top
 				<DBTooltip placement="top" id="tooltip-09">
 					Tooltip
 				</DBTooltip>
 			</DBButton>
-			<DBButton data-sb-decorator="true">
+			<DBButton>
 				top-end
 				<DBTooltip placement="top-end" id="tooltip-09-end">
 					Tooltip

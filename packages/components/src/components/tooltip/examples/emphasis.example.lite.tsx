@@ -12,11 +12,11 @@ useMetadata({
 export default function TooltipEmphasis() {
 	return (
 		<Fragment>
-			<DBButton data-sb-decorator="true">
+			<DBButton>
 				(Default) Weak
 				<DBTooltip id="tooltip-06">Tooltip</DBTooltip>
 			</DBButton>
-			<DBButton data-sb-decorator="true">
+			<DBButton>
 				Strong
 				<DBTooltip emphasis="strong" id="tooltip-07">
 					Tooltip

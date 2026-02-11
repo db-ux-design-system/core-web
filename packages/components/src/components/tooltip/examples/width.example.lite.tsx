@@ -12,13 +12,13 @@ useMetadata({
 export default function TooltipWidth() {
 	return (
 		<Fragment>
-			<DBButton data-sb-decorator="true">
+			<DBButton>
 				(Default) Auto
 				<DBTooltip id="tooltip-12">
 					Max width, lorem ipsum dolor sit amet, consetetur sadipscing
 				</DBTooltip>
 			</DBButton>
-			<DBButton data-sb-decorator="true">
+			<DBButton>
 				Fixed
 				<DBTooltip width="fixed" id="tooltip-13">
 					Max width, lorem ipsum dolor sit amet, consetetur sadipscing
