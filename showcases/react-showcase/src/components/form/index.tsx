@@ -1,6 +1,7 @@
 import {
 	DBAccordion,
 	DBAccordionItem,
+	DBBadge,
 	DBButton,
 	DBCheckbox,
 	DBCustomSelect,
@@ -71,6 +72,9 @@ const FormComponent = () => {
 				<DBButton icon="x_placeholder" noText={true} type="button">
 					ABC
 					<DBTooltip>Describe action</DBTooltip>
+					<DBBadge placement="corner-top-right" label="Test123">
+						Tes
+					</DBBadge>
 				</DBButton>
 				<form>
 					<DBTextarea

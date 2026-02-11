@@ -55,3 +55,24 @@ export function isDBComponent(
 
 	return name === componentName || name === kebabName;
 }
+
+export const INTERACTIVE_ELEMENTS = [
+	'a',
+	'button',
+	'input',
+	'select',
+	'textarea',
+	'details',
+	'summary',
+	'DBButton',
+	'DBLink',
+	'DBInput',
+	'DBSelect',
+	'DBTextarea',
+	'DBCheckbox',
+	'DBRadio',
+	'DBSwitch',
+	'DBNavigationItem',
+	'DBTabItem',
+	'DBTag'
+];

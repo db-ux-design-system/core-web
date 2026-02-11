@@ -1,32 +1,11 @@
 import type { TSESTree } from '@typescript-eslint/utils';
 import { ESLintUtils } from '@typescript-eslint/utils';
-import { isDBComponent } from '../../shared/utils.js';
+import { INTERACTIVE_ELEMENTS, isDBComponent } from '../../shared/utils.js';
 
 const createRule = ESLintUtils.RuleCreator(
 	(name) =>
 		`https://github.com/db-ux-design-system/core-web/blob/main/packages/eslint-plugin/README.md#${name}`
 );
-
-const INTERACTIVE_ELEMENTS = [
-	'a',
-	'button',
-	'input',
-	'select',
-	'textarea',
-	'details',
-	'summary',
-	'DBButton',
-	'DBLink',
-	'DBInput',
-	'DBSelect',
-	'DBTextarea',
-	'DBCheckbox',
-	'DBRadio',
-	'DBSwitch',
-	'DBNavigationItem',
-	'DBTabItem',
-	'DBTag'
-];
 
 function isInteractiveElement(node: TSESTree.JSXElement): boolean {
 	const name = node.openingElement.name;

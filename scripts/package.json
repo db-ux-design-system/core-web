@@ -91,6 +91,7 @@
     "test": "npm-run-all --parallel test:*",
     "test:agent-cli": "npm run test --workspace=@db-ux/agent-cli",
     "test:docs-file-references": "node check-docs.js",
+    "test:eslint-plugin": "npm run test --workspace=@db-ux/core-eslint-plugin",
     "test:migration": "npm run test --workspace=@db-ux/core-migration",
     "test:scripts": "vitest run --config vitest.config.ts",
     "update:icon-fonts": "npm-run-all generate:icon-fonts generate:icon-types"
