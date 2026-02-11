@@ -1,0 +1,135 @@
+@use "@db-ux/core-foundations/build/styles/variables";
+@use "@db-ux/core-foundations/build/styles/screen-sizes";
+@use "@db-ux/core-foundations/build/styles/helpers";
+@use "@db-ux/core-foundations/build/styles/colors";
+
+.db-footer {
+	background-color: colors.$db-adaptive-bg-basic-level-1-default;
+
+
+	@include helpers.display(flex);
+
+	flex-direction: column;
+
+	&[data-width="small"] {
+		.db-footer-content-container {
+			margin-inline: auto;
+			max-inline-size: screen-sizes.$db-breakpoint-sm;
+		}
+	}
+
+	&[data-width="medium"] {
+		.db-footer-content-container {
+			margin-inline: auto;
+			max-inline-size: screen-sizes.$db-breakpoint-md;
+		}
+	}
+
+	&[data-width="large"] {
+		.db-footer-content-container {
+			margin-inline: auto;
+			max-inline-size: screen-sizes.$db-breakpoint-lg;
+		}
+	}
+
+	.db-footer-main {
+		border-block-start: variables.$db-border-width-3xs solid
+			colors.$db-adaptive-on-bg-basic-emphasis-60-default;
+		min-block-size: variables.$db-sizing-lg;
+
+		// Use design token directly to satisfy spacing lint rules
+		padding-block: variables.$db-spacing-fixed-md;
+		padding-inline: variables.$db-spacing-fixed-lg;
+
+		@include helpers.display(flex);
+
+		align-items: center;
+		justify-content: center;
+
+		.db-footer-content-container {
+			@include helpers.display(flex);
+
+			flex: 1 0 0;
+			align-items: center;
+			justify-content: center;
+			min-block-size: 1px;
+			min-inline-size: 1px;
+
+			.db-footer-main-inner {
+				@include helpers.display(flex);
+
+				flex: 1 0 0;
+				flex-direction: row;
+				align-items: center;
+				align-self: stretch;
+
+				> * {
+					@include helpers.display(flex);
+
+					flex: 1 0 0;
+					flex-direction: column;
+					align-items: center;
+					justify-content: center;
+					block-size: 100%;
+					min-block-size: 1px;
+					min-inline-size: 1px;
+				}
+			}
+		}
+	}
+
+	.db-footer-meta {
+		background-color: colors.$db-adaptive-bg-basic-level-2-default;
+		border-block-start: variables.$db-border-width-3xs solid
+			colors.$db-adaptive-on-bg-basic-emphasis-60-default;
+
+		// Ensure visible height per design
+		min-block-size: variables.$db-sizing-md;
+
+		// Use design token directly to satisfy spacing lint rules
+		padding-block: variables.$db-spacing-fixed-xs;
+		padding-inline: variables.$db-spacing-fixed-lg;
+
+		@include helpers.display(flex);
+
+		align-items: center;
+		justify-content: center;
+
+		.db-footer-content-container {
+			@include helpers.display(flex);
+
+			flex: 1 0 0;
+			gap: variables.$db-spacing-fixed-sm;
+			align-items: center;
+			min-block-size: 1px;
+			min-inline-size: 1px;
+
+			> *:not(.db-footer-copyright) {
+				@include helpers.display(flex);
+
+				flex: 1 0 0;
+			}
+
+			// Inner wrapper to align copyright + meta slot horizontally
+			.db-footer-meta-inner {
+				@include helpers.display(flex);
+
+				gap: variables.$db-spacing-fixed-sm;
+				align-items: center;
+				flex: 1 0 0;
+
+				> *:not(.db-footer-copyright) {
+					@include helpers.display(flex);
+
+					flex: 1 0 0;
+				}
+			}
+		}
+
+		.db-footer-copyright {
+			font: var(--db-type-body-sm);
+			color: colors.$db-adaptive-on-bg-basic-emphasis-100-default;
+			white-space: nowrap;
+		}
+	}
+}

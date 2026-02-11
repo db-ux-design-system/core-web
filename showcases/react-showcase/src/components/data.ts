@@ -16,7 +16,12 @@ export const getVariants = (
 			example: getExample({
 				...example.props,
 				id: example.props?.id ?? example.name,
-				children: example.props?.children ?? example.name
+				// Prefer explicit JSON content when present (but only if not empty string), fallback to provided children, then name
+				children:
+					(example as any)?.content !== undefined &&
+					(example as any)?.content !== ''
+						? (example as any)?.content
+						: (example.props?.children ?? example.name)
 			})
 		}))
 	}));

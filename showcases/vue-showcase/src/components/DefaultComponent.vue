@@ -128,6 +128,7 @@ const getElevation = (): "1" | "2" | "3" =>
 					name="example"
 					v-bind:exampleProps="example.props ?? {}"
 					v-bind:exampleName="example.name"
+					v-bind:exampleContent="example.content"
 					v-bind:exampleIndex="exampleIndex"
 					v-bind:variantIndex="variantRefIndex"
 				></slot>
@@ -165,6 +166,7 @@ const getElevation = (): "1" | "2" | "3" =>
 							name="example"
 							v-bind:exampleProps="example.props"
 							v-bind:exampleName="example.name"
+							v-bind:exampleContent="example.content"
 							v-bind:exampleIndex="exampleIndex"
 							v-bind:variantIndex="variantIndex"
 						></slot>
