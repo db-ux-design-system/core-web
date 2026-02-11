@@ -133,14 +133,20 @@ declare module "@db-ux/core-foundations" {
 
 ### Edge case: Using only icons without the full CSS
 
-If you want to use only the icons from this library without including the complete CSS, you can import just the icon-related files:
+If you want to use only the icons from this library without including the complete CSS, you can copy or reference just the icon-related files:
 
 ```css
-@import "node_modules/@db-ux/core-foundations/build/styles/defaults/default-icons.css";
-@import "node_modules/@db-ux/db-theme-icons/build/styles/relative.css";
+@import "@db-ux/core-foundations/build/styles/defaults/default-icons.css";
+@import "@db-ux/db-theme-icons/build/styles/relative.css";
+\```
+
+or
+```bash
+cp "node_modules/@db-ux/core-foundations/build/styles/defaults/default-icons.css" …;
+cp "node_modules/@db-ux/db-theme-icons/build/styles/relative.css" …;
 ```
 
-You need to import the correct `.css` file (or move it to your project). There are multiple files depending on the bundler you use:
+You need to copy or reference the correct `.css` file out of your project. There are multiple files depending on the bundler you use:
 
 - `relative.css`: No bundler (as shown in the previous code block)
 - `absolute.css`: No bundler
