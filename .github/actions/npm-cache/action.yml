@@ -56,4 +56,4 @@ runs:
       shell: bash
       if: steps.cache.outputs.cache-hit != 'true'
       run: |
-        pnpm install
+        pnpm install --frozen-lockfile
