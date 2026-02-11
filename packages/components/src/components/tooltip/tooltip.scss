@@ -128,6 +128,11 @@ $tooltip-arrow-shadow-size: variables.$db-sizing-2xs;
 
 [data-has-tooltip="true"] {
 	position: var(--db-tooltip-parent-position, relative);
+
+	// CSS Anchor Positioning: set this element as the anchor for the tooltip
+	@supports (anchor-name: --db-popover-anchor) {
+		anchor-name: --db-popover-anchor;
+	}
 }
 
 $popover-states: "hover", "focus-visible";
