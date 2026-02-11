@@ -1,1 +1,1 @@
-["(Default) Static","Removable","button, Remove","","button, Interactive (Button)","link, Interactive (link)","check box, not checked, Interactive (Checkbox)","checked","Interactive (Checkbox)",""]
+["(Default) Static","Removable","button, Remove","","button, Interactive (Button)","link, Interactive (Link)","check box, not checked, Interactive (Checkbox)","checked","Interactive (Checkbox)",""]
