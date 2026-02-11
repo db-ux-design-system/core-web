@@ -204,6 +204,7 @@
 	}
 }
 
+// stylelint-disable-next-line layer-name-pattern
 @layer #{layer.$layer-variables} {
 	@each $variant in variables.$variants {
 		@include generate-color-placeholder($variant);
