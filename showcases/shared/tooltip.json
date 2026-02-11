@@ -210,7 +210,8 @@
 				"props": {
 					"content": "Max width, lorem ipsum dolor sit amet, consetetur sadipscing",
 					"width": "fixed",
-					"id": "tooltip-13"
+					"id": "tooltip-13",
+					"placement": "top"
 				}
 			}
 		]
