@@ -68,7 +68,7 @@ const xoConfig = [
 		}
 	},
 	{
-		files: ['./**/*.spec.ts', './showcases/screen-reader/default.ts'],
+		files: ['./**/*.spec.ts'],
 		rules: {
 			// Playwright tests are async we shall use loops there
 			'no-await-in-loop': 0
