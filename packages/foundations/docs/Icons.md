@@ -138,9 +138,10 @@ If you want to use only the icons from this library without including the comple
 ```css
 @import "@db-ux/core-foundations/build/styles/defaults/default-icons.css";
 @import "@db-ux/db-theme-icons/build/styles/relative.css";
-\```
+```
 
 or
+
 ```bash
 cp "node_modules/@db-ux/core-foundations/build/styles/defaults/default-icons.css" …;
 cp "node_modules/@db-ux/db-theme-icons/build/styles/relative.css" …;
