@@ -49,7 +49,9 @@ export default defineConfig([
 			parserOptions: {
 				parser: tsParser,
 				ecmaVersion: 'latest',
-				sourceType: 'module'
+				sourceType: 'module',
+				ecmaFeatures: { jsx: true },
+				extraFileExtensions: ['.vue']
 			}
 		},
 		plugins: {

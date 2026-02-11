@@ -1,65 +1,61 @@
-import type { TSESTree } from '@typescript-eslint/utils';
-import { ESLintUtils } from '@typescript-eslint/utils';
-import { getAttributeValue, isDBComponent } from '../../shared/utils.js';
+import {
+	defineTemplateBodyVisitor,
+	getAttributeValue,
+	isDBComponent
+} from '../../shared/utils.js';
+import { COMPONENTS, MESSAGES, MESSAGE_IDS } from '../../shared/constants.js';
 
-const createRule = ESLintUtils.RuleCreator(
-	(name) =>
-		`https://github.com/db-ux-design-system/core-web/blob/main/packages/eslint-plugin/README.md#${name}`
-);
-
-export default createRule({
-	name: 'input-file-type-validation',
+export default {
 	meta: {
 		type: 'problem',
 		docs: {
 			description:
-				'Ensure DBInput file type has accept and validate file-only attributes'
+				'Ensure DBInput file type has accept and validate file-only attributes',
+			url: 'https://github.com/db-ux-design-system/core-web/blob/main/packages/eslint-plugin/README.md#input-file-type-validation'
 		},
 		messages: {
-			missingAccept:
-				'DBInput with type="file" should have accept attribute',
-			invalidMultiple:
-				'DBInput multiple attribute is only valid for type="file"',
-			invalidAccept:
-				'DBInput accept attribute is only valid for type="file"'
+			[MESSAGE_IDS.INPUT_FILE_MISSING_ACCEPT]: MESSAGES.INPUT_FILE_MISSING_ACCEPT,
+			[MESSAGE_IDS.INPUT_INVALID_MULTIPLE]: MESSAGES.INPUT_INVALID_MULTIPLE,
+			[MESSAGE_IDS.INPUT_INVALID_ACCEPT]: MESSAGES.INPUT_INVALID_ACCEPT
 		},
 		schema: []
 	},
-	defaultOptions: [],
-	create(context) {
-		return {
-			JSXElement(node: TSESTree.JSXElement) {
-				if (!isDBComponent(node.openingElement, 'DBInput')) return;
+	create(context: any) {
+		const checkInput = (node: any) => {
+			const openingElement = node.openingElement || node;
+			if (!isDBComponent(openingElement, COMPONENTS.DBInput)) return;
 
-				const type = getAttributeValue(node.openingElement, 'type');
-				const accept = getAttributeValue(node.openingElement, 'accept');
-				const multiple = getAttributeValue(
-					node.openingElement,
-					'multiple'
-				);
+			const type = getAttributeValue(openingElement, 'type');
+			const accept = getAttributeValue(openingElement, 'accept');
+			const multiple = getAttributeValue(openingElement, 'multiple');
 
-				if (type === 'file') {
-					if (!accept) {
-						context.report({
-							node: node.openingElement,
-							messageId: 'missingAccept'
-						});
-					}
-				} else {
-					if (multiple) {
-						context.report({
-							node: node.openingElement,
-							messageId: 'invalidMultiple'
-						});
-					}
-					if (accept) {
-						context.report({
-							node: node.openingElement,
-							messageId: 'invalidAccept'
-						});
-					}
+			if (type === 'file') {
+				if (!accept) {
+					context.report({
+						node: openingElement,
+						messageId: MESSAGE_IDS.INPUT_FILE_MISSING_ACCEPT
+					});
+				}
+			} else {
+				if (multiple) {
+					context.report({
+						node: openingElement,
+						messageId: MESSAGE_IDS.INPUT_INVALID_MULTIPLE
+					});
+				}
+				if (accept) {
+					context.report({
+						node: openingElement,
+						messageId: MESSAGE_IDS.INPUT_INVALID_ACCEPT
+					});
 				}
 			}
 		};
+
+		return defineTemplateBodyVisitor(
+			context,
+			{ VElement: checkInput, Element: checkInput },
+			{ JSXElement: checkInput }
+		);
 	}
-});
+};

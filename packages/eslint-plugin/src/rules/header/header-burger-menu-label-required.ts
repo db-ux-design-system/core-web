@@ -1,43 +1,60 @@
-import type { TSESTree } from '@typescript-eslint/utils';
-import { ESLintUtils } from '@typescript-eslint/utils';
-import { getAttributeValue, isDBComponent } from '../../shared/utils.js';
+import {
+	createAngularVisitors,
+	defineTemplateBodyVisitor,
+	getAttributeValue,
+	isDBComponent
+} from '../../shared/utils.js';
+import { COMPONENTS, MESSAGES, MESSAGE_IDS } from '../../shared/constants.js';
 
-const createRule = ESLintUtils.RuleCreator(
-	(name) =>
-		`https://github.com/db-ux-design-system/core-web/blob/main/packages/eslint-plugin/README.md#${name}`
-);
-
-export default createRule({
-	name: 'header-burger-menu-label-required',
+export default {
 	meta: {
 		type: 'problem',
 		docs: {
-			description: 'Ensure DBHeader has burgerMenuLabel for accessibility'
+			description:
+				'Ensure DBHeader has burgerMenuLabel for accessibility',
+			url: 'https://github.com/db-ux-design-system/core-web/blob/main/packages/eslint-plugin/README.md#header-burger-menu-label-required'
 		},
 		messages: {
-			missingBurgerMenuLabel:
-				'DBHeader must have burgerMenuLabel attribute for accessibility'
+			[MESSAGE_IDS.HEADER_MISSING_BURGER_MENU_LABEL]: MESSAGES.HEADER_MISSING_BURGER_MENU_LABEL
 		},
 		schema: []
 	},
-	defaultOptions: [],
-	create(context) {
-		return {
-			JSXElement(node: TSESTree.JSXElement) {
-				if (!isDBComponent(node.openingElement, 'DBHeader')) return;
-
-				const burgerMenuLabel = getAttributeValue(
-					node.openingElement,
-					'burgerMenuLabel'
-				);
-
-				if (!burgerMenuLabel) {
-					context.report({
-						node: node.openingElement,
-						messageId: 'missingBurgerMenuLabel'
-					});
-				}
+	create(context: any) {
+		const angularHandler = (node: any, parserServices: any) => {
+			const burgerMenuLabel = getAttributeValue(node, 'burgerMenuLabel');
+			if (!burgerMenuLabel) {
+				const loc = parserServices.convertNodeSourceSpanToLoc(node.sourceSpan);
+				context.report({
+					loc,
+					messageId: MESSAGE_IDS.HEADER_MISSING_BURGER_MENU_LABEL
+				});
 			}
 		};
+
+		const angularVisitors = createAngularVisitors(context, COMPONENTS.DBHeader, angularHandler);
+		if (angularVisitors) return angularVisitors;
+
+		const checkHeader = (node: any) => {
+			const openingElement = node.openingElement || node;
+			if (!isDBComponent(openingElement, COMPONENTS.DBHeader)) return;
+
+			const burgerMenuLabel = getAttributeValue(
+				openingElement,
+				'burgerMenuLabel'
+			);
+
+			if (!burgerMenuLabel) {
+				context.report({
+					node: openingElement,
+					messageId: MESSAGE_IDS.HEADER_MISSING_BURGER_MENU_LABEL
+				});
+			}
+		};
+
+		return defineTemplateBodyVisitor(
+			context,
+			{ VElement: checkHeader, Element: checkHeader },
+			{ JSXElement: checkHeader }
+		);
 	}
-});
+};

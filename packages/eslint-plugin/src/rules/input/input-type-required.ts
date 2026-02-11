@@ -1,55 +1,94 @@
-import type { TSESTree } from '@typescript-eslint/utils';
-import { ESLintUtils } from '@typescript-eslint/utils';
-import { getAttributeValue, isDBComponent } from '../../shared/utils.js';
+import {
+	createAngularVisitors,
+	defineTemplateBodyVisitor,
+	getAttributeValue,
+	isDBComponent
+} from '../../shared/utils.js';
+import { COMPONENTS, MESSAGES, MESSAGE_IDS } from '../../shared/constants.js';
 
-const createRule = ESLintUtils.RuleCreator(
-	(name) =>
-		`https://github.com/db-ux-design-system/core-web/blob/main/packages/eslint-plugin/README.md#${name}`
-);
-
-export default createRule({
-	name: 'input-type-required',
+export default {
 	meta: {
 		type: 'suggestion',
 		docs: {
 			description:
-				'Ensure DBInput has type attribute for better developer experience'
+				'Ensure DBInput has type attribute for better developer experience',
+			url: 'https://github.com/db-ux-design-system/core-web/blob/main/packages/eslint-plugin/README.md#input-type-required'
 		},
 		fixable: 'code',
 		messages: {
-			missingType:
-				'DBInput should have type attribute for better developer experience'
+			[MESSAGE_IDS.INPUT_TYPE_REQUIRED]: MESSAGES.INPUT_TYPE_REQUIRED
 		},
 		schema: []
 	},
-	defaultOptions: [],
-	create(context) {
-		return {
-			JSXElement(node: TSESTree.JSXElement) {
-				if (!isDBComponent(node.openingElement, 'DBInput')) return;
+	create(context: any) {
+		const angularHandler = (node: any, parserServices: any) => {
+			const type = getAttributeValue(node, 'type');
+			if (!type) {
+				const loc = parserServices.convertNodeSourceSpanToLoc(node.sourceSpan);
+				context.report({
+					loc,
+					messageId: MESSAGE_IDS.INPUT_TYPE_REQUIRED
+				});
+			}
+		};
 
-				const type = getAttributeValue(node.openingElement, 'type');
+		const angularVisitors = createAngularVisitors(context, COMPONENTS.DBInput, angularHandler);
+		if (angularVisitors) return angularVisitors;
 
-				if (!type) {
-					context.report({
-						node: node.openingElement,
-						messageId: 'missingType',
-						fix(fixer) {
+		const checkInput = (node: any) => {
+			const openingElement = node.openingElement || node;
+			if (!isDBComponent(openingElement, COMPONENTS.DBInput)) return;
+
+			const type = getAttributeValue(openingElement, 'type');
+
+			if (!type) {
+				context.report({
+					node: openingElement,
+					messageId: MESSAGE_IDS.INPUT_TYPE_REQUIRED,
+					fix(fixer: any) {
+						if (node.openingElement) {
+							// JSX
 							const lastAttr =
-								node.openingElement.attributes[
-									node.openingElement.attributes.length - 1
+								openingElement.attributes[
+									openingElement.attributes.length - 1
 								];
 							const insertPos = lastAttr
 								? lastAttr.range[1]
-								: node.openingElement.name.range[1];
+								: openingElement.name.range[1];
 							return fixer.insertTextAfterRange(
 								[insertPos, insertPos],
 								' type="text"'
 							);
+						} else {
+							// Vue
+							const attrs = openingElement.startTag.attributes;
+							if (attrs.length > 0) {
+								const lastAttr = attrs[attrs.length - 1];
+								const insertPos = lastAttr.range[1];
+								return fixer.insertTextAfterRange(
+									[insertPos, insertPos],
+									' type="text"'
+								);
+							} else {
+								const insertPos =
+									openingElement.startTag.range[0] +
+									1 +
+									openingElement.rawName.length;
+								return fixer.insertTextAfterRange(
+									[insertPos, insertPos],
+									' type="text"'
+								);
+							}
 						}
-					});
-				}
+					}
+				});
 			}
 		};
+
+		return defineTemplateBodyVisitor(
+			context,
+			{ VElement: checkInput, Element: checkInput },
+			{ JSXElement: checkInput }
+		);
 	}
-});
+};

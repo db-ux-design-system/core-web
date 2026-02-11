@@ -69,11 +69,13 @@ const FormComponent = () => {
 	return (
 		<div className="form-container">
 			<div>
-				<DBButton icon="x_placeholder" noText={true} type="button">
-					ABC
+				<DBButton type="submit">
+					<DBIcon icon="x_placeholder"></DBIcon>Test</DBButton>
+				<DBButton type="button" icon="x_placeholder" noText>
+					Test
 					<DBTooltip>Describe action</DBTooltip>
-					<DBBadge placement="corner-top-right" label="Test123">
-						Tes
+					<DBBadge placement="corner-top-right" label="Test">
+						99+
 					</DBBadge>
 				</DBButton>
 				<form>
@@ -110,6 +112,7 @@ const FormComponent = () => {
 							onChange={(event) => {
 								setInput(event.target.value);
 							}}
+							type="text"
 						/>
 						<p>Textarea:</p>
 						<DBTextarea
@@ -473,6 +476,7 @@ const FormComponent = () => {
 					invalidMessage="Min. 3"
 					validMessage="😎"
 					minLength={3}
+					type="text"
 				/>
 				<DBInput
 					label="Input pattern validation"
@@ -480,6 +484,7 @@ const FormComponent = () => {
 					pattern="\w{3,16}"
 					invalidMessage="Pattern \w{3,16}"
 					validMessage="😎"
+					type="text"
 				/>
 				<DBInput
 					label="Input number"

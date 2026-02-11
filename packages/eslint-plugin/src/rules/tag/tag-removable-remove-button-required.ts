@@ -1,50 +1,67 @@
-import type { TSESTree } from '@typescript-eslint/utils';
-import { ESLintUtils } from '@typescript-eslint/utils';
-import { getAttributeValue, isDBComponent } from '../../shared/utils.js';
+import {
+	createAngularVisitors,
+	defineTemplateBodyVisitor,
+	getAttributeValue,
+	isDBComponent
+} from '../../shared/utils.js';
+import { COMPONENTS, MESSAGES, MESSAGE_IDS } from '../../shared/constants.js';
 
-const createRule = ESLintUtils.RuleCreator(
-	(name) =>
-		`https://github.com/db-ux-design-system/core-web/blob/main/packages/eslint-plugin/README.md#${name}`
-);
-
-export default createRule({
-	name: 'tag-removable-remove-button-required',
+export default {
 	meta: {
 		type: 'problem',
 		docs: {
 			description:
-				'Ensure DBTag with behavior="removable" has removeButton'
+				'Ensure DBTag with behavior="removable" has removeButton',
+			url: 'https://github.com/db-ux-design-system/core-web/blob/main/packages/eslint-plugin/README.md#tag-removable-remove-button-required'
 		},
 		messages: {
-			missingRemoveButton:
-				'DBTag with behavior="removable" must have removeButton attribute for accessibility'
+			[MESSAGE_IDS.TAG_REMOVABLE_REMOVE_BUTTON_REQUIRED]: MESSAGES.TAG_REMOVABLE_REMOVE_BUTTON_REQUIRED
 		},
 		schema: []
 	},
-	defaultOptions: [],
-	create(context) {
-		return {
-			JSXElement(node: TSESTree.JSXElement) {
-				if (!isDBComponent(node.openingElement, 'DBTag')) return;
+	create(context: any) {
+		const angularHandler = (node: any, parserServices: any) => {
+			const behavior = getAttributeValue(node, 'behavior');
+			if (behavior !== 'removable') return;
 
-				const behavior = getAttributeValue(
-					node.openingElement,
-					'behavior'
-				);
-				if (behavior !== 'removable') return;
+			const removeButton = getAttributeValue(node, 'removeButton');
 
-				const removeButton = getAttributeValue(
-					node.openingElement,
-					'removeButton'
-				);
-
-				if (!removeButton) {
-					context.report({
-						node: node.openingElement,
-						messageId: 'missingRemoveButton'
-					});
-				}
+			if (!removeButton) {
+				const loc = parserServices.convertNodeSourceSpanToLoc(node.sourceSpan);
+				context.report({
+					loc,
+					messageId: MESSAGE_IDS.TAG_REMOVABLE_REMOVE_BUTTON_REQUIRED
+				});
 			}
 		};
+
+		const angularVisitors = createAngularVisitors(context, COMPONENTS.DBTag, angularHandler);
+		if (angularVisitors) return angularVisitors;
+
+		const checkTag = (node: any) => {
+			const openingElement = node.openingElement || node;
+			if (!isDBComponent(openingElement, COMPONENTS.DBTag)) return;
+
+			const behavior = getAttributeValue(openingElement, 'behavior');
+			if (behavior !== 'removable') return;
+
+			const removeButton = getAttributeValue(
+				openingElement,
+				'removeButton'
+			);
+
+			if (!removeButton) {
+				context.report({
+					node: openingElement,
+					messageId: MESSAGE_IDS.TAG_REMOVABLE_REMOVE_BUTTON_REQUIRED
+				});
+			}
+		};
+
+		return defineTemplateBodyVisitor(
+			context,
+			{ VElement: checkTag, Element: checkTag },
+			{ JSXElement: checkTag }
+		);
 	}
-});
+};

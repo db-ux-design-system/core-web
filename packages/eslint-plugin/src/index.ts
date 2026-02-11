@@ -1,4 +1,5 @@
 import noNestedAccordion from './rules/accordion/no-nested-accordion.js';
+import accordionItemHeadlineRequired from './rules/accordion/accordion-item-headline-required.js';
 import badgeCornerPlacementRules from './rules/badge/badge-corner-placement-rules.js';
 import badgeNoInlineInInteractive from './rules/badge/badge-no-inline-in-interactive.js';
 import buttonNoTextRequiresTooltip from './rules/button/button-no-text-requires-tooltip.js';
@@ -19,6 +20,7 @@ import selectRequiresOptions from './rules/select/select-requires-options.js';
 import tagRemovableRemoveButtonRequired from './rules/tag/tag-removable-remove-button-required.js';
 import noInteractiveTooltipContent from './rules/tooltip/no-interactive-tooltip-content.js';
 import tooltipRequiresInteractiveParent from './rules/tooltip/tooltip-requires-interactive-parent.js';
+import testAngular from './rules/test-angular.js';
 
 const recommended = {
 	rules: {
@@ -32,6 +34,7 @@ const recommended = {
 		'db-ux/no-interactive-tooltip-content': 'error',
 		'db-ux/tooltip-requires-interactive-parent': 'error',
 		'db-ux/no-nested-accordion': 'error',
+		'db-ux/accordion-item-headline-required': 'error',
 		'db-ux/badge-corner-placement-rules': 'error',
 		'db-ux/badge-no-inline-in-interactive': 'error',
 		'db-ux/link-external-security': 'warn',
@@ -62,6 +65,7 @@ const plugin = {
 		'no-interactive-tooltip-content': noInteractiveTooltipContent,
 		'tooltip-requires-interactive-parent': tooltipRequiresInteractiveParent,
 		'no-nested-accordion': noNestedAccordion,
+		'accordion-item-headline-required': accordionItemHeadlineRequired,
 		'badge-corner-placement-rules': badgeCornerPlacementRules,
 		'badge-no-inline-in-interactive': badgeNoInlineInInteractive,
 		'link-external-security': linkExternalSecurity,
@@ -75,7 +79,8 @@ const plugin = {
 		'tag-removable-remove-button-required':
 			tagRemovableRemoveButtonRequired,
 		'input-type-required': inputTypeRequired,
-		'input-file-type-validation': inputFileTypeValidation
+		'input-file-type-validation': inputFileTypeValidation,
+		'test-angular': testAngular
 	},
 	configs: {
 		recommended

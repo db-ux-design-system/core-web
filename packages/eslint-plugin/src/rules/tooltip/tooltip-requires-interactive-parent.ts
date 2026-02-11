@@ -1,32 +1,30 @@
-import type { TSESTree } from '@typescript-eslint/utils';
-import { ESLintUtils } from '@typescript-eslint/utils';
-import { INTERACTIVE_ELEMENTS, isDBComponent } from '../../shared/utils.js';
+import {
+	defineTemplateBodyVisitor,
+	isDBComponent
+} from '../../shared/utils.js';
+import { INTERACTIVE_ELEMENTS } from '../../shared/constants.js';
 
-const createRule = ESLintUtils.RuleCreator(
-	(name) =>
-		`https://github.com/db-ux-design-system/core-web/blob/main/packages/eslint-plugin/README.md#${name}`
-);
-
-function isInteractiveElement(node: TSESTree.JSXElement): boolean {
-	const name = node.openingElement.name;
-	if (name.type === 'JSXIdentifier') {
-		const tagName = name.name;
-		return INTERACTIVE_ELEMENTS.some(
-			(el) =>
-				tagName === el ||
-				tagName === el.toLowerCase().replace('db', 'db-')
-		);
-	}
-	return false;
+function isInteractiveElement(node: any): boolean {
+	const openingElement = node.openingElement || node;
+	const tagName =
+		openingElement.rawName ||
+		(openingElement.name?.type === 'JSXIdentifier'
+			? openingElement.name.name
+			: null);
+	if (!tagName) return false;
+	return INTERACTIVE_ELEMENTS.some(
+		(el) =>
+			tagName === el || tagName === el.toLowerCase().replace('db', 'db-')
+	);
 }
 
-export default createRule({
-	name: 'tooltip-requires-interactive-parent',
+export default {
 	meta: {
 		type: 'problem',
 		docs: {
 			description:
-				'Ensure DBTooltip is child of interactive element for accessibility'
+				'Ensure DBTooltip is child of interactive element for accessibility',
+			url: 'https://github.com/db-ux-design-system/core-web/blob/main/packages/eslint-plugin/README.md#tooltip-requires-interactive-parent'
 		},
 		messages: {
 			requiresInteractive:
@@ -34,27 +32,34 @@ export default createRule({
 		},
 		schema: []
 	},
-	defaultOptions: [],
-	create(context) {
-		return {
-			JSXElement(node: TSESTree.JSXElement) {
-				if (!isDBComponent(node.openingElement, 'DBTooltip')) return;
+	create(context: any) {
+		const checkTooltip = (node: any) => {
+			const openingElement = node.openingElement || node;
+			if (!isDBComponent(openingElement, 'DBTooltip')) return;
 
-				let parent: TSESTree.Node | undefined = node.parent;
-				while (parent) {
-					if (parent.type === 'JSXElement') {
-						if (isInteractiveElement(parent)) {
-							return;
-						}
+			let parent: any = node.parent;
+			while (parent) {
+				if (
+					parent.type === 'JSXElement' ||
+					parent.type === 'VElement'
+				) {
+					if (isInteractiveElement(parent)) {
+						return;
 					}
-					parent = parent.parent;
 				}
-
-				context.report({
-					node: node.openingElement,
-					messageId: 'requiresInteractive'
-				});
+				parent = parent.parent;
 			}
+
+			context.report({
+				node: openingElement,
+				messageId: 'requiresInteractive'
+			});
 		};
+
+		return defineTemplateBodyVisitor(
+			context,
+			{ VElement: checkTooltip, Element: checkTooltip },
+			{ JSXElement: checkTooltip }
+		);
 	}
-});
+};

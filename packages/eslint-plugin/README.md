@@ -8,6 +8,24 @@ ESLint plugin to validate correct usage of DB UX Design System components across
 npm install eslint @db-ux/eslint-plugin --save-dev
 ```
 
+**For Vue projects**, also install `vue-eslint-parser`:
+
+```shell
+npm install vue-eslint-parser --save-dev
+```
+
+**For Angular projects**, also install `@angular-eslint/template-parser`:
+
+```shell
+npm install @angular-eslint/template-parser --save-dev
+```
+
+**For React/TypeScript projects**, also install `@typescript-eslint/parser`:
+
+```shell
+npm install @typescript-eslint/parser --save-dev
+```
+
 ## Usage
 
 Add to your ESLint config:
@@ -19,6 +37,52 @@ import dbUx from "@db-ux/eslint-plugin";
 
 export default [
 	{
+		plugins: {
+			"db-ux": dbUx
+		},
+		rules: dbUx.configs.recommended.rules
+	}
+];
+```
+
+**For Vue projects**, configure the Vue parser:
+
+```js
+import dbUx from "@db-ux/eslint-plugin";
+import vueParser from "vue-eslint-parser";
+import tsParser from "@typescript-eslint/parser";
+
+export default [
+	{
+		files: ["**/*.vue"],
+		languageOptions: {
+			parser: vueParser,
+			parserOptions: {
+				parser: tsParser,
+				ecmaVersion: "latest",
+				sourceType: "module"
+			}
+		},
+		plugins: {
+			"db-ux": dbUx
+		},
+		rules: dbUx.configs.recommended.rules
+	}
+];
+```
+
+**For Angular projects**, configure the Angular template parser:
+
+```js
+import dbUx from "@db-ux/eslint-plugin";
+import angularTemplateParser from "@angular-eslint/template-parser";
+
+export default [
+	{
+		files: ["**/*.html"],
+		languageOptions: {
+			parser: angularTemplateParser
+		},
 		plugins: {
 			"db-ux": dbUx
 		},
@@ -40,6 +104,31 @@ export default [
 		rules: {
 			"db-ux/button-no-text-requires-tooltip": "error"
 		}
+	}
+];
+```
+
+**For React/TypeScript projects**, configure the TypeScript parser:
+
+```js
+import dbUx from "@db-ux/eslint-plugin";
+import tsParser from "@typescript-eslint/parser";
+
+export default [
+	{
+		files: ["**/*.ts", "**/*.tsx"],
+		languageOptions: {
+			parser: tsParser,
+			parserOptions: {
+				ecmaVersion: "latest",
+				sourceType: "module",
+				ecmaFeatures: { jsx: true }
+			}
+		},
+		plugins: {
+			"db-ux": dbUx
+		},
+		rules: dbUx.configs.recommended.rules
 	}
 ];
 ```

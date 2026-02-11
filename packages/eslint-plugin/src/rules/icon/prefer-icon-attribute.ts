@@ -1,11 +1,10 @@
-import type { TSESTree } from '@typescript-eslint/utils';
-import { ESLintUtils } from '@typescript-eslint/utils';
-import { getAttributeValue, isDBComponent } from '../../shared/utils.js';
-
-const createRule = ESLintUtils.RuleCreator(
-	(name) =>
-		`https://github.com/db-ux-design-system/core-web/blob/main/packages/eslint-plugin/README.md#${name}`
-);
+import {
+	createAngularVisitors,
+	defineTemplateBodyVisitor,
+	getAttributeValue,
+	isDBComponent
+} from '../../shared/utils.js';
+import { MESSAGES, MESSAGE_IDS } from '../../shared/constants.js';
 
 const COMPONENTS_WITH_ICON_ATTR = [
 	'DBInput',
@@ -23,57 +22,52 @@ const COMPONENTS_WITH_ICON_ATTR = [
 	'DBTag'
 ];
 
-export default createRule({
-	name: 'prefer-icon-attribute',
+export default {
 	meta: {
 		type: 'suggestion',
 		docs: {
-			description: 'Prefer icon attribute over DBIcon child component'
+			description: 'Prefer icon attribute over DBIcon child component',
+			url: 'https://github.com/db-ux-design-system/core-web/blob/main/packages/eslint-plugin/README.md#prefer-icon-attribute'
 		},
 		fixable: 'code',
 		messages: {
-			preferAttribute:
-				'Use icon attribute instead of DBIcon child in {{component}}'
+			[MESSAGE_IDS.ICON_PREFER_ATTRIBUTE]: MESSAGES.ICON_PREFER_ATTRIBUTE
 		},
 		schema: []
 	},
-	defaultOptions: [],
-	create(context) {
-		return {
-			JSXElement(node: TSESTree.JSXElement) {
-				const openingElement = node.openingElement;
+	create(context: any) {
+		const checkComponent = (node: any) => {
+			const openingElement = node.openingElement || node;
 
-				const component = COMPONENTS_WITH_ICON_ATTR.find((comp) =>
-					isDBComponent(openingElement, comp)
-				);
-				if (!component) return;
+			const component = COMPONENTS_WITH_ICON_ATTR.find((comp) =>
+				isDBComponent(openingElement, comp)
+			);
+			if (!component) return;
 
-				const iconChild = node.children.find(
-					(child) =>
-						child.type === 'JSXElement' &&
-						isDBComponent(child.openingElement, 'DBIcon')
-				) as TSESTree.JSXElement | undefined;
+			const iconChild = node.children?.find(
+				(child: any) =>
+					(child.type === 'JSXElement' ||
+						child.type === 'VElement') &&
+					isDBComponent(child.openingElement || child, 'DBIcon')
+			);
 
-				if (iconChild) {
-					const iconValue = getAttributeValue(
-						iconChild.openingElement,
-						'icon'
-					);
+			if (iconChild) {
+				const iconChildOpening = iconChild.openingElement || iconChild;
+				const iconValue = getAttributeValue(iconChildOpening, 'icon');
 
-					context.report({
-						node: iconChild,
-						messageId: 'preferAttribute',
-						data: { component },
-						fix(fixer) {
-							if (!iconValue || typeof iconValue !== 'string')
-								return null;
+				context.report({
+					node: iconChild,
+					messageId: MESSAGE_IDS.ICON_PREFER_ATTRIBUTE,
+					data: { component },
+					fix(fixer: any) {
+						if (!iconValue || typeof iconValue !== 'string')
+							return null;
 
-							const fixes = [];
+						const fixes = [];
+						fixes.push(fixer.remove(iconChild));
 
-							// Remove DBIcon child
-							fixes.push(fixer.remove(iconChild));
-
-							// Add icon attribute to parent
+						if (node.openingElement) {
+							// JSX
 							const lastAttr =
 								openingElement.attributes[
 									openingElement.attributes.length - 1
@@ -87,12 +81,42 @@ export default createRule({
 									` icon="${iconValue}"`
 								)
 							);
-
-							return fixes;
+						} else {
+							// Vue
+							const attrs = openingElement.startTag.attributes;
+							if (attrs.length > 0) {
+								const lastAttr = attrs[attrs.length - 1];
+								const insertPos = lastAttr.range[1];
+								fixes.push(
+									fixer.insertTextAfterRange(
+										[insertPos, insertPos],
+										` icon="${iconValue}"`
+									)
+								);
+							} else {
+								const insertPos =
+									openingElement.startTag.range[0] +
+									1 +
+									openingElement.rawName.length;
+								fixes.push(
+									fixer.insertTextAfterRange(
+										[insertPos, insertPos],
+										` icon="${iconValue}"`
+									)
+								);
+							}
 						}
-					});
-				}
+
+						return fixes;
+					}
+				});
 			}
 		};
+
+		return defineTemplateBodyVisitor(
+			context,
+			{ VElement: checkComponent, Element: checkComponent },
+			{ JSXElement: checkComponent }
+		);
 	}
-});
+};

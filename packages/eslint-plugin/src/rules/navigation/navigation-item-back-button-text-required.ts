@@ -1,45 +1,60 @@
-import type { TSESTree } from '@typescript-eslint/utils';
-import { ESLintUtils } from '@typescript-eslint/utils';
-import { getAttributeValue, isDBComponent } from '../../shared/utils.js';
+import {
+	createAngularVisitors,
+	defineTemplateBodyVisitor,
+	getAttributeValue,
+	isDBComponent
+} from '../../shared/utils.js';
+import { COMPONENTS, MESSAGES, MESSAGE_IDS } from '../../shared/constants.js';
 
-const createRule = ESLintUtils.RuleCreator(
-	(name) =>
-		`https://github.com/db-ux-design-system/core-web/blob/main/packages/eslint-plugin/README.md#${name}`
-);
-
-export default createRule({
-	name: 'navigation-item-back-button-text-required',
+export default {
 	meta: {
 		type: 'problem',
 		docs: {
 			description:
-				'Ensure DBNavigationItem has backButtonText for accessibility'
+				'Ensure DBNavigationItem has backButtonText for accessibility',
+			url: 'https://github.com/db-ux-design-system/core-web/blob/main/packages/eslint-plugin/README.md#navigation-item-back-button-text-required'
 		},
 		messages: {
-			missingBackButtonText:
-				'DBNavigationItem must have backButtonText attribute for accessibility'
+			[MESSAGE_IDS.NAVIGATION_ITEM_MISSING_BACK_BUTTON_TEXT]: MESSAGES.NAVIGATION_ITEM_MISSING_BACK_BUTTON_TEXT
 		},
 		schema: []
 	},
-	defaultOptions: [],
-	create(context) {
-		return {
-			JSXElement(node: TSESTree.JSXElement) {
-				if (!isDBComponent(node.openingElement, 'DBNavigationItem'))
-					return;
-
-				const backButtonText = getAttributeValue(
-					node.openingElement,
-					'backButtonText'
-				);
-
-				if (!backButtonText) {
-					context.report({
-						node: node.openingElement,
-						messageId: 'missingBackButtonText'
-					});
-				}
+	create(context: any) {
+		const angularHandler = (node: any, parserServices: any) => {
+			const backButtonText = getAttributeValue(node, 'backButtonText');
+			if (!backButtonText) {
+				const loc = parserServices.convertNodeSourceSpanToLoc(node.sourceSpan);
+				context.report({
+					loc,
+					messageId: MESSAGE_IDS.NAVIGATION_ITEM_MISSING_BACK_BUTTON_TEXT
+				});
 			}
 		};
+
+		const angularVisitors = createAngularVisitors(context, COMPONENTS.DBNavigationItem, angularHandler);
+		if (angularVisitors) return angularVisitors;
+
+		const checkNavigationItem = (node: any) => {
+			const openingElement = node.openingElement || node;
+			if (!isDBComponent(openingElement, COMPONENTS.DBNavigationItem)) return;
+
+			const backButtonText = getAttributeValue(
+				openingElement,
+				'backButtonText'
+			);
+
+			if (!backButtonText) {
+				context.report({
+					node: openingElement,
+					messageId: MESSAGE_IDS.NAVIGATION_ITEM_MISSING_BACK_BUTTON_TEXT
+				});
+			}
+		};
+
+		return defineTemplateBodyVisitor(
+			context,
+			{ VElement: checkNavigationItem, Element: checkNavigationItem },
+			{ JSXElement: checkNavigationItem }
+		);
 	}
-});
+};
