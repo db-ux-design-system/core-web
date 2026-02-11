@@ -1,0 +1,27 @@
+---
+name: PR project status
+
+permissions:
+  contents: read
+  pull-requests: write
+  repository-projects: write
+
+on:
+  pull_request:
+    types:
+      - assigned
+      - unassigned
+      - opened
+      - edited
+      - closed
+      - reopened
+      - synchronize
+      - converted_to_draft
+      - ready_for_review
+      - review_requested
+      - review_request_removed
+
+jobs:
+  auto-set-project-status:
+    uses: ./.github/workflows/99-auto-set-project-status.yml
+    secrets: inherit
