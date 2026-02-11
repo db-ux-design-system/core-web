@@ -47,6 +47,7 @@ jobs:
           ASSET_PASSWORD: ${{ secrets.ASSET_PASSWORD }}
           NEXT_PUBLIC_BASE_PATH: ${{ inputs.baseUrl }}
         run: |
+          pnpm run decode-db-theme-assets
           pnpm exec tsx scripts/md-resolve-svg.ts
           pnpm --filter=patternhub run build
           echo "path=${NEXT_PUBLIC_BASE_PATH}" >> $GITHUB_OUTPUT

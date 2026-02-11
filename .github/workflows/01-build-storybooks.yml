@@ -56,6 +56,7 @@ jobs:
           ASSET_PASSWORD: ${{ secrets.ASSET_PASSWORD }}
           BASE_URL: ${{ inputs.baseUrl }}
         run: |
+          pnpm run decode-db-theme-assets
           pnpm --filter=${{ inputs.storybook }} run build
 
       - name: ⏫ Upload ${{ inputs.storybook }}

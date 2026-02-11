@@ -44,7 +44,9 @@ jobs:
         env:
           ASSET_INIT_VECTOR: ${{ secrets.ASSET_INIT_VECTOR }}
           ASSET_PASSWORD: ${{ secrets.ASSET_PASSWORD }}
-        run: pnpm --filter=${{ inputs.showcase }} run build
+        run: |
+          pnpm run decode-db-theme-assets
+          pnpm --filter=${{ inputs.showcase }} run build
 
       - name: ⏫ Upload ${{ inputs.showcase }}
         uses: actions/upload-artifact@v6

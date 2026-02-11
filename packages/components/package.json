@@ -1,6 +1,6 @@
 {
   "name": "@db-ux/core-components",
-  "version": "4.4.1",
+  "version": "4.4.2",
   "type": "module",
   "description": "General technical components (styling, fonts and icons) out of DB UX Design System (Version 3)",
   "repository": {
@@ -60,7 +60,7 @@
     "nodemon": "3.1.11",
     "sass": "1.85.1",
     "sassdoc": "2.7.4",
-    "storybook": "10.2.4",
+    "storybook": "10.2.8",
     "tsx": "4.21.0"
   },
   "publishConfig": {
