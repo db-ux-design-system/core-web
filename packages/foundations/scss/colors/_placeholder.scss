@@ -28,7 +28,7 @@
 
 @mixin generate-color-placeholder($variant) {
 	%db-#{$variant}-variables {
-		/* stylelint-disable-next-line at-rule-prelude-no-invalid,layer-name-pattern */
+
 		// bg basic
 		--db-adaptive-bg-basic-level-1-default: var(
 			--db-#{$variant}-bg-basic-level-1-default
@@ -204,7 +204,7 @@
 	}
 }
 
-// stylelint-disable-next-line layer-name-pattern
+/* stylelint-disable-next-line at-rule-prelude-no-invalid,layer-name-pattern */
 @layer #{layer.$layer-variables} {
 	@each $variant in variables.$variants {
 		@include generate-color-placeholder($variant);
