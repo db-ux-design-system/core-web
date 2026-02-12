@@ -31,9 +31,10 @@ jobs:
         run: |
           npm run nuxt:prepare --workspace=nuxt-showcase
           npm run build --workspace=@db-ux/core-stylelint
-          npm run build --workspace=@db-ux/core-eslint-plugin
           npm run lint
 
       - name: ⚡ Run Test
         if: ${{ matrix.command == 'test' }}
-        run: npm run test
+        run: |
+          npm run build --workspace=@db-ux/core-eslint-plugin
+          npm run test
