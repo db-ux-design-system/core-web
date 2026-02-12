@@ -935,7 +935,6 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 					form={props.form}
 					name={props.name}
 					multiple={getBoolean(props.multiple, 'multiple')}
-					disabled={getBoolean(props.disabled, 'disabled')}
 					required={getBoolean(props.required, 'required')}
 					onChange={(event) => satisfyReact(event)}>
 					<Show when={props.options?.length}>
