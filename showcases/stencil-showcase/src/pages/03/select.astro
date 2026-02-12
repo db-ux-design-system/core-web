@@ -13,15 +13,18 @@ import { DBSelect } from '@components';
 		>{
 			(variant: DefaultComponentVariants) => (
 				<VariantList {...variant}>
-					{({ options,id, ...props }: DBSelectProps) => {
+					{({ options,id,value, ...props }: DBSelectProps) => {
 						const randomId = `select-${Math.random().toString().substring(2)}`;
 						return (
 							<>
 								<DBSelect name={randomId} {...props} />
-								<script define:vars={{ id: randomId, options }} is:inline>
+								<script define:vars={{ id: randomId, options, value }} is:inline>
 									document.addEventListener('DOMContentLoaded', () => {
 										const select = document.querySelector(`db-select[name="${id}"]`);
-										select.options = options;
+										if (select){
+											select.options = options;
+											select.value = value;
+										}
 									});
 								</script>
 							</>

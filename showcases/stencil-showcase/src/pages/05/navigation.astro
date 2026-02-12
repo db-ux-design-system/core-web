@@ -43,6 +43,17 @@ import { DBNavigation, DBNavigationItem, DBInfotext } from '@components';
 										<a href="#">Navi-Item 3</a>
 									</DBNavigationItem>
 								</DBNavigation>
+								<script is:inline>
+									document.addEventListener('DOMContentLoaded', () => {
+										const anchors = document.querySelectorAll('a[href="#"][hidden]');
+
+										for (let anchor of anchors){
+											new Promise(() => setTimeout(()=>{
+												anchor.hidden = false;console.log(anchor)
+											}, 1))
+										}
+									});
+								</script>
 							</>
 						);
 					}}

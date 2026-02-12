@@ -1,16 +1,17 @@
 ---
+import { DBInput } from '@components';
 import FormWrapper from './FormWrapper.astro';
 ---
 
 <FormWrapper value="test1" id="input">
-	<db-input
+	<DBInput
 		label="Input"
 		placeholder="Placeholder"
 		message="Description"
 		icon="x_placeholder"
 		name="input-name"
 		value="test1"
-		data-id="input"></db-input>
+		data-id="input" />
 </FormWrapper>
 
 <script>
