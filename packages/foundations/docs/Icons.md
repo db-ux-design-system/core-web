@@ -2,12 +2,12 @@
 
 - We use icon fonts as **woff2** files for all our icons.
 - We auto generate these files out of `.svg` files.
-- A lot of our [components](../../components/readme) have an `icon` property you can pass in.
+- A lot of our [components](../../components/README.md) have an `icon` property you can pass in.
 - Use the CSS Custom Property `--db-icon-color` to overwrite the icons color.
 
 ## How to include icons
 
-For **CSS**, **SCSS** and **Tailwind** you don't have to include a specific file, just follow the documentation for [foundations](../../foundations/readme).
+For **CSS**, **SCSS** and **Tailwind** you don't have to include a specific file, just follow the documentation for [foundations](../README.md).
 
 If you only want to use the icons from this library and not the full CSS, take a look at the "Edge case: Using only icons without the full CSS" section of this page.
 
