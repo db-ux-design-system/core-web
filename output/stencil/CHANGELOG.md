@@ -1,5 +1,11 @@
 # @db-ux/wc-core-components
 
+## 4.4.3
+
+### Patch Changes
+
+- fix: issue with floating-components (tooltip, popover, etc.) inside other absolute or fixed elements - [see commit e6d934f](https://github.com/db-ux-design-system/core-web/commit/e6d934f0c0a4af0b6dd57f81773831a2431b94e1)
+
 ## 4.4.2
 
 ### Patch Changes
