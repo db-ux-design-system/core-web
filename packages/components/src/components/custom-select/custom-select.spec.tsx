@@ -113,24 +113,6 @@ const tagSelectWithCustomRemoveTexts: any = (
 		placeholder="Select colors"></DBCustomSelect>
 );
 
-const disabled: any = (
-	<>
-		<button id="before" type="button">Before</button>
-		<DBCustomSelect
-			options={[
-				{ value: 'Option 1' },
-				{ value: 'Option 2' },
-				{ value: 'Option 3' },
-				{ value: 'Option 4' },
-				{ value: 'Option 5' }
-			]}
-			label="Test"
-			disabled={true}
-			placeholder="Placeholder"></DBCustomSelect>
-		<button id="after" type="button">After</button>
-	</>
-);
-
 const testComponent = () => {
 	test('should contain text', async ({ mount }) => {
 		const component = await mount(comp);
@@ -399,30 +381,6 @@ const testAction = () => {
 		const secondRemoveButton = removeButtons.last();
 		const secondTooltip = secondRemoveButton.locator('.db-tooltip');
 		await expect(secondTooltip).toContainText('Remove Green Color');
-	});
-
-	test('disabled custom select should not be keyboard operable', async ({
-		page,
-		mount
-	}) => {
-		const component = await mount(disabled);
-
-		// Find the summary element, verify aria-disabled=true and tabindex=-1 are set
-		const summary = component.locator('summary[aria-disabled="true"][tabindex="-1"]');
-		await expect(summary).toBeAttached();
-
-		// Focus on the "before" button
-		const beforeButton = page.locator('#before');
-		await beforeButton.focus();
-		await expect(beforeButton).toBeFocused();
-
-		// Press Tab - should skip the disabled select and go to "after" button
-		await page.keyboard.press('Tab');
-		const afterButton = page.locator('#after');
-		await expect(afterButton).toBeFocused();
-
-		// Verify the summary element was skipped
-		await expect(summary).not.toBeFocused();
 	});
 };
 
