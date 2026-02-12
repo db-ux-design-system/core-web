@@ -1185,8 +1185,8 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 					size="small"
 					name={state._id}
 					form={state._id}
-					onClick={(event) => state.handleClearAll(event)}
-					disabled={getBoolean(props.disabled, 'disabled')}>
+					disabled={getBoolean(props.disabled, 'disabled')}
+					onClick={(event) => state.handleClearAll(event)}>
 					{props.clearSelectionText}
 					<DBTooltip placement="top">
 						{props.clearSelectionText}
