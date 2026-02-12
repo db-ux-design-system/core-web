@@ -41,7 +41,7 @@
 		"**/packages/components/scripts/post-build/components.ts",
 		"**/packages/components/src/components/**/*.spec.tsx",
 		"**/packages/components/src/components/**/index.html",
-		"**/packages/components/src/shared/examples/_icons.arg.types.ts",
+		"**/packages/components/src/**/*.arg.types.ts",
 		"**/packages/components/src/components/checkbox/checkbox.lite.tsx",
 		"**/packages/components/src/components/notification/notification.lite.tsx",
 		"**/packages/components/src/components/radio/radio.lite.tsx",
