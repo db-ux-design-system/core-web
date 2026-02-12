@@ -8,17 +8,11 @@
 	.db-tab-item {
 		@include db-puls.set-db-puls-horizontal;
 
-		&:has([aria-selected="true"]) {
+		&[aria-selected="true"] {
 			@include db-puls.show-db-puls-horizontal;
 
 			&::after {
-				inset-block-end: calc(
-					-1 *
-						(
-							#{variables.$db-spacing-fixed-2xs} +
-								#{variables.$db-border-width-xs}
-						)
-				);
+				inset-block-end: calc(-1 * var(--db-tabs-line-gap, 0px)) !important;
 			}
 		}
 	}
@@ -29,11 +23,12 @@
 		@include db-puls.set-db-puls-vertical;
 
 		&::after {
-			inset-inline-start: 0;
-			z-index: -2;
+			inset-inline-start: calc(-1 * var(--db-tabs-line-gap-vertical, 0px)) !important;
+			inset-inline-end: auto !important;
+			z-index: 5;
 		}
 
-		&:has([aria-selected="true"]) {
+		&[aria-selected="true"] {
 			@include db-puls.show-db-puls-vertical;
 		}
 	}
@@ -46,267 +41,82 @@
 	position: absolute;
 }
 
-@mixin angular-button-workaround() {
-	> .db-button,
-	&:is(.db-button) {
-		@content;
-	}
-}
-
 .db-tabs {
 	$db-tabs-z-index-tab-list: 20;
-	$db-tabs-z-index-button-background: 21;
-	$db-tabs-z-index-button: 22;
 
 	@include helpers.display(flex);
-
 	inline-size: 100%;
 	position: relative;
 
 	.db-tab-panel {
-		padding: 0 variables.$db-spacing-fixed-xs;
+		padding: variables.$db-spacing-fixed-2xs variables.$db-spacing-fixed-xs 0 variables.$db-spacing-fixed-xs;
+		position: relative;
+		z-index: 1;
 	}
 
 	.db-tab-list {
-		max-inline-size: 100%;
+		position: relative;
 		z-index: $db-tabs-z-index-tab-list;
+
+		db-tab-item, dbtabitem { display: contents; }
 	}
 
-	.db-tab-item {
-		@extend %db-puls;
-	}
-
-	/*
-	Variant Orientation HORIZONTAL
- 	*/
 	&:not([data-orientation="vertical"]) {
 		flex-flow: column wrap;
 
-		.db-tab-panel {
-			inline-size: 100%;
-		}
-
 		.db-tab-list {
-			/* horizontal track for pulse */
+			--db-tabs-line-gap: calc(#{variables.$db-spacing-fixed-2xs} + 8px);
+			padding-block-end: var(--db-tabs-line-gap);
+			@extend %horizontal-pulse;
+
 			&::before {
 				@extend %pulse-track;
-
+				inset-block-end: 0;
+				inset-block-start: auto;
 				block-size: variables.$db-border-width-xs;
-				inset-inline: variables.$db-spacing-fixed-xs;
-
-				/* top position equals sum of: margin xs + padding xs + line-height + padding xs + margin 2xs */
-				inset-block-start: calc(
-					3 * #{variables.$db-spacing-fixed-xs} +
-						#{variables.$db-spacing-fixed-2xs} +
-						#{form-components.$font-size-height}
-				);
+				inset-inline: 0;
+				z-index: 1;
 			}
 
-			> ul {
-				@extend %horizontal-pulse;
-
+			&[role="tablist"], .db-tab-list {
+				display: flex;
+				align-items: flex-end;
 				overflow: auto hidden;
 				inline-size: 100%;
-
-				.db-tab-item {
-					margin-block: variables.$db-spacing-fixed-xs
-						calc(
-							2 * #{variables.$db-spacing-fixed-2xs} +
-								#{variables.$db-border-width-xs}
-						);
-				}
-
-				db-tab-item,
-				dbtabitem {
-					&:first-of-type .db-tab-item {
-						margin-inline-start: variables.$db-spacing-fixed-xs;
-					}
-
-					&:last-of-type .db-tab-item {
-						margin-inline-end: variables.$db-spacing-fixed-xs;
-					}
-				}
-
-				&:not(:has(db-tab-item, dbtabitem)) {
-					.db-tab-item {
-						&:first-of-type {
-							margin-inline-start: variables.$db-spacing-fixed-xs;
-						}
-
-						&:last-of-type {
-							margin-inline-end: variables.$db-spacing-fixed-xs;
-						}
-					}
-				}
 			}
 		}
 	}
 
-	/*
-	Variant Orientation VERTICAL
-	 */
 	&[data-orientation="vertical"] {
 		flex-direction: row;
 
-		.db-tab-panel {
-			padding: variables.$db-spacing-fixed-xs 0;
-			flex-grow: 1;
-		}
-
 		.db-tab-list {
-			$width: var(
-				--db-tab-list-vertical-width,
-				#{variables.$db-sizing-3xl}
-			);
+			--db-tabs-line-gap-vertical: calc(#{variables.$db-spacing-fixed-xs} + 13px);
 
-			/*
-			min and nominal size must both be set to ensure
-			- min-inline-size: tab-list is not displayed narrower than defined
-			- max-inline-size: tab-list is not displayed wider than defined
-			 */
-			min-inline-size: $width;
-			max-inline-size: $width;
+			[data-density="expressive"] & {
+				--db-tabs-line-gap-vertical: calc(var(--db-spacing-fixed-expressive-xs) + 13px);
+			}
 
-			/* horizontal space to the tab panels */
+			min-inline-size: variables.$db-sizing-3xl;
+			max-inline-size: variables.$db-sizing-3xl;
+			padding-inline-start: var(--db-tabs-line-gap-vertical);
 			padding-inline-end: variables.$db-spacing-fixed-xs;
-
-			/* ensures that tab-list (track) is only as high as all the tab-items together if open tab-panel is higher */
 			margin-block-end: auto;
+			@extend %vertical-pulse;
 
 			&::before {
 				@extend %pulse-track;
-
+				display: block !important;
+				inset-inline-start: 0;
+				inset-block: variables.$db-spacing-fixed-xs;
 				inline-size: variables.$db-border-width-xs;
-				inset-block: variables.$db-spacing-fixed-xs;
-				inset-inline-start: 0;
+				z-index: 1;
 			}
 
-			> ul {
-				@extend %vertical-pulse;
-
+			&[role="tablist"], .db-tab-list {
+				display: flex;
 				flex-direction: column;
-				block-size: 100%;
 				align-items: flex-start;
-
-				&:not(:has(db-tab-item, dbtabitem)) {
-					.db-tab-item {
-						&:first-of-type {
-							margin-block-start: variables.$db-spacing-fixed-xs;
-						}
-
-						&:last-of-type {
-							margin-block-end: variables.$db-spacing-fixed-xs;
-						}
-					}
-				}
-			}
-
-			.db-tab-item {
-				inline-size: 100%;
-				max-inline-size: 100%;
-
-				.db-tab-button {
-					position: relative;
-					text-align: start;
-					justify-content: flex-start;
-					inline-size: 100%;
-				}
-			}
-		}
-
-		.db-tab-item {
-			$padding-start-calc: calc(
-				#{variables.$db-border-width-xs} +
-					#{variables.$db-spacing-fixed-2xs}
-			);
-
-			padding-inline-start: $padding-start-calc;
-		}
-
-		db-tab-item,
-		dbtabitem {
-			&:first-of-type .db-tab-item {
-				margin-block-start: variables.$db-spacing-fixed-xs;
-			}
-
-			&:last-of-type .db-tab-item {
-				margin-block-end: variables.$db-spacing-fixed-xs;
-			}
-		}
-	}
-
-	&[data-width="full"] {
-		.db-tab-list {
-			inline-size: 100%;
-		}
-
-		.db-tab-item,
-		.db-tab-item .db-tab-button {
-			inline-size: 100%;
-		}
-
-		&[data-content-alignment="center"] {
-			.db-tab-item .db-tab-button {
-				text-align: center;
-				justify-content: center;
-			}
-		}
-	}
-
-	&[data-scroll-behavior="arrows"] {
-		.db-tab-list > ul::-webkit-scrollbar {
-			display: none;
-		}
-
-		&:has(.tabs-scroll-left)::before {
-			content: "";
-		}
-
-		&:has(.tabs-scroll-right)::after {
-			content: "";
-		}
-
-		&:has(.db-button)::before,
-		&:has(.db-button)::after {
-			position: absolute;
-			z-index: $db-tabs-z-index-button-background;
-			background-color: colors.$db-adaptive-bg-basic-level-1-default;
-			inline-size: variables.$db-sizing-md;
-			block-size: calc(
-				#{variables.$db-spacing-fixed-sm} + #{variables.$db-sizing-md}
-			);
-			flex: 0 0 auto;
-		}
-
-		&:has(.db-button)::before {
-			inset-inline-start: 0;
-		}
-
-		&:has(.db-button)::after {
-			inset-inline-end: 0;
-		}
-
-		/*
-		 * Scroll left / right buttons
-		 */
-		.tabs-scroll-left {
-			@include angular-button-workaround {
-				inset-inline-start: 0;
-			}
-		}
-
-		.tabs-scroll-right {
-			@include angular-button-workaround {
-				inset-inline-end: 0;
-			}
-		}
-
-		.tabs-scroll-left,
-		.tabs-scroll-right {
-			@include angular-button-workaround {
-				position: absolute;
-				z-index: $db-tabs-z-index-button;
-				inset-block: variables.$db-spacing-fixed-xs;
 			}
 		}
 	}

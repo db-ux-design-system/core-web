@@ -105,6 +105,10 @@ export default function DBTabItem(props: DBTabItemProps) {
 				attributeFilter: ['aria-selected']
 			});
 			state._observer = observer;
+
+			_ref.addEventListener('aria-selected-changed', (event: any) => {
+				state.internalActive = event.detail.selected;
+			});
 		}
 	});
 
@@ -124,10 +128,20 @@ export default function DBTabItem(props: DBTabItemProps) {
 	// Manually sync DOM attributes
 	onUpdate(() => {
 		if (_ref) {
+			const isActive =
+				props.active !== undefined
+					? getBoolean(props.active)
+					: state.internalActive;
+			const ariaSelected = isActive ? 'true' : 'false';
+
+			if (_ref?.getAttribute('aria-selected') !== ariaSelected) {
+				_ref?.setAttribute('aria-selected', ariaSelected);
+			}
+
 			const tabIndexStr =
 				props.tabIndex !== undefined
 					? String(props.tabIndex)
-					: state.internalActive
+					: isActive
 						? '0'
 						: '-1';
 
@@ -152,54 +166,52 @@ export default function DBTabItem(props: DBTabItemProps) {
 				}
 			}
 		}
-	}, [state.internalActive, props.disabled, props.tabIndex]);
+	}, [state.internalActive, props.disabled, props.tabIndex, props.active]);
 
 	return (
-		<li class={cls('db-tab-item', props.className)} role="presentation">
-			<button
-				ref={_ref}
-				type="button"
-				role="tab"
-				// suppresses native browser tooltips inherited from parent elements
-				title=""
-				aria-label={getBoolean(props.noText) ? props.label : undefined}
-				aria-selected={
-					(
-						props.active !== undefined
-							? getBoolean(props.active)
-							: state.internalActive
-					)
-						? 'true'
-						: 'false'
-				}
-				aria-controls={props.ariaControls}
-				disabled={getBoolean(props.disabled) ? true : undefined}
-				tabIndex={+(props.tabIndex ?? (state.internalActive ? 0 : -1))}
-				id={props.id}
-				class="db-tab-button"
-				data-active={
+		<button
+			ref={_ref}
+			type="button"
+			role="tab"
+			class={cls('db-tab-item', props.className)}
+			// suppresses native browser tooltips inherited from parent elements
+			title=""
+			aria-label={getBoolean(props.noText) ? props.label : undefined}
+			aria-selected={
+				(
 					props.active !== undefined
 						? getBoolean(props.active)
 						: state.internalActive
-				}
-				data-icon={props.showIcon ? props.icon : undefined}
-				data-icon-after={
-					props.showIconTrailing ? props.iconTrailing : undefined
-				}
-				onClick={(event) => state.handleClick(event)}>
-				<Show when={!props.noText}>
-					{/* wrapper needed for accurate width measurement via refs */}
-					<span ref={_labelRef} class="db-tab-label">
-						<Show when={props.label}>{props.label}</Show>
-						<Show when={!props.label}>
-							<Slot />
-						</Show>
-					</span>
-				</Show>
-				<Show when={state.isTruncated && state.tooltipText}>
-					<DBTooltip placement="right">{state.tooltipText}</DBTooltip>
-				</Show>
-			</button>
-		</li>
+				)
+					? 'true'
+					: 'false'
+			}
+			aria-controls={props.ariaControls}
+			disabled={getBoolean(props.disabled) ? true : undefined}
+			tabIndex={+(props.tabIndex ?? (state.internalActive ? 0 : -1))}
+			id={props.id}
+			data-active={
+				props.active !== undefined
+					? getBoolean(props.active)
+					: state.internalActive
+			}
+			data-icon={props.showIcon ? props.icon : undefined}
+			data-icon-after={
+				props.showIconTrailing ? props.iconTrailing : undefined
+			}
+			onClick={(event) => state.handleClick(event)}>
+			<Show when={!props.noText}>
+				{/* wrapper needed for accurate width measurement via refs */}
+				<span ref={_labelRef} class="db-tab-label">
+					<Show when={props.label}>{props.label}</Show>
+					<Show when={!props.label}>
+						<Slot />
+					</Show>
+				</span>
+			</Show>
+			<Show when={state.isTruncated && state.tooltipText}>
+				<DBTooltip placement="right">{state.tooltipText}</DBTooltip>
+			</Show>
+		</button>
 	);
 }

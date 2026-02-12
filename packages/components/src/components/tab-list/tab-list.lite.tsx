@@ -1,13 +1,7 @@
-import {
-	useDefaultProps,
-	useMetadata,
-	useRef,
-	useStore
-} from '@builder.io/mitosis';
+import { useDefaultProps, useRef, useStore } from '@builder.io/mitosis';
 import { cls, uuid } from '../../utils';
 import { DBTabListProps, DBTabListState } from './model';
 
-useMetadata({});
 useDefaultProps<DBTabListProps>({});
 
 export default function DBTabList(props: DBTabListProps) {
@@ -20,13 +14,11 @@ export default function DBTabList(props: DBTabListProps) {
 		<div
 			ref={_ref}
 			id={state._id}
-			class={cls('db-tab-list', props.className)}>
-			<ul
-				role="tablist"
-				aria-label={props.ariaLabel}
-				aria-labelledby={props.ariaLabelledby}>
-				{props.children}
-			</ul>
+			class={cls('db-tab-list', props.className)}
+			role="tablist"
+			aria-label={props.ariaLabel}
+			aria-labelledby={props.ariaLabelledby}>
+			{props.children}
 		</div>
 	);
 }

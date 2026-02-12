@@ -1,18 +1,19 @@
 @use "@db-ux/core-foundations/build/styles/variables";
+@use "@db-ux/core-foundations/build/styles/fonts/font-sizes";
 @use "../../styles/internal/scrollbar";
 
 .db-tab-list {
 	@extend %db-overwrite-font-size-md;
+	@extend %scrollbar;
 
 	position: relative;
+	display: flex;
+	gap: variables.$db-spacing-fixed-sm;
+	scroll-behavior: smooth;
+	padding: 0;
+	margin: 0;
 
-	> ul {
-		@extend %scrollbar;
-
-		display: flex;
-		gap: variables.$db-spacing-fixed-sm;
-		scroll-behavior: smooth;
-		padding: 0;
-		margin: 0;
+	&[role="tablist"] {
+		overflow: visible;
 	}
 }

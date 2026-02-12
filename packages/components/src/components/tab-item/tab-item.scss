@@ -1,112 +1,39 @@
 @use "@db-ux/core-foundations/build/styles/variables";
 @use "@db-ux/core-foundations/build/styles/colors";
-@use "@db-ux/core-foundations/build/styles/icons";
 @use "@db-ux/core-foundations/build/styles/helpers";
-@use "../../styles/internal/component";
 @use "../../styles/internal/db-puls";
-@use "../../styles/internal/form-components";
-
-$with-icon-padding-calc: calc(
-	#{variables.$db-spacing-fixed-xs} + #{variables.$db-spacing-fixed-sm} +
-		#{form-components.$font-size-height}
-);
 
 .db-tab-item {
+	@extend %db-puls;
 	position: relative;
+	background-color: colors.$db-adaptive-bg-basic-transparent-full-default;
+	padding-block: var(--db-tabs-item-padding, #{variables.$db-spacing-fixed-xs});
+	padding-inline: variables.$db-spacing-fixed-xs;
+	overflow: visible;
 
-	@include helpers.display(inline-flex);
-
-	list-style-type: "";
+	@include helpers.display(flex);
+	align-items: center;
+	justify-content: center;
+	white-space: nowrap;
+	border: 0;
 	border-radius: variables.$db-border-radius-sm;
-	inline-size: 100%;
+	cursor: pointer;
+	font-family: inherit;
+	color: inherit;
 
-	&:has(button:disabled) {
-		opacity: variables.$db-opacity-md;
+	&[aria-selected="true"],
+	&[data-active="true"] {
+		font-weight: 700;
 	}
 
-	.db-tab-button {
-		background-color: colors.$db-adaptive-bg-basic-transparent-full-default;
-		padding: variables.$db-spacing-fixed-xs;
+	&:disabled {
+		opacity: variables.$db-opacity-md;
+		cursor: initial;
+	}
 
-		@include helpers.display(flex);
-
-		align-items: center;
-		justify-content: center;
-		gap: variables.$db-spacing-fixed-xs;
-		white-space: nowrap;
-		border: 0;
-		border-radius: variables.$db-border-radius-sm;
-		cursor: pointer;
-		appearance: none;
-		font-family: inherit;
-		font-size: inherit;
-		color: inherit;
-		inline-size: 100%;
-		position: relative;
-		overflow: visible;
-
-		@include helpers.hover {
-			&:not(:disabled) {
-				background-color: colors.$db-adaptive-bg-basic-transparent-full-hovered;
-				z-index: 100;
-			}
-
-			&:disabled {
-				cursor: initial;
-			}
-		}
-
-		&[aria-selected="true"],
-		&[data-active="true"] {
-			font-weight: 700;
-		}
-
-		.db-tab-label {
-			display: block;
-			overflow: hidden;
-			text-overflow: ellipsis;
-			white-space: nowrap;
-			min-inline-size: 0;
-			flex-grow: 1;
-		}
-
-		.db-tooltip {
-			/* We need !important to override the inline styles set by the tooltip's JavaScript. This forces the
-			   tooltip to align relative to the button instead of using the incorrect JS-calculated position. */
-			position: absolute !important;
-			inset: 50% auto auto 100% !important;
-			transform: translate(8px, -50%) !important;
-			inline-size: max-content;
-		}
-
-		&:is([data-no-text], [data-no-text="true"]) {
-			@include icons.is-icon-text-replace;
-
-			padding: 0;
-			justify-content: center;
-			inline-size: calc(
-				#{$with-icon-padding-calc} - #{variables.$db-spacing-fixed-2xs}
-			);
-			block-size: calc(
-				#{form-components.$font-size-height} +
-					#{variables.$db-spacing-fixed-xs}
-			);
-		}
-
-		&:focus-visible {
-			outline: none;
-			box-shadow: none;
-
-			&::before {
-				@extend %focus-placeholder;
-
-				content: "";
-				position: absolute;
-				inset: 0;
-				border-radius: variables.$db-border-radius-sm;
-				z-index: 10;
-				pointer-events: none;
-			}
+	@include helpers.hover {
+		&:not(:disabled) {
+			background-color: colors.$db-adaptive-bg-basic-transparent-full-hovered;
 		}
 	}
 }
