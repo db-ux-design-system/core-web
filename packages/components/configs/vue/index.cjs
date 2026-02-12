@@ -1,5 +1,6 @@
 const onClickPlugin = require('../plugins/on-click.cjs');
 const defineOptionsPlugin = require('../plugins/vue/define-options.cjs');
+const useIdPlugin = require('../plugins/useId.cjs');
 const slotsPlugin = require('../plugins/vue/slots.cjs');
 
 /**
@@ -8,5 +9,5 @@ const slotsPlugin = require('../plugins/vue/slots.cjs');
 module.exports = {
 	typescript: true,
 	api: 'composition',
-	plugins: [onClickPlugin, defineOptionsPlugin, slotsPlugin]
+	plugins: [useIdPlugin, onClickPlugin, defineOptionsPlugin, slotsPlugin]
 };

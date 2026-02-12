@@ -61,8 +61,6 @@
 		"**/showcases/patternhub/generated.js",
 		"**/showcases/react-showcase/src/components/checkbox/index.tsx",
 		"**/showcases/react-showcase/src/components/notification/index.tsx",
-		"**/showcases/react-showcase/src/components/notification/index.tsx",
-		"**/showcases/react-showcase/src/components/radio/index.tsx",
 		"**/showcases/react-showcase/src/components/radio/index.tsx",
 		"**/showcases/shared/*.json",
 		"**/showcases/vue-showcase/src/components/form/Form.vue",

@@ -9,6 +9,8 @@
 
 For **CSS**, **SCSS** and **Tailwind** you don't have to include a specific file, just follow the documentation for [foundations](../../foundations/readme).
 
+If you only want to use the icons from this library and not the full CSS, take a look at the "Edge case: Using only icons without the full CSS" section of this page.
+
 ### How to use
 
 We're providing an [overview for all of our icons](./overview).
@@ -81,7 +83,9 @@ If you have custom icons and want to use them for foundations and/or in componen
 
 [More information](./CustomIcons.md)
 
-## TypeScript Autocomplete
+## Additional functionality
+
+### TypeScript Autocomplete
 
 To get TypeScript autocomplete you need to include a `*.d.ts` file, where you add some icons to the whitelabel base icons:
 
@@ -126,3 +130,30 @@ declare module "@db-ux/core-foundations" {
 	}
 }
 ```
+
+### Edge case: Using only icons without the full CSS
+
+If you want to use only the icons from this library without including the complete CSS, you can copy or reference just the icon-related files:
+
+```css
+@import "@db-ux/core-foundations/build/styles/defaults/default-icons.css";
+@import "@db-ux/db-theme-icons/build/styles/default-font.css";
+@import "@db-ux/db-theme-icons/build/styles/rollup.css";
+```
+
+or
+
+```bash
+cp "node_modules/@db-ux/core-foundations/build/styles/defaults/default-icons.css" …;
+cp "node_modules/@db-ux/db-theme-icons/build/styles/default-font.css" …;
+cp "node_modules/@db-ux/db-theme-icons/build/styles/relative.css" …;
+```
+
+You need to copy or reference the correct `.css` file out of your project. There are multiple files depending on the bundler you use:
+
+- `relative.css`: No bundler (as shown in the previous code block)
+- `absolute.css`: No bundler
+- `rollup.css`: vite, rollup
+- `webpack.css`: webpack
+
+**Important for non-bundlers usage:** If you're moving `relative.css` CSS file to your project, you need to copy the `fonts` folder from `node_modules/@db-ux/db-theme-icons/build/fonts` to the same directory next to the folder where you store the `relative.css` file (e.g., next to your `styles` folder), because we're using the reference to e.g. `src: url("../fonts/default_12/db.woff2")` out of the `relative.css` CSS file.
