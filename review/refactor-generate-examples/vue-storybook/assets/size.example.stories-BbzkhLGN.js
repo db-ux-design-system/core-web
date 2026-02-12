@@ -1,0 +1,36 @@
+import{_ as r}from"./link-B8BfZg0m.js";import"./iframe-BqCYe9gC.js";import"./preload-helper-_n2GBM2K.js";import"./index-B7howPqP.js";const{fn:i}=__STORYBOOK_MODULE_TEST__,c={title:"Components/DBLink/Size",component:r,parameters:{layout:"centered"},tags:["autodocs"],argTypes:{href:{control:"text"},variant:{control:"select",options:["adaptive","brand","inline"]},disabled:{control:"boolean"},size:{control:"select",options:["medium","small"]},content:{control:"select",options:["external","internal"]},showIcon:{control:"boolean"},wrap:{control:"boolean"},text:{control:"text"},target:{control:"select",options:["_self","_blank","_parent","_top"]},rel:{control:"text"},hreflang:{control:"text"},referrerPolicy:{control:"select",options:["no-referrer","no-referrer-when-downgrade","origin","origin-when-cross-origin","same-origin","strict-origin","strict-origin-when-cross-origin","unsafe-url"]},role:{control:"text"},id:{control:"text"},autofocus:{control:"boolean"},onClick:{action:"onClick"}}},n={args:{href:"#",text:"(Default) Medium",default:""},render:e=>({components:{DBLink:r},setup(){return{args:e}},template:`<DBLink v-bind="args"   >${e.default}</DBLink>`})},t={args:{href:"#",size:"small",text:"Small",default:""},render:e=>({components:{DBLink:r},setup(){return{args:e}},template:`<DBLink v-bind="args"   >${e.default}</DBLink>`})};n.parameters={...n.parameters,docs:{...n.parameters?.docs,source:{originalSource:`{
+  args: {
+    "href": "#",
+    "text": "(Default) Medium",
+    "default": \`\`
+  },
+  render: (args: any) => ({
+    components: {
+      DBLink
+    },
+    setup() {
+      return {
+        args
+      };
+    },
+    template: \`<DBLink v-bind="args"   >\${args.default}</DBLink>\`
+  })
+}`,...n.parameters?.docs?.source}}};t.parameters={...t.parameters,docs:{...t.parameters?.docs,source:{originalSource:`{
+  args: {
+    "href": "#",
+    "size": "small",
+    "text": "Small",
+    "default": \`\`
+  },
+  render: (args: any) => ({
+    components: {
+      DBLink
+    },
+    setup() {
+      return {
+        args
+      };
+    },
+    template: \`<DBLink v-bind="args"   >\${args.default}</DBLink>\`
+  })
+}`,...t.parameters?.docs?.source}}};const m=["DefaultMedium","Small"];export{n as DefaultMedium,t as Small,m as __namedExportsOrder,c as default};
