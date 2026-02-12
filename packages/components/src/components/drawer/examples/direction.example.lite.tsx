@@ -6,7 +6,10 @@ import { StorybookDrawerArgTypes } from './_drawer.arg.types';
 useMetadata({
 	storybookTitle: 'Direction',
 	storybookNames: ['(Default) Right', 'Left', 'Up', 'Down'],
-	storybookArgTypes: StorybookDrawerArgTypes
+	storybookArgTypes: StorybookDrawerArgTypes,
+	storybookOverwriteArgs: {
+		open: false
+	}
 });
 
 export default function DrawerDirection() {
@@ -15,7 +18,9 @@ export default function DrawerDirection() {
 	return (
 		<Fragment>
 			<div>
-				<DBButton onClick={() => setOpenIndex(0)}>
+				<DBButton
+					data-sb-replace="Open DBDrawer by switching open property"
+					onClick={() => setOpenIndex(0)}>
 					Open: (Default) Right
 				</DBButton>
 				<DBDrawer
@@ -25,7 +30,11 @@ export default function DrawerDirection() {
 				</DBDrawer>
 			</div>
 			<div>
-				<DBButton onClick={() => setOpenIndex(1)}>Open: Left</DBButton>
+				<DBButton
+					data-sb-replace="Open DBDrawer by switching open property"
+					onClick={() => setOpenIndex(1)}>
+					Open: Left
+				</DBButton>
 				<DBDrawer
 					direction="left"
 					open={openIndex === 1}
@@ -34,7 +43,11 @@ export default function DrawerDirection() {
 				</DBDrawer>
 			</div>
 			<div>
-				<DBButton onClick={() => setOpenIndex(2)}>Open: Up</DBButton>
+				<DBButton
+					data-sb-replace="Open DBDrawer by switching open property"
+					onClick={() => setOpenIndex(2)}>
+					Open: Up
+				</DBButton>
 				<DBDrawer
 					direction="up"
 					open={openIndex === 2}
@@ -43,7 +56,11 @@ export default function DrawerDirection() {
 				</DBDrawer>
 			</div>
 			<div>
-				<DBButton onClick={() => setOpenIndex(3)}>Open: Down</DBButton>
+				<DBButton
+					data-sb-replace="Open DBDrawer by switching open property"
+					onClick={() => setOpenIndex(3)}>
+					Open: Down
+				</DBButton>
 				<DBDrawer
 					direction="down"
 					open={openIndex === 3}

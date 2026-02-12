@@ -6,7 +6,10 @@ import { StorybookDrawerArgTypes } from './_drawer.arg.types';
 useMetadata({
 	storybookTitle: 'Rounded',
 	storybookNames: ['(Default) False', 'True'],
-	storybookArgTypes: StorybookDrawerArgTypes
+	storybookArgTypes: StorybookDrawerArgTypes,
+	storybookOverwriteArgs: {
+		open: false
+	}
 });
 
 export default function DrawerRounded() {
@@ -15,7 +18,9 @@ export default function DrawerRounded() {
 	return (
 		<Fragment>
 			<div>
-				<DBButton onClick={() => setOpenIndex(0)}>
+				<DBButton
+					data-sb-replace="Open DBDrawer by switching open property"
+					onClick={() => setOpenIndex(0)}>
 					Open: (Default) False
 				</DBButton>
 				<DBDrawer
@@ -26,7 +31,11 @@ export default function DrawerRounded() {
 				</DBDrawer>
 			</div>
 			<div>
-				<DBButton onClick={() => setOpenIndex(1)}>Open: True</DBButton>
+				<DBButton
+					data-sb-replace="Open DBDrawer by switching open property"
+					onClick={() => setOpenIndex(1)}>
+					Open: True
+				</DBButton>
 				<DBDrawer
 					rounded={true}
 					open={openIndex === 1}

@@ -5,6 +5,7 @@ const { blockToReact } = require('@builder.io/mitosis');
 const {
 	blockToVue
 } = require('@builder.io/mitosis/lib/generators/vue/blocks.js');
+const prettier = require('@prettier/sync');
 /**
  * Recursively finds a component by name in the node tree
  * @param {import('@builder.io/mitosis').MitosisNode} node - Node to search
@@ -23,14 +24,41 @@ const findComponent = (node, componentName) => {
 };
 
 /**
+ * Recursively filters out children with data-db-ignore="true"
+ * @param {import('@builder.io/mitosis').MitosisNode} node - Node to process
+ */
+const replaceChildren = (node) => {
+	if (!node.children) return;
+	for (const child of node.children) {
+		const replaceNode = child.properties?.['data-sb-replace'];
+		if (replaceNode) {
+			child.name = 'div';
+			child.bindings = {};
+			child.slots = {};
+			child.properties = { _text: replaceNode };
+		}
+		replaceChildren(child);
+	}
+};
+
+/**
  * Processes event bindings and adds them to args
  * @param {import('@builder.io/mitosis').MitosisComponent} json - MitosisComponent json
  * @param {import('@builder.io/mitosis').MitosisNode} example - Example object
  * @param {string} target - Target framework
  * @param {Array} args - Args array to populate
+ * @param {Object} overwritesArgs - Args object to overwrite
  */
-const processBindings = (json, example, target, args) => {
-	if (!example?.bindings) return;
+const processBindings = (json, example, target, args, overwritesArgs) => {
+	// Add other properties
+	for (const [key, value] of Object.entries(example.properties)) {
+		const overwriteValue = overwritesArgs[key] ?? value;
+		if (target === 'angular' && key.startsWith('data-')) {
+			args.push(`"attr.${key}": "${overwriteValue}"`);
+		} else {
+			args.push(`"${key}": "${overwriteValue}"`);
+		}
+	}
 
 	for (const [key, value] of Object.entries(example.bindings)) {
 		if (value.type === 'spread') {
@@ -44,19 +72,23 @@ const processBindings = (json, example, target, args) => {
 			}
 			args.push(`"${bindingKey}": fn()`);
 		} else {
+			let overwriteValue = overwritesArgs[key] ?? value.code;
 			// Handle state values like `checked`
 			try {
-				if (target === 'angular' && value.code.endsWith('()')) {
-					const replacedStateValue = value.code.replace('()', '');
-					value.code = json.state[replacedStateValue].code;
+				if (target === 'angular' && overwriteValue.endsWith('()')) {
+					const replacedStateValue = overwriteValue.replace('()', '');
+					overwriteValue = json.state[replacedStateValue].code;
 				} else if (
 					target === 'react' &&
-					value.code.startsWith('state.')
+					overwriteValue.startsWith('state.')
 				) {
-					const replacedStateValue = value.code.replace('state.', '');
-					value.code = json.state[replacedStateValue].code;
-				} else if (target === 'vue' && json.state[value.code]) {
-					value.code = json.state[value.code].code;
+					const replacedStateValue = overwriteValue.replace(
+						'state.',
+						''
+					);
+					overwriteValue = json.state[replacedStateValue].code;
+				} else if (target === 'vue' && json.state[overwriteValue]) {
+					overwriteValue = json.state[overwriteValue].code;
 				}
 			} catch (e) {
 				console.error(
@@ -65,18 +97,18 @@ const processBindings = (json, example, target, args) => {
 			}
 
 			if (target === 'react' && key === 'class') {
-				args.push(`"className": ${value.code}`);
+				args.push(`"className": ${overwriteValue}`);
 			} else if (
 				target === 'react' &&
 				key === 'image' &&
-				value.code.includes('getImage')
+				overwriteValue.includes('getImage')
 			) {
 				// We handle getImage directly here
 				args.push(
-					`"${key}": ${value.code.replace('{state.getImage()}', '"/assets/images/placeholder.jpg"')}`
+					`"${key}": ${overwriteValue.replace('{state.getImage()}', '"/assets/images/placeholder.jpg"')}`
 				);
 			} else {
-				args.push(`"${key}": ${value.code}`);
+				args.push(`"${key}": ${overwriteValue}`);
 			}
 		}
 	}
@@ -152,7 +184,6 @@ const getRenderFunction = (
  * @param {Object} params.meta - Metadata object
  * @param {string} params.componentNameLowercase - Lowercase component name
  * @param {string} params.componentName - Component name
- * @param {string} params.code - Generated example code
  * @param {Array<string>} params.allImports - All imports
  * @returns {string} Generated stories code
  */
@@ -164,7 +195,6 @@ const getStories = ({
 	meta,
 	componentNameLowercase,
 	componentName,
-	code,
 	allImports
 }) => {
 	const filteredImports = allImports?.filter((imp) => imp !== componentName);
@@ -173,6 +203,12 @@ const getStories = ({
 		exampleNames = meta.useMetadata.storybookNames.map((name) =>
 			name.replace(/[^a-zA-Z0-9]/g, '')
 		);
+	}
+
+	let overwritesArgs = {};
+
+	if (meta?.useMetadata?.storybookOverwriteArgs) {
+		overwritesArgs = meta?.useMetadata?.storybookOverwriteArgs;
 	}
 
 	return examples
@@ -187,24 +223,57 @@ const getStories = ({
 				throw Error(`something is wrong with: ${name}`);
 			}
 
-			processBindings(json, foundComponent, target, args);
-			// Add other properties
-			for (const [key, value] of Object.entries(
-				foundComponent.properties
-			)) {
-				if (target === 'angular' && key.startsWith('data-')) {
-					args.push(`"attr.${key}": "${value}"`);
-				} else {
-					args.push(`"${key}": "${value}"`);
-				}
-			}
+			processBindings(json, foundComponent, target, args, overwritesArgs);
 
 			// Remove bindings and properties to replace them with storybook arguments
 			foundComponent.properties = { properties: 'replace' };
 			foundComponent.bindings = {};
 
+			replaceChildren(example);
+
 			let template = '';
 			if (target === 'angular') {
+				// We need to use the children as "default" argument
+				let children = foundComponent.children
+					.map((child) =>
+						blockToAngularSignals({
+							root: json,
+							json: child,
+							options: {
+								target,
+								api: 'signals',
+								state: 'inline-with-wrappers',
+								preserveImports: false,
+								preserveFileExtensions: false,
+								visuallyIgnoreHostElement: true,
+								defaultExportComponents: false,
+								typescript: true
+							},
+							blockOptions: {
+								childComponents: allImports
+							}
+						}).trim()
+					)
+					.join('');
+
+				// We need to use prettier for angular storybook isn't doing it for us
+				children = prettier.format(children, {
+					parser: 'html',
+					htmlWhitespaceSensitivity: 'strict'
+				});
+				args.push(`"children":\`${children.trim()}\``);
+				foundComponent.slots = {};
+				foundComponent.children = [
+					{
+						name: 'div',
+						properties: {
+							_text: '${children}'
+						},
+						bindings: {},
+						children: []
+					}
+				];
+
 				template = blockToAngularSignals({
 					root: json,
 					json: example,
@@ -222,7 +291,41 @@ const getStories = ({
 						childComponents: allImports
 					}
 				});
+
+				// We need to use prettier for angular storybook isn't doing it for us
+				template = prettier.format(template, {
+					parser: 'html',
+					htmlWhitespaceSensitivity: 'strict'
+				});
 			} else if (target === 'react') {
+				// We need to use the children as "children" argument
+				let children = foundComponent.children
+					.map((child) =>
+						blockToReact(
+							child,
+							{
+								typescript: true,
+								stateType: 'useState',
+								stylesType: 'styled-jsx'
+							},
+							json,
+							true,
+							[]
+						).trim()
+					)
+					.join('');
+				const wrappedChildren =
+					(foundComponent.children.length === 1 &&
+					foundComponent.children[0].properties['_text']
+						? `"${children}"`
+						: foundComponent.children.length > 1
+							? `<>${children}</>`
+							: children).trim();
+				if (wrappedChildren.length){
+					args.push(`"children":${wrappedChildren}`);
+				}
+				foundComponent.slots = {};
+				foundComponent.children = [];
 				template = blockToReact(
 					example,
 					{
@@ -235,6 +338,38 @@ const getStories = ({
 					[]
 				);
 			} else if (target === 'vue') {
+				// We need to use the children as "default" argument
+				let children = foundComponent.children
+					.map((child) =>
+						blockToVue(
+							child,
+							{
+								target,
+								api: 'composition',
+								defineComponent: true,
+								casing: 'pascal'
+							},
+							{ isRootNode: true }
+						).trim()
+					)
+					.join('');
+
+				children = prettier.format(children, {
+					parser: 'html',
+					htmlWhitespaceSensitivity: 'strict'
+				});
+				args.push(`"default":\`${children.trim()}\``);
+				foundComponent.slots = {};
+				foundComponent.children = [
+					{
+						name: 'div',
+						properties: {
+							_text: '${args.default}'
+						},
+						bindings: {},
+						children: []
+					}
+				];
 				template = blockToVue(
 					example,
 					{
@@ -246,7 +381,6 @@ const getStories = ({
 					{ isRootNode: true }
 				);
 			}
-			template.replaceAll('\n', '').replaceAll('\t', '');
 
 			if (template.includes('getImage')) {
 				template = template

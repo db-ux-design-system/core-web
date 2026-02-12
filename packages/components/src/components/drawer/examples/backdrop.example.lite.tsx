@@ -6,7 +6,10 @@ import { StorybookDrawerArgTypes } from './_drawer.arg.types';
 useMetadata({
 	storybookTitle: 'Backdrop',
 	storybookNames: ['(Default) Strong', 'Weak', 'Invisible', 'No Backdrop'],
-	storybookArgTypes: StorybookDrawerArgTypes
+	storybookArgTypes: StorybookDrawerArgTypes,
+	storybookOverwriteArgs: {
+		open: false
+	}
 });
 
 export default function DrawerBackdrop() {
@@ -15,7 +18,9 @@ export default function DrawerBackdrop() {
 	return (
 		<Fragment>
 			<div>
-				<DBButton onClick={() => setOpenIndex(0)}>
+				<DBButton
+					data-sb-replace="Open DBDrawer by switching open property"
+					onClick={() => setOpenIndex(0)}>
 					Open: (Default) Strong
 				</DBButton>
 				<DBDrawer
@@ -26,7 +31,11 @@ export default function DrawerBackdrop() {
 				</DBDrawer>
 			</div>
 			<div>
-				<DBButton onClick={() => setOpenIndex(1)}>Open: Weak</DBButton>
+				<DBButton
+					data-sb-replace="Open DBDrawer by switching open property"
+					onClick={() => setOpenIndex(1)}>
+					Open: Weak
+				</DBButton>
 				<DBDrawer
 					backdrop="weak"
 					open={openIndex === 1}
@@ -35,7 +44,9 @@ export default function DrawerBackdrop() {
 				</DBDrawer>
 			</div>
 			<div>
-				<DBButton onClick={() => setOpenIndex(2)}>
+				<DBButton
+					data-sb-replace="Open DBDrawer by switching open property"
+					onClick={() => setOpenIndex(2)}>
 					Open: Invisible
 				</DBButton>
 				<DBDrawer
@@ -46,7 +57,9 @@ export default function DrawerBackdrop() {
 				</DBDrawer>
 			</div>
 			<div>
-				<DBButton onClick={() => setOpenIndex(3)}>
+				<DBButton
+					data-sb-replace="Open DBDrawer by switching open property"
+					onClick={() => setOpenIndex(3)}>
 					Open: No Backdrop
 				</DBButton>
 				<DBDrawer

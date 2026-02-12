@@ -6,7 +6,10 @@ import { StorybookDrawerArgTypes } from './_drawer.arg.types';
 useMetadata({
 	storybookTitle: 'Spacing',
 	storybookNames: ['(Default) Medium', 'Small', 'Large', 'None'],
-	storybookArgTypes: StorybookDrawerArgTypes
+	storybookArgTypes: StorybookDrawerArgTypes,
+	storybookOverwriteArgs: {
+		open: false
+	}
 });
 
 export default function DrawerSpacing() {
@@ -15,7 +18,9 @@ export default function DrawerSpacing() {
 	return (
 		<Fragment>
 			<div>
-				<DBButton onClick={() => setOpenIndex(0)}>
+				<DBButton
+					data-sb-replace="Open DBDrawer by switching open property"
+					onClick={() => setOpenIndex(0)}>
 					Open: (Default) Medium
 				</DBButton>
 				<DBDrawer
@@ -25,7 +30,11 @@ export default function DrawerSpacing() {
 				</DBDrawer>
 			</div>
 			<div>
-				<DBButton onClick={() => setOpenIndex(1)}>Open: Small</DBButton>
+				<DBButton
+					data-sb-replace="Open DBDrawer by switching open property"
+					onClick={() => setOpenIndex(1)}>
+					Open: Small
+				</DBButton>
 				<DBDrawer
 					spacing="small"
 					open={openIndex === 1}
@@ -34,7 +43,11 @@ export default function DrawerSpacing() {
 				</DBDrawer>
 			</div>
 			<div>
-				<DBButton onClick={() => setOpenIndex(2)}>Open: Large</DBButton>
+				<DBButton
+					data-sb-replace="Open DBDrawer by switching open property"
+					onClick={() => setOpenIndex(2)}>
+					Open: Large
+				</DBButton>
 				<DBDrawer
 					spacing="large"
 					open={openIndex === 2}
@@ -43,7 +56,11 @@ export default function DrawerSpacing() {
 				</DBDrawer>
 			</div>
 			<div>
-				<DBButton onClick={() => setOpenIndex(3)}>Open: None</DBButton>
+				<DBButton
+					data-sb-replace="Open DBDrawer by switching open property"
+					onClick={() => setOpenIndex(3)}>
+					Open: None
+				</DBButton>
 				<DBDrawer
 					spacing="none"
 					open={openIndex === 3}

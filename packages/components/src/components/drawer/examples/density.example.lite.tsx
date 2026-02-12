@@ -6,7 +6,10 @@ import { StorybookDrawerArgTypes } from './_drawer.arg.types';
 useMetadata({
 	storybookTitle: 'Density',
 	storybookNames: ['Functional', '(Default) Regular', 'Expressive'],
-	storybookArgTypes: StorybookDrawerArgTypes
+	storybookArgTypes: StorybookDrawerArgTypes,
+	storybookOverwriteArgs: {
+		open: false
+	}
 });
 
 export default function DrawerDensity() {
@@ -15,7 +18,9 @@ export default function DrawerDensity() {
 	return (
 		<Fragment>
 			<div data-density="functional">
-				<DBButton onClick={() => setOpenIndex(0)}>
+				<DBButton
+					data-sb-replace="Open DBDrawer by switching open property"
+					onClick={() => setOpenIndex(0)}>
 					Open: Functional
 				</DBButton>
 				<DBDrawer
@@ -26,7 +31,9 @@ export default function DrawerDensity() {
 				</DBDrawer>
 			</div>
 			<div data-density="regular">
-				<DBButton onClick={() => setOpenIndex(1)}>
+				<DBButton
+					data-sb-replace="Open DBDrawer by switching open property"
+					onClick={() => setOpenIndex(1)}>
 					Open: (Default) Regular
 				</DBButton>
 				<DBDrawer
@@ -37,7 +44,9 @@ export default function DrawerDensity() {
 				</DBDrawer>
 			</div>
 			<div data-density="expressive">
-				<DBButton onClick={() => setOpenIndex(2)}>
+				<DBButton
+					data-sb-replace="Open DBDrawer by switching open property"
+					onClick={() => setOpenIndex(2)}>
 					Open: Expressive
 				</DBButton>
 				<DBDrawer

@@ -55,6 +55,7 @@
     "@builder.io/eslint-plugin-mitosis": "0.0.17",
     "@builder.io/mitosis": "0.13.0",
     "@builder.io/mitosis-cli": "0.13.0",
+    "@prettier/sync": "^0.6.1",
     "@typescript-eslint/eslint-plugin": "8.53.1",
     "cpr": "3.0.1",
     "cssnano": "7.1.2",

@@ -1,12 +1,12 @@
 import { Fragment, useMetadata } from '@builder.io/mitosis';
 import DBInfotext from '../../infotext/infotext.lite';
 import DBIcon from '../icon.lite';
-import { StorybookIconArgTypes } from './_icon.arg.types';
+import { StorybookIconComponentArgTypes } from './_icon.arg.types';
 
 useMetadata({
 	storybookTitle: 'Density',
 	storybookNames: ['Functional', '(Default) Regular', 'Expressive'],
-	storybookArgTypes: StorybookIconArgTypes
+	storybookArgTypes: StorybookIconComponentArgTypes
 });
 
 export default function IconDensity() {

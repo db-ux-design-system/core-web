@@ -6,7 +6,10 @@ import { StorybookDrawerArgTypes } from './_drawer.arg.types';
 useMetadata({
 	storybookTitle: 'Size',
 	storybookNames: ['(Default) Medium', 'Full'],
-	storybookArgTypes: StorybookDrawerArgTypes
+	storybookArgTypes: StorybookDrawerArgTypes,
+	storybookOverwriteArgs: {
+		open: false
+	}
 });
 
 export default function DrawerSize() {
@@ -15,7 +18,9 @@ export default function DrawerSize() {
 	return (
 		<Fragment>
 			<div>
-				<DBButton onClick={() => setOpenIndex(0)}>
+				<DBButton
+					data-sb-replace="Open DBDrawer by switching open property"
+					onClick={() => setOpenIndex(0)}>
 					Open: (Default) Medium
 				</DBButton>
 				<DBDrawer
@@ -25,7 +30,11 @@ export default function DrawerSize() {
 				</DBDrawer>
 			</div>
 			<div>
-				<DBButton onClick={() => setOpenIndex(1)}>Open: Full</DBButton>
+				<DBButton
+					data-sb-replace="Open DBDrawer by switching open property"
+					onClick={() => setOpenIndex(1)}>
+					Open: Full
+				</DBButton>
 				<DBDrawer
 					width="full"
 					open={openIndex === 1}
