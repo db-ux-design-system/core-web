@@ -407,15 +407,9 @@ const testAction = () => {
 	}) => {
 		const component = await mount(disabled);
 
-		// Find the summary element
-		const summary = component.locator('summary');
-		await summary.waitFor({ state: 'attached' });
-
-		// Verify aria-disabled is set
-		await expect(summary).toHaveAttribute('aria-disabled', 'true');
-
-		// Verify tabindex is set to -1
-		await expect(summary).toHaveAttribute('tabindex', '-1');
+		// Find the summary element, verify aria-disabled=true and tabindex=-1 are set
+		const summary = component.locator('summary[aria-disabled="true"][tabindex="-1"]');
+		await expect(summary).toBeAttached();
 
 		// Focus on the "before" button
 		const beforeButton = page.locator('#before');
