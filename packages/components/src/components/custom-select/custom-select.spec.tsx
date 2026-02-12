@@ -409,6 +409,7 @@ const testAction = () => {
 
 		// Find the summary element
 		const summary = component.locator('summary');
+		await summary.waitFor({ state: 'attached' });
 
 		// Verify aria-disabled is set
 		await expect(summary).toHaveAttribute('aria-disabled', 'true');
