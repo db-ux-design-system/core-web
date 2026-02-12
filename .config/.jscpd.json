@@ -69,7 +69,7 @@
 		"**/showcases/react-showcase/src/app.tsx",
 		"**/showcases/react-showcase/src/utils/navigation-item.tsx",
 		"**/playwright-report/**/*",
-		"**/*.example.lite.tsx"
+		"**/examples/**/*.example.lite.tsx"
 	],
 	"ignorePattern": ["<option value=\"test5\">Test5</option>"],
 	"absolute": true
