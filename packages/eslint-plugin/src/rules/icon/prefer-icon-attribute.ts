@@ -1,10 +1,9 @@
+import { MESSAGES, MESSAGE_IDS } from '../../shared/constants.js';
 import {
-	createAngularVisitors,
 	defineTemplateBodyVisitor,
 	getAttributeValue,
 	isDBComponent
 } from '../../shared/utils.js';
-import { MESSAGES, MESSAGE_IDS } from '../../shared/constants.js';
 
 const COMPONENTS_WITH_ICON_ATTR = [
 	'DBInput',

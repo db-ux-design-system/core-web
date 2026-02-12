@@ -35,7 +35,7 @@ const changeTags = (tag: string) => {
 	}
 };
 
-
+// eslint-disable-next-line no-alert
 const logAll = () => {
 	alert(
 		JSON.stringify({
@@ -64,8 +64,6 @@ const reset = () => {
 <template>
 	<div class="form-container">
 		<div>
-			<DBButton type="submit">
-				<DBIcon icon="x_placeholder"></DBIcon>Test</DBButton>
 			<form>
 				<fieldset>
 					<p>Input:</p>
@@ -76,7 +74,7 @@ const reset = () => {
 						icon="x_placeholder"
 						name="input-name"
 						:dataList="dataList"
-						v-model:value="firstInput" type="text"
+						v-model:value="firstInput"
 					/>
 					<DBInput
 						label="Dateinput"
@@ -176,7 +174,9 @@ const reset = () => {
 						<option value="test5">Test5</option>
 					</DBSelect>
 					<p>Button:</p>
-					<DBButton @click="reset()" type="submit"> Reset Form </DBButton>
+					<DBButton type="button" @click="reset()">
+						Reset Form
+					</DBButton>
 					<DBButton type="button" variant="brand" @click="logAll()">
 						Hi from Showcase!
 					</DBButton>
@@ -185,7 +185,7 @@ const reset = () => {
 		</div>
 		<DBButton
 			:class="isActive ? 'blubber' : 'dada'"
-			@click="isActive = !isActive" type="submit"
+			@click="isActive = !isActive"
 			>Test</DBButton
 		>
 		<div>

@@ -31,6 +31,7 @@ jobs:
         run: |
           npm run nuxt:prepare --workspace=nuxt-showcase
           npm run build --workspace=@db-ux/core-stylelint
+          npm run build --workspace=@db-ux/core-eslint-plugin
           npm run lint
 
       - name: ⚡ Run Test

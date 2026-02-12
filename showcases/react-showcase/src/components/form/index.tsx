@@ -1,11 +1,12 @@
 import {
 	DBAccordion,
 	DBAccordionItem,
-	DBBadge,
 	DBButton,
 	DBCheckbox,
 	DBCustomSelect,
 	DBDivider,
+	DBDrawer,
+	DBInfotext,
 	DBInput,
 	DBLink,
 	DBPopover,
@@ -23,6 +24,7 @@ import type { ChangeEvent, ValueLabelType } from '@components/src/shared/model';
 import { useEffect, useState } from 'react';
 
 const FormComponent = () => {
+	const [drawerOpen, setDrawerOpen] = useState<boolean>(false);
 	const [input, setInput] = useState('');
 	const [dataInput, setDataInput] = useState('');
 	const [textarea, setTextarea] = useState('default textarea');
@@ -69,15 +71,6 @@ const FormComponent = () => {
 	return (
 		<div className="form-container">
 			<div>
-				<DBButton type="submit">
-					<DBIcon icon="x_placeholder"></DBIcon>Test</DBButton>
-				<DBButton type="button" icon="x_placeholder" noText>
-					Test
-					<DBTooltip>Describe action</DBTooltip>
-					<DBBadge placement="corner-top-right" label="Test">
-						99+
-					</DBBadge>
-				</DBButton>
 				<form>
 					<DBTextarea
 						label="test"
@@ -112,7 +105,6 @@ const FormComponent = () => {
 							onChange={(event) => {
 								setInput(event.target.value);
 							}}
-							type="text"
 						/>
 						<p>Textarea:</p>
 						<DBTextarea
@@ -270,7 +262,7 @@ const FormComponent = () => {
 						<DBButton
 							type="button"
 							variant="brand"
-							onClick={() => {
+							onClick={(clickEvent) => {
 								// eslint-disable-next-line no-alert
 								alert(
 									JSON.stringify({
@@ -333,8 +325,7 @@ const FormComponent = () => {
 				<DBButton
 					onClick={() => {
 						setTabsTest(!tabsTest);
-					}}
-					type="button">
+					}}>
 					TabsTest
 				</DBButton>
 				<DBTabs>
@@ -427,11 +418,7 @@ const FormComponent = () => {
 							)}
 							{index === 1 && (
 								<DBPopover
-									trigger={
-										<DBButton type="submit">
-											Popover
-										</DBButton>
-									}>
+									trigger={<DBButton>Popover</DBButton>}>
 									<ul>
 										<li>Content 1</li>
 										<li>Content 2</li>
@@ -440,7 +427,7 @@ const FormComponent = () => {
 								</DBPopover>
 							)}
 							{index === 2 && (
-								<DBButton type="submit">
+								<DBButton>
 									Tooltip
 									<DBTooltip>Tooltip</DBTooltip>
 								</DBButton>
@@ -463,7 +450,7 @@ const FormComponent = () => {
 				/>
 
 				<h2>Validations</h2>
-				<DBButton type="submit">
+				<DBButton>
 					Test
 					<DBTooltip placement="bottom">
 						Open above floating label
@@ -476,7 +463,6 @@ const FormComponent = () => {
 					invalidMessage="Min. 3"
 					validMessage="😎"
 					minLength={3}
-					type="text"
 				/>
 				<DBInput
 					label="Input pattern validation"
@@ -484,7 +470,6 @@ const FormComponent = () => {
 					pattern="\w{3,16}"
 					invalidMessage="Pattern \w{3,16}"
 					validMessage="😎"
-					type="text"
 				/>
 				<DBInput
 					label="Input number"
@@ -508,13 +493,42 @@ const FormComponent = () => {
 					minLength={10}
 				/>
 
+				<DBButton
+					onClick={() => {
+						setDrawerOpen(true);
+					}}>
+					Open Drawer
+				</DBButton>
+				<DBDrawer
+					onClose={() => {
+						setDrawerOpen(false);
+					}}
+					open={drawerOpen}
+					spacing="none">
+					<DBInfotext style={{ margin: '100px', display: 'flex' }}>
+						Test infotext
+						<DBTooltip placement="bottom-start">
+							Test tooltip
+						</DBTooltip>
+					</DBInfotext>
+
+					<DBCustomSelect
+						options={[{ value: 'Option 1' }, { value: 'Option 2' }]}
+						label="Test"
+						required
+						showSearch
+						multiple
+						placeholder="Placeholder"
+					/>
+				</DBDrawer>
+
 				<DBTag semantic="neutral" emphasis="strong">
 					KUZ
 					<DBTooltip id="tooltip-01" placement="right-end">
 						Text
 					</DBTooltip>
 				</DBTag>
-				<DBButton type="submit">
+				<DBButton>
 					KUZ
 					<DBTooltip id="tooltip-01" placement="right-end">
 						Text
@@ -550,8 +564,7 @@ const FormComponent = () => {
 					<DBButton
 						onClick={() => {
 							setCustomSelectValue([]);
-						}}
-						type="button">
+						}}>
 						Reset CustomSelect
 					</DBButton>
 					<DBButton type="submit">Submit</DBButton>
@@ -559,7 +572,7 @@ const FormComponent = () => {
 
 				<div>
 					<DBTag>
-						<DBButton type="submit">Test</DBButton>
+						<DBButton>Test</DBButton>
 					</DBTag>
 					<DBTag>
 						<DBLink>Test</DBLink>

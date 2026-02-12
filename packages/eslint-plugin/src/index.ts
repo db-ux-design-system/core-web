@@ -1,5 +1,5 @@
-import noNestedAccordion from './rules/accordion/no-nested-accordion.js';
 import accordionItemHeadlineRequired from './rules/accordion/accordion-item-headline-required.js';
+import noNestedAccordion from './rules/accordion/no-nested-accordion.js';
 import badgeCornerPlacementRules from './rules/badge/badge-corner-placement-rules.js';
 import badgeNoInlineInInteractive from './rules/badge/badge-no-inline-in-interactive.js';
 import buttonNoTextRequiresTooltip from './rules/button/button-no-text-requires-tooltip.js';
@@ -20,32 +20,31 @@ import selectRequiresOptions from './rules/select/select-requires-options.js';
 import tagRemovableRemoveButtonRequired from './rules/tag/tag-removable-remove-button-required.js';
 import noInteractiveTooltipContent from './rules/tooltip/no-interactive-tooltip-content.js';
 import tooltipRequiresInteractiveParent from './rules/tooltip/tooltip-requires-interactive-parent.js';
-import testAngular from './rules/test-angular.js';
 
 const recommended = {
 	rules: {
-		'db-ux/button-no-text-requires-tooltip': 'error',
-		'db-ux/button-type-required': 'error',
-		'db-ux/button-single-icon-attribute': 'error',
-		'db-ux/form-label-required': 'error',
-		'db-ux/form-validation-message-required': 'error',
-		'db-ux/prefer-icon-attribute': 'warn',
-		'db-ux/text-or-children-required': 'error',
-		'db-ux/no-interactive-tooltip-content': 'error',
-		'db-ux/tooltip-requires-interactive-parent': 'error',
-		'db-ux/no-nested-accordion': 'error',
 		'db-ux/accordion-item-headline-required': 'error',
 		'db-ux/badge-corner-placement-rules': 'error',
 		'db-ux/badge-no-inline-in-interactive': 'error',
-		'db-ux/link-external-security': 'warn',
-		'db-ux/select-requires-options': 'error',
-		'db-ux/custom-select-tags-remove-text-required': 'error',
+		'db-ux/button-no-text-requires-tooltip': 'error',
+		'db-ux/button-single-icon-attribute': 'error',
+		'db-ux/button-type-required': 'error',
 		'db-ux/close-button-text-required': 'error',
+		'db-ux/custom-select-tags-remove-text-required': 'error',
+		'db-ux/form-label-required': 'error',
+		'db-ux/form-validation-message-required': 'warn',
 		'db-ux/header-burger-menu-label-required': 'error',
-		'db-ux/navigation-item-back-button-text-required': 'error',
-		'db-ux/tag-removable-remove-button-required': 'error',
+		'db-ux/input-file-type-validation': 'error',
 		'db-ux/input-type-required': 'warn',
-		'db-ux/input-file-type-validation': 'error'
+		'db-ux/link-external-security': 'warn',
+		'db-ux/navigation-item-back-button-text-required': 'error',
+		'db-ux/no-interactive-tooltip-content': 'error',
+		'db-ux/no-nested-accordion': 'error',
+		'db-ux/prefer-icon-attribute': 'warn',
+		'db-ux/select-requires-options': 'error',
+		'db-ux/tag-removable-remove-button-required': 'error',
+		'db-ux/text-or-children-required': 'error',
+		'db-ux/tooltip-requires-interactive-parent': 'error'
 	}
 };
 
@@ -79,8 +78,7 @@ const plugin = {
 		'tag-removable-remove-button-required':
 			tagRemovableRemoveButtonRequired,
 		'input-type-required': inputTypeRequired,
-		'input-file-type-validation': inputFileTypeValidation,
-		'test-angular': testAngular
+		'input-file-type-validation': inputFileTypeValidation
 	},
 	configs: {
 		recommended

@@ -1,10 +1,11 @@
+import { COMPONENTS, MESSAGES, MESSAGE_IDS } from '../../shared/constants.js';
 import {
+	createAngularFix,
 	createAngularVisitors,
 	defineTemplateBodyVisitor,
 	getAttributeValue,
 	isDBComponent
 } from '../../shared/utils.js';
-import { COMPONENTS, MESSAGES, MESSAGE_IDS } from '../../shared/constants.js';
 
 const INTERACTIVE_PARENTS = ['DBButton', 'DBLink', 'button', 'a'];
 
@@ -18,7 +19,8 @@ export default {
 		},
 		fixable: 'code',
 		messages: {
-			[MESSAGE_IDS.BADGE_NO_INLINE_IN_INTERACTIVE]: MESSAGES.BADGE_NO_INLINE_IN_INTERACTIVE
+			[MESSAGE_IDS.BADGE_NO_INLINE_IN_INTERACTIVE]:
+				MESSAGES.BADGE_NO_INLINE_IN_INTERACTIVE
 		},
 		schema: []
 	},
@@ -31,15 +33,32 @@ export default {
 			while (parent) {
 				if (parent.type === 'Element') {
 					const matchedParent = INTERACTIVE_PARENTS.find(
-						(p) => parent.name === p || parent.name === p.toLowerCase().replace('db', 'db-')
+						(p) =>
+							parent.name === p ||
+							parent.name === p.toLowerCase().replace('db', 'db-')
 					);
 
 					if (matchedParent) {
-						const loc = parserServices.convertNodeSourceSpanToLoc(node.sourceSpan);
+						const loc = parserServices.convertNodeSourceSpanToLoc(
+							node.sourceSpan
+						);
 						context.report({
 							loc,
-							messageId: MESSAGE_IDS.BADGE_NO_INLINE_IN_INTERACTIVE,
-							data: { parent: matchedParent }
+							messageId:
+								MESSAGE_IDS.BADGE_NO_INLINE_IN_INTERACTIVE,
+							data: { parent: matchedParent },
+							fix(fixer: any) {
+								const fixData = createAngularFix(
+									context,
+									node,
+									' placement="corner-top-right"'
+								);
+								if (!fixData) return null;
+								return fixer.insertTextBeforeRange(
+									[fixData.insertPos, fixData.insertPos],
+									fixData.attributeText
+								);
+							}
 						});
 						return;
 					}
@@ -48,7 +67,11 @@ export default {
 			}
 		};
 
-		const angularVisitors = createAngularVisitors(context, COMPONENTS.DBBadge, angularHandler);
+		const angularVisitors = createAngularVisitors(
+			context,
+			COMPONENTS.DBBadge,
+			angularHandler
+		);
 		if (angularVisitors) return angularVisitors;
 
 		const checkBadge = (node: any) => {
@@ -83,7 +106,8 @@ export default {
 						if (matchedParent) {
 							context.report({
 								node: openingElement,
-								messageId: MESSAGE_IDS.BADGE_NO_INLINE_IN_INTERACTIVE,
+								messageId:
+									MESSAGE_IDS.BADGE_NO_INLINE_IN_INTERACTIVE,
 								data: { parent: matchedParent },
 								fix(fixer: any) {
 									if (node.openingElement) {

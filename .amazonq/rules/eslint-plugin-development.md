@@ -40,17 +40,17 @@ import {
 	defineTemplateBodyVisitor,
 	getAttributeValue,
 	isDBComponent
-} from '../../shared/utils.js';
-import { COMPONENTS, MESSAGES, MESSAGE_IDS } from '../../shared/constants.js';
+} from "../../shared/utils.js";
+import { COMPONENTS, MESSAGES, MESSAGE_IDS } from "../../shared/constants.js";
 
 export default {
 	meta: {
-		type: 'problem',
+		type: "problem",
 		docs: {
-			description: 'Rule description',
-			url: 'https://github.com/db-ux-design-system/core-web/blob/main/packages/eslint-plugin/README.md#rule-name'
+			description: "Rule description",
+			url: "https://github.com/db-ux-design-system/core-web/blob/main/packages/eslint-plugin/README.md#rule-name"
 		},
-		fixable: 'code', // optional
+		fixable: "code", // optional
 		messages: {
 			[MESSAGE_IDS.YOUR_MESSAGE_ID]: MESSAGES.YOUR_MESSAGE
 		},
@@ -59,9 +59,11 @@ export default {
 	create(context: any) {
 		// Angular handler with parser services
 		const angularHandler = (node: any, parserServices: any) => {
-			const value = getAttributeValue(node, 'prop');
+			const value = getAttributeValue(node, "prop");
 			if (!value) {
-				const loc = parserServices.convertNodeSourceSpanToLoc(node.sourceSpan);
+				const loc = parserServices.convertNodeSourceSpanToLoc(
+					node.sourceSpan
+				);
 				context.report({
 					loc,
 					messageId: MESSAGE_IDS.YOUR_MESSAGE_ID
@@ -69,7 +71,11 @@ export default {
 			}
 		};
 
-		const angularVisitors = createAngularVisitors(context, COMPONENTS.DBButton, angularHandler);
+		const angularVisitors = createAngularVisitors(
+			context,
+			COMPONENTS.DBButton,
+			angularHandler
+		);
 		if (angularVisitors) return angularVisitors;
 
 		// React/Vue handler
@@ -77,7 +83,7 @@ export default {
 			const openingElement = node.openingElement || node;
 			if (!isDBComponent(openingElement, COMPONENTS.DBButton)) return;
 
-			const value = getAttributeValue(openingElement, 'prop');
+			const value = getAttributeValue(openingElement, "prop");
 			if (!value) {
 				context.report({
 					node: openingElement,
@@ -114,6 +120,13 @@ Every rule MUST have tests covering:
     - React example
     - Angular example
     - Vue example
+
+3. **Framework integration tests** in `test/frameworks/`:
+    - Add example to `react-test.tsx`
+    - Add example to `angular-test.html`
+    - Add example to `vue-test.vue`
+    - Include comment with rule name (e.g., `{/* db-ux/rule-name */}`)
+    - Examples should demonstrate rule violations for snapshot testing
 
 ## Documentation Requirements
 
@@ -165,6 +178,9 @@ Before submitting a new rule:
 - [ ] Tests include React (PascalCase) examples
 - [ ] Tests include Angular (kebab-case + `[prop]`) examples
 - [ ] Tests include Vue (PascalCase + `:prop`) examples
+- [ ] Framework test example added to `test/frameworks/react-test.tsx`
+- [ ] Framework test example added to `test/frameworks/angular-test.html`
+- [ ] Framework test example added to `test/frameworks/vue-test.vue`
 - [ ] Rule imported in `src/index.ts`
 - [ ] Rule added to `plugin.rules` object
 - [ ] Rule added to `recommended` config

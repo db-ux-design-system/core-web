@@ -1,10 +1,12 @@
+import { COMPONENTS, MESSAGES, MESSAGE_IDS } from '../../shared/constants.js';
 import {
+	createAngularFix,
 	createAngularVisitors,
+	createJsxVueFix,
 	defineTemplateBodyVisitor,
 	getAttributeValue,
 	isDBComponent
 } from '../../shared/utils.js';
-import { COMPONENTS, MESSAGES, MESSAGE_IDS } from '../../shared/constants.js';
 
 export default {
 	meta: {
@@ -23,15 +25,33 @@ export default {
 		const angularHandler = (node: any, parserServices: any) => {
 			const type = getAttributeValue(node, 'type');
 			if (!type) {
-				const loc = parserServices.convertNodeSourceSpanToLoc(node.sourceSpan);
-				context.report({ 
-					loc, 
-					messageId: MESSAGE_IDS.BUTTON_TYPE_REQUIRED 
+				const loc = parserServices.convertNodeSourceSpanToLoc(
+					node.sourceSpan
+				);
+				context.report({
+					loc,
+					messageId: MESSAGE_IDS.BUTTON_TYPE_REQUIRED,
+					fix(fixer: any) {
+						const fixData = createAngularFix(
+							context,
+							node,
+							' type="button"'
+						);
+						if (!fixData) return null;
+						return fixer.insertTextBeforeRange(
+							[fixData.insertPos, fixData.insertPos],
+							fixData.attributeText
+						);
+					}
 				});
 			}
 		};
-		
-		const angularVisitors = createAngularVisitors(context, COMPONENTS.DBButton, angularHandler);
+
+		const angularVisitors = createAngularVisitors(
+			context,
+			COMPONENTS.DBButton,
+			angularHandler
+		);
 		if (angularVisitors) return angularVisitors;
 
 		const checkButton = (node: any) => {
@@ -52,11 +72,19 @@ export default {
 				node: openingElement,
 				messageId: MESSAGE_IDS.BUTTON_TYPE_REQUIRED,
 				fix(fixer: any) {
-					return fixer.insertTextAfter(openingElement.name, ` type="${typeValue}"`);
+					const fixData = createJsxVueFix(
+						node,
+						openingElement,
+						` type="${typeValue}"`
+					);
+					return fixer.insertTextAfterRange(
+						[fixData.insertPos, fixData.insertPos],
+						fixData.attributeText
+					);
 				}
 			});
 		};
-		
+
 		return defineTemplateBodyVisitor(
 			context,
 			{ VElement: checkButton, Element: checkButton },

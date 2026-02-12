@@ -1,14 +1,12 @@
+import { MESSAGES, MESSAGE_IDS } from '../../shared/constants.js';
 import {
-	createAngularVisitors,
 	defineTemplateBodyVisitor,
 	getAttributeValue,
 	isDBComponent
 } from '../../shared/utils.js';
-import { MESSAGES, MESSAGE_IDS } from '../../shared/constants.js';
 
 const COMPONENTS_REQUIRING_CONTENT = [
 	'DBAccordionItem',
-	'DBBadge',
 	'DBButton',
 	'DBLink',
 	'DBIcon',
@@ -26,7 +24,8 @@ export default {
 			url: 'https://github.com/db-ux-design-system/core-web/blob/main/packages/eslint-plugin/README.md#text-or-children-required'
 		},
 		messages: {
-			[MESSAGE_IDS.TEXT_OR_CHILDREN_REQUIRED]: MESSAGES.TEXT_OR_CHILDREN_REQUIRED
+			[MESSAGE_IDS.TEXT_OR_CHILDREN_REQUIRED]:
+				MESSAGES.TEXT_OR_CHILDREN_REQUIRED
 		},
 		schema: []
 	},

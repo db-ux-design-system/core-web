@@ -41,10 +41,12 @@
   },
   "devDependencies": {
     "@angular-eslint/bundled-angular-compiler": "20.7.0",
+    "@angular-eslint/template-parser": "20.3.0",
     "@typescript-eslint/parser": "8.54.0",
     "@typescript-eslint/rule-tester": "8.54.0",
     "typescript": "5.9.3",
-    "vitest": "3.2.4"
+    "vitest": "3.2.4",
+    "vue-eslint-parser": "9.4.3"
   },
   "publishConfig": {
     "registry": "https://registry.npmjs.org/",

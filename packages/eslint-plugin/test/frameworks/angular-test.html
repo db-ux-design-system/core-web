@@ -1,0 +1,72 @@
+<div>
+	<!-- db-ux/accordion-item-headline-required -->
+	<db-accordion-item></db-accordion-item>
+
+	<!-- db-ux/badge-corner-placement-rules -->
+	<db-badge placement="corner-top-right">9999</db-badge>
+
+	<!-- db-ux/badge-no-inline-in-interactive -->
+	<db-button>
+		<db-badge>Inline in button</db-badge>
+	</db-button>
+
+	<!-- db-ux/close-button-text-required -->
+	<db-notification></db-notification>
+	<db-drawer></db-drawer>
+	<db-custom-select [label]="'Select'"></db-custom-select>
+
+	<!-- db-ux/button-no-text-requires-tooltip -->
+	<db-button noText icon="search"></db-button>
+
+	<!-- db-ux/button-type-required -->
+	<db-button>Missing type</db-button>
+	<db-button type="button">Valid button</db-button>
+
+	<!-- db-ux/form-label-required -->
+	<db-input></db-input>
+
+	<!-- db-ux/form-validation-message-required -->
+	<db-input [label]="'Email'" required></db-input>
+
+	<!-- db-ux/header-burger-menu-label-required -->
+	<db-header></db-header>
+
+	<!-- db-ux/input-type-required -->
+	<db-input [label]="'Test'"></db-input>
+
+	<!-- db-ux/link-external-security -->
+	<db-link href="https://example.com" target="_blank">External link</db-link>
+
+	<!-- db-ux/navigation-item-back-button-text-required -->
+	<db-navigation-item>
+		<div slot="subNavigation">Sub nav</div>
+	</db-navigation-item>
+
+	<!-- db-ux/no-interactive-tooltip-content -->
+	<db-tooltip>
+		<db-button>Click</db-button>
+	</db-tooltip>
+
+	<!-- db-ux/no-nested-accordion -->
+	<db-accordion>
+		<db-accordion-item>
+			<db-accordion></db-accordion>
+		</db-accordion-item>
+	</db-accordion>
+
+	<!-- db-ux/prefer-icon-attribute -->
+	<db-button>
+		<db-icon icon="search"></db-icon>
+	</db-button>
+
+	<!-- db-ux/select-requires-options -->
+	<db-select [label]="'Select'"></db-select>
+
+	<!-- db-ux/tag-removable-remove-button-required -->
+	<db-tag behavior="removable"></db-tag>
+
+	<!-- db-ux/tooltip-requires-interactive-parent -->
+	<div>
+		<db-tooltip>Tooltip without interactive parent</db-tooltip>
+	</div>
+</div>

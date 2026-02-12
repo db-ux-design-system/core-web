@@ -1,3 +1,4 @@
+import { COMPONENTS, MESSAGES, MESSAGE_IDS } from '../../shared/constants.js';
 import {
 	createAngularVisitors,
 	defineTemplateBodyVisitor,
@@ -5,7 +6,6 @@ import {
 	hasChildOfType,
 	isDBComponent
 } from '../../shared/utils.js';
-import { COMPONENTS, MESSAGES, MESSAGE_IDS } from '../../shared/constants.js';
 
 export default {
 	meta: {
@@ -17,8 +17,10 @@ export default {
 		},
 		fixable: 'code',
 		messages: {
-			[MESSAGE_IDS.BUTTON_NO_TEXT_MISSING_ICON]: MESSAGES.BUTTON_NO_TEXT_MISSING_ICON,
-			[MESSAGE_IDS.BUTTON_NO_TEXT_MISSING_TOOLTIP]: MESSAGES.BUTTON_NO_TEXT_MISSING_TOOLTIP
+			[MESSAGE_IDS.BUTTON_NO_TEXT_MISSING_ICON]:
+				MESSAGES.BUTTON_NO_TEXT_MISSING_ICON,
+			[MESSAGE_IDS.BUTTON_NO_TEXT_MISSING_TOOLTIP]:
+				MESSAGES.BUTTON_NO_TEXT_MISSING_TOOLTIP
 		},
 		schema: []
 	},
@@ -31,9 +33,11 @@ export default {
 				getAttributeValue(node, 'icon') ||
 				getAttributeValue(node, 'iconLeading') ||
 				getAttributeValue(node, 'iconTrailing');
-			
-			const loc = parserServices.convertNodeSourceSpanToLoc(node.sourceSpan);
-			
+
+			const loc = parserServices.convertNodeSourceSpanToLoc(
+				node.sourceSpan
+			);
+
 			if (!icon) {
 				context.report({
 					loc,
@@ -45,12 +49,32 @@ export default {
 			if (!hasTooltip) {
 				context.report({
 					loc,
-					messageId: MESSAGE_IDS.BUTTON_NO_TEXT_MISSING_TOOLTIP
+					messageId: MESSAGE_IDS.BUTTON_NO_TEXT_MISSING_TOOLTIP,
+					fix(fixer: any) {
+						const sourceCode =
+							context.sourceCode || context.getSourceCode();
+						const text = sourceCode.getText();
+						const startOffset = node.sourceSpan.start.offset;
+						const endOffset = node.sourceSpan.end.offset;
+						const tagText = text.substring(startOffset, endOffset);
+						const closeTagIndex =
+							tagText.lastIndexOf('</db-button>');
+						if (closeTagIndex === -1) return null;
+						const insertPos = startOffset + closeTagIndex;
+						return fixer.insertTextBeforeRange(
+							[insertPos, insertPos],
+							'\n  <db-tooltip>Describe action</db-tooltip>'
+						);
+					}
 				});
 			}
 		};
 
-		const angularVisitors = createAngularVisitors(context, COMPONENTS.DBButton, angularHandler);
+		const angularVisitors = createAngularVisitors(
+			context,
+			COMPONENTS.DBButton,
+			angularHandler
+		);
 		if (angularVisitors) return angularVisitors;
 
 		const checkButton = (node: any) => {
@@ -95,7 +119,8 @@ export default {
 							);
 						} else {
 							// Vue
-							if (!node.endTag) return null;
+							if (!node.endTag || !node.startTag?.range)
+								return null;
 							const componentName = openingElement.rawName;
 							const tooltipName = componentName.includes('-')
 								? 'db-tooltip'

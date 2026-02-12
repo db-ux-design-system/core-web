@@ -1,10 +1,12 @@
+import { COMPONENTS, MESSAGES, MESSAGE_IDS } from '../../shared/constants.js';
 import {
+	createAngularFix,
 	createAngularVisitors,
+	createJsxVueFix,
 	defineTemplateBodyVisitor,
 	getAttributeValue,
 	isDBComponent
 } from '../../shared/utils.js';
-import { COMPONENTS, MESSAGES, MESSAGE_IDS } from '../../shared/constants.js';
 
 export default {
 	meta: {
@@ -24,15 +26,33 @@ export default {
 		const angularHandler = (node: any, parserServices: any) => {
 			const type = getAttributeValue(node, 'type');
 			if (!type) {
-				const loc = parserServices.convertNodeSourceSpanToLoc(node.sourceSpan);
+				const loc = parserServices.convertNodeSourceSpanToLoc(
+					node.sourceSpan
+				);
 				context.report({
 					loc,
-					messageId: MESSAGE_IDS.INPUT_TYPE_REQUIRED
+					messageId: MESSAGE_IDS.INPUT_TYPE_REQUIRED,
+					fix(fixer: any) {
+						const fixData = createAngularFix(
+							context,
+							node,
+							' type="text"'
+						);
+						if (!fixData) return null;
+						return fixer.insertTextBeforeRange(
+							[fixData.insertPos, fixData.insertPos],
+							fixData.attributeText
+						);
+					}
 				});
 			}
 		};
 
-		const angularVisitors = createAngularVisitors(context, COMPONENTS.DBInput, angularHandler);
+		const angularVisitors = createAngularVisitors(
+			context,
+			COMPONENTS.DBInput,
+			angularHandler
+		);
 		if (angularVisitors) return angularVisitors;
 
 		const checkInput = (node: any) => {
@@ -46,40 +66,15 @@ export default {
 					node: openingElement,
 					messageId: MESSAGE_IDS.INPUT_TYPE_REQUIRED,
 					fix(fixer: any) {
-						if (node.openingElement) {
-							// JSX
-							const lastAttr =
-								openingElement.attributes[
-									openingElement.attributes.length - 1
-								];
-							const insertPos = lastAttr
-								? lastAttr.range[1]
-								: openingElement.name.range[1];
-							return fixer.insertTextAfterRange(
-								[insertPos, insertPos],
-								' type="text"'
-							);
-						} else {
-							// Vue
-							const attrs = openingElement.startTag.attributes;
-							if (attrs.length > 0) {
-								const lastAttr = attrs[attrs.length - 1];
-								const insertPos = lastAttr.range[1];
-								return fixer.insertTextAfterRange(
-									[insertPos, insertPos],
-									' type="text"'
-								);
-							} else {
-								const insertPos =
-									openingElement.startTag.range[0] +
-									1 +
-									openingElement.rawName.length;
-								return fixer.insertTextAfterRange(
-									[insertPos, insertPos],
-									' type="text"'
-								);
-							}
-						}
+						const fixData = createJsxVueFix(
+							node,
+							openingElement,
+							' type="text"'
+						);
+						return fixer.insertTextAfterRange(
+							[fixData.insertPos, fixData.insertPos],
+							fixData.attributeText
+						);
 					}
 				});
 			}

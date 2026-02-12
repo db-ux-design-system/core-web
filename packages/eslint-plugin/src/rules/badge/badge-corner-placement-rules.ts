@@ -1,10 +1,11 @@
+import { COMPONENTS, MESSAGES, MESSAGE_IDS } from '../../shared/constants.js';
 import {
+	createAngularFix,
 	createAngularVisitors,
 	defineTemplateBodyVisitor,
 	getAttributeValue,
 	isDBComponent
 } from '../../shared/utils.js';
-import { COMPONENTS, MESSAGES, MESSAGE_IDS } from '../../shared/constants.js';
 
 function getTextContent(node: any): string | null {
 	if (node.children) {
@@ -33,8 +34,10 @@ export default {
 		},
 		fixable: 'code',
 		messages: {
-			[MESSAGE_IDS.BADGE_CORNER_TEXT_TOO_LONG]: MESSAGES.BADGE_CORNER_TEXT_TOO_LONG,
-			[MESSAGE_IDS.BADGE_CORNER_MISSING_LABEL]: MESSAGES.BADGE_CORNER_MISSING_LABEL
+			[MESSAGE_IDS.BADGE_CORNER_TEXT_TOO_LONG]:
+				MESSAGES.BADGE_CORNER_TEXT_TOO_LONG,
+			[MESSAGE_IDS.BADGE_CORNER_MISSING_LABEL]:
+				MESSAGES.BADGE_CORNER_MISSING_LABEL
 		},
 		schema: []
 	},
@@ -48,7 +51,9 @@ export default {
 			const content = (typeof text === 'string' ? text : children) || '';
 			const label = getAttributeValue(node, 'label');
 
-			const loc = parserServices.convertNodeSourceSpanToLoc(node.sourceSpan);
+			const loc = parserServices.convertNodeSourceSpanToLoc(
+				node.sourceSpan
+			);
 
 			if (content.length > 3) {
 				context.report({
@@ -60,12 +65,28 @@ export default {
 			if (!label) {
 				context.report({
 					loc,
-					messageId: MESSAGE_IDS.BADGE_CORNER_MISSING_LABEL
+					messageId: MESSAGE_IDS.BADGE_CORNER_MISSING_LABEL,
+					fix(fixer: any) {
+						const fixData = createAngularFix(
+							context,
+							node,
+							` label="${content || 'Badge'}"`
+						);
+						if (!fixData) return null;
+						return fixer.insertTextBeforeRange(
+							[fixData.insertPos, fixData.insertPos],
+							fixData.attributeText
+						);
+					}
 				});
 			}
 		};
 
-		const angularVisitors = createAngularVisitors(context, COMPONENTS.DBBadge, angularHandler);
+		const angularVisitors = createAngularVisitors(
+			context,
+			COMPONENTS.DBBadge,
+			angularHandler
+		);
 		if (angularVisitors) return angularVisitors;
 
 		const checkBadge = (node: any) => {
@@ -90,7 +111,9 @@ export default {
 
 						if (text && typeof text === 'string') {
 							const textAttr = openingElement.attributes.find(
-								(a: any) => a.type === 'JSXAttribute' && a.name.name === 'text'
+								(a: any) =>
+									a.type === 'JSXAttribute' &&
+									a.name.name === 'text'
 							);
 							if (textAttr) {
 								fixes.push(
@@ -105,7 +128,9 @@ export default {
 								(c: any) => c.type === 'JSXText'
 							);
 							if (textChild) {
-								fixes.push(fixer.replaceText(textChild, shortText));
+								fixes.push(
+									fixer.replaceText(textChild, shortText)
+								);
 								const lastAttr =
 									openingElement.attributes[
 										openingElement.attributes.length - 1

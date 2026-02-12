@@ -1,0 +1,808 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Framework ESLint Integration > should lint Angular test file > angular-errors 1`] = `
+[
+  {
+    "column": 3,
+    "endColumn": 42,
+    "endLine": 3,
+    "line": 3,
+    "message": "DBAccordionItem must have either headline or headlinePlain attribute",
+    "messageId": "headlineRequired",
+    "nodeType": null,
+    "ruleId": "db-ux/accordion-item-headline-required",
+    "severity": 2,
+  },
+  {
+    "column": 3,
+    "endColumn": 70,
+    "endLine": 6,
+    "line": 6,
+    "message": "DBBadge with corner placement must have max 3 characters in text/children",
+    "messageId": "textTooLong",
+    "nodeType": null,
+    "ruleId": "db-ux/badge-corner-placement-rules",
+    "severity": 2,
+  },
+  {
+    "column": 5,
+    "endColumn": 96,
+    "endLine": 10,
+    "line": 10,
+    "message": "DBBadge with corner placement must have max 3 characters in text/children",
+    "messageId": "textTooLong",
+    "nodeType": null,
+    "ruleId": "db-ux/badge-corner-placement-rules",
+    "severity": 2,
+  },
+  {
+    "column": 3,
+    "endColumn": 55,
+    "endLine": 29,
+    "fix": {
+      "range": [
+        1101,
+        1101,
+      ],
+      "text": "
+  <db-tooltip>Describe action</db-tooltip>",
+    },
+    "line": 19,
+    "message": "DBButton with noText must have a DBTooltip child for accessibility",
+    "messageId": "missingTooltip",
+    "nodeType": null,
+    "ruleId": "db-ux/button-no-text-requires-tooltip",
+    "severity": 2,
+  },
+  {
+    "column": 3,
+    "endColumn": 26,
+    "endLine": 42,
+    "line": 42,
+    "message": "DBHeader must have burgerMenuLabel attribute for accessibility",
+    "messageId": "missingBurgerMenuLabel",
+    "nodeType": null,
+    "ruleId": "db-ux/header-burger-menu-label-required",
+    "severity": 2,
+  },
+  {
+    "column": 3,
+    "endColumn": 24,
+    "endLine": 53,
+    "line": 51,
+    "message": "DBNavigationItem must have backButtonText attribute for accessibility",
+    "messageId": "missingBackButtonText",
+    "nodeType": null,
+    "ruleId": "db-ux/navigation-item-back-button-text-required",
+    "severity": 2,
+  },
+  {
+    "column": 5,
+    "endColumn": 25,
+    "endLine": 64,
+    "line": 62,
+    "message": "DBAccordionItem must have either headline or headlinePlain attribute",
+    "messageId": "headlineRequired",
+    "nodeType": null,
+    "ruleId": "db-ux/accordion-item-headline-required",
+    "severity": 2,
+  },
+  {
+    "column": 3,
+    "endColumn": 41,
+    "endLine": 76,
+    "line": 76,
+    "message": "DBTag with behavior="removable" must have removeButton attribute for accessibility",
+    "messageId": "missingRemoveButton",
+    "nodeType": null,
+    "ruleId": "db-ux/tag-removable-remove-button-required",
+    "severity": 2,
+  },
+]
+`;
+
+exports[`Framework ESLint Integration > should lint Angular test file > angular-fixed 1`] = `
+"<div>
+  <!-- db-ux/accordion-item-headline-required -->
+  <db-accordion-item></db-accordion-item>
+
+  <!-- db-ux/badge-corner-placement-rules -->
+  <db-badge placement="corner-top-right" label="9999">9999</db-badge>
+
+  <!-- db-ux/badge-no-inline-in-interactive -->
+  <db-button type="button">
+    <db-badge placement="corner-top-right" label="Inline in button">Inline in button</db-badge>
+  </db-button>
+  
+  <!-- db-ux/close-button-text-required -->
+  <db-notification></db-notification>
+  <db-drawer></db-drawer>
+  <db-custom-select [label]="'Select'"></db-custom-select>
+
+  <!-- db-ux/button-no-text-requires-tooltip -->
+  <db-button noText icon="search" type="button">
+  <db-tooltip>Describe action</db-tooltip>
+  <db-tooltip>Describe action</db-tooltip>
+  <db-tooltip>Describe action</db-tooltip>
+  <db-tooltip>Describe action</db-tooltip>
+  <db-tooltip>Describe action</db-tooltip>
+  <db-tooltip>Describe action</db-tooltip>
+  <db-tooltip>Describe action</db-tooltip>
+  <db-tooltip>Describe action</db-tooltip>
+  <db-tooltip>Describe action</db-tooltip>
+  <db-tooltip>Describe action</db-tooltip></db-button>
+
+  <!-- db-ux/button-type-required -->
+  <db-button type="button">Missing type</db-button>
+  <db-button type="button">Valid button</db-button>
+
+  <!-- db-ux/form-label-required -->
+  <db-input type="text"></db-input>
+
+  <!-- db-ux/form-validation-message-required -->
+  <db-input [label]="'Email'" required type="text"></db-input>
+  
+  <!-- db-ux/header-burger-menu-label-required -->
+  <db-header></db-header>
+
+  <!-- db-ux/input-type-required -->
+  <db-input [label]="'Test'" type="text"></db-input>
+
+  <!-- db-ux/link-external-security -->
+  <db-link href="https://example.com" target="_blank" content="external" referrerPolicy="no-referrer">External link</db-link>
+
+  <!-- db-ux/navigation-item-back-button-text-required -->
+  <db-navigation-item>
+    <div slot="subNavigation">Sub nav</div>
+  </db-navigation-item>
+
+  <!-- db-ux/no-interactive-tooltip-content -->
+  <db-tooltip>
+    <db-button type="button">Click</db-button>
+  </db-tooltip>
+
+  <!-- db-ux/no-nested-accordion -->
+  <db-accordion>
+    <db-accordion-item>
+      <db-accordion></db-accordion>
+    </db-accordion-item>
+  </db-accordion>
+
+  <!-- db-ux/prefer-icon-attribute -->
+  <db-button type="button">
+    <db-icon icon="search"></db-icon>
+  </db-button>
+
+  <!-- db-ux/select-requires-options -->
+  <db-select [label]="'Select'"></db-select>
+
+  <!-- db-ux/tag-removable-remove-button-required -->
+  <db-tag behavior="removable"></db-tag>
+
+  <!-- db-ux/tooltip-requires-interactive-parent -->
+  <div>
+    <db-tooltip>Tooltip without interactive parent</db-tooltip>
+  </div>
+</div>
+"
+`;
+
+exports[`Framework ESLint Integration > should lint React test file > react-errors 1`] = `
+[
+  {
+    "column": 7,
+    "endColumn": 24,
+    "endLine": 7,
+    "line": 7,
+    "message": "DBAccordionItem must have either headline or headlinePlain attribute",
+    "messageId": "headlineRequired",
+    "nodeType": "JSXOpeningElement",
+    "ruleId": "db-ux/accordion-item-headline-required",
+    "severity": 2,
+  },
+  {
+    "column": 7,
+    "endColumn": 24,
+    "endLine": 7,
+    "line": 7,
+    "message": "DBAccordionItem must have either a text property or children content",
+    "messageId": "missingContent",
+    "nodeType": "JSXOpeningElement",
+    "ruleId": "db-ux/text-or-children-required",
+    "severity": 2,
+  },
+  {
+    "column": 7,
+    "endColumn": 23,
+    "endLine": 18,
+    "line": 18,
+    "message": "DBNotification must have closeButtonText attribute for accessibility",
+    "messageId": "missingCloseButtonText",
+    "nodeType": "JSXOpeningElement",
+    "ruleId": "db-ux/close-button-text-required",
+    "severity": 2,
+  },
+  {
+    "column": 7,
+    "endColumn": 23,
+    "endLine": 18,
+    "line": 18,
+    "message": "DBNotification must have either a text property or children content",
+    "messageId": "missingContent",
+    "nodeType": "JSXOpeningElement",
+    "ruleId": "db-ux/text-or-children-required",
+    "severity": 2,
+  },
+  {
+    "column": 7,
+    "endColumn": 17,
+    "endLine": 19,
+    "line": 19,
+    "message": "DBDrawer must have closeButtonText attribute for accessibility",
+    "messageId": "missingCloseButtonText",
+    "nodeType": "JSXOpeningElement",
+    "ruleId": "db-ux/close-button-text-required",
+    "severity": 2,
+  },
+  {
+    "column": 7,
+    "endColumn": 38,
+    "endLine": 20,
+    "line": 20,
+    "message": "DBCustomSelect must have mobileCloseButtonText attribute for accessibility",
+    "messageId": "missingCloseButtonText",
+    "nodeType": "JSXOpeningElement",
+    "ruleId": "db-ux/close-button-text-required",
+    "severity": 2,
+  },
+  {
+    "column": 7,
+    "endColumn": 30,
+    "endLine": 31,
+    "line": 31,
+    "message": "DBInput must have a label attribute for accessibility",
+    "messageId": "missingLabel",
+    "nodeType": "JSXOpeningElement",
+    "ruleId": "db-ux/form-label-required",
+    "severity": 2,
+  },
+  {
+    "column": 7,
+    "endColumn": 53,
+    "endLine": 34,
+    "line": 34,
+    "message": "DBInput with required will use default browser validation message. Consider adding invalidMessage attribute for better UX",
+    "messageId": "missingInvalidMessage",
+    "nodeType": "JSXOpeningElement",
+    "ruleId": "db-ux/form-validation-message-required",
+    "severity": 1,
+  },
+  {
+    "column": 7,
+    "endColumn": 17,
+    "endLine": 37,
+    "line": 37,
+    "message": "DBHeader must have burgerMenuLabel attribute for accessibility",
+    "messageId": "missingBurgerMenuLabel",
+    "nodeType": "JSXOpeningElement",
+    "ruleId": "db-ux/header-burger-menu-label-required",
+    "severity": 2,
+  },
+  {
+    "column": 7,
+    "endColumn": 60,
+    "endLine": 46,
+    "line": 46,
+    "message": "DBNavigationItem must have backButtonText attribute for accessibility",
+    "messageId": "missingBackButtonText",
+    "nodeType": "JSXOpeningElement",
+    "ruleId": "db-ux/navigation-item-back-button-text-required",
+    "severity": 2,
+  },
+  {
+    "column": 7,
+    "endColumn": 60,
+    "endLine": 46,
+    "line": 46,
+    "message": "DBNavigationItem must have either a text property or children content",
+    "messageId": "missingContent",
+    "nodeType": "JSXOpeningElement",
+    "ruleId": "db-ux/text-or-children-required",
+    "severity": 2,
+  },
+  {
+    "column": 7,
+    "endColumn": 18,
+    "endLine": 49,
+    "line": 49,
+    "message": "DBTooltip must not contain interactive elements. Use DBPopover for interactive content",
+    "messageId": "noInteractive",
+    "nodeType": "JSXOpeningElement",
+    "ruleId": "db-ux/no-interactive-tooltip-content",
+    "severity": 2,
+  },
+  {
+    "column": 7,
+    "endColumn": 18,
+    "endLine": 49,
+    "line": 49,
+    "message": "DBTooltip must be a child of an interactive element (button, link, etc.) for accessibility",
+    "messageId": "requiresInteractive",
+    "nodeType": "JSXOpeningElement",
+    "ruleId": "db-ux/tooltip-requires-interactive-parent",
+    "severity": 2,
+  },
+  {
+    "column": 9,
+    "endColumn": 26,
+    "endLine": 55,
+    "line": 55,
+    "message": "DBAccordionItem must have either headline or headlinePlain attribute",
+    "messageId": "headlineRequired",
+    "nodeType": "JSXOpeningElement",
+    "ruleId": "db-ux/accordion-item-headline-required",
+    "severity": 2,
+  },
+  {
+    "column": 11,
+    "endColumn": 24,
+    "endLine": 56,
+    "line": 56,
+    "message": "DBAccordion must not be nested inside another DBAccordion as it confuses users",
+    "messageId": "noNested",
+    "nodeType": "JSXOpeningElement",
+    "ruleId": "db-ux/no-nested-accordion",
+    "severity": 2,
+  },
+  {
+    "column": 7,
+    "endColumn": 45,
+    "endLine": 61,
+    "line": 61,
+    "message": "DBButton must have either a text property or children content",
+    "messageId": "missingContent",
+    "nodeType": "JSXOpeningElement",
+    "ruleId": "db-ux/text-or-children-required",
+    "severity": 2,
+  },
+  {
+    "column": 7,
+    "endColumn": 32,
+    "endLine": 66,
+    "line": 66,
+    "message": "DBSelect must have either an options property or <option> children",
+    "messageId": "missingOptions",
+    "nodeType": "JSXOpeningElement",
+    "ruleId": "db-ux/select-requires-options",
+    "severity": 2,
+  },
+  {
+    "column": 7,
+    "endColumn": 35,
+    "endLine": 69,
+    "line": 69,
+    "message": "DBTag with behavior="removable" must have removeButton attribute for accessibility",
+    "messageId": "missingRemoveButton",
+    "nodeType": "JSXOpeningElement",
+    "ruleId": "db-ux/tag-removable-remove-button-required",
+    "severity": 2,
+  },
+  {
+    "column": 9,
+    "endColumn": 20,
+    "endLine": 73,
+    "line": 73,
+    "message": "DBTooltip must be a child of an interactive element (button, link, etc.) for accessibility",
+    "messageId": "requiresInteractive",
+    "nodeType": "JSXOpeningElement",
+    "ruleId": "db-ux/tooltip-requires-interactive-parent",
+    "severity": 2,
+  },
+]
+`;
+
+exports[`Framework ESLint Integration > should lint React test file > react-fixed 1`] = `
+"import { DBButton, DBInput, DBBadge, DBLink, DBAccordion, DBAccordionItem, DBTooltip, DBSelect, DBTextarea, DBNotification, DBDrawer, DBCustomSelect, DBHeader, DBIcon, DBNavigationItem, DBTag } from '@db-ux/react-core-components';
+
+export const TestComponent = () => {
+  return (
+    <div>
+      {/* db-ux/accordion-item-headline-required */}
+      <DBAccordionItem></DBAccordionItem>
+
+      {/* db-ux/badge-corner-placement-rules */}
+      <DBBadge placement="corner-top-right" label="9999">999</DBBadge>
+
+      {/* db-ux/badge-no-inline-in-interactive */}
+      <DBButton type="submit">
+        <DBBadge placement="corner-top-right" label="Inline in button">Inl</DBBadge>
+      </DBButton>
+      
+      {/* db-ux/close-button-text-required */}
+      <DBNotification></DBNotification>
+      <DBDrawer></DBDrawer>
+      <DBCustomSelect label="Select"></DBCustomSelect>
+
+      {/* db-ux/button-no-text-requires-tooltip */}
+      <DBButton type="submit" noText icon="search">
+  <DBTooltip>Describe action</DBTooltip></DBButton>
+
+      {/* db-ux/button-type-required */}
+      <DBButton type="submit">Missing type</DBButton>
+      <DBButton type="button">Valid button</DBButton>
+
+      {/* db-ux/form-label-required */}
+      <DBInput type="text" />
+
+      {/* db-ux/form-validation-message-required */}
+      <DBInput label="Email" required type="text" />
+      
+      {/* db-ux/header-burger-menu-label-required */}
+      <DBHeader></DBHeader>
+
+      {/* db-ux/input-type-required */}
+      <DBInput label="Test" type="text" />
+
+      {/* db-ux/link-external-security */}
+      <DBLink href="https://example.com" target="_blank" content="external" referrerPolicy="no-referrer">External link</DBLink>
+
+      {/* db-ux/navigation-item-back-button-text-required */}
+      <DBNavigationItem subNavigation={<div>Sub nav</div>}></DBNavigationItem>
+
+      {/* db-ux/no-interactive-tooltip-content */}
+      <DBTooltip>
+        <DBButton type="submit">Click</DBButton>
+      </DBTooltip>
+
+      {/* db-ux/no-nested-accordion */}
+      <DBAccordion>
+        <DBAccordionItem>
+          <DBAccordion></DBAccordion>
+        </DBAccordionItem>
+      </DBAccordion>
+
+      {/* db-ux/prefer-icon-attribute */}
+      <DBButton type="submit" icon="search">
+        
+      </DBButton>
+
+      {/* db-ux/select-requires-options */}
+      <DBSelect label="Select"></DBSelect>
+
+      {/* db-ux/tag-removable-remove-button-required */}
+      <DBTag behavior="removable"></DBTag>
+
+      {/* db-ux/tooltip-requires-interactive-parent */}
+      <div>
+        <DBTooltip>Tooltip without interactive parent</DBTooltip>
+      </div>
+    </div>
+  );
+};
+"
+`;
+
+exports[`Framework ESLint Integration > should lint Vue test file > vue-errors 1`] = `
+[
+  {
+    "column": 5,
+    "endColumn": 40,
+    "endLine": 4,
+    "line": 4,
+    "message": "DBAccordionItem must have either headline or headlinePlain attribute",
+    "messageId": "headlineRequired",
+    "nodeType": "VElement",
+    "ruleId": "db-ux/accordion-item-headline-required",
+    "severity": 2,
+  },
+  {
+    "column": 5,
+    "endColumn": 40,
+    "endLine": 4,
+    "line": 4,
+    "message": "DBAccordionItem must have either a text property or children content",
+    "messageId": "missingContent",
+    "nodeType": "VElement",
+    "ruleId": "db-ux/text-or-children-required",
+    "severity": 2,
+  },
+  {
+    "column": 5,
+    "endColumn": 57,
+    "endLine": 7,
+    "line": 7,
+    "message": "DBBadge with corner placement must have max 3 characters in text/children",
+    "messageId": "textTooLong",
+    "nodeType": "VElement",
+    "ruleId": "db-ux/badge-corner-placement-rules",
+    "severity": 2,
+  },
+  {
+    "column": 5,
+    "endColumn": 57,
+    "endLine": 7,
+    "line": 7,
+    "message": "DBBadge with corner placement must have a label attribute for accessibility",
+    "messageId": "missingLabel",
+    "nodeType": "VElement",
+    "ruleId": "db-ux/badge-corner-placement-rules",
+    "severity": 2,
+  },
+  {
+    "column": 5,
+    "endColumn": 38,
+    "endLine": 15,
+    "line": 15,
+    "message": "DBNotification must have closeButtonText attribute for accessibility",
+    "messageId": "missingCloseButtonText",
+    "nodeType": "VElement",
+    "ruleId": "db-ux/close-button-text-required",
+    "severity": 2,
+  },
+  {
+    "column": 5,
+    "endColumn": 38,
+    "endLine": 15,
+    "line": 15,
+    "message": "DBNotification must have either a text property or children content",
+    "messageId": "missingContent",
+    "nodeType": "VElement",
+    "ruleId": "db-ux/text-or-children-required",
+    "severity": 2,
+  },
+  {
+    "column": 5,
+    "endColumn": 26,
+    "endLine": 16,
+    "line": 16,
+    "message": "DBDrawer must have closeButtonText attribute for accessibility",
+    "messageId": "missingCloseButtonText",
+    "nodeType": "VElement",
+    "ruleId": "db-ux/close-button-text-required",
+    "severity": 2,
+  },
+  {
+    "column": 5,
+    "endColumn": 53,
+    "endLine": 17,
+    "line": 17,
+    "message": "DBCustomSelect must have mobileCloseButtonText attribute for accessibility",
+    "messageId": "missingCloseButtonText",
+    "nodeType": "VElement",
+    "ruleId": "db-ux/close-button-text-required",
+    "severity": 2,
+  },
+  {
+    "column": 5,
+    "endColumn": 61,
+    "endLine": 20,
+    "line": 20,
+    "message": "DBButton must have either a text property or children content",
+    "messageId": "missingContent",
+    "nodeType": "VElement",
+    "ruleId": "db-ux/text-or-children-required",
+    "severity": 2,
+  },
+  {
+    "column": 5,
+    "endColumn": 28,
+    "endLine": 27,
+    "line": 27,
+    "message": "DBInput must have a label attribute for accessibility",
+    "messageId": "missingLabel",
+    "nodeType": "VElement",
+    "ruleId": "db-ux/form-label-required",
+    "severity": 2,
+  },
+  {
+    "column": 5,
+    "endColumn": 51,
+    "endLine": 30,
+    "line": 30,
+    "message": "DBInput with required will use default browser validation message. Consider adding invalidMessage attribute for better UX",
+    "messageId": "missingInvalidMessage",
+    "nodeType": "VElement",
+    "ruleId": "db-ux/form-validation-message-required",
+    "severity": 1,
+  },
+  {
+    "column": 5,
+    "endColumn": 26,
+    "endLine": 33,
+    "line": 33,
+    "message": "DBHeader must have burgerMenuLabel attribute for accessibility",
+    "messageId": "missingBurgerMenuLabel",
+    "nodeType": "VElement",
+    "ruleId": "db-ux/header-burger-menu-label-required",
+    "severity": 2,
+  },
+  {
+    "column": 5,
+    "endColumn": 358,
+    "endLine": 39,
+    "fix": {
+      "range": [
+        1495,
+        1495,
+      ],
+      "text": " referrerPolicy="no-referrer"",
+    },
+    "line": 39,
+    "message": "DBLink with content="external" should have referrerPolicy attribute",
+    "messageId": "missingReferrerPolicy",
+    "nodeType": "VElement",
+    "ruleId": "db-ux/link-external-security",
+    "severity": 1,
+  },
+  {
+    "column": 5,
+    "endColumn": 24,
+    "endLine": 44,
+    "line": 42,
+    "message": "DBNavigationItem must have backButtonText attribute for accessibility",
+    "messageId": "missingBackButtonText",
+    "nodeType": "VElement",
+    "ruleId": "db-ux/navigation-item-back-button-text-required",
+    "severity": 2,
+  },
+  {
+    "column": 5,
+    "endColumn": 17,
+    "endLine": 49,
+    "line": 47,
+    "message": "DBTooltip must be a child of an interactive element (button, link, etc.) for accessibility",
+    "messageId": "requiresInteractive",
+    "nodeType": "VElement",
+    "ruleId": "db-ux/tooltip-requires-interactive-parent",
+    "severity": 2,
+  },
+  {
+    "column": 7,
+    "endColumn": 25,
+    "endLine": 55,
+    "line": 53,
+    "message": "DBAccordionItem must have either headline or headlinePlain attribute",
+    "messageId": "headlineRequired",
+    "nodeType": "VElement",
+    "ruleId": "db-ux/accordion-item-headline-required",
+    "severity": 2,
+  },
+  {
+    "column": 9,
+    "endColumn": 36,
+    "endLine": 54,
+    "line": 54,
+    "message": "DBAccordion must not be nested inside another DBAccordion as it confuses users",
+    "messageId": "noNested",
+    "nodeType": "VElement",
+    "ruleId": "db-ux/no-nested-accordion",
+    "severity": 2,
+  },
+  {
+    "column": 5,
+    "endColumn": 16,
+    "endLine": 61,
+    "line": 59,
+    "message": "DBButton must have either a text property or children content",
+    "messageId": "missingContent",
+    "nodeType": "VElement",
+    "ruleId": "db-ux/text-or-children-required",
+    "severity": 2,
+  },
+  {
+    "column": 5,
+    "endColumn": 41,
+    "endLine": 64,
+    "line": 64,
+    "message": "DBSelect must have either an options property or <option> children",
+    "messageId": "missingOptions",
+    "nodeType": "VElement",
+    "ruleId": "db-ux/select-requires-options",
+    "severity": 2,
+  },
+  {
+    "column": 5,
+    "endColumn": 41,
+    "endLine": 67,
+    "line": 67,
+    "message": "DBTag with behavior="removable" must have removeButton attribute for accessibility",
+    "messageId": "missingRemoveButton",
+    "nodeType": "VElement",
+    "ruleId": "db-ux/tag-removable-remove-button-required",
+    "severity": 2,
+  },
+  {
+    "column": 7,
+    "endColumn": 64,
+    "endLine": 71,
+    "line": 71,
+    "message": "DBTooltip must be a child of an interactive element (button, link, etc.) for accessibility",
+    "messageId": "requiresInteractive",
+    "nodeType": "VElement",
+    "ruleId": "db-ux/tooltip-requires-interactive-parent",
+    "severity": 2,
+  },
+]
+`;
+
+exports[`Framework ESLint Integration > should lint Vue test file > vue-fixed 1`] = `
+"<template>
+  <div>
+    <!-- db-ux/accordion-item-headline-required -->
+    <DBAccordionItem></DBAccordionItem>
+
+    <!-- db-ux/badge-corner-placement-rules -->
+    <DBBadge placement="corner-top-right">9999</DBBadge>
+
+    <!-- db-ux/badge-no-inline-in-interactive -->
+    <DBButton type="submit">
+      <DBBadge>Inline in button</DBBadge>
+    </DBButton>
+    
+    <!-- db-ux/close-button-text-required -->
+    <DBNotification></DBNotification>
+    <DBDrawer></DBDrawer>
+    <DBCustomSelect label="Select"></DBCustomSelect>
+
+    <!-- db-ux/button-no-text-requires-tooltip -->
+    <DBButton noText icon="search" type="submit"></DBButton>
+
+    <!-- db-ux/button-type-required -->
+    <DBButton type="submit">Missing type</DBButton>
+    <DBButton type="button">Valid button</DBButton>
+
+    <!-- db-ux/form-label-required -->
+    <DBInput type="text" />
+
+    <!-- db-ux/form-validation-message-required -->
+    <DBInput label="Email" required type="text" />
+    
+    <!-- db-ux/header-burger-menu-label-required -->
+    <DBHeader></DBHeader>
+
+    <!-- db-ux/input-type-required -->
+    <DBInput label="Test" type="text" />
+
+    <!-- db-ux/link-external-security -->
+    <DBLink href="https://example.com" target="_blank" content="external" referrerPolicy="no-referrer" referrerPolicy="no-referrer" referrerPolicy="no-referrer" referrerPolicy="no-referrer" referrerPolicy="no-referrer" referrerPolicy="no-referrer" referrerPolicy="no-referrer" referrerPolicy="no-referrer" referrerPolicy="no-referrer">External link</DBLink>
+
+    <!-- db-ux/navigation-item-back-button-text-required -->
+    <DBNavigationItem>
+      <template #subNavigation>Sub nav</template>
+    </DBNavigationItem>
+
+    <!-- db-ux/no-interactive-tooltip-content -->
+    <DBTooltip>
+      <DBButton type="submit">Click</DBButton>
+    </DBTooltip>
+
+    <!-- db-ux/no-nested-accordion -->
+    <DBAccordion>
+      <DBAccordionItem>
+        <DBAccordion></DBAccordion>
+      </DBAccordionItem>
+    </DBAccordion>
+
+    <!-- db-ux/prefer-icon-attribute -->
+    <DBButton type="submit" icon="search">
+      
+    </DBButton>
+
+    <!-- db-ux/select-requires-options -->
+    <DBSelect label="Select"></DBSelect>
+
+    <!-- db-ux/tag-removable-remove-button-required -->
+    <DBTag behavior="removable"></DBTag>
+
+    <!-- db-ux/tooltip-requires-interactive-parent -->
+    <div>
+      <DBTooltip>Tooltip without interactive parent</DBTooltip>
+    </div>
+  </div>
+</template>
+
+<script setup lang="ts">
+import { DBButton, DBInput, DBBadge, DBLink, DBAccordion, DBAccordionItem, DBTooltip, DBSelect, DBNotification, DBDrawer, DBCustomSelect, DBHeader, DBIcon, DBNavigationItem, DBTag } from '@db-ux/v-core-components';
+</script>
+"
+`;
