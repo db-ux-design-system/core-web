@@ -52,6 +52,3 @@
   - list:
     - listitem:
       - button "This is a very long text that is broken into multiple lines."
-  - list:
-    - listitem:
-      - button "This is a very long text that is broken into multiple lines."

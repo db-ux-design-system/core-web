@@ -7,11 +7,11 @@
   - link "Semantic"
   - text: (Default) Adaptive Critical Informational Neutral Successful Warning Adaptive Strong Critical Strong Informational Strong Neutral Strong Successful Strong Warning Strong
   - link "Behavior"
-  - text: (Default) Static Removable
-  - button "Remove"
-  - button "Interactive (Button)"
-  - link "Interactive (Link)"
   - group "Behavior":
+    - text: (Default) Static Removable
+    - button "Remove"
+    - button "Interactive (Button)"
+    - link "Interactive (Link)"
     - checkbox "Interactive (Checkbox)"
     - text: Interactive (Checkbox)
     - radio "Interactive (Radio)"
@@ -44,9 +44,9 @@
   - link "Overflow"
   - text: (Default) False True - lorem ipsum dolor
   - link "Example Strong"
-  - button "Interactive Strong Button with Icon"
-  - link "Interactive Strong Link with Icon"
   - group "Example Strong":
+    - button "Interactive Strong Button with Icon"
+    - link "Interactive Strong Link with Icon"
     - checkbox "Interactive Strong Checkbox with Icon"
     - text: Interactive Strong Checkbox with Icon
     - radio "Interactive Strong Radio 1 with Icon"
