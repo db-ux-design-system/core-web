@@ -1,1 +1,1 @@
-# @db-ux/eslint-plugin
+# @db-ux/core-eslint-plugin

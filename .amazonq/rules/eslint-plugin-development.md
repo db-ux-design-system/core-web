@@ -1,6 +1,6 @@
 # ESLint Plugin Development Rules
 
-When developing new ESLint rules for @db-ux/eslint-plugin:
+When developing new ESLint rules for @db-ux/core-eslint-plugin:
 
 ## Rule Structure
 

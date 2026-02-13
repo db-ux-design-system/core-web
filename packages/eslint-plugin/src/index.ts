@@ -1,3 +1,4 @@
+import { version } from '../package.json' with { type: 'json' };
 import accordionItemHeadlineRequired from './rules/accordion/accordion-item-headline-required.js';
 import noNestedAccordion from './rules/accordion/no-nested-accordion.js';
 import badgeCornerPlacementRules from './rules/badge/badge-corner-placement-rules.js';
@@ -50,8 +51,8 @@ const recommended = {
 
 const plugin = {
 	meta: {
-		name: '@db-ux/eslint-plugin',
-		version: '0.0.1'
+		name: '@db-ux/core-eslint-plugin',
+		version
 	},
 	rules: {
 		'button-no-text-requires-tooltip': buttonNoTextRequiresTooltip,

@@ -1,5 +1,5 @@
 import angularTemplateParser from '@angular-eslint/template-parser';
-import dbUx from '@db-ux/eslint-plugin';
+import dbUx from '@db-ux/core-eslint-plugin';
 import tsParser from '@typescript-eslint/parser';
 import vueParser from 'vue-eslint-parser';
 

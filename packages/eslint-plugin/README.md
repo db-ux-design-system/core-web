@@ -1,11 +1,11 @@
-# @db-ux/eslint-plugin
+# @db-ux/core-eslint-plugin
 
 ESLint plugin to validate correct usage of DB UX Design System components across React, Vue, and Angular.
 
 ## Installation
 
 ```shell
-npm install eslint @db-ux/eslint-plugin --save-dev
+npm install eslint @db-ux/core-eslint-plugin --save-dev
 ```
 
 **For Vue projects**, also install `vue-eslint-parser`:
@@ -33,7 +33,8 @@ Add to your ESLint config:
 **ESLint 9+ (flat config):**
 
 ```js
-import dbUx from "@db-ux/eslint-plugin";
+// eslint.config.js
+import dbUx from "@db-ux/core-eslint-plugin";
 
 export default [
 	{
@@ -48,7 +49,7 @@ export default [
 **For Vue projects**, configure the Vue parser:
 
 ```js
-import dbUx from "@db-ux/eslint-plugin";
+import dbUx from "@db-ux/core-eslint-plugin";
 import vueParser from "vue-eslint-parser";
 import tsParser from "@typescript-eslint/parser";
 
@@ -74,7 +75,7 @@ export default [
 **For Angular projects**, configure the Angular template parser:
 
 ```js
-import dbUx from "@db-ux/eslint-plugin";
+import dbUx from "@db-ux/core-eslint-plugin";
 import angularTemplateParser from "@angular-eslint/template-parser";
 
 export default [
@@ -94,7 +95,7 @@ export default [
 **Or enable rules individually:**
 
 ```js
-import dbUx from "@db-ux/eslint-plugin";
+import dbUx from "@db-ux/core-eslint-plugin";
 
 export default [
 	{
@@ -111,7 +112,7 @@ export default [
 **For React/TypeScript projects**, configure the TypeScript parser:
 
 ```js
-import dbUx from "@db-ux/eslint-plugin";
+import dbUx from "@db-ux/core-eslint-plugin";
 import tsParser from "@typescript-eslint/parser";
 
 export default [
