@@ -1,3 +1,5 @@
+import TableShowcase from '@components/components/table/showcase/table.showcase';
+
 import AccordionComponent from '../components/accordion';
 import AccordionItemComponent from '../components/accordion-item';
 import BadgeComponent from '../components/badge';
@@ -114,6 +116,8 @@ export const NAVIGATION_ITEMS: NavigationItem[] = [
 				label: 'TabItem',
 				component: <TabItemComponent />
 			},
+			{ path: 'table', label: 'Table', component: <TableShowcase /> },
+
 			{ path: 'tabs', label: 'Tabs', component: <TabsComponent /> }
 		])
 	},

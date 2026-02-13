@@ -51,6 +51,10 @@
 				"isHiddenInMenu": true
 			},
 			{
+				"label": "DBTable",
+				"name": "table"
+			},
+			{
 				"label": "DBTabs",
 				"name": "tabs",
 				"subNavigation": [

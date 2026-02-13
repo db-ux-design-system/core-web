@@ -1,0 +1,238 @@
+@use "@db-ux/core-foundations/build/styles/variables";
+@use "@db-ux/core-foundations/build/styles/colors";
+@use "@db-ux/core-foundations/build/styles/fonts";
+@use "@db-ux/core-foundations/build/styles/helpers";
+@use "@db-ux/core-foundations/build/styles/screen-sizes";
+@use "./../../styles/internal/component";
+@use "./../../styles/internal/table-components";
+
+%sizes {
+	&:not([data-size]),
+	&[data-size="medium"] {
+		:is(th, td) {
+			padding: variables.$db-spacing-fixed-xs;
+		}
+	}
+
+	&[data-size="large"] {
+		:is(th, td) {
+			padding: variables.$db-spacing-fixed-sm;
+		}
+	}
+
+	&[data-size="small"],
+	&[data-size="xsmall"] {
+		:is(th, td) {
+			padding: variables.$db-spacing-fixed-2xs;
+		}
+	}
+
+	&[data-size="xsmall"] {
+		@extend %db-overwrite-font-size-sm;
+	}
+}
+
+%zebra {
+	&[data-row-style="zebra"] {
+		tbody {
+			> db-table-row:nth-child(odd) > tr,
+			> tr:nth-child(odd) {
+				background-color: colors.$db-adaptive-bg-basic-level-3-default;
+			}
+		}
+
+		thead {
+			tr[data-sub-header-emphasis="weak"] {
+				@extend %sub-header-strong;
+			}
+		}
+	}
+}
+
+%divider {
+	&:not([data-divider="none"], [data-variant="floating"]) {
+		&[data-divider="both"],
+		&[data-divider="vertical"] {
+			td,
+			th {
+				border-inline: component.$component-border;
+			}
+		}
+
+		&:not([data-divider]),
+		&[data-divider="both"],
+		&[data-divider="horizontal"] {
+			tr {
+				border-block: component.$component-border;
+			}
+		}
+	}
+}
+
+@mixin get-floating-grid {
+	@for $num from 1 through 20 {
+		&:has(
+				tr
+					> :is(
+						td,
+						th,
+						db-table-data-cell,
+						db-table-header-cell
+					):nth-child(#{$num})
+			):not(
+				:has(
+					tr
+						> :is(
+							td,
+							th,
+							db-table-data-cell,
+							db-table-header-cell
+						):nth-child(#{$num + 1})
+				)
+			) {
+			grid-template-columns: repeat(
+				var(--db-table-template-columns, #{$num}),
+				1fr
+			);
+		}
+	}
+}
+
+%floating-sub-grid {
+	grid-template-columns: subgrid;
+	grid-column: 1 / -1;
+	row-gap: variables.$db-spacing-fixed-xs;
+}
+
+%floating-table {
+	table {
+		display: grid;
+		row-gap: variables.$db-spacing-fixed-xs;
+
+		@include get-floating-grid;
+
+		thead {
+			@extend %floating-sub-grid;
+
+			display: var(--db-thead-display, grid);
+		}
+
+		tbody,
+		tfoot {
+			@extend %floating-sub-grid;
+			display: grid;
+		}
+
+		tr {
+			display: grid;
+			grid-template-columns: subgrid;
+			grid-column: 1 / -1;
+		}
+
+		thead {
+			tr {
+				&:not([data-sub-header-emphasis]) {
+					@extend %transparent-border;
+				}
+
+				&[data-sub-header-emphasis] {
+					@extend %default-card;
+				}
+			}
+		}
+
+		&[data-divider="both"],
+		&[data-divider="vertical"] {
+			:is(tfoot, tbody) {
+				tr
+					> :is(td, th, db-table-header-cell, db-table-data-cell):not(
+						:last-child
+					) {
+					border-inline-end: component.$component-border;
+				}
+			}
+		}
+
+		:is(tfoot, tbody) {
+			tr {
+				@extend %default-card;
+
+				background-color: colors.$db-adaptive-bg-basic-level-1-default;
+			}
+		}
+
+		td,
+		th {
+			display: flex;
+		}
+
+		@for $span from 2 through 20 {
+			:is(td, th)[colspan="#{$span}"] {
+				grid-column: span var(--db-table-cell-span, #{$span});
+			}
+
+			:is(td, th)[rowspan="#{$span}"] {
+				grid-row: span var(--db-table-cell-span, #{$span});
+			}
+		}
+	}
+}
+
+%variant {
+	&:not([data-variant]),
+	&[data-variant="joined"] {
+		table {
+			border: component.$component-border;
+		}
+	}
+
+	&[data-variant="floating"] {
+		@extend %floating-table;
+	}
+
+	@container (inline-size < #{screen-sizes.$db-breakpoint-sm}) {
+		&[data-mobile-variant="list"] {
+			table {
+				--db-thead-display: none;
+				--db-table-template-columns: 1;
+				--db-table-cell-span: 1;
+
+				border: none;
+			}
+
+			:is(th, td)[data-header] {
+				gap: variables.$db-spacing-fixed-xs;
+
+				&::before {
+					content: attr(data-header) ":";
+					font-weight: bold;
+				}
+			}
+
+			&:not([data-variant="floating"]) {
+				@extend %floating-table;
+			}
+		}
+	}
+}
+
+.db-table {
+	@extend %divider;
+	@extend %variant;
+	@extend %zebra;
+	@extend %sizes;
+	inline-size: 100%;
+	container-type: inline-size;
+	background-color: colors.$db-adaptive-bg-basic-level-1-default;
+
+	table {
+		border-collapse: collapse;
+		inline-size: inherit;
+	}
+
+	&:not([data-show-caption="true"]) {
+		caption {
+			@extend %a11y-visually-hidden;
+		}
+	}
+}

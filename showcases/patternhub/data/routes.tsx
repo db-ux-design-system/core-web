@@ -45,6 +45,7 @@ import * as navigationCode from '../components/code-docs/navigation';
 import * as navigationItemCode from '../components/code-docs/navigation-item';
 import * as notificationCode from '../components/code-docs/notification';
 // Import * as pageCode from '../components/code-docs/page';
+import TableShowcase from '@components/components/table/showcase/table.showcase';
 import * as popoverCode from '../components/code-docs/popover';
 import * as radioCode from '../components/code-docs/radio';
 import * as sectionCode from '../components/code-docs/section';
@@ -56,6 +57,7 @@ import * as tabsCode from '../components/code-docs/tabs';
 import * as tagCode from '../components/code-docs/tag';
 import * as textareaCode from '../components/code-docs/textarea';
 import * as tooltipCode from '../components/code-docs/tooltip';
+
 import Components from './components.json';
 
 export type NavigationItem = {
@@ -68,6 +70,8 @@ export type NavigationItem = {
 };
 
 const nameComponentMap = {
+	table: <TableShowcase isPatternhub />,
+
 	'custom-select': <CustomSelectComponent slotCode={customSelectCode} />,
 	stack: <StackComponent slotCode={stackCode} />,
 	button: <ButtonShowcase isPatternhub />,

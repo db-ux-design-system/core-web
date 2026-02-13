@@ -1,0 +1,5 @@
+@use "./../../styles/internal/table-components";
+
+.db-table-data-cell {
+	@extend %table-cell;
+}

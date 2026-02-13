@@ -1,3 +1,5 @@
+import { TableComponent } from '../components/table.component';
+
 import { Routes } from '@angular/router';
 import { AccordionItemComponent } from '../components/accordion-item/accordion-item.component';
 import { AccordionComponent } from '../components/accordion/accordion.component';
@@ -109,6 +111,7 @@ export const NAVIGATION_ITEMS: NavItem[] = [
 				label: 'TabItem',
 				component: TabItemComponent
 			},
+			{ path: '04/table', label: 'Table', component: TableComponent },
 
 			{ path: '04/tabs', label: 'Tabs', component: TabsComponent }
 		])

@@ -1,3 +1,5 @@
+import TableShowcase from '@components/components/table/showcase/table.showcase.vue';
+
 import { markRaw } from 'vue';
 import type { RouteRecordRaw } from 'vue-router';
 import AccordionItem from '../components/accordion-item/AccordionItem.vue';
@@ -114,6 +116,11 @@ export const navigationItems: NavItem[] = [
 				path: '/04/tab-item',
 				label: 'TabItem',
 				component: markRaw(TabItem)
+			},
+			{
+				path: '/04/table',
+				label: 'Table',
+				component: markRaw(TableShowcase)
 			},
 
 			{ path: '/04/tabs', label: 'Tabs', component: markRaw(Tabs) }

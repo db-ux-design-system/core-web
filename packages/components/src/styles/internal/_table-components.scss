@@ -1,0 +1,22 @@
+@use "@db-ux/core-foundations/build/styles/colors";
+
+%table-cell {
+	&:not([data-alignment]),
+	&[data-alignment="start"] {
+		text-align: start;
+	}
+
+	&[data-alignment="center"] {
+		text-align: center;
+	}
+
+	&[data-alignment="end"] {
+		text-align: end;
+	}
+}
+
+%sub-header-strong {
+	background-color: colors.$db-adaptive-bg-vibrant-default;
+	color: colors.$db-adaptive-on-bg-vibrant-default;
+	border-color: colors.$db-adaptive-on-bg-basic-emphasis-70-default;
+}

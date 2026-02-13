@@ -1,3 +1,5 @@
+import { DBTable } from '../../../../output/react/src/index';
+
 import { useEffect, useState } from 'react';
 import {
 	DBAccordion,
@@ -345,6 +347,14 @@ const ComponentSwitch = ({
 			<DBCustomSelect className={className} {...props}>
 				{resolvedContent}
 			</DBCustomSelect>
+		);
+	}
+
+	if (type === 'table') {
+		return (
+			<DBTable className={className} {...props}>
+				{resolvedContent}
+			</DBTable>
 		);
 	}
 
