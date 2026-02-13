@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="210mm"
+   height="297mm"
+   viewBox="0 0 210 297"
+   version="1.1"
+   id="svg5"
+   inkscape:version="1.1.2 (b8e25be833, 2022-02-05)"
+   sodipodi:docname="vue-showcase.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview7"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:document-units="mm"
+     showgrid="false"
+     inkscape:zoom="0.3599046"
+     inkscape:cx="-180.60341"
+     inkscape:cy="737.69549"
+     inkscape:window-width="1920"
+     inkscape:window-height="1001"
+     inkscape:window-x="-9"
+     inkscape:window-y="-9"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1" />
+  <defs
+     id="defs2" />
+  <g
+     inkscape:label="Ebene 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <g
+       class="icon-style"
+       transform="matrix(4.6754744,0,0,4.6754744,34.867884,17.586717)"
+       id="g69"
+       style="fill:none;fill-rule:evenodd">
+      <path
+         fill="#282D37"
+         style="fill:currentColor"
+         fill-rule="nonzero"
+         d="m 25,0 a 5,5 0 0 1 4.995,4.783 L 30,51 a 5,5 0 0 1 -4.783,4.995 L 5,56 A 5,5 0 0 1 0.005,51.217 L 0,5 A 5,5 0 0 1 4.783,0.005 Z M 23,2 V 2.034 A 2.966,2.966 0 0 1 20.248,4.992 L 9.966,5 C 8.386,5 7.096,3.557 7.005,2 H 5 A 3,3 0 0 0 2.005,4.824 L 2,51 a 3,3 0 0 0 2.824,2.995 L 25,54 a 3,3 0 0 0 2.995,-2.824 L 28,5 A 3,3 0 0 0 25.176,2.005 Z M 21,2 H 9 V 2.034 C 9,2.53 9.373,2.938 9.853,2.994 L 9.966,3 H 20.034 A 0.966,0.966 0 0 0 20.992,2.161 L 21,2.034 Z"
+         class="base"
+         id="path65" />
+      <path
+         fill="#EC0016"
+         style="fill:#ec0016"
+         d="m 21,50 a 1,1 0 0 1 0.117,1.993 L 21,52 H 9 A 1,1 0 0 1 8.883,50.007 L 9,50 Z"
+         class="pulse"
+         id="path67" />
+    </g>
+    <g
+       transform="matrix(0.50937245,0,0,-0.50937245,25.848106,224.90587)"
+       id="g324">
+      <g
+         transform="translate(178.06,235.01)"
+         id="g318">
+        <path
+           d="M 0,0 -22.669,-39.264 -45.338,0 h -75.491 L -22.669,-170.02 75.491,0 Z"
+           fill="#41b883"
+           id="path316" />
+      </g>
+      <g
+         transform="translate(178.06,235.01)"
+         id="g322">
+        <path
+           d="M 0,0 -22.669,-39.264 -45.338,0 H -81.565 L -22.669,-102.01 36.227,0 Z"
+           fill="#34495e"
+           id="path320" />
+      </g>
+    </g>
+  </g>
+</svg>
