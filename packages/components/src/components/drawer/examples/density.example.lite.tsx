@@ -24,7 +24,6 @@ export default function DrawerDensity() {
 					Open: Functional
 				</DBButton>
 				<DBDrawer
-					data-density="functional"
 					open={openIndex === 0}
 					onClose={() => setOpenIndex(-1)}>
 					Functional
@@ -37,7 +36,6 @@ export default function DrawerDensity() {
 					Open: (Default) Regular
 				</DBButton>
 				<DBDrawer
-					data-density="regular"
 					open={openIndex === 1}
 					onClose={() => setOpenIndex(-1)}>
 					(Default) Regular
@@ -50,7 +48,6 @@ export default function DrawerDensity() {
 					Open: Expressive
 				</DBButton>
 				<DBDrawer
-					data-density="expressive"
 					open={openIndex === 2}
 					onClose={() => setOpenIndex(-1)}>
 					Expressive

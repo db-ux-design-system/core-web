@@ -89,6 +89,7 @@ module.exports = () => ({
 	},
 	code: {
 		post: (code, json) => {
+			// TODO: Remove the this when https://github.com/db-ux-design-system/core-web/pull/4639 is merged
 			if (json.name.startsWith('Header')) {
 				code = code
 					.replace(
@@ -106,6 +107,7 @@ module.exports = () => ({
 					json.name.startsWith(exampleName)
 				)
 			) {
+				// TODO: Remove the this when https://github.com/db-ux-design-system/core-web/pull/4639 is merged
 				code = code
 					.replace(
 						'imports: [',

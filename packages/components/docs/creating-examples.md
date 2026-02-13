@@ -5,6 +5,7 @@ This guide explains how to create examples for components in the DB UX Design Sy
 ## File Structure
 
 Each component should have:
+
 - Example files: `*.example.lite.tsx` in the component's `examples/` folder
 - Arg types file: `_<component>.arg.types.ts` defining Storybook controls
 
@@ -13,13 +14,13 @@ Each component should have:
 ### Basic Example
 
 ```tsx
-import { Fragment, useMetadata } from '@builder.io/mitosis';
-import DBButton from '../button.lite';
-import { StorybookButtonArgTypes } from './_button.arg.types';
+import { Fragment, useMetadata } from "@builder.io/mitosis";
+import DBButton from "../button.lite";
+import { StorybookButtonArgTypes } from "./_button.arg.types";
 
 useMetadata({
-	storybookTitle: 'Width',
-	storybookNames: ['Auto', 'Full'],
+	storybookTitle: "Width",
+	storybookNames: ["Auto", "Full"],
 	storybookArgTypes: StorybookButtonArgTypes
 });
 
@@ -44,10 +45,11 @@ The `useMetadata` hook configures how the example appears in Storybook:
 - **`storybookOverwriteArgs`**: Override default arg values for Storybook controls
 
 Example with overwrite:
+
 ```tsx
 useMetadata({
-	storybookTitle: 'Backdrop',
-	storybookNames: ['Strong', 'Weak'],
+	storybookTitle: "Backdrop",
+	storybookNames: ["Strong", "Weak"],
 	storybookArgTypes: StorybookDrawerArgTypes,
 	storybookOverwriteArgs: {
 		open: false
@@ -64,7 +66,8 @@ Replace a component/element with a description in Storybook. Useful for interact
 ```tsx
 <DBButton
 	data-sb-replace="Open DBDrawer by switching open property"
-	onClick={() => setOpenIndex(0)}>
+	onClick={() => setOpenIndex(0)}
+>
 	Open Drawer
 </DBButton>
 ```
@@ -74,9 +77,7 @@ Replace a component/element with a description in Storybook. Useful for interact
 Hide specific components/elements from Storybook while keeping them in the actual example.
 
 ```tsx
-<DBInfotext
-	data-sb-ignore="true"
-	semantic="informational">
+<DBInfotext data-sb-ignore="true" semantic="informational">
 	Helper text
 </DBInfotext>
 ```
@@ -86,17 +87,20 @@ Hide specific components/elements from Storybook while keeping them in the actua
 Create `_<component>.arg.types.ts` to define Storybook controls:
 
 ```tsx
-import type { InputType } from 'storybook/internal/csf';
-import { StorybookIconArgTypes } from '../../../shared/examples/_icons.arg.types';
+import type { InputType } from "storybook/internal/csf";
+import { StorybookIconArgTypes } from "../../../shared/examples/_icons.arg.types";
 
 export const StorybookButtonArgTypes: Record<string, InputType> = {
-	variant: { control: 'select', options: ['outlined', 'brand', 'ghost', 'filled'] },
-	disabled: { control: 'boolean' },
-	width: { control: 'select', options: ['full', 'auto'] },
-	size: { control: 'select', options: ['small', 'medium'] },
-	text: { control: 'text' },
+	variant: {
+		control: "select",
+		options: ["outlined", "brand", "ghost", "filled"]
+	},
+	disabled: { control: "boolean" },
+	width: { control: "select", options: ["full", "auto"] },
+	size: { control: "select", options: ["small", "medium"] },
+	text: { control: "text" },
 	...StorybookIconArgTypes,
-	onClick: { action: 'onClick' }
+	onClick: { action: "onClick" }
 };
 ```
 
@@ -114,7 +118,11 @@ export const StorybookButtonArgTypes: Record<string, InputType> = {
 For components with icon support, import and spread the shared icon arg types:
 
 ```tsx
-import { StorybookIconArgTypes, StorybookIconLeadingArgTypes, StorybookIconTrailingArgTypes } from '../../../shared/examples/_icons.arg.types';
+import {
+	StorybookIconArgTypes,
+	StorybookIconLeadingArgTypes,
+	StorybookIconTrailingArgTypes
+} from "../../../shared/examples/_icons.arg.types";
 
 export const StorybookInputArgTypes: Record<string, InputType> = {
 	// ... other properties
@@ -123,6 +131,35 @@ export const StorybookInputArgTypes: Record<string, InputType> = {
 	...StorybookIconTrailingArgTypes
 };
 ```
+
+## Using Images in Examples
+
+When using `<img src={...}>` in examples, follow this pattern from `packages/components/src/components/brand/examples/variants.example.lite.tsx`:
+
+```tsx
+const state = useStore({
+	getImage() {
+		const basePath: string | undefined = useTarget({
+			react: process?.env?.["NEXT_PUBLIC_BASE_PATH"],
+			default: undefined
+		});
+		const showcase = useTarget({
+			angular: "angular",
+			react: "react",
+			vue: "vue",
+			stencil: "stencil"
+		});
+		const path = basePath ? basePath : `/${showcase}-showcase`;
+		return `${path}/assets/images/placeholder.jpg`;
+	}
+});
+
+// Usage:
+<img src={state.getImage()} alt="description" />;
+```
+
+**Important**: Do not create other state properties with the `getImage` prefix (e.g., `getImageWidth`, `getImageHeight`).
+This can cause issues with the implementation in `packages/components/configs/plugins/storybook/get-stories.cjs`.
 
 ## Best Practices
 

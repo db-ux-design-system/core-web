@@ -11,8 +11,8 @@ const resolveImports = (imports) => {
 			imp.path.endsWith(`.lite`)
 		);
 		if (componentImports.length > 0) {
-			allImports = componentImports.map(
-				(imp) => Object.keys(imp.imports)[0]
+			allImports = componentImports.flatMap((imp) =>
+				Object.keys(imp.imports)
 			);
 		}
 	}

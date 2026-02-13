@@ -16,19 +16,19 @@ export default function DividerDensity() {
 				<DBInfotext size="small" semantic="informational">
 					Functional
 				</DBInfotext>
-				<DBDivider data-density="functional" width="full"></DBDivider>
+				<DBDivider width="full"></DBDivider>
 			</div>
 			<div data-density="regular" style={{ width: '200px' }}>
 				<DBInfotext size="small" semantic="informational">
 					(Default) Regular
 				</DBInfotext>
-				<DBDivider data-density="regular" width="full"></DBDivider>
+				<DBDivider width="full"></DBDivider>
 			</div>
 			<div data-density="expressive" style={{ width: '200px' }}>
 				<DBInfotext size="small" semantic="informational">
 					Expressive
 				</DBInfotext>
-				<DBDivider data-density="expressive" width="full"></DBDivider>
+				<DBDivider width="full"></DBDivider>
 			</div>
 		</Fragment>
 	);

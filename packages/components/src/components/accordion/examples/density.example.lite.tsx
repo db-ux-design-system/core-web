@@ -17,7 +17,7 @@ export default function AccordionDensity() {
 				<DBInfotext size="small" semantic="informational" icon="none">
 					Functional
 				</DBInfotext>
-				<DBAccordion data-density="functional">
+				<DBAccordion>
 					<DBAccordionItem headlinePlain="Item 1">
 						Content 1
 					</DBAccordionItem>
@@ -33,7 +33,7 @@ export default function AccordionDensity() {
 				<DBInfotext size="small" semantic="informational" icon="none">
 					(Default) Regular
 				</DBInfotext>
-				<DBAccordion data-density="regular">
+				<DBAccordion>
 					<DBAccordionItem headlinePlain="Item 1">
 						Content 1
 					</DBAccordionItem>
@@ -50,7 +50,7 @@ export default function AccordionDensity() {
 				<DBInfotext size="small" semantic="informational" icon="none">
 					Expressive
 				</DBInfotext>
-				<DBAccordion data-density="expressive">
+				<DBAccordion>
 					<DBAccordionItem headlinePlain="Item 1">
 						Content 1
 					</DBAccordionItem>

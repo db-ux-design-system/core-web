@@ -22,7 +22,6 @@ export default function NavigationDensity() {
 					Functional
 				</DBInfotext>
 				<DBNavigation
-					data-density="functional"
 					{...useTarget({
 						angular: {
 							'data-x': 'workaround-angular'
@@ -74,7 +73,6 @@ export default function NavigationDensity() {
 					(Default) Regular
 				</DBInfotext>
 				<DBNavigation
-					data-density="regular"
 					{...useTarget({
 						angular: {
 							'data-x': 'workaround-angular'
@@ -126,7 +124,6 @@ export default function NavigationDensity() {
 					Expressive
 				</DBInfotext>
 				<DBNavigation
-					data-density="expressive"
 					{...useTarget({
 						angular: {
 							'data-x': 'workaround-angular'

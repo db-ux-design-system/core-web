@@ -14,21 +14,15 @@ export default function TooltipDensity() {
 		<Fragment>
 			<DBButton data-density="functional">
 				Functional
-				<DBTooltip data-density="functional" id="tooltip-01">
-					Tooltip
-				</DBTooltip>
+				<DBTooltip id="tooltip-01">Tooltip</DBTooltip>
 			</DBButton>
 			<DBButton data-density="regular">
 				(Default) Regular
-				<DBTooltip data-density="regular" id="tooltip-02">
-					Tooltip
-				</DBTooltip>
+				<DBTooltip id="tooltip-02">Tooltip</DBTooltip>
 			</DBButton>
 			<DBButton data-density="expressive">
 				Expressive
-				<DBTooltip data-density="expressive" id="tooltip-03">
-					Tooltip
-				</DBTooltip>
+				<DBTooltip id="tooltip-03">Tooltip</DBTooltip>
 			</DBButton>
 		</Fragment>
 	);
