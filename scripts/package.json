@@ -15,7 +15,7 @@
     "agent:00_mitosis-agent": "npm run generate:agent --workspace=@db-ux/core-components",
     "agent:01_merge_docs": "tsx documentation/merge-component-docs.ts",
     "agent:x00_typedoc": "typedoc --options typedoc.json --tsconfig tsconfig.typedoc.json",
-    "build": "npm-run-all build:foundations build:components --parallel build:migration build:stylelint build:agent-cli",
+    "build": "npm-run-all build:foundations build:components --parallel build:migration build:stylelint build:vite-plugin build:agent-cli",
     "build-outputs": "npm-run-all --parallel build-outputs:*",
     "build-outputs:agent-cli": "npm run copy-build --workspace=@db-ux/agent-cli",
     "build-outputs:components": "npm run copy-output --workspace=@db-ux/core-components",
@@ -25,6 +25,7 @@
     "build-outputs:react-core-components": "npm run build --workspace=@db-ux/react-core-components",
     "build-outputs:stylelint": "npm run copy-output --workspace=@db-ux/core-stylelint",
     "build-outputs:v-core-components": "npm run build --workspace=@db-ux/v-core-components",
+    "build-outputs:vite-plugin": "npm run copy-output --workspace=@db-ux/core-vite-plugin",
     "build-outputs:wc-core-components": "npm run build --workspace=@db-ux/wc-core-components",
     "build-showcases": "npm-run-all --parallel build-showcases:*",
     "build-showcases:angular": "npm run build --workspace=angular-showcase",
@@ -45,6 +46,7 @@
     "build:foundations": "npm run build --workspace=@db-ux/core-foundations",
     "build:migration": "npm run build --workspace=@db-ux/core-migration",
     "build:stylelint": "npm run build --workspace=@db-ux/core-stylelint",
+    "build:vite-plugin": "npm run build --workspace=@db-ux/core-vite-plugin",
     "decode-db-theme-assets": "npm-run-all --parallel decode-db-theme-assets:*",
     "decode-db-theme-assets:db-theme": "node ../node_modules/@db-ux/db-theme/build/scripts/index.js",
     "decode-db-theme-assets:db-theme-fonts": "node ../node_modules/@db-ux/db-theme-fonts/build/scripts/index.js",
@@ -91,6 +93,7 @@
     "test:docs-file-references": "node check-docs.js",
     "test:migration": "npm run test --workspace=@db-ux/core-migration",
     "test:scripts": "vitest run --config vitest.config.ts",
+    "test:vite-plugin": "npm run test --workspace=@db-ux/core-vite-plugin",
     "update:icon-fonts": "npm-run-all generate:icon-fonts generate:icon-types"
   },
   "dependencies": {

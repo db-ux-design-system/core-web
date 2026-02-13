@@ -1,0 +1,53 @@
+{
+  "name": "@db-ux/core-vite-plugin",
+  "version": "4.4.2",
+  "type": "module",
+  "description": "Vite plugin for optimized DB UX Design System CSS imports",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/db-ux-design-system/core-web.git"
+  },
+  "license": "Apache-2.0",
+  "exports": {
+    ".": {
+      "types": "./build/src/index.d.ts",
+      "default": "./build/src/index.js"
+    },
+    "./index.css": "./index.css",
+    "./index": "./index.css"
+  },
+  "files": [
+    "CHANGELOG.md",
+    "build",
+    "index.css"
+  ],
+  "keywords": [
+    "vite",
+    "vite-plugin",
+    "db-ux",
+    "design-system"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "copy-output": "npm-run-all copy:*",
+    "copy:changelog": "cpr CHANGELOG.md ../../build-outputs/vite-plugin/CHANGELOG.md --overwrite",
+    "copy:outputs": "cpr build ../../build-outputs/vite-plugin/build -o",
+    "copy:package.json": "cpr package.json ../../build-outputs/vite-plugin/package.json -o",
+    "copy:readme": "cpr README.md ../../build-outputs/vite-plugin/README.md -o",
+    "test": "vitest run --config vitest.config.ts",
+    "test:update": "npm run test -- --update"
+  },
+  "peerDependencies": {
+    "vite": "^4.0.0 || ^5.0.0 || ^6.0.0 || ^7.0.0"
+  },
+  "devDependencies": {
+    "typescript": "5.9.3",
+    "vite": "7.3.1",
+    "vitest": "3.2.4"
+  },
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/",
+    "access": "public"
+  },
+  "style": "index.css"
+}
