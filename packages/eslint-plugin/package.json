@@ -30,7 +30,8 @@
     "copy:outputs": "cpr build ../../build-outputs/eslint-plugin/build -o",
     "copy:package.json": "cpr package.json ../../build-outputs/eslint-plugin/package.json -o",
     "copy:readme": "cpr README.md ../../build-outputs/eslint-plugin/README.md -o",
-    "test": "vitest run --config vitest.config.ts"
+    "test": "vitest run --config vitest.config.ts",
+    "test:update": "vitest run --config vitest.config.ts --update"
   },
   "peerDependencies": {
     "eslint": "^9.0.0 || ^10.0.0"
