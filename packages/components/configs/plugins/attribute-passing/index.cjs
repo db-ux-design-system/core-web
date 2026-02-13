@@ -5,33 +5,23 @@
  */
 module.exports = () => ({
 	code: {
-		pre: (code, json) => {
-			const { pluginData } = json;
-			const { target } = pluginData;
-
-			let changedCode = code;
-
-			if (target === 'angular' || target === 'stencil') {
-				changedCode = changedCode.replace(
-					`if (attr && attr.name === 'class') {`,
-					`      if (attr && attr.name !== "class" && !attr.name.startsWith("_")) {
-				element.setAttribute(attr.name, attr.value);
-			parent.removeAttribute(attr.name);
-		}
-					else if (attr && attr.name === "class") {`
-				);
-			}
-
-			return changedCode;
-		},
 		post: (code, json) => {
 			const { pluginData } = json;
 			const { target } = pluginData;
 			if (target === 'angular' || target === 'stencil') {
-				code = code.replace(
-					'attr &&',
-					"attr && attr.name !== 'data-density' &&"
-				);
+				code = code
+					.replace(
+						'attr &&',
+						"attr && attr.name !== 'data-density' &&"
+					)
+					.replace(
+						`if (attr && attr.name === "class") {`,
+						`else if (attr  && attr.name !== 'data-density' && attr.name !== "class" && !attr.name.startsWith("_")) {
+				element.setAttribute(attr.name, attr.value);
+			parent.removeAttribute(attr.name);
+		}
+					else if (attr && attr.name === "class") {`
+					);
 			}
 
 			return code;
