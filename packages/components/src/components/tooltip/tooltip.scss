@@ -5,8 +5,6 @@
 @use "../../styles/internal/popover-component";
 @use "../../styles/internal/component";
 
-$tooltip-arrow-shadow-size: variables.$db-sizing-2xs;
-
 .db-tooltip {
 	--default-card-elevation: #{variables.$db-elevation-sm};
 	--default-card-border-radius: #{variables.$db-border-radius-xs};
@@ -43,15 +41,15 @@ $tooltip-arrow-shadow-size: variables.$db-sizing-2xs;
 			box-shadow: variables.$db-elevation-md;
 			position: absolute;
 			background-color: colors.$db-adaptive-bg-basic-level-1-default;
-			inline-size: $tooltip-arrow-shadow-size;
-			block-size: $tooltip-arrow-shadow-size;
+			inline-size: variables.$db-sizing-2xs;
+			aspect-ratio: 1;
 			clip-path: polygon(
-				calc(#{$tooltip-arrow-shadow-size} * -1)
-					calc(#{$tooltip-arrow-shadow-size} * -1),
-				calc(100% + #{$tooltip-arrow-shadow-size})
-					calc(#{$tooltip-arrow-shadow-size} * -1),
-				calc(100% + #{$tooltip-arrow-shadow-size})
-					calc(100% + #{$tooltip-arrow-shadow-size})
+				calc(#{variables.$db-sizing-2xs} * -1)
+					calc(#{variables.$db-sizing-2xs} * -1),
+				calc(100% + #{variables.$db-sizing-2xs})
+					calc(#{variables.$db-sizing-2xs} * -1),
+				calc(100% + #{variables.$db-sizing-2xs})
+					calc(100% + #{variables.$db-sizing-2xs})
 			);
 			/* stylelint-disable-next-line db-ux/use-border-radius */
 			border-radius: 0 2px;

@@ -90,8 +90,9 @@
 
 	&:empty,
 	> span:empty {
+		/* stylelint-disable-next-line db-ux/use-sizing */
 		block-size: var(--badge-size);
-		inline-size: var(--badge-size);
+		aspect-ratio: 1;
 		padding: 0;
 	}
 

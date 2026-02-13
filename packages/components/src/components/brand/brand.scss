@@ -22,7 +22,9 @@
 			#{variables.$db-sizing-md} - #{variables.$db-sizing-3xs}
 		);
 
+		/* stylelint-disable-next-line db-ux/use-sizing */
 		inline-size: $logo-size;
+		/* stylelint-disable-next-line db-ux/use-sizing */
 		max-block-size: $logo-size;
 	}
 
