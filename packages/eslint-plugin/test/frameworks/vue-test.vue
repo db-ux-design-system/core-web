@@ -17,7 +17,7 @@
 		<DBCustomSelect label="Select"></DBCustomSelect>
 
 		<!-- db-ux/button-no-text-requires-tooltip -->
-		<DBButton noText icon="search"></DBButton>
+		<DBButton type="submit" noText icon="search"></DBButton>
 
 		<!-- db-ux/button-type-required -->
 		<DBButton>Missing type</DBButton>

@@ -120,7 +120,7 @@ exports[`Framework ESLint Integration > should lint Angular test file > angular-
 	<db-custom-select [label]="'Select'"></db-custom-select>
 
 	<!-- db-ux/button-no-text-requires-tooltip -->
-	<db-button noText icon="search" type="button">
+	<db-button type="submit" noText icon="search">
   <db-tooltip>Describe action</db-tooltip>
   <db-tooltip>Describe action</db-tooltip>
   <db-tooltip>Describe action</db-tooltip>
@@ -764,7 +764,7 @@ exports[`Framework ESLint Integration > should lint Vue test file > vue-fixed 1`
 		<DBCustomSelect label="Select"></DBCustomSelect>
 
 		<!-- db-ux/button-no-text-requires-tooltip -->
-		<DBButton noText icon="search" type="submit"></DBButton>
+		<DBButton type="submit" noText icon="search"></DBButton>
 
 		<!-- db-ux/button-type-required -->
 		<DBButton type="submit">Missing type</DBButton>
