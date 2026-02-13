@@ -40,6 +40,7 @@ export default function BadgePlacement() {
 						emphasis="strong"
 						semantic="critical"
 						placement="corner-top-left"></DBBadge>
+					Corner - Top - Left
 				</DBButton>
 				<DBInfotext size="small" semantic="informational" icon="none">
 					Corner - Top - Left
@@ -56,6 +57,7 @@ export default function BadgePlacement() {
 						emphasis="strong"
 						semantic="critical"
 						placement="corner-center-left"></DBBadge>
+					Corner - Center - Left
 				</DBButton>
 				<DBInfotext size="small" semantic="informational" icon="none">
 					Corner - Center - Left
@@ -72,6 +74,7 @@ export default function BadgePlacement() {
 						emphasis="strong"
 						semantic="critical"
 						placement="corner-bottom-left"></DBBadge>
+					Corner - Bottom- Left
 				</DBButton>
 				<DBInfotext size="small" semantic="informational" icon="none">
 					Corner - Bottom- Left
@@ -88,6 +91,7 @@ export default function BadgePlacement() {
 						emphasis="strong"
 						semantic="critical"
 						placement="corner-top-right"></DBBadge>
+					Corner - Top - Right
 				</DBButton>
 				<DBInfotext size="small" semantic="informational" icon="none">
 					Corner - Top - Right
@@ -104,6 +108,7 @@ export default function BadgePlacement() {
 						emphasis="strong"
 						semantic="critical"
 						placement="corner-center-right"></DBBadge>
+					Corner - Center - Right
 				</DBButton>
 				<DBInfotext size="small" semantic="informational" icon="none">
 					Corner - Center - Right
@@ -120,6 +125,7 @@ export default function BadgePlacement() {
 						emphasis="strong"
 						semantic="critical"
 						placement="corner-bottom-right"></DBBadge>
+					Corner - Bottom- Right
 				</DBButton>
 				<DBInfotext size="small" semantic="informational" icon="none">
 					Corner - Bottom- Right
