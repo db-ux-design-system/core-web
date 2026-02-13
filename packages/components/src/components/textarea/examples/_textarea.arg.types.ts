@@ -5,11 +5,13 @@ export const StorybookTextareaArgTypes: Record<string, InputType> = {
 	variant: { control: 'select', options: ['above', 'floating'] },
 	value: { control: 'text' },
 	showLabel: { control: 'boolean' },
-	showMessage: { control: 'boolean' },
 	message: { control: 'text' },
 	disabled: { control: 'boolean' },
 	readOnly: { control: 'boolean' },
-	validation: { control: 'select', options: ['invalid', 'valid', 'no-validation'] },
+	validation: {
+		control: 'select',
+		options: ['invalid', 'valid', 'no-validation']
+	},
 	invalidMessage: { control: 'text' },
 	validMessage: { control: 'text' },
 	required: { control: 'boolean' },
@@ -18,7 +20,10 @@ export const StorybookTextareaArgTypes: Record<string, InputType> = {
 	cols: { control: 'number' },
 	showResizer: { control: 'boolean' },
 	fieldSizing: { control: 'select', options: ['fixed', 'content'] },
-	resize: { control: 'select', options: ['none', 'both', 'horizontal', 'vertical'] },
+	resize: {
+		control: 'select',
+		options: ['none', 'both', 'horizontal', 'vertical']
+	},
 	spellCheck: { control: 'boolean' },
 	wrap: { control: 'select', options: ['hard', 'soft', 'off'] },
 	placeholder: { control: 'text' },

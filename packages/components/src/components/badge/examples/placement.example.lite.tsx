@@ -1,6 +1,7 @@
 import { Fragment, useMetadata } from '@builder.io/mitosis';
 import DBButton from '../../button/button.lite';
 import DBIcon from '../../icon/icon.lite';
+import DBInfotext from '../../infotext/infotext.lite';
 import DBBadge from '../badge.lite';
 import { StorybookBadgeArgTypes } from './_badge.arg.types';
 
@@ -28,72 +29,102 @@ export default function BadgePlacement() {
 				</DBBadge>
 				<DBIcon icon="error" />
 			</div>
-			<DBButton
-				data-sb-decorator="true"
-				icon="x_placeholder"
-				variant="outlined">
-				<DBBadge
-					size="small"
-					emphasis="strong"
-					semantic="critical"
-					placement="corner-top-left"></DBBadge>
-				Corner - Top - Left
-			</DBButton>
-			<DBButton
-				data-sb-decorator="true"
-				icon="x_placeholder"
-				variant="outlined">
-				<DBBadge
-					size="small"
-					emphasis="strong"
-					semantic="critical"
-					placement="corner-center-left"></DBBadge>
-				Corner - Center - Left
-			</DBButton>
-			<DBButton
-				data-sb-decorator="true"
-				icon="x_placeholder"
-				variant="outlined">
-				<DBBadge
-					size="small"
-					emphasis="strong"
-					semantic="critical"
-					placement="corner-bottom-left"></DBBadge>
-				Corner - Bottom- Left
-			</DBButton>
-			<DBButton
-				data-sb-decorator="true"
-				icon="x_placeholder"
-				variant="outlined">
-				<DBBadge
-					size="small"
-					emphasis="strong"
-					semantic="critical"
-					placement="corner-top-right"></DBBadge>
-				Corner - Top - Right
-			</DBButton>
-			<DBButton
-				data-sb-decorator="true"
-				icon="x_placeholder"
-				variant="outlined">
-				<DBBadge
-					size="small"
-					emphasis="strong"
-					semantic="critical"
-					placement="corner-center-right"></DBBadge>
-				Corner - Center - Right
-			</DBButton>
-			<DBButton
-				data-sb-decorator="true"
-				icon="x_placeholder"
-				variant="outlined">
-				<DBBadge
-					size="small"
-					emphasis="strong"
-					semantic="critical"
-					placement="corner-bottom-right"></DBBadge>
-				Corner - Bottom- Right
-			</DBButton>
+			<div>
+				<DBButton
+					data-sb-decorator="true"
+					icon="x_placeholder"
+					variant="outlined"
+					noText>
+					<DBBadge
+						size="small"
+						emphasis="strong"
+						semantic="critical"
+						placement="corner-top-left"></DBBadge>
+				</DBButton>
+				<DBInfotext size="small" semantic="informational" icon="none">
+					Corner - Top - Left
+				</DBInfotext>
+			</div>
+			<div>
+				<DBButton
+					data-sb-decorator="true"
+					icon="x_placeholder"
+					variant="outlined"
+					noText>
+					<DBBadge
+						size="small"
+						emphasis="strong"
+						semantic="critical"
+						placement="corner-center-left"></DBBadge>
+				</DBButton>
+				<DBInfotext size="small" semantic="informational" icon="none">
+					Corner - Center - Left
+				</DBInfotext>
+			</div>
+			<div>
+				<DBButton
+					data-sb-decorator="true"
+					icon="x_placeholder"
+					variant="outlined"
+					noText>
+					<DBBadge
+						size="small"
+						emphasis="strong"
+						semantic="critical"
+						placement="corner-bottom-left"></DBBadge>
+				</DBButton>
+				<DBInfotext size="small" semantic="informational" icon="none">
+					Corner - Bottom- Left
+				</DBInfotext>
+			</div>
+			<div>
+				<DBButton
+					data-sb-decorator="true"
+					icon="x_placeholder"
+					variant="outlined"
+					noText>
+					<DBBadge
+						size="small"
+						emphasis="strong"
+						semantic="critical"
+						placement="corner-top-right"></DBBadge>
+				</DBButton>
+				<DBInfotext size="small" semantic="informational" icon="none">
+					Corner - Top - Right
+				</DBInfotext>
+			</div>
+			<div>
+				<DBButton
+					data-sb-decorator="true"
+					icon="x_placeholder"
+					variant="outlined"
+					noText>
+					<DBBadge
+						size="small"
+						emphasis="strong"
+						semantic="critical"
+						placement="corner-center-right"></DBBadge>
+				</DBButton>
+				<DBInfotext size="small" semantic="informational" icon="none">
+					Corner - Center - Right
+				</DBInfotext>
+			</div>
+			<div>
+				<DBButton
+					data-sb-decorator="true"
+					icon="x_placeholder"
+					variant="outlined"
+					noText>
+					<DBBadge
+						size="small"
+						emphasis="strong"
+						semantic="critical"
+						placement="corner-bottom-right"></DBBadge>
+				</DBButton>
+				<DBInfotext size="small" semantic="informational" icon="none">
+					Corner - Bottom- Right
+				</DBInfotext>
+			</div>
 		</Fragment>
 	);
 }
