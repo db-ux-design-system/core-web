@@ -12,11 +12,11 @@ useMetadata({
 export default function TabItemContentAlignmentFullWidth() {
 	return (
 		<Fragment>
-			<DBTabList className="w-full">
+			<DBTabList style={{ blockSize: '100%' }}>
 				<DBTabItem label="Left" />
 			</DBTabList>
 
-			<DBTabList className="w-full">
+			<DBTabList style={{ blockSize: '100%' }}>
 				<DBTabItem label="Centered" />
 			</DBTabList>
 		</Fragment>

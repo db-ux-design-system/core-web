@@ -1,6 +1,6 @@
 import type { CSSProperties } from 'react';
 
-declare module './model' {
+declare module './src/shared/model' {
 	export interface GlobalProps {
 		/**
 		 * React inline styles for the component (development only).
