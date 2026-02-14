@@ -100,7 +100,6 @@ export interface PluginConfig {
 	icons?: boolean;
 	optimize?: boolean;
 	theme?: string;
-	ignoreTailwind?: boolean;
 	debug?: boolean;
 }
 
@@ -118,5 +117,5 @@ export interface GenerateOptions {
 	animations: boolean;
 	icons: boolean;
 	theme?: string;
-	ignoreTailwind?: boolean;
+	hasTailwind: boolean;
 }

@@ -83,17 +83,7 @@ function removeUnusedStyles(
 			''
 		);
 		css = css.replace(
-			new RegExp(
-				`--db-base-${type}-icon-weight-${size}:[^;]+;`,
-				'g'
-			),
-			''
-		);
-		css = css.replace(
-			new RegExp(
-				`--db-base-${type}-icon-font-size-${size}:[^;]+;`,
-				'g'
-			),
+			new RegExp(`--db-base-${type}-icon-weight-${size}:[^;]+;`, 'g'),
 			''
 		);
 		css = css.replace(
@@ -131,7 +121,6 @@ export default function dbUxPlugin(config: PluginConfig = {}): Plugin {
 		animations = true,
 		icons = true,
 		optimize = true,
-		ignoreTailwind = false,
 		debug = false
 	} = config;
 
@@ -143,6 +132,7 @@ export default function dbUxPlugin(config: PluginConfig = {}): Plugin {
 	let detectionPromise: Promise<void> | null = null;
 	let outDir = 'dist';
 	let cssModuleId: string | null = null;
+	let hasTailwind = false;
 
 	return {
 		name: 'db-ux-vite-plugin',
@@ -162,6 +152,9 @@ export default function dbUxPlugin(config: PluginConfig = {}): Plugin {
 
 		configResolved(resolvedConfig) {
 			outDir = resolvedConfig.build.outDir;
+			hasTailwind = resolvedConfig.plugins.some(plugin => 
+				plugin.name.startsWith('@tailwindcss/vite')
+			);
 		},
 
 		handleHotUpdate({ file, server }) {
@@ -245,7 +238,7 @@ export default function dbUxPlugin(config: PluginConfig = {}): Plugin {
 					excludeFontSizes: exclude.fontSizes || [],
 					animations,
 					icons,
-					ignoreTailwind
+					hasTailwind
 				});
 
 				code = code.replace(
@@ -254,22 +247,10 @@ export default function dbUxPlugin(config: PluginConfig = {}): Plugin {
 				);
 			}
 
-			// Remove empty @layer declarations
-			code = code.replace(/@layer\s+\w+;/g, '');
-
 			return code;
 		},
 
-		renderChunk(code, chunk) {
-			if (optimize && hasDetected && chunk.fileName.endsWith('.css')) {
-				return removeUnusedStyles(
-					code,
-					detectedColors,
-					detectedDensities,
-					detectedFontSizes
-				);
-			}
-		},
+
 
 		async buildEnd() {
 			if (debug && optimize && hasDetected) {

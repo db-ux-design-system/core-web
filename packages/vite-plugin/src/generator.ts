@@ -66,17 +66,7 @@ function detectTheme(preferredTheme?: string): string | null {
 	return null;
 }
 
-function detectTailwind(): boolean {
-	try {
-		for (const nodeModulesPath of resolveNodeModules()) {
-			try {
-				readdirSync(resolve(nodeModulesPath, 'tailwindcss'));
-				return true;
-			} catch {}
-		}
-	} catch {}
-	return false;
-}
+
 
 export function generateCSS(options: GenerateOptions): string {
 	const {
@@ -93,14 +83,13 @@ export function generateCSS(options: GenerateOptions): string {
 		animations,
 		icons,
 		theme: preferredTheme,
-		ignoreTailwind
+		hasTailwind
 	} = options;
 	const imports: string[] = [];
 
 	// Detect and use theme if available
 	const theme = detectTheme(preferredTheme);
 	const themeName = theme ? theme.split('/').pop() : null;
-	const hasTailwind = ignoreTailwind ? false : detectTailwind();
 
 	// Layer order declaration
 	if (hasTailwind) {
