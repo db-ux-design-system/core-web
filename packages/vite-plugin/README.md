@@ -27,7 +27,7 @@ Then import the plugin in your CSS file:
 
 ```css
 /* styles.css or main.css */
-@import "@db-ux/core-vite-plugin";
+@import "@db-ux/core-vite-plugin/index.css";
 ```
 
 The plugin will automatically detect which components you use and include only the necessary CSS.
@@ -147,7 +147,14 @@ export default defineConfig({
 });
 ```
 
-**Why?** Both plugins use `enforce: 'pre'` and transform CSS files. The DB UX plugin needs to replace the `@import "@db-ux/core-vite-plugin"` statement with actual CSS before Tailwind processes the file. If Tailwind runs first, it will encounter the raw import statement and fail with an "Invalid declaration" error.
+And in your CSS file:
+
+```css
+@import "tailwindcss";
+@import "@db-ux/core-vite-plugin/index.css";
+```
+
+**Why?** The DB UX plugin needs to process and replace the `@import "@db-ux/core-vite-plugin/index.css"` statement with actual CSS before Tailwind processes the file. Tailwind will strip out unrecognized imports, so the DB UX plugin must run first to transform the import into valid CSS that Tailwind can then process.
 
 ### CSS `@property` Warnings
 

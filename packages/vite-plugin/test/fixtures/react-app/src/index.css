@@ -1,2 +1,2 @@
 @import "tailwindcss";
-@import "@db-ux/core-vite-plugin";
+@import "@db-ux/core-vite-plugin/index.css";
