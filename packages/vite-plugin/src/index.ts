@@ -14,7 +14,9 @@ export default function dbUxPlugin(config: PluginConfig = {}): Plugin {
 		exclude = {},
 		animations = true,
 		icons = true,
-		optimize = true
+		optimize = true,
+		ignoreTailwind = false,
+		debug = false
 	} = config;
 
 	let detectedComponents = new Set<string>();
@@ -114,7 +116,8 @@ export default function dbUxPlugin(config: PluginConfig = {}): Plugin {
 					fontSizes,
 					excludeFontSizes: exclude.fontSizes || [],
 					animations,
-					icons
+					icons,
+					ignoreTailwind
 				});
 
 				code = code.replace(
@@ -190,12 +193,17 @@ export default function dbUxPlugin(config: PluginConfig = {}): Plugin {
 			}
 		},
 
-		generateBundle() {
-			if (optimize && hasDetected) {
-				this.emitFile({
-					type: 'asset',
-					fileName: 'db-ux-detection-report.json',
-					source: JSON.stringify(
+		async buildEnd() {
+			if (debug && optimize && hasDetected) {
+				const fs = await import('fs/promises');
+				const path = await import('path');
+				const reportPath = path.resolve(
+					process.cwd(),
+					'db-ux-detection-report.json'
+				);
+				await fs.writeFile(
+					reportPath,
+					JSON.stringify(
 						{
 							components: Array.from(detectedComponents).sort(),
 							colors: Array.from(detectedColors).sort(),
@@ -204,10 +212,13 @@ export default function dbUxPlugin(config: PluginConfig = {}): Plugin {
 						},
 						null,
 						2
-					)
-				});
+					),
+					'utf-8'
+				);
 			}
 		},
+
+		generateBundle() {},
 
 		async closeBundle() {
 			if (!optimize || !hasDetected) return;

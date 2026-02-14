@@ -3,7 +3,7 @@ import './index.css';
 
 function App() {
 	return (
-		<div data-color="cyan" data-density="expressive">
+		<div data-color="cyan" data-density="expressive" className="p-fix-md">
 			<DBButton icon="person" variant="brand">
 				Click me
 			</DBButton>

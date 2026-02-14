@@ -7,45 +7,75 @@ const FOUNDATION_IMPORTS: Record<string, string> = {
 	elevation: 'defaults/default-elevation.css'
 };
 
-function detectTheme(): string | null {
+function* resolveNodeModules(): Generator<string> {
+	let currentDir = process.cwd();
+	let attempts = 0;
+	const maxAttempts = 10;
+
+	while (attempts < maxAttempts) {
+		yield resolve(currentDir, 'node_modules');
+		const parentDir = resolve(currentDir, '..');
+		if (parentDir === currentDir) break;
+		currentDir = parentDir;
+		attempts++;
+	}
+}
+
+function detectTheme(preferredTheme?: string): string | null {
 	try {
-		let currentDir = process.cwd();
-		let attempts = 0;
-		const maxAttempts = 10;
-
-		while (attempts < maxAttempts) {
-			const nodeModulesPath = resolve(currentDir, 'node_modules');
-
+		for (const nodeModulesPath of resolveNodeModules()) {
 			// Check @db-ux/* packages
-			const dbUxPath = resolve(nodeModulesPath, '@db-ux');
 			try {
-				const packages = readdirSync(dbUxPath);
-				const themePackage = packages.find((pkg) =>
+				const packages = readdirSync(
+					resolve(nodeModulesPath, '@db-ux')
+				);
+				const themePackages = packages.filter((pkg) =>
 					pkg.endsWith('-theme')
 				);
-				if (themePackage) return `@db-ux/${themePackage}`;
+				if (themePackages.length > 0) {
+					if (
+						preferredTheme &&
+						themePackages.includes(preferredTheme)
+					) {
+						return `@db-ux/${preferredTheme}`;
+					}
+					return `@db-ux/${themePackages[0]}`;
+				}
 			} catch {}
 
 			// Check @db-ux-inner-source/* packages
-			const dbUxInnerPath = resolve(
-				nodeModulesPath,
-				'@db-ux-inner-source'
-			);
 			try {
-				const packages = readdirSync(dbUxInnerPath);
-				const themePackage = packages.find((pkg) =>
+				const packages = readdirSync(
+					resolve(nodeModulesPath, '@db-ux-inner-source')
+				);
+				const themePackages = packages.filter((pkg) =>
 					pkg.endsWith('-theme')
 				);
-				if (themePackage) return `@db-ux-inner-source/${themePackage}`;
+				if (themePackages.length > 0) {
+					if (
+						preferredTheme &&
+						themePackages.includes(preferredTheme)
+					) {
+						return `@db-ux-inner-source/${preferredTheme}`;
+					}
+					return `@db-ux-inner-source/${themePackages[0]}`;
+				}
 			} catch {}
-
-			const parentDir = resolve(currentDir, '..');
-			if (parentDir === currentDir) break;
-			currentDir = parentDir;
-			attempts++;
 		}
 	} catch {}
 	return null;
+}
+
+function detectTailwind(): boolean {
+	try {
+		for (const nodeModulesPath of resolveNodeModules()) {
+			try {
+				readdirSync(resolve(nodeModulesPath, 'tailwindcss'));
+				return true;
+			} catch {}
+		}
+	} catch {}
+	return false;
 }
 
 export function generateCSS(options: GenerateOptions): string {
@@ -61,21 +91,32 @@ export function generateCSS(options: GenerateOptions): string {
 		fontSizes,
 		excludeFontSizes,
 		animations,
-		icons
+		icons,
+		theme: preferredTheme,
+		ignoreTailwind
 	} = options;
 	const imports: string[] = [];
 
 	// Detect and use theme if available
-	const theme = detectTheme();
+	const theme = detectTheme(preferredTheme);
 	const themeName = theme ? theme.split('/').pop() : null;
+	const hasTailwind = ignoreTailwind ? false : detectTailwind();
 
 	// Layer order declaration
-	if (themeName) {
-		imports.push(
-			`@layer theme, base, components, db-ux, utilities, ${themeName};`
-		);
+	if (hasTailwind) {
+		if (themeName) {
+			imports.push(
+				`@layer theme, base, components, db-ux, utilities, ${themeName};`
+			);
+		} else {
+			imports.push(`@layer theme, base, components, db-ux, utilities;`);
+		}
 	} else {
-		imports.push(`@layer theme, base, components, db-ux, utilities;`);
+		if (themeName) {
+			imports.push(`@layer db-ux, ${themeName};`);
+		} else {
+			imports.push(`@layer db-ux;`);
+		}
 	}
 
 	if (theme) {
@@ -98,6 +139,14 @@ export function generateCSS(options: GenerateOptions): string {
 			);
 		}
 	}
+
+	// Tailwind theme
+	if (hasTailwind) {
+		imports.push(
+			`@import "@db-ux/core-foundations/build/tailwind/theme/index.css";`
+		);
+	}
+
 	// Required foundation styles
 	imports.push(
 		`@import "@db-ux/core-foundations/build/styles/defaults/default-required.css" layer(db-ux);`

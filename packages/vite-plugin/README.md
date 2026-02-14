@@ -57,7 +57,10 @@ export default defineConfig({
 			},
 			animations: true, // Include component animations (default: true)
 			icons: true, // Include icon fonts (default: true)
-			optimize: true // Enable automatic optimization (default: true)
+			optimize: true, // Enable automatic optimization (default: true)
+			theme: "db-theme", // Specify preferred theme package name (e.g., "db-theme")
+			ignoreTailwind: false, // Ignore Tailwind CSS detection (default: false)
+			debug: false // Generate detection report for debugging (default: false)
 		})
 	]
 });
@@ -93,6 +96,24 @@ export default defineConfig({
 - **Default:** `true`
 - Enable automatic detection of used components
 
+### `theme`
+
+- **Type:** `string`
+- **Default:** `undefined`
+- Specify a preferred theme package name (e.g., `"db-theme"`). The plugin automatically detects installed theme packages from `@db-ux/*-theme` or `@db-ux-inner-source/*-theme`. Use this option to select a specific theme when multiple are available.
+
+### `ignoreTailwind`
+
+- **Type:** `boolean`
+- **Default:** `false`
+- Ignore Tailwind CSS detection. By default, the plugin detects if Tailwind CSS is installed and adjusts CSS layer ordering accordingly. Set to `true` to disable this behavior.
+
+### `debug`
+
+- **Type:** `boolean`
+- **Default:** `false`
+- Generate a `db-ux-detection-report.json` file in the project root directory for debugging purposes. This report contains all detected components, colors, densities, and font sizes. Useful for troubleshooting optimization issues.
+
 ## How it works
 
 The plugin analyzes your source files to detect:
@@ -106,6 +127,31 @@ It then generates an optimized CSS bundle containing only:
 - Required foundation styles (theme, fonts, icons)
 - Component styles for detected components
 - Optional features based on configuration
+
+## Troubleshooting
+
+### Plugin Order with Tailwind CSS
+
+If you're using Tailwind CSS alongside this plugin, **the order matters**. The `@db-ux/core-vite-plugin` must be placed **before** the Tailwind plugin in your Vite configuration:
+
+```js
+import { defineConfig } from "vite";
+import dbUxPlugin from "@db-ux/core-vite-plugin";
+import tailwindcss from "@tailwindcss/vite";
+
+export default defineConfig({
+	plugins: [
+		dbUxPlugin(), // Must come before tailwindcss()
+		tailwindcss()
+	]
+});
+```
+
+**Why?** Both plugins use `enforce: 'pre'` and transform CSS files. The DB UX plugin needs to replace the `@import "@db-ux/core-vite-plugin"` statement with actual CSS before Tailwind processes the file. If Tailwind runs first, it will encounter the raw import statement and fail with an "Invalid declaration" error.
+
+### CSS `@property` Warnings
+
+You may see warnings about "Unknown at rule: @property" in your build output or IDE. These are informational warnings from CSS parsers that don't yet fully support the CSS Houdini `@property` at-rule. These warnings don't affect functionality - the `@property` rule is valid CSS and works correctly in modern browsers. You can safely ignore these warnings or configure your CSS linter to suppress them.
 
 ## License
 

@@ -99,6 +99,9 @@ export interface PluginConfig {
 	animations?: boolean;
 	icons?: boolean;
 	optimize?: boolean;
+	theme?: string;
+	ignoreTailwind?: boolean;
+	debug?: boolean;
 }
 
 export interface GenerateOptions {
@@ -114,4 +117,6 @@ export interface GenerateOptions {
 	excludeFontSizes: string[];
 	animations: boolean;
 	icons: boolean;
+	theme?: string;
+	ignoreTailwind?: boolean;
 }

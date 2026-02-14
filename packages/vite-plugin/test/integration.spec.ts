@@ -7,7 +7,6 @@ describe('Integration Tests', () => {
 	describe('React App', () => {
 		beforeAll(() => {
 			const reactAppPath = resolve(__dirname, 'fixtures/react-app');
-			execSync('npm install', { cwd: reactAppPath, stdio: 'inherit' });
 			execSync('npm run build', { cwd: reactAppPath, stdio: 'inherit' });
 		});
 
@@ -37,7 +36,6 @@ describe('Integration Tests', () => {
 	describe('Vue App', () => {
 		beforeAll(() => {
 			const vueAppPath = resolve(__dirname, 'fixtures/vue-app');
-			execSync('npm install', { cwd: vueAppPath, stdio: 'inherit' });
 			execSync('npm run build', { cwd: vueAppPath, stdio: 'inherit' });
 		});
 
