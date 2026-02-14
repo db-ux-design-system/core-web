@@ -123,7 +123,7 @@ const setDirectiveReplacements = (
 		});
 
 		writeFileSync(
-			`../../output/angular/src/components/${componentName}/${directive.name}.directive.ts`,
+			`../../${outputFolder}/angular/src/components/${componentName}/${directive.name}.directive.ts`,
 			'/* Angular cannot handle multiple slots with the same name, we need to use Directives for this. */\n' +
 				"import { Directive } from '@angular/core';" +
 				`
@@ -168,12 +168,7 @@ export default (tmp?: boolean) => {
 			to: ''
 		});
 
-		const replacements: Overwrite[] = [
-			{
-				from: /allowSignalWrites: true,/g,
-				to: ''
-			}
-		];
+		const replacements: Overwrite[] = [];
 
 		if (component.config?.angular?.controlValueAccessor) {
 			setControlValueAccessorReplacements(

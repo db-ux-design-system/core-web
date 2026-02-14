@@ -5,3 +5,11 @@
 .hydrated {
 	display: contents;
 }
+
+.variants-list > * > div:not([class^="db-"]) {
+	align-items: center;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	gap: var(--db-spacing-fixed-md);
+}

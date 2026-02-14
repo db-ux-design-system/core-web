@@ -1,0 +1,42 @@
+import { Fragment, useMetadata } from '@builder.io/mitosis';
+import DBCustomSelect from '../custom-select.lite';
+import { StorybookCustomSelectArgTypes } from './_custom-select.arg.types';
+
+useMetadata({
+	storybookTitle: 'Form Field Width',
+	storybookNames: ['(Default) Full', 'Auto'],
+	storybookArgTypes: StorybookCustomSelectArgTypes
+});
+
+export default function CustomSelectFormFieldWidth() {
+	return (
+		<Fragment>
+			<div style={{ width: '400px' }}>
+				<DBCustomSelect
+					options={[
+						{ value: 'Option 1', id: 'z0ispy7ls' },
+						{ value: 'Option 2', id: 'ngl1p4pxn' },
+						{ value: 'Option 3', id: 'ngl1p3pxn' },
+						{ value: 'Option 4', id: 'ngl1p2pxn' },
+						{ value: 'Option 5', id: 'ngl1p1pxn' }
+					]}
+					label="(Default) Full"
+					formFieldWidth="full"
+					listLabel="id-10223-(Default) Full"></DBCustomSelect>
+			</div>
+			<div style={{ width: '400px' }}>
+				<DBCustomSelect
+					options={[
+						{ value: 'Option 1', id: 'klxyvobwn' },
+						{ value: 'Option 2', id: '7oag2a4fj' },
+						{ value: 'Option 3', id: '7oag2a3fj' },
+						{ value: 'Option 4', id: '7oag2a2fj' },
+						{ value: 'Option 5', id: '7oag2a1fj' }
+					]}
+					label="Auto"
+					formFieldWidth="auto"
+					listLabel="id-10224-Auto"></DBCustomSelect>
+			</div>
+		</Fragment>
+	);
+}

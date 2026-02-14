@@ -1,36 +1,35 @@
+import AccordionItemShowcase from '@components/components/accordion-item/showcase/accordion-item.showcase.vue';
+import AccordionShowcase from '@components/components/accordion/showcase/accordion.showcase.vue';
+import BadgeShowcase from '@components/components/badge/showcase/badge.showcase.vue';
+import BrandShowcase from '@components/components/brand/showcase/brand.showcase.vue';
+import ButtonShowcase from '@components/components/button/showcase/button.showcase.vue';
+import CardShowcase from '@components/components/card/showcase/card.showcase.vue';
+import CheckboxShowcase from '@components/components/checkbox/showcase/checkbox.showcase.vue';
+import CustomSelectShowcase from '@components/components/custom-select/showcase/custom-select.showcase.vue';
+import DividerShowcase from '@components/components/divider/showcase/divider.showcase.vue';
+import DrawerShowcase from '@components/components/drawer/showcase/drawer.showcase.vue';
+import HeaderShowcase from '@components/components/header/showcase/header.showcase.vue';
+import IconShowcase from '@components/components/icon/showcase/icon.showcase.vue';
+import InfotextShowcase from '@components/components/infotext/showcase/infotext.showcase.vue';
+import InputShowcase from '@components/components/input/showcase/input.showcase.vue';
+import LinkShowcase from '@components/components/link/showcase/link.showcase.vue';
+import NavigationItemShowcase from '@components/components/navigation-item/showcase/navigation-item.showcase.vue';
+import NavigationShowcase from '@components/components/navigation/showcase/navigation.showcase.vue';
+import NotificationShowcase from '@components/components/notification/showcase/notification.showcase.vue';
+import PopoverShowcase from '@components/components/popover/showcase/popover.showcase.vue';
+import RadioShowcase from '@components/components/radio/showcase/radio.showcase.vue';
+import SectionShowcase from '@components/components/section/showcase/section.showcase.vue';
+import SelectShowcase from '@components/components/select/showcase/select.showcase.vue';
+import StackShowcase from '@components/components/stack/showcase/stack.showcase.vue';
+import SwitchShowcase from '@components/components/switch/showcase/switch.showcase.vue';
+import TabItemShowcase from '@components/components/tab-item/showcase/tab-item.showcase.vue';
+import TabsShowcase from '@components/components/tabs/showcase/tabs.showcase.vue';
+import TagShowcase from '@components/components/tag/showcase/tag.showcase.vue';
+import TextareaShowcase from '@components/components/textarea/showcase/textarea.showcase.vue';
+import TooltipShowcase from '@components/components/tooltip/showcase/tooltip.showcase.vue';
 import { markRaw } from 'vue';
 import type { RouteRecordRaw } from 'vue-router';
-import AccordionItem from '../components/accordion-item/AccordionItem.vue';
-import Accordion from '../components/accordion/Accordion.vue';
-import Badge from '../components/badge/Badge.vue';
-import Brand from '../components/brand/Brand.vue';
-import Card from '../components/card/Card.vue';
-import Checkbox from '../components/checkbox/Checkbox.vue';
-import CustomSelect from '../components/custom-select/CustomSelect.vue';
-import Divider from '../components/divider/Divider.vue';
-import Drawer from '../components/drawer/Drawer.vue';
-import Header from '../components/header/Header.vue';
 import Home from '../components/home/Home.vue';
-import Icon from '../components/icon/Icon.vue';
-import Infotext from '../components/infotext/Infotext.vue';
-import Input from '../components/input/Input.vue';
-import Link from '../components/link/Link.vue';
-import NavigationItem from '../components/navigation-item/NavigationItem.vue';
-import Navigation from '../components/navigation/Navigation.vue';
-import Notification from '../components/notification/Notification.vue';
-import Popover from '../components/popover/Popover.vue';
-import Radio from '../components/radio/Radio.vue';
-import Section from '../components/section/Section.vue';
-import Select from '../components/select/Select.vue';
-import Stack from '../components/stack/Stack.vue';
-import Switch from '../components/switch/Switch.vue';
-import TabItem from '../components/tab-item/TabItem.vue';
-import Tabs from '../components/tabs/Tabs.vue';
-import Tag from '../components/tag/Tag.vue';
-import Textarea from '../components/textarea/Textarea.vue';
-import Tooltip from '../components/tooltip/Tooltip.vue';
-
-import ButtonShowcase from '@components/components/button/showcase/button.showcase.vue';
 
 export type NavItem = {
 	path: string;
@@ -52,9 +51,13 @@ export const navigationItems: NavItem[] = [
 			{
 				path: '/06/notification',
 				label: 'Notification',
-				component: markRaw(Notification)
+				component: markRaw(NotificationShowcase)
 			},
-			{ path: '/06/badge', label: 'Badge', component: Badge }
+			{
+				path: '/06/badge',
+				label: 'Badge',
+				component: markRaw(BadgeShowcase)
+			}
 		])
 	},
 
@@ -65,12 +68,12 @@ export const navigationItems: NavItem[] = [
 			{
 				path: '/05/navigation-item',
 				label: 'NavigationItem',
-				component: markRaw(NavigationItem)
+				component: markRaw(NavigationItemShowcase)
 			},
 			{
 				path: '/05/navigation',
 				label: 'Navigation',
-				component: markRaw(Navigation)
+				component: markRaw(NavigationShowcase)
 			}
 		])
 	},
@@ -82,41 +85,45 @@ export const navigationItems: NavItem[] = [
 			{
 				path: '/04/brand',
 				label: 'Brand',
-				component: markRaw(Brand)
+				component: markRaw(BrandShowcase)
 			},
 			{
 				path: '/04/infotext',
 				label: 'Infotext',
-				component: markRaw(Infotext)
+				component: markRaw(InfotextShowcase)
 			},
 			{
 				path: '/04/icon',
 				label: 'Icon',
-				component: markRaw(Icon)
+				component: markRaw(IconShowcase)
 			},
-			{ path: '/04/tag', label: 'Tag', component: markRaw(Tag) },
+			{ path: '/04/tag', label: 'Tag', component: markRaw(TagShowcase) },
 			{
 				path: '/04/accordion',
 				label: 'Accordion',
-				component: markRaw(Accordion)
+				component: markRaw(AccordionShowcase)
 			},
 			{
 				path: '/04/accordion-item',
 				label: 'AccordionItem',
-				component: markRaw(AccordionItem)
+				component: markRaw(AccordionItemShowcase)
 			},
 			{
 				path: '/04/tooltip',
 				label: 'Tooltip',
-				component: markRaw(Tooltip)
+				component: markRaw(TooltipShowcase)
 			},
 			{
 				path: '/04/tab-item',
 				label: 'TabItem',
-				component: markRaw(TabItem)
+				component: markRaw(TabItemShowcase)
 			},
 
-			{ path: '/04/tabs', label: 'Tabs', component: markRaw(Tabs) }
+			{
+				path: '/04/tabs',
+				label: 'Tabs',
+				component: markRaw(TabsShowcase)
+			}
 		])
 	},
 	{
@@ -126,29 +133,49 @@ export const navigationItems: NavItem[] = [
 			{
 				path: '/03/custom-select',
 				label: 'CustomSelect',
-				component: markRaw(CustomSelect)
+				component: markRaw(CustomSelectShowcase)
 			},
-			{ path: '/03/input', label: 'Input', component: markRaw(Input) },
+			{
+				path: '/03/input',
+				label: 'Input',
+				component: markRaw(InputShowcase)
+			},
 			{
 				path: '/03/textarea',
 				label: 'Textarea',
-				component: markRaw(Textarea)
+				component: markRaw(TextareaShowcase)
 			},
-			{ path: '/03/radio', label: 'Radio', component: markRaw(Radio) },
+			{
+				path: '/03/radio',
+				label: 'Radio',
+				component: markRaw(RadioShowcase)
+			},
 			{
 				path: '/03/checkbox',
 				label: 'Checkbox',
-				component: markRaw(Checkbox)
+				component: markRaw(CheckboxShowcase)
 			},
-			{ path: '/03/switch', label: 'Switch', component: Switch },
-			{ path: '/03/select', label: 'Select', component: markRaw(Select) }
+			{
+				path: '/03/switch',
+				label: 'Switch',
+				component: markRaw(SwitchShowcase)
+			},
+			{
+				path: '/03/select',
+				label: 'Select',
+				component: markRaw(SelectShowcase)
+			}
 		])
 	},
 	{
 		path: '/02',
 		label: '02 Action',
 		subNavigation: getSortedNavigationItems([
-			{ path: '/02/link', label: 'Link', component: markRaw(Link) },
+			{
+				path: '/02/link',
+				label: 'Link',
+				component: markRaw(LinkShowcase)
+			},
 			{
 				path: '/02/button',
 				label: 'Button',
@@ -160,28 +187,40 @@ export const navigationItems: NavItem[] = [
 		path: '/01',
 		label: '01 Layout',
 		subNavigation: getSortedNavigationItems([
-			{ path: '/01/stack', label: 'Stack', component: Stack },
-			{ path: '/01/card', label: 'Card', component: markRaw(Card) },
-			{ path: '/01/drawer', label: 'Drawer', component: markRaw(Drawer) },
+			{
+				path: '/01/stack',
+				label: 'Stack',
+				component: markRaw(StackShowcase)
+			},
+			{
+				path: '/01/card',
+				label: 'Card',
+				component: markRaw(CardShowcase)
+			},
+			{
+				path: '/01/drawer',
+				label: 'Drawer',
+				component: markRaw(DrawerShowcase)
+			},
 			{
 				path: '/01/divider',
 				label: 'Divider',
-				component: markRaw(Divider)
+				component: markRaw(DividerShowcase)
 			},
 			{
 				path: '/01/popover',
 				label: 'Popover',
-				component: markRaw(Popover)
+				component: markRaw(PopoverShowcase)
 			},
 			{
 				path: '/01/section',
 				label: 'Section',
-				component: markRaw(Section)
+				component: markRaw(SectionShowcase)
 			},
 			{
 				path: '/01/header',
 				label: 'Header',
-				component: markRaw(Header)
+				component: markRaw(HeaderShowcase)
 			}
 		])
 	},

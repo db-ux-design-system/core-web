@@ -12,6 +12,7 @@ const preview: Preview = {
 				date: /Date$/i
 			}
 		},
+		actions: { argTypesRegex: '^on.*' },
 		docs: {
 			toc: {
 				headingSelector: 'h1, h3',
