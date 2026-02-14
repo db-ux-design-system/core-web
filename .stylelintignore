@@ -13,5 +13,6 @@ showcases/patternhub/**
 showcases/**/public/**
 packages/foundations/scripts/generate-icon-fonts/styles/**
 packages/foundations/scss/_normalize.scss
+packages/foundations/assets/icons/fonts/**
 packages/stylelint/test/**
 .stylelintrc.json

@@ -1,0 +1,32 @@
+---
+import DefaultLayout from '../../layouts/default/DefaultLayout.astro';
+import DefaultComponent from '../../components/default/DefaultComponent.astro';
+import defaultComponentVariants from '../../../../shared/radio.json';
+import type { DBRadioProps } from '@components';
+import VariantList from '../../components/default/VariantList.astro';
+import type { DefaultComponentVariants } from '../../../../shared/default-component-data.ts';
+import { DBRadio, DBInfotext } from '@components';
+---
+
+<DefaultLayout>
+	<DefaultComponent title="DBRadio" variants={defaultComponentVariants}
+		>{
+			(variant: DefaultComponentVariants) => (
+				<VariantList {...variant}>
+					{({ children, showLabel, ...props }: DBRadioProps) => (
+						<>
+							<DBRadio showLabel={showLabel} {...props}>
+								{children}
+							</DBRadio>
+							{showLabel !== undefined && !showLabel && (
+								<DBInfotext size="small" semantic="informational" showIcon={false}>
+									{children}
+								</DBInfotext>
+							)}
+						</>
+					)}
+				</VariantList>
+			)
+		}</DefaultComponent
+	>
+</DefaultLayout>

@@ -1,0 +1,23 @@
+---
+import DefaultLayout from '../../layouts/default/DefaultLayout.astro';
+import DefaultComponent from '../../components/default/DefaultComponent.astro';
+import defaultComponentVariants from '../../../../shared/infotext.json';
+import type { DBInfotextProps } from '@components';
+import VariantList from '../../components/default/VariantList.astro';
+import type { DefaultComponentVariants } from '../../../../shared/default-component-data.ts';
+import { DBInfotext } from '@components';
+---
+
+<DefaultLayout>
+	<DefaultComponent title="DBInfotext" variants={defaultComponentVariants}
+		>{
+			(variant: DefaultComponentVariants) => (
+				<VariantList {...variant}>
+					{({ children, ...props }: DBInfotextProps) => (
+						<DBInfotext {...props}>{children}</DBInfotext>
+					)}
+				</VariantList>
+			)
+		}</DefaultComponent
+	>
+</DefaultLayout>

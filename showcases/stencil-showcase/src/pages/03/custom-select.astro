@@ -1,0 +1,52 @@
+---
+import DefaultLayout from '../../layouts/default/DefaultLayout.astro';
+import DefaultComponent from '../../components/default/DefaultComponent.astro';
+import defaultComponentVariants from '../../../../shared/custom-select.json';
+import type { DBCustomSelectProps } from '@components';
+import VariantList from '../../components/default/VariantList.astro';
+import type { DefaultComponentVariants } from '../../../../shared/default-component-data.ts';
+import { DBCustomSelect, DBInfotext } from '@components';
+---
+
+<DefaultLayout>
+	<DefaultComponent title="DBCustomSelect" variants={defaultComponentVariants}
+		>{
+			(variant: DefaultComponentVariants) => (
+				<VariantList {...variant}>
+					{({ children, info, lineBreak, options, values, id, noResultsText, ...props }: DBCustomSelectProps & { info?: boolean; lineBreak?: boolean }) => {
+						if (info) {
+							return <DBInfotext size="small" semantic="informational">{children}</DBInfotext>;
+						}
+						if (lineBreak) {
+							return <i class="line-break"></i>;
+						}
+						const listLabel = `${id}-${children}`;
+						return (
+							<>
+								<DBCustomSelect
+									{...props}
+									label={children}
+									listLabel={listLabel}
+									selectAllLabel="Select all"
+									searchLabel="Search"
+									selectedPrefix="Selected"
+									noResultsText={noResultsText ?? 'No matching filter'}
+									options={options}
+								/>
+								<script define:vars={{ listLabel, options, values }} is:inline>
+									document.addEventListener('DOMContentLoaded', () => {
+										const element = document.querySelector(`db-custom-select[list-label="${listLabel}"]`);
+										if (element) {
+											element.options = options;
+											element.values = values;
+										}
+									});
+								</script>
+							</>
+						);
+					}}
+				</VariantList>
+			)
+		}</DefaultComponent
+	>
+</DefaultLayout>

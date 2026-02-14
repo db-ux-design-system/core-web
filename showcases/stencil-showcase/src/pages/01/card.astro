@@ -1,0 +1,37 @@
+---
+import DefaultLayout from '../../layouts/default/DefaultLayout.astro';
+import DefaultComponent from '../../components/default/DefaultComponent.astro';
+import defaultComponentVariants from '../../../../shared/card.json';
+import type { DBCardProps } from '@components';
+import VariantList from '../../components/default/VariantList.astro';
+import type { DefaultComponentVariants } from '../../../../shared/default-component-data.ts';
+import { DBCard } from '@components';
+---
+
+<DefaultLayout>
+	<DefaultComponent title="DBCard" variants={defaultComponentVariants}
+		>{
+			(variant: DefaultComponentVariants) => (
+				<VariantList {...variant}>
+					{({ children, behavior, ...rest }: DBCardProps) => {
+						if (behavior === 'interactive') {
+							return (
+								<button type="button">
+									<DBCard {...rest}>
+										<strong>{children}</strong>
+									</DBCard>
+								</button>
+							);
+						} else {
+							return (
+								<DBCard {...rest}>
+									<strong>{children}</strong>
+								</DBCard>
+							);
+						}
+					}}
+				</VariantList>
+			)
+		}</DefaultComponent
+	>
+</DefaultLayout>

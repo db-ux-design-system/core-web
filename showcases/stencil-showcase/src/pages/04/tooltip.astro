@@ -1,0 +1,26 @@
+---
+import DefaultLayout from '../../layouts/default/DefaultLayout.astro';
+import DefaultComponent from '../../components/default/DefaultComponent.astro';
+import defaultComponentVariants from '../../../../shared/tooltip.json';
+import type { DBTooltipProps } from '@components';
+import VariantList from '../../components/default/VariantList.astro';
+import type { DefaultComponentVariants } from '../../../../shared/default-component-data.ts';
+import { DBButton, DBTooltip } from '@components';
+---
+
+<DefaultLayout>
+	<DefaultComponent title="DBTooltip" variants={defaultComponentVariants}
+		>{
+			(variant: DefaultComponentVariants) => (
+				<VariantList {...variant}>
+					{({ children, content, ...props }: DBTooltipProps & { content?: string }) => (
+						<DBButton>
+							{children}
+							<DBTooltip {...props}>{content}</DBTooltip>
+						</DBButton>
+					)}
+				</VariantList>
+			)
+		}</DefaultComponent
+	>
+</DefaultLayout>

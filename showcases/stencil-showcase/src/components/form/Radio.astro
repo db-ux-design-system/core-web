@@ -1,0 +1,17 @@
+---
+import { DBRadio } from '@components';
+import FormWrapper from './FormWrapper.astro';
+---
+
+<FormWrapper value="" id="radio">
+	<DBRadio name="radio" value="radio-1" data-id="radio">Radio</DBRadio>
+</FormWrapper>
+
+<script>
+	const radio = document.querySelector('[data-id="radio"]');
+	const valueDisplay = document.getElementById('radio-value-display');
+
+	radio?.addEventListener('input', (e: any) => {
+		if (valueDisplay) valueDisplay.textContent = e.target.value;
+	});
+</script>

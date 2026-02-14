@@ -1,0 +1,17 @@
+---
+import { DBButton } from '@components';
+const { value, id } = Astro.props;
+---
+
+<div class="form-container">
+	<form>
+		<fieldset>
+			<slot />
+		</fieldset>
+		<DBButton type="reset" data-testid="reset-button">Reset</DBButton>
+	</form>
+	<dl data-testid="data-list">
+		<dt>Value:</dt>
+		<dd id={`${id}-value-display`}>{value}</dd>
+	</dl>
+</div>

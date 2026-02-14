@@ -1,0 +1,23 @@
+---
+import DefaultLayout from '../../layouts/default/DefaultLayout.astro';
+import DefaultComponent from '../../components/default/DefaultComponent.astro';
+import defaultComponentVariants from '../../../../shared/link.json';
+import type { DBLinkProps } from '@components';
+import VariantList from '../../components/default/VariantList.astro';
+import type { DefaultComponentVariants } from '../../../../shared/default-component-data.ts';
+import { DBLink } from '@components';
+---
+
+<DefaultLayout>
+	<DefaultComponent title="DBLink" variants={defaultComponentVariants}
+		>{
+			(variant: DefaultComponentVariants) => (
+				<VariantList {...variant}>
+					{({ children, ...props }: DBLinkProps) => (
+						<DBLink {...props}>{children}</DBLink>
+					)}
+				</VariantList>
+			)
+		}</DefaultComponent
+	>
+</DefaultLayout>

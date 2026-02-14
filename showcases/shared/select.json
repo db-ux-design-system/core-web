@@ -126,8 +126,7 @@
 				"props": {
 					"options": [
 						{
-							"value": "Floating",
-							"selected": true
+							"value": "Floating"
 						},
 						{
 							"value": "Option 2"
@@ -303,8 +302,7 @@
 				"props": {
 					"options": [
 						{
-							"value": "Filled",
-							"selected": true
+							"value": "Filled"
 						},
 						{
 							"value": "Option 2"
@@ -385,8 +383,7 @@
 				"props": {
 					"options": [
 						{
-							"value": "Valid",
-							"selected": true
+							"value": "Valid"
 						},
 						{
 							"value": "Option 2"
@@ -752,8 +749,7 @@
 				"props": {
 					"options": [
 						{
-							"value": "Filled",
-							"selected": true
+							"value": "Filled"
 						},
 						{
 							"value": "Option 2"
@@ -773,8 +769,7 @@
 				"props": {
 					"options": [
 						{
-							"value": "Disabled",
-							"selected": true
+							"value": "Disabled"
 						},
 						{
 							"value": "Option 2"

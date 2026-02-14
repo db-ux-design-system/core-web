@@ -1,0 +1,25 @@
+---
+import DefaultLayout from '../../layouts/default/DefaultLayout.astro';
+import DefaultComponent from '../../components/default/DefaultComponent.astro';
+import defaultComponentVariants from '../../../../shared/tab-item.json';
+import type { DBTabItemProps } from '@components';
+import VariantList from '../../components/default/VariantList.astro';
+import type { DefaultComponentVariants } from '../../../../shared/default-component-data.ts';
+import { DBTabList, DBTabItem } from '@components';
+---
+
+<DefaultLayout>
+	<DefaultComponent title="DBTabItem" variants={defaultComponentVariants}
+		>{
+			(variant: DefaultComponentVariants) => (
+				<VariantList {...variant}>
+					{({ children, label, ...props }: DBTabItemProps) => (
+						<DBTabList>
+							<DBTabItem {...props}>{children}</DBTabItem>
+						</DBTabList>
+					)}
+				</VariantList>
+			)
+		}</DefaultComponent
+	>
+</DefaultLayout>

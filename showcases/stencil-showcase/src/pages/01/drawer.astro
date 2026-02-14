@@ -1,0 +1,53 @@
+---
+import DefaultLayout from '../../layouts/default/DefaultLayout.astro';
+import DefaultComponent from '../../components/default/DefaultComponent.astro';
+import defaultComponentVariants from '../../../../shared/drawer.json';
+import type { DBDrawerProps } from '@components';
+import VariantList from '../../components/default/VariantList.astro';
+import type { DefaultComponentVariants } from '../../../../shared/default-component-data.ts';
+import { DBButton, DBDrawer } from '@components';
+---
+
+<DefaultLayout>
+	<DefaultComponent title="DBDrawer" variants={defaultComponentVariants}
+		>{
+			(variant: DefaultComponentVariants) => (
+				<VariantList {...variant}>
+					{({ id, children, open, onClose, ...props }: DBDrawerProps) => {
+						const buttonId = `button-${id}`;
+						return (
+							<div>
+								<DBButton id={buttonId} type='button'>Open: {children}</DBButton>
+								<DBDrawer
+									id={id}
+									{...props}
+								>
+									{children}
+								</DBDrawer>
+								<script
+									define:vars={{ buttonId, drawerId: id }}
+									is:inline
+								>
+									document.addEventListener('DOMContentLoaded', () => {
+										document
+											.getElementById(buttonId)
+											?.addEventListener('click', () => {
+												document
+													.querySelector(`db-drawer[id="${drawerId}"]`)
+													?.setAttribute('open', 'true');
+											});
+										document
+											.querySelector(`db-drawer[id="${drawerId}"]`)
+											?.addEventListener('close', (event) => {
+												event.target.removeAttribute('open');
+											});
+									});
+								</script>
+							</div>
+						);
+					}}
+				</VariantList>
+			)
+		}</DefaultComponent
+	>
+</DefaultLayout>

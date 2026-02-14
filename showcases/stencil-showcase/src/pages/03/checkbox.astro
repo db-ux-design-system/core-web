@@ -1,0 +1,32 @@
+---
+import DefaultLayout from '../../layouts/default/DefaultLayout.astro';
+import DefaultComponent from '../../components/default/DefaultComponent.astro';
+import defaultComponentVariants from '../../../../shared/checkbox.json';
+import type { DBCheckboxProps } from '@components';
+import VariantList from '../../components/default/VariantList.astro';
+import type { DefaultComponentVariants } from '../../../../shared/default-component-data.ts';
+import { DBCheckbox, DBInfotext } from '@components';
+---
+
+<DefaultLayout>
+	<DefaultComponent title="DBCheckbox" variants={defaultComponentVariants}
+		>{
+			(variant: DefaultComponentVariants) => (
+				<VariantList {...variant}>
+					{({ children, showLabel, ...props }: DBCheckboxProps) => (
+						<>
+							<DBCheckbox showLabel={showLabel} {...props}>
+								{children}
+							</DBCheckbox>
+							{showLabel !== undefined && !showLabel && (
+								<DBInfotext size="small" semantic="informational" showIcon={false}>
+									{children}
+								</DBInfotext>
+							)}
+						</>
+					)}
+				</VariantList>
+			)
+		}</DefaultComponent
+	>
+</DefaultLayout>

@@ -137,6 +137,8 @@ amazonq
 Edgi
 dbtabpanel
 dbtablist
+fadein
+stylelints
 unstarted
 publishpackages
 cooldown

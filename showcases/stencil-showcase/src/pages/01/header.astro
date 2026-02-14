@@ -1,0 +1,78 @@
+---
+import DefaultLayout from '../../layouts/default/DefaultLayout.astro';
+import DefaultComponent from '../../components/default/DefaultComponent.astro';
+import defaultComponentVariants from '../../../../shared/header.json';
+import type { DBHeaderProps } from '@components';
+import VariantList from '../../components/default/VariantList.astro';
+import type { DefaultComponentVariants } from '../../../../shared/default-component-data.ts';
+import { DBHeader, DBBrand, DBLink, DBButton, DBNavigation, DBNavigationItem } from '@components';
+---
+
+<DefaultLayout>
+	<DefaultComponent title="DBHeader" variants={defaultComponentVariants}
+		>{
+			(variant: DefaultComponentVariants) => (
+				<VariantList {...variant}>
+					{({
+						children,
+						example,
+						withName,
+						withNavigation,
+						...props
+					}: DBHeaderProps & {
+						example?: boolean;
+						withName?: boolean;
+						withNavigation?: boolean;
+					}) => (
+						<DBHeader {...props}>
+							<DBBrand slot="brand" title="DBHeader">
+								{!example || withName ? 'DBHeader' : ''}
+							</DBBrand>
+							{!example &&
+								// prettier-ignore
+								<DBLink href="#" slot="metaNavigation">Imprint</DBLink>}
+							{!example &&
+								// prettier-ignore
+								<DBLink href="#" slot="metaNavigation">Help</DBLink>}
+							{!example && (
+								<DBButton
+									slot="primaryAction"
+									icon="magnifying_glass"
+									variant="ghost"
+									noText={true}
+								>
+									Search
+								</DBButton>
+							)}
+							{!example && (
+								<DBButton slot="secondaryAction" icon="x_placeholder" variant="ghost" noText={true}>
+									Profile
+								</DBButton>
+							)}
+							{!example && (
+								<DBButton slot="secondaryAction" icon="x_placeholder" variant="ghost" noText={true}>
+									Notification
+								</DBButton>
+							)}
+							{!example && (
+								<DBButton slot="secondaryAction" icon="x_placeholder" variant="ghost" noText={true}>
+									Help
+								</DBButton>
+							)}
+							{(!example || withNavigation) && (
+								<DBNavigation aria-label={children}>
+									<DBNavigationItem hideSubNavigation={true} icon="x_placeholder">
+										<a href="#">{children}</a>
+									</DBNavigationItem>
+									<DBNavigationItem hideSubNavigation={true} disabled={true}>
+										<a href="#">{children} disabled</a>
+									</DBNavigationItem>
+								</DBNavigation>
+							)}
+						</DBHeader>
+					)}
+				</VariantList>
+			)
+		}</DefaultComponent
+	>
+</DefaultLayout>

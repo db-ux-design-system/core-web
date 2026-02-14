@@ -14,9 +14,14 @@
     ".": {
       "types": "./dist/loader/index.d.ts",
       "import": "./dist/loader/index.js"
+    },
+    "./bundle": {
+      "types": "./bundle/index.d.ts",
+      "import": "./bundle/index.js"
     }
   },
   "files": [
+    "bundle/",
     "dist/",
     "agent",
     "CHANGELOG.md"
@@ -28,6 +33,7 @@
     "dev-build": "stencil build --config stencil.config.dev.ts",
     "mv:agent": "cpr agent ../../build-outputs/wc-core-components/agent --overwrite",
     "mv:changelog": "cpr CHANGELOG.md ../../build-outputs/wc-core-components/CHANGELOG.md --overwrite",
+    "mv:bundle": "cpr bundle ../../build-outputs/wc-core-components/bundle -o",
     "mv:dist": "cpr dist ../../build-outputs/wc-core-components/dist -o",
     "mv:package.json": "cpr package.json ../../build-outputs/wc-core-components/package.json -o",
     "mv:readme": "cpr README.md ../../build-outputs/wc-core-components/README.md -o",

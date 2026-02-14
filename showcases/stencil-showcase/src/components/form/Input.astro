@@ -1,0 +1,24 @@
+---
+import { DBInput } from '@components';
+import FormWrapper from './FormWrapper.astro';
+---
+
+<FormWrapper value="test1" id="input">
+	<DBInput
+		label="Input"
+		placeholder="Placeholder"
+		message="Description"
+		icon="x_placeholder"
+		name="input-name"
+		value="test1"
+		data-id="input" />
+</FormWrapper>
+
+<script>
+	const input = document.querySelector('[data-id="input"]');
+	const valueDisplay = document.getElementById('input-value-display');
+
+	input?.addEventListener('input', (e: any) => {
+		if (valueDisplay) valueDisplay.textContent = e.target.value;
+	});
+</script>

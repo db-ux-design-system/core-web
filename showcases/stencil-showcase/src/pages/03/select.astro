@@ -1,0 +1,37 @@
+---
+import DefaultLayout from '../../layouts/default/DefaultLayout.astro';
+import DefaultComponent from '../../components/default/DefaultComponent.astro';
+import defaultComponentVariants from '../../../../shared/select.json';
+import { type DBSelectProps } from '@components';
+import VariantList from '../../components/default/VariantList.astro';
+import type { DefaultComponentVariants } from '../../../../shared/default-component-data.ts';
+import { DBSelect } from '@components';
+---
+
+<DefaultLayout>
+	<DefaultComponent title="DBSelect" variants={defaultComponentVariants}
+		>{
+			(variant: DefaultComponentVariants) => (
+				<VariantList {...variant}>
+					{({ options,id,value, ...props }: DBSelectProps) => {
+						const randomId = `select-${Math.random().toString().substring(2)}`;
+						return (
+							<>
+								<DBSelect name={randomId} {...props} />
+								<script define:vars={{ id: randomId, options, value }} is:inline>
+									document.addEventListener('DOMContentLoaded', () => {
+										const select = document.querySelector(`db-select[name="${id}"]`);
+										if (select){
+											select.options = options;
+											select.value = value;
+										}
+									});
+								</script>
+							</>
+						);
+					}}
+				</VariantList>
+			)
+		}</DefaultComponent
+	>
+</DefaultLayout>

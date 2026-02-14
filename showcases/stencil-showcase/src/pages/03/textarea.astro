@@ -1,0 +1,23 @@
+---
+import DefaultLayout from '../../layouts/default/DefaultLayout.astro';
+import DefaultComponent from '../../components/default/DefaultComponent.astro';
+import defaultComponentVariants from '../../../../shared/textarea.json';
+import type { DBTextareaProps } from '@components';
+import VariantList from '../../components/default/VariantList.astro';
+import type { DefaultComponentVariants } from '../../../../shared/default-component-data.ts';
+import { DBTextarea } from '@components';
+---
+
+<DefaultLayout>
+	<DefaultComponent title="DBTextarea" variants={defaultComponentVariants}
+		>{
+			(variant: DefaultComponentVariants) => (
+				<VariantList {...variant}>
+					{({ children, placeholder, ...props }: DBTextareaProps) => (
+						<DBTextarea placeholder={placeholder ?? children} {...props} />
+					)}
+				</VariantList>
+			)
+		}</DefaultComponent
+	>
+</DefaultLayout>

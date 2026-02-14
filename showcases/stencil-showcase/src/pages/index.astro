@@ -1,0 +1,35 @@
+---
+import DefaultLayout from '../layouts/default/DefaultLayout.astro';
+import Form from '../components/form/Form.astro';
+import Input from '../components/form/Input.astro';
+import Textarea from '../components/form/Textarea.astro';
+import Select from '../components/form/Select.astro';
+import Checkbox from '../components/form/Checkbox.astro';
+import Radio from '../components/form/Radio.astro';
+import CustomSelect from '../components/form/CustomSelect.astro';
+import Switch from '../components/form/Switch.astro';
+import { DBTabs, DBTabItem, DBTabList, DBTabPanel } from '@components';
+---
+
+<DefaultLayout>
+	<DBTabs data-testid="tabs">
+		<DBTabList>
+			<DBTabItem>All</DBTabItem>
+			<DBTabItem data-testid="tab-inputs">Input</DBTabItem>
+			<DBTabItem data-testid="tab-textareas">Textarea</DBTabItem>
+			<DBTabItem data-testid="tab-selects">Select</DBTabItem>
+			<DBTabItem data-testid="tab-checkboxes">Checkbox</DBTabItem>
+			<DBTabItem data-testid="tab-radios">Radios</DBTabItem>
+			<DBTabItem data-testid="tab-custom-selects"> Custom Selects </DBTabItem>
+			<DBTabItem data-testid="tab-switches">Switches</DBTabItem>
+		</DBTabList>
+		<DBTabPanel><Form /></DBTabPanel>
+		<DBTabPanel><Input /></DBTabPanel>
+		<DBTabPanel><Textarea /></DBTabPanel>
+		<DBTabPanel><Select /></DBTabPanel>
+		<DBTabPanel><Checkbox /></DBTabPanel>
+		<DBTabPanel><Radio /></DBTabPanel>
+		<DBTabPanel><CustomSelect /></DBTabPanel>
+		<DBTabPanel><Switch /></DBTabPanel>
+	</DBTabs>
+</DefaultLayout>
