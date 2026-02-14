@@ -35,4 +35,6 @@ jobs:
 
       - name: ⚡ Run Test
         if: ${{ matrix.command == 'test' }}
-        run: npm run test
+        run: |
+          npm run build --workspace=@db-ux/core-eslint-plugin
+          npm run test
