@@ -13,7 +13,9 @@ export default defineConfig({
 	plugins: [react(), dbUxPlugin(), tailwindcss()],
 	resolve: {
 		alias: {
-			'@components': resolve(__dirname, '../../../../../output/react/src')
+			'@components': resolve(__dirname, '../../../../../output/react/src'),
+			react: resolve(__dirname, 'node_modules/react'),
+			'react-dom': resolve(__dirname, 'node_modules/react-dom')
 		}
 	},
 	build: {
