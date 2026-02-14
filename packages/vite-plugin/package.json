@@ -31,6 +31,7 @@
     "build": "tsc",
     "copy-output": "npm-run-all copy:*",
     "copy:changelog": "cpr CHANGELOG.md ../../build-outputs/vite-plugin/CHANGELOG.md --overwrite",
+    "copy:index.css": "cpr index.css ../../build-outputs/vite-plugin/index.css -o",
     "copy:outputs": "cpr build ../../build-outputs/vite-plugin/build -o",
     "copy:package.json": "cpr package.json ../../build-outputs/vite-plugin/package.json -o",
     "copy:readme": "cpr README.md ../../build-outputs/vite-plugin/README.md -o",
