@@ -17,7 +17,15 @@ Use this command in your repository:
 npx @db-ux/agent-cli
 ```
 
+Or with pnpm:
+
+```shell
+pnpm exec @db-ux/agent-cli
+```
+
 The DB UX Design System documentation will be added to (or replaced in subsequent runs, e.g. after a DB UX Design System update) in the file `.github/copilot-instructions.md` (if this file does not yet exist in your codebase, it will be created).
+
+**Note:** The tool works with all package managers (npm, yarn, pnpm) and correctly handles symlinked packages in pnpm's node_modules structure.
 
 ### Advanced Usage
 
