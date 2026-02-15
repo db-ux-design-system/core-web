@@ -51,8 +51,9 @@ jobs:
       release: ${{ github.event_name == 'release' }}
 
   lint:
-    uses: ./.github/workflows/01-lint-test.yml
+    uses: ./.github/workflows/01-lint-self-healing.yml
     needs: [init]
+    secrets: inherit
 
   cancel-on-failure-lint:
     if: ${{ github.event_name != 'release' && !cancelled() && needs.lint.result == 'failure' }}
