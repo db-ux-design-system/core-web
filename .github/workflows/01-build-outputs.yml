@@ -42,6 +42,12 @@ jobs:
           name: db-ux-stylelint-build
           path: packages/stylelint/build
 
+      - name: ⏬ Download vite-plugin build
+        uses: actions/download-artifact@v7
+        with:
+          name: db-ux-vite-plugin-build
+          path: packages/vite-plugin/build
+
       - name: ⏬ Download agent-cli build
         uses: actions/download-artifact@v7
         with:

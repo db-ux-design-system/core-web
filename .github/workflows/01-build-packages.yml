@@ -51,6 +51,12 @@ jobs:
           name: db-ux-stylelint-build
           path: packages/stylelint/build
 
+      - name: ⏫ Upload vite-plugin build
+        uses: actions/upload-artifact@v6
+        with:
+          name: db-ux-vite-plugin-build
+          path: packages/vite-plugin/build
+
       - name: ⏫ Upload agent-cli build
         uses: actions/upload-artifact@v6
         with:
