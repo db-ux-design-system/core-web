@@ -18,17 +18,23 @@ jobs:
       - name: 🔄 Init Cache
         uses: ./.github/actions/npm-cache
 
+      - name: ⏬ Download foundations build
+        uses: actions/download-artifact@v7
+        with:
+          name: db-ux-foundations-build
+          path: packages/foundations/build
+
       - name: ⏬ Download output
-        uses: actions/download-artifact@v6
+        uses: actions/download-artifact@v7
         with:
           name: db-ux-output
           path: output
 
-      - name: ⏬ Download vite-plugin build
-        uses: actions/download-artifact@v6
+      - name: ⏬ Download components build
+        uses: actions/download-artifact@v7
         with:
-          name: db-ux-vite-plugin-build
-          path: packages/vite-plugin/build
+          name: db-ux-components-build
+          path: packages/components/build
 
       - name: 🧪 Run Vite Plugin Tests
         run: npm run test --workspace @db-ux/core-vite-plugin
