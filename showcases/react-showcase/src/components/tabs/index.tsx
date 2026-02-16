@@ -34,13 +34,13 @@ const getTabs = ({
 			initialSelectedMode={initialSelectedMode}
 			arrowScrollDistance={75}>
 			<DBTabList>
-				<DBTabItem>Test Tab 1</DBTabItem>
-				<DBTabItem>Test Tab 2</DBTabItem>
-				<DBTabItem>Test Tab 3</DBTabItem>
+				<DBTabItem>Test 1</DBTabItem>
+				<DBTabItem>Test 2</DBTabItem>
+				<DBTabItem>Test 3</DBTabItem>
 				{overflow && (
 					<>
-						<DBTabItem>Test Tab 4</DBTabItem>
-						<DBTabItem>Test Tab 5</DBTabItem>
+						<DBTabItem>Test 4</DBTabItem>
+						<DBTabItem>Test 5</DBTabItem>
 					</>
 				)}
 			</DBTabList>
