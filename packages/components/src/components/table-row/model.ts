@@ -20,6 +20,11 @@ export type DBTableRowDefaultProps = {
 	 * Change styling of row only if it is inside thead
 	 */
 	subHeaderEmphasis?: DBTableRowSubHeaderEmphasisType;
+
+	/**
+	 * If true marks the row as interactive, which checks for child with data-table-row-action="true"
+	 */
+	interactive?: boolean| string;
 };
 
 export type DBTableRowProps = DBTableRowDefaultProps & GlobalProps;

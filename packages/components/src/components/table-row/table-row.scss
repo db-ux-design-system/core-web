@@ -1,3 +1,99 @@
-.db-table-row{
-	/* Add your styles for this new component here */
+@use "@db-ux/core-foundations/build/styles/variables";
+@use "@db-ux/core-foundations/build/styles/colors";
+@use "@db-ux/core-foundations/build/styles/helpers";
+
+$interactive-child: '[data-table-row-action="true"]';
+
+%full-absolute {
+	content: "";
+	position: absolute;
+	inset: 0;
+}
+
+.db-table-row {
+	background-color: var(
+		--db-table-row-background-color-default,
+		#{colors.$db-adaptive-bg-basic-level-1-default}
+	);
+
+	&[data-interactive="true"] {
+		position: relative;
+
+		td
+			:is(
+				input,
+				button,
+				a,
+				select,
+				textarea,
+				[role="button"],
+				[role="link"],
+				[tabindex]:not([tabindex="-1"])
+			):not(#{$interactive-child}) {
+			position: relative;
+			z-index: 1;
+		}
+
+		&:has(
+			input:is(
+					[type="radio"],
+					[type="checkbox"]
+				)#{$interactive-child}:checked
+		) {
+			@extend %db-informational-variables;
+		}
+
+		&:has(
+			#{$interactive-child}:hover:not(:disabled, [aria-disabled="true"])
+		) {
+			@include helpers.cursor-pointer {
+				background-color: colors.$db-adaptive-bg-basic-level-2-hovered;
+			}
+		}
+
+		&:has(
+			#{$interactive-child}:active:not(:disabled, [aria-disabled="true"])
+		) {
+			@include helpers.cursor-pointer {
+				background-color: colors.$db-adaptive-bg-basic-level-2-pressed;
+			}
+		}
+
+		&:has(#{$interactive-child}:focus-visible) {
+			&::after {
+				@extend %focus-placeholder;
+			}
+		}
+
+		#{$interactive-child} {
+			// Reset some defaults
+			--db-tooltip-parent-position: static;
+			--db-focus-outline-color: transparent;
+
+			&:focus-visible {
+				outline: none;
+			}
+
+			&:is(:active, :hover):not(:disabled, [aria-disabled="true"]) {
+			}
+
+			&:not([data-icon-trailing]) {
+				&::after {
+					@extend %full-absolute;
+				}
+			}
+
+			&[data-icon-trailing] {
+				&::before {
+					@extend %full-absolute;
+				}
+			}
+		}
+
+		&::after {
+			@extend %full-absolute;
+			pointer-events: none; // Ignore pointer events to use high z-index to show focus above elements
+			z-index: 2;
+		}
+	}
 }

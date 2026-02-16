@@ -1,4 +1,4 @@
-import { AlignmentProps, DBTableCellProps, GlobalProps, GlobalState } from '../../shared/model';
+import { DBTableCellProps, GlobalProps, GlobalState } from '../../shared/model';
 
 export const DBTableHeaderCellScopeList = [
 	'row',
@@ -22,11 +22,16 @@ export type DBTableHeaderCellDefaultProps = {
 	 * [MDN Reference](https://developer.mozilla.org/docs/Web/API/HTMLTableCellElement/scope)
 	 */
 	scope?: DBTableHeaderCellScopeType;
+
+	/**
+	 * Hide the text content of the cell.
+	 */
+	noText?: boolean | string;
 };
 
 export type DBTableHeaderCellProps = DBTableHeaderCellDefaultProps &
 	GlobalProps &
-	DBTableCellProps & AlignmentProps;
+	DBTableCellProps;
 
 export type DBTableHeaderCellDefaultState = {};
 

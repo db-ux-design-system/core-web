@@ -775,4 +775,13 @@ export type DBTableCellProps = {
 	 * [MDN Reference](https://developer.mozilla.org/docs/Web/API/HTMLTableCellElement/rowSpan)
 	 */
 	rowspan?: number | string;
+
+	/**
+	 * Set the horizontal alignment of the cell content.
+	 */
+	horizontalAlignment?: AlignmentType;
+	/**
+	 * Set the vertical alignment of the cell content.
+	 */
+	verticalAlignment?: AlignmentType;
 };

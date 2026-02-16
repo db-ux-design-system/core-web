@@ -49,20 +49,24 @@ export default function DBTable(props: DBTableProps) {
 			// Delay for angular
 			void delay(() => {
 				const table = _ref as HTMLTableElement;
+				if (!table) return;
+
 				const headerCells = table.querySelectorAll('thead tr th');
 				if (headerCells.length) {
-					const otherRows = table.querySelectorAll(
+					const otherRows = table.querySelectorAll<HTMLElement>(
 						':is(tbody,tfoot) tr'
 					);
 					otherRows.forEach((row) => {
-						const cells = row.querySelectorAll(':is(td,th)');
+						const cells =
+							row.querySelectorAll<HTMLElement>(':is(td,th)');
 						cells.forEach((cell, index) => {
 							const headerCell = headerCells[index];
-							if (headerCell && headerCell.textContent) {
-								cell.setAttribute(
-									'data-header',
-									headerCell.textContent
-								);
+							if (
+								headerCell &&
+								headerCell.textContent &&
+								!cell.dataset['header']
+							) {
+								cell.dataset['header'] = headerCell.textContent;
 							}
 						});
 					});
@@ -76,11 +80,14 @@ export default function DBTable(props: DBTableProps) {
 	return (
 		<div
 			class={cls('db-table', props.className)}
+			data-width={props.width}
 			data-size={props.size}
 			data-divider={props.divider}
 			data-variant={props.variant}
 			data-mobile-variant={props.mobileVariant}
+			data-table-layout={props.tableLayout}
 			data-show-caption={getBooleanAsString(props.showCaption)}
+			data-sticky-header={getBooleanAsString(props.stickyHeader)}
 			data-row-style={props.rowStyle}>
 			<table ref={_ref} id={props.id}>
 				<caption>

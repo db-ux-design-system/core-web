@@ -1,17 +1,36 @@
 @use "@db-ux/core-foundations/build/styles/colors";
 
 %table-cell {
-	&:not([data-alignment]),
-	&[data-alignment="start"] {
+	&:not([data-horizontal-alignment]),
+	&[data-horizontal-alignment="start"] {
 		text-align: start;
+		justify-content: flex-start;
 	}
 
-	&[data-alignment="center"] {
+	&[data-horizontal-alignment="center"] {
 		text-align: center;
+		justify-content: center;
 	}
 
-	&[data-alignment="end"] {
+	&[data-horizontal-alignment="end"] {
 		text-align: end;
+		justify-content: flex-end;
+	}
+
+	&[data-vertical-alignment="start"] {
+		vertical-align: top;
+		align-items: flex-start;
+	}
+
+	&:not([data-vertical-alignment]),
+	&[data-vertical-alignment="center"] {
+		vertical-align: middle;
+		align-items: center;
+	}
+
+	&[data-vertical-alignment="end"] {
+		vertical-align: bottom;
+		align-items: flex-end;
 	}
 }
 

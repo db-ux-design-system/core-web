@@ -37,7 +37,7 @@
 		tbody {
 			> db-table-row:nth-child(odd) > tr,
 			> tr:nth-child(odd) {
-				background-color: colors.$db-adaptive-bg-basic-level-3-default;
+				background-color: colors.$db-adaptive-bg-basic-level-2-default;
 			}
 		}
 
@@ -92,7 +92,7 @@
 			) {
 			grid-template-columns: repeat(
 				var(--db-table-template-columns, #{$num}),
-				1fr
+				var(--db-table-layout-template-columns-size, max-content)
 			);
 		}
 	}
@@ -111,12 +111,7 @@
 
 		@include get-floating-grid;
 
-		thead {
-			@extend %floating-sub-grid;
-
-			display: var(--db-thead-display, grid);
-		}
-
+		thead,
 		tbody,
 		tfoot {
 			@extend %floating-sub-grid;
@@ -124,7 +119,7 @@
 		}
 
 		tr {
-			display: grid;
+			display: var(--db-thead-row-display, grid);
 			grid-template-columns: subgrid;
 			grid-column: 1 / -1;
 		}
@@ -181,8 +176,18 @@
 %variant {
 	&:not([data-variant]),
 	&[data-variant="joined"] {
+		@extend %zebra;
+
 		table {
 			border: component.$component-border;
+		}
+
+		&[data-sticky-header="true"] {
+			thead {
+				position: sticky;
+				inset-block-start: calc(-1 * #{variables.$db-border-width-3xs});
+				background-color: colors.$db-adaptive-bg-basic-level-2-default;
+			}
 		}
 	}
 
@@ -193,7 +198,7 @@
 	@container (inline-size < #{screen-sizes.$db-breakpoint-sm}) {
 		&[data-mobile-variant="list"] {
 			table {
-				--db-thead-display: none;
+				--db-table-layout-template-columns-size: 1fr;
 				--db-table-template-columns: 1;
 				--db-table-cell-span: 1;
 
@@ -209,8 +214,26 @@
 				}
 			}
 
+			td[data-horizontal-alignment="end"] {
+				justify-content: space-between;
+			}
+
 			&:not([data-variant="floating"]) {
 				@extend %floating-table;
+			}
+
+			thead {
+				position: sticky;
+				inset-block-start: 0;
+				z-index: 6;
+			}
+
+			thead {
+				tr {
+					--db-thead-row-display: flex;
+					flex-wrap: wrap;
+					gap: variables.$db-spacing-fixed-xs;
+				}
 			}
 		}
 	}
@@ -219,15 +242,29 @@
 .db-table {
 	@extend %divider;
 	@extend %variant;
-	@extend %zebra;
 	@extend %sizes;
-	inline-size: 100%;
 	container-type: inline-size;
 	background-color: colors.$db-adaptive-bg-basic-level-1-default;
+	inline-size: 100%;
+	overflow: auto;
+
+	&:not([data-width]),
+	&[data-width="full"] {
+		table {
+			inline-size: inherit;
+		}
+	}
+
+	&[data-table-layout="fixed"] {
+		table {
+			--db-table-layout-template-columns-size: 1fr;
+
+			table-layout: fixed;
+		}
+	}
 
 	table {
 		border-collapse: collapse;
-		inline-size: inherit;
 	}
 
 	&:not([data-show-caption="true"]) {

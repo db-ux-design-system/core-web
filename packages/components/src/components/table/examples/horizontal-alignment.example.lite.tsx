@@ -3,18 +3,18 @@ import DBInfotext from '../../infotext/infotext.lite';
 import DBTable from '../table.lite';
 import { StorybookTableArgTypes } from './_table.arg.types';
 import {
-	alignmentCenterTable,
-	alignmentEndTable,
-	alignmentStartTable
+	horizontalAlignmentCenterTable,
+	horizontalAlignmentEndTable,
+	horizontalAlignmentStartTable
 } from './data';
 
 useMetadata({
-	storybookTitle: 'Alignment',
+	storybookTitle: 'Horizontal Alignment',
 	storybookNames: ['(Default) Start', 'Center', 'End'],
 	storybookArgTypes: StorybookTableArgTypes
 });
 
-export default function TableAlignment() {
+export default function TableHorizontalAlignment() {
 	return (
 		<Fragment>
 			<div
@@ -29,7 +29,7 @@ export default function TableAlignment() {
 					(Default) Start
 				</DBInfotext>
 				<DBTable
-					data={alignmentStartTable}
+					data={horizontalAlignmentStartTable}
 					captionPlain="(Default) Start"
 					divider="both"
 				/>
@@ -46,7 +46,7 @@ export default function TableAlignment() {
 					Center
 				</DBInfotext>
 				<DBTable
-					data={alignmentCenterTable}
+					data={horizontalAlignmentCenterTable}
 					captionPlain="Center"
 					divider="both"
 				/>
@@ -63,7 +63,7 @@ export default function TableAlignment() {
 					End
 				</DBInfotext>
 				<DBTable
-					data={alignmentEndTable}
+					data={horizontalAlignmentEndTable}
 					captionPlain="End"
 					divider="both"
 				/>

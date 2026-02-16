@@ -2,51 +2,45 @@ import { Fragment, useMetadata } from '@builder.io/mitosis';
 import DBInfotext from '../../infotext/infotext.lite';
 import DBTable from '../table.lite';
 import { StorybookTableArgTypes } from './_table.arg.types';
-import { subHeaderEmphasisWeakTable } from './data';
+import { defaultTable } from './data';
 
 useMetadata({
-	storybookTitle: 'Variant',
-	storybookNames: ['(Default) Joined', 'Floating'],
+	storybookTitle: 'Width',
+	storybookNames: ['(Default) Full', 'Auto'],
 	storybookArgTypes: StorybookTableArgTypes
 });
 
-export default function TableVariant() {
+export default function TableWidth() {
 	return (
 		<Fragment>
 			<div
 				style={{
 					minInlineSize: '300px',
 					display: 'flex',
-					flexDirection: 'column',
-					alignItems: 'center',
-					gap: 'var(--db-spacing-fixed-md)'
+					flexDirection: 'column'
 				}}>
 				<DBInfotext semantic="informational" size="small" icon="none">
-					(Default) Joined
+					(Default) Full
 				</DBInfotext>
 				<DBTable
-					data={subHeaderEmphasisWeakTable}
-					variant="joined"
-					divider="both"
-					captionPlain="(Default) Joined"
+					data={defaultTable}
+					width="full"
+					captionPlain="(Default) Full"
 				/>
 			</div>
 			<div
 				style={{
 					minInlineSize: '300px',
 					display: 'flex',
-					flexDirection: 'column',
-					alignItems: 'center',
-					gap: 'var(--db-spacing-fixed-md)'
+					flexDirection: 'column'
 				}}>
 				<DBInfotext semantic="informational" size="small" icon="none">
-					Floating
+					Auto
 				</DBInfotext>
 				<DBTable
-					data={subHeaderEmphasisWeakTable}
-					variant="floating"
-					divider="both"
-					captionPlain="Floating"
+					data={defaultTable}
+					width="auto"
+					captionPlain="Auto"
 				/>
 			</div>
 		</Fragment>

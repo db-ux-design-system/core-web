@@ -23,7 +23,8 @@ export default function DBTableDataCell(props: DBTableDataCellProps) {
 			ref={_ref}
 			id={props.id}
 			class={cls('db-table-data-cell', props.className)}
-			data-alignment={props.alignment}
+			data-horizontal-alignment={props.horizontalAlignment}
+			data-vertical-alignment={props.verticalAlignment}
 			colSpan={getNumber(props.colSpan, props.colspan)}
 			rowSpan={getNumber(props.rowSpan, props.rowspan)}
 			headers={props.headers}>

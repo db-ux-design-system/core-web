@@ -6,7 +6,7 @@ import {
 	useRef,
 	useStore
 } from '@builder.io/mitosis';
-import { cls, uuid } from '../../utils';
+import { cls, getBooleanAsString, uuid } from '../../utils';
 import DBTableDataCell from '../table-data-cell/table-data-cell.lite';
 import { DBTableHeaderCellProps } from '../table-header-cell/model';
 import DBTableHeaderCell from '../table-header-cell/table-header-cell.lite';
@@ -29,6 +29,7 @@ export default function DBTableRow(props: DBTableRowProps) {
 			ref={_ref}
 			id={props.id}
 			class={cls('db-table-row', props.className)}
+			data-interactive={getBooleanAsString(props.interactive)}
 			data-sub-header-emphasis={props.subHeaderEmphasis}>
 			<Show when={props.cells} else={props.children}>
 				<For each={props.cells}>
@@ -40,7 +41,10 @@ export default function DBTableRow(props: DBTableRowProps) {
 									key={`${props.id ?? uuid()}-table-row-data-cell-${index}`}
 									id={cell.id}
 									className={cell.className ?? cell.class}
-									alignment={cell.alignment}
+									horizontalAlignment={
+										cell.horizontalAlignment
+									}
+									verticalAlignment={cell.verticalAlignment}
 									headers={cell.headers}
 									colSpan={cell.colSpan}
 									colspan={cell.colspan}
@@ -55,7 +59,9 @@ export default function DBTableRow(props: DBTableRowProps) {
 								abbr={(cell as DBTableHeaderCellProps).abbr}
 								scope={(cell as DBTableHeaderCellProps).scope}
 								className={cell.className ?? cell.class}
-								alignment={cell.alignment}
+								horizontalAlignment={cell.horizontalAlignment}
+								verticalAlignment={cell.verticalAlignment}
+								noText={(cell as DBTableHeaderCellProps).noText}
 								headers={cell.headers}
 								colSpan={cell.colSpan}
 								colspan={cell.colspan}

@@ -1,10 +1,10 @@
-import { AlignmentProps, DBTableCellProps, GlobalProps, GlobalState } from '../../shared/model';
+import { DBTableCellProps, GlobalProps, GlobalState } from '../../shared/model';
 
 export type DBTableDataCellDefaultProps = {};
 
 export type DBTableDataCellProps = DBTableDataCellDefaultProps &
 	GlobalProps &
-	DBTableCellProps & AlignmentProps;
+	DBTableCellProps;
 
 export type DBTableDataCellDefaultState = {};
 

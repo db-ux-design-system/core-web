@@ -23,7 +23,9 @@ export default function DBTableHeaderCell(props: DBTableHeaderCellProps) {
 			ref={_ref}
 			id={props.id}
 			class={cls('db-table-header-cell', props.className)}
-			data-alignment={props.alignment}
+			data-horizontal-alignment={props.horizontalAlignment}
+			data-vertical-alignment={props.verticalAlignment}
+			data-no-text={props.noText}
 			scope={props.scope}
 			colSpan={getNumber(props.colSpan, props.colspan)}
 			rowSpan={getNumber(props.rowSpan, props.rowspan)}

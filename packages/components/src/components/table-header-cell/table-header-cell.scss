@@ -1,5 +1,9 @@
 @use "./../../styles/internal/table-components";
 
-.db-table-header-cell{
+.db-table-header-cell {
 	@extend %table-cell;
+
+	&[data-no-text="true"] {
+		font-size: 0 !important;
+	}
 }

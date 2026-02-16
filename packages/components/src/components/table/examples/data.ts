@@ -41,61 +41,61 @@ export const defaultTable: DBTableData = {
 	footer: defaultFooter
 };
 
-export const alignmentStartTable: DBTableData = {
+export const horizontalAlignmentStartTable: DBTableData = {
 	header: [
 		{
 			cells: [
-				{ content: 'A', alignment: 'start' },
-				{ content: 'B', alignment: 'start', colSpan: 2 }
+				{ content: 'A', horizontalAlignment: 'start' },
+				{ content: 'B', horizontalAlignment: 'start', colSpan: 2 }
 			]
 		}
 	],
 	body: [
 		{
 			cells: [
-				{ content: '1', headerCell: true, alignment: 'start' },
-				{ content: '2', alignment: 'start' },
-				{ content: '3', alignment: 'start' }
+				{ content: '1', headerCell: true, horizontalAlignment: 'start' },
+				{ content: '2', horizontalAlignment: 'start' },
+				{ content: '3', horizontalAlignment: 'start' }
 			]
 		}
 	]
 };
 
-export const alignmentCenterTable: DBTableData = {
+export const horizontalAlignmentCenterTable: DBTableData = {
 	header: [
 		{
 			cells: [
-				{ content: 'A', alignment: 'center' },
-				{ content: 'B', alignment: 'center', colSpan: 2 }
+				{ content: 'A', horizontalAlignment: 'center' },
+				{ content: 'B', horizontalAlignment: 'center', colSpan: 2 }
 			]
 		}
 	],
 	body: [
 		{
 			cells: [
-				{ content: '1', headerCell: true, alignment: 'center' },
-				{ content: '2', alignment: 'center' },
-				{ content: '3', alignment: 'center' }
+				{ content: '1', headerCell: true, horizontalAlignment: 'center' },
+				{ content: '2', horizontalAlignment: 'center' },
+				{ content: '3', horizontalAlignment: 'center' }
 			]
 		}
 	]
 };
 
-export const alignmentEndTable: DBTableData = {
+export const horizontalAlignmentEndTable: DBTableData = {
 	header: [
 		{
 			cells: [
-				{ content: 'A', alignment: 'end' },
-				{ content: 'B', alignment: 'end', colSpan: 2 }
+				{ content: 'A', horizontalAlignment: 'end' },
+				{ content: 'B', horizontalAlignment: 'end', colSpan: 2 }
 			]
 		}
 	],
 	body: [
 		{
 			cells: [
-				{ content: '1', headerCell: true, alignment: 'end' },
-				{ content: '2', alignment: 'end' },
-				{ content: '3', alignment: 'end' }
+				{ content: '1', headerCell: true, horizontalAlignment: 'end' },
+				{ content: '2', horizontalAlignment: 'end' },
+				{ content: '3', horizontalAlignment: 'end' }
 			]
 		}
 	]
@@ -145,5 +145,17 @@ export const subHeaderEmphasisStrongTable: DBTableData = {
 		}
 	],
 	body: defaultBody,
+	footer: defaultFooter
+};
+
+export const overflowTable: DBTableData = {
+	header: defaultHeader,
+	body: Array.from({ length: 20 }, (_, i) => ({
+		cells: [
+			{ content: `Row ${i + 1}`, headerCell: true },
+			{ content: `Data ${i + 1}-B` },
+			{ content: `Data ${i + 1}-C` }
+		]
+	})),
 	footer: defaultFooter
 };

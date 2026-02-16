@@ -1,4 +1,4 @@
-import { GlobalProps, GlobalState } from '../../shared/model';
+import { GlobalProps, GlobalState, WidthProps } from '../../shared/model';
 import { DBTableRowDefaultProps } from '../table-row/model';
 
 export const DBTableRowSizeList = [
@@ -23,9 +23,12 @@ export const DBTableDividerList = [
 ] as const;
 export type DBTableDividerType = (typeof DBTableDividerList)[number];
 
-
 export const DBTableMobileVariantList = ['table', 'list'] as const;
-export type DBTableMobileVariantType = (typeof DBTableMobileVariantList)[number];
+export type DBTableMobileVariantType =
+	(typeof DBTableMobileVariantList)[number];
+
+export const DBTableLayoutList = ['auto', 'fixed'] as const;
+export type DBTableLayoutType = (typeof DBTableLayoutList)[number];
 
 export type DBTableData = {
 	header?: DBTableRowDefaultProps[];
@@ -80,9 +83,19 @@ export type DBTableDefaultProps = {
 	 * table: classic table
 	 */
 	mobileVariant?: DBTableMobileVariantType;
+
+	/**
+	 * Set the table layout algorithm see https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/table-layout
+	 */
+	tableLayout?: DBTableLayoutType;
+
+	/**
+	 * If true the header will stick to the top of the table
+	 */
+	stickyHeader?: boolean | string;
 };
 
-export type DBTableProps = DBTableDefaultProps & GlobalProps;
+export type DBTableProps = DBTableDefaultProps & GlobalProps & WidthProps;
 
 export type DBTableDefaultState = {
 	_data?: DBTableData;
