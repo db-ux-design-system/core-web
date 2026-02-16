@@ -9,6 +9,7 @@
 			background-color: colors.$db-adaptive-bg-basic-level-3-default;
 			color: colors.$db-adaptive-on-bg-basic-emphasis-80-default;
 		}
+
 		&[data-sub-header-emphasis="strong"] {
 			@extend %sub-header-strong;
 		}

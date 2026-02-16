@@ -13,6 +13,7 @@ $interactive-child: '[data-table-row-action="true"]';
 
 .db-table-row {
 	@extend %table-section-grid;
+
 	background-color: var(
 		--db-table-row-background-color-default,
 		#{colors.$db-adaptive-bg-basic-level-1-default}
@@ -72,11 +73,10 @@ $interactive-child: '[data-table-row-action="true"]';
 			--db-tooltip-parent-position: static;
 			--db-focus-outline-color: transparent;
 
+			/* We set focus on complete row element, we remove it from interactive child with this trick */
+			/* stylelint-disable-next-line a11y/no-outline-none */
 			&:focus-visible {
 				outline: none;
-			}
-
-			&:is(:active, :hover):not(:disabled, [aria-disabled="true"]) {
 			}
 
 			&:not([data-icon-trailing]) {
@@ -94,6 +94,7 @@ $interactive-child: '[data-table-row-action="true"]';
 
 		&::after {
 			@extend %full-absolute;
+
 			pointer-events: none; // Ignore pointer events to use high z-index to show focus above elements
 			z-index: 2;
 		}

@@ -22,13 +22,13 @@ import SelectShowcase from '@components/components/select/showcase/select.showca
 import StackShowcase from '@components/components/stack/showcase/stack.showcase';
 import SwitchShowcase from '@components/components/switch/showcase/switch.showcase';
 import TabItemShowcase from '@components/components/tab-item/showcase/tab-item.showcase';
+import TableShowcase from '@components/components/table/showcase/table.showcase';
 import TabsShowcase from '@components/components/tabs/showcase/tabs.showcase';
 import TagShowcase from '@components/components/tag/showcase/tag.showcase';
 import TextareaShowcase from '@components/components/textarea/showcase/textarea.showcase';
 import TooltipShowcase from '@components/components/tooltip/showcase/tooltip.showcase';
 import type { ReactElement } from 'react';
 import Components from './components.json';
-import TableShowcase from '@components/components/table/showcase/table.showcase';
 
 export type NavigationItem = {
 	label: string;

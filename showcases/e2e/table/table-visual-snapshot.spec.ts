@@ -5,4 +5,3 @@ const path = 'table';
 test.describe('DBTable', () => {
 	getDefaultScreenshotTest({ path });
 });
-

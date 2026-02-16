@@ -84,6 +84,7 @@
 				)
 			) {
 			--db-table-grid-cells: #{$num};
+
 			grid-template-columns: repeat(
 				var(--db-table-template-columns, var(--db-table-grid-cells)),
 				var(--db-table-layout-template-columns-size, 1fr)
@@ -161,7 +162,7 @@
 				--db-table-template-columns: 1;
 				--db-table-cell-span: 1;
 
-				border: none;
+				border-color: transparent;
 			}
 
 			:is(th, td)[data-header] {
@@ -170,7 +171,6 @@
 				&::before {
 					// Screen reader would announce it twice
 					content: attr(data-header) ":" / "";
-
 					font-weight: bold;
 				}
 			}
@@ -180,10 +180,11 @@
 			}
 
 			thead {
-				border-block-start: none;
+				border-block-start-color: transparent;
 
 				tr {
 					--db-table-section-display: flex;
+
 					flex-wrap: wrap;
 					gap: variables.$db-spacing-fixed-xs;
 				}
@@ -196,9 +197,11 @@
 	@extend %divider;
 	@extend %variant;
 	@extend %sizes;
+
 	container-type: inline-size;
 	background-color: colors.$db-adaptive-bg-basic-level-1-default;
 	inline-size: 100%;
+	// stylelint-disable-next-line db-ux/use-spacings
 	padding: variables.$db-border-width-xs; // offset for focus
 
 	&[data-sticky-header="true"] {

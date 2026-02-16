@@ -1,5 +1,3 @@
-import { DBTable } from '../../../../output/react/src/index';
-
 import { useEffect, useState } from 'react';
 import {
 	DBAccordion,
@@ -26,6 +24,7 @@ import {
 	DBStack,
 	DBSwitch,
 	DBTabItem,
+	DBTable,
 	DBTabList,
 	DBTabPanel,
 	DBTabs,
