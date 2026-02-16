@@ -18,6 +18,8 @@
 	font-family: inherit;
 	font-size: inherit;
 	color: inherit;
+	flex-shrink: 0;
+	z-index: 2;
 
 	@extend %db-puls;
 	@include helpers.display(flex);
@@ -25,6 +27,12 @@
 	&::after {
 		width: 0;
 		height: variables.$db-border-width-xs;
+
+		@media screen and (prefers-reduced-motion: no-preference) {
+			transition:
+				height variables.$db-transition-duration-fast variables.$db-transition-timing-emotional,
+				width variables.$db-transition-duration-fast variables.$db-transition-timing-emotional !important;
+		}
 	}
 
 	[data-orientation="vertical"] & {

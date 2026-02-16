@@ -231,8 +231,6 @@ export default function DBTabs(props: DBTabsProps) {
 						props.orientation || 'horizontal'
 					);
 
-					container.setAttribute('tabindex', '0');
-
 					if (props.behavior === 'arrows') {
 						state.scrollContainer = container;
 						state.evaluateScrollButtons(container);

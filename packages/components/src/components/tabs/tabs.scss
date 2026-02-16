@@ -4,15 +4,21 @@
 @use "../../styles/internal/db-puls";
 @use "@db-ux/core-foundations/build/styles/helpers";
 
+$pulse-gap-offset: calc(#{variables.$db-border-width-xs} + #{variables.$db-spacing-fixed-2xs});
+
 %horizontal-pulse {
 	.db-tab-item {
 		@include db-puls.set-db-puls-horizontal;
+
+		&::after {
+			inset-block-end: calc(-1 * #{$pulse-gap-offset}) !important;
+		}
 
 		&[aria-selected="true"] {
 			@include db-puls.show-db-puls-horizontal;
 
 			&::after {
-				inset-block-end: calc(-1 * var(--db-tabs-line-gap, 0px)) !important;
+				width: 100%;
 			}
 		}
 	}
@@ -30,6 +36,10 @@
 
 		&[aria-selected="true"] {
 			@include db-puls.show-db-puls-vertical;
+
+			&::after {
+				height: 100%;
+			}
 		}
 	}
 }
@@ -65,17 +75,21 @@
 		flex-flow: column wrap;
 
 		.db-tab-list {
-			--db-tabs-line-gap: calc(#{variables.$db-spacing-fixed-2xs} + 8px);
-			padding-block-end: var(--db-tabs-line-gap);
+			padding-block-end: variables.$db-spacing-fixed-lg;
 			@extend %horizontal-pulse;
 
-			&::before {
-				@extend %pulse-track;
-				inset-block-end: 0;
-				inset-block-start: auto;
-				block-size: variables.$db-border-width-xs;
-				inset-inline: 0;
-				z-index: 1;
+			background-image: linear-gradient(
+				colors.$db-adaptive-bg-basic-transparent-semi-default,
+				colors.$db-adaptive-bg-basic-transparent-semi-default
+			);
+			background-position: left bottom;
+			background-repeat: no-repeat;
+			background-origin: content-box;
+			background-attachment: local;
+			background-size: 100% variables.$db-border-width-xs;
+
+			.db-tab-item {
+				margin-block-end: $pulse-gap-offset;
 			}
 
 			&[role="tablist"], .db-tab-list {
@@ -91,10 +105,10 @@
 		flex-direction: row;
 
 		.db-tab-list {
-			--db-tabs-line-gap-vertical: calc(#{variables.$db-spacing-fixed-xs} + 13px);
+			--db-tabs-line-gap-vertical: #{$pulse-gap-offset};
 
 			[data-density="expressive"] & {
-				--db-tabs-line-gap-vertical: calc(var(--db-spacing-fixed-expressive-xs) + 13px);
+				--db-tabs-line-gap-vertical: #{$pulse-gap-offset};
 			}
 
 			min-inline-size: variables.$db-sizing-3xl;
@@ -108,7 +122,7 @@
 				@extend %pulse-track;
 				display: block !important;
 				inset-inline-start: 0;
-				inset-block: variables.$db-spacing-fixed-xs;
+				inset-block: 0;
 				inline-size: variables.$db-border-width-xs;
 				z-index: 1;
 			}
@@ -150,17 +164,15 @@
 		&:not([data-orientation="vertical"]) {
 			.db-tab-list {
 				padding-inline: variables.$db-sizing-md;
+				padding-block-end: 0;
 				background-image: linear-gradient(
 					colors.$db-adaptive-bg-basic-transparent-semi-default,
 					colors.$db-adaptive-bg-basic-transparent-semi-default
 				);
 				background-position: center bottom;
 				background-repeat: no-repeat;
-				background-size: calc(100% - 2 * #{variables.$db-sizing-md}) variables.$db-border-width-xs;
-
-				&::before {
-					display: none;
-				}
+				background-attachment: scroll;
+				background-size: 100% variables.$db-border-width-xs;
 			}
 
 			&:has(.tabs-scroll-left)::before,
