@@ -53,7 +53,7 @@ head {
 	}
 }
 
-/* TODO: Switch to attr() as soon as this one is fully supported */
+// TODO: Switch to attr() as soon as this one is fully supported
 [data-mode="light"] {
 	color-scheme: light;
 }
