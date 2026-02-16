@@ -16,7 +16,7 @@ module.exports = () => ({
 					)
 					.replace(
 						`if (attr && attr.name === "class") {`,
-						`else if (attr  && attr.name !== 'data-density' && attr.name !== "class" && !attr.name.startsWith("_")) {
+						`else if (attr  && attr.name !== 'data-density' && attr.name !== "class" && attr.name === "style") {
 				element.setAttribute(attr.name, attr.value);
 			parent.removeAttribute(attr.name);
 		}
