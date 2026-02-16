@@ -40,6 +40,25 @@ export default function TableVariant() {
 					gap: 'var(--db-spacing-fixed-md)'
 				}}>
 				<DBInfotext semantic="informational" size="small" icon="none">
+					Zebra
+				</DBInfotext>
+				<DBTable
+					data={subHeaderEmphasisWeakTable}
+					variant="zebra"
+					divider="both"
+					captionPlain="Zebra"
+				/>
+			</div>
+
+			<div
+				style={{
+					minInlineSize: '300px',
+					display: 'flex',
+					flexDirection: 'column',
+					alignItems: 'center',
+					gap: 'var(--db-spacing-fixed-md)'
+				}}>
+				<DBInfotext semantic="informational" size="small" icon="none">
 					Floating
 				</DBInfotext>
 				<DBTable

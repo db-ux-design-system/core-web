@@ -2,6 +2,8 @@
 @use "./../../styles/internal/table-components";
 
 .db-table-head {
+	@extend %table-section-grid;
+
 	tr {
 		&[data-sub-header-emphasis="weak"] {
 			background-color: colors.$db-adaptive-bg-basic-level-3-default;

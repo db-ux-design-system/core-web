@@ -1,3 +1,5 @@
-.db-table-body{
-	/* Add your styles for this new component here */
+@use "./../../styles/internal/table-components";
+
+.db-table-body {
+	@extend %table-section-grid;
 }

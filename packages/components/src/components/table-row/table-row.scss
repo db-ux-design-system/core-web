@@ -1,6 +1,7 @@
 @use "@db-ux/core-foundations/build/styles/variables";
 @use "@db-ux/core-foundations/build/styles/colors";
 @use "@db-ux/core-foundations/build/styles/helpers";
+@use "./../../styles/internal/table-components";
 
 $interactive-child: '[data-table-row-action="true"]';
 
@@ -11,6 +12,7 @@ $interactive-child: '[data-table-row-action="true"]';
 }
 
 .db-table-row {
+	@extend %table-section-grid;
 	background-color: var(
 		--db-table-row-background-color-default,
 		#{colors.$db-adaptive-bg-basic-level-1-default}

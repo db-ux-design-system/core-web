@@ -9,12 +9,10 @@ import TableDivider from '../examples/divider.example.lite';
 import TableHorizontalAlignment from '../examples/horizontal-alignment.example.lite';
 import TableInteractiveRow from '../examples/interactive-row.example.lite';
 import TableMobileVariant from '../examples/mobile-variant.example.lite';
-import TableRowStyle from '../examples/row-style.example.lite';
 import TableShowCaption from '../examples/show-caption.example.lite';
 import TableSize from '../examples/size.example.lite';
 import TableStickyHeader from '../examples/sticky-header.example.lite';
 import TableSubHeaderEmphasis from '../examples/sub-header-emphasis.example.lite';
-import TableLayout from '../examples/table-layout.example.lite';
 import TableVariant from '../examples/variant.example.lite';
 import TableVerticalAlignment from '../examples/vertical-alignment.example.lite';
 import TableWidth from '../examples/width.example.lite';
@@ -39,9 +37,9 @@ export default function TableShowcase(props: PatternhubProps) {
 					<TableSize />
 				</CardWrapperShowcase>
 			</LinkWrapperShowcase>
-			<LinkWrapperShowcase exampleName="Row Style">
+			<LinkWrapperShowcase exampleName="Width">
 				<CardWrapperShowcase>
-					<TableRowStyle />
+					<TableWidth />
 				</CardWrapperShowcase>
 			</LinkWrapperShowcase>
 			<LinkWrapperShowcase exampleName="Divider">
@@ -74,19 +72,9 @@ export default function TableShowcase(props: PatternhubProps) {
 					<TableVariant />
 				</CardWrapperShowcase>
 			</LinkWrapperShowcase>
-			<LinkWrapperShowcase exampleName="Table Layout">
-				<CardWrapperShowcase>
-					<TableLayout />
-				</CardWrapperShowcase>
-			</LinkWrapperShowcase>
 			<LinkWrapperShowcase exampleName="Mobile Variant">
 				<CardWrapperShowcase>
 					<TableMobileVariant />
-				</CardWrapperShowcase>
-			</LinkWrapperShowcase>
-			<LinkWrapperShowcase exampleName="Width">
-				<CardWrapperShowcase>
-					<TableWidth />
 				</CardWrapperShowcase>
 			</LinkWrapperShowcase>
 			<LinkWrapperShowcase exampleName="Sticky Header">

@@ -217,11 +217,197 @@ export default function TableComplex() {
 					gap: 'var(--db-spacing-fixed-md)'
 				}}>
 				<DBInfotext semantic="informational" size="small" icon="none">
+					Zebra
+				</DBInfotext>
+				<DBTable
+					variant="zebra"
+					captionPlain="Zebra, sortable columns are Link.">
+					<DBTableHead>
+						<DBTableRow>
+							<DBTableHeaderCell>
+								<DBCheckbox showLabel={false} name="zebra">
+									Check All
+									<DBTooltip placement="top">
+										Check All
+									</DBTooltip>
+								</DBCheckbox>
+							</DBTableHeaderCell>
+							<DBTableHeaderCell>
+								<div
+									style={{
+										display: 'flex',
+										gap: 'var(--db-spacing-fixed-xs)'
+									}}>
+									Link
+									<DBButton
+										size="small"
+										variant="ghost"
+										icon="arrows_vertical"
+										noText>
+										Sort Link
+										<DBTooltip placement="top">
+											Sort Link
+										</DBTooltip>
+									</DBButton>
+								</div>
+							</DBTableHeaderCell>
+							<DBTableHeaderCell>Tag</DBTableHeaderCell>
+							<DBTableHeaderCell>Infotext</DBTableHeaderCell>
+							<DBTableHeaderCell>Text</DBTableHeaderCell>
+							<DBTableHeaderCell>Input</DBTableHeaderCell>
+							<DBTableHeaderCell horizontalAlignment="end" noText>
+								Button
+							</DBTableHeaderCell>
+						</DBTableRow>
+					</DBTableHead>
+					<DBTableBody>
+						<DBTableRow interactive>
+							<DBTableDataCell>
+								<DBCheckbox
+									showLabel={false}
+									data-table-row-action="true"
+									name="zebra">
+									Check Red
+								</DBCheckbox>
+							</DBTableDataCell>
+							<DBTableDataCell>
+								<DBLink
+									href="#"
+									content="external"
+									referrerPolicy="no-referrer"
+									target="_blank">
+									Red
+								</DBLink>
+							</DBTableDataCell>
+							<DBTableDataCell>
+								<DBTag icon="check" semantic="informational">
+									Progress
+								</DBTag>
+							</DBTableDataCell>
+							<DBTableDataCell>
+								<DBInfotext semantic="critical">15</DBInfotext>
+							</DBTableDataCell>
+							<DBTableDataCell>Red</DBTableDataCell>
+							<DBTableDataCell>
+								<DBInput
+									label="Red"
+									showLabel={false}
+									placeholder="Red"
+									required
+								/>
+							</DBTableDataCell>
+							<DBTableDataCell horizontalAlignment="end">
+								<DBButton
+									variant="ghost"
+									noText
+									icon="more_vertical">
+									More
+									<DBTooltip placement="left">More</DBTooltip>
+								</DBButton>
+							</DBTableDataCell>
+						</DBTableRow>
+						<DBTableRow interactive>
+							<DBTableDataCell>
+								<DBCheckbox
+									showLabel={false}
+									data-table-row-action="true"
+									name="zebra">
+									Check Yellow
+								</DBCheckbox>
+							</DBTableDataCell>
+							<DBTableDataCell>
+								<DBLink
+									href="#"
+									content="external"
+									referrerPolicy="no-referrer"
+									target="_blank">
+									Yellow
+								</DBLink>
+							</DBTableDataCell>
+							<DBTableDataCell>
+								<DBTag icon="check" semantic="warning">
+									Open
+								</DBTag>
+							</DBTableDataCell>
+							<DBTableDataCell>
+								<DBInfotext semantic="warning">1</DBInfotext>
+							</DBTableDataCell>
+							<DBTableDataCell>Yellow</DBTableDataCell>
+							<DBTableDataCell>
+								<DBInput
+									label="Yellow"
+									showLabel={false}
+									placeholder="Yellow"
+								/>
+							</DBTableDataCell>
+							<DBTableDataCell horizontalAlignment="end">
+								<DBButton
+									variant="ghost"
+									noText
+									icon="more_vertical">
+									More
+									<DBTooltip placement="left">More</DBTooltip>
+								</DBButton>
+							</DBTableDataCell>
+						</DBTableRow>
+						<DBTableRow interactive>
+							<DBTableDataCell>
+								<DBCheckbox
+									showLabel={false}
+									data-table-row-action="true"
+									name="zebra">
+									Check Green
+								</DBCheckbox>
+							</DBTableDataCell>
+							<DBTableDataCell>
+								<DBLink
+									href="#"
+									content="external"
+									referrerPolicy="no-referrer"
+									target="_blank">
+									Green
+								</DBLink>
+							</DBTableDataCell>
+							<DBTableDataCell>
+								<DBTag icon="check" semantic="successful">
+									Done
+								</DBTag>
+							</DBTableDataCell>
+							<DBTableDataCell></DBTableDataCell>
+							<DBTableDataCell>Green</DBTableDataCell>
+							<DBTableDataCell>
+								<DBInput
+									label="Green"
+									showLabel={false}
+									placeholder="Green"
+								/>
+							</DBTableDataCell>
+							<DBTableDataCell horizontalAlignment="end">
+								<DBButton
+									variant="ghost"
+									noText
+									icon="more_vertical">
+									More
+									<DBTooltip placement="left">More</DBTooltip>
+								</DBButton>
+							</DBTableDataCell>
+						</DBTableRow>
+					</DBTableBody>
+				</DBTable>
+			</div>
+			<div
+				style={{
+					inlineSize: '100%',
+					display: 'flex',
+					flexDirection: 'column',
+					alignItems: 'center',
+					gap: 'var(--db-spacing-fixed-md)'
+				}}>
+				<DBInfotext semantic="informational" size="small" icon="none">
 					Floating
 				</DBInfotext>
 				<DBTable
 					variant="floating"
-					tableLayout="fixed"
 					captionPlain="Floating, sortable columns are Link.">
 					<DBTableHead>
 						<DBTableRow>

@@ -9,10 +9,7 @@ export const DBTableRowSizeList = [
 ] as const;
 export type DBTableRowSizeType = (typeof DBTableRowSizeList)[number];
 
-export const DBTableRowStyleList = ['basic', 'zebra'] as const;
-export type DBTableRowStyleType = (typeof DBTableRowStyleList)[number];
-
-export const DBTableVariantList = ['joined', 'floating'] as const;
+export const DBTableVariantList = ['joined', 'zebra', 'floating'] as const;
 export type DBTableVariantType = (typeof DBTableVariantList)[number];
 
 export const DBTableDividerList = [
@@ -26,9 +23,6 @@ export type DBTableDividerType = (typeof DBTableDividerList)[number];
 export const DBTableMobileVariantList = ['table', 'list'] as const;
 export type DBTableMobileVariantType =
 	(typeof DBTableMobileVariantList)[number];
-
-export const DBTableLayoutList = ['auto', 'fixed'] as const;
-export type DBTableLayoutType = (typeof DBTableLayoutList)[number];
 
 export type DBTableData = {
 	header?: DBTableRowDefaultProps[];
@@ -56,11 +50,6 @@ export type DBTableDefaultProps = {
 	divider?: DBTableDividerType;
 
 	/**
-	 * Enables zebra variant for table
-	 */
-	rowStyle?: DBTableRowStyleType;
-
-	/**
 	 * Show caption above table default is hidden
 	 */
 	showCaption?: boolean | string;
@@ -83,11 +72,6 @@ export type DBTableDefaultProps = {
 	 * table: classic table
 	 */
 	mobileVariant?: DBTableMobileVariantType;
-
-	/**
-	 * Set the table layout algorithm see https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/table-layout
-	 */
-	tableLayout?: DBTableLayoutType;
 
 	/**
 	 * If true the header will stick to the top of the table

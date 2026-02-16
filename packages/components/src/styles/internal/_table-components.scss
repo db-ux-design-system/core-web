@@ -1,6 +1,25 @@
 @use "@db-ux/core-foundations/build/styles/colors";
+@use "@db-ux/core-foundations/build/styles/variables";
+
+%table-section-grid {
+	display: var(--db-table-section-display, grid);
+	grid-template-columns: subgrid;
+	grid-column: 1 / -1;
+}
 
 %table-cell {
+	display: flex;
+
+	@for $span from 2 through 20 {
+		&[colspan="#{$span}"] {
+			grid-column: span var(--db-table-cell-span, #{$span});
+		}
+
+		&[rowspan="#{$span}"] {
+			grid-row: span var(--db-table-cell-span, #{$span});
+		}
+	}
+
 	&:not([data-horizontal-alignment]),
 	&[data-horizontal-alignment="start"] {
 		text-align: start;

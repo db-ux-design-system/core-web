@@ -21,41 +21,34 @@
 	}
 
 	&[data-size="small"],
-	&[data-size="xsmall"] {
+	&[data-size="x-small"] {
 		:is(th, td) {
 			padding: variables.$db-spacing-fixed-2xs;
 		}
 	}
 
-	&[data-size="xsmall"] {
+	&[data-size="x-small"] {
 		@extend %db-overwrite-font-size-sm;
 	}
 }
 
-%zebra {
-	&[data-row-style="zebra"] {
-		tbody {
-			> db-table-row:nth-child(odd) > tr,
-			> tr:nth-child(odd) {
-				background-color: colors.$db-adaptive-bg-basic-level-2-default;
-			}
-		}
-
-		thead {
-			tr[data-sub-header-emphasis="weak"] {
-				@extend %sub-header-strong;
-			}
+%divider {
+	&:is([data-divider="none"], [data-divider="vertical"]) {
+		table {
+			border-block-end: component.$component-border;
 		}
 	}
-}
 
-%divider {
-	&:not([data-divider="none"], [data-variant="floating"]) {
-		&[data-divider="both"],
-		&[data-divider="vertical"] {
-			td,
-			th {
-				border-inline: component.$component-border;
+	&:not([data-divider="none"]) {
+		&:not([data-variant="floating"]) {
+			&[data-divider="both"],
+			&[data-divider="vertical"] {
+				tr
+					> :is(td, th, db-table-header-cell, db-table-data-cell):not(
+						:last-child
+					) {
+					border-inline-end: component.$component-border;
+				}
 			}
 		}
 
@@ -63,13 +56,13 @@
 		&[data-divider="both"],
 		&[data-divider="horizontal"] {
 			tr {
-				border-block: component.$component-border;
+				border-block-end: component.$component-border;
 			}
 		}
 	}
 }
 
-@mixin get-floating-grid {
+%set-grid-cells {
 	@for $num from 1 through 20 {
 		&:has(
 				tr
@@ -90,84 +83,38 @@
 						):nth-child(#{$num + 1})
 				)
 			) {
+			--db-table-grid-cells: #{$num};
 			grid-template-columns: repeat(
-				var(--db-table-template-columns, #{$num}),
-				var(--db-table-layout-template-columns-size, max-content)
+				var(--db-table-template-columns, var(--db-table-grid-cells)),
+				var(--db-table-layout-template-columns-size, 1fr)
 			);
 		}
 	}
 }
 
-%floating-sub-grid {
-	grid-template-columns: subgrid;
-	grid-column: 1 / -1;
-	row-gap: variables.$db-spacing-fixed-xs;
-}
-
-%floating-table {
+%floating-table-variant {
 	table {
-		display: grid;
+		row-gap: variables.$db-spacing-fixed-xs;
+	}
+
+	:is(tfoot, tbody) {
 		row-gap: variables.$db-spacing-fixed-xs;
 
-		@include get-floating-grid;
-
-		thead,
-		tbody,
-		tfoot {
-			@extend %floating-sub-grid;
-			display: grid;
+		tr {
+			@extend %default-card;
 		}
+	}
+
+	thead {
+		row-gap: variables.$db-spacing-fixed-xs;
 
 		tr {
-			display: var(--db-thead-row-display, grid);
-			grid-template-columns: subgrid;
-			grid-column: 1 / -1;
-		}
-
-		thead {
-			tr {
-				&:not([data-sub-header-emphasis]) {
-					@extend %transparent-border;
-				}
-
-				&[data-sub-header-emphasis] {
-					@extend %default-card;
-				}
+			&:not([data-sub-header-emphasis]) {
+				@extend %transparent-border;
 			}
-		}
 
-		&[data-divider="both"],
-		&[data-divider="vertical"] {
-			:is(tfoot, tbody) {
-				tr
-					> :is(td, th, db-table-header-cell, db-table-data-cell):not(
-						:last-child
-					) {
-					border-inline-end: component.$component-border;
-				}
-			}
-		}
-
-		:is(tfoot, tbody) {
-			tr {
+			&[data-sub-header-emphasis] {
 				@extend %default-card;
-
-				background-color: colors.$db-adaptive-bg-basic-level-1-default;
-			}
-		}
-
-		td,
-		th {
-			display: flex;
-		}
-
-		@for $span from 2 through 20 {
-			:is(td, th)[colspan="#{$span}"] {
-				grid-column: span var(--db-table-cell-span, #{$span});
-			}
-
-			:is(td, th)[rowspan="#{$span}"] {
-				grid-row: span var(--db-table-cell-span, #{$span});
 			}
 		}
 	}
@@ -175,28 +122,40 @@
 
 %variant {
 	&:not([data-variant]),
-	&[data-variant="joined"] {
-		@extend %zebra;
-
+	&[data-variant="joined"],
+	&[data-variant="zebra"] {
 		table {
-			border: component.$component-border;
+			border-inline: component.$component-border;
 		}
 
-		&[data-sticky-header="true"] {
-			thead {
-				position: sticky;
-				inset-block-start: calc(-1 * #{variables.$db-border-width-3xs});
+		thead {
+			border-block-start: component.$component-border;
+		}
+	}
+
+	&[data-variant="zebra"] {
+		tbody {
+			> db-table-row:nth-child(odd) > tr,
+			> tr:nth-child(odd) {
 				background-color: colors.$db-adaptive-bg-basic-level-2-default;
+			}
+		}
+
+		thead {
+			tr[data-sub-header-emphasis="weak"] {
+				@extend %sub-header-strong;
 			}
 		}
 	}
 
 	&[data-variant="floating"] {
-		@extend %floating-table;
+		@extend %floating-table-variant;
 	}
 
 	@container (inline-size < #{screen-sizes.$db-breakpoint-sm}) {
 		&[data-mobile-variant="list"] {
+			@extend %floating-table-variant;
+
 			table {
 				--db-table-layout-template-columns-size: 1fr;
 				--db-table-template-columns: 1;
@@ -209,7 +168,9 @@
 				gap: variables.$db-spacing-fixed-xs;
 
 				&::before {
-					content: attr(data-header) ":";
+					// Screen reader would announce it twice
+					content: attr(data-header) ":" / "";
+
 					font-weight: bold;
 				}
 			}
@@ -218,19 +179,11 @@
 				justify-content: space-between;
 			}
 
-			&:not([data-variant="floating"]) {
-				@extend %floating-table;
-			}
-
 			thead {
-				position: sticky;
-				inset-block-start: 0;
-				z-index: 6;
-			}
+				border-block-start: none;
 
-			thead {
 				tr {
-					--db-thead-row-display: flex;
+					--db-table-section-display: flex;
 					flex-wrap: wrap;
 					gap: variables.$db-spacing-fixed-xs;
 				}
@@ -246,25 +199,46 @@
 	container-type: inline-size;
 	background-color: colors.$db-adaptive-bg-basic-level-1-default;
 	inline-size: 100%;
-	overflow: auto;
+	padding: variables.$db-border-width-xs; // offset for focus
+
+	&[data-sticky-header="true"] {
+		thead {
+			position: sticky;
+			inset-block-start: calc(-1 * #{variables.$db-border-width-xs});
+		}
+	}
 
 	&:not([data-width]),
 	&[data-width="full"] {
+		overflow: auto;
+
 		table {
 			inline-size: inherit;
 		}
 	}
 
-	&[data-table-layout="fixed"] {
-		table {
-			--db-table-layout-template-columns-size: 1fr;
+	&[data-width="auto"] {
+		display: flex;
+		justify-content: center;
 
-			table-layout: fixed;
+		table {
+			--db-table-layout-template-columns-size: max-content;
+
+			inline-size: fit-content;
 		}
 	}
 
 	table {
-		border-collapse: collapse;
+		@extend %set-grid-cells;
+
+		display: grid;
+
+		caption {
+			grid-column: span var(--db-table-grid-cells, 1);
+			padding: variables.$db-spacing-fixed-sm;
+			border-block-start: component.$component-border;
+			font-weight: bold;
+		}
 	}
 
 	&:not([data-show-caption="true"]) {
