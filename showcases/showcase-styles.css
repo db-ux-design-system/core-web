@@ -32,6 +32,7 @@
 }
 
 .variants-card,
+.variants-card > db-card > .db-card,
 .variants-card > .db-card {
 	align-items: center;
 	justify-content: center;
@@ -39,6 +40,7 @@
 	padding-block-end: calc(var(--db-spacing-fixed-xl) + var(--db-sizing-sm));
 }
 
+db-card:is(.variants-card) > db-card > .db-card,
 db-card:is(.variants-card) > .db-card {
 	padding: var(--db-spacing-fixed-sm);
 }
@@ -48,24 +50,16 @@ db-card:is(.variants-card) > .db-card {
 	flex-wrap: wrap;
 	inline-size: 100%;
 	justify-content: center;
+	align-items: center;
 	gap: var(--db-spacing-fixed-md);
 }
 
-.variants-list > db-popover > .db-popover > db-button > button,
-.variants-list > .db-popover > button,
-.variants-list > * > db-button > button,
-.variants-list > button {
-	align-self: center;
-}
-
-.variants-list div[style]:has(> db-button) {
-	display: flex;
-	align-items: center;
-}
-
-.variants-list > div {
+.variants-list div[role] > div:not([class^="db-"]),
+.variants-list > div:not([class^="db-"]) {
 	align-items: center;
 	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
 	gap: var(--db-spacing-fixed-md);
 }
 
@@ -74,10 +68,17 @@ db-card:is(.variants-card) > .db-card {
 	inline-size: 100%;
 }
 
-.variants-list .db-select,
-.variants-list .db-input,
-.variants-list .db-textarea {
-	margin-block-start: auto;
+.variants-list > db-popover > .db-popover > db-button > button,
+.variants-list > .db-popover > button,
+.variants-list > * > db-button > button,
+.variants-list > button,
+.variants-list > .db-select,
+.variants-list > .db-input,
+.variants-list > .db-textarea,
+.variants-list * > .db-select,
+.variants-list * > .db-input,
+.variants-list * > .db-textarea {
+	align-self: flex-end;
 }
 
 .variants-list .db-select:has([placeholder="(Default) Basic"]),
@@ -158,6 +159,15 @@ db-card:is(.variants-card) > .db-card {
 	overflow: hidden;
 }
 
+.fit-content-container {
+	flex-direction: column;
+	inline-size: fit-content;
+
+	.db-infotext {
+		align-self: flex-start;
+	}
+}
+
 .tab-hide-article article {
 	display: none !important;
 }
@@ -203,20 +213,6 @@ main .db-header {
 	}
 
 	text-wrap: nowrap;
-}
-
-.section-card-container {
-	display: grid;
-	gap: var(--db-spacing-fixed-sm);
-	grid-template-columns: repeat(1, minmax(0, 1fr));
-
-	@media screen and (width >= 768px) {
-		grid-template-columns: repeat(2, minmax(0, 1fr));
-	}
-
-	.db-card {
-		inline-size: 100%;
-	}
 }
 
 .nav-item-list {
