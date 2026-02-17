@@ -13,14 +13,6 @@
 	@extend %db-overwrite-font-size-md;
 	@extend %scrollbar;
 
-	[data-density="functional"] & {
-		@extend %db-overwrite-font-size-sm;
-	}
-
-	[data-density="expressive"] & {
-		@extend %db-overwrite-font-size-lg;
-	}
-
 	&[role="tablist"] {
 		overflow: visible;
 	}

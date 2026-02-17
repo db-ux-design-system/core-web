@@ -3,11 +3,15 @@
 @use "@db-ux/core-foundations/build/styles/helpers";
 @use "../../styles/internal/db-puls";
 
+$padding-functional: variables.$db-spacing-fixed-2xs;
+$padding-regular: variables.$db-spacing-fixed-xs;
+$padding-expressive: variables.$db-spacing-fixed-sm;
+
 .db-tab-item {
 	position: relative;
 	background-color: colors.$db-adaptive-bg-basic-transparent-full-default;
-	padding-block: var(--db-tabs-item-padding, #{variables.$db-spacing-fixed-xs});
-	padding-inline: variables.$db-spacing-fixed-xs;
+	padding-block: $padding-regular;
+	padding-inline: $padding-regular;
 	overflow: visible;
 	align-items: center;
 	justify-content: center;
@@ -23,6 +27,16 @@
 
 	@extend %db-puls;
 	@include helpers.display(flex);
+
+	[data-density="functional"] & {
+		padding-block: $padding-functional;
+		padding-inline: $padding-functional;
+	}
+
+	[data-density="expressive"] & {
+		padding-block: $padding-expressive;
+		padding-inline: $padding-expressive;
+	}
 
 	&::after {
 		width: 0;
