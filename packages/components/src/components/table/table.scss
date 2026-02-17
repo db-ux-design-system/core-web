@@ -193,23 +193,43 @@
 	}
 }
 
+%sticky-header {
+	&[data-sticky-header="both"],
+	&[data-sticky-header="horizontal"] {
+		thead {
+			position: sticky;
+			inset-block-start: calc(-1 * #{variables.$db-border-width-xs});
+			z-index: 4;
+			background-color: colors.$db-adaptive-bg-basic-level-1-default;
+		}
+	}
+
+	&[data-sticky-header="both"],
+	&[data-sticky-header="vertical"] {
+		tfoot,
+		tbody {
+			th {
+				position: sticky;
+				inset-inline-start: calc(-1 * #{variables.$db-border-width-xs});
+				z-index: 3;
+				border-inline-end: component.$component-border;
+				background-color: colors.$db-adaptive-bg-basic-level-1-default;
+			}
+		}
+	}
+}
+
 .db-table {
 	@extend %divider;
 	@extend %variant;
 	@extend %sizes;
+	@extend %sticky-header;
 
 	container-type: inline-size;
 	background-color: colors.$db-adaptive-bg-basic-level-1-default;
 	inline-size: 100%;
 	// stylelint-disable-next-line db-ux/use-spacings
 	padding: variables.$db-border-width-xs; // offset for focus
-
-	&[data-sticky-header="true"] {
-		thead {
-			position: sticky;
-			inset-block-start: calc(-1 * #{variables.$db-border-width-xs});
-		}
-	}
 
 	&:not([data-width]),
 	&[data-width="full"] {

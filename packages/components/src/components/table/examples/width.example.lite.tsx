@@ -15,7 +15,7 @@ export default function TableWidth() {
 		<Fragment>
 			<div
 				style={{
-					minInlineSize: '300px',
+					inlineSize: '300px',
 					display: 'flex',
 					flexDirection: 'column'
 				}}>
@@ -30,18 +30,14 @@ export default function TableWidth() {
 			</div>
 			<div
 				style={{
-					minInlineSize: '300px',
+					inlineSize: '300px',
 					display: 'flex',
 					flexDirection: 'column'
 				}}>
 				<DBInfotext semantic="informational" size="small" icon="none">
 					Auto
 				</DBInfotext>
-				<DBTable
-					data={defaultTable}
-					width="auto"
-					captionPlain="Auto"
-				/>
+				<DBTable data={defaultTable} width="auto" captionPlain="Auto" />
 			</div>
 		</Fragment>
 	);

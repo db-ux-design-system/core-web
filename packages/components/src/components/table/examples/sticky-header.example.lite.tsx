@@ -6,7 +6,7 @@ import { overflowTable } from './data';
 
 useMetadata({
 	storybookTitle: 'Sticky Header',
-	storybookNames: ['Joined', 'Floating', 'Joined Sticky', 'Floating Sticky'],
+	storybookNames: ['(Default) None', 'Both', 'Horizontal', 'Vertical'],
 	storybookArgTypes: StorybookTableArgTypes
 });
 
@@ -15,7 +15,7 @@ export default function TableStickyHeader() {
 		<Fragment>
 			<div
 				style={{
-					minInlineSize: '300px',
+					inlineSize: '300px',
 					display: 'flex',
 					flexDirection: 'column',
 					alignItems: 'center',
@@ -23,17 +23,14 @@ export default function TableStickyHeader() {
 					blockSize: '300px'
 				}}>
 				<DBInfotext semantic="informational" size="small" icon="none">
-					Joined
+					(Default) None
 				</DBInfotext>
-				<DBTable
-					data={overflowTable}
-					variant="joined"
-					captionPlain="Joined"
-				/>
+				<DBTable data={overflowTable} captionPlain="(Default) None" />
 			</div>
+			<i class="line-break" data-sb-ignore="true" />
 			<div
 				style={{
-					minInlineSize: '300px',
+					inlineSize: '300px',
 					display: 'flex',
 					flexDirection: 'column',
 					alignItems: 'center',
@@ -41,17 +38,18 @@ export default function TableStickyHeader() {
 					blockSize: '300px'
 				}}>
 				<DBInfotext semantic="informational" size="small" icon="none">
-					Floating
+					Both
 				</DBInfotext>
 				<DBTable
 					data={overflowTable}
-					variant="floating"
-					captionPlain="Floating"
+					captionPlain="Both"
+					stickyHeader="both"
 				/>
 			</div>
+			<i class="line-break" data-sb-ignore="true" />
 			<div
 				style={{
-					minInlineSize: '300px',
+					inlineSize: '300px',
 					display: 'flex',
 					flexDirection: 'column',
 					alignItems: 'center',
@@ -59,18 +57,18 @@ export default function TableStickyHeader() {
 					blockSize: '300px'
 				}}>
 				<DBInfotext semantic="informational" size="small" icon="none">
-					Joined Sticky
+					Horizontal
 				</DBInfotext>
 				<DBTable
 					data={overflowTable}
-					variant="joined"
-					stickyHeader={true}
-					captionPlain="Joined Sticky"
+					stickyHeader="horizontal"
+					captionPlain="Horizontal"
 				/>
 			</div>
+			<i class="line-break" data-sb-ignore="true" />
 			<div
 				style={{
-					minInlineSize: '300px',
+					inlineSize: '300px',
 					display: 'flex',
 					flexDirection: 'column',
 					alignItems: 'center',
@@ -78,13 +76,12 @@ export default function TableStickyHeader() {
 					blockSize: '300px'
 				}}>
 				<DBInfotext semantic="informational" size="small" icon="none">
-					Floating Sticky
+					Vertical
 				</DBInfotext>
 				<DBTable
 					data={overflowTable}
-					variant="floating"
-					stickyHeader={true}
-					captionPlain="Floating Sticky"
+					stickyHeader="vertical"
+					captionPlain="Vertical"
 				/>
 			</div>
 		</Fragment>

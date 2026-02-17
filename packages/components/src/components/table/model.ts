@@ -24,6 +24,14 @@ export const DBTableMobileVariantList = ['table', 'list'] as const;
 export type DBTableMobileVariantType =
 	(typeof DBTableMobileVariantList)[number];
 
+export const DBTableStickHeaderList = [
+	'none',
+	'both',
+	'horizontal',
+	'vertical'
+] as const;
+export type DBTableStickHederType = (typeof DBTableStickHeaderList)[number];
+
 export type DBTableData = {
 	header?: DBTableRowDefaultProps[];
 	body?: DBTableRowDefaultProps[];
@@ -74,9 +82,9 @@ export type DBTableDefaultProps = {
 	mobileVariant?: DBTableMobileVariantType;
 
 	/**
-	 * If true the header will stick to the top of the table
+	 * Change the header cells to be sticky when scrolling the table
 	 */
-	stickyHeader?: boolean | string;
+	stickyHeader?: DBTableStickHederType;
 };
 
 export type DBTableProps = DBTableDefaultProps & GlobalProps & WidthProps;

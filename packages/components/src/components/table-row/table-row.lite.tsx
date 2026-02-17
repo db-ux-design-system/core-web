@@ -20,7 +20,17 @@ export default function DBTableRow(props: DBTableRowProps) {
 	// This is used as forwardRef
 	const _ref = useRef<HTMLTableRowElement | any>(undefined);
 	// jscpd:ignore-start
-	const state = useStore<DBTableRowState>({});
+	const state = useStore<DBTableRowState>({
+		getHeaderCell: (
+			cell: DBTableRowCell
+		): DBTableHeaderCellProps | undefined => {
+			if (cell.headerCell) {
+				return cell as DBTableHeaderCellProps;
+			}
+
+			return undefined;
+		}
+	});
 
 	// jscpd:ignore-end
 
@@ -56,12 +66,12 @@ export default function DBTableRow(props: DBTableRowProps) {
 							<DBTableHeaderCell
 								key={`${props.id ?? uuid()}-table-row-header-cell-${index}`}
 								id={cell.id}
-								abbr={(cell as DBTableHeaderCellProps).abbr}
-								scope={(cell as DBTableHeaderCellProps).scope}
+								abbr={state.getHeaderCell(cell)?.abbr}
+								scope={state.getHeaderCell(cell)?.scope}
+								noText={state.getHeaderCell(cell)?.noText}
 								className={cell.className ?? cell.class}
 								horizontalAlignment={cell.horizontalAlignment}
 								verticalAlignment={cell.verticalAlignment}
-								noText={(cell as DBTableHeaderCellProps).noText}
 								headers={cell.headers}
 								colSpan={cell.colSpan}
 								colspan={cell.colspan}

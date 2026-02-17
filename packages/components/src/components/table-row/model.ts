@@ -2,7 +2,11 @@ import { GlobalProps, GlobalState } from '../../shared/model';
 import { DBTableDataCellProps } from '../table-data-cell/model';
 import { DBTableHeaderCellProps } from '../table-header-cell/model';
 
-export const DBTableRowSubHeaderEmphasisList = ['weak', 'strong'] as const;
+export const DBTableRowSubHeaderEmphasisList = [
+	'none',
+	'weak',
+	'strong'
+] as const;
 export type DBTableRowSubHeaderEmphasisType =
 	(typeof DBTableRowSubHeaderEmphasisList)[number];
 
@@ -24,11 +28,13 @@ export type DBTableRowDefaultProps = {
 	/**
 	 * If true marks the row as interactive, which checks for child with data-table-row-action="true"
 	 */
-	interactive?: boolean| string;
+	interactive?: boolean | string;
 };
 
 export type DBTableRowProps = DBTableRowDefaultProps & GlobalProps;
 
-export type DBTableRowDefaultState = {};
+export type DBTableRowDefaultState = {
+	getHeaderCell: (cell: DBTableRowCell) => DBTableHeaderCellProps | undefined;
+};
 
 export type DBTableRowState = DBTableRowDefaultState & GlobalState;

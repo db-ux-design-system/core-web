@@ -53,7 +53,11 @@ export const horizontalAlignmentStartTable: DBTableData = {
 	body: [
 		{
 			cells: [
-				{ content: '1', headerCell: true, horizontalAlignment: 'start' },
+				{
+					content: '1',
+					headerCell: true,
+					horizontalAlignment: 'start'
+				},
 				{ content: '2', horizontalAlignment: 'start' },
 				{ content: '3', horizontalAlignment: 'start' }
 			]
@@ -73,7 +77,11 @@ export const horizontalAlignmentCenterTable: DBTableData = {
 	body: [
 		{
 			cells: [
-				{ content: '1', headerCell: true, horizontalAlignment: 'center' },
+				{
+					content: '1',
+					headerCell: true,
+					horizontalAlignment: 'center'
+				},
 				{ content: '2', horizontalAlignment: 'center' },
 				{ content: '3', horizontalAlignment: 'center' }
 			]
@@ -149,13 +157,36 @@ export const subHeaderEmphasisStrongTable: DBTableData = {
 };
 
 export const overflowTable: DBTableData = {
-	header: defaultHeader,
+	header: [
+		{
+			cells: [
+				{ content: 'A' },
+				{ content: 'B' },
+				{ content: 'C' },
+				{ content: 'D' },
+				{ content: 'E' },
+				{ content: 'F' },
+				{ content: 'G' }
+			]
+		}
+	],
 	body: Array.from({ length: 20 }, (_, i) => ({
 		cells: [
 			{ content: `Row ${i + 1}`, headerCell: true },
 			{ content: `Data ${i + 1}-B` },
-			{ content: `Data ${i + 1}-C` }
+			{ content: `Data ${i + 1}-C` },
+			{ content: `Data ${i + 1}-D` },
+			{ content: `Data ${i + 1}-E` },
+			{ content: `Data ${i + 1}-F` },
+			{ content: `Data ${i + 1}-G` }
 		]
 	})),
-	footer: defaultFooter
+	footer: [
+		{
+			cells: [
+				{ content: 'Footer 1', headerCell: true },
+				{ content: 'Footer 2', colSpan: 6 }
+			]
+		}
+	]
 };

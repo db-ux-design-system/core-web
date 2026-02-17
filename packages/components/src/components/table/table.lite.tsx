@@ -86,7 +86,7 @@ export default function DBTable(props: DBTableProps) {
 			data-variant={props.variant}
 			data-mobile-variant={props.mobileVariant}
 			data-show-caption={getBooleanAsString(props.showCaption)}
-			data-sticky-header={getBooleanAsString(props.stickyHeader)}>
+			data-sticky-header={props.stickyHeader}>
 			<table ref={_ref} id={props.id}>
 				<caption>
 					<Show
