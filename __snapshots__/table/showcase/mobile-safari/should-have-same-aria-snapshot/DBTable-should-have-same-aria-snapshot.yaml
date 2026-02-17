@@ -1,0 +1,187 @@
+- main:
+  - tablist:
+    - tab "All" [selected]
+    - text: All
+    - tab "Input"
+    - text: Input
+    - tab "Textarea"
+    - text: Textarea
+    - tab "Select"
+    - text: Select
+    - tab "Checkbox"
+    - text: Checkbox
+    - tab "Radios"
+    - text: Radios
+    - tab "Custom Selects"
+    - text: Custom Selects
+    - tab "Switches"
+    - text: Switches
+  - tabpanel "All":
+    - text: test
+    - textbox "test":
+      - /placeholder: fieldsizing
+    - status
+    - text: Test
+    - group
+    - status
+    - group:
+      - paragraph: "Input:"
+      - text: Text Input
+      - combobox "Text Input"
+      - text: Description
+      - status
+      - paragraph: "Textarea:"
+      - text: Textarea Controlled
+      - textbox "Textarea Controlled":
+        - /placeholder: " "
+        - text: default textarea
+      - status
+      - text: Date input
+      - textbox "Date input":
+        - /placeholder: " "
+      - text: Description
+      - status
+      - text: Textarea Default value
+      - textbox "Textarea Default value":
+        - /placeholder: " "
+        - text: text area default value
+      - status
+      - paragraph: "Radio:"
+      - list:
+        - listitem:
+          - radio "Radio X"
+          - text: Radio X
+        - listitem:
+          - radio "Radio Y"
+          - text: Radio Y
+        - listitem:
+          - radio "Radio Z"
+          - text: Radio Z
+      - paragraph: "Tags:"
+      - list:
+        - listitem:
+          - checkbox "Tag X"
+          - text: Tag X
+          - status
+        - listitem:
+          - checkbox "Tag Y"
+          - text: Tag Y
+          - status
+        - listitem:
+          - checkbox "Tag Z"
+          - text: Tag Z
+          - status
+        - listitem:
+          - checkbox "Tag A"
+          - text: Tag A
+        - listitem:
+          - checkbox "Tag B"
+          - text: Tag B
+        - listitem:
+          - checkbox "Tag C"
+          - text: Tag C
+      - paragraph: "Checkbox:"
+      - checkbox "Checkbox Indeterminate" [checked=mixed]
+      - text: Checkbox Indeterminate
+      - status
+      - group:
+        - checkbox "Checkbox" [checked]
+        - text: Checkbox
+        - status
+        - checkbox "Checkbox"
+        - text: Checkbox
+        - status
+        - checkbox "DefaultChecked"
+        - text: DefaultChecked
+        - status
+      - paragraph: "DBSelect:"
+      - text: Label
+      - combobox "Label":
+        - option "Test1" [selected]
+        - option "Test2"
+      - status
+      - paragraph: "Button:"
+      - button "Reset and Toggle"
+      - button "Hi from Showcase!"
+    - heading "Output" [level=1]
+    - term: inputs value
+    - definition: No Input set
+    - term: date inputs value
+    - definition: No date input set
+    - term: textarea values
+    - definition: default textarea
+    - definition: No Textrea set
+    - term: radio value
+    - definition: No radio set
+    - term: checkbox (indeterminate) value
+    - definition: checkbox checked
+    - term: select value
+    - definition: No select set
+    - term: tags value
+    - definition: "[]"
+    - paragraph:
+      - text: Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor
+      - link "invidunt"
+      - text: ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor
+      - link "labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet"
+      - text: ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+    - button "TabsTest"
+    - tablist:
+      - tab "Test 1" [selected]
+      - text: Test 1
+      - tab "Test 2"
+      - text: Test 2
+    - tabpanel "Test 1": Tab Panel 1
+    - tablist:
+      - tab "Airplane Button" [selected]
+      - text: Airplane Button
+      - tab "Cancel Button"
+      - text: Cancel Button
+      - tab "Long Button Label with a lot of text"
+      - text: Long Button Label with a lot of text
+      - tab "Another Button Label with a lot of text"
+      - text: Another Button Label with a lot of text
+      - tab
+    - tabpanel "Airplane Button": Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+    - list
+    - text: Label
+    - combobox "Label":
+      - option "Test1" [selected]
+      - option "Test2"
+    - status
+    - heading "Validations" [level=2]
+    - button "Test"
+    - text: Input minlength validation
+    - textbox "Input minlength validation":
+      - /placeholder: Placeholder
+    - status
+    - text: Input pattern validation
+    - textbox "Input pattern validation":
+      - /placeholder: Placeholder
+    - status
+    - text: Input number
+    - spinbutton "Input number"
+    - status
+    - text: Input number min
+    - spinbutton "Input number min"
+    - status
+    - text: Textarea min 10
+    - textbox "Textarea min 10":
+      - /placeholder: " "
+    - status
+    - button "Open Drawer"
+    - text: KUZ
+    - button "KUZ"
+    - text: Test
+    - group: O2
+    - button "Clear selection"
+    - status
+    - button "Reset CustomSelect"
+    - button "Submit"
+    - button "Test"
+    - text: Test
+    - radio "Test"
+    - text: Test
+    - checkbox "Test"
+    - text: Test
+    - status
