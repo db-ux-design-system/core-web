@@ -10,6 +10,7 @@ const density = 'regular';
 
 export type SkipType = {
 	angular?: boolean;
+	stencil?: boolean;
 };
 
 export type DefaultTestType = {
@@ -86,7 +87,11 @@ const isCheckerError = (object: any): object is ICheckerError =>
 const shouldSkip = (skip?: SkipType): boolean => {
 	if (skip) {
 		const { showcase } = process.env;
-		if (skip.angular && showcase?.startsWith('angular')) {
+		if (skip.angular && isAngular('angular')) {
+			return true;
+		}
+
+		if (skip.stencil && isStencil(showcase)) {
 			return true;
 		}
 	}
