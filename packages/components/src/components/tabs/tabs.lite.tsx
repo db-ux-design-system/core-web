@@ -32,6 +32,7 @@ export default function DBTabs(props: DBTabsProps) {
 		showScrollRight: false,
 		scrollContainer: null,
 		_resizeObserver: undefined,
+		_observer: undefined,
 
 		getTabId(index: number | string) {
 			const name = props.name ? 'tabs-' + props.name : state._name;
@@ -354,6 +355,8 @@ export default function DBTabs(props: DBTabsProps) {
 	onUnMount(() => {
 		state._resizeObserver?.disconnect();
 		state._resizeObserver = undefined;
+		state._observer?.disconnect();
+		state._observer = undefined;
 	});
 
 	onUpdate(() => {
@@ -376,6 +379,8 @@ export default function DBTabs(props: DBTabsProps) {
 			state.initTabList();
 			state.initTabs();
 
+			state._observer?.disconnect();
+
 			// necessary for angular that render children asynchronously or conditionally
 			const observer = new MutationObserver((mutations) => {
 				mutations.forEach((mutation) => {
@@ -393,6 +398,8 @@ export default function DBTabs(props: DBTabsProps) {
 				childList: true,
 				subtree: true
 			});
+
+			state._observer = observer;
 		}
 	}, [_ref, state.initialized, state.activeTabIndex]);
 
