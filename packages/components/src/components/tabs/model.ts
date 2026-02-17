@@ -88,6 +88,7 @@ export type DBTabsDefaultState = {
 	initTabs: () => void;
 	_resizeObserver?: ResizeObserver;
 	_observer?: MutationObserver;
+	_scrollListener: null | (() => void);
 	activeTabIndex: number;
 	activateTab: (index: number) => void;
 	getTabId: (index: number | string) => string;

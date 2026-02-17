@@ -33,6 +33,7 @@ export default function DBTabs(props: DBTabsProps) {
 		scrollContainer: null,
 		_resizeObserver: undefined,
 		_observer: undefined,
+		_scrollListener: null,
 
 		getTabId(index: number | string) {
 			const name = props.name ? 'tabs-' + props.name : state._name;
@@ -235,9 +236,18 @@ export default function DBTabs(props: DBTabsProps) {
 					if (props.behavior === 'arrows') {
 						state.scrollContainer = container;
 						state.evaluateScrollButtons(container);
-						container.addEventListener('scroll', () => {
+
+						if (state._scrollListener && state.scrollContainer) {
+							state.scrollContainer.removeEventListener(
+								'scroll',
+								state._scrollListener
+							);
+						}
+
+						const onScroll = () =>
 							state.evaluateScrollButtons(container);
-						});
+						state._scrollListener = onScroll;
+						container.addEventListener('scroll', onScroll);
 
 						if (!state._resizeObserver) {
 							const observer = new ResizeObserver(() => {
@@ -353,6 +363,12 @@ export default function DBTabs(props: DBTabsProps) {
 	});
 
 	onUnMount(() => {
+		if (state._scrollListener && state.scrollContainer) {
+			state.scrollContainer.removeEventListener(
+				'scroll',
+				state._scrollListener
+			);
+		}
 		state._resizeObserver?.disconnect();
 		state._resizeObserver = undefined;
 		state._observer?.disconnect();
