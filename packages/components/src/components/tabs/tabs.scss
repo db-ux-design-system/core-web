@@ -166,7 +166,6 @@ $pulse-gap-offset: calc(#{variables.$db-border-width-xs} + #{variables.$db-spaci
 		&:not([data-orientation="vertical"]) {
 			.db-tab-list {
 				padding-inline: variables.$db-sizing-md;
-				padding-block-end: 0;
 				background-image: linear-gradient(
 					colors.$db-adaptive-bg-basic-transparent-semi-default,
 					colors.$db-adaptive-bg-basic-transparent-semi-default
@@ -184,10 +183,18 @@ $pulse-gap-offset: calc(#{variables.$db-border-width-xs} + #{variables.$db-spaci
 				z-index: $db-tabs-z-index-button-background;
 				background-color: colors.$db-adaptive-bg-basic-level-1-default;
 				inline-size: variables.$db-sizing-md;
-				block-size: calc(
-					#{variables.$db-spacing-fixed-sm} + #{variables.$db-sizing-md}
-				);
+				block-size: calc(#{variables.$db-sizing-md} + #{$pulse-gap-offset});
 				inset-block-start: 0;
+			}
+
+			[data-density="functional"] &:has(.tabs-scroll-left)::before,
+			[data-density="functional"] &:has(.tabs-scroll-right)::after {
+				block-size: calc(#{variables.$db-sizing-sm} + #{$pulse-gap-offset});
+			}
+
+			[data-density="expressive"] &:has(.tabs-scroll-left)::before,
+			[data-density="expressive"] &:has(.tabs-scroll-right)::after {
+				block-size: calc(#{variables.$db-sizing-lg} + #{$pulse-gap-offset});
 			}
 
 			&:has(.tabs-scroll-left)::before {
