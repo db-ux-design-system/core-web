@@ -8,7 +8,6 @@ import {
 	useRef,
 	useStore
 } from '@builder.io/mitosis';
-import { DEFAULT_ID } from '../../shared/constants';
 import { cls, uuid } from '../../utils';
 import DBAccordionItem from '../accordion-item/accordion-item.lite';
 import { DBAccordionItemDefaultProps } from '../accordion-item/model';
@@ -22,7 +21,6 @@ export default function DBAccordion(props: DBAccordionProps) {
 	const _ref = useRef<HTMLUListElement | any>(null);
 	// jscpd:ignore-start
 	const state = useStore<DBAccordionState>({
-		_id: DEFAULT_ID,
 		_name: '',
 		initialized: false,
 		_initOpenIndexDone: false,
@@ -42,7 +40,6 @@ export default function DBAccordion(props: DBAccordionProps) {
 	});
 
 	onMount(() => {
-		state._id = props.id || 'accordion-' + uuid();
 		state.initialized = true;
 		state._initOpenIndexDone = true;
 	});
@@ -58,15 +55,13 @@ export default function DBAccordion(props: DBAccordionProps) {
 						state._name = props.name;
 					}
 				} else {
-					if (state._name !== state._id && state._id) {
-						state._name = state._id;
-					}
+					state._name = `accordion-${uuid()}`;
 				}
 			} else {
 				state._name = '';
 			}
 		}
-	}, [state.initialized, props.name, props.behavior, state._id]);
+	}, [state.initialized, props.name, props.behavior]);
 
 	onUpdate(() => {
 		if (_ref) {
@@ -111,7 +106,7 @@ export default function DBAccordion(props: DBAccordionProps) {
 	return (
 		<ul
 			ref={_ref}
-			id={state._id}
+			id={props.id}
 			class={cls('db-accordion', props.className)}
 			data-variant={props.variant}>
 			<Show when={!props.items}>{props.children}</Show>

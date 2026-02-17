@@ -1,6 +1,7 @@
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import {
 	DBInput,
+	InputTypeType,
 	LabelVariantType,
 	ValueLabelType
 } from '../../../../../../output/angular/src';
@@ -22,7 +23,18 @@ import { DefaultComponent } from '../default.component';
 export class InputComponent {
 	variants = defaultComponentVariants;
 
-	getDataList = (variant?: LabelVariantType): string[] | ValueLabelType[] => {
+	getDataList = (
+		variant?: LabelVariantType,
+		type?: InputTypeType | string
+	): string[] | ValueLabelType[] => {
+		if (type === 'time') {
+			return ['00:00', '12:00', '18:00', '23:59'];
+		}
+
+		if (type === 'color') {
+			return ['#EC0016'];
+		}
+
 		if (variant === 'floating') {
 			return ['Test 1', 'Test 2'];
 		}

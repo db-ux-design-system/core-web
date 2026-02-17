@@ -2,14 +2,22 @@
 import {
 	DBInput,
 	LabelVariantType,
-	ValueLabelType
+	ValueLabelType,
+	InputTypeType
 } from "../../../../../output/vue/src";
 import defaultComponentVariants from "../../../../shared/input.json";
 import DefaultComponent from "../DefaultComponent.vue";
 
 const getDataList = (
-	variant?: LabelVariantType
+	variant?: LabelVariantType,
+	type?: InputTypeType | string
 ): string[] | ValueLabelType[] => {
+	if (type === "time") {
+		return ["00:00", "12:00", "18:00", "23:59"];
+	}
+	if (type === "color") {
+		return ["#EC0016"];
+	}
 	if (variant === "floating") {
 		return ["Test 1", "Test 2"];
 	}
@@ -52,7 +60,7 @@ const getDataList = (
 				:validation="exampleProps?.validation"
 				:dataList="
 					exampleProps?.dataList
-						? getDataList(exampleProps?.variant)
+						? getDataList(exampleProps?.variant, exampleProps?.type)
 						: undefined
 				"
 			></DBInput>

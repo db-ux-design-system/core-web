@@ -1,7 +1,6 @@
 import {
 	ContentAlignmentProps,
 	GlobalProps,
-	GlobalState,
 	InitializedState,
 	InputEvent,
 	OrientationProps,
@@ -98,4 +97,4 @@ export type DBTabsDefaultState = {
 	getTabItemTabIndex: (index: number | string) => 0 | -1;
 };
 
-export type DBTabsState = DBTabsDefaultState & GlobalState & InitializedState;
+export type DBTabsState = DBTabsDefaultState & InitializedState;
