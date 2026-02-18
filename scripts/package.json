@@ -100,7 +100,7 @@
     "@inquirer/prompts": "8.2.1",
     "find-versions": "6.0.0",
     "glob": "13.0.3",
-    "inquirer": "13.2.2",
+    "inquirer": "13.2.4",
     "replace-in-file": "8.4.0",
     "sassdoc": "2.7.4",
     "tar": "7.5.8",
