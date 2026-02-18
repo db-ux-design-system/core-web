@@ -110,16 +110,6 @@ export default function DBTabItem(props: DBTabItemProps) {
 			if (_ref?.getAttribute('aria-disabled') !== disabledStr) {
 				_ref?.setAttribute('aria-disabled', disabledStr);
 			}
-
-			if (isDisabled) {
-				if (!_ref?.hasAttribute('disabled')) {
-					_ref?.setAttribute('disabled', '');
-				}
-			} else {
-				if (_ref?.hasAttribute('disabled')) {
-					_ref?.removeAttribute('disabled');
-				}
-			}
 		}
 	}, [props.disabled]);
 
