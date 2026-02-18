@@ -8,6 +8,7 @@ import TabItemDensity from '../examples/density.example.lite';
 import TabItemShowIconLeading from '../examples/show-icon-leading.example.lite';
 import TabItemShowIconTrailing from '../examples/show-icon-trailing.example.lite';
 import TabItemStates from '../examples/states.example.lite';
+import TabItemTruncation from '../examples/truncation.example.lite';
 
 export default function TabItemShowcase(props: PatternhubProps) {
 	return (
@@ -42,6 +43,11 @@ export default function TabItemShowcase(props: PatternhubProps) {
 			<LinkWrapperShowcase exampleName="Content Alignment Full Width">
 				<CardWrapperShowcase>
 					<TabItemContentAlignmentFullWidth />
+				</CardWrapperShowcase>
+			</LinkWrapperShowcase>
+			<LinkWrapperShowcase exampleName="Truncation">
+				<CardWrapperShowcase>
+					<TabItemTruncation />
 				</CardWrapperShowcase>
 			</LinkWrapperShowcase>
 		</ContainerWrapperShowcase>

@@ -56,9 +56,9 @@ export default function DBTabItem(props: DBTabItemProps) {
 					state.isTruncated = truncated;
 				}
 
-				if (truncated) {
-					state.tooltipText = props.label || _labelRef.innerText || _labelRef.textContent || '';
-				}
+				state.tooltipText = truncated
+					? props.label || _labelRef.innerText || _labelRef.textContent || ''
+					: '';
 			}
 		}
 	});
@@ -147,7 +147,7 @@ export default function DBTabItem(props: DBTabItemProps) {
 			onClick={(event) => state.handleClick(event)}>
 			<Show when={!props.noText}>
 				{/* wrapper needed for accurate width measurement via refs */}
-				<span ref={_labelRef} class="db-tab-label">
+				<span ref={_labelRef} class="db-tab-label" title="">
 					<Show when={props.label}>{props.label}</Show>
 					<Show when={!props.label}>
 						<Slot />
@@ -155,7 +155,7 @@ export default function DBTabItem(props: DBTabItemProps) {
 				</span>
 			</Show>
 			<Show when={state.isTruncated && state.tooltipText}>
-				<DBTooltip placement="right">{state.tooltipText}</DBTooltip>
+				<DBTooltip placement="bottom">{state.tooltipText}</DBTooltip>
 			</Show>
 		</button>
 	);
