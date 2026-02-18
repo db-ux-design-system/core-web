@@ -9,7 +9,6 @@ export const StorybookTabItemArgTypes: Record<string, InputType> = {
 	...StorybookIconLeadingArgTypes,
 	...StorybookIconTrailingArgTypes,
 	noText: { control: 'boolean' },
-	name: { control: 'text' },
 	id: { control: 'text' },
 	autofocus: { control: 'boolean' }
 };
