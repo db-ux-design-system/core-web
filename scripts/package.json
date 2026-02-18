@@ -97,7 +97,7 @@
     "postcss-scss": "4.0.9"
   },
   "devDependencies": {
-    "@inquirer/prompts": "8.2.0",
+    "@inquirer/prompts": "8.2.1",
     "find-versions": "6.0.0",
     "glob": "13.0.3",
     "inquirer": "13.2.2",
