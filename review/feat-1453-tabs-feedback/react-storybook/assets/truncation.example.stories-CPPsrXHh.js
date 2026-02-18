@@ -1,0 +1,11 @@
+import{j as t}from"./jsx-runtime-u17CrQMm.js";import{D as n,a}from"./tabs-jAevAexD.js";import{D as l}from"./infotext-YYEon412.js";import{a as s,D as o}from"./tab-list-BcVYfyS1.js";import"./index-cGbbigiG.js";import"./iframe-DxmR2ASF.js";import"./preload-helper--tLyh50B.js";import"./button-C1B-d7hn.js";import"./tooltip-C6ZFnIHC.js";import"./constants-CD69XpC7.js";import"./document-scroll-listener-BixpNV2P.js";import"./floating-components-BNmGdAgy.js";const{fn:f}=__STORYBOOK_MODULE_TEST__,j={title:"Components/DBTabs/Truncation",component:n,parameters:{layout:"centered"},tags:["autodocs"],argTypes:{orientation:{control:"select",options:["horizontal","vertical"]},width:{control:"select",options:["full","auto"]},contentAlignment:{control:"select",options:["start","center"]},behavior:{control:"select",options:["scrollbar","arrows"]},initialSelectedIndex:{control:"number"},initialSelectedMode:{control:"select",options:["auto","manually"]},name:{control:"text"},tabs:{control:"object"},arrowScrollDistance:{control:"number"},id:{control:"text"},autofocus:{control:"boolean"}}},e={args:{width:"auto",children:t.jsxs(t.Fragment,{children:[t.jsxs(s,{children:[t.jsx(o,{label:"Very long tab label that gets truncated"}),t.jsx(o,{label:"Tab 2"}),t.jsx(o,{label:"Tab 3"})]}),t.jsx(a,{children:"Tab Panel 1"}),t.jsx(a,{children:"Tab Panel 2"}),t.jsx(a,{children:"Tab Panel 3"})]})},render:r=>t.jsxs("div",{className:"fit-content-container",style:{width:"100%"},children:[t.jsx(l,{icon:"none",size:"small",semantic:"informational",children:"truncated tab label:"}),t.jsx(n,{...r})]})};e.parameters={...e.parameters,docs:{...e.parameters?.docs,source:{originalSource:`{
+  args: {
+    "width": "auto",
+    "children": <><DBTabList><DBTabItem label="Very long tab label that gets truncated" /><DBTabItem label="Tab 2" /><DBTabItem label="Tab 3" /></DBTabList><DBTabPanel>Tab Panel 1</DBTabPanel><DBTabPanel>Tab Panel 2</DBTabPanel><DBTabPanel>Tab Panel 3</DBTabPanel></>
+  },
+  render: (properties: any) => <div className="fit-content-container" style={{
+    width: '100%'
+  }}><DBInfotext icon="none" size="small" semantic="informational">
+                    truncated tab label:
+                </DBInfotext><DBTabs {...properties} /></div>
+}`,...e.parameters?.docs?.source}}};const P=["truncated"];export{P as __namedExportsOrder,j as default,e as truncated};
