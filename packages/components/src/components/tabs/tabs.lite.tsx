@@ -23,25 +23,32 @@ export default function DBTabs(props: DBTabsProps) {
 	const _ref = useRef<HTMLDivElement | null>(null);
 
 	const state = useStore<DBTabsState>({
-		_id: 'tabs-base-id',
-		_name: 'tabs-base-name',
-
+		_generatedId: 'tabs-base-id',
+		_generatedName: 'tabs-base-name',
 		activeTabIndex: 0,
 		initialized: false,
 		showScrollLeft: false,
 		showScrollRight: false,
 		scrollContainer: null,
-		_resizeObserver: undefined,
-		_observer: undefined,
+		_resizeObserver: null,
+		_observer: null,
 		_scrollListener: null,
 
+		_id() {
+			return props.id || state._generatedId;
+		},
+
+		_name() {
+			return 'tabs-' + (props.name || state._generatedName);
+		},
+
 		getTabId(index: number | string) {
-			const name = props.name ? 'tabs-' + props.name : state._name;
+			const name = props.name ? 'tabs-' + props.name : state._name();
 			return `${name}-tab-${index}`;
 		},
 
 		getPanelId(index: number | string) {
-			const name = props.name ? 'tabs-' + props.name : state._name;
+			const name = props.name ? 'tabs-' + props.name : state._name();
 			return `${name}-tab-panel-${index}`;
 		},
 
@@ -237,11 +244,11 @@ export default function DBTabs(props: DBTabsProps) {
 						state.scrollContainer = container;
 						state.evaluateScrollButtons(container);
 
-						if (state._scrollListener && state.scrollContainer) {
-							state.scrollContainer.removeEventListener(
-								'scroll',
-								state._scrollListener
-							);
+						const _listener = state._scrollListener;
+						const _container = state.scrollContainer;
+						if (_listener && _container) {
+							_container.removeEventListener('scroll', _listener);
+							state._scrollListener = null;
 						}
 
 						const onScroll = () =>
@@ -326,8 +333,8 @@ export default function DBTabs(props: DBTabsProps) {
 	});
 
 	onMount(() => {
-		state._id = props.id || 'tabs-' + uuid();
-		state._name = 'tabs-' + (props.name || uuid());
+		state._generatedId = props.id || 'tabs-' + uuid();
+		state._generatedName = props.name || uuid();
 
 		if (props.initialSelectedIndex !== undefined) {
 			const parsedIndex = Number(props.initialSelectedIndex);
@@ -336,14 +343,13 @@ export default function DBTabs(props: DBTabsProps) {
 			state.activeTabIndex = -1;
 		}
 
-		// if the URL contains a hash, the tab is selected automatically
 		if (typeof window !== 'undefined') {
 			requestAnimationFrame(() => {
 				if (window.location.hash) {
 					const hashId = window.location.hash.substring(1);
 					const name = props.name
 						? 'tabs-' + props.name
-						: state._name;
+						: state._name();
 					const prefix = `${name}-tab-`;
 
 					if (hashId.startsWith(prefix)) {
@@ -363,66 +369,55 @@ export default function DBTabs(props: DBTabsProps) {
 	});
 
 	onUnMount(() => {
-		if (state._scrollListener && state.scrollContainer) {
-			state.scrollContainer.removeEventListener(
-				'scroll',
-				state._scrollListener
-			);
+		const _listener = state._scrollListener;
+		const _container = state.scrollContainer;
+		if (_listener && _container) {
+			_container.removeEventListener('scroll', _listener);
 		}
 		state._resizeObserver?.disconnect();
-		state._resizeObserver = undefined;
+		state._resizeObserver = null;
 		state._observer?.disconnect();
-		state._observer = undefined;
+		state._observer = null;
 	});
 
 	onUpdate(() => {
-		if (props.id && state._id !== props.id) {
-			state._id = props.id;
-		}
-	}, [props.id]);
-
-	onUpdate(() => {
-		if (props.name) {
-			const newName = `tabs-${props.name}`;
-			if (state._name !== newName) {
-				state._name = newName;
-			}
-		}
-	}, [props.name]);
-
-	onUpdate(() => {
 		if (_ref && state.initialized) {
-			state.initTabList();
-			state.initTabs();
+			requestAnimationFrame(() => {
+				if (!_ref) return;
 
-			state._observer?.disconnect();
+				state._observer?.disconnect();
 
-			// necessary for angular that render children asynchronously or conditionally
-			const observer = new MutationObserver((mutations) => {
-				mutations.forEach((mutation) => {
-					if (
-						mutation.removedNodes.length ||
-						mutation.addedNodes.length
-					) {
-						state.initTabList();
-						state.initTabs();
-					}
+				state.initTabList();
+				state.initTabs();
+
+				const observer = new MutationObserver((mutations) => {
+					mutations.forEach((mutation) => {
+						if (
+							mutation.removedNodes.length ||
+							mutation.addedNodes.length
+						) {
+							requestAnimationFrame(() => {
+								state.initTabList();
+								state.initTabs();
+							});
+						}
+					});
 				});
-			});
 
-			observer.observe(_ref, {
-				childList: true,
-				subtree: true
-			});
+				observer.observe(_ref, {
+					childList: true,
+					subtree: true
+				});
 
-			state._observer = observer;
+				state._observer = observer;
+			});
 		}
 	}, [_ref, state.initialized, state.activeTabIndex]);
 
 	return (
 		<div
 			ref={_ref}
-			id={props.id ?? state._id}
+			id={props.id ?? state._id()}
 			class={cls('db-tabs', props.className)}
 			data-orientation={props.orientation}
 			data-scroll-behavior={props.behavior}

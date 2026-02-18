@@ -77,7 +77,10 @@ export type DBTabsProps = DBTabsDefaultProps &
 	DBTabsEventProps;
 
 export type DBTabsDefaultState = {
-	_name: string;
+	_generatedId: string;
+	_generatedName: string;
+	_id: () => string;
+	_name: () => string;
 	scrollContainer?: Element | null;
 	scroll: (left?: boolean) => void;
 	showScrollLeft?: boolean;
@@ -86,8 +89,8 @@ export type DBTabsDefaultState = {
 	convertTabs: () => DBSimpleTabProps[];
 	initTabList: () => void;
 	initTabs: () => void;
-	_resizeObserver?: ResizeObserver;
-	_observer?: MutationObserver;
+	_resizeObserver?: ResizeObserver | null;
+	_observer?: MutationObserver | null;
 	_scrollListener: null | (() => void);
 	activeTabIndex: number;
 	activateTab: (index: number) => void;
