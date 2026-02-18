@@ -34,16 +34,14 @@ export default function DBTabItem(props: DBTabItemProps) {
 		isTruncated: false,
 		tooltipText: '',
 		_resizeObserver: null,
+		_ariaSelectedListener: null,
 		handleClick: (event: any) => {
 			if (event && event.preventDefault) {
 				event.preventDefault();
 			}
 
-			if (!getBoolean(props.disabled)) {
-				state.internalActive = true;
-				if (props.onClick) {
-					props.onClick(event);
-				}
+			if (!getBoolean(props.disabled) && props.onClick) {
+				props.onClick(event);
 			}
 		},
 		checkTruncation: () => {
@@ -83,15 +81,20 @@ export default function DBTabItem(props: DBTabItemProps) {
 		}
 
 		if (_ref) {
-			_ref.addEventListener('aria-selected-changed', (event: any) => {
+			const listener = (event: any) => {
 				state.internalActive = event.detail.selected;
-			});
+			};
+			state._ariaSelectedListener = listener;
+			_ref.addEventListener('aria-selected-changed', listener);
 		}
 	});
 
 	// Disconnect the observer
 	onUnMount(() => {
 		state._resizeObserver?.disconnect();
+		if (_ref && state._ariaSelectedListener) {
+			_ref.removeEventListener('aria-selected-changed', state._ariaSelectedListener);
+		}
 	});
 
 	// Update internal active state when the active prop changes

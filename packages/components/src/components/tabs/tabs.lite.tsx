@@ -42,16 +42,12 @@ export default function DBTabs(props: DBTabsProps) {
 			return 'tabs-' + (props.name || state._generatedName);
 		},
 
-		_tabName() {
-			return props.name ? 'tabs-' + props.name : state._name();
-		},
-
 		getTabId(index: number | string) {
-			return `${state._tabName()}-tab-${index}`;
+			return `${state._name()}-tab-${index}`;
 		},
 
 		getPanelId(index: number | string) {
-			return `${state._tabName()}-tab-panel-${index}`;
+			return `${state._name()}-tab-panel-${index}`;
 		},
 
 		activateTab(index: number) {
@@ -65,6 +61,8 @@ export default function DBTabs(props: DBTabsProps) {
 		},
 
 		handleClick(event: any) {
+			// In props-mode (props.tabs), tab activation is handled via onClick on each DBTabItem directly.
+			// In slot-mode (!props.tabs), clicks bubble up and are handled here via DOM traversal.
 			if (props.tabs) {
 				return;
 			}
@@ -174,7 +172,8 @@ export default function DBTabs(props: DBTabsProps) {
 				: -1;
 		},
 
-		// Parses the tabs prop to ensure the correct data structure
+		// Parses the tabs prop to ensure the correct data structure.
+		// Note: called twice in JSX (for tab items and panels) - Mitosis doesn't support local JSX variables to cache the result
 		convertTabs(): DBSimpleTabProps[] {
 			try {
 				if (typeof props.tabs === 'string') {
@@ -203,6 +202,7 @@ export default function DBTabs(props: DBTabsProps) {
 			if (left) {
 				step *= -1;
 			}
+			// scrollBy uses physical 'left' - the Web API does not support logical properties (inlineStart)
 			state.scrollContainer?.scrollBy({
 				left: step,
 				behavior: 'smooth'
@@ -357,6 +357,7 @@ export default function DBTabs(props: DBTabsProps) {
 				});
 			});
 
+			// childList: true only - attribute changes (set by initTabs) are not observed, preventing infinite loops
 			observer.observe(_ref, {
 				childList: true,
 				subtree: true
