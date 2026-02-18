@@ -33,7 +33,6 @@ export default function DBTabItem(props: DBTabItemProps) {
 		internalActive: getBoolean(props.active) || false,
 		isTruncated: false,
 		tooltipText: '',
-		_observer: null,
 		_resizeObserver: null,
 		handleClick: (event: any) => {
 			if (event && event.preventDefault) {
@@ -57,11 +56,8 @@ export default function DBTabItem(props: DBTabItemProps) {
 					state.isTruncated = truncated;
 				}
 
-				if (truncated && !props.label) {
-					state.tooltipText =
-						_labelRef.innerText || _labelRef.textContent || '';
-				} else if (props.label) {
-					state.tooltipText = props.label || '';
+				if (truncated) {
+					state.tooltipText = props.label || _labelRef.innerText || _labelRef.textContent || '';
 				}
 			}
 		}
@@ -87,25 +83,6 @@ export default function DBTabItem(props: DBTabItemProps) {
 		}
 
 		if (_ref) {
-			const observer = new MutationObserver((mutations) => {
-				mutations.forEach((mutation) => {
-					if (mutation.attributeName === 'aria-selected') {
-						const isSelected =
-							_ref?.getAttribute('aria-selected') === 'true';
-						// sync internal state if the DOM attribute is changed externally
-						if (state.internalActive !== isSelected) {
-							state.internalActive = isSelected;
-						}
-					}
-				});
-			});
-
-			observer.observe(_ref, {
-				attributes: true,
-				attributeFilter: ['aria-selected']
-			});
-			state._observer = observer;
-
 			_ref.addEventListener('aria-selected-changed', (event: any) => {
 				state.internalActive = event.detail.selected;
 			});
@@ -114,7 +91,6 @@ export default function DBTabItem(props: DBTabItemProps) {
 
 	// Disconnect the observer
 	onUnMount(() => {
-		state._observer?.disconnect();
 		state._resizeObserver?.disconnect();
 	});
 
