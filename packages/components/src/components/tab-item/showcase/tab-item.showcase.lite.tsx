@@ -44,11 +44,6 @@ export default function TabItemShowcase(props: PatternhubProps) {
 					<TabItemContentAlignmentFullWidth />
 				</CardWrapperShowcase>
 			</LinkWrapperShowcase>
-			<LinkWrapperShowcase exampleName="Truncation">
-				<CardWrapperShowcase>
-					<TabItemTruncation />
-				</CardWrapperShowcase>
-			</LinkWrapperShowcase>
 		</ContainerWrapperShowcase>
 	);
 }
