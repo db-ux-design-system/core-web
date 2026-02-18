@@ -18,10 +18,10 @@
     "@db-ux/core-components": "*",
     "@db-ux/core-foundations": "*",
     "@db-ux/react-core-components": "*",
-    "@tailwindcss/vite": "^4.1.18",
+    "@tailwindcss/vite": "4.1.18",
     "react": "19.2.4",
     "react-dom": "19.2.4",
-    "tailwindcss": "^4.1.18"
+    "tailwindcss": "4.1.18"
   },
   "devDependencies": {
     "@types/react": "19.2.13",
