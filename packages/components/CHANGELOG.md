@@ -1,5 +1,19 @@
 # @db-ux/core-components
 
+## 4.4.2
+
+### Patch Changes
+
+- fix(SSR-compatibility): Implement framework-specific `useId` for UUID generation in React and Vue outputs - [see commit 1073c46](https://github.com/db-ux-design-system/core-web/commit/1073c469a20bf1346f150c00364ee1aeab7643d0)
+
+- fix: issue with DBInput not working properly with `datalist` and `type="time"` - [see commit 72ccb09](https://github.com/db-ux-design-system/core-web/commit/72ccb09d1304aec894b4fde27624f90029efec9d)
+
+## 4.4.1
+
+### Patch Changes
+
+- DBCustomSelect: Prevent floating label from flickering during initial render - [see commit e5ceff8](https://github.com/db-ux-design-system/core-web/commit/e5ceff861534186cf86d1f5f0a876e04aeac9e41)
+
 ## 4.4.0
 
 ### Minor Changes

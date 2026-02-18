@@ -55,7 +55,7 @@ export default function DBTooltip(props: DBTooltipProps) {
 			if (!parent) return;
 			if (_ref) {
 				// This is a workaround for angular
-				utilsDelay(() => {
+				void utilsDelay(() => {
 					// Due to race conditions we need to check for _ref again
 					if (_ref) {
 						handleFixedPopover(
@@ -97,9 +97,16 @@ export default function DBTooltip(props: DBTooltipProps) {
 	});
 
 	onUpdate(() => {
+		if (props.id) {
+			state._id = props.id;
+		}
+	}, [props.id]);
+
+	onUpdate(() => {
 		if (_ref && state.initialized && state._id) {
 			const parent = state.getParent();
 			if (parent) {
+				state.handleAutoPlacement(parent);
 				['mouseenter', 'focusin'].forEach((event) => {
 					parent.addEventListener(event, () =>
 						state.handleEnter(parent)
@@ -136,7 +143,7 @@ export default function DBTooltip(props: DBTooltipProps) {
 
 			state.initialized = false;
 		}
-	}, [_ref, state.initialized]);
+	}, [_ref, state.initialized, state._id]);
 
 	// jscpd:ignore-end
 

@@ -9,9 +9,8 @@ import {
 	useStore,
 	useTarget
 } from '@builder.io/mitosis';
-import { DEFAULT_ID } from '../../shared/constants';
 import { ClickEvent } from '../../shared/model';
-import { cls, getBooleanAsString, uuid } from '../../utils';
+import { cls, getBooleanAsString } from '../../utils';
 import { DBAccordionItemProps, DBAccordionItemState } from './model';
 
 useMetadata({
@@ -26,7 +25,6 @@ export default function DBAccordionItem(props: DBAccordionItemProps) {
 	const _ref = useRef<HTMLDetailsElement | any>(null);
 	// jscpd:ignore-start
 	const state = useStore<DBAccordionItemState>({
-		_id: DEFAULT_ID,
 		_open: false,
 		_name: undefined,
 		initialized: false,
@@ -53,7 +51,6 @@ export default function DBAccordionItem(props: DBAccordionItemProps) {
 	});
 
 	onMount(() => {
-		state._id = props.id || 'accordion-item-' + uuid();
 		if (props.defaultOpen) {
 			state._open = props.defaultOpen;
 		}
@@ -76,7 +73,7 @@ export default function DBAccordionItem(props: DBAccordionItemProps) {
 	// jscpd:ignore-end
 
 	return (
-		<li id={state._id} class={cls('db-accordion-item', props.className)}>
+		<li id={props.id} class={cls('db-accordion-item', props.className)}>
 			<details
 				aria-disabled={getBooleanAsString(props.disabled)}
 				ref={_ref}

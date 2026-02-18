@@ -160,8 +160,14 @@ $db-min-inline-size: var(
 			}
 		}
 
+		$focus-within-selector: $selector;
+
+		@if $selector == summary {
+			$focus-within-selector: "";
+		}
+
 		&:has(
-			#{$selector}:focus-within,
+			#{$focus-within-selector}:focus-within,
 			#{$selector}:is(input, textarea):not(:placeholder-shown),
 			> select option:checked:not(.placeholder),
 			input[type="checkbox"]:checked,

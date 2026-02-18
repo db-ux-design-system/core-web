@@ -48,10 +48,7 @@
   - link "Wrap"
   - list:
     - listitem:
-      - button "No Wrap (Default)"
-  - list:
-    - listitem:
-      - button "This is a very long text that is broken into multiple lines."
+      - link "No Wrap (Default)"
   - list:
     - listitem:
       - button "This is a very long text that is broken into multiple lines."
