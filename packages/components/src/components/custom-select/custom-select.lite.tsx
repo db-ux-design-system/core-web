@@ -933,6 +933,7 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 					ref={selectRef}
 					form={props.form}
 					name={props.name}
+					data-custom-validity={state._validity}
 					multiple={getBoolean(props.multiple, 'multiple')}
 					disabled={getBoolean(props.disabled, 'disabled')}
 					required={getBoolean(props.required, 'required')}
