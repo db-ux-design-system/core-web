@@ -2,6 +2,7 @@ import stylelint from 'stylelint';
 import { createRule } from '../shared/create-rule.js';
 import {
 	type AllowedType,
+	defaultColorsExact,
 	defaultExact,
 	getDeclarationRuleFunction
 } from '../shared/index.js';
@@ -28,7 +29,7 @@ const allowedDeclarations: AllowedType = {
 };
 const allowedValues: AllowedType = {
 	includes: ['db-border-width'],
-	exact: defaultExact,
+	exact: [...defaultExact, ...defaultColorsExact],
 	type: 'some'
 };
 
