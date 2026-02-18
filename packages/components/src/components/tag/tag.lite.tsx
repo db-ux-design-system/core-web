@@ -52,10 +52,9 @@ export default function DBTag(props: DBTagProps) {
 			data-overflow={getBooleanAsString(props.overflow)}>
 			<Slot name="content" />
 
-			{props.children}
-
-			<Show when={props.text}>{props.text}</Show>
-
+			<Show when={props.text} else={props.children}>
+				{props.text}
+			</Show>
 			<Show when={props.behavior === 'removable'}>
 				{/* we aren't using DBButton here because of angular would wrap it in custom component */}
 				<button

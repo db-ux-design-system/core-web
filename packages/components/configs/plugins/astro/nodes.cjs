@@ -111,13 +111,6 @@ const handleNode = (json, node, props, root) => {
 		return handleSlotNode(node);
 	}
 
-	// Remove bindings that shouldn't be rendered
-	Object.keys(bindings).forEach((bind) => {
-		if (isEvent(bind) || bind === 'ref' || bind === 'key') {
-			delete bindings[bind];
-		}
-	});
-
 	// ========================================================================
 	// Build element attributes
 	// ========================================================================
@@ -127,7 +120,7 @@ const handleNode = (json, node, props, root) => {
 
 	// Static properties from the node
 	const componentProps = Object.entries(properties)
-		.filter(([key]) => key !== 'key') // Exclude key prop
+		.filter(([key]) => key !== 'key' && !key.includes('USE_TARGET'))
 		.map(([key, value]) => {
 			// Convert class to className for DB components
 			if (name.startsWith('DB') && key === 'class') {
@@ -139,6 +132,13 @@ const handleNode = (json, node, props, root) => {
 
 	// Dynamic bindings from the node
 	const bindingProps = Object.entries(bindings)
+		.filter(
+			([key]) =>
+				!isEvent(key) &&
+				key !== 'ref' &&
+				key !== 'key' &&
+				!key.includes('USE_TARGET')
+		)
 		.map(([key, value]) => {
 			const code = replacePropsInCode(value.code);
 
@@ -172,7 +172,10 @@ const handleNode = (json, node, props, root) => {
 		return getChildren(json, children);
 	}
 
-	return `<${tag}${connectIdString}${allProps ? ' ' + allProps : ''}>${getChildren(json, children)}</${tag}>`;
+	const selfClosing = children.length === 0;
+	return selfClosing
+		? `<${tag}${connectIdString}${allProps ? ' ' + allProps : ''} />`
+		: `<${tag}${connectIdString}${allProps ? ' ' + allProps : ''}>${getChildren(json, children)}</${tag}>`;
 };
 
 // ============================================================================
@@ -188,7 +191,7 @@ const handleNode = (json, node, props, root) => {
  * @returns {string} The rendered children as a string
  */
 const getChildren = (json, nodes, props, root) => {
-	return nodes.map((node) => handleNode(json, node, props, root)).join('\n');
+	return nodes.map((node) => handleNode(json, node, props, root)).join('');
 };
 
 // ============================================================================
