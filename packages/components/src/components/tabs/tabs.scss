@@ -76,6 +76,8 @@ $pulse-gap-offset: calc(#{variables.$db-border-width-xs} + #{variables.$db-spaci
 
 		.db-tab-list {
 			padding-block-end: variables.$db-spacing-fixed-2xs;
+			padding-block-start: calc(#{variables.$db-border-width-2xs} + #{variables.$db-border-width-xs} * 2);
+			margin-block-start: calc(-1 * (#{variables.$db-border-width-2xs} + #{variables.$db-border-width-xs} * 2));
 			@extend %horizontal-pulse;
 
 			background-image: linear-gradient(
@@ -93,11 +95,13 @@ $pulse-gap-offset: calc(#{variables.$db-border-width-xs} + #{variables.$db-spaci
 			}
 
 			&[role="tablist"], .db-tab-list {
-				display: flex;
-				align-items: flex-end;
-				overflow: auto hidden;
-				inline-size: 100%;
-			}
+					display: flex;
+					align-items: flex-end;
+					overflow: auto hidden;
+					inline-size: 100%;
+					padding-inline: calc(#{variables.$db-border-width-2xs} + #{variables.$db-border-width-xs} * 2);
+					box-sizing: content-box;
+				}
 		}
 	}
 
