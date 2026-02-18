@@ -18,7 +18,7 @@ $pulse-gap-offset: calc(#{variables.$db-border-width-xs} + #{variables.$db-spaci
 			@include db-puls.show-db-puls-horizontal;
 
 			&::after {
-				width: 100%;
+				inline-size: 100%;
 			}
 		}
 	}
@@ -29,8 +29,7 @@ $pulse-gap-offset: calc(#{variables.$db-border-width-xs} + #{variables.$db-spaci
 		@include db-puls.set-db-puls-vertical;
 
 		&::after {
-			inset-inline-start: calc(-1 * var(--db-tabs-line-gap-vertical, 0px)) !important;
-			inset-inline-end: auto !important;
+			inset-inline: calc(-1 * var(--db-tabs-line-gap-vertical, 0px)) auto;
 			z-index: 5;
 		}
 
@@ -38,7 +37,7 @@ $pulse-gap-offset: calc(#{variables.$db-border-width-xs} + #{variables.$db-spaci
 			@include db-puls.show-db-puls-vertical;
 
 			&::after {
-				height: 100%;
+				block-size: 100%;
 			}
 		}
 	}
@@ -55,11 +54,13 @@ $pulse-gap-offset: calc(#{variables.$db-border-width-xs} + #{variables.$db-spaci
 	$db-tabs-z-index-tab-list: 20;
 
 	@include helpers.display(flex);
+
 	inline-size: 100%;
 	position: relative;
 
 	.db-tab-panel {
-		padding: 0 variables.$db-spacing-fixed-xs 0 variables.$db-spacing-fixed-xs;
+		padding-block: 0;
+		padding-inline: variables.$db-spacing-fixed-xs;
 		position: relative;
 		z-index: 1;
 	}
@@ -75,9 +76,9 @@ $pulse-gap-offset: calc(#{variables.$db-border-width-xs} + #{variables.$db-spaci
 		flex-flow: column wrap;
 
 		.db-tab-list {
-			padding-block-end: variables.$db-spacing-fixed-2xs;
-			padding-block-start: calc(#{variables.$db-border-width-2xs} + #{variables.$db-border-width-xs} * 2);
+			padding-block: calc(#{variables.$db-border-width-2xs} + #{variables.$db-border-width-xs} * 2) variables.$db-spacing-fixed-2xs;
 			margin-block-start: calc(-1 * (#{variables.$db-border-width-2xs} + #{variables.$db-border-width-xs} * 2));
+
 			@extend %horizontal-pulse;
 
 			background-image: linear-gradient(
@@ -91,6 +92,7 @@ $pulse-gap-offset: calc(#{variables.$db-border-width-xs} + #{variables.$db-spaci
 			background-size: 100% variables.$db-border-width-xs;
 
 			.db-tab-item {
+				// stylelint-disable-next-line db-ux/use-spacings
 				margin-block-end: $pulse-gap-offset;
 			}
 
@@ -98,9 +100,9 @@ $pulse-gap-offset: calc(#{variables.$db-border-width-xs} + #{variables.$db-spaci
 					display: flex;
 					align-items: flex-end;
 					overflow: auto hidden;
-					$focus-inset: calc(#{variables.$db-border-width-2xs} + #{variables.$db-border-width-xs} * 2);
-					padding-inline: $focus-inset;
-					width: 100%;
+					// stylelint-disable-next-line db-ux/use-spacings
+					padding-inline: calc(#{variables.$db-border-width-2xs} + #{variables.$db-border-width-xs} * 2);
+					inline-size: 100%;
 				}
 		}
 	}
@@ -117,13 +119,15 @@ $pulse-gap-offset: calc(#{variables.$db-border-width-xs} + #{variables.$db-spaci
 
 			min-inline-size: variables.$db-sizing-3xl;
 			max-inline-size: variables.$db-sizing-3xl;
-			padding-inline-start: var(--db-tabs-line-gap-vertical);
-			padding-inline-end: variables.$db-spacing-fixed-xs;
+			// stylelint-disable-next-line db-ux/use-spacings
+			padding-inline: variables.$db-spacing-fixed-xs var(--db-tabs-line-gap-vertical);
 			margin-block-end: auto;
+
 			@extend %vertical-pulse;
 
 			&::before {
 				@extend %pulse-track;
+
 				display: block !important;
 				inset-inline-start: 0;
 				inset-block: 0;
@@ -147,7 +151,7 @@ $pulse-gap-offset: calc(#{variables.$db-border-width-xs} + #{variables.$db-spaci
 		.db-tab-item {
 			flex-grow: 1;
 			flex-basis: 0;
-			width: 0;
+			inline-size: 0;
 			justify-content: flex-start;
 		}
 

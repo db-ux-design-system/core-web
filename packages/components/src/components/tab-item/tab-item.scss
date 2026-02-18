@@ -3,15 +3,11 @@
 @use "@db-ux/core-foundations/build/styles/helpers";
 @use "../../styles/internal/db-puls";
 
-$padding-functional: variables.$db-spacing-fixed-2xs;
-$padding-regular: variables.$db-spacing-fixed-xs;
-$padding-expressive: variables.$db-spacing-fixed-sm;
-
 .db-tab-item {
 	position: relative;
 	background-color: colors.$db-adaptive-bg-basic-transparent-full-default;
-	padding-block: $padding-regular;
-	padding-inline: $padding-regular;
+	padding-block: variables.$db-spacing-fixed-xs;
+	padding-inline: variables.$db-spacing-fixed-xs;
 	overflow: visible;
 	align-items: center;
 	justify-content: center;
@@ -29,30 +25,30 @@ $padding-expressive: variables.$db-spacing-fixed-sm;
 	@include helpers.display(flex);
 
 	[data-density="functional"] & {
-		padding-block: $padding-functional;
-		padding-inline: $padding-functional;
+		padding-block: variables.$db-spacing-fixed-2xs;
+		padding-inline: variables.$db-spacing-fixed-2xs;
 	}
 
 	[data-density="expressive"] & {
-		padding-block: $padding-expressive;
-		padding-inline: $padding-expressive;
+		padding-block: variables.$db-spacing-fixed-sm;
+		padding-inline: variables.$db-spacing-fixed-sm;
 	}
 
 	&::after {
-		width: 0;
-		height: variables.$db-border-width-xs;
+		inline-size: 0;
+		block-size: variables.$db-border-width-xs;
 
 		@media screen and (prefers-reduced-motion: no-preference) {
 			transition:
-				height variables.$db-transition-duration-fast variables.$db-transition-timing-emotional,
-				width variables.$db-transition-duration-fast variables.$db-transition-timing-emotional !important;
+				block-size variables.$db-transition-duration-fast variables.$db-transition-timing-emotional,
+				inline-size variables.$db-transition-duration-fast variables.$db-transition-timing-emotional !important;
 		}
 	}
 
 	[data-orientation="vertical"] & {
 		&::after {
-			width: variables.$db-border-width-xs;
-			height: 0;
+			inline-size: variables.$db-border-width-xs;
+			block-size: 0;
 		}
 	}
 
