@@ -56,10 +56,7 @@ const App = ({ Component, pageProps }: AppProps) => (
 				/>
 			),
 			table: (properties) => (
-				<table
-					className="static-table"
-					{...properties}
-				/>
+				<table className="static-table" {...properties} />
 			),
 			img: (properties) => (
 				<img

@@ -48,7 +48,7 @@ jobs:
         uses: actions/download-artifact@v7
         with:
           name: ${{ inputs.storybook }}-stories
-          path: storybooks/${{ inputs.storybook }}/src/components
+          path: storybooks/${{ inputs.storybook }}/src
 
       - name: 🔨 Build ${{ inputs.storybook }}
         env:
