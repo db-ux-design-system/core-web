@@ -13,7 +13,4 @@
 	@extend %db-overwrite-font-size-md;
 	@extend %scrollbar;
 
-	&[role="tablist"] {
-		overflow: visible;
-	}
 }

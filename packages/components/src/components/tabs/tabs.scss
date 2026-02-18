@@ -11,7 +11,7 @@ $pulse-gap-offset: calc(#{variables.$db-border-width-xs} + #{variables.$db-spaci
 		@include db-puls.set-db-puls-horizontal;
 
 		&::after {
-			inset-block-end: calc(-1 * #{$pulse-gap-offset}) !important;
+			inset-block-end: calc(-1 * #{$pulse-gap-offset}) !important; // overrides inset-block shorthand set in _db-puls.scss
 		}
 
 		&[aria-selected="true"] {
@@ -128,7 +128,7 @@ $pulse-gap-offset: calc(#{variables.$db-border-width-xs} + #{variables.$db-spaci
 			&::before {
 				@extend %pulse-track;
 
-				display: block !important;
+				display: block;
 				inset-inline-start: 0;
 				inset-block: 0;
 				inline-size: variables.$db-border-width-xs;
