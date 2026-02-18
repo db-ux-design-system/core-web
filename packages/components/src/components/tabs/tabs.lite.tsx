@@ -31,7 +31,7 @@ export default function DBTabs(props: DBTabsProps) {
 		showScrollRight: false,
 		scrollContainer: null,
 		_resizeObserver: null,
-		_observer: null,
+		_observer: null, // must stay in state: needs to persist across onUpdate and onUnMount lifecycle hooks (Mitosis doesn't support cross-lifecycle local variables)
 		_scrollListener: null,
 
 		_id() {
@@ -42,14 +42,16 @@ export default function DBTabs(props: DBTabsProps) {
 			return 'tabs-' + (props.name || state._generatedName);
 		},
 
+		_tabName() {
+			return props.name ? 'tabs-' + props.name : state._name();
+		},
+
 		getTabId(index: number | string) {
-			const name = props.name ? 'tabs-' + props.name : state._name();
-			return `${name}-tab-${index}`;
+			return `${state._tabName()}-tab-${index}`;
 		},
 
 		getPanelId(index: number | string) {
-			const name = props.name ? 'tabs-' + props.name : state._name();
-			return `${name}-tab-panel-${index}`;
+			return `${state._tabName()}-tab-panel-${index}`;
 		},
 
 		activateTab(index: number) {
@@ -339,6 +341,29 @@ export default function DBTabs(props: DBTabsProps) {
 		}
 
 		state.initialized = true;
+
+		if (_ref) {
+			const observer = new MutationObserver((mutations) => {
+				mutations.forEach((mutation) => {
+					if (
+						mutation.removedNodes.length ||
+						mutation.addedNodes.length
+					) {
+						requestAnimationFrame(() => {
+							state.initTabList();
+							state.initTabs();
+						});
+					}
+				});
+			});
+
+			observer.observe(_ref, {
+				childList: true,
+				subtree: true
+			});
+
+			state._observer = observer;
+		}
 	});
 
 	onUnMount(() => {
@@ -357,35 +382,11 @@ export default function DBTabs(props: DBTabsProps) {
 		if (_ref && state.initialized) {
 			requestAnimationFrame(() => {
 				if (!_ref) return;
-
-				state._observer?.disconnect();
-
 				state.initTabList();
 				state.initTabs();
-
-				const observer = new MutationObserver((mutations) => {
-					mutations.forEach((mutation) => {
-						if (
-							mutation.removedNodes.length ||
-							mutation.addedNodes.length
-						) {
-							requestAnimationFrame(() => {
-								state.initTabList();
-								state.initTabs();
-							});
-						}
-					});
-				});
-
-				observer.observe(_ref, {
-					childList: true,
-					subtree: true
-				});
-
-				state._observer = observer;
 			});
 		}
-	}, [_ref, state.initialized, state.activeTabIndex]);
+	}, [_ref, state.initialized, state.activeTabIndex]); // activeTabIndex is required: onUpdate triggers initTabs() after framework re-render, ensuring aria-selected and hidden attributes are set correctly
 
 	return (
 		<div
