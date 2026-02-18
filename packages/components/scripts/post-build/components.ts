@@ -29,37 +29,37 @@ export type Component = {
 };
 
 export const getComponents = (): Component[] => [
-  {
-    name: "table-data-cell"
-  },
+	{
+		name: 'table-data-cell'
+	},
 
-  {
-    name: "table-header-cell"
-  },
+	{
+		name: 'table-header-cell'
+	},
 
-  {
-    name: "table-row"
-  },
+	{
+		name: 'table-row'
+	},
 
-  {
-    name: "table-footer"
-  },
+	{
+		name: 'table-footer'
+	},
 
-  {
-    name: "table-body"
-  },
+	{
+		name: 'table-body'
+	},
 
-  {
-    name: "table-head"
-  },
+	{
+		name: 'table-head'
+	},
 
-  {
-    name: "table-caption"
-  },
+	{
+		name: 'table-caption'
+	},
 
-  {
-    name: "table"
-  },
+	{
+		name: 'table'
+	},
 
 	{
 		name: 'stack'
