@@ -1,3 +1,5 @@
+import { CustomButtonComponent } from '../components/custom-button.component';
+
 import { Routes } from '@angular/router';
 import { AccordionItemComponent } from '../components/accordion-item.component';
 import { AccordionComponent } from '../components/accordion.component';
@@ -143,7 +145,12 @@ export const NAVIGATION_ITEMS: NavItem[] = [
 		label: '02 Action',
 		subNavigation: getSortedNavigationItems([
 			{ path: '02/link', label: 'Link', component: LinkComponent },
-			{ path: '02/button', label: 'Button', component: ButtonComponent }
+			{ path: '02/button', label: 'Button', component: ButtonComponent },
+			{
+				path: '02/custom-button',
+				label: 'CustomButton',
+				component: CustomButtonComponent
+			}
 		])
 	},
 	{

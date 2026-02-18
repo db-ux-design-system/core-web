@@ -1,0 +1,78 @@
+@use "@db-ux/core-foundations/build/styles/variables";
+@use "@db-ux/core-foundations/build/styles/colors";
+@use "@db-ux/core-foundations/build/styles/icons";
+@use "@db-ux/core-foundations/build/styles/helpers";
+@use "../../styles/internal/button-components";
+@use "../../styles/internal/icon-passing";
+
+@mixin interactive-elements {
+	label,
+	button,
+	a {
+		@content;
+	}
+}
+
+$icon-padding-custom-button: calc(
+	#{variables.$db-spacing-fixed-sm} + #{icons.$default-icon-margin-end} +
+		var(--db-icon-font-size)
+);
+
+// generic styles can be found in _button-components.scss
+.db-custom-button {
+	position: relative;
+	max-inline-size: 100%;
+	inline-size: fit-content;
+
+	@include button-components.set-basic-button(
+		icon-passing.$interactive-button-selectors
+	);
+	@include icon-passing.icon-passing;
+	@include icon-passing.icon-passing-trailing;
+
+	&:has(:is(input, button):disabled, a[aria-disabled="true"]) {
+		opacity: variables.$db-opacity-md;
+	}
+
+	&[data-variant="brand"] {
+		label {
+			@extend %button-outlined-ghost-colors;
+		}
+
+		:is(a, button) {
+			@extend %button-brand-colors;
+		}
+	}
+
+	label:has(input:checked) {
+		color: colors.$db-adaptive-on-bg-inverted-default;
+		background-color: colors.$db-adaptive-bg-inverted-contrast-max-default;
+	}
+
+	label:has(input[type="checkbox"]:checked) {
+		@include helpers.hover {
+			background-color: colors.$db-adaptive-bg-inverted-contrast-max-hovered;
+		}
+
+		@include helpers.active {
+			background-color: colors.$db-adaptive-bg-inverted-contrast-max-pressed;
+		}
+	}
+
+	a[aria-disabled="true"] {
+		cursor: default;
+		pointer-events: none;
+	}
+
+	&[data-width="full"] {
+		inline-size: 100%;
+	}
+
+	&:has(input):focus-within {
+		@extend %focus-placeholder;
+	}
+
+	input {
+		@extend %a11y-visually-hidden;
+	}
+}

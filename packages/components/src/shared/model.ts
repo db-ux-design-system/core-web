@@ -715,6 +715,13 @@ export type AriaControlsProps = {
 	controls?: string;
 };
 
+export type NoTextProps = {
+	/**
+	 * Define the text next to the icon specified via the icon Property to get hidden.
+	 */
+	noText?: boolean | string;
+};
+
 export type ValueLabelType = {
 	value: string;
 	label?: string;

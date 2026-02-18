@@ -5,6 +5,7 @@ import {
 	IconLeadingProps,
 	IconProps,
 	IconTrailingProps,
+	NoTextProps,
 	ShowIconLeadingProps,
 	ShowIconProps,
 	ShowIconTrailingProps,
@@ -24,12 +25,19 @@ export type ButtonVariantType = (typeof ButtonVariantList)[number];
 export const ButtonTypeList = ['button', 'reset', 'submit'] as const;
 export type ButtonTypeType = (typeof ButtonTypeList)[number];
 
-export type DBButtonDefaultProps = {
+export type DBButtonSharedProps = {
 	/**
 	 * The disabled attribute can be set to [keep a user from clicking on the button](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button#disabled).
 	 */
 	disabled?: boolean | string;
 
+	/**
+	 * Variant of the button. Use only 1 primary button on a page as CTA otherwise use one of the adaptive buttons.
+	 */
+	variant?: ButtonVariantType | string;
+};
+
+export type DBButtonDefaultProps = {
 	/**
 	 * 	Associates the control with a form element
 	 */
@@ -41,11 +49,6 @@ export type DBButtonDefaultProps = {
 	name?: string;
 
 	/**
-	 * Define the text next to the icon specified via the icon Property to get hidden.
-	 */
-	noText?: boolean | string;
-
-	/**
 	 * The type attribute specifies the [type of button](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button#type).
 	 */
 	type?: ButtonTypeType;
@@ -54,14 +57,10 @@ export type DBButtonDefaultProps = {
 	 * The value attribute specifies an initial [value for the button](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button#value).
 	 */
 	value?: string;
-
-	/**
-	 * Variant of the button. Use only 1 primary button on a page as CTA otherwise use one of the adaptive buttons.
-	 */
-	variant?: ButtonVariantType | string;
 };
 
 export type DBButtonProps = DBButtonDefaultProps &
+	DBButtonSharedProps &
 	GlobalProps &
 	ClickEventProps<HTMLButtonElement> &
 	IconProps &
@@ -72,7 +71,8 @@ export type DBButtonProps = DBButtonDefaultProps &
 	ShowIconLeadingProps &
 	ShowIconTrailingProps &
 	IconLeadingProps &
-	IconTrailingProps;
+	IconTrailingProps &
+	NoTextProps;
 
 export type DBButtonDefaultState = {
 	getButtonType: () => ButtonTypeType;

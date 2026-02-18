@@ -91,7 +91,7 @@ export const getBooleanAsString = (originBool?: boolean | string): any => {
 	if (originBool === undefined || originBool === null) return;
 
 	if (typeof originBool === 'string') {
-		return String(Boolean(originBool));
+		return String(originBool === 'true');
 	}
 
 	return String(originBool);
@@ -103,8 +103,8 @@ export const getBoolean = (
 ): boolean | undefined => {
 	if (originBool === undefined || originBool === null) return;
 
-	if (typeof originBool === 'string' && propertyName) {
-		return Boolean(propertyName === originBool || originBool);
+	if (typeof originBool === 'string') {
+		return Boolean(propertyName === originBool || originBool === 'true');
 	}
 
 	return Boolean(originBool);
@@ -170,7 +170,14 @@ export const getHideProp = (show?: boolean | string): any => {
 		return undefined;
 	}
 
-	return getBooleanAsString(!Boolean(show));
+	let _show;
+	if (typeof show === 'string') {
+		_show = show === 'true';
+	} else {
+		_show = show;
+	}
+
+	return getBooleanAsString(!_show);
 };
 
 export const stringPropVisible = (
@@ -180,7 +187,14 @@ export const stringPropVisible = (
 	if (showString === undefined) {
 		return !!givenString;
 	} else {
-		return Boolean(showString) && Boolean(givenString);
+		let _show;
+		if (typeof showString === 'string') {
+			_show = showString === 'true';
+		} else {
+			_show = showString;
+		}
+
+		return _show && Boolean(givenString);
 	}
 };
 

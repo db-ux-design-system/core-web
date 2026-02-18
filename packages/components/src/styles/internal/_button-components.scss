@@ -1,4 +1,9 @@
 @use "@db-ux/core-foundations/build/styles/helpers";
+@use "@db-ux/core-foundations/build/styles/fonts";
+@use "@db-ux/core-foundations/build/styles/variables";
+@use "@db-ux/core-foundations/build/styles/colors";
+@use "@db-ux/core-foundations/build/styles/icons";
+@use "./component";
 
 %default-button {
 	font-weight: 700;
@@ -6,9 +11,136 @@
 	white-space: pre-line; // Multiple lines support
 	justify-content: center;
 	text-align: center;
-
-	@include helpers.display(inline-flex);
-
 	align-items: center; // Centering the content vertically and horizontally
 	vertical-align: top; // Alignment of inline-flex buttons with different content
+
+	@include helpers.display(inline-flex);
+}
+
+%button-outlined-ghost-colors {
+	background-color: colors.$db-adaptive-bg-basic-transparent-full-default;
+
+	@include helpers.hover {
+		background-color: colors.$db-adaptive-bg-basic-transparent-full-hovered;
+	}
+
+	@include helpers.active {
+		background-color: colors.$db-adaptive-bg-basic-transparent-full-pressed;
+	}
+}
+
+%button-brand-colors {
+	background-color: colors.$db-brand-origin-default;
+	color: colors.$db-brand-on-origin-default;
+	border-color: colors.$db-brand-on-bg-basic-emphasis-70-default;
+
+	@include helpers.hover {
+		background-color: colors.$db-brand-origin-hovered;
+		border-color: colors.$db-brand-on-bg-basic-emphasis-70-default;
+	}
+
+	@include helpers.active {
+		background-color: colors.$db-brand-origin-pressed;
+		border-color: colors.$db-brand-on-bg-basic-emphasis-70-default;
+	}
+}
+
+@mixin set-basic-button($selector: "&") {
+	#{$selector} {
+		@extend %default-interactive-component;
+		@extend %default-button;
+		@extend %db-overwrite-font-size-md;
+
+		max-inline-size: 100%;
+		color: colors.$db-adaptive-on-bg-basic-emphasis-100-default;
+		min-block-size: variables.$db-sizing-md;
+		block-size: max-content;
+		inline-size: fit-content;
+		padding: variables.$db-spacing-fixed-2xs variables.$db-spacing-fixed-md;
+
+		// disable text-decoration if someone wants to use the button for an <a> tag
+		text-decoration: none;
+	}
+
+	// Square icon only buttons
+	&[data-no-text="true"] {
+		#{$selector} {
+			padding: 0;
+			aspect-ratio: 1;
+			inline-size: variables.$db-sizing-md;
+
+			@include icons.is-icon-text-replace;
+
+			&::before {
+				margin: auto;
+			}
+		}
+	}
+
+	&[data-size="small"] {
+		#{$selector} {
+			@extend %db-overwrite-font-size-sm;
+
+			font-weight: 700;
+			min-block-size: variables.$db-sizing-sm;
+
+			&:not([data-no-text="true"]) {
+				// stylelint-disable-next-line db-ux/use-spacings
+				padding: 1px variables.$db-spacing-fixed-sm;
+
+				&::before {
+					margin-inline-end: variables.$db-spacing-fixed-2xs;
+				}
+			}
+
+			// Square icon only buttons
+			&[data-no-text="true"] {
+				inline-size: variables.$db-sizing-sm;
+			}
+		}
+	}
+
+	&[data-width="full"] {
+		#{$selector} {
+			inline-size: 100%;
+		}
+	}
+
+	@if $selector == "&" {
+		&[data-variant="brand"] {
+			#{$selector} {
+				@extend %button-brand-colors;
+			}
+		}
+	}
+
+	&[data-variant="filled"],
+	&[data-variant="ghost"] {
+		#{$selector} {
+			@extend %transparent-border;
+		}
+	}
+
+	&[data-variant="outlined"],
+	&:not([data-variant]),
+	&[data-variant=""],
+	&[data-variant="ghost"] {
+		#{$selector} {
+			@extend %button-outlined-ghost-colors;
+		}
+	}
+
+	&[data-variant="filled"] {
+		#{$selector} {
+			background-color: colors.$db-adaptive-bg-basic-transparent-semi-default;
+
+			@include helpers.hover {
+				background-color: colors.$db-adaptive-bg-basic-transparent-semi-hovered;
+			}
+
+			@include helpers.active {
+				background-color: colors.$db-adaptive-bg-basic-transparent-semi-pressed;
+			}
+		}
+	}
 }
