@@ -1603,7 +1603,7 @@
         - columnheader "Button"
     - rowgroup:
       - row "Check Red Red Progress 15 Red Red More":
-        - cell "Check Red":
+        - rowheader "Check Red":
           - checkbox "Check Red"
           - text: Check Red
           - status
@@ -1619,7 +1619,7 @@
         - cell "More":
           - button "More"
       - row "Check Yellow Yellow Open 1 Yellow Yellow More":
-        - cell "Check Yellow":
+        - rowheader "Check Yellow":
           - checkbox "Check Yellow"
           - text: Check Yellow
           - status
@@ -1635,7 +1635,7 @@
         - cell "More":
           - button "More"
       - row "Check Green Green Done Green Green More":
-        - cell "Check Green":
+        - rowheader "Check Green":
           - checkbox "Check Green"
           - text: Check Green
           - status
@@ -1669,7 +1669,7 @@
         - columnheader "Button"
     - rowgroup:
       - row "Check Red Red Progress 15 Red Red More":
-        - cell "Check Red":
+        - rowheader "Check Red":
           - checkbox "Check Red"
           - text: Check Red
           - status
@@ -1685,7 +1685,7 @@
         - cell "More":
           - button "More"
       - row "Check Yellow Yellow Open 1 Yellow Yellow More":
-        - cell "Check Yellow":
+        - rowheader "Check Yellow":
           - checkbox "Check Yellow"
           - text: Check Yellow
           - status
@@ -1701,7 +1701,7 @@
         - cell "More":
           - button "More"
       - row "Check Green Green Done Green Green More":
-        - cell "Check Green":
+        - rowheader "Check Green":
           - checkbox "Check Green"
           - text: Check Green
           - status
@@ -1735,7 +1735,7 @@
         - columnheader "Button"
     - rowgroup:
       - row "Check Red Red Progress 15 Red Red More":
-        - cell "Check Red":
+        - rowheader "Check Red":
           - checkbox "Check Red"
           - text: Check Red
           - status
@@ -1751,7 +1751,7 @@
         - cell "More":
           - button "More"
       - row "Check Yellow Yellow Open 1 Yellow Yellow More":
-        - cell "Check Yellow":
+        - rowheader "Check Yellow":
           - checkbox "Check Yellow"
           - text: Check Yellow
           - status
@@ -1767,7 +1767,7 @@
         - cell "More":
           - button "More"
       - row "Check Green Green Done Green Green More":
-        - cell "Check Green":
+        - rowheader "Check Green":
           - checkbox "Check Green"
           - text: Check Green
           - status
@@ -1801,7 +1801,7 @@
         - columnheader "Button"
     - rowgroup:
       - row "Check Red Red Progress 15 Red Red More":
-        - cell "Check Red":
+        - rowheader "Check Red":
           - checkbox "Check Red"
           - text: Check Red
           - status
@@ -1817,7 +1817,7 @@
         - cell "More":
           - button "More"
       - row "Check Yellow Yellow Open 1 Yellow Yellow More":
-        - cell "Check Yellow":
+        - rowheader "Check Yellow":
           - checkbox "Check Yellow"
           - text: Check Yellow
           - status
@@ -1833,7 +1833,7 @@
         - cell "More":
           - button "More"
       - row "Check Green Green Done Green Green More":
-        - cell "Check Green":
+        - rowheader "Check Green":
           - checkbox "Check Green"
           - text: Check Green
           - status
