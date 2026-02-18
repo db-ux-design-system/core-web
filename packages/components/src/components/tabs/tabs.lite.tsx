@@ -58,27 +58,6 @@ export default function DBTabs(props: DBTabsProps) {
 				if (props.onIndexChange) {
 					props.onIndexChange(index);
 				}
-				// Force reset all tab items before re-initializing
-				if (_ref) {
-					const buttons = Array.from<HTMLElement>(
-						_ref.querySelectorAll('[role="tab"]')
-					);
-					buttons.forEach((button, btnIndex) => {
-						const isActive = btnIndex === index;
-						button.setAttribute(
-							'aria-selected',
-							isActive ? 'true' : 'false'
-						);
-						button.setAttribute('tabindex', isActive ? '0' : '-1');
-						// Force React to update by dispatching a custom event
-						button.dispatchEvent(
-							new CustomEvent('aria-selected-changed', {
-								detail: { selected: isActive }
-							})
-						);
-					});
-				}
-				// re-initialize tabs to update aria-selected and hidden attributes immediately
 				state.initTabs();
 			}
 		},
@@ -305,6 +284,11 @@ export default function DBTabs(props: DBTabsProps) {
 						isSelected ? 'true' : 'false'
 					);
 					button.setAttribute('tabindex', isSelected ? '0' : '-1');
+					button.dispatchEvent(
+						new CustomEvent('aria-selected-changed', {
+							detail: { selected: isSelected }
+						})
+					);
 
 					if (panel) {
 						if (!panel.id) {

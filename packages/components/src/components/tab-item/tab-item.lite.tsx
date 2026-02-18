@@ -104,27 +104,6 @@ export default function DBTabItem(props: DBTabItemProps) {
 	// Manually sync DOM attributes
 	onUpdate(() => {
 		if (_ref) {
-			const isActive =
-				props.active !== undefined
-					? getBoolean(props.active)
-					: state.internalActive;
-			const ariaSelected = isActive ? 'true' : 'false';
-
-			if (_ref?.getAttribute('aria-selected') !== ariaSelected) {
-				_ref?.setAttribute('aria-selected', ariaSelected);
-			}
-
-			const tabIndexStr =
-				props.tabIndex !== undefined
-					? String(props.tabIndex)
-					: isActive
-						? '0'
-						: '-1';
-
-			if (_ref?.getAttribute('tabindex') !== tabIndexStr) {
-				_ref?.setAttribute('tabindex', tabIndexStr);
-			}
-
 			const isDisabled = getBoolean(props.disabled);
 			const disabledStr = isDisabled ? 'true' : 'false';
 
@@ -142,7 +121,7 @@ export default function DBTabItem(props: DBTabItemProps) {
 				}
 			}
 		}
-	}, [state.internalActive, props.disabled, props.tabIndex, props.active]);
+	}, [props.disabled]);
 
 	return (
 		<button
