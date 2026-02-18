@@ -971,6 +971,7 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 						id={state._summaryId}
 						class="db-custom-select-form-field"
 						aria-disabled={getBooleanAsString(props.disabled)}
+						tabIndex={props.disabled ? -1 : undefined}
 						aria-labelledby={state._labelId}>
 						<Show when={state._selectedLabels?.length}>
 							<span
@@ -1184,6 +1185,7 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 					size="small"
 					name={state._id}
 					form={state._id}
+					disabled={getBoolean(props.disabled, 'disabled')}
 					onClick={(event) => state.handleClearAll(event)}>
 					{props.clearSelectionText}
 					<DBTooltip placement="top">
