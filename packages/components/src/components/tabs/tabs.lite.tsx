@@ -202,7 +202,6 @@ export default function DBTabs(props: DBTabsProps) {
 				step *= -1;
 			}
 			state.scrollContainer?.scrollBy({
-				top: 0,
 				left: step,
 				behavior: 'smooth'
 			});
@@ -299,17 +298,7 @@ export default function DBTabs(props: DBTabsProps) {
 						}
 
 						// toggle visibility
-						if (isSelected) {
-							if (panel.hasAttribute('hidden')) {
-								panel.removeAttribute('hidden');
-							}
-							panel.hidden = false;
-						} else {
-							if (!panel.hasAttribute('hidden')) {
-								panel.setAttribute('hidden', '');
-							}
-							panel.hidden = true;
-						}
+						panel.hidden = !isSelected;
 					}
 				});
 			}

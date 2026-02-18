@@ -98,9 +98,9 @@ $pulse-gap-offset: calc(#{variables.$db-border-width-xs} + #{variables.$db-spaci
 					display: flex;
 					align-items: flex-end;
 					overflow: auto hidden;
-					inline-size: 100%;
-					padding-inline: calc(#{variables.$db-border-width-2xs} + #{variables.$db-border-width-xs} * 2);
-					box-sizing: content-box;
+					$focus-inset: calc(#{variables.$db-border-width-2xs} + #{variables.$db-border-width-xs} * 2);
+					padding-inline: $focus-inset;
+					width: 100%;
 				}
 		}
 	}
