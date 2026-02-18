@@ -1,4 +1,5 @@
 import { GlobalProps, GlobalState } from '../../shared/model';
+import { DBLinkProps } from '../link/model';
 import { DBTableDataCellProps } from '../table-data-cell/model';
 import { DBTableHeaderCellProps } from '../table-header-cell/model';
 
@@ -12,7 +13,8 @@ export type DBTableRowSubHeaderEmphasisType =
 
 export type DBTableRowCell = (DBTableHeaderCellProps | DBTableDataCellProps) & {
 	headerCell?: boolean;
-	content: any;
+	content?: any;
+	link?: DBLinkProps;
 };
 
 export type DBTableRowDefaultProps = {

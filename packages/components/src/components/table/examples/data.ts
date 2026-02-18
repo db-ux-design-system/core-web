@@ -166,7 +166,7 @@ export const overflowTable: DBTableData = {
 				{ content: 'D' },
 				{ content: 'E' },
 				{ content: 'F' },
-				{ content: 'G' }
+				{ link: { text: 'G', href: '#' } }
 			]
 		}
 	],
@@ -178,14 +178,14 @@ export const overflowTable: DBTableData = {
 			{ content: `Data ${i + 1}-D` },
 			{ content: `Data ${i + 1}-E` },
 			{ content: `Data ${i + 1}-F` },
-			{ content: `Data ${i + 1}-G` }
+			{ link: { text: `Data ${i + 1}-G`, href: '#' } }
 		]
 	})),
 	footer: [
 		{
 			cells: [
 				{ content: 'Footer 1', headerCell: true },
-				{ content: 'Footer 2', colSpan: 6 }
+				{ link: { text: 'Footer 2', href: '#' }, colSpan: 6 }
 			]
 		}
 	]
