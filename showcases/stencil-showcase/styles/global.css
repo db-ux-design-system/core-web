@@ -1,6 +1,6 @@
 @import "@db-ux/core-components/build/styles/rollup.css";
-@import "../../showcase-styles.css";
 @import "@db-ux/db-theme/build/styles/rollup.css";
+@import "../../showcase-styles.css";
 
 .hydrated {
 	display: contents;

@@ -46,7 +46,9 @@ export default function DBAccordionItem(props: DBAccordionItemProps) {
 			if (props.onToggle) {
 				props.onToggle(newStateOpen);
 			}
-			state._open = newStateOpen;
+			if (props.open === undefined) {
+				state._open = newStateOpen;
+			}
 		}
 	});
 
@@ -70,6 +72,12 @@ export default function DBAccordionItem(props: DBAccordionItemProps) {
 		}
 	}, [props.name]);
 
+	onUpdate(() => {
+		if (props.open) {
+			state._open = props.open;
+		}
+	}, [props.open]);
+
 	// jscpd:ignore-end
 
 	return (
@@ -80,11 +88,10 @@ export default function DBAccordionItem(props: DBAccordionItemProps) {
 				name={state._name}
 				open={state._open}>
 				<summary onClick={(event) => state.handleToggle(event)}>
-					<Show when={props.headlinePlain}>
+					<Show
+						when={props.headlinePlain}
+						else={<Slot name="headline" />}>
 						{props.headlinePlain}
-					</Show>
-					<Show when={!props.headlinePlain}>
-						<Slot name="headline" />
 					</Show>
 				</summary>
 				<div>

@@ -1,0 +1,27 @@
+---
+import { DBCustomSelect } from '@components';
+import FormWrapper from './FormWrapper.astro';
+---
+
+<FormWrapper value="combobox-2" id="custom-select">
+	<DBCustomSelect label="Custom Select" id="custom-select" />
+</FormWrapper>
+
+<script>
+	const options = [
+		{ value: 'combobox-0', id: 'combobox-0' },
+		{ value: 'combobox-1', id: 'combobox-1' },
+		{ value: 'combobox-2', id: 'combobox-2' },
+	];
+
+	const customSelect = document.querySelector('db-custom-select[id="custom-select"]') as any;
+	const valueDisplay = document.getElementById('custom-select-value-display');
+
+	if (customSelect) {
+		customSelect.options = options;
+		customSelect.values = ['combobox-2'];
+		customSelect.addEventListener('optionSelected', (e: any) => {
+			if (valueDisplay) valueDisplay.textContent = e.detail;
+		});
+	}
+</script>

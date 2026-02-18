@@ -7,6 +7,7 @@ import {
 	waitForDBPage
 } from '../default';
 
+// TODO: We should test for stencil/astro as well
 const stencil = isStencil(process.env.showcase);
 const angular = isAngular(process.env.showcase);
 

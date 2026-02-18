@@ -5,6 +5,12 @@ export const config: Config = {
 	srcDir: 'src',
 	outputTargets: [
 		{
+			type: 'dist-custom-elements',
+			"dir": 'bundle',
+			externalRuntime: false,
+			customElementsExportBehavior: "bundle"
+		},
+		{
 			type: 'dist'
 		}
 	]

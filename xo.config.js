@@ -7,7 +7,9 @@ const xoConfig = [
 			...ignoreFolders,
 			'**/*.vue',
 			// We don't need to check for stories - they will be generated
-			'storybooks/*/src/**'
+			'storybooks/*/src/**',
+			// We don't check astro+stencil
+			'showcases/stencil-showcase/**'
 		]
 	},
 	{

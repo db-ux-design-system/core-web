@@ -66,8 +66,10 @@ const gotoPage = async (
 	fixedHeight?: number,
 	otherDensity?: 'functional' | 'regular' | 'expressive'
 ) => {
+	const hashRouting = isStencil(process.env.showcase) ? '' : '/#';
+
 	await page.goto(
-		`./#/${path}?density=${otherDensity ?? density}&color=${color}`,
+		`.${hashRouting}/${path}?density=${otherDensity ?? density}&color=${color}`,
 		{
 			waitUntil: 'domcontentloaded'
 		}
