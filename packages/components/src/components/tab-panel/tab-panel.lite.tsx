@@ -22,6 +22,7 @@ export default function DBTabPanel(props: DBTabPanelProps) {
 			class={cls('db-tab-panel', props.className)}
 			id={props.id}
 			role="tabpanel"
+			tabIndex={0}
 			hidden={props.hidden}
 			aria-labelledby={props.ariaLabelledby}>
 			<Show when={props.content}> {props.content}</Show>
