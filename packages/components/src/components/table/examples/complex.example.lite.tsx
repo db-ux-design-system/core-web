@@ -37,7 +37,7 @@ export default function TableComplex() {
 				<DBTable captionPlain="Joined, sortable columns are Link.">
 					<DBTableHead>
 						<DBTableRow>
-							<DBTableHeaderCell>
+							<DBTableHeaderCell scope="col">
 								<DBCheckbox showLabel={false} name="joined">
 									Check All
 									<DBTooltip placement="top">
@@ -45,7 +45,7 @@ export default function TableComplex() {
 									</DBTooltip>
 								</DBCheckbox>
 							</DBTableHeaderCell>
-							<DBTableHeaderCell>
+							<DBTableHeaderCell scope="col">
 								<div
 									style={{
 										display: 'flex',
@@ -64,25 +64,36 @@ export default function TableComplex() {
 									</DBButton>
 								</div>
 							</DBTableHeaderCell>
-							<DBTableHeaderCell>Tag</DBTableHeaderCell>
-							<DBTableHeaderCell>Infotext</DBTableHeaderCell>
-							<DBTableHeaderCell>Text</DBTableHeaderCell>
-							<DBTableHeaderCell>Input</DBTableHeaderCell>
-							<DBTableHeaderCell horizontalAlignment="end" noText>
+							<DBTableHeaderCell scope="col">
+								Tag
+							</DBTableHeaderCell>
+							<DBTableHeaderCell scope="col">
+								Infotext
+							</DBTableHeaderCell>
+							<DBTableHeaderCell scope="col">
+								Text
+							</DBTableHeaderCell>
+							<DBTableHeaderCell scope="col">
+								Input
+							</DBTableHeaderCell>
+							<DBTableHeaderCell
+								scope="col"
+								horizontalAlignment="end"
+								noText>
 								Button
 							</DBTableHeaderCell>
 						</DBTableRow>
 					</DBTableHead>
 					<DBTableBody>
 						<DBTableRow interactive>
-							<DBTableDataCell>
+							<DBTableHeaderCell scope="row">
 								<DBCheckbox
 									showLabel={false}
 									data-table-row-action="true"
 									name="joined">
 									Check Red
 								</DBCheckbox>
-							</DBTableDataCell>
+							</DBTableHeaderCell>
 							<DBTableDataCell>
 								<DBLink
 									href="#"
@@ -120,14 +131,14 @@ export default function TableComplex() {
 							</DBTableDataCell>
 						</DBTableRow>
 						<DBTableRow interactive>
-							<DBTableDataCell>
+							<DBTableHeaderCell scope="row">
 								<DBCheckbox
 									showLabel={false}
 									data-table-row-action="true"
 									name="joined">
 									Check Yellow
 								</DBCheckbox>
-							</DBTableDataCell>
+							</DBTableHeaderCell>
 							<DBTableDataCell>
 								<DBLink
 									href="#"
@@ -164,14 +175,14 @@ export default function TableComplex() {
 							</DBTableDataCell>
 						</DBTableRow>
 						<DBTableRow interactive>
-							<DBTableDataCell>
+							<DBTableHeaderCell scope="row">
 								<DBCheckbox
 									showLabel={false}
 									data-table-row-action="true"
 									name="joined">
 									Check Green
 								</DBCheckbox>
-							</DBTableDataCell>
+							</DBTableHeaderCell>
 							<DBTableDataCell>
 								<DBLink
 									href="#"
@@ -224,7 +235,7 @@ export default function TableComplex() {
 					captionPlain="Zebra, sortable columns are Link.">
 					<DBTableHead>
 						<DBTableRow>
-							<DBTableHeaderCell>
+							<DBTableHeaderCell scope="col">
 								<DBCheckbox showLabel={false} name="zebra">
 									Check All
 									<DBTooltip placement="top">
@@ -232,7 +243,7 @@ export default function TableComplex() {
 									</DBTooltip>
 								</DBCheckbox>
 							</DBTableHeaderCell>
-							<DBTableHeaderCell>
+							<DBTableHeaderCell scope="col">
 								<div
 									style={{
 										display: 'flex',
@@ -251,25 +262,36 @@ export default function TableComplex() {
 									</DBButton>
 								</div>
 							</DBTableHeaderCell>
-							<DBTableHeaderCell>Tag</DBTableHeaderCell>
-							<DBTableHeaderCell>Infotext</DBTableHeaderCell>
-							<DBTableHeaderCell>Text</DBTableHeaderCell>
-							<DBTableHeaderCell>Input</DBTableHeaderCell>
-							<DBTableHeaderCell horizontalAlignment="end" noText>
+							<DBTableHeaderCell scope="col">
+								Tag
+							</DBTableHeaderCell>
+							<DBTableHeaderCell scope="col">
+								Infotext
+							</DBTableHeaderCell>
+							<DBTableHeaderCell scope="col">
+								Text
+							</DBTableHeaderCell>
+							<DBTableHeaderCell scope="col">
+								Input
+							</DBTableHeaderCell>
+							<DBTableHeaderCell
+								scope="col"
+								horizontalAlignment="end"
+								noText>
 								Button
 							</DBTableHeaderCell>
 						</DBTableRow>
 					</DBTableHead>
 					<DBTableBody>
 						<DBTableRow interactive>
-							<DBTableDataCell>
+							<DBTableHeaderCell scope="row">
 								<DBCheckbox
 									showLabel={false}
 									data-table-row-action="true"
 									name="zebra">
 									Check Red
 								</DBCheckbox>
-							</DBTableDataCell>
+							</DBTableHeaderCell>
 							<DBTableDataCell>
 								<DBLink
 									href="#"
@@ -307,14 +329,14 @@ export default function TableComplex() {
 							</DBTableDataCell>
 						</DBTableRow>
 						<DBTableRow interactive>
-							<DBTableDataCell>
+							<DBTableHeaderCell scope="row">
 								<DBCheckbox
 									showLabel={false}
 									data-table-row-action="true"
 									name="zebra">
 									Check Yellow
 								</DBCheckbox>
-							</DBTableDataCell>
+							</DBTableHeaderCell>
 							<DBTableDataCell>
 								<DBLink
 									href="#"
@@ -351,14 +373,14 @@ export default function TableComplex() {
 							</DBTableDataCell>
 						</DBTableRow>
 						<DBTableRow interactive>
-							<DBTableDataCell>
+							<DBTableHeaderCell scope="row">
 								<DBCheckbox
 									showLabel={false}
 									data-table-row-action="true"
 									name="zebra">
 									Check Green
 								</DBCheckbox>
-							</DBTableDataCell>
+							</DBTableHeaderCell>
 							<DBTableDataCell>
 								<DBLink
 									href="#"
@@ -411,7 +433,7 @@ export default function TableComplex() {
 					captionPlain="Floating, sortable columns are Link.">
 					<DBTableHead>
 						<DBTableRow>
-							<DBTableHeaderCell>
+							<DBTableHeaderCell scope="col">
 								<DBCheckbox showLabel={false} name="floating">
 									Check All
 									<DBTooltip placement="top">
@@ -419,7 +441,7 @@ export default function TableComplex() {
 									</DBTooltip>
 								</DBCheckbox>
 							</DBTableHeaderCell>
-							<DBTableHeaderCell>
+							<DBTableHeaderCell scope="col">
 								<div
 									style={{
 										display: 'flex',
@@ -438,25 +460,36 @@ export default function TableComplex() {
 									</DBButton>
 								</div>
 							</DBTableHeaderCell>
-							<DBTableHeaderCell>Tag</DBTableHeaderCell>
-							<DBTableHeaderCell>Infotext</DBTableHeaderCell>
-							<DBTableHeaderCell>Text</DBTableHeaderCell>
-							<DBTableHeaderCell>Input</DBTableHeaderCell>
-							<DBTableHeaderCell horizontalAlignment="end" noText>
+							<DBTableHeaderCell scope="col">
+								Tag
+							</DBTableHeaderCell>
+							<DBTableHeaderCell scope="col">
+								Infotext
+							</DBTableHeaderCell>
+							<DBTableHeaderCell scope="col">
+								Text
+							</DBTableHeaderCell>
+							<DBTableHeaderCell scope="col">
+								Input
+							</DBTableHeaderCell>
+							<DBTableHeaderCell
+								scope="col"
+								horizontalAlignment="end"
+								noText>
 								Button
 							</DBTableHeaderCell>
 						</DBTableRow>
 					</DBTableHead>
 					<DBTableBody>
 						<DBTableRow interactive>
-							<DBTableDataCell>
+							<DBTableHeaderCell scope="row">
 								<DBCheckbox
 									showLabel={false}
 									data-table-row-action="true"
 									name="floating">
 									Check Red
 								</DBCheckbox>
-							</DBTableDataCell>
+							</DBTableHeaderCell>
 							<DBTableDataCell>
 								<DBLink
 									href="#"
@@ -494,14 +527,14 @@ export default function TableComplex() {
 							</DBTableDataCell>
 						</DBTableRow>
 						<DBTableRow interactive>
-							<DBTableDataCell>
+							<DBTableHeaderCell scope="row">
 								<DBCheckbox
 									showLabel={false}
 									data-table-row-action="true"
 									name="floating">
 									Check Yellow
 								</DBCheckbox>
-							</DBTableDataCell>
+							</DBTableHeaderCell>
 							<DBTableDataCell>
 								<DBLink
 									href="#"
@@ -538,14 +571,14 @@ export default function TableComplex() {
 							</DBTableDataCell>
 						</DBTableRow>
 						<DBTableRow interactive>
-							<DBTableDataCell>
+							<DBTableHeaderCell scope="row">
 								<DBCheckbox
 									showLabel={false}
 									data-table-row-action="true"
 									name="floating">
 									Check Green
 								</DBCheckbox>
-							</DBTableDataCell>
+							</DBTableHeaderCell>
 							<DBTableDataCell>
 								<DBLink
 									href="#"
@@ -599,7 +632,7 @@ export default function TableComplex() {
 					captionPlain="Mobile variant: List, sortable columns are Link.">
 					<DBTableHead>
 						<DBTableRow>
-							<DBTableHeaderCell>
+							<DBTableHeaderCell scope="col">
 								<DBCheckbox showLabel={false} name="list">
 									Check All
 									<DBTooltip placement="top">
@@ -607,7 +640,7 @@ export default function TableComplex() {
 									</DBTooltip>
 								</DBCheckbox>
 							</DBTableHeaderCell>
-							<DBTableHeaderCell>
+							<DBTableHeaderCell scope="col">
 								<div
 									style={{
 										display: 'flex',
@@ -626,25 +659,36 @@ export default function TableComplex() {
 									</DBButton>
 								</div>
 							</DBTableHeaderCell>
-							<DBTableHeaderCell>Tag</DBTableHeaderCell>
-							<DBTableHeaderCell>Infotext</DBTableHeaderCell>
-							<DBTableHeaderCell>Text</DBTableHeaderCell>
-							<DBTableHeaderCell>Input</DBTableHeaderCell>
-							<DBTableHeaderCell horizontalAlignment="end" noText>
+							<DBTableHeaderCell scope="col">
+								Tag
+							</DBTableHeaderCell>
+							<DBTableHeaderCell scope="col">
+								Infotext
+							</DBTableHeaderCell>
+							<DBTableHeaderCell scope="col">
+								Text
+							</DBTableHeaderCell>
+							<DBTableHeaderCell scope="col">
+								Input
+							</DBTableHeaderCell>
+							<DBTableHeaderCell
+								scope="col"
+								horizontalAlignment="end"
+								noText>
 								Button
 							</DBTableHeaderCell>
 						</DBTableRow>
 					</DBTableHead>
 					<DBTableBody>
 						<DBTableRow interactive>
-							<DBTableDataCell data-header="Check">
+							<DBTableHeaderCell scope="row" data-header="Check">
 								<DBCheckbox
 									showLabel={false}
 									data-table-row-action="true"
 									name="list">
 									Check Red
 								</DBCheckbox>
-							</DBTableDataCell>
+							</DBTableHeaderCell>
 							<DBTableDataCell data-header="Link">
 								<DBLink
 									href="#"
@@ -682,14 +726,14 @@ export default function TableComplex() {
 							</DBTableDataCell>
 						</DBTableRow>
 						<DBTableRow interactive>
-							<DBTableDataCell data-header="Check">
+							<DBTableHeaderCell scope="row" data-header="Check">
 								<DBCheckbox
 									showLabel={false}
 									data-table-row-action="true"
 									name="list">
 									Check Yellow
 								</DBCheckbox>
-							</DBTableDataCell>
+							</DBTableHeaderCell>
 							<DBTableDataCell data-header="Link">
 								<DBLink
 									href="#"
@@ -726,14 +770,14 @@ export default function TableComplex() {
 							</DBTableDataCell>
 						</DBTableRow>
 						<DBTableRow interactive>
-							<DBTableDataCell data-header="Check">
+							<DBTableHeaderCell scope="row" data-header="Check">
 								<DBCheckbox
 									showLabel={false}
 									data-table-row-action="true"
 									name="list">
 									Check Green
 								</DBCheckbox>
-							</DBTableDataCell>
+							</DBTableHeaderCell>
 							<DBTableDataCell data-header="Link">
 								<DBLink
 									href="#"

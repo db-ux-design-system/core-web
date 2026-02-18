@@ -46,31 +46,45 @@ export default function TableContent() {
 				<DBTable captionPlain="Composition">
 					<DBTableHead>
 						<DBTableRow>
-							<DBTableHeaderCell>Comp A</DBTableHeaderCell>
-							<DBTableHeaderCell>Comp B</DBTableHeaderCell>
-							<DBTableHeaderCell>Comp C</DBTableHeaderCell>
+							<DBTableHeaderCell scope="col">
+								Comp A
+							</DBTableHeaderCell>
+							<DBTableHeaderCell scope="col">
+								Comp B
+							</DBTableHeaderCell>
+							<DBTableHeaderCell scope="col">
+								Comp C
+							</DBTableHeaderCell>
 						</DBTableRow>
 					</DBTableHead>
 					<DBTableBody>
 						<DBTableRow>
-							<DBTableHeaderCell>Comp 1</DBTableHeaderCell>
+							<DBTableHeaderCell scope="row">
+								Comp 1
+							</DBTableHeaderCell>
 							<DBTableDataCell>Comp 2</DBTableDataCell>
 							<DBTableDataCell>Comp 3</DBTableDataCell>
 						</DBTableRow>
 						<DBTableRow>
-							<DBTableHeaderCell>Comp 4</DBTableHeaderCell>
+							<DBTableHeaderCell scope="row">
+								Comp 4
+							</DBTableHeaderCell>
 							<DBTableDataCell>Comp 5</DBTableDataCell>
 							<DBTableDataCell>Comp 6</DBTableDataCell>
 						</DBTableRow>
 						<DBTableRow>
-							<DBTableHeaderCell>Comp 7</DBTableHeaderCell>
+							<DBTableHeaderCell scope="row">
+								Comp 7
+							</DBTableHeaderCell>
 							<DBTableDataCell>Comp 8</DBTableDataCell>
 							<DBTableDataCell>Comp 9</DBTableDataCell>
 						</DBTableRow>
 					</DBTableBody>
 					<DBTableFooter>
 						<DBTableRow>
-							<DBTableHeaderCell>Comp Footer 1</DBTableHeaderCell>
+							<DBTableHeaderCell scope="row">
+								Comp Footer 1
+							</DBTableHeaderCell>
 							<DBTableDataCell colSpan="2">
 								Comp Footer 2
 							</DBTableDataCell>

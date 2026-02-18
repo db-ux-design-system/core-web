@@ -32,17 +32,23 @@ export default function TableVerticalAlignment() {
 				<DBTable captionPlain="Start" divider="both">
 					<DBTableHead>
 						<DBTableRow>
-							<DBTableHeaderCell verticalAlignment="start">
+							<DBTableHeaderCell
+								scope="col"
+								verticalAlignment="start">
 								Header A
 							</DBTableHeaderCell>
-							<DBTableHeaderCell verticalAlignment="start">
+							<DBTableHeaderCell
+								scope="col"
+								verticalAlignment="start">
 								Header B
 							</DBTableHeaderCell>
 						</DBTableRow>
 					</DBTableHead>
 					<DBTableBody>
 						<DBTableRow>
-							<DBTableHeaderCell verticalAlignment="start">
+							<DBTableHeaderCell
+								scope="row"
+								verticalAlignment="start">
 								Comp 1
 							</DBTableHeaderCell>
 							<DBTableDataCell verticalAlignment="start">
@@ -66,17 +72,23 @@ export default function TableVerticalAlignment() {
 				<DBTable captionPlain="(Default) Center" divider="both">
 					<DBTableHead>
 						<DBTableRow>
-							<DBTableHeaderCell verticalAlignment="center">
+							<DBTableHeaderCell
+								scope="col"
+								verticalAlignment="center">
 								Header A
 							</DBTableHeaderCell>
-							<DBTableHeaderCell verticalAlignment="center">
+							<DBTableHeaderCell
+								scope="col"
+								verticalAlignment="center">
 								Header B
 							</DBTableHeaderCell>
 						</DBTableRow>
 					</DBTableHead>
 					<DBTableBody>
 						<DBTableRow>
-							<DBTableHeaderCell verticalAlignment="center">
+							<DBTableHeaderCell
+								scope="row"
+								verticalAlignment="center">
 								Comp 1
 							</DBTableHeaderCell>
 							<DBTableDataCell verticalAlignment="center">
@@ -100,17 +112,23 @@ export default function TableVerticalAlignment() {
 				<DBTable captionPlain="End" divider="both">
 					<DBTableHead>
 						<DBTableRow>
-							<DBTableHeaderCell verticalAlignment="end">
+							<DBTableHeaderCell
+								scope="col"
+								verticalAlignment="end">
 								Header A
 							</DBTableHeaderCell>
-							<DBTableHeaderCell verticalAlignment="end">
+							<DBTableHeaderCell
+								scope="col"
+								verticalAlignment="end">
 								Header B
 							</DBTableHeaderCell>
 						</DBTableRow>
 					</DBTableHead>
 					<DBTableBody>
 						<DBTableRow>
-							<DBTableHeaderCell verticalAlignment="end">
+							<DBTableHeaderCell
+								scope="row"
+								verticalAlignment="end">
 								Comp 1
 							</DBTableHeaderCell>
 							<DBTableDataCell verticalAlignment="end">

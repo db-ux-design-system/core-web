@@ -34,14 +34,22 @@ export default function TableInteractiveRow() {
 				<DBTable captionPlain="Joined">
 					<DBTableHead>
 						<DBTableRow>
-							<DBTableHeaderCell>Comp A</DBTableHeaderCell>
-							<DBTableHeaderCell>Comp B</DBTableHeaderCell>
-							<DBTableHeaderCell noText>Action</DBTableHeaderCell>
+							<DBTableHeaderCell scope="col">
+								Comp A
+							</DBTableHeaderCell>
+							<DBTableHeaderCell scope="col">
+								Comp B
+							</DBTableHeaderCell>
+							<DBTableHeaderCell scope="col" noText>
+								Action
+							</DBTableHeaderCell>
 						</DBTableRow>
 					</DBTableHead>
 					<DBTableBody>
 						<DBTableRow interactive>
-							<DBTableHeaderCell>Comp 1</DBTableHeaderCell>
+							<DBTableHeaderCell scope="row">
+								Comp 1
+							</DBTableHeaderCell>
 							<DBTableDataCell>
 								<DBButton>Click</DBButton>
 							</DBTableDataCell>
@@ -59,7 +67,9 @@ export default function TableInteractiveRow() {
 							</DBTableDataCell>
 						</DBTableRow>
 						<DBTableRow interactive>
-							<DBTableHeaderCell>Comp 4</DBTableHeaderCell>
+							<DBTableHeaderCell scope="row">
+								Comp 4
+							</DBTableHeaderCell>
 							<DBTableDataCell>
 								<DBButton>Click</DBButton>
 							</DBTableDataCell>
@@ -77,7 +87,9 @@ export default function TableInteractiveRow() {
 							</DBTableDataCell>
 						</DBTableRow>
 						<DBTableRow interactive>
-							<DBTableHeaderCell>Comp 7</DBTableHeaderCell>
+							<DBTableHeaderCell scope="row">
+								Comp 7
+							</DBTableHeaderCell>
 							<DBTableDataCell>
 								<DBButton>Click</DBButton>
 							</DBTableDataCell>
@@ -112,14 +124,22 @@ export default function TableInteractiveRow() {
 				<DBTable variant="floating" captionPlain="Floating">
 					<DBTableHead>
 						<DBTableRow>
-							<DBTableHeaderCell>Comp A</DBTableHeaderCell>
-							<DBTableHeaderCell>Comp B</DBTableHeaderCell>
-							<DBTableHeaderCell noText>Action</DBTableHeaderCell>
+							<DBTableHeaderCell scope="col">
+								Comp A
+							</DBTableHeaderCell>
+							<DBTableHeaderCell scope="col">
+								Comp B
+							</DBTableHeaderCell>
+							<DBTableHeaderCell scope="col" noText>
+								Action
+							</DBTableHeaderCell>
 						</DBTableRow>
 					</DBTableHead>
 					<DBTableBody>
 						<DBTableRow interactive>
-							<DBTableHeaderCell>Comp 1</DBTableHeaderCell>
+							<DBTableHeaderCell scope="row">
+								Comp 1
+							</DBTableHeaderCell>
 							<DBTableDataCell>
 								<DBButton>Click</DBButton>
 							</DBTableDataCell>
@@ -137,7 +157,9 @@ export default function TableInteractiveRow() {
 							</DBTableDataCell>
 						</DBTableRow>
 						<DBTableRow interactive>
-							<DBTableHeaderCell>Comp 4</DBTableHeaderCell>
+							<DBTableHeaderCell scope="row">
+								Comp 4
+							</DBTableHeaderCell>
 							<DBTableDataCell>
 								<DBButton>Click</DBButton>
 							</DBTableDataCell>
@@ -155,7 +177,9 @@ export default function TableInteractiveRow() {
 							</DBTableDataCell>
 						</DBTableRow>
 						<DBTableRow interactive>
-							<DBTableHeaderCell>Comp 7</DBTableHeaderCell>
+							<DBTableHeaderCell scope="row">
+								Comp 7
+							</DBTableHeaderCell>
 							<DBTableDataCell>
 								<DBButton>Click</DBButton>
 							</DBTableDataCell>
