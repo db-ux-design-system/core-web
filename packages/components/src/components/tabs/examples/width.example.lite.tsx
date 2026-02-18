@@ -53,7 +53,7 @@ export default function TabsWidth() {
 				<DBInfotext icon="none" size="small" semantic="informational">
 					full - alignment: center:
 				</DBInfotext>
-				<DBTabs width="full" alignment="center">
+				<DBTabs width="full" contentAlignment="center">
 					<DBTabList>
 						<DBTabItem>Test 1</DBTabItem>
 						<DBTabItem>Test 2</DBTabItem>
