@@ -65,7 +65,7 @@
     - tab "Test 3"
     - tab "Test 4"
     - tab "Test 5"
-  - tabpanel: Tab Panel 1
+  - tabpanel "Very long tab label that gets truncated": Tab Panel 1
   - button "Scroll right"
   - text: "with overflow - behavior: scrollbar:"
   - tablist:
