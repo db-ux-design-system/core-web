@@ -36,7 +36,7 @@ Every rule MUST support all three frameworks:
 
 ### Boolean Attributes
 
-**ALWAYS** check for `undefined` instead of falsy values:
+**ALWAYS** check for `null` instead of falsy values:
 
 ```typescript
 // ❌ WRONG - fails for empty strings and false positives
@@ -46,8 +46,8 @@ if (!attribute) {
 }
 
 // ✅ CORRECT - handles Angular boolean attributes (empty strings)
-if (value === undefined) return;
-if (attribute === undefined || attribute === "") {
+if (value === null) return;
+if (attribute === null || attribute === "") {
 	/* report error */
 }
 ```
@@ -56,11 +56,11 @@ if (attribute === undefined || attribute === "") {
 
 ### String Attributes
 
-For required text attributes, check both `undefined` and empty string:
+For required text attributes, check both `null` and empty string:
 
 ```typescript
 // ✅ CORRECT
-if (textAttribute === undefined || textAttribute === "") {
+if (textAttribute === null || textAttribute === "") {
 	context.report({
 		/* error */
 	});
@@ -69,11 +69,11 @@ if (textAttribute === undefined || textAttribute === "") {
 
 ### Numeric/Expression Attributes
 
-For attributes that can have falsy values (0, false), only check `undefined`:
+For attributes that can have falsy values (0, false), only check `null`:
 
 ```typescript
 // ✅ CORRECT - allows text={0}
-if (text === undefined && !hasChildren) {
+if (text === null && !hasChildren) {
 	context.report({
 		/* error */
 	});
@@ -94,7 +94,8 @@ if (parent.type === 'JSXElement' || parent.type === 'VElement') {
 if (
 	parent.type === 'JSXElement' ||
 	parent.type === 'VElement' ||
-	parent.type === 'Element'
+	parent.type === 'Element' ||
+	child.type === "Element$1"
 ) {
 ```
 
@@ -118,7 +119,8 @@ const iconChild = node.children?.find(
 	(child: any) =>
 		(child.type === "JSXElement" ||
 			child.type === "VElement" ||
-			child.type === "Element") &&
+			child.type === "Element" ||
+			child.type === "Element$1") &&
 		isDBComponent(child.openingElement || child, "DBIcon")
 );
 ```
@@ -136,12 +138,12 @@ import { COMPONENTS, MESSAGES, MESSAGE_IDS } from "../../shared/constants.js";
 
 export default {
 	meta: {
-		type: "problem",
+		type: "problem" as const,
 		docs: {
 			description: "Rule description",
 			url: "https://github.com/db-ux-design-system/core-web/blob/main/packages/eslint-plugin/README.md#rule-name"
 		},
-		fixable: "code", // optional
+		fixable: "code" as const, // optional
 		messages: {
 			[MESSAGE_IDS.YOUR_MESSAGE_ID]: MESSAGES.YOUR_MESSAGE
 		},
@@ -151,8 +153,8 @@ export default {
 		// Angular handler with parser services
 		const angularHandler = (node: any, parserServices: any) => {
 			const value = getAttributeValue(node, "prop");
-			// CRITICAL: Use === undefined for boolean checks
-			if (value === undefined || value === "") {
+			// CRITICAL: Use === null for boolean checks
+			if (value === null || value === "") {
 				const loc = parserServices.convertNodeSourceSpanToLoc(
 					node.sourceSpan
 				);
@@ -176,8 +178,8 @@ export default {
 			if (!isDBComponent(openingElement, COMPONENTS.DBButton)) return;
 
 			const value = getAttributeValue(openingElement, "prop");
-			// CRITICAL: Use === undefined for boolean checks
-			if (value === undefined || value === "") {
+			// CRITICAL: Use === null for boolean checks
+			if (value === null || value === "") {
 				context.report({
 					node: openingElement,
 					messageId: MESSAGE_IDS.YOUR_MESSAGE_ID
@@ -253,7 +255,7 @@ invalid: [
 
 ## Important Notes
 
-- Angular boolean attributes return empty string `''` - handle with `attr.value === undefined || attr.value === ''`
+- Angular boolean attributes return empty string `''` - handle with `attr.value === null || attr.value === ''`
 - Use `createAngularVisitors` for Angular support - it handles kebab-case conversion for components starting with `DB`
 - Always use `COMPONENTS` constants instead of hardcoded strings
 - Always use `MESSAGE_IDS` and `MESSAGES` from constants
@@ -262,6 +264,36 @@ invalid: [
 - Angular template parser uses both `Element` and `Element$1` types
 - Vue sometimes uses `Element` as fallback instead of `VElement`
 - When traversing parents/children, always check for `JSXElement`, `VElement`, and `Element` types
+
+## TypeScript Type Assertions
+
+All rule metadata must use `as const` assertions for TypeScript compatibility:
+
+```typescript
+export default {
+	meta: {
+		type: "problem" as const, // REQUIRED: Use 'as const'
+		fixable: "code" as const, // REQUIRED if fixable is present
+		// ...
+	}
+};
+```
+
+## Test Configuration
+
+All test files must use the new `languageOptions` configuration:
+
+```typescript
+import { RuleTester } from '@typescript-eslint/rule-tester';
+
+const ruleTester = new RuleTester({
+	languageOptions: {
+		parserOptions: {
+			ecmaFeatures: { jsx: true }
+		}
+	}
+});
+```
 
 ## Checklist
 
@@ -272,10 +304,13 @@ Before submitting a new rule:
 - [ ] Messages added to `src/shared/constants.ts`
 - [ ] Rule uses `COMPONENTS` constants
 - [ ] Rule uses `MESSAGE_IDS` and `MESSAGES` constants (not hardcoded strings)
+- [ ] Rule `type` uses `as const` assertion
+- [ ] Rule `fixable` uses `as const` assertion (if present)
+- [ ] Test uses `languageOptions` configuration (not `parser` property)
 - [ ] Angular support via `createAngularVisitors`
 - [ ] Vue/React support via `defineTemplateBodyVisitor`
-- [ ] All attribute checks use `=== undefined` (not `!value`)
-- [ ] Required text attributes check `=== undefined || === ''`
+- [ ] All attribute checks use `=== null` (not `!value`)
+- [ ] Required text attributes check `=== null || === ''`
 - [ ] Parent/child type checks include `Element` fallback
 - [ ] Angular type checks include both `Element` and `Element$1`
 - [ ] Tests include React (PascalCase) examples

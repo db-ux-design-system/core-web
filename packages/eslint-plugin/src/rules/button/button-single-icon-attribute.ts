@@ -8,7 +8,7 @@ import { COMPONENTS, MESSAGES, MESSAGE_IDS } from '../../shared/constants.js';
 
 export default {
 	meta: {
-		type: 'problem',
+		type: 'problem' as const,
 		docs: {
 			description: 'Ensure DBButton uses only one icon attribute',
 			url: 'https://github.com/db-ux-design-system/core-web/blob/main/packages/eslint-plugin/README.md#button-single-icon-attribute'

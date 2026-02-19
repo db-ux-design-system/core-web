@@ -20,7 +20,7 @@ const COMPONENTS_WITH_CHILDREN_LABEL = ['DBCheckbox', 'DBRadio', 'DBSwitch'];
 
 export default {
 	meta: {
-		type: 'problem',
+		type: 'problem' as const,
 		docs: {
 			description:
 				'Ensure form components have a label attribute for accessibility',
@@ -49,7 +49,7 @@ export default {
 				COMPONENTS_WITH_CHILDREN_LABEL.includes(component);
 
 			if (
-				(label === undefined || label === '') &&
+				(label === null || label === '') &&
 				!(canUseChildren && hasChildren)
 			) {
 				const loc = parserServices.convertNodeSourceSpanToLoc(
@@ -95,7 +95,7 @@ export default {
 				COMPONENTS_WITH_CHILDREN_LABEL.includes(component);
 
 			if (
-				(label === undefined || label === '') &&
+				(label === null || label === '') &&
 				!(canUseChildren && hasChildren)
 			) {
 				context.report({

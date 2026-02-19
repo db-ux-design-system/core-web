@@ -26,13 +26,13 @@ function getTextContent(node: any): string | null {
 
 export default {
 	meta: {
-		type: 'problem',
+		type: 'problem' as const,
 		docs: {
 			description:
 				'Ensure DBBadge with corner placement has max 3 characters and label',
 			url: 'https://github.com/db-ux-design-system/core-web/blob/main/packages/eslint-plugin/README.md#badge-corner-placement-rules'
 		},
-		fixable: 'code',
+		fixable: 'code' as const,
 		messages: {
 			[MESSAGE_IDS.BADGE_CORNER_TEXT_TOO_LONG]:
 				MESSAGES.BADGE_CORNER_TEXT_TOO_LONG,

@@ -8,7 +8,7 @@ import {
 
 export default {
 	meta: {
-		type: 'problem',
+		type: 'problem' as const,
 		docs: {
 			description:
 				'Ensure DBInput file type has accept and validate file-only attributes',
@@ -30,7 +30,7 @@ export default {
 			const multiple = getAttributeValue(node, 'multiple');
 
 			if (type === 'file') {
-				if (accept === undefined) {
+				if (accept === null) {
 					const loc = parserServices.convertNodeSourceSpanToLoc(
 						node.sourceSpan
 					);
@@ -40,7 +40,7 @@ export default {
 					});
 				}
 			} else {
-				if (multiple !== undefined) {
+				if (multiple !== null) {
 					const loc = parserServices.convertNodeSourceSpanToLoc(
 						node.sourceSpan
 					);
@@ -49,7 +49,7 @@ export default {
 						messageId: MESSAGE_IDS.INPUT_INVALID_MULTIPLE
 					});
 				}
-				if (accept !== undefined) {
+				if (accept !== null) {
 					const loc = parserServices.convertNodeSourceSpanToLoc(
 						node.sourceSpan
 					);
@@ -77,20 +77,20 @@ export default {
 			const multiple = getAttributeValue(openingElement, 'multiple');
 
 			if (type === 'file') {
-				if (accept === undefined) {
+				if (accept === null) {
 					context.report({
 						node: openingElement,
 						messageId: MESSAGE_IDS.INPUT_FILE_MISSING_ACCEPT
 					});
 				}
 			} else {
-				if (multiple !== undefined) {
+				if (multiple !== null) {
 					context.report({
 						node: openingElement,
 						messageId: MESSAGE_IDS.INPUT_INVALID_MULTIPLE
 					});
 				}
-				if (accept !== undefined) {
+				if (accept !== null) {
 					context.report({
 						node: openingElement,
 						messageId: MESSAGE_IDS.INPUT_INVALID_ACCEPT

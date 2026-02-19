@@ -8,7 +8,7 @@ import {
 
 export default {
 	meta: {
-		type: 'problem',
+		type: 'problem' as const,
 		docs: {
 			description:
 				'Ensure DBTag with behavior="removable" has removeButton',
@@ -27,7 +27,7 @@ export default {
 
 			const removeButton = getAttributeValue(node, 'removeButton');
 
-			if (removeButton === undefined || removeButton === '') {
+			if (removeButton === null || removeButton === '') {
 				const loc = parserServices.convertNodeSourceSpanToLoc(
 					node.sourceSpan
 				);
@@ -57,7 +57,7 @@ export default {
 				'removeButton'
 			);
 
-			if (removeButton === undefined || removeButton === '') {
+			if (removeButton === null || removeButton === '') {
 				context.report({
 					node: openingElement,
 					messageId: MESSAGE_IDS.TAG_REMOVABLE_REMOVE_BUTTON_REQUIRED

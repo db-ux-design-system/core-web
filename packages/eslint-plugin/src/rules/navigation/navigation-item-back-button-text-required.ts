@@ -8,7 +8,7 @@ import {
 
 export default {
 	meta: {
-		type: 'problem',
+		type: 'problem' as const,
 		docs: {
 			description:
 				'Ensure DBNavigationItem has backButtonText for accessibility',
@@ -23,7 +23,7 @@ export default {
 	create(context: any) {
 		const angularHandler = (node: any, parserServices: any) => {
 			const backButtonText = getAttributeValue(node, 'backButtonText');
-			if (backButtonText === undefined || backButtonText === '') {
+			if (backButtonText === null || backButtonText === '') {
 				const loc = parserServices.convertNodeSourceSpanToLoc(
 					node.sourceSpan
 				);
@@ -52,7 +52,7 @@ export default {
 				'backButtonText'
 			);
 
-			if (backButtonText === undefined || backButtonText === '') {
+			if (backButtonText === null || backButtonText === '') {
 				context.report({
 					node: openingElement,
 					messageId:

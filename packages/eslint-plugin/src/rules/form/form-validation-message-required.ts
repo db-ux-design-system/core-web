@@ -16,7 +16,7 @@ const FORM_COMPONENTS = [
 
 export default {
 	meta: {
-		type: 'suggestion',
+		type: 'suggestion' as const,
 		docs: {
 			description:
 				'Ensure form components with validation have invalidMessage',
@@ -37,10 +37,10 @@ export default {
 			if (!component) return;
 
 			const invalidMessage = getAttributeValue(node, 'invalidMessage');
-			if (invalidMessage !== undefined) return;
+			if (invalidMessage !== null) return;
 
 			const required = getAttributeValue(node, 'required');
-			if (required !== undefined) {
+			if (required !== null) {
 				const loc = parserServices.convertNodeSourceSpanToLoc(
 					node.sourceSpan
 				);
@@ -56,7 +56,7 @@ export default {
 				const maxLength = getAttributeValue(node, 'maxLength');
 				const minLength = getAttributeValue(node, 'minLength');
 
-				if (maxLength !== undefined) {
+				if (maxLength !== null) {
 					const loc = parserServices.convertNodeSourceSpanToLoc(
 						node.sourceSpan
 					);
@@ -71,7 +71,7 @@ export default {
 					return;
 				}
 
-				if (minLength !== undefined) {
+				if (minLength !== null) {
 					const loc = parserServices.convertNodeSourceSpanToLoc(
 						node.sourceSpan
 					);
@@ -92,7 +92,7 @@ export default {
 				const max = getAttributeValue(node, 'max');
 				const pattern = getAttributeValue(node, 'pattern');
 
-				if (min !== undefined) {
+				if (min !== null) {
 					const loc = parserServices.convertNodeSourceSpanToLoc(
 						node.sourceSpan
 					);
@@ -104,7 +104,7 @@ export default {
 					return;
 				}
 
-				if (max !== undefined) {
+				if (max !== null) {
 					const loc = parserServices.convertNodeSourceSpanToLoc(
 						node.sourceSpan
 					);
@@ -116,7 +116,7 @@ export default {
 					return;
 				}
 
-				if (pattern !== undefined) {
+				if (pattern !== null) {
 					const loc = parserServices.convertNodeSourceSpanToLoc(
 						node.sourceSpan
 					);
@@ -152,10 +152,10 @@ export default {
 				openingElement,
 				'invalidMessage'
 			);
-			if (invalidMessage !== undefined) return;
+			if (invalidMessage !== null) return;
 
 			const required = getAttributeValue(openingElement, 'required');
-			if (required !== undefined) {
+			if (required !== null) {
 				context.report({
 					node: openingElement,
 					messageId: MESSAGE_IDS.FORM_VALIDATION_MESSAGE_REQUIRED,
@@ -174,7 +174,7 @@ export default {
 					'minLength'
 				);
 
-				if (maxLength !== undefined) {
+				if (maxLength !== null) {
 					context.report({
 						node: openingElement,
 						messageId: MESSAGE_IDS.FORM_VALIDATION_MESSAGE_REQUIRED,
@@ -186,7 +186,7 @@ export default {
 					return;
 				}
 
-				if (minLength !== undefined) {
+				if (minLength !== null) {
 					context.report({
 						node: openingElement,
 						messageId: MESSAGE_IDS.FORM_VALIDATION_MESSAGE_REQUIRED,
@@ -204,7 +204,7 @@ export default {
 				const max = getAttributeValue(openingElement, 'max');
 				const pattern = getAttributeValue(openingElement, 'pattern');
 
-				if (min !== undefined) {
+				if (min !== null) {
 					context.report({
 						node: openingElement,
 						messageId: MESSAGE_IDS.FORM_VALIDATION_MESSAGE_REQUIRED,
@@ -213,7 +213,7 @@ export default {
 					return;
 				}
 
-				if (max !== undefined) {
+				if (max !== null) {
 					context.report({
 						node: openingElement,
 						messageId: MESSAGE_IDS.FORM_VALIDATION_MESSAGE_REQUIRED,
@@ -222,7 +222,7 @@ export default {
 					return;
 				}
 
-				if (pattern !== undefined) {
+				if (pattern !== null) {
 					context.report({
 						node: openingElement,
 						messageId: MESSAGE_IDS.FORM_VALIDATION_MESSAGE_REQUIRED,

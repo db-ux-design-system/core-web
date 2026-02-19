@@ -11,13 +11,13 @@ const INTERACTIVE_PARENTS = ['DBButton', 'DBLink', 'button', 'a'];
 
 export default {
 	meta: {
-		type: 'problem',
+		type: 'problem' as const,
 		docs: {
 			description:
 				'Prevent inline placement for DBBadge inside interactive elements',
 			url: 'https://github.com/db-ux-design-system/core-web/blob/main/packages/eslint-plugin/README.md#badge-no-inline-in-interactive'
 		},
-		fixable: 'code',
+		fixable: 'code' as const,
 		messages: {
 			[MESSAGE_IDS.BADGE_NO_INLINE_IN_INTERACTIVE]:
 				MESSAGES.BADGE_NO_INLINE_IN_INTERACTIVE
@@ -31,7 +31,7 @@ export default {
 
 			let parent: any = node.parent;
 			while (parent) {
-				if (parent.type === 'Element') {
+				if (parent.type === 'Element' || parent.type === 'Element$1') {
 					const parentName = parent.name;
 					const matchedParent = INTERACTIVE_PARENTS.find(
 						(p) =>
@@ -86,7 +86,9 @@ export default {
 			while (parent) {
 				if (
 					parent.type === 'JSXElement' ||
-					parent.type === 'VElement'
+					parent.type === 'VElement' ||
+					parent.type === 'Element' ||
+					parent.type === 'Element$1'
 				) {
 					const parentOpening = parent.openingElement || parent;
 					const parentName =

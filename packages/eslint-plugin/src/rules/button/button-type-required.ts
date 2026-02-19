@@ -10,12 +10,12 @@ import {
 
 export default {
 	meta: {
-		type: 'problem',
+		type: 'problem' as const,
 		docs: {
 			description: 'Ensure DBButton has explicit type attribute',
 			url: 'https://github.com/db-ux-design-system/core-web/blob/main/packages/eslint-plugin/README.md#button-type-required'
 		},
-		fixable: 'code',
+		fixable: 'code' as const,
 		messages: {
 			[MESSAGE_IDS.BUTTON_TYPE_REQUIRED]: MESSAGES.BUTTON_TYPE_REQUIRED
 		},
@@ -24,7 +24,7 @@ export default {
 	create(context: any) {
 		const angularHandler = (node: any, parserServices: any) => {
 			const type = getAttributeValue(node, 'type');
-			if (type === undefined) {
+			if (type === null) {
 				const hasClickHandler = getAttributeValue(node, '(click)');
 				const typeValue = hasClickHandler ? 'button' : 'submit';
 				const loc = parserServices.convertNodeSourceSpanToLoc(
@@ -61,7 +61,7 @@ export default {
 			if (!isDBComponent(openingElement, COMPONENTS.DBButton)) return;
 
 			const type = getAttributeValue(openingElement, 'type');
-			if (type !== undefined) return;
+			if (type !== null) return;
 
 			const hasClickHandler =
 				getAttributeValue(openingElement, 'onClick') ||

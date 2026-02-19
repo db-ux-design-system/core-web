@@ -3,9 +3,10 @@ import { describe, it } from 'vitest';
 import rule from '../../../src/rules/button/button-type-required.js';
 
 const ruleTester = new RuleTester({
-	parser: '@typescript-eslint/parser',
-	parserOptions: {
-		ecmaFeatures: { jsx: true }
+	languageOptions: {
+		parserOptions: {
+			ecmaFeatures: { jsx: true }
+		}
 	}
 });
 
@@ -55,3 +56,4 @@ describe('button-type-required', () => {
 		});
 	});
 });
+

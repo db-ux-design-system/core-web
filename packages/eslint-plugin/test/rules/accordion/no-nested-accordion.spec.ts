@@ -3,9 +3,10 @@ import { describe, it } from 'vitest';
 import rule from '../../../src/rules/accordion/no-nested-accordion.js';
 
 const ruleTester = new RuleTester({
-	parser: '@typescript-eslint/parser',
-	parserOptions: {
-		ecmaFeatures: { jsx: true }
+	languageOptions: {
+		parserOptions: {
+			ecmaFeatures: { jsx: true }
+		}
 	}
 });
 
@@ -38,6 +39,10 @@ describe('no-nested-accordion', () => {
 					errors: [{ messageId: 'noNested' }]
 				},
 				{
+					code: '<db-accordion><db-accordion-item><db-accordion>Deep nested</db-accordion></db-accordion-item></db-accordion>',
+					errors: [{ messageId: 'noNested' }]
+				},
+				{
 					code: '<DBAccordion><div><DBAccordion>Nested in div</DBAccordion></div></DBAccordion>',
 					errors: [{ messageId: 'noNested' }]
 				}
@@ -45,3 +50,4 @@ describe('no-nested-accordion', () => {
 		});
 	});
 });
+

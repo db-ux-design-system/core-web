@@ -24,12 +24,12 @@ const COMPONENTS_WITH_ICON_ATTR = [
 
 export default {
 	meta: {
-		type: 'suggestion',
+		type: 'suggestion' as const,
 		docs: {
 			description: 'Prefer icon attribute over DBIcon child component',
 			url: 'https://github.com/db-ux-design-system/core-web/blob/main/packages/eslint-plugin/README.md#prefer-icon-attribute'
 		},
-		fixable: 'code',
+		fixable: 'code' as const,
 		messages: {
 			[MESSAGE_IDS.ICON_PREFER_ATTRIBUTE]: MESSAGES.ICON_PREFER_ATTRIBUTE
 		},
@@ -86,7 +86,8 @@ export default {
 				(child: any) =>
 					(child.type === 'JSXElement' ||
 						child.type === 'VElement' ||
-						child.type === 'Element') &&
+						child.type === 'Element' ||
+						child.type === 'Element$1') &&
 					isDBComponent(child.openingElement || child, 'DBIcon')
 			);
 

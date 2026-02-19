@@ -30,7 +30,7 @@ function hasHeadlineSlot(node: any): boolean {
 
 export default {
 	meta: {
-		type: 'problem',
+		type: 'problem' as const,
 		docs: {
 			description: 'Ensure DBAccordionItem has headline or headlinePlain',
 			url: 'https://github.com/db-ux-design-system/core-web/blob/main/packages/eslint-plugin/README.md#accordion-item-headline-required'

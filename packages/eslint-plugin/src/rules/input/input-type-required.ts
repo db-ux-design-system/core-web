@@ -10,13 +10,13 @@ import {
 
 export default {
 	meta: {
-		type: 'suggestion',
+		type: 'suggestion' as const,
 		docs: {
 			description:
 				'Ensure DBInput has type attribute for better developer experience',
 			url: 'https://github.com/db-ux-design-system/core-web/blob/main/packages/eslint-plugin/README.md#input-type-required'
 		},
-		fixable: 'code',
+		fixable: 'code' as const,
 		messages: {
 			[MESSAGE_IDS.INPUT_TYPE_REQUIRED]: MESSAGES.INPUT_TYPE_REQUIRED
 		},
@@ -25,7 +25,7 @@ export default {
 	create(context: any) {
 		const angularHandler = (node: any, parserServices: any) => {
 			const type = getAttributeValue(node, 'type');
-			if (type === undefined) {
+			if (type === null) {
 				const loc = parserServices.convertNodeSourceSpanToLoc(
 					node.sourceSpan
 				);
@@ -61,7 +61,7 @@ export default {
 
 			const type = getAttributeValue(openingElement, 'type');
 
-			if (type === undefined) {
+			if (type === null) {
 				context.report({
 					node: openingElement,
 					messageId: MESSAGE_IDS.INPUT_TYPE_REQUIRED,

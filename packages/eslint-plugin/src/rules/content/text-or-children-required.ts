@@ -18,7 +18,7 @@ const COMPONENTS_REQUIRING_CONTENT = [
 
 export default {
 	meta: {
-		type: 'problem',
+		type: 'problem' as const,
 		docs: {
 			description:
 				'Ensure components have text property or children content',
@@ -46,7 +46,7 @@ export default {
 					child.type === 'Element$1'
 			);
 
-			if (text === undefined && !hasChildren) {
+			if (text === null && !hasChildren) {
 				const loc = parserServices.convertNodeSourceSpanToLoc(
 					node.sourceSpan
 				);
@@ -89,7 +89,7 @@ export default {
 					child.type === 'VExpressionContainer'
 			);
 
-			if (text === undefined && !hasChildren) {
+			if (text === null && !hasChildren) {
 				context.report({
 					node: openingElement,
 					messageId: MESSAGE_IDS.TEXT_OR_CHILDREN_REQUIRED,

@@ -3,9 +3,10 @@ import { describe, it } from 'vitest';
 import rule from '../../../src/rules/tooltip/tooltip-requires-interactive-parent.js';
 
 const ruleTester = new RuleTester({
-	parser: '@typescript-eslint/parser',
-	parserOptions: {
-		ecmaFeatures: { jsx: true }
+	languageOptions: {
+		parserOptions: {
+			ecmaFeatures: { jsx: true }
+		}
 	}
 });
 
@@ -63,3 +64,4 @@ describe('tooltip-requires-interactive-parent', () => {
 		});
 	});
 });
+

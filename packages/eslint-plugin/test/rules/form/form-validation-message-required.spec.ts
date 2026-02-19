@@ -3,9 +3,10 @@ import { describe, it } from 'vitest';
 import rule from '../../../src/rules/form/form-validation-message-required.js';
 
 const ruleTester = new RuleTester({
-	parser: '@typescript-eslint/parser',
-	parserOptions: {
-		ecmaFeatures: { jsx: true }
+	languageOptions: {
+		parserOptions: {
+			ecmaFeatures: { jsx: true }
+		}
 	}
 });
 
@@ -117,3 +118,4 @@ describe('form-validation-message-required', () => {
 		});
 	});
 });
+

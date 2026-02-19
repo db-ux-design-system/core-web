@@ -8,7 +8,7 @@ import {
 
 export default {
 	meta: {
-		type: 'problem',
+		type: 'problem' as const,
 		docs: {
 			description:
 				'Ensure DBHeader has burgerMenuLabel for accessibility',
@@ -23,7 +23,7 @@ export default {
 	create(context: any) {
 		const angularHandler = (node: any, parserServices: any) => {
 			const burgerMenuLabel = getAttributeValue(node, 'burgerMenuLabel');
-			if (burgerMenuLabel === undefined || burgerMenuLabel === '') {
+			if (burgerMenuLabel === null || burgerMenuLabel === '') {
 				const loc = parserServices.convertNodeSourceSpanToLoc(
 					node.sourceSpan
 				);
@@ -50,7 +50,7 @@ export default {
 				'burgerMenuLabel'
 			);
 
-			if (burgerMenuLabel === undefined || burgerMenuLabel === '') {
+			if (burgerMenuLabel === null || burgerMenuLabel === '') {
 				context.report({
 					node: openingElement,
 					messageId: MESSAGE_IDS.HEADER_MISSING_BURGER_MENU_LABEL

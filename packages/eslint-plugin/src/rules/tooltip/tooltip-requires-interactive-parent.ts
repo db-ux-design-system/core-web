@@ -16,17 +16,22 @@ function isInteractiveElement(node: any): boolean {
 		openingElement.rawName ||
 		(openingElement.name?.type === 'JSXIdentifier'
 			? openingElement.name.name
-			: null);
+			: openingElement.name || null);
 	if (!tagName) return false;
-	return INTERACTIVE_ELEMENTS.some(
-		(el) =>
-			tagName === el || tagName === el.toLowerCase().replace('db', 'db-')
-	);
+	
+	const normalizedTag = tagName.toLowerCase();
+	return INTERACTIVE_ELEMENTS.some((el) => {
+		const elLower = el.toLowerCase();
+		const kebabCase = elLower.startsWith('db') 
+			? elLower.replace('db', 'db-')
+			: elLower;
+		return normalizedTag === elLower || normalizedTag === kebabCase;
+	});
 }
 
 export default {
 	meta: {
-		type: 'problem',
+		type: 'problem' as const,
 		docs: {
 			description:
 				'Ensure DBTooltip is child of interactive element for accessibility',

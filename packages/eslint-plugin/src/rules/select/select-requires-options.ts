@@ -23,7 +23,7 @@ function hasOptionChildren(node: any): boolean {
 
 export default {
 	meta: {
-		type: 'problem',
+		type: 'problem' as const,
 		docs: {
 			description:
 				'Ensure DBSelect has options property or option children',
@@ -40,7 +40,7 @@ export default {
 			const options = getAttributeValue(node, 'options');
 			const hasChildren = hasOptionChildren(node);
 
-			if (options === undefined && !hasChildren) {
+			if (options === null && !hasChildren) {
 				const loc = parserServices.convertNodeSourceSpanToLoc(
 					node.sourceSpan
 				);
@@ -65,7 +65,7 @@ export default {
 			const options = getAttributeValue(openingElement, 'options');
 			const hasChildren = hasOptionChildren(node);
 
-			if (options === undefined && !hasChildren) {
+			if (options === null && !hasChildren) {
 				context.report({
 					node: openingElement,
 					messageId: MESSAGE_IDS.SELECT_MISSING_OPTIONS

@@ -9,13 +9,13 @@ import {
 
 export default {
 	meta: {
-		type: 'problem',
+		type: 'problem' as const,
 		docs: {
 			description:
 				'Ensure DBButton with noText has icon and DBTooltip child',
 			url: 'https://github.com/db-ux-design-system/core-web/blob/main/packages/eslint-plugin/README.md#button-no-text-requires-tooltip'
 		},
-		fixable: 'code',
+		fixable: 'code' as const,
 		messages: {
 			[MESSAGE_IDS.BUTTON_NO_TEXT_MISSING_ICON]:
 				MESSAGES.BUTTON_NO_TEXT_MISSING_ICON,
@@ -27,7 +27,7 @@ export default {
 	create(context: any) {
 		const angularHandler = (node: any, parserServices: any) => {
 			const noText = getAttributeValue(node, 'noText');
-			if (noText === undefined) return;
+			if (noText === null) return;
 
 			const icon =
 				getAttributeValue(node, 'icon') ||
@@ -57,6 +57,10 @@ export default {
 						const startOffset = node.sourceSpan.start.offset;
 						const endOffset = node.sourceSpan.end.offset;
 						const tagText = text.substring(startOffset, endOffset);
+
+						// Check if tooltip already exists (prevents duplicate fixes)
+						if (tagText.includes('<db-tooltip>')) return null;
+
 						const closeTagIndex =
 							tagText.lastIndexOf('</db-button>');
 						if (closeTagIndex === -1) return null;
@@ -83,7 +87,7 @@ export default {
 			if (!isDBComponent(openingElement, COMPONENTS.DBButton)) return;
 
 			const noText = getAttributeValue(openingElement, 'noText');
-			if (noText === undefined) return;
+			if (noText === null) return;
 
 			const icon =
 				getAttributeValue(openingElement, 'icon') ||
@@ -119,8 +123,8 @@ export default {
 							);
 						} else {
 							// Vue
-							if (!node.endTag || !node.startTag?.range)
-								return null;
+							if (!node.endTag) return null;
+							if (!node.startTag?.range) return null;
 							const componentName = openingElement.rawName;
 							const tooltipName = componentName.includes('-')
 								? 'db-tooltip'

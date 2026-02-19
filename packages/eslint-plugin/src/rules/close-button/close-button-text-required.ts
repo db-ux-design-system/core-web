@@ -14,7 +14,7 @@ const COMPONENTS_WITH_CLOSE_BUTTON = {
 
 export default {
 	meta: {
-		type: 'problem',
+		type: 'problem' as const,
 		docs: {
 			description:
 				'Ensure components have close button text for accessibility',
@@ -41,7 +41,7 @@ export default {
 				];
 			const value = getAttributeValue(node, attribute);
 
-			if (value === undefined || value === '') {
+			if (value === null || value === '') {
 				const loc = parserServices.convertNodeSourceSpanToLoc(
 					node.sourceSpan
 				);
@@ -79,7 +79,7 @@ export default {
 				];
 			const value = getAttributeValue(openingElement, attribute);
 
-			if (value === undefined || value === '') {
+			if (value === null || value === '') {
 				context.report({
 					node: openingElement,
 					messageId: MESSAGE_IDS.CLOSE_BUTTON_TEXT_REQUIRED,

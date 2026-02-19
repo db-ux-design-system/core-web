@@ -8,7 +8,7 @@ import {
 
 export default {
 	meta: {
-		type: 'problem',
+		type: 'problem' as const,
 		docs: {
 			description:
 				'Ensure DBCustomSelect with selectedType="tag" has removeTagsTexts',
@@ -27,7 +27,7 @@ export default {
 
 			const removeTagsTexts = getAttributeValue(node, 'removeTagsTexts');
 
-			if (removeTagsTexts === undefined || removeTagsTexts === '') {
+			if (removeTagsTexts === null || removeTagsTexts === '') {
 				const loc = parserServices.convertNodeSourceSpanToLoc(
 					node.sourceSpan
 				);
@@ -62,7 +62,7 @@ export default {
 				'removeTagsTexts'
 			);
 
-			if (removeTagsTexts === undefined || removeTagsTexts === '') {
+			if (removeTagsTexts === null || removeTagsTexts === '') {
 				context.report({
 					node: openingElement,
 					messageId:

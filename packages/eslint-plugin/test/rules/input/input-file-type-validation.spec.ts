@@ -3,9 +3,10 @@ import { describe, it } from 'vitest';
 import rule from '../../../src/rules/input/input-file-type-validation.js';
 
 const ruleTester = new RuleTester({
-	parser: '@typescript-eslint/parser',
-	parserOptions: {
-		ecmaFeatures: { jsx: true }
+	languageOptions: {
+		parserOptions: {
+			ecmaFeatures: { jsx: true }
+		}
 	}
 });
 
@@ -46,3 +47,4 @@ describe('input-file-type-validation', () => {
 		});
 	});
 });
+

@@ -47,18 +47,18 @@
 
 		<!-- db-ux/no-interactive-tooltip-content -->
 		<DBTooltip>
-			<DBButton>Click</DBButton>
+			<DBButton type="submit">Click</DBButton>
 		</DBTooltip>
 
 		<!-- db-ux/no-nested-accordion -->
 		<DBAccordion>
-			<DBAccordionItem>
+			<DBAccordionItem headlinePlain="Test">
 				<DBAccordion></DBAccordion>
 			</DBAccordionItem>
 		</DBAccordion>
 
 		<!-- db-ux/prefer-icon-attribute -->
-		<DBButton>
+		<DBButton type="submit">
 			<DBIcon icon="search" />
 		</DBButton>
 

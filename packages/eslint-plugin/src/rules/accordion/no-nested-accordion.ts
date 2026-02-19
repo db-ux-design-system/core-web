@@ -7,7 +7,7 @@ import {
 
 export default {
 	meta: {
-		type: 'problem',
+		type: 'problem' as const,
 		docs: {
 			description: 'Prevent nesting DBAccordion components',
 			url: 'https://github.com/db-ux-design-system/core-web/blob/main/packages/eslint-plugin/README.md#no-nested-accordion'
@@ -22,8 +22,7 @@ export default {
 			let parent: any = node.parent;
 			while (parent) {
 				if (
-					(parent.type === 'Element' ||
-						parent.type === 'Element$1') &&
+					(parent.type === 'Element' || parent.type === 'Element$1') &&
 					isDBComponent(parent, COMPONENTS.DBAccordion)
 				) {
 					const loc = parserServices.convertNodeSourceSpanToLoc(
@@ -56,7 +55,8 @@ export default {
 				if (
 					(parent.type === 'JSXElement' ||
 						parent.type === 'VElement' ||
-						parent.type === 'Element') &&
+						parent.type === 'Element' ||
+						parent.type === 'Element$1') &&
 					isDBComponent(parentOpening, COMPONENTS.DBAccordion)
 				) {
 					context.report({

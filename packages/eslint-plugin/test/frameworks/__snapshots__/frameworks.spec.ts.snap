@@ -38,15 +38,7 @@ exports[`Framework ESLint Integration > should lint Angular test file > angular-
   {
     "column": 2,
     "endColumn": 55,
-    "endLine": 29,
-    "fix": {
-      "range": [
-        1084,
-        1084,
-      ],
-      "text": "
-  <db-tooltip>Describe action</db-tooltip>",
-    },
+    "endLine": 20,
     "line": 19,
     "message": "DBButton with noText must have a DBTooltip child for accessibility",
     "messageId": "missingTooltip",
@@ -57,8 +49,8 @@ exports[`Framework ESLint Integration > should lint Angular test file > angular-
   {
     "column": 2,
     "endColumn": 25,
-    "endLine": 42,
-    "line": 42,
+    "endLine": 33,
+    "line": 33,
     "message": "DBHeader must have burgerMenuLabel attribute for accessibility",
     "messageId": "missingBurgerMenuLabel",
     "nodeType": null,
@@ -68,8 +60,8 @@ exports[`Framework ESLint Integration > should lint Angular test file > angular-
   {
     "column": 2,
     "endColumn": 23,
-    "endLine": 53,
-    "line": 51,
+    "endLine": 44,
+    "line": 42,
     "message": "DBNavigationItem must have backButtonText attribute for accessibility",
     "messageId": "missingBackButtonText",
     "nodeType": null,
@@ -77,25 +69,58 @@ exports[`Framework ESLint Integration > should lint Angular test file > angular-
     "severity": 2,
   },
   {
-    "column": 3,
-    "endColumn": 23,
-    "endLine": 64,
-    "line": 62,
-    "message": "DBAccordionItem must have either headline or headlinePlain attribute",
-    "messageId": "headlineRequired",
+    "column": 2,
+    "endColumn": 15,
+    "endLine": 49,
+    "line": 47,
+    "message": "DBTooltip must not contain interactive elements. Use DBPopover for interactive content",
+    "messageId": "noInteractive",
     "nodeType": null,
-    "ruleId": "db-ux/accordion-item-headline-required",
+    "ruleId": "db-ux/no-interactive-tooltip-content",
+    "severity": 2,
+  },
+  {
+    "column": 2,
+    "endColumn": 15,
+    "endLine": 49,
+    "line": 47,
+    "message": "DBTooltip must be a child of an interactive element (button, link, etc.) for accessibility",
+    "messageId": "requiresInteractive",
+    "nodeType": null,
+    "ruleId": "db-ux/tooltip-requires-interactive-parent",
+    "severity": 2,
+  },
+  {
+    "column": 2,
+    "endColumn": 44,
+    "endLine": 64,
+    "line": 64,
+    "message": "DBSelect must have either an options property or <option> children",
+    "messageId": "missingOptions",
+    "nodeType": null,
+    "ruleId": "db-ux/select-requires-options",
     "severity": 2,
   },
   {
     "column": 2,
     "endColumn": 40,
-    "endLine": 76,
-    "line": 76,
+    "endLine": 67,
+    "line": 67,
     "message": "DBTag with behavior="removable" must have removeButton attribute for accessibility",
     "messageId": "missingRemoveButton",
     "nodeType": null,
     "ruleId": "db-ux/tag-removable-remove-button-required",
+    "severity": 2,
+  },
+  {
+    "column": 3,
+    "endColumn": 62,
+    "endLine": 71,
+    "line": 71,
+    "message": "DBTooltip must be a child of an interactive element (button, link, etc.) for accessibility",
+    "messageId": "requiresInteractive",
+    "nodeType": null,
+    "ruleId": "db-ux/tooltip-requires-interactive-parent",
     "severity": 2,
   },
 ]
@@ -110,7 +135,7 @@ exports[`Framework ESLint Integration > should lint Angular test file > angular-
 	<db-badge placement="corner-top-right" label="9999">9999</db-badge>
 
 	<!-- db-ux/badge-no-inline-in-interactive -->
-	<db-button type="button">
+	<db-button type="submit">
 		<db-badge placement="corner-top-right" label="Inline in button">Inline in button</db-badge>
 	</db-button>
 
@@ -121,19 +146,10 @@ exports[`Framework ESLint Integration > should lint Angular test file > angular-
 
 	<!-- db-ux/button-no-text-requires-tooltip -->
 	<db-button type="submit" noText icon="search">
-  <db-tooltip>Describe action</db-tooltip>
-  <db-tooltip>Describe action</db-tooltip>
-  <db-tooltip>Describe action</db-tooltip>
-  <db-tooltip>Describe action</db-tooltip>
-  <db-tooltip>Describe action</db-tooltip>
-  <db-tooltip>Describe action</db-tooltip>
-  <db-tooltip>Describe action</db-tooltip>
-  <db-tooltip>Describe action</db-tooltip>
-  <db-tooltip>Describe action</db-tooltip>
   <db-tooltip>Describe action</db-tooltip></db-button>
 
 	<!-- db-ux/button-type-required -->
-	<db-button type="button">Missing type</db-button>
+	<db-button type="submit">Missing type</db-button>
 	<db-button type="button">Valid button</db-button>
 
 	<!-- db-ux/form-label-required -->
@@ -163,13 +179,13 @@ exports[`Framework ESLint Integration > should lint Angular test file > angular-
 
 	<!-- db-ux/no-nested-accordion -->
 	<db-accordion>
-		<db-accordion-item>
+		<db-accordion-item headlinePlain="Test">
 			<db-accordion></db-accordion>
 		</db-accordion-item>
 	</db-accordion>
 
 	<!-- db-ux/prefer-icon-attribute -->
-	<db-button type="button">
+	<db-button type="submit">
 		<db-icon icon="search"></db-icon>
 	</db-button>
 
@@ -333,17 +349,6 @@ exports[`Framework ESLint Integration > should lint React test file > react-erro
     "severity": 2,
   },
   {
-    "column": 5,
-    "endColumn": 22,
-    "endLine": 74,
-    "line": 74,
-    "message": "DBAccordionItem must have either headline or headlinePlain attribute",
-    "messageId": "headlineRequired",
-    "nodeType": "JSXOpeningElement",
-    "ruleId": "db-ux/accordion-item-headline-required",
-    "severity": 2,
-  },
-  {
     "column": 6,
     "endColumn": 19,
     "endLine": 75,
@@ -475,7 +480,7 @@ export const TestComponent = () => {
 
 			{/* db-ux/no-nested-accordion */}
 			<DBAccordion>
-				<DBAccordionItem>
+				<DBAccordionItem headlinePlain="Test">
 					<DBAccordion></DBAccordion>
 				</DBAccordionItem>
 			</DBAccordion>
@@ -799,7 +804,7 @@ exports[`Framework ESLint Integration > should lint Vue test file > vue-fixed 1`
 
 		<!-- db-ux/no-nested-accordion -->
 		<DBAccordion>
-			<DBAccordionItem>
+			<DBAccordionItem headlinePlain="Test">
 				<DBAccordion></DBAccordion>
 			</DBAccordionItem>
 		</DBAccordion>

@@ -9,13 +9,13 @@ import {
 
 export default {
 	meta: {
-		type: 'problem',
+		type: 'problem' as const,
 		docs: {
 			description:
 				'Ensure external links have proper security attributes',
 			url: 'https://github.com/db-ux-design-system/core-web/blob/main/packages/eslint-plugin/README.md#link-external-security'
 		},
-		fixable: 'code',
+		fixable: 'code' as const,
 		messages: {
 			[MESSAGE_IDS.LINK_MISSING_TARGET_BLANK]:
 				MESSAGES.LINK_MISSING_TARGET_BLANK,
