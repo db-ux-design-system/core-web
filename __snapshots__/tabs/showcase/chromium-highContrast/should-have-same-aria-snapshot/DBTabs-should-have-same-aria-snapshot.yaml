@@ -1,97 +1,96 @@
 - main:
   - heading "DBTabs" [level=1]
-  - link "Density Functional"
+  - link "Density"
   - text: "Functional:"
   - tablist:
-    - tab "Functional Tab 1" [selected]
-    - tab "Functional Tab 2"
-    - tab "Functional Tab 3"
-  - tabpanel "Functional Tab 1": Functional Panel 1
-  - link "Density Regular"
+    - tab "Test 1" [selected]
+    - tab "Test 2"
+    - tab "Test 3"
+  - tabpanel "Test 1": Tab Panel 1
   - text: "(Default) Regular:"
   - tablist:
-    - tab "(Default) Regular Tab 1" [selected]
-    - tab "(Default) Regular Tab 2"
-    - tab "(Default) Regular Tab 3"
-  - tabpanel "(Default) Regular Tab 1": (Default) Regular Panel 1
-  - link "Density Expressive"
+    - tab "Test 1" [selected]
+    - tab "Test 2"
+    - tab "Test 3"
+  - tabpanel "Test 1": Tab Panel 1
   - text: "Expressive:"
   - tablist:
-    - tab "Expressive Tab 1" [selected]
-    - tab "Expressive Tab 2"
-    - tab "Expressive Tab 3"
-  - tabpanel "Expressive Tab 1": Expressive Panel 1
-  - link "Orientation Horizontal"
+    - tab "Test 1" [selected]
+    - tab "Test 2"
+    - tab "Test 3"
+  - tabpanel "Test 1": Tab Panel 1
+  - link "Orientation"
   - text: "horizontal:"
   - tablist:
-    - tab "horizontal Tab 1" [selected]
-    - tab "horizontal Tab 2"
-    - tab "horizontal Tab 3"
-  - tabpanel "horizontal Tab 1": horizontal Panel 1
-  - link "Orientation Vertical"
+    - tab "Test 1" [selected]
+    - tab "Test 2"
+    - tab "Test 3"
+  - tabpanel "Test 1": Tab Panel 1
   - text: "vertical:"
   - tablist:
-    - tab "vertical Tab 1" [selected]
-    - tab "vertical Tab 2"
-    - tab "vertical Tab 3"
-  - tabpanel "vertical Tab 1": vertical Panel 1
-  - link "Width Auto"
+    - tab "Test 1" [selected]
+    - tab "Test 2"
+    - tab "Test 3"
+  - tabpanel "Test 1": Tab Panel 1
+  - link "Width"
   - text: "auto:"
   - tablist:
-    - tab "auto Tab 1" [selected]
-    - tab "auto Tab 2"
-    - tab "auto Tab 3"
-  - tabpanel "auto Tab 1": auto Panel 1
-  - link "Width Full Left"
-  - text: "full - content alignment: left:"
+    - tab "Test 1" [selected]
+    - tab "Test 2"
+    - tab "Test 3"
+  - tabpanel "Test 1": Tab Panel 1
+  - text: "full - alignment: start:"
   - tablist:
-    - 'tab "full - content alignment: left Tab 1" [selected]'
-    - 'tab "full - content alignment: left Tab 2"'
-    - 'tab "full - content alignment: left Tab 3"'
-  - 'tabpanel "full - content alignment: left Tab 1"': "full - content alignment: left Panel 1"
-  - link "Width Full Center"
-  - text: "full - content alignment: center:"
+    - tab "Test 1" [selected]
+    - tab "Test 2"
+    - tab "Test 3"
+  - tabpanel "Test 1": Tab Panel 1
+  - text: "full - alignment: center:"
   - tablist:
-    - 'tab "full - content alignment: center Tab 1" [selected]'
-    - 'tab "full - content alignment: center Tab 2"'
-    - 'tab "full - content alignment: center Tab 3"'
-  - 'tabpanel "full - content alignment: center Tab 1"': "full - content alignment: center Panel 1"
-  - link "Overflow None"
+    - tab "Test 1" [selected]
+    - tab "Test 2"
+    - tab "Test 3"
+  - tabpanel "Test 1": Tab Panel 1
+  - link "Overflow"
   - text: "no overflow:"
   - tablist:
-    - tab "no overflow Tab 1" [selected]
-    - tab "no overflow Tab 2"
-    - tab "no overflow Tab 3"
-  - tabpanel "no overflow Tab 1": no overflow Panel 1
-  - link "Overflow Arrows"
+    - tab "Test 1" [selected]
+    - tab "Test 2"
+    - tab "Test 3"
+  - tabpanel "Test 1": Tab Panel 1
   - text: "with overflow - behavior: arrows:"
   - tablist:
-    - 'tab "with overflow - behavior: arrows Tab 1" [selected]'
-    - 'tab "with overflow - behavior: arrows Tab 2"'
-    - 'tab "with overflow - behavior: arrows Tab 3"'
-    - 'tab "with overflow - behavior: arrows Tab 4"'
-    - 'tab "with overflow - behavior: arrows Tab 5"'
-  - 'tabpanel "with overflow - behavior: arrows Tab 1"': "with overflow - behavior: arrows Panel 1"
+    - tab "Test 1" [selected]
+    - tab "Test 2"
+    - tab "Test 3"
+    - tab "Test 4"
+    - tab "Test 5"
+  - tabpanel "Very long tab label that gets truncated": Tab Panel 1
   - button "Scroll right"
-  - link "Overflow Scrollbar"
   - text: "with overflow - behavior: scrollbar:"
   - tablist:
-    - 'tab "with overflow - behavior: scrollbar Tab 1" [selected]'
-    - 'tab "with overflow - behavior: scrollbar Tab 2"'
-    - 'tab "with overflow - behavior: scrollbar Tab 3"'
-    - 'tab "with overflow - behavior: scrollbar Tab 4"'
-    - 'tab "with overflow - behavior: scrollbar Tab 5"'
-  - 'tabpanel "with overflow - behavior: scrollbar Tab 1"': "with overflow - behavior: scrollbar Panel 1"
-  - link "Examples Selected"
+    - tab "Test 1" [selected]
+    - tab "Test 2"
+    - tab "Test 3"
+    - tab "Test 4"
+    - tab "Test 5"
+  - tabpanel "Test 1": Tab Panel 1
+  - link "Truncation"
+  - text: "truncated tab label:"
+  - tablist:
+    - tab "Very long tab label that gets truncated" [selected]
+    - tab "Tab 2"
+    - tab "Tab 3"
+  - tabpanel: Tab Panel 1
+  - link "Examples"
   - text: "2nd tab selected:"
   - tablist:
-    - tab "2nd tab selected Tab 1"
-    - tab "2nd tab selected Tab 2" [selected]
-    - tab "2nd tab selected Tab 3"
-  - tabpanel "2nd tab selected Tab 2": 2nd tab selected Panel 2
-  - link "Examples None"
+    - tab "Test 1"
+    - tab "Test 2" [selected]
+    - tab "Test 3"
+  - tabpanel "Test 2": Tab Panel 2
   - text: "nothing selected:"
   - tablist:
-    - tab "nothing selected Tab 1"
-    - tab "nothing selected Tab 2"
-    - tab "nothing selected Tab 3"
+    - tab "Test 1"
+    - tab "Test 2"
+    - tab "Test 3"
