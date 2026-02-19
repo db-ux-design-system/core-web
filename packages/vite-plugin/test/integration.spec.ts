@@ -1,15 +1,30 @@
 import { execSync } from 'child_process';
-import { existsSync, readFileSync, readdirSync } from 'fs';
+import { readFileSync, readdirSync } from 'fs';
 import { resolve } from 'path';
 import { beforeAll, describe, expect, it } from 'vitest';
+
+/**
+ * Normalize CSS for consistent snapshots across environments
+ */
+function normalizeCSS(css: string): string {
+	// Remove source map comments that may vary
+	css = css.replace(/\/\*# sourceMappingURL=.*?\*\//g, '');
+	// Normalize line endings
+	css = css.replace(/\r\n/g, '\n');
+	// Trim whitespace
+	css = css.trim();
+	return css;
+}
 
 describe('Integration Tests', () => {
 	describe('React App', () => {
 		beforeAll(() => {
 			const reactAppPath = resolve(__dirname, 'fixtures/react-app');
-			if (!existsSync(resolve(reactAppPath, 'dist'))) {
-				execSync('npm run build', { cwd: reactAppPath, stdio: 'inherit' });
-			}
+			execSync('npm install', {
+				cwd: reactAppPath,
+				stdio: 'inherit'
+			});
+			execSync('npm run build', { cwd: reactAppPath, stdio: 'inherit' });
 		}, 60000);
 
 		it('should generate CSS snapshot', () => {
@@ -22,7 +37,9 @@ describe('Integration Tests', () => {
 
 			expect(cssFile).toBeDefined();
 
-			const css = readFileSync(resolve(distPath, cssFile!), 'utf-8');
+			const css = normalizeCSS(
+				readFileSync(resolve(distPath, cssFile!), 'utf-8')
+			);
 
 			// Verify essential imports are present
 			expect(css).toContain('db-button');
@@ -38,9 +55,14 @@ describe('Integration Tests', () => {
 	describe('Vue App', () => {
 		beforeAll(() => {
 			const vueAppPath = resolve(__dirname, 'fixtures/vue-app');
-			if (!existsSync(resolve(vueAppPath, 'dist'))) {
-				execSync('npm run build', { cwd: vueAppPath, stdio: 'inherit' });
-			}
+			execSync('npm install', {
+				cwd: vueAppPath,
+				stdio: 'inherit'
+			});
+			execSync('npm run build', {
+				cwd: vueAppPath,
+				stdio: 'inherit'
+			});
 		}, 60000);
 
 		it('should generate CSS snapshot', () => {
@@ -50,7 +72,9 @@ describe('Integration Tests', () => {
 
 			expect(cssFile).toBeDefined();
 
-			const css = readFileSync(resolve(distPath, cssFile!), 'utf-8');
+			const css = normalizeCSS(
+				readFileSync(resolve(distPath, cssFile!), 'utf-8')
+			);
 
 			// Verify essential imports are present
 			expect(css).toContain('db-button');
