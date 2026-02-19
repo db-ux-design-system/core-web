@@ -15,7 +15,7 @@ export default {
 			url: 'https://github.com/db-ux-design-system/core-web/blob/main/packages/eslint-plugin/README.md#custom-select-tags-remove-text-required'
 		},
 		messages: {
-			[MESSAGE_IDS.CUSTOM_SELECT_MISSING_REMOVE_TAGS_TEXTS]:
+			missingRemoveTagsTexts:
 				MESSAGES.CUSTOM_SELECT_MISSING_REMOVE_TAGS_TEXTS
 		},
 		schema: []

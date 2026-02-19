@@ -30,8 +30,7 @@ export default {
 			url: 'https://github.com/db-ux-design-system/core-web/blob/main/packages/eslint-plugin/README.md#select-requires-options'
 		},
 		messages: {
-			[MESSAGE_IDS.SELECT_MISSING_OPTIONS]:
-				MESSAGES.SELECT_MISSING_OPTIONS
+			missingOptions: MESSAGES.SELECT_MISSING_OPTIONS
 		},
 		schema: []
 	},

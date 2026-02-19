@@ -15,11 +15,9 @@ export default {
 			url: 'https://github.com/db-ux-design-system/core-web/blob/main/packages/eslint-plugin/README.md#input-file-type-validation'
 		},
 		messages: {
-			[MESSAGE_IDS.INPUT_FILE_MISSING_ACCEPT]:
-				MESSAGES.INPUT_FILE_MISSING_ACCEPT,
-			[MESSAGE_IDS.INPUT_INVALID_MULTIPLE]:
-				MESSAGES.INPUT_INVALID_MULTIPLE,
-			[MESSAGE_IDS.INPUT_INVALID_ACCEPT]: MESSAGES.INPUT_INVALID_ACCEPT
+			missingAccept: MESSAGES.INPUT_FILE_MISSING_ACCEPT,
+			invalidMultiple: MESSAGES.INPUT_INVALID_MULTIPLE,
+			invalidAccept: MESSAGES.INPUT_INVALID_ACCEPT
 		},
 		schema: []
 	},

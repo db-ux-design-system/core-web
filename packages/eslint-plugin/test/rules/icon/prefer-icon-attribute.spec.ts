@@ -1,3 +1,4 @@
+import { RuleTester as AngularRuleTester } from '@angular-eslint/test-utils';
 import { RuleTester } from '@typescript-eslint/rule-tester';
 import { describe, it } from 'vitest';
 import rule from '../../../src/rules/icon/prefer-icon-attribute.js';
@@ -10,13 +11,14 @@ const ruleTester = new RuleTester({
 	}
 });
 
+const angularRuleTester = new AngularRuleTester();
+
 describe('prefer-icon-attribute', () => {
 	it('should validate rule', () => {
 		ruleTester.run('prefer-icon-attribute', rule, {
 			valid: [
 				{ code: '<DBButton icon="save">Save</DBButton>' },
 				{ code: '<DBInput icon="search" />' },
-				{ code: '<db-button icon="save">Save</db-button>' },
 				{ code: '<DBButton :icon="iconName">Save</DBButton>' },
 				{ code: '<div><DBIcon icon="test" /></div>' },
 				{ code: '<DBButton>Save</DBButton>' }
@@ -43,16 +45,6 @@ describe('prefer-icon-attribute', () => {
 					output: '<DBInput icon="search"></DBInput>'
 				},
 				{
-					code: '<db-button><db-icon icon="save"></db-icon></db-button>',
-					errors: [
-						{
-							messageId: 'preferAttribute',
-							data: { component: 'db-button' }
-						}
-					],
-					output: '<db-button icon="save"></db-button>'
-				},
-				{
 					code: '<DBLink><DBIcon icon="external" /></DBLink>',
 					errors: [
 						{
@@ -75,5 +67,22 @@ describe('prefer-icon-attribute', () => {
 			]
 		});
 	});
-});
 
+	it('should validate rule (Angular)', () => {
+		angularRuleTester.run('prefer-icon-attribute', rule, {
+			valid: [{ code: '<db-button icon="save">Save</db-button>' }],
+			invalid: [
+				{
+					code: '<db-button><db-icon icon="save"></db-icon></db-button>',
+					errors: [
+						{
+							messageId: 'preferAttribute',
+							data: { component: 'db-button' }
+						}
+					],
+					output: '<db-button icon="save"></db-button>'
+				}
+			]
+		});
+	});
+});

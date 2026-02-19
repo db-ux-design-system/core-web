@@ -1,3 +1,4 @@
+import { RuleTester as AngularRuleTester } from '@angular-eslint/test-utils';
 import { RuleTester } from '@typescript-eslint/rule-tester';
 import { describe, it } from 'vitest';
 import rule from '../../../src/rules/form/form-validation-message-required.js';
@@ -10,6 +11,8 @@ const ruleTester = new RuleTester({
 	}
 });
 
+const angularRuleTester = new AngularRuleTester();
+
 describe('form-validation-message-required', () => {
 	it('should validate rule', () => {
 		ruleTester.run('form-validation-message-required', rule, {
@@ -17,9 +20,6 @@ describe('form-validation-message-required', () => {
 				{ code: '<DBInput label="Name" />' },
 				{
 					code: '<DBInput label="Name" required invalidMessage="Required" />'
-				},
-				{
-					code: '<db-input label="Name" [required]="true" invalidMessage="Required"></db-input>'
 				},
 				{
 					code: '<DBInput label="Name" :required="true" invalidMessage="Required" />'
@@ -117,5 +117,15 @@ describe('form-validation-message-required', () => {
 			]
 		});
 	});
-});
 
+	it('should validate rule (Angular)', () => {
+		angularRuleTester.run('form-validation-message-required', rule, {
+			valid: [
+				{
+					code: '<db-input label="Name" [required]="true" invalidMessage="Required"></db-input>'
+				}
+			],
+			invalid: []
+		});
+	});
+});

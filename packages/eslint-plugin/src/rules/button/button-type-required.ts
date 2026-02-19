@@ -17,7 +17,7 @@ export default {
 		},
 		fixable: 'code' as const,
 		messages: {
-			[MESSAGE_IDS.BUTTON_TYPE_REQUIRED]: MESSAGES.BUTTON_TYPE_REQUIRED
+			missingType: MESSAGES.BUTTON_TYPE_REQUIRED
 		},
 		schema: []
 	},

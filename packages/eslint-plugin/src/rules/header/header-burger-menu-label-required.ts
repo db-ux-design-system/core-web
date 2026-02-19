@@ -15,8 +15,7 @@ export default {
 			url: 'https://github.com/db-ux-design-system/core-web/blob/main/packages/eslint-plugin/README.md#header-burger-menu-label-required'
 		},
 		messages: {
-			[MESSAGE_IDS.HEADER_MISSING_BURGER_MENU_LABEL]:
-				MESSAGES.HEADER_MISSING_BURGER_MENU_LABEL
+			missingBurgerMenuLabel: MESSAGES.HEADER_MISSING_BURGER_MENU_LABEL
 		},
 		schema: []
 	},

@@ -1,3 +1,4 @@
+import { RuleTester as AngularRuleTester } from '@angular-eslint/test-utils';
 import { RuleTester } from '@typescript-eslint/rule-tester';
 import { describe, it } from 'vitest';
 import rule from '../../../src/rules/select/custom-select-tags-remove-text-required.js';
@@ -10,6 +11,8 @@ const ruleTester = new RuleTester({
 	}
 });
 
+const angularRuleTester = new AngularRuleTester();
+
 describe('custom-select-tags-remove-text-required', () => {
 	it('should validate rule', () => {
 		ruleTester.run('custom-select-tags-remove-text-required', rule, {
@@ -20,9 +23,6 @@ describe('custom-select-tags-remove-text-required', () => {
 				},
 				{
 					code: '<DBCustomSelect label="Select" selectedType="tag" removeTagsTexts={["Remove A", "Remove B"]} />'
-				},
-				{
-					code: '<db-custom-select label="Select" selectedType="tag" removeTagsTexts="texts"></db-custom-select>'
 				},
 				{
 					code: '<DBCustomSelect label="Select" selectedType="tag" :removeTagsTexts="texts" />'
@@ -40,7 +40,19 @@ describe('custom-select-tags-remove-text-required', () => {
 				{
 					code: '<DBCustomSelect label="Select" selectedType="tag" options={opts} />',
 					errors: [{ messageId: 'missingRemoveTagsTexts' }]
-				},
+				}
+			]
+		});
+	});
+
+	it('should validate rule (Angular)', () => {
+		angularRuleTester.run('custom-select-tags-remove-text-required', rule, {
+			valid: [
+				{
+					code: '<db-custom-select label="Select" selectedType="tag" removeTagsTexts="texts"></db-custom-select>'
+				}
+			],
+			invalid: [
 				{
 					code: '<db-custom-select label="Select" selectedType="tag"></db-custom-select>',
 					errors: [{ messageId: 'missingRemoveTagsTexts' }]
@@ -49,4 +61,3 @@ describe('custom-select-tags-remove-text-required', () => {
 		});
 	});
 });
-

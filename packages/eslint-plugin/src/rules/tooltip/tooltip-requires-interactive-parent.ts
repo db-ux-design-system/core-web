@@ -18,11 +18,11 @@ function isInteractiveElement(node: any): boolean {
 			? openingElement.name.name
 			: openingElement.name || null);
 	if (!tagName) return false;
-	
+
 	const normalizedTag = tagName.toLowerCase();
 	return INTERACTIVE_ELEMENTS.some((el) => {
 		const elLower = el.toLowerCase();
-		const kebabCase = elLower.startsWith('db') 
+		const kebabCase = elLower.startsWith('db')
 			? elLower.replace('db', 'db-')
 			: elLower;
 		return normalizedTag === elLower || normalizedTag === kebabCase;
@@ -38,8 +38,7 @@ export default {
 			url: 'https://github.com/db-ux-design-system/core-web/blob/main/packages/eslint-plugin/README.md#tooltip-requires-interactive-parent'
 		},
 		messages: {
-			[MESSAGE_IDS.TOOLTIP_REQUIRES_INTERACTIVE]:
-				MESSAGES.TOOLTIP_REQUIRES_INTERACTIVE
+			requiresInteractive: MESSAGES.TOOLTIP_REQUIRES_INTERACTIVE
 		},
 		schema: []
 	},

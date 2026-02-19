@@ -27,7 +27,7 @@ export default {
 			url: 'https://github.com/db-ux-design-system/core-web/blob/main/packages/eslint-plugin/README.md#form-label-required'
 		},
 		messages: {
-			[MESSAGE_IDS.FORM_LABEL_REQUIRED]: MESSAGES.FORM_LABEL_REQUIRED
+			missingLabel: MESSAGES.FORM_LABEL_REQUIRED
 		},
 		schema: []
 	},

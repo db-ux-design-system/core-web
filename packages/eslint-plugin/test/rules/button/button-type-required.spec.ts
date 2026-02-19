@@ -1,3 +1,4 @@
+import { RuleTester as AngularRuleTester } from '@angular-eslint/test-utils';
 import { RuleTester } from '@typescript-eslint/rule-tester';
 import { describe, it } from 'vitest';
 import rule from '../../../src/rules/button/button-type-required.js';
@@ -9,6 +10,8 @@ const ruleTester = new RuleTester({
 		}
 	}
 });
+
+const angularRuleTester = new AngularRuleTester();
 
 describe('button-type-required', () => {
 	it('should validate rule', () => {
@@ -27,12 +30,6 @@ describe('button-type-required', () => {
 					code: '<DBButton type="">Empty</DBButton>'
 				},
 				{
-					code: '<db-button type="button">Save</db-button>'
-				},
-				{
-					code: '<db-button [type]="buttonType">Dynamic</db-button>'
-				},
-				{
 					code: '<DBButton :type="buttonType">Dynamic</DBButton>'
 				},
 				{
@@ -47,7 +44,22 @@ describe('button-type-required', () => {
 				{
 					code: '<DBButton icon="save">Save</DBButton>',
 					errors: [{ messageId: 'missingType' }]
+				}
+			]
+		});
+	});
+
+	it('should validate rule (Angular)', () => {
+		angularRuleTester.run('button-type-required', rule, {
+			valid: [
+				{
+					code: '<db-button type="button">Save</db-button>'
 				},
+				{
+					code: '<db-button [type]="buttonType">Dynamic</db-button>'
+				}
+			],
+			invalid: [
 				{
 					code: '<db-button>Save</db-button>',
 					errors: [{ messageId: 'missingType' }]
@@ -56,4 +68,3 @@ describe('button-type-required', () => {
 		});
 	});
 });
-

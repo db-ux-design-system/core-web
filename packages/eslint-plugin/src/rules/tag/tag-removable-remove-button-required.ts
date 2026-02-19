@@ -15,8 +15,7 @@ export default {
 			url: 'https://github.com/db-ux-design-system/core-web/blob/main/packages/eslint-plugin/README.md#tag-removable-remove-button-required'
 		},
 		messages: {
-			[MESSAGE_IDS.TAG_REMOVABLE_REMOVE_BUTTON_REQUIRED]:
-				MESSAGES.TAG_REMOVABLE_REMOVE_BUTTON_REQUIRED
+			missingRemoveButton: MESSAGES.TAG_REMOVABLE_REMOVE_BUTTON_REQUIRED
 		},
 		schema: []
 	},

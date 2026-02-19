@@ -18,7 +18,7 @@ export default {
 		},
 		fixable: 'code' as const,
 		messages: {
-			[MESSAGE_IDS.INPUT_TYPE_REQUIRED]: MESSAGES.INPUT_TYPE_REQUIRED
+			missingType: MESSAGES.INPUT_TYPE_REQUIRED
 		},
 		schema: []
 	},

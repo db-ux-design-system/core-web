@@ -1,3 +1,4 @@
+import { RuleTester as AngularRuleTester } from '@angular-eslint/test-utils';
 import { RuleTester } from '@typescript-eslint/rule-tester';
 import { describe, it } from 'vitest';
 import rule from '../../../src/rules/select/select-requires-options.js';
@@ -9,6 +10,8 @@ const ruleTester = new RuleTester({
 		}
 	}
 });
+
+const angularRuleTester = new AngularRuleTester();
 
 describe('select-requires-options', () => {
 	it('should validate rule', () => {
@@ -23,13 +26,7 @@ describe('select-requires-options', () => {
 				{
 					code: '<DBSelect label="Country" options={countryOptions} />'
 				},
-				{
-					code: '<db-select label="Country"><option value="de">Germany</option></db-select>'
-				},
-				{ code: '<DBSelect label="Country" :options="options" />' },
-				{
-					code: '<db-select label="Country" [options]="options"></db-select>'
-				}
+				{ code: '<DBSelect label="Country" :options="options" />' }
 			],
 			invalid: [
 				{
@@ -41,15 +38,29 @@ describe('select-requires-options', () => {
 					errors: [{ messageId: 'missingOptions' }]
 				},
 				{
-					code: '<db-select label="Country"></db-select>',
-					errors: [{ messageId: 'missingOptions' }]
-				},
-				{
 					code: '<DBSelect label="Country"><div>Not an option</div></DBSelect>',
 					errors: [{ messageId: 'missingOptions' }]
 				}
 			]
 		});
 	});
-});
 
+	it('should validate rule (Angular)', () => {
+		angularRuleTester.run('select-requires-options', rule, {
+			valid: [
+				{
+					code: '<db-select label="Country"><option value="de">Germany</option></db-select>'
+				},
+				{
+					code: '<db-select label="Country" [options]="options"></db-select>'
+				}
+			],
+			invalid: [
+				{
+					code: '<db-select label="Country"></db-select>',
+					errors: [{ messageId: 'missingOptions' }]
+				}
+			]
+		});
+	});
+});

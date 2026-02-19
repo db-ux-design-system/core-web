@@ -1,3 +1,4 @@
+import { RuleTester as AngularRuleTester } from '@angular-eslint/test-utils';
 import { RuleTester } from '@typescript-eslint/rule-tester';
 import { describe, it } from 'vitest';
 import rule from '../../../src/rules/tag/tag-removable-remove-button-required.js';
@@ -10,6 +11,8 @@ const ruleTester = new RuleTester({
 	}
 });
 
+const angularRuleTester = new AngularRuleTester();
+
 describe('tag-removable-remove-button-required', () => {
 	it('should validate rule', () => {
 		ruleTester.run('tag-removable-remove-button-required', rule, {
@@ -18,9 +21,6 @@ describe('tag-removable-remove-button-required', () => {
 				{ code: '<DBTag behavior="static">Tag</DBTag>' },
 				{
 					code: '<DBTag behavior="removable" removeButton="Remove">Tag</DBTag>'
-				},
-				{
-					code: '<db-tag behavior="removable" removeButton="Remove">Tag</db-tag>'
 				},
 				{
 					code: '<DBTag behavior="removable" :removeButton="removeText">Tag</DBTag>'
@@ -34,7 +34,19 @@ describe('tag-removable-remove-button-required', () => {
 				{
 					code: '<DBTag behavior="removable" semantic="successful">Tag</DBTag>',
 					errors: [{ messageId: 'missingRemoveButton' }]
-				},
+				}
+			]
+		});
+	});
+
+	it('should validate rule (Angular)', () => {
+		angularRuleTester.run('tag-removable-remove-button-required', rule, {
+			valid: [
+				{
+					code: '<db-tag behavior="removable" removeButton="Remove">Tag</db-tag>'
+				}
+			],
+			invalid: [
 				{
 					code: '<db-tag behavior="removable">Tag</db-tag>',
 					errors: [{ messageId: 'missingRemoveButton' }]
@@ -43,4 +55,3 @@ describe('tag-removable-remove-button-required', () => {
 		});
 	});
 });
-

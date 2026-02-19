@@ -34,10 +34,8 @@ export default {
 		},
 		fixable: 'code' as const,
 		messages: {
-			[MESSAGE_IDS.BADGE_CORNER_TEXT_TOO_LONG]:
-				MESSAGES.BADGE_CORNER_TEXT_TOO_LONG,
-			[MESSAGE_IDS.BADGE_CORNER_MISSING_LABEL]:
-				MESSAGES.BADGE_CORNER_MISSING_LABEL
+			textTooLong: MESSAGES.BADGE_CORNER_TEXT_TOO_LONG,
+			missingLabel: MESSAGES.BADGE_CORNER_MISSING_LABEL
 		},
 		schema: []
 	},

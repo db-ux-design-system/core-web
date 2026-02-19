@@ -1,3 +1,4 @@
+import { RuleTester as AngularRuleTester } from '@angular-eslint/test-utils';
 import { RuleTester } from '@typescript-eslint/rule-tester';
 import { describe, it } from 'vitest';
 import rule from '../../../src/rules/form/form-label-required.js';
@@ -9,6 +10,8 @@ const ruleTester = new RuleTester({
 		}
 	}
 });
+
+const angularRuleTester = new AngularRuleTester();
 
 describe('form-label-required', () => {
 	it('should validate rule', () => {
@@ -24,9 +27,6 @@ describe('form-label-required', () => {
 				{ code: '<DBRadio>Option A</DBRadio>' },
 				{ code: '<DBSwitch label="Enable" />' },
 				{ code: '<DBSwitch>Enable feature</DBSwitch>' },
-				{ code: '<db-input label="Name"></db-input>' },
-				{ code: '<db-textarea [label]="labelText"></db-textarea>' },
-				{ code: '<db-checkbox>Accept</db-checkbox>' },
 				{ code: '<DBInput :label="dynamicLabel" />' },
 				{ code: '<div>Not a form component</div>' }
 			],
@@ -93,7 +93,19 @@ describe('form-label-required', () => {
 							data: { component: 'DBSwitch' }
 						}
 					]
-				},
+				}
+			]
+		});
+	});
+
+	it('should validate rule (Angular)', () => {
+		angularRuleTester.run('form-label-required', rule, {
+			valid: [
+				{ code: '<db-input label="Name"></db-input>' },
+				{ code: '<db-textarea [label]="labelText"></db-textarea>' },
+				{ code: '<db-checkbox>Accept</db-checkbox>' }
+			],
+			invalid: [
 				{
 					code: '<db-input></db-input>',
 					errors: [
@@ -116,4 +128,3 @@ describe('form-label-required', () => {
 		});
 	});
 });
-

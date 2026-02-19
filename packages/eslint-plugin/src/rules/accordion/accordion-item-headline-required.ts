@@ -36,8 +36,7 @@ export default {
 			url: 'https://github.com/db-ux-design-system/core-web/blob/main/packages/eslint-plugin/README.md#accordion-item-headline-required'
 		},
 		messages: {
-			[MESSAGE_IDS.ACCORDION_ITEM_HEADLINE_REQUIRED]:
-				MESSAGES.ACCORDION_ITEM_HEADLINE_REQUIRED
+			headlineRequired: MESSAGES.ACCORDION_ITEM_HEADLINE_REQUIRED
 		},
 		schema: []
 	},

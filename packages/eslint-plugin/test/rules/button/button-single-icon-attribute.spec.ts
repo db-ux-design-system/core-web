@@ -1,3 +1,4 @@
+import { RuleTester as AngularRuleTester } from '@angular-eslint/test-utils';
 import { RuleTester } from '@typescript-eslint/rule-tester';
 import { describe, it } from 'vitest';
 import rule from '../../../src/rules/button/button-single-icon-attribute.js';
@@ -10,6 +11,8 @@ const ruleTester = new RuleTester({
 	}
 });
 
+const angularRuleTester = new AngularRuleTester();
+
 describe('button-single-icon-attribute', () => {
 	it('should validate rule', () => {
 		ruleTester.run('button-single-icon-attribute', rule, {
@@ -18,10 +21,6 @@ describe('button-single-icon-attribute', () => {
 				{ code: '<DBButton icon="save">Save</DBButton>' },
 				{ code: '<DBButton iconLeading="save">Save</DBButton>' },
 				{ code: '<DBButton iconTrailing="arrow">Next</DBButton>' },
-				{ code: '<db-button icon="save">Save</db-button>' },
-				{
-					code: '<db-button [iconLeading]="iconName">Save</db-button>'
-				},
 				{ code: '<DBButton :iconTrailing="icon">Next</DBButton>' }
 			],
 			invalid: [
@@ -42,15 +41,27 @@ describe('button-single-icon-attribute', () => {
 					errors: [{ messageId: 'multipleIcons' }]
 				},
 				{
-					code: '<db-button icon="save" [iconLeading]="iconName">Save</db-button>',
-					errors: [{ messageId: 'multipleIcons' }]
-				},
-				{
 					code: '<DBButton icon="save" :iconLeading="iconName">Save</DBButton>',
 					errors: [{ messageId: 'multipleIcons' }]
 				}
 			]
 		});
 	});
-});
 
+	it('should validate rule (Angular)', () => {
+		angularRuleTester.run('button-single-icon-attribute', rule, {
+			valid: [
+				{ code: '<db-button icon="save">Save</db-button>' },
+				{
+					code: '<db-button [iconLeading]="iconName">Save</db-button>'
+				}
+			],
+			invalid: [
+				{
+					code: '<db-button icon="save" [iconLeading]="iconName">Save</db-button>',
+					errors: [{ messageId: 'multipleIcons' }]
+				}
+			]
+		});
+	});
+});

@@ -273,7 +273,7 @@ All rule metadata must use `as const` assertions for TypeScript compatibility:
 export default {
 	meta: {
 		type: "problem" as const, // REQUIRED: Use 'as const'
-		fixable: "code" as const, // REQUIRED if fixable is present
+		fixable: "code" as const // REQUIRED if fixable is present
 		// ...
 	}
 };
@@ -281,10 +281,11 @@ export default {
 
 ## Test Configuration
 
-All test files must use the new `languageOptions` configuration:
+Test files should separate Angular tests from React/Vue tests:
 
 ```typescript
-import { RuleTester } from '@typescript-eslint/rule-tester';
+import { RuleTester } from "@typescript-eslint/rule-tester";
+import { RuleTester as AngularRuleTester } from "@angular-eslint/test-utils";
 
 const ruleTester = new RuleTester({
 	languageOptions: {
@@ -292,6 +293,32 @@ const ruleTester = new RuleTester({
 			ecmaFeatures: { jsx: true }
 		}
 	}
+});
+
+const angularRuleTester = new AngularRuleTester();
+
+describe("rule-name", () => {
+	it("should validate rule", () => {
+		ruleTester.run("rule-name", rule, {
+			valid: [
+				/* React/Vue cases */
+			],
+			invalid: [
+				/* React/Vue cases */
+			]
+		});
+	});
+
+	it("should validate rule (Angular)", () => {
+		angularRuleTester.run("rule-name", rule, {
+			valid: [
+				/* Angular cases with <db- */
+			],
+			invalid: [
+				/* Angular cases with <db- */
+			]
+		});
+	});
 });
 ```
 

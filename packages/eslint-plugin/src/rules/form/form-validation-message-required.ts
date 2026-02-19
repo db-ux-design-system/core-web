@@ -23,8 +23,7 @@ export default {
 			url: 'https://github.com/db-ux-design-system/core-web/blob/main/packages/eslint-plugin/README.md#form-validation-message-required'
 		},
 		messages: {
-			[MESSAGE_IDS.FORM_VALIDATION_MESSAGE_REQUIRED]:
-				MESSAGES.FORM_VALIDATION_MESSAGE_REQUIRED
+			missingInvalidMessage: MESSAGES.FORM_VALIDATION_MESSAGE_REQUIRED
 		},
 		schema: []
 	},

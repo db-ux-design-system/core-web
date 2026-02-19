@@ -1,3 +1,4 @@
+import { RuleTester as AngularRuleTester } from '@angular-eslint/test-utils';
 import { RuleTester } from '@typescript-eslint/rule-tester';
 import { describe, it } from 'vitest';
 import rule from '../../../src/rules/content/text-or-children-required.js';
@@ -10,6 +11,8 @@ const ruleTester = new RuleTester({
 	}
 });
 
+const angularRuleTester = new AngularRuleTester();
+
 describe('text-or-children-required', () => {
 	it('should validate rule', () => {
 		ruleTester.run('text-or-children-required', rule, {
@@ -20,9 +23,6 @@ describe('text-or-children-required', () => {
 				{ code: '<DBLink>Click here</DBLink>' },
 				{ code: '<DBBadge>New</DBBadge>' },
 				{ code: '<DBIcon icon="test">Label</DBIcon>' },
-				{ code: '<db-button text="Save"></db-button>' },
-				{ code: '<db-button>Save</db-button>' },
-				{ code: '<db-button [text]="myText"></db-button>' },
 				{ code: '<DBButton :text="buttonText" />' },
 				{
 					code: '<DBNotification><span>Message</span></DBNotification>'
@@ -101,7 +101,19 @@ describe('text-or-children-required', () => {
 							data: { component: 'DBAccordionItem' }
 						}
 					]
-				},
+				}
+			]
+		});
+	});
+
+	it('should validate rule (Angular)', () => {
+		angularRuleTester.run('text-or-children-required', rule, {
+			valid: [
+				{ code: '<db-button text="Save"></db-button>' },
+				{ code: '<db-button>Save</db-button>' },
+				{ code: '<db-button [text]="myText"></db-button>' }
+			],
+			invalid: [
 				{
 					code: '<db-button></db-button>',
 					errors: [
@@ -115,4 +127,3 @@ describe('text-or-children-required', () => {
 		});
 	});
 });
-

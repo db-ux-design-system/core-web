@@ -19,8 +19,7 @@ export default {
 		},
 		fixable: 'code' as const,
 		messages: {
-			[MESSAGE_IDS.BADGE_NO_INLINE_IN_INTERACTIVE]:
-				MESSAGES.BADGE_NO_INLINE_IN_INTERACTIVE
+			noInline: MESSAGES.BADGE_NO_INLINE_IN_INTERACTIVE
 		},
 		schema: []
 	},

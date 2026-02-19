@@ -1,3 +1,4 @@
+import { RuleTester as AngularRuleTester } from '@angular-eslint/test-utils';
 import { RuleTester } from '@typescript-eslint/rule-tester';
 import { describe, it } from 'vitest';
 import rule from '../../../src/rules/tooltip/tooltip-requires-interactive-parent.js';
@@ -9,6 +10,8 @@ const ruleTester = new RuleTester({
 		}
 	}
 });
+
+const angularRuleTester = new AngularRuleTester();
 
 describe('tooltip-requires-interactive-parent', () => {
 	it('should validate rule', () => {
@@ -25,9 +28,6 @@ describe('tooltip-requires-interactive-parent', () => {
 				},
 				{
 					code: '<DBLink href="#">Link<DBTooltip>More info</DBTooltip></DBLink>'
-				},
-				{
-					code: '<db-button>Save<db-tooltip>Save document</db-tooltip></db-button>'
 				},
 				{
 					code: '<DBNavigationItem>Nav<DBTooltip>Info</DBTooltip></DBNavigationItem>'
@@ -53,15 +53,26 @@ describe('tooltip-requires-interactive-parent', () => {
 					errors: [{ messageId: 'requiresInteractive' }]
 				},
 				{
-					code: '<span>Show more<db-tooltip>XXX</db-tooltip></span>',
-					errors: [{ messageId: 'requiresInteractive' }]
-				},
-				{
 					code: '<DBBadge>Badge<DBTooltip>Info</DBTooltip></DBBadge>',
 					errors: [{ messageId: 'requiresInteractive' }]
 				}
 			]
 		});
 	});
-});
 
+	it('should validate rule (Angular)', () => {
+		angularRuleTester.run('tooltip-requires-interactive-parent', rule, {
+			valid: [
+				{
+					code: '<db-button>Save<db-tooltip>Save document</db-tooltip></db-button>'
+				}
+			],
+			invalid: [
+				{
+					code: '<span>Show more<db-tooltip>XXX</db-tooltip></span>',
+					errors: [{ messageId: 'requiresInteractive' }]
+				}
+			]
+		});
+	});
+});

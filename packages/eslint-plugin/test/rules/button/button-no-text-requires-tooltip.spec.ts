@@ -1,3 +1,4 @@
+import { RuleTester as AngularRuleTester } from '@angular-eslint/test-utils';
 import { RuleTester } from '@typescript-eslint/rule-tester';
 import { describe, it } from 'vitest';
 import rule from '../../../src/rules/button/button-no-text-requires-tooltip.js';
@@ -9,6 +10,8 @@ const ruleTester = new RuleTester({
 		}
 	}
 });
+
+const angularRuleTester = new AngularRuleTester();
 
 describe('button-no-text-requires-tooltip', () => {
 	it('should validate rule', () => {
@@ -39,15 +42,6 @@ describe('button-no-text-requires-tooltip', () => {
           </DBButton>`
 				},
 				{
-					code: '<db-button>Save</db-button>'
-				},
-				{
-					code: `<db-button icon="x_placeholder" [noText]="true">
-            ABC
-            <db-tooltip>ABC</db-tooltip>
-          </db-button>`
-				},
-				{
 					code: `<DBButton icon="x_placeholder" :noText="true">
             ABC
             <DBTooltip>ABC</DBTooltip>
@@ -67,17 +61,6 @@ describe('button-no-text-requires-tooltip', () => {
 					errors: [{ messageId: 'missingTooltip' }]
 				},
 				{
-					code: '<db-button [noText]="true">ABC</db-button>',
-					errors: [
-						{ messageId: 'missingIcon' },
-						{ messageId: 'missingTooltip' }
-					]
-				},
-				{
-					code: '<db-button icon="x" [noText]="true">ABC</db-button>',
-					errors: [{ messageId: 'missingTooltip' }]
-				},
-				{
 					code: '<DBButton :noText="true">ABC</DBButton>',
 					errors: [
 						{ messageId: 'missingIcon' },
@@ -91,5 +74,36 @@ describe('button-no-text-requires-tooltip', () => {
 			]
 		});
 	});
-});
 
+	it('should validate rule (Angular)', () => {
+		angularRuleTester.run('button-no-text-requires-tooltip', rule, {
+			valid: [
+				{
+					code: '<db-button>Save</db-button>'
+				},
+				{
+					code: `<db-button icon="x_placeholder" [noText]="true">
+            ABC
+            <db-tooltip>ABC</db-tooltip>
+          </db-button>`
+				},
+				{
+					code: `<db-button type="submit" noText icon="search">Test<db-tooltip>Test</db-tooltip></db-button>`
+				}
+			],
+			invalid: [
+				{
+					code: '<db-button [noText]="true">ABC</db-button>',
+					errors: [
+						{ messageId: 'missingIcon' },
+						{ messageId: 'missingTooltip' }
+					]
+				},
+				{
+					code: '<db-button icon="x" [noText]="true">ABC</db-button>',
+					errors: [{ messageId: 'missingTooltip' }]
+				}
+			]
+		});
+	});
+});

@@ -1,3 +1,4 @@
+import { RuleTester as AngularRuleTester } from '@angular-eslint/test-utils';
 import { RuleTester } from '@typescript-eslint/rule-tester';
 import { describe, it } from 'vitest';
 import rule from '../../../src/rules/close-button/close-button-text-required.js';
@@ -9,6 +10,8 @@ const ruleTester = new RuleTester({
 		}
 	}
 });
+
+const angularRuleTester = new AngularRuleTester();
 
 describe('close-button-text-required', () => {
 	it('should validate rule', () => {
@@ -22,12 +25,6 @@ describe('close-button-text-required', () => {
 				},
 				{
 					code: '<DBCustomSelect mobileCloseButtonText="Close" label="Select" />'
-				},
-				{
-					code: '<db-notification closeButtonText="Close">Message</db-notification>'
-				},
-				{
-					code: '<db-drawer [closeButtonText]="closeText">Content</db-drawer>'
 				},
 				{
 					code: '<DBCustomSelect :mobileCloseButtonText="closeText" label="Select" />'
@@ -69,7 +66,22 @@ describe('close-button-text-required', () => {
 							}
 						}
 					]
+				}
+			]
+		});
+	});
+
+	it('should validate rule (Angular)', () => {
+		angularRuleTester.run('close-button-text-required', rule, {
+			valid: [
+				{
+					code: '<db-notification closeButtonText="Close">Message</db-notification>'
 				},
+				{
+					code: '<db-drawer [closeButtonText]="closeText">Content</db-drawer>'
+				}
+			],
+			invalid: [
 				{
 					code: '<db-notification>Message</db-notification>',
 					errors: [
@@ -98,4 +110,3 @@ describe('close-button-text-required', () => {
 		});
 	});
 });
-

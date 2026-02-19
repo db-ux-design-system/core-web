@@ -13,7 +13,7 @@ export default {
 			url: 'https://github.com/db-ux-design-system/core-web/blob/main/packages/eslint-plugin/README.md#no-nested-accordion'
 		},
 		messages: {
-			[MESSAGE_IDS.ACCORDION_NO_NESTED]: MESSAGES.ACCORDION_NO_NESTED
+			noNested: MESSAGES.ACCORDION_NO_NESTED
 		},
 		schema: []
 	},
@@ -22,7 +22,8 @@ export default {
 			let parent: any = node.parent;
 			while (parent) {
 				if (
-					(parent.type === 'Element' || parent.type === 'Element$1') &&
+					(parent.type === 'Element' ||
+						parent.type === 'Element$1') &&
 					isDBComponent(parent, COMPONENTS.DBAccordion)
 				) {
 					const loc = parserServices.convertNodeSourceSpanToLoc(

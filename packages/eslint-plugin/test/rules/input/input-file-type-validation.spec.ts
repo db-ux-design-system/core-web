@@ -1,3 +1,4 @@
+import { RuleTester as AngularRuleTester } from '@angular-eslint/test-utils';
 import { RuleTester } from '@typescript-eslint/rule-tester';
 import { describe, it } from 'vitest';
 import rule from '../../../src/rules/input/input-file-type-validation.js';
@@ -10,6 +11,8 @@ const ruleTester = new RuleTester({
 	}
 });
 
+const angularRuleTester = new AngularRuleTester();
+
 describe('input-file-type-validation', () => {
 	it('should validate rule', () => {
 		ruleTester.run('input-file-type-validation', rule, {
@@ -18,9 +21,6 @@ describe('input-file-type-validation', () => {
 				{ code: '<DBInput label="File" type="file" accept=".pdf" />' },
 				{
 					code: '<DBInput label="Files" type="file" accept="image/*" multiple />'
-				},
-				{
-					code: '<db-input label="File" type="file" accept=".jpg"></db-input>'
 				}
 			],
 			invalid: [
@@ -46,5 +46,15 @@ describe('input-file-type-validation', () => {
 			]
 		});
 	});
-});
 
+	it('should validate rule (Angular)', () => {
+		angularRuleTester.run('input-file-type-validation', rule, {
+			valid: [
+				{
+					code: '<db-input label="File" type="file" accept=".jpg"></db-input>'
+				}
+			],
+			invalid: []
+		});
+	});
+});

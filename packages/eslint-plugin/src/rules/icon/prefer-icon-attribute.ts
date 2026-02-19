@@ -31,7 +31,7 @@ export default {
 		},
 		fixable: 'code' as const,
 		messages: {
-			[MESSAGE_IDS.ICON_PREFER_ATTRIBUTE]: MESSAGES.ICON_PREFER_ATTRIBUTE
+			preferAttribute: MESSAGES.ICON_PREFER_ATTRIBUTE
 		},
 		schema: []
 	},

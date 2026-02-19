@@ -21,8 +21,7 @@ export default {
 			url: 'https://github.com/db-ux-design-system/core-web/blob/main/packages/eslint-plugin/README.md#close-button-text-required'
 		},
 		messages: {
-			[MESSAGE_IDS.CLOSE_BUTTON_TEXT_REQUIRED]:
-				MESSAGES.CLOSE_BUTTON_TEXT_REQUIRED
+			missingCloseButtonText: MESSAGES.CLOSE_BUTTON_TEXT_REQUIRED
 		},
 		schema: []
 	},

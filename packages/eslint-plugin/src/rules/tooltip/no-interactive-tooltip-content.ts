@@ -50,8 +50,7 @@ export default {
 			url: 'https://github.com/db-ux-design-system/core-web/blob/main/packages/eslint-plugin/README.md#no-interactive-tooltip-content'
 		},
 		messages: {
-			[MESSAGE_IDS.TOOLTIP_NO_INTERACTIVE]:
-				MESSAGES.TOOLTIP_NO_INTERACTIVE
+			noInteractive: MESSAGES.TOOLTIP_NO_INTERACTIVE
 		},
 		schema: []
 	},

@@ -25,8 +25,7 @@ export default {
 			url: 'https://github.com/db-ux-design-system/core-web/blob/main/packages/eslint-plugin/README.md#text-or-children-required'
 		},
 		messages: {
-			[MESSAGE_IDS.TEXT_OR_CHILDREN_REQUIRED]:
-				MESSAGES.TEXT_OR_CHILDREN_REQUIRED
+			missingContent: MESSAGES.TEXT_OR_CHILDREN_REQUIRED
 		},
 		schema: []
 	},

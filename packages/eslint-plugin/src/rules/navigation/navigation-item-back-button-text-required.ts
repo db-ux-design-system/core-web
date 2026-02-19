@@ -15,7 +15,7 @@ export default {
 			url: 'https://github.com/db-ux-design-system/core-web/blob/main/packages/eslint-plugin/README.md#navigation-item-back-button-text-required'
 		},
 		messages: {
-			[MESSAGE_IDS.NAVIGATION_ITEM_MISSING_BACK_BUTTON_TEXT]:
+			missingBackButtonText:
 				MESSAGES.NAVIGATION_ITEM_MISSING_BACK_BUTTON_TEXT
 		},
 		schema: []
