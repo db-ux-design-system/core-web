@@ -1,9 +1,14 @@
 # @db-ux/core-stylelint
 
+## 4.4.3
+
+### Patch Changes
+
+- refactor: added acceptable values (`transparent` and `currentcolor`) for border declarations - [see commit 4f58e98](https://github.com/db-ux-design-system/core-web/commit/4f58e98d04685773d79feeaf24f31fc84447f39f)
+
 ## 4.4.2
 
 _version bump_
-
 
 ## 4.4.1
 
