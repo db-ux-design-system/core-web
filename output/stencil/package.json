@@ -1,6 +1,6 @@
 {
   "name": "@db-ux/wc-core-components",
-  "version": "4.4.2",
+  "version": "4.4.3",
   "description": "Stencil components for @db-ux/core-components",
   "repository": {
     "type": "git",
@@ -48,7 +48,7 @@
   "web-types": "./dist/web-types.json",
   "customElements": "dist/custom-elements.json",
   "dependencies": {
-    "@db-ux/core-components": "4.4.2",
-    "@db-ux/core-foundations": "4.4.2"
+    "@db-ux/core-components": "4.4.3",
+    "@db-ux/core-foundations": "4.4.3"
   }
 }
