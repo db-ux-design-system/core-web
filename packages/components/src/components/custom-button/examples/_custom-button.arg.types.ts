@@ -11,18 +11,12 @@ export const StorybookCustomButtonArgTypes: Record<string, InputType> = {
 		options: ['outlined', 'brand', 'ghost', 'filled']
 	},
 	disabled: { control: 'boolean' },
-	form: { control: 'text' },
-	name: { control: 'text' },
 	noText: { control: 'boolean' },
-	type: { control: 'select', options: ['button', 'reset', 'submit'] },
-	value: { control: 'text' },
 	...StorybookIconArgTypes,
 	...StorybookIconLeadingArgTypes,
 	...StorybookIconTrailingArgTypes,
 	width: { control: 'select', options: ['full', 'auto'] },
 	size: { control: 'select', options: ['small', 'medium'] },
-	text: { control: 'text' },
 	id: { control: 'text' },
-	autofocus: { control: 'boolean' },
-	onClick: { action: 'onClick' }
+	autofocus: { control: 'boolean' }
 };

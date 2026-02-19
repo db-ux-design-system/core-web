@@ -1,7 +1,7 @@
 @use "@db-ux/core-foundations/build/styles/variables";
 @use "@db-ux/core-foundations/build/styles/icons";
 
-$interactive-button-selectors: "label,button,a:not(label)";
+$interactive-button-selectors: "label,button,a";
 
 @mixin icon-passing($inline-start: variables.$db-spacing-fixed-sm) {
 	&[data-icon-leading]:not([data-show-icon-leading="false"]),
