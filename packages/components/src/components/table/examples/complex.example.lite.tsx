@@ -34,7 +34,9 @@ export default function TableComplex() {
 				<DBInfotext semantic="informational" size="small" icon="none">
 					Joined
 				</DBInfotext>
-				<DBTable captionPlain="Joined, sortable columns are Link.">
+				<DBTable
+					columnSizes={{ 0: 'min-content', 6: 'min-content' }}
+					captionPlain="Joined, sortable columns are Link.">
 					<DBTableHead>
 						<DBTableRow>
 							<DBTableHeaderCell scope="col">
@@ -231,6 +233,7 @@ export default function TableComplex() {
 					Zebra
 				</DBInfotext>
 				<DBTable
+					columnSizes={{ 0: 'min-content', 6: 'min-content' }}
 					variant="zebra"
 					captionPlain="Zebra, sortable columns are Link.">
 					<DBTableHead>
@@ -429,6 +432,7 @@ export default function TableComplex() {
 					Floating
 				</DBInfotext>
 				<DBTable
+					columnSizes={{ 0: 'min-content', 6: 'min-content' }}
 					variant="floating"
 					captionPlain="Floating, sortable columns are Link.">
 					<DBTableHead>
@@ -627,6 +631,7 @@ export default function TableComplex() {
 					Mobile variant: List
 				</DBInfotext>
 				<DBTable
+					columnSizes={{ 0: 'min-content', 6: 'min-content' }}
 					variant="floating"
 					mobileVariant="list"
 					captionPlain="Mobile variant: List, sortable columns are Link.">

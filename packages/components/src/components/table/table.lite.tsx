@@ -23,6 +23,7 @@ export default function DBTable(props: DBTableProps) {
 	// jscpd:ignore-start
 	const state = useStore<DBTableState>({
 		_data: undefined,
+		_style: undefined,
 		convertData: (): DBTableData => {
 			try {
 				if (typeof props.data === 'string') {
@@ -37,6 +38,8 @@ export default function DBTable(props: DBTableProps) {
 			return {};
 		}
 	});
+
+	// jscpd:ignore-end
 
 	onUpdate(() => {
 		if (props.data) {
@@ -75,11 +78,21 @@ export default function DBTable(props: DBTableProps) {
 		}
 	}, [props.mobileVariant, _ref]);
 
-	// jscpd:ignore-end
+	onUpdate(() => {
+		if (props.columnSizes) {
+			const columnStyles: any = {};
+			Object.entries(props.columnSizes).forEach(([key, value]) => {
+				columnStyles[`--db-table-column-size-${key}`] = value;
+			});
+
+			state._style = columnStyles;
+		}
+	}, [props.columnSizes]);
 
 	return (
 		<div
 			class={cls('db-table', props.className)}
+			style={state._style}
 			data-width={props.width}
 			data-size={props.size}
 			data-divider={props.divider}

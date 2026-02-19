@@ -38,6 +38,14 @@ export type DBTableData = {
 	footer?: DBTableRowDefaultProps[];
 };
 
+export const DBTableColumnsSizeList = [
+	'auto',
+	'1fr',
+	'min-content',
+	'max-content'
+] as const;
+export type DBTableColumnsSizeType = (typeof DBTableColumnsSizeList)[number];
+
 export type DBTableDefaultProps = {
 	/**
 	 * Slot for table caption
@@ -85,12 +93,20 @@ export type DBTableDefaultProps = {
 	 * Change the header cells to be sticky when scrolling the table
 	 */
 	stickyHeader?: DBTableStickHederType;
+
+	/**
+	 * Set the width of the columns based in their index.
+	 * Alternative: Use `--db-table-column-size-$index` inside CSS to control it.
+	 * See: https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/grid-template-columns
+	 */
+	columnSizes?: Record<number, DBTableColumnsSizeType | string>;
 };
 
 export type DBTableProps = DBTableDefaultProps & GlobalProps & WidthProps;
 
 export type DBTableDefaultState = {
 	_data?: DBTableData;
+	_style?: any; // We use any here because the style prop may differ in frameworks
 	convertData: () => DBTableData;
 };
 

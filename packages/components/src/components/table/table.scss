@@ -1,3 +1,4 @@
+@use "sass:string";
 @use "@db-ux/core-foundations/build/styles/variables";
 @use "@db-ux/core-foundations/build/styles/colors";
 @use "@db-ux/core-foundations/build/styles/fonts";
@@ -85,9 +86,16 @@
 			) {
 			--db-table-grid-cells: #{$num};
 
-			grid-template-columns: repeat(
-				var(--db-table-template-columns, var(--db-table-grid-cells)),
-				var(--db-table-layout-template-columns-size, 1fr)
+			$track-size: "";
+
+			@for $index from 0 through $num - 1 {
+				$track-size: $track-size +
+					" var(--db-table-column-size-#{$index},var(--db-table-columns-size, 1fr))";
+			}
+
+			grid-template-columns: var(
+				--db-table-grid-template-columns,
+				#{string.unquote($track-size)}
 			);
 		}
 	}
@@ -158,9 +166,9 @@
 			@extend %floating-table-variant;
 
 			table {
-				--db-table-layout-template-columns-size: 1fr;
-				--db-table-template-columns: 1;
+				--db-table-columns-size: 1fr;
 				--db-table-cell-span: 1;
+				--db-table-grid-template-columns: repeat(1, 1fr);
 
 				border-color: transparent;
 			}
@@ -245,7 +253,7 @@
 		justify-content: center;
 
 		table {
-			--db-table-layout-template-columns-size: max-content;
+			--db-table-columns-size: auto;
 
 			inline-size: fit-content;
 		}
