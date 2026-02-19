@@ -92,8 +92,9 @@ export default function DBTabItem(props: DBTabItemProps) {
 	// Disconnect the observer
 	onUnMount(() => {
 		state._resizeObserver?.disconnect();
-		if (_ref && state._ariaSelectedListener) {
-			_ref.removeEventListener('aria-selected-changed', state._ariaSelectedListener.fn);
+		const _listener = state._ariaSelectedListener;
+		if (_ref && _listener) {
+			_ref.removeEventListener('aria-selected-changed', _listener.fn);
 		}
 	});
 
