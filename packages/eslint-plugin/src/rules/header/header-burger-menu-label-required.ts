@@ -1,10 +1,10 @@
+import { COMPONENTS, MESSAGES, MESSAGE_IDS } from '../../shared/constants.js';
 import {
 	createAngularVisitors,
 	defineTemplateBodyVisitor,
 	getAttributeValue,
 	isDBComponent
 } from '../../shared/utils.js';
-import { COMPONENTS, MESSAGES, MESSAGE_IDS } from '../../shared/constants.js';
 
 export default {
 	meta: {
@@ -15,15 +15,18 @@ export default {
 			url: 'https://github.com/db-ux-design-system/core-web/blob/main/packages/eslint-plugin/README.md#header-burger-menu-label-required'
 		},
 		messages: {
-			[MESSAGE_IDS.HEADER_MISSING_BURGER_MENU_LABEL]: MESSAGES.HEADER_MISSING_BURGER_MENU_LABEL
+			[MESSAGE_IDS.HEADER_MISSING_BURGER_MENU_LABEL]:
+				MESSAGES.HEADER_MISSING_BURGER_MENU_LABEL
 		},
 		schema: []
 	},
 	create(context: any) {
 		const angularHandler = (node: any, parserServices: any) => {
 			const burgerMenuLabel = getAttributeValue(node, 'burgerMenuLabel');
-			if (!burgerMenuLabel) {
-				const loc = parserServices.convertNodeSourceSpanToLoc(node.sourceSpan);
+			if (burgerMenuLabel === undefined || burgerMenuLabel === '') {
+				const loc = parserServices.convertNodeSourceSpanToLoc(
+					node.sourceSpan
+				);
 				context.report({
 					loc,
 					messageId: MESSAGE_IDS.HEADER_MISSING_BURGER_MENU_LABEL
@@ -31,7 +34,11 @@ export default {
 			}
 		};
 
-		const angularVisitors = createAngularVisitors(context, COMPONENTS.DBHeader, angularHandler);
+		const angularVisitors = createAngularVisitors(
+			context,
+			COMPONENTS.DBHeader,
+			angularHandler
+		);
 		if (angularVisitors) return angularVisitors;
 
 		const checkHeader = (node: any) => {
@@ -43,7 +50,7 @@ export default {
 				'burgerMenuLabel'
 			);
 
-			if (!burgerMenuLabel) {
+			if (burgerMenuLabel === undefined || burgerMenuLabel === '') {
 				context.report({
 					node: openingElement,
 					messageId: MESSAGE_IDS.HEADER_MISSING_BURGER_MENU_LABEL

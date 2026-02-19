@@ -1,10 +1,10 @@
+import { COMPONENTS, MESSAGES, MESSAGE_IDS } from '../../shared/constants.js';
 import {
 	createAngularVisitors,
 	defineTemplateBodyVisitor,
 	getAttributeValue,
 	isDBComponent
 } from '../../shared/utils.js';
-import { COMPONENTS, MESSAGES, MESSAGE_IDS } from '../../shared/constants.js';
 
 export default {
 	meta: {
@@ -15,7 +15,8 @@ export default {
 			url: 'https://github.com/db-ux-design-system/core-web/blob/main/packages/eslint-plugin/README.md#tag-removable-remove-button-required'
 		},
 		messages: {
-			[MESSAGE_IDS.TAG_REMOVABLE_REMOVE_BUTTON_REQUIRED]: MESSAGES.TAG_REMOVABLE_REMOVE_BUTTON_REQUIRED
+			[MESSAGE_IDS.TAG_REMOVABLE_REMOVE_BUTTON_REQUIRED]:
+				MESSAGES.TAG_REMOVABLE_REMOVE_BUTTON_REQUIRED
 		},
 		schema: []
 	},
@@ -26,8 +27,10 @@ export default {
 
 			const removeButton = getAttributeValue(node, 'removeButton');
 
-			if (!removeButton) {
-				const loc = parserServices.convertNodeSourceSpanToLoc(node.sourceSpan);
+			if (removeButton === undefined || removeButton === '') {
+				const loc = parserServices.convertNodeSourceSpanToLoc(
+					node.sourceSpan
+				);
 				context.report({
 					loc,
 					messageId: MESSAGE_IDS.TAG_REMOVABLE_REMOVE_BUTTON_REQUIRED
@@ -35,7 +38,11 @@ export default {
 			}
 		};
 
-		const angularVisitors = createAngularVisitors(context, COMPONENTS.DBTag, angularHandler);
+		const angularVisitors = createAngularVisitors(
+			context,
+			COMPONENTS.DBTag,
+			angularHandler
+		);
 		if (angularVisitors) return angularVisitors;
 
 		const checkTag = (node: any) => {
@@ -50,7 +57,7 @@ export default {
 				'removeButton'
 			);
 
-			if (!removeButton) {
+			if (removeButton === undefined || removeButton === '') {
 				context.report({
 					node: openingElement,
 					messageId: MESSAGE_IDS.TAG_REMOVABLE_REMOVE_BUTTON_REQUIRED

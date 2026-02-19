@@ -1,8 +1,14 @@
 import {
+	COMPONENTS,
+	INTERACTIVE_ELEMENTS,
+	MESSAGE_IDS,
+	MESSAGES
+} from '../../shared/constants.js';
+import {
+	createAngularVisitors,
 	defineTemplateBodyVisitor,
 	isDBComponent
 } from '../../shared/utils.js';
-import { INTERACTIVE_ELEMENTS } from '../../shared/constants.js';
 
 function hasInteractiveChild(node: any): boolean {
 	return node.children?.some((child: any) => {
@@ -39,12 +45,31 @@ export default {
 			url: 'https://github.com/db-ux-design-system/core-web/blob/main/packages/eslint-plugin/README.md#no-interactive-tooltip-content'
 		},
 		messages: {
-			noInteractive:
-				'DBTooltip must not contain interactive elements. Use DBPopover for interactive content'
+			[MESSAGE_IDS.TOOLTIP_NO_INTERACTIVE]:
+				MESSAGES.TOOLTIP_NO_INTERACTIVE
 		},
 		schema: []
 	},
 	create(context: any) {
+		const angularHandler = (node: any, parserServices: any) => {
+			if (hasInteractiveChild(node)) {
+				const loc = parserServices.convertNodeSourceSpanToLoc(
+					node.sourceSpan
+				);
+				context.report({
+					loc,
+					messageId: MESSAGE_IDS.TOOLTIP_NO_INTERACTIVE
+				});
+			}
+		};
+
+		const angularVisitors = createAngularVisitors(
+			context,
+			COMPONENTS.DBTooltip,
+			angularHandler
+		);
+		if (angularVisitors) return angularVisitors;
+
 		const checkTooltip = (node: any) => {
 			const openingElement = node.openingElement || node;
 			if (!isDBComponent(openingElement, 'DBTooltip')) return;
@@ -52,7 +77,7 @@ export default {
 			if (hasInteractiveChild(node)) {
 				context.report({
 					node: openingElement,
-					messageId: 'noInteractive'
+					messageId: MESSAGE_IDS.TOOLTIP_NO_INTERACTIVE
 				});
 			}
 		};

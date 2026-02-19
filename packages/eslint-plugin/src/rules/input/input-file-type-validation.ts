@@ -1,9 +1,10 @@
+import { COMPONENTS, MESSAGES, MESSAGE_IDS } from '../../shared/constants.js';
 import {
+	createAngularVisitors,
 	defineTemplateBodyVisitor,
 	getAttributeValue,
 	isDBComponent
 } from '../../shared/utils.js';
-import { COMPONENTS, MESSAGES, MESSAGE_IDS } from '../../shared/constants.js';
 
 export default {
 	meta: {
@@ -14,13 +15,59 @@ export default {
 			url: 'https://github.com/db-ux-design-system/core-web/blob/main/packages/eslint-plugin/README.md#input-file-type-validation'
 		},
 		messages: {
-			[MESSAGE_IDS.INPUT_FILE_MISSING_ACCEPT]: MESSAGES.INPUT_FILE_MISSING_ACCEPT,
-			[MESSAGE_IDS.INPUT_INVALID_MULTIPLE]: MESSAGES.INPUT_INVALID_MULTIPLE,
+			[MESSAGE_IDS.INPUT_FILE_MISSING_ACCEPT]:
+				MESSAGES.INPUT_FILE_MISSING_ACCEPT,
+			[MESSAGE_IDS.INPUT_INVALID_MULTIPLE]:
+				MESSAGES.INPUT_INVALID_MULTIPLE,
 			[MESSAGE_IDS.INPUT_INVALID_ACCEPT]: MESSAGES.INPUT_INVALID_ACCEPT
 		},
 		schema: []
 	},
 	create(context: any) {
+		const angularHandler = (node: any, parserServices: any) => {
+			const type = getAttributeValue(node, 'type');
+			const accept = getAttributeValue(node, 'accept');
+			const multiple = getAttributeValue(node, 'multiple');
+
+			if (type === 'file') {
+				if (accept === undefined) {
+					const loc = parserServices.convertNodeSourceSpanToLoc(
+						node.sourceSpan
+					);
+					context.report({
+						loc,
+						messageId: MESSAGE_IDS.INPUT_FILE_MISSING_ACCEPT
+					});
+				}
+			} else {
+				if (multiple !== undefined) {
+					const loc = parserServices.convertNodeSourceSpanToLoc(
+						node.sourceSpan
+					);
+					context.report({
+						loc,
+						messageId: MESSAGE_IDS.INPUT_INVALID_MULTIPLE
+					});
+				}
+				if (accept !== undefined) {
+					const loc = parserServices.convertNodeSourceSpanToLoc(
+						node.sourceSpan
+					);
+					context.report({
+						loc,
+						messageId: MESSAGE_IDS.INPUT_INVALID_ACCEPT
+					});
+				}
+			}
+		};
+
+		const angularVisitors = createAngularVisitors(
+			context,
+			COMPONENTS.DBInput,
+			angularHandler
+		);
+		if (angularVisitors) return angularVisitors;
+
 		const checkInput = (node: any) => {
 			const openingElement = node.openingElement || node;
 			if (!isDBComponent(openingElement, COMPONENTS.DBInput)) return;
@@ -30,20 +77,20 @@ export default {
 			const multiple = getAttributeValue(openingElement, 'multiple');
 
 			if (type === 'file') {
-				if (!accept) {
+				if (accept === undefined) {
 					context.report({
 						node: openingElement,
 						messageId: MESSAGE_IDS.INPUT_FILE_MISSING_ACCEPT
 					});
 				}
 			} else {
-				if (multiple) {
+				if (multiple !== undefined) {
 					context.report({
 						node: openingElement,
 						messageId: MESSAGE_IDS.INPUT_INVALID_MULTIPLE
 					});
 				}
-				if (accept) {
+				if (accept !== undefined) {
 					context.report({
 						node: openingElement,
 						messageId: MESSAGE_IDS.INPUT_INVALID_ACCEPT

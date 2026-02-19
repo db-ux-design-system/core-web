@@ -1,9 +1,9 @@
+import { COMPONENTS, MESSAGES, MESSAGE_IDS } from '../../shared/constants.js';
 import {
 	createAngularVisitors,
 	defineTemplateBodyVisitor,
 	isDBComponent
 } from '../../shared/utils.js';
-import { COMPONENTS, MESSAGES, MESSAGE_IDS } from '../../shared/constants.js';
 
 export default {
 	meta: {
@@ -21,8 +21,14 @@ export default {
 		const angularHandler = (node: any, parserServices: any) => {
 			let parent: any = node.parent;
 			while (parent) {
-				if (parent.type === 'Element' && isDBComponent(parent, COMPONENTS.DBAccordion)) {
-					const loc = parserServices.convertNodeSourceSpanToLoc(node.sourceSpan);
+				if (
+					(parent.type === 'Element' ||
+						parent.type === 'Element$1') &&
+					isDBComponent(parent, COMPONENTS.DBAccordion)
+				) {
+					const loc = parserServices.convertNodeSourceSpanToLoc(
+						node.sourceSpan
+					);
 					context.report({
 						loc,
 						messageId: MESSAGE_IDS.ACCORDION_NO_NESTED
@@ -33,7 +39,11 @@ export default {
 			}
 		};
 
-		const angularVisitors = createAngularVisitors(context, COMPONENTS.DBAccordion, angularHandler);
+		const angularVisitors = createAngularVisitors(
+			context,
+			COMPONENTS.DBAccordion,
+			angularHandler
+		);
 		if (angularVisitors) return angularVisitors;
 
 		const checkAccordion = (node: any) => {
@@ -45,7 +55,8 @@ export default {
 				const parentOpening = parent.openingElement || parent;
 				if (
 					(parent.type === 'JSXElement' ||
-						parent.type === 'VElement') &&
+						parent.type === 'VElement' ||
+						parent.type === 'Element') &&
 					isDBComponent(parentOpening, COMPONENTS.DBAccordion)
 				) {
 					context.report({

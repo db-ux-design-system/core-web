@@ -1,10 +1,10 @@
+import { MESSAGES, MESSAGE_IDS } from '../../shared/constants.js';
 import {
 	createAngularVisitors,
 	defineTemplateBodyVisitor,
 	getAttributeValue,
 	isDBComponent
 } from '../../shared/utils.js';
-import { MESSAGES, MESSAGE_IDS } from '../../shared/constants.js';
 
 const FORM_COMPONENTS = [
 	'DBInput',
@@ -32,6 +32,45 @@ export default {
 		schema: []
 	},
 	create(context: any) {
+		const angularHandler = (node: any, parserServices: any) => {
+			const component = FORM_COMPONENTS.find((comp) =>
+				isDBComponent(node, comp)
+			);
+			if (!component) return;
+
+			const label = getAttributeValue(node, 'label');
+			const hasChildren = node.children?.some(
+				(child: any) =>
+					child.type === 'Text' && child.value.trim() !== ''
+			);
+
+			const canUseChildren =
+				COMPONENTS_WITH_CHILDREN_LABEL.includes(component);
+
+			if (
+				(label === undefined || label === '') &&
+				!(canUseChildren && hasChildren)
+			) {
+				const loc = parserServices.convertNodeSourceSpanToLoc(
+					node.sourceSpan
+				);
+				context.report({
+					loc,
+					messageId: MESSAGE_IDS.FORM_LABEL_REQUIRED,
+					data: { component }
+				});
+			}
+		};
+
+		FORM_COMPONENTS.forEach((comp) => {
+			const angularVisitors = createAngularVisitors(
+				context,
+				comp,
+				angularHandler
+			);
+			if (angularVisitors) return angularVisitors;
+		});
+
 		const checkFormComponent = (node: any) => {
 			const openingElement = node.openingElement || node;
 
@@ -44,13 +83,17 @@ export default {
 			const hasChildren = node.children?.some(
 				(child: any) =>
 					(child.type === 'JSXText' && child.value.trim() !== '') ||
-					(child.type === 'VText' && child.value.trim() !== '')
+					(child.type === 'VText' && child.value.trim() !== '') ||
+					(child.type === 'Text' && child.value.trim() !== '')
 			);
 
 			const canUseChildren =
 				COMPONENTS_WITH_CHILDREN_LABEL.includes(component);
 
-			if (!label && !(canUseChildren && hasChildren)) {
+			if (
+				(label === undefined || label === '') &&
+				!(canUseChildren && hasChildren)
+			) {
 				context.report({
 					node: openingElement,
 					messageId: MESSAGE_IDS.FORM_LABEL_REQUIRED,

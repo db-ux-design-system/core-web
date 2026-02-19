@@ -46,7 +46,8 @@ export default {
 			const iconChild = node.children?.find(
 				(child: any) =>
 					(child.type === 'JSXElement' ||
-						child.type === 'VElement') &&
+						child.type === 'VElement' ||
+						child.type === 'Element') &&
 					isDBComponent(child.openingElement || child, 'DBIcon')
 			);
 

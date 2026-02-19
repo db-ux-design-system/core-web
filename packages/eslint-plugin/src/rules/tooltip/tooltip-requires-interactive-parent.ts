@@ -1,8 +1,14 @@
 import {
+	COMPONENTS,
+	INTERACTIVE_ELEMENTS,
+	MESSAGE_IDS,
+	MESSAGES
+} from '../../shared/constants.js';
+import {
+	createAngularVisitors,
 	defineTemplateBodyVisitor,
 	isDBComponent
 } from '../../shared/utils.js';
-import { INTERACTIVE_ELEMENTS } from '../../shared/constants.js';
 
 function isInteractiveElement(node: any): boolean {
 	const openingElement = node.openingElement || node;
@@ -27,12 +33,41 @@ export default {
 			url: 'https://github.com/db-ux-design-system/core-web/blob/main/packages/eslint-plugin/README.md#tooltip-requires-interactive-parent'
 		},
 		messages: {
-			requiresInteractive:
-				'DBTooltip must be a child of an interactive element (button, link, etc.) for accessibility'
+			[MESSAGE_IDS.TOOLTIP_REQUIRES_INTERACTIVE]:
+				MESSAGES.TOOLTIP_REQUIRES_INTERACTIVE
 		},
 		schema: []
 	},
 	create(context: any) {
+		const angularHandler = (node: any, parserServices: any) => {
+			let parent: any = node.parent;
+			while (parent) {
+				if (
+					(parent.type === 'Element' ||
+						parent.type === 'Element$1') &&
+					isInteractiveElement(parent)
+				) {
+					return;
+				}
+				parent = parent.parent;
+			}
+
+			const loc = parserServices.convertNodeSourceSpanToLoc(
+				node.sourceSpan
+			);
+			context.report({
+				loc,
+				messageId: MESSAGE_IDS.TOOLTIP_REQUIRES_INTERACTIVE
+			});
+		};
+
+		const angularVisitors = createAngularVisitors(
+			context,
+			COMPONENTS.DBTooltip,
+			angularHandler
+		);
+		if (angularVisitors) return angularVisitors;
+
 		const checkTooltip = (node: any) => {
 			const openingElement = node.openingElement || node;
 			if (!isDBComponent(openingElement, 'DBTooltip')) return;
@@ -41,7 +76,8 @@ export default {
 			while (parent) {
 				if (
 					parent.type === 'JSXElement' ||
-					parent.type === 'VElement'
+					parent.type === 'VElement' ||
+					parent.type === 'Element'
 				) {
 					if (isInteractiveElement(parent)) {
 						return;
@@ -52,7 +88,7 @@ export default {
 
 			context.report({
 				node: openingElement,
-				messageId: 'requiresInteractive'
+				messageId: MESSAGE_IDS.TOOLTIP_REQUIRES_INTERACTIVE
 			});
 		};
 

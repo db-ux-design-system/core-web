@@ -109,7 +109,7 @@ export function hasChildOfType(
 
 	if (isAngularElement(node)) {
 		return (node.children || []).some((child: any) => {
-			if (child.type === 'Element') {
+			if (child.type === 'Element' || child.type === 'Element$1') {
 				return child.name === componentName || child.name === kebabName;
 			}
 			return false;
@@ -118,7 +118,7 @@ export function hasChildOfType(
 
 	if (isVElement(node)) {
 		return (node.children || []).some((child: any) => {
-			if (child.type === 'VElement') {
+			if (child.type === 'VElement' || child.type === 'Element') {
 				return (
 					child.rawName === componentName ||
 					child.rawName === kebabName

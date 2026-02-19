@@ -1,5 +1,6 @@
 import { MESSAGES, MESSAGE_IDS } from '../../shared/constants.js';
 import {
+	createAngularVisitors,
 	defineTemplateBodyVisitor,
 	getAttributeValue,
 	isDBComponent
@@ -30,6 +31,41 @@ export default {
 		schema: []
 	},
 	create(context: any) {
+		const angularHandler = (node: any, parserServices: any) => {
+			const component = COMPONENTS_REQUIRING_CONTENT.find((comp) =>
+				isDBComponent(node, comp)
+			);
+			if (!component) return;
+
+			const text = getAttributeValue(node, 'text');
+			const hasChildren = node.children?.some(
+				(child: any) =>
+					(child.type === 'Text' && child.value.trim() !== '') ||
+					child.type === 'Element' ||
+					child.type === 'Element$1'
+			);
+
+			if (text === undefined && !hasChildren) {
+				const loc = parserServices.convertNodeSourceSpanToLoc(
+					node.sourceSpan
+				);
+				context.report({
+					loc,
+					messageId: MESSAGE_IDS.TEXT_OR_CHILDREN_REQUIRED,
+					data: { component }
+				});
+			}
+		};
+
+		COMPONENTS_REQUIRING_CONTENT.forEach((comp) => {
+			const angularVisitors = createAngularVisitors(
+				context,
+				comp,
+				angularHandler
+			);
+			if (angularVisitors) return angularVisitors;
+		});
+
 		const checkComponent = (node: any) => {
 			const openingElement = node.openingElement || node;
 
@@ -49,7 +85,7 @@ export default {
 					child.type === 'VExpressionContainer'
 			);
 
-			if (!text && !hasChildren) {
+			if (text === undefined && !hasChildren) {
 				context.report({
 					node: openingElement,
 					messageId: MESSAGE_IDS.TEXT_OR_CHILDREN_REQUIRED,

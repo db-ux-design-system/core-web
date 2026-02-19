@@ -24,7 +24,9 @@ export default {
 	create(context: any) {
 		const angularHandler = (node: any, parserServices: any) => {
 			const type = getAttributeValue(node, 'type');
-			if (!type) {
+			if (type === undefined) {
+				const hasClickHandler = getAttributeValue(node, '(click)');
+				const typeValue = hasClickHandler ? 'button' : 'submit';
 				const loc = parserServices.convertNodeSourceSpanToLoc(
 					node.sourceSpan
 				);
@@ -35,7 +37,7 @@ export default {
 						const fixData = createAngularFix(
 							context,
 							node,
-							' type="button"'
+							` type="${typeValue}"`
 						);
 						if (!fixData) return null;
 						return fixer.insertTextBeforeRange(
@@ -59,7 +61,7 @@ export default {
 			if (!isDBComponent(openingElement, COMPONENTS.DBButton)) return;
 
 			const type = getAttributeValue(openingElement, 'type');
-			if (type) return;
+			if (type !== undefined) return;
 
 			const hasClickHandler =
 				getAttributeValue(openingElement, 'onClick') ||

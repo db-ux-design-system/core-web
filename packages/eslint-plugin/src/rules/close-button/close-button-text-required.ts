@@ -1,10 +1,10 @@
+import { MESSAGES, MESSAGE_IDS } from '../../shared/constants.js';
 import {
 	createAngularVisitors,
 	defineTemplateBodyVisitor,
 	getAttributeValue,
 	isDBComponent
 } from '../../shared/utils.js';
-import { MESSAGES, MESSAGE_IDS } from '../../shared/constants.js';
 
 const COMPONENTS_WITH_CLOSE_BUTTON = {
 	DBNotification: 'closeButtonText',
@@ -21,11 +21,46 @@ export default {
 			url: 'https://github.com/db-ux-design-system/core-web/blob/main/packages/eslint-plugin/README.md#close-button-text-required'
 		},
 		messages: {
-			[MESSAGE_IDS.CLOSE_BUTTON_TEXT_REQUIRED]: MESSAGES.CLOSE_BUTTON_TEXT_REQUIRED
+			[MESSAGE_IDS.CLOSE_BUTTON_TEXT_REQUIRED]:
+				MESSAGES.CLOSE_BUTTON_TEXT_REQUIRED
 		},
 		schema: []
 	},
 	create(context: any) {
+		const angularHandler = (node: any, parserServices: any) => {
+			const component = Object.keys(COMPONENTS_WITH_CLOSE_BUTTON).find(
+				(comp) => isDBComponent(node, comp)
+			);
+
+			if (!component) return;
+
+			const attribute =
+				COMPONENTS_WITH_CLOSE_BUTTON[
+					component as keyof typeof COMPONENTS_WITH_CLOSE_BUTTON
+				];
+			const value = getAttributeValue(node, attribute);
+
+			if (value === undefined || value === '') {
+				const loc = parserServices.convertNodeSourceSpanToLoc(
+					node.sourceSpan
+				);
+				context.report({
+					loc,
+					messageId: MESSAGE_IDS.CLOSE_BUTTON_TEXT_REQUIRED,
+					data: { component, attribute }
+				});
+			}
+		};
+
+		Object.keys(COMPONENTS_WITH_CLOSE_BUTTON).forEach((comp) => {
+			const angularVisitors = createAngularVisitors(
+				context,
+				comp,
+				angularHandler
+			);
+			if (angularVisitors) return angularVisitors;
+		});
+
 		const checkComponent = (node: any) => {
 			const openingElement = node.openingElement || node;
 			const component = Object.keys(COMPONENTS_WITH_CLOSE_BUTTON).find(
@@ -40,7 +75,7 @@ export default {
 				];
 			const value = getAttributeValue(openingElement, attribute);
 
-			if (!value) {
+			if (value === undefined || value === '') {
 				context.report({
 					node: openingElement,
 					messageId: MESSAGE_IDS.CLOSE_BUTTON_TEXT_REQUIRED,
