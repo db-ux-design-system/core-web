@@ -33,6 +33,7 @@ export default {
 	},
 	create(context: any) {
 		const angularHandler = (node: any, parserServices: any) => {
+			const componentName = node.name;
 			const component = FORM_COMPONENTS.find((comp) =>
 				isDBComponent(node, comp)
 			);
@@ -57,7 +58,7 @@ export default {
 				context.report({
 					loc,
 					messageId: MESSAGE_IDS.FORM_LABEL_REQUIRED,
-					data: { component }
+					data: { component: componentName }
 				});
 			}
 		};
@@ -79,6 +80,9 @@ export default {
 			);
 			if (!component) return;
 
+			const componentName =
+				openingElement.name?.name || openingElement.rawName;
+
 			const label = getAttributeValue(openingElement, 'label');
 			const hasChildren = node.children?.some(
 				(child: any) =>
@@ -97,7 +101,7 @@ export default {
 				context.report({
 					node: openingElement,
 					messageId: MESSAGE_IDS.FORM_LABEL_REQUIRED,
-					data: { component }
+					data: { component: componentName }
 				});
 			}
 		};

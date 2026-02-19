@@ -37,6 +37,7 @@ export default {
 	},
 	create(context: any) {
 		const angularHandler = (node: any, parserServices: any) => {
+			const componentName = node.name;
 			const component = COMPONENTS_WITH_ICON_ATTR.find((comp) =>
 				isDBComponent(node, comp)
 			);
@@ -56,7 +57,7 @@ export default {
 				context.report({
 					loc,
 					messageId: MESSAGE_IDS.ICON_PREFER_ATTRIBUTE,
-					data: { component }
+					data: { component: componentName }
 				});
 			}
 		};
@@ -78,6 +79,9 @@ export default {
 			);
 			if (!component) return;
 
+			const componentName =
+				openingElement.name?.name || openingElement.rawName;
+
 			const iconChild = node.children?.find(
 				(child: any) =>
 					(child.type === 'JSXElement' ||
@@ -93,7 +97,7 @@ export default {
 				context.report({
 					node: iconChild,
 					messageId: MESSAGE_IDS.ICON_PREFER_ATTRIBUTE,
-					data: { component },
+					data: { component: componentName },
 					fix(fixer: any) {
 						if (!iconValue || typeof iconValue !== 'string')
 							return null;

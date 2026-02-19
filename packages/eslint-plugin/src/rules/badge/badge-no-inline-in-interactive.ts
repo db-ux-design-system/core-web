@@ -32,10 +32,11 @@ export default {
 			let parent: any = node.parent;
 			while (parent) {
 				if (parent.type === 'Element') {
+					const parentName = parent.name;
 					const matchedParent = INTERACTIVE_PARENTS.find(
 						(p) =>
-							parent.name === p ||
-							parent.name === p.toLowerCase().replace('db', 'db-')
+							parentName === p ||
+							parentName === p.toLowerCase().replace('db', 'db-')
 					);
 
 					if (matchedParent) {
@@ -46,7 +47,7 @@ export default {
 							loc,
 							messageId:
 								MESSAGE_IDS.BADGE_NO_INLINE_IN_INTERACTIVE,
-							data: { parent: matchedParent },
+							data: { parent: parentName },
 							fix(fixer: any) {
 								const fixData = createAngularFix(
 									context,
@@ -108,7 +109,7 @@ export default {
 								node: openingElement,
 								messageId:
 									MESSAGE_IDS.BADGE_NO_INLINE_IN_INTERACTIVE,
-								data: { parent: matchedParent },
+								data: { parent: name },
 								fix(fixer: any) {
 									if (node.openingElement) {
 										// JSX

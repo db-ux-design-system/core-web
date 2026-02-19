@@ -30,6 +30,7 @@ export default {
 	},
 	create(context: any) {
 		const angularHandler = (node: any, parserServices: any) => {
+			const componentName = node.name;
 			const component = FORM_COMPONENTS.find((comp) =>
 				isDBComponent(node, comp)
 			);
@@ -46,7 +47,7 @@ export default {
 				context.report({
 					loc,
 					messageId: MESSAGE_IDS.FORM_VALIDATION_MESSAGE_REQUIRED,
-					data: { component, attribute: 'required' }
+					data: { component: componentName, attribute: 'required' }
 				});
 				return;
 			}
@@ -62,7 +63,10 @@ export default {
 					context.report({
 						loc,
 						messageId: MESSAGE_IDS.FORM_VALIDATION_MESSAGE_REQUIRED,
-						data: { component, attribute: 'maxLength' }
+						data: {
+							component: componentName,
+							attribute: 'maxLength'
+						}
 					});
 					return;
 				}
@@ -74,7 +78,10 @@ export default {
 					context.report({
 						loc,
 						messageId: MESSAGE_IDS.FORM_VALIDATION_MESSAGE_REQUIRED,
-						data: { component, attribute: 'minLength' }
+						data: {
+							component: componentName,
+							attribute: 'minLength'
+						}
 					});
 					return;
 				}
@@ -92,7 +99,7 @@ export default {
 					context.report({
 						loc,
 						messageId: MESSAGE_IDS.FORM_VALIDATION_MESSAGE_REQUIRED,
-						data: { component, attribute: 'min' }
+						data: { component: componentName, attribute: 'min' }
 					});
 					return;
 				}
@@ -104,7 +111,7 @@ export default {
 					context.report({
 						loc,
 						messageId: MESSAGE_IDS.FORM_VALIDATION_MESSAGE_REQUIRED,
-						data: { component, attribute: 'max' }
+						data: { component: componentName, attribute: 'max' }
 					});
 					return;
 				}
@@ -116,7 +123,7 @@ export default {
 					context.report({
 						loc,
 						messageId: MESSAGE_IDS.FORM_VALIDATION_MESSAGE_REQUIRED,
-						data: { component, attribute: 'pattern' }
+						data: { component: componentName, attribute: 'pattern' }
 					});
 				}
 			}
@@ -138,6 +145,9 @@ export default {
 			);
 			if (!component) return;
 
+			const componentName =
+				openingElement.name?.name || openingElement.rawName;
+
 			const invalidMessage = getAttributeValue(
 				openingElement,
 				'invalidMessage'
@@ -149,7 +159,7 @@ export default {
 				context.report({
 					node: openingElement,
 					messageId: MESSAGE_IDS.FORM_VALIDATION_MESSAGE_REQUIRED,
-					data: { component, attribute: 'required' }
+					data: { component: componentName, attribute: 'required' }
 				});
 				return;
 			}
@@ -168,7 +178,10 @@ export default {
 					context.report({
 						node: openingElement,
 						messageId: MESSAGE_IDS.FORM_VALIDATION_MESSAGE_REQUIRED,
-						data: { component, attribute: 'maxLength' }
+						data: {
+							component: componentName,
+							attribute: 'maxLength'
+						}
 					});
 					return;
 				}
@@ -177,7 +190,10 @@ export default {
 					context.report({
 						node: openingElement,
 						messageId: MESSAGE_IDS.FORM_VALIDATION_MESSAGE_REQUIRED,
-						data: { component, attribute: 'minLength' }
+						data: {
+							component: componentName,
+							attribute: 'minLength'
+						}
 					});
 					return;
 				}
@@ -192,7 +208,7 @@ export default {
 					context.report({
 						node: openingElement,
 						messageId: MESSAGE_IDS.FORM_VALIDATION_MESSAGE_REQUIRED,
-						data: { component, attribute: 'min' }
+						data: { component: componentName, attribute: 'min' }
 					});
 					return;
 				}
@@ -201,7 +217,7 @@ export default {
 					context.report({
 						node: openingElement,
 						messageId: MESSAGE_IDS.FORM_VALIDATION_MESSAGE_REQUIRED,
-						data: { component, attribute: 'max' }
+						data: { component: componentName, attribute: 'max' }
 					});
 					return;
 				}
@@ -210,7 +226,7 @@ export default {
 					context.report({
 						node: openingElement,
 						messageId: MESSAGE_IDS.FORM_VALIDATION_MESSAGE_REQUIRED,
-						data: { component, attribute: 'pattern' }
+						data: { component: componentName, attribute: 'pattern' }
 					});
 				}
 			}

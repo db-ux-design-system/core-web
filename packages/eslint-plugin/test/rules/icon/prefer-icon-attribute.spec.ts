@@ -46,7 +46,7 @@ describe('prefer-icon-attribute', () => {
 					errors: [
 						{
 							messageId: 'preferAttribute',
-							data: { component: 'DBButton' }
+							data: { component: 'db-button' }
 						}
 					],
 					output: '<db-button icon="save"></db-button>'

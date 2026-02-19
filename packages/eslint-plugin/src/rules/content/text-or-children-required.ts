@@ -32,6 +32,7 @@ export default {
 	},
 	create(context: any) {
 		const angularHandler = (node: any, parserServices: any) => {
+			const componentName = node.name;
 			const component = COMPONENTS_REQUIRING_CONTENT.find((comp) =>
 				isDBComponent(node, comp)
 			);
@@ -52,7 +53,7 @@ export default {
 				context.report({
 					loc,
 					messageId: MESSAGE_IDS.TEXT_OR_CHILDREN_REQUIRED,
-					data: { component }
+					data: { component: componentName }
 				});
 			}
 		};
@@ -74,6 +75,9 @@ export default {
 			);
 			if (!component) return;
 
+			const componentName =
+				openingElement.name?.name || openingElement.rawName;
+
 			const text = getAttributeValue(openingElement, 'text');
 			const hasChildren = node.children?.some(
 				(child: any) =>
@@ -89,7 +93,7 @@ export default {
 				context.report({
 					node: openingElement,
 					messageId: MESSAGE_IDS.TEXT_OR_CHILDREN_REQUIRED,
-					data: { component }
+					data: { component: componentName }
 				});
 			}
 		};

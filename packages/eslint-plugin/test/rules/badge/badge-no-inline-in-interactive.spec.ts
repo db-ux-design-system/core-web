@@ -59,7 +59,7 @@ describe('badge-no-inline-in-interactive', () => {
 				{
 					code: '<db-button><db-badge placement="inline">Badge</db-badge>Button</db-button>',
 					errors: [
-						{ messageId: 'noInline', data: { parent: 'DBButton' } }
+						{ messageId: 'noInline', data: { parent: 'db-button' } }
 					],
 					output: '<db-button><db-badge placement="corner-top-right">Badge</db-badge>Button</db-button>'
 				},

@@ -28,6 +28,7 @@ export default {
 	},
 	create(context: any) {
 		const angularHandler = (node: any, parserServices: any) => {
+			const componentName = node.name;
 			const component = Object.keys(COMPONENTS_WITH_CLOSE_BUTTON).find(
 				(comp) => isDBComponent(node, comp)
 			);
@@ -47,7 +48,7 @@ export default {
 				context.report({
 					loc,
 					messageId: MESSAGE_IDS.CLOSE_BUTTON_TEXT_REQUIRED,
-					data: { component, attribute }
+					data: { component: componentName, attribute }
 				});
 			}
 		};
@@ -69,6 +70,9 @@ export default {
 
 			if (!component) return;
 
+			const componentName =
+				openingElement.name?.name || openingElement.rawName;
+
 			const attribute =
 				COMPONENTS_WITH_CLOSE_BUTTON[
 					component as keyof typeof COMPONENTS_WITH_CLOSE_BUTTON
@@ -79,7 +83,7 @@ export default {
 				context.report({
 					node: openingElement,
 					messageId: MESSAGE_IDS.CLOSE_BUTTON_TEXT_REQUIRED,
-					data: { component, attribute }
+					data: { component: componentName, attribute }
 				});
 			}
 		};
