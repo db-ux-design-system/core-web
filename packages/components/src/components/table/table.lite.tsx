@@ -81,7 +81,7 @@ export default function DBTable(props: DBTableProps) {
 	onUpdate(() => {
 		if (props.columnSizes) {
 			const columnStyles: any = {};
-			Object.entries(props.columnSizes).forEach(([key, value]) => {
+			Object.entries(props.columnSizes!).forEach(([key, value]) => {
 				columnStyles[`--db-table-column-size-${key}`] = value;
 			});
 

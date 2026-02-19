@@ -16,7 +16,7 @@ import { StorybookTableArgTypes } from './_table.arg.types';
 
 useMetadata({
 	storybookTitle: 'Complex',
-	storybookNames: ['Joined', 'Floating', 'Mobile variant: List'],
+	storybookNames: ['Joined', 'Zebra', 'Floating', 'Mobile variant: List'],
 	storybookArgTypes: StorybookTableArgTypes
 });
 
@@ -25,7 +25,8 @@ export default function TableComplex() {
 		<Fragment>
 			<div
 				style={{
-					inlineSize: '100%',
+					maxInlineSize: '100%',
+					inlineSize: '1000px',
 					display: 'flex',
 					flexDirection: 'column',
 					alignItems: 'center',
@@ -223,7 +224,8 @@ export default function TableComplex() {
 			</div>
 			<div
 				style={{
-					inlineSize: '100%',
+					maxInlineSize: '100%',
+					inlineSize: '1000px',
 					display: 'flex',
 					flexDirection: 'column',
 					alignItems: 'center',
@@ -422,7 +424,8 @@ export default function TableComplex() {
 			</div>
 			<div
 				style={{
-					inlineSize: '100%',
+					maxInlineSize: '100%',
+					inlineSize: '1000px',
 					display: 'flex',
 					flexDirection: 'column',
 					alignItems: 'center',
