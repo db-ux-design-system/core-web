@@ -43,6 +43,10 @@ describe('button-single-icon-attribute', () => {
 				{
 					code: '<db-button icon="save" [iconLeading]="iconName">Save</db-button>',
 					errors: [{ messageId: 'multipleIcons' }]
+				},
+				{
+					code: '<DBButton icon="save" :iconLeading="iconName">Save</DBButton>',
+					errors: [{ messageId: 'multipleIcons' }]
 				}
 			]
 		});

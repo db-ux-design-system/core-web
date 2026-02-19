@@ -21,6 +21,7 @@ describe('text-or-children-required', () => {
 				{ code: '<DBIcon icon="test">Label</DBIcon>' },
 				{ code: '<db-button text="Save"></db-button>' },
 				{ code: '<db-button>Save</db-button>' },
+				{ code: '<db-button [text]="myText"></db-button>' },
 				{ code: '<DBButton :text="buttonText" />' },
 				{
 					code: '<DBNotification><span>Message</span></DBNotification>'

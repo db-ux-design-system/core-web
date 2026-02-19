@@ -110,10 +110,14 @@ export default {
 						const shortText = content.slice(0, 3);
 
 						if (text && typeof text === 'string') {
-							const textAttr = openingElement.attributes.find(
+							const attrs =
+								openingElement.startTag?.attributes ||
+								openingElement.attributes;
+							const textAttr = attrs.find(
 								(a: any) =>
-									a.type === 'JSXAttribute' &&
-									a.name.name === 'text'
+									(a.type === 'JSXAttribute' &&
+										a.name.name === 'text') ||
+									a.key?.name === 'text'
 							);
 							if (textAttr) {
 								fixes.push(

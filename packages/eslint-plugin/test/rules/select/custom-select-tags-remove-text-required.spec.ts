@@ -33,6 +33,10 @@ describe('custom-select-tags-remove-text-required', () => {
 					errors: [{ messageId: 'missingRemoveTagsTexts' }]
 				},
 				{
+					code: '<DBCustomSelect label="Select" selectedType="tag" removeTagsTexts={[]} />',
+					errors: [{ messageId: 'missingRemoveTagsTexts' }]
+				},
+				{
 					code: '<DBCustomSelect label="Select" selectedType="tag" options={opts} />',
 					errors: [{ messageId: 'missingRemoveTagsTexts' }]
 				},

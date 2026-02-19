@@ -18,6 +18,12 @@ describe('form-validation-message-required', () => {
 					code: '<DBInput label="Name" required invalidMessage="Required" />'
 				},
 				{
+					code: '<db-input label="Name" [required]="true" invalidMessage="Required"></db-input>'
+				},
+				{
+					code: '<DBInput label="Name" :required="true" invalidMessage="Required" />'
+				},
+				{
 					code: '<DBTextarea label="Text" maxLength={100} invalidMessage="Too long" />'
 				},
 				{

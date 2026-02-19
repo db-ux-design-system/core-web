@@ -1,5 +1,6 @@
 import { MESSAGES, MESSAGE_IDS } from '../../shared/constants.js';
 import {
+	createAngularVisitors,
 	defineTemplateBodyVisitor,
 	getAttributeValue,
 	isDBComponent
@@ -35,6 +36,40 @@ export default {
 		schema: []
 	},
 	create(context: any) {
+		const angularHandler = (node: any, parserServices: any) => {
+			const component = COMPONENTS_WITH_ICON_ATTR.find((comp) =>
+				isDBComponent(node, comp)
+			);
+			if (!component) return;
+
+			const iconChild = node.children?.find(
+				(child: any) =>
+					(child.type === 'Element' || child.type === 'Element$1') &&
+					isDBComponent(child, 'DBIcon')
+			);
+
+			if (iconChild) {
+				const iconValue = getAttributeValue(iconChild, 'icon');
+				const loc = parserServices.convertNodeSourceSpanToLoc(
+					iconChild.sourceSpan
+				);
+				context.report({
+					loc,
+					messageId: MESSAGE_IDS.ICON_PREFER_ATTRIBUTE,
+					data: { component }
+				});
+			}
+		};
+
+		for (const comp of COMPONENTS_WITH_ICON_ATTR) {
+			const angularVisitors = createAngularVisitors(
+				context,
+				comp,
+				angularHandler
+			);
+			if (angularVisitors) return angularVisitors;
+		}
+
 		const checkComponent = (node: any) => {
 			const openingElement = node.openingElement || node;
 

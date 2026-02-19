@@ -52,14 +52,14 @@ export default {
 			}
 		};
 
-		Object.keys(COMPONENTS_WITH_CLOSE_BUTTON).forEach((comp) => {
+		for (const comp of Object.keys(COMPONENTS_WITH_CLOSE_BUTTON)) {
 			const angularVisitors = createAngularVisitors(
 				context,
 				comp,
 				angularHandler
 			);
 			if (angularVisitors) return angularVisitors;
-		});
+		}
 
 		const checkComponent = (node: any) => {
 			const openingElement = node.openingElement || node;

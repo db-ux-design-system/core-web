@@ -61,7 +61,7 @@ export default {
 
 			const type = getAttributeValue(openingElement, 'type');
 
-			if (!type) {
+			if (type === undefined) {
 				context.report({
 					node: openingElement,
 					messageId: MESSAGE_IDS.INPUT_TYPE_REQUIRED,

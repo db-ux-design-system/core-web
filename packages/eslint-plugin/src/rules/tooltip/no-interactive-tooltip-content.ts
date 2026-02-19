@@ -12,7 +12,12 @@ import {
 
 function hasInteractiveChild(node: any): boolean {
 	return node.children?.some((child: any) => {
-		if (child.type === 'JSXElement' || child.type === 'VElement') {
+		if (
+			child.type === 'JSXElement' ||
+			child.type === 'VElement' ||
+			child.type === 'Element' ||
+			child.type === 'Element$1'
+		) {
 			const openingElement = child.openingElement || child;
 			const name = openingElement.name || openingElement.rawName;
 			const tagName =

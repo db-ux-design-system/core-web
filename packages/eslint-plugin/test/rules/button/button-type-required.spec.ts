@@ -23,7 +23,13 @@ describe('button-type-required', () => {
 					code: '<DBButton type="reset">Reset</DBButton>'
 				},
 				{
+					code: '<DBButton type="">Empty</DBButton>'
+				},
+				{
 					code: '<db-button type="button">Save</db-button>'
+				},
+				{
+					code: '<db-button [type]="buttonType">Dynamic</db-button>'
 				},
 				{
 					code: '<DBButton :type="buttonType">Dynamic</DBButton>'

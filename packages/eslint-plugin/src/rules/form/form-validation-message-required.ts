@@ -122,14 +122,14 @@ export default {
 			}
 		};
 
-		FORM_COMPONENTS.forEach((comp) => {
+		for (const comp of FORM_COMPONENTS) {
 			const angularVisitors = createAngularVisitors(
 				context,
 				comp,
 				angularHandler
 			);
 			if (angularVisitors) return angularVisitors;
-		});
+		}
 
 		const checkFormComponent = (node: any) => {
 			const openingElement = node.openingElement || node;

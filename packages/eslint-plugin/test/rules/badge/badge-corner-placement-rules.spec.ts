@@ -45,7 +45,7 @@ describe('badge-corner-placement-rules', () => {
 				{
 					code: '<DBBadge placement="corner-bottom-left" label="Count">9999</DBBadge>',
 					errors: [{ messageId: 'textTooLong' }],
-					output: '<DBBadge placement="corner-bottom-left" label="9999">999</DBBadge>'
+					output: '<DBBadge placement="corner-bottom-left" label="Count">999</DBBadge>'
 				},
 				{
 					code: '<DBBadge placement="corner-top-left">99</DBBadge>',

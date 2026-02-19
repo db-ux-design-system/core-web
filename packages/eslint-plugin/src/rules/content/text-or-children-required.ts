@@ -57,14 +57,14 @@ export default {
 			}
 		};
 
-		COMPONENTS_REQUIRING_CONTENT.forEach((comp) => {
+		for (const comp of COMPONENTS_REQUIRING_CONTENT) {
 			const angularVisitors = createAngularVisitors(
 				context,
 				comp,
 				angularHandler
 			);
 			if (angularVisitors) return angularVisitors;
-		});
+		}
 
 		const checkComponent = (node: any) => {
 			const openingElement = node.openingElement || node;
