@@ -1,0 +1,96 @@
+- main:
+  - heading "DBTabs" [level=1]
+  - link "Density"
+  - text: "Functional:"
+  - tablist:
+    - tab "Test 1" [selected]
+    - tab "Test 2"
+    - tab "Test 3"
+  - tabpanel "Test 1": Tab Panel 1
+  - text: "(Default) Regular:"
+  - tablist:
+    - tab "Test 1" [selected]
+    - tab "Test 2"
+    - tab "Test 3"
+  - tabpanel "Test 1": Tab Panel 1
+  - text: "Expressive:"
+  - tablist:
+    - tab "Test 1" [selected]
+    - tab "Test 2"
+    - tab "Test 3"
+  - tabpanel "Test 1": Tab Panel 1
+  - link "Orientation"
+  - text: "horizontal:"
+  - tablist:
+    - tab "Test 1" [selected]
+    - tab "Test 2"
+    - tab "Test 3"
+  - tabpanel "Test 1": Tab Panel 1
+  - text: "vertical:"
+  - tablist:
+    - tab "Test 1" [selected]
+    - tab "Test 2"
+    - tab "Test 3"
+  - tabpanel "Test 1": Tab Panel 1
+  - link "Width"
+  - text: "auto:"
+  - tablist:
+    - tab "Test 1" [selected]
+    - tab "Test 2"
+    - tab "Test 3"
+  - tabpanel "Test 1": Tab Panel 1
+  - text: "full - alignment: start:"
+  - tablist:
+    - tab "Test 1" [selected]
+    - tab "Test 2"
+    - tab "Test 3"
+  - tabpanel "Test 1": Tab Panel 1
+  - text: "full - alignment: center:"
+  - tablist:
+    - tab "Test 1" [selected]
+    - tab "Test 2"
+    - tab "Test 3"
+  - tabpanel "Test 1": Tab Panel 1
+  - link "Overflow"
+  - text: "no overflow:"
+  - tablist:
+    - tab "Test 1" [selected]
+    - tab "Test 2"
+    - tab "Test 3"
+  - tabpanel "Test 1": Tab Panel 1
+  - text: "with overflow - behavior: arrows:"
+  - tablist:
+    - tab "Test 1" [selected]
+    - tab "Test 2"
+    - tab "Test 3"
+    - tab "Test 4"
+    - tab "Test 5"
+  - tabpanel: Tab Panel 1
+  - button "Scroll right"
+  - text: "with overflow - behavior: scrollbar:"
+  - tablist:
+    - tab "Test 1" [selected]
+    - tab "Test 2"
+    - tab "Test 3"
+    - tab "Test 4"
+    - tab "Test 5"
+  - tabpanel "Test 1": Tab Panel 1
+  - link "Truncation"
+  - text: "truncated tab label:"
+  - tablist:
+    - tab "Very long tab label that gets truncated" [selected]
+    - tab "Tab 2"
+    - tab "Tab 3"
+  - tabpanel: Tab Panel 1
+  - link "Examples"
+  - text: "2nd tab selected:"
+  - tablist:
+    - tab "Test 1"
+    - tab "Test 2" [selected]
+    - tab "Test 3"
+  - tabpanel "Test 2": Tab Panel 2
+  - text: "nothing selected:"
+  - tablist:
+    - tab "Test 1"
+    - tab "Test 2"
+    - tab "Test 3"
