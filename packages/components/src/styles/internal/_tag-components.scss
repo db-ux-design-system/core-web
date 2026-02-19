@@ -121,6 +121,7 @@ $interactive-selectors: "label, button:not(.db-tab-remove-button), a";
 }
 
 @mixin get-tag-colors-interactive() {
+	@extend %set-interactive-weak;
 	@include revert-db-components;
 
 	// overwrite current variables for semantic color
