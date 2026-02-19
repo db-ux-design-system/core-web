@@ -280,11 +280,6 @@ export default function DBTabs(props: DBTabsProps) {
 						button.setAttribute('aria-controls', panelId);
 					}
 
-					button.setAttribute(
-						'aria-selected',
-						isSelected ? 'true' : 'false'
-					);
-					button.setAttribute('tabindex', isSelected ? '0' : '-1');
 					button.dispatchEvent(
 						new CustomEvent('aria-selected-changed', {
 							detail: { selected: isSelected }
@@ -387,7 +382,7 @@ export default function DBTabs(props: DBTabsProps) {
 				state.initTabs();
 			});
 		}
-	}, [_ref, state.initialized, state.activeTabIndex]); // activeTabIndex is required: onUpdate triggers initTabs() after framework re-render, ensuring aria-selected and hidden attributes are set correctly
+	}, [_ref, state.initialized, state.activeTabIndex]); // activeTabIndex is required: onUpdate triggers initTabs() after framework re-render, ensuring hidden attribute and aria-controls/aria-labelledby are set correctly
 
 	return (
 		<div
