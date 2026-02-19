@@ -84,7 +84,7 @@ export default function DBTabItem(props: DBTabItemProps) {
 			const listener = (event: any) => {
 				state.internalActive = event.detail.selected;
 			};
-			state._ariaSelectedListener = listener;
+			state._ariaSelectedListener = { fn: listener };
 			_ref.addEventListener('aria-selected-changed', listener);
 		}
 	});
@@ -93,7 +93,7 @@ export default function DBTabItem(props: DBTabItemProps) {
 	onUnMount(() => {
 		state._resizeObserver?.disconnect();
 		if (_ref && state._ariaSelectedListener) {
-			_ref.removeEventListener('aria-selected-changed', state._ariaSelectedListener);
+			_ref.removeEventListener('aria-selected-changed', state._ariaSelectedListener.fn);
 		}
 	});
 

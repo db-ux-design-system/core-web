@@ -51,7 +51,7 @@ export type DBTabItemProps = DBTabItemDefaultProps &
 export type DBTabItemDefaultState = {
 	internalActive: boolean | undefined;
 	_resizeObserver: ResizeObserver | null | undefined;
-	_ariaSelectedListener: ((event: any) => void) | null;
+	_ariaSelectedListener: { fn: (event: any) => void } | null;
 	handleClick: (event: any) => void;
 	isTruncated: boolean;
 	checkTruncation: () => void;

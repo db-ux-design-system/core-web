@@ -227,13 +227,13 @@ export default function DBTabs(props: DBTabsProps) {
 						const _listener = state._scrollListener;
 						const _container = state.scrollContainer;
 						if (_listener && _container) {
-							_container.removeEventListener('scroll', _listener);
+							_container.removeEventListener('scroll', _listener.fn);
 							state._scrollListener = null;
 						}
 
 						const onScroll = () =>
 							state.evaluateScrollButtons(container);
-						state._scrollListener = onScroll;
+						state._scrollListener = { fn: onScroll };
 						container.addEventListener('scroll', onScroll);
 
 						if (!state._resizeObserver) {
@@ -371,7 +371,7 @@ export default function DBTabs(props: DBTabsProps) {
 		const _listener = state._scrollListener;
 		const _container = state.scrollContainer;
 		if (_listener && _container) {
-			_container.removeEventListener('scroll', _listener);
+			_container.removeEventListener('scroll', _listener.fn);
 		}
 		state._resizeObserver?.disconnect();
 		state._resizeObserver = null;
