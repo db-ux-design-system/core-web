@@ -271,13 +271,13 @@ export default function DBTabs(props: DBTabsProps) {
 					const isSelected = state.activeTabIndex === index;
 					const panel = panels[index];
 
-					const tabId = state.getTabId(index);
-					const panelId = state.getPanelId(index);
+					const tabId = button.id || state.getTabId(index);
+					const panelId = panel?.id || state.getPanelId(index);
 
 					if (!button.id) {
 						button.id = tabId;
 					}
-					if (button.getAttribute('aria-controls') !== panelId) {
+					if (!button.getAttribute('aria-controls')) {
 						button.setAttribute('aria-controls', panelId);
 					}
 
@@ -291,7 +291,7 @@ export default function DBTabs(props: DBTabsProps) {
 						if (!panel.id) {
 							panel.id = panelId;
 						}
-						if (panel.getAttribute('aria-labelledby') !== tabId) {
+						if (!panel.getAttribute('aria-labelledby')) {
 							panel.setAttribute('aria-labelledby', tabId);
 						}
 
