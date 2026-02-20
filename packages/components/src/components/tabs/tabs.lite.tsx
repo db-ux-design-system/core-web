@@ -32,6 +32,7 @@ export default function DBTabs(props: DBTabsProps) {
 		scrollContainer: null,
 		_resizeObserver: null,
 		_observer: null, // must stay in state: needs to persist across onUpdate and onUnMount lifecycle hooks (Mitosis doesn't support cross-lifecycle local variables)
+		_rafId: null as number | null,
 		_scrollListener: null,
 
 		_id() {
@@ -344,7 +345,11 @@ export default function DBTabs(props: DBTabsProps) {
 						mutation.removedNodes.length ||
 						mutation.addedNodes.length
 					) {
-						requestAnimationFrame(() => {
+						if (state._rafId !== null) {
+							cancelAnimationFrame(state._rafId);
+						}
+						state._rafId = requestAnimationFrame(() => {
+							state._rafId = null;
 							state.initTabList();
 							state.initTabs();
 						});
@@ -363,6 +368,10 @@ export default function DBTabs(props: DBTabsProps) {
 	});
 
 	onUnMount(() => {
+		if (state._rafId !== null) {
+			cancelAnimationFrame(state._rafId);
+			state._rafId = null;
+		}
 		const _listener = state._scrollListener;
 		const _container = state.scrollContainer;
 		if (_listener && _container) {
@@ -376,7 +385,11 @@ export default function DBTabs(props: DBTabsProps) {
 
 	onUpdate(() => {
 		if (_ref && state.initialized) {
-			requestAnimationFrame(() => {
+			if (state._rafId !== null) {
+				cancelAnimationFrame(state._rafId);
+			}
+			state._rafId = requestAnimationFrame(() => {
+				state._rafId = null;
 				if (!_ref) return;
 				state.initTabList();
 				state.initTabs();
