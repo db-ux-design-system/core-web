@@ -139,5 +139,8 @@ dbtabpanel
 dbtablist
 unstarted
 publishpackages
+turbopack
+lightningcss
 cooldown
 rowspan
+TSES

@@ -1,5 +1,15 @@
 # @db-ux/ngx-core-components
 
+## 4.4.3
+
+### Patch Changes
+
+- fix: icon color for DBTag with semantic property set - [see commit 89c4ad7](https://github.com/db-ux-design-system/core-web/commit/89c4ad7274cdadaccc0aedc106d6f2c781e6ce8a)
+
+- fix: issue with DBCustomSelect not working properly with customValidity="no-validation" - [see commit 758ecb9](https://github.com/db-ux-design-system/core-web/commit/758ecb90f82a6c3d648728fa92c92474600b9941)
+
+- fix: issue with floating-components (tooltip, popover, etc.) inside other absolute or fixed elements - [see commit e6d934f](https://github.com/db-ux-design-system/core-web/commit/e6d934f0c0a4af0b6dd57f81773831a2431b94e1)
+
 ## 4.4.2
 
 ### Patch Changes
