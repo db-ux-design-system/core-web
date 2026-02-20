@@ -1,0 +1,17 @@
+/**
+   * match-sorter-utils
+   *
+   * Copyright (c) TanStack
+   *
+   * This source code is licensed under the MIT license found in the
+   * LICENSE.md file in the root directory of this source tree.
+   *
+   * @license MIT
+   */
+
+/**
+ * @name match-sorter
+ * @license MIT license.
+ * @copyright (c) 2099 Kent C. Dodds
+ * @author Kent C. Dodds <me@kentcdodds.com> (https://kentcdodds.com)
+ */
