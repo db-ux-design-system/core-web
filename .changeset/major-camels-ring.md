@@ -6,4 +6,4 @@
 "@db-ux/v-core-components": patch
 ---
 
-fix: issue with DBCustomSelect inside DBDrawer (or other `<dialog>`) element which has a problem with top-layer and focus
+fix: issue with DBCustomSelect inside DBDrawer (or other `<dialog>` based) components, which has a problem with top-layer and focus
