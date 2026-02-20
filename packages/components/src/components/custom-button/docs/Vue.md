@@ -11,6 +11,6 @@ import { DBCustomButton } from "@db-ux/v-core-components";
 </script>
 
 <template>
-	<DBCustomButton>CustomButton</DBCustomButton>
+	<DBCustomButton><button type="button">CustomButton</button></DBCustomButton>
 </template>
 ```

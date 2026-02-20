@@ -20,5 +20,5 @@ import { DBCustomButton } from '@db-ux/ngx-core-components';
 
 ```html app.component.html
 <!-- app.component.html -->
-<db-custom-button>CustomButton</db-custom-button>
+<db-custom-button><button type="button">CustomButton</button></db-custom-button>
 ```
